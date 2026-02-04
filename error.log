@@ -4,3 +4,10 @@ Wed Feb 04 2026 21:24:07 GMT+0200 (Itä-Euroopan normaaliaika)
 
 Script /Users/jlaru/Documents/GitHub/script/push-to-github.sh couldn't be run
 
+----------
+
+Wed Feb 04 2026 21:24:58 GMT+0200 (Itä-Euroopan normaaliaika)
+
+fatal: could not read Username for 'https://github.com': Device not configured
+
+
