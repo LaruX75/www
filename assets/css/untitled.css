@@ -1,0 +1,12 @@
+header.masthead .bg-circle {
+  background: radial-gradient(circle at 30% 30%, #7ea1c9 0%, #3f5f84 55%, #2a3b52 100%);
+  box-shadow: 0 0 60px rgba(126,161,201,0.45), 0 0 120px rgba(63,95,132,0.25);
+  opacity: 0.9;
+}
+
+box-shadow: 0 0 80px rgba(126, 161, 201, 0.55), 0 0 160px rgba(63, 95, 132, 0.35); header.masthead {
+  background: radial-gradient(ellipse at top, #3b526f 0%, #2a3b52 45%, #1f2c3d 100%);
+  position: relative;
+  overflow: hidden;
+}
+
