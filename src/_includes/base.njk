@@ -272,32 +272,10 @@
 
       // Sticky header transparency logic
       const navbar = document.querySelector('.site-navbar');
-      const heroSection = document.getElementById('heroSection');
-
       if (navbar) {
-        // Default to solid on all pages; only home hero can be transparent.
+        // Keep header alignment and look consistent on all pages.
         navbar.classList.remove('navbar-hero-transparent');
         navbar.classList.add('navbar-hero-solid');
-      }
-
-      if (navbar && heroSection) {
-        const handleScroll = () => {
-          const scrollY = window.scrollY;
-          const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
-
-          if (scrollY < heroBottom) {
-            // Through hero section
-            navbar.classList.add('navbar-hero-transparent');
-            navbar.classList.remove('navbar-hero-solid');
-          } else {
-            // Past hero
-            navbar.classList.remove('navbar-hero-transparent');
-            navbar.classList.add('navbar-hero-solid');
-          }
-        };
-
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        handleScroll();
       }
 
       // Mega menu interactions (stagger + Esc focus return)
