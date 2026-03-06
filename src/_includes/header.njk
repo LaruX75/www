@@ -143,33 +143,45 @@
             <i class="{{ navWritings.icon or 'bi bi-pencil-fill' }}"></i> {{ navWritings.title or 'Writings' }}
           </a>
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
-            <div class="mega-wrap four-cols-tight writings-mega-grid">
+            <div class="mega-wrap writings-mega-layout">
               {% if writingsMegaMenu.contentColumns %}
+                <section class="writings-group-head">
+                  <h5>{{ writingsMegaMenu.groupHeading or writingsMegaMenu.heading }}</h5>
+                  <p class="menu-desc">{{ writingsMegaMenu.description }}</p>
+                </section>
                 {% for contentColumn in writingsMegaMenu.contentColumns %}
-                  <section>
-                    <h5>{{ contentColumn.heading }}</h5>
-                    {% if loop.first %}
-                      <p class="menu-desc">{{ writingsMegaMenu.description }}</p>
-                    {% endif %}
+                  <section class="writings-main-col">
                     {% for link in contentColumn.links %}
-                      <a href="{{ link.href }}"><i class="{{ link.icon }}"></i>{{ link.title }}</a>
+                      {% set linkCount = 0 %}
+                      {% if link.countKey %}
+                        {% set linkCount = (collections[link.countKey] or []) | length %}
+                      {% elif link.countData == "theses_total" %}
+                        {% set linkCount = theses.stats.total if theses and theses.stats else 0 %}
+                      {% endif %}
+                      <a class="menu-link-with-count" href="{{ link.href }}">
+                        <span><i class="{{ link.icon }}"></i>{{ link.title }}</span>
+                        {% if link.countKey or link.countData %}<span class="menu-link-count">{{ linkCount }}</span>{% endif %}
+                      </a>
                     {% endfor %}
                   </section>
                 {% endfor %}
-                {% for statsColumn in writingsMegaMenu.statColumns %}
-                  <section>
-                    <h5>{{ statsColumn.heading }}</h5>
-                    <ul class="mega-stat-list">
-                      {% for statItem in statsColumn.items %}
-                        {% set statCount = (collections[statItem.countKey] or []) | length %}
-                        <li>
-                          <span>{{ statItem.title }}</span>
-                          <span class="mega-stat-count">{{ statCount }}</span>
-                        </li>
-                      {% endfor %}
-                    </ul>
+                {% if writingsMegaMenu.seeAlso %}
+                  <section class="writings-side-col">
+                    <h5>{{ writingsMegaMenu.seeAlso.heading }}</h5>
+                    {% for link in writingsMegaMenu.seeAlso.links %}
+                      {% set linkCount = 0 %}
+                      {% if link.countKey %}
+                        {% set linkCount = (collections[link.countKey] or []) | length %}
+                      {% elif link.countData == "theses_total" %}
+                        {% set linkCount = theses.stats.total if theses and theses.stats else 0 %}
+                      {% endif %}
+                      <a class="menu-link-with-count" href="{{ link.href }}">
+                        <span><i class="{{ link.icon }}"></i>{{ link.title }}</span>
+                        {% if link.countKey or link.countData %}<span class="menu-link-count">{{ linkCount }}</span>{% endif %}
+                      </a>
+                    {% endfor %}
                   </section>
-                {% endfor %}
+                {% endif %}
               {% else %}
                 <section>
                   <h5>{{ writingsMegaMenu.heading }}</h5>
@@ -356,33 +368,45 @@
             <i class="{{ navWritings.icon or 'bi bi-pencil-fill' }}"></i> {{ navWritings.title or 'Kynästä' }}
           </a>
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
-            <div class="mega-wrap four-cols-tight writings-mega-grid">
+            <div class="mega-wrap writings-mega-layout">
               {% if writingsMegaMenu.contentColumns %}
+                <section class="writings-group-head">
+                  <h5>{{ writingsMegaMenu.groupHeading or writingsMegaMenu.heading }}</h5>
+                  <p class="menu-desc">{{ writingsMegaMenu.description }}</p>
+                </section>
                 {% for contentColumn in writingsMegaMenu.contentColumns %}
-                  <section>
-                    <h5>{{ contentColumn.heading }}</h5>
-                    {% if loop.first %}
-                      <p class="menu-desc">{{ writingsMegaMenu.description }}</p>
-                    {% endif %}
+                  <section class="writings-main-col">
                     {% for link in contentColumn.links %}
-                      <a href="{{ link.href }}"><i class="{{ link.icon }}"></i>{{ link.title }}</a>
+                      {% set linkCount = 0 %}
+                      {% if link.countKey %}
+                        {% set linkCount = (collections[link.countKey] or []) | length %}
+                      {% elif link.countData == "theses_total" %}
+                        {% set linkCount = theses.stats.total if theses and theses.stats else 0 %}
+                      {% endif %}
+                      <a class="menu-link-with-count" href="{{ link.href }}">
+                        <span><i class="{{ link.icon }}"></i>{{ link.title }}</span>
+                        {% if link.countKey or link.countData %}<span class="menu-link-count">{{ linkCount }}</span>{% endif %}
+                      </a>
                     {% endfor %}
                   </section>
                 {% endfor %}
-                {% for statsColumn in writingsMegaMenu.statColumns %}
-                  <section>
-                    <h5>{{ statsColumn.heading }}</h5>
-                    <ul class="mega-stat-list">
-                      {% for statItem in statsColumn.items %}
-                        {% set statCount = (collections[statItem.countKey] or []) | length %}
-                        <li>
-                          <span>{{ statItem.title }}</span>
-                          <span class="mega-stat-count">{{ statCount }}</span>
-                        </li>
-                      {% endfor %}
-                    </ul>
+                {% if writingsMegaMenu.seeAlso %}
+                  <section class="writings-side-col">
+                    <h5>{{ writingsMegaMenu.seeAlso.heading }}</h5>
+                    {% for link in writingsMegaMenu.seeAlso.links %}
+                      {% set linkCount = 0 %}
+                      {% if link.countKey %}
+                        {% set linkCount = (collections[link.countKey] or []) | length %}
+                      {% elif link.countData == "theses_total" %}
+                        {% set linkCount = theses.stats.total if theses and theses.stats else 0 %}
+                      {% endif %}
+                      <a class="menu-link-with-count" href="{{ link.href }}">
+                        <span><i class="{{ link.icon }}"></i>{{ link.title }}</span>
+                        {% if link.countKey or link.countData %}<span class="menu-link-count">{{ linkCount }}</span>{% endif %}
+                      </a>
+                    {% endfor %}
                   </section>
-                {% endfor %}
+                {% endif %}
               {% else %}
                 <section>
                   <h5>{{ writingsMegaMenu.heading }}</h5>

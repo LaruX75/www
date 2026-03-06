@@ -125,13 +125,6 @@
   grid-template-columns: 1fr;
 }
 
-.four-cols-tight {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0.9rem;
-  align-items: start;
-}
-
 .mega-wrap h5 {
   font-size: 18px;
   margin-bottom: 0.5rem;
@@ -197,31 +190,37 @@
   min-width: 0;
 }
 
-.mega-stat-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.writings-mega-layout {
   display: grid;
-  gap: 0.42rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.9rem;
+  align-items: start;
 }
 
-.mega-stat-list li {
+.writings-group-head {
+  grid-column: 1 / span 3;
+  margin-bottom: -0.1rem;
+}
+
+.writings-main-col {
+  min-width: 0;
+}
+
+.writings-side-col {
+  grid-column: 4;
+  grid-row: 1 / span 2;
+  min-width: 0;
+}
+
+.menu-link-with-count {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.45rem;
-  font-size: 0.92rem;
-  padding: 0.28rem 0.55rem;
-  border: 1px solid var(--menu-divider);
-  border-radius: 0.5rem;
-  background: rgba(255, 255, 255, 0.12);
+  white-space: nowrap;
 }
 
-[data-bs-theme="dark"] .mega-stat-list li {
-  background: rgba(15, 23, 42, 0.42);
-}
-
-.mega-stat-count {
+.menu-link-count {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -235,7 +234,7 @@
   background-color: #2e3f59;
 }
 
-[data-bs-theme="dark"] .mega-stat-count {
+[data-bs-theme="dark"] .menu-link-count {
   background-color: rgba(255, 255, 255, 0.22);
 }
 
@@ -358,25 +357,26 @@
     height: 34px !important;
   }
 
-  .mega-wrap.four-cols-tight {
+  .writings-mega-layout {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 0.65rem;
   }
 
-  .mega-wrap.four-cols-tight h5 {
+  .writings-mega-layout h5 {
     font-size: 16px;
-  }
-
-  .mega-stat-list li {
-    font-size: 0.84rem;
-    padding: 0.24rem 0.45rem;
   }
 }
 
 @media (min-width: 768px) and (max-width: 859.98px) {
-  .mega-wrap.four-cols-tight {
+  .writings-mega-layout {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.7rem;
+  }
+
+  .writings-group-head,
+  .writings-side-col {
+    grid-column: auto;
+    grid-row: auto;
   }
 }
 
@@ -400,8 +400,14 @@
   .grid-8-4,
   .three-cols,
   .two-cols,
-  .four-cols-tight {
+  .writings-mega-layout {
     grid-template-columns: 1fr;
+  }
+
+  .writings-group-head,
+  .writings-side-col {
+    grid-column: auto;
+    grid-row: auto;
   }
 
   .evelenty-main-nav>.nav-item>.nav-link {
