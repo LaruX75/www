@@ -214,5 +214,143 @@ module.exports = {
         }
       }
     }
-  ]
+  ],
+  megaMenuWork: {
+    fi: {
+      sections: [
+        {
+          heading: "Opetus & portfoliot",
+          links: [
+            {
+              title: "Opetus",
+              href: "/opetus/",
+              icon: "bi bi-person-video3 me-2",
+              description: "Kurssit, materiaalit ja pedagoginen työ."
+            },
+            {
+              title: "Opetusportfolio",
+              href: "/portfolio/",
+              icon: "bi bi-folder me-2"
+            }
+          ]
+        },
+        {
+          heading: "Tutkimus & julkaisut",
+          links: [
+            {
+              title: "Työni yliopistonlehtorina",
+              href: "/tyoni-yliopistonlehtorina/",
+              icon: "bi bi-briefcase me-2",
+              description: "Yliopistotyöni kokonaisuus."
+            },
+            {
+              title: "Tutkimus",
+              href: "/tutkimus/",
+              icon: "bi bi-search me-2",
+              description: "Tutkimushankkeet, aiheet ja julkaisut."
+            },
+            {
+              title: "Julkaisuluettelo",
+              href: "/julkaisut/",
+              icon: "bi bi-journal-text me-2"
+            },
+            {
+              title: "Opinnäytetyöt",
+              href: "/opinnaytteet/",
+              icon: "bi bi-mortarboard me-2",
+              description: "Ohjatut pro gradut ja kandidaatintyöt."
+            }
+          ]
+        },
+        {
+          heading: "Palkinnot & sosiaalinen media",
+          links: [
+            {
+              title: "Palkinnot",
+              href: "/palkinnot/",
+              icon: "bi bi-award me-2"
+            },
+            {
+              title: "LinkedIn",
+              href: "https://www.linkedin.com/in/jarilaru/",
+              icon: "bi bi-linkedin me-2",
+              external: true
+            },
+            {
+              title: "ResearchGate",
+              href: "https://www.researchgate.net/profile/Jari-Laru",
+              icon: "bi bi-globe me-2",
+              external: true
+            }
+          ]
+        }
+      ],
+      cta: {
+        title: "Tilaa minut kouluttajaksi",
+        description: "Koulutukset tekoälystä, oppimisteknologiasta ja modernista pedagogiikasta.",
+        href: "/yhteystiedot/",
+        label: "Pyydä tarjous"
+      }
+    },
+    en: {
+      sections: [
+        {
+          heading: "Research & Scholarship",
+          links: [
+            {
+              title: "Publications",
+              href: "/en/publications/",
+              icon: "bi bi-journal-text me-2",
+              description: "Scientific articles and reports."
+            },
+            {
+              title: "Theses Supervised",
+              href: "/en/theses/",
+              icon: "bi bi-mortarboard me-2",
+              description: "Bachelor's and Master's theses."
+            }
+          ]
+        },
+        {
+          heading: "Outreach & Materials",
+          links: [
+            {
+              title: "Presentations",
+              href: "/en/presentations/",
+              icon: "bi bi-person-video3 me-2",
+              description: "Slides and keynotes."
+            },
+            {
+              title: "Teaching Portfolio",
+              href: "/en/portfolio/",
+              icon: "bi bi-folder me-2"
+            }
+          ]
+        },
+        {
+          heading: "Academic Networks",
+          links: [
+            {
+              title: "LinkedIn",
+              href: "https://www.linkedin.com/in/jarilaru/",
+              icon: "bi bi-linkedin me-2",
+              external: true
+            },
+            {
+              title: "ResearchGate",
+              href: "https://www.researchgate.net/profile/Jari-Laru",
+              icon: "bi bi-globe me-2",
+              external: true
+            }
+          ]
+        }
+      ],
+      cta: {
+        title: "Book me for a keynote",
+        description: "Expert talks on AI, EdTech, and modern pedagogy.",
+        href: "/en/contact/",
+        label: "Request a quote"
+      }
+    }
+  }
 };

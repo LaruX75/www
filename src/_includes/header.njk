@@ -8,6 +8,7 @@
 {% set navPolitics = topNavItems | navItemByKey("politics") %}
 {% set navWritings = topNavItems | navItemByKey("writings") %}
 {% set navContact = topNavItems | navItemByKey("contact") %}
+{% set workMegaMenu = headerNav.megaMenuWork.en if currentLang == "en" else headerNav.megaMenuWork.fi %}
 
 {% if currentLang == "en" %}
 <nav id="siteNav" class="navbar navbar-expand-lg site-navbar sticky-top" aria-label="Main Navigation" style="z-index:1030; transition: background-color .3s ease, box-shadow .3s ease;">
@@ -69,6 +70,28 @@
             <i class="{{ navWork.icon or 'bi bi-briefcase-fill' }}"></i> {{ navWork.title or 'Work' }}
           </a>
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
+            {% if workMegaMenu and workMegaMenu.sections %}
+            <div class="mega-wrap grid-8-4">
+              <div class="mega-left three-cols">
+                {% for section in workMegaMenu.sections %}
+                  <section>
+                    <h5>{{ section.heading }}</h5>
+                    {% for link in section.links %}
+                      <a href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}><i class="{{ link.icon }}"></i>{{ link.title }}</a>
+                      {% if link.description %}
+                        <small>{{ link.description }}</small>
+                      {% endif %}
+                    {% endfor %}
+                  </section>
+                {% endfor %}
+              </div>
+              <aside class="mega-right cta-card">
+                <h5>{{ workMegaMenu.cta.title }}</h5>
+                <p>{{ workMegaMenu.cta.description }}</p>
+                <a class="btn btn-accent btn-lg w-100" href="{{ workMegaMenu.cta.href }}">{{ workMegaMenu.cta.label }}</a>
+              </aside>
+            </div>
+            {% else %}
             <div class="mega-wrap grid-8-4">
               <div class="mega-left three-cols">
                 <section>
@@ -96,6 +119,7 @@
                 <a class="btn btn-accent btn-lg w-100" href="/en/contact/">Request a quote</a>
               </aside>
             </div>
+            {% endif %}
           </div>
         </li>
 
@@ -235,6 +259,28 @@
             <i class="{{ navWork.icon or 'bi bi-briefcase-fill' }}"></i> {{ navWork.title or 'Työ' }}
           </a>
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
+            {% if workMegaMenu and workMegaMenu.sections %}
+            <div class="mega-wrap grid-8-4">
+              <div class="mega-left three-cols">
+                {% for section in workMegaMenu.sections %}
+                  <section>
+                    <h5>{{ section.heading }}</h5>
+                    {% for link in section.links %}
+                      <a href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}><i class="{{ link.icon }}"></i>{{ link.title }}</a>
+                      {% if link.description %}
+                        <small>{{ link.description }}</small>
+                      {% endif %}
+                    {% endfor %}
+                  </section>
+                {% endfor %}
+              </div>
+              <aside class="mega-right cta-card">
+                <h5>{{ workMegaMenu.cta.title }}</h5>
+                <p>{{ workMegaMenu.cta.description }}</p>
+                <a class="btn btn-accent btn-lg w-100" href="{{ workMegaMenu.cta.href }}">{{ workMegaMenu.cta.label }}</a>
+              </aside>
+            </div>
+            {% else %}
             <div class="mega-wrap grid-8-4">
               <div class="mega-left three-cols">
                 <section>
@@ -266,6 +312,7 @@
                 <a class="btn btn-accent btn-lg w-100" href="/yhteystiedot/">Pyydä tarjous</a>
               </aside>
             </div>
+            {% endif %}
           </div>
         </li>
 
