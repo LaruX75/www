@@ -152,6 +152,19 @@ module.exports = function (eleventyConfig) {
     mdLib.use(markdownItAnchor, {
       level: [2, 3, 4]
     });
+
+    const defaultImageRenderer =
+      mdLib.renderer.rules.image ||
+      function (tokens, idx, options, env, self) {
+        return self.renderToken(tokens, idx, options);
+      };
+
+    mdLib.renderer.rules.image = (tokens, idx, options, env, self) => {
+      const token = tokens[idx];
+      if (!token.attrGet("loading")) token.attrSet("loading", "lazy");
+      if (!token.attrGet("decoding")) token.attrSet("decoding", "async");
+      return defaultImageRenderer(tokens, idx, options, env, self);
+    };
   });
 
   // Avoid intermittent Eleventy v2 watch crashes in large sites:

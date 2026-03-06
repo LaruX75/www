@@ -64,6 +64,8 @@
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {% set currentLang = lang or (page.url | langFromUrl) %}
+  {% set isHomePage = page.url == "/" or page.url == "/en/" %}
+  {% set needsCharts = page.url == "/julkaisut/" or page.url == "/en/publications/" or page.url == "/kynasta/" %}
   {% set pageTitle = title or site.name %}
   {% set pageDescription = description or site.description %}
   {% set pageUrl = page.url | absoluteUrl(site.url or "https://www.jarilaru.fi") %}
@@ -166,27 +168,43 @@
     }
   </script>
   {% endif %}
+  {% if isHomePage %}
+  <link rel="preload" as="image" href="/img/WIN_20210329_16_06_01_Pro.jpg" fetchpriority="high">
+  {% endif %}
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Fraunces:wght@200;300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Inter:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Inter:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Inter:wght@400;600;700&display=swap">
+  </noscript>
   <link rel="stylesheet" href="/css/bss-overrides.css">
   <link rel="stylesheet" href="/css/mega-menu.css">
-  <link rel="stylesheet" href="/css/aos.min.css">
+  <link rel="preload" href="/css/aos.min.css" as="style">
+  <link rel="stylesheet" href="/css/aos.min.css" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="/css/aos.min.css">
+  </noscript>
   <link rel="stylesheet" href="/css/template.css">
   <link rel="stylesheet" href="/css/styles.css">
   <link rel="stylesheet" href="/css/a11y.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+  <link rel="preload" href="/pagefind/pagefind-ui.css" as="style">
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript>
+    <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+  </noscript>
   <script src="/pagefind/pagefind-ui.js" defer></script>
+  {% if needsCharts %}
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js" defer></script>
+  {% endif %}
 </head>
 <body>
   <a class="visually-hidden-focusable skip-link btn btn-primary m-2 position-absolute" style="z-index: 9999; top: 0; left: 0;" href="#main-content">Hyppää pääsisältöön</a>
 
   {% include "header.njk" %}
 
-  {% set isHomePage = page.url == "/" or page.url == "/en/" %}
   {% set currentUrl = page.url or "" %}
   {% set breadcrumbKey = "" %}
   {% if page.inputPath and "src/publications/" in page.inputPath %}
@@ -233,12 +251,12 @@
 
   {% include "footer.njk" %}
 
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
-  <script src="/js/bootstrap.min.js"></script>
-  <script src="/js/aos.min.js"></script>
-  <script src="/js/bs-init.js"></script>
-  <script src="/js/parallax-fix.js"></script>
-  <script src="/js/external-media-consent.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" defer></script>
+  <script src="/js/bootstrap.min.js" defer></script>
+  <script src="/js/aos.min.js" defer></script>
+  <script src="/js/bs-init.js" defer></script>
+  <script src="/js/parallax-fix.js" defer></script>
+  <script src="/js/external-media-consent.js" defer></script>
   <script>
     // Teemanvaihtajan logiikka
     document.addEventListener('DOMContentLoaded', () => {
@@ -434,6 +452,6 @@
     </div>
   </div>
 
-  <script src="/js/a11y.js"></script>
+  <script src="/js/a11y.js" defer></script>
 </body>
 </html>

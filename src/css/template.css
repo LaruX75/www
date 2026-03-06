@@ -1,9 +1,8 @@
 :root {
   --bs-hero-bg: url("../../assets/img/hero.webp");
-  --bs-font-family-heading: 'Fraunces', serif;
+  --bs-font-family-heading: 'Bree Serif', serif;
 }
 
 body:before, .hero:before {
   background-image: var(--bs-hero-bg);
 }
-
