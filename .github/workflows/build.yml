@@ -23,6 +23,9 @@ jobs:
           cache: "npm"
       - run: npm ci
       - run: DISABLE_OG_IMAGES=true npx @11ty/eleventy
+      - run: test -f _site/robots.txt
+      - run: grep -q "User-agent: GPTBot" _site/robots.txt
+      - run: grep -q '<meta name="robots" content="index, follow, noai, noimageai">' _site/index.html
       - run: npx pagefind --site _site
       - uses: actions/configure-pages@v4
       - uses: actions/upload-pages-artifact@v3
