@@ -3,6 +3,7 @@ const pluginNavigation = require("@11ty/eleventy-navigation");
 const sitemap = require("@quasibit/eleventy-plugin-sitemap");
 const fs = require("fs");
 const path = require("path");
+const Image = require("@11ty/eleventy-img");
 const EleventyPluginOgImage = require("eleventy-plugin-og-image");
 const brokenLinksPlugin = require("eleventy-plugin-broken-links");
 const SUPPORTED_LANGS = ["fi", "en"];
@@ -99,6 +100,10 @@ function walkHtmlFiles(dir, files = []) {
     }
   });
   return files;
+}
+
+function buildImgFallback(src, alt, className = "") {
+  return `<img src="${src}" alt="${alt}" class="${className}" loading="lazy" decoding="async">`;
 }
 
 function serializeExternalLink(link) {
@@ -475,6 +480,36 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("navItemByKey", function (items, key) {
     if (!Array.isArray(items) || !key) return null;
     return items.find((item) => item && item.key === key) || null;
+  });
+
+  eleventyConfig.addAsyncShortcode("optimizedImage", async function (src, alt, className = "", sizes = "100vw") {
+    if (!src || !alt) return "";
+    try {
+      const sourcePath = src.startsWith("/")
+        ? path.join(process.cwd(), "src", src.replace(/^\/+/, ""))
+        : src;
+
+      const metadata = await Image(sourcePath, {
+        widths: [320, 640],
+        formats: ["webp", "jpeg"],
+        outputDir: path.join(process.cwd(), "_site", "img", "optimized"),
+        urlPath: "/img/optimized/",
+        filenameFormat: (id, originalSrc, width, format) => {
+          const baseName = path.basename(originalSrc, path.extname(originalSrc));
+          return `${baseName}-${id}-${width}w.${format}`;
+        }
+      });
+
+      return Image.generateHTML(metadata, {
+        alt,
+        class: className,
+        sizes,
+        loading: "lazy",
+        decoding: "async"
+      });
+    } catch (_) {
+      return buildImgFallback(src, alt, className);
+    }
   });
 
   // Wrap third-party media iframes with a consent gate to avoid loading external
