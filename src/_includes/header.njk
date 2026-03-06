@@ -19,25 +19,33 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          <a class="nav-link dropdown-toggle {% if page.url and ('/en/about/' in page.url or '/en/cv/' in page.url or '/en/portfolio/' in page.url) %}active{% endif %}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle {% if page.url and ('/en/about/' in page.url or '/en/cv/' in page.url or '/en/portfolio/' in page.url or '/en/company/' in page.url or '/en/road-trips/' in page.url) %}active{% endif %}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="bi bi-person-fill"></i> Me
           </a>
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
             <div class="mega-wrap grid-8-4">
-              <div class="mega-left two-cols">
+              <div class="mega-left three-cols">
                 <section>
                   <h5>General & Life</h5>
                   <a class="menu-link" href="/en/about/"><i class="bi bi-info-circle me-2"></i><span>About me</span></a>
                   <small class="menu-link-desc">Brief biography and background.</small>
-                  <a class="menu-link" href="/en/writings/"><i class="bi bi-pencil-square me-2"></i><span>Writings</span></a>
-                  <small class="menu-link-desc">Articles, op-eds and thoughts.</small>
+                  <a href="/en/road-trips/"><i class="bi bi-car-front me-2"></i>Road Trips</a>
+                </section>
+                <section>
+                  <h5>Politics (Role)</h5>
+                  <a class="menu-link" href="/en/politics/"><i class="bi bi-person-badge me-2"></i><span>Jari Laru, politician</span></a>
+                  <small class="menu-link-desc">Positions of trust in Oulu.</small>
+                  <a class="menu-link" href="/en/affiliations/"><i class="bi bi-link-45deg me-2"></i><span>Affiliations</span></a>
+                  <small class="menu-link-desc">Declarations of affiliations.</small>
+                  <a href="/en/writings/"><i class="bi bi-pencil-square me-2"></i>Writings</a>
                 </section>
                 <section>
                   <h5>Work & Experience</h5>
                   <a class="menu-link" href="/en/cv/"><i class="bi bi-file-earmark-person me-2"></i><span>Curriculum Vitae</span></a>
-                  <small class="menu-link-desc">Education, skills and work history.</small>
+                  <small class="menu-link-desc">Education, skills and history.</small>
                   <a class="menu-link" href="/en/portfolio/"><i class="bi bi-folder me-2"></i><span>Portfolio</span></a>
-                  <small class="menu-link-desc">Selected projects and highlights.</small>
+                  <small class="menu-link-desc">Projects and highlights.</small>
+                  <a href="/en/company/"><i class="bi bi-building me-2"></i>Larux t:mi</a>
                 </section>
               </div>
               <aside class="mega-right showcase-card">
@@ -80,6 +88,42 @@
                 <p>Expert talks on AI, EdTech, and modern pedagogy.</p>
                 <a class="btn btn-accent btn-lg w-100" href="/en/contact/">Request a quote</a>
               </aside>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown mega-dropdown">
+          <a class="nav-link dropdown-toggle {% if page.url and ('/en/politics/' in page.url or '/en/affiliations/' in page.url) %}active{% endif %}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-bank2"></i> Politics
+          </a>
+          <div class="dropdown-menu mega-menu-panel p-0 border-0">
+            <div class="mega-wrap single-col">
+              <section>
+                <h5>Political Positions in Oulu City</h5>
+                <p class="menu-desc">Current roles, responsibilities, and decision-making tasks.</p>
+                <h5 class="mt-3">Other Political Positions</h5>
+                <p class="menu-desc">Other administrative and societal roles.</p>
+                <a href="/en/politics/"><i class="bi bi-person-badge me-2"></i>Jari Laru, politician</a>
+                <a href="/en/affiliations/"><i class="bi bi-link-45deg me-2"></i>Affiliations & Disclosures</a>
+              </section>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown mega-dropdown">
+          <a class="nav-link dropdown-toggle {% if page.url and '/en/writings/' in page.url %}active{% endif %}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-pencil-fill"></i> Writings
+          </a>
+          <div class="dropdown-menu mega-menu-panel p-0 border-0">
+            <div class="mega-wrap two-cols">
+              <section>
+                <h5>Writings and Speeches</h5>
+                <p class="menu-desc">All produced content.</p>
+                <a href="/en/writings/"><i class="bi bi-chat-text me-2"></i>Articles & Columns</a>
+                <a href="/en/blog/"><i class="bi bi-pen me-2"></i>Blog</a>
+                <a href="/en/publications/"><i class="bi bi-journal-text me-2"></i>Publication List</a>
+              </section>
+              <section class="d-none d-lg-block"></section>
             </div>
           </div>
         </li>
