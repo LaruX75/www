@@ -142,3 +142,118 @@ translationKey: company
 <div><a class="btn btn-primary mt-3" href="/yhteystiedot/"><i class="bi bi-envelope me-2"></i> Ota yhteyttä</a></div>
 </div>
 </div>
+
+---
+
+## Case-esimerkkejä
+
+<div class="row g-4 my-2">
+  <div class="col-md-4">
+    <article class="card h-100 shadow-sm border-0">
+      <div class="card-body">
+        <h3 class="h5 fw-bold">Kunta-alan palveluverkkoanalyysit</h3>
+        <p>Dataan pohjautuvia puheenvuoroja ja päätösesityksiä palveluverkon kehittämisestä.</p>
+        <a class="btn btn-outline-primary btn-sm" href="/politiikka/">Katso politiikkatyö</a>
+      </div>
+    </article>
+  </div>
+  <div class="col-md-4">
+    <article class="card h-100 shadow-sm border-0">
+      <div class="card-body">
+        <h3 class="h5 fw-bold">Tekoälylukutaito kouluille</h3>
+        <p>Koulutuksia opettajille ja johdolle käytännön AI-osaamisen vahvistamiseksi.</p>
+        <a class="btn btn-outline-primary btn-sm" href="/koulutukset/">Katso koulutukset</a>
+      </div>
+    </article>
+  </div>
+  <div class="col-md-4">
+    <article class="card h-100 shadow-sm border-0">
+      <div class="card-body">
+        <h3 class="h5 fw-bold">Tutkimuksesta käytäntöön</h3>
+        <p>Tieteelliset julkaisut ja esitykset, jotka tukevat opetuksen ja johtamisen kehittämistä.</p>
+        <a class="btn btn-outline-primary btn-sm" href="/julkaisut/">Katso julkaisut</a>
+      </div>
+    </article>
+  </div>
+</div>
+
+## Miksi valita minut
+
+- Yli 20 vuoden kokemus koulutuksesta ja digipedagogiikasta
+- Tutkimusnäyttöön nojaava toimintatapa
+- Kyky tehdä monimutkaisesta ymmärrettävää
+- Konkreettiset toimenpide-ehdotukset, ei pelkkää visiointia
+
+## Usein kysyttyä
+
+<div class="accordion my-3" id="companyFaqFi">
+  <div class="accordion-item">
+    <h3 class="accordion-header" id="company-faq-fi-1-heading">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#company-faq-fi-1" aria-expanded="true" aria-controls="company-faq-fi-1">
+        Mitä teemoja koulutuksissasi käsitellään?
+      </button>
+    </h3>
+    <div id="company-faq-fi-1" class="accordion-collapse collapse show" aria-labelledby="company-faq-fi-1-heading" data-bs-parent="#companyFaqFi">
+      <div class="accordion-body">
+        Keskiössä ovat tekoälylukutaito, oppimisteknologia, digipedagogiikka ja koulun kehittäminen käytännönläheisesti.
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h3 class="accordion-header" id="company-faq-fi-2-heading">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#company-faq-fi-2" aria-expanded="false" aria-controls="company-faq-fi-2">
+        Kenelle palvelut sopivat?
+      </button>
+    </h3>
+    <div id="company-faq-fi-2" class="accordion-collapse collapse" aria-labelledby="company-faq-fi-2-heading" data-bs-parent="#companyFaqFi">
+      <div class="accordion-body">
+        Koulujen henkilöstölle, koulutuksen johdolle, kuntatoimijoille sekä organisaatioille, jotka haluavat vahvistaa pedagogista ja digitaalista osaamista.
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h3 class="accordion-header" id="company-faq-fi-3-heading">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#company-faq-fi-3" aria-expanded="false" aria-controls="company-faq-fi-3">
+        Miten yhteistyö alkaa?
+      </button>
+    </h3>
+    <div id="company-faq-fi-3" class="accordion-collapse collapse" aria-labelledby="company-faq-fi-3-heading" data-bs-parent="#companyFaqFi">
+      <div class="accordion-body">
+        Yhteydenotolla: määritellään tavoite, aikataulu ja toteutusmalli. Sen jälkeen saat selkeän etenemissuunnitelman.
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Mitä teemoja koulutuksissasi käsitellään?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Keskiössä ovat tekoälylukutaito, oppimisteknologia, digipedagogiikka ja koulun kehittäminen käytännönläheisesti."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kenelle palvelut sopivat?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Koulujen henkilöstölle, koulutuksen johdolle, kuntatoimijoille sekä organisaatioille, jotka haluavat vahvistaa pedagogista ja digitaalista osaamista."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Miten yhteistyö alkaa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yhteydenotolla: määritellään tavoite, aikataulu ja toteutusmalli. Sen jälkeen saat selkeän etenemissuunnitelman."
+      }
+    }
+  ]
+}
+</script>
