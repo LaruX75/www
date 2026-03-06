@@ -3,9 +3,11 @@ title: "Jari Laru, poliitikko"
 description: "Luottamustehtävät, tavoitteet ja vaikuttamisen painopisteet Oulussa."
 permalink: /politiiikka/
 layout: base.njk
+translationKey: politics_index
+lang: fi
 templateEngineOverride: md
 ---
-<section class="bg-light">
+<section class="bg-light mb-5">
   <div class="container py-4">
     <div class="row g-4 align-items-center">
       <div class="col-lg-8">
@@ -31,7 +33,7 @@ templateEngineOverride: md
   </div>
 </section>
 
-<section>
+<section class="mb-5">
   <div class="container">
     <h2 class="h4 mb-3">Kokemus ja roolit</h2>
     <div class="row g-4">
@@ -71,12 +73,12 @@ templateEngineOverride: md
   </div>
 </section>
 
-<section>
+<section class="mb-5">
   <div class="container">
     <h2 class="h4 mb-3">Vaalikausien yli ulottuvat tavoitteet</h2>
     <div class="row g-4">
       <div class="col-lg-4">
-        <div class="card h-100">
+        <div class="card h-100 border-0 shadow-sm">
           <div class="card-body">
             <h3 class="h6">Toimiva arki lähellä</h3>
             <p class="mb-0 text-muted">Turvalliset koulut, toimiva kunnallistekniikka ja sujuvat peruspalvelut jokaisella alueella.</p>
@@ -84,7 +86,7 @@ templateEngineOverride: md
         </div>
       </div>
       <div class="col-lg-4">
-        <div class="card h-100">
+        <div class="card h-100 border-0 shadow-sm">
           <div class="card-body">
             <h3 class="h6">Avoin hallinto</h3>
             <p class="mb-0 text-muted">Päätöksenteon tulee olla läpinäkyvää, ymmärrettävää ja kaupunkilaisille helposti saavutettavaa.</p>
@@ -92,7 +94,7 @@ templateEngineOverride: md
         </div>
       </div>
       <div class="col-lg-4">
-        <div class="card h-100">
+        <div class="card h-100 border-0 shadow-sm">
           <div class="card-body">
             <h3 class="h6">Tasapainoinen kaupunkirakenne</h3>
             <p class="mb-0 text-muted">Kaupunkia kehitetään pitkäjänteisesti eri alueiden vahvuudet huomioiden, ei vain keskustaa painottaen.</p>
@@ -103,7 +105,7 @@ templateEngineOverride: md
   </div>
 </section>
 
-<section>
+<section class="mb-5">
   <div class="container">
     <div class="card border-0 shadow-sm">
       <div class="card-body">
