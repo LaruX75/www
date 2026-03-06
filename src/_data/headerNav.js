@@ -496,61 +496,79 @@ module.exports = {
   },
   megaMenuWork: {
     fi: {
+      layout: "four-columns",
       sections: [
         {
-          heading: "Opetus & portfoliot",
-          links: [
-            {
-              title: "Opetus",
-              href: "/opetus/",
-              icon: "bi bi-person-video3 me-2",
-              description: "Kurssit, materiaalit ja pedagoginen työ."
-            },
-            {
-              title: "Opetusportfolio",
-              href: "/portfolio/",
-              icon: "bi bi-folder me-2"
-            }
-          ]
-        },
-        {
-          heading: "Tutkimus & julkaisut",
+          heading: "Opetus",
           links: [
             {
               title: "Työni yliopistonlehtorina",
               href: "/tyoni-yliopistonlehtorina/",
-              icon: "bi bi-briefcase me-2",
-              description: "Yliopistotyöni kokonaisuus."
+              icon: "bi bi-briefcase me-2"
             },
             {
-              title: "Tutkimus",
-              href: "/tutkimus/",
-              icon: "bi bi-search me-2",
-              description: "Tutkimushankkeet, aiheet ja julkaisut."
+              title: "Ansioluettelo",
+              href: "/cv/",
+              icon: "bi bi-file-earmark-person me-2"
+            },
+            {
+              title: "Esitykset",
+              href: "/esitykset/",
+              icon: "bi bi-easel2 me-2"
+            },
+            {
+              title: "Opinnäytetyöt",
+              href: "/opinnaytteet/",
+              icon: "bi bi-mortarboard me-2"
+            }
+          ]
+        },
+        {
+          heading: "Tutkimus",
+          links: [
+            {
+              title: "Työni yliopistonlehtorina",
+              href: "/tyoni-yliopistonlehtorina/",
+              icon: "bi bi-briefcase me-2"
+            },
+            {
+              title: "Ansioluettelo",
+              href: "/cv/",
+              icon: "bi bi-file-earmark-person me-2"
             },
             {
               title: "Julkaisuluettelo",
               href: "/julkaisut/",
               icon: "bi bi-journal-text me-2"
-            },
-            {
-              title: "Opinnäytetyöt",
-              href: "/opinnaytteet/",
-              icon: "bi bi-mortarboard me-2",
-              description: "Ohjatut pro gradut ja kandidaatintyöt."
             }
           ]
         },
         {
-          heading: "Palkinnot & sosiaalinen media",
+          heading: "Kouluttaja (yrittäjä)",
           links: [
             {
-              title: "Palkinnot",
-              href: "/palkinnot/",
-              icon: "bi bi-award me-2"
+              title: "Tietoa yrityksestä",
+              href: "/larux-tmi/",
+              icon: "bi bi-building me-2"
             },
             {
-              title: "LinkedIn",
+              title: "Esitykset",
+              href: "/esitykset/",
+              icon: "bi bi-easel2 me-2"
+            },
+            {
+              title: "Tilaa minut kouluttajaksi",
+              href: "/yhteystiedot/",
+              icon: "bi bi-megaphone me-2",
+              description: "Koulutukset tekoälystä, oppimisteknologiasta ja modernista pedagogiikasta."
+            }
+          ]
+        },
+        {
+          heading: "Sosiaalinen media",
+          links: [
+            {
+              title: "LinkedIN",
               href: "https://www.linkedin.com/in/jarilaru/",
               icon: "bi bi-linkedin me-2",
               external: true
@@ -559,6 +577,18 @@ module.exports = {
               title: "ResearchGate",
               href: "https://www.researchgate.net/profile/Jari-Laru",
               icon: "bi bi-globe me-2",
+              external: true
+            },
+            {
+              title: "ORCID",
+              href: "https://orcid.org/0000-0003-0347-0182",
+              icon: "bi bi-person-vcard me-2",
+              external: true
+            },
+            {
+              title: "Google Scholar",
+              href: "https://scholar.google.com/citations?user=HOLu1ZIAAAAJ&hl=en",
+              icon: "bi bi-mortarboard me-2",
               external: true
             }
           ]
