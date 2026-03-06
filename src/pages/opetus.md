@@ -1,6 +1,17 @@
 ---
-title: "Opetus"
 permalink: /opetus/
-templateEngineOverride: md
+layout: false
 ---
-Esimerkkisisältö: Opetus. Muokkaa CMS:ssä.
+<!doctype html>
+<html lang="fi">
+  <head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex, follow">
+    <meta http-equiv="refresh" content="0; url=/tyoni-yliopistonlehtorina/">
+    <link rel="canonical" href="/tyoni-yliopistonlehtorina/">
+    <title>Siirry sivulle</title>
+  </head>
+  <body>
+    <p>Tämä sivu on siirtynyt. <a href="/tyoni-yliopistonlehtorina/">Siirry tästä</a>.</p>
+  </body>
+</html>
