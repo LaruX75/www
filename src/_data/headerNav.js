@@ -432,21 +432,21 @@ module.exports = {
       contentColumns: [
         {
           links: [
-            { title: "Mielipiteet", href: "/kynasta/#mielipiteet", icon: "bi bi-chat-text me-2", countKey: "pub_mielipide" },
-            { title: "Kolumnit", href: "/kynasta/#kolumnit", icon: "bi bi-journal-richtext me-2", countKey: "pub_kolumni" }
-          ]
-        },
-        {
-          links: [
             { title: "Aloitteet", href: "/kynasta/#aloitteet", icon: "bi bi-megaphone me-2", countKey: "politics" },
-            { title: "Puheet", href: "/kynasta/#puheet", icon: "bi bi-mic me-2", countKey: "pub_puhe" }
+            { title: "Blogi", href: "/blogi/", icon: "bi bi-pen me-2", countKey: "blog" }
           ]
         },
         {
           links: [
-            { title: "Blogi", href: "/blogi/", icon: "bi bi-pen me-2", countKey: "blog" },
-            { title: "Julkaisuluettelo", href: "/julkaisut/", icon: "bi bi-journal-text me-2", countKey: "publications" },
-            { title: "Esitykset", href: "/esitykset/", icon: "bi bi-easel2 me-2", countKey: "presentations" }
+            { title: "Esitykset", href: "/esitykset/", icon: "bi bi-easel2 me-2", countKey: "presentations" },
+            { title: "Julkaisuluettelo", href: "/julkaisut/", icon: "bi bi-journal-text me-2", countKey: "publications" }
+          ]
+        },
+        {
+          links: [
+            { title: "Kolumnit", href: "/kynasta/#kolumnit", icon: "bi bi-journal-richtext me-2", countKey: "pub_kolumni" },
+            { title: "Mielipiteet", href: "/kynasta/#mielipiteet", icon: "bi bi-chat-text me-2", countKey: "pub_mielipide" },
+            { title: "Puheet", href: "/kynasta/#puheet", icon: "bi bi-mic me-2", countKey: "pub_puhe" }
           ]
         }
       ],

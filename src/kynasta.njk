@@ -15,17 +15,8 @@ translationKey: writings_index
       </div>
       <div class="col-lg-4">
         <nav class="nav nav-pills flex-wrap gap-2 justify-content-lg-end">
-          <a class="nav-link" href="#mielipiteet">
-            Mielipiteet <span class="nav-count">{{ collections.pub_mielipide.length }}</span>
-          </a>
-          <a class="nav-link" href="#kolumnit">
-            Kolumnit <span class="nav-count">{{ collections.pub_kolumni.length }}</span>
-          </a>
           <a class="nav-link" href="#aloitteet">
             Aloitteet <span class="nav-count">{{ collections.politics.length }}</span>
-          </a>
-          <a class="nav-link" href="#puheet">
-            Puheet <span class="nav-count">{{ collections.pub_puhe.length }}</span>
           </a>
           <a class="nav-link" href="#blogi">
             Blogi <span class="nav-count">{{ collections.blog.length }}</span>
@@ -35,6 +26,15 @@ translationKey: writings_index
           </a>
           <a class="nav-link" href="#julkaisut">
             Julkaisut <span class="nav-count">{{ researchfi.length }}</span>
+          </a>
+          <a class="nav-link" href="#kolumnit">
+            Kolumnit <span class="nav-count">{{ collections.pub_kolumni.length }}</span>
+          </a>
+          <a class="nav-link" href="#mielipiteet">
+            Mielipiteet <span class="nav-count">{{ collections.pub_mielipide.length }}</span>
+          </a>
+          <a class="nav-link" href="#puheet">
+            Puheet <span class="nav-count">{{ collections.pub_puhe.length }}</span>
           </a>
         </nav>
       </div>
@@ -53,26 +53,8 @@ translationKey: writings_index
         <div class="row g-3 mb-4">
           <div class="col-6 col-md-4 col-lg-2">
             <div class="summary-kpi p-3 rounded border h-100">
-              <div class="summary-kpi-label">Mielipiteet</div>
-              <div id="kpi-mielipiteet" class="summary-kpi-value">0</div>
-            </div>
-          </div>
-          <div class="col-6 col-md-4 col-lg-2">
-            <div class="summary-kpi p-3 rounded border h-100">
-              <div class="summary-kpi-label">Kolumnit</div>
-              <div id="kpi-kolumnit" class="summary-kpi-value">0</div>
-            </div>
-          </div>
-          <div class="col-6 col-md-4 col-lg-2">
-            <div class="summary-kpi p-3 rounded border h-100">
               <div class="summary-kpi-label">Aloitteet</div>
               <div id="kpi-aloitteet" class="summary-kpi-value">0</div>
-            </div>
-          </div>
-          <div class="col-6 col-md-4 col-lg-2">
-            <div class="summary-kpi p-3 rounded border h-100">
-              <div class="summary-kpi-label">Puheet</div>
-              <div id="kpi-puheet" class="summary-kpi-value">0</div>
             </div>
           </div>
           <div class="col-6 col-md-4 col-lg-2">
@@ -83,8 +65,32 @@ translationKey: writings_index
           </div>
           <div class="col-6 col-md-4 col-lg-2">
             <div class="summary-kpi p-3 rounded border h-100">
+              <div class="summary-kpi-label">Esitykset</div>
+              <div id="kpi-esitykset" class="summary-kpi-value">0</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="summary-kpi p-3 rounded border h-100">
               <div class="summary-kpi-label">Julkaisut</div>
               <div id="kpi-julkaisut" class="summary-kpi-value">0</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="summary-kpi p-3 rounded border h-100">
+              <div class="summary-kpi-label">Kolumnit</div>
+              <div id="kpi-kolumnit" class="summary-kpi-value">0</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="summary-kpi p-3 rounded border h-100">
+              <div class="summary-kpi-label">Mielipiteet</div>
+              <div id="kpi-mielipiteet" class="summary-kpi-value">0</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="summary-kpi p-3 rounded border h-100">
+              <div class="summary-kpi-label">Puheet</div>
+              <div id="kpi-puheet" class="summary-kpi-value">0</div>
             </div>
           </div>
         </div>
@@ -802,6 +808,21 @@ section[id] {
 
 <script>
 (function () {
+  // Näytä taulukko-osiot aakkosjärjestyksessä (A-Ö) riippumatta lähdekoodin lohkojärjestyksestä.
+  const sectionOrder = ['aloitteet', 'blogi', 'esitykset', 'julkaisut', 'kolumnit', 'mielipiteet', 'puheet'];
+  const sections = sectionOrder
+    .map(id => document.getElementById(id))
+    .filter(Boolean);
+  if (sections.length > 1) {
+    const parent = sections[0].parentElement;
+    const anchor = document.createComment('kynasta-sections-order-anchor');
+    parent.insertBefore(anchor, sections[0]);
+    const fragment = document.createDocumentFragment();
+    sections.forEach(section => fragment.appendChild(section));
+    parent.insertBefore(fragment, anchor);
+    anchor.remove();
+  }
+
   const parseJson = (id) => {
     const el = document.getElementById(id);
     if (!el) return [];
@@ -818,6 +839,7 @@ section[id] {
   const aloitteet = parseJson('aloitteet-data');
   const puheet = parseJson('puheet-data');
   const blogi = parseJson('blog-data');
+  const esitykset = parseJson('esitykset-data');
   const julkaisut = parseJson('pub-data');
 
   const counts = {
@@ -826,6 +848,7 @@ section[id] {
     aloitteet: aloitteet.length,
     puheet: puheet.length,
     blogi: blogi.length,
+    esitykset: esitykset.length,
     julkaisut: julkaisut.length
   };
 
@@ -838,6 +861,7 @@ section[id] {
   setText('kpi-aloitteet', counts.aloitteet);
   setText('kpi-puheet', counts.puheet);
   setText('kpi-blogi', counts.blogi);
+  setText('kpi-esitykset', counts.esitykset);
   setText('kpi-julkaisut', counts.julkaisut);
 
   const yearly = {};
@@ -845,7 +869,7 @@ section[id] {
     arr.forEach((item) => {
       const y = key === 'year' ? Number(item.year) : yearFromDate(item.date);
       if (!y || y < 1990 || y > 2100) return;
-      if (!yearly[y]) yearly[y] = { mielipiteet: 0, kolumnit: 0, aloitteet: 0, puheet: 0, blogi: 0, julkaisut: 0 };
+      if (!yearly[y]) yearly[y] = { mielipiteet: 0, kolumnit: 0, aloitteet: 0, puheet: 0, blogi: 0, esitykset: 0, julkaisut: 0 };
       yearly[y][key === 'year' ? 'julkaisut' : key] += 1;
     });
   };
@@ -855,13 +879,22 @@ section[id] {
   addYear(aloitteet, 'aloitteet');
   addYear(puheet, 'puheet');
   addYear(blogi, 'blogi');
+  addYear(esitykset, 'esitykset');
   addYear(julkaisut, 'year');
 
   const years = Object.keys(yearly).map(Number).sort((a, b) => a - b);
 
-  const labels = ['Mielipiteet', 'Kolumnit', 'Aloitteet', 'Puheet', 'Blogi', 'Julkaisut'];
-  const values = [counts.mielipiteet, counts.kolumnit, counts.aloitteet, counts.puheet, counts.blogi, counts.julkaisut];
-  const palette = ['#0d6efd', '#20c997', '#fd7e14', '#dc3545', '#6610f2', '#198754'];
+  const labels = ['Aloitteet', 'Blogi', 'Esitykset', 'Julkaisut', 'Kolumnit', 'Mielipiteet', 'Puheet'];
+  const values = [
+    counts.aloitteet,
+    counts.blogi,
+    counts.esitykset,
+    counts.julkaisut,
+    counts.kolumnit,
+    counts.mielipiteet,
+    counts.puheet
+  ];
+  const palette = ['#fd7e14', '#6610f2', '#0dcaf0', '#198754', '#20c997', '#0d6efd', '#dc3545'];
 
   function drawCharts() {
     if (typeof Chart === 'undefined') return false;
@@ -895,12 +928,13 @@ section[id] {
         data: {
           labels: years,
           datasets: [
-            makeSeries('Mielipiteet', palette[0], 'mielipiteet'),
-            makeSeries('Kolumnit', palette[1], 'kolumnit'),
-            makeSeries('Aloitteet', palette[2], 'aloitteet'),
-            makeSeries('Puheet', palette[3], 'puheet'),
-            makeSeries('Blogi', palette[4], 'blogi'),
-            makeSeries('Julkaisut', palette[5], 'julkaisut')
+            makeSeries('Aloitteet', palette[0], 'aloitteet'),
+            makeSeries('Blogi', palette[1], 'blogi'),
+            makeSeries('Esitykset', palette[2], 'esitykset'),
+            makeSeries('Julkaisut', palette[3], 'julkaisut'),
+            makeSeries('Kolumnit', palette[4], 'kolumnit'),
+            makeSeries('Mielipiteet', palette[5], 'mielipiteet'),
+            makeSeries('Puheet', palette[6], 'puheet')
           ]
         },
         options: {
@@ -935,12 +969,12 @@ section[id] {
   if (!dataEl) return;
   const rawData = JSON.parse(dataEl.textContent);
 
-  // Järjestetään oletuksena aakkosjärjestykseen otsikon mukaan
-  let data = [...rawData].sort((a, b) => (a.title || '').localeCompare((b.title || ''), 'fi'));
+  // Järjestetään oletuksena uusimmasta vanhimpaan (vuosi)
+  let data = [...rawData].sort((a, b) => (b.year || 0) - (a.year || 0));
   let filteredData = [...data];
   let currentPage = 1;
-  let sortCol = 'title';
-  let sortDir = 1; // -1 = desc, 1 = asc
+  let sortCol = 'year';
+  let sortDir = -1; // -1 = desc, 1 = asc
 
   const yearSel = document.getElementById('pub-year');
   const searchInp = document.getElementById('pub-search');
@@ -1156,10 +1190,10 @@ section[id] {
   if (!blogDataEl) return;
   const blogData = JSON.parse(blogDataEl.textContent);
 
-  let filteredBlogData = [...blogData].sort((a, b) => (a.title || '').localeCompare((b.title || ''), 'fi'));
+  let filteredBlogData = [...blogData].sort((a, b) => new Date(b.date) - new Date(a.date));
   let blogCurrentPage = 1;
-  let blogSortCol = 'title';
-  let blogSortDir = 1; // -1 = desc
+  let blogSortCol = 'date';
+  let blogSortDir = -1; // -1 = desc
 
   const blogSearchInp = document.getElementById('blog-search');
   const blogTbody = document.getElementById('blog-tbody');
@@ -1175,7 +1209,7 @@ section[id] {
         (d.categories || []).some(c => c.toLowerCase().includes(q)) ||
         (d.keywords || []).some(k => k.toLowerCase().includes(q));
       return matchQ;
-    }).sort((a, b) => (a.title || '').localeCompare((b.title || ''), 'fi'));
+    }).sort((a, b) => new Date(b.date) - new Date(a.date));
     blogCurrentPage = 1;
     renderBlog();
   }
@@ -1301,10 +1335,10 @@ section[id] {
   if (!esityksetDataEl) return;
   const esityksetData = JSON.parse(esityksetDataEl.textContent);
 
-  let filteredEsityksetData = [...esityksetData].sort((a, b) => (a.title || '').localeCompare((b.title || ''), 'fi'));
+  let filteredEsityksetData = [...esityksetData].sort((a, b) => new Date(b.date) - new Date(a.date));
   let esityksetCurrentPage = 1;
-  let esityksetSortCol = 'title';
-  let esityksetSortDir = 1; // -1 = desc
+  let esityksetSortCol = 'date';
+  let esityksetSortDir = -1; // -1 = desc
 
   const esityksetSearchInp = document.getElementById('esitykset-search');
   const esityksetTbody = document.getElementById('esitykset-tbody');
@@ -1320,7 +1354,7 @@ section[id] {
         (d.categories || []).some(c => c.toLowerCase().includes(q)) ||
         (d.type || '').toLowerCase().includes(q);
       return matchQ;
-    }).sort((a, b) => (a.title || '').localeCompare((b.title || ''), 'fi'));
+    }).sort((a, b) => new Date(b.date) - new Date(a.date));
     esityksetCurrentPage = 1;
     renderEsitykset();
   }
@@ -1440,10 +1474,10 @@ section[id] {
   if (!puheetDataEl) return;
   const puheetData = JSON.parse(puheetDataEl.textContent);
 
-  let filteredPuheetData = [...puheetData].sort((a, b) => (a.title || '').localeCompare((b.title || ''), 'fi'));
+  let filteredPuheetData = [...puheetData].sort((a, b) => new Date(b.date) - new Date(a.date));
   let puheetCurrentPage = 1;
-  let puheetSortCol = 'title';
-  let puheetSortDir = 1; // -1 = desc
+  let puheetSortCol = 'date';
+  let puheetSortDir = -1; // -1 = desc
 
   const puheetSearchInp = document.getElementById('puheet-search');
   const puheetTbody = document.getElementById('puheet-tbody');
@@ -1460,7 +1494,7 @@ section[id] {
         (d.categories || []).some(c => c.toLowerCase().includes(q)) ||
         (d.keywords || []).some(k => k.toLowerCase().includes(q));
       return matchQ;
-    }).sort((a, b) => (a.title || '').localeCompare((b.title || ''), 'fi'));
+    }).sort((a, b) => new Date(b.date) - new Date(a.date));
     puheetCurrentPage = 1;
     renderPuheet();
   }
@@ -1590,10 +1624,10 @@ section[id] {
   if (!aloitteetDataEl) return;
   const aloitteetData = JSON.parse(aloitteetDataEl.textContent);
 
-  let filteredAloitteetData = [...aloitteetData].sort((a, b) => (a.title || '').localeCompare((b.title || ''), 'fi'));
+  let filteredAloitteetData = [...aloitteetData].sort((a, b) => new Date(b.date) - new Date(a.date));
   let aloitteetCurrentPage = 1;
-  let aloitteetSortCol = 'title';
-  let aloitteetSortDir = 1; // -1 = desc
+  let aloitteetSortCol = 'date';
+  let aloitteetSortDir = -1; // -1 = desc
 
   const aloitteetSearchInp = document.getElementById('aloitteet-search');
   const aloitteetTbody = document.getElementById('aloitteet-tbody');
@@ -1610,7 +1644,7 @@ section[id] {
         (d.categories || []).some(c => c.toLowerCase().includes(q)) ||
         (d.keywords || []).some(k => k.toLowerCase().includes(q));
       return matchQ;
-    }).sort((a, b) => (a.title || '').localeCompare((b.title || ''), 'fi'));
+    }).sort((a, b) => new Date(b.date) - new Date(a.date));
     aloitteetCurrentPage = 1;
     renderAloitteet();
   }
@@ -1740,10 +1774,10 @@ section[id] {
   if (!kolumnitDataEl) return;
   const kolumnitData = JSON.parse(kolumnitDataEl.textContent);
 
-  let filteredKolumnitData = [...kolumnitData].sort((a, b) => (a.title || '').localeCompare((b.title || ''), 'fi'));
+  let filteredKolumnitData = [...kolumnitData].sort((a, b) => new Date(b.date) - new Date(a.date));
   let kolumnitCurrentPage = 1;
-  let kolumnitSortCol = 'title';
-  let kolumnitSortDir = 1; // -1 = desc
+  let kolumnitSortCol = 'date';
+  let kolumnitSortDir = -1; // -1 = desc
 
   const kolumnitSearchInp = document.getElementById('kolumnit-search');
   const kolumnitTbody = document.getElementById('kolumnit-tbody');
@@ -1760,7 +1794,7 @@ section[id] {
         (d.categories || []).some(c => c.toLowerCase().includes(q)) ||
         (d.keywords || []).some(k => k.toLowerCase().includes(q));
       return matchQ;
-    }).sort((a, b) => (a.title || '').localeCompare((b.title || ''), 'fi'));
+    }).sort((a, b) => new Date(b.date) - new Date(a.date));
     kolumnitCurrentPage = 1;
     renderKolumnit();
   }
@@ -1890,10 +1924,10 @@ section[id] {
   if (!mielipiteetDataEl) return;
   const mielipiteetData = JSON.parse(mielipiteetDataEl.textContent);
 
-  let filteredMielipiteetData = [...mielipiteetData].sort((a, b) => (a.title || '').localeCompare((b.title || ''), 'fi'));
+  let filteredMielipiteetData = [...mielipiteetData].sort((a, b) => new Date(b.date) - new Date(a.date));
   let mielipiteetCurrentPage = 1;
-  let mielipiteetSortCol = 'title';
-  let mielipiteetSortDir = 1; // -1 = desc
+  let mielipiteetSortCol = 'date';
+  let mielipiteetSortDir = -1; // -1 = desc
 
   const mielipiteetSearchInp = document.getElementById('mielipiteet-search');
   const mielipiteetTbody = document.getElementById('mielipiteet-tbody');
@@ -1910,7 +1944,7 @@ section[id] {
         (d.categories || []).some(c => c.toLowerCase().includes(q)) ||
         (d.keywords || []).some(k => k.toLowerCase().includes(q));
       return matchQ;
-    }).sort((a, b) => (a.title || '').localeCompare((b.title || ''), 'fi'));
+    }).sort((a, b) => new Date(b.date) - new Date(a.date));
     mielipiteetCurrentPage = 1;
     renderMielipiteet();
   }
