@@ -22,7 +22,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarMainEn">
-      <ul class="navbar-nav ms-auto align-items-lg-center flex-lg-nowrap evelenty-main-nav">
+      <ul class="navbar-nav align-items-lg-center flex-lg-nowrap evelenty-main-nav ms-lg-2 me-auto">
         <li class="nav-item">
           <a class="nav-link {% if page.url == '/en/' %}active{% endif %}" href="{{ navHome.url or '/en/' }}">
             <i class="{{ navHome.icon or 'bi bi-house-door-fill' }}"></i> {{ navHome.title or 'Home' }}
@@ -162,7 +162,7 @@
           </a>
         </li>
 
-        <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+        <li class="nav-item ms-lg-auto mt-2 mt-lg-0">
           <div class="d-flex align-items-center gap-2">
             <button class="btn btn-sm rounded-circle d-flex align-items-center justify-content-center" id="searchToggleBtn" style="width: 38px; height: 38px;" aria-label="Search site" title="Search site">
               <i class="bi bi-search"></i>
@@ -204,7 +204,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarMain">
-      <ul class="navbar-nav ms-auto align-items-lg-center flex-lg-nowrap evelenty-main-nav">
+      <ul class="navbar-nav align-items-lg-center flex-lg-nowrap evelenty-main-nav ms-lg-2 me-auto">
         <li class="nav-item">
           <a class="nav-link {% if page.url == '/' %}active{% endif %}" href="{{ navHome.url or '/' }}">
             <i class="{{ navHome.icon or 'bi bi-house-door-fill' }}"></i> {{ navHome.title or 'Etusivu' }}
@@ -348,7 +348,7 @@
           </a>
         </li>
 
-        <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+        <li class="nav-item ms-lg-auto mt-2 mt-lg-0">
           <div class="d-flex align-items-center gap-2">
             <button class="btn btn-sm rounded-circle d-flex align-items-center justify-content-center" id="searchToggleBtn" style="width: 38px; height: 38px;" aria-label="Hae sivustolta" title="Hae sivustolta">
               <i class="bi bi-search"></i>
