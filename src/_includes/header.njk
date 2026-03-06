@@ -14,7 +14,7 @@
 {% set writingsMegaMenu = headerNav.megaMenuWritings.en if currentLang == "en" else headerNav.megaMenuWritings.fi %}
 
 {% if currentLang == "en" %}
-<nav id="siteNav" class="navbar navbar-expand-lg site-navbar sticky-top" aria-label="Main Navigation" style="z-index:1030; transition: background-color .3s ease, box-shadow .3s ease;">
+<nav id="siteNav" class="navbar navbar-expand-md site-navbar sticky-top" aria-label="Main Navigation" style="z-index:1030; transition: background-color .3s ease, box-shadow .3s ease;">
   <div class="container">
     <a class="navbar-brand fw-bold" href="/en/">Jari Laru</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMainEn" aria-controls="navbarMainEn" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,7 +22,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarMainEn">
-      <ul class="navbar-nav align-items-lg-center flex-lg-nowrap evelenty-main-nav ms-lg-2 me-auto">
+      <ul class="navbar-nav align-items-md-center flex-md-nowrap evelenty-main-nav ms-md-2 me-auto">
         <li class="nav-item">
           <a class="nav-link {% if page.url == '/en/' %}active{% endif %}" href="{{ navHome.url or '/en/' }}">
             <i class="{{ navHome.icon or 'bi bi-house-door-fill' }}"></i> {{ navHome.title or 'Home' }}
@@ -151,7 +151,7 @@
                   <a href="{{ link.href }}"><i class="{{ link.icon }}"></i>{{ link.title }}</a>
                 {% endfor %}
               </section>
-              <section class="d-none d-lg-block"></section>
+              <section class="d-none d-md-block"></section>
             </div>
           </div>
         </li>
@@ -162,7 +162,7 @@
           </a>
         </li>
 
-        <li class="nav-item ms-lg-auto mt-2 mt-lg-0">
+        <li class="nav-item ms-md-auto mt-2 mt-md-0">
           <div class="d-flex align-items-center gap-2">
             <button class="btn btn-sm rounded-circle d-flex align-items-center justify-content-center" id="searchToggleBtn" style="width: 38px; height: 38px;" aria-label="Search site" title="Search site">
               <i class="bi bi-search"></i>
@@ -172,7 +172,7 @@
             </button>
           </div>
         </li>
-        <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+        <li class="nav-item ms-md-2 mt-2 mt-md-0">
           <a class="nav-link py-0 d-flex align-items-center gap-1 text-decoration-none" href="{{ fiPageUrl or '/' }}" lang="fi" aria-label="Vaihda kieleksi suomi">
             <span aria-hidden="true">🇫🇮</span><span>FI</span>
           </a>
@@ -196,7 +196,7 @@
   </div>
 </div>
 {% else %}
-<nav id="siteNav" class="navbar navbar-expand-lg site-navbar sticky-top" aria-label="Päänavigaatio" style="z-index:1030; transition: background-color .3s ease, box-shadow .3s ease;">
+<nav id="siteNav" class="navbar navbar-expand-md site-navbar sticky-top" aria-label="Päänavigaatio" style="z-index:1030; transition: background-color .3s ease, box-shadow .3s ease;">
   <div class="container">
     <a class="navbar-brand fw-bold" href="/">Jari Laru</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Avaa valikko">
@@ -204,7 +204,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarMain">
-      <ul class="navbar-nav align-items-lg-center flex-lg-nowrap evelenty-main-nav ms-lg-2 me-auto">
+      <ul class="navbar-nav align-items-md-center flex-md-nowrap evelenty-main-nav ms-md-2 me-auto">
         <li class="nav-item">
           <a class="nav-link {% if page.url == '/' %}active{% endif %}" href="{{ navHome.url or '/' }}">
             <i class="{{ navHome.icon or 'bi bi-house-door-fill' }}"></i> {{ navHome.title or 'Etusivu' }}
@@ -337,7 +337,7 @@
                   <a href="{{ link.href }}"><i class="{{ link.icon }}"></i>{{ link.title }}</a>
                 {% endfor %}
               </section>
-              <section class="d-none d-lg-block"></section>
+              <section class="d-none d-md-block"></section>
             </div>
           </div>
         </li>
@@ -348,7 +348,7 @@
           </a>
         </li>
 
-        <li class="nav-item ms-lg-auto mt-2 mt-lg-0">
+        <li class="nav-item ms-md-auto mt-2 mt-md-0">
           <div class="d-flex align-items-center gap-2">
             <button class="btn btn-sm rounded-circle d-flex align-items-center justify-content-center" id="searchToggleBtn" style="width: 38px; height: 38px;" aria-label="Hae sivustolta" title="Hae sivustolta">
               <i class="bi bi-search"></i>
@@ -358,7 +358,7 @@
             </button>
           </div>
         </li>
-        <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+        <li class="nav-item ms-md-2 mt-2 mt-md-0">
           <a class="nav-link py-0 d-flex align-items-center gap-1 text-decoration-none" href="{{ enPageUrl or '/en/' }}" lang="en" aria-label="Switch language to English">
             <span aria-hidden="true">🇬🇧</span><span>EN</span>
           </a>
