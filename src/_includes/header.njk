@@ -8,7 +8,10 @@
 {% set navPolitics = topNavItems | navItemByKey("politics") %}
 {% set navWritings = topNavItems | navItemByKey("writings") %}
 {% set navContact = topNavItems | navItemByKey("contact") %}
+{% set meMegaMenu = headerNav.megaMenuMe.en if currentLang == "en" else headerNav.megaMenuMe.fi %}
 {% set workMegaMenu = headerNav.megaMenuWork.en if currentLang == "en" else headerNav.megaMenuWork.fi %}
+{% set politicsMegaMenu = headerNav.megaMenuPolitics.en if currentLang == "en" else headerNav.megaMenuPolitics.fi %}
+{% set writingsMegaMenu = headerNav.megaMenuWritings.en if currentLang == "en" else headerNav.megaMenuWritings.fi %}
 
 {% if currentLang == "en" %}
 <nav id="siteNav" class="navbar navbar-expand-lg site-navbar sticky-top" aria-label="Main Navigation" style="z-index:1030; transition: background-color .3s ease, box-shadow .3s ease;">
@@ -33,33 +36,26 @@
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
             <div class="mega-wrap grid-8-4">
               <div class="mega-left three-cols">
-                <section>
-                  <h5>General & Life</h5>
-                  <a class="menu-link" href="/en/about/"><i class="bi bi-info-circle me-2"></i><span>About me</span></a>
-                  <small class="menu-link-desc">Brief biography and background.</small>
-                  <a href="/en/road-trips/"><i class="bi bi-car-front me-2"></i>Road Trips</a>
-                </section>
-                <section>
-                  <h5>Politics (Role)</h5>
-                  <a class="menu-link" href="/en/politics/"><i class="bi bi-person-badge me-2"></i><span>Jari Laru, politician</span></a>
-                  <small class="menu-link-desc">Positions of trust in Oulu.</small>
-                  <a class="menu-link" href="/en/affiliations/"><i class="bi bi-link-45deg me-2"></i><span>Affiliations</span></a>
-                  <small class="menu-link-desc">Declarations of affiliations.</small>
-                  <a href="/en/writings/"><i class="bi bi-pencil-square me-2"></i>Writings</a>
-                </section>
-                <section>
-                  <h5>Work & Experience</h5>
-                  <a class="menu-link" href="/en/cv/"><i class="bi bi-file-earmark-person me-2"></i><span>Curriculum Vitae</span></a>
-                  <small class="menu-link-desc">Education, skills and history.</small>
-                  <a class="menu-link" href="/en/portfolio/"><i class="bi bi-folder me-2"></i><span>Portfolio</span></a>
-                  <small class="menu-link-desc">Projects and highlights.</small>
-                  <a href="/en/company/"><i class="bi bi-building me-2"></i>Larux t:mi</a>
-                </section>
+                {% for section in meMegaMenu.sections %}
+                  <section>
+                    <h5>{{ section.heading }}</h5>
+                    {% for link in section.links %}
+                      {% if link.menuLink %}
+                        <a class="menu-link" href="{{ link.href }}"><i class="{{ link.icon }}"></i><span>{{ link.title }}</span></a>
+                      {% else %}
+                        <a href="{{ link.href }}"><i class="{{ link.icon }}"></i>{{ link.title }}</a>
+                      {% endif %}
+                      {% if link.description %}
+                        <small class="{{ 'menu-link-desc' if link.menuLink }}">{{ link.description }}</small>
+                      {% endif %}
+                    {% endfor %}
+                  </section>
+                {% endfor %}
               </div>
               <aside class="mega-right showcase-card">
-                {% optimizedImage "/img/uploads/2020/01/jari.laru_1397908734_26-e1610053137214.jpg", "Jari Laru", "img-fluid rounded-3 mb-3", "(max-width: 991px) 180px, 240px" %}
-                <h5>Jari Laru</h5>
-                <p>Researcher, educator, and city councilor.</p>
+                {% optimizedImage meMegaMenu.showcase.imageSrc, meMegaMenu.showcase.imageAlt, "img-fluid rounded-3 mb-3", "(max-width: 991px) 180px, 240px" %}
+                <h5>{{ meMegaMenu.showcase.title }}</h5>
+                <p>{{ meMegaMenu.showcase.description }}</p>
               </aside>
             </div>
           </div>
@@ -130,12 +126,13 @@
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
             <div class="mega-wrap single-col">
               <section>
-                <h5>Political Positions in Oulu City</h5>
-                <p class="menu-desc">Current roles, responsibilities, and decision-making tasks.</p>
-                <h5 class="mt-3">Other Political Positions</h5>
-                <p class="menu-desc">Other administrative and societal roles.</p>
-                <a href="/en/politics/"><i class="bi bi-person-badge me-2"></i>Jari Laru, politician</a>
-                <a href="/en/affiliations/"><i class="bi bi-link-45deg me-2"></i>Affiliations & Disclosures</a>
+                {% for intro in politicsMegaMenu.intros %}
+                  <h5 class="{{ intro.className or '' }}">{{ intro.title }}</h5>
+                  <p class="menu-desc">{{ intro.description }}</p>
+                {% endfor %}
+                {% for link in politicsMegaMenu.links %}
+                  <a href="{{ link.href }}"><i class="{{ link.icon }}"></i>{{ link.title }}</a>
+                {% endfor %}
               </section>
             </div>
           </div>
@@ -148,11 +145,11 @@
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
             <div class="mega-wrap two-cols">
               <section>
-                <h5>Writings and Speeches</h5>
-                <p class="menu-desc">All produced content.</p>
-                <a href="/en/writings/"><i class="bi bi-chat-text me-2"></i>Articles & Columns</a>
-                <a href="/en/blog/"><i class="bi bi-pen me-2"></i>Blog</a>
-                <a href="/en/publications/"><i class="bi bi-journal-text me-2"></i>Publication List</a>
+                <h5>{{ writingsMegaMenu.heading }}</h5>
+                <p class="menu-desc">{{ writingsMegaMenu.description }}</p>
+                {% for link in writingsMegaMenu.links %}
+                  <a href="{{ link.href }}"><i class="{{ link.icon }}"></i>{{ link.title }}</a>
+                {% endfor %}
               </section>
               <section class="d-none d-lg-block"></section>
             </div>
@@ -221,34 +218,26 @@
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
             <div class="mega-wrap grid-8-4">
               <div class="mega-left three-cols">
-                <section>
-                  <h5>Yleistä & harrastukset</h5>
-                  <a class="menu-link" href="/tietoa/"><i class="bi bi-info-circle me-2"></i><span>Yleistä</span></a>
-                  <small class="menu-link-desc">Henkilökuva, harrastukset ja vapaa-aika.</small>
-                  <a href="/autolomat/"><i class="bi bi-car-front me-2"></i>Autolomat</a>
-                </section>
-                <section>
-                  <h5>Politiikka (rooli)</h5>
-                  <a class="menu-link" href="/politiiikka/"><i class="bi bi-person-badge me-2"></i><span>Jari Laru, poliitikko</span></a>
-                  <small class="menu-link-desc">Luottamustoimet ja vaikuttaminen Oulussa.</small>
-                  <a class="menu-link" href="/sidonnaisuudet/"><i class="bi bi-link-45deg me-2"></i><span>Sidonnaisuudet</span></a>
-                  <small class="menu-link-desc">Ilmoitukset sidonnaisuuksista ja jäsenyyksistä.</small>
-                  <a href="/kynasta/"><i class="bi bi-pencil-square me-2"></i>Kynästä</a>
-                </section>
-                <section>
-                  <h5>Työ & yritys</h5>
-                  <a class="menu-link" href="/cv/"><i class="bi bi-file-earmark-person me-2"></i><span>Ansioluettelo</span></a>
-                  <small class="menu-link-desc">Koulutus, työkokemus ja osaaminen.</small>
-                  <a class="menu-link" href="/portfolio/"><i class="bi bi-folder me-2"></i><span>Portfolio</span></a>
-                  <small class="menu-link-desc">Valikoidut projektit ja työnäytteet.</small>
-                  <a href="/julkaisut/"><i class="bi bi-journal-text me-2"></i>Julkaisut</a>
-                  <a href="/yritys/"><i class="bi bi-building me-2"></i>Larux t:mi</a>
-                </section>
+                {% for section in meMegaMenu.sections %}
+                  <section>
+                    <h5>{{ section.heading }}</h5>
+                    {% for link in section.links %}
+                      {% if link.menuLink %}
+                        <a class="menu-link" href="{{ link.href }}"><i class="{{ link.icon }}"></i><span>{{ link.title }}</span></a>
+                      {% else %}
+                        <a href="{{ link.href }}"><i class="{{ link.icon }}"></i>{{ link.title }}</a>
+                      {% endif %}
+                      {% if link.description %}
+                        <small class="{{ 'menu-link-desc' if link.menuLink }}">{{ link.description }}</small>
+                      {% endif %}
+                    {% endfor %}
+                  </section>
+                {% endfor %}
               </div>
               <aside class="mega-right showcase-card">
-                {% optimizedImage "/img/uploads/2020/01/jari.laru_1397908734_26-e1610053137214.jpg", "Jari Laru", "img-fluid rounded-3 mb-3", "(max-width: 991px) 180px, 240px" %}
-                <h5>Jari Laru</h5>
-                <p>Tutkija, kouluttaja ja kunnallispoliitikko.</p>
+                {% optimizedImage meMegaMenu.showcase.imageSrc, meMegaMenu.showcase.imageAlt, "img-fluid rounded-3 mb-3", "(max-width: 991px) 180px, 240px" %}
+                <h5>{{ meMegaMenu.showcase.title }}</h5>
+                <p>{{ meMegaMenu.showcase.description }}</p>
               </aside>
             </div>
           </div>
@@ -323,12 +312,13 @@
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
             <div class="mega-wrap single-col">
               <section>
-                <h5>Oulun kaupungin poliittiset luottamustehtävät</h5>
-                <p class="menu-desc">Nykyiset roolit, vastuut ja päätöksenteon tehtävät.</p>
-                <h5 class="mt-3">Muut poliittiset luottamustehtävät</h5>
-                <p class="menu-desc">Muut hallinnolliset ja yhteiskunnalliset tehtävät.</p>
-                <a href="/politiiikka/"><i class="bi bi-person-badge me-2"></i>Jari Laru, poliitikko</a>
-                <a href="/sidonnaisuudet/"><i class="bi bi-link-45deg me-2"></i>Sidonnaisuudet</a>
+                {% for intro in politicsMegaMenu.intros %}
+                  <h5 class="{{ intro.className or '' }}">{{ intro.title }}</h5>
+                  <p class="menu-desc">{{ intro.description }}</p>
+                {% endfor %}
+                {% for link in politicsMegaMenu.links %}
+                  <a href="{{ link.href }}"><i class="{{ link.icon }}"></i>{{ link.title }}</a>
+                {% endfor %}
               </section>
             </div>
           </div>
@@ -341,14 +331,11 @@
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
             <div class="mega-wrap two-cols">
               <section>
-                <h5>Kirjoitukset ja puheet</h5>
-                <p class="menu-desc">Kaikki tuotettu sisältö yhdessä paikassa.</p>
-                <a href="/kynasta/#mielipiteet"><i class="bi bi-chat-text me-2"></i>Mielipiteet</a>
-                <a href="/kynasta/#kolumnit"><i class="bi bi-journal-richtext me-2"></i>Kolumnit</a>
-                <a href="/kynasta/#aloitteet"><i class="bi bi-megaphone me-2"></i>Aloitteet</a>
-                <a href="/kynasta/#puheet"><i class="bi bi-mic me-2"></i>Puheet</a>
-                <a href="/blogi/"><i class="bi bi-pen me-2"></i>Blogi</a>
-                <a href="/julkaisut/"><i class="bi bi-journal-text me-2"></i>Julkaisuluettelo</a>
+                <h5>{{ writingsMegaMenu.heading }}</h5>
+                <p class="menu-desc">{{ writingsMegaMenu.description }}</p>
+                {% for link in writingsMegaMenu.links %}
+                  <a href="{{ link.href }}"><i class="{{ link.icon }}"></i>{{ link.title }}</a>
+                {% endfor %}
               </section>
               <section class="d-none d-lg-block"></section>
             </div>

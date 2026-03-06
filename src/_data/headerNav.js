@@ -215,6 +215,238 @@ module.exports = {
       }
     }
   ],
+  megaMenuMe: {
+    fi: {
+      sections: [
+        {
+          heading: "Yleistä & harrastukset",
+          links: [
+            {
+              title: "Yleistä",
+              href: "/tietoa/",
+              icon: "bi bi-info-circle me-2",
+              menuLink: true,
+              description: "Henkilökuva, harrastukset ja vapaa-aika."
+            },
+            {
+              title: "Autolomat",
+              href: "/autolomat/",
+              icon: "bi bi-car-front me-2"
+            }
+          ]
+        },
+        {
+          heading: "Politiikka (rooli)",
+          links: [
+            {
+              title: "Jari Laru, poliitikko",
+              href: "/politiiikka/",
+              icon: "bi bi-person-badge me-2",
+              menuLink: true,
+              description: "Luottamustoimet ja vaikuttaminen Oulussa."
+            },
+            {
+              title: "Sidonnaisuudet",
+              href: "/sidonnaisuudet/",
+              icon: "bi bi-link-45deg me-2",
+              menuLink: true,
+              description: "Ilmoitukset sidonnaisuuksista ja jäsenyyksistä."
+            },
+            {
+              title: "Kynästä",
+              href: "/kynasta/",
+              icon: "bi bi-pencil-square me-2"
+            }
+          ]
+        },
+        {
+          heading: "Työ & yritys",
+          links: [
+            {
+              title: "Ansioluettelo",
+              href: "/cv/",
+              icon: "bi bi-file-earmark-person me-2",
+              menuLink: true,
+              description: "Koulutus, työkokemus ja osaaminen."
+            },
+            {
+              title: "Portfolio",
+              href: "/portfolio/",
+              icon: "bi bi-folder me-2",
+              menuLink: true,
+              description: "Valikoidut projektit ja työnäytteet."
+            },
+            {
+              title: "Julkaisut",
+              href: "/julkaisut/",
+              icon: "bi bi-journal-text me-2"
+            },
+            {
+              title: "Larux t:mi",
+              href: "/yritys/",
+              icon: "bi bi-building me-2"
+            }
+          ]
+        }
+      ],
+      showcase: {
+        imageSrc: "/img/uploads/2020/01/jari.laru_1397908734_26-e1610053137214.jpg",
+        imageAlt: "Jari Laru",
+        title: "Jari Laru",
+        description: "Tutkija, kouluttaja ja kunnallispoliitikko."
+      }
+    },
+    en: {
+      sections: [
+        {
+          heading: "General & Life",
+          links: [
+            {
+              title: "About me",
+              href: "/en/about/",
+              icon: "bi bi-info-circle me-2",
+              menuLink: true,
+              description: "Brief biography and background."
+            },
+            {
+              title: "Road Trips",
+              href: "/en/road-trips/",
+              icon: "bi bi-car-front me-2"
+            }
+          ]
+        },
+        {
+          heading: "Politics (Role)",
+          links: [
+            {
+              title: "Jari Laru, politician",
+              href: "/en/politics/",
+              icon: "bi bi-person-badge me-2",
+              menuLink: true,
+              description: "Positions of trust in Oulu."
+            },
+            {
+              title: "Affiliations",
+              href: "/en/affiliations/",
+              icon: "bi bi-link-45deg me-2",
+              menuLink: true,
+              description: "Declarations of affiliations."
+            },
+            {
+              title: "Writings",
+              href: "/en/writings/",
+              icon: "bi bi-pencil-square me-2"
+            }
+          ]
+        },
+        {
+          heading: "Work & Experience",
+          links: [
+            {
+              title: "Curriculum Vitae",
+              href: "/en/cv/",
+              icon: "bi bi-file-earmark-person me-2",
+              menuLink: true,
+              description: "Education, skills and history."
+            },
+            {
+              title: "Portfolio",
+              href: "/en/portfolio/",
+              icon: "bi bi-folder me-2",
+              menuLink: true,
+              description: "Projects and highlights."
+            },
+            {
+              title: "Larux t:mi",
+              href: "/en/company/",
+              icon: "bi bi-building me-2"
+            }
+          ]
+        }
+      ],
+      showcase: {
+        imageSrc: "/img/uploads/2020/01/jari.laru_1397908734_26-e1610053137214.jpg",
+        imageAlt: "Jari Laru",
+        title: "Jari Laru",
+        description: "Researcher, educator, and city councilor."
+      }
+    }
+  },
+  megaMenuPolitics: {
+    fi: {
+      intros: [
+        {
+          title: "Oulun kaupungin poliittiset luottamustehtävät",
+          description: "Nykyiset roolit, vastuut ja päätöksenteon tehtävät."
+        },
+        {
+          title: "Muut poliittiset luottamustehtävät",
+          description: "Muut hallinnolliset ja yhteiskunnalliset tehtävät.",
+          className: "mt-3"
+        }
+      ],
+      links: [
+        {
+          title: "Jari Laru, poliitikko",
+          href: "/politiiikka/",
+          icon: "bi bi-person-badge me-2"
+        },
+        {
+          title: "Sidonnaisuudet",
+          href: "/sidonnaisuudet/",
+          icon: "bi bi-link-45deg me-2"
+        }
+      ]
+    },
+    en: {
+      intros: [
+        {
+          title: "Political Positions in Oulu City",
+          description: "Current roles, responsibilities, and decision-making tasks."
+        },
+        {
+          title: "Other Political Positions",
+          description: "Other administrative and societal roles.",
+          className: "mt-3"
+        }
+      ],
+      links: [
+        {
+          title: "Jari Laru, politician",
+          href: "/en/politics/",
+          icon: "bi bi-person-badge me-2"
+        },
+        {
+          title: "Affiliations & Disclosures",
+          href: "/en/affiliations/",
+          icon: "bi bi-link-45deg me-2"
+        }
+      ]
+    }
+  },
+  megaMenuWritings: {
+    fi: {
+      heading: "Kirjoitukset ja puheet",
+      description: "Kaikki tuotettu sisältö yhdessä paikassa.",
+      links: [
+        { title: "Mielipiteet", href: "/kynasta/#mielipiteet", icon: "bi bi-chat-text me-2" },
+        { title: "Kolumnit", href: "/kynasta/#kolumnit", icon: "bi bi-journal-richtext me-2" },
+        { title: "Aloitteet", href: "/kynasta/#aloitteet", icon: "bi bi-megaphone me-2" },
+        { title: "Puheet", href: "/kynasta/#puheet", icon: "bi bi-mic me-2" },
+        { title: "Blogi", href: "/blogi/", icon: "bi bi-pen me-2" },
+        { title: "Julkaisuluettelo", href: "/julkaisut/", icon: "bi bi-journal-text me-2" }
+      ]
+    },
+    en: {
+      heading: "Writings and Speeches",
+      description: "All produced content.",
+      links: [
+        { title: "Articles & Columns", href: "/en/writings/", icon: "bi bi-chat-text me-2" },
+        { title: "Blog", href: "/en/blog/", icon: "bi bi-pen me-2" },
+        { title: "Publication List", href: "/en/publications/", icon: "bi bi-journal-text me-2" }
+      ]
+    }
+  },
   megaMenuWork: {
     fi: {
       sections: [
