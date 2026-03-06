@@ -185,16 +185,13 @@
 .home-section-image {
   display: block;
   width: 100%;
-  aspect-ratio: 1 / 1;
+  height: 100%;
   object-fit: cover;
-  max-height: 520px;
-  height: auto !important;
-  min-height: 0 !important;
 }
 
 .home-card-image {
   width: 100%;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
 }
 
@@ -475,11 +472,6 @@
 }
 
 @media (max-width: 767.98px) {
-  .home-section-image,
-  .home-card-image {
-    aspect-ratio: 4 / 3;
-  }
-
   .home-feature-section .ticker-item {
     width: 280px;
   }
