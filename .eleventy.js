@@ -1,6 +1,7 @@
 const pluginRss = require("@11ty/eleventy-plugin-rss");
 const pluginNavigation = require("@11ty/eleventy-navigation");
 const sitemap = require("@quasibit/eleventy-plugin-sitemap");
+const pluginToc = require("eleventy-plugin-toc");
 const fs = require("fs");
 const path = require("path");
 const Image = require("@11ty/eleventy-img");
@@ -182,6 +183,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addGlobalData("supportedLangs", SUPPORTED_LANGS);
   eleventyConfig.addPlugin(pluginRss);
   eleventyConfig.addPlugin(pluginNavigation);
+  eleventyConfig.addPlugin(pluginToc);
   eleventyConfig.addPlugin(sitemap, {
     sitemap: {
       hostname: "https://www.jarilaru.fi",
