@@ -12,6 +12,7 @@ eleventyExcludeFromCollections: true
 <html lang="fi">
   <head>
     <meta charset="utf-8">
+    <meta name="robots" content="noindex, follow">
     <meta http-equiv="refresh" content="0; url=/politiikka/">
     <link rel="canonical" href="/politiikka/">
     <title>Siirry sivulle</title>
