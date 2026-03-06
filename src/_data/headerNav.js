@@ -462,25 +462,25 @@ module.exports = {
     en: {
       heading: "Writings and Speeches",
       description: "All produced content.",
-      groupHeading: "From my pen",
+      groupHeading: "From my pen and voice",
       contentColumns: [
         {
           links: [
             { title: "Articles", href: "/en/writings/#mielipiteet", icon: "bi bi-chat-text me-2", countKey: "pub_mielipide" },
-            { title: "Columns", href: "/en/writings/#kolumnit", icon: "bi bi-journal-richtext me-2", countKey: "pub_kolumni" }
+            { title: "Blog", href: "/en/blog/", icon: "bi bi-pen me-2", countKey: "blog" }
           ]
         },
         {
           links: [
-            { title: "Initiatives", href: "/en/writings/#aloitteet", icon: "bi bi-megaphone me-2", countKey: "politics" },
-            { title: "Speeches", href: "/en/writings/#puheet", icon: "bi bi-mic me-2", countKey: "pub_puhe" }
+            { title: "Columns", href: "/en/writings/#kolumnit", icon: "bi bi-journal-richtext me-2", countKey: "pub_kolumni" },
+            { title: "Initiatives", href: "/en/writings/#aloitteet", icon: "bi bi-megaphone me-2", countKey: "politics" }
           ]
         },
         {
           links: [
-            { title: "Blog", href: "/en/blog/", icon: "bi bi-pen me-2", countKey: "blog" },
+            { title: "Presentations", href: "/en/presentations/", icon: "bi bi-easel2 me-2", countKey: "presentations" },
             { title: "Publication List", href: "/en/publications/", icon: "bi bi-journal-text me-2", countKey: "publications" },
-            { title: "Presentations", href: "/en/presentations/", icon: "bi bi-easel2 me-2", countKey: "presentations" }
+            { title: "Speeches", href: "/en/writings/#puheet", icon: "bi bi-mic me-2", countKey: "pub_puhe" }
           ]
         }
       ],
@@ -604,42 +604,78 @@ module.exports = {
       }
     },
     en: {
+      layout: "four-columns",
       sections: [
         {
-          heading: "Research & Scholarship",
+          heading: "Teaching",
           links: [
             {
-              title: "Publications",
-              href: "/en/publications/",
-              icon: "bi bi-journal-text me-2",
-              description: "Scientific articles and reports."
+              title: "My Work as a University Lecturer",
+              href: "/en/work/",
+              icon: "bi bi-briefcase me-2"
             },
             {
-              title: "Theses Supervised",
-              href: "/en/theses/",
-              icon: "bi bi-mortarboard me-2",
-              description: "Bachelor's and Master's theses."
-            }
-          ]
-        },
-        {
-          heading: "Outreach & Materials",
-          links: [
+              title: "Curriculum Vitae",
+              href: "/en/cv/",
+              icon: "bi bi-file-earmark-person me-2"
+            },
             {
               title: "Presentations",
               href: "/en/presentations/",
-              icon: "bi bi-person-video3 me-2",
-              description: "Slides and keynotes."
+              icon: "bi bi-easel2 me-2"
             },
             {
-              title: "Teaching Portfolio",
-              href: "/en/portfolio/",
-              icon: "bi bi-folder me-2"
+              title: "Theses",
+              href: "/en/theses/",
+              icon: "bi bi-mortarboard me-2"
             }
           ]
         },
         {
-          heading: "Academic Networks",
+          heading: "Research",
+          links: [
+            {
+              title: "My Work as a University Lecturer",
+              href: "/en/work/",
+              icon: "bi bi-briefcase me-2"
+            },
+            {
+              title: "Curriculum Vitae",
+              href: "/en/cv/",
+              icon: "bi bi-file-earmark-person me-2"
+            },
+            {
+              title: "Publication List",
+              href: "/en/publications/",
+              icon: "bi bi-journal-text me-2"
+            }
+          ]
+        },
+        {
+          heading: "Trainer (Entrepreneur)",
+          links: [
+            {
+              title: "About the Company",
+              href: "/en/company/",
+              icon: "bi bi-building me-2"
+            },
+            {
+              title: "Presentations",
+              href: "/en/presentations/",
+              icon: "bi bi-easel2 me-2"
+            },
+            {
+              title: "Book me for training",
+              href: "/en/contact/",
+              icon: "bi bi-megaphone me-2",
+              cta: true,
+              ctaLabel: "Request a quote",
+              description: "Expert talks on AI, EdTech, and modern pedagogy."
+            }
+          ]
+        },
+        {
+          heading: "Social Media",
           links: [
             {
               title: "LinkedIn",
@@ -651,6 +687,18 @@ module.exports = {
               title: "ResearchGate",
               href: "https://www.researchgate.net/profile/Jari-Laru",
               icon: "bi bi-globe me-2",
+              external: true
+            },
+            {
+              title: "ORCID",
+              href: "https://orcid.org/0000-0003-0347-0182",
+              icon: "bi bi-person-vcard me-2",
+              external: true
+            },
+            {
+              title: "Google Scholar",
+              href: "https://scholar.google.com/citations?user=HOLu1ZIAAAAJ&hl=en",
+              icon: "bi bi-mortarboard me-2",
               external: true
             }
           ]
