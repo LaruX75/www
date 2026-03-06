@@ -184,6 +184,7 @@
   {% include "header.njk" %}
 
   {% set isHomePage = page.url == "/" or page.url == "/en/" %}
+  {% set currentUrl = page.url or "" %}
   {% set breadcrumbKey = "" %}
   {% if page.inputPath and "src/publications/" in page.inputPath %}
     {% set breadcrumbKey = "publications" %}
@@ -191,14 +192,26 @@
     {% set breadcrumbKey = "presentations" %}
   {% elif page.inputPath and "src/blog/" in page.inputPath %}
     {% set breadcrumbKey = "blog" %}
-  {% elif page.url == "/julkaisut/" or page.url == "/en/publications/" %}
+  {% elif page.inputPath and "src/politics/" in page.inputPath %}
+    {% set breadcrumbKey = "politics" %}
+  {% elif currentUrl == "/julkaisut/" or currentUrl == "/en/publications/" %}
     {% set breadcrumbKey = "publications" %}
-  {% elif page.url == "/esitykset/" or page.url == "/en/presentations/" %}
+  {% elif currentUrl == "/esitykset/" or currentUrl == "/en/presentations/" %}
     {% set breadcrumbKey = "presentations" %}
-  {% elif page.url == "/opinnaytteet/" or page.url == "/en/theses/" %}
+  {% elif currentUrl == "/opinnaytteet/" or currentUrl == "/en/theses/" %}
     {% set breadcrumbKey = "theses" %}
-  {% elif page.url == "/blogi/" or page.url == "/en/blog/" %}
+  {% elif currentUrl == "/blogi/" or currentUrl == "/en/blog/" %}
     {% set breadcrumbKey = "blog" %}
+  {% elif currentUrl == "/tietoa/" or currentUrl == "/autolomat/" or currentUrl == "/cv/" or currentUrl == "/portfolio/" or currentUrl == "/yritys/" or currentUrl == "/en/about/" or currentUrl == "/en/cv/" or currentUrl == "/en/portfolio/" or currentUrl == "/en/company/" or currentUrl == "/en/road-trips/" %}
+    {% set breadcrumbKey = "me" %}
+  {% elif currentUrl == "/opetus/" or currentUrl == "/tutkimus/" or currentUrl == "/tyoni-yliopistonlehtorina/" or currentUrl == "/palkinnot/" or currentUrl == "/en/writings/" %}
+    {% set breadcrumbKey = "work" %}
+  {% elif currentUrl == "/politiiikka/" or currentUrl == "/sidonnaisuudet/" or currentUrl == "/en/politics/" or currentUrl == "/en/affiliations/" %}
+    {% set breadcrumbKey = "politics" %}
+  {% elif currentUrl == "/kynasta/" %}
+    {% set breadcrumbKey = "writings" %}
+  {% elif currentUrl == "/yhteystiedot/" or currentUrl == "/en/contact/" %}
+    {% set breadcrumbKey = "contact" %}
   {% endif %}
 
   {% if not isHomePage %}
