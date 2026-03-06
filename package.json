@@ -4,8 +4,12 @@
   "scripts": {
     "prestart": "node scripts/clean-og-images.js",
     "start": "npx @11ty/eleventy --serve",
+    "start:no-og": "DISABLE_OG_IMAGES=true npx @11ty/eleventy --serve",
     "prebuild": "node scripts/clean-og-images.js",
-    "build": "npx @11ty/eleventy && npx pagefind --site _site"
+    "build": "npx @11ty/eleventy",
+    "build:no-og": "DISABLE_OG_IMAGES=true npx @11ty/eleventy",
+    "build:links": "CHECK_EXTERNAL_LINKS=true npx @11ty/eleventy",
+    "build:search": "npm run build && pagefind --site _site"
   },
   "dependencies": {
     "@11ty/eleventy": "^2.0.1",
@@ -21,6 +25,7 @@
     "@axe-core/playwright": "^4.11.1",
     "@playwright/test": "^1.58.2",
     "@quasibit/eleventy-plugin-sitemap": "^2.2.0",
-    "axe-playwright": "^2.2.2"
+    "axe-playwright": "^2.2.2",
+    "pagefind": "^1.4.0"
   }
 }

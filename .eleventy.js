@@ -6,6 +6,7 @@ const EleventyPluginOgImage = require("eleventy-plugin-og-image");
 const brokenLinksPlugin = require("eleventy-plugin-broken-links");
 const SUPPORTED_LANGS = ["fi", "en"];
 const shouldCheckExternalLinks = process.env.CHECK_EXTERNAL_LINKS === "true";
+const shouldGenerateOgImages = process.env.DISABLE_OG_IMAGES !== "true";
 
 // Eleventy defaults EventBus max listeners to 100; larger sites exceed this without actual leaks.
 try {
@@ -18,6 +19,27 @@ function getLangFromUrl(url) {
 }
 
 module.exports = function (eleventyConfig) {
+  // Avoid intermittent Eleventy v2 watch crashes in large sites:
+  // "Watching requires `.getFiles()` to be called first in EleventyFiles"
+  // This disables JS dependency graph watching, but normal file watching remains.
+  eleventyConfig.setWatchJavaScriptDependencies(false);
+
+  // Pre-clean OG image output robustly before og-image plugin runs.
+  // This avoids occasional ENOTEMPTY failures on some filesystems.
+  eleventyConfig.on("eleventy.before", () => {
+    const ogOutputDir = path.join(process.cwd(), "_site", "og-images");
+    try {
+      fs.rmSync(ogOutputDir, {
+        recursive: true,
+        force: true,
+        maxRetries: 10,
+        retryDelay: 100
+      });
+    } catch (_) {
+      // Keep build running; plugin's own cleanup will still run afterwards.
+    }
+  });
+
   eleventyConfig.addGlobalData("supportedLangs", SUPPORTED_LANGS);
   eleventyConfig.addPlugin(pluginRss);
   eleventyConfig.addPlugin(sitemap, {
@@ -25,45 +47,50 @@ module.exports = function (eleventyConfig) {
       hostname: "https://www.jarilaru.fi",
     },
   });
-  eleventyConfig.addPlugin(EleventyPluginOgImage, {
-    generateHTML: (outputUrl) => outputUrl,
-    satoriOptions: {
-      width: 1200,
-      height: 630,
-      fonts: [
-        {
-          name: "Inter",
-          data: fs.readFileSync(
-            path.join(
-              __dirname,
-              "node_modules",
-              "@fontsource",
-              "inter",
-              "files",
-              "inter-latin-ext-700-normal.woff"
-            )
-          ),
-          weight: 700,
-          style: "normal",
-        },
-        {
-          name: "Inter",
-          data: fs.readFileSync(
-            path.join(
-              __dirname,
-              "node_modules",
-              "@fontsource",
-              "inter",
-              "files",
-              "inter-latin-ext-400-normal.woff"
-            )
-          ),
-          weight: 400,
-          style: "normal",
-        },
-      ],
-    },
-  });
+  if (shouldGenerateOgImages) {
+    eleventyConfig.addPlugin(EleventyPluginOgImage, {
+      generateHTML: (outputUrl) => outputUrl,
+      satoriOptions: {
+        width: 1200,
+        height: 630,
+        fonts: [
+          {
+            name: "Inter",
+            data: fs.readFileSync(
+              path.join(
+                __dirname,
+                "node_modules",
+                "@fontsource",
+                "inter",
+                "files",
+                "inter-latin-ext-700-normal.woff"
+              )
+            ),
+            weight: 700,
+            style: "normal",
+          },
+          {
+            name: "Inter",
+            data: fs.readFileSync(
+              path.join(
+                __dirname,
+                "node_modules",
+                "@fontsource",
+                "inter",
+                "files",
+                "inter-latin-ext-400-normal.woff"
+              )
+            ),
+            weight: 400,
+            style: "normal",
+          },
+        ],
+      },
+    });
+  } else {
+    // Keep templates compilable when OG generation is disabled.
+    eleventyConfig.addAsyncShortcode("ogImage", async () => null);
+  }
   // External link checks are network-dependent and noisy in local/offline runs.
   // Enable explicitly (e.g. CI): CHECK_EXTERNAL_LINKS=true npx @11ty/eleventy
   if (shouldCheckExternalLinks) {

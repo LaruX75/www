@@ -30,6 +30,27 @@ function normalizeOpenAccess(value, selfArchivedCode) {
         if (["1", "true", "yes", "oa", "open"].includes(normalized)) return 1;
         if (["0", "false", "no", "closed"].includes(normalized)) return 0;
     }
+    if (Array.isArray(value)) {
+        const hasOpen = value.some((item) => {
+            const id = String(item?.id ?? "").trim().toLowerCase();
+            const names = [
+                item?.nameFi,
+                item?.nameEn,
+                item?.nameSv,
+                item?.nameFiOpenAccess,
+                item?.nameEnOpenAccess,
+                item?.nameSvOpenAccess
+            ].filter(Boolean).join(" ").toLowerCase();
+            return id === "1" || names.includes("open access") || names.includes("avoin");
+        });
+        return hasOpen ? 1 : 0;
+    }
+    if (value && typeof value === "object") {
+        return normalizeOpenAccess(
+            value.id ?? value.code ?? value.value ?? value.status ?? value.nameEn ?? value.nameFi,
+            selfArchivedCode
+        );
+    }
     if (selfArchivedCode === "1" || selfArchivedCode === 1) return 1;
     return 0;
 }
@@ -50,7 +71,7 @@ function normalizePeerReviewed(value, typeCode) {
     if (typeof value === "string") {
         const normalized = value.trim().toLowerCase();
         if (["1", "true", "yes", "peer-reviewed", "vertaisarvioitu"].includes(normalized)) return true;
-        if (["0", "false", "no"].includes(normalized)) return false;
+        if (["0", "false", "no", "non-peer-reviewed", "ei vertaisarvioitu", "vertaisarvioimaton"].includes(normalized)) return false;
     }
     if (Array.isArray(value)) {
         return value.some(item => {
@@ -63,12 +84,39 @@ function normalizePeerReviewed(value, typeCode) {
             return id === "1" || names.includes("peer-reviewed") || names.includes("vertaisarvioitu");
         });
     }
+    if (value && typeof value === "object") {
+        return normalizePeerReviewed(
+            value.id ?? value.code ?? value.value ?? value.nameEnPeerReviewed ?? value.nameFiPeerReviewed ?? value.nameEn ?? value.nameFi,
+            typeCode
+        );
+    }
 
     return false;
 }
 
+function normalizeTypeCode(pub) {
+    const candidates = [
+        pub?.publicationTypeCode,
+        pub?.typeCode,
+        pub?.publicationType?.code,
+        pub?.publicationType?.id,
+        pub?.publicationType?.value,
+        pub?.publicationType?.publicationTypeCode,
+        pub?.publicationTypeCodeFi,
+        pub?.publicationTypeCodeEn
+    ];
+
+    for (const candidate of candidates) {
+        if (candidate === null || candidate === undefined) continue;
+        const normalized = String(candidate).trim().toUpperCase();
+        if (normalized) return normalized;
+    }
+
+    return "";
+}
+
 function normalizePublication(pub) {
-    const typeCode = pub.publicationTypeCode || pub.typeCode || "";
+    const typeCode = normalizeTypeCode(pub);
     const doi = pub.doi || null;
 
     return {

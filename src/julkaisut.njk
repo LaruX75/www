@@ -423,16 +423,16 @@ document.addEventListener('DOMContentLoaded', function() {
   const isOpenAccess = (value) => value === true || value === 1 || value === '1' || String(value).toLowerCase() === 'true';
   const prAndOa = publications.filter(p => isPeerReviewed(p.peerReviewed) && isOpenAccess(p.openAccess)).length;
   const prOnly = publications.filter(p => isPeerReviewed(p.peerReviewed) && !isOpenAccess(p.openAccess)).length;
-  const oaOnly = publications.filter(p => !isPeerReviewed(p.peerReviewed) && isOpenAccess(p.openAccess)).length;
-  const neither = publications.filter(p => !isPeerReviewed(p.peerReviewed) && !isOpenAccess(p.openAccess)).length;
+  // "Muu / ei vertaisarvioitu" sisältää sekä OA- että ei-OA-julkaisut.
+  const nonPeerReviewed = publications.filter(p => !isPeerReviewed(p.peerReviewed)).length;
   
   new Chart(document.getElementById('qualityChart'), {
     type: 'doughnut',
     data: {
-      labels: ['Vertaisarvioitu & OA', 'Vain Vertaisarv.', 'Vain OA', 'Muu'],
+      labels: ['Vertaisarvioitu & OA', 'Vain vertaisarvioitu', 'Muu / ei vertaisarvioitu'],
       datasets: [{
-        data: [prAndOa, prOnly, oaOnly, neither],
-        backgroundColor: ['#198754', '#20c997', '#0dcaf0', '#dee2e6'],
+        data: [prAndOa, prOnly, nonPeerReviewed],
+        backgroundColor: ['#198754', '#20c997', '#dee2e6'],
         borderWidth: 0
       }]
     },

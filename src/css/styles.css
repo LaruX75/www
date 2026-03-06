@@ -125,11 +125,14 @@
   /* Kevyt hover-efekti */
 }
 
+.ticker-item h3,
+.ticker-item h3 a,
 .ticker-item h4 a {
   color: var(--bs-body-color);
   text-decoration: none;
 }
 
+.ticker-item h3 a:hover,
 .ticker-item h4 a:hover {
   color: var(--bs-link-hover-color);
 }
@@ -158,6 +161,7 @@
 }
 
 [data-bs-theme="dark"] .bg-adaptive-dark-blue h2,
+[data-bs-theme="dark"] .bg-adaptive-dark-blue h3,
 [data-bs-theme="dark"] .bg-adaptive-dark-blue h4 {
   color: #fff !important;
 }
@@ -177,10 +181,13 @@
   background-color: rgba(255, 255, 255, 0.08);
 }
 
+[data-bs-theme="dark"] .ticker-item h3,
+[data-bs-theme="dark"] .ticker-item h3 a,
 [data-bs-theme="dark"] .ticker-item h4 a {
   color: #ffffff;
 }
 
+[data-bs-theme="dark"] .ticker-item h3 a:hover,
 [data-bs-theme="dark"] .ticker-item h4 a:hover {
   color: rgba(255, 255, 255, 0.8);
 }
