@@ -1,4 +1,5 @@
 const pluginRss = require("@11ty/eleventy-plugin-rss");
+const pluginNavigation = require("@11ty/eleventy-navigation");
 const sitemap = require("@quasibit/eleventy-plugin-sitemap");
 const fs = require("fs");
 const path = require("path");
@@ -175,6 +176,7 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addGlobalData("supportedLangs", SUPPORTED_LANGS);
   eleventyConfig.addPlugin(pluginRss);
+  eleventyConfig.addPlugin(pluginNavigation);
   eleventyConfig.addPlugin(sitemap, {
     sitemap: {
       hostname: "https://www.jarilaru.fi",
@@ -468,6 +470,11 @@ module.exports = function (eleventyConfig) {
     });
 
     return match && match.url ? match.url : "";
+  });
+
+  eleventyConfig.addFilter("navItemByKey", function (items, key) {
+    if (!Array.isArray(items) || !key) return null;
+    return items.find((item) => item && item.key === key) || null;
   });
 
   // Wrap third-party media iframes with a consent gate to avoid loading external

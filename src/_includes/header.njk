@@ -1,6 +1,13 @@
 {% set currentLang = lang or (page.url | langFromUrl) %}
 {% set fiPageUrl = collections.all | findTranslationUrl(translationKey, "fi") %}
 {% set enPageUrl = collections.all | findTranslationUrl(translationKey, "en") %}
+{% set topNavItems = (headerNav.en if currentLang == "en" else headerNav.fi) | eleventyNavigation %}
+{% set navHome = topNavItems | navItemByKey("home") %}
+{% set navMe = topNavItems | navItemByKey("me") %}
+{% set navWork = topNavItems | navItemByKey("work") %}
+{% set navPolitics = topNavItems | navItemByKey("politics") %}
+{% set navWritings = topNavItems | navItemByKey("writings") %}
+{% set navContact = topNavItems | navItemByKey("contact") %}
 
 {% if currentLang == "en" %}
 <nav id="siteNav" class="navbar navbar-expand-lg site-navbar sticky-top" aria-label="Main Navigation" style="z-index:1030; transition: background-color .3s ease, box-shadow .3s ease;">
@@ -13,14 +20,14 @@
     <div class="collapse navbar-collapse" id="navbarMainEn">
       <ul class="navbar-nav ms-auto align-items-lg-center flex-lg-nowrap evelenty-main-nav">
         <li class="nav-item">
-          <a class="nav-link {% if page.url == '/en/' %}active{% endif %}" href="/en/">
-            <i class="bi bi-house-door-fill"></i> Home
+          <a class="nav-link {% if page.url == '/en/' %}active{% endif %}" href="{{ navHome.url or '/en/' }}">
+            <i class="{{ navHome.icon or 'bi bi-house-door-fill' }}"></i> {{ navHome.title or 'Home' }}
           </a>
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
           <a class="nav-link dropdown-toggle {% if page.url and ('/en/about/' in page.url or '/en/cv/' in page.url or '/en/portfolio/' in page.url or '/en/company/' in page.url or '/en/road-trips/' in page.url) %}active{% endif %}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="bi bi-person-fill"></i> Me
+            <i class="{{ navMe.icon or 'bi bi-person-fill' }}"></i> {{ navMe.title or 'Me' }}
           </a>
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
             <div class="mega-wrap grid-8-4">
@@ -59,7 +66,7 @@
 
         <li class="nav-item dropdown mega-dropdown">
           <a class="nav-link dropdown-toggle {% if page.url and ('/en/publications/' in page.url or '/en/theses/' in page.url or '/en/presentations/' in page.url) %}active{% endif %}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="bi bi-briefcase-fill"></i> Work
+            <i class="{{ navWork.icon or 'bi bi-briefcase-fill' }}"></i> {{ navWork.title or 'Work' }}
           </a>
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
             <div class="mega-wrap grid-8-4">
@@ -94,7 +101,7 @@
 
         <li class="nav-item dropdown mega-dropdown">
           <a class="nav-link dropdown-toggle {% if page.url and ('/en/politics/' in page.url or '/en/affiliations/' in page.url) %}active{% endif %}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="bi bi-bank2"></i> Politics
+            <i class="{{ navPolitics.icon or 'bi bi-bank2' }}"></i> {{ navPolitics.title or 'Politics' }}
           </a>
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
             <div class="mega-wrap single-col">
@@ -112,7 +119,7 @@
 
         <li class="nav-item dropdown mega-dropdown">
           <a class="nav-link dropdown-toggle {% if page.url and '/en/writings/' in page.url %}active{% endif %}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="bi bi-pencil-fill"></i> Writings
+            <i class="{{ navWritings.icon or 'bi bi-pencil-fill' }}"></i> {{ navWritings.title or 'Writings' }}
           </a>
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
             <div class="mega-wrap two-cols">
@@ -129,8 +136,8 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link {% if page.url and '/en/contact/' in page.url %}active{% endif %}" href="/en/contact/">
-            <i class="bi bi-envelope"></i> Contact
+          <a class="nav-link {% if page.url and '/en/contact/' in page.url %}active{% endif %}" href="{{ navContact.url or '/en/contact/' }}">
+            <i class="{{ navContact.icon or 'bi bi-envelope' }}"></i> {{ navContact.title or 'Contact' }}
           </a>
         </li>
 
@@ -178,14 +185,14 @@
     <div class="collapse navbar-collapse" id="navbarMain">
       <ul class="navbar-nav ms-auto align-items-lg-center flex-lg-nowrap evelenty-main-nav">
         <li class="nav-item">
-          <a class="nav-link {% if page.url == '/' %}active{% endif %}" href="/">
-            <i class="bi bi-house-door-fill"></i> Etusivu
+          <a class="nav-link {% if page.url == '/' %}active{% endif %}" href="{{ navHome.url or '/' }}">
+            <i class="{{ navHome.icon or 'bi bi-house-door-fill' }}"></i> {{ navHome.title or 'Etusivu' }}
           </a>
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
           <a class="nav-link dropdown-toggle {% if page.url and ('/tietoa/' in page.url or '/autolomat/' in page.url or '/cv/' in page.url or '/portfolio/' in page.url or '/yritys/' in page.url) %}active{% endif %}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="bi bi-person-fill"></i> Minä
+            <i class="{{ navMe.icon or 'bi bi-person-fill' }}"></i> {{ navMe.title or 'Minä' }}
           </a>
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
             <div class="mega-wrap grid-8-4">
@@ -225,7 +232,7 @@
 
         <li class="nav-item dropdown mega-dropdown">
           <a class="nav-link dropdown-toggle {% if page.url and ('/opetus/' in page.url or '/portfolio/' in page.url or '/tutkimus/' in page.url or '/v%C3%A4it%C3%B6skirja/' in page.url or '/väitöskirja/' in page.url or '/palkinnot/' in page.url) %}active{% endif %}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="bi bi-briefcase-fill"></i> Työ
+            <i class="{{ navWork.icon or 'bi bi-briefcase-fill' }}"></i> {{ navWork.title or 'Työ' }}
           </a>
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
             <div class="mega-wrap grid-8-4">
@@ -264,7 +271,7 @@
 
         <li class="nav-item dropdown mega-dropdown">
           <a class="nav-link dropdown-toggle {% if page.url and ('/politiikka/' in page.url or '/politiiikka/' in page.url) %}active{% endif %}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="bi bi-bank2"></i> Politiikka
+            <i class="{{ navPolitics.icon or 'bi bi-bank2' }}"></i> {{ navPolitics.title or 'Politiikka' }}
           </a>
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
             <div class="mega-wrap single-col">
@@ -282,7 +289,7 @@
 
         <li class="nav-item dropdown mega-dropdown">
           <a class="nav-link dropdown-toggle {% if page.url and ('/kynasta/' in page.url or '/blogi/' in page.url) %}active{% endif %}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="bi bi-pencil-fill"></i> Kynästä
+            <i class="{{ navWritings.icon or 'bi bi-pencil-fill' }}"></i> {{ navWritings.title or 'Kynästä' }}
           </a>
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
             <div class="mega-wrap two-cols">
@@ -302,8 +309,8 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link {% if page.url and '/yhteystiedot/' in page.url %}active{% endif %}" href="/yhteystiedot/">
-            <i class="bi bi-envelope"></i> Ota yhteyttä
+          <a class="nav-link {% if page.url and '/yhteystiedot/' in page.url %}active{% endif %}" href="{{ navContact.url or '/yhteystiedot/' }}">
+            <i class="{{ navContact.icon or 'bi bi-envelope' }}"></i> {{ navContact.title or 'Ota yhteyttä' }}
           </a>
         </li>
 
