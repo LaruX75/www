@@ -22,7 +22,7 @@ jobs:
           node-version: "20"
           cache: "npm"
       - run: npm ci
-      - run: npx @11ty/eleventy
+      - run: DISABLE_OG_IMAGES=true npx @11ty/eleventy
       - run: npx pagefind --site _site
       - uses: actions/configure-pages@v4
       - uses: actions/upload-pages-artifact@v3
