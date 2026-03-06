@@ -428,22 +428,79 @@ module.exports = {
     fi: {
       heading: "Kirjoitukset ja puheet",
       description: "Kaikki tuotettu sisältö yhdessä paikassa.",
-      links: [
-        { title: "Mielipiteet", href: "/kynasta/#mielipiteet", icon: "bi bi-chat-text me-2" },
-        { title: "Kolumnit", href: "/kynasta/#kolumnit", icon: "bi bi-journal-richtext me-2" },
-        { title: "Aloitteet", href: "/kynasta/#aloitteet", icon: "bi bi-megaphone me-2" },
-        { title: "Puheet", href: "/kynasta/#puheet", icon: "bi bi-mic me-2" },
-        { title: "Blogi", href: "/blogi/", icon: "bi bi-pen me-2" },
-        { title: "Julkaisuluettelo", href: "/julkaisut/", icon: "bi bi-journal-text me-2" }
+      contentColumns: [
+        {
+          heading: "Kirjoitukset",
+          links: [
+            { title: "Mielipiteet", href: "/kynasta/#mielipiteet", icon: "bi bi-chat-text me-2" },
+            { title: "Kolumnit", href: "/kynasta/#kolumnit", icon: "bi bi-journal-richtext me-2" }
+          ]
+        },
+        {
+          heading: "Puheet ja muut",
+          links: [
+            { title: "Aloitteet", href: "/kynasta/#aloitteet", icon: "bi bi-megaphone me-2" },
+            { title: "Puheet", href: "/kynasta/#puheet", icon: "bi bi-mic me-2" },
+            { title: "Blogi", href: "/blogi/", icon: "bi bi-pen me-2" },
+            { title: "Julkaisuluettelo", href: "/julkaisut/", icon: "bi bi-journal-text me-2" }
+          ]
+        }
+      ],
+      statColumns: [
+        {
+          heading: "Sisältömäärät I",
+          items: [
+            { title: "Mielipiteet", countKey: "pub_mielipide" },
+            { title: "Kolumnit", countKey: "pub_kolumni" },
+            { title: "Puheet", countKey: "pub_puhe" }
+          ]
+        },
+        {
+          heading: "Sisältömäärät II",
+          items: [
+            { title: "Aloitteet", countKey: "politics" },
+            { title: "Blogi", countKey: "blog" },
+            { title: "Tieteelliset julkaisut", countKey: "pub_tieteellinen" }
+          ]
+        }
       ]
     },
     en: {
       heading: "Writings and Speeches",
       description: "All produced content.",
-      links: [
-        { title: "Articles & Columns", href: "/en/writings/", icon: "bi bi-chat-text me-2" },
-        { title: "Blog", href: "/en/blog/", icon: "bi bi-pen me-2" },
-        { title: "Publication List", href: "/en/publications/", icon: "bi bi-journal-text me-2" }
+      contentColumns: [
+        {
+          heading: "Writings",
+          links: [
+            { title: "Articles & Columns", href: "/en/writings/", icon: "bi bi-chat-text me-2" },
+            { title: "Blog", href: "/en/blog/", icon: "bi bi-pen me-2" }
+          ]
+        },
+        {
+          heading: "Speeches and research",
+          links: [
+            { title: "Speeches", href: "/en/writings/#puheet", icon: "bi bi-mic me-2" },
+            { title: "Publication List", href: "/en/publications/", icon: "bi bi-journal-text me-2" }
+          ]
+        }
+      ],
+      statColumns: [
+        {
+          heading: "Content stats I",
+          items: [
+            { title: "Articles", countKey: "pub_mielipide" },
+            { title: "Columns", countKey: "pub_kolumni" },
+            { title: "Speeches", countKey: "pub_puhe" }
+          ]
+        },
+        {
+          heading: "Content stats II",
+          items: [
+            { title: "Initiatives", countKey: "politics" },
+            { title: "Blog posts", countKey: "blog" },
+            { title: "Scientific publications", countKey: "pub_tieteellinen" }
+          ]
+        }
       ]
     }
   },
