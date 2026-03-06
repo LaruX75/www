@@ -438,6 +438,13 @@ html:not([data-bs-theme="dark"]) .ticker-item {
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.02) !important;
 }
 
+/* Keep ticker card headings visually consistent in light mode */
+html:not([data-bs-theme="dark"]) .ticker-item h3,
+html:not([data-bs-theme="dark"]) .ticker-item h3 a,
+html:not([data-bs-theme="dark"]) .ticker-item .ticker-title-link {
+  color: var(--bs-body-color) !important;
+}
+
 html:not([data-bs-theme="dark"]) .bg-light,
 html:not([data-bs-theme="dark"]) section.bg-light {
   background-color: #f4f6f9 !important;
