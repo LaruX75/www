@@ -327,6 +327,26 @@
   margin-bottom: 0;
 }
 
+/* Work-megamenu parity with "Minä": force accent icons and visible CTA styling */
+.mega-menu-panel .four-cols .menu-link i {
+  color: var(--evelenty-accent) !important;
+}
+
+.mega-menu-panel .work-inline-cta {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.14), rgba(255, 255, 255, 0.32)) !important;
+  border-color: rgba(212, 175, 55, 0.48) !important;
+}
+
+[data-bs-theme="dark"] .mega-menu-panel .work-inline-cta {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(15, 23, 42, 0.62)) !important;
+  border-color: rgba(212, 175, 55, 0.62) !important;
+}
+
+.mega-menu-panel .work-inline-cta .btn-accent {
+  border-width: 1px;
+  border-style: solid;
+}
+
 [data-bs-theme="light"] .site-navbar.navbar-hero-solid .navbar-brand,
 [data-bs-theme="light"] .site-navbar.navbar-hero-solid .nav-link,
 [data-bs-theme="light"] .site-navbar.navbar-hero-solid #themeToggleBtn,
