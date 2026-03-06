@@ -87,6 +87,9 @@
 
   <title>{{ pageTitle }} — {{ site.name }}</title>
   <meta name="description" content="{{ pageDescription }}">
+  {% if site.googleSiteVerification %}
+  <meta name="google-site-verification" content="{{ site.googleSiteVerification }}">
+  {% endif %}
   <meta name="robots" content="index, follow, noai, noimageai">
   <meta name="author" content="{{ site.author }}">
   <link rel="canonical" href="{{ pageUrl }}">

@@ -52,6 +52,17 @@ Jos haluat rakentaa vastaavan tyyppisen staattisen sivuston tyhjästä näillä 
 
 Push `main`-haaraan käynnistää automaattisen build + deploy -putken.
 
+### Search Console, sitemap ja virheseuranta
+
+1. Ota Search Console -verifiointi käyttöön:
+   - lisää verifiointiarvo tiedostoon `src/_data/site.json` kenttään `googleSiteVerification`
+2. Varmista sitemap:
+   - sitemap on osoitteessa `https://www.jarilaru.fi/sitemap.xml`
+   - robots sisältää sitemap-rivin (`src/robots.txt`)
+3. Aja paikallinen terveystarkistus:
+   - `npm run build:no-og && npm run check:seo-health`
+   - raportti kirjoitetaan tiedostoon `reports/seo-health.json`
+
 ### Tekninen dokumentaatio
 
 Tarkempi tekninen toteutusohje voidaan pitää lokaalina tiedostona `TECHNICAL_HOWTO.md` (ei versionhallintaan eikä julkaisuun).

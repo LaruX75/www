@@ -10,7 +10,8 @@
     "build:no-og": "DISABLE_OG_IMAGES=true npx @11ty/eleventy",
     "build:links": "CHECK_EXTERNAL_LINKS=true npx @11ty/eleventy",
     "build:search": "npm run build && node scripts/run-pagefind.js",
-    "check:i18n-seo": "node scripts/check-i18n-seo.js"
+    "check:i18n-seo": "node scripts/check-i18n-seo.js",
+    "check:seo-health": "node scripts/check-seo-health.js"
   },
   "dependencies": {
     "@11ty/eleventy": "^2.0.1",
