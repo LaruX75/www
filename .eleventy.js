@@ -8,6 +8,9 @@ const SUPPORTED_LANGS = ["fi", "en"];
 const shouldCheckExternalLinks = process.env.CHECK_EXTERNAL_LINKS === "true";
 const shouldGenerateOgImages = process.env.DISABLE_OG_IMAGES !== "true";
 const SITE_ORIGIN = "https://www.jarilaru.fi";
+const LINK_REDIRECT_ALLOWLIST = [
+  /^https?:\/\/(dx\.)?doi\.org\/.+/i
+];
 
 // Eleventy defaults EventBus max listeners to 100; larger sites exceed this without actual leaks.
 try {
@@ -95,6 +98,44 @@ function walkHtmlFiles(dir, files = []) {
     }
   });
   return files;
+}
+
+function serializeExternalLink(link) {
+  return {
+    url: link.url,
+    statusCode: link.getHttpStatusCode(),
+    count: link.getLinkCount(),
+    pages: link.getPages()
+  };
+}
+
+function isAllowedRedirect(url) {
+  return LINK_REDIRECT_ALLOWLIST.some((pattern) => pattern.test(String(url || "")));
+}
+
+function writeExternalLinkReport({ brokenLinks, forbiddenLinks, redirectLinks, allowedRedirects }) {
+  const report = {
+    generatedAt: new Date().toISOString(),
+    allowlistedRedirectPatterns: LINK_REDIRECT_ALLOWLIST.map((pattern) => pattern.toString()),
+    summary: {
+      broken: brokenLinks.length,
+      forbidden: forbiddenLinks.length,
+      redirects: {
+        unexpected: redirectLinks.length,
+        allowlisted: allowedRedirects.length
+      }
+    },
+    brokenLinks,
+    forbiddenLinks,
+    unexpectedRedirects: redirectLinks,
+    allowlistedRedirects: allowedRedirects
+  };
+
+  const reportDir = path.join(process.cwd(), "_site", "reports");
+  const reportPath = path.join(reportDir, "external-links-report.json");
+  fs.mkdirSync(reportDir, { recursive: true });
+  fs.writeFileSync(reportPath, `${JSON.stringify(report, null, 2)}\n`, "utf8");
+  console.log(`[plugin-broken-links] External link report written: ${reportPath}`);
 }
 
 module.exports = function (eleventyConfig) {
@@ -190,7 +231,22 @@ module.exports = function (eleventyConfig) {
       broken: "warn",
       redirect: "warn",
       forbidden: "warn",
-      loggingLevel: 2,
+      // Redirects are reported via callback to allow DOI redirect allowlisting.
+      loggingLevel: 1,
+      callback: (brokenLinks = [], redirectLinks = [], forbiddenLinks = []) => {
+        const serializedBroken = brokenLinks.map(serializeExternalLink);
+        const serializedForbidden = forbiddenLinks.map(serializeExternalLink);
+        const serializedRedirects = redirectLinks.map(serializeExternalLink);
+        const allowlistedRedirects = serializedRedirects.filter((link) => isAllowedRedirect(link.url));
+        const unexpectedRedirects = serializedRedirects.filter((link) => !isAllowedRedirect(link.url));
+
+        writeExternalLinkReport({
+          brokenLinks: serializedBroken,
+          forbiddenLinks: serializedForbidden,
+          redirectLinks: unexpectedRedirects,
+          allowedRedirects: allowlistedRedirects
+        });
+      }
     });
   }
 
