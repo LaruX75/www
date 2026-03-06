@@ -29,6 +29,7 @@ If the user allows all external embeds, the choice is stored in browser `localSt
 
 Please note: once third-party content is loaded, that service may set its own cookies or collect data under its own privacy policy.
 
+<a id="manage-embed-consent"></a>
 ### Manage embed consent
 
 <div class="my-3">
