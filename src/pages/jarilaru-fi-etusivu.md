@@ -12,7 +12,7 @@ source_url: "https://www.jarilaru.fi/jarilaru-fi-etusivu/"
 <h2>Olen ehdolla alue- ja kuntavaaleissa</h2>
 
 
-<p><strong>Kasvatustieteen tohtori, yliopistolehtori.</strong><br><strong>Kunta- ja vara-aluevaltuutettu, kaupunginhallituksen varajäsen. </strong><br>Olen toiminut oululaisena kuntapäättäjänä 8 vuotta (varsinainen kaupunginvaltuutettu) ja erilaisissa poliittisissa tehtävissä 25 vuotta. <br><br>Haen jatkoa Oulun ja Pohteen hyvinvointialueen poliittisissa tehtävissä. Haluan olla luottamuksesi arvoinen.<br><br>Lue lisää: <a href="/politiiikka/">https://www.jarilaru.fi/politiiikka/</a></p>
+<p><strong>Kasvatustieteen tohtori, yliopistolehtori.</strong><br><strong>Kunta- ja vara-aluevaltuutettu, kaupunginhallituksen varajäsen. </strong><br>Olen toiminut oululaisena kuntapäättäjänä 8 vuotta (varsinainen kaupunginvaltuutettu) ja erilaisissa poliittisissa tehtävissä 25 vuotta. <br><br>Haen jatkoa Oulun ja Pohteen hyvinvointialueen poliittisissa tehtävissä. Haluan olla luottamuksesi arvoinen.<br><br>Lue lisää: <a href="/politiikka/">https://www.jarilaru.fi/politiikka/</a></p>
 
 
 <h5><strong>Kuntavaali</strong>koneet</h5>
@@ -92,7 +92,7 @@ source_url: "https://www.jarilaru.fi/jarilaru-fi-etusivu/"
 
 
 <p>Olen oululainen toisen kauden kaupunginvaltuutettu (.kok). Ole
-<a href="/politiiikka/" target="_blank" rel="noreferrer noopener" title="kokenut poliitikko">kokenut poliitikko</a>, sillä olen aloittanut yhteiskunnallisten asioiden parissa jo lukiolaisena. </p>
+<a href="/politiikka/" target="_blank" rel="noreferrer noopener" title="kokenut poliitikko">kokenut poliitikko</a>, sillä olen aloittanut yhteiskunnallisten asioiden parissa jo lukiolaisena. </p>
 
 
 <div>

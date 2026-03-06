@@ -240,7 +240,7 @@ module.exports = {
           links: [
             {
               title: "Jari Laru, poliitikko",
-              href: "/politiiikka/",
+              href: "/politiikka/",
               icon: "bi bi-person-badge me-2",
               menuLink: true,
               description: "Luottamustoimet ja vaikuttaminen Oulussa."
@@ -388,7 +388,7 @@ module.exports = {
       links: [
         {
           title: "Jari Laru, poliitikko",
-          href: "/politiiikka/",
+          href: "/politiikka/",
           icon: "bi bi-person-badge me-2"
         },
         {

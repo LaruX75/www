@@ -117,7 +117,7 @@ source_url: "https://www.jarilaru.fi/tietoja/"
           <p class="card-text">Olen ollut mukana politiikassa koko 2000-luvun. Tällä hetkellä toimin kaupunginvaltuutettuna ja sivistys- ja kulttuurilautakunnan jäsenenä.</p>
         </div>
         <div class="card-footer bg-transparent border-0">
-          <a class="btn btn-outline-primary btn-sm" href="/politiiikka/">Lue lisää</a>
+          <a class="btn btn-outline-primary btn-sm" href="/politiikka/">Lue lisää</a>
         </div>
       </div>
     </div>
