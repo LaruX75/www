@@ -25,12 +25,10 @@ templateEngineOverride: md
 <div>
 <div><iframe src="http://www.scribd.com/embeds/80208729/content?start_page=1&view_mode=slideshow" scrolling="no" id="doc_67849" width="100%" height="600" frameborder="0"></iframe>
 <div></div>
-<span><a target="_blank" href="http://embed.ly?src=anywhere" title="Powered by Embedly" rel="noopener"><img src="//static.embed.ly/images/logos/embedly-powered-small-light.png" alt="Embedly Powered" /></a></span>
 <div><span>via </span><a href="http://www.scribd.com/" target="_blank" rel="noopener">Scribd</a></div>
 <div></div>
 </div>
 </div>
 <div></div>
-<span><a title="Powered by Embedly" href="http://embed.ly?src=anywhere" target="_blank" rel="noopener"><img src="//static.embed.ly/images/logos/embedly-powered-small-light.png" alt="Embedly Powered" /></a></span>
 <div>via <a href="http://www.scribd.com/" target="_blank" rel="noopener">Scribd</a></div>
 <div></div>

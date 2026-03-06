@@ -23,7 +23,6 @@ templateEngineOverride: md
 <div>
 <div><iframe src="http://www.slideshare.net/slideshow/embed_code/2580232" width="479" height="511" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen> </iframe>
 <div></div>
-<span><a target="_blank" href="http://embed.ly?src=anywhere" title="Powered by Embedly" rel="noopener"><img src="//static.embed.ly/images/logos/embedly-powered-small-light.png" alt="Embedly Powered" /></a></span>
 <div><span>via </span><a href="http://www.slideshare.net" target="_blank" rel="noopener">SlideShare</a></div>
 <div></div>
 </div>
