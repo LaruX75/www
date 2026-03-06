@@ -19,8 +19,17 @@
 }
 
 .site-navbar {
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  isolation: isolate;
+  transition: transform 0.3s ease, padding 0.3s ease;
+  background-color: transparent !important;
+}
+
+.site-navbar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
 }
 
 [data-bs-theme="light"] .site-navbar .navbar-brand,
@@ -30,23 +39,23 @@
   color: #1f2937;
 }
 
-.site-navbar.navbar-hero-transparent {
-  background-color: var(--evelenty-menu-bg) !important;
+.site-navbar.navbar-hero-transparent::before {
+  background-color: var(--evelenty-menu-bg);
   backdrop-filter: blur(calc(var(--evelenty-blur) + 4px)) saturate(130%);
   -webkit-backdrop-filter: blur(calc(var(--evelenty-blur) + 4px)) saturate(130%);
-  box-shadow: none !important;
+  box-shadow: none;
 }
 
-.site-navbar.navbar-hero-solid {
-  background: var(--evelenty-nav-bg) !important;
+.site-navbar.navbar-hero-solid::before {
+  background-color: var(--evelenty-nav-bg);
   backdrop-filter: blur(var(--evelenty-blur)) saturate(120%);
   -webkit-backdrop-filter: blur(var(--evelenty-blur)) saturate(120%);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
 }
 
 /* When mega menu is open, let the panel handle the blur effect. */
-.site-navbar.mega-open {
-  background: transparent !important;
+.site-navbar.mega-open::before {
+  background-color: transparent !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
   box-shadow: none !important;
@@ -83,7 +92,6 @@
   background-color: var(--evelenty-menu-bg) !important;
   backdrop-filter: blur(calc(var(--evelenty-blur) + 4px)) saturate(130%);
   -webkit-backdrop-filter: blur(calc(var(--evelenty-blur) + 4px)) saturate(130%);
-  isolation: isolate;
 }
 
 .mega-wrap {
