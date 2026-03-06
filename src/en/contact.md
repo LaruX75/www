@@ -12,3 +12,5 @@ If you would like to contact Jari Laru regarding speaking, training, collaborati
 - Phone: +358 40 511 8478
 
 Finnish contact page with full details: <https://www.jarilaru.fi/yhteystiedot/>
+
+Privacy notice: </en/privacy/>

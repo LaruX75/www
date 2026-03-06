@@ -85,6 +85,8 @@ templateEngineOverride: md
           
           <div class="mt-3 text-muted small text-center">
             Lähettämällä lomakkeen hyväksyt tietojesi käsittelyn yhteydenottoa varten. Lomakepalveluna toimii Formspree.
+            <br>
+            <a href="/tietosuojaseloste/">Lue tietosuojaseloste</a>.
           </div>
         </div>
       </div>
