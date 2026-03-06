@@ -7,7 +7,7 @@
   --menu-muted: #475569;
   --evelenty-nav-gap: 0.25rem;
   --evelenty-panel-padding: 1.5rem;
-  --menu-divider: rgba(15, 23, 42, 0.12);
+  --menu-divider: rgba(15, 23, 42, 0.28);
 }
 
 [data-bs-theme="dark"] {
@@ -15,7 +15,7 @@
   --evelenty-menu-bg: rgba(15, 23, 42, 0.52);
   --menu-text: #e2e8f0;
   --menu-muted: #94a3b8;
-  --menu-divider: rgba(255, 255, 255, 0.1);
+  --menu-divider: rgba(255, 255, 255, 0.32);
 }
 
 .site-navbar {
