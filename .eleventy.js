@@ -5,12 +5,13 @@ const path = require("path");
 const EleventyPluginOgImage = require("eleventy-plugin-og-image");
 const brokenLinksPlugin = require("eleventy-plugin-broken-links");
 const SUPPORTED_LANGS = ["fi", "en"];
+const shouldCheckExternalLinks = process.env.CHECK_EXTERNAL_LINKS === "true";
 
 // Eleventy defaults EventBus max listeners to 100; larger sites exceed this without actual leaks.
 try {
   const eleventyEventBus = require("@11ty/eleventy/src/EventBus");
   eleventyEventBus.setMaxListeners(1000);
-} catch (_) {}
+} catch (_) { }
 
 function getLangFromUrl(url) {
   return String(url || "").startsWith("/en/") ? "en" : "fi";
@@ -63,12 +64,16 @@ module.exports = function (eleventyConfig) {
       ],
     },
   });
-  eleventyConfig.addPlugin(brokenLinksPlugin, {
-    broken: "warn",
-    redirect: "warn",
-    forbidden: "warn",
-    loggingLevel: 2,
-  });
+  // External link checks are network-dependent and noisy in local/offline runs.
+  // Enable explicitly (e.g. CI): CHECK_EXTERNAL_LINKS=true npx @11ty/eleventy
+  if (shouldCheckExternalLinks) {
+    eleventyConfig.addPlugin(brokenLinksPlugin, {
+      broken: "warn",
+      redirect: "warn",
+      forbidden: "warn",
+      loggingLevel: 2,
+    });
+  }
 
   // Kopioi staattiset tiedostot
   eleventyConfig.addPassthroughCopy("src/css");
@@ -77,6 +82,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("src/_headers");
   eleventyConfig.addPassthroughCopy("src/_redirects");
+  eleventyConfig.addPassthroughCopy("src/CNAME");
   eleventyConfig.addPassthroughCopy("admin");
 
   // =====================
