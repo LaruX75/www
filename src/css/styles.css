@@ -137,6 +137,11 @@
   color: var(--bs-link-hover-color);
 }
 
+.ticker-item .ticker-title-link {
+  color: var(--bs-body-color);
+  text-decoration: none;
+}
+
 .ticker-item p {
   color: var(--bs-body-color);
 }
@@ -190,6 +195,10 @@
 [data-bs-theme="dark"] .ticker-item h3 a:hover,
 [data-bs-theme="dark"] .ticker-item h4 a:hover {
   color: rgba(255, 255, 255, 0.8);
+}
+
+[data-bs-theme="dark"] .ticker-item .ticker-title-link {
+  color: #ffffff !important;
 }
 
 [data-bs-theme="dark"] .ticker-item p {

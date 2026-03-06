@@ -78,7 +78,7 @@ translationKey: home
                         <div class="ticker-content">
                             {% for post in collections.politicsAndOpinions | take(6) %}
                             <div class="ticker-item p-4">
-                                <h3><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
+                                <h3><a class="ticker-title-link" href="{{ post.url }}">{{ post.data.title }}</a></h3>
                                 <div class="d-flex align-items-center mt-3 mb-3">
                                     {% if post.data.thumbnail %}
                                     <img loading="lazy" decoding="async" class="object-fit-cover rounded-circle flex-shrink-0 me-3" width="50" height="50" src="{{ post.data.thumbnail }}" alt="{{ post.data.title }}">
@@ -116,7 +116,7 @@ translationKey: home
                         <div class="ticker-content" aria-hidden="true">
                             {% for post in collections.politicsAndOpinions | take(6) %}
                             <div class="ticker-item p-4">
-                                <h3><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
+                                <h3><a class="ticker-title-link" href="{{ post.url }}">{{ post.data.title }}</a></h3>
                                 <div class="d-flex align-items-center mt-3 mb-3">
                                     {% if post.data.thumbnail %}
                                     <img loading="lazy" decoding="async" class="object-fit-cover rounded-circle flex-shrink-0 me-3" width="50" height="50" src="{{ post.data.thumbnail }}" alt="{{ post.data.title }}">
