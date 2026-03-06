@@ -2,6 +2,7 @@
 title: "Larux tmi"
 permalink: /yritys/
 templateEngineOverride: md
+translationKey: company
 ---
 <div>
 <h2>Olen sujuvasanainen puhuja ja kokenut kouluttaja</h2>
