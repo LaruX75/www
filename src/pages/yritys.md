@@ -17,7 +17,7 @@ lang: fi
         <p class="mb-4">Toimin sivutoimisena yrittäjänä ja toteutan puheenvuoroja, koulutuksia sekä asiantuntijatyötä erityisesti opetusteknologian, digipedagogiikan ja tekoälyn opetuskäytön teemoista.</p>
         <div class="d-flex flex-wrap gap-2">
           <a class="btn btn-primary" href="/yhteystiedot/">Ota yhteyttä</a>
-          <a class="btn btn-outline-primary" href="/koulutukset/">Koulutukset ja luennot</a>
+          <a class="btn btn-outline-primary" href="/esitykset/">Koulutukset ja luennot</a>
         </div>
       </div>
       <div class="col-lg-4">
