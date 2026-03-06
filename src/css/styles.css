@@ -94,6 +94,14 @@
   display: flex;
 }
 
+/* Publications ticker on home page uses .ticker-container */
+.ticker-container {
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
 .ticker-track {
   display: flex;
   width: max-content;
