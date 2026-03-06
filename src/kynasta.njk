@@ -935,12 +935,12 @@ section[id] {
   if (!dataEl) return;
   const rawData = JSON.parse(dataEl.textContent);
 
-  // Järjestetään uusin ensin oletuksena
-  let data = [...rawData].sort((a, b) => (b.year || 0) - (a.year || 0));
+  // Järjestetään oletuksena aakkosjärjestykseen otsikon mukaan
+  let data = [...rawData].sort((a, b) => (a.title || '').localeCompare((b.title || ''), 'fi'));
   let filteredData = [...data];
   let currentPage = 1;
-  let sortCol = 'year';
-  let sortDir = -1; // -1 = desc, 1 = asc
+  let sortCol = 'title';
+  let sortDir = 1; // -1 = desc, 1 = asc
 
   const yearSel = document.getElementById('pub-year');
   const searchInp = document.getElementById('pub-search');
@@ -1156,10 +1156,10 @@ section[id] {
   if (!blogDataEl) return;
   const blogData = JSON.parse(blogDataEl.textContent);
 
-  let filteredBlogData = [...blogData];
+  let filteredBlogData = [...blogData].sort((a, b) => (a.title || '').localeCompare((b.title || ''), 'fi'));
   let blogCurrentPage = 1;
-  let blogSortCol = 'date';
-  let blogSortDir = -1; // -1 = desc
+  let blogSortCol = 'title';
+  let blogSortDir = 1; // -1 = desc
 
   const blogSearchInp = document.getElementById('blog-search');
   const blogTbody = document.getElementById('blog-tbody');
@@ -1175,7 +1175,7 @@ section[id] {
         (d.categories || []).some(c => c.toLowerCase().includes(q)) ||
         (d.keywords || []).some(k => k.toLowerCase().includes(q));
       return matchQ;
-    });
+    }).sort((a, b) => (a.title || '').localeCompare((b.title || ''), 'fi'));
     blogCurrentPage = 1;
     renderBlog();
   }
@@ -1301,10 +1301,10 @@ section[id] {
   if (!esityksetDataEl) return;
   const esityksetData = JSON.parse(esityksetDataEl.textContent);
 
-  let filteredEsityksetData = [...esityksetData];
+  let filteredEsityksetData = [...esityksetData].sort((a, b) => (a.title || '').localeCompare((b.title || ''), 'fi'));
   let esityksetCurrentPage = 1;
-  let esityksetSortCol = 'date';
-  let esityksetSortDir = -1; // -1 = desc
+  let esityksetSortCol = 'title';
+  let esityksetSortDir = 1; // -1 = desc
 
   const esityksetSearchInp = document.getElementById('esitykset-search');
   const esityksetTbody = document.getElementById('esitykset-tbody');
@@ -1320,7 +1320,7 @@ section[id] {
         (d.categories || []).some(c => c.toLowerCase().includes(q)) ||
         (d.type || '').toLowerCase().includes(q);
       return matchQ;
-    });
+    }).sort((a, b) => (a.title || '').localeCompare((b.title || ''), 'fi'));
     esityksetCurrentPage = 1;
     renderEsitykset();
   }
@@ -1440,10 +1440,10 @@ section[id] {
   if (!puheetDataEl) return;
   const puheetData = JSON.parse(puheetDataEl.textContent);
 
-  let filteredPuheetData = [...puheetData];
+  let filteredPuheetData = [...puheetData].sort((a, b) => (a.title || '').localeCompare((b.title || ''), 'fi'));
   let puheetCurrentPage = 1;
-  let puheetSortCol = 'date';
-  let puheetSortDir = -1; // -1 = desc
+  let puheetSortCol = 'title';
+  let puheetSortDir = 1; // -1 = desc
 
   const puheetSearchInp = document.getElementById('puheet-search');
   const puheetTbody = document.getElementById('puheet-tbody');
@@ -1460,7 +1460,7 @@ section[id] {
         (d.categories || []).some(c => c.toLowerCase().includes(q)) ||
         (d.keywords || []).some(k => k.toLowerCase().includes(q));
       return matchQ;
-    });
+    }).sort((a, b) => (a.title || '').localeCompare((b.title || ''), 'fi'));
     puheetCurrentPage = 1;
     renderPuheet();
   }
@@ -1590,10 +1590,10 @@ section[id] {
   if (!aloitteetDataEl) return;
   const aloitteetData = JSON.parse(aloitteetDataEl.textContent);
 
-  let filteredAloitteetData = [...aloitteetData];
+  let filteredAloitteetData = [...aloitteetData].sort((a, b) => (a.title || '').localeCompare((b.title || ''), 'fi'));
   let aloitteetCurrentPage = 1;
-  let aloitteetSortCol = 'date';
-  let aloitteetSortDir = -1; // -1 = desc
+  let aloitteetSortCol = 'title';
+  let aloitteetSortDir = 1; // -1 = desc
 
   const aloitteetSearchInp = document.getElementById('aloitteet-search');
   const aloitteetTbody = document.getElementById('aloitteet-tbody');
@@ -1610,7 +1610,7 @@ section[id] {
         (d.categories || []).some(c => c.toLowerCase().includes(q)) ||
         (d.keywords || []).some(k => k.toLowerCase().includes(q));
       return matchQ;
-    });
+    }).sort((a, b) => (a.title || '').localeCompare((b.title || ''), 'fi'));
     aloitteetCurrentPage = 1;
     renderAloitteet();
   }
@@ -1740,10 +1740,10 @@ section[id] {
   if (!kolumnitDataEl) return;
   const kolumnitData = JSON.parse(kolumnitDataEl.textContent);
 
-  let filteredKolumnitData = [...kolumnitData];
+  let filteredKolumnitData = [...kolumnitData].sort((a, b) => (a.title || '').localeCompare((b.title || ''), 'fi'));
   let kolumnitCurrentPage = 1;
-  let kolumnitSortCol = 'date';
-  let kolumnitSortDir = -1; // -1 = desc
+  let kolumnitSortCol = 'title';
+  let kolumnitSortDir = 1; // -1 = desc
 
   const kolumnitSearchInp = document.getElementById('kolumnit-search');
   const kolumnitTbody = document.getElementById('kolumnit-tbody');
@@ -1760,7 +1760,7 @@ section[id] {
         (d.categories || []).some(c => c.toLowerCase().includes(q)) ||
         (d.keywords || []).some(k => k.toLowerCase().includes(q));
       return matchQ;
-    });
+    }).sort((a, b) => (a.title || '').localeCompare((b.title || ''), 'fi'));
     kolumnitCurrentPage = 1;
     renderKolumnit();
   }
@@ -1890,10 +1890,10 @@ section[id] {
   if (!mielipiteetDataEl) return;
   const mielipiteetData = JSON.parse(mielipiteetDataEl.textContent);
 
-  let filteredMielipiteetData = [...mielipiteetData];
+  let filteredMielipiteetData = [...mielipiteetData].sort((a, b) => (a.title || '').localeCompare((b.title || ''), 'fi'));
   let mielipiteetCurrentPage = 1;
-  let mielipiteetSortCol = 'date';
-  let mielipiteetSortDir = -1; // -1 = desc
+  let mielipiteetSortCol = 'title';
+  let mielipiteetSortDir = 1; // -1 = desc
 
   const mielipiteetSearchInp = document.getElementById('mielipiteet-search');
   const mielipiteetTbody = document.getElementById('mielipiteet-tbody');
@@ -1910,7 +1910,7 @@ section[id] {
         (d.categories || []).some(c => c.toLowerCase().includes(q)) ||
         (d.keywords || []).some(k => k.toLowerCase().includes(q));
       return matchQ;
-    });
+    }).sort((a, b) => (a.title || '').localeCompare((b.title || ''), 'fi'));
     mielipiteetCurrentPage = 1;
     renderMielipiteet();
   }
