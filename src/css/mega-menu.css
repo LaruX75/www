@@ -208,7 +208,7 @@
 
 .writings-side-col {
   grid-column: 4;
-  grid-row: 1 / span 2;
+  grid-row: 2;
   min-width: 0;
 }
 

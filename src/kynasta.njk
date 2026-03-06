@@ -30,6 +30,9 @@ translationKey: writings_index
           <a class="nav-link" href="#blogi">
             Blogi <span class="nav-count">{{ collections.blog.length }}</span>
           </a>
+          <a class="nav-link" href="#esitykset">
+            Esitykset <span class="nav-count">{{ collections.presentations.length }}</span>
+          </a>
           <a class="nav-link" href="#julkaisut">
             Julkaisut <span class="nav-count">{{ researchfi.length }}</span>
           </a>
@@ -477,6 +480,81 @@ translationKey: writings_index
             <ul id="blog-pagination" class="pagination pagination-sm mb-0 flex-wrap"></ul>
           </nav>
           <a href="/blogi/" class="btn btn-outline-primary btn-sm rounded-pill">Kaikki blogipostaukset</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# Kerätään kaikki Canva-esitykset JSON-muotoon JS:ää varten #}
+<script id="esitykset-data" type="application/json">
+[
+  {% for presentation in collections.presentations %}
+  {
+    "title": {{ presentation.data.title | dump | safe }},
+    "date": "{{ presentation.date }}",
+    "formattedDate": "{{ presentation.date | dateFormat }}",
+    "description": {{ (presentation.data.description or (presentation.content | excerpt)) | dump | safe }},
+    "url": {{ (presentation.data.url or "") | dump | safe }},
+    "thumbnail": {{ (presentation.data.thumbnail or "") | dump | safe }},
+    "categories": {{ (presentation.data.categories or []) | dump | safe }},
+    "type": {{ (presentation.data.type or "Canva") | dump | safe }}
+  }{% if not loop.last %},{% endif %}
+  {% endfor %}
+]
+</script>
+
+<section id="esitykset">
+  <div class="container">
+    <div class="card shadow-sm">
+      <div class="card-header bg-transparent d-flex align-items-center justify-content-between">
+        <h2 class="h4 mb-0">Esitykset</h2>
+        <span class="badge text-bg-secondary">{{ collections.presentations.length }}</span>
+      </div>
+      <div class="card-body p-0">
+        <div class="p-3 bg-light border-bottom">
+          <div class="row g-2 align-items-end">
+            <div class="col-md-9">
+              <label for="esitykset-search" class="form-label small text-muted mb-1">Hae esityksiä</label>
+              <input type="search" id="esitykset-search" class="form-control form-control-sm"
+                     placeholder="Hae otsikosta, kuvauksesta tai teemoista..." autocomplete="off">
+            </div>
+            <div class="col-md-3 d-flex justify-content-md-end gap-2">
+              <button id="esitykset-reset" class="btn btn-outline-secondary btn-sm w-100">
+                <i class="bi bi-x-circle me-1"></i>Tyhjennä
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0 pub-table esitykset-table">
+            <thead>
+              <tr>
+                <th class="sortable text-center" data-col="date" style="width:140px">
+                  Päivämäärä <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
+                </th>
+                <th class="sortable" data-col="title" style="min-width:220px">
+                  Otsikko <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
+                </th>
+                <th style="min-width:260px">Kuvaus & esikatselu</th>
+                <th>Teemat</th>
+                <th style="width:90px" class="text-center">Katso</th>
+              </tr>
+            </thead>
+            <tbody id="esitykset-tbody">
+              <tr><td colspan="5" class="text-center text-muted py-4">Ladataan esityksiä...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top">
+        <small id="esitykset-info" class="text-muted"></small>
+        <div class="d-flex align-items-center gap-3">
+          <nav aria-label="Sivutus">
+            <ul id="esitykset-pagination" class="pagination pagination-sm mb-0 flex-wrap"></ul>
+          </nav>
+          <a href="/esitykset/" class="btn btn-outline-primary btn-sm rounded-pill">Kaikki esitykset</a>
         </div>
       </div>
     </div>
@@ -1214,6 +1292,145 @@ section[id] {
   });
 
   renderBlog();
+})();
+
+// --- Esitykset taulukon logiikka ---
+(function () {
+  const ESITYKSET_PAGE_SIZE = 5;
+  const esityksetDataEl = document.getElementById('esitykset-data');
+  if (!esityksetDataEl) return;
+  const esityksetData = JSON.parse(esityksetDataEl.textContent);
+
+  let filteredEsityksetData = [...esityksetData];
+  let esityksetCurrentPage = 1;
+  let esityksetSortCol = 'date';
+  let esityksetSortDir = -1; // -1 = desc
+
+  const esityksetSearchInp = document.getElementById('esitykset-search');
+  const esityksetTbody = document.getElementById('esitykset-tbody');
+  const esityksetInfo = document.getElementById('esitykset-info');
+  const esityksetPagUl = document.getElementById('esitykset-pagination');
+
+  function applyEsityksetFilters() {
+    const q = esityksetSearchInp ? esityksetSearchInp.value.toLowerCase().trim() : '';
+    filteredEsityksetData = esityksetData.filter(d => {
+      const matchQ = !q ||
+        (d.title || '').toLowerCase().includes(q) ||
+        (d.description || '').toLowerCase().includes(q) ||
+        (d.categories || []).some(c => c.toLowerCase().includes(q)) ||
+        (d.type || '').toLowerCase().includes(q);
+      return matchQ;
+    });
+    esityksetCurrentPage = 1;
+    renderEsitykset();
+  }
+
+  function sortEsityksetData(col) {
+    if (esityksetSortCol === col) { esityksetSortDir *= -1; }
+    else { esityksetSortCol = col; esityksetSortDir = col === 'date' ? -1 : 1; }
+
+    filteredEsityksetData.sort((a, b) => {
+      let av = a[col] ?? '';
+      let bv = b[col] ?? '';
+      if (typeof av === 'string') av = av.toLowerCase();
+      if (typeof bv === 'string') bv = bv.toLowerCase();
+      if (col === 'date') {
+        return (new Date(av) - new Date(bv)) * esityksetSortDir;
+      }
+      return av.toString().localeCompare(bv.toString(), 'fi') * esityksetSortDir;
+    });
+    esityksetCurrentPage = 1;
+    renderEsitykset();
+  }
+
+  function renderEsitykset() {
+    if (!esityksetTbody || !esityksetInfo) return;
+
+    const totalPages = Math.max(1, Math.ceil(filteredEsityksetData.length / ESITYKSET_PAGE_SIZE));
+    const start = (esityksetCurrentPage - 1) * ESITYKSET_PAGE_SIZE;
+    const slice = filteredEsityksetData.slice(start, start + ESITYKSET_PAGE_SIZE);
+
+    if (slice.length === 0) {
+      esityksetTbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-5">Ei tuloksia haulla</td></tr>';
+    } else {
+      esityksetTbody.innerHTML = slice.map(d => {
+        const catBadges = (d.categories || []).map(c => `<span class="badge text-bg-secondary me-1">${escHtml(c)}</span>`).join('');
+        const typeBadge = d.type ? `<span class="badge text-bg-light text-dark border">${escHtml(d.type)}</span>` : '';
+        const preview = d.thumbnail
+          ? `<img src="${escHtml(d.thumbnail)}" alt="${escHtml(d.title)}" class="img-fluid rounded border mt-2" style="max-height:72px; object-fit:cover;">`
+          : '';
+        const linkBtn = d.url
+          ? `<a href="${escHtml(d.url)}" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Avaa esitys"><i class="bi bi-arrow-up-right"></i></a>`
+          : `<span class="text-muted small">—</span>`;
+
+        return `<tr>
+          <td class="col-date text-center small text-muted font-monospace">${d.formattedDate}</td>
+          <td class="col-title fw-medium">${escHtml(d.title)}</td>
+          <td class="col-desc small text-muted">${escHtml(d.description)}${preview}</td>
+          <td>${catBadges || typeBadge || '<span class="text-muted small">—</span>'}</td>
+          <td class="text-center">${linkBtn}</td>
+        </tr>`;
+      }).join('');
+    }
+
+    const total = filteredEsityksetData.length;
+    const from = total === 0 ? 0 : start + 1;
+    const to = Math.min(start + ESITYKSET_PAGE_SIZE, total);
+    esityksetInfo.textContent = `Näytetään ${from}–${to} / ${total}`;
+
+    renderEsityksetPagination(totalPages);
+
+    document.querySelectorAll('.esitykset-table th.sortable').forEach(th => {
+      th.classList.remove('sort-asc', 'sort-desc');
+      if (th.dataset.col === esityksetSortCol) {
+        th.classList.add(esityksetSortDir === 1 ? 'sort-asc' : 'sort-desc');
+      }
+    });
+  }
+
+  function renderEsityksetPagination(total) {
+    if (!esityksetPagUl) return;
+    esityksetPagUl.innerHTML = '';
+    if (total <= 1) return;
+
+    for (let i = 1; i <= total; i++) {
+      const li = document.createElement('li');
+      li.className = `page-item${i === esityksetCurrentPage ? ' active' : ''}`;
+      const a = document.createElement('a');
+      a.className = 'page-link';
+      a.href = '#';
+      a.textContent = i;
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        esityksetCurrentPage = i;
+        renderEsitykset();
+        document.getElementById('esitykset')?.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+      li.appendChild(a);
+      esityksetPagUl.appendChild(li);
+    }
+  }
+
+  function escHtml(str) {
+    if (!str) return '';
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  if (esityksetSearchInp) esityksetSearchInp.addEventListener('input', applyEsityksetFilters);
+
+  const esityksetResetBtn = document.getElementById('esitykset-reset');
+  if (esityksetResetBtn) {
+    esityksetResetBtn.addEventListener('click', () => {
+      if (esityksetSearchInp) esityksetSearchInp.value = '';
+      applyEsityksetFilters();
+    });
+  }
+
+  document.querySelectorAll('.esitykset-table th.sortable').forEach(th => {
+    th.addEventListener('click', () => sortEsityksetData(th.dataset.col));
+  });
+
+  renderEsitykset();
 })();
 
 // --- Puheet taulukon logiikka ---

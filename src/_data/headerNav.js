@@ -445,15 +445,17 @@ module.exports = {
         {
           links: [
             { title: "Blogi", href: "/blogi/", icon: "bi bi-pen me-2", countKey: "blog" },
-            { title: "Julkaisuluettelo", href: "/julkaisut/", icon: "bi bi-journal-text me-2", countKey: "publications" }
+            { title: "Julkaisuluettelo", href: "/julkaisut/", icon: "bi bi-journal-text me-2", countKey: "publications" },
+            { title: "Esitykset", href: "/esitykset/", icon: "bi bi-easel2 me-2", countKey: "presentations" }
           ]
         }
       ],
       seeAlso: {
         heading: "Katso myös",
+        subheading: "Ohjaamiani opinnäytteitä",
         links: [
-          { title: "Esitykset", href: "/esitykset/", icon: "bi bi-easel2 me-2", countKey: "presentations" },
-          { title: "Opinnäytetyöt", href: "/opinnaytteet/", icon: "bi bi-mortarboard me-2", countData: "theses_total" }
+          { title: "Kandidaatintutkielmat", href: "/opinnaytteet/#card-bachelor", icon: "bi bi-book-half me-2", countData: "theses_kandit" },
+          { title: "Pro gradut", href: "/opinnaytteet/#card-master", icon: "bi bi-mortarboard me-2", countData: "theses_gradut" }
         ]
       }
     },
@@ -477,15 +479,17 @@ module.exports = {
         {
           links: [
             { title: "Blog", href: "/en/blog/", icon: "bi bi-pen me-2", countKey: "blog" },
-            { title: "Publication List", href: "/en/publications/", icon: "bi bi-journal-text me-2", countKey: "publications" }
+            { title: "Publication List", href: "/en/publications/", icon: "bi bi-journal-text me-2", countKey: "publications" },
+            { title: "Presentations", href: "/en/presentations/", icon: "bi bi-easel2 me-2", countKey: "presentations" }
           ]
         }
       ],
       seeAlso: {
         heading: "See also",
+        subheading: "Theses supervised by me",
         links: [
-          { title: "Presentations", href: "/en/presentations/", icon: "bi bi-easel2 me-2", countKey: "presentations" },
-          { title: "Theses", href: "/en/theses/", icon: "bi bi-mortarboard me-2", countData: "theses_total" }
+          { title: "Bachelor's theses", href: "/en/theses/#card-bachelor", icon: "bi bi-book-half me-2", countData: "theses_kandit" },
+          { title: "Master's theses", href: "/en/theses/#card-master", icon: "bi bi-mortarboard me-2", countData: "theses_gradut" }
         ]
       }
     }

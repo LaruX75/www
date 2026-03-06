@@ -157,6 +157,10 @@
                         {% set linkCount = (collections[link.countKey] or []) | length %}
                       {% elif link.countData == "theses_total" %}
                         {% set linkCount = theses.stats.total if theses and theses.stats else 0 %}
+                      {% elif link.countData == "theses_kandit" %}
+                        {% set linkCount = theses.stats.totalKandit if theses and theses.stats else 0 %}
+                      {% elif link.countData == "theses_gradut" %}
+                        {% set linkCount = theses.stats.totalGradut if theses and theses.stats else 0 %}
                       {% endif %}
                       <a class="menu-link-with-count" href="{{ link.href }}">
                         <span><i class="{{ link.icon }}"></i>{{ link.title }}</span>
@@ -168,12 +172,19 @@
                 {% if writingsMegaMenu.seeAlso %}
                   <section class="writings-side-col">
                     <h5>{{ writingsMegaMenu.seeAlso.heading }}</h5>
+                    {% if writingsMegaMenu.seeAlso.subheading %}
+                      <p class="menu-desc">{{ writingsMegaMenu.seeAlso.subheading }}</p>
+                    {% endif %}
                     {% for link in writingsMegaMenu.seeAlso.links %}
                       {% set linkCount = 0 %}
                       {% if link.countKey %}
                         {% set linkCount = (collections[link.countKey] or []) | length %}
                       {% elif link.countData == "theses_total" %}
                         {% set linkCount = theses.stats.total if theses and theses.stats else 0 %}
+                      {% elif link.countData == "theses_kandit" %}
+                        {% set linkCount = theses.stats.totalKandit if theses and theses.stats else 0 %}
+                      {% elif link.countData == "theses_gradut" %}
+                        {% set linkCount = theses.stats.totalGradut if theses and theses.stats else 0 %}
                       {% endif %}
                       <a class="menu-link-with-count" href="{{ link.href }}">
                         <span><i class="{{ link.icon }}"></i>{{ link.title }}</span>
@@ -382,6 +393,10 @@
                         {% set linkCount = (collections[link.countKey] or []) | length %}
                       {% elif link.countData == "theses_total" %}
                         {% set linkCount = theses.stats.total if theses and theses.stats else 0 %}
+                      {% elif link.countData == "theses_kandit" %}
+                        {% set linkCount = theses.stats.totalKandit if theses and theses.stats else 0 %}
+                      {% elif link.countData == "theses_gradut" %}
+                        {% set linkCount = theses.stats.totalGradut if theses and theses.stats else 0 %}
                       {% endif %}
                       <a class="menu-link-with-count" href="{{ link.href }}">
                         <span><i class="{{ link.icon }}"></i>{{ link.title }}</span>
@@ -393,12 +408,19 @@
                 {% if writingsMegaMenu.seeAlso %}
                   <section class="writings-side-col">
                     <h5>{{ writingsMegaMenu.seeAlso.heading }}</h5>
+                    {% if writingsMegaMenu.seeAlso.subheading %}
+                      <p class="menu-desc">{{ writingsMegaMenu.seeAlso.subheading }}</p>
+                    {% endif %}
                     {% for link in writingsMegaMenu.seeAlso.links %}
                       {% set linkCount = 0 %}
                       {% if link.countKey %}
                         {% set linkCount = (collections[link.countKey] or []) | length %}
                       {% elif link.countData == "theses_total" %}
                         {% set linkCount = theses.stats.total if theses and theses.stats else 0 %}
+                      {% elif link.countData == "theses_kandit" %}
+                        {% set linkCount = theses.stats.totalKandit if theses and theses.stats else 0 %}
+                      {% elif link.countData == "theses_gradut" %}
+                        {% set linkCount = theses.stats.totalGradut if theses and theses.stats else 0 %}
                       {% endif %}
                       <a class="menu-link-with-count" href="{{ link.href }}">
                         <span><i class="{{ link.icon }}"></i>{{ link.title }}</span>
