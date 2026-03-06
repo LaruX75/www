@@ -4,6 +4,7 @@ date: 2022-02-15
 description: Tällä sivulla esittelen sidonnaisuudet äänestäjien arvioitavaksi
 permalink: /sidonnaisuudet/
 templateEngineOverride: md
+translationKey: disclosures
 source_url: "https://www.jarilaru.fi/sidonnaisuudet/"
 ---
 <p><strong>Virat, toimet, ammatit, tehtävät</strong></p>

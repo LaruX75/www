@@ -173,7 +173,7 @@
           </div>
         </li>
         <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
-          <a class="nav-link py-0 d-flex align-items-center gap-1 text-decoration-none" href="{{ fiPageUrl or (page.url | switchLangUrl('fi')) }}" lang="fi" aria-label="Vaihda kieleksi suomi">
+          <a class="nav-link py-0 d-flex align-items-center gap-1 text-decoration-none" href="{{ fiPageUrl or '/' }}" lang="fi" aria-label="Vaihda kieleksi suomi">
             <span aria-hidden="true">🇫🇮</span><span>FI</span>
           </a>
         </li>
@@ -359,7 +359,7 @@
           </div>
         </li>
         <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
-          <a class="nav-link py-0 d-flex align-items-center gap-1 text-decoration-none" href="{{ enPageUrl or (page.url | switchLangUrl('en')) }}" lang="en" aria-label="Switch language to English">
+          <a class="nav-link py-0 d-flex align-items-center gap-1 text-decoration-none" href="{{ enPageUrl or '/en/' }}" lang="en" aria-label="Switch language to English">
             <span aria-hidden="true">🇬🇧</span><span>EN</span>
           </a>
         </li>
