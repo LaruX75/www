@@ -297,17 +297,4 @@
     font-size: 18px;
   }
 }
-
-.mega-wrap {
-  padding: 1rem;
-}
-
-.grid-8-4,
-.three-cols,
-.two-cols {
-  grid-template-columns: 1fr;
-}
-
-.evelenty-main-nav>.nav-item>.nav-link {
-  font-size: 18px;
 }
