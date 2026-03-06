@@ -2,6 +2,7 @@ const pluginRss = require("@11ty/eleventy-plugin-rss");
 const pluginNavigation = require("@11ty/eleventy-navigation");
 const sitemap = require("@quasibit/eleventy-plugin-sitemap");
 const pluginToc = require("eleventy-plugin-toc");
+const markdownItAnchor = require("markdown-it-anchor");
 const fs = require("fs");
 const path = require("path");
 const Image = require("@11ty/eleventy-img");
@@ -146,6 +147,13 @@ function writeExternalLinkReport({ brokenLinks, forbiddenLinks, redirectLinks, a
 }
 
 module.exports = function (eleventyConfig) {
+  // Add heading IDs to markdown output so TOC links can target headings.
+  eleventyConfig.amendLibrary("md", (mdLib) => {
+    mdLib.use(markdownItAnchor, {
+      level: [2, 3, 4]
+    });
+  });
+
   // Avoid intermittent Eleventy v2 watch crashes in large sites:
   // "Watching requires `.getFiles()` to be called first in EleventyFiles"
   // This disables JS dependency graph watching, but normal file watching remains.
