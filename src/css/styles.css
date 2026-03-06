@@ -158,6 +158,48 @@
   color: var(--bs-secondary-color) !important;
 }
 
+/* Home page compact sections and unified image sizing (excluding hero) */
+.home-feature-section .home-copy-block {
+  padding: 0.9rem 1rem 0.4rem !important;
+}
+
+.home-feature-section .ticker-wrapper,
+.home-feature-section .ticker-container {
+  margin-top: 0.45rem !important;
+}
+
+.home-feature-section .ticker-content {
+  gap: 1rem;
+  padding-right: 1rem;
+}
+
+.home-feature-section .ticker-item {
+  width: 300px;
+  max-width: 82vw;
+}
+
+.home-feature-section .ticker-item.p-4 {
+  padding: 1rem !important;
+}
+
+.home-section-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  max-height: 520px;
+}
+
+.home-card-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.home-feedback-section .card-body {
+  padding: 1rem;
+}
+
 @keyframes scrollTicker {
   0% {
     transform: translateX(0);
@@ -427,6 +469,17 @@
   .breadcrumb-item.active {
     max-width: 100%;
     overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .home-section-image,
+  .home-card-image {
+    aspect-ratio: 4 / 3;
+  }
+
+  .home-feature-section .ticker-item {
+    width: 280px;
   }
 }
 
