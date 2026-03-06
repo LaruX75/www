@@ -207,7 +207,12 @@
   grid-row: 2;
 }
 
-.writings-side-col {
+.writings-side-head {
+  grid-column: 4;
+  grid-row: 1;
+}
+
+.writings-side-links {
   grid-column: 4;
   grid-row: 2;
   min-width: 0;
@@ -398,7 +403,8 @@
 
   .writings-group-head,
   .writings-main-col,
-  .writings-side-col {
+  .writings-side-head,
+  .writings-side-links {
     grid-column: auto;
     grid-row: auto;
   }
@@ -430,7 +436,8 @@
 
   .writings-group-head,
   .writings-main-col,
-  .writings-side-col {
+  .writings-side-head,
+  .writings-side-links {
     grid-column: auto;
     grid-row: auto;
   }

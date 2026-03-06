@@ -428,7 +428,7 @@ module.exports = {
     fi: {
       heading: "Kirjoitukset ja puheet",
       description: "Kaikki tuotettu sisältö yhdessä paikassa.",
-      groupHeading: "Minun kynästä",
+      groupHeading: "Minun kynästä ja suusta",
       contentColumns: [
         {
           links: [

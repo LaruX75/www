@@ -170,11 +170,13 @@
                   </section>
                 {% endfor %}
                 {% if writingsMegaMenu.seeAlso %}
-                  <section class="writings-side-col">
+                  <section class="writings-side-head">
                     <h5>{{ writingsMegaMenu.seeAlso.heading }}</h5>
                     {% if writingsMegaMenu.seeAlso.subheading %}
                       <p class="menu-desc">{{ writingsMegaMenu.seeAlso.subheading }}</p>
                     {% endif %}
+                  </section>
+                  <section class="writings-side-links">
                     {% for link in writingsMegaMenu.seeAlso.links %}
                       {% set linkCount = 0 %}
                       {% if link.countKey %}
@@ -406,11 +408,13 @@
                   </section>
                 {% endfor %}
                 {% if writingsMegaMenu.seeAlso %}
-                  <section class="writings-side-col">
+                  <section class="writings-side-head">
                     <h5>{{ writingsMegaMenu.seeAlso.heading }}</h5>
                     {% if writingsMegaMenu.seeAlso.subheading %}
                       <p class="menu-desc">{{ writingsMegaMenu.seeAlso.subheading }}</p>
                     {% endif %}
+                  </section>
+                  <section class="writings-side-links">
                     {% for link in writingsMegaMenu.seeAlso.links %}
                       {% set linkCount = 0 %}
                       {% if link.countKey %}
