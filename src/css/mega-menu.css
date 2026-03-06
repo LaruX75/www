@@ -206,6 +206,12 @@
   color: var(--mega-icon-color) !important;
 }
 
+/* Force darker icon color in light mode for readability. */
+[data-bs-theme="light"] .mega-menu-panel a i,
+html:not([data-bs-theme="dark"]) .mega-menu-panel a i {
+  color: #334155 !important;
+}
+
 .menu-link-desc {
   padding: 0 0.6rem 0.2rem;
 }
