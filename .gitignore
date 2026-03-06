@@ -17,3 +17,6 @@ axe_results.txt
 
 # CMS config (local/private)
 admin/config.yml
+
+# Legacy WordPress backup archives
+src/img/uploads/backupbuddy_backups/
