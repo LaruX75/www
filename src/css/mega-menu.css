@@ -350,6 +350,17 @@
 .mega-menu-panel .work-inline-cta .btn-accent {
   border-width: 1px;
   border-style: solid;
+  color: #111827 !important;
+  --bs-btn-color: #111827;
+  --bs-btn-hover-color: #111827;
+  --bs-btn-active-color: #111827;
+}
+
+[data-bs-theme="dark"] .mega-menu-panel .work-inline-cta .btn-accent {
+  color: #111827 !important;
+  --bs-btn-color: #111827;
+  --bs-btn-hover-color: #111827;
+  --bs-btn-active-color: #111827;
 }
 
 [data-bs-theme="light"] .site-navbar.navbar-hero-solid .navbar-brand,
