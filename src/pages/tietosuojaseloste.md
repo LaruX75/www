@@ -12,6 +12,8 @@ Tämä sivu kuvaa, miten www.jarilaru.fi käsittelee sivuston käytön yhteydess
 Jari Laru  
 Yhteystiedot: <jari.laru@oulu.fi>
 
+**Päivitetty viimeksi:** 6.3.2026
+
 ## 2. Ulkoiset upotukset ja suostumus
 
 Sivustolla voi olla ulkoisista palveluista upotettua sisältöä (esim. Facebook, SlideShare, Scribd, Google).
@@ -51,3 +53,11 @@ Yhteydenottolomakkeen tiedot säilyvät niin kauan kuin on tarpeen yhteydenoton 
 
 Voit pyytää lisätietoa tietojesi käsittelystä tai pyytää tietojen poistamista ottamalla yhteyttä rekisterinpitäjään.
 
+## 7. Tietosuojavastaava (DPO) ja pyyntökanava
+
+Tälle sivustolle ei ole nimetty erillistä tietosuojavastaavaa.
+
+Rekisteröidyn oikeuksiin liittyvät pyynnöt (esim. tarkastus-, oikaisu- tai poistopyyntö) voi lähettää:
+
+- sähköpostitse: <jari.laru@oulu.fi>
+- yhteydenottolomakkeella: [www.jarilaru.fi/yhteystiedot](https://www.jarilaru.fi/yhteystiedot/)

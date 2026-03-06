@@ -13,6 +13,8 @@ This page explains how www.jarilaru.fi processes technical data related to websi
 Jari Laru  
 Contact: <jari.laru@oulu.fi>
 
+**Last updated:** March 6, 2026
+
 ## 2. External embeds and consent
 
 The website may include embedded third-party content (for example Facebook, SlideShare, Scribd, or Google).
@@ -52,3 +54,11 @@ Contact form data is retained only as long as needed to process the request.
 
 You can request more information about processing or request deletion of your data by contacting the controller.
 
+## 7. Data Protection Officer (DPO) and request channel
+
+No separate Data Protection Officer has been appointed for this website.
+
+Data subject rights requests (for example access, rectification, or erasure requests) can be sent via:
+
+- email: <jari.laru@oulu.fi>
+- contact form: [www.jarilaru.fi/en/contact](https://www.jarilaru.fi/en/contact/)
