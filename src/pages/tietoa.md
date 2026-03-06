@@ -141,7 +141,7 @@ source_url: "https://www.jarilaru.fi/tietoja/"
           <p class="card-text">Olen toiminut vuosikymmenen ajan osa-aikaisena yrittäjänä. Tarjoan opetusalan täydennyskoulutusta ja konsultointia.</p>
         </div>
         <div class="card-footer bg-transparent border-0">
-          <a class="btn btn-outline-primary btn-sm" href="/yritys/">Lue lisää</a>
+          <a class="btn btn-outline-primary btn-sm" href="/larux-tmi/">Lue lisää</a>
         </div>
       </div>
     </div>

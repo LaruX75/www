@@ -1,229 +1,196 @@
 ---
-title: "Larux tmi"
-permalink: /yritys/
-templateEngineOverride: md
+layout: base.njk
+title: Yritys
+subtitle: Larux t:mi
+description: Larux t:mi tarjoaa koulutuksia, puheenvuoroja ja asiantuntijapalveluita opetusteknologian sekä tekoälyn opetuskäytön teemoista.
+permalink: /larux-tmi/
 translationKey: company
----
-<div>
-<h2>Olen sujuvasanainen puhuja ja kokenut kouluttaja</h2>
-
-
-<div>
-<div>
-<figure><img src="https://www.jarilaru.fi/wp-content/plugins/twentig/dist/images/patterns/illustration1.svg" alt=""/></figure>
-
-
-<h3>Varhainen omaksuja</h3>
-
-
-<p>Olen tutkinut uusia opetusteknologioita koko urani. Tällä hetkellä teen tutkimusta tekoälyn opetuskäytön kontekstissa.<br></p>
-</div>
-
-
-<div>
-<figure><img src="https://www.jarilaru.fi/wp-content/plugins/twentig/dist/images/patterns/illustration2.svg" alt=""/></figure>
-
-
-<h3>Erinomainen puhuja</h3>
-
-
-<p>Tarvitsetko innostavan luennon tai keynote puhujan? Olen kokenut ja sujuvasanainen esiintyjä. Olen saanut kahdesti kansallisen palkinnon opetusansioista.</p>
-</div>
-
-
-<div>
-<figure><img src="https://www.jarilaru.fi/wp-content/plugins/twentig/dist/images/patterns/illustration3.svg" alt=""/></figure>
-
-
-<h3>Taitava kouluttaja</h3>
-
-
-<p>Olen kokenut digipedagogiikan kehittäjä ja soveltaja. Olen opettanut yli 10 vuotta suomalaisille ja kansainvälisille opiskelijoille teknologian pedagogista hyödyntämistä. </p>
-</div>
-</div>
-</div>
-
-
-<div>
-<h2>Esimerkkejä puheenvuoroista</h2>
-
-
-<div>
-<div>
-<figure><img src="/img/uploads/2025/01/AVI-koulutus-1024x576.png" alt=""/></figure>
-
-
-<h3>Avi kouluttaa webinaarisarja</h3>
-
-
-<p>Tämä esitys oli osa AVI:n webinaarisarjaa "opetus ja oppiminen tekoälyajassa" (syksy 24)</p>
-
-
-<p><strong>Katso diat <a href="https://www.canva.com/design/DAGSURxXpeI/bri9t7_gR9JbQaWlJA_K4w/view?utm_content=DAGSURxXpeI&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=uniquelinks&amp;utlId=h4b84a0e799">tästä</a></strong></p>
-</div>
-
-
-<div>
-<figure><img src="/img/uploads/2025/01/Luento_vaka_Korvaako-tekoaly-opettajan-Opinlakeus23-Laru.pptx-1024x576.png" alt=""/></figure>
-
-
-<h3>Opinlakeus (toinen aste) </h3>
-
-
-<p>Tämä esitys oli Etelä-Pohjanmaan toisen asteen oppilaitosten verkostolle pidetty luento.</p>
-
-
-<p><strong>Katso diat <a href="https://www.canva.com/design/DAGACd40ypc/HJyTyc9-JBNopT8uk_kPBA/view?utm_content=DAGACd40ypc&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=uniquelinks&amp;utlId=h4cb1a3f8b1">tästä</a></strong></p>
-</div>
-
-
-<div>
-<figure><img src="/img/uploads/2025/01/Digivoo-kommenttipuheenvuoro.-Syyskuu-2024-1024x576.jpg" alt=""/></figure>
-
-
-<h3>Kommenttipuheenvuoro </h3>
-
-
-<p>Kommenttipuheenvuoro "digitalisaatio oppimisen ja oppimistulosten selittäjä ä" teoksen julkaisutilaisuudessa</p>
-
-
-<p><strong>Katso diat <a href="https://www.canva.com/design/DAGPoJGk0WQ/TMIKa0lNGdjGRi2D8xjNpg/view?utm_content=DAGPoJGk0WQ&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=uniquelinks&amp;utlId=h7472c7a4ff">tästä</a></strong></p>
-</div>
-</div>
-</div>
-
-
-<div>
-<h2>Palautetta</h2>
-
-
-<div>
-<div>
-<h3>Palaute 1 - Henkilöstökoulutus</h3>
-
-
-<p>"ihan fiiliksissä vieläkin perjantain setistäsi! Yhteyden katkeaminen kesken kaiken ei yhtään latistanut asiaa, koska a) heti meidän porukka alkoi reflektoida kuultua ja b) sain puhelinyhteyden, pystyi tilannetiedottamaan. Tallenteen saan leikattua eheäksi. Siitä tulee ihan timanttia."</p>
-</div>
-
-
-<div>
-<h3>Palaute 2 - Valtion täydennyskoulutus </h3>
-
-
-<p>"Saimme aivan huikean hyvät arvioinnit! Kiitos, että olitte mukana. Kaikkien vastausten keskiarvo  4,2 (asteikolla 1-5) on ihan huippu, kun ottaa huomioon, että monen oli tultavat paikalla halusi tai ei. Kouluttajien ja asiantuntijoiden osaaminen sai parhaat arvioit."</p>
-</div>
-</div>
-
-
-<div>
-<div>
-<h3>Palaute 3 - Opettaja, osallistuja (OPH koulutus)</h3>
-
-
-<p>Kiitos, oikein mielenkiintoinen ja opettajan työhön todella tarpeellista ja käytännönläheistä tietoa. Otan monet asiat käyttöön!<br></p>
-</div>
-
-
-<div>
-<h3>Palaute 4 - Maksullinen seminaari</h3>
-
-
-<p>Lähetimme palaute kyselyn osallistujille. Toistaiseksi olet vastaajien kesken päivän paras puhuja – onnea!</p>
-</div>
-</div>
-</div>
-
-
-<div>
-<h2>Kiinnostuitko?</h2>
-
-
-<div>
-<div><a class="btn btn-primary mt-3" href="/yhteystiedot/"><i class="bi bi-envelope me-2"></i> Ota yhteyttä</a></div>
-</div>
-</div>
-
+lang: fi
 ---
 
-## Case-esimerkkejä
-
-<div class="row g-4 my-2">
-  <div class="col-md-4">
-    <article class="card h-100 shadow-sm border-0">
-      <div class="card-body">
-        <h3 class="h5 fw-bold">Kunta-alan palveluverkkoanalyysit</h3>
-        <p>Dataan pohjautuvia puheenvuoroja ja päätösesityksiä palveluverkon kehittämisestä.</p>
-        <a class="btn btn-outline-primary btn-sm" href="/politiikka/">Katso politiikkatyö</a>
+<section class="py-5 bg-body-tertiary border-bottom">
+  <div class="container">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-8">
+        <h1 class="display-5 fw-bold mb-3">Larux t:mi</h1>
+        <p class="lead mb-3">Tarjoan osaamiseni käyttöösi. Olen sujuvasanainen puhuja ja kokenut kouluttaja.</p>
+        <p class="mb-4">Toimin sivutoimisena yrittäjänä ja toteutan puheenvuoroja, koulutuksia sekä asiantuntijatyötä erityisesti opetusteknologian, digipedagogiikan ja tekoälyn opetuskäytön teemoista.</p>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-primary" href="/yhteystiedot/">Ota yhteyttä</a>
+          <a class="btn btn-outline-primary" href="/koulutukset/">Koulutukset ja luennot</a>
+        </div>
       </div>
-    </article>
-  </div>
-  <div class="col-md-4">
-    <article class="card h-100 shadow-sm border-0">
-      <div class="card-body">
-        <h3 class="h5 fw-bold">Tekoälylukutaito kouluille</h3>
-        <p>Koulutuksia opettajille ja johdolle käytännön AI-osaamisen vahvistamiseksi.</p>
-        <a class="btn btn-outline-primary btn-sm" href="/koulutukset/">Katso koulutukset</a>
-      </div>
-    </article>
-  </div>
-  <div class="col-md-4">
-    <article class="card h-100 shadow-sm border-0">
-      <div class="card-body">
-        <h3 class="h5 fw-bold">Tutkimuksesta käytäntöön</h3>
-        <p>Tieteelliset julkaisut ja esitykset, jotka tukevat opetuksen ja johtamisen kehittämistä.</p>
-        <a class="btn btn-outline-primary btn-sm" href="/julkaisut/">Katso julkaisut</a>
-      </div>
-    </article>
-  </div>
-</div>
-
-## Miksi valita minut
-
-- Yli 20 vuoden kokemus koulutuksesta ja digipedagogiikasta
-- Tutkimusnäyttöön nojaava toimintatapa
-- Kyky tehdä monimutkaisesta ymmärrettävää
-- Konkreettiset toimenpide-ehdotukset, ei pelkkää visiointia
-
-## Usein kysyttyä
-
-<div class="accordion my-3" id="companyFaqFi">
-  <div class="accordion-item">
-    <h3 class="accordion-header" id="company-faq-fi-1-heading">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#company-faq-fi-1" aria-expanded="true" aria-controls="company-faq-fi-1">
-        Mitä teemoja koulutuksissasi käsitellään?
-      </button>
-    </h3>
-    <div id="company-faq-fi-1" class="accordion-collapse collapse show" aria-labelledby="company-faq-fi-1-heading" data-bs-parent="#companyFaqFi">
-      <div class="accordion-body">
-        Keskiössä ovat tekoälylukutaito, oppimisteknologia, digipedagogiikka ja koulun kehittäminen käytännönläheisesti.
+      <div class="col-lg-4">
+        <div class="card shadow-sm border-0">
+          <div class="card-body">
+            <h2 class="h5 fw-bold">Nopeat faktat</h2>
+            <ul class="mb-0">
+              <li>Yli 10 vuotta koulutusta ja kehittämistä</li>
+              <li>Kohderyhmät: opettajat, johto, organisaatiot</li>
+              <li>Toteutus: keynote, työpaja, webinaari</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="accordion-item">
-    <h3 class="accordion-header" id="company-faq-fi-2-heading">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#company-faq-fi-2" aria-expanded="false" aria-controls="company-faq-fi-2">
-        Kenelle palvelut sopivat?
-      </button>
-    </h3>
-    <div id="company-faq-fi-2" class="accordion-collapse collapse" aria-labelledby="company-faq-fi-2-heading" data-bs-parent="#companyFaqFi">
-      <div class="accordion-body">
-        Koulujen henkilöstölle, koulutuksen johdolle, kuntatoimijoille sekä organisaatioille, jotka haluavat vahvistaa pedagogista ja digitaalista osaamista.
+</section>
+
+<section class="py-5">
+  <div class="container">
+    <h2 class="text-center mb-4">Olen sujuvasanainen puhuja ja kokenut kouluttaja</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <article class="card h-100 shadow-sm border-0">
+          <div class="card-body text-center">
+            <div class="fs-2 mb-3" aria-hidden="true">🚀</div>
+            <h3 class="h5 fw-bold">Varhainen omaksuja</h3>
+            <p class="mb-0">Olen tutkinut uusia opetusteknologioita koko urani. Tällä hetkellä painopisteenä on tekoälyn opetuskäyttö.</p>
+          </div>
+        </article>
+      </div>
+      <div class="col-md-4">
+        <article class="card h-100 shadow-sm border-0">
+          <div class="card-body text-center">
+            <div class="fs-2 mb-3" aria-hidden="true">🎤</div>
+            <h3 class="h5 fw-bold">Erinomainen puhuja</h3>
+            <p class="mb-0">Tarvitsetko keynote-puhujan tai innostavan luennon? Teen vaikeista aiheista ymmärrettäviä ja käytännöllisiä.</p>
+          </div>
+        </article>
+      </div>
+      <div class="col-md-4">
+        <article class="card h-100 shadow-sm border-0">
+          <div class="card-body text-center">
+            <div class="fs-2 mb-3" aria-hidden="true">🧠</div>
+            <h3 class="h5 fw-bold">Taitava kouluttaja</h3>
+            <p class="mb-0">Koulutuksissa yhdistyvät tutkimus, käytännön työkalut ja osallistujien arkeen sopivat toimintamallit.</p>
+          </div>
+        </article>
       </div>
     </div>
   </div>
-  <div class="accordion-item">
-    <h3 class="accordion-header" id="company-faq-fi-3-heading">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#company-faq-fi-3" aria-expanded="false" aria-controls="company-faq-fi-3">
-        Miten yhteistyö alkaa?
-      </button>
-    </h3>
-    <div id="company-faq-fi-3" class="accordion-collapse collapse" aria-labelledby="company-faq-fi-3-heading" data-bs-parent="#companyFaqFi">
-      <div class="accordion-body">
-        Yhteydenotolla: määritellään tavoite, aikataulu ja toteutusmalli. Sen jälkeen saat selkeän etenemissuunnitelman.
+</section>
+
+<section class="py-5 bg-body-tertiary border-top border-bottom">
+  <div class="container">
+    <h2 class="text-center mb-4">Esimerkkejä puheenvuoroista</h2>
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <article class="card h-100 shadow-sm border-0">
+          <div class="card-body d-flex flex-column">
+            <h3 class="h5 fw-bold">AVI kouluttaa -webinaarisarja</h3>
+            <p>Tekoäly opetuksessa -teemainen puheenvuoro osana valtakunnallista webinaarisarjaa.</p>
+            <a class="btn btn-outline-primary mt-auto" href="https://www.canva.com/design/DAGSURxXpeI/bri9t7_gR9JbQaWlJA_K4w/view" target="_blank" rel="noopener noreferrer">Katso diat</a>
+          </div>
+        </article>
+      </div>
+      <div class="col-lg-4">
+        <article class="card h-100 shadow-sm border-0">
+          <div class="card-body d-flex flex-column">
+            <h3 class="h5 fw-bold">Opinlakeus (toinen aste)</h3>
+            <p>Luento toisen asteen verkostolle tekoälyn vaikutuksista opettajan työhön.</p>
+            <a class="btn btn-outline-primary mt-auto" href="https://www.canva.com/design/DAGACd40ypc/HJyTyc9-JBNopT8uk_kPBA/view" target="_blank" rel="noopener noreferrer">Katso diat</a>
+          </div>
+        </article>
+      </div>
+      <div class="col-lg-4">
+        <article class="card h-100 shadow-sm border-0">
+          <div class="card-body d-flex flex-column">
+            <h3 class="h5 fw-bold">Kommenttipuheenvuoro</h3>
+            <p>Puheenvuoro digitalisaatiosta oppimisen ja oppimistulosten selittäjänä.</p>
+            <a class="btn btn-outline-primary mt-auto" href="https://www.canva.com/design/DAGPoJGk0WQ/TMIKa0lNGdjGRi2D8xjNpg/view" target="_blank" rel="noopener noreferrer">Katso diat</a>
+          </div>
+        </article>
       </div>
     </div>
   </div>
-</div>
+</section>
+
+<section class="py-5">
+  <div class="container">
+    <h2 class="text-center mb-4">Palautetta</h2>
+    <div class="row g-4">
+      <div class="col-md-6">
+        <article class="card h-100 shadow-sm border-0">
+          <div class="card-body">
+            <h3 class="h6 text-uppercase text-muted">Henkilöstökoulutus</h3>
+            <p class="mb-0">"Ihan fiiliksissä vieläkin setistäsi. Yhteyden katkeaminen ei latistanut, vaan porukka alkoi heti reflektoida kuultua."</p>
+          </div>
+        </article>
+      </div>
+      <div class="col-md-6">
+        <article class="card h-100 shadow-sm border-0">
+          <div class="card-body">
+            <h3 class="h6 text-uppercase text-muted">Valtion täydennyskoulutus</h3>
+            <p class="mb-0">"Saimme aivan huikean hyvät arvioinnit. Kokonaiskeskiarvo 4,2 / 5 oli erinomainen."</p>
+          </div>
+        </article>
+      </div>
+      <div class="col-md-6">
+        <article class="card h-100 shadow-sm border-0">
+          <div class="card-body">
+            <h3 class="h6 text-uppercase text-muted">Osallistujapalaute (OPH)</h3>
+            <p class="mb-0">"Oikein mielenkiintoista ja opettajan työhön todella tarpeellista ja käytännönläheistä tietoa."</p>
+          </div>
+        </article>
+      </div>
+      <div class="col-md-6">
+        <article class="card h-100 shadow-sm border-0">
+          <div class="card-body">
+            <h3 class="h6 text-uppercase text-muted">Maksullinen seminaari</h3>
+            <p class="mb-0">"Palaute kyselyn perusteella olit osallistujien mielestä päivän paras puhuja."</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 bg-body-tertiary border-top">
+  <div class="container">
+    <h2 class="text-center mb-4">Usein kysyttyä</h2>
+    <div class="accordion" id="companyFaqFi">
+      <div class="accordion-item">
+        <h3 class="accordion-header" id="company-faq-fi-1-heading">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#company-faq-fi-1" aria-expanded="true" aria-controls="company-faq-fi-1">
+            Millaisiin aiheisiin koulutukset sopivat?
+          </button>
+        </h3>
+        <div id="company-faq-fi-1" class="accordion-collapse collapse show" aria-labelledby="company-faq-fi-1-heading" data-bs-parent="#companyFaqFi">
+          <div class="accordion-body">Tyypillisiä teemoja ovat tekoäly opetuksessa, digipedagogiikka, oppimisteknologia ja käytännön kehittämistyö.</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h3 class="accordion-header" id="company-faq-fi-2-heading">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#company-faq-fi-2" aria-expanded="false" aria-controls="company-faq-fi-2">
+            Kenelle palvelut sopivat?
+          </button>
+        </h3>
+        <div id="company-faq-fi-2" class="accordion-collapse collapse" aria-labelledby="company-faq-fi-2-heading" data-bs-parent="#companyFaqFi">
+          <div class="accordion-body">Palvelut sopivat kouluille, kunnille, oppilaitoksille, yrityksille ja organisaatioille, jotka haluavat kehittää osaamistaan.</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h3 class="accordion-header" id="company-faq-fi-3-heading">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#company-faq-fi-3" aria-expanded="false" aria-controls="company-faq-fi-3">
+            Miten yhteistyö alkaa?
+          </button>
+        </h3>
+        <div id="company-faq-fi-3" class="accordion-collapse collapse" aria-labelledby="company-faq-fi-3-heading" data-bs-parent="#companyFaqFi">
+          <div class="accordion-body">Aloitamme tavoitteista ja kohderyhmästä. Sen jälkeen ehdotan sopivaa toteutusta: puheenvuoroa, työpajaa tai koulutuskokonaisuutta.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 text-center">
+  <div class="container">
+    <h2 class="mb-3">Kiinnostuitko?</h2>
+    <p class="mb-4">Kerro tavoitteesi, niin suunnitellaan juuri teille sopiva kokonaisuus.</p>
+    <a class="btn btn-primary btn-lg" href="/yhteystiedot/">Ota yhteyttä</a>
+  </div>
+</section>
 
 <script type="application/ld+json">
 {
@@ -232,10 +199,10 @@ translationKey: company
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Mitä teemoja koulutuksissasi käsitellään?",
+      "name": "Millaisiin aiheisiin koulutukset sopivat?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Keskiössä ovat tekoälylukutaito, oppimisteknologia, digipedagogiikka ja koulun kehittäminen käytännönläheisesti."
+        "text": "Tyypillisiä teemoja ovat tekoäly opetuksessa, digipedagogiikka, oppimisteknologia ja käytännön kehittämistyö."
       }
     },
     {
@@ -243,7 +210,7 @@ translationKey: company
       "name": "Kenelle palvelut sopivat?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Koulujen henkilöstölle, koulutuksen johdolle, kuntatoimijoille sekä organisaatioille, jotka haluavat vahvistaa pedagogista ja digitaalista osaamista."
+        "text": "Palvelut sopivat kouluille, kunnille, oppilaitoksille, yrityksille ja organisaatioille, jotka haluavat kehittää osaamistaan."
       }
     },
     {
@@ -251,7 +218,7 @@ translationKey: company
       "name": "Miten yhteistyö alkaa?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yhteydenotolla: määritellään tavoite, aikataulu ja toteutusmalli. Sen jälkeen saat selkeän etenemissuunnitelman."
+        "text": "Aloitamme tavoitteista ja kohderyhmästä. Sen jälkeen ehdotan sopivaa toteutusta: puheenvuoroa, työpajaa tai koulutuskokonaisuutta."
       }
     }
   ]

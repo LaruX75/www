@@ -283,7 +283,7 @@ module.exports = {
             },
             {
               title: "Larux t:mi",
-              href: "/yritys/",
+              href: "/larux-tmi/",
               icon: "bi bi-building me-2"
             }
           ]
