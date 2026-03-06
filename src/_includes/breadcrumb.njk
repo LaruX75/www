@@ -1,13 +1,18 @@
-{% if breadcrumbKey %}
-  {% set currentLang = lang or (page.url | langFromUrl) %}
-  {% set breadcrumbNodes = headerNav.en if currentLang == "en" else headerNav.fi %}
-  {% set breadcrumbItems = breadcrumbNodes | eleventyNavigationBreadcrumb(breadcrumbKey, { includeSelf: true, allowMissing: true }) %}
-  {% set lastCrumb = breadcrumbItems[breadcrumbItems.length - 1] if breadcrumbItems and breadcrumbItems.length else null %}
-  {% set appendCurrent = title and (not lastCrumb or lastCrumb.url != page.url) %}
+{% set currentLang = lang or (page.url | langFromUrl) %}
+{% set localIsHomePage = isHomePage or page.url == "/" or page.url == "/en/" %}
+{% set homeTitle = "Home" if currentLang == "en" else "Etusivu" %}
+{% set homeUrl = "/en/" if currentLang == "en" else "/" %}
+{% set breadcrumbNodes = headerNav.en if currentLang == "en" else headerNav.fi %}
+{% set breadcrumbItems = breadcrumbNodes | eleventyNavigationBreadcrumb(breadcrumbKey, { includeSelf: true, allowMissing: true }) if breadcrumbKey else [] %}
+{% set hasNavCrumbs = breadcrumbItems and breadcrumbItems.length %}
+{% set lastCrumb = breadcrumbItems[breadcrumbItems.length - 1] if hasNavCrumbs else null %}
+{% set appendCurrent = title and (not lastCrumb or lastCrumb.url != page.url) %}
+{% set shouldRenderFallback = (not hasNavCrumbs) and (not localIsHomePage) and title %}
 
-  {% if breadcrumbItems.length or appendCurrent %}
-  <nav class="container py-2" aria-label="{{ 'Breadcrumb' if currentLang == 'en' else 'Murupolku' }}">
-    <ol class="breadcrumb mb-0 small">
+{% if hasNavCrumbs or shouldRenderFallback %}
+<nav class="container py-2" aria-label="{{ 'Breadcrumb' if currentLang == 'en' else 'Murupolku' }}">
+  <ol class="breadcrumb mb-0 small">
+    {% if hasNavCrumbs %}
       {% for crumb in breadcrumbItems %}
         {% if loop.last and not appendCurrent %}
           <li class="breadcrumb-item active" aria-current="page">{{ crumb.title }}</li>
@@ -21,11 +26,13 @@
           </li>
         {% endif %}
       {% endfor %}
-
       {% if appendCurrent %}
         <li class="breadcrumb-item active" aria-current="page">{{ title }}</li>
       {% endif %}
-    </ol>
-  </nav>
-  {% endif %}
+    {% else %}
+      <li class="breadcrumb-item"><a href="{{ homeUrl }}">{{ homeTitle }}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{ title }}</li>
+    {% endif %}
+  </ol>
+</nav>
 {% endif %}
