@@ -7,6 +7,7 @@ const brokenLinksPlugin = require("eleventy-plugin-broken-links");
 const SUPPORTED_LANGS = ["fi", "en"];
 const shouldCheckExternalLinks = process.env.CHECK_EXTERNAL_LINKS === "true";
 const shouldGenerateOgImages = process.env.DISABLE_OG_IMAGES !== "true";
+const SITE_ORIGIN = "https://www.jarilaru.fi";
 
 // Eleventy defaults EventBus max listeners to 100; larger sites exceed this without actual leaks.
 try {
@@ -16,6 +17,84 @@ try {
 
 function getLangFromUrl(url) {
   return String(url || "").startsWith("/en/") ? "en" : "fi";
+}
+
+function getProviderFromHost(hostname) {
+  const host = String(hostname || "").toLowerCase();
+  if (host.includes("facebook.com")) return "facebook";
+  if (host.includes("youtube.com") || host.includes("youtu.be")) return "youtube";
+  if (host.includes("slideshare.net")) return "slideshare";
+  if (host.includes("scribd.com")) return "scribd";
+  if (host.includes("google.com")) return "google";
+  if (host.includes("vimeo.com")) return "vimeo";
+  return "external";
+}
+
+function shouldWrapIframeSrc(src) {
+  if (!src || String(src).startsWith("data:")) return false;
+  try {
+    const resolved = new URL(src, SITE_ORIGIN);
+    if (!/^https?:$/i.test(resolved.protocol)) return false;
+    const siteOrigin = new URL(SITE_ORIGIN).origin;
+    return resolved.origin !== siteOrigin;
+  } catch (_) {
+    return false;
+  }
+}
+
+function wrapExternalIframes(content) {
+  if (!content || !content.includes("<iframe")) return content;
+
+  return content.replace(/<iframe\b[\s\S]*?<\/iframe>/gi, (iframeHtml) => {
+    if (iframeHtml.includes("data-consent-src=") || iframeHtml.includes("data-external-media-managed")) {
+      return iframeHtml;
+    }
+
+    const srcMatch = iframeHtml.match(/\ssrc\s*=\s*("([^"]*)"|'([^']*)')/i);
+    const srcValue = srcMatch ? (srcMatch[2] || srcMatch[3] || "") : "";
+    if (!shouldWrapIframeSrc(srcValue)) return iframeHtml;
+
+    let resolved;
+    try {
+      resolved = new URL(srcValue, SITE_ORIGIN);
+    } catch (_) {
+      return iframeHtml;
+    }
+    const provider = getProviderFromHost(resolved.hostname);
+
+    const iframeNoSrc = iframeHtml.replace(/\ssrc\s*=\s*("([^"]*)"|'([^']*)')/i, "");
+    const iframeManaged = iframeNoSrc.replace(
+      /<iframe\b/i,
+      `<iframe data-consent-src="${srcValue.replace(/"/g, "&quot;")}" data-external-media-managed="true" class="external-media-consent__iframe" hidden`
+    );
+
+    return [
+      `<div class="external-media-consent" data-external-media-provider="${provider}">`,
+      `<div class="external-media-consent__notice" data-external-media-notice>`,
+      `<p class="external-media-consent__text" data-external-media-text></p>`,
+      `<div class="external-media-consent__actions">`,
+      `<button type="button" class="btn btn-primary btn-sm" data-external-media-load></button>`,
+      `<button type="button" class="btn btn-outline-secondary btn-sm" data-external-media-allow-all></button>`,
+      `</div>`,
+      `</div>`,
+      iframeManaged,
+      `</div>`
+    ].join("");
+  });
+}
+
+function walkHtmlFiles(dir, files = []) {
+  if (!fs.existsSync(dir)) return files;
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  entries.forEach((entry) => {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      walkHtmlFiles(fullPath, files);
+    } else if (entry.isFile() && fullPath.endsWith(".html")) {
+      files.push(fullPath);
+    }
+  });
+  return files;
 }
 
 module.exports = function (eleventyConfig) {
@@ -38,6 +117,19 @@ module.exports = function (eleventyConfig) {
     } catch (_) {
       // Keep build running; plugin's own cleanup will still run afterwards.
     }
+  });
+
+  // Ensure all generated HTML pages have external iframe consent wrappers.
+  eleventyConfig.on("eleventy.after", () => {
+    const outputDir = path.join(process.cwd(), "_site");
+    const htmlFiles = walkHtmlFiles(outputDir);
+    htmlFiles.forEach((filePath) => {
+      const original = fs.readFileSync(filePath, "utf8");
+      const updated = wrapExternalIframes(original);
+      if (updated !== original) {
+        fs.writeFileSync(filePath, updated, "utf8");
+      }
+    });
   });
 
   eleventyConfig.addGlobalData("supportedLangs", SUPPORTED_LANGS);
@@ -320,6 +412,13 @@ module.exports = function (eleventyConfig) {
     });
 
     return match && match.url ? match.url : "";
+  });
+
+  // Wrap third-party media iframes with a consent gate to avoid loading external
+  // trackers/cookies before user action.
+  eleventyConfig.addTransform("externalMediaConsent", (content, outputPath) => {
+    if (!outputPath || !outputPath.endsWith(".html")) return content;
+    return wrapExternalIframes(content);
   });
 
   return {
