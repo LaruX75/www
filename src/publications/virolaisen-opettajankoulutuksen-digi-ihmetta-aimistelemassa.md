@@ -1,0 +1,28 @@
+---
+title: Virolaisen opettajankoulutuksen digi-ihmettänäimistelemässä
+date: 2015-02-28
+description: "Vieraileva bloggaaja Taloudellisen tiedotustoimisto TAT: \"kun koulu loppuu\" -blogissa 28.2.2015: https://www.kunkoululoppuu.fi/blogi/virolaisen-opettajankoulutuksen-digi-ihmetta-aimistelemassa/..."
+categories:
+  - blogivierailu
+  - Blogivierailut ja kolumnit
+  - Koulutusteknologi
+  - Teknologiatuettu oppiminen ja opetus
+keywords:
+  - opetus
+  - oppiminen
+type: kolumni
+wp_id: 237
+source_url: "https://www.jarilaru.fi/virolaisen-opettajankoulutuksen-digi-ihmetta-aimistelemassa/"
+templateEngineOverride: md
+---
+<pre><code>Vieraileva bloggaaja Taloudellisen tiedotustoimisto TAT:n "kun koulu loppuu" -blogissa 28.2.2015:<a href="https://www.kunkoululoppuu.fi/blogi/virolaisen-opettajankoulutuksen-digi-ihmetta-aimistelemassa">https://www.kunkoululoppuu.fi/blogi/virolaisen-opettajankoulutuksen-digi-ihmetta-aimistelemassa</a>/ </code></pre>
+<p>Syksyllä 2013 silloinen opetusministeri&nbsp;<strong>Krista Kiuru</strong>&nbsp;(sd) kävi vierailulla virolaisen kollegansa&nbsp;<strong>Jaak Aaviksoo
+</strong>&nbsp;luona ja vaikuttui siitä, kuinka edistynyttä teknologian käyttö maan oppilaitoksissa onkaan. YLE uutisoi tuolloin, lokakuussa 2013, että ministeri Kiurun mukaan&nbsp;<a href="http://yle.fi/uutiset/suomen_koulujen_it-opetus_jordanian_tasolla__uutta_mallia_haetaan_virosta/6885099?fbclid=IwAR3hPwxS5pPTbeAg8oAzcn_5vI26wirtGYDPO1Tp72kGucrcwwqt8c7rd48" rel="noreferrer noopener" target="_blank">suomalaisten koulujen IT-opetus on Jordanian tasolla</a>&nbsp;ja uutta mallia tulisi hakea Virosta. Kyllä minä niin mieleni pahoitin noista väittämistä, sillä teknologiatuetun oppimisen ja opetuksen yliopistolehtorina tiedän, että maassamme tehdään paljon hyvää työtä IT-opetuksen alueella. Aiheesta virisi myös erittäin vilkas keskustelu Facebookin Tieto- ja viestintötekniikka opetuskäytössä -ryhmässä.Suomalaiseen tyyliin nopeita uudistuksia ei tuosta itseruoskinnasta seurannut, mitä nyt ohjelmointi tuli peruskoulun opetussuunnitelmiin ja pilvipalveluita koskevasta yhteistyöstä sovittiin maiden välillä. No. Todellisuudessa sekä ohjelmointi osana oppimista että pilvipalvelut ovat niin isoja megatrendejä maailmalla, että ne olisivat edenneet ilman virolaisten poliittista vetoapuakin.Saatuani keväällä 2015 tiedon, että syksyn TATin OK! Akatemian teema olisi&nbsp;<em>Digitaalisuus tulee, oletko valmis,</em>&nbsp;olin innoissani tarjotusta mahdollisuudesta päästä näkemään mitä virolaiset kollegani&nbsp;<strong>Mart Laanpere</strong>&nbsp;ja&nbsp;<strong>Kai Pata</strong>&nbsp;ovat saaneet aikaiseksi digitalisaation alueella.</p>
+<h5><strong>Opetusteknologiaa Viron mallii
+</strong></h5>
+<p>Matkustimme Tallinnaan 18.8.2015, jossa heti satamaan saavuttuamme aloitimme ohjelmamme tutustumalla&nbsp;<a href="https://l.facebook.com/l.php?u=http%3A%2F%2Fwww.ttu.ee%2Fmektory-eng%3Ffbclid%3DIwAR06noxKAR3J6Wllvy9yq4VNgAOARBnfZ5qj0EUAV-QrTX11zQtSmCzCvS4&amp;h=ATMtqhA2lc5RGVnkGNhJfEDbVBEE2YxBe4b15Bbu7_rsDTVb1fGfNLJHeZXSXP6B-MD_2aT4UUBCiLdHPcHPyoTolDnmxgMpm6vx6eiSILE9l4ytAWQ7ueFA8se5ICCT6_cLUyS5Pgs" rel="noreferrer noopener" target="_blank">Mektoryn yrityskiihdyttämöö
+</a>. Mektoryssa opiskelijatiimit saavat vuoden aikana pyrkiä kaupallistamaan ideoitansa. Eikä kaupallisuus todellakaan ollut kaukana – välilä oli hankalaa erottaa onko tietokonekaupassa tai 3D-tulostinmyymälässä, sillä sen verran häpeilemättä eri yritykset olivat tuotteitaan sijoittaneet opiskelijoiden käytettäväksi.Mektoryn yleisesittelyn jälkeen istahdimme Samsung -showroomin penkeille odottelemaan Mart Laanpereä Tallinnan yliopistosta. Martin suomenkielinen esitys oli mielestäni koko matkan kohokohta, sillä hän esittelii hyvin rehellisesti ja kaunistelematta maan koulujärjestelmän tilaa.Mart on tutkija kuten itsekin, joten pystyin vertailemaan hänen argumenttejaan Suomessa käytävään keskusteluun ja perusopetuksen perusteiden ympärillä käytävään keskusteluun. Hänen mukaansa on tärkeää kehittää opettajankoulutusta ja opettajien täydennyskoulutusta siten, että koulut olisivat yhä enemmän oppijalähtöisiä ja kannustaisivat sekä luovuuteen että yhteisölliseen ongelmanratkaisuun. Käytetyt perustelut nousivat pitkälti eurooppalaisesta ja yhdysvaltaisesta alan tutkimuksesta ja olivat täysin vertailukelpoisia meidän vastaaviin ajatuksiin.Hänen mukaansa opetusteknologian tulee heijastella ajan henkeä ja muutosta: älytaulut ja perinteiset oppimisympäristöt eivät pysty ratkaisemaan koulujen teknologiatuetun oppimisen ongelmia. Mikroluokkien tilalle he olivat visioineet oppilaiden omien laitteiden hyödyntämisen osana opetusta, olivatpas he jopa määritelleet ehdot sähköisen oppimateriaalin tuottajille sellaisiksi, että materiaalien tulee toimia kaikissa laitteissa.</p>
+<h5><strong>Hankkeista kansallisiin toteutuksii
+</strong></h5>
+<p>Mitä uutta Laanperen esitys tarjosi? Mielestäni ei paljoakaan, samoja asioita on käsitelty myös rakkaassa kotimaassamme viimeiset vuodet. Viron ja Suomen erottaa kuitenkin se, että naapurimaamme toteuttaa käytännössä niitä asioita ja ilmiöitä, jotka meillä tahtovat jäädä joko paikallisen tason puuhasteluksi tai puheen asteelle. Siitä missä Virossa on tehty kansallisen tason toteutuksia ja strategioita, meillä on rahoitettu yksittäisten kuntien ja oppilaitosten omia hankkeita.Meillä suomalaisilla ei ole kuitenkaan syytä ripotella tuhkaa päällemme virolaisten menestyksen vuoksi. Maassamme on runsaasti korkealuokkaista osaamista aina yliopistoista opettajiin, mutta jostain syystä itseluottamuksemme ja kansallinen koordinaatio ei ole korkeaa luokkaa. Olisiko syytä vain ottaa kuokka kouraan ja ryhtyä toimeen?</p>
+

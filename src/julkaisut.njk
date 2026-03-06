@@ -1,0 +1,520 @@
+---
+layout: base.njk
+title: Julkaisut
+permalink: /julkaisut/
+translationKey: publications_index
+---
+
+{%- set articleCount = 0 -%}
+{%- set confCount = 0 -%}
+{%- set bookCount = 0 -%}
+{%- set peerReviewedCount = 0 -%}
+{%- set openAccessCount = 0 -%}
+{%- for pub in researchfi -%}
+  {%- if pub.typeCode == "A1" or pub.typeCode == "A2" -%}{%- set articleCount = articleCount + 1 -%}{%- endif -%}
+  {%- if pub.typeCode == "A3" or pub.typeCode == "A4" or pub.typeCode == "B3" -%}{%- set confCount = confCount + 1 -%}{%- endif -%}
+  {%- if pub.typeCode == "C1" or pub.typeCode == "C2" or pub.typeCode == "G4" or pub.typeCode == "G5" -%}{%- set bookCount = bookCount + 1 -%}{%- endif -%}
+{%- endfor -%}
+
+<section class="bg-light">
+  <div class="container py-4">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-8">
+        <p class="text-uppercase small text-muted mb-2">Julkaisut</p>
+        <h1 class="display-6 fw-bold mb-2">Julkaisut & Analytiikka</h1>
+        <p class="text-muted">Tieteelliset julkaisuni suoraan <a href="https://research.fi/en/results/person/0000-0003-0347-0182" target="_blank" rel="noopener noreferrer">Research.fi-profiilista</a> päivitettynä.</p>
+      </div>
+      <div class="col-lg-4">
+        <div class="d-flex flex-wrap gap-2 justify-content-lg-end" id="headerMetrics">
+          <span class="badge text-bg-primary text-dark fs-6">{{ researchfi.length }} julkaisua</span>
+          <span class="badge text-bg-info fs-6">{{ articleCount }} artikkelia</span>
+          <span class="badge text-bg-secondary fs-6">{{ confCount }} konferenssia</span>
+          <span class="badge text-bg-warning fs-6 d-none" id="dynamicTotalCitations" title="Lähde: {{ semanticscholar.metrics.sources }}">... viittausta</span>
+          <span class="badge text-bg-success fs-6 d-none" id="dynamicHIndex" title="Lähde: {{ semanticscholar.metrics.sources }}">... h-indeksi</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ANALYTIIKKA-DASHBOARD -->
+<section class="py-4 bg-body-tertiary">
+  <div class="container">
+    <div class="row g-4">
+
+      <!-- Julkaisut vuosittain -->
+      <div class="col-lg-6">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <h2 class="h6 text-uppercase text-muted fw-bold mb-3"><i class="bi bi-bar-chart-fill me-2"></i>Julkaisut & viittaukset vuosittain</h2>
+            <canvas id="yearChart" height="200"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Julkaisutyypit -->
+      <div class="col-lg-3 col-md-6">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <h2 class="h6 text-uppercase text-muted fw-bold mb-3"><i class="bi bi-pie-chart-fill me-2"></i>Julkaisutyypit</h2>
+            <canvas id="typeChart" height="200"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Open Access & Vertaisarvioitu -->
+      <div class="col-lg-3 col-md-6">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <h2 class="h6 text-uppercase text-muted fw-bold mb-3"><i class="bi bi-unlock-fill me-2"></i>Laatuindikaattorit</h2>
+            <canvas id="qualityChart" height="200"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Yhteistyöverkosto -->
+      <div class="col-lg-6">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <h2 class="h6 text-uppercase text-muted fw-bold mb-3"><i class="bi bi-people-fill me-2"></i>Top 10 kanssatutkijaa</h2>
+            <div class="table-responsive">
+              <table class="table table-sm table-hover align-middle mb-0 pub-table" id="coauthorTable">
+                <thead><tr><th>Tutkija</th><th class="text-end">Yhteisjulkaisut</th></tr></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Aihepiirijakauma -->
+      <div class="col-lg-6">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <h2 class="h6 text-uppercase text-muted fw-bold mb-3"><i class="bi bi-tags-fill me-2"></i>Avainsanat (otsikoista)</h2>
+            <div id="wordCloud" class="d-flex flex-wrap gap-2 align-items-center"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- JULKAISULISTA -->
+<section id="researchfi-julkaisut" class="py-5">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h3 class="mb-0">Kaikki julkaisut</h3>
+    </div>
+
+    {% if researchfi.length %}
+
+      {# Jaa julkaisut tyyleittäin Dataan perustuen #}
+      {% set pubsA = [] %}
+      {% set pubsB = [] %}
+      {% set pubsC = [] %}
+      {% set pubsD = [] %}
+      {% set pubsE = [] %}
+      {% set pubsG = [] %}
+      
+      {% for pub in researchfi %}
+        {% set typeChar = pub.typeCode | first %}
+        {% if typeChar == 'A' %}{% set pubsA = (pubsA.push(pub), pubsA) %}
+        {% elif typeChar == 'B' %}{% set pubsB = (pubsB.push(pub), pubsB) %}
+        {% elif typeChar == 'C' %}{% set pubsC = (pubsC.push(pub), pubsC) %}
+        {% elif typeChar == 'D' %}{% set pubsD = (pubsD.push(pub), pubsD) %}
+        {% elif typeChar == 'E' %}{% set pubsE = (pubsE.push(pub), pubsE) %}
+        {% elif typeChar == 'G' %}{% set pubsG = (pubsG.push(pub), pubsG) %}
+        {% endif %}
+      {% endfor %}
+
+      {# Macros for reuse #}
+      {% macro drawTable(title, badge, items, tableId) %}
+      {% if items.length %}
+      <div class="card shadow-sm mb-5 section-card" id="card-{{ tableId }}">
+        <div class="card-header bg-transparent d-flex align-items-center justify-content-between py-3">
+          <h4 class="h5 mb-0"><i class="bi bi-journal-text me-2 text-primary"></i>{{ title }}</h4>
+          <span class="badge {{ badge }}">{{ items.length }}</span>
+        </div>
+        <div class="card-body p-0">
+          <div class="p-3 border-bottom publication-filter-bar">
+            <div class="row g-2 align-items-end">
+              <div class="col-md-9">
+                <label for="search-{{ tableId }}" class="form-label small text-muted mb-1">Suodata</label>
+                <input type="search" id="search-{{ tableId }}" class="form-control form-control-sm" placeholder="Hae otsikosta, tekijästä tai julkaisusta..." autocomplete="off" data-pub-search="{{ tableId }}">
+              </div>
+            </div>
+          </div>
+          <div id="{{ tableId }}">
+            <div class="table-responsive">
+              <table class="table table-sm table-hover align-middle mb-0 pub-table">
+                <thead>
+                  <tr>
+                    <th class="text-center" style="width:70px">Vuosi</th>
+                    <th style="width:80px">Luokka</th>
+                    <th>Otsikko & Julkaisu</th>
+                    <th style="width:200px">Tekijä(t)</th>
+                    <th style="width:100px" class="text-center">Linkit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for pub in items %}
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">{{ pub.year or '—' }}</td>
+                    <td><span class="badge bg-secondary" title="{{ pub.typeFi }}">{{ pub.typeShort }}</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">{{ pub.title }}</span>
+                      {% if pub.journal %}<span class="text-muted small d-block fst-italic">{{ pub.journal }}</span>{% endif %}
+                      {% if pub.doi and semanticscholar.metrics.doiCitations[pub.doi | lower] %}
+                        <span class="badge text-bg-warning rounded-pill mt-1" title="Viittaukset"><i class="bi bi-quote me-1"></i>{{ semanticscholar.metrics.doiCitations[pub.doi | lower] }}</span>
+                      {% endif %}
+                    </td>
+                    <td class="text-secondary small">{{ pub.authors }}</td>
+                    <td class="text-center">
+                      {% if pub.url %}
+                        <a href="{{ pub.url }}" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener" title="Avaa julkaisu"><i class="bi bi-box-arrow-up-right"></i></a>
+                      {% elif pub.doiUrl %}
+                        <a href="{{ pub.doiUrl }}" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener" title="Avaa DOI"><i class="bi bi-box-arrow-up-right"></i></a>
+                      {% endif %}
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      {% endmacro %}
+
+      {{ drawTable('A - Vertaisarvioidut tieteelliset artikkelit', 'text-bg-primary', pubsA, 'pub-table-a') }}
+      {{ drawTable('B - Vertaisarvioimattomat tieteelliset kirjoitukset', 'text-bg-info', pubsB, 'pub-table-b') }}
+      {{ drawTable('C - Tieteelliset kirjat', 'text-bg-warning', pubsC, 'pub-table-c') }}
+      {{ drawTable('D - Ammattiyhteisölle suunnatut julkaisut', 'text-bg-secondary', pubsD, 'pub-table-d') }}
+      {{ drawTable('E - Suurelle yleisölle suunnatut julkaisut', 'bg-dark', pubsE, 'pub-table-e') }}
+      {{ drawTable('G - Opinnäytteet', 'text-bg-success', pubsG, 'pub-table-g') }}
+      
+    {% else %}
+      <div class="alert alert-warning">Ei julkaisuja saatavilla.</div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- Chart.js & Dashboard Scripts -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Inline data from Eleventy
+  const publications = [
+    {% for pub in researchfi %}
+    { year: {{ pub.year or 0 }}, type: "{{ pub.typeCode }}", authors: "{{ pub.authors | replace('"', '\\"') }}", title: "{{ pub.title | replace('"', '\\"') }}", peerReviewed: {{ "true" if pub.peerReviewed else "false" }}, openAccess: {{ pub.openAccess or 0 }}, doi: "{{ pub.doi or '' }}" },
+    {% endfor %}
+  ];
+
+  // Semantic Scholar / OpenAlex data
+  const s2Citations = {{ semanticscholar.metrics.doiCitations | dump | safe }};
+
+  // 0. LASKETAAN TODELLISET METRIIKAT (vain tällä sivulla olevat julkaisut)
+  let verifiedTotalCitations = 0;
+  const citationArray = [];
+  
+  publications.forEach(p => {
+    if (p.doi && s2Citations[p.doi.toLowerCase()]) {
+      const cites = s2Citations[p.doi.toLowerCase()];
+      verifiedTotalCitations += cites;
+      citationArray.push(cites);
+    }
+  });
+  
+  // Lasketaan todellinen h-indeksi näille julkaisuille
+  citationArray.sort((a,b) => b - a);
+  let verifiedHIndex = 0;
+  for (let i = 0; i < citationArray.length; i++) {
+    if (citationArray[i] >= i + 1) {
+      verifiedHIndex = i + 1;
+    } else {
+      break;
+    }
+  }
+
+  // Päivitetään DOM
+  if (verifiedTotalCitations > 0) {
+    const totalEl = document.getElementById('dynamicTotalCitations');
+    totalEl.textContent = verifiedTotalCitations + ' viittausta';
+    totalEl.classList.remove('d-none');
+    
+    const hEl = document.getElementById('dynamicHIndex');
+    hEl.textContent = 'h-indeksi ' + verifiedHIndex;
+    hEl.classList.remove('d-none');
+  }
+
+  const isDark = document.documentElement.getAttribute('data-bs-theme') === 'dark';
+  const textColor = isDark ? '#ccc' : '#666';
+  const gridColor = isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)';
+
+  Chart.defaults.color = textColor;
+  Chart.defaults.borderColor = gridColor;
+
+  // Pagination for pub tables
+  const ITEMS_PER_PAGE = 10;
+  function initPubPagination(tableId) {
+    const tableContainer = document.getElementById(tableId);
+    if (!tableContainer) return;
+
+    const table = tableContainer.querySelector('table');
+    if (!table) return;
+
+    const tbody = table.querySelector('tbody');
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+    
+      // 5. Build Pagination UI
+      let paginationNav = tableContainer.querySelector('.pub-pagination');
+      if (!paginationNav) {
+        paginationNav = document.createElement('nav');
+        const containerId = tableContainer.id || Math.random().toString(36).substring(7);
+        paginationNav.setAttribute('aria-label', `Taulukon sivutus ${containerId}`);
+        paginationNav.className = 'pub-pagination d-flex justify-content-center mt-3';
+        paginationNav.innerHTML = '<ul class="pagination pagination-sm mb-3"></ul>';
+        tableContainer.appendChild(paginationNav);
+      }
+    
+    const ul = paginationNav.querySelector('ul');
+    let currentPage = 1;
+    let filteredRows = [...rows];
+    
+    const searchInput = document.querySelector(`[data-pub-search="${tableId}"]`);
+
+    function renderPage(page) {
+      currentPage = page;
+      const totalPages = Math.ceil(filteredRows.length / ITEMS_PER_PAGE);
+      if (currentPage < 1) currentPage = 1;
+      if (currentPage > totalPages && totalPages > 0) currentPage = totalPages;
+
+      rows.forEach(r => r.style.display = 'none');
+      
+      const start = (currentPage - 1) * ITEMS_PER_PAGE;
+      const end = start + ITEMS_PER_PAGE;
+      filteredRows.slice(start, end).forEach(r => r.style.display = '');
+
+      renderPaginationControls(totalPages);
+    }
+
+    function renderPaginationControls(totalPages) {
+      ul.innerHTML = '';
+      if (totalPages <= 1) return;
+
+      const prevLi = document.createElement('li');
+      prevLi.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
+      prevLi.innerHTML = `<a class="page-link" href="javascript:void(0)">&laquo;</a>`;
+      prevLi.addEventListener('click', (e) => { e.preventDefault(); if(currentPage > 1) renderPage(currentPage - 1); });
+      ul.appendChild(prevLi);
+
+      for (let i = 1; i <= totalPages; i++) {
+        const li = document.createElement('li');
+        li.className = `page-item ${i === currentPage ? 'active' : ''}`;
+        li.innerHTML = `<a class="page-link" href="javascript:void(0)">${i}</a>`;
+        li.addEventListener('click', (e) => { e.preventDefault(); renderPage(i); });
+        ul.appendChild(li);
+      }
+
+      const nextLi = document.createElement('li');
+      nextLi.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
+      nextLi.innerHTML = `<a class="page-link" href="javascript:void(0)">&raquo;</a>`;
+      nextLi.addEventListener('click', (e) => { e.preventDefault(); if(currentPage < totalPages) renderPage(currentPage + 1); });
+      ul.appendChild(nextLi);
+    }
+
+    if (searchInput) {
+      searchInput.addEventListener('input', () => {
+        const q = searchInput.value.toLowerCase();
+        filteredRows = rows.filter(row => row.textContent.toLowerCase().includes(q));
+        renderPage(1);
+      });
+    }
+
+    renderPage(1);
+  }
+
+  ['pub-table-a', 'pub-table-b', 'pub-table-c', 'pub-table-d', 'pub-table-e', 'pub-table-g'].forEach(initPubPagination);
+
+  // 1. VUOSIKAAVIO
+  const yearCounts = {};
+  publications.forEach(p => { if(p.year) yearCounts[p.year] = (yearCounts[p.year]||0)+1; });
+  const years = Object.keys(yearCounts).sort();
+  // Citation counts per year from S2 data
+  const citesPerYear = {};
+  if (s2Citations) {
+    publications.forEach(p => {
+      if (p.year && p.doi && s2Citations[p.doi.toLowerCase()]) {
+        citesPerYear[p.year] = (citesPerYear[p.year]||0) + s2Citations[p.doi.toLowerCase()];
+      }
+    });
+  }
+
+  new Chart(document.getElementById('yearChart'), {
+    type: 'bar',
+    data: {
+      labels: years,
+      datasets: [{
+        label: 'Julkaisuja',
+        data: years.map(y => yearCounts[y]),
+        backgroundColor: isDark ? 'rgba(56,189,248,0.6)' : 'rgba(13,110,253,0.7)',
+        borderRadius: 4,
+        borderSkipped: false,
+        yAxisID: 'y'
+      },{
+        label: 'Viittauksia',
+        data: years.map(y => citesPerYear[y] || 0),
+        type: 'line',
+        borderColor: '#ffc107',
+        backgroundColor: 'rgba(255,193,7,0.15)',
+        fill: true,
+        tension: 0.3,
+        pointRadius: 3,
+        yAxisID: 'y1'
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { position: 'top', labels: { boxWidth: 12, font: { size: 10 } } } },
+      scales: {
+        y: { beginAtZero: true, ticks: { stepSize: 1 }, title: { display: true, text: 'Julkaisut', font: { size: 10 } } },
+        y1: { beginAtZero: true, position: 'right', grid: { drawOnChartArea: false }, title: { display: true, text: 'Viittaukset', font: { size: 10 } } },
+        x: { ticks: { maxRotation: 45 } }
+      }
+    }
+  });
+
+  // 2. TYYPPIKAAVIO
+  const typeCounts = {};
+  const typeLabels = {
+    'A1':'Lehtiartikkeli (A1)', 'A2':'Katsausartikkeli (A2)',
+    'A3':'Kirjan osa (A3)', 'A4':'Konferenssi (A4)',
+    'B1':'Kirjoitus (B1)', 'B3':'Konferenssi ei-vertaisarv. (B3)',
+    'C1':'Tieteellinen teos (C1)', 'C2':'Toimitettu teos (C2)',
+    'D1':'Ammattiartikkeli (D1)', 'D2':'Ammatillinen kokoomat. (D2)',
+    'E1':'Yleistajuinen (E1)', 'G4':'Väitöskirja (G4)', 'G5':'Väitöskirja (G5)'
+  };
+  publications.forEach(p => { typeCounts[p.type] = (typeCounts[p.type]||0)+1; });
+  const typeKeys = Object.keys(typeCounts).sort((a,b) => typeCounts[b]-typeCounts[a]);
+  const typeColors = ['#0d6efd','#6610f2','#6f42c1','#d63384','#dc3545','#fd7e14','#ffc107','#198754','#20c997','#0dcaf0','#6c757d','#adb5bd','#495057'];
+  new Chart(document.getElementById('typeChart'), {
+    type: 'doughnut',
+    data: {
+      labels: typeKeys.map(k => typeLabels[k]||k),
+      datasets: [{
+        data: typeKeys.map(k => typeCounts[k]),
+        backgroundColor: typeColors.slice(0, typeKeys.length),
+        borderWidth: 0
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } }
+      }
+    }
+  });
+
+  // 3. LAADULLISET (peer review & OA)
+  // Kategorisoidaan julkaisut toisensa poissulkeviin luokkiin
+  const isPeerReviewed = (value) => value === true || value === 1 || value === '1' || String(value).toLowerCase() === 'true';
+  const isOpenAccess = (value) => value === true || value === 1 || value === '1' || String(value).toLowerCase() === 'true';
+  const prAndOa = publications.filter(p => isPeerReviewed(p.peerReviewed) && isOpenAccess(p.openAccess)).length;
+  const prOnly = publications.filter(p => isPeerReviewed(p.peerReviewed) && !isOpenAccess(p.openAccess)).length;
+  const oaOnly = publications.filter(p => !isPeerReviewed(p.peerReviewed) && isOpenAccess(p.openAccess)).length;
+  const neither = publications.filter(p => !isPeerReviewed(p.peerReviewed) && !isOpenAccess(p.openAccess)).length;
+  
+  new Chart(document.getElementById('qualityChart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Vertaisarvioitu & OA', 'Vain Vertaisarv.', 'Vain OA', 'Muu'],
+      datasets: [{
+        data: [prAndOa, prOnly, oaOnly, neither],
+        backgroundColor: ['#198754', '#20c997', '#0dcaf0', '#dee2e6'],
+        borderWidth: 0
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } }
+      }
+    }
+  });
+
+  // 4. KANSSATUTKIJAT
+  const coauthors = {};
+  publications.forEach(p => {
+    const authors = p.authors.split(';').map(a => a.trim()).filter(a => a.length > 0);
+    authors.forEach(a => {
+      if (!a.toLowerCase().startsWith('laru')) {
+        coauthors[a] = (coauthors[a]||0) + 1;
+      }
+    });
+  });
+  const topCoauthors = Object.entries(coauthors).sort((a,b)=>b[1]-a[1]).slice(0,10);
+  const tbody = document.querySelector('#coauthorTable tbody');
+  topCoauthors.forEach(([name, count]) => {
+    const tr = document.createElement('tr');
+    const isDarkTheme = document.documentElement.getAttribute('data-bs-theme') === 'dark';
+    const badgeStyle = isDarkTheme ? 'background-color: rgba(56,189,248,0.3); color: #e2e6ec;' : 'background-color: rgba(13,110,253,0.15); color: #0d6efd;';
+    tr.innerHTML = `<td>${name}</td><td class="text-end"><span class="badge rounded-pill" style="${badgeStyle}">${count}</span></td>`;
+    tbody.appendChild(tr);
+  });
+
+  // 5. SANAPILVI (Otsikon sanat, alkuperäinen toimivaksi todettu tapa)
+  const stopwords = new Set(['the','of','in','for','a','an','and','to','on','with','from','by','at','as','is','are','was','were','or','using','based','their','its','towards','between','among','during','about','through','case','study','how','can','do','does','than','into','all','not','but','also','been','has','have','had','which','when','what','that','this','these','those','other','more','no','some','varhaiskasvatuksen']);
+  const wordCounts = {};
+  publications.forEach(p => {
+    const words = p.title.toLowerCase().replace(/[^a-zäöüå\s-]/g, '').split(/\s+/);
+    words.forEach(w => {
+      if (w.length > 3 && !stopwords.has(w)) {
+        wordCounts[w] = (wordCounts[w]||0) + 1;
+      }
+    });
+  });
+  const topWords = Object.entries(wordCounts).sort((a,b)=>b[1]-a[1]).slice(0,25);
+  const cloudEl = document.getElementById('wordCloud');
+  if (topWords.length > 0) {
+    const maxCount = topWords[0]?.[1] || 1;
+    topWords.forEach(([word, count]) => {
+      const size = 0.7 + (count / maxCount) * 1.0;
+      const opacity = 0.5 + (count / maxCount) * 0.5;
+      const span = document.createElement('span');
+      span.className = 'badge rounded-pill';
+      span.style.cssText = `font-size:${size}rem; opacity:${opacity}; background-color: ${isDark ? 'rgba(56,189,248,0.3)' : 'rgba(13,110,253,0.15)'}; color: ${isDark ? '#e2e6ec' : '#0d6efd'}; font-weight: 500;`;
+      span.textContent = `${word} (${count})`;
+      cloudEl.appendChild(span);
+    });
+  } else {
+    cloudEl.innerHTML = '<span class="text-muted small">Ei avainsanoja saatavilla</span>';
+  }
+});
+</script>
+
+<style>
+.pub-table th {
+  white-space: nowrap;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background-color: var(--bs-secondary-bg);
+}
+
+.publication-filter-bar {
+  background-color: var(--bs-tertiary-bg);
+  border-color: var(--bs-border-color) !important;
+}
+
+.publication-filter-bar .form-control {
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  border-color: var(--bs-border-color);
+}
+
+.publication-filter-bar .form-control::placeholder {
+  color: var(--bs-tertiary-color);
+}
+</style>

@@ -1,0 +1,31 @@
+---
+layout: base.njk
+title: Sivua ei löytynyt
+permalink: 404.html
+---
+<script>
+  if (window.location.pathname.startsWith('/en/') && window.location.pathname !== '/en/404.html') {
+    window.location.replace('/en/404.html');
+  }
+</script>
+
+<section class="section-flush d-flex align-items-center justify-content-center" style="min-height: 60vh;">
+    <div class="container text-center">
+        <h1 class="display-1 fw-bold mb-4" style="font-size: 8rem;">404</h1>
+        <h2 class="mb-4">Hups! Etsimääsi sivua ei valitettavasti löytynyt.</h2>
+        <p class="lead text-muted mb-5">Sivu on saatettu poistaa, sen nimeä on muutettu, tai se on tilapäisesti poissa käytöstä.</p>
+        
+        <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3">
+            <a href="/" class="btn btn-primary btn-lg px-5 py-3 rounded-pill shadow-sm d-flex align-items-center justify-content-center" style="min-width: 200px; height: 60px;">
+                <i class="bi bi-house-door me-2"></i> Palaa etusivulle
+            </a>
+            
+            <div class="input-group input-group-lg shadow-sm" style="max-width: 320px; border-radius: 50rem; overflow: hidden; height: 60px;">
+                <span class="input-group-text bg-white border-end-0 pe-1" style="border-radius: 50rem 0 0 50rem; border: none;">
+                    <i class="bi bi-search text-dark"></i>
+                </span>
+                <input type="text" class="form-control bg-white text-dark border-start-0 ps-2" style="border-radius: 0 50rem 50rem 0; border: none; font-size: 1.25rem;" placeholder="Etsi tältä sivustolta" aria-label="Etsi tältä sivustolta" onclick="document.getElementById('searchToggleBtn').click();">
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,56 @@
+<style>
+  .root {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: linear-gradient(135deg, #0f172a, #1d4ed8 60%, #60a5fa);
+    color: #ffffff;
+    padding: 64px;
+    box-sizing: border-box;
+    font-family: Inter;
+  }
+
+  .kicker {
+    font-size: 34px;
+    opacity: 0.9;
+  }
+
+  .top {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .title {
+    font-size: 68px;
+    line-height: 1.1;
+    margin: 24px 0 0 0;
+    max-height: 360px;
+    overflow: hidden;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 30px;
+    opacity: 0.95;
+  }
+
+  .site {
+    font-size: 34px;
+    font-weight: 700;
+  }
+</style>
+
+<div class="root">
+  <div class="top">
+    <div class="kicker">{{ section or "Artikkeli" }}</div>
+    <h1 class="title">{{ title or "Jari Laru" }}</h1>
+  </div>
+  <div class="footer">
+    <div class="site">{{ siteName or "Jari Laru" }}</div>
+    <div>{{ domain or "jarilaru.fi" }}</div>
+  </div>
+</div>

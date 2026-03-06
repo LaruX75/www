@@ -1,0 +1,1818 @@
+---
+layout: base.njk
+title: Kirjoitukset ja puheet
+permalink: /kynasta/
+translationKey: writings_index
+---
+
+<section class="kynasta-hero py-4">
+  <div class="container">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-8">
+        <p class="text-uppercase small text-muted mb-2">Kynästä</p>
+        <h1 class="display-6 fw-bold mb-2">Kirjoitukset, puheet ja julkaisut</h1>
+        <p class="text-muted">Kooste mielipidekirjoituksista, kolumneista, aloitteista, puheista ja julkaisuista.</p>
+      </div>
+      <div class="col-lg-4">
+        <nav class="nav nav-pills flex-wrap gap-2 justify-content-lg-end">
+          <a class="nav-link" href="#mielipiteet">
+            Mielipiteet <span class="nav-count">{{ collections.pub_mielipide.length }}</span>
+          </a>
+          <a class="nav-link" href="#kolumnit">
+            Kolumnit <span class="nav-count">{{ collections.pub_kolumni.length }}</span>
+          </a>
+          <a class="nav-link" href="#aloitteet">
+            Aloitteet <span class="nav-count">{{ collections.politics.length }}</span>
+          </a>
+          <a class="nav-link" href="#puheet">
+            Puheet <span class="nav-count">{{ collections.pub_puhe.length }}</span>
+          </a>
+          <a class="nav-link" href="#blogi">
+            Blogi <span class="nav-count">{{ collections.blog.length }}</span>
+          </a>
+          <a class="nav-link" href="#julkaisut">
+            Julkaisut <span class="nav-count">{{ researchfi.length }}</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="yhteenveto">
+  <div class="container">
+    <div class="card shadow-sm">
+      <div class="card-header bg-transparent d-flex align-items-center justify-content-between">
+        <h2 class="h4 mb-0">Yhteenveto</h2>
+        <span class="badge text-bg-primary">Chart.js</span>
+      </div>
+      <div class="card-body">
+        <div class="row g-3 mb-4">
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="summary-kpi p-3 rounded border h-100">
+              <div class="summary-kpi-label">Mielipiteet</div>
+              <div id="kpi-mielipiteet" class="summary-kpi-value">0</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="summary-kpi p-3 rounded border h-100">
+              <div class="summary-kpi-label">Kolumnit</div>
+              <div id="kpi-kolumnit" class="summary-kpi-value">0</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="summary-kpi p-3 rounded border h-100">
+              <div class="summary-kpi-label">Aloitteet</div>
+              <div id="kpi-aloitteet" class="summary-kpi-value">0</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="summary-kpi p-3 rounded border h-100">
+              <div class="summary-kpi-label">Puheet</div>
+              <div id="kpi-puheet" class="summary-kpi-value">0</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="summary-kpi p-3 rounded border h-100">
+              <div class="summary-kpi-label">Blogi</div>
+              <div id="kpi-blogi" class="summary-kpi-value">0</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="summary-kpi p-3 rounded border h-100">
+              <div class="summary-kpi-label">Julkaisut</div>
+              <div id="kpi-julkaisut" class="summary-kpi-value">0</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-lg-4">
+            <h3 class="h6 text-muted mb-2">Sisältöjen jakauma</h3>
+            <div class="chart-wrap">
+              <canvas id="kynasta-summary-donut" height="260"></canvas>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <h3 class="h6 text-muted mb-2">Sisällöt vuosittain</h3>
+            <div class="chart-wrap">
+              <canvas id="kynasta-summary-trend" height="260"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# Kerätään kaikki mielipiteet JSON-muotoon JS:ää varten #}
+<script id="mielipiteet-data" type="application/json">
+[
+  {% for pub in collections.pub_mielipide %}
+  {
+    "title": {{ pub.data.title | dump | safe }},
+    "date": "{{ pub.date }}",
+    "formattedDate": "{{ pub.date | dateFormat }}",
+    "description": {{ (pub.data.description or "") | dump | safe }},
+    "publication": {{ (pub.data.publication or "") | dump | safe }},
+    "url": "{{ pub.data.url or pub.url }}",
+    "isExternal": {{ (pub.data.url != null) | dump | safe }},
+    "categories": {{ (pub.data.categories or []) | dump | safe }},
+    "keywords": {{ (pub.data.keywords or []) | dump | safe }}
+  }{% if not loop.last %},{% endif %}
+  {% endfor %}
+]
+</script>
+
+<span id="mielipidekirjoitukset-eri-sanomalehdissa"></span>
+<section id="mielipiteet">
+  <div class="container">
+    <div class="card shadow-sm">
+      <div class="card-header bg-transparent d-flex align-items-center justify-content-between">
+        <h2 class="h4 mb-0">Mielipidekirjoitukset</h2>
+        <span class="badge text-bg-secondary">{{ collections.pub_mielipide.length }}</span>
+      </div>
+      <div class="card-body p-0">
+        {# ---- Suodatuspalkki ---- #}
+        <div class="p-3 bg-light border-bottom">
+          <div class="row g-2 align-items-end">
+            <div class="col-md-9">
+              <label for="mielipiteet-search" class="form-label small text-muted mb-1">Hae mielipidekirjoituksia</label>
+              <input type="search" id="mielipiteet-search" class="form-control form-control-sm"
+                     placeholder="Hae otsikosta, tiivistelmästä, julkaisusta, kategorioista..." autocomplete="off">
+            </div>
+            <div class="col-md-3 d-flex justify-content-md-end gap-2">
+              <button id="mielipiteet-reset" class="btn btn-outline-secondary btn-sm w-100">
+                <i class="bi bi-x-circle me-1"></i>Tyhjennä
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {# ---- Taulukko ---- #}
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0 pub-table mielipiteet-table">
+            <thead>
+              <tr>
+                <th class="sortable text-center" data-col="date" style="width:140px">
+                  Päivämäärä <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
+                </th>
+                <th class="sortable" data-col="title" style="min-width:200px">
+                  Otsikko <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
+                </th>
+                <th style="min-width:200px">Tiivistelmä & Julkaisu</th>
+                <th>Kategoriat & Avainsanat</th>
+                <th style="width:80px" class="text-center">Lue</th>
+              </tr>
+            </thead>
+            <tbody id="mielipiteet-tbody">
+              <tr><td colspan="5" class="text-center text-muted py-4">Ladataan mielipidekirjoituksia...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top">
+        <small id="mielipiteet-info" class="text-muted"></small>
+        <nav aria-label="Sivutus">
+          <ul id="mielipiteet-pagination" class="pagination pagination-sm mb-0 flex-wrap"></ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# Kerätään kaikki kolumnit JSON-muotoon JS:ää varten #}
+<script id="kolumnit-data" type="application/json">
+[
+  {% for pub in collections.pub_kolumni %}
+  {
+    "title": {{ pub.data.title | dump | safe }},
+    "date": "{{ pub.date }}",
+    "formattedDate": "{{ pub.date | dateFormat }}",
+    "description": {{ (pub.data.description or "") | dump | safe }},
+    "publication": {{ (pub.data.publication or "") | dump | safe }},
+    "url": "{{ pub.data.url or pub.url }}",
+    "isExternal": {{ (pub.data.url != null) | dump | safe }},
+    "categories": {{ (pub.data.categories or []) | dump | safe }},
+    "keywords": {{ (pub.data.keywords or []) | dump | safe }}
+  }{% if not loop.last %},{% endif %}
+  {% endfor %}
+]
+</script>
+
+<span id="kolumnit-ja-blogivierailut"></span>
+<section id="kolumnit">
+  <div class="container">
+    <div class="card shadow-sm">
+      <div class="card-header bg-transparent d-flex align-items-center justify-content-between">
+        <h2 class="h4 mb-0">Kolumnit ja blogivierailut</h2>
+        <span class="badge text-bg-secondary">{{ collections.pub_kolumni.length }}</span>
+      </div>
+      <div class="card-body p-0">
+        {# ---- Suodatuspalkki ---- #}
+        <div class="p-3 bg-light border-bottom">
+          <div class="row g-2 align-items-end">
+            <div class="col-md-9">
+              <label for="kolumnit-search" class="form-label small text-muted mb-1">Hae kolumneja</label>
+              <input type="search" id="kolumnit-search" class="form-control form-control-sm"
+                     placeholder="Hae otsikosta, tiivistelmästä, julkaisusta, kategorioista..." autocomplete="off">
+            </div>
+            <div class="col-md-3 d-flex justify-content-md-end gap-2">
+              <button id="kolumnit-reset" class="btn btn-outline-secondary btn-sm w-100">
+                <i class="bi bi-x-circle me-1"></i>Tyhjennä
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {# ---- Taulukko ---- #}
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0 pub-table kolumnit-table">
+            <thead>
+              <tr>
+                <th class="sortable text-center" data-col="date" style="width:140px">
+                  Päivämäärä <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
+                </th>
+                <th class="sortable" data-col="title" style="min-width:200px">
+                  Otsikko <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
+                </th>
+                <th style="min-width:200px">Tiivistelmä & Julkaisu</th>
+                <th>Kategoriat & Avainsanat</th>
+                <th style="width:80px" class="text-center">Lue</th>
+              </tr>
+            </thead>
+            <tbody id="kolumnit-tbody">
+              <tr><td colspan="5" class="text-center text-muted py-4">Ladataan kolumneja...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top">
+        <small id="kolumnit-info" class="text-muted"></small>
+        <nav aria-label="Sivutus">
+          <ul id="kolumnit-pagination" class="pagination pagination-sm mb-0 flex-wrap"></ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# Kerätään kaikki aloitteet JSON-muotoon JS:ää varten #}
+<script id="aloitteet-data" type="application/json">
+[
+  {% for item in collections.politics %}
+  {
+    "title": {{ item.data.title | dump | safe }},
+    "date": "{{ item.date }}",
+    "formattedDate": "{{ item.date | dateFormat }}",
+    "description": {{ (item.data.description or "") | dump | safe }},
+    "initiative_type": {{ (item.data.initiative_type or "") | dump | safe }},
+    "url": "{{ item.data.url or item.url }}",
+    "isExternal": {{ (item.data.url != null) | dump | safe }},
+    "categories": {{ (item.data.categories or []) | dump | safe }},
+    "keywords": {{ (item.data.keywords or []) | dump | safe }}
+  }{% if not loop.last %},{% endif %}
+  {% endfor %}
+]
+</script>
+
+<section id="aloitteet">
+  <div class="container">
+    <div class="card shadow-sm">
+      <div class="card-header bg-transparent d-flex align-items-center justify-content-between">
+        <h2 class="h4 mb-0">Aloitteet ja adressit</h2>
+        <span class="badge text-bg-secondary">{{ collections.politics.length }}</span>
+      </div>
+      <div class="card-body p-0">
+        {# ---- Suodatuspalkki ---- #}
+        <div class="p-3 bg-light border-bottom">
+          <div class="row g-2 align-items-end">
+            <div class="col-md-9">
+              <label for="aloitteet-search" class="form-label small text-muted mb-1">Hae aloitteita</label>
+              <input type="search" id="aloitteet-search" class="form-control form-control-sm"
+                     placeholder="Hae otsikosta, tiivistelmästä, tyypistä, kategorioista..." autocomplete="off">
+            </div>
+            <div class="col-md-3 d-flex justify-content-md-end gap-2">
+              <button id="aloitteet-reset" class="btn btn-outline-secondary btn-sm w-100">
+                <i class="bi bi-x-circle me-1"></i>Tyhjennä
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {# ---- Taulukko ---- #}
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0 pub-table aloitteet-table">
+            <thead>
+              <tr>
+                <th class="sortable text-center" data-col="date" style="width:140px">
+                  Päivämäärä <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
+                </th>
+                <th class="sortable" data-col="title" style="min-width:200px">
+                  Otsikko <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
+                </th>
+                <th style="min-width:200px">Tiivistelmä & Tyyppi</th>
+                <th>Kategoriat & Avainsanat</th>
+                <th style="width:80px" class="text-center">Lue</th>
+              </tr>
+            </thead>
+            <tbody id="aloitteet-tbody">
+              <tr><td colspan="5" class="text-center text-muted py-4">Ladataan aloitteita...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top">
+        <small id="aloitteet-info" class="text-muted"></small>
+        <nav aria-label="Sivutus">
+          <ul id="aloitteet-pagination" class="pagination pagination-sm mb-0 flex-wrap"></ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# Kerätään kaikki puheet JSON-muotoon JS:ää varten #}
+<script id="puheet-data" type="application/json">
+[
+  {% for pub in collections.pub_puhe %}
+  {
+    "title": {{ pub.data.title | dump | safe }},
+    "date": "{{ pub.date }}",
+    "formattedDate": "{{ pub.date | dateFormat }}",
+    "description": {{ (pub.data.description or "") | dump | safe }},
+    "event": {{ (pub.data.event or "") | dump | safe }},
+    "url": "{{ pub.data.url or pub.url }}",
+    "isExternal": {{ (pub.data.url != null) | dump | safe }},
+    "categories": {{ (pub.data.categories or []) | dump | safe }},
+    "keywords": {{ (pub.data.keywords or []) | dump | safe }}
+  }{% if not loop.last %},{% endif %}
+  {% endfor %}
+]
+</script>
+
+<section id="puheet">
+  <div class="container">
+    <div class="card shadow-sm">
+      <div class="card-header bg-transparent d-flex align-items-center justify-content-between">
+        <h2 class="h4 mb-0">Puheet</h2>
+        <span class="badge text-bg-secondary">{{ collections.pub_puhe.length }}</span>
+      </div>
+      <div class="card-body p-0">
+        {# ---- Suodatuspalkki ---- #}
+        <div class="p-3 bg-light border-bottom">
+          <div class="row g-2 align-items-end">
+            <div class="col-md-9">
+              <label for="puheet-search" class="form-label small text-muted mb-1">Hae puheita</label>
+              <input type="search" id="puheet-search" class="form-control form-control-sm"
+                     placeholder="Hae otsikosta, tapahtumasta, kategorioista..." autocomplete="off">
+            </div>
+            <div class="col-md-3 d-flex justify-content-md-end gap-2">
+              <button id="puheet-reset" class="btn btn-outline-secondary btn-sm w-100">
+                <i class="bi bi-x-circle me-1"></i>Tyhjennä
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {# ---- Taulukko ---- #}
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0 pub-table puheet-table">
+            <thead>
+              <tr>
+                <th class="sortable text-center" data-col="date" style="width:140px">
+                  Päivämäärä <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
+                </th>
+                <th class="sortable" data-col="title" style="min-width:200px">
+                  Otsikko <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
+                </th>
+                <th style="min-width:200px">Tiivistelmä & Tapahtuma</th>
+                <th>Kategoriat & Avainsanat</th>
+                <th style="width:80px" class="text-center">Lue</th>
+              </tr>
+            </thead>
+            <tbody id="puheet-tbody">
+              <tr><td colspan="5" class="text-center text-muted py-4">Ladataan puheita...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top">
+        <small id="puheet-info" class="text-muted"></small>
+        <nav aria-label="Sivutus">
+          <ul id="puheet-pagination" class="pagination pagination-sm mb-0 flex-wrap"></ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# Kerätään kaikki blogipostaukset JSON-muotoon JS:ää varten #}
+<script id="blog-data" type="application/json">
+[
+  {% for post in collections.blog %}
+  {
+    "title": {{ post.data.title | dump | safe }},
+    "date": "{{ post.date }}",
+    "formattedDate": "{{ post.date | dateFormat }}",
+    "description": {{ (post.data.description or (post.content | excerpt)) | dump | safe }},
+    "url": "{{ post.url }}",
+    "categories": {{ (post.data.categories or []) | dump | safe }},
+    "keywords": {{ (post.data.keywords or []) | dump | safe }}
+  }{% if not loop.last %},{% endif %}
+  {% endfor %}
+]
+</script>
+
+<section id="blogi">
+  <div class="container">
+    <div class="card shadow-sm">
+      <div class="card-header bg-transparent d-flex align-items-center justify-content-between">
+        <h2 class="h4 mb-0">Blogi</h2>
+        <span class="badge text-bg-secondary">{{ collections.blog.length }}</span>
+      </div>
+      <div class="card-body p-0">
+        {# ---- Suodatuspalkki ---- #}
+        <div class="p-3 bg-light border-bottom">
+          <div class="row g-2 align-items-end">
+            <div class="col-md-9">
+              <label for="blog-search" class="form-label small text-muted mb-1">Hae kirjoituksia</label>
+              <input type="search" id="blog-search" class="form-control form-control-sm"
+                     placeholder="Hae otsikosta, tiivistelmästä, kategorioista..." autocomplete="off">
+            </div>
+            <div class="col-md-3 d-flex justify-content-md-end gap-2">
+              <button id="blog-reset" class="btn btn-outline-secondary btn-sm w-100">
+                <i class="bi bi-x-circle me-1"></i>Tyhjennä
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {# ---- Taulukko ---- #}
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0 pub-table blog-table">
+            <thead>
+              <tr>
+                <th class="sortable text-center" data-col="date" style="width:140px">
+                  Päivämäärä <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
+                </th>
+                <th class="sortable" data-col="title" style="min-width:200px">
+                  Otsikko <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
+                </th>
+                <th style="min-width:250px">Tiivistelmä</th>
+                <th>Kategoriat & Avainsanat</th>
+                <th style="width:80px" class="text-center">Lue</th>
+              </tr>
+            </thead>
+            <tbody id="blog-tbody">
+              <tr><td colspan="5" class="text-center text-muted py-4">Ladataan kirjoituksia...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top">
+        <small id="blog-info" class="text-muted"></small>
+        <div class="d-flex align-items-center gap-3">
+          <nav aria-label="Sivutus">
+            <ul id="blog-pagination" class="pagination pagination-sm mb-0 flex-wrap"></ul>
+          </nav>
+          <a href="/blogi/" class="btn btn-outline-primary btn-sm rounded-pill">Kaikki blogipostaukset</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# Kerätään kaikki Research.fi julkaisut JSON-muotoon JS:ää varten #}
+<script id="pub-data" type="application/json">
+[
+  {% for pub in researchfi %}
+  {
+    "title": {{ pub.title | dump | safe }},
+    "year": {{ (pub.year or 0) | dump | safe }},
+    "authors": {{ (pub.authors or "") | dump | safe }},
+    "journal": {{ (pub.journal or "") | dump | safe }},
+    "url": {{ (pub.url or "") | dump | safe }},
+    "type": {{ (pub.typeFi or "") | dump | safe }},
+    "typeCode": {{ (pub.typeCode or "") | dump | safe }}
+  }{% if not loop.last %},{% endif %}
+  {% endfor %}
+]
+</script>
+
+<section id="julkaisut">
+  <div class="container">
+    <div class="card shadow-sm">
+      <div class="card-header bg-transparent d-flex align-items-center justify-content-between">
+        <h2 class="h4 mb-0">Tieteelliset julkaisut</h2>
+        <span class="badge text-bg-secondary">{{ researchfi.length }}</span>
+      </div>
+      <div class="card-body p-0">
+        {# ---- Suodatuspalkki ---- #}
+        <div class="p-3 bg-light border-bottom">
+          <div class="row g-2 align-items-end">
+            <div class="col-md-5">
+              <label for="pub-search" class="form-label small text-muted mb-1">Hae julkaisua</label>
+              <input type="search" id="pub-search" class="form-control form-control-sm"
+                     placeholder="Otsikko, kirjoittaja tai julkaisu..." autocomplete="off">
+            </div>
+            <div class="col-md-3">
+              <label for="pub-year" class="form-label small text-muted mb-1">Vuosiluku</label>
+              <select id="pub-year" class="form-select form-select-sm">
+                <option value="">Kaikki vuodet</option>
+              </select>
+            </div>
+            <div class="col-md-4 d-flex justify-content-md-end gap-2">
+              <button id="pub-reset" class="btn btn-outline-secondary btn-sm">
+                <i class="bi bi-x-circle me-1"></i>Tyhjennä
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {# ---- Taulukko ---- #}
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0 pub-table">
+            <thead>
+              <tr>
+                <th class="sortable" data-col="authors" style="min-width:180px">
+                  Kirjoittajat <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
+                </th>
+                <th class="sortable text-center" data-col="year" style="width:90px">
+                  Vuosi <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
+                </th>
+                <th class="sortable" data-col="title">
+                  Otsikko <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
+                </th>
+                <th class="sortable" data-col="journal" style="min-width:150px">
+                  Julkaisun nimi <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
+                </th>
+                <th style="width:110px" class="text-center">Toiminnot</th>
+              </tr>
+            </thead>
+            <tbody id="pub-tbody">
+              <tr><td colspan="5" class="text-center text-muted py-4">Ladataan julkaisuja...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top">
+        <small id="pub-info" class="text-muted"></small>
+        <nav aria-label="Sivutus">
+          <ul id="pub-pagination" class="pagination pagination-sm mb-0 flex-wrap"></ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* ---- Kynasta hero ---- */
+.kynasta-hero {
+  background-color: var(--bs-tertiary-bg, #f8f9fa);
+  border-bottom: 1px solid var(--bs-border-color);
+}
+[data-bs-theme="dark"] .kynasta-hero {
+  background-color: #1e2a3a !important;
+  border-bottom-color: rgba(255,255,255,0.1);
+}
+[data-bs-theme="dark"] .kynasta-hero h1,
+[data-bs-theme="dark"] .kynasta-hero p {
+  color: #e0e0e0;
+}
+
+/* ---- Nav pills: theme-aware ---- */
+.kynasta-hero .nav-link {
+  color: var(--bs-body-color);
+  background-color: var(--bs-secondary-bg);
+  border-radius: 2rem;
+  padding: 0.3rem 0.9rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.kynasta-hero .nav-link:hover {
+  background-color: var(--bs-emphasis-color);
+  color: var(--bs-body-bg);
+}
+[data-bs-theme="dark"] .kynasta-hero .nav-link {
+  background-color: rgba(255,255,255,0.08);
+  color: #e0e0e0;
+}
+[data-bs-theme="dark"] .kynasta-hero .nav-link:hover {
+  background-color: rgba(255,255,255,0.18);
+  color: #ffffff;
+}
+
+/* ---- Nav count badge ---- */
+.nav-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.4rem;
+  height: 1.4rem;
+  padding: 0 0.3rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1;
+  background-color: rgba(0,0,0,0.12);
+  color: inherit;
+  margin-left: 0.25rem;
+  vertical-align: middle;
+}
+[data-bs-theme="dark"] .nav-count {
+  background-color: rgba(255,255,255,0.18);
+}
+
+/* ---- Card headers: theme-aware border ---- */
+.card-header.bg-transparent {
+  border-bottom-color: var(--bs-border-color);
+}
+[data-bs-theme="dark"] .card-header.bg-transparent {
+  border-bottom-color: rgba(255,255,255,0.1) !important;
+}
+[data-bs-theme="dark"] .card-header.bg-transparent h2 {
+  color: #ffffff;
+}
+
+/* ---- Section spacing ---- */
+section[id] {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.summary-kpi {
+  background: var(--bs-tertiary-bg);
+}
+.summary-kpi-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--bs-secondary-color);
+}
+.summary-kpi-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+.chart-wrap {
+  position: relative;
+  min-height: 260px;
+}
+
+/* ---- Keyword badges in dark mode ---- */
+[data-bs-theme="dark"] .badge.text-bg-light {
+  background-color: rgba(255,255,255,0.12) !important;
+  color: #e0e0e0 !important;
+  border-color: rgba(255,255,255,0.2) !important;
+}
+
+/* ---- Taulukon tyylit (tieteelliset julkaisut) ---- */
+.pub-table th {
+  white-space: nowrap;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background-color: var(--bs-tertiary-bg) !important;
+  padding: 0.75rem 0.5rem;
+}
+[data-bs-theme="dark"] .pub-table th {
+  background-color: #2e3f59 !important;
+  color: #c0d0e0;
+}
+.pub-table th.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+.pub-table th.sortable:hover {
+  background-color: var(--bs-secondary-bg) !important;
+}
+.pub-table th.sort-asc .sort-icon::before { content: "\F128"; opacity: 1 !important; color: var(--bs-primary); }
+.pub-table th.sort-desc .sort-icon::before { content: "\F127"; opacity: 1 !important; color: var(--bs-primary); }
+
+.pub-table td {
+  padding: 0.75rem 0.5rem;
+}
+.pub-table td.col-authors {
+  font-size: 0.8rem;
+  color: var(--bs-secondary-color);
+  max-width: 200px;
+}
+.pub-table td.col-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.3;
+}
+.pub-table td.col-pub {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--bs-secondary-color);
+}
+[data-bs-theme="dark"] .pub-table td {
+  border-color: rgba(255,255,255,0.07) !important;
+}
+
+#julkaisut .pagination .page-link {
+  border-radius: 0.3rem !important;
+  margin: 0 1px;
+  padding: 0.25rem 0.5rem;
+}
+</style>
+
+<script>
+(function () {
+  const parseJson = (id) => {
+    const el = document.getElementById(id);
+    if (!el) return [];
+    try { return JSON.parse(el.textContent || '[]'); } catch (_) { return []; }
+  };
+  const yearFromDate = (value) => {
+    if (!value) return null;
+    const d = new Date(value);
+    return Number.isNaN(d.getTime()) ? null : d.getFullYear();
+  };
+
+  const mielipiteet = parseJson('mielipiteet-data');
+  const kolumnit = parseJson('kolumnit-data');
+  const aloitteet = parseJson('aloitteet-data');
+  const puheet = parseJson('puheet-data');
+  const blogi = parseJson('blog-data');
+  const julkaisut = parseJson('pub-data');
+
+  const counts = {
+    mielipiteet: mielipiteet.length,
+    kolumnit: kolumnit.length,
+    aloitteet: aloitteet.length,
+    puheet: puheet.length,
+    blogi: blogi.length,
+    julkaisut: julkaisut.length
+  };
+
+  const setText = (id, value) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = String(value);
+  };
+  setText('kpi-mielipiteet', counts.mielipiteet);
+  setText('kpi-kolumnit', counts.kolumnit);
+  setText('kpi-aloitteet', counts.aloitteet);
+  setText('kpi-puheet', counts.puheet);
+  setText('kpi-blogi', counts.blogi);
+  setText('kpi-julkaisut', counts.julkaisut);
+
+  const yearly = {};
+  const addYear = (arr, key) => {
+    arr.forEach((item) => {
+      const y = key === 'year' ? Number(item.year) : yearFromDate(item.date);
+      if (!y || y < 1990 || y > 2100) return;
+      if (!yearly[y]) yearly[y] = { mielipiteet: 0, kolumnit: 0, aloitteet: 0, puheet: 0, blogi: 0, julkaisut: 0 };
+      yearly[y][key === 'year' ? 'julkaisut' : key] += 1;
+    });
+  };
+
+  addYear(mielipiteet, 'mielipiteet');
+  addYear(kolumnit, 'kolumnit');
+  addYear(aloitteet, 'aloitteet');
+  addYear(puheet, 'puheet');
+  addYear(blogi, 'blogi');
+  addYear(julkaisut, 'year');
+
+  const years = Object.keys(yearly).map(Number).sort((a, b) => a - b);
+
+  const labels = ['Mielipiteet', 'Kolumnit', 'Aloitteet', 'Puheet', 'Blogi', 'Julkaisut'];
+  const values = [counts.mielipiteet, counts.kolumnit, counts.aloitteet, counts.puheet, counts.blogi, counts.julkaisut];
+  const palette = ['#0d6efd', '#20c997', '#fd7e14', '#dc3545', '#6610f2', '#198754'];
+
+  function drawCharts() {
+    if (typeof Chart === 'undefined') return false;
+
+    const donutCanvas = document.getElementById('kynasta-summary-donut');
+    if (donutCanvas) {
+      new Chart(donutCanvas, {
+        type: 'doughnut',
+        data: {
+          labels,
+          datasets: [{ data: values, backgroundColor: palette, borderWidth: 1 }]
+        },
+        options: {
+          plugins: { legend: { position: 'bottom' } },
+          maintainAspectRatio: false
+        }
+      });
+    }
+
+    const trendCanvas = document.getElementById('kynasta-summary-trend');
+    if (trendCanvas && years.length > 0) {
+      const makeSeries = (name, color, field) => ({
+        label: name,
+        data: years.map((y) => yearly[y][field] || 0),
+        backgroundColor: color,
+        borderColor: color,
+        borderWidth: 1
+      });
+      new Chart(trendCanvas, {
+        type: 'bar',
+        data: {
+          labels: years,
+          datasets: [
+            makeSeries('Mielipiteet', palette[0], 'mielipiteet'),
+            makeSeries('Kolumnit', palette[1], 'kolumnit'),
+            makeSeries('Aloitteet', palette[2], 'aloitteet'),
+            makeSeries('Puheet', palette[3], 'puheet'),
+            makeSeries('Blogi', palette[4], 'blogi'),
+            makeSeries('Julkaisut', palette[5], 'julkaisut')
+          ]
+        },
+        options: {
+          maintainAspectRatio: false,
+          responsive: true,
+          scales: {
+            x: { stacked: true },
+            y: { stacked: true, beginAtZero: true, ticks: { precision: 0 } }
+          },
+          plugins: {
+            legend: { position: 'bottom' },
+            tooltip: { mode: 'index', intersect: false }
+          }
+        }
+      });
+    }
+    return true;
+  }
+
+  if (!drawCharts()) {
+    let retries = 0;
+    const timer = setInterval(() => {
+      retries += 1;
+      if (drawCharts() || retries > 20) clearInterval(timer);
+    }, 150);
+  }
+})();
+
+(function () {
+  const PAGE_SIZE = 5;
+  const dataEl = document.getElementById('pub-data');
+  if (!dataEl) return;
+  const rawData = JSON.parse(dataEl.textContent);
+
+  // Järjestetään uusin ensin oletuksena
+  let data = [...rawData].sort((a, b) => (b.year || 0) - (a.year || 0));
+  let filteredData = [...data];
+  let currentPage = 1;
+  let sortCol = 'year';
+  let sortDir = -1; // -1 = desc, 1 = asc
+
+  const yearSel = document.getElementById('pub-year');
+  const searchInp = document.getElementById('pub-search');
+  const tbody = document.getElementById('pub-tbody');
+  const info = document.getElementById('pub-info');
+  const pagUl = document.getElementById('pub-pagination');
+
+  // --- Vuosisuodatin ---
+  const years = [...new Set(data.filter(d => d.year > 0).map(d => d.year))].sort((a, b) => b - a);
+  if (yearSel) {
+    years.forEach(y => {
+      const opt = document.createElement('option');
+      opt.value = y;
+      opt.textContent = y;
+      yearSel.appendChild(opt);
+    });
+  }
+
+  // --- Suodatus ---
+  function applyFilters() {
+    const q = searchInp ? searchInp.value.toLowerCase().trim() : '';
+    const yr = yearSel ? yearSel.value : '';
+    filteredData = data.filter(d => {
+      const matchQ = !q ||
+        (d.title || '').toLowerCase().includes(q) ||
+        (d.authors || '').toLowerCase().includes(q) ||
+        (d.journal || '').toLowerCase().includes(q);
+      const matchY = !yr || String(d.year) === yr;
+      return matchQ && matchY;
+    });
+    currentPage = 1;
+    render();
+  }
+
+  // --- Lajittelu ---
+  function sortData(col) {
+    if (sortCol === col) { sortDir *= -1; }
+    else { sortCol = col; sortDir = col === 'year' ? -1 : 1; }
+    filteredData.sort((a, b) => {
+      let av = a[col] ?? '';
+      let bv = b[col] ?? '';
+      if (typeof av === 'string') av = av.toLowerCase();
+      if (typeof bv === 'string') bv = bv.toLowerCase();
+      if (typeof av === 'number' && typeof bv === 'number') return (av - bv) * sortDir;
+      return av.toString().localeCompare(bv.toString(), 'fi') * sortDir;
+    });
+    currentPage = 1;
+    render();
+  }
+
+  // --- Renderöinti ---
+  function render() {
+    if (!tbody || !info) return;
+
+    const totalPages = Math.max(1, Math.ceil(filteredData.length / PAGE_SIZE));
+    const start = (currentPage - 1) * PAGE_SIZE;
+    const slice = filteredData.slice(start, start + PAGE_SIZE);
+
+    // Taulukko
+    if (slice.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-5">Ei tuloksia haulla</td></tr>';
+    } else {
+      tbody.innerHTML = slice.map((d, index) => {
+        const globalIndex = start + index;
+        const linkCell = d.url
+          ? `<a href="${escHtml(d.url)}" target="_blank" rel="noopener"
+               class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Avaa julkaisu">
+               <i class="bi bi-arrow-up-right"></i>
+             </a>`
+          : `<span class="text-muted small">—</span>`;
+
+        const bibButton = `<button class="btn btn-outline-secondary btn-sm rounded-pill px-2 ms-1 bib-btn" 
+                            data-index="${globalIndex}" title="Lataa BibTeX">
+                            <i class="bi bi-quote"></i>
+                          </button>`;
+
+        return `<tr>
+          <td class="col-authors small text-muted">${escHtml(d.authors || '—')}</td>
+          <td class="text-center fw-semibold">${d.year || '—'}</td>
+          <td class="col-title">${escHtml(d.title || '—')}</td>
+          <td class="col-pub">${escHtml(d.journal || '—')}</td>
+          <td class="text-center">
+            <div class="d-flex justify-content-center">
+              ${linkCell}
+              ${bibButton}
+            </div>
+          </td>
+        </tr>`;
+      }).join('');
+
+      // Lisää kuuntelijat BibTeX-napeille
+      tbody.querySelectorAll('.bib-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const idx = parseInt(btn.dataset.index);
+          downloadBibTeX(filteredData[idx]);
+        });
+      });
+    }
+
+    // Info
+    const total = filteredData.length;
+    const from = total === 0 ? 0 : start + 1;
+    const to = Math.min(start + PAGE_SIZE, total);
+    info.textContent = `Näytetään ${from}–${to} / ${total}`;
+
+    // Sivutus
+    renderPagination(totalPages);
+
+    // Sarakekorostus
+    document.querySelectorAll('.pub-table th.sortable').forEach(th => {
+      th.classList.remove('sort-asc', 'sort-desc');
+      if (th.dataset.col === sortCol) {
+        th.classList.add(sortDir === 1 ? 'sort-asc' : 'sort-desc');
+      }
+    });
+  }
+
+  function renderPagination(total) {
+    if (!pagUl) return;
+    pagUl.innerHTML = '';
+    
+    // Yksinkertainen sivutus (1, 2, 3...)
+    for (let i = 1; i <= total; i++) {
+      const li = document.createElement('li');
+      li.className = `page-item${i === currentPage ? ' active' : ''}`;
+      const a = document.createElement('a');
+      a.className = 'page-link';
+      a.href = '#';
+      a.textContent = i;
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        currentPage = i;
+        render();
+        // Skrollaus kortin alkuun
+        document.getElementById('julkaisut')?.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+      li.appendChild(a);
+      pagUl.appendChild(li);
+    }
+  }
+
+  function escHtml(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // --- Tapahtumankäsittelijät ---
+  if (searchInp) searchInp.addEventListener('input', applyFilters);
+  if (yearSel) yearSel.addEventListener('change', applyFilters);
+  
+  const resetBtn = document.getElementById('pub-reset');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      if (searchInp) searchInp.value = '';
+      if (yearSel) yearSel.value = '';
+      applyFilters();
+    });
+  }
+
+  document.querySelectorAll('.pub-table th.sortable').forEach(th => {
+    th.addEventListener('click', () => sortData(th.dataset.col));
+  });
+
+  function downloadBibTeX(d) {
+    const typeMap = {
+      "A1": "article", "A2": "article", "B1": "article",
+      "A3": "incollection", "B2": "incollection",
+      "A4": "inproceedings", "B3": "inproceedings", "D3": "inproceedings",
+      "C1": "book", "E2": "book",
+      "C2": "proceedings",
+      "G4": "phdthesis", "G5": "phdthesis"
+    };
+
+    const bibType = typeMap[d.typeCode] || "misc";
+    const authors = d.authors || "Laru, Jari";
+    const firstAuthor = authors.split(/[,&]/)[0].trim().split(/\s+/).pop().toLowerCase();
+    const key = `${firstAuthor}${d.year || 'unknown'}${d.title.split(/\s+/)[0].replace(/[^a-z]/gi, '').toLowerCase()}`;
+
+    let bib = `@${bibType}{${key},\n`;
+    bib += `  title = {${d.title}},\n`;
+    bib += `  author = {${authors}},\n`;
+    if (d.year) bib += `  year = {${d.year}},\n`;
+    if (d.journal) {
+      if (bibType === "article") bib += `  journal = {${d.journal}},\n`;
+      else if (bibType === "inproceedings" || bibType === "incollection") bib += `  booktitle = {${d.journal}},\n`;
+      else bib += `  publisher = {${d.journal}},\n`;
+    }
+    if (d.url) bib += `  url = {${d.url}},\n`;
+    bib += `}`;
+
+    const blob = new Blob([bib], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.style.display = 'none';
+    a.href = url;
+    a.download = `${key}.bib`;
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(a);
+  }
+
+  // Käynnistys
+  render();
+})();
+
+// --- Blogi taulukon logiikka ---
+(function () {
+  const BLOG_PAGE_SIZE = 5;
+  const blogDataEl = document.getElementById('blog-data');
+  if (!blogDataEl) return;
+  const blogData = JSON.parse(blogDataEl.textContent);
+
+  let filteredBlogData = [...blogData];
+  let blogCurrentPage = 1;
+  let blogSortCol = 'date';
+  let blogSortDir = -1; // -1 = desc
+
+  const blogSearchInp = document.getElementById('blog-search');
+  const blogTbody = document.getElementById('blog-tbody');
+  const blogInfo = document.getElementById('blog-info');
+  const blogPagUl = document.getElementById('blog-pagination');
+
+  function applyBlogFilters() {
+    const q = blogSearchInp ? blogSearchInp.value.toLowerCase().trim() : '';
+    filteredBlogData = blogData.filter(d => {
+      const matchQ = !q ||
+        (d.title || '').toLowerCase().includes(q) ||
+        (d.description || '').toLowerCase().includes(q) ||
+        (d.categories || []).some(c => c.toLowerCase().includes(q)) ||
+        (d.keywords || []).some(k => k.toLowerCase().includes(q));
+      return matchQ;
+    });
+    blogCurrentPage = 1;
+    renderBlog();
+  }
+
+  function sortBlogData(col) {
+    if (blogSortCol === col) { blogSortDir *= -1; }
+    else { blogSortCol = col; blogSortDir = col === 'date' ? -1 : 1; }
+    
+    filteredBlogData.sort((a, b) => {
+      let av = a[col] ?? '';
+      let bv = b[col] ?? '';
+      if (typeof av === 'string') av = av.toLowerCase();
+      if (typeof bv === 'string') bv = bv.toLowerCase();
+      if (col === 'date') {
+        return (new Date(av) - new Date(bv)) * blogSortDir;
+      }
+      return av.toString().localeCompare(bv.toString(), 'fi') * blogSortDir;
+    });
+    blogCurrentPage = 1;
+    renderBlog();
+  }
+
+  function renderBlog() {
+    if (!blogTbody || !blogInfo) return;
+
+    const totalPages = Math.max(1, Math.ceil(filteredBlogData.length / BLOG_PAGE_SIZE));
+    const start = (blogCurrentPage - 1) * BLOG_PAGE_SIZE;
+    const slice = filteredBlogData.slice(start, start + BLOG_PAGE_SIZE);
+
+    if (slice.length === 0) {
+      blogTbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-5">Ei tuloksia haulla</td></tr>';
+    } else {
+      blogTbody.innerHTML = slice.map(d => {
+        const catBadges = (d.categories || []).map(c => `<a href="/kategoriat/${slugify(c)}/" class="badge text-bg-secondary me-1 text-decoration-none">${c}</a>`).join('');
+        const keyBadges = (d.keywords || []).map(k => `<a href="/avainsanat/${slugify(k)}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">${k}</a>`).join('');
+
+        return `<tr>
+          <td class="col-date text-center small text-muted font-monospace">${d.formattedDate}</td>
+          <td class="col-title fw-medium"><a href="${d.url}" class="text-decoration-none">${escHtml(d.title)}</a></td>
+          <td class="col-desc small text-muted">${escHtml(d.description)}</td>
+          <td>
+            <div class="mb-1">${catBadges}</div>
+            <div>${keyBadges}</div>
+          </td>
+          <td class="text-center">
+            <a href="${d.url}" class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Lue blogipostaus">
+              <i class="bi bi-arrow-right"></i>
+            </a>
+          </td>
+        </tr>`;
+      }).join('');
+    }
+
+    const total = filteredBlogData.length;
+    const from = total === 0 ? 0 : start + 1;
+    const to = Math.min(start + BLOG_PAGE_SIZE, total);
+    blogInfo.textContent = `Näytetään ${from}–${to} / ${total}`;
+
+    renderBlogPagination(totalPages);
+
+    document.querySelectorAll('.blog-table th.sortable').forEach(th => {
+      th.classList.remove('sort-asc', 'sort-desc');
+      if (th.dataset.col === blogSortCol) {
+        th.classList.add(blogSortDir === 1 ? 'sort-asc' : 'sort-desc');
+      }
+    });
+  }
+
+  function renderBlogPagination(total) {
+    if (!blogPagUl) return;
+    blogPagUl.innerHTML = '';
+    if (total <= 1) return;
+    
+    for (let i = 1; i <= total; i++) {
+      const li = document.createElement('li');
+      li.className = `page-item${i === blogCurrentPage ? ' active' : ''}`;
+      const a = document.createElement('a');
+      a.className = 'page-link';
+      a.href = '#';
+      a.textContent = i;
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        blogCurrentPage = i;
+        renderBlog();
+        document.getElementById('blogi')?.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+      li.appendChild(a);
+      blogPagUl.appendChild(li);
+    }
+  }
+
+  function escHtml(str) {
+    if (!str) return '';
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function slugify(str) {
+    if (!str) return "";
+    return str.toLowerCase().replace(/ä/g, "a").replace(/ö/g, "o").replace(/å/g, "a").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  }
+
+  if (blogSearchInp) blogSearchInp.addEventListener('input', applyBlogFilters);
+  
+  const blogResetBtn = document.getElementById('blog-reset');
+  if (blogResetBtn) {
+    blogResetBtn.addEventListener('click', () => {
+      if (blogSearchInp) blogSearchInp.value = '';
+      applyBlogFilters();
+    });
+  }
+
+  document.querySelectorAll('.blog-table th.sortable').forEach(th => {
+    th.addEventListener('click', () => sortBlogData(th.dataset.col));
+  });
+
+  renderBlog();
+})();
+
+// --- Puheet taulukon logiikka ---
+(function () {
+  const PUHEET_PAGE_SIZE = 5;
+  const puheetDataEl = document.getElementById('puheet-data');
+  if (!puheetDataEl) return;
+  const puheetData = JSON.parse(puheetDataEl.textContent);
+
+  let filteredPuheetData = [...puheetData];
+  let puheetCurrentPage = 1;
+  let puheetSortCol = 'date';
+  let puheetSortDir = -1; // -1 = desc
+
+  const puheetSearchInp = document.getElementById('puheet-search');
+  const puheetTbody = document.getElementById('puheet-tbody');
+  const puheetInfo = document.getElementById('puheet-info');
+  const puheetPagUl = document.getElementById('puheet-pagination');
+
+  function applyPuheetFilters() {
+    const q = puheetSearchInp ? puheetSearchInp.value.toLowerCase().trim() : '';
+    filteredPuheetData = puheetData.filter(d => {
+      const matchQ = !q ||
+        (d.title || '').toLowerCase().includes(q) ||
+        (d.description || '').toLowerCase().includes(q) ||
+        (d.event || '').toLowerCase().includes(q) ||
+        (d.categories || []).some(c => c.toLowerCase().includes(q)) ||
+        (d.keywords || []).some(k => k.toLowerCase().includes(q));
+      return matchQ;
+    });
+    puheetCurrentPage = 1;
+    renderPuheet();
+  }
+
+  function sortPuheetData(col) {
+    if (puheetSortCol === col) { puheetSortDir *= -1; }
+    else { puheetSortCol = col; puheetSortDir = col === 'date' ? -1 : 1; }
+    
+    filteredPuheetData.sort((a, b) => {
+      let av = a[col] ?? '';
+      let bv = b[col] ?? '';
+      if (typeof av === 'string') av = av.toLowerCase();
+      if (typeof bv === 'string') bv = bv.toLowerCase();
+      if (col === 'date') {
+        return (new Date(av) - new Date(bv)) * puheetSortDir;
+      }
+      return av.toString().localeCompare(bv.toString(), 'fi') * puheetSortDir;
+    });
+    puheetCurrentPage = 1;
+    renderPuheet();
+  }
+
+  function renderPuheet() {
+    if (!puheetTbody || !puheetInfo) return;
+
+    const totalPages = Math.max(1, Math.ceil(filteredPuheetData.length / PUHEET_PAGE_SIZE));
+    const start = (puheetCurrentPage - 1) * PUHEET_PAGE_SIZE;
+    const slice = filteredPuheetData.slice(start, start + PUHEET_PAGE_SIZE);
+
+    if (slice.length === 0) {
+      puheetTbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-5">Ei tuloksia haulla</td></tr>';
+    } else {
+      puheetTbody.innerHTML = slice.map(d => {
+        const catBadges = (d.categories || []).map(c => `<a href="/kategoriat/${slugify(c)}/" class="badge text-bg-secondary me-1 text-decoration-none">${c}</a>`).join('');
+        const keyBadges = (d.keywords || []).map(k => `<a href="/avainsanat/${slugify(k)}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">${k}</a>`).join('');
+
+        const targetAttr = d.isExternal ? 'target="_blank" rel="noopener"' : '';
+        const iconInfo = d.isExternal ? '<i class="bi bi-arrow-up-right"></i>' : '<i class="bi bi-arrow-right"></i>';
+        const eventInfo = d.event ? `<br><span class="badge text-bg-light border text-dark mt-1"><i class="bi bi-calendar-event me-1"></i>${escHtml(d.event)}</span>` : '';
+
+        return `<tr>
+          <td class="col-date text-center small text-muted font-monospace">${d.formattedDate}</td>
+          <td class="col-title fw-medium"><a href="${d.url}" ${targetAttr} class="text-decoration-none">${escHtml(d.title)}</a></td>
+          <td class="col-desc small text-muted">${escHtml(d.description)}${eventInfo}</td>
+          <td>
+            <div class="mb-1">${catBadges}</div>
+            <div>${keyBadges}</div>
+          </td>
+          <td class="text-center">
+            <a href="${d.url}" ${targetAttr} class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Avaa puhe">
+              ${iconInfo}
+            </a>
+          </td>
+        </tr>`;
+      }).join('');
+    }
+
+    const total = filteredPuheetData.length;
+    const from = total === 0 ? 0 : start + 1;
+    const to = Math.min(start + PUHEET_PAGE_SIZE, total);
+    puheetInfo.textContent = `Näytetään ${from}–${to} / ${total}`;
+
+    renderPuheetPagination(totalPages);
+
+    document.querySelectorAll('.puheet-table th.sortable').forEach(th => {
+      th.classList.remove('sort-asc', 'sort-desc');
+      if (th.dataset.col === puheetSortCol) {
+        th.classList.add(puheetSortDir === 1 ? 'sort-asc' : 'sort-desc');
+      }
+    });
+  }
+
+  function renderPuheetPagination(total) {
+    if (!puheetPagUl) return;
+    puheetPagUl.innerHTML = '';
+    if (total <= 1) return;
+    
+    for (let i = 1; i <= total; i++) {
+      const li = document.createElement('li');
+      li.className = `page-item${i === puheetCurrentPage ? ' active' : ''}`;
+      const a = document.createElement('a');
+      a.className = 'page-link';
+      a.href = '#';
+      a.textContent = i;
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        puheetCurrentPage = i;
+        renderPuheet();
+        document.getElementById('puheet')?.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+      li.appendChild(a);
+      puheetPagUl.appendChild(li);
+    }
+  }
+
+  function escHtml(str) {
+    if (!str) return '';
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function slugify(str) {
+    if (!str) return "";
+    return str.toLowerCase().replace(/ä/g, "a").replace(/ö/g, "o").replace(/å/g, "a").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  }
+
+  if (puheetSearchInp) puheetSearchInp.addEventListener('input', applyPuheetFilters);
+  
+  const puheetResetBtn = document.getElementById('puheet-reset');
+  if (puheetResetBtn) {
+    puheetResetBtn.addEventListener('click', () => {
+      if (puheetSearchInp) puheetSearchInp.value = '';
+      applyPuheetFilters();
+    });
+  }
+
+  document.querySelectorAll('.puheet-table th.sortable').forEach(th => {
+    th.addEventListener('click', () => sortPuheetData(th.dataset.col));
+  });
+
+  renderPuheet();
+})();
+
+// --- Aloitteet taulukon logiikka ---
+(function () {
+  const ALOITTEET_PAGE_SIZE = 5;
+  const aloitteetDataEl = document.getElementById('aloitteet-data');
+  if (!aloitteetDataEl) return;
+  const aloitteetData = JSON.parse(aloitteetDataEl.textContent);
+
+  let filteredAloitteetData = [...aloitteetData];
+  let aloitteetCurrentPage = 1;
+  let aloitteetSortCol = 'date';
+  let aloitteetSortDir = -1; // -1 = desc
+
+  const aloitteetSearchInp = document.getElementById('aloitteet-search');
+  const aloitteetTbody = document.getElementById('aloitteet-tbody');
+  const aloitteetInfo = document.getElementById('aloitteet-info');
+  const aloitteetPagUl = document.getElementById('aloitteet-pagination');
+
+  function applyAloitteetFilters() {
+    const q = aloitteetSearchInp ? aloitteetSearchInp.value.toLowerCase().trim() : '';
+    filteredAloitteetData = aloitteetData.filter(d => {
+      const matchQ = !q ||
+        (d.title || '').toLowerCase().includes(q) ||
+        (d.description || '').toLowerCase().includes(q) ||
+        (d.initiative_type || '').toLowerCase().includes(q) ||
+        (d.categories || []).some(c => c.toLowerCase().includes(q)) ||
+        (d.keywords || []).some(k => k.toLowerCase().includes(q));
+      return matchQ;
+    });
+    aloitteetCurrentPage = 1;
+    renderAloitteet();
+  }
+
+  function sortAloitteetData(col) {
+    if (aloitteetSortCol === col) { aloitteetSortDir *= -1; }
+    else { aloitteetSortCol = col; aloitteetSortDir = col === 'date' ? -1 : 1; }
+    
+    filteredAloitteetData.sort((a, b) => {
+      let av = a[col] ?? '';
+      let bv = b[col] ?? '';
+      if (typeof av === 'string') av = av.toLowerCase();
+      if (typeof bv === 'string') bv = bv.toLowerCase();
+      if (col === 'date') {
+        return (new Date(av) - new Date(bv)) * aloitteetSortDir;
+      }
+      return av.toString().localeCompare(bv.toString(), 'fi') * aloitteetSortDir;
+    });
+    aloitteetCurrentPage = 1;
+    renderAloitteet();
+  }
+
+  function renderAloitteet() {
+    if (!aloitteetTbody || !aloitteetInfo) return;
+
+    const totalPages = Math.max(1, Math.ceil(filteredAloitteetData.length / ALOITTEET_PAGE_SIZE));
+    const start = (aloitteetCurrentPage - 1) * ALOITTEET_PAGE_SIZE;
+    const slice = filteredAloitteetData.slice(start, start + ALOITTEET_PAGE_SIZE);
+
+    if (slice.length === 0) {
+      aloitteetTbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-5">Ei tuloksia haulla</td></tr>';
+    } else {
+      aloitteetTbody.innerHTML = slice.map(d => {
+        const catBadges = (d.categories || []).map(c => `<a href="/kategoriat/${slugify(c)}/" class="badge text-bg-secondary me-1 text-decoration-none">${c}</a>`).join('');
+        const keyBadges = (d.keywords || []).map(k => `<a href="/avainsanat/${slugify(k)}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">${k}</a>`).join('');
+
+        const targetAttr = d.isExternal ? 'target="_blank" rel="noopener"' : '';
+        const iconInfo = d.isExternal ? '<i class="bi bi-arrow-up-right"></i>' : '<i class="bi bi-arrow-right"></i>';
+        const typeInfo = d.initiative_type ? `<br><span class="badge text-bg-light border text-dark mt-1">${escHtml(d.initiative_type)}</span>` : '';
+
+        return `<tr>
+          <td class="col-date text-center small text-muted font-monospace">${d.formattedDate}</td>
+          <td class="col-title fw-medium"><a href="${d.url}" ${targetAttr} class="text-decoration-none">${escHtml(d.title)}</a></td>
+          <td class="col-desc small text-muted">${escHtml(d.description)}${typeInfo}</td>
+          <td>
+            <div class="mb-1">${catBadges}</div>
+            <div>${keyBadges}</div>
+          </td>
+          <td class="text-center">
+            <a href="${d.url}" ${targetAttr} class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Avaa aloite">
+              ${iconInfo}
+            </a>
+          </td>
+        </tr>`;
+      }).join('');
+    }
+
+    const total = filteredAloitteetData.length;
+    const from = total === 0 ? 0 : start + 1;
+    const to = Math.min(start + ALOITTEET_PAGE_SIZE, total);
+    aloitteetInfo.textContent = `Näytetään ${from}–${to} / ${total}`;
+
+    renderAloitteetPagination(totalPages);
+
+    document.querySelectorAll('.aloitteet-table th.sortable').forEach(th => {
+      th.classList.remove('sort-asc', 'sort-desc');
+      if (th.dataset.col === aloitteetSortCol) {
+        th.classList.add(aloitteetSortDir === 1 ? 'sort-asc' : 'sort-desc');
+      }
+    });
+  }
+
+  function renderAloitteetPagination(total) {
+    if (!aloitteetPagUl) return;
+    aloitteetPagUl.innerHTML = '';
+    if (total <= 1) return;
+    
+    for (let i = 1; i <= total; i++) {
+      const li = document.createElement('li');
+      li.className = `page-item${i === aloitteetCurrentPage ? ' active' : ''}`;
+      const a = document.createElement('a');
+      a.className = 'page-link';
+      a.href = '#';
+      a.textContent = i;
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        aloitteetCurrentPage = i;
+        renderAloitteet();
+        document.getElementById('aloitteet')?.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+      li.appendChild(a);
+      aloitteetPagUl.appendChild(li);
+    }
+  }
+
+  function escHtml(str) {
+    if (!str) return '';
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function slugify(str) {
+    if (!str) return "";
+    return str.toLowerCase().replace(/ä/g, "a").replace(/ö/g, "o").replace(/å/g, "a").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  }
+
+  if (aloitteetSearchInp) aloitteetSearchInp.addEventListener('input', applyAloitteetFilters);
+  
+  const aloitteetResetBtn = document.getElementById('aloitteet-reset');
+  if (aloitteetResetBtn) {
+    aloitteetResetBtn.addEventListener('click', () => {
+      if (aloitteetSearchInp) aloitteetSearchInp.value = '';
+      applyAloitteetFilters();
+    });
+  }
+
+  document.querySelectorAll('.aloitteet-table th.sortable').forEach(th => {
+    th.addEventListener('click', () => sortAloitteetData(th.dataset.col));
+  });
+
+  renderAloitteet();
+})();
+
+// --- Kolumnit taulukon logiikka ---
+(function () {
+  const KOLUMNIT_PAGE_SIZE = 5;
+  const kolumnitDataEl = document.getElementById('kolumnit-data');
+  if (!kolumnitDataEl) return;
+  const kolumnitData = JSON.parse(kolumnitDataEl.textContent);
+
+  let filteredKolumnitData = [...kolumnitData];
+  let kolumnitCurrentPage = 1;
+  let kolumnitSortCol = 'date';
+  let kolumnitSortDir = -1; // -1 = desc
+
+  const kolumnitSearchInp = document.getElementById('kolumnit-search');
+  const kolumnitTbody = document.getElementById('kolumnit-tbody');
+  const kolumnitInfo = document.getElementById('kolumnit-info');
+  const kolumnitPagUl = document.getElementById('kolumnit-pagination');
+
+  function applyKolumnitFilters() {
+    const q = kolumnitSearchInp ? kolumnitSearchInp.value.toLowerCase().trim() : '';
+    filteredKolumnitData = kolumnitData.filter(d => {
+      const matchQ = !q ||
+        (d.title || '').toLowerCase().includes(q) ||
+        (d.description || '').toLowerCase().includes(q) ||
+        (d.publication || '').toLowerCase().includes(q) ||
+        (d.categories || []).some(c => c.toLowerCase().includes(q)) ||
+        (d.keywords || []).some(k => k.toLowerCase().includes(q));
+      return matchQ;
+    });
+    kolumnitCurrentPage = 1;
+    renderKolumnit();
+  }
+
+  function sortKolumnitData(col) {
+    if (kolumnitSortCol === col) { kolumnitSortDir *= -1; }
+    else { kolumnitSortCol = col; kolumnitSortDir = col === 'date' ? -1 : 1; }
+    
+    filteredKolumnitData.sort((a, b) => {
+      let av = a[col] ?? '';
+      let bv = b[col] ?? '';
+      if (typeof av === 'string') av = av.toLowerCase();
+      if (typeof bv === 'string') bv = bv.toLowerCase();
+      if (col === 'date') {
+        return (new Date(av) - new Date(bv)) * kolumnitSortDir;
+      }
+      return av.toString().localeCompare(bv.toString(), 'fi') * kolumnitSortDir;
+    });
+    kolumnitCurrentPage = 1;
+    renderKolumnit();
+  }
+
+  function renderKolumnit() {
+    if (!kolumnitTbody || !kolumnitInfo) return;
+
+    const totalPages = Math.max(1, Math.ceil(filteredKolumnitData.length / KOLUMNIT_PAGE_SIZE));
+    const start = (kolumnitCurrentPage - 1) * KOLUMNIT_PAGE_SIZE;
+    const slice = filteredKolumnitData.slice(start, start + KOLUMNIT_PAGE_SIZE);
+
+    if (slice.length === 0) {
+      kolumnitTbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-5">Ei tuloksia haulla</td></tr>';
+    } else {
+      kolumnitTbody.innerHTML = slice.map(d => {
+        const catBadges = (d.categories || []).map(c => `<a href="/kategoriat/${slugify(c)}/" class="badge text-bg-secondary me-1 text-decoration-none">${c}</a>`).join('');
+        const keyBadges = (d.keywords || []).map(k => `<a href="/avainsanat/${slugify(k)}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">${k}</a>`).join('');
+
+        const targetAttr = d.isExternal ? 'target="_blank" rel="noopener"' : '';
+        const iconInfo = d.isExternal ? '<i class="bi bi-arrow-up-right"></i>' : '<i class="bi bi-arrow-right"></i>';
+        const pubInfo = d.publication ? `<br><span class="badge text-bg-light border text-dark mt-1"><i class="bi bi-journal-text me-1"></i>${escHtml(d.publication)}</span>` : '';
+
+        return `<tr>
+          <td class="col-date text-center small text-muted font-monospace">${d.formattedDate}</td>
+          <td class="col-title fw-medium"><a href="${d.url}" ${targetAttr} class="text-decoration-none">${escHtml(d.title)}</a></td>
+          <td class="col-desc small text-muted">${escHtml(d.description)}${pubInfo}</td>
+          <td>
+            <div class="mb-1">${catBadges}</div>
+            <div>${keyBadges}</div>
+          </td>
+          <td class="text-center">
+            <a href="${d.url}" ${targetAttr} class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Avaa kolumni">
+              ${iconInfo}
+            </a>
+          </td>
+        </tr>`;
+      }).join('');
+    }
+
+    const total = filteredKolumnitData.length;
+    const from = total === 0 ? 0 : start + 1;
+    const to = Math.min(start + KOLUMNIT_PAGE_SIZE, total);
+    kolumnitInfo.textContent = `Näytetään ${from}–${to} / ${total}`;
+
+    renderKolumnitPagination(totalPages);
+
+    document.querySelectorAll('.kolumnit-table th.sortable').forEach(th => {
+      th.classList.remove('sort-asc', 'sort-desc');
+      if (th.dataset.col === kolumnitSortCol) {
+        th.classList.add(kolumnitSortDir === 1 ? 'sort-asc' : 'sort-desc');
+      }
+    });
+  }
+
+  function renderKolumnitPagination(total) {
+    if (!kolumnitPagUl) return;
+    kolumnitPagUl.innerHTML = '';
+    if (total <= 1) return;
+    
+    for (let i = 1; i <= total; i++) {
+      const li = document.createElement('li');
+      li.className = `page-item${i === kolumnitCurrentPage ? ' active' : ''}`;
+      const a = document.createElement('a');
+      a.className = 'page-link';
+      a.href = '#';
+      a.textContent = i;
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        kolumnitCurrentPage = i;
+        renderKolumnit();
+        document.getElementById('kolumnit')?.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+      li.appendChild(a);
+      kolumnitPagUl.appendChild(li);
+    }
+  }
+
+  function escHtml(str) {
+    if (!str) return '';
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function slugify(str) {
+    if (!str) return "";
+    return str.toLowerCase().replace(/ä/g, "a").replace(/ö/g, "o").replace(/å/g, "a").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  }
+
+  if (kolumnitSearchInp) kolumnitSearchInp.addEventListener('input', applyKolumnitFilters);
+  
+  const kolumnitResetBtn = document.getElementById('kolumnit-reset');
+  if (kolumnitResetBtn) {
+    kolumnitResetBtn.addEventListener('click', () => {
+      if (kolumnitSearchInp) kolumnitSearchInp.value = '';
+      applyKolumnitFilters();
+    });
+  }
+
+  document.querySelectorAll('.kolumnit-table th.sortable').forEach(th => {
+    th.addEventListener('click', () => sortKolumnitData(th.dataset.col));
+  });
+
+  renderKolumnit();
+})();
+
+// --- Mielipiteet taulukon logiikka ---
+(function () {
+  const MIELIPITEET_PAGE_SIZE = 5;
+  const mielipiteetDataEl = document.getElementById('mielipiteet-data');
+  if (!mielipiteetDataEl) return;
+  const mielipiteetData = JSON.parse(mielipiteetDataEl.textContent);
+
+  let filteredMielipiteetData = [...mielipiteetData];
+  let mielipiteetCurrentPage = 1;
+  let mielipiteetSortCol = 'date';
+  let mielipiteetSortDir = -1; // -1 = desc
+
+  const mielipiteetSearchInp = document.getElementById('mielipiteet-search');
+  const mielipiteetTbody = document.getElementById('mielipiteet-tbody');
+  const mielipiteetInfo = document.getElementById('mielipiteet-info');
+  const mielipiteetPagUl = document.getElementById('mielipiteet-pagination');
+
+  function applyMielipiteetFilters() {
+    const q = mielipiteetSearchInp ? mielipiteetSearchInp.value.toLowerCase().trim() : '';
+    filteredMielipiteetData = mielipiteetData.filter(d => {
+      const matchQ = !q ||
+        (d.title || '').toLowerCase().includes(q) ||
+        (d.description || '').toLowerCase().includes(q) ||
+        (d.publication || '').toLowerCase().includes(q) ||
+        (d.categories || []).some(c => c.toLowerCase().includes(q)) ||
+        (d.keywords || []).some(k => k.toLowerCase().includes(q));
+      return matchQ;
+    });
+    mielipiteetCurrentPage = 1;
+    renderMielipiteet();
+  }
+
+  function sortMielipiteetData(col) {
+    if (mielipiteetSortCol === col) { mielipiteetSortDir *= -1; }
+    else { mielipiteetSortCol = col; mielipiteetSortDir = col === 'date' ? -1 : 1; }
+    
+    filteredMielipiteetData.sort((a, b) => {
+      let av = a[col] ?? '';
+      let bv = b[col] ?? '';
+      if (typeof av === 'string') av = av.toLowerCase();
+      if (typeof bv === 'string') bv = bv.toLowerCase();
+      if (col === 'date') {
+        return (new Date(av) - new Date(bv)) * mielipiteetSortDir;
+      }
+      return av.toString().localeCompare(bv.toString(), 'fi') * mielipiteetSortDir;
+    });
+    mielipiteetCurrentPage = 1;
+    renderMielipiteet();
+  }
+
+  function renderMielipiteet() {
+    if (!mielipiteetTbody || !mielipiteetInfo) return;
+
+    const totalPages = Math.max(1, Math.ceil(filteredMielipiteetData.length / MIELIPITEET_PAGE_SIZE));
+    const start = (mielipiteetCurrentPage - 1) * MIELIPITEET_PAGE_SIZE;
+    const slice = filteredMielipiteetData.slice(start, start + MIELIPITEET_PAGE_SIZE);
+
+    if (slice.length === 0) {
+      mielipiteetTbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-5">Ei tuloksia haulla</td></tr>';
+    } else {
+      mielipiteetTbody.innerHTML = slice.map(d => {
+        const catBadges = (d.categories || []).map(c => `<a href="/kategoriat/${slugify(c)}/" class="badge text-bg-secondary me-1 text-decoration-none">${c}</a>`).join('');
+        const keyBadges = (d.keywords || []).map(k => `<a href="/avainsanat/${slugify(k)}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">${k}</a>`).join('');
+
+        const targetAttr = d.isExternal ? 'target="_blank" rel="noopener"' : '';
+        const iconInfo = d.isExternal ? '<i class="bi bi-arrow-up-right"></i>' : '<i class="bi bi-arrow-right"></i>';
+        const pubInfo = d.publication ? `<br><span class="badge text-bg-light border text-dark mt-1"><i class="bi bi-journal-text me-1"></i>${escHtml(d.publication)}</span>` : '';
+
+        return `<tr>
+          <td class="col-date text-center small text-muted font-monospace">${d.formattedDate}</td>
+          <td class="col-title fw-medium"><a href="${d.url}" ${targetAttr} class="text-decoration-none">${escHtml(d.title)}</a></td>
+          <td class="col-desc small text-muted">${escHtml(d.description)}${pubInfo}</td>
+          <td>
+            <div class="mb-1">${catBadges}</div>
+            <div>${keyBadges}</div>
+          </td>
+          <td class="text-center">
+            <a href="${d.url}" ${targetAttr} class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Avaa mielipidekirjoitus">
+              ${iconInfo}
+            </a>
+          </td>
+        </tr>`;
+      }).join('');
+    }
+
+    const total = filteredMielipiteetData.length;
+    const from = total === 0 ? 0 : start + 1;
+    const to = Math.min(start + MIELIPITEET_PAGE_SIZE, total);
+    mielipiteetInfo.textContent = `Näytetään ${from}–${to} / ${total}`;
+
+    renderMielipiteetPagination(totalPages);
+
+    document.querySelectorAll('.mielipiteet-table th.sortable').forEach(th => {
+      th.classList.remove('sort-asc', 'sort-desc');
+      if (th.dataset.col === mielipiteetSortCol) {
+        th.classList.add(mielipiteetSortDir === 1 ? 'sort-asc' : 'sort-desc');
+      }
+    });
+  }
+
+  function renderMielipiteetPagination(total) {
+    if (!mielipiteetPagUl) return;
+    mielipiteetPagUl.innerHTML = '';
+    if (total <= 1) return;
+    
+    for (let i = 1; i <= total; i++) {
+      const li = document.createElement('li');
+      li.className = `page-item${i === mielipiteetCurrentPage ? ' active' : ''}`;
+      const a = document.createElement('a');
+      a.className = 'page-link';
+      a.href = '#';
+      a.textContent = i;
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        mielipiteetCurrentPage = i;
+        renderMielipiteet();
+        document.getElementById('mielipiteet')?.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+      li.appendChild(a);
+      mielipiteetPagUl.appendChild(li);
+    }
+  }
+
+  function escHtml(str) {
+    if (!str) return '';
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function slugify(str) {
+    if (!str) return "";
+    return str.toLowerCase().replace(/ä/g, "a").replace(/ö/g, "o").replace(/å/g, "a").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  }
+
+  if (mielipiteetSearchInp) mielipiteetSearchInp.addEventListener('input', applyMielipiteetFilters);
+  
+  const mielipiteetResetBtn = document.getElementById('mielipiteet-reset');
+  if (mielipiteetResetBtn) {
+    mielipiteetResetBtn.addEventListener('click', () => {
+      if (mielipiteetSearchInp) mielipiteetSearchInp.value = '';
+      applyMielipiteetFilters();
+    });
+  }
+
+  document.querySelectorAll('.mielipiteet-table th.sortable').forEach(th => {
+    th.addEventListener('click', () => sortMielipiteetData(th.dataset.col));
+  });
+
+  renderMielipiteet();
+})();
+
+
+</script>

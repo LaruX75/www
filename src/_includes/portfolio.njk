@@ -1,0 +1,12 @@
+---
+layout: base.njk
+---
+<article>
+  <h1>{{ title }}</h1>
+  {% if year %}<p class="text-muted">{{ year }}</p>{% endif %}
+  {% if thumbnail %}<img loading="lazy" decoding="async" src="{{ thumbnail }}" class="img-fluid rounded mb-4" alt="{{ title }}">{% endif %}
+  {{ content | safe }}
+  {% if project_url %}<a href="{{ project_url }}" class="btn btn-primary mt-3" target="_blank">Avaa projekti &rarr;</a>{% endif %}
+  <hr class="my-4">
+  <a href="/portfolio/" class="btn btn-outline-primary">&larr; Takaisin portfolioon</a>
+</article>

@@ -1,0 +1,1 @@
+{"layout": "training.njk", "tags": "training", "permalink": "/koulutukset/{{ page.fileSlug }}/"}

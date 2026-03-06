@@ -1,0 +1,62 @@
+
+Running 4 tests using 4 workers
+
+  ✓  2 [chromium] › tests/accessibility.spec.js:43:9 › Accessibility Audits › Megamenu navigation works and is accessible (2.1s)
+┌─────────┬──────────────────────┬───────────┬─────────────────────────────────────────────────────────────────────────────────────────────┬───────┐
+│ (index) │ id                   │ impact    │ description                                                                                 │ nodes │
+├─────────┼──────────────────────┼───────────┼─────────────────────────────────────────────────────────────────────────────────────────────┼───────┤
+│ 0       │ [32m'link-in-text-block'[39m │ [32m'serious'[39m │ [32m'Ensure links are distinguished from surrounding text in a way that does not rely on color'[39m │ [33m1[39m     │
+└─────────┴──────────────────────┴───────────┴─────────────────────────────────────────────────────────────────────────────────────────────┴───────┘
+┌─────────┬───────────────────────────────────────┬────────────┐
+│ (index) │ target                                │ violations │
+├─────────┼───────────────────────────────────────┼────────────┤
+│ 0       │ [32m'["a[href$=\\"oulurepo.oulu.fi\\"]"]'[39m │ [32m'[0]'[39m      │
+└─────────┴───────────────────────────────────────┴────────────┘
+No accessibility violations detected!
+┌─────────┬─────────────────┬────────────┬────────────────────────────────────────────────────────┬───────┐
+│ (index) │ id              │ impact     │ description                                            │ nodes │
+├─────────┼─────────────────┼────────────┼────────────────────────────────────────────────────────┼───────┤
+│ 0       │ [32m'heading-order'[39m │ [32m'moderate'[39m │ [32m'Ensure the order of headings is semantically correct'[39m │ [33m1[39m     │
+└─────────┴─────────────────┴────────────┴────────────────────────────────────────────────────────┴───────┘
+┌─────────┬───────────────────────────────────────────────────────────────────────┬────────────┐
+│ (index) │ target                                                                │ violations │
+├─────────┼───────────────────────────────────────────────────────────────────────┼────────────┤
+│ 0       │ [32m'[".col-lg-6:nth-child(1) > .h-100.border-0.card > .card-body > h6"]'[39m │ [32m'[0]'[39m      │
+└─────────┴───────────────────────────────────────────────────────────────────────┴────────────┘
+Julkaisut AV Violations: 1 accessibility violation was detected
+
+1 !== 0
+
+  ✘  3 [chromium] › tests/accessibility.spec.js:37:9 › Accessibility Audits › Theses page passes basic axe-core accessibility tests (2.7s)
+  ✓  1 [chromium] › tests/accessibility.spec.js:6:9 › Accessibility Audits › Homepage passes basic axe-core accessibility tests (2.7s)
+  ✘  4 [chromium] › tests/accessibility.spec.js:26:9 › Accessibility Audits › Publications page passes basic axe-core accessibility tests (2.8s)
+
+
+  1) [chromium] › tests/accessibility.spec.js:26:9 › Accessibility Audits › Publications page passes basic axe-core accessibility tests 
+
+    AssertionError: 1 accessibility violation was detected
+
+    1 !== 0
+
+        at testResultDependsOnViolations (/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/node_modules/axe-playwright/dist/utils.js:16:26)
+        at /Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/node_modules/axe-playwright/dist/index.js:143:51
+        at fulfilled (/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/node_modules/axe-playwright/dist/index.js:28:58)
+
+    Error Context: test-results/accessibility-Accessibilit-b03db-xe-core-accessibility-tests-chromium/error-context.md
+
+  2) [chromium] › tests/accessibility.spec.js:37:9 › Accessibility Audits › Theses page passes basic axe-core accessibility tests 
+
+    AssertionError: 1 accessibility violation was detected
+
+    1 !== 0
+
+        at testResultDependsOnViolations (/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/node_modules/axe-playwright/dist/utils.js:16:26)
+        at /Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/node_modules/axe-playwright/dist/index.js:143:51
+        at fulfilled (/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/node_modules/axe-playwright/dist/index.js:28:58)
+
+    Error Context: test-results/accessibility-Accessibilit-813f2-xe-core-accessibility-tests-chromium/error-context.md
+
+  2 failed
+    [chromium] › tests/accessibility.spec.js:26:9 › Accessibility Audits › Publications page passes basic axe-core accessibility tests 
+    [chromium] › tests/accessibility.spec.js:37:9 › Accessibility Audits › Theses page passes basic axe-core accessibility tests 
+  2 passed (6.2s)

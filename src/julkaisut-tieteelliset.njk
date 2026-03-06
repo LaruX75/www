@@ -1,0 +1,316 @@
+---
+layout: base.njk
+title: Tieteelliset julkaisut
+permalink: /väitöskirja/
+translationKey: scientific_publications_index
+---
+
+{# Kerätään kaikki julkaisut JSON-muotoon JS:ää varten #}
+<script id="pub-data" type="application/json">
+[
+  {% for pub in collections.pub_tieteellinen %}
+  {
+    "title": {{ pub.data.title | dump | safe }},
+    "year": {{ pub.date | dateYear }},
+    "description": {{ (pub.data.description or "") | dump | safe }},
+    "publication": {{ (pub.data.publication or "") | dump | safe }},
+    "url": {{ (pub.data.url or pub.data.source_url or pub.url or "") | dump | safe }}
+  }{% if not loop.last %},{% endif %}
+  {% endfor %}
+]
+</script>
+
+<section class="kynasta-hero py-4">
+  <div class="container">
+    <div class="row align-items-center g-3">
+      <div class="col-lg-8">
+        <p class="text-uppercase small text-muted mb-1">Tutkimus</p>
+        <h1 class="display-6 fw-bold mb-1">Tieteelliset julkaisut</h1>
+        <p class="text-muted mb-0">Kooste tieteellisistä julkaisuistani. Yhteensä {{ collections.pub_tieteellinen.length }} julkaisua.</p>
+      </div>
+      <div class="col-lg-4 text-lg-end">
+        <a href="/väitöskirja/" class="btn btn-primary btn-sm rounded-pill px-3">Kaikki julkaisut</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container py-4">
+
+  {# ---- Suodatuspalkki ---- #}
+  <div class="row g-2 mb-4 align-items-end">
+    <div class="col-md-5">
+      <label for="pub-search" class="form-label small text-muted mb-1">Hae</label>
+      <input type="search" id="pub-search" class="form-control form-control-sm"
+             placeholder="Otsikko, kirjoittaja tai julkaisu..." autocomplete="off">
+    </div>
+    <div class="col-md-3">
+      <label for="pub-year" class="form-label small text-muted mb-1">Vuosiluku</label>
+      <select id="pub-year" class="form-select form-select-sm">
+        <option value="">Kaikki vuodet</option>
+      </select>
+    </div>
+    <div class="col-md-4 d-flex justify-content-md-end gap-2">
+      <button id="pub-reset" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-x-circle me-1"></i>Tyhjennä suodattimet
+      </button>
+    </div>
+  </div>
+
+  {# ---- Taulukko ---- #}
+  <div class="table-responsive shadow-sm rounded">
+    <table class="table table-hover align-middle mb-0 pub-table">
+      <thead>
+        <tr>
+          <th class="sortable" data-col="description" style="min-width:180px">
+            Kirjoittajat <i class="bi bi-arrow-down-up sort-icon"></i>
+          </th>
+          <th class="sortable text-center" data-col="year" style="width:90px">
+            Vuosi <i class="bi bi-arrow-down-up sort-icon"></i>
+          </th>
+          <th class="sortable" data-col="title">
+            Otsikko <i class="bi bi-arrow-down-up sort-icon"></i>
+          </th>
+          <th class="sortable" data-col="publication" style="min-width:150px">
+            Julkaisun nimi <i class="bi bi-arrow-down-up sort-icon"></i>
+          </th>
+          <th style="width:80px" class="text-center">Linkki</th>
+        </tr>
+      </thead>
+      <tbody id="pub-tbody">
+        <tr><td colspan="5" class="text-center text-muted py-4">Ladataan...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  {# ---- Tulos-info + sivutus ---- #}
+  <div class="d-flex flex-wrap align-items-center justify-content-between mt-3 gap-2">
+    <small id="pub-info" class="text-muted"></small>
+    <nav aria-label="Sivutus">
+      <ul id="pub-pagination" class="pagination pagination-sm mb-0 flex-wrap"></ul>
+    </nav>
+  </div>
+
+</div>
+
+<style>
+/* Hero */
+.kynasta-hero {
+  background-color: var(--bs-tertiary-bg, #f8f9fa);
+  border-bottom: 1px solid var(--bs-border-color);
+}
+[data-bs-theme="dark"] .kynasta-hero {
+  background-color: #1e2a3a !important;
+  border-bottom-color: rgba(255,255,255,0.1);
+}
+[data-bs-theme="dark"] .kynasta-hero h1,
+[data-bs-theme="dark"] .kynasta-hero p {
+  color: #e0e0e0;
+}
+
+/* Taulukko */
+.pub-table th {
+  white-space: nowrap;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background-color: var(--bs-secondary-bg);
+}
+[data-bs-theme="dark"] .pub-table th {
+  background-color: #2e3f59 !important;
+  color: #c0d0e0;
+  border-color: rgba(255,255,255,0.1) !important;
+}
+.pub-table th.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+.pub-table th.sortable:hover {
+  background-color: var(--bs-tertiary-bg);
+}
+[data-bs-theme="dark"] .pub-table th.sortable:hover {
+  background-color: #3a5070 !important;
+}
+.pub-table th.sort-asc .sort-icon::before { content: "\F128"; }
+.pub-table th.sort-desc .sort-icon::before { content: "\F127"; }
+
+/* Sarakkeiden sisältö */
+.pub-table td.col-authors {
+  font-size: 0.82rem;
+  color: var(--bs-secondary-color);
+}
+.pub-table td.col-title {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.pub-table td.col-pub {
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--bs-secondary-color);
+}
+[data-bs-theme="dark"] .pub-table td {
+  border-color: rgba(255,255,255,0.07) !important;
+}
+
+/* Hakukenttä */
+#pub-search:focus {
+  box-shadow: 0 0 0 0.2rem rgba(100,160,255,0.25);
+}
+
+/* Sivutus */
+.pagination .page-link {
+  border-radius: 0.4rem !important;
+  margin: 0 2px;
+}
+</style>
+
+<script>
+(function () {
+  const PAGE_SIZE = 5;
+  const rawData = JSON.parse(document.getElementById('pub-data').textContent);
+
+  // Järjestetään uusin ensin oletuksena
+  let data = [...rawData].sort((a, b) => b.year - a.year);
+  let filteredData = [...data];
+  let currentPage = 1;
+  let sortCol = 'year';
+  let sortDir = -1; // -1 = desc, 1 = asc
+
+  // --- Vuosisuodatin ---
+  const years = [...new Set(data.map(d => d.year))].sort((a, b) => b - a);
+  const yearSel = document.getElementById('pub-year');
+  years.forEach(y => {
+    const opt = document.createElement('option');
+    opt.value = y;
+    opt.textContent = y;
+    yearSel.appendChild(opt);
+  });
+
+  // --- Suodatus ---
+  function applyFilters() {
+    const q = document.getElementById('pub-search').value.toLowerCase().trim();
+    const yr = yearSel.value;
+    filteredData = data.filter(d => {
+      const matchQ = !q ||
+        (d.title || '').toLowerCase().includes(q) ||
+        (d.description || '').toLowerCase().includes(q) ||
+        (d.publication || '').toLowerCase().includes(q);
+      const matchY = !yr || String(d.year) === yr;
+      return matchQ && matchY;
+    });
+    currentPage = 1;
+    render();
+  }
+
+  // --- Lajittelu ---
+  function sortData(col) {
+    if (sortCol === col) { sortDir *= -1; }
+    else { sortCol = col; sortDir = col === 'year' ? -1 : 1; }
+    filteredData.sort((a, b) => {
+      const av = a[col] ?? '';
+      const bv = b[col] ?? '';
+      if (typeof av === 'number') return (av - bv) * sortDir;
+      return av.toString().localeCompare(bv.toString(), 'fi') * sortDir;
+    });
+    currentPage = 1;
+    render();
+  }
+
+  // --- Renderöinti ---
+  function render() {
+    const tbody = document.getElementById('pub-tbody');
+    const info  = document.getElementById('pub-info');
+    const totalPages = Math.max(1, Math.ceil(filteredData.length / PAGE_SIZE));
+    const start = (currentPage - 1) * PAGE_SIZE;
+    const slice = filteredData.slice(start, start + PAGE_SIZE);
+
+    // Taulukko
+    if (slice.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-5">Ei tuloksia</td></tr>';
+    } else {
+      tbody.innerHTML = slice.map(d => {
+        const linkCell = d.url
+          ? `<a href="${escHtml(d.url)}" target="_blank" rel="noopener"
+               class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Avaa julkaisu">
+               <i class="bi bi-arrow-up-right"></i>
+             </a>`
+          : `<span class="text-muted small">—</span>`;
+
+        // Kirjoittajat: description-kentästä ennen ensimmäistä pistettä + sulkumerkkiä tai "Reference:"
+        let authors = d.description || '';
+        authors = authors.replace(/^Reference:\s*/i, '').replace(/&amp;/g, '&');
+        // Leikataan max. 120 merkkiä
+        if (authors.length > 120) authors = authors.slice(0, 117) + '…';
+
+        return `<tr>
+          <td class="col-authors">${escHtml(authors)}</td>
+          <td class="text-center fw-semibold">${d.year || '—'}</td>
+          <td class="col-title">${escHtml(d.title || '—')}</td>
+          <td class="col-pub">${escHtml(d.publication || '—')}</td>
+          <td class="text-center">${linkCell}</td>
+        </tr>`;
+      }).join('');
+    }
+
+    // Info
+    const total = filteredData.length;
+    const from = total === 0 ? 0 : start + 1;
+    const to = Math.min(start + PAGE_SIZE, total);
+    info.textContent = `Näytetään ${from}–${to} / ${total} julkaisua`;
+
+    // Sivutus
+    renderPagination(totalPages);
+
+    // Sarakekorostus
+    document.querySelectorAll('.pub-table th.sortable').forEach(th => {
+      th.classList.remove('sort-asc', 'sort-desc');
+      if (th.dataset.col === sortCol) {
+        th.classList.add(sortDir === 1 ? 'sort-asc' : 'sort-desc');
+      }
+    });
+  }
+
+  function renderPagination(total) {
+    const ul = document.getElementById('pub-pagination');
+    ul.innerHTML = '';
+    for (let i = 1; i <= total; i++) {
+      const li = document.createElement('li');
+      li.className = `page-item${i === currentPage ? ' active' : ''}`;
+      const a = document.createElement('a');
+      a.className = 'page-link';
+      a.href = '#';
+      a.textContent = i;
+      a.title = `Julkaisut ${(i-1)*PAGE_SIZE+1}–${Math.min(i*PAGE_SIZE, filteredData.length)}`;
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        currentPage = i;
+        render();
+        document.querySelector('.pub-table')?.closest('.table-responsive')?.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+      li.appendChild(a);
+      ul.appendChild(li);
+    }
+  }
+
+  function escHtml(str) {
+    return String(str)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // --- Tapahtumankäsittelijät ---
+  document.getElementById('pub-search').addEventListener('input', applyFilters);
+  yearSel.addEventListener('change', applyFilters);
+  document.getElementById('pub-reset').addEventListener('click', () => {
+    document.getElementById('pub-search').value = '';
+    yearSel.value = '';
+    applyFilters();
+  });
+  document.querySelectorAll('.pub-table th.sortable').forEach(th => {
+    th.addEventListener('click', () => sortData(th.dataset.col));
+  });
+
+  // Käynnistys
+  render();
+})();
+</script>

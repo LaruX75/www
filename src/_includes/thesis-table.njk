@@ -1,0 +1,43 @@
+{# _includes/thesis-table.njk
+   Vaatii:
+   - thesisItems: array of thesis objects
+   - showType: boolean — näytetäänkö tyyppisarake
+#}
+<div class="table-responsive">
+  <table class="table table-sm table-hover align-middle mb-0 pub-table" data-thesis-table>
+    <thead>
+      <tr>
+        <th class="text-center" style="width:70px">Vuosi</th>
+        {% if showType %}<th style="width:130px">Tyyppi</th>{% endif %}
+        <th>Otsikko</th>
+        <th style="width:200px">Tekijä</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for thesis in thesisItems %}
+      <tr>
+        <td class="text-center font-monospace small fw-bold text-info">{{ thesis.year }}</td>
+        {% if showType %}
+        <td>
+          {% if thesis.type == "masterThesis" %}
+            <span class="badge bg-primary">Pro gradu</span>
+          {% elif thesis.type == "bachelorThesis" %}
+            <span class="badge bg-info">Kandidaatintyö</span>
+          {% else %}
+            <span class="badge bg-dark">{{ thesis.type }}</span>
+          {% endif %}
+        </td>
+        {% endif %}
+        <td>
+          {% if thesis.link %}
+            <a href="{{ thesis.link }}" target="_blank" class="text-decoration-none fw-medium text-body" rel="noopener">{{ thesis.title }}</a>
+          {% else %}
+            <span class="fw-medium">{{ thesis.title }}</span>
+          {% endif %}
+        </td>
+        <td class="text-secondary small">{{ thesis.authors | join("; ") }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

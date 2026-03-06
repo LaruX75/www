@@ -1,0 +1,276 @@
+---
+layout: base.njk
+title: Ohjatut opinnäytetyöt
+permalink: /opinnaytteet/
+translationKey: theses_index
+---
+
+<section class="kynasta-hero py-4">
+  <div class="container">
+    <div class="row align-items-center g-3">
+      <div class="col-lg-8">
+        <p class="text-uppercase small text-muted mb-1">Ohjaustyö</p>
+        <h1 class="display-6 fw-bold mb-1">Ohjatut opinnäytetyöt</h1>
+        <p class="text-muted mb-0">Hae ja suodata Jari Larun ohjaamia pro gradu -tutkielmia ja kandidaatintöitä OuluREPO-arkistosta.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container py-4">
+  <p class="lead text-muted">
+    OuluREPO-julkaisuarkistosta haetut ohjaamani opinnäytetyöt 
+    {% if theses.stats.firstYear %}({{ theses.stats.firstYear }}–{{ theses.stats.lastYear }}){% endif %}.
+  </p>
+
+  {# Laskurit #}
+  <div class="row g-3 my-4">
+    <div class="col-md-3">
+      <div class="card text-center border-primary h-100">
+        <div class="card-body d-flex flex-column justify-content-center">
+          <div class="display-4 fw-bold text-primary">{{ theses.stats.totalGradut }}</div>
+          <div class="text-muted">Pro gradu</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card text-center border-info h-100">
+        <div class="card-body d-flex flex-column justify-content-center">
+          <div class="display-4 fw-bold text-info">{{ theses.stats.totalKandit }}</div>
+          <div class="text-muted">Kandidaatintyö</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card text-center h-100">
+        <div class="card-body d-flex flex-column justify-content-center">
+          <div class="display-4 fw-bold">{{ theses.stats.total }}</div>
+          <div class="text-muted">Yhteensä</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card text-center border-secondary h-100">
+        <div class="card-body d-flex flex-column justify-content-center">
+          <div class="display-4 fw-bold text-secondary">{{ theses.stats.totalReviewer }}</div>
+          <div class="text-muted">Tarkastettu</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {# Vuosittainen palkki (valinnainen) #}
+  {% if theses.stats.byYear %}
+  <div class="d-flex gap-1 flex-wrap mb-5">
+    {% for item in theses.stats.byYear %}
+      <span class="badge bg-dark">{{ item[0] }}: {{ item[1] }}</span>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {# ---- Pro Gradut Card ---- #}
+  <div class="card shadow-sm mb-5 section-card" id="card-master">
+    <div class="card-header bg-transparent d-flex align-items-center justify-content-between py-3">
+      <h2 class="h5 mb-0"><i class="bi bi-mortarboard-fill me-2 text-primary"></i>Pro gradu -tutkielmat</h2>
+      <span class="badge text-bg-primary">{{ theses.stats.totalGradut }}</span>
+    </div>
+    <div class="card-body p-0">
+      <div class="p-3 bg-light-subtle border-bottom">
+        <div class="row g-2 align-items-end">
+          <div class="col-md-9">
+            <label for="gradu-search" class="form-label small text-muted mb-1">Suodata graduja</label>
+            <input type="search" id="gradu-search" class="form-control form-control-sm" placeholder="Hae otsikosta, tekijästä..." autocomplete="off" data-thesis-search="gradutabl">
+          </div>
+        </div>
+      </div>
+      <div id="gradutabl">
+        {% if theses.gradut.length %}
+          {% set thesisItems = theses.gradut %}
+          {% set showType = false %}
+          {% include "thesis-table.njk" %}
+        {% else %}
+          <div class="p-4 text-center text-muted">Ei tuloksia.</div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  {# ---- Kandidaatintyöt Card ---- #}
+  <div class="card shadow-sm mb-5 section-card" id="card-bachelor">
+    <div class="card-header bg-transparent d-flex align-items-center justify-content-between py-3">
+      <h2 class="h5 mb-0"><i class="bi bi-book-half me-2 text-info"></i>Kandidaatintyöt</h2>
+      <span class="badge text-bg-info">{{ theses.stats.totalKandit }}</span>
+    </div>
+    <div class="card-body p-0">
+      <div class="p-3 bg-light-subtle border-bottom">
+        <div class="row g-2 align-items-end">
+          <div class="col-md-9">
+            <label for="kandi-search" class="form-label small text-muted mb-1">Suodata kandeja</label>
+            <input type="search" id="kandi-search" class="form-control form-control-sm" placeholder="Hae otsikosta, tekijästä..." autocomplete="off" data-thesis-search="kanditabl">
+          </div>
+        </div>
+      </div>
+      <div id="kanditabl">
+        {% if theses.kandit.length %}
+          {% set thesisItems = theses.kandit %}
+          {% set showType = false %}
+          {% include "thesis-table.njk" %}
+        {% else %}
+          <div class="p-4 text-center text-muted">Ei tuloksia.</div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  {# ═══ TARKASTANUT (valinnainen lohko) ═══ #}
+  {% if theses.reviewerOnly.length %}
+  <div class="card shadow-sm mb-5 section-card" id="card-reviewer">
+    <div class="card-header bg-transparent d-flex align-items-center justify-content-between py-3">
+      <h2 class="h5 mb-0"><i class="bi bi-eye-fill me-2 text-secondary"></i>Tarkastajana toiminut</h2>
+      <span class="badge text-bg-secondary">{{ theses.stats.totalReviewer }}</span>
+    </div>
+    <div class="card-body p-0">
+      <div class="p-3 bg-light-subtle border-bottom">
+        <div class="row g-2 align-items-end">
+          <div class="col-md-9">
+            <label for="reviewer-search" class="form-label small text-muted mb-1">Suodata tarkastettuja</label>
+            <input type="search" id="reviewer-search" class="form-control form-control-sm" placeholder="Hae otsikosta, tekijästä..." autocomplete="off" data-thesis-search="reviewertabl">
+          </div>
+        </div>
+      </div>
+      <div id="reviewertabl">
+        {% set thesisItems = theses.reviewerOnly %}
+        {% set showType = true %}
+        {% include "thesis-table.njk" %}
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="text-muted small py-3">
+    Lähde: <a href="https://oulurepo.oulu.fi" target="_blank" rel="noopener" class="text-decoration-underline">OuluREPO</a>,
+    Oulun yliopiston julkaisuarkisto.
+    Data haettu automaattisesti OpenSearch-rajapinnasta: {{ theses.fetchedAt | default("N/A") }}.
+  </div>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const ITEMS_PER_PAGE = 5;
+
+  function initTablePagination(tableContainer) {
+    const table = tableContainer.querySelector('table');
+    if (!table) return;
+
+    const tbody = table.querySelector('tbody');
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+    
+    // Create pagination container if it doesn't exist
+    let paginationNav = tableContainer.querySelector('.thesis-pagination');
+    if (!paginationNav) {
+      paginationNav = document.createElement('nav');
+      const containerId = tableContainer.id || Math.random().toString(36).substring(7);
+      paginationNav.setAttribute('aria-label', `Taulukon sivutus ${containerId}`);
+      paginationNav.className = 'thesis-pagination d-flex justify-content-center mt-3';
+      paginationNav.innerHTML = '<ul class="pagination pagination-sm mb-3"></ul>';
+      tableContainer.appendChild(paginationNav);
+    }
+    
+    const ul = paginationNav.querySelector('ul');
+    
+    let currentPage = 1;
+    let filteredRows = [...rows];
+
+    const searchInput = document.querySelector(`[data-thesis-search="${tableContainer.id}"]`);
+
+    function renderPage(page) {
+      currentPage = page;
+      const totalPages = Math.ceil(filteredRows.length / ITEMS_PER_PAGE);
+      if (currentPage < 1) currentPage = 1;
+      if (currentPage > totalPages && totalPages > 0) currentPage = totalPages;
+
+      // Hide all rows
+      rows.forEach(r => r.style.display = 'none');
+
+      // Show rows for current page
+      const start = (currentPage - 1) * ITEMS_PER_PAGE;
+      const end = start + ITEMS_PER_PAGE;
+      filteredRows.slice(start, end).forEach(r => r.style.display = '');
+
+      renderPaginationControls(totalPages);
+    }
+
+    function renderPaginationControls(totalPages) {
+      ul.innerHTML = '';
+      if (totalPages <= 1) return;
+
+      // Previous button
+      const prevLi = document.createElement('li');
+      prevLi.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
+      prevLi.innerHTML = `<a class="page-link" href="javascript:void(0)" aria-label="Edellinen"><span aria-hidden="true">&laquo;</span></a>`;
+      prevLi.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (currentPage > 1) renderPage(currentPage - 1);
+      });
+      ul.appendChild(prevLi);
+
+      // Page numbers
+      for (let i = 1; i <= totalPages; i++) {
+        const li = document.createElement('li');
+        li.className = `page-item ${i === currentPage ? 'active' : ''}`;
+        li.innerHTML = `<a class="page-link" href="javascript:void(0)">${i}</a>`;
+        li.addEventListener('click', (e) => {
+          e.preventDefault();
+          renderPage(i);
+        });
+        ul.appendChild(li);
+      }
+
+      // Next button
+      const nextLi = document.createElement('li');
+      nextLi.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
+      nextLi.innerHTML = `<a class="page-link" href="javascript:void(0)" aria-label="Seuraava"><span aria-hidden="true">&raquo;</span></a>`;
+      nextLi.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (currentPage < totalPages) renderPage(currentPage + 1);
+      });
+      ul.appendChild(nextLi);
+    }
+
+    // Handle search filtering
+    if (searchInput) {
+      searchInput.addEventListener('input', () => {
+        const q = searchInput.value.toLowerCase();
+        filteredRows = rows.filter(row => row.textContent.toLowerCase().includes(q));
+        renderPage(1);
+      });
+    }
+
+    // Initial render
+    renderPage(1);
+  }
+
+  // Initialize pagination for each table container
+  ['gradutabl', 'kanditabl', 'reviewertabl'].forEach(id => {
+    const container = document.getElementById(id);
+    if (container) {
+      initTablePagination(container);
+    }
+  });
+
+});
+</script>
+
+<style>
+.pub-table th {
+  white-space: nowrap;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background-color: var(--bs-secondary-bg);
+}
+
+[data-bs-theme="dark"] .bg-light-subtle { background-color: #1e2a3a !important; }
+[data-bs-theme="dark"] .card { border-color: rgba(255,255,255,0.08) !important; }
+</style>

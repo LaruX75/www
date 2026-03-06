@@ -1,0 +1,21 @@
+---
+layout: base.njk
+---
+<h1>{{ title }}</h1>
+{% if description %}<p class="lead">{{ description }}</p>{% endif %}
+{% if collections.portfolio.length %}
+  <div class="row mt-4">
+    {% for item in collections.portfolio %}
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          {% if item.data.thumbnail %}<img loading="lazy" decoding="async" src="{{ item.data.thumbnail }}" class="card-img-top" alt="{{ item.data.title }}">{% endif %}
+          <div class="card-body">
+            <h5 class="card-title"><a href="{{ item.url }}" class="text-decoration-none">{{ item.data.title }}</a></h5>
+            {% if item.data.year %}<p class="text-muted small">{{ item.data.year }}</p>{% endif %}
+            {% if item.data.description %}<p class="card-text">{{ item.data.description }}</p>{% endif %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}

@@ -1,0 +1,25 @@
+---
+layout: base.njk
+---
+<article class="training-page">
+  <h1>{{ title }}</h1>
+  {% if training_type %}<span class="badge bg-primary mb-2">{{ training_type }}</span>{% endif %}
+  {% if target_group %}<p class="text-muted"><strong>Kohderyhmä:</strong> {{ target_group }}</p>{% endif %}
+  {% if duration %}<p class="text-muted"><strong>Kesto:</strong> {{ duration }}</p>{% endif %}
+  {{ content | safe }}
+  {% if materials %}
+    <h2>Materiaalit</h2>
+    <div class="list-group">
+      {% for material in materials %}
+        <div class="list-group-item">
+          {% if material.url %}<a href="{{ material.url }}" target="_blank"><strong>{{ material.title }}</strong></a>
+          {% else %}<strong>{{ material.title }}</strong>{% endif %}
+          {% if material.type %}<span class="badge bg-light text-dark ms-2">{{ material.type }}</span>{% endif %}
+          {% if material.description %}<p class="mb-0 small text-muted">{{ material.description }}</p>{% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+  <hr class="my-4">
+  <a href="/koulutukset/" class="btn btn-outline-primary">&larr; Kaikki koulutukset</a>
+</article>

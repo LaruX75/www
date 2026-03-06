@@ -1,0 +1,20 @@
+---
+layout: base.njk
+title: Keywords
+permalink: /en/keywords/
+translationKey: keywords_index
+lang: en
+---
+<section>
+  <div class="container">
+    <h1 class="h3 mb-3">Keywords</h1>
+    <div class="list-group">
+      {% for key in collections.keywordList %}
+      <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" href="/avainsanat/{{ key.slug }}/">
+        <span>{{ key.name }}</span>
+        <span class="badge text-bg-secondary rounded-pill">{{ key.count }}</span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>

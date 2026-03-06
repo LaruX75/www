@@ -1,0 +1,25 @@
+{% set currentLang = lang or (page.url | langFromUrl) %}
+<footer class="py-5 border-top bg-body-tertiary mt-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6 text-center text-md-start">
+        <p class="mb-md-0 text-body-secondary small">
+          {% if currentLang == "en" %}
+          &copy; {{ site.author }}. All rights reserved.
+          {% else %}
+          &copy; {{ site.author }}. Kaikki oikeudet pidätetään.
+          {% endif %}
+        </p>
+      </div>
+      <div class="col-md-6 text-center text-md-end">
+        <p class="mb-0 text-body-secondary small">
+          {% if currentLang == "en" %}
+          Built with <a href="https://www.11ty.dev/" target="_blank" rel="noopener" class="text-decoration-none text-body-secondary fw-semibold">Eleventy</a>
+          {% else %}
+          Rakennettu <a href="https://www.11ty.dev/" target="_blank" rel="noopener" class="text-decoration-none text-body-secondary fw-semibold">Eleventyllä</a>
+          {% endif %}
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>

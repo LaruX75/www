@@ -1,0 +1,28 @@
+---
+layout: base.njk
+---
+{% set currentLang = lang or (page.url | langFromUrl) %}
+<h1>{{ title }}</h1>
+{% if description %}<p class="lead">{{ description }}</p>{% endif %}
+{% set types = {"kurssi": "Courses", "workshop": "Workshops", "luento": "Lectures", "materiaali": "Materials", "muu": "Other"} if currentLang == "en" else {"kurssi": "Kurssit", "workshop": "Workshopit", "luento": "Luennot", "materiaali": "Materiaalit", "muu": "Muut"} %}
+{% for type_key, type_label in types %}
+  {% set filtered = collections.training | filterByType(type_key) %}
+  {% if filtered.length %}
+    <h2 class="mt-4">{{ type_label }}</h2>
+    <div class="row">
+      {% for item in filtered %}
+        <div class="col-md-6 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title"><a href="{{ item.url }}" class="text-decoration-none">{{ item.data.title }}</a></h5>
+              {% if item.data.target_group %}<p class="text-muted small mb-1">{{ item.data.target_group }}</p>{% endif %}
+              {% if item.data.duration %}<span class="badge bg-secondary">{{ item.data.duration }}</span>{% endif %}
+              {% if item.data.description %}<p class="card-text mt-2">{{ item.data.description }}</p>{% endif %}
+          </div>
+            <div class="card-footer bg-transparent"><a href="{{ item.url }}" class="btn btn-sm btn-outline-primary">{{ "More details" if currentLang == "en" else "Lisätiedot" }}</a></div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endfor %}

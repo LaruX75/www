@@ -1,0 +1,319 @@
+---
+layout: base.njk
+---
+<section class="blog-hero py-4">
+  <div class="container">
+    {% set currentLang = lang or (page.url | langFromUrl) %}
+    {% set txt = {
+      "hero": "Read the latest thoughts, insights and updates.",
+      "all": "All posts",
+      "searchLabel": "Search posts",
+      "searchPlaceholder": "Search by title, summary, categories...",
+      "clear": "Clear",
+      "date": "Date",
+      "title": "Title",
+      "summary": "Summary",
+      "cats": "Categories & Keywords",
+      "link": "Link",
+      "loading": "Loading posts...",
+      "noResults": "No results for this search",
+      "showing": "Showing",
+      "of": "/"
+    } if currentLang == "en" else {
+      "hero": "Lue uusimmat ajatukset, oivallukset ja kuulumiset.",
+      "all": "Kaikki kirjoitukset",
+      "searchLabel": "Hae kirjoituksia",
+      "searchPlaceholder": "Hae otsikosta, tiivistelmästä, kategorioista...",
+      "clear": "Tyhjennä",
+      "date": "Päivämäärä",
+      "title": "Otsikko",
+      "summary": "Tiivistelmä",
+      "cats": "Kategoriat & Avainsanat",
+      "link": "Linkki",
+      "loading": "Ladataan kirjoituksia...",
+      "noResults": "Ei tuloksia haulla",
+      "showing": "Näytetään",
+      "of": "/"
+    } %}
+    <h1 class="display-6 fw-bold mb-2">{{ title }}</h1>
+    <p class="text-muted">{{ txt.hero }}</p>
+  </div>
+</section>
+
+{# Kerätään kaikki blogipostaukset JSON-muotoon JS:ää varten #}
+<script id="blog-data" type="application/json">
+[
+  {% for post in collections.blog %}
+  {
+    "title": {{ post.data.title | dump | safe }},
+    "date": "{{ post.date }}",
+    "formattedDate": "{{ post.date | dateFormat }}",
+    "description": {{ (post.data.description or (post.content | excerpt)) | dump | safe }},
+    "url": "{{ post.url }}",
+    "categories": {{ (post.data.categories or []) | dump | safe }},
+    "keywords": {{ (post.data.keywords or []) | dump | safe }}
+  }{% if not loop.last %},{% endif %}
+  {% endfor %}
+]
+</script>
+
+<section id="blog-table-section" class="py-4">
+  <div class="container">
+    <div class="card shadow-sm">
+      <div class="card-header bg-transparent d-flex align-items-center justify-content-between">
+        <h2 class="h4 mb-0">{{ txt.all }}</h2>
+        <span class="badge text-bg-secondary">{{ collections.blog.length }}</span>
+      </div>
+      <div class="card-body p-0">
+        {# ---- Suodatuspalkki ---- #}
+        <div class="p-3 bg-light border-bottom">
+          <div class="row g-2 align-items-end">
+            <div class="col-md-8">
+              <label for="blog-search" class="form-label small text-muted mb-1">{{ txt.searchLabel }}</label>
+              <input type="search" id="blog-search" class="form-control form-control-sm"
+                     placeholder="{{ txt.searchPlaceholder }}" autocomplete="off">
+            </div>
+            <div class="col-md-4 d-flex justify-content-md-end gap-2">
+              <button id="blog-reset" class="btn btn-outline-secondary btn-sm">
+                <i class="bi bi-x-circle me-1"></i>{{ txt.clear }}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {# ---- Taulukko ---- #}
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0 blog-table">
+            <thead>
+              <tr>
+                <th class="sortable text-center" data-col="date" style="width:140px">
+                  {{ txt.date }} <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
+                </th>
+                <th class="sortable" data-col="title" style="min-width:200px">
+                  {{ txt.title }} <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
+                </th>
+                <th style="min-width:250px">{{ txt.summary }}</th>
+                <th>{{ txt.cats }}</th>
+                <th style="width:80px" class="text-center">{{ txt.link }}</th>
+              </tr>
+            </thead>
+            <tbody id="blog-tbody">
+              <tr><td colspan="5" class="text-center text-muted py-4">{{ txt.loading }}</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top">
+        <small id="blog-info" class="text-muted"></small>
+        <nav aria-label="Sivutus">
+          <ul id="blog-pagination" class="pagination pagination-sm mb-0 flex-wrap"></ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.blog-hero {
+  background-color: var(--bs-tertiary-bg, #f8f9fa);
+  border-bottom: 1px solid var(--bs-border-color);
+}
+[data-bs-theme="dark"] .blog-hero {
+  background-color: #1e2a3a !important;
+}
+
+.blog-table th {
+  white-space: nowrap;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background-color: var(--bs-tertiary-bg) !important;
+  padding: 0.75rem 0.5rem;
+}
+[data-bs-theme="dark"] .blog-table th {
+  background-color: #2e3f59 !important;
+  color: #c0d0e0;
+}
+.blog-table th.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+.blog-table th.sortable:hover {
+  background-color: var(--bs-secondary-bg) !important;
+}
+.blog-table th.sort-asc .sort-icon::before { content: "\F128"; opacity: 1 !important; color: var(--bs-primary); }
+.blog-table th.sort-desc .sort-icon::before { content: "\F127"; opacity: 1 !important; color: var(--bs-primary); }
+
+.blog-table td {
+  padding: 0.75rem 0.5rem;
+  vertical-align: top;
+}
+.blog-table td.col-date {
+  font-size: 0.85rem;
+  color: var(--bs-secondary-color);
+}
+.blog-table td.col-title {
+  font-weight: 600;
+}
+.blog-table td.col-desc {
+  font-size: 0.875rem;
+  color: var(--bs-secondary-color);
+}
+
+[data-bs-theme="dark"] .blog-table td {
+  border-color: rgba(255,255,255,0.07) !important;
+}
+
+[data-bs-theme="dark"] .badge.text-bg-light {
+  background-color: rgba(255,255,255,0.12) !important;
+  color: #e0e0e0 !important;
+  border-color: rgba(255,255,255,0.2) !important;
+}
+</style>
+
+<script>
+(function () {
+  const PAGE_SIZE = 10;
+  const dataEl = document.getElementById('blog-data');
+  if (!dataEl) return;
+  const data = JSON.parse(dataEl.textContent);
+
+  let filteredData = [...data];
+  let currentPage = 1;
+  let sortCol = 'date';
+  let sortDir = -1; // -1 = desc (uusin ensin)
+
+  const searchInp = document.getElementById('blog-search');
+  const tbody = document.getElementById('blog-tbody');
+  const info = document.getElementById('blog-info');
+  const pagUl = document.getElementById('blog-pagination');
+
+  function applyFilters() {
+    const q = searchInp ? searchInp.value.toLowerCase().trim() : '';
+    filteredData = data.filter(d => {
+      const matchQ = !q ||
+        (d.title || '').toLowerCase().includes(q) ||
+        (d.description || '').toLowerCase().includes(q) ||
+        (d.categories || []).some(c => c.toLowerCase().includes(q)) ||
+        (d.keywords || []).some(k => k.toLowerCase().includes(q));
+      return matchQ;
+    });
+    currentPage = 1;
+    render();
+  }
+
+  function sortData(col) {
+    if (sortCol === col) { sortDir *= -1; }
+    else { sortCol = col; sortDir = col === 'date' ? -1 : 1; }
+    
+    filteredData.sort((a, b) => {
+      let av = a[col] ?? '';
+      let bv = b[col] ?? '';
+      if (typeof av === 'string') av = av.toLowerCase();
+      if (typeof bv === 'string') bv = bv.toLowerCase();
+      if (col === 'date') {
+        return (new Date(av) - new Date(bv)) * sortDir;
+      }
+      return av.toString().localeCompare(bv.toString(), 'fi') * sortDir;
+    });
+    currentPage = 1;
+    render();
+  }
+
+  function render() {
+    if (!tbody || !info) return;
+
+    const totalPages = Math.max(1, Math.ceil(filteredData.length / PAGE_SIZE));
+    const start = (currentPage - 1) * PAGE_SIZE;
+    const slice = filteredData.slice(start, start + PAGE_SIZE);
+
+    if (slice.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-5">{{ txt.noResults }}</td></tr>';
+    } else {
+      tbody.innerHTML = slice.map(d => {
+        const catBadges = (d.categories || []).map(c => `<a href="/kategoriat/${slugify(c)}/" class="badge text-bg-secondary me-1 text-decoration-none">${c}</a>`).join('');
+        const keyBadges = (d.keywords || []).map(k => `<a href="/avainsanat/${slugify(k)}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">${k}</a>`).join('');
+
+        return `<tr>
+          <td class="col-date text-center">${d.formattedDate}</td>
+          <td class="col-title"><a href="${d.url}" class="text-decoration-none">${escHtml(d.title)}</a></td>
+          <td class="col-desc small">${escHtml(d.description)}</td>
+          <td>
+            <div class="mb-1">${catBadges}</div>
+            <div>${keyBadges}</div>
+          </td>
+          <td class="text-center">
+            <a href="${d.url}" class="btn btn-outline-primary btn-sm rounded-pill px-2">
+              <i class="bi bi-arrow-right"></i>
+            </a>
+          </td>
+        </tr>`;
+      }).join('');
+    }
+
+    const total = filteredData.length;
+    const from = total === 0 ? 0 : start + 1;
+    const to = Math.min(start + PAGE_SIZE, total);
+    info.textContent = `{{ txt.showing }} ${from}-${to} {{ txt.of }} ${total}`;
+
+    renderPagination(totalPages);
+
+    document.querySelectorAll('.blog-table th.sortable').forEach(th => {
+      th.classList.remove('sort-asc', 'sort-desc');
+      if (th.dataset.col === sortCol) {
+        th.classList.add(sortDir === 1 ? 'sort-asc' : 'sort-desc');
+      }
+    });
+  }
+
+  function renderPagination(total) {
+    if (!pagUl) return;
+    pagUl.innerHTML = '';
+    if (total <= 1) return;
+    
+    for (let i = 1; i <= total; i++) {
+      const li = document.createElement('li');
+      li.className = `page-item${i === currentPage ? ' active' : ''}`;
+      const a = document.createElement('a');
+      a.className = 'page-link';
+      a.href = '#';
+      a.textContent = i;
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        currentPage = i;
+        render();
+        document.getElementById('blog-table-section')?.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+      li.appendChild(a);
+      pagUl.appendChild(li);
+    }
+  }
+
+  function escHtml(str) {
+    if (!str) return '';
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function slugify(str) {
+    if (!str) return "";
+    return str.toLowerCase().replace(/ä/g, "a").replace(/ö/g, "o").replace(/å/g, "a").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  }
+
+  if (searchInp) searchInp.addEventListener('input', applyFilters);
+  
+  const resetBtn = document.getElementById('blog-reset');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      if (searchInp) searchInp.value = '';
+      applyFilters();
+    });
+  }
+
+  document.querySelectorAll('.blog-table th.sortable').forEach(th => {
+    th.addEventListener('click', () => sortData(th.dataset.col));
+  });
+
+  // Alkurenderöinti
+  render();
+})();
+</script>

@@ -1,0 +1,26 @@
+{
+  "name": "jarilaru-fi",
+  "version": "1.0.0",
+  "scripts": {
+    "prestart": "node scripts/clean-og-images.js",
+    "start": "npx @11ty/eleventy --serve",
+    "prebuild": "node scripts/clean-og-images.js",
+    "build": "npx @11ty/eleventy && npx pagefind --site _site"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "@11ty/eleventy-fetch": "^5.1.1",
+    "@11ty/eleventy-plugin-rss": "^1.2.0",
+    "@fontsource/inter": "^5.2.8",
+    "dotenv": "^17.3.1",
+    "eleventy-plugin-broken-links": "^2.2.1",
+    "eleventy-plugin-og-image": "^2.1.3",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.11.1",
+    "@playwright/test": "^1.58.2",
+    "@quasibit/eleventy-plugin-sitemap": "^2.2.0",
+    "axe-playwright": "^2.2.2"
+  }
+}

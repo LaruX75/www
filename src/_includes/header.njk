@@ -1,0 +1,230 @@
+{% set currentLang = lang or (page.url | langFromUrl) %}
+{% set fiPageUrl = collections.all | findTranslationUrl(translationKey, "fi") %}
+{% set enPageUrl = collections.all | findTranslationUrl(translationKey, "en") %}
+
+{% if currentLang == "en" %}
+<nav id="siteNav" class="navbar navbar-expand-lg site-navbar sticky-top" aria-label="Main Navigation" style="z-index:1030; transition: background-color .3s ease, box-shadow .3s ease;">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="/en/">Jari Laru</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMainEn" aria-controls="navbarMainEn" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarMainEn">
+      <ul class="navbar-nav ms-auto align-items-lg-center flex-lg-nowrap evelenty-main-nav">
+        <li class="nav-item"><a class="nav-link {% if page.url == '/en/' %}active{% endif %}" href="/en/">Home</a></li>
+        <li class="nav-item"><a class="nav-link {% if page.url and '/en/about/' in page.url %}active{% endif %}" href="/en/about/">About</a></li>
+        <li class="nav-item"><a class="nav-link {% if page.url and '/en/cv/' in page.url %}active{% endif %}" href="/en/cv/">CV</a></li>
+        <li class="nav-item"><a class="nav-link {% if page.url and '/en/writings/' in page.url %}active{% endif %}" href="/en/writings/">Writings</a></li>
+        <li class="nav-item"><a class="nav-link {% if page.url and '/en/publications/' in page.url %}active{% endif %}" href="/en/publications/">Publications</a></li>
+        <li class="nav-item"><a class="nav-link {% if page.url and '/en/theses/' in page.url %}active{% endif %}" href="/en/theses/">Theses</a></li>
+        <li class="nav-item"><a class="nav-link {% if page.url and '/en/presentations/' in page.url %}active{% endif %}" href="/en/presentations/">Presentations</a></li>
+        <li class="nav-item"><a class="nav-link {% if page.url and '/en/contact/' in page.url %}active{% endif %}" href="/en/contact/">Contact</a></li>
+
+        <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+          <div class="d-flex align-items-center gap-2">
+            <button class="btn btn-sm rounded-circle d-flex align-items-center justify-content-center" id="searchToggleBtn" style="width: 38px; height: 38px;" aria-label="Search site" title="Search site">
+              <i class="bi bi-search"></i>
+            </button>
+            <button class="btn btn-sm rounded-circle d-flex align-items-center justify-content-center" id="themeToggleBtn" style="width: 38px; height: 38px;" aria-label="Toggle theme" title="Toggle theme">
+              <i class="bi bi-moon-stars-fill" id="themeToggleIcon"></i>
+            </button>
+          </div>
+        </li>
+        <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+          <a class="nav-link py-0 d-flex align-items-center gap-1 text-decoration-none" href="{{ fiPageUrl or (page.url | switchLangUrl('fi')) }}" lang="fi" aria-label="Vaihda kieleksi suomi">
+            <span aria-hidden="true">🇫🇮</span><span>FI</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div id="searchOverlay" class="search-overlay" style="display: none;">
+  <div class="search-overlay-inner">
+    <div class="container py-4">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="mb-0"><i class="bi bi-search me-2"></i>Search</h3>
+        <button class="btn btn-sm rounded-circle" id="searchCloseBtn" aria-label="Close search" style="width: 38px; height: 38px;">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+      <div id="pagefindSearch"></div>
+    </div>
+  </div>
+</div>
+{% else %}
+<nav id="siteNav" class="navbar navbar-expand-lg site-navbar sticky-top" aria-label="Päänavigaatio" style="z-index:1030; transition: background-color .3s ease, box-shadow .3s ease;">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="/">Jari Laru</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Avaa valikko">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <ul class="navbar-nav ms-auto align-items-lg-center flex-lg-nowrap evelenty-main-nav">
+        <li class="nav-item">
+          <a class="nav-link {% if page.url == '/' %}active{% endif %}" href="/">
+            <i class="bi bi-house-door-fill"></i> Etusivu
+          </a>
+        </li>
+
+        <li class="nav-item dropdown mega-dropdown">
+          <a class="nav-link dropdown-toggle {% if page.url and ('/tietoa/' in page.url or '/autolomat/' in page.url or '/cv/' in page.url or '/portfolio/' in page.url or '/yritys/' in page.url) %}active{% endif %}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-fill"></i> Minä
+          </a>
+          <div class="dropdown-menu mega-menu-panel p-0 border-0">
+            <div class="mega-wrap grid-8-4">
+              <div class="mega-left three-cols">
+                <section>
+                  <h5>Yleistä & harrastukset</h5>
+                  <a class="menu-link" href="/tietoa/"><i class="bi bi-info-circle me-2"></i><span>Yleistä</span></a>
+                  <small class="menu-link-desc">Henkilökuva, harrastukset ja vapaa-aika.</small>
+                  <a href="/autolomat/"><i class="bi bi-car-front me-2"></i>Autolomat</a>
+                </section>
+                <section>
+                  <h5>Politiikka (rooli)</h5>
+                  <a class="menu-link" href="/politiiikka/"><i class="bi bi-person-badge me-2"></i><span>Jari Laru, poliitikko</span></a>
+                  <small class="menu-link-desc">Luottamustoimet ja vaikuttaminen Oulussa.</small>
+                  <a class="menu-link" href="/sidonnaisuudet/"><i class="bi bi-link-45deg me-2"></i><span>Sidonnaisuudet</span></a>
+                  <small class="menu-link-desc">Ilmoitukset sidonnaisuuksista ja jäsenyyksistä.</small>
+                  <a href="/kynasta/"><i class="bi bi-pencil-square me-2"></i>Kynästä</a>
+                </section>
+                <section>
+                  <h5>Työ & yritys</h5>
+                  <a class="menu-link" href="/cv/"><i class="bi bi-file-earmark-person me-2"></i><span>Ansioluettelo</span></a>
+                  <small class="menu-link-desc">Koulutus, työkokemus ja osaaminen.</small>
+                  <a class="menu-link" href="/portfolio/"><i class="bi bi-folder me-2"></i><span>Portfolio</span></a>
+                  <small class="menu-link-desc">Valikoidut projektit ja työnäytteet.</small>
+                  <a href="/julkaisut/"><i class="bi bi-journal-text me-2"></i>Julkaisut</a>
+                  <a href="/yritys/"><i class="bi bi-building me-2"></i>Larux t:mi</a>
+                </section>
+              </div>
+              <aside class="mega-right showcase-card">
+                <img src="/img/uploads/2020/01/jari.laru_1397908734_26-e1610053137214.jpg" alt="Jari Laru" class="img-fluid rounded-3 mb-3">
+                <h5>Jari Laru</h5>
+                <p>Tutkija, kouluttaja ja kunnallispoliitikko.</p>
+              </aside>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown mega-dropdown">
+          <a class="nav-link dropdown-toggle {% if page.url and ('/opetus/' in page.url or '/portfolio/' in page.url or '/tutkimus/' in page.url or '/v%C3%A4it%C3%B6skirja/' in page.url or '/väitöskirja/' in page.url or '/palkinnot/' in page.url) %}active{% endif %}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-briefcase-fill"></i> Työ
+          </a>
+          <div class="dropdown-menu mega-menu-panel p-0 border-0">
+            <div class="mega-wrap grid-8-4">
+              <div class="mega-left three-cols">
+                <section>
+                  <h5>Opetus & portfoliot</h5>
+                  <a href="/opetus/"><i class="bi bi-person-video3 me-2"></i>Opetus</a>
+                  <small>Kurssit, materiaalit ja pedagoginen työ.</small>
+                  <a href="/portfolio/"><i class="bi bi-folder me-2"></i>Opetusportfolio</a>
+                </section>
+                <section>
+                  <h5>Tutkimus & julkaisut</h5>
+                  <a href="/tyoni-yliopistonlehtorina/"><i class="bi bi-briefcase me-2"></i>Työni yliopistonlehtorina</a>
+                  <small>Yliopistotyöni kokonaisuus.</small>
+                  <a href="/tutkimus/"><i class="bi bi-search me-2"></i>Tutkimus</a>
+                  <small>Tutkimushankkeet, aiheet ja julkaisut.</small>
+                  <a href="/julkaisut/"><i class="bi bi-journal-text me-2"></i>Julkaisuluettelo</a>
+                  <a href="/opinnaytteet/"><i class="bi bi-mortarboard me-2"></i>Opinnäytetyöt</a>
+                  <small>Ohjatut pro gradut ja kandidaatintyöt.</small>
+                </section>
+                <section>
+                  <h5>Palkinnot & sosiaalinen media</h5>
+                  <a href="/palkinnot/"><i class="bi bi-award me-2"></i>Palkinnot</a>
+                  <a href="https://www.linkedin.com/in/jarilaru/" target="_blank" rel="noopener"><i class="bi bi-linkedin me-2"></i>LinkedIn</a>
+                  <a href="https://www.researchgate.net/profile/Jari-Laru" target="_blank" rel="noopener"><i class="bi bi-globe me-2"></i>ResearchGate</a>
+                </section>
+              </div>
+              <aside class="mega-right cta-card">
+                <h5>Tilaa minut kouluttajaksi</h5>
+                <p>Koulutukset tekoälystä, oppimisteknologiasta ja modernista pedagogiikasta.</p>
+                <a class="btn btn-accent btn-lg w-100" href="/yhteystiedot/">Pyydä tarjous</a>
+              </aside>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown mega-dropdown">
+          <a class="nav-link dropdown-toggle {% if page.url and ('/politiikka/' in page.url or '/politiiikka/' in page.url) %}active{% endif %}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-bank2"></i> Politiikka
+          </a>
+          <div class="dropdown-menu mega-menu-panel p-0 border-0">
+            <div class="mega-wrap single-col">
+              <section>
+                <h5>Oulun kaupungin poliittiset luottamustehtävät</h5>
+                <p class="menu-desc">Nykyiset roolit, vastuut ja päätöksenteon tehtävät.</p>
+                <h5 class="mt-3">Muut poliittiset luottamustehtävät</h5>
+                <p class="menu-desc">Muut hallinnolliset ja yhteiskunnalliset tehtävät.</p>
+                <a href="/politiiikka/"><i class="bi bi-person-badge me-2"></i>Jari Laru, poliitikko</a>
+                <a href="/sidonnaisuudet/"><i class="bi bi-link-45deg me-2"></i>Sidonnaisuudet</a>
+              </section>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown mega-dropdown">
+          <a class="nav-link dropdown-toggle {% if page.url and ('/kynasta/' in page.url or '/blogi/' in page.url) %}active{% endif %}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-pencil-fill"></i> Kynästä
+          </a>
+          <div class="dropdown-menu mega-menu-panel p-0 border-0">
+            <div class="mega-wrap two-cols">
+              <section>
+                <h5>Kirjoitukset ja puheet</h5>
+                <p class="menu-desc">Kaikki tuotettu sisältö yhdessä paikassa.</p>
+                <a href="/kynasta/#mielipiteet"><i class="bi bi-chat-text me-2"></i>Mielipiteet</a>
+                <a href="/kynasta/#kolumnit"><i class="bi bi-journal-richtext me-2"></i>Kolumnit</a>
+                <a href="/kynasta/#aloitteet"><i class="bi bi-megaphone me-2"></i>Aloitteet</a>
+                <a href="/kynasta/#puheet"><i class="bi bi-mic me-2"></i>Puheet</a>
+                <a href="/blogi/"><i class="bi bi-pen me-2"></i>Blogi</a>
+                <a href="/julkaisut/"><i class="bi bi-journal-text me-2"></i>Julkaisuluettelo</a>
+              </section>
+              <section class="d-none d-lg-block"></section>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link {% if page.url and '/yhteystiedot/' in page.url %}active{% endif %}" href="/yhteystiedot/">
+            <i class="bi bi-envelope"></i> Ota yhteyttä
+          </a>
+        </li>
+
+        <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+          <div class="d-flex align-items-center gap-2">
+            <button class="btn btn-sm rounded-circle d-flex align-items-center justify-content-center" id="searchToggleBtn" style="width: 38px; height: 38px;" aria-label="Hae sivustolta" title="Hae sivustolta">
+              <i class="bi bi-search"></i>
+            </button>
+            <button class="btn btn-sm rounded-circle d-flex align-items-center justify-content-center" id="themeToggleBtn" style="width: 38px; height: 38px;" aria-label="Vaihda teemaa" title="Vaihda teemaa">
+              <i class="bi bi-moon-stars-fill" id="themeToggleIcon"></i>
+            </button>
+          </div>
+        </li>
+        <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+          <a class="nav-link py-0 d-flex align-items-center gap-1 text-decoration-none" href="{{ enPageUrl or (page.url | switchLangUrl('en')) }}" lang="en" aria-label="Switch language to English">
+            <span aria-hidden="true">🇬🇧</span><span>EN</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div id="searchOverlay" class="search-overlay" style="display: none;">
+  <div class="search-overlay-inner">
+    <div class="container py-4">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="mb-0"><i class="bi bi-search me-2"></i>Hae sivustolta</h3>
+        <button class="btn btn-sm rounded-circle" id="searchCloseBtn" aria-label="Sulje haku" style="width: 38px; height: 38px;">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+      <div id="pagefindSearch"></div>
+    </div>
+  </div>
+</div>
+{% endif %}

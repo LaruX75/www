@@ -1,0 +1,31 @@
+---
+layout: base.njk
+---
+<section>
+  <div class="container">
+    {% set currentLang = lang or (page.url | langFromUrl) %}
+    <article class="page-content">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h1 class="display-6 fw-bold">{{ title }}</h1>
+          {% if subtitle %}
+            <p class="lead text-muted">{{ subtitle }}</p>
+          {% endif %}
+          <div class="content-prose">{{ content | safe }}</div>
+          {% if categories %}
+            <div class="mt-4">
+              <p class="text-uppercase small text-muted mb-2">{{ "Categories" if currentLang == "en" else "Kategoriat" }}</p>
+              {% for cat in categories %}<a class="badge text-bg-secondary me-1 text-decoration-none" href="/kategoriat/{{ cat | slugify }}/">{{ cat }}</a>{% endfor %}
+            </div>
+          {% endif %}
+          {% if keywords %}
+            <div class="mt-3">
+              <p class="text-uppercase small text-muted mb-2">{{ "Keywords" if currentLang == "en" else "Avainsanat" }}</p>
+              {% for key in keywords %}<a class="badge text-bg-light text-dark border me-1 text-decoration-none" href="/avainsanat/{{ key | slugify }}/">{{ key }}</a>{% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
