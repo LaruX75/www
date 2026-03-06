@@ -2,6 +2,8 @@
 title: "Ansioluettelo"
 permalink: /cv/
 translationKey: cv
+layout: page.njk
+lang: fi
 templateEngineOverride: md
 ---
 <div>
