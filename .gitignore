@@ -6,3 +6,11 @@ _site/
 matkapaketti.tar.gz
 *.tar.gz
 *.zip
+
+# Playwright Test Outputs
+playwright-report/
+test-results/
+axe_results.txt
+
+# Environment variables
+.env
