@@ -22,17 +22,17 @@ lang: en
   <div class="container py-4">
     <div class="row align-items-center g-4">
       <div class="col-lg-8">
-        <p class="text-uppercase small text-muted mb-2">Julkaisut</p>
-        <h1 class="display-6 fw-bold mb-2">Julkaisut & Analytiikka</h1>
-        <p class="text-muted">Tieteelliset julkaisuni suoraan <a href="https://research.fi/en/results/person/0000-0003-0347-0182" target="_blank" rel="noopener noreferrer">Research.fi-profiilista</a> päivitettynä.</p>
+        <p class="text-uppercase small text-muted mb-2">Publications</p>
+        <h1 class="display-6 fw-bold mb-2">Publications & Analytics</h1>
+        <p class="text-muted">My scientific publications, updated directly from my <a href="https://research.fi/en/results/person/0000-0003-0347-0182" target="_blank" rel="noopener noreferrer">Research.fi profile</a>.</p>
       </div>
       <div class="col-lg-4">
         <div class="d-flex flex-wrap gap-2 justify-content-lg-end" id="headerMetrics">
-          <span class="badge text-bg-primary text-dark fs-6">{{ researchfi.length }} julkaisua</span>
-          <span class="badge text-bg-info fs-6">{{ articleCount }} artikkelia</span>
-          <span class="badge text-bg-secondary fs-6">{{ confCount }} konferenssia</span>
-          <span class="badge text-bg-warning fs-6 d-none" id="dynamicTotalCitations" title="Lähde: {{ semanticscholar.metrics.sources }}">... viittausta</span>
-          <span class="badge text-bg-success fs-6 d-none" id="dynamicHIndex" title="Lähde: {{ semanticscholar.metrics.sources }}">... h-indeksi</span>
+          <span class="badge text-bg-primary text-dark fs-6">{{ researchfi.length }} publications</span>
+          <span class="badge text-bg-info fs-6">{{ articleCount }} articles</span>
+          <span class="badge text-bg-secondary fs-6">{{ confCount }} conference papers</span>
+          <span class="badge text-bg-warning fs-6 d-none" id="dynamicTotalCitations" title="Source: {{ semanticscholar.metrics.sources }}">... citations</span>
+          <span class="badge text-bg-success fs-6 d-none" id="dynamicHIndex" title="Source: {{ semanticscholar.metrics.sources }}">... h-index</span>
         </div>
       </div>
     </div>
@@ -48,7 +48,7 @@ lang: en
       <div class="col-lg-6">
         <div class="card border-0 shadow-sm h-100">
           <div class="card-body">
-            <h2 class="h6 text-uppercase text-muted fw-bold mb-3"><i class="bi bi-bar-chart-fill me-2"></i>Julkaisut & viittaukset vuosittain</h2>
+            <h2 class="h6 text-uppercase text-muted fw-bold mb-3"><i class="bi bi-bar-chart-fill me-2"></i>Publications & citations by year</h2>
             <canvas id="yearChart" height="200"></canvas>
           </div>
         </div>
@@ -58,7 +58,7 @@ lang: en
       <div class="col-lg-3 col-md-6">
         <div class="card border-0 shadow-sm h-100">
           <div class="card-body">
-            <h2 class="h6 text-uppercase text-muted fw-bold mb-3"><i class="bi bi-pie-chart-fill me-2"></i>Julkaisutyypit</h2>
+            <h2 class="h6 text-uppercase text-muted fw-bold mb-3"><i class="bi bi-pie-chart-fill me-2"></i>Publication types</h2>
             <canvas id="typeChart" height="200"></canvas>
           </div>
         </div>
@@ -68,7 +68,7 @@ lang: en
       <div class="col-lg-3 col-md-6">
         <div class="card border-0 shadow-sm h-100">
           <div class="card-body">
-            <h2 class="h6 text-uppercase text-muted fw-bold mb-3"><i class="bi bi-unlock-fill me-2"></i>Laatuindikaattorit</h2>
+            <h2 class="h6 text-uppercase text-muted fw-bold mb-3"><i class="bi bi-unlock-fill me-2"></i>Quality indicators</h2>
             <canvas id="qualityChart" height="200"></canvas>
           </div>
         </div>
@@ -78,10 +78,10 @@ lang: en
       <div class="col-lg-6">
         <div class="card border-0 shadow-sm h-100">
           <div class="card-body">
-            <h2 class="h6 text-uppercase text-muted fw-bold mb-3"><i class="bi bi-people-fill me-2"></i>Top 10 kanssatutkijaa</h2>
+            <h2 class="h6 text-uppercase text-muted fw-bold mb-3"><i class="bi bi-people-fill me-2"></i>Top 10 co-authors</h2>
             <div class="table-responsive">
               <table class="table table-sm table-hover align-middle mb-0 pub-table" id="coauthorTable">
-                <thead><tr><th>Tutkija</th><th class="text-end">Yhteisjulkaisut</th></tr></thead>
+                <thead><tr><th>Researcher</th><th class="text-end">Co-publications</th></tr></thead>
                 <tbody></tbody>
               </table>
             </div>
@@ -93,7 +93,7 @@ lang: en
       <div class="col-lg-6">
         <div class="card border-0 shadow-sm h-100">
           <div class="card-body">
-            <h2 class="h6 text-uppercase text-muted fw-bold mb-3"><i class="bi bi-tags-fill me-2"></i>Avainsanat (otsikoista)</h2>
+            <h2 class="h6 text-uppercase text-muted fw-bold mb-3"><i class="bi bi-tags-fill me-2"></i>Keywords (from titles)</h2>
             <div id="wordCloud" class="d-flex flex-wrap gap-2 align-items-center"></div>
           </div>
         </div>
@@ -107,7 +107,7 @@ lang: en
 <section id="researchfi-julkaisut" class="py-5">
   <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-4">
-      <h3 class="mb-0">Kaikki julkaisut</h3>
+      <h3 class="mb-0">All publications</h3>
     </div>
 
     {% if researchfi.length %}
@@ -143,8 +143,8 @@ lang: en
           <div class="p-3 border-bottom publication-filter-bar">
             <div class="row g-2 align-items-end">
               <div class="col-md-9">
-                <label for="search-{{ tableId }}" class="form-label small text-muted mb-1">Suodata</label>
-                <input type="search" id="search-{{ tableId }}" class="form-control form-control-sm" placeholder="Hae otsikosta, tekijästä tai julkaisusta..." autocomplete="off" data-pub-search="{{ tableId }}">
+                <label for="search-{{ tableId }}" class="form-label small text-muted mb-1">Filter</label>
+                <input type="search" id="search-{{ tableId }}" class="form-control form-control-sm" placeholder="Search title, author, or venue..." autocomplete="off" data-pub-search="{{ tableId }}">
               </div>
             </div>
           </div>
@@ -153,31 +153,31 @@ lang: en
               <table class="table table-sm table-hover align-middle mb-0 pub-table">
                 <thead>
                   <tr>
-                    <th class="text-center" style="width:70px">Vuosi</th>
-                    <th style="width:80px">Luokka</th>
-                    <th>Otsikko & Julkaisu</th>
-                    <th style="width:200px">Tekijä(t)</th>
-                    <th style="width:100px" class="text-center">Linkit</th>
+                    <th class="text-center" style="width:70px">Year</th>
+                    <th style="width:80px">Class</th>
+                    <th>Title & Venue</th>
+                    <th style="width:200px">Author(s)</th>
+                    <th style="width:100px" class="text-center">Links</th>
                   </tr>
                 </thead>
                 <tbody>
                   {% for pub in items %}
                   <tr>
                     <td class="text-center font-monospace small fw-bold text-info">{{ pub.year or '—' }}</td>
-                    <td><span class="badge bg-secondary" title="{{ pub.typeFi }}">{{ pub.typeShort }}</span></td>
+                    <td><span class="badge bg-secondary" title="Type {{ pub.typeCode }}">{{ pub.typeShort }}</span></td>
                     <td>
                       <span class="fw-medium d-block mb-1">{{ pub.title }}</span>
                       {% if pub.journal %}<span class="text-muted small d-block fst-italic">{{ pub.journal }}</span>{% endif %}
                       {% if pub.doi and semanticscholar.metrics.doiCitations[pub.doi | lower] %}
-                        <span class="badge text-bg-warning rounded-pill mt-1" title="Viittaukset"><i class="bi bi-quote me-1"></i>{{ semanticscholar.metrics.doiCitations[pub.doi | lower] }}</span>
+                        <span class="badge text-bg-warning rounded-pill mt-1" title="Citations"><i class="bi bi-quote me-1"></i>{{ semanticscholar.metrics.doiCitations[pub.doi | lower] }}</span>
                       {% endif %}
                     </td>
                     <td class="text-secondary small">{{ pub.authors }}</td>
                     <td class="text-center">
                       {% if pub.url %}
-                        <a href="{{ pub.url }}" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener" title="Avaa julkaisu"><i class="bi bi-box-arrow-up-right"></i></a>
+                        <a href="{{ pub.url }}" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener" title="Open publication"><i class="bi bi-box-arrow-up-right"></i></a>
                       {% elif pub.doiUrl %}
-                        <a href="{{ pub.doiUrl }}" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener" title="Avaa DOI"><i class="bi bi-box-arrow-up-right"></i></a>
+                        <a href="{{ pub.doiUrl }}" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener" title="Open DOI"><i class="bi bi-box-arrow-up-right"></i></a>
                       {% endif %}
                     </td>
                   </tr>
@@ -191,15 +191,15 @@ lang: en
       {% endif %}
       {% endmacro %}
 
-      {{ drawTable('A - Vertaisarvioidut tieteelliset artikkelit', 'text-bg-primary', pubsA, 'pub-table-a') }}
-      {{ drawTable('B - Vertaisarvioimattomat tieteelliset kirjoitukset', 'text-bg-info', pubsB, 'pub-table-b') }}
-      {{ drawTable('C - Tieteelliset kirjat', 'text-bg-warning', pubsC, 'pub-table-c') }}
-      {{ drawTable('D - Ammattiyhteisölle suunnatut julkaisut', 'text-bg-secondary', pubsD, 'pub-table-d') }}
-      {{ drawTable('E - Suurelle yleisölle suunnatut julkaisut', 'bg-dark', pubsE, 'pub-table-e') }}
-      {{ drawTable('G - Opinnäytteet', 'text-bg-success', pubsG, 'pub-table-g') }}
+      {{ drawTable('A - Peer-reviewed scientific articles', 'text-bg-primary', pubsA, 'pub-table-a') }}
+      {{ drawTable('B - Non-peer-reviewed scientific writings', 'text-bg-info', pubsB, 'pub-table-b') }}
+      {{ drawTable('C - Scientific books', 'text-bg-warning', pubsC, 'pub-table-c') }}
+      {{ drawTable('D - Publications for professional communities', 'text-bg-secondary', pubsD, 'pub-table-d') }}
+      {{ drawTable('E - Publications for general audiences', 'bg-dark', pubsE, 'pub-table-e') }}
+      {{ drawTable('G - Theses', 'text-bg-success', pubsG, 'pub-table-g') }}
       
     {% else %}
-      <div class="alert alert-warning">Ei julkaisuja saatavilla.</div>
+      <div class="alert alert-warning">No publications available.</div>
     {% endif %}
   </div>
 </section>
@@ -243,11 +243,11 @@ document.addEventListener('DOMContentLoaded', function() {
   // Päivitetään DOM
   if (verifiedTotalCitations > 0) {
     const totalEl = document.getElementById('dynamicTotalCitations');
-    totalEl.textContent = verifiedTotalCitations + ' viittausta';
+    totalEl.textContent = verifiedTotalCitations + ' citations';
     totalEl.classList.remove('d-none');
     
     const hEl = document.getElementById('dynamicHIndex');
-    hEl.textContent = 'h-indeksi ' + verifiedHIndex;
+    hEl.textContent = 'h-index ' + verifiedHIndex;
     hEl.classList.remove('d-none');
   }
 
@@ -275,7 +275,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (!paginationNav) {
         paginationNav = document.createElement('nav');
         const containerId = tableContainer.id || Math.random().toString(36).substring(7);
-        paginationNav.setAttribute('aria-label', `Taulukon sivutus ${containerId}`);
+        paginationNav.setAttribute('aria-label', `Table pagination ${containerId}`);
         paginationNav.className = 'pub-pagination d-flex justify-content-center mt-3';
         paginationNav.innerHTML = '<ul class="pagination pagination-sm mb-3"></ul>';
         tableContainer.appendChild(paginationNav);
@@ -359,14 +359,14 @@ document.addEventListener('DOMContentLoaded', function() {
     data: {
       labels: years,
       datasets: [{
-        label: 'Julkaisuja',
+        label: 'Publications',
         data: years.map(y => yearCounts[y]),
         backgroundColor: isDark ? 'rgba(56,189,248,0.6)' : 'rgba(13,110,253,0.7)',
         borderRadius: 4,
         borderSkipped: false,
         yAxisID: 'y'
       },{
-        label: 'Viittauksia',
+        label: 'Citations',
         data: years.map(y => citesPerYear[y] || 0),
         type: 'line',
         borderColor: '#ffc107',
@@ -381,8 +381,8 @@ document.addEventListener('DOMContentLoaded', function() {
       responsive: true,
       plugins: { legend: { position: 'top', labels: { boxWidth: 12, font: { size: 10 } } } },
       scales: {
-        y: { beginAtZero: true, ticks: { stepSize: 1 }, title: { display: true, text: 'Julkaisut', font: { size: 10 } } },
-        y1: { beginAtZero: true, position: 'right', grid: { drawOnChartArea: false }, title: { display: true, text: 'Viittaukset', font: { size: 10 } } },
+        y: { beginAtZero: true, ticks: { stepSize: 1 }, title: { display: true, text: 'Publications', font: { size: 10 } } },
+        y1: { beginAtZero: true, position: 'right', grid: { drawOnChartArea: false }, title: { display: true, text: 'Citations', font: { size: 10 } } },
         x: { ticks: { maxRotation: 45 } }
       }
     }
@@ -391,12 +391,12 @@ document.addEventListener('DOMContentLoaded', function() {
   // 2. TYYPPIKAAVIO
   const typeCounts = {};
   const typeLabels = {
-    'A1':'Lehtiartikkeli (A1)', 'A2':'Katsausartikkeli (A2)',
-    'A3':'Kirjan osa (A3)', 'A4':'Konferenssi (A4)',
-    'B1':'Kirjoitus (B1)', 'B3':'Konferenssi ei-vertaisarv. (B3)',
-    'C1':'Tieteellinen teos (C1)', 'C2':'Toimitettu teos (C2)',
-    'D1':'Ammattiartikkeli (D1)', 'D2':'Ammatillinen kokoomat. (D2)',
-    'E1':'Yleistajuinen (E1)', 'G4':'Väitöskirja (G4)', 'G5':'Väitöskirja (G5)'
+    'A1':'Journal article (A1)', 'A2':'Review article (A2)',
+    'A3':'Book section (A3)', 'A4':'Conference paper (A4)',
+    'B1':'Scientific writing (B1)', 'B3':'Conference paper, non-peer-reviewed (B3)',
+    'C1':'Scientific monograph (C1)', 'C2':'Edited scientific volume (C2)',
+    'D1':'Professional article (D1)', 'D2':'Professional edited volume (D2)',
+    'E1':'General audience publication (E1)', 'G4':'Doctoral dissertation (G4)', 'G5':'Doctoral dissertation (G5)'
   };
   publications.forEach(p => { typeCounts[p.type] = (typeCounts[p.type]||0)+1; });
   const typeKeys = Object.keys(typeCounts).sort((a,b) => typeCounts[b]-typeCounts[a]);
@@ -431,7 +431,7 @@ document.addEventListener('DOMContentLoaded', function() {
   new Chart(document.getElementById('qualityChart'), {
     type: 'doughnut',
     data: {
-      labels: ['Vertaisarvioitu & OA', 'Vain vertaisarvioitu', 'Muu / ei vertaisarvioitu'],
+      labels: ['Peer-reviewed & OA', 'Peer-reviewed only', 'Other / non-peer-reviewed'],
       datasets: [{
         data: [prAndOa, prOnly, nonPeerReviewed],
         backgroundColor: ['#198754', '#20c997', '#dee2e6'],
@@ -491,7 +491,7 @@ document.addEventListener('DOMContentLoaded', function() {
       cloudEl.appendChild(span);
     });
   } else {
-    cloudEl.innerHTML = '<span class="text-muted small">Ei avainsanoja saatavilla</span>';
+    cloudEl.innerHTML = '<span class="text-muted small">No keywords available</span>';
   }
 });
 </script>

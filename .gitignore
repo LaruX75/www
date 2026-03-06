@@ -14,3 +14,6 @@ axe_results.txt
 
 # Environment variables
 .env
+
+# CMS config (local/private)
+admin/config.yml

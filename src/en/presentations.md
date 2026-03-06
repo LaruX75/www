@@ -10,14 +10,14 @@ lang: en
 
 <div class="container py-5">
   <header class="mb-5 text-center">
-    <h1 class="display-4 fw-bold mb-3">Esitykset</h1>
-    <p class="lead text-muted">Valikoima diaesityksiäni eri palveluista.</p>
+    <h1 class="display-4 fw-bold mb-3">Presentations</h1>
+    <p class="lead text-muted">A curated selection of my slide decks from different platforms.</p>
   </header>
 
   {# ===================== CANVA ===================== #}
   <section class="mb-5" aria-labelledby="canva-heading">
     <h2 id="canva-heading" class="section-title mb-4">
-      <i class="bi bi-star-fill text-warning me-2" style="font-size: 1rem;"></i>Canva-esitykset
+      <i class="bi bi-star-fill text-warning me-2" style="font-size: 1rem;"></i>Canva Presentations
     </h2>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
       {% for p in collections.presentations %}
@@ -30,13 +30,13 @@ lang: en
                    alt="{{ p.data.title }}"
                    style="height: 220px; object-fit: cover; object-position: top;">
               <div class="card-img-overlay d-flex align-items-center justify-content-center opacity-0 bg-dark bg-opacity-50 transition">
-                <a href="{{ p.data.url }}" target="_blank" class="btn btn-light btn-sm stretched-link">Katso esitys</a>
+                <a href="{{ p.data.url }}" target="_blank" class="btn btn-light btn-sm stretched-link">View presentation</a>
               </div>
             {% else %}
               <div class="d-flex align-items-center justify-content-center text-muted bg-placeholder" style="height: 220px;">
                 <div class="text-center">
                   <i class="bi bi-file-earmark-slides fs-1 mb-2 d-block"></i>
-                  <small>Ei esikatselukuvaa</small>
+                  <small>No preview image</small>
                 </div>
               </div>
             {% endif %}
@@ -56,17 +56,17 @@ lang: en
           <div class="card-footer bg-transparent border-0 pt-0 pb-3 px-3">
             {% if p.data.url %}
               <a href="{{ p.data.url }}" target="_blank" class="btn btn-primary btn-sm rounded-pill px-3">
-                Katso esitys <i class="bi bi-arrow-up-right"></i>
+                View presentation <i class="bi bi-arrow-up-right"></i>
               </a>
             {% else %}
-              <span class="text-muted" style="font-size:0.85rem;"><i class="bi bi-link-45deg"></i> Ei linkkiä</span>
+              <span class="text-muted" style="font-size:0.85rem;"><i class="bi bi-link-45deg"></i> No link</span>
             {% endif %}
             <span class="badge text-bg-secondary rounded-pill ms-2">Canva</span>
           </div>
         </div>
       </div>
       {% else %}
-      <p class="text-muted">Ei esityksiä.</p>
+      <p class="text-muted">No presentations yet.</p>
       {% endfor %}
     </div>
   </section>
@@ -74,7 +74,7 @@ lang: en
   {# ================ GOOGLE SLIDES ================ #}
   <section class="mb-5" aria-labelledby="google-heading">
     <h2 id="google-heading" class="section-title mb-4">
-      <i class="bi bi-file-earmark-slides me-2" style="font-size: 1rem;"></i>Google Slides -esitykset
+      <i class="bi bi-file-earmark-slides me-2" style="font-size: 1rem;"></i>Google Slides Presentations
     </h2>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
       {% for p in googleslides %}
@@ -88,14 +88,14 @@ lang: en
                    style="height: 220px; object-fit: cover; object-position: top;">
               {% if p.url %}
               <div class="card-img-overlay d-flex align-items-center justify-content-center opacity-0 bg-dark bg-opacity-50 transition">
-                <a href="{{ p.url }}" target="_blank" class="btn btn-light btn-sm stretched-link">Katso esitys</a>
+                <a href="{{ p.url }}" target="_blank" class="btn btn-light btn-sm stretched-link">View presentation</a>
               </div>
               {% endif %}
             {% else %}
               <div class="d-flex align-items-center justify-content-center text-muted bg-placeholder" style="height: 220px;">
                 <div class="text-center">
                   <i class="bi bi-file-earmark-slides fs-1 mb-2 d-block"></i>
-                  <small>Ei esikatselukuvaa</small>
+                  <small>No preview image</small>
                 </div>
               </div>
             {% endif %}
@@ -115,10 +115,10 @@ lang: en
           <div class="card-footer bg-transparent border-0 pt-0 pb-3 px-3">
             {% if p.url %}
               <a href="{{ p.url }}" target="_blank" class="btn btn-primary btn-sm rounded-pill px-3">
-                Katso esitys <i class="bi bi-arrow-up-right"></i>
+                View presentation <i class="bi bi-arrow-up-right"></i>
               </a>
             {% else %}
-              <span class="text-muted" style="font-size:0.85rem;"><i class="bi bi-link-45deg"></i> Ei linkkiä</span>
+              <span class="text-muted" style="font-size:0.85rem;"><i class="bi bi-link-45deg"></i> No link</span>
             {% endif %}
             <span class="badge text-bg-secondary rounded-pill ms-2">Google Slides</span>
           </div>
@@ -131,7 +131,7 @@ lang: en
   {# ================= SLIDESHARE ================== #}
   <section class="mb-5" aria-labelledby="slideshare-heading">
     <h2 id="slideshare-heading" class="section-title mb-4">
-      <i class="bi bi-collection-play me-2" style="font-size: 1rem;"></i>SlideShare-esitykset
+      <i class="bi bi-collection-play me-2" style="font-size: 1rem;"></i>SlideShare Presentations
     </h2>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
       {% for p in slideshare %}
@@ -144,13 +144,13 @@ lang: en
                    alt="{{ p.title }}"
                    style="height: 220px; object-fit: cover; object-position: top;">
               <div class="card-img-overlay d-flex align-items-center justify-content-center opacity-0 bg-dark bg-opacity-50 transition">
-                <a href="{{ p.url }}" target="_blank" class="btn btn-light btn-sm stretched-link">Katso SlideSharessa</a>
+                <a href="{{ p.url }}" target="_blank" class="btn btn-light btn-sm stretched-link">View on SlideShare</a>
               </div>
             {% else %}
               <div class="d-flex align-items-center justify-content-center text-muted bg-placeholder" style="height: 220px;">
                 <div class="text-center">
                   <i class="bi bi-file-earmark-slides fs-1 mb-2 d-block"></i>
-                  <small>Ei esikatselukuvaa</small>
+                  <small>No preview image</small>
                 </div>
               </div>
             {% endif %}
@@ -167,10 +167,10 @@ lang: en
           <div class="card-footer bg-transparent border-0 pt-0 pb-3 px-3">
             {% if p.url %}
               <a href="{{ p.url }}" target="_blank" class="btn btn-primary btn-sm rounded-pill px-3">
-                Katso SlideSharessa <i class="bi bi-arrow-up-right"></i>
+                View on SlideShare <i class="bi bi-arrow-up-right"></i>
               </a>
             {% else %}
-              <span class="text-muted" style="font-size:0.85rem;"><i class="bi bi-link-45deg"></i> Ei linkkiä</span>
+              <span class="text-muted" style="font-size:0.85rem;"><i class="bi bi-link-45deg"></i> No link</span>
             {% endif %}
             <span class="badge text-bg-secondary rounded-pill ms-2">SlideShare</span>
           </div>
@@ -181,7 +181,7 @@ lang: en
 
     <div class="mt-4 text-center">
       <a href="https://www.slideshare.net/larux" target="_blank" class="btn btn-primary px-4 py-2">
-        Katso kaikki SlideSharessa (124+) <i class="bi bi-arrow-up-right"></i>
+        View all on SlideShare (124+) <i class="bi bi-arrow-up-right"></i>
       </a>
     </div>
   </section>
