@@ -43,12 +43,40 @@ jobs:
     needs: deploy
     runs-on: ubuntu-latest
     steps:
+      - name: Verify production status codes
+        run: |
+          for url in \
+            https://www.jarilaru.fi/ \
+            https://www.jarilaru.fi/en/ \
+            https://www.jarilaru.fi/esitykset/ \
+            https://www.jarilaru.fi/en/presentations/ \
+            https://www.jarilaru.fi/robots.txt \
+            https://www.jarilaru.fi/sitemap.xml; do
+            code=$(curl -o /dev/null -s -w "%{http_code}" "$url")
+            test "$code" = "200"
+          done
       - name: Verify production robots.txt
         run: |
           curl -fsSL --retry 5 --retry-delay 5 https://www.jarilaru.fi/robots.txt | grep -q "User-agent: GPTBot"
       - name: Verify production robots meta
         run: |
           curl -fsSL --retry 5 --retry-delay 5 https://www.jarilaru.fi/ | grep -q '<meta name="robots" content="index, follow, noai, noimageai">'
+      - name: Verify production SEO meta and alternates
+        run: |
+          curl -fsSL --retry 5 --retry-delay 5 https://www.jarilaru.fi/ > fi.html
+          grep -q '<meta name="description" content="' fi.html
+          grep -q '<link rel="canonical" href="https://www.jarilaru.fi/">' fi.html
+          grep -q 'hreflang="fi"' fi.html
+          grep -q 'hreflang="en"' fi.html
+          grep -q 'hreflang="x-default"' fi.html
+          grep -q '<meta property="og:image" content="https://www.jarilaru.fi/' fi.html
+          ! grep -q '<meta property="og:image" content="https://www.jarilaru.fi/null">' fi.html
+          ! grep -q '<meta property="og:image" content="null">' fi.html
+          rm -f fi.html
+      - name: Verify production sitemap contains key URLs
+        run: |
+          curl -fsSL --retry 5 --retry-delay 5 https://www.jarilaru.fi/sitemap.xml | grep -q '<loc>https://www.jarilaru.fi/esitykset/</loc>'
+          curl -fsSL --retry 5 --retry-delay 5 https://www.jarilaru.fi/sitemap.xml | grep -q '<loc>https://www.jarilaru.fi/en/presentations/</loc>'
       - name: Verify production TOC on FI and EN presentations pages
         run: |
           curl -fsSL --retry 5 --retry-delay 5 https://www.jarilaru.fi/esitykset/ | grep -q 'href="#canva-heading"'
