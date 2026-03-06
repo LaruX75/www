@@ -199,6 +199,11 @@
   color: var(--evelenty-accent);
 }
 
+/* Keep icon color consistent across all mega-menu links (e.g. Kynästä) */
+.mega-menu-panel a i {
+  color: var(--evelenty-accent) !important;
+}
+
 .menu-link-desc {
   padding: 0 0.6rem 0.2rem;
 }
