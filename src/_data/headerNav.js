@@ -560,6 +560,8 @@ module.exports = {
               title: "Tilaa minut kouluttajaksi",
               href: "/yhteystiedot/",
               icon: "bi bi-megaphone me-2",
+              cta: true,
+              ctaLabel: "Pyydä tarjous",
               description: "Koulutukset tekoälystä, oppimisteknologiasta ja modernista pedagogiikasta."
             }
           ]

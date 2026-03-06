@@ -74,9 +74,23 @@
                   <section>
                     <h5>{{ section.heading }}</h5>
                     {% for link in section.links %}
-                      <a href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}><i class="{{ link.icon }}"></i>{{ link.title }}</a>
-                      {% if link.description %}
-                        <small>{{ link.description }}</small>
+                      {% if link.cta %}
+                        <div class="work-inline-cta">
+                          <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>
+                            <i class="{{ link.icon }}"></i><span>{{ link.title }}</span>
+                          </a>
+                          {% if link.description %}
+                            <small class="menu-link-desc">{{ link.description }}</small>
+                          {% endif %}
+                          <a class="btn btn-accent btn-sm w-100 mt-2" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>
+                            {{ link.ctaLabel or workMegaMenu.cta.label or "Pyydä tarjous" }}
+                          </a>
+                        </div>
+                      {% else %}
+                        <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}><i class="{{ link.icon }}"></i><span>{{ link.title }}</span></a>
+                        {% if link.description %}
+                          <small class="menu-link-desc">{{ link.description }}</small>
+                        {% endif %}
                       {% endif %}
                     {% endfor %}
                   </section>
@@ -326,9 +340,23 @@
                   <section>
                     <h5>{{ section.heading }}</h5>
                     {% for link in section.links %}
-                      <a href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}><i class="{{ link.icon }}"></i>{{ link.title }}</a>
-                      {% if link.description %}
-                        <small>{{ link.description }}</small>
+                      {% if link.cta %}
+                        <div class="work-inline-cta">
+                          <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>
+                            <i class="{{ link.icon }}"></i><span>{{ link.title }}</span>
+                          </a>
+                          {% if link.description %}
+                            <small class="menu-link-desc">{{ link.description }}</small>
+                          {% endif %}
+                          <a class="btn btn-accent btn-sm w-100 mt-2" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>
+                            {{ link.ctaLabel or workMegaMenu.cta.label or "Pyydä tarjous" }}
+                          </a>
+                        </div>
+                      {% else %}
+                        <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}><i class="{{ link.icon }}"></i><span>{{ link.title }}</span></a>
+                        {% if link.description %}
+                          <small class="menu-link-desc">{{ link.description }}</small>
+                        {% endif %}
                       {% endif %}
                     {% endfor %}
                   </section>

@@ -306,6 +306,27 @@
   color: #111827;
 }
 
+.work-inline-cta {
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 0.9rem;
+  padding: 0.55rem;
+  background: rgba(255, 255, 255, 0.26);
+  box-shadow: 0 10px 24px rgba(2, 6, 23, 0.1);
+}
+
+[data-bs-theme="dark"] .work-inline-cta {
+  background: rgba(15, 23, 42, 0.52);
+  border-color: rgba(148, 163, 184, 0.42);
+}
+
+.work-inline-cta .menu-link {
+  padding-bottom: 0.25rem;
+}
+
+.work-inline-cta .menu-link-desc {
+  margin-bottom: 0;
+}
+
 [data-bs-theme="light"] .site-navbar.navbar-hero-solid .navbar-brand,
 [data-bs-theme="light"] .site-navbar.navbar-hero-solid .nav-link,
 [data-bs-theme="light"] .site-navbar.navbar-hero-solid #themeToggleBtn,
