@@ -29,6 +29,13 @@ If the user allows all external embeds, the choice is stored in browser `localSt
 
 Please note: once third-party content is loaded, that service may set its own cookies or collect data under its own privacy policy.
 
+### Manage embed consent
+
+<div class="my-3">
+  <button type="button" class="btn btn-outline-secondary btn-sm" data-external-media-reset>Revoke external embed consent</button>
+  <div class="small text-muted mt-2" data-external-media-reset-status></div>
+</div>
+
 ## 3. Local storage (`localStorage`)
 
 The site uses browser local storage for functional settings:

@@ -28,6 +28,13 @@ Kun käyttäjä sallii kaikki upotukset, valinta tallennetaan selaimen `localSto
 
 Huom: kun ulkoinen palvelu ladataan, kyseinen palvelu voi asettaa omia evästeitä tai kerätä tietoja oman tietosuojakäytäntönsä mukaisesti.
 
+### Upotusten suostumuksen hallinta
+
+<div class="my-3">
+  <button type="button" class="btn btn-outline-secondary btn-sm" data-external-media-reset>Peruuta ulkoisten upotusten lupa</button>
+  <div class="small text-muted mt-2" data-external-media-reset-status></div>
+</div>
+
 ## 3. Paikallinen tallennus (localStorage)
 
 Sivusto käyttää selaimen paikallista tallennusta seuraaviin toiminnallisiin tarkoituksiin:

@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
   const wrappers = Array.from(document.querySelectorAll(".external-media-consent"));
-  if (wrappers.length === 0) return;
 
   const lang = (document.documentElement.lang || "fi").toLowerCase().startsWith("en") ? "en" : "fi";
   const messages = {
@@ -8,11 +7,15 @@ document.addEventListener("DOMContentLoaded", () => {
       text: "Tämä sisältö ladataan ulkoisesta palvelusta, joka voi asettaa evästeitä tai kerätä tietoja.",
       loadOne: "Lataa sisältö",
       allowAll: "Salli kaikki ulkoiset upotukset",
+      resetConsent: "Peruuta ulkoisten upotusten lupa",
+      resetDone: "Ulkoisten upotusten lupa on poistettu.",
     },
     en: {
       text: "This content is loaded from an external service that may set cookies or collect data.",
       loadOne: "Load content",
       allowAll: "Allow all external embeds",
+      resetConsent: "Revoke external embed consent",
+      resetDone: "External embed consent has been removed.",
     },
   };
   const ui = messages[lang];
@@ -41,6 +44,34 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (_) { }
     wrappers.forEach(loadWrapper);
   }
+
+  function revokeConsent() {
+    try {
+      localStorage.removeItem(consentKey);
+    } catch (_) { }
+    wrappers.forEach((wrapper) => {
+      const iframe = wrapper.querySelector("iframe[data-consent-src]");
+      const notice = wrapper.querySelector("[data-external-media-notice]");
+      if (iframe) {
+        iframe.removeAttribute("src");
+        iframe.hidden = true;
+      }
+      if (notice) notice.hidden = false;
+    });
+  }
+
+  const resetButtons = Array.from(document.querySelectorAll("[data-external-media-reset]"));
+  resetButtons.forEach((btn) => {
+    if (!btn.textContent.trim()) btn.textContent = ui.resetConsent;
+    btn.addEventListener("click", (event) => {
+      event.preventDefault();
+      revokeConsent();
+      const status = btn.parentElement?.querySelector("[data-external-media-reset-status]");
+      if (status) status.textContent = ui.resetDone;
+    });
+  });
+
+  if (wrappers.length === 0) return;
 
   wrappers.forEach((wrapper) => {
     const textEl = wrapper.querySelector("[data-external-media-text]");

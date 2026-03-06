@@ -13,4 +13,7 @@ If you would like to contact Jari Laru regarding speaking, training, collaborati
 
 Finnish contact page with full details: <https://www.jarilaru.fi/yhteystiedot/>
 
-Privacy notice: </en/privacy/>
+<div class="mt-4 text-muted small">
+By sending a message, you agree that your contact details are processed for handling your request.
+Read the <a href="/en/privacy/">Privacy notice</a>.
+</div>
