@@ -61,6 +61,50 @@ module.exports = {
           order: 60
         }
       }
+    },
+    {
+      data: {
+        eleventyNavigation: {
+          key: "blog",
+          title: "Blogi",
+          url: "/blogi/",
+          parent: "writings",
+          order: 10
+        }
+      }
+    },
+    {
+      data: {
+        eleventyNavigation: {
+          key: "publications",
+          title: "Julkaisut",
+          url: "/julkaisut/",
+          parent: "work",
+          order: 20
+        }
+      }
+    },
+    {
+      data: {
+        eleventyNavigation: {
+          key: "presentations",
+          title: "Esitykset",
+          url: "/esitykset/",
+          parent: "work",
+          order: 30
+        }
+      }
+    },
+    {
+      data: {
+        eleventyNavigation: {
+          key: "theses",
+          title: "Opinnäytteet",
+          url: "/opinnaytteet/",
+          parent: "work",
+          order: 40
+        }
+      }
     }
   ],
   en: [
@@ -123,6 +167,50 @@ module.exports = {
           url: "/en/contact/",
           icon: "bi bi-envelope",
           order: 60
+        }
+      }
+    },
+    {
+      data: {
+        eleventyNavigation: {
+          key: "blog",
+          title: "Blog",
+          url: "/en/blog/",
+          parent: "writings",
+          order: 10
+        }
+      }
+    },
+    {
+      data: {
+        eleventyNavigation: {
+          key: "publications",
+          title: "Publications",
+          url: "/en/publications/",
+          parent: "work",
+          order: 20
+        }
+      }
+    },
+    {
+      data: {
+        eleventyNavigation: {
+          key: "presentations",
+          title: "Presentations",
+          url: "/en/presentations/",
+          parent: "work",
+          order: 30
+        }
+      }
+    },
+    {
+      data: {
+        eleventyNavigation: {
+          key: "theses",
+          title: "Theses",
+          url: "/en/theses/",
+          parent: "work",
+          order: 40
         }
       }
     }

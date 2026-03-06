@@ -184,11 +184,30 @@
   {% include "header.njk" %}
 
   {% set isHomePage = page.url == "/" or page.url == "/en/" %}
+  {% set breadcrumbKey = "" %}
+  {% if page.inputPath and "src/publications/" in page.inputPath %}
+    {% set breadcrumbKey = "publications" %}
+  {% elif page.inputPath and "src/presentations/" in page.inputPath %}
+    {% set breadcrumbKey = "presentations" %}
+  {% elif page.inputPath and "src/blog/" in page.inputPath %}
+    {% set breadcrumbKey = "blog" %}
+  {% elif page.url == "/julkaisut/" or page.url == "/en/publications/" %}
+    {% set breadcrumbKey = "publications" %}
+  {% elif page.url == "/esitykset/" or page.url == "/en/presentations/" %}
+    {% set breadcrumbKey = "presentations" %}
+  {% elif page.url == "/opinnaytteet/" or page.url == "/en/theses/" %}
+    {% set breadcrumbKey = "theses" %}
+  {% elif page.url == "/blogi/" or page.url == "/en/blog/" %}
+    {% set breadcrumbKey = "blog" %}
+  {% endif %}
+
   {% if not isHomePage %}
   <section class="subpage-hero-placeholder" aria-hidden="true">
     <div class="subpage-hero-image"></div>
   </section>
   {% endif %}
+
+  {% include "breadcrumb.njk" %}
 
   <main id="main-content" class="site-main">
     <div class="bss-scope">
