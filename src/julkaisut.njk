@@ -173,9 +173,9 @@ translationKey: publications_index
                     <td class="text-secondary small">{{ pub.authors }}</td>
                     <td class="text-center">
                       {% if pub.url %}
-                        <a href="{{ pub.url }}" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener" title="Avaa julkaisu"><i class="bi bi-box-arrow-up-right"></i></a>
+                        <a href="{{ pub.url }}" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Avaa julkaisu" aria-label="Avaa julkaisu uuteen välilehteen"><i class="bi bi-box-arrow-up-right"></i></a>
                       {% elif pub.doiUrl %}
-                        <a href="{{ pub.doiUrl }}" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener" title="Avaa DOI"><i class="bi bi-box-arrow-up-right"></i></a>
+                        <a href="{{ pub.doiUrl }}" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Avaa DOI" aria-label="Avaa DOI uuteen välilehteen"><i class="bi bi-box-arrow-up-right"></i></a>
                       {% endif %}
                     </td>
                   </tr>
@@ -306,21 +306,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
       const prevLi = document.createElement('li');
       prevLi.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
-      prevLi.innerHTML = `<a class="page-link" href="javascript:void(0)">&laquo;</a>`;
+      prevLi.innerHTML = `<button type="button" class="page-link" aria-label="Edellinen sivu">&laquo;</button>`;
       prevLi.addEventListener('click', (e) => { e.preventDefault(); if(currentPage > 1) renderPage(currentPage - 1); });
       ul.appendChild(prevLi);
 
       for (let i = 1; i <= totalPages; i++) {
         const li = document.createElement('li');
         li.className = `page-item ${i === currentPage ? 'active' : ''}`;
-        li.innerHTML = `<a class="page-link" href="javascript:void(0)">${i}</a>`;
+        li.innerHTML = `<button type="button" class="page-link" aria-label="Sivu ${i}">${i}</button>`;
         li.addEventListener('click', (e) => { e.preventDefault(); renderPage(i); });
         ul.appendChild(li);
       }
 
       const nextLi = document.createElement('li');
       nextLi.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
-      nextLi.innerHTML = `<a class="page-link" href="javascript:void(0)">&raquo;</a>`;
+      nextLi.innerHTML = `<button type="button" class="page-link" aria-label="Seuraava sivu">&raquo;</button>`;
       nextLi.addEventListener('click', (e) => { e.preventDefault(); if(currentPage < totalPages) renderPage(currentPage + 1); });
       ul.appendChild(nextLi);
     }

@@ -30,7 +30,7 @@ source_url: "https://www.jarilaru.fi/mukaan-kampanjaan/"
 <h4>Kuinka pääsen osallistumaan?</h4>
 
 
-<p>Pääset mukaan kampanjatiimiin ottamalla yhteyttä<a rel="noreferrer noopener" href="http://Vaalikampanjantoteutuksestavastaaehdokkaanlisäksikampanjatiimi,jokasuunnitteleejatoteuttaakäytänönvaalityötä.Käyttöäonkaikenlaiselleosaamiselleainagraafisestasuunnittelustaraakaanjalkatyöhönjaideointiin.Kampanjatiimiinosallistuminenonmyöshyvätapatutustuauusiinihmisiin,jotkajakavatsamanarvomaailman.Kampanjatiimiinvoiosallistuaerilaisinpanostuksinomanjaksamisenjaaikataulujenmukaan." target="_blank"> Facebookin kautta</a> tai katsomalla yhteystiedot "<a href="/yhteystiedot/">ota yhteyttä</a>"-sivulta. Tervetuloa mukaan! </p>
+<p>Pääset mukaan kampanjatiimiin ottamalla yhteyttä <a rel="noreferrer noopener" href="https://www.facebook.com/jari.laru" target="_blank">Facebookin kautta</a> tai katsomalla yhteystiedot "<a href="/yhteystiedot/">ota yhteyttä</a>"-sivulta. Tervetuloa mukaan!</p>
 
 
 <h4>Kutsu paneeleihin, väittelyihin tai tilaisuuksiin!</h4>

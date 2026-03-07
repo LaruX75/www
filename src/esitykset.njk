@@ -51,7 +51,7 @@ translationKey: presentations_index
                      style="height: 220px; object-fit: cover; object-position: top;">
                 {% if p.url %}
                 <div class="card-img-overlay d-flex align-items-center justify-content-center opacity-0 bg-dark bg-opacity-50 transition">
-                  <a href="{{ p.url }}" target="_blank" class="btn btn-light btn-sm stretched-link">Katso esitys</a>
+                  <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-light btn-sm stretched-link">Katso esitys</a>
                 </div>
                 {% endif %}
               {% else %}
@@ -66,7 +66,7 @@ translationKey: presentations_index
             <div class="card-body">
               <h3 class="h5 card-title mb-1">
                 {% if p.url %}
-                  <a href="{{ p.url }}" target="_blank" class="text-decoration-none">{{ p.title }}</a>
+                  <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="text-decoration-none">{{ p.title }}</a>
                 {% else %}
                   {{ p.title }}
                 {% endif %}
@@ -84,7 +84,7 @@ translationKey: presentations_index
             </div>
             <div class="card-footer bg-transparent border-0 pt-0 pb-3 px-3">
               {% if p.url %}
-                <a href="{{ p.url }}" target="_blank" class="btn btn-primary btn-sm rounded-pill px-3">
+                <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm rounded-pill px-3">
                   Katso esitys <i class="bi bi-arrow-up-right"></i>
                 </a>
               {% else %}
@@ -193,7 +193,7 @@ translationKey: presentations_index
                    style="height: 220px; object-fit: cover; object-position: top;">
               {% if p.url %}
               <div class="card-img-overlay d-flex align-items-center justify-content-center opacity-0 bg-dark bg-opacity-50 transition">
-                <a href="{{ p.url }}" target="_blank" class="btn btn-light btn-sm stretched-link">Katso esitys</a>
+                <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-light btn-sm stretched-link">Katso esitys</a>
               </div>
               {% endif %}
             {% else %}
@@ -208,7 +208,7 @@ translationKey: presentations_index
           <div class="card-body">
             <h3 class="h5 card-title mb-1">
               {% if p.url %}
-                <a href="{{ p.url }}" target="_blank" class="text-decoration-none">{{ p.title }}</a>
+                <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="text-decoration-none">{{ p.title }}</a>
               {% else %}
                 {{ p.title }}
               {% endif %}
@@ -219,7 +219,7 @@ translationKey: presentations_index
           </div>
           <div class="card-footer bg-transparent border-0 pt-0 pb-3 px-3">
             {% if p.url %}
-              <a href="{{ p.url }}" target="_blank" class="btn btn-primary btn-sm rounded-pill px-3">
+              <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm rounded-pill px-3">
                 Katso esitys <i class="bi bi-arrow-up-right"></i>
               </a>
             {% else %}
@@ -249,7 +249,7 @@ translationKey: presentations_index
                    alt="{{ p.title }}"
                    style="height: 220px; object-fit: cover; object-position: top;">
               <div class="card-img-overlay d-flex align-items-center justify-content-center opacity-0 bg-dark bg-opacity-50 transition">
-                <a href="{{ p.url }}" target="_blank" class="btn btn-light btn-sm stretched-link">Katso SlideSharessa</a>
+                <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-light btn-sm stretched-link">Katso SlideSharessa</a>
               </div>
             {% else %}
               <div class="d-flex align-items-center justify-content-center text-muted bg-placeholder" style="height: 220px;">
@@ -263,7 +263,7 @@ translationKey: presentations_index
           <div class="card-body">
             <h3 class="h5 card-title mb-1">
               {% if p.url %}
-                <a href="{{ p.url }}" target="_blank" class="text-decoration-none">{{ p.title }}</a>
+                <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="text-decoration-none">{{ p.title }}</a>
               {% else %}
                 {{ p.title }}
               {% endif %}
@@ -271,7 +271,7 @@ translationKey: presentations_index
           </div>
           <div class="card-footer bg-transparent border-0 pt-0 pb-3 px-3">
             {% if p.url %}
-              <a href="{{ p.url }}" target="_blank" class="btn btn-primary btn-sm rounded-pill px-3">
+              <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm rounded-pill px-3">
                 Katso SlideSharessa <i class="bi bi-arrow-up-right"></i>
               </a>
             {% else %}
@@ -285,7 +285,7 @@ translationKey: presentations_index
     </div>
 
     <div class="mt-4 text-center">
-      <a href="https://www.slideshare.net/larux" target="_blank" class="btn btn-primary px-4 py-2">
+      <a href="https://www.slideshare.net/larux" target="_blank" rel="noopener noreferrer" class="btn btn-primary px-4 py-2">
         Katso kaikki SlideSharessa (124+) <i class="bi bi-arrow-up-right"></i>
       </a>
     </div>

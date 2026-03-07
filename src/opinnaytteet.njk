@@ -273,7 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Previous button
       const prevLi = document.createElement('li');
       prevLi.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
-      prevLi.innerHTML = `<a class="page-link" href="javascript:void(0)" aria-label="Edellinen"><span aria-hidden="true">&laquo;</span></a>`;
+      prevLi.innerHTML = `<button type="button" class="page-link" aria-label="Edellinen"><span aria-hidden="true">&laquo;</span></button>`;
       prevLi.addEventListener('click', (e) => {
         e.preventDefault();
         if (currentPage > 1) renderPage(currentPage - 1);
@@ -284,7 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
       for (let i = 1; i <= totalPages; i++) {
         const li = document.createElement('li');
         li.className = `page-item ${i === currentPage ? 'active' : ''}`;
-        li.innerHTML = `<a class="page-link" href="javascript:void(0)">${i}</a>`;
+        li.innerHTML = `<button type="button" class="page-link" aria-label="Sivu ${i}">${i}</button>`;
         li.addEventListener('click', (e) => {
           e.preventDefault();
           renderPage(i);
@@ -295,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Next button
       const nextLi = document.createElement('li');
       nextLi.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
-      nextLi.innerHTML = `<a class="page-link" href="javascript:void(0)" aria-label="Seuraava"><span aria-hidden="true">&raquo;</span></a>`;
+      nextLi.innerHTML = `<button type="button" class="page-link" aria-label="Seuraava"><span aria-hidden="true">&raquo;</span></button>`;
       nextLi.addEventListener('click', (e) => {
         e.preventDefault();
         if (currentPage < totalPages) renderPage(currentPage + 1);

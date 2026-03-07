@@ -12,7 +12,7 @@ layout: base.njk
     <div class="list-group">
       {% for material in materials %}
         <div class="list-group-item">
-          {% if material.url %}<a href="{{ material.url }}" target="_blank"><strong>{{ material.title }}</strong></a>
+          {% if material.url %}<a href="{{ material.url }}" target="_blank" rel="noopener noreferrer"><strong>{{ material.title }}</strong></a>
           {% else %}<strong>{{ material.title }}</strong>{% endif %}
           {% if material.type %}<span class="badge bg-light text-dark ms-2">{{ material.type }}</span>{% endif %}
           {% if material.description %}<p class="mb-0 small text-muted">{{ material.description }}</p>{% endif %}
