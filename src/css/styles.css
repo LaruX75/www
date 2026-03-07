@@ -401,40 +401,44 @@ html:not([data-bs-theme="dark"]) .home-hero-proof-item:focus-visible {
 
 /* Default / light theme: make strips darker than surrounding content */
 .home-section-heading-strip--dark {
-  background: linear-gradient(135deg, #2a3f61 0%, #35537b 58%, #304d74 100%);
-  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  background: linear-gradient(160deg, #e7eef8 0%, #dfe8f5 48%, #e9f0f9 100%);
+  border-top: 1px solid rgba(22, 56, 93, 0.16);
 }
 
 .home-section-heading-strip--dark .home-section-heading-strip__eyebrow {
-  color: rgba(231, 240, 255, 0.92);
+  color: rgba(22, 56, 93, 0.82);
+  text-shadow: none;
 }
 
 .home-section-heading-strip--dark .home-section-heading-strip__title {
-  color: #ffffff;
+  color: #16385d;
+  text-shadow: 0 1px 8px rgba(22, 56, 93, 0.14);
 }
 
 .home-section-heading-strip--light {
-  background: linear-gradient(135deg, #304866 0%, #3b5b82 58%, #355476 100%);
-  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  background: linear-gradient(160deg, #e7eef8 0%, #dfe8f5 48%, #e9f0f9 100%);
+  border-top: 1px solid rgba(22, 56, 93, 0.16);
 }
 
 .home-section-heading-strip--light .home-section-heading-strip__eyebrow {
-  color: rgba(228, 239, 255, 0.92);
+  color: rgba(22, 56, 93, 0.82);
+  text-shadow: none;
 }
 
 .home-section-heading-strip--light .home-section-heading-strip__title {
-  color: #ffffff;
+  color: #16385d;
+  text-shadow: 0 1px 8px rgba(22, 56, 93, 0.14);
 }
 
 /* Dark theme: make strips lighter than surrounding content */
 [data-bs-theme="dark"] .home-section-heading-strip {
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), inset 0 -1px 0 rgba(37, 63, 96, 0.16), 0 6px 18px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), inset 0 -1px 0 rgba(0, 0, 0, 0.22), 0 6px 18px rgba(0, 0, 0, 0.3);
 }
 
 [data-bs-theme="dark"] .home-section-heading-strip--dark,
 [data-bs-theme="dark"] .home-section-heading-strip--light {
-  background: linear-gradient(135deg, #d7e4f6 0%, #c9d9f1 56%, #dde9f8 100%);
-  border-top: 1px solid rgba(255, 255, 255, 0.62);
+  background: linear-gradient(150deg, #2e3f59 0%, #314764 56%, #2e3f59 100%);
+  border-top: 1px solid rgba(189, 206, 228, 0.2);
 }
 
 [data-bs-theme="dark"] .home-section-heading-strip::after {
@@ -444,14 +448,14 @@ html:not([data-bs-theme="dark"]) .home-hero-proof-item:focus-visible {
 
 [data-bs-theme="dark"] .home-section-heading-strip--dark .home-section-heading-strip__eyebrow,
 [data-bs-theme="dark"] .home-section-heading-strip--light .home-section-heading-strip__eyebrow {
-  color: #36537b;
-  text-shadow: none;
+  color: rgba(224, 236, 251, 0.86);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
 }
 
 [data-bs-theme="dark"] .home-section-heading-strip--dark .home-section-heading-strip__title,
 [data-bs-theme="dark"] .home-section-heading-strip--light .home-section-heading-strip__title {
-  color: #17365a;
-  text-shadow: 0 1px 10px rgba(69, 125, 203, 0.25);
+  color: #f4f8ff;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
 }
 
 @keyframes headingStripGradientDrift {
@@ -576,7 +580,7 @@ html:not([data-bs-theme="dark"]) .home-closing-panel {
 
 /* Mukautuva tumman tilan erikoistausta etusivulle */
 [data-bs-theme="dark"] .bg-adaptive-dark-blue {
-  background-color: #2e3f59 !important;
+  background-color: #1e2a3a !important;
 }
 
 [data-bs-theme="dark"] .bg-adaptive-dark-blue h2,
@@ -592,7 +596,7 @@ html:not([data-bs-theme="dark"]) .home-closing-panel {
 /* Light theme contrast fixes for home feature sections */
 [data-bs-theme="light"] .home-feature-section.bg-adaptive-dark-blue,
 html:not([data-bs-theme="dark"]) .home-feature-section.bg-adaptive-dark-blue {
-  background: linear-gradient(160deg, #e7eef8 0%, #dfe8f5 48%, #e9f0f9 100%) !important;
+  background-color: #eef1f6 !important;
 }
 
 [data-bs-theme="light"] .home-feature-section .home-copy-block h2,
