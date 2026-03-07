@@ -1,0 +1,63 @@
+---
+layout: base.njk
+title: Sivuston muutokset
+permalink: /sivuston-muutokset/
+translationKey: site_changes
+lang: fi
+---
+
+<section class="py-4 bg-body-tertiary border-bottom">
+  <div class="container">
+    <p class="text-uppercase small text-muted mb-2">GitHub</p>
+    <h1 class="display-6 fw-bold mb-2">Sivuston muutokset</h1>
+    <p class="mb-0 text-muted">
+      Taulukko näyttää uusimmat muutokset suoraan repositoriosta
+      <a href="{{ githubchanges.repo.url }}" target="_blank" rel="noopener noreferrer">{{ githubchanges.repo.owner }}/{{ githubchanges.repo.repo }}</a>
+      (haara: <code>{{ githubchanges.repo.branch }}</code>).
+    </p>
+  </div>
+</section>
+
+<section class="py-4">
+  <div class="container">
+    {% if githubchanges.source == "cache" and githubchanges.cacheSavedAt %}
+      <div class="alert alert-warning py-2 small" role="status">
+        GitHub API ei ollut saatavilla. Näytetään välimuisti ({{ githubchanges.cacheSavedAt | dateFormat }}).
+      </div>
+    {% endif %}
+
+    {% if githubchanges.rows and githubchanges.rows.length %}
+      <div class="table-responsive">
+        <table class="table table-hover align-middle">
+          <thead>
+            <tr>
+              <th style="width: 140px;">Päivämäärä</th>
+              <th>Muutos</th>
+              <th style="width: 180px;">Tekijä</th>
+              <th style="width: 130px;">Commit</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for change in githubchanges.rows %}
+              <tr>
+                <td>{{ change.date | dateFormat }}</td>
+                <td>{{ change.message }}</td>
+                <td>{{ change.author }}</td>
+                <td>
+                  <a href="{{ change.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary rounded-pill px-2">
+                    {{ change.shortSha }}
+                  </a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <div class="alert alert-secondary mb-0" role="status">
+        Muutoslistaa ei saatu haettua tällä hetkellä.
+        {% if githubchanges.error %}<div class="small mt-2">{{ githubchanges.error }}</div>{% endif %}
+      </div>
+    {% endif %}
+  </div>
+</section>
