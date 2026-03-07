@@ -490,6 +490,11 @@ body {
 [data-bs-theme="dark"] .search-overlay-inner {
   background-color: #1e2a3a;
   color: #e0e0e0;
+  --pagefind-ui-text: #e8f1ff;
+  --pagefind-ui-primary: #7db8f0;
+  --pagefind-ui-background: #243347;
+  --pagefind-ui-border: rgba(255, 255, 255, 0.18);
+  --pagefind-ui-tag: rgba(255, 255, 255, 0.12);
 }
 
 [data-bs-theme="dark"] .pagefind-ui__search-input {
