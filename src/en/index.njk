@@ -11,13 +11,12 @@ description: University lecturer, researcher, municipal politician, and speaker.
 {% set heroPublicationCount = (researchfi or []) | length %}
 {% set heroOpinionCount = (collections.pub_mielipide or []) | length %}
 {% set heroSpeechCount = (collections.pub_puhe or []) | length %}
-{% set heroThesisCount = (theses.stats.total if theses and theses.stats else 0) %}
 {% set heroStats = [
     { count: heroPresentationCount, label: "presentations", href: "/en/presentations/" },
     { count: heroPublicationCount, label: "publications", href: "/en/publications/" },
-    { count: heroOpinionCount, label: "opinion pieces", href: "/en/writings/#mielipiteet" },
-    { count: heroSpeechCount, label: "speeches", href: "/en/writings/#puheet" },
-    { count: heroThesisCount, label: "theses", href: "/en/theses/" }
+    { count: heroOpinionCount, label: "opinion pieces", href: "/en/writings/#opinions" },
+    { count: heroSpeechCount, label: "speeches", href: "/en/writings/#speeches" },
+    { count: 100, label: "supervised theses", href: "/en/theses/" }
 ] %}
 
 <section class="section-flush home-hero-section" id="heroSection">

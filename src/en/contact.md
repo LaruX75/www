@@ -11,7 +11,7 @@ If you would like to contact Jari Laru regarding speaking, training, collaborati
 - Email: <jari.laru@oulu.fi>
 - Phone: +358 40 511 8478
 
-Finnish contact page with full details: <https://www.jarilaru.fi/yhteystiedot/>
+For full details and the contact form, see the Finnish contact page: <https://www.jarilaru.fi/yhteystiedot/>
 
 <div class="mt-4 text-muted small">
 By sending a message, you agree that your contact details are processed for handling your request.
