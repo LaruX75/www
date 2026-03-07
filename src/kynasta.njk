@@ -800,6 +800,60 @@ section[id] {
   margin: 0 1px;
   padding: 0.25rem 0.5rem;
 }
+
+/* ---- Mobiili: taulukot korttimaisiksi riveiksi ---- */
+@media (max-width: 767.98px) {
+  .pub-table thead {
+    display: none;
+  }
+
+  .pub-table,
+  .pub-table tbody,
+  .pub-table tr,
+  .pub-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .pub-table tr {
+    border: 1px solid var(--bs-border-color);
+    border-radius: 0.65rem;
+    margin: 0.65rem 0;
+    padding: 0.4rem 0.55rem;
+    background: var(--bs-body-bg);
+  }
+
+  .pub-table td {
+    border: 0 !important;
+    padding: 0.38rem 0.2rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.7rem;
+    text-align: right !important;
+  }
+
+  .pub-table td::before {
+    content: attr(data-label);
+    color: var(--bs-secondary-color);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    text-align: left;
+    flex: 0 0 45%;
+  }
+
+  .pub-table td > * {
+    max-width: 55%;
+  }
+
+  .pub-table td:last-child {
+    margin-top: 0.25rem;
+    padding-top: 0.55rem;
+    border-top: 1px dashed var(--bs-border-color) !important;
+  }
+}
 </style>
 
 <script>
@@ -824,6 +878,29 @@ section[id] {
     if (!el) return [];
     try { return JSON.parse(el.textContent || '[]'); } catch (_) { return []; }
   };
+  const syncMobileTableLabels = () => {
+    document.querySelectorAll('.pub-table').forEach((table) => {
+      const headers = Array.from(table.querySelectorAll('thead th')).map((th) =>
+        (th.textContent || '').replace(/\s+/g, ' ').trim()
+      );
+      table.querySelectorAll('tbody tr').forEach((row) => {
+        Array.from(row.children).forEach((cell, idx) => {
+          if (cell.tagName !== 'TD') return;
+          if (cell.hasAttribute('colspan')) {
+            cell.setAttribute('data-label', '');
+            return;
+          }
+          cell.setAttribute('data-label', headers[idx] || '');
+        });
+      });
+    });
+  };
+
+  syncMobileTableLabels();
+  const mobileTableObserver = new MutationObserver(() => syncMobileTableLabels());
+  document.querySelectorAll('.pub-table tbody').forEach((tbody) => {
+    mobileTableObserver.observe(tbody, { childList: true, subtree: true });
+  });
   const yearFromDate = (value) => {
     if (!value) return null;
     const d = new Date(value);
