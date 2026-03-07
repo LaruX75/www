@@ -6,7 +6,7 @@
 <div class="table-responsive">
   <table class="table table-sm table-hover align-middle mb-0 pub-table" data-thesis-table>
     <thead>
-      <tr>
+      <tr data-year="{{ thesis.year }}" data-type="{{ thesis.type or '' }}">
         <th class="text-center" style="width:70px">Vuosi</th>
         {% if showType %}<th style="width:130px">Tyyppi</th>{% endif %}
         <th>Otsikko</th>

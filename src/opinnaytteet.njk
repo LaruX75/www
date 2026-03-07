@@ -77,9 +77,18 @@ translationKey: theses_index
     <div class="card-body p-0">
       <div class="p-3 bg-light-subtle border-bottom">
         <div class="row g-2 align-items-end">
-          <div class="col-md-9">
+          <div class="col-md-8">
             <label for="gradu-search" class="form-label small text-muted mb-1">Suodata graduja</label>
-            <input type="search" id="gradu-search" class="form-control form-control-sm" placeholder="Hae otsikosta, tekijästä..." autocomplete="off" data-thesis-search="gradutabl">
+            <div class="input-group input-group-sm thesis-filter-group">
+              <span class="input-group-text thesis-filter-icon"><i class="bi bi-search"></i></span>
+              <input type="search" id="gradu-search" class="form-control thesis-filter-input" placeholder="Hae otsikosta, tekijästä..." autocomplete="off" data-thesis-search="gradutabl">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <label for="gradu-year" class="form-label small text-muted mb-1">Vuosi</label>
+            <select id="gradu-year" class="form-select form-select-sm thesis-filter-select" data-thesis-year="gradutabl">
+              <option value="">Kaikki vuodet</option>
+            </select>
           </div>
         </div>
       </div>
@@ -104,9 +113,18 @@ translationKey: theses_index
     <div class="card-body p-0">
       <div class="p-3 bg-light-subtle border-bottom">
         <div class="row g-2 align-items-end">
-          <div class="col-md-9">
+          <div class="col-md-8">
             <label for="kandi-search" class="form-label small text-muted mb-1">Suodata kandeja</label>
-            <input type="search" id="kandi-search" class="form-control form-control-sm" placeholder="Hae otsikosta, tekijästä..." autocomplete="off" data-thesis-search="kanditabl">
+            <div class="input-group input-group-sm thesis-filter-group">
+              <span class="input-group-text thesis-filter-icon"><i class="bi bi-search"></i></span>
+              <input type="search" id="kandi-search" class="form-control thesis-filter-input" placeholder="Hae otsikosta, tekijästä..." autocomplete="off" data-thesis-search="kanditabl">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <label for="kandi-year" class="form-label small text-muted mb-1">Vuosi</label>
+            <select id="kandi-year" class="form-select form-select-sm thesis-filter-select" data-thesis-year="kanditabl">
+              <option value="">Kaikki vuodet</option>
+            </select>
           </div>
         </div>
       </div>
@@ -132,9 +150,26 @@ translationKey: theses_index
     <div class="card-body p-0">
       <div class="p-3 bg-light-subtle border-bottom">
         <div class="row g-2 align-items-end">
-          <div class="col-md-9">
+          <div class="col-md-6">
             <label for="reviewer-search" class="form-label small text-muted mb-1">Suodata tarkastettuja</label>
-            <input type="search" id="reviewer-search" class="form-control form-control-sm" placeholder="Hae otsikosta, tekijästä..." autocomplete="off" data-thesis-search="reviewertabl">
+            <div class="input-group input-group-sm thesis-filter-group">
+              <span class="input-group-text thesis-filter-icon"><i class="bi bi-search"></i></span>
+              <input type="search" id="reviewer-search" class="form-control thesis-filter-input" placeholder="Hae otsikosta, tekijästä..." autocomplete="off" data-thesis-search="reviewertabl">
+            </div>
+          </div>
+          <div class="col-md-3">
+            <label for="reviewer-year" class="form-label small text-muted mb-1">Vuosi</label>
+            <select id="reviewer-year" class="form-select form-select-sm thesis-filter-select" data-thesis-year="reviewertabl">
+              <option value="">Kaikki vuodet</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <label for="reviewer-type" class="form-label small text-muted mb-1">Tyyppi</label>
+            <select id="reviewer-type" class="form-select form-select-sm thesis-filter-select" data-thesis-type="reviewertabl">
+              <option value="">Kaikki tyypit</option>
+              <option value="masterThesis">Pro gradu</option>
+              <option value="bachelorThesis">Kandidaatintyö</option>
+            </select>
           </div>
         </div>
       </div>
@@ -183,6 +218,36 @@ document.addEventListener('DOMContentLoaded', () => {
     let filteredRows = [...rows];
 
     const searchInput = document.querySelector(`[data-thesis-search="${tableContainer.id}"]`);
+    const yearSelect = document.querySelector(`[data-thesis-year="${tableContainer.id}"]`);
+    const typeSelect = document.querySelector(`[data-thesis-type="${tableContainer.id}"]`);
+
+    if (yearSelect) {
+      const years = [...new Set(rows.map((row) => row.dataset.year).filter(Boolean))]
+        .sort((a, b) => Number(b) - Number(a));
+      years.forEach((year) => {
+        const option = document.createElement('option');
+        option.value = year;
+        option.textContent = year;
+        yearSelect.appendChild(option);
+      });
+    }
+
+    function applyFilters() {
+      const q = (searchInput?.value || '').toLowerCase().trim();
+      const year = yearSelect?.value || '';
+      const type = typeSelect?.value || '';
+
+      filteredRows = rows.filter((row) => {
+        const rowText = row.textContent.toLowerCase();
+        const rowYear = row.dataset.year || '';
+        const rowType = row.dataset.type || '';
+        const matchesSearch = !q || rowText.includes(q);
+        const matchesYear = !year || rowYear === year;
+        const matchesType = !type || rowType === type;
+        return matchesSearch && matchesYear && matchesType;
+      });
+      renderPage(1);
+    }
 
     function renderPage(page) {
       currentPage = page;
@@ -238,13 +303,17 @@ document.addEventListener('DOMContentLoaded', () => {
       ul.appendChild(nextLi);
     }
 
-    // Handle search filtering
+    // Handle filters
     if (searchInput) {
-      searchInput.addEventListener('input', () => {
-        const q = searchInput.value.toLowerCase();
-        filteredRows = rows.filter(row => row.textContent.toLowerCase().includes(q));
-        renderPage(1);
-      });
+      searchInput.addEventListener('input', applyFilters);
+    }
+
+    if (yearSelect) {
+      yearSelect.addEventListener('change', applyFilters);
+    }
+
+    if (typeSelect) {
+      typeSelect.addEventListener('change', applyFilters);
     }
 
     // Initial render
@@ -271,6 +340,40 @@ document.addEventListener('DOMContentLoaded', () => {
   background-color: var(--bs-secondary-bg);
 }
 
+.thesis-filter-group .thesis-filter-icon {
+  background-color: #0f172a;
+  color: #ffffff;
+  border-color: #0f172a;
+}
+
+.thesis-filter-input,
+.thesis-filter-select {
+  border: 1px solid rgba(15, 23, 42, 0.35);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+}
+
+.thesis-filter-input:focus,
+.thesis-filter-select:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.2);
+}
+
 [data-bs-theme="dark"] .bg-light-subtle { background-color: #1e2a3a !important; }
 [data-bs-theme="dark"] .card { border-color: rgba(255,255,255,0.08) !important; }
+[data-bs-theme="dark"] .thesis-filter-group .thesis-filter-icon {
+  background-color: #7db8f0;
+  color: #0f172a;
+  border-color: #7db8f0;
+}
+
+[data-bs-theme="dark"] .thesis-filter-input,
+[data-bs-theme="dark"] .thesis-filter-select {
+  background-color: #243347;
+  color: #e8f1ff;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+[data-bs-theme="dark"] .thesis-filter-input::placeholder {
+  color: rgba(232, 241, 255, 0.75);
+}
 </style>
