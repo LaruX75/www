@@ -1,7 +1,7 @@
 ---
-title: Silloin sitä oltiin Large's Securityn SysOp..
+title: "Silloin sitä oltiin Large's Securityn SysOp — BBS-muisteluja"
 date: 1998-02-16
-description: "HUOMIO! Alla oleva teksti sisältää \"nuorisokieltä\" eli on kirjoitettu 25v sitten :) Opiskelin silloin Oulun seudun ammattikorkeakoulussa automaatiotekniikkaa ja laadin tekstin ensimmäisille www-sivuilleni Huom! Olen"
+description: "Muisteluja 1990-luvun alun BBS-harrastuksesta Raahessa: Commodore 64:stä modeemiin, Large's Security BBS:n SysOpiksi, Fidonet-solmuksi, ANSI-taiteilijaksi ja lopulta HTML-koodaajaksi."
 categories:
   - Harrastukset
   - tietotekniikka
@@ -13,54 +13,475 @@ keywords:
   - nuoruus
   - retro
   - sysop
+layout: base.njk
+templateEngineOverride: njk
 wp_id: 911
 source_url: "https://www.jarilaru.fi/silloin-kun-sita-oltiin-larges-securityn-sysop-bbs-muisteluita/"
-templateEngineOverride: md
 ---
-<h4>HUOMIO!</h4><p>Alla oleva teksti sisältää "nuorisokieltä" eli on kirjoitettu 25v sitten :) Opiskelin silloin Oulun seudun ammattikorkeakoulussa automaatiotekniikkaa ja laadin tekstin ensimmäisille www-sivuilleni </p><p>Huom! Olen päivittänyt tekstiä siten, että siitä on upotettuna videoita ja linkkejä.</p><p>Katso myös tuolloin tehty puhelinluettelo Oulun ja Kainuun alueiden BBS-harrastajista. Sekin on minun ja kaverini ylläpitämä: <a href="https://www.jarilaru.fi/2006/02/16/98x-suuntanumeroalueen-bbs-puhelinluettelo-vuodelta-1991/" target="_blank" rel="noreferrer noopener">https://www.jarilaru.fi/2006/02/16/98x-suuntanumeroalueen-bbs-puhelinluettelo-vuodelta-1991/</a></p><p><strong>Kyseinen teksti on siis muistelu, jossa muistelen 1990-luvun vaihdetta 90-luvun lopulla. Varsinainen teksti sijoittuu ylä-asteen lopulle ja lukion alkuun. Olin silloin 14-17 vuotias.</strong></p>
-<figure>https://i.imgur.com/Sk3G58d.png<figcaption>Tällä sivulla oleva teksti perustuu yllä olevilla nettisivuilla olevaan alkuperäisversion versioon. Varsinaiset Oulun ammattikorkeakoulun aikana tehdyt sivut ovat jo kadonneet.  Teksti sisällään on sama. Löydät yllä olevat sivut täältä: <a href="http://www.student.oulu.fi/~jlaru/indexv.html" target="_blank" rel="noreferrer noopener">http://www.student.oulu.fi/~jlaru/indexv.html</a> </figcaption></figure>
-<p>Tämän tekstin kirjoittamiseen antoi kimmokkeen ilmaiseksi saatu lerppuasema, jonka avulla tutustuin lerpuilla olleeseen lähihistoriaan..!!!! teksti (voi) sisältää hankalahkoa atk-sanastoa !!!!</p>
-<h3>Ensimmäinen koneeni oli Commodore 64, jolla lähinnä pelattii
-</h3>
-<p>Olen harrastanut koneiden kanssa värkkäilyä pienen ikäni. Ensimmäisen koneeni sain ala-asteella ollessani, kuten niin moni muukin. Se oli legendaarinen Commodore64 varustettuna oikullisella kasettiasemalla ja parilla renkkanalla joystickilla.. Kayttaminen oli pitkalti pelailua, koska eihan koneen ominaisuudet riittaneet esim. piirtamiseen lainkaan! vierekkäiset värit eivät halunneet pysyä omissa lokeroissansa, vaan levisivät miten halusivat..</p>
-<figure>https://www.youtube.com/watch?app=desktop&amp;v=eY2gK1MPgh8&amp;feature=youtube_gdata<figcaption>Tällä videolla vilahtaa 100 legendaarista Commodore 64 peliä. Kyllähän niitä pelattiin ja kovasti.</figcaption></figure>
 
-<a href="https://virtualconsoles.com/online-emulators/c64/" target="_blank" rel="noreferrer noopener">Käynnistä Commodore 64 www-selaimeesi</a>
+<!-- HERO -->
+<section class="bbs-hero py-5">
+  <div class="container">
+    <div class="bbs-terminal-header mb-3">
+      <span class="bbs-prompt">C:\LARGES_SECURITY&gt;</span><span class="bbs-cursor">█</span>
+    </div>
+    <h1 class="bbs-hero-title mb-2">Large's Security BBS</h1>
+    <p class="bbs-hero-sub mb-4">Muisteluja 1990-luvun nörttiharrastuksesta Raahessa</p>
+    <div class="row g-2">
+      <div class="col-auto">
+        <div class="bbs-stat-pill">SysOp: Jari Laru</div>
+      </div>
+      <div class="col-auto">
+        <div class="bbs-stat-pill">Fidonet Node · 1991</div>
+      </div>
+      <div class="col-auto">
+        <div class="bbs-stat-pill">300 → 2400 baud</div>
+      </div>
+      <div class="col-auto">
+        <div class="bbs-stat-pill">14–17 v · Raahe</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<figure>https://www.youtube.com/watch?v=gAAJ1FGudE<figcaption>Commodore 64:een oli jo saatavilla akustinen 300 baudin modeemi. Katselin tällaista ihmettä raahelaisen kirjakaupan näyteikkunassa. Aika ei kuitenkaan ollut vielä kypsä. </figcaption></figure>
-<h3>Ensimmäinen PC-tietokone ja ensimmäinen modeemi!</h3>
-<p>Kauan pitikin kitkutella CBM64:n varassa, kunnes sain käyttööni huippumodernin! Acer 915v-AT koneen (Näitä koneita Rautaruukki myi tuolloin edullisesti omille työntekijöilleen), koneessa modeemi, joka sai aikaan _valtavaa_ innostusta koneen käyttämisen suhteen ja myös valtavia puhelinlaskuja.. Modeemi oli aluksi 1200 bps modeemi, mutta kun tekniikka halpeni hurjaa kyytiä sain lopulta v22bis modeemin (2400bps). Jo ensimmäisen modeemin aikana pidin omaa BBS-järjestelmää.</p>
-<figure>https://www.youtube.com/watch?v=MdTt0Mm35_U<figcaption>Tällä videolla esitellään Acer 915V tietokone vaikka esikatselukuvassa onkin jokin toinen kone ;-)</figcaption></figure>
-<figure>https://www.youtube.com/watch?v=ckc6XSSh52w<figcaption>Modeemin avulla siirrettiin tietoa kahden eri tietokoneen välillä. Tällä videolla on paljon tuttuja ääniä, meidän kotimmenäänimaisemaa 90-luvun taitteesta. </figcaption></figure>
-<figure>https://www.youtube.com/watch?v=JWdr4zeE3JU<figcaption>Facebook ennen wanhaan eli BBS! Tämmöisiä pyöritin myös minä kotonani vanhempien suureksi ihmetykseksi ;-)</figcaption></figure>
-<h3>BBS-harrastus vei teinipoikaa kuin "litran mittaa"</h3>
-<p>Aloittaessani BBS-harrastukseni alueella oli vain pioneerina toiminut Kari Ratilaisen ylläpitämä MicroBox, joka toimii nykyäänkin, seka Jani Lehtisen legendaarinen Gadolin's Inn. Jani oli oman purkkini (BBS-slangia :-)) perustamisen suhteen "isoveli", joka auttoi monissa mutkissa ja murheissa. Aloitin norjalaisella MBBS-softalla ja nimeksi päätin laittaa vajavaisella englanninkielen-taidollani largen salaisuus joten siitähän tuli Large's Security :-))..Systeemini toimi vain öisin, koska päivisin puhelinlinjaa luonnollisesti tarvittiin muuhun tarkoitukseen :-).. Huolimatta oudoista aukioloajoista, yhteydenottoja oli varsin runsaasti, purkissani oli satoja käyttäjiä! Olihan se hienoa olla SysOp! (eli system operator)</p>
+<div class="container py-4">
 
-<figure><img src="/img/uploads/2021/01/ekaskan-1.gif" alt=""/><figcaption>Olin hyvin ahkera mainostaja, jonka vuoksi öisin auki olleessa BBS:ssä oli satoja käyttäjiä. Tässä on omakuva, jonka yhteydessä ovat BBS:n yhteystiedot. Kuva on skannattu vuonna 1991 käsiskannerilla, tuolloin olin lukion ensimmäisellä luokalla Saloisten lukiossa Raahessa. </figcaption></figure>
+  <!-- Navigaatio lukuihin -->
+  <nav class="d-flex flex-wrap gap-2 mb-5" aria-label="Luvut">
+    <a href="#luku-c64" class="badge text-bg-dark text-decoration-none py-2 px-3 fs-bbs">01 · Commodore 64</a>
+    <a href="#luku-pc" class="badge text-bg-dark text-decoration-none py-2 px-3 fs-bbs">02 · PC &amp; Modeemi</a>
+    <a href="#luku-bbs" class="badge text-bg-dark text-decoration-none py-2 px-3 fs-bbs">03 · Large's Security BBS</a>
+    <a href="#luku-fido" class="badge text-bg-dark text-decoration-none py-2 px-3 fs-bbs">04 · Fidonet &amp; ANSI</a>
+    <a href="#luku-html" class="badge text-bg-dark text-decoration-none py-2 px-3 fs-bbs">05 · HTML &amp; Uusi sivu</a>
+  </nav>
 
-<figure><img src="/img/uploads/2021/01/majorbbsdemo.jpg" alt=""/><figcaption>MajorBBS:n (MBBS):n etusivu. Tästä BBS-järjestelmästä löytyy simulaattori, jonka voit asentaa ja fiilistellä kultaisia aikoja! <a href="https://www.mbbsemu.com/" target="_blank" rel="noreferrer noopener">https://www.mbbsemu.com/</a> </figcaption></figure>
-<figure>https://www.youtube.com/watch?v=-qjDzrDF67s<figcaption>Mikä oli SysOpin ja käyttäjän ero?</figcaption></figure>
-<h4>Varhaista viestinvälitystä: Fidonet / Poh-net / Circus-Laplandia-net</h4>
-<p>Me oulunläänin nörtinalut pistimme sitten aikanamme viisaat päät yhteen ja perustimme POH-NET ja Circus-Laplandia-NET nimiset viestinvälitysverkot, jotka olivat kytköksissä valtakunnallisesti ja maailmanlaajuisesti BBS-harrastajien FidoNET-verkkoon. Idea oli se, että kone soitteli yöllä hiljaisimpaan aikaan toisen harrastajan koneeseen ja vaihtoi viestit keskenään ja viestejähän kulki, jos jonkinlaisia.. Taso ei nyt tietenkään aina ollut se pääasia :-) BBS-ylläpitoni loppuvaiheissa alkoi Internet vähitellen tulla harrastajien tietoisuuteen, osa keskusteluista siirtyi NullNET-verkkoon (jos muistan oikein), joka pyöri Linux-Unix-ympäristössä</p>
-<figure><img src="/img/uploads/2021/01/fidonet.png" alt=""/><figcaption>Globaalissa fidonet-arkistossa näkyy, että olen ollut vuonna 1991 (16 vuotiaana) 8kk ajan yksi fidonet-verkoston solmu. Fidonet yhdisti BBS-harrastajien koneita yhteen eli toimi eräälaisena "internetin" esiasteena siirtäessään viestejä ja keskusteluita koneesta toiseen.</figcaption></figure>
-<figure>https://www.youtube.com/watch?v=Ng0NE4lDP2U<figcaption>Mikä ihmeen Fidonet?</figcaption></figure>
-<h4>BBS-harrastus ei ollut pelkkää keskustelua ja tiedostojen vaihtamista/lataamista, vaan myös taidetta tehtiin. Niin minäkin!</h4>
-<p>MBBS:n lisäksi ehdin kokeilla muitaki
-<a href="http://www.bbsdocumentary.com/" target="_blank" rel="noreferrer noopener">BBS-softia</a>: <a href="http://software.bbsdocumentary.com/IBM/DOS/QUICKBBS/" target="_blank" rel="noreferrer noopener">QuickBBS</a>,<a href="http://software.bbsdocumentary.com/IBM/DOS/MAXIMUS/">Maximus</a>,<a href="http://www.bbsdocumentary.com/software/IBM/DOS/OPUS/opushist.html" target="_blank" rel="noreferrer noopener">Opus</a>,<a href="http://software.bbsdocumentary.com/IBM/DOS/REMOTEACCESS/" target="_blank" rel="noreferrer noopener">RemoteAccess</a>,<a href="http://software.bbsdocumentary.com/IBM/DOS/SUPERBBS/" target="_blank" rel="noreferrer noopener">SuperBBS</a> ainakin tulivat tutuiksi, muita ei nyt tule mieleen.. Lisäksi FrontDoor FidoNET-viestienvälittäjänä palveli uskollisesti vuosikausia. Myös TheDraw-ansigrafiikan piirto-ohjelma aiheutti monelle soittajalle ongelmia, sillä BBS-systeemini oli koristeltu aikalailla makeasti erilaisilla ANSI-animaatioilla ja käpöstyksillä. Olin myös aikalailla pitkää
-<a href="https://www.jarilaru.fi/2006/02/16/17/" target="_blank" rel="noreferrer noopener" title="98x BBS – purkkilista (BBS) siltä ajalta kun oli vielä suuntanumeroita ja purkkeja ;-)">98x-BBS-listan ylläpitäjä</a>, joka sisälsi kaikki Oulun läänin (Pohjois-Pohjanmaa ja Kainuu) BBS-järjestelmät yhteystietoineen.</p>
-<figure>https://www.youtube.com/watch?v=oQrBbm5ZMlo&amp;list=PL7nj3G6Jpv2G6Gp6NvN1kUtQuW8QshBWE&amp;index=5<figcaption>Yksi olennainen osa BBS-harrastusta oli ASCII/ANSI-taide. Minäkin tein sitä niska limassa. Kuvan Youtube-videolla kerrotaan ANSI-taiteesta.</figcaption></figure>
-<figure><img src="/img/uploads/2021/01/ansiart.png" alt=""/><figcaption>Tämä ANSI-kuva on tehty "huijaamalla" eli olen käyttänyt konvertteria, jolla olen muuntanut ihan tavallisen valokuvani ANSI-teokseksi. Vanhoja ANSI-kuviani ei valitettavasti ole tallella (ellei levykkeillä sattumalta ole).<br>Voit tehdä itsekin vastaavan täällä: <a href="https://manytools.org/hacker-tools/convert-image-to-ansi-art" target="_blank" rel="noreferrer noopener">https://manytools.org/hacker-tools/convert-image-to-ansi-art</a> </figcaption></figure>
-<figure><img src="/img/uploads/2021/01/ICEHURWE.gif" alt=""/><figcaption>Tämä kuva ei ole ANSI-taidetta, vaan kuvankäsittelyohjelmalla tehty mainos. Mainostin kaverini BBS:ää Acer Boxia tällä kuvalla. Tämä on esimerkki mainoksista, joita aikoinaan tein :) Kaikki on piirrety pelkästään hiirtä käyttämällä.</figcaption></figure>
-<h4>BBS-harrastukseni päättyi salaman iskuun.</h4>
-<p>Innostus SysOpina toimimiseen alkoi laskea, kun yhä useammalla BBS:n pitäjällä alkoi olla varaa hankkia toinen puhelinlinja ja saada siten järjestelmästänsä 24h-auki oleva, minulla ei ollut mokomaan varaa.. Lopullisesti BBS-harrastukseni tuhosi kesä&amp;ukkonen, kun salaman aiheuttama ylijännite hajotti modeemini..</p>
+  <!-- HUOMIO-callout -->
+  <div class="bbs-callout mb-5">
+    <div class="bbs-callout-header"><i class="bi bi-exclamation-triangle-fill me-2"></i>HUOMIO — lue ensin</div>
+    <div class="bbs-callout-body">
+      <p class="mb-2">Alla oleva teksti sisältää <strong>"nuorisokieltä"</strong> — se on kirjoitettu alun perin vuonna 1998, kun opiskelin Oulun seudun ammattikorkeakoulussa automaatiotekniikkaa. Laadin tekstin tuolloin ensimmäisille www-sivuilleni.</p>
+      <p class="mb-2"><strong>Kyseinen teksti on muistelu</strong>, jossa 17-vuotias opiskelija muistelee yläasteen lopun ja lukion alun BBS-harrastustaan. Varsinainen tarina sijoittuu vuosiin 1989–1993.</p>
+      <p class="mb-0">Olen päivittänyt tekstiä upottamalla videoita ja linkkejä, mutta itse teksti on säilynyt alkuperäisenä. Katso myös: <a href="/2006/02/16/98x-suuntanumeroalueen-bbs-puhelinluettelo-vuodelta-1991/">98x-telealueen BBS-puhelinluettelo vuodelta 1991</a>.</p>
+    </div>
+  </div>
 
-<a href="https://web.archive.org/web/20160103142508/https://www.isoc.org/inet98/proceedings/7f/7f_1.htm" target="_blank" rel="noreferrer noopener">Lue Oululaisen Toni Alatalon (ANT) yksityiskohtainen selostus BBS-harrastuksesta (INET98, englanniksi) [sijainti: archive.org]</a>
+  <!-- LUKU 1: Commodore 64 -->
+  <article id="luku-c64" class="bbs-chapter mb-5" style="--chapter-color:#fd7e14">
+    <div class="bbs-chapter-header">
+      <span class="bbs-chapter-num">01</span>
+      <div>
+        <h2 class="bbs-chapter-title">Commodore 64 — ensimmäinen koneeni</h2>
+        <p class="bbs-chapter-sub text-muted small mb-0">~1987–1989 · ala-aste · Raahe</p>
+      </div>
+    </div>
+    <div class="bbs-chapter-body">
+      <p>Olen harrastanut koneiden kanssa värkkäilyä pienen ikäni. Ensimmäisen koneeni sain ala-asteella ollessani, kuten niin moni muukin. Se oli legendaarinen <strong>Commodore 64</strong> varustettuna oikullisella kasettiasemalla ja parilla renkkanalla joystickilla. Käyttäminen oli pitkälti pelailua, koska eihän koneen ominaisuudet riittäneet esim. piirtämiseen lainkaan! Vierekkäiset värit eivät halunneet pysyä omissa lokeroissansa, vaan levisivät miten halusivat..</p>
 
-<figure>https://www.youtube.com/watch?v=YTBImnpUBUw&amp;list=PL7nj3G6Jpv2G6Gp6NvN1kUtQuW8QshBWE&amp;index=7<figcaption>BBS Documentary sarjassa muistellaan kuinka Internet lopulta tappoi BBS-kulttuurin. Niin kävi minullekin, vaikka lopetin myös resurssien puutteeseen (ei omaa puhelinlinjaa BBS:lle, hidas modeemi jne.)</figcaption></figure>
-<h3><br>Pentium ja html-kieli käänsivät uuden sivun harrastamisessa</h3>
-<p>Vasta v.95 kehityksen ratas kääntyi taas suosiolliseen suuntaan tietokoneharrastustani ajatellen, kun perheeseemme hankittiin ihkaoikia Pentium. Silloin pääsin käsiksi html-kieleen rakastuen siihen oitis :-).. Tällä tiellä ollaan, olen ollut jo muutaman vuoden todella innostunut www-ympäristöstä, johon sopeutuminen on ollut helppoa, johtuen entisestä BBS-harrastuksesta. </p>
-<p>Html-koodaaminen on mukavaa, koska siitä saa toteuttaa itseään sekä tekniikan että taiteen saralla.. En nyt tietenkään voi väittää että varsinkaan tuo taide tuotoksissani näkyisi, mutta kuitenkin :-))).. Tähän mennessä olen tehnyt itselleni kahdet kotisivut (vanhempi versio on nähtävillä projektit valikossa), Tekno97-ryhmällemme kotisivut (atk-ope ei ole vain jostain syystä niitä verkkoon vielä laittanut ja Pedagogian ylioppilaat ry:n kotisivut ja uskoisin ettei tämä lista tule jäämään näin lyhyeksi :-) <strong>[katso alla oleva www-sivusto]</strong></p>
-<figure>https://i.imgur.com/Sk3G58d.png<figcaption>Tällä sivulla oleva teksti perustuu yllä olevilla nettisivuilla olevaan alkuperäisversion versioon. Varsinaiset Oulun ammattikorkeakoulun aikana tehdyt sivut ovat jo kadonneet.  Teksti sisällään on sama. Löydät yllä olevat sivut täältä: <a href="http://www.student.oulu.fi/~jlaru/indexv.html" target="_blank" rel="noreferrer noopener">http://www.student.oulu.fi/~jlaru/indexv.html</a> </figcaption></figure>
-<h4>Lopuksi vielä tietoa vuosituhannen vaihteen koneistani ;-)</h4>
-<p>Seuraava koneeni olikin sitten Expert 120mhz Cyrinx, 32mb muistia, 2,5gb levyä, Matrox Millennium ohjain, 15" monitori, SoundBlaster 32, IomegaZip, korppu/lerppu, Verkkokortti, 28k-modeemi jne+Wi NT, Adobe Photoshop 4.0 (Voi kun olisi aikaa vain harjoitella ja tehdä källejä :-))..<br><br>Tällä hetkellä hallinnassani on edellisen pohjalle rakennettu uusi kone: AMD K6-II 3DNOW! 400mhz-mylly 64mb(100mhz) muistilla ja uudella emolla ja 10gb:n kiintolevyllä. Muutoin rauta on sama kuin ennen. Lisäksi on 120mhz:n cyrinx kaikkine tarpeineen odottelemassa monitoria - siitä tulisi kakkoskone IRCcailuun ja muuhun joutavaan. Lisäksi olen asennellut Linuxin vaan en ole ehtinyt sitä juuri nysväämään. sääli.</p>
+      <div class="row g-3 mt-2">
+        <div class="col-md-6">
+          <p class="bbs-video-label"><i class="bi bi-play-circle-fill me-1"></i>100 legendaarista C64-peliä</p>
+          <div class="ratio ratio-16x9">
+            <iframe src="https://www.youtube-nocookie.com/embed/eY2gK1MPgh8" title="100 legendaarista Commodore 64 peliä" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <p class="bbs-caption">Kyllähän niitä pelattiin ja kovasti.</p>
+        </div>
+        <div class="col-md-6">
+          <p class="bbs-video-label"><i class="bi bi-play-circle-fill me-1"></i>C64 + akustinen modeemi</p>
+          <div class="ratio ratio-16x9">
+            <iframe src="https://www.youtube-nocookie.com/embed/gAAJ1FGudE" title="Commodore 64 akustinen modeemi" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <p class="bbs-caption">C64:een oli jo saatavilla akustinen 300 baudin modeemi. Katselin tällaista ihmettä raahelaisen kirjakaupan näyteikkunassa. Aika ei kuitenkaan ollut vielä kypsä.</p>
+        </div>
+      </div>
+    </div>
+  </article>
 
+  <!-- LUKU 2: PC & Modeemi -->
+  <article id="luku-pc" class="bbs-chapter mb-5" style="--chapter-color:#0d6efd">
+    <div class="bbs-chapter-header">
+      <span class="bbs-chapter-num">02</span>
+      <div>
+        <h2 class="bbs-chapter-title">Ensimmäinen PC ja ensimmäinen modeemi</h2>
+        <p class="bbs-chapter-sub text-muted small mb-0">~1989–1991 · 1200 → 2400 bps</p>
+      </div>
+    </div>
+    <div class="bbs-chapter-body">
+      <p>Kauan pitikin kitkutella CBM64:n varassa, kunnes sain käyttööni huippumodernin <strong>Acer 915v-AT</strong> -koneen (Näitä koneita Rautaruukki myi tuolloin edullisesti omille työntekijöilleen). Koneessa modeemi, joka sai aikaan <em>valtavaa</em> innostusta koneen käyttämisen suhteen ja myös valtavia puhelinlaskuja.</p>
+      <p>Modeemi oli aluksi <strong>1200 bps</strong>, mutta kun tekniikka halpeni hurjaa kyytiä sain lopulta v22bis modeemin (<strong>2400 bps</strong>). Jo ensimmäisen modeemin aikana pidin omaa BBS-järjestelmää.</p>
+
+      <div class="row g-3 mt-2">
+        <div class="col-md-4">
+          <p class="bbs-video-label"><i class="bi bi-play-circle-fill me-1"></i>Acer 915V tietokone</p>
+          <div class="ratio ratio-16x9">
+            <iframe src="https://www.youtube-nocookie.com/embed/MdTt0Mm35_U" title="Acer 915V tietokone" loading="lazy" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <p class="bbs-video-label"><i class="bi bi-play-circle-fill me-1"></i>Modeemin äänet</p>
+          <div class="ratio ratio-16x9">
+            <iframe src="https://www.youtube-nocookie.com/embed/ckc6XSSh52w" title="Modeemin äänet" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <p class="bbs-caption">Meidän kotimme äänimaisemaa 90-luvun taitteesta.</p>
+        </div>
+        <div class="col-md-4">
+          <p class="bbs-video-label"><i class="bi bi-play-circle-fill me-1"></i>BBS — "Facebook ennen vanhaan"</p>
+          <div class="ratio ratio-16x9">
+            <iframe src="https://www.youtube-nocookie.com/embed/JWdr4zeE3JU" title="Mikä on BBS" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <p class="bbs-caption">Tämmöisiä pyöritin myös minä kotonani vanhempien suureksi ihmetykseksi.</p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- LUKU 3: Large's Security BBS -->
+  <article id="luku-bbs" class="bbs-chapter mb-5" style="--chapter-color:#198754">
+    <div class="bbs-chapter-header">
+      <span class="bbs-chapter-num">03</span>
+      <div>
+        <h2 class="bbs-chapter-title">Large's Security BBS — SysOpin vuodet</h2>
+        <p class="bbs-chapter-sub text-muted small mb-0">~1990–1993 · MBBS-softa · satoja käyttäjiä</p>
+      </div>
+    </div>
+    <div class="bbs-chapter-body">
+      <p>Aloittaessani BBS-harrastukseni alueella oli vain pioneerina toiminut <strong>Kari Ratilaisen ylläpitämä MicroBox</strong>, joka toimii nykyäänkin, sekä <strong>Jani Lehtisen legendaarinen Gadolin's Inn</strong>. Jani oli oman purkkini perustamisen suhteen "isoveli", joka auttoi monissa mutkissa ja murheissa.</p>
+      <p>Aloitin norjalaisella <strong>MBBS-softalla</strong> ja nimeksi päätin laittaa vajavaisella englanninkielen taidollani <em>largen salaisuus</em>, joten siitähän tuli <strong>Large's Security</strong>. Systeemini toimi vain öisin, koska päivisin puhelinlinjaa luonnollisesti tarvittiin muuhun tarkoitukseen. Huolimatta oudoista aukioloajoista, yhteydenottoja oli varsin runsaasti — purkkissani oli <strong>satoja käyttäjiä!</strong></p>
+
+      <div class="row g-4 mt-1 align-items-start">
+        <div class="col-md-6">
+          <figure class="bbs-figure">
+            <img src="/img/uploads/2021/01/ekaskan-1.gif" alt="Omakuva ja Large's Security BBS yhteystiedot 1991" class="img-fluid rounded">
+            <figcaption class="bbs-caption mt-2">Olin hyvin ahkera mainostaja. Tässä omakuva, jonka yhteydessä ovat BBS:n yhteystiedot. Kuva on skannattu vuonna 1991 käsiskannerilla — olin lukion ensimmäisellä luokalla Saloisten lukiossa Raahessa.</figcaption>
+          </figure>
+        </div>
+        <div class="col-md-6">
+          <figure class="bbs-figure">
+            <img src="/img/uploads/2021/01/majorbbsdemo.jpg" alt="MajorBBS etusivu" class="img-fluid rounded">
+            <figcaption class="bbs-caption mt-2">MajorBBS:n (MBBS) etusivu. Tästä BBS-järjestelmästä löytyy simulaattori, jonka voit asentaa ja fiilistellä kultaisia aikoja! <a href="https://www.mbbsemu.com/" target="_blank" rel="noopener">mbbsemu.com</a></figcaption>
+          </figure>
+          <div class="mt-3">
+            <p class="bbs-video-label"><i class="bi bi-play-circle-fill me-1"></i>Mikä oli SysOpin ja käyttäjän ero?</p>
+            <div class="ratio ratio-16x9">
+              <iframe src="https://www.youtube-nocookie.com/embed/-qjDzrDF67s" title="SysOp vs käyttäjä" loading="lazy" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- LUKU 4: Fidonet & ANSI-taide -->
+  <article id="luku-fido" class="bbs-chapter mb-5" style="--chapter-color:#6f42c1">
+    <div class="bbs-chapter-header">
+      <span class="bbs-chapter-num">04</span>
+      <div>
+        <h2 class="bbs-chapter-title">Fidonet, POH-NET ja ANSI-taide</h2>
+        <p class="bbs-chapter-sub text-muted small mb-0">1991 · Fidonet Node · salama tappoi harrastuksen</p>
+      </div>
+    </div>
+    <div class="bbs-chapter-body">
+      <p>Me oulunläänin nörtinalut pistimme viisaat päät yhteen ja perustimme <strong>POH-NET</strong> ja <strong>Circus-Laplandia-NET</strong> nimiset viestinvälitysverkot, jotka olivat kytköksissä valtakunnallisesti ja maailmanlaajuisesti BBS-harrastajien <strong>FidoNET</strong>-verkkoon. Idea oli se, että kone soitteli yöllä hiljaisimpaan aikaan toisen harrastajan koneeseen ja vaihtoi viestit keskenään.</p>
+
+      <div class="row g-4 mt-1">
+        <div class="col-md-5">
+          <figure class="bbs-figure">
+            <img src="/img/uploads/2021/01/fidonet.png" alt="Fidonet-arkisto 1991" class="img-fluid rounded">
+            <figcaption class="bbs-caption mt-2">Globaalissa Fidonet-arkistossa näkyy, että olin vuonna 1991 (16-vuotiaana) 8 kk ajan yksi Fidonet-verkoston solmuista. Fidonet yhdisti BBS-harrastajien koneita yhteen — eräänlainen "internetin" esiaste.</figcaption>
+          </figure>
+          <div class="mt-3">
+            <p class="bbs-video-label"><i class="bi bi-play-circle-fill me-1"></i>Mikä ihmeen Fidonet?</p>
+            <div class="ratio ratio-16x9">
+              <iframe src="https://www.youtube-nocookie.com/embed/Ng0NE4lDP2U" title="Mikä on Fidonet" loading="lazy" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <p>BBS-harrastus ei ollut pelkkää keskustelua ja tiedostojen vaihtamista, vaan myös <strong>taidetta tehtiin</strong>. MBBS:n lisäksi ehdin kokeilla muitakin BBS-softia: QuickBBS, Maximus, Opus, RemoteAccess, SuperBBS. FrontDoor FidoNET-viestienvälittäjänä palveli uskollisesti vuosikausia. Myös <strong>TheDraw-ansigrafiikan</strong> piirto-ohjelma aiheutti monelle soittajalle ongelmia, sillä BBS-systeemini oli koristeltu aikalailla makeasti erilaisilla ANSI-animaatioilla ja käpöstyksillä.</p>
+
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <p class="bbs-video-label"><i class="bi bi-play-circle-fill me-1"></i>ANSI-taide</p>
+              <div class="ratio ratio-16x9">
+                <iframe src="https://www.youtube-nocookie.com/embed/oQrBbm5ZMlo" title="ANSI-taide BBS-kulttuurissa" loading="lazy" allowfullscreen></iframe>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <figure class="bbs-figure">
+                <img src="/img/uploads/2021/01/ansiart.png" alt="ANSI-taide omakuva" class="img-fluid rounded">
+                <figcaption class="bbs-caption mt-1">Tämä ANSI-kuva on tehty "huijaamalla" — konverterilla muuntamalla tavallinen valokuva ANSI-teokseksi. Vanhoja varsinaisia ANSI-kuviani ei ole tallella.</figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <figure class="bbs-figure mt-3">
+            <img src="/img/uploads/2021/01/ICEHURWE.gif" alt="BBS-mainos kaverille" class="img-fluid rounded" style="max-height:140px">
+            <figcaption class="bbs-caption mt-1">Kuvankäsittelyohjelmalla tehty mainos kaverini <em>Acer Box</em> -BBS:lle. Kaikki on piirretty pelkästään hiirtä käyttämällä.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="bbs-lightning-box mt-4">
+        <div class="d-flex align-items-start gap-3">
+          <span style="font-size:2rem">⚡</span>
+          <div>
+            <strong>BBS-harrastukseni päättyi salaman iskuun</strong>
+            <p class="mb-0 mt-1">Innostus SysOpina toimimiseen alkoi laskea, kun yhä useammalla BBS:n pitäjällä alkoi olla varaa hankkia toinen puhelinlinja. Lopullisesti harrastukseni tuhosi kesäukkonen — salaman aiheuttama ylijännite hajotti modeemini.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <p class="bbs-video-label"><i class="bi bi-play-circle-fill me-1"></i>Kuinka Internet lopulta tappoi BBS-kulttuurin</p>
+        <div class="ratio ratio-16x9" style="max-width:560px">
+          <iframe src="https://www.youtube-nocookie.com/embed/YTBImnpUBUw" title="Internet tappoi BBS:n" loading="lazy" allowfullscreen></iframe>
+        </div>
+        <p class="bbs-caption">BBS Documentary sarjassa muistellaan kuinka Internet lopulta tappoi BBS-kulttuurin. Niin kävi minullekin — vaikka lopetin myös resurssien puutteeseen.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- LUKU 5: Pentium & HTML -->
+  <article id="luku-html" class="bbs-chapter mb-5" style="--chapter-color:#0dcaf0">
+    <div class="bbs-chapter-header">
+      <span class="bbs-chapter-num">05</span>
+      <div>
+        <h2 class="bbs-chapter-title">Pentium, HTML ja uusi sivu alkaa</h2>
+        <p class="bbs-chapter-sub text-muted small mb-0">~1995–1998 · OAMK · ensimmäiset kotisivut</p>
+      </div>
+    </div>
+    <div class="bbs-chapter-body">
+      <p>Vasta v.95 kehityksen ratas kääntyi taas suosiolliseen suuntaan tietokoneharrastustani ajatellen, kun perheeseemme hankittiin ihkaoikia <strong>Pentium</strong>. Silloin pääsin käsiksi HTML-kieleen rakastuen siihen oitis.</p>
+      <p>HTML-koodaaminen on mukavaa, koska siitä saa toteuttaa itseään sekä tekniikan että taiteen saralla. Tähän mennessä (1998) olen tehnyt itselleni kahdet kotisivut, Tekno97-ryhmällemme kotisivut ja Pedagogian ylioppilaat ry:n kotisivut — enkä usko listan jäävän näin lyhyeksi.</p>
+
+      <div class="row g-4 align-items-center mt-1">
+        <div class="col-md-7">
+          <div class="bbs-spec-box">
+            <p class="bbs-spec-title mb-2"><i class="bi bi-cpu-fill me-2"></i>Lopuksi vielä tietoa vuosituhannen vaihteen koneistani</p>
+            <ul class="mb-0 small" style="font-family:monospace">
+              <li>Expert 120 MHz Cyrix · 32 MB RAM · 2,5 GB HDD</li>
+              <li>Matrox Millennium · SoundBlaster 32 · 28k modeemi</li>
+              <li>IomegaZip · Win NT · Adobe Photoshop 4.0</li>
+              <li class="mt-1">→ Päivitetty: AMD K6-II 3DNow! 400 MHz · 64 MB · 10 GB</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <figure class="bbs-figure">
+            <img src="https://i.imgur.com/Sk3G58d.png" alt="Alkuperäiset kotisivut 1998" class="img-fluid rounded border">
+            <figcaption class="bbs-caption mt-2">Teksti perustuu näillä alkuperäisillä kotisivuilla olevaan versioon. Varsinaiset OAMK:n aikana tehdyt sivut ovat kadonneet, mutta teksti on sama. <a href="http://www.student.oulu.fi/~jlaru/indexv.html" target="_blank" rel="noopener noreferrer">student.oulu.fi/~jlaru</a></figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- LINKIT & LIITTYVÄT -->
+  <section class="py-4 border-top">
+    <h2 class="h5 fw-bold mb-3">Liittyvät linkit &amp; lähteet</h2>
+    <div class="row g-3">
+      <div class="col-md-4">
+        <a href="/2006/02/16/98x-suuntanumeroalueen-bbs-puhelinluettelo-vuodelta-1991/" class="card text-decoration-none bbs-link-card h-100">
+          <div class="card-body">
+            <div class="bbs-link-icon mb-2"><i class="bi bi-telephone-fill"></i></div>
+            <h3 class="h6 fw-bold mb-1">98x telealueen BBS-puhelinluettelo</h3>
+            <p class="small text-muted mb-0">Minun ja Jari Huhtamäen ylläpitämä luettelo kaikista Oulun läänin BBS-järjestelmistä vuodelta 1991.</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="https://web.archive.org/web/20160103142508/https://www.isoc.org/inet98/proceedings/7f/7f_1.htm" target="_blank" rel="noopener noreferrer" class="card text-decoration-none bbs-link-card h-100">
+          <div class="card-body">
+            <div class="bbs-link-icon mb-2"><i class="bi bi-file-earmark-text-fill"></i></div>
+            <h3 class="h6 fw-bold mb-1">Toni Alatalo (ANT): BBS-harrastus</h3>
+            <p class="small text-muted mb-0">Oululaisen Toni Alatalon yksityiskohtainen selostus BBS-harrastuksesta (INET98, englanniksi) — archive.org.</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="http://www.bbsdocumentary.com/" target="_blank" rel="noopener noreferrer" class="card text-decoration-none bbs-link-card h-100">
+          <div class="card-body">
+            <div class="bbs-link-icon mb-2"><i class="bi bi-camera-video-fill"></i></div>
+            <h3 class="h6 fw-bold mb-1">BBS Documentary</h3>
+            <p class="small text-muted mb-0">Kattava dokumenttisarja BBS-kulttuurista — videot, haastattelut ja historia.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kategoriat & avainsanat -->
+  <div class="py-3 border-top">
+    <div class="d-flex flex-wrap gap-2 align-items-center">
+      <span class="small text-muted">Kategoriat:</span>
+      <a class="badge text-bg-secondary text-decoration-none" href="/kategoriat/harrastukset/">Harrastukset</a>
+      <a class="badge text-bg-secondary text-decoration-none" href="/kategoriat/tietotekniikka/">tietotekniikka</a>
+      <span class="small text-muted ms-2">Avainsanat:</span>
+      <a class="badge text-bg-light text-dark border text-decoration-none" href="/avainsanat/bbs/">bbs</a>
+      <a class="badge text-bg-light text-dark border text-decoration-none" href="/avainsanat/fidonet/">fidonet</a>
+      <a class="badge text-bg-light text-dark border text-decoration-none" href="/avainsanat/modeemi/">modeemi</a>
+      <a class="badge text-bg-light text-dark border text-decoration-none" href="/avainsanat/sysop/">sysop</a>
+      <a class="badge text-bg-light text-dark border text-decoration-none" href="/avainsanat/retro/">retro</a>
+    </div>
+    <div class="mt-3">
+      <a href="/blogi/" class="btn btn-outline-secondary btn-sm">&larr; Takaisin blogiin</a>
+    </div>
+  </div>
+
+</div>
+
+<style>
+/* ═══ BBS HERO ═══ */
+.bbs-hero {
+  background-color: #0a1a0a;
+  border-bottom: 2px solid #1a3a1a;
+  font-family: 'Courier New', Courier, monospace;
+}
+.bbs-terminal-header {
+  font-size: 0.85rem;
+  color: #33ff66;
+  opacity: 0.7;
+}
+.bbs-prompt { color: #33ff66; }
+.bbs-cursor {
+  animation: bbs-blink 1s step-end infinite;
+  color: #33ff66;
+}
+@keyframes bbs-blink { 0%,100%{opacity:1} 50%{opacity:0} }
+.bbs-hero-title {
+  font-family: 'Courier New', Courier, monospace;
+  color: #33ff66;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  letter-spacing: 0.03em;
+  text-shadow: 0 0 18px rgba(51,255,102,0.4);
+}
+.bbs-hero-sub {
+  color: rgba(51,255,102,0.65);
+  font-size: 1rem;
+}
+.bbs-stat-pill {
+  background: rgba(51,255,102,0.1);
+  border: 1px solid rgba(51,255,102,0.3);
+  color: rgba(51,255,102,0.85);
+  border-radius: 2rem;
+  padding: 0.25rem 0.8rem;
+  font-size: 0.78rem;
+  font-family: 'Courier New', monospace;
+}
+
+/* ═══ CALLOUT ═══ */
+.bbs-callout {
+  border-left: 4px solid #fd7e14;
+  background: var(--bs-warning-bg-subtle, #fff3cd);
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+.bbs-callout-header {
+  padding: 0.6rem 1rem;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  color: #7a4900;
+}
+.bbs-callout-body {
+  padding: 1rem;
+  font-size: 0.92rem;
+}
+[data-bs-theme="dark"] .bbs-callout {
+  background: rgba(253,126,20,0.1);
+  border-left-color: #fd7e14;
+}
+[data-bs-theme="dark"] .bbs-callout-header { color: #ffc27a; }
+
+/* ═══ CHAPTER CARDS ═══ */
+.bbs-chapter {
+  border-left: 4px solid var(--chapter-color, #6c757d);
+  padding-left: 1.5rem;
+  scroll-margin-top: 6rem;
+}
+.bbs-chapter-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+.bbs-chapter-num {
+  font-family: 'Courier New', monospace;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--chapter-color, #6c757d);
+  line-height: 1;
+  opacity: 0.8;
+  flex-shrink: 0;
+}
+.bbs-chapter-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+}
+.bbs-chapter-body { padding-left: 0; }
+
+/* ═══ MEDIA ═══ */
+.bbs-video-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--bs-secondary-color);
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+}
+.bbs-caption {
+  font-size: 0.8rem;
+  color: var(--bs-secondary-color);
+  font-style: italic;
+  margin-bottom: 0;
+}
+.bbs-figure { margin: 0; }
+.fs-bbs { font-size: 0.75rem !important; font-family: 'Courier New', monospace; }
+
+/* ═══ LIGHTNING BOX ═══ */
+.bbs-lightning-box {
+  background: var(--bs-warning-bg-subtle, #fff3cd);
+  border: 1px solid var(--bs-warning-border-subtle, #ffe69c);
+  border-radius: 0.5rem;
+  padding: 1rem 1.25rem;
+}
+[data-bs-theme="dark"] .bbs-lightning-box {
+  background: rgba(255,193,7,0.08);
+  border-color: rgba(255,193,7,0.2);
+}
+
+/* ═══ SPEC BOX ═══ */
+.bbs-spec-box {
+  background: var(--bs-tertiary-bg);
+  border: 1px solid var(--bs-border-color);
+  border-radius: 0.5rem;
+  padding: 1rem 1.25rem;
+}
+.bbs-spec-title {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 700;
+  color: var(--bs-secondary-color);
+}
+
+/* ═══ LINK CARDS ═══ */
+.bbs-link-card {
+  border-color: var(--bs-border-color);
+  transition: transform 0.15s, box-shadow 0.15s;
+  color: inherit;
+}
+.bbs-link-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,0.1);
+  color: inherit;
+}
+.bbs-link-icon {
+  font-size: 1.4rem;
+  color: var(--bs-secondary-color);
+}
+
+/* ═══ DARK MODE ═══ */
+[data-bs-theme="dark"] .bbs-chapter-num { opacity: 0.65; }
+</style>
