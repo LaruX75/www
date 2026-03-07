@@ -257,6 +257,23 @@ html:not([data-bs-theme="dark"]) .mega-menu-panel a i {
   display: none;
 }
 
+.mobile-nav-accordion .accordion-button {
+  font-weight: 700;
+}
+
+.mobile-nav-link {
+  display: block;
+  padding: 0.38rem 0;
+  color: var(--bs-body-color);
+  text-decoration: none;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link:focus-visible {
+  color: var(--bs-primary);
+  text-decoration: underline;
+}
+
 [data-bs-theme="dark"] .contact-mega-form .form-control {
   border-color: rgba(255, 255, 255, 0.24);
   background-color: rgba(15, 23, 42, 0.72);
