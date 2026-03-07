@@ -7,7 +7,7 @@ translationKey: politics_index
 lang: fi
 templateEngineOverride: njk,md
 ---
-<section class="bg-light mb-5">
+<section class="bg-body-tertiary mb-5">
   <div class="container py-4">
     <div class="row g-4 align-items-center">
       <div class="col-lg-8">
@@ -18,6 +18,7 @@ templateEngineOverride: njk,md
         <div class="d-flex flex-wrap gap-2">
           <a href="/kynasta/#aloitteet" class="btn btn-primary">Aloitteet</a>
           <a href="/kynasta/#puheet" class="btn btn-outline-primary">Puheet</a>
+          <a href="/vaalihistoria/" class="btn btn-outline-primary">Vaalihistoria</a>
           <a href="/sidonnaisuudet/" class="btn btn-outline-primary">Sidonnaisuudet</a>
         </div>
       </div>
@@ -219,37 +220,38 @@ templateEngineOverride: njk,md
 
 <script id="politics-content-data" type="application/json">
 [
-{% for item in collections.politics %}
+{% set comma = joiner(",") %}
+{% for item in collections.politics %}{{ comma() }}
   {
     "title": {{ (item.data.title or "") | dump | safe }},
     "url": {{ (item.url or "") | dump | safe }},
     "date": {{ (item.date | dateToRfc3339) | dump | safe }},
     "contentType": "Aloite"
-  },
+  }
 {% endfor %}
-{% for item in collections.pub_kolumni %}
+{% for item in collections.pub_kolumni %}{{ comma() }}
   {
     "title": {{ (item.data.title or "") | dump | safe }},
     "url": {{ (item.url or "") | dump | safe }},
     "date": {{ (item.date | dateToRfc3339) | dump | safe }},
     "contentType": "Kolumni"
-  },
+  }
 {% endfor %}
-{% for item in collections.pub_mielipide %}
+{% for item in collections.pub_mielipide %}{{ comma() }}
   {
     "title": {{ (item.data.title or "") | dump | safe }},
     "url": {{ (item.url or "") | dump | safe }},
     "date": {{ (item.date | dateToRfc3339) | dump | safe }},
     "contentType": "Mielipide"
-  },
+  }
 {% endfor %}
-{% for item in collections.pub_puhe %}
+{% for item in collections.pub_puhe %}{{ comma() }}
   {
     "title": {{ (item.data.title or "") | dump | safe }},
     "url": {{ (item.url or "") | dump | safe }},
     "date": {{ (item.date | dateToRfc3339) | dump | safe }},
     "contentType": "Puheenvuoro"
-  }{% if not loop.last %},{% endif %}
+  }
 {% endfor %}
 ]
 </script>
