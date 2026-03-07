@@ -107,6 +107,9 @@ html:not([data-bs-theme="dark"]) .home-hero-lead {
   font-weight: 600;
   font-size: 0.95rem;
   padding: 0 0.35rem;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
 }
 
 .home-hero-role-item + .home-hero-role-item::before {
@@ -119,6 +122,16 @@ html:not([data-bs-theme="dark"]) .home-hero-lead {
 
 html:not([data-bs-theme="dark"]) .home-hero-role-item {
   color: rgba(19, 45, 74, 0.9);
+}
+
+.home-hero-role-item:hover,
+.home-hero-role-item:focus-visible {
+  color: #ffffff;
+}
+
+html:not([data-bs-theme="dark"]) .home-hero-role-item:hover,
+html:not([data-bs-theme="dark"]) .home-hero-role-item:focus-visible {
+  color: #0e3153;
 }
 
 html:not([data-bs-theme="dark"]) .home-hero-role-item + .home-hero-role-item::before {
