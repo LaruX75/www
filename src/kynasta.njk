@@ -46,49 +46,49 @@ translationKey: writings_index
   <div class="container">
     <div class="card shadow-sm">
       <div class="card-header bg-transparent d-flex align-items-center justify-content-between">
-        <h2 class="h4 mb-0">Yhteenveto</h2>
+        <h2 class="h4 mb-0"><i class="bi bi-bar-chart-fill me-2 text-primary"></i>Yhteenveto</h2>
         <span class="badge text-bg-primary">Chart.js</span>
       </div>
       <div class="card-body">
         <div class="row g-3 mb-4">
           <div class="col-6 col-md-4 col-lg-2">
-            <div class="summary-kpi p-3 rounded border h-100">
+            <div class="summary-kpi kpi-color-aloitteet p-3 rounded border border-start border-4 h-100">
               <div class="summary-kpi-label">Aloitteet</div>
               <div id="kpi-aloitteet" class="summary-kpi-value">0</div>
             </div>
           </div>
           <div class="col-6 col-md-4 col-lg-2">
-            <div class="summary-kpi p-3 rounded border h-100">
+            <div class="summary-kpi kpi-color-blogi p-3 rounded border border-start border-4 h-100">
               <div class="summary-kpi-label">Blogi</div>
               <div id="kpi-blogi" class="summary-kpi-value">0</div>
             </div>
           </div>
           <div class="col-6 col-md-4 col-lg-2">
-            <div class="summary-kpi p-3 rounded border h-100">
+            <div class="summary-kpi kpi-color-esitykset p-3 rounded border border-start border-4 h-100">
               <div class="summary-kpi-label">Esitykset</div>
               <div id="kpi-esitykset" class="summary-kpi-value">0</div>
             </div>
           </div>
           <div class="col-6 col-md-4 col-lg-2">
-            <div class="summary-kpi p-3 rounded border h-100">
+            <div class="summary-kpi kpi-color-julkaisut p-3 rounded border border-start border-4 h-100">
               <div class="summary-kpi-label">Julkaisut</div>
               <div id="kpi-julkaisut" class="summary-kpi-value">0</div>
             </div>
           </div>
           <div class="col-6 col-md-4 col-lg-2">
-            <div class="summary-kpi p-3 rounded border h-100">
+            <div class="summary-kpi kpi-color-kolumnit p-3 rounded border border-start border-4 h-100">
               <div class="summary-kpi-label">Kolumnit</div>
               <div id="kpi-kolumnit" class="summary-kpi-value">0</div>
             </div>
           </div>
           <div class="col-6 col-md-4 col-lg-2">
-            <div class="summary-kpi p-3 rounded border h-100">
+            <div class="summary-kpi kpi-color-mielipiteet p-3 rounded border border-start border-4 h-100">
               <div class="summary-kpi-label">Mielipiteet</div>
               <div id="kpi-mielipiteet" class="summary-kpi-value">0</div>
             </div>
           </div>
           <div class="col-6 col-md-4 col-lg-2">
-            <div class="summary-kpi p-3 rounded border h-100">
+            <div class="summary-kpi kpi-color-puheet p-3 rounded border border-start border-4 h-100">
               <div class="summary-kpi-label">Puheet</div>
               <div id="kpi-puheet" class="summary-kpi-value">0</div>
             </div>
@@ -134,16 +134,16 @@ translationKey: writings_index
 </script>
 
 <span id="mielipidekirjoitukset-eri-sanomalehdissa"></span>
-<section id="mielipiteet">
+<section id="mielipiteet" class="bg-body-tertiary">
   <div class="container">
     <div class="card shadow-sm">
-      <div class="card-header bg-transparent d-flex align-items-center justify-content-between">
-        <h2 class="h4 mb-0">Mielipidekirjoitukset</h2>
-        <span class="badge text-bg-secondary">{{ collections.pub_mielipide.length }}</span>
+      <div class="card-header bg-transparent d-flex align-items-center justify-content-between border-start border-4 border-primary">
+        <h2 class="h4 mb-0"><i class="bi bi-chat-square-quote-fill me-2 text-primary"></i>Mielipidekirjoitukset</h2>
+        <span class="badge text-bg-primary">{{ collections.pub_mielipide.length }}</span>
       </div>
       <div class="card-body p-0">
         {# ---- Suodatuspalkki ---- #}
-        <div class="p-3 bg-light border-bottom">
+        <div class="p-3 bg-body-tertiary border-bottom">
           <div class="row g-2 align-items-end">
             <div class="col-md-9">
               <label for="mielipiteet-search" class="form-label small text-muted mb-1">Hae mielipidekirjoituksia</label>
@@ -213,13 +213,13 @@ translationKey: writings_index
 <section id="kolumnit">
   <div class="container">
     <div class="card shadow-sm">
-      <div class="card-header bg-transparent d-flex align-items-center justify-content-between">
-        <h2 class="h4 mb-0">Kolumnit ja blogivierailut</h2>
-        <span class="badge text-bg-secondary">{{ collections.pub_kolumni.length }}</span>
+      <div class="card-header bg-transparent d-flex align-items-center justify-content-between border-start border-4 border-success">
+        <h2 class="h4 mb-0"><i class="bi bi-pen-fill me-2 text-success"></i>Kolumnit ja blogivierailut</h2>
+        <span class="badge text-bg-success">{{ collections.pub_kolumni.length }}</span>
       </div>
       <div class="card-body p-0">
         {# ---- Suodatuspalkki ---- #}
-        <div class="p-3 bg-light border-bottom">
+        <div class="p-3 bg-body-tertiary border-bottom">
           <div class="row g-2 align-items-end">
             <div class="col-md-9">
               <label for="kolumnit-search" class="form-label small text-muted mb-1">Hae kolumneja</label>
@@ -288,13 +288,13 @@ translationKey: writings_index
 <section id="aloitteet">
   <div class="container">
     <div class="card shadow-sm">
-      <div class="card-header bg-transparent d-flex align-items-center justify-content-between">
-        <h2 class="h4 mb-0">Aloitteet ja adressit</h2>
-        <span class="badge text-bg-secondary">{{ collections.politics.length }}</span>
+      <div class="card-header bg-transparent d-flex align-items-center justify-content-between border-start border-4 border-warning">
+        <h2 class="h4 mb-0"><i class="bi bi-megaphone-fill me-2 text-warning"></i>Aloitteet ja adressit</h2>
+        <span class="badge text-bg-warning text-dark">{{ collections.politics.length }}</span>
       </div>
       <div class="card-body p-0">
         {# ---- Suodatuspalkki ---- #}
-        <div class="p-3 bg-light border-bottom">
+        <div class="p-3 bg-body-tertiary border-bottom">
           <div class="row g-2 align-items-end">
             <div class="col-md-9">
               <label for="aloitteet-search" class="form-label small text-muted mb-1">Hae aloitteita</label>
@@ -363,13 +363,13 @@ translationKey: writings_index
 <section id="puheet">
   <div class="container">
     <div class="card shadow-sm">
-      <div class="card-header bg-transparent d-flex align-items-center justify-content-between">
-        <h2 class="h4 mb-0">Puheet</h2>
-        <span class="badge text-bg-secondary">{{ collections.pub_puhe.length }}</span>
+      <div class="card-header bg-transparent d-flex align-items-center justify-content-between border-start border-4 border-danger">
+        <h2 class="h4 mb-0"><i class="bi bi-mic-fill me-2 text-danger"></i>Puheet</h2>
+        <span class="badge text-bg-danger">{{ collections.pub_puhe.length }}</span>
       </div>
       <div class="card-body p-0">
         {# ---- Suodatuspalkki ---- #}
-        <div class="p-3 bg-light border-bottom">
+        <div class="p-3 bg-body-tertiary border-bottom">
           <div class="row g-2 align-items-end">
             <div class="col-md-9">
               <label for="puheet-search" class="form-label small text-muted mb-1">Hae puheita</label>
@@ -433,16 +433,16 @@ translationKey: writings_index
 ]
 </script>
 
-<section id="blogi">
+<section id="blogi" class="bg-body-tertiary">
   <div class="container">
     <div class="card shadow-sm">
-      <div class="card-header bg-transparent d-flex align-items-center justify-content-between">
-        <h2 class="h4 mb-0">Blogi</h2>
-        <span class="badge text-bg-secondary">{{ collections.blog.length }}</span>
+      <div class="card-header bg-transparent d-flex align-items-center justify-content-between border-start border-4" style="border-left-color:#6f42c1!important">
+        <h2 class="h4 mb-0"><i class="bi bi-journal-richtext me-2" style="color:#6f42c1"></i>Blogi</h2>
+        <span class="badge" style="background-color:#6f42c1;color:#fff">{{ collections.blog.length }}</span>
       </div>
       <div class="card-body p-0">
         {# ---- Suodatuspalkki ---- #}
-        <div class="p-3 bg-light border-bottom">
+        <div class="p-3 bg-body-tertiary border-bottom">
           <div class="row g-2 align-items-end">
             <div class="col-md-9">
               <label for="blog-search" class="form-label small text-muted mb-1">Hae kirjoituksia</label>
@@ -513,12 +513,12 @@ translationKey: writings_index
 <section id="esitykset">
   <div class="container">
     <div class="card shadow-sm">
-      <div class="card-header bg-transparent d-flex align-items-center justify-content-between">
-        <h2 class="h4 mb-0">Esitykset</h2>
-        <span class="badge text-bg-secondary">{{ collections.presentations.length }}</span>
+      <div class="card-header bg-transparent d-flex align-items-center justify-content-between border-start border-4 border-info">
+        <h2 class="h4 mb-0"><i class="bi bi-display-fill me-2 text-info"></i>Esitykset</h2>
+        <span class="badge text-bg-info text-dark">{{ collections.presentations.length }}</span>
       </div>
       <div class="card-body p-0">
-        <div class="p-3 bg-light border-bottom">
+        <div class="p-3 bg-body-tertiary border-bottom">
           <div class="row g-2 align-items-end">
             <div class="col-md-9">
               <label for="esitykset-search" class="form-label small text-muted mb-1">Hae esityksiä</label>
@@ -584,16 +584,16 @@ translationKey: writings_index
 ]
 </script>
 
-<section id="julkaisut">
+<section id="julkaisut" class="bg-body-tertiary">
   <div class="container">
     <div class="card shadow-sm">
-      <div class="card-header bg-transparent d-flex align-items-center justify-content-between">
-        <h2 class="h4 mb-0">Tieteelliset julkaisut</h2>
+      <div class="card-header bg-transparent d-flex align-items-center justify-content-between border-start border-4 border-secondary">
+        <h2 class="h4 mb-0"><i class="bi bi-journal-bookmark-fill me-2 text-secondary"></i>Tieteelliset julkaisut</h2>
         <span class="badge text-bg-secondary">{{ researchfi.length }}</span>
       </div>
       <div class="card-body p-0">
         {# ---- Suodatuspalkki ---- #}
-        <div class="p-3 bg-light border-bottom">
+        <div class="p-3 bg-body-tertiary border-bottom">
           <div class="row g-2 align-items-end">
             <div class="col-md-5">
               <label for="pub-search" class="form-label small text-muted mb-1">Hae julkaisua</label>
@@ -651,44 +651,33 @@ translationKey: writings_index
 </section>
 
 <style>
-/* ---- Kynasta hero ---- */
+/* ---- Kynasta hero: always dark navy ---- */
 .kynasta-hero {
-  background-color: var(--bs-tertiary-bg, #f8f9fa);
-  border-bottom: 1px solid var(--bs-border-color);
+  background-color: #0f172a;
+  border-bottom: 2px solid rgba(255,255,255,0.08);
 }
-[data-bs-theme="dark"] .kynasta-hero {
-  background-color: #1e2a3a !important;
-  border-bottom-color: rgba(255,255,255,0.1);
-}
-[data-bs-theme="dark"] .kynasta-hero h1,
-[data-bs-theme="dark"] .kynasta-hero p {
-  color: #e0e0e0;
-}
+.kynasta-hero h1 { color: #ffffff; }
+.kynasta-hero p,
+.kynasta-hero .text-muted { color: rgba(255,255,255,0.65) !important; }
 
-/* ---- Nav pills: theme-aware ---- */
+/* ---- Nav pills: white outline on dark hero ---- */
 .kynasta-hero .nav-link {
-  color: var(--bs-body-color);
-  background-color: var(--bs-secondary-bg);
+  color: rgba(255,255,255,0.82);
+  background-color: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.22);
   border-radius: 2rem;
   padding: 0.3rem 0.9rem;
   font-size: 0.875rem;
   font-weight: 500;
-  transition: all 0.2s;
+  transition: all 0.15s;
 }
 .kynasta-hero .nav-link:hover {
-  background-color: var(--bs-emphasis-color);
-  color: var(--bs-body-bg);
-}
-[data-bs-theme="dark"] .kynasta-hero .nav-link {
-  background-color: rgba(255,255,255,0.08);
-  color: #e0e0e0;
-}
-[data-bs-theme="dark"] .kynasta-hero .nav-link:hover {
   background-color: rgba(255,255,255,0.18);
+  border-color: rgba(255,255,255,0.45);
   color: #ffffff;
 }
 
-/* ---- Nav count badge ---- */
+/* ---- Nav count badge (always on dark hero) ---- */
 .nav-count {
   display: inline-flex;
   align-items: center;
@@ -700,13 +689,10 @@ translationKey: writings_index
   font-size: 0.7rem;
   font-weight: 700;
   line-height: 1;
-  background-color: rgba(0,0,0,0.12);
-  color: inherit;
+  background-color: rgba(255,255,255,0.18);
+  color: #fff;
   margin-left: 0.25rem;
   vertical-align: middle;
-}
-[data-bs-theme="dark"] .nav-count {
-  background-color: rgba(255,255,255,0.18);
 }
 
 /* ---- Card headers: theme-aware border ---- */
@@ -730,6 +716,7 @@ section[id] {
 
 .summary-kpi {
   background: var(--bs-tertiary-bg);
+  border-left-width: 4px !important;
 }
 .summary-kpi-label {
   font-size: 0.75rem;
@@ -738,10 +725,19 @@ section[id] {
   color: var(--bs-secondary-color);
 }
 .summary-kpi-value {
-  font-size: 1.75rem;
-  font-weight: 700;
-  line-height: 1.1;
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1.05;
 }
+
+/* ---- KPI per-category accent colors ---- */
+.kpi-color-aloitteet  { border-left-color: #fd7e14 !important; }
+.kpi-color-blogi      { border-left-color: #6f42c1 !important; }
+.kpi-color-esitykset  { border-left-color: #0dcaf0 !important; }
+.kpi-color-julkaisut  { border-left-color: #198754 !important; }
+.kpi-color-kolumnit   { border-left-color: #20c997 !important; }
+.kpi-color-mielipiteet{ border-left-color: #0d6efd !important; }
+.kpi-color-puheet     { border-left-color: #dc3545 !important; }
 .chart-wrap {
   position: relative;
   min-height: 260px;
