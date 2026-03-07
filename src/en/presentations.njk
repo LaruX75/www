@@ -9,6 +9,7 @@ lang: en
 
 {% set tocSource %}
 <h2 id="canva-heading">Canva Presentations</h2>
+<h2 id="youtube-heading">YouTube Playlists</h2>
 <h2 id="google-heading">Google Slides Presentations</h2>
 <h2 id="slideshare-heading">SlideShare Presentations</h2>
 {% endset %}
@@ -88,6 +89,77 @@ lang: en
       <p class="text-muted">No presentations yet.</p>
       {% endfor %}
     </div>
+  </section>
+
+  {# ===================== YOUTUBE ===================== #}
+  <section class="mb-5" aria-labelledby="youtube-heading">
+    <h2 id="youtube-heading" class="section-title mb-4">
+      <i class="bi bi-youtube text-danger me-2" style="font-size: 1rem;"></i>YouTube Playlists
+    </h2>
+
+    {% if youtube and youtube.tableRows and youtube.tableRows.length %}
+      <div class="playlist-ticker mb-4" aria-label="YouTube playlist scroller">
+        <div class="playlist-ticker-track">
+          {% for p in youtube.tickerRows %}
+          <article class="playlist-ticker-item card border-0 shadow-sm">
+            {% if p.thumbnail %}
+            <img src="{{ p.thumbnail }}" class="card-img-top" alt="{{ p.title }}" style="height: 150px; object-fit: cover;">
+            {% endif %}
+            <div class="card-body p-3">
+              <h3 class="h6 mb-2">{{ p.title }}</h3>
+              <p class="text-muted small mb-2">{{ p.itemCount }} videos</p>
+              <a href="{{ p.url }}" target="_blank" rel="noopener" class="btn btn-primary btn-sm rounded-pill px-3">
+                Open playlist <i class="bi bi-arrow-up-right"></i>
+              </a>
+            </div>
+          </article>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-sm table-hover align-middle">
+          <thead>
+            <tr>
+              <th>Playlist</th>
+              <th class="text-nowrap">Videos</th>
+              <th class="text-nowrap">Published</th>
+              <th class="text-nowrap">Open</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for p in youtube.tableRows %}
+            <tr>
+              <td>
+                <div class="fw-semibold">{{ p.title }}</div>
+                {% if p.description %}
+                <div class="small text-muted">{{ p.description | truncate(140, true, '...') }}</div>
+                {% endif %}
+              </td>
+              <td>{{ p.itemCount }}</td>
+              <td>{{ p.publishedAt | dateFormat }}</td>
+              <td>
+                <a href="{{ p.url }}" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm rounded-pill px-3">YouTube</a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-3 text-muted small">
+        Source: YouTube Data API v3{% if youtube.source == 'cache' %} (cached){% endif %}.
+      </div>
+    {% else %}
+      <div class="card border-0 bg-light-subtle">
+        <div class="card-body">
+          <p class="mb-2 fw-semibold">Could not fetch YouTube playlists.</p>
+          <p class="text-muted mb-0 small">
+            Set <code>YOUTUBE_API_KEY</code> and, if needed, <code>YOUTUBE_CHANNEL_ID</code> or <code>YOUTUBE_HANDLE</code>.
+          </p>
+        </div>
+      </div>
+    {% endif %}
   </section>
 
   {# ================ GOOGLE SLIDES ================ #}
@@ -256,5 +328,21 @@ lang: en
 }
 .card-img-overlay:hover {
   opacity: 1!important;
+}
+
+/* YouTube playlist ticker */
+.playlist-ticker {
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+}
+
+.playlist-ticker-track {
+  display: flex;
+  gap: 1rem;
+  min-width: max-content;
+}
+
+.playlist-ticker-item {
+  width: 280px;
 }
 </style>

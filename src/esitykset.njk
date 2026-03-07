@@ -8,6 +8,7 @@ translationKey: presentations_index
 
 {% set tocSource %}
 <h2 id="canva-heading">Canva-esitykset</h2>
+<h2 id="youtube-heading">YouTube-soittolistat</h2>
 <h2 id="google-heading">Google Slides -esitykset</h2>
 <h2 id="slideshare-heading">SlideShare-esitykset</h2>
 {% endset %}
@@ -87,6 +88,77 @@ translationKey: presentations_index
       <p class="text-muted">Ei esityksiä.</p>
       {% endfor %}
     </div>
+  </section>
+
+  {# ===================== YOUTUBE ===================== #}
+  <section class="mb-5" aria-labelledby="youtube-heading">
+    <h2 id="youtube-heading" class="section-title mb-4">
+      <i class="bi bi-youtube text-danger me-2" style="font-size: 1rem;"></i>YouTube-soittolistat
+    </h2>
+
+    {% if youtube and youtube.tableRows and youtube.tableRows.length %}
+      <div class="playlist-ticker mb-4" aria-label="YouTube-soittolistojen skrolleri">
+        <div class="playlist-ticker-track">
+          {% for p in youtube.tickerRows %}
+          <article class="playlist-ticker-item card border-0 shadow-sm">
+            {% if p.thumbnail %}
+            <img src="{{ p.thumbnail }}" class="card-img-top" alt="{{ p.title }}" style="height: 150px; object-fit: cover;">
+            {% endif %}
+            <div class="card-body p-3">
+              <h3 class="h6 mb-2">{{ p.title }}</h3>
+              <p class="text-muted small mb-2">{{ p.itemCount }} videota</p>
+              <a href="{{ p.url }}" target="_blank" rel="noopener" class="btn btn-primary btn-sm rounded-pill px-3">
+                Avaa soittolista <i class="bi bi-arrow-up-right"></i>
+              </a>
+            </div>
+          </article>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-sm table-hover align-middle">
+          <thead>
+            <tr>
+              <th>Soittolista</th>
+              <th class="text-nowrap">Videot</th>
+              <th class="text-nowrap">Julkaistu</th>
+              <th class="text-nowrap">Avaa</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for p in youtube.tableRows %}
+            <tr>
+              <td>
+                <div class="fw-semibold">{{ p.title }}</div>
+                {% if p.description %}
+                <div class="small text-muted">{{ p.description | truncate(140, true, '...') }}</div>
+                {% endif %}
+              </td>
+              <td>{{ p.itemCount }}</td>
+              <td>{{ p.publishedAt | dateFormat }}</td>
+              <td>
+                <a href="{{ p.url }}" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm rounded-pill px-3">YouTube</a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-3 text-muted small">
+        Lähde: YouTube Data API v3{% if youtube.source == 'cache' %} (välimuistista){% endif %}.
+      </div>
+    {% else %}
+      <div class="card border-0 bg-light-subtle">
+        <div class="card-body">
+          <p class="mb-2 fw-semibold">YouTube-soittolistoja ei saatu haettua.</p>
+          <p class="text-muted mb-0 small">
+            Lisää ympäristömuuttujat <code>YOUTUBE_API_KEY</code> ja tarvittaessa <code>YOUTUBE_CHANNEL_ID</code> tai <code>YOUTUBE_HANDLE</code>.
+          </p>
+        </div>
+      </div>
+    {% endif %}
   </section>
 
   {# ================ GOOGLE SLIDES ================ #}
@@ -255,5 +327,21 @@ translationKey: presentations_index
 }
 .card-img-overlay:hover {
   opacity: 1!important;
+}
+
+/* YouTube playlist ticker */
+.playlist-ticker {
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+}
+
+.playlist-ticker-track {
+  display: flex;
+  gap: 1rem;
+  min-width: max-content;
+}
+
+.playlist-ticker-item {
+  width: 280px;
 }
 </style>
