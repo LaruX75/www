@@ -344,7 +344,7 @@ wp_id: 7
     </div>
     <div class="mt-5 text-center">
       <p class="text-muted mb-3">Haluatko ottaa yhteyttä suoraan?</p>
-      <a href="/#yhteys" class="btn btn-primary"><i class="bi bi-envelope-fill me-2"></i>Ota yhteyttä</a>
+      <a href="/yhteystiedot/" class="btn btn-primary"><i class="bi bi-envelope-fill me-2"></i>Ota yhteyttä</a>
     </div>
   </div>
 </section>

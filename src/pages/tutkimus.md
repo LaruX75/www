@@ -219,7 +219,7 @@ templateEngineOverride: njk
                 {% if pub.doi and semanticscholar.metrics.doiCitations[pub.doi | lower] %}<span class="badge text-bg-warning rounded-pill ms-1" title="Viittaukset"><i class="bi bi-quote me-1"></i>{{ semanticscholar.metrics.doiCitations[pub.doi | lower] }}</span>{% endif %}
               </td>
               <td class="text-center">
-                {% if pub.url %}<a href="{{ pub.url }}" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener"><i class="bi bi-box-arrow-up-right"></i></a>{% endif %}
+                {% if pub.url %}<a href="{{ pub.url }}" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener" title="Avaa julkaisu uuteen välilehteen" aria-label="Avaa julkaisu uuteen välilehteen"><i class="bi bi-box-arrow-up-right"></i></a>{% endif %}
               </td>
             </tr>
             {% endfor %}
@@ -338,6 +338,7 @@ templateEngineOverride: njk
   <div class="container">
     <h2 class="h3 fw-bold mb-2">Tutkijahistoria</h2>
     <p class="text-muted mb-4">Keskeisimmät tutkimushankkeet ja -kaudet uran varrelta &ndash; vanhimmasta uusimpaan.</p>
+    <p class="small text-muted mb-3">Vihje: aikajana vierii sivusuunnassa mobiilissa ja pienillä näytöillä.</p>
   </div>
   <div class="tutkijahistoria-scroll px-3 px-md-4 pb-4">
     <div class="d-flex gap-3 align-items-stretch">
@@ -351,7 +352,7 @@ templateEngineOverride: njk
         </div>
       </div>
 
-      <div class="tutkijahistoria-arrow align-self-center text-muted flex-shrink-0">
+      <div class="tutkijahistoria-arrow align-self-center text-muted flex-shrink-0" aria-hidden="true">
         <i class="bi bi-arrow-right fs-4"></i>
       </div>
 
@@ -364,7 +365,7 @@ templateEngineOverride: njk
         </div>
       </div>
 
-      <div class="tutkijahistoria-arrow align-self-center text-muted flex-shrink-0">
+      <div class="tutkijahistoria-arrow align-self-center text-muted flex-shrink-0" aria-hidden="true">
         <i class="bi bi-arrow-right fs-4"></i>
       </div>
 
@@ -377,7 +378,7 @@ templateEngineOverride: njk
         </div>
       </div>
 
-      <div class="tutkijahistoria-arrow align-self-center text-muted flex-shrink-0">
+      <div class="tutkijahistoria-arrow align-self-center text-muted flex-shrink-0" aria-hidden="true">
         <i class="bi bi-arrow-right fs-4"></i>
       </div>
 
@@ -390,7 +391,7 @@ templateEngineOverride: njk
         </div>
       </div>
 
-      <div class="tutkijahistoria-arrow align-self-center text-muted flex-shrink-0">
+      <div class="tutkijahistoria-arrow align-self-center text-muted flex-shrink-0" aria-hidden="true">
         <i class="bi bi-arrow-right fs-4"></i>
       </div>
 
@@ -403,7 +404,7 @@ templateEngineOverride: njk
         </div>
       </div>
 
-      <div class="tutkijahistoria-arrow align-self-center text-muted flex-shrink-0">
+      <div class="tutkijahistoria-arrow align-self-center text-muted flex-shrink-0" aria-hidden="true">
         <i class="bi bi-arrow-right fs-4"></i>
       </div>
 
