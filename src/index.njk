@@ -52,7 +52,7 @@ translationKey: home
 <section class="home-section-heading-strip home-section-heading-strip--dark">
     <div class="container-fluid">
         <p class="home-section-heading-strip__eyebrow">Asiantuntija- ja koulutuspalvelut</p>
-        <h2 class="home-section-heading-strip__title">Koulutukset ja esitykset</h2>
+        <h2 class="home-section-heading-strip__title">Koulutukset, puheenvuorot ja asiantuntijatyö</h2>
     </div>
 </section>
 
@@ -62,7 +62,7 @@ translationKey: home
             <div class="col-md-6 text-center text-md-start d-flex d-sm-flex d-md-flex flex-column justify-content-center align-items-center align-self-start justify-content-md-start align-items-md-center justify-content-xl-center ps-0 pe-0" style="height: auto;min-height: 100%;padding-bottom: 1em;padding-top: 0.5em;">
                 <div class="text-center pb-2 pt-4 w-100 home-copy-block" style="padding-right: 1.5em;padding-left: 1.5em;">
                     <p class="text-uppercase text-muted fw-bold mb-2">Asiantuntija- ja koulutuspalvelut</p>
-                    <h2 class="fw-bold mb-3">Koulutukset ja esitykset</h2>
+                    <h2 class="fw-bold mb-3">Koulutukset, puheenvuorot ja asiantuntijatyö</h2>
                     <div class="text-start mb-3">
                         <p class="mb-1"><i class="bi bi-mortarboard me-2 opacity-75"></i><strong>Yliopistonlehtori, Oulun yliopisto</strong></p>
                         <p class="mb-2 small opacity-75">Teknologiatuetun oppimisen yliopistonlehtori Kasvatustieteiden tiedekunnassa. Nykyään STN:n rahoittamassa Generation AI -hankkeessa — tekoälykasvatusta esi- ja perusopetukseen.</p>
@@ -223,7 +223,7 @@ translationKey: home
 <section class="home-section-heading-strip home-section-heading-strip--dark">
     <div class="container-fluid">
         <p class="home-section-heading-strip__eyebrow">Tiede & Tutkimus</p>
-        <h2 class="home-section-heading-strip__title">Julkaisut</h2>
+        <h2 class="home-section-heading-strip__title">Tutkimus ja julkaisut</h2>
     </div>
 </section>
 
@@ -233,7 +233,7 @@ translationKey: home
             <div class="col-md-6 order-md-2 text-center text-md-start d-flex d-sm-flex d-md-flex flex-column justify-content-center align-items-center align-self-start justify-content-md-start align-items-md-center justify-content-xl-center ps-0 pe-0" style="height: auto;min-height: 100%;padding-bottom: 1em;padding-top: 0.5em;">
                 <div class="text-center pb-2 pt-4 w-100 home-copy-block" style="padding-right: 1.5em;padding-left: 1.5em;">
                     <p class="text-uppercase text-muted fw-bold mb-2">Tiede & Tutkimus</p>
-                    <h2 class="fw-bold mb-3">Julkaisut</h2>
+                    <h2 class="fw-bold mb-3">Tutkimus ja julkaisut</h2>
                     <p class="mb-3">Uusimmat tieteelliset julkaisuni ja artikkelini suoraan Research.fi-palvelusta päivitettynä.</p>
                     
                     {%- set articleCount = 0 -%}
@@ -273,6 +273,19 @@ translationKey: home
                             <div class="research-stat-number">{{ bookCount }}</div>
                             <div class="research-stat-label">Kirjaa & väitöskirjaa</div>
                         </div>
+                    </div>
+
+                    <div class="home-focus-grid text-start mb-3">
+                        <article class="home-focus-card">
+                            <h3 class="h6 mb-2"><i class="bi bi-journal-check me-2 opacity-75"></i>Ajantasainen julkaisulista</h3>
+                            <p class="small mb-2">Julkaisusivulla on tällä hetkellä {{ researchfi.length }} Research.fi-lähteestä päivittyvää julkaisua sekä lajittelu julkaisutyypeittäin.</p>
+                            <a class="btn btn-read-more btn-sm rounded-pill px-3" href="/julkaisut/">Avaa julkaisut</a>
+                        </article>
+                        <article class="home-focus-card">
+                            <h3 class="h6 mb-2"><i class="bi bi-mortarboard-fill me-2 opacity-75"></i>Tutkimus nivoutuu opetukseen</h3>
+                            <p class="small mb-2">Yliopistonlehtorin työssäni painottuvat digipedagogiikka, oppimisteknologia ja tekoälylukutaito opettajankoulutuksessa.</p>
+                            <a class="btn btn-read-more btn-sm rounded-pill px-3" href="/tyoni-yliopistonlehtorina/">Lue työstä yliopistolla</a>
+                        </article>
                     </div>
                 </div>
                 <!-- Karuselli alkaa -->
@@ -349,7 +362,7 @@ translationKey: home
 <section class="home-section-heading-strip home-section-heading-strip--dark">
     <div class="container-fluid">
         <p class="home-section-heading-strip__eyebrow">Yhteiskunnallinen vaikuttaminen</p>
-        <h2 class="home-section-heading-strip__title">Politiikka</h2>
+        <h2 class="home-section-heading-strip__title">Politiikka ja vaikuttaminen</h2>
     </div>
 </section>
 
@@ -358,10 +371,20 @@ translationKey: home
         <div class="row gx-0 gy-4 gy-md-0">
             <div class="col-md-6 text-center text-md-start d-flex d-sm-flex d-md-flex flex-column justify-content-center align-items-center align-self-start order-2 order-sm-1 justify-content-md-start align-items-md-center justify-content-xl-center ps-0 pe-0" style="height: auto;min-height: 100%;padding-bottom: 1em;padding-top: 0.5em;">
                 <div class="text-center pb-2 pt-4 w-100 home-copy-block" style="padding-right: 1.5em;padding-left: 1.5em;">
-                    <p class="text-uppercase text-muted fw-bold mb-2">Jari Jukka Laru, KT</p>
-                    <h2 class="fw-bold mb-3">Olen poliitikko</h2>
-                    <p>Olen oululainen toisen kauden kaupunginvaltuutettu (.kok). Olen kokenut poliitikko, sillä olen aloittanut yhteiskunnallisten asioiden parissa jo lukiolaisena.</p>
-                    <a class="btn btn-primary mb-3" href="/politiikka/">Lue lisää politiikasta</a>
+                    <p class="text-uppercase text-muted fw-bold mb-2">Yhteiskunnallinen vaikuttaminen</p>
+                    <h2 class="fw-bold mb-3">Politiikka ja vaikuttaminen</h2>
+                    <div class="home-focus-grid text-start mb-3">
+                        <article class="home-focus-card">
+                            <h3 class="h6 mb-2"><i class="bi bi-building-fill me-2 opacity-75"></i>Kunnallispolitiikan käytännön työ</h3>
+                            <p class="small mb-2">Politiikkasivulla avaan luottamustehtäviä, vaikuttamisen painopisteitä sekä tavoitteita Oulun päätöksenteossa.</p>
+                            <a class="btn btn-read-more btn-sm rounded-pill px-3" href="/politiikka/">Lue politiikkasivu</a>
+                        </article>
+                        <article class="home-focus-card">
+                            <h3 class="h6 mb-2"><i class="bi bi-chat-left-text me-2 opacity-75"></i>Kirjoitukset, puheet ja aloitteet</h3>
+                            <p class="small mb-2">Kynästä-osio kokoaa mielipidekirjoitukset, puheenvuorot, kolumnit ja aloitteet yhdelle sivulle seurattavaksi.</p>
+                            <a class="btn btn-read-more btn-sm rounded-pill px-3" href="/kynasta/">Siirry Kynästä-osioon</a>
+                        </article>
+                    </div>
                 </div>
                 <!-- Karuselli alkaa -->
                 <div class="ticker-wrapper" id="blogTicker" style="margin-top: 1rem;">

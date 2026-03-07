@@ -235,6 +235,39 @@ html:not([data-bs-theme="dark"]) .home-hero-proof-item:focus-visible {
   line-height: 1.1;
 }
 
+.home-focus-grid {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.home-focus-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 0.65rem;
+  padding: 0.8rem 0.85rem;
+}
+
+.home-focus-card h3 {
+  color: #ffffff;
+}
+
+.home-focus-card p {
+  color: rgba(240, 246, 255, 0.9);
+}
+
+[data-bs-theme="dark"] .home-focus-card {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+[data-bs-theme="dark"] .home-focus-card h3 {
+  color: #f4f8ff;
+}
+
+[data-bs-theme="dark"] .home-focus-card p {
+  color: rgba(236, 244, 255, 0.9);
+}
+
 
 /* Ticker-karuselli etusivulle */
 .ticker-wrapper {
