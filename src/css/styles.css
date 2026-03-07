@@ -255,6 +255,22 @@ html:not([data-bs-theme="dark"]) .home-hero-proof-item:focus-visible {
   color: rgba(240, 246, 255, 0.9);
 }
 
+[data-bs-theme="light"] .home-focus-card,
+html:not([data-bs-theme="dark"]) .home-focus-card {
+  background: rgba(255, 255, 255, 0.72);
+  border-color: rgba(20, 52, 86, 0.2);
+}
+
+[data-bs-theme="light"] .home-focus-card h3,
+html:not([data-bs-theme="dark"]) .home-focus-card h3 {
+  color: #173a60;
+}
+
+[data-bs-theme="light"] .home-focus-card p,
+html:not([data-bs-theme="dark"]) .home-focus-card p {
+  color: rgba(23, 58, 96, 0.88);
+}
+
 [data-bs-theme="dark"] .home-focus-card {
   background: rgba(255, 255, 255, 0.06);
   border-color: rgba(255, 255, 255, 0.16);
@@ -557,6 +573,11 @@ html:not([data-bs-theme="dark"]) .home-hero-proof-item:focus-visible {
   box-shadow: 0 8px 20px rgba(11, 34, 62, 0.08);
 }
 
+[data-bs-theme="light"] .home-closing-panel,
+html:not([data-bs-theme="dark"]) .home-closing-panel {
+  color: #132f4d;
+}
+
 [data-bs-theme="dark"] .home-closing-panel {
   border-color: rgba(255, 255, 255, 0.16);
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(210, 226, 246, 0.12) 100%);
@@ -586,6 +607,32 @@ html:not([data-bs-theme="dark"]) .home-hero-proof-item:focus-visible {
 
 [data-bs-theme="dark"] .bg-adaptive-dark-blue p {
   color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Light theme contrast fixes for home feature sections */
+[data-bs-theme="light"] .home-feature-section.bg-adaptive-dark-blue,
+html:not([data-bs-theme="dark"]) .home-feature-section.bg-adaptive-dark-blue {
+  background: linear-gradient(160deg, #e7eef8 0%, #dfe8f5 48%, #e9f0f9 100%) !important;
+}
+
+[data-bs-theme="light"] .home-feature-section .home-copy-block h2,
+[data-bs-theme="light"] .home-feature-section .home-copy-block h3,
+[data-bs-theme="light"] .home-feature-section .home-copy-block h4,
+[data-bs-theme="light"] .home-feature-section .home-copy-block p,
+[data-bs-theme="light"] .home-feature-section .home-copy-block .text-muted,
+html:not([data-bs-theme="dark"]) .home-feature-section .home-copy-block h2,
+html:not([data-bs-theme="dark"]) .home-feature-section .home-copy-block h3,
+html:not([data-bs-theme="dark"]) .home-feature-section .home-copy-block h4,
+html:not([data-bs-theme="dark"]) .home-feature-section .home-copy-block p,
+html:not([data-bs-theme="dark"]) .home-feature-section .home-copy-block .text-muted {
+  color: #16385d !important;
+}
+
+[data-bs-theme="light"] .research-stat-card,
+html:not([data-bs-theme="dark"]) .research-stat-card {
+  background: rgba(255, 255, 255, 0.78);
+  border-color: rgba(22, 56, 93, 0.2);
+  color: #173a60;
 }
 
 /* Tickerin tumman tilan erikoistyylien palautus */
