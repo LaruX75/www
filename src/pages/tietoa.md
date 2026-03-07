@@ -3,7 +3,7 @@ title: "Jari Jukka Laru"
 date: 2020-01-17
 description: "Jari Laru – poliitikko, yliopistonlehtori, tutkija, yrittäjä, isä ja oululainen. Tämä sivu kertoo, kuka hän on."
 layout: base.njk
-templateEngineOverride: njk,md
+templateEngineOverride: njk
 permalink: /tietoa/
 translationKey: about
 wp_id: 7
