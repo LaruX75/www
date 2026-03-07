@@ -174,6 +174,58 @@ body {
   color: var(--bs-secondary-color) !important;
 }
 
+/* Homepage full-width section heading strips */
+.home-section-heading-strip {
+  width: 100%;
+  padding: 1rem 0;
+}
+
+.home-section-heading-strip .container-fluid {
+  padding-left: clamp(1rem, 3vw, 2rem);
+  padding-right: clamp(1rem, 3vw, 2rem);
+}
+
+.home-section-heading-strip__eyebrow {
+  margin: 0 0 0.3rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.home-section-heading-strip__title {
+  margin: 0;
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.home-section-heading-strip--dark {
+  background-color: #2e3f59;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.home-section-heading-strip--dark .home-section-heading-strip__eyebrow {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.home-section-heading-strip--dark .home-section-heading-strip__title {
+  color: #ffffff;
+}
+
+.home-section-heading-strip--light {
+  background-color: var(--bs-body-bg);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.home-section-heading-strip--light .home-section-heading-strip__eyebrow {
+  color: var(--bs-secondary-color);
+}
+
+.home-section-heading-strip--light .home-section-heading-strip__title {
+  color: var(--bs-body-color);
+}
+
 /* Home page compact sections and unified image sizing (excluding hero) */
 .home-feature-section .home-copy-block {
   padding: 0.9rem 1rem 0.4rem !important;
