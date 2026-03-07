@@ -41,9 +41,9 @@
                     <h5>{{ section.heading }}</h5>
                     {% for link in section.links %}
                       {% if link.menuLink %}
-                        <a class="menu-link" href="{{ link.href }}"><i class="{{ link.icon }}"></i><span>{{ link.title }}</span></a>
+                        <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}><i class="{{ link.icon }}"></i><span>{{ link.title }}</span></a>
                       {% else %}
-                        <a href="{{ link.href }}"><i class="{{ link.icon }}"></i>{{ link.title }}</a>
+                        <a href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}><i class="{{ link.icon }}"></i>{{ link.title }}</a>
                       {% endif %}
                       {% if link.description %}
                         <small class="{{ 'menu-link-desc' if link.menuLink }}">{{ link.description }}</small>
@@ -56,6 +56,9 @@
                 {% optimizedImage meMegaMenu.showcase.imageSrc, meMegaMenu.showcase.imageAlt, "img-fluid rounded-3 mb-3", "(max-width: 991px) 180px, 240px" %}
                 <h5>{{ meMegaMenu.showcase.title }}</h5>
                 <p>{{ meMegaMenu.showcase.description }}</p>
+                {% if meMegaMenu.showcase.cta %}
+                  <a class="btn btn-accent btn-sm w-100" href="{{ meMegaMenu.showcase.cta.href }}">{{ meMegaMenu.showcase.cta.label }}</a>
+                {% endif %}
               </aside>
             </div>
           </div>
@@ -307,9 +310,9 @@
                     <h5>{{ section.heading }}</h5>
                     {% for link in section.links %}
                       {% if link.menuLink %}
-                        <a class="menu-link" href="{{ link.href }}"><i class="{{ link.icon }}"></i><span>{{ link.title }}</span></a>
+                        <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}><i class="{{ link.icon }}"></i><span>{{ link.title }}</span></a>
                       {% else %}
-                        <a href="{{ link.href }}"><i class="{{ link.icon }}"></i>{{ link.title }}</a>
+                        <a href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}><i class="{{ link.icon }}"></i>{{ link.title }}</a>
                       {% endif %}
                       {% if link.description %}
                         <small class="{{ 'menu-link-desc' if link.menuLink }}">{{ link.description }}</small>
@@ -322,6 +325,9 @@
                 {% optimizedImage meMegaMenu.showcase.imageSrc, meMegaMenu.showcase.imageAlt, "img-fluid rounded-3 mb-3", "(max-width: 991px) 180px, 240px" %}
                 <h5>{{ meMegaMenu.showcase.title }}</h5>
                 <p>{{ meMegaMenu.showcase.description }}</p>
+                {% if meMegaMenu.showcase.cta %}
+                  <a class="btn btn-accent btn-sm w-100" href="{{ meMegaMenu.showcase.cta.href }}">{{ meMegaMenu.showcase.cta.label }}</a>
+                {% endif %}
               </aside>
             </div>
           </div>

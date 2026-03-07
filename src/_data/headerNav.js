@@ -219,70 +219,68 @@ module.exports = {
     fi: {
       sections: [
         {
-          heading: "Yleistä & harrastukset",
+          heading: "Jari lyhyesti",
           links: [
             {
-              title: "Yleistä",
+              title: "Tietoa minusta",
               href: "/tietoa/",
               icon: "bi bi-info-circle me-2",
               menuLink: true,
-              description: "Henkilökuva, harrastukset ja vapaa-aika."
+              description: "Henkilökuva, elämä ja harrastukset."
             },
-            {
-              title: "Autolomat",
-              href: "/autolomat/",
-              icon: "bi bi-car-front me-2"
-            }
-          ]
-        },
-        {
-          heading: "Politiikka (rooli)",
-          links: [
-            {
-              title: "Jari Laru, poliitikko",
-              href: "/politiikka/",
-              icon: "bi bi-person-badge me-2",
-              menuLink: true,
-              description: "Luottamustoimet ja vaikuttaminen Oulussa."
-            },
-            {
-              title: "Sidonnaisuudet",
-              href: "/sidonnaisuudet/",
-              icon: "bi bi-link-45deg me-2",
-              menuLink: true,
-              description: "Ilmoitukset sidonnaisuuksista ja jäsenyyksistä."
-            },
-            {
-              title: "Kynästä",
-              href: "/kynasta/",
-              icon: "bi bi-pencil-square me-2"
-            }
-          ]
-        },
-        {
-          heading: "Työ & yritys",
-          links: [
             {
               title: "Ansioluettelo",
               href: "/cv/",
               icon: "bi bi-file-earmark-person me-2",
               menuLink: true,
-              description: "Koulutus, työkokemus ja osaaminen."
+              description: "Koulutus, kokemus ja osaaminen."
             },
             {
-              title: "Portfolio",
-              href: "/portfolio/",
-              icon: "bi bi-folder me-2",
+              title: "Palkinnot",
+              href: "/palkinnot/",
+              icon: "bi bi-award me-2"
+            }
+          ]
+        },
+        {
+          heading: "Vapaa-aika",
+          links: [
+            {
+              title: "Autolomat",
+              href: "/autolomat/",
+              icon: "bi bi-car-front me-2",
               menuLink: true,
-              description: "Valikoidut projektit ja työnäytteet."
+              description: "Euroopan halki omalla autolla."
             },
             {
-              title: "Julkaisut",
-              href: "/julkaisut/",
-              icon: "bi bi-journal-text me-2"
+              title: "Kulinaristi",
+              href: "https://www.instagram.com/stories/highlights/18134958520132291/?hl=fi",
+              icon: "bi bi-egg-fried me-2",
+              external: true
             },
             {
-              title: "Larux t:mi",
+              title: "Hartiapankkiremontoija",
+              href: "https://www.instagram.com/stories/highlights/17917732456477538/?hl=fi",
+              icon: "bi bi-hammer me-2",
+              external: true
+            }
+          ]
+        },
+        {
+          heading: "Roolini",
+          links: [
+            {
+              title: "Yliopistonlehtori",
+              href: "/tyoni-yliopistonlehtorina/",
+              icon: "bi bi-mortarboard me-2"
+            },
+            {
+              title: "Poliitikko",
+              href: "/politiikka/",
+              icon: "bi bi-bank2 me-2"
+            },
+            {
+              title: "Yrittäjä",
               href: "/larux-tmi/",
               icon: "bi bi-building me-2"
             }
@@ -293,71 +291,73 @@ module.exports = {
         imageSrc: "/img/uploads/2020/01/jari.laru_1397908734_26-e1610053137214.jpg",
         imageAlt: "Jari Laru",
         title: "Jari Laru",
-        description: "Tutkija, kouluttaja ja kunnallispoliitikko."
+        description: "Isä, kulinaristi ja automatkailija – kun ei olla töissä.",
+        cta: {
+          href: "/yhteystiedot/",
+          label: "Ota yhteyttä"
+        }
       }
     },
     en: {
       sections: [
         {
-          heading: "General & Life",
+          heading: "About Jari",
           links: [
             {
               title: "About me",
               href: "/en/about/",
               icon: "bi bi-info-circle me-2",
               menuLink: true,
-              description: "Brief biography and background."
+              description: "Biography, life and hobbies."
             },
-            {
-              title: "Road Trips",
-              href: "/en/road-trips/",
-              icon: "bi bi-car-front me-2"
-            }
-          ]
-        },
-        {
-          heading: "Politics (Role)",
-          links: [
-            {
-              title: "Jari Laru, politician",
-              href: "/en/politics/",
-              icon: "bi bi-person-badge me-2",
-              menuLink: true,
-              description: "Positions of trust in Oulu."
-            },
-            {
-              title: "Affiliations",
-              href: "/en/affiliations/",
-              icon: "bi bi-link-45deg me-2",
-              menuLink: true,
-              description: "Declarations of affiliations."
-            },
-            {
-              title: "Writings",
-              href: "/en/writings/",
-              icon: "bi bi-pencil-square me-2"
-            }
-          ]
-        },
-        {
-          heading: "Work & Experience",
-          links: [
             {
               title: "Curriculum Vitae",
               href: "/en/cv/",
               icon: "bi bi-file-earmark-person me-2",
               menuLink: true,
               description: "Education, skills and history."
-            },
+            }
+          ]
+        },
+        {
+          heading: "Free Time",
+          links: [
             {
-              title: "Portfolio",
-              href: "/en/portfolio/",
-              icon: "bi bi-folder me-2",
+              title: "Road Trips",
+              href: "/en/road-trips/",
+              icon: "bi bi-car-front me-2",
               menuLink: true,
-              description: "Projects and highlights."
+              description: "Across Europe by car."
             },
             {
-              title: "Larux t:mi",
+              title: "Foodie",
+              href: "https://www.instagram.com/stories/highlights/18134958520132291/?hl=fi",
+              icon: "bi bi-egg-fried me-2",
+              external: true
+            },
+            {
+              title: "DIY Renovator",
+              href: "https://www.instagram.com/stories/highlights/17917732456477538/?hl=fi",
+              icon: "bi bi-hammer me-2",
+              external: true
+            }
+          ]
+        },
+        {
+          heading: "My Roles",
+          links: [
+            {
+              title: "University Lecturer",
+              href: "/en/work/",
+              icon: "bi bi-mortarboard me-2"
+            },
+            {
+              title: "Politician",
+              href: "/en/politics/",
+              icon: "bi bi-bank2 me-2"
+            },
+            {
+              title: "Entrepreneur",
               href: "/en/company/",
               icon: "bi bi-building me-2"
             }
@@ -368,7 +368,11 @@ module.exports = {
         imageSrc: "/img/uploads/2020/01/jari.laru_1397908734_26-e1610053137214.jpg",
         imageAlt: "Jari Laru",
         title: "Jari Laru",
-        description: "Researcher, educator, and city councilor."
+        description: "Father, foodie and road tripper – the person behind the work.",
+        cta: {
+          href: "/en/contact/",
+          label: "Get in touch"
+        }
       }
     }
   },
