@@ -590,6 +590,9 @@ html:not([data-bs-theme="dark"]) .mega-menu-panel a i {
     border: 1px solid var(--menu-divider);
     background: rgba(255, 255, 255, 0.26);
     font-weight: 700;
+    min-height: 44px;
+    display: flex !important;
+    align-items: center;
   }
 
   [data-bs-theme="dark"] .mega-mobile-jump {

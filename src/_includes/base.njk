@@ -331,6 +331,7 @@
             const mobileJump = document.createElement('a');
             mobileJump.className = 'mega-mobile-jump';
             mobileJump.href = href;
+            mobileJump.setAttribute('aria-label', `${jumpPrefix} ${navLabel}`);
             mobileJump.innerHTML = `<i class="bi bi-arrow-up-right-circle me-2"></i>${jumpPrefix} ${navLabel}`;
             wrap.insertBefore(mobileJump, wrap.firstChild);
           }
