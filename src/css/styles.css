@@ -133,57 +133,6 @@ body {
   opacity: 0.93;
 }
 
-
-
-/* Floating drift around the hero banner */
-.hero-drift {
-  position: absolute;
-  animation: heroDrift 20s ease-in-out infinite;
-}
-
-@keyframes heroDrift {
-  0% {
-    top: 8%;
-    left: 5%;
-  }
-
-  15% {
-    top: 5%;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  30% {
-    top: 15%;
-    left: 75%;
-    transform: translateX(-50%);
-  }
-
-  50% {
-    top: 45%;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  65% {
-    top: 60%;
-    left: 20%;
-    transform: translateX(0);
-  }
-
-  80% {
-    top: 35%;
-    left: 5%;
-    transform: translateX(0);
-  }
-
-  100% {
-    top: 8%;
-    left: 5%;
-    transform: translateX(0);
-  }
-}
-
 /* Research data dashboard stat cards */
 .research-stat-card {
   background: rgba(255, 255, 255, 0.08);
