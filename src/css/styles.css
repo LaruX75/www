@@ -968,6 +968,33 @@ html:not([data-bs-theme="dark"]) .text-info {
   /* Darker teal for contrast */
 }
 
+/* Form field contrast fixes for light mode */
+html:not([data-bs-theme="dark"]) .form-control,
+html:not([data-bs-theme="dark"]) .form-select,
+html:not([data-bs-theme="dark"]) textarea.form-control {
+  background-color: #ffffff;
+  color: #122f4d;
+  border-color: #8fa4be;
+}
+
+html:not([data-bs-theme="dark"]) .form-control::placeholder,
+html:not([data-bs-theme="dark"]) textarea.form-control::placeholder {
+  color: #5b6f87;
+}
+
+html:not([data-bs-theme="dark"]) .form-control:focus,
+html:not([data-bs-theme="dark"]) .form-select:focus,
+html:not([data-bs-theme="dark"]) textarea.form-control:focus {
+  border-color: #2d5f93;
+  box-shadow: 0 0 0 0.2rem rgba(45, 95, 147, 0.16);
+}
+
+html:not([data-bs-theme="dark"]) .input-group-text {
+  background-color: #f1f5fb;
+  color: #163a60;
+  border-color: #8fa4be;
+}
+
 /* ============================================ */
 /* GLOBAL DARK MODE — unifies all pages         */
 /* with the front page color scheme             */
@@ -1049,6 +1076,33 @@ html:not([data-bs-theme="dark"]) .text-info {
 
 [data-bs-theme="dark"] .list-group-item .text-muted {
   color: rgba(255, 255, 255, 0.55) !important;
+}
+
+/* Form field contrast fixes for dark mode */
+[data-bs-theme="dark"] .form-control,
+[data-bs-theme="dark"] .form-select,
+[data-bs-theme="dark"] textarea.form-control {
+  background-color: #223247;
+  color: #e9f2ff;
+  border-color: rgba(189, 206, 228, 0.28);
+}
+
+[data-bs-theme="dark"] .form-control::placeholder,
+[data-bs-theme="dark"] textarea.form-control::placeholder {
+  color: rgba(221, 233, 250, 0.62);
+}
+
+[data-bs-theme="dark"] .form-control:focus,
+[data-bs-theme="dark"] .form-select:focus,
+[data-bs-theme="dark"] textarea.form-control:focus {
+  border-color: #8bb2de;
+  box-shadow: 0 0 0 0.2rem rgba(125, 184, 240, 0.2);
+}
+
+[data-bs-theme="dark"] .input-group-text {
+  background-color: #243347;
+  color: #d7e6fb;
+  border-color: rgba(189, 206, 228, 0.28);
 }
 
 /* General text-muted */
