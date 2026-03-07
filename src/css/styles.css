@@ -859,6 +859,10 @@ html:not([data-bs-theme="dark"]) .home-hero-proof-item:focus-visible {
   .home-feature-section .ticker-item {
     width: 280px;
   }
+
+  .home-feature-image-col {
+    display: none;
+  }
 }
 
 /* ============================================ */
