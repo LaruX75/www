@@ -1,16 +1,45 @@
 require('dotenv').config();
 
+const fs = require("fs");
+const path = require("path");
 const { readCache, writeCache } = require('./_apiCache');
 const site = require('./site.json');
 
 const CACHE_KEY = 'youtube-playlists-v1';
 const API_BASE = 'https://www.googleapis.com/youtube/v3';
+const CMS_CONFIG_PATH = path.join(process.cwd(), "src", "_data", "youtube-config.json");
 
-const PLAYLIST_TICKER_LIMIT = Number(process.env.YOUTUBE_PLAYLIST_TICKER_LIMIT || 12);
+function readCmsYoutubeConfig() {
+  if (!fs.existsSync(CMS_CONFIG_PATH)) {
+    return {};
+  }
 
-function findYoutubeProfileUrl() {
+  try {
+    const raw = fs.readFileSync(CMS_CONFIG_PATH, "utf8");
+    const parsed = JSON.parse(raw);
+    const tickerLimit = Number(parsed?.tickerLimit);
+    return {
+      profileUrl: typeof parsed?.profileUrl === "string" ? parsed.profileUrl.trim() : "",
+      channelId: typeof parsed?.channelId === "string" ? parsed.channelId.trim() : "",
+      handle: typeof parsed?.handle === "string" ? parsed.handle.trim() : "",
+      username: typeof parsed?.username === "string" ? parsed.username.trim() : "",
+      channelQuery: typeof parsed?.channelQuery === "string" ? parsed.channelQuery.trim() : "",
+      tickerLimit: Number.isFinite(tickerLimit) && tickerLimit > 0 ? tickerLimit : null
+    };
+  } catch (error) {
+    console.warn(`YouTube: CMS config read failed: ${error.message}`);
+    return {};
+  }
+}
+
+function findYoutubeProfileUrl(cmsConfig = {}) {
   const links = Array.isArray(site?.sameAs) ? site.sameAs : [];
-  return links.find((link) => /youtube\.com|youtu\.be/i.test(link)) || process.env.YOUTUBE_PROFILE_URL || null;
+  return (
+    process.env.YOUTUBE_PROFILE_URL ||
+    cmsConfig.profileUrl ||
+    links.find((link) => /youtube\.com|youtu\.be/i.test(link)) ||
+    null
+  );
 }
 
 function parseProfileHints(profileUrl) {
@@ -63,16 +92,16 @@ async function ytRequest(endpoint, params, apiKey) {
   return response.json();
 }
 
-async function resolveChannelId(apiKey, hints) {
-  if (process.env.YOUTUBE_CHANNEL_ID) {
-    return process.env.YOUTUBE_CHANNEL_ID;
+async function resolveChannelId(apiKey, hints, settings) {
+  if (settings.channelId) {
+    return settings.channelId;
   }
 
   if (hints.channelId) {
     return hints.channelId;
   }
 
-  const handle = process.env.YOUTUBE_HANDLE || hints.handle;
+  const handle = settings.handle || hints.handle;
   if (handle) {
     const byHandle = await ytRequest(
       'channels',
@@ -82,7 +111,7 @@ async function resolveChannelId(apiKey, hints) {
     if (byHandle?.items?.[0]?.id) return byHandle.items[0].id;
   }
 
-  const username = process.env.YOUTUBE_USERNAME || hints.username;
+  const username = settings.username || hints.username;
   if (username) {
     const byUsername = await ytRequest(
       'channels',
@@ -92,7 +121,7 @@ async function resolveChannelId(apiKey, hints) {
     if (byUsername?.items?.[0]?.id) return byUsername.items[0].id;
   }
 
-  const fallbackQuery = process.env.YOUTUBE_CHANNEL_QUERY || hints.query || 'jarilaru';
+  const fallbackQuery = settings.channelQuery || hints.query || 'jarilaru';
   if (fallbackQuery) {
     const queryAsUsername = await ytRequest(
       'channels',
@@ -178,9 +207,17 @@ async function fetchAllPlaylists(channelId, apiKey) {
 module.exports = async function () {
   const cached = readCache(CACHE_KEY);
   const cachedData = cached?.data || null;
-  const profileUrl = findYoutubeProfileUrl();
+  const cmsConfig = readCmsYoutubeConfig();
+  const settings = {
+    channelId: process.env.YOUTUBE_CHANNEL_ID || cmsConfig.channelId || "",
+    handle: process.env.YOUTUBE_HANDLE || cmsConfig.handle || "",
+    username: process.env.YOUTUBE_USERNAME || cmsConfig.username || "",
+    channelQuery: process.env.YOUTUBE_CHANNEL_QUERY || cmsConfig.channelQuery || ""
+  };
+  const profileUrl = findYoutubeProfileUrl(cmsConfig);
   const hints = parseProfileHints(profileUrl);
   const apiKey = process.env.YOUTUBE_API_KEY;
+  const playlistTickerLimit = Number(process.env.YOUTUBE_PLAYLIST_TICKER_LIMIT || cmsConfig.tickerLimit || 12);
 
   if (!apiKey) {
     if (cachedData) {
@@ -204,7 +241,7 @@ module.exports = async function () {
   try {
     console.log('Haetaan YouTube-soittolistat...');
 
-    const channelId = await resolveChannelId(apiKey, hints);
+    const channelId = await resolveChannelId(apiKey, hints, settings);
     if (!channelId) {
       throw new Error('YouTube-kanavaa ei voitu tunnistaa');
     }
@@ -225,7 +262,7 @@ module.exports = async function () {
     });
 
     const tableRows = playlists;
-    const tickerRows = playlists.slice(0, PLAYLIST_TICKER_LIMIT);
+    const tickerRows = playlists.slice(0, playlistTickerLimit);
 
     const result = {
       enabled: true,

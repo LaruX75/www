@@ -79,6 +79,13 @@ translationKey: presentations_index
                 {% if p.description %}
                 <div class="small text-muted">{{ p.description | truncate(140, true, '...') }}</div>
                 {% endif %}
+                {% if p.categories and p.categories.length %}
+                <div class="mt-1">
+                  {% for cat in p.categories %}
+                  <span class="badge text-bg-secondary rounded-pill me-1">{{ cat }}</span>
+                  {% endfor %}
+                </div>
+                {% endif %}
               </td>
               <td>{% if p.date %}{{ p.date | dateFormat }}{% endif %}</td>
               <td>
@@ -128,6 +135,13 @@ translationKey: presentations_index
               </h3>
               {% if p.date %}
               <small class="text-muted">{{ p.date | dateFormat }}</small>
+              {% endif %}
+              {% if p.categories and p.categories.length %}
+              <div class="mt-2">
+                {% for cat in p.categories %}
+                <span class="badge text-bg-secondary rounded-pill me-1">{{ cat }}</span>
+                {% endfor %}
+              </div>
               {% endif %}
             </div>
             <div class="card-footer bg-transparent border-0 pt-0 pb-3 px-3">

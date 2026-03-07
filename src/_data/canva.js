@@ -6,8 +6,39 @@ const { readCache, writeCache } = require("./_apiCache");
 
 const CACHE_KEY = "canva-designs-v1";
 const API_BASE = "https://api.canva.com/rest/v1";
-const TICKER_LIMIT = Number(process.env.CANVA_TICKER_LIMIT || 12);
 const PRESENTATIONS_DIR = path.join(process.cwd(), "src", "presentations");
+const CMS_CONFIG_PATH = path.join(process.cwd(), "src", "_data", "canva-links.json");
+
+function readCmsCanvaConfig() {
+  if (!fs.existsSync(CMS_CONFIG_PATH)) {
+    return { designLinks: [], tickerLimit: null };
+  }
+
+  try {
+    const raw = fs.readFileSync(CMS_CONFIG_PATH, "utf8");
+    const parsed = JSON.parse(raw);
+    const designLinks = Array.isArray(parsed?.designLinks)
+      ? parsed.designLinks
+          .map((item) => {
+            if (typeof item === "string") return item;
+            if (item && typeof item === "object") {
+              return item.link || item.url || "";
+            }
+            return "";
+          })
+          .map((item) => String(item).trim())
+          .filter(Boolean)
+      : [];
+    const tickerLimit = Number(parsed?.tickerLimit);
+    return {
+      designLinks,
+      tickerLimit: Number.isFinite(tickerLimit) && tickerLimit > 0 ? tickerLimit : null
+    };
+  } catch (error) {
+    console.warn(`Canva: CMS config read failed: ${error.message}`);
+    return { designLinks: [], tickerLimit: null };
+  }
+}
 
 function toIsoDate(value) {
   if (!value) return null;
@@ -36,6 +67,17 @@ function parseUnquotedValue(frontmatter, key) {
   return match[1].trim();
 }
 
+function parseArrayValue(frontmatter, key) {
+  const raw = parseUnquotedValue(frontmatter, key);
+  if (!raw) return [];
+  try {
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed.map((item) => String(item).trim()).filter(Boolean) : [];
+  } catch {
+    return [];
+  }
+}
+
 function readLocalPresentations() {
   if (!fs.existsSync(PRESENTATIONS_DIR)) return [];
 
@@ -57,6 +99,7 @@ function readLocalPresentations() {
     const url = parseQuotedValue(fm, "url");
     const thumbnail = parseQuotedValue(fm, "thumbnail");
     const rawDate = parseUnquotedValue(fm, "date");
+    const categories = parseArrayValue(fm, "categories");
     const date = toIsoDate(rawDate) || rawDate || null;
     const id = extractDesignIdFromUrl(url);
 
@@ -67,6 +110,7 @@ function readLocalPresentations() {
       url: url || null,
       thumbnail: thumbnail || null,
       date,
+      categories,
       source: "local"
     });
   });
@@ -80,11 +124,27 @@ function readLocalPresentations() {
   return rows;
 }
 
-function parseEnvDesignIds(fallbackRows) {
-  const raw = process.env.CANVA_DESIGN_IDS || "";
-  if (raw.trim()) {
-    return raw
-      .split(",")
+function parseDesignIds({ cmsLinks = [], fallbackRows = [] }) {
+  const rawLinks = process.env.CANVA_DESIGN_LINKS || "";
+  if (rawLinks.trim()) {
+    return rawLinks
+      .split(/\r?\n|,/)
+      .map((line) => line.trim())
+      .filter(Boolean)
+      .map((value) => extractDesignIdFromUrl(value) || value)
+      .filter(Boolean);
+  }
+
+  if (cmsLinks.length) {
+    return cmsLinks
+      .map((value) => extractDesignIdFromUrl(value) || value)
+      .filter(Boolean);
+  }
+
+  const rawIds = process.env.CANVA_DESIGN_IDS || "";
+  if (rawIds.trim()) {
+    return rawIds
+      .split(/\r?\n|,/)
       .map((id) => id.trim())
       .filter(Boolean);
   }
@@ -121,6 +181,9 @@ function normalizeCanvaDesign(item) {
     toIsoDate(design.updated_at) ||
     toIsoDate(design.created_at) ||
     null;
+  const categories = Array.isArray(design.keywords)
+    ? design.keywords.map((item) => String(item).trim()).filter(Boolean)
+    : [];
 
   return {
     id,
@@ -129,6 +192,7 @@ function normalizeCanvaDesign(item) {
     url,
     thumbnail,
     date,
+    categories,
     source: "canva"
   };
 }
@@ -179,7 +243,10 @@ function mergeWithFallback(primaryRows, fallbackRows) {
       description: row.description || fallback.description || "",
       url: row.url || fallback.url || null,
       thumbnail: row.thumbnail || fallback.thumbnail || null,
-      date: row.date || fallback.date || null
+      date: row.date || fallback.date || null,
+      categories:
+        (Array.isArray(row.categories) && row.categories.length ? row.categories : null) ||
+        (Array.isArray(fallback.categories) ? fallback.categories : [])
     };
   });
 
@@ -200,9 +267,9 @@ function mergeWithFallback(primaryRows, fallbackRows) {
   return merged;
 }
 
-function buildResult(rows, source, extra = {}) {
+function buildResult(rows, source, tickerLimit, extra = {}) {
   const tableRows = rows;
-  const tickerRows = rows.slice(0, TICKER_LIMIT);
+  const tickerRows = rows.slice(0, tickerLimit);
   const cardRows = rows;
 
   return {
@@ -220,47 +287,52 @@ module.exports = async function () {
   const cached = readCache(CACHE_KEY);
   const cachedData = cached?.data || null;
   const fallbackRows = readLocalPresentations();
+  const cmsConfig = readCmsCanvaConfig();
+  const tickerLimit = Number(process.env.CANVA_TICKER_LIMIT || cmsConfig.tickerLimit || 12);
   const accessToken = process.env.CANVA_ACCESS_TOKEN;
-  const designIds = parseEnvDesignIds(fallbackRows);
+  const designIds = parseDesignIds({
+    cmsLinks: cmsConfig.designLinks,
+    fallbackRows
+  });
 
   if (!accessToken) {
     if (cachedData) {
-      return buildResult(cachedData.tableRows || [], "cache", {
+      return buildResult(cachedData.tableRows || [], "cache", tickerLimit, {
         cacheSavedAt: cached.savedAt,
         warning: "CANVA_ACCESS_TOKEN puuttuu, käytetään välimuistia."
       });
     }
-    return buildResult(fallbackRows, "local", {
+    return buildResult(fallbackRows, "local", tickerLimit, {
       warning: "CANVA_ACCESS_TOKEN puuttuu, käytetään paikallisia Markdown-tiedostoja."
     });
   }
 
   if (!designIds.length) {
     if (cachedData) {
-      return buildResult(cachedData.tableRows || [], "cache", {
+      return buildResult(cachedData.tableRows || [], "cache", tickerLimit, {
         cacheSavedAt: cached.savedAt,
-        warning: "CANVA_DESIGN_IDS puuttuu, käytetään välimuistia."
+        warning: "Canva-linkkilista puuttuu, käytetään välimuistia."
       });
     }
-    return buildResult(fallbackRows, "local", {
-      warning: "CANVA_DESIGN_IDS puuttuu, käytetään paikallisia Markdown-tiedostoja."
+    return buildResult(fallbackRows, "local", tickerLimit, {
+      warning: "Canva-linkkilista puuttuu, käytetään paikallisia Markdown-tiedostoja."
     });
   }
 
   try {
     const liveRows = await fetchDesignsById(designIds, accessToken);
     const mergedRows = mergeWithFallback(liveRows, fallbackRows);
-    const result = buildResult(mergedRows, "live");
+    const result = buildResult(mergedRows, "live", tickerLimit);
     writeCache(CACHE_KEY, result);
     return result;
   } catch (error) {
     if (cachedData) {
-      return buildResult(cachedData.tableRows || [], "cache", {
+      return buildResult(cachedData.tableRows || [], "cache", tickerLimit, {
         cacheSavedAt: cached.savedAt,
         error: error.message
       });
     }
-    return buildResult(fallbackRows, "local", {
+    return buildResult(fallbackRows, "local", tickerLimit, {
       error: error.message
     });
   }
