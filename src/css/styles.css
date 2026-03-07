@@ -237,51 +237,31 @@ html:not([data-bs-theme="dark"]) .home-hero-proof-item:focus-visible {
 
 .home-focus-grid {
   display: grid;
-  gap: 0.7rem;
+  gap: 1rem;
 }
 
 .home-focus-card {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 0.65rem;
-  padding: 0.8rem 0.85rem;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
 }
 
 .home-focus-card h3 {
-  color: #ffffff;
+  color: inherit;
 }
 
 .home-focus-card p {
-  color: rgba(240, 246, 255, 0.9);
+  color: inherit;
 }
 
-[data-bs-theme="light"] .home-focus-card,
-html:not([data-bs-theme="dark"]) .home-focus-card {
-  background: rgba(255, 255, 255, 0.72);
-  border-color: rgba(20, 52, 86, 0.2);
+.home-focus-card + .home-focus-card {
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(26, 63, 101, 0.2);
 }
 
-[data-bs-theme="light"] .home-focus-card h3,
-html:not([data-bs-theme="dark"]) .home-focus-card h3 {
-  color: #173a60;
-}
-
-[data-bs-theme="light"] .home-focus-card p,
-html:not([data-bs-theme="dark"]) .home-focus-card p {
-  color: rgba(23, 58, 96, 0.88);
-}
-
-[data-bs-theme="dark"] .home-focus-card {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.16);
-}
-
-[data-bs-theme="dark"] .home-focus-card h3 {
-  color: #f4f8ff;
-}
-
-[data-bs-theme="dark"] .home-focus-card p {
-  color: rgba(236, 244, 255, 0.9);
+[data-bs-theme="dark"] .home-focus-card + .home-focus-card {
+  border-top-color: rgba(255, 255, 255, 0.2);
 }
 
 
