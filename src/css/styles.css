@@ -11,6 +11,22 @@
   margin-top: 8px;
 }
 
+/* Full-width main content to match hero width */
+#main-content .container,
+#main-content .container-sm,
+#main-content .container-md,
+#main-content .container-lg,
+#main-content .container-xl,
+#main-content .container-xxl {
+  max-width: 100% !important;
+}
+
+/* Prevent narrow right-side strip from horizontal overflow */
+html,
+body {
+  overflow-x: clip;
+}
+
 
 
 /* Floating drift around the hero banner */
