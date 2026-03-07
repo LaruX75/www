@@ -32,6 +32,16 @@ body {
   position: relative;
 }
 
+/* Defensive kill-switch for legacy animated home hero markup */
+.home-hero-section .hero-aurora,
+.home-hero-section .hero-drift,
+.home-hero-section [data-hero-legacy],
+.home-hero-section svg text[style*="letter-spacing"] {
+  animation: none !important;
+  transform: none !important;
+  display: none !important;
+}
+
 .home-hero-backdrop {
   min-height: 600px;
   display: flex;
