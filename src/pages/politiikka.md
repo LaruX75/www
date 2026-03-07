@@ -109,6 +109,23 @@ templateEngineOverride: md
   <div class="container">
     <div class="card border-0 shadow-sm">
       <div class="card-body">
+        <h2 class="h4 mb-3">Nosto blogista</h2>
+        <p class="text-muted mb-3">Mistä on hyvä kaupunginvaltuutettu tehty? (2.1.2021)</p>
+        <blockquote class="mb-3">
+          <p class="mb-2">"Iso kivi ei liiku vaikka sitä kovin koittaisi yksin työntää. Sama pätee poliittiseen päätöksentekoon, on kyettävä tekemään asioita yhdessä sekä yli puoluerajojen että oman ryhmän sisällä."</p>
+          <p class="mb-2">"Usein kysytään mitä yksittäinen valtuutettu voi tehdä valtuustossa, no, eipä juuri mitään ellei hän kykene hahmottamaan asioita isompina kokonaisuuksina."</p>
+          <p class="mb-0">"Hyvä kuntapäättäjä on aidosti kiinnostunut kuntansa asukkaiden elämästä ja huolenaiheista."</p>
+        </blockquote>
+        <a href="/2021/01/02/mista-on-hyva-kaupunginvaltuutettu-tehty/" class="btn btn-outline-primary btn-sm">Lue koko kirjoitus</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mb-5">
+  <div class="container">
+    <div class="card border-0 shadow-sm">
+      <div class="card-body">
         <h2 class="h4">Kirjoitukset ja puheenvuorot</h2>
         <p class="text-muted">Kirjoitan aktiivisesti ajankohtaisista teemoista ja pidän puheenvuoroja valtuustossa sekä muissa luottamustehtävissä.</p>
         <a href="/kynasta/" class="btn btn-outline-primary btn-sm">Siirry Kynästä-osioon</a>
