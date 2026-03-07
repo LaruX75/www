@@ -24,3 +24,11 @@ src/img/uploads/backupbuddy_backups/
 # Local technical notes (not for remote)
 TECHNICAL_HOWTO.md
 docs/legacy-redirects-301-plan.md
+
+# Local AI assistant / agent config (never commit)
+claude.md
+CLAUDE.md
+AGENTS.md
+.claude/
+.codex/
+.agents/
