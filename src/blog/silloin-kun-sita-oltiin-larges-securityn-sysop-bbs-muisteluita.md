@@ -182,44 +182,48 @@ source_url: "https://www.jarilaru.fi/silloin-kun-sita-oltiin-larges-securityn-sy
     <div class="bbs-chapter-body">
       <p>Me oulunläänin nörtinalut pistimme viisaat päät yhteen ja perustimme <strong>POH-NET</strong> ja <strong>Circus-Laplandia-NET</strong> nimiset viestinvälitysverkot, jotka olivat kytköksissä valtakunnallisesti ja maailmanlaajuisesti BBS-harrastajien <strong>FidoNET</strong>-verkkoon. Idea oli se, että kone soitteli yöllä hiljaisimpaan aikaan toisen harrastajan koneeseen ja vaihtoi viestit keskenään.</p>
 
-      <div class="row g-4 mt-1">
+      <!-- Rivi 1: Fidonet-kuva + selitysteksti -->
+      <div class="row g-4 mt-1 align-items-start">
         <div class="col-md-5">
           <figure class="bbs-figure">
             <img src="/img/uploads/2021/01/fidonet.png" alt="Fidonet-arkisto 1991" class="img-fluid rounded">
             <figcaption class="bbs-caption mt-2">Globaalissa Fidonet-arkistossa näkyy, että olin vuonna 1991 (16-vuotiaana) 8 kk ajan yksi Fidonet-verkoston solmuista. Fidonet yhdisti BBS-harrastajien koneita yhteen — eräänlainen "internetin" esiaste.</figcaption>
           </figure>
-          <div class="mt-3">
-            <p class="bbs-video-label"><i class="bi bi-play-circle-fill me-1"></i>Mikä ihmeen Fidonet?</p>
-            <div class="ratio ratio-16x9">
-              <iframe src="https://www.youtube-nocookie.com/embed/Ng0NE4lDP2U" title="Mikä on Fidonet" loading="lazy" allowfullscreen></iframe>
-            </div>
-          </div>
         </div>
         <div class="col-md-7">
-          <p>BBS-harrastus ei ollut pelkkää keskustelua ja tiedostojen vaihtamista, vaan myös <strong>taidetta tehtiin</strong>. MBBS:n lisäksi ehdin kokeilla muitakin BBS-softia: QuickBBS, Maximus, Opus, RemoteAccess, SuperBBS. FrontDoor FidoNET-viestienvälittäjänä palveli uskollisesti vuosikausia. Myös <strong>TheDraw-ansigrafiikan</strong> piirto-ohjelma aiheutti monelle soittajalle ongelmia, sillä BBS-systeemini oli koristeltu aikalailla makeasti erilaisilla ANSI-animaatioilla ja käpöstyksillä.</p>
-
-          <div class="row g-3">
-            <div class="col-sm-6">
-              <p class="bbs-video-label"><i class="bi bi-play-circle-fill me-1"></i>ANSI-taide</p>
-              <div class="ratio ratio-16x9">
-                <iframe src="https://www.youtube-nocookie.com/embed/oQrBbm5ZMlo" title="ANSI-taide BBS-kulttuurissa" loading="lazy" allowfullscreen></iframe>
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <figure class="bbs-figure">
-                <img src="/img/uploads/2021/01/ansiart.png" alt="ANSI-taide omakuva" class="img-fluid rounded">
-                <figcaption class="bbs-caption mt-1">Tämä ANSI-kuva on tehty "huijaamalla" — konverterilla muuntamalla tavallinen valokuva ANSI-teokseksi. Vanhoja varsinaisia ANSI-kuviani ei ole tallella.</figcaption>
-              </figure>
-            </div>
+          <p>BBS-harrastus ei ollut pelkkää keskustelua ja tiedostojen vaihtamista, vaan myös <strong>taidetta tehtiin</strong>. MBBS:n lisäksi ehdin kokeilla muitakin BBS-softia: QuickBBS, Maximus, Opus, RemoteAccess, SuperBBS. FrontDoor FidoNET-viestienvälittäjänä palveli uskollisesti vuosikausia. Myös <strong>TheDraw-ansigrafiikan</strong> piirto-ohjelma aiheutti monelle soittajalle ongelmia, sillä BBS-systeemini oli koristeltu makeasti ANSI-animaatioilla.</p>
+          <p class="bbs-video-label"><i class="bi bi-play-circle-fill me-1"></i>Mikä ihmeen Fidonet?</p>
+          <div class="ratio ratio-16x9">
+            <iframe src="https://www.youtube-nocookie.com/embed/Ng0NE4lDP2U" title="Mikä on Fidonet" loading="lazy" allowfullscreen></iframe>
           </div>
+        </div>
+      </div>
 
-          <figure class="bbs-figure mt-3">
-            <img src="/img/uploads/2021/01/ICEHURWE.gif" alt="BBS-mainos kaverille" class="img-fluid rounded" style="max-height:140px">
-            <figcaption class="bbs-caption mt-1">Kuvankäsittelyohjelmalla tehty mainos kaverini <em>Acer Box</em> -BBS:lle. Kaikki on piirretty pelkästään hiirtä käyttämällä.</figcaption>
+      <!-- Rivi 2: ANSI-video | ANSI-kuva | ICEHURWE-gif (tasalevyiset) -->
+      <div class="row g-3 mt-3 align-items-start">
+        <div class="col-md-4">
+          <p class="bbs-video-label"><i class="bi bi-play-circle-fill me-1"></i>ANSI-taide</p>
+          <div class="ratio ratio-16x9">
+            <iframe src="https://www.youtube-nocookie.com/embed/oQrBbm5ZMlo" title="ANSI-taide BBS-kulttuurissa" loading="lazy" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <p class="bbs-video-label"><i class="bi bi-image-fill me-1"></i>Oma ANSI-teokseni</p>
+          <figure class="bbs-figure">
+            <img src="/img/uploads/2021/01/ansiart.png" alt="ANSI-taide omakuva" class="img-fluid rounded" style="width:100%">
+            <figcaption class="bbs-caption mt-1">Konverterilla muunnettu valokuva ANSI-teokseksi. Vanhoja varsinaisia töitäni ei ole tallella.</figcaption>
+          </figure>
+        </div>
+        <div class="col-md-4">
+          <p class="bbs-video-label"><i class="bi bi-image-fill me-1"></i>BBS-mainos kaverille</p>
+          <figure class="bbs-figure">
+            <img src="/img/uploads/2021/01/ICEHURWE.gif" alt="BBS-mainos Acer Box" class="img-fluid rounded" style="width:100%">
+            <figcaption class="bbs-caption mt-1">Mainos kaverini <em>Acer Box</em> -BBS:lle. Piirretty pelkästään hiirtä käyttämällä.</figcaption>
           </figure>
         </div>
       </div>
 
+      <!-- Salama + Internet kills BBS -->
       <div class="bbs-lightning-box mt-4">
         <div class="d-flex align-items-start gap-3">
           <span style="font-size:2rem">⚡</span>
@@ -232,7 +236,7 @@ source_url: "https://www.jarilaru.fi/silloin-kun-sita-oltiin-larges-securityn-sy
 
       <div class="mt-4">
         <p class="bbs-video-label"><i class="bi bi-play-circle-fill me-1"></i>Kuinka Internet lopulta tappoi BBS-kulttuurin</p>
-        <div class="ratio ratio-16x9" style="max-width:560px">
+        <div class="ratio ratio-16x9">
           <iframe src="https://www.youtube-nocookie.com/embed/YTBImnpUBUw" title="Internet tappoi BBS:n" loading="lazy" allowfullscreen></iframe>
         </div>
         <p class="bbs-caption">BBS Documentary sarjassa muistellaan kuinka Internet lopulta tappoi BBS-kulttuurin. Niin kävi minullekin — vaikka lopetin myös resurssien puutteeseen.</p>
@@ -480,6 +484,35 @@ source_url: "https://www.jarilaru.fi/silloin-kun-sita-oltiin-larges-securityn-sy
 .bbs-link-icon {
   font-size: 1.4rem;
   color: var(--bs-secondary-color);
+}
+
+/* ═══ EXTERNAL-MEDIA-CONSENT iframe fix ═══ */
+/* The consent plugin wraps iframes; ensure both notice and iframe fill the ratio box */
+.ratio > .external-media-consent {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.external-media-consent__notice {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: var(--bs-tertiary-bg);
+  border-radius: inherit;
+  padding: 1rem;
+  text-align: center;
+}
+.external-media-consent__iframe {
+  position: absolute !important;
+  top: 0; left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  border: 0;
 }
 
 /* ═══ DARK MODE ═══ */
