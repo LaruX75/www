@@ -73,7 +73,7 @@ translationKey: home
                     </div>
                 </div>
                 <!-- Karuselli alkaa -->
-                <div class="ticker-wrapper" id="presentationTicker" style="margin-top: 1rem;">
+                <div class="ticker-wrapper" id="presentationTicker" style="margin-top: 1rem;" tabindex="0" role="region" aria-label="Viimeisimmät esitykset">
                     <div class="ticker-track">
                         <!-- Ensimmäinen setti -->
                         <div class="ticker-content">
@@ -386,7 +386,7 @@ translationKey: home
                     </div>
                 </div>
                 <!-- Karuselli alkaa -->
-                <div class="ticker-wrapper" id="blogTicker" style="margin-top: 1rem;">
+                <div class="ticker-wrapper" id="blogTicker" style="margin-top: 1rem;" tabindex="0" role="region" aria-label="Viimeisimmät kirjoitukset ja puheenvuorot">
                     <div class="ticker-track">
                         <!-- Ensimmäinen setti -->
                         <div class="ticker-content">
@@ -517,57 +517,77 @@ document.addEventListener("DOMContentLoaded", function() {
     const track = ticker.querySelector(".ticker-track");
     if (!track) return;
     
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      track.style.animation = "none";
+      track.style.transform = "translateX(0)";
+      return;
+    }
+
     let direction = -1; // -1 for left, 1 for right
     let speed = 1; // Animation speed multiplier
     let currentX = 0; // Current transform translateX value
-    let animationId; // For requestAnimationFrame
+    let animationId = null; // requestAnimationFrame id
     
     let isDragging = false;
-    let startX;
+    let activePointerId = null;
     let prevX;
 
     // Width of a single set of items
     const tickerContent = ticker.querySelector(".ticker-content");
     if (!tickerContent) return;
 
-    function animate() {
-      const itemSetWidth = tickerContent.offsetWidth; 
-      
-      currentX += direction * speed;
-
-      // Seamless loop reset logic
+    function normalizePosition() {
+      const itemSetWidth = tickerContent.offsetWidth;
+      if (!itemSetWidth) return;
       if (currentX <= -itemSetWidth) {
         currentX += itemSetWidth;
       } else if (currentX >= 0) {
         currentX -= itemSetWidth;
       }
+    }
 
+    function animate() {
+      currentX += direction * speed;
+      normalizePosition();
       track.style.transform = `translateX(${currentX}px)`;
       animationId = requestAnimationFrame(animate);
+    }
+
+    function startAnimation() {
+      if (animationId !== null) return;
+      animationId = requestAnimationFrame(animate);
+    }
+
+    function stopAnimation() {
+      if (animationId === null) return;
+      cancelAnimationFrame(animationId);
+      animationId = null;
     }
 
     // Remove CSS animation to use JS animation instead for direction support
     track.style.animation = "none";
 
     // Start animation loop
-    animationId = requestAnimationFrame(animate);
+    startAnimation();
 
-    // Käyttöliittymäkontrollien tapahtumankäsittelijät (hiiri)
-    ticker.addEventListener("mouseenter", () => {
-      cancelAnimationFrame(animationId);
-    });
+    // Käyttöliittymäkontrollit: hiiri, kosketus ja näppäimistö
+    ticker.style.cursor = "ew-resize";
+    ticker.addEventListener("mouseenter", stopAnimation);
+    ticker.addEventListener("focusin", stopAnimation);
 
-    ticker.addEventListener("mousedown", (e) => {
+    ticker.addEventListener("pointerdown", (e) => {
       isDragging = true;
-      startX = e.clientX;
+      activePointerId = e.pointerId;
       prevX = e.clientX;
-      ticker.style.cursor = "grabbing"; // Visuaalinen palaute tarttumisesta
+      ticker.setPointerCapture(e.pointerId);
+      stopAnimation();
+      ticker.style.cursor = "grabbing";
     });
 
-    ticker.addEventListener("mousemove", (e) => {
-      if (!isDragging) return;
+    ticker.addEventListener("pointermove", (e) => {
+      if (!isDragging || e.pointerId !== activePointerId) return;
       
-      // Suunnanvaihto ja manuaalinen rullaus hiirellä "raadattaessa"
+      // Suunnanvaihto ja manuaalinen rullaus vedettäessä
       const deltaX = e.clientX - prevX;
       prevX = e.clientX;
       
@@ -576,30 +596,36 @@ document.addEventListener("DOMContentLoaded", function() {
       else if (deltaX < 0) direction = -1; // Vasemmalle
 
       currentX += deltaX;
-      
-      const itemSetWidth = tickerContent.offsetWidth; 
-      
-      // Karusellin saumaton toisto vetäessä
-      if (currentX <= -itemSetWidth) {
-        currentX += itemSetWidth;
-      } else if (currentX >= 0) {
-        currentX -= itemSetWidth;
-      }
+      normalizePosition();
 
       track.style.transform = `translateX(${currentX}px)`;
     });
 
-    ticker.addEventListener("mouseup", () => {
+    function endDrag() {
       isDragging = false;
-      ticker.style.cursor = "ew-resize"; // Palauta kohdistin takaisin vapaaksi
+      activePointerId = null;
+      ticker.style.cursor = "ew-resize";
+      startAnimation();
+    }
+
+    ticker.addEventListener("pointerup", endDrag);
+    ticker.addEventListener("pointercancel", endDrag);
+    ticker.addEventListener("lostpointercapture", endDrag);
+    ticker.addEventListener("mouseleave", () => {
+      if (!isDragging) startAnimation();
+    });
+    ticker.addEventListener("focusout", () => {
+      if (!isDragging) startAnimation();
     });
 
-    ticker.addEventListener("mouseleave", () => {
-      isDragging = false;
-      ticker.style.cursor = "ew-resize";
-      // Palautetaan tausta-animaatio käyntiin irroitettaessa hiiri koko laatikosta
-      cancelAnimationFrame(animationId); 
-      animationId = requestAnimationFrame(animate);
+    ticker.addEventListener("keydown", (e) => {
+      if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+      e.preventDefault();
+      direction = e.key === "ArrowRight" ? 1 : -1;
+      currentX += direction * 40;
+      normalizePosition();
+      track.style.transform = `translateX(${currentX}px)`;
+      startAnimation();
     });
   }
 
