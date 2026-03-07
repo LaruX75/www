@@ -297,11 +297,11 @@
 
         <li class="nav-item ms-md-auto mt-2 mt-md-0">
           <div class="d-flex align-items-center gap-2">
-            <button class="btn btn-sm rounded-circle d-flex align-items-center justify-content-center" id="searchToggleBtn" style="width: 38px; height: 38px;" aria-label="Search site" title="Search site">
+            <button class="btn btn-sm rounded-circle d-flex align-items-center justify-content-center" id="searchToggleBtn" data-search-toggle style="width: 38px; height: 38px;" aria-label="Search site" title="Search site">
               <i class="bi bi-search"></i>
             </button>
-            <button class="btn btn-sm rounded-circle d-flex align-items-center justify-content-center" id="themeToggleBtn" style="width: 38px; height: 38px;" aria-label="Toggle theme" title="Toggle theme">
-              <i class="bi bi-moon-stars-fill" id="themeToggleIcon"></i>
+            <button class="btn btn-sm rounded-circle d-flex align-items-center justify-content-center" id="themeToggleBtn" data-theme-toggle style="width: 38px; height: 38px;" aria-label="Toggle theme" title="Toggle theme">
+              <i class="bi bi-moon-stars-fill" id="themeToggleIcon" data-theme-icon></i>
             </button>
           </div>
         </li>
@@ -321,6 +321,24 @@
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
+    <form class="mb-3" data-search-form>
+      <label for="mobileNavEnSearchInput" class="form-label small text-muted">Search this site</label>
+      <div class="input-group input-group-sm">
+        <input id="mobileNavEnSearchInput" type="search" class="form-control" placeholder="Search..." autocomplete="off" name="q">
+        <button class="btn btn-outline-primary" type="submit" aria-label="Open search">
+          <i class="bi bi-search"></i>
+        </button>
+      </div>
+    </form>
+    <div class="d-flex align-items-center justify-content-between gap-2 mb-3">
+      <div class="btn-group btn-group-sm" role="group" aria-label="Language switcher">
+        <a class="btn btn-outline-primary{% if currentLang == 'fi' %} active{% endif %}" href="{{ fiPageUrl or '/' }}" lang="fi">FI</a>
+        <a class="btn btn-outline-primary{% if currentLang == 'en' %} active{% endif %}" href="{{ enPageUrl or '/en/' }}" lang="en">EN</a>
+      </div>
+      <button class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-2" type="button" data-theme-toggle aria-label="Toggle theme">
+        <i class="bi bi-moon-stars-fill" data-theme-icon></i><span>Theme</span>
+      </button>
+    </div>
     <div class="d-grid gap-2 mb-3">
       <a class="btn btn-outline-primary rounded-pill" href="{{ navHome.url or '/en/' }}">Home</a>
     </div>
@@ -736,11 +754,11 @@
 
         <li class="nav-item ms-md-auto mt-2 mt-md-0">
           <div class="d-flex align-items-center gap-2">
-            <button class="btn btn-sm rounded-circle d-flex align-items-center justify-content-center" id="searchToggleBtn" style="width: 38px; height: 38px;" aria-label="Hae sivustolta" title="Hae sivustolta">
+            <button class="btn btn-sm rounded-circle d-flex align-items-center justify-content-center" id="searchToggleBtn" data-search-toggle style="width: 38px; height: 38px;" aria-label="Hae sivustolta" title="Hae sivustolta">
               <i class="bi bi-search"></i>
             </button>
-            <button class="btn btn-sm rounded-circle d-flex align-items-center justify-content-center" id="themeToggleBtn" style="width: 38px; height: 38px;" aria-label="Vaihda teemaa" title="Vaihda teemaa">
-              <i class="bi bi-moon-stars-fill" id="themeToggleIcon"></i>
+            <button class="btn btn-sm rounded-circle d-flex align-items-center justify-content-center" id="themeToggleBtn" data-theme-toggle style="width: 38px; height: 38px;" aria-label="Vaihda teemaa" title="Vaihda teemaa">
+              <i class="bi bi-moon-stars-fill" id="themeToggleIcon" data-theme-icon></i>
             </button>
           </div>
         </li>
@@ -760,6 +778,24 @@
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Sulje"></button>
   </div>
   <div class="offcanvas-body">
+    <form class="mb-3" data-search-form>
+      <label for="mobileNavFiSearchInput" class="form-label small text-muted">Hae sivustolta</label>
+      <div class="input-group input-group-sm">
+        <input id="mobileNavFiSearchInput" type="search" class="form-control" placeholder="Hae..." autocomplete="off" name="q">
+        <button class="btn btn-outline-primary" type="submit" aria-label="Avaa haku">
+          <i class="bi bi-search"></i>
+        </button>
+      </div>
+    </form>
+    <div class="d-flex align-items-center justify-content-between gap-2 mb-3">
+      <div class="btn-group btn-group-sm" role="group" aria-label="Kielen vaihto">
+        <a class="btn btn-outline-primary{% if currentLang == 'fi' %} active{% endif %}" href="{{ fiPageUrl or '/' }}" lang="fi">FI</a>
+        <a class="btn btn-outline-primary{% if currentLang == 'en' %} active{% endif %}" href="{{ enPageUrl or '/en/' }}" lang="en">EN</a>
+      </div>
+      <button class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-2" type="button" data-theme-toggle aria-label="Vaihda teemaa">
+        <i class="bi bi-moon-stars-fill" data-theme-icon></i><span>Teema</span>
+      </button>
+    </div>
     <div class="d-grid gap-2 mb-3">
       <a class="btn btn-outline-primary rounded-pill" href="{{ navHome.url or '/' }}">Etusivu</a>
     </div>
