@@ -30,7 +30,7 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          <a class="nav-link dropdown-toggle {% if page.url and ('/en/about/' in page.url or '/en/cv/' in page.url or '/en/portfolio/' in page.url or '/en/company/' in page.url or '/en/road-trips/' in page.url) %}active{% endif %}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle {% if page.url and ('/en/about/' in page.url or '/en/cv/' in page.url or '/en/portfolio/' in page.url or '/en/company/' in page.url or '/en/road-trips/' in page.url) %}active{% endif %}" href="{{ navMe.url or '/en/about/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="{{ navMe.icon or 'bi bi-person-fill' }}"></i> {{ navMe.title or 'Me' }}
           </a>
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
@@ -65,7 +65,7 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          <a class="nav-link dropdown-toggle {% if page.url and ('/en/publications/' in page.url or '/en/theses/' in page.url or '/en/presentations/' in page.url) %}active{% endif %}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle {% if page.url and ('/en/publications/' in page.url or '/en/theses/' in page.url or '/en/presentations/' in page.url) %}active{% endif %}" href="{{ navWork.url or '/en/work/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="{{ navWork.icon or 'bi bi-briefcase-fill' }}"></i> {{ navWork.title or 'Work' }}
           </a>
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
@@ -155,7 +155,7 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          <a class="nav-link dropdown-toggle {% if page.url and ('/en/politics/' in page.url or '/en/affiliations/' in page.url) %}active{% endif %}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle {% if page.url and ('/en/politics/' in page.url or '/en/affiliations/' in page.url) %}active{% endif %}" href="{{ navPolitics.url or '/en/politics/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="{{ navPolitics.icon or 'bi bi-bank2' }}"></i> {{ navPolitics.title or 'Politics' }}
           </a>
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
@@ -174,7 +174,7 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          <a class="nav-link dropdown-toggle {% if page.url and '/en/writings/' in page.url %}active{% endif %}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle {% if page.url and '/en/writings/' in page.url %}active{% endif %}" href="{{ navWritings.url or '/en/writings/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="{{ navWritings.icon or 'bi bi-pencil-fill' }}"></i> {{ navWritings.title or 'Writings' }}
           </a>
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
@@ -299,7 +299,7 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          <a class="nav-link dropdown-toggle {% if page.url and ('/tietoa/' in page.url or '/autolomat/' in page.url or '/cv/' in page.url or '/portfolio/' in page.url or '/larux-tmi/' in page.url or '/yritys/' in page.url) %}active{% endif %}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle {% if page.url and ('/tietoa/' in page.url or '/autolomat/' in page.url or '/cv/' in page.url or '/portfolio/' in page.url or '/larux-tmi/' in page.url or '/yritys/' in page.url) %}active{% endif %}" href="{{ navMe.url or '/tietoa/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="{{ navMe.icon or 'bi bi-person-fill' }}"></i> {{ navMe.title or 'Minä' }}
           </a>
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
@@ -334,7 +334,7 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          <a class="nav-link dropdown-toggle {% if page.url and ('/opetus/' in page.url or '/portfolio/' in page.url or '/tutkimus/' in page.url or '/v%C3%A4it%C3%B6skirja/' in page.url or '/väitöskirja/' in page.url or '/palkinnot/' in page.url) %}active{% endif %}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle {% if page.url and ('/opetus/' in page.url or '/portfolio/' in page.url or '/tutkimus/' in page.url or '/v%C3%A4it%C3%B6skirja/' in page.url or '/väitöskirja/' in page.url or '/palkinnot/' in page.url) %}active{% endif %}" href="{{ navWork.url or '/tyoni-yliopistonlehtorina/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="{{ navWork.icon or 'bi bi-briefcase-fill' }}"></i> {{ navWork.title or 'Työ' }}
           </a>
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
@@ -428,7 +428,7 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          <a class="nav-link dropdown-toggle {% if page.url and ('/politiikka/' in page.url or '/politiiikka/' in page.url) %}active{% endif %}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle {% if page.url and ('/politiikka/' in page.url or '/politiiikka/' in page.url) %}active{% endif %}" href="{{ navPolitics.url or '/politiikka/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="{{ navPolitics.icon or 'bi bi-bank2' }}"></i> {{ navPolitics.title or 'Politiikka' }}
           </a>
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
@@ -447,7 +447,7 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          <a class="nav-link dropdown-toggle {% if page.url and ('/kynasta/' in page.url or '/blogi/' in page.url) %}active{% endif %}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle {% if page.url and ('/kynasta/' in page.url or '/blogi/' in page.url) %}active{% endif %}" href="{{ navWritings.url or '/kynasta/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="{{ navWritings.icon or 'bi bi-pencil-fill' }}"></i> {{ navWritings.title or 'Kynästä' }}
           </a>
           <div class="dropdown-menu mega-menu-panel p-0 border-0">

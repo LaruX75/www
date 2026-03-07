@@ -302,11 +302,32 @@
       // Mega menu interactions (stagger + Esc focus return)
       const megaDropdowns = Array.from(document.querySelectorAll('.mega-dropdown'));
       let activeMegaToggle = null;
+      const desktopMq = window.matchMedia('(min-width: 768px)');
+
+      const closeAllMegaMenus = () => {
+        megaDropdowns.forEach((dropdown) => {
+          const toggle = dropdown.querySelector('[data-bs-toggle="dropdown"]');
+          if (!toggle || !window.bootstrap) return;
+          const instance = window.bootstrap.Dropdown.getInstance(toggle);
+          if (instance) instance.hide();
+        });
+        if (navbar) navbar.classList.remove('mega-open');
+      };
 
       megaDropdowns.forEach((dropdown) => {
         const toggle = dropdown.querySelector('[data-bs-toggle="dropdown"]');
         const menu = dropdown.querySelector('.mega-menu-panel');
         if (!toggle || !menu) return;
+
+        toggle.addEventListener('click', (e) => {
+          if (!desktopMq.matches) return;
+          const href = toggle.getAttribute('href');
+          if (!href || href === '#') return;
+          e.preventDefault();
+          e.stopPropagation();
+          closeAllMegaMenus();
+          window.location.assign(href);
+        });
 
         const interactiveItems = Array.from(menu.querySelectorAll('a, button')).filter((el) => !el.disabled);
         interactiveItems.forEach((el, idx) => {
@@ -324,6 +345,13 @@
         dropdown.addEventListener('hide.bs.dropdown', () => {
           if (navbar) navbar.classList.remove('mega-open');
           menu.classList.remove('menu-open');
+        });
+
+        menu.addEventListener('click', (e) => {
+          if (!(e.target instanceof Element)) return;
+          const clickedLink = e.target.closest('a[href]');
+          if (!clickedLink) return;
+          closeAllMegaMenus();
         });
       });
 
@@ -391,11 +419,7 @@
 
         const openDropdown = megaDropdowns.find((dropdown) => dropdown.classList.contains('show'));
         if (openDropdown) {
-          const toggle = openDropdown.querySelector('[data-bs-toggle="dropdown"]');
-          const dropdownInstance = window.bootstrap && toggle
-            ? window.bootstrap.Dropdown.getOrCreateInstance(toggle)
-            : null;
-          if (dropdownInstance) dropdownInstance.hide();
+          closeAllMegaMenus();
           if (activeMegaToggle) activeMegaToggle.focus();
         }
       });
