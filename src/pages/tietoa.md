@@ -46,7 +46,7 @@ wp_id: 7
 
       <div class="col-md-6 col-lg-3">
         <div class="card h-100 border-0 shadow-sm">
-          <img class="card-img-top" src="/img/uploads/2020/01/WhatsApp-Image-2019-12-02-at-18.58.31-1.jpeg" alt="Poliitikko" loading="lazy">
+          <img class="card-img-top rooli-kuva" src="/img/uploads/2020/01/WhatsApp-Image-2019-12-02-at-18.58.31-1.jpeg" alt="Poliitikko" loading="lazy">
           <div class="card-body p-4">
             <div class="mb-2 text-primary"><i class="bi bi-building-fill fs-4"></i></div>
             <h3 class="h5 fw-bold">Kaupunginvaltuutettu</h3>
@@ -60,7 +60,7 @@ wp_id: 7
 
       <div class="col-md-6 col-lg-3">
         <div class="card h-100 border-0 shadow-sm">
-          <img class="card-img-top" src="/img/uploads/2021/03/ESITYS-300x225.jpg" alt="Yliopistonlehtori" loading="lazy">
+          <img class="card-img-top rooli-kuva" src="/img/uploads/2021/03/ESITYS-300x225.jpg" alt="Yliopistonlehtori" loading="lazy">
           <div class="card-body p-4">
             <div class="mb-2 text-success"><i class="bi bi-mortarboard-fill fs-4"></i></div>
             <h3 class="h5 fw-bold">Yliopistonlehtori</h3>
@@ -74,7 +74,7 @@ wp_id: 7
 
       <div class="col-md-6 col-lg-3">
         <div class="card h-100 border-0 shadow-sm">
-          <img class="card-img-top" src="/img/uploads/2021/01/verkkolive.jpg" alt="Kouluttaja ja yrittäjä" loading="lazy">
+          <img class="card-img-top rooli-kuva" src="/img/uploads/2021/01/verkkolive.jpg" alt="Kouluttaja ja yrittäjä" loading="lazy">
           <div class="card-body p-4">
             <div class="mb-2 text-warning"><i class="bi bi-mic-fill fs-4"></i></div>
             <h3 class="h5 fw-bold">Kouluttaja &amp; puhuja</h3>
@@ -88,7 +88,7 @@ wp_id: 7
 
       <div class="col-md-6 col-lg-3">
         <div class="card h-100 border-0 shadow-sm">
-          <img class="card-img-top" src="/img/uploads/2021/03/CTE-159x300.jpg" alt="Tutkija" loading="lazy" style="object-fit:cover;max-height:200px;width:100%">
+          <img class="card-img-top rooli-kuva" src="/img/uploads/2021/03/CTE-159x300.jpg" alt="Tutkija" loading="lazy">
           <div class="card-body p-4">
             <div class="mb-2 text-info"><i class="bi bi-journal-text fs-4"></i></div>
             <h3 class="h5 fw-bold">Tutkija</h3>
@@ -103,6 +103,14 @@ wp_id: 7
     </div>
   </div>
 </section>
+
+<style>
+.rooli-kuva {
+  height: 200px;
+  object-fit: cover;
+  object-position: center top;
+}
+</style>
 
 <!-- KOTIKAUPUNKI -->
 <section class="py-5 bg-body-tertiary border-top border-bottom">
