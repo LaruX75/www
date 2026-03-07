@@ -5,31 +5,48 @@ lang: fi
 translationKey: home
 ---
 
-<section class="section-flush" id="heroSection">
-    <div class="pb-0 d-flex justify-content-center align-items-center" data-bss-scroll-zoom="true" data-bss-scroll-zoom-speed="1" style="height: 600px;background: linear-gradient(rgba(18,42,71,0) 59%, rgb(4,16,36) 85%), url(&quot;/img/WIN_20210329_16_06_01_Pro.jpg&quot;) center / cover; position: relative; overflow: hidden; margin: 0px;margin-bottom: 0px!important;">
-        <h1 class="visually-hidden">Tervetuloa!</h1>
-        <div class="hero-drift w-100 px-3 text-center" data-aos="fade" style="z-index: 2;">
-            <svg class="hero-aurora-svg w-100" viewBox="0 0 1000 250" preserveAspectRatio="xMidYMid meet" style="max-height: 250px; overflow: visible;">
-                <defs>
-                    <linearGradient id="auroraGrad" x1="0%" y1="0%" x2="200%" y2="0%">
-                        <stop offset="0%" stop-color="#66ffcc" />
-                        <stop offset="16%" stop-color="#33ccaa" />
-                        <stop offset="33%" stop-color="#7b68ee" />
-                        <stop offset="50%" stop-color="#a855f7" />
-                        <stop offset="66%" stop-color="#38bdf8" />
-                        <stop offset="83%" stop-color="#2dd4bf" />
-                        <stop offset="100%" stop-color="#66ffcc" />
-                        <animate attributeName="x1" values="0%; -100%; 0%" dur="8s" repeatCount="indefinite" />
-                        <animate attributeName="x2" values="200%; 100%; 200%" dur="8s" repeatCount="indefinite" />
-                    </linearGradient>
-                </defs>
-                <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" 
-                      fill="transparent" stroke="url(#auroraGrad)" stroke-width="2" stroke-linejoin="round"
-                      font-family="'Bree Serif', serif" font-size="160px" font-weight="bold"
-                      style="filter: drop-shadow(0 0 10px rgba(102, 255, 204, 0.4));">
-                    TERVETULOA!
-                </text>
-            </svg>
+{% set heroPresentationCount = (collections.presentations or []) | length %}
+{% set heroPublicationCount = (collections.publications or []) | length %}
+{% set heroInitiativeCount = (collections.politics or []) | length %}
+{% set heroBlogCount = (collections.blog or []) | length %}
+
+<section class="section-flush home-hero-section" id="heroSection">
+    <div class="home-hero-backdrop">
+        <div class="container home-hero-content">
+            <p class="home-hero-eyebrow mb-2">Jari Laru</p>
+            <h1 class="home-hero-title mb-3">Koulutan ja tutkin, miten tekoäly ja oppimisteknologia toimivat koulun arjessa.</h1>
+            <p class="home-hero-lead mb-3">Yliopistonlehtori, kouluttaja ja kuntapäättäjä. Sivulta löydät esitykset, julkaisut, aloitteet ja käytännön työn tulokset samasta näkymästä.</p>
+
+            <div class="home-hero-roles mb-4">
+                <span class="badge rounded-pill">Yliopistonlehtori</span>
+                <span class="badge rounded-pill">Kouluttaja (Larux t:mi)</span>
+                <span class="badge rounded-pill">Kuntapäättäjä</span>
+            </div>
+
+            <div class="d-flex flex-wrap gap-2 mb-4">
+                <a href="/yhteystiedot/" class="btn btn-primary rounded-pill px-4">Pyydä tarjous</a>
+                <a href="/esitykset/" class="btn btn-read-more btn-sm rounded-pill px-3">Katso esitykset <i class="bi bi-arrow-right"></i></a>
+                <a href="/tutkimus/" class="home-hero-text-link">Tutustu tutkimukseen <i class="bi bi-arrow-right-short"></i></a>
+            </div>
+
+            <div class="home-hero-proof-grid">
+                <a class="home-hero-proof-item" href="/esitykset/">
+                    <span class="home-hero-proof-number">{{ heroPresentationCount }}</span>
+                    <span class="home-hero-proof-label">Esitykset</span>
+                </a>
+                <a class="home-hero-proof-item" href="/julkaisut/">
+                    <span class="home-hero-proof-number">{{ heroPublicationCount }}</span>
+                    <span class="home-hero-proof-label">Julkaisut</span>
+                </a>
+                <a class="home-hero-proof-item" href="/kynasta/#aloitteet">
+                    <span class="home-hero-proof-number">{{ heroInitiativeCount }}</span>
+                    <span class="home-hero-proof-label">Aloitteet</span>
+                </a>
+                <a class="home-hero-proof-item" href="/blogi/">
+                    <span class="home-hero-proof-number">{{ heroBlogCount }}</span>
+                    <span class="home-hero-proof-label">Blogikirjoitukset</span>
+                </a>
+            </div>
         </div>
     </div>
 </section>

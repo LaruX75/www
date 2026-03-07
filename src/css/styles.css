@@ -27,6 +27,112 @@ body {
   overflow-x: clip;
 }
 
+/* Home hero: content-first version */
+.home-hero-section {
+  position: relative;
+}
+
+.home-hero-backdrop {
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  background:
+    linear-gradient(110deg, rgba(8, 18, 34, 0.88) 8%, rgba(8, 18, 34, 0.74) 48%, rgba(8, 18, 34, 0.34) 100%),
+    linear-gradient(rgba(18, 42, 71, 0) 62%, rgb(4, 16, 36) 92%),
+    url("/img/WIN_20210329_16_06_01_Pro.jpg") center / cover;
+}
+
+.home-hero-content {
+  padding-top: clamp(5.2rem, 8vw, 7.2rem);
+  padding-bottom: clamp(2.2rem, 5vw, 3.4rem);
+  color: #f8fbff;
+}
+
+.home-hero-eyebrow {
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: rgba(237, 245, 255, 0.85);
+}
+
+.home-hero-title {
+  max-width: 20ch;
+  font-size: clamp(1.9rem, 4vw, 3.1rem);
+  line-height: 1.12;
+  color: #ffffff;
+}
+
+.home-hero-lead {
+  max-width: 66ch;
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  color: rgba(236, 244, 255, 0.92);
+}
+
+.home-hero-roles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.home-hero-roles .badge {
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  color: #ffffff;
+  font-weight: 600;
+  padding: 0.4rem 0.75rem;
+}
+
+.home-hero-text-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: rgba(240, 246, 255, 0.95);
+  font-weight: 600;
+  padding: 0.3rem 0.25rem;
+}
+
+.home-hero-text-link:hover {
+  color: #ffffff;
+}
+
+.home-hero-proof-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.65rem;
+  max-width: 920px;
+}
+
+.home-hero-proof-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+  text-decoration: none;
+  padding: 0.75rem 0.8rem;
+  border-radius: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.home-hero-proof-item:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.45);
+  color: #ffffff;
+}
+
+.home-hero-proof-number {
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.home-hero-proof-label {
+  font-size: 0.83rem;
+  opacity: 0.93;
+}
+
 
 
 /* Floating drift around the hero banner */
@@ -588,6 +694,14 @@ body {
 }
 
 @media (max-width: 767.98px) {
+  .home-hero-backdrop {
+    min-height: 520px;
+  }
+
+  .home-hero-proof-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .home-feature-section .ticker-item {
     width: 280px;
   }
