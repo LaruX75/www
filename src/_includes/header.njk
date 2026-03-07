@@ -160,16 +160,29 @@
             <i class="{{ navPolitics.icon or 'bi bi-bank2' }}"></i> {{ navPolitics.title or 'Politics' }}
           </a>
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
-            <div class="mega-wrap single-col">
-              <section>
-                {% for intro in politicsMegaMenu.intros %}
-                  <h5 class="{{ intro.className or '' }}">{{ intro.title }}</h5>
-                  <p class="menu-desc">{{ intro.description }}</p>
+            <div class="mega-wrap">
+              <div class="mega-left three-cols">
+                {% for section in politicsMegaMenu.sections %}
+                  <section>
+                    <h5>{{ section.heading }}</h5>
+                    {% for link in section.links %}
+                      {% set linkCount = 0 %}
+                      {% if link.countKey %}{% set linkCount = (collections[link.countKey] or []) | length %}{% endif %}
+                      {% if link.menuLink %}
+                        <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>
+                          <i class="{{ link.icon }}"></i>
+                          <span>{{ link.title }}{% if link.countKey and linkCount %} <span class="menu-link-count">{{ linkCount }}</span>{% endif %}</span>
+                        </a>
+                      {% else %}
+                        <a href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}><i class="{{ link.icon }}"></i>{{ link.title }}</a>
+                      {% endif %}
+                      {% if link.description %}
+                        <small class="{{ 'menu-link-desc' if link.menuLink }}">{{ link.description }}</small>
+                      {% endif %}
+                    {% endfor %}
+                  </section>
                 {% endfor %}
-                {% for link in politicsMegaMenu.links %}
-                  <a href="{{ link.href }}"><i class="{{ link.icon }}"></i>{{ link.title }}</a>
-                {% endfor %}
-              </section>
+              </div>
             </div>
           </div>
         </li>
@@ -462,16 +475,29 @@
             <i class="{{ navPolitics.icon or 'bi bi-bank2' }}"></i> {{ navPolitics.title or 'Politiikka' }}
           </a>
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
-            <div class="mega-wrap single-col">
-              <section>
-                {% for intro in politicsMegaMenu.intros %}
-                  <h5 class="{{ intro.className or '' }}">{{ intro.title }}</h5>
-                  <p class="menu-desc">{{ intro.description }}</p>
+            <div class="mega-wrap">
+              <div class="mega-left three-cols">
+                {% for section in politicsMegaMenu.sections %}
+                  <section>
+                    <h5>{{ section.heading }}</h5>
+                    {% for link in section.links %}
+                      {% set linkCount = 0 %}
+                      {% if link.countKey %}{% set linkCount = (collections[link.countKey] or []) | length %}{% endif %}
+                      {% if link.menuLink %}
+                        <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>
+                          <i class="{{ link.icon }}"></i>
+                          <span>{{ link.title }}{% if link.countKey and linkCount %} <span class="menu-link-count">{{ linkCount }}</span>{% endif %}</span>
+                        </a>
+                      {% else %}
+                        <a href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}><i class="{{ link.icon }}"></i>{{ link.title }}</a>
+                      {% endif %}
+                      {% if link.description %}
+                        <small class="{{ 'menu-link-desc' if link.menuLink }}">{{ link.description }}</small>
+                      {% endif %}
+                    {% endfor %}
+                  </section>
                 {% endfor %}
-                {% for link in politicsMegaMenu.links %}
-                  <a href="{{ link.href }}"><i class="{{ link.icon }}"></i>{{ link.title }}</a>
-                {% endfor %}
-              </section>
+              </div>
             </div>
           </div>
         </li>

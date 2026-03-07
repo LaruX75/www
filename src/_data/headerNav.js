@@ -378,52 +378,173 @@ module.exports = {
   },
   megaMenuPolitics: {
     fi: {
-      intros: [
+      sections: [
         {
-          title: "Oulun kaupungin poliittiset luottamustehtävät",
-          description: "Nykyiset roolit, vastuut ja päätöksenteon tehtävät."
+          heading: "Rooli & läpinäkyvyys",
+          links: [
+            {
+              title: "Jari Laru, poliitikko",
+              href: "/politiikka/",
+              icon: "bi bi-person-badge me-2",
+              menuLink: true,
+              description: "Luottamustoimet, tavoitteet ja historia."
+            },
+            {
+              title: "Sidonnaisuudet",
+              href: "/sidonnaisuudet/",
+              icon: "bi bi-link-45deg me-2",
+              menuLink: true,
+              description: "Avoimet ilmoitukset jäsenyyksistä."
+            },
+            {
+              title: "Facebook",
+              href: "https://www.facebook.com/jari.laru.poliitikko/",
+              icon: "bi bi-facebook me-2",
+              external: true
+            }
+          ]
         },
         {
-          title: "Muut poliittiset luottamustehtävät",
-          description: "Muut hallinnolliset ja yhteiskunnalliset tehtävät.",
-          className: "mt-3"
-        }
-      ],
-      links: [
-        {
-          title: "Jari Laru, poliitikko",
-          href: "/politiikka/",
-          icon: "bi bi-person-badge me-2"
+          heading: "Vaikuttaminen",
+          links: [
+            {
+              title: "Valtuustoaloitteet",
+              href: "/kynasta/#aloitteet",
+              icon: "bi bi-megaphone me-2",
+              menuLink: true,
+              description: "Aloitteet kaupunginvaltuustossa.",
+              countKey: "politics"
+            },
+            {
+              title: "Puheenvuorot",
+              href: "/kynasta/#puheet",
+              icon: "bi bi-mic me-2",
+              menuLink: true,
+              description: "Valtuustopuheenvuorot ja esittelyt."
+            },
+            {
+              title: "Mielipiteet",
+              href: "/kynasta/#mielipiteet",
+              icon: "bi bi-chat-text me-2",
+              menuLink: true,
+              description: "Kannanotot ja lehtijutut."
+            },
+            {
+              title: "Kaikki kirjoitukset",
+              href: "/kynasta/",
+              icon: "bi bi-pencil-square me-2"
+            }
+          ]
         },
         {
-          title: "Sidonnaisuudet",
-          href: "/sidonnaisuudet/",
-          icon: "bi bi-link-45deg me-2"
+          heading: "Vaalihistoria",
+          links: [
+            {
+              title: "Vaalikaudet",
+              href: "/vaalihistoria/",
+              icon: "bi bi-calendar-event me-2",
+              menuLink: true,
+              description: "Vaalit ja luottamustoimet vaalikausittain."
+            },
+            {
+              title: "Kuntavaalit 2021",
+              href: "/kuntavaalit-2021/",
+              icon: "bi bi-chevron-right me-2"
+            },
+            {
+              title: "Aluevaalit 2022",
+              href: "/jari-laru-aluevaltuustoon/",
+              icon: "bi bi-chevron-right me-2"
+            },
+            {
+              title: "Kunnallisvaalit 2012",
+              href: "/kunnallisvaalit-2012/",
+              icon: "bi bi-chevron-right me-2"
+            }
+          ]
         }
       ]
     },
     en: {
-      intros: [
+      sections: [
         {
-          title: "Political Positions in Oulu City",
-          description: "Current roles, responsibilities, and decision-making tasks."
+          heading: "Role & Transparency",
+          links: [
+            {
+              title: "Jari Laru, politician",
+              href: "/en/politics/",
+              icon: "bi bi-person-badge me-2",
+              menuLink: true,
+              description: "Positions of trust and goals."
+            },
+            {
+              title: "Affiliations & Disclosures",
+              href: "/en/affiliations/",
+              icon: "bi bi-link-45deg me-2",
+              menuLink: true,
+              description: "Open declarations of affiliations."
+            },
+            {
+              title: "Facebook",
+              href: "https://www.facebook.com/jari.laru.poliitikko/",
+              icon: "bi bi-facebook me-2",
+              external: true
+            }
+          ]
         },
         {
-          title: "Other Political Positions",
-          description: "Other administrative and societal roles.",
-          className: "mt-3"
-        }
-      ],
-      links: [
-        {
-          title: "Jari Laru, politician",
-          href: "/en/politics/",
-          icon: "bi bi-person-badge me-2"
+          heading: "Activities",
+          links: [
+            {
+              title: "Initiatives",
+              href: "/en/writings/#aloitteet",
+              icon: "bi bi-megaphone me-2",
+              menuLink: true,
+              description: "Motions in the city council.",
+              countKey: "politics"
+            },
+            {
+              title: "Speeches",
+              href: "/en/writings/#puheet",
+              icon: "bi bi-mic me-2",
+              menuLink: true,
+              description: "Council speeches and statements."
+            },
+            {
+              title: "Opinion pieces",
+              href: "/en/writings/#mielipiteet",
+              icon: "bi bi-chat-text me-2",
+              menuLink: true,
+              description: "Columns and newspaper articles."
+            },
+            {
+              title: "All writings",
+              href: "/en/writings/",
+              icon: "bi bi-pencil-square me-2"
+            }
+          ]
         },
         {
-          title: "Affiliations & Disclosures",
-          href: "/en/affiliations/",
-          icon: "bi bi-link-45deg me-2"
+          heading: "Election History",
+          links: [
+            {
+              title: "Election history",
+              href: "/vaalihistoria/",
+              icon: "bi bi-calendar-event me-2",
+              menuLink: true,
+              description: "Elections and terms of office."
+            },
+            {
+              title: "Municipal elections 2021",
+              href: "/kuntavaalit-2021/",
+              icon: "bi bi-chevron-right me-2"
+            },
+            {
+              title: "Wellbeing area elections 2022",
+              href: "/jari-laru-aluevaltuustoon/",
+              icon: "bi bi-chevron-right me-2"
+            }
+          ]
         }
       ]
     }
