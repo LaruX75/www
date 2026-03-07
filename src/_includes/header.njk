@@ -12,6 +12,7 @@
 {% set workMegaMenu = headerNav.megaMenuWork.en if currentLang == "en" else headerNav.megaMenuWork.fi %}
 {% set politicsMegaMenu = headerNav.megaMenuPolitics.en if currentLang == "en" else headerNav.megaMenuPolitics.fi %}
 {% set writingsMegaMenu = headerNav.megaMenuWritings.en if currentLang == "en" else headerNav.megaMenuWritings.fi %}
+{% set contactMegaMenu = headerNav.megaMenuContact.en if currentLang == "en" else headerNav.megaMenuContact.fi %}
 
 {% if currentLang == "en" %}
 <nav id="siteNav" class="navbar navbar-expand-md site-navbar sticky-top" aria-label="Main Navigation" style="z-index:1030; transition: background-color .3s ease, box-shadow .3s ease;">
@@ -243,10 +244,39 @@
           </div>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link {% if page.url and '/en/contact/' in page.url %}active{% endif %}" href="{{ navContact.url or '/en/contact/' }}">
+        <li class="nav-item dropdown mega-dropdown">
+          <a class="nav-link dropdown-toggle {% if page.url and '/en/contact/' in page.url %}active{% endif %}" href="{{ navContact.url or '/en/contact/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="{{ navContact.icon or 'bi bi-envelope' }}"></i> {{ navContact.title or 'Contact' }}
           </a>
+          <div class="dropdown-menu mega-menu-panel p-0 border-0">
+            <div class="mega-wrap">
+              <section class="w-100 mb-3">
+                <h5>{{ contactMegaMenu.heading }}</h5>
+                <p class="menu-desc">{{ contactMegaMenu.description }}</p>
+              </section>
+              <div class="mega-left four-cols contact-mega-cols">
+                {% for column in contactMegaMenu.columns %}
+                  <section>
+                    <h5>{{ column.heading }}</h5>
+                    {% if column.type == "form" and column.form %}
+                      <form class="contact-mega-form" action="{{ column.form.action }}" method="{{ column.form.method or 'POST' }}">
+                        <input type="text" name="name" class="form-control form-control-sm mb-2" placeholder="{{ column.form.namePlaceholder }}">
+                        <input type="email" name="email" class="form-control form-control-sm mb-2" placeholder="{{ column.form.emailPlaceholder }}" required>
+                        <textarea name="message" class="form-control form-control-sm mb-2" rows="3" placeholder="{{ column.form.messagePlaceholder }}" required></textarea>
+                        <button type="submit" class="btn btn-accent btn-sm w-100">{{ column.form.submitLabel }}</button>
+                      </form>
+                    {% else %}
+                      {% for link in column.links %}
+                        <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>
+                          <i class="{{ link.icon }}"></i><span>{{ link.title }}</span>
+                        </a>
+                      {% endfor %}
+                    {% endif %}
+                  </section>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
         </li>
 
         <li class="nav-item ms-md-auto mt-2 mt-md-0">
@@ -516,10 +546,39 @@
           </div>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link {% if page.url and '/yhteystiedot/' in page.url %}active{% endif %}" href="{{ navContact.url or '/yhteystiedot/' }}">
+        <li class="nav-item dropdown mega-dropdown">
+          <a class="nav-link dropdown-toggle {% if page.url and '/yhteystiedot/' in page.url %}active{% endif %}" href="{{ navContact.url or '/yhteystiedot/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="{{ navContact.icon or 'bi bi-envelope' }}"></i> {{ navContact.title or 'Ota yhteyttä' }}
           </a>
+          <div class="dropdown-menu mega-menu-panel p-0 border-0">
+            <div class="mega-wrap">
+              <section class="w-100 mb-3">
+                <h5>{{ contactMegaMenu.heading }}</h5>
+                <p class="menu-desc">{{ contactMegaMenu.description }}</p>
+              </section>
+              <div class="mega-left four-cols contact-mega-cols">
+                {% for column in contactMegaMenu.columns %}
+                  <section>
+                    <h5>{{ column.heading }}</h5>
+                    {% if column.type == "form" and column.form %}
+                      <form class="contact-mega-form" action="{{ column.form.action }}" method="{{ column.form.method or 'POST' }}">
+                        <input type="text" name="name" class="form-control form-control-sm mb-2" placeholder="{{ column.form.namePlaceholder }}">
+                        <input type="email" name="email" class="form-control form-control-sm mb-2" placeholder="{{ column.form.emailPlaceholder }}" required>
+                        <textarea name="message" class="form-control form-control-sm mb-2" rows="3" placeholder="{{ column.form.messagePlaceholder }}" required></textarea>
+                        <button type="submit" class="btn btn-accent btn-sm w-100">{{ column.form.submitLabel }}</button>
+                      </form>
+                    {% else %}
+                      {% for link in column.links %}
+                        <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>
+                          <i class="{{ link.icon }}"></i><span>{{ link.title }}</span>
+                        </a>
+                      {% endfor %}
+                    {% endif %}
+                  </section>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
         </li>
 
         <li class="nav-item ms-md-auto mt-2 mt-md-0">

@@ -216,6 +216,36 @@ html:not([data-bs-theme="dark"]) .mega-menu-panel a i {
   padding: 0 0.6rem 0.2rem;
 }
 
+.contact-mega-cols section {
+  min-width: 0;
+}
+
+.contact-mega-form .form-control {
+  border-radius: 0.5rem;
+  border: 1px solid rgba(15, 23, 42, 0.25);
+  background-color: rgba(255, 255, 255, 0.92);
+  color: #0f172a;
+}
+
+.contact-mega-form .form-control::placeholder {
+  color: rgba(15, 23, 42, 0.65);
+}
+
+.contact-mega-form .form-control:focus {
+  border-color: rgba(59, 130, 246, 0.65);
+  box-shadow: 0 0 0 0.15rem rgba(59, 130, 246, 0.2);
+}
+
+[data-bs-theme="dark"] .contact-mega-form .form-control {
+  border-color: rgba(255, 255, 255, 0.24);
+  background-color: rgba(15, 23, 42, 0.72);
+  color: #e2e8f0;
+}
+
+[data-bs-theme="dark"] .contact-mega-form .form-control::placeholder {
+  color: rgba(226, 232, 240, 0.66);
+}
+
 .writings-mega-grid section {
   min-width: 0;
 }

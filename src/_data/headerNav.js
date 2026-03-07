@@ -715,5 +715,103 @@ module.exports = {
         label: "Request a quote"
       }
     }
+  },
+  megaMenuContact: {
+    fi: {
+      heading: "Ota yhteyttä",
+      description: "Lähetä viesti tai valitse suora yhteydenottotapa.",
+      columns: [
+        {
+          type: "form",
+          heading: "Lähetä viesti",
+          form: {
+            action: "https://formspree.io/f/xlgwqwzk",
+            method: "POST",
+            namePlaceholder: "Nimi",
+            emailPlaceholder: "Sähköposti",
+            messagePlaceholder: "Viesti",
+            submitLabel: "Lähetä"
+          }
+        },
+        {
+          type: "links",
+          heading: "Työyhteys",
+          links: [
+            { title: "Sähköposti", href: "mailto:jari.laru@oulu.fi", icon: "bi bi-envelope me-2" },
+            { title: "Puhelin", href: "tel:+358294483810", icon: "bi bi-telephone me-2" },
+            { title: "Zoom", href: "http://www.zoom.us/my/larux", icon: "bi bi-camera-video me-2", external: true },
+            { title: "Oulun yliopisto", href: "https://www.oulu.fi", icon: "bi bi-building me-2", external: true }
+          ]
+        },
+        {
+          type: "links",
+          heading: "Larux tmi & politiikka",
+          links: [
+            { title: "Yritysyhteys", href: "tel:+358405118478", icon: "bi bi-whatsapp me-2" },
+            { title: "Politiikan sähköposti", href: "mailto:jari.laru@ouka.fi", icon: "bi bi-bank2 me-2" },
+            { title: "Facebook", href: "https://www.facebook.com/jari.laru.poliitikko/", icon: "bi bi-facebook me-2", external: true },
+            { title: "Yhteystiedot-sivu", href: "/yhteystiedot/", icon: "bi bi-person-lines-fill me-2" }
+          ]
+        },
+        {
+          type: "links",
+          heading: "Pikalinkit",
+          links: [
+            { title: "Larux tmi", href: "/larux-tmi/", icon: "bi bi-briefcase me-2" },
+            { title: "Esitykset", href: "/esitykset/", icon: "bi bi-easel2 me-2" },
+            { title: "Politiikka", href: "/politiikka/", icon: "bi bi-megaphone me-2" },
+            { title: "Tietosuojaseloste", href: "/tietosuojaseloste/", icon: "bi bi-shield-check me-2" }
+          ]
+        }
+      ]
+    },
+    en: {
+      heading: "Contact",
+      description: "Send a message or choose a direct channel.",
+      columns: [
+        {
+          type: "form",
+          heading: "Send a message",
+          form: {
+            action: "https://formspree.io/f/xlgwqwzk",
+            method: "POST",
+            namePlaceholder: "Name",
+            emailPlaceholder: "Email",
+            messagePlaceholder: "Message",
+            submitLabel: "Send"
+          }
+        },
+        {
+          type: "links",
+          heading: "University contact",
+          links: [
+            { title: "Email", href: "mailto:jari.laru@oulu.fi", icon: "bi bi-envelope me-2" },
+            { title: "Phone", href: "tel:+358294483810", icon: "bi bi-telephone me-2" },
+            { title: "Zoom", href: "http://www.zoom.us/my/larux", icon: "bi bi-camera-video me-2", external: true },
+            { title: "University of Oulu", href: "https://www.oulu.fi", icon: "bi bi-building me-2", external: true }
+          ]
+        },
+        {
+          type: "links",
+          heading: "Company & politics",
+          links: [
+            { title: "Business contact", href: "tel:+358405118478", icon: "bi bi-whatsapp me-2" },
+            { title: "Politics email", href: "mailto:jari.laru@ouka.fi", icon: "bi bi-bank2 me-2" },
+            { title: "Facebook", href: "https://www.facebook.com/jari.laru.poliitikko/", icon: "bi bi-facebook me-2", external: true },
+            { title: "Contact page", href: "/en/contact/", icon: "bi bi-person-lines-fill me-2" }
+          ]
+        },
+        {
+          type: "links",
+          heading: "Quick links",
+          links: [
+            { title: "Company", href: "/en/company/", icon: "bi bi-briefcase me-2" },
+            { title: "Presentations", href: "/en/presentations/", icon: "bi bi-easel2 me-2" },
+            { title: "Politics", href: "/en/politics/", icon: "bi bi-megaphone me-2" },
+            { title: "Privacy", href: "/en/privacy/", icon: "bi bi-shield-check me-2" }
+          ]
+        }
+      ]
+    }
   }
 };
