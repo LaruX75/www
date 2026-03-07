@@ -833,6 +833,24 @@ html:not([data-bs-theme="dark"]) .research-stat-card {
   font-weight: 600;
 }
 
+html:not([data-bs-theme="dark"]) .breadcrumb {
+  background: linear-gradient(135deg, #e4eefb 0%, #dce9fa 56%, #e9f2ff 100%);
+  border-color: rgba(47, 111, 168, 0.32);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.58), 0 2px 8px rgba(47, 111, 168, 0.12);
+}
+
+html:not([data-bs-theme="dark"]) .breadcrumb-item + .breadcrumb-item::before {
+  color: rgba(30, 70, 108, 0.72);
+}
+
+html:not([data-bs-theme="dark"]) .breadcrumb-item a {
+  color: #1f5f98;
+}
+
+html:not([data-bs-theme="dark"]) .breadcrumb-item.active {
+  color: #143c62;
+}
+
 [data-bs-theme="dark"] .breadcrumb {
   background-color: #223247;
   border-color: rgba(255, 255, 255, 0.14);
