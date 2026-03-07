@@ -8,9 +8,17 @@ description: University lecturer, researcher, municipal politician, and speaker.
 ---
 
 {% set heroPresentationCount = (collections.presentations or []) | length %}
-{% set heroPublicationCount = (collections.publications or []) | length %}
-{% set heroInitiativeCount = (collections.politics or []) | length %}
-{% set heroBlogCount = (collections.blog or []) | length %}
+{% set heroPublicationCount = (researchfi or []) | length %}
+{% set heroOpinionCount = (collections.pub_mielipide or []) | length %}
+{% set heroSpeechCount = (collections.pub_puhe or []) | length %}
+{% set heroThesisCount = (theses.stats.total if theses and theses.stats else 0) %}
+{% set heroStats = [
+    { count: heroPresentationCount, label: "presentations", href: "/en/presentations/" },
+    { count: heroPublicationCount, label: "publications", href: "/en/publications/" },
+    { count: heroOpinionCount, label: "opinion pieces", href: "/en/writings/#mielipiteet" },
+    { count: heroSpeechCount, label: "speeches", href: "/en/writings/#puheet" },
+    { count: heroThesisCount, label: "theses", href: "/en/theses/" }
+] %}
 
 <section class="section-flush home-hero-section" id="heroSection">
     <div class="home-hero-backdrop">
@@ -26,28 +34,18 @@ description: University lecturer, researcher, municipal politician, and speaker.
             </div>
 
             <div class="d-flex flex-wrap gap-2 mb-4">
-                <a href="/en/contact/" class="btn btn-primary rounded-pill px-4">Request a quote</a>
+                <a href="/en/contact/" class="btn btn-read-more btn-sm rounded-pill px-3">Request a quote</a>
                 <a href="/en/presentations/" class="btn btn-read-more btn-sm rounded-pill px-3">View presentations <i class="bi bi-arrow-right"></i></a>
-                <a href="/en/work/" class="home-hero-text-link">Explore work <i class="bi bi-arrow-right-short"></i></a>
+                <a href="/en/work/" class="btn btn-read-more btn-sm rounded-pill px-3">Explore work <i class="bi bi-arrow-right"></i></a>
             </div>
 
             <div class="home-hero-proof-grid">
-                <a class="home-hero-proof-item" href="/en/presentations/">
-                    <span class="home-hero-proof-number">{{ heroPresentationCount }}</span>
-                    <span class="home-hero-proof-label">Presentations</span>
+                {% for stat in heroStats | sort(true, false, "count") %}
+                <a class="home-hero-proof-item" href="{{ stat.href }}">
+                    <span class="home-hero-proof-number">{{ stat.count }}</span>
+                    <span class="home-hero-proof-label">{{ stat.label }}</span>
                 </a>
-                <a class="home-hero-proof-item" href="/en/publications/">
-                    <span class="home-hero-proof-number">{{ heroPublicationCount }}</span>
-                    <span class="home-hero-proof-label">Publications</span>
-                </a>
-                <a class="home-hero-proof-item" href="/en/writings/#aloitteet">
-                    <span class="home-hero-proof-number">{{ heroInitiativeCount }}</span>
-                    <span class="home-hero-proof-label">Initiatives</span>
-                </a>
-                <a class="home-hero-proof-item" href="/en/blog/">
-                    <span class="home-hero-proof-number">{{ heroBlogCount }}</span>
-                    <span class="home-hero-proof-label">Blog posts</span>
-                </a>
+                {% endfor %}
             </div>
         </div>
     </div>
