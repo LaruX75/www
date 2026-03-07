@@ -371,6 +371,7 @@ translationKey: home
                         <!-- Ensimmäinen setti -->
                         <div class="ticker-content">
                             {% for post in collections.politicsAndOpinions | take(6) %}
+                            {% if post.fileSlug != "etusivu" %}
                             <div class="ticker-item p-4">
                                 <h3><a class="ticker-title-link" href="{{ post.url }}">{{ post.data.title }}</a></h3>
                                 <div class="d-flex align-items-center mt-3 mb-3">
@@ -400,6 +401,7 @@ translationKey: home
                                     {% endif %}
                                 </div>
                             </div>
+                            {% endif %}
                             {% else %}
                             <div class="ticker-item p-4">
                                 <p>Ei vielä kirjoituksia.</p>
@@ -409,6 +411,7 @@ translationKey: home
                         <!-- Toinen setti (klooni animaatiota varten) -->
                         <div class="ticker-content" aria-hidden="true">
                             {% for post in collections.politicsAndOpinions | take(6) %}
+                            {% if post.fileSlug != "etusivu" %}
                             <div class="ticker-item p-4">
                                 <h3><a class="ticker-title-link" href="{{ post.url }}">{{ post.data.title }}</a></h3>
                                 <div class="d-flex align-items-center mt-3 mb-3">
@@ -438,6 +441,7 @@ translationKey: home
                                     {% endif %}
                                 </div>
                             </div>
+                            {% endif %}
                             {% else %}
                             <div class="ticker-item p-4">
                                 <p>Ei vielä kirjoituksia.</p>
