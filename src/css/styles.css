@@ -547,6 +547,22 @@ html:not([data-bs-theme="dark"]) .home-hero-proof-item:focus-visible {
   padding: 1rem;
 }
 
+.home-closing-panel {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: clamp(1.2rem, 3vw, 1.8rem);
+  border-radius: 1rem;
+  border: 1px solid rgba(35, 66, 104, 0.16);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.88) 0%, rgba(245, 250, 255, 0.92) 100%);
+  box-shadow: 0 8px 20px rgba(11, 34, 62, 0.08);
+}
+
+[data-bs-theme="dark"] .home-closing-panel {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(210, 226, 246, 0.12) 100%);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.28);
+}
+
 @keyframes scrollTicker {
   0% {
     transform: translateX(0);
