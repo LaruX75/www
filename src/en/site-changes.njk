@@ -20,6 +20,11 @@ lang: en
 
 <section class="py-4">
   <div class="container">
+    <div class="alert alert-info py-2 small" role="status">
+      Want the implementation overview? See:
+      <a href="/en/how-this-site-is-built/" class="fw-semibold">How this site is built</a>.
+    </div>
+
     {% if githubchanges.source == "cache" and githubchanges.cacheSavedAt %}
       <div class="alert alert-warning py-2 small" role="status">
         GitHub API was unavailable. Showing cached data ({{ githubchanges.cacheSavedAt | dateFormat }}).

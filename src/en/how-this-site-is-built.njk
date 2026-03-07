@@ -1,0 +1,98 @@
+---
+layout: base.njk
+title: How This Site Is Built
+permalink: /en/how-this-site-is-built/
+translationKey: how_site_built
+lang: en
+---
+
+<section class="py-4 bg-body-tertiary border-bottom">
+  <div class="container">
+    <p class="text-uppercase small text-muted mb-2">Build Guide</p>
+    <h1 class="display-6 fw-bold mb-2">How This Site Is Built</h1>
+    <p class="mb-0 text-muted">A practical overview of how this website is produced with generative AI support and a modern static site stack.</p>
+  </div>
+</section>
+
+<section class="py-4">
+  <div class="container">
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-body">
+        <h2 class="h4 mb-3">1. AI-assisted workflow: Antigravity + Codex + Claude Code</h2>
+        <p>In this workflow, AI acts as an engineering pair-programmer. The human sets priorities and approves output. AI helps with code edits, refactoring, translation, styling fixes, and implementation speed.</p>
+        <p class="mb-0">In plain terms: AI does not magically generate the final website alone. It accelerates technical steps while the developer remains responsible for decisions and quality.</p>
+      </div>
+    </div>
+
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-body">
+        <h2 class="h4 mb-3">2. Core building blocks</h2>
+        <div class="table-responsive">
+          <table class="table table-hover align-middle">
+            <thead>
+              <tr>
+                <th>Tool</th>
+                <th>Role</th>
+                <th>Learn more</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Eleventy (11ty)</strong></td>
+                <td>Static site generator producing final HTML pages.</td>
+                <td><a href="https://www.11ty.dev/docs/" target="_blank" rel="noopener noreferrer">Docs</a> · <a href="https://www.11ty.dev/docs/tutorials/" target="_blank" rel="noopener noreferrer">Tutorials</a></td>
+              </tr>
+              <tr>
+                <td><strong>Nunjucks + Markdown</strong></td>
+                <td>Templates, reusable components, and content pages.</td>
+                <td><a href="https://mozilla.github.io/nunjucks/templating.html" target="_blank" rel="noopener noreferrer">Nunjucks</a> · <a href="https://www.markdownguide.org/" target="_blank" rel="noopener noreferrer">Markdown</a></td>
+              </tr>
+              <tr>
+                <td><strong>Bootstrap 5 + Bootstrap Icons</strong></td>
+                <td>Responsive layout and UI components.</td>
+                <td><a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/" target="_blank" rel="noopener noreferrer">Bootstrap</a> · <a href="https://icons.getbootstrap.com/" target="_blank" rel="noopener noreferrer">Icons</a></td>
+              </tr>
+              <tr>
+                <td><strong>Pagefind</strong></td>
+                <td>Fast static search.</td>
+                <td><a href="https://pagefind.app/docs/" target="_blank" rel="noopener noreferrer">Pagefind docs</a></td>
+              </tr>
+              <tr>
+                <td><strong>GitHub</strong></td>
+                <td>Version control, commit history, and deployments.</td>
+                <td><a href="https://docs.github.com/en/get-started" target="_blank" rel="noopener noreferrer">GitHub getting started</a> · <a href="/en/site-changes/">Site changes</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-body">
+        <h2 class="h4 mb-3">3. External data sources in this project</h2>
+        <ul class="mb-0">
+          <li>Research.fi (publications)</li>
+          <li>Canva Connect API (presentations)</li>
+          <li>YouTube Data API v3 (playlists/videos)</li>
+          <li>GitHub API (site changes table)</li>
+          <li>OuluREPO (theses)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card border-0 shadow-sm">
+      <div class="card-body">
+        <h2 class="h4 mb-3">4. Popular-level roadmap to build your own site</h2>
+        <ol class="mb-0">
+          <li>Create a GitHub repository and pick a simple stack (Eleventy + Bootstrap works well).</li>
+          <li>Start small: one base template and a few pages.</li>
+          <li>Add multilingual support only after your core structure works.</li>
+          <li>Integrate one API at a time and keep a cache fallback.</li>
+          <li>Use AI as a coding assistant in small, reviewable change batches.</li>
+          <li>Automate build and deploy with CI/CD.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>

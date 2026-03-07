@@ -20,6 +20,11 @@ lang: fi
 
 <section class="py-4">
   <div class="container">
+    <div class="alert alert-info py-2 small" role="status">
+      Kiinnostavatko toteutuksen työkalut? Katso opas:
+      <a href="/miten-sivusto-on-rakennettu/" class="fw-semibold">Miten tämä sivusto on rakennettu</a>.
+    </div>
+
     {% if githubchanges.source == "cache" and githubchanges.cacheSavedAt %}
       <div class="alert alert-warning py-2 small" role="status">
         GitHub API ei ollut saatavilla. Näytetään välimuisti ({{ githubchanges.cacheSavedAt | dateFormat }}).

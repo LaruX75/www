@@ -1,0 +1,99 @@
+---
+layout: base.njk
+title: Miten tämä sivusto on rakennettu
+permalink: /miten-sivusto-on-rakennettu/
+translationKey: how_site_built
+lang: fi
+---
+
+<section class="py-4 bg-body-tertiary border-bottom">
+  <div class="container">
+    <p class="text-uppercase small text-muted mb-2">Rakennustapa</p>
+    <h1 class="display-6 fw-bold mb-2">Miten tämä sivusto on tehty</h1>
+    <p class="mb-0 text-muted">Käytännön selitys siitä, miten sivusto syntyy generatiivisen tekoälyn ja modernin staattisen verkkopinon avulla.</p>
+  </div>
+</section>
+
+<section class="py-4">
+  <div class="container">
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-body">
+        <h2 class="h4 mb-3">1. AI-avusteinen toteutus: Antigravity + Codex + Claude Code</h2>
+        <p>Sivuston kehityksessä tekoäly toimii käytännössä "teknisenä työparina". Ihminen määrittää tavoitteet ja hyväksyy muutokset, ja AI auttaa koodin kirjoittamisessa, refaktoroinnissa, käännöksissä, tyylikorjauksissa ja testauksessa.</p>
+        <p class="mb-0">Populääristi: AI ei "tee sivua taikaiskusta", vaan tekee toistuvista teknisistä vaiheista nopeampia. Kehittäjä pyytää muutoksen, AI tekee patchin, kehittäjä tarkistaa, commitoi ja julkaisee.</p>
+      </div>
+    </div>
+
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-body">
+        <h2 class="h4 mb-3">2. Sivuston rakennuspalikat (stack)</h2>
+        <div class="table-responsive">
+          <table class="table table-hover align-middle">
+            <thead>
+              <tr>
+                <th>Työkalu</th>
+                <th>Mihin sitä käytetään</th>
+                <th>Lisää</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Eleventy (11ty)</strong></td>
+                <td>Staattinen sivugeneraattori, joka rakentaa valmiit HTML-sivut.</td>
+                <td><a href="https://www.11ty.dev/docs/" target="_blank" rel="noopener noreferrer">Docs</a> · <a href="https://www.11ty.dev/docs/tutorials/" target="_blank" rel="noopener noreferrer">Tutoriaalit</a></td>
+              </tr>
+              <tr>
+                <td><strong>Nunjucks + Markdown</strong></td>
+                <td>Sivupohjat, komponentit ja sisältösivut.</td>
+                <td><a href="https://mozilla.github.io/nunjucks/templating.html" target="_blank" rel="noopener noreferrer">Nunjucks</a> · <a href="https://www.markdownguide.org/" target="_blank" rel="noopener noreferrer">Markdown</a></td>
+              </tr>
+              <tr>
+                <td><strong>Bootstrap 5 + Bootstrap Icons</strong></td>
+                <td>Peruslayout, responsiivisuus ja UI-komponentit.</td>
+                <td><a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/" target="_blank" rel="noopener noreferrer">Bootstrap</a> · <a href="https://icons.getbootstrap.com/" target="_blank" rel="noopener noreferrer">Icons</a></td>
+              </tr>
+              <tr>
+                <td><strong>Pagefind</strong></td>
+                <td>Sivuston sisäinen haku staattiseen sivustoon.</td>
+                <td><a href="https://pagefind.app/docs/" target="_blank" rel="noopener noreferrer">Pagefind docs</a></td>
+              </tr>
+              <tr>
+                <td><strong>GitHub</strong></td>
+                <td>Versionhallinta, commit-historia ja muutosten julkaisu.</td>
+                <td><a href="https://docs.github.com/en/get-started" target="_blank" rel="noopener noreferrer">GitHub alkuun</a> · <a href="/sivuston-muutokset/">Sivuston muutokset</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-body">
+        <h2 class="h4 mb-3">3. Datalähteet tällä sivustolla</h2>
+        <p class="mb-2">Sivusto hakee sisältöä useista lähteistä rakennusvaiheessa (build), esimerkiksi:</p>
+        <ul class="mb-0">
+          <li>Research.fi (julkaisut)</li>
+          <li>Canva Connect API (esitykset)</li>
+          <li>YouTube Data API v3 (videolistat)</li>
+          <li>GitHub API (muutostaulukko)</li>
+          <li>OuluREPO (opinnäytteet)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card border-0 shadow-sm">
+      <div class="card-body">
+        <h2 class="h4 mb-3">4. Miten aloitat oman vastaavan sivuston</h2>
+        <ol class="mb-0">
+          <li>Luo GitHub-repo ja valitse stack: Eleventy + Bootstrap on kevyt ja skaalautuva.</li>
+          <li>Rakenna ensin yksi sivupohja ja 2-3 sisältösivua (älä aloita liian laajasti).</li>
+          <li>Lisää kieliversiot vasta kun perusrakenne toimii yhdellä kielellä.</li>
+          <li>Kytke datalähteet yksi kerrallaan (esim. ensin yksi API, sitten toinen).</li>
+          <li>Ota AI mukaan työpariksi: pyydä muutokset pieninä, tarkista diffit ja commitoi usein.</li>
+          <li>Julkaise automaattisesti CI/CD:llä (esim. GitHub Actions + hosting).</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
