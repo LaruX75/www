@@ -142,29 +142,29 @@ wp_id: 7
     <!-- Galleria: iso featured + 2×2 thumbnails -->
     <div class="row g-2 mb-5">
       <div class="col-lg-6">
-        <a href="#" class="lb-trigger d-block h-100" data-img="/img/uploads/2021/04/IMG_20190629_153127-edited-1024x578.jpg" data-caption="Skopje, Pohjois-Makedonia &ndash; kesä 2019. Oulu&ndash;Skopje&ndash;Oulu, vajaa 10&thinsp;000 km.">
+        <a href="/img/uploads/2021/04/IMG_20190629_153127-edited-1024x578.jpg" class="lb-trigger d-block h-100" data-img="/img/uploads/2021/04/IMG_20190629_153127-edited-1024x578.jpg" data-caption="Skopje, Pohjois-Makedonia &ndash; kesä 2019. Oulu&ndash;Skopje&ndash;Oulu, vajaa 10&thinsp;000 km.">
           <img src="/img/uploads/2021/04/IMG_20190629_153127-edited-1024x578.jpg" alt="Roadtrip Skopje, Pohjois-Makedonia 2019" class="galleria-featured w-100 h-100" loading="lazy">
         </a>
       </div>
       <div class="col-lg-6">
         <div class="row g-2 h-100">
           <div class="col-6">
-            <a href="#" class="lb-trigger d-block" data-img="/img/uploads/2021/05/197296754_51c407c4b1_o.jpg" data-caption="Perheenisä &ndash; kolmen lapsen isä ja puoliso. Ruuhkavuodet täydessä vauhdissa.">
+            <a href="/img/uploads/2021/05/197296754_51c407c4b1_o.jpg" class="lb-trigger d-block" data-img="/img/uploads/2021/05/197296754_51c407c4b1_o.jpg" data-caption="Perheenisä &ndash; kolmen lapsen isä ja puoliso. Ruuhkavuodet täydessä vauhdissa.">
               <img src="/img/uploads/2021/05/197296754_51c407c4b1_o.jpg" alt="Perheenisä" class="galleria-thumb w-100" loading="lazy">
             </a>
           </div>
           <div class="col-6">
-            <a href="#" class="lb-trigger d-block" data-img="/img/uploads/2021/05/IMG_20210425_113524.jpg" data-caption="Kulinaristi &ndash; intohimoinen ruoanlaittaja, leipuri ja Suomen juustoseuran jäsen.">
+            <a href="/img/uploads/2021/05/IMG_20210425_113524.jpg" class="lb-trigger d-block" data-img="/img/uploads/2021/05/IMG_20210425_113524.jpg" data-caption="Kulinaristi &ndash; intohimoinen ruoanlaittaja, leipuri ja Suomen juustoseuran jäsen.">
               <img src="/img/uploads/2021/05/IMG_20210425_113524.jpg" alt="Ruoanlaittoa – kulinaristi" class="galleria-thumb w-100" loading="lazy">
             </a>
           </div>
           <div class="col-6">
-            <a href="#" class="lb-trigger d-block" data-img="/img/uploads/2021/05/IMG_20180714_122145__01-e1619985796461.jpg" data-caption="Suikkamies &ndash; 1970-luvun talo vaatii töitä. Kaivinkoneen ohjaimista tapettipintaan.">
+            <a href="/img/uploads/2021/05/IMG_20180714_122145__01-e1619985796461.jpg" class="lb-trigger d-block" data-img="/img/uploads/2021/05/IMG_20180714_122145__01-e1619985796461.jpg" data-caption="Suikkamies &ndash; 1970-luvun talo vaatii töitä. Kaivinkoneen ohjaimista tapettipintaan.">
               <img src="/img/uploads/2021/05/IMG_20180714_122145__01-e1619985796461.jpg" alt="Hartiapankkiremontoija – suikkamies töissä" class="galleria-thumb w-100" loading="lazy">
             </a>
           </div>
           <div class="col-6">
-            <a href="#" class="lb-trigger d-block" data-img="/img/uploads/2021/03/37522991_10156458618453116_4533218945909391360_o-e1615744405294-300x166.jpg" data-caption="Nizza, Ranska &ndash; Côte d&rsquo;Azurin aurinkoa Välimeren rannalla.">
+            <a href="/img/uploads/2021/03/37522991_10156458618453116_4533218945909391360_o-e1615744405294-300x166.jpg" class="lb-trigger d-block" data-img="/img/uploads/2021/03/37522991_10156458618453116_4533218945909391360_o-e1615744405294-300x166.jpg" data-caption="Nizza, Ranska &ndash; Côte d&rsquo;Azurin aurinkoa Välimeren rannalla.">
               <img src="/img/uploads/2021/03/37522991_10156458618453116_4533218945909391360_o-e1615744405294-300x166.jpg" alt="Lomalla Nizzassa, Ranska" class="galleria-thumb w-100" loading="lazy">
             </a>
           </div>
@@ -425,15 +425,22 @@ wp_id: 7
 <script>
 (function () {
   var modal = document.getElementById('lightboxModal');
-  if (!modal) return;
-  var bsModal = new bootstrap.Modal(modal);
+  var hasBootstrapModal = Boolean(window.bootstrap && window.bootstrap.Modal && modal);
+  var bsModal = hasBootstrapModal ? new window.bootstrap.Modal(modal) : null;
   var img = document.getElementById('lightboxImg');
   var cap = document.getElementById('lightboxCaption');
   document.querySelectorAll('.lb-trigger').forEach(function (el) {
+    var imgUrl = el.dataset.img || el.getAttribute('href');
+    if (imgUrl) {
+      el.setAttribute('href', imgUrl);
+    }
     el.addEventListener('click', function (e) {
+      if (!hasBootstrapModal || !img || !cap || !imgUrl) {
+        return;
+      }
       e.preventDefault();
-      img.src = el.dataset.img;
-      img.alt = el.querySelector('img').alt;
+      img.src = imgUrl;
+      img.alt = (el.querySelector('img') || {}).alt || '';
       cap.innerHTML = el.dataset.caption || '';
       bsModal.show();
     });
