@@ -278,6 +278,9 @@
                         <textarea name="message" class="form-control form-control-sm mb-2" rows="3" placeholder="{{ column.form.messagePlaceholder }}" required></textarea>
                         <button type="submit" class="btn btn-accent btn-sm w-100">{{ column.form.submitLabel }}</button>
                       </form>
+                      <a class="contact-mega-mobile-cta btn btn-accent btn-sm w-100 mt-2" href="{{ navContact.url or '/en/contact/' }}">
+                        <i class="bi bi-envelope-check me-2"></i>Open contact form
+                      </a>
                     {% else %}
                       {% for link in column.links %}
                         <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>
@@ -593,6 +596,9 @@
                         <textarea name="message" class="form-control form-control-sm mb-2" rows="3" placeholder="{{ column.form.messagePlaceholder }}" required></textarea>
                         <button type="submit" class="btn btn-accent btn-sm w-100">{{ column.form.submitLabel }}</button>
                       </form>
+                      <a class="contact-mega-mobile-cta btn btn-accent btn-sm w-100 mt-2" href="{{ navContact.url or '/yhteystiedot/' }}">
+                        <i class="bi bi-envelope-check me-2"></i>Avaa yhteydenottolomake
+                      </a>
                     {% else %}
                       {% for link in column.links %}
                         <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>

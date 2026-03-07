@@ -318,10 +318,26 @@
         const toggle = dropdown.querySelector('[data-bs-toggle="dropdown"]');
         const menu = dropdown.querySelector('.mega-menu-panel');
         if (!toggle || !menu) return;
+        const href = toggle.getAttribute('href');
+        const navLabel = (toggle.textContent || '').trim();
+        const jumpPrefix = (document.documentElement.lang || '').toLowerCase().startsWith('en')
+          ? 'Go to page:'
+          : 'Siirry sivulle:';
+
+        // Mobile-only "go to top-level page" link inside each mega menu.
+        if (href && href !== '#') {
+          const wrap = menu.querySelector('.mega-wrap');
+          if (wrap && !wrap.querySelector('.mega-mobile-jump')) {
+            const mobileJump = document.createElement('a');
+            mobileJump.className = 'mega-mobile-jump';
+            mobileJump.href = href;
+            mobileJump.innerHTML = `<i class="bi bi-arrow-up-right-circle me-2"></i>${jumpPrefix} ${navLabel}`;
+            wrap.insertBefore(mobileJump, wrap.firstChild);
+          }
+        }
 
         toggle.addEventListener('click', (e) => {
           if (!desktopMq.matches) return;
-          const href = toggle.getAttribute('href');
           if (!href || href === '#') return;
           e.preventDefault();
           e.stopPropagation();
