@@ -529,7 +529,7 @@ module.exports = {
           links: [
             {
               title: "Election history",
-              href: "/vaalihistoria/",
+              href: "/en/election-history/",
               icon: "bi bi-calendar-event me-2",
               menuLink: true,
               description: "Elections and terms of office."
