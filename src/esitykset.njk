@@ -38,56 +38,119 @@ translationKey: presentations_index
     <h2 id="canva-heading" class="section-title mb-4">
       <i class="bi bi-star-fill text-warning me-2" style="font-size: 1rem;"></i>Canva-esitykset
     </h2>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-      {% for p in collections.presentations %}
-      <div class="col">
-        <div class="card h-100 border-0 shadow-sm hover-shadow transition">
-          <div class="position-relative overflow-hidden">
-            {% if p.data.thumbnail %}
-              <img src="{{ p.data.thumbnail }}"
-                   class="card-img-top transition-transform"
-                   alt="{{ p.data.title }}"
-                   style="height: 220px; object-fit: cover; object-position: top;">
-              <div class="card-img-overlay d-flex align-items-center justify-content-center opacity-0 bg-dark bg-opacity-50 transition">
-                <a href="{{ p.data.url }}" target="_blank" class="btn btn-light btn-sm stretched-link">Katso esitys</a>
-              </div>
-            {% else %}
-              <div class="d-flex align-items-center justify-content-center text-muted bg-placeholder" style="height: 220px;">
-                <div class="text-center">
-                  <i class="bi bi-file-earmark-slides fs-1 mb-2 d-block"></i>
-                  <small>Ei esikatselukuvaa</small>
-                </div>
-              </div>
+    {% if canva and canva.tableRows and canva.tableRows.length %}
+      <div class="playlist-ticker mb-4" aria-label="Canva-esitysten skrolleri">
+        <div class="playlist-ticker-track">
+          {% for p in canva.tickerRows %}
+          <article class="playlist-ticker-item card border-0 shadow-sm">
+            {% if p.thumbnail %}
+            <img src="{{ p.thumbnail }}" class="card-img-top" alt="{{ p.title }}" style="height: 150px; object-fit: cover;">
             {% endif %}
-          </div>
-          <div class="card-body">
-            <h3 class="h5 card-title mb-1">
-              {% if p.data.url %}
-                <a href="{{ p.data.url }}" target="_blank" class="text-decoration-none">{{ p.data.title }}</a>
-              {% else %}
-                {{ p.data.title }}
+            <div class="card-body p-3">
+              <h3 class="h6 mb-2">{{ p.title }}</h3>
+              {% if p.date %}
+              <p class="text-muted small mb-2">{{ p.date | dateFormat }}</p>
               {% endif %}
-            </h3>
-            {% if p.date %}
-            <small class="text-muted">{{ p.date | dateFormat }}</small>
-            {% endif %}
-          </div>
-          <div class="card-footer bg-transparent border-0 pt-0 pb-3 px-3">
-            {% if p.data.url %}
-              <a href="{{ p.data.url }}" target="_blank" class="btn btn-primary btn-sm rounded-pill px-3">
-                Katso esitys <i class="bi bi-arrow-up-right"></i>
+              {% if p.url %}
+              <a href="{{ p.url }}" target="_blank" rel="noopener" class="btn btn-primary btn-sm rounded-pill px-3">
+                Avaa Canva <i class="bi bi-arrow-up-right"></i>
               </a>
-            {% else %}
-              <span class="text-muted" style="font-size:0.85rem;"><i class="bi bi-link-45deg"></i> Ei linkkiä</span>
-            {% endif %}
-            <span class="badge text-bg-secondary rounded-pill ms-2">Canva</span>
-          </div>
+              {% endif %}
+            </div>
+          </article>
+          {% endfor %}
         </div>
       </div>
-      {% else %}
-      <p class="text-muted">Ei esityksiä.</p>
-      {% endfor %}
-    </div>
+
+      <div class="table-responsive mb-4">
+        <table class="table table-sm table-hover align-middle">
+          <thead>
+            <tr>
+              <th>Esitys</th>
+              <th class="text-nowrap">Päivitetty</th>
+              <th class="text-nowrap">Avaa</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for p in canva.tableRows %}
+            <tr>
+              <td>
+                <div class="fw-semibold">{{ p.title }}</div>
+                {% if p.description %}
+                <div class="small text-muted">{{ p.description | truncate(140, true, '...') }}</div>
+                {% endif %}
+              </td>
+              <td>{% if p.date %}{{ p.date | dateFormat }}{% endif %}</td>
+              <td>
+                {% if p.url %}
+                <a href="{{ p.url }}" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm rounded-pill px-3">Canva</a>
+                {% else %}
+                <span class="text-muted small">Ei linkkiä</span>
+                {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {% for p in canva.cardRows %}
+        <div class="col">
+          <div class="card h-100 border-0 shadow-sm hover-shadow transition">
+            <div class="position-relative overflow-hidden">
+              {% if p.thumbnail %}
+                <img src="{{ p.thumbnail }}"
+                     class="card-img-top transition-transform"
+                     alt="{{ p.title }}"
+                     style="height: 220px; object-fit: cover; object-position: top;">
+                {% if p.url %}
+                <div class="card-img-overlay d-flex align-items-center justify-content-center opacity-0 bg-dark bg-opacity-50 transition">
+                  <a href="{{ p.url }}" target="_blank" class="btn btn-light btn-sm stretched-link">Katso esitys</a>
+                </div>
+                {% endif %}
+              {% else %}
+                <div class="d-flex align-items-center justify-content-center text-muted bg-placeholder" style="height: 220px;">
+                  <div class="text-center">
+                    <i class="bi bi-file-earmark-slides fs-1 mb-2 d-block"></i>
+                    <small>Ei esikatselukuvaa</small>
+                  </div>
+                </div>
+              {% endif %}
+            </div>
+            <div class="card-body">
+              <h3 class="h5 card-title mb-1">
+                {% if p.url %}
+                  <a href="{{ p.url }}" target="_blank" class="text-decoration-none">{{ p.title }}</a>
+                {% else %}
+                  {{ p.title }}
+                {% endif %}
+              </h3>
+              {% if p.date %}
+              <small class="text-muted">{{ p.date | dateFormat }}</small>
+              {% endif %}
+            </div>
+            <div class="card-footer bg-transparent border-0 pt-0 pb-3 px-3">
+              {% if p.url %}
+                <a href="{{ p.url }}" target="_blank" class="btn btn-primary btn-sm rounded-pill px-3">
+                  Katso esitys <i class="bi bi-arrow-up-right"></i>
+                </a>
+              {% else %}
+                <span class="text-muted" style="font-size:0.85rem;"><i class="bi bi-link-45deg"></i> Ei linkkiä</span>
+              {% endif %}
+              <span class="badge text-bg-secondary rounded-pill ms-2">Canva</span>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="mt-3 text-muted small">
+        Lähde: Canva Connect API{% if canva.source == 'cache' %} (välimuistista){% elseif canva.source == 'local' %} (paikallisista Markdown-tiedostoista){% endif %}.
+      </div>
+    {% else %}
+      <p class="text-muted">Ei Canva-esityksiä.</p>
+    {% endif %}
   </section>
 
   {# ===================== YOUTUBE ===================== #}

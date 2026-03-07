@@ -48,6 +48,19 @@ Jos haluat rakentaa vastaavan tyyppisen staattisen sivuston tyhjästä näillä 
 3. Varmista build ennen julkaisuja:
    - `npm run build:no-og`
 
+### Canva API (Eleventy)
+
+Canva-esitysten data haetaan tiedostossa `src/_data/canva.js`.
+
+1. Luo `.env` ja lisää:
+   - `CANVA_ACCESS_TOKEN=...`
+   - `CANVA_DESIGN_IDS=id1,id2,id3`
+   - `CANVA_TICKER_LIMIT=12` (valinnainen)
+2. Aja build:
+   - `npm run build:no-og`
+
+Jos token tai design-id:t puuttuvat, sivu fallbackkaa automaattisesti `src/presentations/*.md`-tiedostoihin.
+
 ### Julkaisu
 
 Push `main`-haaraan käynnistää automaattisen build + deploy -putken.
@@ -112,6 +125,19 @@ If you want to build a similar static site from scratch with this toolset:
    - `npm run start:no-og`
 3. Verify production build locally:
    - `npm run build:no-og`
+
+### Canva API (Eleventy)
+
+Canva presentation data is loaded in `src/_data/canva.js`.
+
+1. Create a `.env` file and set:
+   - `CANVA_ACCESS_TOKEN=...`
+   - `CANVA_DESIGN_IDS=id1,id2,id3`
+   - `CANVA_TICKER_LIMIT=12` (optional)
+2. Run build:
+   - `npm run build:no-og`
+
+If token or design IDs are missing, the site automatically falls back to `src/presentations/*.md`.
 
 ### Deployment
 
