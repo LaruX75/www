@@ -97,18 +97,18 @@ body {
 }
 
 .home-hero-proof-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 0.65rem;
   max-width: 920px;
 }
 
 .home-hero-proof-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.12rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
   text-decoration: none;
-  padding: 0.75rem 0.8rem;
+  padding: 0.5rem 0.75rem;
   border-radius: 0.85rem;
   border: 1px solid rgba(255, 255, 255, 0.28);
   background: rgba(255, 255, 255, 0.1);
@@ -123,13 +123,13 @@ body {
 }
 
 .home-hero-proof-number {
-  font-size: 1.15rem;
+  font-size: 1rem;
   font-weight: 700;
   line-height: 1.1;
 }
 
 .home-hero-proof-label {
-  font-size: 0.83rem;
+  font-size: 0.95rem;
   opacity: 0.93;
 }
 
@@ -648,7 +648,7 @@ body {
   }
 
   .home-hero-proof-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
   }
 
   .home-feature-section .ticker-item {

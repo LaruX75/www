@@ -6,9 +6,17 @@ translationKey: home
 ---
 
 {% set heroPresentationCount = (collections.presentations or []) | length %}
-{% set heroPublicationCount = (collections.publications or []) | length %}
-{% set heroInitiativeCount = (collections.politics or []) | length %}
-{% set heroBlogCount = (collections.blog or []) | length %}
+{% set heroPublicationCount = (researchfi or []) | length %}
+{% set heroOpinionCount = (collections.pub_mielipide or []) | length %}
+{% set heroSpeechCount = (collections.pub_puhe or []) | length %}
+{% set heroThesisCount = (theses.stats.total if theses and theses.stats else 0) %}
+{% set heroStats = [
+    { count: heroPresentationCount, label: "esitystä", href: "/esitykset/" },
+    { count: heroPublicationCount, label: "julkaisua", href: "/julkaisut/" },
+    { count: heroOpinionCount, label: "mielipidekirjoitusta", href: "/kynasta/#mielipiteet" },
+    { count: heroSpeechCount, label: "puheenvuoroa", href: "/kynasta/#puheet" },
+    { count: heroThesisCount, label: "opinnäytettä", href: "/opinnaytteet/" }
+] %}
 
 <section class="section-flush home-hero-section" id="heroSection">
     <div class="home-hero-backdrop">
@@ -24,28 +32,18 @@ translationKey: home
             </div>
 
             <div class="d-flex flex-wrap gap-2 mb-4">
-                <a href="/yhteystiedot/" class="btn btn-primary rounded-pill px-4">Pyydä tarjous</a>
+                <a href="/yhteystiedot/" class="btn btn-read-more btn-sm rounded-pill px-3 home-hero-cta">Pyydä tarjous</a>
                 <a href="/esitykset/" class="btn btn-read-more btn-sm rounded-pill px-3">Katso esitykset <i class="bi bi-arrow-right"></i></a>
-                <a href="/tutkimus/" class="home-hero-text-link">Tutustu tutkimukseen <i class="bi bi-arrow-right-short"></i></a>
+                <a href="/tutkimus/" class="btn btn-read-more btn-sm rounded-pill px-3">Tutustu tutkimukseen <i class="bi bi-arrow-right"></i></a>
             </div>
 
             <div class="home-hero-proof-grid">
-                <a class="home-hero-proof-item" href="/esitykset/">
-                    <span class="home-hero-proof-number">{{ heroPresentationCount }}</span>
-                    <span class="home-hero-proof-label">Esitykset</span>
+                {% for stat in heroStats | sort(true, false, "count") %}
+                <a class="home-hero-proof-item" href="{{ stat.href }}">
+                    <span class="home-hero-proof-number">{{ stat.count }}</span>
+                    <span class="home-hero-proof-label">{{ stat.label }}</span>
                 </a>
-                <a class="home-hero-proof-item" href="/julkaisut/">
-                    <span class="home-hero-proof-number">{{ heroPublicationCount }}</span>
-                    <span class="home-hero-proof-label">Julkaisut</span>
-                </a>
-                <a class="home-hero-proof-item" href="/kynasta/#aloitteet">
-                    <span class="home-hero-proof-number">{{ heroInitiativeCount }}</span>
-                    <span class="home-hero-proof-label">Aloitteet</span>
-                </a>
-                <a class="home-hero-proof-item" href="/blogi/">
-                    <span class="home-hero-proof-number">{{ heroBlogCount }}</span>
-                    <span class="home-hero-proof-label">Blogikirjoitukset</span>
-                </a>
+                {% endfor %}
             </div>
         </div>
     </div>
