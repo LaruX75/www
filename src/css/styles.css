@@ -45,8 +45,8 @@ body {
 /* Light theme: brighter hero image and strong text/link contrast */
 html:not([data-bs-theme="dark"]) .home-hero-backdrop {
   background:
-    linear-gradient(110deg, rgba(255, 255, 255, 0.82) 10%, rgba(255, 255, 255, 0.62) 55%, rgba(255, 255, 255, 0.28) 100%),
-    linear-gradient(rgba(255, 255, 255, 0.12) 62%, rgba(244, 248, 255, 0.84) 94%),
+    linear-gradient(112deg, rgba(205, 226, 248, 0.9) 8%, rgba(196, 221, 247, 0.7) 52%, rgba(187, 214, 244, 0.35) 100%),
+    linear-gradient(rgba(180, 206, 236, 0.18) 60%, rgba(220, 236, 252, 0.88) 96%),
     url("/img/WIN_20210329_16_06_01_Pro.jpg") center / cover;
 }
 
