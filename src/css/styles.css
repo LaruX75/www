@@ -1146,6 +1146,17 @@ html:not([data-bs-theme="dark"]) .text-info {
   color: #e0e0e0;
 }
 
+[data-bs-theme="dark"] .table {
+  --bs-table-bg: rgba(189, 206, 228, 0.035);
+  --bs-table-striped-bg: rgba(189, 206, 228, 0.05);
+  --bs-table-hover-bg: rgba(189, 206, 228, 0.09);
+  --bs-table-border-color: rgba(189, 206, 228, 0.16);
+}
+
+[data-bs-theme="dark"] .table thead th {
+  background-color: rgba(189, 206, 228, 0.065);
+}
+
 [data-bs-theme="dark"] table th,
 [data-bs-theme="dark"] table td {
   border-color: rgba(255, 255, 255, 0.1);
