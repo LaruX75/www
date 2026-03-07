@@ -32,10 +32,10 @@ templateEngineOverride: njk
         <h1 class="display-6 fw-bold mb-3">Tutkimustyöni</h1>
         <p class="lead mb-3">Tutkin teknologian roolia oppimisessa ja opetuksessa – yhteisöllisistä skripteistä mobiililaitteisiin ja opettajien tekoälylukutaitoon. Toimin yliopistonlehtorina Oulun yliopiston Kasvatustieteiden tiedekunnassa.</p>
         <div class="d-flex flex-wrap gap-2">
-          <a href="/julkaisut/" class="btn btn-primary">Tieteelliset julkaisut</a>
-          <a href="/opinnaytteet/" class="btn btn-outline-primary">Ohjatut opinnäytetyöt</a>
-          <a href="https://orcid.org/0000-0003-0347-0182" class="btn btn-outline-secondary" target="_blank" rel="noopener noreferrer">ORCID-profiili</a>
-          <a href="https://research.fi/en/results/person/0000-0003-0347-0182" class="btn btn-outline-secondary" target="_blank" rel="noopener noreferrer">Research.fi</a>
+          <a href="/julkaisut/" class="btn btn-read-more btn-sm rounded-pill px-3">Tieteelliset julkaisut</a>
+          <a href="/opinnaytteet/" class="btn btn-read-more btn-sm rounded-pill px-3">Ohjatut opinnäytetyöt</a>
+          <a href="https://orcid.org/0000-0003-0347-0182" class="btn btn-read-more btn-sm rounded-pill px-3" target="_blank" rel="noopener noreferrer">ORCID-profiili</a>
+          <a href="https://research.fi/en/results/person/0000-0003-0347-0182" class="btn btn-read-more btn-sm rounded-pill px-3" target="_blank" rel="noopener noreferrer">Research.fi</a>
         </div>
       </div>
       <div class="col-lg-4">

@@ -9,13 +9,12 @@ translationKey: home
 {% set heroPublicationCount = (researchfi or []) | length %}
 {% set heroOpinionCount = (collections.pub_mielipide or []) | length %}
 {% set heroSpeechCount = (collections.pub_puhe or []) | length %}
-{% set heroThesisCount = (theses.stats.total if theses and theses.stats else 0) %}
 {% set heroStats = [
     { count: heroPresentationCount, label: "esitystä", href: "/esitykset/" },
     { count: heroPublicationCount, label: "julkaisua", href: "/julkaisut/" },
     { count: heroOpinionCount, label: "mielipidekirjoitusta", href: "/kynasta/#mielipiteet" },
     { count: heroSpeechCount, label: "puheenvuoroa", href: "/kynasta/#puheet" },
-    { count: heroThesisCount, label: "opinnäytettä", href: "/opinnaytteet/" }
+    { count: 100, label: "ohjattua opinnäytettä", href: "/opinnaytteet/" }
 ] %}
 
 <section class="section-flush home-hero-section" id="heroSection">
