@@ -346,8 +346,8 @@ html:not([data-bs-theme="dark"]) .home-hero-proof-item:focus-visible {
   isolation: isolate;
   text-align: center;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), inset 0 -1px 0 rgba(0, 0, 0, 0.15), 0 8px 22px rgba(0, 0, 0, 0.18);
-  background-size: 180% 180%;
-  animation: headingStripGradientDrift 24s ease-in-out infinite alternate;
+  background-size: 220% 220%;
+  animation: headingStripGradientDrift 18s ease-in-out infinite alternate;
 }
 
 .home-section-heading-strip::before {
@@ -359,9 +359,9 @@ html:not([data-bs-theme="dark"]) .home-hero-proof-item:focus-visible {
   background:
     radial-gradient(42% 75% at 15% 50%, rgba(125, 170, 255, 0.26), transparent 72%),
     radial-gradient(36% 75% at 85% 45%, rgba(87, 223, 214, 0.22), transparent 72%);
-  filter: blur(10px);
+  filter: blur(9px);
   transform-origin: center;
-  animation: headingStripGlowShift 18s ease-in-out infinite alternate;
+  animation: headingStripGlowShift 14s ease-in-out infinite alternate;
 }
 
 .home-section-heading-strip::after {
@@ -372,9 +372,9 @@ html:not([data-bs-theme="dark"]) .home-hero-proof-item:focus-visible {
   pointer-events: none;
   background: linear-gradient(115deg, rgba(255, 255, 255, 0) 28%, rgba(255, 255, 255, 0.16) 50%, rgba(255, 255, 255, 0) 72%);
   mix-blend-mode: screen;
-  opacity: 0.5;
+  opacity: 0.62;
   transform: translateX(-24%) skewX(-10deg);
-  animation: headingStripSheen 16s ease-in-out infinite;
+  animation: headingStripSheen 12s ease-in-out infinite;
 }
 
 .home-section-heading-strip .container-fluid {
@@ -470,31 +470,31 @@ html:not([data-bs-theme="dark"]) .home-hero-proof-item:focus-visible {
 
 @keyframes headingStripGlowShift {
   0% {
-    transform: translateX(-2%) scale(1);
-    filter: blur(10px);
-    opacity: 0.85;
+    transform: translateX(-3.5%) scale(1);
+    filter: blur(9px);
+    opacity: 0.92;
   }
 
   100% {
-    transform: translateX(2%) scale(1.06);
-    filter: blur(12px);
+    transform: translateX(3.5%) scale(1.1);
+    filter: blur(11px);
     opacity: 1;
   }
 }
 
 @keyframes headingStripSheen {
   0% {
-    transform: translateX(-24%) skewX(-10deg);
-    opacity: 0.35;
+    transform: translateX(-32%) skewX(-10deg);
+    opacity: 0.42;
   }
 
   50% {
-    opacity: 0.6;
+    opacity: 0.74;
   }
 
   100% {
-    transform: translateX(24%) skewX(-10deg);
-    opacity: 0.35;
+    transform: translateX(32%) skewX(-10deg);
+    opacity: 0.42;
   }
 }
 
