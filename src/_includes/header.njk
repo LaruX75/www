@@ -58,7 +58,7 @@
                 <h5>{{ meMegaMenu.showcase.title }}</h5>
                 <p>{{ meMegaMenu.showcase.description }}</p>
                 {% if meMegaMenu.showcase.cta %}
-                  <a class="btn btn-accent btn-sm w-100" href="{{ meMegaMenu.showcase.cta.href }}">{{ meMegaMenu.showcase.cta.label }}</a>
+                  <a class="btn btn-accent btn-lg w-100" href="{{ meMegaMenu.showcase.cta.href }}">{{ meMegaMenu.showcase.cta.label }}</a>
                 {% endif %}
               </aside>
             </div>
@@ -86,7 +86,7 @@
                           {% if link.description %}
                             <small class="menu-link-desc">{{ link.description }}</small>
                           {% endif %}
-                          <a class="btn btn-accent btn-sm w-100 mt-2" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>
+                          <a class="btn btn-accent btn-lg w-100 mt-2" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>
                             {{ link.ctaLabel or workMegaMenu.cta.label or "Pyydä tarjous" }}
                           </a>
                         </div>
@@ -276,9 +276,9 @@
                         <input type="text" name="name" class="form-control form-control-sm mb-2" placeholder="{{ column.form.namePlaceholder }}">
                         <input type="email" name="email" class="form-control form-control-sm mb-2" placeholder="{{ column.form.emailPlaceholder }}" required>
                         <textarea name="message" class="form-control form-control-sm mb-2" rows="3" placeholder="{{ column.form.messagePlaceholder }}" required></textarea>
-                        <button type="submit" class="btn btn-accent btn-sm w-100">{{ column.form.submitLabel }}</button>
+                        <button type="submit" class="btn btn-accent btn-lg w-100">{{ column.form.submitLabel }}</button>
                       </form>
-                      <a class="contact-mega-mobile-cta btn btn-accent btn-sm w-100 mt-2" href="{{ navContact.url or '/en/contact/' }}">
+                      <a class="contact-mega-mobile-cta btn btn-accent btn-lg w-100 mt-2" href="{{ navContact.url or '/en/contact/' }}">
                         <i class="bi bi-envelope-check me-2"></i>Open contact form
                       </a>
                     {% else %}
@@ -372,7 +372,7 @@
                 <h5>{{ meMegaMenu.showcase.title }}</h5>
                 <p>{{ meMegaMenu.showcase.description }}</p>
                 {% if meMegaMenu.showcase.cta %}
-                  <a class="btn btn-accent btn-sm w-100" href="{{ meMegaMenu.showcase.cta.href }}">{{ meMegaMenu.showcase.cta.label }}</a>
+                  <a class="btn btn-accent btn-lg w-100" href="{{ meMegaMenu.showcase.cta.href }}">{{ meMegaMenu.showcase.cta.label }}</a>
                 {% endif %}
               </aside>
             </div>
@@ -400,7 +400,7 @@
                           {% if link.description %}
                             <small class="menu-link-desc">{{ link.description }}</small>
                           {% endif %}
-                          <a class="btn btn-accent btn-sm w-100 mt-2" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>
+                          <a class="btn btn-accent btn-lg w-100 mt-2" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>
                             {{ link.ctaLabel or workMegaMenu.cta.label or "Pyydä tarjous" }}
                           </a>
                         </div>
@@ -594,9 +594,9 @@
                         <input type="text" name="name" class="form-control form-control-sm mb-2" placeholder="{{ column.form.namePlaceholder }}">
                         <input type="email" name="email" class="form-control form-control-sm mb-2" placeholder="{{ column.form.emailPlaceholder }}" required>
                         <textarea name="message" class="form-control form-control-sm mb-2" rows="3" placeholder="{{ column.form.messagePlaceholder }}" required></textarea>
-                        <button type="submit" class="btn btn-accent btn-sm w-100">{{ column.form.submitLabel }}</button>
+                        <button type="submit" class="btn btn-accent btn-lg w-100">{{ column.form.submitLabel }}</button>
                       </form>
-                      <a class="contact-mega-mobile-cta btn btn-accent btn-sm w-100 mt-2" href="{{ navContact.url or '/yhteystiedot/' }}">
+                      <a class="contact-mega-mobile-cta btn btn-accent btn-lg w-100 mt-2" href="{{ navContact.url or '/yhteystiedot/' }}">
                         <i class="bi bi-envelope-check me-2"></i>Avaa yhteydenottolomake
                       </a>
                     {% else %}
