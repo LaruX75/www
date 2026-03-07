@@ -20,13 +20,17 @@ lang: fi
       <div class="card-body">
         <h2 class="h4 mb-3">1. AI-avusteinen toteutus: Antigravity + Codex + Claude Code</h2>
         <p>Sivuston kehityksessä tekoäly toimii käytännössä "teknisenä työparina". Ihminen määrittää tavoitteet ja hyväksyy muutokset, ja AI auttaa koodin kirjoittamisessa, refaktoroinnissa, käännöksissä, tyylikorjauksissa ja testauksessa.</p>
-        <p class="mb-0">Populääristi: AI ei "tee sivua taikaiskusta", vaan tekee toistuvista teknisistä vaiheista nopeampia. Kehittäjä pyytää muutoksen, AI tekee patchin, kehittäjä tarkistaa, commitoi ja julkaisee.</p>
+        <p><strong>Antigravity</strong> tarkoittaa tässä yhteydessä AI-avusteista työnkulkua, jossa kehitystä ohjataan tavoitteiden ja iteratiivisten muutospyyntöjen kautta. Käytännössä se on tapa organisoida kehitystä: mitä muutetaan, missä järjestyksessä, millä laatukriteereillä.</p>
+        <p><strong>Codex</strong> on koodiavustaja, joka tekee konkreettisia muutoksia projektin tiedostoihin, ajaa komentoja ja auttaa pitämään muutokset teknisesti johdonmukaisina. Se on erityisen hyödyllinen, kun pitää tehdä paljon pieniä, toistuvia tai tarkkuutta vaativia muutoksia.</p>
+        <p><strong>Claude Code</strong> toimii vastaavassa roolissa toisena AI-kehitystyökaluna: sitä voi käyttää vaihtoehtoisena "toisena näkökulmana", tekstin parantamiseen, rakenteen arviointiin tai tiettyjen kokonaisuuksien luonnosteluun.</p>
+        <p class="mb-0">Populääristi: AI ei "tee sivua taikaiskusta", vaan nopeuttaa toistuvia teknisiä vaiheita. Kehittäjä pyytää muutoksen, AI tuottaa muutosehdotuksen, kehittäjä tarkistaa, commitoi ja julkaisee.</p>
       </div>
     </div>
 
     <div class="card border-0 shadow-sm mb-4">
       <div class="card-body">
         <h2 class="h4 mb-3">2. Sivuston rakennuspalikat (stack)</h2>
+        <p class="mb-3">Alla olevat työkalut muodostavat yhdessä sivuston "konehuoneen". Jokaisella on oma roolinsa: yksi rakentaa sivut, toinen määrittää ulkoasun, kolmas tuo haun, neljäs hallitsee muutokset.</p>
         <div class="table-responsive">
           <table class="table table-hover align-middle">
             <thead>
@@ -39,27 +43,27 @@ lang: fi
             <tbody>
               <tr>
                 <td><strong>Eleventy (11ty)</strong></td>
-                <td>Staattinen sivugeneraattori, joka rakentaa valmiit HTML-sivut.</td>
+                <td>Eleventy on staattinen sivugeneraattori: se ottaa lähdetiedostot (Nunjucks, Markdown, data) ja kääntää ne valmiiksi HTML-sivuiksi julkaistavaksi.</td>
                 <td><a href="https://www.11ty.dev/docs/" target="_blank" rel="noopener noreferrer">Docs</a> · <a href="https://www.11ty.dev/docs/tutorials/" target="_blank" rel="noopener noreferrer">Tutoriaalit</a></td>
               </tr>
               <tr>
                 <td><strong>Nunjucks + Markdown</strong></td>
-                <td>Sivupohjat, komponentit ja sisältösivut.</td>
+                <td>Nunjucks on templatointikieli sivupohjille ja komponenteille. Markdown on helppo tapa kirjoittaa sisältöä ilman raskasta HTML-koodia.</td>
                 <td><a href="https://mozilla.github.io/nunjucks/templating.html" target="_blank" rel="noopener noreferrer">Nunjucks</a> · <a href="https://www.markdownguide.org/" target="_blank" rel="noopener noreferrer">Markdown</a></td>
               </tr>
               <tr>
                 <td><strong>Bootstrap 5 + Bootstrap Icons</strong></td>
-                <td>Peruslayout, responsiivisuus ja UI-komponentit.</td>
+                <td>Bootstrap tarjoaa valmiin responsiivisen layout-järjestelmän ja UI-komponentit. Bootstrap Icons täydentää käyttöliittymää selkeillä ikoneilla.</td>
                 <td><a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/" target="_blank" rel="noopener noreferrer">Bootstrap</a> · <a href="https://icons.getbootstrap.com/" target="_blank" rel="noopener noreferrer">Icons</a></td>
               </tr>
               <tr>
                 <td><strong>Pagefind</strong></td>
-                <td>Sivuston sisäinen haku staattiseen sivustoon.</td>
+                <td>Pagefind rakentaa staattiselle sivustolle nopean sisäisen haun ilman erillistä palvelinta tai tietokantaa.</td>
                 <td><a href="https://pagefind.app/docs/" target="_blank" rel="noopener noreferrer">Pagefind docs</a></td>
               </tr>
               <tr>
                 <td><strong>GitHub</strong></td>
-                <td>Versionhallinta, commit-historia ja muutosten julkaisu.</td>
+                <td>GitHub on versionhallinnan koti: siellä näkyvät commitit, muutoshistoria, yhteistyö sekä julkaisuun johtava kehitysketju.</td>
                 <td><a href="https://docs.github.com/en/get-started" target="_blank" rel="noopener noreferrer">GitHub alkuun</a> · <a href="/sivuston-muutokset/">Sivuston muutokset</a></td>
               </tr>
             </tbody>
@@ -71,7 +75,8 @@ lang: fi
     <div class="card border-0 shadow-sm mb-4">
       <div class="card-body">
         <h2 class="h4 mb-3">3. Datalähteet tällä sivustolla</h2>
-        <p class="mb-2">Sivusto hakee sisältöä useista lähteistä rakennusvaiheessa (build), esimerkiksi:</p>
+        <p class="mb-2">Sivusto hakee sisältöä rajapinnoista rakennusvaiheessa (build). Hyöty on se, että samoja tietoja ei tarvitse ylläpitää käsin monessa paikassa: data pysyy ajantasaisempana ja päivittyy automaattisemmin.</p>
+        <p class="mb-2">Käytännössä API-dataa voidaan käyttää sivustolla esimerkiksi taulukoina, korttikokoelmina, nostoina etusivulle, metriikkalaskureina ja suodattuvina listoina.</p>
         <ul class="mb-0">
           <li>Research.fi (julkaisut)</li>
           <li>Canva Connect API (esitykset)</li>

@@ -20,13 +20,17 @@ lang: en
       <div class="card-body">
         <h2 class="h4 mb-3">1. AI-assisted workflow: Antigravity + Codex + Claude Code</h2>
         <p>In this workflow, AI acts as an engineering pair-programmer. The human sets priorities and approves output. AI helps with code edits, refactoring, translation, styling fixes, and implementation speed.</p>
-        <p class="mb-0">In plain terms: AI does not magically generate the final website alone. It accelerates technical steps while the developer remains responsible for decisions and quality.</p>
+        <p><strong>Antigravity</strong> is used here as an AI-assisted development workflow: define goals, break tasks into clear iterations, and validate each change before publishing.</p>
+        <p><strong>Codex</strong> is a coding agent that can edit project files, run commands, and apply targeted patches quickly. It is useful for consistent technical execution in iterative website work.</p>
+        <p><strong>Claude Code</strong> can play a similar partner role: drafting alternatives, refining structure and copy, and helping validate implementation approaches from another angle.</p>
+        <p class="mb-0">In plain terms: AI does not replace the whole build process by magic. It speeds up implementation cycles while the developer stays in control of decisions and quality.</p>
       </div>
     </div>
 
     <div class="card border-0 shadow-sm mb-4">
       <div class="card-body">
         <h2 class="h4 mb-3">2. Core building blocks</h2>
+        <p class="mb-3">Together, these tools form the site stack. Each one solves a different layer of the problem: page generation, content modeling, styling, search, and change management.</p>
         <div class="table-responsive">
           <table class="table table-hover align-middle">
             <thead>
@@ -39,27 +43,27 @@ lang: en
             <tbody>
               <tr>
                 <td><strong>Eleventy (11ty)</strong></td>
-                <td>Static site generator producing final HTML pages.</td>
+                <td>Eleventy is a static site generator that compiles templates, content, and data into deployable HTML pages.</td>
                 <td><a href="https://www.11ty.dev/docs/" target="_blank" rel="noopener noreferrer">Docs</a> · <a href="https://www.11ty.dev/docs/tutorials/" target="_blank" rel="noopener noreferrer">Tutorials</a></td>
               </tr>
               <tr>
                 <td><strong>Nunjucks + Markdown</strong></td>
-                <td>Templates, reusable components, and content pages.</td>
+                <td>Nunjucks handles page templates and reusable components. Markdown makes writing and maintaining content simple and readable.</td>
                 <td><a href="https://mozilla.github.io/nunjucks/templating.html" target="_blank" rel="noopener noreferrer">Nunjucks</a> · <a href="https://www.markdownguide.org/" target="_blank" rel="noopener noreferrer">Markdown</a></td>
               </tr>
               <tr>
                 <td><strong>Bootstrap 5 + Bootstrap Icons</strong></td>
-                <td>Responsive layout and UI components.</td>
+                <td>Bootstrap provides responsive layout primitives and UI components; Bootstrap Icons adds a consistent icon system.</td>
                 <td><a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/" target="_blank" rel="noopener noreferrer">Bootstrap</a> · <a href="https://icons.getbootstrap.com/" target="_blank" rel="noopener noreferrer">Icons</a></td>
               </tr>
               <tr>
                 <td><strong>Pagefind</strong></td>
-                <td>Fast static search.</td>
+                <td>Pagefind adds fast client-side search to static websites without requiring a separate backend service.</td>
                 <td><a href="https://pagefind.app/docs/" target="_blank" rel="noopener noreferrer">Pagefind docs</a></td>
               </tr>
               <tr>
                 <td><strong>GitHub</strong></td>
-                <td>Version control, commit history, and deployments.</td>
+                <td>GitHub is the source-of-truth for version control, commit history, collaboration, and release workflows.</td>
                 <td><a href="https://docs.github.com/en/get-started" target="_blank" rel="noopener noreferrer">GitHub getting started</a> · <a href="/en/site-changes/">Site changes</a></td>
               </tr>
             </tbody>
@@ -71,6 +75,8 @@ lang: en
     <div class="card border-0 shadow-sm mb-4">
       <div class="card-body">
         <h2 class="h4 mb-3">3. External data sources in this project</h2>
+        <p class="mb-2">Fetching data from APIs keeps content fresher and reduces manual copy-paste maintenance. One source can feed multiple pages with consistent, up-to-date information.</p>
+        <p class="mb-2">On-site usage examples include tables, content cards, homepage highlights, metric counters, and filterable lists built from the same source data.</p>
         <ul class="mb-0">
           <li>Research.fi (publications)</li>
           <li>Canva Connect API (presentations)</li>
