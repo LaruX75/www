@@ -136,20 +136,31 @@ templateEngineOverride: njk
     <div class="ouka-scroller d-flex gap-3 pb-3" style="overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;">
       {% for item in collections.politics | sort(true, false, "date") %}
       <div class="card border-0 shadow-sm flex-shrink-0" style="width:300px; scroll-snap-align:start;">
-        <div class="card-body d-flex flex-column h-100" style="min-height:180px;">
+        <div class="card-body d-flex flex-column h-100" style="min-height:200px;">
           <div class="mb-2">
             <span class="badge bg-primary-subtle text-primary-emphasis">Valtuustoaloite</span>
             <span class="text-muted small ms-2">{{ item.date | dateFormat }}</span>
           </div>
           <h3 class="h6 fw-semibold mb-auto">{{ item.data.title }}</h3>
-          <div class="mt-3">
+          <div class="mt-3 d-flex flex-wrap gap-2">
             <a href="{{ item.url }}" class="btn btn-outline-primary btn-sm">Lue aloite</a>
+            {% if item.data.ouka_response_url %}
+            <a href="{{ item.data.ouka_response_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-success btn-sm" title="{{ item.data.ouka_response_body }}">
+              <i class="bi bi-check2-circle me-1"></i>Vastaus
+            </a>
+            {% endif %}
           </div>
+          {% if item.data.ouka_response_body %}
+          <p class="text-muted mt-2 mb-0" style="font-size:0.75rem;"><i class="bi bi-building me-1"></i>{{ item.data.ouka_response_body }}</p>
+          {% endif %}
         </div>
       </div>
       {% endfor %}
     </div>
-    <p class="text-muted small mt-2"><i class="bi bi-arrow-right me-1"></i>Voit vierittää kortteja vaakatasossa</p>
+    <p class="text-muted small mt-2">
+      <i class="bi bi-arrow-right me-1"></i>Voit vierittää kortteja vaakatasossa &middot;
+      <a href="http://asiakirjat.ouka.fi/ktwebscr/pk_tek_tweb.htm" target="_blank" rel="noopener noreferrer" class="text-muted">Oulun asiakirjajärjestelmä (KTWeb)</a>
+    </p>
   </div>
 </section>
 

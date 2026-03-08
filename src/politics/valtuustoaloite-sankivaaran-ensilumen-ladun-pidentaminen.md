@@ -5,6 +5,8 @@ description: "Sankivaarassa jo oleva ensilumen latu on osoittautunut hyvin suosi
 categories:
   - Valtuustoaloitteet
 initiative_type: valtuustoaloite
+ouka_response_url: "http://asiakirjat.ouka.fi/ktwebscr/pk_asil_tweb.htm?bid=19116"
+ouka_response_body: "Sivistys- ja kulttuurilautakunta 18.6.2019"
 wp_id: 102
 source_url: "https://www.jarilaru.fi/valtuustoaloite-sankivaaran-ensilumen-ladun-pidentaminen/"
 templateEngineOverride: md

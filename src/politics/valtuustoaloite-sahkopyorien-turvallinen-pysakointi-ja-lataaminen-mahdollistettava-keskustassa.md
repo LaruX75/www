@@ -12,6 +12,8 @@ keywords:
   - pyörien pysäköinti
   - sähköpyörä
 initiative_type: valtuustoaloite
+ouka_response_url: "http://asiakirjat.ouka.fi/ktwebscr/pk_asil_tweb.htm?bid=36557"
+ouka_response_body: "Yhdyskuntalautakunta 16.1.2024"
 wp_id: 2099
 source_url: "https://www.jarilaru.fi/valtuustoaloite-sahkopyorien-turvallinen-pysakointi-ja-lataaminen-mahdollistettava-keskustassa/"
 templateEngineOverride: md
