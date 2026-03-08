@@ -77,6 +77,7 @@ translationKey: publications_index
         <div class="card border-0 shadow-sm h-100">
           <div class="card-body">
             <h2 class="h6 text-uppercase text-muted fw-bold mb-3"><i class="bi bi-people-fill me-2"></i>Top 10 kanssatutkijaa</h2>
+            <div id="coauthorFilterStatus" class="small mb-2 d-none"></div>
             <div class="table-responsive">
               <table class="table table-sm table-hover align-middle mb-0 pub-table" id="coauthorTable">
                 <thead><tr><th>Tutkija</th><th class="text-end">Yhteisjulkaisut</th></tr></thead>
@@ -135,7 +136,10 @@ translationKey: publications_index
       <div class="card shadow-sm mb-5 section-card" id="card-{{ tableId }}">
         <div class="card-header bg-transparent d-flex align-items-center justify-content-between py-3">
           <h4 class="h5 mb-0"><i class="bi bi-journal-text me-2 text-primary"></i>{{ title }}</h4>
-          <span class="badge {{ badge }}">{{ items.length }}</span>
+          <div class="d-flex align-items-center gap-2">
+            <span class="publication-filter-indicator badge border border-info text-info d-none" data-filter-indicator="{{ tableId }}"></span>
+            <span class="badge {{ badge }}">{{ items.length }}</span>
+          </div>
         </div>
         <div class="card-body p-0">
           <div class="p-3 border-bottom publication-filter-bar">
@@ -160,15 +164,31 @@ translationKey: publications_index
                 </thead>
                 <tbody>
                   {% for pub in items %}
-                  <tr>
+                  <tr data-authors="{{ pub.authors | escape }}">
                     <td class="text-center font-monospace small fw-bold text-info">{{ pub.year or '—' }}</td>
                     <td><span class="badge bg-secondary" title="{{ pub.typeFi }}">{{ pub.typeShort }}</span></td>
                     <td>
                       <span class="fw-medium d-block mb-1">{{ pub.title }}</span>
                       {% if pub.journal %}<span class="text-muted small d-block fst-italic">{{ pub.journal }}</span>{% endif %}
-                      {% if pub.doi and semanticscholar.metrics.doiCitations[pub.doi | lower] %}
-                        <span class="badge text-bg-warning rounded-pill mt-1" title="Viittaukset"><i class="bi bi-quote me-1"></i>{{ semanticscholar.metrics.doiCitations[pub.doi | lower] }}</span>
-                      {% endif %}
+                      {% set citationCount = (semanticscholar.metrics.doiCitations[pub.doi | lower] if pub.doi and semanticscholar.metrics.doiCitations[pub.doi | lower] else 0) %}
+                      <div class="d-flex flex-wrap align-items-center gap-2 mt-1">
+                        <span class="badge text-bg-warning rounded-pill" title="Viittaukset">
+                          <i class="bi bi-quote me-1"></i>{{ citationCount }} {{ "viite" if citationCount == 1 else "viitettä" }}
+                        </span>
+                        <button
+                          type="button"
+                          class="btn btn-sm btn-outline-secondary rounded-pill export-citation-btn"
+                          data-title="{{ pub.title | escape }}"
+                          data-authors="{{ pub.authors | escape }}"
+                          data-year="{{ pub.year or '' }}"
+                          data-journal="{{ pub.journal | escape }}"
+                          data-doi="{{ pub.doi or '' }}"
+                          data-url="{{ pub.url or pub.doiUrl or '' }}"
+                          title="Exporttaa lähdeviite"
+                        >
+                          <i class="bi bi-download me-1"></i>Export viite
+                        </button>
+                      </div>
                     </td>
                     <td class="text-secondary small">{{ pub.authors }}</td>
                     <td class="text-center">
@@ -258,6 +278,76 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Pagination for pub tables
   const ITEMS_PER_PAGE = 10;
+  let activeCoauthor = '';
+  const tableFilterRefreshers = [];
+
+  function sanitizeFilenamePart(value) {
+    return String(value || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+      .slice(0, 60) || 'viite';
+  }
+
+  function buildCitationText(payload) {
+    const authors = String(payload.authors || '').trim() || 'Tuntematon tekijä';
+    const year = String(payload.year || '').trim() || 'n.d.';
+    const title = String(payload.title || '').trim() || 'Nimetön julkaisu';
+    const journal = String(payload.journal || '').trim();
+    const doi = String(payload.doi || '').trim();
+    const url = String(payload.url || '').trim();
+    let citation = `${authors} (${year}). ${title}.`;
+    if (journal) citation += ` ${journal}.`;
+    if (doi) citation += ` DOI: ${doi}.`;
+    if (url) citation += ` ${url}`;
+    return citation.trim();
+  }
+
+  function downloadTextFile(filename, text) {
+    const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  document.querySelectorAll('.export-citation-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const payload = {
+        title: btn.dataset.title || '',
+        authors: btn.dataset.authors || '',
+        year: btn.dataset.year || '',
+        journal: btn.dataset.journal || '',
+        doi: btn.dataset.doi || '',
+        url: btn.dataset.url || ''
+      };
+      const citation = buildCitationText(payload);
+      const filename = `${sanitizeFilenamePart(payload.title || payload.authors || 'viite')}.txt`;
+      downloadTextFile(filename, citation + '\n');
+    });
+  });
+
+  function setCoauthorFilter(authorName) {
+    activeCoauthor = (activeCoauthor === authorName) ? '' : authorName;
+    tableFilterRefreshers.forEach((refresh) => refresh());
+
+    const statusEl = document.getElementById('coauthorFilterStatus');
+    if (!statusEl) return;
+    if (activeCoauthor) {
+      statusEl.className = 'small mb-2 text-info';
+      statusEl.innerHTML = `Rajaus aktiivinen: <strong>${activeCoauthor}</strong> <button type="button" id="clearCoauthorFilter" class="btn btn-sm btn-outline-secondary rounded-pill ms-2 py-0 px-2">Poista rajaus</button>`;
+      const clearBtn = document.getElementById('clearCoauthorFilter');
+      if (clearBtn) clearBtn.addEventListener('click', () => setCoauthorFilter(''));
+    } else {
+      statusEl.className = 'small mb-2 d-none';
+      statusEl.textContent = '';
+    }
+  }
+
   function initPubPagination(tableId) {
     const tableContainer = document.getElementById(tableId);
     if (!tableContainer) return;
@@ -280,6 +370,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     
     const ul = paginationNav.querySelector('ul');
+    const filterIndicator = document.querySelector(`[data-filter-indicator="${tableId}"]`);
     let currentPage = 1;
     let filteredRows = [...rows];
     
@@ -298,6 +389,17 @@ document.addEventListener('DOMContentLoaded', function() {
       filteredRows.slice(start, end).forEach(r => r.style.display = '');
 
       renderPaginationControls(totalPages);
+
+      if (filterIndicator) {
+        if (activeCoauthor) {
+          const noun = filteredRows.length === 1 ? 'julkaisuun' : 'julkaisuihin';
+          filterIndicator.textContent = `Rajattu "${activeCoauthor}" henkilön kanssa tehtyihin ${noun}`;
+          filterIndicator.classList.remove('d-none');
+        } else {
+          filterIndicator.textContent = '';
+          filterIndicator.classList.add('d-none');
+        }
+      }
     }
 
     function renderPaginationControls(totalPages) {
@@ -325,15 +427,22 @@ document.addEventListener('DOMContentLoaded', function() {
       ul.appendChild(nextLi);
     }
 
-    if (searchInput) {
-      searchInput.addEventListener('input', () => {
-        const q = searchInput.value.toLowerCase();
-        filteredRows = rows.filter(row => row.textContent.toLowerCase().includes(q));
-        renderPage(1);
+    function applyFilters() {
+      const q = (searchInput?.value || '').toLowerCase();
+      const coauthorNeedle = activeCoauthor.toLowerCase();
+      filteredRows = rows.filter(row => {
+        const text = row.textContent.toLowerCase();
+        const matchesSearch = !q || text.includes(q);
+        const authors = (row.dataset.authors || '').toLowerCase();
+        const matchesCoauthor = !coauthorNeedle || authors.includes(coauthorNeedle);
+        return matchesSearch && matchesCoauthor;
       });
+      renderPage(1);
     }
 
-    renderPage(1);
+    if (searchInput) searchInput.addEventListener('input', applyFilters);
+    tableFilterRefreshers.push(applyFilters);
+    applyFilters();
   }
 
   ['pub-table-a', 'pub-table-b', 'pub-table-c', 'pub-table-d', 'pub-table-e', 'pub-table-g'].forEach(initPubPagination);
@@ -460,8 +569,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const tr = document.createElement('tr');
     const isDarkTheme = document.documentElement.getAttribute('data-bs-theme') === 'dark';
     const badgeStyle = isDarkTheme ? 'background-color: rgba(56,189,248,0.3); color: #e2e6ec;' : 'background-color: rgba(13,110,253,0.15); color: #0d6efd;';
-    tr.innerHTML = `<td>${name}</td><td class="text-end"><span class="badge rounded-pill" style="${badgeStyle}">${count}</span></td>`;
+    tr.innerHTML = `
+      <td>
+        <button type="button" class="btn btn-link p-0 text-start coauthor-filter-btn" data-coauthor="${name}" title="Rajaa julkaisut tekijällä ${name}">
+          ${name}
+        </button>
+      </td>
+      <td class="text-end"><span class="badge rounded-pill" style="${badgeStyle}">${count}</span></td>
+    `;
     tbody.appendChild(tr);
+  });
+
+  document.querySelectorAll('.coauthor-filter-btn').forEach((btn) => {
+    btn.addEventListener('click', () => setCoauthorFilter(btn.dataset.coauthor || ''));
   });
 
   // 5. SANAPILVI (Otsikon sanat, alkuperäinen toimivaksi todettu tapa)
