@@ -893,6 +893,7 @@ html:not([data-bs-theme="dark"]) .breadcrumb-item.active {
 @media (max-width: 767.98px) {
   .home-hero-backdrop {
     min-height: 520px;
+    background-position: left center, left center, left center;
   }
 
   .home-hero-proof-grid {
