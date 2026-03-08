@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: Opetusportfolio
-description: Opetusportfolioni, joka on päivitetty vuoden 2025 alussa
+description: Jari Larun opetusportfolio – yli 20 vuoden kokemus teknologiatuetusta oppimisesta ja opetuksesta Oulun yliopistossa. Sisältää opetusfilosofian, kurssit, ohjauksen, hankkeet ja palkinnot.
 permalink: /portfolio/
 translationKey: portfolio_index
 ---
@@ -9,10 +9,66 @@ translationKey: portfolio_index
 <section class="container py-4 py-lg-5">
   <header class="text-center mb-4 mb-lg-5">
     <h1 class="display-6 fw-bold mb-3">Opetusportfolio</h1>
-    <p class="lead text-body-secondary mb-2">Opetusportfolioni, joka on päivitetty vuoden 2025 alussa</p>
-    <p class="mb-0"><a href="/cv/" class="btn btn-sm btn-outline-secondary"><i class="bi bi-file-earmark-person me-1"></i>Katso myös: Ansioluettelo</a></p>
+    <p class="lead text-body-secondary mb-3">Päivitetty {{ page.date | dateFormat }}</p>
+    <div class="d-flex flex-wrap justify-content-center gap-2 mb-3">
+      <a href="/cv/" class="btn btn-sm btn-outline-secondary"><i class="bi bi-file-earmark-person me-1"></i>Ansioluettelo</a>
+      <a href="/julkaisut/" class="btn btn-sm btn-outline-secondary"><i class="bi bi-journals me-1"></i>Julkaisut</a>
+      <a href="/palkinnot/" class="btn btn-sm btn-outline-secondary"><i class="bi bi-award me-1"></i>Palkinnot</a>
+    </div>
   </header>
 
+  {# ── TUNNUSLUVUT ─────────────────────────────────────────────────── #}
+  <section class="mb-4 mb-lg-5">
+    <div class="row g-3 text-center">
+      <div class="col-6 col-md-3">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body py-4">
+            <div class="display-5 fw-bold text-primary mb-1">20+</div>
+            <div class="small text-body-secondary">vuotta yliopisto-opetusta</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body py-4">
+            <div class="display-5 fw-bold text-primary mb-1">{{ theses.stats.totalGradut + theses.stats.totalKandit }}</div>
+            <div class="small text-body-secondary">ohjattua opinnäytettä</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body py-4">
+            {% if semanticscholar.metrics.profileTotalCitations %}
+            <div class="display-5 fw-bold text-primary mb-1">{{ semanticscholar.metrics.profileTotalCitations }}</div>
+            {% else %}
+            <div class="display-5 fw-bold text-primary mb-1">—</div>
+            {% endif %}
+            <div class="small text-body-secondary">viittausta julkaisuihin</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body py-4">
+            {% if semanticscholar.metrics.profileHIndex %}
+            <div class="display-5 fw-bold text-primary mb-1">{{ semanticscholar.metrics.profileHIndex }}</div>
+            {% else %}
+            <div class="display-5 fw-bold text-primary mb-1">—</div>
+            {% endif %}
+            <div class="small text-body-secondary">h-indeksi</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="text-center small text-body-secondary mt-2 mb-0">
+      Opinnäytteet: <a href="https://oulurepo.oulu.fi/" target="_blank" rel="noopener noreferrer" class="text-body-secondary">OuluREPO</a>
+      &ensp;|&ensp;
+      Viittaukset ja h-indeksi: <a href="https://openalex.org/" target="_blank" rel="noopener noreferrer" class="text-body-secondary">OpenAlex</a> + <a href="https://www.semanticscholar.org/" target="_blank" rel="noopener noreferrer" class="text-body-secondary">Semantic Scholar</a>
+    </p>
+  </section>
+
+  {# ── PERUSTIEDOT ─────────────────────────────────────────────────── #}
   <div class="row g-4 align-items-start mb-4 mb-lg-5">
     <div class="col-lg-7">
       <article class="card border-0 shadow-sm h-100">
@@ -40,6 +96,7 @@ translationKey: portfolio_index
     </div>
   </div>
 
+  {# ── PEDAGOGINEN AJATTELU ────────────────────────────────────────── #}
   <section class="mb-4 mb-lg-5">
     <h2 class="h2 text-center mb-4">Pedagoginen ajattelu</h2>
     <div class="row g-4">
@@ -62,6 +119,7 @@ translationKey: portfolio_index
     </div>
   </section>
 
+  {# ── PEDAGOGINEN KOULUTUS ────────────────────────────────────────── #}
   <section class="mb-4 mb-lg-5">
     <h2 class="h2 text-center mb-4">Pedagoginen koulutus</h2>
     <div class="row g-4">
@@ -69,9 +127,9 @@ translationKey: portfolio_index
         <article class="card border-0 shadow-sm h-100">
           <div class="card-body p-4">
             <h3 class="h5 mb-3">Opettajankelpoisuus vuonna 2003</h3>
-            <p>Olen opiskellut teknologiapainotteisessa luokanopettajankoulutusohjelmassa vuosina 1997-2003 ja saanut opettajan kelpoisuuden keväällä 2003.</p>
+            <p>Olen opiskellut teknologiapainotteisessa luokanopettajankoulutusohjelmassa vuosina 1997–2003 ja saanut opettajan kelpoisuuden keväällä 2003.</p>
             <ul class="mb-0 ps-3">
-              <li>Kasvatustieteiden ja opettajankoulutuksen yksikkö (luokanopettajaopinnot, 2003); Opettajankelpoisuus (60op)</li>
+              <li>Kasvatustieteiden ja opettajankoulutuksen yksikkö (luokanopettajaopinnot, 2003); Opettajankelpoisuus (60 op)</li>
               <li>Tietojenkäsittelytieteen sivuainekokonaisuus, Oulun yliopisto</li>
             </ul>
           </div>
@@ -83,7 +141,7 @@ translationKey: portfolio_index
             <h3 class="h5 mb-3">Jatko-opinnot koulutusteknologian kontekstissa</h3>
             <p>Tein jatko-opintoni kansallisessa oppimisympäristöjen monitieteisessä tutkijakoulussa (OPMON), jota johti prof. Erno Lehtinen.</p>
             <ul class="mb-0 ps-3">
-              <li>Kasvatustiede, jatkotutkintokoulutus (2003-2012), Oulun yliopisto</li>
+              <li>Kasvatustiede, jatkotutkintokoulutus (2003–2012), Oulun yliopisto</li>
               <li>Koulutusteknologia, aineopinnot, Oulun yliopisto</li>
             </ul>
           </div>
@@ -92,6 +150,7 @@ translationKey: portfolio_index
     </div>
   </section>
 
+  {# ── OPETUS- JA OHJAUSKOKEMUS ────────────────────────────────────── #}
   <section class="mb-4 mb-lg-5">
     <h2 class="h2 text-center mb-4">Opetus- ja ohjauskokemus</h2>
 
@@ -102,7 +161,7 @@ translationKey: portfolio_index
             <h3 class="h4 mb-3">Opetuskokemus</h3>
 
             <h4 class="h5">Opetetut opintojaksot</h4>
-            <p>Oikealla oleva luettelo kursseista osoittaa, että olen kahden vuosikymmenen aikana ollut vastuuhenkilö ja opettaja usealla eri opettajankoulutuksen kurssilla. Kurssit on tarkastettu kasvatustieteiden ja psykologian tiedekunnan nykyisistä ja entisistä opetussuunnitelmista. <strong>Punaisella</strong> merkityt kurssit ovat jatkuneet vuodenvaihteeseen saakka.</p>
+            <p>Oikealla oleva luettelo kursseista osoittaa, että olen kahden vuosikymmenen aikana ollut vastuuhenkilö ja opettaja usealla eri opettajankoulutuksen kurssilla. Kurssit on tarkastettu kasvatustieteiden ja psykologian tiedekunnan nykyisistä ja entisistä opetussuunnitelmista. <strong>Lihavoituna</strong> merkityt kurssit ovat jatkuneet vuodenvaihteeseen saakka.</p>
             <p>Luettelosta voi myös havaita, että pääosa kursseista on digitalisaation ja opettajuuden leikkauspisteessä, näin on ollut koko työurani ajan. Olen saanut käytännössä opettaa niitä asioita, jotka ovat kiinnostaneet minua aina.</p>
             <p>Olen opettanut koko opetusurani ajan myös englanninkielisillä opintojaksoilla. Opinnot ovat olleet osa tiedekuntamme LET-maisteriohjelman ja koulutusteknologian sivuaineen opetusta.</p>
 
@@ -112,11 +171,12 @@ translationKey: portfolio_index
             <h4 class="h5 mt-4">Opiskelijoiden oppimista ja osaamista edistävät opetus- ja ohjauskäytänteet</h4>
             <p>Olen opettanut vuodesta 2018 lähtien yhteisöllistä ongelmanratkaisua tukevassa digiluokassa. Opetustila on suunniteltu tiedekunnan tilamuutosten yhteydessä ideoideni pohjalta.</p>
             <p>Olen ollut mukana myös seuraavissa SYK:n tilahankkeissa:</p>
-            <ul class="ps-3 mb-0">
-              <li>Luentosali L2: pienryhmätyöskentelyä ja luennoitsijan vapaata liikkumista tukeva opetustila. Merkittävä parannus luentojen toteuttamiseen.</li>
-              <li>Leaforum I ja II: oppimisen ja opetuksen tutkimusta ja kehittämistä palveleva monimimuotoinen infra.</li>
+            <ul class="ps-3 mb-3">
+              <li>Luentosali L2: pienryhmätyöskentelyä ja luennoitsijan vapaata liikkumista tukeva opetustila.</li>
+              <li>Leaforum I ja II: oppimisen ja opetuksen tutkimusta ja kehittämistä palveleva monimediainen infra.</li>
               <li>Kollaboraatiokuutiot: pienryhmätyöskentelyä tukevia kuutioita 6 kpl.</li>
             </ul>
+            <a href="/2021/04/07/ktk149-digiluokka/" class="btn btn-sm btn-outline-primary"><i class="bi bi-camera-video me-1"></i>Lue: KTK149 Digiluokka</a>
 
             <h4 class="h5 mt-4">Oppimateriaalien, fyysisten ja virtuaalisten oppimisympäristöjen ja menetelmien hyödyntäminen</h4>
             <p>Olen hyödyntänyt erittäin monipuolisesti saatavilla olevia virtuaalisia (digitaalisia) oppimisympäristöjä ja niitä tukevia menetelmiä.</p>
@@ -168,7 +228,7 @@ translationKey: portfolio_index
 
             <p class="mb-1"><em>Syventävät opinnot</em></p>
             <ul class="ps-3 mb-0">
-              <li>413314S Designing Technology-Enhanced Learning, 5 op (2011-2015)</li>
+              <li>413314S Designing Technology-Enhanced Learning, 5 op (2011–2015)</li>
               <li>413325S Emergent Technologies, 5 op</li>
             </ul>
           </div>
@@ -184,8 +244,7 @@ translationKey: portfolio_index
 
             <h4 class="h5">Toimiminen perustutkinto-opiskelijoiden virallisesti nimettynä ohjaajana</h4>
             <p>Olen toiminut perustutkinto-opiskelijoiden virallisesti nimettynä ohjaajana vuodesta 2013 saakka, eli siitä saakka kun väitöskirjani valmistui.</p>
-            <p>Ohjattuja opinnäytteitä on sen verran paljon, että tietokannat ja tilastointitavatkin ovat ehtineet muuttua. Nykyisin käytössä olevaan Laturi-palveluun on arkistoitu töitä vasta vuodesta 2021 alkaen.</p>
-            <p>Ohessa on laturi.oulu.fi-palveluun tallentuneet tiedot.</p>
+            <p>Ohjattuja opinnäytteitä on sen verran paljon, että tietokannat ja tilastointitavatkin ovat ehtineet muuttua. Nykyisin käytössä olevaan OuluREPO-palveluun on arkistoitu töitä vuodesta {{ theses.stats.firstYear }} alkaen; alla on tämän arkiston perusteella lasketut luvut.</p>
 
             <h4 class="h5 mt-4">Toimiminen jatko-opiskelijoiden virallisesti nimettynä ohjaajana</h4>
             <p class="mb-0">Toimin tällä hetkellä viiden jatko-opiskelijan virallisesti nimettynä ohjaajana. Voin toimia toistaiseksi vain 2. ohjaajana, koska minulla ei ole vielä dosentin pätevyyttä.</p>
@@ -228,6 +287,141 @@ translationKey: portfolio_index
     </div>
   </section>
 
+  {# ── NYKYINEN OSAAMISFOKUS ───────────────────────────────────────── #}
+  <section class="mb-4 mb-lg-5">
+    <h2 class="h2 text-center mb-4">Nykyinen osaamisfokus: tekoälykasvatus</h2>
+
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <article class="card border-0 shadow-sm h-100">
+          <div class="card-header bg-warning bg-opacity-25 border-0 p-3">
+            <span class="badge bg-warning text-dark me-2">2024–2026</span>
+            <strong>Generation AI</strong>
+          </div>
+          <div class="card-body p-4">
+            <p>Kansallinen hanke, jossa kehitettiin tekoälyn ja tietoturvan perusteita käsitteleviä avoimia oppimateriaaleja ja sovelluksia lapsille ja opettajille.</p>
+            <p class="mb-3">Jari toimi hankkeessa <strong>vuorovaikutusasiantuntijana</strong>. Hanke sai vuoden 2025 Avoimen oppimisen palkinnon kategoriassa Avoimet oppimismateriaalit.</p>
+            <a href="/palkinnot/" class="btn btn-sm btn-outline-warning text-dark"><i class="bi bi-award me-1"></i>Palkinto 2025</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="col-lg-4">
+        <article class="card border-0 shadow-sm h-100">
+          <div class="card-header bg-primary bg-opacity-10 border-0 p-3">
+            <span class="badge bg-primary me-2">2023–</span>
+            <strong>TKAEDITE</strong>
+          </div>
+          <div class="card-body p-4">
+            <p class="mb-0">Kansainvälinen hanke, jossa kehitetään Kosovon ja Albanian kansallista tieto- ja viestintätekniikan opetussuunnitelmaa sekä opettajankoulutusta. Jari on mukana hankkeessa asiantuntijana ja kouluttajana.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="col-lg-4">
+        <article class="card border-0 shadow-sm h-100">
+          <div class="card-header bg-body-tertiary border-0 p-3">
+            <span class="badge bg-secondary me-2">Jatkuva</span>
+            <strong>Kansalliset verkostot</strong>
+          </div>
+          <div class="card-body p-4">
+            <ul class="ps-3 mb-0">
+              <li class="mb-2"><strong>ITK-johtoryhmän jäsen</strong> – Interaktiivinen tekniikka koulutuksessa</li>
+              <li class="mb-2"><strong>STEAM in Oulu</strong> – sivuaineen vastuuhenkilö, kaupungin STEAM-kehitystyö</li>
+              <li><strong>OPH:n digipedagogiikan verkoston verkoston</strong> jäsen</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  {# ── VIIMEISIMMÄT ESITYKSET ──────────────────────────────────────── #}
+  {% if collections.presentations | length %}
+  <section class="mb-4 mb-lg-5">
+    <h2 class="h2 text-center mb-1">Viimeisimmät esitykset</h2>
+    <p class="text-center text-body-secondary mb-4">Haettu automaattisesti esitysarkistosta &mdash; <a href="/esitykset/">kaikki esitykset</a></p>
+
+    <div class="row g-3">
+      {% for pres in collections.presentations %}
+      {% if loop.index0 < 5 %}
+      <div class="col-md-6 col-xl-4">
+        <article class="card border-0 shadow-sm h-100">
+          {% if pres.data.thumbnail %}
+          <img src="{{ pres.data.thumbnail }}" class="card-img-top" alt="{{ pres.data.title }}" style="height:140px;object-fit:cover;">
+          {% endif %}
+          <div class="card-body p-3">
+            <p class="text-muted small mb-1">{{ pres.data.date | dateFormat }}</p>
+            <h3 class="h6 fw-semibold mb-2">{{ pres.data.title }}</h3>
+            {% if pres.data.categories %}
+            <div class="d-flex flex-wrap gap-1 mb-2">
+              {% for cat in pres.data.categories %}
+              {% if loop.index0 < 2 %}
+              <span class="badge bg-body-secondary text-body-secondary small">{{ cat }}</span>
+              {% endif %}
+              {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+          <div class="card-footer bg-transparent border-0 p-3 pt-0">
+            <div class="d-flex gap-2">
+              <a href="{{ pres.url }}" class="btn btn-sm btn-outline-primary flex-grow-1">Lue lisää</a>
+              {% if pres.data.url %}
+              <a href="{{ pres.data.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary" title="Avaa esitys"><i class="bi bi-box-arrow-up-right"></i></a>
+              {% endif %}
+            </div>
+          </div>
+        </article>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  {# ── PALKINNOT JA TUNNUSTUKSET ───────────────────────────────────── #}
+  <section class="mb-4 mb-lg-5">
+    <h2 class="h2 text-center mb-4">Palkinnot ja tunnustukset</h2>
+
+    <div class="row g-4">
+      <div class="col-md-4">
+        <article class="card border-0 shadow-sm h-100">
+          <div class="card-body p-4">
+            <span class="badge bg-warning text-dark mb-3">2025</span>
+            <h3 class="h5 fw-bold mb-2">Avoimen oppimisen palkinto</h3>
+            <p class="text-muted small mb-2">Tieteellisten seurain valtuuskunta (TSV) — Avoimet oppimismateriaalit</p>
+            <p class="small mb-0">Generation AI -hanke. Jari toimi hankkeessa vuorovaikutusasiantuntijana.</p>
+          </div>
+        </article>
+      </div>
+      <div class="col-md-4">
+        <article class="card border-0 shadow-sm h-100">
+          <div class="card-body p-4">
+            <span class="badge bg-warning text-dark mb-3">2020</span>
+            <h3 class="h5 fw-bold mb-2">Kansallinen avoimen tieteen palkinto</h3>
+            <p class="text-muted small mb-2">Tieteellisten seurain valtuuskunta (TSV)</p>
+            <p class="small mb-0">Tunnusti pitkäaikaisen työn avointen oppimateriaalien jakajana ja etäopetuksen tukijana koronapandemian aikana.</p>
+          </div>
+        </article>
+      </div>
+      <div class="col-md-4">
+        <article class="card border-0 shadow-sm h-100">
+          <div class="card-body p-4">
+            <span class="badge bg-secondary mb-3">2014</span>
+            <h3 class="h5 fw-bold mb-2">Vuoden TVT-opettaja</h3>
+            <p class="text-muted small mb-2">IT-kouluttajat ry — Korkea-aste</p>
+            <p class="small mb-0">Tunnusti pitkäjänteisen työn tieto- ja viestintätekniikan tutkimuksessa, opetuksessa ja asiantuntijuuden jakamisessa.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="text-center mt-4">
+      <a href="/palkinnot/" class="btn btn-outline-secondary"><i class="bi bi-award me-2"></i>Kaikki palkinnot ja tunnustukset</a>
+    </div>
+  </section>
+
+  {# ── OPETUKSEN KEHITTÄMINEN ──────────────────────────────────────── #}
   <section class="mb-4 mb-lg-5">
     <h2 class="h2 text-center mb-4">Opetuksen ja ohjauksen kehittäminen</h2>
 
@@ -235,10 +429,10 @@ translationKey: portfolio_index
       <div class="col-lg-6">
         <article class="card border-0 shadow-sm h-100">
           <div class="card-body p-4">
-            <h3 class="h5 mb-3">Oppimisympäristöjen kehittäminen - yliopistotaso</h3>
+            <h3 class="h5 mb-3">Oppimisympäristöjen kehittäminen — yliopistotaso</h3>
             <p>Olen ollut mukana kehittämässä Oulun yliopiston digipedagogiikkaa aluksi tieto- ja viestintätekniikan pedagogisen käytön kehittämisryhmän puheenjohtajana ja myöhemmin DIGIT-ryhmän jäsenenä.</p>
             <p>Ollessani kehittämisryhmän puheenjohtajana yliopistossamme otettiin käyttöön Microsoftin ja Googlen opetusta tukevat pilvipalvelut sekä luotiin suuntaviivat nykyiselle digitutor-järjestelmälle.</p>
-            <p class="mb-0">Myöhemmissä luottamustehtävissä, esim. DIGIT-ryhmässä, olen ollut mukana mm. valitsemassa yliopiston verkko-oppimisympäristöä. Olen myös ollut tietohallinnon ja tilahallinnon tukena kehitettäessä Oulun yliopiston av-välineistöä sekä digitaalisia opetusratkaisuja.</p>
+            <p class="mb-0">Myöhemmissä luottamustehtävissä olen ollut mukana mm. valitsemassa yliopiston verkko-oppimisympäristöä sekä ollut tietohallinnon ja tilahallinnon tukena kehitettäessä av-välineistöä ja digitaalisia opetusratkaisuja.</p>
           </div>
         </article>
       </div>
@@ -246,11 +440,10 @@ translationKey: portfolio_index
       <div class="col-lg-6">
         <article class="card border-0 shadow-sm h-100">
           <div class="card-body p-4">
-            <h3 class="h5 mb-3">Oppimisympäristöjen kehittäminen - tiedekuntataso</h3>
+            <h3 class="h5 mb-3">Oppimisympäristöjen kehittäminen — tiedekuntataso</h3>
             <p>Kasvatustieteiden ja psykologian tiedekunta muutti vuonna 2018 uusiin tiloihin. Muuttoa edeltäneessä suunnittelu- ja peruskorjausprojektissa tehtiin merkittäviä tilamuutoksia, joiden avulla varmistettiin tilojen soveltuvuus tarkoituksiimme.</p>
-            <p>Olin aktiivisesti mukana erityisopetustilojen työryhmässä varmistaakseni, että tiloista tulee modernit ja pedagogisesti tarkoituksenmukaiset.</p>
-            <p>Olen ollut myös mukana kehittämässä LeaForum tutkimusinfraa, jonka tilat mahdollistavat oppimisen ja vuorovaikutuksen tutkimuksen edistyneillä tutkimusmenetelmillä.</p>
-            <p class="mb-0">Olen ollut vuosien ajan osavastuussa tiedekunnan esitystekniikasta ja iOS (iPad) -laitteista. Olen myös ottanut käyttöön 3D-tulostimia ja laserleikkurin sekä vastannut niiden ylläpitämisestä.</p>
+            <p>Olen ollut myös mukana kehittämässä LeaForum-tutkimusinfraa, jonka tilat mahdollistavat oppimisen ja vuorovaikutuksen tutkimuksen edistyneillä tutkimusmenetelmillä.</p>
+            <p class="mb-0">Olen ollut vuosien ajan osavastuussa tiedekunnan esitystekniikasta ja iOS (iPad) -laitteista sekä vastannut 3D-tulostimien ja laserleikkurin käyttöönotosta ja ylläpidosta.</p>
           </div>
         </article>
       </div>
@@ -262,8 +455,9 @@ translationKey: portfolio_index
           <div class="card-body p-4">
             <h3 class="h5 mb-3">Oppimateriaalien kehittäminen</h3>
             <p>Olen taitava tekemään erilaisia oppimateriaaleja, jotka voivat olla verkkosivuja, esityksiä, videoita, äänitiedostoja tai muita soveltuvia kokonaisuuksia.</p>
-            <p>Kehitin materiaaleja myös koronakriisin aikana. Heti alussa kävi selväksi, että opettajat tarvitsevat tukea digivälineiden käytössä.</p>
-            <p class="mb-0">Käynnistin nopealla aikataululla materiaalin tuotannon sekä haastattelin viikoittaisessa suorassa lähetyksessä tunnettuja digipedagogeja. Olin mukana myös Wikikirjastoon tehdyssä etäopetuksen näytön paikka -oppaassa.</p>
+            <p>Kehitin materiaaleja myös koronakriisin aikana. Käynnistin nopealla aikataululla materiaalin tuotannon sekä haastattelin viikoittaisessa suorassa lähetyksessä tunnettuja digipedagogeja.</p>
+            <p class="mb-3">Olin mukana myös Wikikirjastoon tehdyssä <em>Etäopetuksen näytön paikka</em> -oppaassa.</p>
+            <a href="/2020/03/12/jari-larun-verkkolive/" class="btn btn-sm btn-outline-primary"><i class="bi bi-camera-video me-1"></i>Lue: Verkkolive 2020</a>
           </div>
         </article>
       </div>
@@ -272,7 +466,11 @@ translationKey: portfolio_index
         <article class="card border-0 shadow-sm h-100">
           <div class="card-body p-4">
             <h3 class="h5 mb-3">Oman kehitystyön näkyväksi tekeminen</h3>
-            <p>Olen useiden kansallisten digitaalisten välineiden opetuskäyttöön liittyvien yhteisöjen ylläpitäjä ja perustaja, joista merkittävimmät ovat tieto- ja viestintätekniikka opetuksessa (yli 20 000 jäsentä) ja Microsoft Office365 oppimisessa ja opetuksessa (yli 10 000 jäsentä).</p>
+            <p>Olen useiden kansallisten digitaalisten välineiden opetuskäyttöön liittyvien yhteisöjen ylläpitäjä ja perustaja:</p>
+            <ul class="ps-3 mb-3">
+              <li><strong>Tieto- ja viestintätekniikka opetuksessa</strong> — yli 20 000 jäsentä</li>
+              <li><strong>Microsoft Office 365 oppimisessa ja opetuksessa</strong> — yli 10 000 jäsentä</li>
+            </ul>
             <p class="mb-0">Olen jakanut koko työurani ajan esitykset, kurssien sivustot ym. opettajayhteisölle aina kun se on ollut mahdollista. Esityksiä löytyy mm. Slideshare-palvelusta, LinkedIn-profiilista ja AOE.fi-sivustolta.</p>
           </div>
         </article>
@@ -280,6 +478,79 @@ translationKey: portfolio_index
     </div>
   </section>
 
+  {# ── PORTFOLIONÄYTTEITÄ ──────────────────────────────────────────── #}
+  <section class="mb-4 mb-lg-5">
+    <h2 class="h2 text-center mb-2">Portfolionäytteitä</h2>
+    <p class="text-center text-body-secondary mb-4">Linkit blogiteksteihin ja muuhun materiaaliin, jotka dokumentoivat opetus- ja kehitystyötä</p>
+
+    <div class="row g-3">
+      <div class="col-md-6 col-lg-4">
+        <a href="/2021/04/07/ktk149-digiluokka/" class="card border-0 shadow-sm h-100 text-decoration-none text-body">
+          <div class="card-body p-4">
+            <span class="badge bg-primary mb-2">Oppimisympäristö</span>
+            <h3 class="h6 fw-bold mb-2">KTK149 Digiluokka</h3>
+            <p class="small text-body-secondary mb-0">Katsaus tiedekunnan moderniin hybridiopetuksen laboratorioluokkaan: esitystekniikka, välineistö, 24/7-käyttö.</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <a href="/2020/12/06/jari-larulle-kansallinen-avoimen-tieteen-palkinto/" class="card border-0 shadow-sm h-100 text-decoration-none text-body">
+          <div class="card-body p-4">
+            <span class="badge bg-warning text-dark mb-2">Palkinto 2020</span>
+            <h3 class="h6 fw-bold mb-2">Kansallinen avoimen tieteen palkinto</h3>
+            <p class="small text-body-secondary mb-0">TSV:n palkintoperusteet ja Jarin kiitospuhe — avoimuus opetuksessa ja etäopetuksen tuki 2020.</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <a href="/2020/03/12/jari-larun-verkkolive/" class="card border-0 shadow-sm h-100 text-decoration-none text-body">
+          <div class="card-body p-4">
+            <span class="badge bg-success mb-2">Avoin materiaali</span>
+            <h3 class="h6 fw-bold mb-2">Jari Larun verkkolive — koronaetäopetus</h3>
+            <p class="small text-body-secondary mb-0">Keväällä 2020 käynnistetty viikoittainen asiantuntijahaastattelusarja opettajien etäopetuksen tueksi.</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <a href="/2021/02/03/ktk149-digiluokka-aanet/" class="card border-0 shadow-sm h-100 text-decoration-none text-body">
+          <div class="card-body p-4">
+            <span class="badge bg-primary mb-2">Tekninen syventävä</span>
+            <h3 class="h6 fw-bold mb-2">Digiluokka: äänijärjestelmät</h3>
+            <p class="small text-body-secondary mb-0">Yksityiskohtainen kuvaus KTK149:n Crestron Avia DSP- ja Dante-pohjaisesta äänijärjestelmästä hybridiopetukseen.</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <a href="/julkaisut/" class="card border-0 shadow-sm h-100 text-decoration-none text-body">
+          <div class="card-body p-4">
+            <span class="badge bg-secondary mb-2">Tutkimus</span>
+            <h3 class="h6 fw-bold mb-2">Tieteelliset julkaisut</h3>
+            <p class="small text-body-secondary mb-0">
+              {% if semanticscholar.metrics.profileTotalCitations %}{{ semanticscholar.metrics.profileTotalCitations }} viittausta,{% endif %}
+              {% if semanticscholar.metrics.profileHIndex %}h-indeksi {{ semanticscholar.metrics.profileHIndex }}{% endif %}
+              — kansainvälisiä vertaisarvioituja artikkeleita teknologiatuetusta oppimisesta.
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <a href="/esitykset/" class="card border-0 shadow-sm h-100 text-decoration-none text-body">
+          <div class="card-body p-4">
+            <span class="badge bg-info text-dark mb-2">Esitykset</span>
+            <h3 class="h6 fw-bold mb-2">Konferenssi- ja koulutusesitykset</h3>
+            <p class="small text-body-secondary mb-0">{{ collections.presentations | length }} dokumentoitua esitystä — kansallisia ja kansainvälisiä konferensseja, VESO-koulutuksia ja asiantuntijaluentoja.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {# ── OPETUSYHTEISTYÖ ─────────────────────────────────────────────── #}
   <section>
     <div class="row g-4 align-items-start">
       <div class="col-lg-5">
@@ -294,9 +565,9 @@ translationKey: portfolio_index
         <article class="card border-0 shadow-sm h-100">
           <div class="card-body p-4">
             <ol class="mb-0 ps-3">
-              <li class="mb-3">Olen ollut mukana STEAM in Oulu -verkostossa alusta saakka ja olemme kehittäneet yhdessä kaupungin kanssa STEAM-toimintaa kaupungissa (tehtävä sivuaineen vastuuhenkilönä). Nyt teen vastaavaa työtä kansallisesti Generation AI -hankkeen puitteissa tekoälyn kontekstissa toimiessani hankkeen vuorovaikutusasiantuntijana.</li>
+              <li class="mb-3">Olen ollut mukana STEAM in Oulu -verkostossa alusta saakka ja olemme kehittäneet yhdessä kaupungin kanssa STEAM-toimintaa (tehtävä sivuaineen vastuuhenkilönä). Nyt teen vastaavaa työtä kansallisesti Generation AI -hankkeen puitteissa tekoälyn kontekstissa toimiessani hankkeen vuorovaikutusasiantuntijana.</li>
               <li class="mb-3">Olen interaktiivinen tekniikka koulutuksessa (ITK) -johtoryhmän jäsen ja mukana OPH:n digipedagogiikan verkostojen verkoston toiminnassa.</li>
-              <li class="mb-3">Olen ollut kaksi kautta Oulun yliopiston koulutusneuvostossa ja vaikuttanut siitä tehtävästä Oulun yliopiston tiedekuntarajat ylittävään opetuksen kehittämiseen. Olen ollut myös Oulun yliopiston tieto- ja viestintätekniikan pedagogisen kehittämisen työryhmän puheenjohtaja ja lukuisten sitä edeltäneiden ja sitä seuranneiden vastaavien ryhmien jäsen.</li>
+              <li class="mb-3">Olen ollut kaksi kautta Oulun yliopiston koulutusneuvostossa ja vaikuttanut siitä tehtävästä tiedekuntarajat ylittävään opetuksen kehittämiseen. Olen ollut myös Oulun yliopiston tieto- ja viestintätekniikan pedagogisen kehittämisen työryhmän puheenjohtaja ja lukuisten sitä edeltäneiden ja sitä seuranneiden vastaavien ryhmien jäsen.</li>
               <li>Olen mukana TKAEDITE-hankkeessa, jossa kehitämme Kosovon ja Albanian kansallista tieto- ja viestintätekniikan opetussuunnitelmaa sekä opettajankoulutusta. Olen ollut mukana myös useissa hankkeissa vuosien aikana, joiden tavoitteena on ollut kehittää opetusta, oppimista tai koulutusteknologiaa.</li>
             </ol>
           </div>
