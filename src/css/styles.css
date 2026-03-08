@@ -535,6 +535,7 @@ html:not([data-bs-theme="dark"]) .home-hero-proof-item:focus-visible {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top center;
 }
 
 .home-card-image {
@@ -910,7 +911,12 @@ html:not([data-bs-theme="dark"]) .breadcrumb-item.active {
   }
 
   .home-feature-image-col {
-    display: none;
+    display: block;
+    height: 220px;
+  }
+
+  .home-feature-image-col > div {
+    height: 220px !important;
   }
 }
 
