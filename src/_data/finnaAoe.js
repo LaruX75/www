@@ -7,7 +7,7 @@ const { readCache, readCacheIfFresh, writeCache, fetchWithTimeout } = require(".
 
 const CACHE_TTL_HOURS = 6;
 
-const CACHE_KEY = "finna-aoe-v1";
+const CACHE_KEY = "finna-aoe-v2";
 const API_BASE = "https://api.finna.fi/v1/search";
 const PUBLIC_BASE = "https://www.finna.fi";
 
@@ -15,14 +15,47 @@ function normalizeUrl(id) {
   return id ? `${PUBLIC_BASE}/Record/${encodeURIComponent(id)}` : PUBLIC_BASE;
 }
 
+function toAbsoluteImageUrl(candidate) {
+  if (!candidate) return null;
+  const value = String(candidate).trim();
+  if (!value) return null;
+  if (/^https?:\/\//i.test(value)) return value;
+  if (value.startsWith("//")) return `https:${value}`;
+  if (value.startsWith("/")) return `${PUBLIC_BASE}${value}`;
+  if (value.startsWith("Cover/Show")) return `${PUBLIC_BASE}/${value}`;
+  return null;
+}
+
 function normalizeImage(record) {
   const id = record?.id || "";
   if (!id) return null;
-  const hasImage =
-    (Array.isArray(record?.images) && record.images.length > 0) ||
-    (Array.isArray(record?.imagesExtended) && record.imagesExtended.length > 0);
+
+  const ext = Array.isArray(record?.imagesExtended) ? record.imagesExtended : [];
+  for (const item of ext) {
+    const urls = item?.urls || {};
+    const candidates = [
+      urls.large,
+      urls.medium,
+      urls.small,
+      urls.master,
+      item?.url,
+      item?.href
+    ];
+    for (const raw of candidates) {
+      const normalized = toAbsoluteImageUrl(raw);
+      if (normalized) return normalized;
+    }
+  }
+
+  const images = Array.isArray(record?.images) ? record.images : [];
+  for (const item of images) {
+    const normalized = toAbsoluteImageUrl(item);
+    if (normalized) return normalized;
+  }
+
+  const hasImage = images.length > 0 || ext.length > 0;
   if (!hasImage) return null;
-  return `https://api.finna.fi/v1/Cover/Show?id=${encodeURIComponent(id)}&size=medium`;
+  return `${PUBLIC_BASE}/Cover/Show?id=${encodeURIComponent(id)}&size=medium`;
 }
 
 function normalizeSummary(record) {

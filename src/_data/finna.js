@@ -99,16 +99,47 @@ function normalizeSummary(record) {
   return "";
 }
 
+function toAbsoluteImageUrl(candidate) {
+  if (!candidate) return null;
+  const value = String(candidate).trim();
+  if (!value) return null;
+  if (/^https?:\/\//i.test(value)) return value;
+  if (value.startsWith("//")) return `https:${value}`;
+  if (value.startsWith("/")) return `${PUBLIC_BASE}${value}`;
+  if (value.startsWith("Cover/Show")) return `${PUBLIC_BASE}/${value}`;
+  return null;
+}
+
 function normalizeImage(record) {
   const id = record?.id || "";
   if (!id) return null;
 
-  const hasImage =
-    (Array.isArray(record?.images) && record.images.length > 0) ||
-    (Array.isArray(record?.imagesExtended) && record.imagesExtended.length > 0);
+  const ext = Array.isArray(record?.imagesExtended) ? record.imagesExtended : [];
+  for (const item of ext) {
+    const urls = item?.urls || {};
+    const candidates = [
+      urls.large,
+      urls.medium,
+      urls.small,
+      urls.master,
+      item?.url,
+      item?.href
+    ];
+    for (const raw of candidates) {
+      const normalized = toAbsoluteImageUrl(raw);
+      if (normalized) return normalized;
+    }
+  }
 
+  const images = Array.isArray(record?.images) ? record.images : [];
+  for (const item of images) {
+    const normalized = toAbsoluteImageUrl(item);
+    if (normalized) return normalized;
+  }
+
+  const hasImage = images.length > 0 || ext.length > 0;
   if (!hasImage) return null;
-  return `https://api.finna.fi/v1/Cover/Show?id=${encodeURIComponent(id)}&size=medium`;
+  return `${PUBLIC_BASE}/Cover/Show?id=${encodeURIComponent(id)}&size=medium`;
 }
 
 function normalizeRecord(record) {
