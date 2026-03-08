@@ -520,7 +520,8 @@ translationKey: writings_index
     "url": {{ (presentation.data.url or "") | dump | safe }},
     "thumbnail": {{ (presentation.data.thumbnail or "") | dump | safe }},
     "categories": {{ (presentation.data.categories or []) | dump | safe }},
-    "type": {{ (presentation.data.type or "Canva") | dump | safe }}
+    "type": {{ (presentation.data.type or "Canva") | dump | safe }},
+    "source": {{ (presentation.data.source or "") | dump | safe }}
   }{% if not loop.last or aoeRows.length %},{% endif %}
   {% endfor %}
   {% for item in aoeRows %}
@@ -820,6 +821,44 @@ section[id] {
     if (!el) return [];
     try { return JSON.parse(el.textContent || '[]'); } catch (_) { return []; }
   };
+  const MAX_SLIDESHARE_DATE = '2020-12-31';
+  const isSlideshareItem = (item) => {
+    const src = String(item?.source || '').toLowerCase();
+    const type = String(item?.type || '').toLowerCase();
+    const url = String(item?.url || '').toLowerCase();
+    return src === 'slideshare' || type.includes('slideshare') || url.includes('slideshare.net');
+  };
+  const toIsoDate = (value) => {
+    if (value === null || value === undefined) return null;
+    const raw = String(value).trim();
+    if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) return raw;
+    const parsed = new Date(raw);
+    if (Number.isNaN(parsed.getTime())) return null;
+    const year = parsed.getUTCFullYear();
+    const month = String(parsed.getUTCMonth() + 1).padStart(2, '0');
+    const day = String(parsed.getUTCDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+  const extractSlideshareDateFromThumbnail = (thumbnailUrl) => {
+    if (!thumbnailUrl) return null;
+    const match = String(thumbnailUrl).match(/-(\d{6})\d{6}-thumbnail/i);
+    if (!match) return null;
+    const yymmdd = match[1];
+    const yy = Number.parseInt(yymmdd.slice(0, 2), 10);
+    const mm = Number.parseInt(yymmdd.slice(2, 4), 10);
+    const dd = Number.parseInt(yymmdd.slice(4, 6), 10);
+    if (!Number.isFinite(yy) || !Number.isFinite(mm) || !Number.isFinite(dd)) return null;
+    if (mm < 1 || mm > 12 || dd < 1 || dd > 31) return null;
+    const year = yy >= 90 ? 1900 + yy : 2000 + yy;
+    return `${year}-${String(mm).padStart(2, '0')}-${String(dd).padStart(2, '0')}`;
+  };
+  const normalizeSlidesharePresentation = (item) => {
+    if (!isSlideshareItem(item)) return item;
+    let iso = toIsoDate(item?.date) || extractSlideshareDateFromThumbnail(item?.thumbnail);
+    if (!iso) return item;
+    if (iso > MAX_SLIDESHARE_DATE) iso = MAX_SLIDESHARE_DATE;
+    return { ...item, date: iso };
+  };
   const syncMobileTableLabels = () => {
     document.querySelectorAll('.pub-table').forEach((table) => {
       const headers = Array.from(table.querySelectorAll('thead th')).map((th) =>
@@ -859,7 +898,7 @@ section[id] {
   const aloitteet = parseJson('aloitteet-data');
   const puheet = parseJson('puheet-data');
   const blogi = parseJson('blog-data');
-  const esitykset = parseJson('esitykset-data');
+  const esitykset = parseJson('esitykset-data').map(normalizeSlidesharePresentation);
   const julkaisut = parseJson('pub-data');
 
   const counts = {
@@ -1351,9 +1390,52 @@ section[id] {
 // --- Esitykset taulukon logiikka ---
 (function () {
   const ESITYKSET_PAGE_SIZE = 5;
+  const MAX_SLIDESHARE_DATE = '2020-12-31';
   const esityksetDataEl = document.getElementById('esitykset-data');
   if (!esityksetDataEl) return;
-  const esityksetData = JSON.parse(esityksetDataEl.textContent);
+  const isSlideshareItem = (item) => {
+    const src = String(item?.source || '').toLowerCase();
+    const type = String(item?.type || '').toLowerCase();
+    const url = String(item?.url || '').toLowerCase();
+    return src === 'slideshare' || type.includes('slideshare') || url.includes('slideshare.net');
+  };
+  const toIsoDate = (value) => {
+    if (value === null || value === undefined) return null;
+    const raw = String(value).trim();
+    if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) return raw;
+    const parsed = new Date(raw);
+    if (Number.isNaN(parsed.getTime())) return null;
+    const year = parsed.getUTCFullYear();
+    const month = String(parsed.getUTCMonth() + 1).padStart(2, '0');
+    const day = String(parsed.getUTCDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+  const extractSlideshareDateFromThumbnail = (thumbnailUrl) => {
+    if (!thumbnailUrl) return null;
+    const match = String(thumbnailUrl).match(/-(\d{6})\d{6}-thumbnail/i);
+    if (!match) return null;
+    const yymmdd = match[1];
+    const yy = Number.parseInt(yymmdd.slice(0, 2), 10);
+    const mm = Number.parseInt(yymmdd.slice(2, 4), 10);
+    const dd = Number.parseInt(yymmdd.slice(4, 6), 10);
+    if (!Number.isFinite(yy) || !Number.isFinite(mm) || !Number.isFinite(dd)) return null;
+    if (mm < 1 || mm > 12 || dd < 1 || dd > 31) return null;
+    const year = yy >= 90 ? 1900 + yy : 2000 + yy;
+    return `${year}-${String(mm).padStart(2, '0')}-${String(dd).padStart(2, '0')}`;
+  };
+  const formatDateFi = (isoDate) => {
+    const parsed = new Date(isoDate);
+    if (Number.isNaN(parsed.getTime())) return isoDate;
+    return parsed.toLocaleDateString('fi-FI', { day: 'numeric', month: 'long', year: 'numeric' });
+  };
+  const normalizeSlidesharePresentation = (item) => {
+    if (!isSlideshareItem(item)) return item;
+    let iso = toIsoDate(item?.date) || extractSlideshareDateFromThumbnail(item?.thumbnail);
+    if (!iso) return item;
+    if (iso > MAX_SLIDESHARE_DATE) iso = MAX_SLIDESHARE_DATE;
+    return { ...item, date: iso, formattedDate: formatDateFi(iso) };
+  };
+  const esityksetData = JSON.parse(esityksetDataEl.textContent).map(normalizeSlidesharePresentation);
 
   let filteredEsityksetData = [...esityksetData].sort((a, b) => new Date(b.date) - new Date(a.date));
   let esityksetCurrentPage = 1;

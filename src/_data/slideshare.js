@@ -5,6 +5,32 @@ const CACHE_TTL_HOURS = 6;
 
 const CACHE_KEY = "slideshare-presentations-v1";
 const PROFILE_URL = "https://www.slideshare.net/larux";
+const MAX_SLIDESHARE_DATE = "2020-12-31";
+
+function extractDateFromThumbnail(thumbnailUrl) {
+  if (!thumbnailUrl) return null;
+  const match = String(thumbnailUrl).match(/-(\d{6})\d{6}-thumbnail/i);
+  if (!match) return null;
+
+  const yymmdd = match[1];
+  const yy = Number.parseInt(yymmdd.slice(0, 2), 10);
+  const mm = Number.parseInt(yymmdd.slice(2, 4), 10);
+  const dd = Number.parseInt(yymmdd.slice(4, 6), 10);
+  if (!Number.isFinite(yy) || !Number.isFinite(mm) || !Number.isFinite(dd)) return null;
+  if (mm < 1 || mm > 12 || dd < 1 || dd > 31) return null;
+
+  const year = yy >= 90 ? 1900 + yy : 2000 + yy;
+  return `${year}-${String(mm).padStart(2, "0")}-${String(dd).padStart(2, "0")}`;
+}
+
+function normalizeSlideshareDate(inputDate, thumbnailUrl) {
+  const fromInput = typeof inputDate === "string" ? inputDate.trim().slice(0, 10) : "";
+  const parsedInput = /^\d{4}-\d{2}-\d{2}$/.test(fromInput) ? fromInput : null;
+  const extracted = extractDateFromThumbnail(thumbnailUrl);
+  const resolved = parsedInput || extracted;
+  if (!resolved) return null;
+  return resolved > MAX_SLIDESHARE_DATE ? MAX_SLIDESHARE_DATE : resolved;
+}
 
 function isPresentationRow(item) {
   return (
@@ -48,6 +74,7 @@ function normalizeRow(item) {
     id: String(item.id || ""),
     title: item.title || "Untitled SlideShare",
     thumbnail: item.thumbnail || null,
+    date: normalizeSlideshareDate(item.date, item.thumbnail),
     url,
     author: item?.user?.name || "Jari Laru",
     views: Number(item.viewCount || 0)

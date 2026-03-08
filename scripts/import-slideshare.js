@@ -10,6 +10,7 @@ const path = require("path");
 
 const CACHE_FILE = path.join(__dirname, "../.cache/api-fallback/slideshare-presentations-v1.json");
 const OUTPUT_DIR = path.join(__dirname, "../src/presentations");
+const MAX_SLIDESHARE_DATE = "2020-12-31";
 
 /** Poistaa kontrollimerkit (koodit 0–31, pl. tavallinen rivitys) ja siistii välilyönnit. */
 function sanitize(str) {
@@ -43,6 +44,12 @@ function extractDateFromThumbnail(thumbnailUrl) {
   if (mm < 1 || mm > 12 || dd < 1 || dd > 31) return null;
   const year = yy >= 90 ? 1900 + yy : 2000 + yy;
   return `${year}-${String(mm).padStart(2, "0")}-${String(dd).padStart(2, "0")}`;
+}
+
+function normalizeSlideshareDate(thumbnailUrl) {
+  const extracted = extractDateFromThumbnail(thumbnailUrl);
+  if (!extracted) return null;
+  return extracted > MAX_SLIDESHARE_DATE ? MAX_SLIDESHARE_DATE : extracted;
 }
 
 function main() {
@@ -87,7 +94,7 @@ function main() {
       continue;
     }
 
-    const date = extractDateFromThumbnail(p.thumbnail);
+    const date = normalizeSlideshareDate(p.thumbnail);
     const title = sanitize(p.title || "SlideShare-esitys").replace(/'/g, "''");
     const url = sanitize(p.url || "").replace(/'/g, "''");
     const thumbnail = sanitize(p.thumbnail || "").replace(/'/g, "''");

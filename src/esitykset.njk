@@ -270,6 +270,40 @@ translationKey: presentations_index
     return String(value);
   }
 
+  function toIsoDate(value) {
+    if (!value) return null;
+    const raw = String(value).trim();
+    if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) return raw;
+    const parsed = new Date(raw);
+    if (Number.isNaN(parsed.getTime())) return null;
+    const year = parsed.getUTCFullYear();
+    const month = String(parsed.getUTCMonth() + 1).padStart(2, "0");
+    const day = String(parsed.getUTCDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  }
+
+  function extractSlideshareDateFromThumbnail(thumbnailUrl) {
+    if (!thumbnailUrl) return null;
+    const match = String(thumbnailUrl).match(/-(\d{6})\d{6}-thumbnail/i);
+    if (!match) return null;
+    const yymmdd = match[1];
+    const yy = Number.parseInt(yymmdd.slice(0, 2), 10);
+    const mm = Number.parseInt(yymmdd.slice(2, 4), 10);
+    const dd = Number.parseInt(yymmdd.slice(4, 6), 10);
+    if (!Number.isFinite(yy) || !Number.isFinite(mm) || !Number.isFinite(dd)) return null;
+    if (mm < 1 || mm > 12 || dd < 1 || dd > 31) return null;
+    const year = yy >= 90 ? 1900 + yy : 2000 + yy;
+    return `${year}-${String(mm).padStart(2, "0")}-${String(dd).padStart(2, "0")}`;
+  }
+
+  function normalizeSlideshareIsoDate(value, thumbnailUrl) {
+    const MAX_SLIDESHARE_DATE = "2020-12-31";
+    let iso = toIsoDate(value) || extractSlideshareDateFromThumbnail(thumbnailUrl);
+    if (!iso) return "";
+    if (iso > MAX_SLIDESHARE_DATE) iso = MAX_SLIDESHARE_DATE;
+    return iso;
+  }
+
   function normalizeRows(key, rows) {
     if (!Array.isArray(rows)) return [];
 
@@ -319,12 +353,12 @@ translationKey: presentations_index
 
     if (key === "slideshare") {
       return rows.map((r) => ({
+        date: toDisplayDate(normalizeSlideshareIsoDate(r.date || "", r.thumbnail || "")),
         title: r.title || "Nimetön esitys",
         url: r.url || "",
         thumbnail: r.thumbnail || "",
         description: "SlideShare-esitys",
-        meta: "SlideShare",
-        date: toDisplayDate(r.date || "")
+        meta: "SlideShare"
       }));
     }
 
