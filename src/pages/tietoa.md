@@ -191,7 +191,7 @@ wp_id: 7
             <p class="text-muted mb-3">Intohimoinen ruoanlaittaja, leipuri ja keittokirjojen keräilijä. Kuulun Suomen juustoseuraan.</p>
           </div>
           <div class="card-footer bg-transparent border-0 px-4 pb-4 pt-0">
-            <a href="https://www.instagram.com/stories/highlights/18134958520132291/?hl=fi" target="_blank" rel="noreferrer noopener" class="btn btn-outline-warning btn-sm"><i class="bi bi-instagram me-1"></i>Ruokakuvat Instagramissa</a>
+            <a href="https://www.instagram.com/stories/highlights/18134958520132291/?hl=fi" target="_blank" rel="noreferrer noopener" class="btn btn-primary btn-sm"><i class="bi bi-instagram me-1"></i>Ruokakuvat Instagramissa</a>
           </div>
         </div>
       </div>
@@ -203,7 +203,7 @@ wp_id: 7
             <p class="text-muted mb-3">Asumme 1970-luvun talossa, jossa remontoitavaa riittää. Kaivinkoneen ohjaimista tapettipintaan.</p>
           </div>
           <div class="card-footer bg-transparent border-0 px-4 pb-4 pt-0">
-            <a href="https://www.instagram.com/stories/highlights/17917732456477538/?hl=fi" target="_blank" rel="noreferrer noopener" class="btn btn-outline-secondary btn-sm"><i class="bi bi-instagram me-1"></i>Remontit Instagramissa</a>
+            <a href="https://www.instagram.com/stories/highlights/17917732456477538/?hl=fi" target="_blank" rel="noreferrer noopener" class="btn btn-primary btn-sm"><i class="bi bi-instagram me-1"></i>Remontit Instagramissa</a>
           </div>
         </div>
       </div>
@@ -215,7 +215,7 @@ wp_id: 7
             <p class="text-muted mb-3">BBS-harrastelija ja SysOp jo 1989&ndash;1990 &mdash; ennen Internetiä. Pyöritin Large&rsquo;s Security BBS:ää Raahessa, toimin Fidonet-solmuna ja piirsin ANSI-taidetta. Teknologian äärellä alusta asti.</p>
           </div>
           <div class="card-footer bg-transparent border-0 px-4 pb-4 pt-0">
-            <a href="/1998/02/16/silloin-kun-sita-oltiin-larges-securityn-sysop-bbs-muisteluita/" class="btn btn-outline-info btn-sm"><i class="bi bi-terminal me-1"></i>Lue BBS-muistelmat</a>
+            <a href="/1998/02/16/silloin-kun-sita-oltiin-larges-securityn-sysop-bbs-muisteluita/" class="btn btn-primary btn-sm"><i class="bi bi-terminal me-1"></i>Lue BBS-muistelmat</a>
           </div>
         </div>
       </div>
@@ -229,7 +229,7 @@ wp_id: 7
       </div>
       <div class="d-flex gap-2">
         <a href="/autolomat/" class="btn btn-primary btn-sm">Matkakertomukset</a>
-        <a href="/2021/01/17/roadtrip-oulu-skopje-oulu-vajaa-10-000km/" class="btn btn-outline-secondary btn-sm">Oulu&ndash;Skopje 2021</a>
+        <a href="/2021/01/17/roadtrip-oulu-skopje-oulu-vajaa-10-000km/" class="btn btn-primary btn-sm">Oulu&ndash;Skopje 2021</a>
       </div>
     </div>
   </div>
