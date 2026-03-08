@@ -55,9 +55,11 @@ translationKey: publications_index
       <!-- Julkaisutyypit -->
       <div class="col-lg-3 col-md-6">
         <div class="card border-0 shadow-sm h-100">
-          <div class="card-body">
+          <div class="card-body d-flex flex-column">
             <h2 class="h6 text-uppercase text-muted fw-bold mb-3"><i class="bi bi-pie-chart-fill me-2"></i>Julkaisutyypit</h2>
-            <canvas id="typeChart" height="200"></canvas>
+            <div style="position:relative; height:220px;">
+              <canvas id="typeChart"></canvas>
+            </div>
           </div>
         </div>
       </div>
@@ -65,9 +67,11 @@ translationKey: publications_index
       <!-- Open Access & Vertaisarvioitu -->
       <div class="col-lg-3 col-md-6">
         <div class="card border-0 shadow-sm h-100">
-          <div class="card-body">
+          <div class="card-body d-flex flex-column">
             <h2 class="h6 text-uppercase text-muted fw-bold mb-3"><i class="bi bi-unlock-fill me-2"></i>Laatuindikaattorit</h2>
-            <canvas id="qualityChart" height="200"></canvas>
+            <div style="position:relative; height:220px;">
+              <canvas id="qualityChart"></canvas>
+            </div>
           </div>
         </div>
       </div>
@@ -102,6 +106,17 @@ translationKey: publications_index
   </div>
 </section>
 
+<!-- AVAINSANASUODATTIMEN STATUSBANNERI -->
+<div id="keyword-filter-bar" class="container pb-0 pt-2 d-none">
+  <div class="alert alert-info py-2 d-flex align-items-center gap-2 mb-0">
+    <i class="bi bi-tag-fill me-1"></i>
+    Avainsanasuodatin: <strong id="active-keyword-label"></strong>
+    <button type="button" class="btn btn-sm btn-outline-secondary ms-auto py-0 px-2" id="clear-keyword-filter">
+      <i class="bi bi-x-circle me-1"></i>Poista suodatin
+    </button>
+  </div>
+</div>
+
 <!-- JULKAISULISTA -->
 <section id="researchfi-julkaisut" class="py-5">
   <div class="container">
@@ -131,14 +146,29 @@ translationKey: publications_index
       {% endfor %}
 
       {# Macros for reuse #}
-      {% macro drawTable(title, badge, items, tableId) %}
+      {% macro drawTable(title, badge, items, tableId, subtypes) %}
       {% if items.length %}
       <div class="card shadow-sm mb-5 section-card" id="card-{{ tableId }}">
-        <div class="card-header bg-transparent d-flex align-items-center justify-content-between py-3">
-          <h4 class="h5 mb-0"><i class="bi bi-journal-text me-2 text-primary"></i>{{ title }}</h4>
-          <div class="d-flex align-items-center gap-2">
-            <span class="publication-filter-indicator badge border border-info text-info d-none" data-filter-indicator="{{ tableId }}"></span>
-            <span class="badge {{ badge }}">{{ items.length }}</span>
+        <div class="card-header bg-transparent py-3">
+          <div class="d-flex align-items-start justify-content-between">
+            <div>
+              <h4 class="h5 mb-0"><i class="bi bi-journal-text me-2 text-primary"></i>{{ title }}</h4>
+              {% if subtypes and subtypes.length %}
+              <div class="mt-1 d-flex flex-wrap">
+                {% for st in subtypes %}
+                  {% if (items | selectattr("typeCode", "equalto", st.code) | list).length %}
+                  <span class="me-3 mt-1" style="font-size:0.78rem; color: var(--bs-secondary-color);">
+                    <strong style="font-size:0.76rem;">{{ st.code }}</strong>&nbsp;{{ st.desc }}
+                  </span>
+                  {% endif %}
+                {% endfor %}
+              </div>
+              {% endif %}
+            </div>
+            <div class="d-flex align-items-center gap-2 flex-shrink-0 ms-3 mt-1">
+              <span class="publication-filter-indicator badge border border-info text-info d-none" data-filter-indicator="{{ tableId }}"></span>
+              <span class="badge {{ badge }}">{{ items.length }}</span>
+            </div>
           </div>
         </div>
         <div class="card-body p-0">
@@ -173,7 +203,7 @@ translationKey: publications_index
                       {% set citationCount = (semanticscholar.metrics.doiCitations[pub.doi | lower] if pub.doi and semanticscholar.metrics.doiCitations[pub.doi | lower] else 0) %}
                       <div class="d-flex flex-wrap align-items-center gap-2 mt-1">
                         <span class="badge text-bg-warning rounded-pill" title="Viittaukset">
-                          <i class="bi bi-quote me-1"></i>{{ citationCount }} {{ "viite" if citationCount == 1 else "viitettä" }}
+                          <i class="bi bi-quote me-1"></i>{{ citationCount }} {{ "viite" if citationCount == 1 else "viittausta" }}
                         </span>
                         <button
                           type="button"
@@ -209,12 +239,41 @@ translationKey: publications_index
       {% endif %}
       {% endmacro %}
 
-      {{ drawTable('A - Vertaisarvioidut tieteelliset artikkelit', 'text-bg-primary', pubsA, 'pub-table-a') }}
-      {{ drawTable('B - Vertaisarvioimattomat tieteelliset kirjoitukset', 'text-bg-info', pubsB, 'pub-table-b') }}
-      {{ drawTable('C - Tieteelliset kirjat', 'text-bg-warning', pubsC, 'pub-table-c') }}
-      {{ drawTable('D - Ammattiyhteisölle suunnatut julkaisut', 'text-bg-secondary', pubsD, 'pub-table-d') }}
-      {{ drawTable('E - Suurelle yleisölle suunnatut julkaisut', 'bg-dark', pubsE, 'pub-table-e') }}
-      {{ drawTable('G - Opinnäytteet', 'text-bg-success', pubsG, 'pub-table-g') }}
+      {% set subtypesA = [
+        {code: 'A1', desc: 'Alkuperäisartikkeli tieteellisessä aikakauslehdessä'},
+        {code: 'A2', desc: 'Katsausartikkeli tieteellisessä aikakauslehdessä'},
+        {code: 'A3', desc: 'Kirjan tai muun kokoomateoksen osa'},
+        {code: 'A4', desc: 'Artikkeli konferenssijulkaisussa'}
+      ] %}
+      {% set subtypesB = [
+        {code: 'B1', desc: 'Kirjoitus tieteellisessä aikakauslehdessä'},
+        {code: 'B2', desc: 'Kirjan tai muun kokoomateoksen osa'},
+        {code: 'B3', desc: 'Vertaisarvioimaton artikkeli konferenssijulkaisussa'}
+      ] %}
+      {% set subtypesC = [
+        {code: 'C1', desc: 'Kustannettu tieteellinen erillisteos'},
+        {code: 'C2', desc: 'Toimitettu kirja, kokoomateos, konferenssijulkaisu tai lehden erikoisnumero'}
+      ] %}
+      {% set subtypesD = [
+        {code: 'D1', desc: 'Artikkeli ammattilehdessä'},
+        {code: 'D2', desc: 'Artikkeli ammatillisessa kokoomateoksessa'},
+        {code: 'D3', desc: 'Artikkeli ammatillisessa konferenssijulkaisussa'}
+      ] %}
+      {% set subtypesE = [
+        {code: 'E1', desc: 'Yleistajuinen artikkeli, sanomalehtiartikkeli'},
+        {code: 'E2', desc: 'Yleistajuinen monografia'}
+      ] %}
+      {% set subtypesG = [
+        {code: 'G4', desc: 'Väitöskirja (artikkeli)'},
+        {code: 'G5', desc: 'Väitöskirja (monografia)'}
+      ] %}
+
+      {{ drawTable('A - Vertaisarvioidut tieteelliset artikkelit', 'text-bg-primary', pubsA, 'pub-table-a', subtypesA) }}
+      {{ drawTable('B - Vertaisarvioimattomat tieteelliset kirjoitukset', 'text-bg-info', pubsB, 'pub-table-b', subtypesB) }}
+      {{ drawTable('C - Tieteelliset kirjat', 'text-bg-warning', pubsC, 'pub-table-c', subtypesC) }}
+      {{ drawTable('D - Ammattiyhteisölle suunnatut julkaisut', 'text-bg-secondary', pubsD, 'pub-table-d', subtypesD) }}
+      {{ drawTable('E - Suurelle yleisölle suunnatut julkaisut', 'bg-dark', pubsE, 'pub-table-e', subtypesE) }}
+      {{ drawTable('G - Opinnäytteet', 'text-bg-success', pubsG, 'pub-table-g', subtypesG) }}
       
     {% else %}
       <div class="alert alert-warning">Ei julkaisuja saatavilla.</div>
@@ -289,18 +348,39 @@ document.addEventListener('DOMContentLoaded', function() {
       .slice(0, 60) || 'viite';
   }
 
-  function buildCitationText(payload) {
-    const authors = String(payload.authors || '').trim() || 'Tuntematon tekijä';
+  function toBibtexAuthors(authors) {
+    return String(authors || '')
+      .split(';')
+      .map((a) => a.trim())
+      .filter(Boolean)
+      .join(' and ');
+  }
+
+  function buildBibtexEntry(payload) {
+    const rawAuthors = String(payload.authors || '').trim();
+    const authors = toBibtexAuthors(rawAuthors || 'Tuntematon Tekija');
     const year = String(payload.year || '').trim() || 'n.d.';
-    const title = String(payload.title || '').trim() || 'Nimetön julkaisu';
+    const title = String(payload.title || '').trim() || 'Nimeton julkaisu';
     const journal = String(payload.journal || '').trim();
     const doi = String(payload.doi || '').trim();
     const url = String(payload.url || '').trim();
-    let citation = `${authors} (${year}). ${title}.`;
-    if (journal) citation += ` ${journal}.`;
-    if (doi) citation += ` DOI: ${doi}.`;
-    if (url) citation += ` ${url}`;
-    return citation.trim();
+    const firstAuthorToken = (rawAuthors.split(';')[0] || 'tekijä')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '');
+    const keyBase = sanitizeFilenamePart(title.split(/\s+/).slice(0, 6).join('-')).replace(/-/g, '');
+    const bibKey = `${firstAuthorToken || 'tekijä'}${year}${keyBase || 'julkaisu'}`;
+
+    const lines = [
+      `@article{${bibKey},`,
+      `  author = {${authors}},`,
+      `  title = {${title}},`,
+      `  year = {${year}},`
+    ];
+    if (journal) lines.push(`  journal = {${journal}},`);
+    if (doi) lines.push(`  doi = {${doi}},`);
+    if (url) lines.push(`  url = {${url}},`);
+    lines.push('}');
+    return lines.join('\n');
   }
 
   function downloadTextFile(filename, text) {
@@ -325,9 +405,9 @@ document.addEventListener('DOMContentLoaded', function() {
         doi: btn.dataset.doi || '',
         url: btn.dataset.url || ''
       };
-      const citation = buildCitationText(payload);
-      const filename = `${sanitizeFilenamePart(payload.title || payload.authors || 'viite')}.txt`;
-      downloadTextFile(filename, citation + '\n');
+      const bibtex = buildBibtexEntry(payload);
+      const filename = `${sanitizeFilenamePart(payload.title || payload.authors || 'viite')}.bib`;
+      downloadTextFile(filename, bibtex + '\n');
     });
   });
 
@@ -520,6 +600,7 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     options: {
       responsive: true,
+      maintainAspectRatio: false,
       plugins: {
         legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } }
       }
@@ -547,6 +628,7 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     options: {
       responsive: true,
+      maintainAspectRatio: false,
       plugins: {
         legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } }
       }
@@ -597,16 +679,58 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   const topWords = Object.entries(wordCounts).sort((a,b)=>b[1]-a[1]).slice(0,25);
   const cloudEl = document.getElementById('wordCloud');
+  let activeKeyword = '';
+  const keywordFilterBar = document.getElementById('keyword-filter-bar');
+  const activeKeywordLabel = document.getElementById('active-keyword-label');
+  const clearKeywordBtn = document.getElementById('clear-keyword-filter');
+
+  function applyKeywordFilter(word) {
+    activeKeyword = (activeKeyword === word) ? '' : word;
+
+    document.querySelectorAll('[data-pub-search]').forEach(input => {
+      input.value = activeKeyword;
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+
+    if (keywordFilterBar) {
+      if (activeKeyword) {
+        if (activeKeywordLabel) activeKeywordLabel.textContent = activeKeyword;
+        keywordFilterBar.classList.remove('d-none');
+      } else {
+        keywordFilterBar.classList.add('d-none');
+      }
+    }
+
+    cloudEl.querySelectorAll('.keyword-badge').forEach(btn => {
+      const isActive = btn.dataset.word === activeKeyword;
+      btn.style.outline = isActive ? '2px solid currentColor' : '';
+      btn.style.opacity = isActive ? '1' : btn.dataset.opacity;
+    });
+
+    if (activeKeyword) {
+      document.getElementById('researchfi-julkaisut')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  if (clearKeywordBtn) {
+    clearKeywordBtn.addEventListener('click', () => applyKeywordFilter(''));
+  }
+
   if (topWords.length > 0) {
     const maxCount = topWords[0]?.[1] || 1;
     topWords.forEach(([word, count]) => {
       const size = 0.7 + (count / maxCount) * 1.0;
       const opacity = 0.5 + (count / maxCount) * 0.5;
-      const span = document.createElement('span');
-      span.className = 'badge rounded-pill';
-      span.style.cssText = `font-size:${size}rem; opacity:${opacity}; background-color: ${isDark ? 'rgba(56,189,248,0.3)' : 'rgba(13,110,253,0.15)'}; color: ${isDark ? '#e2e6ec' : '#0d6efd'}; font-weight: 500;`;
-      span.textContent = `${word} (${count})`;
-      cloudEl.appendChild(span);
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'badge rounded-pill border-0 keyword-badge';
+      btn.dataset.word = word;
+      btn.dataset.opacity = opacity;
+      btn.style.cssText = `font-size:${size}rem; opacity:${opacity}; background-color: ${isDark ? 'rgba(56,189,248,0.3)' : 'rgba(13,110,253,0.15)'}; color: ${isDark ? '#e2e6ec' : '#0d6efd'}; font-weight: 500; cursor: pointer; transition: outline 0.1s;`;
+      btn.title = `Suodata julkaisut avainsanalla "${word}"`;
+      btn.textContent = `${word} (${count})`;
+      btn.addEventListener('click', () => applyKeywordFilter(word));
+      cloudEl.appendChild(btn);
     });
   } else {
     cloudEl.innerHTML = '<span class="text-muted small">Ei avainsanoja saatavilla</span>';
