@@ -75,15 +75,20 @@ lang: fi
     <div class="card border-0 shadow-sm mb-4">
       <div class="card-body">
         <h2 class="h4 mb-3">3. Datalähteet tällä sivustolla</h2>
-        <p class="mb-2">Sivusto hakee sisältöä rajapinnoista rakennusvaiheessa (build). Hyöty on se, että samoja tietoja ei tarvitse ylläpitää käsin monessa paikassa: data pysyy ajantasaisempana ja päivittyy automaattisemmin.</p>
-        <p class="mb-2">Käytännössä API-dataa voidaan käyttää sivustolla esimerkiksi taulukoina, korttikokoelmina, nostoina etusivulle, metriikkalaskureina ja suodattuvina listoina.</p>
-        <ul class="mb-0">
-          <li>Research.fi (julkaisut)</li>
-          <li>Canva Connect API (esitykset)</li>
-          <li>YouTube Data API v3 (videolistat)</li>
-          <li>GitHub API (muutostaulukko)</li>
-          <li>OuluREPO (opinnäytteet)</li>
+        <p class="mb-2">Sivusto hakee sisältöä rajapinnoista rakennusvaiheessa (build). Hyöty on se, että samoja tietoja ei tarvitse ylläpitää käsin monessa paikassa: data pysyy ajantasaisempana, sivut päivittyvät automaattisemmin ja samasta datasta voi rakentaa useita näkymiä.</p>
+        <p class="mb-3">Alla on tämänhetkiset käytössä olevat ulkoiset datalähteet sekä niiden käyttötarkoitukset:</p>
+        <ul class="mb-3">
+          <li><strong>Research.fi API</strong> – tieteelliset julkaisut julkaisu- ja kirjoitussivuille.</li>
+          <li><strong>Canva Connect API</strong> – Canva-esitysten tiedot esityssivun listauksiin.</li>
+          <li><strong>YouTube Data API v3</strong> – YouTube-soittolistat esityssivulle.</li>
+          <li><strong>GitHub API</strong> – sivuston muutostaulukko commit-historian perusteella.</li>
+          <li><strong>OpenAlex API</strong> – viittausmääriä ja tutkijaprofiilin metriikoita.</li>
+          <li><strong>Semantic Scholar API</strong> – viittausdataa OpenAlexin rinnalle.</li>
+          <li><strong>OuluREPO OpenSearch</strong> – ohjatut opinnäytteet ja tarkastukset.</li>
+          <li><strong>Oulun kaupungin avoin API</strong> (`city_council_meeting_videos`) – valtuustovideot politiikkasivulle.</li>
         </ul>
+        <p class="mb-2">Lisäksi osa sisällöstä tulee hallituista paikallisista datatiedostoista (esim. Google Slides- ja SlideShare-listat). Näissä tapauksissa tieto ei tule rajapinnasta, vaan sitä ylläpidetään versionhallinnassa.</p>
+        <p class="mb-0">Teknisesti API-dataa hyödynnetään tällä sivustolla taulukoina, ticker-nostoina, korttikokoelmina, hakunäkymissä, metriikkalaskureissa ja automaattisesti päivittyvissä “viimeisimmät muutokset” -listoissa.</p>
       </div>
     </div>
 
