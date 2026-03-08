@@ -214,9 +214,9 @@ translationKey: publications_index
                           data-journal="{{ pub.journal | escape }}"
                           data-doi="{{ pub.doi or '' }}"
                           data-url="{{ pub.url or pub.doiUrl or '' }}"
-                          title="Exporttaa lähdeviite"
+                          title="Vie lähdeviite"
                         >
-                          <i class="bi bi-download me-1"></i>Export viite
+                          <i class="bi bi-download me-1"></i>Vie viite
                         </button>
                       </div>
                     </td>
@@ -280,6 +280,42 @@ translationKey: publications_index
     {% endif %}
   </div>
 </section>
+
+<div class="modal fade" id="citationExportModal" tabindex="-1" aria-labelledby="citationExportModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title fs-5" id="citationExportModalLabel">Vie lähdeviite</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Sulje"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-3">
+          <div class="col-md-5">
+            <label for="citationFormatSelect" class="form-label small text-muted">Viittausmuoto</label>
+            <select id="citationFormatSelect" class="form-select form-select-sm">
+              <option value="bibtex">BibTeX (.bib)</option>
+              <option value="apa">APA</option>
+              <option value="mla">MLA</option>
+              <option value="chicago">Chicago</option>
+            </select>
+          </div>
+          <div class="col-md-7 d-flex align-items-end justify-content-md-end gap-2">
+            <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill" id="citationCopyBtn">
+              <i class="bi bi-clipboard me-1"></i>Kopioi
+            </button>
+            <button type="button" class="btn btn-primary btn-sm rounded-pill" id="citationDownloadBtn">
+              <i class="bi bi-download me-1"></i>Lataa
+            </button>
+          </div>
+        </div>
+        <div class="mt-3">
+          <label for="citationOutput" class="form-label small text-muted mb-1">Esikatselu</label>
+          <textarea id="citationOutput" class="form-control form-control-sm font-monospace" rows="12" readonly></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Chart.js & Dashboard Scripts -->
 <script>
@@ -383,6 +419,50 @@ document.addEventListener('DOMContentLoaded', function() {
     return lines.join('\n');
   }
 
+  function buildApaCitation(payload) {
+    const authors = String(payload.authors || '').trim() || 'Tuntematon tekijä';
+    const year = String(payload.year || '').trim() || 'n.d.';
+    const title = String(payload.title || '').trim() || 'Nimetön julkaisu';
+    const journal = String(payload.journal || '').trim();
+    const doi = String(payload.doi || '').trim();
+    const url = String(payload.url || '').trim();
+    let citation = `${authors} (${year}). ${title}.`;
+    if (journal) citation += ` ${journal}.`;
+    if (doi) citation += ` https://doi.org/${doi}`;
+    else if (url) citation += ` ${url}`;
+    return citation.trim();
+  }
+
+  function buildMlaCitation(payload) {
+    const authors = String(payload.authors || '').trim() || 'Tuntematon tekijä';
+    const year = String(payload.year || '').trim() || 'n.d.';
+    const title = String(payload.title || '').trim() || 'Nimetön julkaisu';
+    const journal = String(payload.journal || '').trim();
+    const doi = String(payload.doi || '').trim();
+    const url = String(payload.url || '').trim();
+    let citation = `${authors}. "${title}."`;
+    if (journal) citation += ` ${journal},`;
+    citation += ` ${year}.`;
+    if (doi) citation += ` doi:${doi}.`;
+    else if (url) citation += ` ${url}.`;
+    return citation.trim();
+  }
+
+  function buildChicagoCitation(payload) {
+    const authors = String(payload.authors || '').trim() || 'Tuntematon tekijä';
+    const year = String(payload.year || '').trim() || 'n.d.';
+    const title = String(payload.title || '').trim() || 'Nimetön julkaisu';
+    const journal = String(payload.journal || '').trim();
+    const doi = String(payload.doi || '').trim();
+    const url = String(payload.url || '').trim();
+    let citation = `${authors}. "${title}."`;
+    if (journal) citation += ` ${journal}`;
+    citation += ` (${year}).`;
+    if (doi) citation += ` https://doi.org/${doi}.`;
+    else if (url) citation += ` ${url}.`;
+    return citation.trim();
+  }
+
   function downloadTextFile(filename, text) {
     const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
     const url = URL.createObjectURL(blob);
@@ -395,9 +475,30 @@ document.addEventListener('DOMContentLoaded', function() {
     URL.revokeObjectURL(url);
   }
 
+  const citationFormatSelect = document.getElementById('citationFormatSelect');
+  const citationOutput = document.getElementById('citationOutput');
+  const citationDownloadBtn = document.getElementById('citationDownloadBtn');
+  const citationCopyBtn = document.getElementById('citationCopyBtn');
+  const citationModalEl = document.getElementById('citationExportModal');
+  let currentCitationPayload = null;
+
+  function getCitationByFormat(payload, format) {
+    if (!payload) return '';
+    if (format === 'apa') return buildApaCitation(payload);
+    if (format === 'mla') return buildMlaCitation(payload);
+    if (format === 'chicago') return buildChicagoCitation(payload);
+    return buildBibtexEntry(payload);
+  }
+
+  function renderCitationPreview() {
+    if (!citationOutput) return;
+    const format = citationFormatSelect?.value || 'bibtex';
+    citationOutput.value = getCitationByFormat(currentCitationPayload, format);
+  }
+
   document.querySelectorAll('.export-citation-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
-      const payload = {
+      currentCitationPayload = {
         title: btn.dataset.title || '',
         authors: btn.dataset.authors || '',
         year: btn.dataset.year || '',
@@ -405,11 +506,44 @@ document.addEventListener('DOMContentLoaded', function() {
         doi: btn.dataset.doi || '',
         url: btn.dataset.url || ''
       };
-      const bibtex = buildBibtexEntry(payload);
-      const filename = `${sanitizeFilenamePart(payload.title || payload.authors || 'viite')}.bib`;
-      downloadTextFile(filename, bibtex + '\n');
+      if (citationFormatSelect) citationFormatSelect.value = 'bibtex';
+      renderCitationPreview();
+      if (window.bootstrap && window.bootstrap.Modal && citationModalEl) {
+        window.bootstrap.Modal.getOrCreateInstance(citationModalEl).show();
+      }
     });
   });
+
+  if (citationFormatSelect) {
+    citationFormatSelect.addEventListener('change', renderCitationPreview);
+  }
+
+  if (citationDownloadBtn) {
+    citationDownloadBtn.addEventListener('click', () => {
+      if (!currentCitationPayload) return;
+      const format = citationFormatSelect?.value || 'bibtex';
+      const citation = getCitationByFormat(currentCitationPayload, format);
+      const base = sanitizeFilenamePart(currentCitationPayload.title || currentCitationPayload.authors || 'viite');
+      const ext = format === 'bibtex' ? 'bib' : 'txt';
+      downloadTextFile(`${base}.${ext}`, citation + '\n');
+    });
+  }
+
+  if (citationCopyBtn) {
+    citationCopyBtn.addEventListener('click', async () => {
+      if (!citationOutput?.value) return;
+      try {
+        await navigator.clipboard.writeText(citationOutput.value);
+        citationCopyBtn.innerHTML = '<i class="bi bi-check2 me-1"></i>Kopioitu';
+        setTimeout(() => {
+          citationCopyBtn.innerHTML = '<i class="bi bi-clipboard me-1"></i>Kopioi';
+        }, 1400);
+      } catch (_) {
+        citationOutput.select();
+        document.execCommand('copy');
+      }
+    });
+  }
 
   function setCoauthorFilter(authorName) {
     activeCoauthor = (activeCoauthor === authorName) ? '' : authorName;

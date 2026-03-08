@@ -524,10 +524,22 @@ html:not([data-bs-theme="dark"]) .home-hero-proof-item:focus-visible {
 .home-feature-section .ticker-item {
   width: 300px;
   max-width: 82vw;
+  min-height: 520px;
+  max-height: 520px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .home-feature-section .ticker-item.p-4 {
   padding: 1rem !important;
+}
+
+.home-feature-section .ticker-item > p {
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .home-section-image {
@@ -547,6 +559,19 @@ html:not([data-bs-theme="dark"]) .home-hero-proof-item:focus-visible {
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
+  display: block;
+}
+
+.home-feature-section .home-card-image {
+  width: 100% !important;
+  height: 180px !important;
+  aspect-ratio: auto !important;
+}
+
+.home-feature-image-col .home-section-image {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
 }
 
 .home-feedback-section .card-body {
@@ -914,6 +939,8 @@ html:not([data-bs-theme="dark"]) .breadcrumb-item.active {
 
   .home-feature-section .ticker-item {
     width: 280px;
+    min-height: 460px;
+    max-height: 460px;
   }
 
   .home-feature-image-col {
