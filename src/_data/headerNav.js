@@ -474,6 +474,12 @@ module.exports = {
               description: "Vaalit ja luottamustoimet vaalikausittain."
             },
             {
+              title: "Kuntavaalit 2025",
+              href: "/kuntavaalit-2025/",
+              icon: "bi bi-chevron-right me-2",
+              description: "Kampanjateemat ja tulos kuntavaaleissa 2025."
+            },
+            {
               title: "Kuntavaalit 2021",
               href: "/kuntavaalit-2021/",
               icon: "bi bi-chevron-right me-2",

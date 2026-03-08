@@ -19,41 +19,23 @@ templateEngineOverride: njk,md
 <section class="py-5">
   <div class="container">
 
-    <h2 class="h4 mb-4">Current Positions of Trust</h2>
+    <h2 class="h4 mb-4">Current Positions of Trust <small class="text-muted fw-normal fs-6">(term 2025&ndash;2029)</small></h2>
     <div class="row g-3 mb-5">
-      <div class="col-md-6 col-lg-3">
+      <div class="col-md-6 col-lg-6">
         <div class="card h-100 border-0 shadow-sm">
           <div class="card-body">
             <p class="text-uppercase text-muted small mb-1">Oulu</p>
-            <h3 class="h6 fw-bold mb-1">City Councilor</h3>
+            <h3 class="h6 fw-bold mb-1">2nd Deputy City Councilor</h3>
             <p class="text-muted small mb-0">Oulu City Council</p>
           </div>
         </div>
       </div>
-      <div class="col-md-6 col-lg-3">
+      <div class="col-md-6 col-lg-6">
         <div class="card h-100 border-0 shadow-sm">
           <div class="card-body">
             <p class="text-uppercase text-muted small mb-1">Oulu</p>
-            <h3 class="h6 fw-bold mb-1">Member, Education &amp; Culture Committee</h3>
+            <h3 class="h6 fw-bold mb-1">Member, Education Committee</h3>
             <p class="text-muted small mb-0">Oulu City</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="card h-100 border-0 shadow-sm">
-          <div class="card-body">
-            <p class="text-uppercase text-muted small mb-1">North Ostrobothnia</p>
-            <h3 class="h6 fw-bold mb-1">Regional Council Member</h3>
-            <p class="text-muted small mb-0">Regional Council of North Ostrobothnia</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="card h-100 border-0 shadow-sm">
-          <div class="card-body">
-            <p class="text-uppercase text-muted small mb-1">Wellbeing Area</p>
-            <h3 class="h6 fw-bold mb-1">Deputy Member, Wellbeing Area Council</h3>
-            <p class="text-muted small mb-0">North Ostrobothnia Wellbeing Services County</p>
           </div>
         </div>
       </div>
@@ -66,7 +48,38 @@ templateEngineOverride: njk,md
       <div class="card border-0 shadow-sm mb-4">
         <div class="card-body p-4">
           <div class="d-flex align-items-start gap-3">
-            <span class="badge bg-primary fs-6 px-3 py-2 flex-shrink-0">2021</span>
+            <span class="badge bg-primary fs-6 px-3 py-2 flex-shrink-0">2025</span>
+            <div class="flex-grow-1">
+              <h3 class="h5 fw-bold mb-1">Municipal &amp; Wellbeing Area Elections 2025</h3>
+              <p class="text-muted small mb-2">13 April 2025 &mdash; National Coalition Party (Kokoomus) &mdash; candidate in both elections</p>
+              <p class="mb-2">Stood as a candidate in both the Oulu municipal elections and the North Ostrobothnia Wellbeing Area elections. Term 2025&ndash;2029.</p>
+              <div class="row g-3 mb-3">
+                <div class="col-sm-6">
+                  <div class="p-2 border rounded small">
+                    <strong>Municipal elections (Oulu)</strong><br>
+                    Candidate 439 &mdash; 289 votes<br>
+                    Result: 2nd deputy city councilor
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="p-2 border rounded small">
+                    <strong>Wellbeing area elections</strong><br>
+                    395 votes<br>
+                    Result: deputy member, wellbeing area council
+                  </div>
+                </div>
+              </div>
+              <p class="small text-muted mb-2">Positions 2025&ndash;2029: 2nd deputy city councilor (Oulu City Council), member of the Education Committee, deputy member of the Wellbeing Area Council.</p>
+              <a class="btn btn-outline-primary btn-sm" href="/kuntavaalit-2025/">Campaign archive (Finnish)</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body p-4">
+          <div class="d-flex align-items-start gap-3">
+            <span class="badge bg-secondary fs-6 px-3 py-2 flex-shrink-0">2021</span>
             <div class="flex-grow-1">
               <h3 class="h5 fw-bold mb-1">Municipal Elections 2021</h3>
               <p class="text-muted small mb-2">Oulu &mdash; National Coalition Party (Kokoomus)</p>
@@ -85,7 +98,7 @@ templateEngineOverride: njk,md
       <div class="card border-0 shadow-sm mb-4">
         <div class="card-body p-4">
           <div class="d-flex align-items-start gap-3">
-            <span class="badge bg-primary fs-6 px-3 py-2 flex-shrink-0">2022</span>
+            <span class="badge bg-secondary fs-6 px-3 py-2 flex-shrink-0">2022</span>
             <div class="flex-grow-1">
               <h3 class="h5 fw-bold mb-1">Wellbeing Area Elections 2022</h3>
               <p class="text-muted small mb-2">North Ostrobothnia &mdash; National Coalition Party (Kokoomus)</p>

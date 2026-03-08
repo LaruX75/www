@@ -19,41 +19,23 @@ templateEngineOverride: njk,md
 <section class="py-5">
   <div class="container">
 
-    <h2 class="h4 mb-4">Nykyiset luottamustoimet</h2>
+    <h2 class="h4 mb-4">Nykyiset luottamustoimet <small class="text-muted fw-normal fs-6">(vaalikausi 2025&ndash;2029)</small></h2>
     <div class="row g-3 mb-5">
-      <div class="col-md-6 col-lg-3">
+      <div class="col-md-6 col-lg-6">
         <div class="card h-100 border-0 shadow-sm">
           <div class="card-body">
             <p class="text-uppercase text-muted small mb-1">Oulu</p>
-            <h3 class="h6 fw-bold mb-1">Kaupunginvaltuutettu</h3>
+            <h3 class="h6 fw-bold mb-1">2. varavaltuutettu</h3>
             <p class="text-muted small mb-0">Oulun kaupunginvaltuusto</p>
           </div>
         </div>
       </div>
-      <div class="col-md-6 col-lg-3">
+      <div class="col-md-6 col-lg-6">
         <div class="card h-100 border-0 shadow-sm">
           <div class="card-body">
             <p class="text-uppercase text-muted small mb-1">Oulu</p>
-            <h3 class="h6 fw-bold mb-1">Sivistys- ja kulttuurilautakunnan jäsen</h3>
+            <h3 class="h6 fw-bold mb-1">Sivistyslautakunnan jäsen</h3>
             <p class="text-muted small mb-0">Oulun kaupunki</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="card h-100 border-0 shadow-sm">
-          <div class="card-body">
-            <p class="text-uppercase text-muted small mb-1">Pohjois-Pohjanmaa</p>
-            <h3 class="h6 fw-bold mb-1">Maakuntavaltuuston jäsen</h3>
-            <p class="text-muted small mb-0">Pohjois-Pohjanmaan liitto</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="card h-100 border-0 shadow-sm">
-          <div class="card-body">
-            <p class="text-uppercase text-muted small mb-1">Hyvinvointialue</p>
-            <h3 class="h6 fw-bold mb-1">Aluevaltuuston varajäsen</h3>
-            <p class="text-muted small mb-0">Pohjoispohjanmaan hyvinvointialue</p>
           </div>
         </div>
       </div>
@@ -66,7 +48,38 @@ templateEngineOverride: njk,md
       <div class="card border-0 shadow-sm mb-4">
         <div class="card-body p-4">
           <div class="d-flex align-items-start gap-3">
-            <span class="badge bg-primary fs-6 px-3 py-2 flex-shrink-0">2021</span>
+            <span class="badge bg-primary fs-6 px-3 py-2 flex-shrink-0">2025</span>
+            <div class="flex-grow-1">
+              <h3 class="h5 fw-bold mb-1">Kuntavaalit &amp; aluevaalit 2025</h3>
+              <p class="text-muted small mb-2">13.4.2025 &mdash; Kokoomus &mdash; ehdolla sekä kunta- että aluevaaleissa</p>
+              <p class="mb-2">Ehdokkaana Oulun kuntavaaleissa ja Pohjoispohjanmaan hyvinvointialueen aluevaaleissa. Vaalikausi 2025&ndash;2029.</p>
+              <div class="row g-3 mb-3">
+                <div class="col-sm-6">
+                  <div class="p-2 border rounded small">
+                    <strong>Kuntavaalit (Oulu)</strong><br>
+                    Ehdokas 439 &mdash; 289 ääntä<br>
+                    Tulos: 2. varavaltuutettu
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="p-2 border rounded small">
+                    <strong>Aluevaalit (PP hyvinvointialue)</strong><br>
+                    395 ääntä<br>
+                    Tulos: aluevaltuuston varajäsen
+                  </div>
+                </div>
+              </div>
+              <p class="small text-muted mb-2">Luottamustoimet 2025&ndash;2029: 2. varavaltuutettu (Oulun kaupunginvaltuusto), sivistyslautakunnan jäsen, aluevaltuuston varajäsen.</p>
+              <a class="btn btn-outline-primary btn-sm" href="/kuntavaalit-2025/">Vaalisivusto (arkisto)</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body p-4">
+          <div class="d-flex align-items-start gap-3">
+            <span class="badge bg-secondary fs-6 px-3 py-2 flex-shrink-0">2021</span>
             <div class="flex-grow-1">
               <h3 class="h5 fw-bold mb-1">Kuntavaalit 2021</h3>
               <p class="text-muted small mb-2">Oulu &mdash; Kokoomus</p>
@@ -85,7 +98,7 @@ templateEngineOverride: njk,md
       <div class="card border-0 shadow-sm mb-4">
         <div class="card-body p-4">
           <div class="d-flex align-items-start gap-3">
-            <span class="badge bg-primary fs-6 px-3 py-2 flex-shrink-0">2022</span>
+            <span class="badge bg-secondary fs-6 px-3 py-2 flex-shrink-0">2022</span>
             <div class="flex-grow-1">
               <h3 class="h5 fw-bold mb-1">Aluevaalit 2022</h3>
               <p class="text-muted small mb-2">Pohjois-Pohjanmaa &mdash; Kokoomus</p>
