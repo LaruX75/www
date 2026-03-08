@@ -238,7 +238,8 @@ module.exports = {
             {
               title: "Palkinnot",
               href: "/palkinnot/",
-              icon: "bi bi-award me-2"
+              icon: "bi bi-award me-2",
+              description: "Saadut tunnustukset opetuksen ja avoimen tieteen työstä."
             }
           ]
         },
@@ -256,13 +257,15 @@ module.exports = {
               title: "Kulinaristi",
               href: "https://www.instagram.com/stories/highlights/18134958520132291/?hl=fi",
               icon: "bi bi-egg-fried me-2",
-              external: true
+              external: true,
+              description: "Ruoka-aiheisia nostoja ja resepti-ideoita arjesta."
             },
             {
               title: "Hartiapankkiremontoija",
               href: "https://www.instagram.com/stories/highlights/17917732456477538/?hl=fi",
               icon: "bi bi-hammer me-2",
-              external: true
+              external: true,
+              description: "Remonttiprojekteja, ratkaisuja ja ennen-jälkeen kuvia."
             }
           ]
         },
@@ -272,17 +275,20 @@ module.exports = {
             {
               title: "Yliopistonlehtori",
               href: "/tyoni-yliopistonlehtorina/",
-              icon: "bi bi-mortarboard me-2"
+              icon: "bi bi-mortarboard me-2",
+              description: "Opetus, tutkimus ja ohjaus yliopiston arjessa."
             },
             {
               title: "Poliitikko",
               href: "/politiikka/",
-              icon: "bi bi-bank2 me-2"
+              icon: "bi bi-bank2 me-2",
+              description: "Paikallispolitiikan teemat, tavoitteet ja päätöksenteko."
             },
             {
               title: "Yrittäjä",
               href: "/larux-tmi/",
-              icon: "bi bi-building me-2"
+              icon: "bi bi-building me-2",
+              description: "Koulutus- ja asiantuntijapalvelut Larux t:mi:n kautta."
             }
           ]
         }
@@ -333,13 +339,15 @@ module.exports = {
               title: "Foodie",
               href: "https://www.instagram.com/stories/highlights/18134958520132291/?hl=fi",
               icon: "bi bi-egg-fried me-2",
-              external: true
+              external: true,
+              description: "Food highlights and practical cooking inspiration."
             },
             {
               title: "DIY Renovator",
               href: "https://www.instagram.com/stories/highlights/17917732456477538/?hl=fi",
               icon: "bi bi-hammer me-2",
-              external: true
+              external: true,
+              description: "Home renovation projects and hands-on fixes."
             }
           ]
         },
@@ -349,17 +357,20 @@ module.exports = {
             {
               title: "University Lecturer",
               href: "/en/work/",
-              icon: "bi bi-mortarboard me-2"
+              icon: "bi bi-mortarboard me-2",
+              description: "Teaching, research, and supervision in university work."
             },
             {
               title: "Politician",
               href: "/en/politics/",
-              icon: "bi bi-bank2 me-2"
+              icon: "bi bi-bank2 me-2",
+              description: "Local politics, priorities, and public decision-making."
             },
             {
               title: "Entrepreneur",
               href: "/en/company/",
-              icon: "bi bi-building me-2"
+              icon: "bi bi-building me-2",
+              description: "Training and expert services through Larux."
             }
           ]
         }
@@ -400,7 +411,8 @@ module.exports = {
               title: "Facebook",
               href: "https://www.facebook.com/jari.laru.poliitikko/",
               icon: "bi bi-facebook me-2",
-              external: true
+              external: true,
+              description: "Ajankohtaiset päivitykset ja keskustelu somessa."
             }
           ]
         },
@@ -432,7 +444,8 @@ module.exports = {
             {
               title: "Kaikki kirjoitukset",
               href: "/kynasta/",
-              icon: "bi bi-pencil-square me-2"
+              icon: "bi bi-pencil-square me-2",
+              description: "Kooste puheista, aloitteista, kolumneista ja mielipiteistä."
             }
           ]
         },
@@ -449,17 +462,20 @@ module.exports = {
             {
               title: "Kuntavaalit 2021",
               href: "/kuntavaalit-2021/",
-              icon: "bi bi-chevron-right me-2"
+              icon: "bi bi-chevron-right me-2",
+              description: "Vaaliteemat, tavoitteet ja kampanjasisällöt vuodelta 2021."
             },
             {
               title: "Aluevaalit 2022",
               href: "/jari-laru-aluevaltuustoon/",
-              icon: "bi bi-chevron-right me-2"
+              icon: "bi bi-chevron-right me-2",
+              description: "Näkemykset hyvinvointialueen päätöksenteon kehittämiseen."
             },
             {
               title: "Kunnallisvaalit 2012",
               href: "/kunnallisvaalit-2012/",
-              icon: "bi bi-chevron-right me-2"
+              icon: "bi bi-chevron-right me-2",
+              description: "Ensimmäisen kampanjan teemat ja taustatiedot."
             }
           ]
         }
@@ -488,7 +504,8 @@ module.exports = {
               title: "Facebook",
               href: "https://www.facebook.com/jari.laru.poliitikko/",
               icon: "bi bi-facebook me-2",
-              external: true
+              external: true,
+              description: "Current updates and public discussion on Facebook."
             }
           ]
         },
@@ -520,7 +537,8 @@ module.exports = {
             {
               title: "All writings",
               href: "/en/writings/",
-              icon: "bi bi-pencil-square me-2"
+              icon: "bi bi-pencil-square me-2",
+              description: "A full archive of speeches, initiatives, and opinion texts."
             }
           ]
         },
@@ -537,12 +555,14 @@ module.exports = {
             {
               title: "Municipal elections 2021",
               href: "/kuntavaalit-2021/",
-              icon: "bi bi-chevron-right me-2"
+              icon: "bi bi-chevron-right me-2",
+              description: "Campaign priorities and materials from the 2021 election."
             },
             {
               title: "Wellbeing area elections 2022",
               href: "/jari-laru-aluevaltuustoon/",
-              icon: "bi bi-chevron-right me-2"
+              icon: "bi bi-chevron-right me-2",
+              description: "Themes and goals for regional wellbeing governance."
             }
           ]
         }
@@ -629,22 +649,26 @@ module.exports = {
             {
               title: "Työni yliopistonlehtorina",
               href: "/tyoni-yliopistonlehtorina/",
-              icon: "bi bi-briefcase me-2"
+              icon: "bi bi-briefcase me-2",
+              description: "Kurssit, opetusvastuut ja pedagoginen kehitystyö."
             },
             {
               title: "Ansioluettelo",
               href: "/cv/",
-              icon: "bi bi-file-earmark-person me-2"
+              icon: "bi bi-file-earmark-person me-2",
+              description: "Koulutus, työhistoria, julkaisut ja keskeinen osaaminen."
             },
             {
               title: "Esitykset",
               href: "/esitykset/",
-              icon: "bi bi-easel2 me-2"
+              icon: "bi bi-easel2 me-2",
+              description: "Koulutus- ja konferenssiesityksiä eri teemoista."
             },
             {
               title: "Opinnäytetyöt",
               href: "/opinnaytteet/",
-              icon: "bi bi-mortarboard me-2"
+              icon: "bi bi-mortarboard me-2",
+              description: "Ohjatut kandidaatti- ja pro gradu -tutkielmat."
             }
           ]
         },
@@ -654,17 +678,20 @@ module.exports = {
             {
               title: "Työni yliopistonlehtorina",
               href: "/tyoni-yliopistonlehtorina/",
-              icon: "bi bi-briefcase me-2"
+              icon: "bi bi-briefcase me-2",
+              description: "Tutkimusaiheet, opetus ja hankkeiden käytännön toteutus."
             },
             {
               title: "Ansioluettelo",
               href: "/cv/",
-              icon: "bi bi-file-earmark-person me-2"
+              icon: "bi bi-file-earmark-person me-2",
+              description: "Yhteenveto akateemisesta urasta, meriiteistä ja tehtävistä."
             },
             {
               title: "Julkaisuluettelo",
               href: "/julkaisut/",
-              icon: "bi bi-journal-text me-2"
+              icon: "bi bi-journal-text me-2",
+              description: "Tieteelliset julkaisut, kirjoitukset ja muut tekstisisällöt."
             }
           ]
         },
@@ -674,12 +701,14 @@ module.exports = {
             {
               title: "Tietoa yrityksestä",
               href: "/larux-tmi/",
-              icon: "bi bi-building me-2"
+              icon: "bi bi-building me-2",
+              description: "Larux t:mi:n palvelut, tausta ja toimintatapa."
             },
             {
               title: "Esitykset",
               href: "/esitykset/",
-              icon: "bi bi-easel2 me-2"
+              icon: "bi bi-easel2 me-2",
+              description: "Näytteitä koulutus- ja keynote-esitysten sisällöistä."
             },
             {
               title: "Tilaa minut kouluttajaksi",
@@ -698,25 +727,29 @@ module.exports = {
               title: "LinkedIN",
               href: "https://www.linkedin.com/in/jarilaru/",
               icon: "bi bi-linkedin me-2",
-              external: true
+              external: true,
+              description: "Ammatillinen profiili, verkostot ja ajankohtaiset nostot."
             },
             {
               title: "ResearchGate",
               href: "https://www.researchgate.net/profile/Jari-Laru",
               icon: "bi bi-globe me-2",
-              external: true
+              external: true,
+              description: "Tutkimusprofiili, julkaisut ja tutkimusverkostot."
             },
             {
               title: "ORCID",
               href: "https://orcid.org/0000-0003-0347-0182",
               icon: "bi bi-person-vcard me-2",
-              external: true
+              external: true,
+              description: "Pysyvä tutkijatunniste ja julkaisujen metatiedot."
             },
             {
               title: "Google Scholar",
               href: "https://scholar.google.com/citations?user=HOLu1ZIAAAAJ&hl=en",
               icon: "bi bi-mortarboard me-2",
-              external: true
+              external: true,
+              description: "Viittaukset, h-indeksi ja julkaisujen näkyvyys."
             }
           ]
         }
@@ -737,22 +770,26 @@ module.exports = {
             {
               title: "My Work as a University Lecturer",
               href: "/en/work/",
-              icon: "bi bi-briefcase me-2"
+              icon: "bi bi-briefcase me-2",
+              description: "Courses, teaching responsibilities, and pedagogical development."
             },
             {
               title: "Curriculum Vitae",
               href: "/en/cv/",
-              icon: "bi bi-file-earmark-person me-2"
+              icon: "bi bi-file-earmark-person me-2",
+              description: "Education, work history, publications, and key competencies."
             },
             {
               title: "Presentations",
               href: "/en/presentations/",
-              icon: "bi bi-easel2 me-2"
+              icon: "bi bi-easel2 me-2",
+              description: "Training and conference presentations across core topics."
             },
             {
               title: "Theses",
               href: "/en/theses/",
-              icon: "bi bi-mortarboard me-2"
+              icon: "bi bi-mortarboard me-2",
+              description: "Bachelor's and master's theses supervised by me."
             }
           ]
         },
@@ -762,17 +799,20 @@ module.exports = {
             {
               title: "My Work as a University Lecturer",
               href: "/en/work/",
-              icon: "bi bi-briefcase me-2"
+              icon: "bi bi-briefcase me-2",
+              description: "Research themes, teaching, and project implementation."
             },
             {
               title: "Curriculum Vitae",
               href: "/en/cv/",
-              icon: "bi bi-file-earmark-person me-2"
+              icon: "bi bi-file-earmark-person me-2",
+              description: "Academic profile, key roles, and professional merits."
             },
             {
               title: "Publication List",
               href: "/en/publications/",
-              icon: "bi bi-journal-text me-2"
+              icon: "bi bi-journal-text me-2",
+              description: "Scientific publications, essays, and related outputs."
             }
           ]
         },
@@ -782,12 +822,14 @@ module.exports = {
             {
               title: "About the Company",
               href: "/en/company/",
-              icon: "bi bi-building me-2"
+              icon: "bi bi-building me-2",
+              description: "Larux services, background, and collaboration model."
             },
             {
               title: "Presentations",
               href: "/en/presentations/",
-              icon: "bi bi-easel2 me-2"
+              icon: "bi bi-easel2 me-2",
+              description: "Selected decks and keynote examples for different audiences."
             },
             {
               title: "Book me for training",
@@ -806,25 +848,29 @@ module.exports = {
               title: "LinkedIn",
               href: "https://www.linkedin.com/in/jarilaru/",
               icon: "bi bi-linkedin me-2",
-              external: true
+              external: true,
+              description: "Professional profile, network, and current updates."
             },
             {
               title: "ResearchGate",
               href: "https://www.researchgate.net/profile/Jari-Laru",
               icon: "bi bi-globe me-2",
-              external: true
+              external: true,
+              description: "Research profile with publications and collaboration links."
             },
             {
               title: "ORCID",
               href: "https://orcid.org/0000-0003-0347-0182",
               icon: "bi bi-person-vcard me-2",
-              external: true
+              external: true,
+              description: "Persistent researcher identifier and publication metadata."
             },
             {
               title: "Google Scholar",
               href: "https://scholar.google.com/citations?user=HOLu1ZIAAAAJ&hl=en",
               icon: "bi bi-mortarboard me-2",
-              external: true
+              external: true,
+              description: "Citation metrics, h-index, and publication visibility."
             }
           ]
         }
