@@ -5,7 +5,7 @@ permalink: /politiikka/
 layout: base.njk
 translationKey: politics_index
 lang: fi
-templateEngineOverride: njk,md
+templateEngineOverride: njk
 ---
 <section class="bg-body-tertiary mb-5">
   <div class="container py-4">
@@ -120,6 +120,72 @@ templateEngineOverride: njk,md
         <a href="/2021/01/02/mista-on-hyva-kaupunginvaltuutettu-tehty/" class="btn btn-outline-primary btn-sm">Lue koko kirjoitus</a>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="mb-5" id="valtuustoaloitteet">
+  <div class="container">
+    <div class="d-flex align-items-center justify-content-between mb-3">
+      <div>
+        <h2 class="h4 mb-1">Valtuustoaloitteet</h2>
+        <p class="text-muted small mb-0">{{ collections.politics.length }} aloitetta — avoimuudesta, liikenteestä, urheilusta ja kaupunkikehityksestä</p>
+      </div>
+      <a href="/kynasta/#aloitteet" class="btn btn-outline-primary btn-sm">Kaikki aloitteet</a>
+    </div>
+
+    <div class="ouka-scroller d-flex gap-3 pb-3" style="overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;">
+      {% for item in collections.politics | sort(true, false, "date") %}
+      <div class="card border-0 shadow-sm flex-shrink-0" style="width:300px; scroll-snap-align:start;">
+        <div class="card-body d-flex flex-column h-100" style="min-height:180px;">
+          <div class="mb-2">
+            <span class="badge bg-primary-subtle text-primary-emphasis">Valtuustoaloite</span>
+            <span class="text-muted small ms-2">{{ item.date | dateFormat }}</span>
+          </div>
+          <h3 class="h6 fw-semibold mb-auto">{{ item.data.title }}</h3>
+          <div class="mt-3">
+            <a href="{{ item.url }}" class="btn btn-outline-primary btn-sm">Lue aloite</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <p class="text-muted small mt-2"><i class="bi bi-arrow-right me-1"></i>Voit vierittää kortteja vaakatasossa</p>
+  </div>
+</section>
+
+<section class="mb-5 bg-body-tertiary py-4" id="kokousvideot">
+  <div class="container">
+    <div class="d-flex align-items-center justify-content-between mb-3">
+      <div>
+        <h2 class="h4 mb-1">Valtuuston kokoukset</h2>
+        <p class="text-muted small mb-0">Oulun kaupunginvaltuuston kokoukset suorana ja tallenteina — lähde: Oulun kaupungin avoin data</p>
+      </div>
+      <a href="https://www.ouka.fi/oulu/kaupunginvaltuusto/kokoukset" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary btn-sm">ouka.fi</a>
+    </div>
+
+    {% if oukaCouncilVideos.length > 0 %}
+    <div class="ouka-scroller d-flex gap-3 pb-3" style="overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;">
+      {% for video in oukaCouncilVideos %}
+      <div class="card border-0 shadow-sm flex-shrink-0" style="width:280px; scroll-snap-align:start;">
+        {% if video.thumbnail %}
+        <a href="{{ video.url }}" target="_blank" rel="noopener noreferrer">
+          <img src="{{ video.thumbnail }}" alt="{{ video.title }}" class="card-img-top" style="aspect-ratio:16/9; object-fit:cover;" loading="lazy">
+        </a>
+        {% endif %}
+        <div class="card-body">
+          <p class="small text-muted mb-1">{{ video.dateStr }}</p>
+          <h3 class="h6 fw-semibold mb-2" style="font-size:0.85rem; line-height:1.4;">{{ video.title }}</h3>
+          <a href="{{ video.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-danger btn-sm">
+            <i class="bi bi-youtube me-1"></i>Katso
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <p class="text-muted small mt-2"><i class="bi bi-arrow-right me-1"></i>Voit vierittää kortteja vaakatasossa &middot; Lähde: <a href="https://api.ouka.fi/v1" target="_blank" rel="noopener noreferrer" class="text-muted">api.ouka.fi</a></p>
+    {% else %}
+    <p class="text-muted">Kokousvideoita ei juuri nyt saatavilla.</p>
+    {% endif %}
   </div>
 </section>
 
