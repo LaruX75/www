@@ -321,31 +321,6 @@ lang: en
       </div>
     </div>
 
-    <div class="table-responsive mb-4">
-      <table class="table table-sm table-hover align-middle">
-        <thead>
-          <tr>
-            <th>Presentation</th>
-            <th class="text-nowrap">Author</th>
-            <th class="text-nowrap">Views</th>
-            <th class="text-nowrap">Open</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for p in slideshare %}
-          <tr>
-            <td><div class="fw-semibold">{{ p.title }}</div></td>
-            <td>{{ p.author or "Jari Laru" }}</td>
-            <td>{% if p.views %}{{ p.views }}{% else %}-{% endif %}</td>
-            <td>
-              <a href="{{ p.url }}" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm rounded-pill px-3">SlideShare</a>
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
       {% for p in slideshare %}
       <div class="col">
