@@ -489,14 +489,16 @@ module.exports = {
               href: "/kynasta/#puheet",
               icon: "bi bi-mic me-2",
               menuLink: true,
-              description: "Valtuustopuheenvuorot ja esittelyt."
+              description: "Valtuustopuheenvuorot ja esittelyt.",
+              countKey: "pub_puhe"
             },
             {
               title: "Mielipiteet",
               href: "/kynasta/#mielipiteet",
               icon: "bi bi-chat-text me-2",
               menuLink: true,
-              description: "Kannanotot ja lehtijutut."
+              description: "Kannanotot ja lehtijutut.",
+              countKey: "pub_mielipide"
             },
             {
               title: "Kaikki kirjoitukset",
@@ -588,14 +590,16 @@ module.exports = {
               href: "/en/writings/#puheet",
               icon: "bi bi-mic me-2",
               menuLink: true,
-              description: "Council speeches and statements."
+              description: "Council speeches and statements.",
+              countKey: "pub_puhe"
             },
             {
               title: "Opinion pieces",
               href: "/en/writings/#mielipiteet",
               icon: "bi bi-chat-text me-2",
               menuLink: true,
-              description: "Columns and newspaper articles."
+              description: "Columns and newspaper articles.",
+              countKey: "pub_mielipide"
             },
             {
               title: "All writings",
