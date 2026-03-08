@@ -31,6 +31,9 @@
         <td>
           {% if thesis.link %}
             <a href="{{ thesis.link }}" target="_blank" class="text-decoration-none fw-medium text-body" rel="noopener noreferrer">{{ thesis.title }}</a>
+            <a href="{{ thesis.link }}" target="_blank" class="ms-2 text-decoration-none align-middle" rel="noopener noreferrer" aria-label="Avaa opinnaytetyo: {{ thesis.title }}">
+              <i class="bi bi-box-arrow-up-right"></i>
+            </a>
           {% else %}
             <span class="fw-medium">{{ thesis.title }}</span>
           {% endif %}
