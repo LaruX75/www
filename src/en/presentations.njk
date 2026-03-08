@@ -301,6 +301,51 @@ lang: en
     <h2 id="slideshare-heading" class="section-title mb-4">
       <i class="bi bi-collection-play me-2" style="font-size: 1rem;"></i>SlideShare Presentations
     </h2>
+    {% if slideshare and slideshare.length %}
+    <div class="playlist-ticker mb-4" aria-label="SlideShare presentation scroller">
+      <div class="playlist-ticker-track">
+        {% for p in slideshare.slice(0, 12) %}
+        <article class="playlist-ticker-item card border-0 shadow-sm">
+          {% if p.thumbnail %}
+          <img src="{{ p.thumbnail }}" class="card-img-top" alt="{{ p.title }}" style="height: 150px; object-fit: cover;">
+          {% endif %}
+          <div class="card-body p-3">
+            <h3 class="h6 mb-2">{{ p.title }}</h3>
+            <p class="text-muted small mb-2">{{ p.author or "Jari Laru" }}{% if p.views %} • {{ p.views }} views{% endif %}</p>
+            <a href="{{ p.url }}" target="_blank" rel="noopener" class="btn btn-primary btn-sm rounded-pill px-3">
+              Open SlideShare <i class="bi bi-arrow-up-right"></i>
+            </a>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="table-responsive mb-4">
+      <table class="table table-sm table-hover align-middle">
+        <thead>
+          <tr>
+            <th>Presentation</th>
+            <th class="text-nowrap">Author</th>
+            <th class="text-nowrap">Views</th>
+            <th class="text-nowrap">Open</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for p in slideshare %}
+          <tr>
+            <td><div class="fw-semibold">{{ p.title }}</div></td>
+            <td>{{ p.author or "Jari Laru" }}</td>
+            <td>{% if p.views %}{{ p.views }}{% else %}-{% endif %}</td>
+            <td>
+              <a href="{{ p.url }}" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm rounded-pill px-3">SlideShare</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
       {% for p in slideshare %}
       <div class="col">
@@ -346,10 +391,13 @@ lang: en
       </div>
       {% endfor %}
     </div>
+    {% else %}
+    <p class="text-muted">No SlideShare presentations available.</p>
+    {% endif %}
 
     <div class="mt-4 text-center">
       <a href="https://www.slideshare.net/larux" target="_blank" rel="noopener noreferrer" class="btn btn-primary px-4 py-2">
-        View all on SlideShare (124+) <i class="bi bi-arrow-up-right"></i>
+        View all on SlideShare ({{ (slideshare or []).length }}) <i class="bi bi-arrow-up-right"></i>
       </a>
     </div>
   </section>
