@@ -219,7 +219,7 @@ templateEngineOverride: njk
                 {% if pub.doi and semanticscholar.metrics.doiCitations[pub.doi | lower] %}<span class="badge text-bg-warning rounded-pill ms-1" title="Viittaukset"><i class="bi bi-quote me-1"></i>{{ semanticscholar.metrics.doiCitations[pub.doi | lower] }}</span>{% endif %}
               </td>
               <td class="text-center">
-                {% if pub.url %}<a href="{{ pub.url }}" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener" title="Avaa julkaisu uuteen välilehteen" aria-label="Avaa julkaisu uuteen välilehteen"><i class="bi bi-box-arrow-up-right"></i></a>{% endif %}
+                {% if pub.url %}<a href="{{ pub.url }}" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Avaa julkaisu uuteen välilehteen" aria-label="Avaa julkaisu uuteen välilehteen"><i class="bi bi-box-arrow-up-right"></i></a>{% endif %}
               </td>
             </tr>
             {% endfor %}
@@ -283,7 +283,7 @@ templateEngineOverride: njk
         <div class="list-group-item px-4 py-3">
           <div class="d-flex justify-content-between align-items-start gap-2">
             <div>
-              <span class="fw-medium">{% if thesis.link %}<a href="{{ thesis.link }}" target="_blank" rel="noopener" class="text-decoration-none">{{ thesis.title }}</a>{% else %}{{ thesis.title }}{% endif %}</span>
+              <span class="fw-medium">{% if thesis.link %}<a href="{{ thesis.link }}" target="_blank" rel="noopener noreferrer" class="text-decoration-none">{{ thesis.title }}</a>{% else %}{{ thesis.title }}{% endif %}</span>
               {% if thesis.authors.length %}<div class="small text-muted mt-1">{{ thesis.authors | join(", ") }}</div>{% endif %}
             </div>
             <span class="badge bg-light text-dark border flex-shrink-0">{{ thesis.year }}</span>

@@ -160,7 +160,7 @@ source_url: "https://www.jarilaru.fi/silloin-kun-sita-oltiin-larges-securityn-sy
         <div class="col-md-6">
           <figure class="bbs-figure">
             <img src="/img/uploads/2021/01/majorbbsdemo.jpg" alt="MajorBBS etusivu" class="img-fluid rounded">
-            <figcaption class="bbs-caption mt-2">MajorBBS:n (MBBS) etusivu. Tästä BBS-järjestelmästä löytyy simulaattori, jonka voit asentaa ja fiilistellä kultaisia aikoja! <a href="https://www.mbbsemu.com/" target="_blank" rel="noopener">mbbsemu.com</a></figcaption>
+            <figcaption class="bbs-caption mt-2">MajorBBS:n (MBBS) etusivu. Tästä BBS-järjestelmästä löytyy simulaattori, jonka voit asentaa ja fiilistellä kultaisia aikoja! <a href="https://www.mbbsemu.com/" target="_blank" rel="noopener noreferrer">mbbsemu.com</a></figcaption>
           </figure>
           <div class="mt-3">
             <p class="bbs-video-label"><i class="bi bi-play-circle-fill me-1"></i>Mikä oli SysOpin ja käyttäjän ero?</p>

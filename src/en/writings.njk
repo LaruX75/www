@@ -720,7 +720,7 @@ section[id] {
       tbody.innerHTML = slice.map((d, index) => {
         const globalIndex = start + index;
         const linkCell = d.url
-          ? `<a href="${escHtml(d.url)}" target="_blank" rel="noopener"
+          ? `<a href="${escHtml(d.url)}" target="_blank" rel="noopener noreferrer"
                class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Open publication">
                <i class="bi bi-arrow-up-right"></i>
              </a>`
@@ -1072,7 +1072,7 @@ section[id] {
         const catBadges = (d.categories || []).map(c => `<a href="/en/categories/${slugify(c)}/" class="badge text-bg-secondary me-1 text-decoration-none">${c}</a>`).join('');
         const keyBadges = (d.keywords || []).map(k => `<a href="/en/keywords/${slugify(k)}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">${k}</a>`).join('');
 
-        const targetAttr = d.isExternal ? 'target="_blank" rel="noopener"' : '';
+        const targetAttr = d.isExternal ? 'target="_blank" rel="noopener noreferrer"' : '';
         const iconInfo = d.isExternal ? '<i class="bi bi-arrow-up-right"></i>' : '<i class="bi bi-arrow-right"></i>';
         const eventInfo = d.event ? `<br><span class="badge text-bg-light border text-dark mt-1"><i class="bi bi-calendar-event me-1"></i>${escHtml(d.event)}</span>` : '';
 
@@ -1222,7 +1222,7 @@ section[id] {
         const catBadges = (d.categories || []).map(c => `<a href="/en/categories/${slugify(c)}/" class="badge text-bg-secondary me-1 text-decoration-none">${c}</a>`).join('');
         const keyBadges = (d.keywords || []).map(k => `<a href="/en/keywords/${slugify(k)}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">${k}</a>`).join('');
 
-        const targetAttr = d.isExternal ? 'target="_blank" rel="noopener"' : '';
+        const targetAttr = d.isExternal ? 'target="_blank" rel="noopener noreferrer"' : '';
         const iconInfo = d.isExternal ? '<i class="bi bi-arrow-up-right"></i>' : '<i class="bi bi-arrow-right"></i>';
         const typeInfo = d.initiative_type ? `<br><span class="badge text-bg-light border text-dark mt-1">${escHtml(d.initiative_type)}</span>` : '';
 
@@ -1372,7 +1372,7 @@ section[id] {
         const catBadges = (d.categories || []).map(c => `<a href="/en/categories/${slugify(c)}/" class="badge text-bg-secondary me-1 text-decoration-none">${c}</a>`).join('');
         const keyBadges = (d.keywords || []).map(k => `<a href="/en/keywords/${slugify(k)}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">${k}</a>`).join('');
 
-        const targetAttr = d.isExternal ? 'target="_blank" rel="noopener"' : '';
+        const targetAttr = d.isExternal ? 'target="_blank" rel="noopener noreferrer"' : '';
         const iconInfo = d.isExternal ? '<i class="bi bi-arrow-up-right"></i>' : '<i class="bi bi-arrow-right"></i>';
         const pubInfo = d.publication ? `<br><span class="badge text-bg-light border text-dark mt-1"><i class="bi bi-journal-text me-1"></i>${escHtml(d.publication)}</span>` : '';
 
@@ -1522,7 +1522,7 @@ section[id] {
         const catBadges = (d.categories || []).map(c => `<a href="/en/categories/${slugify(c)}/" class="badge text-bg-secondary me-1 text-decoration-none">${c}</a>`).join('');
         const keyBadges = (d.keywords || []).map(k => `<a href="/en/keywords/${slugify(k)}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">${k}</a>`).join('');
 
-        const targetAttr = d.isExternal ? 'target="_blank" rel="noopener"' : '';
+        const targetAttr = d.isExternal ? 'target="_blank" rel="noopener noreferrer"' : '';
         const iconInfo = d.isExternal ? '<i class="bi bi-arrow-up-right"></i>' : '<i class="bi bi-arrow-right"></i>';
         const pubInfo = d.publication ? `<br><span class="badge text-bg-light border text-dark mt-1"><i class="bi bi-journal-text me-1"></i>${escHtml(d.publication)}</span>` : '';
 

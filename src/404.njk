@@ -26,8 +26,13 @@ translationKey: not_found
                 <span class="input-group-text bg-white border-end-0 pe-1" style="border-radius: 50rem 0 0 50rem; border: none;">
                     <i class="bi bi-search text-dark"></i>
                 </span>
-                <input type="text" class="form-control bg-white text-dark border-start-0 ps-2" style="border-radius: 0 50rem 50rem 0; border: none; font-size: 1.25rem;" placeholder="Etsi tältä sivustolta" aria-label="Etsi tältä sivustolta" onclick="document.getElementById('searchToggleBtn').click();">
+                <input type="text" id="search404Input" class="form-control bg-white text-dark border-start-0 ps-2" style="border-radius: 0 50rem 50rem 0; border: none; font-size: 1.25rem;" placeholder="Etsi tältä sivustolta" aria-label="Etsi tältä sivustolta">
             </div>
         </div>
     </div>
 </section>
+<script>
+  document.getElementById('search404Input')?.addEventListener('click', function () {
+    document.getElementById('searchToggleBtn')?.click();
+  });
+</script>

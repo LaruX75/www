@@ -23,7 +23,7 @@ templateEngineOverride: md
 <div>
 <div><iframe src="http://www.slideshare.net/slideshow/embed_code/2580232" width="479" height="511" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen> </iframe>
 <div></div>
-<div><span>via </span><a href="http://www.slideshare.net" target="_blank" rel="noopener">SlideShare</a></div>
+<div><span>via </span><a href="http://www.slideshare.net" target="_blank" rel="noopener noreferrer">SlideShare</a></div>
 <div></div>
 </div>
 </div>

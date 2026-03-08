@@ -122,7 +122,7 @@ lang: en
     </div>
 
     <div class="d-flex flex-wrap gap-2">
-      <a class="btn btn-outline-primary btn-sm" href="https://vaalit.yle.fi/vaalikone/alue-ja-kuntavaalit2025/kuntavaalit/155/ehdokkaat/4547" target="_blank" rel="noopener">YLE election machine</a>
+      <a class="btn btn-outline-primary btn-sm" href="https://vaalit.yle.fi/vaalikone/alue-ja-kuntavaalit2025/kuntavaalit/155/ehdokkaat/4547" target="_blank" rel="noopener noreferrer">YLE election machine</a>
       <a class="btn btn-outline-secondary btn-sm" href="/en/election-history/">Election history</a>
       <a class="btn btn-outline-secondary btn-sm" href="/en/politics/">Jari Laru, politician</a>
     </div>

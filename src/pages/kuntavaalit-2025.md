@@ -125,7 +125,7 @@ lang: fi
     </div>
 
     <div class="d-flex flex-wrap gap-2">
-      <a class="btn btn-outline-primary btn-sm" href="https://vaalit.yle.fi/vaalikone/alue-ja-kuntavaalit2025/kuntavaalit/155/ehdokkaat/4547" target="_blank" rel="noopener">YLE vaalikone &rarr;</a>
+      <a class="btn btn-outline-primary btn-sm" href="https://vaalit.yle.fi/vaalikone/alue-ja-kuntavaalit2025/kuntavaalit/155/ehdokkaat/4547" target="_blank" rel="noopener noreferrer">YLE vaalikone &rarr;</a>
       <a class="btn btn-outline-secondary btn-sm" href="/vaalihistoria/">Vaalihistoria</a>
       <a class="btn btn-outline-secondary btn-sm" href="/politiikka/">Jari Laru, poliitikko</a>
     </div>

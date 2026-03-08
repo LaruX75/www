@@ -230,7 +230,7 @@ translationKey: scientific_publications_index
     } else {
       tbody.innerHTML = slice.map(d => {
         const linkCell = d.url
-          ? `<a href="${escHtml(d.url)}" target="_blank" rel="noopener"
+          ? `<a href="${escHtml(d.url)}" target="_blank" rel="noopener noreferrer"
                class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Avaa julkaisu">
                <i class="bi bi-arrow-up-right"></i>
              </a>`

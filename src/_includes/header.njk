@@ -25,13 +25,13 @@
     <div class="collapse navbar-collapse" id="navbarMainEn">
       <ul class="navbar-nav align-items-md-center flex-md-nowrap evelenty-main-nav ms-md-2 me-auto">
         <li class="nav-item">
-          <a class="nav-link {% if page.url == '/en/' %}active{% endif %}" href="{{ navHome.url or '/en/' }}">
+          <a class="nav-link {% if page.url == '/en/' %}active{% endif %}" href="{{ navHome.url or '/en/' }}"{% if page.url == '/en/' %} aria-current="page"{% endif %}>
             <i class="{{ navHome.icon or 'bi bi-house-door-fill' }}"></i> {{ navHome.title or 'Home' }}
           </a>
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          <a class="nav-link dropdown-toggle {% if page.url and ('/en/about/' in page.url or '/en/cv/' in page.url or '/en/portfolio/' in page.url or '/en/company/' in page.url or '/en/road-trips/' in page.url) %}active{% endif %}" href="{{ navMe.url or '/en/about/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle {% if page.url and ('/en/about/' in page.url or '/en/cv/' in page.url or '/en/portfolio/' in page.url or '/en/company/' in page.url or '/en/road-trips/' in page.url) %}active{% endif %}" href="{{ navMe.url or '/en/about/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false"{% if page.url and ('/en/about/' in page.url or '/en/cv/' in page.url or '/en/portfolio/' in page.url or '/en/company/' in page.url or '/en/road-trips/' in page.url) %} aria-current="page"{% endif %}>
             <i class="{{ navMe.icon or 'bi bi-person-fill' }}"></i> {{ navMe.title or 'Me' }}
           </a>
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
@@ -46,14 +46,14 @@
                           <i class="{{ link.icon }}"></i>
                           <span class="menu-link-inline-items">
                             {% for inlineLink in link.inlineLinks %}
-                              <a class="menu-link-inline-anchor" href="{{ inlineLink.href }}"{% if inlineLink.external %} target="_blank" rel="noopener"{% endif %}>{{ inlineLink.title }}</a>{% if not loop.last %}<span class="menu-link-inline-separator" aria-hidden="true">|</span>{% endif %}
+                              <a class="menu-link-inline-anchor" href="{{ inlineLink.href }}"{% if inlineLink.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ inlineLink.title }}</a>{% if not loop.last %}<span class="menu-link-inline-separator" aria-hidden="true">|</span>{% endif %}
                             {% endfor %}
                           </span>
                         </div>
                       {% elif link.menuLink %}
-                        <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}><i class="{{ link.icon }}"></i><span>{{ link.title }}</span></a>
+                        <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}><i class="{{ link.icon }}"></i><span>{{ link.title }}</span></a>
                       {% else %}
-                        <a href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}><i class="{{ link.icon }}"></i>{{ link.title }}</a>
+                        <a href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}><i class="{{ link.icon }}"></i>{{ link.title }}</a>
                       {% endif %}
                       {% if link.description %}
                         <small class="{{ 'menu-link-desc' if link.menuLink }}">{{ link.description }}</small>
@@ -75,7 +75,7 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          <a class="nav-link dropdown-toggle {% if page.url and ('/en/publications/' in page.url or '/en/theses/' in page.url or '/en/presentations/' in page.url) %}active{% endif %}" href="{{ navWork.url or '/en/work/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle {% if page.url and ('/en/publications/' in page.url or '/en/theses/' in page.url or '/en/presentations/' in page.url) %}active{% endif %}" href="{{ navWork.url or '/en/work/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false"{% if page.url and ('/en/publications/' in page.url or '/en/theses/' in page.url or '/en/presentations/' in page.url) %} aria-current="page"{% endif %}>
             <i class="{{ navWork.icon or 'bi bi-briefcase-fill' }}"></i> {{ navWork.title or 'Work' }}
           </a>
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
@@ -89,18 +89,18 @@
                     {% for link in section.links %}
                       {% if link.cta %}
                         <div class="work-inline-cta">
-                          <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>
+                          <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
                             <i class="{{ link.icon }}"></i><span>{{ link.title }}</span>
                           </a>
                           {% if link.description %}
                             <small class="menu-link-desc">{{ link.description }}</small>
                           {% endif %}
-                          <a class="btn btn-accent btn-lg w-100 mt-2" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>
+                          <a class="btn btn-accent btn-lg w-100 mt-2" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
                             {{ link.ctaLabel or workMegaMenu.cta.label or "Pyydä tarjous" }}
                           </a>
                         </div>
                       {% else %}
-                        <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}><i class="{{ link.icon }}"></i><span>{{ link.title }}</span></a>
+                        <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}><i class="{{ link.icon }}"></i><span>{{ link.title }}</span></a>
                         {% if link.description %}
                           <small class="menu-link-desc">{{ link.description }}</small>
                         {% endif %}
@@ -117,7 +117,7 @@
                   <section>
                     <h5>{{ section.heading }}</h5>
                     {% for link in section.links %}
-                      <a href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}><i class="{{ link.icon }}"></i>{{ link.title }}</a>
+                      <a href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}><i class="{{ link.icon }}"></i>{{ link.title }}</a>
                       {% if link.description %}
                         <small>{{ link.description }}</small>
                       {% endif %}
@@ -150,8 +150,8 @@
                 </section>
                 <section>
                   <h5>Academic Networks</h5>
-                  <a href="https://www.linkedin.com/in/jarilaru/" target="_blank" rel="noopener"><i class="bi bi-linkedin me-2"></i>LinkedIn</a>
-                  <a href="https://www.researchgate.net/profile/Jari-Laru" target="_blank" rel="noopener"><i class="bi bi-globe me-2"></i>ResearchGate</a>
+                  <a href="https://www.linkedin.com/in/jarilaru/" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin me-2"></i>LinkedIn</a>
+                  <a href="https://www.researchgate.net/profile/Jari-Laru" target="_blank" rel="noopener noreferrer"><i class="bi bi-globe me-2"></i>ResearchGate</a>
                 </section>
               </div>
               <aside class="mega-right cta-card">
@@ -165,7 +165,7 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          <a class="nav-link dropdown-toggle {% if page.url and ('/en/politics/' in page.url or '/en/affiliations/' in page.url) %}active{% endif %}" href="{{ navPolitics.url or '/en/politics/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle {% if page.url and ('/en/politics/' in page.url or '/en/affiliations/' in page.url) %}active{% endif %}" href="{{ navPolitics.url or '/en/politics/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false"{% if page.url and ('/en/politics/' in page.url or '/en/affiliations/' in page.url) %} aria-current="page"{% endif %}>
             <i class="{{ navPolitics.icon or 'bi bi-bank2' }}"></i> {{ navPolitics.title or 'Politics' }}
           </a>
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
@@ -178,12 +178,12 @@
                       {% set linkCount = 0 %}
                       {% if link.countKey %}{% set linkCount = (collections[link.countKey] or []) | length %}{% endif %}
                       {% if link.menuLink %}
-                        <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>
+                        <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
                           <i class="{{ link.icon }}"></i>
                           <span>{{ link.title }}{% if link.countKey and linkCount %} <span class="menu-link-count">{{ linkCount }}</span>{% endif %}</span>
                         </a>
                       {% else %}
-                        <a href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}><i class="{{ link.icon }}"></i>{{ link.title }}</a>
+                        <a href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}><i class="{{ link.icon }}"></i>{{ link.title }}</a>
                       {% endif %}
                       {% if link.description %}
                         <small class="{{ 'menu-link-desc' if link.menuLink }}">{{ link.description }}</small>
@@ -197,7 +197,7 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          <a class="nav-link dropdown-toggle {% if page.url and '/en/writings/' in page.url %}active{% endif %}" href="{{ navWritings.url or '/en/writings/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle {% if page.url and '/en/writings/' in page.url %}active{% endif %}" href="{{ navWritings.url or '/en/writings/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false"{% if page.url and '/en/writings/' in page.url %} aria-current="page"{% endif %}>
             <i class="{{ navWritings.icon or 'bi bi-pencil-fill' }}"></i> {{ navWritings.title or 'Writings' }}
           </a>
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
@@ -273,7 +273,7 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          <a class="nav-link dropdown-toggle {% if page.url and '/en/contact/' in page.url %}active{% endif %}" href="{{ navContact.url or '/en/contact/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle {% if page.url and '/en/contact/' in page.url %}active{% endif %}" href="{{ navContact.url or '/en/contact/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false"{% if page.url and '/en/contact/' in page.url %} aria-current="page"{% endif %}>
             <i class="{{ navContact.icon or 'bi bi-envelope' }}"></i> {{ navContact.title or 'Contact' }}
           </a>
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
@@ -298,7 +298,7 @@
                       </a>
                     {% else %}
                       {% for link in column.links %}
-                        <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>
+                        <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
                           <i class="{{ link.icon }}"></i><span>{{ link.title }}</span>
                         </a>
                       {% endfor %}
@@ -372,11 +372,11 @@
                   {% if link.inlineLinks %}
                     <div class="mobile-nav-link d-flex align-items-center gap-2 flex-wrap">
                       {% for inlineLink in link.inlineLinks %}
-                        <a class="mobile-nav-link inline-link" href="{{ inlineLink.href }}"{% if inlineLink.external %} target="_blank" rel="noopener"{% endif %}>{{ inlineLink.title }}</a>{% if not loop.last %}<span class="mobile-nav-inline-separator" aria-hidden="true">|</span>{% endif %}
+                        <a class="mobile-nav-link inline-link" href="{{ inlineLink.href }}"{% if inlineLink.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ inlineLink.title }}</a>{% if not loop.last %}<span class="mobile-nav-inline-separator" aria-hidden="true">|</span>{% endif %}
                       {% endfor %}
                     </div>
                   {% else %}
-                    <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>{{ link.title }}</a>
+                    <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.title }}</a>
                   {% endif %}
                 {% endfor %}
               </div>
@@ -395,7 +395,7 @@
               <p class="text-uppercase small text-muted mb-1 mt-2">{{ section.heading }}</p>
               <div class="d-grid gap-1 mb-2">
                 {% for link in section.links %}
-                  <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>{{ link.title }}</a>
+                  <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.title }}</a>
                 {% endfor %}
               </div>
             {% endfor %}
@@ -413,7 +413,7 @@
               <p class="text-uppercase small text-muted mb-1 mt-2">{{ section.heading }}</p>
               <div class="d-grid gap-1 mb-2">
                 {% for link in section.links %}
-                  <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>{{ link.title }}</a>
+                  <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.title }}</a>
                 {% endfor %}
               </div>
             {% endfor %}
@@ -465,7 +465,7 @@
               {% if column.links %}
                 <div class="d-grid gap-1 mb-2">
                   {% for link in column.links %}
-                    <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>{{ link.title }}</a>
+                    <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.title }}</a>
                   {% endfor %}
                 </div>
               {% endif %}
@@ -501,13 +501,13 @@
     <div class="collapse navbar-collapse" id="navbarMain">
       <ul class="navbar-nav align-items-md-center flex-md-nowrap evelenty-main-nav ms-md-2 me-auto">
         <li class="nav-item">
-          <a class="nav-link {% if page.url == '/' %}active{% endif %}" href="{{ navHome.url or '/' }}">
+          <a class="nav-link {% if page.url == '/' %}active{% endif %}" href="{{ navHome.url or '/' }}"{% if page.url == '/' %} aria-current="page"{% endif %}>
             <i class="{{ navHome.icon or 'bi bi-house-door-fill' }}"></i> {{ navHome.title or 'Etusivu' }}
           </a>
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          <a class="nav-link dropdown-toggle {% if page.url and ('/tietoa/' in page.url or '/autolomat/' in page.url or '/cv/' in page.url or '/portfolio/' in page.url or '/larux-tmi/' in page.url or '/yritys/' in page.url) %}active{% endif %}" href="{{ navMe.url or '/tietoa/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle {% if page.url and ('/tietoa/' in page.url or '/autolomat/' in page.url or '/cv/' in page.url or '/portfolio/' in page.url or '/larux-tmi/' in page.url or '/yritys/' in page.url) %}active{% endif %}" href="{{ navMe.url or '/tietoa/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false"{% if page.url and ('/tietoa/' in page.url or '/autolomat/' in page.url or '/cv/' in page.url or '/portfolio/' in page.url or '/larux-tmi/' in page.url or '/yritys/' in page.url) %} aria-current="page"{% endif %}>
             <i class="{{ navMe.icon or 'bi bi-person-fill' }}"></i> {{ navMe.title or 'Minä' }}
           </a>
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
@@ -522,14 +522,14 @@
                           <i class="{{ link.icon }}"></i>
                           <span class="menu-link-inline-items">
                             {% for inlineLink in link.inlineLinks %}
-                              <a class="menu-link-inline-anchor" href="{{ inlineLink.href }}"{% if inlineLink.external %} target="_blank" rel="noopener"{% endif %}>{{ inlineLink.title }}</a>{% if not loop.last %}<span class="menu-link-inline-separator" aria-hidden="true">|</span>{% endif %}
+                              <a class="menu-link-inline-anchor" href="{{ inlineLink.href }}"{% if inlineLink.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ inlineLink.title }}</a>{% if not loop.last %}<span class="menu-link-inline-separator" aria-hidden="true">|</span>{% endif %}
                             {% endfor %}
                           </span>
                         </div>
                       {% elif link.menuLink %}
-                        <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}><i class="{{ link.icon }}"></i><span>{{ link.title }}</span></a>
+                        <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}><i class="{{ link.icon }}"></i><span>{{ link.title }}</span></a>
                       {% else %}
-                        <a href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}><i class="{{ link.icon }}"></i>{{ link.title }}</a>
+                        <a href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}><i class="{{ link.icon }}"></i>{{ link.title }}</a>
                       {% endif %}
                       {% if link.description %}
                         <small class="{{ 'menu-link-desc' if link.menuLink }}">{{ link.description }}</small>
@@ -551,7 +551,7 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          <a class="nav-link dropdown-toggle {% if page.url and ('/opetus/' in page.url or '/portfolio/' in page.url or '/tutkimus/' in page.url or '/v%C3%A4it%C3%B6skirja/' in page.url or '/väitöskirja/' in page.url or '/palkinnot/' in page.url) %}active{% endif %}" href="{{ navWork.url or '/tyoni-yliopistonlehtorina/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle {% if page.url and ('/opetus/' in page.url or '/portfolio/' in page.url or '/tutkimus/' in page.url or '/v%C3%A4it%C3%B6skirja/' in page.url or '/väitöskirja/' in page.url or '/palkinnot/' in page.url) %}active{% endif %}" href="{{ navWork.url or '/tyoni-yliopistonlehtorina/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false"{% if page.url and ('/opetus/' in page.url or '/portfolio/' in page.url or '/tutkimus/' in page.url or '/v%C3%A4it%C3%B6skirja/' in page.url or '/väitöskirja/' in page.url or '/palkinnot/' in page.url) %} aria-current="page"{% endif %}>
             <i class="{{ navWork.icon or 'bi bi-briefcase-fill' }}"></i> {{ navWork.title or 'Työ' }}
           </a>
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
@@ -565,18 +565,18 @@
                     {% for link in section.links %}
                       {% if link.cta %}
                         <div class="work-inline-cta">
-                          <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>
+                          <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
                             <i class="{{ link.icon }}"></i><span>{{ link.title }}</span>
                           </a>
                           {% if link.description %}
                             <small class="menu-link-desc">{{ link.description }}</small>
                           {% endif %}
-                          <a class="btn btn-accent btn-lg w-100 mt-2" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>
+                          <a class="btn btn-accent btn-lg w-100 mt-2" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
                             {{ link.ctaLabel or workMegaMenu.cta.label or "Pyydä tarjous" }}
                           </a>
                         </div>
                       {% else %}
-                        <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}><i class="{{ link.icon }}"></i><span>{{ link.title }}</span></a>
+                        <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}><i class="{{ link.icon }}"></i><span>{{ link.title }}</span></a>
                         {% if link.description %}
                           <small class="menu-link-desc">{{ link.description }}</small>
                         {% endif %}
@@ -593,7 +593,7 @@
                   <section>
                     <h5>{{ section.heading }}</h5>
                     {% for link in section.links %}
-                      <a href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}><i class="{{ link.icon }}"></i>{{ link.title }}</a>
+                      <a href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}><i class="{{ link.icon }}"></i>{{ link.title }}</a>
                       {% if link.description %}
                         <small>{{ link.description }}</small>
                       {% endif %}
@@ -630,8 +630,8 @@
                 <section>
                   <h5>Palkinnot & sosiaalinen media</h5>
                   <a href="/palkinnot/"><i class="bi bi-award me-2"></i>Palkinnot</a>
-                  <a href="https://www.linkedin.com/in/jarilaru/" target="_blank" rel="noopener"><i class="bi bi-linkedin me-2"></i>LinkedIn</a>
-                  <a href="https://www.researchgate.net/profile/Jari-Laru" target="_blank" rel="noopener"><i class="bi bi-globe me-2"></i>ResearchGate</a>
+                  <a href="https://www.linkedin.com/in/jarilaru/" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin me-2"></i>LinkedIn</a>
+                  <a href="https://www.researchgate.net/profile/Jari-Laru" target="_blank" rel="noopener noreferrer"><i class="bi bi-globe me-2"></i>ResearchGate</a>
                 </section>
               </div>
               <aside class="mega-right cta-card">
@@ -645,7 +645,7 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          <a class="nav-link dropdown-toggle {% if page.url and ('/politiikka/' in page.url or '/politiiikka/' in page.url) %}active{% endif %}" href="{{ navPolitics.url or '/politiikka/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle {% if page.url and ('/politiikka/' in page.url or '/politiiikka/' in page.url) %}active{% endif %}" href="{{ navPolitics.url or '/politiikka/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false"{% if page.url and ('/politiikka/' in page.url or '/politiiikka/' in page.url) %} aria-current="page"{% endif %}>
             <i class="{{ navPolitics.icon or 'bi bi-bank2' }}"></i> {{ navPolitics.title or 'Politiikka' }}
           </a>
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
@@ -658,12 +658,12 @@
                       {% set linkCount = 0 %}
                       {% if link.countKey %}{% set linkCount = (collections[link.countKey] or []) | length %}{% endif %}
                       {% if link.menuLink %}
-                        <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>
+                        <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
                           <i class="{{ link.icon }}"></i>
                           <span>{{ link.title }}{% if link.countKey and linkCount %} <span class="menu-link-count">{{ linkCount }}</span>{% endif %}</span>
                         </a>
                       {% else %}
-                        <a href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}><i class="{{ link.icon }}"></i>{{ link.title }}</a>
+                        <a href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}><i class="{{ link.icon }}"></i>{{ link.title }}</a>
                       {% endif %}
                       {% if link.description %}
                         <small class="{{ 'menu-link-desc' if link.menuLink }}">{{ link.description }}</small>
@@ -677,7 +677,7 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          <a class="nav-link dropdown-toggle {% if page.url and ('/kynasta/' in page.url or '/blogi/' in page.url) %}active{% endif %}" href="{{ navWritings.url or '/kynasta/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle {% if page.url and ('/kynasta/' in page.url or '/blogi/' in page.url) %}active{% endif %}" href="{{ navWritings.url or '/kynasta/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false"{% if page.url and ('/kynasta/' in page.url or '/blogi/' in page.url) %} aria-current="page"{% endif %}>
             <i class="{{ navWritings.icon or 'bi bi-pencil-fill' }}"></i> {{ navWritings.title or 'Kynästä' }}
           </a>
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
@@ -753,7 +753,7 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          <a class="nav-link dropdown-toggle {% if page.url and '/yhteystiedot/' in page.url %}active{% endif %}" href="{{ navContact.url or '/yhteystiedot/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle {% if page.url and '/yhteystiedot/' in page.url %}active{% endif %}" href="{{ navContact.url or '/yhteystiedot/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false"{% if page.url and '/yhteystiedot/' in page.url %} aria-current="page"{% endif %}>
             <i class="{{ navContact.icon or 'bi bi-envelope' }}"></i> {{ navContact.title or 'Ota yhteyttä' }}
           </a>
           <div class="dropdown-menu mega-menu-panel p-0 border-0">
@@ -778,7 +778,7 @@
                       </a>
                     {% else %}
                       {% for link in column.links %}
-                        <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>
+                        <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
                           <i class="{{ link.icon }}"></i><span>{{ link.title }}</span>
                         </a>
                       {% endfor %}
@@ -852,11 +852,11 @@
                   {% if link.inlineLinks %}
                     <div class="mobile-nav-link d-flex align-items-center gap-2 flex-wrap">
                       {% for inlineLink in link.inlineLinks %}
-                        <a class="mobile-nav-link inline-link" href="{{ inlineLink.href }}"{% if inlineLink.external %} target="_blank" rel="noopener"{% endif %}>{{ inlineLink.title }}</a>{% if not loop.last %}<span class="mobile-nav-inline-separator" aria-hidden="true">|</span>{% endif %}
+                        <a class="mobile-nav-link inline-link" href="{{ inlineLink.href }}"{% if inlineLink.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ inlineLink.title }}</a>{% if not loop.last %}<span class="mobile-nav-inline-separator" aria-hidden="true">|</span>{% endif %}
                       {% endfor %}
                     </div>
                   {% else %}
-                    <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>{{ link.title }}</a>
+                    <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.title }}</a>
                   {% endif %}
                 {% endfor %}
               </div>
@@ -875,7 +875,7 @@
               <p class="text-uppercase small text-muted mb-1 mt-2">{{ section.heading }}</p>
               <div class="d-grid gap-1 mb-2">
                 {% for link in section.links %}
-                  <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>{{ link.title }}</a>
+                  <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.title }}</a>
                 {% endfor %}
               </div>
             {% endfor %}
@@ -893,7 +893,7 @@
               <p class="text-uppercase small text-muted mb-1 mt-2">{{ section.heading }}</p>
               <div class="d-grid gap-1 mb-2">
                 {% for link in section.links %}
-                  <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>{{ link.title }}</a>
+                  <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.title }}</a>
                 {% endfor %}
               </div>
             {% endfor %}
@@ -945,7 +945,7 @@
               {% if column.links %}
                 <div class="d-grid gap-1 mb-2">
                   {% for link in column.links %}
-                    <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>{{ link.title }}</a>
+                    <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.title }}</a>
                   {% endfor %}
                 </div>
               {% endif %}
