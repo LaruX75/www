@@ -236,6 +236,13 @@ module.exports = {
               description: "Koulutus, kokemus ja osaaminen."
             },
             {
+              title: "Opetusportfolio",
+              href: "/portfolio/",
+              icon: "bi bi-folder2-open me-2",
+              menuLink: true,
+              description: "Pedagoginen ajattelu, opetuskokemus ja kehitystyö."
+            },
+            {
               title: "Palkinnot",
               href: "/palkinnot/",
               icon: "bi bi-award me-2",
@@ -258,14 +265,14 @@ module.exports = {
               href: "https://www.instagram.com/stories/highlights/18134958520132291/?hl=fi",
               icon: "bi bi-egg-fried me-2",
               external: true,
-              description: "Ruoka-aiheisia nostoja ja resepti-ideoita arjesta."
+              description: "Intohimoinen ruoanlaittaja, leipuri ja keittokirjojen keräilijä."
             },
             {
               title: "Hartiapankkiremontoija",
               href: "https://www.instagram.com/stories/highlights/17917732456477538/?hl=fi",
               icon: "bi bi-hammer me-2",
               external: true,
-              description: "Remonttiprojekteja, ratkaisuja ja ennen-jälkeen kuvia."
+              description: "1970-luvun talon remontteja kaivinkoneen ohjaimista tapetointiin."
             }
           ]
         },
@@ -322,6 +329,13 @@ module.exports = {
               icon: "bi bi-file-earmark-person me-2",
               menuLink: true,
               description: "Education, skills and history."
+            },
+            {
+              title: "Teaching Portfolio",
+              href: "/en/portfolio/",
+              icon: "bi bi-folder2-open me-2",
+              menuLink: true,
+              description: "Pedagogical thinking, teaching experience and development."
             }
           ]
         },
@@ -340,14 +354,14 @@ module.exports = {
               href: "https://www.instagram.com/stories/highlights/18134958520132291/?hl=fi",
               icon: "bi bi-egg-fried me-2",
               external: true,
-              description: "Food highlights and practical cooking inspiration."
+              description: "Passionate home cook, baker, and cookbook collector."
             },
             {
               title: "DIY Renovator",
               href: "https://www.instagram.com/stories/highlights/17917732456477538/?hl=fi",
               icon: "bi bi-hammer me-2",
               external: true,
-              description: "Home renovation projects and hands-on fixes."
+              description: "1970s house renovations from excavator work to wallpapering."
             }
           ]
         },
@@ -577,21 +591,21 @@ module.exports = {
       contentColumns: [
         {
           links: [
-            { title: "Aloitteet", href: "/kynasta/#aloitteet", icon: "bi bi-megaphone me-2", countKey: "politics" },
-            { title: "Blogi", href: "/blogi/", icon: "bi bi-pen me-2", countKey: "blog" }
+            { title: "Aloitteet", href: "/kynasta/#aloitteet", icon: "bi bi-megaphone me-2", countKey: "politics", description: "Valtuustoaloitteet ja muut kirjalliset avaukset päätöksentekoon." },
+            { title: "Blogi", href: "/blogi/", icon: "bi bi-pen me-2", countKey: "blog", description: "Ajankohtaiset kirjoitukset opetuksesta, teknologiasta ja yhteiskunnasta." }
           ]
         },
         {
           links: [
-            { title: "Esitykset", href: "/esitykset/", icon: "bi bi-easel2 me-2", countKey: "presentations" },
-            { title: "Julkaisuluettelo", href: "/julkaisut/", icon: "bi bi-journal-text me-2", countKey: "publications" }
+            { title: "Esitykset", href: "/esitykset/", icon: "bi bi-easel2 me-2", countKey: "presentations", description: "Koulutus- ja konferenssiesityksiä tekoälystä, oppimisesta ja pedagogiikasta." },
+            { title: "Julkaisuluettelo", href: "/julkaisut/", icon: "bi bi-journal-text me-2", countKey: "publications", description: "Tieteelliset julkaisut, artikkelit ja muut kirjoitukset yhdessä näkymässä." }
           ]
         },
         {
           links: [
-            { title: "Kolumnit", href: "/kynasta/#kolumnit", icon: "bi bi-journal-richtext me-2", countKey: "pub_kolumni" },
-            { title: "Mielipiteet", href: "/kynasta/#mielipiteet", icon: "bi bi-chat-text me-2", countKey: "pub_mielipide" },
-            { title: "Puheet", href: "/kynasta/#puheet", icon: "bi bi-mic me-2", countKey: "pub_puhe" }
+            { title: "Kolumnit", href: "/kynasta/#kolumnit", icon: "bi bi-journal-richtext me-2", countKey: "pub_kolumni", description: "Taustoittavia näkökulmatekstejä yhteiskunnasta ja koulutuksesta." },
+            { title: "Mielipiteet", href: "/kynasta/#mielipiteet", icon: "bi bi-chat-text me-2", countKey: "pub_mielipide", description: "Lehdissä julkaistuja kannanottoja paikallisista ja valtakunnallisista aiheista." },
+            { title: "Puheet", href: "/kynasta/#puheet", icon: "bi bi-mic me-2", countKey: "pub_puhe", description: "Valtuustossa ja tapahtumissa pidettyjä puheenvuoroja." }
           ]
         }
       ],
@@ -599,8 +613,8 @@ module.exports = {
         heading: "Katso myös",
         subheading: "Ohjaamiani opinnäytteitä",
         links: [
-          { title: "Kandidaatintutkielmat", href: "/opinnaytteet/#card-bachelor", icon: "bi bi-book-half me-2", countData: "theses_kandit" },
-          { title: "Pro gradut", href: "/opinnaytteet/#card-master", icon: "bi bi-mortarboard me-2", countData: "theses_gradut" }
+          { title: "Kandidaatintutkielmat", href: "/opinnaytteet/#card-bachelor", icon: "bi bi-book-half me-2", countData: "theses_kandit", description: "Ohjaamani opinnäytteet aihepiireittäin ja vuosittain." },
+          { title: "Pro gradut", href: "/opinnaytteet/#card-master", icon: "bi bi-mortarboard me-2", countData: "theses_gradut", description: "Ohjaamani opinnäytteet aihepiireittäin ja vuosittain." }
         ]
       }
     },
@@ -611,21 +625,21 @@ module.exports = {
       contentColumns: [
         {
           links: [
-            { title: "Articles", href: "/en/writings/#mielipiteet", icon: "bi bi-chat-text me-2", countKey: "pub_mielipide" },
-            { title: "Blog", href: "/en/blog/", icon: "bi bi-pen me-2", countKey: "blog" }
+            { title: "Articles", href: "/en/writings/#mielipiteet", icon: "bi bi-chat-text me-2", countKey: "pub_mielipide", description: "Opinion texts and public commentary published in media." },
+            { title: "Blog", href: "/en/blog/", icon: "bi bi-pen me-2", countKey: "blog", description: "Posts on education, technology, and public life themes." }
           ]
         },
         {
           links: [
-            { title: "Columns", href: "/en/writings/#kolumnit", icon: "bi bi-journal-richtext me-2", countKey: "pub_kolumni" },
-            { title: "Initiatives", href: "/en/writings/#aloitteet", icon: "bi bi-megaphone me-2", countKey: "politics" }
+            { title: "Columns", href: "/en/writings/#kolumnit", icon: "bi bi-journal-richtext me-2", countKey: "pub_kolumni", description: "Long-form columns on education, society, and local development." },
+            { title: "Initiatives", href: "/en/writings/#aloitteet", icon: "bi bi-megaphone me-2", countKey: "politics", description: "Council initiatives and concrete proposals in local politics." }
           ]
         },
         {
           links: [
-            { title: "Presentations", href: "/en/presentations/", icon: "bi bi-easel2 me-2", countKey: "presentations" },
-            { title: "Publication List", href: "/en/publications/", icon: "bi bi-journal-text me-2", countKey: "publications" },
-            { title: "Speeches", href: "/en/writings/#puheet", icon: "bi bi-mic me-2", countKey: "pub_puhe" }
+            { title: "Presentations", href: "/en/presentations/", icon: "bi bi-easel2 me-2", countKey: "presentations", description: "Talks and training decks on AI, learning, and pedagogy." },
+            { title: "Publication List", href: "/en/publications/", icon: "bi bi-journal-text me-2", countKey: "publications", description: "Scientific publications, reports, and broader written outputs." },
+            { title: "Speeches", href: "/en/writings/#puheet", icon: "bi bi-mic me-2", countKey: "pub_puhe", description: "Public speeches and council statements in one archive." }
           ]
         }
       ],
@@ -633,8 +647,8 @@ module.exports = {
         heading: "See also",
         subheading: "Theses supervised by me",
         links: [
-          { title: "Bachelor's theses", href: "/en/theses/#card-bachelor", icon: "bi bi-book-half me-2", countData: "theses_kandit" },
-          { title: "Master's theses", href: "/en/theses/#card-master", icon: "bi bi-mortarboard me-2", countData: "theses_gradut" }
+          { title: "Bachelor's theses", href: "/en/theses/#card-bachelor", icon: "bi bi-book-half me-2", countData: "theses_kandit", description: "Supervised theses listed by topic and year." },
+          { title: "Master's theses", href: "/en/theses/#card-master", icon: "bi bi-mortarboard me-2", countData: "theses_gradut", description: "Supervised theses listed by topic and year." }
         ]
       }
     }
@@ -657,6 +671,12 @@ module.exports = {
               href: "/cv/",
               icon: "bi bi-file-earmark-person me-2",
               description: "Koulutus, työhistoria, julkaisut ja keskeinen osaaminen."
+            },
+            {
+              title: "Opetusportfolio",
+              href: "/portfolio/",
+              icon: "bi bi-folder2-open me-2",
+              description: "Pedagoginen ajattelu, opetuskokemus ja kehitystyö."
             },
             {
               title: "Esitykset",
@@ -778,6 +798,12 @@ module.exports = {
               href: "/en/cv/",
               icon: "bi bi-file-earmark-person me-2",
               description: "Education, work history, publications, and key competencies."
+            },
+            {
+              title: "Teaching Portfolio",
+              href: "/en/portfolio/",
+              icon: "bi bi-folder2-open me-2",
+              description: "Pedagogical thinking, teaching experience and development."
             },
             {
               title: "Presentations",
@@ -904,30 +930,30 @@ module.exports = {
           type: "links",
           heading: "Työyhteys",
           links: [
-            { title: "Sähköposti", href: "mailto:jari.laru@oulu.fi", icon: "bi bi-envelope me-2" },
-            { title: "Puhelin", href: "tel:+358294483810", icon: "bi bi-telephone me-2" },
-            { title: "Zoom", href: "http://www.zoom.us/my/larux", icon: "bi bi-camera-video me-2", external: true },
-            { title: "Oulun yliopisto", href: "https://www.oulu.fi", icon: "bi bi-building me-2", external: true }
+            { title: "Sähköposti", href: "mailto:jari.laru@oulu.fi", icon: "bi bi-envelope me-2", description: "Ensisijainen yliopistosähköposti työasioiden yhteydenottoihin." },
+            { title: "Puhelin", href: "tel:+358294483810", icon: "bi bi-telephone me-2", description: "Yliopistotyöhön liittyvät yhteydenotot puhelimitse." },
+            { title: "Zoom", href: "http://www.zoom.us/my/larux", icon: "bi bi-camera-video me-2", external: true, description: "Sovi etäpalaveri tai verkkotapaaminen suoraan Zoomissa." },
+            { title: "Oulun yliopisto", href: "https://www.oulu.fi", icon: "bi bi-building me-2", external: true, description: "Työpaikkani ja yliopistoyhteisön viralliset sivut." }
           ]
         },
         {
           type: "links",
           heading: "Larux tmi & politiikka",
           links: [
-            { title: "Yritysyhteys", href: "tel:+358405118478", icon: "bi bi-whatsapp me-2" },
-            { title: "Politiikan sähköposti", href: "mailto:jari.laru@ouka.fi", icon: "bi bi-bank2 me-2" },
-            { title: "Facebook", href: "https://www.facebook.com/jari.laru.poliitikko/", icon: "bi bi-facebook me-2", external: true },
-            { title: "Yhteystiedot-sivu", href: "/yhteystiedot/", icon: "bi bi-person-lines-fill me-2" }
+            { title: "Yritysyhteys", href: "tel:+358405118478", icon: "bi bi-whatsapp me-2", description: "Larux t:mi:n koulutus- ja puheenvuoropyynnöt tähän numeroon." },
+            { title: "Politiikan sähköposti", href: "mailto:jari.laru@ouka.fi", icon: "bi bi-bank2 me-2", description: "Politiikkaan ja luottamustehtäviin liittyvät viestit." },
+            { title: "Facebook", href: "https://www.facebook.com/jari.laru.poliitikko/", icon: "bi bi-facebook me-2", external: true, description: "Poliittiset päivitykset ja keskustelu sosiaalisessa mediassa." },
+            { title: "Yhteystiedot-sivu", href: "/yhteystiedot/", icon: "bi bi-person-lines-fill me-2", description: "Kaikki yhteydenottokanavat yhdellä sivulla." }
           ]
         },
         {
           type: "links",
           heading: "Pikalinkit",
           links: [
-            { title: "Larux tmi", href: "/larux-tmi/", icon: "bi bi-briefcase me-2" },
-            { title: "Esitykset", href: "/esitykset/", icon: "bi bi-easel2 me-2" },
-            { title: "Politiikka", href: "/politiikka/", icon: "bi bi-megaphone me-2" },
-            { title: "Tietosuojaseloste", href: "/tietosuojaseloste/", icon: "bi bi-shield-check me-2" }
+            { title: "Larux tmi", href: "/larux-tmi/", icon: "bi bi-briefcase me-2", description: "Palvelut, tausta ja yhteistyömahdollisuudet yrityksen kautta." },
+            { title: "Esitykset", href: "/esitykset/", icon: "bi bi-easel2 me-2", description: "Näytteitä koulutuksista, keynoteista ja luentomateriaaleista." },
+            { title: "Politiikka", href: "/politiikka/", icon: "bi bi-megaphone me-2", description: "Luottamustehtävät, tavoitteet ja vaikuttamisen painopisteet." },
+            { title: "Tietosuojaseloste", href: "/tietosuojaseloste/", icon: "bi bi-shield-check me-2", description: "Tietosuojaan ja henkilötietojen käsittelyyn liittyvät periaatteet." }
           ]
         }
       ]
@@ -952,30 +978,30 @@ module.exports = {
           type: "links",
           heading: "University contact",
           links: [
-            { title: "Email", href: "mailto:jari.laru@oulu.fi", icon: "bi bi-envelope me-2" },
-            { title: "Phone", href: "tel:+358294483810", icon: "bi bi-telephone me-2" },
-            { title: "Zoom", href: "http://www.zoom.us/my/larux", icon: "bi bi-camera-video me-2", external: true },
-            { title: "University of Oulu", href: "https://www.oulu.fi", icon: "bi bi-building me-2", external: true }
+            { title: "Email", href: "mailto:jari.laru@oulu.fi", icon: "bi bi-envelope me-2", description: "Primary university email for teaching and research inquiries." },
+            { title: "Phone", href: "tel:+358294483810", icon: "bi bi-telephone me-2", description: "University contact number for work-related calls." },
+            { title: "Zoom", href: "http://www.zoom.us/my/larux", icon: "bi bi-camera-video me-2", external: true, description: "Book or join an online meeting directly via Zoom." },
+            { title: "University of Oulu", href: "https://www.oulu.fi", icon: "bi bi-building me-2", external: true, description: "Official university pages and institutional information." }
           ]
         },
         {
           type: "links",
           heading: "Company & politics",
           links: [
-            { title: "Business contact", href: "tel:+358405118478", icon: "bi bi-whatsapp me-2" },
-            { title: "Politics email", href: "mailto:jari.laru@ouka.fi", icon: "bi bi-bank2 me-2" },
-            { title: "Facebook", href: "https://www.facebook.com/jari.laru.poliitikko/", icon: "bi bi-facebook me-2", external: true },
-            { title: "Contact page", href: "/en/contact/", icon: "bi bi-person-lines-fill me-2" }
+            { title: "Business contact", href: "tel:+358405118478", icon: "bi bi-whatsapp me-2", description: "Training and keynote requests through Larux contact." },
+            { title: "Politics email", href: "mailto:jari.laru@ouka.fi", icon: "bi bi-bank2 me-2", description: "Messages related to municipal and regional politics." },
+            { title: "Facebook", href: "https://www.facebook.com/jari.laru.poliitikko/", icon: "bi bi-facebook me-2", external: true, description: "Political updates and public discussion channel." },
+            { title: "Contact page", href: "/en/contact/", icon: "bi bi-person-lines-fill me-2", description: "All contact methods collected on one page." }
           ]
         },
         {
           type: "links",
           heading: "Quick links",
           links: [
-            { title: "Company", href: "/en/company/", icon: "bi bi-briefcase me-2" },
-            { title: "Presentations", href: "/en/presentations/", icon: "bi bi-easel2 me-2" },
-            { title: "Politics", href: "/en/politics/", icon: "bi bi-megaphone me-2" },
-            { title: "Privacy", href: "/en/privacy/", icon: "bi bi-shield-check me-2" }
+            { title: "Company", href: "/en/company/", icon: "bi bi-briefcase me-2", description: "Services, focus areas, and collaboration options through Larux." },
+            { title: "Presentations", href: "/en/presentations/", icon: "bi bi-easel2 me-2", description: "Selected slides and talk examples from events and training." },
+            { title: "Politics", href: "/en/politics/", icon: "bi bi-megaphone me-2", description: "Positions of trust, priorities, and policy themes." },
+            { title: "Privacy", href: "/en/privacy/", icon: "bi bi-shield-check me-2", description: "How personal data is handled on this website." }
           ]
         }
       ]

@@ -436,25 +436,29 @@ wp_id: 7
 
 <script>
 (function () {
-  var modal = document.getElementById('lightboxModal');
-  var hasBootstrapModal = Boolean(window.bootstrap && window.bootstrap.Modal && modal);
-  var bsModal = hasBootstrapModal ? new window.bootstrap.Modal(modal) : null;
-  var img = document.getElementById('lightboxImg');
-  var cap = document.getElementById('lightboxCaption');
-  document.querySelectorAll('.lb-trigger').forEach(function (el) {
-    var imgUrl = el.dataset.img || el.getAttribute('href');
-    if (imgUrl) {
-      el.setAttribute('href', imgUrl);
-    }
-    el.addEventListener('click', function (e) {
-      if (!hasBootstrapModal || !img || !cap || !imgUrl) {
-        return;
+  document.addEventListener('DOMContentLoaded', function () {
+    var modal = document.getElementById('lightboxModal');
+    var img = document.getElementById('lightboxImg');
+    var cap = document.getElementById('lightboxCaption');
+    var canUseBootstrapModal = Boolean(window.bootstrap && window.bootstrap.Modal && modal);
+    var bsModal = canUseBootstrapModal ? new window.bootstrap.Modal(modal) : null;
+
+    document.querySelectorAll('.lb-trigger').forEach(function (el) {
+      var imgUrl = el.dataset.img || el.getAttribute('href');
+      if (imgUrl) {
+        el.setAttribute('href', imgUrl);
       }
-      e.preventDefault();
-      img.src = imgUrl;
-      img.alt = (el.querySelector('img') || {}).alt || '';
-      cap.innerHTML = el.dataset.caption || '';
-      bsModal.show();
+
+      el.addEventListener('click', function (e) {
+        if (!canUseBootstrapModal || !img || !cap || !imgUrl) {
+          return;
+        }
+        e.preventDefault();
+        img.src = imgUrl;
+        img.alt = (el.querySelector('img') || {}).alt || '';
+        cap.innerHTML = el.dataset.caption || '';
+        bsModal.show();
+      });
     });
   });
 })();
