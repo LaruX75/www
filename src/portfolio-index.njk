@@ -196,21 +196,32 @@ translationKey: portfolio_index
       <div class="col-xl-5">
         <article class="card border-0 shadow-sm h-100 bg-body-tertiary">
           <div class="card-body p-4">
-            <h5 class="h5">Pro gradu tutkielmat <small class="text-body-secondary">(vuodesta 2021, Laturin arkiston perusteella)</small></h5>
+            <h5 class="h5">Pro gradu -tutkielmat</h5>
             <ul class="ps-3">
-              <li>Pääohjaaja: 25 valmista tutkielmaa</li>
-              <li>Tarkastajana: 46 valmista tutkielmaa</li>
+              <li>Pääohjaaja: <strong>{{ theses.stats.totalGradut }}</strong> valmista tutkielmaa</li>
+              <li>Tarkastajana: <strong>{{ theses.stats.totalReviewer }}</strong> valmista tutkielmaa</li>
             </ul>
 
-            <h5 class="h5">Kandidaatin tutkielmat <small class="text-body-secondary">(vuodesta 2021, Laturin arkiston perusteella)</small></h5>
+            <h5 class="h5">Kandidaatin tutkielmat</h5>
             <ul class="ps-3">
-              <li>Ohjaaja: 29 valmista tutkielmaa</li>
+              <li>Ohjaaja: <strong>{{ theses.stats.totalKandit }}</strong> valmista tutkielmaa</li>
             </ul>
 
             <h5 class="h5">Väitöskirjat</h5>
             <ul class="ps-3 mb-0">
               <li>5 jatko-opiskelijaa ohjattavana, kukaan ei ole vielä väitellyt</li>
             </ul>
+
+            <hr class="my-3">
+            <p class="small text-body-secondary mb-0">
+              <i class="bi bi-database me-1"></i>Lähde: <a href="https://oulurepo.oulu.fi/" target="_blank" rel="noopener noreferrer" class="text-body-secondary">OuluREPO</a>
+              {% if theses.stats.firstYear and theses.stats.lastYear %}
+              &mdash; töitä vuosilta {{ theses.stats.firstYear }}–{{ theses.stats.lastYear }}
+              {% endif %}
+              {% if theses.fetchedAt %}
+              &mdash; haettu {{ theses.fetchedAt | dateFormat }}
+              {% endif %}
+            </p>
           </div>
         </article>
       </div>
