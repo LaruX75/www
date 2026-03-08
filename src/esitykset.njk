@@ -44,7 +44,7 @@ translationKey: presentations_index
         <div class="presentation-scroller-track"></div>
       </div>
       <div class="table-responsive">
-        <table class="table table-sm table-hover align-middle mb-0">
+        <table class="table table-hover align-middle mb-0 pub-table">
           <thead>
             <tr>
               <th>Otsikko</th>
@@ -72,12 +72,13 @@ translationKey: presentations_index
     <h2 id="canva-heading" class="section-title mb-4">
       <i class="bi bi-star-fill text-warning me-2" style="font-size: 1rem;"></i>Canva-esitykset
     </h2>
+    <p class="text-center text-danger fw-bold mb-3">Vain muutama esitys tuotu kokeilua varten.</p>
     {% if canva and canva.tableRows and canva.tableRows.length %}
       <div class="presentation-scroller mb-4" data-key="canva" aria-label="Canva-esitysten skrolleri">
         <div class="presentation-scroller-track"></div>
       </div>
       <div class="table-responsive">
-        <table class="table table-sm table-hover align-middle mb-0">
+        <table class="table table-hover align-middle mb-0 pub-table">
           <thead>
             <tr>
               <th>Otsikko</th>
@@ -101,6 +102,10 @@ translationKey: presentations_index
     {% endif %}
   </section>
 
+  <section class="mb-4">
+    <h2 class="section-title section-title--subgroup mb-0">Työ kesken - testattavana</h2>
+  </section>
+
   {# ===================== YOUTUBE ===================== #}
   <section class="mb-5" aria-labelledby="youtube-heading">
     <h2 id="youtube-heading" class="section-title mb-4">
@@ -112,7 +117,7 @@ translationKey: presentations_index
         <div class="presentation-scroller-track"></div>
       </div>
       <div class="table-responsive">
-        <table class="table table-sm table-hover align-middle mb-0">
+        <table class="table table-hover align-middle mb-0 pub-table">
           <thead>
             <tr>
               <th>Otsikko</th>
@@ -152,7 +157,7 @@ translationKey: presentations_index
         <div class="presentation-scroller-track"></div>
       </div>
       <div class="table-responsive">
-        <table class="table table-sm table-hover align-middle mb-0">
+        <table class="table table-hover align-middle mb-0 pub-table">
           <thead>
             <tr>
               <th>Otsikko</th>
@@ -182,7 +187,7 @@ translationKey: presentations_index
         <div class="presentation-scroller-track"></div>
       </div>
       <div class="table-responsive">
-        <table class="table table-sm table-hover align-middle mb-0">
+        <table class="table table-hover align-middle mb-0 pub-table">
           <thead>
             <tr>
               <th>Otsikko</th>
@@ -398,13 +403,13 @@ translationKey: presentations_index
 
     tbody.innerHTML = pageRows.map((item) => `
       <tr>
-        <td class="fw-semibold">${escHtml(item.title)}</td>
-        <td>
+        <td class="fw-semibold" data-label="Otsikko">${escHtml(item.title)}</td>
+        <td data-label="Kuvaus">
           <div class="small">${escHtml(truncate(item.description, 140) || "-")}</div>
           <div class="small text-muted">${escHtml(item.meta || "")}</div>
         </td>
-        <td class="text-nowrap">${escHtml(item.date || "-")}</td>
-        <td>
+        <td class="text-nowrap" data-label="Päiväys / vuosi">${escHtml(item.date || "-")}</td>
+        <td data-label="Avaa">
           ${item.url
             ? `<a href="${escHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-3">${escHtml(linkLabelByKey[key] || "Avaa")}</a>`
             : `<span class="text-muted small">Ei linkkiä</span>`}
@@ -433,14 +438,33 @@ translationKey: presentations_index
 /* Section headings */
 .section-title {
   font-family: 'Bree Serif', serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--bs-border-color);
+  font-size: 1.75rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 1.25rem;
+  border-bottom: none;
+}
+.section-title::after {
+  content: "";
+  display: block;
+  width: 120px;
+  height: 3px;
+  margin: 0.65rem auto 0;
+  border-radius: 999px;
+  background: var(--bs-primary);
+}
+.section-title--subgroup {
+  font-size: 1.35rem;
+  color: #b02a37;
 }
 [data-bs-theme="dark"] .section-title {
   color: #ffffff;
-  border-bottom-color: rgba(255,255,255,0.15);
+}
+[data-bs-theme="dark"] .section-title::after {
+  background: #76b7ff;
+}
+[data-bs-theme="dark"] .section-title--subgroup {
+  color: #ff9ba5;
 }
 
 /* Placeholder when no thumbnail */
@@ -536,6 +560,73 @@ translationKey: presentations_index
 @media (prefers-reduced-motion: reduce) {
   .presentation-scroller-track {
     animation: none !important;
+  }
+}
+
+/* Kynästä-tyyliset taulukot */
+.pub-table th {
+  white-space: nowrap;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background-color: var(--bs-tertiary-bg) !important;
+  padding: 0.75rem 0.5rem;
+}
+[data-bs-theme="dark"] .pub-table th {
+  background-color: #2e3f59 !important;
+  color: #c0d0e0;
+}
+.pub-table td {
+  padding: 0.75rem 0.5rem;
+}
+[data-bs-theme="dark"] .pub-table td {
+  border-color: rgba(255,255,255,0.07) !important;
+}
+
+@media (max-width: 767.98px) {
+  .pub-table thead {
+    display: none;
+  }
+  .pub-table,
+  .pub-table tbody,
+  .pub-table tr,
+  .pub-table td {
+    display: block;
+    width: 100%;
+  }
+  .pub-table tr {
+    border: 1px solid var(--bs-border-color);
+    border-radius: 0.65rem;
+    margin: 0.65rem 0;
+    padding: 0.4rem 0.55rem;
+    background: var(--bs-body-bg);
+  }
+  .pub-table td {
+    border: 0 !important;
+    padding: 0.38rem 0.2rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.7rem;
+    text-align: right !important;
+  }
+  .pub-table td::before {
+    content: attr(data-label);
+    color: var(--bs-secondary-color);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    text-align: left;
+    flex: 0 0 45%;
+  }
+  .pub-table td > * {
+    max-width: 55%;
+  }
+  .pub-table td:last-child {
+    margin-top: 0.25rem;
+    padding-top: 0.55rem;
+    border-top: 1px dashed var(--bs-border-color) !important;
   }
 }
 </style>
