@@ -40,43 +40,25 @@ translationKey: presentations_index
       <i class="bi bi-book-fill text-success me-2" style="font-size: 1rem;"></i>AOE-oppimateriaalit
     </h2>
     {% if finnaAoe and finnaAoe.rows and finnaAoe.rows.length %}
-      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        {% for item in finnaAoe.rows %}
-        <div class="col">
-          <div class="card h-100 border-0 shadow-sm hover-shadow transition">
-            <div class="position-relative overflow-hidden">
-              {% if item.image %}
-                <img src="{{ item.image }}" class="card-img-top transition-transform" alt="{{ item.title }}" style="height: 220px; object-fit: cover; object-position: top;">
-              {% else %}
-                <div class="d-flex align-items-center justify-content-center text-muted bg-placeholder" style="height: 220px;">
-                  <div class="text-center">
-                    <i class="bi bi-book fs-1 mb-2 d-block text-success opacity-75"></i>
-                    <small>Oppimateriaali</small>
-                  </div>
-                </div>
-              {% endif %}
-            </div>
-            <div class="card-body">
-              <h3 class="h5 card-title mb-1">
-                <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer" class="text-decoration-none">{{ item.title }}</a>
-              </h3>
-              {% if item.year %}
-              <small class="text-muted">{{ item.year }}</small>
-              {% endif %}
-              {% if item.summary %}
-              <p class="small text-muted mt-2 mb-0">{{ item.summary | truncate(150) }}</p>
-              {% endif %}
-            </div>
-            <div class="card-footer bg-transparent border-0 pt-0 pb-3 px-3">
-              <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm rounded-pill px-3">
-                Avaa Finnassa <i class="bi bi-arrow-up-right"></i>
-              </a>
-              <span class="badge text-bg-secondary rounded-pill ms-2">AOE</span>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
+      <div class="presentation-scroller mb-4" data-key="aoe" aria-label="AOE-esitysten skrolleri">
+        <div class="presentation-scroller-track"></div>
       </div>
+      <div class="table-responsive">
+        <table class="table table-sm table-hover align-middle mb-0">
+          <thead>
+            <tr>
+              <th>Otsikko</th>
+              <th>Kuvaus</th>
+              <th class="text-nowrap">Päiväys / vuosi</th>
+              <th class="text-nowrap">Avaa</th>
+            </tr>
+          </thead>
+          <tbody id="table-body-aoe"></tbody>
+        </table>
+      </div>
+      <nav class="mt-3" aria-label="AOE-sivutus">
+        <ul class="pagination pagination-sm mb-0" id="pagination-aoe"></ul>
+      </nav>
       <div class="mt-3 text-muted small">
         Lähde: <a href="https://www.finna.fi/" target="_blank" rel="noopener noreferrer">Finna</a> / <a href="https://aoe.fi/" target="_blank" rel="noopener noreferrer">Avointen oppimateriaalien kirjasto (AOE)</a>{% if finnaAoe.source == 'cache' %} (välimuistista){% endif %}.
       </div>
@@ -91,63 +73,25 @@ translationKey: presentations_index
       <i class="bi bi-star-fill text-warning me-2" style="font-size: 1rem;"></i>Canva-esitykset
     </h2>
     {% if canva and canva.tableRows and canva.tableRows.length %}
-      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        {% for p in canva.cardRows %}
-        <div class="col">
-          <div class="card h-100 border-0 shadow-sm hover-shadow transition">
-            <div class="position-relative overflow-hidden">
-              {% if p.thumbnail %}
-                <img src="{{ p.thumbnail }}"
-                     class="card-img-top transition-transform"
-                     alt="{{ p.title }}"
-                     style="height: 220px; object-fit: cover; object-position: top;">
-                {% if p.url %}
-                <div class="card-img-overlay d-flex align-items-center justify-content-center opacity-0 bg-dark bg-opacity-50 transition">
-                  <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-light btn-sm stretched-link">Katso esitys</a>
-                </div>
-                {% endif %}
-              {% else %}
-                <div class="d-flex align-items-center justify-content-center text-muted bg-placeholder" style="height: 220px;">
-                  <div class="text-center">
-                    <i class="bi bi-file-earmark-slides fs-1 mb-2 d-block"></i>
-                    <small>Ei esikatselukuvaa</small>
-                  </div>
-                </div>
-              {% endif %}
-            </div>
-            <div class="card-body">
-              <h3 class="h5 card-title mb-1">
-                {% if p.url %}
-                  <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="text-decoration-none">{{ p.title }}</a>
-                {% else %}
-                  {{ p.title }}
-                {% endif %}
-              </h3>
-              {% if p.date %}
-              <small class="text-muted">{{ p.date | dateFormat }}</small>
-              {% endif %}
-              {% if p.categories and p.categories.length %}
-              <div class="mt-2">
-                {% for cat in p.categories %}
-                <span class="badge text-bg-secondary rounded-pill me-1">{{ cat }}</span>
-                {% endfor %}
-              </div>
-              {% endif %}
-            </div>
-            <div class="card-footer bg-transparent border-0 pt-0 pb-3 px-3">
-              {% if p.url %}
-                <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm rounded-pill px-3">
-                  Katso esitys <i class="bi bi-arrow-up-right"></i>
-                </a>
-              {% else %}
-                <span class="text-muted" style="font-size:0.85rem;"><i class="bi bi-link-45deg"></i> Ei linkkiä</span>
-              {% endif %}
-              <span class="badge text-bg-secondary rounded-pill ms-2">Canva</span>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
+      <div class="presentation-scroller mb-4" data-key="canva" aria-label="Canva-esitysten skrolleri">
+        <div class="presentation-scroller-track"></div>
       </div>
+      <div class="table-responsive">
+        <table class="table table-sm table-hover align-middle mb-0">
+          <thead>
+            <tr>
+              <th>Otsikko</th>
+              <th>Kuvaus</th>
+              <th class="text-nowrap">Päiväys / vuosi</th>
+              <th class="text-nowrap">Avaa</th>
+            </tr>
+          </thead>
+          <tbody id="table-body-canva"></tbody>
+        </table>
+      </div>
+      <nav class="mt-3" aria-label="Canva-sivutus">
+        <ul class="pagination pagination-sm mb-0" id="pagination-canva"></ul>
+      </nav>
 
       <div class="mt-3 text-muted small">
         Lähde: Canva Connect API{% if canva.source == 'cache' %} (välimuistista){% elseif canva.source == 'local' %} (paikallisista Markdown-tiedostoista){% endif %}.
@@ -164,55 +108,25 @@ translationKey: presentations_index
     </h2>
 
     {% if youtube and youtube.tableRows and youtube.tableRows.length %}
-      <div class="playlist-ticker mb-4" aria-label="YouTube-soittolistojen skrolleri">
-        <div class="playlist-ticker-track">
-          {% for p in youtube.tickerRows %}
-          <article class="playlist-ticker-item card border-0 shadow-sm">
-            {% if p.thumbnail %}
-            <img src="{{ p.thumbnail }}" class="card-img-top" alt="{{ p.title }}" style="height: 150px; object-fit: cover;">
-            {% endif %}
-            <div class="card-body p-3">
-              <h3 class="h6 mb-2">{{ p.title }}</h3>
-              <p class="text-muted small mb-2">{{ p.itemCount }} videota</p>
-              <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm rounded-pill px-3">
-                Avaa soittolista <i class="bi bi-arrow-up-right"></i>
-              </a>
-            </div>
-          </article>
-          {% endfor %}
-        </div>
+      <div class="presentation-scroller mb-4" data-key="youtube" aria-label="YouTube-soittolistojen skrolleri">
+        <div class="presentation-scroller-track"></div>
       </div>
-
       <div class="table-responsive">
-        <table class="table table-sm table-hover align-middle">
+        <table class="table table-sm table-hover align-middle mb-0">
           <thead>
             <tr>
-              <th>Soittolista</th>
-              <th class="text-nowrap">Videot</th>
-              <th class="text-nowrap">Julkaistu</th>
+              <th>Otsikko</th>
+              <th>Kuvaus</th>
+              <th class="text-nowrap">Päiväys / vuosi</th>
               <th class="text-nowrap">Avaa</th>
             </tr>
           </thead>
-          <tbody>
-            {% for p in youtube.tableRows %}
-            <tr>
-              <td>
-                <div class="fw-semibold">{{ p.title }}</div>
-                {% if p.description %}
-                <div class="small text-muted">{{ p.description | truncate(140, true, '...') }}</div>
-                {% endif %}
-              </td>
-              <td>{{ p.itemCount }}</td>
-              <td>{{ p.publishedAt | dateFormat }}</td>
-              <td>
-                <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-3">YouTube</a>
-              </td>
-            </tr>
-            {% endfor %}
-          </tbody>
+          <tbody id="table-body-youtube"></tbody>
         </table>
       </div>
-
+      <nav class="mt-3" aria-label="YouTube-sivutus">
+        <ul class="pagination pagination-sm mb-0" id="pagination-youtube"></ul>
+      </nav>
       <div class="mt-3 text-muted small">
         Lähde: YouTube Data API v3{% if youtube.source == 'cache' %} (välimuistista){% endif %}.
       </div>
@@ -233,56 +147,29 @@ translationKey: presentations_index
     <h2 id="google-heading" class="section-title mb-4">
       <i class="bi bi-file-earmark-slides me-2" style="font-size: 1rem;"></i>Google Slides -esitykset
     </h2>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-      {% for p in googleslides %}
-      <div class="col">
-        <div class="card h-100 border-0 shadow-sm hover-shadow transition">
-          <div class="position-relative overflow-hidden">
-            {% if p.thumbnail %}
-              <img src="{{ p.thumbnail }}"
-                   class="card-img-top transition-transform"
-                   alt="{{ p.title }}"
-                   style="height: 220px; object-fit: cover; object-position: top;">
-              {% if p.url %}
-              <div class="card-img-overlay d-flex align-items-center justify-content-center opacity-0 bg-dark bg-opacity-50 transition">
-                <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-light btn-sm stretched-link">Katso esitys</a>
-              </div>
-              {% endif %}
-            {% else %}
-              <div class="d-flex align-items-center justify-content-center text-muted bg-placeholder" style="height: 220px;">
-                <div class="text-center">
-                  <i class="bi bi-file-earmark-slides fs-1 mb-2 d-block"></i>
-                  <small>Ei esikatselukuvaa</small>
-                </div>
-              </div>
-            {% endif %}
-          </div>
-          <div class="card-body">
-            <h3 class="h5 card-title mb-1">
-              {% if p.url %}
-                <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="text-decoration-none">{{ p.title }}</a>
-              {% else %}
-                {{ p.title }}
-              {% endif %}
-            </h3>
-            {% if p.date %}
-            <small class="text-muted">{{ p.date }}</small>
-            {% endif %}
-          </div>
-          <div class="card-footer bg-transparent border-0 pt-0 pb-3 px-3">
-            {% if p.url %}
-              <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm rounded-pill px-3">
-                Katso esitys <i class="bi bi-arrow-up-right"></i>
-              </a>
-            {% else %}
-              <span class="text-muted" style="font-size:0.85rem;"><i class="bi bi-link-45deg"></i> Ei linkkiä</span>
-            {% endif %}
-            <span class="badge text-bg-secondary rounded-pill ms-2">Google Slides</span>
-          </div>
-        </div>
+    {% if googleslides and googleslides.length %}
+      <div class="presentation-scroller mb-4" data-key="google" aria-label="Google Slides -esitysten skrolleri">
+        <div class="presentation-scroller-track"></div>
       </div>
-      {% endfor %}
-    </div>
+      <div class="table-responsive">
+        <table class="table table-sm table-hover align-middle mb-0">
+          <thead>
+            <tr>
+              <th>Otsikko</th>
+              <th>Kuvaus</th>
+              <th class="text-nowrap">Päiväys / vuosi</th>
+              <th class="text-nowrap">Avaa</th>
+            </tr>
+          </thead>
+          <tbody id="table-body-google"></tbody>
+        </table>
+      </div>
+      <nav class="mt-3" aria-label="Google Slides -sivutus">
+        <ul class="pagination pagination-sm mb-0" id="pagination-google"></ul>
+      </nav>
+    {% else %}
+      <p class="text-muted">Ei Google Slides -esityksiä saatavilla.</p>
+    {% endif %}
   </section>
 
   {# ================= SLIDESHARE ================== #}
@@ -291,72 +178,27 @@ translationKey: presentations_index
       <i class="bi bi-collection-play me-2" style="font-size: 1rem;"></i>SlideShare-esitykset
     </h2>
     {% if slideshare and slideshare.length %}
-    <div class="playlist-ticker mb-4" aria-label="SlideShare-esitysten skrolleri">
-      <div class="playlist-ticker-track">
-        {% for p in slideshare.slice(0, 12) %}
-        <article class="playlist-ticker-item card border-0 shadow-sm">
-          {% if p.thumbnail %}
-          <img src="{{ p.thumbnail }}" class="card-img-top" alt="{{ p.title }}" style="height: 150px; object-fit: cover;">
-          {% endif %}
-          <div class="card-body p-3">
-            <h3 class="h6 mb-2">{{ p.title }}</h3>
-            <p class="text-muted small mb-2">{{ p.author or "Jari Laru" }}{% if p.views %} • {{ p.views }} katselua{% endif %}</p>
-            <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm rounded-pill px-3">
-              Avaa SlideShare <i class="bi bi-arrow-up-right"></i>
-            </a>
-          </div>
-        </article>
-        {% endfor %}
+      <div class="presentation-scroller mb-4" data-key="slideshare" aria-label="SlideShare-esitysten skrolleri">
+        <div class="presentation-scroller-track"></div>
       </div>
-    </div>
-
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-      {% for p in slideshare %}
-      <div class="col">
-        <div class="card h-100 border-0 shadow-sm hover-shadow transition">
-          <div class="position-relative overflow-hidden">
-            {% if p.thumbnail %}
-              <img src="{{ p.thumbnail }}"
-                   class="card-img-top transition-transform"
-                   alt="{{ p.title }}"
-                   style="height: 220px; object-fit: cover; object-position: top;">
-              <div class="card-img-overlay d-flex align-items-center justify-content-center opacity-0 bg-dark bg-opacity-50 transition">
-                <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-light btn-sm stretched-link">Katso SlideSharessa</a>
-              </div>
-            {% else %}
-              <div class="d-flex align-items-center justify-content-center text-muted bg-placeholder" style="height: 220px;">
-                <div class="text-center">
-                  <i class="bi bi-file-earmark-slides fs-1 mb-2 d-block"></i>
-                  <small>Ei esikatselukuvaa</small>
-                </div>
-              </div>
-            {% endif %}
-          </div>
-          <div class="card-body">
-            <h3 class="h5 card-title mb-1">
-              {% if p.url %}
-                <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="text-decoration-none">{{ p.title }}</a>
-              {% else %}
-                {{ p.title }}
-              {% endif %}
-            </h3>
-          </div>
-          <div class="card-footer bg-transparent border-0 pt-0 pb-3 px-3">
-            {% if p.url %}
-              <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm rounded-pill px-3">
-                Katso SlideSharessa <i class="bi bi-arrow-up-right"></i>
-              </a>
-            {% else %}
-              <span class="text-muted" style="font-size:0.85rem;"><i class="bi bi-link-45deg"></i> Ei linkkiä</span>
-            {% endif %}
-            <span class="badge text-bg-secondary rounded-pill ms-2">SlideShare</span>
-          </div>
-        </div>
+      <div class="table-responsive">
+        <table class="table table-sm table-hover align-middle mb-0">
+          <thead>
+            <tr>
+              <th>Otsikko</th>
+              <th>Kuvaus</th>
+              <th class="text-nowrap">Päiväys / vuosi</th>
+              <th class="text-nowrap">Avaa</th>
+            </tr>
+          </thead>
+          <tbody id="table-body-slideshare"></tbody>
+        </table>
       </div>
-      {% endfor %}
-    </div>
+      <nav class="mt-3" aria-label="SlideShare-sivutus">
+        <ul class="pagination pagination-sm mb-0" id="pagination-slideshare"></ul>
+      </nav>
     {% else %}
-    <p class="text-muted">Ei SlideShare-esityksiä saatavilla.</p>
+      <p class="text-muted">Ei SlideShare-esityksiä saatavilla.</p>
     {% endif %}
 
     <div class="mt-4 text-center">
@@ -367,6 +209,225 @@ translationKey: presentations_index
   </section>
 
 </div>
+
+<script>
+(() => {
+  const PAGE_SIZE = 6;
+  const rawData = {
+    aoe: {{ (finnaAoe.rows or []) | dump | safe }},
+    canva: {{ (canva.tableRows or []) | dump | safe }},
+    youtube: {{ (youtube.tableRows or []) | dump | safe }},
+    google: {{ (googleslides or []) | dump | safe }},
+    slideshare: {{ (slideshare or []) | dump | safe }}
+  };
+
+  const iconByKey = {
+    aoe: "bi-book",
+    canva: "bi-file-earmark-slides",
+    youtube: "bi-youtube",
+    google: "bi-file-earmark-slides",
+    slideshare: "bi-collection-play"
+  };
+
+  const linkLabelByKey = {
+    aoe: "Avaa Finnassa",
+    canva: "Avaa",
+    youtube: "YouTube",
+    google: "Avaa",
+    slideshare: "SlideShare"
+  };
+
+  function escHtml(value) {
+    return String(value || "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#39;");
+  }
+
+  function truncate(value, max = 120) {
+    const text = String(value || "").trim();
+    if (!text) return "";
+    return text.length > max ? `${text.slice(0, max).trim()}…` : text;
+  }
+
+  function toDisplayDate(value) {
+    if (!value) return "";
+    const parsed = new Date(value);
+    if (!Number.isNaN(parsed.getTime())) {
+      return new Intl.DateTimeFormat("fi-FI").format(parsed);
+    }
+    return String(value);
+  }
+
+  function normalizeRows(key, rows) {
+    if (!Array.isArray(rows)) return [];
+
+    if (key === "aoe") {
+      return rows.map((r) => ({
+        title: r.title || "Nimetön oppimateriaali",
+        url: r.url || "",
+        thumbnail: r.image || "",
+        description: r.summary || "",
+        meta: "AOE / Oppimateriaali",
+        date: r.year || ""
+      }));
+    }
+
+    if (key === "canva") {
+      return rows.map((r) => ({
+        title: r.title || "Nimetön esitys",
+        url: r.url || "",
+        thumbnail: r.thumbnail || "",
+        description: Array.isArray(r.categories) && r.categories.length ? r.categories.join(", ") : "Canva-esitys",
+        meta: "Canva",
+        date: r.date || ""
+      }));
+    }
+
+    if (key === "youtube") {
+      return rows.map((r) => ({
+        title: r.title || "Nimetön soittolista",
+        url: r.url || "",
+        thumbnail: r.thumbnail || "",
+        description: r.description || "",
+        meta: `${r.itemCount || 0} videota`,
+        date: toDisplayDate(r.publishedAt || "")
+      }));
+    }
+
+    if (key === "google") {
+      return rows.map((r) => ({
+        title: r.title || "Nimetön esitys",
+        url: r.url || "",
+        thumbnail: r.thumbnail || "",
+        description: "Google Slides -esitys",
+        meta: "Google Slides",
+        date: r.date || ""
+      }));
+    }
+
+    if (key === "slideshare") {
+      return rows.map((r) => ({
+        title: r.title || "Nimetön esitys",
+        url: r.url || "",
+        thumbnail: r.thumbnail || "",
+        description: r.author ? `Tekijä: ${r.author}` : "SlideShare-esitys",
+        meta: r.views ? `${r.views} katselua` : "SlideShare",
+        date: ""
+      }));
+    }
+
+    return [];
+  }
+
+  function pickFourRandom(rows) {
+    if (!rows.length) return [];
+    const shuffled = [...rows];
+    for (let i = shuffled.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    const picked = shuffled.slice(0, Math.min(4, shuffled.length));
+    while (picked.length < 4) {
+      picked.push(shuffled[picked.length % shuffled.length]);
+    }
+    return picked;
+  }
+
+  function renderScroller(key, rows) {
+    const host = document.querySelector(`.presentation-scroller[data-key="${key}"] .presentation-scroller-track`);
+    if (!host) return;
+    const cards = pickFourRandom(rows);
+    if (!cards.length) {
+      host.innerHTML = "";
+      return;
+    }
+
+    const htmlCards = cards.map((item) => {
+      const thumb = item.thumbnail
+        ? `<img src="${escHtml(item.thumbnail)}" class="card-img-top" alt="${escHtml(item.title)}">`
+        : `<div class="scroller-placeholder"><i class="bi ${escHtml(iconByKey[key] || "bi-file-earmark")}"></i></div>`;
+      const link = item.url
+        ? `<a href="${escHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm rounded-pill px-3">${escHtml(linkLabelByKey[key] || "Avaa")} <i class="bi bi-arrow-up-right"></i></a>`
+        : `<span class="text-muted small"><i class="bi bi-link-45deg"></i> Ei linkkiä</span>`;
+      return `
+        <article class="card border-0 shadow-sm presentation-scroller-card">
+          ${thumb}
+          <div class="card-body p-3">
+            <h3 class="h6 mb-2">${escHtml(item.title)}</h3>
+            <p class="text-muted small mb-3">${escHtml(truncate(item.meta || item.description, 72))}</p>
+            ${link}
+          </div>
+        </article>
+      `;
+    }).join("");
+
+    host.innerHTML = `${htmlCards}${htmlCards}`;
+  }
+
+  function renderPagination(key, rows, page, onChange) {
+    const host = document.getElementById(`pagination-${key}`);
+    if (!host) return;
+    const pageCount = Math.ceil(rows.length / PAGE_SIZE);
+    if (pageCount <= 1) {
+      host.innerHTML = "";
+      return;
+    }
+
+    let html = "";
+    for (let p = 1; p <= pageCount; p += 1) {
+      html += `
+        <li class="page-item ${p === page ? "active" : ""}">
+          <button class="page-link" type="button" data-page="${p}">${p}</button>
+        </li>
+      `;
+    }
+    host.innerHTML = html;
+    host.querySelectorAll("button[data-page]").forEach((btn) => {
+      btn.addEventListener("click", () => onChange(Number(btn.dataset.page)));
+    });
+  }
+
+  function renderTable(key, rows, page, onChange) {
+    const tbody = document.getElementById(`table-body-${key}`);
+    if (!tbody) return;
+    const start = (page - 1) * PAGE_SIZE;
+    const pageRows = rows.slice(start, start + PAGE_SIZE);
+
+    tbody.innerHTML = pageRows.map((item) => `
+      <tr>
+        <td class="fw-semibold">${escHtml(item.title)}</td>
+        <td>
+          <div class="small">${escHtml(truncate(item.description, 140) || "-")}</div>
+          <div class="small text-muted">${escHtml(item.meta || "")}</div>
+        </td>
+        <td class="text-nowrap">${escHtml(item.date || "-")}</td>
+        <td>
+          ${item.url
+            ? `<a href="${escHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-3">${escHtml(linkLabelByKey[key] || "Avaa")}</a>`
+            : `<span class="text-muted small">Ei linkkiä</span>`}
+        </td>
+      </tr>
+    `).join("");
+
+    renderPagination(key, rows, page, onChange);
+  }
+
+  Object.entries(rawData).forEach(([key, rows]) => {
+    const normalized = normalizeRows(key, rows);
+    if (!normalized.length) return;
+    renderScroller(key, normalized);
+    let currentPage = 1;
+    const rerender = (newPage) => {
+      currentPage = newPage;
+      renderTable(key, normalized, currentPage, rerender);
+    };
+    rerender(1);
+  });
+})();
+</script>
 
 <style>
 /* Section headings */
@@ -419,19 +480,62 @@ translationKey: presentations_index
   opacity: 1!important;
 }
 
-/* YouTube playlist ticker */
-.playlist-ticker {
+/* Category scroller */
+.presentation-scroller {
   overflow-x: auto;
   padding-bottom: 0.25rem;
 }
 
-.playlist-ticker-track {
+.presentation-scroller-track {
   display: flex;
-  gap: 1rem;
+  gap: 1.2rem;
   min-width: max-content;
+  animation: presentations-scroll 24s linear infinite;
 }
 
-.playlist-ticker-item {
+.presentation-scroller:hover .presentation-scroller-track {
+  animation-play-state: paused;
+}
+
+.presentation-scroller-card {
   width: 280px;
+  flex: 0 0 280px;
+}
+
+.presentation-scroller-card .card-img-top,
+.scroller-placeholder {
+  height: 150px;
+  object-fit: cover;
+}
+
+.scroller-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #dee2e6;
+  color: #6c757d;
+  font-size: 2rem;
+}
+[data-bs-theme="dark"] .scroller-placeholder {
+  background: #2e3f59;
+  color: #d2d9e2;
+}
+
+@keyframes presentations-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-50% - 0.6rem)); }
+}
+
+@media (max-width: 767.98px) {
+  .presentation-scroller-card {
+    width: 260px;
+    flex-basis: 260px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .presentation-scroller-track {
+    animation: none !important;
+  }
 }
 </style>
