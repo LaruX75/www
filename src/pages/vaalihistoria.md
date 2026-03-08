@@ -79,18 +79,22 @@ templateEngineOverride: njk,md
       <div class="card border-0 shadow-sm mb-4">
         <div class="card-body p-4">
           <div class="d-flex align-items-start gap-3">
-            <span class="badge bg-secondary fs-6 px-3 py-2 flex-shrink-0">2021</span>
+            <span class="badge bg-secondary fs-6 px-3 py-2 flex-shrink-0">2022</span>
             <div class="flex-grow-1">
-              <h3 class="h5 fw-bold mb-1">Kuntavaalit 2021</h3>
-              <p class="text-muted small mb-2">Oulu &mdash; Kokoomus</p>
-              <p class="mb-2">Valittu uudelleen Oulun kaupunginvaltuustoon. Vaalikausi 2021–2025.</p>
-              <div class="election-summary border rounded small mb-3">
-                <strong>Keskeiset luottamustoimet</strong><br>
-                Kaupunginvaltuutettu, Oulun kaupunki<br>
-                Sivistys- ja kulttuurilautakunnan jäsen<br>
-                Maakuntavaltuuston jäsen, Pohjois-Pohjanmaan liitto
+              <h3 class="h5 fw-bold mb-1">Aluevaalit 2022</h3>
+              <p class="text-muted small mb-2">23.1.2022 &mdash; Pohjois-Pohjanmaa &mdash; Kokoomus</p>
+              <p class="mb-2">Ehdokkaana Pohjoispohjanmaan hyvinvointialueen ensimmäisissä aluevaaleissa tammikuussa 2022. Valittu aluevaltuuston varajäseneksi.</p>
+              <div class="row g-3 mb-3">
+                <div class="col-sm-6">
+                  <div class="p-2 border rounded small">
+                    <strong>Aluevaalit (PP hyvinvointialue)</strong><br>
+                    Ehdokas 253 &mdash; 436 ääntä<br>
+                    Tulos: aluevaltuuston varajäsen
+                  </div>
+                </div>
               </div>
-              <a class="btn btn-outline-primary btn-sm" href="/kuntavaalit-2021/">Vaalisivusto (arkisto)</a>
+              <p class="small text-muted mb-2">Luottamustoimet 2022&ndash;2025: aluevaltuuston varajäsen, Pohjoispohjanmaan hyvinvointialue.</p>
+              <a class="btn btn-outline-primary btn-sm" href="/jari-laru-aluevaltuustoon/">Vaalisivusto (arkisto)</a>
             </div>
           </div>
         </div>
@@ -99,16 +103,22 @@ templateEngineOverride: njk,md
       <div class="card border-0 shadow-sm mb-4">
         <div class="card-body p-4">
           <div class="d-flex align-items-start gap-3">
-            <span class="badge bg-secondary fs-6 px-3 py-2 flex-shrink-0">2022</span>
+            <span class="badge bg-secondary fs-6 px-3 py-2 flex-shrink-0">2021</span>
             <div class="flex-grow-1">
-              <h3 class="h5 fw-bold mb-1">Aluevaalit 2022</h3>
-              <p class="text-muted small mb-2">Pohjois-Pohjanmaa &mdash; Kokoomus</p>
-              <p class="mb-2">Ehdokkaana Pohjoispohjanmaan hyvinvointialueen ensimmäisissä aluevaaleissa tammikuussa 2022. Valittu aluevaltuuston varajäseneksi.</p>
-              <div class="election-summary border rounded small mb-3">
-                <strong>Keskeiset luottamustoimet</strong><br>
-                Aluevaltuuston varajäsen, Pohjoispohjanmaan hyvinvointialue
+              <h3 class="h5 fw-bold mb-1">Kuntavaalit 2021</h3>
+              <p class="text-muted small mb-2">13.6.2021 &mdash; Oulu &mdash; Kokoomus</p>
+              <p class="mb-2">Valittu uudelleen Oulun kaupunginvaltuustoon. Vaalikausi 2021–2025.</p>
+              <div class="row g-3 mb-3">
+                <div class="col-sm-6">
+                  <div class="p-2 border rounded small">
+                    <strong>Kuntavaalit (Oulu)</strong><br>
+                    Ehdokas 372 &mdash; 354 ääntä<br>
+                    Tulos: valtuutettu
+                  </div>
+                </div>
               </div>
-              <a class="btn btn-outline-primary btn-sm" href="/jari-laru-aluevaltuustoon/">Vaalisivusto (arkisto)</a>
+              <p class="small text-muted mb-2">Luottamustoimet 2021&ndash;2025: kaupunginvaltuutettu (Oulun kaupunki), sivistys- ja kulttuurilautakunnan jäsen, maakuntavaltuuston jäsen (Pohjois-Pohjanmaan liitto).</p>
+              <a class="btn btn-outline-primary btn-sm" href="/kuntavaalit-2021/">Vaalisivusto (arkisto)</a>
             </div>
           </div>
         </div>
@@ -120,15 +130,18 @@ templateEngineOverride: njk,md
             <span class="badge bg-secondary fs-6 px-3 py-2 flex-shrink-0">2017</span>
             <div class="flex-grow-1">
               <h3 class="h5 fw-bold mb-1">Kuntavaalit 2017</h3>
-              <p class="text-muted small mb-2">Oulu &mdash; Kokoomus</p>
+              <p class="text-muted small mb-2">9.4.2017 &mdash; Oulu &mdash; Kokoomus</p>
               <p class="mb-2">Valittu ensimmäistä kertaa Oulun kaupunginvaltuustoon. Vaalikausi 2017–2021.</p>
-              <div class="election-summary border rounded small mb-3">
-                <strong>Keskeiset luottamustoimet</strong><br>
-                Kaupunginvaltuutettu, Oulun kaupunki<br>
-                Sivistys- ja kulttuurilautakunnan jäsen<br>
-                Maakuntavaltuuston varavaltuutettu, Pohjois-Pohjanmaan liitto<br>
-                Lähidemokratiatoimikunnan puheenjohtaja (2017&ndash;2021)
+              <div class="row g-3 mb-3">
+                <div class="col-sm-6">
+                  <div class="p-2 border rounded small">
+                    <strong>Kuntavaalit (Oulu)</strong><br>
+                    Ehdokas 36 &mdash; 168 ääntä<br>
+                    Tulos: valtuutettu
+                  </div>
+                </div>
               </div>
+              <p class="small text-muted mb-2">Luottamustoimet 2017&ndash;2021: kaupunginvaltuutettu (Oulun kaupunki), sivistys- ja kulttuurilautakunnan jäsen, maakuntavaltuuston varavaltuutettu (Pohjois-Pohjanmaan liitto), lähidemokratiatoimikunnan puheenjohtaja.</p>
               <a class="btn btn-outline-primary btn-sm" href="/jari-laru-kaupunginvaltuutettu/">Lue lisää (arkisto)</a>
             </div>
           </div>
@@ -141,13 +154,18 @@ templateEngineOverride: njk,md
             <span class="badge bg-secondary fs-6 px-3 py-2 flex-shrink-0">2012</span>
             <div class="flex-grow-1">
               <h3 class="h5 fw-bold mb-1">Kunnallisvaalit 2012</h3>
-              <p class="text-muted small mb-2">Oulu &mdash; Kokoomus</p>
+              <p class="text-muted small mb-2">28.10.2012 &mdash; Oulu &mdash; Kokoomus</p>
               <p class="mb-2">Ehdokkaana kunnallisvaaleissa Oulussa. Taustaa asukasyhdistyksen puheenjohtajana ja varavaltuutetun tehtävissä.</p>
-              <div class="election-summary border rounded small mb-3">
-                <strong>Tausta ja painopiste</strong><br>
-                Ensimmäinen laajempi kunnallispoliittinen kampanja Oulussa.<br>
-                Painotus asukasvaikuttamiseen, lähipalveluihin ja alueelliseen kehittämiseen.
+              <div class="row g-3 mb-3">
+                <div class="col-sm-6">
+                  <div class="p-2 border rounded small">
+                    <strong>Kuntavaalit (Oulu)</strong><br>
+                    Ehdokas 367<br>
+                    Tulos: varavaltuutettu
+                  </div>
+                </div>
               </div>
+              <p class="small text-muted mb-2">Ensimmäinen laajempi kunnallispoliittinen kampanja Oulussa. Painotus asukasvaikuttamiseen, lähipalveluihin ja alueelliseen kehittämiseen.</p>
               <a class="btn btn-outline-primary btn-sm" href="/kunnallisvaalit-2012/">Vaalisivusto (arkisto)</a>
             </div>
           </div>
