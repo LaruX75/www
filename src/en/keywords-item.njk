@@ -1,0 +1,45 @@
+---
+layout: base.njk
+title: Keyword
+pagination:
+  data: collections.keywordList
+  size: 1
+  alias: keyword
+permalink: /en/keywords/{{ keyword.slug }}/
+lang: en
+---
+<section>
+  <div class="container">
+    <div class="d-flex align-items-center justify-content-between mb-3">
+      <h1 class="h3 mb-0">{{ keyword.name }}</h1>
+      <a class="btn btn-outline-primary btn-sm" href="/en/keywords/">All keywords</a>
+    </div>
+    <p class="text-muted">Total {{ keyword.count }} posts.</p>
+
+    <div class="row g-4">
+      {% for item in keyword.items %}
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 content-card">
+            {% if item.data.thumbnail %}
+              <img src="{{ item.data.thumbnail }}" class="card-img-top content-card-img" alt="{{ item.data.title }}">
+            {% endif %}
+            <div class="card-body">
+              <h3 class="h6">
+                <a href="{{ item.url }}" class="text-decoration-none">{{ item.data.title }}</a>
+              </h3>
+              <p class="text-muted small mb-2">{{ item.date | dateFormat }}</p>
+              <p class="text-muted">{{ item.data.description or (item.content | excerpt) }}</p>
+              {% if item.data.categories %}
+                <div class="mt-2">
+                  {% for cat in item.data.categories %}
+                    <a class="badge text-bg-secondary me-1 text-decoration-none" href="/en/categories/{{ cat | slugify }}/">{{ cat }}</a>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

@@ -10,7 +10,7 @@ lang: en
     <h1 class="h3 mb-3">Keywords</h1>
     <div class="list-group">
       {% for key in collections.keywordList %}
-      <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" href="/avainsanat/{{ key.slug }}/">
+      <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" href="/en/keywords/{{ key.slug }}/">
         <span>{{ key.name }}</span>
         <span class="badge text-bg-secondary rounded-pill">{{ key.count }}</span>
       </a>

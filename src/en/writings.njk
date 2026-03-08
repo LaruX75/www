@@ -22,10 +22,10 @@ lang: en
           <a class="nav-link" href="#kolumnit">
             Columns <span class="nav-count">{{ collections.pub_kolumni.length }}</span>
           </a>
-          <a class="nav-link" href="#motions">
+          <a class="nav-link" href="#aloitteet">
             Initiatives <span class="nav-count">{{ collections.politics.length }}</span>
           </a>
-          <a class="nav-link" href="#speeches">
+          <a class="nav-link" href="#puheet">
             Speeches <span class="nav-count">{{ collections.pub_puhe.length }}</span>
           </a>
           <a class="nav-link" href="#blogi">
@@ -699,7 +699,7 @@ section[id] {
       if (typeof av === 'string') av = av.toLowerCase();
       if (typeof bv === 'string') bv = bv.toLowerCase();
       if (typeof av === 'number' && typeof bv === 'number') return (av - bv) * sortDir;
-      return av.toString().localeCompare(bv.toString(), 'fi') * sortDir;
+      return av.toString().localeCompare(bv.toString(), 'en') * sortDir;
     });
     currentPage = 1;
     render();
@@ -906,7 +906,7 @@ section[id] {
       if (col === 'date') {
         return (new Date(av) - new Date(bv)) * blogSortDir;
       }
-      return av.toString().localeCompare(bv.toString(), 'fi') * blogSortDir;
+      return av.toString().localeCompare(bv.toString(), 'en') * blogSortDir;
     });
     blogCurrentPage = 1;
     renderBlog();
@@ -923,8 +923,8 @@ section[id] {
       blogTbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-5">No results for this search</td></tr>';
     } else {
       blogTbody.innerHTML = slice.map(d => {
-        const catBadges = (d.categories || []).map(c => `<a href="/kategoriat/${slugify(c)}/" class="badge text-bg-secondary me-1 text-decoration-none">${c}</a>`).join('');
-        const keyBadges = (d.keywords || []).map(k => `<a href="/avainsanat/${slugify(k)}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">${k}</a>`).join('');
+        const catBadges = (d.categories || []).map(c => `<a href="/en/categories/${slugify(c)}/" class="badge text-bg-secondary me-1 text-decoration-none">${c}</a>`).join('');
+        const keyBadges = (d.keywords || []).map(k => `<a href="/en/keywords/${slugify(k)}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">${k}</a>`).join('');
 
         return `<tr>
           <td class="col-date text-center small text-muted font-monospace">${d.formattedDate}</td>
@@ -1052,7 +1052,7 @@ section[id] {
       if (col === 'date') {
         return (new Date(av) - new Date(bv)) * puheetSortDir;
       }
-      return av.toString().localeCompare(bv.toString(), 'fi') * puheetSortDir;
+      return av.toString().localeCompare(bv.toString(), 'en') * puheetSortDir;
     });
     puheetCurrentPage = 1;
     renderSpeeches();
@@ -1069,8 +1069,8 @@ section[id] {
       puheetTbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-5">No results for this search</td></tr>';
     } else {
       puheetTbody.innerHTML = slice.map(d => {
-        const catBadges = (d.categories || []).map(c => `<a href="/kategoriat/${slugify(c)}/" class="badge text-bg-secondary me-1 text-decoration-none">${c}</a>`).join('');
-        const keyBadges = (d.keywords || []).map(k => `<a href="/avainsanat/${slugify(k)}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">${k}</a>`).join('');
+        const catBadges = (d.categories || []).map(c => `<a href="/en/categories/${slugify(c)}/" class="badge text-bg-secondary me-1 text-decoration-none">${c}</a>`).join('');
+        const keyBadges = (d.keywords || []).map(k => `<a href="/en/keywords/${slugify(k)}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">${k}</a>`).join('');
 
         const targetAttr = d.isExternal ? 'target="_blank" rel="noopener"' : '';
         const iconInfo = d.isExternal ? '<i class="bi bi-arrow-up-right"></i>' : '<i class="bi bi-arrow-right"></i>';
@@ -1202,7 +1202,7 @@ section[id] {
       if (col === 'date') {
         return (new Date(av) - new Date(bv)) * aloitteetSortDir;
       }
-      return av.toString().localeCompare(bv.toString(), 'fi') * aloitteetSortDir;
+      return av.toString().localeCompare(bv.toString(), 'en') * aloitteetSortDir;
     });
     aloitteetCurrentPage = 1;
     renderInitiatives();
@@ -1219,8 +1219,8 @@ section[id] {
       aloitteetTbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-5">No results for this search</td></tr>';
     } else {
       aloitteetTbody.innerHTML = slice.map(d => {
-        const catBadges = (d.categories || []).map(c => `<a href="/kategoriat/${slugify(c)}/" class="badge text-bg-secondary me-1 text-decoration-none">${c}</a>`).join('');
-        const keyBadges = (d.keywords || []).map(k => `<a href="/avainsanat/${slugify(k)}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">${k}</a>`).join('');
+        const catBadges = (d.categories || []).map(c => `<a href="/en/categories/${slugify(c)}/" class="badge text-bg-secondary me-1 text-decoration-none">${c}</a>`).join('');
+        const keyBadges = (d.keywords || []).map(k => `<a href="/en/keywords/${slugify(k)}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">${k}</a>`).join('');
 
         const targetAttr = d.isExternal ? 'target="_blank" rel="noopener"' : '';
         const iconInfo = d.isExternal ? '<i class="bi bi-arrow-up-right"></i>' : '<i class="bi bi-arrow-right"></i>';
@@ -1352,7 +1352,7 @@ section[id] {
       if (col === 'date') {
         return (new Date(av) - new Date(bv)) * kolumnitSortDir;
       }
-      return av.toString().localeCompare(bv.toString(), 'fi') * kolumnitSortDir;
+      return av.toString().localeCompare(bv.toString(), 'en') * kolumnitSortDir;
     });
     kolumnitCurrentPage = 1;
     renderColumns();
@@ -1369,8 +1369,8 @@ section[id] {
       kolumnitTbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-5">No results for this search</td></tr>';
     } else {
       kolumnitTbody.innerHTML = slice.map(d => {
-        const catBadges = (d.categories || []).map(c => `<a href="/kategoriat/${slugify(c)}/" class="badge text-bg-secondary me-1 text-decoration-none">${c}</a>`).join('');
-        const keyBadges = (d.keywords || []).map(k => `<a href="/avainsanat/${slugify(k)}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">${k}</a>`).join('');
+        const catBadges = (d.categories || []).map(c => `<a href="/en/categories/${slugify(c)}/" class="badge text-bg-secondary me-1 text-decoration-none">${c}</a>`).join('');
+        const keyBadges = (d.keywords || []).map(k => `<a href="/en/keywords/${slugify(k)}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">${k}</a>`).join('');
 
         const targetAttr = d.isExternal ? 'target="_blank" rel="noopener"' : '';
         const iconInfo = d.isExternal ? '<i class="bi bi-arrow-up-right"></i>' : '<i class="bi bi-arrow-right"></i>';
@@ -1502,7 +1502,7 @@ section[id] {
       if (col === 'date') {
         return (new Date(av) - new Date(bv)) * mielipiteetSortDir;
       }
-      return av.toString().localeCompare(bv.toString(), 'fi') * mielipiteetSortDir;
+      return av.toString().localeCompare(bv.toString(), 'en') * mielipiteetSortDir;
     });
     mielipiteetCurrentPage = 1;
     renderOpinions();
@@ -1519,8 +1519,8 @@ section[id] {
       mielipiteetTbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-5">No results for this search</td></tr>';
     } else {
       mielipiteetTbody.innerHTML = slice.map(d => {
-        const catBadges = (d.categories || []).map(c => `<a href="/kategoriat/${slugify(c)}/" class="badge text-bg-secondary me-1 text-decoration-none">${c}</a>`).join('');
-        const keyBadges = (d.keywords || []).map(k => `<a href="/avainsanat/${slugify(k)}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">${k}</a>`).join('');
+        const catBadges = (d.categories || []).map(c => `<a href="/en/categories/${slugify(c)}/" class="badge text-bg-secondary me-1 text-decoration-none">${c}</a>`).join('');
+        const keyBadges = (d.keywords || []).map(k => `<a href="/en/keywords/${slugify(k)}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">${k}</a>`).join('');
 
         const targetAttr = d.isExternal ? 'target="_blank" rel="noopener"' : '';
         const iconInfo = d.isExternal ? '<i class="bi bi-arrow-up-right"></i>' : '<i class="bi bi-arrow-right"></i>';

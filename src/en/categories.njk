@@ -10,7 +10,7 @@ lang: en
     <h1 class="h3 mb-3">Categories</h1>
     <div class="list-group">
       {% for cat in collections.categoryList %}
-      <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" href="/kategoriat/{{ cat.slug }}/">
+      <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" href="/en/categories/{{ cat.slug }}/">
         <span>{{ cat.name }}</span>
         <span class="badge text-bg-secondary rounded-pill">{{ cat.count }}</span>
       </a>

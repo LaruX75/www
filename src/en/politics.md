@@ -16,8 +16,8 @@ lang: en
         <p class="text-muted mb-3">Decision-making in municipal and regional governance is built on cooperation. No individual councillor moves things forward without networks, dialogue, and shared direction.</p>
         <p class="mb-4">I have been involved in civic influence from an early age. My background in residents' association work, municipal politics, and education is reflected in the way I do politics: practically, evidence-based, and with a long-term perspective.</p>
         <div class="d-flex flex-wrap gap-2">
-          <a href="/en/writings/#motions" class="btn btn-primary">Motions</a>
-          <a href="/en/writings/#speeches" class="btn btn-outline-primary">Speeches</a>
+          <a href="/en/writings/#aloitteet" class="btn btn-primary">Motions</a>
+          <a href="/en/writings/#puheet" class="btn btn-outline-primary">Speeches</a>
           <a href="/en/election-history/" class="btn btn-outline-primary">Election history</a>
           <a href="/en/affiliations/" class="btn btn-outline-primary">Affiliations</a>
         </div>
