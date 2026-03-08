@@ -22,7 +22,7 @@ translationKey: writings_index
             Blogi <span class="nav-count">{{ collections.blog.length }}</span>
           </a>
           <a class="nav-link" href="#esitykset">
-            Materiaalit <span class="nav-count">{{ collections.presentations.length + (finnaAoe.rows | length) + ((slideshare or []) | length) }}</span>
+            Materiaalit <span class="nav-count">{{ collections.presentations.length + (finnaAoe.rows | length) }}</span>
           </a>
           <a class="nav-link" href="#julkaisut">
             Julkaisut <span class="nav-count">{{ researchfi.length }}</span>
@@ -52,60 +52,46 @@ translationKey: writings_index
       <div class="card-body">
         <div class="row g-3 mb-4">
           <div class="col-6 col-md-4 col-lg-2">
-            <a class="summary-kpi-link" href="#aloitteet">
             <div class="summary-kpi kpi-color-aloitteet p-3 rounded border border-start border-4 h-100">
               <div class="summary-kpi-label">Aloitteet</div>
               <div id="kpi-aloitteet" class="summary-kpi-value">0</div>
             </div>
-            </a>
           </div>
           <div class="col-6 col-md-4 col-lg-2">
-            <a class="summary-kpi-link" href="#blogi">
             <div class="summary-kpi kpi-color-blogi p-3 rounded border border-start border-4 h-100">
               <div class="summary-kpi-label">Blogi</div>
               <div id="kpi-blogi" class="summary-kpi-value">0</div>
             </div>
-            </a>
           </div>
           <div class="col-6 col-md-4 col-lg-2">
-            <a class="summary-kpi-link" href="#esitykset">
             <div class="summary-kpi kpi-color-esitykset p-3 rounded border border-start border-4 h-100">
               <div class="summary-kpi-label">Materiaalit</div>
               <div id="kpi-esitykset" class="summary-kpi-value">0</div>
             </div>
-            </a>
           </div>
           <div class="col-6 col-md-4 col-lg-2">
-            <a class="summary-kpi-link" href="#julkaisut">
             <div class="summary-kpi kpi-color-julkaisut p-3 rounded border border-start border-4 h-100">
               <div class="summary-kpi-label">Julkaisut</div>
               <div id="kpi-julkaisut" class="summary-kpi-value">0</div>
             </div>
-            </a>
           </div>
           <div class="col-6 col-md-4 col-lg-2">
-            <a class="summary-kpi-link" href="#kolumnit">
             <div class="summary-kpi kpi-color-kolumnit p-3 rounded border border-start border-4 h-100">
               <div class="summary-kpi-label">Kolumnit</div>
               <div id="kpi-kolumnit" class="summary-kpi-value">0</div>
             </div>
-            </a>
           </div>
           <div class="col-6 col-md-4 col-lg-2">
-            <a class="summary-kpi-link" href="#mielipiteet">
             <div class="summary-kpi kpi-color-mielipiteet p-3 rounded border border-start border-4 h-100">
               <div class="summary-kpi-label">Mielipiteet</div>
               <div id="kpi-mielipiteet" class="summary-kpi-value">0</div>
             </div>
-            </a>
           </div>
           <div class="col-6 col-md-4 col-lg-2">
-            <a class="summary-kpi-link" href="#puheet">
             <div class="summary-kpi kpi-color-puheet p-3 rounded border border-start border-4 h-100">
               <div class="summary-kpi-label">Puheet</div>
               <div id="kpi-puheet" class="summary-kpi-value">0</div>
             </div>
-            </a>
           </div>
         </div>
 
@@ -510,7 +496,6 @@ translationKey: writings_index
 <script id="esitykset-data" type="application/json">
 [
   {% set aoeRows = finnaAoe.rows or [] %}
-  {% set slideRows = slideshare or [] %}
   {% for presentation in collections.presentations %}
   {
     "title": {{ presentation.data.title | dump | safe }},
@@ -521,7 +506,7 @@ translationKey: writings_index
     "thumbnail": {{ (presentation.data.thumbnail or "") | dump | safe }},
     "categories": {{ (presentation.data.categories or []) | dump | safe }},
     "type": {{ (presentation.data.type or "Canva") | dump | safe }}
-  }{% if not loop.last or aoeRows.length or slideRows.length %},{% endif %}
+  }{% if not loop.last or aoeRows.length %},{% endif %}
   {% endfor %}
   {% for item in aoeRows %}
   {
@@ -532,19 +517,7 @@ translationKey: writings_index
     "url": {{ item.url | dump | safe }},
     "thumbnail": {{ (item.image or "") | dump | safe }},
     "categories": [],
-    "type": "AOE"
-  }{% if not loop.last or slideRows.length %},{% endif %}
-  {% endfor %}
-  {% for item in slideRows %}
-  {
-    "title": {{ item.title | dump | safe }},
-    "date": "",
-    "formattedDate": "",
-    "description": "SlideShare-esitys",
-    "url": {{ (item.url or "") | dump | safe }},
-    "thumbnail": {{ (item.thumbnail or "") | dump | safe }},
-    "categories": [],
-    "type": "SlideShare"
+    "type": "AOE / Finna"
   }{% if not loop.last %},{% endif %}
   {% endfor %}
 ]
@@ -555,55 +528,17 @@ translationKey: writings_index
     <div class="card shadow-sm">
       <div class="card-header bg-transparent d-flex align-items-center justify-content-between border-start border-4 border-info">
         <h2 class="h4 mb-0"><i class="bi bi-book-fill me-2 text-info"></i>Opetusmateriaaleja</h2>
-        <span class="badge text-bg-info text-dark">{{ collections.presentations.length + (finnaAoe.rows | length) + ((slideshare or []) | length) }}</span>
+        <span class="badge text-bg-info text-dark">{{ collections.presentations.length + (finnaAoe.rows | length) }}</span>
       </div>
       <div class="card-body p-0">
         <div class="p-3 bg-body-tertiary border-bottom">
           <div class="row g-2 align-items-end">
-            <div class="col-md-12">
+            <div class="col-md-9">
               <label for="esitykset-search" class="form-label small text-muted mb-1">Hae materiaaleja</label>
               <input type="search" id="esitykset-search" class="form-control form-control-sm"
                      placeholder="Hae otsikosta, kuvauksesta tai tyypistä..." autocomplete="off">
             </div>
-            <div class="col-md-2">
-              <label for="esitykset-filter-date" class="form-label small text-muted mb-1">Päivämäärä</label>
-              <input type="search" id="esitykset-filter-date" class="form-control form-control-sm" placeholder="esim. 2024">
-            </div>
-            <div class="col-md-2">
-              <label for="esitykset-filter-title" class="form-label small text-muted mb-1">Otsikko</label>
-              <input type="search" id="esitykset-filter-title" class="form-control form-control-sm" placeholder="Otsikko...">
-            </div>
-            <div class="col-md-2">
-              <label for="esitykset-filter-thumb" class="form-label small text-muted mb-1">Kuva</label>
-              <select id="esitykset-filter-thumb" class="form-select form-select-sm">
-                <option value="">Kaikki</option>
-                <option value="has">On kuva</option>
-                <option value="none">Ei kuvaa</option>
-              </select>
-            </div>
-            <div class="col-md-2">
-              <label for="esitykset-filter-description" class="form-label small text-muted mb-1">Kuvaus</label>
-              <input type="search" id="esitykset-filter-description" class="form-control form-control-sm" placeholder="Kuvaus...">
-            </div>
-            <div class="col-md-2">
-              <label for="esitykset-filter-open" class="form-label small text-muted mb-1">Avaa</label>
-              <select id="esitykset-filter-open" class="form-select form-select-sm">
-                <option value="">Kaikki</option>
-                <option value="has">On linkki</option>
-                <option value="none">Ei linkkiä</option>
-              </select>
-            </div>
-            <div class="col-md-2">
-              <label for="esitykset-filter-type" class="form-label small text-muted mb-1">Tyyppi</label>
-              <select id="esitykset-filter-type" class="form-select form-select-sm">
-                <option value="">Kaikki</option>
-                <option value="slideshare">SlideShare</option>
-                <option value="canva">Canva</option>
-                <option value="aoe">AOE</option>
-                <option value="muu">Muu</option>
-              </select>
-            </div>
-            <div class="col-md-2 d-flex justify-content-md-end gap-2">
+            <div class="col-md-3 d-flex justify-content-md-end gap-2">
               <button id="esitykset-reset" class="btn btn-outline-secondary btn-sm w-100">
                 <i class="bi bi-x-circle me-1"></i>Tyhjennä
               </button>
@@ -621,14 +556,13 @@ translationKey: writings_index
                 <th class="sortable" data-col="title" style="min-width:220px">
                   Otsikko <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
                 </th>
-                <th style="width:96px" class="text-center">Kuva</th>
-                <th style="min-width:260px">Kuvaus</th>
+                <th style="min-width:260px">Kuvaus & esikatselu</th>
+                <th>Teemat / tyyppi</th>
                 <th style="width:90px" class="text-center">Avaa</th>
-                <th>Tyyppi</th>
               </tr>
             </thead>
             <tbody id="esitykset-tbody">
-              <tr><td colspan="6" class="text-center text-muted py-4">Ladataan esityksiä...</td></tr>
+              <tr><td colspan="5" class="text-center text-muted py-4">Ladataan esityksiä...</td></tr>
             </tbody>
           </table>
         </div>
@@ -797,16 +731,6 @@ section[id] {
 .summary-kpi {
   background: var(--bs-tertiary-bg);
   border-left-width: 4px !important;
-}
-.summary-kpi-link {
-  display: block;
-  color: inherit;
-  text-decoration: none;
-}
-.summary-kpi-link:hover .summary-kpi,
-.summary-kpi-link:focus-visible .summary-kpi {
-  transform: translateY(-2px);
-  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.08);
 }
 .summary-kpi-label {
   font-size: 0.75rem;
@@ -1504,53 +1428,19 @@ section[id] {
   let esityksetSortDir = -1; // -1 = desc
 
   const esityksetSearchInp = document.getElementById('esitykset-search');
-  const esityksetDateInp = document.getElementById('esitykset-filter-date');
-  const esityksetTitleInp = document.getElementById('esitykset-filter-title');
-  const esityksetThumbSel = document.getElementById('esitykset-filter-thumb');
-  const esityksetDescriptionInp = document.getElementById('esitykset-filter-description');
-  const esityksetOpenSel = document.getElementById('esitykset-filter-open');
-  const esityksetTypeSel = document.getElementById('esitykset-filter-type');
   const esityksetTbody = document.getElementById('esitykset-tbody');
   const esityksetInfo = document.getElementById('esitykset-info');
   const esityksetPagUl = document.getElementById('esitykset-pagination');
 
-  function normalizeMaterialType(rawType) {
-    const t = String(rawType || '').toLowerCase();
-    if (t.includes('slideshare')) return 'slideshare';
-    if (t.includes('canva')) return 'canva';
-    if (t.includes('aoe') || t.includes('finna')) return 'aoe';
-    return 'muu';
-  }
-
   function applyEsityksetFilters() {
     const q = esityksetSearchInp ? esityksetSearchInp.value.toLowerCase().trim() : '';
-    const dateQ = esityksetDateInp ? esityksetDateInp.value.toLowerCase().trim() : '';
-    const titleQ = esityksetTitleInp ? esityksetTitleInp.value.toLowerCase().trim() : '';
-    const descQ = esityksetDescriptionInp ? esityksetDescriptionInp.value.toLowerCase().trim() : '';
-    const thumbQ = esityksetThumbSel ? esityksetThumbSel.value : '';
-    const openQ = esityksetOpenSel ? esityksetOpenSel.value : '';
-    const typeQ = esityksetTypeSel ? esityksetTypeSel.value : '';
-
     filteredEsityksetData = esityksetData.filter(d => {
-      const normalizedType = normalizeMaterialType(d.type);
-      const hasThumb = Boolean(d.thumbnail);
-      const hasUrl = Boolean(d.url);
-      const dateValue = `${d.formattedDate || ''} ${d.date || ''}`.toLowerCase();
-
       const matchQ = !q ||
         (d.title || '').toLowerCase().includes(q) ||
         (d.description || '').toLowerCase().includes(q) ||
         (d.categories || []).some(c => c.toLowerCase().includes(q)) ||
         (d.type || '').toLowerCase().includes(q);
-
-      const matchDate = !dateQ || dateValue.includes(dateQ);
-      const matchTitle = !titleQ || (d.title || '').toLowerCase().includes(titleQ);
-      const matchDescription = !descQ || (d.description || '').toLowerCase().includes(descQ);
-      const matchThumb = !thumbQ || (thumbQ === 'has' ? hasThumb : !hasThumb);
-      const matchOpen = !openQ || (openQ === 'has' ? hasUrl : !hasUrl);
-      const matchType = !typeQ || normalizedType === typeQ;
-
-      return matchQ && matchDate && matchTitle && matchDescription && matchThumb && matchOpen && matchType;
+      return matchQ;
     }).sort((a, b) => new Date(b.date) - new Date(a.date));
     esityksetCurrentPage = 1;
     renderEsitykset();
@@ -1566,9 +1456,7 @@ section[id] {
       if (typeof av === 'string') av = av.toLowerCase();
       if (typeof bv === 'string') bv = bv.toLowerCase();
       if (col === 'date') {
-        const aTime = new Date(av).getTime();
-        const bTime = new Date(bv).getTime();
-        return ((Number.isFinite(aTime) ? aTime : 0) - (Number.isFinite(bTime) ? bTime : 0)) * esityksetSortDir;
+        return (new Date(av) - new Date(bv)) * esityksetSortDir;
       }
       return av.toString().localeCompare(bv.toString(), 'fi') * esityksetSortDir;
     });
@@ -1584,19 +1472,14 @@ section[id] {
     const slice = filteredEsityksetData.slice(start, start + ESITYKSET_PAGE_SIZE);
 
     if (slice.length === 0) {
-      esityksetTbody.innerHTML = '<tr><td colspan="6" class="text-center text-muted py-5">Ei tuloksia haulla</td></tr>';
+      esityksetTbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-5">Ei tuloksia haulla</td></tr>';
     } else {
       esityksetTbody.innerHTML = slice.map(d => {
-        const normalizedType = normalizeMaterialType(d.type);
-        const typeLabels = {
-          slideshare: 'SlideShare',
-          canva: 'Canva',
-          aoe: 'AOE',
-          muu: 'Muu'
-        };
-        const thumbCell = d.thumbnail
-          ? `<img src="${escHtml(d.thumbnail)}" alt="${escHtml(d.title)}" class="img-fluid rounded border" style="width:72px; height:56px; object-fit:cover;">`
-          : `<span class="text-muted small">—</span>`;
+        const catBadges = (d.categories || []).map(c => `<span class="badge text-bg-secondary me-1">${escHtml(c)}</span>`).join('');
+        const typeBadge = d.type ? `<span class="badge text-bg-light text-dark border">${escHtml(d.type)}</span>` : '';
+        const preview = d.thumbnail
+          ? `<img src="${escHtml(d.thumbnail)}" alt="${escHtml(d.title)}" class="img-fluid rounded border mt-2" style="max-height:72px; object-fit:cover;">`
+          : '';
         const linkBtn = d.url
           ? `<a href="${escHtml(d.url)}" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Avaa esitys"><i class="bi bi-arrow-up-right"></i></a>`
           : `<span class="text-muted small">—</span>`;
@@ -1604,10 +1487,9 @@ section[id] {
         return `<tr>
           <td class="col-date text-center small text-muted font-monospace">${d.formattedDate}</td>
           <td class="col-title fw-medium">${escHtml(d.title)}</td>
-          <td class="text-center">${thumbCell}</td>
-          <td class="col-desc small text-muted">${escHtml(d.description)}</td>
+          <td class="col-desc small text-muted">${escHtml(d.description)}${preview}</td>
+          <td>${catBadges || typeBadge || '<span class="text-muted small">—</span>'}</td>
           <td class="text-center">${linkBtn}</td>
-          <td><span class="badge text-bg-light text-dark border">${typeLabels[normalizedType] || 'Muu'}</span></td>
         </tr>`;
       }).join('');
     }
@@ -1656,23 +1538,11 @@ section[id] {
   }
 
   if (esityksetSearchInp) esityksetSearchInp.addEventListener('input', applyEsityksetFilters);
-  if (esityksetDateInp) esityksetDateInp.addEventListener('input', applyEsityksetFilters);
-  if (esityksetTitleInp) esityksetTitleInp.addEventListener('input', applyEsityksetFilters);
-  if (esityksetDescriptionInp) esityksetDescriptionInp.addEventListener('input', applyEsityksetFilters);
-  if (esityksetThumbSel) esityksetThumbSel.addEventListener('change', applyEsityksetFilters);
-  if (esityksetOpenSel) esityksetOpenSel.addEventListener('change', applyEsityksetFilters);
-  if (esityksetTypeSel) esityksetTypeSel.addEventListener('change', applyEsityksetFilters);
 
   const esityksetResetBtn = document.getElementById('esitykset-reset');
   if (esityksetResetBtn) {
     esityksetResetBtn.addEventListener('click', () => {
       if (esityksetSearchInp) esityksetSearchInp.value = '';
-      if (esityksetDateInp) esityksetDateInp.value = '';
-      if (esityksetTitleInp) esityksetTitleInp.value = '';
-      if (esityksetDescriptionInp) esityksetDescriptionInp.value = '';
-      if (esityksetThumbSel) esityksetThumbSel.value = '';
-      if (esityksetOpenSel) esityksetOpenSel.value = '';
-      if (esityksetTypeSel) esityksetTypeSel.value = '';
       applyEsityksetFilters();
     });
   }
