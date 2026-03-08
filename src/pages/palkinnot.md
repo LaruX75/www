@@ -4,7 +4,7 @@ permalink: /palkinnot/
 layout: page.njk
 lang: fi
 translationKey: awards
-description: "Jari Larun saamat palkinnot, apurahat ja muut huomionosoitukset – avoimen tieteen kansallinen palkinto, kulttuurirahaston apurahat ja opiskelijoiden tunnustukset."
+description: "Jari Larun saamat palkinnot, apurahat ja muut huomionosoitukset – avoimen oppimisen palkinto 2025, kansallinen avoimen tieteen palkinto 2020, Vuoden TVT-opettaja 2014 sekä kulttuurirahaston apurahat."
 templateEngineOverride: njk,md
 ---
 
@@ -19,6 +19,33 @@ templateEngineOverride: njk,md
 <section class="py-5">
   <div class="container">
     <h2 class="h3 mb-4">Palkinnot</h2>
+
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-body p-4 p-md-5">
+        <div class="d-flex flex-wrap align-items-start gap-3 mb-3">
+          <div class="flex-shrink-0">
+            <span class="badge bg-warning text-dark fs-6 px-3 py-2">2025</span>
+          </div>
+          <div>
+            <h3 class="h4 fw-bold mb-1">Avoimen oppimisen palkinto &mdash; Avoimet oppimismateriaalit</h3>
+            <p class="text-muted mb-0">Tieteellisten seurain valtuuskunta (TSV) &mdash; Avoimen tieteen kansallinen koordinaatioryhmä</p>
+          </div>
+        </div>
+
+        <p>Kansallinen avoimen oppimisen palkinto myönnettiin vuoden 2025 avoimen tieteen kesäpäivillä. <strong>Generation AI</strong> -hanke sai palkinnon kategoriassa <em>Avoimet oppimismateriaalit</em>. Palkinto tunnusti hankkeen työn tekoälyn ja tietoturvan perusteiden opettamiseksi lapsille ja opettajille avointen materiaalien ja sovellusten avulla.</p>
+
+        <blockquote class="blockquote border-start border-4 border-warning ps-4 my-4">
+          <p class="mb-0 fst-italic">"Hankkeessa rakennetaan perustaa, jonka päälle voidaan rakentaa tekoälysukupolven teknologiakasvatusta."</p>
+          <footer class="blockquote-footer mt-2">Avoimen oppimisen palkinnon perusteluista 2025</footer>
+        </blockquote>
+
+        <p>Jari Laru toimi hankkeessa <strong>vuorovaikutusasiantuntijana</strong>. Hankkeeseen osallistui satoja suomalaisia lapsia, opettajia ja tutkijoita, jotka kehittivät yhdessä käytännön lähestymistapoja ja työkaluja tekoälyn opetukseen.</p>
+
+        <div class="d-flex flex-wrap gap-2 mt-4">
+          <a class="btn btn-outline-secondary btn-sm" href="https://avointiede.fi/fi/ajankohtaista/kyberturvallisuus-ja-tekoaly-aiheena-avoimen-oppimisen-palkinnoissa" target="_blank" rel="noopener noreferrer">TSV:n tiedote</a>
+        </div>
+      </div>
+    </div>
 
     <div class="card border-0 shadow-sm mb-4">
       <div class="card-body p-4 p-md-5">
@@ -42,8 +69,35 @@ templateEngineOverride: njk,md
         <p>Palkintoperusteissa mainittiin erityisesti kevään 2020 toiminta: Laru tuki opettajia koronapandemian aiheuttamassa etäopetustilanteessa verkossa striimaamillaan asiantuntijahaastatteluilla sekä kokoamillaan etäopetuksen materiaaleilla. Hän oli myös mukana kirjoittamassa avointa <em>Etäopetuksen näytön paikka</em> -opasta.</p>
 
         <div class="d-flex flex-wrap gap-2 mt-4">
-          <a class="btn btn-outline-primary btn-sm" href="/2020/12/06/jari-larulle-kansallinen-avoimen-tieteen-palkinto/" >Lue blogikirjoitus</a>
+          <a class="btn btn-outline-primary btn-sm" href="/2020/12/06/jari-larulle-kansallinen-avoimen-tieteen-palkinto/">Lue blogikirjoitus</a>
           <a class="btn btn-outline-secondary btn-sm" href="https://avointiede.fi/fi/ajankohtaista/vuotuiset-avoimen-tieteen-palkinnot-2020-jaettu" target="_blank" rel="noopener noreferrer">TSV:n tiedote</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-body p-4 p-md-5">
+        <div class="d-flex flex-wrap align-items-start gap-3 mb-3">
+          <div class="flex-shrink-0">
+            <span class="badge bg-secondary fs-6 px-3 py-2">2014</span>
+          </div>
+          <div>
+            <h3 class="h4 fw-bold mb-1">Vuoden tieto- ja viestintätekniikkaopettaja</h3>
+            <p class="text-muted mb-0">IT-kouluttajat ry &mdash; Kategoria: Korkea-aste</p>
+          </div>
+        </div>
+
+        <p>IT-kouluttajat ry myönsi Jari Larulle Vuoden TVT-opettaja -palkinnon korkea-asteen kategoriassa. Palkinto tunnusti pitkäjänteisen työn tieto- ja viestintätekniikan tutkimuksessa, opetuksessa ja asiantuntijuuden jakamisessa.</p>
+
+        <blockquote class="blockquote border-start border-4 border-secondary ps-4 my-4">
+          <p class="mb-0 fst-italic">"Jari Laru kehittää ja jakaa asiantuntijuuttaan paitsi kursseillaan opettajaopiskelijoille myös verkossa kaikille koulutuksesta kiinnostuneille."</p>
+          <footer class="blockquote-footer mt-2">IT-kouluttajat ry:n palkintoperusteet. Ehdottajat: Saana Rasila, Vesa Vainikainen ja Henri Hand / Oulun Luokanopettajaopiskelijat ry</footer>
+        </blockquote>
+
+        <p>Palkinnon perusteluissa korostettiin ongelmalähtöisen ja tutkivan oppimisen integrointia opetukseen, teknologian näkemistä välineenä eikä päämääränä sekä tiivistä yhteyttä käytännön opetustyöhön. Ehdottajina toimivat Oulun luokanopettajaopiskelijat.</p>
+
+        <div class="d-flex flex-wrap gap-2 mt-4">
+          <a class="btn btn-outline-secondary btn-sm" href="https://itko.tivia.fi/vuoden-tieto-ja-viestintatekniikkaopettaja/" target="_blank" rel="noopener noreferrer">IT-kouluttajat ry:n sivusto</a>
         </div>
       </div>
     </div>
