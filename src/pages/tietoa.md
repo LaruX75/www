@@ -65,7 +65,7 @@ wp_id: 7
             <p class="text-muted small mb-3">Kasvatustieteiden tohtori (2012). Teknologiatuetun oppimisen yliopistonlehtori Oulun yliopistossa. Nykyään tutkin opettajien tekoälylukutaitoa Generation AI -hankkeessa.</p>
           </div>
           <div class="card-footer bg-transparent border-0 px-4 pb-4">
-            <a href="/tyoni-yliopistonlehtorina/" class="btn btn-success btn-sm">Lue lisää yliopistotyöstä</a>
+            <a href="/tyoni-yliopistonlehtorina/" class="btn btn-primary btn-sm">Lue lisää yliopistotyöstä</a>
           </div>
         </div>
       </div>
@@ -78,7 +78,7 @@ wp_id: 7
             <p class="text-muted small mb-3">Larux t:mi -yritykseni kautta tarjoan opetusalan täydennyskoulutusta ja puheenvuoroja. Erikoisala: tekoäly, digipedagogiikka ja teknologiatuettu oppiminen.</p>
           </div>
           <div class="card-footer bg-transparent border-0 px-4 pb-4">
-            <a href="/larux-tmi/" class="btn btn-warning btn-sm">Lue lisää koulutuksista</a>
+            <a href="/larux-tmi/" class="btn btn-primary btn-sm">Lue lisää koulutuksista</a>
           </div>
         </div>
       </div>
@@ -91,7 +91,7 @@ wp_id: 7
             <p class="text-muted small mb-3">Julkaisuja Research.fi-profiilissa, ORCID-tunniste 0000-0003-0347-0182. Tutkimusalueet: mobiilioppiminen, yhteisöllinen oppiminen, tekoälylukutaito.</p>
           </div>
           <div class="card-footer bg-transparent border-0 px-4 pb-4">
-            <a href="/tutkimus/" class="btn btn-info btn-sm">Lue lisää tutkimuksesta</a>
+            <a href="/tutkimus/" class="btn btn-primary btn-sm">Lue lisää tutkimuksesta</a>
           </div>
         </div>
       </div>
