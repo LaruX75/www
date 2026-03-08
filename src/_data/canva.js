@@ -56,10 +56,16 @@ function extractDesignIdFromUrl(url) {
 }
 
 function parseQuotedValue(frontmatter, key) {
-  const pattern = new RegExp(`^${key}:\\s*"(.*)"\\s*$`, "m");
-  const match = frontmatter.match(pattern);
-  if (!match) return null;
-  return match[1].replace(/\\"/g, "\"").trim();
+  // Handles both double-quoted and single-quoted YAML values
+  const patternDouble = new RegExp(`^${key}:\\s*"(.*)"\\s*$`, "m");
+  const matchDouble = frontmatter.match(patternDouble);
+  if (matchDouble) return matchDouble[1].replace(/\\"/g, "\"").trim();
+
+  const patternSingle = new RegExp(`^${key}:\\s*'(.*)'\\s*$`, "m");
+  const matchSingle = frontmatter.match(patternSingle);
+  if (matchSingle) return matchSingle[1].replace(/''/g, "'").trim();
+
+  return null;
 }
 
 function parseUnquotedValue(frontmatter, key) {
@@ -96,6 +102,9 @@ function readLocalPresentations() {
     if (!frontmatterMatch) return;
 
     const fm = frontmatterMatch[1];
+    const source = parseQuotedValue(fm, "source") || parseUnquotedValue(fm, "source") || "";
+    if (source === "slideshare") return; // SlideShare-tiedostot eivät kuulu Canva-osioon
+
     const title = parseQuotedValue(fm, "title");
     const description = parseQuotedValue(fm, "description");
     const url = parseQuotedValue(fm, "url");
