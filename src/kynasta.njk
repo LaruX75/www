@@ -22,7 +22,7 @@ translationKey: writings_index
             Blogi <span class="nav-count">{{ collections.blog.length }}</span>
           </a>
           <a class="nav-link" href="#esitykset">
-            Esitykset <span class="nav-count">{{ collections.presentations.length }}</span>
+            Materiaalit <span class="nav-count">{{ collections.presentations.length + (finnaAoe.rows | length) }}</span>
           </a>
           <a class="nav-link" href="#julkaisut">
             Julkaisut <span class="nav-count">{{ researchfi.length }}</span>
@@ -65,7 +65,7 @@ translationKey: writings_index
           </div>
           <div class="col-6 col-md-4 col-lg-2">
             <div class="summary-kpi kpi-color-esitykset p-3 rounded border border-start border-4 h-100">
-              <div class="summary-kpi-label">Esitykset</div>
+              <div class="summary-kpi-label">Materiaalit</div>
               <div id="kpi-esitykset" class="summary-kpi-value">0</div>
             </div>
           </div>
@@ -492,9 +492,10 @@ translationKey: writings_index
   </div>
 </section>
 
-{# Kerätään kaikki Canva-esitykset JSON-muotoon JS:ää varten #}
+{# Kerätään esitykset ja AOE-oppimateriaalit JSON-muotoon JS:ää varten #}
 <script id="esitykset-data" type="application/json">
 [
+  {% set aoeRows = finnaAoe.rows or [] %}
   {% for presentation in collections.presentations %}
   {
     "title": {{ presentation.data.title | dump | safe }},
@@ -505,6 +506,18 @@ translationKey: writings_index
     "thumbnail": {{ (presentation.data.thumbnail or "") | dump | safe }},
     "categories": {{ (presentation.data.categories or []) | dump | safe }},
     "type": {{ (presentation.data.type or "Canva") | dump | safe }}
+  }{% if not loop.last or aoeRows.length %},{% endif %}
+  {% endfor %}
+  {% for item in aoeRows %}
+  {
+    "title": {{ item.title | dump | safe }},
+    "date": "{{ item.year }}-01-01",
+    "formattedDate": {{ item.year | dump | safe }},
+    "description": {{ (item.summary or "") | dump | safe }},
+    "url": {{ item.url | dump | safe }},
+    "thumbnail": {{ (item.image or "") | dump | safe }},
+    "categories": [],
+    "type": "AOE / Finna"
   }{% if not loop.last %},{% endif %}
   {% endfor %}
 ]
@@ -514,16 +527,16 @@ translationKey: writings_index
   <div class="container">
     <div class="card shadow-sm">
       <div class="card-header bg-transparent d-flex align-items-center justify-content-between border-start border-4 border-info">
-        <h2 class="h4 mb-0"><i class="bi bi-display-fill me-2 text-info"></i>Esitykset</h2>
-        <span class="badge text-bg-info text-dark">{{ collections.presentations.length }}</span>
+        <h2 class="h4 mb-0"><i class="bi bi-book-fill me-2 text-info"></i>Opetusmateriaaleja</h2>
+        <span class="badge text-bg-info text-dark">{{ collections.presentations.length + (finnaAoe.rows | length) }}</span>
       </div>
       <div class="card-body p-0">
         <div class="p-3 bg-body-tertiary border-bottom">
           <div class="row g-2 align-items-end">
             <div class="col-md-9">
-              <label for="esitykset-search" class="form-label small text-muted mb-1">Hae esityksiä</label>
+              <label for="esitykset-search" class="form-label small text-muted mb-1">Hae materiaaleja</label>
               <input type="search" id="esitykset-search" class="form-control form-control-sm"
-                     placeholder="Hae otsikosta, kuvauksesta tai teemoista..." autocomplete="off">
+                     placeholder="Hae otsikosta, kuvauksesta tai tyypistä..." autocomplete="off">
             </div>
             <div class="col-md-3 d-flex justify-content-md-end gap-2">
               <button id="esitykset-reset" class="btn btn-outline-secondary btn-sm w-100">
@@ -544,8 +557,8 @@ translationKey: writings_index
                   Otsikko <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
                 </th>
                 <th style="min-width:260px">Kuvaus & esikatselu</th>
-                <th>Teemat</th>
-                <th style="width:90px" class="text-center">Katso</th>
+                <th>Teemat / tyyppi</th>
+                <th style="width:90px" class="text-center">Avaa</th>
               </tr>
             </thead>
             <tbody id="esitykset-tbody">
@@ -560,7 +573,8 @@ translationKey: writings_index
           <nav aria-label="Sivutus">
             <ul id="esitykset-pagination" class="pagination pagination-sm mb-0 flex-wrap"></ul>
           </nav>
-          <a href="/esitykset/" class="btn btn-outline-primary btn-sm rounded-pill">Kaikki esitykset</a>
+          <a href="/esitykset/" class="btn btn-outline-primary btn-sm rounded-pill">Esitykset</a>
+          <a href="https://www.finna.fi/Search/Results?lookfor=Jari+Laru&type=Author&filter[]=format%3A%220%2FLearningMaterial%2F%22" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary btn-sm rounded-pill">AOE / Finna <i class="bi bi-arrow-up-right"></i></a>
         </div>
       </div>
     </div>

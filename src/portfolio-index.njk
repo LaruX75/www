@@ -340,7 +340,7 @@ translationKey: portfolio_index
   {% if collections.presentations | length %}
   <section class="mb-4 mb-lg-5">
     <h2 class="h2 text-center mb-1">Viimeisimmät esitykset</h2>
-    <p class="text-center text-body-secondary mb-4">Haettu automaattisesti esitysarkistosta &mdash; <a href="/esitykset/">kaikki esitykset</a></p>
+    <p class="text-center text-body-secondary mb-4">Haettu automaattisesti esitysarkistosta &mdash; <a href="/esitykset/">kaikki esitykset ja oppimateriaalit</a></p>
 
     <div class="row g-3">
       {% for pres in collections.presentations %}
@@ -541,9 +541,9 @@ translationKey: portfolio_index
       <div class="col-md-6 col-lg-4">
         <a href="/esitykset/" class="card border-0 shadow-sm h-100 text-decoration-none text-body">
           <div class="card-body p-4">
-            <span class="badge bg-info text-dark mb-2">Esitykset</span>
-            <h3 class="h6 fw-bold mb-2">Konferenssi- ja koulutusesitykset</h3>
-            <p class="small text-body-secondary mb-0">{{ collections.presentations | length }} dokumentoitua esitystä — kansallisia ja kansainvälisiä konferensseja, VESO-koulutuksia ja asiantuntijaluentoja.</p>
+            <span class="badge bg-info text-dark mb-2">Esitykset &amp; AOE</span>
+            <h3 class="h6 fw-bold mb-2">Esitykset ja avoimet oppimateriaalit</h3>
+            <p class="small text-body-secondary mb-0">{{ collections.presentations | length + (finnaAoe.rows | length) }} materiaalia — konferenssi- ja koulutusesityksiä sekä avoimia oppimateriaaleja (AOE).</p>
           </div>
         </a>
       </div>
