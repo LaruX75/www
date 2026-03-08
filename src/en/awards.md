@@ -1,7 +1,7 @@
 ---
 title: "Awards and Recognition"
 permalink: /en/awards/
-layout: page.njk
+layout: base.njk
 lang: en
 translationKey: awards
 description: "Awards, grants, and recognitions received by Jari Laru for open science, teaching, and research."

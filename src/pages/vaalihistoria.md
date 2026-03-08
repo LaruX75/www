@@ -1,7 +1,7 @@
 ---
 title: "Vaalihistoria"
 permalink: /vaalihistoria/
-layout: page.njk
+layout: base.njk
 lang: fi
 translationKey: election_history
 description: "Jari Larun vaalihistoria ja poliittiset luottamustoimet vaalikausittain – kuntavaalit, aluevaalit ja muut luottamustehtävät."

@@ -11,7 +11,7 @@ templateEngineOverride: njk,md
 <section class="py-5 bg-body-tertiary border-bottom">
   <div class="container">
     <p class="text-uppercase text-muted fw-semibold small mb-2">Palkinnot ja tunnustukset</p>
-    <h1 class="display-6 fw-bold mb-3">Huomionosoitukset</h1>
+    <h2 class="display-6 fw-bold mb-3">Huomionosoitukset</h2>
     <p class="lead mb-0">Alla on koottuna saamiani palkintoja, apurahoja ja muita tunnustuksia – tieteellisestä avoimuudesta, opetustyöstä ja tutkimuksesta.</p>
   </div>
 </section>

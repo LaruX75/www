@@ -17,7 +17,7 @@ templateEngineOverride: md
 
 ![](/img/uploads/2021/02/laru_jari_3448_web-removebg-preview-1-e1613760400900.png)
 
-# Olen käytettävissänne.
+## Olen käytettävissänne.
 
 Olen ehdolla Oulun yliopiston hallintovaaleissa kollegion jäseneksi. Minulla on pitkäaikainen ja laaja kokemus yliopiston hallintotehtävistä. Tällä hetkellä toimin Oulun yliopiston koulutusneuvoston jäsenenä sekä Digipedagogiikan kehittäminen, oppimisympäristöjen laatu-ohjausryhmän jäsenenä.
 

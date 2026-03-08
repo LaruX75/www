@@ -11,7 +11,7 @@ templateEngineOverride: md
 
 ![](/img/uploads/2021/02/laru_jari_3448_web-removebg-preview-1-e1613760400900.png)
 
-# I am ready to represent you.
+## I am ready to represent you.
 
 I am candidate running for Oulu University Collegium. I have years of expertise of different academic positions of trust in the University of Oulu. Lately I have been member of Education Council and "development of the digital pedagogy and quality of the Learning Environments" steering group.
 

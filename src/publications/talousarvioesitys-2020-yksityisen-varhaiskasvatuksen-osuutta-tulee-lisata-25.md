@@ -18,7 +18,7 @@ source_url: "https://www.jarilaru.fi/talousarvioesitys-2020-yksityisen-varhaiska
 templateEngineOverride: md
 ---
 <div><figure><img src="/img/uploads/2021/11/Copy-of-Somekuva-nelio-kuvalla-ja-numerolla-1024x1024.png" alt=""/></figure><div>
-<h1>Oulun kaupunginvaltuusto 29.11.2021</h1>
+<h2>Oulun kaupunginvaltuusto 29.11.2021</h2>
 <h2>Puheeni kaupunginvaltuustossa</h2>
 <p>Kiitos puheenjohtaja. Arvoisat valtuutetut,</p>
 <p>Varhaiskasvatuksen toimintaympäristöön kohdistuu edelleen lakimuutoksia, joiden avulla korostetaan ja vahvistetaan varhaiskasvatuksen merkitystä sekä lisätään lasten osallisuutta varhaiskasvatukseen ja esiopetukseen. Toimintakaudelle tulevia kustannustasoa nostavia lakimuutoksia ovat kaksivuotisen esiopetuksen kokeilu, varhaiskasvatuksen asiakasmaksulain uudistus, lakimuutokset henkilöstömitoituksen poikkeamiseen ja ilmoitusvelvollisuuteen.</p>
