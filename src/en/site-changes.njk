@@ -31,46 +31,6 @@ lang: en
       </div>
     {% endif %}
 
-    {% if githubchanges.rows and githubchanges.rows.length %}
-      {% set firstRow = githubchanges.rows[0] %}
-      {% set lastRow = githubchanges.rows[githubchanges.rows.length - 1] %}
-      <div class="row g-3 mb-4">
-        <div class="col-6 col-md-3">
-          <div class="card border-0 shadow-sm h-100 text-center">
-            <div class="card-body py-3">
-              <div class="fs-2 fw-bold text-primary">{{ githubchanges.rows.length }}</div>
-              <div class="small text-muted mt-1">Changes total</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-6 col-md-3">
-          <div class="card border-0 shadow-sm h-100 text-center">
-            <div class="card-body py-3">
-              <div class="fs-5 fw-bold text-success">{{ firstRow.date | dateFormat }}</div>
-              <div class="small text-muted mt-1">Latest change</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-6 col-md-3">
-          <div class="card border-0 shadow-sm h-100 text-center">
-            <div class="card-body py-3">
-              <div class="fs-5 fw-bold text-secondary">{{ lastRow.date | dateFormat }}</div>
-              <div class="small text-muted mt-1">Oldest shown</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-6 col-md-3">
-          <a href="{{ githubchanges.repo.url }}" target="_blank" rel="noopener noreferrer" class="text-decoration-none">
-            <div class="card border-0 shadow-sm h-100 text-center">
-              <div class="card-body py-3">
-                <div class="fs-5 fw-bold text-dark"><i class="bi bi-github me-1"></i>{{ githubchanges.repo.repo }}</div>
-                <div class="small text-muted mt-1">Branch: <code>{{ githubchanges.repo.branch }}</code></div>
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-    {% endif %}
 
     {% if githubchanges.rows and githubchanges.rows.length %}
       <div class="table-responsive">
