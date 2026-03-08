@@ -1,24 +1,24 @@
 ---
-title: Kuntavaalit 2025
+title: Kunta- ja aluevaalit 2025
 date: 2025-04-13
 description: "Jari Larun kuntavaaliarkisto 2025 – kampanjateemat, äänimäärä ja vaalitulos. Oulu, Kokoomus, ehdokas 439. 289 ääntä, 2. varavaltuutettu."
 layout: base.njk
 templateEngineOverride: njk
-permalink: /kuntavaalit-2025/
+permalink: /kunta-ja-aluevaalit-2025/
 translationKey: election_2025
 lang: fi
 ---
 
-<section class="py-5 bg-body-tertiary border-bottom">
+<section class="kunta-aluevaalit-2025 py-5 bg-body-tertiary border-bottom">
   <div class="container">
     <p class="text-uppercase text-muted fw-semibold small mb-2">Politiikka &mdash; arkisto</p>
-    <h1 class="display-6 fw-bold mb-3">Kuntavaalit 2025</h1>
+    <h1 class="display-6 fw-bold mb-3">Kunta- ja aluevaalit 2025</h1>
     <p class="lead mb-2">Olin ehdokkaana Oulun kuntavaaleissa 13.4.2025 Kokoomuksen listalta, ehdokasnumerolla <strong>439</strong>.</p>
     <p class="text-muted mb-0">Tämä on kampanjan arkistosivu. Varsinaista kampanjasivustoa ei rakennettu &mdash; kampanja tapahtui pääasiassa sosiaalisessa mediassa ja suorissa kohtaamisissa.</p>
   </div>
 </section>
 
-<section class="py-5">
+<section class="kunta-aluevaalit-2025 py-5">
   <div class="container">
 
     <div class="row g-4 mb-5">
@@ -132,3 +132,25 @@ lang: fi
 
   </div>
 </section>
+
+<style>
+.kunta-aluevaalit-2025 h1,
+.kunta-aluevaalit-2025 h2,
+.kunta-aluevaalit-2025 h3 {
+  color: var(--bs-emphasis-color);
+}
+
+html:not([data-bs-theme="dark"]) .kunta-aluevaalit-2025 .card h2,
+html:not([data-bs-theme="dark"]) .kunta-aluevaalit-2025 .card h3 {
+  color: #10253d;
+}
+
+[data-bs-theme="dark"] .kunta-aluevaalit-2025 .card h2,
+[data-bs-theme="dark"] .kunta-aluevaalit-2025 .card h3 {
+  color: #e6eef9;
+}
+
+.kunta-aluevaalit-2025 .card-header strong {
+  color: inherit;
+}
+</style>

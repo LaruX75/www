@@ -70,7 +70,7 @@ templateEngineOverride: njk,md
                 </div>
               </div>
               <p class="small text-muted mb-2">Luottamustoimet 2025&ndash;2029: 2. varavaltuutettu (Oulun kaupunginvaltuusto), sivistyslautakunnan jäsen, aluevaltuuston varajäsen.</p>
-              <a class="btn btn-outline-primary btn-sm" href="/kuntavaalit-2025/">Vaalisivusto (arkisto)</a>
+              <a class="btn btn-outline-primary btn-sm" href="/kunta-ja-aluevaalit-2025/">Vaalisivusto (arkisto)</a>
             </div>
           </div>
         </div>

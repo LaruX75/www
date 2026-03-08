@@ -467,7 +467,7 @@ module.exports = {
             },
             {
               title: "Kuntavaalit 2025",
-              href: "/kuntavaalit-2025/",
+              href: "/kunta-ja-aluevaalit-2025/",
               icon: "bi bi-chevron-right me-2",
               description: "Kampanjateemat ja tulos kuntavaaleissa 2025."
             },
