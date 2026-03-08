@@ -511,10 +511,11 @@ translationKey: writings_index
 [
   {% set aoeRows = finnaAoe.rows or [] %}
   {% for presentation in collections.presentations %}
+  {% set presentationDate = presentation.data.date or presentation.date %}
   {
     "title": {{ presentation.data.title | dump | safe }},
-    "date": "{{ presentation.date }}",
-    "formattedDate": "{{ presentation.date | dateFormat }}",
+    "date": {{ presentationDate | dump | safe }},
+    "formattedDate": "{{ presentationDate | dateFormat }}",
     "description": {{ (presentation.data.description or (presentation.content | excerpt)) | dump | safe }},
     "url": {{ (presentation.data.url or "") | dump | safe }},
     "thumbnail": {{ (presentation.data.thumbnail or "") | dump | safe }},
@@ -843,8 +844,13 @@ section[id] {
     mobileTableObserver.observe(tbody, { childList: true, subtree: true });
   });
   const yearFromDate = (value) => {
-    if (!value) return null;
-    const d = new Date(value);
+    if (value === null || value === undefined) return null;
+    if (typeof value === 'number' && value >= 1900 && value <= 2100) return value;
+    const str = String(value).trim();
+    if (!str) return null;
+    const yearMatch = str.match(/\b(19|20)\d{2}\b/);
+    if (yearMatch) return Number(yearMatch[0]);
+    const d = new Date(str);
     return Number.isNaN(d.getTime()) ? null : d.getFullYear();
   };
 
@@ -1408,7 +1414,7 @@ section[id] {
           ? `<button type="button" class="preview-thumb-btn p-0 border-0 bg-transparent mt-2" data-preview-src="${escHtml(d.thumbnail)}" data-preview-alt="${escHtml(d.title)}" title="Avaa kansikuva">
                <img src="${escHtml(d.thumbnail)}" alt="${escHtml(d.title)}" class="img-fluid border" style="max-height:72px; object-fit:cover;">
              </button>`
-          : '';
+          : '<span class="text-muted small">—</span>';
         const linkBtn = d.url
           ? `<a href="${escHtml(d.url)}" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Avaa esitys"><i class="bi bi-arrow-up-right"></i></a>`
           : `<span class="text-muted small">—</span>`;
@@ -1416,7 +1422,7 @@ section[id] {
         return `<tr>
           <td class="col-date text-center small text-muted font-monospace">${d.formattedDate}</td>
           <td class="col-title fw-medium">${escHtml(d.title)}</td>
-          <td class="col-desc small text-muted">${escHtml(d.description)}${preview}</td>
+          <td class="col-desc small text-muted text-center">${preview}</td>
           <td>${catBadges || typeBadge || '<span class="text-muted small">—</span>'}</td>
           <td class="text-center">${linkBtn}</td>
         </tr>`;
