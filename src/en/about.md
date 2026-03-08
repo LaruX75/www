@@ -1,5 +1,5 @@
 ---
-layout: page.njk
+layout: base.njk
 templateEngineOverride: njk
 title: About
 subtitle: Who is Jari Laru?
@@ -7,15 +7,17 @@ permalink: /en/about/
 translationKey: about
 lang: en
 ---
-Jari Laru is a university lecturer, researcher, municipal politician, entrepreneur, father, and active public speaker based in Oulu, Finland.
+<div class="container py-5" style="max-width: 960px;">
+  <h1 class="fw-bold mb-2">About Jari Laru</h1>
+  <p class="lead text-muted mb-4">Who is Jari Laru?</p>
 
-His work focuses on educational technology, digital learning, and the practical use of emerging technologies in teaching and learning.
+  <p class="mb-2">Jari Laru is a university lecturer, researcher, municipal politician, entrepreneur, father, and active public speaker based in Oulu, Finland.</p>
+  <p class="mb-2">His work focuses on educational technology, digital learning, and the practical use of emerging technologies in teaching and learning.</p>
+  <p class="mb-4">In addition to academic work, he has long experience in local government and civic decision-making.</p>
 
-In addition to academic work, he has long experience in local government and civic decision-making.
+  <h2 class="h4 fw-bold mb-3">Outside work</h2>
 
----
-
-<div class="row g-4 mt-2">
+<div class="row g-4">
   <div class="col-sm-6 col-lg-3">
     <div class="card border-0 bg-body-tertiary h-100">
       <div class="card-body p-4">
@@ -55,4 +57,5 @@ In addition to academic work, he has long experience in local government and civ
       </div>
     </div>
   </div>
+</div>
 </div>
