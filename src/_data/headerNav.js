@@ -16,7 +16,9 @@ module.exports = {
         eleventyNavigation: {
           key: "me",
           title: "Minä",
+          url: "/tietoa/",
           icon: "bi bi-person-fill",
+          parent: "home",
           order: 20
         }
       }
@@ -26,7 +28,9 @@ module.exports = {
         eleventyNavigation: {
           key: "work",
           title: "Työ",
+          url: "/tyoni-yliopistonlehtorina/",
           icon: "bi bi-briefcase-fill",
+          parent: "home",
           order: 30
         }
       }
@@ -36,7 +40,9 @@ module.exports = {
         eleventyNavigation: {
           key: "politics",
           title: "Politiikka",
+          url: "/politiikka/",
           icon: "bi bi-bank2",
+          parent: "home",
           order: 40
         }
       }
@@ -46,7 +52,9 @@ module.exports = {
         eleventyNavigation: {
           key: "writings",
           title: "Kynästä",
+          url: "/kynasta/",
           icon: "bi bi-pencil-fill",
+          parent: "home",
           order: 50
         }
       }
@@ -58,6 +66,7 @@ module.exports = {
           title: "Ota yhteyttä",
           url: "/yhteystiedot/",
           icon: "bi bi-envelope",
+          parent: "home",
           order: 60
         }
       }
@@ -146,7 +155,9 @@ module.exports = {
         eleventyNavigation: {
           key: "me",
           title: "Me",
+          url: "/en/about/",
           icon: "bi bi-person-fill",
+          parent: "home",
           order: 20
         }
       }
@@ -156,7 +167,9 @@ module.exports = {
         eleventyNavigation: {
           key: "work",
           title: "Work",
+          url: "/en/work/",
           icon: "bi bi-briefcase-fill",
+          parent: "home",
           order: 30
         }
       }
@@ -166,7 +179,9 @@ module.exports = {
         eleventyNavigation: {
           key: "politics",
           title: "Politics",
+          url: "/en/politics/",
           icon: "bi bi-bank2",
+          parent: "home",
           order: 40
         }
       }
@@ -176,7 +191,9 @@ module.exports = {
         eleventyNavigation: {
           key: "writings",
           title: "Writings",
+          url: "/en/writings/",
           icon: "bi bi-pencil-fill",
+          parent: "home",
           order: 50
         }
       }
@@ -188,6 +205,7 @@ module.exports = {
           title: "Contact",
           url: "/en/contact/",
           icon: "bi bi-envelope",
+          parent: "home",
           order: 60
         }
       }
