@@ -232,6 +232,10 @@
     {% set breadcrumbKey = "work" %}
   {% elif currentUrl == "/politiikka/" or currentUrl == "/politiiikka/" or currentUrl == "/sidonnaisuudet/" or currentUrl == "/en/politics/" or currentUrl == "/en/affiliations/" %}
     {% set breadcrumbKey = "politics" %}
+  {% elif currentUrl == "/vaalihistoria/" or currentUrl == "/en/election-history/" or currentUrl == "/kuntavaalit-2021/" or currentUrl == "/jari-laru-aluevaltuustoon/" or currentUrl == "/kunnallisvaalit-2012/" %}
+    {% set breadcrumbKey = "election_history" %}
+  {% elif currentUrl == "/kunta-ja-aluevaalit-2025/" %}
+    {% set breadcrumbKey = "election_2025" %}
   {% elif currentUrl == "/kynasta/" %}
     {% set breadcrumbKey = "writings" %}
   {% elif currentUrl == "/yhteystiedot/" or currentUrl == "/en/contact/" %}

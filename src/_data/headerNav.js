@@ -105,6 +105,28 @@ module.exports = {
           order: 40
         }
       }
+    },
+    {
+      data: {
+        eleventyNavigation: {
+          key: "election_history",
+          title: "Vaalihistoria",
+          url: "/vaalihistoria/",
+          parent: "politics",
+          order: 50
+        }
+      }
+    },
+    {
+      data: {
+        eleventyNavigation: {
+          key: "election_2025",
+          title: "Kunta- ja aluevaalit 2025",
+          url: "/kunta-ja-aluevaalit-2025/",
+          parent: "election_history",
+          order: 10
+        }
+      }
     }
   ],
   en: [
@@ -211,6 +233,17 @@ module.exports = {
           url: "/en/theses/",
           parent: "work",
           order: 40
+        }
+      }
+    },
+    {
+      data: {
+        eleventyNavigation: {
+          key: "election_history",
+          title: "Election History",
+          url: "/en/election-history/",
+          parent: "politics",
+          order: 50
         }
       }
     }

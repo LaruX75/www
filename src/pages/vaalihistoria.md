@@ -8,7 +8,7 @@ description: "Jari Larun vaalihistoria ja poliittiset luottamustoimet vaalikausi
 templateEngineOverride: njk,md
 ---
 
-<section class="py-5 bg-body-tertiary border-bottom">
+<section class="election-history-page py-5 bg-body-tertiary border-bottom">
   <div class="container">
     <p class="text-uppercase text-muted fw-semibold small mb-2">Politiikka</p>
     <h1 class="display-6 fw-bold mb-3">Vaalihistoria</h1>
@@ -16,7 +16,7 @@ templateEngineOverride: njk,md
   </div>
 </section>
 
-<section class="py-5">
+<section class="election-history-page py-5">
   <div class="container">
 
     <h2 class="h4 mb-4">Nykyiset luottamustoimet <small class="text-muted fw-normal fs-6">(vaalikausi 2025&ndash;2029)</small></h2>
@@ -84,11 +84,12 @@ templateEngineOverride: njk,md
               <h3 class="h5 fw-bold mb-1">Kuntavaalit 2021</h3>
               <p class="text-muted small mb-2">Oulu &mdash; Kokoomus</p>
               <p class="mb-2">Valittu uudelleen Oulun kaupunginvaltuustoon. Vaalikausi 2021–2025.</p>
-              <ul class="mb-3">
-                <li>Kaupunginvaltuutettu, Oulun kaupunki</li>
-                <li>Sivistys- ja kulttuurilautakunnan jäsen</li>
-                <li>Maakuntavaltuuston jäsen, Pohjois-Pohjanmaan liitto</li>
-              </ul>
+              <div class="election-summary border rounded small mb-3">
+                <strong>Keskeiset luottamustoimet</strong><br>
+                Kaupunginvaltuutettu, Oulun kaupunki<br>
+                Sivistys- ja kulttuurilautakunnan jäsen<br>
+                Maakuntavaltuuston jäsen, Pohjois-Pohjanmaan liitto
+              </div>
               <a class="btn btn-outline-primary btn-sm" href="/kuntavaalit-2021/">Vaalisivusto (arkisto)</a>
             </div>
           </div>
@@ -103,9 +104,10 @@ templateEngineOverride: njk,md
               <h3 class="h5 fw-bold mb-1">Aluevaalit 2022</h3>
               <p class="text-muted small mb-2">Pohjois-Pohjanmaa &mdash; Kokoomus</p>
               <p class="mb-2">Ehdokkaana Pohjoispohjanmaan hyvinvointialueen ensimmäisissä aluevaaleissa tammikuussa 2022. Valittu aluevaltuuston varajäseneksi.</p>
-              <ul class="mb-3">
-                <li>Aluevaltuuston varajäsen, Pohjoispohjanmaan hyvinvointialue</li>
-              </ul>
+              <div class="election-summary border rounded small mb-3">
+                <strong>Keskeiset luottamustoimet</strong><br>
+                Aluevaltuuston varajäsen, Pohjoispohjanmaan hyvinvointialue
+              </div>
               <a class="btn btn-outline-primary btn-sm" href="/jari-laru-aluevaltuustoon/">Vaalisivusto (arkisto)</a>
             </div>
           </div>
@@ -120,13 +122,14 @@ templateEngineOverride: njk,md
               <h3 class="h5 fw-bold mb-1">Kuntavaalit 2017</h3>
               <p class="text-muted small mb-2">Oulu &mdash; Kokoomus</p>
               <p class="mb-2">Valittu ensimmäistä kertaa Oulun kaupunginvaltuustoon. Vaalikausi 2017–2021.</p>
-              <ul class="mb-3">
-                <li>Kaupunginvaltuutettu, Oulun kaupunki</li>
-                <li>Sivistys- ja kulttuurilautakunnan jäsen</li>
-                <li>Maakuntavaltuuston varavaltuutettu, Pohjois-Pohjanmaan liitto</li>
-                <li>Lähidemokratiatoimikunnan puheenjohtaja (2017–2021)</li>
-              </ul>
-              <a class="btn btn-outline-secondary btn-sm" href="/jari-laru-kaupunginvaltuutettu/">Lue lisää (arkisto)</a>
+              <div class="election-summary border rounded small mb-3">
+                <strong>Keskeiset luottamustoimet</strong><br>
+                Kaupunginvaltuutettu, Oulun kaupunki<br>
+                Sivistys- ja kulttuurilautakunnan jäsen<br>
+                Maakuntavaltuuston varavaltuutettu, Pohjois-Pohjanmaan liitto<br>
+                Lähidemokratiatoimikunnan puheenjohtaja (2017&ndash;2021)
+              </div>
+              <a class="btn btn-outline-primary btn-sm" href="/jari-laru-kaupunginvaltuutettu/">Lue lisää (arkisto)</a>
             </div>
           </div>
         </div>
@@ -140,7 +143,12 @@ templateEngineOverride: njk,md
               <h3 class="h5 fw-bold mb-1">Kunnallisvaalit 2012</h3>
               <p class="text-muted small mb-2">Oulu &mdash; Kokoomus</p>
               <p class="mb-2">Ehdokkaana kunnallisvaaleissa Oulussa. Taustaa asukasyhdistyksen puheenjohtajana ja varavaltuutetun tehtävissä.</p>
-              <a class="btn btn-outline-secondary btn-sm" href="/kunnallisvaalit-2012/">Vaalisivusto (arkisto)</a>
+              <div class="election-summary border rounded small mb-3">
+                <strong>Tausta ja painopiste</strong><br>
+                Ensimmäinen laajempi kunnallispoliittinen kampanja Oulussa.<br>
+                Painotus asukasvaikuttamiseen, lähipalveluihin ja alueelliseen kehittämiseen.
+              </div>
+              <a class="btn btn-outline-primary btn-sm" href="/kunnallisvaalit-2012/">Vaalisivusto (arkisto)</a>
             </div>
           </div>
         </div>
@@ -166,3 +174,43 @@ templateEngineOverride: njk,md
 
   </div>
 </section>
+
+<style>
+.election-history-page .election-summary {
+  padding: 0.6rem 0.7rem;
+  border-color: rgba(100, 116, 139, 0.35) !important;
+  background: rgba(148, 163, 184, 0.08);
+}
+
+html:not([data-bs-theme="dark"]) .election-history-page .btn.btn-outline-primary,
+html:not([data-bs-theme="dark"]) .election-history-page .btn.btn-outline-secondary {
+  color: #1f3f63;
+  border-color: #1f3f63;
+  background: transparent;
+}
+
+html:not([data-bs-theme="dark"]) .election-history-page .btn.btn-outline-primary:hover,
+html:not([data-bs-theme="dark"]) .election-history-page .btn.btn-outline-secondary:hover,
+html:not([data-bs-theme="dark"]) .election-history-page .btn.btn-outline-primary:focus-visible,
+html:not([data-bs-theme="dark"]) .election-history-page .btn.btn-outline-secondary:focus-visible {
+  color: #ffffff;
+  background: #1f3f63;
+  border-color: #1f3f63;
+}
+
+[data-bs-theme="dark"] .election-history-page .btn.btn-outline-primary,
+[data-bs-theme="dark"] .election-history-page .btn.btn-outline-secondary {
+  color: #dce9fa;
+  border-color: rgba(184, 207, 237, 0.72);
+  background: transparent;
+}
+
+[data-bs-theme="dark"] .election-history-page .btn.btn-outline-primary:hover,
+[data-bs-theme="dark"] .election-history-page .btn.btn-outline-secondary:hover,
+[data-bs-theme="dark"] .election-history-page .btn.btn-outline-primary:focus-visible,
+[data-bs-theme="dark"] .election-history-page .btn.btn-outline-secondary:focus-visible {
+  color: #0e1726;
+  background: #dce9fa;
+  border-color: #dce9fa;
+}
+</style>
