@@ -123,6 +123,19 @@ templateEngineOverride: njk
   </div>
 </section>
 
+<section class="mb-5" id="poliittiset-teemat">
+  <div class="container">
+    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+      <div>
+        <h2 class="h4 mb-1">Teemoitetut sisällöt</h2>
+        <p class="text-muted small mb-0">Politiikka-aiheiset blogit, puheenvuorot ja mielipidekirjoitukset ryhmiteltyinä aihepiireittäin.</p>
+      </div>
+      <a href="/kynasta/" class="btn btn-outline-primary btn-sm">Kaikki kirjoitukset</a>
+    </div>
+    <div id="politics-theme-cta-grid" class="row g-3"></div>
+  </div>
+</section>
+
 <section class="mb-5" id="valtuustoaloitteet">
   <div class="container">
     <div class="d-flex align-items-center justify-content-between mb-3">
@@ -303,7 +316,9 @@ templateEngineOverride: njk
     "title": {{ (item.data.title or "") | dump | safe }},
     "url": {{ (item.url or "") | dump | safe }},
     "date": {{ (item.date | dateToRfc3339) | dump | safe }},
-    "contentType": "Aloite"
+    "contentType": "Aloite",
+    "categories": {{ (item.data.categories or []) | dump | safe }},
+    "keywords": {{ (item.data.keywords or []) | dump | safe }}
   }
 {% endfor %}
 {% for item in collections.pub_kolumni %}{{ comma() }}
@@ -311,7 +326,9 @@ templateEngineOverride: njk
     "title": {{ (item.data.title or "") | dump | safe }},
     "url": {{ (item.url or "") | dump | safe }},
     "date": {{ (item.date | dateToRfc3339) | dump | safe }},
-    "contentType": "Kolumni"
+    "contentType": "Kolumni",
+    "categories": {{ (item.data.categories or []) | dump | safe }},
+    "keywords": {{ (item.data.keywords or []) | dump | safe }}
   }
 {% endfor %}
 {% for item in collections.pub_mielipide %}{{ comma() }}
@@ -319,7 +336,9 @@ templateEngineOverride: njk
     "title": {{ (item.data.title or "") | dump | safe }},
     "url": {{ (item.url or "") | dump | safe }},
     "date": {{ (item.date | dateToRfc3339) | dump | safe }},
-    "contentType": "Mielipide"
+    "contentType": "Mielipide",
+    "categories": {{ (item.data.categories or []) | dump | safe }},
+    "keywords": {{ (item.data.keywords or []) | dump | safe }}
   }
 {% endfor %}
 {% for item in collections.pub_puhe %}{{ comma() }}
@@ -327,7 +346,9 @@ templateEngineOverride: njk
     "title": {{ (item.data.title or "") | dump | safe }},
     "url": {{ (item.url or "") | dump | safe }},
     "date": {{ (item.date | dateToRfc3339) | dump | safe }},
-    "contentType": "Puheenvuoro"
+    "contentType": "Puheenvuoro",
+    "categories": {{ (item.data.categories or []) | dump | safe }},
+    "keywords": {{ (item.data.keywords or []) | dump | safe }}
   }
 {% endfor %}
 ]
@@ -348,6 +369,19 @@ templateEngineOverride: njk
   .politics-table .col-date {
     white-space: nowrap;
     color: var(--bs-secondary-color);
+  }
+
+  .politics-theme-card {
+    border: 0;
+    box-shadow: var(--bs-box-shadow-sm);
+    height: 100%;
+  }
+
+  .politics-theme-card .theme-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    text-decoration: none;
   }
 </style>
 
@@ -378,6 +412,141 @@ templateEngineOverride: njk
     const contentData = JSON.parse(document.getElementById('politics-content-data')?.textContent || '[]')
       .filter((item) => item && item.title && item.url)
       .sort((a, b) => new Date(b.date) - new Date(a.date));
+    const themeGrid = document.getElementById('politics-theme-cta-grid');
+
+    const escHtml = (value) => String(value || '')
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#39;');
+
+    const themeDefinitions = [
+      {
+        key: 'koulutus',
+        title: 'Koulutus ja sivistys',
+        description: 'Koulutuksen laatu, oppimisympäristöt, opettajuus ja sivistyspolitiikka.',
+        hint: 'koulu',
+        terms: ['koulu', 'koulutus', 'opetus', 'oppiminen', 'lukio', 'päiväkoti', 'varhaiskasvatus', 'sivistys']
+      },
+      {
+        key: 'kaupunkikehitys',
+        title: 'Kaupunkikehitys ja palveluverkko',
+        description: 'Kaupunginosat, kaavoitus, kampukset, palveluverkko ja arjen infrastruktuuri.',
+        hint: 'palveluverkko',
+        terms: ['kaupunki', 'kaupunginosa', 'palveluverkko', 'kaavo', 'kampus', 'liikenne', 'keskusta', 'alue']
+      },
+      {
+        key: 'demokratia',
+        title: 'Demokratia ja päätöksenteko',
+        description: 'Aloitteet, osallistuminen, hallinnon avoimuus ja luottamus päätöksentekoon.',
+        hint: 'valtuusto',
+        terms: ['valtuusto', 'aloite', 'demokratia', 'osallist', 'päätöksenteko', 'hallinto', 'sidonnaisuudet', 'läpinäkyvyys']
+      },
+      {
+        key: 'hyvinvointi',
+        title: 'Hyvinvointi ja turvallinen arki',
+        description: 'Lasten, nuorten ja perheiden hyvinvointi sekä turvalliset palvelut.',
+        hint: 'hyvinvointi',
+        terms: ['hyvinvointi', 'terveys', 'nuor', 'laps', 'perhe', 'turvall', 'kotout', 'sote']
+      },
+      {
+        key: 'talous',
+        title: 'Talous ja elinvoima',
+        description: 'Kaupungin talous, investoinnit, työ ja pitkän aikavälin kilpailukyky.',
+        hint: 'talous',
+        terms: ['talous', 'invest', 'elinvoima', 'yritys', 'työ', 'budjetti', 'kustann', 'verot']
+      }
+    ];
+    const otherTheme = {
+      key: 'muu',
+      title: 'Muut yhteiskunnalliset teemat',
+      description: 'Muut politiikkaan liittyvät näkökulmat, joita ei voi rajata yhteen pääteemaan.',
+      hint: 'politiikka'
+    };
+
+    const createBag = (item) => [
+      item.title || '',
+      ...(item.categories || []),
+      ...(item.keywords || [])
+    ].join(' ').toLowerCase();
+
+    const resolveTheme = (item) => {
+      const bag = createBag(item);
+      for (const theme of themeDefinitions) {
+        if (theme.terms.some((term) => bag.includes(term))) return theme;
+      }
+      return otherTheme;
+    };
+
+    const themedItems = [
+      ...politicsBlogData.map((item) => ({ ...item, contentType: 'Blogi' })),
+      ...contentData
+        .filter((item) => item.contentType === 'Puheenvuoro' || item.contentType === 'Mielipide')
+    ];
+    const themeGroups = {};
+    themedItems.forEach((item) => {
+      const theme = resolveTheme(item);
+      if (!themeGroups[theme.key]) {
+        themeGroups[theme.key] = {
+          ...theme,
+          total: 0,
+          blogi: 0,
+          puheenvuoro: 0,
+          mielipide: 0,
+          items: []
+        };
+      }
+      const bucket = themeGroups[theme.key];
+      bucket.total += 1;
+      if (item.contentType === 'Blogi') bucket.blogi += 1;
+      if (item.contentType === 'Puheenvuoro') bucket.puheenvuoro += 1;
+      if (item.contentType === 'Mielipide') bucket.mielipide += 1;
+      bucket.items.push(item);
+    });
+
+    function renderThemeCards() {
+      if (!themeGrid) return;
+      const groups = Object.values(themeGroups)
+        .map((group) => ({
+          ...group,
+          items: [...group.items].sort((a, b) => new Date(b.date) - new Date(a.date))
+        }))
+        .sort((a, b) => b.total - a.total || a.title.localeCompare(b.title, 'fi'));
+
+      if (!groups.length) {
+        themeGrid.innerHTML = '<div class="col-12"><div class="alert alert-light border mb-0">Teemoiteltuja sisältöjä ei löytynyt.</div></div>';
+        return;
+      }
+
+      themeGrid.innerHTML = groups.map((group) => {
+        const quickLinks = group.items.slice(0, 3).map((item) => `
+          <a href="${escHtml(item.url)}" class="small">
+            <span class="badge text-bg-light border">${escHtml(item.contentType)}</span>
+            <span>${escHtml(item.title)}</span>
+          </a>
+        `).join('');
+        return `
+          <div class="col-md-6 col-xl-4">
+            <article class="card politics-theme-card">
+              <div class="card-body d-flex flex-column">
+                <h3 class="h6 mb-2">${escHtml(group.title)}</h3>
+                <p class="text-muted small mb-3">${escHtml(group.description)}</p>
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                  ${group.blogi ? `<span class="badge rounded-pill text-bg-primary-subtle text-primary-emphasis">Blogi ${group.blogi}</span>` : ''}
+                  ${group.puheenvuoro ? `<span class="badge rounded-pill text-bg-danger-subtle text-danger-emphasis">Puheenvuorot ${group.puheenvuoro}</span>` : ''}
+                  ${group.mielipide ? `<span class="badge rounded-pill text-bg-info-subtle text-info-emphasis">Mielipiteet ${group.mielipide}</span>` : ''}
+                </div>
+                <div class="theme-links d-grid gap-2 mb-3">${quickLinks || '<span class="small text-muted">Ei nostoja.</span>'}</div>
+                <button type="button" class="btn btn-outline-primary btn-sm mt-auto align-self-start" data-theme-hint="${escHtml(group.hint)}">
+                  Näytä teeman sisällöt
+                </button>
+              </div>
+            </article>
+          </div>
+        `;
+      }).join('');
+    }
 
     // ---------- Taulukko 1: politiikka-blogi ----------
     const blogSearch = document.getElementById('politics-blog-search');
@@ -469,7 +638,12 @@ templateEngineOverride: njk
       const q = (contentSearch?.value || '').toLowerCase().trim();
       const t = contentType?.value || '';
       return contentData.filter((item) => {
-        const qOk = !q || item.title.toLowerCase().includes(q);
+        const bag = [
+          item.title || '',
+          ...(item.categories || []),
+          ...(item.keywords || [])
+        ].join(' ').toLowerCase();
+        const qOk = !q || bag.includes(q);
         const tOk = !t || item.contentType === t;
         return qOk && tOk;
       });
@@ -525,6 +699,23 @@ templateEngineOverride: njk
     contentSearch?.addEventListener('input', () => { contentPage = 1; renderContent(); });
     contentType?.addEventListener('change', () => { contentPage = 1; renderContent(); });
     renderContent();
+
+    renderThemeCards();
+    themeGrid?.addEventListener('click', (event) => {
+      const btn = event.target.closest('[data-theme-hint]');
+      if (!btn) return;
+      const hint = String(btn.getAttribute('data-theme-hint') || '').trim();
+      if (!hint) return;
+      if (blogSearch) blogSearch.value = hint;
+      if (blogYear) blogYear.value = '';
+      blogPage = 1;
+      renderBlog();
+      if (contentSearch) contentSearch.value = hint;
+      if (contentType) contentType.value = '';
+      contentPage = 1;
+      renderContent();
+      document.getElementById('politiikka-blogi')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
   })();
 </script>
 
