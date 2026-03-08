@@ -75,19 +75,65 @@ lang: fi
     <div class="card border-0 shadow-sm mb-4">
       <div class="card-body">
         <h2 class="h4 mb-3">3. Datalähteet tällä sivustolla</h2>
-        <p class="mb-2">Sivusto hakee sisältöä rajapinnoista rakennusvaiheessa (build). Hyöty on se, että samoja tietoja ei tarvitse ylläpitää käsin monessa paikassa: data pysyy ajantasaisempana, sivut päivittyvät automaattisemmin ja samasta datasta voi rakentaa useita näkymiä.</p>
-        <p class="mb-3">Alla on tämänhetkiset käytössä olevat ulkoiset datalähteet sekä niiden käyttötarkoitukset:</p>
-        <ul class="mb-3">
-          <li><strong>Research.fi API</strong> – tieteelliset julkaisut julkaisu- ja kirjoitussivuille.</li>
-          <li><strong>Canva Connect API</strong> – Canva-esitysten tiedot esityssivun listauksiin.</li>
-          <li><strong>YouTube Data API v3</strong> – YouTube-soittolistat esityssivulle.</li>
-          <li><strong>GitHub API</strong> – sivuston muutostaulukko commit-historian perusteella.</li>
-          <li><strong>OpenAlex API</strong> – viittausmääriä ja tutkijaprofiilin metriikoita.</li>
-          <li><strong>Semantic Scholar API</strong> – viittausdataa OpenAlexin rinnalle.</li>
-          <li><strong>Finna API</strong> – kirjasto-, arkisto- ja museoaineistojen haku omalle Finna-sivulle.</li>
-          <li><strong>OuluREPO OpenSearch</strong> – ohjatut opinnäytteet ja tarkastukset.</li>
-          <li><strong>Oulun kaupungin avoin API</strong> (`city_council_meeting_videos`) – valtuustovideot politiikkasivulle.</li>
-        </ul>
+        <p class="mb-3">Sivusto hakee sisältöä rajapinnoista rakennusvaiheessa (build). Alla on käytössä olevat ulkoiset rajapinnat ja tietolähteet:</p>
+        <div class="table-responsive mb-3">
+          <table class="table table-hover align-middle">
+            <thead>
+              <tr>
+                <th>Rajapinta / tietokanta</th>
+                <th>Tarjoava organisaatio</th>
+                <th>Käyttötarkoitus sivustolla</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Research.fi API</strong></td>
+                <td>Opetus- ja kulttuuriministeriö / CSC</td>
+                <td>Tieteelliset julkaisut julkaisu- ja kirjoitussivuille.</td>
+              </tr>
+              <tr>
+                <td><strong>Canva Connect API</strong></td>
+                <td>Canva</td>
+                <td>Canva-esitysten tiedot esityssivun listauksiin.</td>
+              </tr>
+              <tr>
+                <td><strong>YouTube Data API v3</strong></td>
+                <td>Google</td>
+                <td>YouTube-soittolistat esityssivulle.</td>
+              </tr>
+              <tr>
+                <td><strong>GitHub API</strong></td>
+                <td>GitHub, Inc.</td>
+                <td>Sivuston muutostaulukko commit-historian perusteella.</td>
+              </tr>
+              <tr>
+                <td><strong>OpenAlex API</strong></td>
+                <td>OurResearch</td>
+                <td>Viittausmääriä ja tutkijaprofiilin metriikoita.</td>
+              </tr>
+              <tr>
+                <td><strong>Semantic Scholar API</strong></td>
+                <td>Allen Institute for AI</td>
+                <td>Viittausdataa OpenAlexin rinnalle.</td>
+              </tr>
+              <tr>
+                <td><strong>Finna API</strong></td>
+                <td>Kansalliskirjasto (Finna)</td>
+                <td>Kirjasto-, arkisto- ja museoaineistojen haku omalle Finna-sivulle.</td>
+              </tr>
+              <tr>
+                <td><strong>OuluREPO OpenSearch</strong></td>
+                <td>Oulun yliopisto</td>
+                <td>Ohjatut opinnäytteet ja tarkastukset.</td>
+              </tr>
+              <tr>
+                <td><strong>Oulun kaupungin avoin API</strong><br><code>city_council_meeting_videos</code></td>
+                <td>Oulun kaupunki</td>
+                <td>Valtuustovideot politiikkasivulle.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <p class="mb-2">Tutustu integraatioon: <a href="/finna-aineistot/" class="fw-semibold">Finna-aineistot</a>.</p>
         <p class="mb-2">Lisäksi osa sisällöstä tulee hallituista paikallisista datatiedostoista (esim. Google Slides- ja SlideShare-listat). Näissä tapauksissa tieto ei tule rajapinnasta, vaan sitä ylläpidetään versionhallinnassa.</p>
         <p class="mb-0">Teknisesti API-dataa hyödynnetään tällä sivustolla taulukoina, ticker-nostoina, korttikokoelmina, hakunäkymissä, metriikkalaskureissa ja automaattisesti päivittyvissä “viimeisimmät muutokset” -listoissa.</p>

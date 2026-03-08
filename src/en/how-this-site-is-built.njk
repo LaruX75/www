@@ -75,19 +75,65 @@ lang: en
     <div class="card border-0 shadow-sm mb-4">
       <div class="card-body">
         <h2 class="h4 mb-3">3. External data sources in this project</h2>
-        <p class="mb-2">Fetching data from APIs keeps content fresher and reduces manual copy-paste maintenance. One source can feed multiple pages with consistent, up-to-date information.</p>
-        <p class="mb-3">Current external sources used on this site:</p>
-        <ul class="mb-3">
-          <li>Research.fi (publications)</li>
-          <li>Canva Connect API (presentations)</li>
-          <li>YouTube Data API v3 (playlists/videos)</li>
-          <li>GitHub API (site changes table)</li>
-          <li>OpenAlex API</li>
-          <li>Semantic Scholar API</li>
-          <li>Finna API (library, archive and museum records)</li>
-          <li>OuluREPO (theses)</li>
-          <li>Oulu open data API (<code>city_council_meeting_videos</code>)</li>
-        </ul>
+        <p class="mb-3">The site fetches external data during build. Current APIs and data sources:</p>
+        <div class="table-responsive mb-3">
+          <table class="table table-hover align-middle">
+            <thead>
+              <tr>
+                <th>API / Database</th>
+                <th>Provider</th>
+                <th>Usage on this site</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Research.fi API</strong></td>
+                <td>Ministry of Education and Culture / CSC</td>
+                <td>Scientific publication data on publication and writing views.</td>
+              </tr>
+              <tr>
+                <td><strong>Canva Connect API</strong></td>
+                <td>Canva</td>
+                <td>Canva presentation metadata for presentation listings.</td>
+              </tr>
+              <tr>
+                <td><strong>YouTube Data API v3</strong></td>
+                <td>Google</td>
+                <td>YouTube playlist data on the presentations page.</td>
+              </tr>
+              <tr>
+                <td><strong>GitHub API</strong></td>
+                <td>GitHub, Inc.</td>
+                <td>Site change log table from repository commits.</td>
+              </tr>
+              <tr>
+                <td><strong>OpenAlex API</strong></td>
+                <td>OurResearch</td>
+                <td>Citation and profile metrics.</td>
+              </tr>
+              <tr>
+                <td><strong>Semantic Scholar API</strong></td>
+                <td>Allen Institute for AI</td>
+                <td>Citation data alongside OpenAlex.</td>
+              </tr>
+              <tr>
+                <td><strong>Finna API</strong></td>
+                <td>National Library of Finland (Finna)</td>
+                <td>Library, archive and museum records on the Finna page.</td>
+              </tr>
+              <tr>
+                <td><strong>OuluREPO OpenSearch</strong></td>
+                <td>University of Oulu</td>
+                <td>Supervised theses and reviewed thesis records.</td>
+              </tr>
+              <tr>
+                <td><strong>Oulu open data API</strong><br><code>city_council_meeting_videos</code></td>
+                <td>City of Oulu</td>
+                <td>City council meeting videos on politics pages.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <p class="mb-2">See the integration in action: <a href="/en/finna-materials/" class="fw-semibold">Finna Materials</a>.</p>
         <p class="mb-2">In addition, some sections are maintained in curated local data files (for example Google Slides and SlideShare lists). In those cases data does not come from a remote API, but from version-controlled project files.</p>
         <p class="mb-0">Technically, these sources are rendered as tables, ticker highlights, content cards, searchable views, metric counters, and automatically updated “latest changes” lists.</p>
