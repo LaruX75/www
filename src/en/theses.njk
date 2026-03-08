@@ -161,6 +161,46 @@ lang: en
 document.addEventListener('DOMContentLoaded', () => {
   const ITEMS_PER_PAGE = 5;
 
+  function buildThesisBibTeX(payload) {
+    const title = (payload.title || '').trim();
+    const authors = (payload.authors || 'Laru, Jari').trim();
+    const year = String(payload.year || '').trim();
+    const thesisType = (payload.type || '').trim();
+    const url = (payload.url || '').trim();
+    const firstAuthor = authors.split(';')[0].trim();
+    const lastName = (firstAuthor.split(',')[0].trim().split(/\s+/).pop() || 'author')
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, '');
+    const firstWord = ((title.match(/[A-Za-zÅÄÖåäö0-9]+/) || ['thesis'])[0])
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, '');
+    const key = `${lastName}${year || 'nd'}${firstWord}`;
+    const bibType = thesisType === 'masterThesis' ? 'mastersthesis' : 'misc';
+    const safeTitle = title.replace(/[{}]/g, '');
+    const safeAuthors = authors.replace(/[{}]/g, '');
+
+    let bib = `@${bibType}{${key},\n`;
+    bib += `  title = {${safeTitle}},\n`;
+    bib += `  author = {${safeAuthors}},\n`;
+    if (year) bib += `  year = {${year}},\n`;
+    bib += `  school = {University of Oulu},\n`;
+    if (thesisType === 'bachelorThesis') bib += `  note = {Bachelor's thesis},\n`;
+    if (url) bib += `  url = {${url}},\n`;
+    bib += `}`;
+    return { key, bib };
+  }
+
+  function downloadBibFile(fileName, content) {
+    const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    URL.revokeObjectURL(link.href);
+    document.body.removeChild(link);
+  }
+
   function initTablePagination(tableContainer) {
     const table = tableContainer.querySelector('table');
     if (!table) return;
@@ -259,6 +299,20 @@ document.addEventListener('DOMContentLoaded', () => {
     if (container) {
       initTablePagination(container);
     }
+  });
+
+  document.querySelectorAll('.thesis-bib-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const payload = {
+        title: btn.dataset.title || '',
+        authors: btn.dataset.authors || '',
+        year: btn.dataset.year || '',
+        type: btn.dataset.type || '',
+        url: btn.dataset.url || ''
+      };
+      const { key, bib } = buildThesisBibTeX(payload);
+      downloadBibFile(`${key}.bib`, `${bib}\n`);
+    });
   });
 
 });

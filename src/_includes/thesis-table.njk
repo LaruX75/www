@@ -34,6 +34,18 @@
             <a href="{{ thesis.link }}" target="_blank" class="ms-2 text-decoration-none align-middle" rel="noopener noreferrer" aria-label="Avaa opinnaytetyo: {{ thesis.title }}">
               <i class="bi bi-box-arrow-up-right"></i>
             </a>
+            <button
+              type="button"
+              class="btn btn-outline-secondary btn-sm rounded-pill px-2 ms-2 thesis-bib-btn"
+              data-title="{{ thesis.title | escape }}"
+              data-authors="{{ (thesis.authors | join('; ')) | escape }}"
+              data-year="{{ thesis.year }}"
+              data-type="{{ thesis.type or '' }}"
+              data-url="{{ thesis.link | escape }}"
+              title="Vie viite BibTeX-muodossa"
+            >
+              <i class="bi bi-quote me-1"></i>Vie viite
+            </button>
           {% else %}
             <span class="fw-medium">{{ thesis.title }}</span>
           {% endif %}
