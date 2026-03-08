@@ -52,46 +52,60 @@ translationKey: writings_index
       <div class="card-body">
         <div class="row g-3 mb-4">
           <div class="col-6 col-md-4 col-lg-2">
-            <div class="summary-kpi kpi-color-aloitteet p-3 rounded border border-start border-4 h-100">
-              <div class="summary-kpi-label">Aloitteet</div>
-              <div id="kpi-aloitteet" class="summary-kpi-value">0</div>
-            </div>
+            <a href="#aloitteet" class="summary-kpi-link">
+              <div class="summary-kpi kpi-color-aloitteet p-3 rounded border border-start border-4 h-100">
+                <div class="summary-kpi-label">Aloitteet</div>
+                <div id="kpi-aloitteet" class="summary-kpi-value">0</div>
+              </div>
+            </a>
           </div>
           <div class="col-6 col-md-4 col-lg-2">
-            <div class="summary-kpi kpi-color-blogi p-3 rounded border border-start border-4 h-100">
-              <div class="summary-kpi-label">Blogi</div>
-              <div id="kpi-blogi" class="summary-kpi-value">0</div>
-            </div>
+            <a href="#blogi" class="summary-kpi-link">
+              <div class="summary-kpi kpi-color-blogi p-3 rounded border border-start border-4 h-100">
+                <div class="summary-kpi-label">Blogi</div>
+                <div id="kpi-blogi" class="summary-kpi-value">0</div>
+              </div>
+            </a>
           </div>
           <div class="col-6 col-md-4 col-lg-2">
-            <div class="summary-kpi kpi-color-esitykset p-3 rounded border border-start border-4 h-100">
-              <div class="summary-kpi-label">Materiaalit</div>
-              <div id="kpi-esitykset" class="summary-kpi-value">0</div>
-            </div>
+            <a href="#esitykset" class="summary-kpi-link">
+              <div class="summary-kpi kpi-color-esitykset p-3 rounded border border-start border-4 h-100">
+                <div class="summary-kpi-label">Materiaalit</div>
+                <div id="kpi-esitykset" class="summary-kpi-value">0</div>
+              </div>
+            </a>
           </div>
           <div class="col-6 col-md-4 col-lg-2">
-            <div class="summary-kpi kpi-color-julkaisut p-3 rounded border border-start border-4 h-100">
-              <div class="summary-kpi-label">Julkaisut</div>
-              <div id="kpi-julkaisut" class="summary-kpi-value">0</div>
-            </div>
+            <a href="#julkaisut" class="summary-kpi-link">
+              <div class="summary-kpi kpi-color-julkaisut p-3 rounded border border-start border-4 h-100">
+                <div class="summary-kpi-label">Julkaisut</div>
+                <div id="kpi-julkaisut" class="summary-kpi-value">0</div>
+              </div>
+            </a>
           </div>
           <div class="col-6 col-md-4 col-lg-2">
-            <div class="summary-kpi kpi-color-kolumnit p-3 rounded border border-start border-4 h-100">
-              <div class="summary-kpi-label">Kolumnit</div>
-              <div id="kpi-kolumnit" class="summary-kpi-value">0</div>
-            </div>
+            <a href="#kolumnit" class="summary-kpi-link">
+              <div class="summary-kpi kpi-color-kolumnit p-3 rounded border border-start border-4 h-100">
+                <div class="summary-kpi-label">Kolumnit</div>
+                <div id="kpi-kolumnit" class="summary-kpi-value">0</div>
+              </div>
+            </a>
           </div>
           <div class="col-6 col-md-4 col-lg-2">
-            <div class="summary-kpi kpi-color-mielipiteet p-3 rounded border border-start border-4 h-100">
-              <div class="summary-kpi-label">Mielipiteet</div>
-              <div id="kpi-mielipiteet" class="summary-kpi-value">0</div>
-            </div>
+            <a href="#mielipiteet" class="summary-kpi-link">
+              <div class="summary-kpi kpi-color-mielipiteet p-3 rounded border border-start border-4 h-100">
+                <div class="summary-kpi-label">Mielipiteet</div>
+                <div id="kpi-mielipiteet" class="summary-kpi-value">0</div>
+              </div>
+            </a>
           </div>
           <div class="col-6 col-md-4 col-lg-2">
-            <div class="summary-kpi kpi-color-puheet p-3 rounded border border-start border-4 h-100">
-              <div class="summary-kpi-label">Puheet</div>
-              <div id="kpi-puheet" class="summary-kpi-value">0</div>
-            </div>
+            <a href="#puheet" class="summary-kpi-link">
+              <div class="summary-kpi kpi-color-puheet p-3 rounded border border-start border-4 h-100">
+                <div class="summary-kpi-label">Puheet</div>
+                <div id="kpi-puheet" class="summary-kpi-value">0</div>
+              </div>
+            </a>
           </div>
         </div>
 
@@ -728,6 +742,16 @@ section[id] {
   padding-bottom: 2rem;
 }
 
+.summary-kpi-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+.summary-kpi-link:hover .summary-kpi {
+  box-shadow: 0 0 0 2px currentColor;
+  opacity: 0.85;
+}
 .summary-kpi {
   background: var(--bs-tertiary-bg);
   border-left-width: 4px !important;
