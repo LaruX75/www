@@ -1,0 +1,77 @@
+---
+layout: base.njk
+title: Finna-aineistot
+permalink: /finna-aineistot/
+translationKey: finna_materials
+lang: fi
+---
+
+<section class="py-4 bg-body-tertiary border-bottom">
+  <div class="container">
+    <p class="text-uppercase small text-muted mb-2">Finna API</p>
+    <h1 class="display-6 fw-bold mb-2">Finna-aineistot</h1>
+    <p class="mb-0 text-muted">
+      Tämä näkymä hakee aineistot suoraan Finna-rajapinnasta build-vaiheessa.
+      Kysely: <code>{{ finna.query.lookfor }}</code> ({{ finna.query.type }}).
+    </p>
+  </div>
+</section>
+
+<section class="py-4">
+  <div class="container">
+    {% if finna.source == "cache" and finna.cacheSavedAt %}
+      <div class="alert alert-warning py-2 small" role="status">
+        Finna API ei ollut saatavilla. Näytetään välimuisti ({{ finna.cacheSavedAt | dateFormat }}).
+      </div>
+    {% endif %}
+
+    {% if finna.error and not (finna.rows and finna.rows.length) %}
+      <div class="alert alert-danger py-2 small" role="status">
+        Finna-aineistoa ei saatu haettua: {{ finna.error }}
+      </div>
+    {% endif %}
+
+    {% if finna.rows and finna.rows.length %}
+      <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+        <p class="small text-muted mb-0">
+          Näytetään {{ finna.rows.length }} osumaa{% if finna.total %} (kokonaismäärä {{ finna.total }}){% endif %}.
+        </p>
+        <a href="{{ finna.searchUrl }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary rounded-pill">
+          Avaa haku Finnassa
+        </a>
+      </div>
+
+      <div class="row g-3">
+        {% for item in finna.rows %}
+          <div class="col-12 col-md-6 col-xl-4">
+            <article class="card h-100 shadow-sm border-0">
+              {% if item.image %}
+                <img src="{{ item.image }}" loading="lazy" decoding="async" class="card-img-top object-fit-cover" alt="{{ item.title }}" style="height: 220px;">
+              {% endif %}
+              <div class="card-body d-flex flex-column">
+                <h2 class="h5 mb-2">
+                  <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer" class="text-decoration-none">{{ item.title }}</a>
+                </h2>
+                <p class="small text-muted mb-2">
+                  {% if item.authors %}{{ item.authors }}{% else %}Tuntematon tekijä{% endif %}
+                  {% if item.year %} · {{ item.year }}{% endif %}
+                  {% if item.format %} · {{ item.format }}{% endif %}
+                </p>
+                {% if item.summary %}
+                  <p class="small mb-3">{{ item.summary }}</p>
+                {% endif %}
+                <div class="mt-auto">
+                  <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary rounded-pill">Avaa Finnassa</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="alert alert-secondary mb-0" role="status">
+        Finna-haku ei palauttanut tuloksia nykyisillä asetuksilla.
+      </div>
+    {% endif %}
+  </div>
+</section>

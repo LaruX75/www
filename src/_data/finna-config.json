@@ -1,0 +1,8 @@
+{
+  "enabled": true,
+  "lookfor": "Jari Laru",
+  "type": "Author",
+  "sort": "main_date_str desc",
+  "limit": 24,
+  "filters": []
+}

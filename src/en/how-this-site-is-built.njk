@@ -76,14 +76,21 @@ lang: en
       <div class="card-body">
         <h2 class="h4 mb-3">3. External data sources in this project</h2>
         <p class="mb-2">Fetching data from APIs keeps content fresher and reduces manual copy-paste maintenance. One source can feed multiple pages with consistent, up-to-date information.</p>
-        <p class="mb-2">On-site usage examples include tables, content cards, homepage highlights, metric counters, and filterable lists built from the same source data.</p>
-        <ul class="mb-0">
+        <p class="mb-3">Current external sources used on this site:</p>
+        <ul class="mb-3">
           <li>Research.fi (publications)</li>
           <li>Canva Connect API (presentations)</li>
           <li>YouTube Data API v3 (playlists/videos)</li>
           <li>GitHub API (site changes table)</li>
+          <li>OpenAlex API</li>
+          <li>Semantic Scholar API</li>
+          <li>Finna API (library, archive and museum records)</li>
           <li>OuluREPO (theses)</li>
+          <li>Oulu open data API (<code>city_council_meeting_videos</code>)</li>
         </ul>
+        <p class="mb-2">See the integration in action: <a href="/en/finna-materials/" class="fw-semibold">Finna Materials</a>.</p>
+        <p class="mb-2">In addition, some sections are maintained in curated local data files (for example Google Slides and SlideShare lists). In those cases data does not come from a remote API, but from version-controlled project files.</p>
+        <p class="mb-0">Technically, these sources are rendered as tables, ticker highlights, content cards, searchable views, metric counters, and automatically updated “latest changes” lists.</p>
       </div>
     </div>
 
