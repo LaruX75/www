@@ -174,7 +174,7 @@ wp_id: 7
 
     <!-- Vapaa-aika-kortit -->
     <div class="row g-4">
-      <div class="col-md-4">
+      <div class="col-sm-6 col-lg-3">
         <div class="card border-0 bg-body-tertiary h-100">
           <div class="card-body p-4">
             <div class="mb-2 fs-4"><i class="bi bi-house-heart-fill text-danger"></i></div>
@@ -183,7 +183,7 @@ wp_id: 7
           </div>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-sm-6 col-lg-3">
         <div class="card border-0 bg-body-tertiary h-100">
           <div class="card-body p-4">
             <div class="mb-2 fs-4"><i class="bi bi-egg-fried text-warning"></i></div>
@@ -195,7 +195,7 @@ wp_id: 7
           </div>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-sm-6 col-lg-3">
         <div class="card border-0 bg-body-tertiary h-100">
           <div class="card-body p-4">
             <div class="mb-2 fs-4"><i class="bi bi-tools text-secondary"></i></div>
@@ -204,6 +204,18 @@ wp_id: 7
           </div>
           <div class="card-footer bg-transparent border-0 px-4 pb-4 pt-0">
             <a href="https://www.instagram.com/stories/highlights/17917732456477538/?hl=fi" target="_blank" rel="noreferrer noopener" class="btn btn-outline-secondary btn-sm"><i class="bi bi-instagram me-1"></i>Remontit Instagramissa</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="card border-0 bg-body-tertiary h-100">
+          <div class="card-body p-4">
+            <div class="mb-2 fs-4"><i class="bi bi-hdd-stack text-info"></i></div>
+            <h3 class="h5 fw-bold">Varhainen teknologianörtti</h3>
+            <p class="text-muted mb-3">BBS-harrastelija ja SysOp jo 1989&ndash;1990 &mdash; ennen Internetiä. Pyöritin Large&rsquo;s Security BBS:ää Raahessa, toimin Fidonet-solmuna ja piirsin ANSI-taidetta. Teknologian äärellä alusta asti.</p>
+          </div>
+          <div class="card-footer bg-transparent border-0 px-4 pb-4 pt-0">
+            <a href="/1998/02/16/silloin-kun-sita-oltiin-larges-securityn-sysop-bbs-muisteluita/" class="btn btn-outline-info btn-sm"><i class="bi bi-terminal me-1"></i>Lue BBS-muistelmat</a>
           </div>
         </div>
       </div>
