@@ -53,7 +53,33 @@ function normalizeRow(item) {
 }
 
 async function fetchSlideshareRows() {
-  const response = await fetch(PROFILE_URL, {
+  const allRows = [];
+  const seenIds = new Set();
+  let page = 1;
+  let totalPages = 1;
+
+  while (page <= totalPages) {
+    const pageUrl = new URL(PROFILE_URL);
+    if (page > 1) {
+      pageUrl.searchParams.set("page", String(page));
+    }
+    const pagePayload = await fetchSlidesharePage(pageUrl.toString());
+    const rows = pagePayload.rows || [];
+    rows.forEach((row) => {
+      if (!row?.id || seenIds.has(row.id)) return;
+      seenIds.add(row.id);
+      allRows.push(row);
+    });
+
+    totalPages = Number(pagePayload.totalPages || totalPages || 1);
+    page += 1;
+  }
+
+  return allRows;
+}
+
+async function fetchSlidesharePage(url) {
+  const response = await fetch(url, {
     headers: {
       "User-Agent": "Mozilla/5.0 (compatible; Eleventy build bot)",
       Accept: "text/html,application/xhtml+xml"
@@ -73,28 +99,45 @@ async function fetchSlideshareRows() {
   }
 
   const nextData = JSON.parse(nextDataRaw);
-  const presentations = findPresentationArray(nextData?.props?.pageProps || nextData);
+  const paginated =
+    nextData?.props?.pageProps?.results?.rawQueryResponses?.presentations?.data?.userSingle?.slideshowsPaginated || null;
+  const presentations =
+    (Array.isArray(paginated?.results) ? paginated.results : null) ||
+    findPresentationArray(nextData?.props?.pageProps || nextData);
 
   if (!Array.isArray(presentations) || presentations.length === 0) {
     throw new Error("SlideShare presentations not found in payload");
   }
 
-  return presentations.map(normalizeRow).filter((item) => item.id && item.url);
+  const totalPages = Number(paginated?.pageInfo?.totalPages || 1);
+  return {
+    rows: presentations.map(normalizeRow).filter((item) => item.id && item.url),
+    totalPages: Number.isFinite(totalPages) && totalPages > 0 ? totalPages : 1
+  };
 }
 
 module.exports = async function () {
   const cached = readCache(CACHE_KEY);
   const cachedRows = Array.isArray(cached?.data) ? cached.data : [];
-  const maxItems = Number(process.env.SLIDESHARE_LIMIT || 24);
+  const rawLimit = process.env.SLIDESHARE_LIMIT;
+  const maxItems =
+    rawLimit === undefined || rawLimit === null || rawLimit === ""
+      ? null
+      : Number(rawLimit);
+  const applyLimit = (rows) => {
+    if (!Array.isArray(rows)) return [];
+    if (!Number.isFinite(maxItems) || maxItems <= 0) return rows;
+    return rows.slice(0, maxItems);
+  };
 
   try {
     const rows = await fetchSlideshareRows();
     writeCache(CACHE_KEY, rows);
-    return rows.slice(0, maxItems);
+    return applyLimit(rows);
   } catch (error) {
     if (cachedRows.length) {
       console.warn(`SlideShare: live fetch failed, using cache (${cached.savedAt}): ${error.message}`);
-      return cachedRows.slice(0, maxItems);
+      return applyLimit(cachedRows);
     }
 
     console.warn(`SlideShare: live fetch failed and cache missing: ${error.message}`);
