@@ -550,9 +550,21 @@ html:not([data-bs-theme="dark"]) .home-hero-proof-item:focus-visible {
   object-position: top center;
 }
 
-/* Keep home feature images visually consistent even when text column grows taller */
+/* Make feature images fill the full column height of each section row */
+.home-feature-image-col {
+  display: flex;
+}
+
 .home-feature-image-col > div {
-  height: clamp(280px, 34vw, 520px) !important;
+  width: 100%;
+  height: 100% !important;
+  min-height: 100%;
+}
+
+@media (max-width: 767.98px) {
+  .home-feature-image-col > div {
+    min-height: 320px;
+  }
 }
 
 .home-card-image {
