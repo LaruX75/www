@@ -70,7 +70,7 @@ templateEngineOverride: njk,md
                 </div>
               </div>
               <p class="small text-muted mb-2">Positions 2025&ndash;2029: 2nd deputy city councilor (Oulu City Council), member of the Education Committee, deputy member of the Wellbeing Area Council.</p>
-              <a class="btn btn-outline-primary btn-sm" href="/kunta-ja-aluevaalit-2025/">Campaign archive (Finnish)</a>
+              <a class="btn btn-outline-primary btn-sm" href="/en/municipal-and-wellbeing-elections-2025/">Campaign archive</a>
             </div>
           </div>
         </div>

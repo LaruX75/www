@@ -616,6 +616,12 @@ module.exports = {
               description: "Elections and terms of office."
             },
             {
+              title: "Municipal & wellbeing elections 2025",
+              href: "/en/municipal-and-wellbeing-elections-2025/",
+              icon: "bi bi-chevron-right me-2",
+              description: "Campaign priorities and election outcome in 2025."
+            },
+            {
               title: "Municipal elections 2021",
               href: "/kuntavaalit-2021/",
               icon: "bi bi-chevron-right me-2",
