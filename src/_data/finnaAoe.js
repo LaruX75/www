@@ -3,7 +3,9 @@
  * Filter: format:"0/LearningMaterial/" (Oppimateriaali)
  */
 
-const { readCache, writeCache } = require("./_apiCache");
+const { readCache, readCacheIfFresh, writeCache, fetchWithTimeout } = require("./_apiCache");
+
+const CACHE_TTL_HOURS = 6;
 
 const CACHE_KEY = "finna-aoe-v1";
 const API_BASE = "https://api.finna.fi/v1/search";
@@ -44,6 +46,12 @@ function normalizeRecord(record) {
 }
 
 module.exports = async function () {
+  const fresh = readCacheIfFresh(CACHE_KEY, CACHE_TTL_HOURS);
+  if (fresh?.data) {
+    console.log(`FinnaAoe: käytetään tuoretta välimuistia (${fresh.savedAt}).`);
+    return { ...fresh.data, source: "cache" };
+  }
+
   const cached = readCache(CACHE_KEY);
 
   try {
@@ -60,9 +68,9 @@ module.exports = async function () {
     url.searchParams.append("field[]", "images");
     url.searchParams.append("field[]", "imagesExtended");
 
-    const response = await fetch(url.toString(), {
+    const response = await fetchWithTimeout(url.toString(), {
       headers: { Accept: "application/json" }
-    });
+    }, 15000);
 
     if (!response.ok) {
       throw new Error(`Finna AOE API failed (${response.status})`);

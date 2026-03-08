@@ -21,6 +21,17 @@ function readCache(key) {
   }
 }
 
+/**
+ * Palauttaa välimuistin jos se on alle maxAgeHours tuntia vanha, muuten null.
+ */
+function readCacheIfFresh(key, maxAgeHours = 6) {
+  const cached = readCache(key);
+  if (!cached || !cached.savedAt) return null;
+  const ageMs = Date.now() - new Date(cached.savedAt).getTime();
+  if (ageMs < maxAgeHours * 60 * 60 * 1000) return cached;
+  return null;
+}
+
 function writeCache(key, data) {
   try {
     fs.mkdirSync(CACHE_DIR, { recursive: true });
@@ -34,7 +45,22 @@ function writeCache(key, data) {
   }
 }
 
+/**
+ * fetch() aikarajalla. Heittää AbortError jos timeoutMs ylittyy.
+ */
+async function fetchWithTimeout(url, options = {}, timeoutMs = 15000) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    return await fetch(url, { ...options, signal: controller.signal });
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 module.exports = {
   readCache,
-  writeCache
+  readCacheIfFresh,
+  writeCache,
+  fetchWithTimeout
 };

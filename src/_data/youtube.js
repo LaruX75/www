@@ -2,7 +2,9 @@ require('dotenv').config();
 
 const fs = require("fs");
 const path = require("path");
-const { readCache, writeCache } = require('./_apiCache');
+const { readCache, readCacheIfFresh, writeCache, fetchWithTimeout } = require('./_apiCache');
+
+const CACHE_TTL_HOURS = 6;
 const site = require('./site.json');
 
 const CACHE_KEY = 'youtube-playlists-v1';
@@ -83,7 +85,7 @@ async function ytRequest(endpoint, params, apiKey) {
     }
   });
 
-  const response = await fetch(url.toString());
+  const response = await fetchWithTimeout(url.toString(), {}, 15000);
   if (!response.ok) {
     const body = await response.text();
     throw new Error(`YouTube API ${endpoint} failed (${response.status}): ${body.slice(0, 200)}`);
@@ -205,9 +207,16 @@ async function fetchAllPlaylists(channelId, apiKey) {
 }
 
 module.exports = async function () {
+  const cmsConfig = readCmsYoutubeConfig();
+
+  const fresh = readCacheIfFresh(CACHE_KEY, CACHE_TTL_HOURS);
+  if (fresh?.data) {
+    console.log(`YouTube: käytetään tuoretta välimuistia (${fresh.savedAt}).`);
+    return { ...fresh.data, source: 'cache', cacheSavedAt: fresh.savedAt };
+  }
+
   const cached = readCache(CACHE_KEY);
   const cachedData = cached?.data || null;
-  const cmsConfig = readCmsYoutubeConfig();
   const settings = {
     channelId: process.env.YOUTUBE_CHANNEL_ID || cmsConfig.channelId || "",
     handle: process.env.YOUTUBE_HANDLE || cmsConfig.handle || "",

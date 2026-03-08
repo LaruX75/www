@@ -1,5 +1,7 @@
 require("dotenv").config();
-const { readCache, writeCache } = require("./_apiCache");
+const { readCache, readCacheIfFresh, writeCache, fetchWithTimeout } = require("./_apiCache");
+
+const CACHE_TTL_HOURS = 12;
 
 const CACHE_KEY = "citations-openalex-semanticscholar";
 
@@ -10,6 +12,13 @@ const CACHE_KEY = "citations-openalex-semanticscholar";
 module.exports = async function () {
   const orcidId = process.env.ORCID_ID || "0000-0003-0347-0182";
   const s2AuthorId = process.env.S2_AUTHOR_ID || "2016750";
+
+  const fresh = readCacheIfFresh(CACHE_KEY, CACHE_TTL_HOURS);
+  if (fresh?.data) {
+    console.log(`Viittausdata: käytetään tuoretta välimuistia (${fresh.savedAt}).`);
+    return fresh.data;
+  }
+
   const cached = readCache(CACHE_KEY);
 
   const doiCitationsMap = {};
@@ -21,14 +30,15 @@ module.exports = async function () {
   try {
     console.log("Haetaan OpenAlex-viittausdataa...");
 
-    const authorRes = await fetch(
+    const authorRes = await fetchWithTimeout(
       `https://api.openalex.org/authors?filter=orcid:${orcidId}&select=id,display_name,cited_by_count,works_count,summary_stats`,
       {
         headers: {
           Accept: "application/json",
           "User-Agent": "jarilaru-fi-site/1.0 (mailto:jari.laru@oulu.fi)"
         }
-      }
+      },
+      15000
     );
 
     if (authorRes.ok) {
@@ -41,14 +51,15 @@ module.exports = async function () {
       }
     }
 
-    const worksRes = await fetch(
+    const worksRes = await fetchWithTimeout(
       `https://api.openalex.org/works?filter=authorships.author.orcid:${orcidId}&select=doi,cited_by_count&per_page=100`,
       {
         headers: {
           Accept: "application/json",
           "User-Agent": "jarilaru-fi-site/1.0 (mailto:jari.laru@oulu.fi)"
         }
-      }
+      },
+      15000
     );
 
     if (worksRes.ok) {
@@ -67,9 +78,10 @@ module.exports = async function () {
   try {
     console.log("Haetaan Semantic Scholar -viittausdataa...");
 
-    const s2AuthorRes = await fetch(
+    const s2AuthorRes = await fetchWithTimeout(
       `https://api.semanticscholar.org/graph/v1/author/${s2AuthorId}?fields=name,paperCount,citationCount,hIndex`,
-      { headers: { Accept: "application/json" } }
+      { headers: { Accept: "application/json" } },
+      15000
     );
 
     if (s2AuthorRes.ok) {
@@ -79,9 +91,10 @@ module.exports = async function () {
       semanticScholarOk = true;
     }
 
-    const s2PapersRes = await fetch(
+    const s2PapersRes = await fetchWithTimeout(
       `https://api.semanticscholar.org/graph/v1/author/${s2AuthorId}/papers?fields=title,citationCount,externalIds&limit=100`,
-      { headers: { Accept: "application/json" } }
+      { headers: { Accept: "application/json" } },
+      15000
     );
 
     if (s2PapersRes.ok) {

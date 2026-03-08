@@ -1,5 +1,7 @@
 require('dotenv').config();
-const { readCache, writeCache } = require("./_apiCache");
+const { readCache, readCacheIfFresh, writeCache, fetchWithTimeout } = require("./_apiCache");
+
+const CACHE_TTL_HOURS = 6;
 
 const CACHE_KEY = "researchfi-publications";
 
@@ -138,6 +140,14 @@ function normalizePublication(pub) {
 
 module.exports = async function () {
     const orcidId = process.env.ORCID_ID || "0000-0003-0347-0182";
+
+    const fresh = readCacheIfFresh(CACHE_KEY, CACHE_TTL_HOURS);
+    if (fresh?.data) {
+        const freshPubs = fresh.data.map(normalizePublication);
+        console.log(`Research.fi: käytetään tuoretta välimuistia (${fresh.savedAt}), ${freshPubs.length} julkaisua.`);
+        return freshPubs;
+    }
+
     const cached = readCache(CACHE_KEY);
     const cachedPublications = cached?.data ? cached.data.map(normalizePublication) : null;
 
@@ -157,7 +167,7 @@ module.exports = async function () {
         console.log("Haetaan julkaisuja Research.fi:stä...");
 
         // eleventy-fetch ei tue POST-kutsuja suoraan, käytetään node-fetch
-        const response = await fetch(apiUrl, {
+        const response = await fetchWithTimeout(apiUrl, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -166,7 +176,7 @@ module.exports = async function () {
                 "Referer": "https://research.fi/"
             },
             body: requestBody
-        });
+        }, 15000);
 
         if (!response.ok) {
             console.error(`Research.fi API palautti virheen: ${response.status}`);

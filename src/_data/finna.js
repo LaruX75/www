@@ -1,6 +1,8 @@
 const fs = require("fs");
 const path = require("path");
-const { readCache, writeCache } = require("./_apiCache");
+const { readCache, readCacheIfFresh, writeCache, fetchWithTimeout } = require("./_apiCache");
+
+const CACHE_TTL_HOURS = 6;
 
 const CACHE_KEY = "finna-search-v1";
 const API_BASE = "https://api.finna.fi/v1/search";
@@ -165,11 +167,32 @@ function buildResult({
 }
 
 module.exports = async function () {
-  const cached = readCache(CACHE_KEY);
-  const cachedData = cached?.data || null;
   const cmsConfig = readCmsConfig();
 
   const enabled = cmsConfig.enabled !== false && process.env.FINNA_ENABLED !== "0";
+  if (!enabled) {
+    return buildResult({
+      enabled: false,
+      source: "disabled",
+      rows: [],
+      lookfor: process.env.FINNA_LOOKFOR || cmsConfig.lookfor || "Jari Laru",
+      type: process.env.FINNA_TYPE || cmsConfig.type || "Author",
+      sort: process.env.FINNA_SORT || cmsConfig.sort || "main_date_str desc",
+      limit: cmsConfig.limit || 24,
+      filters: cmsConfig.filters || [],
+      warning: "FINNA-integraatio on poistettu käytöstä."
+    });
+  }
+
+  const fresh = readCacheIfFresh(CACHE_KEY, CACHE_TTL_HOURS);
+  if (fresh?.data) {
+    console.log(`Finna: käytetään tuoretta välimuistia (${fresh.savedAt}).`);
+    return { ...fresh.data, source: "cache", cacheSavedAt: fresh.savedAt };
+  }
+
+  const cached = readCache(CACHE_KEY);
+  const cachedData = cached?.data || null;
+
   const lookfor = process.env.FINNA_LOOKFOR || cmsConfig.lookfor || "Jari Laru";
   const type = process.env.FINNA_TYPE || cmsConfig.type || "Author";
   const sort = process.env.FINNA_SORT || cmsConfig.sort || "main_date_str desc";
@@ -179,20 +202,6 @@ module.exports = async function () {
     : (cmsConfig.limit || 24);
   const filters = cmsConfig.filters || [];
 
-  if (!enabled) {
-    return buildResult({
-      enabled: false,
-      source: "disabled",
-      rows: [],
-      lookfor,
-      type,
-      sort,
-      limit,
-      filters,
-      warning: "FINNA-integraatio on poistettu käytöstä."
-    });
-  }
-
   try {
     const url = new URL(API_BASE);
     url.searchParams.set("lookfor", lookfor);
@@ -201,9 +210,9 @@ module.exports = async function () {
     url.searchParams.set("limit", String(limit));
     filters.forEach((f) => url.searchParams.append("filter[]", f));
 
-    const response = await fetch(url.toString(), {
+    const response = await fetchWithTimeout(url.toString(), {
       headers: { Accept: "application/json" }
-    });
+    }, 15000);
 
     if (!response.ok) {
       const body = await response.text();

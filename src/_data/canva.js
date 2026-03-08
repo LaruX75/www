@@ -2,7 +2,9 @@ require("dotenv").config();
 
 const fs = require("fs");
 const path = require("path");
-const { readCache, writeCache } = require("./_apiCache");
+const { readCache, readCacheIfFresh, writeCache, fetchWithTimeout } = require("./_apiCache");
+
+const CACHE_TTL_HOURS = 6;
 
 const CACHE_KEY = "canva-designs-v1";
 const API_BASE = "https://api.canva.com/rest/v1";
@@ -199,12 +201,12 @@ function normalizeCanvaDesign(item) {
 
 async function canvaRequest(pathname, accessToken) {
   const url = `${API_BASE}/${pathname.replace(/^\/+/, "")}`;
-  const response = await fetch(url, {
+  const response = await fetchWithTimeout(url, {
     headers: {
       Authorization: `Bearer ${accessToken}`,
       Accept: "application/json"
     }
-  });
+  }, 15000);
 
   if (!response.ok) {
     const body = await response.text();
@@ -284,6 +286,14 @@ function buildResult(rows, source, tickerLimit, extra = {}) {
 }
 
 module.exports = async function () {
+  const fresh = readCacheIfFresh(CACHE_KEY, CACHE_TTL_HOURS);
+  if (fresh?.data) {
+    const fallback = readLocalPresentations();
+    const tickerLimitFresh = Number(process.env.CANVA_TICKER_LIMIT || 12);
+    console.log(`Canva: käytetään tuoretta välimuistia (${fresh.savedAt}).`);
+    return buildResult(fresh.data.tableRows || [], "cache", tickerLimitFresh, { cacheSavedAt: fresh.savedAt });
+  }
+
   const cached = readCache(CACHE_KEY);
   const cachedData = cached?.data || null;
   const fallbackRows = readLocalPresentations();

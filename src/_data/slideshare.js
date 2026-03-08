@@ -1,5 +1,7 @@
 const cheerio = require("cheerio");
-const { readCache, writeCache } = require("./_apiCache");
+const { readCache, readCacheIfFresh, writeCache, fetchWithTimeout } = require("./_apiCache");
+
+const CACHE_TTL_HOURS = 6;
 
 const CACHE_KEY = "slideshare-presentations-v1";
 const PROFILE_URL = "https://www.slideshare.net/larux";
@@ -79,12 +81,12 @@ async function fetchSlideshareRows() {
 }
 
 async function fetchSlidesharePage(url) {
-  const response = await fetch(url, {
+  const response = await fetchWithTimeout(url, {
     headers: {
       "User-Agent": "Mozilla/5.0 (compatible; Eleventy build bot)",
       Accept: "text/html,application/xhtml+xml"
     }
-  });
+  }, 15000);
 
   if (!response.ok) {
     throw new Error(`SlideShare fetch failed (${response.status})`);
@@ -117,6 +119,13 @@ async function fetchSlidesharePage(url) {
 }
 
 module.exports = async function () {
+  const fresh = readCacheIfFresh(CACHE_KEY, CACHE_TTL_HOURS);
+  if (fresh) {
+    const freshRows = Array.isArray(fresh.data) ? fresh.data : [];
+    console.log(`SlideShare: käytetään tuoretta välimuistia (${fresh.savedAt}), ${freshRows.length} esitystä.`);
+    return freshRows;
+  }
+
   const cached = readCache(CACHE_KEY);
   const cachedRows = Array.isArray(cached?.data) ? cached.data : [];
   const rawLimit = process.env.SLIDESHARE_LIMIT;

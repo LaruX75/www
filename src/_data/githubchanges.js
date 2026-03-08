@@ -2,7 +2,9 @@ require("dotenv").config();
 
 const fs = require("fs");
 const path = require("path");
-const { readCache, writeCache } = require("./_apiCache");
+const { readCache, readCacheIfFresh, writeCache, fetchWithTimeout } = require("./_apiCache");
+
+const CACHE_TTL_HOURS = 1;
 
 const CACHE_KEY = "github-site-changes-v1";
 const CMS_CONFIG_PATH = path.join(process.cwd(), "src", "_data", "github-config.json");
@@ -59,7 +61,7 @@ async function fetchCommits({ owner, repo, branch, limit, token }) {
     headers.Authorization = `Bearer ${token}`;
   }
 
-  const response = await fetch(url.toString(), { headers });
+  const response = await fetchWithTimeout(url.toString(), { headers }, 15000);
   if (!response.ok) {
     const body = await response.text();
     throw new Error(`GitHub commits API failed (${response.status}): ${body.slice(0, 180)}`);
@@ -71,6 +73,12 @@ async function fetchCommits({ owner, repo, branch, limit, token }) {
 }
 
 module.exports = async function () {
+  const fresh = readCacheIfFresh(CACHE_KEY, CACHE_TTL_HOURS);
+  if (fresh?.data) {
+    console.log(`GitHub changes: käytetään tuoretta välimuistia (${fresh.savedAt}).`);
+    return { ...fresh.data, source: "cache", cacheSavedAt: fresh.savedAt };
+  }
+
   const cached = readCache(CACHE_KEY);
   const cachedData = cached?.data || null;
   const cmsConfig = readCmsGithubConfig();

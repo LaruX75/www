@@ -3,14 +3,16 @@
  * Source: https://api.ouka.fi/v1/city_council_meeting_videos
  */
 
-const CACHE_TTL_HOURS = 24;
+const { fetchWithTimeout } = require("./_apiCache");
+
+const CACHE_TTL_HOURS = 1;
 
 module.exports = async function () {
   const url =
     "https://api.ouka.fi/v1/city_council_meeting_videos?order=publish_time.desc&limit=12&select=videoid,publish_time,header,keyfield";
 
   try {
-    const res = await fetch(url);
+    const res = await fetchWithTimeout(url, {}, 15000);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
 
