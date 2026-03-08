@@ -46,6 +46,18 @@
             >
               <i class="bi bi-quote me-1"></i>Vie viite
             </button>
+            {% if thesis.abstract %}
+              <div class="small text-muted mt-2 thesis-abstract-snippet">{{ thesis.abstract }}</div>
+              <button
+                type="button"
+                class="btn btn-link btn-sm p-0 mt-1 thesis-abstract-trigger"
+                data-thesis-title="{{ thesis.title | escape }}"
+                data-thesis-abstract="{{ thesis.abstract | escape }}"
+                data-thesis-url="{{ thesis.link | escape }}"
+              >
+                Avaa tiivistelmä
+              </button>
+            {% endif %}
           {% else %}
             <span class="fw-medium">{{ thesis.title }}</span>
           {% endif %}

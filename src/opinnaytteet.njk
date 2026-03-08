@@ -190,6 +190,26 @@ translationKey: theses_index
 
 </div>
 
+<div class="modal fade" id="thesisAbstractModal" tabindex="-1" aria-labelledby="thesisAbstractModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title fs-6" id="thesisAbstractModalLabel">Tiivistelmä</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Sulje"></button>
+      </div>
+      <div class="modal-body">
+        <h3 class="h6 mb-2" id="thesisAbstractModalTitle"></h3>
+        <p class="mb-0" id="thesisAbstractModalText"></p>
+      </div>
+      <div class="modal-footer">
+        <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" id="thesisAbstractModalOpen">
+          <i class="bi bi-box-arrow-up-right me-1"></i>Avaa koko opinnäytetyö
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const ITEMS_PER_PAGE = 5;
@@ -232,6 +252,15 @@ document.addEventListener('DOMContentLoaded', () => {
     link.click();
     URL.revokeObjectURL(link.href);
     document.body.removeChild(link);
+  }
+
+  function escapeHtml(value) {
+    return String(value || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
   }
 
   function initTablePagination(tableContainer) {
@@ -382,6 +411,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  const abstractModalEl = document.getElementById('thesisAbstractModal');
+  const abstractModalTitle = document.getElementById('thesisAbstractModalTitle');
+  const abstractModalText = document.getElementById('thesisAbstractModalText');
+  const abstractModalOpen = document.getElementById('thesisAbstractModalOpen');
+
+  document.addEventListener('click', (event) => {
+    const trigger = event.target.closest('.thesis-abstract-trigger');
+    if (!trigger) return;
+    event.preventDefault();
+    const title = trigger.getAttribute('data-thesis-title') || 'Opinnäytetyö';
+    const summary = trigger.getAttribute('data-thesis-abstract') || 'Tiivistelmää ei saatavilla.';
+    const url = trigger.getAttribute('data-thesis-url') || '#';
+    if (abstractModalTitle) abstractModalTitle.textContent = title;
+    if (abstractModalText) abstractModalText.innerHTML = escapeHtml(summary).replace(/\n/g, '<br>');
+    if (abstractModalOpen) abstractModalOpen.href = url;
+    if (window.bootstrap && window.bootstrap.Modal && abstractModalEl) {
+      window.bootstrap.Modal.getOrCreateInstance(abstractModalEl).show();
+    }
+  });
+
 });
 </script>
 
@@ -421,5 +470,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 [data-bs-theme="dark"] .thesis-filter-input::placeholder {
   color: rgba(232, 241, 255, 0.75);
+}
+
+.thesis-abstract-snippet {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 </style>
