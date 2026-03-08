@@ -10,7 +10,7 @@ translationKey: home
 {% set heroOpinionCount = (collections.pub_mielipide or []) | length %}
 {% set heroSpeechCount = (collections.pub_puhe or []) | length %}
 {% set heroStats = [
-    { count: heroPresentationCount, label: "opetusmateriaalia", href: "/esitykset/" },
+    { count: heroPresentationCount, label: "Esitystä tai oppimateriaalia", href: "/esitykset/" },
     { count: heroPublicationCount, label: "julkaisua", href: "/julkaisut/" },
     { count: heroOpinionCount, label: "mielipidekirjoitusta", href: "/kynasta/#mielipiteet" },
     { count: heroSpeechCount, label: "puheenvuoroa", href: "/kynasta/#puheet" },

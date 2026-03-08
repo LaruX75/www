@@ -570,8 +570,8 @@ translationKey: writings_index
                 <th class="sortable" data-col="title" style="min-width:220px">
                   Otsikko <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
                 </th>
-                <th style="min-width:260px">Kuvaus & esikatselu</th>
-                <th>Teemat / tyyppi</th>
+                <th style="min-width:260px">Esityksen kansi</th>
+                <th>Ohjelma</th>
                 <th style="width:90px" class="text-center">Avaa</th>
               </tr>
             </thead>
@@ -594,6 +594,20 @@ translationKey: writings_index
     </div>
   </div>
 </section>
+
+<div class="modal fade" id="esitysPreviewModal" tabindex="-1" aria-labelledby="esitysPreviewModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title fs-6" id="esitysPreviewModalLabel">Esityksen kansi</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Sulje"></button>
+      </div>
+      <div class="modal-body p-0">
+        <img id="esitysPreviewImage" src="" alt="" class="img-fluid w-100">
+      </div>
+    </div>
+  </div>
+</div>
 
 {# Kerätään kaikki Research.fi julkaisut JSON-muotoon JS:ää varten #}
 <script id="pub-data" type="application/json">
@@ -1502,7 +1516,9 @@ section[id] {
         const catBadges = (d.categories || []).map(c => `<span class="badge text-bg-secondary me-1">${escHtml(c)}</span>`).join('');
         const typeBadge = d.type ? `<span class="badge text-bg-light text-dark border">${escHtml(d.type)}</span>` : '';
         const preview = d.thumbnail
-          ? `<img src="${escHtml(d.thumbnail)}" alt="${escHtml(d.title)}" class="img-fluid rounded border mt-2" style="max-height:72px; object-fit:cover;">`
+          ? `<button type="button" class="preview-thumb-btn p-0 border-0 bg-transparent mt-2" data-preview-src="${escHtml(d.thumbnail)}" data-preview-alt="${escHtml(d.title)}" title="Avaa kansikuva">
+               <img src="${escHtml(d.thumbnail)}" alt="${escHtml(d.title)}" class="img-fluid border" style="max-height:72px; object-fit:cover;">
+             </button>`
           : '';
         const linkBtn = d.url
           ? `<a href="${escHtml(d.url)}" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Avaa esitys"><i class="bi bi-arrow-up-right"></i></a>`
@@ -1562,6 +1578,22 @@ section[id] {
   }
 
   if (esityksetSearchInp) esityksetSearchInp.addEventListener('input', applyEsityksetFilters);
+
+  document.addEventListener('click', (event) => {
+    const trigger = event.target.closest('.preview-thumb-btn');
+    if (!trigger) return;
+    const src = trigger.getAttribute('data-preview-src');
+    if (!src) return;
+    const alt = trigger.getAttribute('data-preview-alt') || 'Esityksen kansi';
+    const image = document.getElementById('esitysPreviewImage');
+    if (image) {
+      image.src = src;
+      image.alt = alt;
+    }
+    if (window.bootstrap && window.bootstrap.Modal) {
+      window.bootstrap.Modal.getOrCreateInstance(document.getElementById('esitysPreviewModal')).show();
+    }
+  });
 
   const esityksetResetBtn = document.getElementById('esitykset-reset');
   if (esityksetResetBtn) {
