@@ -214,6 +214,37 @@
   color: var(--mega-icon-color);
 }
 
+.menu-link-inline-group {
+  gap: 0.35rem;
+}
+
+.menu-link-inline-items {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+}
+
+.menu-link-inline-anchor {
+  display: inline !important;
+  padding: 0 !important;
+  border-radius: 0;
+  color: var(--menu-text);
+  text-decoration: none;
+}
+
+.menu-link-inline-anchor:hover,
+.menu-link-inline-anchor:focus-visible {
+  color: var(--evelenty-accent);
+  background: transparent !important;
+  text-decoration: underline;
+}
+
+.menu-link-inline-separator {
+  opacity: 0.5;
+  margin: 0 0.2rem;
+}
+
 /* Keep icon color consistent across all mega-menu links (e.g. Kynästä) */
 .mega-menu-panel a i {
   color: var(--mega-icon-color) !important;

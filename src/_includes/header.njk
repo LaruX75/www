@@ -41,7 +41,16 @@
                   <section>
                     <h5>{{ section.heading }}</h5>
                     {% for link in section.links %}
-                      {% if link.menuLink %}
+                      {% if link.inlineLinks %}
+                        <div class="menu-link menu-link-inline-group">
+                          <i class="{{ link.icon }}"></i>
+                          <span class="menu-link-inline-items">
+                            {% for inlineLink in link.inlineLinks %}
+                              <a class="menu-link-inline-anchor" href="{{ inlineLink.href }}"{% if inlineLink.external %} target="_blank" rel="noopener"{% endif %}>{{ inlineLink.title }}</a>{% if not loop.last %}<span class="menu-link-inline-separator" aria-hidden="true">|</span>{% endif %}
+                            {% endfor %}
+                          </span>
+                        </div>
+                      {% elif link.menuLink %}
                         <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}><i class="{{ link.icon }}"></i><span>{{ link.title }}</span></a>
                       {% else %}
                         <a href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}><i class="{{ link.icon }}"></i>{{ link.title }}</a>
@@ -215,6 +224,9 @@
                         <span><i class="{{ link.icon }}"></i>{{ link.title }}</span>
                         {% if link.countKey or link.countData %}<span class="menu-link-count">{{ linkCount }}</span>{% endif %}
                       </a>
+                      {% if link.description %}
+                        <small class="menu-link-desc">{{ link.description }}</small>
+                      {% endif %}
                     {% endfor %}
                   </section>
                 {% endfor %}
@@ -241,6 +253,9 @@
                         <span><i class="{{ link.icon }}"></i>{{ link.title }}</span>
                         {% if link.countKey or link.countData %}<span class="menu-link-count">{{ linkCount }}</span>{% endif %}
                       </a>
+                      {% if link.description %}
+                        <small class="menu-link-desc">{{ link.description }}</small>
+                      {% endif %}
                     {% endfor %}
                   </section>
                 {% endif %}
@@ -354,7 +369,15 @@
               <p class="text-uppercase small text-muted mb-1 mt-2">{{ section.heading }}</p>
               <div class="d-grid gap-1 mb-2">
                 {% for link in section.links %}
-                  <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>{{ link.title }}</a>
+                  {% if link.inlineLinks %}
+                    <div class="mobile-nav-link d-flex align-items-center gap-2 flex-wrap">
+                      {% for inlineLink in link.inlineLinks %}
+                        <a href="{{ inlineLink.href }}"{% if inlineLink.external %} target="_blank" rel="noopener"{% endif %}>{{ inlineLink.title }}</a>{% if not loop.last %}<span aria-hidden="true">|</span>{% endif %}
+                      {% endfor %}
+                    </div>
+                  {% else %}
+                    <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>{{ link.title }}</a>
+                  {% endif %}
                 {% endfor %}
               </div>
             {% endfor %}
@@ -494,7 +517,16 @@
                   <section>
                     <h5>{{ section.heading }}</h5>
                     {% for link in section.links %}
-                      {% if link.menuLink %}
+                      {% if link.inlineLinks %}
+                        <div class="menu-link menu-link-inline-group">
+                          <i class="{{ link.icon }}"></i>
+                          <span class="menu-link-inline-items">
+                            {% for inlineLink in link.inlineLinks %}
+                              <a class="menu-link-inline-anchor" href="{{ inlineLink.href }}"{% if inlineLink.external %} target="_blank" rel="noopener"{% endif %}>{{ inlineLink.title }}</a>{% if not loop.last %}<span class="menu-link-inline-separator" aria-hidden="true">|</span>{% endif %}
+                            {% endfor %}
+                          </span>
+                        </div>
+                      {% elif link.menuLink %}
                         <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}><i class="{{ link.icon }}"></i><span>{{ link.title }}</span></a>
                       {% else %}
                         <a href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}><i class="{{ link.icon }}"></i>{{ link.title }}</a>
@@ -672,6 +704,9 @@
                         <span><i class="{{ link.icon }}"></i>{{ link.title }}</span>
                         {% if link.countKey or link.countData %}<span class="menu-link-count">{{ linkCount }}</span>{% endif %}
                       </a>
+                      {% if link.description %}
+                        <small class="menu-link-desc">{{ link.description }}</small>
+                      {% endif %}
                     {% endfor %}
                   </section>
                 {% endfor %}
@@ -698,6 +733,9 @@
                         <span><i class="{{ link.icon }}"></i>{{ link.title }}</span>
                         {% if link.countKey or link.countData %}<span class="menu-link-count">{{ linkCount }}</span>{% endif %}
                       </a>
+                      {% if link.description %}
+                        <small class="menu-link-desc">{{ link.description }}</small>
+                      {% endif %}
                     {% endfor %}
                   </section>
                 {% endif %}
@@ -811,7 +849,15 @@
               <p class="text-uppercase small text-muted mb-1 mt-2">{{ section.heading }}</p>
               <div class="d-grid gap-1 mb-2">
                 {% for link in section.links %}
-                  <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>{{ link.title }}</a>
+                  {% if link.inlineLinks %}
+                    <div class="mobile-nav-link d-flex align-items-center gap-2 flex-wrap">
+                      {% for inlineLink in link.inlineLinks %}
+                        <a href="{{ inlineLink.href }}"{% if inlineLink.external %} target="_blank" rel="noopener"{% endif %}>{{ inlineLink.title }}</a>{% if not loop.last %}<span aria-hidden="true">|</span>{% endif %}
+                      {% endfor %}
+                    </div>
+                  {% else %}
+                    <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>{{ link.title }}</a>
+                  {% endif %}
                 {% endfor %}
               </div>
             {% endfor %}

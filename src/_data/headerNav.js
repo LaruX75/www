@@ -229,18 +229,14 @@ module.exports = {
               description: "Henkilökuva, elämä ja harrastukset."
             },
             {
-              title: "Ansioluettelo",
-              href: "/cv/",
+              title: "Ansioluettelo | Opetusportfolio",
               icon: "bi bi-file-earmark-person me-2",
               menuLink: true,
-              description: "Koulutus, kokemus ja osaaminen."
-            },
-            {
-              title: "Opetusportfolio",
-              href: "/portfolio/",
-              icon: "bi bi-folder2-open me-2",
-              menuLink: true,
-              description: "Pedagoginen ajattelu, opetuskokemus ja kehitystyö."
+              description: "Koulutus, kokemus ja pedagoginen ajattelu yhdessä.",
+              inlineLinks: [
+                { title: "Ansioluettelo", href: "/cv/" },
+                { title: "Opetusportfolio", href: "/portfolio/" }
+              ]
             },
             {
               title: "Palkinnot",
@@ -324,18 +320,14 @@ module.exports = {
               description: "Biography, life and hobbies."
             },
             {
-              title: "Curriculum Vitae",
-              href: "/en/cv/",
+              title: "Curriculum Vitae | Teaching Portfolio",
               icon: "bi bi-file-earmark-person me-2",
               menuLink: true,
-              description: "Education, skills and history."
-            },
-            {
-              title: "Teaching Portfolio",
-              href: "/en/portfolio/",
-              icon: "bi bi-folder2-open me-2",
-              menuLink: true,
-              description: "Pedagogical thinking, teaching experience and development."
+              description: "Education, skills, and pedagogical profile in one place.",
+              inlineLinks: [
+                { title: "Curriculum Vitae", href: "/en/cv/" },
+                { title: "Teaching Portfolio", href: "/en/portfolio/" }
+              ]
             }
           ]
         },
