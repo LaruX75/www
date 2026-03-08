@@ -372,7 +372,7 @@
                   {% if link.inlineLinks %}
                     <div class="mobile-nav-link d-flex align-items-center gap-2 flex-wrap">
                       {% for inlineLink in link.inlineLinks %}
-                        <a href="{{ inlineLink.href }}"{% if inlineLink.external %} target="_blank" rel="noopener"{% endif %}>{{ inlineLink.title }}</a>{% if not loop.last %}<span aria-hidden="true">|</span>{% endif %}
+                        <a class="mobile-nav-link inline-link" href="{{ inlineLink.href }}"{% if inlineLink.external %} target="_blank" rel="noopener"{% endif %}>{{ inlineLink.title }}</a>{% if not loop.last %}<span class="mobile-nav-inline-separator" aria-hidden="true">|</span>{% endif %}
                       {% endfor %}
                     </div>
                   {% else %}
@@ -852,7 +852,7 @@
                   {% if link.inlineLinks %}
                     <div class="mobile-nav-link d-flex align-items-center gap-2 flex-wrap">
                       {% for inlineLink in link.inlineLinks %}
-                        <a href="{{ inlineLink.href }}"{% if inlineLink.external %} target="_blank" rel="noopener"{% endif %}>{{ inlineLink.title }}</a>{% if not loop.last %}<span aria-hidden="true">|</span>{% endif %}
+                        <a class="mobile-nav-link inline-link" href="{{ inlineLink.href }}"{% if inlineLink.external %} target="_blank" rel="noopener"{% endif %}>{{ inlineLink.title }}</a>{% if not loop.last %}<span class="mobile-nav-inline-separator" aria-hidden="true">|</span>{% endif %}
                       {% endfor %}
                     </div>
                   {% else %}

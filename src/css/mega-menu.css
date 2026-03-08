@@ -305,6 +305,16 @@ html:not([data-bs-theme="dark"]) .mega-menu-panel a i {
   text-decoration: underline;
 }
 
+.mobile-nav-link.inline-link {
+  display: inline;
+  padding: 0;
+}
+
+.mobile-nav-inline-separator {
+  color: var(--bs-body-color);
+  opacity: 0.6;
+}
+
 [data-bs-theme="dark"] .contact-mega-form .form-control {
   border-color: rgba(255, 255, 255, 0.24);
   background-color: rgba(15, 23, 42, 0.72);
@@ -533,6 +543,17 @@ html:not([data-bs-theme="dark"]) .mega-menu-panel a i {
   .evelenty-main-nav>.nav-item>.nav-link span {
     letter-spacing: 0;
   }
+
+  .menu-link-inline-group {
+    gap: 0.25rem;
+    flex-wrap: nowrap;
+  }
+
+  .menu-link-inline-items {
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    gap: 0.12rem;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
@@ -584,6 +605,25 @@ html:not([data-bs-theme="dark"]) .mega-menu-panel a i {
 
   .mega-wrap h5 {
     font-size: 16px;
+  }
+
+  .menu-link-inline-group {
+    gap: 0.25rem;
+    flex-wrap: nowrap;
+  }
+
+  .menu-link-inline-items {
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    gap: 0.1rem;
+  }
+
+  .menu-link-inline-anchor {
+    font-size: 13px;
+  }
+
+  .menu-link-inline-separator {
+    margin: 0 0.1rem;
   }
 
   .writings-mega-layout {
