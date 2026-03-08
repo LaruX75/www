@@ -17,8 +17,11 @@ wp_id: 921
 source_url: "https://www.jarilaru.fi/kiiminki-kymmenen-parhaan-joukossa-lapsiystavallisyydessa-hienoa/"
 templateEngineOverride: md
 ---
+
 TNS Gallupin valituille paloille tekemän tutkimuksen mukaan meidän ikioma Kiiminkimme on kymmenen parhaan joukossa mitattaessa maamme lapsiystävällisimpiä kuntia. Perheemme asui vielä viime talvena Raksilassa Oulun ydinkeskustassa joten omakohtaista vertailupohjaa on tutkimuksessa huonosti sijoittuneisiin isoihin kaupunkeihin.TNS Gallupin mukaan seuraavia asioita pidettiin tärkeimpinä kriteereinä:
-<blockquote>Lapsiperheille tärkeimpinä    kriteereinä pidettiin muun muassa kohtuuhintaisia asuntoja, koulutuksen    tarjontaa, alhaista rikollisuutta sekä muiden lapsiperheiden läsnäoloa.</blockquote>
+
+> Lapsiperheille tärkeimpinä    kriteereinä pidettiin muun muassa kohtuuhintaisia asuntoja, koulutuksen    tarjontaa, alhaista rikollisuutta sekä muiden lapsiperheiden läsnäoloa.
+
 Meidän muuttopäätökseemme vaikutti erityisesti asuntojen halvempi hintataso ja koettu turvallisuus. Olimmehan täällä käyneet jo vuosikaudet "anoppilassa" ja mummolassa. Ostettuamme mummolan itsellemme kyllä ensitöiksemme kunnostimme varastojen ja autotallin lukot. Isovanhemmat eivät pitäneet ovia lukossa - ei kuulemma tarvitse! Vakuutusyhtiön mielestä kyllä tarvitsee, jos joku "pahis" käy pöllimässä varaston tyhjäksi tavarasta ei korvauksia tule vaikka kuinka väittäisi alueen olevan turvallinen.
 Pyöräillessäni töistä kotiin mietiskelin hieman sitä, mikä Jäälistä ja Kiimingistä tekee lapsiperheiden kannalta niin oivallisen. Otin näkökulmaksi pikku-Jarin, joka reilu kaksikymmentä vuotta sitten viipotti vastaavissa maisemissa Raahessa Honganpalon alueella. Muistikuvani omasta lapsuudesta vastaavat hämmästyttävällä tavalla nykyistä elämäämme Jäälissä.
 Asuimme 120m2 omakotitalossa kumpuilevalla mäntykankaalla. Alueella oli useita pieniä lampia ja tiheä polkuverkosto metsässä. Kaupunki ei ollut rakentanut alueelle kaavassa merkittyjä pyöräteitä, ne tulivat pääosin vasta vuosituhannen vaihteessa. Koulut yläaste ja lukio mukaanlukien sekä kirjasto ja terveysasema olivat kivenheiton päässä. Honganpalo oli n. 10 kilometrin päässä Raahen keskustasta. Mikäs siellä oli asustellessa.

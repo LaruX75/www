@@ -16,8 +16,13 @@ wp_id: 1146
 source_url: "https://www.jarilaru.fi/sivistys-ja-kulttuurilautakunta-kokoontui-ouluhallissa-laajennus-ja-remontti-on-luvassa-tulevaisuudessa/"
 templateEngineOverride: md
 ---
-<h4>Kommentointia vuonna 2021</h4><p>Lautakunta piti kokouksen valtuustokauden alkupuolella Ouluhallissa ja sai sittemmin päätettäväkseen hallin peruskorjauksen ja laajennuksen hankesuunnitelman. Nyt valtuustokauden lähestyessä loppuaan on myös Ouluhallin peruskorjaus ja laajennus loppusilausta vaille valmis!</p>
-<p>Sivistys- ja kulttuurilautakunta kokoontuu tänään Ouluhallissa. Ouluhallin peruskorjaus ja laajennus on yksi lähivuosien suurista investoinneista joten eipä ihme että juuri täällä kokoustetaan..</p>
-<p>Kokouksen alussa on ollut hyvin seikkaperäinen liikuntapalvelujen esittely. Liikuntapalvelujen johtaja Epäilys on pistänyt parastaan.</p>
-<p>Laadimme lautakunnassa lähitulevaisuudessa lähiliikuntapaikkastrategian jossa katsotaan liikuntapalvelujen, puistopuolen ja tilapalveluiden (koulut) kohteet kokonaisuutena. Se on hyvä se!!</p>
 
+#### Kommentointia vuonna 2021
+
+Lautakunta piti kokouksen valtuustokauden alkupuolella Ouluhallissa ja sai sittemmin päätettäväkseen hallin peruskorjauksen ja laajennuksen hankesuunnitelman. Nyt valtuustokauden lähestyessä loppuaan on myös Ouluhallin peruskorjaus ja laajennus loppusilausta vaille valmis!
+
+Sivistys- ja kulttuurilautakunta kokoontuu tänään Ouluhallissa. Ouluhallin peruskorjaus ja laajennus on yksi lähivuosien suurista investoinneista joten eipä ihme että juuri täällä kokoustetaan..
+
+Kokouksen alussa on ollut hyvin seikkaperäinen liikuntapalvelujen esittely. Liikuntapalvelujen johtaja Epäilys on pistänyt parastaan.
+
+Laadimme lautakunnassa lähitulevaisuudessa lähiliikuntapaikkastrategian jossa katsotaan liikuntapalvelujen, puistopuolen ja tilapalveluiden (koulut) kohteet kokonaisuutena. Se on hyvä se!!
