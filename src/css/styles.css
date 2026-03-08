@@ -538,6 +538,11 @@ html:not([data-bs-theme="dark"]) .home-hero-proof-item:focus-visible {
   object-position: top center;
 }
 
+/* Keep home feature images visually consistent even when text column grows taller */
+.home-feature-image-col > div {
+  height: clamp(280px, 34vw, 520px) !important;
+}
+
 .home-card-image {
   width: 100%;
   aspect-ratio: 16 / 9;
