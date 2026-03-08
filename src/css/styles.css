@@ -1628,3 +1628,193 @@ html:not([data-bs-theme="dark"]) select {
 [data-bs-theme="dark"] .bbs-chapter-num {
   opacity: 0.65;
 }
+
+/* =============================================================
+   SHARED COMPONENT STYLES
+   Common across multiple pages — do not duplicate inline
+   ============================================================= */
+
+/* --- Hero section (kynasta-hero) — theme-aware base ---
+   Pages that want a permanently dark hero override this inline. */
+.kynasta-hero {
+  background-color: var(--bs-tertiary-bg, #f8f9fa);
+  border-bottom: 1px solid var(--bs-border-color);
+}
+[data-bs-theme="dark"] .kynasta-hero {
+  background-color: #1e2a3a !important;
+  border-bottom-color: rgba(255,255,255,0.1);
+}
+[data-bs-theme="dark"] .kynasta-hero h1,
+[data-bs-theme="dark"] .kynasta-hero p {
+  color: #e0e0e0;
+}
+
+/* --- Hero nav pills --- */
+.kynasta-hero .nav-link {
+  color: var(--bs-body-color);
+  background-color: var(--bs-secondary-bg);
+  border-radius: 2rem;
+  padding: 0.3rem 0.9rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.kynasta-hero .nav-link:hover {
+  background-color: var(--bs-emphasis-color);
+  color: var(--bs-body-bg);
+}
+[data-bs-theme="dark"] .kynasta-hero .nav-link {
+  background-color: rgba(255,255,255,0.08);
+  color: #e0e0e0;
+}
+[data-bs-theme="dark"] .kynasta-hero .nav-link:hover {
+  background-color: rgba(255,255,255,0.18);
+  color: #ffffff;
+}
+
+/* --- Nav count badge inside hero pills --- */
+.nav-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.4rem;
+  height: 1.4rem;
+  padding: 0 0.3rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1;
+  background-color: rgba(0,0,0,0.12);
+  color: inherit;
+  margin-left: 0.25rem;
+  vertical-align: middle;
+}
+[data-bs-theme="dark"] .nav-count {
+  background-color: rgba(255,255,255,0.18);
+}
+
+/* --- Card header border in dark mode --- */
+.card-header.bg-transparent {
+  border-bottom-color: var(--bs-border-color);
+}
+[data-bs-theme="dark"] .card-header.bg-transparent {
+  border-bottom-color: rgba(255,255,255,0.1) !important;
+}
+[data-bs-theme="dark"] .card-header.bg-transparent h2 {
+  color: #ffffff;
+}
+
+/* --- Section anchor scroll offset --- */
+section[id] {
+  scroll-margin-top: 7rem;
+}
+
+/* --- Pagination --- */
+.pagination .page-link {
+  border-radius: 0.4rem !important;
+  margin: 0 2px;
+}
+
+/* --- Data table (.pub-table) --- */
+.pub-table th {
+  white-space: nowrap;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background-color: var(--bs-secondary-bg);
+  padding: 0.75rem 0.5rem;
+}
+[data-bs-theme="dark"] .pub-table th {
+  background-color: #2e3f59 !important;
+  color: #c0d0e0;
+  border-color: rgba(255,255,255,0.1) !important;
+}
+.pub-table th.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+.pub-table th.sortable:hover {
+  background-color: var(--bs-tertiary-bg) !important;
+}
+[data-bs-theme="dark"] .pub-table th.sortable:hover {
+  background-color: #3a5070 !important;
+}
+.pub-table th.sort-asc .sort-icon::before {
+  content: "\F128";
+  opacity: 1 !important;
+  color: var(--bs-primary);
+}
+.pub-table th.sort-desc .sort-icon::before {
+  content: "\F127";
+  opacity: 1 !important;
+  color: var(--bs-primary);
+}
+.pub-table td {
+  padding: 0.75rem 0.5rem;
+}
+[data-bs-theme="dark"] .pub-table td {
+  border-color: rgba(255,255,255,0.07) !important;
+}
+
+/* --- Publication filter bar --- */
+.publication-filter-bar {
+  background-color: var(--bs-tertiary-bg);
+  border-color: var(--bs-border-color) !important;
+}
+.publication-filter-bar .form-control {
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  border-color: var(--bs-border-color);
+}
+.publication-filter-bar .form-control::placeholder {
+  color: var(--bs-tertiary-color);
+}
+
+/* --- Summary KPI cards --- */
+.summary-kpi-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+.summary-kpi-link:hover .summary-kpi {
+  box-shadow: 0 0 0 2px currentColor;
+  opacity: 0.85;
+}
+.summary-kpi {
+  background: var(--bs-tertiary-bg);
+  border-left-width: 4px !important;
+}
+.summary-kpi-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--bs-secondary-color);
+}
+.summary-kpi-value {
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1.05;
+}
+.kpi-color-aloitteet   { border-left-color: #fd7e14 !important; }
+.kpi-color-blogi       { border-left-color: #6f42c1 !important; }
+.kpi-color-esitykset   { border-left-color: #0dcaf0 !important; }
+.kpi-color-julkaisut   { border-left-color: #198754 !important; }
+.kpi-color-kolumnit    { border-left-color: #20c997 !important; }
+.kpi-color-mielipiteet { border-left-color: #0d6efd !important; }
+.kpi-color-puheet      { border-left-color: #dc3545 !important; }
+
+/* --- Dark mode: .text-bg-light badge override --- */
+[data-bs-theme="dark"] .badge.text-bg-light {
+  background-color: rgba(255,255,255,0.12) !important;
+  color: #e0e0e0 !important;
+  border-color: rgba(255,255,255,0.2) !important;
+}
+
+/* --- Card utilities --- */
+[data-bs-theme="dark"] .card .card-title a {
+  color: #ffffff !important;
+}
+[data-bs-theme="dark"] .card .card-title a:hover {
+  color: rgba(255,255,255,0.8) !important;
+}
