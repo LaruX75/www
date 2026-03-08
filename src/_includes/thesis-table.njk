@@ -10,6 +10,7 @@
         <th class="text-center" style="width:70px">Vuosi</th>
         {% if showType %}<th style="width:130px">Tyyppi</th>{% endif %}
         <th>Otsikko</th>
+        <th style="min-width:280px">Tiivistelmä</th>
         <th style="width:200px">Tekijä</th>
       </tr>
     </thead>
@@ -36,7 +37,7 @@
             </a>
             <button
               type="button"
-              class="btn btn-outline-secondary btn-sm rounded-pill px-2 ms-2 thesis-bib-btn"
+              class="btn btn-outline-primary btn-sm rounded-pill px-2 ms-2 thesis-bib-btn"
               data-title="{{ thesis.title | escape }}"
               data-authors="{{ (thesis.authors | join('; ')) | escape }}"
               data-year="{{ thesis.year }}"
@@ -46,20 +47,24 @@
             >
               <i class="bi bi-quote me-1"></i>Vie viite
             </button>
-            {% if thesis.abstract %}
-              <div class="small text-muted mt-2 thesis-abstract-snippet">{{ thesis.abstract }}</div>
-              <button
-                type="button"
-                class="btn btn-link btn-sm p-0 mt-1 thesis-abstract-trigger"
-                data-thesis-title="{{ thesis.title | escape }}"
-                data-thesis-abstract="{{ thesis.abstract | escape }}"
-                data-thesis-url="{{ thesis.link | escape }}"
-              >
-                Avaa tiivistelmä
-              </button>
-            {% endif %}
           {% else %}
             <span class="fw-medium">{{ thesis.title }}</span>
+          {% endif %}
+        </td>
+        <td>
+          {% if thesis.abstract %}
+            <div class="small text-muted thesis-abstract-snippet">{{ thesis.abstract }}</div>
+            <button
+              type="button"
+              class="btn btn-link btn-sm p-0 mt-1 thesis-abstract-trigger"
+              data-thesis-title="{{ thesis.title | escape }}"
+              data-thesis-abstract="{{ thesis.abstract | escape }}"
+              data-thesis-url="{{ thesis.link | escape }}"
+            >
+              Avaa tiivistelmä
+            </button>
+          {% else %}
+            <span class="text-muted small">—</span>
           {% endif %}
         </td>
         <td class="text-secondary small">{{ thesis.authors | join("; ") }}</td>
