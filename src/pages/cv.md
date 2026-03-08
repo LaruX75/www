@@ -22,7 +22,7 @@ templateEngineOverride: md
               <a class="btn btn-primary" href="/yhteystiedot/">Yhteystiedot</a>
               <a class="btn btn-outline-primary" href="/julkaisut/">Julkaisut</a>
               <a class="btn btn-outline-primary" href="/esitykset/">Esitykset</a>
-              <a class="btn btn-outline-secondary" href="/portfolio/"><i class="bi bi-folder2-open me-1"></i>Opetusportfolio</a>
+              <a class="btn btn-outline-primary" href="/portfolio/"><i class="bi bi-folder2-open me-1"></i>Opetusportfolio</a>
             </div>
           </div>
         </div>
