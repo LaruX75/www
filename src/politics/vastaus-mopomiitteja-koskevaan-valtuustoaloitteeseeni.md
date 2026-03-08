@@ -12,6 +12,8 @@ keywords:
   - mopot
   - nuorisotyö
 initiative_type: valtuustoaloite
+ouka_case: "OUKA/5299/00.02.00/2024"
+ouka_response_body: "Suora hallinnollinen vastaus, sivistys- ja kulttuurijohtaja 13.8.2024"
 wp_id: 2453
 source_url: "https://www.jarilaru.fi/vastaus-mopomiitteja-koskevaan-valtuustoaloitteeseeni/"
 templateEngineOverride: md
