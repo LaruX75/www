@@ -103,7 +103,7 @@ translationKey: presentations_index
       </nav>
 
       <div class="mt-3 text-muted small">
-        Lähde: Canva Connect API{% if canva.source == 'cache' %} (välimuistista){% elseif canva.source == 'local' %} (paikallisista Markdown-tiedostoista){% endif %}.
+        Lähde: Canva (JSON).
       </div>
     {% else %}
       <p class="text-muted">Ei Canva-esityksiä.</p>
@@ -323,7 +323,7 @@ translationKey: presentations_index
         title: r.title || "Nimetön esitys",
         url: r.url || "",
         thumbnail: r.thumbnail || "",
-        description: Array.isArray(r.categories) && r.categories.length ? r.categories.join(", ") : "Canva-esitys",
+        description: r.description || (Array.isArray(r.categories) && r.categories.length ? r.categories.join(", ") : "Canva-esitys"),
         meta: "Canva",
         date: r.date || ""
       }));

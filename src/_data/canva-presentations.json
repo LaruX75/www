@@ -1,0 +1,596 @@
+[
+  {
+    "thumbnail": "https://design.canva.ai/1WUlIyqtnzE3bGF",
+    "title": "Finnish Teacher Education & Professional Development",
+    "summary": "Esitys suomalaisen opettajankoulutuksen mallista ja opettajien täydennyskoulutuksen haasteista. Käsittelee opettajien autonomiaa, luottamuskulttuuria ja ammatillisen kehittymisen pirstaleisuutta Suomessa.",
+    "location": "Kosovo",
+    "keywords": ["opettajankoulutus", "täydennyskoulutus", "Suomi-malli", "Kosovo"],
+    "link": "https://www.canva.com/d/a8TJ_RbQs_LW9GT",
+    "folder": "Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/SzjCSNghBHh0ocR",
+    "title": "Teachable Machine and Somekone – Demo Session EARLI 2025",
+    "summary": "Demonstraatiosessio Generation AI -hankkeen Teachable Machine- ja Somekone-työkaluista K9-oppilaille. Esittelee selainpohjaisia, avoimia työkaluja tekoälylukutaidon opettamiseen peruskoulussa.",
+    "location": "Graz, Itävalta",
+    "keywords": ["EARLI", "Teachable Machine", "Somekone", "Generation AI"],
+    "link": "https://www.canva.com/d/px0GJMQVZGdY1tc",
+    "folder": "Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/5TSJxr2Z6ejkZOj",
+    "title": "How to Teach AI Literacy to Primary School Children",
+    "summary": "Tekoälylukutaidon opettaminen alakoululaisille turvallisilla ja helposti lähestyttävillä teknologioilla. Generation AI -työpaja, jossa esitellään käytännön menetelmiä tekoälyn toimintaperiaatteiden ymmärtämiseen.",
+    "location": "Viro",
+    "keywords": ["tekoälylukutaito", "alakoulu", "Generation AI", "työpaja"],
+    "link": "https://www.canva.com/d/8CAKI6TEeKKQMug",
+    "folder": "Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/bv-U6gbf-E-bGdp",
+    "title": "Miksi some koukuttaa? Somekoneen uusi työkalu",
+    "summary": "Esitys Somekoneen uudesta osiosta, joka auttaa ymmärtämään sosiaalisen median koukuttavuuden mekanismeja. Digipedan verkostojen verkostolle suunnattu puheenvuoro Generation AI -hankkeen uusista ominaisuuksista.",
+    "location": "Helsinki",
+    "keywords": ["Somekone", "sosiaalinen media", "koukuttavuus", "Generation AI"],
+    "link": "https://www.canva.com/d/V9AijpSSvQKvkcE",
+    "folder": "Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/FVbjqFXWnU5o_QZ",
+    "title": "ITK2025 Areena",
+    "summary": "Interaktiivinen Tekniikka Koulutuksessa -konferenssin areenaesitys tekoälylukutaidosta ja sen opettamisesta. Katsaus ajankohtaisiin tekoälyn opetuskäytön kysymyksiin ja Generation AI -hankkeen tuloksiin.",
+    "location": "Hämeenlinna",
+    "keywords": ["ITK", "tekoälylukutaito", "opetuskäyttö", "areena"],
+    "link": "https://www.canva.com/d/XWm6gUjnr5i7hZI",
+    "folder": "Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/B8IRCeF5dgpLraM",
+    "title": "Miksi some koukuttaa? Miten tekoäly toimii? – ITK2025 Foorum",
+    "summary": "ITK-konferenssin foorumiesitys sosiaalisen median koukuttavuudesta ja tekoälyn toimintaperiaatteista. Käsittelee Somekoneen ja Opetettavan koneen käyttöä opetuksessa käytännön esimerkkien kautta.",
+    "location": "Hämeenlinna",
+    "keywords": ["ITK", "sosiaalinen media", "tekoäly", "Somekone"],
+    "link": "https://www.canva.com/d/GigvSSlS47bsFgv",
+    "folder": "Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/qndN8Ir0ASMuS0K",
+    "title": "Tekoäly arjessa – Helsinki Education HUB",
+    "summary": "Laaja luentoesitys tekoälyn arkipäiväistymisestä ja sen integroitumisesta sosiaalisen median palveluihin. Käsittelee tekoälyn läpitunkevuutta ja sen vaikutuksia opetukseen ja oppimiseen.",
+    "location": "Helsinki",
+    "keywords": ["tekoäly arjessa", "sosiaalinen media", "Education HUB", "luento"],
+    "link": "https://www.canva.com/d/lziCAse2aAKA0_L",
+    "folder": "Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/XcAYUovKJRN01gv",
+    "title": "Robotiikkaa ja selitettävää tekoälyä – Opetettavan koneen ja Somekoneen uudet ominaisuudet",
+    "summary": "IT Kouluttajat ry:n laivaseminaariesitys Opetettavan koneen ja Somekoneen uusista ominaisuuksista. Esittelee robotiikkaintegraatioita ja someanalytiikan mahdollisuuksia opetuskäytössä.",
+    "location": "Tallinna (laivaseminaari)",
+    "keywords": ["robotiikka", "selitettävä tekoäly", "Somekone", "IT Kouluttajat"],
+    "link": "https://www.canva.com/d/2-2zcSZVNsE0Cip",
+    "folder": "Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/DSO9-Tkg8zRmz5f",
+    "title": "Generation AI – Esittely japanilaiselle vieraalle",
+    "summary": "Generation AI -hankkeen ja Shield-ohjelman esittely kansainväliselle vieraalle. Kuvaa hankkeen roolia tekoäly- ja turvallisuuskasvatuksen tutkimuspohjaisessa kehittämisessä.",
+    "location": "Oulu",
+    "keywords": ["Generation AI", "Shield-ohjelma", "kansainvälisyys", "hanke-esittely"],
+    "link": "https://www.canva.com/d/Kk2fGTLAVSdDMHz",
+    "folder": "Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/wCkT6sAdFdbU1xV",
+    "title": "Selitettävä tekoäly opetuksessa – ITK-webinaari",
+    "summary": "Webinaariesitys selitettävän tekoälyn (XAI) käsitteestä ja sen merkityksestä opetuksessa. Käsittelee miksi tekoälyjärjestelmien läpinäkyvyys on tärkeää oppimiskontekstissa.",
+    "location": "Webinaari (verkossa)",
+    "keywords": ["selitettävä tekoäly", "XAI", "ITK", "webinaari"],
+    "link": "https://www.canva.com/d/k2U-B9pZNbblMHV",
+    "folder": "Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/cbaIWQt8jSeQCi2",
+    "title": "Generative AI as a Tool to Adapt Teaching to Learner's Needs",
+    "summary": "Englanninkielinen esitys generatiivisen tekoälyn hyödyntämisestä opetuksen yksilöllistämisessä. Lithuania AI Accelerator -tapahtuman laaja katsaus tekoälyn opetuskäyttöön ja opettajankoulutukseen.",
+    "location": "Liettua",
+    "keywords": ["generatiivinen tekoäly", "eriyttäminen", "AI Accelerator", "opettajankoulutus"],
+    "link": "https://www.canva.com/d/PMswB92SaPgn7TJ",
+    "folder": "Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/j3zFQ5jWiez9djw",
+    "title": "Generative AI as a Professional Tool – Agent, Coach or Friend?",
+    "summary": "Labquality Days -konferenssin esitys generatiivisesta tekoälystä ammatillisena työkaluna. Tutkimuspohjaisia näkökulmia tekoälyn varhaiseen käyttöönottoon, sääntelyyn ja tekoälylukutaitoon.",
+    "location": "Helsinki",
+    "keywords": ["Labquality Days", "ammatillinen työkalu", "sääntely", "tekoälylukutaito"],
+    "link": "https://www.canva.com/d/G7w2ekHickUAteR",
+    "folder": "Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/J4RdRfZHorjcEYl",
+    "title": "Tekoälyosaamista kieltenopetukseen",
+    "summary": "Luentoesitys tekoälyn roolista kieltenopetuksessa ja shadow AI -ilmiöstä. Käsittelee miten tekoälyä käytetään kieltenoppimisessa riippumatta siitä, onko se sallittua vai ei.",
+    "location": "Ei paikkakuntatietoa",
+    "keywords": ["kieltenopetus", "shadow AI", "tekoälyosaaminen", "luento"],
+    "link": "https://www.canva.com/d/E3P5mb4b-XNkVRh",
+    "folder": "Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/Q6OjguH2Lmx-ute",
+    "title": "Learning AI Literacy in Collaborative Projects with an AI Education Tool",
+    "summary": "Tapaustutkimus suomalaisesta opettajankoulutuksesta, jossa opiskelijat oppivat tekoälylukutaitoa yhteistoiminnallisissa projekteissa. Esittelee koneoppimispohjaisten sovellusten rakentamista Generation AI -työkaluilla.",
+    "location": "Ei paikkakuntatietoa",
+    "keywords": ["tapaustutkimus", "opettajankoulutus", "yhteistoiminnallinen oppiminen", "koneoppiminen"],
+    "link": "https://www.canva.com/d/zyK9giWkhlIbgdA",
+    "folder": "Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/thaurS1mWqYRvW9",
+    "title": "Annie Advisor – Generative AI as a Tool to Adapt Teaching",
+    "summary": "Annie Advisor -alustan esittely ja generatiivisen tekoälyn mahdollisuudet opetuksen mukauttamisessa oppijan tarpeisiin. Käsittelee tutkimuspohjaisia oivalluksia tekoälyn hyödyntämisestä oppimisen tukena.",
+    "location": "Ei paikkakuntatietoa",
+    "keywords": ["Annie Advisor", "generatiivinen tekoäly", "eriyttäminen", "oppimisen tuki"],
+    "link": "https://www.canva.com/d/BbLfV3z4HKRbLLv",
+    "folder": "Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/L82BEsIk0ICpiN4",
+    "title": "Generation AI Workshop",
+    "summary": "Laaja Generation AI -hankkeen työpajaesitys, jossa osallistujat pääsevät kokeilemaan hankkeen tekoälylukutaitotyökaluja. Käytännönläheinen sessio Opetettavan koneen ja Somekoneen käytöstä opetuksessa.",
+    "location": "Ei paikkakuntatietoa",
+    "keywords": ["Generation AI", "työpaja", "tekoälylukutaito", "käytännön harjoitukset"],
+    "link": "https://www.canva.com/d/xnifP159rmy3Rko",
+    "folder": "Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/x0k-CR6Ewtrv0v1",
+    "title": "International Conference on the Advancement of STEAM 2024",
+    "summary": "Kansainvälinen STEAM-konferenssiesitys tekoälylukutaidon integroinnista STEAM-opetukseen. Esittelee Generation AI -hankkeen tuloksia ja työkaluja tieteidenvälisessä kontekstissa.",
+    "location": "Ei paikkakuntatietoa",
+    "keywords": ["STEAM", "kansainvälinen konferenssi", "tekoälylukutaito", "Generation AI"],
+    "link": "https://www.canva.com/d/LCz5VdKUVtKqunC",
+    "folder": "Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/GichwXh66povc6V",
+    "title": "Digivoo kommenttipuheenvuoro",
+    "summary": "Kommenttipuheenvuoro Digivoo-tilaisuudessa digitalisaation ja tekoälyn ajankohtaisista teemoista koulutuskontekstissa. Laaja diasetti, joka käsittelee tekoälyn vaikutuksia opetukseen ja oppimiseen.",
+    "location": "Ei paikkakuntatietoa",
+    "keywords": ["Digivoo", "kommenttipuheenvuoro", "digitalisaatio", "koulutuspolitiikka"],
+    "link": "https://www.canva.com/d/nnjyj2JS29sOSpy",
+    "folder": "Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/8hBaw_y4pkbKjx9",
+    "title": "From EU AI Act to National AI Guidelines",
+    "summary": "Esitys EU:n tekoälysäädöksestä (AI Act) ja sen kansallisista sovelluksista koulutuskontekstissa. Käsittelee sääntelyn vaikutuksia opetuskäyttöön ja tekoälylukutaidon kehittämiseen.",
+    "location": "Ei paikkakuntatietoa",
+    "keywords": ["EU AI Act", "sääntely", "kansalliset linjaukset", "koulutuspolitiikka"],
+    "link": "https://www.canva.com/d/PuZdC-Ya2XePGL9",
+    "folder": "Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/aV4kjc-fis3gXd1",
+    "title": "Fedutalk – Generative AI in Education",
+    "summary": "Fedutalk-esitys generatiivisen tekoälyn mahdollisuuksista ja haasteista koulutuksessa. Kansainväliselle yleisölle suunnattu katsaus suomalaiseen tekoälylukutaidon opetukseen.",
+    "location": "Kosovo",
+    "keywords": ["Fedutalk", "generatiivinen tekoäly", "kansainvälisyys", "koulutus"],
+    "link": "https://www.canva.com/d/TbQb-poTWQA8frV",
+    "folder": "Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/4wxV4tKGilSi291",
+    "title": "ITK2024",
+    "summary": "Interaktiivinen Tekniikka Koulutuksessa 2024 -konferenssiesitys tekoälyn opetuskäytön ajankohtaisista kysymyksistä. Laaja diasetti Generation AI -hankkeen tuloksista ja tekoälylukutaidon edistämisestä.",
+    "location": "Hämeenlinna",
+    "keywords": ["ITK", "tekoäly opetuksessa", "Generation AI", "konferenssi"],
+    "link": "https://www.canva.com/d/mPO7rS-FQTQJdax",
+    "folder": "Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/tK2kFy3YeeW3aCV",
+    "title": "Riko, rakenna ja ymmärrä – Kohti kriittistä tekoälylukutaitoa",
+    "summary": "Finnoschool-koulutuksen esitys kriittisen tekoälylukutaidon kehittämisestä. Yhdistää luento-osuuden ja käytännön työpajan, jossa harjoitellaan tekoälyn kriittistä arviointia ja käyttöä opetuksessa.",
+    "location": "Ei paikkakuntatietoa",
+    "keywords": ["kriittinen lukutaito", "Finnoschool", "tekoälylukutaito", "työpaja"],
+    "link": "https://www.canva.com/d/HQSqasOBm9SJgUx",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/aS931Vwo-esKFTE",
+    "title": "Ihmeitä tekevä tekoäly vai tavallinen työkalu? – VESO 2026",
+    "summary": "VESO-koulutuspäivän esitys tekoälylukutaidon perusteista opettajille. Käsittelee tekoälyn demystifiointia ja askeleita kohti käytännön tekoälylukutaitoa kouluarjessa.",
+    "location": "Riihimäki",
+    "keywords": ["VESO", "tekoälylukutaito", "opettajien koulutus", "käytäntö"],
+    "link": "https://www.canva.com/d/Bfxu8HjaUJaIbxH",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/PICDeawyMkVwQ_y",
+    "title": "VESO 2026 – Tekoäly opetuksessa",
+    "summary": "Kempeleen kunnan VESO-koulutuspäivän esitys tekoälyn roolista opetuksessa. Käsittelee tekoälylukutaidon perusteita, käytännön työkaluja ja ajankohtaisia linjauksia.",
+    "location": "Kempele",
+    "keywords": ["VESO", "Kempele", "tekoäly opetuksessa", "täydennyskoulutus"],
+    "link": "https://www.canva.com/d/bZb22nPNQeUAMNt",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/RduLVaU3MPUU6T_",
+    "title": "Konenäkö, vibe coding ja robotiikka – Robokampus 2026",
+    "summary": "Robokampus-koulutuksen esitys konenäön, vibe coding -lähestymistavan ja robotiikan yhdistämisestä opetuksessa. Käytännönläheinen työpaja tekoälyn ja fyysisen laskennan rajapinnasta.",
+    "location": "Riihimäki",
+    "keywords": ["konenäkö", "robotiikka", "vibe coding", "Robokampus"],
+    "link": "https://www.canva.com/d/GBChTzIIJa-gqf_",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/3fGEgeWcKZ8ibew",
+    "title": "Tekoälyagentit",
+    "summary": "Opettajankoulutusfoorumin (OKF) esitys tekoälyagenttien toiminnasta ja merkityksestä. Katsaus agenttipohjaisen tekoälyn tulevaisuuteen koulutuskontekstissa.",
+    "location": "Ei paikkakuntatietoa",
+    "keywords": ["tekoälyagentit", "OKF", "tulevaisuus", "agenttipohjaisuus"],
+    "link": "https://www.canva.com/d/Ew18HDBbqCzHmyL",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/KnW9PywxO9TW7He",
+    "title": "Tekoäly opettajan työkaluna",
+    "summary": "Käytännönläheinen esitys tekoälystä opettajan päivittäisenä työkaluna. Esittelee konkreettisia tapoja hyödyntää tekoälyä opetuksen suunnittelussa, toteutuksessa ja arvioinnissa.",
+    "location": "Ei paikkakuntatietoa",
+    "keywords": ["opettajan työkalu", "tekoäly", "opetuskäyttö", "käytännön vinkit"],
+    "link": "https://www.canva.com/d/gE1bwVNfZDH-caB",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/dsYY9NyONOuXG-o",
+    "title": "Opettaja tekoälyn ja -älyttömyyden turbulenssissa",
+    "summary": "Laaja esitys synteettisten sisältöjen vaikutuksesta internetin tietoympäristöön ja opettajien sekä oppilaiden tekoälylukutaidon kehittämisestä. Henkilökohtainen teknologiahistoriallinen näkökulma opetuksen muutokseen.",
+    "location": "Tampere",
+    "keywords": ["synteettiset sisällöt", "tekoälylukutaito", "opettajuuden muutos", "teknologiahistoria"],
+    "link": "https://www.canva.com/d/wTxp20g73BPxwk_",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/nMq11m1xc7p2CtX",
+    "title": "Digipedailtapäivä – Tekoäly opetuksessa",
+    "summary": "Tampereen digipedailtapäivän esitys tekoälyn käytännön soveltamisesta opetukseen. Käsittelee ajankohtaisia tekoälytyökaluja, pedagogisia lähestymistapoja ja tekoälylukutaidon edistämistä.",
+    "location": "Tampere",
+    "keywords": ["digipeda", "iltapäivä", "tekoäly opetuksessa", "käytäntö"],
+    "link": "https://www.canva.com/d/ed_YYFIwhxYUW_X",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/4ZFurrAnE9JVc5B",
+    "title": "Kuinka tekoäly toimii? – Webinaari",
+    "summary": "Tiivis webinaari tekoälyn toimintaperiaatteista kansantajuisesti selitettynä. Sopii opettajille, jotka haluavat ymmärtää tekoälyn perusteita ennen sen soveltamista opetuksessa.",
+    "location": "Webinaari (verkossa)",
+    "keywords": ["webinaari", "tekoälyn perusteet", "toimintaperiaatteet", "opettajat"],
+    "link": "https://www.canva.com/d/O9-nqpHd58I_zrE",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/t8PTXsCA933l8b4",
+    "title": "Tekoälylukutaitoinen digiosaaja – Millaisia taitoja opettajalla tulisi olla?",
+    "summary": "OKM:n Osaava DigiOpe -hankkeen kick off -webinaarin esitys opettajien digitaalisista kompetensseista tekoälyaikana. Käsittelee homo digitalis -käsitettä ja opettajan tarvitsemia tekoälylukutaitoja.",
+    "location": "Webinaari (verkossa)",
+    "keywords": ["OKM", "Osaava DigiOpe", "digiosaaminen", "opettajan kompetenssit"],
+    "link": "https://www.canva.com/d/Or2PXVqHLXeZgXV",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/F58zUeAuHfLpaQv",
+    "title": "Tekoäly: opettajan ystävä vai vihollinen? Matkalla kohti tekoälylukutaitoa",
+    "summary": "Koulutuspäivän esitys tekoälyn roolista opettajan arjessa – onko se uhka vai mahdollisuus. Käsittelee tekoälylukutaidon kehittämisen polkua ja käytännön askeleita opettajille.",
+    "location": "Kokkola",
+    "keywords": ["tekoälylukutaito", "opettajan arki", "uhka vai mahdollisuus", "koulutuspäivä"],
+    "link": "https://www.canva.com/d/AkclkQk7PSDfsfd",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/ojs-__SbFrfH0zJ",
+    "title": "Tekoäly yhdistystoiminnassa",
+    "summary": "OK Opintokeskuksen tilaisuuden esitys tekoälyn hyödyntämisestä järjestö- ja yhdistystoiminnassa. Käytännönläheinen katsaus tekoälytyökaluihin, joita vapaaehtoisorganisaatiot voivat hyödyntää.",
+    "location": "Ei paikkakuntatietoa",
+    "keywords": ["yhdistystoiminta", "OK Opintokeskus", "tekoälytyökalut", "järjestöt"],
+    "link": "https://www.canva.com/d/jQk9wkvNugrtWYa",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/u0C-an2d70uVNo2",
+    "title": "AI, Friend or Foe? (EN)",
+    "summary": "Englanninkielinen esitys tekoälystä opetuskontekstissa – ystävä vai vihollinen. Kansainväliselle yleisölle suunnattu katsaus tekoälylukutaitoon ja sen opettamiseen.",
+    "location": "Ei paikkakuntatietoa",
+    "keywords": ["AI literacy", "friend or foe", "international", "education"],
+    "link": "https://www.canva.com/d/qJBv9goo1nib9RV",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/H_e3weaoXBsLP93",
+    "title": "Tekoäly, ystävä vai vihollinen? (FIN)",
+    "summary": "Suomenkielinen versio esityksestä tekoälyn roolista opetuksessa. Käsittelee tekoälylukutaidon kehittämistä ja ajankohtaisia haasteita opettajan näkökulmasta.",
+    "location": "Ei paikkakuntatietoa",
+    "keywords": ["tekoäly", "ystävä vai vihollinen", "opetus", "tekoälylukutaito"],
+    "link": "https://www.canva.com/d/3WxONxP2X5DrAtD",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/fXZ98yDuGt-3E89",
+    "title": "Tekoälyluento ja työpaja (EN)",
+    "summary": "Kansainvälisen kesäyliopiston (KYK) englanninkielinen tekoälyluento ja käytännön työpaja. Laaja kokonaisuus tekoälyn perusteista sovellusten rakentamiseen Generation AI -työkaluilla.",
+    "location": "Ei paikkakuntatietoa",
+    "keywords": ["KYK", "kesäyliopisto", "tekoälyluento", "työpaja"],
+    "link": "https://www.canva.com/d/ce1ztDN1A097hxv",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/PvEvjqgS-o52F91",
+    "title": "Tekoälyluento ja työpaja (FIN)",
+    "summary": "Kansainvälisen kesäyliopiston (KYK) suomenkielinen tekoälyluento ja käytännön työpaja. Sisältää luento-osuuden tekoälyn perusteista ja hands-on-työpajan Generation AI -työkaluilla.",
+    "location": "Ei paikkakuntatietoa",
+    "keywords": ["KYK", "kesäyliopisto", "tekoälyluento", "työpaja"],
+    "link": "https://www.canva.com/d/WA08O6OZNJgEYwF",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/QxR6bx_MbBOQmNY",
+    "title": "Tekoälyn vaikutuksia korkeakoulupedagogiikkaan",
+    "summary": "Laaja esitys tekoälyn muutosvoimasta korkeakoulupedagogiikassa. Käsittelee miten generatiivinen tekoäly haastaa perinteiset opetus- ja arviointikäytännöt yliopistoissa ja ammattikorkeakouluissa.",
+    "location": "Ei paikkakuntatietoa",
+    "keywords": ["korkeakoulupedagogiikka", "generatiivinen tekoäly", "arviointi", "muutos"],
+    "link": "https://www.canva.com/d/lDWm97aOE4B28EZ",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/E7g2-d6DL1ipzNk",
+    "title": "Älyä! Teko! Tekoälyajan kognitiiviset työkalut ja ydintaidot",
+    "summary": "Esitys tekoälyajan ihmisen kognitiivisista työkaluista ja elämässä tarvittavista ydintaidoista. Pohtii mitä osaamista ja valmiuksia tarvitaan aikana, jolloin tekoäly muuttaa tietotyötä perustavanlaatuisesti.",
+    "location": "Ei paikkakuntatietoa",
+    "keywords": ["kognitiiviset työkalut", "ydintaidot", "tekoälyaika", "osaaminen"],
+    "link": "https://www.canva.com/d/G94vRAQGi4Wm6s7",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/fG4hg3LIGrHt4jY",
+    "title": "Miten tekoälyn kehitys on muuttanut korkeakoulujen toimintaa?",
+    "summary": "Esitys tekoälyn vaikutuksista korkeakoulujen toimintaan ja pedagogiikkaan. Käsittelee konkreettisia muutoksia opetuksessa, tutkimuksessa ja hallinnossa tekoälyn yleistymisen myötä.",
+    "location": "Ei paikkakuntatietoa",
+    "keywords": ["korkeakoulut", "tekoälyn vaikutukset", "muutos", "pedagogiikka"],
+    "link": "https://www.canva.com/d/AdGUM0l2lPCb8xW",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/IlfjaI1SJc4_CTI",
+    "title": "Kuinka opettaa tekoälytaitoja esi- ja perusopetuksessa? – PraBa",
+    "summary": "PraBa-tilaisuuden esitys Generation AI -hankkeen ratkaisuista tekoälytaitojen opettamiseen esi- ja perusopetuksessa. Käsittelee hankkeen menetelmiä ja pedagogisia lähestymistapoja lasten tekoälykasvatukseen.",
+    "location": "Ei paikkakuntatietoa",
+    "keywords": ["PraBa", "esiopetus", "perusopetus", "Generation AI"],
+    "link": "https://www.canva.com/d/-On5aqOKGOQuCfP",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/I-_0kmj2ziuINzU",
+    "title": "Tekoäly, opettajan työ ja arvioinnin muutos",
+    "summary": "Esitys tekoälyn vaikutuksista opettajan työhön ja erityisesti arvioinnin muutokseen. Pohtii miten generatiivinen tekoäly haastaa perinteiset arviointikäytännöt ja mitä uusia ratkaisuja tarvitaan.",
+    "location": "Ei paikkakuntatietoa",
+    "keywords": ["arviointi", "opettajan työ", "muutos", "generatiivinen tekoäly"],
+    "link": "https://www.canva.com/d/U7Jc8G6SA5vA9cV",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/Tbc6F0Ty85QZ_yQ",
+    "title": "Voiko tekoälyn käyttöä oikeasti kieltää?",
+    "summary": "Provokatiivinen esitys tekoälyn kieltämisen mahdottomuudesta koulutuskontekstissa. Käsittelee shadow AI -ilmiötä ja argumentoi miksi lukutaidon kehittäminen on kieltämistä parempi strategia.",
+    "location": "Ei paikkakuntatietoa",
+    "keywords": ["shadow AI", "kieltäminen", "tekoälylukutaito", "strategia"],
+    "link": "https://www.canva.com/d/WZSKbPekk77B4pV",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/h1pNoG6qpIuAb3f",
+    "title": "Generatiivinen tekoäly – Tekoäly työkaluna III",
+    "summary": "Opettajien ja kieltenopettajien koulutussarjan kolmas osa generatiivisesta tekoälystä. Syventää ymmärrystä tekoälyn käytännön soveltamisesta kieltenopetuksen kontekstissa.",
+    "location": "Ei paikkakuntatietoa",
+    "keywords": ["generatiivinen tekoäly", "kieltenopetus", "koulutussarja", "opettajat"],
+    "link": "https://www.canva.com/d/2QprnRPEvK80-VQ",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/c12qR1nP8M1CjEN",
+    "title": "Tekoäly osana arkisia sovelluksia",
+    "summary": "Esitys tekoälyn integroitumisesta jokapäiväisiin sovelluksiin ja palveluihin. Avaa silmiä sille, miten tekoäly on jo läsnä arjessa usein huomaamattomasti.",
+    "location": "Ei paikkakuntatietoa",
+    "keywords": ["arkiset sovellukset", "tekoäly arjessa", "integraatio", "tietoisuus"],
+    "link": "https://www.canva.com/d/h6l_XR-jvfUDrZI",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/T9FJG8LCD5mThPv",
+    "title": "Miten tekoäly toimii? Miksi some koukuttaa?",
+    "summary": "Kaksoisteemainen esitys tekoälyn toimintaperiaatteista ja sosiaalisen median koukuttavuusmekanismeista. Sopii opettajille, jotka haluavat ymmärtää molempia ilmiöitä ja opettaa niitä oppilailleen.",
+    "location": "Ei paikkakuntatietoa",
+    "keywords": ["tekoälyn toiminta", "sosiaalinen media", "koukuttavuus", "opettajat"],
+    "link": "https://www.canva.com/d/c23TW_-XY9lQL8H",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/3LMrUljoOPW8vr0",
+    "title": "Tekoälyn ajankohtaiskatsaus – OTAVIA 2025",
+    "summary": "OTAVIA-verkoston koulutuksen ajankohtaiskatsaus tekoälyn kehitykseen ja opetuskäyttöön. Käsittelee tuoreimpia tekoälykehityskulkuja ja niiden merkitystä opettajille ja koulutukselle.",
+    "location": "Ei paikkakuntatietoa",
+    "keywords": ["OTAVIA", "ajankohtaiskatsaus", "tekoälykehitys", "opetuskäyttö"],
+    "link": "https://www.canva.com/d/_01s5INj0QGDoOc",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/sSR6BQ1D-Ym3DSX",
+    "title": "Digitutorit 2024 – Tekoäly opetuksessa",
+    "summary": "Keravan digitutorikoulutuksen esitys tekoälyn hyödyntämisestä opetuksessa. Käytännönläheinen koulutus digitutoreille, jotka toimivat tekoälyn jalkauttajina omissa kouluissaan.",
+    "location": "Kerava",
+    "keywords": ["digitutorit", "Kerava", "tekoäly opetuksessa", "jalkauttaminen"],
+    "link": "https://www.canva.com/d/wmeqcm8l_fwMxMP",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/_wfAALuQYw5DfU8",
+    "title": "DIGIERKO 2024 – Risteilyesitys",
+    "summary": "DIGIERKO-verkoston risteilyseminaarin esitys tekoälylukutaidon ajankohtaisista teemoista. Käsittelee digipedagogiikan ja tekoälyn leikkauspisteitä opettajankoulutuksen kontekstissa.",
+    "location": "Risteily",
+    "keywords": ["DIGIERKO", "digipedagogiikka", "tekoälylukutaito", "opettajankoulutus"],
+    "link": "https://www.canva.com/d/wTmChnWYt3Ped63",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/VLIrqsemwe40NJq",
+    "title": "Millaisia tekoälytaitoja peruskoulussa tulisi opettaa 2020-luvulla?",
+    "summary": "Laaja esitys peruskoulun tekoälytaitojen opettamisesta ja menetelmistä 2020-luvun kontekstissa. Käsittelee mitä tekoälytaitoja oppilaat tarvitsevat ja miten niitä voidaan opettaa käytännössä.",
+    "location": "Pori / Kerava",
+    "keywords": ["peruskoulu", "tekoälytaidot", "2020-luku", "menetelmät"],
+    "link": "https://www.canva.com/d/JKkFuEnkM0_ce7t",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/sfK_YY0IPt_D-bS",
+    "title": "Tekoälyluento – OSYK",
+    "summary": "Oulun seudun yhteiskoulutuksen (OSYK) tekoälyluento opetushenkilöstölle. Katsaus tekoälyn perusteisiin, opetuskäyttöön ja ajankohtaisiin kehityskulkuihin.",
+    "location": "Oulu",
+    "keywords": ["OSYK", "tekoälyluento", "opetushenkilöstö", "perusteet"],
+    "link": "https://www.canva.com/d/mYXkbfKWsXK3JX9",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/Y5wuOafRM9qjHkK",
+    "title": "Opopassi-koulutus – Tekoäly ohjauksessa",
+    "summary": "Laaja Opopassi-koulutuksen esitys tekoälyn hyödyntämisestä opinto-ohjauksessa. Käsittelee tekoälytyökalujen mahdollisuuksia ohjaustyössä ja oppilaiden tekoälylukutaidon tukemista.",
+    "location": "Ei paikkakuntatietoa",
+    "keywords": ["Opopassi", "opinto-ohjaus", "tekoäly", "ohjaustyö"],
+    "link": "https://www.canva.com/d/JzlZ5gP4WPed_PF",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/3XTQkf6ug3FrjRH",
+    "title": "AVI-koulutus – Tekoäly opetuksessa",
+    "summary": "Aluehallintoviraston (AVI) koulutustilaisuuden esitys tekoälyn opetuskäytöstä. Laaja kokonaisuus tekoälyn perusteista käytännön työkaluihin ja pedagogisiin sovelluksiin.",
+    "location": "Ei paikkakuntatietoa",
+    "keywords": ["AVI", "aluehallintovirasto", "tekoäly opetuksessa", "koulutus"],
+    "link": "https://www.canva.com/d/MN9vT3UJBqN4H9S",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/PKJ8g0xSJSq_BYa",
+    "title": "Monilukutaito on opettajan supervoima – Tekoälylukutaito",
+    "summary": "Erittäin laaja koulutusesitys monilukutaidosta ja tekoälylukutaidosta opettajan supervoimana. Yhdistää tekoälyn opetuskäytön ja tekoälylukutaidon kehittämisen monilukutaidon viitekehykseen.",
+    "location": "Ei paikkakuntatietoa",
+    "keywords": ["monilukutaito", "tekoälylukutaito", "supervoima", "koulutus"],
+    "link": "https://www.canva.com/d/nbQifEidO25m3AN",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/kNOMYjzz5u7h2U9",
+    "title": "Tekoäly on jo kaikkialla – Miten ilmiötä tulisi lähestyä?",
+    "summary": "Esitys tekoälyn kaikkiallisuudesta ja siitä, miten opettajien ja koulujen tulisi suhtautua ilmiöön. Tarjoaa tutkimuspohjaisen lähestymistavan tekoälyn ymmärtämiseen ja opettamiseen.",
+    "location": "Ei paikkakuntatietoa",
+    "keywords": ["tekoäly kaikkialla", "lähestymistapa", "tutkimuspohjainen", "koulut"],
+    "link": "https://www.canva.com/d/sMkIbG8Bla2iwe1",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/wXLMDBcdbcZu_jS",
+    "title": "Tekoälytyökalut – Webinaari 2024",
+    "summary": "Webinaari tekoälytyökalujen käytännön esittelystä opetuskontekstissa. Esittelee konkreettisia tekoälytyökaluja, joita opettajat voivat hyödyntää työssään välittömästi.",
+    "location": "Webinaari (verkossa)",
+    "keywords": ["tekoälytyökalut", "webinaari", "käytännön esittely", "opettajat"],
+    "link": "https://www.canva.com/d/cmlFpB5HszXczTV",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/DNDUh17J1UFG8Y0",
+    "title": "Tekoäly arjessa – EDUTEN/Opinvirta",
+    "summary": "EDUTEN/Opinvirta-tilaisuuden esitys tekoälyn arkipäiväistymisestä ja sen integroitumisesta sosiaalisen median palveluihin. Käsittelee tekoälyn läsnäoloa jokapäiväisessä elämässä ja sen vaikutuksia opetukseen.",
+    "location": "Ei paikkakuntatietoa",
+    "keywords": ["EDUTEN", "Opinvirta", "tekoäly arjessa", "sosiaalinen media"],
+    "link": "https://www.canva.com/d/AaRWnwipAMVZJdm",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/WLZMgm520BkxcdB",
+    "title": "VESO 2024 – Tekoäly opetuksessa",
+    "summary": "Simon kunnan VESO-koulutuspäivän esitys tekoälyn perusteista ja opetuskäytöstä. Käytännönläheinen koulutus opettajille tekoälyn ymmärtämiseen ja hyödyntämiseen kouluarjessa.",
+    "location": "Simo",
+    "keywords": ["VESO", "Simo", "tekoälyn perusteet", "opetuskäyttö"],
+    "link": "https://www.canva.com/d/fnAUnBpF_P4ZtME",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/i11tcTT_OJUKL_n",
+    "title": "VESO elokuu 2024 – Tekoäly koulussa",
+    "summary": "Simon kunnan elokuun VESO-koulutuksen esitys tekoälyn käytöstä kouluympäristössä. Tiivis katsaus tekoälyn mahdollisuuksiin lukuvuoden alkaessa.",
+    "location": "Simo",
+    "keywords": ["VESO", "Simo", "elokuu", "lukuvuoden alku"],
+    "link": "https://www.canva.com/d/qpdY7c05mW9ZASD",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/yaUQIZxuAQjdTHZ",
+    "title": "VESO 2024 – Tekoäly oppimassa ja opettamassa",
+    "summary": "Kainuun alueen VESO-koulutuspäivän esitys tekoälyn roolista oppimisessa ja opettamisessa. Käsittelee tekoälyn kaikkiallisuutta ja sen integroitumista sosiaalisen median palveluihin.",
+    "location": "Kainuu",
+    "keywords": ["VESO", "Kainuu", "tekoäly oppimisessa", "opetuskäyttö"],
+    "link": "https://www.canva.com/d/Q8qT7ofNNdJ7oQB",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/1qkiH1nAiJfkyGG",
+    "title": "FCLAB ja norssit – Generation AI",
+    "summary": "Fab Lab Oulun ja harjoittelukoulujen yhteistyöesitys Generation AI -hankkeen työkalujen käytöstä. Käytännönläheinen koulutus tekoälylukutaidon opettamiseen normaalikoulukontekstissa.",
+    "location": "Oulu",
+    "keywords": ["Fab Lab", "normaalikoulu", "Generation AI", "käytännön koulutus"],
+    "link": "https://www.canva.com/d/SLsETfEwX-042Jb",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/HjwGV5lHmEZC1Jl",
+    "title": "Tekoäly opettajan työkaluna – Inspiraatiosessio",
+    "summary": "Inspiraatioesitys tekoälyn käyttömahdollisuuksista opettajan arjessa. Nostaa esiin, miten monet opettajien jo käyttämät työkalut hyödyntävät tekoälyä taustalla.",
+    "location": "Ei paikkakuntatietoa",
+    "keywords": ["inspiraatio", "opettajan työkalut", "tekoäly arjessa", "tietoisuus"],
+    "link": "https://www.canva.com/d/fXyXDyp46aaqEQM",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/zi5Z9QRqe2FZbhH",
+    "title": "Kuntaliitto digiverkosto – Tekoäly koulutuksessa",
+    "summary": "Kuntaliiton digiverkoston tilaisuuden esitys tekoälyn ajankohtaisista teemoista kuntien koulutuskontekstissa. Käsittelee kuntien roolia tekoälyn jalkauttamisessa kouluihin.",
+    "location": "Ei paikkakuntatietoa",
+    "keywords": ["Kuntaliitto", "digiverkosto", "kunnat", "koulutuspolitiikka"],
+    "link": "https://www.canva.com/d/Ydm_zuT2hy52jat",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/mVTUvJJCJa9vyL_",
+    "title": "Oppiva verkosto – Analytiikkaesitys",
+    "summary": "Oppiva verkosto -hankkeen analytiikkaesitys data-analytiikan ja tekoälyn hyödyntämisestä koulutuksen kehittämisessä. Käsittelee oppimisanalytiikan mahdollisuuksia verkostomaisessa kehittämistyössä.",
+    "location": "Ei paikkakuntatietoa",
+    "keywords": ["Oppiva verkosto", "analytiikka", "data", "kehittäminen"],
+    "link": "https://www.canva.com/d/HummOtHBF1XJgt6",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/e05XqrUgl5q20Fs",
+    "title": "OAJ SAUNA – Tekoäly ja opettajuus",
+    "summary": "OAJ:n SAUNA-tilaisuuden esitys tekoälyn vaikutuksista opettajuuteen ja koulutukseen. Ammattijärjestökontekstissa käsiteltävä puheenvuoro opettajan ammatin tulevaisuudesta tekoälyaikana.",
+    "location": "Ei paikkakuntatietoa",
+    "keywords": ["OAJ", "ammattijärjestö", "opettajuus", "tulevaisuus"],
+    "link": "https://www.canva.com/d/qBrYnp25Ihen-or",
+    "folder": "Täydennyskoulutus"
+  },
+  {
+    "thumbnail": "https://design.canva.ai/hS-MHo3TC05gCbt",
+    "title": "OPH-webinaari – Tekoäly opetuksessa 2023",
+    "summary": "Opetushallituksen webinaariesitys tekoälyn opetuskäytöstä. Varhainen katsaus generatiivisen tekoälyn vaikutuksiin suomalaisessa koulutuskentässä.",
+    "location": "Webinaari (verkossa)",
+    "keywords": ["OPH", "Opetushallitus", "webinaari", "generatiivinen tekoäly"],
+    "link": "https://www.canva.com/d/UABjX-QDJZZZmoJ",
+    "folder": "Täydennyskoulutus"
+  }
+]
