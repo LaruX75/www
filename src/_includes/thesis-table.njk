@@ -36,8 +36,8 @@
         <td>
           {% if thesis.link %}
             <a href="{{ thesis.link }}" target="_blank" class="text-decoration-none fw-medium text-body" rel="noopener noreferrer">{{ thesis.title }}</a>
-            <a href="{{ thesis.link }}" target="_blank" class="ms-2 text-decoration-none align-middle" rel="noopener noreferrer" aria-label="Avaa opinnaytetyo: {{ thesis.title }}">
-              <i class="bi bi-box-arrow-up-right"></i>
+            <a href="{{ thesis.link }}" target="_blank" class="ms-2 text-decoration-none align-middle" rel="noopener noreferrer" aria-label="Avaa opinnäytetyö: {{ thesis.title }}">
+              <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
             </a>
             <button
               type="button"
@@ -47,9 +47,9 @@
               data-year="{{ thesis.year }}"
               data-type="{{ thesis.type or '' }}"
               data-url="{{ thesis.link | escape }}"
-              title="Vie lähdeviite"
+              aria-label="Vie lähdeviite: {{ thesis.title | escape }}"
             >
-              <i class="bi bi-quote me-1"></i>Vie viite
+              <i class="bi bi-quote me-1" aria-hidden="true"></i>Vie viite
             </button>
           {% else %}
             <span class="fw-medium">{{ thesis.title }}</span>

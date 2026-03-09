@@ -72,11 +72,13 @@ translationKey: theses_index
   {% if keywordCategories %}
   <script type="application/json" id="thesis-keyword-categories">{{ keywordCategories | dump | safe }}</script>
   {% endif %}
+  {# Ruudunlukijan ilmoitusalue suodatustuloksille #}
+  <div id="thesis-filter-status" role="status" aria-live="polite" aria-atomic="true" class="visually-hidden"></div>
   <div class="card shadow-sm mb-5" id="thesis-subject-cloud">
     <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
-      <span class="small fw-semibold"><i class="bi bi-tags-fill me-2 text-primary"></i>Avainsanat kategorioittain</span>
+      <span class="small fw-semibold"><i class="bi bi-tags-fill me-2 text-primary" aria-hidden="true"></i>Avainsanat kategorioittain</span>
       <button type="button" class="btn btn-link btn-sm p-0 text-muted" id="thesis-cloud-clear" style="display:none!important">
-        <i class="bi bi-x-circle me-1"></i>Poista suodatus
+        <i class="bi bi-x-circle me-1" aria-hidden="true"></i>Poista suodatus
       </button>
     </div>
     <div class="card-body p-0" id="thesis-cloud-container">
@@ -463,6 +465,15 @@ document.addEventListener('DOMContentLoaded', () => {
         return matchesSearch && matchesYear && matchesType;
       });
       renderPage(1);
+
+      // Ilmoita suodatustulos ruudunlukijalle
+      const statusEl = document.getElementById('thesis-filter-status');
+      if (statusEl) {
+        const n = filteredRows.length;
+        statusEl.textContent = n === 0
+          ? 'Ei tuloksia.'
+          : `${n} opinnäytetyötä löydetty.`;
+      }
     }
 
     function renderPage(page) {
@@ -770,6 +781,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.className = 'badge text-bg-light border thesis-keyword-link';
     btn.dataset.keyword = kw;
     btn.textContent = kw;
+    btn.setAttribute('aria-pressed', 'false');
     btn.style.setProperty('--thesis-keyword-size', `${(0.78 + (scale * 0.52)).toFixed(2)}rem`);
     btn.style.setProperty('--thesis-keyword-weight', String(Math.round(450 + (scale * 250))));
     if (count > 0) btn.title = `${kw} (${count} opinnäytetyötä)`;
@@ -786,6 +798,7 @@ document.addEventListener('DOMContentLoaded', () => {
       cloudContainer.querySelectorAll('.thesis-keyword-link').forEach(b => {
         b.classList.remove('text-bg-primary', 'active');
         b.classList.add('text-bg-light');
+        b.setAttribute('aria-pressed', 'false');
       });
       clearBtn.style.setProperty('display', 'none', 'important');
     });
@@ -804,6 +817,7 @@ document.addEventListener('DOMContentLoaded', () => {
       cloudContainer.querySelectorAll('.thesis-keyword-link').forEach(b => {
         b.classList.remove('text-bg-primary', 'active');
         b.classList.add('text-bg-light');
+        b.setAttribute('aria-pressed', 'false');
       });
       // Etsi badge kaikista accordion-osioista (case-insensitive)
       const cloudBtn = cloudContainer.querySelector(`.thesis-keyword-link[data-keyword="${CSS.escape(kw)}"]`)
@@ -811,6 +825,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (cloudBtn) {
         cloudBtn.classList.remove('text-bg-light');
         cloudBtn.classList.add('text-bg-primary', 'active');
+        cloudBtn.setAttribute('aria-pressed', 'true');
         // Avaa kyseinen accordion-osio jos suljettu
         const collapse = cloudBtn.closest('.accordion-collapse');
         if (collapse && !collapse.classList.contains('show')) {

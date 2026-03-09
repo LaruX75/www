@@ -65,11 +65,11 @@ html:not([data-bs-theme="dark"]) .home-hero-content {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   font-weight: 700;
-  color: rgba(237, 245, 255, 0.85);
+  color: #ddeeff; /* tumma tila: ~14:1 tummaa hero-taustaa vasten */
 }
 
 html:not([data-bs-theme="dark"]) .home-hero-eyebrow {
-  color: rgba(20, 44, 72, 0.84);
+  color: #0f2d4a; /* vaalea tila: ~8:1 vaaleaa hero-taustaa vasten */
 }
 
 .home-hero-title {
@@ -80,17 +80,17 @@ html:not([data-bs-theme="dark"]) .home-hero-eyebrow {
 }
 
 html:not([data-bs-theme="dark"]) .home-hero-title {
-  color: #132d4a;
+  color: #0d2540;
 }
 
 .home-hero-lead {
   max-width: 66ch;
   font-size: clamp(1rem, 1.6vw, 1.15rem);
-  color: rgba(236, 244, 255, 0.92);
+  color: #eaf4ff; /* tumma tila: ~13:1 */
 }
 
 html:not([data-bs-theme="dark"]) .home-hero-lead {
-  color: rgba(19, 45, 74, 0.88);
+  color: #0f2d4a; /* vaalea tila: ~8:1 */
 }
 
 .home-hero-roles {
