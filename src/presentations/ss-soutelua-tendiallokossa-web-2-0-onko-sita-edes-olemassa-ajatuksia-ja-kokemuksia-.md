@@ -1,4 +1,5 @@
 ---
+date: 2008-11-19
 title: 'Soutelua tendiallokossa - Web 2.0, onko sitä edes olemassa? Ajatuksia ja kokemuksia sosiaalisen webin hyödyntämisestä opetuksessa.'
 description: 'SlideShare-esitys'
 url: 'https://www.slideshare.net/slideshow/soutelua-tendiallokossa-web-20-onko-sit-edes-olemassa-ajatuksia-ja-kokemuksia-sosiaalisen-webin-hydyntmisest-opetuksessa/202129'

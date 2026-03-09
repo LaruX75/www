@@ -284,7 +284,9 @@ translationKey: presentations_index
 
   function extractSlideshareDateFromThumbnail(thumbnailUrl) {
     if (!thumbnailUrl) return null;
-    const match = String(thumbnailUrl).match(/-(\d{6})\d{6}-thumbnail/i);
+    // Kaikki SlideShare-formaatit: -YYMMDDHHMMSS- (12 numeroa väliviivojen välissä)
+    // Uusi: -190322085500-thumbnail, Vanha: -120125013821-phpapp01-, -conversion-gate01- jne.
+    const match = String(thumbnailUrl).match(/-(\d{6})\d{6}-/);
     if (!match) return null;
     const yymmdd = match[1];
     const yy = Number.parseInt(yymmdd.slice(0, 2), 10);
@@ -297,11 +299,9 @@ translationKey: presentations_index
   }
 
   function normalizeSlideshareIsoDate(value, thumbnailUrl) {
-    const MAX_SLIDESHARE_DATE = "2020-12-31";
-    let iso = toIsoDate(value) || extractSlideshareDateFromThumbnail(thumbnailUrl);
-    if (!iso) return "";
-    if (iso > MAX_SLIDESHARE_DATE) iso = MAX_SLIDESHARE_DATE;
-    return iso;
+    // Thumbnail-URL on luotettavin lähde (sisältää latauspäivän tiedostonimessä).
+    // Front matter -päivämäärä toimii fallbackina tiedostoille joilla thumbnail puuttuu.
+    return extractSlideshareDateFromThumbnail(thumbnailUrl) || toIsoDate(value) || "";
   }
 
   function normalizeRows(key, rows) {
