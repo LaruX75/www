@@ -22,7 +22,7 @@ translationKey: writings_index
             Blogi <span class="nav-count">{{ collections.blog.length }}</span>
           </a>
           <a class="nav-link" href="#esitykset">
-            Materiaalit <span class="nav-count">{{ (canva | length) + collections.presentations.length + (finnaAoe.rows | length) }}</span>
+            Materiaalit <span class="nav-count">{{ (((canva and canva.tableRows) or []) | length) + ((slideshare or []) | length) + (((finnaAoe and finnaAoe.rows) or []) | length) }}</span>
           </a>
           <a class="nav-link" href="#julkaisut">
             Julkaisut <span class="nav-count">{{ researchfi.length }}</span>
@@ -561,7 +561,7 @@ translationKey: writings_index
     <div class="card shadow-sm">
       <div class="card-header bg-transparent d-flex align-items-center justify-content-between border-start border-4 border-info">
         <h2 class="h4 mb-0"><i class="bi bi-book-fill me-2 text-info"></i>Esityksiä ja opetusmateriaaleja</h2>
-        <span class="badge text-bg-info text-dark">{{ (canva | length) + collections.presentations.length + (finnaAoe.rows | length) }}</span>
+        <span class="badge text-bg-info text-dark">{{ (((canva and canva.tableRows) or []) | length) + ((slideshare or []) | length) + (((finnaAoe and finnaAoe.rows) or []) | length) }}</span>
       </div>
       <div class="card-body p-0">
         <div class="p-3 bg-body-tertiary border-bottom">

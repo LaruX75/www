@@ -5,7 +5,10 @@ lang: fi
 translationKey: home
 ---
 
-{% set heroPresentationCount = (collections.presentations or []) | length + (slideshare or []) | length + (finnaAoe.rows or []) | length %}
+{% set canvaCount = ((canva and canva.tableRows) or []) | length %}
+{% set slideshareCount = (slideshare or []) | length %}
+{% set aoeCount = ((finnaAoe and finnaAoe.rows) or []) | length %}
+{% set heroPresentationCount = canvaCount + slideshareCount + aoeCount %}
 {% set heroPublicationCount = (researchfi or []) | length %}
 {% set heroOpinionCount = (collections.pub_mielipide or []) | length %}
 {% set heroSpeechCount = (collections.pub_puhe or []) | length %}

@@ -543,7 +543,7 @@ translationKey: portfolio_index
           <div class="card-body p-4">
             <span class="badge bg-info text-dark mb-2">Esitykset &amp; AOE</span>
             <h3 class="h6 fw-bold mb-2">Esitykset ja avoimet oppimateriaalit</h3>
-            <p class="small text-body-secondary mb-0">{{ collections.presentations | length + (finnaAoe.rows | length) }} materiaalia — konferenssi- ja koulutusesityksiä sekä avoimia oppimateriaaleja (AOE).</p>
+            <p class="small text-body-secondary mb-0">{{ (((canva and canva.tableRows) or []) | length) + ((slideshare or []) | length) + (((finnaAoe and finnaAoe.rows) or []) | length) }} materiaalia — konferenssi- ja koulutusesityksiä sekä avoimia oppimateriaaleja (AOE).</p>
           </div>
         </a>
       </div>
