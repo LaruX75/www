@@ -710,34 +710,10 @@ html:not([data-bs-theme="dark"]) .research-stat-card {
   color: #ffffff !important;
 }
 
-/* Lue lisää -painikkeen tyylit — yhtenäinen kaikille etusivun painikkeille */
-.btn-read-more {
-  background-color: transparent;
-  color: #000000 !important;
-  font-weight: 500;
-  border: 1px solid #000000;
-  transition: all 0.2s;
-}
-
-.btn-read-more:hover {
-  background-color: #000000;
-  color: #ffffff !important;
-}
-
+/* .btn-read-more saa tyylit globaalista .btn-säännöstä (ks. GLOBAL BUTTON OVERRIDES) */
 .btn-read-more:disabled {
   opacity: 0.45;
   pointer-events: none;
-}
-
-[data-bs-theme="dark"] .btn-read-more {
-  background-color: transparent;
-  color: #ffffff !important;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-[data-bs-theme="dark"] .btn-read-more:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.5);
 }
 
 /* ============================================ */
@@ -1226,8 +1202,8 @@ html:not([data-bs-theme="dark"]) select {
 /* GLOBAL BUTTON OVERRIDES — unified site-wide  */
 /* ============================================ */
 
-/* Light mode: black outline buttons everywhere */
-.btn-primary {
+/* Light mode: black outline style for ALL buttons (except close/link) */
+.btn:not(.btn-close):not(.btn-link) {
   background-color: transparent !important;
   color: #000000 !important;
   border: 1px solid #000000 !important;
@@ -1235,45 +1211,20 @@ html:not([data-bs-theme="dark"]) select {
   transition: all 0.2s;
 }
 
-.btn-primary:hover {
+.btn:not(.btn-close):not(.btn-link):hover {
   background-color: #000000 !important;
   color: #ffffff !important;
   border-color: #000000 !important;
 }
 
-.btn-outline-primary {
-  background-color: transparent !important;
-  color: #000000 !important;
-  border-color: #000000 !important;
-  font-weight: 500;
-  transition: all 0.2s;
-}
-
-.btn-outline-primary:hover {
-  background-color: #000000 !important;
-  color: #ffffff !important;
-  border-color: #000000 !important;
-}
-
-/* Dark mode: white translucent outline buttons */
-[data-bs-theme="dark"] .btn-primary {
+/* Dark mode: white translucent outline for ALL buttons (except close/link) */
+[data-bs-theme="dark"] .btn:not(.btn-close):not(.btn-link) {
   background-color: transparent !important;
   color: #ffffff !important;
   border: 1px solid rgba(255, 255, 255, 0.4) !important;
 }
 
-[data-bs-theme="dark"] .btn-primary:hover {
-  background-color: rgba(255, 255, 255, 0.1) !important;
-  color: #ffffff !important;
-  border-color: rgba(255, 255, 255, 0.6) !important;
-}
-
-[data-bs-theme="dark"] .btn-outline-primary {
-  color: #ffffff !important;
-  border-color: rgba(255, 255, 255, 0.4) !important;
-}
-
-[data-bs-theme="dark"] .btn-outline-primary:hover {
+[data-bs-theme="dark"] .btn:not(.btn-close):not(.btn-link):hover {
   background-color: rgba(255, 255, 255, 0.1) !important;
   color: #ffffff !important;
   border-color: rgba(255, 255, 255, 0.6) !important;
@@ -1767,7 +1718,6 @@ section[id] {
 [data-bs-theme="dark"] .pub-table td {
   border-color: rgba(255,255,255,0.07) !important;
 }
-
 /* --- Publication filter bar --- */
 .publication-filter-bar {
   background-color: var(--bs-tertiary-bg);
