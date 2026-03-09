@@ -7,14 +7,14 @@ translationKey: politics_index
 lang: fi
 templateEngineOverride: njk
 ---
-<section class="bg-body-tertiary mb-5">
-  <div class="container py-4">
+<section class="pol-hero mb-0">
+  <div class="container py-5">
     <div class="row g-4 align-items-center">
       <div class="col-lg-8">
-        <p class="text-uppercase small text-muted mb-2">Politiikka</p>
-        <h1 class="display-6 fw-bold mb-3">Jari Laru, poliitikko</h1>
-        <p class="text-muted mb-3">Kaupungin ja aluehallinnon päätöksenteko perustuu yhteistyöhön. Yksittäinen valtuutettu ei saa asioita eteenpäin ilman verkostoja, dialogia ja yhteistä suuntaa.</p>
-        <p class="mb-4">Olen ollut mukana yhteiskunnallisessa vaikuttamisessa nuoresta asti. Taustani asukasyhdistystoiminnassa, kunnallispolitiikassa ja koulutuksen kentällä näkyy tavassani tehdä politiikkaa: käytännöllisesti, tietoon nojaten ja pitkäjänteisesti.</p>
+        <p class="pol-eyebrow mb-2"><i class="bi bi-building2 me-1"></i>Politiikka</p>
+        <h1 class="display-5 fw-bold mb-3">Jari Laru, poliitikko</h1>
+        <p class="mb-3" style="color:rgba(255,255,255,0.75);">Kaupungin ja aluehallinnon päätöksenteko perustuu yhteistyöhön. Yksittäinen valtuutettu ei saa asioita eteenpäin ilman verkostoja, dialogia ja yhteistä suuntaa.</p>
+        <p class="mb-4" style="color:rgba(255,255,255,0.85);">Olen ollut mukana yhteiskunnallisessa vaikuttamisessa nuoresta asti. Taustani asukasyhdistystoiminnassa, kunnallispolitiikassa ja koulutuksen kentällä näkyy tavassani tehdä politiikkaa: käytännöllisesti, tietoon nojaten ja pitkäjänteisesti.</p>
         <div class="d-flex flex-wrap gap-2">
           <a href="#valtuustoaloitteet" class="btn btn-primary">Aloitteet</a>
           <a href="#politiikka-sisallot" class="btn btn-outline-primary">Puheet</a>
@@ -23,48 +23,52 @@ templateEngineOverride: njk
         </div>
       </div>
       <div class="col-lg-4">
-        <div class="card border-0 shadow-sm h-100">
-          <img class="card-img-top" src="/img/uploads/2020/01/WhatsApp-Image-2019-12-02-at-18.58.31-1.jpeg" alt="Jari Laru politiikassa">
-          <div class="card-body">
-            <p class="card-text mb-0 text-muted small">Kunta- ja aluepolitiikkaa yhteistyön, sivistyksen ja toimivan arjen puolesta.</p>
-          </div>
+        <div class="pol-hero-card">
+          <img src="/img/uploads/2020/01/WhatsApp-Image-2019-12-02-at-18.58.31-1.jpeg" alt="Jari Laru politiikassa" class="pol-hero-img">
+          <p class="pol-hero-caption">Kunta- ja aluepolitiikkaa yhteistyön, sivistyksen ja toimivan arjen puolesta.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
+<div class="pol-hero-divider"></div>
 
-<section class="mb-5">
+<section class="py-5 mb-0">
   <div class="container">
-    <h2 class="h4 mb-3">Kokemus ja roolit</h2>
+    <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-person-badge me-1"></i>Roolit</p>
+    <h2 class="h4 mb-4">Kokemus ja roolit</h2>
     <div class="row g-4">
       <div class="col-md-6 col-xl-3">
-        <div class="card h-100 shadow-sm border-0">
+        <div class="card h-100 shadow-sm border-0 pol-role-card">
           <div class="card-body">
+            <div class="pol-role-icon"><i class="bi bi-building2-fill"></i></div>
             <h3 class="h6">Kaupunginvaltuutettu</h3>
             <p class="text-muted mb-0">Toimin Oulun kaupunginvaltuustossa ja sivistys- ja kulttuurilautakunnan tehtävissä.</p>
           </div>
         </div>
       </div>
       <div class="col-md-6 col-xl-3">
-        <div class="card h-100 shadow-sm border-0">
+        <div class="card h-100 shadow-sm border-0 pol-role-card">
           <div class="card-body">
+            <div class="pol-role-icon"><i class="bi bi-calendar3-range-fill"></i></div>
             <h3 class="h6">Pitkä kokemus</h3>
             <p class="text-muted mb-0">Olen ollut kunnallisessa päätöksenteossa ja luottamustehtävissä useilla eri vaalikausilla.</p>
           </div>
         </div>
       </div>
       <div class="col-md-6 col-xl-3">
-        <div class="card h-100 shadow-sm border-0">
+        <div class="card h-100 shadow-sm border-0 pol-role-card">
           <div class="card-body">
+            <div class="pol-role-icon"><i class="bi bi-mortarboard-fill"></i></div>
             <h3 class="h6">Tutkijatausta</h3>
             <p class="text-muted mb-0">Tutkijan koulutus auttaa hahmottamaan laajoja kokonaisuuksia ja päätösten vaikutuksia.</p>
           </div>
         </div>
       </div>
       <div class="col-md-6 col-xl-3">
-        <div class="card h-100 shadow-sm border-0">
+        <div class="card h-100 shadow-sm border-0 pol-role-card">
           <div class="card-body">
+            <div class="pol-role-icon"><i class="bi bi-book-half"></i></div>
             <h3 class="h6">Sivistyspainotus</h3>
             <p class="text-muted mb-0">Koulutus, kulttuuri ja liikunta ovat hyvinvoinnin perusta sekä kaupungin elinvoiman ydin.</p>
           </div>
@@ -74,31 +78,50 @@ templateEngineOverride: njk
   </div>
 </section>
 
-<section class="mb-5">
+<section class="py-5 mb-0 bg-body-tertiary">
   <div class="container">
-    <h2 class="h4 mb-3">Vaalikausien yli ulottuvat tavoitteet</h2>
+    <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-flag me-1"></i>Tavoitteet</p>
+    <h2 class="h4 mb-4">Vaalikausien yli ulottuvat tavoitteet</h2>
     <div class="row g-4">
       <div class="col-lg-4">
-        <div class="card h-100 border-0 shadow-sm">
+        <div class="card h-100 border-0 shadow-sm pol-goal-card">
           <div class="card-body">
-            <h3 class="h6">Toimiva arki lähellä</h3>
-            <p class="mb-0 text-muted">Turvalliset koulut, toimiva kunnallistekniikka ja sujuvat peruspalvelut jokaisella alueella.</p>
+            <div class="d-flex align-items-start gap-3">
+              <span class="pol-goal-num">01</span>
+              <div>
+                <i class="bi bi-house-heart-fill pol-goal-icon mb-2 d-block"></i>
+                <h3 class="h6">Toimiva arki lähellä</h3>
+                <p class="mb-0 text-muted">Turvalliset koulut, toimiva kunnallistekniikka ja sujuvat peruspalvelut jokaisella alueella.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div class="col-lg-4">
-        <div class="card h-100 border-0 shadow-sm">
+        <div class="card h-100 border-0 shadow-sm pol-goal-card">
           <div class="card-body">
-            <h3 class="h6">Avoin hallinto</h3>
-            <p class="mb-0 text-muted">Päätöksenteon tulee olla läpinäkyvää, ymmärrettävää ja kaupunkilaisille helposti saavutettavaa.</p>
+            <div class="d-flex align-items-start gap-3">
+              <span class="pol-goal-num">02</span>
+              <div>
+                <i class="bi bi-eye-fill pol-goal-icon mb-2 d-block"></i>
+                <h3 class="h6">Avoin hallinto</h3>
+                <p class="mb-0 text-muted">Päätöksenteon tulee olla läpinäkyvää, ymmärrettävää ja kaupunkilaisille helposti saavutettavaa.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div class="col-lg-4">
-        <div class="card h-100 border-0 shadow-sm">
+        <div class="card h-100 border-0 shadow-sm pol-goal-card">
           <div class="card-body">
-            <h3 class="h6">Tasapainoinen kaupunkirakenne</h3>
-            <p class="mb-0 text-muted">Kaupunkia kehitetään pitkäjänteisesti eri alueiden vahvuudet huomioiden, ei vain keskustaa painottaen.</p>
+            <div class="d-flex align-items-start gap-3">
+              <span class="pol-goal-num">03</span>
+              <div>
+                <i class="bi bi-map-fill pol-goal-icon mb-2 d-block"></i>
+                <h3 class="h6">Tasapainoinen kaupunkirakenne</h3>
+                <p class="mb-0 text-muted">Kaupunkia kehitetään pitkäjänteisesti eri alueiden vahvuudet huomioiden, ei vain keskustaa painottaen.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -107,10 +130,11 @@ templateEngineOverride: njk
 </section>
 
 
-<section class="mb-5" id="poliittiset-teemat">
+<section class="py-5 mb-0" id="poliittiset-teemat">
   <div class="container">
-    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+    <div class="d-flex align-items-end justify-content-between flex-wrap gap-2 mb-4">
       <div>
+        <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-grid-3x3-gap me-1"></i>Teemat</p>
         <h2 class="h4 mb-1">Teemoitetut sisällöt</h2>
         <p class="text-muted small mb-0">Politiikka-aiheiset blogit, puheenvuorot ja mielipidekirjoitukset ryhmiteltyinä aihepiireittäin.</p>
       </div>
@@ -120,10 +144,11 @@ templateEngineOverride: njk
   </div>
 </section>
 
-<section class="mb-5" id="valtuustoaloitteet">
+<section class="py-5 mb-0 bg-body-tertiary" id="valtuustoaloitteet">
   <div class="container">
-    <div class="d-flex align-items-center justify-content-between mb-3">
+    <div class="d-flex align-items-end justify-content-between mb-4">
       <div>
+        <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-file-earmark-text me-1"></i>Aloitteet</p>
         <h2 class="h4 mb-1">Valtuustoaloitteet</h2>
         <p class="text-muted small mb-0">{{ collections.politics.length }} aloitetta — avoimuudesta, liikenteestä, urheilusta ja kaupunkikehityksestä</p>
       </div>
@@ -161,10 +186,11 @@ templateEngineOverride: njk
   </div>
 </section>
 
-<section class="mb-5 bg-body-tertiary py-4" id="kokousvideot">
+<section class="py-5 mb-0" id="kokousvideot">
   <div class="container">
-    <div class="d-flex align-items-center justify-content-between mb-3">
+    <div class="d-flex align-items-end justify-content-between mb-4">
       <div>
+        <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-camera-video me-1"></i>Videot</p>
         <h2 class="h4 mb-1">Valtuuston kokoukset</h2>
         <p class="text-muted small mb-0">Oulun kaupunginvaltuuston kokoukset suorana ja tallenteina — lähde: Oulun kaupungin avoin data</p>
       </div>
@@ -197,8 +223,9 @@ templateEngineOverride: njk
   </div>
 </section>
 
-<section class="mb-5" id="politiikka-blogi">
+<section class="py-5 mb-0 bg-body-tertiary" id="politiikka-blogi">
   <div class="container">
+    <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-pencil-square me-1"></i>Blogi</p>
     <h2 class="h4 mb-3">Politiikka-aiheiset blogikirjoitukset</h2>
     <div class="card border-0 shadow-sm">
       <div class="card-body">
@@ -235,8 +262,9 @@ templateEngineOverride: njk
   </div>
 </section>
 
-<section class="mb-5" id="politiikka-sisallot">
+<section class="py-5 mb-0" id="politiikka-sisallot">
   <div class="container">
+    <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-collection me-1"></i>Sisällöt</p>
     <h2 class="h4 mb-3">Aloitteet, kolumnit, mielipiteet ja puheenvuorot</h2>
     <div class="card border-0 shadow-sm">
       <div class="card-body">
@@ -339,33 +367,130 @@ templateEngineOverride: njk
 </script>
 
 <style>
+  /* ===== HERO ===== */
+  .pol-hero {
+    background: #1c2e4a;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .pol-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      -55deg,
+      transparent,
+      transparent 48px,
+      rgba(255,255,255,0.018) 48px,
+      rgba(255,255,255,0.018) 96px
+    );
+    pointer-events: none;
+  }
+  .pol-hero-divider {
+    height: 4px;
+    background: linear-gradient(90deg, #0d6efd 0%, #4dabf7 50%, #0d6efd 100%);
+  }
+  .pol-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: rgba(255,255,255,0.5);
+  }
+  .pol-eyebrow--dark {
+    color: var(--bs-secondary-color);
+  }
+  .pol-hero-card {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(4px);
+  }
+  .pol-hero-img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    aspect-ratio: 4/3;
+  }
+  .pol-hero-caption {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.55);
+    padding: 0.6rem 0.8rem;
+    margin: 0;
+  }
+  [data-bs-theme="dark"] .pol-hero { background: #0e1c2f; }
+
+  /* ===== ROLE CARDS ===== */
+  .pol-role-card {
+    border-top: 3px solid var(--bs-primary) !important;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .pol-role-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 .5rem 1.2rem rgba(0,0,0,.13) !important;
+  }
+  .pol-role-icon {
+    font-size: 1.6rem;
+    color: var(--bs-primary);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  /* ===== GOAL CARDS ===== */
+  .pol-goal-card {
+    border-left: 4px solid var(--bs-primary) !important;
+    transition: transform 0.15s ease;
+  }
+  .pol-goal-card:hover { transform: translateY(-2px); }
+  .pol-goal-num {
+    font-size: 2.8rem;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--bs-primary);
+    opacity: 0.15;
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+    margin-top: 0.15rem;
+  }
+  .pol-goal-icon {
+    font-size: 1.2rem;
+    color: var(--bs-primary);
+  }
+
+  /* ===== TABLES ===== */
   .politics-table th {
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 0.02em;
     border-bottom-width: 1px;
   }
-
-  .politics-table td {
-    vertical-align: middle;
-  }
-
+  .politics-table td { vertical-align: middle; }
   .politics-table .col-date {
     white-space: nowrap;
     color: var(--bs-secondary-color);
   }
 
+  /* ===== THEME CARDS (JS-rendered) ===== */
   .politics-theme-card {
     border: 0;
+    border-left: 4px solid var(--pol-theme-color, var(--bs-primary)) !important;
     box-shadow: var(--bs-box-shadow-sm);
     height: 100%;
+    transition: transform 0.15s ease;
   }
-
+  .politics-theme-card:hover { transform: translateY(-2px); }
   .politics-theme-card .theme-links a {
     display: inline-flex;
     align-items: center;
     gap: .35rem;
     text-decoration: none;
+  }
+  .pol-theme-icon {
+    font-size: 1.2rem;
+    margin-bottom: 0.4rem;
+    display: block;
   }
 </style>
 
@@ -489,6 +614,15 @@ templateEngineOverride: njk
       bucket.items.push(item);
     });
 
+    const themeVisuals = {
+      koulutus:       { color: '#0d6efd', icon: 'bi-mortarboard-fill' },
+      kaupunkikehitys:{ color: '#198754', icon: 'bi-buildings-fill' },
+      demokratia:     { color: '#dc3545', icon: 'bi-megaphone-fill' },
+      hyvinvointi:    { color: '#fd7e14', icon: 'bi-heart-pulse-fill' },
+      talous:         { color: '#6f42c1', icon: 'bi-graph-up-arrow' },
+      muu:            { color: '#6c757d', icon: 'bi-three-dots' }
+    };
+
     function renderThemeCards() {
       if (!themeGrid) return;
       const groups = Object.values(themeGroups)
@@ -504,6 +638,7 @@ templateEngineOverride: njk
       }
 
       themeGrid.innerHTML = groups.map((group) => {
+        const visual = themeVisuals[group.key] || themeVisuals.muu;
         const quickLinks = group.items.slice(0, 3).map((item) => `
           <a href="${escHtml(item.url)}" class="small">
             <span class="badge text-bg-light border">${escHtml(item.contentType)}</span>
@@ -512,8 +647,9 @@ templateEngineOverride: njk
         `).join('');
         return `
           <div class="col-md-6 col-xl-4">
-            <article class="card politics-theme-card">
+            <article class="card politics-theme-card" style="--pol-theme-color:${visual.color}">
               <div class="card-body d-flex flex-column">
+                <i class="bi ${visual.icon} pol-theme-icon" style="color:${visual.color}"></i>
                 <h3 class="h6 mb-2">${escHtml(group.title)}</h3>
                 <p class="text-muted small mb-3">${escHtml(group.description)}</p>
                 <div class="d-flex flex-wrap gap-2 mb-3">
