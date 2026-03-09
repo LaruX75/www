@@ -177,6 +177,42 @@ lang: en
   </div>
 </div>
 
+<div class="modal fade" id="thesisCitationModal" tabindex="-1" aria-labelledby="thesisCitationModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title fs-5" id="thesisCitationModalLabel">Export citation</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-3">
+          <div class="col-md-5">
+            <label for="thesisCitationFormatSelect" class="form-label small text-muted">Citation format</label>
+            <select id="thesisCitationFormatSelect" class="form-select form-select-sm">
+              <option value="bibtex">BibTeX (.bib)</option>
+              <option value="apa">APA</option>
+              <option value="mla">MLA</option>
+              <option value="chicago">Chicago</option>
+            </select>
+          </div>
+          <div class="col-md-7 d-flex align-items-end justify-content-md-end gap-2">
+            <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill" id="thesisCitationCopyBtn">
+              <i class="bi bi-clipboard me-1"></i>Copy
+            </button>
+            <button type="button" class="btn btn-primary btn-sm rounded-pill" id="thesisCitationDownloadBtn">
+              <i class="bi bi-download me-1"></i>Download
+            </button>
+          </div>
+        </div>
+        <div class="mt-3">
+          <label for="thesisCitationOutput" class="form-label small text-muted mb-1">Preview</label>
+          <textarea id="thesisCitationOutput" class="form-control form-control-sm font-monospace" rows="12" readonly></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const ITEMS_PER_PAGE = 5;
@@ -210,7 +246,17 @@ document.addEventListener('DOMContentLoaded', () => {
     return { key, bib };
   }
 
-  function downloadBibFile(fileName, content) {
+  function sanitizeFilenamePart(value) {
+    return String(value || '')
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '')
+      .slice(0, 60) || 'citation';
+  }
+
+  function downloadTextFile(fileName, content) {
     const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
@@ -228,6 +274,55 @@ document.addEventListener('DOMContentLoaded', () => {
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;')
       .replace(/'/g, '&#39;');
+  }
+
+  function getThesisLevelLabel(payload) {
+    if (payload.type === 'masterThesis') return "Master's thesis";
+    if (payload.type === 'bachelorThesis') return "Bachelor's thesis";
+    return 'Thesis';
+  }
+
+  function buildThesisApa(payload) {
+    const title = (payload.title || '').trim();
+    const authors = (payload.authors || '').trim();
+    const year = String(payload.year || '').trim() || 'n.d.';
+    const url = (payload.url || '').trim();
+    const level = getThesisLevelLabel(payload);
+    let citation = `${authors} (${year}). ${title} [${level}, University of Oulu].`;
+    if (url) citation += ` ${url}`;
+    return citation.trim();
+  }
+
+  function buildThesisMla(payload) {
+    const title = (payload.title || '').trim();
+    const authors = (payload.authors || '').trim();
+    const year = String(payload.year || '').trim();
+    const url = (payload.url || '').trim();
+    const level = getThesisLevelLabel(payload);
+    let citation = `${authors}. "${title}." ${level}, University of Oulu`;
+    if (year) citation += `, ${year}`;
+    citation += '.';
+    if (url) citation += ` ${url}`;
+    return citation.trim();
+  }
+
+  function buildThesisChicago(payload) {
+    const title = (payload.title || '').trim();
+    const authors = (payload.authors || '').trim();
+    const year = String(payload.year || '').trim() || 'n.d.';
+    const url = (payload.url || '').trim();
+    const level = getThesisLevelLabel(payload);
+    let citation = `${authors}. ${year}. "${title}." ${level}, University of Oulu.`;
+    if (url) citation += ` ${url}`;
+    return citation.trim();
+  }
+
+  function getThesisCitationByFormat(payload, format) {
+    if (format === 'apa') return buildThesisApa(payload);
+    if (format === 'mla') return buildThesisMla(payload);
+    if (format === 'chicago') return buildThesisChicago(payload);
+    const { bib } = buildThesisBibTeX(payload);
+    return bib;
   }
 
   function initTablePagination(tableContainer) {
@@ -330,19 +425,66 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  let currentCitationPayload = null;
+  const thesisCitationModalEl = document.getElementById('thesisCitationModal');
+  const thesisCitationFormatSelect = document.getElementById('thesisCitationFormatSelect');
+  const thesisCitationOutput = document.getElementById('thesisCitationOutput');
+  const thesisCitationDownloadBtn = document.getElementById('thesisCitationDownloadBtn');
+  const thesisCitationCopyBtn = document.getElementById('thesisCitationCopyBtn');
+
+  function renderThesisCitationPreview() {
+    if (!currentCitationPayload || !thesisCitationOutput) return;
+    const format = thesisCitationFormatSelect?.value || 'bibtex';
+    thesisCitationOutput.value = getThesisCitationByFormat(currentCitationPayload, format);
+  }
+
   document.querySelectorAll('.thesis-bib-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
-      const payload = {
+      currentCitationPayload = {
         title: btn.dataset.title || '',
         authors: btn.dataset.authors || '',
         year: btn.dataset.year || '',
         type: btn.dataset.type || '',
         url: btn.dataset.url || ''
       };
-      const { key, bib } = buildThesisBibTeX(payload);
-      downloadBibFile(`${key}.bib`, `${bib}\n`);
+      if (thesisCitationFormatSelect) thesisCitationFormatSelect.value = 'bibtex';
+      renderThesisCitationPreview();
+      if (window.bootstrap && window.bootstrap.Modal && thesisCitationModalEl) {
+        window.bootstrap.Modal.getOrCreateInstance(thesisCitationModalEl).show();
+      }
     });
   });
+
+  if (thesisCitationFormatSelect) {
+    thesisCitationFormatSelect.addEventListener('change', renderThesisCitationPreview);
+  }
+
+  if (thesisCitationDownloadBtn) {
+    thesisCitationDownloadBtn.addEventListener('click', () => {
+      if (!currentCitationPayload) return;
+      const format = thesisCitationFormatSelect?.value || 'bibtex';
+      const citation = getThesisCitationByFormat(currentCitationPayload, format);
+      const base = sanitizeFilenamePart(currentCitationPayload.title || currentCitationPayload.authors || 'citation');
+      const ext = format === 'bibtex' ? 'bib' : 'txt';
+      downloadTextFile(`${base}.${ext}`, citation + '\n');
+    });
+  }
+
+  if (thesisCitationCopyBtn) {
+    thesisCitationCopyBtn.addEventListener('click', async () => {
+      if (!thesisCitationOutput?.value) return;
+      try {
+        await navigator.clipboard.writeText(thesisCitationOutput.value);
+        thesisCitationCopyBtn.innerHTML = '<i class="bi bi-check2 me-1"></i>Copied';
+        setTimeout(() => {
+          thesisCitationCopyBtn.innerHTML = '<i class="bi bi-clipboard me-1"></i>Copy';
+        }, 1200);
+      } catch (_) {
+        thesisCitationOutput.select();
+        document.execCommand('copy');
+      }
+    });
+  }
 
   const abstractModalEl = document.getElementById('thesisAbstractModal');
   const abstractModalTitle = document.getElementById('thesisAbstractModalTitle');

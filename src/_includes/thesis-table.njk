@@ -43,7 +43,7 @@
               data-year="{{ thesis.year }}"
               data-type="{{ thesis.type or '' }}"
               data-url="{{ thesis.link | escape }}"
-              title="Vie viite BibTeX-muodossa"
+              title="Vie lähdeviite"
             >
               <i class="bi bi-quote me-1"></i>Vie viite
             </button>
@@ -60,6 +60,9 @@
               data-thesis-title="{{ thesis.title | escape }}"
               data-thesis-abstract="{{ thesis.abstract | escape }}"
               data-thesis-url="{{ thesis.link | escape }}"
+              data-thesis-authors="{{ (thesis.authors | join('; ')) | escape }}"
+              data-thesis-year="{{ thesis.year }}"
+              data-thesis-type="{{ thesis.type or '' }}"
             >
               Avaa tiivistelmä
             </button>
