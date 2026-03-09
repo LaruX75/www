@@ -5,6 +5,13 @@ const CACHE_TTL_HOURS = 6;
 
 const CACHE_KEY = "slideshare-presentations-v1";
 const PROFILE_URL = "https://www.slideshare.net/larux";
+const MAX_SLIDESHARE_DATE = "2020-12-31";
+
+function clampSlideshareDate(isoDate) {
+  if (!isoDate) return null;
+  return isoDate > MAX_SLIDESHARE_DATE ? MAX_SLIDESHARE_DATE : isoDate;
+}
+
 function extractDateFromThumbnail(thumbnailUrl) {
   if (!thumbnailUrl) return null;
   // Kaikki SlideShare-formaatit: -YYMMDDHHMMSS- (12 numeroa väliviivojen välissä)
@@ -25,9 +32,10 @@ function extractDateFromThumbnail(thumbnailUrl) {
 function normalizeSlideshareDate(inputDate, thumbnailUrl) {
   // Thumbnail-URL on luotettavin lähde; fallback front matter -päivämäärään.
   const extracted = extractDateFromThumbnail(thumbnailUrl);
-  if (extracted) return extracted;
+  if (extracted) return clampSlideshareDate(extracted);
   const fromInput = typeof inputDate === "string" ? inputDate.trim().slice(0, 10) : "";
-  return /^\d{4}-\d{2}-\d{2}$/.test(fromInput) ? fromInput : null;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(fromInput)) return null;
+  return clampSlideshareDate(fromInput);
 }
 
 function isPresentationRow(item) {
