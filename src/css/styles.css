@@ -1732,8 +1732,8 @@ section[id] {
  *
  *  ≥ 1100px  — kaikki sarakkeet näkyvissä (koko näyttö tai iso ikkuna)
  *  768–1099px — piilotetaan Tiivistelmä; sopii ~50 % leveydelle 1440 px+ näytöllä
- *  576–767px  — piilotetaan Tiivistelmä ja Avainsanat (tabletti)
- *  < 576px   — piilotetaan myös Tekijä; Vuosi + Otsikko riittää (puhelin)
+ *  < 768px   — piilotetaan Tiivistelmä, Avainsanat ja Tekijä → 2 saraketta (Vuosi + Otsikko)
+ *  < 576px   — piilotetaan myös Tyyppi; vuosi tiivistetty
  */
 @media (max-width: 1099.98px) {
   .pub-table .col-abstract { display: none !important; }
@@ -1743,13 +1743,30 @@ section[id] {
 
 @media (max-width: 767.98px) {
   .pub-table .col-abstract,
-  .pub-table .col-subjects { display: none !important; }
-  .pub-table .col-author   { width: 120px; }
+  .pub-table .col-subjects,
+  .pub-table .col-author { display: none !important; }
+
+  /* Vuosi kompaktiksi: kapea, pieni teksti, vähemmän padding */
+  .pub-table .col-year { width: 46px; }
+  .pub-table th.col-year,
+  .pub-table td.col-year {
+    padding-left: 6px;
+    padding-right: 6px;
+    font-size: 0.72rem;
+    white-space: nowrap;
+  }
+
+  /* Piilotetaan "Vie viite" -nappi — tilaa otsikkosolun tekstille */
+  .pub-table .thesis-bib-btn { display: none !important; }
 }
 
 @media (max-width: 575.98px) {
-  .pub-table .col-author { display: none !important; }
-  .pub-table .col-year   { width: 50px; font-size: 0.75rem; }
+  /* Tarkastajataulukossa Tyyppi-sarake piilotetaan myös */
+  .pub-table .col-type { display: none !important; }
+
+  .pub-table .col-year { width: 40px; }
+  .pub-table th.col-year,
+  .pub-table td.col-year { font-size: 0.7rem; }
 }
 
 /* --- Publication filter bar --- */
