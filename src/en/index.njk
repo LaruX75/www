@@ -412,14 +412,14 @@ description: University lecturer, researcher, municipal politician, and speaker.
                         <div class="ticker-content">
                             {% for pub in researchfi.slice(0, 10) %}
                             <div class="ticker-item p-4">
-                                <h4>{{ pub.typeShort }}</h4>
-                                <p class="fw-bold mb-1">{{ pub.title }}</p>
+                                <p class="ticker-pub-type mb-1">{{ pub.typeShort }}</p>
+                                <p class="ticker-pub-title">{{ pub.title }}</p>
                                 {% if pub.journal %}
-                                <p class="text-muted mb-1" style="font-size: 0.9rem;"><em>{{ pub.journal }}</em>{% if pub.year %} ({{ pub.year }}){% endif %}</p>
+                                <p class="text-muted ticker-pub-source mb-1"><em>{{ pub.journal }}</em>{% if pub.year %} ({{ pub.year }}){% endif %}</p>
                                 {% elif pub.year %}
-                                <p class="text-muted mb-1" style="font-size: 0.9rem;">({{ pub.year }})</p>
+                                <p class="text-muted ticker-pub-source mb-1">({{ pub.year }})</p>
                                 {% endif %}
-                                <div class="d-flex justify-content-start mt-3 mb-2">
+                                <div class="d-flex justify-content-start mt-2 mb-1">
                                     {% if pub.url %}
                                     <a href="{{ pub.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-read-more btn-sm rounded-pill px-3">Open publication <i class="bi bi-arrow-up-right"></i></a>
                                     {% else %}
@@ -437,14 +437,14 @@ description: University lecturer, researcher, municipal politician, and speaker.
                         <div class="ticker-content" aria-hidden="true">
                             {% for pub in researchfi.slice(0, 10) %}
                             <div class="ticker-item p-4">
-                                <h4>{{ pub.typeShort }}</h4>
-                                <p class="fw-bold mb-1">{{ pub.title }}</p>
+                                <p class="ticker-pub-type mb-1">{{ pub.typeShort }}</p>
+                                <p class="ticker-pub-title">{{ pub.title }}</p>
                                 {% if pub.journal %}
-                                <p class="text-muted mb-1" style="font-size: 0.9rem;"><em>{{ pub.journal }}</em>{% if pub.year %} ({{ pub.year }}){% endif %}</p>
+                                <p class="text-muted ticker-pub-source mb-1"><em>{{ pub.journal }}</em>{% if pub.year %} ({{ pub.year }}){% endif %}</p>
                                 {% elif pub.year %}
-                                <p class="text-muted mb-1" style="font-size: 0.9rem;">({{ pub.year }})</p>
+                                <p class="text-muted ticker-pub-source mb-1">({{ pub.year }})</p>
                                 {% endif %}
-                                <div class="d-flex justify-content-start mt-3 mb-2">
+                                <div class="d-flex justify-content-start mt-2 mb-1">
                                     {% if pub.url %}
                                     <a href="{{ pub.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-read-more btn-sm rounded-pill px-3">Open publication <i class="bi bi-arrow-up-right"></i></a>
                                     {% else %}

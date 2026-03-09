@@ -546,10 +546,10 @@ html:not([data-bs-theme="dark"]) .home-hero-proof-item:focus-visible {
 }
 
 .home-feature-section .ticker-item {
-  width: 300px;
+  width: 296px;
   max-width: 82vw;
-  min-height: 520px;
-  max-height: 520px;
+  min-height: 390px;
+  max-height: none;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -561,9 +561,48 @@ html:not([data-bs-theme="dark"]) .home-hero-proof-item:focus-visible {
 
 .home-feature-section .ticker-item > p {
   display: -webkit-box;
-  -webkit-line-clamp: 6;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.home-feature-section .ticker-item h3,
+.home-feature-section .ticker-item h4 {
+  font-size: 1.02rem;
+  line-height: 1.35;
+  margin-bottom: 0.45rem;
+}
+
+.home-feature-section .ticker-item .ticker-pub-type {
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--bs-secondary-color);
+}
+
+.home-feature-section .ticker-item .ticker-pub-title {
+  font-size: 0.98rem;
+  line-height: 1.38;
+  font-weight: 650;
+  margin-bottom: 0.45rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.home-feature-section .ticker-item .ticker-pub-source {
+  font-size: 0.84rem !important;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.home-feature-section #zoteroTicker .ticker-item {
+  min-height: 320px;
 }
 
 .home-section-image {
@@ -951,8 +990,8 @@ html:not([data-bs-theme="dark"]) .breadcrumb-item.active {
 
   .home-feature-section .ticker-item {
     width: 280px;
-    min-height: 460px;
-    max-height: 460px;
+    min-height: 350px;
+    max-height: none;
   }
 
   .home-feature-image-col {
