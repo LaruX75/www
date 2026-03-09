@@ -709,6 +709,8 @@
         });
 
         let isApplyingSort = false;
+        let observer = null;
+        let suppressObserver = false;
         const applySort = () => {
           if (isApplyingSort) return;
           isApplyingSort = true;
@@ -736,7 +738,20 @@
               sorted = sortRows(sorted, cfg);
             });
 
-            [...sorted, ...messageRows].forEach((row) => tbody.appendChild(row));
+            const targetOrder = [...sorted, ...messageRows];
+            const isSameOrder =
+              targetOrder.length === rows.length &&
+              targetOrder.every((row, idx) => row === rows[idx]);
+            if (isSameOrder) return;
+
+            suppressObserver = true;
+            if (observer) observer.disconnect();
+            try {
+              targetOrder.forEach((row) => tbody.appendChild(row));
+            } finally {
+              if (observer) observer.observe(tbody, { childList: true });
+              suppressObserver = false;
+            }
           } finally {
             isApplyingSort = false;
           }
@@ -747,8 +762,11 @@
           control.addEventListener('change', applySort);
         });
 
-        const observer = new MutationObserver(() => applySort());
-        observer.observe(tbody, { childList: true, subtree: true });
+        observer = new MutationObserver(() => {
+          if (suppressObserver) return;
+          applySort();
+        });
+        observer.observe(tbody, { childList: true });
 
         table.dataset.headerFiltersInit = 'true';
         applySort();
