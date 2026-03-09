@@ -533,6 +533,108 @@
     </div>
   </div>
 
+  <style>
+    .table-header-filter-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .table-header-filter-label {
+      display: block;
+    }
+    .table-header-filter-input {
+      width: 100%;
+      min-width: 7rem;
+      text-transform: none;
+      letter-spacing: normal;
+    }
+    .header-filter-hidden {
+      display: none !important;
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const getRowCells = (row) =>
+        Array.from(row.children).filter((cell) => cell.matches('td, th'));
+
+      const hasInteractiveContent = (th) =>
+        !!th.querySelector('input, select, textarea, [contenteditable="true"], button');
+
+      const initHeaderFilters = (table) => {
+        if (!table || table.dataset.headerFiltersInit === 'true') return;
+        if (table.hasAttribute('data-no-header-filters')) return;
+
+        const headRow = table.querySelector('thead tr:last-child');
+        const tbody = table.querySelector('tbody');
+        if (!headRow || !tbody) return;
+
+        const headers = Array.from(headRow.children).filter((cell) => cell.matches('th, td'));
+        if (!headers.length) return;
+
+        const hasPlainHeader = headers.some((th) => !hasInteractiveContent(th));
+        if (!hasPlainHeader) return;
+
+        const filterInputs = headers.map((th, index) => {
+          if (th.dataset.filterSkip === 'true' || hasInteractiveContent(th)) return null;
+
+          const label = (th.textContent || '').replace(/\s+/g, ' ').trim() || `Sarake ${index + 1}`;
+          const wrapper = document.createElement('div');
+          wrapper.className = 'table-header-filter-wrap';
+
+          const labelEl = document.createElement('div');
+          labelEl.className = 'table-header-filter-label';
+          while (th.firstChild) labelEl.appendChild(th.firstChild);
+
+          const input = document.createElement('input');
+          input.type = 'search';
+          input.className = 'form-control form-control-sm table-header-filter-input';
+          input.placeholder = label;
+          input.setAttribute('aria-label', `Suodata saraketta: ${label}`);
+          input.addEventListener('click', (event) => event.stopPropagation());
+          input.addEventListener('keydown', (event) => event.stopPropagation());
+
+          wrapper.append(labelEl, input);
+          th.appendChild(wrapper);
+          return input;
+        });
+
+        const applyFilters = () => {
+          const activeFilters = filterInputs
+            .map((input, index) => ({ index, query: input ? input.value.trim().toLowerCase() : '' }))
+            .filter((item) => item.query.length > 0);
+
+          const rows = Array.from(tbody.querySelectorAll('tr'));
+          rows.forEach((row) => {
+            const cells = getRowCells(row);
+            if (!cells.length || (cells.length === 1 && cells[0].hasAttribute('colspan'))) {
+              row.classList.remove('header-filter-hidden');
+              return;
+            }
+
+            const isMatch = activeFilters.every(({ index, query }) => {
+              const cell = cells[index];
+              const text = (cell ? cell.textContent : '').toLowerCase();
+              return text.includes(query);
+            });
+            row.classList.toggle('header-filter-hidden', !isMatch);
+          });
+        };
+
+        filterInputs.forEach((input) => {
+          if (!input) return;
+          input.addEventListener('input', applyFilters);
+        });
+
+        const observer = new MutationObserver(() => applyFilters());
+        observer.observe(tbody, { childList: true, subtree: true });
+
+        table.dataset.headerFiltersInit = 'true';
+        applyFilters();
+      };
+
+      document.querySelectorAll('table').forEach((table) => initHeaderFilters(table));
+    });
+  </script>
   <script src="/js/a11y.js" defer></script>
 </body>
 </html>
