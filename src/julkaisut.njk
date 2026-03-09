@@ -306,6 +306,12 @@ translationKey: publications_index
             <button type="button" class="btn btn-primary btn-sm rounded-pill" id="citationDownloadBtn">
               <i class="bi bi-download me-1"></i>Lataa
             </button>
+            <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill" id="citationZoteroBtn" title="Lataa RIS Zotero-tuontiin">
+              <img src="https://cdn.simpleicons.org/zotero/cc2936" alt="" width="14" height="14" class="me-1 align-text-bottom">Zotero
+            </button>
+            <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill" id="citationMendeleyBtn" title="Lataa RIS Mendeley-tuontiin">
+              <img src="https://cdn.simpleicons.org/mendeley/9d1620" alt="" width="14" height="14" class="me-1 align-text-bottom">Mendeley
+            </button>
           </div>
         </div>
         <div class="mt-3">
@@ -463,6 +469,27 @@ document.addEventListener('DOMContentLoaded', function() {
     return citation.trim();
   }
 
+  function buildRisEntry(payload) {
+    const authors = String(payload.authors || '')
+      .split(';')
+      .map((a) => a.trim())
+      .filter(Boolean);
+    const year = String(payload.year || '').trim();
+    const title = String(payload.title || '').trim();
+    const journal = String(payload.journal || '').trim();
+    const doi = String(payload.doi || '').trim();
+    const url = String(payload.url || '').trim();
+    const lines = ['TY  - JOUR'];
+    authors.forEach((author) => lines.push(`AU  - ${author}`));
+    if (year) lines.push(`PY  - ${year}`);
+    if (title) lines.push(`TI  - ${title}`);
+    if (journal) lines.push(`JO  - ${journal}`);
+    if (doi) lines.push(`DO  - ${doi}`);
+    if (url) lines.push(`UR  - ${url}`);
+    lines.push('ER  -');
+    return lines.join('\n');
+  }
+
   function downloadTextFile(filename, text) {
     const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
     const url = URL.createObjectURL(blob);
@@ -479,6 +506,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const citationOutput = document.getElementById('citationOutput');
   const citationDownloadBtn = document.getElementById('citationDownloadBtn');
   const citationCopyBtn = document.getElementById('citationCopyBtn');
+  const citationZoteroBtn = document.getElementById('citationZoteroBtn');
+  const citationMendeleyBtn = document.getElementById('citationMendeleyBtn');
   const citationModalEl = document.getElementById('citationExportModal');
   let currentCitationPayload = null;
 
@@ -542,6 +571,22 @@ document.addEventListener('DOMContentLoaded', function() {
         citationOutput.select();
         document.execCommand('copy');
       }
+    });
+  }
+
+  if (citationZoteroBtn) {
+    citationZoteroBtn.addEventListener('click', () => {
+      if (!currentCitationPayload) return;
+      const base = sanitizeFilenamePart(currentCitationPayload.title || currentCitationPayload.authors || 'viite');
+      downloadTextFile(`${base}-zotero.ris`, buildRisEntry(currentCitationPayload) + '\n');
+    });
+  }
+
+  if (citationMendeleyBtn) {
+    citationMendeleyBtn.addEventListener('click', () => {
+      if (!currentCitationPayload) return;
+      const base = sanitizeFilenamePart(currentCitationPayload.title || currentCitationPayload.authors || 'viite');
+      downloadTextFile(`${base}-mendeley.ris`, buildRisEntry(currentCitationPayload) + '\n');
     });
   }
 
@@ -871,4 +916,3 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 </script>
-
