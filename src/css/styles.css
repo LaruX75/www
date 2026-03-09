@@ -548,7 +548,7 @@ html:not([data-bs-theme="dark"]) .home-hero-proof-item:focus-visible {
 .home-feature-section .ticker-item {
   width: 296px;
   max-width: 82vw;
-  min-height: 390px;
+  min-height: 220px;
   max-height: none;
   overflow: hidden;
   display: flex;
