@@ -67,7 +67,7 @@ function parseKK(xmlStr) {
             link: getMeta('identifier', 'uri') || (block.match(/<url>([^<]*)<\/url>/) || [])[1] || '',
             abstract: getMeta('description', 'abstract').substring(0, 300),
             language: getMeta('language', 'iso'),
-            subjects: getMetaAll('subject', ''),
+            subjects: getMetaAll('subject', 'discipline'),
         });
     }
     return items;
