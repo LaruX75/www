@@ -1719,12 +1719,37 @@ section[id] {
   border-color: rgba(255,255,255,0.07) !important;
 }
 
-/* Hide heavy columns on mobile to keep tables usable */
+/* Sarakeleveydet — hallitaan CSS:ssä eikä inline-tyyleissä */
+.pub-table .col-year  { width: 60px; }
+.pub-table .col-type  { width: 120px; }
+.pub-table .col-title { min-width: 160px; }
+.pub-table .col-abstract { min-width: 220px; }
+.pub-table .col-subjects  { min-width: 160px; }
+.pub-table .col-author    { width: 160px; }
+
+/*
+ * Responsiivisuus: piilota raskaat sarakkeet portaittain
+ *
+ *  ≥ 1100px  — kaikki sarakkeet näkyvissä (koko näyttö tai iso ikkuna)
+ *  768–1099px — piilotetaan Tiivistelmä; sopii ~50 % leveydelle 1440 px+ näytöllä
+ *  576–767px  — piilotetaan Tiivistelmä ja Avainsanat (tabletti)
+ *  < 576px   — piilotetaan myös Tekijä; Vuosi + Otsikko riittää (puhelin)
+ */
+@media (max-width: 1099.98px) {
+  .pub-table .col-abstract { display: none !important; }
+  .pub-table .col-subjects  { min-width: 120px; }
+  .pub-table .col-author    { width: 130px; }
+}
+
 @media (max-width: 767.98px) {
   .pub-table .col-abstract,
-  .pub-table .col-subjects {
-    display: none !important;
-  }
+  .pub-table .col-subjects { display: none !important; }
+  .pub-table .col-author   { width: 120px; }
+}
+
+@media (max-width: 575.98px) {
+  .pub-table .col-author { display: none !important; }
+  .pub-table .col-year   { width: 50px; font-size: 0.75rem; }
 }
 
 /* --- Publication filter bar --- */
