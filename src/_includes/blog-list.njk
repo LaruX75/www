@@ -243,8 +243,8 @@ layout: base.njk
             <div>${keyBadges}</div>
           </td>
           <td class="text-center">
-            <a href="${d.url}" class="btn btn-outline-primary btn-sm rounded-pill px-2">
-              <i class="bi bi-arrow-right"></i>
+            <a href="${d.url}" class="btn btn-outline-primary btn-sm rounded-pill px-2" aria-label="${d.title}">
+              <i class="bi bi-arrow-right" aria-hidden="true"></i>
             </a>
           </td>
         </tr>`;

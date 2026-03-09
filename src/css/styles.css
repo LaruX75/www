@@ -93,6 +93,16 @@ html:not([data-bs-theme="dark"]) .home-hero-lead {
   color: #0f2d4a; /* vaalea tila: ~8:1 */
 }
 
+/* WCAG 1.4.3: Bootstrap's --bs-code-color (#d63384) is 4.47:1 on white – just below 4.5:1 AA */
+html:not([data-bs-theme="dark"]) code {
+  color: #b91c5e; /* ~6.6:1 on white */
+}
+
+/* WCAG 1.4.3: Bootstrap's .text-danger (#dc3545) is ~4.2:1 on white – just below 4.5:1 AA */
+html:not([data-bs-theme="dark"]) .text-danger {
+  color: #b02a37 !important; /* ~6.4:1 on white */
+}
+
 .home-hero-roles {
   display: flex;
   flex-wrap: wrap;

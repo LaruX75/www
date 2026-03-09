@@ -28,7 +28,6 @@ Kun käyttäjä sallii kaikki upotukset, valinta tallennetaan selaimen `localSto
 
 Huom: kun ulkoinen palvelu ladataan, kyseinen palvelu voi asettaa omia evästeitä tai kerätä tietoja oman tietosuojakäytäntönsä mukaisesti.
 
-<a id="upotusten-suostumuksen-hallinta"></a>
 ### Upotusten suostumuksen hallinta
 
 <div class="my-3">

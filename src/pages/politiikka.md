@@ -16,10 +16,10 @@ templateEngineOverride: njk
         <p class="mb-3" style="color:rgba(255,255,255,0.75);">Kaupungin ja aluehallinnon päätöksenteko perustuu yhteistyöhön. Yksittäinen valtuutettu ei saa asioita eteenpäin ilman verkostoja, dialogia ja yhteistä suuntaa.</p>
         <p class="mb-4" style="color:rgba(255,255,255,0.85);">Olen ollut mukana yhteiskunnallisessa vaikuttamisessa nuoresta asti. Taustani asukasyhdistystoiminnassa, kunnallispolitiikassa ja koulutuksen kentällä näkyy tavassani tehdä politiikkaa: käytännöllisesti, tietoon nojaten ja pitkäjänteisesti.</p>
         <div class="d-flex flex-wrap gap-2">
-          <a href="#valtuustoaloitteet" class="btn btn-primary">Aloitteet</a>
-          <a href="#politiikka-sisallot" class="btn btn-outline-primary">Puheet</a>
-          <a href="/vaalihistoria/" class="btn btn-outline-primary">Vaalihistoria</a>
-          <a href="/sidonnaisuudet/" class="btn btn-outline-primary">Sidonnaisuudet</a>
+          <a href="#valtuustoaloitteet" class="btn btn-light" style="background-color:#f8f9fa;color:#1c2e4a;border-color:#f8f9fa;">Aloitteet</a>
+          <a href="#politiikka-sisallot" class="btn btn-outline-light" style="color:#f8f9fa;border-color:#f8f9fa;">Puheet</a>
+          <a href="/vaalihistoria/" class="btn btn-outline-light" style="color:#f8f9fa;border-color:#f8f9fa;">Vaalihistoria</a>
+          <a href="/sidonnaisuudet/" class="btn btn-outline-light" style="color:#f8f9fa;border-color:#f8f9fa;">Sidonnaisuudet</a>
         </div>
       </div>
       <div class="col-lg-4">
@@ -87,7 +87,7 @@ templateEngineOverride: njk
         <div class="card h-100 border-0 shadow-sm pol-goal-card">
           <div class="card-body">
             <div class="d-flex align-items-start gap-3">
-              <span class="pol-goal-num">01</span>
+              <span class="pol-goal-num" data-num="01" aria-hidden="true"></span>
               <div>
                 <i class="bi bi-house-heart-fill pol-goal-icon mb-2 d-block"></i>
                 <h3 class="h6">Toimiva arki lähellä</h3>
@@ -101,7 +101,7 @@ templateEngineOverride: njk
         <div class="card h-100 border-0 shadow-sm pol-goal-card">
           <div class="card-body">
             <div class="d-flex align-items-start gap-3">
-              <span class="pol-goal-num">02</span>
+              <span class="pol-goal-num" data-num="02" aria-hidden="true"></span>
               <div>
                 <i class="bi bi-eye-fill pol-goal-icon mb-2 d-block"></i>
                 <h3 class="h6">Avoin hallinto</h3>
@@ -115,7 +115,7 @@ templateEngineOverride: njk
         <div class="card h-100 border-0 shadow-sm pol-goal-card">
           <div class="card-body">
             <div class="d-flex align-items-start gap-3">
-              <span class="pol-goal-num">03</span>
+              <span class="pol-goal-num" data-num="03" aria-hidden="true"></span>
               <div>
                 <i class="bi bi-map-fill pol-goal-icon mb-2 d-block"></i>
                 <h3 class="h6">Tasapainoinen kaupunkirakenne</h3>
@@ -422,6 +422,22 @@ templateEngineOverride: njk
   }
   [data-bs-theme="dark"] .pol-hero { background: #0e1c2f; }
 
+  /* Hero-painikkeet: eksplisiittiset värit CSS-muuttujien ohitukseksi (WCAG 1.4.3) */
+  .pol-hero .btn-light {
+    background-color: #f8f9fa;
+    color: #1c2e4a;
+    border-color: #f8f9fa;
+  }
+  .pol-hero .btn-outline-light {
+    background-color: transparent;
+    color: #f8f9fa;
+    border-color: #f8f9fa;
+  }
+  .pol-hero .btn-outline-light:hover {
+    background-color: rgba(248, 249, 250, 0.1);
+    color: #f8f9fa;
+  }
+
   /* ===== ROLE CARDS ===== */
   .pol-role-card {
     border-top: 3px solid var(--bs-primary) !important;
@@ -448,11 +464,18 @@ templateEngineOverride: njk
     font-size: 2.8rem;
     font-weight: 900;
     line-height: 1;
-    color: var(--bs-primary);
-    opacity: 0.15;
+    color: transparent; /* teksti piilotettu, numero tulee ::before-pseudoelementistä */
     flex-shrink: 0;
     font-variant-numeric: tabular-nums;
     margin-top: 0.15rem;
+    position: relative;
+  }
+  .pol-goal-num::before {
+    content: attr(data-num);
+    color: var(--bs-primary);
+    opacity: 0.15;
+    position: absolute;
+    inset: 0;
   }
   .pol-goal-icon {
     font-size: 1.2rem;

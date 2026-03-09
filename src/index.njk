@@ -179,7 +179,7 @@ translationKey: home
                             {% endfor %}
                         </div>
                         <!-- Toinen setti (klooni animaatiota varten) -->
-                        <div class="ticker-content" aria-hidden="true">
+                        <div class="ticker-content" aria-hidden="true" inert>
                             {% for post in collections.presentations %}
                             <div class="ticker-item p-4">
                                 <div class="mt-0 mb-3">
@@ -438,7 +438,7 @@ translationKey: home
                             {% endfor %}
                         </div>
                         <!-- Toinen setti (klooni animaatiota varten) -->
-                        <div class="ticker-content" aria-hidden="true">
+                        <div class="ticker-content" aria-hidden="true" inert>
                             {% for pub in researchfi.slice(0, 10) %}
                             <div class="ticker-item p-4">
                                 <h3>{{ pub.typeFi }}</h3>
@@ -547,7 +547,7 @@ translationKey: home
                             {% endfor %}
                         </div>
                         <!-- Toinen setti (klooni animaatiota varten) -->
-                        <div class="ticker-content" aria-hidden="true">
+                        <div class="ticker-content" aria-hidden="true" inert>
                             {% for post in collections.politicsAndOpinions | take(6) %}
                             {% if post.fileSlug != "etusivu" %}
                             <div class="ticker-item p-4">
