@@ -605,6 +605,10 @@ html:not([data-bs-theme="dark"]) .home-hero-proof-item:focus-visible {
   min-height: 320px;
 }
 
+.home-feature-section #presentationTicker .ticker-item {
+  min-height: 320px;
+}
+
 .home-section-image {
   display: block;
   width: 100%;

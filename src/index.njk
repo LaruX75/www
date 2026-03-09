@@ -79,7 +79,14 @@ translationKey: home
                         <div class="ticker-content">
                             {% for post in collections.presentations %}
                             <div class="ticker-item p-4">
-                                <p class="ticker-pub-type mb-1">{{ post.data.type | capitalize or "Esitys" }}</p>
+                                <div class="mt-0 mb-2">
+                                    {% if post.data.thumbnail %}
+                                    <img src="{{ post.data.thumbnail }}" alt="{{ post.data.title }}" class="img-fluid w-100" style="max-height:130px;object-fit:cover;border-radius:6px;">
+                                    {% else %}
+                                    <div class="text-center py-3 opacity-50"><i class="bi bi-play-circle fs-2"></i></div>
+                                    {% endif %}
+                                </div>
+                                <p class="ticker-pub-type mb-1">{{ post.data.type | capitalize or "Esitys" }}{% if "canva.com" in post.data.url %} | Canva{% elif "slideshare.net" in post.data.url %} | SlideShare{% endif %}</p>
                                 <p class="ticker-pub-title"><a href="{{ post.data.url }}" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;">{{ post.data.title }}</a></p>
                                 <p class="text-muted ticker-pub-source mb-1">Jari Laru &bull; {{ post.date | dateFormat }}</p>
                                 <div class="d-flex justify-content-start mt-2 mb-1">
@@ -89,7 +96,14 @@ translationKey: home
                             {% endfor %}
                             {% for p in slideshare %}
                             <div class="ticker-item p-4">
-                                <p class="ticker-pub-type mb-1">SlideShare</p>
+                                <div class="mt-0 mb-2">
+                                    {% if p.thumbnail %}
+                                    <img src="{{ p.thumbnail }}" alt="{{ p.title }}" class="img-fluid w-100" style="max-height:130px;object-fit:cover;border-radius:6px;">
+                                    {% else %}
+                                    <div class="text-center py-3 opacity-50"><i class="bi bi-play-circle fs-2"></i></div>
+                                    {% endif %}
+                                </div>
+                                <p class="ticker-pub-type mb-1">Esitys | SlideShare</p>
                                 <p class="ticker-pub-title"><a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;">{{ p.title }}</a></p>
                                 <p class="text-muted ticker-pub-source mb-1">{{ p.author or "Jari Laru" }}{% if p.date %} &bull; {{ p.date | dateFormat }}{% endif %}</p>
                                 <div class="d-flex justify-content-start mt-2 mb-1">
@@ -99,7 +113,14 @@ translationKey: home
                             {% endfor %}
                             {% for item in finnaAoe.rows %}
                             <div class="ticker-item p-4">
-                                <p class="ticker-pub-type mb-1">Oppimateriaali</p>
+                                <div class="mt-0 mb-2">
+                                    {% if item.image %}
+                                    <img src="{{ item.image }}" alt="{{ item.title }}" class="img-fluid w-100" style="max-height:130px;object-fit:cover;border-radius:6px;">
+                                    {% else %}
+                                    <div class="text-center py-3 opacity-50"><i class="bi bi-file-earmark-text fs-2"></i></div>
+                                    {% endif %}
+                                </div>
+                                <p class="ticker-pub-type mb-1">Oppimateriaali | AOE</p>
                                 <p class="ticker-pub-title"><a href="{{ item.url }}" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;">{{ item.title }}</a></p>
                                 <p class="text-muted ticker-pub-source mb-1">Jari Laru{% if item.year %} &bull; {{ item.year }}{% endif %}</p>
                                 <div class="d-flex justify-content-start mt-2 mb-1">
@@ -118,7 +139,14 @@ translationKey: home
                         <div class="ticker-content" aria-hidden="true" inert>
                             {% for post in collections.presentations %}
                             <div class="ticker-item p-4">
-                                <p class="ticker-pub-type mb-1">{{ post.data.type | capitalize or "Esitys" }}</p>
+                                <div class="mt-0 mb-2">
+                                    {% if post.data.thumbnail %}
+                                    <img src="{{ post.data.thumbnail }}" alt="{{ post.data.title }}" class="img-fluid w-100" style="max-height:130px;object-fit:cover;border-radius:6px;">
+                                    {% else %}
+                                    <div class="text-center py-3 opacity-50"><i class="bi bi-play-circle fs-2"></i></div>
+                                    {% endif %}
+                                </div>
+                                <p class="ticker-pub-type mb-1">{{ post.data.type | capitalize or "Esitys" }}{% if "canva.com" in post.data.url %} | Canva{% elif "slideshare.net" in post.data.url %} | SlideShare{% endif %}</p>
                                 <p class="ticker-pub-title"><a href="{{ post.data.url }}" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;">{{ post.data.title }}</a></p>
                                 <p class="text-muted ticker-pub-source mb-1">Jari Laru &bull; {{ post.date | dateFormat }}</p>
                                 <div class="d-flex justify-content-start mt-2 mb-1">
@@ -128,7 +156,14 @@ translationKey: home
                             {% endfor %}
                             {% for p in slideshare %}
                             <div class="ticker-item p-4">
-                                <p class="ticker-pub-type mb-1">SlideShare</p>
+                                <div class="mt-0 mb-2">
+                                    {% if p.thumbnail %}
+                                    <img src="{{ p.thumbnail }}" alt="{{ p.title }}" class="img-fluid w-100" style="max-height:130px;object-fit:cover;border-radius:6px;">
+                                    {% else %}
+                                    <div class="text-center py-3 opacity-50"><i class="bi bi-play-circle fs-2"></i></div>
+                                    {% endif %}
+                                </div>
+                                <p class="ticker-pub-type mb-1">Esitys | SlideShare</p>
                                 <p class="ticker-pub-title"><a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;">{{ p.title }}</a></p>
                                 <p class="text-muted ticker-pub-source mb-1">{{ p.author or "Jari Laru" }}{% if p.date %} &bull; {{ p.date | dateFormat }}{% endif %}</p>
                                 <div class="d-flex justify-content-start mt-2 mb-1">
@@ -138,7 +173,14 @@ translationKey: home
                             {% endfor %}
                             {% for item in finnaAoe.rows %}
                             <div class="ticker-item p-4">
-                                <p class="ticker-pub-type mb-1">Oppimateriaali</p>
+                                <div class="mt-0 mb-2">
+                                    {% if item.image %}
+                                    <img src="{{ item.image }}" alt="{{ item.title }}" class="img-fluid w-100" style="max-height:130px;object-fit:cover;border-radius:6px;">
+                                    {% else %}
+                                    <div class="text-center py-3 opacity-50"><i class="bi bi-file-earmark-text fs-2"></i></div>
+                                    {% endif %}
+                                </div>
+                                <p class="ticker-pub-type mb-1">Oppimateriaali | AOE</p>
                                 <p class="ticker-pub-title"><a href="{{ item.url }}" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;">{{ item.title }}</a></p>
                                 <p class="text-muted ticker-pub-source mb-1">Jari Laru{% if item.year %} &bull; {{ item.year }}{% endif %}</p>
                                 <div class="d-flex justify-content-start mt-2 mb-1">
@@ -301,6 +343,9 @@ translationKey: home
                                 {% elif pub.year %}
                                 <p class="text-muted ticker-pub-source mb-1">({{ pub.year }})</p>
                                 {% endif %}
+                                {% if pub.authors %}
+                                <p class="text-muted ticker-pub-source mb-1" style="font-size:0.78rem;">{{ pub.authors | truncate(100) }}</p>
+                                {% endif %}
                                 <div class="d-flex justify-content-start mt-2 mb-1">
                                     {% if pub.url %}
                                     <a href="{{ pub.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-read-more btn-sm rounded-pill px-3">Avaa julkaisu <i class="bi bi-arrow-up-right"></i></a>
@@ -325,6 +370,9 @@ translationKey: home
                                 <p class="text-muted ticker-pub-source mb-1"><em>{{ pub.journal }}</em>{% if pub.year %} ({{ pub.year }}){% endif %}</p>
                                 {% elif pub.year %}
                                 <p class="text-muted ticker-pub-source mb-1">({{ pub.year }})</p>
+                                {% endif %}
+                                {% if pub.authors %}
+                                <p class="text-muted ticker-pub-source mb-1" style="font-size:0.78rem;">{{ pub.authors | truncate(100) }}</p>
                                 {% endif %}
                                 <div class="d-flex justify-content-start mt-2 mb-1">
                                     {% if pub.url %}
@@ -391,6 +439,9 @@ translationKey: home
                             <div class="ticker-item p-4">
                                 <p class="ticker-pub-type mb-1">{{ post.data.type | capitalize or "Kirjoitus" }}</p>
                                 <p class="ticker-pub-title"><a href="{{ post.url }}" class="ticker-title-link">{{ post.data.title }}</a></p>
+                                {% if post.data.description %}
+                                <p class="text-muted ticker-pub-source mb-1" style="font-size:0.82rem;">{{ post.data.description | truncate(120) }}</p>
+                                {% endif %}
                                 <p class="text-muted ticker-pub-source mb-1">Jari Laru &bull; {{ post.date | dateFormat }}</p>
                                 <div class="d-flex justify-content-start mt-2 mb-1">
                                     <a href="{{ post.url }}" class="btn btn-read-more btn-sm rounded-pill px-3">Lue lisää <i class="bi bi-arrow-right"></i></a>
@@ -410,6 +461,9 @@ translationKey: home
                             <div class="ticker-item p-4">
                                 <p class="ticker-pub-type mb-1">{{ post.data.type | capitalize or "Kirjoitus" }}</p>
                                 <p class="ticker-pub-title"><a href="{{ post.url }}" class="ticker-title-link">{{ post.data.title }}</a></p>
+                                {% if post.data.description %}
+                                <p class="text-muted ticker-pub-source mb-1" style="font-size:0.82rem;">{{ post.data.description | truncate(120) }}</p>
+                                {% endif %}
                                 <p class="text-muted ticker-pub-source mb-1">Jari Laru &bull; {{ post.date | dateFormat }}</p>
                                 <div class="d-flex justify-content-start mt-2 mb-1">
                                     <a href="{{ post.url }}" class="btn btn-read-more btn-sm rounded-pill px-3">Lue lisää <i class="bi bi-arrow-right"></i></a>
