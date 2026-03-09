@@ -22,7 +22,7 @@ translationKey: writings_index
             Blogi <span class="nav-count">{{ collections.blog.length }}</span>
           </a>
           <a class="nav-link" href="#esitykset">
-            Materiaalit <span class="nav-count">{{ collections.presentations.length + (finnaAoe.rows | length) }}</span>
+            Materiaalit <span class="nav-count">{{ (canva | length) + collections.presentations.length + (finnaAoe.rows | length) }}</span>
           </a>
           <a class="nav-link" href="#julkaisut">
             Julkaisut <span class="nav-count">{{ researchfi.length }}</span>
@@ -509,7 +509,21 @@ translationKey: writings_index
 {# Kerätään esitykset ja AOE-oppimateriaalit JSON-muotoon JS:ää varten #}
 <script id="esitykset-data" type="application/json">
 [
+  {% set canvaRows = canva or [] %}
   {% set aoeRows = finnaAoe.rows or [] %}
+  {% for item in canvaRows %}
+  {
+    "title": {{ item.title | dump | safe }},
+    "date": {{ (item.date or "") | dump | safe }},
+    "formattedDate": {{ (item.date or "") | dump | safe }},
+    "description": {{ (item.description or "") | dump | safe }},
+    "url": {{ (item.url or "") | dump | safe }},
+    "thumbnail": {{ (item.thumbnail or "") | dump | safe }},
+    "categories": {{ (item.categories or []) | dump | safe }},
+    "type": "Canva",
+    "source": {{ (item.source or "canva") | dump | safe }}
+  }{% if not loop.last or collections.presentations.length or aoeRows.length %},{% endif %}
+  {% endfor %}
   {% for presentation in collections.presentations %}
   {% set presentationDate = presentation.data.date or presentation.date %}
   {
@@ -544,7 +558,7 @@ translationKey: writings_index
     <div class="card shadow-sm">
       <div class="card-header bg-transparent d-flex align-items-center justify-content-between border-start border-4 border-info">
         <h2 class="h4 mb-0"><i class="bi bi-book-fill me-2 text-info"></i>Esityksiä ja opetusmateriaaleja</h2>
-        <span class="badge text-bg-info text-dark">{{ collections.presentations.length + (finnaAoe.rows | length) }}</span>
+        <span class="badge text-bg-info text-dark">{{ (canva | length) + collections.presentations.length + (finnaAoe.rows | length) }}</span>
       </div>
       <div class="card-body p-0">
         <div class="p-3 bg-body-tertiary border-bottom">
@@ -1435,7 +1449,26 @@ section[id] {
     if (iso > MAX_SLIDESHARE_DATE) iso = MAX_SLIDESHARE_DATE;
     return { ...item, date: iso, formattedDate: formatDateFi(iso) };
   };
-  const esityksetData = JSON.parse(esityksetDataEl.textContent).map(normalizeSlidesharePresentation);
+  const rawEsityksetData = JSON.parse(esityksetDataEl.textContent);
+  const seenMaterialKeys = new Set();
+  const esityksetData = rawEsityksetData
+    .map((item) => {
+      const normalized = normalizeSlidesharePresentation(item);
+      const iso = toIsoDate(normalized?.date);
+      const formattedDate = normalized?.formattedDate || (iso ? formatDateFi(iso) : '');
+      return {
+        ...normalized,
+        date: iso || normalized?.date || '',
+        formattedDate
+      };
+    })
+    .filter((item) => {
+      const key = `${String(item.url || '').trim()}|${String(item.title || '').trim()}`;
+      if (!key || key === '|') return false;
+      if (seenMaterialKeys.has(key)) return false;
+      seenMaterialKeys.add(key);
+      return true;
+    });
 
   let filteredEsityksetData = [...esityksetData].sort((a, b) => new Date(b.date) - new Date(a.date));
   let esityksetCurrentPage = 1;
