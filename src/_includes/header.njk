@@ -87,7 +87,19 @@
                   <section>
                     <h5>{{ section.heading }}</h5>
                     {% for link in section.links %}
-                      {% if link.cta %}
+                      {% if link.inlineLinks %}
+                        <div class="menu-link menu-link-inline-group">
+                          <i class="{{ link.icon }}"></i>
+                          <span class="menu-link-inline-items">
+                            {% for inlineLink in link.inlineLinks %}
+                              <a class="menu-link-inline-anchor" href="{{ inlineLink.href }}"{% if inlineLink.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ inlineLink.title }}</a>{% if not loop.last %}<span class="menu-link-inline-separator" aria-hidden="true">|</span>{% endif %}
+                            {% endfor %}
+                          </span>
+                        </div>
+                        {% if link.description %}
+                          <small class="menu-link-desc">{{ link.description }}</small>
+                        {% endif %}
+                      {% elif link.cta %}
                         <div class="work-inline-cta">
                           <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
                             <i class="{{ link.icon }}"></i><span>{{ link.title }}</span>
@@ -563,7 +575,19 @@
                   <section>
                     <h5>{{ section.heading }}</h5>
                     {% for link in section.links %}
-                      {% if link.cta %}
+                      {% if link.inlineLinks %}
+                        <div class="menu-link menu-link-inline-group">
+                          <i class="{{ link.icon }}"></i>
+                          <span class="menu-link-inline-items">
+                            {% for inlineLink in link.inlineLinks %}
+                              <a class="menu-link-inline-anchor" href="{{ inlineLink.href }}"{% if inlineLink.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ inlineLink.title }}</a>{% if not loop.last %}<span class="menu-link-inline-separator" aria-hidden="true">|</span>{% endif %}
+                            {% endfor %}
+                          </span>
+                        </div>
+                        {% if link.description %}
+                          <small class="menu-link-desc">{{ link.description }}</small>
+                        {% endif %}
+                      {% elif link.cta %}
                         <div class="work-inline-cta">
                           <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
                             <i class="{{ link.icon }}"></i><span>{{ link.title }}</span>

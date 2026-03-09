@@ -726,16 +726,14 @@ module.exports = {
               description: "Kurssit, opetusvastuut ja pedagoginen kehitystyö."
             },
             {
-              title: "Ansioluettelo",
-              href: "/cv/",
+              title: "Ansioluettelo | Opetusportfolio",
               icon: "bi bi-file-earmark-person me-2",
-              description: "Koulutus, työhistoria, julkaisut ja keskeinen osaaminen."
-            },
-            {
-              title: "Opetusportfolio",
-              href: "/portfolio/",
-              icon: "bi bi-folder2-open me-2",
-              description: "Pedagoginen ajattelu, opetuskokemus ja kehitystyö."
+              menuLink: true,
+              description: "Koulutus, kokemus ja pedagoginen ajattelu yhdessä.",
+              inlineLinks: [
+                { title: "Ansioluettelo", href: "/cv/" },
+                { title: "Opetusportfolio", href: "/portfolio/" }
+              ]
             },
             {
               title: "Esitykset",
@@ -853,16 +851,14 @@ module.exports = {
               description: "Courses, teaching responsibilities, and pedagogical development."
             },
             {
-              title: "Curriculum Vitae",
-              href: "/en/cv/",
+              title: "CV | Teaching Portfolio",
               icon: "bi bi-file-earmark-person me-2",
-              description: "Education, work history, publications, and key competencies."
-            },
-            {
-              title: "Teaching Portfolio",
-              href: "/en/portfolio/",
-              icon: "bi bi-folder2-open me-2",
-              description: "Pedagogical thinking, teaching experience and development."
+              menuLink: true,
+              description: "Education, experience, and pedagogical thinking in one place.",
+              inlineLinks: [
+                { title: "Curriculum Vitae", href: "/en/cv/" },
+                { title: "Teaching Portfolio", href: "/en/portfolio/" }
+              ]
             },
             {
               title: "Presentations",
