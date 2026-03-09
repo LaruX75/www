@@ -1,7 +1,7 @@
 ---
-title: "Palveluverkko 2023 – reunaehtojen tarkastelua"
+title: "Faktojen tarkastelua: kouluverkko ja syntyvyys"
 date: 2023-05-21
-description: "Oulun palveluverkkokeskustelu käydään usein tunnetta herättävillä argumenteilla. Faktoihin perustuva tarkastelu osoittaa, että syntyvyyden lasku ja pienenevät ikäluokat asettavat väistämättömiä reunaehtoja kouluverkon kehittämiselle."
+description: "Oulun kouluverkkokeskustelu kaipaa faktapohjaa. Olen käynyt läpi Tilastokeskuksen syntyvyystilastot ja Oulun kaupungin väestösuunnitteet – luvut kertovat selkeää kieltä tulevista ikäluokista."
 categories:
   - Koulutuspolitiikka
   - Palveluverkko
@@ -12,42 +12,86 @@ keywords:
   - kouluikäluokat
   - oulu
   - koulutuspolitiikka
-  - reunaehdot
+  - väestösuunnite
 type: artikkeli
 templateEngineOverride: md
 ---
 
-Oulun palveluverkkokeskustelu on yksi kaupunkipolitiikan kuumimmista perunoista. Koulujen lakkautukset ja yhdistymiset herättävät voimakkaita tunteita – aivan ymmärrettävästi, sillä kyse on lähipalveluista, lasten arjesta ja yhteisöjen elinvoimasta. Siksi on erityisen tärkeää, että päätöksenteon pohjaksi on käytettävissä luotettavaa faktaa.
+Olen käpistellyt aineistoja, jotka liittyvät Oulun kouluverkkokeskusteluun. Ei mielipiteitä vielä – pelkkiä faktoja. Luvut kertovat selvää kieltä siitä, millaisessa väestöllisessä todellisuudessa kouluverkkopäätöksiä tehdään.
 
-Olen koonnut tähän kirjoitukseen aineistoa, joka kuvaa niitä demografisia reunaehtoja, joiden puitteissa palveluverkkopäätöksiä tehdään. Luvut eivät itsessään sanele ratkaisuja – mutta ne asettavat reunat mahdolliselle.
+## A. Tilastokeskuksen syntyvyystilasto (Oulu)
 
-## Syntyvyyden kehitys Oulussa
+Tilastokeskus päivitti Oulun syntyvyystiedot **21.4.2023**. Tilasto kattaa elävänä syntyneet vuodesta 1997 alkaen.
 
-Tilastokeskuksen aineisto kertoo karua kieltä: **syntyvyyden huippuvuosi Oulussa oli 2010**. Silloin syntyneet täyttävät 16 vuotta tänä vuonna, eli paine on siirtynyt juuri nyt toiselle asteelle. Sen jälkeen syntyvyys on laskenut tasaisesti, ja viime vuosina lapsia on syntynyt vähemmän kuin 1990-luvulla.
+Muutama keskeinen havainto:
 
-Koronapandemian aikana syntyvyydessä nähtiin lyhyt notkahdus ylöspäin, mutta se taittui jo vuonna 2022. Tilastokeskuksen väestöennuste vuoteen 2045 ei lupaa paluuta huippuvuosien tasolle – **edes kohtalainen kasvu ei palauttaisi 2010-luvun ikäluokkia**.
+- **Syntyvyyden huippu oli vuonna 2010.** Silloin syntyneet ovat juuri siirtymässä pois perusopetuksesta. Paine siirtyy toiselle asteelle.
+- Viimeisinä vuosina syntyvyyden pudotus on ollut hurjaa per vuosi.
+- Vuosien 2019–2021 lievä nousu on **kääntynyt laskuun**. Kyse ei ole ennusteesta vaan päivitetystä tilastosta.
 
-## Mitä tämä tarkoittaa 2030-luvun koulujen kannalta?
+### Vuosi 2030 ei ole kaukana
 
-Tässä on yksi oleellinen fakta: **vuonna 2030 koulua käyvät ovat jo syntyneet**. Emme siis puhu epävarmasta ennusteesta – tiedämme jo nyt, montako lasta aloittaa koulun tuolloin.
+Tässä on yksi konkreettinen fakta, joka kannattaa pitää mielessä: **vuonna 2030 koulua käyvät ovat jo syntyneet tai syntyvät vuonna 2023**. Kouluun tulevat ikäluokat pienenevät nopeasti tulevina vuosina.
 
-Luvut ovat selkeitä:
+---
 
-- Koulun aloittavat ikäluokat ovat **romahtaneet 2000-luvun huippuvuosiin verrattuna noin 850 oppilaalla**
-- Ensimmäisen luokan aloittava ikäluokka on jo pienempi kuin 1990-luvulla
-- Vuonna 2026 syksyllä peruskoulun aloittavat syntyivät vuonna 2019
+## B. Muutos alueittain – varhaiskasvatusikäiset (0–6 v)
 
-Toisella asteella ja yläkoulussa (luokat 7–9) oppilasmäärät ovat vielä 2026 suuria, koska suuret 2010-luvun ikäluokat eivät ole vielä poistuneet järjestelmästä. Mutta tämä on väliaikaista.
+Oulun kaupungin väestösuunnite kuvaa muutosta alueittain vuosien 2020 ja 2030 välillä.
 
-## Reunaehdot eivät ole poliittinen valinta
+Varhaiskasvatusikäisten osalta:
 
-Palveluverkkokeskustelussa esiintyy usein ajatus, että "jos vain tahtoa olisi", voitaisiin pitää kaikki koulut auki. Demografiset reunaehdot eivät kuitenkaan ole poliittisia valintoja. Kun ikäluokka on puolittunut, ei ole realistista ylläpitää samaa kouluverkostoa kuin suurten ikäluokkien aikana – ainakaan ilman, että se tarkoittaa merkittävää resurssien siirtoa pois opetuksen laadusta.
+- **Kasvua on vain harvoilla alueilla.** Käytännössä kasvu rajoittuu alueille, joille MATO-ohjelma on osoittanut täydennysrakentamista.
+- **Hiukkavaaran alueella merkittävä kasvu jatkuu.**
+- **Muilla alueilla varhaiskasvatusikäisten määrä laskee.**
 
-Tämä ei tarkoita, että jokainen lakkautusesitys on automaattisesti oikein tai että alueellinen oikeudenmukaisuus ei merkitsisi. Se tarkoittaa, että **palveluverkkopäätökset on tehtävä realistiselta tietopohjalta**.
+---
+
+## C. Muutos alueittain – alakouluikäiset (7–12 v)
+
+Peruskoulun alaluokkien ikäluokkien muutos 2020–2030:
+
+- **Kasvua on vain Hiukkavaarassa ja Korvensuoralla.**
+- Suurimmalla osalla alueista ikäluokat **pienenevät merkittävästi** (yli 21 lasta).
+- Muutamalla alueella muutos on muutaman lapsen luokkaa: Kaukovainio (−9), Keskusta (−14), Nuottasaari (+6), Sanginsuu (−3).
+- Viimeisimmän MATOn täydennysrakentamismuutokset eivät ole vielä ehtineet vaikuttaa lukuihin. Erikoisluokat eivät näy tässä tarkastelussa.
+
+---
+
+## D. Muutos alueittain – yläkouluikäiset (12–15 v)
+
+Peruskoulun yläluokkien muutos 2020–2030:
+
+- **Kasvua on vain Hiukkavaarassa, Korvensuoralla ja Kaijonharjussa.**
+- Suurimmalla osalla alueista ikäluokat pienenevät **merkittävästi, kymmeniä tai satoja lapsia**.
+- Lähellä nollaa liikkuvat alueet: Kaukovainio (+19), Koskela (−19), Nuottasaari (+9), Sanginjoki (0), Tuira (+11), Yli-Ii (−3).
+
+---
+
+## E. Tilastokeskuksen syntyvyysennuste
+
+Tilastokeskuksen vuoden 2021 ennuste arvioi syntyvyyteen lievää kasvua. On kuitenkin syytä huomata:
+
+- Edes ennusteen mukainen kasvu edustaa **korkeimmillaankin vain vuoden 1999 tasoa**.
+- 21.4.2023 päivitetty tilasto paljastaa, että syntyvyys on jo kääntynyt laskuun – ennustettu kasvu ei ole toteutunut.
+
+### Kasvu ei jakaudu tasaisesti
+
+Ennustettu syntyvyyden kasvu 2030 on suurinta **Hiukkavaarassa, Jääli-Korvensuoralla ja Pateniemessä**. Muilla alueilla tilanne on tasainen tai laskeva.
+
+---
+
+## Käytetyt aineistot
+
+- Oulun kaupungin väestösuunnite 2020–2030
+- Oulun kaupungin väestösuunnite 2019–2029
+- [Tilastokeskuksen syntyvyystilasto (Oulu, päivitetty 21.4.2023)](https://pxdata.stat.fi:443/PxWeb/sq/a1ca8c47-687b-471d-84e7-a7ad9a32f38c)
+- [Tilastokeskuksen syntyvyysennuste 2021](https://pxdata.stat.fi:443/PxWeb/sq/a6e6150f-71b7-4c36-aa0c-b4a2f06a6e2c)
+- tutkihallintoa.fi
+
+---
 
 ## Esitysaineisto
-
-Olen koonnut tarkemman aineistosarjan syntyvyystilastoista, väestöennusteista ja ikäluokkakohtaisista luvuista Canva-esitykseen. Esitys perustuu Tilastokeskuksen ja Opetushallituksen Vipunen-palvelun aineistoihin sekä Oulun kaupungin omiin palveluverkkoselvitysmateriaaleihin.
 
 <div class="ratio ratio-16x9 my-4">
   <iframe loading="lazy" src="https://www.canva.com/design/ZNeBoffbYLNc_O0/view?embed" allowfullscreen title="Palveluverkko 2023 – reunaehtojen tarkastelua"></iframe>
@@ -57,4 +101,4 @@ Olen koonnut tarkemman aineistosarjan syntyvyystilastoista, väestöennusteista 
 
 ---
 
-*Jari Laru on KT (kasvatustieteiden tohtori), Oulun kaupunginvaltuuston varavaltuutettu ja sivistyslautakunnan jäsen.*
+*Jari Laru on KT (kasvatustieteiden tohtori) ja Oulun kaupunginvaltuutettu.*
