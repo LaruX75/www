@@ -5,10 +5,26 @@ lang: fi
 translationKey: home
 ---
 
-{% set canvaCount = ((canva and canva.tableRows) or []) | length %}
-{% set slideshareCount = (slideshare or []) | length %}
-{% set aoeCount = ((finnaAoe and finnaAoe.rows) or []) | length %}
-{% set heroPresentationCount = canvaCount + slideshareCount + aoeCount %}
+{% set uniquePresentationKeys = [] %}
+{% for item in ((canva and canva.tableRows) or []) %}
+  {% set key = ((item.url or "") ~ "|" ~ (item.title or "")) | trim %}
+  {% if key != "|" and (uniquePresentationKeys.indexOf(key) == -1) %}
+    {% set _ = (uniquePresentationKeys.push(key), null) %}
+  {% endif %}
+{% endfor %}
+{% for item in (collections.presentations or []) %}
+  {% set key = (((item.data and item.data.url) or "") ~ "|" ~ ((item.data and item.data.title) or "")) | trim %}
+  {% if key != "|" and (uniquePresentationKeys.indexOf(key) == -1) %}
+    {% set _ = (uniquePresentationKeys.push(key), null) %}
+  {% endif %}
+{% endfor %}
+{% for item in ((finnaAoe and finnaAoe.rows) or []) %}
+  {% set key = ((item.url or "") ~ "|" ~ (item.title or "")) | trim %}
+  {% if key != "|" and (uniquePresentationKeys.indexOf(key) == -1) %}
+    {% set _ = (uniquePresentationKeys.push(key), null) %}
+  {% endif %}
+{% endfor %}
+{% set heroPresentationCount = uniquePresentationKeys | length %}
 {% set heroPublicationCount = (researchfi or []) | length %}
 {% set heroOpinionCount = (collections.pub_mielipide or []) | length %}
 {% set heroSpeechCount = (collections.pub_puhe or []) | length %}

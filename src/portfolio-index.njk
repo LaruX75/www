@@ -543,7 +543,26 @@ translationKey: portfolio_index
           <div class="card-body p-4">
             <span class="badge bg-info text-dark mb-2">Esitykset &amp; AOE</span>
             <h3 class="h6 fw-bold mb-2">Esitykset ja avoimet oppimateriaalit</h3>
-            <p class="small text-body-secondary mb-0">{{ (((canva and canva.tableRows) or []) | length) + ((slideshare or []) | length) + (((finnaAoe and finnaAoe.rows) or []) | length) }} materiaalia — konferenssi- ja koulutusesityksiä sekä avoimia oppimateriaaleja (AOE).</p>
+            {% set portfolioMaterialKeys = [] %}
+            {% for item in ((canva and canva.tableRows) or []) %}
+              {% set key = ((item.url or "") ~ "|" ~ (item.title or "")) | trim %}
+              {% if key != "|" and (portfolioMaterialKeys.indexOf(key) == -1) %}
+                {% set _ = (portfolioMaterialKeys.push(key), null) %}
+              {% endif %}
+            {% endfor %}
+            {% for item in (collections.presentations or []) %}
+              {% set key = (((item.data and item.data.url) or "") ~ "|" ~ ((item.data and item.data.title) or "")) | trim %}
+              {% if key != "|" and (portfolioMaterialKeys.indexOf(key) == -1) %}
+                {% set _ = (portfolioMaterialKeys.push(key), null) %}
+              {% endif %}
+            {% endfor %}
+            {% for item in ((finnaAoe and finnaAoe.rows) or []) %}
+              {% set key = ((item.url or "") ~ "|" ~ (item.title or "")) | trim %}
+              {% if key != "|" and (portfolioMaterialKeys.indexOf(key) == -1) %}
+                {% set _ = (portfolioMaterialKeys.push(key), null) %}
+              {% endif %}
+            {% endfor %}
+            <p class="small text-body-secondary mb-0">{{ portfolioMaterialKeys | length }} materiaalia — konferenssi- ja koulutusesityksiä sekä avoimia oppimateriaaleja (AOE).</p>
           </div>
         </a>
       </div>

@@ -4,6 +4,26 @@ title: Kirjoitukset ja puheet
 permalink: /kynasta/
 translationKey: writings_index
 ---
+{% set uniqueMaterialKeys = [] %}
+{% for item in ((canva and canva.tableRows) or []) %}
+  {% set key = ((item.url or "") ~ "|" ~ (item.title or "")) | trim %}
+  {% if key != "|" and (uniqueMaterialKeys.indexOf(key) == -1) %}
+    {% set _ = (uniqueMaterialKeys.push(key), null) %}
+  {% endif %}
+{% endfor %}
+{% for item in (collections.presentations or []) %}
+  {% set key = (((item.data and item.data.url) or "") ~ "|" ~ ((item.data and item.data.title) or "")) | trim %}
+  {% if key != "|" and (uniqueMaterialKeys.indexOf(key) == -1) %}
+    {% set _ = (uniqueMaterialKeys.push(key), null) %}
+  {% endif %}
+{% endfor %}
+{% for item in ((finnaAoe and finnaAoe.rows) or []) %}
+  {% set key = ((item.url or "") ~ "|" ~ (item.title or "")) | trim %}
+  {% if key != "|" and (uniqueMaterialKeys.indexOf(key) == -1) %}
+    {% set _ = (uniqueMaterialKeys.push(key), null) %}
+  {% endif %}
+{% endfor %}
+{% set totalMaterialsCount = uniqueMaterialKeys | length %}
 
 <section class="kynasta-hero py-4">
   <div class="container">
@@ -22,7 +42,7 @@ translationKey: writings_index
             Blogi <span class="nav-count">{{ collections.blog.length }}</span>
           </a>
           <a class="nav-link" href="#esitykset">
-            Materiaalit <span class="nav-count">{{ (((canva and canva.tableRows) or []) | length) + ((slideshare or []) | length) + (((finnaAoe and finnaAoe.rows) or []) | length) }}</span>
+            Materiaalit <span class="nav-count">{{ totalMaterialsCount }}</span>
           </a>
           <a class="nav-link" href="#julkaisut">
             Julkaisut <span class="nav-count">{{ researchfi.length }}</span>
@@ -561,7 +581,7 @@ translationKey: writings_index
     <div class="card shadow-sm">
       <div class="card-header bg-transparent d-flex align-items-center justify-content-between border-start border-4 border-info">
         <h2 class="h4 mb-0"><i class="bi bi-book-fill me-2 text-info"></i>Esityksiä ja opetusmateriaaleja</h2>
-        <span class="badge text-bg-info text-dark">{{ (((canva and canva.tableRows) or []) | length) + ((slideshare or []) | length) + (((finnaAoe and finnaAoe.rows) or []) | length) }}</span>
+        <span class="badge text-bg-info text-dark">{{ totalMaterialsCount }}</span>
       </div>
       <div class="card-body p-0">
         <div class="p-3 bg-body-tertiary border-bottom">
@@ -918,7 +938,16 @@ section[id] {
   const aloitteet = parseJson('aloitteet-data');
   const puheet = parseJson('puheet-data');
   const blogi = parseJson('blog-data');
-  const esitykset = parseJson('esitykset-data').map(normalizeSlidesharePresentation);
+  const esitykset = parseJson('esitykset-data')
+    .map(normalizeSlidesharePresentation)
+    .filter((item, index, arr) => {
+      const key = `${String(item?.url || '').trim()}|${String(item?.title || '').trim()}`;
+      if (!key || key === '|') return false;
+      return arr.findIndex((candidate) => {
+        const candidateKey = `${String(candidate?.url || '').trim()}|${String(candidate?.title || '').trim()}`;
+        return candidateKey === key;
+      }) === index;
+    });
   const julkaisut = parseJson('pub-data');
 
   const counts = {
