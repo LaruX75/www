@@ -16,8 +16,8 @@ templateEngineOverride: njk
         <p class="text-muted mb-3">Kaupungin ja aluehallinnon päätöksenteko perustuu yhteistyöhön. Yksittäinen valtuutettu ei saa asioita eteenpäin ilman verkostoja, dialogia ja yhteistä suuntaa.</p>
         <p class="mb-4">Olen ollut mukana yhteiskunnallisessa vaikuttamisessa nuoresta asti. Taustani asukasyhdistystoiminnassa, kunnallispolitiikassa ja koulutuksen kentällä näkyy tavassani tehdä politiikkaa: käytännöllisesti, tietoon nojaten ja pitkäjänteisesti.</p>
         <div class="d-flex flex-wrap gap-2">
-          <a href="/kynasta/#aloitteet" class="btn btn-primary">Aloitteet</a>
-          <a href="/kynasta/#puheet" class="btn btn-outline-primary">Puheet</a>
+          <a href="#valtuustoaloitteet" class="btn btn-primary">Aloitteet</a>
+          <a href="#politiikka-sisallot" class="btn btn-outline-primary">Puheet</a>
           <a href="/vaalihistoria/" class="btn btn-outline-primary">Vaalihistoria</a>
           <a href="/sidonnaisuudet/" class="btn btn-outline-primary">Sidonnaisuudet</a>
         </div>
@@ -106,22 +106,6 @@ templateEngineOverride: njk
   </div>
 </section>
 
-<section class="mb-5">
-  <div class="container">
-    <div class="card border-0 shadow-sm">
-      <div class="card-body">
-        <h2 class="h4 mb-3">Nosto blogista</h2>
-        <p class="text-muted mb-3">Mistä on hyvä kaupunginvaltuutettu tehty? (2.1.2021)</p>
-        <blockquote class="mb-3">
-          <p class="mb-2">"Iso kivi ei liiku vaikka sitä kovin koittaisi yksin työntää. Sama pätee poliittiseen päätöksentekoon, on kyettävä tekemään asioita yhdessä sekä yli puoluerajojen että oman ryhmän sisällä."</p>
-          <p class="mb-2">"Usein kysytään mitä yksittäinen valtuutettu voi tehdä valtuustossa, no, eipä juuri mitään ellei hän kykene hahmottamaan asioita isompina kokonaisuuksina."</p>
-          <p class="mb-0">"Hyvä kuntapäättäjä on aidosti kiinnostunut kuntansa asukkaiden elämästä ja huolenaiheista."</p>
-        </blockquote>
-        <a href="/2021/01/02/mista-on-hyva-kaupunginvaltuutettu-tehty/" class="btn btn-outline-primary btn-sm">Lue koko kirjoitus</a>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section class="mb-5" id="poliittiset-teemat">
   <div class="container">
@@ -554,7 +538,7 @@ templateEngineOverride: njk
     const blogTbody = document.getElementById('politics-blog-tbody');
     const blogMeta = document.getElementById('politics-blog-meta');
     const blogPagination = document.getElementById('politics-blog-pagination');
-    const BLOG_PAGE_SIZE = 3;
+    const BLOG_PAGE_SIZE = 10;
     let blogPage = 1;
 
     const blogYears = [...new Set(politicsBlogData.map((d) => new Date(d.date).getFullYear()).filter(Boolean))].sort((a, b) => b - a);
@@ -714,19 +698,8 @@ templateEngineOverride: njk
       if (contentType) contentType.value = '';
       contentPage = 1;
       renderContent();
-      document.getElementById('politiikka-blogi')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.getElementById('politiikka-sisallot')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   })();
 </script>
 
-<section class="mb-5">
-  <div class="container">
-    <div class="card border-0 shadow-sm">
-      <div class="card-body">
-        <h2 class="h4">Kirjoitukset ja puheenvuorot</h2>
-        <p class="text-muted">Kirjoitan aktiivisesti ajankohtaisista teemoista ja pidän puheenvuoroja valtuustossa sekä muissa luottamustehtävissä.</p>
-        <a href="/kynasta/" class="btn btn-outline-primary btn-sm">Siirry Kynästä-osioon</a>
-      </div>
-    </div>
-  </div>
-</section>
