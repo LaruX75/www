@@ -10,13 +10,14 @@
         <th class="text-center" style="width:70px">Year</th>
         {% if showType %}<th style="width:130px">Type</th>{% endif %}
         <th>Title</th>
-        <th style="min-width:280px">Summary</th>
+        <th class="col-abstract" style="min-width:240px">Summary</th>
+        <th class="col-subjects" style="min-width:180px">Keywords</th>
         <th style="width:200px">Author</th>
       </tr>
     </thead>
     <tbody>
       {% for thesis in thesisItems %}
-      <tr>
+      <tr data-year="{{ thesis.year }}" data-type="{{ thesis.type or '' }}">
         <td class="text-center font-monospace small fw-bold text-info">{{ thesis.year }}</td>
         {% if showType %}
         <td>
@@ -51,7 +52,7 @@
             <span class="fw-medium">{{ thesis.title }}</span>
           {% endif %}
         </td>
-        <td>
+        <td class="col-abstract">
           {% if thesis.abstract %}
             <div class="small text-muted thesis-abstract-snippet">{{ thesis.abstract }}</div>
             <button
@@ -66,6 +67,17 @@
             >
               Open summary
             </button>
+          {% else %}
+            <span class="text-muted small">—</span>
+          {% endif %}
+        </td>
+        <td class="col-subjects">
+          {% if thesis.subjects.length %}
+            <div class="d-flex flex-wrap gap-1">
+              {% for subject in thesis.subjects %}
+                <button type="button" class="badge text-bg-light border thesis-keyword-link" data-keyword="{{ subject | escape }}">{{ subject }}</button>
+              {% endfor %}
+            </div>
           {% else %}
             <span class="text-muted small">—</span>
           {% endif %}

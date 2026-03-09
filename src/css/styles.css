@@ -1718,6 +1718,15 @@ section[id] {
 [data-bs-theme="dark"] .pub-table td {
   border-color: rgba(255,255,255,0.07) !important;
 }
+
+/* Hide heavy columns on mobile to keep tables usable */
+@media (max-width: 767.98px) {
+  .pub-table .col-abstract,
+  .pub-table .col-subjects {
+    display: none !important;
+  }
+}
+
 /* --- Publication filter bar --- */
 .publication-filter-bar {
   background-color: var(--bs-tertiary-bg);

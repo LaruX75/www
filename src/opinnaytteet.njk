@@ -61,12 +61,25 @@ translationKey: theses_index
 
   {# Vuosittainen palkki (valinnainen) #}
   {% if theses.stats.byYear %}
-  <div class="d-flex gap-1 flex-wrap mb-5">
+  <div class="d-flex gap-1 flex-wrap mb-4">
     {% for item in theses.stats.byYear %}
       <span class="badge bg-dark">{{ item[0] }}: {{ item[1] }}</span>
     {% endfor %}
   </div>
   {% endif %}
+
+  {# ---- Avainsanapilvi ---- #}
+  <div class="card shadow-sm mb-5" id="thesis-subject-cloud">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+      <span class="small fw-semibold"><i class="bi bi-tags-fill me-2 text-primary"></i>Avainsanat</span>
+      <button type="button" class="btn btn-link btn-sm p-0 text-muted" id="thesis-cloud-clear" style="display:none!important">
+        <i class="bi bi-x-circle me-1"></i>Poista suodatus
+      </button>
+    </div>
+    <div class="card-body py-2 d-flex flex-wrap gap-1" id="thesis-cloud-container">
+      <span class="text-muted small">Ladataan...</span>
+    </div>
+  </div>
 
   {# ---- Pro Gradut Card ---- #}
   <div class="card shadow-sm mb-5 section-card" id="card-master">
@@ -647,6 +660,82 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // ---- Avainsanapilvi ----
+  function buildKeywordCloud() {
+    const cloudContainer = document.getElementById('thesis-cloud-container');
+    const clearBtn = document.getElementById('thesis-cloud-clear');
+    if (!cloudContainer) return;
+
+    const seen = new Set();
+    document.querySelectorAll('.thesis-keyword-link[data-keyword]').forEach(btn => {
+      const kw = btn.dataset.keyword;
+      if (kw) seen.add(kw);
+    });
+
+    const subjects = Array.from(seen).sort((a, b) => a.localeCompare(b, 'fi'));
+    cloudContainer.innerHTML = '';
+
+    if (subjects.length === 0) {
+      cloudContainer.innerHTML = '<span class="text-muted small">Ei avainsanoja.</span>';
+      return;
+    }
+
+    subjects.forEach(kw => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'badge text-bg-light border thesis-keyword-link';
+      btn.dataset.keyword = kw;
+      btn.textContent = kw;
+      cloudContainer.appendChild(btn);
+    });
+
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => {
+        document.querySelectorAll('[data-thesis-search]').forEach(input => {
+          input.value = '';
+          input.dispatchEvent(new Event('input', { bubbles: true }));
+        });
+        cloudContainer.querySelectorAll('.thesis-keyword-link').forEach(b => b.classList.remove('text-bg-primary', 'active'));
+        clearBtn.style.setProperty('display', 'none', 'important');
+      });
+    }
+  }
+
+  // Delegoitu klikkaus kaikille avainsanapainikkeille (pilvi + taulukon rivit)
+  document.addEventListener('click', (event) => {
+    const kwBtn = event.target.closest('.thesis-keyword-link');
+    if (!kwBtn) return;
+    const kw = kwBtn.dataset.keyword || '';
+    const clearBtn = document.getElementById('thesis-cloud-clear');
+    const cloudContainer = document.getElementById('thesis-cloud-container');
+
+    // Korosta aktiivinen avainsana pilvessä
+    if (cloudContainer) {
+      cloudContainer.querySelectorAll('.thesis-keyword-link').forEach(b => {
+        b.classList.remove('text-bg-primary', 'active');
+        b.classList.add('text-bg-light');
+      });
+      const cloudBtn = cloudContainer.querySelector(`.thesis-keyword-link[data-keyword="${CSS.escape(kw)}"]`);
+      if (cloudBtn) {
+        cloudBtn.classList.remove('text-bg-light');
+        cloudBtn.classList.add('text-bg-primary', 'active');
+      }
+    }
+    if (clearBtn) clearBtn.style.removeProperty('display');
+
+    // Aseta hakusana kaikkiin hakukenttiin ja käynnistä suodatus
+    document.querySelectorAll('[data-thesis-search]').forEach(input => {
+      input.value = kw;
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+
+    // Vieritä ensimmäiseen taulukkoon
+    const firstCard = document.getElementById('card-master');
+    if (firstCard) firstCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  buildKeywordCloud();
 
 });
 </script>
