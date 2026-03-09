@@ -7,8 +7,6 @@ translationKey: accessibility_statement
 lang: en
 ---
 
-# Accessibility Statement
-
 **Website:** [www.jarilaru.fi](https://www.jarilaru.fi)
 **Last tested:** 9 March 2026
 **Conformance level:** WCAG 2.1 Level AA

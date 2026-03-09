@@ -6,8 +6,6 @@ permalink: /saavutettavuus/
 translationKey: accessibility_statement
 ---
 
-# Saavutettavuusseloste
-
 **Sivusto:** [www.jarilaru.fi](https://www.jarilaru.fi)
 **Viimeksi testattu:** 9.3.2026
 **Vaatimustenmukaisuustaso:** WCAG 2.1 taso AA
