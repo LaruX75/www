@@ -1,5 +1,6 @@
 ---
 title: '410014Y Luento 4: Sopimukset ja tekijänoikeudet'
+date: 2014-09-03
 description: 'SlideShare-esitys'
 url: 'https://www.slideshare.net/slideshow/410014y-luento-4-sopimukset-ja-tekijnoikeudet/38636228'
 thumbnail: 'https://cdn.slidesharecdn.com/ss_thumbnails/tvtluento4-140903040552-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds'

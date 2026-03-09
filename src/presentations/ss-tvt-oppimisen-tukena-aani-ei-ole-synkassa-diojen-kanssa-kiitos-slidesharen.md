@@ -1,5 +1,6 @@
 ---
 title: 'TVT Oppimisen tukena (ääni ei ole synkassa diojen kanssa, kiitos slidesharen)'
+date: 2012-10-09
 description: 'SlideShare-esitys'
 url: 'https://www.slideshare.net/slideshow/tvt-oppimisen-tukena/14647647'
 thumbnail: 'https://cdn.slidesharecdn.com/ss_thumbnails/oosaluento2012b-121009023851-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds'

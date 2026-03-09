@@ -1,5 +1,6 @@
 ---
 title: 'Luento 1: mediakasvatuksesta kohti monilukutaitoa (digitaalinen media oppimisprojektina 2014)'
+date: 2014-01-09
 description: 'SlideShare-esitys'
 url: 'https://www.slideshare.net/slideshow/luento-1-mediakasvatuksesta-kohti-monilukutaitoa-digitaalinen-media-oppimisprojektina-2014/29836950'
 thumbnail: 'https://cdn.slidesharecdn.com/ss_thumbnails/luento1dime2014-140109043712-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds'

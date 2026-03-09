@@ -1,5 +1,6 @@
 ---
 title: 'Luova Ja Kriittinen Ajattelu'
+date: 2009-11-19
 description: 'SlideShare-esitys'
 url: 'https://www.slideshare.net/slideshow/luova-ja-kriittinen-ajattelu/2537552'
 thumbnail: 'https://cdn.slidesharecdn.com/ss_thumbnails/qaiku2luovajakriittinenajattelu-bluemink-2-091119095229-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds'

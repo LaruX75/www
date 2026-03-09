@@ -1,5 +1,6 @@
 ---
 title: '2. luento tieto- ja viestintätekniikan pedagogiset perusteet kurssilla. TVT ja yhteiskunta'
+date: 2011-09-01
 description: 'SlideShare-esitys'
 url: 'https://www.slideshare.net/slideshow/2-luento-tieto-ja-viestinttekniikan-pedagogiset-perusteet-kurssilla-tvt-ja-yhteiskunta/9101048'
 thumbnail: 'https://cdn.slidesharecdn.com/ss_thumbnails/tvt2luentoyhteiskunta-110901155707-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds'

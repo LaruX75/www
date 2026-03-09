@@ -1,5 +1,6 @@
 ---
 title: 'TVT opetuskäytön historiaa [finnish]'
+date: 2010-10-05
 description: 'SlideShare-esitys'
 url: 'https://www.slideshare.net/slideshow/tvt-opetuskytn-historiaa-finnish/5361471'
 thumbnail: 'https://cdn.slidesharecdn.com/ss_thumbnails/tvthistory-101005071904-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds'

@@ -1,5 +1,6 @@
 ---
 title: '"Mobiilioppiminen"'
+date: 2012-11-16
 description: 'SlideShare-esitys'
 url: 'https://www.slideshare.net/slideshow/mobiilioppiminen-15204317/15204317'
 thumbnail: 'https://cdn.slidesharecdn.com/ss_thumbnails/mobiilioppiminen12olkkari-121116013440-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds'

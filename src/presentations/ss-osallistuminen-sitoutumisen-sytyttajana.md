@@ -1,5 +1,6 @@
 ---
 title: 'Osallistuminen sitoutumisen sytyttäjänä'
+date: 2009-11-19
 description: 'SlideShare-esitys'
 url: 'https://www.slideshare.net/slideshow/osallistuminen-sitoutumisen-sytyttjn/2537573'
 thumbnail: 'https://cdn.slidesharecdn.com/ss_thumbnails/qaiku3osallistuminen-bluemink-091119095434-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds'

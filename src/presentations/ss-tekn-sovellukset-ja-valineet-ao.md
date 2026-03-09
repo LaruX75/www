@@ -1,5 +1,6 @@
 ---
 title: 'Tekn sovellukset ja_valineet_ao'
+date: 2013-05-14
 description: 'SlideShare-esitys'
 url: 'https://www.slideshare.net/slideshow/tekn-sovellukset-javalineetao/21158606'
 thumbnail: 'https://cdn.slidesharecdn.com/ss_thumbnails/teknsovelluksetjavalineetao-130514054341-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds'

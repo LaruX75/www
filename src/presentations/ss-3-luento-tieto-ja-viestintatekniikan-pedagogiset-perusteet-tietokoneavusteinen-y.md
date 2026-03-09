@@ -1,5 +1,6 @@
 ---
 title: '3. luento tieto- ja viestintätekniikan pedagogiset perusteet: tietokoneavusteinen yhteisöllinen oppiminen (CSCL)'
+date: 2011-09-07
 description: 'SlideShare-esitys'
 url: 'https://www.slideshare.net/slideshow/3-luento-tieto-ja-viestinttekniikan-pedagogiset-perusteet-tietokoneavusteinen-yhteisllinen-oppiminen-cscl/9167433'
 thumbnail: 'https://cdn.slidesharecdn.com/ss_thumbnails/tvt3luentocscl-110907162303-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds'

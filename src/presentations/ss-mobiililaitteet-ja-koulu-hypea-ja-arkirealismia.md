@@ -1,5 +1,6 @@
 ---
 title: 'Mobiililaitteet ja koulu: hypeä ja arkirealismia'
+date: 2012-10-09
 description: 'SlideShare-esitys'
 url: 'https://www.slideshare.net/slideshow/mobiililaitteet-ja-koulu-hype-ja-arkirealismia/14657236'
 thumbnail: 'https://cdn.slidesharecdn.com/ss_thumbnails/kotuopekoulutus2012b-121009151706-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds'

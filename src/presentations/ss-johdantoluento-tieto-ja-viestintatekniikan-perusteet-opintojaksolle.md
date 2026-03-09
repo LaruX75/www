@@ -1,5 +1,6 @@
 ---
 title: 'Johdantoluento tieto- ja viestintätekniikan perusteet opintojaksolle'
+date: 2011-08-31
 description: 'SlideShare-esitys'
 url: 'https://www.slideshare.net/slideshow/johdantoluento-tieto-ja-viestinttekniikan-perusteet-opintojaksolle/9088693'
 thumbnail: 'https://cdn.slidesharecdn.com/ss_thumbnails/intro-110831170815-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds'

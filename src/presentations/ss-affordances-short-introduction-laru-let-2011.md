@@ -1,5 +1,6 @@
 ---
 title: 'Affordances short introduction_laru_let_2011'
+date: 2011-09-29
 description: 'SlideShare-esitys'
 url: 'https://www.slideshare.net/slideshow/affordances-short-introductionlarulet2011/9467539'
 thumbnail: 'https://cdn.slidesharecdn.com/ss_thumbnails/affordancesshortintroductionlarulet2011-110929015606-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds'

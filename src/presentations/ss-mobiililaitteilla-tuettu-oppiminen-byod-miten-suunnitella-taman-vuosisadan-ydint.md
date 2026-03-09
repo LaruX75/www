@@ -1,5 +1,6 @@
 ---
 title: 'Mobiililaitteilla tuettu oppiminen (BYOD): miten suunnitella tämän vuosisadan ydintaitoja tukevaa osaamisen kehittämistä?'
+date: 2015-03-26
 description: 'SlideShare-esitys'
 url: 'https://www.slideshare.net/slideshow/webinari-esitysrapo/46310032'
 thumbnail: 'https://cdn.slidesharecdn.com/ss_thumbnails/webinariesitysrapo-150326051837-conversion-gate01-thumbnail.jpg?width=640&height=640&fit=bounds'
