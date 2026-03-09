@@ -1719,6 +1719,11 @@ section[id] {
   border-color: rgba(255,255,255,0.07) !important;
 }
 
+/* Tekijä vuosi-solun alla mobiilissa — oletuksena piilotettu */
+.pub-table .col-year-author {
+  display: none;
+}
+
 /* Sarakeleveydet — hallitaan CSS:ssä eikä inline-tyyleissä */
 .pub-table .col-year  { width: 60px; }
 .pub-table .col-type  { width: 120px; }
@@ -1746,14 +1751,26 @@ section[id] {
   .pub-table .col-subjects,
   .pub-table .col-author { display: none !important; }
 
-  /* Vuosi kompaktiksi: kapea, pieni teksti, vähemmän padding */
-  .pub-table .col-year { width: 46px; }
+  /* Vuosi kompaktiksi: leveämpi jotta tekijä mahtuu alle */
+  .pub-table .col-year { width: 72px; }
   .pub-table th.col-year,
   .pub-table td.col-year {
     padding-left: 6px;
     padding-right: 6px;
-    font-size: 0.72rem;
-    white-space: nowrap;
+    white-space: normal;
+  }
+  .pub-table th.col-year { font-size: 0.72rem; }
+
+  /* Näytä tekijä vuosiluvun alla */
+  .pub-table .col-year-author {
+    display: block;
+    font-family: var(--bs-font-sans-serif);
+    font-size: 0.65rem;
+    font-weight: 400;
+    color: var(--bs-secondary-color);
+    margin-top: 3px;
+    white-space: normal;
+    word-break: break-word;
   }
 
   /* Piilotetaan "Vie viite" -nappi — tilaa otsikkosolun tekstille */

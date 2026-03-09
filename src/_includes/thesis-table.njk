@@ -18,7 +18,10 @@
     <tbody>
       {% for thesis in thesisItems %}
       <tr data-year="{{ thesis.year }}" data-type="{{ thesis.type or '' }}">
-        <td class="text-center font-monospace small fw-bold text-info">{{ thesis.year }}</td>
+        <td class="col-year text-center font-monospace small fw-bold text-info">
+          {{ thesis.year }}
+          <span class="col-year-author">{{ thesis.authors | join("; ") }}</span>
+        </td>
         {% if showType %}
         <td>
           {% if thesis.type == "masterThesis" %}
