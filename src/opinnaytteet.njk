@@ -245,6 +245,12 @@ translationKey: theses_index
             <button type="button" class="btn btn-primary btn-sm rounded-pill" id="thesisCitationDownloadBtn">
               <i class="bi bi-download me-1"></i>Lataa
             </button>
+            <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill" id="thesisCitationZoteroBtn" title="Lataa RIS Zotero-tuontiin">
+              <img src="https://cdn.simpleicons.org/zotero/cc2936" alt="" width="14" height="14" class="me-1 align-text-bottom">Zotero
+            </button>
+            <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill" id="thesisCitationMendeleyBtn" title="Lataa RIS Mendeley-tuontiin">
+              <img src="https://cdn.simpleicons.org/mendeley/9d1620" alt="" width="14" height="14" class="me-1 align-text-bottom">Mendeley
+            </button>
           </div>
         </div>
         <div class="mt-3">
@@ -366,6 +372,26 @@ document.addEventListener('DOMContentLoaded', () => {
     if (format === 'chicago') return buildThesisChicago(payload);
     const { bib } = buildThesisBibTeX(payload);
     return bib;
+  }
+
+  function buildThesisRis(payload) {
+    const title = (payload.title || '').trim();
+    const authors = String(payload.authors || '')
+      .split(';')
+      .map((a) => a.trim())
+      .filter(Boolean);
+    const year = String(payload.year || '').trim();
+    const url = (payload.url || '').trim();
+    const level = getThesisLevelLabel(payload);
+    const lines = ['TY  - THES'];
+    authors.forEach((author) => lines.push(`AU  - ${author}`));
+    if (year) lines.push(`PY  - ${year}`);
+    if (title) lines.push(`TI  - ${title}`);
+    lines.push(`PB  - University of Oulu`);
+    lines.push(`M3  - ${level}`);
+    if (url) lines.push(`UR  - ${url}`);
+    lines.push('ER  -');
+    return lines.join('\n');
   }
 
   function initTablePagination(tableContainer) {
@@ -508,6 +534,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const thesisCitationOutput = document.getElementById('thesisCitationOutput');
   const thesisCitationDownloadBtn = document.getElementById('thesisCitationDownloadBtn');
   const thesisCitationCopyBtn = document.getElementById('thesisCitationCopyBtn');
+  const thesisCitationZoteroBtn = document.getElementById('thesisCitationZoteroBtn');
+  const thesisCitationMendeleyBtn = document.getElementById('thesisCitationMendeleyBtn');
 
   function renderThesisCitationPreview() {
     if (!currentCitationPayload || !thesisCitationOutput) return;
@@ -560,6 +588,22 @@ document.addEventListener('DOMContentLoaded', () => {
         thesisCitationOutput.select();
         document.execCommand('copy');
       }
+    });
+  }
+
+  if (thesisCitationZoteroBtn) {
+    thesisCitationZoteroBtn.addEventListener('click', () => {
+      if (!currentCitationPayload) return;
+      const base = sanitizeFilenamePart(currentCitationPayload.title || currentCitationPayload.authors || 'viite');
+      downloadTextFile(`${base}-zotero.ris`, buildThesisRis(currentCitationPayload) + '\n');
+    });
+  }
+
+  if (thesisCitationMendeleyBtn) {
+    thesisCitationMendeleyBtn.addEventListener('click', () => {
+      if (!currentCitationPayload) return;
+      const base = sanitizeFilenamePart(currentCitationPayload.title || currentCitationPayload.authors || 'viite');
+      downloadTextFile(`${base}-mendeley.ris`, buildThesisRis(currentCitationPayload) + '\n');
     });
   }
 
