@@ -103,6 +103,20 @@ html:not([data-bs-theme="dark"]) .text-danger {
   color: #b02a37 !important; /* ~6.4:1 on white */
 }
 
+/* ===== WCAG BADGE (footer) ===== */
+.footer-wcag-badge {
+  color: var(--bs-secondary-color);
+  border-color: var(--bs-border-color) !important;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.footer-wcag-badge:hover {
+  color: var(--bs-body-color);
+  border-color: var(--bs-body-color) !important;
+}
+.footer-wcag-icon svg {
+  flex-shrink: 0;
+}
+
 .home-hero-roles {
   display: flex;
   flex-wrap: wrap;
