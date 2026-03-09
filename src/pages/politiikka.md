@@ -13,13 +13,13 @@ templateEngineOverride: njk
       <div class="col-lg-8">
         <p class="pol-eyebrow mb-2"><i class="bi bi-building2 me-1"></i>Politiikka</p>
         <h1 class="display-5 fw-bold mb-3">Jari Laru, poliitikko</h1>
-        <p class="mb-3" style="color:rgba(255,255,255,0.75);">Kaupungin ja aluehallinnon päätöksenteko perustuu yhteistyöhön. Yksittäinen valtuutettu ei saa asioita eteenpäin ilman verkostoja, dialogia ja yhteistä suuntaa.</p>
-        <p class="mb-4" style="color:rgba(255,255,255,0.85);">Olen ollut mukana yhteiskunnallisessa vaikuttamisessa nuoresta asti. Taustani asukasyhdistystoiminnassa, kunnallispolitiikassa ja koulutuksen kentällä näkyy tavassani tehdä politiikkaa: käytännöllisesti, tietoon nojaten ja pitkäjänteisesti.</p>
+        <p class="mb-3 pol-hero-text">Kaupungin ja aluehallinnon päätöksenteko perustuu yhteistyöhön. Yksittäinen valtuutettu ei saa asioita eteenpäin ilman verkostoja, dialogia ja yhteistä suuntaa.</p>
+        <p class="mb-4 pol-hero-text pol-hero-text-strong">Olen ollut mukana yhteiskunnallisessa vaikuttamisessa nuoresta asti. Taustani asukasyhdistystoiminnassa, kunnallispolitiikassa ja koulutuksen kentällä näkyy tavassani tehdä politiikkaa: käytännöllisesti, tietoon nojaten ja pitkäjänteisesti.</p>
         <div class="d-flex flex-wrap gap-2">
-          <a href="#valtuustoaloitteet" class="btn btn-light" style="background-color:#f8f9fa;color:#1c2e4a;border-color:#f8f9fa;">Aloitteet</a>
-          <a href="#politiikka-sisallot" class="btn btn-outline-light" style="color:#f8f9fa;border-color:#f8f9fa;">Puheet</a>
-          <a href="/vaalihistoria/" class="btn btn-outline-light" style="color:#f8f9fa;border-color:#f8f9fa;">Vaalihistoria</a>
-          <a href="/sidonnaisuudet/" class="btn btn-outline-light" style="color:#f8f9fa;border-color:#f8f9fa;">Sidonnaisuudet</a>
+          <a href="#valtuustoaloitteet" class="btn pol-hero-btn-primary">Aloitteet</a>
+          <a href="/kynasta/#puheet" class="btn pol-hero-btn-outline">Puheet</a>
+          <a href="/vaalihistoria/" class="btn pol-hero-btn-outline">Vaalihistoria</a>
+          <a href="/sidonnaisuudet/" class="btn pol-hero-btn-outline">Sidonnaisuudet</a>
         </div>
       </div>
       <div class="col-lg-4">
@@ -223,89 +223,6 @@ templateEngineOverride: njk
   </div>
 </section>
 
-<section class="py-5 mb-0 bg-body-tertiary" id="politiikka-blogi">
-  <div class="container">
-    <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-pencil-square me-1"></i>Blogi</p>
-    <h2 class="h4 mb-3">Politiikka-aiheiset blogikirjoitukset</h2>
-    <div class="card border-0 shadow-sm">
-      <div class="card-body">
-        <div class="row g-2 align-items-end mb-3">
-          <div class="col-md-8">
-            <label for="politics-blog-search" class="form-label small text-muted mb-1">Suodata kirjoituksia</label>
-            <input type="search" id="politics-blog-search" class="form-control form-control-sm" placeholder="Hae otsikosta tai aiheesta..." autocomplete="off">
-          </div>
-          <div class="col-md-4">
-            <label for="politics-blog-year" class="form-label small text-muted mb-1">Vuosi</label>
-            <select id="politics-blog-year" class="form-select form-select-sm">
-              <option value="">Kaikki vuodet</option>
-            </select>
-          </div>
-        </div>
-        <div class="table-responsive">
-          <table class="table table-hover align-middle mb-0 politics-table">
-            <thead>
-              <tr>
-                <th style="width: 140px;">Päivämäärä</th>
-                <th>Otsikko</th>
-                <th style="width: 140px;">Linkki</th>
-              </tr>
-            </thead>
-            <tbody id="politics-blog-tbody"></tbody>
-          </table>
-        </div>
-        <div class="d-flex justify-content-between align-items-center mt-3">
-          <small id="politics-blog-meta" class="text-muted"></small>
-          <ul id="politics-blog-pagination" class="pagination pagination-sm mb-0 flex-wrap"></ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="py-5 mb-0" id="politiikka-sisallot">
-  <div class="container">
-    <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-collection me-1"></i>Sisällöt</p>
-    <h2 class="h4 mb-3">Aloitteet, kolumnit, mielipiteet ja puheenvuorot</h2>
-    <div class="card border-0 shadow-sm">
-      <div class="card-body">
-        <div class="row g-2 align-items-end mb-3">
-          <div class="col-md-8">
-            <label for="politics-content-search" class="form-label small text-muted mb-1">Suodata sisältöjä</label>
-            <input type="search" id="politics-content-search" class="form-control form-control-sm" placeholder="Hae otsikosta..." autocomplete="off">
-          </div>
-          <div class="col-md-4">
-            <label for="politics-content-type" class="form-label small text-muted mb-1">Sisältötyyppi</label>
-            <select id="politics-content-type" class="form-select form-select-sm">
-              <option value="">Kaikki</option>
-              <option value="Aloite">Aloite</option>
-              <option value="Kolumni">Kolumni</option>
-              <option value="Mielipide">Mielipide</option>
-              <option value="Puheenvuoro">Puheenvuoro</option>
-            </select>
-          </div>
-        </div>
-        <div class="table-responsive">
-          <table class="table table-hover align-middle mb-0 politics-table">
-            <thead>
-              <tr>
-                <th style="width: 140px;">Päivämäärä</th>
-                <th style="width: 160px;">Sisältötyyppi</th>
-                <th>Otsikko</th>
-                <th style="width: 140px;">Linkki</th>
-              </tr>
-            </thead>
-            <tbody id="politics-content-tbody"></tbody>
-          </table>
-        </div>
-        <div class="d-flex justify-content-between align-items-center mt-3">
-          <small id="politics-content-meta" class="text-muted"></small>
-          <ul id="politics-content-pagination" class="pagination pagination-sm mb-0 flex-wrap"></ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <script id="politics-blog-data" type="application/json">
 [
 {% for post in collections.blog %}
@@ -369,8 +286,8 @@ templateEngineOverride: njk
 <style>
   /* ===== HERO ===== */
   .pol-hero {
-    background: #1c2e4a;
-    color: #fff;
+    background: linear-gradient(135deg, #eaf3ff 0%, #dcecff 100%);
+    color: #12304f;
     position: relative;
     overflow: hidden;
   }
@@ -382,8 +299,8 @@ templateEngineOverride: njk
       -55deg,
       transparent,
       transparent 48px,
-      rgba(255,255,255,0.018) 48px,
-      rgba(255,255,255,0.018) 96px
+      rgba(13, 110, 253, 0.08) 48px,
+      rgba(13, 110, 253, 0.08) 96px
     );
     pointer-events: none;
   }
@@ -396,7 +313,7 @@ templateEngineOverride: njk
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: .1em;
-    color: rgba(255,255,255,0.5);
+    color: rgba(18, 48, 79, 0.72);
   }
   .pol-eyebrow--dark {
     color: var(--bs-secondary-color);
@@ -404,8 +321,8 @@ templateEngineOverride: njk
   .pol-hero-card {
     border-radius: 0.5rem;
     overflow: hidden;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.7);
+    border: 1px solid rgba(18, 48, 79, 0.15);
     backdrop-filter: blur(4px);
   }
   .pol-hero-img {
@@ -416,26 +333,76 @@ templateEngineOverride: njk
   }
   .pol-hero-caption {
     font-size: 0.8rem;
-    color: rgba(255,255,255,0.55);
+    color: rgba(18, 48, 79, 0.8);
     padding: 0.6rem 0.8rem;
     margin: 0;
   }
-  [data-bs-theme="dark"] .pol-hero { background: #0e1c2f; }
-
-  /* Hero-painikkeet: eksplisiittiset värit CSS-muuttujien ohitukseksi (WCAG 1.4.3) */
-  .pol-hero .btn-light {
+  .pol-hero-text { color: rgba(18, 48, 79, 0.82); }
+  .pol-hero-text-strong { color: rgba(18, 48, 79, 0.92); }
+  .pol-hero-btn-primary,
+  .pol-hero-btn-outline {
+    font-weight: 600;
+    border-width: 1px;
+  }
+  .pol-hero-btn-primary {
+    background-color: #0d6efd;
+    color: #fff;
+    border-color: #0d6efd;
+  }
+  .pol-hero-btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0b5ed7;
+    color: #fff;
+  }
+  .pol-hero-btn-outline {
+    background-color: transparent;
+    color: #0d6efd;
+    border-color: #0d6efd;
+  }
+  .pol-hero-btn-outline:hover {
+    background-color: #0d6efd;
+    color: #fff;
+    border-color: #0d6efd;
+  }
+  [data-bs-theme="dark"] .pol-hero {
+    background: #0e1c2f;
+    color: #fff;
+  }
+  [data-bs-theme="dark"] .pol-hero::after {
+    background: repeating-linear-gradient(
+      -55deg,
+      transparent,
+      transparent 48px,
+      rgba(255, 255, 255, 0.018) 48px,
+      rgba(255, 255, 255, 0.018) 96px
+    );
+  }
+  [data-bs-theme="dark"] .pol-eyebrow { color: rgba(255,255,255,0.5); }
+  [data-bs-theme="dark"] .pol-hero-text { color: rgba(255,255,255,0.75); }
+  [data-bs-theme="dark"] .pol-hero-text-strong { color: rgba(255,255,255,0.85); }
+  [data-bs-theme="dark"] .pol-hero-card {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.12);
+  }
+  [data-bs-theme="dark"] .pol-hero-caption { color: rgba(255,255,255,0.55); }
+  [data-bs-theme="dark"] .pol-hero-btn-primary {
     background-color: #f8f9fa;
     color: #1c2e4a;
     border-color: #f8f9fa;
   }
-  .pol-hero .btn-outline-light {
-    background-color: transparent;
+  [data-bs-theme="dark"] .pol-hero-btn-primary:hover {
+    background-color: #ffffff;
+    color: #1c2e4a;
+    border-color: #ffffff;
+  }
+  [data-bs-theme="dark"] .pol-hero-btn-outline {
     color: #f8f9fa;
     border-color: #f8f9fa;
   }
-  .pol-hero .btn-outline-light:hover {
+  [data-bs-theme="dark"] .pol-hero-btn-outline:hover {
     background-color: rgba(248, 249, 250, 0.1);
     color: #f8f9fa;
+    border-color: #f8f9fa;
   }
 
   /* ===== ROLE CARDS ===== */
@@ -482,19 +449,6 @@ templateEngineOverride: njk
     color: var(--bs-primary);
   }
 
-  /* ===== TABLES ===== */
-  .politics-table th {
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-    border-bottom-width: 1px;
-  }
-  .politics-table td { vertical-align: middle; }
-  .politics-table .col-date {
-    white-space: nowrap;
-    color: var(--bs-secondary-color);
-  }
-
   /* ===== THEME CARDS (JS-rendered) ===== */
   .politics-theme-card {
     border: 0;
@@ -519,11 +473,6 @@ templateEngineOverride: njk
 
 <script>
   (() => {
-    const fiDate = (value) => {
-      const d = new Date(value);
-      return Number.isNaN(d.getTime()) ? '' : d.toLocaleDateString('fi-FI');
-    };
-
     const politicsTerms = [
       'politiikka', 'kuntavaalit', 'aluevaalit', 'valtuusto', 'kaupunginvaltuusto',
       'kaupunginhallitus', 'lautakunta', 'aloite', 'sidonnaisuudet', 'vaalikone'
@@ -681,9 +630,7 @@ templateEngineOverride: njk
                   ${group.mielipide ? `<span class="badge rounded-pill text-bg-info-subtle text-info-emphasis">Mielipiteet ${group.mielipide}</span>` : ''}
                 </div>
                 <div class="theme-links d-grid gap-2 mb-3">${quickLinks || '<span class="small text-muted">Ei nostoja.</span>'}</div>
-                <button type="button" class="btn btn-outline-primary btn-sm mt-auto align-self-start" data-theme-hint="${escHtml(group.hint)}">
-                  Näytä teeman sisällöt
-                </button>
+                <a href="/kynasta/" class="btn btn-outline-primary btn-sm mt-auto align-self-start">Avaa Kynästä</a>
               </div>
             </article>
           </div>
@@ -691,174 +638,6 @@ templateEngineOverride: njk
       }).join('');
     }
 
-    // ---------- Taulukko 1: politiikka-blogi ----------
-    const blogSearch = document.getElementById('politics-blog-search');
-    const blogYear = document.getElementById('politics-blog-year');
-    const blogTbody = document.getElementById('politics-blog-tbody');
-    const blogMeta = document.getElementById('politics-blog-meta');
-    const blogPagination = document.getElementById('politics-blog-pagination');
-    const BLOG_PAGE_SIZE = 10;
-    let blogPage = 1;
-
-    const blogYears = [...new Set(politicsBlogData.map((d) => new Date(d.date).getFullYear()).filter(Boolean))].sort((a, b) => b - a);
-    blogYears.forEach((year) => {
-      const opt = document.createElement('option');
-      opt.value = String(year);
-      opt.textContent = String(year);
-      blogYear?.appendChild(opt);
-    });
-
-    function filteredBlog() {
-      const q = (blogSearch?.value || '').toLowerCase().trim();
-      const y = blogYear?.value || '';
-      return politicsBlogData.filter((item) => {
-        const yearOk = !y || String(new Date(item.date).getFullYear()) === y;
-        const qOk = !q || item.title.toLowerCase().includes(q) || (item.categories || []).join(' ').toLowerCase().includes(q) || (item.keywords || []).join(' ').toLowerCase().includes(q);
-        return yearOk && qOk;
-      });
-    }
-
-    function renderBlogPagination(totalPages) {
-      if (!blogPagination) return;
-      blogPagination.innerHTML = '';
-      for (let i = 1; i <= totalPages; i += 1) {
-        const li = document.createElement('li');
-        li.className = `page-item ${i === blogPage ? 'active' : ''}`;
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'page-link';
-        btn.textContent = String(i);
-        btn.addEventListener('click', () => {
-          blogPage = i;
-          renderBlog();
-        });
-        li.appendChild(btn);
-        blogPagination.appendChild(li);
-      }
-    }
-
-    function renderBlog() {
-      const rows = filteredBlog();
-      const totalPages = Math.max(1, Math.ceil(rows.length / BLOG_PAGE_SIZE));
-      if (blogPage > totalPages) blogPage = totalPages;
-      const start = (blogPage - 1) * BLOG_PAGE_SIZE;
-      const slice = rows.slice(start, start + BLOG_PAGE_SIZE);
-
-      if (!blogTbody) return;
-      if (slice.length === 0) {
-        blogTbody.innerHTML = '<tr><td colspan="3" class="text-center text-muted py-4">Ei hakua vastaavia kirjoituksia.</td></tr>';
-      } else {
-        blogTbody.innerHTML = slice.map((item) => `
-          <tr>
-            <td class="col-date">${fiDate(item.date)}</td>
-            <td>${item.title}</td>
-            <td><a class="btn btn-outline-primary btn-sm" href="${item.url}">Avaa</a></td>
-          </tr>
-        `).join('');
-      }
-
-      if (blogMeta) {
-        if (rows.length === 0) blogMeta.textContent = '0 tulosta';
-        else blogMeta.textContent = `Näytetään ${start + 1}–${Math.min(start + BLOG_PAGE_SIZE, rows.length)} / ${rows.length}`;
-      }
-      renderBlogPagination(totalPages);
-    }
-
-    blogSearch?.addEventListener('input', () => { blogPage = 1; renderBlog(); });
-    blogYear?.addEventListener('change', () => { blogPage = 1; renderBlog(); });
-    renderBlog();
-
-    // ---------- Taulukko 2: yhdistetty sisältö ----------
-    const contentSearch = document.getElementById('politics-content-search');
-    const contentType = document.getElementById('politics-content-type');
-    const contentTbody = document.getElementById('politics-content-tbody');
-    const contentMeta = document.getElementById('politics-content-meta');
-    const contentPagination = document.getElementById('politics-content-pagination');
-    const CONTENT_PAGE_SIZE = 10;
-    let contentPage = 1;
-
-    function filteredContent() {
-      const q = (contentSearch?.value || '').toLowerCase().trim();
-      const t = contentType?.value || '';
-      return contentData.filter((item) => {
-        const bag = [
-          item.title || '',
-          ...(item.categories || []),
-          ...(item.keywords || [])
-        ].join(' ').toLowerCase();
-        const qOk = !q || bag.includes(q);
-        const tOk = !t || item.contentType === t;
-        return qOk && tOk;
-      });
-    }
-
-    function renderContentPagination(totalPages) {
-      if (!contentPagination) return;
-      contentPagination.innerHTML = '';
-      for (let i = 1; i <= totalPages; i += 1) {
-        const li = document.createElement('li');
-        li.className = `page-item ${i === contentPage ? 'active' : ''}`;
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'page-link';
-        btn.textContent = String(i);
-        btn.addEventListener('click', () => {
-          contentPage = i;
-          renderContent();
-        });
-        li.appendChild(btn);
-        contentPagination.appendChild(li);
-      }
-    }
-
-    function renderContent() {
-      const rows = filteredContent();
-      const totalPages = Math.max(1, Math.ceil(rows.length / CONTENT_PAGE_SIZE));
-      if (contentPage > totalPages) contentPage = totalPages;
-      const start = (contentPage - 1) * CONTENT_PAGE_SIZE;
-      const slice = rows.slice(start, start + CONTENT_PAGE_SIZE);
-
-      if (!contentTbody) return;
-      if (slice.length === 0) {
-        contentTbody.innerHTML = '<tr><td colspan="4" class="text-center text-muted py-4">Ei hakua vastaavia sisältöjä.</td></tr>';
-      } else {
-        contentTbody.innerHTML = slice.map((item) => `
-          <tr>
-            <td class="col-date">${fiDate(item.date)}</td>
-            <td><span class="badge bg-light text-dark border">${item.contentType}</span></td>
-            <td>${item.title}</td>
-            <td><a class="btn btn-outline-primary btn-sm" href="${item.url}">Avaa</a></td>
-          </tr>
-        `).join('');
-      }
-
-      if (contentMeta) {
-        if (rows.length === 0) contentMeta.textContent = '0 tulosta';
-        else contentMeta.textContent = `Näytetään ${start + 1}–${Math.min(start + CONTENT_PAGE_SIZE, rows.length)} / ${rows.length}`;
-      }
-      renderContentPagination(totalPages);
-    }
-
-    contentSearch?.addEventListener('input', () => { contentPage = 1; renderContent(); });
-    contentType?.addEventListener('change', () => { contentPage = 1; renderContent(); });
-    renderContent();
-
     renderThemeCards();
-    themeGrid?.addEventListener('click', (event) => {
-      const btn = event.target.closest('[data-theme-hint]');
-      if (!btn) return;
-      const hint = String(btn.getAttribute('data-theme-hint') || '').trim();
-      if (!hint) return;
-      if (blogSearch) blogSearch.value = hint;
-      if (blogYear) blogYear.value = '';
-      blogPage = 1;
-      renderBlog();
-      if (contentSearch) contentSearch.value = hint;
-      if (contentType) contentType.value = '';
-      contentPage = 1;
-      renderContent();
-      document.getElementById('politiikka-sisallot')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
   })();
 </script>
-
