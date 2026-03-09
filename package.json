@@ -11,7 +11,8 @@
     "build:links": "CHECK_EXTERNAL_LINKS=true npx @11ty/eleventy",
     "build:search": "npm run build && node scripts/run-pagefind.js",
     "check:i18n-seo": "node scripts/check-i18n-seo.js",
-    "check:seo-health": "node scripts/check-seo-health.js"
+    "check:seo-health": "node scripts/check-seo-health.js",
+    "fetch:keywords": "node scripts/fetch-thesis-keywords.js"
   },
   "dependencies": {
     "@11ty/eleventy": "^2.0.1",
@@ -27,7 +28,8 @@
     "eleventy-plugin-toc": "^1.1.5",
     "markdown-it": "^14.1.1",
     "markdown-it-anchor": "^9.2.0",
-    "node-fetch": "^3.3.2"
+    "node-fetch": "^3.3.2",
+    "pdf-parse": "^2.4.5"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.11.1",

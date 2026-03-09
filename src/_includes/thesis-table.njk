@@ -11,7 +11,7 @@
         {% if showType %}<th style="width:130px">Tyyppi</th>{% endif %}
         <th>Otsikko</th>
         <th class="col-abstract" style="min-width:240px">Tiivistelmä</th>
-        <th class="col-subjects" style="min-width:180px">Pääaine</th>
+        <th class="col-subjects" style="min-width:180px">Avainsanat</th>
         <th style="width:180px">Tekijä</th>
       </tr>
     </thead>
@@ -72,10 +72,16 @@
           {% endif %}
         </td>
         <td class="col-subjects">
-          {% if thesis.subjects.length %}
+          {% if thesis.keywords.length %}
+            <div class="d-flex flex-wrap gap-1">
+              {% for kw in thesis.keywords %}
+                <button type="button" class="badge text-bg-light border thesis-keyword-link" data-keyword="{{ kw | escape }}">{{ kw }}</button>
+              {% endfor %}
+            </div>
+          {% elif thesis.subjects.length %}
             <div class="d-flex flex-wrap gap-1">
               {% for subject in thesis.subjects %}
-                <button type="button" class="badge text-bg-light border thesis-keyword-link" data-keyword="{{ subject | escape }}">{{ subject }}</button>
+                <button type="button" class="badge text-bg-secondary border thesis-keyword-link" data-keyword="{{ subject | escape }}" title="Pääaine">{{ subject }}</button>
               {% endfor %}
             </div>
           {% else %}

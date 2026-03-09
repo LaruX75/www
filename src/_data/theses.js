@@ -1,6 +1,19 @@
+const fs = require('fs');
+const path = require('path');
+
 const BASE = 'https://oulurepo.oulu.fi/open-search/';
 const NAME = 'Laru';  // ← vaihda ohjaajan sukunimi
 const RPP = 100;
+
+// Lataa PDF:istä poimitut avainsanat cachesta (päivitetään: npm run fetch:keywords)
+function loadKeywordsCache() {
+  try {
+    const cachePath = path.join(__dirname, 'thesis-keywords-cache.json');
+    return JSON.parse(fs.readFileSync(cachePath, 'utf8'));
+  } catch {
+    return {};
+  }
+}
 
 // Rakenna Lucene-kysely
 function buildQuery(role, types) {
@@ -68,6 +81,7 @@ function parseKK(xmlStr) {
             abstract: getMeta('description', 'abstract').substring(0, 300),
             language: getMeta('language', 'iso'),
             subjects: getMetaAll('subject', 'discipline'),
+            keywords: [], // täytetään cachesta alla
         });
     }
     return items;
@@ -114,6 +128,11 @@ function filterByName(items, name, role) {
 
 module.exports = async function () {
     console.log('[theses] Haetaan opinnäytetöitä OuluREPO:sta...');
+    const keywordsCache = loadKeywordsCache();
+    const addKeywords = items => items.map(t => ({
+        ...t,
+        keywords: keywordsCache[t.link] || [],
+    }));
 
     try {
         // Hae ohjaajan gradut ja kandit
@@ -127,15 +146,15 @@ module.exports = async function () {
         const reviewer = filterByName(rawReviewer, NAME, 'reviewer');
 
         // Jaa tyyppien mukaan
-        const gradut = advisor.filter(t => t.type === 'masterThesis')
-            .sort((a, b) => (b.year || '').localeCompare(a.year || ''));
-        const kandit = advisor.filter(t => t.type === 'bachelorThesis')
-            .sort((a, b) => (b.year || '').localeCompare(a.year || ''));
+        const gradut = addKeywords(advisor.filter(t => t.type === 'masterThesis')
+            .sort((a, b) => (b.year || '').localeCompare(a.year || '')));
+        const kandit = addKeywords(advisor.filter(t => t.type === 'bachelorThesis')
+            .sort((a, b) => (b.year || '').localeCompare(a.year || '')));
 
         // Deduplikoi tarkastetut (poista ne jotka ovat myös ohjattuja)
         const advisorLinks = new Set(advisor.map(t => t.link));
-        const reviewerOnly = reviewer.filter(t => !advisorLinks.has(t.link))
-            .sort((a, b) => (b.year || '').localeCompare(a.year || ''));
+        const reviewerOnly = addKeywords(reviewer.filter(t => !advisorLinks.has(t.link))
+            .sort((a, b) => (b.year || '').localeCompare(a.year || '')));
 
         // Yhteenveto vuosittain
         const byYear = {};
