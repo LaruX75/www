@@ -667,13 +667,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const clearBtn = document.getElementById('thesis-cloud-clear');
     if (!cloudContainer) return;
 
-    const seen = new Set();
+    const freq = new Map();
     document.querySelectorAll('.thesis-keyword-link[data-keyword]').forEach(btn => {
-      const kw = btn.dataset.keyword;
-      if (kw) seen.add(kw);
+      const kw = (btn.dataset.keyword || '').trim();
+      if (!kw) return;
+      freq.set(kw, (freq.get(kw) || 0) + 1);
     });
 
-    const subjects = Array.from(seen).sort((a, b) => a.localeCompare(b, 'fi'));
+    const subjects = Array.from(freq.keys()).sort((a, b) => a.localeCompare(b, 'fi'));
     cloudContainer.innerHTML = '';
 
     if (subjects.length === 0) {
@@ -681,12 +682,25 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
+    const counts = subjects.map(kw => freq.get(kw) || 0);
+    const minCount = Math.min(...counts);
+    const maxCount = Math.max(...counts);
+    const normalize = (count) => {
+      if (maxCount === minCount) return 0.5;
+      return (count - minCount) / (maxCount - minCount);
+    };
+
     subjects.forEach(kw => {
+      const count = freq.get(kw) || 1;
+      const scale = normalize(count);
       const btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'badge text-bg-light border thesis-keyword-link';
       btn.dataset.keyword = kw;
       btn.textContent = kw;
+      btn.style.setProperty('--thesis-keyword-size', `${(0.78 + (scale * 0.72)).toFixed(2)}rem`);
+      btn.style.setProperty('--thesis-keyword-weight', String(Math.round(500 + (scale * 250))));
+      btn.title = `${kw} (${count})`;
       cloudContainer.appendChild(btn);
     });
 
@@ -776,6 +790,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 [data-bs-theme="dark"] .thesis-filter-input::placeholder {
   color: rgba(232, 241, 255, 0.75);
+}
+
+#thesis-cloud-container .thesis-keyword-link {
+  font-size: var(--thesis-keyword-size, 0.9rem);
+  font-weight: var(--thesis-keyword-weight, 550);
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .thesis-abstract-snippet {
