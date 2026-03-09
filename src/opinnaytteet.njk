@@ -198,10 +198,20 @@ translationKey: theses_index
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Sulje"></button>
       </div>
       <div class="modal-body">
+        <div class="border rounded p-2 mb-3 bg-body-secondary">
+          <p class="text-uppercase mb-1" style="font-size:0.65rem;letter-spacing:.08em;color:var(--bs-secondary-color);">APA 7</p>
+          <p class="mb-0 small font-monospace lh-sm" id="thesisModalApaText"></p>
+        </div>
         <h3 class="h6 mb-2" id="thesisAbstractModalTitle"></h3>
-        <p class="mb-0" id="thesisAbstractModalText"></p>
+        <div class="d-none d-md-block" style="max-height:260px;overflow-y:auto;padding-right:4px;">
+          <p class="small mb-0 text-body" id="thesisAbstractModalTextDesktop"></p>
+        </div>
+        <p class="d-md-none small mb-0 text-body thesis-abstract-snippet" id="thesisAbstractModalTextMobile"></p>
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer gap-2">
+        <button type="button" class="btn btn-outline-secondary btn-sm" id="thesisAbstractExportBtn">
+          <i class="bi bi-quote me-1"></i>Vie viite
+        </button>
         <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" id="thesisAbstractModalOpen">
           <i class="bi bi-box-arrow-up-right me-1"></i>Avaa koko opinnäytetyö
         </a>
@@ -223,7 +233,7 @@ translationKey: theses_index
             <label for="thesisCitationFormatSelect" class="form-label small text-muted">Viittausmuoto</label>
             <select id="thesisCitationFormatSelect" class="form-select form-select-sm">
               <option value="bibtex">BibTeX (.bib)</option>
-              <option value="apa">APA</option>
+              <option value="apa">APA 7</option>
               <option value="mla">MLA</option>
               <option value="chicago">Chicago</option>
             </select>
@@ -555,8 +565,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const abstractModalEl = document.getElementById('thesisAbstractModal');
   const abstractModalTitle = document.getElementById('thesisAbstractModalTitle');
-  const abstractModalText = document.getElementById('thesisAbstractModalText');
+  const abstractModalTextDesktop = document.getElementById('thesisAbstractModalTextDesktop');
+  const abstractModalTextMobile = document.getElementById('thesisAbstractModalTextMobile');
   const abstractModalOpen = document.getElementById('thesisAbstractModalOpen');
+  const thesisModalApaText = document.getElementById('thesisModalApaText');
+  const thesisAbstractExportBtn = document.getElementById('thesisAbstractExportBtn');
 
   document.addEventListener('click', (event) => {
     const trigger = event.target.closest('.thesis-abstract-trigger');
@@ -565,13 +578,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const title = trigger.getAttribute('data-thesis-title') || 'Opinnäytetyö';
     const summary = trigger.getAttribute('data-thesis-abstract') || 'Tiivistelmää ei saatavilla.';
     const url = trigger.getAttribute('data-thesis-url') || '#';
+    const authors = trigger.getAttribute('data-thesis-authors') || '';
+    const year = trigger.getAttribute('data-thesis-year') || '';
+    const type = trigger.getAttribute('data-thesis-type') || '';
+    currentCitationPayload = { title, authors, year, type, url };
     if (abstractModalTitle) abstractModalTitle.textContent = title;
-    if (abstractModalText) abstractModalText.innerHTML = escapeHtml(summary).replace(/\n/g, '<br>');
+    const escaped = escapeHtml(summary).replace(/\n/g, '<br>');
+    if (abstractModalTextDesktop) abstractModalTextDesktop.innerHTML = escaped;
+    if (abstractModalTextMobile) abstractModalTextMobile.innerHTML = escaped;
     if (abstractModalOpen) abstractModalOpen.href = url;
+    if (thesisModalApaText) thesisModalApaText.textContent = buildThesisApa(currentCitationPayload);
     if (window.bootstrap && window.bootstrap.Modal && abstractModalEl) {
       window.bootstrap.Modal.getOrCreateInstance(abstractModalEl).show();
     }
   });
+
+  if (thesisAbstractExportBtn) {
+    thesisAbstractExportBtn.addEventListener('click', () => {
+      if (!currentCitationPayload) return;
+      if (thesisCitationFormatSelect) thesisCitationFormatSelect.value = 'apa';
+      renderThesisCitationPreview();
+      if (window.bootstrap && window.bootstrap.Modal && thesisCitationModalEl) {
+        window.bootstrap.Modal.getOrCreateInstance(thesisCitationModalEl).show();
+      }
+    });
+  }
 
 });
 </script>
