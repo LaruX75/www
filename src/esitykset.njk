@@ -80,7 +80,6 @@ translationKey: presentations_index
     <h2 id="canva-heading" class="section-title mb-4">
       <i class="bi bi-star-fill text-warning me-2" style="font-size: 1rem;"></i>Canva-esitykset
     </h2>
-    <p class="text-center text-danger fw-bold mb-3">Vain muutama esitys tuotu kokeilua varten.</p>
     {% if canva and canva.tableRows and canva.tableRows.length %}
       <div class="presentation-scroller mb-4" data-key="canva" aria-label="Canva-esitysten skrolleri">
         <div class="presentation-scroller-track"></div>
@@ -89,10 +88,12 @@ translationKey: presentations_index
         <table class="table table-hover align-middle mb-0 pub-table">
           <thead>
             <tr>
-              <th>Otsikko</th>
-              <th>Kuvaus</th>
-              <th class="text-nowrap">Päiväys / vuosi</th>
-              <th class="text-nowrap">Avaa</th>
+              <th class="text-center" style="width:140px">Päivämäärä</th>
+              <th style="min-width:170px">Esikatselu</th>
+              <th style="min-width:200px;max-width:260px;">Otsikko</th>
+              <th style="min-width:220px">Tiivistelmä</th>
+              <th style="min-width:190px">Avainsanat</th>
+              <th style="width:90px" class="text-center">Avaa</th>
             </tr>
           </thead>
           <tbody id="table-body-canva"></tbody>
@@ -323,9 +324,10 @@ translationKey: presentations_index
         title: r.title || "Nimetön esitys",
         url: r.url || "",
         thumbnail: r.thumbnail || "",
-        description: r.description || (Array.isArray(r.categories) && r.categories.length ? r.categories.join(", ") : "Canva-esitys"),
+        description: r.description || "",
+        keywords: Array.isArray(r.categories) ? r.categories.filter(Boolean) : [],
         meta: "Canva",
-        date: r.date || ""
+        date: toDisplayDate(toIsoDate(r.date || r.publishedAt || r.createdAt || r.updatedAt || "") || "")
       }));
     }
 
@@ -390,7 +392,10 @@ translationKey: presentations_index
 
     const htmlCards = cards.map((item) => {
       const thumb = item.thumbnail
-        ? `<img src="${escHtml(item.thumbnail)}" class="card-img-top" alt="${escHtml(item.title)}">`
+        ? `<div class="scroller-media">
+             <img src="${escHtml(item.thumbnail)}" class="card-img-top" alt="${escHtml(item.title)}" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+             <div class="scroller-placeholder" style="display:none;"><i class="bi ${escHtml(iconByKey[key] || "bi-file-earmark")}"></i></div>
+           </div>`
         : `<div class="scroller-placeholder"><i class="bi ${escHtml(iconByKey[key] || "bi-file-earmark")}"></i></div>`;
       const link = item.url
         ? `<a href="${escHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm rounded-pill px-3">${escHtml(linkLabelByKey[key] || "Avaa")} <i class="bi bi-arrow-up-right"></i></a>`
@@ -439,21 +444,48 @@ translationKey: presentations_index
     const start = (page - 1) * PAGE_SIZE;
     const pageRows = rows.slice(start, start + PAGE_SIZE);
 
-    tbody.innerHTML = pageRows.map((item) => `
-      <tr>
-        <td class="fw-semibold" data-label="Otsikko">${escHtml(item.title)}</td>
-        <td data-label="Kuvaus">
-          <div class="small">${escHtml(truncate(item.description, 140) || "-")}</div>
-          <div class="small text-muted">${escHtml(item.meta || "")}</div>
-        </td>
-        <td class="text-nowrap" data-label="Päiväys / vuosi">${escHtml(item.date || "-")}</td>
-        <td data-label="Avaa">
-          ${item.url
-            ? `<a href="${escHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-3">${escHtml(linkLabelByKey[key] || "Avaa")}</a>`
-            : `<span class="text-muted small">Ei linkkiä</span>`}
-        </td>
-      </tr>
-    `).join("");
+    if (key === "canva") {
+      tbody.innerHTML = pageRows.map((item) => {
+        const keywords = Array.isArray(item.keywords) ? item.keywords : [];
+        const keywordHtml = keywords.length
+          ? keywords.map((k) => `<span class="badge text-bg-light text-dark border me-1 mb-1">${escHtml(k)}</span>`).join("")
+          : '<span class="text-muted small">Ei saatavilla</span>';
+        const preview = item.thumbnail
+          ? `<img src="${escHtml(item.thumbnail)}" alt="${escHtml(item.title)}" class="img-fluid border" style="max-height:72px;object-fit:cover;" loading="lazy" decoding="async" onerror="this.outerHTML='<span class=&quot;text-muted small&quot;>Ei saatavilla</span>';">`
+          : '<span class="text-muted small">Ei saatavilla</span>';
+        const summary = item.description ? escHtml(truncate(item.description, 220)) : '<span class="text-muted small">Ei saatavilla</span>';
+        return `
+          <tr>
+            <td class="text-center small text-muted font-monospace" data-label="Päivämäärä">${escHtml(item.date || "Ei saatavilla")}</td>
+            <td class="small text-muted text-center" data-label="Esikatselu">${preview}</td>
+            <td class="fw-semibold" data-label="Otsikko">${escHtml(item.title)}</td>
+            <td class="small" data-label="Tiivistelmä">${summary}</td>
+            <td data-label="Avainsanat">${keywordHtml}</td>
+            <td class="text-center" data-label="Avaa">
+              ${item.url
+                ? `<a href="${escHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Avaa esitys"><i class="bi bi-arrow-up-right"></i></a>`
+                : `<span class="text-muted small">Ei linkkiä</span>`}
+            </td>
+          </tr>
+        `;
+      }).join("");
+    } else {
+      tbody.innerHTML = pageRows.map((item) => `
+        <tr>
+          <td class="fw-semibold" data-label="Otsikko">${escHtml(item.title)}</td>
+          <td data-label="Kuvaus">
+            <div class="small">${escHtml(truncate(item.description, 140) || "-")}</div>
+            <div class="small text-muted">${escHtml(item.meta || "")}</div>
+          </td>
+          <td class="text-nowrap" data-label="Päiväys / vuosi">${escHtml(item.date || "-")}</td>
+          <td data-label="Avaa">
+            ${item.url
+              ? `<a href="${escHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-3">${escHtml(linkLabelByKey[key] || "Avaa")}</a>`
+              : `<span class="text-muted small">Ei linkkiä</span>`}
+          </td>
+        </tr>
+      `).join("");
+    }
 
     renderPagination(key, rows, page, onChange);
   }
@@ -564,9 +596,14 @@ translationKey: presentations_index
   flex: 0 0 280px;
 }
 
+.scroller-media {
+  height: 150px;
+}
+
 .presentation-scroller-card .card-img-top,
 .scroller-placeholder {
   height: 150px;
+  width: 100%;
   object-fit: cover;
 }
 

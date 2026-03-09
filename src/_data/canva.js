@@ -9,7 +9,7 @@ module.exports = function () {
       description: item.summary || "",
       url: item.link || null,
       thumbnail: item.thumbnail || null,
-      date: null,
+      date: item.date || item.publishedAt || item.createdAt || item.updatedAt || null,
       categories: Array.isArray(item.keywords) ? item.keywords : [],
       location: item.location || "",
       folder: item.folder || "",
