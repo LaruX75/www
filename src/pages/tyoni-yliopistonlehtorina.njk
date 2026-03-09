@@ -8,113 +8,206 @@ description: Yliopistonlehtorin työssäni yhdistyvät opetus, tutkimus ja yhtei
 templateEngineOverride: njk
 ---
 
-<main class="legacy-work-page">
-<section class="container py-4">
-  <header class="mb-4 text-center">
-    <h1 class="display-6 fw-bold mb-2">Työni yliopistonlehtorina</h1>
-    <p class="lead text-muted mb-0">Opetus, tutkimus ja yhteiskunnallinen vaikuttaminen</p>
-  </header>
-  <h2 class="h3 mb-4 text-center">Yliopistonlehtori, teknologiatuettu oppiminen ja opetus</h2>
-  <div class="row g-4">
-    <div class="col-lg-4">
-      <article class="card h-100 border-0 shadow-sm">
-        <div class="card-body">
-          <h3 class="h5">Olen LET Lab ryhmän alumni ja perustajajäsen</h3>
-          <p>Työskentelen teknologiatuetun oppimisen ja opetuksen yliopistonlehtorina Kasvatustieteiden tiedekunnassa Oulun yliopistossa.</p>
-          <p>Olen oppimisen ja koulutusteknologian tutkimusyksikön (<a href="https://www.oulu.fi/letlab" target="_blank" rel="noopener noreferrer">LETLab</a>) alumni. Työskentelin osana LETlab ryhmää aina sen alkuvaiheista vuoden 2024 kevääseen saakka.</p>
-          <p class="mb-0">Itsenäistyin kasvattajaryhmästäni vuonna 2004.</p>
-        </div>
-      </article>
-    </div>
+{%- set peerReviewedCount = 0 -%}
+{%- for pub in researchfi -%}
+  {%- if pub.peerReviewed -%}{%- set peerReviewedCount = peerReviewedCount + 1 -%}{%- endif -%}
+{%- endfor -%}
 
-    <div class="col-lg-4">
-      <article class="card h-100 border-0 shadow-sm">
-        <div class="card-body">
-          <h3 class="h5">Edellisen vuosikymmenen tein töitä digipedagogiikan opettamisen parissa</h3>
-          <p>Vastasin vuoteen 2024 saakka tiedekuntamme tieto- ja viestintätekniikan opetuksesta ja siihen liittyvistä kursseista sekä STEAM sivuaineesta.</p>
-          <p class="mb-0">Käytännössä opetin sekä suomenkielisille että englanninkielisille opiskelijaryhmille sekä pakollisia että vapaavalintaisia opintojaksoja. Olen myös koko työurani ohjannut opinnäytteitä.</p>
+{# ── HERO ─────────────────────────────────────────────────────────────────── #}
+<section class="ylwork-hero mb-0">
+  <div class="container py-5">
+    <div class="row g-4 align-items-center">
+      <div class="col-lg-7">
+        <p class="ylwork-eyebrow mb-2"><i class="bi bi-mortarboard me-1"></i>Yliopisto</p>
+        <h1 class="display-5 fw-bold mb-2">Työni yliopistonlehtorina</h1>
+        <p class="mb-4" style="color:rgba(255,255,255,0.75);">Teknologiatuetun oppimisen ja opetuksen yliopistonlehtori · Kasvatustieteiden tiedekunta · Oulun yliopisto</p>
+        <div class="d-flex flex-wrap gap-2">
+          <a href="#hub" class="btn btn-primary btn-sm">Sisältöalueet</a>
+          <a href="/tutkimus/" class="btn btn-outline-primary btn-sm">Tutkimus</a>
+          <a href="/julkaisut/" class="btn btn-outline-primary btn-sm">Julkaisut</a>
+          <a href="/opinnaytteet/" class="btn btn-outline-primary btn-sm">Opinnäytteet</a>
         </div>
-      </article>
+      </div>
+      <div class="col-lg-5">
+        <div class="row g-3 text-center">
+          <div class="col-6">
+            <div class="ylwork-stat-card">
+              <div class="ylwork-stat-num">{{ researchfi.length }}</div>
+              <div class="ylwork-stat-label">julkaisua</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="ylwork-stat-card">
+              <div class="ylwork-stat-num">{{ peerReviewedCount }}</div>
+              <div class="ylwork-stat-label">vertaisarvioitua</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="ylwork-stat-card">
+              <div class="ylwork-stat-num">{{ theses.stats.totalGradut }}</div>
+              <div class="ylwork-stat-label">gradua ohjattu</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="ylwork-stat-card">
+              <div class="ylwork-stat-num">{{ theses.stats.totalKandit }}</div>
+              <div class="ylwork-stat-label">kandia ohjattu</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+</section>
+<div class="ylwork-hero-divider"></div>
 
-    <div class="col-lg-4">
-      <article class="card h-100 border-0 shadow-sm">
-        <div class="card-body">
-          <h3 class="h5">Nykyään pääosa arjestani kuluu Generation AI tutkimushankkeessa</h3>
-          <p>Työskentelen nykyään strategisen tutkimuksen neuvoston (STN) rahoittamassa <a href="https://www.generation-ai-stn.fi" target="_blank" rel="noopener noreferrer">Generation AI hankkeessa</a>.</p>
-          <p>Kehitämme esi- ja perusopetuksen oppilaiden ja opettajien tekoäly- ja turvallisuuskasvatuksen perustaa.</p>
-          <p class="mb-0">Olen vuorovaikutusasiantuntija, joka jakaa hankkeen osaamista kohderyhmälle. Teen myös tutkimusta opettajien ja opettajaopiskelijoiden tekoälylukutaidoista.</p>
-        </div>
-      </article>
+{# ── HUB-NAVIGOINTI ───────────────────────────────────────────────────────── #}
+<section class="py-5" id="hub">
+  <div class="container">
+    <p class="ylwork-eyebrow ylwork-eyebrow--dark mb-1"><i class="bi bi-grid-3x3-gap me-1"></i>Sisältöalueet</p>
+    <h2 class="h4 mb-1">Perehdy osaamiseeni</h2>
+    <p class="text-muted small mb-4">Valitse alla olevasta kokonaisuudesta, mitä haluat tarkastella.</p>
+    <div class="row g-4">
+
+      <div class="col-md-6 col-xl-4">
+        <a href="/tutkimus/" class="text-decoration-none">
+          <article class="ylwork-hub-card h-100">
+            <div class="ylwork-hub-icon" style="color:#0d6efd"><i class="bi bi-graph-up-arrow"></i></div>
+            <h3 class="h6 mb-1">Tutkimus</h3>
+            <p class="text-muted small mb-3">Tutkimushankkeet, tieteelliset profiilit ja yhteenveto tutkimusurastani.</p>
+            <span class="btn btn-outline-primary btn-sm mt-auto">Tutkimussivulle <i class="bi bi-arrow-right ms-1"></i></span>
+          </article>
+        </a>
+      </div>
+
+      <div class="col-md-6 col-xl-4">
+        <a href="/julkaisut/" class="text-decoration-none">
+          <article class="ylwork-hub-card h-100">
+            <div class="ylwork-hub-icon" style="color:#198754"><i class="bi bi-journals"></i></div>
+            <h3 class="h6 mb-1">Julkaisut</h3>
+            <p class="text-muted small mb-3">OKM:n ohjeiden mukainen kaikki julkaisut sisältävä luettelo.</p>
+            <div class="d-flex gap-2 flex-wrap mb-3">
+              <span class="badge text-bg-primary-subtle text-primary-emphasis">{{ researchfi.length }} julkaisua</span>
+              <span class="badge text-bg-success-subtle text-success-emphasis">{{ peerReviewedCount }} vertaisarv.</span>
+            </div>
+            <span class="btn btn-outline-primary btn-sm mt-auto">Julkaisuluetteloon <i class="bi bi-arrow-right ms-1"></i></span>
+          </article>
+        </a>
+      </div>
+
+      <div class="col-md-6 col-xl-4">
+        <a href="/opinnaytteet/" class="text-decoration-none">
+          <article class="ylwork-hub-card h-100">
+            <div class="ylwork-hub-icon" style="color:#fd7e14"><i class="bi bi-mortarboard-fill"></i></div>
+            <h3 class="h6 mb-1">Ohjatut opinnäytteet</h3>
+            <p class="text-muted small mb-3">OuluREPO-arkistosta haettu lista ohjatuista pro gradu -tutkielmista ja kandidaatintöistä.</p>
+            <div class="d-flex gap-2 flex-wrap mb-3">
+              <span class="badge text-bg-warning-subtle text-warning-emphasis">{{ theses.stats.totalGradut }} gradua</span>
+              <span class="badge text-bg-info-subtle text-info-emphasis">{{ theses.stats.totalKandit }} kandia</span>
+            </div>
+            <span class="btn btn-outline-primary btn-sm mt-auto">Opinnäytteet <i class="bi bi-arrow-right ms-1"></i></span>
+          </article>
+        </a>
+      </div>
+
+      <div class="col-md-6 col-xl-6">
+        <a href="/cv/" class="text-decoration-none">
+          <article class="ylwork-hub-card h-100">
+            <div class="ylwork-hub-icon" style="color:#6f42c1"><i class="bi bi-file-person-fill"></i></div>
+            <h3 class="h6 mb-1">Ansioluettelo</h3>
+            <p class="text-muted small mb-3">TENK:n ohjeiden mukaisesti laadittu kokonaiskatsaus uraan Oulun yliopistossa.</p>
+            <span class="btn btn-outline-primary btn-sm mt-auto">Ansioluetteloon <i class="bi bi-arrow-right ms-1"></i></span>
+          </article>
+        </a>
+      </div>
+
+      <div class="col-md-6 col-xl-6">
+        <a href="/portfolio/" class="text-decoration-none">
+          <article class="ylwork-hub-card h-100">
+            <div class="ylwork-hub-icon" style="color:#dc3545"><i class="bi bi-collection-fill"></i></div>
+            <h3 class="h6 mb-1">Opetusportfolio</h3>
+            <p class="text-muted small mb-3">Tiivistelmä opetusosaamisestani, joka on karttunut 2000-luvun alusta nykypäivään.</p>
+            <span class="btn btn-outline-primary btn-sm mt-auto">Portfolioon <i class="bi bi-arrow-right ms-1"></i></span>
+          </article>
+        </a>
+      </div>
+
     </div>
   </div>
 </section>
 
-<section class="container py-4">
-  <h2 class="h3 mb-4 text-center">Olen tehnyt molemmat opinnäytteeni mobiililaitteiden opetuskäytöstä</h2>
-  <div class="row g-4">
-    <div class="col-md-6">
-      <article class="card h-100 border-0 shadow-sm">
-        <div class="row g-0 h-100">
-          <div class="col-sm-5">
-            <img src="/img/uploads/2026/gradu-2003.png" class="img-fluid rounded-start h-100 object-fit-cover thesis-image" alt="Pro Gradu 2003" loading="lazy" decoding="async">
-          </div>
-          <div class="col-sm-7">
-            <div class="card-body">
-              <h3 class="h5">Pro Gradu 2003</h3>
-              <p class="mb-0">Goman, H., &amp; Laru, J. (2003). <em>Langattomat päätelaitteet hajautetun asiantuntijuuden ja yhteisöllisen tiedonrakentelun tukena</em> [Pro gradu, Oulun yliopisto]. Työpapereita 1 / 2003. Naturpolis Kuusamo. <a href="https://www.researchgate.net/publication/259217800_Langattomat_paatelaitteet_hajautetun_asiantuntijuuden_ja_yhteisollisen_tiedonrakentelun_tukena" target="_blank" rel="noopener noreferrer">Lue julkaisu</a>.</p>
-            </div>
+{# ── NYKYINEN TYÖ ─────────────────────────────────────────────────────────── #}
+<section class="py-5 bg-body-tertiary">
+  <div class="container">
+    <p class="ylwork-eyebrow ylwork-eyebrow--dark mb-1"><i class="bi bi-lightning-charge me-1"></i>Nykyinen hanke</p>
+    <h2 class="h4 mb-4">Generation AI — strategisen tutkimuksen hanke</h2>
+    <div class="row g-4 align-items-start">
+      <div class="col-lg-8">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <p>Työskentelen strategisen tutkimuksen neuvoston (STN) rahoittamassa <a href="https://www.generation-ai-stn.fi" target="_blank" rel="noopener noreferrer"><strong>Generation AI</strong> -hankkeessa</a>. Kehitämme esi- ja perusopetuksen oppilaiden ja opettajien tekoäly- ja turvallisuuskasvatuksen perustaa.</p>
+            <p class="mb-0">Toimin hankkeessa vuorovaikutusasiantuntijana, joka jakaa hankkeen osaamista kohderyhmälle. Teen myös tutkimusta opettajien ja opettajaopiskelijoiden tekoälylukutaidoista.</p>
           </div>
         </div>
-      </article>
-    </div>
-
-    <div class="col-md-6">
-      <article class="card h-100 border-0 shadow-sm">
-        <div class="row g-0 h-100">
-          <div class="col-sm-5">
-            <img src="/img/uploads/2026/vaitos.png" class="img-fluid rounded-start h-100 object-fit-cover thesis-image" alt="Väitöskirja 2012" loading="lazy" decoding="async">
-          </div>
-          <div class="col-sm-7">
-            <div class="card-body">
-              <h3 class="h5">Väitöskirja 2012</h3>
-              <p class="mb-0">Laru, J. (2012). <em>Scaffolding learning activities with collaborative scripts and mobile devices</em> [Väitöskirja, Oulun yliopisto]. Acta Universitatis Ouluensis E: Scientiae rerum socialium. <a href="https://oulurepo.oulu.fi/handle/10024/37328" target="_blank" rel="noopener noreferrer">Lue väitöskirja</a>.</p>
-            </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body">
+            <h3 class="h6 mb-3">Tausta</h3>
+            <ul class="list-unstyled small mb-0">
+              <li class="mb-2"><i class="bi bi-building2 me-2 text-muted"></i>Kasvatustieteiden tiedekunta, Oulun yliopisto</li>
+              <li class="mb-2"><i class="bi bi-people me-2 text-muted"></i><a href="https://www.oulu.fi/letlab" target="_blank" rel="noopener noreferrer">LETLab</a>-ryhmän alumni (–2024)</li>
+              <li class="mb-2"><i class="bi bi-cpu me-2 text-muted"></i>TVT-opetus ja STEAM-sivuaine (–2024)</li>
+              <li class="mb-0"><i class="bi bi-calendar3 me-2 text-muted"></i>Itsenäistynyt kasvattajaryhmästä 2004</li>
+            </ul>
           </div>
         </div>
-      </article>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="container py-5">
-  <h2 class="h3 mb-4 text-center">Perehdy osaamiseeni</h2>
-  <div>
-    <div class="row g-5">
-      <div class="col-lg-4">
-        <article class="legacy-link-card">
-          <img src="/img/uploads/2020/01/70904957_10157490449228116_8669815198384652288_o-1024x545.jpg" class="legacy-link-image" alt="Opetusportfolio" loading="lazy" decoding="async">
-          <h3 class="h4 fw-bold">Opetusportfolio</h3>
-          <p>Opetusportfolio on tiivistelmä opetusosaamisestani, joka on karttunut 2000-luvun vuosien aikana.</p>
-          <a class="btn btn-primary px-4" href="/portfolio/">Opetusportfolio</a>
+{# ── OMAT OPINNÄYTTEET ─────────────────────────────────────────────────────── #}
+<section class="py-5">
+  <div class="container">
+    <p class="ylwork-eyebrow ylwork-eyebrow--dark mb-1"><i class="bi bi-journal-bookmark me-1"></i>Omat opinnäytteet</p>
+    <h2 class="h4 mb-4">Olen tehnyt molemmat opinnäytteeni mobiililaitteiden opetuskäytöstä</h2>
+    <div class="row g-4">
+      <div class="col-md-6">
+        <article class="card h-100 border-0 shadow-sm">
+          <div class="row g-0 h-100">
+            <div class="col-sm-5">
+              <img src="/img/uploads/2026/gradu-2003.png" class="img-fluid rounded-start h-100 object-fit-cover ylwork-thesis-img" alt="Pro Gradu 2003" loading="lazy" decoding="async">
+            </div>
+            <div class="col-sm-7">
+              <div class="card-body d-flex flex-column h-100">
+                <span class="badge text-bg-primary-subtle text-primary-emphasis mb-2 align-self-start">Pro Gradu 2003</span>
+                <p class="small mb-auto">Goman, H., &amp; Laru, J. (2003). <em>Langattomat päätelaitteet hajautetun asiantuntijuuden ja yhteisöllisen tiedonrakentelun tukena</em> [Pro gradu, Oulun yliopisto]. Työpapereita 1 / 2003. Naturpolis Kuusamo.</p>
+                <a href="https://www.researchgate.net/publication/259217800_Langattomat_paatelaitteet_hajautetun_asiantuntijuuden_ja_yhteisollisen_tiedonrakentelun_tukena" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm mt-3 align-self-start">
+                  <i class="bi bi-box-arrow-up-right me-1"></i>Lue julkaisu
+                </a>
+              </div>
+            </div>
+          </div>
         </article>
       </div>
 
-      <div class="col-lg-4">
-        <article class="legacy-link-card">
-          <img src="/img/uploads/2021/03/CTE-544x1024.jpg" class="legacy-link-image" alt="Ansioluettelo" loading="lazy" decoding="async">
-          <h3 class="h4 fw-bold">Ansioluettelo</h3>
-          <p>Ansioluettelo on TENK:n ohjeiden mukaisesti laadittu kokonaiskatsaus työuraani Oulun yliopistossa.</p>
-          <a class="btn btn-primary px-4" href="/cv/">Ansioluettelo</a>
-        </article>
-      </div>
-
-      <div class="col-lg-4">
-        <article class="legacy-link-card">
-          <img src="/img/uploads/2021/03/vaitos-1024x864.jpg" class="legacy-link-image" alt="Julkaisuluettelo" loading="lazy" decoding="async">
-          <h3 class="h4 fw-bold">Julkaisuluettelo</h3>
-          <p>Julkaisuluettelo on OKM:n/Akatemian ohjeiden mukaisesti laadittu kaikki julkaisut sisältävä listaus.</p>
-          <a class="btn btn-primary px-4" href="/julkaisut/">Julkaisuluettelo</a>
+      <div class="col-md-6">
+        <article class="card h-100 border-0 shadow-sm">
+          <div class="row g-0 h-100">
+            <div class="col-sm-5">
+              <img src="/img/uploads/2026/vaitos.png" class="img-fluid rounded-start h-100 object-fit-cover ylwork-thesis-img" alt="Väitöskirja 2012" loading="lazy" decoding="async">
+            </div>
+            <div class="col-sm-7">
+              <div class="card-body d-flex flex-column h-100">
+                <span class="badge text-bg-success-subtle text-success-emphasis mb-2 align-self-start">Väitöskirja 2012</span>
+                <p class="small mb-auto">Laru, J. (2012). <em>Scaffolding learning activities with collaborative scripts and mobile devices</em> [Väitöskirja, Oulun yliopisto]. Acta Universitatis Ouluensis E: Scientiae rerum socialium.</p>
+                <a href="https://oulurepo.oulu.fi/handle/10024/37328" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm mt-3 align-self-start">
+                  <i class="bi bi-box-arrow-up-right me-1"></i>Lue väitöskirja
+                </a>
+              </div>
+            </div>
+          </div>
         </article>
       </div>
     </div>
@@ -122,34 +215,79 @@ templateEngineOverride: njk
 </section>
 
 <style>
-  .legacy-work-page {
-    padding-bottom: 1rem;
+  /* ── Hero ── */
+  .ylwork-hero {
+    background: #1c3050;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .ylwork-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      -55deg, transparent, transparent 48px,
+      rgba(255,255,255,0.018) 48px, rgba(255,255,255,0.018) 96px
+    );
+    pointer-events: none;
+  }
+  .ylwork-hero-divider {
+    height: 4px;
+    background: linear-gradient(90deg, #198754 0%, #0d6efd 50%, #fd7e14 100%);
+  }
+  .ylwork-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: rgba(255,255,255,0.5);
+  }
+  .ylwork-eyebrow--dark { color: var(--bs-secondary-color); }
+
+  /* ── Stat cards (hero) ── */
+  .ylwork-stat-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 0.5rem;
+    padding: 1rem 0.5rem;
+  }
+  .ylwork-stat-num {
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1;
+    color: #fff;
+  }
+  .ylwork-stat-label {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.55);
+    margin-top: 0.25rem;
+  }
+  [data-bs-theme="dark"] .ylwork-hero { background: #0e1d30; }
+
+  /* ── Hub cards ── */
+  .ylwork-hub-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.25rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--bs-border-color);
+    background: var(--bs-body-bg);
+    transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+    color: var(--bs-body-color);
+  }
+  a:hover .ylwork-hub-card {
+    border-color: var(--bs-primary);
+    box-shadow: 0 0.25rem 0.75rem rgba(13,110,253,.12);
+    transform: translateY(-2px);
+  }
+  .ylwork-hub-icon {
+    font-size: 1.75rem;
+    margin-bottom: 0.6rem;
+    line-height: 1;
   }
 
-  .legacy-link-card {
-    height: 100%;
-  }
-
-  .legacy-link-image {
-    width: 100%;
-    height: 260px;
-    object-fit: cover;
-    display: block;
-    margin-bottom: 1rem;
-  }
-
-  .legacy-link-card p {
-    margin-bottom: 1.25rem;
-  }
-
-  .thesis-image {
-    min-height: 220px;
-  }
-
-  @media (max-width: 991.98px) {
-    .legacy-link-image {
-      height: 220px;
-    }
-  }
+  /* ── Thesis images ── */
+  .ylwork-thesis-img { min-height: 200px; }
+  @media (max-width: 575.98px) { .ylwork-thesis-img { min-height: 160px; } }
 </style>
-</main>
