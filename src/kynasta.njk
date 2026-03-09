@@ -520,6 +520,7 @@ translationKey: writings_index
     "url": {{ (item.url or "") | dump | safe }},
     "thumbnail": {{ (item.thumbnail or "") | dump | safe }},
     "categories": {{ (item.categories or []) | dump | safe }},
+    "keywords": {{ (item.categories or []) | dump | safe }},
     "type": "Canva",
     "source": {{ (item.source or "canva") | dump | safe }}
   }{% if not loop.last or collections.presentations.length or aoeRows.length %},{% endif %}
@@ -534,6 +535,7 @@ translationKey: writings_index
     "url": {{ (presentation.data.url or "") | dump | safe }},
     "thumbnail": {{ (presentation.data.thumbnail or "") | dump | safe }},
     "categories": {{ (presentation.data.categories or []) | dump | safe }},
+    "keywords": {{ (presentation.data.keywords or []) | dump | safe }},
     "type": {{ (presentation.data.type or "Canva") | dump | safe }},
     "source": {{ (presentation.data.source or "") | dump | safe }}
   }{% if not loop.last or aoeRows.length %},{% endif %}
@@ -547,6 +549,7 @@ translationKey: writings_index
     "url": {{ item.url | dump | safe }},
     "thumbnail": {{ (item.image or "") | dump | safe }},
     "categories": [],
+    "keywords": [],
     "type": "AOE / Finna"
   }{% if not loop.last %},{% endif %}
   {% endfor %}
@@ -562,11 +565,12 @@ translationKey: writings_index
       </div>
       <div class="card-body p-0">
         <div class="p-3 bg-body-tertiary border-bottom">
+          <div class="d-flex flex-wrap gap-2 mb-3" id="esitykset-app-filters" aria-label="Suodata sovelluksen mukaan"></div>
           <div class="row g-2 align-items-end">
             <div class="col-md-9">
               <label for="esitykset-search" class="form-label small text-muted mb-1">Hae materiaaleja</label>
               <input type="search" id="esitykset-search" class="form-control form-control-sm"
-                     placeholder="Hae otsikosta, kuvauksesta tai tyypistä..." autocomplete="off">
+                     placeholder="Hae otsikosta, tiivistelmästä, avainsanoista tai sovelluksesta..." autocomplete="off">
             </div>
             <div class="col-md-3 d-flex justify-content-md-end gap-2">
               <button id="esitykset-reset" class="btn btn-outline-secondary btn-sm w-100">
@@ -583,16 +587,18 @@ translationKey: writings_index
                 <th class="sortable text-center" data-col="date" style="width:140px">
                   Päivämäärä <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
                 </th>
-                <th class="sortable" data-col="title" style="min-width:220px">
+                <th style="min-width:170px">Esikatselu</th>
+                <th class="sortable" data-col="title" style="min-width:200px;max-width:260px;">
                   Otsikko <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
                 </th>
-                <th style="min-width:260px">Esityksen kansi</th>
-                <th>Ohjelma</th>
+                <th style="min-width:220px">Tiivistelmä</th>
+                <th style="min-width:190px">Avainsanat</th>
+                <th class="sortable" data-col="application" style="min-width:130px">Sovellus <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i></th>
                 <th style="width:90px" class="text-center">Avaa</th>
               </tr>
             </thead>
             <tbody id="esitykset-tbody">
-              <tr><td colspan="5" class="text-center text-muted py-4">Ladataan esityksiä...</td></tr>
+              <tr><td colspan="7" class="text-center text-muted py-4">Ladataan esityksiä...</td></tr>
             </tbody>
           </table>
         </div>
@@ -1476,40 +1482,120 @@ section[id] {
   let esityksetSortDir = -1; // -1 = desc
 
   const esityksetSearchInp = document.getElementById('esitykset-search');
+  const esityksetAppFilters = document.getElementById('esitykset-app-filters');
   const esityksetTbody = document.getElementById('esitykset-tbody');
   const esityksetInfo = document.getElementById('esitykset-info');
   const esityksetPagUl = document.getElementById('esitykset-pagination');
 
+  let activeEsityksetApplication = '';
+
+  const getTimeValue = (value) => {
+    if (!value) return 0;
+    const t = new Date(value).getTime();
+    return Number.isNaN(t) ? 0 : t;
+  };
+
+  const toKeywordList = (item) => {
+    const list = [...(item.categories || []), ...(item.keywords || [])]
+      .map((value) => String(value || '').trim())
+      .filter(Boolean);
+    return [...new Set(list)];
+  };
+
+  const inferApplication = (item) => {
+    const bag = [
+      item.source || '',
+      item.type || '',
+      item.url || '',
+      item.title || ''
+    ].join(' ').toLowerCase();
+    if (bag.includes('slideshare')) return 'SlideShare';
+    if (bag.includes('canva')) return 'Canva';
+    if (bag.includes('aoe') || bag.includes('finna')) return 'AOE';
+    if (bag.includes('google slides') || bag.includes('docs.google.com/presentation')) return 'Google Slides';
+    if (bag.includes('powerpoint') || bag.includes('.ppt') || bag.includes('.pptx')) return 'PowerPoint';
+    return 'Muu';
+  };
+
+  const normalizeEsitysItem = (item) => {
+    const normalized = normalizeSlidesharePresentation(item);
+    const iso = toIsoDate(normalized?.date);
+    const formattedDate = normalized?.formattedDate || (iso ? formatDateFi(iso) : '');
+    const summary = String(normalized?.description || '').trim();
+    return {
+      ...normalized,
+      date: iso || normalized?.date || '',
+      formattedDate,
+      summary,
+      keywordList: toKeywordList(normalized),
+      application: inferApplication(normalized)
+    };
+  };
+
+  const sortEsityksetRows = (rows) => {
+    return [...rows].sort((a, b) => {
+      if (esityksetSortCol === 'date') {
+        return (getTimeValue(a.date) - getTimeValue(b.date)) * esityksetSortDir;
+      }
+      const av = String(a[esityksetSortCol] || '').toLowerCase();
+      const bv = String(b[esityksetSortCol] || '').toLowerCase();
+      return av.localeCompare(bv, 'fi') * esityksetSortDir;
+    });
+  };
+
+  const normalizedEsityksetData = esityksetData.map(normalizeEsitysItem);
+  filteredEsityksetData = sortEsityksetRows(normalizedEsityksetData);
+
   function applyEsityksetFilters() {
     const q = esityksetSearchInp ? esityksetSearchInp.value.toLowerCase().trim() : '';
-    filteredEsityksetData = esityksetData.filter(d => {
-      const matchQ = !q ||
-        (d.title || '').toLowerCase().includes(q) ||
-        (d.description || '').toLowerCase().includes(q) ||
-        (d.categories || []).some(c => c.toLowerCase().includes(q)) ||
-        (d.type || '').toLowerCase().includes(q);
-      return matchQ;
-    }).sort((a, b) => new Date(b.date) - new Date(a.date));
+    filteredEsityksetData = sortEsityksetRows(normalizedEsityksetData.filter((d) => {
+      const appOk = !activeEsityksetApplication || d.application === activeEsityksetApplication;
+      if (!appOk) return false;
+      const searchBag = [
+        d.title || '',
+        d.summary || '',
+        d.description || '',
+        d.application || '',
+        d.type || '',
+        ...d.keywordList
+      ].join(' ').toLowerCase();
+      return !q || searchBag.includes(q);
+    }));
     esityksetCurrentPage = 1;
     renderEsitykset();
   }
 
   function sortEsityksetData(col) {
-    if (esityksetSortCol === col) { esityksetSortDir *= -1; }
-    else { esityksetSortCol = col; esityksetSortDir = col === 'date' ? -1 : 1; }
-
-    filteredEsityksetData.sort((a, b) => {
-      let av = a[col] ?? '';
-      let bv = b[col] ?? '';
-      if (typeof av === 'string') av = av.toLowerCase();
-      if (typeof bv === 'string') bv = bv.toLowerCase();
-      if (col === 'date') {
-        return (new Date(av) - new Date(bv)) * esityksetSortDir;
-      }
-      return av.toString().localeCompare(bv.toString(), 'fi') * esityksetSortDir;
-    });
+    if (esityksetSortCol === col) {
+      esityksetSortDir *= -1;
+    } else {
+      esityksetSortCol = col;
+      esityksetSortDir = col === 'date' ? -1 : 1;
+    }
+    filteredEsityksetData = sortEsityksetRows(filteredEsityksetData);
     esityksetCurrentPage = 1;
     renderEsitykset();
+  }
+
+  function renderEsityksetApplicationFilters() {
+    if (!esityksetAppFilters) return;
+    const applications = [...new Set(normalizedEsityksetData.map((item) => item.application).filter(Boolean))]
+      .sort((a, b) => a.localeCompare(b, 'fi'));
+    const renderButton = (label, value, variant = 'outline-secondary') => {
+      const active = activeEsityksetApplication === value;
+      return `<button type="button" class="btn btn-sm ${active ? 'btn-primary' : `btn-${variant}`}" data-esitykset-app="${escHtml(value)}">${escHtml(label)}</button>`;
+    };
+    const html = [renderButton('Kaikki', '')]
+      .concat(applications.map((app) => renderButton(app, app)))
+      .join('');
+    esityksetAppFilters.innerHTML = html;
+    esityksetAppFilters.querySelectorAll('button[data-esitykset-app]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        activeEsityksetApplication = btn.getAttribute('data-esitykset-app') || '';
+        renderEsityksetApplicationFilters();
+        applyEsityksetFilters();
+      });
+    });
   }
 
   function renderEsitykset() {
@@ -1520,25 +1606,29 @@ section[id] {
     const slice = filteredEsityksetData.slice(start, start + ESITYKSET_PAGE_SIZE);
 
     if (slice.length === 0) {
-      esityksetTbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-5">Ei tuloksia haulla</td></tr>';
+      esityksetTbody.innerHTML = '<tr><td colspan="7" class="text-center text-muted py-5">Ei tuloksia haulla</td></tr>';
     } else {
       esityksetTbody.innerHTML = slice.map(d => {
-        const catBadges = (d.categories || []).map(c => `<span class="badge text-bg-secondary me-1">${escHtml(c)}</span>`).join('');
-        const typeBadge = d.type ? `<span class="badge text-bg-light text-dark border">${escHtml(d.type)}</span>` : '';
+        const summaryText = d.summary ? escHtml(d.summary) : '<span class="text-muted small">Ei saatavilla</span>';
+        const keywordBadges = d.keywordList.length
+          ? d.keywordList.map((k) => `<span class="badge text-bg-light text-dark border me-1 mb-1">${escHtml(k)}</span>`).join('')
+          : '<span class="text-muted small">Ei saatavilla</span>';
         const preview = d.thumbnail
-          ? `<button type="button" class="preview-thumb-btn p-0 border-0 bg-transparent mt-2" data-preview-src="${escHtml(d.thumbnail)}" data-preview-alt="${escHtml(d.title)}" title="Avaa kansikuva">
+          ? `<button type="button" class="preview-thumb-btn p-0 border-0 bg-transparent" data-preview-src="${escHtml(d.thumbnail)}" data-preview-alt="${escHtml(d.title)}" title="Avaa kansikuva">
                <img src="${escHtml(d.thumbnail)}" alt="${escHtml(d.title)}" class="img-fluid border" style="max-height:72px; object-fit:cover;">
              </button>`
-          : '<span class="text-muted small">—</span>';
+          : '<span class="text-muted small">Ei saatavilla</span>';
         const linkBtn = d.url
           ? `<a href="${escHtml(d.url)}" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Avaa esitys"><i class="bi bi-arrow-up-right"></i></a>`
-          : `<span class="text-muted small">—</span>`;
+          : `<span class="text-muted small">Ei saatavilla</span>`;
 
         return `<tr>
-          <td class="col-date text-center small text-muted font-monospace">${d.formattedDate}</td>
-          <td class="col-title fw-medium">${escHtml(d.title)}</td>
+          <td class="col-date text-center small text-muted font-monospace">${escHtml(d.formattedDate || 'Ei saatavilla')}</td>
           <td class="col-desc small text-muted text-center">${preview}</td>
-          <td>${catBadges || typeBadge || '<span class="text-muted small">—</span>'}</td>
+          <td class="col-title fw-medium">${escHtml(d.title)}</td>
+          <td class="small">${summaryText}</td>
+          <td>${keywordBadges}</td>
+          <td><span class="badge text-bg-light text-dark border">${escHtml(d.application || 'Muu')}</span></td>
           <td class="text-center">${linkBtn}</td>
         </tr>`;
       }).join('');
@@ -1609,6 +1699,8 @@ section[id] {
   if (esityksetResetBtn) {
     esityksetResetBtn.addEventListener('click', () => {
       if (esityksetSearchInp) esityksetSearchInp.value = '';
+      activeEsityksetApplication = '';
+      renderEsityksetApplicationFilters();
       applyEsityksetFilters();
     });
   }
@@ -1617,6 +1709,7 @@ section[id] {
     th.addEventListener('click', () => sortEsityksetData(th.dataset.col));
   });
 
+  renderEsityksetApplicationFilters();
   renderEsitykset();
 })();
 
