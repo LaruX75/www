@@ -5,6 +5,8 @@ description: ITK-webinaari Generation AI N 28.3.2023 Oulun yliopisto Oppiminen j
 layout: page.njk
 templateEngineOverride: md
 permalink: /puheenvuorot-ja-koulutukset/
+translationKey: training_index
+lang: fi
 wp_id: 2299
 source_url: "https://www.jarilaru.fi/puheenvuorot-ja-koulutukset/"
 ---
