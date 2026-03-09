@@ -1775,18 +1775,19 @@ section[id] {
 .kpi-color-mielipiteet { border-left-color: #0d6efd !important; }
 .kpi-color-puheet      { border-left-color: #dc3545 !important; }
 
-/* --- Avainsanabadget: näkyvä sininen sävy vaaleassa tilassa --- */
+/* --- Avainsanabadget: korkea kontrasti molemmille teemoille ---
+   Vaalea: #1e3a8a (#fff-pohja) kontrasti ~9:1
+   Tumma:  #bfdbfe (#1e293b-pohja) kontrasti ~8:1            */
 html:not([data-bs-theme="dark"]) .badge.text-bg-light {
-  background-color: #dbeafe !important;
-  color: #1e40af !important;
-  border-color: #93c5fd !important;
+  background-color: #eff6ff !important; /* blue-50 */
+  color: #1e3a8a !important;            /* blue-900 */
+  border-color: #bfdbfe !important;     /* blue-200 */
 }
 
-/* --- Dark mode: .text-bg-light badge override --- */
 [data-bs-theme="dark"] .badge.text-bg-light {
-  background-color: rgba(59,130,246,0.18) !important;
-  color: #93c5fd !important;
-  border-color: rgba(147,197,253,0.3) !important;
+  background-color: #1e3a5f !important; /* tumma sininen */
+  color: #bfdbfe !important;            /* blue-200, kontrasti ~8:1 */
+  border-color: #3b82f6 !important;     /* blue-500 */
 }
 
 /* --- Card utilities --- */
