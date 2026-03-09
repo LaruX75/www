@@ -19,7 +19,15 @@ translationKey: presentations_index
 {% set ssDataItems = [] %}
 {% for item in collections.presentations %}
   {% if item.data.source == "slideshare" %}
-    {% set _ = (ssDataItems.push({title: item.data.title, url: item.data.url, thumbnail: item.data.thumbnail, date: item.data.date}), null) %}
+    {% set _ = (ssDataItems.push({
+      title: item.data.title,
+      url: item.data.url,
+      thumbnail: item.data.thumbnail,
+      date: item.data.date,
+      description: item.data.description or (item.content | excerpt),
+      categories: item.data.categories or [],
+      keywords: item.data.keywords or []
+    }), null) %}
   {% endif %}
 {% endfor %}
 
@@ -154,10 +162,12 @@ translationKey: presentations_index
         <table class="table table-hover align-middle mb-0 pub-table">
           <thead>
             <tr>
-              <th>Otsikko</th>
-              <th>Kuvaus</th>
-              <th class="text-nowrap">Päiväys / vuosi</th>
-              <th class="text-nowrap">Avaa</th>
+              <th class="text-center" style="width:140px">Päivämäärä</th>
+              <th style="min-width:170px">Esikatselu</th>
+              <th style="min-width:200px;max-width:260px;">Otsikko</th>
+              <th style="min-width:220px">Tiivistelmä</th>
+              <th style="min-width:190px">Avainsanat</th>
+              <th style="width:90px" class="text-center">Avaa</th>
             </tr>
           </thead>
           <tbody id="table-body-slideshare"></tbody>
@@ -359,8 +369,11 @@ translationKey: presentations_index
         title: r.title || "Nimetön esitys",
         url: r.url || "",
         thumbnail: r.thumbnail || "",
-        description: "SlideShare-esitys",
-        meta: "SlideShare"
+        description: r.description || "",
+        keywords: [
+          ...(Array.isArray(r.categories) ? r.categories : []),
+          ...(Array.isArray(r.keywords) ? r.keywords : [])
+        ].map((value) => String(value || "").trim()).filter(Boolean)
       }));
     }
 
@@ -444,7 +457,7 @@ translationKey: presentations_index
     const start = (page - 1) * PAGE_SIZE;
     const pageRows = rows.slice(start, start + PAGE_SIZE);
 
-    if (key === "canva") {
+    if (key === "canva" || key === "slideshare") {
       tbody.innerHTML = pageRows.map((item) => {
         const keywords = Array.isArray(item.keywords) ? item.keywords : [];
         const keywordHtml = keywords.length
