@@ -117,6 +117,94 @@ function normalizeTypeCode(pub) {
     return "";
 }
 
+function normalizeKeywordText(value) {
+    return String(value || "")
+        .replace(/\s+/g, " ")
+        .trim();
+}
+
+function splitKeywordString(value) {
+    return String(value || "")
+        .split(/[;,|]/g)
+        .map(normalizeKeywordText)
+        .filter(Boolean);
+}
+
+function collectKeywordLikeValue(value, targetSet) {
+    if (value === null || value === undefined) return;
+
+    if (typeof value === "string") {
+        splitKeywordString(value).forEach((keyword) => targetSet.add(keyword));
+        return;
+    }
+
+    if (Array.isArray(value)) {
+        value.forEach((item) => collectKeywordLikeValue(item, targetSet));
+        return;
+    }
+
+    if (typeof value === "object") {
+        const directCandidates = [
+            value.keyword,
+            value.keywords,
+            value.subject,
+            value.subjects,
+            value.topic,
+            value.topics,
+            value.value,
+            value.name,
+            value.label,
+            value.text,
+            value.nameFi,
+            value.nameEn,
+            value.nameSv
+        ];
+        directCandidates.forEach((candidate) => collectKeywordLikeValue(candidate, targetSet));
+    }
+}
+
+function extractKeywords(pub) {
+    const keywords = new Set();
+
+    const directCandidates = [
+        pub?.keywords,
+        pub?.keyword,
+        pub?.subjects,
+        pub?.subject,
+        pub?.topic,
+        pub?.topics,
+        pub?.researchKeywords,
+        pub?.publicationKeywords,
+        pub?.researchSubject,
+        pub?.scienceKeywords,
+        pub?.avainsanat,
+        pub?.asiasanat
+    ];
+    directCandidates.forEach((candidate) => collectKeywordLikeValue(candidate, keywords));
+
+    const queue = [pub];
+    while (queue.length) {
+        const current = queue.shift();
+        if (!current || typeof current !== "object") continue;
+        if (Array.isArray(current)) {
+            current.forEach((item) => queue.push(item));
+            continue;
+        }
+        for (const [key, value] of Object.entries(current)) {
+            if (/(keyword|subject|topic|tag|avainsana|asiasana)/i.test(key)) {
+                collectKeywordLikeValue(value, keywords);
+            } else if (value && typeof value === "object") {
+                queue.push(value);
+            }
+        }
+    }
+
+    return Array.from(keywords)
+        .map(normalizeKeywordText)
+        .filter(Boolean)
+        .sort((a, b) => a.localeCompare(b, "fi"));
+}
+
 function normalizePublication(pub) {
     const typeCode = normalizeTypeCode(pub);
     const doi = pub.doi || null;
@@ -134,7 +222,8 @@ function normalizePublication(pub) {
         typeShort: typeCode,
         peerReviewed: normalizePeerReviewed(pub.peerReviewed, typeCode),
         openAccess: normalizeOpenAccess(pub.openAccess, pub.selfArchivedCode),
-        publicationId: pub.publicationId || null
+        publicationId: pub.publicationId || null,
+        keywords: extractKeywords(pub)
     };
 }
 
@@ -209,8 +298,10 @@ module.exports = async function () {
         // Uusimmat ensin
         publications.sort((a, b) => (b.year || 0) - (a.year || 0));
 
-        if (publications.length > 0) {
-            writeCache(CACHE_KEY, publications);
+        if (rawPubs.length > 0) {
+            // Säilytetään raakadata välimuistissa, jotta myös myöhemmin löydetyt kentät
+            // (esim. avainsanat) voidaan normalisoida ilman uutta API-kutsua.
+            writeCache(CACHE_KEY, rawPubs);
         } else if (cachedPublications) {
             console.warn(`Research.fi palautti tyhjän listan, käytetään välimuistia (${cached.savedAt}).`);
             return cachedPublications;
