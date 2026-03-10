@@ -529,7 +529,7 @@ translationKey: writings_index
 {# Kerätään esitykset ja AOE-oppimateriaalit JSON-muotoon JS:ää varten #}
 <script id="esitykset-data" type="application/json">
 [
-  {% set canvaRows = canva or [] %}
+  {% set canvaRows = (canva and canva.tableRows) or [] %}
   {% set aoeRows = finnaAoe.rows or [] %}
   {% for item in canvaRows %}
   {
