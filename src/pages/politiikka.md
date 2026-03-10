@@ -469,6 +469,17 @@ templateEngineOverride: njk
     margin-bottom: 0.4rem;
     display: block;
   }
+
+  /* ===== HORIZONTAL SCROLLERS ===== */
+  .ouka-scroller {
+    cursor: grab;
+    scrollbar-width: thin;
+    touch-action: pan-x;
+  }
+  .ouka-scroller.is-dragging {
+    cursor: grabbing;
+    user-select: none;
+  }
 </style>
 
 <script>
@@ -639,5 +650,118 @@ templateEngineOverride: njk
     }
 
     renderThemeCards();
+  })();
+
+  (() => {
+    const scrollers = Array.from(document.querySelectorAll('.ouka-scroller'));
+    if (!scrollers.length) return;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const autoScroller = document.querySelector('#valtuustoaloitteet .ouka-scroller');
+    let pauseAuto = false;
+    let rafId = null;
+    let lastTs = 0;
+
+    const hasOverflow = (el) => el.scrollWidth - el.clientWidth > 8;
+
+    const stopAuto = () => {
+      if (rafId) {
+        window.cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+      lastTs = 0;
+    };
+
+    const startAuto = () => {
+      if (!autoScroller || prefersReducedMotion || rafId) return;
+      const speedPxPerMs = 0.045;
+      const tick = (ts) => {
+        if (!autoScroller || pauseAuto || !hasOverflow(autoScroller)) {
+          lastTs = ts;
+          rafId = window.requestAnimationFrame(tick);
+          return;
+        }
+        if (!lastTs) lastTs = ts;
+        const delta = ts - lastTs;
+        lastTs = ts;
+        const maxScroll = autoScroller.scrollWidth - autoScroller.clientWidth;
+        const next = autoScroller.scrollLeft + (delta * speedPxPerMs);
+        autoScroller.scrollLeft = next >= maxScroll - 1 ? 0 : next;
+        rafId = window.requestAnimationFrame(tick);
+      };
+      rafId = window.requestAnimationFrame(tick);
+    };
+
+    scrollers.forEach((scroller) => {
+      let dragging = false;
+      let startX = 0;
+      let startScroll = 0;
+
+      scroller.addEventListener('pointerdown', (event) => {
+        if (event.pointerType === 'mouse' && event.button !== 0) return;
+        dragging = true;
+        startX = event.clientX;
+        startScroll = scroller.scrollLeft;
+        scroller.classList.add('is-dragging');
+        scroller.setPointerCapture(event.pointerId);
+        if (scroller === autoScroller) pauseAuto = true;
+      });
+
+      scroller.addEventListener('pointermove', (event) => {
+        if (!dragging) return;
+        const deltaX = event.clientX - startX;
+        scroller.scrollLeft = startScroll - deltaX;
+      });
+
+      const endDrag = (event) => {
+        if (!dragging) return;
+        dragging = false;
+        scroller.classList.remove('is-dragging');
+        if (typeof event.pointerId === 'number') {
+          try {
+            scroller.releasePointerCapture(event.pointerId);
+          } catch (_) {
+            /* ignore */
+          }
+        }
+        if (scroller === autoScroller) pauseAuto = false;
+      };
+
+      scroller.addEventListener('pointerup', endDrag);
+      scroller.addEventListener('pointercancel', endDrag);
+      scroller.addEventListener('pointerleave', endDrag);
+
+      scroller.addEventListener('wheel', (event) => {
+        if (!hasOverflow(scroller)) return;
+        if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
+        scroller.scrollLeft += event.deltaY;
+        event.preventDefault();
+      }, { passive: false });
+
+      if (scroller === autoScroller) {
+        scroller.addEventListener('mouseenter', () => { pauseAuto = true; });
+        scroller.addEventListener('mouseleave', () => { pauseAuto = false; });
+        scroller.addEventListener('focusin', () => { pauseAuto = true; });
+        scroller.addEventListener('focusout', () => { pauseAuto = false; });
+      }
+    });
+
+    if (autoScroller && !prefersReducedMotion) {
+      startAuto();
+      window.addEventListener('resize', () => {
+        if (hasOverflow(autoScroller)) {
+          if (!rafId) startAuto();
+        } else {
+          autoScroller.scrollLeft = 0;
+        }
+      }, { passive: true });
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          stopAuto();
+        } else {
+          startAuto();
+        }
+      });
+    }
   })();
 </script>
