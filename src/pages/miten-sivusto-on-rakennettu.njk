@@ -92,9 +92,9 @@ lang: fi
                 <td>Canva-esitysten tiedot esityssivun listauksiin.</td>
               </tr>
               <tr>
-                <td><strong>Canva-analyysiputki (MCP + skriptit)</strong></td>
+                <td><strong>Canva-analyysiputki (MCP-työnkulku)</strong></td>
                 <td>Canva + MCP-työnkulku</td>
-                <td>Canva-analyysisivu rakennettiin MCP-avusteisesti: data normalisoitiin ja tiivistettiin analyysia varten skripteillä <code>scripts/canva-prepare-analysis.mjs</code> ja <code>scripts/canva-extract-years.mjs</code>, minkä jälkeen tulos vietiin analyysisivun rakenteeseen.</td>
+                <td>Canva-analyysisivu rakennettiin MCP-avusteisesti: data normalisoitiin, tiivistettiin analyysia varten ja vietiin analyysisivun rakenteeseen osana iteratiivista AI-kehitysprosessia.</td>
               </tr>
               <tr>
                 <td><strong>Finna API</strong></td>
@@ -138,8 +138,8 @@ lang: fi
               </tr>
               <tr>
                 <td><strong>SlideShare-analyysiputki (Cheerio + sisältöhaku)</strong></td>
-                <td>SlideShare + Node-skriptit</td>
-                <td>Ensin profiilin rakenne parsitaan Cheeriolla (<code>src/_data/slideshare.js</code>, <code>#__NEXT_DATA__</code>), sitten analyysiä varten ajetaan erillinen sisältöhakuskripti <code>scripts/fetch-slideshare-content.mjs</code>, joka tallentaa kuvaukset, tagit, kielitiedon ja transcript-sisällön tiedostoon <code>slideshare-content.json</code>.</td>
+                <td>SlideShare + Node-työnkulku</td>
+                <td>Ensin profiilin rakenne parsitaan Cheeriolla, sitten analyysiä varten ajetaan erillinen sisältöhaku joka kokoaa kuvaukset, tagit, kielitiedon ja transcript-sisällön jatkoanalyysiä varten.</td>
               </tr>
               <tr>
                 <td><strong>YouTube Data API v3</strong></td>
@@ -150,7 +150,8 @@ lang: fi
           </table>
         </div>
         <p class="mb-2">Lisäksi osa sisällöstä tulee hallituista paikallisista datatiedostoista (esim. Google Slides- ja SlideShare-listat). Näissä tapauksissa tieto ei tule rajapinnasta, vaan sitä ylläpidetään versionhallinnassa.</p>
-        <p class="mb-0">Teknisesti API-dataa hyödynnetään tällä sivustolla taulukoina, ticker-nostoina, korttikokoelmina, hakunäkymissä, metriikkalaskureissa ja automaattisesti päivittyvissä “viimeisimmät muutokset” -listoissa.</p>
+        <p class="mb-2">Teknisesti API-dataa hyödynnetään tällä sivustolla taulukoina, ticker-nostoina, korttikokoelmina, hakunäkymissä, metriikkalaskureissa ja automaattisesti päivittyvissä “viimeisimmät muutokset” -listoissa.</p>
+        <p class="mb-0">Canva- ja SlideShare-analyysien sisältöjen jäsentely sekä lopullinen analyysiesityksen kirjoittaminen tehtiin Claudea hyödyntäen.</p>
       </div>
     </div>
 
