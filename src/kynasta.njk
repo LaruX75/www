@@ -585,7 +585,6 @@ translationKey: writings_index
       </div>
       <div class="card-body p-0">
         <div class="p-3 bg-body-tertiary border-bottom">
-          <div class="d-flex flex-wrap gap-2 mb-3" id="esitykset-app-filters" aria-label="Suodata sovelluksen mukaan"></div>
           <div class="row g-2 align-items-end">
             <div class="col-md-9">
               <label for="esitykset-search" class="form-label small text-muted mb-1">Hae materiaaleja</label>
@@ -613,7 +612,14 @@ translationKey: writings_index
                 </th>
                 <th style="min-width:220px">Tiivistelmä</th>
                 <th style="min-width:190px">Avainsanat</th>
-                <th class="sortable" data-col="application" style="min-width:130px">Sovellus <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i></th>
+                <th style="min-width:170px">
+                  <div class="d-flex flex-column gap-1">
+                    <span>Sovellus</span>
+                    <select id="esitykset-application-filter" class="form-select form-select-sm" aria-label="Suodata sovelluksen mukaan">
+                      <option value="">Kaikki</option>
+                    </select>
+                  </div>
+                </th>
                 <th style="width:90px" class="text-center">Avaa</th>
               </tr>
             </thead>
@@ -1511,7 +1517,7 @@ section[id] {
   let esityksetSortDir = -1; // -1 = desc
 
   const esityksetSearchInp = document.getElementById('esitykset-search');
-  const esityksetAppFilters = document.getElementById('esitykset-app-filters');
+  const esityksetApplicationFilter = document.getElementById('esitykset-application-filter');
   const esityksetTbody = document.getElementById('esitykset-tbody');
   const esityksetInfo = document.getElementById('esitykset-info');
   const esityksetPagUl = document.getElementById('esitykset-pagination');
@@ -1575,6 +1581,15 @@ section[id] {
   const normalizedEsityksetData = esityksetData.map(normalizeEsitysItem);
   filteredEsityksetData = sortEsityksetRows(normalizedEsityksetData);
 
+  function initEsityksetApplicationFilter() {
+    if (!esityksetApplicationFilter) return;
+    const applications = [...new Set(normalizedEsityksetData.map((item) => item.application).filter(Boolean))]
+      .sort((a, b) => a.localeCompare(b, 'fi'));
+    esityksetApplicationFilter.innerHTML = '<option value="">Kaikki</option>' +
+      applications.map((app) => `<option value="${escHtml(app)}">${escHtml(app)}</option>`).join('');
+    esityksetApplicationFilter.value = activeEsityksetApplication;
+  }
+
   function applyEsityksetFilters() {
     const q = esityksetSearchInp ? esityksetSearchInp.value.toLowerCase().trim() : '';
     filteredEsityksetData = sortEsityksetRows(normalizedEsityksetData.filter((d) => {
@@ -1604,27 +1619,6 @@ section[id] {
     filteredEsityksetData = sortEsityksetRows(filteredEsityksetData);
     esityksetCurrentPage = 1;
     renderEsitykset();
-  }
-
-  function renderEsityksetApplicationFilters() {
-    if (!esityksetAppFilters) return;
-    const applications = [...new Set(normalizedEsityksetData.map((item) => item.application).filter(Boolean))]
-      .sort((a, b) => a.localeCompare(b, 'fi'));
-    const renderButton = (label, value, variant = 'outline-secondary') => {
-      const active = activeEsityksetApplication === value;
-      return `<button type="button" class="btn btn-sm ${active ? 'btn-primary' : `btn-${variant}`}" data-esitykset-app="${escHtml(value)}">${escHtml(label)}</button>`;
-    };
-    const html = [renderButton('Kaikki', '')]
-      .concat(applications.map((app) => renderButton(app, app)))
-      .join('');
-    esityksetAppFilters.innerHTML = html;
-    esityksetAppFilters.querySelectorAll('button[data-esitykset-app]').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        activeEsityksetApplication = btn.getAttribute('data-esitykset-app') || '';
-        renderEsityksetApplicationFilters();
-        applyEsityksetFilters();
-      });
-    });
   }
 
   function renderEsitykset() {
@@ -1729,7 +1723,14 @@ section[id] {
     esityksetResetBtn.addEventListener('click', () => {
       if (esityksetSearchInp) esityksetSearchInp.value = '';
       activeEsityksetApplication = '';
-      renderEsityksetApplicationFilters();
+      if (esityksetApplicationFilter) esityksetApplicationFilter.value = '';
+      applyEsityksetFilters();
+    });
+  }
+
+  if (esityksetApplicationFilter) {
+    esityksetApplicationFilter.addEventListener('change', () => {
+      activeEsityksetApplication = esityksetApplicationFilter.value || '';
       applyEsityksetFilters();
     });
   }
@@ -1738,7 +1739,7 @@ section[id] {
     th.addEventListener('click', () => sortEsityksetData(th.dataset.col));
   });
 
-  renderEsityksetApplicationFilters();
+  initEsityksetApplicationFilter();
   renderEsitykset();
 })();
 
