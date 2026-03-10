@@ -74,16 +74,7 @@
   {% set pageType = "article" if page.url and ("/blog" in page.url or "/julkaisut" in page.url or "/politics" in page.url) else "website" %}
   {% set sectionLabel = "Blogi" if page.url and "/blog" in page.url else ("Julkaisut" if page.url and "/julkaisut" in page.url else ("Politiikka" if page.url and "/politics" in page.url else "Sivusto")) %}
   {% set personId = (site.url or "https://www.jarilaru.fi") + "#person" %}
-  {% setAsync "ogImageUrl" %}
-    {% ogImage "./src/og-image.og.njk", {
-      title: pageTitle,
-      section: sectionLabel,
-      siteName: site.name,
-      domain: "jarilaru.fi"
-    } %}
-  {% endsetAsync %}
-  {% set ogImageCandidate = (ogImageUrl or "") | trim %}
-  {% set resolvedOgImage = ogImageCandidate if ogImageCandidate and ogImageCandidate != "null" and ogImageCandidate != "undefined" else "/img/hero.webp" %}
+  {% set resolvedOgImage = "/img/WIN_20210329_16_06_01_Pro.jpg" %}
 
   <title>{{ pageTitle }} — {{ site.name }}</title>
   <meta name="description" content="{{ pageDescription }}">
@@ -107,10 +98,14 @@
   <meta property="og:description" content="{{ pageDescription }}">
   <meta property="og:url" content="{{ pageUrl }}">
   <meta property="og:image" content="{{ resolvedOgImage | absoluteUrl(site.url or "https://www.jarilaru.fi") }}">
+  <meta property="og:image:alt" content="Jari Laru">
+  <meta property="og:image:width" content="1920">
+  <meta property="og:image:height" content="1080">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{ pageTitle }}">
   <meta name="twitter:description" content="{{ pageDescription }}">
   <meta name="twitter:image" content="{{ resolvedOgImage | absoluteUrl(site.url or "https://www.jarilaru.fi") }}">
+  <meta name="twitter:image:alt" content="Jari Laru">
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
