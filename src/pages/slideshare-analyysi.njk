@@ -1,7 +1,7 @@
 ---
 title: "SlideShare-esitysten analyysi 2009–2020"
 permalink: /esitykset/slideshare-analyysi/
-layout: page.njk
+layout: base.njk
 lang: fi
 description: "Analyysi Jari Larun 117 SlideShare-esityksestä vuosilta 2009–2020 – teemat, kohderyhmät, kehityskaaret ja katsotuimmat esitykset vuosikymmenittäin."
 templateEngineOverride: njk,md
@@ -22,29 +22,29 @@ templateEngineOverride: njk,md
 </section>
 
 {# KPI-kortit #}
-<section class="py-5 border-bottom">
+<section class="py-5 border-bottom slideshare-analysis-kpi">
   <div class="container">
     <div class="row g-3 mb-2">
       <div class="col-6 col-md-3">
-        <div class="card h-100 border-0 shadow-sm text-center p-3">
+        <div class="card h-100 border-0 shadow-sm text-center p-3 analysis-card">
           <div class="display-6 fw-bold text-primary mb-1">117</div>
           <div class="text-muted small">esitystä</div>
         </div>
       </div>
       <div class="col-6 col-md-3">
-        <div class="card h-100 border-0 shadow-sm text-center p-3">
+        <div class="card h-100 border-0 shadow-sm text-center p-3 analysis-card">
           <div class="display-6 fw-bold text-primary mb-1">9 749</div>
           <div class="text-muted small">katsotuimman katselut</div>
         </div>
       </div>
       <div class="col-6 col-md-3">
-        <div class="card h-100 border-0 shadow-sm text-center p-3">
+        <div class="card h-100 border-0 shadow-sm text-center p-3 analysis-card">
           <div class="display-6 fw-bold text-primary mb-1">68 %</div>
           <div class="text-muted small">suomenkielisiä</div>
         </div>
       </div>
       <div class="col-6 col-md-3">
-        <div class="card h-100 border-0 shadow-sm text-center p-3">
+        <div class="card h-100 border-0 shadow-sm text-center p-3 analysis-card">
           <div class="display-6 fw-bold text-primary mb-1">2014</div>
           <div class="text-muted small">aktiivisin vuosi (21 kpl)</div>
         </div>
@@ -54,13 +54,13 @@ templateEngineOverride: njk,md
 </section>
 
 {# Kolme kautta #}
-<section class="py-5 border-bottom">
+<section class="py-5 border-bottom slideshare-analysis-phase">
   <div class="container">
     <h2 class="h3 fw-bold mb-4">Kolme kautta</h2>
     <div class="row g-4">
 
       <div class="col-md-4">
-        <div class="card h-100 border-0 shadow-sm">
+        <div class="card h-100 border-0 shadow-sm analysis-card">
           <div class="card-body p-4">
             <div class="d-flex align-items-center gap-2 mb-3">
               <span class="badge bg-primary fs-6 px-3 py-2">2009–2012</span>
@@ -81,7 +81,7 @@ templateEngineOverride: njk,md
       </div>
 
       <div class="col-md-4">
-        <div class="card h-100 border-0 shadow-sm">
+        <div class="card h-100 border-0 shadow-sm analysis-card">
           <div class="card-body p-4">
             <div class="d-flex align-items-center gap-2 mb-3">
               <span class="badge bg-success fs-6 px-3 py-2">2013–2016</span>
@@ -102,7 +102,7 @@ templateEngineOverride: njk,md
       </div>
 
       <div class="col-md-4">
-        <div class="card h-100 border-0 shadow-sm">
+        <div class="card h-100 border-0 shadow-sm analysis-card">
           <div class="card-body p-4">
             <div class="d-flex align-items-center gap-2 mb-3">
               <span class="badge bg-warning text-dark fs-6 px-3 py-2">2017–2020</span>
@@ -132,7 +132,7 @@ templateEngineOverride: njk,md
     <h2 class="h3 fw-bold mb-4">Punaiset langat läpi kaikkien kausien</h2>
     <div class="row g-4">
       <div class="col-md-6">
-        <div class="d-flex gap-3">
+        <div class="d-flex gap-3 analysis-thread-item">
           <div class="flex-shrink-0 text-primary" style="font-size:1.5rem;"><i class="bi bi-graph-up-arrow"></i></div>
           <div>
             <h3 class="h6 fw-bold mb-1">Teknologiapessimismin ja -optimismin tasapaino</h3>
@@ -141,7 +141,7 @@ templateEngineOverride: njk,md
         </div>
       </div>
       <div class="col-md-6">
-        <div class="d-flex gap-3">
+        <div class="d-flex gap-3 analysis-thread-item">
           <div class="flex-shrink-0 text-primary" style="font-size:1.5rem;"><i class="bi bi-layers"></i></div>
           <div>
             <h3 class="h6 fw-bold mb-1">Scaffolding – väitöskirjasta läpi koko uran</h3>
@@ -150,7 +150,7 @@ templateEngineOverride: njk,md
         </div>
       </div>
       <div class="col-md-6">
-        <div class="d-flex gap-3">
+        <div class="d-flex gap-3 analysis-thread-item">
           <div class="flex-shrink-0 text-primary" style="font-size:1.5rem;"><i class="bi bi-person-circle"></i></div>
           <div>
             <h3 class="h6 fw-bold mb-1">Henkilökohtainen narratiivi uskottavuuden ankkurina</h3>
@@ -159,7 +159,7 @@ templateEngineOverride: njk,md
         </div>
       </div>
       <div class="col-md-6">
-        <div class="d-flex gap-3">
+        <div class="d-flex gap-3 analysis-thread-item">
           <div class="flex-shrink-0 text-primary" style="font-size:1.5rem;"><i class="bi bi-unlock"></i></div>
           <div>
             <h3 class="h6 fw-bold mb-1">Avoimuus käytäntönä, ei puheena</h3>
@@ -274,7 +274,7 @@ templateEngineOverride: njk,md
       ] %}
       {% for item in years %}
       <div class="col-12 col-md-6">
-        <div class="d-flex gap-3 align-items-start py-2">
+        <div class="d-flex gap-3 align-items-start py-2 analysis-year-item">
           <span class="badge bg-secondary flex-shrink-0" style="min-width:3rem;text-align:center;">{{ item.year }}</span>
           <span class="text-muted small">{{ item.topics }}</span>
         </div>
@@ -287,14 +287,37 @@ templateEngineOverride: njk,md
 {# CTA alareuna #}
 <section class="py-5">
   <div class="container">
-    <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-      <div>
-        <h2 class="h4 fw-bold mb-1">Kaikki esitykset</h2>
-        <p class="text-muted mb-0">Selaa kaikkia SlideShare-esityksiä esityssivulla.</p>
+    <div class="card border-0 shadow-sm">
+      <div class="card-body p-4 d-flex flex-wrap align-items-center justify-content-between gap-3">
+        <div>
+          <h2 class="h4 fw-bold mb-1">Kaikki esitykset</h2>
+          <p class="text-muted mb-0">Selaa kaikkia SlideShare-esityksiä esityssivulla.</p>
+        </div>
+        <a href="/esitykset/#slideshare-heading" class="btn btn-primary px-4">
+          <i class="bi bi-collection-play me-2"></i>Esitykset-sivu
+        </a>
       </div>
-      <a href="/esitykset/#slideshare-heading" class="btn btn-primary px-4">
-        <i class="bi bi-collection-play me-2"></i>Esitykset-sivu
-      </a>
     </div>
   </div>
 </section>
+
+<style>
+.analysis-card {
+  border-radius: 0.9rem;
+}
+
+.analysis-thread-item,
+.analysis-year-item {
+  padding: 0.75rem;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 0.75rem;
+  background: var(--bs-body-bg);
+  height: 100%;
+}
+
+@media (min-width: 992px) {
+  .slideshare-analysis-phase .analysis-card .card-body {
+    min-height: 270px;
+  }
+}
+</style>
