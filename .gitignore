@@ -32,3 +32,19 @@ AGENTS.md
 .claude/
 .codex/
 .agents/
+
+# Local analysis artifacts and helper exports
+canva-analysis.json
+slideshare-*.json
+slideshare-analyysi.md
+reports/seo-health.json
+
+# Local one-off helper scripts
+scripts/canva-extract-years.mjs
+scripts/canva-prepare-analysis.mjs
+scripts/fetch-slideshare-content.mjs
+scripts/list-remote-thumbs.mjs
+scripts/__pycache__/
+
+# Editor temp files
+*.swp
