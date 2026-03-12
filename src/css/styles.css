@@ -116,6 +116,21 @@ html:not([data-bs-theme="dark"]) .text-danger {
 .footer-wcag-icon svg {
   flex-shrink: 0;
 }
+.footer-social-links {
+  opacity: 0.74;
+}
+.footer-social-link {
+  color: var(--bs-secondary-color);
+  font-size: 0.92rem;
+  line-height: 1;
+  transition: color 0.15s ease, opacity 0.15s ease, transform 0.15s ease;
+}
+.footer-social-link:hover,
+.footer-social-link:focus-visible {
+  color: var(--bs-body-color);
+  opacity: 1;
+  transform: translateY(-1px);
+}
 
 .home-hero-roles {
   display: flex;
