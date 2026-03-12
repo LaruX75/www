@@ -379,8 +379,43 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Pagination for pub tables
   const ITEMS_PER_PAGE = 10;
+  const urlState = new URL(window.location.href);
+  const urlParams = urlState.searchParams;
+  const initialCoauthor = (urlParams.get('coauthor') || '').trim();
+  const initialKeyword = (urlParams.get('pk') || '').trim();
   let activeCoauthor = '';
+  let activeKeyword = '';
   const tableFilterRefreshers = [];
+
+  const getPubSearchKey = (tableId) => `pq_${tableId}`;
+  const setFilterParam = (key, value) => {
+    if (!value) {
+      urlParams.delete(key);
+      return;
+    }
+    urlParams.set(key, String(value).trim());
+  };
+  const updateFilterUrl = () => {
+    const qs = urlParams.toString();
+    const next = qs ? `${window.location.pathname}?${qs}${window.location.hash}` : `${window.location.pathname}${window.location.hash}`;
+    window.history.replaceState({}, '', next);
+  };
+  const syncPublicationFiltersToUrl = () => {
+    document.querySelectorAll('[data-pub-search]').forEach((input) => {
+      setFilterParam(getPubSearchKey(input.dataset.pubSearch), input.value || '');
+    });
+    setFilterParam('coauthor', activeCoauthor);
+    setFilterParam('pk', activeKeyword);
+    updateFilterUrl();
+  };
+  const applyPublicationFiltersFromUrl = () => {
+    document.querySelectorAll('[data-pub-search]').forEach((input) => {
+      const key = getPubSearchKey(input.dataset.pubSearch);
+      const val = urlParams.get(key);
+      if (val) input.value = val;
+    });
+  };
+  applyPublicationFiltersFromUrl();
 
   function sanitizeFilenamePart(value) {
     return String(value || '')
@@ -605,6 +640,7 @@ document.addEventListener('DOMContentLoaded', function() {
       statusEl.className = 'small mb-2 d-none';
       statusEl.textContent = '';
     }
+    syncPublicationFiltersToUrl();
   }
 
   function initPubPagination(tableId) {
@@ -696,6 +732,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const matchesCoauthor = !coauthorNeedle || authors.includes(coauthorNeedle);
         return matchesSearch && matchesCoauthor;
       });
+      syncPublicationFiltersToUrl();
       renderPage(1);
     }
 
@@ -844,6 +881,9 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.coauthor-filter-btn').forEach((btn) => {
     btn.addEventListener('click', () => setCoauthorFilter(btn.dataset.coauthor || ''));
   });
+  if (initialCoauthor) {
+    setCoauthorFilter(initialCoauthor);
+  }
 
   // 5. SANAPILVI (Otsikon sanat, alkuperäinen toimivaksi todettu tapa)
   const stopwords = new Set(['the','of','in','for','a','an','and','to','on','with','from','by','at','as','is','are','was','were','or','using','based','their','its','towards','between','among','during','about','through','case','study','how','can','do','does','than','into','all','not','but','also','been','has','have','had','which','when','what','that','this','these','those','other','more','no','some','varhaiskasvatuksen']);
@@ -858,12 +898,12 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   const topWords = Object.entries(wordCounts).sort((a,b)=>b[1]-a[1]).slice(0,25);
   const cloudEl = document.getElementById('wordCloud');
-  let activeKeyword = '';
   const keywordFilterBar = document.getElementById('keyword-filter-bar');
   const activeKeywordLabel = document.getElementById('active-keyword-label');
   const clearKeywordBtn = document.getElementById('clear-keyword-filter');
 
-  function applyKeywordFilter(word) {
+  function applyKeywordFilter(word, options = {}) {
+    const { skipScroll = false } = options;
     activeKeyword = (activeKeyword === word) ? '' : word;
 
     document.querySelectorAll('[data-pub-search]').forEach(input => {
@@ -886,9 +926,10 @@ document.addEventListener('DOMContentLoaded', function() {
       btn.style.opacity = isActive ? '1' : btn.dataset.opacity;
     });
 
-    if (activeKeyword) {
+    if (activeKeyword && !skipScroll) {
       document.getElementById('researchfi-julkaisut')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+    syncPublicationFiltersToUrl();
   }
 
   if (clearKeywordBtn) {
@@ -911,6 +952,12 @@ document.addEventListener('DOMContentLoaded', function() {
       btn.addEventListener('click', () => applyKeywordFilter(word));
       cloudEl.appendChild(btn);
     });
+    if (initialKeyword) {
+      const keywordExists = topWords.some(([word]) => word === initialKeyword);
+      if (keywordExists) {
+        applyKeywordFilter(initialKeyword, { skipScroll: true });
+      }
+    }
   } else {
     cloudEl.innerHTML = '<span class="text-muted small">Ei avainsanoja saatavilla</span>';
   }

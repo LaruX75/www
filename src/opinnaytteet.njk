@@ -283,6 +283,21 @@ translationKey: theses_index
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const ITEMS_PER_PAGE = 5;
+  const urlState = new URL(window.location.href);
+  const urlParams = urlState.searchParams;
+  const filterKey = (tableId, kind) => `th_${tableId}_${kind}`;
+  const setFilterParam = (key, value) => {
+    if (!value) {
+      urlParams.delete(key);
+      return;
+    }
+    urlParams.set(key, String(value).trim());
+  };
+  const updateFilterUrl = () => {
+    const qs = urlParams.toString();
+    const next = qs ? `${window.location.pathname}?${qs}${window.location.hash}` : `${window.location.pathname}${window.location.hash}`;
+    window.history.replaceState({}, '', next);
+  };
 
   function buildThesisBibTeX(payload) {
     const title = (payload.title || '').trim();
@@ -438,6 +453,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.querySelector(`[data-thesis-search="${tableContainer.id}"]`);
     const yearSelect = document.querySelector(`[data-thesis-year="${tableContainer.id}"]`);
     const typeSelect = document.querySelector(`[data-thesis-type="${tableContainer.id}"]`);
+    const searchParamKey = filterKey(tableContainer.id, 'q');
+    const yearParamKey = filterKey(tableContainer.id, 'y');
+    const typeParamKey = filterKey(tableContainer.id, 't');
+
+    if (searchInput) {
+      searchInput.value = urlParams.get(searchParamKey) || '';
+    }
 
     if (yearSelect) {
       const years = [...new Set(rows.map((row) => row.dataset.year).filter(Boolean))]
@@ -448,6 +470,24 @@ document.addEventListener('DOMContentLoaded', () => {
         option.textContent = year;
         yearSelect.appendChild(option);
       });
+      const urlYear = urlParams.get(yearParamKey) || '';
+      if (urlYear && Array.from(yearSelect.options).some((opt) => opt.value === urlYear)) {
+        yearSelect.value = urlYear;
+      }
+    }
+
+    if (typeSelect) {
+      const urlType = urlParams.get(typeParamKey) || '';
+      if (urlType && Array.from(typeSelect.options).some((opt) => opt.value === urlType)) {
+        typeSelect.value = urlType;
+      }
+    }
+
+    function syncFiltersToUrl() {
+      setFilterParam(searchParamKey, searchInput?.value || '');
+      setFilterParam(yearParamKey, yearSelect?.value || '');
+      setFilterParam(typeParamKey, typeSelect?.value || '');
+      updateFilterUrl();
     }
 
     function applyFilters() {
@@ -464,6 +504,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const matchesType = !type || rowType === type;
         return matchesSearch && matchesYear && matchesType;
       });
+      syncFiltersToUrl();
       renderPage(1);
 
       // Ilmoita suodatustulos ruudunlukijalle
@@ -544,7 +585,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Initial render
-    renderPage(1);
+    applyFilters();
   }
 
   // Initialize pagination for each table container

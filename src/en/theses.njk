@@ -239,6 +239,21 @@ lang: en
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const ITEMS_PER_PAGE = 5;
+  const urlState = new URL(window.location.href);
+  const urlParams = urlState.searchParams;
+  const filterKey = (tableId) => `th_${tableId}_q`;
+  const setFilterParam = (key, value) => {
+    if (!value) {
+      urlParams.delete(key);
+      return;
+    }
+    urlParams.set(key, String(value).trim());
+  };
+  const updateFilterUrl = () => {
+    const qs = urlParams.toString();
+    const next = qs ? `${window.location.pathname}?${qs}${window.location.hash}` : `${window.location.pathname}${window.location.hash}`;
+    window.history.replaceState({}, '', next);
+  };
 
   function buildThesisBibTeX(payload) {
     const title = (payload.title || '').trim();
@@ -372,6 +387,15 @@ document.addEventListener('DOMContentLoaded', () => {
     let filteredRows = [...rows];
 
     const searchInput = document.querySelector(`[data-thesis-search="${tableContainer.id}"]`);
+    const searchParamKey = filterKey(tableContainer.id);
+    if (searchInput) {
+      searchInput.value = urlParams.get(searchParamKey) || '';
+    }
+
+    function syncFiltersToUrl() {
+      setFilterParam(searchParamKey, searchInput?.value || '');
+      updateFilterUrl();
+    }
 
     function renderPage(page) {
       currentPage = page;
@@ -432,11 +456,17 @@ document.addEventListener('DOMContentLoaded', () => {
       searchInput.addEventListener('input', () => {
         const q = searchInput.value.toLowerCase();
         filteredRows = rows.filter(row => row.textContent.toLowerCase().includes(q));
+        syncFiltersToUrl();
         renderPage(1);
       });
     }
 
     // Initial render
+    if (searchInput && searchInput.value) {
+      const q = searchInput.value.toLowerCase();
+      filteredRows = rows.filter(row => row.textContent.toLowerCase().includes(q));
+      syncFiltersToUrl();
+    }
     renderPage(1);
   }
 

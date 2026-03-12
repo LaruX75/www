@@ -260,6 +260,35 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Pagination for pub tables
   const ITEMS_PER_PAGE = 10;
+  const urlState = new URL(window.location.href);
+  const urlParams = urlState.searchParams;
+  const getPubSearchKey = (tableId) => `pq_${tableId}`;
+  const setFilterParam = (key, value) => {
+    if (!value) {
+      urlParams.delete(key);
+      return;
+    }
+    urlParams.set(key, String(value).trim());
+  };
+  const updateFilterUrl = () => {
+    const qs = urlParams.toString();
+    const next = qs ? `${window.location.pathname}?${qs}${window.location.hash}` : `${window.location.pathname}${window.location.hash}`;
+    window.history.replaceState({}, '', next);
+  };
+  const syncPublicationFiltersToUrl = () => {
+    document.querySelectorAll('[data-pub-search]').forEach((input) => {
+      setFilterParam(getPubSearchKey(input.dataset.pubSearch), input.value || '');
+    });
+    updateFilterUrl();
+  };
+  const applyPublicationFiltersFromUrl = () => {
+    document.querySelectorAll('[data-pub-search]').forEach((input) => {
+      const val = urlParams.get(getPubSearchKey(input.dataset.pubSearch));
+      if (val) input.value = val;
+    });
+  };
+  applyPublicationFiltersFromUrl();
+
   function initPubPagination(tableId) {
     const tableContainer = document.getElementById(tableId);
     if (!tableContainer) return;
@@ -331,10 +360,16 @@ document.addEventListener('DOMContentLoaded', function() {
       searchInput.addEventListener('input', () => {
         const q = searchInput.value.toLowerCase();
         filteredRows = rows.filter(row => row.textContent.toLowerCase().includes(q));
+        syncPublicationFiltersToUrl();
         renderPage(1);
       });
     }
 
+    if (searchInput && searchInput.value) {
+      const q = searchInput.value.toLowerCase();
+      filteredRows = rows.filter(row => row.textContent.toLowerCase().includes(q));
+      syncPublicationFiltersToUrl();
+    }
     renderPage(1);
   }
 
@@ -495,4 +530,3 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 </script>
-
