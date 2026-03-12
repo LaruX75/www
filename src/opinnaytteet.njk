@@ -845,39 +845,57 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  function findCloudKeywordButton(cloudContainer, keyword) {
+    if (!cloudContainer || !keyword) return null;
+    const normalized = String(keyword).trim().toLowerCase();
+    if (!normalized) return null;
+    return Array.from(cloudContainer.querySelectorAll('.thesis-keyword-link[data-keyword]'))
+      .find((btn) => (btn.dataset.keyword || '').trim().toLowerCase() === normalized) || null;
+  }
+
+  function activateKeywordContext(keyword) {
+    const clearBtn = document.getElementById('thesis-cloud-clear');
+    const cloudContainer = document.getElementById('thesis-cloud-container');
+    if (!cloudContainer || !keyword) return false;
+
+    cloudContainer.querySelectorAll('.thesis-keyword-link').forEach((b) => {
+      b.classList.remove('text-bg-primary', 'active');
+      b.classList.add('text-bg-light');
+      b.setAttribute('aria-pressed', 'false');
+    });
+
+    const cloudBtn = findCloudKeywordButton(cloudContainer, keyword);
+    if (!cloudBtn) return false;
+
+    cloudBtn.classList.remove('text-bg-light');
+    cloudBtn.classList.add('text-bg-primary', 'active');
+    cloudBtn.setAttribute('aria-pressed', 'true');
+    if (clearBtn) clearBtn.style.removeProperty('display');
+
+    const collapse = cloudBtn.closest('.accordion-collapse');
+    if (collapse && !collapse.classList.contains('show') && window.bootstrap?.Collapse) {
+      window.bootstrap.Collapse.getOrCreateInstance(collapse).show();
+    }
+    return true;
+  }
+
+  function getKeywordFromUrlContext() {
+    const direct = (urlParams.get('keyword') || urlParams.get('avainsana') || '').trim();
+    if (direct) return direct;
+    const searchKeys = Array.from(urlParams.keys()).filter((key) => /^th_.+_q$/.test(key));
+    for (const key of searchKeys) {
+      const value = (urlParams.get(key) || '').trim();
+      if (value) return value;
+    }
+    return '';
+  }
+
   // Delegoitu klikkaus kaikille avainsanapainikkeille (pilvi + taulukon rivit)
   document.addEventListener('click', (event) => {
     const kwBtn = event.target.closest('.thesis-keyword-link');
     if (!kwBtn) return;
     const kw = kwBtn.dataset.keyword || '';
-    const clearBtn = document.getElementById('thesis-cloud-clear');
-    const cloudContainer = document.getElementById('thesis-cloud-container');
-
-    // Korosta aktiivinen avainsana pilvessä
-    if (cloudContainer) {
-      cloudContainer.querySelectorAll('.thesis-keyword-link').forEach(b => {
-        b.classList.remove('text-bg-primary', 'active');
-        b.classList.add('text-bg-light');
-        b.setAttribute('aria-pressed', 'false');
-      });
-      // Etsi badge kaikista accordion-osioista (case-insensitive)
-      const cloudBtn = cloudContainer.querySelector(`.thesis-keyword-link[data-keyword="${CSS.escape(kw)}"]`)
-        || cloudContainer.querySelector(`.thesis-keyword-link[data-keyword="${CSS.escape(kw.toLowerCase())}"]`);
-      if (cloudBtn) {
-        cloudBtn.classList.remove('text-bg-light');
-        cloudBtn.classList.add('text-bg-primary', 'active');
-        cloudBtn.setAttribute('aria-pressed', 'true');
-        // Avaa kyseinen accordion-osio jos suljettu
-        const collapse = cloudBtn.closest('.accordion-collapse');
-        if (collapse && !collapse.classList.contains('show')) {
-          const trigger = document.querySelector(`[data-bs-target="#${collapse.id}"]`);
-          if (trigger && window.bootstrap) {
-            window.bootstrap.Collapse.getOrCreateInstance(collapse).show();
-          }
-        }
-      }
-    }
-    if (clearBtn) clearBtn.style.removeProperty('display');
+    activateKeywordContext(kw);
 
     // Aseta hakusana kaikkiin hakukenttiin ja käynnistä suodatus
     document.querySelectorAll('[data-thesis-search]').forEach(input => {
@@ -891,6 +909,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   buildKeywordCloud();
+  const initialKeyword = getKeywordFromUrlContext();
+  if (initialKeyword) activateKeywordContext(initialKeyword);
 
 });
 </script>
