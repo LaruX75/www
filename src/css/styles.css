@@ -320,7 +320,7 @@ html:not([data-bs-theme="dark"]) .home-hero-proof-item:focus-visible {
 }
 
 .site-news-ticker-track.is-running {
-  animation: siteTickerMarquee 95s linear infinite;
+  animation: siteTickerMarquee 150s linear infinite;
 }
 
 .site-news-ticker:hover .site-news-ticker-track.is-running {
