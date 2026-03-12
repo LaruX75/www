@@ -245,14 +245,6 @@
 
   {% include "breadcrumb.njk" %}
 
-  <main id="main-content" class="site-main">
-    <div class="bss-scope">
-      {{ content | safe }}
-    </div>
-  </main>
-
-  {% include "footer.njk" %}
-
   <section class="site-news-ticker" aria-label="{{ 'Latest content' if currentLang == 'en' else 'Uusimmat sisällöt' }}">
     <div class="site-news-ticker-inner">
       <span class="site-news-ticker-label">{{ "Latest" if currentLang == "en" else "Uusimmat" }}</span>
@@ -279,6 +271,14 @@
       ]
     </script>
   </section>
+
+  <main id="main-content" class="site-main">
+    <div class="bss-scope">
+      {{ content | safe }}
+    </div>
+  </main>
+
+  {% include "footer.njk" %}
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" defer></script>
   <script src="/js/bootstrap.min.js" defer></script>
