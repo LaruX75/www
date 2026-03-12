@@ -249,7 +249,7 @@
     <div class="site-news-ticker-inner">
       <span class="site-news-ticker-label">{{ "Latest" if currentLang == "en" else "Uusimmat" }}</span>
       <div class="site-news-ticker-viewport">
-        <div id="siteNewsTickerTrack" class="site-news-ticker-track"></div>
+        <div class="site-news-ticker-track" data-latest-track></div>
       </div>
     </div>
     <script id="site-latest-items" type="application/json">
@@ -279,6 +279,15 @@
   </main>
 
   {% include "footer.njk" %}
+
+  <section class="site-news-ticker site-news-ticker--footer" aria-label="{{ 'Latest content' if currentLang == 'en' else 'Uusimmat sisällöt' }}">
+    <div class="site-news-ticker-inner">
+      <span class="site-news-ticker-label">{{ "Latest" if currentLang == "en" else "Uusimmat" }}</span>
+      <div class="site-news-ticker-viewport">
+        <div class="site-news-ticker-track" data-latest-track></div>
+      </div>
+    </div>
+  </section>
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" defer></script>
   <script src="/js/bootstrap.min.js" defer></script>
@@ -329,10 +338,10 @@
         navbar.classList.add('navbar-hero-solid');
       }
 
-      // Footer ticker for latest site content
-      const tickerTrack = document.getElementById('siteNewsTickerTrack');
+      // Latest content ticker (render to all ticker instances)
+      const tickerTracks = Array.from(document.querySelectorAll('.site-news-ticker-track[data-latest-track]'));
       const tickerRaw = document.getElementById('site-latest-items')?.textContent || '[]';
-      if (tickerTrack) {
+      if (tickerTracks.length) {
         const currentLangCode = (document.documentElement.lang || 'fi').slice(0, 2).toLowerCase();
         const escHtml = (value) => String(value || '')
           .replaceAll('&', '&amp;')
@@ -377,9 +386,12 @@
           })
           .slice(0, 36);
 
-        if (!latest.length) {
-          tickerTrack.innerHTML = `<span class="site-news-ticker-item">${currentLangCode === 'en' ? 'No latest content found.' : 'Uusimpia sisältöjä ei löytynyt.'}</span>`;
-        } else {
+        tickerTracks.forEach((tickerTrack) => {
+          if (!latest.length) {
+            tickerTrack.innerHTML = `<span class="site-news-ticker-item">${currentLangCode === 'en' ? 'No latest content found.' : 'Uusimpia sisältöjä ei löytynyt.'}</span>`;
+            return;
+          }
+
           const row = latest.map((item) => {
             const dateLabel = fmtDate(item.date);
             const kindLabel = mapKind(item.kind);
@@ -393,7 +405,7 @@
           }).join('');
           tickerTrack.innerHTML = `${row}${row}`;
           tickerTrack.classList.add('is-running');
-        }
+        });
       }
 
       // Mega menu interactions (stagger + Esc focus return)
