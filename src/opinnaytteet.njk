@@ -285,6 +285,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const ITEMS_PER_PAGE = 5;
   const urlState = new URL(window.location.href);
   const urlParams = urlState.searchParams;
+  const defaultPageTitle = document.title;
+  const ogTitleMeta = document.querySelector('meta[property="og:title"]');
+  const twitterTitleMeta = document.querySelector('meta[name="twitter:title"]');
+  const defaultOgTitle = ogTitleMeta?.getAttribute('content') || '';
+  const defaultTwitterTitle = twitterTitleMeta?.getAttribute('content') || '';
   const filterKey = (tableId, kind) => `th_${tableId}_${kind}`;
   const setFilterParam = (key, value) => {
     if (!value) {
@@ -297,6 +302,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const qs = urlParams.toString();
     const next = qs ? `${window.location.pathname}?${qs}${window.location.hash}` : `${window.location.pathname}${window.location.hash}`;
     window.history.replaceState({}, '', next);
+    applyKeywordToPageShareMeta(getKeywordFromUrlContext());
   };
 
   function buildThesisBibTeX(payload) {
@@ -890,6 +896,20 @@ document.addEventListener('DOMContentLoaded', () => {
     return '';
   }
 
+  function applyKeywordToPageShareMeta(keyword) {
+    const term = String(keyword || '').trim();
+    if (!term) {
+      document.title = defaultPageTitle;
+      if (ogTitleMeta && defaultOgTitle) ogTitleMeta.setAttribute('content', defaultOgTitle);
+      if (twitterTitleMeta && defaultTwitterTitle) twitterTitleMeta.setAttribute('content', defaultTwitterTitle);
+      return;
+    }
+    const dynamicTitle = `${defaultPageTitle} | Hakusana: ${term}`;
+    document.title = dynamicTitle;
+    if (ogTitleMeta) ogTitleMeta.setAttribute('content', dynamicTitle);
+    if (twitterTitleMeta) twitterTitleMeta.setAttribute('content', dynamicTitle);
+  }
+
   // Delegoitu klikkaus kaikille avainsanapainikkeille (pilvi + taulukon rivit)
   document.addEventListener('click', (event) => {
     const kwBtn = event.target.closest('.thesis-keyword-link');
@@ -911,6 +931,7 @@ document.addEventListener('DOMContentLoaded', () => {
   buildKeywordCloud();
   const initialKeyword = getKeywordFromUrlContext();
   if (initialKeyword) activateKeywordContext(initialKeyword);
+  applyKeywordToPageShareMeta(initialKeyword);
 
 });
 </script>
