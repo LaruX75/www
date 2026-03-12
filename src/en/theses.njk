@@ -24,6 +24,9 @@ lang: en
     Supervised theses fetched from the OuluREPO publication archive
     {% if theses.stats.firstYear %}({{ theses.stats.firstYear }}–{{ theses.stats.lastYear }}){% endif %}.
   </p>
+  {% if keywordCategories %}
+  <script type="application/json" id="thesis-keyword-categories">{{ keywordCategories | dump | safe }}</script>
+  {% endif %}
 
   {# Laskurit #}
   <div class="row g-3 my-4">
@@ -225,6 +228,12 @@ lang: en
             <button type="button" class="btn btn-primary btn-sm rounded-pill" id="thesisCitationDownloadBtn">
               <i class="bi bi-download me-1"></i>Download
             </button>
+            <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill" id="thesisCitationZoteroBtn" title="Download RIS for Zotero import">
+              <img src="https://cdn.simpleicons.org/zotero/cc2936" alt="" width="14" height="14" class="me-1 align-text-bottom">Zotero
+            </button>
+            <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill" id="thesisCitationMendeleyBtn" title="Download RIS for Mendeley import">
+              <img src="https://cdn.simpleicons.org/mendeley/9d1620" alt="" width="14" height="14" class="me-1 align-text-bottom">Mendeley
+            </button>
           </div>
         </div>
         <div class="mt-3">
@@ -241,6 +250,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const ITEMS_PER_PAGE = 5;
   const urlState = new URL(window.location.href);
   const urlParams = urlState.searchParams;
+  const defaultPageTitle = document.title;
+  const ogTitleMeta = document.querySelector('meta[property="og:title"]');
+  const twitterTitleMeta = document.querySelector('meta[name="twitter:title"]');
+  const defaultOgTitle = ogTitleMeta?.getAttribute('content') || '';
+  const defaultTwitterTitle = twitterTitleMeta?.getAttribute('content') || '';
   const filterKey = (tableId) => `th_${tableId}_q`;
   const setFilterParam = (key, value) => {
     if (!value) {
@@ -253,6 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const qs = urlParams.toString();
     const next = qs ? `${window.location.pathname}?${qs}${window.location.hash}` : `${window.location.pathname}${window.location.hash}`;
     window.history.replaceState({}, '', next);
+    applyKeywordToPageShareMeta(getKeywordFromUrlContext());
   };
 
   function buildThesisBibTeX(payload) {
@@ -361,6 +376,26 @@ document.addEventListener('DOMContentLoaded', () => {
     if (format === 'chicago') return buildThesisChicago(payload);
     const { bib } = buildThesisBibTeX(payload);
     return bib;
+  }
+
+  function buildThesisRis(payload) {
+    const title = (payload.title || '').trim();
+    const authors = String(payload.authors || '')
+      .split(';')
+      .map((a) => a.trim())
+      .filter(Boolean);
+    const year = String(payload.year || '').trim();
+    const url = (payload.url || '').trim();
+    const level = getThesisLevelLabel(payload);
+    const lines = ['TY  - THES'];
+    authors.forEach((author) => lines.push(`AU  - ${author}`));
+    if (year) lines.push(`PY  - ${year}`);
+    if (title) lines.push(`TI  - ${title}`);
+    lines.push(`PB  - University of Oulu`);
+    lines.push(`M3  - ${level}`);
+    if (url) lines.push(`UR  - ${url}`);
+    lines.push('ER  -');
+    return lines.join('\n');
   }
 
   function initTablePagination(tableContainer) {
@@ -484,6 +519,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const thesisCitationOutput = document.getElementById('thesisCitationOutput');
   const thesisCitationDownloadBtn = document.getElementById('thesisCitationDownloadBtn');
   const thesisCitationCopyBtn = document.getElementById('thesisCitationCopyBtn');
+  const thesisCitationZoteroBtn = document.getElementById('thesisCitationZoteroBtn');
+  const thesisCitationMendeleyBtn = document.getElementById('thesisCitationMendeleyBtn');
 
   function renderThesisCitationPreview() {
     if (!currentCitationPayload || !thesisCitationOutput) return;
@@ -539,6 +576,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  if (thesisCitationZoteroBtn) {
+    thesisCitationZoteroBtn.addEventListener('click', () => {
+      if (!currentCitationPayload) return;
+      const base = sanitizeFilenamePart(currentCitationPayload.title || currentCitationPayload.authors || 'citation');
+      downloadTextFile(`${base}-zotero.ris`, buildThesisRis(currentCitationPayload) + '\n');
+    });
+  }
+
+  if (thesisCitationMendeleyBtn) {
+    thesisCitationMendeleyBtn.addEventListener('click', () => {
+      if (!currentCitationPayload) return;
+      const base = sanitizeFilenamePart(currentCitationPayload.title || currentCitationPayload.authors || 'citation');
+      downloadTextFile(`${base}-mendeley.ris`, buildThesisRis(currentCitationPayload) + '\n');
+    });
+  }
+
   const abstractModalEl = document.getElementById('thesisAbstractModal');
   const abstractModalTitle = document.getElementById('thesisAbstractModalTitle');
   const abstractModalTextDesktop = document.getElementById('thesisAbstractModalTextDesktop');
@@ -580,7 +633,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ---- Keyword cloud ----
+  // ---- Keyword cloud by categories ----
   function buildKeywordCloud() {
     const cloudContainer = document.getElementById('thesis-cloud-container');
     const clearBtn = document.getElementById('thesis-cloud-clear');
@@ -588,51 +641,173 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const freq = new Map();
     document.querySelectorAll('.thesis-keyword-link[data-keyword]').forEach(btn => {
-      const kw = (btn.dataset.keyword || '').trim();
+      const kw = (btn.dataset.keyword || '').trim().toLowerCase();
       if (!kw) return;
       freq.set(kw, (freq.get(kw) || 0) + 1);
     });
-
-    const subjects = Array.from(freq.keys()).sort((a, b) => a.localeCompare(b, 'en'));
-    cloudContainer.innerHTML = '';
-
-    if (subjects.length === 0) {
-      cloudContainer.innerHTML = '<span class="text-muted small">No keywords available.</span>';
-      return;
-    }
-
-    const counts = subjects.map(kw => freq.get(kw) || 0);
-    const minCount = Math.min(...counts);
-    const maxCount = Math.max(...counts);
+    const allCounts = Array.from(freq.values());
+    const minCount = allCounts.length ? Math.min(...allCounts) : 1;
+    const maxCount = allCounts.length ? Math.max(...allCounts) : 1;
     const normalize = (count) => {
       if (maxCount === minCount) return 0.5;
       return (count - minCount) / (maxCount - minCount);
     };
 
-    subjects.forEach(kw => {
-      const count = freq.get(kw) || 1;
-      const scale = normalize(count);
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'badge text-bg-light border thesis-keyword-link';
-      btn.dataset.keyword = kw;
-      btn.textContent = kw;
-      btn.style.setProperty('--thesis-keyword-size', `${(0.78 + (scale * 0.72)).toFixed(2)}rem`);
-      btn.style.setProperty('--thesis-keyword-weight', String(Math.round(500 + (scale * 250))));
-      btn.title = `${kw} (${count})`;
-      cloudContainer.appendChild(btn);
+    let categories = null;
+    const catScript = document.getElementById('thesis-keyword-categories');
+    if (catScript) {
+      try { categories = JSON.parse(catScript.textContent); } catch (_) {}
+    }
+    cloudContainer.innerHTML = '';
+
+    if (!categories || Object.keys(categories).length === 0) {
+      const subjects = Array.from(freq.keys()).sort((a, b) => a.localeCompare(b, 'en'));
+      if (subjects.length === 0) {
+        cloudContainer.innerHTML = '<span class="text-muted small p-3 d-block">No keywords available.</span>';
+        return;
+      }
+      const wrapper = document.createElement('div');
+      wrapper.className = 'd-flex flex-wrap gap-1 p-3';
+      subjects.forEach((kw) => {
+        wrapper.appendChild(makeKwBadge(kw, freq.get(kw) || 1, normalize));
+      });
+      cloudContainer.appendChild(wrapper);
+      setupClearBtn(clearBtn, cloudContainer);
+      return;
+    }
+
+    const accordion = document.createElement('div');
+    accordion.className = 'accordion accordion-flush';
+    accordion.id = 'thesis-cat-accordion';
+
+    const catEntries = Object.entries(categories);
+    catEntries.forEach(([catName, keywords], idx) => {
+      if (!Array.isArray(keywords) || keywords.length === 0) return;
+      const item = document.createElement('div');
+      item.className = 'accordion-item';
+
+      const headerId = `thesis-cat-h${idx}`;
+      const collapseId = `thesis-cat-c${idx}`;
+      const isFirst = idx === 0;
+
+      item.innerHTML = `
+        <h3 class="accordion-header" id="${headerId}">
+          <button class="accordion-button${isFirst ? '' : ' collapsed'} py-2 small fw-semibold" type="button"
+            data-bs-toggle="collapse" data-bs-target="#${collapseId}"
+            aria-expanded="${isFirst}" aria-controls="${collapseId}">
+            <i class="bi bi-tag-fill me-2 text-primary opacity-75"></i>${catName}
+            <span class="badge text-bg-secondary ms-2 fw-normal">${keywords.length}</span>
+          </button>
+        </h3>
+        <div id="${collapseId}" class="accordion-collapse collapse${isFirst ? ' show' : ''}"
+          aria-labelledby="${headerId}" data-bs-parent="#thesis-cat-accordion">
+          <div class="accordion-body py-2 d-flex flex-wrap gap-1" id="thesis-cat-body-${idx}"></div>
+        </div>`;
+
+      accordion.appendChild(item);
+
+      const body = item.querySelector(`#thesis-cat-body-${idx}`);
+      const sorted = [...keywords].sort((a, b) => {
+        const countDiff = (freq.get(b.toLowerCase()) || 0) - (freq.get(a.toLowerCase()) || 0);
+        return countDiff !== 0 ? countDiff : a.localeCompare(b, 'en');
+      });
+      sorted.forEach((kw) => {
+        const count = freq.get(kw.toLowerCase()) || 0;
+        body.appendChild(makeKwBadge(kw, count, normalize));
+      });
     });
 
-    if (clearBtn) {
-      clearBtn.addEventListener('click', () => {
-        document.querySelectorAll('[data-thesis-search]').forEach(input => {
-          input.value = '';
-          input.dispatchEvent(new Event('input', { bubbles: true }));
-        });
-        cloudContainer.querySelectorAll('.thesis-keyword-link').forEach(b => b.classList.remove('text-bg-primary', 'active'));
-        clearBtn.style.setProperty('display', 'none', 'important');
+    cloudContainer.appendChild(accordion);
+    setupClearBtn(clearBtn, cloudContainer);
+  }
+
+  function makeKwBadge(kw, count, normalize) {
+    const scale = normalize(count);
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'badge text-bg-light border thesis-keyword-link';
+    btn.dataset.keyword = kw;
+    btn.textContent = kw;
+    btn.setAttribute('aria-pressed', 'false');
+    btn.style.setProperty('--thesis-keyword-size', `${(0.78 + (scale * 0.52)).toFixed(2)}rem`);
+    btn.style.setProperty('--thesis-keyword-weight', String(Math.round(450 + (scale * 250))));
+    if (count > 0) btn.title = `${kw} (${count} theses)`;
+    return btn;
+  }
+
+  function setupClearBtn(clearBtn, cloudContainer) {
+    if (!clearBtn) return;
+    clearBtn.addEventListener('click', () => {
+      document.querySelectorAll('[data-thesis-search]').forEach(input => {
+        input.value = '';
+        input.dispatchEvent(new Event('input', { bubbles: true }));
       });
+      cloudContainer.querySelectorAll('.thesis-keyword-link').forEach(b => {
+        b.classList.remove('text-bg-primary', 'active');
+        b.classList.add('text-bg-light');
+        b.setAttribute('aria-pressed', 'false');
+      });
+      clearBtn.style.setProperty('display', 'none', 'important');
+    });
+  }
+
+  function findCloudKeywordButton(cloudContainer, keyword) {
+    if (!cloudContainer || !keyword) return null;
+    const normalized = String(keyword).trim().toLowerCase();
+    if (!normalized) return null;
+    return Array.from(cloudContainer.querySelectorAll('.thesis-keyword-link[data-keyword]'))
+      .find((btn) => (btn.dataset.keyword || '').trim().toLowerCase() === normalized) || null;
+  }
+
+  function activateKeywordContext(keyword) {
+    const clearBtn = document.getElementById('thesis-cloud-clear');
+    const cloudContainer = document.getElementById('thesis-cloud-container');
+    if (!cloudContainer || !keyword) return false;
+
+    cloudContainer.querySelectorAll('.thesis-keyword-link').forEach((b) => {
+      b.classList.remove('text-bg-primary', 'active');
+      b.classList.add('text-bg-light');
+      b.setAttribute('aria-pressed', 'false');
+    });
+
+    const cloudBtn = findCloudKeywordButton(cloudContainer, keyword);
+    if (!cloudBtn) return false;
+
+    cloudBtn.classList.remove('text-bg-light');
+    cloudBtn.classList.add('text-bg-primary', 'active');
+    cloudBtn.setAttribute('aria-pressed', 'true');
+    if (clearBtn) clearBtn.style.removeProperty('display');
+
+    const collapse = cloudBtn.closest('.accordion-collapse');
+    if (collapse && !collapse.classList.contains('show') && window.bootstrap?.Collapse) {
+      window.bootstrap.Collapse.getOrCreateInstance(collapse).show();
     }
+    return true;
+  }
+
+  function getKeywordFromUrlContext() {
+    const direct = (urlParams.get('keyword') || urlParams.get('avainsana') || '').trim();
+    if (direct) return direct;
+    const searchKeys = Array.from(urlParams.keys()).filter((key) => /^th_.+_q$/.test(key));
+    for (const key of searchKeys) {
+      const value = (urlParams.get(key) || '').trim();
+      if (value) return value;
+    }
+    return '';
+  }
+
+  function applyKeywordToPageShareMeta(keyword) {
+    const term = String(keyword || '').trim();
+    if (!term) {
+      document.title = defaultPageTitle;
+      if (ogTitleMeta && defaultOgTitle) ogTitleMeta.setAttribute('content', defaultOgTitle);
+      if (twitterTitleMeta && defaultTwitterTitle) twitterTitleMeta.setAttribute('content', defaultTwitterTitle);
+      return;
+    }
+    const dynamicTitle = `${defaultPageTitle} | Keyword: ${term}`;
+    document.title = dynamicTitle;
+    if (ogTitleMeta) ogTitleMeta.setAttribute('content', dynamicTitle);
+    if (twitterTitleMeta) twitterTitleMeta.setAttribute('content', dynamicTitle);
   }
 
   // Delegated click for all keyword buttons (cloud + table rows)
@@ -640,22 +815,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const kwBtn = event.target.closest('.thesis-keyword-link');
     if (!kwBtn) return;
     const kw = kwBtn.dataset.keyword || '';
-    const clearBtn = document.getElementById('thesis-cloud-clear');
-    const cloudContainer = document.getElementById('thesis-cloud-container');
-
-    // Highlight active keyword in cloud
-    if (cloudContainer) {
-      cloudContainer.querySelectorAll('.thesis-keyword-link').forEach(b => {
-        b.classList.remove('text-bg-primary', 'active');
-        b.classList.add('text-bg-light');
-      });
-      const cloudBtn = cloudContainer.querySelector(`.thesis-keyword-link[data-keyword="${CSS.escape(kw)}"]`);
-      if (cloudBtn) {
-        cloudBtn.classList.remove('text-bg-light');
-        cloudBtn.classList.add('text-bg-primary', 'active');
-      }
-    }
-    if (clearBtn) clearBtn.style.removeProperty('display');
+    activateKeywordContext(kw);
 
     // Set keyword in all search inputs and trigger filtering
     document.querySelectorAll('[data-thesis-search]').forEach(input => {
@@ -669,6 +829,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   buildKeywordCloud();
+  const initialKeyword = getKeywordFromUrlContext();
+  if (initialKeyword) activateKeywordContext(initialKeyword);
+  applyKeywordToPageShareMeta(initialKeyword);
 
 });
 </script>
@@ -696,5 +859,32 @@ document.addEventListener('DOMContentLoaded', () => {
   font-size: var(--thesis-keyword-size, 0.9rem);
   font-weight: var(--thesis-keyword-weight, 550);
   transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+#thesis-subject-cloud .accordion-button {
+  background: transparent;
+  box-shadow: none;
+}
+
+#thesis-subject-cloud .accordion-button:not(.collapsed) {
+  background: rgba(13, 110, 253, 0.08);
+  color: var(--bs-body-color);
+}
+
+#thesis-subject-cloud .accordion-item {
+  border: 0;
+  border-bottom: 1px solid var(--bs-border-color-translucent);
+}
+
+#thesis-subject-cloud .accordion-item:first-child {
+  border-top: 1px solid var(--bs-border-color-translucent);
+}
+
+[data-bs-theme="dark"] #thesis-subject-cloud .accordion-button:not(.collapsed) {
+  background: rgba(125, 184, 240, 0.15);
+}
+
+[data-bs-theme="dark"] #thesis-subject-cloud .accordion-item {
+  border-bottom-color: rgba(255, 255, 255, 0.12);
 }
 </style>
