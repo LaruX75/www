@@ -106,6 +106,78 @@ lang: en
   </div>
 </section>
 
+<section class="mb-5" id="politics-themes">
+  <div class="container">
+    <div class="card shadow-sm">
+      <div class="card-header bg-transparent d-flex align-items-center justify-content-between py-3">
+        <h2 class="h4 mb-0"><i class="bi bi-grid-1x2-fill me-2 text-primary"></i>Political themes</h2>
+        <span class="badge text-bg-primary">Grouped</span>
+      </div>
+      <div class="card-body">
+        <p class="text-muted small mb-3">Blog posts, speeches and opinion pieces grouped into practical political themes.</p>
+        <div class="row g-3">
+          <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body d-flex flex-column">
+                <h3 class="h6 mb-2">Education and learning</h3>
+                <p class="text-muted small mb-3">Schools, pedagogy, digital skills, and long-term education policy.</p>
+                <a href="/en/writings/#publications" class="btn btn-outline-primary btn-sm mt-auto align-self-start">Open writings</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body d-flex flex-column">
+                <h3 class="h6 mb-2">City development and governance</h3>
+                <p class="text-muted small mb-3">Motions, transparency, decision-making, and city-level priorities.</p>
+                <a href="/en/writings/#aloitteet" class="btn btn-outline-primary btn-sm mt-auto align-self-start">Open motions</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body d-flex flex-column">
+                <h3 class="h6 mb-2">Wellbeing, culture and everyday life</h3>
+                <p class="text-muted small mb-3">Culture, sports, local services, and quality of daily life in Oulu.</p>
+                <a href="/en/writings/#opinions" class="btn btn-outline-primary btn-sm mt-auto align-self-start">Open opinions</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mb-5" id="council-initiatives">
+  <div class="container">
+    <div class="card shadow-sm">
+      <div class="card-header bg-transparent d-flex align-items-center justify-content-between py-3">
+        <h2 class="h4 mb-0"><i class="bi bi-card-checklist me-2 text-primary"></i>Council initiatives</h2>
+        <span class="badge text-bg-primary">{{ collections.politics.length }}</span>
+      </div>
+      <div class="card-body">
+        <div class="ouka-scroller d-flex gap-3 pb-3" style="overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;">
+          {% for item in collections.politics %}
+          <article class="card border-0 shadow-sm" style="min-width:320px; max-width:380px; scroll-snap-align:start;">
+            <div class="card-body d-flex flex-column h-100" style="min-height:200px;">
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <span class="badge bg-primary-subtle text-primary-emphasis">Council initiative</span>
+                <small class="text-muted">{{ item.date | dateFormat }}</small>
+              </div>
+              <h3 class="h6 fw-semibold mb-auto">{{ item.data.title }}</h3>
+              <div class="mt-3 d-flex gap-2">
+                <a href="{{ item.url }}" class="btn btn-outline-primary btn-sm">Read initiative</a>
+              </div>
+            </div>
+          </article>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="mb-5">
   <div class="container">
     <div class="card border-0 shadow-sm">
@@ -271,6 +343,14 @@ lang: en
   .politics-table .col-date {
     white-space: nowrap;
     color: var(--bs-secondary-color);
+  }
+  .ouka-scroller {
+    cursor: grab;
+    scroll-behavior: smooth;
+  }
+  .ouka-scroller.is-dragging {
+    cursor: grabbing;
+    user-select: none;
   }
 </style>
 
@@ -442,6 +522,79 @@ lang: en
     contentSearch?.addEventListener('input', () => { contentPage = 1; renderContent(); });
     contentType?.addEventListener('change', () => { contentPage = 1; renderContent(); });
     renderContent();
+
+    // ----- Initiative scroller interaction + auto-scroll -----
+    const scrollers = Array.from(document.querySelectorAll('.ouka-scroller'));
+    const autoScroller = document.querySelector('#council-initiatives .ouka-scroller');
+    if (!scrollers.length || !autoScroller) return;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const hasOverflow = (el) => el && el.scrollWidth > el.clientWidth + 1;
+
+    let rafId = null;
+    let pauseAuto = false;
+    let lastTs = null;
+    const speedPxPerMs = 0.03;
+
+    const tick = (ts) => {
+      if (!autoScroller || pauseAuto || !hasOverflow(autoScroller)) {
+        rafId = null;
+        lastTs = null;
+        return;
+      }
+      if (lastTs == null) lastTs = ts;
+      const delta = ts - lastTs;
+      lastTs = ts;
+      const maxScroll = autoScroller.scrollWidth - autoScroller.clientWidth;
+      const next = autoScroller.scrollLeft + (delta * speedPxPerMs);
+      autoScroller.scrollLeft = next >= maxScroll - 1 ? 0 : next;
+      rafId = requestAnimationFrame(tick);
+    };
+
+    const startAuto = () => {
+      if (prefersReducedMotion || rafId || !hasOverflow(autoScroller)) return;
+      rafId = requestAnimationFrame(tick);
+    };
+
+    scrollers.forEach((scroller) => {
+      let dragging = false;
+      let startX = 0;
+      let startScroll = 0;
+
+      scroller.addEventListener('pointerdown', (event) => {
+        dragging = true;
+        startX = event.clientX;
+        startScroll = scroller.scrollLeft;
+        scroller.classList.add('is-dragging');
+        scroller.setPointerCapture(event.pointerId);
+        if (scroller === autoScroller) pauseAuto = true;
+      });
+
+      scroller.addEventListener('pointermove', (event) => {
+        if (!dragging) return;
+        const deltaX = event.clientX - startX;
+        scroller.scrollLeft = startScroll - deltaX;
+      });
+
+      const endDrag = (event) => {
+        if (!dragging) return;
+        dragging = false;
+        scroller.classList.remove('is-dragging');
+        try { scroller.releasePointerCapture(event.pointerId); } catch (_) {}
+        if (scroller === autoScroller) {
+          pauseAuto = false;
+          startAuto();
+        }
+      };
+
+      scroller.addEventListener('pointerup', endDrag);
+      scroller.addEventListener('pointercancel', endDrag);
+      scroller.addEventListener('pointerleave', endDrag);
+      scroller.addEventListener('mouseenter', () => { if (scroller === autoScroller) pauseAuto = true; });
+      scroller.addEventListener('mouseleave', () => { if (scroller === autoScroller) { pauseAuto = false; startAuto(); } });
+    });
+
+    startAuto();
   })();
 </script>
 

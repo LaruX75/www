@@ -92,6 +92,11 @@ lang: en
                 <td>Canva presentation metadata for presentation listings.</td>
               </tr>
               <tr>
+                <td><strong>Canva analysis pipeline (MCP workflow)</strong></td>
+                <td>Canva + MCP workflow</td>
+                <td>The Canva analysis page was built with an MCP-assisted workflow: data was normalized, condensed for analysis, and integrated into the analysis page structure as part of iterative AI-assisted development.</td>
+              </tr>
+              <tr>
                 <td><strong>Finna API</strong></td>
                 <td>National Library of Finland (Finna)</td>
                 <td>Library, archive and museum records on the Finna page.</td>
@@ -132,6 +137,11 @@ lang: en
                 <td>SlideShare presentation metadata is fetched and cached similarly to API-backed sources.</td>
               </tr>
               <tr>
+                <td><strong>SlideShare analysis pipeline (Cheerio + content extraction)</strong></td>
+                <td>SlideShare + Node workflow</td>
+                <td>First, profile structure is parsed with Cheerio. Then, analysis-oriented content extraction collects descriptions, tags, language metadata, and transcript text for downstream analysis.</td>
+              </tr>
+              <tr>
                 <td><strong>YouTube Data API v3</strong></td>
                 <td>Google</td>
                 <td>YouTube playlist data on the presentations page.</td>
@@ -140,7 +150,8 @@ lang: en
           </table>
         </div>
         <p class="mb-2">In addition, some sections are maintained in curated local data files (for example Google Slides and SlideShare lists). In those cases data does not come from a remote API, but from version-controlled project files.</p>
-        <p class="mb-0">Technically, these sources are rendered as tables, ticker highlights, content cards, searchable views, metric counters, and automatically updated “latest changes” lists.</p>
+        <p class="mb-2">Technically, these sources are rendered as tables, ticker highlights, content cards, searchable views, metric counters, and automatically updated “latest changes” lists.</p>
+        <p class="mb-0">The structuring of Canva and SlideShare analysis content, and the final analysis write-up itself, were produced using Claude.</p>
       </div>
     </div>
 

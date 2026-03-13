@@ -5,6 +5,26 @@ permalink: /en/writings/
 translationKey: writings_index
 lang: en
 ---
+{% set uniqueMaterialKeys = [] %}
+{% for row in (canva.tableRows or []) %}
+  {% set key = (row.url or row.title or ('canva-' ~ loop.index)) %}
+  {% if key and (key not in uniqueMaterialKeys) %}
+    {% set uniqueMaterialKeys = uniqueMaterialKeys.concat([key]) %}
+  {% endif %}
+{% endfor %}
+{% for item in (collections.presentations or []) %}
+  {% set key = (item.data.url or item.url or item.fileSlug or ('slideshare-' ~ loop.index)) %}
+  {% if key and (key not in uniqueMaterialKeys) %}
+    {% set uniqueMaterialKeys = uniqueMaterialKeys.concat([key]) %}
+  {% endif %}
+{% endfor %}
+{% for row in (aoeRows or []) %}
+  {% set key = (row.url or row.title or ('aoe-' ~ loop.index)) %}
+  {% if key and (key not in uniqueMaterialKeys) %}
+    {% set uniqueMaterialKeys = uniqueMaterialKeys.concat([key]) %}
+  {% endif %}
+{% endfor %}
+{% set totalMaterialsCount = uniqueMaterialKeys | length %}
 
 <section class="kynasta-hero py-4">
   <div class="container">
@@ -31,10 +51,31 @@ lang: en
           <a class="nav-link" href="#blogi">
             Blog <span class="nav-count">{{ collections.blog.length }}</span>
           </a>
+          <a class="nav-link" href="#materials">
+            Materials <span class="nav-count">{{ totalMaterialsCount }}</span>
+          </a>
           <a class="nav-link" href="#publications">
             Publications <span class="nav-count">{{ researchfi.length }}</span>
           </a>
         </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="materials" class="mb-5">
+  <div class="container">
+    <div class="card shadow-sm">
+      <div class="card-header bg-transparent d-flex align-items-center justify-content-between">
+        <h2 class="h4 mb-0"><i class="bi bi-book-fill me-2 text-info"></i>Presentations and learning materials</h2>
+        <span class="badge text-bg-info text-dark">{{ totalMaterialsCount }}</span>
+      </div>
+      <div class="card-body">
+        <p class="text-muted mb-3">This total combines Canva presentations, SlideShare presentations, and AOE/Finna learning materials.</p>
+        <div class="d-flex flex-wrap gap-2">
+          <a href="/en/presentations/" class="btn btn-outline-primary btn-sm rounded-pill">Open presentations</a>
+          <a href="https://www.finna.fi/Search/Results?lookfor=Jari+Laru&type=Author&filter[]=format%3A%220%2FLearningMaterial%2F%22" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary btn-sm rounded-pill">AOE / Finna <i class="bi bi-arrow-up-right"></i></a>
+        </div>
       </div>
     </div>
   </div>
