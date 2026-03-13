@@ -132,12 +132,27 @@ lang: en
       {% endfor %}
 
       {# Macros for reuse #}
-      {% macro drawTable(title, badge, items, tableId) %}
+      {% macro drawTable(title, badge, items, tableId, subtypes) %}
       {% if items.length %}
       <div class="card shadow-sm mb-5 section-card" id="card-{{ tableId }}">
-        <div class="card-header bg-transparent d-flex align-items-center justify-content-between py-3">
-          <h4 class="h5 mb-0"><i class="bi bi-journal-text me-2 text-primary"></i>{{ title }}</h4>
-          <span class="badge {{ badge }}">{{ items.length }}</span>
+        <div class="card-header bg-transparent py-3">
+          <div class="d-flex align-items-start justify-content-between">
+            <div>
+              <h4 class="h5 mb-0"><i class="bi bi-journal-text me-2 text-primary"></i>{{ title }}</h4>
+              {% if subtypes and subtypes.length %}
+              <div class="mt-1 d-flex flex-wrap">
+                {% for st in subtypes %}
+                  {% if (items | selectattr("typeCode", "equalto", st.code) | list).length %}
+                  <span class="me-3 mt-1" style="font-size:0.78rem; color: var(--bs-secondary-color);">
+                    <strong style="font-size:0.76rem;">{{ st.code }}</strong>&nbsp;{{ st.desc }}
+                  </span>
+                  {% endif %}
+                {% endfor %}
+              </div>
+              {% endif %}
+            </div>
+            <span class="badge {{ badge }}">{{ items.length }}</span>
+          </div>
         </div>
         <div class="card-body p-0">
           <div class="p-3 border-bottom publication-filter-bar">
@@ -191,12 +206,41 @@ lang: en
       {% endif %}
       {% endmacro %}
 
-      {{ drawTable('A - Peer-reviewed scientific articles', 'text-bg-primary', pubsA, 'pub-table-a') }}
-      {{ drawTable('B - Non-peer-reviewed scientific writings', 'text-bg-info', pubsB, 'pub-table-b') }}
-      {{ drawTable('C - Scientific books', 'text-bg-warning', pubsC, 'pub-table-c') }}
-      {{ drawTable('D - Publications for professional communities', 'text-bg-secondary', pubsD, 'pub-table-d') }}
-      {{ drawTable('E - Publications for general audiences', 'bg-dark', pubsE, 'pub-table-e') }}
-      {{ drawTable('G - Theses', 'text-bg-success', pubsG, 'pub-table-g') }}
+      {% set subtypesA = [
+        {code: 'A1', desc: 'Original article in a scientific journal'},
+        {code: 'A2', desc: 'Review article in a scientific journal'},
+        {code: 'A3', desc: 'Chapter in an edited scientific volume'},
+        {code: 'A4', desc: 'Article in conference proceedings'}
+      ] %}
+      {% set subtypesB = [
+        {code: 'B1', desc: 'Writing in a scientific journal'},
+        {code: 'B2', desc: 'Chapter in an edited volume'},
+        {code: 'B3', desc: 'Non-peer-reviewed conference article'}
+      ] %}
+      {% set subtypesC = [
+        {code: 'C1', desc: 'Published scientific monograph'},
+        {code: 'C2', desc: 'Edited book, proceedings, or special issue'}
+      ] %}
+      {% set subtypesD = [
+        {code: 'D1', desc: 'Article in a professional magazine'},
+        {code: 'D2', desc: 'Article in a professional edited volume'},
+        {code: 'D3', desc: 'Article in a professional conference publication'}
+      ] %}
+      {% set subtypesE = [
+        {code: 'E1', desc: 'Popular article or newspaper article'},
+        {code: 'E2', desc: 'Popular monograph'}
+      ] %}
+      {% set subtypesG = [
+        {code: 'G4', desc: 'Doctoral dissertation (article-based)'},
+        {code: 'G5', desc: 'Doctoral dissertation (monograph)'}
+      ] %}
+
+      {{ drawTable('A - Peer-reviewed scientific articles', 'text-bg-primary', pubsA, 'pub-table-a', subtypesA) }}
+      {{ drawTable('B - Non-peer-reviewed scientific writings', 'text-bg-info', pubsB, 'pub-table-b', subtypesB) }}
+      {{ drawTable('C - Scientific books', 'text-bg-warning', pubsC, 'pub-table-c', subtypesC) }}
+      {{ drawTable('D - Publications for professional communities', 'text-bg-secondary', pubsD, 'pub-table-d', subtypesD) }}
+      {{ drawTable('E - Publications for general audiences', 'bg-dark', pubsE, 'pub-table-e', subtypesE) }}
+      {{ drawTable('G - Theses', 'text-bg-success', pubsG, 'pub-table-g', subtypesG) }}
       
     {% else %}
       <div class="alert alert-warning">No publications available.</div>
