@@ -95,17 +95,30 @@ translationKey: home
             {# Kortti 2: Kouluttaja & puhuja #}
             <div class="col-md-6 col-xl-3 home-overview-col">
                 <div class="d-flex flex-column h-100">
-                    <p class="home-overview-eyebrow">Koulutuspalvelut</p>
+                    <p class="home-overview-eyebrow">Koulutuspalvelut · Larux t:mi</p>
                     <h2 class="h5 fw-bold mb-2 home-overview-title">
                         <i class="bi bi-mic me-2 opacity-75"></i>Kouluttaja &amp; puhuja
                     </h2>
-                    <p class="small mb-3 home-overview-lead">Keynote-esityksiä, koulutuksia ja työpajoja tekoälyn opetuskäytöstä, digipedagogiikasta ja oppimisen teknologioista. Larux t:mi.</p>
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <span class="home-social-proof-stat">4,2 / 5</span>
+                        <span class="small home-overview-lead">osallistujapalautteen ka.</span>
+                    </div>
+                    <div class="d-flex flex-wrap gap-1 mb-3">
+                        <span class="home-topic-pill">Tekoäly opetuksessa</span>
+                        <span class="home-topic-pill">AI-lukutaito</span>
+                        <span class="home-topic-pill">Digipedagogiikka</span>
+                        <span class="home-topic-pill">Keynote</span>
+                        <span class="home-topic-pill">Työpaja</span>
+                    </div>
                     <div class="d-flex flex-column gap-1 mb-3">
                         {% for post in collections.presentations | take(2) %}
                         <a href="{{ post.data.url }}" target="_blank" rel="noopener noreferrer" class="d-flex align-items-center gap-2 text-decoration-none home-content-row p-2 rounded">
                             <div class="flex-grow-1 overflow-hidden">
                                 <p class="fw-semibold mb-0 text-truncate" style="font-size:0.82rem;">{{ post.data.title }}</p>
-                                <p class="text-muted mb-0" style="font-size:0.7rem;">{{ post.date | dateFormat }}</p>
+                                <p class="text-muted mb-0" style="font-size:0.7rem;">
+                                    {%- if post.data.location %}{{ post.data.location }} · {% endif -%}
+                                    {{ post.date | dateFormat }}
+                                </p>
                             </div>
                             <i class="bi bi-arrow-up-right text-muted flex-shrink-0" style="font-size:0.75rem;"></i>
                         </a>
@@ -127,15 +140,18 @@ translationKey: home
                     </h2>
                     <p class="small mb-3 home-overview-lead"><strong>{{ researchfi.length }} julkaisua</strong> — uusimmat Research.fi:stä.</p>
                     <div class="d-flex flex-column gap-2 mb-3">
-                        {% for pub in researchfi.slice(0, 2) %}
+                        {% for pub in researchfi.slice(0, 3) %}
                         <div class="home-apa-item">
-                            <p class="home-apa-ref">
-                                {%- if pub.authors -%}{{ pub.authors | truncate(60) }} {%- endif -%}
+                            <p class="home-apa-ref mb-1">
+                                {%- if pub.authors -%}<span class="home-apa-authors">{{ pub.authors | truncate(52) }}</span> {%- endif -%}
                                 {%- if pub.year -%}({{ pub.year }}). {%- endif -%}
-                                {{ pub.title | truncate(90) }}.
-                                {%- if pub.journal %} <em>{{ pub.journal }}</em>.{%- endif %}
-                                {%- if pub.doiUrl %} <a href="{{ pub.doiUrl }}" target="_blank" rel="noopener noreferrer" class="home-apa-doi">https://doi.org/{{ pub.doi }}</a>{%- elif pub.url %} <a href="{{ pub.url }}" target="_blank" rel="noopener noreferrer" class="home-apa-doi">Lue artikkeli <i class="bi bi-arrow-up-right"></i></a>{%- endif %}
+                                {{ pub.title | truncate(95) }}.{%- if pub.journal %} <em>{{ pub.journal }}</em>.{%- endif %}
                             </p>
+                            <div class="d-flex align-items-center gap-1 flex-wrap">
+                                <span class="home-apa-badge">{{ pub.typeShort }}</span>
+                                {%- if pub.openAccess %}<span class="home-apa-badge home-apa-oa">OA</span>{% endif -%}
+                                {%- if pub.doiUrl %}<a href="{{ pub.doiUrl }}" target="_blank" rel="noopener noreferrer" class="home-apa-doi">DOI <i class="bi bi-arrow-up-right"></i></a>{%- elif pub.url %}<a href="{{ pub.url }}" target="_blank" rel="noopener noreferrer" class="home-apa-doi">Artikkeli <i class="bi bi-arrow-up-right"></i></a>{%- endif %}
+                            </div>
                         </div>
                         {% endfor %}
                     </div>
@@ -152,9 +168,19 @@ translationKey: home
                     <h2 class="h5 fw-bold mb-2 home-overview-title">
                         <i class="bi bi-building me-2 opacity-75"></i>Politiikka
                     </h2>
-                    <p class="small mb-3 home-overview-lead">Toisen kauden kaupunginvaltuutettu Oulussa (Kokoomus). Käytännön työtä paikallisen päätöksenteon parissa.</p>
+                    <p class="small mb-2 home-overview-lead">Toisen kauden kaupunginvaltuutettu Oulussa (Kokoomus).</p>
+                    <div class="d-flex gap-3 mb-3">
+                        <div class="text-center">
+                            <p class="fw-bold mb-0" style="font-size:1.1rem;line-height:1;">{{ heroOpinionCount }}</p>
+                            <p class="home-overview-lead mb-0" style="font-size:0.68rem;">mielipidettä</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="fw-bold mb-0" style="font-size:1.1rem;line-height:1;">{{ heroSpeechCount }}</p>
+                            <p class="home-overview-lead mb-0" style="font-size:0.68rem;">puheenvuoroa</p>
+                        </div>
+                    </div>
                     <div class="d-flex flex-column gap-1 mb-3">
-                        {% for post in collections.politicsAndOpinions | take(3) %}
+                        {% for post in collections.politicsAndOpinions | take(4) %}
                         {% if post.fileSlug != "etusivu" %}
                         <a href="{{ post.url }}" class="d-flex align-items-center gap-2 text-decoration-none home-content-row p-2 rounded">
                             <div class="flex-grow-1 overflow-hidden">

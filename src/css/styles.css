@@ -524,6 +524,52 @@ html:not([data-bs-theme="dark"]) .home-hero-proof-item:focus-visible {
   color: var(--bs-link-color);
 }
 
+.home-apa-badge {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.15em 0.5em;
+  border-radius: 0.25rem;
+  background: var(--bs-secondary-bg);
+  color: var(--bs-secondary-color);
+  border: 1px solid var(--bs-border-color-translucent);
+}
+
+.home-apa-badge.home-apa-oa {
+  background: #0a3d1f;
+  color: #6ee7a0;
+  border-color: rgba(110, 231, 160, 0.25);
+}
+
+[data-bs-theme="light"] .home-apa-badge.home-apa-oa {
+  background: #d4f5e2;
+  color: #1a6a3a;
+  border-color: rgba(26, 106, 58, 0.25);
+}
+
+/* Social proof stat (e.g. 4,2 / 5 rating) */
+.home-social-proof-stat {
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--bs-body-color);
+  letter-spacing: -0.02em;
+}
+
+/* Topic pills in trainer card */
+.home-topic-pill {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.2em 0.65em;
+  border-radius: 99px;
+  background: var(--bs-secondary-bg);
+  color: var(--bs-secondary-color);
+  border: 1px solid var(--bs-border-color-translucent);
+  white-space: nowrap;
+}
+
 /* Ticker-karuselli etusivulle */
 .ticker-wrapper {
   overflow: hidden;
