@@ -416,6 +416,27 @@ html:not([data-bs-theme="dark"]) .home-hero-proof-item:focus-visible {
   border-top-color: rgba(255, 255, 255, 0.2);
 }
 
+/* Kompaktit sisältörivit etusivun osioissa (korvaa karusellit) */
+.home-content-row {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: inherit;
+  transition: background 0.15s ease;
+}
+
+.home-content-row:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: inherit;
+}
+
+[data-bs-theme="light"] .home-content-row {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-bs-theme="light"] .home-content-row:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
 
 /* Ticker-karuselli etusivulle */
 .ticker-wrapper {

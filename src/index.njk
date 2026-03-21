@@ -50,7 +50,7 @@ translationKey: home
             </div>
 
             <div class="d-flex flex-wrap gap-2 mb-4">
-                <a href="/yhteystiedot/" class="btn btn-read-more btn-sm rounded-pill px-3 home-hero-cta">Pyydä tarjous</a>
+                <a href="/yhteystiedot/" class="btn btn-primary btn-sm rounded-pill px-3">Pyydä tarjous</a>
                 <a href="/esitykset/" class="btn btn-read-more btn-sm rounded-pill px-3">Katso esitykset <i class="bi bi-arrow-right"></i></a>
                 <a href="/tutkimus/" class="btn btn-read-more btn-sm rounded-pill px-3">Tutustu tutkimukseen <i class="bi bi-arrow-right"></i></a>
             </div>
@@ -77,149 +77,40 @@ translationKey: home
 <section class="section-flush bg-adaptive-dark-blue py-4 py-md-0 home-feature-section">
     <div class="container-fluid" style="padding-top: 0;border-radius: 0px;">
         <div class="row gx-0 gy-4 gy-md-0">
-            <div class="col-md-6 text-center text-md-start d-flex d-sm-flex d-md-flex flex-column justify-content-center align-items-center align-self-start justify-content-md-start align-items-md-center justify-content-xl-center ps-0 pe-0" style="height: auto;min-height: 100%;padding-bottom: 1em;padding-top: 0.5em;">
-                <div class="text-center pb-2 pt-4 w-100 home-copy-block" style="padding-right: 1.5em;padding-left: 1.5em;">
-                    <p class="text-uppercase text-muted fw-bold mb-2">Mitä saat yhteistyöstä</p>
-                    <h2 class="fw-bold mb-3">Tutkimusperustaista opetusta ja koulutusta</h2>
-                    <div class="text-start mb-3">
-                        <p class="mb-1"><i class="bi bi-mortarboard me-2 opacity-75"></i><strong>Yliopistonlehtori, Oulun yliopisto</strong></p>
-                        <p class="mb-2 small opacity-75">Teknologiatuetun oppimisen yliopistonlehtori Kasvatustieteiden tiedekunnassa. Nykyään STN:n rahoittamassa Generation AI -hankkeessa — tekoälykasvatusta esi- ja perusopetukseen.</p>
-                        <a class="btn btn-read-more btn-sm rounded-pill px-3 mb-3" href="/tyoni-yliopistonlehtorina/">Lue lisää yliopistosta</a>
-
-                        <p class="mb-1"><i class="bi bi-mic me-2 opacity-75"></i><strong>Kouluttaja &amp; puhuja – Larux t:mi</strong></p>
-                        <p class="mb-2 small opacity-75">Sivutoiminen yrittäjä. Puheenvuoroja, koulutuksia ja asiantuntijatyötä opetusteknologian, digipedagogiikan ja tekoälyn opetuskäytön teemoista. Keynote, työpaja tai webinaari.</p>
-                        <a class="btn btn-read-more btn-sm rounded-pill px-3" href="/larux-tmi/">Tilaa koulutus tai puheenvuoro</a>
-                    </div>
-                </div>
-                <!-- Karuselli alkaa -->
-                <div id="presentationTicker" class="ticker-container w-100 position-relative pb-4" tabindex="0" role="region" aria-label="Viimeisimmät esitykset ja opetusmateriaalit">
-                    <div class="ticker-track">
-                        <!-- Ensimmäinen setti -->
-                        <div class="ticker-content">
-                            {% for post in collections.presentations %}
-                            <div class="ticker-item p-4">
-                                <div class="mt-0 mb-2">
-                                    {% if post.data.thumbnail %}
-                                    <img src="{{ post.data.thumbnail }}" alt="{{ post.data.title }}" class="img-fluid w-100" style="max-height:130px;object-fit:cover;border-radius:6px;">
-                                    {% else %}
-                                    <div class="text-center py-3 opacity-50"><i class="bi bi-play-circle fs-2"></i></div>
-                                    {% endif %}
-                                </div>
-                                <p class="ticker-pub-type mb-1">{{ post.data.type | capitalize or "Esitys" }}{% if "canva.com" in post.data.url %} | Canva{% elif "slideshare.net" in post.data.url %} | SlideShare{% endif %}</p>
-                                <p class="ticker-pub-title"><a href="{{ post.data.url }}" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;">{{ post.data.title }}</a></p>
-                                <p class="text-muted ticker-pub-source mb-1">Jari Laru &bull; {{ post.date | dateFormat }}</p>
-                                <div class="d-flex justify-content-start mt-2 mb-1">
-                                    <a href="{{ post.data.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-read-more btn-sm rounded-pill px-3">Katso esitys <i class="bi bi-arrow-up-right"></i></a>
-                                </div>
-                            </div>
-                            {% endfor %}
-                            {% for p in slideshare %}
-                            <div class="ticker-item p-4">
-                                <div class="mt-0 mb-2">
-                                    {% if p.thumbnail %}
-                                    <img src="{{ p.thumbnail }}" alt="{{ p.title }}" class="img-fluid w-100" style="max-height:130px;object-fit:cover;border-radius:6px;">
-                                    {% else %}
-                                    <div class="text-center py-3 opacity-50"><i class="bi bi-play-circle fs-2"></i></div>
-                                    {% endif %}
-                                </div>
-                                <p class="ticker-pub-type mb-1">Esitys | SlideShare</p>
-                                <p class="ticker-pub-title"><a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;">{{ p.title }}</a></p>
-                                <p class="text-muted ticker-pub-source mb-1">{{ p.author or "Jari Laru" }}{% if p.date %} &bull; {{ p.date | dateFormat }}{% endif %}</p>
-                                <div class="d-flex justify-content-start mt-2 mb-1">
-                                    <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-read-more btn-sm rounded-pill px-3">Katso esitys <i class="bi bi-arrow-up-right"></i></a>
-                                </div>
-                            </div>
-                            {% endfor %}
-                            {% for item in finnaAoe.rows %}
-                            <div class="ticker-item p-4">
-                                <div class="mt-0 mb-2">
-                                    {% if item.image %}
-                                    <img src="{{ item.image }}" alt="{{ item.title }}" class="img-fluid w-100" style="max-height:130px;object-fit:cover;border-radius:6px;">
-                                    {% else %}
-                                    <div class="text-center py-3 opacity-50"><i class="bi bi-file-earmark-text fs-2"></i></div>
-                                    {% endif %}
-                                </div>
-                                <p class="ticker-pub-type mb-1">Oppimateriaali | AOE</p>
-                                <p class="ticker-pub-title"><a href="{{ item.url }}" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;">{{ item.title }}</a></p>
-                                <p class="text-muted ticker-pub-source mb-1">Jari Laru{% if item.year %} &bull; {{ item.year }}{% endif %}</p>
-                                <div class="d-flex justify-content-start mt-2 mb-1">
-                                    <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-read-more btn-sm rounded-pill px-3">Avaa Finnassa <i class="bi bi-arrow-up-right"></i></a>
-                                </div>
-                            </div>
-                            {% else %}
-                            {% if (not collections.presentations or collections.presentations.length == 0) and (not slideshare or slideshare.length == 0) %}
-                            <div class="ticker-item p-4">
-                                <p>Ei vielä esityksiä.</p>
-                            </div>
-                            {% endif %}
-                            {% endfor %}
-                        </div>
-                        <!-- Toinen setti (klooni animaatiota varten) -->
-                        <div class="ticker-content" aria-hidden="true" inert>
-                            {% for post in collections.presentations %}
-                            <div class="ticker-item p-4">
-                                <div class="mt-0 mb-2">
-                                    {% if post.data.thumbnail %}
-                                    <img src="{{ post.data.thumbnail }}" alt="{{ post.data.title }}" class="img-fluid w-100" style="max-height:130px;object-fit:cover;border-radius:6px;">
-                                    {% else %}
-                                    <div class="text-center py-3 opacity-50"><i class="bi bi-play-circle fs-2"></i></div>
-                                    {% endif %}
-                                </div>
-                                <p class="ticker-pub-type mb-1">{{ post.data.type | capitalize or "Esitys" }}{% if "canva.com" in post.data.url %} | Canva{% elif "slideshare.net" in post.data.url %} | SlideShare{% endif %}</p>
-                                <p class="ticker-pub-title"><a href="{{ post.data.url }}" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;">{{ post.data.title }}</a></p>
-                                <p class="text-muted ticker-pub-source mb-1">Jari Laru &bull; {{ post.date | dateFormat }}</p>
-                                <div class="d-flex justify-content-start mt-2 mb-1">
-                                    <a href="{{ post.data.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-read-more btn-sm rounded-pill px-3">Katso esitys <i class="bi bi-arrow-up-right"></i></a>
-                                </div>
-                            </div>
-                            {% endfor %}
-                            {% for p in slideshare %}
-                            <div class="ticker-item p-4">
-                                <div class="mt-0 mb-2">
-                                    {% if p.thumbnail %}
-                                    <img src="{{ p.thumbnail }}" alt="{{ p.title }}" class="img-fluid w-100" style="max-height:130px;object-fit:cover;border-radius:6px;">
-                                    {% else %}
-                                    <div class="text-center py-3 opacity-50"><i class="bi bi-play-circle fs-2"></i></div>
-                                    {% endif %}
-                                </div>
-                                <p class="ticker-pub-type mb-1">Esitys | SlideShare</p>
-                                <p class="ticker-pub-title"><a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;">{{ p.title }}</a></p>
-                                <p class="text-muted ticker-pub-source mb-1">{{ p.author or "Jari Laru" }}{% if p.date %} &bull; {{ p.date | dateFormat }}{% endif %}</p>
-                                <div class="d-flex justify-content-start mt-2 mb-1">
-                                    <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-read-more btn-sm rounded-pill px-3">Katso esitys <i class="bi bi-arrow-up-right"></i></a>
-                                </div>
-                            </div>
-                            {% endfor %}
-                            {% for item in finnaAoe.rows %}
-                            <div class="ticker-item p-4">
-                                <div class="mt-0 mb-2">
-                                    {% if item.image %}
-                                    <img src="{{ item.image }}" alt="{{ item.title }}" class="img-fluid w-100" style="max-height:130px;object-fit:cover;border-radius:6px;">
-                                    {% else %}
-                                    <div class="text-center py-3 opacity-50"><i class="bi bi-file-earmark-text fs-2"></i></div>
-                                    {% endif %}
-                                </div>
-                                <p class="ticker-pub-type mb-1">Oppimateriaali | AOE</p>
-                                <p class="ticker-pub-title"><a href="{{ item.url }}" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;">{{ item.title }}</a></p>
-                                <p class="text-muted ticker-pub-source mb-1">Jari Laru{% if item.year %} &bull; {{ item.year }}{% endif %}</p>
-                                <div class="d-flex justify-content-start mt-2 mb-1">
-                                    <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-read-more btn-sm rounded-pill px-3">Avaa Finnassa <i class="bi bi-arrow-up-right"></i></a>
-                                </div>
-                            </div>
-                            {% else %}
-                            {% if (not collections.presentations or collections.presentations.length == 0) and (not slideshare or slideshare.length == 0) %}
-                            <div class="ticker-item p-4">
-                                <p>Ei vielä esityksiä.</p>
-                            </div>
-                            {% endif %}
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
-                <!-- Karuselli päättyy -->
-            </div>
             <div class="col-md-6 ps-0 pe-0 home-feature-image-col">
-                <div class="h-100"><img loading="lazy" decoding="async" class="img-fluid object-fit-cover w-100 h-100 home-section-image" width="1024" height="768" style="min-height: 100%;transform: perspective(0px) scale(1);filter: blur(0px);transition: ease-in;" src="/img/image%20(4).webp" alt="Koulutus"></div>
+                <div class="h-100"><img loading="lazy" decoding="async" class="img-fluid object-fit-cover w-100 h-100 home-section-image" width="1024" height="768" style="min-height: 100%;" src="/img/image%20(4).webp" alt="Koulutus"></div>
+            </div>
+            <div class="col-md-6 d-flex flex-column justify-content-start ps-0 pe-0" style="padding: 2rem 1.5rem;">
+                <p class="text-uppercase text-muted fw-bold mb-2" style="font-size: 0.75rem;">Mitä saat yhteistyöstä</p>
+                <h2 class="fw-bold mb-3" style="font-family: 'Bree Serif', serif;">Tutkimusperustaista opetusta ja koulutusta</h2>
+                <p class="mb-1 small"><i class="bi bi-mortarboard me-2 opacity-75"></i><strong>Yliopistonlehtori, Oulun yliopisto</strong></p>
+                <p class="mb-3 small opacity-75">Teknologiatuetun oppimisen yliopistonlehtori. Mukana STN:n Generation AI -hankkeessa — tekoälykasvatusta esi- ja perusopetukseen.</p>
+                <p class="mb-1 small"><i class="bi bi-mic me-2 opacity-75"></i><strong>Kouluttaja &amp; puhuja – Larux t:mi</strong></p>
+                <p class="mb-3 small opacity-75">Puheenvuoroja, koulutuksia ja asiantuntijatyötä opetusteknologian, digipedagogiikan ja tekoälyn opetuskäytön teemoista.</p>
+                <div class="d-flex flex-wrap gap-2 mb-4">
+                    <a href="/larux-tmi/" class="btn btn-primary btn-sm rounded-pill px-3">Tilaa koulutus tai puheenvuoro</a>
+                    <a href="/tyoni-yliopistonlehtorina/" class="btn btn-read-more btn-sm rounded-pill px-3">Lue yliopistosta <i class="bi bi-arrow-right"></i></a>
+                </div>
+
+                <p class="text-uppercase text-muted fw-bold mb-2" style="font-size: 0.72rem;">Viimeisimmät esitykset</p>
+                <div class="d-flex flex-column gap-2 mb-3">
+                    {% for post in collections.presentations | take(3) %}
+                    <a href="{{ post.data.url }}" target="_blank" rel="noopener noreferrer" class="d-flex align-items-center gap-3 p-2 rounded text-decoration-none home-content-row">
+                        {% if post.data.thumbnail %}
+                        <img src="{{ post.data.thumbnail }}" alt="" class="rounded flex-shrink-0" style="width:48px;height:36px;object-fit:cover;">
+                        {% else %}
+                        <div class="rounded flex-shrink-0 bg-secondary d-flex align-items-center justify-content-center" style="width:48px;height:36px;"><i class="bi bi-file-earmark-slides text-light" style="font-size:0.85rem;"></i></div>
+                        {% endif %}
+                        <div class="flex-grow-1 overflow-hidden">
+                            <p class="fw-semibold mb-0 text-truncate" style="font-size:0.85rem;">{{ post.data.title }}</p>
+                            <p class="text-muted mb-0" style="font-size: 0.72rem;">{{ post.date | dateFormat }}</p>
+                        </div>
+                        <i class="bi bi-arrow-up-right text-muted flex-shrink-0" style="font-size:0.8rem;"></i>
+                    </a>
+                    {% endfor %}
+                </div>
+                <a href="/esitykset/" class="btn btn-outline-secondary btn-sm rounded-pill px-3 align-self-start">Kaikki esitykset <i class="bi bi-arrow-right"></i></a>
+            </div>
         </div>
     </div>
 </section>
@@ -278,144 +169,65 @@ translationKey: home
 
 <section class="home-section-heading-strip home-section-heading-strip--dark">
     <div class="container-fluid">
-        <p class="home-section-heading-strip__eyebrow">Tiede & Tutkimus</p>
+        <p class="home-section-heading-strip__eyebrow">Tiede &amp; Tutkimus</p>
         <h2 class="home-section-heading-strip__title">Tutkimus ja julkaisut</h2>
     </div>
 </section>
 
 <section class="section-flush bg-adaptive-dark-blue py-4 py-md-0 home-feature-section">
     <div class="container-fluid" style="padding-top: 0;border-radius: 0px;">
-        <div class="row gx-0 gy-4 gy-md-0">
-            <div class="col-md-6 order-md-2 text-center text-md-start d-flex d-sm-flex d-md-flex flex-column justify-content-center align-items-center align-self-start justify-content-md-start align-items-md-center justify-content-xl-center ps-0 pe-0" style="height: auto;min-height: 100%;padding-bottom: 1em;padding-top: 0.5em;">
-                <div class="text-center pb-2 pt-4 w-100 home-copy-block" style="padding-right: 1.5em;padding-left: 1.5em;">
-                    <p class="text-uppercase text-muted fw-bold mb-2">Tutkimusprofiili</p>
-                    <h2 class="fw-bold mb-3">Julkaisujen kokonaiskuva</h2>
-                    <p class="mb-3">Uusimmat tieteelliset julkaisuni ja artikkelini suoraan Research.fi-palvelusta päivitettynä.</p>
-                    
-                    {%- set articleCount = 0 -%}
-                    {%- set confCount = 0 -%}
-                    {%- set bookCount = 0 -%}
-                    {%- set minYear = 9999 -%}
-                    {%- set maxYear = 0 -%}
-                    {%- for pub in researchfi -%}
-                        {%- if pub.typeCode == "A1" or pub.typeCode == "A2" -%}
-                            {%- set articleCount = articleCount + 1 -%}
-                        {%- endif -%}
-                        {%- if pub.typeCode == "A3" or pub.typeCode == "A4" or pub.typeCode == "B3" -%}
-                            {%- set confCount = confCount + 1 -%}
-                        {%- endif -%}
-                        {%- if pub.typeCode == "C1" or pub.typeCode == "C2" or pub.typeCode == "G4" or pub.typeCode == "G5" -%}
-                            {%- set bookCount = bookCount + 1 -%}
-                        {%- endif -%}
-                        {%- if pub.year and pub.year < minYear -%}{%- set minYear = pub.year -%}{%- endif -%}
-                        {%- if pub.year and pub.year > maxYear -%}{%- set maxYear = pub.year -%}{%- endif -%}
-                    {%- endfor -%}
-
-                    <!-- Research Data Dashboard -->
-                    <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
-                        <div class="research-stat-card text-center px-3 py-2">
-                            <div class="research-stat-number">{{ researchfi.length }}</div>
-                            <div class="research-stat-label">Julkaisua</div>
-                        </div>
-                        <div class="research-stat-card text-center px-3 py-2">
-                            <div class="research-stat-number">{{ articleCount }}</div>
-                            <div class="research-stat-label">Lehtiartikkelia</div>
-                        </div>
-                        <div class="research-stat-card text-center px-3 py-2">
-                            <div class="research-stat-number">{{ confCount }}</div>
-                            <div class="research-stat-label">Konferenssijulkaisua</div>
-                        </div>
-                        <div class="research-stat-card text-center px-3 py-2">
-                            <div class="research-stat-number">{{ bookCount }}</div>
-                            <div class="research-stat-label">Kirjaa & väitöskirjaa</div>
-                        </div>
-                    </div>
-
-                    <div class="home-focus-grid text-start mb-3">
-                        <article class="home-focus-card">
-                            <h3 class="h6 mb-2"><i class="bi bi-journal-check me-2 opacity-75"></i>Ajantasainen julkaisulista</h3>
-                            <p class="small mb-2">Julkaisusivulla on tällä hetkellä {{ researchfi.length }} Research.fi-lähteestä päivittyvää julkaisua sekä lajittelu julkaisutyypeittäin.</p>
-                            <a class="btn btn-read-more btn-sm rounded-pill px-3" href="/julkaisut/">Avaa julkaisut</a>
-                        </article>
-                        <article class="home-focus-card">
-                            <h3 class="h6 mb-2"><i class="bi bi-mortarboard-fill me-2 opacity-75"></i>Tutkimus nivoutuu opetukseen</h3>
-                            <p class="small mb-2">Yliopistonlehtorin työssäni painottuvat digipedagogiikka, oppimisteknologia ja tekoälylukutaito opettajankoulutuksessa.</p>
-                            <a class="btn btn-read-more btn-sm rounded-pill px-3" href="/tyoni-yliopistonlehtorina/">Lue työstä yliopistolla</a>
-                        </article>
-                    </div>
-                </div>
-                <!-- Karuselli alkaa -->
-                <div id="zoteroTicker" class="ticker-container w-100 position-relative pb-4" tabindex="0" role="region" aria-label="Viimeisimmät julkaisut">
-                    <!-- Häivetykset reunoilla (vasen ja oikea) -->
-                    <div class="ticker-fade-left"></div>
-                    <div class="ticker-fade-right"></div>
-                    
-                    <div class="ticker-track">
-                        <!-- Ensimmäinen setti -->
-                        <div class="ticker-content">
-                            {% for pub in researchfi.slice(0, 10) %}
-                            <div class="ticker-item p-4">
-                                <p class="ticker-pub-type mb-1">{{ pub.typeFi }}</p>
-                                <p class="ticker-pub-title">{{ pub.title }}</p>
-                                {% if pub.journal %}
-                                <p class="text-muted ticker-pub-source mb-1"><em>{{ pub.journal }}</em>{% if pub.year %} ({{ pub.year }}){% endif %}</p>
-                                {% elif pub.year %}
-                                <p class="text-muted ticker-pub-source mb-1">({{ pub.year }})</p>
-                                {% endif %}
-                                {% if pub.authors %}
-                                <p class="text-muted ticker-pub-source mb-1" style="font-size:0.78rem;">{{ pub.authors | truncate(100) }}</p>
-                                {% endif %}
-                                <div class="d-flex justify-content-start mt-2 mb-1">
-                                    {% if pub.url %}
-                                    <a href="{{ pub.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-read-more btn-sm rounded-pill px-3">Avaa julkaisu <i class="bi bi-arrow-up-right"></i></a>
-                                    {% else %}
-                                    <a href="/julkaisut/" class="btn btn-read-more btn-sm rounded-pill px-3">Avaa lista <i class="bi bi-arrow-right"></i></a>
-                                    {% endif %}
-                                </div>
-                            </div>
-                            {% else %}
-                            <div class="ticker-item p-4">
-                                <p>Ei vielä julkaisuja.</p>
-                            </div>
-                            {% endfor %}
-                        </div>
-                        <!-- Toinen setti (klooni animaatiota varten) -->
-                        <div class="ticker-content" aria-hidden="true" inert>
-                            {% for pub in researchfi.slice(0, 10) %}
-                            <div class="ticker-item p-4">
-                                <p class="ticker-pub-type mb-1">{{ pub.typeFi }}</p>
-                                <p class="ticker-pub-title">{{ pub.title }}</p>
-                                {% if pub.journal %}
-                                <p class="text-muted ticker-pub-source mb-1"><em>{{ pub.journal }}</em>{% if pub.year %} ({{ pub.year }}){% endif %}</p>
-                                {% elif pub.year %}
-                                <p class="text-muted ticker-pub-source mb-1">({{ pub.year }})</p>
-                                {% endif %}
-                                {% if pub.authors %}
-                                <p class="text-muted ticker-pub-source mb-1" style="font-size:0.78rem;">{{ pub.authors | truncate(100) }}</p>
-                                {% endif %}
-                                <div class="d-flex justify-content-start mt-2 mb-1">
-                                    {% if pub.url %}
-                                    <a href="{{ pub.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-read-more btn-sm rounded-pill px-3">Avaa julkaisu <i class="bi bi-arrow-up-right"></i></a>
-                                    {% else %}
-                                    <a href="/julkaisut/" class="btn btn-read-more btn-sm rounded-pill px-3">Avaa lista <i class="bi bi-arrow-right"></i></a>
-                                    {% endif %}
-                                </div>
-                            </div>
-                            {% else %}
-                            <div class="ticker-item p-4">
-                                <p>Ei vielä julkaisuja.</p>
-                            </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
-                <!-- Karuselli päättyy -->
-                <div class="text-center pb-3 pt-2 w-100">
-                    <a href="/julkaisut/" class="btn btn-primary rounded-pill px-4">Selaa kaikkia julkaisuja</a>
-                </div>
+        <div class="row gx-0 gy-4 gy-md-0 flex-md-row-reverse">
+            <div class="col-md-6 ps-0 pe-0 home-feature-image-col">
+                <div class="h-100"><img loading="lazy" decoding="async" class="img-fluid object-fit-cover w-100 h-100 home-section-image" width="1024" height="768" style="min-height: 100%;" src="/img/uploads/2026/vaitos.png" alt="Tutkimus ja julkaisut"></div>
             </div>
-            <div class="col-md-6 order-md-1 ps-0 pe-0 home-feature-image-col">
-                <div class="h-100"><img loading="lazy" decoding="async" class="img-fluid object-fit-cover w-100 h-100 home-section-image" width="1024" height="768" style="min-height: 100%;transform: perspective(0px) scale(1);filter: blur(0px);transition: ease-in;" src="/img/uploads/2026/vaitos.png" alt="Tutkimus ja julkaisut"></div>
+            <div class="col-md-6 d-flex flex-column justify-content-start ps-0 pe-0" style="padding: 2rem 1.5rem;">
+                <p class="text-uppercase text-muted fw-bold mb-2" style="font-size: 0.75rem;">Tutkimusprofiili</p>
+                <h2 class="fw-bold mb-3" style="font-family: 'Bree Serif', serif;">Julkaisujen kokonaiskuva</h2>
+                <p class="mb-4 small opacity-75">Uusimmat tieteelliset julkaisuni suoraan Research.fi-palvelusta päivitettynä.</p>
+
+                {%- set articleCount = 0 -%}
+                {%- set confCount = 0 -%}
+                {%- set bookCount = 0 -%}
+                {%- for pub in researchfi -%}
+                    {%- if pub.typeCode == "A1" or pub.typeCode == "A2" -%}{%- set articleCount = articleCount + 1 -%}{%- endif -%}
+                    {%- if pub.typeCode == "A3" or pub.typeCode == "A4" or pub.typeCode == "B3" -%}{%- set confCount = confCount + 1 -%}{%- endif -%}
+                    {%- if pub.typeCode == "C1" or pub.typeCode == "C2" or pub.typeCode == "G4" or pub.typeCode == "G5" -%}{%- set bookCount = bookCount + 1 -%}{%- endif -%}
+                {%- endfor -%}
+
+                <div class="d-flex flex-wrap gap-3 mb-4">
+                    <div class="research-stat-card text-center px-3 py-2">
+                        <div class="research-stat-number">{{ researchfi.length }}</div>
+                        <div class="research-stat-label">Julkaisua</div>
+                    </div>
+                    <div class="research-stat-card text-center px-3 py-2">
+                        <div class="research-stat-number">{{ articleCount }}</div>
+                        <div class="research-stat-label">Lehtiartikkelia</div>
+                    </div>
+                    <div class="research-stat-card text-center px-3 py-2">
+                        <div class="research-stat-number">{{ confCount }}</div>
+                        <div class="research-stat-label">Konferenssijulkaisua</div>
+                    </div>
+                    <div class="research-stat-card text-center px-3 py-2">
+                        <div class="research-stat-number">{{ bookCount }}</div>
+                        <div class="research-stat-label">Kirjaa &amp; väitöskirjaa</div>
+                    </div>
+                </div>
+
+                <p class="text-uppercase text-muted fw-bold mb-2" style="font-size: 0.72rem;">Viimeisimmät julkaisut</p>
+                <div class="d-flex flex-column gap-2 mb-3">
+                    {% for pub in researchfi.slice(0, 3) %}
+                    <div class="d-flex align-items-start gap-3 p-2 rounded home-content-row">
+                        <div class="flex-grow-1 overflow-hidden">
+                            <p class="fw-semibold mb-0" style="font-size:0.85rem;">{{ pub.title | truncate(90) }}</p>
+                            <p class="text-muted mb-0" style="font-size: 0.72rem;">{{ pub.typeFi }}{% if pub.year %} · {{ pub.year }}{% endif %}</p>
+                        </div>
+                        {% if pub.url %}
+                        <a href="{{ pub.url }}" target="_blank" rel="noopener noreferrer" class="flex-shrink-0 text-muted" style="font-size:0.8rem;" aria-label="Avaa julkaisu"><i class="bi bi-arrow-up-right"></i></a>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+                <a href="/julkaisut/" class="btn btn-primary rounded-pill px-4 align-self-start">Selaa kaikkia julkaisuja</a>
             </div>
         </div>
     </div>
@@ -431,79 +243,40 @@ translationKey: home
 <section class="section-flush bg-adaptive-dark-blue py-4 py-md-0 home-feature-section">
     <div class="container-fluid" style="padding-top: 0;border-radius: 0px;">
         <div class="row gx-0 gy-4 gy-md-0">
-            <div class="col-md-6 text-center text-md-start d-flex d-sm-flex d-md-flex flex-column justify-content-center align-items-center align-self-start order-2 order-sm-1 justify-content-md-start align-items-md-center justify-content-xl-center ps-0 pe-0" style="height: auto;min-height: 100%;padding-bottom: 1em;padding-top: 0.5em;">
-                <div class="text-center pb-2 pt-4 w-100 home-copy-block" style="padding-right: 1.5em;padding-left: 1.5em;">
-                    <p class="text-uppercase text-muted fw-bold mb-2">Vaikuttamisen teemat</p>
-                    <h2 class="fw-bold mb-3">Paikallispolitiikan käytännön työ</h2>
-                    <div class="home-focus-grid text-start mb-3">
-                        <article class="home-focus-card">
-                            <h3 class="h6 mb-2"><i class="bi bi-building-fill me-2 opacity-75"></i>Kunnallispolitiikan käytännön työ</h3>
-                            <p class="small mb-2">Politiikkasivulla avaan luottamustehtäviä, vaikuttamisen painopisteitä sekä tavoitteita Oulun päätöksenteossa.</p>
-                            <a class="btn btn-read-more btn-sm rounded-pill px-3" href="/politiikka/">Lue politiikkasivu</a>
-                        </article>
-                        <article class="home-focus-card">
-                            <h3 class="h6 mb-2"><i class="bi bi-chat-left-text me-2 opacity-75"></i>Kirjoitukset, puheet ja aloitteet</h3>
-                            <p class="small mb-2">Kynästä-osio kokoaa mielipidekirjoitukset, puheenvuorot, kolumnit ja aloitteet yhdelle sivulle seurattavaksi.</p>
-                            <a class="btn btn-read-more btn-sm rounded-pill px-3" href="/kynasta/">Siirry Kynästä-osioon</a>
-                        </article>
-                    </div>
-                </div>
-                <!-- Karuselli alkaa -->
-                <div id="blogTicker" class="ticker-container w-100 position-relative pb-4" tabindex="0" role="region" aria-label="Viimeisimmät kirjoitukset ja puheenvuorot">
-                    <div class="ticker-track">
-                        <!-- Ensimmäinen setti -->
-                        <div class="ticker-content">
-                            {% for post in collections.politicsAndOpinions | take(6) %}
-                            {% if post.fileSlug != "etusivu" %}
-                            <div class="ticker-item p-4">
-                                <p class="ticker-pub-type mb-1">{{ post.data.type | capitalize or "Kirjoitus" }}</p>
-                                <p class="ticker-pub-title"><a href="{{ post.url }}" class="ticker-title-link">{{ post.data.title }}</a></p>
-                                {% if post.data.description %}
-                                <p class="text-muted ticker-pub-source mb-1" style="font-size:0.82rem;">{{ post.data.description | truncate(120) }}</p>
-                                {% endif %}
-                                <p class="text-muted ticker-pub-source mb-1">Jari Laru &bull; {{ post.date | dateFormat }}</p>
-                                <div class="d-flex justify-content-start mt-2 mb-1">
-                                    <a href="{{ post.url }}" class="btn btn-read-more btn-sm rounded-pill px-3">Lue lisää <i class="bi bi-arrow-right"></i></a>
-                                </div>
-                            </div>
-                            {% endif %}
-                            {% else %}
-                            <div class="ticker-item p-4">
-                                <p>Ei vielä kirjoituksia.</p>
-                            </div>
-                            {% endfor %}
-                        </div>
-                        <!-- Toinen setti (klooni animaatiota varten) -->
-                        <div class="ticker-content" aria-hidden="true" inert>
-                            {% for post in collections.politicsAndOpinions | take(6) %}
-                            {% if post.fileSlug != "etusivu" %}
-                            <div class="ticker-item p-4">
-                                <p class="ticker-pub-type mb-1">{{ post.data.type | capitalize or "Kirjoitus" }}</p>
-                                <p class="ticker-pub-title"><a href="{{ post.url }}" class="ticker-title-link">{{ post.data.title }}</a></p>
-                                {% if post.data.description %}
-                                <p class="text-muted ticker-pub-source mb-1" style="font-size:0.82rem;">{{ post.data.description | truncate(120) }}</p>
-                                {% endif %}
-                                <p class="text-muted ticker-pub-source mb-1">Jari Laru &bull; {{ post.date | dateFormat }}</p>
-                                <div class="d-flex justify-content-start mt-2 mb-1">
-                                    <a href="{{ post.url }}" class="btn btn-read-more btn-sm rounded-pill px-3">Lue lisää <i class="bi bi-arrow-right"></i></a>
-                                </div>
-                            </div>
-                            {% endif %}
-                            {% else %}
-                            <div class="ticker-item p-4">
-                                <p>Ei vielä kirjoituksia.</p>
-                            </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
-                <!-- Karuselli päättyy -->
-                <div class="text-center pb-3 pt-2 w-100">
-                    <a href="/kynasta/" class="btn btn-primary rounded-pill px-4">Lue kaikki kirjoitukset</a>
-                </div>
+            <div class="col-md-6 ps-0 pe-0 home-feature-image-col order-1 order-md-2">
+                <div class="h-100"><img loading="lazy" decoding="async" class="img-fluid object-fit-cover w-100 h-100 home-section-image" width="1024" height="768" style="min-height: 100%;" src="/img/valtuusto.jpg" alt="Valtuustosali"></div>
             </div>
-            <div class="col-md-6 order-1 order-sm-1 ps-0 pe-0 home-feature-image-col">
-                <div class="h-100"><img loading="lazy" decoding="async" class="img-fluid object-fit-cover w-100 h-100 home-section-image" width="1024" height="768" style="min-height: 100%;transform: perspective(0px) scale(1);filter: blur(0px);transition: ease-in;" src="/img/valtuusto.jpg" alt="Valtuustosali"></div>
+            <div class="col-md-6 d-flex flex-column justify-content-start ps-0 pe-0 order-2 order-md-1" style="padding: 2rem 1.5rem;">
+                <p class="text-uppercase text-muted fw-bold mb-2" style="font-size: 0.75rem;">Vaikuttamisen teemat</p>
+                <h2 class="fw-bold mb-3" style="font-family: 'Bree Serif', serif;">Paikallispolitiikan käytännön työ</h2>
+                <div class="home-focus-grid text-start mb-4">
+                    <article class="home-focus-card">
+                        <h3 class="h6 mb-2"><i class="bi bi-building-fill me-2 opacity-75"></i>Kunnallispolitiikan käytännön työ</h3>
+                        <p class="small mb-2">Politiikkasivulla avaan luottamustehtäviä, vaikuttamisen painopisteitä sekä tavoitteita Oulun päätöksenteossa.</p>
+                        <a class="btn btn-read-more btn-sm rounded-pill px-3" href="/politiikka/">Lue politiikkasivu</a>
+                    </article>
+                    <article class="home-focus-card">
+                        <h3 class="h6 mb-2"><i class="bi bi-chat-left-text me-2 opacity-75"></i>Kirjoitukset, puheet ja aloitteet</h3>
+                        <p class="small mb-2">Kynästä-osio kokoaa mielipidekirjoitukset, puheenvuorot, kolumnit ja aloitteet yhdelle sivulle seurattavaksi.</p>
+                        <a class="btn btn-read-more btn-sm rounded-pill px-3" href="/kynasta/">Siirry Kynästä-osioon</a>
+                    </article>
+                </div>
+
+                <p class="text-uppercase text-muted fw-bold mb-2" style="font-size: 0.72rem;">Viimeisimmät kirjoitukset</p>
+                <div class="d-flex flex-column gap-2 mb-3">
+                    {% for post in collections.politicsAndOpinions | take(3) %}
+                    {% if post.fileSlug != "etusivu" %}
+                    <a href="{{ post.url }}" class="d-flex align-items-center gap-3 p-2 rounded text-decoration-none home-content-row">
+                        <div class="flex-grow-1 overflow-hidden">
+                            <p class="fw-semibold mb-0 text-truncate" style="font-size:0.85rem;">{{ post.data.title }}</p>
+                            <p class="text-muted mb-0" style="font-size: 0.72rem;">{{ post.data.type | capitalize or "Kirjoitus" }} · {{ post.date | dateFormat }}</p>
+                        </div>
+                        <i class="bi bi-arrow-right text-muted flex-shrink-0" style="font-size:0.8rem;"></i>
+                    </a>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <a href="/kynasta/" class="btn btn-primary rounded-pill px-4 align-self-start">Lue kaikki kirjoitukset</a>
             </div>
         </div>
     </div>
@@ -525,140 +298,12 @@ translationKey: home
                     <h2 class="fw-bold mb-3">Tarvitsetko kouluttajan, puhujan tai tutkimukseen nojaavan asiantuntijan?</h2>
                     <p class="mb-4">Sivulla esitellyt teemat jatkuvat käytännön yhteistyössä: koulutuksina, puheenvuoroina, hanketukena ja kehittämistyön sparrauksena.</p>
                     <div class="home-closing-actions d-flex flex-wrap justify-content-center gap-2 mb-3">
-                        <a class="btn btn-read-more btn-sm rounded-pill px-3" href="/yhteystiedot/">Pyydä tarjous</a>
+                        <a class="btn btn-primary rounded-pill px-4" href="/yhteystiedot/">Pyydä tarjous</a>
                         <a class="btn btn-read-more btn-sm rounded-pill px-3" href="/larux-tmi/">Katso palvelut</a>
-                        <a class="btn btn-read-more btn-sm rounded-pill px-3" href="/tietoa/">Tutustu taustaani</a>
+                        <a class="btn btn-outline-secondary btn-sm rounded-pill px-3" href="/tietoa/">Tutustu taustaani</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  function initTicker(tickerId) {
-    const ticker = document.getElementById(tickerId);
-    if (!ticker) return;
-
-    const track = ticker.querySelector(".ticker-track");
-    if (!track) return;
-    
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      track.style.animation = "none";
-      track.style.transform = "translateX(0)";
-      return;
-    }
-
-    let direction = -1; // -1 for left, 1 for right
-    let speed = 1; // Animation speed multiplier
-    let currentX = 0; // Current transform translateX value
-    let animationId = null; // requestAnimationFrame id
-    
-    let isDragging = false;
-    let activePointerId = null;
-    let prevX;
-
-    // Width of a single set of items
-    const tickerContent = ticker.querySelector(".ticker-content");
-    if (!tickerContent) return;
-
-    function normalizePosition() {
-      const itemSetWidth = tickerContent.offsetWidth;
-      if (!itemSetWidth) return;
-      if (currentX <= -itemSetWidth) {
-        currentX += itemSetWidth;
-      } else if (currentX >= 0) {
-        currentX -= itemSetWidth;
-      }
-    }
-
-    function animate() {
-      currentX += direction * speed;
-      normalizePosition();
-      track.style.transform = `translateX(${currentX}px)`;
-      animationId = requestAnimationFrame(animate);
-    }
-
-    function startAnimation() {
-      if (animationId !== null) return;
-      animationId = requestAnimationFrame(animate);
-    }
-
-    function stopAnimation() {
-      if (animationId === null) return;
-      cancelAnimationFrame(animationId);
-      animationId = null;
-    }
-
-    // Remove CSS animation to use JS animation instead for direction support
-    track.style.animation = "none";
-
-    // Start animation loop
-    startAnimation();
-
-    // Käyttöliittymäkontrollit: hiiri, kosketus ja näppäimistö
-    ticker.style.cursor = "ew-resize";
-    ticker.addEventListener("mouseenter", stopAnimation);
-    ticker.addEventListener("focusin", stopAnimation);
-
-    ticker.addEventListener("pointerdown", (e) => {
-      isDragging = true;
-      activePointerId = e.pointerId;
-      prevX = e.clientX;
-      ticker.setPointerCapture(e.pointerId);
-      stopAnimation();
-      ticker.style.cursor = "grabbing";
-    });
-
-    ticker.addEventListener("pointermove", (e) => {
-      if (!isDragging || e.pointerId !== activePointerId) return;
-      
-      // Suunnanvaihto ja manuaalinen rullaus vedettäessä
-      const deltaX = e.clientX - prevX;
-      prevX = e.clientX;
-      
-      // Päivitetään kulkusuunta sen perusteella, mihin suuntaan hiirtä viimeksi vedettiin
-      if (deltaX > 0) direction = 1; // Oikealle
-      else if (deltaX < 0) direction = -1; // Vasemmalle
-
-      currentX += deltaX;
-      normalizePosition();
-
-      track.style.transform = `translateX(${currentX}px)`;
-    });
-
-    function endDrag() {
-      isDragging = false;
-      activePointerId = null;
-      ticker.style.cursor = "ew-resize";
-      startAnimation();
-    }
-
-    ticker.addEventListener("pointerup", endDrag);
-    ticker.addEventListener("pointercancel", endDrag);
-    ticker.addEventListener("lostpointercapture", endDrag);
-    ticker.addEventListener("mouseleave", () => {
-      if (!isDragging) startAnimation();
-    });
-    ticker.addEventListener("focusout", () => {
-      if (!isDragging) startAnimation();
-    });
-
-    ticker.addEventListener("keydown", (e) => {
-      if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
-      e.preventDefault();
-      direction = e.key === "ArrowRight" ? 1 : -1;
-      currentX += direction * 40;
-      normalizePosition();
-      track.style.transform = `translateX(${currentX}px)`;
-      startAnimation();
-    });
-  }
-
-  // Initialize both tickers
-  initTicker("blogTicker");
-  initTicker("presentationTicker");
-  initTicker("zoteroTicker");
-});
-</script>
