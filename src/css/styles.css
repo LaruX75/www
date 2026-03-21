@@ -416,26 +416,76 @@ html:not([data-bs-theme="dark"]) .home-hero-proof-item:focus-visible {
   border-top-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Kompaktit sisältörivit etusivun osioissa (korvaa karusellit) */
+/* Kompaktit sisältörivit etusivun kolmisarakkeisessa osiossa */
 .home-content-row {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--bs-tertiary-bg);
+  border: 1px solid var(--bs-border-color-translucent);
   color: inherit;
   transition: background 0.15s ease;
 }
 
 .home-content-row:hover {
-  background: rgba(255, 255, 255, 0.12);
+  background: var(--bs-secondary-bg);
   color: inherit;
 }
 
-[data-bs-theme="light"] .home-content-row {
-  background: rgba(0, 0, 0, 0.04);
-  border-color: rgba(0, 0, 0, 0.1);
+/* Etusivun kolmisarakkeinen yleiskatsausosio */
+.home-overview-section {
+  border-bottom: 1px solid var(--bs-border-color-translucent);
 }
 
-[data-bs-theme="light"] .home-content-row:hover {
-  background: rgba(0, 0, 0, 0.08);
+.home-overview-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--bs-secondary-color);
+  margin-bottom: 0.35rem;
+}
+
+.home-overview-title {
+  font-family: 'Bree Serif', serif;
+}
+
+.home-overview-lead {
+  color: var(--bs-secondary-color);
+}
+
+@media (min-width: 768px) {
+  .home-overview-col + .home-overview-col {
+    border-left: 1px solid var(--bs-border-color-translucent);
+    padding-left: calc(var(--bs-gutter-x) * 0.5 + 1.25rem);
+  }
+}
+
+/* Lainaukset palauteosiossa */
+.home-testimonials-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--bs-secondary-color);
+}
+
+.home-quote {
+  margin: 0;
+  padding: 1.25rem 1.5rem;
+  border-left: 3px solid var(--bs-primary);
+  border-radius: 0 0.5rem 0.5rem 0;
+  background: var(--bs-body-bg);
+}
+
+.home-quote p {
+  font-size: 1rem;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+  color: var(--bs-body-color);
+}
+
+.home-quote-footer {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--bs-secondary-color);
 }
 
 /* Ticker-karuselli etusivulle */

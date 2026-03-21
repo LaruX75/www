@@ -67,229 +67,115 @@ translationKey: home
     </div>
 </section>
 
-<section class="home-section-heading-strip home-section-heading-strip--dark">
-    <div class="container-fluid">
-        <p class="home-section-heading-strip__eyebrow">Asiantuntija- ja koulutuspalvelut</p>
-        <h2 class="home-section-heading-strip__title">Opettajankouluttaja, koulutusteknologi ja täydennyskouluttaja</h2>
-    </div>
-</section>
-
-<section class="section-flush bg-adaptive-dark-blue py-4 py-md-0 home-feature-section">
-    <div class="container-fluid" style="padding-top: 0;border-radius: 0px;">
-        <div class="row gx-0 gy-4 gy-md-0">
-            <div class="col-md-6 ps-0 pe-0 home-feature-image-col">
-                <div class="h-100"><img loading="lazy" decoding="async" class="img-fluid object-fit-cover w-100 h-100 home-section-image" width="1024" height="768" style="min-height: 100%;" src="/img/image%20(4).webp" alt="Koulutus"></div>
-            </div>
-            <div class="col-md-6 d-flex flex-column justify-content-start ps-0 pe-0" style="padding: 2rem 1.5rem;">
-                <p class="text-uppercase text-muted fw-bold mb-2" style="font-size: 0.75rem;">Mitä saat yhteistyöstä</p>
-                <h2 class="fw-bold mb-3" style="font-family: 'Bree Serif', serif;">Tutkimusperustaista opetusta ja koulutusta</h2>
-                <p class="mb-1 small"><i class="bi bi-mortarboard me-2 opacity-75"></i><strong>Yliopistonlehtori, Oulun yliopisto</strong></p>
-                <p class="mb-3 small opacity-75">Teknologiatuetun oppimisen yliopistonlehtori. Mukana STN:n Generation AI -hankkeessa — tekoälykasvatusta esi- ja perusopetukseen.</p>
-                <p class="mb-1 small"><i class="bi bi-mic me-2 opacity-75"></i><strong>Kouluttaja &amp; puhuja – Larux t:mi</strong></p>
-                <p class="mb-3 small opacity-75">Puheenvuoroja, koulutuksia ja asiantuntijatyötä opetusteknologian, digipedagogiikan ja tekoälyn opetuskäytön teemoista.</p>
-                <div class="d-flex flex-wrap gap-2 mb-4">
-                    <a href="/larux-tmi/" class="btn btn-primary btn-sm rounded-pill px-3">Tilaa koulutus tai puheenvuoro</a>
-                    <a href="/tyoni-yliopistonlehtorina/" class="btn btn-read-more btn-sm rounded-pill px-3">Lue yliopistosta <i class="bi bi-arrow-right"></i></a>
-                </div>
-
-                <p class="text-uppercase text-muted fw-bold mb-2" style="font-size: 0.72rem;">Viimeisimmät esitykset</p>
-                <div class="d-flex flex-column gap-2 mb-3">
-                    {% for post in collections.presentations | take(3) %}
-                    <a href="{{ post.data.url }}" target="_blank" rel="noopener noreferrer" class="d-flex align-items-center gap-3 p-2 rounded text-decoration-none home-content-row">
-                        {% if post.data.thumbnail %}
-                        <img src="{{ post.data.thumbnail }}" alt="" class="rounded flex-shrink-0" style="width:48px;height:36px;object-fit:cover;">
-                        {% else %}
-                        <div class="rounded flex-shrink-0 bg-secondary d-flex align-items-center justify-content-center" style="width:48px;height:36px;"><i class="bi bi-file-earmark-slides text-light" style="font-size:0.85rem;"></i></div>
-                        {% endif %}
-                        <div class="flex-grow-1 overflow-hidden">
-                            <p class="fw-semibold mb-0 text-truncate" style="font-size:0.85rem;">{{ post.data.title }}</p>
-                            <p class="text-muted mb-0" style="font-size: 0.72rem;">{{ post.date | dateFormat }}</p>
-                        </div>
-                        <i class="bi bi-arrow-up-right text-muted flex-shrink-0" style="font-size:0.8rem;"></i>
-                    </a>
-                    {% endfor %}
-                </div>
-                <a href="/esitykset/" class="btn btn-outline-secondary btn-sm rounded-pill px-3 align-self-start">Kaikki esitykset <i class="bi bi-arrow-right"></i></a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="home-section-heading-strip home-section-heading-strip--light">
-    <div class="container-fluid">
-        <p class="home-section-heading-strip__eyebrow">Palautetta</p>
-        <h2 class="home-section-heading-strip__title">Mitä minusta on sanottu</h2>
-    </div>
-</section>
-
-<section class="py-4 bg-body-tertiary home-feedback-section">
+<section class="py-5 home-overview-section">
     <div class="container">
-        <div class="row justify-content-center mb-4">
-            <div class="col-lg-8 text-center">
-                <p class="text-uppercase text-muted fw-bold mb-2">Vaikutus käytännössä</p>
-                <h2 class="fw-bold">Koulutuksista saatua palautetta</h2>
-            </div>
-        </div>
-        <div class="row g-4">
-            <div class="col-md-6">
-                <article class="card h-100 shadow-sm border-0">
-                    <div class="card-body">
-                        <h3 class="h6 text-uppercase text-muted">Henkilöstökoulutus</h3>
-                        <p class="mb-0">"Ihan fiiliksissä vieläkin setistäsi. Yhteyden katkeaminen ei latistanut, vaan porukka alkoi heti reflektoida kuultua."</p>
-                    </div>
-                </article>
-            </div>
-            <div class="col-md-6">
-                <article class="card h-100 shadow-sm border-0">
-                    <div class="card-body">
-                        <h3 class="h6 text-uppercase text-muted">Valtion täydennyskoulutus</h3>
-                        <p class="mb-0">"Saimme aivan huikean hyvät arvioinnit. Kokonaiskeskiarvo 4,2 / 5 oli erinomainen."</p>
-                    </div>
-                </article>
-            </div>
-            <div class="col-md-6">
-                <article class="card h-100 shadow-sm border-0">
-                    <div class="card-body">
-                        <h3 class="h6 text-uppercase text-muted">Osallistujapalaute (OPH)</h3>
-                        <p class="mb-0">"Oikein mielenkiintoista ja opettajan työhön todella tarpeellista ja käytännönläheistä tietoa."</p>
-                    </div>
-                </article>
-            </div>
-            <div class="col-md-6">
-                <article class="card h-100 shadow-sm border-0">
-                    <div class="card-body">
-                        <h3 class="h6 text-uppercase text-muted">Maksullinen seminaari</h3>
-                        <p class="mb-0">"Palaute kyselyn perusteella olit osallistujien mielestä päivän paras puhuja."</p>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </div>
-</section>
+        <div class="row g-4 g-lg-5">
 
-<section class="home-section-heading-strip home-section-heading-strip--dark">
-    <div class="container-fluid">
-        <p class="home-section-heading-strip__eyebrow">Tiede &amp; Tutkimus</p>
-        <h2 class="home-section-heading-strip__title">Tutkimus ja julkaisut</h2>
-    </div>
-</section>
-
-<section class="section-flush bg-adaptive-dark-blue py-4 py-md-0 home-feature-section">
-    <div class="container-fluid" style="padding-top: 0;border-radius: 0px;">
-        <div class="row gx-0 gy-4 gy-md-0 flex-md-row-reverse">
-            <div class="col-md-6 ps-0 pe-0 home-feature-image-col">
-                <div class="h-100"><img loading="lazy" decoding="async" class="img-fluid object-fit-cover w-100 h-100 home-section-image" width="1024" height="768" style="min-height: 100%;" src="/img/uploads/2026/vaitos.png" alt="Tutkimus ja julkaisut"></div>
-            </div>
-            <div class="col-md-6 d-flex flex-column justify-content-start ps-0 pe-0" style="padding: 2rem 1.5rem;">
-                <p class="text-uppercase text-muted fw-bold mb-2" style="font-size: 0.75rem;">Tutkimusprofiili</p>
-                <h2 class="fw-bold mb-3" style="font-family: 'Bree Serif', serif;">Julkaisujen kokonaiskuva</h2>
-                <p class="mb-4 small opacity-75">Uusimmat tieteelliset julkaisuni suoraan Research.fi-palvelusta päivitettynä.</p>
-
-                {%- set articleCount = 0 -%}
-                {%- set confCount = 0 -%}
-                {%- set bookCount = 0 -%}
-                {%- for pub in researchfi -%}
-                    {%- if pub.typeCode == "A1" or pub.typeCode == "A2" -%}{%- set articleCount = articleCount + 1 -%}{%- endif -%}
-                    {%- if pub.typeCode == "A3" or pub.typeCode == "A4" or pub.typeCode == "B3" -%}{%- set confCount = confCount + 1 -%}{%- endif -%}
-                    {%- if pub.typeCode == "C1" or pub.typeCode == "C2" or pub.typeCode == "G4" or pub.typeCode == "G5" -%}{%- set bookCount = bookCount + 1 -%}{%- endif -%}
-                {%- endfor -%}
-
-                <div class="d-flex flex-wrap gap-3 mb-4">
-                    <div class="research-stat-card text-center px-3 py-2">
-                        <div class="research-stat-number">{{ researchfi.length }}</div>
-                        <div class="research-stat-label">Julkaisua</div>
+            <div class="col-md-4 home-overview-col">
+                <div class="d-flex flex-column h-100">
+                    <p class="home-overview-eyebrow">Asiantuntija- ja koulutuspalvelut</p>
+                    <h2 class="h5 fw-bold mb-2 home-overview-title">
+                        <i class="bi bi-mortarboard me-2 opacity-75"></i>Koulutus &amp; esitykset
+                    </h2>
+                    <p class="small mb-3 home-overview-lead">Teknologiatuetun oppimisen yliopistonlehtori ja täydennyskouluttaja. Keynote-esityksiä, koulutuksia ja työpajoja tekoälyn opetuskäytöstä.</p>
+                    <div class="d-flex flex-column gap-1 mb-3">
+                        {% for post in collections.presentations | take(2) %}
+                        <a href="{{ post.data.url }}" target="_blank" rel="noopener noreferrer" class="d-flex align-items-center gap-2 text-decoration-none home-content-row p-2 rounded">
+                            <div class="flex-grow-1 overflow-hidden">
+                                <p class="fw-semibold mb-0 text-truncate" style="font-size:0.82rem;">{{ post.data.title }}</p>
+                                <p class="text-muted mb-0" style="font-size:0.7rem;">{{ post.date | dateFormat }}</p>
+                            </div>
+                            <i class="bi bi-arrow-up-right text-muted flex-shrink-0" style="font-size:0.75rem;"></i>
+                        </a>
+                        {% endfor %}
                     </div>
-                    <div class="research-stat-card text-center px-3 py-2">
-                        <div class="research-stat-number">{{ articleCount }}</div>
-                        <div class="research-stat-label">Lehtiartikkelia</div>
-                    </div>
-                    <div class="research-stat-card text-center px-3 py-2">
-                        <div class="research-stat-number">{{ confCount }}</div>
-                        <div class="research-stat-label">Konferenssijulkaisua</div>
-                    </div>
-                    <div class="research-stat-card text-center px-3 py-2">
-                        <div class="research-stat-number">{{ bookCount }}</div>
-                        <div class="research-stat-label">Kirjaa &amp; väitöskirjaa</div>
+                    <div class="d-flex flex-wrap gap-2 mt-auto pt-2">
+                        <a href="/larux-tmi/" class="btn btn-primary btn-sm rounded-pill px-3">Tilaa koulutus</a>
+                        <a href="/esitykset/" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Kaikki esitykset</a>
                     </div>
                 </div>
+            </div>
 
-                <p class="text-uppercase text-muted fw-bold mb-2" style="font-size: 0.72rem;">Viimeisimmät julkaisut</p>
-                <div class="d-flex flex-column gap-2 mb-3">
-                    {% for pub in researchfi.slice(0, 3) %}
-                    <div class="d-flex align-items-start gap-3 p-2 rounded home-content-row">
-                        <div class="flex-grow-1 overflow-hidden">
-                            <p class="fw-semibold mb-0" style="font-size:0.85rem;">{{ pub.title | truncate(90) }}</p>
-                            <p class="text-muted mb-0" style="font-size: 0.72rem;">{{ pub.typeFi }}{% if pub.year %} · {{ pub.year }}{% endif %}</p>
+            <div class="col-md-4 home-overview-col">
+                <div class="d-flex flex-column h-100">
+                    <p class="home-overview-eyebrow">Tiede &amp; tutkimus</p>
+                    <h2 class="h5 fw-bold mb-2 home-overview-title">
+                        <i class="bi bi-journal-text me-2 opacity-75"></i>Julkaisut
+                    </h2>
+                    <p class="small mb-3 home-overview-lead">
+                        <strong>{{ researchfi.length }} julkaisua</strong> Research.fi-palvelusta. Aiheina teknologiatuettu oppiminen, tekoälylukutaito ja digipedagogiikka.
+                    </p>
+                    <div class="d-flex flex-column gap-1 mb-3">
+                        {% for pub in researchfi.slice(0, 2) %}
+                        <div class="d-flex align-items-start gap-2 home-content-row p-2 rounded">
+                            <div class="flex-grow-1 overflow-hidden">
+                                <p class="fw-semibold mb-0" style="font-size:0.82rem;">{{ pub.title | truncate(80) }}</p>
+                                <p class="text-muted mb-0" style="font-size:0.7rem;">{{ pub.typeFi }}{% if pub.year %} · {{ pub.year }}{% endif %}</p>
+                            </div>
+                            {% if pub.url %}
+                            <a href="{{ pub.url }}" target="_blank" rel="noopener noreferrer" class="flex-shrink-0 text-muted" style="font-size:0.75rem;" aria-label="Avaa julkaisu"><i class="bi bi-arrow-up-right"></i></a>
+                            {% endif %}
                         </div>
-                        {% if pub.url %}
-                        <a href="{{ pub.url }}" target="_blank" rel="noopener noreferrer" class="flex-shrink-0 text-muted" style="font-size:0.8rem;" aria-label="Avaa julkaisu"><i class="bi bi-arrow-up-right"></i></a>
+                        {% endfor %}
+                    </div>
+                    <div class="mt-auto pt-2">
+                        <a href="/julkaisut/" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Kaikki julkaisut</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 home-overview-col">
+                <div class="d-flex flex-column h-100">
+                    <p class="home-overview-eyebrow">Yhteiskunnallinen vaikuttaminen</p>
+                    <h2 class="h5 fw-bold mb-2 home-overview-title">
+                        <i class="bi bi-building me-2 opacity-75"></i>Politiikka
+                    </h2>
+                    <p class="small mb-3 home-overview-lead">Toisen kauden kaupunginvaltuutettu Oulussa (Kokoomus). Käytännön työtä paikallisen päätöksenteon parissa.</p>
+                    <div class="d-flex flex-column gap-1 mb-3">
+                        {% for post in collections.politicsAndOpinions | take(3) %}
+                        {% if post.fileSlug != "etusivu" %}
+                        <a href="{{ post.url }}" class="d-flex align-items-center gap-2 text-decoration-none home-content-row p-2 rounded">
+                            <div class="flex-grow-1 overflow-hidden">
+                                <p class="fw-semibold mb-0 text-truncate" style="font-size:0.82rem;">{{ post.data.title }}</p>
+                                <p class="text-muted mb-0" style="font-size:0.7rem;">{{ post.data.type | capitalize or "Kirjoitus" }} · {{ post.date | dateFormat }}</p>
+                            </div>
+                            <i class="bi bi-arrow-right text-muted flex-shrink-0" style="font-size:0.75rem;"></i>
+                        </a>
                         {% endif %}
+                        {% endfor %}
                     </div>
-                    {% endfor %}
+                    <div class="d-flex flex-wrap gap-2 mt-auto pt-2">
+                        <a href="/politiikka/" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Politiikkasivu</a>
+                        <a href="/kynasta/" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Kynästä</a>
+                    </div>
                 </div>
-                <a href="/julkaisut/" class="btn btn-primary rounded-pill px-4 align-self-start">Selaa kaikkia julkaisuja</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-body-tertiary home-testimonials-section">
+    <div class="container">
+        <p class="text-uppercase fw-bold text-center mb-4 home-testimonials-label">Palautetta koulutuksista</p>
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-5">
+                <blockquote class="home-quote">
+                    <p>"Ihan fiiliksissä vieläkin setistäsi. Yhteyden katkeaminen ei latistanut, vaan porukka alkoi heti reflektoida kuultua."</p>
+                    <footer class="home-quote-footer">Henkilöstökoulutus</footer>
+                </blockquote>
+            </div>
+            <div class="col-md-5">
+                <blockquote class="home-quote">
+                    <p>"Palaute kyselyn perusteella olit osallistujien mielestä päivän paras puhuja."</p>
+                    <footer class="home-quote-footer">Maksullinen seminaari</footer>
+                </blockquote>
             </div>
         </div>
     </div>
 </section>
 
-<section class="home-section-heading-strip home-section-heading-strip--dark">
-    <div class="container-fluid">
-        <p class="home-section-heading-strip__eyebrow">Yhteiskunnallinen vaikuttaminen</p>
-        <h2 class="home-section-heading-strip__title">Politiikka ja vaikuttaminen</h2>
-    </div>
-</section>
-
-<section class="section-flush bg-adaptive-dark-blue py-4 py-md-0 home-feature-section">
-    <div class="container-fluid" style="padding-top: 0;border-radius: 0px;">
-        <div class="row gx-0 gy-4 gy-md-0">
-            <div class="col-md-6 ps-0 pe-0 home-feature-image-col order-1 order-md-2">
-                <div class="h-100"><img loading="lazy" decoding="async" class="img-fluid object-fit-cover w-100 h-100 home-section-image" width="1024" height="768" style="min-height: 100%;" src="/img/valtuusto.jpg" alt="Valtuustosali"></div>
-            </div>
-            <div class="col-md-6 d-flex flex-column justify-content-start ps-0 pe-0 order-2 order-md-1" style="padding: 2rem 1.5rem;">
-                <p class="text-uppercase text-muted fw-bold mb-2" style="font-size: 0.75rem;">Vaikuttamisen teemat</p>
-                <h2 class="fw-bold mb-3" style="font-family: 'Bree Serif', serif;">Paikallispolitiikan käytännön työ</h2>
-                <div class="home-focus-grid text-start mb-4">
-                    <article class="home-focus-card">
-                        <h3 class="h6 mb-2"><i class="bi bi-building-fill me-2 opacity-75"></i>Kunnallispolitiikan käytännön työ</h3>
-                        <p class="small mb-2">Politiikkasivulla avaan luottamustehtäviä, vaikuttamisen painopisteitä sekä tavoitteita Oulun päätöksenteossa.</p>
-                        <a class="btn btn-read-more btn-sm rounded-pill px-3" href="/politiikka/">Lue politiikkasivu</a>
-                    </article>
-                    <article class="home-focus-card">
-                        <h3 class="h6 mb-2"><i class="bi bi-chat-left-text me-2 opacity-75"></i>Kirjoitukset, puheet ja aloitteet</h3>
-                        <p class="small mb-2">Kynästä-osio kokoaa mielipidekirjoitukset, puheenvuorot, kolumnit ja aloitteet yhdelle sivulle seurattavaksi.</p>
-                        <a class="btn btn-read-more btn-sm rounded-pill px-3" href="/kynasta/">Siirry Kynästä-osioon</a>
-                    </article>
-                </div>
-
-                <p class="text-uppercase text-muted fw-bold mb-2" style="font-size: 0.72rem;">Viimeisimmät kirjoitukset</p>
-                <div class="d-flex flex-column gap-2 mb-3">
-                    {% for post in collections.politicsAndOpinions | take(3) %}
-                    {% if post.fileSlug != "etusivu" %}
-                    <a href="{{ post.url }}" class="d-flex align-items-center gap-3 p-2 rounded text-decoration-none home-content-row">
-                        <div class="flex-grow-1 overflow-hidden">
-                            <p class="fw-semibold mb-0 text-truncate" style="font-size:0.85rem;">{{ post.data.title }}</p>
-                            <p class="text-muted mb-0" style="font-size: 0.72rem;">{{ post.data.type | capitalize or "Kirjoitus" }} · {{ post.date | dateFormat }}</p>
-                        </div>
-                        <i class="bi bi-arrow-right text-muted flex-shrink-0" style="font-size:0.8rem;"></i>
-                    </a>
-                    {% endif %}
-                    {% endfor %}
-                </div>
-                <a href="/kynasta/" class="btn btn-primary rounded-pill px-4 align-self-start">Lue kaikki kirjoitukset</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="home-section-heading-strip home-section-heading-strip--light">
-    <div class="container-fluid">
-        <p class="home-section-heading-strip__eyebrow">Yhteistyö</p>
-        <h2 class="home-section-heading-strip__title">Jatketaan tästä</h2>
-    </div>
-</section>
-
-<section class="py-5 bg-body-tertiary home-closing-section">
+<section class="py-5 bg-body-tertiary home-closing-section" style="border-top: 1px solid var(--bs-border-color-translucent);">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-9">
