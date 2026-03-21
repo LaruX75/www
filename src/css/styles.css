@@ -1,3 +1,14 @@
+/* ===== Dark theme: Bootstrap-pohjavärien korvaus ===== */
+/* Bootstrap 5.3 käyttää tasaista #212529 → korvataan tummalla navyllä */
+[data-bs-theme="dark"] {
+  --bs-body-bg: #131d2b;
+  --bs-body-color: #dde4ee;
+  --bs-secondary-bg: #1c2a3c;
+  --bs-tertiary-bg: #182336;
+  --bs-border-color: #2a3a4e;
+  --bs-border-color-translucent: rgba(255, 255, 255, 0.11);
+}
+
 .bss-scope h1,
 .bss-scope h2,
 .bss-scope h3,
@@ -37,8 +48,8 @@ body {
   display: flex;
   align-items: center;
   background:
-    linear-gradient(110deg, rgba(8, 18, 34, 0.88) 8%, rgba(8, 18, 34, 0.74) 48%, rgba(8, 18, 34, 0.34) 100%),
-    linear-gradient(rgba(18, 42, 71, 0) 62%, rgb(4, 16, 36) 92%),
+    linear-gradient(110deg, rgba(8, 18, 34, 0.62) 8%, rgba(8, 18, 34, 0.44) 48%, rgba(8, 18, 34, 0.16) 100%),
+    linear-gradient(rgba(18, 42, 71, 0) 62%, rgba(4, 16, 36, 0.80) 92%),
     url("/img/WIN_20210329_16_06_01_Pro.jpg") center / cover;
 }
 
@@ -888,8 +899,9 @@ html:not([data-bs-theme="dark"]) .home-closing-panel {
 }
 
 /* Mukautuva tumman tilan erikoistausta etusivulle */
+/* #1e2a3a → #202f42: hieman vaaleampi kuin pohja (#131d2b), selkeä elevation */
 [data-bs-theme="dark"] .bg-adaptive-dark-blue {
-  background-color: #1e2a3a !important;
+  background-color: #202f42 !important;
 }
 
 [data-bs-theme="dark"] .bg-adaptive-dark-blue h2,
