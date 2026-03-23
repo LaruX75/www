@@ -81,7 +81,7 @@ translationKey: publications_index
         <div class="card border-0 shadow-sm h-100">
           <div class="card-body">
             <h2 class="h6 text-uppercase text-muted fw-bold mb-3"><i class="bi bi-people-fill me-2"></i>Top 10 kanssatutkijaa</h2>
-            <div id="coauthorFilterStatus" class="small mb-2 d-none"></div>
+            <div id="coauthorFilterStatus" class="small mb-2 visually-hidden" role="status" aria-live="polite" aria-atomic="true"></div>
             <div class="table-responsive">
               <table class="table table-sm table-hover align-middle mb-0 pub-table" id="coauthorTable">
                 <thead><tr><th>Tutkija</th><th class="text-end">Yhteisjulkaisut</th></tr></thead>
@@ -637,8 +637,8 @@ document.addEventListener('DOMContentLoaded', function() {
       const clearBtn = document.getElementById('clearCoauthorFilter');
       if (clearBtn) clearBtn.addEventListener('click', () => setCoauthorFilter(''));
     } else {
-      statusEl.className = 'small mb-2 d-none';
-      statusEl.textContent = '';
+      statusEl.className = 'small mb-2 visually-hidden';
+      statusEl.textContent = 'Rajaus poistettu.';
     }
     syncPublicationFiltersToUrl();
   }
@@ -946,7 +946,7 @@ document.addEventListener('DOMContentLoaded', function() {
       btn.className = 'badge rounded-pill border-0 keyword-badge';
       btn.dataset.word = word;
       btn.dataset.opacity = opacity;
-      btn.style.cssText = `font-size:${size}rem; opacity:${opacity}; background-color: ${isDark ? 'rgba(56,189,248,0.3)' : 'rgba(13,110,253,0.15)'}; color: ${isDark ? '#e2e6ec' : '#0d6efd'}; font-weight: 500; cursor: pointer; transition: outline 0.1s;`;
+      btn.style.cssText = `font-size:${size}rem; opacity:${opacity}; background-color: ${isDark ? 'rgba(56,189,248,0.3)' : 'rgba(13,110,253,0.15)'}; color: ${isDark ? '#e2e6ec' : '#004192'}; font-weight: 500; cursor: pointer; transition: outline 0.1s;`;
       btn.title = `Suodata julkaisut avainsanalla "${word}"`;
       btn.textContent = `${word} (${count})`;
       btn.addEventListener('click', () => applyKeywordFilter(word));

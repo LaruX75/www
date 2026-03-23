@@ -2,6 +2,12 @@ const fs = require("fs");
 const path = require("path");
 
 const CACHE_DIR = path.join(process.cwd(), ".cache", "api-fallback");
+const OFFLINE_FETCH_ENV_KEYS = [
+  "PLAYWRIGHT_A11Y_OFFLINE",
+  "ELEVENTY_OFFLINE",
+  "A11Y_OFFLINE",
+  "NO_NETWORK"
+];
 
 function cachePath(key) {
   return path.join(CACHE_DIR, `${key}.json`);
@@ -45,10 +51,21 @@ function writeCache(key, data) {
   }
 }
 
+function isOfflineFetchMode() {
+  return OFFLINE_FETCH_ENV_KEYS.some((key) => {
+    const value = String(process.env[key] || "").trim().toLowerCase();
+    return ["1", "true", "yes", "on"].includes(value);
+  });
+}
+
 /**
  * fetch() aikarajalla. Heittää AbortError jos timeoutMs ylittyy.
  */
 async function fetchWithTimeout(url, options = {}, timeoutMs = 15000) {
+  if (isOfflineFetchMode()) {
+    throw new Error(`[offline] Network fetch skipped for ${url}`);
+  }
+
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   try {
@@ -62,5 +79,6 @@ module.exports = {
   readCache,
   readCacheIfFresh,
   writeCache,
-  fetchWithTimeout
+  fetchWithTimeout,
+  isOfflineFetchMode
 };

@@ -13,6 +13,27 @@
 {% set politicsMegaMenu = headerNav.megaMenuPolitics.en if currentLang == "en" else headerNav.megaMenuPolitics.fi %}
 {% set writingsMegaMenu = headerNav.megaMenuWritings.en if currentLang == "en" else headerNav.megaMenuWritings.fi %}
 {% set contactMegaMenu = headerNav.megaMenuContact.en if currentLang == "en" else headerNav.megaMenuContact.fi %}
+{% set openSubmenuLabel = "Open submenu:" if currentLang == "en" else "Avaa alavalikko:" %}
+
+{% macro megaNavTrigger(url, title, icon, isActive, menuId, toggleId, openLabel) %}
+<div class="mega-nav-trigger">
+  <a class="nav-link mega-nav-link{% if isActive %} active{% endif %}" href="{{ url }}"{% if isActive %} aria-current="page"{% endif %}>
+    <i class="{{ icon }}"></i> {{ title }}
+  </a>
+  <button
+    class="nav-link mega-nav-toggle dropdown-toggle"
+    type="button"
+    id="{{ toggleId }}"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+    aria-haspopup="true"
+    aria-controls="{{ menuId }}"
+    aria-label="{{ openLabel }} {{ title }}"
+  >
+    <span class="visually-hidden">{{ openLabel }} {{ title }}</span>
+  </button>
+</div>
+{% endmacro %}
 
 {% if currentLang == "en" %}
 <nav id="siteNav" class="navbar navbar-expand-md site-navbar sticky-top" aria-label="Main Navigation" style="z-index:1030; transition: background-color .3s ease, box-shadow .3s ease;">
@@ -31,10 +52,8 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          <a class="nav-link dropdown-toggle {% if page.url and ('/en/about/' in page.url or '/en/cv/' in page.url or '/en/portfolio/' in page.url or '/en/company/' in page.url or '/en/road-trips/' in page.url) %}active{% endif %}" href="{{ navMe.url or '/en/about/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false"{% if page.url and ('/en/about/' in page.url or '/en/cv/' in page.url or '/en/portfolio/' in page.url or '/en/company/' in page.url or '/en/road-trips/' in page.url) %} aria-current="page"{% endif %}>
-            <i class="{{ navMe.icon or 'bi bi-person-fill' }}"></i> {{ navMe.title or 'Me' }}
-          </a>
-          <div class="dropdown-menu mega-menu-panel p-0 border-0">
+          {{ megaNavTrigger(navMe.url or '/en/about/', navMe.title or 'Me', navMe.icon or 'bi bi-person-fill', page.url and ('/en/about/' in page.url or '/en/cv/' in page.url or '/en/portfolio/' in page.url or '/en/company/' in page.url or '/en/road-trips/' in page.url), 'megaMenuMeEn', 'megaToggleMeEn', openSubmenuLabel) }}
+          <div id="megaMenuMeEn" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleMeEn">
             <div class="mega-wrap grid-8-4">
               <div class="mega-left three-cols">
                 {% for section in meMegaMenu.sections %}
@@ -75,10 +94,8 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          <a class="nav-link dropdown-toggle {% if page.url and ('/en/publications/' in page.url or '/en/theses/' in page.url or '/en/presentations/' in page.url) %}active{% endif %}" href="{{ navWork.url or '/en/work/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false"{% if page.url and ('/en/publications/' in page.url or '/en/theses/' in page.url or '/en/presentations/' in page.url) %} aria-current="page"{% endif %}>
-            <i class="{{ navWork.icon or 'bi bi-briefcase-fill' }}"></i> {{ navWork.title or 'Work' }}
-          </a>
-          <div class="dropdown-menu mega-menu-panel p-0 border-0">
+          {{ megaNavTrigger(navWork.url or '/en/work/', navWork.title or 'Work', navWork.icon or 'bi bi-briefcase-fill', page.url and ('/en/publications/' in page.url or '/en/theses/' in page.url or '/en/presentations/' in page.url), 'megaMenuWorkEn', 'megaToggleWorkEn', openSubmenuLabel) }}
+          <div id="megaMenuWorkEn" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleWorkEn">
             {% if workMegaMenu and workMegaMenu.sections %}
             {% if workMegaMenu.layout == "four-columns" %}
             <div class="mega-wrap">
@@ -177,10 +194,8 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          <a class="nav-link dropdown-toggle {% if page.url and ('/en/politics/' in page.url or '/en/affiliations/' in page.url) %}active{% endif %}" href="{{ navPolitics.url or '/en/politics/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false"{% if page.url and ('/en/politics/' in page.url or '/en/affiliations/' in page.url) %} aria-current="page"{% endif %}>
-            <i class="{{ navPolitics.icon or 'bi bi-bank2' }}"></i> {{ navPolitics.title or 'Politics' }}
-          </a>
-          <div class="dropdown-menu mega-menu-panel p-0 border-0">
+          {{ megaNavTrigger(navPolitics.url or '/en/politics/', navPolitics.title or 'Politics', navPolitics.icon or 'bi bi-bank2', page.url and ('/en/politics/' in page.url or '/en/affiliations/' in page.url), 'megaMenuPoliticsEn', 'megaTogglePoliticsEn', openSubmenuLabel) }}
+          <div id="megaMenuPoliticsEn" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaTogglePoliticsEn">
             <div class="mega-wrap">
               <div class="mega-left three-cols">
                 {% for section in politicsMegaMenu.sections %}
@@ -209,10 +224,8 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          <a class="nav-link dropdown-toggle {% if page.url and '/en/writings/' in page.url %}active{% endif %}" href="{{ navWritings.url or '/en/writings/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false"{% if page.url and '/en/writings/' in page.url %} aria-current="page"{% endif %}>
-            <i class="{{ navWritings.icon or 'bi bi-pencil-fill' }}"></i> {{ navWritings.title or 'Writings' }}
-          </a>
-          <div class="dropdown-menu mega-menu-panel p-0 border-0">
+          {{ megaNavTrigger(navWritings.url or '/en/writings/', navWritings.title or 'Writings', navWritings.icon or 'bi bi-pencil-fill', page.url and '/en/writings/' in page.url, 'megaMenuWritingsEn', 'megaToggleWritingsEn', openSubmenuLabel) }}
+          <div id="megaMenuWritingsEn" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleWritingsEn">
             <div class="mega-wrap writings-mega-layout">
               {% if writingsMegaMenu.contentColumns %}
                 <section class="writings-group-head">
@@ -285,10 +298,8 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          <a class="nav-link dropdown-toggle {% if page.url and '/en/contact/' in page.url %}active{% endif %}" href="{{ navContact.url or '/en/contact/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false"{% if page.url and '/en/contact/' in page.url %} aria-current="page"{% endif %}>
-            <i class="{{ navContact.icon or 'bi bi-envelope' }}"></i> {{ navContact.title or 'Contact' }}
-          </a>
-          <div class="dropdown-menu mega-menu-panel p-0 border-0">
+          {{ megaNavTrigger(navContact.url or '/en/contact/', navContact.title or 'Contact', navContact.icon or 'bi bi-envelope', page.url and '/en/contact/' in page.url, 'megaMenuContactEn', 'megaToggleContactEn', openSubmenuLabel) }}
+          <div id="megaMenuContactEn" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleContactEn">
             <div class="mega-wrap">
               <section class="w-100 mb-3">
                 <h5>{{ contactMegaMenu.heading }}</h5>
@@ -300,9 +311,12 @@
                     <h5>{{ column.heading }}</h5>
                     {% if column.type == "form" and column.form %}
                       <form class="contact-mega-form" action="{{ column.form.action }}" method="{{ column.form.method or 'POST' }}">
-                        <input type="text" name="name" class="form-control form-control-sm mb-2" placeholder="{{ column.form.namePlaceholder }}" aria-label="{{ column.form.namePlaceholder }}">
-                        <input type="email" name="email" class="form-control form-control-sm mb-2" placeholder="{{ column.form.emailPlaceholder }}" aria-label="{{ column.form.emailPlaceholder }}" required>
-                        <textarea name="message" class="form-control form-control-sm mb-2" rows="3" placeholder="{{ column.form.messagePlaceholder }}" aria-label="{{ column.form.messagePlaceholder }}" required></textarea>
+                        <label class="form-label small fw-semibold mb-1" for="contactMegaNameEn">{{ column.form.namePlaceholder }}</label>
+                        <input id="contactMegaNameEn" type="text" name="name" class="form-control form-control-sm mb-2" placeholder="{{ column.form.namePlaceholder }}" autocomplete="name">
+                        <label class="form-label small fw-semibold mb-1" for="contactMegaEmailEn">{{ column.form.emailPlaceholder }}</label>
+                        <input id="contactMegaEmailEn" type="email" name="email" class="form-control form-control-sm mb-2" placeholder="{{ column.form.emailPlaceholder }}" autocomplete="email" required>
+                        <label class="form-label small fw-semibold mb-1" for="contactMegaMessageEn">{{ column.form.messagePlaceholder }}</label>
+                        <textarea id="contactMegaMessageEn" name="message" class="form-control form-control-sm mb-2" rows="3" placeholder="{{ column.form.messagePlaceholder }}" required></textarea>
                         <button type="submit" class="btn btn-accent btn-lg w-100">{{ column.form.submitLabel }}</button>
                       </form>
                       <a class="contact-mega-mobile-cta btn btn-accent btn-lg w-100 mt-2" href="{{ navContact.url or '/en/contact/' }}">
@@ -489,11 +503,11 @@
   </div>
 </div>
 
-<div id="searchOverlay" class="search-overlay" style="display: none;">
+<div id="searchOverlay" class="search-overlay" role="dialog" aria-modal="true" aria-labelledby="searchOverlayTitle" aria-hidden="true" hidden>
   <div class="search-overlay-inner">
     <div class="container py-4">
       <div class="d-flex justify-content-between align-items-center mb-4">
-        <h3 class="mb-0"><i class="bi bi-search me-2"></i>Search</h3>
+        <h3 class="mb-0" id="searchOverlayTitle"><i class="bi bi-search me-2"></i>Search</h3>
         <button class="btn btn-sm rounded-circle" id="searchCloseBtn" aria-label="Close search" style="width: 38px; height: 38px;">
           <i class="bi bi-x-lg"></i>
         </button>
@@ -519,10 +533,8 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          <a class="nav-link dropdown-toggle {% if page.url and ('/tietoa/' in page.url or '/autolomat/' in page.url or '/cv/' in page.url or '/portfolio/' in page.url or '/larux-tmi/' in page.url or '/yritys/' in page.url) %}active{% endif %}" href="{{ navMe.url or '/tietoa/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false"{% if page.url and ('/tietoa/' in page.url or '/autolomat/' in page.url or '/cv/' in page.url or '/portfolio/' in page.url or '/larux-tmi/' in page.url or '/yritys/' in page.url) %} aria-current="page"{% endif %}>
-            <i class="{{ navMe.icon or 'bi bi-person-fill' }}"></i> {{ navMe.title or 'Minä' }}
-          </a>
-          <div class="dropdown-menu mega-menu-panel p-0 border-0">
+          {{ megaNavTrigger(navMe.url or '/tietoa/', navMe.title or 'Minä', navMe.icon or 'bi bi-person-fill', page.url and ('/tietoa/' in page.url or '/autolomat/' in page.url or '/cv/' in page.url or '/portfolio/' in page.url or '/larux-tmi/' in page.url or '/yritys/' in page.url), 'megaMenuMeFi', 'megaToggleMeFi', openSubmenuLabel) }}
+          <div id="megaMenuMeFi" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleMeFi">
             <div class="mega-wrap grid-8-4">
               <div class="mega-left three-cols">
                 {% for section in meMegaMenu.sections %}
@@ -563,10 +575,8 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          <a class="nav-link dropdown-toggle {% if page.url and ('/opetus/' in page.url or '/portfolio/' in page.url or '/tutkimus/' in page.url or '/v%C3%A4it%C3%B6skirja/' in page.url or '/väitöskirja/' in page.url or '/palkinnot/' in page.url) %}active{% endif %}" href="{{ navWork.url or '/tyoni-yliopistonlehtorina/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false"{% if page.url and ('/opetus/' in page.url or '/portfolio/' in page.url or '/tutkimus/' in page.url or '/v%C3%A4it%C3%B6skirja/' in page.url or '/väitöskirja/' in page.url or '/palkinnot/' in page.url) %} aria-current="page"{% endif %}>
-            <i class="{{ navWork.icon or 'bi bi-briefcase-fill' }}"></i> {{ navWork.title or 'Työ' }}
-          </a>
-          <div class="dropdown-menu mega-menu-panel p-0 border-0">
+          {{ megaNavTrigger(navWork.url or '/tyoni-yliopistonlehtorina/', navWork.title or 'Työ', navWork.icon or 'bi bi-briefcase-fill', page.url and ('/opetus/' in page.url or '/portfolio/' in page.url or '/tutkimus/' in page.url or '/v%C3%A4it%C3%B6skirja/' in page.url or '/väitöskirja/' in page.url or '/palkinnot/' in page.url), 'megaMenuWorkFi', 'megaToggleWorkFi', openSubmenuLabel) }}
+          <div id="megaMenuWorkFi" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleWorkFi">
             {% if workMegaMenu and workMegaMenu.sections %}
             {% if workMegaMenu.layout == "four-columns" %}
             <div class="mega-wrap">
@@ -669,10 +679,8 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          <a class="nav-link dropdown-toggle {% if page.url and ('/politiikka/' in page.url or '/politiiikka/' in page.url) %}active{% endif %}" href="{{ navPolitics.url or '/politiikka/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false"{% if page.url and ('/politiikka/' in page.url or '/politiiikka/' in page.url) %} aria-current="page"{% endif %}>
-            <i class="{{ navPolitics.icon or 'bi bi-bank2' }}"></i> {{ navPolitics.title or 'Politiikka' }}
-          </a>
-          <div class="dropdown-menu mega-menu-panel p-0 border-0">
+          {{ megaNavTrigger(navPolitics.url or '/politiikka/', navPolitics.title or 'Politiikka', navPolitics.icon or 'bi bi-bank2', page.url and ('/politiikka/' in page.url or '/politiiikka/' in page.url), 'megaMenuPoliticsFi', 'megaTogglePoliticsFi', openSubmenuLabel) }}
+          <div id="megaMenuPoliticsFi" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaTogglePoliticsFi">
             <div class="mega-wrap">
               <div class="mega-left three-cols">
                 {% for section in politicsMegaMenu.sections %}
@@ -701,10 +709,8 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          <a class="nav-link dropdown-toggle {% if page.url and ('/kynasta/' in page.url or '/blogi/' in page.url) %}active{% endif %}" href="{{ navWritings.url or '/kynasta/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false"{% if page.url and ('/kynasta/' in page.url or '/blogi/' in page.url) %} aria-current="page"{% endif %}>
-            <i class="{{ navWritings.icon or 'bi bi-pencil-fill' }}"></i> {{ navWritings.title or 'Kynästä' }}
-          </a>
-          <div class="dropdown-menu mega-menu-panel p-0 border-0">
+          {{ megaNavTrigger(navWritings.url or '/kynasta/', navWritings.title or 'Kynästä', navWritings.icon or 'bi bi-pencil-fill', page.url and ('/kynasta/' in page.url or '/blogi/' in page.url), 'megaMenuWritingsFi', 'megaToggleWritingsFi', openSubmenuLabel) }}
+          <div id="megaMenuWritingsFi" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleWritingsFi">
             <div class="mega-wrap writings-mega-layout">
               {% if writingsMegaMenu.contentColumns %}
                 <section class="writings-group-head">
@@ -777,10 +783,8 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          <a class="nav-link dropdown-toggle {% if page.url and '/yhteystiedot/' in page.url %}active{% endif %}" href="{{ navContact.url or '/yhteystiedot/' }}" role="button" data-bs-toggle="dropdown" aria-expanded="false"{% if page.url and '/yhteystiedot/' in page.url %} aria-current="page"{% endif %}>
-            <i class="{{ navContact.icon or 'bi bi-envelope' }}"></i> {{ navContact.title or 'Ota yhteyttä' }}
-          </a>
-          <div class="dropdown-menu mega-menu-panel p-0 border-0">
+          {{ megaNavTrigger(navContact.url or '/yhteystiedot/', navContact.title or 'Ota yhteyttä', navContact.icon or 'bi bi-envelope', page.url and '/yhteystiedot/' in page.url, 'megaMenuContactFi', 'megaToggleContactFi', openSubmenuLabel) }}
+          <div id="megaMenuContactFi" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleContactFi">
             <div class="mega-wrap">
               <section class="w-100 mb-3">
                 <h5>{{ contactMegaMenu.heading }}</h5>
@@ -792,9 +796,12 @@
                     <h5>{{ column.heading }}</h5>
                     {% if column.type == "form" and column.form %}
                       <form class="contact-mega-form" action="{{ column.form.action }}" method="{{ column.form.method or 'POST' }}">
-                        <input type="text" name="name" class="form-control form-control-sm mb-2" placeholder="{{ column.form.namePlaceholder }}" aria-label="{{ column.form.namePlaceholder }}">
-                        <input type="email" name="email" class="form-control form-control-sm mb-2" placeholder="{{ column.form.emailPlaceholder }}" aria-label="{{ column.form.emailPlaceholder }}" required>
-                        <textarea name="message" class="form-control form-control-sm mb-2" rows="3" placeholder="{{ column.form.messagePlaceholder }}" aria-label="{{ column.form.messagePlaceholder }}" required></textarea>
+                        <label class="form-label small fw-semibold mb-1" for="contactMegaNameFi">{{ column.form.namePlaceholder }}</label>
+                        <input id="contactMegaNameFi" type="text" name="name" class="form-control form-control-sm mb-2" placeholder="{{ column.form.namePlaceholder }}" autocomplete="name">
+                        <label class="form-label small fw-semibold mb-1" for="contactMegaEmailFi">{{ column.form.emailPlaceholder }}</label>
+                        <input id="contactMegaEmailFi" type="email" name="email" class="form-control form-control-sm mb-2" placeholder="{{ column.form.emailPlaceholder }}" autocomplete="email" required>
+                        <label class="form-label small fw-semibold mb-1" for="contactMegaMessageFi">{{ column.form.messagePlaceholder }}</label>
+                        <textarea id="contactMegaMessageFi" name="message" class="form-control form-control-sm mb-2" rows="3" placeholder="{{ column.form.messagePlaceholder }}" required></textarea>
                         <button type="submit" class="btn btn-accent btn-lg w-100">{{ column.form.submitLabel }}</button>
                       </form>
                       <a class="contact-mega-mobile-cta btn btn-accent btn-lg w-100 mt-2" href="{{ navContact.url or '/yhteystiedot/' }}">
@@ -981,11 +988,11 @@
   </div>
 </div>
 
-<div id="searchOverlay" class="search-overlay" style="display: none;">
+<div id="searchOverlay" class="search-overlay" role="dialog" aria-modal="true" aria-labelledby="searchOverlayTitle" aria-hidden="true" hidden>
   <div class="search-overlay-inner">
     <div class="container py-4">
       <div class="d-flex justify-content-between align-items-center mb-4">
-        <h3 class="mb-0"><i class="bi bi-search me-2"></i>Hae sivustolta</h3>
+        <h3 class="mb-0" id="searchOverlayTitle"><i class="bi bi-search me-2"></i>Hae sivustolta</h3>
         <button class="btn btn-sm rounded-circle" id="searchCloseBtn" aria-label="Sulje haku" style="width: 38px; height: 38px;">
           <i class="bi bi-x-lg"></i>
         </button>

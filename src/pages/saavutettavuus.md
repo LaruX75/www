@@ -7,52 +7,48 @@ translationKey: accessibility_statement
 ---
 
 **Sivusto:** [www.jarilaru.fi](https://www.jarilaru.fi)
-**Viimeksi testattu:** 9.3.2026
-**Vaatimustenmukaisuustaso:** WCAG 2.1 taso AA
-**Tila:** Vaatimukset täyttyvät
+**Viimeksi arvioitu:** 21.3.2026
+**Tavoitetaso:** WCAG 2.1 taso AA
+**Tila:** Osittain vaatimusten mukainen
 
 ---
 
 ## Yhteenveto
 
-Sivusto www.jarilaru.fi on testattu WCAG 2.1 AA -kriteeristöä vasten automaattisin testein. Testaus kattaa kaikki keskeiset sivut. Testauksen perusteella sivusto täyttää WCAG 2.1 tason AA vaatimukset testatuilla sivuilla.
+Sivustoa kehitetään WCAG 2.1 AA -tavoitetta kohti. Maaliskuussa 2026 tehdyn sisäisen auditoinnin perusteella sivusto ei vielä täytä kaikkia WCAG 2.1 AA -vaatimuksia kaikilla sivuilla ja kaikissa käyttötilanteissa.
+
+Merkittävimmät kehityskohteet liittyvät yhä vanhempaan sisältöön, kolmannen osapuolen upotuksiin sekä siihen, että kaikkia sivuja ei ole vielä varmennettu manuaalisesti avustavilla teknologioilla.
 
 ---
 
-## Testausmenetelmä
+## Arviointimenetelmä
 
-Automaattinen testaus suoritettiin seuraavilla työkaluilla:
+Arviointi perustuu seuraaviin menetelmiin:
 
-- **[axe-core](https://github.com/dequelabs/axe-core)** (Deque Systems) — WCAG 2.1 A- ja AA-kriteerien tarkistus
-- **[Playwright](https://playwright.dev/)** — Headless Chromium -selainympäristö todellista renderöintiä varten
-- **[Pa11y](https://pa11y.org/)** (HTML_CodeSniffer) — Täydentävä tarkistus
+- lähdekoodin ja sivupohjien läpikäynti
+- generoituun HTML:ään kohdistettu tarkistus
+- **[axe-core](https://github.com/dequelabs/axe-core)**- ja **[Playwright](https://playwright.dev/)**-pohjainen automaattinen testaus
+- käytettävyys- ja näppäimistökäytön heuristinen arviointi
 
-Testaus ajettiin paikallisesti buildattuun staattiseen versioon osoitteessa `localhost`. JavaScript suoritettiin täysimääräisesti ennen tarkistusta (`waitForTimeout: 1500ms`), jotta dynaamisesti renderöity sisältö tuli mukaan arviointiin.
-
----
-
-## Testatut sivut
-
-| Sivu | URL | Tulos |
-|------|-----|-------|
-| Etusivu | `/` | ✓ Läpäisee |
-| Opinnäytteet | `/opinnaytteet/` | ✓ Läpäisee |
-| Julkaisut | `/julkaisut/` | ✓ Läpäisee |
-| Ansioluettelo | `/cv/` | ✓ Läpäisee |
-| Opetusportfolio | `/portfolio/` | ✓ Läpäisee |
-| Esitykset | `/esitykset/` | ✓ Läpäisee |
-| Politiikka | `/politiikka/` | ✓ Läpäisee |
-| Blogi | `/blogi/` | ✓ Läpäisee |
-| Tietosuojaseloste | `/tietosuojaseloste/` | ✓ Läpäisee |
-| Ansioluettelo (EN) | `/en/cv/` | ✓ Läpäisee |
-| Julkaisut (EN) | `/en/publications/` | ✓ Läpäisee |
-| Esitykset (EN) | `/en/presentations/` | ✓ Läpäisee |
+Automaattinen testaus ajetaan projektin omalla paikallisella Playwright-palvelimella, jotta arviointi kohdistuu varmasti tähän sivustoon.
 
 ---
 
-## Korjatut ongelmat
+## Tarkastuksen kattavuus
 
-Testauksen yhteydessä löydettiin ja korjattiin seuraavat WCAG 2.1 AA -puutteet:
+Arviointi kohdistuu erityisesti seuraaviin sivu- ja toimintokokonaisuuksiin:
+
+- etusivu
+- julkaisut
+- opinnäytteet
+- navigaatio ja haku
+- suomen- ja englanninkieliset pääsivut
+
+---
+
+## Havaitut ja korjatut ongelmat
+
+Auditoinnin yhteydessä on korjattu muun muassa seuraavia puutteita:
 
 | Kriteeri | Ongelma | Korjaus |
 |----------|---------|---------|
@@ -65,20 +61,25 @@ Testauksen yhteydessä löydettiin ja korjattiin seuraavat WCAG 2.1 AA -puutteet
 | 4.1.2 Nimi, rooli, arvo | Avainsanasuodatuspainikkeet ilman tilaa | Lisätty `aria-pressed` |
 | 4.1.2 Nimi, rooli, arvo | Ikonipainike blogitaulukossa ilman tekstiä | Lisätty `aria-label` |
 | 1.3.1 Tietosisältö koodattu | `aria-hidden`-tikkereiden sisällä fokusoituvia elementtejä | Lisätty `inert`-attribuutti klooneihin |
-| 2.1.1 Näppäimistö | Vieritettävä esitysskrolleri ei näppäimistöllä saavutettavissa | Lisätty `tabindex="0"` |
+| 2.1.1 Näppäimistö | Desktop-megavalikko ei ollut näppäimistöllä käytettävä | Erotettu sivulinkki ja alavalikon avauspainike, lisätty näppäimistötuki |
+| 4.1.2 Nimi, rooli, arvo | Hakuoverlay ei ollut merkitty dialogiksi | Lisätty dialogisemantiikka ja fokuslogiikka |
+| 3.3.2 Ohjeet | Yhteydenottolomakkeen kentissä ei ollut näkyviä labeleita | Lisätty näkyvät `<label>`-elementit |
+| 4.1.2 Nimi, rooli, arvo | Useilta iframe-upotuksilta puuttui kuvaava nimi | Lisätty `title`-attribuutteja upotuksiin |
 | 1.4.3 Kontrasti | Hero-tekstit rgba-opasiteettiarvoilla | Korvattu kiinteillä väreillä |
 | 1.1.1 Ei-tekstinen sisältö | Koristeikonikuvakkeilla puuttuva `aria-hidden` | Lisätty `aria-hidden="true"` |
+| 1.4.1 Värin käyttö | Osa tekstilinkeistä erottui ympäröivästä tekstistä lähinnä värillä | Palautettu pysyvä alleviivaus sisältölinkeille |
+| 4.1.3 Tilaviestit | Julkaisusivun rajauksesta ei tullut ruudunlukijalle tilaviestia | Lisätty `role="status"` ja `aria-live` |
 
 ---
 
-## Tunnetut rajoitukset
+## Tunnetut rajoitukset ja keskeneräiset kohdat
 
-Automaattinen testaus kattaa arviolta 30–40 % WCAG-kriteereistä. Seuraavia osa-alueita **ei ole testattu manuaalisesti**:
+Automaattinen testaus kattaa vain osan WCAG-kriteereistä. Seuraavat osa-alueet ovat edelleen osittain kesken tai vaativat lisävarmennusta:
 
-- Ruudunlukijatestaus (esim. NVDA, VoiceOver, JAWS)
-- Kognitiivinen saavutettavuus
-- Näppäimistönavigoinnin kokonaissujuvuus
-- Kaikki yksittäiset blogipostaukset ja sisältösivut
+- ruudunlukijatestit (esim. NVDA, VoiceOver, JAWS)
+- kognitiivisen saavutettavuuden manuaalinen arviointi
+- kaikkien yksittäisten blogi- ja arkistosivujen tarkistus
+- vanhan sisällön kolmannen osapuolen upotukset ja niiden vaihtoehtoiset esitystavat
 
 ---
 

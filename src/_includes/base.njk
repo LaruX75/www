@@ -399,27 +399,51 @@
         });
       }
 
-      // Mega menu interactions (stagger + Esc focus return)
+      // Mega menu interactions (desktop keyboard support + Esc focus return)
+      // NOTE: Bootstrap Dropdown API cannot find .mega-menu-panel because the toggle is
+      // inside .mega-nav-trigger while the panel is a sibling. We manage visibility directly.
       const megaDropdowns = Array.from(document.querySelectorAll('.mega-dropdown'));
       let activeMegaToggle = null;
       const desktopMq = window.matchMedia('(min-width: 768px)');
+      const megaFocusableSelector = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
-      const closeAllMegaMenus = () => {
-        megaDropdowns.forEach((dropdown) => {
-          const toggle = dropdown.querySelector('[data-bs-toggle="dropdown"]');
-          if (!toggle || !window.bootstrap) return;
-          const instance = window.bootstrap.Dropdown.getInstance(toggle);
-          if (instance) instance.hide();
-        });
-        if (navbar) navbar.classList.remove('mega-open');
+      const getMegaToggle = (dropdown) => dropdown.querySelector('.mega-nav-toggle[data-bs-toggle="dropdown"]');
+      const getMegaParentLink = (dropdown) => dropdown.querySelector('.mega-nav-link[href]');
+      const getMegaItems = (menu) =>
+        Array.from(menu.querySelectorAll(megaFocusableSelector)).filter((el) =>
+          !el.disabled && !el.closest('[hidden]') && el.offsetParent !== null
+        );
+
+      const closeMegaMenuDirect = (toggle, menu) => {
+        toggle.setAttribute('aria-expanded', 'false');
+        menu.classList.remove('show', 'menu-open');
       };
 
+      const closeAllMegaMenus = ({ focusToggle = false, except = null } = {}) => {
+        megaDropdowns.forEach((dropdown) => {
+          if (dropdown === except) return;
+          const toggle = getMegaToggle(dropdown);
+          const menu = dropdown.querySelector('.mega-menu-panel');
+          if (toggle && menu) closeMegaMenuDirect(toggle, menu);
+        });
+        if (navbar && !except) navbar.classList.remove('mega-open');
+        if (focusToggle && activeMegaToggle) {
+          requestAnimationFrame(() => activeMegaToggle?.focus());
+        }
+      };
+
+      const isAnyMenuOpen = (exceptDropdown = null) =>
+        megaDropdowns.some(
+          (d) => d !== exceptDropdown && d.querySelector('.mega-menu-panel')?.classList.contains('show')
+        );
+
       megaDropdowns.forEach((dropdown) => {
-        const toggle = dropdown.querySelector('[data-bs-toggle="dropdown"]');
+        const toggle = getMegaToggle(dropdown);
+        const parentLink = getMegaParentLink(dropdown);
         const menu = dropdown.querySelector('.mega-menu-panel');
         if (!toggle || !menu) return;
-        const href = toggle.getAttribute('href');
-        const navLabel = (toggle.textContent || '').trim();
+        const href = parentLink?.getAttribute('href');
+        const navLabel = (parentLink?.textContent || toggle.getAttribute('aria-label') || '').trim();
         const jumpPrefix = (document.documentElement.lang || '').toLowerCase().startsWith('en')
           ? 'Go to page:'
           : 'Siirry sivulle:';
@@ -437,21 +461,62 @@
           }
         }
 
-        toggle.addEventListener('click', (e) => {
-          if (!desktopMq.matches) return;
-          if (!href || href === '#') return;
-          e.preventDefault();
-          e.stopPropagation();
-          closeAllMegaMenus();
-          window.location.assign(href);
-        });
-
-        const interactiveItems = Array.from(menu.querySelectorAll('a, button')).filter((el) => !el.disabled);
+        const interactiveItems = getMegaItems(menu);
         interactiveItems.forEach((el, idx) => {
           el.classList.add('stagger-item');
           el.style.transitionDelay = `${Math.min(idx * 35, 300)}ms`;
         });
 
+        const openMegaMenuDirect = (focusTarget = 'first') => {
+          closeAllMegaMenus({ except: dropdown });
+          activeMegaToggle = toggle;
+          toggle.setAttribute('aria-expanded', 'true');
+          menu.classList.add('show');
+          if (navbar) navbar.classList.add('mega-open');
+          menu.classList.remove('menu-open');
+          requestAnimationFrame(() => {
+            menu.classList.add('menu-open');
+            const items = getMegaItems(menu);
+            if (items.length) {
+              if (focusTarget === 'last') items[items.length - 1].focus();
+              else items[0].focus();
+            }
+          });
+        };
+
+        toggle.addEventListener('click', () => {
+          if (!desktopMq.matches) return;
+          if (menu.classList.contains('show')) {
+            closeMegaMenuDirect(toggle, menu);
+            if (!isAnyMenuOpen()) navbar?.classList.remove('mega-open');
+          } else {
+            closeAllMegaMenus({ except: dropdown });
+          }
+        });
+
+        toggle.addEventListener('keydown', (e) => {
+          if (!desktopMq.matches) return;
+          if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            openMegaMenuDirect('first');
+          } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            openMegaMenuDirect('last');
+          } else if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+            e.preventDefault();
+            if (menu.classList.contains('show')) {
+              closeMegaMenuDirect(toggle, menu);
+              if (!isAnyMenuOpen()) navbar?.classList.remove('mega-open');
+            } else {
+              openMegaMenuDirect('first');
+            }
+          } else if (e.key === 'Escape' && menu.classList.contains('show')) {
+            e.preventDefault();
+            closeAllMegaMenus({ focusToggle: true });
+          }
+        });
+
+        // Bootstrap events fire when Bootstrap's click handler activates — keep animation in sync.
         dropdown.addEventListener('show.bs.dropdown', () => {
           activeMegaToggle = toggle;
           if (navbar) navbar.classList.add('mega-open');
@@ -460,8 +525,48 @@
         });
 
         dropdown.addEventListener('hide.bs.dropdown', () => {
-          if (navbar) navbar.classList.remove('mega-open');
-          menu.classList.remove('menu-open');
+          if (!isAnyMenuOpen(dropdown)) navbar?.classList.remove('mega-open');
+          menu.classList.remove('menu-open', 'show');
+        });
+
+        dropdown.addEventListener('focusout', (e) => {
+          if (!desktopMq.matches || !menu.classList.contains('show')) return;
+          const nextTarget = e.relatedTarget;
+          if (nextTarget instanceof Node && dropdown.contains(nextTarget)) return;
+          requestAnimationFrame(() => {
+            if (!dropdown.contains(document.activeElement)) {
+              closeMegaMenuDirect(toggle, menu);
+              if (!isAnyMenuOpen()) navbar?.classList.remove('mega-open');
+            }
+          });
+        });
+
+        menu.addEventListener('keydown', (e) => {
+          if (!desktopMq.matches) return;
+          const items = getMegaItems(menu);
+          if (!items.length) return;
+          const currentIndex = items.indexOf(document.activeElement);
+
+          if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            const nextIndex = currentIndex === -1 ? 0 : (currentIndex + 1 + items.length) % items.length;
+            items[nextIndex].focus();
+          } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            const prevIndex = currentIndex === -1 ? items.length - 1 : (currentIndex - 1 + items.length) % items.length;
+            items[prevIndex].focus();
+          } else if (e.key === 'Home') {
+            e.preventDefault();
+            items[0].focus();
+          } else if (e.key === 'End') {
+            e.preventDefault();
+            items[items.length - 1].focus();
+          } else if (e.key === 'Escape') {
+            e.preventDefault();
+            closeMegaMenuDirect(toggle, menu);
+            if (!isAnyMenuOpen()) navbar?.classList.remove('mega-open');
+            toggle.focus();
+          }
         });
 
         menu.addEventListener('click', (e) => {
@@ -478,6 +583,16 @@
       const searchClose = document.getElementById('searchCloseBtn');
       const searchOverlay = document.getElementById('searchOverlay');
       let pagefindInitialized = false;
+      let lastSearchTrigger = null;
+      const focusableSelector = 'a[href], area[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+      const isVisibleElement = (el) => el instanceof HTMLElement && el.isConnected && el.offsetParent !== null;
+      const getFocusableElements = (container) =>
+        Array.from(container.querySelectorAll(focusableSelector)).filter((el) => !el.closest('[hidden]') && isVisibleElement(el));
+      const getSearchReturnTarget = () => {
+        if (isVisibleElement(lastSearchTrigger)) return lastSearchTrigger;
+        return searchToggles.find((toggle) => isVisibleElement(toggle)) || null;
+      };
 
       function closeContainingOffcanvas(node) {
         if (!node || !window.bootstrap) return;
@@ -487,9 +602,14 @@
         instance.hide();
       }
 
-      function openSearch(prefillQuery = '') {
+      function openSearch(prefillQuery = '', triggerSource = null) {
         if (!searchOverlay) return;
+        lastSearchTrigger = triggerSource instanceof HTMLElement
+          ? triggerSource
+          : (document.activeElement instanceof HTMLElement ? document.activeElement : null);
+        searchOverlay.hidden = false;
         searchOverlay.style.display = 'flex';
+        searchOverlay.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
         
         if (!pagefindInitialized) {
@@ -532,16 +652,40 @@
         }, 100);
       }
 
-      function closeSearch() {
+      function closeSearch({ restoreFocus = true } = {}) {
         if (!searchOverlay) return;
         searchOverlay.style.display = 'none';
+        searchOverlay.hidden = true;
+        searchOverlay.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
+        if (restoreFocus) {
+          const returnTarget = getSearchReturnTarget();
+          if (returnTarget) returnTarget.focus();
+        }
+      }
+
+      function trapSearchFocus(e) {
+        if (!searchOverlay || searchOverlay.hidden || e.key !== 'Tab') return;
+        const focusable = getFocusableElements(searchOverlay);
+        if (!focusable.length) {
+          e.preventDefault();
+          return;
+        }
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
       }
 
       searchToggles.forEach((searchToggle) => {
         searchToggle.addEventListener('click', (e) => {
           closeContainingOffcanvas(e.currentTarget);
-          openSearch();
+          openSearch('', e.currentTarget);
         });
       });
       searchForms.forEach((form) => {
@@ -549,16 +693,17 @@
           e.preventDefault();
           const formData = new FormData(form);
           const query = String(formData.get('q') || '').trim();
+          const fallbackTrigger = searchToggles.find((toggle) => isVisibleElement(toggle)) || null;
           closeContainingOffcanvas(form);
-          openSearch(query);
+          openSearch(query, fallbackTrigger);
         });
       });
-      if (searchClose) searchClose.addEventListener('click', closeSearch);
+      if (searchClose) searchClose.addEventListener('click', () => closeSearch());
 
       document.addEventListener('keydown', (e) => {
         if (e.key !== 'Escape') return;
 
-        if (searchOverlay && searchOverlay.style.display === 'flex') {
+        if (searchOverlay && !searchOverlay.hidden) {
           closeSearch();
           return;
         }
@@ -571,6 +716,7 @@
       });
 
       if (searchOverlay) {
+        searchOverlay.addEventListener('keydown', trapSearchFocus);
         searchOverlay.addEventListener('click', (e) => {
           if (e.target === searchOverlay) closeSearch();
         });

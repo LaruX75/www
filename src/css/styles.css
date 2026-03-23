@@ -1351,8 +1351,8 @@ html:not([data-bs-theme="dark"]) .pagination .page-link {
 }
 
 html:not([data-bs-theme="dark"]) .pagination .page-link:hover {
-  background-color: #e9ecef;
-  color: #000000;
+  background-color: #6c757d; /* 3.93:1 against #f4f6f9 body bg (WCAG 1.4.11) */
+  color: #ffffff !important; /* 4.69:1 against #6c757d (WCAG 1.4.3) */
 }
 
 /* Fix contrast for text colors (like the counters) in light mode */

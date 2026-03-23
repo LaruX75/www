@@ -1,9 +1,30 @@
 const fs = require('fs');
 const path = require('path');
+const { isOfflineFetchMode } = require('./_apiCache');
 
 const BASE = 'https://oulurepo.oulu.fi/open-search/';
 const NAME = 'Laru';  // ← vaihda ohjaajan sukunimi
 const RPP = 100;
+
+function buildEmptyResult(error = null, source = 'fallback') {
+    return {
+        gradut: [],
+        kandit: [],
+        reviewerOnly: [],
+        stats: {
+            totalGradut: 0,
+            totalKandit: 0,
+            totalReviewer: 0,
+            total: 0,
+            byYear: [],
+            firstYear: '',
+            lastYear: '',
+        },
+        fetchedAt: new Date().toISOString(),
+        source,
+        error,
+    };
+}
 
 // Lataa PDF:istä poimitut avainsanat cachesta (päivitetään: npm run fetch:keywords)
 function loadKeywordsCache() {
@@ -128,6 +149,11 @@ function filterByName(items, name, role) {
 
 module.exports = async function () {
     console.log('[theses] Haetaan opinnäytetöitä OuluREPO:sta...');
+    if (isOfflineFetchMode()) {
+        console.log('[theses] Offline fetch mode käytössä, ohitetaan OuluREPO-haku.');
+        return buildEmptyResult('Offline fetch mode enabled', 'offline');
+    }
+
     const keywordsCache = loadKeywordsCache();
     const addKeywords = items => items.map(t => ({
         ...t,
@@ -185,11 +211,6 @@ module.exports = async function () {
     } catch (e) {
         console.error('[theses] VIRHE:', e.message);
         // Palauta tyhjä rakenne ettei build kaadu
-        return {
-            gradut: [], kandit: [], reviewerOnly: [],
-            stats: { totalGradut: 0, totalKandit: 0, totalReviewer: 0, total: 0, byYear: [], firstYear: '', lastYear: '' },
-            fetchedAt: new Date().toISOString(),
-            error: e.message,
-        };
+        return buildEmptyResult(e.message);
     }
 };

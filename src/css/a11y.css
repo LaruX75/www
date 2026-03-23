@@ -18,10 +18,19 @@
 
 [data-bs-theme="light"] .bss-scope a:not(.btn):not(.nav-link):not(.navbar-brand):not(.badge) {
     color: #0f4c81;
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 0.16em;
+    text-decoration-skip-ink: auto;
 }
 
 [data-bs-theme="light"] .bss-scope a:not(.btn):not(.nav-link):not(.navbar-brand):not(.badge):hover {
     color: #0b3a62;
+    text-decoration-thickness: 2px;
+}
+
+[data-bs-theme="light"] .bss-scope a.icon-only-link:not(.btn):not(.nav-link):not(.navbar-brand):not(.badge) {
+    text-decoration: none;
 }
 
 /* 1. Tekstikoot */

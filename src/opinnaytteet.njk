@@ -76,7 +76,7 @@ translationKey: theses_index
   <div id="thesis-filter-status" role="status" aria-live="polite" aria-atomic="true" class="visually-hidden"></div>
   <div class="card shadow-sm mb-5" id="thesis-subject-cloud">
     <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
-      <span class="small fw-semibold"><i class="bi bi-tags-fill me-2 text-primary" aria-hidden="true"></i>Avainsanat kategorioittain</span>
+      <h2 class="small fw-semibold mb-0"><i class="bi bi-tags-fill me-2 text-primary" aria-hidden="true"></i>Avainsanat kategorioittain</h2>
       <button type="button" class="btn btn-link btn-sm p-0 text-muted" id="thesis-cloud-clear" style="display:none!important">
         <i class="bi bi-x-circle me-1" aria-hidden="true"></i>Poista suodatus
       </button>
@@ -974,6 +974,17 @@ document.addEventListener('DOMContentLoaded', () => {
   color: rgba(232, 241, 255, 0.75);
 }
 
+/* Override text-bg-light to use border-only for WCAG 1.4.11 (3:1 component contrast) */
+#thesis-cloud-container .thesis-keyword-link.text-bg-light {
+  background-color: transparent !important;
+  color: var(--bs-body-color) !important;
+  border-color: #6c757d !important; /* 4.23:1 against white card bg */
+}
+
+[data-bs-theme="dark"] #thesis-cloud-container .thesis-keyword-link.text-bg-light {
+  border-color: rgba(255, 255, 255, 0.6) !important; /* visible against dark card bg */
+}
+
 #thesis-cloud-container .thesis-keyword-link {
   font-size: var(--thesis-keyword-size, 0.9rem);
   font-weight: var(--thesis-keyword-weight, 550);
@@ -989,6 +1000,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 #thesis-subject-cloud .accordion-button {
   background-color: transparent;
+  border-color: #6c757d; /* 4.23:1 against white card bg (WCAG 1.4.11) */
 }
 
 #thesis-subject-cloud .accordion-button:not(.collapsed) {
@@ -1008,6 +1020,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 [data-bs-theme="dark"] #thesis-subject-cloud .accordion-button:not(.collapsed) {
   background-color: rgba(125, 184, 240, 0.08);
+}
+
+[data-bs-theme="dark"] #thesis-subject-cloud .accordion-button {
+  border-color: rgba(255, 255, 255, 0.45); /* visible against dark card bg */
 }
 
 [data-bs-theme="dark"] #thesis-subject-cloud .accordion-item {

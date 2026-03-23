@@ -8,52 +8,48 @@ lang: en
 ---
 
 **Website:** [www.jarilaru.fi](https://www.jarilaru.fi)
-**Last tested:** 9 March 2026
-**Conformance level:** WCAG 2.1 Level AA
-**Status:** Conformant
+**Last reviewed:** 21 March 2026
+**Target level:** WCAG 2.1 Level AA
+**Status:** Partially conformant
 
 ---
 
 ## Summary
 
-The website www.jarilaru.fi has been tested against the WCAG 2.1 AA criteria using automated tools. Testing covers all key pages. Based on the results, the site meets WCAG 2.1 Level AA requirements on all tested pages.
+The site is being improved toward WCAG 2.1 Level AA. Based on the internal accessibility audit completed in March 2026, the website does not yet meet all WCAG 2.1 AA requirements across all pages and use cases.
+
+The main remaining risks are related to older content, third-party embeds, and the fact that not all pages have yet been verified manually with assistive technologies.
 
 ---
 
-## Testing Methodology
+## Assessment Methodology
 
-Automated testing was performed using the following tools:
+The assessment is based on:
 
-- **[axe-core](https://github.com/dequelabs/axe-core)** (Deque Systems) — WCAG 2.1 A and AA criteria checks
-- **[Playwright](https://playwright.dev/)** — Headless Chromium browser environment for real rendering
-- **[Pa11y](https://pa11y.org/)** (HTML_CodeSniffer) — Supplementary verification
+- source code and template review
+- generated HTML inspection
+- automated testing with **[axe-core](https://github.com/dequelabs/axe-core)** and **[Playwright](https://playwright.dev/)**
+- heuristic review of keyboard access and usability
 
-Testing was run against a locally built static version served at `localhost`. JavaScript was executed fully before evaluation (`waitForTimeout: 1500ms`) to capture dynamically rendered content.
+Automated checks are run against the project's own dedicated local Playwright server to ensure the tests are evaluating this website.
 
 ---
 
-## Pages Tested
+## Scope of Review
 
-| Page | URL | Result |
-|------|-----|--------|
-| Home | `/` | ✓ Pass |
-| Theses | `/opinnaytteet/` | ✓ Pass |
-| Publications | `/julkaisut/` | ✓ Pass |
-| CV | `/cv/` | ✓ Pass |
-| Teaching Portfolio | `/portfolio/` | ✓ Pass |
-| Presentations | `/esitykset/` | ✓ Pass |
-| Politics | `/politiikka/` | ✓ Pass |
-| Blog | `/blogi/` | ✓ Pass |
-| Privacy Notice | `/tietosuojaseloste/` | ✓ Pass |
-| CV (EN) | `/en/cv/` | ✓ Pass |
-| Publications (EN) | `/en/publications/` | ✓ Pass |
-| Presentations (EN) | `/en/presentations/` | ✓ Pass |
+The review focuses especially on:
+
+- home page
+- publications
+- theses
+- navigation and search
+- Finnish and English main sections
 
 ---
 
 ## Issues Found and Fixed
 
-The following WCAG 2.1 AA issues were found and corrected during the audit:
+The audit has already led to fixes in areas such as:
 
 | Criterion | Issue | Fix |
 |-----------|-------|-----|
@@ -66,20 +62,25 @@ The following WCAG 2.1 AA issues were found and corrected during the audit:
 | 4.1.2 Name, Role, Value | Keyword filter buttons missing state | Added `aria-pressed` |
 | 4.1.2 Name, Role, Value | Icon-only button in blog table | Added `aria-label` |
 | 1.3.1 Info and Relationships | `aria-hidden` ticker clones contained focusable elements | Added `inert` attribute to clones |
-| 2.1.1 Keyboard | Scrollable presentation slider not keyboard-accessible | Added `tabindex="0"` |
+| 2.1.1 Keyboard | Desktop mega menu was not operable by keyboard | Split top-level page link and submenu toggle, added keyboard support |
+| 4.1.2 Name, Role, Value | Search overlay was not exposed as a dialog | Added dialog semantics and focus handling |
+| 3.3.2 Labels or Instructions | Contact form fields lacked visible labels | Added visible `<label>` elements |
+| 4.1.2 Name, Role, Value | Several iframe embeds lacked accessible names | Added descriptive `title` attributes |
 | 1.4.3 Contrast | Hero text with rgba opacity values | Replaced with solid opaque colour values |
 | 1.1.1 Non-text Content | Decorative icons missing `aria-hidden` | Added `aria-hidden="true"` |
+| 1.4.1 Use of Color | Some text links were distinguished mainly by colour | Restored persistent underline styling for content links |
+| 4.1.3 Status Messages | Publication filtering changes were not announced to screen readers | Added `role="status"` and `aria-live` |
 
 ---
 
-## Known Limitations
+## Known Limitations and Remaining Work
 
-Automated testing covers approximately 30–40% of WCAG criteria. The following areas have **not been manually tested**:
+Automated testing covers only part of WCAG. The following areas still need more work or verification:
 
-- Screen reader testing (e.g. NVDA, VoiceOver, JAWS)
-- Cognitive accessibility
-- Full keyboard navigation flow
-- Individual blog posts and other content pages
+- manual screen reader testing (for example NVDA, VoiceOver, JAWS)
+- manual review of cognitive accessibility
+- full review of individual blog posts and archive pages
+- legacy third-party embeds and their alternative access paths
 
 ---
 
