@@ -1,6 +1,5 @@
-const pluginRss = require("@11ty/eleventy-plugin-rss");
+const pluginRss = require("@11ty/eleventy-plugin-rss").default;
 const pluginNavigation = require("@11ty/eleventy-navigation");
-const sitemap = require("@quasibit/eleventy-plugin-sitemap");
 const pluginToc = require("eleventy-plugin-toc");
 const markdownItAnchor = require("markdown-it-anchor");
 const fs = require("fs");
@@ -16,11 +15,6 @@ const LINK_REDIRECT_ALLOWLIST = [
   /^https?:\/\/(dx\.)?doi\.org\/.+/i
 ];
 
-// Eleventy defaults EventBus max listeners to 100; larger sites exceed this without actual leaks.
-try {
-  const eleventyEventBus = require("@11ty/eleventy/src/EventBus");
-  eleventyEventBus.setMaxListeners(1000);
-} catch (_) { }
 
 function getLangFromUrl(url) {
   return String(url || "").startsWith("/en/") ? "en" : "fi";
@@ -205,11 +199,6 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(pluginRss);
   eleventyConfig.addPlugin(pluginNavigation);
   eleventyConfig.addPlugin(pluginToc);
-  eleventyConfig.addPlugin(sitemap, {
-    sitemap: {
-      hostname: "https://www.jarilaru.fi",
-    },
-  });
   if (shouldGenerateOgImages) {
     eleventyConfig.addPlugin(EleventyPluginOgImage, {
       generateHTML: (outputUrl) => outputUrl,

@@ -1,0 +1,9 @@
+{
+  "build": "npx @11ty/eleventy",
+  "publish": "git add . && git commit -a -m \"$(git status --short | sed 's/^...//g' | paste -sd ', ' -)\" && git push",
+  "input": "src",
+  "includes": "_includes",
+  "data": "_data",
+  "media": "src/assets",
+  "output": "_site"
+}
