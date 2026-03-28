@@ -4,6 +4,7 @@
  */
 
 const { readCache, readCacheIfFresh, writeCache, fetchWithTimeout } = require("./_apiCache");
+const curation = require("./curated/finna.json");
 
 const CACHE_TTL_HOURS = 6;
 
@@ -79,10 +80,14 @@ function normalizeRecord(record) {
 }
 
 module.exports = async function () {
+  const hidden = new Set(Array.isArray(curation.hidden) ? curation.hidden : []);
+  const applyCuration = (rows) => rows.filter((r) => !hidden.has(r.id));
+
   const fresh = readCacheIfFresh(CACHE_KEY, CACHE_TTL_HOURS);
   if (fresh?.data) {
     console.log(`FinnaAoe: käytetään tuoretta välimuistia (${fresh.savedAt}).`);
-    return { ...fresh.data, source: "cache" };
+    const rows = applyCuration(Array.isArray(fresh.data.rows) ? fresh.data.rows : []);
+    return { ...fresh.data, rows, total: rows.length, source: "cache" };
   }
 
   const cached = readCache(CACHE_KEY);
@@ -112,10 +117,10 @@ module.exports = async function () {
     const payload = await response.json();
     const records = Array.isArray(payload?.records) ? payload.records : [];
     // Keep only aoe.* records (filter out non-AOE results)
-    const rows = records
+    const rows = applyCuration(records
       .filter((r) => r?.id && String(r.id).startsWith("aoe."))
       .map(normalizeRecord)
-      .filter((r) => r.id && r.title);
+      .filter((r) => r.id && r.title));
 
     const result = { rows, total: rows.length, fetchedAt: new Date().toISOString(), source: "live" };
     writeCache(CACHE_KEY, result);
@@ -123,7 +128,8 @@ module.exports = async function () {
   } catch (error) {
     console.warn(`FinnaAoe: ${error.message}`);
     if (cached?.data) {
-      return { ...cached.data, source: "cache" };
+      const rows = applyCuration(Array.isArray(cached.data.rows) ? cached.data.rows : []);
+      return { ...cached.data, rows, total: rows.length, source: "cache" };
     }
     return { rows: [], total: 0, source: "error", error: error.message };
   }

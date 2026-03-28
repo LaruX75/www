@@ -1,5 +1,6 @@
 const cheerio = require("cheerio");
 const { readCache, readCacheIfFresh, writeCache, fetchWithTimeout } = require("./_apiCache");
+const curation = require("./curated/slideshare.json");
 
 const CACHE_TTL_HOURS = 6;
 
@@ -152,11 +153,14 @@ async function fetchSlidesharePage(url) {
 }
 
 module.exports = async function () {
+  const hidden = new Set(Array.isArray(curation.hidden) ? curation.hidden.map(String) : []);
+  const applyCuration = (rows) => rows.filter((item) => !hidden.has(String(item.id)));
+
   const fresh = readCacheIfFresh(CACHE_KEY, CACHE_TTL_HOURS);
   if (fresh) {
     const freshRows = Array.isArray(fresh.data) ? fresh.data : [];
     console.log(`SlideShare: käytetään tuoretta välimuistia (${fresh.savedAt}), ${freshRows.length} esitystä.`);
-    return freshRows;
+    return applyCuration(freshRows);
   }
 
   const cached = readCache(CACHE_KEY);
@@ -175,11 +179,11 @@ module.exports = async function () {
   try {
     const rows = await fetchSlideshareRows();
     writeCache(CACHE_KEY, rows);
-    return applyLimit(rows);
+    return applyCuration(applyLimit(rows));
   } catch (error) {
     if (cachedRows.length) {
       console.warn(`SlideShare: live fetch failed, using cache (${cached.savedAt}): ${error.message}`);
-      return applyLimit(cachedRows);
+      return applyCuration(applyLimit(cachedRows));
     }
 
     console.warn(`SlideShare: live fetch failed and cache missing: ${error.message}`);

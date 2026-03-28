@@ -1,12 +1,11 @@
-const pluginRss = require("@11ty/eleventy-plugin-rss");
+const { default: pluginRss, feedPlugin } = require("@11ty/eleventy-plugin-rss");
 const pluginNavigation = require("@11ty/eleventy-navigation");
-const sitemap = require("@quasibit/eleventy-plugin-sitemap");
 const pluginToc = require("eleventy-plugin-toc");
 const markdownItAnchor = require("markdown-it-anchor");
 const fs = require("fs");
 const path = require("path");
 const Image = require("@11ty/eleventy-img");
-const EleventyPluginOgImage = require("eleventy-plugin-og-image");
+const { default: EleventyPluginOgImage } = require("eleventy-plugin-og-image");
 const brokenLinksPlugin = require("eleventy-plugin-broken-links");
 const SUPPORTED_LANGS = ["fi", "en"];
 const shouldCheckExternalLinks = process.env.CHECK_EXTERNAL_LINKS === "true";
@@ -16,11 +15,6 @@ const LINK_REDIRECT_ALLOWLIST = [
   /^https?:\/\/(dx\.)?doi\.org\/.+/i
 ];
 
-// Eleventy defaults EventBus max listeners to 100; larger sites exceed this without actual leaks.
-try {
-  const eleventyEventBus = require("@11ty/eleventy/src/EventBus");
-  eleventyEventBus.setMaxListeners(1000);
-} catch (_) { }
 
 function getLangFromUrl(url) {
   return String(url || "").startsWith("/en/") ? "en" : "fi";
@@ -203,13 +197,25 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addGlobalData("supportedLangs", SUPPORTED_LANGS);
   eleventyConfig.addPlugin(pluginRss);
-  eleventyConfig.addPlugin(pluginNavigation);
-  eleventyConfig.addPlugin(pluginToc);
-  eleventyConfig.addPlugin(sitemap, {
-    sitemap: {
-      hostname: "https://www.jarilaru.fi",
+  eleventyConfig.addPlugin(feedPlugin, {
+    type: "atom",
+    outputPath: "/feed.xml",
+    collection: {
+      name: "blog",
+      limit: 10,
+    },
+    metadata: {
+      language: "fi",
+      title: "Jari Laru",
+      subtitle: "Koulutusteknologian asiantuntija. Yliopistonlehtori. Kaupunginvaltuutettu.",
+      base: "https://www.jarilaru.fi/",
+      author: {
+        name: "Jari Laru",
+      },
     },
   });
+  eleventyConfig.addPlugin(pluginNavigation);
+  eleventyConfig.addPlugin(pluginToc);
   if (shouldGenerateOgImages) {
     eleventyConfig.addPlugin(EleventyPluginOgImage, {
       generateHTML: (outputUrl) => outputUrl,

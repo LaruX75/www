@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { isOfflineFetchMode } = require('./_apiCache');
+const curation = require('./curated/theses.json');
 
 const BASE = 'https://oulurepo.oulu.fi/open-search/';
 const NAME = 'Laru';  // ← vaihda ohjaajan sukunimi
@@ -171,15 +172,19 @@ module.exports = async function () {
         const rawReviewer = await fetchAll(reviewerQuery);
         const reviewer = filterByName(rawReviewer, NAME, 'reviewer');
 
+        // Kuratorointi: piilota pyydetyt opinnäytetyöt linkin perusteella
+        const hiddenLinks = new Set(Array.isArray(curation.hidden) ? curation.hidden : []);
+        const isVisible = (t) => !hiddenLinks.has(t.link);
+
         // Jaa tyyppien mukaan
-        const gradut = addKeywords(advisor.filter(t => t.type === 'masterThesis')
+        const gradut = addKeywords(advisor.filter(t => t.type === 'masterThesis' && isVisible(t))
             .sort((a, b) => (b.year || '').localeCompare(a.year || '')));
-        const kandit = addKeywords(advisor.filter(t => t.type === 'bachelorThesis')
+        const kandit = addKeywords(advisor.filter(t => t.type === 'bachelorThesis' && isVisible(t))
             .sort((a, b) => (b.year || '').localeCompare(a.year || '')));
 
         // Deduplikoi tarkastetut (poista ne jotka ovat myös ohjattuja)
         const advisorLinks = new Set(advisor.map(t => t.link));
-        const reviewerOnly = addKeywords(reviewer.filter(t => !advisorLinks.has(t.link))
+        const reviewerOnly = addKeywords(reviewer.filter(t => !advisorLinks.has(t.link) && isVisible(t))
             .sort((a, b) => (b.year || '').localeCompare(a.year || '')));
 
         // Yhteenveto vuosittain

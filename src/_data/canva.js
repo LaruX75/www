@@ -1,6 +1,8 @@
 const presentations = require("./canva-presentations.json");
+const curation = require("./curated/canva.json");
 
 module.exports = function () {
+  const hidden = new Set(Array.isArray(curation.hidden) ? curation.hidden : []);
   const rows = presentations.map((item) => {
     const urlMatch = String(item.link || "").match(/\/d\/([A-Za-z0-9_-]+)/);
     return {
@@ -15,7 +17,7 @@ module.exports = function () {
       folder: item.folder || "",
       source: "json"
     };
-  });
+  }).filter((item) => !hidden.has(item.id));
 
   return {
     enabled: true,

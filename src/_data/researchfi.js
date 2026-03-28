@@ -1,5 +1,6 @@
 require('dotenv').config();
 const { readCache, readCacheIfFresh, writeCache, fetchWithTimeout } = require("./_apiCache");
+const curation = require("./curated/researchfi.json");
 
 const CACHE_TTL_HOURS = 6;
 
@@ -228,13 +229,16 @@ function normalizePublication(pub) {
 }
 
 module.exports = async function () {
+    const hidden = new Set(Array.isArray(curation.hidden) ? curation.hidden.map(String) : []);
+    const applyCuration = (pubs) => pubs.filter((p) => !hidden.has(String(p.publicationId)));
+
     const orcidId = process.env.ORCID_ID || "0000-0003-0347-0182";
 
     const fresh = readCacheIfFresh(CACHE_KEY, CACHE_TTL_HOURS);
     if (fresh?.data) {
         const freshPubs = fresh.data.map(normalizePublication);
         console.log(`Research.fi: käytetään tuoretta välimuistia (${fresh.savedAt}), ${freshPubs.length} julkaisua.`);
-        return freshPubs;
+        return applyCuration(freshPubs);
     }
 
     const cached = readCache(CACHE_KEY);
@@ -308,13 +312,13 @@ module.exports = async function () {
         }
 
         console.log(`Löydettiin ${publications.length} Research.fi-julkaisua.`);
-        return publications;
+        return applyCuration(publications);
 
     } catch (error) {
         console.error("Research.fi API haku epäonnistui:", error.message);
         if (cachedPublications) {
             console.warn(`Research.fi: käytetään välimuistia (${cached.savedAt}).`);
-            return cachedPublications;
+            return applyCuration(cachedPublications);
         }
         return [];
     }
