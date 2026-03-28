@@ -1,4 +1,4 @@
-const pluginRss = require("@11ty/eleventy-plugin-rss").default;
+const { default: pluginRss, feedPlugin } = require("@11ty/eleventy-plugin-rss");
 const pluginNavigation = require("@11ty/eleventy-navigation");
 const pluginToc = require("eleventy-plugin-toc");
 const markdownItAnchor = require("markdown-it-anchor");
@@ -197,6 +197,23 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addGlobalData("supportedLangs", SUPPORTED_LANGS);
   eleventyConfig.addPlugin(pluginRss);
+  eleventyConfig.addPlugin(feedPlugin, {
+    type: "atom",
+    outputPath: "/feed.xml",
+    collection: {
+      name: "blog",
+      limit: 10,
+    },
+    metadata: {
+      language: "fi",
+      title: "Jari Laru",
+      subtitle: "Koulutusteknologian asiantuntija. Yliopistonlehtori. Kaupunginvaltuutettu.",
+      base: "https://www.jarilaru.fi/",
+      author: {
+        name: "Jari Laru",
+      },
+    },
+  });
   eleventyConfig.addPlugin(pluginNavigation);
   eleventyConfig.addPlugin(pluginToc);
   if (shouldGenerateOgImages) {
