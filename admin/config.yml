@@ -2,6 +2,7 @@ backend:
   name: github
   repo: LaruX75/www
   branch: main
+  base_url: https://sveltia-cms-auth.fc4ydtm5bs.workers.dev
 
 local_backend: true
 publish_mode: simple
