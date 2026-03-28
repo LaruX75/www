@@ -3,6 +3,7 @@ require('dotenv').config();
 const fs = require("fs");
 const path = require("path");
 const { readCache, readCacheIfFresh, writeCache, fetchWithTimeout } = require('./_apiCache');
+const curation = require('./curated/youtube.json');
 
 const CACHE_TTL_HOURS = 6;
 const site = require('./site.json');
@@ -208,11 +209,17 @@ async function fetchAllPlaylists(channelId, apiKey) {
 
 module.exports = async function () {
   const cmsConfig = readCmsYoutubeConfig();
+  const hidden = new Set(Array.isArray(curation.hidden) ? curation.hidden : []);
+  const applyCuration = (data) => {
+    if (!data) return data;
+    const filterList = (arr) => (Array.isArray(arr) ? arr.filter((p) => !hidden.has(p.id)) : arr);
+    return { ...data, playlists: filterList(data.playlists), tableRows: filterList(data.tableRows), tickerRows: filterList(data.tickerRows) };
+  };
 
   const fresh = readCacheIfFresh(CACHE_KEY, CACHE_TTL_HOURS);
   if (fresh?.data) {
     console.log(`YouTube: käytetään tuoretta välimuistia (${fresh.savedAt}).`);
-    return { ...fresh.data, source: 'cache', cacheSavedAt: fresh.savedAt };
+    return applyCuration({ ...fresh.data, source: 'cache', cacheSavedAt: fresh.savedAt });
   }
 
   const cached = readCache(CACHE_KEY);
@@ -286,7 +293,7 @@ module.exports = async function () {
 
     writeCache(CACHE_KEY, result);
     console.log(`YouTube: löytyi ${playlists.length} soittolistaa.`);
-    return result;
+    return applyCuration(result);
   } catch (error) {
     console.error('YouTube API haku epäonnistui:', error.message);
 
