@@ -22,7 +22,7 @@ wp_id: 7
           <a href="/politiikka/" class="btn btn-primary">Politiikka</a>
           <a href="/tutkimus/" class="btn btn-outline-primary">Tutkimus</a>
           <a href="/larux-tmi/" class="btn btn-outline-primary">Koulutukset</a>
-          <a href="/curriculum-vitae/" class="btn btn-outline-secondary">Ansioluettelo</a>
+          <a href="/cv/" class="btn btn-outline-secondary">Ansioluettelo</a>
         </div>
       </div>
       <div class="col-lg-5">
