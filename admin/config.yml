@@ -8,8 +8,8 @@ local_backend: true
 publish_mode: simple
 media_folder: "src/img/uploads"
 public_folder: "/img/uploads"
-site_url: http://localhost:8080
-display_url: http://localhost:8080
+site_url: https://www.jarilaru.fi
+display_url: https://www.jarilaru.fi
 locale: "fi"
 
 collections:
