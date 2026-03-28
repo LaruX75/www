@@ -5,7 +5,7 @@ const markdownItAnchor = require("markdown-it-anchor");
 const fs = require("fs");
 const path = require("path");
 const Image = require("@11ty/eleventy-img");
-const EleventyPluginOgImage = require("eleventy-plugin-og-image");
+const { default: EleventyPluginOgImage } = require("eleventy-plugin-og-image");
 const brokenLinksPlugin = require("eleventy-plugin-broken-links");
 const SUPPORTED_LANGS = ["fi", "en"];
 const shouldCheckExternalLinks = process.env.CHECK_EXTERNAL_LINKS === "true";
