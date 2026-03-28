@@ -3,7 +3,7 @@ require('dotenv').config();
 const fs = require("fs");
 const path = require("path");
 const { readCache, readCacheIfFresh, writeCache, fetchWithTimeout } = require('./_apiCache');
-const curation = require('./curated/youtube.json');
+const { loadHiddenIds } = require('./_curatedStubs');
 
 const CACHE_TTL_HOURS = 6;
 const site = require('./site.json');
@@ -209,7 +209,7 @@ async function fetchAllPlaylists(channelId, apiKey) {
 
 module.exports = async function () {
   const cmsConfig = readCmsYoutubeConfig();
-  const hidden = new Set(Array.isArray(curation.hidden) ? curation.hidden : []);
+  const hidden = loadHiddenIds('youtube');
   const applyCuration = (data) => {
     if (!data) return data;
     const filterList = (arr) => (Array.isArray(arr) ? arr.filter((p) => !hidden.has(p.id)) : arr);

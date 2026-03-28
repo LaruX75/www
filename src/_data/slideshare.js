@@ -1,6 +1,6 @@
 const cheerio = require("cheerio");
 const { readCache, readCacheIfFresh, writeCache, fetchWithTimeout } = require("./_apiCache");
-const curation = require("./curated/slideshare.json");
+const { loadHiddenIds } = require("./_curatedStubs");
 
 const CACHE_TTL_HOURS = 6;
 
@@ -153,7 +153,7 @@ async function fetchSlidesharePage(url) {
 }
 
 module.exports = async function () {
-  const hidden = new Set(Array.isArray(curation.hidden) ? curation.hidden.map(String) : []);
+  const hidden = loadHiddenIds('slideshare');
   const applyCuration = (rows) => rows.filter((item) => !hidden.has(String(item.id)));
 
   const fresh = readCacheIfFresh(CACHE_KEY, CACHE_TTL_HOURS);

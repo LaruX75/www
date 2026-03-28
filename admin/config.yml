@@ -144,69 +144,59 @@ collections:
       - { label: "Polku", name: "permalink", widget: "string", required: false }
       - { label: "Sisältö", name: "body", widget: "markdown" }
 
-  - name: "curation"
-    label: "Kuratointi (piilota sisältöä)"
-    files:
-      - file: "src/_data/curated/canva.json"
-        label: "Canva — piilotetut esitykset"
-        name: "curated_canva"
-        fields:
-          - label: "Piilotetut Canva-esitykset"
-            name: "hidden"
-            widget: "list"
-            required: false
-            hint: "Lisää Canva-esityksen ID (URL:n /d/-osa, esim. ATg2bgB0a6REj0D). Yksi per rivi."
-            field: { label: "Esityksen ID", name: "id", widget: "string" }
-      - file: "src/_data/curated/slideshare.json"
-        label: "SlideShare — piilotetut esitykset"
-        name: "curated_slideshare"
-        fields:
-          - label: "Piilotetut SlideShare-esitykset"
-            name: "hidden"
-            widget: "list"
-            required: false
-            hint: "Lisää SlideShare-esityksen numeerinen ID. Yksi per rivi."
-            field: { label: "Esityksen ID", name: "id", widget: "string" }
-      - file: "src/_data/curated/researchfi.json"
-        label: "Research.fi — piilotetut julkaisut"
-        name: "curated_researchfi"
-        fields:
-          - label: "Piilotetut Research.fi-julkaisut"
-            name: "hidden"
-            widget: "list"
-            required: false
-            hint: "Lisää julkaisun publicationId Research.fi:stä. Yksi per rivi."
-            field: { label: "Julkaisun ID", name: "id", widget: "string" }
-      - file: "src/_data/curated/theses.json"
-        label: "Opinnäytetyöt — piilotetut"
-        name: "curated_theses"
-        fields:
-          - label: "Piilotetut opinnäytetyöt"
-            name: "hidden"
-            widget: "list"
-            required: false
-            hint: "Lisää opinnäytetyön OuluREPO-URL (esim. http://oulurepo.oulu.fi/handle/123/456). Yksi per rivi."
-            field: { label: "OuluREPO-URL", name: "id", widget: "string" }
-      - file: "src/_data/curated/youtube.json"
-        label: "YouTube — piilotetut soittolistat"
-        name: "curated_youtube"
-        fields:
-          - label: "Piilotetut YouTube-soittolistat"
-            name: "hidden"
-            widget: "list"
-            required: false
-            hint: "Lisää soittolistan YouTube-ID (PLxxxxxx). Yksi per rivi."
-            field: { label: "Soittolistan ID", name: "id", widget: "string" }
-      - file: "src/_data/curated/finna.json"
-        label: "AOE/Finna — piilotetut oppimateriaalit"
-        name: "curated_finna"
-        fields:
-          - label: "Piilotetut AOE-oppimateriaalit"
-            name: "hidden"
-            widget: "list"
-            required: false
-            hint: "Lisää materiaalin Finna-ID (aoe.xxx). Yksi per rivi."
-            field: { label: "Materiaalin ID", name: "id", widget: "string" }
+  - name: "curated_researchfi"
+    label: "Research.fi — piilotetut julkaisut"
+    folder: "src/curated/researchfi"
+    create: false
+    fields:
+      - { label: "Otsikko", name: "title", widget: "string" }
+      - { label: "ID", name: "source_id", widget: "string" }
+      - { label: "Piilotettu", name: "hidden", widget: "boolean", default: false }
+
+  - name: "curated_slideshare"
+    label: "SlideShare — piilotetut esitykset"
+    folder: "src/curated/slideshare"
+    create: false
+    fields:
+      - { label: "Otsikko", name: "title", widget: "string" }
+      - { label: "ID", name: "source_id", widget: "string" }
+      - { label: "Piilotettu", name: "hidden", widget: "boolean", default: false }
+
+  - name: "curated_canva"
+    label: "Canva — piilotetut esitykset"
+    folder: "src/curated/canva"
+    create: false
+    fields:
+      - { label: "Otsikko", name: "title", widget: "string" }
+      - { label: "ID", name: "source_id", widget: "string" }
+      - { label: "Piilotettu", name: "hidden", widget: "boolean", default: false }
+
+  - name: "curated_finna"
+    label: "AOE/Finna — piilotetut oppimateriaalit"
+    folder: "src/curated/finna"
+    create: false
+    fields:
+      - { label: "Otsikko", name: "title", widget: "string" }
+      - { label: "ID", name: "source_id", widget: "string" }
+      - { label: "Piilotettu", name: "hidden", widget: "boolean", default: false }
+
+  - name: "curated_youtube"
+    label: "YouTube — piilotetut soittolistat"
+    folder: "src/curated/youtube"
+    create: false
+    fields:
+      - { label: "Otsikko", name: "title", widget: "string" }
+      - { label: "ID", name: "source_id", widget: "string" }
+      - { label: "Piilotettu", name: "hidden", widget: "boolean", default: false }
+
+  - name: "curated_theses"
+    label: "Opinnäytetyöt — piilotetut"
+    folder: "src/curated/theses"
+    create: false
+    fields:
+      - { label: "Otsikko", name: "title", widget: "string" }
+      - { label: "ID", name: "source_id", widget: "string" }
+      - { label: "Piilotettu", name: "hidden", widget: "boolean", default: false }
 
   - name: "site_data"
     label: "Sivuston data"

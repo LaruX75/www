@@ -1,6 +1,6 @@
 require('dotenv').config();
 const { readCache, readCacheIfFresh, writeCache, fetchWithTimeout } = require("./_apiCache");
-const curation = require("./curated/researchfi.json");
+const { loadHiddenIds } = require("./_curatedStubs");
 
 const CACHE_TTL_HOURS = 6;
 
@@ -229,7 +229,7 @@ function normalizePublication(pub) {
 }
 
 module.exports = async function () {
-    const hidden = new Set(Array.isArray(curation.hidden) ? curation.hidden.map(String) : []);
+    const hidden = loadHiddenIds('researchfi');
     const applyCuration = (pubs) => pubs.filter((p) => !hidden.has(String(p.publicationId)));
 
     const orcidId = process.env.ORCID_ID || "0000-0003-0347-0182";

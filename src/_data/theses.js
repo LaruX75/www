@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { isOfflineFetchMode } = require('./_apiCache');
-const curation = require('./curated/theses.json');
+const { loadHiddenIds } = require('./_curatedStubs');
 
 const BASE = 'https://oulurepo.oulu.fi/open-search/';
 const NAME = 'Laru';  // ← vaihda ohjaajan sukunimi
@@ -173,7 +173,7 @@ module.exports = async function () {
         const reviewer = filterByName(rawReviewer, NAME, 'reviewer');
 
         // Kuratorointi: piilota pyydetyt opinnäytetyöt linkin perusteella
-        const hiddenLinks = new Set(Array.isArray(curation.hidden) ? curation.hidden : []);
+        const hiddenLinks = loadHiddenIds('theses');
         const isVisible = (t) => !hiddenLinks.has(t.link);
 
         // Jaa tyyppien mukaan

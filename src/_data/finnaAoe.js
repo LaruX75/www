@@ -4,7 +4,7 @@
  */
 
 const { readCache, readCacheIfFresh, writeCache, fetchWithTimeout } = require("./_apiCache");
-const curation = require("./curated/finna.json");
+const { loadHiddenIds } = require("./_curatedStubs");
 
 const CACHE_TTL_HOURS = 6;
 
@@ -80,7 +80,7 @@ function normalizeRecord(record) {
 }
 
 module.exports = async function () {
-  const hidden = new Set(Array.isArray(curation.hidden) ? curation.hidden : []);
+  const hidden = loadHiddenIds('finna');
   const applyCuration = (rows) => rows.filter((r) => !hidden.has(r.id));
 
   const fresh = readCacheIfFresh(CACHE_KEY, CACHE_TTL_HOURS);
