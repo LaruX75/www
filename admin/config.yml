@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: LaruX75/www
   branch: main
 
 local_backend: true
