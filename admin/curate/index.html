@@ -388,13 +388,23 @@ function toggleAll(source, v) { document.querySelectorAll(`#panel-${source} .row
 
 // ── Init ─────────────────────────────────────────────────────────────────────
 
+const ALLOWED_USERS = ['LaruX75'];
+
 async function init() {
   document.getElementById('auth-section').style.display = 'none';
-  document.getElementById('app').style.display = '';
 
-  // Show username
+  // Show username and verify access
   const me = await ghFetch('/user').then(r => r.json()).catch(() => null);
-  if (me?.login) document.getElementById('user-info').textContent = `@${me.login}`;
+  if (!me?.login || !ALLOWED_USERS.includes(me.login)) {
+    token = null;
+    localStorage.removeItem('github-token');
+    document.getElementById('auth-section').style.display = '';
+    showLoginError(`Pääsy estetty (@${me?.login ?? '?'}). Vain valtuutetut käyttäjät voivat käyttää tätä sivua.`);
+    return;
+  }
+
+  document.getElementById('app').style.display = '';
+  document.getElementById('user-info').textContent = `@${me.login}`;
 
   buildShell();
 
