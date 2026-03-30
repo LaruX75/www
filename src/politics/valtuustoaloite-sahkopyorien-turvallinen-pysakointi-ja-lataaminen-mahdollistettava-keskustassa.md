@@ -1,7 +1,11 @@
 ---
-title: "VALTUUSTOALOITE: sähköpyörien turvallinen pysäköinti ja lataaminen mahdollistettava keskustassa"
+title: Sähköpyörien turvallinen pysäköinti ja lataaminen mahdollistettava keskustassa
 date: 2023-10-09
-description: "Jätin allaolevan valtuustoaloitteen kaupunginvaltuuston kokouksessa 9.10.20223 Verovapaa polkupyöräetu on ollut maassamme käytössä vuoden 2021 alusta alkaen. Vuonna 2023 sen pariin tulevat my..."
+initiative_type: valtuustoaloite
+description: Jätin allaolevan valtuustoaloitteen kaupunginvaltuuston kokouksessa 9.10.20223 Verovapaa polkupyöräetu on ollut maassamme käytössä vuoden 2021 alusta alkaen. Vuonna 2023 sen pariin tulevat my...
+url: ''
+ouka_response_body: Yhdyskuntalautakunta 16.1.2024
+ouka_response_url: http://asiakirjat.ouka.fi/ktwebscr/pk_asil_tweb.htm?bid=36557
 categories:
   - Kaupunginvaltuusto
   - Poliitiikka
@@ -11,13 +15,11 @@ keywords:
   - pyörän lataaminen
   - pyörien pysäköinti
   - sähköpyörä
-initiative_type: valtuustoaloite
-ouka_response_url: "http://asiakirjat.ouka.fi/ktwebscr/pk_asil_tweb.htm?bid=36557"
-ouka_response_body: "Yhdyskuntalautakunta 16.1.2024"
 wp_id: 2099
-source_url: "https://www.jarilaru.fi/valtuustoaloite-sahkopyorien-turvallinen-pysakointi-ja-lataaminen-mahdollistettava-keskustassa/"
+source_url: https://www.jarilaru.fi/valtuustoaloite-sahkopyorien-turvallinen-pysakointi-ja-lataaminen-mahdollistettava-keskustassa/
 templateEngineOverride: md
 ---
+
 <p><strong>Jätin allaolevan valtuustoaloitteen kaupunginvaltuuston kokouksessa 9.10.20223</strong></p>
 <p>Verovapaa polkupyöräetu on ollut maassamme käytössä vuoden 2021 alusta alkaen. Vuonna 2023 sen pariin tulevat myös kaupungin, pohteen ja yliopiston työntekijät eli arvokkaiden pyörien määrä kaupunkikuvassa tulee kasvamaan merkittävästi. On syytä olettaa, että varsin monet etuun oikeutetut tulevat hankkimaan sähköpyörän, jota myös käyttävät aktiivisesti liikkumiseen.&nbsp;</p>
 <p>Polkupyöräetu houkuttelee kuntalaisia hankkimaan tavallista arvokkaampia polkupyöriä, koska se mahdollistaa vajaan 5000 euron ostoksen. Tämä yhdistettynä Oulun maineeseen polkupyörävarkauksien pääkaupunkina ei lupaa hyvää, on helppo ennustaa pyörävarkauksien edelleen kasvavan. On selvä, että nykyisen kaltaiset pyörien pysäköintipaikat eivät sovellu arvokkaiden sähköpyörien säilyttämiseen.&nbsp;</p>
@@ -37,4 +39,3 @@ templateEngineOverride: md
 </ol>
 <p>Oulussa 9.10.2023&nbsp;</p>
 <p>Jari Laru, kaupunginvaltuutettu ja muut allekirjoittaneet&nbsp;</p>
-
