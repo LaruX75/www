@@ -694,35 +694,42 @@ templateEngineOverride: njk
 
     scrollers.forEach((scroller) => {
       let dragging = false;
+      let pending = false;
       let startX = 0;
       let startScroll = 0;
+      let capturedId = null;
+      const DRAG_THRESHOLD = 6;
 
       scroller.addEventListener('pointerdown', (event) => {
         if (event.pointerType === 'mouse' && event.button !== 0) return;
-        dragging = true;
+        pending = true;
         startX = event.clientX;
         startScroll = scroller.scrollLeft;
-        scroller.classList.add('is-dragging');
-        scroller.setPointerCapture(event.pointerId);
+        capturedId = event.pointerId;
         if (scroller === autoScroller) pauseAuto = true;
       });
 
       scroller.addEventListener('pointermove', (event) => {
-        if (!dragging) return;
+        if (!pending && !dragging) return;
         const deltaX = event.clientX - startX;
-        scroller.scrollLeft = startScroll - deltaX;
+        if (!dragging && Math.abs(deltaX) > DRAG_THRESHOLD) {
+          dragging = true;
+          scroller.classList.add('is-dragging');
+          try { scroller.setPointerCapture(capturedId); } catch (_) { /* ignore */ }
+        }
+        if (dragging) {
+          scroller.scrollLeft = startScroll - deltaX;
+        }
       });
 
       const endDrag = (event) => {
-        if (!dragging) return;
+        if (!pending && !dragging) return;
+        pending = false;
         dragging = false;
         scroller.classList.remove('is-dragging');
-        if (typeof event.pointerId === 'number') {
-          try {
-            scroller.releasePointerCapture(event.pointerId);
-          } catch (_) {
-            /* ignore */
-          }
+        if (typeof capturedId === 'number') {
+          try { scroller.releasePointerCapture(capturedId); } catch (_) { /* ignore */ }
+          capturedId = null;
         }
         if (scroller === autoScroller) pauseAuto = false;
       };
