@@ -1579,6 +1579,94 @@ html:not([data-bs-theme="dark"]) select {
   border-color: rgba(255, 255, 255, 0.6) !important;
 }
 
+/* Citation export modals need local button styles instead of the global outline override */
+.citation-export-modal .citation-export-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.citation-export-modal .citation-export-actions .btn {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.citation-export-modal .citation-export-actions .btn img {
+  flex-shrink: 0;
+}
+
+.citation-export-modal .citation-export-actions .btn.btn-outline-secondary {
+  background-color: #ffffff !important;
+  color: #343a40 !important;
+  border-color: #ced4da !important;
+}
+
+.citation-export-modal .citation-export-actions .btn.btn-outline-secondary:hover,
+.citation-export-modal .citation-export-actions .btn.btn-outline-secondary:focus-visible {
+  background-color: #f3f4f6 !important;
+  color: #111827 !important;
+  border-color: #adb5bd !important;
+}
+
+.citation-export-modal .citation-export-actions .btn.btn-primary {
+  background-color: #111827 !important;
+  color: #ffffff !important;
+  border-color: #111827 !important;
+}
+
+.citation-export-modal .citation-export-actions .btn.btn-primary:hover,
+.citation-export-modal .citation-export-actions .btn.btn-primary:focus-visible {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border-color: #000000 !important;
+}
+
+@media (min-width: 576px) {
+  .citation-export-modal .citation-export-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .citation-export-modal .citation-export-actions .btn {
+    width: auto;
+  }
+}
+
+@media (min-width: 992px) {
+  .citation-export-modal .citation-export-actions {
+    justify-content: flex-end;
+  }
+}
+
+[data-bs-theme="dark"] .citation-export-modal .citation-export-actions .btn.btn-outline-secondary {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+  color: #f8f9fa !important;
+  border-color: rgba(255, 255, 255, 0.32) !important;
+}
+
+[data-bs-theme="dark"] .citation-export-modal .citation-export-actions .btn.btn-outline-secondary:hover,
+[data-bs-theme="dark"] .citation-export-modal .citation-export-actions .btn.btn-outline-secondary:focus-visible {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.48) !important;
+}
+
+[data-bs-theme="dark"] .citation-export-modal .citation-export-actions .btn.btn-primary {
+  background-color: #f8f9fa !important;
+  color: #111827 !important;
+  border-color: #f8f9fa !important;
+}
+
+[data-bs-theme="dark"] .citation-export-modal .citation-export-actions .btn.btn-primary:hover,
+[data-bs-theme="dark"] .citation-export-modal .citation-export-actions .btn.btn-primary:focus-visible {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border-color: #ffffff !important;
+}
+
 /* Zotero citation text in dark mode */
 [data-bs-theme="dark"] .zotero-citation {
   color: rgba(255, 255, 255, 0.85);

@@ -238,7 +238,7 @@ translationKey: theses_index
   </div>
 </div>
 
-<div class="modal fade" id="thesisCitationModal" tabindex="-1" aria-labelledby="thesisCitationModalLabel" aria-hidden="true">
+<div class="modal fade citation-export-modal" id="thesisCitationModal" tabindex="-1" aria-labelledby="thesisCitationModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -246,8 +246,8 @@ translationKey: theses_index
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Sulje"></button>
       </div>
       <div class="modal-body">
-        <div class="row g-3">
-          <div class="col-md-5">
+        <div class="row g-3 align-items-end">
+          <div class="col-12 col-lg-5">
             <label for="thesisCitationFormatSelect" class="form-label small text-muted">Viittausmuoto</label>
             <select id="thesisCitationFormatSelect" class="form-select form-select-sm">
               <option value="bibtex">BibTeX (.bib)</option>
@@ -256,19 +256,21 @@ translationKey: theses_index
               <option value="chicago">Chicago</option>
             </select>
           </div>
-          <div class="col-md-7 d-flex align-items-end justify-content-md-end gap-2">
-            <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill" id="thesisCitationCopyBtn">
-              <i class="bi bi-clipboard me-1"></i>Kopioi
-            </button>
-            <button type="button" class="btn btn-primary btn-sm rounded-pill" id="thesisCitationDownloadBtn">
-              <i class="bi bi-download me-1"></i>Lataa
-            </button>
-            <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill" id="thesisCitationZoteroBtn" title="Lataa RIS Zotero-tuontiin">
-              <img src="https://cdn.simpleicons.org/zotero/cc2936" alt="" width="14" height="14" class="me-1 align-text-bottom">Zotero
-            </button>
-            <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill" id="thesisCitationMendeleyBtn" title="Lataa RIS Mendeley-tuontiin">
-              <img src="https://cdn.simpleicons.org/mendeley/9d1620" alt="" width="14" height="14" class="me-1 align-text-bottom">Mendeley
-            </button>
+          <div class="col-12 col-lg-7">
+            <div class="citation-export-actions">
+              <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill" id="thesisCitationCopyBtn">
+                <i class="bi bi-clipboard me-1"></i>Kopioi
+              </button>
+              <button type="button" class="btn btn-primary btn-sm rounded-pill" id="thesisCitationDownloadBtn">
+                <i class="bi bi-download me-1"></i>Lataa
+              </button>
+              <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill" id="thesisCitationZoteroBtn" title="Lataa RIS Zotero-tuontiin">
+                <img src="https://cdn.simpleicons.org/zotero/cc2936" alt="" width="14" height="14" class="me-1 align-text-bottom">Zotero
+              </button>
+              <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill" id="thesisCitationMendeleyBtn" title="Lataa RIS Mendeley-tuontiin">
+                <img src="https://cdn.simpleicons.org/mendeley/9d1620" alt="" width="14" height="14" class="me-1 align-text-bottom">Mendeley
+              </button>
+            </div>
           </div>
         </div>
         <div class="mt-3">
