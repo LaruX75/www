@@ -1,7 +1,9 @@
 ---
-title: "Valtuustoaloite 8.10.2018: E-urheilun potentiaalin selvitystyön aloittaminen"
+title: E-urheilun potentiaalin selvitystyön aloittaminen
 date: 2018-10-08
-description: "“Suomalaiset voittivat joukkueensa kanssa Dota 2: ykkösturnauksen ja lähes 10 miljoonaa euroa – ”Suoritus on verrattavissa mihin tahansa arvokisavoittoon” “Assembly esitteli pelimaailman uus..."
+initiative_type: valtuustoaloite
+description: '“Suomalaiset voittivat joukkueensa kanssa Dota 2: ykkösturnauksen ja lähes 10 miljoonaa euroa – ”Suoritus on verrattavissa mihin tahansa arvokisavoittoon” “Assembly esitteli pelimaailman uus...'
+url: ''
 categories:
   - Kaupunginvaltuusto
   - Poliitiikka
@@ -13,11 +15,11 @@ keywords:
   - selvitystyö
   - valtuustoaloite
   - vectorama
-initiative_type: valtuustoaloite
 wp_id: 1187
-source_url: "https://www.jarilaru.fi/valtuustoaloite-8-10-2018-e-urheilun-potentiaalin-selvitystyon-aloittaminen/"
+source_url: https://www.jarilaru.fi/valtuustoaloite-8-10-2018-e-urheilun-potentiaalin-selvitystyon-aloittaminen/
 templateEngineOverride: md
 ---
+
 <p>“Suomalaiset voittivat joukkueensa kanssa Dota 2:n ykkösturnauksen ja lähes 10 miljoonaa euroa – ”Suoritus on verrattavissa mihin tahansa arvokisavoittoon”</p>
 <p>“Assembly esitteli pelimaailman uusia trendejä: mobiiliturnaukset saavat jalansijaa e-urheilussa ja striimaaminenkin kasvaa kohisten”</p>
 <p>Otsikot on poimittu 10.9.2018 YLE:n e-urheilun sivustolta ja ne kuvaavat hyvin tämänhetkistä e-urheilun nousua merkittäväksi talous- ja yhteiskuntavaikuttajaksi. Minkä roolin Oulu haluaa ottaa itselleen e-urheilun tulevaisuudessa? Mitä se Oululta edellyttää?</p>
@@ -29,4 +31,3 @@ templateEngineOverride: md
 <p>E-urheilu on jo tätä päivää, mutta sen potentiaalin ja luonteen hahmottamiseksi esitämme Oulussa käynnistettäväksi pikaisesti e-urheilun toimijoita osallistavan selvitystyön, jossa</p>
 <ol><li>Tuotetaan analyysi e-urheilun nykytilasta suhteutettuna oululaiseen pelialan&nbsp;osaamiseen.</li><li>&nbsp;Määritellään, mikä kunnan rooli e-urheilun mahdollistajana on ja millaisella organisaatiolla toimintaa tulisi tukea (hallintokunnat, Business Oulu, Innovaatioallianssi)</li><li>&nbsp;Analysoidaan millainen on Oulun potentiaali nousta yhdeksi Euroopan e-urheilu -keskuksista.</li><li>&nbsp;Määritellään alueen toimijoiden yhteinen tahtotila ja alkuvaiheen toimenpiteet alueen e-urheilun potentiaalin hyödyntämiseen.</li></ol>
 <p><br>Oulussa 8. lokakuuta 2018<br>Heikki Kontturi (Vihr.)<br>Jari Laru (Kok.)</p>
-
