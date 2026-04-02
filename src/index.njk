@@ -319,34 +319,168 @@ translationKey: home
     </div>
 </section>
 
-{# ── Viimeisimmät kirjoitukset ─────────────────────────────────────────── #}
+{# ── Viimeisin sisältö -ticker ─────────────────────────────────────────── #}
 <section class="py-5 home-recent-section">
     <div class="container">
         <div class="d-flex align-items-baseline justify-content-between mb-4">
-            <p class="text-uppercase fw-bold mb-0 home-recent-label">Viimeisimmät kirjoitukset</p>
-            <a href="/blogi/" class="home-recent-more">Kaikki kirjoitukset →</a>
+            <p class="text-uppercase fw-bold mb-0 home-recent-label">Viimeisin sisältö</p>
+            <div class="d-flex gap-3">
+                <a href="/blogi/" class="home-recent-more">Kirjoitukset →</a>
+                <a href="/esitykset/" class="home-recent-more">Esitykset →</a>
+                <a href="/julkaisut/" class="home-recent-more">Julkaisut →</a>
+            </div>
         </div>
-        <div class="home-recent-scroll">
-            {% for post in collections.blog | take(6) %}
-            <a class="home-recent-card" href="{{ post.url }}">
-                <p class="home-recent-eyebrow">
-                    {%- if post.data.categories and post.data.categories.length -%}
-                        {{ post.data.categories[0] }}
-                    {%- else -%}
-                        Kirjoitus
+    </div>
+    <div class="ticker-wrapper home-ticker-wrapper" id="recentTicker">
+        <div class="ticker-track">
+
+            {# ── Setti 1 (alkuperäinen) ─── #}
+            <div class="ticker-content">
+
+                {# Blogikirjoitukset #}
+                {% for post in collections.blog | take(5) %}
+                <div class="home-ticker-item">
+                    <p class="home-recent-eyebrow"><span class="home-ticker-badge home-ticker-badge--blog">Kirjoitus</span>&nbsp;·&nbsp;{{ post.date | dateFormat }}</p>
+                    <h3 class="home-recent-title"><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
+                    {%- if post.data.description -%}
+                    <p class="home-recent-desc">{{ post.data.description | truncate(90) }}</p>
                     {%- endif -%}
-                    &nbsp;·&nbsp;{{ post.date | dateFormat }}
-                </p>
-                <h3 class="home-recent-title">{{ post.data.title }}</h3>
-                {%- if post.data.description -%}
-                <p class="home-recent-desc">{{ post.data.description | truncate(100) }}</p>
-                {%- endif -%}
-                <span class="home-recent-cta">Lue <i class="bi bi-arrow-right"></i></span>
-            </a>
-            {% endfor %}
+                    <span class="home-recent-cta">Lue <i class="bi bi-arrow-right"></i></span>
+                </div>
+                {% endfor %}
+
+                {# Esitykset #}
+                {% for post in collections.presentations | take(5) %}
+                <div class="home-ticker-item">
+                    <p class="home-recent-eyebrow"><span class="home-ticker-badge home-ticker-badge--pres">Esitys</span>&nbsp;·&nbsp;{{ post.date | dateFormat }}</p>
+                    <h3 class="home-recent-title"><a href="{{ post.data.url }}" target="_blank" rel="noopener">{{ post.data.title }}</a></h3>
+                    {%- if post.data.location -%}
+                    <p class="home-recent-desc">{{ post.data.location }}</p>
+                    {%- endif -%}
+                    <span class="home-recent-cta">Avaa <i class="bi bi-arrow-up-right"></i></span>
+                </div>
+                {% endfor %}
+
+                {# Julkaisut #}
+                {% for pub in researchfi.slice(0, 5) %}
+                <div class="home-ticker-item">
+                    <p class="home-recent-eyebrow"><span class="home-ticker-badge home-ticker-badge--pub">Julkaisu</span>&nbsp;·&nbsp;{{ pub.year }}</p>
+                    <h3 class="home-recent-title">
+                        {%- if pub.doiUrl or pub.url -%}
+                        <a href="{{ pub.doiUrl or pub.url }}" target="_blank" rel="noopener">{{ pub.title | truncate(90) }}</a>
+                        {%- else -%}{{ pub.title | truncate(90) }}{%- endif -%}
+                    </h3>
+                    {%- if pub.journal -%}
+                    <p class="home-recent-desc"><em>{{ pub.journal }}</em></p>
+                    {%- endif -%}
+                    <span class="home-recent-cta">{% if pub.doiUrl %}DOI <i class="bi bi-arrow-up-right"></i>{% else %}Julkaisu{% endif %}</span>
+                </div>
+                {% endfor %}
+
+            </div>
+
+            {# ── Setti 2 (klooni saumatonta toistoa varten) ─── #}
+            <div class="ticker-content" aria-hidden="true">
+
+                {% for post in collections.blog | take(5) %}
+                <div class="home-ticker-item">
+                    <p class="home-recent-eyebrow"><span class="home-ticker-badge home-ticker-badge--blog">Kirjoitus</span>&nbsp;·&nbsp;{{ post.date | dateFormat }}</p>
+                    <h3 class="home-recent-title"><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
+                    {%- if post.data.description -%}
+                    <p class="home-recent-desc">{{ post.data.description | truncate(90) }}</p>
+                    {%- endif -%}
+                    <span class="home-recent-cta">Lue <i class="bi bi-arrow-right"></i></span>
+                </div>
+                {% endfor %}
+
+                {% for post in collections.presentations | take(5) %}
+                <div class="home-ticker-item">
+                    <p class="home-recent-eyebrow"><span class="home-ticker-badge home-ticker-badge--pres">Esitys</span>&nbsp;·&nbsp;{{ post.date | dateFormat }}</p>
+                    <h3 class="home-recent-title"><a href="{{ post.data.url }}" target="_blank" rel="noopener">{{ post.data.title }}</a></h3>
+                    {%- if post.data.location -%}
+                    <p class="home-recent-desc">{{ post.data.location }}</p>
+                    {%- endif -%}
+                    <span class="home-recent-cta">Avaa <i class="bi bi-arrow-up-right"></i></span>
+                </div>
+                {% endfor %}
+
+                {% for pub in researchfi.slice(0, 5) %}
+                <div class="home-ticker-item">
+                    <p class="home-recent-eyebrow"><span class="home-ticker-badge home-ticker-badge--pub">Julkaisu</span>&nbsp;·&nbsp;{{ pub.year }}</p>
+                    <h3 class="home-recent-title">
+                        {%- if pub.doiUrl or pub.url -%}
+                        <a href="{{ pub.doiUrl or pub.url }}" target="_blank" rel="noopener">{{ pub.title | truncate(90) }}</a>
+                        {%- else -%}{{ pub.title | truncate(90) }}{%- endif -%}
+                    </h3>
+                    {%- if pub.journal -%}
+                    <p class="home-recent-desc"><em>{{ pub.journal }}</em></p>
+                    {%- endif -%}
+                    <span class="home-recent-cta">{% if pub.doiUrl %}DOI <i class="bi bi-arrow-up-right"></i>{% else %}Julkaisu{% endif %}</span>
+                </div>
+                {% endfor %}
+
+            </div>
         </div>
     </div>
 </section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const ticker = document.getElementById("recentTicker");
+    if (!ticker) return;
+    const track = ticker.querySelector(".ticker-track");
+    const tickerContent = ticker.querySelector(".ticker-content");
+    if (!track || !tickerContent) return;
+
+    let direction = -1;
+    const speed = 0.4;
+    let currentX = 0;
+    let animationId;
+    let isDragging = false;
+    let prevX = 0;
+
+    track.style.animation = "none";
+
+    function animate() {
+        const setWidth = tickerContent.offsetWidth;
+        currentX += direction * speed;
+        if (currentX <= -setWidth) currentX += setWidth;
+        else if (currentX >= 0) currentX -= setWidth;
+        track.style.transform = `translateX(${currentX}px)`;
+        animationId = requestAnimationFrame(animate);
+    }
+
+    animationId = requestAnimationFrame(animate);
+
+    ticker.addEventListener("mouseenter", () => cancelAnimationFrame(animationId));
+    ticker.addEventListener("mouseleave", () => {
+        isDragging = false;
+        ticker.style.cursor = "";
+        animationId = requestAnimationFrame(animate);
+    });
+    ticker.addEventListener("mousedown", (e) => {
+        isDragging = true;
+        prevX = e.clientX;
+        ticker.style.cursor = "grabbing";
+        cancelAnimationFrame(animationId);
+    });
+    ticker.addEventListener("mousemove", (e) => {
+        if (!isDragging) return;
+        const dx = e.clientX - prevX;
+        prevX = e.clientX;
+        direction = dx > 0 ? 1 : -1;
+        currentX += dx;
+        const setWidth = tickerContent.offsetWidth;
+        if (currentX <= -setWidth) currentX += setWidth;
+        else if (currentX >= 0) currentX -= setWidth;
+        track.style.transform = `translateX(${currentX}px)`;
+    });
+    ticker.addEventListener("mouseup", () => {
+        isDragging = false;
+        ticker.style.cursor = "ew-resize";
+    });
+});
+</script>
 
 <section class="py-5 bg-body-tertiary home-closing-section" style="border-top: 1px solid var(--bs-border-color-translucent);">
     <div class="container">

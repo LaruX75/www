@@ -783,36 +783,78 @@ html:not([data-bs-theme="dark"]) .home-hero-proof-item:focus-visible {
   text-decoration: underline;
 }
 
-.home-recent-scroll {
-  display: flex;
-  gap: 1.25rem;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: 0.75rem;
-  scrollbar-width: thin;
-  scrollbar-color: var(--bs-border-color) transparent;
+
+.home-ticker-wrapper {
+  cursor: ew-resize;
 }
 
-.home-recent-card {
-  flex: 0 0 300px;
-  scroll-snap-align: start;
+.home-ticker-item {
+  width: 280px;
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   padding: 1.25rem;
   border-radius: 0.75rem;
   border: 1px solid var(--bs-border-color-translucent);
   background: var(--bs-tertiary-bg);
-  text-decoration: none;
-  color: inherit;
   transition: background 0.15s ease, border-color 0.15s ease;
 }
 
-.home-recent-card:hover,
-.home-recent-card:focus-visible {
+.home-ticker-item:hover {
   background: var(--bs-secondary-bg);
-  border-color: var(--bs-primary);
-  color: inherit;
+}
+
+.home-ticker-item a {
+  color: var(--bs-body-color);
+  text-decoration: none;
+}
+
+.home-ticker-item a:hover {
+  color: var(--bs-primary);
+}
+
+.home-ticker-badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.15em 0.55em;
+  border-radius: 99px;
+  vertical-align: middle;
+}
+
+.home-ticker-badge--blog {
+  background: #1a3a5c;
+  color: #7ab8f5;
+}
+
+.home-ticker-badge--pres {
+  background: #2a1a4e;
+  color: #b39ddb;
+}
+
+.home-ticker-badge--pub {
+  background: #0a3d1f;
+  color: #6ee7a0;
+}
+
+[data-bs-theme="light"] .home-ticker-badge--blog,
+html:not([data-bs-theme="dark"]) .home-ticker-badge--blog {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+[data-bs-theme="light"] .home-ticker-badge--pres,
+html:not([data-bs-theme="dark"]) .home-ticker-badge--pres {
+  background: #ede9fe;
+  color: #5b21b6;
+}
+
+[data-bs-theme="light"] .home-ticker-badge--pub,
+html:not([data-bs-theme="dark"]) .home-ticker-badge--pub {
+  background: #d4f5e2;
+  color: #1a6a3a;
 }
 
 .home-recent-eyebrow {
