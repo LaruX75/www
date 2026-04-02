@@ -9,16 +9,17 @@
   --bs-border-color-translucent: rgba(255, 255, 255, 0.15);
 }
 
-/* ===== Light theme: sama navy-DNA kuin tumma teema, käännetyllä asteikolla ===== */
-/* Tumma: HSL 215° @ 18–24% lightness → Vaalea: HSL 215° @ 88–96% lightness    */
+/* ===== Light theme: rohkea navy-paletti, peilikuva tummasta ===== */
+/* Tumma:  body 18% L, secondary 21% L, tertiary 20% L            */
+/* Vaalea: body 90% L, secondary 81% L, tertiary 73% L  (sama ero) */
 html:not([data-bs-theme="dark"]) {
-  --bs-body-bg: #e8f1fd;
-  --bs-body-color: #112031;
-  --bs-secondary-color: #3a5878;
-  --bs-secondary-bg: #d3e5f8;
-  --bs-tertiary-bg: #c2d8f2;
-  --bs-border-color: #88b2d4;
-  --bs-border-color-translucent: rgba(18, 52, 96, 0.15);
+  --bs-body-bg: #d5e8f8;
+  --bs-body-color: #0b1e30;
+  --bs-secondary-color: #2a4a6a;
+  --bs-secondary-bg: #b2cfe8;
+  --bs-tertiary-bg: #96bade;
+  --bs-border-color: #5e93be;
+  --bs-border-color-translucent: rgba(10, 40, 80, 0.22);
 }
 
 .bss-scope h1,
@@ -1652,7 +1653,7 @@ html:not([data-bs-theme="dark"]) section.bg-light {
 }
 
 html:not([data-bs-theme="dark"]) .bg-body-tertiary {
-  background-color: #ccddf5 !important;
+  background-color: #a4c4e0 !important;
 }
 
 /* Fix contrast for badges in light mode */
