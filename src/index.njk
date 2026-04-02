@@ -320,6 +320,28 @@ translationKey: home
 </section>
 
 {# ── Viimeisin sisältö -ticker ─────────────────────────────────────────── #}
+
+{# Yhdistetään kaikki sisältötyypit ja lajitellaan uusin ensin #}
+{% set allRecentItems = [] %}
+
+{% for post in collections.blog %}
+  {% set item = { sortTs: post.date | toTimestamp, type: "blog", dateLabel: post.date | dateFormat, title: post.data.title, href: post.url, desc: post.data.description, isExternal: false } %}
+  {% set _ = (allRecentItems.push(item), null) %}
+{% endfor %}
+
+{% for post in collections.presentations %}
+  {% set item = { sortTs: post.date | toTimestamp, type: "pres", dateLabel: post.date | dateFormat, title: post.data.title, href: post.data.url, desc: post.data.location, isExternal: true } %}
+  {% set _ = (allRecentItems.push(item), null) %}
+{% endfor %}
+
+{% for pub in (researchfi or []) %}
+  {% set pubDateStr = pub.year ~ "-12-31" %}
+  {% set item = { sortTs: pubDateStr | toTimestamp, type: "pub", dateLabel: pub.year, title: pub.title, href: pub.doiUrl or pub.url or "", desc: pub.journal, isExternal: true, hasDoi: pub.doiUrl } %}
+  {% set _ = (allRecentItems.push(item), null) %}
+{% endfor %}
+
+{% set allRecentSorted = allRecentItems | sort(true, false, "sortTs") | take(18) %}
+
 <section class="py-5 home-recent-section">
     <div class="container">
         <div class="d-flex align-items-baseline justify-content-between mb-4">
@@ -336,90 +358,56 @@ translationKey: home
 
             {# ── Setti 1 (alkuperäinen) ─── #}
             <div class="ticker-content">
-
-                {# Blogikirjoitukset #}
-                {% for post in collections.blog | take(5) %}
+                {% for item in allRecentSorted %}
                 <div class="home-ticker-item">
-                    <p class="home-recent-eyebrow"><span class="home-ticker-badge home-ticker-badge--blog">Kirjoitus</span>&nbsp;·&nbsp;{{ post.date | dateFormat }}</p>
-                    <h3 class="home-recent-title"><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
-                    {%- if post.data.description -%}
-                    <p class="home-recent-desc">{{ post.data.description | truncate(90) }}</p>
-                    {%- endif -%}
-                    <span class="home-recent-cta">Lue <i class="bi bi-arrow-right"></i></span>
-                </div>
-                {% endfor %}
-
-                {# Esitykset #}
-                {% for post in collections.presentations | take(5) %}
-                <div class="home-ticker-item">
-                    <p class="home-recent-eyebrow"><span class="home-ticker-badge home-ticker-badge--pres">Esitys</span>&nbsp;·&nbsp;{{ post.date | dateFormat }}</p>
-                    <h3 class="home-recent-title"><a href="{{ post.data.url }}" target="_blank" rel="noopener">{{ post.data.title }}</a></h3>
-                    {%- if post.data.location -%}
-                    <p class="home-recent-desc">{{ post.data.location }}</p>
-                    {%- endif -%}
-                    <span class="home-recent-cta">Avaa <i class="bi bi-arrow-up-right"></i></span>
-                </div>
-                {% endfor %}
-
-                {# Julkaisut #}
-                {% for pub in researchfi.slice(0, 5) %}
-                <div class="home-ticker-item">
-                    <p class="home-recent-eyebrow"><span class="home-ticker-badge home-ticker-badge--pub">Julkaisu</span>&nbsp;·&nbsp;{{ pub.year }}</p>
+                    <p class="home-recent-eyebrow">
+                        <span class="home-ticker-badge home-ticker-badge--{{ item.type }}">
+                            {%- if item.type == "blog" %}Kirjoitus{% elif item.type == "pres" %}Esitys{% else %}Julkaisu{% endif -%}
+                        </span>&nbsp;·&nbsp;{{ item.dateLabel }}
+                    </p>
                     <h3 class="home-recent-title">
-                        {%- if pub.doiUrl or pub.url -%}
-                        <a href="{{ pub.doiUrl or pub.url }}" target="_blank" rel="noopener">{{ pub.title | truncate(90) }}</a>
-                        {%- else -%}{{ pub.title | truncate(90) }}{%- endif -%}
+                        {%- if item.href -%}
+                        <a href="{{ item.href }}"{% if item.isExternal %} target="_blank" rel="noopener"{% endif %}>{{ item.title | truncate(90) }}</a>
+                        {%- else -%}{{ item.title | truncate(90) }}{%- endif -%}
                     </h3>
-                    {%- if pub.journal -%}
-                    <p class="home-recent-desc"><em>{{ pub.journal }}</em></p>
+                    {%- if item.desc -%}
+                    <p class="home-recent-desc">{{ item.desc | truncate(90) }}</p>
                     {%- endif -%}
-                    <span class="home-recent-cta">{% if pub.doiUrl %}DOI <i class="bi bi-arrow-up-right"></i>{% else %}Julkaisu{% endif %}</span>
+                    <span class="home-recent-cta">
+                        {%- if item.type == "blog" %}Lue <i class="bi bi-arrow-right"></i>
+                        {%- elif item.hasDoi %}DOI <i class="bi bi-arrow-up-right"></i>
+                        {%- else %}Avaa <i class="bi bi-arrow-up-right"></i>{% endif -%}
+                    </span>
                 </div>
                 {% endfor %}
-
             </div>
 
             {# ── Setti 2 (klooni saumatonta toistoa varten) ─── #}
             <div class="ticker-content" aria-hidden="true">
-
-                {% for post in collections.blog | take(5) %}
+                {% for item in allRecentSorted %}
                 <div class="home-ticker-item">
-                    <p class="home-recent-eyebrow"><span class="home-ticker-badge home-ticker-badge--blog">Kirjoitus</span>&nbsp;·&nbsp;{{ post.date | dateFormat }}</p>
-                    <h3 class="home-recent-title"><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
-                    {%- if post.data.description -%}
-                    <p class="home-recent-desc">{{ post.data.description | truncate(90) }}</p>
-                    {%- endif -%}
-                    <span class="home-recent-cta">Lue <i class="bi bi-arrow-right"></i></span>
-                </div>
-                {% endfor %}
-
-                {% for post in collections.presentations | take(5) %}
-                <div class="home-ticker-item">
-                    <p class="home-recent-eyebrow"><span class="home-ticker-badge home-ticker-badge--pres">Esitys</span>&nbsp;·&nbsp;{{ post.date | dateFormat }}</p>
-                    <h3 class="home-recent-title"><a href="{{ post.data.url }}" target="_blank" rel="noopener">{{ post.data.title }}</a></h3>
-                    {%- if post.data.location -%}
-                    <p class="home-recent-desc">{{ post.data.location }}</p>
-                    {%- endif -%}
-                    <span class="home-recent-cta">Avaa <i class="bi bi-arrow-up-right"></i></span>
-                </div>
-                {% endfor %}
-
-                {% for pub in researchfi.slice(0, 5) %}
-                <div class="home-ticker-item">
-                    <p class="home-recent-eyebrow"><span class="home-ticker-badge home-ticker-badge--pub">Julkaisu</span>&nbsp;·&nbsp;{{ pub.year }}</p>
+                    <p class="home-recent-eyebrow">
+                        <span class="home-ticker-badge home-ticker-badge--{{ item.type }}">
+                            {%- if item.type == "blog" %}Kirjoitus{% elif item.type == "pres" %}Esitys{% else %}Julkaisu{% endif -%}
+                        </span>&nbsp;·&nbsp;{{ item.dateLabel }}
+                    </p>
                     <h3 class="home-recent-title">
-                        {%- if pub.doiUrl or pub.url -%}
-                        <a href="{{ pub.doiUrl or pub.url }}" target="_blank" rel="noopener">{{ pub.title | truncate(90) }}</a>
-                        {%- else -%}{{ pub.title | truncate(90) }}{%- endif -%}
+                        {%- if item.href -%}
+                        <a href="{{ item.href }}"{% if item.isExternal %} target="_blank" rel="noopener"{% endif %}>{{ item.title | truncate(90) }}</a>
+                        {%- else -%}{{ item.title | truncate(90) }}{%- endif -%}
                     </h3>
-                    {%- if pub.journal -%}
-                    <p class="home-recent-desc"><em>{{ pub.journal }}</em></p>
+                    {%- if item.desc -%}
+                    <p class="home-recent-desc">{{ item.desc | truncate(90) }}</p>
                     {%- endif -%}
-                    <span class="home-recent-cta">{% if pub.doiUrl %}DOI <i class="bi bi-arrow-up-right"></i>{% else %}Julkaisu{% endif %}</span>
+                    <span class="home-recent-cta">
+                        {%- if item.type == "blog" %}Lue <i class="bi bi-arrow-right"></i>
+                        {%- elif item.hasDoi %}DOI <i class="bi bi-arrow-up-right"></i>
+                        {%- else %}Avaa <i class="bi bi-arrow-up-right"></i>{% endif -%}
+                    </span>
                 </div>
                 {% endfor %}
-
             </div>
+
         </div>
     </div>
 </section>

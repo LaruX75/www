@@ -418,6 +418,11 @@ module.exports = function (eleventyConfig) {
   // SUODATTIMET
   // =====================
 
+  // Muuntaa päivämäärän Unix-aikaleimaksi (lajittelua varten)
+  eleventyConfig.addFilter("toTimestamp", function (date) {
+    return new Date(date).getTime() || 0;
+  });
+
   // Päivämäärä (suomalainen)
   eleventyConfig.addFilter("dateFormat", function (date) {
     return new Date(date).toLocaleDateString("fi-FI", {
