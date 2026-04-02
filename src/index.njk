@@ -48,6 +48,11 @@ translationKey: home
             </div>
         </div>
     </div>
+    <div class="home-hero-wave" aria-hidden="true">
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z"/>
+        </svg>
+    </div>
 </section>
 
 {# ── Intro: tiivistys + päätoiminnot ──────────────────────────────────── #}
@@ -310,6 +315,35 @@ translationKey: home
                     <footer class="home-quote-footer">Maksullinen seminaari</footer>
                 </blockquote>
             </div>
+        </div>
+    </div>
+</section>
+
+{# ── Viimeisimmät kirjoitukset ─────────────────────────────────────────── #}
+<section class="py-5 home-recent-section">
+    <div class="container">
+        <div class="d-flex align-items-baseline justify-content-between mb-4">
+            <p class="text-uppercase fw-bold mb-0 home-recent-label">Viimeisimmät kirjoitukset</p>
+            <a href="/blogi/" class="home-recent-more">Kaikki kirjoitukset →</a>
+        </div>
+        <div class="home-recent-scroll">
+            {% for post in collections.blog | take(6) %}
+            <a class="home-recent-card" href="{{ post.url }}">
+                <p class="home-recent-eyebrow">
+                    {%- if post.data.categories and post.data.categories.length -%}
+                        {{ post.data.categories[0] }}
+                    {%- else -%}
+                        Kirjoitus
+                    {%- endif -%}
+                    &nbsp;·&nbsp;{{ post.date | dateFormat }}
+                </p>
+                <h3 class="home-recent-title">{{ post.data.title }}</h3>
+                {%- if post.data.description -%}
+                <p class="home-recent-desc">{{ post.data.description | truncate(100) }}</p>
+                {%- endif -%}
+                <span class="home-recent-cta">Lue <i class="bi bi-arrow-right"></i></span>
+            </a>
+            {% endfor %}
         </div>
     </div>
 </section>
