@@ -41,27 +41,25 @@ translationKey: home
         <div class="container home-hero-content">
             <p class="home-hero-eyebrow mb-2">Jari Laru</p>
             <h1 class="home-hero-title mb-3">Koulutan ja tutkin, miten tekoäly ja oppimisteknologia toimivat koulun arjessa.</h1>
-            <p class="home-hero-lead mb-3">Yliopistonlehtori, kouluttaja ja kuntapäättäjä. Sivulta löydät esitykset, julkaisut, aloitteet ja käytännön työn tulokset samasta näkymästä.</p>
-
-            <div class="home-hero-roles mb-4">
+            <div class="home-hero-roles mb-2">
                 <a class="home-hero-role-item" href="/tyoni-yliopistonlehtorina/">Yliopistonlehtori</a>
                 <a class="home-hero-role-item" href="/larux-tmi/">Kouluttaja (Larux t:mi)</a>
                 <a class="home-hero-role-item" href="/politiikka/">Kuntapäättäjä</a>
             </div>
+        </div>
+    </div>
+</section>
 
-            <div class="d-flex flex-wrap gap-2 mb-4">
-                <a href="/yhteystiedot/" class="btn btn-primary btn-sm rounded-pill px-3">Pyydä tarjous</a>
-                <a href="/esitykset/" class="btn btn-read-more btn-sm rounded-pill px-3">Katso esitykset <i class="bi bi-arrow-right"></i></a>
-                <a href="/tutkimus/" class="btn btn-read-more btn-sm rounded-pill px-3">Tutustu tutkimukseen <i class="bi bi-arrow-right"></i></a>
-            </div>
-
-            <div class="home-hero-proof-grid">
-                {% for stat in heroStats | sort(true, false, "count") %}
-                <a class="home-hero-proof-item" href="{{ stat.href }}">
-                    <span class="home-hero-proof-number">{{ stat.count }}</span>
-                    <span class="home-hero-proof-label">{{ stat.label }}</span>
-                </a>
-                {% endfor %}
+{# ── Intro: tiivistys + päätoiminnot ──────────────────────────────────── #}
+<section class="py-5 home-intro-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <p class="home-intro-text">Yliopistonlehtori, kouluttaja ja kuntapäättäjä. Tutkin ja koulutan miten tekoäly ja oppimisteknologia toimivat koulun arjessa — ja vaikutan päätöksentekoon, jotta tutkimusnäyttö löytää tiensä luokkahuoneeseen.</p>
+                <div class="home-intro-actions">
+                    <a class="btn btn-primary rounded-pill px-4" href="/yhteystiedot/">Pyydä tarjous</a>
+                    <a class="btn btn-outline-secondary rounded-pill px-4" href="/tietoa/">Tutustu taustaani</a>
+                </div>
             </div>
         </div>
     </div>
@@ -146,6 +144,20 @@ translationKey: home
             </div>
 
         </div>
+    </div>
+</section>
+
+{# ── KPI-kaista: vaikuttavuusluvut ────────────────────────────────────── #}
+<section class="home-stats-section" aria-label="Vaikuttavuusluvut">
+    <div class="container">
+        <dl class="home-stats-grid">
+            {% for stat in heroStats | sort(true, false, "count") %}
+            <div class="home-stat">
+                <dd class="home-stat-value"><a href="{{ stat.href }}">{{ stat.count }}</a></dd>
+                <dt class="home-stat-label">{{ stat.label }}</dt>
+            </div>
+            {% endfor %}
+        </dl>
     </div>
 </section>
 
