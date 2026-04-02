@@ -570,6 +570,111 @@ html:not([data-bs-theme="dark"]) .home-hero-proof-item:focus-visible {
   white-space: nowrap;
 }
 
+/* ── Kolmipolku: audience path cards ─────────────────────────────────── */
+.home-paths-section {
+  border-bottom: 1px solid var(--bs-border-color-translucent);
+}
+
+.home-paths-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--bs-secondary-color);
+}
+
+.home-path-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--bs-border-color-translucent);
+  background: var(--bs-tertiary-bg);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.home-path-card:hover,
+.home-path-card:focus-visible {
+  background: var(--bs-secondary-bg);
+  border-color: var(--bs-primary);
+  color: inherit;
+  transform: translateY(-2px);
+}
+
+.home-path-icon {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  color: var(--bs-primary);
+  line-height: 1;
+}
+
+.home-path-title {
+  font-family: 'Bree Serif', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--bs-body-color);
+}
+
+.home-path-desc {
+  font-size: 0.875rem;
+  color: var(--bs-secondary-color);
+  flex-grow: 1;
+  margin-bottom: 1rem;
+}
+
+.home-path-cta {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--bs-primary);
+  margin-top: auto;
+}
+
+/* ── Haastekortit (Miksi tämä työ on tärkeää?) ──────────────────────── */
+.home-challenges-section {
+  border-bottom: 1px solid var(--bs-border-color-translucent);
+}
+
+.home-challenges-lead {
+  color: var(--bs-secondary-color);
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+
+.home-challenge-card {
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--bs-border-color-translucent);
+  background: var(--bs-body-bg);
+  height: 100%;
+}
+
+.home-challenge-num {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--bs-primary);
+  opacity: 0.35;
+  margin-bottom: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.home-challenge-title {
+  font-family: 'Bree Serif', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--bs-body-color);
+}
+
+.home-challenge-text {
+  font-size: 0.875rem;
+  color: var(--bs-secondary-color);
+  margin-bottom: 0;
+}
+
 /* Ticker-karuselli etusivulle */
 .ticker-wrapper {
   overflow: hidden;
