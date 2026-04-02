@@ -329,14 +329,15 @@ translationKey: home
   {% set _ = (allRecentItems.push(item), null) %}
 {% endfor %}
 
-{% for post in collections.presentations %}
-  {% set item = { sortTs: post.date | toTimestamp, type: "pres", dateLabel: post.date | dateFormat, title: post.data.title, href: post.data.url, desc: post.data.location, thumbnail: post.data.thumbnail, isExternal: true } %}
+{# canva.tableRows käytetään presentations-sijaan: siinä on paikalliset thumbnail-polut #}
+{% for row in (canva.tableRows or []) %}
+  {% set item = { sortTs: row.date | toTimestamp, type: "pres", dateLabel: row.date | dateFormat, title: row.title, href: row.url, desc: row.location, thumbnail: row.thumbnail, isExternal: true } %}
   {% set _ = (allRecentItems.push(item), null) %}
 {% endfor %}
 
 {% for pub in (researchfi or []) %}
   {% set pubDateStr = pub.year ~ "-12-31" %}
-  {% set item = { sortTs: pubDateStr | toTimestamp, type: "pub", dateLabel: pub.year, title: pub.title, href: pub.doiUrl or pub.url or "", authors: pub.authors, journal: pub.journal, typeShort: pub.typeShort, openAccess: pub.openAccess, isExternal: true, hasDoi: pub.doiUrl } %}
+  {% set item = { sortTs: pubDateStr | toTimestamp, type: "pub", dateLabel: pub.year, title: pub.title, href: pub.doiUrl or pub.url or "", authors: pub.authors, journal: pub.journal, typeShort: pub.typeShort, isExternal: true, hasDoi: pub.doiUrl } %}
   {% set _ = (allRecentItems.push(item), null) %}
 {% endfor %}
 
@@ -357,49 +358,45 @@ translationKey: home
         <div class="ticker-track">
 
             {%- macro tickerCard(item) %}
-            {%- if item.type == "pres" %}
-            <div class="home-ticker-item home-ticker-item--pres">
-                {%- if item.thumbnail %}
-                <div class="home-ticker-img-wrap">
-                    <img src="{{ item.thumbnail }}" alt="" loading="lazy" decoding="async" class="home-ticker-img">
-                </div>
-                {%- endif %}
-                <div class="home-ticker-body">
-                    <p class="home-recent-eyebrow"><span class="home-ticker-badge home-ticker-badge--pres">Esitys</span>&nbsp;·&nbsp;{{ item.dateLabel }}</p>
-                    <h3 class="home-recent-title"><a href="{{ item.href }}" target="_blank" rel="noopener">{{ item.title | truncate(80) }}</a></h3>
-                    {%- if item.desc %}<p class="home-recent-desc">{{ item.desc }}</p>{% endif %}
-                </div>
-                <div class="home-ticker-fade"></div>
-            </div>
-            {%- elif item.type == "pub" %}
-            <div class="home-ticker-item home-ticker-item--pub">
-                <div class="home-ticker-body">
-                    <p class="home-recent-eyebrow">
-                        <span class="home-ticker-badge home-ticker-badge--pub">Julkaisu</span>&nbsp;·&nbsp;{{ item.dateLabel }}
-                        {%- if item.typeShort %}&nbsp;<span class="home-apa7-type">{{ item.typeShort }}</span>{% endif %}
-                    </p>
+            <div class="home-ticker-item home-ticker-item--{{ item.type }}">
+
+                {# Yläosa: sisältö (kuva / viiteteksti / kuvaus) #}
+                <div class="home-ticker-top">
+                    {%- if item.type == "pres" and item.thumbnail %}
+                    <img src="{{ item.thumbnail }}" alt="" loading="lazy" decoding="async">
+                    {%- elif item.type == "pub" %}
                     <p class="home-apa7">
                         {%- if item.authors %}<span class="home-apa7-authors">{{ item.authors }}.</span> {% endif -%}
                         ({{ item.dateLabel }}).
-                        {%- if item.href %} <a href="{{ item.href }}" target="_blank" rel="noopener"><em>{{ item.title }}</em></a>.
-                        {%- else %} <em>{{ item.title }}</em>.{% endif %}
+                        <em>{{ item.title }}</em>.
                         {%- if item.journal %} <span class="home-apa7-journal">{{ item.journal }}</span>.{% endif %}
                         {%- if item.hasDoi %} <span class="home-apa7-doi">{{ item.hasDoi }}</span>{% endif %}
                     </p>
+                    {%- elif item.desc %}
+                    <p class="home-ticker-top-text">{{ item.desc }}</p>
+                    {%- endif %}
+                    <div class="home-ticker-top-fade"></div>
                 </div>
-                <div class="home-ticker-fade"></div>
-            </div>
-            {%- else %}
-            <div class="home-ticker-item home-ticker-item--blog">
-                <div class="home-ticker-body">
-                    <p class="home-recent-eyebrow"><span class="home-ticker-badge home-ticker-badge--blog">Kirjoitus</span>&nbsp;·&nbsp;{{ item.dateLabel }}</p>
-                    <h3 class="home-recent-title"><a href="{{ item.href }}">{{ item.title | truncate(80) }}</a></h3>
-                    {%- if item.desc %}<p class="home-recent-desc">{{ item.desc | truncate(100) }}</p>{% endif %}
-                    <span class="home-recent-cta">Lue <i class="bi bi-arrow-right"></i></span>
+
+                {# Keskiosa: badge + aikaleima #}
+                <div class="home-ticker-meta">
+                    <span class="home-ticker-badge home-ticker-badge--{{ item.type }}">
+                        {%- if item.type == "blog" %}Kirjoitus{% elif item.type == "pres" %}Esitys{% else %}Julkaisu{% endif -%}
+                    </span>
+                    <span class="home-ticker-date">&nbsp;·&nbsp;{{ item.dateLabel }}</span>
+                    {%- if item.typeShort %}&nbsp;<span class="home-apa7-type">{{ item.typeShort }}</span>{% endif %}
                 </div>
-                <div class="home-ticker-fade"></div>
+
+                {# Alaosa: otsikko, max 2 riviä #}
+                <div class="home-ticker-title-wrap">
+                    {%- if item.href %}
+                    <a class="home-ticker-title" href="{{ item.href }}"{% if item.isExternal %} target="_blank" rel="noopener"{% endif %}>{{ item.title }}</a>
+                    {%- else %}
+                    <span class="home-ticker-title">{{ item.title }}</span>
+                    {%- endif %}
+                </div>
+
             </div>
-            {%- endif %}
             {%- endmacro %}
 
             {# ── Setti 1 (alkuperäinen) ─── #}

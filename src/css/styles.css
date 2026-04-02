@@ -819,10 +819,6 @@ html:not([data-bs-theme="dark"]) .home-hero-proof-item:focus-visible {
   background: var(--bs-secondary-bg);
 }
 
-.home-ticker-item:hover .home-ticker-fade {
-  background: linear-gradient(to bottom, transparent, var(--bs-secondary-bg));
-}
-
 .home-ticker-item a {
   color: var(--bs-body-color);
   text-decoration: none;
@@ -832,45 +828,82 @@ html:not([data-bs-theme="dark"]) .home-hero-proof-item:focus-visible {
   color: var(--bs-primary);
 }
 
-/* Tyyppikohtaiset kortit */
-.home-ticker-item--pres {
+/* Yläosa: sisältö (kuva / APA7 / kuvaus) */
+.home-ticker-top {
+  flex: 1 1 0;
+  min-height: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Esityskuva täyttää koko yläosan */
+.home-ticker-item--pres .home-ticker-top {
   padding: 0;
 }
 
-.home-ticker-item--pub .home-ticker-body,
-.home-ticker-item--blog .home-ticker-body {
-  padding: 0.9rem 1rem;
-}
-
-/* Esityskuva */
-.home-ticker-img-wrap {
-  flex-shrink: 0;
-  height: 118px;
-  overflow: hidden;
-  border-radius: 0.75rem 0.75rem 0 0;
-}
-
-.home-ticker-img {
+.home-ticker-item--pres .home-ticker-top img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  border-radius: 0.75rem 0.75rem 0 0;
 }
 
-.home-ticker-item--pres .home-ticker-body {
-  padding: 0.6rem 0.85rem 0;
+/* Teksti-/APA7-kortit: padding yläosaan */
+.home-ticker-item--pub .home-ticker-top,
+.home-ticker-item--blog .home-ticker-top {
+  padding: 0.85rem 1rem 0;
 }
 
-/* Gradient-häivytys ylitäytön piilottamiseen */
-.home-ticker-fade {
+/* Gradient-häivytys yläosan alareunaan */
+.home-ticker-top-fade {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 52px;
+  height: 40px;
   background: linear-gradient(to bottom, transparent, var(--bs-tertiary-bg));
   pointer-events: none;
-  z-index: 1;
+}
+
+.home-ticker-item:hover .home-ticker-top-fade {
+  background: linear-gradient(to bottom, transparent, var(--bs-secondary-bg));
+}
+
+.home-ticker-item--pres .home-ticker-top-fade {
+  display: none;
+}
+
+/* Metarivi: badge + pvm */
+.home-ticker-meta {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.9rem;
+  border-top: 1px solid var(--bs-border-color-translucent);
+}
+
+.home-ticker-date {
+  font-size: 0.68rem;
+  color: var(--bs-secondary-color);
+}
+
+/* Otsikko-alue: max 2 riviä */
+.home-ticker-title-wrap {
+  flex-shrink: 0;
+  padding: 0 0.9rem 0.75rem;
+}
+
+.home-ticker-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--bs-body-color);
 }
 
 /* APA7-viiteteksti julkaisukorteissa */
