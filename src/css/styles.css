@@ -9,17 +9,17 @@
   --bs-border-color-translucent: rgba(255, 255, 255, 0.15);
 }
 
-/* ===== Light theme: rohkea navy-paletti, peilikuva tummasta ===== */
-/* Tumma:  body 18% L, secondary 21% L, tertiary 20% L            */
-/* Vaalea: body 90% L, secondary 81% L, tertiary 73% L  (sama ero) */
+/* ===== Light theme: viileä neutraali slate ===== */
+/* DNA-yhteys: body-color = tumman teeman taustasävy käännettynä tekstiksi */
+/* #1c2a38 (tekstiväri) ≈ #1a2638 (tumman body-bg) — sama perhe, eri rooli */
 html:not([data-bs-theme="dark"]) {
-  --bs-body-bg: #d5e8f8;
-  --bs-body-color: #0b1e30;
-  --bs-secondary-color: #2a4a6a;
-  --bs-secondary-bg: #b2cfe8;
-  --bs-tertiary-bg: #96bade;
-  --bs-border-color: #5e93be;
-  --bs-border-color-translucent: rgba(10, 40, 80, 0.22);
+  --bs-body-bg: #f4f6f9;
+  --bs-body-color: #1c2a38;
+  --bs-secondary-color: #48606e;
+  --bs-secondary-bg: #e6eaef;
+  --bs-tertiary-bg: #d8dfe8;
+  --bs-border-color: #adbccc;
+  --bs-border-color-translucent: rgba(28, 42, 56, 0.13);
 }
 
 .bss-scope h1,
@@ -1653,7 +1653,7 @@ html:not([data-bs-theme="dark"]) section.bg-light {
 }
 
 html:not([data-bs-theme="dark"]) .bg-body-tertiary {
-  background-color: #a4c4e0 !important;
+  background-color: #dbe2ec !important;
 }
 
 /* Fix contrast for badges in light mode */
