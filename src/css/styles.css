@@ -1,12 +1,21 @@
 /* ===== Dark theme: Bootstrap-pohjavärien korvaus ===== */
-/* Bootstrap 5.3 käyttää tasaista #212529 → korvataan tummalla navyllä */
+/* Kevennetty navy-paletti — aiempaa #131d2b kevyempi, parempi tason erottelu */
 [data-bs-theme="dark"] {
-  --bs-body-bg: #131d2b;
+  --bs-body-bg: #1a2638;
   --bs-body-color: #dde4ee;
-  --bs-secondary-bg: #1c2a3c;
-  --bs-tertiary-bg: #182336;
-  --bs-border-color: #2a3a4e;
-  --bs-border-color-translucent: rgba(255, 255, 255, 0.11);
+  --bs-secondary-bg: #243549;
+  --bs-tertiary-bg: #1f2f42;
+  --bs-border-color: #354f68;
+  --bs-border-color-translucent: rgba(255, 255, 255, 0.15);
+}
+
+/* ===== Light theme: brändisävyinen sinertävä paletti ===== */
+html:not([data-bs-theme="dark"]) {
+  --bs-body-bg: #f5f8fc;
+  --bs-secondary-bg: #e8edf7;
+  --bs-tertiary-bg: #dde5f2;
+  --bs-border-color: #c8d6e9;
+  --bs-border-color-translucent: rgba(30, 60, 100, 0.12);
 }
 
 .bss-scope h1,
@@ -1640,8 +1649,7 @@ html:not([data-bs-theme="dark"]) section.bg-light {
 }
 
 html:not([data-bs-theme="dark"]) .bg-body-tertiary {
-  background-color: #eef1f6 !important;
-  /* Slightly darker for tertiary */
+  background-color: #e4ecf6 !important;
 }
 
 /* Fix contrast for badges in light mode */
@@ -1740,7 +1748,7 @@ html:not([data-bs-theme="dark"]) select {
 }
 
 [data-bs-theme="dark"] .bg-body-tertiary {
-  background-color: #1e2a3a !important;
+  background-color: #243549 !important;
 }
 
 /* All headings should be white in dark mode */
@@ -1764,8 +1772,8 @@ html:not([data-bs-theme="dark"]) select {
 
 /* Cards */
 [data-bs-theme="dark"] .card {
-  background-color: #243347 !important;
-  border-color: rgba(255, 255, 255, 0.08) !important;
+  background-color: #2b3e56 !important;
+  border-color: rgba(255, 255, 255, 0.10) !important;
   color: #e0e0e0;
 }
 
