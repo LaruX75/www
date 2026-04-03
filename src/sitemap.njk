@@ -22,12 +22,7 @@ eleventyExcludeFromCollections: true
 {%- elif "/presentations/" in item.url or "/esitykset/" in item.url %}
   {%- set freq = "monthly" %}{%- set pri = "0.5" %}
 {%- endif %}
-<url>
-  <loc>{{ site.url }}{{ item.url }}</loc>
-  <lastmod>{{ item.date | dateToRfc3339 }}</lastmod>
-  <changefreq>{{ freq }}</changefreq>
-  <priority>{{ pri }}</priority>
-</url>
+<url><loc>{{ site.url }}{{ item.url }}</loc><lastmod>{{ item.date | dateToRfc3339 }}</lastmod><changefreq>{{ freq }}</changefreq><priority>{{ pri }}</priority></url>
 {%- endif %}
 {%- endfor %}
 </urlset>
