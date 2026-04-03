@@ -16,8 +16,8 @@ html:not([data-bs-theme="dark"]) {
   --bs-body-bg: #f4f6f9;
   --bs-body-color: #1c2a38;
   --bs-secondary-color: #48606e;
-  --bs-secondary-bg: #e6eaef;
-  --bs-tertiary-bg: #d8dfe8;
+  --bs-secondary-bg: #dde4ed;
+  --bs-tertiary-bg: #eef2f7;
   --bs-border-color: #adbccc;
   --bs-border-color-translucent: rgba(28, 42, 56, 0.13);
   /* WCAG 1.4.3: Bootstrap default #0d6efc → 4.17:1 on #f4f6f9 (alle 4.5 AA)
@@ -34,6 +34,9 @@ html:not([data-bs-theme="dark"]) {
 html:not([data-bs-theme="dark"]) .bss-scope {
   --bs-primary: #0453b4;
   --bs-primary-rgb: 4, 83, 180;
+  /* bss-overrides.css asettaa --bs-border-width: 0 koko .bss-scope:lle.
+     Tämä rikkoo btn-outline-* ja border-bottom jne. vaaleassa teemassa. */
+  --bs-border-width: 1px;
 }
 
 /* bss-overrides.css:n btn-primary on valkoinen — korjataan vaalealle teemalle */
@@ -2645,6 +2648,10 @@ html:not([data-bs-theme="dark"]) .subpage-hero-image {
 .kynasta-hero {
   background-color: var(--bs-tertiary-bg, #f8f9fa);
   border-bottom: 1px solid var(--bs-border-color);
+}
+html:not([data-bs-theme="dark"]) .kynasta-hero {
+  background-color: #eef3f8;
+  border-bottom-color: #c0cdd8;
 }
 [data-bs-theme="dark"] .kynasta-hero {
   background-color: #1e2a3a !important;

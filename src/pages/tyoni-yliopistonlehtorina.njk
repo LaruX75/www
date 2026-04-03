@@ -20,7 +20,7 @@ templateEngineOverride: njk
       <div class="col-lg-7">
         <p class="ylwork-eyebrow mb-2"><i class="bi bi-mortarboard me-1"></i>Yliopisto</p>
         <h1 class="display-5 fw-bold mb-2">Työni yliopistonlehtorina</h1>
-        <p class="mb-4" style="color:rgba(255,255,255,0.75);">Teknologiatuetun oppimisen ja opetuksen yliopistonlehtori · Kasvatustieteiden tiedekunta · Oulun yliopisto</p>
+        <p class="mb-4 ylwork-hero-lead">Teknologiatuetun oppimisen ja opetuksen yliopistonlehtori · Kasvatustieteiden tiedekunta · Oulun yliopisto</p>
         <div class="d-flex flex-wrap gap-2">
           <a href="#hub" class="btn btn-primary btn-sm">Sisältöalueet</a>
           <a href="/tutkimus/" class="btn btn-outline-primary btn-sm">Tutkimus</a>
@@ -241,6 +241,12 @@ templateEngineOverride: njk
       -55deg, transparent, transparent 48px,
       rgba(13,110,253,0.04) 48px, rgba(13,110,253,0.04) 96px
     );
+  }
+  .ylwork-hero-lead {
+    color: rgba(255,255,255,0.75);
+  }
+  html:not([data-bs-theme="dark"]) .ylwork-hero-lead {
+    color: rgba(15, 34, 56, 0.7);
   }
   .ylwork-hero-divider {
     height: 4px;
