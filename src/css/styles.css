@@ -20,6 +20,12 @@ html:not([data-bs-theme="dark"]) {
   --bs-tertiary-bg: #d8dfe8;
   --bs-border-color: #adbccc;
   --bs-border-color-translucent: rgba(28, 42, 56, 0.13);
+  /* WCAG 1.4.3: Bootstrap default #0d6efc → 4.17:1 on #f4f6f9 (alle 4.5 AA)
+     Korjattu: #0453b4 → ~6.7:1 */
+  --bs-link-color: #0453b4;
+  --bs-link-color-rgb: 4, 83, 180;
+  --bs-link-hover-color: #023e8a;
+  --bs-link-hover-color-rgb: 2, 62, 138;
 }
 
 .bss-scope h1,
@@ -2721,9 +2727,11 @@ section[id] {
    Vaalea: #1e3a8a (#fff-pohja) kontrasti ~9:1
    Tumma:  #bfdbfe (#1e293b-pohja) kontrasti ~8:1            */
 html:not([data-bs-theme="dark"]) .badge.text-bg-light {
-  background-color: #eff6ff !important; /* blue-50 */
-  color: #1e3a8a !important;            /* blue-900 */
-  border-color: #bfdbfe !important;     /* blue-200 */
+  /* WCAG 1.4.11: #eff6ff vs #f4f6f9 → ratio 1.01 (ei riitä ≥3.0)
+     Korjattu: tummempi taustaväri → ~5.8:1 komponenttikontrastia vasten sivun bg */
+  background-color: #4a6478 !important; /* slate-blue, L≈0.119 → 5.8:1 vs #f4f6f9 */
+  color: #ffffff !important;            /* valkoinen → 6.2:1 vs #4a6478 */
+  border-color: #4a6478 !important;
 }
 
 [data-bs-theme="dark"] .badge.text-bg-light {

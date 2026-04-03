@@ -405,7 +405,7 @@ translationKey: home
             </div>
 
             {# ── Setti 2 (klooni saumatonta toistoa varten) ─── #}
-            <div class="ticker-content" aria-hidden="true">
+            <div class="ticker-content" aria-hidden="true" inert>
                 {% for item in allRecentSorted %}{{ tickerCard(item) }}{% endfor %}
             </div>
 
