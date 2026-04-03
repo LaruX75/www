@@ -105,7 +105,7 @@ lang: en
         {% if theses.gradut.length %}
           {% set thesisItems = theses.gradut %}
           {% set showType = false %}
-          {% include "thesis-table-en.njk" %}
+          {% include "thesis-table.njk" %}
         {% else %}
           <div class="p-4 text-center text-muted">No results.</div>
         {% endif %}
@@ -132,7 +132,7 @@ lang: en
         {% if theses.kandit.length %}
           {% set thesisItems = theses.kandit %}
           {% set showType = false %}
-          {% include "thesis-table-en.njk" %}
+          {% include "thesis-table.njk" %}
         {% else %}
           <div class="p-4 text-center text-muted">No results.</div>
         {% endif %}
@@ -159,7 +159,7 @@ lang: en
       <div id="reviewertabl">
         {% set thesisItems = theses.reviewerOnly %}
         {% set showType = true %}
-        {% include "thesis-table-en.njk" %}
+        {% include "thesis-table.njk" %}
       </div>
     </div>
   </div>

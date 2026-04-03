@@ -1,13 +1,23 @@
 ---
 layout: base.njk
 ---
+{% set currentLang = lang or (page.url | langFromUrl) %}
+{% set txt = {
+  section:    "Blog" if currentLang == "en" else "Blogi",
+  categories: "Categories" if currentLang == "en" else "Kategoriat",
+  keywords:   "Keywords" if currentLang == "en" else "Avainsanat",
+  back:       "Back to blog" if currentLang == "en" else "Takaisin blogiin",
+  backHref:   "/en/blog/" if currentLang == "en" else "/blogi/",
+  catBase:    "/en/categories/" if currentLang == "en" else "/kategoriat/",
+  kwBase:     "/en/keywords/" if currentLang == "en" else "/avainsanat/"
+} %}
 <section class="blog-featured-post py-2">
   <div class="container">
     <article class="blog-post blog-post-featured {{ articleClass or '' }}">
       {% if showArticleHeader != false %}
       <div class="card shadow-sm mb-4">
         <div class="card-body">
-          <p class="text-uppercase small text-muted mb-2">Blogi</p>
+          <p class="text-uppercase small text-muted mb-2">{{ txt.section }}</p>
           <h1 class="display-6 fw-bold mb-2">{{ title }}</h1>
           <p class="text-muted mb-0">{{ date | dateFormat }}</p>
         </div>
@@ -31,17 +41,17 @@ layout: base.njk
         {% endif %}
         {% if categories %}
         <div class="mb-3">
-          <p class="text-uppercase small text-muted mb-2">Kategoriat</p>
+          <p class="text-uppercase small text-muted mb-2">{{ txt.categories }}</p>
           {% for cat in categories %}
-          <a class="badge text-bg-secondary me-1 text-decoration-none" href="/kategoriat/{{ cat | slugify }}/">{{ cat }}</a>
+          <a class="badge text-bg-secondary me-1 text-decoration-none" href="{{ txt.catBase }}{{ cat | slugify }}/">{{ cat }}</a>
           {% endfor %}
         </div>
         {% endif %}
         {% if keywords %}
         <div class="mb-2">
-          <p class="text-uppercase small text-muted mb-2">Avainsanat</p>
+          <p class="text-uppercase small text-muted mb-2">{{ txt.keywords }}</p>
           {% for key in keywords %}
-          <a class="badge text-bg-light text-dark border me-1 text-decoration-none" href="/avainsanat/{{ key | slugify }}/">{{ key }}</a>
+          <a class="badge text-bg-light text-dark border me-1 text-decoration-none" href="{{ txt.kwBase }}{{ key | slugify }}/">{{ key }}</a>
           {% endfor %}
         </div>
         {% endif %}
@@ -50,7 +60,7 @@ layout: base.njk
 
       {% if showBackLink != false %}
       <div class="mt-4">
-        <a href="/blogi/" class="btn btn-outline-primary">&larr; Takaisin blogiin</a>
+        <a href="{{ txt.backHref }}" class="btn btn-outline-primary">&larr; {{ txt.back }}</a>
       </div>
       {% endif %}
     </article>

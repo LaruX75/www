@@ -1,12 +1,23 @@
 ---
 layout: base.njk
 ---
+{% set currentLang = lang or (page.url | langFromUrl) %}
+{% set txt = {
+  section:    "Blog" if currentLang == "en" else "Blogi",
+  toc:        "Contents" if currentLang == "en" else "Sisällys",
+  categories: "Categories" if currentLang == "en" else "Kategoriat",
+  keywords:   "Keywords" if currentLang == "en" else "Avainsanat",
+  back:       "Back to blog" if currentLang == "en" else "Takaisin blogiin",
+  backHref:   "/en/blog/" if currentLang == "en" else "/blogi/",
+  catBase:    "/en/categories/" if currentLang == "en" else "/kategoriat/",
+  kwBase:     "/en/keywords/" if currentLang == "en" else "/avainsanat/"
+} %}
 <section>
   <div class="container">
     <article class="blog-post">
       <div class="card shadow-sm">
         <div class="card-body">
-          <p class="text-uppercase small text-muted mb-2">Blogi</p>
+          <p class="text-uppercase small text-muted mb-2">{{ txt.section }}</p>
           <h1 class="display-6 fw-bold">{{ title }}</h1>
           <p class="text-muted mb-4">{{ date | dateFormat }}</p>
           {% set tocMarkup = content | toc %}
@@ -21,7 +32,7 @@ layout: base.njk
               <aside class="col-lg-4 order-1 order-lg-2">
                 <div class="card border-0 bg-light position-sticky" style="top: 1rem;">
                   <div class="card-body p-3">
-                    <p class="text-uppercase small text-muted mb-2">Sisällys</p>
+                    <p class="text-uppercase small text-muted mb-2">{{ txt.toc }}</p>
                     {{ tocMarkup | safe }}
                   </div>
                 </div>
@@ -35,19 +46,19 @@ layout: base.njk
           {% endif %}
           {% if categories %}
             <div class="mt-4">
-              <p class="text-uppercase small text-muted mb-2">Kategoriat</p>
-              {% for cat in categories %}<a class="badge text-bg-secondary me-1 text-decoration-none" href="/kategoriat/{{ cat | slugify }}/">{{ cat }}</a>{% endfor %}
+              <p class="text-uppercase small text-muted mb-2">{{ txt.categories }}</p>
+              {% for cat in categories %}<a class="badge text-bg-secondary me-1 text-decoration-none" href="{{ txt.catBase }}{{ cat | slugify }}/">{{ cat }}</a>{% endfor %}
             </div>
           {% endif %}
           {% if keywords %}
             <div class="mt-3">
-              <p class="text-uppercase small text-muted mb-2">Avainsanat</p>
-              {% for key in keywords %}<a class="badge text-bg-light text-dark border me-1 text-decoration-none" href="/avainsanat/{{ key | slugify }}/">{{ key }}</a>{% endfor %}
+              <p class="text-uppercase small text-muted mb-2">{{ txt.keywords }}</p>
+              {% for key in keywords %}<a class="badge text-bg-light text-dark border me-1 text-decoration-none" href="{{ txt.kwBase }}{{ key | slugify }}/">{{ key }}</a>{% endfor %}
             </div>
           {% endif %}
         </div>
         <div class="card-footer bg-white">
-          <a href="/blogi/" class="btn btn-outline-primary">&larr; Takaisin blogiin</a>
+          <a href="{{ txt.backHref }}" class="btn btn-outline-primary">&larr; {{ txt.back }}</a>
         </div>
       </div>
     </article>

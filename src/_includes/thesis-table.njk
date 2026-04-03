@@ -1,18 +1,20 @@
 {# _includes/thesis-table.njk
-   Vaatii:
+   Vaatii / Requires:
    - thesisItems: array of thesis objects
-   - showType: boolean — näytetäänkö tyyppisarake
+   - showType: boolean
+   - currentLang: "fi" | "en"  (set by including template)
 #}
+{% set isEN = (currentLang or lang) == "en" %}
 <div class="table-responsive">
   <table class="table table-sm table-hover align-middle mb-0 pub-table" data-thesis-table>
     <thead>
       <tr>
-        <th class="col-year text-center">Vuosi</th>
-        {% if showType %}<th class="col-type">Tyyppi</th>{% endif %}
-        <th class="col-title">Otsikko</th>
-        <th class="col-abstract">Tiivistelmä</th>
-        <th class="col-subjects">Avainsanat</th>
-        <th class="col-author">Tekijä</th>
+        <th class="col-year text-center">{{ "Year" if isEN else "Vuosi" }}</th>
+        {% if showType %}<th class="col-type">{{ "Type" if isEN else "Tyyppi" }}</th>{% endif %}
+        <th class="col-title">{{ "Title" if isEN else "Otsikko" }}</th>
+        <th class="col-abstract">{{ "Summary" if isEN else "Tiivistelmä" }}</th>
+        <th class="col-subjects">{{ "Keywords" if isEN else "Avainsanat" }}</th>
+        <th class="col-author">{{ "Author" if isEN else "Tekijä" }}</th>
       </tr>
     </thead>
     <tbody>
@@ -25,9 +27,9 @@
         {% if showType %}
         <td>
           {% if thesis.type == "masterThesis" %}
-            <span class="badge bg-primary">Pro gradu</span>
+            <span class="badge bg-primary">{{ "Master's thesis" if isEN else "Pro gradu" }}</span>
           {% elif thesis.type == "bachelorThesis" %}
-            <span class="badge bg-info">Kandidaatintyö</span>
+            <span class="badge bg-info">{{ "Bachelor's thesis" if isEN else "Kandidaatintyö" }}</span>
           {% else %}
             <span class="badge bg-dark">{{ thesis.type }}</span>
           {% endif %}
@@ -36,7 +38,7 @@
         <td>
           {% if thesis.link %}
             <a href="{{ thesis.link }}" target="_blank" class="fw-medium text-body" rel="noopener noreferrer">{{ thesis.title }}</a>
-            <a href="{{ thesis.link }}" target="_blank" class="ms-2 text-decoration-none align-middle icon-only-link" rel="noopener noreferrer" aria-label="Avaa opinnäytetyö: {{ thesis.title }}">
+            <a href="{{ thesis.link }}" target="_blank" class="ms-2 text-decoration-none align-middle icon-only-link" rel="noopener noreferrer" aria-label="{{ ('Open thesis: ' if isEN else 'Avaa opinnäytetyö: ') + thesis.title }}">
               <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
             </a>
             <button
@@ -47,9 +49,9 @@
               data-year="{{ thesis.year }}"
               data-type="{{ thesis.type or '' }}"
               data-url="{{ thesis.link | escape }}"
-              aria-label="Vie lähdeviite: {{ thesis.title | escape }}"
+              aria-label="{{ ('Export citation: ' if isEN else 'Vie lähdeviite: ') + (thesis.title | escape) }}"
             >
-              <i class="bi bi-quote me-1" aria-hidden="true"></i>Vie viite
+              <i class="bi bi-quote me-1" aria-hidden="true"></i>{{ "Export citation" if isEN else "Vie viite" }}
             </button>
           {% else %}
             <span class="fw-medium">{{ thesis.title }}</span>
@@ -68,7 +70,7 @@
               data-thesis-year="{{ thesis.year }}"
               data-thesis-type="{{ thesis.type or '' }}"
             >
-              Avaa tiivistelmä
+              {{ "Open summary" if isEN else "Avaa tiivistelmä" }}
             </button>
           {% else %}
             <span class="text-muted small">—</span>
@@ -84,7 +86,7 @@
           {% elif thesis.subjects.length %}
             <div class="d-flex flex-wrap gap-1">
               {% for subject in thesis.subjects %}
-                <button type="button" class="badge text-bg-secondary border thesis-keyword-link" data-keyword="{{ subject | escape }}" title="Pääaine">{{ subject }}</button>
+                <button type="button" class="badge text-bg-secondary border thesis-keyword-link" data-keyword="{{ subject | escape }}" title="{{ 'Discipline' if isEN else 'Pääaine' }}">{{ subject }}</button>
               {% endfor %}
             </div>
           {% else %}

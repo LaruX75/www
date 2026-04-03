@@ -5,7 +5,8 @@
   {% include "_ldschema.njk" %}
 </head>
 <body>
-  <a class="visually-hidden-focusable skip-link btn btn-primary m-2 position-absolute" style="z-index: 9999; top: 0; left: 0;" href="#main-content">Hyppää pääsisältöön</a>
+  {% set currentLang = lang or (page.url | langFromUrl) %}
+  <a class="visually-hidden-focusable skip-link btn btn-primary m-2 position-absolute" style="z-index: 9999; top: 0; left: 0;" href="#main-content">{{ "Skip to main content" if currentLang == "en" else "Hyppää pääsisältöön" }}</a>
 
   {% include "header.njk" %}
 
@@ -74,49 +75,46 @@
   <script src="/js/external-media-consent.js" defer></script>
   <script src="/js/site-ui.js" defer></script>
 
-  <!-- Saavutettavuuspaneeli ja FAB -->
-  <button class="a11y-fab" type="button" data-bs-toggle="offcanvas" data-bs-target="#a11yOffcanvas" aria-controls="a11yOffcanvas" aria-label="Avaa saavutettavuusasetukset">
+  <!-- Accessibility panel / Saavutettavuuspaneeli -->
+  <button class="a11y-fab" type="button" data-bs-toggle="offcanvas" data-bs-target="#a11yOffcanvas" aria-controls="a11yOffcanvas" aria-label="{{ 'Open accessibility settings' if currentLang == 'en' else 'Avaa saavutettavuusasetukset' }}">
     <i class="bi bi-person-wheelchair"></i>
   </button>
 
   <div class="offcanvas offcanvas-end" tabindex="-1" id="a11yOffcanvas" aria-labelledby="a11yOffcanvasLabel">
     <div class="offcanvas-header border-bottom">
-      <h5 class="offcanvas-title fw-bold" id="a11yOffcanvasLabel"><i class="bi bi-universal-access-circle me-2"></i>Saavutettavuus</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Sulje"></button>
+      <h5 class="offcanvas-title fw-bold" id="a11yOffcanvasLabel"><i class="bi bi-universal-access-circle me-2"></i>{{ "Accessibility" if currentLang == "en" else "Saavutettavuus" }}</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="{{ 'Close' if currentLang == 'en' else 'Sulje' }}"></button>
     </div>
     <div class="offcanvas-body">
-      <p class="text-muted small mb-4">Mukauta sivuston ulkoasua omiin tarpeisiisi sopivaksi. Valinnat tallentuvat selaimeesi.</p>
-      
-      <!-- Tekstikoko -->
+      <p class="text-muted small mb-4">{{ "Customise the appearance to suit your needs. Settings are saved in your browser." if currentLang == "en" else "Mukauta sivuston ulkoasua omiin tarpeisiisi sopivaksi. Valinnat tallentuvat selaimeesi." }}</p>
+
       <div class="mb-4">
-        <label for="a11yTextSize" class="form-label fw-bold">Tekstin koko</label>
+        <label for="a11yTextSize" class="form-label fw-bold">{{ "Text size" if currentLang == "en" else "Tekstin koko" }}</label>
         <select class="form-select" id="a11yTextSize">
-          <option value="normal">Normaali koko</option>
-          <option value="large">Suuri (+15%)</option>
-          <option value="xlarge">Maksimi (+30%)</option>
+          <option value="normal">{{ "Normal" if currentLang == "en" else "Normaali koko" }}</option>
+          <option value="large">{{ "Large (+15%)" if currentLang == "en" else "Suuri (+15%)" }}</option>
+          <option value="xlarge">{{ "Maximum (+30%)" if currentLang == "en" else "Maksimi (+30%)" }}</option>
         </select>
       </div>
 
-      <!-- Kytkimet -->
       <div class="mb-3 form-check form-switch">
         <input class="form-check-input" type="checkbox" role="switch" id="a11yHighContrast">
-        <label class="form-check-label" for="a11yHighContrast">Korkea kontrasti</label>
+        <label class="form-check-label" for="a11yHighContrast">{{ "High contrast" if currentLang == "en" else "Korkea kontrasti" }}</label>
       </div>
 
       <div class="mb-3 form-check form-switch">
         <input class="form-check-input" type="checkbox" role="switch" id="a11yReducedMotion">
-        <label class="form-check-label" for="a11yReducedMotion">Vähennä animaatioita</label>
+        <label class="form-check-label" for="a11yReducedMotion">{{ "Reduce animations" if currentLang == "en" else "Vähennä animaatioita" }}</label>
       </div>
 
       <div class="mb-4 form-check form-switch">
         <input class="form-check-input" type="checkbox" role="switch" id="a11yDyslexiaFont">
-        <label class="form-check-label" for="a11yDyslexiaFont">Lukihäiriöystävällinen fontti</label>
+        <label class="form-check-label" for="a11yDyslexiaFont">{{ "Dyslexia-friendly font" if currentLang == "en" else "Lukihäiriöystävällinen fontti" }}</label>
       </div>
 
-      <!-- Palautus -->
       <hr>
       <button type="button" class="btn btn-outline-danger w-100 mt-2" id="a11yResetBtn">
-        <i class="bi bi-arrow-counterclockwise me-1"></i> Palauta oletukset
+        <i class="bi bi-arrow-counterclockwise me-1"></i> {{ "Reset to defaults" if currentLang == "en" else "Palauta oletukset" }}
       </button>
     </div>
   </div>
