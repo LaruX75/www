@@ -1,0 +1,26 @@
+---
+permalink: /en/feed.xml
+layout: null
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <title>Jari Laru</title>
+  <subtitle>Educational technology researcher. University lecturer. City councillor.</subtitle>
+  <link href="{{ site.url }}/en/feed.xml" rel="self" />
+  <link href="{{ site.url }}/en/" />
+  <updated>{{ collections.blogEn[0].date | dateToRfc3339 if collections.blogEn.length else "2024-01-01T00:00:00Z" }}</updated>
+  <id>{{ site.url }}/en/</id>
+  <author>
+    <name>Jari Laru</name>
+  </author>
+  {% for post in collections.blogEn | reverse | slice(0, 10) %}
+  <entry>
+    <title>{{ post.data.title | escape }}</title>
+    <link href="{{ site.url }}{{ post.url }}" />
+    <updated>{{ post.date | dateToRfc3339 }}</updated>
+    <id>{{ site.url }}{{ post.url }}</id>
+    <content type="html">{{ post.templateContent | htmlToAbsoluteUrls(site.url) | escape }}</content>
+  </entry>
+  {% endfor %}
+</feed>

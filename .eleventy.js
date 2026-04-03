@@ -309,6 +309,14 @@ module.exports = function (eleventyConfig) {
       .sort((a, b) => b.date - a.date);
   });
 
+  // EN-blogiposts feedipluginille (suodatetaan lang: en -merkityt)
+  eleventyConfig.addCollection("blogEn", function (collectionApi) {
+    return collectionApi
+      .getFilteredByGlob("src/blog/*.md")
+      .filter(item => item.data.lang === "en")
+      .sort((a, b) => b.date - a.date);
+  });
+
   // Julkaisut — kaikki (uusin ensin)
   eleventyConfig.addCollection("publications", function (collectionApi) {
     return collectionApi
