@@ -2347,6 +2347,13 @@ html:not([data-bs-theme="dark"]) select {
     url("/img/WIN_20210329_16_06_01_Pro.jpg") center 35% / cover no-repeat;
 }
 
+html:not([data-bs-theme="dark"]) .subpage-hero-image {
+  background:
+    linear-gradient(112deg, rgba(205, 226, 248, 0.82) 0%, rgba(196, 221, 247, 0.58) 55%, rgba(187, 214, 244, 0.28) 100%),
+    linear-gradient(rgba(180, 206, 236, 0.15) 60%, rgba(220, 236, 252, 0.75) 100%),
+    url("/img/WIN_20210329_16_06_01_Pro.jpg") center 35% / cover no-repeat;
+}
+
 @media (max-width: 991.98px) {
   .subpage-hero-image {
     height: 200px;
