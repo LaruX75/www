@@ -3,18 +3,33 @@
     "eyebrow": "Jari Laru",
     "title": "Koulutan ja tutkin, miten tekoäly ja oppimisteknologia toimivat koulun arjessa.",
     "roles": [
-      { "label": "Yliopistonlehtori", "href": "/tyoni-yliopistonlehtorina/" },
-      { "label": "Kouluttaja (Larux t:mi)", "href": "/larux-tmi/" },
-      { "label": "Kuntapäättäjä", "href": "/politiikka/" }
+      {
+        "label": "Yliopistonlehtori",
+        "href": "/tyoni-yliopistonlehtorina/"
+      },
+      {
+        "label": "Kouluttaja (Larux t:mi)",
+        "href": "/larux-tmi/"
+      },
+      {
+        "label": "Kuntapäättäjä",
+        "href": "/politiikka/"
+      }
     ]
   },
   "intro": {
     "text": "Yliopistonlehtori, kouluttaja ja kuntapäättäjä. Tutkin ja koulutan miten tekoäly ja oppimisteknologia toimivat koulun arjessa — ja vaikutan päätöksentekoon, jotta tutkimusnäyttö löytää tiensä luokkahuoneeseen.",
-    "cta1": { "label": "Pyydä tarjous", "href": "/yhteystiedot/" },
-    "cta2": { "label": "Tutustu taustaani", "href": "/tietoa/" }
+    "cta1": {
+      "label": "Pyydä tarjous",
+      "href": "/yhteystiedot/"
+    },
+    "cta2": {
+      "label": "Tutustu taustaani",
+      "href": "/tietoa/"
+    }
   },
   "paths": {
-    "sectionLabel": "Mistä lähdet liikkeelle?",
+    "sectionLabel": "Mistä lähteä liikkeelle?",
     "cards": [
       {
         "icon": "bi-person-workspace",
@@ -26,7 +41,7 @@
       {
         "icon": "bi-journal-text",
         "title": "Tutkijalle & kollegalle",
-        "desc": "Vertaisarvioidut julkaisut, hankeyhteistyö ja tutkimusagenda teknologiatuetusta oppimisesta ja tekoälykasvatuksesta.",
+        "desc": "Tutkimusta teknologiatuetun oppimisen ja opettamisen alueella jo vuosituhannen alusta. Olen ollut aina kiinnostunut nousevista teknologioista (emergent technologies). Tällä hetkellä tutkin tekoälylukutaitoa.",
         "cta": "Tutkimussivulle →",
         "href": "/tutkimus/"
       },
@@ -64,27 +79,54 @@
     "card1": {
       "eyebrow": "Yliopisto",
       "lead": "Teknologiatuetun oppimisen yliopistonlehtori, Kasvatustieteiden tiedekunta, Oulun yliopisto. Mukana STN:n rahoittamassa Generation AI -hankkeessa — tekoälykasvatusta esi- ja perusopetukseen.",
-      "kpi1": { "value": "100+", "label": "opinnäytettä" },
-      "kpi2": { "value": "15+", "label": "v. kokemus" },
-      "cta": { "label": "Lue lisää", "href": "/tyoni-yliopistonlehtorina/" }
+      "kpi1": {
+        "value": "100+",
+        "label": "opinnäytettä"
+      },
+      "kpi2": {
+        "value": "15+",
+        "label": "v. kokemus"
+      },
+      "cta": {
+        "label": "Lue lisää",
+        "href": "/tyoni-yliopistonlehtorina/"
+      }
     },
     "card2": {
       "eyebrow": "Koulutuspalvelut · Larux t:mi",
       "lead": "Käytännönläheisiä koulutuksia opettajille, rehtoreille ja organisaatioille — tekoälyn soveltamisesta kouluarjessa keynote-puheenvuoroihin ja työpajoihin.",
-      "kpi2": { "value": "50+", "label": "koulutusta" },
-      "cta1": { "label": "Tilaa koulutus", "href": "/larux-tmi/" },
-      "cta2": { "label": "Kaikki esitykset", "href": "/esitykset/" }
+      "kpi2": {
+        "value": "50+",
+        "label": "koulutusta"
+      },
+      "cta1": {
+        "label": "Tilaa koulutus",
+        "href": "/larux-tmi/"
+      },
+      "cta2": {
+        "label": "Kaikki esitykset",
+        "href": "/esitykset/"
+      }
     },
     "card3": {
       "eyebrow": "Tiede & tutkimus",
       "lead": "Vertaisarvioituja artikkeleita ja konferenssijulkaisuja teknologiatuetusta oppimisesta, tekoälykasvatuksesta ja digipedagogiikasta.",
-      "cta": { "label": "Kaikki julkaisut", "href": "/julkaisut/" }
+      "cta": {
+        "label": "Kaikki julkaisut",
+        "href": "/julkaisut/"
+      }
     },
     "card4": {
       "eyebrow": "Yhteiskunnallinen vaikuttaminen",
       "lead": "Varavaltuutettu ja sivistyslautakunnan jäsen Oulussa (Kokoomus). Painoalueina kouluverkko, hallinnon avoimuus ja kaupunkialueiden tasapuolinen kehitys.",
-      "cta1": { "label": "Politiikkasivu", "href": "/politiikka/" },
-      "cta2": { "label": "Kynästä", "href": "/kynasta/" }
+      "cta1": {
+        "label": "Politiikkasivu",
+        "href": "/politiikka/"
+      },
+      "cta2": {
+        "label": "Kynästä",
+        "href": "/kynasta/"
+      }
     }
   },
   "testimonials": {
@@ -103,8 +145,17 @@
   "closing": {
     "heading": "Tarvitsetko kouluttajan, puhujan tai tutkimukseen nojaavan asiantuntijan?",
     "text": "Sivulla esitellyt teemat jatkuvat käytännön yhteistyössä: koulutuksina, puheenvuoroina, hanketukena ja kehittämistyön sparrauksena.",
-    "cta1": { "label": "Pyydä tarjous", "href": "/yhteystiedot/" },
-    "cta2": { "label": "Katso palvelut", "href": "/larux-tmi/" },
-    "cta3": { "label": "Tutustu taustaani", "href": "/tietoa/" }
+    "cta1": {
+      "label": "Pyydä tarjous",
+      "href": "/yhteystiedot/"
+    },
+    "cta2": {
+      "label": "Katso palvelut",
+      "href": "/larux-tmi/"
+    },
+    "cta3": {
+      "label": "Tutustu taustaani",
+      "href": "/tietoa/"
+    }
   }
 }
