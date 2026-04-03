@@ -1,0 +1,105 @@
+{
+  "hero": {
+    "eyebrow": "Tietoa",
+    "name": "Jari Laru",
+    "lead": "Poliitikko · yliopistonlehtori · tutkija · yrittäjä · isä · kulinaristi · automatkailija",
+    "bio": "Olen oululainen kasvatustieteiden tohtori, joka tekee töitä monella rintamalla: tutkin teknologiaa oppimisessa, opetan tulevia opettajia Oulun yliopistossa, vaikutan Oulu-kaupungin päätöksenteossa kaupunginvaltuutettuna ja tarjoan koulutuksia Larux t:mi -yritykseni kautta. Vapaa-ajalla ruoanlaitosta ja pitkistä automatkareissuista tulee voimaa kaikkeen muuhun.",
+    "photoCaption": "Jari Laru – yliopistonlehtori, tutkija, poliitikko",
+    "ctas": [
+      { "label": "Politiikka",     "href": "/politiikka/",           "style": "btn-primary" },
+      { "label": "Tutkimus",       "href": "/tutkimus/",             "style": "btn-outline-primary" },
+      { "label": "Koulutukset",    "href": "/larux-tmi/",            "style": "btn-outline-primary" },
+      { "label": "Ansioluettelo",  "href": "/cv/",                   "style": "btn-outline-secondary" }
+    ]
+  },
+  "roles": {
+    "heading": "Neljässä roolissa",
+    "lead": "Ammatillinen elämäni jakautuu neljään toisiaan täydentävään rooliin.",
+    "cards": [
+      {
+        "title": "Kaupunginvaltuutettu",
+        "desc": "Olen toiminut politiikassa koko 2000-luvun. Nykyään toimin Oulun kaupunginvaltuutettuna ja sivistys- ja kulttuurilautakunnan jäsenenä. Aiheina erityisesti koulutus, kulttuuri ja kaupunkikehitys.",
+        "cta": "Lue lisää politiikasta",
+        "href": "/politiikka/"
+      },
+      {
+        "title": "Yliopistonlehtori",
+        "desc": "Kasvatustieteiden tohtori (2012). Teknologiatuetun oppimisen yliopistonlehtori Oulun yliopistossa. Nykyään tutkin opettajien tekoälylukutaitoa Generation AI -hankkeessa.",
+        "cta": "Lue lisää yliopistotyöstä",
+        "href": "/tyoni-yliopistonlehtorina/"
+      },
+      {
+        "title": "Kouluttaja & puhuja",
+        "desc": "Larux t:mi -yritykseni kautta tarjoan opetusalan täydennyskoulutusta ja puheenvuoroja. Erikoisala: tekoäly, digipedagogiikka ja teknologiatuettu oppiminen.",
+        "cta": "Lue lisää koulutuksista",
+        "href": "/larux-tmi/"
+      },
+      {
+        "title": "Tutkija",
+        "desc": "Julkaisuja Research.fi-profiilissa, ORCID-tunniste 0000-0003-0347-0182. Tutkimusalueet: mobiilioppiminen, yhteisöllinen oppiminen, tekoälylukutaito.",
+        "cta": "Lue lisää tutkimuksesta",
+        "href": "/tutkimus/"
+      }
+    ]
+  },
+  "hometown": {
+    "heading": "Oululainen Jäälissä",
+    "paragraphs": [
+      "Olen syntyjään oululainen ja asunut kaupungissa koko elämäni. Perheemme – puoliso ja kolme lasta – asuu omakotitalossa <strong>Jäälissä</strong>, Oulun eteläosassa. Jääli on rauhallinen lähiö järven ja luonnon äärellä, mutta kuitenkin lähellä kaupungin palveluita.",
+      "Oulu on minulle enemmän kuin kotikaupunki – se on myös tutkimuksen, politiikan ja yhteisöllisyyden kenttä. Olen ollut mukana oululaisessa päätöksenteossa ja kansalaistoiminnassa pitkään.",
+      "Kaupunginvaltuutettuna pyrin edistämään erityisesti koulutuksen, kulttuurin ja lähidemokratian asiaa."
+    ]
+  },
+  "leisure": {
+    "heading": "Vapaa-aika & matkat",
+    "lead": "Perhe, ruoanlaitto, remontointi ja pitkät automatkareissut ympäri Eurooppaa.",
+    "cards": [
+      {
+        "title": "Perheenisä",
+        "desc": "Kolmen lapsen isä ja puoliso. Kouluikäiset lapset harrastuksineen pitävät jalat tiukasti kiinni normaaliarjessa – ja se on hyvä asia.",
+        "cta": null,
+        "href": null
+      },
+      {
+        "title": "Kulinaristi",
+        "desc": "Intohimoinen ruoanlaittaja, leipuri ja keittokirjojen keräilijä. Kuulun Suomen juustoseuraan.",
+        "cta": "Ruokakuvat Instagramissa",
+        "href": "https://www.instagram.com/stories/highlights/18134958520132291/?hl=fi"
+      },
+      {
+        "title": "Suikkamies",
+        "desc": "Asumme 1970-luvun talossa, jossa remontoitavaa riittää. Kaivinkoneen ohjaimista tapettipintaan.",
+        "cta": "Remontit Instagramissa",
+        "href": "https://www.instagram.com/stories/highlights/17917732456477538/?hl=fi"
+      },
+      {
+        "title": "Varhainen teknologianörtti",
+        "desc": "BBS-harrastelija ja SysOp jo 1989–1990 — ennen Internetiä. Pyöritin Large's Security BBS:ää Raahessa, toimin Fidonet-solmuna ja piirsin ANSI-taidetta. Teknologian äärellä alusta asti.",
+        "cta": "Lue BBS-muistelmat",
+        "href": "/1998/02/16/silloin-kun-sita-oltiin-larges-securityn-sysop-bbs-muisteluita/"
+      }
+    ],
+    "travelStrip": {
+      "label": "Pitkät automatkareissut",
+      "destinations": "Pohjois-Makedonia · Slovakia · Ranska · ja lisää tulossa",
+      "cta1": { "label": "Matkakertomukset", "href": "/autolomat/" },
+      "cta2": { "label": "Oulu–Skopje 2021", "href": "/2021/01/17/roadtrip-oulu-skopje-oulu-vajaa-10-000km/" }
+    }
+  },
+  "social": {
+    "heading": "Löydä minut verkosta",
+    "lead": "Olen aktiivinen useilla alustoilla – ammatillisesti ja vapaa-ajalla.",
+    "contactText": "Haluatko ottaa yhteyttä suoraan?",
+    "contactCta": { "label": "Ota yhteyttä", "href": "/yhteystiedot/" },
+    "profiles": [
+      { "platform": "LinkedIn",      "desc": "Ammatillinen profiili",         "href": "https://www.linkedin.com/in/jarilaru/" },
+      { "platform": "Instagram",     "desc": "Ruokaa, remontteja, reissuja",  "href": "https://www.instagram.com/jarilaru/" },
+      { "platform": "YouTube",       "desc": "Videot ja luennot",             "href": "https://www.youtube.com/jarilaru" },
+      { "platform": "Facebook",      "desc": "Poliittinen viestintä, arki",   "href": "https://www.facebook.com/jari.laru" },
+      { "platform": "ORCID",         "desc": "0000-0003-0347-0182",           "href": "https://orcid.org/0000-0003-0347-0182" },
+      { "platform": "Research.fi",   "desc": "Tutkijatietokanta",             "href": "https://research.fi/en/results/person/0000-0003-0347-0182" },
+      { "platform": "ResearchGate",  "desc": "Julkaisut ja tutkimusverkosto", "href": "https://www.researchgate.net/profile/Jari-Laru" },
+      { "platform": "Google Scholar","desc": "Viittaukset ja h-indeksi",      "href": "https://scholar.google.com/citations?user=HOLu1ZIAAAAJ&hl=fi" }
+    ]
+  }
+}

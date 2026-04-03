@@ -9,27 +9,40 @@ translationKey: about
 wp_id: 7
 ---
 
+{% set roleImages = [
+  { src: "/img/uploads/2020/01/WhatsApp-Image-2019-12-02-at-18.58.31-1.jpeg", alt: "Jari Laru kaupunginvaltuustossa", icon: "bi-building-fill", color: "text-primary" },
+  { src: "/img/uploads/2021/03/ESITYS-300x225.jpg", alt: "Jari Laru pitämässä tieteellistä esitystä", icon: "bi-mortarboard-fill", color: "text-success" },
+  { src: "/img/uploads/2021/01/verkkolive.jpg", alt: "Jari Laru verkkolähetyksessä kouluttajana", icon: "bi-mic-fill", color: "text-warning" },
+  { src: "/img/uploads/2021/03/CTE-159x300.jpg", alt: "Jari Laru ohjelmoinnillisen ajattelun konferenssissa", icon: "bi-journal-text", color: "text-info" }
+] %}
+
+{% set leisureIcons = [
+  { icon: "bi-house-heart-fill", color: "text-danger" },
+  { icon: "bi-egg-fried",        color: "text-warning" },
+  { icon: "bi-tools",            color: "text-secondary" },
+  { icon: "bi-hdd-stack",        color: "text-info" }
+] %}
+
 <!-- HERO -->
 <section class="py-5 bg-body-tertiary border-bottom">
   <div class="container">
     <div class="row align-items-center g-5">
       <div class="col-lg-7">
-        <p class="text-uppercase text-muted fw-semibold small mb-2">Tietoa</p>
-        <h1 class="display-5 fw-bold mb-3">Jari Laru</h1>
-        <p class="lead mb-4">Poliitikko &middot; yliopistonlehtori &middot; tutkija &middot; yrittäjä &middot; isä &middot; kulinaristi &middot; automatkailija</p>
-        <p class="mb-4">Olen oululainen kasvatustieteiden tohtori, joka tekee töitä monella rintamalla: tutkin teknologiaa oppimisessa, opetan tulevia opettajia Oulun yliopistossa, vaikutan Oulu-kaupungin päätöksenteossa kaupunginvaltuutettuna ja tarjoan koulutuksia Larux t:mi -yritykseni kautta. Vapaa-ajalla ruoanlaitosta ja pitkistä automatkareissuista tulee voimaa kaikkeen muuhun.</p>
+        <p class="text-uppercase text-muted fw-semibold small mb-2">{{ pageContent.tietoa.hero.eyebrow }}</p>
+        <h1 class="display-5 fw-bold mb-3">{{ pageContent.tietoa.hero.name }}</h1>
+        <p class="lead mb-4">{{ pageContent.tietoa.hero.lead }}</p>
+        <p class="mb-4">{{ pageContent.tietoa.hero.bio }}</p>
         <div class="d-flex flex-wrap gap-2">
-          <a href="/politiikka/" class="btn btn-primary">Politiikka</a>
-          <a href="/tutkimus/" class="btn btn-outline-primary">Tutkimus</a>
-          <a href="/larux-tmi/" class="btn btn-outline-primary">Koulutukset</a>
-          <a href="/cv/" class="btn btn-outline-secondary">Ansioluettelo</a>
+          {% for cta in pageContent.tietoa.hero.ctas %}
+          <a href="{{ cta.href }}" class="btn {{ cta.style }}">{{ cta.label }}</a>
+          {% endfor %}
         </div>
       </div>
       <div class="col-lg-5">
         <div class="card border-0 shadow-sm overflow-hidden">
           <img class="card-img-top" src="/img/uploads/2020/01/jari.laru_1397908734_26-e1610053137214.jpg" alt="Jari Laru" loading="eager">
           <div class="card-body py-2 px-3">
-            <p class="card-text small text-muted mb-0">Jari Laru &ndash; yliopistonlehtori, tutkija, poliitikko</p>
+            <p class="card-text small text-muted mb-0">{{ pageContent.tietoa.hero.photoCaption }}</p>
           </div>
         </div>
       </div>
@@ -40,61 +53,25 @@ wp_id: 7
 <!-- NELJÄ ROOLIA -->
 <section class="py-5">
   <div class="container">
-    <h2 class="h3 fw-bold mb-2">Neljässä roolissa</h2>
-    <p class="text-muted mb-5">Ammatillinen elämäni jakautuu neljään toisiaan täydentävään rooliin.</p>
+    <h2 class="h3 fw-bold mb-2">{{ pageContent.tietoa.roles.heading }}</h2>
+    <p class="text-muted mb-5">{{ pageContent.tietoa.roles.lead }}</p>
     <div class="row g-4">
+      {% for card in pageContent.tietoa.roles.cards %}
+      {% set img = roleImages[loop.index0] %}
       <div class="col-md-6 col-lg-3">
         <div class="card h-100 border-0 shadow-sm">
-          <img class="card-img-top rooli-kuva" src="/img/uploads/2020/01/WhatsApp-Image-2019-12-02-at-18.58.31-1.jpeg" alt="Jari Laru kaupunginvaltuustossa" loading="lazy">
+          <img class="card-img-top rooli-kuva" src="{{ img.src }}" alt="{{ img.alt }}" loading="lazy">
           <div class="card-body p-4">
-            <div class="mb-2 text-primary"><i class="bi bi-building-fill fs-4"></i></div>
-            <h3 class="h5 fw-bold">Kaupunginvaltuutettu</h3>
-            <p class="text-muted small mb-3">Olen toiminut politiikassa koko 2000-luvun. Nykyään toimin Oulun kaupunginvaltuutettuna ja sivistys- ja kulttuurilautakunnan jäsenenä. Aiheina erityisesti koulutus, kulttuuri ja kaupunkikehitys.</p>
+            <div class="mb-2 {{ img.color }}"><i class="bi {{ img.icon }} fs-4"></i></div>
+            <h3 class="h5 fw-bold">{{ card.title }}</h3>
+            <p class="text-muted small mb-3">{{ card.desc }}</p>
           </div>
           <div class="card-footer bg-transparent border-0 px-4 pb-4">
-            <a href="/politiikka/" class="btn btn-primary btn-sm">Lue lisää politiikasta</a>
+            <a href="{{ card.href }}" class="btn btn-primary btn-sm">{{ card.cta }}</a>
           </div>
         </div>
       </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="card h-100 border-0 shadow-sm">
-          <img class="card-img-top rooli-kuva" src="/img/uploads/2021/03/ESITYS-300x225.jpg" alt="Jari Laru pitämässä tieteellistä esitystä" loading="lazy">
-          <div class="card-body p-4">
-            <div class="mb-2 text-success"><i class="bi bi-mortarboard-fill fs-4"></i></div>
-            <h3 class="h5 fw-bold">Yliopistonlehtori</h3>
-            <p class="text-muted small mb-3">Kasvatustieteiden tohtori (2012). Teknologiatuetun oppimisen yliopistonlehtori Oulun yliopistossa. Nykyään tutkin opettajien tekoälylukutaitoa Generation AI -hankkeessa.</p>
-          </div>
-          <div class="card-footer bg-transparent border-0 px-4 pb-4">
-            <a href="/tyoni-yliopistonlehtorina/" class="btn btn-primary btn-sm">Lue lisää yliopistotyöstä</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="card h-100 border-0 shadow-sm">
-          <img class="card-img-top rooli-kuva" src="/img/uploads/2021/01/verkkolive.jpg" alt="Jari Laru verkkolähetyksessä kouluttajana" loading="lazy">
-          <div class="card-body p-4">
-            <div class="mb-2 text-warning"><i class="bi bi-mic-fill fs-4"></i></div>
-            <h3 class="h5 fw-bold">Kouluttaja &amp; puhuja</h3>
-            <p class="text-muted small mb-3">Larux t:mi -yritykseni kautta tarjoan opetusalan täydennyskoulutusta ja puheenvuoroja. Erikoisala: tekoäly, digipedagogiikka ja teknologiatuettu oppiminen.</p>
-          </div>
-          <div class="card-footer bg-transparent border-0 px-4 pb-4">
-            <a href="/larux-tmi/" class="btn btn-primary btn-sm">Lue lisää koulutuksista</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="card h-100 border-0 shadow-sm">
-          <img class="card-img-top rooli-kuva" src="/img/uploads/2021/03/CTE-159x300.jpg" alt="Jari Laru ohjelmoinnillisen ajattelun konferenssissa" loading="lazy">
-          <div class="card-body p-4">
-            <div class="mb-2 text-info"><i class="bi bi-journal-text fs-4"></i></div>
-            <h3 class="h5 fw-bold">Tutkija</h3>
-            <p class="text-muted small mb-3">Julkaisuja Research.fi-profiilissa, ORCID-tunniste 0000-0003-0347-0182. Tutkimusalueet: mobiilioppiminen, yhteisöllinen oppiminen, tekoälylukutaito.</p>
-          </div>
-          <div class="card-footer bg-transparent border-0 px-4 pb-4">
-            <a href="/tutkimus/" class="btn btn-primary btn-sm">Lue lisää tutkimuksesta</a>
-          </div>
-        </div>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </section>
@@ -104,10 +81,10 @@ wp_id: 7
   <div class="container">
     <div class="row align-items-center g-5">
       <div class="col-lg-6">
-        <h2 class="h3 fw-bold mb-3">Oululainen Jäälissä</h2>
-        <p class="mb-3">Olen syntyjään oululainen ja asunut kaupungissa koko elämäni. Perheemme &ndash; puoliso ja kolme lasta &ndash; asuu omakotitalossa <strong>Jäälissä</strong>, Oulun eteläosassa. Jääli on rauhallinen lähiö järven ja luonnon äärellä, mutta kuitenkin lähellä kaupungin palveluita.</p>
-        <p class="mb-3">Oulu on minulle enemmän kuin kotikaupunki &ndash; se on myös tutkimuksen, politiikan ja yhteisöllisyyden kenttä. Olen ollut mukana oululaisessa päätöksenteossa ja kansalaistoiminnassa pitkään.</p>
-        <p class="mb-0">Kaupunginvaltuutettuna pyrin edistämään erityisesti koulutuksen, kulttuurin ja lähidemokratian asiaa.</p>
+        <h2 class="h3 fw-bold mb-3">{{ pageContent.tietoa.hometown.heading }}</h2>
+        {% for p in pageContent.tietoa.hometown.paragraphs %}
+        <p class="{% if loop.last %}mb-0{% else %}mb-3{% endif %}">{{ p | safe }}</p>
+        {% endfor %}
       </div>
       <div class="col-lg-6">
         <div class="row g-3">
@@ -136,8 +113,8 @@ wp_id: 7
 <!-- VAPAA-AIKA & MATKAT – galleria + lightbox -->
 <section class="py-5">
   <div class="container">
-    <h2 class="h3 fw-bold mb-2">Vapaa-aika &amp; matkat</h2>
-    <p class="text-muted mb-4">Perhe, ruoanlaitto, remontointi ja pitkät automatkareissut ympäri Eurooppaa.</p>
+    <h2 class="h3 fw-bold mb-2">{{ pageContent.tietoa.leisure.heading }}</h2>
+    <p class="text-muted mb-4">{{ pageContent.tietoa.leisure.lead }}</p>
 
     <!-- Galleria: iso featured + 2×2 thumbnails -->
     <div class="row g-2 mb-5">
@@ -174,62 +151,34 @@ wp_id: 7
 
     <!-- Vapaa-aika-kortit -->
     <div class="row g-4">
+      {% for card in pageContent.tietoa.leisure.cards %}
+      {% set ic = leisureIcons[loop.index0] %}
       <div class="col-sm-6 col-lg-3">
         <div class="card border-0 bg-body-tertiary h-100">
           <div class="card-body p-4">
-            <div class="mb-2 fs-4"><i class="bi bi-house-heart-fill text-danger"></i></div>
-            <h3 class="h5 fw-bold">Perheenisä</h3>
-            <p class="text-muted mb-0">Kolmen lapsen isä ja puoliso. Kouluikäiset lapset harrastuksineen pitävät jalat tiukasti kiinni normaaliarjessa &ndash; ja se on hyvä asia.</p>
+            <div class="mb-2 fs-4"><i class="bi {{ ic.icon }} {{ ic.color }}"></i></div>
+            <h3 class="h5 fw-bold">{{ card.title }}</h3>
+            <p class="text-muted {% if card.cta %}mb-3{% else %}mb-0{% endif %}">{{ card.desc }}</p>
           </div>
-        </div>
-      </div>
-      <div class="col-sm-6 col-lg-3">
-        <div class="card border-0 bg-body-tertiary h-100">
-          <div class="card-body p-4">
-            <div class="mb-2 fs-4"><i class="bi bi-egg-fried text-warning"></i></div>
-            <h3 class="h5 fw-bold">Kulinaristi</h3>
-            <p class="text-muted mb-3">Intohimoinen ruoanlaittaja, leipuri ja keittokirjojen keräilijä. Kuulun Suomen juustoseuraan.</p>
-          </div>
+          {% if card.cta %}
           <div class="card-footer bg-transparent border-0 px-4 pb-4 pt-0">
-            <a href="https://www.instagram.com/stories/highlights/18134958520132291/?hl=fi" target="_blank" rel="noreferrer noopener" class="btn btn-primary btn-sm"><i class="bi bi-instagram me-1"></i>Ruokakuvat Instagramissa</a>
+            <a href="{{ card.href }}" {% if card.href and '://' in card.href %}target="_blank" rel="noreferrer noopener"{% endif %} class="btn btn-primary btn-sm">{{ card.cta }}</a>
           </div>
+          {% endif %}
         </div>
       </div>
-      <div class="col-sm-6 col-lg-3">
-        <div class="card border-0 bg-body-tertiary h-100">
-          <div class="card-body p-4">
-            <div class="mb-2 fs-4"><i class="bi bi-tools text-secondary"></i></div>
-            <h3 class="h5 fw-bold">Suikkamies</h3>
-            <p class="text-muted mb-3">Asumme 1970-luvun talossa, jossa remontoitavaa riittää. Kaivinkoneen ohjaimista tapettipintaan.</p>
-          </div>
-          <div class="card-footer bg-transparent border-0 px-4 pb-4 pt-0">
-            <a href="https://www.instagram.com/stories/highlights/17917732456477538/?hl=fi" target="_blank" rel="noreferrer noopener" class="btn btn-primary btn-sm"><i class="bi bi-instagram me-1"></i>Remontit Instagramissa</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6 col-lg-3">
-        <div class="card border-0 bg-body-tertiary h-100">
-          <div class="card-body p-4">
-            <div class="mb-2 fs-4"><i class="bi bi-hdd-stack text-info"></i></div>
-            <h3 class="h5 fw-bold">Varhainen teknologianörtti</h3>
-            <p class="text-muted mb-3">BBS-harrastelija ja SysOp jo 1989&ndash;1990 &mdash; ennen Internetiä. Pyöritin Large&rsquo;s Security BBS:ää Raahessa, toimin Fidonet-solmuna ja piirsin ANSI-taidetta. Teknologian äärellä alusta asti.</p>
-          </div>
-          <div class="card-footer bg-transparent border-0 px-4 pb-4 pt-0">
-            <a href="/1998/02/16/silloin-kun-sita-oltiin-larges-securityn-sysop-bbs-muisteluita/" class="btn btn-primary btn-sm"><i class="bi bi-terminal me-1"></i>Lue BBS-muistelmat</a>
-          </div>
-        </div>
-      </div>
+      {% endfor %}
     </div>
 
     <!-- Automatkareissut-info -->
     <div class="mt-4 p-4 border rounded bg-body-tertiary d-flex flex-wrap align-items-center justify-content-between gap-3">
       <div>
-        <span class="fw-bold">Pitkät automatkareissut</span>
-        <span class="text-muted ms-2 small">Pohjois-Makedonia &middot; Slovakia &middot; Ranska &middot; ja lisää tulossa</span>
+        <span class="fw-bold">{{ pageContent.tietoa.leisure.travelStrip.label }}</span>
+        <span class="text-muted ms-2 small">{{ pageContent.tietoa.leisure.travelStrip.destinations }}</span>
       </div>
       <div class="d-flex gap-2">
-        <a href="/autolomat/" class="btn btn-primary btn-sm">Matkakertomukset</a>
-        <a href="/2021/01/17/roadtrip-oulu-skopje-oulu-vajaa-10-000km/" class="btn btn-primary btn-sm">Oulu&ndash;Skopje 2021</a>
+        <a href="{{ pageContent.tietoa.leisure.travelStrip.cta1.href }}" class="btn btn-primary btn-sm">{{ pageContent.tietoa.leisure.travelStrip.cta1.label }}</a>
+        <a href="{{ pageContent.tietoa.leisure.travelStrip.cta2.href }}" class="btn btn-primary btn-sm">{{ pageContent.tietoa.leisure.travelStrip.cta2.label }}</a>
       </div>
     </div>
   </div>
@@ -278,85 +227,35 @@ wp_id: 7
 <!-- SOME JA YHTEYS -->
 <section class="py-5 bg-body-tertiary border-top">
   <div class="container">
-    <h2 class="h3 fw-bold mb-2">Löydä minut verkosta</h2>
-    <p class="text-muted mb-4">Olen aktiivinen useilla alustoilla &ndash; ammatillisesti ja vapaa-ajalla.</p>
+    <h2 class="h3 fw-bold mb-2">{{ pageContent.tietoa.social.heading }}</h2>
+    <p class="text-muted mb-4">{{ pageContent.tietoa.social.lead }}</p>
     <div class="row g-3">
+      {% for profile in pageContent.tietoa.social.profiles %}
       <div class="col-sm-6 col-lg-3">
-        <a href="https://www.linkedin.com/in/jarilaru/" target="_blank" rel="noopener noreferrer" class="card border-0 shadow-sm text-decoration-none h-100">
+        <a href="{{ profile.href }}" target="_blank" rel="noopener noreferrer" class="card border-0 shadow-sm text-decoration-none h-100">
           <div class="card-body p-4 text-center">
-            <div class="fs-1 mb-2" style="color:#0a66c2"><i class="bi bi-linkedin"></i></div>
-            <h3 class="h6 fw-bold">LinkedIn</h3>
-            <p class="small text-muted mb-0">Ammatillinen profiili</p>
+            <div class="fs-1 mb-2
+              {%- if profile.platform == 'LinkedIn' %}" style="color:#0a66c2"><i class="bi bi-linkedin"></i>
+              {%- elif profile.platform == 'Instagram' %}" style="color:#e1306c"><i class="bi bi-instagram"></i>
+              {%- elif profile.platform == 'YouTube' %} text-danger"><i class="bi bi-youtube"></i>
+              {%- elif profile.platform == 'Facebook' %}" style="color:#1877f2"><i class="bi bi-facebook"></i>
+              {%- elif profile.platform == 'ORCID' %} text-success"><i class="bi bi-person-badge-fill"></i>
+              {%- elif profile.platform == 'Research.fi' %} text-primary"><i class="bi bi-building"></i>
+              {%- elif profile.platform == 'ResearchGate' %} text-success"><i class="bi bi-share-fill"></i>
+              {%- elif profile.platform == 'Google Scholar' %} text-warning"><i class="bi bi-search"></i>
+              {%- else %}"><i class="bi bi-globe"></i>
+              {%- endif %}
+            </div>
+            <h3 class="h6 fw-bold">{{ profile.platform }}</h3>
+            <p class="small text-muted mb-0">{{ profile.desc }}</p>
           </div>
         </a>
       </div>
-      <div class="col-sm-6 col-lg-3">
-        <a href="https://www.instagram.com/jarilaru/" target="_blank" rel="noopener noreferrer" class="card border-0 shadow-sm text-decoration-none h-100">
-          <div class="card-body p-4 text-center">
-            <div class="fs-1 mb-2" style="color:#e1306c"><i class="bi bi-instagram"></i></div>
-            <h3 class="h6 fw-bold">Instagram</h3>
-            <p class="small text-muted mb-0">Ruokaa, remontteja, reissuja</p>
-          </div>
-        </a>
-      </div>
-      <div class="col-sm-6 col-lg-3">
-        <a href="https://www.youtube.com/jarilaru" target="_blank" rel="noopener noreferrer" class="card border-0 shadow-sm text-decoration-none h-100">
-          <div class="card-body p-4 text-center">
-            <div class="fs-1 mb-2 text-danger"><i class="bi bi-youtube"></i></div>
-            <h3 class="h6 fw-bold">YouTube</h3>
-            <p class="small text-muted mb-0">Videot ja luennot</p>
-          </div>
-        </a>
-      </div>
-      <div class="col-sm-6 col-lg-3">
-        <a href="https://www.facebook.com/jari.laru" target="_blank" rel="noopener noreferrer" class="card border-0 shadow-sm text-decoration-none h-100">
-          <div class="card-body p-4 text-center">
-            <div class="fs-1 mb-2" style="color:#1877f2"><i class="bi bi-facebook"></i></div>
-            <h3 class="h6 fw-bold">Facebook</h3>
-            <p class="small text-muted mb-0">Poliittinen viestintä, arki</p>
-          </div>
-        </a>
-      </div>
-      <div class="col-sm-6 col-lg-3">
-        <a href="https://orcid.org/0000-0003-0347-0182" target="_blank" rel="noopener noreferrer" class="card border-0 shadow-sm text-decoration-none h-100">
-          <div class="card-body p-4 text-center">
-            <div class="fs-1 mb-2 text-success"><i class="bi bi-person-badge-fill"></i></div>
-            <h3 class="h6 fw-bold">ORCID</h3>
-            <p class="small text-muted mb-0">0000-0003-0347-0182</p>
-          </div>
-        </a>
-      </div>
-      <div class="col-sm-6 col-lg-3">
-        <a href="https://research.fi/en/results/person/0000-0003-0347-0182" target="_blank" rel="noopener noreferrer" class="card border-0 shadow-sm text-decoration-none h-100">
-          <div class="card-body p-4 text-center">
-            <div class="fs-1 mb-2 text-primary"><i class="bi bi-building"></i></div>
-            <h3 class="h6 fw-bold">Research.fi</h3>
-            <p class="small text-muted mb-0">Tutkijatietokanta</p>
-          </div>
-        </a>
-      </div>
-      <div class="col-sm-6 col-lg-3">
-        <a href="https://www.researchgate.net/profile/Jari-Laru" target="_blank" rel="noopener noreferrer" class="card border-0 shadow-sm text-decoration-none h-100">
-          <div class="card-body p-4 text-center">
-            <div class="fs-1 mb-2 text-success"><i class="bi bi-share-fill"></i></div>
-            <h3 class="h6 fw-bold">ResearchGate</h3>
-            <p class="small text-muted mb-0">Julkaisut ja tutkimusverkosto</p>
-          </div>
-        </a>
-      </div>
-      <div class="col-sm-6 col-lg-3">
-        <a href="https://scholar.google.com/citations?user=HOLu1ZIAAAAJ&hl=fi" target="_blank" rel="noopener noreferrer" class="card border-0 shadow-sm text-decoration-none h-100">
-          <div class="card-body p-4 text-center">
-            <div class="fs-1 mb-2 text-warning"><i class="bi bi-search"></i></div>
-            <h3 class="h6 fw-bold">Google Scholar</h3>
-            <p class="small text-muted mb-0">Viittaukset ja h-indeksi</p>
-          </div>
-        </a>
-      </div>
+      {% endfor %}
     </div>
     <div class="mt-5 text-center">
-      <p class="text-muted mb-3">Haluatko ottaa yhteyttä suoraan?</p>
-      <a href="/yhteystiedot/" class="btn btn-primary"><i class="bi bi-envelope-fill me-2"></i>Ota yhteyttä</a>
+      <p class="text-muted mb-3">{{ pageContent.tietoa.social.contactText }}</p>
+      <a href="{{ pageContent.tietoa.social.contactCta.href }}" class="btn btn-primary"><i class="bi bi-envelope-fill me-2"></i>{{ pageContent.tietoa.social.contactCta.label }}</a>
     </div>
   </div>
 </section>
