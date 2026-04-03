@@ -346,8 +346,9 @@ async function doLogin() {
       const prefix = 'authorization:github:success:';
       if (typeof e.data === 'string' && e.data.startsWith(prefix)) {
         window.removeEventListener('message', handler);
+        popup?.close();
         try {
-          const payload = JSON.parse(atob(e.data.slice(prefix.length)));
+          const payload = JSON.parse(e.data.slice(prefix.length));
           if (payload?.token) { resolve(payload.token); } else { reject(new Error('No token')); }
         } catch { reject(new Error('Parse error')); }
       }
