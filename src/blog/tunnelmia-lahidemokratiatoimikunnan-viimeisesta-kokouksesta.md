@@ -20,4 +20,4 @@ Kokous oli jälleen varsin rattoisa, me olemme tässä valtuustokauden aikana ka
 
 Itse istun puheenjohtajan paikalla pöydän päässä. Minusta katsoen vasemmalla on varapuheenjohtaja Anne Lyttinen (kesk.), jäsen Jaakko Alavuotunki (vas.), Esa Launonen (kesk.) ja Anne Kippola (sihteeri). Minusta katsoen oikealla istuvat Pasi Laukka (yhteisötoiminnan päällikkö), jäsen Jari Pirinen (pers.), jäsen Marjo Kemppainen (vihr.) ja jäsen Maarit Vartiainen (sdp)
 
-![](/img/uploads/2021/01/download-5.png)
+![](/img/uploads/2021/01/download-5.webp)

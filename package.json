@@ -47,7 +47,6 @@
     "@11ty/eleventy-upgrade-help": "^3.0.2",
     "@axe-core/playwright": "^4.11.1",
     "@playwright/test": "^1.58.2",
-    "@quasibit/eleventy-plugin-sitemap": "^2.2.0",
     "axe-playwright": "^2.2.2",
     "pagefind": "^1.4.0"
   }

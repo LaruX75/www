@@ -68,7 +68,7 @@ Luokan kapasiteetti on n. 30 opiskelijaa, jonka lisäksi tilan voi tarvittaessa 
 
 ## Tilan esitystekniikka mahdollistaa etä- ja hybridiopetuksen sekä tutkimuskäytö
 
-![](/img/uploads/2021/02/chrome_5LFcwO345p.png)
+![](/img/uploads/2021/02/chrome_5LFcwO345p.webp)
 
 Kun opetustilaa suunniteltiin vuonna 2017, lähtökohtana oli se, että sen esitystekniikan tulisi taipua niin tutkimusaineistojen tallentamiseen kuin etä- ja hybridiopetukseen tavallisen opetuksen ohella. Suunnittelun lähtökohtana oli pyrkimys tehdä tilasta mahdollisimman monipuolinen ja joustava huomioiden tulevaisuuden vielä ennakoimattomat tarpeet.
 

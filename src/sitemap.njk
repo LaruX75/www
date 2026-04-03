@@ -1,10 +1,33 @@
 ---
 permalink: /sitemap.xml
+layout: null
 eleventyExcludeFromCollections: true
 ---
-<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {%- for item in collections.all %}
-{%- if item.url and not (item.data.sitemap and item.data.sitemap.ignore) %}<url><loc>{{ site.url }}{{ item.url }}</loc><lastmod>{{ item.date | dateToRfc3339 }}</lastmod></url>
+{%- if item.url
+    and not (item.data.sitemap and item.data.sitemap.ignore)
+    and not (item.data.robots and "noindex" in item.data.robots)
+    and not ("/admin/" in item.url)
+-%}
+{%- set freq = "monthly" %}
+{%- set pri  = "0.5" %}
+{%- if item.url == "/" or item.url == "/en/" %}
+  {%- set freq = "weekly" %}{%- set pri = "1.0" %}
+{%- elif "/blog/" in item.url or "/julkaisut/" in item.url or "/politics/" in item.url or "/politiikka/" in item.url %}
+  {%- set freq = "monthly" %}{%- set pri = "0.8" %}
+{%- elif "/avainsanat/" in item.url or "/kategoriat/" in item.url or "/keywords/" in item.url or "/categories/" in item.url %}
+  {%- set freq = "weekly" %}{%- set pri = "0.4" %}
+{%- elif "/presentations/" in item.url or "/esitykset/" in item.url %}
+  {%- set freq = "monthly" %}{%- set pri = "0.5" %}
+{%- endif %}
+<url>
+  <loc>{{ site.url }}{{ item.url }}</loc>
+  <lastmod>{{ item.date | dateToRfc3339 }}</lastmod>
+  <changefreq>{{ freq }}</changefreq>
+  <priority>{{ pri }}</priority>
+</url>
 {%- endif %}
 {%- endfor %}
 </urlset>

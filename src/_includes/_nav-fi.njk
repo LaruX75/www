@@ -1,0 +1,485 @@
+{%- from "_mega-nav-macro.njk" import megaNavTrigger -%}
+<nav id="siteNav" class="navbar navbar-expand-md site-navbar sticky-top" aria-label="Päänavigaatio" style="z-index:1030; transition: background-color .3s ease, box-shadow .3s ease;">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="/">Jari Laru</a>
+    <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileNavFi" aria-controls="mobileNavFi" aria-expanded="false" aria-label="Avaa mobiilivalikko">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <ul class="navbar-nav align-items-md-center flex-md-nowrap evelenty-main-nav ms-md-2 me-auto">
+        <li class="nav-item">
+          <a class="nav-link {% if page.url == '/' %}active{% endif %}" href="{{ navHome.url or '/' }}"{% if page.url == '/' %} aria-current="page"{% endif %}>
+            <i class="{{ navHome.icon or 'bi bi-house-door-fill' }}"></i> {{ navHome.title or 'Etusivu' }}
+          </a>
+        </li>
+
+        <li class="nav-item dropdown mega-dropdown">
+          {{ megaNavTrigger(navMe.url or '/tietoa/', navMe.title or 'Minä', navMe.icon or 'bi bi-person-fill', page.url and ('/tietoa/' in page.url or '/autolomat/' in page.url or '/cv/' in page.url or '/portfolio/' in page.url or '/larux-tmi/' in page.url or '/yritys/' in page.url), 'megaMenuMeFi', 'megaToggleMeFi', openSubmenuLabel) }}
+          <div id="megaMenuMeFi" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleMeFi">
+            <div class="mega-wrap grid-8-4">
+              <div class="mega-left three-cols">
+                {% for section in meMegaMenu.sections %}
+                  <section>
+                    <h5>{{ section.heading }}</h5>
+                    {% for link in section.links %}
+                      {% if link.inlineLinks %}
+                        <div class="menu-link menu-link-inline-group">
+                          <i class="{{ link.icon }}"></i>
+                          <span class="menu-link-inline-items">
+                            {% for inlineLink in link.inlineLinks %}
+                              <a class="menu-link-inline-anchor" href="{{ inlineLink.href }}"{% if inlineLink.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ inlineLink.title }}</a>{% if not loop.last %}<span class="menu-link-inline-separator" aria-hidden="true">|</span>{% endif %}
+                            {% endfor %}
+                          </span>
+                        </div>
+                      {% elif link.menuLink %}
+                        <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}><i class="{{ link.icon }}"></i><span>{{ link.title }}</span></a>
+                      {% else %}
+                        <a href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}><i class="{{ link.icon }}"></i>{{ link.title }}</a>
+                      {% endif %}
+                      {% if link.description %}
+                        <small class="{{ 'menu-link-desc' if link.menuLink }}">{{ link.description }}</small>
+                      {% endif %}
+                    {% endfor %}
+                  </section>
+                {% endfor %}
+              </div>
+              <aside class="mega-right showcase-card">
+                {% optimizedImage meMegaMenu.showcase.imageSrc, meMegaMenu.showcase.imageAlt, "img-fluid rounded-3 mb-3", "(max-width: 991px) 180px, 240px" %}
+                <h5>{{ meMegaMenu.showcase.title }}</h5>
+                <p>{{ meMegaMenu.showcase.description }}</p>
+                {% if meMegaMenu.showcase.cta %}
+                  <a class="btn btn-accent btn-lg w-100" href="{{ meMegaMenu.showcase.cta.href }}">{{ meMegaMenu.showcase.cta.label }}</a>
+                {% endif %}
+              </aside>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown mega-dropdown">
+          {{ megaNavTrigger(navWork.url or '/tyoni-yliopistonlehtorina/', navWork.title or 'Työ', navWork.icon or 'bi bi-briefcase-fill', page.url and ('/opetus/' in page.url or '/portfolio/' in page.url or '/tutkimus/' in page.url or '/v%C3%A4it%C3%B6skirja/' in page.url or '/väitöskirja/' in page.url or '/palkinnot/' in page.url), 'megaMenuWorkFi', 'megaToggleWorkFi', openSubmenuLabel) }}
+          <div id="megaMenuWorkFi" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleWorkFi">
+            {% if workMegaMenu and workMegaMenu.sections %}
+            {% if workMegaMenu.layout == "four-columns" %}
+            <div class="mega-wrap">
+              <div class="mega-left four-cols">
+                {% for section in workMegaMenu.sections %}
+                  <section>
+                    <h5>{{ section.heading }}</h5>
+                    {% for link in section.links %}
+                      {% if link.inlineLinks %}
+                        <div class="menu-link menu-link-inline-group">
+                          <i class="{{ link.icon }}"></i>
+                          <span class="menu-link-inline-items">
+                            {% for inlineLink in link.inlineLinks %}
+                              <a class="menu-link-inline-anchor" href="{{ inlineLink.href }}"{% if inlineLink.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ inlineLink.title }}</a>{% if not loop.last %}<span class="menu-link-inline-separator" aria-hidden="true">|</span>{% endif %}
+                            {% endfor %}
+                          </span>
+                        </div>
+                        {% if link.description %}
+                          <small class="menu-link-desc">{{ link.description }}</small>
+                        {% endif %}
+                      {% elif link.cta %}
+                        <div class="work-inline-cta">
+                          <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
+                            <i class="{{ link.icon }}"></i><span>{{ link.title }}</span>
+                          </a>
+                          {% if link.description %}
+                            <small class="menu-link-desc">{{ link.description }}</small>
+                          {% endif %}
+                          <a class="btn btn-accent btn-lg w-100 mt-2" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
+                            {{ link.ctaLabel or workMegaMenu.cta.label or "Pyydä tarjous" }}
+                          </a>
+                        </div>
+                      {% else %}
+                        <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}><i class="{{ link.icon }}"></i><span>{{ link.title }}</span></a>
+                        {% if link.description %}
+                          <small class="menu-link-desc">{{ link.description }}</small>
+                        {% endif %}
+                      {% endif %}
+                    {% endfor %}
+                  </section>
+                {% endfor %}
+              </div>
+            </div>
+            {% else %}
+            <div class="mega-wrap grid-8-4">
+              <div class="mega-left three-cols">
+                {% for section in workMegaMenu.sections %}
+                  <section>
+                    <h5>{{ section.heading }}</h5>
+                    {% for link in section.links %}
+                      <a href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}><i class="{{ link.icon }}"></i>{{ link.title }}</a>
+                      {% if link.description %}
+                        <small>{{ link.description }}</small>
+                      {% endif %}
+                    {% endfor %}
+                  </section>
+                {% endfor %}
+              </div>
+              <aside class="mega-right cta-card">
+                <h5>{{ workMegaMenu.cta.title }}</h5>
+                <p>{{ workMegaMenu.cta.description }}</p>
+                <a class="btn btn-accent btn-lg w-100" href="{{ workMegaMenu.cta.href }}">{{ workMegaMenu.cta.label }}</a>
+              </aside>
+            </div>
+            {% endif %}
+            {% else %}
+            <div class="mega-wrap grid-8-4">
+              <div class="mega-left three-cols">
+                <section>
+                  <h5>Opetus & portfoliot</h5>
+                  <a href="/tyoni-yliopistonlehtorina/"><i class="bi bi-person-video3 me-2"></i>Työni yliopistonlehtorina</a>
+                  <small>Kurssit, materiaalit ja pedagoginen työ.</small>
+                  <a href="/portfolio/"><i class="bi bi-folder me-2"></i>Opetusportfolio</a>
+                </section>
+                <section>
+                  <h5>Tutkimus & julkaisut</h5>
+                  <a href="/tyoni-yliopistonlehtorina/"><i class="bi bi-briefcase me-2"></i>Työni yliopistonlehtorina</a>
+                  <small>Yliopistotyöni kokonaisuus.</small>
+                  <a href="/tutkimus/"><i class="bi bi-search me-2"></i>Tutkimus</a>
+                  <small>Tutkimushankkeet, aiheet ja julkaisut.</small>
+                  <a href="/julkaisut/"><i class="bi bi-journal-text me-2"></i>Julkaisuluettelo</a>
+                  <a href="/opinnaytteet/"><i class="bi bi-mortarboard me-2"></i>Opinnäytetyöt</a>
+                  <small>Ohjatut pro gradut ja kandidaatintyöt.</small>
+                </section>
+                <section>
+                  <h5>Palkinnot & sosiaalinen media</h5>
+                  <a href="/palkinnot/"><i class="bi bi-award me-2"></i>Palkinnot</a>
+                  <a href="https://www.linkedin.com/in/jarilaru/" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin me-2"></i>LinkedIn</a>
+                  <a href="https://www.researchgate.net/profile/Jari-Laru" target="_blank" rel="noopener noreferrer"><i class="bi bi-globe me-2"></i>ResearchGate</a>
+                </section>
+              </div>
+              <aside class="mega-right cta-card">
+                <h5>Tilaa minut kouluttajaksi</h5>
+                <p>Koulutukset tekoälystä, oppimisteknologiasta ja modernista pedagogiikasta.</p>
+                <a class="btn btn-accent btn-lg w-100" href="/yhteystiedot/">Pyydä tarjous</a>
+              </aside>
+            </div>
+            {% endif %}
+          </div>
+        </li>
+
+        <li class="nav-item dropdown mega-dropdown">
+          {{ megaNavTrigger(navPolitics.url or '/politiikka/', navPolitics.title or 'Politiikka', navPolitics.icon or 'bi bi-bank2', page.url and ('/politiikka/' in page.url or '/politiiikka/' in page.url), 'megaMenuPoliticsFi', 'megaTogglePoliticsFi', openSubmenuLabel) }}
+          <div id="megaMenuPoliticsFi" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaTogglePoliticsFi">
+            <div class="mega-wrap">
+              <div class="mega-left three-cols">
+                {% for section in politicsMegaMenu.sections %}
+                  <section>
+                    <h5>{{ section.heading }}</h5>
+                    {% for link in section.links %}
+                      {% set linkCount = 0 %}
+                      {% if link.countKey %}{% set linkCount = (collections[link.countKey] or []) | length %}{% endif %}
+                      {% if link.menuLink %}
+                        <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
+                          <i class="{{ link.icon }}"></i>
+                          <span>{{ link.title }}{% if link.countKey and linkCount %} <span class="menu-link-count">{{ linkCount }}</span>{% endif %}</span>
+                        </a>
+                      {% else %}
+                        <a href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}><i class="{{ link.icon }}"></i>{{ link.title }}</a>
+                      {% endif %}
+                      {% if link.description %}
+                        <small class="{{ 'menu-link-desc' if link.menuLink }}">{{ link.description }}</small>
+                      {% endif %}
+                    {% endfor %}
+                  </section>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown mega-dropdown">
+          {{ megaNavTrigger(navWritings.url or '/kynasta/', navWritings.title or 'Kynästä', navWritings.icon or 'bi bi-pencil-fill', page.url and ('/kynasta/' in page.url or '/blogi/' in page.url), 'megaMenuWritingsFi', 'megaToggleWritingsFi', openSubmenuLabel) }}
+          <div id="megaMenuWritingsFi" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleWritingsFi">
+            <div class="mega-wrap writings-mega-layout">
+              {% if writingsMegaMenu.contentColumns %}
+                <section class="writings-group-head">
+                  <h5>{{ writingsMegaMenu.groupHeading or writingsMegaMenu.heading }}</h5>
+                  <p class="menu-desc">{{ writingsMegaMenu.description }}</p>
+                </section>
+                {% for contentColumn in writingsMegaMenu.contentColumns %}
+                  <section class="writings-main-col">
+                    {% for link in contentColumn.links %}
+                      {% set linkCount = 0 %}
+                      {% if link.countKey %}
+                        {% set linkCount = (collections[link.countKey] or []) | length %}
+                      {% elif link.countData == "theses_total" %}
+                        {% set linkCount = theses.stats.total if theses and theses.stats else 0 %}
+                      {% elif link.countData == "theses_kandit" %}
+                        {% set linkCount = theses.stats.totalKandit if theses and theses.stats else 0 %}
+                      {% elif link.countData == "theses_gradut" %}
+                        {% set linkCount = theses.stats.totalGradut if theses and theses.stats else 0 %}
+                      {% endif %}
+                      <a class="menu-link-with-count" href="{{ link.href }}">
+                        <span><i class="{{ link.icon }}"></i>{{ link.title }}</span>
+                        {% if link.countKey or link.countData %}<span class="menu-link-count">{{ linkCount }}</span>{% endif %}
+                      </a>
+                      {% if link.description %}
+                        <small class="menu-link-desc">{{ link.description }}</small>
+                      {% endif %}
+                    {% endfor %}
+                  </section>
+                {% endfor %}
+                {% if writingsMegaMenu.seeAlso %}
+                  <section class="writings-side-head">
+                    <h5>{{ writingsMegaMenu.seeAlso.heading }}</h5>
+                    {% if writingsMegaMenu.seeAlso.subheading %}
+                      <p class="menu-desc">{{ writingsMegaMenu.seeAlso.subheading }}</p>
+                    {% endif %}
+                  </section>
+                  <section class="writings-side-links">
+                    {% for link in writingsMegaMenu.seeAlso.links %}
+                      {% set linkCount = 0 %}
+                      {% if link.countKey %}
+                        {% set linkCount = (collections[link.countKey] or []) | length %}
+                      {% elif link.countData == "theses_total" %}
+                        {% set linkCount = theses.stats.total if theses and theses.stats else 0 %}
+                      {% elif link.countData == "theses_kandit" %}
+                        {% set linkCount = theses.stats.totalKandit if theses and theses.stats else 0 %}
+                      {% elif link.countData == "theses_gradut" %}
+                        {% set linkCount = theses.stats.totalGradut if theses and theses.stats else 0 %}
+                      {% endif %}
+                      <a class="menu-link-with-count" href="{{ link.href }}">
+                        <span><i class="{{ link.icon }}"></i>{{ link.title }}</span>
+                        {% if link.countKey or link.countData %}<span class="menu-link-count">{{ linkCount }}</span>{% endif %}
+                      </a>
+                      {% if link.description %}
+                        <small class="menu-link-desc">{{ link.description }}</small>
+                      {% endif %}
+                    {% endfor %}
+                  </section>
+                {% endif %}
+              {% else %}
+                <section>
+                  <h5>{{ writingsMegaMenu.heading }}</h5>
+                  <p class="menu-desc">{{ writingsMegaMenu.description }}</p>
+                  {% for link in writingsMegaMenu.links %}
+                    <a href="{{ link.href }}"><i class="{{ link.icon }}"></i>{{ link.title }}</a>
+                  {% endfor %}
+                </section>
+              {% endif %}
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown mega-dropdown">
+          {{ megaNavTrigger(navContact.url or '/yhteystiedot/', navContact.title or 'Ota yhteyttä', navContact.icon or 'bi bi-envelope', page.url and '/yhteystiedot/' in page.url, 'megaMenuContactFi', 'megaToggleContactFi', openSubmenuLabel) }}
+          <div id="megaMenuContactFi" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleContactFi">
+            <div class="mega-wrap">
+              <section class="w-100 mb-3">
+                <h5>{{ contactMegaMenu.heading }}</h5>
+                <p class="menu-desc">{{ contactMegaMenu.description }}</p>
+              </section>
+              <div class="mega-left four-cols contact-mega-cols">
+                {% for column in contactMegaMenu.columns %}
+                  <section>
+                    <h5>{{ column.heading }}</h5>
+                    {% if column.type == "form" and column.form %}
+                      <form class="contact-mega-form" action="{{ column.form.action }}" method="{{ column.form.method or 'POST' }}">
+                        <label class="form-label small fw-semibold mb-1" for="contactMegaNameFi">{{ column.form.namePlaceholder }}</label>
+                        <input id="contactMegaNameFi" type="text" name="name" class="form-control form-control-sm mb-2" placeholder="{{ column.form.namePlaceholder }}" autocomplete="name">
+                        <label class="form-label small fw-semibold mb-1" for="contactMegaEmailFi">{{ column.form.emailPlaceholder }}</label>
+                        <input id="contactMegaEmailFi" type="email" name="email" class="form-control form-control-sm mb-2" placeholder="{{ column.form.emailPlaceholder }}" autocomplete="email" required>
+                        <label class="form-label small fw-semibold mb-1" for="contactMegaMessageFi">{{ column.form.messagePlaceholder }}</label>
+                        <textarea id="contactMegaMessageFi" name="message" class="form-control form-control-sm mb-2" rows="3" placeholder="{{ column.form.messagePlaceholder }}" required></textarea>
+                        <button type="submit" class="btn btn-accent btn-lg w-100">{{ column.form.submitLabel }}</button>
+                      </form>
+                      <a class="contact-mega-mobile-cta btn btn-accent btn-lg w-100 mt-2" href="{{ navContact.url or '/yhteystiedot/' }}">
+                        <i class="bi bi-envelope-check me-2"></i>Avaa yhteydenottolomake
+                      </a>
+                    {% else %}
+                      {% for link in column.links %}
+                        <a class="menu-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
+                          <i class="{{ link.icon }}"></i><span>{{ link.title }}</span>
+                        </a>
+                      {% endfor %}
+                    {% endif %}
+                  </section>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item ms-md-auto mt-2 mt-md-0">
+          <div class="d-flex align-items-center gap-2">
+            <button class="btn btn-sm rounded-circle d-flex align-items-center justify-content-center" id="searchToggleBtn" data-search-toggle style="width: 38px; height: 38px;" aria-label="Hae sivustolta" title="Hae sivustolta">
+              <i class="bi bi-search"></i>
+            </button>
+            <button class="btn btn-sm rounded-circle d-flex align-items-center justify-content-center" id="themeToggleBtn" data-theme-toggle style="width: 38px; height: 38px;" aria-label="Vaihda teemaa" title="Vaihda teemaa">
+              <i class="bi bi-moon-stars-fill" id="themeToggleIcon" data-theme-icon></i>
+            </button>
+          </div>
+        </li>
+        <li class="nav-item ms-md-2 mt-2 mt-md-0">
+          <a class="nav-link py-0 d-flex align-items-center gap-1 text-decoration-none" href="{{ enPageUrl or '/en/' }}" lang="en" aria-label="Switch language to English">
+            <span aria-hidden="true">🇬🇧</span><span>EN</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="offcanvas offcanvas-start d-md-none" tabindex="-1" id="mobileNavFi" aria-labelledby="mobileNavFiLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title fw-bold" id="mobileNavFiLabel">Valikko</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Sulje"></button>
+  </div>
+  <div class="offcanvas-body">
+    <form class="mb-3" data-search-form>
+      <label for="mobileNavFiSearchInput" class="form-label small text-muted">Hae sivustolta</label>
+      <div class="input-group input-group-sm">
+        <input id="mobileNavFiSearchInput" type="search" class="form-control" placeholder="Hae..." autocomplete="off" name="q">
+        <button class="btn btn-outline-primary" type="submit" aria-label="Avaa haku">
+          <i class="bi bi-search"></i>
+        </button>
+      </div>
+    </form>
+    <div class="d-flex align-items-center justify-content-between gap-2 mb-3">
+      <div class="btn-group btn-group-sm" role="group" aria-label="Kielen vaihto">
+        <a class="btn btn-outline-primary{% if currentLang == 'fi' %} active{% endif %}" href="{{ fiPageUrl or '/' }}" lang="fi">FI</a>
+        <a class="btn btn-outline-primary{% if currentLang == 'en' %} active{% endif %}" href="{{ enPageUrl or '/en/' }}" lang="en">EN</a>
+      </div>
+      <button class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-2" type="button" data-theme-toggle aria-label="Vaihda teemaa">
+        <i class="bi bi-moon-stars-fill" data-theme-icon></i><span>Teema</span>
+      </button>
+    </div>
+    <div class="d-grid gap-2 mb-3">
+      <a class="btn btn-outline-primary rounded-pill" href="{{ navHome.url or '/' }}">Etusivu</a>
+    </div>
+    <div class="accordion accordion-flush mobile-nav-accordion" id="mobileNavAccordionFi">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="mobileNavFiMeHead">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavFiMe" aria-expanded="false" aria-controls="mobileNavFiMe">Minä</button>
+        </h2>
+        <div id="mobileNavFiMe" class="accordion-collapse collapse" aria-labelledby="mobileNavFiMeHead" data-bs-parent="#mobileNavAccordionFi">
+          <div class="accordion-body">
+            <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="{{ navMe.url or '/tietoa/' }}">Avaa Minä-sivu</a>
+            {% for section in meMegaMenu.sections %}
+              <p class="text-uppercase small text-muted mb-1 mt-2">{{ section.heading }}</p>
+              <div class="d-grid gap-1 mb-2">
+                {% for link in section.links %}
+                  {% if link.inlineLinks %}
+                    <div class="mobile-nav-link d-flex align-items-center gap-2 flex-wrap">
+                      {% for inlineLink in link.inlineLinks %}
+                        <a class="mobile-nav-link inline-link" href="{{ inlineLink.href }}"{% if inlineLink.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ inlineLink.title }}</a>{% if not loop.last %}<span class="mobile-nav-inline-separator" aria-hidden="true">|</span>{% endif %}
+                      {% endfor %}
+                    </div>
+                  {% else %}
+                    <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.title }}</a>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="mobileNavFiWorkHead">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavFiWork" aria-expanded="false" aria-controls="mobileNavFiWork">Työ</button>
+        </h2>
+        <div id="mobileNavFiWork" class="accordion-collapse collapse" aria-labelledby="mobileNavFiWorkHead" data-bs-parent="#mobileNavAccordionFi">
+          <div class="accordion-body">
+            <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="{{ navWork.url or '/tyoni-yliopistonlehtorina/' }}">Avaa Työ-sivu</a>
+            {% for section in workMegaMenu.sections %}
+              <p class="text-uppercase small text-muted mb-1 mt-2">{{ section.heading }}</p>
+              <div class="d-grid gap-1 mb-2">
+                {% for link in section.links %}
+                  <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.title }}</a>
+                {% endfor %}
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="mobileNavFiPoliticsHead">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavFiPolitics" aria-expanded="false" aria-controls="mobileNavFiPolitics">Politiikka</button>
+        </h2>
+        <div id="mobileNavFiPolitics" class="accordion-collapse collapse" aria-labelledby="mobileNavFiPoliticsHead" data-bs-parent="#mobileNavAccordionFi">
+          <div class="accordion-body">
+            <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="{{ navPolitics.url or '/politiikka/' }}">Avaa Politiikka-sivu</a>
+            {% for section in politicsMegaMenu.sections %}
+              <p class="text-uppercase small text-muted mb-1 mt-2">{{ section.heading }}</p>
+              <div class="d-grid gap-1 mb-2">
+                {% for link in section.links %}
+                  <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.title }}</a>
+                {% endfor %}
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="mobileNavFiWritingsHead">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavFiWritings" aria-expanded="false" aria-controls="mobileNavFiWritings">Kynästä</button>
+        </h2>
+        <div id="mobileNavFiWritings" class="accordion-collapse collapse" aria-labelledby="mobileNavFiWritingsHead" data-bs-parent="#mobileNavAccordionFi">
+          <div class="accordion-body">
+            <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="{{ navWritings.url or '/kynasta/' }}">Avaa Kynästä-sivu</a>
+            {% if writingsMegaMenu.contentColumns %}
+              {% for contentColumn in writingsMegaMenu.contentColumns %}
+                <div class="d-grid gap-1 mb-2">
+                  {% for link in contentColumn.links %}
+                    <a class="mobile-nav-link" href="{{ link.href }}">{{ link.title }}</a>
+                  {% endfor %}
+                </div>
+              {% endfor %}
+              {% if writingsMegaMenu.seeAlso %}
+                <p class="text-uppercase small text-muted mb-1 mt-2">{{ writingsMegaMenu.seeAlso.heading }}</p>
+                <div class="d-grid gap-1 mb-2">
+                  {% for link in writingsMegaMenu.seeAlso.links %}
+                    <a class="mobile-nav-link" href="{{ link.href }}">{{ link.title }}</a>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            {% else %}
+              <div class="d-grid gap-1 mb-2">
+                {% for link in writingsMegaMenu.links %}
+                  <a class="mobile-nav-link" href="{{ link.href }}">{{ link.title }}</a>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="mobileNavFiContactHead">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavFiContact" aria-expanded="false" aria-controls="mobileNavFiContact">Ota yhteyttä</button>
+        </h2>
+        <div id="mobileNavFiContact" class="accordion-collapse collapse" aria-labelledby="mobileNavFiContactHead" data-bs-parent="#mobileNavAccordionFi">
+          <div class="accordion-body">
+            <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="{{ navContact.url or '/yhteystiedot/' }}">Avaa Yhteystiedot</a>
+            {% for column in contactMegaMenu.columns %}
+              <p class="text-uppercase small text-muted mb-1 mt-2">{{ column.heading }}</p>
+              {% if column.links %}
+                <div class="d-grid gap-1 mb-2">
+                  {% for link in column.links %}
+                    <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.title }}</a>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="searchOverlay" class="search-overlay" role="dialog" aria-modal="true" aria-labelledby="searchOverlayTitle" aria-hidden="true" hidden>
+  <div class="search-overlay-inner">
+    <div class="container py-4">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="mb-0" id="searchOverlayTitle"><i class="bi bi-search me-2"></i>Hae sivustolta</h3>
+        <button class="btn btn-sm rounded-circle" id="searchCloseBtn" aria-label="Sulje haku" style="width: 38px; height: 38px;">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+      <div id="pagefindSearch"></div>
+    </div>
+  </div>
+</div>

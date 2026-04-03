@@ -1,0 +1,19 @@
+{% macro megaNavTrigger(url, title, icon, isActive, menuId, toggleId, openLabel) %}
+<div class="mega-nav-trigger">
+  <a class="nav-link mega-nav-link{% if isActive %} active{% endif %}" href="{{ url }}"{% if isActive %} aria-current="page"{% endif %}>
+    <i class="{{ icon }}"></i> {{ title }}
+  </a>
+  <button
+    class="nav-link mega-nav-toggle dropdown-toggle"
+    type="button"
+    id="{{ toggleId }}"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+    aria-haspopup="true"
+    aria-controls="{{ menuId }}"
+    aria-label="{{ openLabel }} {{ title }}"
+  >
+    <span class="visually-hidden">{{ openLabel }} {{ title }}</span>
+  </button>
+</div>
+{% endmacro %}

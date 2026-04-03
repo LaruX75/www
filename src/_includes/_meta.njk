@@ -1,0 +1,137 @@
+  <script>
+    // Teeman alustus (estää välkkymisen) - tarkistaa sijainnin localStorage tai OS prefers-color-scheme
+    const getStoredTheme = () => localStorage.getItem('theme');
+    const getPreferredTheme = () => {
+      const storedTheme = getStoredTheme();
+      if (storedTheme) {
+        return storedTheme;
+      }
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    const setTheme = function (theme) {
+      if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-bs-theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-bs-theme', theme);
+      }
+    };
+    setTheme(getPreferredTheme());
+
+    // Saavutettavuusasetusten alustus (FOUC esto)
+    function applyA11ySettings(settings) {
+      const htmlEl = document.documentElement;
+
+      // Tekstikoko
+      htmlEl.classList.remove('a11y-text-large', 'a11y-text-xlarge');
+      if (settings.textSize === 'large') htmlEl.classList.add('a11y-text-large');
+      else if (settings.textSize === 'xlarge') htmlEl.classList.add('a11y-text-xlarge');
+
+      // Kontrasti
+      if (settings.highContrast) htmlEl.classList.add('a11y-high-contrast');
+      else htmlEl.classList.remove('a11y-high-contrast');
+
+      // Animaatiot
+      if (settings.reducedMotion) htmlEl.classList.add('a11y-reduced-motion');
+      else htmlEl.classList.remove('a11y-reduced-motion');
+
+      // Fontti
+      if (settings.dyslexiaFont) htmlEl.classList.add('a11y-dyslexia-font');
+      else htmlEl.classList.remove('a11y-dyslexia-font');
+    }
+
+    try {
+      const a11yStored = localStorage.getItem('a11y-settings');
+      if (a11yStored) {
+        applyA11ySettings(JSON.parse(a11yStored));
+      }
+    } catch(e) {}
+  </script>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net data:; img-src 'self' data: https: https://cdn.slidesharecdn.com; connect-src 'self'; frame-src 'self' https: https://www.slideshare.net;">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <style id="antiClickjack">body{display:none !important;}</style>
+  <script>
+    if (self === top) {
+      var antiClickjack = document.getElementById("antiClickjack");
+      antiClickjack.parentNode.removeChild(antiClickjack);
+    } else {
+      top.location = self.location;
+    }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% set currentLang = lang or (page.url | langFromUrl) %}
+  {% set isHomePage = page.url == "/" or page.url == "/en/" %}
+  {% set needsCharts = page.url == "/julkaisut/" or page.url == "/en/publications/" or page.url == "/kynasta/" %}
+  {% set pageTitle = title or site.name %}
+  {% set pageDescription = description or site.description %}
+  {% set pageUrl = page.url | absoluteUrl(site.url or "https://www.jarilaru.fi") %}
+  {% set fiAltPath = collections.all | findTranslationUrl(translationKey, "fi") %}
+  {% set enAltPath = collections.all | findTranslationUrl(translationKey, "en") %}
+  {% set pageType = "article" if page.url and ("/blog" in page.url or "/julkaisut" in page.url or "/politics" in page.url) else "website" %}
+  {% set sectionLabel = "Blogi" if page.url and "/blog" in page.url else ("Julkaisut" if page.url and "/julkaisut" in page.url else ("Politiikka" if page.url and "/politics" in page.url else "Sivusto")) %}
+  {% set personId = (site.url or "https://www.jarilaru.fi") + "#person" %}
+  {% set resolvedOgImage = "/img/WIN_20210329_16_06_01_Pro.jpg" %}
+
+  <title>{{ pageTitle }} — {{ site.name }}</title>
+  <meta name="description" content="{{ pageDescription }}">
+  {% if site.googleSiteVerification %}
+  <meta name="google-site-verification" content="{{ site.googleSiteVerification }}">
+  {% endif %}
+  <meta name="robots" content="index, follow, noai, noimageai">
+  <meta name="author" content="{{ site.author }}">
+  <link rel="canonical" href="{{ pageUrl }}">
+  {% if fiAltPath %}
+  <link rel="alternate" hreflang="fi" href="{{ fiAltPath | absoluteUrl(site.url or "https://www.jarilaru.fi") }}">
+  {% endif %}
+  {% if enAltPath %}
+  <link rel="alternate" hreflang="en" href="{{ enAltPath | absoluteUrl(site.url or "https://www.jarilaru.fi") }}">
+  {% endif %}
+  <link rel="alternate" hreflang="x-default" href="{{ (fiAltPath or "/") | absoluteUrl(site.url or "https://www.jarilaru.fi") }}">
+  <meta property="og:site_name" content="{{ site.name }}">
+  <meta property="og:locale" content="{{ currentLang | localeForLang }}">
+  <meta property="og:type" content="{{ pageType }}">
+  <meta property="og:title" content="{{ pageTitle }}">
+  <meta property="og:description" content="{{ pageDescription }}">
+  <meta property="og:url" content="{{ pageUrl }}">
+  <meta property="og:image" content="{{ resolvedOgImage | absoluteUrl(site.url or "https://www.jarilaru.fi") }}">
+  <meta property="og:image:alt" content="Jari Laru">
+  <meta property="og:image:width" content="1920">
+  <meta property="og:image:height" content="1080">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ pageTitle }}">
+  <meta name="twitter:description" content="{{ pageDescription }}">
+  <meta name="twitter:image" content="{{ resolvedOgImage | absoluteUrl(site.url or "https://www.jarilaru.fi") }}">
+  <meta name="twitter:image:alt" content="Jari Laru">
+  {% if isHomePage %}
+  <link rel="preload" as="image" href="/img/WIN_20210329_16_06_01_Pro.jpg" fetchpriority="high">
+  {% endif %}
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  {# Kriittinen CSS inline — Bootstrap-teemamuuttujat ilman HTTP-pyyntöä (LCP-parannus) #}
+  <style>{{ "modules/_theme.css" | inlineCSS | safe }}</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Inter:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Inter:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Inter:wght@400;600;700&display=swap">
+  </noscript>
+  <link rel="stylesheet" href="/css/mega-menu.css">
+  <link rel="preload" as="style" href="/css/modules/_typography.css">
+  <link rel="preload" as="style" href="/css/modules/_global.css">
+  <link rel="stylesheet" href="/css/modules/_typography.css">
+  <link rel="stylesheet" href="/css/modules/_home.css">
+  <link rel="stylesheet" href="/css/modules/_global.css">
+  <link rel="stylesheet" href="/css/modules/_tables.css">
+  <link rel="stylesheet" href="/css/modules/_articles.css">
+  <link rel="stylesheet" href="/css/a11y.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="preload" href="/pagefind/pagefind-ui.css" as="style">
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript>
+    <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+  </noscript>
+  <script src="/pagefind/pagefind-ui.js" defer></script>
+  {% if needsCharts %}
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js" defer></script>
+  {% endif %}

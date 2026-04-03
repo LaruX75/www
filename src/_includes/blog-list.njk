@@ -15,7 +15,6 @@ layout: base.njk
       "summary": "Summary",
       "cats": "Categories & Keywords",
       "link": "Link",
-      "loading": "Loading posts...",
       "noResults": "No results for this search",
       "showing": "Showing",
       "of": "/"
@@ -30,7 +29,6 @@ layout: base.njk
       "summary": "Tiivistelmä",
       "cats": "Kategoriat & Avainsanat",
       "link": "Linkki",
-      "loading": "Ladataan kirjoituksia...",
       "noResults": "Ei tuloksia haulla",
       "showing": "Näytetään",
       "of": "/"
@@ -39,23 +37,6 @@ layout: base.njk
     <p class="text-muted">{{ txt.hero }}</p>
   </div>
 </section>
-
-{# Kerätään kaikki blogipostaukset JSON-muotoon JS:ää varten #}
-<script id="blog-data" type="application/json">
-[
-  {% for post in collections.blog %}
-  {
-    "title": {{ post.data.title | dump | safe }},
-    "date": "{{ post.date }}",
-    "formattedDate": "{{ post.date | dateFormat }}",
-    "description": {{ (post.data.description or (post.content | excerpt)) | dump | safe }},
-    "url": "{{ post.url }}",
-    "categories": {{ (post.data.categories or []) | dump | safe }},
-    "keywords": {{ (post.data.keywords or []) | dump | safe }}
-  }{% if not loop.last %},{% endif %}
-  {% endfor %}
-]
-</script>
 
 <section id="blog-table-section" class="py-4">
   <div class="container">
@@ -83,7 +64,7 @@ layout: base.njk
 
         {# ---- Taulukko ---- #}
         <div class="table-responsive">
-          <table class="table table-hover align-middle mb-0 blog-table">
+          <table class="table table-hover align-middle mb-0 blog-table" data-no-header-filters>
             <thead>
               <tr>
                 <th class="sortable text-center" data-col="date" style="width:140px">
@@ -98,13 +79,50 @@ layout: base.njk
               </tr>
             </thead>
             <tbody id="blog-tbody">
-              <tr><td colspan="5" class="text-center text-muted py-4">{{ txt.loading }}</td></tr>
+              {# Server-renderöidyt rivit — Google indeksoi nämä ilman JavaScriptiä #}
+              {% for post in collections.blog | sort(true, false, "date") %}
+              {% set desc = post.data.description or (post.content | excerpt) %}
+              {% set catStr = (post.data.categories or []) | join(' ') %}
+              {% set kwStr  = (post.data.keywords  or []) | join(' ') %}
+              {% set searchText = ([post.data.title, desc, catStr, kwStr] | join(' ')) | lower %}
+              <tr
+                data-search="{{ searchText | escape }}"
+                data-date="{{ post.date | dateToRfc3339 }}"
+                data-title="{{ post.data.title | lower | escape }}"
+              >
+                <td class="col-date text-center">{{ post.date | dateFormat }}</td>
+                <td class="col-title">
+                  <a href="{{ post.url }}" class="text-decoration-none">{{ post.data.title }}</a>
+                </td>
+                <td class="col-desc small">{{ desc }}</td>
+                <td>
+                  {% for cat in (post.data.categories or []) %}
+                  <a href="/kategoriat/{{ cat | slugify }}/" class="badge text-bg-secondary me-1 text-decoration-none">{{ cat }}</a>
+                  {% endfor %}
+                  {% for kw in (post.data.keywords or []) %}
+                  <a href="/avainsanat/{{ kw | slugify }}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">{{ kw }}</a>
+                  {% endfor %}
+                </td>
+                <td class="text-center">
+                  <a href="{{ post.url }}" class="btn btn-outline-primary btn-sm rounded-pill px-2" aria-label="{{ post.data.title | escape }}">
+                    <i class="bi bi-arrow-right" aria-hidden="true"></i>
+                  </a>
+                </td>
+              </tr>
+              {% endfor %}
+              <tr id="blog-no-results" hidden>
+                <td colspan="5" class="text-center text-muted py-5">{{ txt.noResults }}</td>
+              </tr>
             </tbody>
           </table>
         </div>
       </div>
       <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top">
-        <small id="blog-info" class="text-muted"></small>
+        <small id="blog-info"
+          data-showing="{{ txt.showing }}"
+          data-of="{{ txt.of }}"
+          class="text-muted">
+        </small>
         <nav aria-label="Sivutus">
           <ul id="blog-pagination" class="pagination pagination-sm mb-0 flex-wrap"></ul>
         </nav>
@@ -174,106 +192,91 @@ layout: base.njk
 <script>
 (function () {
   const PAGE_SIZE = 10;
-  const dataEl = document.getElementById('blog-data');
-  if (!dataEl) return;
-  const data = JSON.parse(dataEl.textContent);
+  const tbody = document.getElementById('blog-tbody');
+  if (!tbody) return;
 
-  let filteredData = [...data];
+  // Kaikki server-renderöidyt rivit (paitsi "ei tuloksia" -rivi)
+  const allRows = Array.from(tbody.querySelectorAll('tr[data-search]'));
+  if (!allRows.length) return;
+
+  let visibleRows = [...allRows];
   let currentPage = 1;
   let sortCol = 'date';
   let sortDir = -1; // -1 = desc (uusin ensin)
 
-  const searchInp = document.getElementById('blog-search');
-  const tbody = document.getElementById('blog-tbody');
-  const info = document.getElementById('blog-info');
-  const pagUl = document.getElementById('blog-pagination');
+  const searchInp    = document.getElementById('blog-search');
+  const info         = document.getElementById('blog-info');
+  const pagUl        = document.getElementById('blog-pagination');
+  const resetBtn     = document.getElementById('blog-reset');
+  const noResultsRow = document.getElementById('blog-no-results');
+
+  const showingLabel = info ? (info.dataset.showing || 'Näytetään') : 'Näytetään';
+  const ofLabel      = info ? (info.dataset.of      || '/')        : '/';
 
   function applyFilters() {
     const q = searchInp ? searchInp.value.toLowerCase().trim() : '';
-    filteredData = data.filter(d => {
-      const matchQ = !q ||
-        (d.title || '').toLowerCase().includes(q) ||
-        (d.description || '').toLowerCase().includes(q) ||
-        (d.categories || []).some(c => c.toLowerCase().includes(q)) ||
-        (d.keywords || []).some(k => k.toLowerCase().includes(q));
-      return matchQ;
-    });
+    visibleRows = allRows.filter(row =>
+      !q || (row.dataset.search || '').includes(q)
+    );
     currentPage = 1;
     render();
   }
 
-  function sortData(col) {
+  function sortBy(col) {
     if (sortCol === col) { sortDir *= -1; }
     else { sortCol = col; sortDir = col === 'date' ? -1 : 1; }
-    
-    filteredData.sort((a, b) => {
-      let av = a[col] ?? '';
-      let bv = b[col] ?? '';
-      if (typeof av === 'string') av = av.toLowerCase();
-      if (typeof bv === 'string') bv = bv.toLowerCase();
+
+    visibleRows.sort((a, b) => {
+      const av = a.getAttribute('data-' + col) || '';
+      const bv = b.getAttribute('data-' + col) || '';
       if (col === 'date') {
         return (new Date(av) - new Date(bv)) * sortDir;
       }
-      return av.toString().localeCompare(bv.toString(), 'fi') * sortDir;
+      return av.localeCompare(bv, 'fi') * sortDir;
     });
     currentPage = 1;
     render();
   }
 
   function render() {
-    if (!tbody || !info) return;
+    // Piilota kaikki rivit ensin
+    allRows.forEach(row => { row.hidden = true; });
 
-    const totalPages = Math.max(1, Math.ceil(filteredData.length / PAGE_SIZE));
+    const total      = visibleRows.length;
+    const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+    if (currentPage > totalPages) currentPage = totalPages;
+
     const start = (currentPage - 1) * PAGE_SIZE;
-    const slice = filteredData.slice(start, start + PAGE_SIZE);
+    const slice = visibleRows.slice(start, start + PAGE_SIZE);
 
-    if (slice.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-5">{{ txt.noResults }}</td></tr>';
-    } else {
-      tbody.innerHTML = slice.map(d => {
-        const catBadges = (d.categories || []).map(c => `<a href="/kategoriat/${slugify(c)}/" class="badge text-bg-secondary me-1 text-decoration-none">${c}</a>`).join('');
-        const keyBadges = (d.keywords || []).map(k => `<a href="/avainsanat/${slugify(k)}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">${k}</a>`).join('');
+    // Näytä ja järjestä nykyisen sivun rivit
+    slice.forEach(row => {
+      row.hidden = false;
+      tbody.appendChild(row); // siirtää rivin tbody:n loppuun oikeaan järjestykseen
+    });
 
-        return `<tr>
-          <td class="col-date text-center">${d.formattedDate}</td>
-          <td class="col-title"><a href="${d.url}" class="text-decoration-none">${escHtml(d.title)}</a></td>
-          <td class="col-desc small">${escHtml(d.description)}</td>
-          <td>
-            <div class="mb-1">${catBadges}</div>
-            <div>${keyBadges}</div>
-          </td>
-          <td class="text-center">
-            <a href="${d.url}" class="btn btn-outline-primary btn-sm rounded-pill px-2" aria-label="${d.title}">
-              <i class="bi bi-arrow-right" aria-hidden="true"></i>
-            </a>
-          </td>
-        </tr>`;
-      }).join('');
+    // "Ei tuloksia" -rivi
+    if (noResultsRow) noResultsRow.hidden = total > 0;
+
+    // Info-teksti
+    if (info) {
+      const from = total === 0 ? 0 : start + 1;
+      const to   = Math.min(start + PAGE_SIZE, total);
+      info.textContent = `${showingLabel} ${from}–${to} ${ofLabel} ${total}`;
     }
 
-    const total = filteredData.length;
-    const from = total === 0 ? 0 : start + 1;
-    const to = Math.min(start + PAGE_SIZE, total);
-    info.textContent = `{{ txt.showing }} ${from}-${to} {{ txt.of }} ${total}`;
-
     renderPagination(totalPages);
-
-    document.querySelectorAll('.blog-table th.sortable').forEach(th => {
-      th.classList.remove('sort-asc', 'sort-desc');
-      if (th.dataset.col === sortCol) {
-        th.classList.add(sortDir === 1 ? 'sort-asc' : 'sort-desc');
-      }
-    });
+    updateSortIcons();
   }
 
-  function renderPagination(total) {
+  function renderPagination(totalPages) {
     if (!pagUl) return;
     pagUl.innerHTML = '';
-    if (total <= 1) return;
-    
-    for (let i = 1; i <= total; i++) {
+    if (totalPages <= 1) return;
+
+    for (let i = 1; i <= totalPages; i++) {
       const li = document.createElement('li');
-      li.className = `page-item${i === currentPage ? ' active' : ''}`;
+      li.className = 'page-item' + (i === currentPage ? ' active' : '');
       const a = document.createElement('a');
       a.className = 'page-link';
       a.href = '#';
@@ -282,38 +285,33 @@ layout: base.njk
         e.preventDefault();
         currentPage = i;
         render();
-        document.getElementById('blog-table-section')?.scrollIntoView({behavior:'smooth', block:'start'});
+        document.getElementById('blog-table-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
       li.appendChild(a);
       pagUl.appendChild(li);
     }
   }
 
-  function escHtml(str) {
-    if (!str) return '';
-    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
-
-  function slugify(str) {
-    if (!str) return "";
-    return str.toLowerCase().replace(/ä/g, "a").replace(/ö/g, "o").replace(/å/g, "a").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-  }
-
-  if (searchInp) searchInp.addEventListener('input', applyFilters);
-  
-  const resetBtn = document.getElementById('blog-reset');
-  if (resetBtn) {
-    resetBtn.addEventListener('click', () => {
-      if (searchInp) searchInp.value = '';
-      applyFilters();
+  function updateSortIcons() {
+    document.querySelectorAll('.blog-table th.sortable').forEach(th => {
+      th.classList.remove('sort-asc', 'sort-desc');
+      if (th.dataset.col === sortCol) {
+        th.classList.add(sortDir === 1 ? 'sort-asc' : 'sort-desc');
+      }
     });
   }
 
+  // Tapahtumakuuntelijat
+  if (searchInp) searchInp.addEventListener('input', applyFilters);
+  if (resetBtn)  resetBtn.addEventListener('click', () => {
+    if (searchInp) searchInp.value = '';
+    applyFilters();
+  });
   document.querySelectorAll('.blog-table th.sortable').forEach(th => {
-    th.addEventListener('click', () => sortData(th.dataset.col));
+    th.addEventListener('click', () => sortBy(th.dataset.col));
   });
 
-  // Alkurenderöinti
+  // Alkurenderöinti: aktivoi sivutus + piilota loput rivit (UI sama kuin ennen)
   render();
 })();
 </script>

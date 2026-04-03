@@ -418,6 +418,17 @@ module.exports = function (eleventyConfig) {
   // SUODATTIMET
   // =====================
 
+  // Lukee CSS-tiedoston sisällön build-aikana (kriittistä CSS:ää varten)
+  eleventyConfig.addFilter("inlineCSS", function (relativePath) {
+    const fullPath = path.join(__dirname, "src/css", relativePath);
+    try {
+      return fs.readFileSync(fullPath, "utf-8");
+    } catch (e) {
+      console.warn(`[inlineCSS] Tiedostoa ei löydy: ${fullPath}`);
+      return "";
+    }
+  });
+
   // Muuntaa päivämäärän Unix-aikaleimaksi (lajittelua varten)
   eleventyConfig.addFilter("toTimestamp", function (date) {
     return new Date(date).getTime() || 0;

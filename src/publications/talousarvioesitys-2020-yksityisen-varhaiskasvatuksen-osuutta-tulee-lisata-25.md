@@ -17,7 +17,7 @@ wp_id: 1883
 source_url: "https://www.jarilaru.fi/talousarvioesitys-2020-yksityisen-varhaiskasvatuksen-osuutta-tulee-lisata-25/"
 templateEngineOverride: md
 ---
-<div><figure><img src="/img/uploads/2021/11/Copy-of-Somekuva-nelio-kuvalla-ja-numerolla-1024x1024.png" alt=""/></figure><div>
+<div><figure><img src="/img/uploads/2021/11/Copy-of-Somekuva-nelio-kuvalla-ja-numerolla-1024x1024.webp" alt=""/></figure><div>
 <h2>Oulun kaupunginvaltuusto 29.11.2021</h2>
 <h2>Puheeni kaupunginvaltuustossa</h2>
 <p>Kiitos puheenjohtaja. Arvoisat valtuutetut,</p>

@@ -43,7 +43,7 @@ Kuten Excelistä huomaatte, suunnittelen majoitukset hyvin usein AirBnB:n varaan
 
 [https://docs.google.com/spreadsheets/d/1UnYGoHicA6-3u66pYQIfddveVkehTFhjiYfmsfvcGI/edit?fbclid=IwAR0sRSeeQu5yRXgqrAQrrVKZuX167I3gCLHO8tq6lCgoyKKGMGn_nxGnhUQ#gid=0](https://docs.google.com/spreadsheets/d/1UnYGoHicA6-3u66pYQIfddveVkehTFhjiYfmsfvcGI/edit?fbclid=IwAR0sRSeeQu5yRXgqrAQrrVKZuX167I3gCLHO8tq6lCgoyKKGMGn_nxGnhUQ#gid=0)
 
-![Kuvan kartta on tallennettu kuvaksi vasta 2021 koronan aikana, joten covid-19 varoitus näkyy siitä :) Matka tehtiin toki jo vuonna 2019](/img/uploads/2021/01/kartta-1024x495.png)
+![Kuvan kartta on tallennettu kuvaksi vasta 2021 koronan aikana, joten covid-19 varoitus näkyy siitä :) Matka tehtiin toki jo vuonna 2019](/img/uploads/2021/01/kartta-1024x495.webp)
 
 Alla olevassa Instagram-upotuksessa on yleiskokemuksia Via Karpathialla ajamisesta. Kun selaat tätä sivua alaspäin, pääset näkemään varsinaisia matkapäivityksiä reissustamme. Huh, että oli upea kokemus!
 

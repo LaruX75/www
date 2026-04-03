@@ -19,7 +19,7 @@ source_url: "https://www.jarilaru.fi/liikkuva-oulu-voi-hyvin/"
 templateEngineOverride: md
 ---
 
-![](/img/uploads/2021/02/Copy-of-36-2.png)
+![](/img/uploads/2021/02/Copy-of-36-2.webp)
 
 #### Oulussa on erinomainen latuverkosto
 

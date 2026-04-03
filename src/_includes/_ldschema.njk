@@ -1,0 +1,60 @@
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "{{ site.name | escape }}",
+      "url": "{{ site.url or "https://www.jarilaru.fi" }}",
+      "description": "{{ site.description | escape }}",
+      "inLanguage": "{{ "fi-FI" if currentLang == "fi" else "en-US" }}",
+      "publisher": {
+        "@id": "{{ personId }}"
+      }
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "@id": "{{ personId }}",
+      "name": "{{ site.author | escape }}",
+      "url": "{{ site.url or "https://www.jarilaru.fi" }}",
+      "sameAs": {{ (site.sameAs or []) | dump | safe }}
+    }
+  </script>
+  {% if pageType == "article" %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "{{ pageTitle | escape }}",
+      "description": "{{ pageDescription | escape }}",
+      "url": "{{ pageUrl }}",
+      "mainEntityOfPage": "{{ pageUrl }}",
+      "image": "{{ resolvedOgImage | absoluteUrl(site.url or "https://www.jarilaru.fi") }}",
+      "datePublished": "{{ page.date | dateToRfc3339 }}",
+      "dateModified": "{{ page.date | dateToRfc3339 }}",
+      "inLanguage": "{{ "fi-FI" if currentLang == "fi" else "en-US" }}",
+      "author": {
+        "@id": "{{ personId }}"
+      },
+      "publisher": {
+        "@id": "{{ personId }}"
+      }
+    }
+  </script>
+  {% else %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "{{ pageTitle | escape }}",
+      "description": "{{ pageDescription | escape }}",
+      "url": "{{ pageUrl }}",
+      "image": "{{ resolvedOgImage | absoluteUrl(site.url or "https://www.jarilaru.fi") }}",
+      "inLanguage": "{{ "fi-FI" if currentLang == "fi" else "en-US" }}",
+      "author": {
+        "@id": "{{ personId }}"
+      }
+    }
+  </script>
+  {% endif %}
