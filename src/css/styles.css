@@ -20,17 +20,20 @@ html:not([data-bs-theme="dark"]) {
   --bs-tertiary-bg: #d8dfe8;
   --bs-border-color: #adbccc;
   --bs-border-color-translucent: rgba(28, 42, 56, 0.13);
-  /* bss-overrides.css asettaa --bs-primary: #ffffff (tumman teeman valinta).
-     Vaaleassa teemassa tämä tekee ikoneista, CTA-teksteistä ja btn-primary:stä
-     näkymättömiä. Korjataan tähän näkyvä sininen. */
-  --bs-primary: #0453b4;
-  --bs-primary-rgb: 4, 83, 180;
   /* WCAG 1.4.3: Bootstrap default #0d6efc → 4.17:1 on #f4f6f9 (alle 4.5 AA)
      Korjattu: #0453b4 → ~6.7:1 */
   --bs-link-color: #0453b4;
   --bs-link-color-rgb: 4, 83, 180;
   --bs-link-hover-color: #023e8a;
   --bs-link-hover-color-rgb: 2, 62, 138;
+}
+
+/* bss-overrides.css asettaa .bss-scope { --bs-primary: #ffffff } — tämä on koko
+   sivun main-sisältö. Kaikki var(--bs-primary) -käyttö (ikonit, CTA, border)
+   saa valkoisen arvon vaaleassa teemassa. Korjataan lähemmällä selektorilla. */
+html:not([data-bs-theme="dark"]) .bss-scope {
+  --bs-primary: #0453b4;
+  --bs-primary-rgb: 4, 83, 180;
 }
 
 /* bss-overrides.css:n btn-primary on valkoinen — korjataan vaalealle teemalle */
@@ -46,6 +49,21 @@ html:not([data-bs-theme="dark"]) .btn-primary {
   --bs-btn-active-border-color: #023e8a;
   --bs-btn-disabled-color: #ffffff;
   --bs-btn-disabled-bg: #0453b4;
+  --bs-btn-disabled-border-color: #0453b4;
+  --bs-btn-focus-shadow-rgb: 4, 83, 180;
+}
+
+/* btn-outline-primary myös valkoinen bss-overrides.css:ssa — korjataan */
+html:not([data-bs-theme="dark"]) .btn-outline-primary {
+  --bs-btn-color: #0453b4;
+  --bs-btn-border-color: #0453b4;
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: #0453b4;
+  --bs-btn-hover-border-color: #0453b4;
+  --bs-btn-active-color: #ffffff;
+  --bs-btn-active-bg: #0453b4;
+  --bs-btn-active-border-color: #0453b4;
+  --bs-btn-disabled-color: #0453b4;
   --bs-btn-disabled-border-color: #0453b4;
   --bs-btn-focus-shadow-rgb: 4, 83, 180;
 }
