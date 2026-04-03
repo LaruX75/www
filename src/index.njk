@@ -39,12 +39,12 @@ translationKey: home
 <section class="section-flush home-hero-section" id="heroSection">
     <div class="home-hero-backdrop">
         <div class="container home-hero-content">
-            <p class="home-hero-eyebrow mb-2">Jari Laru</p>
-            <h1 class="home-hero-title mb-3">Koulutan ja tutkin, miten tekoäly ja oppimisteknologia toimivat koulun arjessa.</h1>
+            <p class="home-hero-eyebrow mb-2">{{ pageContent.etusivu.hero.eyebrow }}</p>
+            <h1 class="home-hero-title mb-3">{{ pageContent.etusivu.hero.title }}</h1>
             <div class="home-hero-roles mb-2">
-                <a class="home-hero-role-item" href="/tyoni-yliopistonlehtorina/">Yliopistonlehtori</a>
-                <a class="home-hero-role-item" href="/larux-tmi/">Kouluttaja (Larux t:mi)</a>
-                <a class="home-hero-role-item" href="/politiikka/">Kuntapäättäjä</a>
+                {% for role in pageContent.etusivu.hero.roles %}
+                <a class="home-hero-role-item" href="{{ role.href }}">{{ role.label }}</a>
+                {% endfor %}
             </div>
         </div>
     </div>
@@ -60,10 +60,10 @@ translationKey: home
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8 text-center">
-                <p class="home-intro-text">Yliopistonlehtori, kouluttaja ja kuntapäättäjä. Tutkin ja koulutan miten tekoäly ja oppimisteknologia toimivat koulun arjessa — ja vaikutan päätöksentekoon, jotta tutkimusnäyttö löytää tiensä luokkahuoneeseen.</p>
+                <p class="home-intro-text">{{ pageContent.etusivu.intro.text }}</p>
                 <div class="home-intro-actions">
-                    <a class="btn btn-primary rounded-pill px-4" href="/yhteystiedot/">Pyydä tarjous</a>
-                    <a class="btn btn-outline-secondary rounded-pill px-4" href="/tietoa/">Tutustu taustaani</a>
+                    <a class="btn btn-primary rounded-pill px-4" href="{{ pageContent.etusivu.intro.cta1.href }}">{{ pageContent.etusivu.intro.cta1.label }}</a>
+                    <a class="btn btn-outline-secondary rounded-pill px-4" href="{{ pageContent.etusivu.intro.cta2.href }}">{{ pageContent.etusivu.intro.cta2.label }}</a>
                 </div>
             </div>
         </div>
@@ -73,42 +73,20 @@ translationKey: home
 {# ── Kolmipolku: kenelle tämä on? ─────────────────────────────────────── #}
 <section class="py-5 home-paths-section">
     <div class="container">
-        <p class="text-uppercase fw-bold text-center mb-4 home-paths-label">Mistä lähdet liikkeelle?</p>
+        <p class="text-uppercase fw-bold text-center mb-4 home-paths-label">{{ pageContent.etusivu.paths.sectionLabel }}</p>
         <div class="row g-4">
-
+            {% for card in pageContent.etusivu.paths.cards %}
             <div class="col-md-4">
-                <a class="home-path-card" href="/larux-tmi/">
+                <a class="home-path-card" href="{{ card.href }}">
                     <div class="home-path-icon">
-                        <i class="bi bi-person-workspace" aria-hidden="true"></i>
+                        <i class="bi {{ card.icon }}" aria-hidden="true"></i>
                     </div>
-                    <h2 class="home-path-title">Koulutuksen tilaajalle</h2>
-                    <p class="home-path-desc">Tarvitsetko kouluttajan tai keynote-puhujan? Käytännönläheiset koulutukset tekoälystä, digipedagogiikasta ja oppimisesta organisaatioille ja oppilaitoksille.</p>
-                    <span class="home-path-cta">Koulutuspalvelut ja tarjouspyyntö →</span>
+                    <h2 class="home-path-title">{{ card.title }}</h2>
+                    <p class="home-path-desc">{{ card.desc }}</p>
+                    <span class="home-path-cta">{{ card.cta }}</span>
                 </a>
             </div>
-
-            <div class="col-md-4">
-                <a class="home-path-card" href="/tutkimus/">
-                    <div class="home-path-icon">
-                        <i class="bi bi-journal-text" aria-hidden="true"></i>
-                    </div>
-                    <h2 class="home-path-title">Tutkijalle &amp; kollegalle</h2>
-                    <p class="home-path-desc">Vertaisarvioidut julkaisut, hankeyhteistyö ja tutkimusagenda teknologiatuetusta oppimisesta ja tekoälykasvatuksesta.</p>
-                    <span class="home-path-cta">Tutkimussivulle →</span>
-                </a>
-            </div>
-
-            <div class="col-md-4">
-                <a class="home-path-card" href="/politiikka/">
-                    <div class="home-path-icon">
-                        <i class="bi bi-building-check" aria-hidden="true"></i>
-                    </div>
-                    <h2 class="home-path-title">Oululaiselle &amp; äänestäjälle</h2>
-                    <p class="home-path-desc">Varavaltuutettu ja sivistyslautakunnan jäsen Oulussa (Kokoomus). Seuraa valtuustoaloitteita, puheenvuoroja ja mielipidekirjoituksia — painoalueina kouluverkko, hallinnon avoimuus ja kaupunkialueiden tasapuolinen kehitys.</p>
-                    <span class="home-path-cta">Politiikkasivu →</span>
-                </a>
-            </div>
-
+            {% endfor %}
         </div>
     </div>
 </section>
@@ -118,36 +96,20 @@ translationKey: home
     <div class="container">
         <div class="row justify-content-center mb-5">
             <div class="col-lg-7 text-center">
-                <h2 class="fw-bold mb-2">Miksi tämä työ on tärkeää?</h2>
-                <p class="home-challenges-lead">Kolme toisiinsa kytkeytyvää haastetta, joihin vastaan tutkimuksella, koulutuksella ja yhteiskunnallisella vaikuttamisella.</p>
+                <h2 class="fw-bold mb-2">{{ pageContent.etusivu.challenges.heading }}</h2>
+                <p class="home-challenges-lead">{{ pageContent.etusivu.challenges.lead }}</p>
             </div>
         </div>
         <div class="row g-4">
-
+            {% for card in pageContent.etusivu.challenges.cards %}
             <div class="col-md-4">
                 <div class="home-challenge-card">
-                    <div class="home-challenge-num">01</div>
-                    <h3 class="home-challenge-title">Tekoäly muuttaa opettamista nopeammin kuin koulut ehtivät sopeutua</h3>
-                    <p class="home-challenge-text">Oppilaitokset etsivät käytännön ratkaisuja tekoälyn integrointiin, mutta tutkimusnäyttöön perustuva tuki ja osaaminen puuttuvat liian usein.</p>
+                    <div class="home-challenge-num">{{ card.num }}</div>
+                    <h3 class="home-challenge-title">{{ card.title }}</h3>
+                    <p class="home-challenge-text">{{ card.text }}</p>
                 </div>
             </div>
-
-            <div class="col-md-4">
-                <div class="home-challenge-card">
-                    <div class="home-challenge-num">02</div>
-                    <h3 class="home-challenge-title">Tutkimustieto jää liian usein vain tutkijoiden pöytälaatikoihin</h3>
-                    <p class="home-challenge-text">Tieteellinen tieto ja käytännön luokkahuonetyö eivät kohtaa riittävästi. Sillä on väliä, kuka välittää tietoa ja miten.</p>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="home-challenge-card">
-                    <div class="home-challenge-num">03</div>
-                    <h3 class="home-challenge-title">Koulutuspäätökset tehdään liian harvoin tutkimusnäytön pohjalta</h3>
-                    <p class="home-challenge-text">Digitalisaatiota koskevat kuntapäätökset vaativat asiantuntemusta, jota liian harvoilla päättäjillä on — ja johon voi vaikuttaa.</p>
-                </div>
-            </div>
-
+            {% endfor %}
         </div>
     </div>
 </section>
@@ -173,22 +135,22 @@ translationKey: home
             {# Kortti 1: Yliopistonlehtori #}
             <div class="col-md-6 col-xl-3 home-overview-col">
                 <div class="d-flex flex-column h-100">
-                    <p class="home-overview-eyebrow">Yliopisto</p>
+                    <p class="home-overview-eyebrow">{{ pageContent.etusivu.overview.card1.eyebrow }}</p>
                     <h2 class="h5 fw-bold mb-2 home-overview-title">
                         <i class="bi bi-mortarboard me-2 opacity-75"></i>Yliopistonlehtori
                     </h2>
                     <div class="home-overview-lead-wrap mb-3">
-                        <p class="small mb-0 home-overview-lead">Teknologiatuetun oppimisen yliopistonlehtori, Kasvatustieteiden tiedekunta, Oulun yliopisto. Mukana STN:n rahoittamassa Generation AI -hankkeessa — tekoälykasvatusta esi- ja perusopetukseen.</p>
+                        <p class="small mb-0 home-overview-lead">{{ pageContent.etusivu.overview.card1.lead }}</p>
                         <div class="home-overview-lead-fade"></div>
                     </div>
                     <div class="home-overview-kpis mb-3">
                         <div class="home-overview-kpi">
-                            <span class="home-overview-kpi-value">100+</span>
-                            <span class="home-overview-kpi-label">opinnäytettä</span>
+                            <span class="home-overview-kpi-value">{{ pageContent.etusivu.overview.card1.kpi1.value }}</span>
+                            <span class="home-overview-kpi-label">{{ pageContent.etusivu.overview.card1.kpi1.label }}</span>
                         </div>
                         <div class="home-overview-kpi">
-                            <span class="home-overview-kpi-value">15+</span>
-                            <span class="home-overview-kpi-label">v. kokemus</span>
+                            <span class="home-overview-kpi-value">{{ pageContent.etusivu.overview.card1.kpi2.value }}</span>
+                            <span class="home-overview-kpi-label">{{ pageContent.etusivu.overview.card1.kpi2.label }}</span>
                         </div>
                     </div>
                     <div class="home-overview-items mb-3">
@@ -201,7 +163,7 @@ translationKey: home
                         <div class="home-overview-items-fade"></div>
                     </div>
                     <div class="mt-auto pt-2">
-                        <a href="/tyoni-yliopistonlehtorina/" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Lue lisää <i class="bi bi-arrow-right"></i></a>
+                        <a href="{{ pageContent.etusivu.overview.card1.cta.href }}" class="btn btn-outline-secondary btn-sm rounded-pill px-3">{{ pageContent.etusivu.overview.card1.cta.label }} <i class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -209,12 +171,12 @@ translationKey: home
             {# Kortti 2: Kouluttaja & puhuja #}
             <div class="col-md-6 col-xl-3 home-overview-col">
                 <div class="d-flex flex-column h-100">
-                    <p class="home-overview-eyebrow">Koulutuspalvelut · Larux t:mi</p>
+                    <p class="home-overview-eyebrow">{{ pageContent.etusivu.overview.card2.eyebrow }}</p>
                     <h2 class="h5 fw-bold mb-2 home-overview-title">
                         <i class="bi bi-mic me-2 opacity-75"></i>Kouluttaja &amp; puhuja
                     </h2>
                     <div class="home-overview-lead-wrap mb-3">
-                        <p class="small mb-0 home-overview-lead">Käytännönläheisiä koulutuksia opettajille, rehtoreille ja organisaatioille — tekoälyn soveltamisesta kouluarjessa keynote-puheenvuoroihin ja työpajoihin.</p>
+                        <p class="small mb-0 home-overview-lead">{{ pageContent.etusivu.overview.card2.lead }}</p>
                         <div class="home-overview-lead-fade"></div>
                     </div>
                     <div class="home-overview-kpis mb-3">
@@ -223,8 +185,8 @@ translationKey: home
                             <span class="home-overview-kpi-label">esitystä</span>
                         </div>
                         <div class="home-overview-kpi">
-                            <span class="home-overview-kpi-value">50+</span>
-                            <span class="home-overview-kpi-label">koulutusta</span>
+                            <span class="home-overview-kpi-value">{{ pageContent.etusivu.overview.card2.kpi2.value }}</span>
+                            <span class="home-overview-kpi-label">{{ pageContent.etusivu.overview.card2.kpi2.label }}</span>
                         </div>
                     </div>
                     <div class="home-overview-items mb-3">
@@ -237,8 +199,8 @@ translationKey: home
                         <div class="home-overview-items-fade"></div>
                     </div>
                     <div class="d-flex flex-wrap gap-2 mt-auto pt-2">
-                        <a href="/larux-tmi/" class="btn btn-primary btn-sm rounded-pill px-3">Tilaa koulutus</a>
-                        <a href="/esitykset/" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Kaikki esitykset</a>
+                        <a href="{{ pageContent.etusivu.overview.card2.cta1.href }}" class="btn btn-primary btn-sm rounded-pill px-3">{{ pageContent.etusivu.overview.card2.cta1.label }}</a>
+                        <a href="{{ pageContent.etusivu.overview.card2.cta2.href }}" class="btn btn-outline-secondary btn-sm rounded-pill px-3">{{ pageContent.etusivu.overview.card2.cta2.label }}</a>
                     </div>
                 </div>
             </div>
@@ -246,12 +208,12 @@ translationKey: home
             {# Kortti 3: Julkaisut #}
             <div class="col-md-6 col-xl-3 home-overview-col">
                 <div class="d-flex flex-column h-100">
-                    <p class="home-overview-eyebrow">Tiede &amp; tutkimus</p>
+                    <p class="home-overview-eyebrow">{{ pageContent.etusivu.overview.card3.eyebrow }}</p>
                     <h2 class="h5 fw-bold mb-2 home-overview-title">
                         <i class="bi bi-journal-text me-2 opacity-75"></i>Julkaisut
                     </h2>
                     <div class="home-overview-lead-wrap mb-3">
-                        <p class="small mb-0 home-overview-lead">Vertaisarvioituja artikkeleita ja konferenssijulkaisuja teknologiatuetusta oppimisesta, tekoälykasvatuksesta ja digipedagogiikasta.</p>
+                        <p class="small mb-0 home-overview-lead">{{ pageContent.etusivu.overview.card3.lead }}</p>
                         <div class="home-overview-lead-fade"></div>
                     </div>
                     <div class="home-overview-kpis mb-3">
@@ -275,7 +237,7 @@ translationKey: home
                         <div class="home-overview-items-fade"></div>
                     </div>
                     <div class="mt-auto pt-2">
-                        <a href="/julkaisut/" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Kaikki julkaisut</a>
+                        <a href="{{ pageContent.etusivu.overview.card3.cta.href }}" class="btn btn-outline-secondary btn-sm rounded-pill px-3">{{ pageContent.etusivu.overview.card3.cta.label }}</a>
                     </div>
                 </div>
             </div>
@@ -283,12 +245,12 @@ translationKey: home
             {# Kortti 4: Politiikka #}
             <div class="col-md-6 col-xl-3 home-overview-col">
                 <div class="d-flex flex-column h-100">
-                    <p class="home-overview-eyebrow">Yhteiskunnallinen vaikuttaminen</p>
+                    <p class="home-overview-eyebrow">{{ pageContent.etusivu.overview.card4.eyebrow }}</p>
                     <h2 class="h5 fw-bold mb-2 home-overview-title">
                         <i class="bi bi-building me-2 opacity-75"></i>Politiikka
                     </h2>
                     <div class="home-overview-lead-wrap mb-3">
-                        <p class="small mb-0 home-overview-lead">Toisen kauden kaupunginvaltuutettu Oulussa (Kokoomus). Erityisaiheina sivistys, varhaiskasvatuksen laatu ja koulutuksen digitalisaatio.</p>
+                        <p class="small mb-0 home-overview-lead">{{ pageContent.etusivu.overview.card4.lead }}</p>
                         <div class="home-overview-lead-fade"></div>
                     </div>
                     <div class="home-overview-kpis mb-3">
@@ -317,8 +279,8 @@ translationKey: home
                         <div class="home-overview-items-fade"></div>
                     </div>
                     <div class="d-flex flex-wrap gap-2 mt-auto pt-2">
-                        <a href="/politiikka/" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Politiikkasivu</a>
-                        <a href="/kynasta/" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Kynästä</a>
+                        <a href="{{ pageContent.etusivu.overview.card4.cta1.href }}" class="btn btn-outline-secondary btn-sm rounded-pill px-3">{{ pageContent.etusivu.overview.card4.cta1.label }}</a>
+                        <a href="{{ pageContent.etusivu.overview.card4.cta2.href }}" class="btn btn-outline-secondary btn-sm rounded-pill px-3">{{ pageContent.etusivu.overview.card4.cta2.label }}</a>
                     </div>
                 </div>
             </div>
@@ -329,20 +291,16 @@ translationKey: home
 
 <section class="py-5 bg-body-tertiary home-testimonials-section">
     <div class="container">
-        <p class="text-uppercase fw-bold text-center mb-4 home-testimonials-label">Palautetta koulutuksista</p>
+        <p class="text-uppercase fw-bold text-center mb-4 home-testimonials-label">{{ pageContent.etusivu.testimonials.sectionLabel }}</p>
         <div class="row g-4 justify-content-center">
+            {% for q in pageContent.etusivu.testimonials.quotes %}
             <div class="col-md-5">
                 <blockquote class="home-quote">
-                    <p>"Ihan fiiliksissä vieläkin setistäsi. Yhteyden katkeaminen ei latistanut, vaan porukka alkoi heti reflektoida kuultua."</p>
-                    <footer class="home-quote-footer">Henkilöstökoulutus</footer>
+                    <p>"{{ q.text }}"</p>
+                    <footer class="home-quote-footer">{{ q.footer }}</footer>
                 </blockquote>
             </div>
-            <div class="col-md-5">
-                <blockquote class="home-quote">
-                    <p>"Palaute kyselyn perusteella olit osallistujien mielestä päivän paras puhuja."</p>
-                    <footer class="home-quote-footer">Maksullinen seminaari</footer>
-                </blockquote>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>
@@ -505,12 +463,12 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class="col-lg-9">
                 <div class="home-closing-panel text-center">
                     <p class="text-uppercase text-muted fw-bold mb-2">Seuraava askel</p>
-                    <h2 class="fw-bold mb-3">Tarvitsetko kouluttajan, puhujan tai tutkimukseen nojaavan asiantuntijan?</h2>
-                    <p class="mb-4">Sivulla esitellyt teemat jatkuvat käytännön yhteistyössä: koulutuksina, puheenvuoroina, hanketukena ja kehittämistyön sparrauksena.</p>
+                    <h2 class="fw-bold mb-3">{{ pageContent.etusivu.closing.heading }}</h2>
+                    <p class="mb-4">{{ pageContent.etusivu.closing.text }}</p>
                     <div class="home-closing-actions d-flex flex-wrap justify-content-center gap-2 mb-3">
-                        <a class="btn btn-primary rounded-pill px-4" href="/yhteystiedot/">Pyydä tarjous</a>
-                        <a class="btn btn-read-more btn-sm rounded-pill px-3" href="/larux-tmi/">Katso palvelut</a>
-                        <a class="btn btn-outline-secondary btn-sm rounded-pill px-3" href="/tietoa/">Tutustu taustaani</a>
+                        <a class="btn btn-primary rounded-pill px-4" href="{{ pageContent.etusivu.closing.cta1.href }}">{{ pageContent.etusivu.closing.cta1.label }}</a>
+                        <a class="btn btn-read-more btn-sm rounded-pill px-3" href="{{ pageContent.etusivu.closing.cta2.href }}">{{ pageContent.etusivu.closing.cta2.label }}</a>
+                        <a class="btn btn-outline-secondary btn-sm rounded-pill px-3" href="{{ pageContent.etusivu.closing.cta3.href }}">{{ pageContent.etusivu.closing.cta3.label }}</a>
                     </div>
                 </div>
             </div>

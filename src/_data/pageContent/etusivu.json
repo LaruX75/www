@@ -1,0 +1,110 @@
+{
+  "hero": {
+    "eyebrow": "Jari Laru",
+    "title": "Koulutan ja tutkin, miten tekoäly ja oppimisteknologia toimivat koulun arjessa.",
+    "roles": [
+      { "label": "Yliopistonlehtori", "href": "/tyoni-yliopistonlehtorina/" },
+      { "label": "Kouluttaja (Larux t:mi)", "href": "/larux-tmi/" },
+      { "label": "Kuntapäättäjä", "href": "/politiikka/" }
+    ]
+  },
+  "intro": {
+    "text": "Yliopistonlehtori, kouluttaja ja kuntapäättäjä. Tutkin ja koulutan miten tekoäly ja oppimisteknologia toimivat koulun arjessa — ja vaikutan päätöksentekoon, jotta tutkimusnäyttö löytää tiensä luokkahuoneeseen.",
+    "cta1": { "label": "Pyydä tarjous", "href": "/yhteystiedot/" },
+    "cta2": { "label": "Tutustu taustaani", "href": "/tietoa/" }
+  },
+  "paths": {
+    "sectionLabel": "Mistä lähdet liikkeelle?",
+    "cards": [
+      {
+        "icon": "bi-person-workspace",
+        "title": "Koulutuksen tilaajalle",
+        "desc": "Tarvitsetko kouluttajan tai keynote-puhujan? Käytännönläheiset koulutukset tekoälystä, digipedagogiikasta ja oppimisesta organisaatioille ja oppilaitoksille.",
+        "cta": "Koulutuspalvelut ja tarjouspyyntö →",
+        "href": "/larux-tmi/"
+      },
+      {
+        "icon": "bi-journal-text",
+        "title": "Tutkijalle & kollegalle",
+        "desc": "Vertaisarvioidut julkaisut, hankeyhteistyö ja tutkimusagenda teknologiatuetusta oppimisesta ja tekoälykasvatuksesta.",
+        "cta": "Tutkimussivulle →",
+        "href": "/tutkimus/"
+      },
+      {
+        "icon": "bi-building-check",
+        "title": "Oululaiselle & äänestäjälle",
+        "desc": "Varavaltuutettu ja sivistyslautakunnan jäsen Oulussa (Kokoomus). Seuraa valtuustoaloitteita, puheenvuoroja ja mielipidekirjoituksia — painoalueina kouluverkko, hallinnon avoimuus ja kaupunkialueiden tasapuolinen kehitys.",
+        "cta": "Politiikkasivu →",
+        "href": "/politiikka/"
+      }
+    ]
+  },
+  "challenges": {
+    "heading": "Miksi tämä työ on tärkeää?",
+    "lead": "Kolme toisiinsa kytkeytyvää haastetta, joihin vastaan tutkimuksella, koulutuksella ja yhteiskunnallisella vaikuttamisella.",
+    "cards": [
+      {
+        "num": "01",
+        "title": "Tekoäly muuttaa opettamista nopeammin kuin koulut ehtivät sopeutua",
+        "text": "Oppilaitokset etsivät käytännön ratkaisuja tekoälyn integrointiin, mutta tutkimusnäyttöön perustuva tuki ja osaaminen puuttuvat liian usein."
+      },
+      {
+        "num": "02",
+        "title": "Tutkimustieto jää liian usein vain tutkijoiden pöytälaatikoihin",
+        "text": "Tieteellinen tieto ja käytännön luokkahuonetyö eivät kohtaa riittävästi. Sillä on väliä, kuka välittää tietoa ja miten."
+      },
+      {
+        "num": "03",
+        "title": "Koulutuspäätökset tehdään liian harvoin tutkimusnäytön pohjalta",
+        "text": "Digitalisaatiota koskevat kuntapäätökset vaativat asiantuntemusta, jota liian harvoilla päättäjillä on — ja johon voi vaikuttaa."
+      }
+    ]
+  },
+  "overview": {
+    "card1": {
+      "eyebrow": "Yliopisto",
+      "lead": "Teknologiatuetun oppimisen yliopistonlehtori, Kasvatustieteiden tiedekunta, Oulun yliopisto. Mukana STN:n rahoittamassa Generation AI -hankkeessa — tekoälykasvatusta esi- ja perusopetukseen.",
+      "kpi1": { "value": "100+", "label": "opinnäytettä" },
+      "kpi2": { "value": "15+", "label": "v. kokemus" },
+      "cta": { "label": "Lue lisää", "href": "/tyoni-yliopistonlehtorina/" }
+    },
+    "card2": {
+      "eyebrow": "Koulutuspalvelut · Larux t:mi",
+      "lead": "Käytännönläheisiä koulutuksia opettajille, rehtoreille ja organisaatioille — tekoälyn soveltamisesta kouluarjessa keynote-puheenvuoroihin ja työpajoihin.",
+      "kpi2": { "value": "50+", "label": "koulutusta" },
+      "cta1": { "label": "Tilaa koulutus", "href": "/larux-tmi/" },
+      "cta2": { "label": "Kaikki esitykset", "href": "/esitykset/" }
+    },
+    "card3": {
+      "eyebrow": "Tiede & tutkimus",
+      "lead": "Vertaisarvioituja artikkeleita ja konferenssijulkaisuja teknologiatuetusta oppimisesta, tekoälykasvatuksesta ja digipedagogiikasta.",
+      "cta": { "label": "Kaikki julkaisut", "href": "/julkaisut/" }
+    },
+    "card4": {
+      "eyebrow": "Yhteiskunnallinen vaikuttaminen",
+      "lead": "Varavaltuutettu ja sivistyslautakunnan jäsen Oulussa (Kokoomus). Painoalueina kouluverkko, hallinnon avoimuus ja kaupunkialueiden tasapuolinen kehitys.",
+      "cta1": { "label": "Politiikkasivu", "href": "/politiikka/" },
+      "cta2": { "label": "Kynästä", "href": "/kynasta/" }
+    }
+  },
+  "testimonials": {
+    "sectionLabel": "Palautetta koulutuksista",
+    "quotes": [
+      {
+        "text": "Ihan fiiliksissä vieläkin setistäsi. Yhteyden katkeaminen ei latistanut, vaan porukka alkoi heti reflektoida kuultua.",
+        "footer": "Henkilöstökoulutus"
+      },
+      {
+        "text": "Palaute kyselyn perusteella olit osallistujien mielestä päivän paras puhuja.",
+        "footer": "Maksullinen seminaari"
+      }
+    ]
+  },
+  "closing": {
+    "heading": "Tarvitsetko kouluttajan, puhujan tai tutkimukseen nojaavan asiantuntijan?",
+    "text": "Sivulla esitellyt teemat jatkuvat käytännön yhteistyössä: koulutuksina, puheenvuoroina, hanketukena ja kehittämistyön sparrauksena.",
+    "cta1": { "label": "Pyydä tarjous", "href": "/yhteystiedot/" },
+    "cta2": { "label": "Katso palvelut", "href": "/larux-tmi/" },
+    "cta3": { "label": "Tutustu taustaani", "href": "/tietoa/" }
+  }
+}

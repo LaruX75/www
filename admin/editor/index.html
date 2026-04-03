@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sisältöeditori — jarilaru.fi</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <style>
+    body { background: #f0f4f8; font-size: 0.9rem; }
+    #auth-section { max-width: 420px; margin: 80px auto; text-align: center; background: #fff; border-radius: 10px; padding: 2rem; box-shadow: 0 2px 12px rgba(0,0,0,.08); }
+    .editor-header { background: #1a2638; color: #fff; padding: 0.6rem 1.2rem; display: flex; align-items: center; gap: 1rem; }
+    .editor-header a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: .8rem; }
+    .editor-header a:hover { color: #fff; }
+    .page-tabs { background: #243549; padding: 0 1rem; border-bottom: 1px solid #354f68; }
+    .page-tabs .nav-link { color: rgba(255,255,255,0.55); border-radius: 0; border-bottom: 2px solid transparent; padding: .55rem 1rem; font-size: .85rem; }
+    .page-tabs .nav-link.active { color: #fff; border-bottom-color: #4e9eff; background: transparent; }
+    .page-tabs .nav-link:hover:not(.active) { color: rgba(255,255,255,0.8); }
+    .page-tabs .nav-link.disabled { color: rgba(255,255,255,0.25); pointer-events: none; }
+    .editor-body { display: flex; height: calc(100vh - 88px); overflow: hidden; }
+    .editor-fields { width: 420px; min-width: 320px; overflow-y: auto; background: #fff; border-right: 1px solid #dee2e6; flex-shrink: 0; }
+    .editor-preview { flex: 1; overflow-y: auto; background: #f4f6f9; padding: 1.5rem; }
+    .section-block { border-bottom: 1px solid #eee; }
+    .section-head { padding: .65rem 1rem; background: #f8f9fa; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-weight: 600; font-size: .82rem; text-transform: uppercase; letter-spacing: .04em; color: #495057; user-select: none; }
+    .section-head:hover { background: #e9ecef; }
+    .section-body { padding: .75rem 1rem 1rem; display: none; }
+    .section-body.open { display: block; }
+    .field-group { margin-bottom: .9rem; }
+    .field-group label { font-size: .75rem; font-weight: 600; color: #6c757d; text-transform: uppercase; letter-spacing: .04em; display: block; margin-bottom: .25rem; }
+    .field-group input, .field-group textarea { font-size: .85rem; border-radius: 5px; }
+    .field-group textarea { min-height: 72px; resize: vertical; }
+    .card-separator { border-top: 2px dashed #dee2e6; margin: .75rem 0 .6rem; }
+    .card-label { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #adb5bd; margin-bottom: .5rem; }
+    /* Preview styles — match live site roughly */
+    .prev-hero { background: linear-gradient(112deg, rgba(205,226,248,.9) 8%, rgba(196,221,247,.7) 52%, rgba(187,214,244,.35) 100%), url('/img/WIN_20210329_16_06_01_Pro.jpg') center/cover; border-radius: 8px; padding: 3rem 2rem 2rem; color: #0f2238; margin-bottom: 1rem; }
+    .prev-hero h1 { font-size: 1.4rem; font-weight: 800; line-height: 1.2; margin: .5rem 0 1rem; }
+    .prev-hero .eyebrow { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: #0f2d4a; }
+    .prev-hero .roles { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .prev-hero .role-pill { font-size: .78rem; background: rgba(255,255,255,.6); padding: .2rem .7rem; border-radius: 100px; color: #0f2238; }
+    .prev-paths { background: #fff; border-radius: 8px; padding: 1.2rem; margin-bottom: 1rem; }
+    .prev-paths h6 { font-size: .7rem; text-transform: uppercase; font-weight: 700; letter-spacing: .06em; color: #6c757d; text-align: center; margin-bottom: 1rem; }
+    .prev-path-card { border: 1px solid #dee2e6; border-radius: 8px; padding: .75rem; margin-bottom: .5rem; }
+    .prev-path-card .title { font-weight: 700; font-size: .88rem; margin-bottom: .25rem; }
+    .prev-path-card .desc { font-size: .78rem; color: #6c757d; margin-bottom: .25rem; }
+    .prev-path-card .cta { font-size: .78rem; font-weight: 600; color: #0453b4; }
+    .prev-challenges { background: #eef3f8; border-radius: 8px; padding: 1.2rem; margin-bottom: 1rem; }
+    .prev-challenges h2 { font-size: 1rem; font-weight: 700; margin-bottom: .3rem; }
+    .prev-challenges .lead { font-size: .82rem; color: #48606e; margin-bottom: .8rem; }
+    .prev-challenge-card { background: #fff; border-radius: 8px; padding: .65rem .8rem; margin-bottom: .5rem; }
+    .prev-challenge-card .num { font-size: .65rem; font-weight: 700; color: #adb5bd; }
+    .prev-challenge-card .title { font-size: .85rem; font-weight: 700; margin-bottom: .2rem; }
+    .prev-challenge-card .text { font-size: .78rem; color: #6c757d; }
+    .prev-testimonials { background: #fff; border-radius: 8px; padding: 1.2rem; margin-bottom: 1rem; }
+    .prev-testimonials h6 { font-size: .7rem; text-transform: uppercase; font-weight: 700; letter-spacing: .06em; color: #6c757d; text-align: center; margin-bottom: 1rem; }
+    .prev-quote { background: #f8f9fa; border-left: 3px solid #0453b4; border-radius: 0 6px 6px 0; padding: .65rem .8rem; margin-bottom: .5rem; font-size: .82rem; font-style: italic; }
+    .prev-quote .footer { font-size: .72rem; font-weight: 600; color: #6c757d; margin-top: .3rem; font-style: normal; }
+    .prev-closing { background: #1a2638; color: #fff; border-radius: 8px; padding: 1.5rem; text-align: center; margin-bottom: 1rem; }
+    .prev-closing h2 { font-size: 1rem; font-weight: 700; margin-bottom: .5rem; }
+    .prev-closing p { font-size: .82rem; color: rgba(255,255,255,.7); }
+    .status-bar { position: sticky; bottom: 0; background: #fff; border-top: 1px solid #dee2e6; padding: .6rem 1rem; display: flex; align-items: center; gap: .75rem; }
+    .build-badge { font-size: .72rem; padding: .2rem .6rem; border-radius: 100px; }
+    .spinner-sm { width: .85rem; height: .85rem; border-width: .12em; }
+  </style>
+</head>
+<body>
+
+<!-- AUTH -->
+<div id="auth-section">
+  <h2 class="mb-1">Sisältöeditori</h2>
+  <p class="text-muted mb-4">jarilaru.fi admin</p>
+  <button id="login-btn" class="btn btn-primary px-4">Kirjaudu GitHubiin</button>
+  <div id="login-error" class="text-danger small mt-2" style="display:none"></div>
+</div>
+
+<!-- APP -->
+<div id="app" style="display:none">
+  <div class="editor-header">
+    <span class="fw-bold">Sisältöeditori</span>
+    <span id="user-info" class="text-white-50 small ms-1"></span>
+    <div class="ms-auto d-flex gap-2 align-items-center">
+      <a href="/admin/editor/" class="d-none d-sm-inline">Editori</a>
+      <a href="/admin/curate/">Kuratointi</a>
+      <a href="/admin/">CMS</a>
+      <a href="/" target="_blank">Sivusto <i class="bi bi-box-arrow-up-right" style="font-size:.7rem"></i></a>
+      <button id="logout-btn" class="btn btn-sm btn-outline-light ms-2" style="font-size:.75rem;padding:.2rem .6rem">Kirjaudu ulos</button>
+    </div>
+  </div>
+
+  <!-- PAGE TABS -->
+  <nav class="page-tabs">
+    <ul class="nav" id="pageTabs">
+      <li class="nav-item"><a class="nav-link active" href="#" data-page="etusivu">Etusivu</a></li>
+      <li class="nav-item"><a class="nav-link disabled" href="#" data-page="tietoa">Minä <span class="badge bg-secondary ms-1" style="font-size:.6rem">tulossa</span></a></li>
+      <li class="nav-item"><a class="nav-link disabled" href="#" data-page="tyo">Työ <span class="badge bg-secondary ms-1" style="font-size:.6rem">tulossa</span></a></li>
+      <li class="nav-item"><a class="nav-link disabled" href="#" data-page="politiikka">Politiikka <span class="badge bg-secondary ms-1" style="font-size:.6rem">tulossa</span></a></li>
+      <li class="nav-item"><a class="nav-link disabled" href="#" data-page="kynasta">Kynästä <span class="badge bg-secondary ms-1" style="font-size:.6rem">tulossa</span></a></li>
+    </ul>
+  </nav>
+
+  <div class="editor-body">
+    <!-- LEFT: FIELDS -->
+    <div class="editor-fields" id="fieldsPanel">
+      <div id="fields-etusivu">
+        <!-- Hero -->
+        <div class="section-block">
+          <div class="section-head" data-target="sec-hero">
+            <span><i class="bi bi-person-badge me-2 text-primary"></i>Hero</span>
+            <i class="bi bi-chevron-down toggle-icon"></i>
+          </div>
+          <div class="section-body" id="sec-hero">
+            <div class="field-group">
+              <label>Eyebrow (nimi yläpuolella)</label>
+              <input type="text" class="form-control" data-path="hero.eyebrow">
+            </div>
+            <div class="field-group">
+              <label>Pääotsikko</label>
+              <textarea class="form-control" data-path="hero.title" rows="3"></textarea>
+            </div>
+            <div class="card-label mt-2 mb-1">Roolit (3 kpl)</div>
+            <div id="roles-fields"></div>
+          </div>
+        </div>
+
+        <!-- Intro -->
+        <div class="section-block">
+          <div class="section-head" data-target="sec-intro">
+            <span><i class="bi bi-text-paragraph me-2 text-success"></i>Intro-teksti</span>
+            <i class="bi bi-chevron-down toggle-icon"></i>
+          </div>
+          <div class="section-body" id="sec-intro">
+            <div class="field-group">
+              <label>Kuvausteksti</label>
+              <textarea class="form-control" data-path="intro.text" rows="3"></textarea>
+            </div>
+            <div class="card-label mt-2">CTA-painikkeet</div>
+            <div class="row g-2">
+              <div class="col-6">
+                <div class="field-group">
+                  <label>Painike 1 teksti</label>
+                  <input type="text" class="form-control" data-path="intro.cta1.label">
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="field-group">
+                  <label>Painike 1 linkki</label>
+                  <input type="text" class="form-control" data-path="intro.cta1.href">
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="field-group">
+                  <label>Painike 2 teksti</label>
+                  <input type="text" class="form-control" data-path="intro.cta2.label">
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="field-group">
+                  <label>Painike 2 linkki</label>
+                  <input type="text" class="form-control" data-path="intro.cta2.href">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Paths -->
+        <div class="section-block">
+          <div class="section-head" data-target="sec-paths">
+            <span><i class="bi bi-signpost-2 me-2 text-warning"></i>Mistä lähdet liikkeelle?</span>
+            <i class="bi bi-chevron-down toggle-icon"></i>
+          </div>
+          <div class="section-body open" id="sec-paths">
+            <div class="field-group">
+              <label>Osion otsikko</label>
+              <input type="text" class="form-control" data-path="paths.sectionLabel">
+            </div>
+            <div id="paths-cards-fields"></div>
+          </div>
+        </div>
+
+        <!-- Challenges -->
+        <div class="section-block">
+          <div class="section-head" data-target="sec-challenges">
+            <span><i class="bi bi-exclamation-circle me-2 text-danger"></i>Miksi tämä työ on tärkeää?</span>
+            <i class="bi bi-chevron-down toggle-icon"></i>
+          </div>
+          <div class="section-body" id="sec-challenges">
+            <div class="field-group">
+              <label>Osion otsikko</label>
+              <input type="text" class="form-control" data-path="challenges.heading">
+            </div>
+            <div class="field-group">
+              <label>Johtoajatus</label>
+              <textarea class="form-control" data-path="challenges.lead" rows="2"></textarea>
+            </div>
+            <div id="challenges-cards-fields"></div>
+          </div>
+        </div>
+
+        <!-- Overview -->
+        <div class="section-block">
+          <div class="section-head" data-target="sec-overview">
+            <span><i class="bi bi-grid me-2 text-info"></i>Neljä saraketta (yleiskatsaus)</span>
+            <i class="bi bi-chevron-down toggle-icon"></i>
+          </div>
+          <div class="section-body" id="sec-overview">
+            <div id="overview-fields"></div>
+          </div>
+        </div>
+
+        <!-- Testimonials -->
+        <div class="section-block">
+          <div class="section-head" data-target="sec-testimonials">
+            <span><i class="bi bi-chat-quote me-2 text-secondary"></i>Palautteet</span>
+            <i class="bi bi-chevron-down toggle-icon"></i>
+          </div>
+          <div class="section-body" id="sec-testimonials">
+            <div class="field-group">
+              <label>Osion otsikko</label>
+              <input type="text" class="form-control" data-path="testimonials.sectionLabel">
+            </div>
+            <div id="testimonials-fields"></div>
+          </div>
+        </div>
+
+        <!-- Closing -->
+        <div class="section-block">
+          <div class="section-head" data-target="sec-closing">
+            <span><i class="bi bi-envelope me-2 text-primary"></i>Seuraava askel (loppu)</span>
+            <i class="bi bi-chevron-down toggle-icon"></i>
+          </div>
+          <div class="section-body" id="sec-closing">
+            <div class="field-group">
+              <label>Otsikko</label>
+              <textarea class="form-control" data-path="closing.heading" rows="2"></textarea>
+            </div>
+            <div class="field-group">
+              <label>Teksti</label>
+              <textarea class="form-control" data-path="closing.text" rows="2"></textarea>
+            </div>
+            <div class="card-label mt-2">CTA-painikkeet</div>
+            <div class="row g-2">
+              <div class="col-6"><div class="field-group"><label>CTA 1 teksti</label><input type="text" class="form-control" data-path="closing.cta1.label"></div></div>
+              <div class="col-6"><div class="field-group"><label>CTA 1 linkki</label><input type="text" class="form-control" data-path="closing.cta1.href"></div></div>
+              <div class="col-6"><div class="field-group"><label>CTA 2 teksti</label><input type="text" class="form-control" data-path="closing.cta2.label"></div></div>
+              <div class="col-6"><div class="field-group"><label>CTA 2 linkki</label><input type="text" class="form-control" data-path="closing.cta2.href"></div></div>
+              <div class="col-6"><div class="field-group"><label>CTA 3 teksti</label><input type="text" class="form-control" data-path="closing.cta3.label"></div></div>
+              <div class="col-6"><div class="field-group"><label>CTA 3 linkki</label><input type="text" class="form-control" data-path="closing.cta3.href"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STATUS + SAVE -->
+      <div class="status-bar">
+        <button id="save-btn" class="btn btn-primary btn-sm px-3" disabled>
+          <i class="bi bi-cloud-upload me-1"></i>Tallenna GitHubiin
+        </button>
+        <span id="status-msg" class="text-muted small"></span>
+        <div class="ms-auto">
+          <a href="/" target="_blank" class="btn btn-outline-secondary btn-sm">
+            <i class="bi bi-eye me-1"></i>Avaa sivu
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: PREVIEW -->
+    <div class="editor-preview" id="previewPanel">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <h6 class="mb-0 text-muted fw-bold" style="font-size:.75rem;text-transform:uppercase;letter-spacing:.06em">Esikatselu</h6>
+        <span class="badge bg-secondary" style="font-size:.65rem">Muokkaa vasemmalla → esikatselu päivittyy reaaliajassa</span>
+      </div>
+
+      <!-- Hero preview -->
+      <div class="prev-hero" id="prev-hero">
+        <div class="eyebrow" id="prev-hero-eyebrow"></div>
+        <h1 id="prev-hero-title"></h1>
+        <div class="roles" id="prev-hero-roles"></div>
+      </div>
+
+      <!-- Intro preview -->
+      <div class="bg-white rounded-3 p-3 mb-3 text-center">
+        <p id="prev-intro-text" class="mb-2" style="font-size:.85rem;color:#48606e"></p>
+        <div class="d-flex justify-content-center gap-2 flex-wrap">
+          <a id="prev-intro-cta1" class="btn btn-primary btn-sm rounded-pill" href="#"></a>
+          <a id="prev-intro-cta2" class="btn btn-outline-secondary btn-sm rounded-pill" href="#"></a>
+        </div>
+      </div>
+
+      <!-- Paths preview -->
+      <div class="prev-paths">
+        <h6 id="prev-paths-label"></h6>
+        <div id="prev-paths-cards"></div>
+      </div>
+
+      <!-- Challenges preview -->
+      <div class="prev-challenges">
+        <h2 id="prev-challenges-heading"></h2>
+        <p class="lead" id="prev-challenges-lead"></p>
+        <div id="prev-challenges-cards"></div>
+      </div>
+
+      <!-- Testimonials preview -->
+      <div class="prev-testimonials">
+        <h6 id="prev-testimonials-label"></h6>
+        <div id="prev-testimonials-quotes"></div>
+      </div>
+
+      <!-- Closing preview -->
+      <div class="prev-closing">
+        <h2 id="prev-closing-heading"></h2>
+        <p id="prev-closing-text"></p>
+        <div class="d-flex justify-content-center gap-2 flex-wrap mt-2">
+          <a id="prev-closing-cta1" class="btn btn-primary btn-sm rounded-pill" href="#"></a>
+          <a id="prev-closing-cta2" class="btn btn-outline-light btn-sm rounded-pill" href="#"></a>
+          <a id="prev-closing-cta3" class="btn btn-outline-light btn-sm rounded-pill" href="#"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const REPO = 'LaruX75/www';
+const FILE_PATH = 'src/_data/pageContent/etusivu.json';
+const AUTH_URL = 'https://sveltia-cms-auth.fc4ydtm5bs.workers.dev';
+const ALLOWED_USERS = ['LaruX75'];
+
+let token = null;
+let data = null;
+let isDirty = false;
+
+// ── Auth ──────────────────────────────────────────────────────────────
+function getStoredToken() {
+  try { return localStorage.getItem('github-token'); } catch { return null; }
+}
+
+async function doLogin() {
+  const popup = window.open(
+    `${AUTH_URL}/auth?provider=github&site_id=www.jarilaru.fi`,
+    'gh-auth', 'width=620,height=720,left=200,top=100'
+  );
+  return new Promise((resolve, reject) => {
+    window.addEventListener('message', function handler(e) {
+      if (e.data === 'authorizing:github') { popup?.postMessage('authorizing:github', '*'); return; }
+      const prefix = 'authorization:github:success:';
+      if (typeof e.data === 'string' && e.data.startsWith(prefix)) {
+        window.removeEventListener('message', handler);
+        try {
+          const payload = JSON.parse(atob(e.data.slice(prefix.length)));
+          if (payload?.token) { resolve(payload.token); } else { reject(new Error('No token')); }
+        } catch { reject(new Error('Parse error')); }
+      }
+      if (typeof e.data === 'string' && e.data.startsWith('authorization:github:error:')) {
+        window.removeEventListener('message', handler);
+        reject(new Error('Auth error'));
+      }
+    });
+  });
+}
+
+async function ghGet(url) {
+  const r = await fetch(`https://api.github.com${url}`, {
+    headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' }
+  });
+  if (!r.ok) throw new Error(`GitHub API ${r.status}`);
+  return r.json();
+}
+
+async function ghPut(url, body) {
+  const r = await fetch(`https://api.github.com${url}`, {
+    method: 'PUT',
+    headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  });
+  if (!r.ok) { const err = await r.json(); throw new Error(err.message || `HTTP ${r.status}`); }
+  return r.json();
+}
+
+// ── Deep get/set by dot-path ──────────────────────────────────────────
+function getPath(obj, path) {
+  return path.split('.').reduce((o, k) => (o != null ? o[k] : undefined), obj);
+}
+function setPath(obj, path, val) {
+  const keys = path.split('.');
+  keys.slice(0, -1).reduce((o, k) => (o[k] = o[k] || {}), obj)[keys[keys.length - 1]] = val;
+}
+
+// ── Build dynamic fields ──────────────────────────────────────────────
+function makeField(label, path, multiline = false) {
+  const wrap = document.createElement('div');
+  wrap.className = 'field-group';
+  const lbl = document.createElement('label');
+  lbl.textContent = label;
+  const inp = multiline ? document.createElement('textarea') : document.createElement('input');
+  if (!multiline) inp.type = 'text';
+  inp.className = 'form-control';
+  inp.dataset.path = path;
+  if (multiline) inp.rows = 2;
+  wrap.append(lbl, inp);
+  return wrap;
+}
+
+function buildRolesFields() {
+  const c = document.getElementById('roles-fields');
+  c.innerHTML = '';
+  (data.hero.roles || []).forEach((_, i) => {
+    const sep = document.createElement('div');
+    sep.className = 'card-separator';
+    const lbl = document.createElement('div');
+    lbl.className = 'card-label';
+    lbl.textContent = `Rooli ${i + 1}`;
+    const row = document.createElement('div');
+    row.className = 'row g-2';
+    ['col-7', 'col-5'].forEach((cls, j) => {
+      const d = document.createElement('div');
+      d.className = cls;
+      d.append(makeField(j === 0 ? 'Teksti' : 'Linkki', `hero.roles.${i}.${j === 0 ? 'label' : 'href'}`));
+      row.append(d);
+    });
+    if (i > 0) c.append(sep);
+    c.append(lbl, row);
+  });
+}
+
+function buildPathsCards() {
+  const c = document.getElementById('paths-cards-fields');
+  c.innerHTML = '';
+  (data.paths.cards || []).forEach((_, i) => {
+    const sep = document.createElement('div'); sep.className = 'card-separator';
+    const lbl = document.createElement('div'); lbl.className = 'card-label'; lbl.textContent = `Kortti ${i + 1}`;
+    const fields = document.createElement('div');
+    fields.append(
+      makeField('Otsikko', `paths.cards.${i}.title`),
+      makeField('Kuvaus', `paths.cards.${i}.desc`, true),
+      makeField('CTA-teksti', `paths.cards.${i}.cta`),
+      makeField('Linkki (href)', `paths.cards.${i}.href`)
+    );
+    if (i > 0) c.append(sep);
+    c.append(lbl, fields);
+  });
+}
+
+function buildChallengesCards() {
+  const c = document.getElementById('challenges-cards-fields');
+  c.innerHTML = '';
+  (data.challenges.cards || []).forEach((_, i) => {
+    const sep = document.createElement('div'); sep.className = 'card-separator';
+    const lbl = document.createElement('div'); lbl.className = 'card-label'; lbl.textContent = `Haaste ${i + 1}`;
+    const fields = document.createElement('div');
+    fields.append(
+      makeField('Otsikko', `challenges.cards.${i}.title`),
+      makeField('Teksti', `challenges.cards.${i}.text`, true)
+    );
+    if (i > 0) c.append(sep);
+    c.append(lbl, fields);
+  });
+}
+
+function buildOverviewFields() {
+  const c = document.getElementById('overview-fields');
+  c.innerHTML = '';
+  const cards = [
+    { key: 'card1', name: 'Kortti 1: Yliopistonlehtori', fields: [
+      ['Eyebrow', 'overview.card1.eyebrow'], ['Kuvausteksti', 'overview.card1.lead', true],
+      ['KPI 1 arvo', 'overview.card1.kpi1.value'], ['KPI 1 teksti', 'overview.card1.kpi1.label'],
+      ['KPI 2 arvo', 'overview.card1.kpi2.value'], ['KPI 2 teksti', 'overview.card1.kpi2.label'],
+      ['CTA teksti', 'overview.card1.cta.label'], ['CTA linkki', 'overview.card1.cta.href']
+    ]},
+    { key: 'card2', name: 'Kortti 2: Kouluttaja', fields: [
+      ['Eyebrow', 'overview.card2.eyebrow'], ['Kuvausteksti', 'overview.card2.lead', true],
+      ['KPI 2 arvo', 'overview.card2.kpi2.value'], ['KPI 2 teksti', 'overview.card2.kpi2.label'],
+      ['CTA 1 teksti', 'overview.card2.cta1.label'], ['CTA 1 linkki', 'overview.card2.cta1.href'],
+      ['CTA 2 teksti', 'overview.card2.cta2.label'], ['CTA 2 linkki', 'overview.card2.cta2.href']
+    ]},
+    { key: 'card3', name: 'Kortti 3: Julkaisut', fields: [
+      ['Eyebrow', 'overview.card3.eyebrow'], ['Kuvausteksti', 'overview.card3.lead', true],
+      ['CTA teksti', 'overview.card3.cta.label'], ['CTA linkki', 'overview.card3.cta.href']
+    ]},
+    { key: 'card4', name: 'Kortti 4: Politiikka', fields: [
+      ['Eyebrow', 'overview.card4.eyebrow'], ['Kuvausteksti', 'overview.card4.lead', true],
+      ['CTA 1 teksti', 'overview.card4.cta1.label'], ['CTA 1 linkki', 'overview.card4.cta1.href'],
+      ['CTA 2 teksti', 'overview.card4.cta2.label'], ['CTA 2 linkki', 'overview.card4.cta2.href']
+    ]}
+  ];
+  cards.forEach((card, i) => {
+    if (i > 0) { const sep = document.createElement('div'); sep.className = 'card-separator'; c.append(sep); }
+    const lbl = document.createElement('div'); lbl.className = 'card-label'; lbl.textContent = card.name;
+    const fields = document.createElement('div');
+    card.fields.forEach(([label, path, multi]) => fields.append(makeField(label, path, !!multi)));
+    c.append(lbl, fields);
+  });
+}
+
+function buildTestimonialsFields() {
+  const c = document.getElementById('testimonials-fields');
+  c.innerHTML = '';
+  (data.testimonials.quotes || []).forEach((_, i) => {
+    const sep = document.createElement('div'); sep.className = 'card-separator';
+    const lbl = document.createElement('div'); lbl.className = 'card-label'; lbl.textContent = `Lainaus ${i + 1}`;
+    const fields = document.createElement('div');
+    fields.append(
+      makeField('Lainauksen teksti', `testimonials.quotes.${i}.text`, true),
+      makeField('Lähde / konteksti', `testimonials.quotes.${i}.footer`)
+    );
+    if (i > 0) c.append(sep);
+    c.append(lbl, fields);
+  });
+}
+
+// ── Populate all fields from data ─────────────────────────────────────
+function populateFields() {
+  buildRolesFields();
+  buildPathsCards();
+  buildChallengesCards();
+  buildOverviewFields();
+  buildTestimonialsFields();
+
+  document.querySelectorAll('[data-path]').forEach(el => {
+    const val = getPath(data, el.dataset.path);
+    el.value = val != null ? val : '';
+  });
+  updatePreview();
+}
+
+// ── Live update on input ──────────────────────────────────────────────
+document.addEventListener('input', e => {
+  const el = e.target;
+  if (!el.dataset.path || !data) return;
+  setPath(data, el.dataset.path, el.value);
+  updatePreview();
+  markDirty();
+});
+
+function markDirty() {
+  isDirty = true;
+  document.getElementById('save-btn').disabled = false;
+  document.getElementById('status-msg').textContent = 'Tallentamattomia muutoksia';
+  document.getElementById('status-msg').className = 'text-warning small';
+}
+
+// ── Preview update ────────────────────────────────────────────────────
+function esc(s) {
+  return (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function updatePreview() {
+  if (!data) return;
+
+  // Hero
+  document.getElementById('prev-hero-eyebrow').textContent = data.hero?.eyebrow || '';
+  document.getElementById('prev-hero-title').textContent = data.hero?.title || '';
+  const rolesEl = document.getElementById('prev-hero-roles');
+  rolesEl.innerHTML = (data.hero?.roles || []).map(r =>
+    `<span class="role-pill">${esc(r.label)}</span>`
+  ).join('');
+
+  // Intro
+  document.getElementById('prev-intro-text').textContent = data.intro?.text || '';
+  const c1 = document.getElementById('prev-intro-cta1');
+  c1.textContent = data.intro?.cta1?.label || '';
+  c1.href = data.intro?.cta1?.href || '#';
+  const c2 = document.getElementById('prev-intro-cta2');
+  c2.textContent = data.intro?.cta2?.label || '';
+  c2.href = data.intro?.cta2?.href || '#';
+
+  // Paths
+  document.getElementById('prev-paths-label').textContent = data.paths?.sectionLabel || '';
+  document.getElementById('prev-paths-cards').innerHTML = (data.paths?.cards || []).map(c =>
+    `<div class="prev-path-card">
+      <div class="title">${esc(c.title)}</div>
+      <div class="desc">${esc(c.desc)}</div>
+      <div class="cta">${esc(c.cta)}</div>
+    </div>`
+  ).join('');
+
+  // Challenges
+  document.getElementById('prev-challenges-heading').textContent = data.challenges?.heading || '';
+  document.getElementById('prev-challenges-lead').textContent = data.challenges?.lead || '';
+  document.getElementById('prev-challenges-cards').innerHTML = (data.challenges?.cards || []).map(c =>
+    `<div class="prev-challenge-card">
+      <div class="num">${esc(c.num)}</div>
+      <div class="title">${esc(c.title)}</div>
+      <div class="text">${esc(c.text)}</div>
+    </div>`
+  ).join('');
+
+  // Testimonials
+  document.getElementById('prev-testimonials-label').textContent = data.testimonials?.sectionLabel || '';
+  document.getElementById('prev-testimonials-quotes').innerHTML = (data.testimonials?.quotes || []).map(q =>
+    `<div class="prev-quote">"${esc(q.text)}"<div class="footer">${esc(q.footer)}</div></div>`
+  ).join('');
+
+  // Closing
+  document.getElementById('prev-closing-heading').textContent = data.closing?.heading || '';
+  document.getElementById('prev-closing-text').textContent = data.closing?.text || '';
+  ['cta1','cta2','cta3'].forEach(k => {
+    const el = document.getElementById(`prev-closing-${k}`);
+    if (el) { el.textContent = data.closing?.[k]?.label || ''; el.href = data.closing?.[k]?.href || '#'; }
+  });
+}
+
+// ── Save to GitHub ────────────────────────────────────────────────────
+async function saveToGitHub() {
+  const btn = document.getElementById('save-btn');
+  const msg = document.getElementById('status-msg');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner-border spinner-sm me-1"></span>Tallennetaan...';
+  msg.textContent = '';
+  try {
+    const file = await ghGet(`/repos/${REPO}/contents/${FILE_PATH}`);
+    const newContent = JSON.stringify(data, null, 2);
+    await ghPut(`/repos/${REPO}/contents/${FILE_PATH}`, {
+      message: 'content: update etusivu via admin editor',
+      content: btoa(unescape(encodeURIComponent(newContent))),
+      sha: file.sha
+    });
+    isDirty = false;
+    btn.innerHTML = '<i class="bi bi-cloud-upload me-1"></i>Tallenna GitHubiin';
+    btn.disabled = false;
+    msg.textContent = '✓ Tallennettu! Sivu rakentuu ~2 min...';
+    msg.className = 'text-success small';
+  } catch (err) {
+    btn.innerHTML = '<i class="bi bi-cloud-upload me-1"></i>Tallenna GitHubiin';
+    btn.disabled = false;
+    msg.textContent = `Virhe: ${err.message}`;
+    msg.className = 'text-danger small';
+  }
+}
+
+// ── Section accordion ─────────────────────────────────────────────────
+document.addEventListener('click', e => {
+  const head = e.target.closest('.section-head');
+  if (!head) return;
+  const targetId = head.dataset.target;
+  const body = document.getElementById(targetId);
+  if (!body) return;
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  head.querySelector('.toggle-icon')?.classList.toggle('bi-chevron-up', !isOpen);
+  head.querySelector('.toggle-icon')?.classList.toggle('bi-chevron-down', isOpen);
+});
+
+// ── Init ──────────────────────────────────────────────────────────────
+async function initApp() {
+  const user = await ghGet('/user');
+  if (!ALLOWED_USERS.includes(user.login)) {
+    alert('Ei käyttöoikeutta.'); return;
+  }
+  document.getElementById('user-info').textContent = user.login;
+  document.getElementById('auth-section').style.display = 'none';
+  document.getElementById('app').style.display = '';
+
+  // Load JSON
+  const file = await ghGet(`/repos/${REPO}/contents/${FILE_PATH}`);
+  const json = decodeURIComponent(escape(atob(file.content.replace(/\n/g, ''))));
+  data = JSON.parse(json);
+  populateFields();
+
+  // Open paths section by default
+  document.getElementById('sec-paths').classList.add('open');
+  document.querySelector('[data-target="sec-paths"] .toggle-icon')?.classList.replace('bi-chevron-down', 'bi-chevron-up');
+
+  document.getElementById('save-btn').addEventListener('click', saveToGitHub);
+  document.getElementById('status-msg').textContent = 'Ladattu GitHubista';
+  document.getElementById('status-msg').className = 'text-muted small';
+}
+
+document.getElementById('login-btn').addEventListener('click', async () => {
+  const err = document.getElementById('login-error');
+  err.style.display = 'none';
+  try {
+    token = await doLogin();
+    localStorage.setItem('github-token', token);
+    await initApp();
+  } catch (e) {
+    err.textContent = `Kirjautuminen epäonnistui: ${e.message}`;
+    err.style.display = '';
+  }
+});
+
+document.getElementById('logout-btn').addEventListener('click', () => {
+  token = null;
+  localStorage.removeItem('github-token');
+  location.reload();
+});
+
+// Auto-login
+token = getStoredToken();
+if (token) {
+  initApp().catch(() => {
+    token = null;
+    localStorage.removeItem('github-token');
+  });
+}
+</script>
+</body>
+</html>
