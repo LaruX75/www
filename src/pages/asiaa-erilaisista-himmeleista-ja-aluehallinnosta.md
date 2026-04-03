@@ -3,6 +3,7 @@ title: Asiaa erilaisista himmeleistä ja aluehallinnosta
 date: 2022-01-09
 description: "Loppiaisen kunniaksi tarkastelin (hallinto)himmeleitä. Se on nimittäin termi, joka varsin usein tulee vastaan poliittisessa keskustelussa nykyää . Viimeaikoina se on liitetty tulevaan aluehallintoon. Tunnistin neljä eri himmelityyppiä: na) poliittinen himmelinb) hallintohimmelinc) taloushimmelind) palveluhimmeli"
 layout: page.njk
+translationKey: fi_only_aluehallinto
 templateEngineOverride: md
 permalink: /asiaa-erilaisista-himmeleista-ja-aluehallinnosta/
 wp_id: 1976

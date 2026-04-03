@@ -3,6 +3,7 @@ title: Mukaan kampanjaan
 date: 2021-01-02
 description: Kaikki apu vaalikampanjan toteuttamiseksi on tarpeen. Tässä vaiheessa voit auttaa kampanjassa paitsi kertomalla kampanjasta kavereille, tykkäämällä Facebookissa poliitikkosivustani myös liittymällä ka...
 layout: page.njk
+translationKey: fi_only_mukaan_kampanjaan
 templateEngineOverride: md
 permalink: /mukaan-kampanjaan/
 wp_id: 472

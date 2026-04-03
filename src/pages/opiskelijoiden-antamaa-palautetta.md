@@ -3,6 +3,7 @@ title: Opiskelijoiden antamaa palautetta
 date: 2013-02-07
 description: "Perusopetus Tieto- ja viestintätekniikka pedagogisena työvälineenä Ylioppilaskunnan teemapäivä \"anna omena hyvälle opettajalle vuonna 2012: Moi! Tässä hyvälle opelle omena koko LO11-B ryhmältä!!! :D..."
 layout: page.njk
+translationKey: fi_only_opiskelijapalaute
 templateEngineOverride: md
 permalink: /opiskelijoiden-antamaa-palautetta/
 wp_id: 820

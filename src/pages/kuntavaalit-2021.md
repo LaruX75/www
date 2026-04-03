@@ -3,6 +3,7 @@ title: Kuntavaalit 2021
 date: 2021-07-06
 description: "Tämä on kuntavaalien \"arkistosivu\", jonne olen siirtänyt sisältöä mm. etusivulta. Olen ehdolla kuntavaaleissa 2021 Tämä sivusto on kokonaisvaltainen katsaus minuun poliitikkona, yliopistonlehtorina ja..."
 layout: page.njk
+translationKey: fi_only_kuntavaalit2021
 templateEngineOverride: md
 permalink: /kuntavaalit-2021/
 wp_id: 1804

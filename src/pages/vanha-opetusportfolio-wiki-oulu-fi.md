@@ -3,6 +3,7 @@ title: Opetusportfolio
 date: 2020-12-03
 description: Tämä opetusportfolio on tehty vuonna 2015 hakiessani nykyiseen tehtävääni. Tarkoitus on tehdä portfoliosta päivitetty versio dosentuurihakua varten, mutta tällaisenaankin saat tästä varsin hyvän kuvan työstäni ja saamastani palautteesta. n
 layout: page.njk
+translationKey: fi_only_opetusportfolio
 templateEngineOverride: md
 permalink: /vanha-opetusportfolio-wiki-oulu-fi/
 wp_id: 167

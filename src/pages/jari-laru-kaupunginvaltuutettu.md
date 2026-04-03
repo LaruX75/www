@@ -3,6 +3,7 @@ title: Jari Laru, kaupunginvaltuutettu
 date: 2021-02-07
 description: Olen toiminut vaalikaudella 2017-2021 Oulun kaupunginvaltuutettuna, sivistys- ja kulttuurilautakunnan jäsenenä sekä maakuntavaltuuston varavaltuutettuna. Edellisissä kunnallisvaaleissa asetin maltilli...
 layout: page.njk
+translationKey: fi_only_kaupunginvaltuutettu
 templateEngineOverride: md
 permalink: /jari-laru-kaupunginvaltuutettu/
 wp_id: 1453

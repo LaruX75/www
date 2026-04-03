@@ -3,6 +3,7 @@ title: Privacy policy for oEmbed FB app
 date: 2021-01-17
 description: In order to receive information about your Personal Data, the purposes and the parties the Data is shared with, contact the owner of the www.jarilaru.fi. For more information and to understand your ri...
 layout: page.njk
+translationKey: fi_only_privacy_oembed
 templateEngineOverride: md
 permalink: /privacy-policy-for-oembed-fb-app/
 wp_id: 1210

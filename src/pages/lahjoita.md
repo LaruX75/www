@@ -3,6 +3,7 @@ title: Tue kampanjaani
 date: 2021-05-10
 description: Tue vaalikampanjaani lahjoittamalla rahaa! Mikä tahansa summa on eteenpäin, sillä muuten maksan kaikki kuluni itse.
 layout: page.njk
+translationKey: fi_only_lahjoita
 templateEngineOverride: md
 permalink: /lahjoita/
 wp_id: 1737

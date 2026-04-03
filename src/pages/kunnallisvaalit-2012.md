@@ -3,6 +3,7 @@ title: Kunnallisvaalit 2012
 date: 2012-09-17
 description: Olen ehdokkaana kunnallisvaaleissa Oulussa. Vaalipäivä on 28.10.2012.n Näissä vaaleissa olen liikkeellä tosimielellä. Olen ruohonjuuritason toimijana selvillä tavallisen kaupunkilaisen kipupisteistä. ...
 layout: page.njk
+translationKey: fi_only_kunnallisvaalit2012
 templateEngineOverride: md
 permalink: /kunnallisvaalit-2012/
 wp_id: 512

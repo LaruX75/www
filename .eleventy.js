@@ -434,9 +434,11 @@ module.exports = function (eleventyConfig) {
     return new Date(date).getTime() || 0;
   });
 
-  // Päivämäärä (suomalainen)
+  // Päivämäärä — kieliriippuvainen (fi-FI tai en-GB sivun URL:n perusteella)
   eleventyConfig.addFilter("dateFormat", function (date) {
-    return new Date(date).toLocaleDateString("fi-FI", {
+    const url = (this.page && this.page.url) || "";
+    const locale = url.startsWith("/en/") ? "en-GB" : "fi-FI";
+    return new Date(date).toLocaleDateString(locale, {
       day: "numeric", month: "long", year: "numeric"
     });
   });
