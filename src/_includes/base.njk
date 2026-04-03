@@ -9,6 +9,7 @@
 
   {% include "header.njk" %}
 
+  {% set isHomePage = page.url == "/" or page.url == "/en/" %}
   {% set currentUrl = page.url or "" %}
   {% set breadcrumbKey = "" %}
   {% if page.inputPath and "src/publications/" in page.inputPath %}
