@@ -379,6 +379,12 @@ module.exports = {
                 { title: "Curriculum Vitae", href: "/en/cv/" },
                 { title: "Teaching Portfolio", href: "/en/portfolio/" }
               ]
+            },
+            {
+              title: "Awards",
+              href: "/en/awards/",
+              icon: "bi bi-award me-2",
+              description: "Recognition received for teaching and open science work."
             }
           ]
         },
