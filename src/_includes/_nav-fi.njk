@@ -1,4 +1,22 @@
-{%- from "_mega-nav-macro.njk" import megaNavTrigger -%}
+{% macro megaNavTrigger(url, title, icon, isActive, menuId, toggleId, openLabel) %}
+<div class="mega-nav-trigger">
+  <a class="nav-link mega-nav-link{% if isActive %} active{% endif %}" href="{{ url }}"{% if isActive %} aria-current="page"{% endif %}>
+    <i class="{{ icon }}"></i> {{ title }}
+  </a>
+  <button
+    class="nav-link mega-nav-toggle dropdown-toggle"
+    type="button"
+    id="{{ toggleId }}"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+    aria-haspopup="true"
+    aria-controls="{{ menuId }}"
+    aria-label="{{ openLabel }} {{ title }}"
+  >
+    <span class="visually-hidden">{{ openLabel }} {{ title }}</span>
+  </button>
+</div>
+{% endmacro %}
 <nav id="siteNav" class="navbar navbar-expand-md site-navbar sticky-top" aria-label="Päänavigaatio" style="z-index:1030; transition: background-color .3s ease, box-shadow .3s ease;">
   <div class="container">
     <a class="navbar-brand fw-bold" href="/">Jari Laru</a>
@@ -45,7 +63,7 @@
                 {% endfor %}
               </div>
               <aside class="mega-right showcase-card">
-                {% optimizedImage meMegaMenu.showcase.imageSrc, meMegaMenu.showcase.imageAlt, "img-fluid rounded-3 mb-3", "(max-width: 991px) 180px, 240px" %}
+                <img src="{{ meMegaMenu.showcase.imageSrc }}" alt="{{ meMegaMenu.showcase.imageAlt | escape }}" class="img-fluid rounded-3 mb-3" loading="lazy" decoding="async">
                 <h5>{{ meMegaMenu.showcase.title }}</h5>
                 <p>{{ meMegaMenu.showcase.description }}</p>
                 {% if meMegaMenu.showcase.cta %}
