@@ -11,13 +11,14 @@
 }
 
 .home-hero-backdrop {
+  --hero-img: url("/img/WIN_20210329_16_06_01_Pro.jpg");
   min-height: 600px;
   display: flex;
   align-items: center;
   background:
     linear-gradient(110deg, rgba(8, 18, 34, 0.62) 8%, rgba(8, 18, 34, 0.44) 48%, rgba(8, 18, 34, 0.16) 100%),
     linear-gradient(rgba(18, 42, 71, 0) 62%, rgba(4, 16, 36, 0.80) 92%),
-    url("/img/WIN_20210329_16_06_01_Pro.jpg") center / cover;
+    var(--hero-img) center / cover;
 }
 
 /* Light theme: brighter hero image and strong text/link contrast */
@@ -25,7 +26,7 @@ html:not([data-bs-theme="dark"]) .home-hero-backdrop {
   background:
     linear-gradient(112deg, rgba(205, 226, 248, 0.9) 8%, rgba(196, 221, 247, 0.7) 52%, rgba(187, 214, 244, 0.35) 100%),
     linear-gradient(rgba(180, 206, 236, 0.18) 60%, rgba(220, 236, 252, 0.88) 96%),
-    url("/img/WIN_20210329_16_06_01_Pro.jpg") center / cover;
+    var(--hero-img) center / cover;
 }
 
 .home-hero-backdrop .home-hero-content {

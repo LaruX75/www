@@ -1,4 +1,5 @@
 const { default: pluginRss, feedPlugin } = require("@11ty/eleventy-plugin-rss");
+const { EleventyHtmlBasePlugin } = require("@11ty/eleventy");
 const pluginNavigation = require("@11ty/eleventy-navigation");
 const pluginToc = require("eleventy-plugin-toc");
 const markdownItAnchor = require("markdown-it-anchor");
@@ -196,6 +197,7 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addGlobalData("supportedLangs", SUPPORTED_LANGS);
+  eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
   eleventyConfig.addPlugin(pluginRss);
   eleventyConfig.addPlugin(feedPlugin, {
     type: "atom",
