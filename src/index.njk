@@ -39,12 +39,26 @@ translationKey: home
 <section class="section-flush home-hero-section" id="heroSection">
     <div class="home-hero-backdrop">
         <div class="container home-hero-content">
-            <p class="home-hero-eyebrow mb-2">{{ pageContent.etusivu.hero.eyebrow }}</p>
-            <h1 class="home-hero-title mb-3">{{ pageContent.etusivu.hero.title }}</h1>
-            <div class="home-hero-roles mb-2">
-                {% for role in pageContent.etusivu.hero.roles %}
-                <a class="home-hero-role-item" href="{{ role.href }}">{{ role.label }}</a>
-                {% endfor %}
+            <div class="row align-items-center g-4 g-lg-5">
+                <div class="col-lg-7">
+                    <p class="home-hero-eyebrow mb-2">{{ pageContent.etusivu.hero.eyebrow }}</p>
+                    <h1 class="home-hero-title mb-3">{{ pageContent.etusivu.hero.title }}</h1>
+                    <div class="home-hero-roles">
+                        {% for role in pageContent.etusivu.hero.roles %}
+                        <a class="home-hero-role-item" href="{{ role.href }}">{{ role.label }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-lg-5 d-none d-lg-flex align-items-center justify-content-end">
+                    <dl class="home-hero-kpi-grid mb-0">
+                        {% for stat in heroStats | sort(true, false, "count") %}
+                        <div class="home-hero-kpi">
+                            <dd class="home-hero-kpi-value"><a href="{{ stat.href }}">{{ stat.count }}</a></dd>
+                            <dt class="home-hero-kpi-label">{{ stat.label }}</dt>
+                        </div>
+                        {% endfor %}
+                    </dl>
+                </div>
             </div>
         </div>
     </div>
@@ -114,19 +128,6 @@ translationKey: home
     </div>
 </section>
 
-{# ── KPI-kaista: vaikuttavuusluvut ────────────────────────────────────── #}
-<section class="home-stats-section" aria-label="Vaikuttavuusluvut">
-    <div class="container">
-        <dl class="home-stats-grid">
-            {% for stat in heroStats | sort(true, false, "count") %}
-            <div class="home-stat">
-                <dd class="home-stat-value"><a href="{{ stat.href }}">{{ stat.count }}</a></dd>
-                <dt class="home-stat-label">{{ stat.label }}</dt>
-            </div>
-            {% endfor %}
-        </dl>
-    </div>
-</section>
 
 <section class="py-5 home-overview-section">
     <div class="container">
