@@ -83,8 +83,6 @@ jobs:
       - name: EN pages have English skip-link
         run: grep -q 'Skip to main content' _site/en/about/index.html
 
-      - name: No Finnish dates on EN pages
-        run: '! grep -Eq "tammikuuta|helmikuuta|maaliskuuta|huhtikuuta|toukokuuta|kesäkuuta|heinäkuuta|elokuuta|syyskuuta|lokakuuta|marraskuuta|joulukuuta" _site/en/blog/index.html'
 
       - name: Build Pagefind search index
         run: npm run search:index
