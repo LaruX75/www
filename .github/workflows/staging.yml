@@ -95,3 +95,13 @@ jobs:
           name: staging-site
           path: _site/
           retention-days: 3
+
+      - name: Deploy to www-staging
+        if: github.ref == 'refs/heads/staging'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          personal_token: ${{ secrets.STAGING_DEPLOY_TOKEN }}
+          external_repository: LaruX75/www-staging
+          publish_branch: gh-pages
+          publish_dir: ./_site
+          force_orphan: true
