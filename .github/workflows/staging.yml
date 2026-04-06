@@ -96,6 +96,9 @@ jobs:
           path: _site/
           retention-days: 3
 
+      - name: Prevent Jekyll build in www-staging
+        run: touch _site/.nojekyll
+
       - name: Deploy to www-staging
         if: github.ref == 'refs/heads/staging'
         uses: peaceiris/actions-gh-pages@v4
