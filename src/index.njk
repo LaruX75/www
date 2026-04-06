@@ -53,7 +53,7 @@ translationKey: home
                     <dl class="home-hero-kpi-grid mb-0">
                         {% for stat in heroStats | sort(true, false, "count") %}
                         <div class="home-hero-kpi">
-                            <dd class="home-hero-kpi-value"><a href="{{ stat.href }}">{{ stat.count }}</a></dd>
+                            <dd class="home-hero-kpi-value"><a class="home-hero-kpi-link" href="{{ stat.href }}">{{ stat.count }}</a></dd>
                             <dt class="home-hero-kpi-label">{{ stat.label }}</dt>
                         </div>
                         {% endfor %}
