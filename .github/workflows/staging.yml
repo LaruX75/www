@@ -1,0 +1,97 @@
+name: Staging checks
+
+on:
+  push:
+    branches: [staging]
+  pull_request:
+    branches: [main]
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
+jobs:
+  build-and-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: npm run build
+
+      - name: i18n / SEO check
+        run: npm run check:i18n-seo
+
+      - name: SEO health check
+        run: npm run check:seo-health
+
+      - name: No null OG images
+        run: '! rg -n "https://www\.jarilaru\.fi/null|<meta property=\"og:image\" content=\"null\"|<meta name=\"twitter:image\" content=\"null\"" _site'
+
+      - name: robots.txt exists
+        run: test -f _site/robots.txt
+
+      - name: robots.txt blocks GPTBot
+        run: 'grep -q "User-agent: GPTBot" _site/robots.txt'
+
+      - name: Homepage robots meta
+        run: grep -q '<meta name="robots" content="index, follow, noai, noimageai">' _site/index.html
+
+      - name: Homepage has description meta
+        run: grep -q '<meta name="description" content="' _site/index.html
+
+      - name: Homepage has canonical
+        run: grep -q '<link rel="canonical" href="https://www.jarilaru.fi/">' _site/index.html
+
+      - name: Homepage has hreflang tags
+        run: |
+          grep -q 'hreflang="fi"' _site/index.html
+          grep -q 'hreflang="en"' _site/index.html
+          grep -q 'hreflang="x-default"' _site/index.html
+
+      - name: No null OG image on homepage
+        run: |
+          ! grep -q '<meta property="og:image" content="https://www.jarilaru.fi/null">' _site/index.html
+          ! grep -q '<meta property="og:image" content="null">' _site/index.html
+
+      - name: Sitemap exists and contains key URLs
+        run: |
+          test -f _site/sitemap.xml
+          grep -q 'loc>https://www.jarilaru.fi/esitykset/<' _site/sitemap.xml
+          grep -q 'loc>https://www.jarilaru.fi/en/presentations/<' _site/sitemap.xml
+          grep -Eq '<loc>https://www\.jarilaru\.fi/esitykset/</loc><lastmod>[0-9]{4}-[0-9]{2}-[0-9]{2}T[^<]+</lastmod>' _site/sitemap.xml
+          grep -Eq '<loc>https://www\.jarilaru\.fi/en/presentations/</loc><lastmod>[0-9]{4}-[0-9]{2}-[0-9]{2}T[^<]+</lastmod>' _site/sitemap.xml
+
+      - name: EN feed exists
+        run: test -f _site/en/feed.xml
+
+      - name: FI feed exists
+        run: test -f _site/feed.xml
+
+      - name: TOC on presentations pages
+        run: |
+          grep -q 'href="#canva-heading"' _site/esitykset/index.html
+          grep -q 'href="#canva-heading"' _site/en/presentations/index.html
+
+      - name: EN pages have English skip-link
+        run: grep -q 'Skip to main content' _site/en/about/index.html
+
+      - name: No Finnish dates on EN pages
+        run: '! grep -Eq "tammikuuta|helmikuuta|maaliskuuta|huhtikuuta|toukokuuta|kesäkuuta|heinäkuuta|elokuuta|syyskuuta|lokakuuta|marraskuuta|joulukuuta" _site/en/blog/index.html'
+
+      - name: Build Pagefind search index
+        run: npm run search:index
+
+      - name: Upload build artifact for review
+        uses: actions/upload-artifact@v4
+        with:
+          name: staging-site
+          path: _site/
+          retention-days: 3
