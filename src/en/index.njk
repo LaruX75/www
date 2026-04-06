@@ -22,31 +22,33 @@ description: University lecturer, researcher, municipal politician, and speaker.
 <section class="section-flush home-hero-section" id="heroSection">
     <div class="home-hero-backdrop">
         <div class="container home-hero-content">
-            <p class="home-hero-eyebrow mb-2">Jari Laru</p>
-            <h1 class="home-hero-title mb-3">I train and research how AI and learning technology work in everyday education.</h1>
-            <p class="home-hero-lead mb-3">University lecturer, trainer, and municipal decision-maker. Explore presentations, publications, initiatives, and writing from one place.</p>
-
-            <div class="home-hero-roles mb-4">
-                <a class="home-hero-role-item" href="/en/work/">University Lecturer</a>
-                <a class="home-hero-role-item" href="/en/company/">Trainer (Larux t:mi)</a>
-                <a class="home-hero-role-item" href="/en/politics/">Municipal Politician</a>
-            </div>
-
-            <div class="d-flex flex-wrap gap-2 mb-4">
-                <a href="/en/contact/" class="btn btn-read-more btn-sm rounded-pill px-3 home-hero-cta">Request a quote</a>
-                <a href="/en/presentations/" class="btn btn-read-more btn-sm rounded-pill px-3">View presentations <i class="bi bi-arrow-right"></i></a>
-                <a href="/en/publications/" class="btn btn-read-more btn-sm rounded-pill px-3">Explore research <i class="bi bi-arrow-right"></i></a>
-            </div>
-
-            <div class="home-hero-proof-grid">
-                {% for stat in heroStats | sort(true, false, "count") %}
-                <a class="home-hero-proof-item" href="{{ stat.href }}">
-                    <span class="home-hero-proof-number">{{ stat.count }}</span>
-                    <span class="home-hero-proof-label">{{ stat.label }}</span>
-                </a>
-                {% endfor %}
+            <div class="row align-items-center g-4 g-lg-5">
+                <div class="col-lg-7">
+                    <p class="home-hero-eyebrow mb-2">Jari Laru</p>
+                    <h1 class="home-hero-title mb-3">I train and research how AI and learning technology work in everyday education.</h1>
+                    <div class="home-hero-roles">
+                        <a class="home-hero-role-item" href="/en/work/">University Lecturer</a>
+                        <a class="home-hero-role-item" href="/en/company/">Trainer (Larux t:mi)</a>
+                        <a class="home-hero-role-item" href="/en/politics/">Municipal Politician</a>
+                    </div>
+                </div>
+                <div class="col-lg-5 d-none d-lg-flex align-items-center justify-content-end">
+                    <dl class="home-hero-kpi-grid mb-0">
+                        {% for stat in heroStats | sort(true, false, "count") %}
+                        <div class="home-hero-kpi">
+                            <dd class="home-hero-kpi-value"><a href="{{ stat.href }}">{{ stat.count }}</a></dd>
+                            <dt class="home-hero-kpi-label">{{ stat.label }}</dt>
+                        </div>
+                        {% endfor %}
+                    </dl>
+                </div>
             </div>
         </div>
+    </div>
+    <div class="home-hero-wave" aria-hidden="true">
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z"/>
+        </svg>
     </div>
 </section>
 

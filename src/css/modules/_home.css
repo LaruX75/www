@@ -63,16 +63,6 @@ html:not([data-bs-theme="dark"]) .home-hero-title {
   color: #0d2540;
 }
 
-.home-hero-lead {
-  max-width: 66ch;
-  font-size: clamp(1rem, 1.6vw, 1.15rem);
-  color: #eaf4ff; /* tumma tila: ~13:1 */
-}
-
-html:not([data-bs-theme="dark"]) .home-hero-lead {
-  color: #0f2d4a; /* vaalea tila: ~8:1 */
-}
-
 /* WCAG 1.4.3: Bootstrap's --bs-code-color (#d63384) is 4.47:1 on white – just below 4.5:1 AA */
 html:not([data-bs-theme="dark"]) code {
   color: #b91c5e; /* ~6.6:1 on white */
@@ -228,80 +218,6 @@ html:not([data-bs-theme="dark"]) .home-hero-kpi-value a:hover {
 
 html:not([data-bs-theme="dark"]) .home-hero-kpi-label {
   color: rgba(15, 45, 74, 0.72);
-}
-
-.home-hero-text-link {
-  display: inline-flex;
-  align-items: center;
-  text-decoration: none;
-  color: rgba(240, 246, 255, 0.95);
-  font-weight: 600;
-  padding: 0.3rem 0.25rem;
-}
-
-html:not([data-bs-theme="dark"]) .home-hero-text-link {
-  color: #15497b;
-}
-
-.home-hero-text-link:hover {
-  color: #ffffff;
-}
-
-.home-hero-proof-grid {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0;
-  width: fit-content;
-  max-width: 100%;
-}
-
-.home-hero-proof-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  text-decoration: none;
-  white-space: nowrap;
-  padding: 0 0.45rem;
-  color: rgba(244, 249, 255, 0.96);
-  transition: color 0.2s ease;
-}
-
-.home-hero-proof-item + .home-hero-proof-item::before {
-  content: "";
-  width: 1px;
-  height: 1.05em;
-  margin-right: 0.35rem;
-  background: rgba(255, 255, 255, 0.42);
-}
-
-html:not([data-bs-theme="dark"]) .home-hero-proof-item {
-  color: #163455;
-}
-
-html:not([data-bs-theme="dark"]) .home-hero-proof-item + .home-hero-proof-item::before {
-  background: rgba(19, 45, 74, 0.35);
-}
-
-.home-hero-proof-item:hover,
-.home-hero-proof-item:focus-visible {
-  color: #ffffff;
-}
-
-html:not([data-bs-theme="dark"]) .home-hero-proof-item:hover,
-html:not([data-bs-theme="dark"]) .home-hero-proof-item:focus-visible {
-  color: #0d2f52;
-}
-
-.home-hero-proof-number {
-  font-size: 1rem;
-  font-weight: 700;
-  line-height: 1.1;
-}
-
-.home-hero-proof-label {
-  font-size: 0.95rem;
-  opacity: 0.93;
 }
 
 /* ===== HOME: RESEARCH STAT CARDS ===== */

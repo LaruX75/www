@@ -11,13 +11,6 @@
     background-position: left center, left center, left center;
   }
 
-  .home-hero-proof-grid {
-    gap: 0.5rem;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .home-hero-proof-item + .home-hero-proof-item::before,
   .home-hero-role-item + .home-hero-role-item::before {
     display: none;
   }
