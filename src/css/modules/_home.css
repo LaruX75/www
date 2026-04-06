@@ -191,12 +191,12 @@ html:not([data-bs-theme="dark"]) .home-hero-kpi:hover {
   color: #ffffff;
 }
 
-.home-hero-kpi-value a {
+.home-hero-kpi .home-hero-kpi-value a {
   color: inherit;
   text-decoration: none;
 }
 
-.home-hero-kpi-value a:hover {
+.home-hero-kpi .home-hero-kpi-value a:hover {
   color: #a8d4ff;
 }
 
@@ -204,7 +204,7 @@ html:not([data-bs-theme="dark"]) .home-hero-kpi-value {
   color: #0d2540;
 }
 
-html:not([data-bs-theme="dark"]) .home-hero-kpi-value a:hover {
+html:not([data-bs-theme="dark"]) .home-hero-kpi .home-hero-kpi-value a:hover {
   color: var(--bs-primary);
 }
 
