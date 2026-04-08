@@ -1,10 +1,17 @@
+  {% set currentLang = lang or (page.url | langFromUrl) %}
+  {% set pageTitle = title or site.name %}
+  {% set pageDescription = description or site.description %}
+  {% set pageUrl = page.url | absoluteUrl(site.url or "https://www.jarilaru.fi") %}
+  {% set pageType = "article" if ("blog" in (tags or []) or "politics" in (tags or []) or "publications" in (tags or [])) else "website" %}
+  {% set personId = (site.url or "https://www.jarilaru.fi") + "#person" %}
+  {% set resolvedOgImage = "/img/WIN_20210329_16_06_01_Pro.jpg" %}
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "{{ site.name | escape }}",
       "url": "{{ site.url or "https://www.jarilaru.fi" }}",
-      "description": "{{ site.description | escape }}",
+      "description": "{{ (site.descriptionEn if currentLang == "en" else site.description) | escape }}",
       "inLanguage": "{{ "fi-FI" if currentLang == "fi" else "en-US" }}",
       "publisher": {
         "@id": "{{ personId }}"
