@@ -7,7 +7,7 @@ thumbnail: 'https://cdn.slidesharecdn.com/ss_thumbnails/tvthistoryvisiot08b-1226
 categories: []
 type: 'esitys'
 source: 'slideshare'
-layout: base.njk
+layout: page.njk
 templateEngineOverride: md
 ---
 

@@ -1,11 +1,16 @@
----
-layout: base.njk
-title: Avainsana
-pagination:
-  data: collections.keywordList
-  size: 1
-  alias: keyword
-permalink: /avainsanat/{{ keyword.slug }}/
+---js
+{
+  layout: "base.njk",
+  eleventyComputed: {
+    title: data => `Avainsana: ${data.keyword?.name || ""}`
+  },
+  pagination: {
+    data: "collections.keywordList",
+    size: 1,
+    alias: "keyword"
+  },
+  permalink: data => `/avainsanat/${data.keyword?.slug}/`
+}
 ---
 <section>
   <div class="container">

@@ -7,7 +7,7 @@ thumbnail: 'https://cdn.slidesharecdn.com/ss_thumbnails/iccepanel2014-1411301644
 categories: []
 type: 'esitys'
 source: 'slideshare'
-layout: base.njk
+layout: page.njk
 templateEngineOverride: md
 ---
 

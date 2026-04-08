@@ -7,7 +7,7 @@ thumbnail: 'https://cdn.slidesharecdn.com/ss_thumbnails/lastenmediamaailma2010-1
 categories: []
 type: 'esitys'
 source: 'slideshare'
-layout: base.njk
+layout: page.njk
 templateEngineOverride: md
 ---
 

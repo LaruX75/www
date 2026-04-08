@@ -7,7 +7,7 @@ thumbnail: 'https://cdn.slidesharecdn.com/ss_thumbnails/someuniogs2014-141010030
 categories: []
 type: 'esitys'
 source: 'slideshare'
-layout: base.njk
+layout: page.njk
 templateEngineOverride: md
 ---
 

@@ -6,7 +6,7 @@ url: "https://www.canva.com/d/ATg2bgB0a6REj0D"
 thumbnail: "https://design.canva.ai/GeKZRM54-8iwC3P"
 categories: ["Generation AI","Tekoälysovellukset","Opetus"]
 type: "esitys"
-layout: base.njk
+layout: page.njk
 templateEngineOverride: md
 ---
 

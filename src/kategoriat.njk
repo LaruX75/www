@@ -1,11 +1,16 @@
----
-layout: base.njk
-title: Kategoria
-pagination:
-  data: collections.categoryList
-  size: 1
-  alias: category
-permalink: /kategoriat/{{ category.slug }}/
+---js
+{
+  layout: "base.njk",
+  eleventyComputed: {
+    title: data => `Kategoria: ${data.category?.name || ""}`
+  },
+  pagination: {
+    data: "collections.categoryList",
+    size: 1,
+    alias: "category"
+  },
+  permalink: data => `/kategoriat/${data.category?.slug}/`
+}
 ---
 <section>
   <div class="container">

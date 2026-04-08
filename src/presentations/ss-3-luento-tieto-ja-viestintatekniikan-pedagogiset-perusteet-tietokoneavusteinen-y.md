@@ -7,7 +7,7 @@ thumbnail: 'https://cdn.slidesharecdn.com/ss_thumbnails/tvt3luentocscl-110907162
 categories: []
 type: 'esitys'
 source: 'slideshare'
-layout: base.njk
+layout: page.njk
 templateEngineOverride: md
 ---
 

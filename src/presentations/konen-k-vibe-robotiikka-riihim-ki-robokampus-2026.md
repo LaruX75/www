@@ -6,7 +6,7 @@ url: "https://www.canva.com/d/OjGJZTiP0dZu6rh"
 thumbnail: "https://design.canva.ai/gd4B1TFoaQJ7lFP"
 categories: ["Robotiikka","Koneäkö","Ohjelmointi","Koulutus"]
 type: "esitys"
-layout: base.njk
+layout: page.njk
 templateEngineOverride: md
 ---
 

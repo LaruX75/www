@@ -6,7 +6,7 @@ url: "https://www.canva.com/d/ZSS9BH47n8CC49l"
 thumbnail: "https://design.canva.ai/VbGv8pq83AOwXb5"
 categories: ["STEAM","Tekoäly","Konferenssi","Tutkimus"]
 type: "esitys"
-layout: base.njk
+layout: page.njk
 templateEngineOverride: md
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: 'Scaffolding collaborative learning with cognitive tools based on mobile computers'
+title: 'Scaffolding collaborative learning with cognitive tools based on mobile computers (2011)'
 date: 2011-11-16
 description: 'SlideShare-esitys'
 url: 'https://www.slideshare.net/slideshow/scaffolding-collaborative-learning-with-cognitive-tools-based-on-mobile-computers-10188888/10188888'
@@ -7,7 +7,7 @@ thumbnail: 'https://cdn.slidesharecdn.com/ss_thumbnails/scaffoldingcollaborative
 categories: []
 type: 'esitys'
 source: 'slideshare'
-layout: base.njk
+layout: page.njk
 templateEngineOverride: md
 ---
 

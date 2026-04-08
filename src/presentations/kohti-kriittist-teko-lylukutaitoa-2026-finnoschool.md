@@ -6,7 +6,7 @@ url: "https://www.canva.com/d/Q-_JKVR5uFrh3wI"
 thumbnail: "https://design.canva.ai/YtsgX9ffDqDR19O"
 categories: ["Tekoälylukutaito","Opettajankoulutus","Koulutus"]
 type: "esitys"
-layout: base.njk
+layout: page.njk
 templateEngineOverride: md
 ---
 

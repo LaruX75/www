@@ -6,7 +6,7 @@ url: "https://www.canva.com/d/UCdIcmm6TWkilwc"
 thumbnail: "https://design.canva.ai/Op64eh3cZzySY3p"
 categories: ["Luento","Johdanto","Opettajankoulutus"]
 type: "esitys"
-layout: base.njk
+layout: page.njk
 templateEngineOverride: md
 ---
 

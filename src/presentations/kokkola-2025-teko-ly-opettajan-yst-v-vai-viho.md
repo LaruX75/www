@@ -6,7 +6,7 @@ url: "https://www.canva.com/d/fRVY_8QVfYju6_Z"
 thumbnail: "https://design.canva.ai/1RbB0HVbFFRLEfX"
 categories: ["Tekoäly","Opettajuus","Koulutus"]
 type: "esitys"
-layout: base.njk
+layout: page.njk
 templateEngineOverride: md
 ---
 

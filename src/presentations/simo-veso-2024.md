@@ -6,7 +6,7 @@ url: "https://www.canva.com/d/ajW6DkEv4UPmYOY"
 thumbnail: "https://design.canva.ai/DNwUHcKtDXtsQ00"
 categories: ["VESO","Opettajankoulutus","Digitalisaatio"]
 type: "esitys"
-layout: base.njk
+layout: page.njk
 templateEngineOverride: md
 ---
 

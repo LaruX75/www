@@ -6,7 +6,7 @@ url: "https://www.canva.com/d/uv4hHNfJp4wmMG9"
 thumbnail: "https://design.canva.ai/l3FDTWa5SRYDvAO"
 categories: ["Digitalisaatio","Erityisopetus","Koulutus"]
 type: "esitys"
-layout: base.njk
+layout: page.njk
 templateEngineOverride: md
 ---
 

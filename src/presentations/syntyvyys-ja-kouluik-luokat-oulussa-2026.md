@@ -6,7 +6,7 @@ url: "https://www.canva.com/d/GpIIHf7kK1Qksnv"
 thumbnail: "https://design.canva.ai/QPqbUqP8J9VOM9v"
 categories: ["Koulutuspolitiikka","Oulu","Väestötieto"]
 type: "esitys"
-layout: base.njk
+layout: page.njk
 templateEngineOverride: md
 ---
 

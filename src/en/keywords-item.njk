@@ -1,12 +1,17 @@
----
-layout: base.njk
-title: Keyword
-pagination:
-  data: collections.keywordList
-  size: 1
-  alias: keyword
-permalink: /en/keywords/{{ keyword.slug }}/
-lang: en
+---js
+{
+  layout: "base.njk",
+  lang: "en",
+  eleventyComputed: {
+    title: data => `Keyword: ${data.keyword?.name || ""}`
+  },
+  pagination: {
+    data: "collections.keywordList",
+    size: 1,
+    alias: "keyword"
+  },
+  permalink: data => `/en/keywords/${data.keyword?.slug}/`
+}
 ---
 <section>
   <div class="container">

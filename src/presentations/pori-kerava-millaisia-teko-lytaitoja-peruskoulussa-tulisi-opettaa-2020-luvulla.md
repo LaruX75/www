@@ -6,7 +6,7 @@ url: "https://www.canva.com/d/j0l9JbP2ry5Osgr"
 thumbnail: "https://design.canva.ai/4ThkgOQG44SJdCK"
 categories: ["Tekoälytaidot","Peruskoulu","Koulutus"]
 type: "esitys"
-layout: base.njk
+layout: page.njk
 templateEngineOverride: md
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: Opetusportfolio
+title: Opetusportfolio 2015
 date: 2020-12-03
 description: Tämä opetusportfolio on tehty vuonna 2015 hakiessani nykyiseen tehtävääni. Tarkoitus on tehdä portfoliosta päivitetty versio dosentuurihakua varten, mutta tällaisenaankin saat tästä varsin hyvän kuvan työstäni ja saamastani palautteesta. n
 layout: page.njk

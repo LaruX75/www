@@ -6,7 +6,7 @@ url: "https://www.canva.com/d/lRZpuZC9RLomY4L"
 thumbnail: "https://design.canva.ai/f_VroP01veWBfKy"
 categories: ["Tekoäly","Opettajuus","Konferenssi"]
 type: "esitys"
-layout: base.njk
+layout: page.njk
 templateEngineOverride: md
 ---
 
