@@ -17,17 +17,21 @@ translationKey: presentations_index
 
 {# Kerätään SlideShare-esitykset staattisista Markdown-tiedostoista #}
 {% set ssDataItems = [] %}
+{% set canvaPageUrls = [] %}
 {% for item in collections.presentations %}
   {% if item.data.source == "slideshare" %}
     {% set _ = (ssDataItems.push({
       title: item.data.title,
       url: item.data.url,
+      pageUrl: item.url,
       thumbnail: item.data.thumbnail,
       date: item.data.date,
       description: item.data.description or (item.content | excerpt),
       categories: item.data.categories or [],
       keywords: item.data.keywords or []
     }), null) %}
+  {% elif item.data.url and "canva.com" in item.data.url %}
+    {% set _ = (canvaPageUrls.push({ externalUrl: item.data.url, pageUrl: item.url }), null) %}
   {% endif %}
 {% endfor %}
 
@@ -272,6 +276,20 @@ translationKey: presentations_index
     {% endif %}
   </section>
 
+  {# Arkistolista: staattinen linkkilista kaikkiin esityssivuihin (SEO-navigaatio) #}
+  <section class="mb-5">
+    <div class="container">
+      <details>
+        <summary class="text-muted small py-2" style="cursor:pointer;">Kaikki esitykset arkistona ({{ collections.presentations | length }})</summary>
+        <ul class="list-unstyled row row-cols-1 row-cols-md-2 g-1 mt-2">
+          {% for item in collections.presentations | sort(attribute="data.date", reverse=true) %}
+            <li class="col"><a class="small text-decoration-none text-muted" href="{{ item.url }}">{{ item.data.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </details>
+    </div>
+  </section>
+
 </div>
 
 <script>
@@ -284,6 +302,11 @@ translationKey: presentations_index
     google: {{ (googleslides or []) | dump | safe }},
     slideshare: {{ ssDataItems | dump | safe }}
   };
+
+  // Liitetään Canva MD-sivujen sisäiset URLit canva.tableRows-dataan ulkoisen URLin perusteella
+  const canvaPageUrlMap = {};
+  {{ canvaPageUrls | dump | safe }}.forEach(p => { canvaPageUrlMap[p.externalUrl] = p.pageUrl; });
+  rawData.canva.forEach(item => { item.pageUrl = canvaPageUrlMap[item.url] || null; });
 
   const iconByKey = {
     aoe: "bi-book",
@@ -457,6 +480,9 @@ translationKey: presentations_index
       const link = item.url
         ? `<a href="${escHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm rounded-pill px-3">${escHtml(linkLabelByKey[key] || "Avaa")} <i class="bi bi-arrow-up-right"></i></a>`
         : `<span class="text-muted small"><i class="bi bi-link-45deg"></i> Ei linkkiä</span>`;
+      const pageLink = item.pageUrl
+        ? `<a href="${escHtml(item.pageUrl)}" class="btn btn-outline-secondary btn-sm rounded-pill px-2 ms-1" title="Esityksen sivu"><i class="bi bi-file-earmark-text"></i></a>`
+        : "";
       return `
         <article class="card border-0 shadow-sm presentation-scroller-card">
           ${thumb}
@@ -464,7 +490,7 @@ translationKey: presentations_index
             <h3 class="h6 mb-1">${escHtml(item.title)}</h3>
             ${item.date ? `<p class="text-muted small mb-1"><i class="bi bi-calendar3 me-1"></i>${escHtml(item.date)}</p>` : ""}
             <p class="text-muted small mb-3">${escHtml(truncate(item.meta || item.description, 72))}</p>
-            ${link}
+            ${link}${pageLink}
           </div>
         </article>
       `;
@@ -520,9 +546,14 @@ translationKey: presentations_index
             <td class="small" data-label="Tiivistelmä">${summary}</td>
             <td data-label="Avainsanat">${keywordHtml}</td>
             <td class="text-center" data-label="Avaa">
+              <div class="d-flex gap-1 justify-content-center flex-wrap">
               ${item.url
                 ? `<a href="${escHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Avaa esitys"><i class="bi bi-arrow-up-right"></i></a>`
                 : `<span class="text-muted small">Ei linkkiä</span>`}
+              ${item.pageUrl
+                ? `<a href="${escHtml(item.pageUrl)}" class="btn btn-outline-secondary btn-sm rounded-pill px-2" title="Esityksen sivu"><i class="bi bi-file-earmark-text"></i></a>`
+                : ""}
+              </div>
             </td>
           </tr>
         `;

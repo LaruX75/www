@@ -2345,3 +2345,17 @@ section[id] {
 
 
 </script>
+
+{# Staattinen arkistolista — takaa inlinkit kaikille julkaisuille hakukoneille #}
+<section class="py-3">
+  <div class="container">
+    <details>
+      <summary class="text-muted small py-2">Kaikki kirjoitukset arkistona ({{ collections.publications | length }})</summary>
+      <ul class="list-unstyled row row-cols-1 row-cols-md-2 g-1 mt-2">
+        {% for pub in collections.publications | sort(attribute="data.date", reverse=true) %}
+        <li class="col"><a class="small text-decoration-none text-muted" href="{{ pub.url }}">{{ pub.data.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </details>
+  </div>
+</section>

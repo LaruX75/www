@@ -3,6 +3,8 @@ title: Kuntalain 94.2§ mukainen keskustelu yliopiston muuttosuunnitelmista
 date: 2020-11-10
 description: "Mistä on kyse Minä ja 17 muuta kaupunginvaltuuettua pyysimme Oulun kaupunginvaltuustoa koolle käsittelemää suunnitelmaa Oulun yliopiston siirtymisestä raksilaan. Kahdeksantoista valtu..."
 tags:
+  - publications
+  - politics
   - kampus
   - linnanmaa
   - arkkitehtuuri

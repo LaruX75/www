@@ -3,6 +3,8 @@ title: "Puheenvuoro kohdassa: §7. Selvitys Oulun yliopiston sijoittumisesta Rak
 date: 2021-04-26
 description: "Pidin puheenvuoron kaupunginvaltuuston kokouksessa 26.4.2021 kohdassa §7. Selvitys Oulun yliopiston sijoittumisesta Raksilan alueelle"
 tags:
+  - publications
+  - politics
   - oulun-yliopisto
   - keskustakampus
   - raksila

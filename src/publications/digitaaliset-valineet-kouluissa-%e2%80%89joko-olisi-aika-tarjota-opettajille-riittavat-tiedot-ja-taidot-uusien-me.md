@@ -3,6 +3,8 @@ title: Di­gi­taa­li­set vä­li­neet kou­luis­sa – joko olisi aika ta
 date: 2018-11-29
 description: "Mielipidekirjoitus julkaistu Sanomalehti Kalevassa 29.11.2018 Uuden perusopetuksen opetussuunnitelman perusteet, ilmiöpohjainen oppiminen, itseohjautuvuus, digitaaliset välineet opetuksessa j..."
 tags:
+  - publications
+  - blog
   - opetus
   - digitaaliset-valineet
   - opettajien-taydennyskoulutus

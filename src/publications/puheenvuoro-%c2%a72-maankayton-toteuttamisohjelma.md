@@ -3,6 +3,8 @@ title: Puheenvuoro kaupunginvaltuuston kokouksessa. §2. Maankäytön toteuttami
 date: 2024-01-29
 description: "Pidin puheenvuoron kaupunginvaltuuston kokouksessa 1/2024. Puheenvuoro tekstinä: Kiitos puheenjohtaja, arvoisat valtuutetut. Olen toiminut useamman kauden Sivistys- ja kulttuuri..."
 tags:
+  - publications
+  - politics
   - mato
   - maankayton-toteuttamisohjelma
   - kaupunkisuunnittelu

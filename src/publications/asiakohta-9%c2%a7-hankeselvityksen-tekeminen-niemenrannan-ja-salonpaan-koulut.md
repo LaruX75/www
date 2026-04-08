@@ -3,6 +3,8 @@ title: "ASIAKOHTA: 9§ Hankeselvityksen tekeminen, Niemenrannan ja Salonpään k
 date: 2018-05-14
 description: "Ihan hetkisen kuluttua normaalit ihmiset asettuvat katsomaan iltauutisia. Minä asetun mikrofonin ääreen ja pidä alla olevan puheen. ASIAKOHTA: 9§ Hankeselvityksen tekeminen, Niemenrannan ja ..."
 tags:
+  - publications
+  - politics
   - salonpaa
   - oulunsalo
   - lahikoulu

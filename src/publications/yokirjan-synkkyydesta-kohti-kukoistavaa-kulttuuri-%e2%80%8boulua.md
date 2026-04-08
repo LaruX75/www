@@ -3,6 +3,8 @@ title: Yökirjan synkkyydestä kohti kukoistavaa kulttuuri-​Oulua
 date: 2021-06-09
 description: "Kirjoitus on julkaistu 9.6.2021 Mu Oulun sarjassa: \" äkökulma-kirjoituksia vaaleihin\". https://www.munoulu.fi/artikkeli/-/id/kuntavaalit2021-yokirjan-synkkyydesta-kohti-kukoistavaa-kulttuuri-oulua-j..."
 tags:
+  - publications
+  - blog
   - oulu
   - kulttuuri
   - pitovoima
