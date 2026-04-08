@@ -24,7 +24,17 @@
       "@type": "Person",
       "@id": "{{ personId }}",
       "name": "{{ site.author | escape }}",
+      "givenName": "Jari",
+      "familyName": "Laru",
       "url": "{{ site.url or "https://www.jarilaru.fi" }}",
+      "image": "{{ resolvedOgImage | absoluteUrl(site.url or "https://www.jarilaru.fi") }}",
+      "jobTitle": "{{ "University Lecturer" if currentLang == "en" else "Yliopistonlehtori" }}",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "{{ "University of Oulu" if currentLang == "en" else "Oulun yliopisto" }}",
+        "url": "https://www.oulu.fi"
+      },
+      "knowsLanguage": ["fi", "en"],
       "sameAs": {{ (site.sameAs or []) | dump | safe }}
     }
   </script>
@@ -36,11 +46,15 @@
       "headline": "{{ pageTitle | escape }}",
       "description": "{{ pageDescription | escape }}",
       "url": "{{ pageUrl }}",
-      "mainEntityOfPage": "{{ pageUrl }}",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ pageUrl }}"
+      },
       "image": "{{ resolvedOgImage | absoluteUrl(site.url or "https://www.jarilaru.fi") }}",
       "datePublished": "{{ page.date | dateToRfc3339 }}",
-      "dateModified": "{{ page.date | dateToRfc3339 }}",
+      "dateModified": "{{ (modified or page.date) | dateToRfc3339 }}",
       "inLanguage": "{{ "fi-FI" if currentLang == "fi" else "en-US" }}",
+      {% if keywords and keywords.length %}"keywords": {{ keywords | dump | safe }},{% endif %}
       "author": {
         "@id": "{{ personId }}"
       },
@@ -59,6 +73,9 @@
       "url": "{{ pageUrl }}",
       "image": "{{ resolvedOgImage | absoluteUrl(site.url or "https://www.jarilaru.fi") }}",
       "inLanguage": "{{ "fi-FI" if currentLang == "fi" else "en-US" }}",
+      "isPartOf": {
+        "@id": "{{ site.url or "https://www.jarilaru.fi" }}"
+      },
       "author": {
         "@id": "{{ personId }}"
       }
