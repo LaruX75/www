@@ -84,51 +84,6 @@ translationKey: home
     </div>
 </section>
 
-{# ── Kolmipolku: kenelle tämä on? ─────────────────────────────────────── #}
-<section class="py-5 home-paths-section">
-    <div class="container">
-        <p class="text-uppercase fw-bold text-center mb-4 home-paths-label">{{ pageContent.etusivu.paths.sectionLabel }}</p>
-        <div class="row g-4">
-            {% for card in pageContent.etusivu.paths.cards %}
-            <div class="col-md-4">
-                <a class="home-path-card" href="{{ card.href }}">
-                    <div class="home-path-icon">
-                        <i class="bi {{ card.icon }}" aria-hidden="true"></i>
-                    </div>
-                    <h2 class="home-path-title">{{ card.title }}</h2>
-                    <p class="home-path-desc">{{ card.desc }}</p>
-                    <span class="home-path-cta">{{ card.cta }}</span>
-                </a>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-
-{# ── Miksi tämä työ on tärkeää? ────────────────────────────────────────── #}
-<section class="py-5 bg-body-tertiary home-challenges-section">
-    <div class="container">
-        <div class="row justify-content-center mb-5">
-            <div class="col-lg-7 text-center">
-                <h2 class="fw-bold mb-2">{{ pageContent.etusivu.challenges.heading }}</h2>
-                <p class="home-challenges-lead">{{ pageContent.etusivu.challenges.lead }}</p>
-            </div>
-        </div>
-        <div class="row g-4">
-            {% for card in pageContent.etusivu.challenges.cards %}
-            <div class="col-md-4">
-                <div class="home-challenge-card">
-                    <div class="home-challenge-num">{{ card.num }}</div>
-                    <h3 class="home-challenge-title">{{ card.title }}</h3>
-                    <p class="home-challenge-text">{{ card.text }}</p>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-
-
 <section class="py-5 home-overview-section">
     <div class="container">
         <div class="row g-4 g-xl-5">
@@ -328,7 +283,7 @@ translationKey: home
   {% set _ = (allRecentItems.push(item), null) %}
 {% endfor %}
 
-{% set allRecentSorted = allRecentItems | sort(true, false, "sortTs") | take(18) %}
+{% set allRecentSorted = allRecentItems | sort(true, false, "sortTs") | take(9) %}
 
 <section class="py-5 home-recent-section">
     <div class="container">
@@ -468,8 +423,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     <p class="mb-4">{{ pageContent.etusivu.closing.text }}</p>
                     <div class="home-closing-actions d-flex flex-wrap justify-content-center gap-2 mb-3">
                         <a class="btn btn-primary rounded-pill px-4" href="{{ pageContent.etusivu.closing.cta1.href }}">{{ pageContent.etusivu.closing.cta1.label }}</a>
-                        <a class="btn btn-read-more btn-sm rounded-pill px-3" href="{{ pageContent.etusivu.closing.cta2.href }}">{{ pageContent.etusivu.closing.cta2.label }}</a>
-                        <a class="btn btn-outline-secondary btn-sm rounded-pill px-3" href="{{ pageContent.etusivu.closing.cta3.href }}">{{ pageContent.etusivu.closing.cta3.label }}</a>
                     </div>
                 </div>
             </div>
