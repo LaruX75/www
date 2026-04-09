@@ -9,19 +9,6 @@ translationKey: about
 wp_id: 7
 ---
 
-{% set roleImages = [
-  { src: "/img/uploads/2020/01/WhatsApp-Image-2019-12-02-at-18.58.31-1.jpeg", alt: "Jari Laru kaupunginvaltuustossa", icon: "bi-building-fill", color: "text-primary" },
-  { src: "/img/uploads/2021/03/ESITYS-300x225.jpg", alt: "Jari Laru pitämässä tieteellistä esitystä", icon: "bi-mortarboard-fill", color: "text-success" },
-  { src: "/img/uploads/2021/01/verkkolive.jpg", alt: "Jari Laru verkkolähetyksessä kouluttajana", icon: "bi-mic-fill", color: "text-warning" },
-  { src: "/img/uploads/2021/03/CTE-159x300.jpg", alt: "Jari Laru ohjelmoinnillisen ajattelun konferenssissa", icon: "bi-journal-text", color: "text-info" }
-] %}
-
-{% set leisureIcons = [
-  { icon: "bi-house-heart-fill", color: "text-danger" },
-  { icon: "bi-egg-fried",        color: "text-warning" },
-  { icon: "bi-tools",            color: "text-secondary" },
-  { icon: "bi-hdd-stack",        color: "text-info" }
-] %}
 
 <!-- HERO -->
 <section class="py-5 bg-body-tertiary border-bottom">
@@ -46,32 +33,6 @@ wp_id: 7
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- NELJÄ ROOLIA -->
-<section class="py-5">
-  <div class="container">
-    <h2 class="h3 fw-bold mb-2">{{ pageContent.tietoa.roles.heading }}</h2>
-    <p class="text-muted mb-5">{{ pageContent.tietoa.roles.lead }}</p>
-    <div class="row g-4">
-      {% for card in pageContent.tietoa.roles.cards %}
-      {% set img = roleImages[loop.index0] %}
-      <div class="col-md-6 col-lg-3">
-        <div class="card h-100 border-0 shadow-sm">
-          <img class="card-img-top rooli-kuva" src="{{ img.src }}" alt="{{ img.alt }}" loading="lazy">
-          <div class="card-body p-4">
-            <div class="mb-2 {{ img.color }}"><i class="bi {{ img.icon }} fs-4"></i></div>
-            <h3 class="h5 fw-bold">{{ card.title }}</h3>
-            <p class="text-muted small mb-3">{{ card.desc }}</p>
-          </div>
-          <div class="card-footer bg-transparent border-0 px-4 pb-4">
-            <a href="{{ card.href }}" class="btn btn-primary btn-sm">{{ card.cta }}</a>
-          </div>
-        </div>
-      </div>
-      {% endfor %}
     </div>
   </div>
 </section>
@@ -149,37 +110,13 @@ wp_id: 7
       </div>
     </div>
 
-    <!-- Vapaa-aika-kortit -->
-    <div class="row g-4">
-      {% for card in pageContent.tietoa.leisure.cards %}
-      {% set ic = leisureIcons[loop.index0] %}
-      <div class="col-sm-6 col-lg-3">
-        <div class="card border-0 bg-body-tertiary h-100">
-          <div class="card-body p-4">
-            <div class="mb-2 fs-4"><i class="bi {{ ic.icon }} {{ ic.color }}"></i></div>
-            <h3 class="h5 fw-bold">{{ card.title }}</h3>
-            <p class="text-muted {% if card.cta %}mb-3{% else %}mb-0{% endif %}">{{ card.desc }}</p>
-          </div>
-          {% if card.cta %}
-          <div class="card-footer bg-transparent border-0 px-4 pb-4 pt-0">
-            <a href="{{ card.href }}" {% if card.href and '://' in card.href %}target="_blank" rel="noreferrer noopener"{% endif %} class="btn btn-primary btn-sm">{{ card.cta }}</a>
-          </div>
-          {% endif %}
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-
     <!-- Automatkareissut-info -->
     <div class="mt-4 p-4 border rounded bg-body-tertiary d-flex flex-wrap align-items-center justify-content-between gap-3">
       <div>
         <span class="fw-bold">{{ pageContent.tietoa.leisure.travelStrip.label }}</span>
         <span class="text-muted ms-2 small">{{ pageContent.tietoa.leisure.travelStrip.destinations }}</span>
       </div>
-      <div class="d-flex gap-2">
-        <a href="{{ pageContent.tietoa.leisure.travelStrip.cta1.href }}" class="btn btn-primary btn-sm">{{ pageContent.tietoa.leisure.travelStrip.cta1.label }}</a>
-        <a href="{{ pageContent.tietoa.leisure.travelStrip.cta2.href }}" class="btn btn-primary btn-sm">{{ pageContent.tietoa.leisure.travelStrip.cta2.label }}</a>
-      </div>
+      <a href="{{ pageContent.tietoa.leisure.travelStrip.cta1.href }}" class="btn btn-primary btn-sm">{{ pageContent.tietoa.leisure.travelStrip.cta1.label }}</a>
     </div>
   </div>
 </section>
@@ -198,31 +135,6 @@ wp_id: 7
     </div>
   </div>
 </div>
-
-<!-- KUVAVIRTA – hiljainen pystyskrolleri -->
-<section class="kuvavirta-section border-top border-bottom" aria-hidden="true">
-  <div class="kuvavirta-track">
-    <div class="kuvavirta-inner">
-      <img src="/img/uploads/2021/03/promootiob-300x225.jpg" alt="Tohtoripromootion miekanhiojaiset" title="Tohtoripromootion miekanhiojaiset">
-      <img src="/img/uploads/2021/03/vaitos-300x253.jpg" alt="Lectio Precursoria väitöstilaisuudessa" title="Lectio Precursoria väitöstilaisuudessa">
-      <img src="/img/uploads/2021/03/laskettelu-225x300.jpg" alt="Tiedekunnan virkistyspäivät Syötteellä" title="Tiedekunnan virkistyspäivät Syötteellä">
-      <img src="/img/uploads/2021/03/ouhalli-202x300.jpg" alt="Kansallisen lastenliiton tapahtumassa" title="Kansallisen lastenliiton tapahtumassa">
-      <img src="/img/uploads/2021/03/SUIKKA-225x300.jpg" alt="Kaivinkoneen ohjaimissa" title="Etupihan kiveysurakka – kaivinkoneen ohjaimissa">
-      <img src="/img/uploads/2021/03/teams-300x188.jpg" alt="Etäopetusta antamassa" title="Etäopetusta antamassa koronan aikana">
-      <img src="/img/uploads/2021/03/pukki-225x300.jpg" alt="Tapetoimassa joululomalla" title="Pojan huonetta tapetoimassa joululomalla">
-      <img src="/img/uploads/2021/03/37522991_10156458618453116_4533218945909391360_o-e1615744405294-300x166.jpg" alt="Nizzassa" title="Lomalla Nizzassa, Ranska">
-      <!-- toistetaan saumattoman looppin vuoksi -->
-      <img src="/img/uploads/2021/03/promootiob-300x225.jpg" alt="" loading="lazy">
-      <img src="/img/uploads/2021/03/vaitos-300x253.jpg" alt="" loading="lazy">
-      <img src="/img/uploads/2021/03/laskettelu-225x300.jpg" alt="" loading="lazy">
-      <img src="/img/uploads/2021/03/ouhalli-202x300.jpg" alt="" loading="lazy">
-      <img src="/img/uploads/2021/03/SUIKKA-225x300.jpg" alt="" loading="lazy">
-      <img src="/img/uploads/2021/03/teams-300x188.jpg" alt="" loading="lazy">
-      <img src="/img/uploads/2021/03/pukki-225x300.jpg" alt="" loading="lazy">
-      <img src="/img/uploads/2021/03/37522991_10156458618453116_4533218945909391360_o-e1615744405294-300x166.jpg" alt="" loading="lazy">
-    </div>
-  </div>
-</section>
 
 <!-- SOME JA YHTEYS -->
 <section class="py-5 bg-body-tertiary border-top">
@@ -297,40 +209,7 @@ wp_id: 7
   transition: opacity 0.2s;
 }
 
-/* Kuvavirta – pystysuuntainen autoskrolleri */
-.kuvavirta-section {
-  overflow: hidden;
-  height: 130px;
-  background: var(--bs-body-bg);
-}
-.kuvavirta-track {
-  height: 100%;
-  display: flex;
-  align-items: center;
-}
-.kuvavirta-inner {
-  display: flex;
-  gap: 8px;
-  animation: kuvavirta-scroll 40s linear infinite;
-  will-change: transform;
-}
-.kuvavirta-inner img {
-  height: 110px;
-  width: auto;
-  border-radius: 6px;
-  object-fit: cover;
-  opacity: 0.55;
-  filter: saturate(0.6);
-  flex-shrink: 0;
-  pointer-events: none;
-}
-@keyframes kuvavirta-scroll {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .kuvavirta-inner { animation: none; }
-}
+
 </style>
 
 <script>
