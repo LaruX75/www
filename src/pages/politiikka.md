@@ -14,12 +14,10 @@ templateEngineOverride: njk
         <p class="pol-eyebrow mb-2"><i class="bi bi-building2 me-1"></i>Politiikka</p>
         <h1 class="display-5 fw-bold mb-3">Jari Laru, poliitikko</h1>
         <p class="mb-3 pol-hero-text">Kaupungin ja aluehallinnon päätöksenteko perustuu yhteistyöhön. Yksittäinen valtuutettu ei saa asioita eteenpäin ilman verkostoja, dialogia ja yhteistä suuntaa.</p>
-        <p class="mb-4 pol-hero-text pol-hero-text-strong">Olen ollut mukana yhteiskunnallisessa vaikuttamisessa nuoresta asti. Taustani asukasyhdistystoiminnassa, kunnallispolitiikassa ja koulutuksen kentällä näkyy tavassani tehdä politiikkaa: käytännöllisesti, tietoon nojaten ja pitkäjänteisesti.</p>
+        <p class="mb-3 pol-hero-text pol-hero-text-strong">Olen ollut mukana yhteiskunnallisessa vaikuttamisessa nuoresta asti. Taustani asukasyhdistystoiminnassa, kunnallispolitiikassa ja koulutuksen kentällä näkyy tavassani tehdä politiikkaa: käytännöllisesti, tietoon nojaten ja pitkäjänteisesti.</p>
+        <p class="mb-4 pol-hero-text">Painoalueina toimiva arki lähipalveluineen, hallinnon avoimuus ja tasapainoinen kaupunkikehitys.</p>
         <div class="d-flex flex-wrap gap-2">
-          <a href="#valtuustoaloitteet" class="btn pol-hero-btn-primary">Aloitteet</a>
-          <a href="/kynasta/#puheet" class="btn pol-hero-btn-outline">Puheet</a>
-          <a href="/vaalihistoria/" class="btn pol-hero-btn-outline">Vaalihistoria</a>
-          <a href="/sidonnaisuudet/" class="btn pol-hero-btn-outline">Sidonnaisuudet</a>
+          <a href="#valtuustoaloitteet" class="btn pol-hero-btn-primary">Valtuustoaloitteet</a>
         </div>
       </div>
       <div class="col-lg-4">
@@ -33,114 +31,25 @@ templateEngineOverride: njk
 </section>
 <div class="pol-hero-divider"></div>
 
-<section class="py-5 mb-0">
-  <div class="container">
-    <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-person-badge me-1"></i>Roolit</p>
-    <h2 class="h4 mb-4">Kokemus ja roolit</h2>
-    <div class="row g-4">
-      <div class="col-md-6 col-xl-3">
-        <div class="card h-100 shadow-sm border-0 pol-role-card">
-          <div class="card-body">
-            <div class="pol-role-icon"><i class="bi bi-building2-fill"></i></div>
-            <h3 class="h6">Kaupunginvaltuutettu</h3>
-            <p class="text-muted mb-0">Toimin Oulun kaupunginvaltuustossa ja sivistys- ja kulttuurilautakunnan tehtävissä.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-xl-3">
-        <div class="card h-100 shadow-sm border-0 pol-role-card">
-          <div class="card-body">
-            <div class="pol-role-icon"><i class="bi bi-calendar3-range-fill"></i></div>
-            <h3 class="h6">Pitkä kokemus</h3>
-            <p class="text-muted mb-0">Olen ollut kunnallisessa päätöksenteossa ja luottamustehtävissä useilla eri vaalikausilla.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-xl-3">
-        <div class="card h-100 shadow-sm border-0 pol-role-card">
-          <div class="card-body">
-            <div class="pol-role-icon"><i class="bi bi-mortarboard-fill"></i></div>
-            <h3 class="h6">Tutkijatausta</h3>
-            <p class="text-muted mb-0">Tutkijan koulutus auttaa hahmottamaan laajoja kokonaisuuksia ja päätösten vaikutuksia.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-xl-3">
-        <div class="card h-100 shadow-sm border-0 pol-role-card">
-          <div class="card-body">
-            <div class="pol-role-icon"><i class="bi bi-book-half"></i></div>
-            <h3 class="h6">Sivistyspainotus</h3>
-            <p class="text-muted mb-0">Koulutus, kulttuuri ja liikunta ovat hyvinvoinnin perusta sekä kaupungin elinvoiman ydin.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="py-5 mb-0 bg-body-tertiary">
-  <div class="container">
-    <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-flag me-1"></i>Tavoitteet</p>
-    <h2 class="h4 mb-4">Vaalikausien yli ulottuvat tavoitteet</h2>
-    <div class="row g-4">
-      <div class="col-lg-4">
-        <div class="card h-100 border-0 shadow-sm pol-goal-card">
-          <div class="card-body">
-            <div class="d-flex align-items-start gap-3">
-              <span class="pol-goal-num" data-num="01" aria-hidden="true"></span>
-              <div>
-                <i class="bi bi-house-heart-fill pol-goal-icon mb-2 d-block"></i>
-                <h3 class="h6">Toimiva arki lähellä</h3>
-                <p class="mb-0 text-muted">Turvalliset koulut, toimiva kunnallistekniikka ja sujuvat peruspalvelut jokaisella alueella.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4">
-        <div class="card h-100 border-0 shadow-sm pol-goal-card">
-          <div class="card-body">
-            <div class="d-flex align-items-start gap-3">
-              <span class="pol-goal-num" data-num="02" aria-hidden="true"></span>
-              <div>
-                <i class="bi bi-eye-fill pol-goal-icon mb-2 d-block"></i>
-                <h3 class="h6">Avoin hallinto</h3>
-                <p class="mb-0 text-muted">Päätöksenteon tulee olla läpinäkyvää, ymmärrettävää ja kaupunkilaisille helposti saavutettavaa.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4">
-        <div class="card h-100 border-0 shadow-sm pol-goal-card">
-          <div class="card-body">
-            <div class="d-flex align-items-start gap-3">
-              <span class="pol-goal-num" data-num="03" aria-hidden="true"></span>
-              <div>
-                <i class="bi bi-map-fill pol-goal-icon mb-2 d-block"></i>
-                <h3 class="h6">Tasapainoinen kaupunkirakenne</h3>
-                <p class="mb-0 text-muted">Kaupunkia kehitetään pitkäjänteisesti eri alueiden vahvuudet huomioiden, ei vain keskustaa painottaen.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
 <section class="py-5 mb-0" id="poliittiset-teemat">
   <div class="container">
     <div class="d-flex align-items-end justify-content-between flex-wrap gap-2 mb-4">
       <div>
         <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-grid-3x3-gap me-1"></i>Teemat</p>
-        <h2 class="h4 mb-1">Teemoitetut sisällöt</h2>
-        <p class="text-muted small mb-0">Politiikka-aiheiset blogit, puheenvuorot ja mielipidekirjoitukset ryhmiteltyinä aihepiireittäin.</p>
+        <h2 class="h4 mb-1">Kirjoituksia aiheittain</h2>
+        <p class="text-muted small mb-0">Blogit, puheenvuorot ja mielipidekirjoitukset politiikan keskeisistä teemoista.</p>
       </div>
       <a href="/kynasta/" class="btn btn-outline-primary btn-sm">Kaikki kirjoitukset</a>
     </div>
-    <div id="politics-theme-cta-grid" class="row g-3"></div>
+    <div class="d-flex flex-wrap gap-2">
+      <a href="/avainsanat/koulutus/" class="btn btn-outline-secondary btn-sm"><i class="bi bi-mortarboard me-1"></i>Koulutus</a>
+      <a href="/avainsanat/koulu/" class="btn btn-outline-secondary btn-sm"><i class="bi bi-building me-1"></i>Kouluverkko</a>
+      <a href="/avainsanat/valtuustoaloite/" class="btn btn-outline-secondary btn-sm"><i class="bi bi-megaphone me-1"></i>Demokratia</a>
+      <a href="/avainsanat/kaupunki/" class="btn btn-outline-secondary btn-sm"><i class="bi bi-buildings me-1"></i>Kaupunkikehitys</a>
+      <a href="/avainsanat/hyvinvointi/" class="btn btn-outline-secondary btn-sm"><i class="bi bi-heart-pulse me-1"></i>Hyvinvointi</a>
+      <a href="/avainsanat/nuoret/" class="btn btn-outline-secondary btn-sm"><i class="bi bi-people me-1"></i>Nuoret</a>
+      <a href="/avainsanat/talous/" class="btn btn-outline-secondary btn-sm"><i class="bi bi-graph-up me-1"></i>Talous</a>
+    </div>
   </div>
 </section>
 
