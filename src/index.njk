@@ -30,7 +30,7 @@ translationKey: home
 {% set heroSpeechCount = (collections.pub_puhe or []) | length %}
 {% set heroStats = [
     { count: heroPresentationCount, label: "Esitystä tai oppimateriaalia", href: "/esitykset/" },
-    { count: heroPublicationCount, label: "julkaisua", href: "/julkaisut/" },
+    { count: heroPublicationCount, label: "tieteellistä julkaisua", href: "/julkaisut/" },
     { count: heroOpinionCount, label: "mielipidekirjoitusta", href: "/kynasta/#mielipiteet" },
     { count: heroSpeechCount, label: "puheenvuoroa", href: "/kynasta/#puheet" },
     { count: theses.stats.total, label: "ohjattua opinnäytettä", href: "/opinnaytteet/" }
@@ -101,8 +101,8 @@ translationKey: home
                     </div>
                     <div class="home-overview-kpis mb-3">
                         <div class="home-overview-kpi">
-                            <span class="home-overview-kpi-value">{{ pageContent.etusivu.overview.card1.kpi1.value }}</span>
-                            <span class="home-overview-kpi-label">{{ pageContent.etusivu.overview.card1.kpi1.label }}</span>
+                            <span class="home-overview-kpi-value">{{ theses.stats.total }}</span>
+                            <span class="home-overview-kpi-label">opinnäytettä</span>
                         </div>
                         <div class="home-overview-kpi">
                             <span class="home-overview-kpi-value">{{ pageContent.etusivu.overview.card1.kpi2.value }}</span>
