@@ -79,15 +79,25 @@ translationKey: theses_index
   {% endif %}
   {# Ruudunlukijan ilmoitusalue suodatustuloksille #}
   <div id="thesis-filter-status" role="status" aria-live="polite" aria-atomic="true" class="visually-hidden"></div>
-  <div class="card shadow-sm mb-5" id="thesis-subject-cloud">
-    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
-      <h2 class="small fw-semibold mb-0"><i class="bi bi-tags-fill me-2 text-primary" aria-hidden="true"></i>Avainsanat kategorioittain</h2>
-      <button type="button" class="btn btn-link btn-sm p-0 text-muted" id="thesis-cloud-clear" style="display:none!important">
-        <i class="bi bi-x-circle me-1" aria-hidden="true"></i>Poista suodatus
-      </button>
-    </div>
-    <div class="card-body p-0" id="thesis-cloud-container">
-      <span class="text-muted small p-3 d-block">Ladataan...</span>
+  <div class="accordion shadow-sm mb-5" id="thesis-subject-cloud">
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed py-2 small fw-semibold" type="button"
+                data-bs-toggle="collapse" data-bs-target="#thesis-cloud-collapse"
+                aria-expanded="false" aria-controls="thesis-cloud-collapse">
+          <i class="bi bi-tags-fill me-2 text-primary" aria-hidden="true"></i>Avainsanat kategorioittain
+        </button>
+      </h2>
+      <div id="thesis-cloud-collapse" class="accordion-collapse collapse">
+        <div class="accordion-body p-0 d-flex align-items-center justify-content-end px-3 pt-2" style="min-height:0">
+          <button type="button" class="btn btn-link btn-sm p-0 text-muted" id="thesis-cloud-clear" style="display:none!important">
+            <i class="bi bi-x-circle me-1" aria-hidden="true"></i>Poista suodatus
+          </button>
+        </div>
+        <div class="p-0" id="thesis-cloud-container">
+          <span class="text-muted small p-3 d-block">Ladataan...</span>
+        </div>
+      </div>
     </div>
   </div>
 
