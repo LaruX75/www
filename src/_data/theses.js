@@ -109,33 +109,23 @@ function parseKK(xmlStr) {
     return items;
 }
 
-// Hae totalResults
-function getTotalResults(xml) {
-    const m = xml.match(/totalResults[^>]*>(\d+)/);
-    return m ? parseInt(m[1]) : 0;
-}
-
 // Hae kaikki sivut yhdelle querylle
+// kk-formaatti ei sisällä totalResults-tagia, joten sivutetaan niin kauan
+// kuin sivu palauttaa RPP kappaletta (turvaraja 20 sivua)
 async function fetchAll(query) {
-    const xml1 = await fetchPage(query, 0);
-    const total = getTotalResults(xml1);
-    let items = parseKK(xml1);
-
-    console.log(`[theses] totalResults=${total}, sivu 1: ${items.length} tietuetta`);
-
-    if (total > RPP) {
-        const pages = Math.min(Math.ceil(total / RPP), 20); // turvaraja
-        for (let page = 1; page < pages; page++) {
-            try {
-                const xml = await fetchPage(query, page * RPP);
-                items.push(...parseKK(xml));
-                console.log(`[theses] sivu ${page + 1}: yhteensä ${items.length}`);
-            } catch (e) {
-                console.warn(`[theses] sivu ${page + 1} epäonnistui:`, e.message);
-            }
+    let items = [];
+    for (let page = 0; page < 20; page++) {
+        try {
+            const xml = await fetchPage(query, page * RPP);
+            const pageItems = parseKK(xml);
+            items.push(...pageItems);
+            console.log(`[theses] sivu ${page + 1}: ${pageItems.length} tietuetta, yhteensä ${items.length}`);
+            if (pageItems.length < RPP) break; // viimeinen sivu
+        } catch (e) {
+            console.warn(`[theses] sivu ${page + 1} epäonnistui:`, e.message);
+            break;
         }
     }
-
     return items;
 }
 
