@@ -491,6 +491,19 @@ module.exports = function (eleventyConfig) {
     return arr.filter(item => item.data.type === type);
   });
 
+  // APA7-tekijämuoto: "Korhonen, Eeva Marjatta" → "Korhonen, E. M."
+  eleventyConfig.addFilter("apa7authors", function (authors) {
+    if (!Array.isArray(authors)) return '';
+    return authors.map(name => {
+      const commaIdx = name.indexOf(',');
+      if (commaIdx === -1) return name;
+      const last = name.slice(0, commaIdx).trim();
+      const firsts = name.slice(commaIdx + 1).trim();
+      const initials = firsts.split(/\s+/).filter(Boolean).map(w => w[0].toUpperCase() + '.').join(' ');
+      return `${last}, ${initials}`;
+    }).join('; ');
+  });
+
   // Muunna suhteellinen polku absoluuttiseksi URL:ksi
   eleventyConfig.addFilter("absoluteUrl", function (url, base) {
     if (!url) return base || "";

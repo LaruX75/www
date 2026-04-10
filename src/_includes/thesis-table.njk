@@ -9,20 +9,20 @@
   <table class="table table-sm table-hover align-middle mb-0 pub-table" data-thesis-table>
     <thead>
       <tr>
+        <th class="col-author">{{ "Author" if isEN else "Tekijä" }}</th>
         <th class="col-year text-center">{{ "Year" if isEN else "Vuosi" }}</th>
         {% if showType %}<th class="col-type">{{ "Type" if isEN else "Tyyppi" }}</th>{% endif %}
         <th class="col-title">{{ "Title" if isEN else "Otsikko" }}</th>
         <th class="col-abstract">{{ "Summary" if isEN else "Tiivistelmä" }}</th>
         <th class="col-subjects">{{ "Keywords" if isEN else "Avainsanat" }}</th>
-        <th class="col-author">{{ "Author" if isEN else "Tekijä" }}</th>
       </tr>
     </thead>
     <tbody>
       {% for thesis in thesisItems %}
       <tr data-year="{{ thesis.year }}" data-type="{{ thesis.type or '' }}">
+        <td class="text-secondary small">{{ thesis.authors | apa7authors }}</td>
         <td class="col-year text-center font-monospace small fw-bold text-info">
           {{ thesis.year }}
-          <span class="col-year-author">{{ thesis.authors | join("; ") }}</span>
         </td>
         {% if showType %}
         <td>
@@ -93,7 +93,6 @@
             <span class="text-muted small">—</span>
           {% endif %}
         </td>
-        <td class="text-secondary small">{{ thesis.authors | join("; ") }}</td>
       </tr>
       {% endfor %}
     </tbody>
