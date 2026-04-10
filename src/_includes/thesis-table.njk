@@ -20,7 +20,7 @@
     <tbody>
       {% for thesis in thesisItems %}
       <tr data-year="{{ thesis.year }}" data-type="{{ thesis.type or '' }}">
-        <td class="text-secondary small">{{ thesis.authors | apa7authors }}</td>
+        <td class="small">{{ thesis.authors | join("; ") }}</td>
         <td class="col-year text-center font-monospace small fw-bold text-info">
           {{ thesis.year }}
         </td>
@@ -37,7 +37,7 @@
         {% endif %}
         <td>
           {% if thesis.link %}
-            <a href="{{ thesis.link }}" target="_blank" class="fw-medium text-body" rel="noopener noreferrer">{{ thesis.title }}</a>
+            <a href="{{ thesis.link }}" target="_blank" class="fw-medium text-body text-decoration-none" rel="noopener noreferrer">{{ thesis.title }}</a>
             <a href="{{ thesis.link }}" target="_blank" class="ms-2 text-decoration-none align-middle icon-only-link" rel="noopener noreferrer" aria-label="{{ ('Open thesis: ' if isEN else 'Avaa opinnäytetyö: ') + thesis.title }}">
               <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
             </a>
