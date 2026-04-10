@@ -741,7 +741,7 @@ translationKey: writings_index
 </section>
 
 <style>
-/* ---- Kynasta hero: always dark navy (overrides global theme-aware base) ---- */
+/* ---- Kynasta hero: dark navy in dark theme ---- */
 .kynasta-hero {
   background-color: #0f172a;
   border-bottom: 2px solid rgba(255,255,255,0.08);
@@ -750,7 +750,7 @@ translationKey: writings_index
 .kynasta-hero p,
 .kynasta-hero .text-muted { color: rgba(255,255,255,0.65) !important; }
 
-/* ---- Nav pills: white outline on dark hero (overrides global) ---- */
+/* ---- Nav pills: white outline on dark hero ---- */
 .kynasta-hero .nav-link {
   color: rgba(255,255,255,0.82);
   background-color: rgba(255,255,255,0.08);
@@ -760,6 +760,25 @@ translationKey: writings_index
   background-color: rgba(255,255,255,0.18);
   border-color: rgba(255,255,255,0.45);
   color: #ffffff;
+}
+
+/* ---- Kynasta hero: light theme override ---- */
+html:not([data-bs-theme="dark"]) .kynasta-hero {
+  background: linear-gradient(135deg, #eef2f7 0%, #e2eaf4 100%);
+  border-bottom-color: rgba(15,34,56,0.1);
+}
+html:not([data-bs-theme="dark"]) .kynasta-hero h1 { color: #0f2238; }
+html:not([data-bs-theme="dark"]) .kynasta-hero p,
+html:not([data-bs-theme="dark"]) .kynasta-hero .text-muted { color: rgba(15,34,56,0.65) !important; }
+html:not([data-bs-theme="dark"]) .kynasta-hero .nav-link {
+  color: #1e3a5f;
+  background-color: rgba(15,34,56,0.07);
+  border-color: rgba(15,34,56,0.2);
+}
+html:not([data-bs-theme="dark"]) .kynasta-hero .nav-link:hover {
+  background-color: rgba(15,34,56,0.14);
+  border-color: rgba(15,34,56,0.35);
+  color: #0f2238;
 }
 
 /* ---- Section spacing (this page only) ---- */

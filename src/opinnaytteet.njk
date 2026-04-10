@@ -59,11 +59,16 @@ translationKey: theses_index
     </div>
   </div>
 
-  {# Vuosittainen palkki (valinnainen) #}
+  {# Vuosittainen palkki (interaktiivinen) #}
   {% if theses.stats.byYear %}
-  <div class="d-flex gap-1 flex-wrap mb-4">
+  <div class="d-flex gap-1 flex-wrap align-items-center mb-4" id="thesis-year-bar" role="group" aria-label="Suodata vuoden mukaan">
+    <button type="button" class="badge border-0 thesis-year-btn active" data-year="" style="background-color:#6c757d;color:#fff;cursor:pointer">
+      Kaikki vuodet
+    </button>
     {% for item in theses.stats.byYear %}
-      <span class="badge bg-dark">{{ item[0] }}: {{ item[1] }}</span>
+      <button type="button" class="badge border-0 thesis-year-btn" data-year="{{ item[0] }}" style="background-color:#212529;color:#fff;cursor:pointer">
+        {{ item[0] }}: {{ item[1] }}
+      </button>
     {% endfor %}
   </div>
   {% endif %}
@@ -789,18 +794,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const headerId = `thesis-cat-h${idx}`;
       const collapseId = `thesis-cat-c${idx}`;
-      const isFirst = idx === 0;
 
       item.innerHTML = `
         <h3 class="accordion-header" id="${headerId}">
-          <button class="accordion-button${isFirst ? '' : ' collapsed'} py-2 small fw-semibold" type="button"
+          <button class="accordion-button collapsed py-2 small fw-semibold" type="button"
             data-bs-toggle="collapse" data-bs-target="#${collapseId}"
-            aria-expanded="${isFirst}" aria-controls="${collapseId}">
+            aria-expanded="false" aria-controls="${collapseId}">
             <i class="bi bi-tag-fill me-2 text-primary opacity-75"></i>${catName}
             <span class="badge text-bg-secondary ms-2 fw-normal">${keywords.length}</span>
           </button>
         </h3>
-        <div id="${collapseId}" class="accordion-collapse collapse${isFirst ? ' show' : ''}"
+        <div id="${collapseId}" class="accordion-collapse collapse"
           aria-labelledby="${headerId}" data-bs-parent="#thesis-cat-accordion">
           <div class="accordion-body py-2 d-flex flex-wrap gap-1" id="thesis-cat-body-${idx}"></div>
         </div>`;
@@ -935,10 +939,56 @@ document.addEventListener('DOMContentLoaded', () => {
   if (initialKeyword) activateKeywordContext(initialKeyword);
   applyKeywordToPageShareMeta(initialKeyword);
 
+  // ---- Vuosirimps: interaktiivinen vuosisuodatin ----
+  document.querySelectorAll('.thesis-year-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const year = btn.dataset.year || '';
+
+      // Päivitä napien tila
+      document.querySelectorAll('.thesis-year-btn').forEach(b => {
+        b.classList.remove('active');
+        b.style.backgroundColor = b.dataset.year ? '#212529' : '#6c757d';
+        b.style.opacity = '1';
+      });
+      btn.classList.add('active');
+      btn.style.backgroundColor = '#0d6efd';
+
+      // Aseta vuosisuodatin kaikkiin taulukoihin
+      ['gradutabl', 'kanditabl', 'reviewertabl'].forEach(tableId => {
+        const yearSelect = document.querySelector(`[data-thesis-year="${tableId}"]`);
+        if (yearSelect) {
+          yearSelect.value = year;
+          yearSelect.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+      });
+
+      // Vieritä taulukoihin jos vuosi valittu
+      if (year) {
+        const firstCard = document.getElementById('card-master');
+        if (firstCard) firstCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
 });
 </script>
 
 <style>
+/* ---- Vuosirimps ---- */
+.thesis-year-btn {
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.3em 0.65em;
+  transition: background-color 0.15s ease, opacity 0.15s ease;
+}
+.thesis-year-btn:hover {
+  opacity: 0.85;
+}
+.thesis-year-btn.active {
+  outline: 2px solid rgba(255,255,255,0.5);
+  outline-offset: 1px;
+}
+
 .thesis-filter-group .thesis-filter-icon {
   background-color: #0f172a;
   color: #ffffff;
