@@ -18,18 +18,13 @@ translationKey: theses_index
 </section>
 
 <div class="container py-4">
-  <p class="lead text-muted">
-    OuluREPO-julkaisuarkistosta haetut ohjaamani opinnäytetyöt 
-    {% if theses.stats.firstYear %}({{ theses.stats.firstYear }}–{{ theses.stats.lastYear }}){% endif %}.
-  </p>
-
   {# Laskurit #}
   <div class="row g-3 my-4">
     <div class="col-md-3">
       <div class="card text-center border-primary h-100">
         <div class="card-body d-flex flex-column justify-content-center">
           <div class="display-4 fw-bold text-primary">{{ theses.stats.totalGradut }}</div>
-          <div class="text-muted">Pro gradu</div>
+          <div class="text-muted">ohjattua gradua</div>
         </div>
       </div>
     </div>
@@ -37,7 +32,7 @@ translationKey: theses_index
       <div class="card text-center border-info h-100">
         <div class="card-body d-flex flex-column justify-content-center">
           <div class="display-4 fw-bold text-info">{{ theses.stats.totalKandit }}</div>
-          <div class="text-muted">Kandidaatintyö</div>
+          <div class="text-muted">ohjattua kandidaatintyötä</div>
         </div>
       </div>
     </div>
@@ -45,7 +40,7 @@ translationKey: theses_index
       <div class="card text-center h-100">
         <div class="card-body d-flex flex-column justify-content-center">
           <div class="display-4 fw-bold">{{ theses.stats.total }}</div>
-          <div class="text-muted">Yhteensä</div>
+          <div class="text-muted">työtä yhteensä</div>
         </div>
       </div>
     </div>
@@ -53,7 +48,7 @@ translationKey: theses_index
       <div class="card text-center border-secondary h-100">
         <div class="card-body d-flex flex-column justify-content-center">
           <div class="display-4 fw-bold text-secondary">{{ theses.stats.totalReviewer }}</div>
-          <div class="text-muted">Tarkastettu</div>
+          <div class="text-muted">muuta työtä, jotka olen tarkastanut</div>
         </div>
       </div>
     </div>
@@ -463,15 +458,35 @@ document.addEventListener('DOMContentLoaded', () => {
       paginationNav = document.createElement('nav');
       const containerId = tableContainer.id || Math.random().toString(36).substring(7);
       paginationNav.setAttribute('aria-label', `Taulukon sivutus ${containerId}`);
-      paginationNav.className = 'thesis-pagination d-flex justify-content-center mt-3';
-      paginationNav.innerHTML = '<ul class="pagination pagination-sm mb-3"></ul>';
+      paginationNav.className = 'thesis-pagination d-flex align-items-center justify-content-between mt-3 px-2';
+      paginationNav.innerHTML = '<div class="thesis-pagination-left"></div><ul class="pagination pagination-sm mb-3"></ul>';
       tableContainer.appendChild(paginationNav);
     }
-    
+
     const ul = paginationNav.querySelector('ul');
-    
+    const paginationLeft = paginationNav.querySelector('.thesis-pagination-left');
+
     let currentPage = 1;
+    let showAll = false;
     let filteredRows = [...rows];
+
+    // "Näytä kaikki" -painike
+    const showAllBtn = document.createElement('button');
+    showAllBtn.type = 'button';
+    showAllBtn.className = 'btn btn-outline-secondary btn-sm mb-3';
+    showAllBtn.innerHTML = '<i class="bi bi-list-ul me-1" aria-hidden="true"></i>Näytä kaikki';
+    showAllBtn.addEventListener('click', () => {
+      showAll = !showAll;
+      if (showAll) {
+        showAllBtn.innerHTML = '<i class="bi bi-layout-text-window me-1" aria-hidden="true"></i>Sivuta';
+        filteredRows.forEach(r => r.style.display = '');
+        ul.innerHTML = '';
+      } else {
+        showAllBtn.innerHTML = '<i class="bi bi-list-ul me-1" aria-hidden="true"></i>Näytä kaikki';
+        renderPage(1);
+      }
+    });
+    if (paginationLeft) paginationLeft.appendChild(showAllBtn);
 
     const searchInput = document.querySelector(`[data-thesis-search="${tableContainer.id}"]`);
     const yearSelect = document.querySelector(`[data-thesis-year="${tableContainer.id}"]`);
@@ -528,7 +543,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return matchesSearch && matchesYear && matchesType;
       });
       syncFiltersToUrl();
-      renderPage(1);
+      renderPage(showAll ? 'all' : 1);
 
       // Ilmoita suodatustulos ruudunlukijalle
       const statusEl = document.getElementById('thesis-filter-status');
@@ -541,6 +556,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderPage(page) {
+      if (showAll) {
+        filteredRows.forEach(r => r.style.display = '');
+        rows.filter(r => !filteredRows.includes(r)).forEach(r => r.style.display = 'none');
+        return;
+      }
       currentPage = page;
       const totalPages = Math.ceil(filteredRows.length / ITEMS_PER_PAGE);
       if (currentPage < 1) currentPage = 1;
@@ -559,6 +579,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderPaginationControls(totalPages) {
       ul.innerHTML = '';
+      showAllBtn.style.display = totalPages <= 1 ? 'none' : '';
       if (totalPages <= 1) return;
 
       // Previous button
