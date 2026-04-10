@@ -16,7 +16,7 @@
     border-color: #cfd6de !important;
 }
 
-[data-bs-theme="light"] .bss-scope a:not(.btn):not(.nav-link):not(.navbar-brand):not(.badge):not(.home-path-card):not(.home-overview-item):not(.home-content-row):not(.home-ticker-item):not(.home-ticker-title):not([class*="home-path"]):not([class*="card"]):not(.home-hero-kpi-link) {
+[data-bs-theme="light"] .bss-scope a:not(.btn):not(.nav-link):not(.navbar-brand):not(.badge):not(.home-path-card):not(.home-overview-item):not(.home-content-row):not(.home-ticker-item):not(.home-ticker-title):not([class*="home-path"]):not([class*="card"]):not(.home-hero-kpi-link):not(.summary-kpi-link) {
     color: #0f4c81;
     text-decoration: underline;
     text-decoration-thickness: 1.5px;
