@@ -3,7 +3,7 @@ const path = require('path');
 const { isOfflineFetchMode, readCache, readCacheIfFresh, writeCache } = require('./_apiCache');
 const { loadHiddenIds } = require('./_curatedStubs');
 
-const CACHE_KEY = 'theses-oulurepo-v2';
+const CACHE_KEY = 'theses-oulurepo-v1';
 const CACHE_TTL_HOURS = 6;
 
 const BASE = 'https://oulurepo.oulu.fi/open-search/';
