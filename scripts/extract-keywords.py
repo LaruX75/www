@@ -11,7 +11,7 @@ import subprocess
 
 def find_keywords(text):
     m = re.search(
-        r'(?:Avainsanat|Keywords|Nyckelord)\s*:?\s*(.+?)(?:\n|\r|$)',
+        r'(?:Avainsanat|Asiasanat|Keywords|Nyckelord)\s*:?\s*(.+?)(?:\n|\r|$)',
         text,
         re.IGNORECASE
     )
