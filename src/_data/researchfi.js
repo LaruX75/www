@@ -5,6 +5,10 @@ const { loadHiddenIds } = require("./_curatedStubs");
 const CACHE_TTL_HOURS = 6;
 const CROSSREF_CACHE_KEY = "crossref-enrichments-v1";
 const CROSSREF_CACHE_TTL_HOURS = 168; // 1 viikko
+const JUFO_CACHE_KEY = "jufo-enrichments-v1";
+const JUFO_CACHE_TTL_HOURS = 168; // 1 viikko
+const JUFO_BASE = "https://jufo-rest.csc.fi/v1.1";
+const JUFO_HEADERS = { "User-Agent": "jarilaru.fi/2.0 (mailto:jari.laru@oulu.fi; academic personal site)" };
 
 const CACHE_KEY = "researchfi-publications";
 
@@ -291,6 +295,79 @@ async function enrichWithCrossref(publications) {
 }
 
 // ---------------------------------------------------------------------------
+// JUFO-rikastus: julkaisutason haku Julkaisufoorumin REST-API:sta
+// Strategia: ISSN → /etsi.php → Jufo_ID → /kanava/{id} → Level
+// ---------------------------------------------------------------------------
+
+async function fetchJufoByIssn(issn) {
+    // Normalisoidaan ISSN: poistetaan tyhjät, varmistetaan viiva-formaatti (1234-5678)
+    const normalized = issn.trim().replace(/[^0-9X]/gi, "").replace(/^(.{4})(.+)$/, "$1-$2");
+    const searchUrl = `${JUFO_BASE}/etsi.php?issn=${encodeURIComponent(normalized)}&tyyppi=1`;
+    try {
+        const res = await fetchWithTimeout(searchUrl, { headers: JUFO_HEADERS }, 8000);
+        if (!res.ok) return null;
+        const results = await res.json();
+        if (!Array.isArray(results) || results.length === 0) return null;
+        // Haetaan kanavan tiedot Jufo_ID:llä
+        const jufoId = results[0].Jufo_ID;
+        const channelUrl = `${JUFO_BASE}/kanava/${jufoId}`;
+        const channelRes = await fetchWithTimeout(channelUrl, { headers: JUFO_HEADERS }, 8000);
+        if (!channelRes.ok) return null;
+        const channelData = await channelRes.json();
+        // API palauttaa taulukon myös yksittäiselle kanavalle
+        const ch = Array.isArray(channelData) ? channelData[0] : channelData;
+        if (!ch) return null;
+        return {
+            level: ch.Level != null ? String(ch.Level) : null,
+            jufoId,
+            jufoName: ch.Name || null,
+        };
+    } catch {
+        return null;
+    }
+}
+
+async function enrichWithJufo(publications) {
+    const fresh = readCacheIfFresh(JUFO_CACHE_KEY, JUFO_CACHE_TTL_HOURS);
+    let jufoMap = fresh?.data || null;
+
+    if (!jufoMap) {
+        const old = readCache(JUFO_CACHE_KEY);
+        jufoMap = old?.data || {};
+
+        // Kerää uniikit ISSNt julkaisuista (CrossRef on jo rikastuttanut ne)
+        const issns = [...new Set(
+            publications.map(p => p.issn).filter(Boolean)
+        )];
+        // Hae vain ne jotka eivät vielä ole cachessa (null = "haettu, ei löydy")
+        const toFetch = issns.filter(issn => !(issn in jufoMap));
+
+        if (toFetch.length > 0) {
+            console.log(`[jufo] Haetaan ${toFetch.length} ISSN:n JUFO-taso...`);
+            for (const issn of toFetch) {
+                jufoMap[issn] = await fetchJufoByIssn(issn); // null = ei löydy
+                await new Promise(r => setTimeout(r, 350)); // ~3 req/s
+            }
+            const found = Object.values(jufoMap).filter(v => v && v.level != null).length;
+            console.log(`[jufo] Valmis. Löydettiin taso ${found}/${Object.keys(jufoMap).length} kanavasta.`);
+        } else {
+            console.log(`[jufo] Kaikki ${issns.length} ISSN:ää välimuistissa.`);
+        }
+
+        writeCache(JUFO_CACHE_KEY, jufoMap);
+    } else {
+        console.log(`[jufo] Käytetään tuoretta välimuistia (${fresh.savedAt}).`);
+    }
+
+    return publications.map(p => {
+        if (!p.issn) return p;
+        const meta = jufoMap[p.issn];
+        if (!meta) return p;
+        return { ...p, jufoLevel: meta.level, jufoId: meta.jufoId };
+    });
+}
+
+// ---------------------------------------------------------------------------
 
 function normalizePublication(pub) {
     const typeCode = normalizeTypeCode(pub);
@@ -324,7 +401,7 @@ module.exports = async function () {
     if (fresh?.data) {
         const freshPubs = fresh.data.map(normalizePublication);
         console.log(`Research.fi: käytetään tuoretta välimuistia (${fresh.savedAt}), ${freshPubs.length} julkaisua.`);
-        return enrichWithCrossref(applyCuration(freshPubs));
+        return enrichWithJufo(await enrichWithCrossref(applyCuration(freshPubs)));
     }
 
     const cached = readCache(CACHE_KEY);
@@ -398,15 +475,13 @@ module.exports = async function () {
         }
 
         console.log(`Löydettiin ${publications.length} Research.fi-julkaisua.`);
-        const enriched = await enrichWithCrossref(applyCuration(publications));
-        return enriched;
+        return enrichWithJufo(await enrichWithCrossref(applyCuration(publications)));
 
     } catch (error) {
         console.error("Research.fi API haku epäonnistui:", error.message);
         if (cachedPublications) {
             console.warn(`Research.fi: käytetään välimuistia (${cached.savedAt}).`);
-            const fallback = applyCuration(cachedPublications);
-            return enrichWithCrossref(fallback);
+            return enrichWithJufo(await enrichWithCrossref(applyCuration(cachedPublications)));
         }
         return [];
     }

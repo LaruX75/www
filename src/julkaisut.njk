@@ -206,6 +206,17 @@ translationKey: publications_index
                       {% endif %}
                       {% set citationCount = (semanticscholar.metrics.doiCitations[pub.doi | lower] if pub.doi and semanticscholar.metrics.doiCitations[pub.doi | lower] else 0) %}
                       <div class="d-flex flex-wrap align-items-center gap-2 mt-1">
+                        {% if pub.jufoLevel != null and pub.jufoLevel != undefined %}
+                          {% if pub.jufoLevel == "3" %}
+                            <span class="badge rounded-pill" style="background:#198754;color:#fff" title="Julkaisufoorumi-taso 3 – johtava taso">JUFO 3</span>
+                          {% elif pub.jufoLevel == "2" %}
+                            <span class="badge rounded-pill" style="background:#0d6efd;color:#fff" title="Julkaisufoorumi-taso 2 – korkea taso">JUFO 2</span>
+                          {% elif pub.jufoLevel == "1" %}
+                            <span class="badge rounded-pill" style="background:#6c757d;color:#fff" title="Julkaisufoorumi-taso 1 – perustaso">JUFO 1</span>
+                          {% else %}
+                            <span class="badge rounded-pill" style="background:#dee2e6;color:#495057" title="Julkaisufoorumi-taso 0 – ei luokiteltu">JUFO 0</span>
+                          {% endif %}
+                        {% endif %}
                         <span class="badge text-bg-warning rounded-pill" title="Viittaukset">
                           <i class="bi bi-quote me-1"></i>{{ citationCount }} {{ "viite" if citationCount == 1 else "viittausta" }}
                         </span>
