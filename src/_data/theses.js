@@ -170,14 +170,17 @@ function mergeManualIntoCache(data) {
     const manual = loadManualTheses().filter(t => t.type === 'bachelorThesis');
     const existingLinks = new Set(data.kandit.map(t => t.link));
     const extra = manual.filter(t => !existingLinks.has(t.link));
-    if (!extra.length) return data;
+    const reviewerOnly = data.reviewerOnly || [];
+    if (!extra.length) return { ...data, reviewerOnly };
     const kandit = [...data.kandit, ...extra].sort((a, b) => (b.year || '').localeCompare(a.year || ''));
     return {
         ...data,
         kandit,
+        reviewerOnly,
         stats: {
             ...data.stats,
             totalKandit: kandit.length,
+            totalReviewer: reviewerOnly.length,
             total: data.stats.totalGradut + kandit.length,
         },
     };

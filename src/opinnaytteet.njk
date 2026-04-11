@@ -169,7 +169,7 @@ translationKey: theses_index
   </div>
 
   {# ═══ TARKASTANUT (valinnainen lohko) ═══ #}
-  {% if theses.reviewerOnly.length %}
+  {% if theses.reviewerOnly and theses.reviewerOnly.length %}
   <div class="card shadow-sm mb-5 section-card" id="card-reviewer">
     <div class="card-header bg-transparent d-flex align-items-center justify-content-between py-3">
       <h2 class="h5 mb-0"><i class="bi bi-eye-fill me-2 text-secondary"></i>Tarkastajana toiminut</h2>
@@ -450,7 +450,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const tbody = table.querySelector('tbody');
     const rows = Array.from(tbody.querySelectorAll('tr'));
-    
+    // Mobile items: same order as rows, one-to-one correspondence
+    const mobileItems = Array.from(tableContainer.querySelectorAll('.thesis-mobile-item'));
+
     // Create pagination container if it doesn't exist
     let paginationNav = tableContainer.querySelector('.thesis-pagination');
     if (!paginationNav) {
@@ -556,8 +558,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderPage(page) {
       if (showAll) {
-        filteredRows.forEach(r => r.style.display = '');
-        rows.filter(r => !filteredRows.includes(r)).forEach(r => r.style.display = 'none');
+        rows.forEach((r, i) => {
+          const visible = filteredRows.includes(r);
+          r.style.display = visible ? '' : 'none';
+          if (mobileItems[i]) mobileItems[i].style.display = visible ? '' : 'none';
+        });
         return;
       }
       currentPage = page;
@@ -565,13 +570,20 @@ document.addEventListener('DOMContentLoaded', () => {
       if (currentPage < 1) currentPage = 1;
       if (currentPage > totalPages && totalPages > 0) currentPage = totalPages;
 
-      // Hide all rows
-      rows.forEach(r => r.style.display = 'none');
+      // Hide all rows and mobile items
+      rows.forEach((r, i) => {
+        r.style.display = 'none';
+        if (mobileItems[i]) mobileItems[i].style.display = 'none';
+      });
 
-      // Show rows for current page
+      // Show rows and mobile items for current page
       const start = (currentPage - 1) * ITEMS_PER_PAGE;
       const end = start + ITEMS_PER_PAGE;
-      filteredRows.slice(start, end).forEach(r => r.style.display = '');
+      filteredRows.slice(start, end).forEach(r => {
+        r.style.display = '';
+        const i = rows.indexOf(r);
+        if (mobileItems[i]) mobileItems[i].style.display = '';
+      });
 
       renderPaginationControls(totalPages);
     }
@@ -1108,5 +1120,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 [data-bs-theme="dark"] #thesis-subject-cloud .accordion-item {
   border-color: rgba(255,255,255,0.08);
+}
+
+/* ---- Mobiililista ---- */
+.thesis-mobile-item:last-child {
+  border-bottom: none !important;
+}
+.thesis-mobile-list .thesis-abstract-snippet {
+  display: none; /* ei snippettiä mobiilissa, vain painike */
 }
 </style>

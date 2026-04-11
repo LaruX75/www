@@ -5,90 +5,158 @@
    - currentLang: "fi" | "en"  (set by including template)
 #}
 {% set isEN = (currentLang or lang) == "en" %}
-<div class="table-responsive">
-  <table class="table table-sm table-hover align-middle mb-0 pub-table" data-thesis-table>
-    <thead>
-      <tr>
-        <th class="col-author">{{ "Author" if isEN else "Tekijä" }}</th>
-        <th class="col-year text-center">{{ "Year" if isEN else "Vuosi" }}</th>
-        {% if showType %}<th class="col-type">{{ "Type" if isEN else "Tyyppi" }}</th>{% endif %}
-        <th class="col-title">{{ "Title" if isEN else "Otsikko" }}</th>
-        <th class="col-abstract">{{ "Summary" if isEN else "Tiivistelmä" }}</th>
-        <th class="col-subjects">{{ "Keywords" if isEN else "Avainsanat" }}</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for thesis in thesisItems %}
-      <tr data-year="{{ thesis.year }}" data-type="{{ thesis.type or '' }}">
-        <td class="small">{{ thesis.authors | join("; ") }}</td>
-        <td class="col-year text-center font-monospace small fw-bold text-info">
-          {{ thesis.year }}
-        </td>
-        {% if showType %}
-        <td>
-          {% if thesis.type == "masterThesis" %}
-            <span class="badge bg-primary">{{ "Master's thesis" if isEN else "Pro gradu" }}</span>
-          {% elif thesis.type == "bachelorThesis" %}
-            <span class="badge bg-info">{{ "Bachelor's thesis" if isEN else "Kandidaatintyö" }}</span>
-          {% else %}
-            <span class="badge bg-dark">{{ thesis.type }}</span>
+
+{# ── Desktop: taulukko (piilotetaan mobiilissa) ── #}
+<div class="d-none d-md-block">
+  <div class="table-responsive">
+    <table class="table table-sm table-hover align-middle mb-0 pub-table" data-thesis-table>
+      <thead>
+        <tr>
+          <th class="col-author">{{ "Author" if isEN else "Tekijä" }}</th>
+          <th class="col-year text-center">{{ "Year" if isEN else "Vuosi" }}</th>
+          {% if showType %}<th class="col-type">{{ "Type" if isEN else "Tyyppi" }}</th>{% endif %}
+          <th class="col-title">{{ "Title" if isEN else "Otsikko" }}</th>
+          <th class="col-abstract">{{ "Summary" if isEN else "Tiivistelmä" }}</th>
+          <th class="col-subjects">{{ "Keywords" if isEN else "Avainsanat" }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for thesis in thesisItems %}
+        <tr data-year="{{ thesis.year }}" data-type="{{ thesis.type or '' }}">
+          <td class="small">{{ thesis.authors | join("; ") }}</td>
+          <td class="col-year text-center font-monospace small fw-bold text-info">
+            {{ thesis.year }}
+          </td>
+          {% if showType %}
+          <td>
+            {% if thesis.type == "masterThesis" %}
+              <span class="badge bg-primary">{{ "Master's thesis" if isEN else "Pro gradu" }}</span>
+            {% elif thesis.type == "bachelorThesis" %}
+              <span class="badge bg-info">{{ "Bachelor's thesis" if isEN else "Kandidaatintyö" }}</span>
+            {% else %}
+              <span class="badge bg-dark">{{ thesis.type }}</span>
+            {% endif %}
+          </td>
           {% endif %}
-        </td>
-        {% endif %}
-        <td>
-          {% if thesis.link %}
-            <a href="{{ thesis.link }}" target="_blank" class="fw-medium text-body text-decoration-none" rel="noopener noreferrer">{{ thesis.title }}</a>
-            <a href="{{ thesis.link }}" target="_blank" class="ms-2 text-decoration-none align-middle icon-only-link" rel="noopener noreferrer" aria-label="{{ ('Open thesis: ' if isEN else 'Avaa opinnäytetyö: ') + thesis.title }}">
-              <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
-            </a>
-            <button
-              type="button"
-              class="btn btn-outline-primary btn-sm rounded-pill px-2 ms-2 thesis-bib-btn"
-              data-title="{{ thesis.title | escape }}"
-              data-authors="{{ (thesis.authors | join('; ')) | escape }}"
-              data-year="{{ thesis.year }}"
-              data-type="{{ thesis.type or '' }}"
-              data-url="{{ thesis.link | escape }}"
-              aria-label="{{ ('Export citation: ' if isEN else 'Vie lähdeviite: ') + (thesis.title | escape) }}"
-            >
-              <i class="bi bi-quote me-1" aria-hidden="true"></i>{{ "Export citation" if isEN else "Vie viite" }}
-            </button>
-          {% else %}
-            <span class="fw-medium">{{ thesis.title }}</span>
-          {% endif %}
-        </td>
-        <td class="col-abstract">
-          {% if thesis.abstract %}
-            <div class="small text-muted thesis-abstract-snippet">{{ thesis.abstract }}</div>
-            <button
-              type="button"
-              class="btn btn-link btn-sm p-0 mt-1 thesis-abstract-trigger"
-              data-thesis-title="{{ thesis.title | escape }}"
-              data-thesis-abstract="{{ thesis.abstract | escape }}"
-              data-thesis-url="{{ thesis.link | escape }}"
-              data-thesis-authors="{{ (thesis.authors | join('; ')) | escape }}"
-              data-thesis-year="{{ thesis.year }}"
-              data-thesis-type="{{ thesis.type or '' }}"
-            >
-              {{ "Open summary" if isEN else "Avaa tiivistelmä" }}
-            </button>
-          {% else %}
-            <span class="text-muted small">—</span>
-          {% endif %}
-        </td>
-        <td class="col-subjects">
-          {% if thesis.keywords.length %}
-            <div class="d-flex flex-wrap gap-1">
-              {% for kw in thesis.keywords %}
-                <button type="button" class="badge text-bg-light border thesis-keyword-link" data-keyword="{{ kw | escape }}">{{ kw }}</button>
-              {% endfor %}
-            </div>
-          {% else %}
-            <span class="text-muted small fst-italic">{{ "Not available" if isEN else "ei saatavilla" }}</span>
-          {% endif %}
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+          <td>
+            {% if thesis.link %}
+              <a href="{{ thesis.link }}" target="_blank" class="fw-medium text-body text-decoration-none" rel="noopener noreferrer">{{ thesis.title }}</a>
+              <a href="{{ thesis.link }}" target="_blank" class="ms-2 text-decoration-none align-middle icon-only-link" rel="noopener noreferrer" aria-label="{{ ('Open thesis: ' if isEN else 'Avaa opinnäytetyö: ') + thesis.title }}">
+                <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+              </a>
+              <button
+                type="button"
+                class="btn btn-outline-primary btn-sm rounded-pill px-2 ms-2 thesis-bib-btn"
+                data-title="{{ thesis.title | escape }}"
+                data-authors="{{ (thesis.authors | join('; ')) | escape }}"
+                data-year="{{ thesis.year }}"
+                data-type="{{ thesis.type or '' }}"
+                data-url="{{ thesis.link | escape }}"
+                aria-label="{{ ('Export citation: ' if isEN else 'Vie lähdeviite: ') + (thesis.title | escape) }}"
+              >
+                <i class="bi bi-quote me-1" aria-hidden="true"></i>{{ "Export citation" if isEN else "Vie viite" }}
+              </button>
+            {% else %}
+              <span class="fw-medium">{{ thesis.title }}</span>
+            {% endif %}
+          </td>
+          <td class="col-abstract">
+            {% if thesis.abstract %}
+              <div class="small text-muted thesis-abstract-snippet">{{ thesis.abstract }}</div>
+              <button
+                type="button"
+                class="btn btn-link btn-sm p-0 mt-1 thesis-abstract-trigger"
+                data-thesis-title="{{ thesis.title | escape }}"
+                data-thesis-abstract="{{ thesis.abstract | escape }}"
+                data-thesis-url="{{ thesis.link | escape }}"
+                data-thesis-authors="{{ (thesis.authors | join('; ')) | escape }}"
+                data-thesis-year="{{ thesis.year }}"
+                data-thesis-type="{{ thesis.type or '' }}"
+              >
+                {{ "Open summary" if isEN else "Avaa tiivistelmä" }}
+              </button>
+            {% else %}
+              <span class="text-muted small">—</span>
+            {% endif %}
+          </td>
+          <td class="col-subjects">
+            {% if thesis.keywords.length %}
+              <div class="d-flex flex-wrap gap-1">
+                {% for kw in thesis.keywords %}
+                  <button type="button" class="badge text-bg-light border thesis-keyword-link" data-keyword="{{ kw | escape }}">{{ kw }}</button>
+                {% endfor %}
+              </div>
+            {% else %}
+              <span class="text-muted small fst-italic">{{ "Not available" if isEN else "ei saatavilla" }}</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 </div>
+
+{# ── Mobiilinäkymä: APA7-lähdeviitelista (piilotetaan desktopissa) ── #}
+<ul class="list-unstyled mb-0 d-md-none thesis-mobile-list" role="list">
+  {% for thesis in thesisItems %}
+  {% if thesis.type == "masterThesis" %}
+    {% set apaTypeLabel = "Master's thesis" if isEN else "Pro gradu -tutkielma" %}
+  {% elif thesis.type == "bachelorThesis" %}
+    {% set apaTypeLabel = "Bachelor's thesis" if isEN else "Kandidaatintyö" %}
+  {% else %}
+    {% set apaTypeLabel = thesis.type or "Opinnäytetyö" %}
+  {% endif %}
+  <li class="thesis-mobile-item px-3 py-3 border-bottom" style="display:none" role="listitem">
+    <p class="small mb-2 lh-base">
+      <span class="text-muted">{{ thesis.authors | join("; ") }} ({{ thesis.year or "n.d." }}).</span>
+      {% if thesis.link %}
+        <a href="{{ thesis.link }}" target="_blank" rel="noopener noreferrer" class="fw-medium text-body ms-1">{{ thesis.title }}</a>
+      {% else %}
+        <span class="fw-medium ms-1">{{ thesis.title }}</span>
+      {% endif %}
+      <span class="text-muted ms-1">[{{ apaTypeLabel }}, {{ "University of Oulu" if isEN else "Oulun yliopisto" }}].</span>
+    </p>
+    {% if showType %}
+    <div class="mb-2">
+      {% if thesis.type == "masterThesis" %}
+        <span class="badge bg-primary">{{ "Master's thesis" if isEN else "Pro gradu" }}</span>
+      {% elif thesis.type == "bachelorThesis" %}
+        <span class="badge bg-info">{{ "Bachelor's thesis" if isEN else "Kandidaatintyö" }}</span>
+      {% endif %}
+    </div>
+    {% endif %}
+    {% if thesis.keywords.length %}
+    <div class="d-flex flex-wrap gap-1 mb-2">
+      {% for kw in thesis.keywords %}
+        <button type="button" class="badge text-bg-light border thesis-keyword-link" data-keyword="{{ kw | escape }}">{{ kw }}</button>
+      {% endfor %}
+    </div>
+    {% endif %}
+    <div class="d-flex gap-2 flex-wrap align-items-center mt-1">
+      {% if thesis.abstract %}
+        <button type="button"
+          class="btn btn-link btn-sm p-0 thesis-abstract-trigger"
+          data-thesis-title="{{ thesis.title | escape }}"
+          data-thesis-abstract="{{ thesis.abstract | escape }}"
+          data-thesis-url="{{ thesis.link | escape }}"
+          data-thesis-authors="{{ (thesis.authors | join('; ')) | escape }}"
+          data-thesis-year="{{ thesis.year }}"
+          data-thesis-type="{{ thesis.type or '' }}"
+        >{{ "Summary" if isEN else "Tiivistelmä" }}</button>
+      {% endif %}
+      {% if thesis.link %}
+        <button type="button"
+          class="btn btn-outline-primary btn-sm rounded-pill px-2 thesis-bib-btn"
+          data-title="{{ thesis.title | escape }}"
+          data-authors="{{ (thesis.authors | join('; ')) | escape }}"
+          data-year="{{ thesis.year }}"
+          data-type="{{ thesis.type or '' }}"
+          data-url="{{ thesis.link | escape }}"
+          aria-label="{{ ('Export citation: ' if isEN else 'Vie lähdeviite: ') + (thesis.title | escape) }}"
+        ><i class="bi bi-quote me-1" aria-hidden="true"></i>{{ "Cite" if isEN else "Viite" }}</button>
+      {% endif %}
+    </div>
+  </li>
+  {% endfor %}
+</ul>
