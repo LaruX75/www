@@ -127,7 +127,7 @@ function parseKK(xmlStr) {
             type: getMeta('type', 'publication'),
             okmType: getMeta('type', 'okm'),
             link: getMeta('identifier', 'uri') || (block.match(/<url>([^<]*)<\/url>/) || [])[1] || '',
-            abstract: getMeta('description', 'abstract').substring(0, 300),
+            abstract: getMeta('description', 'abstract'),
             language: getMeta('language', 'iso'),
             subjects: getMetaAll('subject', 'discipline'),
             keywords: [], // täytetään cachesta alla

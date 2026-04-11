@@ -231,10 +231,7 @@ translationKey: theses_index
           <p class="mb-0 small font-monospace lh-sm" id="thesisModalApaText"></p>
         </div>
         <h3 class="h6 mb-2" id="thesisAbstractModalTitle"></h3>
-        <div class="d-none d-md-block" style="max-height:260px;overflow-y:auto;padding-right:4px;">
-          <p class="small mb-0 text-body" id="thesisAbstractModalTextDesktop"></p>
-        </div>
-        <p class="d-md-none small mb-0 text-body thesis-abstract-snippet" id="thesisAbstractModalTextMobile"></p>
+        <p class="small mb-0 text-body" id="thesisAbstractModalTextDesktop"></p>
       </div>
       <div class="modal-footer gap-2">
         <button type="button" class="btn btn-outline-secondary btn-sm" id="thesisAbstractExportBtn">
@@ -722,7 +719,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const abstractModalEl = document.getElementById('thesisAbstractModal');
   const abstractModalTitle = document.getElementById('thesisAbstractModalTitle');
   const abstractModalTextDesktop = document.getElementById('thesisAbstractModalTextDesktop');
-  const abstractModalTextMobile = document.getElementById('thesisAbstractModalTextMobile');
   const abstractModalOpen = document.getElementById('thesisAbstractModalOpen');
   const thesisModalApaText = document.getElementById('thesisModalApaText');
   const thesisAbstractExportBtn = document.getElementById('thesisAbstractExportBtn');
@@ -741,7 +737,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (abstractModalTitle) abstractModalTitle.textContent = title;
     const escaped = escapeHtml(summary).replace(/\n/g, '<br>');
     if (abstractModalTextDesktop) abstractModalTextDesktop.innerHTML = escaped;
-    if (abstractModalTextMobile) abstractModalTextMobile.innerHTML = escaped;
     if (abstractModalOpen) abstractModalOpen.href = url;
     if (thesisModalApaText) thesisModalApaText.textContent = buildThesisApa(currentCitationPayload);
     if (window.bootstrap && window.bootstrap.Modal && abstractModalEl) {
