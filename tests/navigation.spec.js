@@ -34,6 +34,38 @@ test.describe('Navigation and Focus Audits', () => {
     });
 
     test('Search dialog traps focus and returns it to the trigger', async ({ page }) => {
+        await page.addInitScript(() => {
+            const spokenChunks = [];
+            window.__spokenChunks = spokenChunks;
+            class MockSpeechSynthesisUtterance {
+                constructor(text) {
+                    this.text = text;
+                    this.lang = '';
+                    this.rate = 1;
+                    this.onend = null;
+                    this.onerror = null;
+                }
+            }
+
+            Object.defineProperty(window, 'SpeechSynthesisUtterance', {
+                configurable: true,
+                writable: true,
+                value: MockSpeechSynthesisUtterance
+            });
+
+            Object.defineProperty(window, 'speechSynthesis', {
+                configurable: true,
+                value: {
+                speak(utterance) {
+                    spokenChunks.push(utterance.text);
+                    window.setTimeout(() => {
+                        if (typeof utterance.onend === 'function') utterance.onend();
+                    }, 0);
+                },
+                cancel() {}
+                }
+            });
+        });
         await installPagefindStub(page);
         await gotoAndAssertSite(page, '/');
 
@@ -71,5 +103,32 @@ test.describe('Navigation and Focus Audits', () => {
         await page.keyboard.press('Escape');
         await expect(dialog).toBeHidden();
         await expect(trigger).toBeFocused();
+
+        const accessibilityFab = page.locator('.a11y-fab');
+        const screenReaderToggle = page.locator('#a11yScreenReaderAssist');
+        const skipLink = page.locator('.skip-link');
+        const ttsPlay = page.locator('#a11yTtsPlay');
+        const ttsStop = page.locator('#a11yTtsStop');
+
+        await accessibilityFab.click();
+        await expect(screenReaderToggle).toBeVisible();
+        await expect(ttsPlay).toBeVisible();
+        await screenReaderToggle.check();
+
+        await expect(page.locator('html')).toHaveClass(/a11y-screen-reader/);
+        await expect(skipLink).toBeVisible();
+
+        const storedSetting = await page.evaluate(() => {
+            const stored = window.localStorage.getItem('a11y-settings');
+            return stored ? JSON.parse(stored).screenReaderAssist : null;
+        });
+
+        expect(storedSetting).toBe(true);
+
+        await ttsPlay.click();
+        await expect(ttsStop).toBeEnabled();
+        await page.waitForFunction(() => Array.isArray(window.__spokenChunks) && window.__spokenChunks.length > 0);
+        const spokenCount = await page.evaluate(() => Array.isArray(window.__spokenChunks) ? window.__spokenChunks.length : 0);
+        expect(spokenCount).toBeGreaterThan(0);
     });
 });

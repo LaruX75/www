@@ -107,15 +107,35 @@
         <label class="form-check-label" for="a11yReducedMotion">{{ "Reduce animations" if currentLang == "en" else "Vähennä animaatioita" }}</label>
       </div>
 
+      <div class="mb-3 form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="a11yScreenReaderAssist">
+        <label class="form-check-label" for="a11yScreenReaderAssist">{{ "Screen reader support mode" if currentLang == "en" else "Ruudunlukijan tukitila" }}</label>
+        <div class="form-text">{{ "Does not start a screen reader on your device, but makes skip links and keyboard focus easier to follow." if currentLang == "en" else "Ei käynnistä ruudunlukijaa laitteellasi, mutta tekee ohituslinkistä ja näppäimistöfokuksesta helpommin seurattavia." }}</div>
+      </div>
+
       <div class="mb-4 form-check form-switch">
         <input class="form-check-input" type="checkbox" role="switch" id="a11yDyslexiaFont">
         <label class="form-check-label" for="a11yDyslexiaFont">{{ "Dyslexia-friendly font" if currentLang == "en" else "Lukihäiriöystävällinen fontti" }}</label>
+      </div>
+
+      <div class="mb-4 a11y-tts-section">
+        <label class="form-label fw-bold d-block">{{ "Read aloud" if currentLang == "en" else "Lue ääneen" }}</label>
+        <div class="d-flex gap-2">
+          <button type="button" class="btn btn-outline-primary flex-fill" id="a11yTtsPlay">
+            <i class="bi bi-play-fill me-1" aria-hidden="true"></i>{{ "Read aloud" if currentLang == "en" else "Lue ääneen" }}
+          </button>
+          <button type="button" class="btn btn-outline-secondary flex-fill" id="a11yTtsStop" disabled>
+            <i class="bi bi-stop-fill me-1" aria-hidden="true"></i>{{ "Stop" if currentLang == "en" else "Pysäytä" }}
+          </button>
+        </div>
+        <div class="form-text">{{ "Uses your browser's speech engine to read the main page content aloud." if currentLang == "en" else "Käyttää selaimen puhesynteesiä sivun pääsisällön lukemiseen ääneen." }}</div>
       </div>
 
       <hr>
       <button type="button" class="btn btn-outline-danger w-100 mt-2" id="a11yResetBtn">
         <i class="bi bi-arrow-counterclockwise me-1"></i> {{ "Reset to defaults" if currentLang == "en" else "Palauta oletukset" }}
       </button>
+      <div id="a11yStatus" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
     </div>
   </div>
 

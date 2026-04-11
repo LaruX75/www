@@ -34,6 +34,10 @@
       if (settings.reducedMotion) htmlEl.classList.add('a11y-reduced-motion');
       else htmlEl.classList.remove('a11y-reduced-motion');
 
+      // Ruudunlukijan tukitila
+      if (settings.screenReaderAssist) htmlEl.classList.add('a11y-screen-reader');
+      else htmlEl.classList.remove('a11y-screen-reader');
+
       // Fontti
       if (settings.dyslexiaFont) htmlEl.classList.add('a11y-dyslexia-font');
       else htmlEl.classList.remove('a11y-dyslexia-font');
