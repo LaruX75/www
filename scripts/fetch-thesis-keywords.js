@@ -90,7 +90,8 @@ async function findPdfUrl(handleUrl) {
     const res = await fetch(handleUrl);
     if (!res.ok) return null;
     const html = await res.text();
-    const m = html.match(/href="(\/bitstream\/handle\/[^"]*\.pdf\?sequence=\d+&(?:amp;)?isAllowed=y)"/);
+    // Hyväksy myös isAllowed=n — ladataan joka tapauksessa ja tarkistetaan content-type
+    const m = html.match(/href="(\/bitstream\/handle\/[^"]*\.pdf\?sequence=\d+[^"]*)"/);
     return m ? BASE_URL + m[1].replace(/&amp;/g, '&') : null;
   } catch {
     return null;
@@ -101,6 +102,9 @@ async function downloadPdf(pdfUrl) {
   try {
     const res = await fetch(pdfUrl);
     if (!res.ok) return null;
+    // Jos palvelin palauttaa login-sivun eikä PDF:ää, ohitetaan
+    const ct = res.headers.get('content-type') || '';
+    if (!ct.includes('pdf')) return null;
     const buf = await res.arrayBuffer();
     return Buffer.from(buf);
   } catch {
