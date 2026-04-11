@@ -4,6 +4,7 @@ title: How This Site Is Built
 permalink: /en/how-this-site-is-built/
 translationKey: how_site_built
 lang: en
+description: "How jarilaru.fi is built in practice: Eleventy, build automation, external data, quality checks, and AI-assisted development."
 ---
 
 <section class="py-4 bg-body-tertiary border-bottom">
@@ -18,19 +19,18 @@ lang: en
   <div class="container">
     <div class="card border-0 shadow-sm mb-4">
       <div class="card-body">
-        <h2 class="h4 mb-3">1. AI-assisted workflow: Antigravity + Codex + Claude Code</h2>
-        <p>In this workflow, AI acts as an engineering pair-programmer. The human sets priorities and approves output. AI helps with code edits, refactoring, translation, styling fixes, and implementation speed.</p>
-        <p><strong>Antigravity</strong> is used here as an AI-assisted development workflow: define goals, break tasks into clear iterations, and validate each change before publishing.</p>
-        <p><strong>Codex</strong> is a coding agent that can edit project files, run commands, and apply targeted patches quickly. It is useful for consistent technical execution in iterative website work.</p>
-        <p><strong>Claude Code</strong> can play a similar partner role: drafting alternatives, refining structure and copy, and helping validate implementation approaches from another angle.</p>
-        <p class="mb-0">In plain terms: AI does not replace the whole build process by magic. It speeds up implementation cycles while the developer stays in control of decisions and quality.</p>
+        <h2 class="h4 mb-3">1. AI-assisted workflow: Codex, Claude Code, and human review</h2>
+        <p>In this project, AI acts as a technical pair rather than an autopilot. The human sets priorities, reviews diffs, decides what gets published, and remains responsible for quality. AI helps with code edits, refactoring, translation, structural cleanup, and repetitive implementation work.</p>
+        <p><strong>Codex</strong> is used as a coding agent for concrete file edits, command execution, and targeted implementation work inside the repository.</p>
+        <p><strong>Claude Code</strong> is used as a second AI perspective for drafting alternatives, refining copy, reviewing structure, and helping shape analysis-heavy pages.</p>
+        <p class="mb-0">In practical terms, the workflow is simple: request a change, review the proposed diff, run the build and checks, then publish through version control.</p>
       </div>
     </div>
 
     <div class="card border-0 shadow-sm mb-4">
       <div class="card-body">
         <h2 class="h4 mb-3">2. Core building blocks</h2>
-        <p class="mb-3">Together, these tools form the site stack. Each one solves a different layer of the problem: page generation, content modeling, styling, search, and change management.</p>
+        <p class="mb-3">These tools form the day-to-day stack behind the site. On top of them, the project uses its own build pipeline, validation scripts, and cache strategy so external data does not make publishing fragile.</p>
         <div class="table-responsive">
           <table class="table table-hover align-middle">
             <thead>
@@ -66,16 +66,28 @@ lang: en
                 <td>GitHub is the source-of-truth for version control, commit history, collaboration, and release workflows.</td>
                 <td><a href="https://docs.github.com/en/get-started" target="_blank" rel="noopener noreferrer">GitHub getting started</a> · <a href="/en/site-changes/">Site changes</a></td>
               </tr>
+              <tr>
+                <td><strong>GitHub Actions + GitHub Pages</strong></td>
+                <td>Build, SEO checks, search indexing, deployment, and production smoke tests are automated in CI/CD.</td>
+                <td><a href="https://docs.github.com/en/actions" target="_blank" rel="noopener noreferrer">GitHub Actions</a> · <a href="https://docs.github.com/en/pages" target="_blank" rel="noopener noreferrer">GitHub Pages</a></td>
+              </tr>
+              <tr>
+                <td><strong>Playwright + custom validation scripts</strong></td>
+                <td>Accessibility, navigation, i18n/SEO structure, and overall build health are checked with browser tests and Node-based scripts.</td>
+                <td><a href="https://playwright.dev/" target="_blank" rel="noopener noreferrer">Playwright</a> · <a href="/en/site-changes/">Change log</a></td>
+              </tr>
             </tbody>
           </table>
         </div>
+        <p class="mb-2">In practice, the pipeline does more than run `11ty` once. Before each build it syncs curated fallback stubs, cleans OG-image output, and generates the site. After that it runs i18n and SEO checks, builds the Pagefind search index, and deploys the result to GitHub Pages.</p>
+        <p class="mb-0">Production also includes smoke tests and a scheduled weekly rebuild so the site can refresh itself even when external sources change without a manual content commit.</p>
       </div>
     </div>
 
     <div class="card border-0 shadow-sm mb-4">
       <div class="card-body">
-        <h2 class="h4 mb-3">3. External data sources in this project</h2>
-        <p class="mb-3">The site fetches external data during build. Current APIs and data sources:</p>
+        <h2 class="h4 mb-3">3. External data sources and services</h2>
+        <p class="mb-3">The site fetches external data during build and also uses a few external services in the interface. Some sources are cached and mirrored into local fallback files so the site can still build when a source is unavailable.</p>
         <div class="table-responsive mb-3">
           <table class="table table-hover align-middle">
             <thead>
@@ -92,9 +104,9 @@ lang: en
                 <td>Canva presentation metadata for presentation listings.</td>
               </tr>
               <tr>
-                <td><strong>Canva analysis pipeline (MCP workflow)</strong></td>
-                <td>Canva + MCP workflow</td>
-                <td>The Canva analysis page was built with an MCP-assisted workflow: data was normalized, condensed for analysis, and integrated into the analysis page structure as part of iterative AI-assisted development.</td>
+                <td><strong>Canva analysis pipeline</strong></td>
+                <td>Canva + Node scripts + AI-assisted synthesis</td>
+                <td>Canva presentation data is normalized, enriched, and condensed before being turned into the analysis page.</td>
               </tr>
               <tr>
                 <td><strong>Finna API</strong></td>
@@ -138,7 +150,7 @@ lang: en
               </tr>
               <tr>
                 <td><strong>SlideShare analysis pipeline (Cheerio + content extraction)</strong></td>
-                <td>SlideShare + Node workflow</td>
+                <td>SlideShare + Node workflow + AI-assisted synthesis</td>
                 <td>First, profile structure is parsed with Cheerio. Then, analysis-oriented content extraction collects descriptions, tags, language metadata, and transcript text for downstream analysis.</td>
               </tr>
               <tr>
@@ -146,12 +158,17 @@ lang: en
                 <td>Google</td>
                 <td>YouTube playlist data on the presentations page.</td>
               </tr>
+              <tr>
+                <td><strong>Formspree</strong></td>
+                <td>Formspree</td>
+                <td>Contact form delivery without maintaining custom server-side form handling.</td>
+              </tr>
             </tbody>
           </table>
         </div>
-        <p class="mb-2">In addition, some sections are maintained in curated local data files (for example Google Slides and SlideShare lists). In those cases data does not come from a remote API, but from version-controlled project files.</p>
-        <p class="mb-2">Technically, these sources are rendered as tables, ticker highlights, content cards, searchable views, metric counters, and automatically updated “latest changes” lists.</p>
-        <p class="mb-0">The structuring of Canva and SlideShare analysis content, and the final analysis write-up itself, were produced using Claude.</p>
+        <p class="mb-2">Some content also lives in curated local data files and generated stub files. This makes Canva, SlideShare, Finna, and Research.fi driven sections more stable when live fetching is unavailable or incomplete.</p>
+        <p class="mb-2">Technically, these sources become tables, ticker highlights, cards, searchable views, metric counters, and automatically updated change lists. External embeds are routed through a consent layer before loading.</p>
+        <p class="mb-0">The structure and some summarisation on analysis pages have been AI-assisted, but the final published content is still manually reviewed and accepted through version control.</p>
       </div>
     </div>
 
@@ -163,8 +180,9 @@ lang: en
           <li>Create a GitHub repository and pick a simple stack (Eleventy + Bootstrap works well).</li>
           <li>Start small: one base template and a few pages.</li>
           <li>Add multilingual support only after your core structure works.</li>
-          <li>Integrate one API at a time and keep a cache fallback.</li>
-          <li>Automate build and deploy with CI/CD.</li>
+          <li>Integrate one API at a time and give each source a cache or fallback path.</li>
+          <li>Add quality checks early: build checks, SEO validation, and basic accessibility tests.</li>
+          <li>Automate build and deploy with CI/CD and add at least a few production smoke tests.</li>
         </ol>
       </div>
     </div>
