@@ -2,6 +2,28 @@
     document.addEventListener('DOMContentLoaded', () => {
       const themeToggles = Array.from(document.querySelectorAll('[data-theme-toggle], #themeToggleBtn'));
       const themeIcons = Array.from(document.querySelectorAll('[data-theme-icon], #themeToggleIcon'));
+      const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+      const getStoredTheme = () => {
+        const storedTheme = localStorage.getItem('theme');
+        return storedTheme === 'dark' || storedTheme === 'light' ? storedTheme : null;
+      };
+
+      const resolveTheme = () => {
+        const domTheme = document.documentElement.getAttribute('data-bs-theme');
+        if (domTheme === 'dark' || domTheme === 'light') return domTheme;
+        const storedTheme = getStoredTheme();
+        if (storedTheme) return storedTheme;
+        return prefersDarkScheme.matches ? 'dark' : 'light';
+      };
+
+      const applyTheme = (theme) => {
+        const resolvedTheme = theme === 'dark' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-bs-theme', resolvedTheme);
+        document.documentElement.style.colorScheme = resolvedTheme;
+        updateIcon(resolvedTheme);
+        return resolvedTheme;
+      };
 
       const updateIcon = (theme) => {
         themeIcons.forEach((themeIcon) => {
@@ -17,19 +39,28 @@
       };
 
       if (themeToggles.length) {
-        // Aseta oikea ikoni alkuun
-        updateIcon(document.documentElement.getAttribute('data-bs-theme'));
+        applyTheme(resolveTheme());
 
         themeToggles.forEach((themeToggle) => {
           themeToggle.addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+            const currentTheme = resolveTheme();
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
+
             localStorage.setItem('theme', newTheme);
-            document.documentElement.setAttribute('data-bs-theme', newTheme);
-            updateIcon(newTheme);
+            applyTheme(newTheme);
           });
         });
+
+        const syncWithSystemTheme = (event) => {
+          if (getStoredTheme()) return;
+          applyTheme(event.matches ? 'dark' : 'light');
+        };
+
+        if (typeof prefersDarkScheme.addEventListener === 'function') {
+          prefersDarkScheme.addEventListener('change', syncWithSystemTheme);
+        } else if (typeof prefersDarkScheme.addListener === 'function') {
+          prefersDarkScheme.addListener(syncWithSystemTheme);
+        }
       }
 
       // Sticky header transparency logic

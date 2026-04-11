@@ -2,6 +2,7 @@
 layout: page.njk
 templateEngineOverride: md
 title: Saavutettavuusseloste
+description: "Jarilaru.fi-sivuston saavutettavuusseloste: WCAG 2.1 AA -tavoitetaso, auditoinnin tulokset, tunnetut rajoitukset ja palautekanava."
 permalink: /saavutettavuus/
 translationKey: accessibility_statement
 ---

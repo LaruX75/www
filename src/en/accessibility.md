@@ -2,6 +2,7 @@
 layout: page.njk
 templateEngineOverride: md
 title: Accessibility Statement
+description: "Accessibility statement for jarilaru.fi: WCAG 2.1 AA target level, audit results, known limitations, and contact channel."
 permalink: /en/accessibility/
 translationKey: accessibility_statement
 lang: en

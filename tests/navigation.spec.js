@@ -131,4 +131,23 @@ test.describe('Navigation and Focus Audits', () => {
         const spokenCount = await page.evaluate(() => Array.isArray(window.__spokenChunks) ? window.__spokenChunks.length : 0);
         expect(spokenCount).toBeGreaterThan(0);
     });
+
+    test('Theme selection persists across page navigation', async ({ page }) => {
+        await gotoAndAssertSite(page, '/');
+
+        const themeToggle = page.locator('[data-theme-toggle]').first();
+        await expect(themeToggle).toBeVisible();
+        await themeToggle.click();
+
+        await expect(page.locator('html')).toHaveAttribute('data-bs-theme', 'dark');
+
+        const storedTheme = await page.evaluate(() => window.localStorage.getItem('theme'));
+        expect(storedTheme).toBe('dark');
+
+        await page.goto('/miten-sivusto-on-rakennettu/');
+        await expect(page.locator('html')).toHaveAttribute('data-bs-theme', 'dark');
+
+        await page.goto('/sivuston-muutokset/');
+        await expect(page.locator('html')).toHaveAttribute('data-bs-theme', 'dark');
+    });
 });
