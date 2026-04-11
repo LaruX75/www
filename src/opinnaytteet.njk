@@ -219,19 +219,19 @@ translationKey: theses_index
 </div>
 
 <div class="modal fade" id="thesisAbstractModal" tabindex="-1" aria-labelledby="thesisAbstractModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h2 class="modal-title fs-6" id="thesisAbstractModalLabel">Tiivistelmä</h2>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Sulje"></button>
       </div>
-      <div class="modal-body d-flex flex-column" style="max-height:70vh;">
-        <div class="border rounded p-2 mb-3 bg-body-secondary flex-shrink-0">
+      <div class="modal-body">
+        <div class="border rounded p-2 mb-3 bg-body-secondary">
           <p class="text-uppercase mb-1" style="font-size:0.65rem;letter-spacing:.08em;color:var(--bs-secondary-color);">APA 7</p>
           <p class="mb-0 small font-monospace lh-sm" id="thesisModalApaText"></p>
         </div>
-        <h3 class="h6 mb-2 flex-shrink-0" id="thesisAbstractModalTitle"></h3>
-        <div style="overflow-y:auto;flex:1 1 auto;padding-right:4px;">
+        <h3 class="h6 mb-2" id="thesisAbstractModalTitle"></h3>
+        <div style="max-height:45vh;overflow-y:auto;padding-right:6px;">
           <p class="small mb-0 text-body" id="thesisAbstractModalTextDesktop"></p>
         </div>
       </div>
