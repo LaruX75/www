@@ -8,7 +8,7 @@ lang: en
 ---
 
 **Website:** [www.jarilaru.fi](https://www.jarilaru.fi)
-**Last reviewed:** 21 March 2026
+**Last reviewed:** 11 April 2026
 **Target level:** WCAG 2.1 Level AA
 **Status:** Partially conformant
 
@@ -16,9 +16,9 @@ lang: en
 
 ## Summary
 
-The site is being improved toward WCAG 2.1 Level AA. Based on the internal accessibility audit completed in March 2026, the website does not yet meet all WCAG 2.1 AA requirements across all pages and use cases.
+The site is being improved toward WCAG 2.1 Level AA. Based on the updated internal accessibility audit completed in April 2026, the website does not yet meet all WCAG 2.1 AA requirements across all pages and use cases.
 
-The main remaining risks are related to older content, third-party embeds, and the fact that not all pages have yet been verified manually with assistive technologies.
+The main remaining risks are related to older content, third-party embeds, and the fact that not all pages have yet been verified manually with screen readers and other assistive technologies.
 
 ---
 
@@ -29,27 +29,41 @@ The assessment is based on:
 - source code and template review
 - generated HTML inspection
 - automated testing with **[axe-core](https://github.com/dequelabs/axe-core)** and **[Playwright](https://playwright.dev/)**
-- heuristic review of keyboard access and usability
+- manual review of keyboard access and focus order
+- heuristic review of shared UI components
 
-Automated checks are run against the project's own dedicated local Playwright server to ensure the tests are evaluating this website.
+Automated checks are run against the project's own local build to ensure the tests are evaluating this website rather than an external environment. The audit run on 11 April 2026 included 14 automated tests, all of which passed on the audited core pages.
 
 ---
 
 ## Scope of Review
 
-The review focuses especially on:
+This audit round focused primarily on:
 
 - home page
 - publications
 - theses
+- presentations
+- CV
+- contact
 - navigation and search
-- Finnish and English main sections
+- footer, forms, status messages, and filters
+
+The English-language pages largely reuse the same shared components and structures, but they have not yet been verified page by page as comprehensively as the Finnish core content in this audit round.
+
+---
+
+## Result of This Audit
+
+- The automated audit suite run on 11 April 2026 passed 14/14 tests.
+- No critical axe-core, focus-trap, or button-contrast issues were found on the audited core pages.
+- The main remaining risks concern archived legacy content, third-party embeds, and the lack of comprehensive screen reader validation.
 
 ---
 
 ## Issues Found and Fixed
 
-The audit has already led to fixes in areas such as:
+Accessibility work completed during the 2026 audit rounds has already addressed issues such as:
 
 | Criterion | Issue | Fix |
 |-----------|-------|-----|
@@ -71,6 +85,8 @@ The audit has already led to fixes in areas such as:
 | 1.4.1 Use of Color | Some text links were distinguished mainly by colour | Restored persistent underline styling for content links |
 | 4.1.3 Status Messages | Publication filtering changes were not announced to screen readers | Added `role="status"` and `aria-live` |
 
+This audit round also updated the accessibility wording around the site's WCAG badge so that it points to the accessibility statement without implying full conformance.
+
 ---
 
 ## Known Limitations and Remaining Work
@@ -81,6 +97,7 @@ Automated testing covers only part of WCAG. The following areas still need more 
 - manual review of cognitive accessibility
 - full review of individual blog posts and archive pages
 - legacy third-party embeds and their alternative access paths
+- full page-by-page review of English content pages
 
 ---
 

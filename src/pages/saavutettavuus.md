@@ -7,7 +7,7 @@ translationKey: accessibility_statement
 ---
 
 **Sivusto:** [www.jarilaru.fi](https://www.jarilaru.fi)
-**Viimeksi arvioitu:** 21.3.2026
+**Viimeksi arvioitu:** 11.4.2026
 **Tavoitetaso:** WCAG 2.1 taso AA
 **Tila:** Osittain vaatimusten mukainen
 
@@ -15,9 +15,9 @@ translationKey: accessibility_statement
 
 ## Yhteenveto
 
-Sivustoa kehitetään WCAG 2.1 AA -tavoitetta kohti. Maaliskuussa 2026 tehdyn sisäisen auditoinnin perusteella sivusto ei vielä täytä kaikkia WCAG 2.1 AA -vaatimuksia kaikilla sivuilla ja kaikissa käyttötilanteissa.
+Sivustoa kehitetään WCAG 2.1 AA -tavoitetta kohti. Huhtikuussa 2026 päivitetyn sisäisen auditoinnin perusteella sivusto ei vielä täytä kaikkia WCAG 2.1 AA -vaatimuksia kaikilla sivuilla ja kaikissa käyttötilanteissa.
 
-Merkittävimmät kehityskohteet liittyvät yhä vanhempaan sisältöön, kolmannen osapuolen upotuksiin sekä siihen, että kaikkia sivuja ei ole vielä varmennettu manuaalisesti avustavilla teknologioilla.
+Keskeiset jäljellä olevat riskit liittyvät vanhempaan sisältöön, kolmannen osapuolen upotuksiin sekä siihen, että kaikkia sivuja ei ole vielä varmennettu manuaalisesti ruudunlukijoilla ja muilla avustavilla teknologioilla.
 
 ---
 
@@ -28,27 +28,41 @@ Arviointi perustuu seuraaviin menetelmiin:
 - lähdekoodin ja sivupohjien läpikäynti
 - generoituun HTML:ään kohdistettu tarkistus
 - **[axe-core](https://github.com/dequelabs/axe-core)**- ja **[Playwright](https://playwright.dev/)**-pohjainen automaattinen testaus
-- käytettävyys- ja näppäimistökäytön heuristinen arviointi
+- näppäimistökäytön ja fokusjärjestyksen manuaalinen tarkistus
+- jaettujen käyttöliittymäkomponenttien heuristinen arviointi
 
-Automaattinen testaus ajetaan projektin omalla paikallisella Playwright-palvelimella, jotta arviointi kohdistuu varmasti tähän sivustoon.
+Automaattinen testaus ajetaan projektin omasta paikallisesta buildista, jotta arviointi kohdistuu varmasti tähän sivustoon eikä ulkopuolisiin ympäristöihin. Auditin 11.4.2026 ajettu testikokonaisuus sisälsi 14 testiä, jotka läpäistiin ilman varsinaisia saavutettavuusvirheitä auditoiduilla ydinsivuilla.
 
 ---
 
 ## Tarkastuksen kattavuus
 
-Arviointi kohdistuu erityisesti seuraaviin sivu- ja toimintokokonaisuuksiin:
+Tämän auditointikierroksen ensisijainen tarkastus kohdistui seuraaviin sivu- ja toimintokokonaisuuksiin:
 
 - etusivu
 - julkaisut
 - opinnäytteet
+- esitykset
+- CV
+- yhteystiedot
 - navigaatio ja haku
-- suomen- ja englanninkieliset pääsivut
+- footer, lomakkeet, tilaviestit ja suodattimet
+
+Englanninkieliset sivut käyttävät pääosin samoja komponentteja ja rakenteita, mutta niitä ei ole tässä kierroksessa varmennettu yhtä kattavasti sivu sivulta kuin suomenkielisiä ydinsivuja.
+
+---
+
+## Tämän auditoinnin tulos
+
+- 11.4.2026 ajettu automaattinen auditointikokonaisuus läpäisi 14/14 testiä.
+- Auditoiduilla ydinsivuilla ei havaittu kriittisiä axe-core-, fokusloukku- tai painikekontrastivirheitä.
+- Merkittävimmät jäljellä olevat riskit liittyvät arkistoituun vanhaan sisältöön, ulkoisiin upotuksiin ja manuaalisen ruudunlukijatestauksen keskeneräisyyteen.
 
 ---
 
 ## Havaitut ja korjatut ongelmat
 
-Auditoinnin yhteydessä on korjattu muun muassa seuraavia puutteita:
+Vuoden 2026 auditointikierroksilla on korjattu muun muassa seuraavia puutteita:
 
 | Kriteeri | Ongelma | Korjaus |
 |----------|---------|---------|
@@ -70,6 +84,8 @@ Auditoinnin yhteydessä on korjattu muun muassa seuraavia puutteita:
 | 1.4.1 Värin käyttö | Osa tekstilinkeistä erottui ympäröivästä tekstistä lähinnä värillä | Palautettu pysyvä alleviivaus sisältölinkeille |
 | 4.1.3 Tilaviestit | Julkaisusivun rajauksesta ei tullut ruudunlukijalle tilaviestia | Lisätty `role="status"` ja `aria-live` |
 
+Tällä auditointikierroksella päivitettiin lisäksi saavutettavuusviestintää niin, että sivuston WCAG-merkintä ohjaa saavutettavuusselosteeseen eikä esitä sivustoa täysin vaatimustenmukaisena.
+
 ---
 
 ## Tunnetut rajoitukset ja keskeneräiset kohdat
@@ -80,6 +96,7 @@ Automaattinen testaus kattaa vain osan WCAG-kriteereistä. Seuraavat osa-alueet 
 - kognitiivisen saavutettavuuden manuaalinen arviointi
 - kaikkien yksittäisten blogi- ja arkistosivujen tarkistus
 - vanhan sisällön kolmannen osapuolen upotukset ja niiden vaihtoehtoiset esitystavat
+- englanninkielisten sisältösivujen täydellinen sivukohtainen läpikäynti
 
 ---
 
