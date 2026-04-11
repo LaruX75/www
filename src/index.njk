@@ -110,7 +110,7 @@ translationKey: home
                         </div>
                     </div>
                     <div class="home-overview-items mb-3">
-                        {% for post in collections.blog | take(3) %}
+                        {% for post in collections.blogAcademic | take(3) %}
                         <a href="{{ post.url }}" class="home-overview-item">
                             <p class="home-overview-item-title">{{ post.data.title }}</p>
                             <p class="home-overview-item-meta">Kirjoitus · {{ post.date | dateFormat }}</p>

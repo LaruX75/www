@@ -312,6 +312,26 @@ module.exports = function (eleventyConfig) {
       .sort((a, b) => b.date - a.date);
   });
 
+  // Akateemiset ja teknologiablogit yliopistonlehtori-kortille
+  eleventyConfig.addCollection("blogAcademic", function (collectionApi) {
+    const ACADEMIC_TERMS = [
+      "koulutusteknologia", "teknologiatuettu", "mobiilioppiminen", "etäopetus",
+      "oppiminen", "oppimisympäristö", "opetuksen suunnittelu",
+      "digitalisaatio", "digiluokka", "digifinland", "sotedigi",
+      "avoin tiede", "avoimet oppimateriaalit", "cscl",
+      "luennot", "luento", "täydennyskoulutus",
+      "tietotekniikka", "av-tekniikka", "web2.0",
+      "larun laitenurkka", "oulun yliopisto", "tekoäly"
+    ];
+    return collectionApi
+      .getFilteredByGlob("src/blog/*.md")
+      .filter(item => {
+        const cats = (item.data.categories || []).map(c => c.toLowerCase());
+        return cats.some(c => ACADEMIC_TERMS.some(term => c.includes(term)));
+      })
+      .sort((a, b) => b.date - a.date);
+  });
+
   // EN-blogiposts feedipluginille (suodatetaan lang: en -merkityt)
   eleventyConfig.addCollection("blogEn", function (collectionApi) {
     return collectionApi
