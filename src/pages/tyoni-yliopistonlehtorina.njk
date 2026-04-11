@@ -20,9 +20,11 @@ templateEngineOverride: njk
       <div class="col-lg-7">
         <p class="ylwork-eyebrow mb-2"><i class="bi bi-mortarboard me-1"></i>Yliopisto</p>
         <h1 class="display-5 fw-bold mb-2">Työni yliopistonlehtorina</h1>
-        <p class="mb-4 ylwork-hero-lead">Teknologiatuetun oppimisen ja opetuksen yliopistonlehtori · Kasvatustieteiden tiedekunta · Oulun yliopisto</p>
+        <p class="mb-3 ylwork-hero-lead">Teknologiatuetun oppimisen ja opetuksen yliopistonlehtori · Kasvatustieteiden tiedekunta · Oulun yliopisto</p>
+        <p class="mb-4 ylwork-hero-lead" style="font-size:1.05rem;">Tutkin ja opetan sitä, miten digitaaliset teknologiat — tekoäly mukaan lukien — muuttavat oppimista ja opettamista. Olen ohjannut yli sataa opinnäytetyötä ja julkaissut tutkimusta kansainvälisissä vertaisarvioiduissa julkaisuissa 2000-luvun alusta lähtien.</p>
         <div class="d-flex flex-wrap gap-2">
-          <a href="#hub" class="btn btn-primary btn-sm">Katso sisältöalueet</a>
+          <a href="#mita-teen" class="btn btn-primary btn-sm">Mitä teen</a>
+          <a href="#hub" class="btn btn-outline-light btn-sm">Kaikki sisältöalueet</a>
         </div>
       </div>
       <div class="col-lg-5">
@@ -57,6 +59,47 @@ templateEngineOverride: njk
   </div>
 </section>
 <div class="ylwork-hero-divider"></div>
+
+{# ── MITÄ TEEN ────────────────────────────────────────────────────────────── #}
+<section class="py-5" id="mita-teen">
+  <div class="container">
+    <p class="ylwork-eyebrow ylwork-eyebrow--dark mb-1"><i class="bi bi-person-workspace me-1"></i>Työn sisältö</p>
+    <h2 class="h4 mb-4">Mitä teen käytännössä</h2>
+    <div class="row g-4">
+
+      <div class="col-md-4">
+        <div class="d-flex gap-3">
+          <div style="font-size:1.6rem;color:#0d6efd;flex-shrink:0;"><i class="bi bi-easel2-fill"></i></div>
+          <div>
+            <h3 class="h6 mb-1">Opetus</h3>
+            <p class="small text-muted mb-0">Opetan teknologiatuetun oppimisen ja tekoälykasvatuksen sisältöjä luokanopettajakoulutuksessa. Kurssieni keskiössä ovat digitaalinen pedagogiikka, ohjelmoinnillinen ajattelu ja STEAM-integraatio — käytännönläheisesti ilman ohjelmointitaustaa.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="d-flex gap-3">
+          <div style="font-size:1.6rem;color:#198754;flex-shrink:0;"><i class="bi bi-search"></i></div>
+          <div>
+            <h3 class="h6 mb-1">Tutkimus</h3>
+            <p class="small text-muted mb-0">Tutkin opettajien ja opettajaopiskelijoiden tekoälylukutaitoja sekä teknologian pedagogista käyttöä perus- ja korkea-asteella. Osallistun Generation AI -hankkeen monitieteiseen tutkimusyhteistyöhön kasvatustieteen, oikeustieteen ja tietojenkäsittelytieteen välillä.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="d-flex gap-3">
+          <div style="font-size:1.6rem;color:#fd7e14;flex-shrink:0;"><i class="bi bi-megaphone-fill"></i></div>
+          <div>
+            <h3 class="h6 mb-1">Yhteiskunnallinen vaikuttaminen</h3>
+            <p class="small text-muted mb-0">Toimin Generation AI -hankkeessa vuorovaikutusasiantuntijana: vien tutkimustietoa koululuokkiin, opettajankoulutukseen ja päätöksentekijöille. Koulutan opettajia ympäri Suomea tekoälykasvatuksen menetelmistä.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 {# ── HUB-NAVIGOINTI ───────────────────────────────────────────────────────── #}
 <section class="py-5" id="hub">
@@ -137,17 +180,70 @@ templateEngineOverride: njk
 <section class="py-5 bg-body-tertiary">
   <div class="container">
     <p class="ylwork-eyebrow ylwork-eyebrow--dark mb-1"><i class="bi bi-lightning-charge me-1"></i>Nykyinen hanke</p>
-    <h2 class="h4 mb-4">Generation AI — strategisen tutkimuksen hanke</h2>
+    <h2 class="h4 mb-1">Generation AI — strategisen tutkimuksen hanke</h2>
+    <p class="text-muted small mb-4">Suomen Akatemian strategisen tutkimuksen neuvoston (STN) SHIELD-ohjelman rahoittama monitieteinen tutkimushanke</p>
     <div class="row g-4 align-items-start">
+
       <div class="col-lg-8">
-        <div class="card border-0 shadow-sm h-100">
+        <div class="card border-0 shadow-sm mb-3">
           <div class="card-body">
-            <p>Työskentelen strategisen tutkimuksen neuvoston (STN) rahoittamassa <a href="https://www.generation-ai-stn.fi" target="_blank" rel="noopener noreferrer"><strong>Generation AI</strong> -hankkeessa</a>. Kehitämme esi- ja perusopetuksen oppilaiden ja opettajien tekoäly- ja turvallisuuskasvatuksen perustaa.</p>
-            <p class="mb-0">Toimin hankkeessa vuorovaikutusasiantuntijana, joka jakaa hankkeen osaamista kohderyhmälle. Teen myös tutkimusta opettajien ja opettajaopiskelijoiden tekoälylukutaidoista.</p>
+            <p><a href="https://www.generation-ai-stn.fi" target="_blank" rel="noopener noreferrer"><strong>Generation AI</strong></a> on suomalainen tutkimushanke, joka opettaa lapsia ja nuoria ymmärtämään tekoälyä — sen mahdollisuuksia, riskejä ja yhteiskunnallista merkitystä. Hanke tuottaa ilmaisia sovelluksia, oppimateriaaleja ja tieteellistä tutkimusta esi- ja perusopetukseen.</p>
+            <p>Hanke syntyi vastauksena kolmeen yhteiskunnalliseen haasteeseen: tekoälyjärjestelmien murentamaan turvallisuudentunteeseen, algoritmisen ympäristön heikentämään luottamukseen viranomaisiin ja tieteeseen sekä nopeasti syvenevään digitaaliseen eriarvoisuuteen.</p>
+            <p class="mb-0">Toimin hankkeessa <strong>vuorovaikutusasiantuntijana</strong>: vien tutkimustietoa koululuokkiin, opettajankoulutukseen ja päätöksentekijöille. Tutkin samalla opettajien ja opettajaopiskelijoiden tekoälylukutaitoja osana hankkeen neljää tutkimusteemaa.</p>
+          </div>
+        </div>
+
+        <div class="card border-0 shadow-sm">
+          <div class="card-body">
+            <h3 class="h6 mb-3"><i class="bi bi-globe2 me-2 text-primary"></i>Generation AI -verkkosivusto</h3>
+            <p class="small mb-3">Hankkeen tuloksena on rakennettu <a href="https://www.generation-ai-stn.fi" target="_blank" rel="noopener noreferrer"><strong>generation-ai-stn.fi</strong></a> — avoin tietoresurssi opettajille, tutkijoille ja suurelle yleisölle. Sivustolla on:</p>
+            <div class="row g-2">
+              <div class="col-sm-6">
+                <div class="d-flex gap-2 align-items-start">
+                  <i class="bi bi-app-indicator text-success mt-1" style="flex-shrink:0"></i>
+                  <span class="small">Kuusi ilmaista sovellusta suoraan luokkahuoneeseen — ei ohjelmointitaitoja</span>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="d-flex gap-2 align-items-start">
+                  <i class="bi bi-file-earmark-text text-primary mt-1" style="flex-shrink:0"></i>
+                  <span class="small">Valmiit opetuskokonaisuudet tekoälykasvatukseen</span>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="d-flex gap-2 align-items-start">
+                  <i class="bi bi-journal-bookmark text-warning mt-1" style="flex-shrink:0"></i>
+                  <span class="small">Tieteelliset julkaisut ja SHIELD-ohjelma</span>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="d-flex gap-2 align-items-start">
+                  <i class="bi bi-people text-danger mt-1" style="flex-shrink:0"></i>
+                  <span class="small">Monitieteinen konsortio: kasvatus-, oikeus- ja tietojenkäsittelytiede</span>
+                </div>
+              </div>
+            </div>
+            <div class="mt-3">
+              <a href="https://www.generation-ai-stn.fi" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                <i class="bi bi-box-arrow-up-right me-1"></i>Avaa generation-ai-stn.fi
+              </a>
+            </div>
           </div>
         </div>
       </div>
+
       <div class="col-lg-4">
+        <div class="card border-0 shadow-sm mb-3">
+          <div class="card-body">
+            <h3 class="h6 mb-3">Oma roolini hankkeessa</h3>
+            <ul class="list-unstyled small mb-0">
+              <li class="mb-2"><i class="bi bi-broadcast me-2 text-primary"></i>Vuorovaikutusasiantuntija — tutkimustieto käytäntöön</li>
+              <li class="mb-2"><i class="bi bi-mortarboard me-2 text-success"></i>Opettajankoulutuksen linkki hankkeeseen</li>
+              <li class="mb-2"><i class="bi bi-search me-2 text-warning"></i>Tutkimus: opettajien tekoälylukutaito</li>
+              <li class="mb-0"><i class="bi bi-globe me-2 text-danger"></i>Hankkeen www-sivuston rakentaminen ja ylläpito</li>
+            </ul>
+          </div>
+        </div>
         <div class="card border-0 shadow-sm">
           <div class="card-body">
             <h3 class="h6 mb-3">Tausta</h3>
@@ -160,6 +256,7 @@ templateEngineOverride: njk
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
