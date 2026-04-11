@@ -1,0 +1,5 @@
+Contact: https://www.jarilaru.fi/yhteystiedot/
+Canonical: https://www.jarilaru.fi/.well-known/security.txt
+Expires: 2027-04-10T00:00:00.000Z
+Preferred-Languages: fi, en
+Policy: https://www.jarilaru.fi/tietosuojaseloste/

@@ -24,6 +24,13 @@ jobs:
           node-version: "24"
           cache: "npm"
       - run: npm ci
+      - name: Cache API fallback data
+        uses: actions/cache@v4
+        with:
+          path: .cache/api-fallback
+          key: api-fallback-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: |
+            api-fallback-${{ runner.os }}-
       - run: npm run build
       - run: npm run check:i18n-seo
       - run: npm run check:seo-health

@@ -11,7 +11,7 @@ This page explains how www.jarilaru.fi processes technical data related to websi
 ## 1. Controller
 
 Jari Laru  
-Contact: <jari.laru@oulu.fi>
+Contact: <a href="mailto:%6A%61%72%69%2E%6C%61%72%75%40%6F%75%6C%75%2E%66%69" aria-label="Email jari.laru@oulu.fi"><span>jari.laru</span><span aria-hidden="true">@</span><span>oulu.fi</span></a>
 
 **Last updated:** March 6, 2026
 
@@ -68,5 +68,5 @@ No separate Data Protection Officer has been appointed for this website.
 
 Data subject rights requests (for example access, rectification, or erasure requests) can be sent via:
 
-- email: <jari.laru@oulu.fi>
+- email: <a href="mailto:%6A%61%72%69%2E%6C%61%72%75%40%6F%75%6C%75%2E%66%69" aria-label="Email jari.laru@oulu.fi"><span>jari.laru</span><span aria-hidden="true">@</span><span>oulu.fi</span></a>
 - contact form: [www.jarilaru.fi/en/contact](https://www.jarilaru.fi/en/contact/)

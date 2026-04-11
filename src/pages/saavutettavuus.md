@@ -88,7 +88,7 @@ Automaattinen testaus kattaa vain osan WCAG-kriteereistä. Seuraavat osa-alueet 
 Jos kohtaat saavutettavuusongelman sivustolla, otathan yhteyttä:
 
 **Jari Laru**
-Sähköposti: <jari.laru@oulu.fi>
+Sähköposti: <a href="mailto:%6A%61%72%69%2E%6C%61%72%75%40%6F%75%6C%75%2E%66%69" aria-label="Sähköposti jari.laru@oulu.fi"><span>jari.laru</span><span aria-hidden="true">@</span><span>oulu.fi</span></a>
 
 ---
 

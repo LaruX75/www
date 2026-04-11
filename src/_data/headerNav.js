@@ -1,3 +1,7 @@
+const universityEmailHref = "mailto:%6A%61%72%69%2E%6C%61%72%75%40%6F%75%6C%75%2E%66%69";
+const politicsEmailHref = "mailto:%6A%61%72%69%2E%6C%61%72%75%40%6F%75%6B%61%2E%66%69";
+const zoomMeetingHref = "https://zoom.us/my/larux";
+
 module.exports = {
   fi: [
     {
@@ -991,9 +995,9 @@ module.exports = {
           type: "links",
           heading: "Työyhteys",
           links: [
-            { title: "Sähköposti", href: "mailto:jari.laru@oulu.fi", icon: "bi bi-envelope me-2", description: "Ensisijainen yliopistosähköposti työasioiden yhteydenottoihin." },
+            { title: "Sähköposti", href: universityEmailHref, icon: "bi bi-envelope me-2", description: "Ensisijainen yliopistosähköposti työasioiden yhteydenottoihin." },
             { title: "Puhelin", href: "tel:+358294483810", icon: "bi bi-telephone me-2", description: "Yliopistotyöhön liittyvät yhteydenotot puhelimitse." },
-            { title: "Zoom", href: "http://www.zoom.us/my/larux", icon: "bi bi-camera-video me-2", external: true, description: "Sovi etäpalaveri tai verkkotapaaminen suoraan Zoomissa." },
+            { title: "Zoom", href: zoomMeetingHref, icon: "bi bi-camera-video me-2", external: true, description: "Sovi etäpalaveri tai verkkotapaaminen suoraan Zoomissa." },
             { title: "Oulun yliopisto", href: "https://www.oulu.fi", icon: "bi bi-building me-2", external: true, description: "Työpaikkani ja yliopistoyhteisön viralliset sivut." }
           ]
         },
@@ -1002,7 +1006,7 @@ module.exports = {
           heading: "Larux tmi & politiikka",
           links: [
             { title: "Yritysyhteys", href: "tel:+358405118478", icon: "bi bi-whatsapp me-2", description: "Larux t:mi:n koulutus- ja puheenvuoropyynnöt tähän numeroon." },
-            { title: "Politiikan sähköposti", href: "mailto:jari.laru@ouka.fi", icon: "bi bi-bank2 me-2", description: "Politiikkaan ja luottamustehtäviin liittyvät viestit." },
+            { title: "Politiikan sähköposti", href: politicsEmailHref, icon: "bi bi-bank2 me-2", description: "Politiikkaan ja luottamustehtäviin liittyvät viestit." },
             { title: "Facebook", href: "https://www.facebook.com/jari.laru.poliitikko/", icon: "bi bi-facebook me-2", external: true, description: "Poliittiset päivitykset ja keskustelu sosiaalisessa mediassa." },
             { title: "Yhteystiedot-sivu", href: "/yhteystiedot/", icon: "bi bi-person-lines-fill me-2", description: "Kaikki yhteydenottokanavat yhdellä sivulla." }
           ]
@@ -1039,9 +1043,9 @@ module.exports = {
           type: "links",
           heading: "University contact",
           links: [
-            { title: "Email", href: "mailto:jari.laru@oulu.fi", icon: "bi bi-envelope me-2", description: "Primary university email for teaching and research inquiries." },
+            { title: "Email", href: universityEmailHref, icon: "bi bi-envelope me-2", description: "Primary university email for teaching and research inquiries." },
             { title: "Phone", href: "tel:+358294483810", icon: "bi bi-telephone me-2", description: "University contact number for work-related calls." },
-            { title: "Zoom", href: "http://www.zoom.us/my/larux", icon: "bi bi-camera-video me-2", external: true, description: "Book or join an online meeting directly via Zoom." },
+            { title: "Zoom", href: zoomMeetingHref, icon: "bi bi-camera-video me-2", external: true, description: "Book or join an online meeting directly via Zoom." },
             { title: "University of Oulu", href: "https://www.oulu.fi", icon: "bi bi-building me-2", external: true, description: "Official university pages and institutional information." }
           ]
         },
@@ -1050,7 +1054,7 @@ module.exports = {
           heading: "Company & politics",
           links: [
             { title: "Business contact", href: "tel:+358405118478", icon: "bi bi-whatsapp me-2", description: "Training and keynote requests through Larux contact." },
-            { title: "Politics email", href: "mailto:jari.laru@ouka.fi", icon: "bi bi-bank2 me-2", description: "Messages related to municipal and regional politics." },
+            { title: "Politics email", href: politicsEmailHref, icon: "bi bi-bank2 me-2", description: "Messages related to municipal and regional politics." },
             { title: "Facebook", href: "https://www.facebook.com/jari.laru.poliitikko/", icon: "bi bi-facebook me-2", external: true, description: "Political updates and public discussion channel." },
             { title: "Contact page", href: "/en/contact/", icon: "bi bi-person-lines-fill me-2", description: "All contact methods collected on one page." }
           ]

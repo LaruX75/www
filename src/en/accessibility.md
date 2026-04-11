@@ -89,7 +89,7 @@ Automated testing covers only part of WCAG. The following areas still need more 
 If you encounter an accessibility issue on this website, please contact:
 
 **Jari Laru**
-Email: <jari.laru@oulu.fi>
+Email: <a href="mailto:%6A%61%72%69%2E%6C%61%72%75%40%6F%75%6C%75%2E%66%69" aria-label="Email jari.laru@oulu.fi"><span>jari.laru</span><span aria-hidden="true">@</span><span>oulu.fi</span></a>
 
 ---
 

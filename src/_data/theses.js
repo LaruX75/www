@@ -1,7 +1,10 @@
 const fs = require('fs');
 const path = require('path');
-const { isOfflineFetchMode } = require('./_apiCache');
+const { isOfflineFetchMode, readCache, readCacheIfFresh, writeCache } = require('./_apiCache');
 const { loadHiddenIds } = require('./_curatedStubs');
+
+const CACHE_KEY = 'theses-oulurepo-v1';
+const CACHE_TTL_HOURS = 6;
 
 const BASE = 'https://oulurepo.oulu.fi/open-search/';
 const NAME = 'Laru';  // ← vaihda ohjaajan sukunimi
@@ -142,8 +145,22 @@ module.exports = async function () {
     console.log('[theses] Haetaan opinnäytetöitä OuluREPO:sta...');
     if (isOfflineFetchMode()) {
         console.log('[theses] Offline fetch mode käytössä, ohitetaan OuluREPO-haku.');
+        const offlineCached = readCache(CACHE_KEY);
+        if (offlineCached?.data) {
+            console.log('[theses] Käytetään offline-välimuistia.');
+            return { ...offlineCached.data, source: 'cache' };
+        }
         return buildEmptyResult('Offline fetch mode enabled', 'offline');
     }
+
+    const fresh = readCacheIfFresh(CACHE_KEY, CACHE_TTL_HOURS);
+    if (fresh?.data) {
+        console.log(`[theses] Käytetään tuoretta välimuistia (${fresh.savedAt}).`);
+        return { ...fresh.data, source: 'cache' };
+    }
+
+    const cached = readCache(CACHE_KEY);
+    const cachedData = cached?.data || null;
 
     const keywordsCache = loadKeywordsCache();
     const addKeywords = items => items.map(t => ({
@@ -201,10 +218,15 @@ module.exports = async function () {
         };
 
         console.log(`[theses] Valmis: ${result.stats.totalGradut} gradua, ${result.stats.totalKandit} kandia, ${result.stats.totalReviewer} tarkastettua`);
+        writeCache(CACHE_KEY, result);
         return result;
 
     } catch (e) {
         console.error('[theses] VIRHE:', e.message);
+        if (cachedData) {
+            console.warn('[theses] Käytetään vanhaa välimuistia virheen takia.');
+            return { ...cachedData, source: 'cache', error: e.message };
+        }
         // Palauta tyhjä rakenne ettei build kaadu
         return buildEmptyResult(e.message);
     }

@@ -10,7 +10,7 @@ Tämä sivu kuvaa, miten www.jarilaru.fi käsittelee sivuston käytön yhteydess
 ## 1. Rekisterinpitäjä
 
 Jari Laru  
-Yhteystiedot: <jari.laru@oulu.fi>
+Yhteystiedot: <a href="mailto:%6A%61%72%69%2E%6C%61%72%75%40%6F%75%6C%75%2E%66%69" aria-label="Sähköposti jari.laru@oulu.fi"><span>jari.laru</span><span aria-hidden="true">@</span><span>oulu.fi</span></a>
 
 **Päivitetty viimeksi:** 6.3.2026
 
@@ -66,5 +66,5 @@ Tälle sivustolle ei ole nimetty erillistä tietosuojavastaavaa.
 
 Rekisteröidyn oikeuksiin liittyvät pyynnöt (esim. tarkastus-, oikaisu- tai poistopyyntö) voi lähettää:
 
-- sähköpostitse: <jari.laru@oulu.fi>
+- sähköpostitse: <a href="mailto:%6A%61%72%69%2E%6C%61%72%75%40%6F%75%6C%75%2E%66%69" aria-label="Sähköposti jari.laru@oulu.fi"><span>jari.laru</span><span aria-hidden="true">@</span><span>oulu.fi</span></a>
 - yhteydenottolomakkeella: [www.jarilaru.fi/yhteystiedot](https://www.jarilaru.fi/yhteystiedot/)

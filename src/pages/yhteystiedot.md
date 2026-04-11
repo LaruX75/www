@@ -57,9 +57,9 @@ templateEngineOverride: md
             <li class="list-group-item"><strong>Toimisto:</strong> KTK201, Kasvatustieteiden tiedekunta, Oulun yliopisto, Linnanmaa</li>
             <li class="list-group-item"><strong>Opetus:</strong> Digiluokka KTK149</li>
             <li class="list-group-item"><strong>Postiosoite:</strong> KTK201, PL8000, 90014 Oulun yliopisto</li>
-            <li class="list-group-item"><strong>Sähköposti:</strong> jari.laru@oulu.fi</li>
+            <li class="list-group-item"><strong>Sähköposti:</strong> <a href="mailto:%6A%61%72%69%2E%6C%61%72%75%40%6F%75%6C%75%2E%66%69" aria-label="Sähköposti jari.laru@oulu.fi"><span>jari.laru</span><span aria-hidden="true">@</span><span>oulu.fi</span></a></li>
             <li class="list-group-item"><strong>Puhelin:</strong> (+358) 29 448 3810</li>
-            <li class="list-group-item"><strong>Videokokous:</strong> <a href="http://www.zoom.us/my/larux">zoom.us/my/larux</a></li>
+            <li class="list-group-item"><strong>Videokokous:</strong> <a href="https://zoom.us/my/larux">zoom.us/my/larux</a></li>
           </ul>
         </div>
       </div>
@@ -69,12 +69,12 @@ templateEngineOverride: md
           <h2 class="h5 mb-3">Larux tmi</h2>
           <ul class="list-group list-group-flush mb-3">
             <li class="list-group-item"><strong>Puhelin:</strong> (+358) 40 511 8478 (WhatsApp, puhelin, SMS)</li>
-            <li class="list-group-item"><strong>Sähköposti:</strong> jari.laru@oulu.fi</li>
+            <li class="list-group-item"><strong>Sähköposti:</strong> <a href="mailto:%6A%61%72%69%2E%6C%61%72%75%40%6F%75%6C%75%2E%66%69" aria-label="Sähköposti jari.laru@oulu.fi"><span>jari.laru</span><span aria-hidden="true">@</span><span>oulu.fi</span></a></li>
           </ul>
 
           <h2 class="h6 text-uppercase text-muted mb-2">Politiikka</h2>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item"><strong>Sähköposti:</strong> jari.laru@ouka.fi</li>
+            <li class="list-group-item"><strong>Sähköposti:</strong> <a href="mailto:%6A%61%72%69%2E%6C%61%72%75%40%6F%75%6B%61%2E%66%69" aria-label="Sähköposti jari.laru@ouka.fi"><span>jari.laru</span><span aria-hidden="true">@</span><span>ouka.fi</span></a></li>
             <li class="list-group-item"><strong>Facebook:</strong> <a href="https://www.facebook.com/jari.laru.poliitikko/">facebook.com/jari.laru.poliitikko</a></li>
           </ul>
         </div>
