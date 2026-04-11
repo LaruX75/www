@@ -111,7 +111,7 @@
     <p class="small mb-2 lh-base">
       <span class="text-muted">{{ thesis.authors | join("; ") }} ({{ thesis.year or "n.d." }}).</span>
       {% if thesis.link %}
-        <a href="{{ thesis.link }}" target="_blank" rel="noopener noreferrer" class="fw-medium text-body ms-1">{{ thesis.title }}</a>
+        <a href="{{ thesis.link }}" target="_blank" rel="noopener noreferrer" class="fw-medium text-body text-decoration-none ms-1">{{ thesis.title }}</a>
       {% else %}
         <span class="fw-medium ms-1">{{ thesis.title }}</span>
       {% endif %}
@@ -136,7 +136,7 @@
     <div class="d-flex gap-2 flex-wrap align-items-center mt-1">
       {% if thesis.abstract %}
         <button type="button"
-          class="btn btn-link btn-sm p-0 thesis-abstract-trigger"
+          class="btn btn-outline-secondary btn-sm rounded-pill px-2 thesis-abstract-trigger"
           data-thesis-title="{{ thesis.title | escape }}"
           data-thesis-abstract="{{ thesis.abstract | escape }}"
           data-thesis-url="{{ thesis.link | escape }}"
