@@ -83,14 +83,8 @@
                 <button type="button" class="badge text-bg-light border thesis-keyword-link" data-keyword="{{ kw | escape }}">{{ kw }}</button>
               {% endfor %}
             </div>
-          {% elif thesis.subjects.length %}
-            <div class="d-flex flex-wrap gap-1">
-              {% for subject in thesis.subjects %}
-                <button type="button" class="badge text-bg-secondary border thesis-keyword-link" data-keyword="{{ subject | escape }}" title="{{ 'Discipline' if isEN else 'Pääaine' }}">{{ subject }}</button>
-              {% endfor %}
-            </div>
           {% else %}
-            <span class="text-muted small">—</span>
+            <span class="text-muted small fst-italic">{{ "Not available" if isEN else "ei saatavilla" }}</span>
           {% endif %}
         </td>
       </tr>
