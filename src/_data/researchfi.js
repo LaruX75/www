@@ -359,12 +359,14 @@ async function enrichWithJufo(publications) {
         console.log(`[jufo] Käytetään tuoretta välimuistia (${fresh.savedAt}).`);
     }
 
-    return publications.map(p => {
-        if (!p.issn) return p;
-        const meta = jufoMap[p.issn];
-        if (!meta) return p;
-        return { ...p, jufoLevel: meta.level, jufoId: meta.jufoId };
-    });
+    return publications
+        .map(p => {
+            if (!p.issn) return p;
+            const meta = jufoMap[p.issn];
+            if (!meta) return p;
+            return { ...p, jufoLevel: meta.level, jufoId: meta.jufoId };
+        })
+        .sort((a, b) => (b.year || 0) - (a.year || 0));
 }
 
 // ---------------------------------------------------------------------------
