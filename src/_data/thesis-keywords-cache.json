@@ -437,7 +437,6 @@
     "vuorovaikutus"
   ],
   "https://oulurepo.oulu.fi/handle/10024/7821": [],
-  "https://oulurepo.oulu.fi/handle/10024/6518": [],
   "https://oulurepo.oulu.fi/handle/10024/7879": [
     "cultural learning",
     "experiential learning",
@@ -698,5 +697,13 @@
     "luokanopettaja",
     "syväoppiminen",
     "tekoäly"
+  ],
+  "https://oulurepo.oulu.fi/handle/10024/6518": [
+    "Itsemääräämisteoria",
+    "koettu autonomia",
+    "liikunnanopetus",
+    "liikuntamotivaatio",
+    "liikuntateknologia",
+    "teknologiatuettu opettaminen"
   ]
 }

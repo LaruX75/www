@@ -30,6 +30,30 @@ function buildEmptyResult(error = null, source = 'fallback') {
     };
 }
 
+// Lataa manuaalisesti kuratoidut opinnäytetyöt (esim. ennen 2022 kandit)
+function loadManualTheses() {
+  try {
+    const p = path.join(__dirname, 'curated', 'theses.json');
+    const data = JSON.parse(fs.readFileSync(p, 'utf8'));
+    return (data.manual || []).map(t => ({
+      title: t.title || '',
+      year: t.year || '',
+      authors: t.authors || [],
+      advisors: t.advisors || [],
+      reviewers: t.reviewers || [],
+      type: t.type || 'bachelorThesis',
+      link: t.link || '',
+      abstract: t.abstract || '',
+      language: t.language || '',
+      subjects: t.subjects || [],
+      keywords: t.keywords || [],
+      manual: true,
+    }));
+  } catch {
+    return [];
+  }
+}
+
 // Lataa PDF:istä poimitut avainsanat cachesta (päivitetään: npm run fetch:keywords)
 function loadKeywordsCache() {
   try {
@@ -141,6 +165,24 @@ function filterByName(items, name, role) {
     });
 }
 
+// Yhdistä manuaaliset kandit välimuistidataan (offline- ja cache-polut)
+function mergeManualIntoCache(data) {
+    const manual = loadManualTheses().filter(t => t.type === 'bachelorThesis');
+    const existingLinks = new Set(data.kandit.map(t => t.link));
+    const extra = manual.filter(t => !existingLinks.has(t.link));
+    if (!extra.length) return data;
+    const kandit = [...data.kandit, ...extra].sort((a, b) => (b.year || '').localeCompare(a.year || ''));
+    return {
+        ...data,
+        kandit,
+        stats: {
+            ...data.stats,
+            totalKandit: kandit.length,
+            total: data.stats.totalGradut + kandit.length,
+        },
+    };
+}
+
 module.exports = async function () {
     console.log('[theses] Haetaan opinnäytetöitä OuluREPO:sta...');
     if (isOfflineFetchMode()) {
@@ -148,7 +190,7 @@ module.exports = async function () {
         const offlineCached = readCache(CACHE_KEY);
         if (offlineCached?.data) {
             console.log('[theses] Käytetään offline-välimuistia.');
-            return { ...offlineCached.data, source: 'cache' };
+            return { ...mergeManualIntoCache(offlineCached.data), source: 'cache' };
         }
         return buildEmptyResult('Offline fetch mode enabled', 'offline');
     }
@@ -156,7 +198,7 @@ module.exports = async function () {
     const fresh = readCacheIfFresh(CACHE_KEY, CACHE_TTL_HOURS);
     if (fresh?.data) {
         console.log(`[theses] Käytetään tuoretta välimuistia (${fresh.savedAt}).`);
-        return { ...fresh.data, source: 'cache' };
+        return { ...mergeManualIntoCache(fresh.data), source: 'cache' };
     }
 
     const cached = readCache(CACHE_KEY);
@@ -165,8 +207,9 @@ module.exports = async function () {
     const keywordsCache = loadKeywordsCache();
     const addKeywords = items => items.map(t => ({
         ...t,
-        keywords: keywordsCache[t.link] || [],
+        keywords: t.manual ? (t.keywords || []) : (keywordsCache[t.link] || []),
     }));
+    const manualTheses = loadManualTheses();
 
     try {
         // Hae ohjaajan gradut ja kandit
@@ -186,8 +229,18 @@ module.exports = async function () {
         // Jaa tyyppien mukaan
         const gradut = addKeywords(advisor.filter(t => t.type === 'masterThesis' && isVisible(t))
             .sort((a, b) => (b.year || '').localeCompare(a.year || '')));
-        const kandit = addKeywords(advisor.filter(t => t.type === 'bachelorThesis' && isVisible(t))
-            .sort((a, b) => (b.year || '').localeCompare(a.year || '')));
+
+        // OuluREPO:sta haetut + manuaaliset kandit, deduplikoitu linkin perusteella
+        const repoBachelorLinks = new Set(
+            advisor.filter(t => t.type === 'bachelorThesis' && isVisible(t)).map(t => t.link)
+        );
+        const manualKandit = manualTheses.filter(
+            t => t.type === 'bachelorThesis' && !repoBachelorLinks.has(t.link)
+        );
+        const kandit = addKeywords([
+            ...advisor.filter(t => t.type === 'bachelorThesis' && isVisible(t)),
+            ...manualKandit,
+        ]).sort((a, b) => (b.year || '').localeCompare(a.year || ''));
 
         // Deduplikoi tarkastetut (poista ne jotka ovat myös ohjattuja)
         const advisorLinks = new Set(advisor.map(t => t.link));
@@ -225,7 +278,7 @@ module.exports = async function () {
         console.error('[theses] VIRHE:', e.message);
         if (cachedData) {
             console.warn('[theses] Käytetään vanhaa välimuistia virheen takia.');
-            return { ...cachedData, source: 'cache', error: e.message };
+            return { ...mergeManualIntoCache(cachedData), source: 'cache', error: e.message };
         }
         // Palauta tyhjä rakenne ettei build kaadu
         return buildEmptyResult(e.message);
