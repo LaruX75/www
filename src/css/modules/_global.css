@@ -107,6 +107,18 @@ html:not([data-bs-theme="dark"]) .text-info {
   /* Darker teal for contrast */
 }
 
+html:not([data-bs-theme="dark"]) .site-changes-kpi-value--primary {
+  color: #0d4a82 !important;
+}
+
+html:not([data-bs-theme="dark"]) .site-changes-kpi-value--success {
+  color: #0f6b47 !important;
+}
+
+html:not([data-bs-theme="dark"]) .site-changes-kpi-value--date {
+  color: #495057 !important;
+}
+
 /* Form field contrast fixes for light mode */
 html:not([data-bs-theme="dark"]) .form-control,
 html:not([data-bs-theme="dark"]) .form-select,
@@ -192,6 +204,23 @@ html:not([data-bs-theme="dark"]) select {
 
 [data-bs-theme="dark"] .card .text-muted {
   color: rgba(255, 255, 255, 0.55) !important;
+}
+
+/* Site changes KPI cards need explicit dark-theme colors for safe text contrast */
+[data-bs-theme="dark"] .site-changes-kpi-value--primary {
+  color: #a9d1ff !important;
+}
+
+[data-bs-theme="dark"] .site-changes-kpi-value--success {
+  color: #79e2b7 !important;
+}
+
+[data-bs-theme="dark"] .site-changes-kpi-value--date {
+  color: #f2f7ff !important;
+}
+
+[data-bs-theme="dark"] .site-changes-kpi-label {
+  color: rgba(255, 255, 255, 0.78) !important;
 }
 
 /* Card title links should be white in dark mode, not the global blue link color */

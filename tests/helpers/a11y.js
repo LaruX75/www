@@ -8,6 +8,9 @@ export const AXE_AUDIT_PAGES = [
     { name: 'Presentations', path: '/esitykset/' },
     { name: 'CV', path: '/cv/' },
     { name: 'Contact', path: '/yhteystiedot/' },
+    { name: 'Accessibility Statement', path: '/saavutettavuus/' },
+    { name: 'How This Site Is Built', path: '/miten-sivusto-on-rakennettu/' },
+    { name: 'Site Changes', path: '/sivuston-muutokset/' },
 ];
 
 export async function gotoAndAssertSite(page, path) {

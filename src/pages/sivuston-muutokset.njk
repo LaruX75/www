@@ -38,32 +38,32 @@ lang: fi
         <div class="col-6 col-md-3">
           <div class="card border-0 shadow-sm h-100 text-center">
             <div class="card-body py-3">
-              <div class="fs-2 fw-bold text-primary">{{ githubchanges.stats.totalCommits }}</div>
-              <div class="small text-muted mt-1">Committia yhteensä</div>
+              <div class="fs-2 fw-bold text-primary site-changes-kpi-value site-changes-kpi-value--primary">{{ githubchanges.stats.totalCommits }}</div>
+              <div class="small text-muted mt-1 site-changes-kpi-label">Committia yhteensä</div>
             </div>
           </div>
         </div>
         <div class="col-6 col-md-3">
           <div class="card border-0 shadow-sm h-100 text-center">
             <div class="card-body py-3">
-              <div class="fs-2 fw-bold text-success">{{ githubchanges.stats.commitsThisYear }}</div>
-              <div class="small text-muted mt-1">Committia tänä vuonna</div>
+              <div class="fs-2 fw-bold text-success site-changes-kpi-value site-changes-kpi-value--success">{{ githubchanges.stats.commitsThisYear }}</div>
+              <div class="small text-muted mt-1 site-changes-kpi-label">Committia tänä vuonna</div>
             </div>
           </div>
         </div>
         <div class="col-6 col-md-3">
           <div class="card border-0 shadow-sm h-100 text-center">
             <div class="card-body py-3">
-              <div class="fs-5 fw-bold text-secondary">{{ githubchanges.stats.latestDate | dateFormat }}</div>
-              <div class="small text-muted mt-1">Viimeisin commit</div>
+              <div class="fs-5 fw-bold text-secondary site-changes-kpi-value site-changes-kpi-value--date">{{ githubchanges.stats.latestDate | dateFormat }}</div>
+              <div class="small text-muted mt-1 site-changes-kpi-label">Viimeisin commit</div>
             </div>
           </div>
         </div>
         <div class="col-6 col-md-3">
           <div class="card border-0 shadow-sm h-100 text-center">
             <div class="card-body py-3">
-              <div class="fs-5 fw-bold text-secondary">{{ githubchanges.stats.firstDate | dateFormat }}</div>
-              <div class="small text-muted mt-1">Ensimmäinen commit</div>
+              <div class="fs-5 fw-bold text-secondary site-changes-kpi-value site-changes-kpi-value--date">{{ githubchanges.stats.firstDate | dateFormat }}</div>
+              <div class="small text-muted mt-1 site-changes-kpi-label">Ensimmäinen commit</div>
             </div>
           </div>
         </div>

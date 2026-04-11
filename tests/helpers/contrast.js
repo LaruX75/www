@@ -5,6 +5,9 @@ export const BUTTON_AUDIT_PAGES = [
     { name: 'Presentations', path: '/esitykset/' },
     { name: 'CV', path: '/cv/' },
     { name: 'Contact', path: '/yhteystiedot/' },
+    { name: 'Accessibility Statement', path: '/saavutettavuus/' },
+    { name: 'How This Site Is Built', path: '/miten-sivusto-on-rakennettu/' },
+    { name: 'Site Changes', path: '/sivuston-muutokset/' },
 ];
 
 const BUTTON_SELECTOR = [
@@ -342,4 +345,169 @@ export async function auditButtonContrastOnPage(page, auditPage) {
 
 export function formatContrastIssues(issues) {
     return issues.map(formatIssue).join('\n');
+}
+
+export async function auditTextContrastForSelectors(page, auditPage, selectors) {
+    const issues = await page.evaluate(({ selectors, pageName, pagePath, minTextContrast, minLargeTextContrast }) => {
+        const WHITE = { r: 255, g: 255, b: 255, a: 1 };
+
+        function normalizeChannel(value) {
+            return Math.max(0, Math.min(255, Math.round(value)));
+        }
+
+        function normalizeAlpha(value) {
+            const alpha = Number.parseFloat(value);
+            return Number.isFinite(alpha) ? Math.max(0, Math.min(1, alpha)) : 1;
+        }
+
+        function parseColor(value) {
+            if (!value || value === 'transparent') {
+                return { r: 0, g: 0, b: 0, a: 0 };
+            }
+
+            const rgbMatch = value.match(/rgba?\(([^)]+)\)/i);
+            if (!rgbMatch) {
+                return { r: 0, g: 0, b: 0, a: 0 };
+            }
+
+            const parts = rgbMatch[1].split(',').map((part) => part.trim());
+            return {
+                r: normalizeChannel(Number.parseFloat(parts[0] || '0')),
+                g: normalizeChannel(Number.parseFloat(parts[1] || '0')),
+                b: normalizeChannel(Number.parseFloat(parts[2] || '0')),
+                a: normalizeAlpha(parts[3] ?? '1'),
+            };
+        }
+
+        function compositeColor(foreground, background) {
+            const alpha = foreground.a + (background.a * (1 - foreground.a));
+
+            if (alpha <= 0) {
+                return { r: 0, g: 0, b: 0, a: 0 };
+            }
+
+            return {
+                r: normalizeChannel(((foreground.r * foreground.a) + (background.r * background.a * (1 - foreground.a))) / alpha),
+                g: normalizeChannel(((foreground.g * foreground.a) + (background.g * background.a * (1 - foreground.a))) / alpha),
+                b: normalizeChannel(((foreground.b * foreground.a) + (background.b * background.a * (1 - foreground.a))) / alpha),
+                a: alpha,
+            };
+        }
+
+        function toLinear(channel) {
+            const value = channel / 255;
+            return value <= 0.03928
+                ? value / 12.92
+                : ((value + 0.055) / 1.055) ** 2.4;
+        }
+
+        function getRelativeLuminance(color) {
+            return (0.2126 * toLinear(color.r))
+                + (0.7152 * toLinear(color.g))
+                + (0.0722 * toLinear(color.b));
+        }
+
+        function getContrastRatio(foreground, background) {
+            const foregroundLuminance = getRelativeLuminance(foreground);
+            const backgroundLuminance = getRelativeLuminance(background);
+            const lighter = Math.max(foregroundLuminance, backgroundLuminance);
+            const darker = Math.min(foregroundLuminance, backgroundLuminance);
+            return (lighter + 0.05) / (darker + 0.05);
+        }
+
+        function normalizeFontWeight(value) {
+            if (value === 'bold') {
+                return 700;
+            }
+
+            if (value === 'normal') {
+                return 400;
+            }
+
+            const numericWeight = Number.parseInt(value, 10);
+            return Number.isFinite(numericWeight) ? numericWeight : 400;
+        }
+
+        function collectBackgroundLayers(startElement) {
+            const layers = [];
+            let current = startElement;
+
+            while (current) {
+                const style = window.getComputedStyle(current);
+                const backgroundColor = parseColor(style.backgroundColor);
+
+                if (backgroundColor.a > 0) {
+                    layers.push(backgroundColor);
+                }
+
+                current = current.parentElement;
+            }
+
+            layers.push(WHITE);
+            return layers;
+        }
+
+        function resolveBackground(startElement) {
+            const layers = collectBackgroundLayers(startElement);
+            let result = layers[layers.length - 1];
+
+            for (let index = layers.length - 2; index >= 0; index -= 1) {
+                result = compositeColor(layers[index], result);
+            }
+
+            return result;
+        }
+
+        function describeElement(target) {
+            const classNames = Array.from(target.classList || []).slice(0, 4);
+            const classSuffix = classNames.length > 0
+                ? `.${classNames.join('.')}`
+                : '';
+            const idSuffix = target.id ? `#${target.id}` : '';
+            return `${target.tagName.toLowerCase()}${idSuffix}${classSuffix}`;
+        }
+
+        return selectors.flatMap((selector) => {
+            return Array.from(document.querySelectorAll(selector))
+                .filter((element) => element.offsetParent !== null && getComputedStyle(element).visibility !== 'hidden')
+                .map((element) => {
+                    const style = window.getComputedStyle(element);
+                    const text = (element.textContent || '').replace(/\s+/g, ' ').trim();
+                    const fontSize = Number.parseFloat(style.fontSize || '0') || 0;
+                    const fontWeight = normalizeFontWeight(style.fontWeight);
+                    const isLargeText = fontSize >= 24 || (fontSize >= 18.66 && fontWeight >= 700);
+                    const expected = isLargeText ? minLargeTextContrast : minTextContrast;
+                    const background = resolveBackground(element);
+                    const rawTextColor = parseColor(style.color);
+                    const textColor = compositeColor(rawTextColor, background);
+                    const ratio = getContrastRatio(textColor, background);
+
+                    if (!text || ratio >= expected) {
+                        return null;
+                    }
+
+                    return {
+                        pageName,
+                        pagePath,
+                        state: 'default',
+                        check: 'text',
+                        ratio,
+                        expected,
+                        selector: describeElement(element),
+                        text,
+                        foreground: textColor,
+                        background,
+                    };
+                })
+                .filter(Boolean);
+        });
+    }, {
+        selectors,
+        pageName: auditPage.name,
+        pagePath: auditPage.path,
+        minTextContrast: MIN_TEXT_CONTRAST,
+        minLargeTextContrast: MIN_LARGE_TEXT_CONTRAST,
+    });
+
+    return issues;
 }
