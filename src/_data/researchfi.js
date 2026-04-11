@@ -3,6 +3,8 @@ const { readCache, readCacheIfFresh, writeCache, fetchWithTimeout } = require(".
 const { loadHiddenIds } = require("./_curatedStubs");
 
 const CACHE_TTL_HOURS = 6;
+const CROSSREF_CACHE_KEY = "crossref-enrichments-v1";
+const CROSSREF_CACHE_TTL_HOURS = 168; // 1 viikko
 
 const CACHE_KEY = "researchfi-publications";
 
@@ -206,6 +208,90 @@ function extractKeywords(pub) {
         .sort((a, b) => a.localeCompare(b, "fi"));
 }
 
+// ---------------------------------------------------------------------------
+// CrossRef-rikastus: volyymi, numero, sivut, kustantaja, ISBN
+// ---------------------------------------------------------------------------
+
+async function fetchCrossrefMeta(doi) {
+    const url = `https://api.crossref.org/works/${encodeURIComponent(doi)}`;
+    try {
+        const res = await fetchWithTimeout(url, {
+            headers: {
+                // Polite pool: tunnistautuminen sähköpostilla -> korkeampi rate limit
+                "User-Agent": "jarilaru.fi/2.0 (mailto:jari.laru@oulu.fi; academic site)"
+            }
+        }, 10000);
+        if (!res.ok) return null;
+        const data = await res.json();
+        const msg = data?.message;
+        if (!msg) return null;
+        return {
+            volume: msg.volume || null,
+            issue: msg.issue || null,
+            pages: msg.page || null,
+            articleNumber: msg["article-number"] || null,
+            publisher: msg.publisher || null,
+            isbn: (msg.ISBN || [])[0] || null,
+            issn: (msg.ISSN || [])[0] || null,
+            containerTitle: (msg["container-title"] || [])[0] || null,
+        };
+    } catch {
+        return null;
+    }
+}
+
+async function enrichWithCrossref(publications) {
+    const freshCrossref = readCacheIfFresh(CROSSREF_CACHE_KEY, CROSSREF_CACHE_TTL_HOURS);
+    let crossrefMap = freshCrossref?.data || null;
+
+    if (!crossrefMap) {
+        // Lataa vanha cache – täydennetään siitä
+        const oldCache = readCache(CROSSREF_CACHE_KEY);
+        crossrefMap = oldCache?.data || {};
+
+        const dois = [...new Set(
+            publications.map(p => p.doi).filter(Boolean).map(d => d.toLowerCase())
+        )];
+        const toFetch = dois.filter(doi => !crossrefMap[doi]);
+
+        if (toFetch.length > 0) {
+            console.log(`[crossref] Haetaan ${toFetch.length} DOI-metatietoa CrossRefista...`);
+            for (const doi of toFetch) {
+                const meta = await fetchCrossrefMeta(doi);
+                crossrefMap[doi] = meta || {};
+                // Polite pool: max ~5 pyyntöä/s
+                await new Promise(r => setTimeout(r, 210));
+            }
+            console.log(`[crossref] Valmis. Yhteensä ${Object.keys(crossrefMap).length} DOI cachessa.`);
+        } else {
+            console.log(`[crossref] Kaikki ${dois.length} DOI:ta löytyvät välimuistista.`);
+        }
+
+        writeCache(CROSSREF_CACHE_KEY, crossrefMap);
+    } else {
+        console.log(`[crossref] Käytetään tuoretta välimuistia (${freshCrossref.savedAt}).`);
+    }
+
+    // Liitetään CrossRef-kenttät julkaisuihin
+    return publications.map(p => {
+        if (!p.doi) return p;
+        const meta = crossrefMap[p.doi.toLowerCase()];
+        if (!meta) return p;
+        return {
+            ...p,
+            volume: meta.volume || null,
+            issue: meta.issue || null,
+            pages: meta.pages || null,
+            articleNumber: meta.articleNumber || null,
+            publisher: meta.publisher || null,
+            isbn: meta.isbn || null,
+            issn: meta.issn || null,
+        };
+    });
+}
+
+// ---------------------------------------------------------------------------
+
 function normalizePublication(pub) {
     const typeCode = normalizeTypeCode(pub);
     const doi = pub.doi || null;
@@ -238,7 +324,7 @@ module.exports = async function () {
     if (fresh?.data) {
         const freshPubs = fresh.data.map(normalizePublication);
         console.log(`Research.fi: käytetään tuoretta välimuistia (${fresh.savedAt}), ${freshPubs.length} julkaisua.`);
-        return applyCuration(freshPubs);
+        return enrichWithCrossref(applyCuration(freshPubs));
     }
 
     const cached = readCache(CACHE_KEY);
@@ -312,13 +398,15 @@ module.exports = async function () {
         }
 
         console.log(`Löydettiin ${publications.length} Research.fi-julkaisua.`);
-        return applyCuration(publications);
+        const enriched = await enrichWithCrossref(applyCuration(publications));
+        return enriched;
 
     } catch (error) {
         console.error("Research.fi API haku epäonnistui:", error.message);
         if (cachedPublications) {
             console.warn(`Research.fi: käytetään välimuistia (${cached.savedAt}).`);
-            return applyCuration(cachedPublications);
+            const fallback = applyCuration(cachedPublications);
+            return enrichWithCrossref(fallback);
         }
         return [];
     }

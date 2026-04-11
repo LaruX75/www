@@ -199,7 +199,11 @@ translationKey: publications_index
                     <td><span class="badge bg-secondary" title="{{ pub.typeFi }}">{{ pub.typeShort }}</span></td>
                     <td>
                       <span class="fw-medium d-block mb-1">{{ pub.title }}</span>
-                      {% if pub.journal %}<span class="text-muted small d-block fst-italic">{{ pub.journal }}</span>{% endif %}
+                      {% if pub.journal %}
+                        <span class="text-muted small fst-italic">{{ pub.journal }}</span>{% if pub.volume %}<span class="text-muted small">, <strong>{{ pub.volume }}</strong>{% if pub.issue %}({{ pub.issue }}){% endif %}</span>{% endif %}{% if pub.pages %}<span class="text-muted small">, s.&nbsp;{{ pub.pages }}</span>{% endif %}{% if pub.isbn %}<span class="text-muted small"> — ISBN {{ pub.isbn }}</span>{% endif %}
+                      {% elif pub.publisher %}
+                        <span class="text-muted small fst-italic">{{ pub.publisher }}{% if pub.isbn %} — ISBN {{ pub.isbn }}{% endif %}</span>
+                      {% endif %}
                       {% set citationCount = (semanticscholar.metrics.doiCitations[pub.doi | lower] if pub.doi and semanticscholar.metrics.doiCitations[pub.doi | lower] else 0) %}
                       <div class="d-flex flex-wrap align-items-center gap-2 mt-1">
                         <span class="badge text-bg-warning rounded-pill" title="Viittaukset">
@@ -214,6 +218,11 @@ translationKey: publications_index
                           data-journal="{{ pub.journal | escape }}"
                           data-doi="{{ pub.doi or '' }}"
                           data-url="{{ pub.url or pub.doiUrl or '' }}"
+                          data-volume="{{ pub.volume or '' }}"
+                          data-issue="{{ pub.issue or '' }}"
+                          data-pages="{{ pub.pages or '' }}"
+                          data-publisher="{{ pub.publisher or '' }}"
+                          data-isbn="{{ pub.isbn or '' }}"
                           title="Vie lähdeviite"
                         >
                           <i class="bi bi-download me-1"></i>Vie viite
@@ -443,6 +452,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const journal = String(payload.journal || '').trim();
     const doi = String(payload.doi || '').trim();
     const url = String(payload.url || '').trim();
+    const volume = String(payload.volume || '').trim();
+    const issue = String(payload.issue || '').trim();
+    const pages = String(payload.pages || '').trim();
+    const publisher = String(payload.publisher || '').trim();
+    const isbn = String(payload.isbn || '').trim();
     const firstAuthorToken = (rawAuthors.split(';')[0] || 'tekijä')
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, '');
@@ -456,6 +470,11 @@ document.addEventListener('DOMContentLoaded', function() {
       `  year = {${year}},`
     ];
     if (journal) lines.push(`  journal = {${journal}},`);
+    if (volume) lines.push(`  volume = {${volume}},`);
+    if (issue) lines.push(`  number = {${issue}},`);
+    if (pages) lines.push(`  pages = {${pages}},`);
+    if (publisher) lines.push(`  publisher = {${publisher}},`);
+    if (isbn) lines.push(`  isbn = {${isbn}},`);
     if (doi) lines.push(`  doi = {${doi}},`);
     if (url) lines.push(`  url = {${url}},`);
     lines.push('}');
@@ -469,8 +488,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const journal = String(payload.journal || '').trim();
     const doi = String(payload.doi || '').trim();
     const url = String(payload.url || '').trim();
+    const volume = String(payload.volume || '').trim();
+    const issue = String(payload.issue || '').trim();
+    const pages = String(payload.pages || '').trim();
     let citation = `${authors} (${year}). ${title}.`;
-    if (journal) citation += ` ${journal}.`;
+    if (journal) {
+      citation += ` *${journal}*`;
+      if (volume) citation += `, *${volume}*${issue ? `(${issue})` : ''}`;
+      if (pages) citation += `, ${pages}`;
+      citation += '.';
+    }
     if (doi) citation += ` https://doi.org/${doi}`;
     else if (url) citation += ` ${url}`;
     return citation.trim();
@@ -483,9 +510,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const journal = String(payload.journal || '').trim();
     const doi = String(payload.doi || '').trim();
     const url = String(payload.url || '').trim();
+    const volume = String(payload.volume || '').trim();
+    const issue = String(payload.issue || '').trim();
+    const pages = String(payload.pages || '').trim();
     let citation = `${authors}. "${title}."`;
-    if (journal) citation += ` ${journal},`;
-    citation += ` ${year}.`;
+    if (journal) citation += ` ${journal}`;
+    if (volume) citation += `, vol. ${volume}`;
+    if (issue) citation += `, no. ${issue}`;
+    citation += `, ${year}`;
+    if (pages) citation += `, pp. ${pages}`;
+    citation += '.';
     if (doi) citation += ` doi:${doi}.`;
     else if (url) citation += ` ${url}.`;
     return citation.trim();
@@ -498,9 +532,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const journal = String(payload.journal || '').trim();
     const doi = String(payload.doi || '').trim();
     const url = String(payload.url || '').trim();
+    const volume = String(payload.volume || '').trim();
+    const issue = String(payload.issue || '').trim();
+    const pages = String(payload.pages || '').trim();
     let citation = `${authors}. "${title}."`;
     if (journal) citation += ` ${journal}`;
-    citation += ` (${year}).`;
+    if (volume) citation += ` ${volume}`;
+    if (issue) citation += `, no. ${issue}`;
+    citation += ` (${year})`;
+    if (pages) citation += `: ${pages}`;
+    citation += '.';
     if (doi) citation += ` https://doi.org/${doi}.`;
     else if (url) citation += ` ${url}.`;
     return citation.trim();
@@ -570,7 +611,12 @@ document.addEventListener('DOMContentLoaded', function() {
         year: btn.dataset.year || '',
         journal: btn.dataset.journal || '',
         doi: btn.dataset.doi || '',
-        url: btn.dataset.url || ''
+        url: btn.dataset.url || '',
+        volume: btn.dataset.volume || '',
+        issue: btn.dataset.issue || '',
+        pages: btn.dataset.pages || '',
+        publisher: btn.dataset.publisher || '',
+        isbn: btn.dataset.isbn || ''
       };
       if (citationFormatSelect) citationFormatSelect.value = 'bibtex';
       renderCitationPreview();
