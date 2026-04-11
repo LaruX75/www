@@ -24,7 +24,7 @@ templateEngineOverride: njk
         <p class="mb-4 ylwork-hero-lead" style="font-size:1.05rem;">Tutkin ja opetan sitä, miten digitaaliset teknologiat — tekoäly mukaan lukien — muuttavat oppimista ja opettamista. Olen ohjannut yli sataa opinnäytetyötä ja julkaissut tutkimusta kansainvälisissä vertaisarvioiduissa julkaisuissa 2000-luvun alusta lähtien.</p>
         <div class="d-flex flex-wrap gap-2">
           <a href="#mita-teen" class="btn btn-primary btn-sm">Mitä teen</a>
-          <a href="#hub" class="btn btn-outline-light btn-sm">Kaikki sisältöalueet</a>
+          <a href="#hub" class="btn btn-outline-light btn-sm ylwork-btn-outline-secondary">Kaikki sisältöalueet</a>
         </div>
       </div>
       <div class="col-lg-5">
@@ -68,108 +68,27 @@ templateEngineOverride: njk
     <div class="row g-4">
 
       <div class="col-md-4">
-        <div class="d-flex gap-3">
-          <div style="font-size:1.6rem;color:#0d6efd;flex-shrink:0;"><i class="bi bi-easel2-fill"></i></div>
-          <div>
-            <h3 class="h6 mb-1">Opetus</h3>
-            <p class="small text-muted mb-0">Opetan teknologiatuetun oppimisen ja tekoälykasvatuksen sisältöjä luokanopettajakoulutuksessa. Kurssieni keskiössä ovat digitaalinen pedagogiikka, ohjelmoinnillinen ajattelu ja STEAM-integraatio — käytännönläheisesti ilman ohjelmointitaustaa.</p>
-          </div>
+        <div class="ylwork-hub-card h-100">
+          <div class="ylwork-hub-icon" style="color:#0d6efd"><i class="bi bi-easel2-fill"></i></div>
+          <h3 class="h6 mb-1">Opetus</h3>
+          <p class="small text-muted mb-0">Opetan teknologiatuetun oppimisen ja tekoälykasvatuksen sisältöjä luokanopettajakoulutuksessa. Kurssieni keskiössä ovat digitaalinen pedagogiikka, ohjelmoinnillinen ajattelu ja STEAM-integraatio — käytännönläheisesti ilman ohjelmointitaustaa.</p>
         </div>
       </div>
 
       <div class="col-md-4">
-        <div class="d-flex gap-3">
-          <div style="font-size:1.6rem;color:#198754;flex-shrink:0;"><i class="bi bi-search"></i></div>
-          <div>
-            <h3 class="h6 mb-1">Tutkimus</h3>
-            <p class="small text-muted mb-0">Tutkin opettajien ja opettajaopiskelijoiden tekoälylukutaitoja sekä teknologian pedagogista käyttöä perus- ja korkea-asteella. Osallistun Generation AI -hankkeen monitieteiseen tutkimusyhteistyöhön kasvatustieteen, oikeustieteen ja tietojenkäsittelytieteen välillä.</p>
-          </div>
+        <div class="ylwork-hub-card h-100">
+          <div class="ylwork-hub-icon" style="color:#198754"><i class="bi bi-search"></i></div>
+          <h3 class="h6 mb-1">Tutkimus</h3>
+          <p class="small text-muted mb-0">Tutkin opettajien ja opettajaopiskelijoiden tekoälylukutaitoja sekä teknologian pedagogista käyttöä perus- ja korkea-asteella. Osallistun Generation AI -hankkeen monitieteiseen tutkimusyhteistyöhön kasvatustieteen, oikeustieteen ja tietojenkäsittelytieteen välillä.</p>
         </div>
       </div>
 
       <div class="col-md-4">
-        <div class="d-flex gap-3">
-          <div style="font-size:1.6rem;color:#fd7e14;flex-shrink:0;"><i class="bi bi-megaphone-fill"></i></div>
-          <div>
-            <h3 class="h6 mb-1">Yhteiskunnallinen vaikuttaminen</h3>
-            <p class="small text-muted mb-0">Toimin Generation AI -hankkeessa vuorovaikutusasiantuntijana: vien tutkimustietoa koululuokkiin, opettajankoulutukseen ja päätöksentekijöille. Koulutan opettajia ympäri Suomea tekoälykasvatuksen menetelmistä.</p>
-          </div>
+        <div class="ylwork-hub-card h-100">
+          <div class="ylwork-hub-icon" style="color:#fd7e14"><i class="bi bi-megaphone-fill"></i></div>
+          <h3 class="h6 mb-1">Yhteiskunnallinen vaikuttaminen</h3>
+          <p class="small text-muted mb-0">Toimin Generation AI -hankkeessa vuorovaikutusasiantuntijana: vien tutkimustietoa koululuokkiin, opettajankoulutukseen ja päätöksentekijöille. Koulutan opettajia ympäri Suomea tekoälykasvatuksen menetelmistä.</p>
         </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-{# ── HUB-NAVIGOINTI ───────────────────────────────────────────────────────── #}
-<section class="py-5" id="hub">
-  <div class="container">
-    <p class="ylwork-eyebrow ylwork-eyebrow--dark mb-1"><i class="bi bi-grid-3x3-gap me-1"></i>Sisältöalueet</p>
-    <h2 class="h4 mb-1">Perehdy osaamiseeni</h2>
-    <p class="text-muted small mb-4">Valitse alla olevasta kokonaisuudesta, mitä haluat tarkastella.</p>
-    <div class="row g-4">
-
-      <div class="col-md-6 col-xl-4">
-        <a href="/tutkimus/" class="text-decoration-none">
-          <article class="ylwork-hub-card h-100">
-            <div class="ylwork-hub-icon" style="color:#0d6efd"><i class="bi bi-graph-up-arrow"></i></div>
-            <h3 class="h6 mb-1">Tutkimus</h3>
-            <p class="text-muted small mb-3">Tutkimushankkeet, tieteelliset profiilit ja yhteenveto tutkimusurastani.</p>
-            <span class="btn btn-outline-primary btn-sm mt-auto">Tutkimussivulle <i class="bi bi-arrow-right ms-1"></i></span>
-          </article>
-        </a>
-      </div>
-
-      <div class="col-md-6 col-xl-4">
-        <a href="/julkaisut/" class="text-decoration-none">
-          <article class="ylwork-hub-card h-100">
-            <div class="ylwork-hub-icon" style="color:#198754"><i class="bi bi-journals"></i></div>
-            <h3 class="h6 mb-1">Julkaisut</h3>
-            <p class="text-muted small mb-3">OKM:n ohjeiden mukainen kaikki julkaisut sisältävä luettelo.</p>
-            <div class="d-flex gap-2 flex-wrap mb-3">
-              <span class="badge text-bg-primary-subtle text-primary-emphasis">{{ researchfi.length }} julkaisua</span>
-              <span class="badge text-bg-success-subtle text-success-emphasis">{{ peerReviewedCount }} vertaisarv.</span>
-            </div>
-            <span class="btn btn-outline-primary btn-sm mt-auto">Julkaisuluetteloon <i class="bi bi-arrow-right ms-1"></i></span>
-          </article>
-        </a>
-      </div>
-
-      <div class="col-md-6 col-xl-4">
-        <a href="/opinnaytteet/" class="text-decoration-none">
-          <article class="ylwork-hub-card h-100">
-            <div class="ylwork-hub-icon" style="color:#fd7e14"><i class="bi bi-mortarboard-fill"></i></div>
-            <h3 class="h6 mb-1">Ohjatut opinnäytteet</h3>
-            <p class="text-muted small mb-3">OuluREPO-arkistosta haettu lista ohjatuista pro gradu -tutkielmista ja kandidaatintöistä.</p>
-            <div class="d-flex gap-2 flex-wrap mb-3">
-              <span class="badge text-bg-warning-subtle text-warning-emphasis">{{ theses.stats.totalGradut }} gradua</span>
-              <span class="badge text-bg-info-subtle text-info-emphasis">{{ theses.stats.totalKandit }} kandia</span>
-            </div>
-            <span class="btn btn-outline-primary btn-sm mt-auto">Opinnäytteet <i class="bi bi-arrow-right ms-1"></i></span>
-          </article>
-        </a>
-      </div>
-
-      <div class="col-md-6 col-xl-6">
-        <a href="/cv/" class="text-decoration-none">
-          <article class="ylwork-hub-card h-100">
-            <div class="ylwork-hub-icon" style="color:#6f42c1"><i class="bi bi-file-person-fill"></i></div>
-            <h3 class="h6 mb-1">Ansioluettelo</h3>
-            <p class="text-muted small mb-3">TENK:n ohjeiden mukaisesti laadittu kokonaiskatsaus uraan Oulun yliopistossa.</p>
-            <span class="btn btn-outline-primary btn-sm mt-auto">Ansioluetteloon <i class="bi bi-arrow-right ms-1"></i></span>
-          </article>
-        </a>
-      </div>
-
-      <div class="col-md-6 col-xl-6">
-        <a href="/portfolio/" class="text-decoration-none">
-          <article class="ylwork-hub-card h-100">
-            <div class="ylwork-hub-icon" style="color:#dc3545"><i class="bi bi-collection-fill"></i></div>
-            <h3 class="h6 mb-1">Opetusportfolio</h3>
-            <p class="text-muted small mb-3">Tiivistelmä opetusosaamisestani, joka on karttunut 2000-luvun alusta nykypäivään.</p>
-            <span class="btn btn-outline-primary btn-sm mt-auto">Portfolioon <i class="bi bi-arrow-right ms-1"></i></span>
-          </article>
-        </a>
       </div>
 
     </div>
@@ -177,7 +96,7 @@ templateEngineOverride: njk
 </section>
 
 {# ── NYKYINEN TYÖ ─────────────────────────────────────────────────────────── #}
-<section class="py-5 bg-body-tertiary">
+<section class="py-5 bg-body-tertiary" id="generation-ai">
   <div class="container">
     <p class="ylwork-eyebrow ylwork-eyebrow--dark mb-1"><i class="bi bi-lightning-charge me-1"></i>Nykyinen hanke</p>
     <h2 class="h4 mb-1">Generation AI — strategisen tutkimuksen hanke</h2>
@@ -255,6 +174,81 @@ templateEngineOverride: njk
             </ul>
           </div>
         </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{# ── HUB-NAVIGOINTI ───────────────────────────────────────────────────────── #}
+<section class="py-5" id="hub">
+  <div class="container">
+    <p class="ylwork-eyebrow ylwork-eyebrow--dark mb-1"><i class="bi bi-grid-3x3-gap me-1"></i>Sisältöalueet</p>
+    <h2 class="h4 mb-1">Tutustu lisää</h2>
+    <p class="text-muted small mb-4">Valitse alla olevasta kokonaisuudesta, mitä haluat tarkastella.</p>
+    <div class="row g-4">
+
+      <div class="col-md-6 col-xl-4">
+        <a href="/tutkimus/" class="text-decoration-none">
+          <article class="ylwork-hub-card h-100">
+            <div class="ylwork-hub-icon" style="color:#0d6efd"><i class="bi bi-graph-up-arrow"></i></div>
+            <h3 class="h6 mb-1">Tutkimus</h3>
+            <p class="text-muted small mb-3">Tutkimushankkeet, tieteelliset profiilit ja yhteenveto tutkimusurastani.</p>
+            <span class="btn btn-outline-primary btn-sm mt-auto">Tutkimussivulle <i class="bi bi-arrow-right ms-1"></i></span>
+          </article>
+        </a>
+      </div>
+
+      <div class="col-md-6 col-xl-4">
+        <a href="/julkaisut/" class="text-decoration-none">
+          <article class="ylwork-hub-card h-100">
+            <div class="ylwork-hub-icon" style="color:#198754"><i class="bi bi-journals"></i></div>
+            <h3 class="h6 mb-1">Julkaisut</h3>
+            <p class="text-muted small mb-3">OKM:n ohjeiden mukainen kaikki julkaisut sisältävä luettelo.</p>
+            <div class="d-flex gap-2 flex-wrap mb-3">
+              <span class="badge text-bg-primary-subtle text-primary-emphasis">{{ researchfi.length }} julkaisua</span>
+              <span class="badge text-bg-success-subtle text-success-emphasis">{{ peerReviewedCount }} vertaisarv.</span>
+            </div>
+            <span class="btn btn-outline-primary btn-sm mt-auto">Julkaisuluetteloon <i class="bi bi-arrow-right ms-1"></i></span>
+          </article>
+        </a>
+      </div>
+
+      <div class="col-md-6 col-xl-4">
+        <a href="/opinnaytteet/" class="text-decoration-none">
+          <article class="ylwork-hub-card h-100">
+            <div class="ylwork-hub-icon" style="color:#fd7e14"><i class="bi bi-mortarboard-fill"></i></div>
+            <h3 class="h6 mb-1">Ohjatut opinnäytteet</h3>
+            <p class="text-muted small mb-3">OuluREPO-arkistosta haettu lista ohjatuista pro gradu -tutkielmista ja kandidaatintöistä.</p>
+            <div class="d-flex gap-2 flex-wrap mb-3">
+              <span class="badge text-bg-warning-subtle text-warning-emphasis">{{ theses.stats.totalGradut }} gradua</span>
+              <span class="badge text-bg-info-subtle text-info-emphasis">{{ theses.stats.totalKandit }} kandia</span>
+            </div>
+            <span class="btn btn-outline-primary btn-sm mt-auto">Opinnäytteet <i class="bi bi-arrow-right ms-1"></i></span>
+          </article>
+        </a>
+      </div>
+
+      <div class="col-md-6 col-xl-6">
+        <a href="/cv/" class="text-decoration-none">
+          <article class="ylwork-hub-card h-100">
+            <div class="ylwork-hub-icon" style="color:#6f42c1"><i class="bi bi-file-person-fill"></i></div>
+            <h3 class="h6 mb-1">Ansioluettelo</h3>
+            <p class="text-muted small mb-3">TENK:n ohjeiden mukaisesti laadittu kokonaiskatsaus uraan Oulun yliopistossa.</p>
+            <span class="btn btn-outline-primary btn-sm mt-auto">Ansioluetteloon <i class="bi bi-arrow-right ms-1"></i></span>
+          </article>
+        </a>
+      </div>
+
+      <div class="col-md-6 col-xl-6">
+        <a href="/portfolio/" class="text-decoration-none">
+          <article class="ylwork-hub-card h-100">
+            <div class="ylwork-hub-icon" style="color:#dc3545"><i class="bi bi-collection-fill"></i></div>
+            <h3 class="h6 mb-1">Opetusportfolio</h3>
+            <p class="text-muted small mb-3">Tiivistelmä opetusosaamisestani, joka on karttunut 2000-luvun alusta nykypäivään.</p>
+            <span class="btn btn-outline-primary btn-sm mt-auto">Portfolioon <i class="bi bi-arrow-right ms-1"></i></span>
+          </article>
+        </a>
       </div>
 
     </div>
@@ -363,7 +357,14 @@ templateEngineOverride: njk
     line-height: 1;
   }
 
-  /* ── Thesis images ── */
-  .ylwork-thesis-img { min-height: 200px; }
-  @media (max-width: 575.98px) { .ylwork-thesis-img { min-height: 160px; } }
+  /* ── Hero secondary button: visible in both themes ── */
+  html:not([data-bs-theme="dark"]) .ylwork-btn-outline-secondary {
+    color: #0d2540;
+    border-color: rgba(15,34,56,0.35);
+    background: transparent;
+  }
+  html:not([data-bs-theme="dark"]) .ylwork-btn-outline-secondary:hover {
+    background: rgba(15,34,56,0.08);
+    border-color: rgba(15,34,56,0.55);
+  }
 </style>
