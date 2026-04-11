@@ -480,8 +480,8 @@ document.addEventListener('DOMContentLoaded', () => {
       showAll = !showAll;
       if (showAll) {
         showAllBtn.innerHTML = '<i class="bi bi-layout-text-window me-1" aria-hidden="true"></i>Sivuta';
-        filteredRows.forEach(r => r.style.display = '');
         ul.innerHTML = '';
+        renderPage(currentPage); // näyttää kaikki filteredRows + mobileItems
       } else {
         showAllBtn.innerHTML = '<i class="bi bi-list-ul me-1" aria-hidden="true"></i>Näytä kaikki';
         renderPage(1);
