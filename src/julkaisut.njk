@@ -504,8 +504,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const pages = String(payload.pages || '').trim();
     let citation = `${authors} (${year}). ${title}.`;
     if (journal) {
-      citation += ` *${journal}*`;
-      if (volume) citation += `, *${volume}*${issue ? `(${issue})` : ''}`;
+      citation += ` ${journal}`;
+      if (volume) citation += `, ${volume}${issue ? `(${issue})` : ''}`;
       if (pages) citation += `, ${pages}`;
       citation += '.';
     }
