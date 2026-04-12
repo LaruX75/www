@@ -21,12 +21,14 @@ module.exports = function () {
   }).filter((item) => !hidden.has(item.id));
 
   const fiRows = rows.filter(r => r.lang !== "en");
+  const enRows = rows.filter(r => r.lang === "en");
 
   return {
     enabled: true,
     source: "json",
     tableRows: rows,
     fiRows,
+    enRows,
     tickerRows: rows.slice(0, 12),
     cardRows: rows
   };
