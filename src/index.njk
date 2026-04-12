@@ -146,7 +146,7 @@ translationKey: home
                         </div>
                     </div>
                     <div class="home-overview-items mb-3">
-                        {% for row in (canva.tableRows or []) | take(3) %}
+                        {% for row in (canva.fiRows or canva.tableRows or []) | take(3) %}
                         <a href="{{ row.url }}" target="_blank" rel="noopener noreferrer" class="home-overview-item">
                             <p class="home-overview-item-title">{{ row.title }}</p>
                             <p class="home-overview-item-meta">{% if row.location %}{{ row.location }} · {% endif %}{{ row.date | dateFormat }}</p>

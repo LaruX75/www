@@ -15,14 +15,18 @@ module.exports = function () {
       categories: Array.isArray(item.keywords) ? item.keywords : [],
       location: item.location || "",
       folder: item.folder || "",
+      lang: item.lang || "fi",
       source: "json"
     };
   }).filter((item) => !hidden.has(item.id));
+
+  const fiRows = rows.filter(r => r.lang !== "en");
 
   return {
     enabled: true,
     source: "json",
     tableRows: rows,
+    fiRows,
     tickerRows: rows.slice(0, 12),
     cardRows: rows
   };
