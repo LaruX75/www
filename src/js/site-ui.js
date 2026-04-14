@@ -10,8 +10,6 @@
       };
 
       const resolveTheme = () => {
-        const domTheme = document.documentElement.getAttribute('data-bs-theme');
-        if (domTheme === 'dark' || domTheme === 'light') return domTheme;
         const storedTheme = getStoredTheme();
         if (storedTheme) return storedTheme;
         return prefersDarkScheme.matches ? 'dark' : 'light';
