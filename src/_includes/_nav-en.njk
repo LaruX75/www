@@ -1,7 +1,7 @@
 {% macro megaNavTrigger(url, title, icon, isActive, menuId, toggleId, openLabel) %}
 <div class="mega-nav-trigger">
   <a class="nav-link mega-nav-link{% if isActive %} active{% endif %}" href="{{ url }}"{% if isActive %} aria-current="page"{% endif %}>
-    <i class="{{ icon }}"></i> {{ title }}
+    <i class="{{ icon }} me-1"></i>{{ title }}
   </a>
   <button
     class="nav-link mega-nav-toggle dropdown-toggle"
@@ -28,7 +28,7 @@
       <ul class="navbar-nav align-items-md-center flex-md-nowrap evelenty-main-nav ms-md-2 me-auto">
         <li class="nav-item">
           <a class="nav-link {% if page.url == '/en/' %}active{% endif %}" href="{{ navHome.url or '/en/' }}"{% if page.url == '/en/' %} aria-current="page"{% endif %}>
-            <i class="{{ navHome.icon or 'bi bi-house-door-fill' }}"></i> {{ navHome.title or 'Home' }}
+            <i class="{{ navHome.icon or 'bi bi-house-door-fill' }} me-1"></i>{{ navHome.title or 'Home' }}
           </a>
         </li>
 
