@@ -84,6 +84,8 @@ const cache = {};
 
 // ── Auth ────────────────────────────────────────────────────────────────────
 
+const AUTH_ORIGIN = new URL(AUTH_URL).origin;
+
 function getStoredToken() {
   const candidates = [
     'github-token',
@@ -91,7 +93,7 @@ function getStoredToken() {
     'sveltia-cms-user',
   ];
   for (const key of candidates) {
-    const val = localStorage.getItem(key);
+    const val = sessionStorage.getItem(key) || localStorage.getItem(key);
     if (!val) continue;
     try {
       const p = JSON.parse(val);
@@ -108,9 +110,10 @@ document.getElementById('login-btn').addEventListener('click', () => {
   );
 
   const handler = (e) => {
+    if (e.origin !== AUTH_ORIGIN) return;
     if (!e.data || typeof e.data !== 'string') return;
     if (e.data === 'authorizing:github') {
-      popup?.postMessage('authorizing:github', '*');
+      popup?.postMessage('authorizing:github', AUTH_ORIGIN);
       return;
     }
     const prefix = 'authorization:github:success:';
@@ -121,7 +124,7 @@ document.getElementById('login-btn').addEventListener('click', () => {
         const payload = JSON.parse(e.data.slice(prefix.length));
         if (payload?.token) {
           token = payload.token;
-          localStorage.setItem('github-token', token);
+          sessionStorage.setItem('github-token', token);
           init();
         }
       } catch {

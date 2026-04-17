@@ -470,8 +470,10 @@ const pageData = {};
 let isDirty = false;
 
 // ── Auth ──────────────────────────────────────────────────────────────
+const AUTH_ORIGIN = new URL(AUTH_URL).origin;
+
 function getStoredToken() {
-  try { return localStorage.getItem('github-token'); } catch { return null; }
+  try { return sessionStorage.getItem('github-token') || localStorage.getItem('github-token'); } catch { return null; }
 }
 
 async function doLogin() {
@@ -481,7 +483,8 @@ async function doLogin() {
   );
   return new Promise((resolve, reject) => {
     window.addEventListener('message', function handler(e) {
-      if (e.data === 'authorizing:github') { popup?.postMessage('authorizing:github', '*'); return; }
+      if (e.origin !== AUTH_ORIGIN) return;
+      if (e.data === 'authorizing:github') { popup?.postMessage('authorizing:github', AUTH_ORIGIN); return; }
       const prefix = 'authorization:github:success:';
       if (typeof e.data === 'string' && e.data.startsWith(prefix)) {
         window.removeEventListener('message', handler);
@@ -847,7 +850,7 @@ function updatePreview_tietoa() {
   ).join('');
   document.getElementById('prev-tietoa-hometown-heading').textContent = d.hometown?.heading || '';
   document.getElementById('prev-tietoa-hometown-paras').innerHTML = (d.hometown?.paragraphs || []).map(p =>
-    `<p style="font-size:.82rem;margin-bottom:.4rem">${p}</p>`
+    `<p style="font-size:.82rem;margin-bottom:.4rem">${esc(p)}</p>`
   ).join('');
   document.getElementById('prev-tietoa-leisure-heading').textContent = d.leisure?.heading || '';
   document.getElementById('prev-tietoa-leisure-cards').innerHTML = (d.leisure?.cards || []).map(c =>
@@ -989,7 +992,7 @@ document.getElementById('login-btn').addEventListener('click', async () => {
   err.style.display = 'none';
   try {
     token = await doLogin();
-    localStorage.setItem('github-token', token);
+    sessionStorage.setItem('github-token', token);
     await initApp();
   } catch (e) {
     err.textContent = `Kirjautuminen epäonnistui: ${e.message}`;
@@ -999,6 +1002,7 @@ document.getElementById('login-btn').addEventListener('click', async () => {
 
 document.getElementById('logout-btn').addEventListener('click', () => {
   token = null;
+  sessionStorage.removeItem('github-token');
   localStorage.removeItem('github-token');
   location.reload();
 });
