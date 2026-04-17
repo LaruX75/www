@@ -41,7 +41,7 @@ jobs:
       - run: grep -q '<meta name="robots" content="index, follow, noai, noimageai">' _site/index.html
       - run: npm run search:index
       - run: touch _site/.nojekyll
-      - uses: actions/configure-pages@v4
+      - uses: actions/configure-pages@v6
       - uses: actions/upload-pages-artifact@v3
         with:
           path: "_site"
