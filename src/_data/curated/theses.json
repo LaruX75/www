@@ -1,17 +1,4 @@
 {
   "hidden": [],
-  "manual": [
-    {
-      "title": "Esimerkki manuaalisesti lisätystä kandityöstä (poista tämä rivi ja lisää oikeat)",
-      "year": "2021",
-      "authors": ["Sukunimi, Etunimi"],
-      "advisors": ["Laru, Jari"],
-      "type": "bachelorThesis",
-      "link": "",
-      "abstract": "",
-      "language": "fi",
-      "subjects": [],
-      "keywords": []
-    }
-  ]
+  "manual": []
 }
