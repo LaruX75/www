@@ -10,16 +10,36 @@ lang: en
 {% set tocSource %}
 <h2 id="aoe-heading">AOE Learning Materials</h2>
 <h2 id="canva-heading">Canva Presentations</h2>
-<h2 id="youtube-heading">YouTube Playlists</h2>
 <h2 id="google-heading">Google Slides Presentations</h2>
 <h2 id="slideshare-heading">SlideShare Presentations</h2>
+<h2 id="youtube-heading">YouTube Playlists</h2>
 {% endset %}
 {% set tocMarkup = tocSource | toc %}
 
+{# Collect SlideShare items from static Markdown files #}
+{% set ssDataItems = [] %}
+{% set canvaPageUrls = [] %}
+{% for item in collections.presentations %}
+  {% if item.data.source == "slideshare" %}
+    {% set _ = (ssDataItems.push({
+      title: item.data.title,
+      url: item.data.url,
+      pageUrl: item.url,
+      thumbnail: item.data.thumbnail,
+      date: item.data.date,
+      description: item.data.description or (item.content | excerpt),
+      categories: item.data.categories or [],
+      keywords: item.data.keywords or []
+    }), null) %}
+  {% elif item.data.url and "canva.com" in item.data.url %}
+    {% set _ = (canvaPageUrls.push({ externalUrl: item.data.url, pageUrl: item.url }), null) %}
+  {% endif %}
+{% endfor %}
+
 <div class="container py-5">
   <header class="mb-5 text-center">
-    <h1 class="display-4 fw-bold mb-3">Presentations</h1>
-    <p class="lead text-muted">A curated selection of my slide decks from different platforms.</p>
+    <h1 class="display-4 fw-bold mb-3">Presentations and Learning Materials</h1>
+    <p class="lead text-muted">Presentations, open learning materials and more from various platforms.</p>
   </header>
 
   {% if tocMarkup %}
@@ -38,34 +58,30 @@ lang: en
   {# ===================== AOE ===================== #}
   <section class="mb-5" aria-labelledby="aoe-heading">
     <h2 id="aoe-heading" class="section-title mb-4">
-      <i class="bi bi-journal-richtext me-2" style="font-size: 1rem;"></i>AOE Learning Materials
+      <i class="bi bi-book-fill text-success me-2" style="font-size: 1rem;"></i>AOE Learning Materials
     </h2>
-    {% if aoeRows and aoeRows.length %}
+    {% if finnaAoe and finnaAoe.rows and finnaAoe.rows.length %}
+      <div class="presentation-scroller mb-4" data-key="aoe" aria-label="AOE presentation scroller">
+        <div class="presentation-scroller-track"></div>
+      </div>
       <div class="table-responsive">
-        <table class="table table-sm table-hover align-middle">
+        <table class="table table-hover align-middle mb-0 pub-table">
           <thead>
             <tr>
               <th>Title</th>
-              <th class="text-nowrap">Year</th>
+              <th>Description</th>
+              <th class="text-nowrap">Date / year</th>
               <th class="text-nowrap">Open</th>
             </tr>
           </thead>
-          <tbody>
-            {% for p in aoeRows %}
-            <tr>
-              <td>{{ p.title }}</td>
-              <td>{{ p.year or '—' }}</td>
-              <td>
-                {% if p.url %}
-                <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-3">AOE / Finna</a>
-                {% else %}
-                <span class="text-muted small">No link</span>
-                {% endif %}
-              </td>
-            </tr>
-            {% endfor %}
-          </tbody>
+          <tbody id="table-body-aoe"></tbody>
         </table>
+      </div>
+      <nav class="mt-3" aria-label="AOE pagination">
+        <ul class="pagination pagination-sm mb-0" id="pagination-aoe"></ul>
+      </nav>
+      <div class="mt-3 text-muted small">
+        Source: <a href="https://www.finna.fi/" target="_blank" rel="noopener noreferrer">Finna</a> / <a href="https://aoe.fi/" target="_blank" rel="noopener noreferrer">Open Educational Resources Library (AOE)</a>{% if finnaAoe.source == 'cache' %} (cached){% endif %}.
       </div>
     {% else %}
       <p class="text-muted">No AOE learning materials available.</p>
@@ -77,142 +93,146 @@ lang: en
     <h2 id="canva-heading" class="section-title mb-4">
       <i class="bi bi-star-fill text-warning me-2" style="font-size: 1rem;"></i>Canva Presentations
     </h2>
-    <div class="card border-0 shadow-sm mb-4">
-      <div class="card-body d-flex flex-column flex-lg-row align-items-start align-items-lg-center justify-content-between gap-3">
-        <div>
-          <h3 class="h5 fw-bold mb-1">Canva presentation analysis</h3>
-          <p class="text-muted small mb-0">Topic, language, and trend analysis from the Canva presentation corpus.</p>
-        </div>
-        <a class="btn btn-primary rounded-pill px-3" href="/esitykset/canva-analyysi/">Open analysis <i class="bi bi-arrow-right-short"></i></a>
-      </div>
-    </div>
-    {% if canva and canva.tableRows and canva.tableRows.length %}
-      <div class="playlist-ticker mb-4" aria-label="Canva presentation scroller">
-        <div class="playlist-ticker-track">
-          {% for p in canva.tickerRows %}
-          <article class="playlist-ticker-item card border-0 shadow-sm">
-            {% if p.thumbnail %}
-            <img src="{{ p.thumbnail }}" class="card-img-top" alt="{{ p.title }}" style="height: 150px; object-fit: cover;">
-            {% endif %}
-            <div class="card-body p-3">
-              <h3 class="h6 mb-2">{{ p.title }}</h3>
-              {% if p.date %}
-              <p class="text-muted small mb-2">{{ p.date | dateFormat }}</p>
-              {% endif %}
-              {% if p.url %}
-              <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm rounded-pill px-3">
-                Open Canva <i class="bi bi-arrow-up-right"></i>
-              </a>
-              {% endif %}
-            </div>
-          </article>
-          {% endfor %}
-        </div>
-      </div>
 
-      <div class="table-responsive mb-4">
-        <table class="table table-sm table-hover align-middle">
-          <thead>
-            <tr>
-              <th>Presentation</th>
-              <th class="text-nowrap">Updated</th>
-              <th class="text-nowrap">Open</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for p in canva.tableRows %}
-            <tr>
-              <td>
-                <div class="fw-semibold">{{ p.title }}</div>
-                {% if p.description %}
-                <div class="small text-muted">{{ p.description | truncate(140, true, '...') }}</div>
-                {% endif %}
-                {% if p.categories and p.categories.length %}
-                <div class="mt-1">
-                  {% for cat in p.categories %}
-                  <span class="badge text-bg-secondary rounded-pill me-1">{{ cat }}</span>
-                  {% endfor %}
-                </div>
-                {% endif %}
-              </td>
-              <td>{% if p.date %}{{ p.date | dateFormat }}{% endif %}</td>
-              <td>
-                {% if p.url %}
-                <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-3">Canva</a>
-                {% else %}
-                <span class="text-muted small">No link</span>
-                {% endif %}
-              </td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
-
-      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        {% for p in canva.cardRows %}
-        <div class="col">
-          <div class="card h-100 border-0 shadow-sm hover-shadow transition">
-            <div class="position-relative overflow-hidden">
-              {% if p.thumbnail %}
-                <img src="{{ p.thumbnail }}"
-                     class="card-img-top transition-transform"
-                     alt="{{ p.title }}"
-                     style="height: 220px; object-fit: cover; object-position: top;">
-                {% if p.url %}
-                <div class="card-img-overlay d-flex align-items-center justify-content-center opacity-0 bg-dark bg-opacity-50 transition">
-                  <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-light btn-sm stretched-link">View presentation</a>
-                </div>
-                {% endif %}
-              {% else %}
-                <div class="d-flex align-items-center justify-content-center text-muted bg-placeholder" style="height: 220px;">
-                  <div class="text-center">
-                    <i class="bi bi-file-earmark-slides fs-1 mb-2 d-block"></i>
-                    <small>No preview image</small>
-                  </div>
-                </div>
-              {% endif %}
-            </div>
-            <div class="card-body">
-              <h3 class="h5 card-title mb-1">
-                {% if p.url %}
-                  <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="text-decoration-none">{{ p.title }}</a>
-                {% else %}
-                  {{ p.title }}
-                {% endif %}
-              </h3>
-              {% if p.date %}
-              <small class="text-muted">{{ p.date | dateFormat }}</small>
-              {% endif %}
-              {% if p.categories and p.categories.length %}
-              <div class="mt-2">
-                {% for cat in p.categories %}
-                <span class="badge text-bg-secondary rounded-pill me-1">{{ cat }}</span>
-                {% endfor %}
-              </div>
-              {% endif %}
-            </div>
-            <div class="card-footer bg-transparent border-0 pt-0 pb-3 px-3">
-              {% if p.url %}
-                <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm rounded-pill px-3">
-                  View presentation <i class="bi bi-arrow-up-right"></i>
-                </a>
-              {% else %}
-                <span class="text-muted" style="font-size:0.85rem;"><i class="bi bi-link-45deg"></i> No link</span>
-              {% endif %}
-              <span class="badge text-bg-secondary rounded-pill ms-2">Canva</span>
-            </div>
+    {# CTA card: Canva analysis #}
+    <div class="card border-0 shadow-sm mb-4 border-start border-4 border-warning">
+      <div class="card-body p-4">
+        <div class="row align-items-center g-3">
+          <div class="col-auto d-none d-sm-block">
+            <i class="bi bi-bar-chart-line text-warning" style="font-size:2rem;"></i>
+          </div>
+          <div class="col">
+            <p class="text-uppercase text-muted fw-semibold small mb-1">Analysis</p>
+            <h3 class="h5 fw-bold mb-1">Canva presentations 2021–2026 – 83 presentations analysed</h3>
+            <p class="text-muted small mb-0">Topics, trajectories, most extensive presentations and common threads — the decade of AI literacy.</p>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <a href="/esitykset/canva-analyysi/" class="btn btn-warning btn-sm px-3 text-dark">
+              Read analysis <i class="bi bi-arrow-right ms-1"></i>
+            </a>
           </div>
         </div>
-        {% endfor %}
       </div>
+    </div>
 
+    {% if canva and canva.tableRows and canva.tableRows.length %}
+      <div class="presentation-scroller mb-4" data-key="canva" aria-label="Canva presentation scroller">
+        <div class="presentation-scroller-track"></div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0 pub-table">
+          <thead>
+            <tr>
+              <th class="text-center" style="width:140px">Date</th>
+              <th style="min-width:170px">Preview</th>
+              <th style="min-width:200px;max-width:260px;">Title</th>
+              <th style="min-width:220px">Summary</th>
+              <th style="min-width:190px">Keywords</th>
+              <th style="width:90px" class="text-center">Open</th>
+            </tr>
+          </thead>
+          <tbody id="table-body-canva"></tbody>
+        </table>
+      </div>
+      <nav class="mt-3" aria-label="Canva pagination">
+        <ul class="pagination pagination-sm mb-0" id="pagination-canva"></ul>
+      </nav>
       <div class="mt-3 text-muted small">
-        Source: Canva (JSON){% if canva.source == 'cache' %} (cached){% elseif canva.source == 'local' %} (local fallback){% endif %}.
+        Source: Canva (JSON).
       </div>
     {% else %}
       <p class="text-muted">No Canva presentations available.</p>
     {% endif %}
+  </section>
+
+  {# ================ GOOGLE SLIDES ================ #}
+  <section class="mb-5" aria-labelledby="google-heading">
+    <h2 id="google-heading" class="section-title mb-4">
+      <i class="bi bi-file-earmark-slides me-2" style="font-size: 1rem;"></i>Google Slides Presentations
+    </h2>
+    {% if googleslides and googleslides.length %}
+      <div class="presentation-scroller mb-4" data-key="google" aria-label="Google Slides presentation scroller" tabindex="0">
+        <div class="presentation-scroller-track"></div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0 pub-table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Description</th>
+              <th class="text-nowrap">Date / year</th>
+              <th class="text-nowrap">Open</th>
+            </tr>
+          </thead>
+          <tbody id="table-body-google"></tbody>
+        </table>
+      </div>
+      <nav class="mt-3" aria-label="Google Slides pagination">
+        <ul class="pagination pagination-sm mb-0" id="pagination-google"></ul>
+      </nav>
+    {% else %}
+      <p class="text-muted">No Google Slides presentations available.</p>
+    {% endif %}
+  </section>
+
+  {# ================= SLIDESHARE ================== #}
+  <section class="mb-5" aria-labelledby="slideshare-heading">
+    <h2 id="slideshare-heading" class="section-title mb-4">
+      <i class="bi bi-collection-play me-2" style="font-size: 1rem;"></i>SlideShare Presentations
+    </h2>
+
+    {# CTA card: SlideShare analysis #}
+    <div class="card border-0 shadow-sm mb-4 border-start border-4 border-primary">
+      <div class="card-body p-4">
+        <div class="row align-items-center g-3">
+          <div class="col-auto d-none d-sm-block">
+            <i class="bi bi-bar-chart-line text-primary" style="font-size:2rem;"></i>
+          </div>
+          <div class="col">
+            <p class="text-uppercase text-muted fw-semibold small mb-1">Analysis</p>
+            <h3 class="h5 fw-bold mb-1">SlideShare presentations 2009–2020 – 117 presentations analysed</h3>
+            <p class="text-muted small mb-0">Topics, trajectories, most-viewed presentations and common threads by decade — from mobile learning to AI.</p>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <a href="/esitykset/slideshare-analyysi/" class="btn btn-primary btn-sm px-3">
+              Read analysis <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% if ssDataItems.length %}
+      <div class="presentation-scroller mb-4" data-key="slideshare" aria-label="SlideShare presentation scroller">
+        <div class="presentation-scroller-track"></div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0 pub-table">
+          <thead>
+            <tr>
+              <th class="text-center" style="width:140px">Date</th>
+              <th style="min-width:170px">Preview</th>
+              <th style="min-width:200px;max-width:260px;">Title</th>
+              <th style="min-width:220px">Summary</th>
+              <th style="min-width:190px">Keywords</th>
+              <th style="width:90px" class="text-center">Open</th>
+            </tr>
+          </thead>
+          <tbody id="table-body-slideshare"></tbody>
+        </table>
+      </div>
+      <nav class="mt-3" aria-label="SlideShare pagination">
+        <ul class="pagination pagination-sm mb-0" id="pagination-slideshare"></ul>
+      </nav>
+    {% else %}
+      <p class="text-muted">No SlideShare presentations available.</p>
+    {% endif %}
+
+    <div class="mt-4 text-center">
+      <a href="https://www.slideshare.net/larux" target="_blank" rel="noopener noreferrer" class="btn btn-primary px-4 py-2">
+        View all on SlideShare ({{ ssDataItems.length }}) <i class="bi bi-arrow-up-right"></i>
+      </a>
+    </div>
   </section>
 
   {# ===================== YOUTUBE ===================== #}
@@ -222,55 +242,25 @@ lang: en
     </h2>
 
     {% if youtube and youtube.tableRows and youtube.tableRows.length %}
-      <div class="playlist-ticker mb-4" aria-label="YouTube playlist scroller">
-        <div class="playlist-ticker-track">
-          {% for p in youtube.tickerRows %}
-          <article class="playlist-ticker-item card border-0 shadow-sm">
-            {% if p.thumbnail %}
-            <img src="{{ p.thumbnail }}" class="card-img-top" alt="{{ p.title }}" style="height: 150px; object-fit: cover;">
-            {% endif %}
-            <div class="card-body p-3">
-              <h3 class="h6 mb-2">{{ p.title }}</h3>
-              <p class="text-muted small mb-2">{{ p.itemCount }} videos</p>
-              <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm rounded-pill px-3">
-                Open playlist <i class="bi bi-arrow-up-right"></i>
-              </a>
-            </div>
-          </article>
-          {% endfor %}
-        </div>
+      <div class="presentation-scroller mb-4" data-key="youtube" aria-label="YouTube playlist scroller">
+        <div class="presentation-scroller-track"></div>
       </div>
-
       <div class="table-responsive">
-        <table class="table table-sm table-hover align-middle">
+        <table class="table table-hover align-middle mb-0 pub-table">
           <thead>
             <tr>
-              <th>Playlist</th>
-              <th class="text-nowrap">Videos</th>
-              <th class="text-nowrap">Published</th>
+              <th>Title</th>
+              <th>Description</th>
+              <th class="text-nowrap">Date / year</th>
               <th class="text-nowrap">Open</th>
             </tr>
           </thead>
-          <tbody>
-            {% for p in youtube.tableRows %}
-            <tr>
-              <td>
-                <div class="fw-semibold">{{ p.title }}</div>
-                {% if p.description %}
-                <div class="small text-muted">{{ p.description | truncate(140, true, '...') }}</div>
-                {% endif %}
-              </td>
-              <td>{{ p.itemCount }}</td>
-              <td>{{ p.publishedAt | dateFormat }}</td>
-              <td>
-                <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-3">YouTube</a>
-              </td>
-            </tr>
-            {% endfor %}
-          </tbody>
+          <tbody id="table-body-youtube"></tbody>
         </table>
       </div>
-
+      <nav class="mt-3" aria-label="YouTube pagination">
+        <ul class="pagination pagination-sm mb-0" id="pagination-youtube"></ul>
+      </nav>
       <div class="mt-3 text-muted small">
         Source: YouTube Data API v3{% if youtube.source == 'cache' %} (cached){% endif %}.
       </div>
@@ -286,219 +276,473 @@ lang: en
     {% endif %}
   </section>
 
-  {# ================ GOOGLE SLIDES ================ #}
-  <section class="mb-5" aria-labelledby="google-heading">
-    <h2 id="google-heading" class="section-title mb-4">
-      <i class="bi bi-file-earmark-slides me-2" style="font-size: 1rem;"></i>Google Slides Presentations
-    </h2>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-      {% for p in googleslides %}
-      <div class="col">
-        <div class="card h-100 border-0 shadow-sm hover-shadow transition">
-          <div class="position-relative overflow-hidden">
-            {% if p.thumbnail %}
-              <img src="{{ p.thumbnail }}"
-                   class="card-img-top transition-transform"
-                   alt="{{ p.title }}"
-                   style="height: 220px; object-fit: cover; object-position: top;">
-              {% if p.url %}
-              <div class="card-img-overlay d-flex align-items-center justify-content-center opacity-0 bg-dark bg-opacity-50 transition">
-                <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-light btn-sm stretched-link">View presentation</a>
-              </div>
-              {% endif %}
-            {% else %}
-              <div class="d-flex align-items-center justify-content-center text-muted bg-placeholder" style="height: 220px;">
-                <div class="text-center">
-                  <i class="bi bi-file-earmark-slides fs-1 mb-2 d-block"></i>
-                  <small>No preview image</small>
-                </div>
-              </div>
-            {% endif %}
-          </div>
-          <div class="card-body">
-            <h3 class="h5 card-title mb-1">
-              {% if p.url %}
-                <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="text-decoration-none">{{ p.title }}</a>
-              {% else %}
-                {{ p.title }}
-              {% endif %}
-            </h3>
-            {% if p.date %}
-            <small class="text-muted">{{ p.date }}</small>
-            {% endif %}
-          </div>
-          <div class="card-footer bg-transparent border-0 pt-0 pb-3 px-3">
-            {% if p.url %}
-              <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm rounded-pill px-3">
-                View presentation <i class="bi bi-arrow-up-right"></i>
-              </a>
-            {% else %}
-              <span class="text-muted" style="font-size:0.85rem;"><i class="bi bi-link-45deg"></i> No link</span>
-            {% endif %}
-            <span class="badge text-bg-secondary rounded-pill ms-2">Google Slides</span>
-          </div>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-  </section>
-
-  {# ================= SLIDESHARE ================== #}
-  <section class="mb-5" aria-labelledby="slideshare-heading">
-    <h2 id="slideshare-heading" class="section-title mb-4">
-      <i class="bi bi-collection-play me-2" style="font-size: 1rem;"></i>SlideShare Presentations
-    </h2>
-    <div class="card border-0 shadow-sm mb-4">
-      <div class="card-body d-flex flex-column flex-lg-row align-items-start align-items-lg-center justify-content-between gap-3">
-        <div>
-          <h3 class="h5 fw-bold mb-1">SlideShare presentation analysis</h3>
-          <p class="text-muted small mb-0">A structured analysis view built from SlideShare metadata and content extraction.</p>
-        </div>
-        <a class="btn btn-primary rounded-pill px-3" href="/esitykset/slideshare-analyysi/">Open analysis <i class="bi bi-arrow-right-short"></i></a>
-      </div>
-    </div>
-    {% if slideshare and slideshare.length %}
-    <div class="playlist-ticker mb-4" aria-label="SlideShare presentation scroller">
-      <div class="playlist-ticker-track">
-        {% for p in slideshare.slice(0, 12) %}
-        <article class="playlist-ticker-item card border-0 shadow-sm">
-          {% if p.thumbnail %}
-          <img src="{{ p.thumbnail }}" class="card-img-top" alt="{{ p.title }}" style="height: 150px; object-fit: cover;">
-          {% endif %}
-          <div class="card-body p-3">
-            <h3 class="h6 mb-2">{{ p.title }}</h3>
-            <p class="text-muted small mb-2">{{ p.author or "Jari Laru" }}{% if p.views %} • {{ p.views }} views{% endif %}</p>
-            <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm rounded-pill px-3">
-              Open SlideShare <i class="bi bi-arrow-up-right"></i>
-            </a>
-          </div>
-        </article>
-        {% endfor %}
-      </div>
-    </div>
-
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-      {% for p in slideshare %}
-      <div class="col">
-        <div class="card h-100 border-0 shadow-sm hover-shadow transition">
-          <div class="position-relative overflow-hidden">
-            {% if p.thumbnail %}
-              <img src="{{ p.thumbnail }}"
-                   class="card-img-top transition-transform"
-                   alt="{{ p.title }}"
-                   style="height: 220px; object-fit: cover; object-position: top;">
-              <div class="card-img-overlay d-flex align-items-center justify-content-center opacity-0 bg-dark bg-opacity-50 transition">
-                <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-light btn-sm stretched-link">View on SlideShare</a>
-              </div>
-            {% else %}
-              <div class="d-flex align-items-center justify-content-center text-muted bg-placeholder" style="height: 220px;">
-                <div class="text-center">
-                  <i class="bi bi-file-earmark-slides fs-1 mb-2 d-block"></i>
-                  <small>No preview image</small>
-                </div>
-              </div>
-            {% endif %}
-          </div>
-          <div class="card-body">
-            <h3 class="h5 card-title mb-1">
-              {% if p.url %}
-                <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="text-decoration-none">{{ p.title }}</a>
-              {% else %}
-                {{ p.title }}
-              {% endif %}
-            </h3>
-          </div>
-          <div class="card-footer bg-transparent border-0 pt-0 pb-3 px-3">
-            {% if p.url %}
-              <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm rounded-pill px-3">
-                View on SlideShare <i class="bi bi-arrow-up-right"></i>
-              </a>
-            {% else %}
-              <span class="text-muted" style="font-size:0.85rem;"><i class="bi bi-link-45deg"></i> No link</span>
-            {% endif %}
-            <span class="badge text-bg-secondary rounded-pill ms-2">SlideShare</span>
-          </div>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-    {% else %}
-    <p class="text-muted">No SlideShare presentations available.</p>
-    {% endif %}
-
-    <div class="mt-4 text-center">
-      <a href="https://www.slideshare.net/larux" target="_blank" rel="noopener noreferrer" class="btn btn-primary px-4 py-2">
-        View all on SlideShare ({{ (slideshare or []).length }}) <i class="bi bi-arrow-up-right"></i>
-      </a>
+  {# Archive list: static link list for all presentation pages (SEO navigation) #}
+  <section class="mb-5">
+    <div class="container">
+      <details>
+        <summary class="text-muted small py-2" style="cursor:pointer;">All presentations as archive ({{ collections.presentations | length }})</summary>
+        <ul class="list-unstyled row row-cols-1 row-cols-md-2 g-1 mt-2">
+          {% for item in collections.presentations | sort(attribute="data.date", reverse=true) %}
+            <li class="col"><a class="small text-decoration-none text-muted" href="{{ item.url }}">{{ item.data.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </details>
     </div>
   </section>
 
 </div>
 
+<script>
+(() => {
+  const PAGE_SIZE = 6;
+  const rawData = {
+    aoe: {{ (finnaAoe.rows or []) | dump | safe }},
+    canva: {{ (canva.tableRows or []) | dump | safe }},
+    youtube: {{ (youtube.tableRows or []) | dump | safe }},
+    google: {{ (googleslides or []) | dump | safe }},
+    slideshare: {{ ssDataItems | dump | safe }}
+  };
+
+  // Map Canva MD page URLs to external Canva URLs
+  const canvaPageUrlMap = {};
+  {{ canvaPageUrls | dump | safe }}.forEach(p => { canvaPageUrlMap[p.externalUrl] = p.pageUrl; });
+  rawData.canva.forEach(item => { item.pageUrl = canvaPageUrlMap[item.url] || null; });
+
+  const iconByKey = {
+    aoe: "bi-book",
+    canva: "bi-file-earmark-slides",
+    youtube: "bi-youtube",
+    google: "bi-file-earmark-slides",
+    slideshare: "bi-collection-play"
+  };
+
+  const linkLabelByKey = {
+    aoe: "Open in Finna",
+    canva: "Open",
+    youtube: "YouTube",
+    google: "Open",
+    slideshare: "SlideShare"
+  };
+
+  function escHtml(value) {
+    return String(value || "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#39;");
+  }
+
+  function truncate(value, max = 120) {
+    const text = String(value || "").trim();
+    if (!text) return "";
+    return text.length > max ? `${text.slice(0, max).trim()}…` : text;
+  }
+
+  function toDisplayDate(value) {
+    if (!value) return "";
+    const parsed = new Date(value);
+    if (!Number.isNaN(parsed.getTime())) {
+      return new Intl.DateTimeFormat("en-GB").format(parsed);
+    }
+    return String(value);
+  }
+
+  function toIsoDate(value) {
+    if (!value) return null;
+    const raw = String(value).trim();
+    if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) return raw;
+    const parsed = new Date(raw);
+    if (Number.isNaN(parsed.getTime())) return null;
+    const year = parsed.getUTCFullYear();
+    const month = String(parsed.getUTCMonth() + 1).padStart(2, "0");
+    const day = String(parsed.getUTCDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  }
+
+  function extractSlideshareDateFromThumbnail(thumbnailUrl) {
+    if (!thumbnailUrl) return null;
+    const match = String(thumbnailUrl).match(/-(\d{6})\d{6}-/);
+    if (!match) return null;
+    const yymmdd = match[1];
+    const yy = Number.parseInt(yymmdd.slice(0, 2), 10);
+    const mm = Number.parseInt(yymmdd.slice(2, 4), 10);
+    const dd = Number.parseInt(yymmdd.slice(4, 6), 10);
+    if (!Number.isFinite(yy) || !Number.isFinite(mm) || !Number.isFinite(dd)) return null;
+    if (mm < 1 || mm > 12 || dd < 1 || dd > 31) return null;
+    const year = yy >= 90 ? 1900 + yy : 2000 + yy;
+    return `${year}-${String(mm).padStart(2, "0")}-${String(dd).padStart(2, "0")}`;
+  }
+
+  function normalizeSlideshareIsoDate(value, thumbnailUrl) {
+    return extractSlideshareDateFromThumbnail(thumbnailUrl) || toIsoDate(value) || "";
+  }
+
+  function normalizeRows(key, rows) {
+    if (!Array.isArray(rows)) return [];
+
+    if (key === "aoe") {
+      return rows.map((r) => ({
+        title: r.title || "Unnamed learning material",
+        url: r.url || "",
+        thumbnail: r.image || "",
+        description: r.summary || "",
+        meta: "AOE / Learning material",
+        date: r.year || ""
+      }));
+    }
+
+    if (key === "canva") {
+      return rows.map((r) => ({
+        title: r.title || "Unnamed presentation",
+        url: r.url || "",
+        thumbnail: r.thumbnail || "",
+        description: r.description || "",
+        keywords: Array.isArray(r.categories) ? r.categories.filter(Boolean) : [],
+        meta: "Canva",
+        date: toDisplayDate(toIsoDate(r.date || r.publishedAt || r.createdAt || r.updatedAt || "") || "")
+      }));
+    }
+
+    if (key === "youtube") {
+      return rows.map((r) => ({
+        title: r.title || "Unnamed playlist",
+        url: r.url || "",
+        thumbnail: r.thumbnail || "",
+        description: r.description || "",
+        meta: `${r.itemCount || 0} videos`,
+        date: toDisplayDate(r.publishedAt || "")
+      }));
+    }
+
+    if (key === "google") {
+      return rows.map((r) => ({
+        title: r.title || "Unnamed presentation",
+        url: r.url || "",
+        thumbnail: r.thumbnail || "",
+        description: "Google Slides presentation",
+        meta: "Google Slides",
+        date: r.date || ""
+      }));
+    }
+
+    if (key === "slideshare") {
+      return rows.map((r) => ({
+        date: toDisplayDate(normalizeSlideshareIsoDate(r.date || "", r.thumbnail || "")),
+        title: r.title || "Unnamed presentation",
+        url: r.url || "",
+        thumbnail: r.thumbnail || "",
+        description: r.description || "",
+        keywords: [
+          ...(Array.isArray(r.categories) ? r.categories : []),
+          ...(Array.isArray(r.keywords) ? r.keywords : [])
+        ].map((value) => String(value || "").trim()).filter(Boolean)
+      }));
+    }
+
+    return [];
+  }
+
+  function pickFourRandom(rows) {
+    if (!rows.length) return [];
+    const shuffled = [...rows];
+    for (let i = shuffled.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    const picked = shuffled.slice(0, Math.min(4, shuffled.length));
+    while (picked.length < 4) {
+      picked.push(shuffled[picked.length % shuffled.length]);
+    }
+    return picked;
+  }
+
+  function renderScroller(key, rows) {
+    const host = document.querySelector(`.presentation-scroller[data-key="${key}"] .presentation-scroller-track`);
+    if (!host) return;
+    const cards = pickFourRandom(rows);
+    if (!cards.length) {
+      host.innerHTML = "";
+      return;
+    }
+
+    const htmlCards = cards.map((item) => {
+      const thumb = item.thumbnail
+        ? `<div class="scroller-media">
+             <img src="${escHtml(item.thumbnail)}" class="card-img-top" alt="${escHtml(item.title)}" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+             <div class="scroller-placeholder" style="display:none;"><i class="bi ${escHtml(iconByKey[key] || "bi-file-earmark")}"></i></div>
+           </div>`
+        : `<div class="scroller-placeholder"><i class="bi ${escHtml(iconByKey[key] || "bi-file-earmark")}"></i></div>`;
+      const link = item.url
+        ? `<a href="${escHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm rounded-pill px-3">${escHtml(linkLabelByKey[key] || "Open")} <i class="bi bi-arrow-up-right"></i></a>`
+        : `<span class="text-muted small"><i class="bi bi-link-45deg"></i> No link</span>`;
+      const pageLink = item.pageUrl
+        ? `<a href="${escHtml(item.pageUrl)}" class="btn btn-outline-secondary btn-sm rounded-pill px-2 ms-1" title="Presentation page"><i class="bi bi-file-earmark-text"></i></a>`
+        : "";
+      return `
+        <article class="card border-0 shadow-sm presentation-scroller-card">
+          ${thumb}
+          <div class="card-body p-3">
+            <h3 class="h6 mb-1">${escHtml(item.title)}</h3>
+            ${item.date ? `<p class="text-muted small mb-1"><i class="bi bi-calendar3 me-1"></i>${escHtml(item.date)}</p>` : ""}
+            <p class="text-muted small mb-3">${escHtml(truncate(item.meta || item.description, 72))}</p>
+            ${link}${pageLink}
+          </div>
+        </article>
+      `;
+    }).join("");
+
+    host.innerHTML = `${htmlCards}${htmlCards}`;
+  }
+
+  function renderPagination(key, rows, page, onChange) {
+    const host = document.getElementById(`pagination-${key}`);
+    if (!host) return;
+    const pageCount = Math.ceil(rows.length / PAGE_SIZE);
+    if (pageCount <= 1) {
+      host.innerHTML = "";
+      return;
+    }
+
+    let html = "";
+    for (let p = 1; p <= pageCount; p += 1) {
+      html += `
+        <li class="page-item ${p === page ? "active" : ""}">
+          <button class="page-link" type="button" data-page="${p}">${p}</button>
+        </li>
+      `;
+    }
+    host.innerHTML = html;
+    host.querySelectorAll("button[data-page]").forEach((btn) => {
+      btn.addEventListener("click", () => onChange(Number(btn.dataset.page)));
+    });
+  }
+
+  function renderTable(key, rows, page, onChange) {
+    const tbody = document.getElementById(`table-body-${key}`);
+    if (!tbody) return;
+    const start = (page - 1) * PAGE_SIZE;
+    const pageRows = rows.slice(start, start + PAGE_SIZE);
+
+    if (key === "canva" || key === "slideshare") {
+      tbody.innerHTML = pageRows.map((item) => {
+        const keywords = Array.isArray(item.keywords) ? item.keywords : [];
+        const keywordHtml = keywords.length
+          ? keywords.map((k) => `<span class="badge text-bg-light text-dark border me-1 mb-1">${escHtml(k)}</span>`).join("")
+          : '<span class="text-muted small">Not available</span>';
+        const preview = item.thumbnail
+          ? `<img src="${escHtml(item.thumbnail)}" alt="${escHtml(item.title)}" class="img-fluid border" style="max-height:72px;object-fit:cover;" loading="lazy" decoding="async" onerror="this.outerHTML='<span class=&quot;text-muted small&quot;>Not available</span>';">`
+          : '<span class="text-muted small">Not available</span>';
+        const summary = item.description ? escHtml(truncate(item.description, 220)) : '<span class="text-muted small">Not available</span>';
+        return `
+          <tr>
+            <td class="text-center small text-muted font-monospace" data-label="Date">${escHtml(item.date || "Not available")}</td>
+            <td class="small text-muted text-center" data-label="Preview">${preview}</td>
+            <td class="fw-semibold" data-label="Title">${escHtml(item.title)}</td>
+            <td class="small" data-label="Summary">${summary}</td>
+            <td data-label="Keywords">${keywordHtml}</td>
+            <td class="text-center" data-label="Open">
+              <div class="d-flex gap-1 justify-content-center flex-wrap">
+              ${item.url
+                ? `<a href="${escHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Open presentation"><i class="bi bi-arrow-up-right"></i></a>`
+                : `<span class="text-muted small">No link</span>`}
+              ${item.pageUrl
+                ? `<a href="${escHtml(item.pageUrl)}" class="btn btn-outline-secondary btn-sm rounded-pill px-2" title="Presentation page"><i class="bi bi-file-earmark-text"></i></a>`
+                : ""}
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join("");
+    } else {
+      tbody.innerHTML = pageRows.map((item) => `
+        <tr>
+          <td class="fw-semibold" data-label="Title">${escHtml(item.title)}</td>
+          <td data-label="Description">
+            <div class="small">${escHtml(truncate(item.description, 140) || "-")}</div>
+            <div class="small text-muted">${escHtml(item.meta || "")}</div>
+          </td>
+          <td class="text-nowrap" data-label="Date / year">${escHtml(item.date || "-")}</td>
+          <td data-label="Open">
+            ${item.url
+              ? `<a href="${escHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-3">${escHtml(linkLabelByKey[key] || "Open")}</a>`
+              : `<span class="text-muted small">No link</span>`}
+          </td>
+        </tr>
+      `).join("");
+    }
+
+    renderPagination(key, rows, page, onChange);
+  }
+
+  Object.entries(rawData).forEach(([key, rows]) => {
+    const normalized = normalizeRows(key, rows);
+    if (!normalized.length) return;
+    renderScroller(key, normalized);
+    let currentPage = 1;
+    const rerender = (newPage) => {
+      currentPage = newPage;
+      renderTable(key, normalized, currentPage, rerender);
+    };
+    rerender(1);
+  });
+})();
+</script>
+
 <style>
 /* Section headings */
 .section-title {
   font-family: 'Bree Serif', serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--bs-border-color);
+  font-size: 1.75rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 1.25rem;
+  border-bottom: none;
+}
+.section-title::after {
+  content: "";
+  display: block;
+  width: 120px;
+  height: 3px;
+  margin: 0.65rem auto 0;
+  border-radius: 999px;
+  background: var(--bs-primary);
 }
 [data-bs-theme="dark"] .section-title {
   color: #ffffff;
-  border-bottom-color: rgba(255,255,255,0.15);
+}
+[data-bs-theme="dark"] .section-title::after {
+  background: #76b7ff;
 }
 
-/* Placeholder when no thumbnail */
-.bg-placeholder {
-  background-color: #dee2e6;
-  border-radius: 0;
-}
-[data-bs-theme="dark"] .bg-placeholder {
-  background-color: #2e3f59;
-}
-
-/* Card title links — white in dark mode */
-.card .card-title a {
-  color: var(--bs-body-color) !important;
-}
-[data-bs-theme="dark"] .card .card-title a {
-  color: #ffffff !important;
-}
-[data-bs-theme="dark"] .card .card-title a:hover {
-  color: rgba(255,255,255,0.8) !important;
-}
-
-.hover-shadow:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
-}
-.hover-shadow:hover .card-img-top {
-  transform: scale(1.05);
-}
-.transition-transform {
-  transition: transform 0.5s ease-in-out;
-}
-.transition {
-  transition: all 0.3s ease-in-out;
-}
-.card-img-overlay:hover {
-  opacity: 1!important;
-}
-
-/* YouTube playlist ticker */
-.playlist-ticker {
+/* Category scroller */
+.presentation-scroller {
   overflow-x: auto;
   padding-bottom: 0.25rem;
 }
 
-.playlist-ticker-track {
+.presentation-scroller-track {
   display: flex;
-  gap: 1rem;
+  gap: 1.2rem;
   min-width: max-content;
+  animation: presentations-scroll 24s linear infinite;
 }
 
-.playlist-ticker-item {
+.presentation-scroller:hover .presentation-scroller-track {
+  animation-play-state: paused;
+}
+
+.presentation-scroller-card {
   width: 280px;
+  flex: 0 0 280px;
+}
+
+.scroller-media {
+  height: 150px;
+}
+
+.presentation-scroller-card .card-img-top,
+.scroller-placeholder {
+  height: 150px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.scroller-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #dee2e6;
+  color: #6c757d;
+  font-size: 2rem;
+}
+[data-bs-theme="dark"] .scroller-placeholder {
+  background: #2e3f59;
+  color: #d2d9e2;
+}
+
+@keyframes presentations-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-50% - 0.6rem)); }
+}
+
+@media (max-width: 767.98px) {
+  .presentation-scroller-card {
+    width: 260px;
+    flex-basis: 260px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .presentation-scroller-track {
+    animation: none !important;
+  }
+}
+
+/* Table styles */
+.pub-table th {
+  white-space: nowrap;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background-color: var(--bs-tertiary-bg) !important;
+  padding: 0.75rem 0.5rem;
+}
+[data-bs-theme="dark"] .pub-table th {
+  background-color: #2e3f59 !important;
+  color: #c0d0e0;
+}
+.pub-table td {
+  padding: 0.75rem 0.5rem;
+}
+[data-bs-theme="dark"] .pub-table td {
+  border-color: rgba(255,255,255,0.07) !important;
+}
+
+@media (max-width: 767.98px) {
+  .pub-table thead {
+    display: none;
+  }
+  .pub-table,
+  .pub-table tbody,
+  .pub-table tr,
+  .pub-table td {
+    display: block;
+    width: 100%;
+  }
+  .pub-table tr {
+    border: 1px solid var(--bs-border-color);
+    border-radius: 0.65rem;
+    margin: 0.65rem 0;
+    padding: 0.4rem 0.55rem;
+    background: var(--bs-body-bg);
+  }
+  .pub-table td {
+    border: 0 !important;
+    padding: 0.38rem 0.2rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.7rem;
+    text-align: right !important;
+  }
+  .pub-table td::before {
+    content: attr(data-label);
+    color: var(--bs-secondary-color);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    text-align: left;
+    flex: 0 0 45%;
+  }
+  .pub-table td > * {
+    max-width: 55%;
+  }
+  .pub-table td:last-child {
+    margin-top: 0.25rem;
+    padding-top: 0.55rem;
+    border-top: 1px dashed var(--bs-border-color) !important;
+  }
 }
 </style>
