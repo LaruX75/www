@@ -94,7 +94,7 @@ Ennustettu syntyvyyden kasvu 2030 on suurinta **Hiukkavaarassa, Jääli-Korvensu
 ## Esitysaineisto
 
 <div class="ratio ratio-16x9 my-4">
-  <iframe loading="lazy" src="https://www.canva.com/design/ZNeBoffbYLNc_O0/view?embed" allowfullscreen title="Palveluverkko 2023 – reunaehtojen tarkastelua"></iframe>
+  <iframe loading="lazy" src="https://www.canva.com/design/ZNeBoffbYLNc_O0/view?embed" allowfullscreen title="Palveluverkko 2023 – reunaehtojen tarkastelua" sandbox="allow-scripts allow-same-origin allow-popups allow-presentation allow-forms"></iframe>
 </div>
 
 [Avaa esitys Canvassa](https://www.canva.com/d/ZNeBoffbYLNc_O0){.btn .btn-outline-primary .btn-sm .rounded-pill .px-3}

@@ -84,14 +84,14 @@ source_url: "https://www.jarilaru.fi/silloin-kun-sita-oltiin-larges-securityn-sy
         <div class="col-md-6">
           <p class="bbs-video-label"><i class="bi bi-play-circle-fill me-1"></i>100 legendaarista C64-peliä</p>
           <div class="bbs-video-wrap">
-            <iframe src="https://www.youtube-nocookie.com/embed/eY2gK1MPgh8" title="100 legendaarista Commodore 64 peliä" loading="lazy" allowfullscreen></iframe>
+            <iframe src="https://www.youtube-nocookie.com/embed/eY2gK1MPgh8" title="100 legendaarista Commodore 64 peliä" loading="lazy" allowfullscreen sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
           </div>
           <p class="bbs-caption">Kyllähän niitä pelattiin ja kovasti.</p>
         </div>
         <div class="col-md-6">
           <p class="bbs-video-label"><i class="bi bi-play-circle-fill me-1"></i>C64 + akustinen modeemi</p>
           <div class="bbs-video-wrap">
-            <iframe src="https://www.youtube-nocookie.com/embed/gAAJ1FGudE" title="Commodore 64 akustinen modeemi" loading="lazy" allowfullscreen></iframe>
+            <iframe src="https://www.youtube-nocookie.com/embed/gAAJ1FGudE" title="Commodore 64 akustinen modeemi" loading="lazy" allowfullscreen sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
           </div>
           <p class="bbs-caption">C64:een oli jo saatavilla akustinen 300 baudin modeemi. Katselin tällaista ihmettä raahelaisen kirjakaupan näyteikkunassa. Aika ei kuitenkaan ollut vielä kypsä.</p>
         </div>
@@ -116,20 +116,20 @@ source_url: "https://www.jarilaru.fi/silloin-kun-sita-oltiin-larges-securityn-sy
         <div class="col-md-4">
           <p class="bbs-video-label"><i class="bi bi-play-circle-fill me-1"></i>Acer 915V tietokone</p>
           <div class="bbs-video-wrap">
-            <iframe src="https://www.youtube-nocookie.com/embed/MdTt0Mm35_U" title="Acer 915V tietokone" loading="lazy" allowfullscreen></iframe>
+            <iframe src="https://www.youtube-nocookie.com/embed/MdTt0Mm35_U" title="Acer 915V tietokone" loading="lazy" allowfullscreen sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
           </div>
         </div>
         <div class="col-md-4">
           <p class="bbs-video-label"><i class="bi bi-play-circle-fill me-1"></i>Modeemin äänet</p>
           <div class="bbs-video-wrap">
-            <iframe src="https://www.youtube-nocookie.com/embed/ckc6XSSh52w" title="Modeemin äänet" loading="lazy" allowfullscreen></iframe>
+            <iframe src="https://www.youtube-nocookie.com/embed/ckc6XSSh52w" title="Modeemin äänet" loading="lazy" allowfullscreen sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
           </div>
           <p class="bbs-caption">Meidän kotimme äänimaisemaa 90-luvun taitteesta.</p>
         </div>
         <div class="col-md-4">
           <p class="bbs-video-label"><i class="bi bi-play-circle-fill me-1"></i>BBS — "Facebook ennen vanhaan"</p>
           <div class="bbs-video-wrap">
-            <iframe src="https://www.youtube-nocookie.com/embed/JWdr4zeE3JU" title="Mikä on BBS" loading="lazy" allowfullscreen></iframe>
+            <iframe src="https://www.youtube-nocookie.com/embed/JWdr4zeE3JU" title="Mikä on BBS" loading="lazy" allowfullscreen sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
           </div>
           <p class="bbs-caption">Tämmöisiä pyöritin myös minä kotonani vanhempien suureksi ihmetykseksi.</p>
         </div>
@@ -165,7 +165,7 @@ source_url: "https://www.jarilaru.fi/silloin-kun-sita-oltiin-larges-securityn-sy
           <div class="mt-3">
             <p class="bbs-video-label"><i class="bi bi-play-circle-fill me-1"></i>Mikä oli SysOpin ja käyttäjän ero?</p>
             <div class="bbs-video-wrap">
-              <iframe src="https://www.youtube-nocookie.com/embed/-qjDzrDF67s" title="SysOp vs käyttäjä" loading="lazy" allowfullscreen></iframe>
+              <iframe src="https://www.youtube-nocookie.com/embed/-qjDzrDF67s" title="SysOp vs käyttäjä" loading="lazy" allowfullscreen sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
             </div>
           </div>
         </div>
@@ -197,7 +197,7 @@ source_url: "https://www.jarilaru.fi/silloin-kun-sita-oltiin-larges-securityn-sy
           <p>BBS-harrastus ei ollut pelkkää keskustelua ja tiedostojen vaihtamista, vaan myös <strong>taidetta tehtiin</strong>. MBBS:n lisäksi ehdin kokeilla muitakin BBS-softia: QuickBBS, Maximus, Opus, RemoteAccess, SuperBBS. FrontDoor FidoNET-viestienvälittäjänä palveli uskollisesti vuosikausia. Myös <strong>TheDraw-ansigrafiikan</strong> piirto-ohjelma aiheutti monelle soittajalle ongelmia, sillä BBS-systeemini oli koristeltu makeasti ANSI-animaatioilla.</p>
           <p class="bbs-video-label"><i class="bi bi-play-circle-fill me-1"></i>Mikä ihmeen Fidonet?</p>
           <div class="bbs-video-wrap">
-            <iframe src="https://www.youtube-nocookie.com/embed/Ng0NE4lDP2U" title="Mikä on Fidonet" loading="lazy" allowfullscreen></iframe>
+            <iframe src="https://www.youtube-nocookie.com/embed/Ng0NE4lDP2U" title="Mikä on Fidonet" loading="lazy" allowfullscreen sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
           </div>
         </div>
       </div>
@@ -207,7 +207,7 @@ source_url: "https://www.jarilaru.fi/silloin-kun-sita-oltiin-larges-securityn-sy
         <div class="col-md-4">
           <p class="bbs-video-label"><i class="bi bi-play-circle-fill me-1"></i>ANSI-taide</p>
           <div class="bbs-video-wrap">
-            <iframe src="https://www.youtube-nocookie.com/embed/oQrBbm5ZMlo" title="ANSI-taide BBS-kulttuurissa" loading="lazy" allowfullscreen></iframe>
+            <iframe src="https://www.youtube-nocookie.com/embed/oQrBbm5ZMlo" title="ANSI-taide BBS-kulttuurissa" loading="lazy" allowfullscreen sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
           </div>
         </div>
         <div class="col-md-4">
@@ -240,7 +240,7 @@ source_url: "https://www.jarilaru.fi/silloin-kun-sita-oltiin-larges-securityn-sy
       <div class="mt-4">
         <p class="bbs-video-label"><i class="bi bi-play-circle-fill me-1"></i>Kuinka Internet lopulta tappoi BBS-kulttuurin</p>
         <div class="bbs-video-wrap">
-          <iframe src="https://www.youtube-nocookie.com/embed/YTBImnpUBUw" title="Internet tappoi BBS:n" loading="lazy" allowfullscreen></iframe>
+          <iframe src="https://www.youtube-nocookie.com/embed/YTBImnpUBUw" title="Internet tappoi BBS:n" loading="lazy" allowfullscreen sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
         </div>
         <p class="bbs-caption">BBS Documentary sarjassa muistellaan kuinka Internet lopulta tappoi BBS-kulttuurin. Niin kävi minullekin — vaikka lopetin myös resurssien puutteeseen.</p>
       </div>
