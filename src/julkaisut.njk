@@ -84,12 +84,14 @@ translationKey: publications_index
       <!-- Julkaisut vuosittain -->
       <div class="col-lg-6">
         <div class="card border-0 shadow-sm h-100">
-          <div class="card-body">
+          <div class="card-body d-flex flex-column">
             <div class="d-flex justify-content-between align-items-start mb-3">
               <h2 class="h6 text-uppercase text-muted fw-bold mb-0" id="yearChartHeading"><i class="bi bi-bar-chart-fill me-2"></i>Julkaisut & viittaukset vuosittain</h2>
               <button class="btn btn-sm btn-link p-0 chart-zoom-btn" data-zoom-target="yearChart" data-zoom-title="Julkaisut & viittaukset vuosittain" title="Suurenna"><i class="bi bi-fullscreen"></i></button>
             </div>
-            <canvas id="yearChart" height="200"></canvas>
+            <div style="position:relative; flex:1; min-height:160px;">
+              <canvas id="yearChart"></canvas>
+            </div>
           </div>
         </div>
       </div>
@@ -102,7 +104,7 @@ translationKey: publications_index
               <h2 class="h6 text-uppercase text-muted fw-bold mb-0"><i class="bi bi-pie-chart-fill me-2"></i>Julkaisutyypit</h2>
               <button class="btn btn-sm btn-link p-0 chart-zoom-btn" data-zoom-target="typeChart" data-zoom-title="Julkaisutyypit" title="Suurenna"><i class="bi bi-fullscreen"></i></button>
             </div>
-            <div style="position:relative; height:180px;">
+            <div style="position:relative; flex:1; min-height:160px;">
               <canvas id="typeChart"></canvas>
             </div>
           </div>
@@ -117,7 +119,7 @@ translationKey: publications_index
               <h2 class="h6 text-uppercase text-muted fw-bold mb-0"><i class="bi bi-unlock-fill me-2"></i>Laatuindikaattorit</h2>
               <button class="btn btn-sm btn-link p-0 chart-zoom-btn" data-zoom-target="qualityChart" data-zoom-title="Laatuindikaattorit" title="Suurenna"><i class="bi bi-fullscreen"></i></button>
             </div>
-            <div style="position:relative; height:180px;">
+            <div style="position:relative; flex:1; min-height:160px;">
               <canvas id="qualityChart"></canvas>
             </div>
           </div>
@@ -895,6 +897,7 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     options: {
       responsive: true,
+      maintainAspectRatio: false,
       plugins: { legend: { position: 'top', labels: { boxWidth: 12, font: { size: 10 } } } },
       scales: {
         y: { beginAtZero: true, ticks: { stepSize: 1 }, title: { display: true, text: 'Julkaisut', font: { size: 10 } } },
