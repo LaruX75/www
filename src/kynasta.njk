@@ -129,17 +129,32 @@ translationKey: writings_index
           </div>
         </div>
 
-        <div class="row g-4">
-          <div class="col-lg-4">
-            <h3 class="h6 text-muted mb-2">Sisältöjen jakauma</h3>
-            <div class="chart-wrap">
-              <canvas id="kynasta-summary-donut" height="260"></canvas>
+        <!-- Mobiilinapauttaja kaavioille — piilotetaan lg+ näytöillä -->
+        <div class="d-lg-none mt-3">
+          <button class="btn btn-outline-secondary w-100 d-flex justify-content-between align-items-center"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#kynastaChartsDashboard"
+                  aria-expanded="false"
+                  aria-controls="kynastaChartsDashboard">
+            <span><i class="bi bi-bar-chart-fill me-2"></i>Tilastografiikka</span>
+            <i class="bi bi-chevron-down kynasta-chevron"></i>
+          </button>
+        </div>
+
+        <div class="collapse d-lg-block" id="kynastaChartsDashboard">
+          <div class="row g-4 mt-0">
+            <div class="col-lg-4">
+              <h3 class="h6 text-muted mb-2">Sisältöjen jakauma</h3>
+              <div class="chart-wrap">
+                <canvas id="kynasta-summary-donut" height="260"></canvas>
+              </div>
             </div>
-          </div>
-          <div class="col-lg-8">
-            <h3 class="h6 text-muted mb-2">Sisällöt vuosittain</h3>
-            <div class="chart-wrap">
-              <canvas id="kynasta-summary-trend" height="260"></canvas>
+            <div class="col-lg-8">
+              <h3 class="h6 text-muted mb-2">Sisällöt vuosittain</h3>
+              <div class="chart-wrap">
+                <canvas id="kynasta-summary-trend" height="260"></canvas>
+              </div>
             </div>
           </div>
         </div>
@@ -741,6 +756,10 @@ translationKey: writings_index
 </section>
 
 <style>
+/* ---- Tilastografiikka-accordion mobiilissa ---- */
+.kynasta-chevron { transition: transform .25s ease; }
+[aria-expanded="true"] .kynasta-chevron { transform: rotate(180deg); }
+
 /* ---- Kynasta hero: dark navy in dark theme ---- */
 .kynasta-hero {
   background-color: #0f172a;
@@ -1034,7 +1053,7 @@ section[id] {
 
     const donutCanvas = document.getElementById('kynasta-summary-donut');
     if (donutCanvas) {
-      new Chart(donutCanvas, {
+      window._kynastaDonutChart = new Chart(donutCanvas, {
         type: 'doughnut',
         data: {
           labels,
@@ -1056,7 +1075,7 @@ section[id] {
         borderColor: color,
         borderWidth: 1
       });
-      new Chart(trendCanvas, {
+      window._kynastaTrendChart = new Chart(trendCanvas, {
         type: 'bar',
         data: {
           labels: years,
@@ -1093,6 +1112,19 @@ section[id] {
       retries += 1;
       if (drawCharts() || retries > 20) clearInterval(timer);
     }, 150);
+  }
+
+  // Mobiili-accordion: resize kaaviot kun collapse aukeaa
+  const kynastaCollapseEl = document.getElementById('kynastaChartsDashboard');
+  if (kynastaCollapseEl) {
+    kynastaCollapseEl.addEventListener('shown.bs.collapse', () => {
+      [window._kynastaDonutChart, window._kynastaTrendChart].forEach(c => c && c.resize());
+    });
+    const kynastaToggleBtn = document.querySelector('[data-bs-target="#kynastaChartsDashboard"]');
+    if (kynastaToggleBtn) {
+      kynastaCollapseEl.addEventListener('show.bs.collapse', () => kynastaToggleBtn.setAttribute('aria-expanded', 'true'));
+      kynastaCollapseEl.addEventListener('hide.bs.collapse', () => kynastaToggleBtn.setAttribute('aria-expanded', 'false'));
+    }
   }
 })();
 
