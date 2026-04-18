@@ -40,7 +40,7 @@ def find_keywords(text):
     # Strategy 1: label at line start, optional colon, keywords on same line
     # e.g. "Avainsanat: tunnetaidot, ..." or "Asiasanat 21st century skills, ..."
     m = re.search(
-        r'(?m)^[ \t]*(?:Avainsanat|Asiasanat|Keywords|Nyckelord)[ \t]*:?[ \t]+(.+)',
+        r'(?m)^[ \t]*(?:Avainsanat|Asiasanat|Keywords?|Nyckelord)(?:[/ ]+(?:Avainsanat|Asiasanat|Keywords?|Nyckelord))*[ \t]*:?[ \t]+(.+)',
         text,
         re.IGNORECASE
     )
@@ -57,7 +57,7 @@ def find_keywords(text):
     # Strategy 2: label alone on a line, keywords on the next non-empty line
     # e.g. "Keywords\n\nSocial media, networked learning, ..."
     m = re.search(
-        r'(?m)^[ \t]*(?:Avainsanat|Asiasanat|Keywords|Nyckelord)[ \t]*:?[ \t]*$',
+        r'(?m)^[ \t]*(?:Avainsanat|Asiasanat|Keywords?|Nyckelord)(?:[/ ]+(?:Avainsanat|Asiasanat|Keywords?|Nyckelord))*[ \t]*:?[ \t]*$',
         text,
         re.IGNORECASE
     )
