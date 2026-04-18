@@ -864,6 +864,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function applyFilters() {
+      rows = Array.from(tbody.querySelectorAll('tr'));
       const q = (searchInput?.value || '').toLowerCase();
       const coauthorNeedle = activeCoauthor.toLowerCase();
       filteredRows = rows.filter(row => {
@@ -881,11 +882,9 @@ document.addEventListener('DOMContentLoaded', function() {
     tableFilterRefreshers.push(applyFilters);
     applyFilters();
 
-    // Kun table-filters.js lajittelee DOM-rivit uudelleen, päivitetään
-    // rows-taulukko uuteen järjestykseen ja renderoidaan nykyinen sivu uudelleen.
-    // Näin sivutus kunnioittaa valittua lajittelujärjestystä.
+    // Kun table-filters.js lajittelee DOM-rivit uudelleen, kutsutaan applyFilters,
+    // joka lukee rivit aina tuoreena DOM:sta (rows päivitetään applyFilters-alussa).
     new MutationObserver(() => {
-      rows = Array.from(tbody.querySelectorAll('tr'));
       applyFilters();
     }).observe(tbody, { childList: true });
   }
@@ -1110,8 +1109,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const coauthorTableWrap = document.getElementById('coauthorTableWrap');
   if (coauthorFadeOverlay && coauthorTableWrap) {
     coauthorFadeOverlay.addEventListener('click', () => {
-      coauthorTableWrap.style.maxHeight = '';
-      coauthorTableWrap.style.overflow = '';
+      coauthorTableWrap.style.maxHeight = 'none';
+      coauthorTableWrap.style.overflow = 'visible';
       coauthorFadeOverlay.style.display = 'none';
     });
   }
