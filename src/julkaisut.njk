@@ -149,11 +149,16 @@ translationKey: publications_index
       <div class="col-lg-6">
         <div class="card border-0 shadow-sm h-100" id="coauthorCard">
           <div class="card-body">
-            <h2 class="h6 text-uppercase text-muted fw-bold mb-3"><i class="bi bi-people-fill me-2"></i>Top 10 kanssatutkijaa</h2>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h2 class="h6 text-uppercase text-muted fw-bold mb-0"><i class="bi bi-people-fill me-2"></i>Top 10 kanssatutkijaa</h2>
+              <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-2 py-0" id="coauthorSortBtn" title="Vaihda järjestystä">
+                <i class="bi bi-sort-down me-1"></i><span id="coauthorSortLabel">Eniten ensin</span>
+              </button>
+            </div>
             <div id="coauthorFilterStatus" class="small mb-2 visually-hidden" role="status" aria-live="polite" aria-atomic="true"></div>
             <div class="coauthor-table-wrap" id="coauthorTableWrap">
               <div class="table-responsive">
-                <table class="table table-sm table-hover align-middle mb-0 pub-table" id="coauthorTable">
+                <table class="table table-sm table-hover align-middle mb-0 pub-table" id="coauthorTable" data-no-header-filters>
                   <thead><tr><th>Tutkija</th><th class="text-end">Yhteisjulkaisut</th></tr></thead>
                   <tbody></tbody>
                 </table>
@@ -1102,6 +1107,36 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   if (initialCoauthor) {
     setCoauthorFilter(initialCoauthor);
+  }
+
+  // Kanssatutkijat-kortti: lajittelupainike (Eniten ensin ↔ A–Ö)
+  const coauthorSortBtn = document.getElementById('coauthorSortBtn');
+  const coauthorSortLabel = document.getElementById('coauthorSortLabel');
+  const coauthorTbody = document.querySelector('#coauthorTable tbody');
+  let coauthorSortMode = 'count'; // 'count' | 'alpha'
+  if (coauthorSortBtn && coauthorTbody) {
+    coauthorSortBtn.addEventListener('click', () => {
+      coauthorSortMode = coauthorSortMode === 'count' ? 'alpha' : 'count';
+      const rows = Array.from(coauthorTbody.querySelectorAll('tr'));
+      if (coauthorSortMode === 'alpha') {
+        rows.sort((a, b) => {
+          const aName = a.querySelector('[data-coauthor]')?.dataset.coauthor || '';
+          const bName = b.querySelector('[data-coauthor]')?.dataset.coauthor || '';
+          return new Intl.Collator('fi').compare(aName, bName);
+        });
+        coauthorSortLabel.textContent = 'A–Ö';
+        coauthorSortBtn.querySelector('i').className = 'bi bi-sort-alpha-down me-1';
+      } else {
+        rows.sort((a, b) => {
+          const aCount = parseInt(a.cells[1]?.textContent || '0', 10);
+          const bCount = parseInt(b.cells[1]?.textContent || '0', 10);
+          return bCount - aCount;
+        });
+        coauthorSortLabel.textContent = 'Eniten ensin';
+        coauthorSortBtn.querySelector('i').className = 'bi bi-sort-down me-1';
+      }
+      rows.forEach(r => coauthorTbody.appendChild(r));
+    });
   }
 
   // Kanssatutkijat-kortti: häivytys + expand
