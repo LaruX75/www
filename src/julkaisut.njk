@@ -44,9 +44,10 @@ translationKey: publications_index
   .card:hover .chart-zoom-btn { opacity: 1; }
 
   /* Kanssatutkijat-kortti: häivytys oletuksena, avautuu klikkaamalla */
-  #coauthorCard .card-body {
-    overflow: hidden;
+  .coauthor-table-wrap {
     position: relative;
+    max-height: 200px;
+    overflow: hidden;
   }
   .coauthor-fade-overlay {
     position: absolute;
@@ -150,16 +151,18 @@ translationKey: publications_index
           <div class="card-body">
             <h2 class="h6 text-uppercase text-muted fw-bold mb-3"><i class="bi bi-people-fill me-2"></i>Top 10 kanssatutkijaa</h2>
             <div id="coauthorFilterStatus" class="small mb-2 visually-hidden" role="status" aria-live="polite" aria-atomic="true"></div>
-            <div class="table-responsive">
-              <table class="table table-sm table-hover align-middle mb-0 pub-table" id="coauthorTable">
-                <thead><tr><th>Tutkija</th><th class="text-end">Yhteisjulkaisut</th></tr></thead>
-                <tbody></tbody>
-              </table>
-            </div>
-            <div class="coauthor-fade-overlay" id="coauthorFadeOverlay">
-              <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3">
-                <i class="bi bi-chevron-down me-1"></i>Näytä kaikki
-              </button>
+            <div class="coauthor-table-wrap" id="coauthorTableWrap">
+              <div class="table-responsive">
+                <table class="table table-sm table-hover align-middle mb-0 pub-table" id="coauthorTable">
+                  <thead><tr><th>Tutkija</th><th class="text-end">Yhteisjulkaisut</th></tr></thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+              <div class="coauthor-fade-overlay" id="coauthorFadeOverlay">
+                <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3">
+                  <i class="bi bi-chevron-down me-1"></i>Näytä kaikki
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -1104,18 +1107,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Kanssatutkijat-kortti: häivytys + expand
   const coauthorFadeOverlay = document.getElementById('coauthorFadeOverlay');
-  const coauthorCard = document.getElementById('coauthorCard');
-  if (coauthorFadeOverlay && coauthorCard) {
-    const cardBody = coauthorCard.querySelector('.card-body');
-    // Tarkistetaan onko sisältö lyhyempää kuin kortti → piilotetaan fade tarvittaessa
-    requestAnimationFrame(() => {
-      if (cardBody.scrollHeight <= cardBody.clientHeight + 20) {
-        coauthorFadeOverlay.style.display = 'none';
-      }
-    });
+  const coauthorTableWrap = document.getElementById('coauthorTableWrap');
+  if (coauthorFadeOverlay && coauthorTableWrap) {
     coauthorFadeOverlay.addEventListener('click', () => {
-      cardBody.style.overflow = '';
-      coauthorCard.classList.remove('h-100');
+      coauthorTableWrap.style.maxHeight = '';
+      coauthorTableWrap.style.overflow = '';
       coauthorFadeOverlay.style.display = 'none';
     });
   }
