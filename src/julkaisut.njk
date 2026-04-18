@@ -46,18 +46,18 @@ translationKey: publications_index
       <div class="col-lg-6">
         <div class="card border-0 shadow-sm h-100">
           <div class="card-body">
-            <h2 class="h6 text-uppercase text-muted fw-bold mb-3"><i class="bi bi-bar-chart-fill me-2"></i>Julkaisut & viittaukset vuosittain</h2>
+            <h2 class="h6 text-uppercase text-muted fw-bold mb-3" id="yearChartHeading"><i class="bi bi-bar-chart-fill me-2"></i>Julkaisut & viittaukset vuosittain</h2>
             <canvas id="yearChart" height="200"></canvas>
           </div>
         </div>
       </div>
 
       <!-- Julkaisutyypit -->
-      <div class="col-lg-3 col-md-6">
+      <div class="col-lg-6 col-md-6">
         <div class="card border-0 shadow-sm h-100">
           <div class="card-body d-flex flex-column">
             <h2 class="h6 text-uppercase text-muted fw-bold mb-3"><i class="bi bi-pie-chart-fill me-2"></i>Julkaisutyypit</h2>
-            <div style="position:relative; height:220px;">
+            <div style="position:relative; flex:1; min-height:280px;">
               <canvas id="typeChart"></canvas>
             </div>
           </div>
@@ -65,11 +65,11 @@ translationKey: publications_index
       </div>
 
       <!-- Open Access & Vertaisarvioitu -->
-      <div class="col-lg-3 col-md-6">
+      <div class="col-lg-6 col-md-6">
         <div class="card border-0 shadow-sm h-100">
           <div class="card-body d-flex flex-column">
             <h2 class="h6 text-uppercase text-muted fw-bold mb-3"><i class="bi bi-unlock-fill me-2"></i>Laatuindikaattorit</h2>
-            <div style="position:relative; height:220px;">
+            <div style="position:relative; flex:1; min-height:280px;">
               <canvas id="qualityChart"></canvas>
             </div>
           </div>
@@ -93,7 +93,7 @@ translationKey: publications_index
       </div>
 
       <!-- Aihepiirijakauma -->
-      <div class="col-lg-6">
+      <div class="col-12">
         <div class="card border-0 shadow-sm h-100">
           <div class="card-body">
             <h2 class="h6 text-uppercase text-muted fw-bold mb-3"><i class="bi bi-tags-fill me-2"></i>Avainsanat (otsikoista)</h2>
@@ -386,10 +386,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const totalEl = document.getElementById('dynamicTotalCitations');
     totalEl.textContent = verifiedTotalCitations + ' viittausta';
     totalEl.classList.remove('d-none');
-    
+
     const hEl = document.getElementById('dynamicHIndex');
     hEl.textContent = 'h-indeksi ' + verifiedHIndex;
     hEl.classList.remove('d-none');
+
+    const headingEl = document.getElementById('yearChartHeading');
+    if (headingEl) {
+      headingEl.innerHTML = headingEl.innerHTML + ' <span class="fw-normal text-secondary">(' + verifiedTotalCitations + ' viittausta)</span>';
+    }
   }
 
   const isDark = document.documentElement.getAttribute('data-bs-theme') === 'dark';
@@ -877,7 +882,7 @@ document.addEventListener('DOMContentLoaded', function() {
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
-        legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } }
+        legend: { position: 'right', labels: { boxWidth: 12, font: { size: 11 }, padding: 8 } }
       }
     }
   });
@@ -905,7 +910,7 @@ document.addEventListener('DOMContentLoaded', function() {
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
-        legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } }
+        legend: { position: 'right', labels: { boxWidth: 12, font: { size: 11 }, padding: 8 } }
       }
     }
   });

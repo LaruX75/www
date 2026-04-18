@@ -37,10 +37,10 @@ def collect_keyword_lines(text, start_pos):
 
 
 def find_keywords(text):
-    # Strategy 1: label at line start with colon, keywords on same line
-    # e.g. "Avainsanat: tunnetaidot, tunneäly, ..."
+    # Strategy 1: label at line start, optional colon, keywords on same line
+    # e.g. "Avainsanat: tunnetaidot, ..." or "Asiasanat 21st century skills, ..."
     m = re.search(
-        r'(?m)^[ \t]*(?:Avainsanat|Asiasanat|Keywords|Nyckelord)[ \t]*:[ \t]*(.+)',
+        r'(?m)^[ \t]*(?:Avainsanat|Asiasanat|Keywords|Nyckelord)[ \t]*:?[ \t]+(.+)',
         text,
         re.IGNORECASE
     )
