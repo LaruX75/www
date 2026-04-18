@@ -766,8 +766,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!table) return;
 
     const tbody = table.querySelector('tbody');
-    const rows = Array.from(tbody.querySelectorAll('tr'));
-    
+    let rows = Array.from(tbody.querySelectorAll('tr'));
+
       // 5. Build Pagination UI
       let paginationNav = tableContainer.querySelector('.pub-pagination');
       if (!paginationNav) {
@@ -854,6 +854,14 @@ document.addEventListener('DOMContentLoaded', function() {
     if (searchInput) searchInput.addEventListener('input', applyFilters);
     tableFilterRefreshers.push(applyFilters);
     applyFilters();
+
+    // Kun table-filters.js lajittelee DOM-rivit uudelleen, päivitetään
+    // rows-taulukko uuteen järjestykseen ja renderoidaan nykyinen sivu uudelleen.
+    // Näin sivutus kunnioittaa valittua lajittelujärjestystä.
+    new MutationObserver(() => {
+      rows = Array.from(tbody.querySelectorAll('tr'));
+      applyFilters();
+    }).observe(tbody, { childList: true });
   }
 
   ['pub-table-a', 'pub-table-b', 'pub-table-c', 'pub-table-d', 'pub-table-e', 'pub-table-g'].forEach(initPubPagination);
