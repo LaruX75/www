@@ -40,7 +40,26 @@ translationKey: publications_index
 <style>
   .analytics-chevron { transition: transform .25s ease; }
   [aria-expanded="true"] .analytics-chevron { transform: rotate(180deg); }
+  .chart-zoom-btn { opacity: 0.4; transition: opacity .15s; }
+  .card:hover .chart-zoom-btn { opacity: 1; }
 </style>
+
+<!-- KAAVION SUURENNOS -MODAL -->
+<div class="modal fade" id="chartZoomModal" tabindex="-1" aria-labelledby="chartZoomModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header py-2">
+        <h5 class="modal-title h6" id="chartZoomModalLabel"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Sulje"></button>
+      </div>
+      <div class="modal-body">
+        <div style="position:relative; height:500px;">
+          <canvas id="zoomCanvas"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ANALYTIIKKA-DASHBOARD -->
 <section class="py-4 bg-body-tertiary">
@@ -66,18 +85,24 @@ translationKey: publications_index
       <div class="col-lg-6">
         <div class="card border-0 shadow-sm h-100">
           <div class="card-body">
-            <h2 class="h6 text-uppercase text-muted fw-bold mb-3" id="yearChartHeading"><i class="bi bi-bar-chart-fill me-2"></i>Julkaisut & viittaukset vuosittain</h2>
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <h2 class="h6 text-uppercase text-muted fw-bold mb-0" id="yearChartHeading"><i class="bi bi-bar-chart-fill me-2"></i>Julkaisut & viittaukset vuosittain</h2>
+              <button class="btn btn-sm btn-link p-0 chart-zoom-btn" data-zoom-target="yearChart" data-zoom-title="Julkaisut & viittaukset vuosittain" title="Suurenna"><i class="bi bi-fullscreen"></i></button>
+            </div>
             <canvas id="yearChart" height="200"></canvas>
           </div>
         </div>
       </div>
 
       <!-- Julkaisutyypit -->
-      <div class="col-lg-6 col-md-6">
+      <div class="col-lg-3 col-md-6">
         <div class="card border-0 shadow-sm h-100">
           <div class="card-body d-flex flex-column">
-            <h2 class="h6 text-uppercase text-muted fw-bold mb-3"><i class="bi bi-pie-chart-fill me-2"></i>Julkaisutyypit</h2>
-            <div style="position:relative; flex:1; min-height:280px;">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <h2 class="h6 text-uppercase text-muted fw-bold mb-0"><i class="bi bi-pie-chart-fill me-2"></i>Julkaisutyypit</h2>
+              <button class="btn btn-sm btn-link p-0 chart-zoom-btn" data-zoom-target="typeChart" data-zoom-title="Julkaisutyypit" title="Suurenna"><i class="bi bi-fullscreen"></i></button>
+            </div>
+            <div style="position:relative; height:180px;">
               <canvas id="typeChart"></canvas>
             </div>
           </div>
@@ -85,11 +110,14 @@ translationKey: publications_index
       </div>
 
       <!-- Open Access & Vertaisarvioitu -->
-      <div class="col-lg-6 col-md-6">
+      <div class="col-lg-3 col-md-6">
         <div class="card border-0 shadow-sm h-100">
           <div class="card-body d-flex flex-column">
-            <h2 class="h6 text-uppercase text-muted fw-bold mb-3"><i class="bi bi-unlock-fill me-2"></i>Laatuindikaattorit</h2>
-            <div style="position:relative; flex:1; min-height:280px;">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <h2 class="h6 text-uppercase text-muted fw-bold mb-0"><i class="bi bi-unlock-fill me-2"></i>Laatuindikaattorit</h2>
+              <button class="btn btn-sm btn-link p-0 chart-zoom-btn" data-zoom-target="qualityChart" data-zoom-title="Laatuindikaattorit" title="Suurenna"><i class="bi bi-fullscreen"></i></button>
+            </div>
+            <div style="position:relative; height:180px;">
               <canvas id="qualityChart"></canvas>
             </div>
           </div>
@@ -113,7 +141,7 @@ translationKey: publications_index
       </div>
 
       <!-- Aihepiirijakauma -->
-      <div class="col-12">
+      <div class="col-lg-6">
         <div class="card border-0 shadow-sm h-100">
           <div class="card-body">
             <h2 class="h6 text-uppercase text-muted fw-bold mb-3"><i class="bi bi-tags-fill me-2"></i>Avainsanat (otsikoista)</h2>
@@ -903,7 +931,7 @@ document.addEventListener('DOMContentLoaded', function() {
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
-        legend: { position: 'right', labels: { boxWidth: 12, font: { size: 11 }, padding: 8 } }
+        legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 }, padding: 6 } }
       }
     }
   });
@@ -931,7 +959,7 @@ document.addEventListener('DOMContentLoaded', function() {
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
-        legend: { position: 'right', labels: { boxWidth: 12, font: { size: 11 }, padding: 8 } }
+        legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 }, padding: 6 } }
       }
     }
   });
@@ -949,6 +977,62 @@ document.addEventListener('DOMContentLoaded', function() {
       analyticsDashEl.addEventListener('hide.bs.collapse', () => toggleBtn.setAttribute('aria-expanded', 'false'));
     }
   }
+
+  // KAAVION SUURENNOS (zoom modal)
+  const chartInstances = { yearChart: yearChartInst, typeChart: typeChartInst, qualityChart: qualityChartInst };
+  let zoomChartInst = null;
+  const zoomModalEl = document.getElementById('chartZoomModal');
+  const zoomModalLabel = document.getElementById('chartZoomModalLabel');
+
+  function openZoomModal(sourceId, title) {
+    const source = chartInstances[sourceId];
+    if (!source) return;
+    zoomModalLabel.textContent = title;
+    const bsModal = bootstrap.Modal.getOrCreateInstance(zoomModalEl);
+    bsModal.show();
+  }
+
+  zoomModalEl.addEventListener('shown.bs.modal', function() {
+    const btn = zoomModalEl.querySelector('[data-zoom-active]') ||
+                document.querySelector('.chart-zoom-btn[data-zoom-active]');
+    // Reconstruct from active source id stored on modal
+    const sourceId = zoomModalEl.dataset.activeChart;
+    const source = chartInstances[sourceId];
+    if (!source) return;
+    if (zoomChartInst) { zoomChartInst.destroy(); zoomChartInst = null; }
+    const canvas = document.getElementById('zoomCanvas');
+    // Deep-clone config and enlarge legend
+    const cfg = JSON.parse(JSON.stringify({ type: source.config.type, data: source.config.data, options: source.config.options }));
+    if (cfg.options && cfg.options.plugins && cfg.options.plugins.legend) {
+      cfg.options.plugins.legend.labels = cfg.options.plugins.legend.labels || {};
+      cfg.options.plugins.legend.labels.font = { size: 13 };
+      cfg.options.plugins.legend.labels.padding = 14;
+      cfg.options.plugins.legend.labels.boxWidth = 14;
+    }
+    zoomChartInst = new Chart(canvas, cfg);
+  });
+
+  zoomModalEl.addEventListener('hidden.bs.modal', function() {
+    if (zoomChartInst) { zoomChartInst.destroy(); zoomChartInst = null; }
+  });
+
+  // Sidotaan zoom-napit ja koko canvas-alue
+  document.querySelectorAll('.chart-zoom-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const sourceId = this.dataset.zoomTarget;
+      const title = this.dataset.zoomTitle;
+      zoomModalEl.dataset.activeChart = sourceId;
+      openZoomModal(sourceId, title);
+    });
+  });
+  // Klikki suoraan canvakselle avaa myös zoomin
+  ['yearChart','typeChart','qualityChart'].forEach(id => {
+    const btn = document.querySelector(`.chart-zoom-btn[data-zoom-target="${id}"]`);
+    const canvas = document.getElementById(id);
+    if (canvas && btn) canvas.addEventListener('click', () => btn.click());
+    if (canvas) canvas.style.cursor = 'zoom-in';
+  });
 
   // 4. KANSSATUTKIJAT
   const coauthors = {};
