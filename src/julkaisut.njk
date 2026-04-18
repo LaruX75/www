@@ -37,9 +37,29 @@ translationKey: publications_index
   </div>
 </section>
 
+<style>
+  .analytics-chevron { transition: transform .25s ease; }
+  [aria-expanded="true"] .analytics-chevron { transform: rotate(180deg); }
+</style>
+
 <!-- ANALYTIIKKA-DASHBOARD -->
 <section class="py-4 bg-body-tertiary">
   <div class="container">
+
+    <!-- Mobiilinapauttaja — piilotetaan lg+ näytöillä -->
+    <div class="d-lg-none mb-3">
+      <button class="btn btn-outline-secondary w-100 d-flex justify-content-between align-items-center"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#analyticsDashboard"
+              aria-expanded="false"
+              aria-controls="analyticsDashboard">
+        <span><i class="bi bi-bar-chart-fill me-2"></i>Tilastografiikka</span>
+        <i class="bi bi-chevron-down analytics-chevron"></i>
+      </button>
+    </div>
+
+    <div class="collapse d-lg-block" id="analyticsDashboard">
     <div class="row g-4">
 
       <!-- Julkaisut vuosittain -->
@@ -103,6 +123,7 @@ translationKey: publications_index
       </div>
 
     </div>
+    </div>{# /collapse #}
   </div>
 </section>
 
@@ -821,7 +842,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  new Chart(document.getElementById('yearChart'), {
+  const yearChartInst = new Chart(document.getElementById('yearChart'), {
     type: 'bar',
     data: {
       labels: years,
@@ -868,7 +889,7 @@ document.addEventListener('DOMContentLoaded', function() {
   publications.forEach(p => { typeCounts[p.type] = (typeCounts[p.type]||0)+1; });
   const typeKeys = Object.keys(typeCounts).sort((a,b) => typeCounts[b]-typeCounts[a]);
   const typeColors = ['#0d6efd','#6610f2','#6f42c1','#d63384','#dc3545','#fd7e14','#ffc107','#198754','#20c997','#0dcaf0','#6c757d','#adb5bd','#495057'];
-  new Chart(document.getElementById('typeChart'), {
+  const typeChartInst = new Chart(document.getElementById('typeChart'), {
     type: 'doughnut',
     data: {
       labels: typeKeys.map(k => typeLabels[k]||k),
@@ -896,7 +917,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // "Muu / ei vertaisarvioitu" sisältää sekä OA- että ei-OA-julkaisut.
   const nonPeerReviewed = publications.filter(p => !isPeerReviewed(p.peerReviewed)).length;
   
-  new Chart(document.getElementById('qualityChart'), {
+  const qualityChartInst = new Chart(document.getElementById('qualityChart'), {
     type: 'doughnut',
     data: {
       labels: ['Vertaisarvioitu & OA', 'Vain vertaisarvioitu', 'Muu / ei vertaisarvioitu'],
@@ -914,6 +935,20 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
   });
+
+  // Mobiili-accordion: resize kaaviot kun collapse aukeaa (alustus tapahtuu display:none-tilassa)
+  const analyticsDashEl = document.getElementById('analyticsDashboard');
+  if (analyticsDashEl) {
+    analyticsDashEl.addEventListener('shown.bs.collapse', () => {
+      [yearChartInst, typeChartInst, qualityChartInst].forEach(c => c && c.resize());
+    });
+    // Pyöritetään chevron-ikoni auki/kiinni
+    const toggleBtn = document.querySelector('[data-bs-target="#analyticsDashboard"]');
+    if (toggleBtn) {
+      analyticsDashEl.addEventListener('show.bs.collapse', () => toggleBtn.setAttribute('aria-expanded', 'true'));
+      analyticsDashEl.addEventListener('hide.bs.collapse', () => toggleBtn.setAttribute('aria-expanded', 'false'));
+    }
+  }
 
   // 4. KANSSATUTKIJAT
   const coauthors = {};
