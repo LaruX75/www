@@ -182,6 +182,8 @@
 const state = {
   lang: 'fi',
   docType: 'cv',
+  showJufo: true,
+  showOA:   true,
   cv: {
     sections: {
       personal:    true, education:  true, current_pos: true,
@@ -457,9 +459,32 @@ const CV_SECTIONS = [
   { key:'profiles',    labelFi:'Tutkijaprofiilit',        labelEn:'Research Profiles' },
 ];
 
+function buildMetaToggles() {
+  const lang = state.lang;
+  return `
+  <h6>${lang==='fi'?'Viitetiedot':'Reference details'}</h6>
+  <div class="sb-section">
+    <div class="sb-section-head">
+      <div class="form-check form-switch mb-0" style="flex:1">
+        <input class="form-check-input" type="checkbox" role="switch" id="toggle-jufo" ${state.showJufo?'checked':''}>
+        <label class="form-check-label" for="toggle-jufo">Jufo-taso</label>
+      </div>
+    </div>
+  </div>
+  <div class="sb-section">
+    <div class="sb-section-head">
+      <div class="form-check form-switch mb-0" style="flex:1">
+        <input class="form-check-input" type="checkbox" role="switch" id="toggle-oa" ${state.showOA?'checked':''}>
+        <label class="form-check-label" for="toggle-oa">Avoin saatavuus (OA)</label>
+      </div>
+    </div>
+  </div>`;
+}
+
 function buildSidebarCV() {
   const lang = state.lang;
-  let html = `<h6>${lang==='fi'?'Osiot':'Sections'}</h6>`;
+  let html = buildMetaToggles();
+  html += `<h6>${lang==='fi'?'Osiot':'Sections'}</h6>`;
   for (const sec of CV_SECTIONS) {
     const checked = state.cv.sections[sec.key];
     const label = lang==='fi' ? sec.labelFi : sec.labelEn;
@@ -507,12 +532,13 @@ function getFilteredPubs() {
 
 function buildSidebarPublist() {
   const lang = state.lang;
+  let html = buildMetaToggles();
   const { rf, local } = getFilteredPubs();
   const yearMin = getYearMin(), yearMax = getYearMax();
   const rfByType = groupBy(rf, p => p.typeCode || '');
   const localByType = groupBy(local, p => p.type || '');
 
-  let html = `
+  html += `
   <h6>${lang==='fi'?'Vuosiväli':'Year range'}</h6>
   <div class="sb-section">
     <div class="year-range">
@@ -618,8 +644,8 @@ function renderRef(p, showType=true) {
   if (venue) parts.push(`<span>${venue}.</span>`);
   const badges = [];
   if (showType && p.typeCode) badges.push(`<span class="ref-type">[${esc(p.typeCode)}]</span>`);
-  if (p.jufoLevel!=null) badges.push(`<span class="jufo-badge">Jufo ${esc(p.jufoLevel)}</span>`);
-  if (p.openAccess) badges.push(`<span class="oa-badge">OA</span>`);
+  if (state.showJufo && p.jufoLevel!=null) badges.push(`<span class="jufo-badge">Jufo ${esc(p.jufoLevel)}</span>`);
+  if (state.showOA   && p.openAccess)      badges.push(`<span class="oa-badge">OA</span>`);
   const doi = p.doiUrl ? `<span class="ref-doi"><a href="${esc(p.doiUrl)}">${esc(p.doiUrl)}</a></span>` : '';
   return `<div class="doc-ref">${parts.join(' ')} ${doi} ${badges.join(' ')}</div>`;
 }
@@ -816,6 +842,12 @@ function renderAll() {
    SIDEBAR EVENTS
 ═══════════════════════════════════════════════════════════════ */
 function bindSidebarEvents() {
+  // Jufo / OA meta toggles
+  const tJufo = document.getElementById('toggle-jufo');
+  const tOA   = document.getElementById('toggle-oa');
+  if (tJufo) tJufo.addEventListener('change', () => { state.showJufo = tJufo.checked; document.getElementById('preview-inner').innerHTML = state.docType==='cv' ? renderCV() : renderPublist(); });
+  if (tOA)   tOA.addEventListener('change',   () => { state.showOA   = tOA.checked;   document.getElementById('preview-inner').innerHTML = state.docType==='cv' ? renderCV() : renderPublist(); });
+
   // CV section toggles
   document.querySelectorAll('[data-cv-section]').forEach(el => {
     el.addEventListener('change', () => {
