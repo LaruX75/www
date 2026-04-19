@@ -26,6 +26,8 @@ collections:
       - { label: "Kuva", name: "thumbnail", widget: "image", required: false }
       - { label: "Kategoriat", name: "categories", widget: "list", required: false }
       - { label: "Avainsanat", name: "keywords", widget: "list", required: false }
+      - { name: "wp_id", widget: "hidden", required: false }
+      - { name: "templateEngineOverride", widget: "hidden", required: false }
       - { label: "Sisältö", name: "body", widget: "markdown" }
 
   - name: "publications"
@@ -55,6 +57,10 @@ collections:
       - { label: "Tapahtuma", name: "event", widget: "string", required: false, hint: "Puheen tai esitelmän tapahtuma" }
       - { label: "Kuvaus", name: "description", widget: "text", required: false }
       - { label: "Linkki", name: "url", widget: "string", required: false }
+      - { label: "Alkuperäinen lähde-URL", name: "source_url", widget: "string", required: false }
+      - { label: "Avainsanat/tunnisteet", name: "tags", widget: "list", required: false }
+      - { name: "wp_id", widget: "hidden", required: false }
+      - { name: "templateEngineOverride", widget: "hidden", required: false }
       - { label: "Sisältö", name: "body", widget: "markdown", required: false }
 
   - name: "politics"
@@ -80,6 +86,8 @@ collections:
             value: "muu"
       - { label: "Kuvaus", name: "description", widget: "text", required: false }
       - { label: "Linkki", name: "url", widget: "string", required: false }
+      - { name: "wp_id", widget: "hidden", required: false }
+      - { name: "templateEngineOverride", widget: "hidden", required: false }
       - { label: "Sisältö", name: "body", widget: "markdown", required: false }
 
   - name: "training"
