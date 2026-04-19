@@ -151,9 +151,14 @@ translationKey: publications_index
           <div class="card-body">
             <div class="d-flex justify-content-between align-items-center mb-3">
               <h2 class="h6 text-uppercase text-muted fw-bold mb-0"><i class="bi bi-people-fill me-2"></i>Top 10 kanssatutkijaa</h2>
-              <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-2 py-0" id="coauthorSortBtn" title="Vaihda järjestystä">
-                <i class="bi bi-sort-down me-1"></i><span id="coauthorSortLabel">Julkaisuja ↓</span>
-              </button>
+              <div class="d-flex gap-1">
+                <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-2 py-0" id="coauthorSortAlpha" title="Lajittele nimen mukaan">
+                  A–Ö <i class="bi bi-arrow-down"></i>
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-2 py-0 active" id="coauthorSortCount" title="Lajittele julkaisumäärän mukaan">
+                  Määrä <i class="bi bi-arrow-down"></i>
+                </button>
+              </div>
             </div>
             <div id="coauthorFilterStatus" class="small mb-2 visually-hidden" role="status" aria-live="polite" aria-atomic="true"></div>
             <div class="coauthor-table-wrap" id="coauthorTableWrap">
@@ -1109,33 +1114,53 @@ document.addEventListener('DOMContentLoaded', function() {
     setCoauthorFilter(initialCoauthor);
   }
 
-  // Kanssatutkijat-kortti: lajittelupainike (Eniten ensin ↔ A–Ö)
-  const coauthorSortBtn = document.getElementById('coauthorSortBtn');
-  const coauthorSortLabel = document.getElementById('coauthorSortLabel');
+  // Kanssatutkijat-kortti: kaksi lajittelupainiketta (A–Ö ja Määrä)
   const coauthorTbody = document.querySelector('#coauthorTable tbody');
-  let coauthorSortMode = 'count'; // 'count' | 'alpha'
-  if (coauthorSortBtn && coauthorTbody) {
-    coauthorSortBtn.addEventListener('click', () => {
-      coauthorSortMode = coauthorSortMode === 'count' ? 'alpha' : 'count';
-      const rows = Array.from(coauthorTbody.querySelectorAll('tr'));
-      if (coauthorSortMode === 'alpha') {
-        rows.sort((a, b) => {
-          const aName = a.querySelector('[data-coauthor]')?.dataset.coauthor || '';
-          const bName = b.querySelector('[data-coauthor]')?.dataset.coauthor || '';
-          return new Intl.Collator('fi').compare(aName, bName);
-        });
-        coauthorSortLabel.textContent = 'A–Ö';
-        coauthorSortBtn.querySelector('i').className = 'bi bi-sort-alpha-down me-1';
-      } else {
-        rows.sort((a, b) => {
-          const aCount = parseInt(a.cells[1]?.textContent || '0', 10);
-          const bCount = parseInt(b.cells[1]?.textContent || '0', 10);
-          return bCount - aCount;
-        });
-        coauthorSortLabel.textContent = 'Julkaisuja ↓';
-        coauthorSortBtn.querySelector('i').className = 'bi bi-sort-down me-1';
+  const coauthorSortAlpha = document.getElementById('coauthorSortAlpha');
+  const coauthorSortCount = document.getElementById('coauthorSortCount');
+  let alphaDir = 'asc';  // 'asc' | 'desc'
+  let countDir = 'desc'; // 'desc' | 'asc'
+
+  function coauthorApplySort(mode) {
+    const rows = Array.from(coauthorTbody.querySelectorAll('tr'));
+    if (mode === 'alpha') {
+      const mul = alphaDir === 'asc' ? 1 : -1;
+      rows.sort((a, b) => {
+        const aName = a.querySelector('[data-coauthor]')?.dataset.coauthor || '';
+        const bName = b.querySelector('[data-coauthor]')?.dataset.coauthor || '';
+        return mul * new Intl.Collator('fi').compare(aName, bName);
+      });
+      coauthorSortAlpha.querySelector('i').className = alphaDir === 'asc' ? 'bi bi-arrow-down' : 'bi bi-arrow-up';
+      coauthorSortAlpha.classList.add('active');
+      coauthorSortCount.classList.remove('active');
+    } else {
+      const mul = countDir === 'desc' ? -1 : 1;
+      rows.sort((a, b) => {
+        const aCount = parseInt(a.cells[1]?.textContent || '0', 10);
+        const bCount = parseInt(b.cells[1]?.textContent || '0', 10);
+        return mul * (bCount - aCount);
+      });
+      coauthorSortCount.querySelector('i').className = countDir === 'desc' ? 'bi bi-arrow-down' : 'bi bi-arrow-up';
+      coauthorSortCount.classList.add('active');
+      coauthorSortAlpha.classList.remove('active');
+    }
+    rows.forEach(r => coauthorTbody.appendChild(r));
+  }
+
+  if (coauthorSortAlpha && coauthorTbody) {
+    coauthorSortAlpha.addEventListener('click', () => {
+      if (coauthorSortAlpha.classList.contains('active')) {
+        alphaDir = alphaDir === 'asc' ? 'desc' : 'asc';
       }
-      rows.forEach(r => coauthorTbody.appendChild(r));
+      coauthorApplySort('alpha');
+    });
+  }
+  if (coauthorSortCount && coauthorTbody) {
+    coauthorSortCount.addEventListener('click', () => {
+      if (coauthorSortCount.classList.contains('active')) {
+        countDir = countDir === 'desc' ? 'asc' : 'desc';
+      }
+      coauthorApplySort('count');
     });
   }
 
