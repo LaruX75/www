@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vie — jarilaru.fi</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" integrity="sha384-XGjxtQfXaH2tnPFa9x+ruJTuLE3Aa6LhHSWRr1XeTyhezb4abCG4ccI5AkVDxqC+" crossorigin="anonymous">
+  <style>
+    body { background: #f0f4f8; font-size: 0.9rem; padding-top: 40px; }
+
+    /* Admin navbar */
+    #admin-navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 99999;
+      background: #1a2638; height: 40px;
+      display: flex; align-items: center; padding: 0 16px; gap: 0;
+      font-family: system-ui, sans-serif; font-size: 13px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    }
+    #admin-navbar .nav-brand { color: #e2e8f0; font-weight: 600; margin-right: 20px; white-space: nowrap; }
+    #admin-navbar a {
+      color: #94a3b8; text-decoration: none;
+      padding: 0 14px; height: 40px; display: flex; align-items: center;
+    }
+    #admin-navbar a:hover { color: #e2e8f0; background: rgba(255,255,255,0.07); }
+    #admin-navbar a.active { color: #fff; border-bottom: 2px solid #60a5fa; }
+    #admin-navbar .nav-spacer { flex: 1; }
+
+    /* Control panel */
+    #control-panel { background: #fff; border-bottom: 1px solid #dee2e6; padding: 12px 24px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+
+    /* Preview */
+    #preview-wrap { padding: 24px; }
+    #preview {
+      background: white; border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.12);
+      min-height: 400px; padding: 0;
+      max-width: 900px; margin: 0 auto;
+    }
+    #preview-inner { padding: 40px 48px; font-family: 'Georgia', 'Times New Roman', serif; font-size: 10.5pt; line-height: 1.5; color: #111; }
+
+    /* Document styles */
+    .doc-title { font-size: 16pt; font-weight: bold; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 2px; }
+    .doc-subtitle { font-size: 9pt; color: #555; margin-bottom: 24px; font-style: italic; font-family: system-ui, sans-serif; }
+    .doc-section { margin-top: 20px; margin-bottom: 6px; }
+    .doc-section h2 {
+      font-size: 10pt; font-weight: bold; text-transform: uppercase;
+      letter-spacing: .08em; border-bottom: 1.5px solid #333;
+      padding-bottom: 3px; margin-bottom: 8px; font-family: system-ui, sans-serif;
+      color: #111;
+    }
+    .doc-section h3 { font-size: 10pt; font-weight: bold; margin: 8px 0 2px; }
+    .doc-section p, .doc-section li { font-size: 10pt; margin: 0 0 3px; }
+    .doc-section ul { padding-left: 18px; margin: 4px 0; }
+    .doc-row { display: flex; gap: 12px; margin-bottom: 4px; }
+    .doc-row .doc-year { min-width: 50px; font-weight: bold; font-size: 9.5pt; }
+    .doc-meta { font-size: 9pt; color: #444; font-style: italic; }
+    .doc-ref { margin-bottom: 6px; font-size: 9.5pt; line-height: 1.4; }
+    .doc-ref .ref-authors { }
+    .doc-ref .ref-title { font-style: italic; }
+    .doc-ref .ref-venue { }
+    .doc-ref .ref-doi { font-size: 8.5pt; color: #555; }
+    .doc-ref .ref-type { font-size: 8pt; color: #777; font-family: monospace; }
+    .pub-section-head { font-size: 10pt; font-weight: bold; text-transform: uppercase; letter-spacing: .06em; color: #333; margin: 14px 0 4px; font-family: system-ui, sans-serif; border-bottom: 1px solid #ccc; padding-bottom: 2px; }
+    .pub-type-label { font-size: 9pt; font-weight: bold; color: #555; margin: 8px 0 2px; font-family: system-ui, sans-serif; }
+    .loading-area { padding: 60px 24px; text-align: center; color: #666; }
+    .stat-row { display: flex; gap: 20px; flex-wrap: wrap; margin: 4px 0 8px; }
+    .stat-item { font-size: 9pt; color: #444; }
+    .stat-item strong { font-size: 11pt; display: block; }
+    .jufo-badge { font-size: 7.5pt; font-family: monospace; background: #eee; padding: 1px 4px; border-radius: 2px; }
+    .oa-badge { font-size: 7.5pt; color: #166534; }
+
+    @media print {
+      #admin-navbar, #control-panel { display: none !important; }
+      body { padding: 0 !important; background: white !important; }
+      #preview-wrap { padding: 0 !important; }
+      #preview { box-shadow: none !important; max-width: none !important; border-radius: 0 !important; }
+      #preview-inner { padding: 0 !important; font-size: 10pt; }
+      @page { size: A4 portrait; margin: 20mm 22mm 20mm 22mm; }
+      .doc-section { page-break-inside: avoid; break-inside: avoid; }
+      .pub-section-group { page-break-inside: avoid; break-inside: avoid; }
+      a { text-decoration: none !important; color: #111 !important; }
+      .ref-doi a { color: #333 !important; }
+      .jufo-badge, .oa-badge { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="admin-navbar">
+  <span class="nav-brand">jarilaru.fi</span>
+  <a href="/admin/">Sveltia CMS</a>
+  <a href="/admin/editor/">Editori</a>
+  <a href="/admin/curate/">Kuratointi</a>
+  <a href="/admin/export/" class="active">Vie</a>
+  <span class="nav-spacer"></span>
+</nav>
+
+<div id="control-panel">
+  <div class="btn-group btn-group-sm" role="group" aria-label="Kieli">
+    <button type="button" class="btn btn-primary" id="lang-fi">FI</button>
+    <button type="button" class="btn btn-outline-secondary" id="lang-en">EN</button>
+  </div>
+  <div class="vr"></div>
+  <div class="btn-group btn-group-sm" role="group" aria-label="Dokumentti">
+    <button type="button" class="btn btn-primary" id="doc-cv">CV (TENK)</button>
+    <button type="button" class="btn btn-outline-secondary" id="doc-publist">Julkaisuluettelo (OKM)</button>
+  </div>
+  <div class="vr"></div>
+  <button class="btn btn-sm btn-success" id="print-btn" disabled>
+    <i class="bi bi-printer me-1"></i>Tulosta / Tallenna PDF
+  </button>
+  <span id="status-msg" class="small text-muted ms-2"></span>
+</div>
+
+<div id="preview-wrap">
+  <div id="preview">
+    <div id="preview-inner">
+      <div class="loading-area">
+        <div class="spinner-border text-secondary mb-3" role="status"></div>
+        <div>Ladataan julkaisutietoja…</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── State ────────────────────────────────────────────────────────────────────
+let lang = 'fi';
+let docType = 'cv'; // 'cv' | 'publist'
+let exportData = null; // loaded from /api/export-data.json
+
+// ── Strings ──────────────────────────────────────────────────────────────────
+const S = {
+  fi: {
+    cv_title: 'TUTKIJAN ANSIOLUETTELO',
+    cv_guideline: 'Laadittu TENK:n suosituksen mukaisesti (2024)',
+    personal: 'Henkilötiedot',
+    education: 'Koulutus ja oppiarvot',
+    current_pos: 'Nykyinen virka ja toimi',
+    prev_pos: 'Aikaisemmat virat ja toimet',
+    teaching: 'Opetus ja pedagoginen pätevyys',
+    other_roles: 'Muut tehtävät ja luottamustoimet',
+    funding: 'Tutkimusrahoitus',
+    grants: 'Apurahat ja stipendit',
+    pub_summary: 'Julkaisut — yhteenveto',
+    languages: 'Kielitaito',
+    profiles: 'Tutkijaprofiilit',
+    generated: 'Generoitu',
+    publist_title: 'JULKAISULUETTELO',
+    publist_guideline: 'OKM-julkaisuluokittelu',
+    sec_A: 'A  Vertaisarvioidut tieteelliset artikkelit',
+    sec_B: 'B  Vertaisarvioimattomat tieteelliset artikkelit',
+    sec_C: 'C  Tieteelliset kirjat',
+    sec_D: 'D  Ammatilliset julkaisut',
+    sec_E: 'E  Yleistajuiset julkaisut',
+    sec_G: 'G  Väitöskirjat',
+    sec_other: 'Muut julkaisut',
+    sec_mielipide: 'Mielipidekirjoitukset',
+    sec_kolumni: 'Kolumnit',
+    sec_puhe: 'Puheet',
+    sec_esitelma: 'Esitelmät',
+    total: 'Yhteensä',
+    publications: 'julkaisua',
+    peer_reviewed: 'vertaisarvioitu',
+    open_access: 'avoin saatavuus',
+    jufo: 'Jufo',
+  },
+  en: {
+    cv_title: "RESEARCHER'S CURRICULUM VITAE",
+    cv_guideline: 'Prepared according to TENK guidelines (2024)',
+    personal: 'Personal Information',
+    education: 'Education and Qualifications',
+    current_pos: 'Current Position',
+    prev_pos: 'Previous Positions',
+    teaching: 'Teaching and Pedagogical Qualification',
+    other_roles: 'Other Duties and Expert Roles',
+    funding: 'Research Funding',
+    grants: 'Grants and Scholarships',
+    pub_summary: 'Publications — summary',
+    languages: 'Language Skills',
+    profiles: 'Research Profiles',
+    generated: 'Generated',
+    publist_title: 'PUBLICATION LIST',
+    publist_guideline: 'OKM publication type classification',
+    sec_A: 'A  Peer-reviewed scientific articles',
+    sec_B: 'B  Non-peer-reviewed scientific articles',
+    sec_C: 'C  Scientific books',
+    sec_D: 'D  Professional publications',
+    sec_E: 'E  Popular science publications',
+    sec_G: 'G  Doctoral theses',
+    sec_other: 'Other publications',
+    sec_mielipide: 'Opinion pieces',
+    sec_kolumni: 'Columns',
+    sec_puhe: 'Speeches',
+    sec_esitelma: 'Presentations',
+    total: 'Total',
+    publications: 'publications',
+    peer_reviewed: 'peer-reviewed',
+    open_access: 'open access',
+    jufo: 'Jufo',
+  }
+};
+
+// ── CV hardcoded data ─────────────────────────────────────────────────────────
+const CV = {
+  fi: {
+    name: 'Laru Jari Jukka, KT',
+    degree: 'Kasvatustieteiden tohtori (KT)',
+    position: 'Yliopistonlehtori, teknologiatuettu oppiminen ja opetus',
+    dept: 'Kasvatustieteiden ja psykologian tiedekunta',
+    institution: 'Oulun yliopisto',
+    email: 'jari.laru@oulu.fi',
+    birth_year: '1974',
+    updated: '1.1.2025',
+    education: [
+      { degree: 'Kasvatustieteiden tohtori (KT)', field: 'Kasvatustiede', institution: 'Oulun yliopisto', year: '2012', note: 'Väitöskirja: Mobile Peer-Groups — How Mobile Devices and Social Software Can Complement Computers in a Collaborative Learning Context' },
+      { degree: 'Kasvatustieteiden maisteri (KM)', field: 'Teknologiapainotteinen luokanopettajakoulutus', institution: 'Oulun yliopisto', year: '2003' }
+    ],
+    positions: [
+      { title: 'Yliopistonlehtori', note: 'teknologiatuettu oppiminen ja opetus, toistaiseksi voimassaoleva', institution: 'Oulun yliopisto', dept: 'Kasvatustieteiden ja psykologian tiedekunta', period: '2013–' },
+      { title: 'Sivutoiminen yrittäjä', note: 'luennointi ja koulutus', institution: 'Larux t:mi', period: '2015–' },
+    ],
+    prev_positions: [
+      { title: 'Yliopisto-opettaja', note: 'tieto- ja viestintätekniikka', institution: 'Oulun yliopisto', period: '–2013' },
+      { title: 'Tutkijakoulutettava', note: 'OPMON tutkijakoulu', institution: 'Oulun yliopisto', period: '2004–2012' },
+    ],
+    teaching: [
+      'Yliopistonopettajan pedagoginen pätevyys (yliopistopedagogiikan opinnot, Oulun yliopisto)',
+      'Opettajankoulutus: teknologia, oppiminen ja digitaaliset oppimisympäristöt',
+      'Ohjatut pro gradu -tutkielmat: yli 50',
+      'Ohjatut väitöskirjat: ohjausvastuussa useissa tieteellisissä projekteissa',
+    ],
+    other_roles: [
+      { role: 'Kaupunginvaltuutettu', institution: 'Oulun kaupunki', period: '2017–', note: 'Sivistys- ja kulttuurilautakunnan jäsen' },
+      { role: 'Referee-toiminta', institution: 'Kansainväliset tieteelliset lehdet ja konferenssit', period: '' },
+    ],
+    funding: [
+      { project: 'Generation AI', funder: 'Strategisen tutkimuksen neuvosto (STN)', period: '1.10.2022–30.9.2025', role: 'Tutkija ja vuorovaikutusasiantuntija' },
+      { project: 'Learning Technology Accelerator (LEA)', funder: 'EU Horizon 2020', period: '2018–2020', role: 'Tutkija' },
+    ],
+    grants: [
+      { year: '2010', funder: 'Suomen kulttuurirahasto, XeroX Oy:n rahasto', amount: '21 000 EUR' },
+      { year: '2005', funder: 'Suomen kulttuurirahasto, Urpo ja Maija-Liisa Harvan rahasto', amount: '16 400 EUR' },
+      { year: '2009', funder: 'Oulun yliopiston matka-apuraha', amount: '1 500 EUR' },
+    ],
+    languages: [
+      { lang: 'Suomi', level: 'Äidinkieli' },
+      { lang: 'Englanti', level: 'Hyvä — opetus- ja tutkimuskieli' },
+      { lang: 'Ruotsi', level: 'Tyydyttävä' },
+    ],
+    profiles: [
+      { name: 'ORCID', id: '0000-0003-0347-0182', url: 'https://orcid.org/0000-0003-0347-0182' },
+      { name: 'ResearcherID (Web of Science)', id: 'H-3573-2013' },
+      { name: 'Google Scholar', url: 'https://scholar.google.com/citations?user=HOLu1ZIAAAAJ' },
+      { name: 'ResearchGate', url: 'https://www.researchgate.net/profile/Jari-Laru' },
+      { name: 'Research.fi', url: 'https://research.fi/en/results/person/0000-0003-0347-0182' },
+      { name: 'OuluCRIS', url: 'https://oulu.cris.fi/fi/persons/OY-19209' },
+    ],
+  },
+  en: {
+    name: 'Laru Jari Jukka, EdD',
+    degree: 'Doctor of Education (EdD)',
+    position: 'University Lecturer, Technology-enhanced Learning and Teaching',
+    dept: 'Faculty of Education and Psychology',
+    institution: 'University of Oulu',
+    email: 'jari.laru@oulu.fi',
+    birth_year: '1974',
+    updated: '1 Jan 2025',
+    education: [
+      { degree: 'Doctor of Education (EdD / KT)', field: 'Educational Sciences', institution: 'University of Oulu', year: '2012', note: 'Dissertation: Mobile Peer-Groups — How Mobile Devices and Social Software Can Complement Computers in a Collaborative Learning Context' },
+      { degree: 'Master of Education (MEd / KM)', field: 'Technology-enhanced Class Teacher Education', institution: 'University of Oulu', year: '2003' }
+    ],
+    positions: [
+      { title: 'University Lecturer', note: 'Technology-enhanced Learning and Teaching, permanent position', institution: 'University of Oulu', dept: 'Faculty of Education and Psychology', period: '2013–' },
+      { title: 'Self-employed (training and lecturing)', note: '', institution: 'Larux t:mi', period: '2015–' },
+    ],
+    prev_positions: [
+      { title: 'University Instructor', note: 'Information and Communication Technology', institution: 'University of Oulu', period: '–2013' },
+      { title: 'Doctoral Researcher', note: 'OPMON Doctoral School', institution: 'University of Oulu', period: '2004–2012' },
+    ],
+    teaching: [
+      'University Pedagogy qualification (University of Oulu)',
+      'Teacher education: technology, learning and digital learning environments',
+      'Supervised Master\'s theses: over 50',
+      'Doctoral thesis supervision: supervisory responsibility in several research projects',
+    ],
+    other_roles: [
+      { role: 'City Council Member', institution: 'City of Oulu', period: '2017–', note: 'Member of Education and Culture Committee' },
+      { role: 'Peer-review activities', institution: 'International scientific journals and conferences', period: '' },
+    ],
+    funding: [
+      { project: 'Generation AI', funder: 'Strategic Research Council (SRC), Finland', period: '1 Oct 2022–30 Sep 2025', role: 'Researcher and Interaction Specialist' },
+      { project: 'Learning Technology Accelerator (LEA)', funder: 'EU Horizon 2020', period: '2018–2020', role: 'Researcher' },
+    ],
+    grants: [
+      { year: '2010', funder: 'Finnish Cultural Foundation (XeroX Oy Fund)', amount: 'EUR 21,000' },
+      { year: '2005', funder: 'Finnish Cultural Foundation (Urpo and Maija-Liisa Harva Fund)', amount: 'EUR 16,400' },
+      { year: '2009', funder: 'University of Oulu Travel Grant', amount: 'EUR 1,500' },
+    ],
+    languages: [
+      { lang: 'Finnish', level: 'Native' },
+      { lang: 'English', level: 'Proficient — teaching and research language' },
+      { lang: 'Swedish', level: 'Satisfactory' },
+    ],
+    profiles: [
+      { name: 'ORCID', id: '0000-0003-0347-0182', url: 'https://orcid.org/0000-0003-0347-0182' },
+      { name: 'ResearcherID (Web of Science)', id: 'H-3573-2013' },
+      { name: 'Google Scholar', url: 'https://scholar.google.com/citations?user=HOLu1ZIAAAAJ' },
+      { name: 'ResearchGate', url: 'https://www.researchgate.net/profile/Jari-Laru' },
+      { name: 'Research.fi', url: 'https://research.fi/en/results/person/0000-0003-0347-0182' },
+      { name: 'OuluCRIS', url: 'https://oulu.cris.fi/en/persons/OY-19209' },
+    ],
+  }
+};
+
+// ── OKM type labels ───────────────────────────────────────────────────────────
+const OKM_LABEL = {
+  fi: {
+    A1: 'A1 Alkuperäisartikkeli tieteellisessä aikakauslehdessä',
+    A2: 'A2 Katsausartikkeli tieteellisessä aikakauslehdessä',
+    A3: 'A3 Kirjan tai muun kokoomateoksen osa',
+    A4: 'A4 Artikkeli konferenssijulkaisussa',
+    B1: 'B1 Kirjoitus tieteellisessä aikakauslehdessä',
+    B2: 'B2 Kirjan tai muun kokoomateoksen osa',
+    B3: 'B3 Vertaisarvioimaton artikkeli konferenssijulkaisussa',
+    C1: 'C1 Kustannettu tieteellinen erillisteos',
+    C2: 'C2 Toimitettu kirja tai lehden erikoisnumero',
+    D1: 'D1 Artikkeli ammattilehdessä',
+    D2: 'D2 Artikkeli ammatillisessa kokoomateoksessa',
+    D3: 'D3 Artikkeli ammatillisessa konferenssijulkaisussa',
+    E1: 'E1 Yleistajuinen artikkeli, sanomalehtiartikkeli',
+    E2: 'E2 Yleistajuinen monografia',
+    G4: 'G4 Monografiaväitöskirja',
+    G5: 'G5 Artikkeliväitöskirja',
+  },
+  en: {
+    A1: 'A1 Original research article in scientific journal',
+    A2: 'A2 Review article in scientific journal',
+    A3: 'A3 Chapter in book or anthology',
+    A4: 'A4 Article in conference proceedings',
+    B1: 'B1 Article in scientific journal (non peer-reviewed)',
+    B2: 'B2 Chapter in book (non peer-reviewed)',
+    B3: 'B3 Non-peer-reviewed article in conference proceedings',
+    C1: 'C1 Published scientific monograph',
+    C2: 'C2 Edited book or special journal issue',
+    D1: 'D1 Article in professional journal',
+    D2: 'D2 Article in professional anthology',
+    D3: 'D3 Article in professional conference proceedings',
+    E1: 'E1 Popular science article, newspaper article',
+    E2: 'E2 Popular science monograph',
+    G4: 'G4 Doctoral thesis (monograph)',
+    G5: 'G5 Doctoral thesis (article-based)',
+  }
+};
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+function esc(s) {
+  return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function formatDate(iso) {
+  if (!iso) return '';
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return iso;
+  const opts = lang === 'fi'
+    ? { day: 'numeric', month: 'numeric', year: 'numeric' }
+    : { day: 'numeric', month: 'long', year: 'numeric' };
+  return d.toLocaleDateString(lang === 'fi' ? 'fi-FI' : 'en-GB', opts);
+}
+
+function groupBy(arr, fn) {
+  const map = new Map();
+  for (const item of arr) {
+    const key = fn(item);
+    if (!map.has(key)) map.set(key, []);
+    map.get(key).push(item);
+  }
+  return map;
+}
+
+// ── Render CV (TENK) ─────────────────────────────────────────────────────────
+function renderCV() {
+  const s = S[lang];
+  const cv = CV[lang];
+  const rf = exportData?.researchfiPublications || [];
+  const local = exportData?.localPublications || [];
+
+  // Publication counts by OKM group
+  const rfByType = groupBy(rf, p => p.typeCode || 'other');
+  const countA = ['A1','A2','A3','A4'].reduce((n,k) => n + (rfByType.get(k)?.length || 0), 0);
+  const countB = ['B1','B2','B3'].reduce((n,k) => n + (rfByType.get(k)?.length || 0), 0);
+  const countC = ['C1','C2'].reduce((n,k) => n + (rfByType.get(k)?.length || 0), 0);
+  const countD = ['D1','D2','D3'].reduce((n,k) => n + (rfByType.get(k)?.length || 0), 0);
+  const countE = ['E1','E2'].reduce((n,k) => n + (rfByType.get(k)?.length || 0), 0);
+  const countG = ['G4','G5'].reduce((n,k) => n + (rfByType.get(k)?.length || 0), 0);
+  const countLocal = local.length;
+  const totalRf = rf.length;
+
+  // Recent 5 publications
+  const recent = rf.slice(0, 5);
+
+  const now = new Date().toLocaleDateString(lang === 'fi' ? 'fi-FI' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+
+  let html = `
+  <div class="doc-title">${esc(s.cv_title)}</div>
+  <div class="doc-subtitle">${esc(s.cv_guideline)} &nbsp;|&nbsp; ${esc(s.generated)}: ${esc(now)}</div>
+
+  <div class="doc-section">
+    <h2>${esc(s.personal)}</h2>
+    <p><strong>${esc(cv.name)}</strong></p>
+    <p>${esc(cv.degree)}</p>
+    <p>${esc(cv.position)}<br>${esc(cv.dept)}, ${esc(cv.institution)}</p>
+    <p>${esc(cv.email)}</p>
+    <p>ORCID: <a href="https://orcid.org/${esc(cv.profiles[0].id)}">${esc(cv.profiles[0].id)}</a> &nbsp;|&nbsp; ResearcherID: ${esc(cv.profiles[1].id)}</p>
+  </div>
+
+  <div class="doc-section">
+    <h2>${esc(s.education)}</h2>
+    ${cv.education.map(e => `
+      <div class="doc-row">
+        <div class="doc-year">${esc(e.year)}</div>
+        <div>
+          <strong>${esc(e.degree)}</strong>, ${esc(e.field)}, ${esc(e.institution)}
+          ${e.note ? `<div class="doc-meta">${esc(e.note)}</div>` : ''}
+        </div>
+      </div>`).join('')}
+  </div>
+
+  <div class="doc-section">
+    <h2>${esc(s.current_pos)}</h2>
+    ${cv.positions.map(p => `
+      <div class="doc-row">
+        <div class="doc-year" style="min-width:60px">${esc(p.period)}</div>
+        <div>
+          <strong>${esc(p.title)}</strong>${p.note ? ` — ${esc(p.note)}` : ''}
+          <div class="doc-meta">${esc(p.institution)}${p.dept ? `, ${esc(p.dept)}` : ''}</div>
+        </div>
+      </div>`).join('')}
+  </div>
+
+  <div class="doc-section">
+    <h2>${esc(s.prev_pos)}</h2>
+    ${cv.prev_positions.map(p => `
+      <div class="doc-row">
+        <div class="doc-year" style="min-width:60px">${esc(p.period)}</div>
+        <div>
+          <strong>${esc(p.title)}</strong>${p.note ? ` — ${esc(p.note)}` : ''}
+          <div class="doc-meta">${esc(p.institution)}</div>
+        </div>
+      </div>`).join('')}
+  </div>
+
+  <div class="doc-section">
+    <h2>${esc(s.teaching)}</h2>
+    <ul>${cv.teaching.map(t => `<li>${esc(t)}</li>`).join('')}</ul>
+  </div>
+
+  <div class="doc-section">
+    <h2>${esc(s.other_roles)}</h2>
+    ${cv.other_roles.map(r => `
+      <div class="doc-row">
+        <div class="doc-year" style="min-width:60px">${esc(r.period)}</div>
+        <div>
+          <strong>${esc(r.role)}</strong>${r.note ? ` — ${esc(r.note)}` : ''}
+          <div class="doc-meta">${esc(r.institution)}</div>
+        </div>
+      </div>`).join('')}
+  </div>
+
+  <div class="doc-section">
+    <h2>${esc(s.funding)}</h2>
+    ${cv.funding.map(f => `
+      <div class="doc-row">
+        <div class="doc-year" style="min-width:60px">${esc(f.period)}</div>
+        <div>
+          <strong>${esc(f.project)}</strong> — ${esc(f.role || '')}
+          <div class="doc-meta">${esc(f.funder)}</div>
+        </div>
+      </div>`).join('')}
+  </div>
+
+  <div class="doc-section">
+    <h2>${esc(s.grants)}</h2>
+    ${cv.grants.map(g => `
+      <div class="doc-row">
+        <div class="doc-year">${esc(g.year)}</div>
+        <div>${esc(g.funder)} <strong>${esc(g.amount)}</strong></div>
+      </div>`).join('')}
+  </div>
+
+  <div class="doc-section">
+    <h2>${esc(s.pub_summary)}</h2>
+    <div class="stat-row">
+      <div class="stat-item"><strong>${totalRf + countLocal}</strong>${esc(s.publications)} (${esc(s.total)})</div>
+      ${countA ? `<div class="stat-item"><strong>${countA}</strong> A (${esc(s.peer_reviewed)})</div>` : ''}
+      ${countB ? `<div class="stat-item"><strong>${countB}</strong> B</div>` : ''}
+      ${countC ? `<div class="stat-item"><strong>${countC}</strong> C</div>` : ''}
+      ${countD ? `<div class="stat-item"><strong>${countD}</strong> D</div>` : ''}
+      ${countE ? `<div class="stat-item"><strong>${countE}</strong> E</div>` : ''}
+      ${countG ? `<div class="stat-item"><strong>${countG}</strong> G</div>` : ''}
+      ${countLocal ? `<div class="stat-item"><strong>${countLocal}</strong> ${lang === 'fi' ? 'mielipide/kolumni/puhe' : 'opinion/column/speech'}</div>` : ''}
+    </div>
+    ${recent.length ? `<p style="margin-top:6px;font-size:9pt">${lang === 'fi' ? 'Viimeisimmät julkaisut:' : 'Most recent publications:'}</p>
+    ${recent.map(p => renderRef(p)).join('')}
+    <p style="font-size:8.5pt;margin-top:4px;font-style:italic">${lang === 'fi' ? 'Täydellinen julkaisuluettelo erillisessä liitteessä (OKM-julkaisuluettelo).' : 'Full publication list in a separate document (OKM publication list).'}</p>` : ''}
+  </div>
+
+  <div class="doc-section">
+    <h2>${esc(s.languages)}</h2>
+    <ul>${cv.languages.map(l => `<li><strong>${esc(l.lang)}</strong>: ${esc(l.level)}</li>`).join('')}</ul>
+  </div>
+
+  <div class="doc-section">
+    <h2>${esc(s.profiles)}</h2>
+    <ul>${cv.profiles.map(p => `<li><strong>${esc(p.name)}</strong>${p.id ? `: ${esc(p.id)}` : ''}${p.url ? ` — <a href="${esc(p.url)}">${esc(p.url)}</a>` : ''}</li>`).join('')}</ul>
+  </div>
+  `;
+
+  return html;
+}
+
+// ── Render publication reference ─────────────────────────────────────────────
+function renderRef(p, showType = true) {
+  const parts = [];
+  if (p.authors) parts.push(`<span class="ref-authors">${esc(p.authors)}.</span>`);
+  if (p.year) parts.push(`(${esc(p.year)}).`);
+  if (p.title) parts.push(`<span class="ref-title">${esc(p.title)}.</span>`);
+  let venue = '';
+  if (p.journal) venue += esc(p.journal);
+  if (p.volume) venue += `, ${esc(p.volume)}`;
+  if (p.issue) venue += `(${esc(p.issue)})`;
+  if (p.pages) venue += `, ${esc(p.pages)}`;
+  if (p.publisher && !p.journal) venue += esc(p.publisher);
+  if (venue) parts.push(`<span class="ref-venue">${venue}.</span>`);
+  const badges = [];
+  if (showType && p.typeCode) badges.push(`<span class="ref-type">[${esc(p.typeCode)}]</span>`);
+  if (p.jufoLevel != null) badges.push(`<span class="jufo-badge">${esc(S[lang].jufo)} ${esc(p.jufoLevel)}</span>`);
+  if (p.openAccess) badges.push(`<span class="oa-badge">OA</span>`);
+  const doiHtml = p.doiUrl ? `<span class="ref-doi"><a href="${esc(p.doiUrl)}">${esc(p.doiUrl)}</a></span>` : (p.doi ? `<span class="ref-doi">${esc(p.doi)}</span>` : '');
+  return `<div class="doc-ref">${parts.join(' ')} ${doiHtml} ${badges.join(' ')}</div>`;
+}
+
+function renderLocalRef(p) {
+  const year = p.year || (p.date ? p.date.slice(0,4) : '');
+  const parts = [`<span class="ref-authors">Laru, J.</span>`];
+  if (year) parts.push(`(${esc(year)}).`);
+  if (p.title) parts.push(`<span class="ref-title">${esc(p.title)}.</span>`);
+  if (p.publication) parts.push(`<span class="ref-venue">${esc(p.publication)}.</span>`);
+  if (p.event) parts.push(`<span class="ref-venue">${esc(p.event)}.</span>`);
+  const doiHtml = p.url ? `<span class="ref-doi"><a href="${esc(p.url)}">${esc(p.url)}</a></span>` : '';
+  return `<div class="doc-ref">${parts.join(' ')} ${doiHtml}</div>`;
+}
+
+// ── Render publication list (OKM) ─────────────────────────────────────────────
+function renderPublist() {
+  const s = S[lang];
+  const rf = exportData?.researchfiPublications || [];
+  const local = exportData?.localPublications || [];
+  const now = new Date().toLocaleDateString(lang === 'fi' ? 'fi-FI' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+
+  const rfByType = groupBy(rf, p => p.typeCode || 'other');
+
+  // Sort each group by year desc
+  for (const [,arr] of rfByType) arr.sort((a,b) => (b.year||0)-(a.year||0));
+
+  const localByType = groupBy(local, p => p.type || 'other');
+  for (const [,arr] of localByType) arr.sort((a,b) => (b.year||a.year||0)-(a.year||b.year||0));
+
+  const totalRf = rf.length;
+  const totalLocal = local.length;
+
+  function sectionBlock(heading, types, isRf = true) {
+    const items = [];
+    for (const tc of types) {
+      const arr = (isRf ? rfByType : localByType).get(tc);
+      if (!arr?.length) continue;
+      const label = isRf ? (OKM_LABEL[lang][tc] || tc) : (s[`sec_${tc}`] || tc);
+      items.push(`<div class="pub-type-label">${esc(label)} (${arr.length})</div>`);
+      items.push(arr.map(p => isRf ? renderRef(p, false) : renderLocalRef(p)).join(''));
+    }
+    if (!items.length) return '';
+    return `<div class="pub-section-group">
+      <div class="pub-section-head">${esc(heading)}</div>
+      ${items.join('')}
+    </div>`;
+  }
+
+  let html = `
+  <div class="doc-title">${esc(s.publist_title)}</div>
+  <div class="doc-subtitle">${esc(s.publist_guideline)} &nbsp;|&nbsp; ${esc(s.generated)}: ${esc(now)}</div>
+  <div class="doc-section" style="margin-bottom:12px">
+    <div class="stat-row">
+      <div class="stat-item"><strong>${totalRf + totalLocal}</strong> ${esc(s.publications)} (${esc(s.total)})</div>
+      <div class="stat-item">${esc('Research.fi')}: <strong>${totalRf}</strong></div>
+      <div class="stat-item">${lang==='fi'?'Muut julkaisut':'Other publications'}: <strong>${totalLocal}</strong></div>
+    </div>
+  </div>
+  ${sectionBlock(s.sec_A, ['A1','A2','A3','A4'])}
+  ${sectionBlock(s.sec_B, ['B1','B2','B3'])}
+  ${sectionBlock(s.sec_C, ['C1','C2'])}
+  ${sectionBlock(s.sec_D, ['D1','D2','D3'])}
+  ${sectionBlock(s.sec_E, ['E1','E2'])}
+  ${sectionBlock(s.sec_G, ['G4','G5'])}
+  ${sectionBlock(s.sec_mielipide, ['mielipide'], false)}
+  ${sectionBlock(s.sec_kolumni, ['kolumni'], false)}
+  ${sectionBlock(s.sec_puhe, ['puhe'], false)}
+  ${sectionBlock(s.sec_esitelma, ['esitelma'], false)}
+  `;
+
+  return html;
+}
+
+// ── Render to DOM ─────────────────────────────────────────────────────────────
+function render() {
+  if (!exportData) return;
+  const inner = document.getElementById('preview-inner');
+  inner.innerHTML = docType === 'cv' ? renderCV() : renderPublist();
+  document.getElementById('print-btn').disabled = false;
+}
+
+// ── Data loading ──────────────────────────────────────────────────────────────
+async function loadData() {
+  setStatus(lang === 'fi' ? 'Ladataan julkaisutietoja…' : 'Loading publication data…');
+  try {
+    const r = await fetch('/api/export-data.json');
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    exportData = await r.json();
+    const n = (exportData.researchfiPublications?.length || 0) + (exportData.localPublications?.length || 0);
+    setStatus(lang === 'fi' ? `${n} julkaisua ladattu` : `${n} publications loaded`, 3000);
+    render();
+  } catch (err) {
+    setStatus('Virhe: ' + err.message);
+    document.getElementById('preview-inner').innerHTML = `<div class="loading-area text-danger"><i class="bi bi-exclamation-triangle me-2"></i>${esc(err.message)}<br><small>Varmista että sivusto on builtattu (<code>npm run build:no-og</code>) ja palvelin ajaa.</small></div>`;
+  }
+}
+
+function setStatus(msg, clearMs = 0) {
+  const el = document.getElementById('status-msg');
+  el.textContent = msg;
+  if (clearMs) setTimeout(() => { if (el.textContent === msg) el.textContent = ''; }, clearMs);
+}
+
+// ── Controls ──────────────────────────────────────────────────────────────────
+document.getElementById('lang-fi').addEventListener('click', () => {
+  lang = 'fi';
+  document.getElementById('lang-fi').className = 'btn btn-sm btn-primary';
+  document.getElementById('lang-en').className = 'btn btn-sm btn-outline-secondary';
+  render();
+});
+document.getElementById('lang-en').addEventListener('click', () => {
+  lang = 'en';
+  document.getElementById('lang-en').className = 'btn btn-sm btn-primary';
+  document.getElementById('lang-fi').className = 'btn btn-sm btn-outline-secondary';
+  render();
+});
+document.getElementById('doc-cv').addEventListener('click', () => {
+  docType = 'cv';
+  document.getElementById('doc-cv').className = 'btn btn-sm btn-primary';
+  document.getElementById('doc-publist').className = 'btn btn-sm btn-outline-secondary';
+  render();
+});
+document.getElementById('doc-publist').addEventListener('click', () => {
+  docType = 'publist';
+  document.getElementById('doc-publist').className = 'btn btn-sm btn-primary';
+  document.getElementById('doc-cv').className = 'btn btn-sm btn-outline-secondary';
+  render();
+});
+document.getElementById('print-btn').addEventListener('click', () => window.print());
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+loadData();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
