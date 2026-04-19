@@ -142,14 +142,31 @@
 
     @media print {
       #admin-navbar, #topbar, #sidebar { display: none !important; }
-      html, body { height: auto; overflow: visible; }
-      #shell { height: auto; margin-top: 0; display: block; }
-      #preview-panel { padding: 0; background: white; overflow: visible; }
-      #preview { max-width: none; box-shadow: none; border-radius: 0; }
-      #preview-inner { padding: 0; }
+      html, body {
+        height: auto !important;
+        overflow: visible !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      body {
+        padding-top: 0 !important;
+        background: #fff !important;
+      }
+      #shell, #preview-panel, #preview, #preview-inner {
+        display: block !important;
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        overflow: visible !important;
+      }
+      #shell { margin-top: 0 !important; }
+      #preview-panel { padding: 0 !important; background: white !important; }
+      #preview { max-width: none; margin: 0; box-shadow: none; border-radius: 0; }
+      #preview-inner { padding: 0 !important; }
+      .compact-grid { display: block !important; }
       @page { size: A4 portrait; margin: 20mm 22mm; }
-      .doc-section { page-break-inside: avoid; break-inside: avoid; }
-      .pub-section-group { page-break-inside: avoid; break-inside: avoid; }
+      .doc-section { page-break-inside: auto; break-inside: auto; }
+      .pub-section-group { page-break-inside: auto; break-inside: auto; }
       a { text-decoration: none !important; color: #111 !important; }
     }
   </style>
@@ -1144,7 +1161,24 @@ document.getElementById('lang-fi').addEventListener('click', () => setLang('fi')
 document.getElementById('lang-en').addEventListener('click', () => setLang('en'));
 document.getElementById('doc-cv').addEventListener('click', () => setDocType('cv'));
 document.getElementById('doc-publist').addEventListener('click', () => setDocType('publist'));
-document.getElementById('print-btn').addEventListener('click', () => window.print());
+
+function resetPrintViewport() {
+  window.scrollTo(0, 0);
+  const previewPanel = document.getElementById('preview-panel');
+  if (previewPanel) previewPanel.scrollTop = 0;
+}
+
+function printDocument() {
+  resetPrintViewport();
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      window.print();
+    });
+  });
+}
+
+window.addEventListener('beforeprint', resetPrintViewport);
+document.getElementById('print-btn').addEventListener('click', printDocument);
 
 /* ═══════════════════════════════════════════════════════════════
    DATA LOADING
