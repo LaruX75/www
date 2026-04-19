@@ -153,10 +153,10 @@ translationKey: publications_index
               <h2 class="h6 text-uppercase text-muted fw-bold mb-0"><i class="bi bi-people-fill me-2"></i>Top 10 kanssatutkijaa</h2>
               <div class="d-flex gap-1">
                 <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-2 py-0" id="coauthorSortAlpha" title="Lajittele nimen mukaan">
-                  A–Ö <i class="bi bi-arrow-down"></i>
+                  A–Ö
                 </button>
                 <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-2 py-0 active" id="coauthorSortCount" title="Lajittele julkaisumäärän mukaan">
-                  Määrä <i class="bi bi-arrow-down"></i>
+                  Määrä <i class="bi bi-arrow-up"></i>
                 </button>
               </div>
             </div>
@@ -1130,7 +1130,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const bName = b.querySelector('[data-coauthor]')?.dataset.coauthor || '';
         return mul * new Intl.Collator('fi').compare(aName, bName);
       });
-      coauthorSortAlpha.querySelector('i').className = alphaDir === 'asc' ? 'bi bi-arrow-down' : 'bi bi-arrow-up';
+      coauthorSortAlpha.textContent = alphaDir === 'asc' ? 'A–Ö' : 'Ö–A';
       coauthorSortAlpha.classList.add('active');
       coauthorSortCount.classList.remove('active');
     } else {
@@ -1140,7 +1140,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const bCount = parseInt(b.cells[1]?.textContent || '0', 10);
         return mul * (bCount - aCount);
       });
-      coauthorSortCount.querySelector('i').className = countDir === 'desc' ? 'bi bi-arrow-down' : 'bi bi-arrow-up';
+      coauthorSortCount.querySelector('i').className = countDir === 'desc' ? 'bi bi-arrow-up' : 'bi bi-arrow-down';
       coauthorSortCount.classList.add('active');
       coauthorSortAlpha.classList.remove('active');
     }
