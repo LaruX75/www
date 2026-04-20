@@ -28,27 +28,33 @@
         "note": "teknologiatuettu oppiminen ja opetus (toistaiseksi voimassaoleva)",
         "institution": "Oulun yliopisto",
         "dept": "Kasvatustieteiden ja psykologian tiedekunta",
-        "period": ""
+        "period": "2013–"
       },
       {
         "title": "Sivutoiminen yrittäjä",
         "note": "luennointi ja koulutus",
         "institution": "Larux t:mi",
-        "period": ""
+        "period": "2010–"
       }
     ],
     "prev_positions": [
       {
         "title": "Yliopisto-opettaja",
-        "note": "tieto- ja viestintätekniikka",
+        "note": "opetusteknologia",
         "institution": "Oulun yliopisto",
-        "period": ""
+        "period": "2011–2013"
       },
       {
         "title": "Tutkijakoulutettava",
-        "note": "OPMON tutkijakoulu",
+        "note": "Oppimisympäristöjen monitieteinen tutkijakoulu (OPMON)",
         "institution": "Oulun yliopisto",
-        "period": ""
+        "period": "2006–2010"
+      },
+      {
+        "title": "Tutkimusavustaja",
+        "note": "opetusteknologian tutkimusyksikkö (EDTECH)",
+        "institution": "Oulun yliopisto",
+        "period": "2002–2003"
       }
     ],
     "teaching": [],
@@ -68,8 +74,8 @@
       }
     ],
     "grants": [
-      { "year": "2010", "funder": "Suomen kulttuurirahasto, XeroX Oy:n rahasto", "amount": "21 000 EUR" },
-      { "year": "2005", "funder": "Suomen kulttuurirahasto, Urpo ja Maija-Liisa Harvan rahasto", "amount": "16 400 EUR" },
+      { "year": "2010–2011", "funder": "Suomen kulttuurirahasto, XeroX Oy:n rahasto", "amount": "21 000 EUR" },
+      { "year": "2005–2006", "funder": "Suomen kulttuurirahasto, Urpo ja Maija-Liisa Harvan rahasto", "amount": "16 400 EUR" },
       { "year": "2009", "funder": "Oulun yliopiston matka-apuraha", "amount": "1 500 EUR" }
     ],
     "languages": [
@@ -113,31 +119,37 @@
     ],
     "positions": [
       {
-        "title": "University Lecturer",
-        "note": "Technology-enhanced Learning and Teaching (permanent)",
+        "title": "University Lecturer (tenured)",
+        "note": "Technology-enhanced Learning and Teaching",
         "institution": "University of Oulu",
         "dept": "Faculty of Education and Psychology",
-        "period": ""
+        "period": "2013–"
       },
       {
         "title": "Self-employed (training and lecturing)",
         "note": "",
         "institution": "Larux t:mi",
-        "period": ""
+        "period": "2010–"
       }
     ],
     "prev_positions": [
       {
-        "title": "University Instructor",
-        "note": "Information and Communication Technology",
+        "title": "University Teacher",
+        "note": "Educational Technology",
         "institution": "University of Oulu",
-        "period": ""
+        "period": "2011–2013"
       },
       {
-        "title": "Doctoral Researcher",
-        "note": "OPMON Doctoral School",
+        "title": "Doctoral Student",
+        "note": "Doctoral Programme for Multidisciplinary Research on Learning Environments (OPMON)",
         "institution": "University of Oulu",
-        "period": ""
+        "period": "2006–2010"
+      },
+      {
+        "title": "Research Assistant",
+        "note": "Research Unit for Educational Technology (EDTECH)",
+        "institution": "University of Oulu",
+        "period": "2002–2003"
       }
     ],
     "teaching": [],
@@ -157,8 +169,8 @@
       }
     ],
     "grants": [
-      { "year": "2010", "funder": "Finnish Cultural Foundation (XeroX Oy Fund)", "amount": "EUR 21,000" },
-      { "year": "2005", "funder": "Finnish Cultural Foundation (Urpo and Maija-Liisa Harva Fund)", "amount": "EUR 16,400" },
+      { "year": "2010–2011", "funder": "Finnish Cultural Foundation (XeroX Oy Fund)", "amount": "EUR 21,000" },
+      { "year": "2005–2006", "funder": "Finnish Cultural Foundation (Urpo and Maija-Liisa Harva Fund)", "amount": "EUR 16,400" },
       { "year": "2009", "funder": "University of Oulu Travel Grant", "amount": "EUR 1,500" }
     ],
     "languages": [
