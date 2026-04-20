@@ -680,12 +680,20 @@ function renderCVCompact() {
     <div style="font-size:13.5pt;font-weight:bold;${T}">${esc(cv.name)}</div>
     <div>${esc(cv.position)}</div>
     <div>${esc(cv.dept)}, ${esc(cv.institution)}</div>
-    <div style="font-size:10pt;color:#333;margin-top:2px">${esc(cv.email)} &nbsp;·&nbsp; ORCID: 0000-0003-0347-0182 &nbsp;·&nbsp; ResearcherID: H-3573-2013</div>
+    <div style="font-size:10pt;color:#333;margin-top:2px">ORCID: 0000-0003-0347-0182 &nbsp;·&nbsp; ResearcherID: H-3573-2013</div>
   </div>` : ''}
 
   ${(leftCol || rightCol) ? `<div style="display:grid;grid-template-columns:${leftCol&&rightCol?'1fr 1fr':'1fr'};gap:0 18px;margin-bottom:5px">
     ${leftCol}
     ${rightCol}
+  </div>` : ''}
+
+  ${sec.funding && cv.funding?.length ? `<div style="margin-bottom:5px">
+    <div style="${secHead}">${esc(s.funding)}</div>
+    ${cv.funding.map(f=>`<div style="${rowStyle}">
+      <div style="${yrStyle};font-size:10pt;font-weight:normal">${esc(f.period)}</div>
+      <div><strong>${esc(f.project)}</strong>${f.role?` — ${esc(f.role)}`:''}<br><span style="font-size:10pt">${esc(f.funder)}</span></div>
+    </div>`).join('')}
   </div>` : ''}
 
   ${sec.pub_summary ? `<div>
