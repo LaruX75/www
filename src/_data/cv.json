@@ -1,0 +1,180 @@
+{
+  "fi": {
+    "name": "Laru Jari Jukka, KT",
+    "degree": "Kasvatustieteiden tohtori (KT)",
+    "position": "Yliopistonlehtori, teknologiatuettu oppiminen ja opetus",
+    "dept": "Kasvatustieteiden ja psykologian tiedekunta",
+    "institution": "Oulun yliopisto",
+    "birth": "9.3.1975",
+    "updated": "1.1.2025",
+    "education": [
+      {
+        "degree": "Kasvatustieteiden tohtori (KT)",
+        "field": "Kasvatustiede",
+        "institution": "Oulun yliopisto",
+        "year": "21.11.2012",
+        "note": "Väitöskirja: Opiskelun tukeminen mobiililaitteiden ja pedagogisen vaiheistuksen avulla"
+      },
+      {
+        "degree": "Kasvatustieteiden maisteri (KM)",
+        "field": "Teknologiapainotteinen luokanopettajakoulutus",
+        "institution": "Oulun yliopisto",
+        "year": "14.5.2003"
+      }
+    ],
+    "positions": [
+      {
+        "title": "Yliopistonlehtori",
+        "note": "teknologiatuettu oppiminen ja opetus (toistaiseksi voimassaoleva)",
+        "institution": "Oulun yliopisto",
+        "dept": "Kasvatustieteiden ja psykologian tiedekunta",
+        "period": ""
+      },
+      {
+        "title": "Sivutoiminen yrittäjä",
+        "note": "luennointi ja koulutus",
+        "institution": "Larux t:mi",
+        "period": ""
+      }
+    ],
+    "prev_positions": [
+      {
+        "title": "Yliopisto-opettaja",
+        "note": "tieto- ja viestintätekniikka",
+        "institution": "Oulun yliopisto",
+        "period": ""
+      },
+      {
+        "title": "Tutkijakoulutettava",
+        "note": "OPMON tutkijakoulu",
+        "institution": "Oulun yliopisto",
+        "period": ""
+      }
+    ],
+    "teaching": [],
+    "other_roles": [],
+    "funding": [
+      {
+        "project": "Generation AI",
+        "funder": "Strategisen tutkimuksen neuvosto (STN)",
+        "period": "1.10.2022–30.9.2025",
+        "role": ""
+      },
+      {
+        "project": "Learning Technology Accelerator (LEA)",
+        "funder": "EU Horizon 2020",
+        "period": "2018–2020",
+        "role": ""
+      }
+    ],
+    "grants": [
+      { "year": "2010", "funder": "Suomen kulttuurirahasto, XeroX Oy:n rahasto", "amount": "21 000 EUR" },
+      { "year": "2005", "funder": "Suomen kulttuurirahasto, Urpo ja Maija-Liisa Harvan rahasto", "amount": "16 400 EUR" },
+      { "year": "2009", "funder": "Oulun yliopiston matka-apuraha", "amount": "1 500 EUR" }
+    ],
+    "languages": [
+      { "lang": "Suomi", "level": "Äidinkieli" },
+      { "lang": "Englanti", "level": "Hyvä — opetus- ja tutkimuskieli" },
+      { "lang": "Ruotsi", "level": "Tyydyttävä" }
+    ],
+    "profiles": [
+      { "name": "ORCID", "id": "0000-0003-0347-0182", "url": "https://orcid.org/0000-0003-0347-0182" },
+      { "name": "ResearcherID (Web of Science)", "id": "H-3573-2013", "url": "" },
+      { "name": "Google Scholar", "url": "https://scholar.google.com/citations?user=HOLu1ZIAAAAJ&hl=en" },
+      { "name": "ResearchGate", "url": "https://www.researchgate.net/profile/Jari-Laru" },
+      { "name": "Academia.edu", "url": "https://oulu.academia.edu/JariLaru" },
+      { "name": "Loop (Frontiers)", "url": "https://loop.frontiersin.org/people/829510/overview" },
+      { "name": "Research.fi", "url": "https://research.fi/fi/results/person/0000-0003-0347-0182" },
+      { "name": "OuluCRIS", "url": "https://oulu.cris.fi/fi/persons/OY-19209" }
+    ]
+  },
+  "en": {
+    "name": "Laru Jari Jukka, EdD",
+    "degree": "Doctor of Education (KT)",
+    "position": "University Lecturer, Technology-enhanced Learning and Teaching",
+    "dept": "Faculty of Education and Psychology",
+    "institution": "University of Oulu",
+    "birth": "9 March 1975",
+    "updated": "1 Jan 2025",
+    "education": [
+      {
+        "degree": "Doctor of Education (KT)",
+        "field": "Educational Sciences",
+        "institution": "University of Oulu",
+        "year": "21 Nov 2012",
+        "note": "Dissertation: Scaffolding learning activities with collaborative scripts and mobile devices"
+      },
+      {
+        "degree": "Master of Education (KM)",
+        "field": "Technology-enhanced Class Teacher Education",
+        "institution": "University of Oulu",
+        "year": "14 May 2003"
+      }
+    ],
+    "positions": [
+      {
+        "title": "University Lecturer",
+        "note": "Technology-enhanced Learning and Teaching (permanent)",
+        "institution": "University of Oulu",
+        "dept": "Faculty of Education and Psychology",
+        "period": ""
+      },
+      {
+        "title": "Self-employed (training and lecturing)",
+        "note": "",
+        "institution": "Larux t:mi",
+        "period": ""
+      }
+    ],
+    "prev_positions": [
+      {
+        "title": "University Instructor",
+        "note": "Information and Communication Technology",
+        "institution": "University of Oulu",
+        "period": ""
+      },
+      {
+        "title": "Doctoral Researcher",
+        "note": "OPMON Doctoral School",
+        "institution": "University of Oulu",
+        "period": ""
+      }
+    ],
+    "teaching": [],
+    "other_roles": [],
+    "funding": [
+      {
+        "project": "Generation AI",
+        "funder": "Strategic Research Council (SRC), Finland",
+        "period": "1 Oct 2022–30 Sep 2025",
+        "role": ""
+      },
+      {
+        "project": "Learning Technology Accelerator (LEA)",
+        "funder": "EU Horizon 2020",
+        "period": "2018–2020",
+        "role": ""
+      }
+    ],
+    "grants": [
+      { "year": "2010", "funder": "Finnish Cultural Foundation (XeroX Oy Fund)", "amount": "EUR 21,000" },
+      { "year": "2005", "funder": "Finnish Cultural Foundation (Urpo and Maija-Liisa Harva Fund)", "amount": "EUR 16,400" },
+      { "year": "2009", "funder": "University of Oulu Travel Grant", "amount": "EUR 1,500" }
+    ],
+    "languages": [
+      { "lang": "Finnish", "level": "Native" },
+      { "lang": "English", "level": "Proficient — teaching and research language" },
+      { "lang": "Swedish", "level": "Satisfactory" }
+    ],
+    "profiles": [
+      { "name": "ORCID", "id": "0000-0003-0347-0182", "url": "https://orcid.org/0000-0003-0347-0182" },
+      { "name": "ResearcherID (Web of Science)", "id": "H-3573-2013", "url": "" },
+      { "name": "Google Scholar", "url": "https://scholar.google.com/citations?user=HOLu1ZIAAAAJ&hl=en" },
+      { "name": "ResearchGate", "url": "https://www.researchgate.net/profile/Jari-Laru" },
+      { "name": "Academia.edu", "url": "https://oulu.academia.edu/JariLaru" },
+      { "name": "Loop (Frontiers)", "url": "https://loop.frontiersin.org/people/829510/overview" },
+      { "name": "Research.fi", "url": "https://research.fi/en/results/person/0000-0003-0347-0182" },
+      { "name": "OuluCRIS", "url": "https://oulu.cris.fi/en/persons/OY-19209" }
+    ]
+  }
+}

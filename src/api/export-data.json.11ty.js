@@ -50,6 +50,7 @@ module.exports = class {
     return JSON.stringify({
       localPublications: localPubs,
       researchfiPublications: rfPubs,
+      cv: data.cv || {},
       generated: new Date().toISOString(),
     });
   }

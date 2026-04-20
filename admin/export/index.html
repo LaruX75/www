@@ -348,112 +348,9 @@ const OKM_LABEL = {
 };
 
 /* ═══════════════════════════════════════════════════════════════
-   CV DATA
+   CV DATA — loaded from /api/export-data.json (src/_data/cv.json)
 ═══════════════════════════════════════════════════════════════ */
-const CV = {
-  fi: {
-    name:'Laru Jari Jukka, KT', degree:'Kasvatustieteiden tohtori (KT)',
-    position:'Yliopistonlehtori, teknologiatuettu oppiminen ja opetus',
-    dept:'Kasvatustieteiden ja psykologian tiedekunta', institution:'Oulun yliopisto',
-    email:'jari.laru@oulu.fi', birth_year:'1974', updated:'1.1.2025',
-    education:[
-      { degree:'Kasvatustieteiden tohtori (KT)', field:'Kasvatustiede', institution:'Oulun yliopisto', year:'2012',
-        note:'Väitöskirja: Mobile Peer-Groups — How Mobile Devices and Social Software Can Complement Computers in a Collaborative Learning Context' },
-      { degree:'Kasvatustieteiden maisteri (KM)', field:'Teknologiapainotteinen luokanopettajakoulutus', institution:'Oulun yliopisto', year:'2003' }
-    ],
-    positions:[
-      { title:'Yliopistonlehtori', note:'teknologiatuettu oppiminen ja opetus (toistaiseksi voimassaoleva)', institution:'Oulun yliopisto', dept:'Kasvatustieteiden ja psykologian tiedekunta', period:'2013–' },
-      { title:'Sivutoiminen yrittäjä', note:'luennointi ja koulutus', institution:'Larux t:mi', period:'2015–' },
-    ],
-    prev_positions:[
-      { title:'Yliopisto-opettaja', note:'tieto- ja viestintätekniikka', institution:'Oulun yliopisto', period:'–2013' },
-      { title:'Tutkijakoulutettava', note:'OPMON tutkijakoulu', institution:'Oulun yliopisto', period:'2004–2012' },
-    ],
-    teaching:[
-      'Yliopistonopettajan pedagoginen pätevyys (yliopistopedagogiikan opinnot, Oulun yliopisto)',
-      'Opetusalat: teknologia ja oppiminen, digitaaliset oppimisympäristöt, tekoälylukutaito',
-      'Ohjatut pro gradu -tutkielmat: yli 50',
-      'Väitöskirjaohjaus: ohjausvastuussa useissa tutkimusprojekteissa',
-    ],
-    other_roles:[
-      { role:'Kaupunginvaltuutettu', institution:'Oulun kaupunki', period:'2017–', note:'Sivistys- ja kulttuurilautakunnan jäsen' },
-      { role:'Referee-toiminta', institution:'Kansainväliset tieteelliset lehdet ja konferenssit', period:'' },
-    ],
-    funding:[
-      { project:'Generation AI', funder:'Strategisen tutkimuksen neuvosto (STN)', period:'1.10.2022–30.9.2025', role:'Tutkija ja vuorovaikutusasiantuntija' },
-      { project:'Learning Technology Accelerator (LEA)', funder:'EU Horizon 2020', period:'2018–2020', role:'Tutkija' },
-    ],
-    grants:[
-      { year:'2010', funder:'Suomen kulttuurirahasto, XeroX Oy:n rahasto', amount:'21 000 EUR' },
-      { year:'2005', funder:'Suomen kulttuurirahasto, Urpo ja Maija-Liisa Harvan rahasto', amount:'16 400 EUR' },
-      { year:'2009', funder:'Oulun yliopiston matka-apuraha', amount:'1 500 EUR' },
-    ],
-    languages:[
-      { lang:'Suomi', level:'Äidinkieli' },
-      { lang:'Englanti', level:'Hyvä — opetus- ja tutkimuskieli' },
-      { lang:'Ruotsi', level:'Tyydyttävä' },
-    ],
-    profiles:[
-      { name:'ORCID', id:'0000-0003-0347-0182', url:'https://orcid.org/0000-0003-0347-0182' },
-      { name:'ResearcherID (Web of Science)', id:'H-3573-2013' },
-      { name:'Google Scholar', url:'https://scholar.google.com/citations?user=HOLu1ZIAAAAJ' },
-      { name:'ResearchGate', url:'https://www.researchgate.net/profile/Jari-Laru' },
-      { name:'Research.fi', url:'https://research.fi/en/results/person/0000-0003-0347-0182' },
-      { name:'OuluCRIS', url:'https://oulu.cris.fi/fi/persons/OY-19209' },
-    ],
-  },
-  en: {
-    name:'Laru Jari Jukka, EdD', degree:'Doctor of Education (EdD / KT)',
-    position:'University Lecturer, Technology-enhanced Learning and Teaching',
-    dept:'Faculty of Education and Psychology', institution:'University of Oulu',
-    email:'jari.laru@oulu.fi', birth_year:'1974', updated:'1 Jan 2025',
-    education:[
-      { degree:'Doctor of Education (EdD / KT)', field:'Educational Sciences', institution:'University of Oulu', year:'2012',
-        note:'Dissertation: Mobile Peer-Groups — How Mobile Devices and Social Software Can Complement Computers in a Collaborative Learning Context' },
-      { degree:'Master of Education (MEd / KM)', field:'Technology-enhanced Class Teacher Education', institution:'University of Oulu', year:'2003' }
-    ],
-    positions:[
-      { title:'University Lecturer', note:'Technology-enhanced Learning and Teaching (permanent)', institution:'University of Oulu', dept:'Faculty of Education and Psychology', period:'2013–' },
-      { title:'Self-employed (training and lecturing)', note:'', institution:'Larux t:mi', period:'2015–' },
-    ],
-    prev_positions:[
-      { title:'University Instructor', note:'Information and Communication Technology', institution:'University of Oulu', period:'–2013' },
-      { title:'Doctoral Researcher', note:'OPMON Doctoral School', institution:'University of Oulu', period:'2004–2012' },
-    ],
-    teaching:[
-      'University Pedagogy qualification (University of Oulu)',
-      'Teaching areas: technology and learning, digital learning environments, AI literacy',
-      'Supervised Master\'s theses: over 50',
-      'Doctoral thesis supervision: supervisory responsibility in several research projects',
-    ],
-    other_roles:[
-      { role:'City Council Member', institution:'City of Oulu', period:'2017–', note:'Member of Education and Culture Committee' },
-      { role:'Peer-review activities', institution:'International scientific journals and conferences', period:'' },
-    ],
-    funding:[
-      { project:'Generation AI', funder:'Strategic Research Council (SRC), Finland', period:'1 Oct 2022–30 Sep 2025', role:'Researcher and Interaction Specialist' },
-      { project:'Learning Technology Accelerator (LEA)', funder:'EU Horizon 2020', period:'2018–2020', role:'Researcher' },
-    ],
-    grants:[
-      { year:'2010', funder:'Finnish Cultural Foundation (XeroX Oy Fund)', amount:'EUR 21,000' },
-      { year:'2005', funder:'Finnish Cultural Foundation (Urpo and Maija-Liisa Harva Fund)', amount:'EUR 16,400' },
-      { year:'2009', funder:'University of Oulu Travel Grant', amount:'EUR 1,500' },
-    ],
-    languages:[
-      { lang:'Finnish', level:'Native' },
-      { lang:'English', level:'Proficient — teaching and research language' },
-      { lang:'Swedish', level:'Satisfactory' },
-    ],
-    profiles:[
-      { name:'ORCID', id:'0000-0003-0347-0182', url:'https://orcid.org/0000-0003-0347-0182' },
-      { name:'ResearcherID (Web of Science)', id:'H-3573-2013' },
-      { name:'Google Scholar', url:'https://scholar.google.com/citations?user=HOLu1ZIAAAAJ' },
-      { name:'ResearchGate', url:'https://www.researchgate.net/profile/Jari-Laru' },
-      { name:'Research.fi', url:'https://research.fi/en/results/person/0000-0003-0347-0182' },
-      { name:'OuluCRIS', url:'https://oulu.cris.fi/en/persons/OY-19209' },
-    ],
-  }
-};
+let CV = {};
 
 /* ═══════════════════════════════════════════════════════════════
    HELPERS
@@ -1242,6 +1139,7 @@ async function loadData() {
     const r = await fetch('/api/export-data.json');
     if (!r.ok) throw new Error('HTTP ' + r.status);
     exportData = await r.json();
+    CV = exportData.cv || {};
     const n = (exportData.researchfiPublications?.length||0) + (exportData.localPublications?.length||0);
     const yMin = getYearMin(), yMax = getYearMax();
     state.publist.yearFrom = yMin;
