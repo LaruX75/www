@@ -237,3 +237,167 @@ collections:
           - { label: "Username", name: "username", widget: "string", required: false }
           - { label: "Hakufallback (channelQuery)", name: "channelQuery", widget: "string", required: false, default: "jarilaru" }
           - { label: "Skrollerissa näytettävien määrä", name: "tickerLimit", widget: "number", required: false, min: 1, default: 12 }
+      - file: "src/_data/cv.json"
+        label: "Ansioluettelo (CV-data)"
+        name: "cv_data"
+        fields:
+          - name: fi
+            label: "Suomi"
+            widget: object
+            fields:
+              - { name: name, label: "Nimi (nimijärjestyksessä)", widget: string }
+              - { name: degree, label: "Tutkinto (lyhyt)", widget: string }
+              - { name: position, label: "Virka/toimi", widget: string }
+              - { name: dept, label: "Tiedekunta/yksikkö", widget: string }
+              - { name: institution, label: "Yliopisto/organisaatio", widget: string }
+              - { name: birth, label: "Syntymäaika", widget: string }
+              - { name: updated, label: "CV päivitetty", widget: string }
+              - name: education
+                label: "Koulutus ja tutkinnot"
+                widget: list
+                fields:
+                  - { name: degree, label: "Tutkinto", widget: string }
+                  - { name: field, label: "Ala", widget: string }
+                  - { name: institution, label: "Yliopisto", widget: string }
+                  - { name: year, label: "Valmistumispäivä", widget: string }
+                  - { name: note, label: "Lisätiedot (esim. väitöskirjan nimi)", widget: string, required: false }
+              - name: positions
+                label: "Nykyiset virat ja toimet"
+                widget: list
+                fields:
+                  - { name: title, label: "Nimike", widget: string }
+                  - { name: note, label: "Lisätiedot", widget: string, required: false }
+                  - { name: institution, label: "Organisaatio", widget: string }
+                  - { name: dept, label: "Yksikkö", widget: string, required: false }
+                  - { name: period, label: "Ajanjakso (esim. 2013–)", widget: string, required: false }
+              - name: prev_positions
+                label: "Aiemmat virat ja toimet"
+                widget: list
+                fields:
+                  - { name: title, label: "Nimike", widget: string }
+                  - { name: note, label: "Lisätiedot", widget: string, required: false }
+                  - { name: institution, label: "Organisaatio", widget: string }
+                  - { name: period, label: "Ajanjakso (esim. 2004–2012)", widget: string, required: false }
+              - name: teaching
+                label: "Opetus ja pedagogiikka"
+                widget: list
+                field:
+                  name: item
+                  label: "Kohta"
+                  widget: string
+              - name: other_roles
+                label: "Muut tehtävät"
+                widget: list
+                fields:
+                  - { name: role, label: "Tehtävä", widget: string }
+                  - { name: institution, label: "Organisaatio", widget: string }
+                  - { name: period, label: "Ajanjakso", widget: string, required: false }
+                  - { name: note, label: "Lisätiedot", widget: string, required: false }
+              - name: funding
+                label: "Tutkimusrahoitus"
+                widget: list
+                fields:
+                  - { name: project, label: "Projekti", widget: string }
+                  - { name: funder, label: "Rahoittaja", widget: string }
+                  - { name: period, label: "Ajanjakso", widget: string, required: false }
+                  - { name: role, label: "Rooli hankkeessa", widget: string, required: false }
+              - name: grants
+                label: "Apurahat"
+                widget: list
+                fields:
+                  - { name: year, label: "Vuosi", widget: string }
+                  - { name: funder, label: "Myöntäjä", widget: string }
+                  - { name: amount, label: "Summa", widget: string }
+              - name: languages
+                label: "Kielitaito"
+                widget: list
+                fields:
+                  - { name: lang, label: "Kieli", widget: string }
+                  - { name: level, label: "Taso", widget: string }
+              - name: profiles
+                label: "Tutkijaprofiilit"
+                widget: list
+                fields:
+                  - { name: name, label: "Palvelun nimi", widget: string }
+                  - { name: id, label: "Tunniste (esim. ORCID-numero)", widget: string, required: false }
+                  - { name: url, label: "URL", widget: string, required: false }
+          - name: en
+            label: "English"
+            widget: object
+            fields:
+              - { name: name, label: "Name (surname first)", widget: string }
+              - { name: degree, label: "Degree (short)", widget: string }
+              - { name: position, label: "Position/title", widget: string }
+              - { name: dept, label: "Faculty/department", widget: string }
+              - { name: institution, label: "University/organisation", widget: string }
+              - { name: birth, label: "Date of birth", widget: string }
+              - { name: updated, label: "CV updated", widget: string }
+              - name: education
+                label: "Education and qualifications"
+                widget: list
+                fields:
+                  - { name: degree, label: "Degree", widget: string }
+                  - { name: field, label: "Field", widget: string }
+                  - { name: institution, label: "University", widget: string }
+                  - { name: year, label: "Graduation date", widget: string }
+                  - { name: note, label: "Details (e.g. dissertation title)", widget: string, required: false }
+              - name: positions
+                label: "Current positions"
+                widget: list
+                fields:
+                  - { name: title, label: "Title", widget: string }
+                  - { name: note, label: "Details", widget: string, required: false }
+                  - { name: institution, label: "Organisation", widget: string }
+                  - { name: dept, label: "Department", widget: string, required: false }
+                  - { name: period, label: "Period (e.g. 2013–)", widget: string, required: false }
+              - name: prev_positions
+                label: "Previous positions"
+                widget: list
+                fields:
+                  - { name: title, label: "Title", widget: string }
+                  - { name: note, label: "Details", widget: string, required: false }
+                  - { name: institution, label: "Organisation", widget: string }
+                  - { name: period, label: "Period (e.g. 2004–2012)", widget: string, required: false }
+              - name: teaching
+                label: "Teaching and pedagogy"
+                widget: list
+                field:
+                  name: item
+                  label: "Item"
+                  widget: string
+              - name: other_roles
+                label: "Other roles"
+                widget: list
+                fields:
+                  - { name: role, label: "Role", widget: string }
+                  - { name: institution, label: "Organisation", widget: string }
+                  - { name: period, label: "Period", widget: string, required: false }
+                  - { name: note, label: "Details", widget: string, required: false }
+              - name: funding
+                label: "Research funding"
+                widget: list
+                fields:
+                  - { name: project, label: "Project", widget: string }
+                  - { name: funder, label: "Funder", widget: string }
+                  - { name: period, label: "Period", widget: string, required: false }
+                  - { name: role, label: "Role in project", widget: string, required: false }
+              - name: grants
+                label: "Grants"
+                widget: list
+                fields:
+                  - { name: year, label: "Year", widget: string }
+                  - { name: funder, label: "Grantor", widget: string }
+                  - { name: amount, label: "Amount", widget: string }
+              - name: languages
+                label: "Language skills"
+                widget: list
+                fields:
+                  - { name: lang, label: "Language", widget: string }
+                  - { name: level, label: "Level", widget: string }
+              - name: profiles
+                label: "Researcher profiles"
+                widget: list
+                fields:
+                  - { name: name, label: "Service name", widget: string }
+                  - { name: id, label: "Identifier (e.g. ORCID number)", widget: string, required: false }
+                  - { name: url, label: "URL", widget: string, required: false }
