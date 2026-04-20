@@ -718,7 +718,6 @@ function renderCVCompact() {
   const s = S[state.lang];
   const cv = CV[state.lang];
   const rf = exportData?.researchfiPublications || [];
-  const local = exportData?.localPublications || [];
   const now = new Date().toLocaleDateString(state.lang==='fi'?'fi-FI':'en-GB',{day:'numeric',month:'long',year:'numeric'});
 
   const cg = g => ['A1','A2','A3','A4','B1','B2','B3','C1','C2','D1','D2','D3','E1','E2','G4','G5']
@@ -727,53 +726,73 @@ function renderCVCompact() {
   const countParts = [
     cA && `A: ${cA}`, cB && `B: ${cB}`, cC && `C: ${cC}`,
     cD && `D: ${cD}`, cE && `E: ${cE}`, cG && `G: ${cG}`,
-    local.length && (state.lang==='fi'?`miel./kol./puhe: ${local.length}`:`opin./col./speech: ${local.length}`)
   ].filter(Boolean).join(' · ');
 
-  return `
-  <div class="doc-title">${esc(s.cv_title)}</div>
-  <div class="doc-subtitle">${esc(s.cv_guideline)} &nbsp;·&nbsp; ${esc(s.generated)}: ${esc(now)}</div>
+  // Top 10 publications: prioritise A1/A2, then A3/A4, then others, newest first
+  const top10 = rf
+    .slice().sort((a,b) => {
+      const rank = tc => ['A1','A2'].includes(tc)?0:['A3','A4'].includes(tc)?1:tc?.startsWith('A')?2:3;
+      const rd = rank(a.typeCode) - rank(b.typeCode);
+      return rd !== 0 ? rd : (b.year||0) - (a.year||0);
+    })
+    .slice(0, 10);
 
-  <div class="doc-section span2" style="border-bottom:1px solid #ccc;padding-bottom:8px;margin-bottom:4px">
-    <strong>${esc(cv.name)}</strong> &nbsp;·&nbsp; ${esc(cv.position)}<br>
-    ${esc(cv.dept)}, ${esc(cv.institution)} &nbsp;·&nbsp; ${esc(cv.email)}<br>
-    <span style="font-size:8.5pt">ORCID: <a href="https://orcid.org/0000-0003-0347-0182">0000-0003-0347-0182</a> &nbsp;·&nbsp; ResearcherID: H-3573-2013 &nbsp;·&nbsp; Google Scholar: <a href="https://scholar.google.com/citations?user=HOLu1ZIAAAAJ">HOLu1ZIAAAAJ</a></span>
+  return `
+  <div style="font-family:'Times New Roman',Times,serif;font-size:11pt;line-height:1.45;color:#111">
+
+  <div style="border-bottom:2px solid #111;padding-bottom:6px;margin-bottom:10px">
+    <div style="font-size:14pt;font-weight:bold;font-family:'Times New Roman',Times,serif">${esc(cv.name)}</div>
+    <div style="font-size:10pt">${esc(cv.position)}</div>
+    <div style="font-size:10pt">${esc(cv.dept)}, ${esc(cv.institution)}</div>
+    <div style="font-size:9.5pt;color:#444;margin-top:3px">
+      ${esc(cv.email)} &nbsp;·&nbsp;
+      ORCID: <a href="https://orcid.org/0000-0003-0347-0182">0000-0003-0347-0182</a> &nbsp;·&nbsp;
+      ResearcherID: H-3573-2013
+    </div>
   </div>
 
-  <div class="compact-grid">
-    <div class="doc-section">
-      <h2>${esc(s.education)}</h2>
-      ${cv.education.map(e=>`<div class="doc-row"><div class="doc-year">${esc(e.year)}</div><div><strong>${esc(e.degree)}</strong><br>${esc(e.institution)}</div></div>`).join('')}
-    </div>
+  <div style="margin-bottom:8px">
+    <div style="font-size:9pt;font-weight:bold;text-transform:uppercase;letter-spacing:.08em;border-bottom:1px solid #333;padding-bottom:1px;margin-bottom:4px;font-family:'Times New Roman',Times,serif">${esc(s.education)}</div>
+    ${cv.education.map(e=>`<div style="display:flex;gap:10px;margin-bottom:2px">
+      <div style="min-width:42px;font-weight:bold;font-size:10.5pt">${esc(e.year)}</div>
+      <div>${esc(e.degree)}, ${esc(e.institution)}${e.note?`<div style="font-size:9.5pt;color:#555;font-style:italic">${esc(e.note)}</div>`:''}</div>
+    </div>`).join('')}
+  </div>
 
-    <div class="doc-section">
-      <h2>${esc(s.current_pos)}</h2>
-      ${cv.positions.map(p=>`<div class="doc-row"><div class="doc-year">${esc(p.period)}</div><div><strong>${esc(p.title)}</strong>${p.note?`<br><span style="font-size:8pt">${esc(p.note)}</span>`:''}<br><span class="doc-meta">${esc(p.institution)}</span></div></div>`).join('')}
-    </div>
+  <div style="margin-bottom:8px">
+    <div style="font-size:9pt;font-weight:bold;text-transform:uppercase;letter-spacing:.08em;border-bottom:1px solid #333;padding-bottom:1px;margin-bottom:4px;font-family:'Times New Roman',Times,serif">${esc(s.current_pos)}</div>
+    ${[...cv.positions, ...cv.prev_positions].map(p=>`<div style="display:flex;gap:10px;margin-bottom:2px">
+      <div style="min-width:42px;font-weight:bold;font-size:10.5pt">${esc(p.period)}</div>
+      <div>${esc(p.title)}${p.note?` — ${esc(p.note)}`:''}, ${esc(p.institution)}</div>
+    </div>`).join('')}
+  </div>
 
-    <div class="doc-section">
-      <h2>${esc(s.funding)}</h2>
-      ${cv.funding.map(f=>`<div class="doc-row"><div class="doc-year" style="min-width:50px">${esc(f.period.split('–')[0])}</div><div><strong>${esc(f.project)}</strong><br><span class="doc-meta">${esc(f.funder)}</span></div></div>`).join('')}
-      <div style="margin-top:5px;font-size:8pt;color:#444">
-        ${cv.grants.map(g=>`${esc(g.year)} ${esc(g.amount)} (${esc(g.funder.split(',')[0])})`).join(' · ')}
-      </div>
-    </div>
+  <div style="margin-bottom:8px">
+    <div style="font-size:9pt;font-weight:bold;text-transform:uppercase;letter-spacing:.08em;border-bottom:1px solid #333;padding-bottom:1px;margin-bottom:4px;font-family:'Times New Roman',Times,serif">${esc(s.languages)}</div>
+    <div>${cv.languages.map(l=>`<strong>${esc(l.lang)}</strong>: ${esc(l.level)}`).join(' &nbsp;·&nbsp; ')}</div>
+  </div>
 
-    <div class="doc-section">
-      <h2>${esc(s.other_roles)}</h2>
-      ${cv.other_roles.map(r=>`<div class="doc-row"><div class="doc-year">${esc(r.period)}</div><div><strong>${esc(r.role)}</strong><br><span class="doc-meta">${esc(r.institution)}</span></div></div>`).join('')}
-    </div>
+  <div style="margin-bottom:8px">
+    <div style="font-size:9pt;font-weight:bold;text-transform:uppercase;letter-spacing:.08em;border-bottom:1px solid #333;padding-bottom:1px;margin-bottom:4px;font-family:'Times New Roman',Times,serif">${esc(s.pub_summary)}</div>
+    <div style="font-size:10pt;margin-bottom:4px">${esc(state.lang==='fi'?`Yhteensä ${rf.length} julkaisua (Research.fi). `:` Total ${rf.length} publications (Research.fi). `)}${esc(countParts)}</div>
+    ${top10.map(p => {
+      const parts = [];
+      if (p.authors) parts.push(esc(p.authors) + '.');
+      if (p.year)    parts.push(`(${esc(p.year)}).`);
+      if (p.title)   parts.push(`<em>${esc(p.title)}.</em>`);
+      let venue = '';
+      if (p.journal) { venue = esc(p.journal); if (p.volume) { venue += `, ${esc(p.volume)}`; if (p.issue) venue += `(${esc(p.issue)})`; } if (p.pages) venue += `, ${esc(p.pages)}`; }
+      else if (p.publisher) venue = esc(p.publisher);
+      if (venue) parts.push(venue + '.');
+      if (p.doiUrl) parts.push(`<span style="font-size:9pt;color:#555"><a href="${esc(p.doiUrl)}">${esc(p.doiUrl)}</a></span>`);
+      const badges = [];
+      if (p.typeCode) badges.push(`<span style="font-size:8pt;font-family:monospace;color:#777">[${esc(p.typeCode)}]</span>`);
+      if (state.showJufo && p.jufoLevel!=null) badges.push(`<span style="font-size:8pt;font-family:monospace;background:#f0f0f0;padding:1px 3px">${esc('Jufo ')}${esc(p.jufoLevel)}</span>`);
+      if (state.showOA && p.openAccess)        badges.push(`<span style="font-size:8pt;color:#166534">OA</span>`);
+      return `<div style="margin-bottom:4px;font-size:10.5pt;line-height:1.35">${parts.join(' ')} ${badges.join(' ')}</div>`;
+    }).join('')}
+  </div>
 
-    <div class="doc-section">
-      <h2>${esc(s.pub_summary)}</h2>
-      <p style="font-size:9pt;margin:2px 0">${esc(state.lang==='fi'?`Yhteensä ${rf.length+local.length} julkaisua`:`Total ${rf.length+local.length} publications`)}</p>
-      <p style="font-size:8.5pt;color:#444;margin:2px 0">${esc(countParts)}</p>
-    </div>
-
-    <div class="doc-section">
-      <h2>${esc(s.languages)}</h2>
-      ${cv.languages.map(l=>`<div style="font-size:8.5pt"><strong>${esc(l.lang)}</strong>: ${esc(l.level)}</div>`).join('')}
-    </div>
   </div>`;
 }
 
