@@ -625,12 +625,12 @@ function renderCVCompact() {
     cD && `D: ${cD}`, cE && `E: ${cE}`, cG && `G: ${cG}`,
   ].filter(Boolean).join(' · ');
 
-  // Top 6: A1/A2 first, then A3/A4, newest first within rank; no DOI URLs, shortened authors
-  const top6 = rf.slice().sort((a,b) => {
-    const rank = tc => ['A1','A2'].includes(tc)?0:['A3','A4'].includes(tc)?1:tc?.startsWith('A')?2:3;
-    const rd = rank(a.typeCode)-rank(b.typeCode);
-    return rd!==0 ? rd : (b.year||0)-(a.year||0);
-  }).slice(0,6);
+  // Top publications: international types only, newest first
+  const COMPACT_INTL = ['A1','A2','A3','A4','B1','B2','B3','C1','C2','G4','G5'];
+  const top6 = rf
+    .filter(p => COMPACT_INTL.includes(p.typeCode))
+    .sort((a,b) => (b.year||0)-(a.year||0))
+    .slice(0, 6);
 
   function shortAuthors(str) {
     if (!str || str.length <= 55) return str;
@@ -675,6 +675,12 @@ function renderCVCompact() {
       <div style="${secHead}">${esc(s.languages)}</div>
       <div>${cv.languages.map(l=>`<strong>${esc(l.lang)}</strong>: ${esc(l.level)}`).join(' &nbsp;·&nbsp; ')}</div>
     </div>` : '',
+    cv.profiles?.length ? `<div style="margin-top:5px">
+      <div style="${secHead}">Researcher profiles</div>
+      <div style="font-size:9pt;line-height:1.5">${cv.profiles.filter(p=>p.url).map(p=>
+        `<span><a href="${esc(p.url)}">${esc(p.name)}${p.id?` (${esc(p.id)})`:''}</a></span>`
+      ).join(' &nbsp;·&nbsp; ')}</div>
+    </div>` : '',
   ].filter(Boolean).join('');
 
   // Right column: positions + projects (if enabled)
@@ -706,7 +712,7 @@ function renderCVCompact() {
     <div style="font-size:13.5pt;font-weight:bold;${T}">${esc(cv.name)}</div>
     <div>${esc(cv.position)}</div>
     <div>${esc(cv.dept)}, ${esc(cv.institution)}</div>
-    <div style="font-size:10pt;color:#333;margin-top:2px">ORCID: 0000-0003-0347-0182 &nbsp;·&nbsp; ResearcherID: H-3573-2013</div>
+    <div style="font-size:10pt;color:#333;margin-top:2px">${state.lang==='fi'?'Kotisivu':'Homepage'}: <a href="https://www.jarilaru.fi">https://www.jarilaru.fi</a></div>
   </div>` : ''}
 
   ${(leftCol || rightCol) ? `<div style="display:grid;grid-template-columns:${leftCol&&rightCol?'1fr 1fr':'1fr'};gap:0 18px;margin-bottom:5px">
