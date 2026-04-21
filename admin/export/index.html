@@ -481,10 +481,28 @@ const PUBCAT_DEFS = [
   { key:'esitelma',  labelFi:'Esitelmät',               labelEn:'Presentations',   types:['esitelma'],  local:true },
 ];
 
+function deduplicatePubs(pubs) {
+  // When Research.fi indexes the same work twice (e.g. B1 Editorial + C2 Research Topic),
+  // keep only the better OKM type. Priority: A > C > B > D > E > G
+  const priority = tc => ({A:0,C:1,B:2,D:3,E:4,G:5}[tc?.[0]] ?? 9);
+  const normalize = t => (t || '').toLowerCase()
+    .replace(/^(editorial:|research\s+topic:|foreword:)\s*/i, '')
+    .replace(/\s+/g, ' ').trim();
+  const seen = new Map();
+  return [...pubs]
+    .sort((a,b) => priority(a.typeCode) - priority(b.typeCode))
+    .filter(p => {
+      const key = `${p.year}|${normalize(p.title)}`;
+      if (seen.has(key)) return false;
+      seen.set(key, true);
+      return true;
+    });
+}
+
 function getFilteredPubs() {
   if (!exportData) return { rf: [], local: [] };
   const { yearFrom, yearTo } = state.publist;
-  const rf = exportData.researchfiPublications.filter(p =>
+  const rf = deduplicatePubs(exportData.researchfiPublications).filter(p =>
     (p.year || 0) >= yearFrom && (p.year || 9999) <= yearTo
   );
   const local = exportData.localPublications.filter(p =>
@@ -630,7 +648,7 @@ function renderLocalRef(p) {
 function renderCVCompact() {
   const s = S[state.lang];
   const cv = CV[state.lang];
-  const rf = exportData?.researchfiPublications || [];
+  const rf = deduplicatePubs(exportData?.researchfiPublications || []);
   const now = new Date().toLocaleDateString(state.lang==='fi'?'fi-FI':'en-GB',{day:'numeric',month:'long',year:'numeric'});
 
   const cg = g => ['A1','A2','A3','A4','B1','B2','B3','C1','C2','D1','D2','D3','E1','E2','G4','G5']
