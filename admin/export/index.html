@@ -641,10 +641,12 @@ function renderCVCompact() {
     cD && `D: ${cD}`, cE && `E: ${cE}`, cG && `G: ${cG}`,
   ].filter(Boolean).join(' · ');
 
-  // Top publications: international types only, newest first
+  // Top publications: international types only, English-language venues, newest first
   const COMPACT_INTL = ['A1','A2','A3','A4','B1','B2','B3','C1','C2','G4','G5'];
+  const FI_ONLY_JOURNALS = ['Ainedidaktiikka','Kasvatus','Aikuiskasvatus','Psykologia'];
   const top6 = rf
     .filter(p => COMPACT_INTL.includes(p.typeCode))
+    .filter(p => !FI_ONLY_JOURNALS.includes(p.journal))
     .sort((a,b) => (b.year||0)-(a.year||0))
     .slice(0, 10);
 
