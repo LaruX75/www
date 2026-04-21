@@ -240,6 +240,7 @@ const state = {
   docType: 'cv',
   showJufo: true,
   showOA:   true,
+  showType: false,
   compact:  false,
   cv: {
     sections: {
@@ -426,6 +427,14 @@ function buildMetaToggles() {
     </div>
   </div>
   <h6>${lang==='fi'?'Viitetiedot':'Reference details'}</h6>
+  <div class="sb-section">
+    <div class="sb-section-head">
+      <div class="form-check form-switch mb-0" style="flex:1">
+        <input class="form-check-input" type="checkbox" role="switch" id="toggle-type" ${state.showType?'checked':''}>
+        <label class="form-check-label" for="toggle-type">OKM-tyyppi (A1, A3…)</label>
+      </div>
+    </div>
+  </div>
   <div class="sb-section">
     <div class="sb-section-head">
       <div class="form-check form-switch mb-0" style="flex:1">
@@ -624,7 +633,7 @@ function renderRef(p, showType=true) {
   else if (p.publisher) venue = esc(p.publisher);
   if (venue) parts.push(`<span>${venue}.</span>`);
   const badges = [];
-  if (showType && p.typeCode) badges.push(`<span class="ref-type">[${esc(p.typeCode)}]</span>`);
+  if (state.showType && p.typeCode) badges.push(`<span class="ref-type">[${esc(p.typeCode)}]</span>`);
   if (state.showJufo && p.jufoLevel!=null) badges.push(`<span class="jufo-badge">Jufo ${esc(p.jufoLevel)}</span>`);
   if (state.showOA   && p.openAccess)      badges.push(`<span class="oa-badge">OA</span>`);
   const doi = p.doiUrl ? `<span class="ref-doi"><a href="${esc(p.doiUrl)}">${esc(p.doiUrl)}</a></span>` : '';
@@ -774,7 +783,7 @@ function renderCVCompact() {
       else if (p.publisher) venue = esc(p.publisher);
       if (venue) parts.push(venue + '.');
       const badges = [];
-      if (p.typeCode) badges.push(`<span style="font-size:8.5pt;font-family:monospace;color:#666">[${esc(p.typeCode)}]</span>`);
+      if (state.showType && p.typeCode) badges.push(`<span style="font-size:8.5pt;font-family:monospace;color:#666">[${esc(p.typeCode)}]</span>`);
       if (state.showJufo && p.jufoLevel!=null) badges.push(`<span style="font-size:8.5pt;font-family:monospace;background:#eee;padding:0 2px">J${esc(p.jufoLevel)}</span>`);
       if (state.showOA && p.openAccess) badges.push(`<span style="font-size:8.5pt;color:#166534">OA</span>`);
       return `<div style="margin-bottom:3px;font-size:10.5pt;line-height:1.3">${parts.join(' ')} ${badges.join(' ')}</div>`;
@@ -996,6 +1005,8 @@ function bindSidebarEvents() {
   // Jufo / OA meta toggles
   const tJufo = document.getElementById('toggle-jufo');
   const tOA   = document.getElementById('toggle-oa');
+  const tType = document.getElementById('toggle-type');
+  if (tType) tType.addEventListener('change', () => { state.showType = tType.checked; document.getElementById('preview-inner').innerHTML = state.docType==='cv' ? renderCV() : renderPublist(); });
   if (tJufo) tJufo.addEventListener('change', () => { state.showJufo = tJufo.checked; document.getElementById('preview-inner').innerHTML = state.docType==='cv' ? renderCV() : renderPublist(); });
   if (tOA)   tOA.addEventListener('change',   () => { state.showOA   = tOA.checked;   document.getElementById('preview-inner').innerHTML = state.docType==='cv' ? renderCV() : renderPublist(); });
 
