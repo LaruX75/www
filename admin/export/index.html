@@ -710,13 +710,12 @@ function renderCVCompact() {
   </div>` : ''}
 
   ${(leftCol || rightCol) ? `<div style="display:grid;grid-template-columns:${leftCol&&rightCol?'1fr 1fr':'1fr'};gap:0 18px;margin-bottom:5px">
-    ${leftCol}
+    ${leftCol ? `<div>${leftCol}</div>` : ''}
     ${rightCol}
   </div>` : ''}
 
   ${sec.pub_summary ? `<div>
     <div style="${secHead}">${esc(s.pub_summary)}</div>
-    <div style="font-size:10.5pt;margin-bottom:3px">${esc(state.lang==='fi'?`Yhteensä ${rf.length} julkaisua. `:`Total ${rf.length} publications. `)}${esc(countParts)}</div>
     ${top6.map(p => {
       const authors = shortAuthors(p.authors);
       const parts = [];
