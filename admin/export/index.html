@@ -897,60 +897,32 @@ function renderPublist() {
   if (state.compact) { document.getElementById('preview').classList.add('compact'); return renderPublistCompact(); }
   document.getElementById('preview').classList.remove('compact');
   const s = S[state.lang];
-  const { rf, local } = getFilteredPubs();
+  const { rf } = getFilteredPubs();
   const now = new Date().toLocaleDateString(state.lang==='fi'?'fi-FI':'en-GB',{day:'numeric',month:'long',year:'numeric'});
 
-  // Apply excluded set
-  const visibleRf = rf.filter(p => {
-    const idx = exportData.researchfiPublications.indexOf(p);
-    return !state.publist.excluded.has(`rf:${idx}`);
-  });
-  const visibleLocal = local.filter(p => {
-    const idx = exportData.localPublications.indexOf(p);
-    return !state.publist.excluded.has(`local:${idx}`);
-  });
+  // International scientific types only (A, B, C, G) — no D/E/local
+  const INTL_TYPES = ['A1','A2','A3','A4','B1','B2','B3','C1','C2','G4','G5'];
+  const pubs = rf
+    .filter(p => INTL_TYPES.includes(p.typeCode))
+    .filter(p => state.catEnabled(p.typeCode?.[0]))
+    .filter(p => !state.publist.excluded.has(`rf:${exportData.researchfiPublications.indexOf(p)}`))
+    .sort((a,b) => (b.year||0)-(a.year||0) || (b.title||'').localeCompare(a.title||''));
 
-  const rfByType = groupBy(visibleRf, p => p.typeCode || 'other');
-  const localByType = groupBy(visibleLocal, p => p.type || 'other');
-  for (const [,arr] of rfByType)    arr.sort((a,b)=>(b.year||0)-(a.year||0));
-  for (const [,arr] of localByType) arr.sort((a,b)=>(b.year||0)-(a.year||0));
-
-  function sectionBlock(heading, catKey, types, isLocal=false) {
-    if (!state.catEnabled(catKey)) return '';
-    const items = [];
-    for (const tc of types) {
-      const arr = (isLocal ? localByType : rfByType).get(tc);
-      if (!arr?.length) continue;
-      const label = isLocal ? (s[`sec_${tc}`]||tc) : (OKM_LABEL[state.lang][tc]||tc);
-      items.push(`<div class="pub-type-label">${esc(label)} (${arr.length})</div>`);
-      items.push(arr.map(p => isLocal ? renderLocalRef(p) : renderRef(p, false)).join(''));
-    }
-    if (!items.length) return '';
-    return `<div class="pub-section-group"><div class="pub-section-head">${esc(heading)}</div>${items.join('')}</div>`;
-  }
-
-  const totalVisible = visibleRf.length + visibleLocal.length;
-  const totalAll = (exportData?.researchfiPublications.length||0) + (exportData?.localPublications.length||0);
+  const publistSubtitle = state.lang==='fi'
+    ? 'Kansainväliset tieteelliset julkaisut · Jari Jukka Laru'
+    : 'International scientific publications · Jari Jukka Laru';
 
   return `
   <div class="doc-title">${esc(s.publist_title)}</div>
-  <div class="doc-subtitle">${esc(s.publist_guideline)} &nbsp;·&nbsp; ${esc(s.generated)}: ${esc(now)}</div>
+  <div class="doc-subtitle">${esc(publistSubtitle)} &nbsp;·&nbsp; ${esc(s.generated)}: ${esc(now)}</div>
   <div class="doc-section" style="margin-bottom:10px">
     <div class="stat-row">
-      <div class="stat-item"><strong>${totalVisible}</strong> ${esc(s.publications)}</div>
-      <div class="stat-item" style="color:#888">(${esc(s.total)}: ${totalAll})</div>
+      <div class="stat-item"><strong>${pubs.length}</strong> ${esc(s.publications)}</div>
     </div>
   </div>
-  ${sectionBlock(s.sec_A,'A',['A1','A2','A3','A4'])}
-  ${sectionBlock(s.sec_B,'B',['B1','B2','B3'])}
-  ${sectionBlock(s.sec_C,'C',['C1','C2'])}
-  ${sectionBlock(s.sec_D,'D',['D1','D2','D3'])}
-  ${sectionBlock(s.sec_E,'E',['E1','E2'])}
-  ${sectionBlock(s.sec_G,'G',['G4','G5'])}
-  ${sectionBlock(s.sec_mielipide,'mielipide',['mielipide'],true)}
-  ${sectionBlock(s.sec_kolumni,'kolumni',['kolumni'],true)}
-  ${sectionBlock(s.sec_puhe,'puhe',['puhe'],true)}
-  ${sectionBlock(s.sec_esitelma,'esitelma',['esitelma'],true)}`;
+  <div class="doc-section">
+    ${pubs.map(p => renderRef(p, false)).join('')}
+  </div>`;
 }
 
 /* ═══════════════════════════════════════════════════════════════
