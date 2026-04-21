@@ -160,8 +160,9 @@ templateEngineOverride: md
           <div class="card-body p-4">
             <h3 class="h5 fw-bold">Tutkimusrahoitus (2000-luvulla)</h3>
             <ul class="mb-0">
-              <li><em><a href="https://www.generation-ai-stn.fi">Generation AI</a></em>, STN, 1.10.2022-30.9.2025</li>
-              <li><em>Learning Technology Accelerator (LEA)</em>, EU Horizon 2020, 2018-2020</li>
+              <li><em><a href="https://www.generation-ai-stn.fi">Generation AI</a></em>, STN, 1.10.2022–30.9.2025</li>
+              <li><em><a href="https://tkaedite.eu/">TKAEDITE</a></em>, Erasmus+, 6/2023–5/2026</li>
+              <li><em>Learning Technology Accelerator (LEA)</em>, EU Horizon 2020, 2018–2020</li>
             </ul>
           </div>
         </article>
