@@ -724,70 +724,29 @@ function renderCVCompact() {
 
 function renderPublistCompact() {
   const s = S[state.lang];
-  const { rf, local } = getFilteredPubs();
+  const { rf } = getFilteredPubs();
   const now = new Date().toLocaleDateString(state.lang==='fi'?'fi-FI':'en-GB',{day:'numeric',month:'long',year:'numeric'});
 
-  const visibleRf = rf.filter(p => !state.publist.excluded.has(`rf:${exportData.researchfiPublications.indexOf(p)}`));
-  const visibleLocal = local.filter(p => !state.publist.excluded.has(`local:${exportData.localPublications.indexOf(p)}`));
+  const INTL_TYPES = ['A1','A2','A3','A4','B1','B2','B3','C1','C2','G4','G5'];
+  const pubs = rf
+    .filter(p => INTL_TYPES.includes(p.typeCode))
+    .filter(p => state.catEnabled(p.typeCode?.[0]))
+    .filter(p => !state.publist.excluded.has(`rf:${exportData.researchfiPublications.indexOf(p)}`))
+    .sort((a,b) => (b.year||0)-(a.year||0));
 
-  const catDefs = [
-    { key:'A', label: state.lang==='fi'?'A — Vertaisarvioidut':'A — Peer-reviewed',           types:['A1','A2','A3','A4'] },
-    { key:'B', label: state.lang==='fi'?'B — Vertaisarvioimattomat':'B — Non-peer-reviewed',   types:['B1','B2','B3'] },
-    { key:'C', label: state.lang==='fi'?'C — Tieteelliset kirjat':'C — Scientific books',      types:['C1','C2'] },
-    { key:'D', label: state.lang==='fi'?'D — Ammatilliset':'D — Professional',                 types:['D1','D2','D3'] },
-    { key:'E', label: state.lang==='fi'?'E — Yleistajuiset':'E — Popular science',             types:['E1','E2'] },
-    { key:'G', label: state.lang==='fi'?'G — Väitöskirjat':'G — Doctoral theses',              types:['G4','G5'] },
-    { key:'mielipide', label: s.sec_mielipide, types:['mielipide'], local:true },
-    { key:'kolumni',   label: s.sec_kolumni,   types:['kolumni'],   local:true },
-    { key:'puhe',      label: s.sec_puhe,       types:['puhe'],      local:true },
-    { key:'esitelma',  label: s.sec_esitelma,   types:['esitelma'],  local:true },
-  ];
-
-  // Summary table rows
-  const tableRows = catDefs.map(cat => {
-    if (!state.catEnabled(cat.key)) return null;
-    const isLocal = cat.local;
-    const items = isLocal
-      ? visibleLocal.filter(p => cat.types.includes(p.type))
-      : visibleRf.filter(p => cat.types.includes(p.typeCode));
-    if (!items.length) return null;
-    const years = items.map(p=>p.year).filter(Boolean);
-    const newest = years.length ? Math.max(...years) : '–';
-    const oldest = years.length ? Math.min(...years) : '–';
-    return `<tr><td><strong>${esc(cat.key.toUpperCase())}</strong></td><td>${esc(cat.label)}</td><td style="text-align:center">${items.length}</td><td style="text-align:center">${esc(oldest===newest?String(newest):`${oldest}–${newest}`)}</td></tr>`;
-  }).filter(Boolean).join('');
-
-  // Top A1/A2 publications for the "highlights" section (up to ~12)
-  const highlights = visibleRf
-    .filter(p => ['A1','A2','A3','A4'].includes(p.typeCode))
-    .sort((a,b)=>(b.year||0)-(a.year||0))
-    .slice(0, 12);
-
-  const totalVis = visibleRf.length + visibleLocal.length;
+  const subtitle = state.lang==='fi'
+    ? 'Kansainväliset tieteelliset julkaisut · Jari Jukka Laru'
+    : 'International scientific publications · Jari Jukka Laru';
 
   return `
   <div class="doc-title">${esc(s.publist_title)}</div>
-  <div class="doc-subtitle">${esc(s.publist_guideline)} &nbsp;·&nbsp; ${esc(s.generated)}: ${esc(now)}</div>
-
-  <div class="doc-section">
-    <h2>${state.lang==='fi'?'Yhteenveto OKM-luokittain':'Summary by OKM category'}</h2>
-    <table class="compact-table">
-      <thead><tr>
-        <th style="width:32px">${state.lang==='fi'?'Lk.':'Cat.'}</th>
-        <th>${state.lang==='fi'?'Julkaisutyyppi':'Publication type'}</th>
-        <th style="width:40px;text-align:center">${state.lang==='fi'?'Kpl':'N'}</th>
-        <th style="width:70px;text-align:center">${state.lang==='fi'?'Vuodet':'Years'}</th>
-      </tr></thead>
-      <tbody>${tableRows}</tbody>
-      <tfoot><tr style="font-weight:600"><td colspan="2">${esc(s.total)}</td><td style="text-align:center">${totalVis}</td><td></td></tr></tfoot>
-    </table>
+  <div class="doc-subtitle">${esc(subtitle)} &nbsp;·&nbsp; ${esc(s.generated)}: ${esc(now)}</div>
+  <div class="doc-section" style="margin-bottom:8px">
+    <div class="stat-row"><div class="stat-item"><strong>${pubs.length}</strong> ${esc(s.publications)}</div></div>
   </div>
-
-  ${highlights.length ? `
   <div class="doc-section">
-    <h2>${state.lang==='fi'?'Keskeisiä vertaisarvioituja julkaisuja (A)':'Selected peer-reviewed publications (A)'}</h2>
-    ${highlights.map(p=>renderRef(p,false)).join('')}
-  </div>` : ''}`;
+    ${pubs.map(p => renderRef(p, false)).join('')}
+  </div>`;
 }
 
 function renderCV() {
@@ -897,32 +856,53 @@ function renderPublist() {
   if (state.compact) { document.getElementById('preview').classList.add('compact'); return renderPublistCompact(); }
   document.getElementById('preview').classList.remove('compact');
   const s = S[state.lang];
-  const { rf } = getFilteredPubs();
+  const { rf, local } = getFilteredPubs();
   const now = new Date().toLocaleDateString(state.lang==='fi'?'fi-FI':'en-GB',{day:'numeric',month:'long',year:'numeric'});
 
-  // International scientific types only (A, B, C, G) — no D/E/local
-  const INTL_TYPES = ['A1','A2','A3','A4','B1','B2','B3','C1','C2','G4','G5'];
-  const pubs = rf
-    .filter(p => INTL_TYPES.includes(p.typeCode))
-    .filter(p => state.catEnabled(p.typeCode?.[0]))
-    .filter(p => !state.publist.excluded.has(`rf:${exportData.researchfiPublications.indexOf(p)}`))
-    .sort((a,b) => (b.year||0)-(a.year||0) || (b.title||'').localeCompare(a.title||''));
+  const visibleRf = rf.filter(p => !state.publist.excluded.has(`rf:${exportData.researchfiPublications.indexOf(p)}`));
+  const visibleLocal = local.filter(p => !state.publist.excluded.has(`local:${exportData.localPublications.indexOf(p)}`));
 
-  const publistSubtitle = state.lang==='fi'
-    ? 'Kansainväliset tieteelliset julkaisut · Jari Jukka Laru'
-    : 'International scientific publications · Jari Jukka Laru';
+  const rfByType = groupBy(visibleRf, p => p.typeCode || 'other');
+  const localByType = groupBy(visibleLocal, p => p.type || 'other');
+  for (const [,arr] of rfByType)    arr.sort((a,b)=>(b.year||0)-(a.year||0));
+  for (const [,arr] of localByType) arr.sort((a,b)=>(b.year||0)-(a.year||0));
+
+  function sectionBlock(heading, catKey, types, isLocal=false) {
+    if (!state.catEnabled(catKey)) return '';
+    const items = [];
+    for (const tc of types) {
+      const arr = (isLocal ? localByType : rfByType).get(tc);
+      if (!arr?.length) continue;
+      const label = isLocal ? (s[`sec_${tc}`]||tc) : (OKM_LABEL[state.lang][tc]||tc);
+      items.push(`<div class="pub-type-label">${esc(label)} (${arr.length})</div>`);
+      items.push(arr.map(p => isLocal ? renderLocalRef(p) : renderRef(p, false)).join(''));
+    }
+    if (!items.length) return '';
+    return `<div class="pub-section-group"><div class="pub-section-head">${esc(heading)}</div>${items.join('')}</div>`;
+  }
+
+  const totalVisible = visibleRf.length + visibleLocal.length;
+  const totalAll = (exportData?.researchfiPublications.length||0) + (exportData?.localPublications.length||0);
 
   return `
   <div class="doc-title">${esc(s.publist_title)}</div>
-  <div class="doc-subtitle">${esc(publistSubtitle)} &nbsp;·&nbsp; ${esc(s.generated)}: ${esc(now)}</div>
+  <div class="doc-subtitle">${esc(s.publist_guideline)} &nbsp;·&nbsp; ${esc(s.generated)}: ${esc(now)}</div>
   <div class="doc-section" style="margin-bottom:10px">
     <div class="stat-row">
-      <div class="stat-item"><strong>${pubs.length}</strong> ${esc(s.publications)}</div>
+      <div class="stat-item"><strong>${totalVisible}</strong> ${esc(s.publications)}</div>
+      <div class="stat-item" style="color:#888">(${esc(s.total)}: ${totalAll})</div>
     </div>
   </div>
-  <div class="doc-section">
-    ${pubs.map(p => renderRef(p, false)).join('')}
-  </div>`;
+  ${sectionBlock(s.sec_A,'A',['A1','A2','A3','A4'])}
+  ${sectionBlock(s.sec_B,'B',['B1','B2','B3'])}
+  ${sectionBlock(s.sec_C,'C',['C1','C2'])}
+  ${sectionBlock(s.sec_D,'D',['D1','D2','D3'])}
+  ${sectionBlock(s.sec_E,'E',['E1','E2'])}
+  ${sectionBlock(s.sec_G,'G',['G4','G5'])}
+  ${sectionBlock(s.sec_mielipide,'mielipide',['mielipide'],true)}
+  ${sectionBlock(s.sec_kolumni,'kolumni',['kolumni'],true)}
+  ${sectionBlock(s.sec_puhe,'puhe',['puhe'],true)}
+  ${sectionBlock(s.sec_esitelma,'esitelma',['esitelma'],true)}`;
 }
 
 /* ═══════════════════════════════════════════════════════════════
