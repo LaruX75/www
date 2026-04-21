@@ -259,7 +259,7 @@ const S = {
     prev_pos: 'Aikaisemmat virat ja toimet',
     teaching: 'Opetus ja pedagoginen pätevyys',
     other_roles: 'Muut tehtävät ja luottamustoimet',
-    funding: 'Tutkimusrahoitus',
+    funding: 'Hankkeet',
     grants: 'Apurahat ja stipendit',
     pub_summary: 'Julkaisut — yhteenveto',
     languages: 'Kielitaito',
@@ -288,7 +288,7 @@ const S = {
     prev_pos: 'Previous Positions',
     teaching: 'Teaching and Pedagogical Qualification',
     other_roles: 'Other Duties and Expert Roles',
-    funding: 'Research Funding',
+    funding: 'Projects',
     grants: 'Grants and Scholarships',
     pub_summary: 'Publications — summary',
     languages: 'Language Skills',
@@ -390,7 +390,7 @@ const CV_SECTIONS = [
   { key:'prev_pos',    labelFi:'Aiemmat virat',           labelEn:'Previous Positions' },
   { key:'teaching',    labelFi:'Opetus ja pedagogiikka',  labelEn:'Teaching' },
   { key:'other_roles', labelFi:'Muut tehtävät',           labelEn:'Other Roles' },
-  { key:'funding',     labelFi:'Tutkimusrahoitus',        labelEn:'Research Funding' },
+  { key:'funding',     labelFi:'Hankkeet',                labelEn:'Projects' },
   { key:'grants',      labelFi:'Apurahat',                labelEn:'Grants' },
   { key:'pub_summary', labelFi:'Julkaisuyhteenveto',      labelEn:'Publications summary' },
   { key:'languages',   labelFi:'Kielitaito',              labelEn:'Languages' },
@@ -661,18 +661,28 @@ function renderCVCompact() {
     </div>` : '',
   ].filter(Boolean).join('');
 
-  // Right column: positions (current + previous merged, if either enabled)
+  // Right column: positions + projects (if enabled)
   const positions = [
     ...(sec.current_pos ? cv.positions : []),
     ...(sec.prev_pos    ? cv.prev_positions : []),
   ];
-  const rightCol = positions.length ? `<div>
+  const posBlock = positions.length ? `<div>
     <div style="${secHead}">${esc(state.lang==='fi'?'Virka- ja työhistoria':'Positions held')}</div>
     ${positions.map(p=>`<div style="${rowStyle}">
       <div style="${yrStyle}">${esc(p.period)}</div>
       <div>${esc(p.title)}<br><span style="font-size:10pt">${esc(p.institution)}</span></div>
     </div>`).join('')}
   </div>` : '';
+
+  const fundingBlock = sec.funding && cv.funding?.length ? `<div style="margin-top:${posBlock?'5px':'0'}">
+    <div style="${secHead}">${esc(s.funding)}</div>
+    ${cv.funding.map(f=>`<div style="${rowStyle}">
+      <div style="${yrStyle};font-size:10pt;font-weight:normal">${esc(f.period)}</div>
+      <div><strong>${esc(f.project)}</strong>${f.role?` — ${esc(f.role)}`:''}<br><span style="font-size:10pt">${esc(f.funder)}</span></div>
+    </div>`).join('')}
+  </div>` : '';
+
+  const rightCol = (posBlock || fundingBlock) ? `<div>${posBlock}${fundingBlock}</div>` : '';
 
   return `<div style="${T};font-size:11pt;line-height:1.35;color:#111">
 
@@ -686,14 +696,6 @@ function renderCVCompact() {
   ${(leftCol || rightCol) ? `<div style="display:grid;grid-template-columns:${leftCol&&rightCol?'1fr 1fr':'1fr'};gap:0 18px;margin-bottom:5px">
     ${leftCol}
     ${rightCol}
-  </div>` : ''}
-
-  ${sec.funding && cv.funding?.length ? `<div style="margin-bottom:5px">
-    <div style="${secHead}">${esc(s.funding)}</div>
-    ${cv.funding.map(f=>`<div style="${rowStyle}">
-      <div style="${yrStyle};font-size:10pt;font-weight:normal">${esc(f.period)}</div>
-      <div><strong>${esc(f.project)}</strong>${f.role?` — ${esc(f.role)}`:''}<br><span style="font-size:10pt">${esc(f.funder)}</span></div>
-    </div>`).join('')}
   </div>` : ''}
 
   ${sec.pub_summary ? `<div>
