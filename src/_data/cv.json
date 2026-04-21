@@ -1,6 +1,7 @@
 {
   "fi": {
     "name": "Laru Jari Jukka, KT",
+    "summary": "Yliopistonlehtori, tutkija ja kouluttaja. Digipedagogiikka, opetusteknologia ja tekoälylukutaito opettajankoulutuksessa.",
     "degree": "Kasvatustieteiden tohtori (KT)",
     "position": "Yliopistonlehtori, teknologiatuettu oppiminen ja opetus",
     "dept": "Kasvatustieteiden ja psykologian tiedekunta",
@@ -108,7 +109,8 @@
   },
   "en": {
     "name": "Laru Jari Jukka, EdD",
-    "degree": "Doctor of Education (KT)",
+    "summary": "University Lecturer, researcher and trainer. Digital pedagogy, educational technology and AI literacy in teacher education.",
+    "degree": "Doctor of Education (EdD)",
     "position": "University Lecturer, Technology-enhanced Learning and Teaching",
     "dept": "Faculty of Education and Psychology",
     "institution": "University of Oulu",

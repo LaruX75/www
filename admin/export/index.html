@@ -709,7 +709,7 @@ function renderCVCompact() {
     </div>` : '',
     sec.languages ? `<div style="margin-top:${sec.education?'5px':'0'}">
       <div style="${secHead}">${esc(s.languages)}</div>
-      <div>${cv.languages.map(l=>`<strong>${esc(l.lang)}</strong>: ${esc(l.level)}`).join(' &nbsp;·&nbsp; ')}</div>
+      <div style="font-size:9.5pt;line-height:1.5">${cv.languages.map(l=>`<div><strong>${esc(l.lang)}</strong> ${esc(l.level)}</div>`).join('')}</div>
     </div>` : '',
     cv.profiles?.length ? `<div style="margin-top:5px">
       <div style="${secHead}">Researcher profiles</div>
@@ -717,7 +717,7 @@ function renderCVCompact() {
         ['Google Scholar','ORCID','Research.fi','ResearchGate']
           .map(name => cv.profiles.find(p => p.name === name))
           .filter(p => p?.url)
-          .map(p => `<div><strong>${esc(p.name)}</strong>: <a href="${esc(p.url)}" style="text-decoration:none;color:inherit">${esc(p.url)}</a></div>`)
+          .map(p => `<div>${esc(p.name)} <a href="${esc(p.url)}" style="text-decoration:none;color:#333">${esc(p.url)}</a></div>`)
           .join('')
       }</div>
     </div>` : '',
@@ -750,9 +750,10 @@ function renderCVCompact() {
 
   ${sec.personal ? `<div style="border-bottom:2px solid #111;padding-bottom:5px;margin-bottom:6px">
     <div style="font-size:13.5pt;font-weight:bold;${T}">${esc(cv.name)}</div>
-    <div>${esc(cv.position)}</div>
+    ${cv.summary ? `<div style="font-size:10.5pt;font-style:italic;margin-top:1px">${esc(cv.summary)}</div>` : ''}
+    <div style="margin-top:2px">${esc(cv.position)}</div>
     <div>${esc(cv.dept)}, ${esc(cv.institution)}</div>
-    <div style="font-size:10pt;color:#333;margin-top:2px">${state.lang==='fi'?'Kotisivu':'Homepage'}: <a href="https://www.jarilaru.fi">https://www.jarilaru.fi</a></div>
+    <div style="font-size:10pt;color:#333;margin-top:2px"><a href="https://www.jarilaru.fi" style="text-decoration:none;color:inherit">https://www.jarilaru.fi</a></div>
   </div>` : ''}
 
   ${(leftCol || rightCol) ? `<div style="display:grid;grid-template-columns:${leftCol&&rightCol?'1fr 1fr':'1fr'};gap:0 18px;margin-bottom:5px">
