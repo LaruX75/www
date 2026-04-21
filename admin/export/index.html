@@ -630,7 +630,7 @@ function renderCVCompact() {
   const top6 = rf
     .filter(p => COMPACT_INTL.includes(p.typeCode))
     .sort((a,b) => (b.year||0)-(a.year||0))
-    .slice(0, 6);
+    .slice(0, 10);
 
   function shortAuthors(str) {
     if (!str || str.length <= 55) return str;
@@ -677,9 +677,13 @@ function renderCVCompact() {
     </div>` : '',
     cv.profiles?.length ? `<div style="margin-top:5px">
       <div style="${secHead}">Researcher profiles</div>
-      <div style="font-size:9pt;line-height:1.5">${cv.profiles.filter(p=>p.url).map(p=>
-        `<span><a href="${esc(p.url)}">${esc(p.name)}${p.id?` (${esc(p.id)})`:''}</a></span>`
-      ).join(' &nbsp;·&nbsp; ')}</div>
+      <div style="font-size:9pt;line-height:1.6">${
+        ['Google Scholar','ORCID','Research.fi','ResearchGate']
+          .map(name => cv.profiles.find(p => p.name === name))
+          .filter(p => p?.url)
+          .map(p => `<div><strong>${esc(p.name)}</strong>: <a href="${esc(p.url)}" style="text-decoration:none;color:inherit">${esc(p.url)}</a></div>`)
+          .join('')
+      }</div>
     </div>` : '',
   ].filter(Boolean).join('');
 
