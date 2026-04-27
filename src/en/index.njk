@@ -26,6 +26,18 @@ description: University lecturer, researcher, municipal politician, and speaker.
     {% set _ = (uniquePresentationKeys.push(key), null) %}
   {% endif %}
 {% endfor %}
+{% for item in (googleslides or []) %}
+  {% set key = ((item.url or "") ~ "|" ~ (item.title or "")) | trim %}
+  {% if key != "|" and (uniquePresentationKeys.indexOf(key) == -1) %}
+    {% set _ = (uniquePresentationKeys.push(key), null) %}
+  {% endif %}
+{% endfor %}
+{% for item in ((youtube and youtube.tableRows) or []) %}
+  {% set key = ((item.url or "") ~ "|" ~ (item.title or "")) | trim %}
+  {% if key != "|" and (uniquePresentationKeys.indexOf(key) == -1) %}
+    {% set _ = (uniquePresentationKeys.push(key), null) %}
+  {% endif %}
+{% endfor %}
 {% set heroPresentationCount = uniquePresentationKeys | length %}
 {% set heroPublicationCount = (researchfi or []) | length %}
 {% set heroOpinionCount = (collections.pub_mielipide or []) | length %}

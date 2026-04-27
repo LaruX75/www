@@ -67,19 +67,19 @@ Kävimme myös Antibesissä ja Monacossa! Oli tämäkin upea reissu!
 
 ### Autoloma: Oulu-(pohjois)Italia-Oulu 2017
 
-Lorem ipsum dolor sit amet, commodo erat adipiscing elit. Sed do eiusmod ut tempor incididunt ut labore et dolore.
+Tulossa.
 
 ![](/img/uploads/2021/04/6246027151_f666304349_z-edited.jpg)
 
 ### Autoloma: Oulu-Kroatia-Oulu 2016
 
-Integer enim risus, suscipit eu iaculis sed, ullamcorper at metus. Venenatis nec convallis magna, eu congue velit.
+Tulossa.
 
 ![](/img/uploads/2021/04/20150806_103704-1024x576.jpg)
 
 ### 2x Miniloma: Boden ja Tromssa 2015
 
-Aliquam tempus mi nulla porta luctus. Sed non neque at lectus bibendum blandit. Morbi fringilla sapien libero.
+Tulossa.
 
 ## Vuodet 2014-2013
 
@@ -87,16 +87,4 @@ Aliquam tempus mi nulla porta luctus. Sed non neque at lectus bibendum blandit. 
 
 ### Autoloma: Oulu-Puola (Krakova)-Oulu 2014
 
-Lorem ipsum dolor sit amet, commodo erat adipiscing elit. Sed do eiusmod ut tempor incididunt ut labore et dolore.
-
-![](https://www.jarilaru.fi/wp-content/plugins/twentig/dist/images/patterns/landscape2.jpg)
-
-### Tulossa
-
-Tulossa :)
-
-![](https://www.jarilaru.fi/wp-content/plugins/twentig/dist/images/patterns/landscape3.jpg)
-
-### Tulossa
-
-Tulossa :)
+Tulossa.
