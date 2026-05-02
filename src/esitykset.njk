@@ -7,11 +7,11 @@ translationKey: presentations_index
 ---
 
 {% set tocSource %}
-<h2 id="aoe-heading">AOE-oppimateriaalit</h2>
 <h2 id="canva-heading">Canva-esitykset</h2>
+<h2 id="youtube-heading">YouTube-soittolistat</h2>
+<h2 id="aoe-heading">AOE-oppimateriaalit</h2>
 <h2 id="google-heading">Google Slides -esitykset</h2>
 <h2 id="slideshare-heading">SlideShare-esitykset</h2>
-<h2 id="youtube-heading">YouTube-soittolistat</h2>
 {% endset %}
 {% set tocMarkup = tocSource | toc %}
 
@@ -53,42 +53,6 @@ translationKey: presentations_index
     </div>
   </div>
   {% endif %}
-
-  {# ===================== AOE ===================== #}
-  <section class="mb-5" aria-labelledby="aoe-heading">
-    <h2 id="aoe-heading" class="section-title mb-4">
-      <i class="bi bi-book-fill text-success me-2" style="font-size: 1rem;"></i>AOE-oppimateriaalit
-    </h2>
-    {% if finnaAoe and finnaAoe.rows and finnaAoe.rows.length %}
-      <div class="presentation-scroller mb-4" data-key="aoe" aria-label="AOE-esitysten skrolleri">
-        <div class="presentation-scroller-track"></div>
-      </div>
-      <div class="d-none d-md-block">
-        <div class="table-responsive">
-          <table class="table table-hover align-middle mb-0 pub-table">
-            <thead>
-              <tr>
-                <th>Otsikko</th>
-                <th>Kuvaus</th>
-                <th class="text-nowrap">Päiväys / vuosi</th>
-                <th class="text-nowrap">Avaa</th>
-              </tr>
-            </thead>
-            <tbody id="table-body-aoe"></tbody>
-          </table>
-        </div>
-      </div>
-      <ul id="mobile-list-aoe" class="list-unstyled mb-0 d-md-none presentation-mobile-list" role="list"></ul>
-      <nav class="mt-3" aria-label="AOE-sivutus">
-        <ul class="pagination pagination-sm mb-0" id="pagination-aoe"></ul>
-      </nav>
-      <div class="mt-3 text-muted small">
-        Lähde: <a href="https://www.finna.fi/" target="_blank" rel="noopener noreferrer">Finna</a> / <a href="https://aoe.fi/" target="_blank" rel="noopener noreferrer">Avointen oppimateriaalien kirjasto (AOE)</a>{% if finnaAoe.source == 'cache' %} (välimuistista){% endif %}.
-      </div>
-    {% else %}
-      <p class="text-muted">Ei AOE-oppimateriaaleja saatavilla.</p>
-    {% endif %}
-  </section>
 
   {# ===================== CANVA ===================== #}
   <section class="mb-5" aria-labelledby="canva-heading">
@@ -148,6 +112,86 @@ translationKey: presentations_index
       </div>
     {% else %}
       <p class="text-muted">Ei Canva-esityksiä.</p>
+    {% endif %}
+  </section>
+
+  {# ===================== YOUTUBE ===================== #}
+  <section class="mb-5" aria-labelledby="youtube-heading">
+    <h2 id="youtube-heading" class="section-title mb-4">
+      <i class="bi bi-youtube text-danger me-2" style="font-size: 1rem;"></i>YouTube-soittolistat
+    </h2>
+
+    {% if youtube and youtube.tableRows and youtube.tableRows.length %}
+      <div class="presentation-scroller mb-4" data-key="youtube" aria-label="YouTube-soittolistojen skrolleri">
+        <div class="presentation-scroller-track"></div>
+      </div>
+      <div class="d-none d-md-block">
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0 pub-table">
+            <thead>
+              <tr>
+                <th>Otsikko</th>
+                <th>Kuvaus</th>
+                <th class="text-nowrap">Päiväys / vuosi</th>
+                <th class="text-nowrap">Avaa</th>
+              </tr>
+            </thead>
+            <tbody id="table-body-youtube"></tbody>
+          </table>
+        </div>
+      </div>
+      <ul id="mobile-list-youtube" class="list-unstyled mb-0 d-md-none presentation-mobile-list" role="list"></ul>
+      <nav class="mt-3" aria-label="YouTube-sivutus">
+        <ul class="pagination pagination-sm mb-0" id="pagination-youtube"></ul>
+      </nav>
+      <div class="mt-3 text-muted small">
+        Lähde: YouTube Data API v3{% if youtube.source == 'cache' %} (välimuistista){% endif %}.
+      </div>
+    {% else %}
+      <div class="card border-0 bg-light-subtle">
+        <div class="card-body">
+          <p class="mb-2 fw-semibold">YouTube-soittolistoja ei saatu haettua.</p>
+          <p class="text-muted mb-0 small">
+            Lisää ympäristömuuttujat <code>YOUTUBE_API_KEY</code> ja tarvittaessa <code>YOUTUBE_CHANNEL_ID</code> tai <code>YOUTUBE_HANDLE</code>.
+          </p>
+        </div>
+      </div>
+    {% endif %}
+  </section>
+
+  {# ===================== AOE ===================== #}
+  <section class="mb-5" aria-labelledby="aoe-heading">
+    <h2 id="aoe-heading" class="section-title mb-4">
+      <i class="bi bi-book-fill text-success me-2" style="font-size: 1rem;"></i>AOE-oppimateriaalit
+    </h2>
+    {% if finnaAoe and finnaAoe.rows and finnaAoe.rows.length %}
+      <div class="presentation-scroller mb-4" data-key="aoe" aria-label="AOE-esitysten skrolleri">
+        <div class="presentation-scroller-track"></div>
+      </div>
+      <div class="d-none d-md-block">
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0 pub-table">
+            <thead>
+              <tr>
+                <th>Otsikko</th>
+                <th>Kuvaus</th>
+                <th class="text-nowrap">Päiväys / vuosi</th>
+                <th class="text-nowrap">Avaa</th>
+              </tr>
+            </thead>
+            <tbody id="table-body-aoe"></tbody>
+          </table>
+        </div>
+      </div>
+      <ul id="mobile-list-aoe" class="list-unstyled mb-0 d-md-none presentation-mobile-list" role="list"></ul>
+      <nav class="mt-3" aria-label="AOE-sivutus">
+        <ul class="pagination pagination-sm mb-0" id="pagination-aoe"></ul>
+      </nav>
+      <div class="mt-3 text-muted small">
+        Lähde: <a href="https://www.finna.fi/" target="_blank" rel="noopener noreferrer">Finna</a> / <a href="https://aoe.fi/" target="_blank" rel="noopener noreferrer">Avointen oppimateriaalien kirjasto (AOE)</a>{% if finnaAoe.source == 'cache' %} (välimuistista){% endif %}.
+      </div>
+    {% else %}
+      <p class="text-muted">Ei AOE-oppimateriaaleja saatavilla.</p>
     {% endif %}
   </section>
 
@@ -245,50 +289,6 @@ translationKey: presentations_index
         Katso kaikki SlideSharessa ({{ ssDataItems.length }}) <i class="bi bi-arrow-up-right"></i>
       </a>
     </div>
-  </section>
-
-  {# ===================== YOUTUBE ===================== #}
-  <section class="mb-5" aria-labelledby="youtube-heading">
-    <h2 id="youtube-heading" class="section-title mb-4">
-      <i class="bi bi-youtube text-danger me-2" style="font-size: 1rem;"></i>YouTube-soittolistat
-    </h2>
-
-    {% if youtube and youtube.tableRows and youtube.tableRows.length %}
-      <div class="presentation-scroller mb-4" data-key="youtube" aria-label="YouTube-soittolistojen skrolleri">
-        <div class="presentation-scroller-track"></div>
-      </div>
-      <div class="d-none d-md-block">
-        <div class="table-responsive">
-          <table class="table table-hover align-middle mb-0 pub-table">
-            <thead>
-              <tr>
-                <th>Otsikko</th>
-                <th>Kuvaus</th>
-                <th class="text-nowrap">Päiväys / vuosi</th>
-                <th class="text-nowrap">Avaa</th>
-              </tr>
-            </thead>
-            <tbody id="table-body-youtube"></tbody>
-          </table>
-        </div>
-      </div>
-      <ul id="mobile-list-youtube" class="list-unstyled mb-0 d-md-none presentation-mobile-list" role="list"></ul>
-      <nav class="mt-3" aria-label="YouTube-sivutus">
-        <ul class="pagination pagination-sm mb-0" id="pagination-youtube"></ul>
-      </nav>
-      <div class="mt-3 text-muted small">
-        Lähde: YouTube Data API v3{% if youtube.source == 'cache' %} (välimuistista){% endif %}.
-      </div>
-    {% else %}
-      <div class="card border-0 bg-light-subtle">
-        <div class="card-body">
-          <p class="mb-2 fw-semibold">YouTube-soittolistoja ei saatu haettua.</p>
-          <p class="text-muted mb-0 small">
-            Lisää ympäristömuuttujat <code>YOUTUBE_API_KEY</code> ja tarvittaessa <code>YOUTUBE_CHANNEL_ID</code> tai <code>YOUTUBE_HANDLE</code>.
-          </p>
-        </div>
-      </div>
-    {% endif %}
   </section>
 
   {# Arkistolista: staattinen linkkilista kaikkiin esityssivuihin (SEO-navigaatio) #}
