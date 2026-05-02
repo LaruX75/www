@@ -268,78 +268,146 @@ translationKey: publications_index
             </div>
           </div>
           <div id="{{ tableId }}">
-            <div class="table-responsive">
-              <table class="table table-sm table-hover align-middle mb-0 pub-table">
-                <thead>
-                  <tr>
-                    <th class="text-center" style="width:70px">Vuosi</th>
-                    <th style="width:80px">Luokka</th>
-                    <th>Otsikko & Julkaisu</th>
-                    <th style="width:200px">Tekijä(t)</th>
-                    <th style="width:100px" class="text-center">Linkit</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for pub in items %}
-                  <tr data-authors="{{ pub.authors | escape }}">
-                    <td class="text-center font-monospace small fw-bold text-info">{{ pub.year or '—' }}</td>
-                    <td><span class="badge bg-secondary" title="{{ pub.typeFi }}">{{ pub.typeShort }}</span></td>
-                    <td>
-                      <span class="fw-medium d-block mb-1">{{ pub.title }}</span>
-                      {% if pub.journal %}
-                        <span class="text-muted small fst-italic">{{ pub.journal }}</span>{% if pub.volume %}<span class="text-muted small">, <strong>{{ pub.volume }}</strong>{% if pub.issue %}({{ pub.issue }}){% endif %}</span>{% endif %}{% if pub.pages %}<span class="text-muted small">, s.&nbsp;{{ pub.pages }}</span>{% endif %}{% if pub.isbn %}<span class="text-muted small"> — ISBN {{ pub.isbn }}</span>{% endif %}
-                      {% elif pub.publisher %}
-                        <span class="text-muted small fst-italic">{{ pub.publisher }}{% if pub.isbn %} — ISBN {{ pub.isbn }}{% endif %}</span>
-                      {% endif %}
-                      {% set citationCount = (semanticscholar.metrics.doiCitations[pub.doi | lower] if pub.doi and semanticscholar.metrics.doiCitations[pub.doi | lower] else 0) %}
-                      <div class="d-flex flex-wrap align-items-center gap-2 mt-1">
-                        {% if pub.jufoLevel != null and pub.jufoLevel != undefined %}
-                          {% if pub.jufoLevel == "3" %}
-                            <span class="badge rounded-pill" style="background:#198754;color:#fff" title="Julkaisufoorumi-taso 3 – johtava taso">JUFO 3</span>
-                          {% elif pub.jufoLevel == "2" %}
-                            <span class="badge rounded-pill" style="background:#0d6efd;color:#fff" title="Julkaisufoorumi-taso 2 – korkea taso">JUFO 2</span>
-                          {% elif pub.jufoLevel == "1" %}
-                            <span class="badge rounded-pill" style="background:#6c757d;color:#fff" title="Julkaisufoorumi-taso 1 – perustaso">JUFO 1</span>
-                          {% else %}
-                            <span class="badge rounded-pill" style="background:#dee2e6;color:#495057" title="Julkaisufoorumi-taso 0 – ei luokiteltu">JUFO 0</span>
-                          {% endif %}
+            {# ── Desktop: taulukko (piilotetaan mobiilissa) ── #}
+            <div class="d-none d-md-block">
+              <div class="table-responsive">
+                <table class="table table-sm table-hover align-middle mb-0 pub-table">
+                  <thead>
+                    <tr>
+                      <th class="text-center" style="width:70px">Vuosi</th>
+                      <th style="width:80px">Luokka</th>
+                      <th>Otsikko & Julkaisu</th>
+                      <th style="width:200px">Tekijä(t)</th>
+                      <th style="width:100px" class="text-center">Linkit</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for pub in items %}
+                    <tr data-authors="{{ pub.authors | escape }}">
+                      <td class="text-center font-monospace small fw-bold text-info">{{ pub.year or '—' }}</td>
+                      <td><span class="badge bg-secondary" title="{{ pub.typeFi }}">{{ pub.typeShort }}</span></td>
+                      <td>
+                        <span class="fw-medium d-block mb-1">{{ pub.title }}</span>
+                        {% if pub.journal %}
+                          <span class="text-muted small fst-italic">{{ pub.journal }}</span>{% if pub.volume %}<span class="text-muted small">, <strong>{{ pub.volume }}</strong>{% if pub.issue %}({{ pub.issue }}){% endif %}</span>{% endif %}{% if pub.pages %}<span class="text-muted small">, s.&nbsp;{{ pub.pages }}</span>{% endif %}{% if pub.isbn %}<span class="text-muted small"> — ISBN {{ pub.isbn }}</span>{% endif %}
+                        {% elif pub.publisher %}
+                          <span class="text-muted small fst-italic">{{ pub.publisher }}{% if pub.isbn %} — ISBN {{ pub.isbn }}{% endif %}</span>
                         {% endif %}
-                        <span class="badge text-bg-warning rounded-pill" title="Viittaukset">
-                          <i class="bi bi-quote me-1"></i>{{ citationCount }} {{ "viite" if citationCount == 1 else "viittausta" }}
-                        </span>
-                        <button
-                          type="button"
-                          class="btn btn-sm btn-outline-secondary rounded-pill export-citation-btn"
-                          data-title="{{ pub.title | escape }}"
-                          data-authors="{{ pub.authors | escape }}"
-                          data-year="{{ pub.year or '' }}"
-                          data-journal="{{ pub.journal | escape }}"
-                          data-doi="{{ pub.doi or '' }}"
-                          data-url="{{ pub.url or pub.doiUrl or '' }}"
-                          data-volume="{{ pub.volume or '' }}"
-                          data-issue="{{ pub.issue or '' }}"
-                          data-pages="{{ pub.pages or '' }}"
-                          data-publisher="{{ pub.publisher or '' }}"
-                          data-isbn="{{ pub.isbn or '' }}"
-                          title="Vie lähdeviite"
-                        >
-                          <i class="bi bi-download me-1"></i>Vie viite
-                        </button>
-                      </div>
-                    </td>
-                    <td class="text-secondary small">{{ pub.authors }}</td>
-                    <td class="text-center">
-                      {% if pub.url %}
-                        <a href="{{ pub.url }}" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Avaa julkaisu" aria-label="Avaa julkaisu uuteen välilehteen"><i class="bi bi-box-arrow-up-right"></i></a>
-                      {% elif pub.doiUrl %}
-                        <a href="{{ pub.doiUrl }}" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Avaa DOI" aria-label="Avaa DOI uuteen välilehteen"><i class="bi bi-box-arrow-up-right"></i></a>
-                      {% endif %}
-                    </td>
-                  </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
+                        {% set citationCount = (semanticscholar.metrics.doiCitations[pub.doi | lower] if pub.doi and semanticscholar.metrics.doiCitations[pub.doi | lower] else 0) %}
+                        <div class="d-flex flex-wrap align-items-center gap-2 mt-1">
+                          {% if pub.jufoLevel != null and pub.jufoLevel != undefined %}
+                            {% if pub.jufoLevel == "3" %}
+                              <span class="badge rounded-pill" style="background:#198754;color:#fff" title="Julkaisufoorumi-taso 3 – johtava taso">JUFO 3</span>
+                            {% elif pub.jufoLevel == "2" %}
+                              <span class="badge rounded-pill" style="background:#0d6efd;color:#fff" title="Julkaisufoorumi-taso 2 – korkea taso">JUFO 2</span>
+                            {% elif pub.jufoLevel == "1" %}
+                              <span class="badge rounded-pill" style="background:#6c757d;color:#fff" title="Julkaisufoorumi-taso 1 – perustaso">JUFO 1</span>
+                            {% else %}
+                              <span class="badge rounded-pill" style="background:#dee2e6;color:#495057" title="Julkaisufoorumi-taso 0 – ei luokiteltu">JUFO 0</span>
+                            {% endif %}
+                          {% endif %}
+                          <span class="badge text-bg-warning rounded-pill" title="Viittaukset">
+                            <i class="bi bi-quote me-1"></i>{{ citationCount }} {{ "viite" if citationCount == 1 else "viittausta" }}
+                          </span>
+                          <button
+                            type="button"
+                            class="btn btn-sm btn-outline-secondary rounded-pill export-citation-btn"
+                            data-title="{{ pub.title | escape }}"
+                            data-authors="{{ pub.authors | escape }}"
+                            data-year="{{ pub.year or '' }}"
+                            data-journal="{{ pub.journal | escape }}"
+                            data-doi="{{ pub.doi or '' }}"
+                            data-url="{{ pub.url or pub.doiUrl or '' }}"
+                            data-volume="{{ pub.volume or '' }}"
+                            data-issue="{{ pub.issue or '' }}"
+                            data-pages="{{ pub.pages or '' }}"
+                            data-publisher="{{ pub.publisher or '' }}"
+                            data-isbn="{{ pub.isbn or '' }}"
+                            title="Vie lähdeviite"
+                          >
+                            <i class="bi bi-download me-1"></i>Vie viite
+                          </button>
+                        </div>
+                      </td>
+                      <td class="text-secondary small">{{ pub.authors }}</td>
+                      <td class="text-center">
+                        {% if pub.url %}
+                          <a href="{{ pub.url }}" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Avaa julkaisu" aria-label="Avaa julkaisu uuteen välilehteen"><i class="bi bi-box-arrow-up-right"></i></a>
+                        {% elif pub.doiUrl %}
+                          <a href="{{ pub.doiUrl }}" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Avaa DOI" aria-label="Avaa DOI uuteen välilehteen"><i class="bi bi-box-arrow-up-right"></i></a>
+                        {% endif %}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
             </div>
+
+            {# ── Mobiilinäkymä: kompakti korttilista (piilotetaan desktopissa) ── #}
+            <ul class="list-unstyled mb-0 d-md-none pub-mobile-list" role="list">
+              {% for pub in items %}
+              {% set citationCount = (semanticscholar.metrics.doiCitations[pub.doi | lower] if pub.doi and semanticscholar.metrics.doiCitations[pub.doi | lower] else 0) %}
+              <li class="pub-mobile-item px-3 py-3 border-bottom" data-authors="{{ pub.authors | escape }}" role="listitem">
+                <div class="d-flex align-items-center gap-2 mb-1">
+                  <span class="font-monospace small fw-bold text-info">{{ pub.year or '—' }}</span>
+                  <span class="badge bg-secondary" title="{{ pub.typeFi }}">{{ pub.typeShort }}</span>
+                  {% if pub.jufoLevel != null and pub.jufoLevel != undefined %}
+                    {% if pub.jufoLevel == "3" %}
+                      <span class="badge rounded-pill" style="background:#198754;color:#fff">JUFO 3</span>
+                    {% elif pub.jufoLevel == "2" %}
+                      <span class="badge rounded-pill" style="background:#0d6efd;color:#fff">JUFO 2</span>
+                    {% elif pub.jufoLevel == "1" %}
+                      <span class="badge rounded-pill" style="background:#6c757d;color:#fff">JUFO 1</span>
+                    {% else %}
+                      <span class="badge rounded-pill" style="background:#dee2e6;color:#495057">JUFO 0</span>
+                    {% endif %}
+                  {% endif %}
+                </div>
+                <p class="fw-medium mb-1 lh-sm">
+                  {% if pub.url %}
+                    <a href="{{ pub.url }}" target="_blank" rel="noopener noreferrer" class="text-body text-decoration-none">{{ pub.title }}</a>
+                  {% elif pub.doiUrl %}
+                    <a href="{{ pub.doiUrl }}" target="_blank" rel="noopener noreferrer" class="text-body text-decoration-none">{{ pub.title }}</a>
+                  {% else %}
+                    {{ pub.title }}
+                  {% endif %}
+                </p>
+                <p class="small text-muted mb-1">{{ pub.authors }}</p>
+                {% if pub.journal %}
+                  <p class="small text-muted fst-italic mb-1">{{ pub.journal }}{% if pub.volume %}, <strong>{{ pub.volume }}</strong>{% if pub.issue %}({{ pub.issue }}){% endif %}{% endif %}{% if pub.pages %}, s.&nbsp;{{ pub.pages }}{% endif %}{% if pub.isbn %} — ISBN {{ pub.isbn }}{% endif %}</p>
+                {% elif pub.publisher %}
+                  <p class="small text-muted fst-italic mb-1">{{ pub.publisher }}{% if pub.isbn %} — ISBN {{ pub.isbn }}{% endif %}</p>
+                {% endif %}
+                <div class="d-flex gap-2 flex-wrap align-items-center mt-1">
+                  <span class="badge text-bg-warning rounded-pill" title="Viittaukset">
+                    <i class="bi bi-quote me-1"></i>{{ citationCount }} {{ "viite" if citationCount == 1 else "viittausta" }}
+                  </span>
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-outline-secondary rounded-pill export-citation-btn"
+                    data-title="{{ pub.title | escape }}"
+                    data-authors="{{ pub.authors | escape }}"
+                    data-year="{{ pub.year or '' }}"
+                    data-journal="{{ pub.journal | escape }}"
+                    data-doi="{{ pub.doi or '' }}"
+                    data-url="{{ pub.url or pub.doiUrl or '' }}"
+                    data-volume="{{ pub.volume or '' }}"
+                    data-issue="{{ pub.issue or '' }}"
+                    data-pages="{{ pub.pages or '' }}"
+                    data-publisher="{{ pub.publisher or '' }}"
+                    data-isbn="{{ pub.isbn or '' }}"
+                    title="Vie lähdeviite"
+                  ><i class="bi bi-download me-1"></i>Vie viite</button>
+                  {% if pub.url %}
+                    <a href="{{ pub.url }}" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill" rel="noopener noreferrer" aria-label="Avaa julkaisu uuteen välilehteen"><i class="bi bi-box-arrow-up-right me-1"></i>Avaa</a>
+                  {% elif pub.doiUrl %}
+                    <a href="{{ pub.doiUrl }}" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill" rel="noopener noreferrer" aria-label="Avaa DOI uuteen välilehteen"><i class="bi bi-box-arrow-up-right me-1"></i>Avaa</a>
+                  {% endif %}
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
           </div>
         </div>
       </div>
@@ -803,6 +871,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const tbody = table.querySelector('tbody');
     let rows = Array.from(tbody.querySelectorAll('tr'));
+    let mobileItems = Array.from(tableContainer.querySelectorAll('.pub-mobile-item'));
 
       // 5. Build Pagination UI
       let paginationNav = tableContainer.querySelector('.pub-pagination');
@@ -814,12 +883,13 @@ document.addEventListener('DOMContentLoaded', function() {
         paginationNav.innerHTML = '<ul class="pagination pagination-sm mb-3"></ul>';
         tableContainer.appendChild(paginationNav);
       }
-    
+
     const ul = paginationNav.querySelector('ul');
     const filterIndicator = document.querySelector(`[data-filter-indicator="${tableId}"]`);
     let currentPage = 1;
     let filteredRows = [...rows];
-    
+    let filteredMobileItems = [...mobileItems];
+
     const searchInput = document.querySelector(`[data-pub-search="${tableId}"]`);
 
     function renderPage(page) {
@@ -829,10 +899,12 @@ document.addEventListener('DOMContentLoaded', function() {
       if (currentPage > totalPages && totalPages > 0) currentPage = totalPages;
 
       rows.forEach(r => r.style.display = 'none');
-      
+      mobileItems.forEach(r => r.style.display = 'none');
+
       const start = (currentPage - 1) * ITEMS_PER_PAGE;
       const end = start + ITEMS_PER_PAGE;
       filteredRows.slice(start, end).forEach(r => r.style.display = '');
+      filteredMobileItems.slice(start, end).forEach(r => r.style.display = '');
 
       renderPaginationControls(totalPages);
 
@@ -875,15 +947,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function applyFilters() {
       rows = Array.from(tbody.querySelectorAll('tr'));
+      mobileItems = Array.from(tableContainer.querySelectorAll('.pub-mobile-item'));
       const q = (searchInput?.value || '').toLowerCase();
       const coauthorNeedle = activeCoauthor.toLowerCase();
-      filteredRows = rows.filter(row => {
-        const text = row.textContent.toLowerCase();
+      const matchFn = el => {
+        const text = el.textContent.toLowerCase();
         const matchesSearch = !q || text.includes(q);
-        const authors = (row.dataset.authors || '').toLowerCase();
+        const authors = (el.dataset.authors || '').toLowerCase();
         const matchesCoauthor = !coauthorNeedle || authors.includes(coauthorNeedle);
         return matchesSearch && matchesCoauthor;
-      });
+      };
+      filteredRows = rows.filter(matchFn);
+      filteredMobileItems = mobileItems.filter(matchFn);
       syncPublicationFiltersToUrl();
       renderPage(1);
     }

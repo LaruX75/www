@@ -164,42 +164,84 @@ lang: en
             </div>
           </div>
           <div id="{{ tableId }}">
-            <div class="table-responsive">
-              <table class="table table-sm table-hover align-middle mb-0 pub-table">
-                <thead>
-                  <tr>
-                    <th class="text-center" style="width:70px">Year</th>
-                    <th style="width:80px">Class</th>
-                    <th>Title & Venue</th>
-                    <th style="width:200px">Author(s)</th>
-                    <th style="width:100px" class="text-center">Links</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for pub in items %}
-                  <tr>
-                    <td class="text-center font-monospace small fw-bold text-info">{{ pub.year or '—' }}</td>
-                    <td><span class="badge bg-secondary" title="Type {{ pub.typeCode }}">{{ pub.typeShort }}</span></td>
-                    <td>
-                      <span class="fw-medium d-block mb-1">{{ pub.title }}</span>
-                      {% if pub.journal %}<span class="text-muted small d-block fst-italic">{{ pub.journal }}</span>{% endif %}
-                      {% if pub.doi and semanticscholar.metrics.doiCitations[pub.doi | lower] %}
-                        <span class="badge text-bg-warning rounded-pill mt-1" title="Citations"><i class="bi bi-quote me-1"></i>{{ semanticscholar.metrics.doiCitations[pub.doi | lower] }}</span>
-                      {% endif %}
-                    </td>
-                    <td class="text-secondary small">{{ pub.authors }}</td>
-                    <td class="text-center">
-                      {% if pub.url %}
-                        <a href="{{ pub.url }}" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Open publication" aria-label="Open publication in a new tab"><i class="bi bi-box-arrow-up-right"></i></a>
-                      {% elif pub.doiUrl %}
-                        <a href="{{ pub.doiUrl }}" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Open DOI" aria-label="Open DOI in a new tab"><i class="bi bi-box-arrow-up-right"></i></a>
-                      {% endif %}
-                    </td>
-                  </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
+            {# ── Desktop: table (hidden on mobile) ── #}
+            <div class="d-none d-md-block">
+              <div class="table-responsive">
+                <table class="table table-sm table-hover align-middle mb-0 pub-table">
+                  <thead>
+                    <tr>
+                      <th class="text-center" style="width:70px">Year</th>
+                      <th style="width:80px">Class</th>
+                      <th>Title & Venue</th>
+                      <th style="width:200px">Author(s)</th>
+                      <th style="width:100px" class="text-center">Links</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for pub in items %}
+                    <tr data-authors="{{ pub.authors | escape }}">
+                      <td class="text-center font-monospace small fw-bold text-info">{{ pub.year or '—' }}</td>
+                      <td><span class="badge bg-secondary" title="Type {{ pub.typeCode }}">{{ pub.typeShort }}</span></td>
+                      <td>
+                        <span class="fw-medium d-block mb-1">{{ pub.title }}</span>
+                        {% if pub.journal %}<span class="text-muted small d-block fst-italic">{{ pub.journal }}</span>{% endif %}
+                        {% if pub.doi and semanticscholar.metrics.doiCitations[pub.doi | lower] %}
+                          <span class="badge text-bg-warning rounded-pill mt-1" title="Citations"><i class="bi bi-quote me-1"></i>{{ semanticscholar.metrics.doiCitations[pub.doi | lower] }}</span>
+                        {% endif %}
+                      </td>
+                      <td class="text-secondary small">{{ pub.authors }}</td>
+                      <td class="text-center">
+                        {% if pub.url %}
+                          <a href="{{ pub.url }}" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Open publication" aria-label="Open publication in a new tab"><i class="bi bi-box-arrow-up-right"></i></a>
+                        {% elif pub.doiUrl %}
+                          <a href="{{ pub.doiUrl }}" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Open DOI" aria-label="Open DOI in a new tab"><i class="bi bi-box-arrow-up-right"></i></a>
+                        {% endif %}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
             </div>
+
+            {# ── Mobile view: compact card list (hidden on desktop) ── #}
+            <ul class="list-unstyled mb-0 d-md-none pub-mobile-list" role="list">
+              {% for pub in items %}
+              <li class="pub-mobile-item px-3 py-3 border-bottom" data-authors="{{ pub.authors | escape }}" role="listitem">
+                <div class="d-flex align-items-center gap-2 mb-1">
+                  <span class="font-monospace small fw-bold text-info">{{ pub.year or '—' }}</span>
+                  <span class="badge bg-secondary" title="Type {{ pub.typeCode }}">{{ pub.typeShort }}</span>
+                  {% if pub.doi and semanticscholar.metrics.doiCitations[pub.doi | lower] %}
+                    <span class="badge text-bg-warning rounded-pill" title="Citations"><i class="bi bi-quote me-1"></i>{{ semanticscholar.metrics.doiCitations[pub.doi | lower] }}</span>
+                  {% endif %}
+                </div>
+                <p class="fw-medium mb-1 lh-sm">
+                  {% if pub.url %}
+                    <a href="{{ pub.url }}" target="_blank" rel="noopener noreferrer" class="text-body text-decoration-none">{{ pub.title }}</a>
+                  {% elif pub.doiUrl %}
+                    <a href="{{ pub.doiUrl }}" target="_blank" rel="noopener noreferrer" class="text-body text-decoration-none">{{ pub.title }}</a>
+                  {% else %}
+                    {{ pub.title }}
+                  {% endif %}
+                </p>
+                <p class="small text-muted mb-1">{{ pub.authors }}</p>
+                {% if pub.journal %}
+                  <p class="small text-muted fst-italic mb-1">{{ pub.journal }}</p>
+                {% elif pub.publisher %}
+                  <p class="small text-muted fst-italic mb-1">{{ pub.publisher }}</p>
+                {% endif %}
+                {% if pub.url or pub.doiUrl %}
+                <div class="mt-1">
+                  {% if pub.url %}
+                    <a href="{{ pub.url }}" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill" rel="noopener noreferrer" aria-label="Open publication in a new tab"><i class="bi bi-box-arrow-up-right me-1"></i>Open</a>
+                  {% elif pub.doiUrl %}
+                    <a href="{{ pub.doiUrl }}" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill" rel="noopener noreferrer" aria-label="Open DOI in a new tab"><i class="bi bi-box-arrow-up-right me-1"></i>Open</a>
+                  {% endif %}
+                </div>
+                {% endif %}
+              </li>
+              {% endfor %}
+            </ul>
           </div>
         </div>
       </div>
@@ -341,8 +383,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!table) return;
 
     const tbody = table.querySelector('tbody');
-    const rows = Array.from(tbody.querySelectorAll('tr'));
-    
+    let rows = Array.from(tbody.querySelectorAll('tr'));
+    let mobileItems = Array.from(tableContainer.querySelectorAll('.pub-mobile-item'));
+
       // 5. Build Pagination UI
       let paginationNav = tableContainer.querySelector('.pub-pagination');
       if (!paginationNav) {
@@ -353,11 +396,12 @@ document.addEventListener('DOMContentLoaded', function() {
         paginationNav.innerHTML = '<ul class="pagination pagination-sm mb-3"></ul>';
         tableContainer.appendChild(paginationNav);
       }
-    
+
     const ul = paginationNav.querySelector('ul');
     let currentPage = 1;
     let filteredRows = [...rows];
-    
+    let filteredMobileItems = [...mobileItems];
+
     const searchInput = document.querySelector(`[data-pub-search="${tableId}"]`);
 
     function renderPage(page) {
@@ -367,10 +411,12 @@ document.addEventListener('DOMContentLoaded', function() {
       if (currentPage > totalPages && totalPages > 0) currentPage = totalPages;
 
       rows.forEach(r => r.style.display = 'none');
-      
+      mobileItems.forEach(r => r.style.display = 'none');
+
       const start = (currentPage - 1) * ITEMS_PER_PAGE;
       const end = start + ITEMS_PER_PAGE;
       filteredRows.slice(start, end).forEach(r => r.style.display = '');
+      filteredMobileItems.slice(start, end).forEach(r => r.style.display = '');
 
       renderPaginationControls(totalPages);
     }
@@ -400,21 +446,19 @@ document.addEventListener('DOMContentLoaded', function() {
       ul.appendChild(nextLi);
     }
 
-    if (searchInput) {
-      searchInput.addEventListener('input', () => {
-        const q = searchInput.value.toLowerCase();
-        filteredRows = rows.filter(row => row.textContent.toLowerCase().includes(q));
-        syncPublicationFiltersToUrl();
-        renderPage(1);
-      });
+    function applyFilters() {
+      rows = Array.from(tbody.querySelectorAll('tr'));
+      mobileItems = Array.from(tableContainer.querySelectorAll('.pub-mobile-item'));
+      const q = (searchInput?.value || '').toLowerCase();
+      const matchFn = el => !q || el.textContent.toLowerCase().includes(q);
+      filteredRows = rows.filter(matchFn);
+      filteredMobileItems = mobileItems.filter(matchFn);
+      syncPublicationFiltersToUrl();
+      renderPage(1);
     }
 
-    if (searchInput && searchInput.value) {
-      const q = searchInput.value.toLowerCase();
-      filteredRows = rows.filter(row => row.textContent.toLowerCase().includes(q));
-      syncPublicationFiltersToUrl();
-    }
-    renderPage(1);
+    if (searchInput) searchInput.addEventListener('input', applyFilters);
+    applyFilters();
   }
 
   ['pub-table-a', 'pub-table-b', 'pub-table-c', 'pub-table-d', 'pub-table-e', 'pub-table-g'].forEach(initPubPagination);
