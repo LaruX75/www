@@ -8,7 +8,7 @@ translationKey: presentations_index
 
 {% set tocSource %}
 <h2 id="canva-heading">Canva-esitykset</h2>
-<h2 id="youtube-heading">YouTube-soittolistat</h2>
+<h2 id="youtube-heading">YouTube-videot</h2>
 <h2 id="aoe-heading">AOE-oppimateriaalit</h2>
 <h2 id="google-heading">Google Slides -esitykset</h2>
 <h2 id="slideshare-heading">SlideShare-esitykset</h2>
@@ -118,10 +118,40 @@ translationKey: presentations_index
   {# ===================== YOUTUBE ===================== #}
   <section class="mb-5" aria-labelledby="youtube-heading">
     <h2 id="youtube-heading" class="section-title mb-4">
-      <i class="bi bi-youtube text-danger me-2" style="font-size: 1rem;"></i>YouTube-soittolistat
+      <i class="bi bi-youtube text-danger me-2" style="font-size: 1rem;"></i>YouTube-videot
     </h2>
 
+    {% if youtube and youtube.videos and youtube.videos.length %}
+      <div class="presentation-scroller mb-4" data-key="youtubeVideos" aria-label="YouTube-videoiden skrolleri">
+        <div class="presentation-scroller-track"></div>
+      </div>
+      <div class="d-none d-md-block">
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0 pub-table">
+            <thead>
+              <tr>
+                <th style="min-width:140px">Esikatselu</th>
+                <th style="min-width:200px">Otsikko</th>
+                <th style="min-width:220px">Kuvaus</th>
+                <th class="text-nowrap">Päiväys</th>
+                <th class="text-nowrap">Avaa</th>
+              </tr>
+            </thead>
+            <tbody id="table-body-youtubeVideos"></tbody>
+          </table>
+        </div>
+      </div>
+      <ul id="mobile-list-youtubeVideos" class="list-unstyled mb-0 d-md-none presentation-mobile-list" role="list"></ul>
+      <nav class="mt-3" aria-label="YouTube-video-sivutus">
+        <ul class="pagination pagination-sm mb-0" id="pagination-youtubeVideos"></ul>
+      </nav>
+      <div class="mt-3 text-muted small">
+        Lähde: YouTube Data API v3{% if youtube.source == 'cache' %} (välimuistista){% endif %}.
+      </div>
+    {% endif %}
+
     {% if youtube and youtube.tableRows and youtube.tableRows.length %}
+      <h3 class="h5 fw-semibold mt-5 mb-3">Soittolistat</h3>
       <div class="presentation-scroller mb-4" data-key="youtube" aria-label="YouTube-soittolistojen skrolleri">
         <div class="presentation-scroller-track"></div>
       </div>
@@ -144,13 +174,12 @@ translationKey: presentations_index
       <nav class="mt-3" aria-label="YouTube-sivutus">
         <ul class="pagination pagination-sm mb-0" id="pagination-youtube"></ul>
       </nav>
-      <div class="mt-3 text-muted small">
-        Lähde: YouTube Data API v3{% if youtube.source == 'cache' %} (välimuistista){% endif %}.
-      </div>
-    {% else %}
+    {% endif %}
+
+    {% if not (youtube and (youtube.videos.length or youtube.tableRows.length)) %}
       <div class="card border-0 bg-light-subtle">
         <div class="card-body">
-          <p class="mb-2 fw-semibold">YouTube-soittolistoja ei saatu haettua.</p>
+          <p class="mb-2 fw-semibold">YouTube-sisältöä ei saatu haettua.</p>
           <p class="text-muted mb-0 small">
             Lisää ympäristömuuttujat <code>YOUTUBE_API_KEY</code> ja tarvittaessa <code>YOUTUBE_CHANNEL_ID</code> tai <code>YOUTUBE_HANDLE</code>.
           </p>
@@ -378,6 +407,7 @@ translationKey: presentations_index
   const rawData = {
     aoe: {{ (finnaAoe.rows or []) | dump | safe }},
     canva: {{ (canva.tableRows or []) | dump | safe }},
+    youtubeVideos: {{ (youtube.videos or []) | dump | safe }},
     youtube: {{ (youtube.tableRows or []) | dump | safe }},
     google: {{ (googleslides or []) | dump | safe }},
     slideshare: {{ ssDataItems | dump | safe }}
@@ -391,6 +421,7 @@ translationKey: presentations_index
   const iconByKey = {
     aoe: "bi-book",
     canva: "bi-file-earmark-slides",
+    youtubeVideos: "bi-youtube",
     youtube: "bi-youtube",
     google: "bi-file-earmark-slides",
     slideshare: "bi-collection-play"
@@ -399,6 +430,7 @@ translationKey: presentations_index
   const linkLabelByKey = {
     aoe: "Avaa Finnassa",
     canva: "Avaa",
+    youtubeVideos: "Katso",
     youtube: "YouTube",
     google: "Avaa",
     slideshare: "SlideShare"
@@ -485,6 +517,17 @@ translationKey: presentations_index
         keywords: Array.isArray(r.categories) ? r.categories.filter(Boolean) : [],
         meta: "Canva",
         date: toDisplayDate(toIsoDate(r.date || r.publishedAt || r.createdAt || r.updatedAt || "") || "")
+      }));
+    }
+
+    if (key === "youtubeVideos") {
+      return rows.map((r) => ({
+        title: r.title || "Nimetön video",
+        url: r.url || "",
+        thumbnail: r.thumbnail || "",
+        description: r.description || "",
+        meta: "YouTube-video",
+        date: toDisplayDate(r.publishedAt || "")
       }));
     }
 
@@ -607,6 +650,30 @@ translationKey: presentations_index
     if (!tbody) return;
     const start = (page - 1) * PAGE_SIZE;
     const pageRows = rows.slice(start, start + PAGE_SIZE);
+
+    if (key === "youtubeVideos") {
+      tbody.innerHTML = pageRows.map((item) => {
+        const preview = item.thumbnail
+          ? `<img src="${escHtml(item.thumbnail)}" alt="${escHtml(item.title)}" class="img-fluid border" style="max-height:72px;object-fit:cover;" loading="lazy" decoding="async" onerror="this.outerHTML='<span class=&quot;text-muted small&quot;>Ei saatavilla</span>';">`
+          : '<span class="text-muted small">Ei saatavilla</span>';
+        const desc = item.description ? escHtml(truncate(item.description, 140)) : '<span class="text-muted small">-</span>';
+        return `
+          <tr>
+            <td class="small text-muted text-center" data-label="Esikatselu">${preview}</td>
+            <td class="fw-semibold" data-label="Otsikko">${escHtml(item.title)}</td>
+            <td class="small" data-label="Kuvaus">${desc}</td>
+            <td class="text-nowrap" data-label="Päiväys">${escHtml(item.date || "-")}</td>
+            <td data-label="Avaa">
+              ${item.url
+                ? `<a href="${escHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-3">Katso</a>`
+                : `<span class="text-muted small">Ei linkkiä</span>`}
+            </td>
+          </tr>
+        `;
+      }).join("");
+      renderPagination(key, rows, page, onChange);
+      return;
+    }
 
     if (key === "canva" || key === "slideshare") {
       tbody.innerHTML = pageRows.map((item) => {

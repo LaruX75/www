@@ -1,8 +1,12 @@
 {
-  "profileUrl": "https://www.youtube.com/jarilaru",
+  "profileUrl": "https://www.youtube.com/@JariLaru",
   "channelId": "",
-  "handle": "",
+  "handle": "JariLaru",
   "username": "",
   "channelQuery": "jarilaru",
-  "tickerLimit": 12
+  "tickerLimit": 12,
+  "featuredPlaylistIds": [
+    "PLDG0jxUrk8z19_ThqBiynpYG4g-mjwgpt",
+    "PLDG0jxUrk8z2E7S2ggyzt0bIBXiDEgXob"
+  ]
 }

@@ -12,7 +12,7 @@ lang: en
 <h2 id="canva-heading">Canva Presentations</h2>
 <h2 id="google-heading">Google Slides Presentations</h2>
 <h2 id="slideshare-heading">SlideShare Presentations</h2>
-<h2 id="youtube-heading">YouTube Playlists</h2>
+<h2 id="youtube-heading">YouTube Videos</h2>
 {% endset %}
 {% set tocMarkup = tocSource | toc %}
 
@@ -238,10 +238,37 @@ lang: en
   {# ===================== YOUTUBE ===================== #}
   <section class="mb-5" aria-labelledby="youtube-heading">
     <h2 id="youtube-heading" class="section-title mb-4">
-      <i class="bi bi-youtube text-danger me-2" style="font-size: 1rem;"></i>YouTube Playlists
+      <i class="bi bi-youtube text-danger me-2" style="font-size: 1rem;"></i>YouTube Videos
     </h2>
 
+    {% if youtube and youtube.videos and youtube.videos.length %}
+      <div class="presentation-scroller mb-4" data-key="youtubeVideos" aria-label="YouTube video scroller">
+        <div class="presentation-scroller-track"></div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0 pub-table">
+          <thead>
+            <tr>
+              <th style="min-width:140px">Preview</th>
+              <th style="min-width:200px">Title</th>
+              <th style="min-width:220px">Description</th>
+              <th class="text-nowrap">Date</th>
+              <th class="text-nowrap">Open</th>
+            </tr>
+          </thead>
+          <tbody id="table-body-youtubeVideos"></tbody>
+        </table>
+      </div>
+      <nav class="mt-3" aria-label="YouTube video pagination">
+        <ul class="pagination pagination-sm mb-0" id="pagination-youtubeVideos"></ul>
+      </nav>
+      <div class="mt-3 text-muted small">
+        Source: YouTube Data API v3{% if youtube.source == 'cache' %} (cached){% endif %}.
+      </div>
+    {% endif %}
+
     {% if youtube and youtube.tableRows and youtube.tableRows.length %}
+      <h3 class="h5 fw-semibold mt-5 mb-3">Playlists</h3>
       <div class="presentation-scroller mb-4" data-key="youtube" aria-label="YouTube playlist scroller">
         <div class="presentation-scroller-track"></div>
       </div>
@@ -261,13 +288,12 @@ lang: en
       <nav class="mt-3" aria-label="YouTube pagination">
         <ul class="pagination pagination-sm mb-0" id="pagination-youtube"></ul>
       </nav>
-      <div class="mt-3 text-muted small">
-        Source: YouTube Data API v3{% if youtube.source == 'cache' %} (cached){% endif %}.
-      </div>
-    {% else %}
+    {% endif %}
+
+    {% if not (youtube and (youtube.videos.length or youtube.tableRows.length)) %}
       <div class="card border-0 bg-light-subtle">
         <div class="card-body">
-          <p class="mb-2 fw-semibold">Could not fetch YouTube playlists.</p>
+          <p class="mb-2 fw-semibold">Could not fetch YouTube content.</p>
           <p class="text-muted mb-0 small">
             Set <code>YOUTUBE_API_KEY</code> and, if needed, <code>YOUTUBE_CHANNEL_ID</code> or <code>YOUTUBE_HANDLE</code>.
           </p>
@@ -363,6 +389,7 @@ lang: en
   const rawData = {
     aoe: {{ (finnaAoe.rows or []) | dump | safe }},
     canva: {{ (canva.tableRows or []) | dump | safe }},
+    youtubeVideos: {{ (youtube.videos or []) | dump | safe }},
     youtube: {{ (youtube.tableRows or []) | dump | safe }},
     google: {{ (googleslides or []) | dump | safe }},
     slideshare: {{ ssDataItems | dump | safe }}
@@ -376,6 +403,7 @@ lang: en
   const iconByKey = {
     aoe: "bi-book",
     canva: "bi-file-earmark-slides",
+    youtubeVideos: "bi-youtube",
     youtube: "bi-youtube",
     google: "bi-file-earmark-slides",
     slideshare: "bi-collection-play"
@@ -384,6 +412,7 @@ lang: en
   const linkLabelByKey = {
     aoe: "Open in Finna",
     canva: "Open",
+    youtubeVideos: "Watch",
     youtube: "YouTube",
     google: "Open",
     slideshare: "SlideShare"
@@ -466,6 +495,17 @@ lang: en
         keywords: Array.isArray(r.categories) ? r.categories.filter(Boolean) : [],
         meta: "Canva",
         date: toDisplayDate(toIsoDate(r.date || r.publishedAt || r.createdAt || r.updatedAt || "") || "")
+      }));
+    }
+
+    if (key === "youtubeVideos") {
+      return rows.map((r) => ({
+        title: r.title || "Unnamed video",
+        url: r.url || "",
+        thumbnail: r.thumbnail || "",
+        description: r.description || "",
+        meta: "YouTube video",
+        date: toDisplayDate(r.publishedAt || "")
       }));
     }
 
@@ -588,6 +628,30 @@ lang: en
     if (!tbody) return;
     const start = (page - 1) * PAGE_SIZE;
     const pageRows = rows.slice(start, start + PAGE_SIZE);
+
+    if (key === "youtubeVideos") {
+      tbody.innerHTML = pageRows.map((item) => {
+        const preview = item.thumbnail
+          ? `<img src="${escHtml(item.thumbnail)}" alt="${escHtml(item.title)}" class="img-fluid border" style="max-height:72px;object-fit:cover;" loading="lazy" decoding="async" onerror="this.outerHTML='<span class=&quot;text-muted small&quot;>Not available</span>';">`
+          : '<span class="text-muted small">Not available</span>';
+        const desc = item.description ? escHtml(truncate(item.description, 140)) : '<span class="text-muted small">-</span>';
+        return `
+          <tr>
+            <td class="small text-muted text-center" data-label="Preview">${preview}</td>
+            <td class="fw-semibold" data-label="Title">${escHtml(item.title)}</td>
+            <td class="small" data-label="Description">${desc}</td>
+            <td class="text-nowrap" data-label="Date">${escHtml(item.date || "-")}</td>
+            <td data-label="Open">
+              ${item.url
+                ? `<a href="${escHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-3">Watch</a>`
+                : `<span class="text-muted small">No link</span>`}
+            </td>
+          </tr>
+        `;
+      }).join("");
+      renderPagination(key, rows, page, onChange);
+      return;
+    }
 
     if (key === "canva" || key === "slideshare") {
       tbody.innerHTML = pageRows.map((item) => {

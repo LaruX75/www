@@ -27,7 +27,12 @@ function readCmsYoutubeConfig() {
       handle: typeof parsed?.handle === "string" ? parsed.handle.trim() : "",
       username: typeof parsed?.username === "string" ? parsed.username.trim() : "",
       channelQuery: typeof parsed?.channelQuery === "string" ? parsed.channelQuery.trim() : "",
-      tickerLimit: Number.isFinite(tickerLimit) && tickerLimit > 0 ? tickerLimit : null
+      tickerLimit: Number.isFinite(tickerLimit) && tickerLimit > 0 ? tickerLimit : null,
+      featuredPlaylistIds: Array.isArray(parsed?.featuredPlaylistIds)
+        ? parsed.featuredPlaylistIds.filter(id => typeof id === 'string' && id.trim())
+        : (typeof parsed?.featuredPlaylistId === 'string' && parsed.featuredPlaylistId.trim()
+            ? [parsed.featuredPlaylistId.trim()]
+            : [])
     };
   } catch (error) {
     console.warn(`YouTube: CMS config read failed: ${error.message}`);
@@ -164,6 +169,24 @@ function normalizeChannel(channel, profileUrl) {
   };
 }
 
+function normalizeVideo(item) {
+  const thumb =
+    item?.snippet?.thumbnails?.high?.url ||
+    item?.snippet?.thumbnails?.medium?.url ||
+    item?.snippet?.thumbnails?.default?.url ||
+    null;
+  const videoId = item?.snippet?.resourceId?.videoId || null;
+  return {
+    id: item.id,
+    videoId,
+    title: item?.snippet?.title || 'Nimetön video',
+    description: item?.snippet?.description || '',
+    publishedAt: item?.snippet?.publishedAt || null,
+    thumbnail: thumb,
+    url: videoId ? `https://www.youtube.com/watch?v=${videoId}` : null
+  };
+}
+
 function normalizePlaylist(item) {
   const thumb =
     item?.snippet?.thumbnails?.high?.url ||
@@ -207,13 +230,29 @@ async function fetchAllPlaylists(channelId, apiKey) {
   return playlists;
 }
 
+async function fetchPlaylistVideos(playlistId, apiKey) {
+  const videos = [];
+  let pageToken = '';
+  do {
+    const data = await ytRequest(
+      'playlistItems',
+      { part: 'snippet', playlistId, maxResults: 50, pageToken },
+      apiKey
+    );
+    const items = Array.isArray(data?.items) ? data.items : [];
+    videos.push(...items.map(normalizeVideo).filter(v => v.videoId && v.url));
+    pageToken = data?.nextPageToken || '';
+  } while (pageToken);
+  return videos;
+}
+
 module.exports = async function () {
   const cmsConfig = readCmsYoutubeConfig();
   const hidden = loadHiddenIds('youtube');
   const applyCuration = (data) => {
     if (!data) return data;
     const filterList = (arr) => (Array.isArray(arr) ? arr.filter((p) => !hidden.has(p.id)) : arr);
-    return { ...data, playlists: filterList(data.playlists), tableRows: filterList(data.tableRows), tickerRows: filterList(data.tickerRows) };
+    return { ...data, playlists: filterList(data.playlists), tableRows: filterList(data.tableRows), tickerRows: filterList(data.tickerRows), videos: filterList(data.videos || []) };
   };
 
   const fresh = readCacheIfFresh(CACHE_KEY, CACHE_TTL_HOURS);
@@ -228,7 +267,8 @@ module.exports = async function () {
     channelId: process.env.YOUTUBE_CHANNEL_ID || cmsConfig.channelId || "",
     handle: process.env.YOUTUBE_HANDLE || cmsConfig.handle || "",
     username: process.env.YOUTUBE_USERNAME || cmsConfig.username || "",
-    channelQuery: process.env.YOUTUBE_CHANNEL_QUERY || cmsConfig.channelQuery || ""
+    channelQuery: process.env.YOUTUBE_CHANNEL_QUERY || cmsConfig.channelQuery || "",
+    featuredPlaylistIds: cmsConfig.featuredPlaylistIds || []
   };
   const profileUrl = findYoutubeProfileUrl(cmsConfig);
   const hints = parseProfileHints(profileUrl);
@@ -249,6 +289,7 @@ module.exports = async function () {
       playlists: [],
       tableRows: [],
       tickerRows: [],
+      videos: [],
       fetchedAt: new Date().toISOString(),
       error: 'YOUTUBE_API_KEY puuttuu'
     };
@@ -280,6 +321,17 @@ module.exports = async function () {
     const tableRows = playlists;
     const tickerRows = playlists.slice(0, playlistTickerLimit);
 
+    let videos = [];
+    for (const playlistId of settings.featuredPlaylistIds) {
+      try {
+        const playlistVideos = await fetchPlaylistVideos(playlistId, apiKey);
+        videos.push(...playlistVideos);
+        console.log(`YouTube: löytyi ${playlistVideos.length} videota soittolistasta ${playlistId}.`);
+      } catch (err) {
+        console.warn(`YouTube: soittolistan ${playlistId} videoiden haku epäonnistui: ${err.message}`);
+      }
+    }
+
     const result = {
       enabled: true,
       source: 'live',
@@ -288,6 +340,7 @@ module.exports = async function () {
       playlists,
       tableRows,
       tickerRows,
+      videos,
       fetchedAt: new Date().toISOString()
     };
 
@@ -315,6 +368,7 @@ module.exports = async function () {
       playlists: [],
       tableRows: [],
       tickerRows: [],
+      videos: [],
       fetchedAt: new Date().toISOString(),
       error: error.message
     };
