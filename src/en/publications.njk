@@ -189,7 +189,7 @@ lang: en
                           <span class="badge text-bg-warning rounded-pill mt-1" title="Citations"><i class="bi bi-quote me-1"></i>{{ semanticscholar.metrics.doiCitations[pub.doi | lower] }}</span>
                         {% endif %}
                       </td>
-                      <td class="text-secondary small">{{ pub.authors }}</td>
+                      <td class="text-body-secondary small">{{ pub.authors }}</td>
                       <td class="text-center">
                         {% if pub.url %}
                           <a href="{{ pub.url }}" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Open publication" aria-label="Open publication in a new tab"><i class="bi bi-box-arrow-up-right"></i></a>
@@ -224,7 +224,7 @@ lang: en
                     {{ pub.title }}
                   {% endif %}
                 </p>
-                <p class="small text-muted mb-1">{{ pub.authors }}</p>
+                <p class="small text-body-secondary mb-1">{{ pub.authors }}</p>
                 {% if pub.journal %}
                   <p class="small text-muted fst-italic mb-1">{{ pub.journal }}</p>
                 {% elif pub.publisher %}

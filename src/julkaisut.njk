@@ -329,7 +329,7 @@ translationKey: publications_index
                           </button>
                         </div>
                       </td>
-                      <td class="text-secondary small">{{ pub.authors }}</td>
+                      <td class="text-body-secondary small">{{ pub.authors }}</td>
                       <td class="text-center">
                         {% if pub.url %}
                           <a href="{{ pub.url }}" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Avaa julkaisu" aria-label="Avaa julkaisu uuteen välilehteen"><i class="bi bi-box-arrow-up-right"></i></a>
@@ -373,7 +373,7 @@ translationKey: publications_index
                     {{ pub.title }}
                   {% endif %}
                 </p>
-                <p class="small text-muted mb-1">{{ pub.authors }}</p>
+                <p class="small text-body-secondary mb-1">{{ pub.authors }}</p>
                 {% if pub.journal %}
                   <p class="small text-muted fst-italic mb-1">{{ pub.journal }}{% if pub.volume %}, <strong>{{ pub.volume }}</strong>{% if pub.issue %}({{ pub.issue }}){% endif %}{% endif %}{% if pub.pages %}, s.&nbsp;{{ pub.pages }}{% endif %}{% if pub.isbn %} — ISBN {{ pub.isbn }}{% endif %}</p>
                 {% elif pub.publisher %}
