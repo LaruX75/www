@@ -292,6 +292,10 @@ description: University lecturer, researcher, municipal politician, and speaker.
   {% set item = { sortTs: row.date | toTimestamp, type: "pres", dateLabel: row.date | dateFormat, title: row.title, href: row.url, desc: row.location, thumbnail: row.thumbnail, isExternal: true } %}
   {% set _ = (allRecentItems.push(item), null) %}
 {% endfor %}
+{% for row in (youtube.videos or []) %}
+  {% set item = { sortTs: row.publishedAt | toTimestamp, type: "pres", dateLabel: row.publishedAt | dateFormat, title: row.title, href: row.url, desc: row.description, thumbnail: row.thumbnail, isExternal: true } %}
+  {% set _ = (allRecentItems.push(item), null) %}
+{% endfor %}
 
 {% for pub in (researchfi or []) %}
   {% set pubDateStr = pub.year ~ "-12-31" %}
