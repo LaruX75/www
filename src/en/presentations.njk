@@ -520,8 +520,8 @@ lang: en
     const item = rows[0];
     const icon = escHtml(iconByKey[key] || "bi-file-earmark");
     const thumb = item.thumbnail
-      ? `<img src="${escHtml(item.thumbnail)}" alt="${escHtml(item.title)}" style="width:160px;min-width:160px;height:110px;object-fit:cover;" loading="lazy" decoding="async" onerror="this.style.display='none';">`
-      : `<div style="width:160px;min-width:160px;height:110px;background:var(--bs-secondary-bg);display:flex;align-items:center;justify-content:center;color:var(--bs-secondary-color);font-size:1.5rem;"><i class="bi ${icon}"></i></div>`;
+      ? `<img src="${escHtml(item.thumbnail)}" alt="${escHtml(item.title)}" class="featured-thumb" style="object-fit:cover;" loading="lazy" decoding="async" onerror="this.style.display='none';">`
+      : `<div class="featured-thumb" style="background:var(--bs-secondary-bg);display:flex;align-items:center;justify-content:center;color:var(--bs-secondary-color);font-size:1.5rem;"><i class="bi ${icon}"></i></div>`;
     const label = escHtml(linkLabelByKey[key] || "Open");
     const desc = escHtml(truncate(item.description || item.meta || "", 130));
     host.innerHTML = `
@@ -702,6 +702,21 @@ lang: en
 </script>
 
 <style>
+/* Featured card thumbnail */
+.featured-thumb {
+  width: 160px;
+  min-width: 160px;
+  height: 110px;
+  flex-shrink: 0;
+}
+@media (min-width: 768px) {
+  .featured-thumb {
+    width: 320px;
+    min-width: 320px;
+    height: 220px;
+  }
+}
+
 /* Section headings */
 .section-title {
   font-family: 'Bree Serif', serif;
