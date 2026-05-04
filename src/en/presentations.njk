@@ -10,7 +10,6 @@ lang: en
 {% set tocSource %}
 <h2 id="aoe-heading">AOE Learning Materials</h2>
 <h2 id="canva-heading">Canva Presentations</h2>
-<h2 id="google-heading">Google Slides Presentations</h2>
 <h2 id="slideshare-heading">SlideShare Presentations</h2>
 <h2 id="youtube-heading">YouTube Videos</h2>
 {% endset %}
@@ -141,33 +140,6 @@ lang: en
     {% endif %}
   </section>
 
-  {# ================ GOOGLE SLIDES ================ #}
-  <section class="mb-5" aria-labelledby="google-heading">
-    <h2 id="google-heading" class="section-title mb-4">
-      <i class="bi bi-file-earmark-slides me-2" style="font-size: 1rem;"></i>Google Slides Presentations
-    </h2>
-    {% if googleslides and googleslides.length %}
-      <div id="featured-google"></div>
-      <div class="table-responsive">
-        <table class="table table-hover align-middle mb-0 pub-table">
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Description</th>
-              <th class="text-nowrap">Date / year</th>
-              <th class="text-nowrap">Open</th>
-            </tr>
-          </thead>
-          <tbody id="table-body-google"></tbody>
-        </table>
-      </div>
-      <nav class="mt-3" aria-label="Google Slides pagination">
-        <ul class="pagination pagination-sm mb-0" id="pagination-google"></ul>
-      </nav>
-    {% else %}
-      <p class="text-muted">No Google Slides presentations available.</p>
-    {% endif %}
-  </section>
 
   {# ================= SLIDESHARE ================== #}
   <section class="mb-5" aria-labelledby="slideshare-heading">
@@ -292,7 +264,7 @@ lang: en
   {# Archive list: static link list for all presentation pages (SEO navigation) #}
   <section class="mb-5">
     <div class="container">
-      {% set archiveTotal = (collections.presentations | length) + ((finnaAoe.rows or []) | length) + ((googleslides or []) | length) + ((youtube.tableRows or []) | length) %}
+      {% set archiveTotal = (collections.presentations | length) + ((finnaAoe.rows or []) | length) + ((youtube.tableRows or []) | length) %}
       <details>
         <summary class="text-muted small py-2" style="cursor:pointer;">All presentations and materials as archive ({{ archiveTotal }})</summary>
 
@@ -331,22 +303,6 @@ lang: en
           </div>
         {% endif %}
 
-        {% if googleslides and googleslides.length %}
-          <div class="mt-4">
-            <h3 class="h6 fw-bold">Google Slides presentations</h3>
-            <ul class="list-unstyled row row-cols-1 row-cols-md-2 g-3 mt-1">
-              {% for row in googleslides %}
-                <li class="col">
-                  <a class="small fw-semibold text-decoration-none" href="{{ row.url }}" target="_blank" rel="noopener noreferrer">{{ row.title }}</a>
-                  <div class="small text-muted mt-1">Google Slides{% if row.date or row.year %} · {{ row.date or row.year }}{% endif %}</div>
-                  {% if row.description or row.summary %}
-                    <div class="small text-muted">{{ row.description or row.summary }}</div>
-                  {% endif %}
-                </li>
-              {% endfor %}
-            </ul>
-          </div>
-        {% endif %}
 
         {% if youtube and youtube.tableRows and youtube.tableRows.length %}
           <div class="mt-4">
@@ -378,7 +334,6 @@ lang: en
     canva: {{ (canva.tableRows or []) | dump | safe }},
     youtubeVideos: {{ (youtube.videos or []) | dump | safe }},
     youtube: {{ (youtube.tableRows or []) | dump | safe }},
-    google: {{ (googleslides or []) | dump | safe }},
     slideshare: {{ ssDataItems | dump | safe }}
   };
 
@@ -392,7 +347,6 @@ lang: en
     canva: "bi-file-earmark-slides",
     youtubeVideos: "bi-youtube",
     youtube: "bi-youtube",
-    google: "bi-file-earmark-slides",
     slideshare: "bi-collection-play"
   };
 
@@ -401,7 +355,6 @@ lang: en
     canva: "Open",
     youtubeVideos: "Watch",
     youtube: "YouTube",
-    google: "Open",
     slideshare: "SlideShare"
   };
 
