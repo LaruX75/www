@@ -61,9 +61,7 @@ lang: en
       <i class="bi bi-book-fill text-success me-2" style="font-size: 1rem;"></i>AOE Learning Materials
     </h2>
     {% if finnaAoe and finnaAoe.rows and finnaAoe.rows.length %}
-      <div class="presentation-scroller mb-4" data-key="aoe" aria-label="AOE presentation scroller">
-        <div class="presentation-scroller-track"></div>
-      </div>
+      <div id="featured-aoe"></div>
       <div class="table-responsive">
         <table class="table table-hover align-middle mb-0 pub-table">
           <thead>
@@ -116,9 +114,7 @@ lang: en
     </div>
 
     {% if canva and canva.tableRows and canva.tableRows.length %}
-      <div class="presentation-scroller mb-4" data-key="canva" aria-label="Canva presentation scroller">
-        <div class="presentation-scroller-track"></div>
-      </div>
+      <div id="featured-canva"></div>
       <div class="table-responsive">
         <table class="table table-hover align-middle mb-0 pub-table">
           <thead>
@@ -151,9 +147,7 @@ lang: en
       <i class="bi bi-file-earmark-slides me-2" style="font-size: 1rem;"></i>Google Slides Presentations
     </h2>
     {% if googleslides and googleslides.length %}
-      <div class="presentation-scroller mb-4" data-key="google" aria-label="Google Slides presentation scroller" tabindex="0">
-        <div class="presentation-scroller-track"></div>
-      </div>
+      <div id="featured-google"></div>
       <div class="table-responsive">
         <table class="table table-hover align-middle mb-0 pub-table">
           <thead>
@@ -203,9 +197,7 @@ lang: en
     </div>
 
     {% if ssDataItems.length %}
-      <div class="presentation-scroller mb-4" data-key="slideshare" aria-label="SlideShare presentation scroller">
-        <div class="presentation-scroller-track"></div>
-      </div>
+      <div id="featured-slideshare"></div>
       <div class="table-responsive">
         <table class="table table-hover align-middle mb-0 pub-table">
           <thead>
@@ -242,9 +234,7 @@ lang: en
     </h2>
 
     {% if youtube and youtube.videos and youtube.videos.length %}
-      <div class="presentation-scroller mb-4" data-key="youtubeVideos" aria-label="YouTube video scroller">
-        <div class="presentation-scroller-track"></div>
-      </div>
+      <div id="featured-youtubeVideos"></div>
       <div class="table-responsive">
         <table class="table table-hover align-middle mb-0 pub-table">
           <thead>
@@ -479,20 +469,25 @@ lang: en
         thumbnail: r.image || "",
         description: r.summary || "",
         meta: "AOE / Learning material",
-        date: r.year || ""
+        date: r.year || "",
+        _isoDate: r.year ? `${r.year}-12-31` : ""
       }));
     }
 
     if (key === "canva") {
-      return rows.map((r) => ({
-        title: r.title || "Unnamed presentation",
-        url: r.url || "",
-        thumbnail: r.thumbnail || "",
-        description: r.description || "",
-        keywords: Array.isArray(r.categories) ? r.categories.filter(Boolean) : [],
-        meta: "Canva",
-        date: toDisplayDate(toIsoDate(r.date || r.publishedAt || r.createdAt || r.updatedAt || "") || "")
-      }));
+      return rows.map((r) => {
+        const iso = toIsoDate(r.date || r.publishedAt || r.createdAt || r.updatedAt || "") || "";
+        return {
+          title: r.title || "Unnamed presentation",
+          url: r.url || "",
+          thumbnail: r.thumbnail || "",
+          description: r.description || "",
+          keywords: Array.isArray(r.categories) ? r.categories.filter(Boolean) : [],
+          meta: "Canva",
+          date: toDisplayDate(iso),
+          _isoDate: iso
+        };
+      });
     }
 
     if (key === "youtubeVideos") {
@@ -502,7 +497,8 @@ lang: en
         thumbnail: r.thumbnail || "",
         description: r.description || "",
         meta: "YouTube video",
-        date: toDisplayDate(r.publishedAt || "")
+        date: toDisplayDate(r.publishedAt || ""),
+        _isoDate: toIsoDate(r.publishedAt || "") || ""
       }));
     }
 
@@ -513,7 +509,8 @@ lang: en
         thumbnail: r.thumbnail || "",
         description: r.description || "",
         meta: `${r.itemCount || 0} videos`,
-        date: toDisplayDate(r.publishedAt || "")
+        date: toDisplayDate(r.publishedAt || ""),
+        _isoDate: toIsoDate(r.publishedAt || "") || ""
       }));
     }
 
@@ -524,22 +521,27 @@ lang: en
         thumbnail: r.thumbnail || "",
         description: "Google Slides presentation",
         meta: "Google Slides",
-        date: r.date || ""
+        date: r.date || "",
+        _isoDate: toIsoDate(r.date || "") || ""
       }));
     }
 
     if (key === "slideshare") {
-      return rows.map((r) => ({
-        date: toDisplayDate(normalizeSlideshareIsoDate(r.date || "", r.thumbnail || "")),
-        title: r.title || "Unnamed presentation",
-        url: r.url || "",
-        thumbnail: r.thumbnail || "",
-        description: r.description || "",
-        keywords: [
-          ...(Array.isArray(r.categories) ? r.categories : []),
-          ...(Array.isArray(r.keywords) ? r.keywords : [])
-        ].map((value) => String(value || "").trim()).filter(Boolean)
-      }));
+      return rows.map((r) => {
+        const iso = normalizeSlideshareIsoDate(r.date || "", r.thumbnail || "");
+        return {
+          date: toDisplayDate(iso),
+          title: r.title || "Unnamed presentation",
+          url: r.url || "",
+          thumbnail: r.thumbnail || "",
+          description: r.description || "",
+          keywords: [
+            ...(Array.isArray(r.categories) ? r.categories : []),
+            ...(Array.isArray(r.keywords) ? r.keywords : [])
+          ].map((value) => String(value || "").trim()).filter(Boolean),
+          _isoDate: iso
+        };
+      });
     }
 
     return [];
@@ -557,6 +559,33 @@ lang: en
       picked.push(shuffled[picked.length % shuffled.length]);
     }
     return picked;
+  }
+
+  function renderFeatured(key, rows) {
+    const host = document.getElementById(`featured-${key}`);
+    if (!host || !rows.length) return;
+    const item = rows[0];
+    const icon = escHtml(iconByKey[key] || "bi-file-earmark");
+    const thumb = item.thumbnail
+      ? `<img src="${escHtml(item.thumbnail)}" alt="${escHtml(item.title)}" style="width:160px;min-width:160px;height:110px;object-fit:cover;" loading="lazy" decoding="async" onerror="this.style.display='none';">`
+      : `<div style="width:160px;min-width:160px;height:110px;background:var(--bs-secondary-bg);display:flex;align-items:center;justify-content:center;color:var(--bs-secondary-color);font-size:1.5rem;"><i class="bi ${icon}"></i></div>`;
+    const label = escHtml(linkLabelByKey[key] || "Open");
+    const desc = escHtml(truncate(item.description || item.meta || "", 130));
+    host.innerHTML = `
+      <div class="card border-0 shadow-sm mb-4 overflow-hidden">
+        <div class="d-flex align-items-stretch">
+          <div class="flex-shrink-0 overflow-hidden">${thumb}</div>
+          <div class="card-body py-2 px-3 d-flex flex-column justify-content-center">
+            <p class="text-muted small mb-1">
+              ${item.date ? `<i class="bi bi-calendar3 me-1"></i>${escHtml(item.date)}&ensp;` : ""}
+              <span class="badge text-bg-warning text-dark fw-semibold" style="font-size:.65rem;">Latest</span>
+            </p>
+            <h3 class="h6 fw-bold mb-1 lh-sm">${escHtml(item.title)}</h3>
+            ${desc ? `<p class="text-muted small mb-2">${desc}</p>` : ""}
+            ${item.url ? `<a href="${escHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm rounded-pill px-3 align-self-start">${label} <i class="bi bi-arrow-up-right"></i></a>` : ""}
+          </div>
+        </div>
+      </div>`;
   }
 
   function renderScroller(key, rows) {
@@ -704,11 +733,15 @@ lang: en
   Object.entries(rawData).forEach(([key, rows]) => {
     const normalized = normalizeRows(key, rows);
     if (!normalized.length) return;
-    renderScroller(key, normalized);
+    normalized.sort((a, b) => (b._isoDate || "").localeCompare(a._isoDate || ""));
+    const hasFeatured = !!document.getElementById(`featured-${key}`);
+    if (hasFeatured) renderFeatured(key, normalized);
+    const rest = hasFeatured ? normalized.slice(1) : normalized;
+    if (!rest.length) return;
     let currentPage = 1;
     const rerender = (newPage) => {
       currentPage = newPage;
-      renderTable(key, normalized, currentPage, rerender);
+      renderTable(key, rest, currentPage, rerender);
     };
     rerender(1);
   });
