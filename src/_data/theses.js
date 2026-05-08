@@ -165,35 +165,46 @@ function filterByName(items, name, role) {
     });
 }
 
-// Yhdistä manuaaliset kandit välimuistidataan (offline- ja cache-polut)
-function mergeManualIntoCache(data) {
+// Yhdistä manuaaliset kandit välimuistidataan ja päivitä avainsanat tuoreesta cachesta
+function mergeManualIntoCache(data, keywordsCache) {
+    const applyKw = items => items.map(t => ({
+        ...t,
+        keywords: t.manual ? (t.keywords || []) : (keywordsCache[t.link] || []),
+    }));
+
     const manual = loadManualTheses().filter(t => t.type === 'bachelorThesis');
     const existingLinks = new Set(data.kandit.map(t => t.link));
     const extra = manual.filter(t => !existingLinks.has(t.link));
-    const reviewerOnly = data.reviewerOnly || [];
-    if (!extra.length) return { ...data, reviewerOnly };
-    const kandit = [...data.kandit, ...extra].sort((a, b) => (b.year || '').localeCompare(a.year || ''));
+    const reviewerOnly = applyKw(data.reviewerOnly || []);
+    const gradut = applyKw(data.gradut || []);
+    const baseKandit = applyKw([
+        ...data.kandit,
+        ...extra.filter(t => !existingLinks.has(t.link)),
+    ]).sort((a, b) => (b.year || '').localeCompare(a.year || ''));
     return {
         ...data,
-        kandit,
+        gradut,
+        kandit: baseKandit,
         reviewerOnly,
         stats: {
             ...data.stats,
-            totalKandit: kandit.length,
+            totalKandit: baseKandit.length,
             totalReviewer: reviewerOnly.length,
-            total: data.stats.totalGradut + kandit.length,
+            total: (data.stats.totalGradut || gradut.length) + baseKandit.length,
         },
     };
 }
 
 module.exports = async function () {
     console.log('[theses] Haetaan opinnäytetöitä OuluREPO:sta...');
+    const keywordsCache = loadKeywordsCache();
+
     if (isOfflineFetchMode()) {
         console.log('[theses] Offline fetch mode käytössä, ohitetaan OuluREPO-haku.');
         const offlineCached = readCache(CACHE_KEY);
         if (offlineCached?.data) {
             console.log('[theses] Käytetään offline-välimuistia.');
-            return { ...mergeManualIntoCache(offlineCached.data), source: 'cache' };
+            return { ...mergeManualIntoCache(offlineCached.data, keywordsCache), source: 'cache' };
         }
         return buildEmptyResult('Offline fetch mode enabled', 'offline');
     }
@@ -201,13 +212,12 @@ module.exports = async function () {
     const fresh = readCacheIfFresh(CACHE_KEY, CACHE_TTL_HOURS);
     if (fresh?.data) {
         console.log(`[theses] Käytetään tuoretta välimuistia (${fresh.savedAt}).`);
-        return { ...mergeManualIntoCache(fresh.data), source: 'cache' };
+        return { ...mergeManualIntoCache(fresh.data, keywordsCache), source: 'cache' };
     }
 
     const cached = readCache(CACHE_KEY);
     const cachedData = cached?.data || null;
 
-    const keywordsCache = loadKeywordsCache();
     const addKeywords = items => items.map(t => ({
         ...t,
         keywords: t.manual ? (t.keywords || []) : (keywordsCache[t.link] || []),
@@ -281,7 +291,7 @@ module.exports = async function () {
         console.error('[theses] VIRHE:', e.message);
         if (cachedData) {
             console.warn('[theses] Käytetään vanhaa välimuistia virheen takia.');
-            return { ...mergeManualIntoCache(cachedData), source: 'cache', error: e.message };
+            return { ...mergeManualIntoCache(cachedData, keywordsCache), source: 'cache', error: e.message };
         }
         // Palauta tyhjä rakenne ettei build kaadu
         return buildEmptyResult(e.message);
