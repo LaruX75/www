@@ -79,10 +79,6 @@
     "card1": {
       "eyebrow": "Yliopisto",
       "lead": "Teknologiatuetun oppimisen yliopistonlehtori, Kasvatustieteiden tiedekunta, Oulun yliopisto. Mukana STN:n rahoittamassa Generation AI -hankkeessa — tekoälykasvatusta esi- ja perusopetukseen.",
-      "kpi1": {
-        "value": "100+",
-        "label": "opinnäytettä"
-      },
       "kpi2": {
         "value": "15+",
         "label": "v. kokemus"

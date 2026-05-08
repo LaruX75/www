@@ -47,7 +47,7 @@ description: University lecturer, researcher, municipal politician, and speaker.
     { count: heroPublicationCount, label: "publications", href: "/en/publications/" },
     { count: heroOpinionCount, label: "opinion pieces", href: "/en/writings/#opinions" },
     { count: heroSpeechCount, label: "speeches", href: "/en/writings/#speeches" },
-    { count: theses.stats.total, label: "supervised theses", href: "/en/theses/" }
+    { count: theses.stats.totalGradut, label: "master's theses supervised", href: "/en/theses/" }
 ] %}
 
 <section class="section-flush home-hero-section" id="heroSection">
@@ -115,8 +115,8 @@ description: University lecturer, researcher, municipal politician, and speaker.
                     </div>
                     <div class="home-overview-kpis mb-3">
                         <div class="home-overview-kpi">
-                            <span class="home-overview-kpi-value">{{ theses.stats.total }}</span>
-                            <span class="home-overview-kpi-label">theses supervised</span>
+                            <span class="home-overview-kpi-value">{{ theses.stats.totalGradut }}</span>
+                            <span class="home-overview-kpi-label">master's theses supervised</span>
                         </div>
                         <div class="home-overview-kpi">
                             <span class="home-overview-kpi-value">{{ semanticscholar.metrics.totalCitations or "600+" }}</span>
