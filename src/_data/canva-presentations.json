@@ -1,98 +1,135 @@
 [
   {
-    "thumbnail": null,
+    "thumbnail": "/images/canva-thumbnails/opintori-keynote.png",
     "title": "Opintori keynote",
     "summary": "",
     "location": "",
-    "keywords": ["tekoäly", "opetus"],
+    "keywords": [
+      "tekoäly",
+      "opetus"
+    ],
     "link": "https://www.canva.com/d/S7U3-4-YZ9d8QJ_",
     "folder": "Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit",
     "date": "2026-05-06",
     "lang": "fi"
   },
   {
-    "thumbnail": null,
+    "thumbnail": "/images/canva-thumbnails/sivistysverkosto-4-5.png",
     "title": "Sivistysverkosto 4.5.",
     "summary": "",
     "location": "",
-    "keywords": ["tekoäly", "sivistysverkosto"],
+    "keywords": [
+      "tekoäly",
+      "sivistysverkosto"
+    ],
     "link": "https://www.canva.com/d/z4_YNrlTksqTsEX",
     "folder": "Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit",
     "date": "2026-05-04",
     "lang": "fi"
   },
   {
-    "thumbnail": null,
+    "thumbnail": "/images/canva-thumbnails/itk2026-millaisia-ovat-tekoalyaikakauden-opettajaprofiilit.png",
     "title": "ITK2026 millaisia ovat tekoälyaikakauden opettajaprofiilit",
     "summary": "",
     "location": "ITK 2026",
-    "keywords": ["ITK", "tekoäly", "opettajuus", "opettajaprofiili"],
+    "keywords": [
+      "ITK",
+      "tekoäly",
+      "opettajuus",
+      "opettajaprofiili"
+    ],
     "link": "https://www.canva.com/d/y9BTv-y2lINNIaE",
     "folder": "Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit",
     "date": "2026-04-23",
     "lang": "fi"
   },
   {
-    "thumbnail": null,
+    "thumbnail": "/images/canva-thumbnails/itk-keynote-2026.png",
     "title": "ITK Keynote 2026",
     "summary": "",
     "location": "ITK 2026",
-    "keywords": ["ITK", "tekoäly", "keynote"],
+    "keywords": [
+      "ITK",
+      "tekoäly",
+      "keynote"
+    ],
     "link": "https://www.canva.com/d/pMm8MIDIyZgTA9x",
     "folder": "Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit",
     "date": "2026-04-21",
     "lang": "fi"
   },
   {
-    "thumbnail": null,
+    "thumbnail": "/images/canva-thumbnails/it-kouluttajat-meriseminaari-generation-ai-tyokalut.png",
     "title": "IT Kouluttajat meriseminaari – Generation AI -työkalut",
     "summary": "",
     "location": "Tallinna, laivaseminaari",
-    "keywords": ["Generation AI", "pieni kielikone", "IT Kouluttajat"],
+    "keywords": [
+      "Generation AI",
+      "pieni kielikone",
+      "IT Kouluttajat"
+    ],
     "link": "https://www.canva.com/d/9Bp2-PHTbiwv64v",
     "folder": "Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit",
     "date": "2026-03-21",
     "lang": "fi"
   },
   {
-    "thumbnail": null,
+    "thumbnail": "/images/canva-thumbnails/oph-esitys-18-3.png",
     "title": "OPH esitys 18.3.",
     "summary": "",
     "location": "",
-    "keywords": ["OPH", "tekoäly", "opetus"],
+    "keywords": [
+      "OPH",
+      "tekoäly",
+      "opetus"
+    ],
     "link": "https://www.canva.com/d/sveewisSzO8aBZL",
     "folder": "Koulutukset, kurssimateriaalit ja opetuksen kehitystyö",
     "date": "2026-03-17",
     "lang": "fi"
   },
   {
-    "thumbnail": null,
+    "thumbnail": "/images/canva-thumbnails/tkaedite-kosovo-finland-teachers-professional-development.png",
     "title": "TkaEdite – Kosovo Finland & Teacher's Professional Development",
     "summary": "",
     "location": "Kosovo",
-    "keywords": ["Kosovo", "teacher education", "professional development", "TkaEdite"],
+    "keywords": [
+      "Kosovo",
+      "teacher education",
+      "professional development",
+      "TkaEdite"
+    ],
     "link": "https://www.canva.com/d/Wh6f59c_wuH2Ig4",
     "folder": "Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit",
     "date": "2025-09-22",
     "lang": "en"
   },
   {
-    "thumbnail": null,
+    "thumbnail": "/images/canva-thumbnails/innokas-2025-muutama-sananen-selitettavasta-tekoalystä.png",
     "title": "Innokas 2025 – Muutama sananen selitettävästä tekoälystä",
     "summary": "",
     "location": "Innokas 2025",
-    "keywords": ["Innokas", "selitettävä tekoäly", "XAI"],
+    "keywords": [
+      "Innokas",
+      "selitettävä tekoäly",
+      "XAI"
+    ],
     "link": "https://www.canva.com/d/KNywQmc7krzu4QO",
     "folder": "Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit",
     "date": "2025-01-16",
     "lang": "fi"
   },
   {
-    "thumbnail": null,
+    "thumbnail": "/images/canva-thumbnails/fedutalk-generative-ai-in-education-kosovo.png",
     "title": "Fedutalk – Generative AI in Education (Kosovo)",
     "summary": "",
     "location": "Kosovo",
-    "keywords": ["Fedutalk", "generative AI", "education", "Kosovo"],
+    "keywords": [
+      "Fedutalk",
+      "generative AI",
+      "education",
+      "Kosovo"
+    ],
     "link": "https://www.canva.com/d/oaUu3_YVBMO83Cg",
     "folder": "Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit",
     "date": "2024-06-26",
