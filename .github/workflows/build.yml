@@ -37,6 +37,12 @@ jobs:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE }}
       - run: npm run check:i18n-seo
       - run: npm run check:seo-health
+      - name: Security – ei | dump | safe -kuvioita templeteissä
+        run: '! grep -rn "| dump | safe" src/ --include="*.njk"'
+      - name: Security – HSTS-header löytyy
+        run: grep -q "Strict-Transport-Security" _site/_headers
+      - name: Security – ei &lt;script&gt;-injektiota buildin JSON-datassa
+        run: '! grep -rn "&quot;" _site/esitykset/index.html | grep -q "aoe:\|canva:\|youtube:"'
       - run: '! rg -n "https://www\\.jarilaru\\.fi/null|<meta property=\"og:image\" content=\"null\"|<meta name=\"twitter:image\" content=\"null\"" _site'
       - run: test -f _site/robots.txt
       - run: 'grep -q "User-agent: GPTBot" _site/robots.txt'
