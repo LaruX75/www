@@ -10,11 +10,11 @@ translationKey: scientific_publications_index
 [
   {% for pub in collections.pub_tieteellinen %}
   {
-    "title": {{ pub.data.title | dump | safe }},
+    "title": {{ pub.data.title | jsonSafe | safe }},
     "year": {{ pub.date | dateYear }},
-    "description": {{ (pub.data.description or "") | dump | safe }},
-    "publication": {{ (pub.data.publication or "") | dump | safe }},
-    "url": {{ (pub.data.url or pub.data.source_url or pub.url or "") | dump | safe }}
+    "description": {{ (pub.data.description or "") | jsonSafe | safe }},
+    "publication": {{ (pub.data.publication or "") | jsonSafe | safe }},
+    "url": {{ (pub.data.url or pub.data.source_url or pub.url or "") | jsonSafe | safe }}
   }{% if not loop.last %},{% endif %}
   {% endfor %}
 ]

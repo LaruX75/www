@@ -330,16 +330,16 @@ lang: en
 (() => {
   const PAGE_SIZE = 6;
   const rawData = {
-    aoe: {{ (finnaAoe.rows or []) | dump | safe }},
-    canva: {{ (canva.tableRows or []) | dump | safe }},
-    youtubeVideos: {{ (youtube.videos or []) | dump | safe }},
-    youtube: {{ (youtube.tableRows or []) | dump | safe }},
-    slideshare: {{ ssDataItems | dump | safe }}
+    aoe: {{ (finnaAoe.rows or []) | jsonSafe | safe }},
+    canva: {{ (canva.tableRows or []) | jsonSafe | safe }},
+    youtubeVideos: {{ (youtube.videos or []) | jsonSafe | safe }},
+    youtube: {{ (youtube.tableRows or []) | jsonSafe | safe }},
+    slideshare: {{ ssDataItems | jsonSafe | safe }}
   };
 
   // Map Canva MD page URLs to external Canva URLs
   const canvaPageUrlMap = {};
-  {{ canvaPageUrls | dump | safe }}.forEach(p => { canvaPageUrlMap[p.externalUrl] = p.pageUrl; });
+  {{ canvaPageUrls | jsonSafe | safe }}.forEach(p => { canvaPageUrlMap[p.externalUrl] = p.pageUrl; });
   rawData.canva.forEach(item => { item.pageUrl = canvaPageUrlMap[item.url] || null; });
 
   const iconByKey = {

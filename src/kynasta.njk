@@ -168,15 +168,15 @@ translationKey: writings_index
 [
   {% for pub in collections.pub_mielipide %}
   {
-    "title": {{ pub.data.title | dump | safe }},
+    "title": {{ pub.data.title | jsonSafe | safe }},
     "date": "{{ pub.date }}",
     "formattedDate": "{{ pub.date | dateFormat }}",
-    "description": {{ (pub.data.description or "") | dump | safe }},
-    "publication": {{ (pub.data.publication or "") | dump | safe }},
+    "description": {{ (pub.data.description or "") | jsonSafe | safe }},
+    "publication": {{ (pub.data.publication or "") | jsonSafe | safe }},
     "url": "{{ pub.data.url or pub.url }}",
-    "isExternal": {{ (pub.data.url != null) | dump | safe }},
-    "categories": {{ (pub.data.categories or []) | dump | safe }},
-    "keywords": {{ (pub.data.keywords or []) | dump | safe }}
+    "isExternal": {{ (pub.data.url != null) | jsonSafe | safe }},
+    "categories": {{ (pub.data.categories or []) | jsonSafe | safe }},
+    "keywords": {{ (pub.data.keywords or []) | jsonSafe | safe }}
   }{% if not loop.last %},{% endif %}
   {% endfor %}
 ]
@@ -244,15 +244,15 @@ translationKey: writings_index
 [
   {% for pub in collections.pub_kolumni %}
   {
-    "title": {{ pub.data.title | dump | safe }},
+    "title": {{ pub.data.title | jsonSafe | safe }},
     "date": "{{ pub.date }}",
     "formattedDate": "{{ pub.date | dateFormat }}",
-    "description": {{ (pub.data.description or "") | dump | safe }},
-    "publication": {{ (pub.data.publication or "") | dump | safe }},
+    "description": {{ (pub.data.description or "") | jsonSafe | safe }},
+    "publication": {{ (pub.data.publication or "") | jsonSafe | safe }},
     "url": "{{ pub.data.url or pub.url }}",
-    "isExternal": {{ (pub.data.url != null) | dump | safe }},
-    "categories": {{ (pub.data.categories or []) | dump | safe }},
-    "keywords": {{ (pub.data.keywords or []) | dump | safe }}
+    "isExternal": {{ (pub.data.url != null) | jsonSafe | safe }},
+    "categories": {{ (pub.data.categories or []) | jsonSafe | safe }},
+    "keywords": {{ (pub.data.keywords or []) | jsonSafe | safe }}
   }{% if not loop.last %},{% endif %}
   {% endfor %}
 ]
@@ -320,15 +320,15 @@ translationKey: writings_index
 [
   {% for item in collections.politics %}
   {
-    "title": {{ item.data.title | dump | safe }},
+    "title": {{ item.data.title | jsonSafe | safe }},
     "date": "{{ item.date }}",
     "formattedDate": "{{ item.date | dateFormat }}",
-    "description": {{ (item.data.description or "") | dump | safe }},
-    "initiative_type": {{ (item.data.initiative_type or "") | dump | safe }},
+    "description": {{ (item.data.description or "") | jsonSafe | safe }},
+    "initiative_type": {{ (item.data.initiative_type or "") | jsonSafe | safe }},
     "url": "{{ item.data.url or item.url }}",
-    "isExternal": {{ (item.data.url != null) | dump | safe }},
-    "categories": {{ (item.data.categories or []) | dump | safe }},
-    "keywords": {{ (item.data.keywords or []) | dump | safe }}
+    "isExternal": {{ (item.data.url != null) | jsonSafe | safe }},
+    "categories": {{ (item.data.categories or []) | jsonSafe | safe }},
+    "keywords": {{ (item.data.keywords or []) | jsonSafe | safe }}
   }{% if not loop.last %},{% endif %}
   {% endfor %}
 ]
@@ -395,15 +395,15 @@ translationKey: writings_index
 [
   {% for pub in collections.pub_puhe %}
   {
-    "title": {{ pub.data.title | dump | safe }},
+    "title": {{ pub.data.title | jsonSafe | safe }},
     "date": "{{ pub.date }}",
     "formattedDate": "{{ pub.date | dateFormat }}",
-    "description": {{ (pub.data.description or "") | dump | safe }},
-    "event": {{ (pub.data.event or "") | dump | safe }},
+    "description": {{ (pub.data.description or "") | jsonSafe | safe }},
+    "event": {{ (pub.data.event or "") | jsonSafe | safe }},
     "url": "{{ pub.data.url or pub.url }}",
-    "isExternal": {{ (pub.data.url != null) | dump | safe }},
-    "categories": {{ (pub.data.categories or []) | dump | safe }},
-    "keywords": {{ (pub.data.keywords or []) | dump | safe }}
+    "isExternal": {{ (pub.data.url != null) | jsonSafe | safe }},
+    "categories": {{ (pub.data.categories or []) | jsonSafe | safe }},
+    "keywords": {{ (pub.data.keywords or []) | jsonSafe | safe }}
   }{% if not loop.last %},{% endif %}
   {% endfor %}
 ]
@@ -470,13 +470,13 @@ translationKey: writings_index
 [
   {% for post in collections.blog %}
   {
-    "title": {{ post.data.title | dump | safe }},
+    "title": {{ post.data.title | jsonSafe | safe }},
     "date": "{{ post.date }}",
     "formattedDate": "{{ post.date | dateFormat }}",
-    "description": {{ (post.data.description or (post.content | excerpt)) | dump | safe }},
+    "description": {{ (post.data.description or (post.content | excerpt)) | jsonSafe | safe }},
     "url": "{{ post.url }}",
-    "categories": {{ (post.data.categories or []) | dump | safe }},
-    "keywords": {{ (post.data.keywords or []) | dump | safe }}
+    "categories": {{ (post.data.categories or []) | jsonSafe | safe }},
+    "keywords": {{ (post.data.keywords or []) | jsonSafe | safe }}
   }{% if not loop.last %},{% endif %}
   {% endfor %}
 ]
@@ -548,41 +548,41 @@ translationKey: writings_index
   {% set aoeRows = finnaAoe.rows or [] %}
   {% for item in canvaRows %}
   {
-    "title": {{ item.title | dump | safe }},
-    "date": {{ (item.date or "") | dump | safe }},
-    "formattedDate": {{ (item.date or "") | dump | safe }},
-    "description": {{ (item.description or "") | dump | safe }},
-    "url": {{ (item.url or "") | dump | safe }},
-    "thumbnail": {{ (item.thumbnail or "") | dump | safe }},
-    "categories": {{ (item.categories or []) | dump | safe }},
-    "keywords": {{ (item.categories or []) | dump | safe }},
+    "title": {{ item.title | jsonSafe | safe }},
+    "date": {{ (item.date or "") | jsonSafe | safe }},
+    "formattedDate": {{ (item.date or "") | jsonSafe | safe }},
+    "description": {{ (item.description or "") | jsonSafe | safe }},
+    "url": {{ (item.url or "") | jsonSafe | safe }},
+    "thumbnail": {{ (item.thumbnail or "") | jsonSafe | safe }},
+    "categories": {{ (item.categories or []) | jsonSafe | safe }},
+    "keywords": {{ (item.categories or []) | jsonSafe | safe }},
     "type": "Canva",
-    "source": {{ (item.source or "canva") | dump | safe }}
+    "source": {{ (item.source or "canva") | jsonSafe | safe }}
   }{% if not loop.last or collections.presentations.length or aoeRows.length %},{% endif %}
   {% endfor %}
   {% for presentation in collections.presentations %}
   {% set presentationDate = presentation.data.date or presentation.date %}
   {
-    "title": {{ presentation.data.title | dump | safe }},
-    "date": {{ presentationDate | dump | safe }},
+    "title": {{ presentation.data.title | jsonSafe | safe }},
+    "date": {{ presentationDate | jsonSafe | safe }},
     "formattedDate": "{{ presentationDate | dateFormat }}",
-    "description": {{ (presentation.data.description or (presentation.content | excerpt)) | dump | safe }},
-    "url": {{ (presentation.data.url or "") | dump | safe }},
-    "thumbnail": {{ (presentation.data.thumbnail or "") | dump | safe }},
-    "categories": {{ (presentation.data.categories or []) | dump | safe }},
-    "keywords": {{ (presentation.data.keywords or []) | dump | safe }},
-    "type": {{ (presentation.data.type or "Canva") | dump | safe }},
-    "source": {{ (presentation.data.source or "") | dump | safe }}
+    "description": {{ (presentation.data.description or (presentation.content | excerpt)) | jsonSafe | safe }},
+    "url": {{ (presentation.data.url or "") | jsonSafe | safe }},
+    "thumbnail": {{ (presentation.data.thumbnail or "") | jsonSafe | safe }},
+    "categories": {{ (presentation.data.categories or []) | jsonSafe | safe }},
+    "keywords": {{ (presentation.data.keywords or []) | jsonSafe | safe }},
+    "type": {{ (presentation.data.type or "Canva") | jsonSafe | safe }},
+    "source": {{ (presentation.data.source or "") | jsonSafe | safe }}
   }{% if not loop.last or aoeRows.length %},{% endif %}
   {% endfor %}
   {% for item in aoeRows %}
   {
-    "title": {{ item.title | dump | safe }},
+    "title": {{ item.title | jsonSafe | safe }},
     "date": "{{ item.year }}-01-01",
-    "formattedDate": {{ item.year | dump | safe }},
-    "description": {{ (item.summary or "") | dump | safe }},
-    "url": {{ item.url | dump | safe }},
-    "thumbnail": {{ (item.image or "") | dump | safe }},
+    "formattedDate": {{ item.year | jsonSafe | safe }},
+    "description": {{ (item.summary or "") | jsonSafe | safe }},
+    "url": {{ item.url | jsonSafe | safe }},
+    "thumbnail": {{ (item.image or "") | jsonSafe | safe }},
     "categories": [],
     "keywords": [],
     "type": "AOE / Finna"
@@ -677,13 +677,13 @@ translationKey: writings_index
 [
   {% for pub in researchfi %}
   {
-    "title": {{ pub.title | dump | safe }},
-    "year": {{ (pub.year or 0) | dump | safe }},
-    "authors": {{ (pub.authors or "") | dump | safe }},
-    "journal": {{ (pub.journal or "") | dump | safe }},
-    "url": {{ (pub.url or "") | dump | safe }},
-    "type": {{ (pub.typeFi or "") | dump | safe }},
-    "typeCode": {{ (pub.typeCode or "") | dump | safe }}
+    "title": {{ pub.title | jsonSafe | safe }},
+    "year": {{ (pub.year or 0) | jsonSafe | safe }},
+    "authors": {{ (pub.authors or "") | jsonSafe | safe }},
+    "journal": {{ (pub.journal or "") | jsonSafe | safe }},
+    "url": {{ (pub.url or "") | jsonSafe | safe }},
+    "type": {{ (pub.typeFi or "") | jsonSafe | safe }},
+    "typeCode": {{ (pub.typeCode or "") | jsonSafe | safe }}
   }{% if not loop.last %},{% endif %}
   {% endfor %}
 ]

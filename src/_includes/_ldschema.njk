@@ -35,7 +35,7 @@
         "url": "https://www.oulu.fi"
       },
       "knowsLanguage": ["fi", "en"],
-      "sameAs": {{ (site.sameAs or []) | dump | safe }}
+      "sameAs": {{ (site.sameAs or []) | jsonSafe | safe }}
     }
   </script>
   {% if pageType == "article" %}
@@ -54,7 +54,7 @@
       "datePublished": "{{ page.date | dateToRfc3339 }}",
       "dateModified": "{{ (modified or page.date) | dateToRfc3339 }}",
       "inLanguage": "{{ "fi-FI" if currentLang == "fi" else "en-US" }}",
-      {% if keywords and keywords.length %}"keywords": {{ keywords | dump | safe }},{% endif %}
+      {% if keywords and keywords.length %}"keywords": {{ keywords | jsonSafe | safe }},{% endif %}
       "author": {
         "@id": "{{ personId }}"
       },

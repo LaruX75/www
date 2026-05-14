@@ -70,7 +70,7 @@ translationKey: theses_index
 
   {# ---- Avainsanapilvi kategorioittain ---- #}
   {% if keywordCategories %}
-  <script type="application/json" id="thesis-keyword-categories">{{ keywordCategories | dump | safe }}</script>
+  <script type="application/json" id="thesis-keyword-categories">{{ keywordCategories | jsonSafe | safe }}</script>
   {% endif %}
   {# Ruudunlukijan ilmoitusalue suodatustuloksille #}
   <div id="thesis-filter-status" role="status" aria-live="polite" aria-atomic="true" class="visually-hidden"></div>

@@ -25,7 +25,7 @@ lang: en
     {% if theses.stats.firstYear %}({{ theses.stats.firstYear }}–{{ theses.stats.lastYear }}){% endif %}.
   </p>
   {% if keywordCategories %}
-  <script type="application/json" id="thesis-keyword-categories">{{ keywordCategories | dump | safe }}</script>
+  <script type="application/json" id="thesis-keyword-categories">{{ keywordCategories | jsonSafe | safe }}</script>
   {% endif %}
 
   {# Laskurit #}

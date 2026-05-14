@@ -301,7 +301,7 @@ document.addEventListener('DOMContentLoaded', function() {
   ];
 
   // Semantic Scholar / OpenAlex data
-  const s2Citations = {{ semanticscholar.metrics.doiCitations | dump | safe }};
+  const s2Citations = {{ semanticscholar.metrics.doiCitations | jsonSafe | safe }};
 
   // 0. LASKETAAN TODELLISET METRIIKAT (vain tällä sivulla olevat julkaisut)
   let verifiedTotalCitations = 0;

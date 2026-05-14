@@ -449,6 +449,13 @@ module.exports = function (eleventyConfig) {
   // SUODATTIMET
   // =====================
 
+  // Turvallinen JSON-serialisointi script-tageihin: estää </script>-murron
+  eleventyConfig.addFilter("jsonSafe", function (value) {
+    return JSON.stringify(value)
+      .replace(/<\/script/gi, "<\\/script")
+      .replace(/<!--/g, "<\\!--");
+  });
+
   // Lukee CSS-tiedoston sisällön build-aikana (kriittistä CSS:ää varten)
   eleventyConfig.addFilter("inlineCSS", function (relativePath) {
     const fullPath = path.join(__dirname, "src/css", relativePath);
