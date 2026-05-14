@@ -7,7 +7,7 @@
     const getResolvedTheme = () => {
       const storedTheme = getStoredTheme();
       if (storedTheme) return storedTheme;
-      return 'dark';
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     };
     const setTheme = function (theme) {
       const resolvedTheme = theme === 'dark' ? 'dark' : 'light';
