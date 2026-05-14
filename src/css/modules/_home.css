@@ -1325,7 +1325,7 @@ html:not([data-bs-theme="dark"]) .home-ticker-badge--pub {
 .home-feature-section .ticker-item .ticker-pub-title {
   font-size: 0.98rem;
   line-height: 1.38;
-  font-weight: 650;
+  font-weight: 700;
   margin-bottom: 0.45rem;
   display: -webkit-box;
   -webkit-line-clamp: 3;
