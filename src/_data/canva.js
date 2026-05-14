@@ -5,11 +5,15 @@ module.exports = function () {
   const hidden = loadHiddenIds('canva');
   const rows = presentations.map((item) => {
     const urlMatch = String(item.link || "").match(/\/d\/([A-Za-z0-9_-]+)/);
+    const id = urlMatch ? urlMatch[1] : "";
+    const url = id
+      ? `https://www.canva.com/design/${id}/view`
+      : (item.link || null);
     return {
-      id: urlMatch ? urlMatch[1] : "",
+      id,
       title: item.title || "Nimetön esitys",
       description: item.summary || "",
-      url: item.link || null,
+      url,
       thumbnail: item.thumbnail || null,
       date: item.date || item.publishedAt || item.createdAt || item.updatedAt || null,
       categories: Array.isArray(item.keywords) ? item.keywords : [],
