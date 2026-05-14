@@ -12,7 +12,7 @@
       const resolveTheme = () => {
         const storedTheme = getStoredTheme();
         if (storedTheme) return storedTheme;
-        return prefersDarkScheme.matches ? 'dark' : 'light';
+        return 'dark';
       };
 
       const applyTheme = (theme) => {

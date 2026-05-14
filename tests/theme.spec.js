@@ -37,13 +37,13 @@ test.describe('Järjestelmäteema (ei tallennettua asetusta)', () => {
         await ctx.close();
     });
 
-    test('Vaalea järjestelmäteema → sivusto vaalea', async ({ browser }) => {
+    test('Vaalea järjestelmäteema → sivusto tumma (oletusarvo on tumma)', async ({ browser }) => {
         const ctx = await browser.newContext({ colorScheme: 'light' });
         const page = await ctx.newPage();
         await gotoClean(page);
 
-        expect(await getTheme(page)).toBe('light');
-        expect(await getColorScheme(page)).toBe('light');
+        expect(await getTheme(page)).toBe('dark');
+        expect(await getColorScheme(page)).toBe('dark');
         await ctx.close();
     });
 
@@ -92,17 +92,17 @@ test.describe('Manuaalinen teeman vaihtaminen', () => {
         await ctx.close();
     });
 
-    test('Vaalean teeman sivustolla: toggle vaihtaa tummaan', async ({ browser }) => {
+    test('Oletustummalla sivustolla: toggle vaihtaa vaaleaan', async ({ browser }) => {
         const ctx = await browser.newContext({ colorScheme: 'light' });
         const page = await ctx.newPage();
         await gotoClean(page);
 
-        expect(await getTheme(page)).toBe('light');
+        expect(await getTheme(page)).toBe('dark');
 
         const btn = page.locator('[data-theme-toggle], #themeToggleBtn').first();
         await btn.click();
 
-        expect(await getTheme(page)).toBe('dark');
+        expect(await getTheme(page)).toBe('light');
         await ctx.close();
     });
 
@@ -113,9 +113,9 @@ test.describe('Manuaalinen teeman vaihtaminen', () => {
 
         const btn = page.locator('[data-theme-toggle], #themeToggleBtn').first();
         await btn.click();
-        expect(await getTheme(page)).toBe('dark');
-        await btn.click();
         expect(await getTheme(page)).toBe('light');
+        await btn.click();
+        expect(await getTheme(page)).toBe('dark');
         await ctx.close();
     });
 
@@ -128,7 +128,7 @@ test.describe('Manuaalinen teeman vaihtaminen', () => {
         await btn.click();
 
         const stored = await page.evaluate(() => localStorage.getItem('theme'));
-        expect(stored).toBe('dark');
+        expect(stored).toBe('light');
         await ctx.close();
     });
 
@@ -154,19 +154,16 @@ test.describe('Manuaalinen teeman vaihtaminen', () => {
 
 test.describe('Järjestelmäteeman live-muutos', () => {
 
-    test('Ilman tallennettua asetusta: teema seuraa järjestelmää reaaliajassa', async ({ browser }) => {
+    test('Ilman tallennettua asetusta: oletuksena aina tumma riippumatta järjestelmästä', async ({ browser }) => {
         const ctx = await browser.newContext({ colorScheme: 'light' });
         const page = await ctx.newPage();
         await gotoClean(page);
 
-        expect(await getTheme(page)).toBe('light');
+        // Oletusarvo on tumma vaikka järjestelmässä olisi vaalea
+        expect(await getTheme(page)).toBe('dark');
 
-        // Simuloi järjestelmän vaihtuminen tummaan
         await page.emulateMedia({ colorScheme: 'dark' });
-
-        // Annetaan hetki event-listenerille reagoida
         await page.waitForTimeout(200);
-
         expect(await getTheme(page)).toBe('dark');
         await ctx.close();
     });
@@ -209,14 +206,14 @@ test.describe('Toggle-ikonin tila', () => {
         await ctx.close();
     });
 
-    test('Vaaleassa teemassa ikoni on kuu (bi-moon-stars-fill)', async ({ browser }) => {
+    test('Oletuksena tumma → ikoni on aurinko myös vaalean järjestelmäteeman käyttäjälle', async ({ browser }) => {
         const ctx = await browser.newContext({ colorScheme: 'light' });
         const page = await ctx.newPage();
         await gotoClean(page);
         await page.waitForLoadState('load');
 
         const icon = page.locator('[data-theme-icon], #themeToggleIcon').first();
-        await expect(icon).toHaveClass(/bi-moon-stars-fill/);
+        await expect(icon).toHaveClass(/bi-sun-fill/);
         await ctx.close();
     });
 
@@ -229,9 +226,9 @@ test.describe('Toggle-ikonin tila', () => {
         const btn = page.locator('[data-theme-toggle], #themeToggleBtn').first();
         const icon = page.locator('[data-theme-icon], #themeToggleIcon').first();
 
-        await expect(icon).toHaveClass(/bi-moon-stars-fill/);
-        await btn.click();
         await expect(icon).toHaveClass(/bi-sun-fill/);
+        await btn.click();
+        await expect(icon).toHaveClass(/bi-moon-stars-fill/);
         await ctx.close();
     });
 
