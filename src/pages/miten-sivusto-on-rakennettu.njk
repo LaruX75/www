@@ -19,11 +19,10 @@ description: "Näin jarilaru.fi rakentuu käytännössä: Eleventy, build-putki,
   <div class="container">
     <div class="card border-0 shadow-sm mb-4">
       <div class="card-body">
-        <h2 class="h4 mb-3">1. AI-avusteinen toteutus: Codex, Claude Code ja ihmisen ohjaama review</h2>
+        <h2 class="h4 mb-3">1. AI-avusteinen toteutus: Claude Code ja ihmisen ohjaama review</h2>
         <p>Sivuston kehityksessä tekoäly toimii käytännössä teknisenä työparina. Ihminen määrittää tavoitteet, tarkistaa muutokset ja päättää mitä julkaistaan. AI auttaa koodin kirjoittamisessa, refaktoroinnissa, käännöksissä, rakenteen selkeyttämisessä ja toistuvissa teknisissä korjauksissa.</p>
-        <p><strong>Codex</strong> toimii tässä projektissa koodiavustajana, joka tekee konkreettisia muutoksia tiedostoihin, ajaa komentoja, tarkistaa diffit ja auttaa pitämään muutokset teknisesti johdonmukaisina.</p>
-        <p><strong>Claude Code</strong> toimii toisena AI-työkaluna etenkin vaihtoehtoisten ratkaisujen, tekstin hiomisen, rakenteen arvioinnin ja analyysitekstien luonnostelun tukena.</p>
-        <p class="mb-0">Käytännössä työnkulku on hyvin maanläheinen: muutos pyydetään, AI tekee ehdotuksen, diffi tarkistetaan, build ja tarkistukset ajetaan, ja vasta sitten muutos julkaistaan versionhallinnan kautta.</p>
+        <p><strong>Claude Code</strong> (Anthropic) on projektin pääasiallinen koodaustyökalu. Se tekee konkreettisia muutoksia tiedostoihin, ajaa komentoja, tarkistaa diffit ja auttaa pitämään muutokset teknisesti johdonmukaisina. Kaikki commitit syntyvät tätä kautta.</p>
+        <p class="mb-0">Käytännössä työnkulku on hyvin maanläheinen: muutos pyydetään, Claude ehdottaa toteutuksen, diffi tarkistetaan, build ja tarkistukset ajetaan, ja vasta sitten muutos julkaistaan versionhallinnan kautta.</p>
       </div>
     </div>
 
@@ -68,7 +67,7 @@ description: "Näin jarilaru.fi rakentuu käytännössä: Eleventy, build-putki,
               </tr>
               <tr>
                 <td><strong>GitHub Actions + GitHub Pages</strong></td>
-                <td>Build, SEO-tarkistukset, hakemiston muodostus, deploy ja tuotannon smoke-testit ajetaan automaattisesti CI/CD-putkessa.</td>
+                <td>Build, SEO-tarkistukset, tietoturvatarkistukset (XSS-kuviot, HSTS-header, npm audit), hakemiston muodostus, deploy ja tuotannon smoke-testit ajetaan automaattisesti CI/CD-putkessa.</td>
                 <td><a href="https://docs.github.com/en/actions" target="_blank" rel="noopener noreferrer">GitHub Actions</a> · <a href="https://docs.github.com/en/pages" target="_blank" rel="noopener noreferrer">GitHub Pages</a></td>
               </tr>
               <tr>

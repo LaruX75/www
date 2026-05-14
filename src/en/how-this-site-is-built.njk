@@ -19,11 +19,10 @@ description: "How jarilaru.fi is built in practice: Eleventy, build automation, 
   <div class="container">
     <div class="card border-0 shadow-sm mb-4">
       <div class="card-body">
-        <h2 class="h4 mb-3">1. AI-assisted workflow: Codex, Claude Code, and human review</h2>
+        <h2 class="h4 mb-3">1. AI-assisted workflow: Claude Code and human review</h2>
         <p>In this project, AI acts as a technical pair rather than an autopilot. The human sets priorities, reviews diffs, decides what gets published, and remains responsible for quality. AI helps with code edits, refactoring, translation, structural cleanup, and repetitive implementation work.</p>
-        <p><strong>Codex</strong> is used as a coding agent for concrete file edits, command execution, and targeted implementation work inside the repository.</p>
-        <p><strong>Claude Code</strong> is used as a second AI perspective for drafting alternatives, refining copy, reviewing structure, and helping shape analysis-heavy pages.</p>
-        <p class="mb-0">In practical terms, the workflow is simple: request a change, review the proposed diff, run the build and checks, then publish through version control.</p>
+        <p><strong>Claude Code</strong> (Anthropic) is the primary coding tool on this project. It makes concrete file edits, runs commands, reviews diffs, and keeps changes technically consistent. All commits are produced through this workflow.</p>
+        <p class="mb-0">In practical terms, the workflow is simple: request a change, Claude proposes an implementation, the diff is reviewed, the build and checks are run, and only then the change is published through version control.</p>
       </div>
     </div>
 
@@ -68,7 +67,7 @@ description: "How jarilaru.fi is built in practice: Eleventy, build automation, 
               </tr>
               <tr>
                 <td><strong>GitHub Actions + GitHub Pages</strong></td>
-                <td>Build, SEO checks, search indexing, deployment, and production smoke tests are automated in CI/CD.</td>
+                <td>Build, SEO checks, security checks (XSS patterns, HSTS header, npm audit), search indexing, deployment, and production smoke tests are automated in CI/CD.</td>
                 <td><a href="https://docs.github.com/en/actions" target="_blank" rel="noopener noreferrer">GitHub Actions</a> · <a href="https://docs.github.com/en/pages" target="_blank" rel="noopener noreferrer">GitHub Pages</a></td>
               </tr>
               <tr>
