@@ -190,7 +190,9 @@
 }
 
 .mega-wrap h5 {
-  font-size: 18px;
+  font-family: 'Bree Serif', Georgia, 'Times New Roman', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
   margin-bottom: 0.5rem;
 }
 
@@ -216,7 +218,7 @@
 
 .mega-wrap a {
   display: block;
-  font-size: 16px;
+  font-size: 0.9375rem;
   color: var(--menu-text);
   text-decoration: none;
   padding: 0.45rem 0.6rem;
@@ -236,7 +238,7 @@
 .mega-wrap small,
 .menu-desc {
   display: block;
-  font-size: 13px;
+  font-size: 0.8125rem;
   color: var(--menu-text);
   opacity: 0.7;
   margin: -0.2rem 0 0.5rem;
@@ -642,12 +644,12 @@ html:not([data-bs-theme="dark"]) .mega-menu-panel a i {
   }
 
   .mega-wrap a {
-    font-size: 14px;
+    font-size: 0.875rem;
     padding: 0.35rem 0.4rem;
   }
 
   .mega-wrap h5 {
-    font-size: 16px;
+    font-size: 1rem;
   }
 
   .menu-link-inline-group {
@@ -662,7 +664,7 @@ html:not([data-bs-theme="dark"]) .mega-menu-panel a i {
   }
 
   .menu-link-inline-anchor {
-    font-size: 13px;
+    font-size: 0.8125rem;
   }
 
   .menu-link-inline-separator {
@@ -675,7 +677,7 @@ html:not([data-bs-theme="dark"]) .mega-menu-panel a i {
   }
 
   .writings-mega-layout h5 {
-    font-size: 16px;
+    font-size: 1rem;
   }
 }
 
@@ -756,7 +758,7 @@ html:not([data-bs-theme="dark"]) .mega-menu-panel a i {
 
   .evelenty-main-nav>.nav-item>.nav-link,
   .evelenty-main-nav>.nav-item>.mega-nav-trigger>.nav-link {
-    font-size: 18px;
+    font-size: 1.125rem;
   }
 
   .contact-mega-form {

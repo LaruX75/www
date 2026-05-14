@@ -16,6 +16,26 @@
   margin-top: 8px;
 }
 
+/* Article page H1 is outside .bss-scope — apply Bree Serif explicitly */
+.page-content h1 {
+  font-family: 'Bree Serif', Georgia, 'Times New Roman', serif;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+/* Card section headings in content pages */
+.card-body > h2 {
+  font-family: 'Bree Serif', Georgia, 'Times New Roman', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+/* Content prose: comfortable reading line-height */
+.content-prose {
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
 /* Full-width main content to match hero width */
 #main-content .container,
 #main-content .container-sm,
