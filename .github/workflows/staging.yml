@@ -98,7 +98,7 @@ jobs:
         run: npm run search:index
 
       - name: Upload build artifact for review
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: staging-site
           path: _site/
