@@ -5,21 +5,18 @@ const pluginToc = require("eleventy-plugin-toc");
 const markdownItAnchor = require("markdown-it-anchor");
 const fs = require("fs");
 const path = require("path");
-const Image = require("@11ty/eleventy-img");
 const { default: EleventyPluginOgImage } = require("eleventy-plugin-og-image");
 const brokenLinksPlugin = require("eleventy-plugin-broken-links");
+const registerCollections = require("./eleventy.collections.js");
+const registerFilters = require("./eleventy.filters.js");
+
 const SUPPORTED_LANGS = ["fi", "en"];
 const shouldCheckExternalLinks = process.env.CHECK_EXTERNAL_LINKS === "true";
 const shouldGenerateOgImages = process.env.DISABLE_OG_IMAGES !== "true";
-const SITE_ORIGIN = "https://www.jarilaru.fi";
+const SITE_ORIGIN = process.env.SITE_ORIGIN || "https://www.jarilaru.fi";
 const LINK_REDIRECT_ALLOWLIST = [
   /^https?:\/\/(dx\.)?doi\.org\/.+/i
 ];
-
-
-function getLangFromUrl(url) {
-  return String(url || "").startsWith("/en/") ? "en" : "fi";
-}
 
 function getProviderFromHost(hostname) {
   const host = String(hostname || "").toLowerCase();
@@ -99,10 +96,6 @@ function walkHtmlFiles(dir, files = []) {
   return files;
 }
 
-function buildImgFallback(src, alt, className = "") {
-  return `<img src="${src}" alt="${alt}" class="${className}" loading="lazy" decoding="async">`;
-}
-
 function serializeExternalLink(link) {
   return {
     url: link.url,
@@ -142,7 +135,6 @@ function writeExternalLinkReport({ brokenLinks, forbiddenLinks, redirectLinks, a
 }
 
 module.exports = function (eleventyConfig) {
-  // Add heading IDs to markdown output so TOC links can target headings.
   eleventyConfig.amendLibrary("md", (mdLib) => {
     mdLib.use(markdownItAnchor, {
       level: [2, 3, 4]
@@ -269,7 +261,6 @@ module.exports = function (eleventyConfig) {
       broken: "warn",
       redirect: "warn",
       forbidden: "warn",
-      // Redirects are reported via callback to allow DOI redirect allowlisting.
       loggingLevel: 1,
       callback: (brokenLinks = [], redirectLinks = [], forbiddenLinks = []) => {
         const serializedBroken = brokenLinks.map(serializeExternalLink);
@@ -288,7 +279,6 @@ module.exports = function (eleventyConfig) {
     });
   }
 
-  // Kopioi staattiset tiedostot
   eleventyConfig.addPassthroughCopy("src/css");
   eleventyConfig.addPassthroughCopy("src/js");
   eleventyConfig.addPassthroughCopy("src/img");
@@ -301,319 +291,9 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/robots.txt");
   eleventyConfig.addPassthroughCopy("admin");
 
-  // =====================
-  // KOKOELMAT
-  // =====================
+  registerFilters(eleventyConfig);
+  registerCollections(eleventyConfig);
 
-  // Blogipostaukset (uusin ensin)
-  eleventyConfig.addCollection("blog", function (collectionApi) {
-    return collectionApi
-      .getFilteredByGlob("src/blog/*.md")
-      .sort((a, b) => b.date - a.date);
-  });
-
-  // Akateemiset ja teknologiablogit yliopistonlehtori-kortille
-  eleventyConfig.addCollection("blogAcademic", function (collectionApi) {
-    const ACADEMIC_TERMS = [
-      "koulutusteknologia", "teknologiatuettu", "mobiilioppiminen", "etäopetus",
-      "oppiminen", "oppimisympäristö", "opetuksen suunnittelu",
-      "digitalisaatio", "digiluokka", "digifinland", "sotedigi",
-      "avoin tiede", "avoimet oppimateriaalit", "cscl",
-      "luennot", "luento", "täydennyskoulutus",
-      "tietotekniikka", "av-tekniikka", "web2.0",
-      "larun laitenurkka", "oulun yliopisto", "tekoäly"
-    ];
-    return collectionApi
-      .getFilteredByGlob("src/blog/*.md")
-      .filter(item => {
-        const cats = (item.data.categories || []).map(c => c.toLowerCase());
-        return cats.some(c => ACADEMIC_TERMS.some(term => c.includes(term)));
-      })
-      .sort((a, b) => b.date - a.date);
-  });
-
-  // EN-blogiposts feedipluginille (suodatetaan lang: en -merkityt)
-  eleventyConfig.addCollection("blogEn", function (collectionApi) {
-    return collectionApi
-      .getFilteredByGlob("src/blog/*.md")
-      .filter(item => item.data.lang === "en")
-      .sort((a, b) => b.date - a.date);
-  });
-
-  // Julkaisut — kaikki (uusin ensin)
-  eleventyConfig.addCollection("publications", function (collectionApi) {
-    return collectionApi
-      .getFilteredByGlob("src/publications/*.md")
-      .sort((a, b) => b.date - a.date);
-  });
-
-  // Julkaisut tyypeittäin
-  ["mielipide", "kolumni", "puhe", "tieteellinen", "esitelma"].forEach(type => {
-    eleventyConfig.addCollection(`pub_${type}`, function (collectionApi) {
-      return collectionApi
-        .getFilteredByGlob("src/publications/*.md")
-        .filter(item => item.data.type === type)
-        .sort((a, b) => b.date - a.date);
-    });
-  });
-
-  // Aloitteet (uusin ensin)
-  eleventyConfig.addCollection("politics", function (collectionApi) {
-    return collectionApi
-      .getFilteredByGlob("src/politics/*.md")
-      .sort((a, b) => b.date - a.date);
-  });
-
-  // Koulutukset ja materiaalit
-  eleventyConfig.addCollection("training", function (collectionApi) {
-    return collectionApi
-      .getFilteredByGlob("src/training/*.md")
-      .sort((a, b) => {
-        const orderA = a.data.order || 999;
-        const orderB = b.data.order || 999;
-        if (orderA !== orderB) return orderA - orderB;
-        return a.data.title.localeCompare(b.data.title, "fi");
-      });
-  });
-
-  // Portfolio
-  eleventyConfig.addCollection("portfolio", function (collectionApi) {
-    return collectionApi
-      .getFilteredByGlob("src/portfolio/*.md")
-      .sort((a, b) => {
-        const yearA = a.data.year || 0;
-        const yearB = b.data.year || 0;
-        return yearB - yearA;
-      });
-  });
-
-  // Uusi kokoelma tickerille: Politiikka ja mielipiteet
-  eleventyConfig.addCollection("politicsAndOpinions", function (collectionApi) {
-    const items = [
-      ...collectionApi.getFilteredByGlob("src/politics/*.md"),
-      ...collectionApi.getFilteredByGlob("src/publications/*.md").filter(item => item.data.type === "mielipide")
-    ];
-    return items.sort((a, b) => b.date - a.date);
-  });
-
-  // Uusi kokoelma tickerille: Esitykset
-  eleventyConfig.addCollection("presentations", function (collectionApi) {
-    return collectionApi.getFilteredByGlob("src/presentations/*.md").sort((a, b) => b.date - a.date);
-  });
-
-  // =====================
-  // KATEGORIAT & AVAINSANAT
-  // =====================
-  function buildTermList(items, key) {
-    const map = new Map();
-    items.forEach(item => {
-      const terms = item.data && item.data[key];
-      if (!Array.isArray(terms)) return;
-      terms.forEach(term => {
-        if (!term) return;
-        const name = String(term).trim();
-        if (!name) return;
-        if (!map.has(name)) {
-          map.set(name, []);
-        }
-        map.get(name).push(item);
-      });
-    });
-    return Array.from(map.entries()).map(([name, items]) => ({
-      name,
-      slug: eleventyConfig.getFilter("slugify")(name),
-      items,
-      count: items.length
-    })).sort((a, b) => a.name.localeCompare(b.name, "fi"));
-  }
-
-  eleventyConfig.addCollection("categoryList", function (collectionApi) {
-    const items = [
-      ...collectionApi.getFilteredByGlob("src/blog/*.md"),
-      ...collectionApi.getFilteredByGlob("src/publications/*.md"),
-      ...collectionApi.getFilteredByGlob("src/politics/*.md")
-    ];
-    return buildTermList(items, "categories");
-  });
-
-  eleventyConfig.addCollection("keywordList", function (collectionApi) {
-    const items = [
-      ...collectionApi.getFilteredByGlob("src/blog/*.md"),
-      ...collectionApi.getFilteredByGlob("src/publications/*.md"),
-      ...collectionApi.getFilteredByGlob("src/politics/*.md")
-    ];
-    return buildTermList(items, "keywords");
-  });
-
-  // =====================
-  // SUODATTIMET
-  // =====================
-
-  // Turvallinen JSON-serialisointi script-tageihin: estää </script>-murron
-  eleventyConfig.addFilter("jsonSafe", function (value) {
-    return JSON.stringify(value)
-      .replace(/<\/script/gi, "<\\/script")
-      .replace(/<!--/g, "<\\!--");
-  });
-
-  // Lukee CSS-tiedoston sisällön build-aikana (kriittistä CSS:ää varten)
-  eleventyConfig.addFilter("inlineCSS", function (relativePath) {
-    const fullPath = path.join(__dirname, "src/css", relativePath);
-    try {
-      return fs.readFileSync(fullPath, "utf-8");
-    } catch (e) {
-      console.warn(`[inlineCSS] Tiedostoa ei löydy: ${fullPath}`);
-      return "";
-    }
-  });
-
-  // Muuntaa päivämäärän Unix-aikaleimaksi (lajittelua varten)
-  eleventyConfig.addFilter("toTimestamp", function (date) {
-    return new Date(date).getTime() || 0;
-  });
-
-  // Päivämäärä — kieliriippuvainen (fi-FI tai en-GB sivun URL:n perusteella)
-  eleventyConfig.addFilter("dateFormat", function (date) {
-    const url = (this.page && this.page.url) || "";
-    const locale = url.startsWith("/en/") ? "en-GB" : "fi-FI";
-    return new Date(date).toLocaleDateString(locale, {
-      day: "numeric", month: "long", year: "numeric"
-    });
-  });
-
-  // Vuosiluku
-  eleventyConfig.addFilter("dateYear", function (date) {
-    return new Date(date).getFullYear();
-  });
-
-  // Tiivistelmä
-  eleventyConfig.addFilter("excerpt", function (content) {
-    if (!content) return "";
-    const text = content.replace(/<[^>]+>/g, "");
-    return text.substring(0, 200) + "...";
-  });
-
-  // Slugify (suomenkieliset merkit)
-  eleventyConfig.addFilter("slugify", function (str) {
-    if (!str) return "";
-    return str.toLowerCase()
-      .replace(/ä/g, "a").replace(/ö/g, "o").replace(/å/g, "a")
-      .replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-  });
-
-  // Ota N ensimmäistä
-  eleventyConfig.addFilter("take", function (arr, n) {
-    if (!arr) return [];
-    return arr.slice(0, n);
-  });
-
-  // Ohita N ensimmäistä
-  eleventyConfig.addFilter("skip", function (arr, n) {
-    if (!arr) return [];
-    return arr.slice(n);
-  });
-
-  // Suodata tyypin mukaan
-  eleventyConfig.addFilter("filterByType", function (arr, type) {
-    if (!arr) return [];
-    return arr.filter(item => item.data.type === type);
-  });
-
-  // APA7-tekijämuoto: "Korhonen, Eeva Marjatta" → "Korhonen, E. M."
-  eleventyConfig.addFilter("apa7authors", function (authors) {
-    if (!Array.isArray(authors)) return '';
-    return authors.map(name => {
-      const commaIdx = name.indexOf(',');
-      if (commaIdx === -1) return name;
-      const last = name.slice(0, commaIdx).trim();
-      const firsts = name.slice(commaIdx + 1).trim();
-      const initials = firsts.split(/\s+/).filter(Boolean).map(w => w[0].toUpperCase() + '.').join(' ');
-      return `${last}, ${initials}`;
-    }).join('; ');
-  });
-
-  // Muunna suhteellinen polku absoluuttiseksi URL:ksi
-  eleventyConfig.addFilter("absoluteUrl", function (url, base) {
-    if (!url) return base || "";
-    if (/^https?:\/\//i.test(url)) return url;
-    const normalizedBase = (base || "").replace(/\/+$/, "");
-    const normalizedUrl = String(url).startsWith("/") ? url : `/${url}`;
-    return `${normalizedBase}${normalizedUrl}`;
-  });
-
-  eleventyConfig.addFilter("langFromUrl", function (url) {
-    return getLangFromUrl(url);
-  });
-
-  eleventyConfig.addFilter("localeForLang", function (lang) {
-    return lang === "en" ? "en_US" : "fi_FI";
-  });
-
-  eleventyConfig.addFilter("switchLangUrl", function (url, targetLang) {
-    const source = String(url || "/");
-    if (targetLang === "en") {
-      if (source === "/") return "/en/";
-      if (source.startsWith("/en/")) return source;
-      return `/en${source.startsWith("/") ? source : `/${source}`}`;
-    }
-
-    if (source === "/en/") return "/";
-    if (source.startsWith("/en/")) {
-      const fiUrl = source.replace(/^\/en/, "");
-      return fiUrl || "/";
-    }
-    return source || "/";
-  });
-
-  eleventyConfig.addFilter("findTranslationUrl", function (items, translationKey, targetLang) {
-    if (!translationKey || !Array.isArray(items)) return "";
-
-    const match = items.find((item) => {
-      if (!item || !item.data) return false;
-      const itemLang = item.data.lang || getLangFromUrl(item.url);
-      return item.data.translationKey === translationKey && itemLang === targetLang;
-    });
-
-    return match && match.url ? match.url : "";
-  });
-
-  eleventyConfig.addFilter("navItemByKey", function (items, key) {
-    if (!Array.isArray(items) || !key) return null;
-    return items.find((item) => item && item.key === key) || null;
-  });
-
-  eleventyConfig.addAsyncShortcode("optimizedImage", async function (src, alt, className = "", sizes = "100vw") {
-    if (!src || !alt) return "";
-    try {
-      const sourcePath = src.startsWith("/")
-        ? path.join(process.cwd(), "src", src.replace(/^\/+/, ""))
-        : src;
-
-      const metadata = await Image(sourcePath, {
-        widths: [320, 640],
-        formats: ["webp", "jpeg"],
-        outputDir: path.join(process.cwd(), "_site", "img", "optimized"),
-        urlPath: "/img/optimized/",
-        filenameFormat: (id, originalSrc, width, format) => {
-          const baseName = path.basename(originalSrc, path.extname(originalSrc));
-          return `${baseName}-${id}-${width}w.${format}`;
-        }
-      });
-
-      return Image.generateHTML(metadata, {
-        alt,
-        class: className,
-        sizes,
-        loading: "lazy",
-        decoding: "async"
-      });
-    } catch (_) {
-      return buildImgFallback(src, alt, className);
-    }
-  });
-
-  // Wrap third-party media iframes with a consent gate to avoid loading external
-  // trackers/cookies before user action.
   eleventyConfig.addTransform("externalMediaConsent", (content, outputPath) => {
     if (!outputPath || !outputPath.endsWith(".html")) return content;
     return wrapExternalIframes(content);

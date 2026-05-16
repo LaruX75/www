@@ -36,6 +36,7 @@ canva-analysis.json
 slideshare-*.json
 slideshare-analyysi.md
 reports/seo-health.json
+images-report.csv
 
 # Local one-off helper scripts
 scripts/canva-extract-years.mjs
@@ -48,3 +49,4 @@ scripts/__pycache__/
 *.swp
 docs/researchfi-eleventy-prompt.md
 scripts/thesis-pdfs/
+ONBOARDING.md
