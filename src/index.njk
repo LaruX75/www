@@ -45,7 +45,7 @@ translationKey: home
     { count: heroPublicationCount, label: "tieteellistä julkaisua", href: "/julkaisut/" },
     { count: heroOpinionCount, label: "mielipidekirjoitusta", href: "/kynasta/#mielipiteet" },
     { count: heroSpeechCount, label: "puheenvuoroa", href: "/kynasta/#puheet" },
-    { count: theses.stats.totalGradut, label: "ohjattua pro gradua", href: "/opinnaytteet/" }
+    { count: theses.stats.total, label: "ohjattua opinnäytettä", href: "/opinnaytteet/" }
 ] %}
 
 <section class="section-flush home-hero-section" id="heroSection">
@@ -113,8 +113,8 @@ translationKey: home
                     </div>
                     <div class="home-overview-kpis mb-3">
                         <div class="home-overview-kpi">
-                            <span class="home-overview-kpi-value">{{ theses.stats.totalGradut }}</span>
-                            <span class="home-overview-kpi-label">ohjattua gradua</span>
+                            <span class="home-overview-kpi-value">{{ theses.stats.total }}</span>
+                            <span class="home-overview-kpi-label">ohjattua opinnäytettä</span>
                         </div>
                         <div class="home-overview-kpi">
                             <span class="home-overview-kpi-value">{{ pageContent.etusivu.overview.card1.kpi2.value }}</span>
