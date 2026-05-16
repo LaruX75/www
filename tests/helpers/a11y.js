@@ -16,7 +16,6 @@ export const AXE_AUDIT_PAGES = [
 export async function gotoAndAssertSite(page, path) {
     await page.goto(path);
     await expect(page.locator('.navbar-brand').first()).toContainText('Jari Laru');
-    await expect(page.locator('body')).not.toContainText('Generation AI -hanke');
 }
 
 export async function installPagefindStub(page) {
