@@ -52,6 +52,6 @@
     "@axe-core/playwright": "^4.11.2",
     "@playwright/test": "^1.60.0",
     "axe-playwright": "^2.2.2",
-    "pagefind": "^1.4.0"
+    "pagefind": "^1.5.2"
   }
 }
