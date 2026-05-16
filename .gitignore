@@ -35,7 +35,7 @@ AGENTS.md
 canva-analysis.json
 slideshare-*.json
 slideshare-analyysi.md
-reports/seo-health.json
+reports/
 images-report.csv
 
 # Local one-off helper scripts
