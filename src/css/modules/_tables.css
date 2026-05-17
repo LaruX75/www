@@ -46,6 +46,13 @@
   border: 1px solid rgba(255, 255, 255, 0.3) !important;
 }
 
+/* Pagination hover contrast — Bootstrap default fails WCAG 2.1 AA (4.5:1) */
+.pagination .page-link:hover:not(:disabled) {
+  color: #212529;
+  background-color: #dee2e6;
+  border-color: #dee2e6;
+}
+
 /* Pagination contrast for dark mode */
 [data-bs-theme="dark"] .pagination .page-item.active .page-link {
   background-color: #ffffff !important;
