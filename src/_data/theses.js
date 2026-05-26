@@ -139,8 +139,11 @@ function parseKK(xmlStr) {
 // Hae kaikki sivut yhdelle querylle
 // kk-formaatti ei sisällä totalResults-tagia, joten sivutetaan niin kauan
 // kuin sivu palauttaa RPP kappaletta (turvaraja 20 sivua)
+// Palauttaa { items, hadError } — kutsujan vastuulla tarkistaa hadError
+// ennen kuin korvaa välimuistidatan osittaisilla tuloksilla.
 async function fetchAll(query) {
     let items = [];
+    let hadError = false;
     for (let page = 0; page < 20; page++) {
         try {
             const xml = await fetchPage(query, page * RPP);
@@ -150,10 +153,11 @@ async function fetchAll(query) {
             if (pageItems.length < RPP) break; // viimeinen sivu
         } catch (e) {
             console.warn(`[theses] sivu ${page + 1} epäonnistui:`, e.message);
+            hadError = true;
             break;
         }
     }
-    return items;
+    return { items, hadError };
 }
 
 // Client-side filtteri: varmista nimen osuma
@@ -227,13 +231,19 @@ module.exports = async function () {
     try {
         // Hae ohjaajan gradut ja kandit
         const advisorQuery = buildQuery('thesisadvisor', ['masterThesis', 'bachelorThesis']);
-        const rawAdvisor = await fetchAll(advisorQuery);
+        const { items: rawAdvisor, hadError: advisorError } = await fetchAll(advisorQuery);
         const advisor = filterByName(rawAdvisor, NAME, 'thesisadvisor');
 
         // Hae myös tarkastamat (valinnainen)
         const reviewerQuery = buildQuery('reviewer', ['masterThesis', 'bachelorThesis']);
-        const rawReviewer = await fetchAll(reviewerQuery);
+        const { items: rawReviewer, hadError: reviewerError } = await fetchAll(reviewerQuery);
         const reviewer = filterByName(rawReviewer, NAME, 'reviewer');
+
+        // Jos jokin haku epäonnistui osittain, käytetään vanhaa välimuistia
+        if ((advisorError || reviewerError) && cachedData) {
+            console.warn('[theses] Osittainen API-virhe — käytetään vanhaa välimuistia.');
+            return { ...mergeManualIntoCache(cachedData, keywordsCache), source: 'cache', error: 'partial fetch error' };
+        }
 
         // Kuratorointi: piilota pyydetyt opinnäytetyöt linkin perusteella
         const hiddenLinks = loadHiddenIds('theses');
