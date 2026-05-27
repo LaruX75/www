@@ -774,5 +774,30 @@
     "tunnetaidot",
     "mentalisaatio",
     "yläkoululaiset"
+  ],
+  "https://oulurepo.oulu.fi/handle/10024/62907": [],
+  "https://oulurepo.oulu.fi/handle/10024/62912": [],
+  "https://oulurepo.oulu.fi/handle/10024/62325": [],
+  "https://oulurepo.oulu.fi/handle/10024/62776": [
+    "varhaiskasvatus",
+    "mediakasvatus",
+    "teknologia",
+    "media",
+    "esiopetus",
+    "alkuopetus",
+    "digitalisaatio"
+  ],
+  "https://oulurepo.oulu.fi/handle/10024/62699": [
+    "matematiikka-ahdistus",
+    "ahdistuneisuus",
+    "matematiikan oppimisvaikeudet",
+    "matemaattinen itseluottamus"
+  ],
+  "https://oulurepo.oulu.fi/handle/10024/62500": [
+    "musiikkikasvatus",
+    "musiikkiteknologia",
+    "pelipohjainen oppiminen",
+    "motivaatio",
+    "flow"
   ]
 }
