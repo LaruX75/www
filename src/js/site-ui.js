@@ -327,6 +327,7 @@
       const searchClose = document.getElementById('searchCloseBtn');
       const searchOverlay = document.getElementById('searchOverlay');
       let lastSearchTrigger = null;
+      let pagefindLangSet = false;
       const focusableSelector = 'a[href], area[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
       const isVisibleElement = (el) => el instanceof HTMLElement && el.isConnected && el.offsetParent !== null;
@@ -354,7 +355,14 @@
         searchOverlay.style.display = 'flex';
         searchOverlay.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
-        
+
+        if (!pagefindLangSet && window.PagefindComponents) {
+          const isEn = (document.documentElement.lang || '').toLowerCase().startsWith('en');
+          const pfInstance = window.PagefindComponents.getInstanceManager().getInstance('default');
+          pfInstance.triggerFilter('Kieli', [isEn ? 'English' : 'Suomi']);
+          pagefindLangSet = true;
+        }
+
         setTimeout(() => {
           const input = searchOverlay.querySelector('.pf-input');
           if (input) {
