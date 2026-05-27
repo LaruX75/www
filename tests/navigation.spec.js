@@ -72,7 +72,7 @@ test.describe('Navigation and Focus Audits', () => {
         const trigger = page.locator('#searchToggleBtn');
         const dialog = page.locator('#searchOverlay');
         const closeButton = page.locator('#searchCloseBtn');
-        const input = page.locator('#searchOverlay .pagefind-ui__search-input');
+        const input = page.locator('#searchOverlay .pf-input');
 
         await expect(trigger).toBeVisible();
         await trigger.click();

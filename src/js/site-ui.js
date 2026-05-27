@@ -326,7 +326,6 @@
       const searchForms = Array.from(document.querySelectorAll('[data-search-form]'));
       const searchClose = document.getElementById('searchCloseBtn');
       const searchOverlay = document.getElementById('searchOverlay');
-      let pagefindInitialized = false;
       let lastSearchTrigger = null;
       const focusableSelector = 'a[href], area[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
@@ -356,36 +355,8 @@
         searchOverlay.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
         
-        if (!pagefindInitialized) {
-          const isEn = (document.documentElement.lang || '').toLowerCase().startsWith('en');
-          const pagefindTranslations = isEn
-            ? {
-                placeholder: 'Write a search term...',
-                zero_results: 'No results for [SEARCH_TERM]',
-                many_results: '[COUNT] results for [SEARCH_TERM]',
-                one_result: '[COUNT] result for [SEARCH_TERM]',
-                filters_label: 'Filter',
-                load_more: 'Load more'
-              }
-            : {
-                placeholder: 'Kirjoita hakusana...',
-                zero_results: 'Ei tuloksia haulle [SEARCH_TERM]',
-                many_results: '[COUNT] tulosta haulle [SEARCH_TERM]',
-                one_result: '[COUNT] tulos haulle [SEARCH_TERM]',
-                filters_label: 'Suodata',
-                load_more: 'Näytä lisää'
-              };
-          new PagefindUI({
-            element: '#pagefindSearch',
-            showSubResults: true,
-            showImages: false,
-            translations: pagefindTranslations
-          });
-          pagefindInitialized = true;
-        }
-        
         setTimeout(() => {
-          const input = searchOverlay.querySelector('.pagefind-ui__search-input');
+          const input = searchOverlay.querySelector('.pf-input');
           if (input) {
             input.focus();
             if (prefillQuery) {

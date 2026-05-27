@@ -18,24 +18,8 @@ export async function gotoAndAssertSite(page, path) {
     await expect(page.locator('.navbar-brand').first()).toContainText('Jari Laru');
 }
 
-export async function installPagefindStub(page) {
-    await page.addInitScript(() => {
-        window.PagefindUI = class PagefindUI {
-            constructor(options = {}) {
-                const selector = options.element || '#pagefindSearch';
-                const container = document.querySelector(selector);
-                if (!container) return;
-
-                container.innerHTML = '';
-
-                const input = document.createElement('input');
-                input.type = 'search';
-                input.className = 'pagefind-ui__search-input';
-                input.setAttribute('aria-label', 'Site search');
-                container.appendChild(input);
-            }
-        };
-    });
+export async function installPagefindStub(_page) {
+    // Component UI uses web components that self-initialize — no stub needed.
 }
 
 export async function runAxeAudit(page, path, options = {}) {
