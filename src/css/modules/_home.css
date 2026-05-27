@@ -1586,41 +1586,66 @@ html:not([data-bs-theme="dark"]) .research-stat-card {
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.3);
 }
 
-/* Pagefind UI overrides */
-.pagefind-ui__search-input {
+/* Pagefind Component UI overrides */
+.pf-input {
   border-radius: 0.5rem !important;
   border: 1px solid var(--bs-border-color) !important;
   padding: 0.75rem 2.75rem 0.75rem 3rem !important;
   font-size: 1.1rem !important;
 }
 
-.pagefind-ui__result-link {
+.pf-result-title {
   font-weight: 600 !important;
+}
+
+/* Language filter dropdown — globe icon */
+.pf-dropdown-trigger-label::before {
+  font-family: "bootstrap-icons";
+  content: "\f3ee";
+  margin-right: 0.35em;
+  font-style: normal;
 }
 
 /* Dark mode search overlay */
 [data-bs-theme="dark"] .search-overlay-inner {
   background-color: #1e2a3a;
   color: #e0e0e0;
-  --pagefind-ui-text: #e8f1ff;
-  --pagefind-ui-primary: #7db8f0;
-  --pagefind-ui-background: #243347;
-  --pagefind-ui-border: rgba(255, 255, 255, 0.18);
-  --pagefind-ui-tag: rgba(255, 255, 255, 0.12);
+  --pf-text: #e8f1ff;
+  --pf-text-muted: rgba(232, 241, 255, 0.6);
+  --pf-text-secondary: rgba(232, 241, 255, 0.75);
+  --pf-background: #243347;
+  --pf-border: rgba(255, 255, 255, 0.18);
+  --pf-hover: rgba(255, 255, 255, 0.06);
 }
 
-[data-bs-theme="dark"] .pagefind-ui__search-input {
+[data-bs-theme="dark"] .pf-input {
   background-color: #243347 !important;
   color: #e0e0e0 !important;
   border-color: rgba(255, 255, 255, 0.15) !important;
 }
 
-[data-bs-theme="dark"] .pagefind-ui__result-link {
+[data-bs-theme="dark"] .pf-result-title a {
   color: #7db8f0 !important;
 }
 
-[data-bs-theme="dark"] .pagefind-ui__result-excerpt {
+[data-bs-theme="dark"] .pf-result-excerpt {
   color: rgba(255, 255, 255, 0.7) !important;
+}
+
+[data-bs-theme="dark"] .pf-dropdown-trigger {
+  background-color: #243347 !important;
+  color: #e0e0e0 !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+[data-bs-theme="dark"] .pf-dropdown-menu {
+  background-color: #1e2a3a !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+[data-bs-theme="dark"] .pf-dropdown-option:hover,
+[data-bs-theme="dark"] .pf-dropdown-option:focus {
+  background-color: rgba(255, 255, 255, 0.06) !important;
 }
 
 /* ============================================ */
