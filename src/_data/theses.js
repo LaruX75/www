@@ -55,6 +55,7 @@ function loadManualTheses() {
 }
 
 // Lataa PDF:istä poimitut avainsanat cachesta (päivitetään: npm run fetch:keywords)
+// Formaatti: { link: [...keywords] }  TAI  { link: { keywords: [...], abstract: "..." } }
 function loadKeywordsCache() {
   try {
     const cachePath = path.join(__dirname, 'thesis-keywords-cache.json');
@@ -62,6 +63,14 @@ function loadKeywordsCache() {
   } catch {
     return {};
   }
+}
+
+// Palauttaa { keywords, abstract } riippumatta cachessa käytetystä formaatista
+function getCacheEntry(keywordsCache, link) {
+  const entry = keywordsCache[link];
+  if (!entry) return { keywords: [], abstract: '' };
+  if (Array.isArray(entry)) return { keywords: entry, abstract: '' };
+  return { keywords: entry.keywords || [], abstract: entry.abstract || '' };
 }
 
 // Rakenna Lucene-kysely
@@ -171,10 +180,14 @@ function filterByName(items, name, role) {
 
 // Yhdistä manuaaliset kandit välimuistidataan ja päivitä avainsanat tuoreesta cachesta
 function mergeManualIntoCache(data, keywordsCache) {
-    const applyKw = items => items.map(t => ({
-        ...t,
-        keywords: t.manual ? (t.keywords || []) : (keywordsCache[t.link] || []),
-    }));
+    const applyKw = items => items.map(t => {
+        const cached = getCacheEntry(keywordsCache, t.link);
+        return {
+            ...t,
+            keywords: t.manual ? (t.keywords || []) : cached.keywords,
+            abstract: t.abstract || (t.manual ? '' : cached.abstract),
+        };
+    });
 
     const manual = loadManualTheses().filter(t => t.type === 'bachelorThesis');
     const existingLinks = new Set(data.kandit.map(t => t.link));
@@ -222,10 +235,14 @@ module.exports = async function () {
     const cached = readCache(CACHE_KEY);
     const cachedData = cached?.data || null;
 
-    const addKeywords = items => items.map(t => ({
-        ...t,
-        keywords: t.manual ? (t.keywords || []) : (keywordsCache[t.link] || []),
-    }));
+    const addKeywords = items => items.map(t => {
+        const cached = getCacheEntry(keywordsCache, t.link);
+        return {
+            ...t,
+            keywords: t.manual ? (t.keywords || []) : cached.keywords,
+            abstract: t.abstract || (t.manual ? '' : cached.abstract),
+        };
+    });
     const manualTheses = loadManualTheses();
 
     try {
