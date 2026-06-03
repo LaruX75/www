@@ -7,10 +7,7 @@
     "keywords": [],
     "abstract": ""
   },
-  "https://oulurepo.oulu.fi/handle/10024/62325": {
-    "keywords": [],
-    "abstract": ""
-  },
+  "https://oulurepo.oulu.fi/handle/10024/62325": [],
   "https://oulurepo.oulu.fi/handle/10024/39172": [
     "digitaalikuvaus",
     "julkisuus",
@@ -787,9 +784,6 @@
     "mentalisaatio",
     "yläkoululaiset"
   ],
-  "https://oulurepo.oulu.fi/handle/10024/62907": [],
-  "https://oulurepo.oulu.fi/handle/10024/62912": [],
-  "https://oulurepo.oulu.fi/handle/10024/62325": [],
   "https://oulurepo.oulu.fi/handle/10024/62776": [
     "varhaiskasvatus",
     "mediakasvatus",
@@ -811,5 +805,20 @@
     "pelipohjainen oppiminen",
     "motivaatio",
     "flow"
+  ],
+  "https://oulurepo.oulu.fi/handle/10024/62907": [
+    "tekoäly",
+    "koneoppiminen",
+    "tekoälylukutaito",
+    "tekoälykoulutus",
+    "opettaja",
+    "opettajaopiskelija",
+    "Generation AI"
+  ],
+  "https://oulurepo.oulu.fi/handle/10024/62912": [
+    "tekoäly",
+    "tulevaisuuskäsitykset",
+    "opettajat",
+    "opetus"
   ]
 }
