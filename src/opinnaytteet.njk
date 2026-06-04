@@ -259,8 +259,8 @@ translationKey: theses_index
           <div class="col-12 col-lg-5">
             <label for="thesisCitationFormatSelect" class="form-label small text-muted">Viittausmuoto</label>
             <select id="thesisCitationFormatSelect" class="form-select form-select-sm">
-              <option value="bibtex">BibTeX (.bib)</option>
               <option value="apa">APA 7</option>
+              <option value="bibtex">BibTeX (.bib)</option>
               <option value="mla">MLA</option>
               <option value="chicago">Chicago</option>
             </select>
@@ -662,7 +662,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function renderThesisCitationPreview() {
     if (!currentCitationPayload || !thesisCitationOutput) return;
-    const format = thesisCitationFormatSelect?.value || 'bibtex';
+    const format = thesisCitationFormatSelect?.value || 'apa';
     thesisCitationOutput.value = getThesisCitationByFormat(currentCitationPayload, format);
   }
 
@@ -675,7 +675,7 @@ document.addEventListener('DOMContentLoaded', () => {
         type: btn.dataset.type || '',
         url: btn.dataset.url || ''
       };
-      if (thesisCitationFormatSelect) thesisCitationFormatSelect.value = 'bibtex';
+      if (thesisCitationFormatSelect) thesisCitationFormatSelect.value = 'apa';
       renderThesisCitationPreview();
       if (window.bootstrap && window.bootstrap.Modal && thesisCitationModalEl) {
         window.bootstrap.Modal.getOrCreateInstance(thesisCitationModalEl).show();
@@ -690,7 +690,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (thesisCitationDownloadBtn) {
     thesisCitationDownloadBtn.addEventListener('click', () => {
       if (!currentCitationPayload) return;
-      const format = thesisCitationFormatSelect?.value || 'bibtex';
+      const format = thesisCitationFormatSelect?.value || 'apa';
       const citation = getThesisCitationByFormat(currentCitationPayload, format);
       const base = sanitizeFilenamePart(currentCitationPayload.title || currentCitationPayload.authors || 'viite');
       const ext = format === 'bibtex' ? 'bib' : 'txt';
