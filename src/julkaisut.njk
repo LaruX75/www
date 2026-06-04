@@ -468,8 +468,8 @@ translationKey: publications_index
           <div class="col-12 col-lg-5">
             <label for="citationFormatSelect" class="form-label small text-muted">Viittausmuoto</label>
             <select id="citationFormatSelect" class="form-select form-select-sm">
-              <option value="bibtex">BibTeX (.bib)</option>
               <option value="apa">APA</option>
+              <option value="bibtex">BibTeX (.bib)</option>
               <option value="mla">MLA</option>
               <option value="chicago">Chicago</option>
             </select>
@@ -770,7 +770,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function renderCitationPreview() {
     if (!citationOutput) return;
-    const format = citationFormatSelect?.value || 'bibtex';
+    const format = citationFormatSelect?.value || 'apa';
     citationOutput.value = getCitationByFormat(currentCitationPayload, format);
   }
 
@@ -789,7 +789,7 @@ document.addEventListener('DOMContentLoaded', function() {
         publisher: btn.dataset.publisher || '',
         isbn: btn.dataset.isbn || ''
       };
-      if (citationFormatSelect) citationFormatSelect.value = 'bibtex';
+      if (citationFormatSelect) citationFormatSelect.value = 'apa';
       renderCitationPreview();
       if (window.bootstrap && window.bootstrap.Modal && citationModalEl) {
         window.bootstrap.Modal.getOrCreateInstance(citationModalEl).show();
@@ -804,7 +804,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if (citationDownloadBtn) {
     citationDownloadBtn.addEventListener('click', () => {
       if (!currentCitationPayload) return;
-      const format = citationFormatSelect?.value || 'bibtex';
+      const format = citationFormatSelect?.value || 'apa';
       const citation = getCitationByFormat(currentCitationPayload, format);
       const base = sanitizeFilenamePart(currentCitationPayload.title || currentCitationPayload.authors || 'viite');
       const ext = format === 'bibtex' ? 'bib' : 'txt';
