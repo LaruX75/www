@@ -33,7 +33,7 @@
     "eleventy:serve": "npx @11ty/eleventy --serve"
   },
   "dependencies": {
-    "@11ty/eleventy": "^3.1.5",
+    "@11ty/eleventy": "^3.1.6",
     "@11ty/eleventy-fetch": "^5.1.2",
     "@11ty/eleventy-img": "^6.0.4",
     "@11ty/eleventy-navigation": "^1.0.5",
