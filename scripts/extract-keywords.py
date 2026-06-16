@@ -11,27 +11,30 @@ import subprocess
 
 def collect_keyword_lines(text, start_pos):
     """Collect keyword lines starting at start_pos.
-    A continuation line must contain a comma (looks like a keyword list),
-    must not be a known section header, and must be short enough.
+    Continues through blank lines — some PDFs put each keyword on its own line.
+    Stops at a known section header or a numbered heading (e.g. "1. Johdanto").
     """
     STOP_WORDS = re.compile(
         r'^\s*(?:Tiivistelmä|Abstract|Sisältö|Contents|Johdanto|Introduction|'
-        r'Acknowledgements?|Kiitokset|Table of|1\s|2\s|\d+\s+\w)',
+        r'Acknowledgements?|Kiitokset|Table of|\d+[\.\)]\s+\w)',
         re.IGNORECASE
     )
     lines = text[start_pos:].split('\n')
     result = []
+    consecutive_blanks = 0
     for line in lines:
         stripped = line.strip()
         if not stripped:
-            if result:  # blank line after content = stop
+            consecutive_blanks += 1
+            # Three or more consecutive blank lines = page break / end of section
+            if consecutive_blanks >= 3 and result:
                 break
             continue
+        consecutive_blanks = 0
         if STOP_WORDS.match(stripped):
             break
         result.append(stripped)
-        # Stop after two content lines to avoid runaway
-        if len(result) >= 2:
+        if len(result) >= 20:  # safety limit
             break
     return ' '.join(result)
 
