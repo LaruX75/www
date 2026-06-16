@@ -202,6 +202,7 @@ async function main() {
 }
 
 main().catch(e => {
-  console.error('[keywords] VIRHE:', e.message);
-  process.exit(1);
+  console.warn('[keywords] VAROITUS: avainsanojen haku epäonnistui:', e.message);
+  console.warn('[keywords] Build jatkuu ilman uusia avainsanoja.');
+  process.exit(0);
 });
