@@ -92,6 +92,17 @@ async function fetchPage(query, start = 0) {
 }
 
 // Parsii kk-formaatin XML:n
+function decodeXmlEntities(str) {
+    return str
+        .replace(/&#13;/g, '')       // rivinpaluu XML-entiteettinä → poistetaan
+        .replace(/&amp;/g, '&')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&quot;/g, '"')
+        .replace(/&apos;/g, "'")
+        .replace(/&#(\d+);/g, (_, n) => String.fromCharCode(parseInt(n, 10)));
+}
+
 function parseKK(xmlStr) {
     const items = [];
     const itemRegex = /<item>([\s\S]*?)<\/item>/g;
@@ -105,7 +116,7 @@ function parseKK(xmlStr) {
                 `<metadata[^>]*element="${element}"[^>]*qualifier="${qualifier}"[^>]*>([^<]*)</metadata>`
             );
             const m = block.match(re);
-            return m ? m[1].trim() : '';
+            return m ? decodeXmlEntities(m[1].trim()) : '';
         };
 
         const getMetaAll = (element, qualifier) => {
