@@ -2,7 +2,7 @@
   {% set pageTitle = title or site.name %}
   {% set pageDescription = description or site.description %}
   {% set pageUrl = page.url | absoluteUrl(site.url or "https://www.jarilaru.fi") %}
-  {% set pageType = "article" if ("blog" in (tags or []) or "politics" in (tags or []) or "publications" in (tags or [])) else "website" %}
+  {% set pageType = "presentation" if type == "esitys" else ("article" if ("blog" in (tags or []) or "politics" in (tags or []) or "publications" in (tags or [])) else "website") %}
   {% set personId = (site.url or "https://www.jarilaru.fi") + "#person" %}
   {% set resolvedOgImage = "/img/WIN_20210329_16_06_01_Pro.jpg" %}
   <script type="application/ld+json">
@@ -38,7 +38,24 @@
       "sameAs": {{ (site.sameAs or []) | jsonSafe | safe }}
     }
   </script>
-  {% if pageType == "article" %}
+  {% if pageType == "presentation" %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "PresentationDigitalDocument",
+      "name": "{{ pageTitle | escape }}",
+      "description": "{{ pageDescription | escape }}",
+      "url": "{{ pageUrl }}",
+      "thumbnailUrl": "{{ thumbnail }}",
+      "datePublished": "{{ page.date | dateToRfc3339 }}",
+      "inLanguage": "{{ "fi-FI" if currentLang == "fi" else "en-US" }}",
+      {% if url %}"sameAs": "{{ url | escape }}",{% endif %}
+      "author": {
+        "@id": "{{ personId }}"
+      }
+    }
+  </script>
+  {% elif pageType == "article" %}
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
