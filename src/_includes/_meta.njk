@@ -71,7 +71,7 @@
   {% set pageUrl = page.url | absoluteUrl(site.url or "https://www.jarilaru.fi") %}
   {% set fiAltPath = collections.all | findTranslationUrl(translationKey, "fi") %}
   {% set enAltPath = collections.all | findTranslationUrl(translationKey, "en") %}
-  {% set pageType = "article" if page.url and ("/blog" in page.url or "/julkaisut" in page.url or "/politics" in page.url) else "website" %}
+  {% set pageType = "article" if ("blog" in (tags or []) or "politics" in (tags or []) or "publications" in (tags or [])) else "website" %}
   {% set sectionLabel = "Blogi" if page.url and "/blog" in page.url else ("Julkaisut" if page.url and "/julkaisut" in page.url else ("Politiikka" if page.url and "/politics" in page.url else "Sivusto")) %}
   {% set personId = (site.url or "https://www.jarilaru.fi") + "#person" %}
   {% set resolvedOgImage = "/img/WIN_20210329_16_06_01_Pro.jpg" %}
@@ -105,6 +105,11 @@
   <meta property="og:image:alt" content="Jari Laru">
   <meta property="og:image:width" content="1920">
   <meta property="og:image:height" content="1080">
+  {% if pageType == "article" %}
+  <meta property="article:author" content="{{ site.url or "https://www.jarilaru.fi" }}">
+  <meta property="article:published_time" content="{{ page.date | dateToRfc3339 }}">
+  <meta property="article:modified_time" content="{{ (modified or page.date) | dateToRfc3339 }}">
+  {% endif %}
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{ pageTitle }}">
   <meta name="twitter:description" content="{{ pageDescription }}">
