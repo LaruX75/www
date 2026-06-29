@@ -38,6 +38,31 @@
       "sameAs": {{ (site.sameAs or []) | jsonSafe | safe }}
     }
   </script>
+  {% if not isHomePage %}
+  {% set bcSiteBase = site.url or "https://www.jarilaru.fi" %}
+  {% set bcHomeUrl = "/en/" if currentLang == "en" else "/" %}
+  {% set bcHomeTitle = "Home" if currentLang == "en" else "Etusivu" %}
+  {% set bcNodes = headerNav.en if currentLang == "en" else headerNav.fi %}
+  {% set bcNavItems = (bcNodes | eleventyNavigationBreadcrumb(breadcrumbKey, { includeSelf: true, allowMissing: true })) if breadcrumbKey else [] %}
+  {% set bcAppendCurrent = pageTitle and (not bcNavItems.length or bcNavItems[bcNavItems.length - 1].url != page.url) %}
+  {% set ldBcItems = [] %}
+  {% set _ = (ldBcItems.push({ "@type": "ListItem", "position": 1, "name": bcHomeTitle, "item": bcHomeUrl | absoluteUrl(bcSiteBase) }), null) %}
+  {% for crumb in bcNavItems %}
+    {% if crumb.url != bcHomeUrl and crumb.title != bcHomeTitle %}
+      {% set _ = (ldBcItems.push({ "@type": "ListItem", "position": ldBcItems.length + 1, "name": crumb.title, "item": crumb.url | absoluteUrl(bcSiteBase) }), null) %}
+    {% endif %}
+  {% endfor %}
+  {% if bcAppendCurrent %}
+    {% set _ = (ldBcItems.push({ "@type": "ListItem", "position": ldBcItems.length + 1, "name": pageTitle }), null) %}
+  {% endif %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": {{ ldBcItems | jsonSafe | safe }}
+    }
+  </script>
+  {% endif %}
   {% if pageType == "presentation" %}
   <script type="application/ld+json">
     {
