@@ -32,6 +32,13 @@ jobs:
           key: api-fallback-${{ runner.os }}-${{ github.run_id }}
           restore-keys: |
             api-fallback-${{ runner.os }}-
+      - name: Cache OG images
+        uses: actions/cache@v4
+        with:
+          path: og-cache
+          key: og-cache-${{ runner.os }}-${{ hashFiles('src/og-image.og.njk', '.eleventy.js') }}
+          restore-keys: |
+            og-cache-${{ runner.os }}-
       - run: npm run build
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE }}

@@ -5,6 +5,7 @@ const pluginToc = require("eleventy-plugin-toc");
 const markdownItAnchor = require("markdown-it-anchor");
 const fs = require("fs");
 const path = require("path");
+const sharp = require("sharp");
 const { default: EleventyPluginOgImage } = require("eleventy-plugin-og-image");
 const brokenLinksPlugin = require("eleventy-plugin-broken-links");
 const registerCollections = require("./eleventy.collections.js");
@@ -159,23 +160,8 @@ module.exports = function (eleventyConfig) {
   // This disables JS dependency graph watching, but normal file watching remains.
   eleventyConfig.setWatchJavaScriptDependencies(false);
 
-  // Pre-clean OG image output robustly before og-image plugin runs.
-  // This avoids occasional ENOTEMPTY failures on some filesystems.
-  eleventyConfig.on("eleventy.before", () => {
-    const ogOutputDir = path.join(process.cwd(), "_site", "og-images");
-    try {
-      fs.rmSync(ogOutputDir, {
-        recursive: true,
-        force: true,
-        maxRetries: 10,
-        retryDelay: 100
-      });
-    } catch (_) {
-      // Keep build running; plugin's own cleanup will still run afterwards.
-    }
-  });
-
   // Ensure all generated HTML pages have external iframe consent wrappers.
+  // Also copy persisted OG image cache to _site/og-images/ when OG generation is enabled.
   eleventyConfig.on("eleventy.after", () => {
     const outputDir = path.join(process.cwd(), "_site");
     const htmlFiles = walkHtmlFiles(outputDir);
@@ -186,9 +172,33 @@ module.exports = function (eleventyConfig) {
         fs.writeFileSync(filePath, updated, "utf8");
       }
     });
+
+    if (shouldGenerateOgImages) {
+      const ogCacheDir = path.join(process.cwd(), "og-cache");
+      const ogSiteDir = path.join(process.cwd(), "_site", "og-images");
+      if (fs.existsSync(ogCacheDir)) {
+        fs.mkdirSync(ogSiteDir, { recursive: true });
+        for (const file of fs.readdirSync(ogCacheDir)) {
+          if (file !== ".gitkeep") {
+            fs.copyFileSync(path.join(ogCacheDir, file), path.join(ogSiteDir, file));
+          }
+        }
+      }
+    }
   });
 
   eleventyConfig.addGlobalData("supportedLangs", SUPPORTED_LANGS);
+
+  // Precompute background photo for OG image template (Satori requires data URL, not relative paths)
+  eleventyConfig.addGlobalData("ogBgDataUrl", async () => {
+    if (!shouldGenerateOgImages) return "";
+    const imgPath = path.join(__dirname, "src", "img", "WIN_20210329_16_06_01_Pro.jpg");
+    const buf = await sharp(imgPath)
+      .resize(100, 52, { fit: "cover", position: "attention" })
+      .jpeg({ quality: 30 })
+      .toBuffer();
+    return "data:image/jpeg;base64," + buf.toString("base64");
+  });
   eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
   eleventyConfig.addPlugin(pluginRss);
   eleventyConfig.addPlugin(feedPlugin, {
@@ -212,7 +222,9 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(pluginToc);
   if (shouldGenerateOgImages) {
     eleventyConfig.addPlugin(EleventyPluginOgImage, {
-      generateHTML: (outputUrl) => outputUrl,
+      outputDir: "../og-cache",
+      urlPath: "og-images",
+      shortcodeOutput: async (ogImage) => ogImage.outputUrl(),
       satoriOptions: {
         width: 1200,
         height: 630,
@@ -220,14 +232,7 @@ module.exports = function (eleventyConfig) {
           {
             name: "Inter",
             data: fs.readFileSync(
-              path.join(
-                __dirname,
-                "node_modules",
-                "@fontsource",
-                "inter",
-                "files",
-                "inter-latin-ext-700-normal.woff"
-              )
+              path.join(__dirname, "node_modules", "@fontsource", "inter", "files", "inter-latin-700-normal.woff")
             ),
             weight: 700,
             style: "normal",
@@ -235,14 +240,23 @@ module.exports = function (eleventyConfig) {
           {
             name: "Inter",
             data: fs.readFileSync(
-              path.join(
-                __dirname,
-                "node_modules",
-                "@fontsource",
-                "inter",
-                "files",
-                "inter-latin-ext-400-normal.woff"
-              )
+              path.join(__dirname, "node_modules", "@fontsource", "inter", "files", "inter-latin-ext-700-normal.woff")
+            ),
+            weight: 700,
+            style: "normal",
+          },
+          {
+            name: "Inter",
+            data: fs.readFileSync(
+              path.join(__dirname, "node_modules", "@fontsource", "inter", "files", "inter-latin-400-normal.woff")
+            ),
+            weight: 400,
+            style: "normal",
+          },
+          {
+            name: "Inter",
+            data: fs.readFileSync(
+              path.join(__dirname, "node_modules", "@fontsource", "inter", "files", "inter-latin-ext-400-normal.woff")
             ),
             weight: 400,
             style: "normal",
@@ -254,6 +268,7 @@ module.exports = function (eleventyConfig) {
     // Keep templates compilable when OG generation is disabled.
     eleventyConfig.addAsyncShortcode("ogImage", async () => null);
   }
+
   // External link checks are network-dependent and noisy in local/offline runs.
   // Enable explicitly (e.g. CI): CHECK_EXTERNAL_LINKS=true npx @11ty/eleventy
   if (shouldCheckExternalLinks) {

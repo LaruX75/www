@@ -1,5 +1,9 @@
 node_modules/
 _site/
+
+# OG image cache – generated on build, too large for git; kept via GitHub Actions cache
+og-cache/*
+!og-cache/.gitkeep
 _site_debug/
 .DS_Store
 *.log
