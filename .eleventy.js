@@ -194,8 +194,8 @@ module.exports = function (eleventyConfig) {
     if (!shouldGenerateOgImages) return "";
     const imgPath = path.join(__dirname, "src", "img", "WIN_20210329_16_06_01_Pro.jpg");
     const buf = await sharp(imgPath)
-      .resize(100, 52, { fit: "cover", position: "attention" })
-      .jpeg({ quality: 30 })
+      .resize(400, 210, { fit: "cover", position: "attention" })
+      .jpeg({ quality: 60 })
       .toBuffer();
     return "data:image/jpeg;base64," + buf.toString("base64");
   });
