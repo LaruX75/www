@@ -1,0 +1,39 @@
+name: Generate OG Images
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: og-images
+  cancel-in-progress: true
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "npm"
+      - run: npm ci
+      - name: Restore OG image cache
+        uses: actions/cache@v4
+        with:
+          path: og-cache
+          key: og-cache-${{ runner.os }}-${{ github.sha }}
+          restore-keys: |
+            og-cache-${{ runner.os }}-
+      - name: Generate OG images
+        run: npm run build
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE }}

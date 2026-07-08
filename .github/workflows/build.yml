@@ -13,7 +13,7 @@ permissions:
   id-token: write
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -60,26 +60,6 @@ jobs:
       - uses: actions/upload-pages-artifact@v5
         with:
           path: "_site"
-  og:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "24"
-          cache: "npm"
-      - run: npm ci
-      - name: Restore OG image cache
-        uses: actions/cache@v4
-        with:
-          path: og-cache
-          key: og-cache-${{ runner.os }}-${{ hashFiles('src/og-image.og.njk', '.eleventy.js') }}
-          restore-keys: |
-            og-cache-${{ runner.os }}-
-      - name: Build with OG image generation
-        run: npm run build
-        env:
-          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE }}
   deploy:
     needs: build
     runs-on: ubuntu-latest
