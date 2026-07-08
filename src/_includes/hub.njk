@@ -1,0 +1,168 @@
+---
+layout: base.njk
+---
+{%- set _lang = lang or "fi" -%}
+{%- set hubData = hubs[_lang][hubKey] -%}
+
+{# ── HERO ─────────────────────────────────────────────────────────────────── #}
+<section class="hub-hero mb-0" aria-labelledby="hub-page-title">
+  <div class="container py-5">
+    <div class="row g-4 align-items-center">
+      <div class="col-lg-8">
+        {% if eyebrow %}
+        <p class="hub-eyebrow mb-2"><i class="{{ eyebrowIcon or 'bi bi-grid' }} me-1"></i>{{ eyebrow }}</p>
+        {% endif %}
+        <h1 class="display-5 fw-bold mb-2" id="hub-page-title">{{ title }}</h1>
+        {% if subtitle %}
+        <p class="hub-hero-lead fw-semibold mb-2">{{ subtitle }}</p>
+        {% endif %}
+        {% if hubData %}
+        <p class="hub-hero-lead mb-4">{{ hubData.ingress }}</p>
+        {% endif %}
+        {% if heroButtons %}
+        <div class="d-flex flex-wrap gap-2">
+          {% for btn in heroButtons %}
+          <a href="{{ btn.href }}" class="btn {{ btn.style }}">{{ btn.label }}</a>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+<div class="hub-hero-divider"></div>
+
+{# ── PAGE-SPECIFIC CONTENT ─────────────────────────────────────────────────── #}
+{{ content | safe }}
+
+{# ── HUB NAVIGATION GROUPS ────────────────────────────────────────────────── #}
+{% if hubData and hubData.groups %}
+<section class="py-5" id="hub-nav" aria-labelledby="hub-nav-heading">
+  <div class="container">
+    <p class="hub-eyebrow hub-eyebrow--dark mb-1"><i class="bi bi-grid-3x3-gap me-1"></i>{{ "Content areas" if _lang == "en" else "Sisältöalueet" }}</p>
+    <p class="h4 mb-4" id="hub-nav-heading">{{ "Explore further" if _lang == "en" else "Tutustu tarkemmin" }}</p>
+    {% for group in hubData.groups %}
+    <div class="mb-5" id="hub-group-{{ group.heading | lower | replace(' ', '-') | replace('(', '') | replace(')', '') | replace(':', '') | replace('&', '') | truncate(30, true, '') }}">
+      <h2 class="h5 mb-3 pb-2 border-bottom">{{ group.heading }}</h2>
+      <div class="row g-3">
+        {% for link in group.links %}
+        <div class="col-sm-6 col-lg-4">
+          <a href="{{ link.href }}" class="text-decoration-none"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %} aria-label="{{ link.title }}{% if link.external %} ({{ 'opens in new tab' if _lang == 'en' else 'avautuu uuteen välilehteen' }}){% endif %}">
+            <article class="hub-link-card h-100">
+              <div class="hub-link-icon"><i class="{{ link.icon }}"></i></div>
+              <h3 class="h6 mb-1">{{ link.title }}{% if link.external %}&nbsp;<i class="bi bi-box-arrow-up-right small opacity-50" aria-hidden="true"></i>{% endif %}</h3>
+              <p class="small text-muted mb-0">{{ link.description }}</p>
+            </article>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{# ── CTA STRIP ────────────────────────────────────────────────────────────── #}
+{% if hubData and hubData.cta %}
+<section class="py-4 bg-body-tertiary border-top">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+      <div>
+        <strong class="d-block">{{ hubData.cta.title }}</strong>
+        <span class="text-muted small">{{ hubData.cta.description }}</span>
+      </div>
+      <a href="{{ hubData.cta.href }}" class="btn btn-primary">{{ hubData.cta.label }}</a>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<style>
+  /* ── Hero ── */
+  .hub-hero {
+    background: #1c3050;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  html:not([data-bs-theme="dark"]) .hub-hero {
+    background: linear-gradient(135deg, #e8f1fb 0%, #d8eaf8 100%);
+    color: #0f2238;
+  }
+  .hub-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      -55deg, transparent, transparent 48px,
+      rgba(255,255,255,0.018) 48px, rgba(255,255,255,0.018) 96px
+    );
+    pointer-events: none;
+  }
+  html:not([data-bs-theme="dark"]) .hub-hero::after {
+    background: repeating-linear-gradient(
+      -55deg, transparent, transparent 48px,
+      rgba(13,110,253,0.04) 48px, rgba(13,110,253,0.04) 96px
+    );
+  }
+  .hub-hero-divider {
+    height: 4px;
+    background: linear-gradient(90deg, #198754 0%, #0d6efd 50%, #fd7e14 100%);
+  }
+  .hub-hero-lead { color: rgba(255,255,255,0.75); }
+  html:not([data-bs-theme="dark"]) .hub-hero-lead { color: rgba(15, 34, 56, 0.7); }
+  [data-bs-theme="dark"] .hub-hero { background: #0e1d30; }
+
+  /* ── Eyebrow ── */
+  .hub-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: rgba(255,255,255,0.5);
+  }
+  html:not([data-bs-theme="dark"]) .hub-eyebrow { color: rgba(15, 34, 56, 0.6); }
+  .hub-eyebrow--dark { color: var(--bs-secondary-color); }
+
+  /* ── Outline button variant for hero (light on dark, dark on light) ── */
+  .hub-btn-outline {
+    border-color: rgba(255,255,255,0.5);
+    color: #fff;
+    background: transparent;
+  }
+  .hub-btn-outline:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.8); color: #fff; }
+  html:not([data-bs-theme="dark"]) .hub-btn-outline {
+    color: #0d2540;
+    border-color: rgba(15,34,56,0.35);
+    background: transparent;
+  }
+  html:not([data-bs-theme="dark"]) .hub-btn-outline:hover {
+    background: rgba(15,34,56,0.08);
+    border-color: rgba(15,34,56,0.55);
+    color: #0d2540;
+  }
+
+  /* ── Hub link cards ── */
+  .hub-link-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--bs-border-color);
+    background: var(--bs-body-bg);
+    transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+    color: var(--bs-body-color);
+  }
+  a:hover .hub-link-card {
+    border-color: var(--bs-primary);
+    box-shadow: 0 0.25rem 0.75rem rgba(13,110,253,.12);
+    transform: translateY(-2px);
+  }
+  .hub-link-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--bs-primary);
+    line-height: 1;
+  }
+</style>
