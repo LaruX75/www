@@ -284,14 +284,11 @@ module.exports = {
               description: "Henkilökuva, elämä ja harrastukset."
             },
             {
-              title: "Ansioluettelo | Opetusportfolio",
+              title: "Ansioluettelo",
+              href: "/cv/",
               icon: "bi bi-file-earmark-person me-2",
               menuLink: true,
-              description: "Koulutus, kokemus ja pedagoginen ajattelu yhdessä.",
-              inlineLinks: [
-                { title: "Ansioluettelo", href: "/cv/" },
-                { title: "Opetusportfolio", href: "/portfolio/" }
-              ]
+              description: "Koulutus, kokemus ja keskeiset akateemiset meriitit."
             },
             {
               title: "Palkinnot",
@@ -331,12 +328,6 @@ module.exports = {
           heading: "Roolini",
           links: [
             {
-              title: "Yliopistonlehtori",
-              href: "/tyoni-yliopistonlehtorina/",
-              icon: "bi bi-mortarboard me-2",
-              description: "Opetus, tutkimus ja ohjaus yliopiston arjessa."
-            },
-            {
               title: "Poliitikko",
               href: "/politiikka/",
               icon: "bi bi-bank2 me-2",
@@ -375,14 +366,11 @@ module.exports = {
               description: "Biography, life and hobbies."
             },
             {
-              title: "Curriculum Vitae | Teaching Portfolio",
+              title: "Curriculum Vitae",
+              href: "/en/cv/",
               icon: "bi bi-file-earmark-person me-2",
               menuLink: true,
-              description: "Education, skills, and pedagogical profile in one place.",
-              inlineLinks: [
-                { title: "Curriculum Vitae", href: "/en/cv/" },
-                { title: "Teaching Portfolio", href: "/en/portfolio/" }
-              ]
+              description: "Education, experience, and key academic merits."
             },
             {
               title: "Awards",
@@ -421,12 +409,6 @@ module.exports = {
         {
           heading: "My Roles",
           links: [
-            {
-              title: "University Lecturer",
-              href: "/en/work/",
-              icon: "bi bi-mortarboard me-2",
-              description: "Teaching, research, and supervision in university work."
-            },
             {
               title: "Politician",
               href: "/en/politics/",
@@ -666,12 +648,6 @@ module.exports = {
         },
         {
           links: [
-            { title: "Esitykset", href: "/esitykset/", icon: "bi bi-easel2 me-2", countKey: "presentations", description: "Koulutus- ja konferenssiesityksiä tekoälystä, oppimisesta ja pedagogiikasta." },
-            { title: "Julkaisuluettelo", href: "/julkaisut/", icon: "bi bi-journal-text me-2", countKey: "publications", description: "Tieteelliset julkaisut, artikkelit ja muut kirjoitukset yhdessä näkymässä." }
-          ]
-        },
-        {
-          links: [
             { title: "Kolumnit", href: "/kynasta/#kolumnit", icon: "bi bi-journal-richtext me-2", countKey: "pub_kolumni", description: "Taustoittavia näkökulmatekstejä yhteiskunnasta ja koulutuksesta." },
             { title: "Mielipiteet", href: "/kynasta/#mielipiteet", icon: "bi bi-chat-text me-2", countKey: "pub_mielipide", description: "Lehdissä julkaistuja kannanottoja paikallisista ja valtakunnallisista aiheista." },
             { title: "Puheet", href: "/kynasta/#puheet", icon: "bi bi-mic me-2", countKey: "pub_puhe", description: "Valtuustossa ja tapahtumissa pidettyjä puheenvuoroja." }
@@ -706,8 +682,6 @@ module.exports = {
         },
         {
           links: [
-            { title: "Presentations", href: "/en/presentations/", icon: "bi bi-easel2 me-2", countKey: "presentations", description: "Talks and training decks on AI, learning, and pedagogy." },
-            { title: "Publication List", href: "/en/publications/", icon: "bi bi-journal-text me-2", countKey: "publications", description: "Scientific publications, reports, and broader written outputs." },
             { title: "Speeches", href: "/en/writings/#puheet", icon: "bi bi-mic me-2", countKey: "pub_puhe", description: "Public speeches and council statements in one archive." }
           ]
         }
@@ -736,20 +710,10 @@ module.exports = {
               description: "Kurssit, opetusvastuut ja pedagoginen kehitystyö."
             },
             {
-              title: "Ansioluettelo | Opetusportfolio",
-              icon: "bi bi-file-earmark-person me-2",
-              menuLink: true,
-              description: "Koulutus, kokemus ja pedagoginen ajattelu yhdessä.",
-              inlineLinks: [
-                { title: "Ansioluettelo", href: "/cv/" },
-                { title: "Opetusportfolio", href: "/portfolio/" }
-              ]
-            },
-            {
-              title: "Esitykset",
-              href: "/esitykset/",
-              icon: "bi bi-easel2 me-2",
-              description: "Koulutus- ja konferenssiesityksiä eri teemoista."
+              title: "Opetusportfolio",
+              href: "/portfolio/",
+              icon: "bi bi-folder me-2",
+              description: "Pedagoginen ajattelu, opetusosaaminen ja opetustyön kehittäminen."
             },
             {
               title: "Opinnäytetyöt",
@@ -762,18 +726,6 @@ module.exports = {
         {
           heading: "Tutkimus",
           links: [
-            {
-              title: "Työni yliopistonlehtorina",
-              href: "/tyoni-yliopistonlehtorina/",
-              icon: "bi bi-briefcase me-2",
-              description: "Tutkimusaiheet, opetus ja hankkeiden käytännön toteutus."
-            },
-            {
-              title: "Ansioluettelo",
-              href: "/cv/",
-              icon: "bi bi-file-earmark-person me-2",
-              description: "Yhteenveto akateemisesta urasta, meriiteistä ja tehtävistä."
-            },
             {
               title: "Julkaisuluettelo",
               href: "/julkaisut/",
@@ -861,20 +813,10 @@ module.exports = {
               description: "Courses, teaching responsibilities, and pedagogical development."
             },
             {
-              title: "CV | Teaching Portfolio",
-              icon: "bi bi-file-earmark-person me-2",
-              menuLink: true,
-              description: "Education, experience, and pedagogical thinking in one place.",
-              inlineLinks: [
-                { title: "Curriculum Vitae", href: "/en/cv/" },
-                { title: "Teaching Portfolio", href: "/en/portfolio/" }
-              ]
-            },
-            {
-              title: "Presentations",
-              href: "/en/presentations/",
-              icon: "bi bi-easel2 me-2",
-              description: "Training and conference presentations across core topics."
+              title: "Teaching Portfolio",
+              href: "/en/portfolio/",
+              icon: "bi bi-folder me-2",
+              description: "Pedagogical approach, teaching expertise, and development work."
             },
             {
               title: "Theses",
@@ -887,18 +829,6 @@ module.exports = {
         {
           heading: "Research",
           links: [
-            {
-              title: "My Work as a University Lecturer",
-              href: "/en/work/",
-              icon: "bi bi-briefcase me-2",
-              description: "Research themes, teaching, and project implementation."
-            },
-            {
-              title: "Curriculum Vitae",
-              href: "/en/cv/",
-              icon: "bi bi-file-earmark-person me-2",
-              description: "Academic profile, key roles, and professional merits."
-            },
             {
               title: "Publication List",
               href: "/en/publications/",
@@ -1016,7 +946,6 @@ module.exports = {
           heading: "Pikalinkit",
           links: [
             { title: "Larux tmi", href: "/larux-tmi/", icon: "bi bi-briefcase me-2", description: "Palvelut, tausta ja yhteistyömahdollisuudet yrityksen kautta." },
-            { title: "Esitykset", href: "/esitykset/", icon: "bi bi-easel2 me-2", description: "Näytteitä koulutuksista, keynoteista ja luentomateriaaleista." },
             { title: "Politiikka", href: "/politiikka/", icon: "bi bi-megaphone me-2", description: "Luottamustehtävät, tavoitteet ja vaikuttamisen painopisteet." },
             { title: "Tietosuojaseloste", href: "/tietosuojaseloste/", icon: "bi bi-shield-check me-2", description: "Tietosuojaan ja henkilötietojen käsittelyyn liittyvät periaatteet." }
           ]
@@ -1064,7 +993,6 @@ module.exports = {
           heading: "Quick links",
           links: [
             { title: "Company", href: "/en/company/", icon: "bi bi-briefcase me-2", description: "Services, focus areas, and collaboration options through Larux." },
-            { title: "Presentations", href: "/en/presentations/", icon: "bi bi-easel2 me-2", description: "Selected slides and talk examples from events and training." },
             { title: "Politics", href: "/en/politics/", icon: "bi bi-megaphone me-2", description: "Positions of trust, priorities, and policy themes." },
             { title: "Privacy", href: "/en/privacy/", icon: "bi bi-shield-check me-2", description: "How personal data is handled on this website." }
           ]
