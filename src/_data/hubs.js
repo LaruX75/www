@@ -7,7 +7,6 @@ module.exports = {
           heading: "Opetus",
           links: [
             { title: "Työni yliopistonlehtorina", href: "/tyoni-yliopistonlehtorina/", icon: "bi bi-mortarboard", description: "Kurssit, opetusvastuut ja pedagoginen kehitystyö Oulun yliopistossa." },
-            { title: "Ansioluettelo", href: "/cv/", icon: "bi bi-file-earmark-person", description: "Yhteenveto akateemisesta urasta, meriiteistä ja tehtävistä." },
             { title: "Opetusportfolio", href: "/portfolio/", icon: "bi bi-collection", description: "Pedagoginen filosofia ja koulutuksen kehittyminen vuosien varrella." },
             { title: "Esitykset", href: "/esitykset/", icon: "bi bi-easel2", description: "Koulutus- ja konferenssiesityksiä tekoälystä, oppimisesta ja pedagogiikasta." },
             { title: "Ohjatut opinnäytteet", href: "/opinnaytteet/", icon: "bi bi-mortarboard-fill", description: "Ohjatut kandidaatti- ja pro gradu -tutkielmat aiheittain ja vuosittain." }
@@ -17,6 +16,7 @@ module.exports = {
           heading: "Tutkimus",
           links: [
             { title: "Tutkimussivulle", href: "/tutkimus/", icon: "bi bi-graph-up-arrow", description: "Tutkimushankkeet, tieteelliset profiilit ja yhteenveto tutkimusurastani." },
+            { title: "Ansioluettelo", href: "/cv/", icon: "bi bi-file-earmark-person", description: "Yhteenveto akateemisesta urasta, meriiteistä ja tehtävistä." },
             { title: "Julkaisuluettelo", href: "/julkaisut/", icon: "bi bi-journal-text", description: "Kaikki tieteelliset julkaisut, kirjoitukset ja muut tekstisisällöt." }
           ]
         },
@@ -120,7 +120,6 @@ module.exports = {
           heading: "Teaching",
           links: [
             { title: "My Work as a University Lecturer", href: "/en/work/", icon: "bi bi-mortarboard", description: "Courses, teaching responsibilities, and pedagogical development at the University of Oulu." },
-            { title: "Curriculum Vitae", href: "/en/cv/", icon: "bi bi-file-earmark-person", description: "Academic profile, key roles, and professional merits." },
             { title: "Teaching Portfolio", href: "/en/portfolio/", icon: "bi bi-collection", description: "Educational philosophy and pedagogical development over the years." },
             { title: "Presentations", href: "/en/presentations/", icon: "bi bi-easel2", description: "Training and conference presentations on AI, learning, and pedagogy." },
             { title: "Supervised Theses", href: "/en/theses/", icon: "bi bi-mortarboard-fill", description: "Bachelor's and master's theses supervised by me, listed by topic and year." }
@@ -129,6 +128,7 @@ module.exports = {
         {
           heading: "Research",
           links: [
+            { title: "Curriculum Vitae", href: "/en/cv/", icon: "bi bi-file-earmark-person", description: "Academic profile, key roles, and professional merits." },
             { title: "Publication List", href: "/en/publications/", icon: "bi bi-journal-text", description: "Scientific publications, essays, and related outputs in one view." }
           ]
         },
