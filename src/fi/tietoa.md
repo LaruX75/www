@@ -172,7 +172,58 @@ wp_id: 7
   </div>
 </section>
 
+<!-- AIHEALUEET -->
+<section class="py-5 bg-body-tertiary border-top" id="aihealueet" aria-labelledby="aihealueet-heading">
+  <div class="container">
+    <p class="text-uppercase text-muted fw-semibold small mb-1"><i class="bi bi-grid-3x3-gap me-1"></i>Aihealueet</p>
+    <h2 class="h4 fw-bold mb-1" id="aihealueet-heading">Tutustu tarkemmin</h2>
+    <p class="text-muted mb-4">Navigoi aiheittain — työ, politiikka ja kirjoitukset.</p>
+    <div class="row g-4">
+      <div class="col-sm-6 col-lg-3">
+        <a href="/tyoni-yliopistonlehtorina/" class="card h-100 border-0 shadow-sm text-decoration-none hub-nav-card">
+          <div class="card-body p-4">
+            <div class="mb-2 fs-3 text-primary"><i class="bi bi-briefcase-fill"></i></div>
+            <h3 class="h5 fw-bold">Työ</h3>
+            <p class="text-muted small mb-0">Opetus, tutkimus ja asiantuntijakoulutus yliopistonlehtorina.</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <a href="/politiikka/" class="card h-100 border-0 shadow-sm text-decoration-none hub-nav-card">
+          <div class="card-body p-4">
+            <div class="mb-2 fs-3" style="color:#dc3545"><i class="bi bi-bank2"></i></div>
+            <h3 class="h5 fw-bold">Politiikka</h3>
+            <p class="text-muted small mb-0">Kaupunginvaltuutettu, aloitteet ja vaikuttaminen Oulussa.</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <a href="/kynasta/" class="card h-100 border-0 shadow-sm text-decoration-none hub-nav-card">
+          <div class="card-body p-4">
+            <div class="mb-2 fs-3 text-success"><i class="bi bi-pencil-fill"></i></div>
+            <h3 class="h5 fw-bold">Kynästä</h3>
+            <p class="text-muted small mb-0">Blogi, julkaisut, esitykset ja mielipidekirjoitukset.</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <a href="/yhteystiedot/" class="card h-100 border-0 shadow-sm text-decoration-none hub-nav-card">
+          <div class="card-body p-4">
+            <div class="mb-2 fs-3 text-warning"><i class="bi bi-envelope-fill"></i></div>
+            <h3 class="h5 fw-bold">Ota yhteyttä</h3>
+            <p class="text-muted small mb-0">Yhteistyötä, haastattelupyyntöjä tai muuta yhteydenottoa.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <style>
+/* Aihealueet-navigaatiokortit */
+.hub-nav-card { transition: transform 0.15s ease, box-shadow 0.15s ease; }
+.hub-nav-card:hover { transform: translateY(-3px); box-shadow: 0 .5rem 1.2rem rgba(0,0,0,.13) !important; }
+
 /* Rooli-kuvat – tasainen korkeus */
 .rooli-kuva {
   height: 200px;

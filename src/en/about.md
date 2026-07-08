@@ -355,7 +355,58 @@ lang: en
   </div>
 </section>
 
+<!-- CONTENT AREAS -->
+<section class="py-5 bg-body-tertiary border-top" id="content-areas" aria-labelledby="content-areas-heading">
+  <div class="container">
+    <p class="text-uppercase text-muted fw-semibold small mb-1"><i class="bi bi-grid-3x3-gap me-1"></i>Content areas</p>
+    <h2 class="h4 fw-bold mb-1" id="content-areas-heading">Explore further</h2>
+    <p class="text-muted mb-4">Navigate by topic — work, politics and writings.</p>
+    <div class="row g-4">
+      <div class="col-sm-6 col-lg-3">
+        <a href="/en/work/" class="card h-100 border-0 shadow-sm text-decoration-none hub-nav-card">
+          <div class="card-body p-4">
+            <div class="mb-2 fs-3 text-primary"><i class="bi bi-briefcase-fill"></i></div>
+            <h3 class="h5 fw-bold">Work</h3>
+            <p class="text-muted small mb-0">Teaching, research and professional training as a university lecturer.</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <a href="/en/politics/" class="card h-100 border-0 shadow-sm text-decoration-none hub-nav-card">
+          <div class="card-body p-4">
+            <div class="mb-2 fs-3" style="color:#dc3545"><i class="bi bi-bank2"></i></div>
+            <h3 class="h5 fw-bold">Politics</h3>
+            <p class="text-muted small mb-0">City council member, motions and civic influence in Oulu.</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <a href="/en/writings/" class="card h-100 border-0 shadow-sm text-decoration-none hub-nav-card">
+          <div class="card-body p-4">
+            <div class="mb-2 fs-3 text-success"><i class="bi bi-pencil-fill"></i></div>
+            <h3 class="h5 fw-bold">Writings</h3>
+            <p class="text-muted small mb-0">Blog, publications, presentations and opinion pieces.</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <a href="/en/contact/" class="card h-100 border-0 shadow-sm text-decoration-none hub-nav-card">
+          <div class="card-body p-4">
+            <div class="mb-2 fs-3 text-warning"><i class="bi bi-envelope-fill"></i></div>
+            <h3 class="h5 fw-bold">Contact</h3>
+            <p class="text-muted small mb-0">Collaboration, interview requests, or other enquiries.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <style>
+/* Hub navigation cards */
+.hub-nav-card { transition: transform 0.15s ease, box-shadow 0.15s ease; }
+.hub-nav-card:hover { transform: translateY(-3px); box-shadow: 0 .5rem 1.2rem rgba(0,0,0,.13) !important; }
+
 .rooli-kuva {
   height: 200px;
   object-fit: cover;
