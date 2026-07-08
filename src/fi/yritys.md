@@ -153,45 +153,9 @@ lang: fi
   </div>
 </section>
 
-<section class="py-5 bg-body-tertiary border-top border-bottom">
-  <div class="container">
-    <h2 class="text-center mb-4">Palautetta</h2>
-    <div class="row g-4">
-      <div class="col-md-6">
-        <article class="card h-100 shadow-sm border-0">
-          <div class="card-body">
-            <h3 class="h6 text-uppercase text-muted">Tekoäly-koulutus, henkilöstötilaisuus</h3>
-            <p class="mb-0 fst-italic">"Ihan fiiliksissä vieläkin setistäsi. Yhteyden katkeaminen ei latistanut, vaan porukka alkoi heti reflektoida kuultua."</p>
-          </div>
-        </article>
-      </div>
-      <div class="col-md-6">
-        <article class="card h-100 shadow-sm border-0">
-          <div class="card-body">
-            <h3 class="h6 text-uppercase text-muted">Valtion täydennyskoulutus, järjestäjä</h3>
-            <p class="mb-0 fst-italic">"Saimme aivan huikean hyvät arvioinnit. Kokonaiskeskiarvo 4,2 / 5 oli erinomainen."</p>
-          </div>
-        </article>
-      </div>
-      <div class="col-md-6">
-        <article class="card h-100 shadow-sm border-0">
-          <div class="card-body">
-            <h3 class="h6 text-uppercase text-muted">Osallistujapalaute, OPH-koulutus</h3>
-            <p class="mb-0 fst-italic">"Oikein mielenkiintoista ja opettajan työhön todella tarpeellista ja käytännönläheistä tietoa."</p>
-          </div>
-        </article>
-      </div>
-      <div class="col-md-6">
-        <article class="card h-100 shadow-sm border-0">
-          <div class="card-body">
-            <h3 class="h6 text-uppercase text-muted">Maksullinen seminaari, järjestäjä</h3>
-            <p class="mb-0 fst-italic">"Palaute kyselyn perusteella olit osallistujien mielestä päivän paras puhuja."</p>
-          </div>
-        </article>
-      </div>
-    </div>
-  </div>
-</section>
+{% set testimonialLang = "fi" %}
+{% set testimonialPlacement = "company" %}
+{% include "testimonials.njk" %}
 
 <section class="py-5">
   <div class="container">

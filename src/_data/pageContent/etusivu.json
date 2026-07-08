@@ -125,19 +125,6 @@
       }
     }
   },
-  "testimonials": {
-    "sectionLabel": "Palautetta koulutuksista",
-    "quotes": [
-      {
-        "text": "Ihan fiiliksissä vieläkin setistäsi. Yhteyden katkeaminen ei latistanut, vaan porukka alkoi heti reflektoida kuultua.",
-        "footer": "Henkilöstökoulutus"
-      },
-      {
-        "text": "Palaute kyselyn perusteella olit osallistujien mielestä päivän paras puhuja.",
-        "footer": "Maksullinen seminaari"
-      }
-    ]
-  },
   "closing": {
     "heading": "Tarvitsetko kouluttajan, puhujan tai tutkimukseen nojaavan asiantuntijan?",
     "text": "Sivulla esitellyt teemat jatkuvat käytännön yhteistyössä: koulutuksina, puheenvuoroina, hanketukena ja kehittämistyön sparrauksena.",

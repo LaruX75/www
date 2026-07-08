@@ -153,45 +153,9 @@ lang: en
   </div>
 </section>
 
-<section class="py-5 bg-body-tertiary border-top border-bottom">
-  <div class="container">
-    <h2 class="text-center mb-4">Feedback</h2>
-    <div class="row g-4">
-      <div class="col-md-6">
-        <article class="card h-100 shadow-sm border-0">
-          <div class="card-body">
-            <h3 class="h6 text-uppercase text-muted">AI training, staff event</h3>
-            <p class="mb-0 fst-italic">"Still energized by your session. Even a technical interruption did not reduce impact — people immediately started reflecting on your points."</p>
-          </div>
-        </article>
-      </div>
-      <div class="col-md-6">
-        <article class="card h-100 shadow-sm border-0">
-          <div class="card-body">
-            <h3 class="h6 text-uppercase text-muted">Public sector continuing education, organizer</h3>
-            <p class="mb-0 fst-italic">"We received excellent evaluations. The overall average of 4.2/5 was outstanding."</p>
-          </div>
-        </article>
-      </div>
-      <div class="col-md-6">
-        <article class="card h-100 shadow-sm border-0">
-          <div class="card-body">
-            <h3 class="h6 text-uppercase text-muted">Participant feedback, FNAE training</h3>
-            <p class="mb-0 fst-italic">"Very interesting and highly practical content that I can apply directly in my teaching work."</p>
-          </div>
-        </article>
-      </div>
-      <div class="col-md-6">
-        <article class="card h-100 shadow-sm border-0">
-          <div class="card-body">
-            <h3 class="h6 text-uppercase text-muted">Paid seminar, organizer</h3>
-            <p class="mb-0 fst-italic">"Based on participant responses, you were rated the best speaker of the day."</p>
-          </div>
-        </article>
-      </div>
-    </div>
-  </div>
-</section>
+{% set testimonialLang = "en" %}
+{% set testimonialPlacement = "company" %}
+{% include "testimonials.njk" %}
 
 <section class="py-5">
   <div class="container">

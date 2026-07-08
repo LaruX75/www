@@ -1,0 +1,86 @@
+{
+  "locales": {
+    "fi": {
+      "homeHeading": "Mitä osallistujat sanovat",
+      "companyHeading": "Palautetta koulutuksista ja puheenvuoroista",
+      "ctaLabel": "Katso lisää palautteita",
+      "ctaHref": "/larux-tmi/#palautteet"
+    },
+    "en": {
+      "homeHeading": "What participants say",
+      "companyHeading": "Feedback on training and talks",
+      "ctaLabel": "Read more feedback",
+      "ctaHref": "/en/company/#testimonials"
+    }
+  },
+  "items": [
+    {
+      "id": "ai-staff-event",
+      "category": "training",
+      "placements": ["home", "company"],
+      "source": "existing-site-copy",
+      "publicationStatus": "already-published",
+      "content": {
+        "fi": {
+          "quote": "Ihan fiiliksissä vieläkin setistäsi. Yhteyden katkeaminen ei latistanut, vaan porukka alkoi heti reflektoida kuultua.",
+          "attribution": "Tekoälykoulutus, henkilöstötilaisuus"
+        },
+        "en": {
+          "quote": "Still energized by your session. Even a technical interruption did not reduce its impact — people immediately started reflecting on your points.",
+          "attribution": "AI training, staff event"
+        }
+      }
+    },
+    {
+      "id": "continuing-education-rating",
+      "category": "training",
+      "placements": ["company"],
+      "source": "existing-site-copy",
+      "publicationStatus": "already-published",
+      "content": {
+        "fi": {
+          "quote": "Saimme aivan huikean hyvät arvioinnit. Kokonaiskeskiarvo 4,2 / 5 oli erinomainen.",
+          "attribution": "Valtion täydennyskoulutus, järjestäjä"
+        },
+        "en": {
+          "quote": "We received excellent evaluations. The overall average of 4.2/5 was outstanding.",
+          "attribution": "Public-sector continuing education, organizer"
+        }
+      }
+    },
+    {
+      "id": "fnae-participant",
+      "category": "training",
+      "placements": ["home", "company"],
+      "source": "existing-site-copy",
+      "publicationStatus": "already-published",
+      "content": {
+        "fi": {
+          "quote": "Oikein mielenkiintoista ja opettajan työhön todella tarpeellista ja käytännönläheistä tietoa.",
+          "attribution": "OPH-koulutuksen osallistuja"
+        },
+        "en": {
+          "quote": "Very interesting and highly practical content that I can apply directly in my teaching work.",
+          "attribution": "FNAE training participant"
+        }
+      }
+    },
+    {
+      "id": "seminar-best-speaker",
+      "category": "speaking",
+      "placements": ["home", "company"],
+      "source": "existing-site-copy",
+      "publicationStatus": "already-published",
+      "content": {
+        "fi": {
+          "quote": "Palautekyselyn perusteella olit osallistujien mielestä päivän paras puhuja.",
+          "attribution": "Maksullinen seminaari, järjestäjä"
+        },
+        "en": {
+          "quote": "Based on participant responses, you were rated the best speaker of the day.",
+          "attribution": "Paid seminar, organizer"
+        }
+      }
+    }
+  ]
+}

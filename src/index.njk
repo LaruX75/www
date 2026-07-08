@@ -257,21 +257,9 @@ translationKey: home
     </div>
 </section>
 
-<section class="py-5 bg-body-tertiary home-testimonials-section">
-    <div class="container">
-        <p class="text-uppercase fw-bold text-center mb-4 home-testimonials-label">{{ pageContent.etusivu.testimonials.sectionLabel }}</p>
-        <div class="row g-4 justify-content-center">
-            {% for q in pageContent.etusivu.testimonials.quotes %}
-            <div class="col-md-5">
-                <blockquote class="home-quote">
-                    <p>"{{ q.text }}"</p>
-                    <footer class="home-quote-footer">{{ q.footer }}</footer>
-                </blockquote>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
+{% set testimonialLang = "fi" %}
+{% set testimonialPlacement = "home" %}
+{% include "testimonials.njk" %}
 
 {# ── Viimeisin sisältö -ticker ─────────────────────────────────────────── #}
 

@@ -259,25 +259,9 @@ description: University lecturer, researcher, municipal politician, and speaker.
     </div>
 </section>
 
-<section class="py-5 bg-body-tertiary home-testimonials-section">
-    <div class="container">
-        <p class="text-uppercase fw-bold text-center mb-4 home-testimonials-label">What people say</p>
-        <div class="row g-4 justify-content-center">
-            <div class="col-md-5">
-                <blockquote class="home-quote">
-                    <p>"Jari's training on AI in education was both practically useful and thought-provoking. Exactly what our staff needed."</p>
-                    <footer class="home-quote-footer">Training participant, Finnish school</footer>
-                </blockquote>
-            </div>
-            <div class="col-md-5">
-                <blockquote class="home-quote">
-                    <p>"A rare combination of deep research knowledge and the ability to make it accessible and actionable for practitioners."</p>
-                    <footer class="home-quote-footer">Conference attendee</footer>
-                </blockquote>
-            </div>
-        </div>
-    </div>
-</section>
+{% set testimonialLang = "en" %}
+{% set testimonialPlacement = "home" %}
+{% include "testimonials.njk" %}
 
 {# ── Recent content ticker ─────────────────────────────────────────── #}
 
