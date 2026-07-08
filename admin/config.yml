@@ -206,6 +206,83 @@ collections:
       - { label: "ID", name: "source_id", widget: "string" }
       - { label: "Piilotettu", name: "hidden", widget: "boolean", default: false }
 
+  - name: "testimonials"
+    label: "Palautteet"
+    files:
+      - file: "src/_data/testimonials.json"
+        label: "Testimonials-osiot"
+        name: "testimonials"
+        fields:
+          - name: "locales"
+            label: "Osioiden tekstit"
+            widget: "object"
+            collapsed: true
+            fields:
+              - name: "fi"
+                label: "Suomi"
+                widget: "object"
+                fields:
+                  - { label: "Etusivun otsikko", name: "homeHeading", widget: "string" }
+                  - { label: "Yrityssivun otsikko", name: "companyHeading", widget: "string" }
+                  - { label: "Etusivun linkin teksti", name: "ctaLabel", widget: "string" }
+                  - { label: "Etusivun linkin kohde", name: "ctaHref", widget: "string" }
+              - name: "en"
+                label: "English"
+                widget: "object"
+                fields:
+                  - { label: "Homepage heading", name: "homeHeading", widget: "string" }
+                  - { label: "Company page heading", name: "companyHeading", widget: "string" }
+                  - { label: "Homepage link text", name: "ctaLabel", widget: "string" }
+                  - { label: "Homepage link target", name: "ctaHref", widget: "string" }
+          - name: "items"
+            label: "Palautteet"
+            label_singular: "Palaute"
+            widget: "list"
+            summary: "{{fields.content.fi.attribution}} — {{fields.content.fi.quote}}"
+            minimize_collapsed: true
+            fields:
+              - { label: "Tunniste", name: "id", widget: "string", hint: "Yksilöllinen, muuttumaton tunniste, esimerkiksi oph-koulutus-2026." }
+              - label: "Kategoria"
+                name: "category"
+                widget: "select"
+                options:
+                  - { label: "Koulutus", value: "training" }
+                  - { label: "Puheenvuoro", value: "speaking" }
+                  - { label: "Opetus", value: "teaching" }
+              - label: "Näytetään sivuilla"
+                name: "placements"
+                widget: "select"
+                multiple: true
+                min: 1
+                options:
+                  - { label: "Etusivu", value: "home" }
+                  - { label: "Yrityssivu", value: "company" }
+                hint: "Etusivulla näytetään enintään kolme ensimmäistä etusivulle merkittyä palautetta."
+              - { label: "Sisäinen lähdemerkintä", name: "source", widget: "string", required: false, default: "manual-admin-entry" }
+              - label: "Julkaisulupa"
+                name: "publicationStatus"
+                widget: "select"
+                options:
+                  - { label: "Julkaisulupa varmistettu", value: "approved" }
+                  - { label: "Julkaistu sivustolla aiemmin", value: "already-published" }
+                hint: "Lisää vain palautteita, joiden julkaisemiseen on lupa tai jotka on jo julkaistu sivustolla."
+              - name: "content"
+                label: "Kieliversiot"
+                widget: "object"
+                fields:
+                  - name: "fi"
+                    label: "Suomi"
+                    widget: "object"
+                    fields:
+                      - { label: "Lainaus", name: "quote", widget: "text" }
+                      - { label: "Lähde näkyvällä sivulla", name: "attribution", widget: "string", hint: "Esimerkiksi OPH-koulutuksen osallistuja. Älä lisää henkilön nimeä ilman lupaa." }
+                  - name: "en"
+                    label: "English"
+                    widget: "object"
+                    fields:
+                      - { label: "Quote", name: "quote", widget: "text" }
+                      - { label: "Public attribution", name: "attribution", widget: "string" }
+
   - name: "site_data"
     label: "Sivuston data"
     files:
