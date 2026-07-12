@@ -22,10 +22,8 @@ on:
   workflow_dispatch:
 
 env:
-  # TODO (staging): replace if Codeberg username differs from 'larux'
-  CODEBERG_ACTOR: larux
-  # TODO (staging): replace if repo name differs from 'www'
-  CODEBERG_REPO: larux/www
+  CODEBERG_ACTOR: LaruX
+  CODEBERG_REPO: LaruX/www
 
 jobs:
   build:

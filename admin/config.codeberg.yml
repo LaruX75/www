@@ -18,7 +18,7 @@
 
 backend:
   name: gitea
-  repo: larux/www
+  repo: LaruX/www
   branch: main
   base_url: https://codeberg.org
   api_root: https://codeberg.org/api/v1
