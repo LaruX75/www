@@ -54,7 +54,9 @@ These licenses do NOT apply to third-party content referenced or embedded on the
   individual slides.
 - **Slideshare thumbnails** (`src/img/slideshare/`) are screenshots of older
   presentations. License status pending review.
-- **Uploaded images** (`src/img/uploads/`) include personal photographs and
+- **Uploaded images** (`src/img/uploads/2022/01/Untitled-design-*.png`) are Jari Laru's
+  own Canva designs without third-party stock elements — covered by site copyright.
+  Other uploaded images (`src/img/uploads/2021/03–04/`) include personal photographs and
   event photos. Some may be subject to photographer rights. Pending manual review.
 
 ---
