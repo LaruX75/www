@@ -27,7 +27,7 @@ env:
 
 jobs:
   build:
-    runs-on: codeberg-small
+    runs-on: codeberg-medium
     steps:
       - uses: actions/checkout@v4
 
@@ -89,7 +89,7 @@ jobs:
 
   smoke:
     needs: build
-    runs-on: codeberg-small
+    runs-on: codeberg-medium
     steps:
       - name: Verify production status codes
         # Tests the live custom domain — works whether hosted on GitHub or Codeberg.
