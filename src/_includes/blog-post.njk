@@ -56,6 +56,16 @@ layout: base.njk
               {% for key in keywords %}<a class="badge text-bg-light text-dark border me-1 text-decoration-none" href="{{ txt.kwBase }}{{ key | slugify }}/">{{ key }}</a>{% endfor %}
             </div>
           {% endif %}
+          {% if page.fileSlug in ncNdBlogPosts %}
+          <div class="alert alert-secondary mt-4 py-2 small mb-0" role="note">
+            <i class="bi bi-c-circle me-1" aria-hidden="true"></i>
+            {% if currentLang == "en" %}
+            This text is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer" class="alert-link">CC BY-NC-ND 4.0</a>. Non-commercial use only, no modifications.
+            {% else %}
+            Tämä kirjoitus on lisensoitu <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer" class="alert-link">CC BY-NC-ND 4.0</a> -lisenssillä — ei kaupalliseen käyttöön, ei muutoksia.
+            {% endif %}
+          </div>
+          {% endif %}
         </div>
         <div class="card-footer bg-white">
           <a href="{{ txt.backHref }}" class="btn btn-outline-primary">&larr; {{ txt.back }}</a>

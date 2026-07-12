@@ -5,9 +5,15 @@
       <div class="col-md-4 text-center text-md-start">
         <p class="mb-0 text-body-secondary small">
           {% if currentLang == "en" %}
-          &copy; {{ site.author }}. All rights reserved.
+          &copy; {{ site.author }} &mdash;
+          Content <a href="/en/license/" class="text-decoration-none text-body-secondary fw-semibold">CC BY 4.0</a>, unless noted.
+          Political writings CC BY-NC-ND 4.0.
+          Source code <a href="https://github.com/LaruX75/www/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="text-decoration-none text-body-secondary fw-semibold">MIT</a>.
           {% else %}
-          &copy; {{ site.author }}. Kaikki oikeudet pidätetään.
+          &copy; {{ site.author }} &mdash;
+          Sisältö <a href="/lisenssi/" class="text-decoration-none text-body-secondary fw-semibold">CC BY 4.0</a>, ellei toisin mainittu.
+          Poliittiset kirjoitukset CC BY-NC-ND 4.0.
+          Lähdekoodi <a href="https://github.com/LaruX75/www/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="text-decoration-none text-body-secondary fw-semibold">MIT</a>.
           {% endif %}
         </p>
         <div class="footer-social-links mt-1 d-inline-flex align-items-center gap-2" aria-label="{{ 'Social media links' if currentLang == 'en' else 'Sosiaalisen median linkit' }}">
