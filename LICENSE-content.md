@@ -57,8 +57,16 @@ These licenses do NOT apply to third-party content referenced or embedded on the
 - **Uploaded images** (`src/img/uploads/2022/01/Untitled-design-*.png`) are Canva title
   slide designs containing only Canva's own stock elements (no screenshots from
   third-party publications). Canva's Content License Agreement covers these elements.
-  Other uploaded images (`src/img/uploads/2021/03–04/`) include personal photographs and
-  event photos. Some may be subject to photographer rights. Pending manual review.
+  Other uploaded images (`src/img/uploads/2021/`) include:
+  - Personal and event photographs (own copyright).
+  - Three Pexels photos (`pexels-photo-1128558`, `pexels-photo-2867883`,
+    `pexels-photo-1036645`) used under the Pexels License (no attribution required;
+    attribution given for two of three). Compliant.
+  - Several files whose origin requires further review: Flickr-pattern filenames
+    (`3724278287_b57d757460_b.jpg`, `6246027151_f666304349_z-edited.jpg`,
+    `197296754_51c407c4b1_o.jpg`), a map (`kartta-1024x495.webp`), and retro
+    screenshots (`majorbbsdemo.jpg`, `ICEHURWE.gif`, `ekaskan-1.gif`, `ansiart.png`).
+    Pending manual review.
 
 ---
 
