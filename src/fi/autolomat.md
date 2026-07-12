@@ -125,7 +125,7 @@ description: "Jari Larun matkakertomukset – eurooppalaisia roadtripejä, kaupu
       <div class="col-sm-6 col-lg-4">
         <div class="card matkat-card shadow-sm h-100">
           <div class="matkat-card-img-wrap">
-            <img src="/img/uploads/2021/04/6246027151_f666304349_z-edited.jpg" alt="Kroatia" class="matkat-card-img">
+            <img src="/img/uploads/2021/04/pexels-rovinj-croatia-546942.jpg" alt="Kroatia — Rovinj (Photo by Pixabay on Pexels)" class="matkat-card-img">
             <span class="matkat-year-badge">2016</span>
             <span class="matkat-type-badge badge" style="background:rgba(255,126,0,0.9)">Roadtrip</span>
           </div>
@@ -159,7 +159,7 @@ description: "Jari Larun matkakertomukset – eurooppalaisia roadtripejä, kaupu
       <div class="col-sm-6 col-lg-4">
         <div class="card matkat-card shadow-sm h-100">
           <div class="matkat-card-img-wrap">
-            <img src="/img/uploads/2021/04/3724278287_b57d757460_b.jpg" alt="Krakova, Puola" class="matkat-card-img">
+            <img src="/img/uploads/2021/04/pexels-krakow-5827997.jpg" alt="Krakova, Puola (Photo by Yulia Polyakova on Pexels)" class="matkat-card-img">
             <span class="matkat-year-badge">2014</span>
             <span class="matkat-type-badge badge" style="background:rgba(255,126,0,0.9)">Roadtrip</span>
           </div>

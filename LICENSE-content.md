@@ -62,11 +62,13 @@ These licenses do NOT apply to third-party content referenced or embedded on the
   - Three Pexels photos (`pexels-photo-1128558`, `pexels-photo-2867883`,
     `pexels-photo-1036645`) used under the Pexels License (no attribution required;
     attribution given for two of three). Compliant.
-  - Several files whose origin requires further review: Flickr-pattern filenames
-    (`3724278287_b57d757460_b.jpg`, `6246027151_f666304349_z-edited.jpg`,
-    `197296754_51c407c4b1_o.jpg`), a map (`kartta-1024x495.webp`), and retro
-    screenshots (`majorbbsdemo.jpg`, `ICEHURWE.gif`, `ekaskan-1.gif`, `ansiart.png`).
-    Pending manual review.
+  - Two Flickr-pattern images (Croatia, Krakow) replaced with Pexels equivalents:
+    `pexels-rovinj-croatia-546942.jpg` (Pixabay on Pexels) and
+    `pexels-krakow-5827997.jpg` (Yulia Polyakova on Pexels). Pexels License applies.
+    Original files removed from active use.
+  - Remaining items requiring manual review: a map (`kartta-1024x495.webp`),
+    a Flickr-pattern image (`197296754_51c407c4b1_o.jpg`), and retro screenshots
+    (`majorbbsdemo.jpg`, `ICEHURWE.gif`, `ekaskan-1.gif`, `ansiart.png`).
 
 ---
 

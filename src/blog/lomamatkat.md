@@ -69,7 +69,7 @@ Kävimme myös Antibesissä ja Monacossa! Oli tämäkin upea reissu!
 
 Tulossa.
 
-![](/img/uploads/2021/04/6246027151_f666304349_z-edited.jpg)
+![Kroatia — Rovinj (Photo by Pixabay on Pexels)](/img/uploads/2021/04/pexels-rovinj-croatia-546942.jpg)
 
 ### Autoloma: Oulu-Kroatia-Oulu 2016
 
@@ -83,7 +83,7 @@ Tulossa.
 
 ## Vuodet 2014-2013
 
-![](/img/uploads/2021/04/3724278287_b57d757460_b.jpg)
+![Krakova, Puola (Photo by Yulia Polyakova on Pexels)](/img/uploads/2021/04/pexels-krakow-5827997.jpg)
 
 ### Autoloma: Oulu-Puola (Krakova)-Oulu 2014
 
