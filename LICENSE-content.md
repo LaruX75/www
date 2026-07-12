@@ -55,9 +55,13 @@ These licenses do NOT apply to third-party content referenced or embedded on the
 - **Slideshare thumbnails** (`src/img/slideshare/`) are screenshots of older
   presentations. License status pending review.
 - **Uploaded images** (`src/img/uploads/2022/01/Untitled-design-*.png`) are Canva designs
-  that may contain Canva stock elements and screenshots from external sources. Canva's
-  Content License Agreement covers the Canva-owned elements. Screenshots from
-  publications or third-party sources require separate review before redistribution.
+  that may contain Canva stock elements and screenshots from external sources (e.g.
+  publications, slides). Canva's Content License Agreement covers Canva-owned elements.
+  Screenshots were originally created for educational use. NOTE: Finnish copyright law
+  (TekijäL 14 §) permits use of works in teaching, but this exception applies to the
+  teaching context itself, not to unrestricted public web publication. Screenshots from
+  third-party publications on this public site require case-by-case review or should
+  be replaced with original images. Pending manual review.
   Other uploaded images (`src/img/uploads/2021/03–04/`) include personal photographs and
   event photos. Some may be subject to photographer rights. Pending manual review.
 
