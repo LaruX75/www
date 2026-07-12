@@ -1,0 +1,39 @@
+# .woodpecker.yml
+# Woodpecker CI pipeline for jarilaru.fi → Codeberg Pages
+# Activate this repo at https://ci.codeberg.org
+
+when:
+  - event: [push, manual, cron]
+    branch: main
+
+steps:
+  - name: build
+    image: node:24
+    environment:
+      DISABLE_OG_IMAGES: "true"
+      YOUTUBE_API_KEY:
+        from_secret: YOUTUBE
+    commands:
+      - npm ci
+      - npm audit --audit-level=high
+      - npm run build:no-og
+      - npm run check:i18n-seo
+      - npm run check:seo-health
+      - touch _site/.nojekyll
+
+  - name: deploy
+    image: alpine/git
+    environment:
+      CODEBERG_TOKEN:
+        from_secret: CODEBERG_PAGES_TOKEN
+    commands:
+      - cd _site
+      - git init -b pages
+      - git config user.name "Woodpecker CI"
+      - git config user.email "ci@noreply.codeberg.org"
+      - git add .
+      - git commit -m "deploy $(date -u +%Y-%m-%dT%H:%M:%SZ) [ci skip]"
+      - git push --force "https://LaruX:$CODEBERG_TOKEN@codeberg.org/LaruX/www.git" pages:pages
+    when:
+      - branch: main
+        event: [push, manual, cron]
