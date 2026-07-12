@@ -1,0 +1,127 @@
+# .forgejo/workflows/publish.yaml
+#
+# Codeberg Pages deployment workflow for jarilaru.fi.
+# Mirrors .github/workflows/build.yml — kept in sync manually.
+#
+# This file is INERT on GitHub (GitHub ignores .forgejo/).
+# It becomes active automatically when the repo is imported to Codeberg.
+#
+# BEFORE FIRST RUN on Codeberg, add two repository secrets:
+#   YOUTUBE          — same YouTube Data API key as on GitHub
+#   CODEBERG_PAGES_TOKEN — a Codeberg access token with write access to this repo
+#
+# No other changes needed; CODEBERG_REPO below already points to larux/www.
+
+name: Build and Deploy to Codeberg Pages
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "0 5 * * 1"
+  workflow_dispatch:
+
+env:
+  CODEBERG_ACTOR: LaruX
+  CODEBERG_REPO: LaruX/www
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Security audit
+        run: npm audit --audit-level=high
+
+      - name: Cache API fallback data
+        uses: actions/cache@v4
+        with:
+          path: .cache/api-fallback
+          key: api-fallback-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: |
+            api-fallback-${{ runner.os }}-
+
+      - name: Build site (Eleventy, no OG images)
+        run: npm run build:no-og
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE }}
+
+      - name: i18n / SEO check
+        run: npm run check:i18n-seo
+
+      - name: SEO health check
+        run: npm run check:seo-health
+
+      # Playwright accessibility tests are skipped here: Codeberg shared runners
+      # may lack the browser dependencies. Run locally or add browser setup if needed:
+      #   - run: npx playwright install --with-deps chromium
+      #   - run: npx playwright test tests/accessibility.spec.js ...
+
+      - name: Build Pagefind search index
+        run: npm run search:index
+
+      # Codeberg Pages serves from the 'pages' branch; .nojekyll is harmless but explicit.
+      - name: Prevent Jekyll processing
+        run: touch _site/.nojekyll
+
+      - name: Deploy to Codeberg Pages (pages branch)
+        run: |
+          cd _site
+          git init -b pages
+          git config user.name "Forgejo Actions"
+          git config user.email "actions@noreply.codeberg.org"
+          git add .
+          git commit -m "deploy: $(date -u +%Y-%m-%dT%H:%M:%SZ) [ci skip]"
+          git push --force \
+            "https://${CODEBERG_ACTOR}:${CODEBERG_TOKEN}@codeberg.org/${CODEBERG_REPO}.git" \
+            pages:pages
+        env:
+          CODEBERG_TOKEN: ${{ secrets.CODEBERG_PAGES_TOKEN }}
+
+  smoke:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify production status codes
+        # Tests the live custom domain — works whether hosted on GitHub or Codeberg.
+        run: |
+          for url in \
+            https://www.jarilaru.fi/ \
+            https://www.jarilaru.fi/en/ \
+            https://www.jarilaru.fi/esitykset/ \
+            https://www.jarilaru.fi/en/presentations/ \
+            https://www.jarilaru.fi/robots.txt \
+            https://www.jarilaru.fi/sitemap.xml; do
+            code=$(curl -o /dev/null -s -w "%{http_code}" --retry 5 --retry-delay 5 --retry-all-errors "$url")
+            test "$code" = "200"
+          done
+
+      - name: Verify production robots meta
+        run: |
+          curl -fsSL --retry 5 --retry-delay 5 https://www.jarilaru.fi/ \
+            | grep -q '<meta name="robots" content="index, follow, noai, noimageai">'
+
+      - name: Verify production SEO meta and alternates
+        run: |
+          curl -fsSL --retry 5 --retry-delay 5 https://www.jarilaru.fi/ > fi.html
+          grep -q '<meta name="description" content="' fi.html
+          grep -q '<link rel="canonical" href="https://www.jarilaru.fi/">' fi.html
+          grep -q 'hreflang="fi"' fi.html
+          grep -q 'hreflang="en"' fi.html
+          grep -q 'hreflang="x-default"' fi.html
+          ! grep -q '<meta property="og:image" content="null">' fi.html
+          rm -f fi.html
+
+      - name: Verify sitemap contains key URLs
+        run: |
+          curl -fsSL --retry 5 --retry-delay 5 https://www.jarilaru.fi/sitemap.xml \
+            | grep -q '<loc>https://www.jarilaru.fi/esitykset/</loc>'

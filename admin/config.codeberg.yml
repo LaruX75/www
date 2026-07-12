@@ -1,0 +1,40 @@
+# admin/config.codeberg.yml
+#
+# Sveltia CMS backend configuration for Codeberg.
+# INERT: this file is NOT loaded by the CMS — it is kept ready for migration.
+#
+# TO ACTIVATE during Codeberg staging:
+#   1. Register a Codeberg OAuth application (Settings → Applications):
+#        Homepage URL:     https://www.jarilaru.fi
+#        Redirect URI:    https://www.jarilaru.fi/admin/
+#        Copy Client ID
+#   2. In admin/index.html, set the data-config attribute to point to this file
+#      (or rename this file to config.yml, overwriting the GitHub version).
+#   3. Replace CODEBERG_OAUTH_CLIENT_ID below with the real Client ID.
+#   4. Test CORS: Codeberg API must allow requests from www.jarilaru.fi.
+#      (Codeberg CORS is open by default for GET; verify for OAuth redirects.)
+#
+# The gitea backend uses PKCE — no separate auth worker (Cloudflare) needed.
+
+backend:
+  name: gitea
+  repo: LaruX/www
+  branch: main
+  base_url: https://codeberg.org
+  api_root: https://codeberg.org/api/v1
+  auth_type: pkce
+  # TODO (staging): paste Client ID from Codeberg OAuth app registration
+  app_id: CODEBERG_OAUTH_CLIENT_ID
+
+# The settings below are identical to the GitHub version and need no changes.
+local_backend: true
+publish_mode: simple
+media_folder: "src/img/uploads"
+public_folder: "/img/uploads"
+site_url: https://www.jarilaru.fi
+display_url: https://www.jarilaru.fi
+locale: "fi"
+
+# NOTE: all collections are intentionally omitted here to keep the diff minimal.
+# When activating, copy the full collections block from admin/config.yml verbatim
+# (nothing in the collections block is backend-specific).
