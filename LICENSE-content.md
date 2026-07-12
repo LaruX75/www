@@ -66,10 +66,13 @@ These licenses do NOT apply to third-party content referenced or embedded on the
     `pexels-rovinj-croatia-546942.jpg` (Pixabay on Pexels) and
     `pexels-krakow-5827997.jpg` (Yulia Polyakova on Pexels). Pexels License applies.
     Original files removed from active use.
-  - Retro files (`majorbbsdemo.jpg`, `ICEHURWE.gif`, `ekaskan-1.gif`, `ansiart.png`)
-    are Jari Laru's own material.
-  - Remaining items requiring manual review: a map (`kartta-1024x495.webp`) and
-    a Flickr-pattern image (`197296754_51c407c4b1_o.jpg`).
+  - Retro files (`ICEHURWE.gif`, `ekaskan-1.gif`, `ansiart.png`) are Jari Laru's own material.
+  - `majorbbsdemo.jpg` is a screenshot of Major BBS software (historical internet find),
+    kept in a nostalgia/retro-computing context. No known active copyright claim.
+  - `kartta-1024x495.webp` is a screenshot of an OpenStreetMap route in the Skopje
+    roadtrip post. OpenStreetMap data is licensed under ODbL; attribution
+    "© OpenStreetMap contributors" is given in the image alt text.
+  - `197296754_51c407c4b1_o.jpg` is Jari Laru's own family photograph (own copyright).
 
 ---
 
