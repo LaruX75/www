@@ -731,6 +731,12 @@ module.exports = {
               href: "/julkaisut/",
               icon: "bi bi-journal-text me-2",
               description: "Tieteelliset julkaisut, kirjoitukset ja muut tekstisisällöt."
+            },
+            {
+              title: "Ansioluettelo",
+              href: "/cv/",
+              icon: "bi bi-file-person me-2",
+              description: "Koulutus, työkokemus ja asiantuntijuuden kuvaus."
             }
           ]
         },
@@ -834,6 +840,12 @@ module.exports = {
               href: "/en/publications/",
               icon: "bi bi-journal-text me-2",
               description: "Scientific publications, essays, and related outputs."
+            },
+            {
+              title: "Curriculum Vitae",
+              href: "/en/cv/",
+              icon: "bi bi-file-person me-2",
+              description: "Education, work experience, and professional background."
             }
           ]
         },
