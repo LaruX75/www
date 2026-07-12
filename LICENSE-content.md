@@ -66,9 +66,10 @@ These licenses do NOT apply to third-party content referenced or embedded on the
     `pexels-rovinj-croatia-546942.jpg` (Pixabay on Pexels) and
     `pexels-krakow-5827997.jpg` (Yulia Polyakova on Pexels). Pexels License applies.
     Original files removed from active use.
-  - Remaining items requiring manual review: a map (`kartta-1024x495.webp`),
-    a Flickr-pattern image (`197296754_51c407c4b1_o.jpg`), and retro screenshots
-    (`majorbbsdemo.jpg`, `ICEHURWE.gif`, `ekaskan-1.gif`, `ansiart.png`).
+  - Retro files (`majorbbsdemo.jpg`, `ICEHURWE.gif`, `ekaskan-1.gif`, `ansiart.png`)
+    are Jari Laru's own material.
+  - Remaining items requiring manual review: a map (`kartta-1024x495.webp`) and
+    a Flickr-pattern image (`197296754_51c407c4b1_o.jpg`).
 
 ---
 
