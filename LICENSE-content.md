@@ -52,8 +52,8 @@ These licenses do NOT apply to third-party content referenced or embedded on the
 - **Presentation thumbnails** are screenshots of Jari Laru's own Canva presentations.
   Canva's Content License Agreement governs any Canva Pro or stock elements within
   individual slides.
-- **Slideshare thumbnails** (`src/img/slideshare/`) are screenshots of older
-  presentations. License status pending review.
+- **Slideshare thumbnails** (`src/img/slideshare/`) are screenshots of Jari Laru's
+  own older presentations published on SlideShare.
 - **Uploaded images** (`src/img/uploads/2022/01/Untitled-design-*.png`) are Canva title
   slide designs containing only Canva's own stock elements (no screenshots from
   third-party publications). Canva's Content License Agreement covers these elements.
