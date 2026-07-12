@@ -3,12 +3,27 @@ const path = require('path');
 const { isOfflineFetchMode, readCache, readCacheIfFresh, writeCache } = require('./_apiCache');
 const { loadHiddenIds } = require('./_curatedStubs');
 
-const CACHE_KEY = 'theses-oulurepo-v1';
+const CACHE_KEY = 'theses-oulurepo-v2';
 const CACHE_TTL_HOURS = 6;
 
 const BASE = 'https://oulurepo.oulu.fi/open-search/';
 const NAME = 'Laru';  // ← vaihda ohjaajan sukunimi
 const RPP = 100;
+
+// Lisenssit, joiden tiivistelmä saa näkyä (ei NC-ehtoa).
+const ALLOWED_LICENSE_PREFIXES = [
+    'https://creativecommons.org/licenses/by/4.0',
+    'https://creativecommons.org/licenses/by-sa/4.0',
+    'https://creativecommons.org/licenses/by-nd/4.0',
+    'https://creativecommons.org/publicdomain/zero/',
+    'https://creativecommons.org/publicdomain/mark/',
+];
+
+function isAllowedLicense(uri) {
+    if (!uri) return false;
+    const lower = uri.toLowerCase();
+    return ALLOWED_LICENSE_PREFIXES.some(p => lower.startsWith(p.toLowerCase()));
+}
 
 function buildEmptyResult(error = null, source = 'fallback') {
     return {
@@ -138,6 +153,7 @@ function parseKK(xmlStr) {
         const issued = getMeta('date', 'issued');
         const year = (issued.match(/\d{4}/) || [])[0] || '';
 
+        const licenseUri = getMeta('rights', 'uri') || getMeta('rights', 'url');
         items.push({
             title,
             year,
@@ -147,7 +163,8 @@ function parseKK(xmlStr) {
             type: getMeta('type', 'publication'),
             okmType: getMeta('type', 'okm'),
             link: getMeta('identifier', 'uri') || (block.match(/<url>([^<]*)<\/url>/) || [])[1] || '',
-            abstract: getMeta('description', 'abstract'),
+            licenseUri,
+            abstract: isAllowedLicense(licenseUri) ? getMeta('description', 'abstract') : '',
             language: getMeta('language', 'iso'),
             subjects: getMetaAll('subject', 'discipline'),
             keywords: [], // täytetään cachesta alla
