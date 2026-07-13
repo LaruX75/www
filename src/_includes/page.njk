@@ -11,6 +11,9 @@ layout: base.njk
           {% if subtitle %}
             <p class="lead text-muted">{{ subtitle }}</p>
           {% endif %}
+          {% if asiakohta %}
+            <p class="text-muted small mb-3"><i class="bi bi-card-list me-1"></i>Asiakohta: {{ asiakohta }}</p>
+          {% endif %}
           <div class="content-prose">{{ content | safe }}</div>
           {% if categories %}
             <div class="mt-4">

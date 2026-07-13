@@ -55,6 +55,7 @@ collections:
             value: "esitelma"
       - { label: "Julkaisupaikka/lehti", name: "publication", widget: "string", required: false }
       - { label: "Tapahtuma", name: "event", widget: "string", required: false, hint: "Puheen tai esitelmän tapahtuma" }
+      - { label: "Asiakohta", name: "asiakohta", widget: "string", required: false, hint: "Esim. §3 tai 1 – Info: Oulu2026-ajankohtaisasiat" }
       - { label: "Kuvaus", name: "description", widget: "text", required: false }
       - { label: "Linkki", name: "url", widget: "string", required: false }
       - { label: "Alkuperäinen lähde-URL", name: "source_url", widget: "string", required: false }

@@ -3,6 +3,7 @@ title: "Jäällä kävelevät turistit"
 date: 2023-02-27
 type: puhe
 event: "Oulun kaupunginvaltuusto"
+asiakohta: "1 – Info: Oulu2026-ajankohtaisasiat"
 description: "Puheenvuoroni Oulun kaupunginvaltuustossa arktisuuden ja jään hyödyntämisestä matkailussa."
 tags:
   - publications
