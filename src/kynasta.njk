@@ -1813,6 +1813,18 @@ section[id] {
   const puheetInfo = document.getElementById('puheet-info');
   const puheetPagUl = document.getElementById('puheet-pagination');
 
+  function shortTitle(t) {
+    // Strip "Puheenvuoro[ni]" or "Valtuustopuheenvuoro" prefix
+    let s = t.replace(/^(?:Valtuustopuheenvuoro|Puheenvuoro(?:ni)?)\s+/i, '');
+    // If § reference present, take everything after it
+    let afterParagraph = s.replace(/^.*?§\s*\d+\s*[.:–\s]+/i, '');
+    if (afterParagraph !== s) return afterParagraph.trim();
+    // Otherwise strip up to first ": "
+    let afterColon = s.replace(/^[^:]+:\s*/, '');
+    if (afterColon !== s) return afterColon.trim();
+    return s.trim();
+  }
+
   function applyPuheetFilters() {
     const q = puheetSearchInp ? puheetSearchInp.value.toLowerCase().trim() : '';
     filteredPuheetData = puheetData.filter(d => {
@@ -1871,7 +1883,7 @@ section[id] {
         return `<tr>
           <td class="col-date text-center small text-muted font-monospace">${d.formattedDate}</td>
           <td class="small text-muted">${escHtml(d.asiakohta || '')}</td>
-          <td class="col-title fw-medium"><a href="${d.url}" ${targetAttr} class="text-decoration-none">${escHtml(d.title)}</a></td>
+          <td class="col-title fw-medium"><a href="${d.url}" ${targetAttr} class="text-decoration-none">${escHtml(shortTitle(d.title))}</a></td>
           <td class="col-desc small text-muted">${escHtml(d.description)}${eventInfo}</td>
           <td>
             <div class="mb-1">${catBadges}</div>
