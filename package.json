@@ -40,6 +40,7 @@
     "@11ty/eleventy-navigation": "^1.0.5",
     "@11ty/eleventy-plugin-rss": "^3.0.0",
     "@anthropic-ai/sdk": "^0.96.0",
+    "@fontsource/bree-serif": "^5.2.8",
     "@fontsource/inter": "^5.2.8",
     "cheerio": "^1.2.0",
     "dotenv": "^17.4.2",
@@ -56,6 +57,7 @@
     "@axe-core/playwright": "^4.11.2",
     "@playwright/test": "^1.60.0",
     "axe-playwright": "^2.2.2",
+    "bootstrap-icons": "^1.13.1",
     "pagefind": "^1.5.2"
   }
 }
