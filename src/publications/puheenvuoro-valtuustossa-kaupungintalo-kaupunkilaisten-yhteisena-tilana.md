@@ -1,5 +1,5 @@
 ---
-title: "Puheenvuoro valtuustossa: Kaupungintalo kaupunkilaisten yhteisenä tilana"
+title: "Puheenvuoro valtuustossa § 3: Kaupungintalo kaupunkilaisten yhteisenä tilana"
 date: 2023-09-11
 type: puhe
 event: "Oulun kaupunginvaltuusto"

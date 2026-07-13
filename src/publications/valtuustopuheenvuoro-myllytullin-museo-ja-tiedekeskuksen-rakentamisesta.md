@@ -1,5 +1,5 @@
 ---
-title: "Puheenvuoro valtuustossa: Museo- ja tiedekeskuksen valmistuminen kulttuuripääkaupunkivuoteen"
+title: "Puheenvuoro valtuustossa § 1: Museo- ja tiedekeskuksen valmistuminen kulttuuripääkaupunkivuoteen"
 date: 2024-02-26
 type: puhe
 event: "Oulun kaupunginvaltuusto"
