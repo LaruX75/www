@@ -400,6 +400,7 @@ translationKey: writings_index
     "formattedDate": "{{ pub.date | dateFormat }}",
     "description": {{ (pub.data.description or "") | jsonSafe | safe }},
     "event": {{ (pub.data.event or "") | jsonSafe | safe }},
+    "asiakohta": {{ (pub.data.asiakohta or "") | jsonSafe | safe }},
     "url": "{{ pub.data.url or pub.url }}",
     "isExternal": {{ (pub.data.url != null) | jsonSafe | safe }},
     "categories": {{ (pub.data.categories or []) | jsonSafe | safe }},
@@ -442,12 +443,12 @@ translationKey: writings_index
                 <th class="sortable text-center" data-col="date" style="width:140px">
                   Päivämäärä <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
                 </th>
+                <th style="min-width:180px">Asiakohta</th>
                 <th class="sortable" data-col="title" style="min-width:200px">
                   Otsikko <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
                 </th>
                 <th style="min-width:200px">Tiivistelmä & Tapahtuma</th>
                 <th>Kategoriat & Avainsanat</th>
-                <th style="width:80px" class="text-center">Lue</th>
               </tr>
             </thead>
             <tbody id="puheet-tbody">
@@ -1817,6 +1818,7 @@ section[id] {
     filteredPuheetData = puheetData.filter(d => {
       const matchQ = !q ||
         (d.title || '').toLowerCase().includes(q) ||
+        (d.asiakohta || '').toLowerCase().includes(q) ||
         (d.description || '').toLowerCase().includes(q) ||
         (d.event || '').toLowerCase().includes(q) ||
         (d.categories || []).some(c => c.toLowerCase().includes(q)) ||
@@ -1868,16 +1870,12 @@ section[id] {
 
         return `<tr>
           <td class="col-date text-center small text-muted font-monospace">${d.formattedDate}</td>
+          <td class="small text-muted">${escHtml(d.asiakohta || '')}</td>
           <td class="col-title fw-medium"><a href="${d.url}" ${targetAttr} class="text-decoration-none">${escHtml(d.title)}</a></td>
           <td class="col-desc small text-muted">${escHtml(d.description)}${eventInfo}</td>
           <td>
             <div class="mb-1">${catBadges}</div>
             <div>${keyBadges}</div>
-          </td>
-          <td class="text-center">
-            <a href="${d.url}" ${targetAttr} class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Avaa puhe">
-              ${iconInfo}
-            </a>
           </td>
         </tr>`;
       }).join('');
