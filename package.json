@@ -30,7 +30,8 @@
     "keywords:local": "node scripts/extract-local-keywords.js",
     "classify:keywords": "node scripts/classify-keywords.js",
     "eleventy": "npx @11ty/eleventy",
-    "eleventy:serve": "npx @11ty/eleventy --serve"
+    "eleventy:serve": "npx @11ty/eleventy --serve",
+    "deploy:codeberg": "npm run build:no-og && touch _site/.nojekyll && cd _site && git init -b pages && git config user.name 'Jari Laru' && git config user.email 'jari.laru@gmail.com' && git add . && git commit -m \"deploy: $(date -u +%Y-%m-%dT%H:%M:%SZ) [ci skip]\" && git push --force https://codeberg.org/LaruX/www.git pages:pages"
   },
   "dependencies": {
     "@11ty/eleventy": "^3.1.5",
