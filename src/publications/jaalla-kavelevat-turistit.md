@@ -1,5 +1,5 @@
 ---
-title: "Puheenvuoro valtuustossa: Jäällä kävelevät turistit"
+title: "Puheenvuoro kaupunginvaltuuston kokouksessa. §1. Info: Oulu2026-ajankohtaisasiat"
 date: 2023-02-27
 type: puhe
 event: "Oulun kaupunginvaltuusto"

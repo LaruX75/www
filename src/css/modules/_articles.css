@@ -503,6 +503,96 @@ section[id] {
   .pub-table td.col-year { font-size: 0.7rem; }
 }
 
+/* --- JS-renderöidyt kynästä-taulukot: pinoava mobiiliasettelu ---
+ * Muuntaa 5-sarakkeiset taulukot korttimaiseksi listaksi alle 768 px leveydellä.
+ * data-label-attribuutit asettaa syncMobileTableLabels() JS:ssä.
+ * esitykset-table jätetty pois (eri rakenne: 6 saraketta + kuvaesikatselu).
+ */
+@media (max-width: 767.98px) {
+  .mielipiteet-table,
+  .kolumnit-table,
+  .aloitteet-table,
+  .puheet-table,
+  .blog-table,
+  .mielipiteet-table tbody,
+  .kolumnit-table tbody,
+  .aloitteet-table tbody,
+  .puheet-table tbody,
+  .blog-table tbody {
+    display: block;
+    width: 100%;
+  }
+  .mielipiteet-table thead,
+  .kolumnit-table thead,
+  .aloitteet-table thead,
+  .puheet-table thead,
+  .blog-table thead {
+    display: none;
+  }
+  .mielipiteet-table tbody tr,
+  .kolumnit-table tbody tr,
+  .aloitteet-table tbody tr,
+  .puheet-table tbody tr,
+  .blog-table tbody tr {
+    display: block;
+    border: 1px solid var(--bs-border-color);
+    border-radius: 0.5rem;
+    margin-bottom: 0.75rem;
+    padding: 0.6rem 0.85rem;
+  }
+  /* Colspan-rivi (ei tuloksia / lataus) */
+  .mielipiteet-table tbody tr td[colspan],
+  .kolumnit-table tbody tr td[colspan],
+  .aloitteet-table tbody tr td[colspan],
+  .puheet-table tbody tr td[colspan],
+  .blog-table tbody tr td[colspan] {
+    display: block;
+    text-align: center !important;
+    border: none;
+    padding: 1rem 0;
+  }
+  .mielipiteet-table tbody td,
+  .kolumnit-table tbody td,
+  .aloitteet-table tbody td,
+  .puheet-table tbody td,
+  .blog-table tbody td {
+    display: block;
+    border: none;
+    padding: 0.2rem 0;
+  }
+  /* Sarakkeen nimi pienenä labelina ennen arvoa */
+  .mielipiteet-table tbody td:not([colspan])::before,
+  .kolumnit-table tbody td:not([colspan])::before,
+  .aloitteet-table tbody td:not([colspan])::before,
+  .puheet-table tbody td:not([colspan])::before,
+  .blog-table tbody td:not([colspan])::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--bs-secondary-color);
+    margin-bottom: 0.1rem;
+  }
+  /* Viimeinen sarake (Lue-nappi): ei tarvita labelia, tasataan vasemmalle */
+  .mielipiteet-table tbody td:last-child::before,
+  .kolumnit-table tbody td:last-child::before,
+  .aloitteet-table tbody td:last-child::before,
+  .puheet-table tbody td:last-child::before,
+  .blog-table tbody td:last-child::before {
+    display: none;
+  }
+  .mielipiteet-table tbody td:last-child,
+  .kolumnit-table tbody td:last-child,
+  .aloitteet-table tbody td:last-child,
+  .puheet-table tbody td:last-child,
+  .blog-table tbody td:last-child {
+    padding-top: 0.5rem;
+    text-align: left !important;
+  }
+}
+
 /* --- Publication filter bar --- */
 .publication-filter-bar {
   background-color: var(--bs-tertiary-bg);

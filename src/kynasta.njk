@@ -403,7 +403,8 @@ translationKey: writings_index
     "url": "{{ pub.data.url or pub.url }}",
     "isExternal": {{ (pub.data.url != null) | jsonSafe | safe }},
     "categories": {{ (pub.data.categories or []) | jsonSafe | safe }},
-    "keywords": {{ (pub.data.keywords or []) | jsonSafe | safe }}
+    "keywords": {{ (pub.data.keywords or []) | jsonSafe | safe }},
+    "tags": {{ (pub.data.tags or []) | jsonSafe | safe }}
   }{% if not loop.last %},{% endif %}
   {% endfor %}
 ]
@@ -1855,8 +1856,11 @@ section[id] {
       puheetTbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-5">Ei tuloksia haulla</td></tr>';
     } else {
       puheetTbody.innerHTML = slice.map(d => {
+        const INTERNAL_TAGS = new Set(['publications', 'politics', 'blog', 'puhe']);
         const catBadges = (d.categories || []).map(c => `<a href="/kategoriat/${slugify(c)}/" class="badge text-bg-secondary me-1 text-decoration-none">${c}</a>`).join('');
-        const keyBadges = (d.keywords || []).map(k => `<a href="/avainsanat/${slugify(k)}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">${k}</a>`).join('');
+        const extraTags = (d.tags || []).filter(t => !INTERNAL_TAGS.has(t));
+        const allKeywords = [...(d.keywords || []), ...extraTags];
+        const keyBadges = allKeywords.map(k => `<a href="/avainsanat/${slugify(k)}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">${k}</a>`).join('');
 
         const targetAttr = d.isExternal ? 'target="_blank" rel="noopener"' : '';
         const iconInfo = d.isExternal ? '<i class="bi bi-arrow-up-right"></i>' : '<i class="bi bi-arrow-right"></i>';
