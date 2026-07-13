@@ -10,7 +10,7 @@ lang: en
 
 <!-- HERO -->
 <section class="py-5 bg-body-tertiary border-bottom">
-  <div class="container">
+  <div class="site-shell">
     <div class="row align-items-center g-5">
       <div class="col-lg-7">
         <p class="text-uppercase text-muted fw-semibold small mb-2">About</p>
@@ -38,7 +38,7 @@ lang: en
 
 <!-- FOUR ROLES -->
 <section class="py-5">
-  <div class="container">
+  <div class="site-shell">
     <h2 class="h3 fw-bold mb-2">Four roles</h2>
     <p class="text-muted mb-5">My professional life is built around four complementary roles.</p>
     <div class="row g-4">
@@ -100,7 +100,7 @@ lang: en
 
 <!-- HOMETOWN -->
 <section class="py-5 bg-body-tertiary border-top border-bottom">
-  <div class="container">
+  <div class="site-shell">
     <div class="row align-items-center g-5">
       <div class="col-lg-6">
         <h2 class="h3 fw-bold mb-3">From Oulu, living in Jaali</h2>
@@ -134,7 +134,7 @@ lang: en
 
 <!-- FREE TIME & ROAD TRIPS -->
 <section class="py-5">
-  <div class="container">
+  <div class="site-shell">
     <h2 class="h3 fw-bold mb-2">Free time &amp; travels</h2>
     <p class="text-muted mb-4">Family life, cooking, DIY projects, and long road trips across Europe.</p>
 
@@ -271,7 +271,7 @@ lang: en
 
 <!-- SOCIAL -->
 <section class="py-5 bg-body-tertiary border-top">
-  <div class="container">
+  <div class="site-shell">
     <h2 class="h3 fw-bold mb-2">Find me online</h2>
     <p class="text-muted mb-4">I am active on several platforms, both professionally and personally.</p>
     <div class="row g-3">
@@ -357,7 +357,7 @@ lang: en
 
 <!-- CONTENT AREAS -->
 <section class="py-5 bg-body-tertiary border-top" id="content-areas" aria-labelledby="content-areas-heading">
-  <div class="container">
+  <div class="site-shell">
     <p class="text-uppercase text-muted fw-semibold small mb-1"><i class="bi bi-grid-3x3-gap me-1"></i>Content areas</p>
     <h2 class="h4 fw-bold mb-1" id="content-areas-heading">Explore further</h2>
     <p class="text-muted mb-4">Navigate by topic — work, politics and writings.</p>

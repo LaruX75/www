@@ -25,7 +25,7 @@ templateEngineOverride: njk
 
 <!-- HERO -->
 <section class="py-5 bg-body-tertiary border-bottom">
-  <div class="container">
+  <div class="site-shell">
     <div class="row align-items-center g-4">
       <div class="col-lg-8">
         <p class="text-uppercase text-muted fw-semibold small mb-2">Tutkimus</p>
@@ -80,7 +80,7 @@ templateEngineOverride: njk
 
 <!-- TUTKIMUSALUEET -->
 <section class="py-5">
-  <div class="container">
+  <div class="site-shell">
     <h2 class="h3 fw-bold mb-4">Tutkimusalueet</h2>
     <div class="row g-4">
       <div class="col-md-4">
@@ -116,7 +116,7 @@ templateEngineOverride: njk
 
 <!-- NYKYINEN HANKE: GENERATION AI -->
 <section class="py-5 bg-body-tertiary border-top border-bottom">
-  <div class="container">
+  <div class="site-shell">
     <div class="row align-items-center g-5">
       <div class="col-lg-7">
         <span class="badge bg-success mb-3">Käynnissä</span>
@@ -153,7 +153,7 @@ templateEngineOverride: njk
 
 <!-- JULKAISUT WIDGET -->
 <section class="py-5">
-  <div class="container">
+  <div class="site-shell">
     <div class="d-flex justify-content-between align-items-center mb-4">
       <h2 class="h3 fw-bold mb-0">Tieteelliset julkaisut</h2>
       <a href="/julkaisut/" class="btn btn-outline-primary btn-sm">Katso kaikki &rarr;</a>
@@ -238,7 +238,7 @@ templateEngineOverride: njk
 
 <!-- OPINNÄYTTEET WIDGET -->
 <section class="py-5 bg-body-tertiary border-top border-bottom">
-  <div class="container">
+  <div class="site-shell">
     <div class="d-flex justify-content-between align-items-center mb-4">
       <h2 class="h3 fw-bold mb-0">Ohjatut opinnäytetyöt</h2>
       <a href="/opinnaytteet/" class="btn btn-outline-primary btn-sm">Katso kaikki &rarr;</a>
@@ -301,7 +301,7 @@ templateEngineOverride: njk
 
 <!-- OMA VÄITÖSKIRJA -->
 <section class="py-5">
-  <div class="container">
+  <div class="site-shell">
     <h2 class="h3 fw-bold mb-4">Omat opinnäytetyöt</h2>
     <div class="row g-4">
       <div class="col-md-6">
@@ -335,7 +335,7 @@ templateEngineOverride: njk
 
 <!-- TUTKIJAHISTORIA – horisontaalinen aikajana, vanhin ensin -->
 <section class="py-5 bg-body-tertiary border-top border-bottom">
-  <div class="container">
+  <div class="site-shell">
     <h2 class="h3 fw-bold mb-2">Tutkijahistoria</h2>
     <p class="text-muted mb-4">Keskeisimmät tutkimushankkeet ja -kaudet uran varrelta &ndash; vanhimmasta uusimpaan.</p>
     <p class="small text-muted mb-3">Vihje: aikajana vierii sivusuunnassa mobiilissa ja pienillä näytöillä.</p>
@@ -451,7 +451,7 @@ templateEngineOverride: njk
 
 <!-- APURAHAT JA PALKINNOT -->
 <section class="py-5">
-  <div class="container">
+  <div class="site-shell">
     <div class="row g-5">
       <div class="col-md-6">
         <h2 class="h3 fw-bold mb-4">Apurahat</h2>
@@ -522,7 +522,7 @@ templateEngineOverride: njk
 
 <!-- PROFIILIT -->
 <section class="py-5 bg-body-tertiary border-top">
-  <div class="container">
+  <div class="site-shell">
     <h2 class="h3 fw-bold mb-2">Tutkijaprofiilit</h2>
     <p class="text-muted mb-4">Julkaisulistani ja tutkimustietoni useissa kansainvälisissä ja kotimaisissa palveluissa:</p>
     <div class="row g-3">

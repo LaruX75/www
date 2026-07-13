@@ -9,7 +9,7 @@ templateEngineOverride: md
 ---
 
 <section class="py-5 bg-body-tertiary border-bottom">
-  <div class="container">
+  <div class="site-shell">
     <div class="row g-4 align-items-stretch">
       <div class="col-lg-8">
         <div class="card h-100 shadow-sm border-0">
@@ -45,7 +45,7 @@ templateEngineOverride: md
 </section>
 
 <section class="py-5">
-  <div class="container">
+  <div class="site-shell">
     <div class="row g-4">
       <div class="col-xl-6">
         <article class="card h-100 shadow-sm border-0">
@@ -81,7 +81,7 @@ templateEngineOverride: md
 </section>
 
 <section class="py-5 bg-body-tertiary border-top border-bottom">
-  <div class="container">
+  <div class="site-shell">
     <h2 class="h3 mb-4">Tutkinnot ja oppiarvot</h2>
     <div class="row g-4">
       <div class="col-md-6">
@@ -113,7 +113,7 @@ templateEngineOverride: md
 </section>
 
 <section class="py-5">
-  <div class="container">
+  <div class="site-shell">
     <h2 class="h3 mb-4">Työkokemus</h2>
     <div class="row g-4">
       <div class="col-lg-8">
@@ -152,7 +152,7 @@ templateEngineOverride: md
 </section>
 
 <section class="py-5 bg-body-tertiary border-top border-bottom">
-  <div class="container">
+  <div class="site-shell">
     <h2 class="h3 mb-4">Hankkeet ja apurahat</h2>
     <div class="row g-4">
       <div class="col-lg-6">
@@ -185,7 +185,7 @@ templateEngineOverride: md
 </section>
 
 <section class="py-5">
-  <div class="container">
+  <div class="site-shell">
     <h2 class="h3 mb-4">Tutkimuksen tuotokset</h2>
     <div class="row g-4">
       <div class="col-lg-8">

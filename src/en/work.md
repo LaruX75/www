@@ -26,7 +26,7 @@ heroButtons:
 
 {# ── STAT CARDS ───────────────────────────────────────────────────────────── #}
 <section class="py-5 bg-body-tertiary border-bottom" aria-label="Key figures">
-  <div class="container">
+  <div class="site-shell">
     <div class="row g-3 text-center">
       <div class="col-6 col-md-3">
         <div class="card border-0 shadow-sm p-3 h-100">
@@ -58,7 +58,7 @@ heroButtons:
 
 {# ── WHAT I DO ─────────────────────────────────────────────────────────────── #}
 <section class="py-5" id="what-i-do" aria-labelledby="what-i-do-heading">
-  <div class="container">
+  <div class="site-shell">
     <p class="text-uppercase text-muted fw-semibold small mb-1"><i class="bi bi-person-workspace me-1"></i>Role content</p>
     <h2 class="h4 mb-4" id="what-i-do-heading">What I do in practice</h2>
     <div class="row g-4">
@@ -99,7 +99,7 @@ heroButtons:
 
 {# ── GENERATION AI ─────────────────────────────────────────────────────────── #}
 <section class="py-5 bg-body-tertiary border-top border-bottom" id="generation-ai" aria-labelledby="gen-ai-heading">
-  <div class="container">
+  <div class="site-shell">
     <p class="text-uppercase text-muted fw-semibold small mb-1"><i class="bi bi-lightning-charge me-1"></i>Current project</p>
     <h2 class="h4 mb-1" id="gen-ai-heading">Generation AI — strategic research project</h2>
     <p class="text-muted small mb-4">Funded by the Academy of Finland's Strategic Research Council (SRC), SHIELD programme</p>

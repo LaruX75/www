@@ -405,6 +405,20 @@ html:not([data-bs-theme="dark"]) .home-hero-kpi-label {
 .home-overview-section {
   border-bottom: 1px solid var(--bs-border-color-translucent);
 }
+.home-overview-section > .site-shell {
+  padding: clamp(1.2rem, 3vw, 1.8rem);
+  border-radius: 1rem;
+  border: 1px solid rgba(35, 66, 104, 0.16);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.88) 0%, rgba(245, 250, 255, 0.92) 100%);
+  box-shadow: 0 8px 20px rgba(11, 34, 62, 0.08);
+  color: #132f4d;
+}
+[data-bs-theme="dark"] .home-overview-section > .site-shell {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(210, 226, 246, 0.12) 100%);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.28);
+  color: inherit;
+}
 
 .home-overview-eyebrow {
   font-size: 0.72rem;
@@ -537,9 +551,9 @@ html:not([data-bs-theme="dark"]) .home-hero-kpi-label {
 
 /* Lainaukset palauteosiossa */
 .home-testimonials-label {
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  color: var(--bs-secondary-color);
+  font-size: 1.5rem;
+  letter-spacing: normal;
+  color: var(--bs-body-color);
 }
 
 .home-quote {

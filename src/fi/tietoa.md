@@ -12,7 +12,7 @@ wp_id: 7
 
 <!-- HERO -->
 <section class="py-5 bg-body-tertiary border-bottom">
-  <div class="container">
+  <div class="site-shell">
     <div class="row align-items-center g-5">
       <div class="col-lg-7">
         <p class="text-uppercase text-muted fw-semibold small mb-2">{{ pageContent.tietoa.hero.eyebrow }}</p>
@@ -39,7 +39,7 @@ wp_id: 7
 
 <!-- KOTIKAUPUNKI -->
 <section class="py-5 bg-body-tertiary border-top border-bottom">
-  <div class="container">
+  <div class="site-shell">
     <div class="row align-items-center g-5">
       <div class="col-lg-6">
         <h2 class="h3 fw-bold mb-3">{{ pageContent.tietoa.hometown.heading }}</h2>
@@ -73,7 +73,7 @@ wp_id: 7
 
 <!-- VAPAA-AIKA & MATKAT – galleria + lightbox -->
 <section class="py-5">
-  <div class="container">
+  <div class="site-shell">
     <h2 class="h3 fw-bold mb-2">{{ pageContent.tietoa.leisure.heading }}</h2>
     <p class="text-muted mb-4">{{ pageContent.tietoa.leisure.lead }}</p>
 
@@ -138,7 +138,7 @@ wp_id: 7
 
 <!-- SOME JA YHTEYS -->
 <section class="py-5 bg-body-tertiary border-top">
-  <div class="container">
+  <div class="site-shell">
     <h2 class="h3 fw-bold mb-2">{{ pageContent.tietoa.social.heading }}</h2>
     <p class="text-muted mb-4">{{ pageContent.tietoa.social.lead }}</p>
     <div class="row g-3">
@@ -174,7 +174,7 @@ wp_id: 7
 
 <!-- AIHEALUEET -->
 <section class="py-5 bg-body-tertiary border-top" id="aihealueet" aria-labelledby="aihealueet-heading">
-  <div class="container">
+  <div class="site-shell">
     <p class="text-uppercase text-muted fw-semibold small mb-1"><i class="bi bi-grid-3x3-gap me-1"></i>Aihealueet</p>
     <h2 class="h4 fw-bold mb-1" id="aihealueet-heading">Tutustu tarkemmin</h2>
     <p class="text-muted mb-4">Navigoi aiheittain — työ, politiikka ja kirjoitukset.</p>

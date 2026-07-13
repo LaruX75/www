@@ -6,14 +6,14 @@ translationKey: scientific_publications_index
 lang: en
 ---
 <section class="py-4 bg-light border-bottom">
-  <div class="container">
+  <div class="site-shell">
     <h1 class="display-6 fw-bold mb-2">Scientific Publications</h1>
     <p class="text-muted mb-0">Overview of peer-reviewed and scientific publication outputs.</p>
   </div>
 </section>
 
 <section class="py-4">
-  <div class="container">
+  <div class="site-shell">
     <div class="table-responsive shadow-sm rounded">
       <table class="table table-hover mb-0">
         <thead>

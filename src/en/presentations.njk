@@ -35,7 +35,7 @@ lang: en
   {% endif %}
 {% endfor %}
 
-<div class="container py-5">
+<div class="site-shell py-5">
   <header class="mb-5 text-center">
     <h1 class="display-4 fw-bold mb-3">Presentations and Learning Materials</h1>
     <p class="lead text-muted">Presentations, open learning materials and more from various platforms.</p>
@@ -263,7 +263,7 @@ lang: en
 
   {# Archive list: static link list for all presentation pages (SEO navigation) #}
   <section class="mb-5">
-    <div class="container">
+    <div class="site-shell">
       {% set archiveTotal = (collections.presentations | length) + ((finnaAoe.rows or []) | length) + ((youtube.tableRows or []) | length) %}
       <details>
         <summary class="text-muted small py-2" style="cursor:pointer;">All presentations and materials as archive ({{ archiveTotal }})</summary>

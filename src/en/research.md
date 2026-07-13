@@ -14,7 +14,7 @@ templateEngineOverride: njk
 {%- endfor -%}
 
 <section class="py-5 bg-body-tertiary border-bottom">
-  <div class="container">
+  <div class="site-shell">
     <div class="row align-items-center g-4">
       <div class="col-lg-8">
         <p class="text-uppercase text-muted fw-semibold small mb-2">Research</p>
@@ -68,7 +68,7 @@ templateEngineOverride: njk
 </section>
 
 <section class="py-5">
-  <div class="container">
+  <div class="site-shell">
     <h2 class="h3 fw-bold mb-4">Research themes</h2>
     <div class="row g-4">
       <div class="col-md-4">

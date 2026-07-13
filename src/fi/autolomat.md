@@ -10,7 +10,7 @@ description: "Jari Larun matkakertomukset – eurooppalaisia roadtripejä, kaupu
 
 <!-- HERO -->
 <section class="matkat-hero py-5">
-  <div class="container">
+  <div class="site-shell">
     <div class="row align-items-end g-4">
       <div class="col-lg-8">
         <p class="text-uppercase small mb-2" style="color:rgba(255,255,255,0.55);letter-spacing:.08em">Vapaa-aika & matkailu</p>
@@ -45,7 +45,7 @@ description: "Jari Larun matkakertomukset – eurooppalaisia roadtripejä, kaupu
 
 <!-- TEHDYT MATKAT -->
 <section class="py-5">
-  <div class="container">
+  <div class="site-shell">
     <div class="d-flex align-items-center justify-content-between mb-4">
       <h2 class="h3 fw-bold mb-0">Tehdyt matkat</h2>
       <span class="badge text-bg-secondary rounded-pill">2007–2020</span>
@@ -197,7 +197,7 @@ description: "Jari Larun matkakertomukset – eurooppalaisia roadtripejä, kaupu
 
 <!-- HAAVELISTALLA -->
 <section class="py-5 bg-body-tertiary border-top border-bottom">
-  <div class="container">
+  <div class="site-shell">
     <div class="d-flex align-items-center gap-3 mb-4">
       <h2 class="h3 fw-bold mb-0">Haavelistalla</h2>
       <span class="badge text-bg-warning text-dark">Suunnitteilla</span>
@@ -246,7 +246,7 @@ description: "Jari Larun matkakertomukset – eurooppalaisia roadtripejä, kaupu
 
 <!-- MATKAILU-BLOGIPOSTAUKSET -->
 <section class="py-5">
-  <div class="container">
+  <div class="site-shell">
     <h2 class="h3 fw-bold mb-1">Matkailu-blogista</h2>
     <p class="text-muted mb-4">Kaikki matkailuun liittyvät blogipostaukset.</p>
 

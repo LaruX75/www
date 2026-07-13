@@ -9,7 +9,7 @@ templateEngineOverride: njk,md
 ---
 
 <section class="py-5 bg-body-tertiary border-bottom">
-  <div class="container">
+  <div class="site-shell">
     <p class="text-uppercase text-muted fw-semibold small mb-2">Awards and Recognition</p>
     <h1 class="display-6 fw-bold mb-3">Honors</h1>
     <p class="lead mb-0">A selection of awards, grants, and recognitions received for open science, teaching, and research impact.</p>
@@ -17,7 +17,7 @@ templateEngineOverride: njk,md
 </section>
 
 <section class="py-5">
-  <div class="container">
+  <div class="site-shell">
     <h2 class="h3 mb-4">Awards</h2>
 
     <div class="card border-0 shadow-sm mb-4">
@@ -72,7 +72,7 @@ templateEngineOverride: njk,md
 </section>
 
 <section class="py-5 bg-body-tertiary border-top border-bottom">
-  <div class="container">
+  <div class="site-shell">
     <h2 class="h3 mb-4">Grants</h2>
     <div class="row g-4">
       <div class="col-md-6">

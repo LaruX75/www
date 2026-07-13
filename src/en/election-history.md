@@ -9,7 +9,7 @@ templateEngineOverride: njk,md
 ---
 
 <section class="py-5 bg-body-tertiary border-bottom">
-  <div class="container">
+  <div class="site-shell">
     <p class="text-uppercase text-muted fw-semibold small mb-2">Politics</p>
     <h1 class="display-6 fw-bold mb-3">Election History</h1>
     <p class="lead mb-0">I have been involved in local and regional civic influence since the early 2000s. Below is an overview of elections and positions of trust, organised by term.</p>
@@ -17,7 +17,7 @@ templateEngineOverride: njk,md
 </section>
 
 <section class="py-5">
-  <div class="container">
+  <div class="site-shell">
 
     <h2 class="h4 mb-4">Current Positions of Trust <small class="text-muted fw-normal fs-6">(term 2025&ndash;2029)</small></h2>
     <div class="row g-3 mb-5">

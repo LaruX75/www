@@ -7,7 +7,7 @@
   {% endif %}
 {% endfor %}
 <section class="py-5 bg-body-tertiary border-top border-bottom home-testimonials-section"{% if isHomeTestimonials %} aria-labelledby="home-testimonials-heading"{% else %} id="{{ "testimonials" if testimonialLang == "en" else "palautteet" }}" aria-labelledby="company-testimonials-heading"{% endif %}>
-  <div class="container">
+  <div class="site-shell">
     <h2 class="h4 fw-bold text-center mb-4 home-testimonials-label" id="{{ "home-testimonials-heading" if isHomeTestimonials else "company-testimonials-heading" }}">
       {{ testimonialLocale.homeHeading if isHomeTestimonials else testimonialLocale.companyHeading }}
     </h2>

@@ -9,7 +9,7 @@ templateEngineOverride: njk,md
 ---
 
 <section class="election-history-page py-5 bg-body-tertiary border-bottom">
-  <div class="container">
+  <div class="site-shell">
     <p class="text-uppercase text-muted fw-semibold small mb-2">Politiikka</p>
     <h1 class="display-6 fw-bold mb-3">Vaalihistoria</h1>
     <p class="lead mb-0">Olen ollut mukana paikallisessa ja alueellisessa vaikuttamisessa 2000-luvun alusta. Alla vaalikausittain jäsennelty katsaus luottamustoimiin ja vaaleihin.</p>
@@ -17,7 +17,7 @@ templateEngineOverride: njk,md
 </section>
 
 <section class="election-history-page py-5">
-  <div class="container">
+  <div class="site-shell">
 
     <h2 class="h4 mb-4">Nykyiset luottamustoimet <small class="text-muted fw-normal fs-6">(vaalikausi 2025&ndash;2029)</small></h2>
     <div class="row g-3 mb-5">

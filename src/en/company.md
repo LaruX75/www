@@ -9,7 +9,7 @@ lang: en
 ---
 
 <section class="py-5 bg-body-tertiary border-bottom">
-  <div class="container">
+  <div class="site-shell">
     <div class="row align-items-center g-4">
       <div class="col-lg-8">
         <p class="text-uppercase text-muted fw-semibold small mb-2">Expert and training services</p>
@@ -41,7 +41,7 @@ lang: en
 </section>
 
 <section class="py-5">
-  <div class="container">
+  <div class="site-shell">
     <h2 class="text-center mb-4">Engaging speaker and experienced trainer</h2>
     <div class="row g-4">
       <div class="col-md-4">
@@ -76,7 +76,7 @@ lang: en
 </section>
 
 <section class="py-5 bg-body-tertiary border-top border-bottom">
-  <div class="container">
+  <div class="site-shell">
     <h2 class="text-center mb-2">Academic background</h2>
     <p class="text-center text-muted mb-4">Research work and university responsibilities keep expertise up to date.</p>
     <div class="row g-4">
@@ -112,7 +112,7 @@ lang: en
 </section>
 
 <section class="py-5">
-  <div class="container">
+  <div class="site-shell">
     <h2 class="text-center mb-2">Examples of talks</h2>
     <p class="text-center text-muted mb-4">Presented at events organized by FNAE, Regional State Administrative Agencies, municipalities, and educational networks.</p>
     <div class="row g-4">
@@ -158,7 +158,7 @@ lang: en
 {% include "testimonials.njk" %}
 
 <section class="py-5">
-  <div class="container">
+  <div class="site-shell">
     <h2 class="text-center mb-4">Frequently asked questions</h2>
     <div class="accordion" id="companyFaqEn">
       <div class="accordion-item">
@@ -226,7 +226,7 @@ lang: en
 </section>
 
 <section class="py-5 bg-body-tertiary border-top text-center">
-  <div class="container">
+  <div class="site-shell">
     <h2 class="mb-3">Interested?</h2>
     <p class="mb-4">Share your goals and I will help design a tailored solution.</p>
     <a class="btn btn-primary btn-lg" href="/en/contact/">Contact me</a>

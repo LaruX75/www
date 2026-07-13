@@ -10,7 +10,7 @@ lang: fi
 ---
 
 <section class="kunta-aluevaalit-2025 py-5 bg-body-tertiary border-bottom">
-  <div class="container">
+  <div class="site-shell">
     <p class="text-uppercase text-muted fw-semibold small mb-2">Politiikka &mdash; arkisto</p>
     <h1 class="display-6 fw-bold mb-3">Kunta- ja aluevaalit 2025</h1>
     <p class="lead mb-2">Olin ehdokkaana Oulun kuntavaaleissa 13.4.2025 Kokoomuksen listalta, ehdokasnumerolla <strong>439</strong>.</p>
@@ -19,7 +19,7 @@ lang: fi
 </section>
 
 <section class="kunta-aluevaalit-2025 py-5">
-  <div class="container">
+  <div class="site-shell">
 
     <div class="row g-4 mb-5">
       <div class="col-lg-8">

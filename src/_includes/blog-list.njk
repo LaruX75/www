@@ -2,7 +2,7 @@
 layout: base.njk
 ---
 <section class="blog-hero py-4">
-  <div class="container">
+  <div class="site-shell">
     {% set currentLang = lang or (page.url | langFromUrl) %}
     {% set txt = {
       "hero": "Read the latest thoughts, insights and updates.",
@@ -39,7 +39,7 @@ layout: base.njk
 </section>
 
 <section id="blog-table-section" class="py-4">
-  <div class="container">
+  <div class="site-shell">
     <div class="card shadow-sm">
       <div class="card-header bg-transparent d-flex align-items-center justify-content-between">
         <h2 class="h4 mb-0">{{ txt.all }}</h2>

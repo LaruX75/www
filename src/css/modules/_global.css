@@ -3,6 +3,12 @@
  *           global light/dark mode, button overrides)
  * Part of jarilaru.fi styles — imported by styles.css
  */
+/* ===== SITE SHELL — responsive content container ===== */
+.site-shell {
+  width: min(1120px, calc(100% - clamp(2rem, 10vw, 8rem)));
+  margin-inline: auto;
+}
+
 /* ===== MOBILE BREAKPOINTS ===== */
 
 @media (max-width: 767.98px) {

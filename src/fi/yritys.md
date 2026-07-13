@@ -9,7 +9,7 @@ lang: fi
 ---
 
 <section class="py-5 bg-body-tertiary border-bottom">
-  <div class="container">
+  <div class="site-shell">
     <div class="row align-items-center g-4">
       <div class="col-lg-8">
         <p class="text-uppercase text-muted fw-semibold small mb-2">Asiantuntija- ja koulutuspalvelut</p>
@@ -41,7 +41,7 @@ lang: fi
 </section>
 
 <section class="py-5">
-  <div class="container">
+  <div class="site-shell">
     <h2 class="text-center mb-4">Olen sujuvasanainen puhuja ja kokenut kouluttaja</h2>
     <div class="row g-4">
       <div class="col-md-4">
@@ -76,7 +76,7 @@ lang: fi
 </section>
 
 <section class="py-5 bg-body-tertiary border-top border-bottom">
-  <div class="container">
+  <div class="site-shell">
     <h2 class="text-center mb-2">Akateeminen tausta koulutuksen tukena</h2>
     <p class="text-center text-muted mb-4">Tutkimustyö ja yliopistotehtävät pitävät osaamisen ajan tasalla.</p>
     <div class="row g-4">
@@ -112,7 +112,7 @@ lang: fi
 </section>
 
 <section class="py-5">
-  <div class="container">
+  <div class="site-shell">
     <h2 class="text-center mb-2">Esimerkkejä puheenvuoroista</h2>
     <p class="text-center text-muted mb-4">Esiintynyt mm. OPH:n, AVI:n, kuntien ja oppilaitosten tilaisuuksissa.</p>
     <div class="row g-4">
@@ -158,7 +158,7 @@ lang: fi
 {% include "testimonials.njk" %}
 
 <section class="py-5">
-  <div class="container">
+  <div class="site-shell">
     <h2 class="text-center mb-4">Usein kysyttyä</h2>
     <div class="accordion" id="companyFaqFi">
       <div class="accordion-item">
@@ -226,7 +226,7 @@ lang: fi
 </section>
 
 <section class="py-5 bg-body-tertiary border-top text-center">
-  <div class="container">
+  <div class="site-shell">
     <h2 class="mb-3">Kiinnostuitko?</h2>
     <p class="mb-4">Kerro tavoitteesi, niin suunnitellaan juuri teille sopiva kokonaisuus.</p>
     <a class="btn btn-primary btn-lg" href="/yhteystiedot/">Ota yhteyttä</a>

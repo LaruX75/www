@@ -9,7 +9,7 @@ templateEngineOverride: njk,md
 ---
 
 <section class="py-5 bg-body-tertiary border-bottom">
-  <div class="container">
+  <div class="site-shell">
     <p class="text-uppercase text-muted fw-semibold small mb-2">Palkinnot ja tunnustukset</p>
     <h2 class="display-6 fw-bold mb-3">Huomionosoitukset</h2>
     <p class="lead mb-0">Alla on koottuna saamiani palkintoja, apurahoja ja muita tunnustuksia – tieteellisestä avoimuudesta, opetustyöstä ja tutkimuksesta.</p>
@@ -17,7 +17,7 @@ templateEngineOverride: njk,md
 </section>
 
 <section class="py-5">
-  <div class="container">
+  <div class="site-shell">
     <h2 class="h3 mb-4">Palkinnot</h2>
 
     <div class="card border-0 shadow-sm mb-4">
@@ -106,7 +106,7 @@ templateEngineOverride: njk,md
 </section>
 
 <section class="py-5 bg-body-tertiary border-top border-bottom">
-  <div class="container">
+  <div class="site-shell">
     <h2 class="h3 mb-4">Apurahat</h2>
     <p class="text-muted mb-4">Tutkimustyötäni ovat tukeneet seuraavat apurahat:</p>
 
@@ -149,7 +149,7 @@ templateEngineOverride: njk,md
 </section>
 
 <section class="py-5">
-  <div class="container">
+  <div class="site-shell">
     <h2 class="h3 mb-4">Opiskelijoiden tunnustukset</h2>
 
     <div class="card border-0 shadow-sm">

@@ -83,7 +83,7 @@ translationKey: home
 
 {# ── Intro: tiivistys + päätoiminnot ──────────────────────────────────── #}
 <section class="py-5 home-intro-section">
-    <div class="container">
+    <div class="site-shell">
         <div class="row justify-content-center">
             <div class="col-lg-8 text-center">
                 <p class="home-intro-text">{{ pageContent.etusivu.intro.text }}</p>
@@ -97,7 +97,7 @@ translationKey: home
 </section>
 
 <section class="py-5 home-overview-section">
-    <div class="container">
+    <div class="site-shell">
         <div class="row g-4 g-xl-5">
 
             {# Kortti 1: Yliopistonlehtori #}
@@ -290,7 +290,7 @@ translationKey: home
 {% set allRecentSorted = allRecentItems | sort(true, false, "sortTs") | take(9) %}
 
 <section class="py-5 home-recent-section">
-    <div class="container">
+    <div class="site-shell">
         <div class="d-flex align-items-baseline justify-content-between mb-4">
             <p class="text-uppercase fw-bold mb-0 home-recent-label">Viimeisin sisältö</p>
             <div class="d-flex gap-3">
@@ -418,7 +418,7 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 
 <section class="py-5 bg-body-tertiary home-closing-section" style="border-top: 1px solid var(--bs-border-color-translucent);">
-    <div class="container">
+    <div class="site-shell">
         <div class="row justify-content-center">
             <div class="col-lg-9">
                 <div class="home-closing-panel text-center">

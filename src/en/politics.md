@@ -8,7 +8,7 @@ translationKey: politics_index
 lang: en
 ---
 <section class="pol-hero mb-0">
-  <div class="container py-5">
+  <div class="site-shell py-5">
     <div class="row g-4 align-items-center">
       <div class="col-lg-8">
         <p class="pol-eyebrow mb-2"><i class="bi bi-building2 me-1"></i>Politics</p>
@@ -34,7 +34,7 @@ lang: en
 <div class="pol-hero-divider"></div>
 
 <section class="py-5 mb-0" id="political-themes">
-  <div class="container">
+  <div class="site-shell">
     <div class="d-flex align-items-end justify-content-between flex-wrap gap-2 mb-4">
       <div>
         <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-grid-3x3-gap me-1"></i>Themes</p>
@@ -57,7 +57,7 @@ lang: en
 </section>
 
 <section class="py-5 mb-0 bg-body-tertiary" id="council-initiatives">
-  <div class="container">
+  <div class="site-shell">
     <div class="d-flex align-items-end justify-content-between mb-4">
       <div>
         <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-file-earmark-text me-1"></i>Motions</p>
@@ -99,7 +99,7 @@ lang: en
 </section>
 
 <section class="py-5 mb-0" id="council-videos">
-  <div class="container">
+  <div class="site-shell">
     <div class="d-flex align-items-end justify-content-between mb-4">
       <div>
         <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-camera-video me-1"></i>Videos</p>
@@ -136,7 +136,7 @@ lang: en
 </section>
 
 <section class="py-5 mb-0 bg-body-tertiary" id="politics-blog">
-  <div class="container">
+  <div class="site-shell">
     <div class="d-flex align-items-end justify-content-between mb-4">
       <div>
         <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-pen me-1"></i>Blog</p>
@@ -180,7 +180,7 @@ lang: en
 </section>
 
 <section class="py-5 mb-0" id="politics-content">
-  <div class="container">
+  <div class="site-shell">
     <div class="d-flex align-items-end justify-content-between mb-4">
       <div>
         <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-collection me-1"></i>All content</p>

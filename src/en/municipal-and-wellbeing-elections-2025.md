@@ -10,7 +10,7 @@ lang: en
 ---
 
 <section class="kunta-aluevaalit-2025 py-5 bg-body-tertiary border-bottom">
-  <div class="container">
+  <div class="site-shell">
     <p class="text-uppercase text-muted fw-semibold small mb-2">Politics - Archive</p>
     <h1 class="display-6 fw-bold mb-3">Municipal and Wellbeing Area Elections 2025</h1>
     <p class="lead mb-2">I was a candidate in the Oulu municipal elections on 13 April 2025 on the National Coalition Party list, candidate number <strong>439</strong>.</p>
@@ -19,7 +19,7 @@ lang: en
 </section>
 
 <section class="kunta-aluevaalit-2025 py-5">
-  <div class="container">
+  <div class="site-shell">
     <div class="row g-4 mb-5">
       <div class="col-lg-8">
         <div class="card border-0 shadow-sm h-100">

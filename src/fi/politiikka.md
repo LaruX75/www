@@ -8,7 +8,7 @@ lang: fi
 templateEngineOverride: njk
 ---
 <section class="pol-hero mb-0">
-  <div class="container py-5">
+  <div class="site-shell py-5">
     <div class="row g-4 align-items-center">
       <div class="col-lg-8">
         <p class="pol-eyebrow mb-2"><i class="bi bi-building2 me-1"></i>Politiikka</p>
@@ -32,7 +32,7 @@ templateEngineOverride: njk
 <div class="pol-hero-divider"></div>
 
 <section class="py-5 mb-0" id="poliittiset-teemat">
-  <div class="container">
+  <div class="site-shell">
     <div class="d-flex align-items-end justify-content-between flex-wrap gap-2 mb-4">
       <div>
         <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-grid-3x3-gap me-1"></i>Teemat</p>
@@ -54,7 +54,7 @@ templateEngineOverride: njk
 </section>
 
 <section class="py-5 mb-0 bg-body-tertiary" id="valtuustoaloitteet">
-  <div class="container">
+  <div class="site-shell">
     <div class="d-flex align-items-end justify-content-between mb-4">
       <div>
         <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-file-earmark-text me-1"></i>Aloitteet</p>
@@ -96,7 +96,7 @@ templateEngineOverride: njk
 </section>
 
 <section class="py-5 mb-0" id="kokousvideot">
-  <div class="container">
+  <div class="site-shell">
     <div class="d-flex align-items-end justify-content-between mb-4">
       <div>
         <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-camera-video me-1"></i>Videot</p>
