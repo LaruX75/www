@@ -7,7 +7,9 @@ og-cache/*
 _site_debug/
 .DS_Store
 *.log
-.cache/
+.cache/*
+!.cache/api-fallback/
+!.cache/api-fallback/**
 matkapaketti.tar.gz
 *.tar.gz
 *.zip
@@ -37,7 +39,7 @@ AGENTS.md
 
 # Local analysis artifacts and helper exports
 canva-analysis.json
-slideshare-*.json
+/slideshare-*.json
 slideshare-analyysi.md
 reports/
 images-report.csv
