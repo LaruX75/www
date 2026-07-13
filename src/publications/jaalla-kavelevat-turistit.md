@@ -1,5 +1,5 @@
 ---
-title: "Jäällä kävelevät turistit"
+title: "Puheenvuoro valtuustossa: Jäällä kävelevät turistit"
 date: 2023-02-27
 type: puhe
 event: "Oulun kaupunginvaltuusto"
