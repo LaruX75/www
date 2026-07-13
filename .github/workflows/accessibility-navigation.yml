@@ -1,0 +1,41 @@
+name: Accessibility and navigation tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: accessibility-navigation-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  playwright:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "npm"
+      - run: npm ci
+      - name: Build site without OG image generation
+        run: npm run build:no-og
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE }}
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+      - name: Run accessibility and navigation tests
+        run: npx playwright test tests/accessibility.spec.js tests/navigation.spec.js tests/contrast.spec.js
+        env:
+          PLAYWRIGHT_USE_STATIC_SERVER: "true"
+          PLAYWRIGHT_A11Y_OFFLINE: "true"
