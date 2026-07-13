@@ -1,0 +1,28 @@
+---
+title: "Puheenvuoro valtuustossa § 2: Terwa Toweria ei pidä palauttaa valmisteluun"
+date: 2024-03-18
+type: puhe
+event: "Oulun kaupunginvaltuusto"
+asiakohta: "§ 2 – Asemakaavan ja tonttijaon muutos, Terwa Tower"
+description: "Puheenvuorossa perustelen, miksi Terwa Towerin kaava-asiaa ei pidä palauttaa valmisteluun, ja nostan esiin museo- ja tiedekeskuksen merkityksen matkailukohteena."
+tags:
+  - publications
+  - politics
+  - kaupunginvaltuusto
+  - terwa tower
+  - museo- ja tiedekeskus
+  - palautusesitys
+templateEngineOverride: md
+---
+
+Oulun kaupunginvaltuustossa käsiteltiin 18.3.2024 Terwa Towerin asemakaavan ja tonttijaon muutosta. Käytin puheenvuoron palautusesityksestä ja perustelin, miksi asian käsittelyä tulee jatkaa.
+
+Kiitos puheenjohtaja. Arvoisat valtuutetut,
+
+en kannata asian palauttamista valmisteluun.
+
+Syy on se, että museo- ja tiedekeskuksen työmaa on jo käynnissä. Tässä keskustelussa on puhuttu myös arkkitehtuurikilpailusta ja hankkeen taustalla olevista ongelmista. Ongelmat johtuvat osaltaan siitä, että hanke oli konsernijaoston pöytälaatikossa.
+
+Nyt olemme kuitenkin saamassa upean museo- ja tiedekeskuksen. Vaikka se valmistuisi kulttuuripääkaupunkivuoden jälkeen, meillä olisi joka tapauksessa keskus, jonka tavoitteena on 200 000 vuotuista kävijää. Se olisi merkittävä matkailukohde.
+
+En kannata palautusesitystä.
