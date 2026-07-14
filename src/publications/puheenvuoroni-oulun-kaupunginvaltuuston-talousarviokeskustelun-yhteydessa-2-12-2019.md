@@ -3,7 +3,8 @@ title: "Puheenvuoro valtuustossa: Kulttuuri-investointeja ei pidä unohtaa kaupu
 date: 2019-12-02
 type: puhe
 event: "Oulun kaupunginvaltuusto"
-asiakohta: "Asiakohta 1 – Talousarvio 2020 ja taloussuunnitelma 2021–2022"
+meetingDate: 2019-12-09
+asiakohta: "§ 128 – Talousarvio 2020 ja -suunnitelma 2021-2022"
 description: "Puheenvuorossa käsittelen lähipalveluinvestointien myönteisiä puolia sekä kulttuurirakennusten, valotaiteen ja digitaalisten elämysten unohtamista kaupungin kehittämisessä."
 tags:
   - publications
@@ -52,4 +53,3 @@ Voisimmeko niiden avulla herättää alueemme historiaa eloon ja tehdä siitä k
 Viihtyisä kaupunkiympäristö ja tasokkaat kulttuuripalvelut lisäävät kaupungin asukkaiden henkistä hyvinvointia. Samalla ne vahvistavat Oulun vetovoimaa ja houkuttelevat kaupunkiin myös matkailijoita.
 
 Kiitoksia.
-

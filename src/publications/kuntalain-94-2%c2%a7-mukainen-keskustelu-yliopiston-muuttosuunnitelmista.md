@@ -1,6 +1,8 @@
 ---
 title: Kuntalain 94.2§ mukainen keskustelu yliopiston muuttosuunnitelmista
 date: 2020-11-10
+event: "Oulun kaupunginvaltuusto"
+meetingDate: 2020-11-09
 description: "Mistä on kyse Minä ja 17 muuta kaupunginvaltuuettua pyysimme Oulun kaupunginvaltuustoa koolle käsittelemää suunnitelmaa Oulun yliopiston siirtymisestä raksilaan. Kahdeksantoista valtu..."
 tags:
   - publications
@@ -39,4 +41,3 @@ https://youtu.be/AK9p1OMpnbs?t=13321</div><figcaption>Tässä puheessa kerron si
 <h2>3. puheenvuoro</h2>
 <figure><div>
 https://youtu.be/AK9p1OMpnbs?t=15232</div><figcaption>Tässä viimeisessä puheenvuorossani otan kantaa "Linnanmaan kampuksen seiniin", joihin aiemmat puhujat ottivat kantaa. Kerroin kampuksen olevan DOCOMOMO listattu arkkitehtuurikohde ja viittasin senkin olevan osa kaupunkimme kulttuurista kerroksellisuutta. </figcaption></figure>
-

@@ -1,6 +1,7 @@
 ---
 title: Puheeni Jäälissä pidetyssä Oulun raati -yleisötilaisuudessa 18.3.2014
 date: 2014-03-18
+event: "Oulun raati -yleisötilaisuus"
 description: "Tässä puheessa tiedustelin mm. Jäälin urheilualueen ja Jääli-Hönttämäki ulkoilureitin perää . Tuolloin toimin Jäälin asukasyhdistyksen puheenjohtajana, lähidemokratiatoimikunnan puheenjohtajana ja ..."
 categories:
   - Asukasyhdistys
@@ -23,5 +24,4 @@ templateEngineOverride: md
 <p>Tässä puheessa tiedustelin mm. Jäälin urheilualueen ja Jääli-Hönttämäki ulkoilureitin perään. <br>Tuolloin toimin Jäälin asukasyhdistyksen puheenjohtajana, lähidemokratiatoimikunnan puheenjohtajana ja Oulun kaupunginvaltuutettuna.</p>
 <figure><div>
 https://youtu.be/iD8Gon-47Lg?t=1917</div><figcaption>Puheeni asukastilaisuudessa. Jos puhe ei ala oikeasta kohtaa, käytä tätä linkkiä: https://youtu.be/iD8Gon-47Lg?t=1917</figcaption></figure>
-
 

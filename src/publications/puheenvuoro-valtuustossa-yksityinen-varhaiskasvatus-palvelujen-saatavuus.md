@@ -3,7 +3,8 @@ title: "Puheenvuoro valtuustossa § 12: Yksityinen varhaiskasvatus ja palvelujen
 date: 2022-11-28
 type: puhe
 event: "Oulun kaupunginvaltuusto"
-asiakohta: "§ 12 – Talousarvio 2023 ja taloussuunnitelma 2024–2025"
+meetingDate: 2022-12-12
+asiakohta: "§ 111 – Talousarvio 2023 ja taloussuunnitelma 2024-2025"
 description: "Puheenvuorossa perustelen yksityisen varhaiskasvatuksen merkitystä palvelutarjonnan joustavuudelle, saatavuudelle ja kustannustehokkuudelle."
 tags:
   - publications

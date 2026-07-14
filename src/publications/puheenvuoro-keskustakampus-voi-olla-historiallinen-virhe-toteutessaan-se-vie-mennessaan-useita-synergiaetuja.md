@@ -1,6 +1,7 @@
 ---
 title: "Puheenvuoro: keskustakampus voi olla historiallinen virhe. Toteutessaan se vie mennessään useita synergiaetuja"
 date: 2021-10-03
+event: "Oulun kaupunginvaltuuston vierailu Oulun yliopistolla"
 description: "Kaupunginvaltuuston Linnannmaa-vierailulla pitämäni puheenvuoro"
 categories:
   - Puheet
@@ -27,4 +28,3 @@ templateEngineOverride: md
 <p>Vaikka usein olemme saaneet kuulla, että yliopisto kertoo suunnitelmistaan möhemmin, maankäyttöä ei voi erottaa yliopiston toiminnasta näin isossa asiassa. On todella surullista ja irvokasta, että keskustelemme tänään täällä yliopistolla keskenämme. </p>
 <p>Keskustakampus ilmestyi politiikan pöydälle "ilmoitusasiana".  Koen, että poliittinen keskustelu olisi pitänyt käydä valtuustotasolla ennen kiirehtimistä eteenpäin. Me päättäjät olemme nyt tässä asiassa jälkijunassa ja se ei ole kenenkään etu. </p>
 <p>(puheenvuoro pidetty Oulun kaupunginvaltuuston vieraillessa Oulun yliopistolla vierailun toisessa osuudessa, jossa olimme keskenämme yliopiston luentosalissa L4, joka muuten on kolkko sali. Vieressä olisi ollut luentosali L2, joka on kansallinen lippulaiva lajissaan)</p>
-

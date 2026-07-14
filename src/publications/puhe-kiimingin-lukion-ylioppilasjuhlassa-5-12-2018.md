@@ -1,6 +1,7 @@
 ---
 title: Puhe Kiimingin lukion ylioppilasjuhlassa 5.12.2018
 date: 2018-12-05
+event: "Kiimingin lukion ylioppilasjuhla"
 description: "Puhe Kiimingin lukion ylioppilasjuhlassa 5.12.2018 Arvoisa rehtori, hyvä juhlayleisö ja hyvät ylioppilaat! &nbsp;Te uudet ylioppilaat olette nyt saavuttaneet välitavoitteenne, ylioppilastutki..."
 categories:
   - Juhlapuheet
@@ -32,4 +33,3 @@ templateEngineOverride: md
 <p><strong>Kun jatkatte opintojanne</strong>, osallistukaa ainejärjestötyöhön, käykää vaihdossa ulkomailla ja harrastakaa. Eläkää täysillä, tämä on teidän vuosikymmen!</p>
 <p><strong>Arvoisat ylioppilaat</strong>, toivon että te olette ylpeitä tästä ajanjaksosta elämässänne ja odotatte innolla, mitä tulevaisuus tuo tullessaan. Sillä sen te olemme ansainneet! Te luotte maamme tulevaisuuden työtehtävissänne, ovat ne tulevaisuudessa mitä tahansa.</p>
 <p><strong>Toivotan teille parhainta</strong>&nbsp;menestystä pyrin öissänne ja hyvää itse äisyyspäivää!</p>
-

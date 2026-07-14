@@ -1,6 +1,7 @@
 ---
 title: LECTIO PRECURSORIA (Opiskelun tukeminen mobiililaitteiden ja pedagogisen vaiheistuksen avulla)
 date: 2012-10-12
+event: "Oulun yliopiston väitöstilaisuus"
 description: "Jari J. Laru: LECTIO PRECURSORIA (Puhe väitöstilaisuuden alussa) Väitöstilaisuus 12.10.2012 Oulun yliopiston Kasvatustieteiden tiedekunnan luentosalissa klo 12. Puheeni videoituna: nht..."
 categories:
   - Juhlapuheet
@@ -55,5 +56,4 @@ https://www.youtube.com/watch?v=TIi1tTZqHvU</div></figure>
 <div>
 <div><a></a></div>
 </div>
-
 

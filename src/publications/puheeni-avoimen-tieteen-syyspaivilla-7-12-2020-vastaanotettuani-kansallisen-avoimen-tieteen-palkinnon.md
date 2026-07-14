@@ -1,6 +1,7 @@
 ---
 title: Puheeni avoimen tieteen syyspäivillä 7.12.2020 vastaanotettuani kansallisen avoimen tieteen palkinnon
 date: 2020-12-07
+event: "Avoimen tieteen syyspäivät"
 description: "Avoimen tieteen syyspäivillä 7.12.2020 jaettiin toista kertaa kansallinen avoimen tieteen palkinto ja kaksi avoimen tieteen edistäjät -palkintoa."
 categories:
   - Avoimet oppimateriaalit ja sisällöt
@@ -37,4 +38,3 @@ templateEngineOverride: md
 <p>Omalta osaltani olen ottanut tavoitteekseni tehdä tulevaisuudessa materiaaleja kansalliseen oppimateriaalikirjastoon. Haastan myös teidät kaikki tekemään samoin!</p>
 <p>Haluan kiittää tieteellisten seurain valtuuskuntaa ja erityisesti avoimen tieteen kansallista koordinaatioryhmää tästä palkinnosta! On todella suuri kunnia tulla huomioiduksi avoimen oppimisen teemapäivänä! Tämä on tällaisen kehitysorientoituneen yliopistolehtorin juhlapäivä jo pelkän teeman ansiosta, mutta vielä erityisemmin tämän huomionosoituksen johdosta.</p>
 <p>Kiitos!</p>
-

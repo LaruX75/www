@@ -1,6 +1,7 @@
 ---
 title: Porisuta porvaria koulutuksesta
 date: 2017-09-27
+event: "Porisuta porvaria koulutuksesta"
 description: "Tähää Cafe Roosterissa on mukava tapahtuma \"porisuta porvaria koulutuksesta\" - allekirjoittanut on yksi porisutettavista TAPAHTUMAN KUVAUS:\"Tiedätkö oikeasti mitä paikalliset porvarit ajatte..."
 categories:
   - Paneelit
@@ -23,4 +24,3 @@ templateEngineOverride: md
 <p>He ovat kukin oman alansa asiantuntijoita, jotka tarkastelevat koulutusta eri näkökulmista. </p>
 <p>Tilaisuuden juontaa Mono Kuoppala. Tapahtuman järjestää Pokkisen Kokoomus."</p>
 <p><a href="https://www.facebook.com/events/1773051666329983/?cft[0]=AZVRSUXcTknkRbLzVztt3sqYnNYDDVeTpVgHBFGRQWsuIazO3NHw-mAb0_tPCgDfWPpAqtVM4wbcPW1KSUCP59GIBzO9u3elPn_9S-c62-sI_4IA0tTrpbJelXV0IQ0-nC6022G3FT2EHJ_fjPpGytIMiaG3san1cTGII4YmmYVp03V8T2E4wDLC0TQB3zFrm7o&amp;tn=-UK-R">https://www.facebook.com/events/1773051666329983/?cft[0]=AZVRSUXcTknkRbLzVztt3sqYnNYDDVeTpVgHBFGRQWsuIazO3NHw-mAb0_tPCgDfWPpAqtVM4wbcPW1KSUCP59GIBzO9u3elPn_9S-c62-sI_4IA0tTrpbJelXV0IQ0-nC6022G3FT2EHJ_fjPpGytIMiaG3san1cTGII4YmmYVp03V8T2E4wDLC0TQB3zFrm7o&amp;tn=-UK-R</a></p>
-

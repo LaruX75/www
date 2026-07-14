@@ -3,7 +3,8 @@ title: "Puheenvuoro valtuustossa § 12: Haukiputaan urheilukenttä ja Torpanmäe
 date: 2022-11-28
 type: puhe
 event: "Oulun kaupunginvaltuusto"
-asiakohta: "§ 12 – Talousarvio 2023 ja taloussuunnitelma 2024–2025"
+meetingDate: 2022-12-12
+asiakohta: "§ 111 – Talousarvio 2023 ja taloussuunnitelma 2024-2025"
 description: "Puheenvuorossa arvostelen Haukiputaan urheilukentän sijaintivaihtoehtojen mustavalkoista vertailua ja kahteen kertaan rakentamisen riskiä."
 tags:
   - publications

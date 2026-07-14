@@ -3,7 +3,8 @@ title: "Puheenvuoro valtuustossa § 4: Yksityisen varhaiskasvatuksen osuuden lis
 date: 2021-11-29
 type: puhe
 event: "Oulun kaupunginvaltuusto"
-asiakohta: "§ 4 – Talousarvio 2022 ja taloussuunnitelma 2023–2024"
+meetingDate: 2021-12-13
+asiakohta: "§ 117 – Talousarvio 2022 ja -suunnitelma 2023-2024"
 description: "Puheenvuorossa esitän yksityisen varhaiskasvatuksen osuuden kasvattamista osana kaupungin palveluverkon kehittämistä ja investointitarpeiden hallintaa."
 tags:
   - publications

@@ -1,6 +1,7 @@
 ---
 title: Puhe miekalle (tohtoripromootio 2013)
 date: 2013-06-17
+event: "Oulun yliopiston tohtoripromootio"
 description: "Herra rehtori, Arvoisat promoottorit ja promovendit Hyvät naiset ja herrat Meidä aikamme on uniikki. Ei välttämättä historian korkeaveisu tai huippukohta, mutta korkea tasanne joka tapaukses..."
 categories:
   - Juhlapuheet
@@ -36,4 +37,3 @@ templateEngineOverride: md
 <p>Miekanhiojaiset ovat se osuus promootiosta, jossa on tarkoitus valmistautua varsinaiseen promootioaktiin ja tutustua muihin promovendeihin ja promoottoreihin. Otetaan se illan ja yö
 <br>ohjeeksi ja huomenna jatketaan. Hiokaamme miekkamme teräviksi ja viettäkäämme rattoisa ilta mukavassa seurassa. </p>
 <p>Hauskaa iltaa ystävät!</p>
-

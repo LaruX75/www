@@ -398,7 +398,7 @@ translationKey: writings_index
   {% set councilMeta = oukaCouncilSpeechProtocols.overrides[resolvedUrl] or {} %}
   {% set resolvedEvent = councilMeta.event or pub.data.event or "" %}
   {% set resolvedAsiakohta = councilMeta.asiakohta or pub.data.asiakohta or "" %}
-  {% set meetingDate = councilMeta.meetingDate or pub.date.toISOString().slice(0, 10) %}
+  {% set meetingDate = pub.data.meetingDate or councilMeta.meetingDate or pub.date.toISOString().slice(0, 10) %}
   {% set protocolUrl = councilMeta.protocolUrl or (resolvedEvent == "Oulun kaupunginvaltuusto" and oukaCouncilSpeechProtocols.protocolsByDate[meetingDate]) %}
   {
     "title": {{ pub.data.title | jsonSafe | safe }},

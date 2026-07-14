@@ -1,6 +1,8 @@
 ---
 title: "Puheenvuoro kohdassa: §7. Selvitys Oulun yliopiston sijoittumisesta Raksilan alueelle"
 date: 2021-04-26
+event: "Oulun kaupunginvaltuusto"
+asiakohta: "§ 33 – Selvitys Oulun yliopiston sijoittumisesta Raksilan alueelle"
 description: "Pidin puheenvuoron kaupunginvaltuuston kokouksessa 26.4.2021 kohdassa §7. Selvitys Oulun yliopiston sijoittumisesta Raksilan alueelle"
 tags:
   - publications
@@ -28,4 +30,3 @@ templateEngineOverride: md
 <p>Maamme muut merkittävät teknillisiä tieteitä tutkivat ja opettavat kampukset sijaitsevat Otaniemessä ja Hervannassa. Molempien läheisyydessä on alan merkittäviä yrityksiä ja sektoritutkimuslaitoksia sekä opiskelija-asuntoja. Siellä ei olla suunnittelemassa toimintojensa hajasijoittamista.</p>
 <p>Tulevan kampuksen naapureina olisivat Keskon ja Arinan marketit. Mitä lisäarvoa päivittäistavarakaupan suuryksiköt tuovat kansainvälisen tiedeyliopiston toiminnalle? Myös se keskustakampushankkeessa ihmetyttää: että se esitetään hopealuotina, joka ratkaisee kaiken vailla negatiivisia vaikutuksia</p>
 <p>Minusta meillä ei ole varaa luopua Linnanmaan ekosysteemistä, joka on kansainvälisestikin tunnettu esimerkki tutkimuksen, opetuksen ja tuotekehityksen yhteistyöstä? Keskustakampus-hanke luo varjon tämän kokonaisuuden ylle. &nbsp;</p>
-

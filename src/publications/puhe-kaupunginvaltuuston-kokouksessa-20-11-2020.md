@@ -1,6 +1,9 @@
 ---
 title: Puhe kaupunginvaltuuston kokouksessa 20.11.2020
 date: 2020-11-20
+event: "Oulun kaupunginvaltuusto"
+meetingDate: 2020-11-09
+asiakohta: "§ 95 – Oulun yliopiston sijoittuminen Raksilan alueelle, valtuutettu Viitasen ym. kirjelmä"
 description: "Arvoisa puheenjohtaja, hyvät valtuutetut ja yleisö. Oulun yliopisto on ensimmäinen korkeakoulu maassamme, jossa teknillinen korkeakoulu ja perinteinen tiedeyliopisto yhdistettiin. Tavoitteena oli, e..."
 categories:
   - Kaupunginvaltuusto
@@ -32,4 +35,3 @@ templateEngineOverride: md
 <p>Yliopiston tehtävä ei ole huolehtia kaupungin vetovoimasta, vaan se kuuluu kaupungin toimialaa
 </p>
 <p>Yliopiston tehtävä on toisaalla, kasvattaa uusia sukupolvia yhteiskunnan kannalta keskeisiin tehtäviin ja huolehtia innovaatioiden synnyttämisestä ja perustutkimuksen jatkuvuudesta. Oulun yliopistolla ei ole pulaa toimitiloista, vaan hyvistä ideoista ja ajatuksista.</p>
-

@@ -1,6 +1,8 @@
 ---
 title: "ASIAKOHTA: 9§ Hankeselvityksen tekeminen, Niemenrannan ja Salonpään koulut"
 date: 2018-05-14
+event: "Oulun kaupunginvaltuusto"
+asiakohta: "§ 9 – Hankeselvityksen tekeminen, Niemenrannan ja Salonpään koulut"
 description: "Ihan hetkisen kuluttua normaalit ihmiset asettuvat katsomaan iltauutisia. Minä asetun mikrofonin ääreen ja pidä alla olevan puheen. ASIAKOHTA: 9§ Hankeselvityksen tekeminen, Niemenrannan ja ..."
 tags:
   - publications
@@ -22,4 +24,3 @@ templateEngineOverride: md
 <p>Maassamme on nykyään hyvin tyypillistä tarjota asukkaille lähipalveluna 0-2 vuosiluokkien koulu. Kaupungissammekin on useita 0-2 kouluja, kuten on myös 1-4lk ja 5-9lk kouluja.Arvoisat valtuutetut, kaupungin koulujen opettajat ja oppilaat ovat jo vuosia joutuneet kärsimään meidän valtuutettujen päättämättömyydestä ja riittämättömästä käyttötaloudesta. </p>
 <p>Koulujen henkilökunta ja huoltajat eivät pienestä valita, mutta nyt viimeisen vuoden aikana olemme saaneet näistä epäkohdista lukea myös sydäntä särkeviä yleisönosastokirjoituksia.</p>
 <p>Salonpään 0-2 koulu olisi valtioneuvoston nivelkohtia koskevan asetuksen mukainen. Rakentamalla pieni 0-6lk koulu 3km päähän toisesta koulusta avaamme Pandoran lippaan joka toimii kuntalaisten etua vastaan.Seinät eivät edelleenkään opi eivätkä opeta.</p>
-

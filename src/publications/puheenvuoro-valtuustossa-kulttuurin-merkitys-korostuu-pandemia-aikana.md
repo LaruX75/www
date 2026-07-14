@@ -3,7 +3,8 @@ title: "Puheenvuoro valtuustossa § 1: Kulttuurin merkitys korostuu pandemia-aik
 date: 2020-11-30
 type: puhe
 event: "Oulun kaupunginvaltuusto"
-asiakohta: "§ 1 – Talousarvio 2021 ja taloussuunnitelma 2022–2023"
+meetingDate: 2020-12-07
+asiakohta: "§ 105 – Talousarvio 2021 ja -suunnitelma 2022-2023"
 description: "Puheenvuorossa korostan kulttuurin merkitystä hyvinvoinnille pandemia-aikana ja kannatan kaupunginteatteriin kohdistuvan säästön pienentämistä."
 tags:
   - publications

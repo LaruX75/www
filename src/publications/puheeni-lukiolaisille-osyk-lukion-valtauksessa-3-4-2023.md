@@ -1,6 +1,7 @@
 ---
 title: Puheeni lukiolaisille OSYK lukion valtauksessa 3.4.2023
 date: 2023-10-04
+event: "OSYK-lukion valtaus"
 description: "Arvoisat lukiolaiset, kerron teille korona-ajan nuorille terveiset lama-ajan nuorelta. Kun aloitin Saloisten lukion ensimmäisellä luokalla vuonna 1991, tapahtui jotain käsittämätöntä, nimittä..."
 categories:
   - Muut
@@ -30,4 +31,3 @@ templateEngineOverride: md
 <p>Kun kuulin Hillalta, että te suunnittelette lukion valtaamista olin innoissani, vaikka ajan virta on minusta tehnytkin sivistysporvarin eli kokoomuslaisen. Olen nimittäin varma, että tämä päivä on teille monelle käännekohta elämässä. Sellainen käännekohta, joka johtaa asteittain voimistuvaan yhteiskunnalliseen osallisuuteen ja osallistumiseen. Näin kävi myös minulle tasan 30 vuotta sitten Saloisten lukion lakossa.</p>
 <p>Arvoisat lukiolaiset, nuorten hyvinvoinnin tekijät ovat yksinkertaisia, mutta niiden takaaminen kaikille nuorille on vaikeata ja hidasta. Ei olemassa yhtä toimenpidettä, jolla kurottaisiin umpeen edes pandemian teille aiheuttamat oppimis-, yhteisöllisyys- ja mielenterveysvajeet, laajemmasta kokonaisuudesta puhumattakaan. Tuorein nuorisobarometri kysyy keskeisen kysymyksen: ”Ovatko nuorten ongelmat liian monimutkaisia meidän päättäjien ratkottavaksi maailmassa, jossa politiikka on pääosin reaktiivista ja tuloksia arvioidaan enemmän nopeudessa kuin vaikeudessa”.<br><br>Politiikan perusongelma on se, että kaikki asiat ovat voimakkaassa keski äisriippuvuudessa. Mikä tahansa päätös vaikuttaa hyvin monimutkaisella tavalla kokonaisuuteen. Kyse on ilmiöstä, jota on miltei mahdotonta vangita asioita valmistelevien virkamiesten laskelmiin. Tämä tekee politiikasta hyvin mielenkiintoista, riippumatta siitä toimitaanko kunta-, alue vai valtakunnan tasolla poliittisissa luottamustehtävissä.</p>
 <p>Arvoisat kuulijat, viime vuosina nuorten kiinnostus politiikkaa ja vaikuttamista kohtaan on ollut kasvussa. Kuntaliiton mukaan nuorten äänestysaktiivisuus on tyypillisesti kuitenkin vanhempia ikäluokkia matalampi. Rohkaisen teitä korjaamaan tämän asian. Kansalaisaktivismi, jollaista edustaa myös tämä valtaus, on hyvä alku. Ehkäpä tapaamme vielä valtuustossa?</p>
-

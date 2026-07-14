@@ -1,6 +1,7 @@
 ---
 title: Vierailu Kempeleen kunnassa. Aiheena asukkaiden huoli jätevesilietteiden käsittelyyn liittyen.
 date: 2018-01-11
+event: "Kempeleen kunnan tilaisuus"
 description: "Tammikuussa 2018 kävin kempeleläisten kutsumana kertomassa jääliläisten \"lietesaagasta\""
 categories:
   - Asukasyhdistys
