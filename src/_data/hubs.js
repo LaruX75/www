@@ -23,7 +23,7 @@ module.exports = {
         {
           heading: "Kouluttaja (yrittäjä)",
           links: [
-            { title: "Larux t:mi", href: "/larux-tmi/", icon: "bi bi-building", description: "AI-koulutukset, keynote-esitykset ja pedagoginen asiantuntemus yrityksen kautta." },
+            { title: "Larux t:mi", href: "/kouluttaja/", icon: "bi bi-building", description: "AI-koulutukset, keynote-esitykset ja pedagoginen asiantuntemus yrityksen kautta." },
             { title: "Esitykset", href: "/esitykset/", icon: "bi bi-easel2", description: "Näytteitä koulutus- ja keynote-esitysten sisällöistä." }
           ]
         },
@@ -61,7 +61,7 @@ module.exports = {
           links: [
             { title: "Yliopistonlehtori", href: "/tyoni-yliopistonlehtorina/", icon: "bi bi-mortarboard", description: "Opetus, tutkimus ja ohjaus yliopiston arjessa." },
             { title: "Poliitikko", href: "/politiikka/", icon: "bi bi-bank2", description: "Paikallispolitiikan teemat, tavoitteet ja päätöksenteko." },
-            { title: "Yrittäjä", href: "/larux-tmi/", icon: "bi bi-building", description: "Koulutus- ja asiantuntijapalvelut Larux t:mi:n kautta." }
+            { title: "Yrittäjä", href: "/kouluttaja/", icon: "bi bi-building", description: "Koulutus- ja asiantuntijapalvelut Larux t:mi:n kautta." }
           ]
         },
         {

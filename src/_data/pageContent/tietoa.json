@@ -8,7 +8,7 @@
     "ctas": [
       { "label": "Politiikka",     "href": "/politiikka/",           "style": "btn-primary" },
       { "label": "Tutkimus",       "href": "/tutkimus/",             "style": "btn-outline-primary" },
-      { "label": "Koulutukset",    "href": "/larux-tmi/",            "style": "btn-outline-primary" },
+      { "label": "Koulutukset",    "href": "/kouluttaja/",           "style": "btn-outline-primary" },
       { "label": "Ansioluettelo",  "href": "/cv/",                   "style": "btn-outline-secondary" }
     ]
   },
@@ -32,7 +32,7 @@
         "title": "Kouluttaja & puhuja",
         "desc": "Larux t:mi -yritykseni kautta tarjoan opetusalan täydennyskoulutusta ja puheenvuoroja. Erikoisala: tekoäly, digipedagogiikka ja teknologiatuettu oppiminen.",
         "cta": "Lue lisää koulutuksista",
-        "href": "/larux-tmi/"
+        "href": "/kouluttaja/"
       },
       {
         "title": "Tutkija",

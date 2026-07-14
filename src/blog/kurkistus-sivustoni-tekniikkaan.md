@@ -78,7 +78,7 @@ Tämä toinen haaste oli samankaltainen kuin edellinen, mutta tässä tapauksess
 
 Tämän toteuttaminen on vielä käytännössä pikkaisen kesken, mutta [esittelysivuni alaosassa](https://www.jarilaru.fi/tietoja/) pyörii "teknologiatuettu oppiminen" luokkaan kytkettyjä artikkeleita karuselli äkymässä. Siitä saa vähän suuntaa :)
 
-No, miten tämä käytännössä tehtiin? Pienen googlauksen jälkeen ratkaisu osoittautui kohtalaisen helpoksi! Nimittäin "[ultimate addons for Gutenberg](https://www.ultimategutenberg.com/)" laajennus toi mukanaan paitsi kaipaamani toiminnallisuuden, niin myös hurjan määrän muita hyödyllisiä lohkoja osaksi Gutenberg editoria. Esimerkkejä hyödyllisistä lohkoista ovat varoitusboksit (katso täältä: [Jari Larun puheita ja kirjoituksia](https://www.jarilaru.fi/jari-larun-puheita-ja-kirjoituksia/)) ja sisällysluettelo-lohko, jollainen löytyy mm. tääältä: [Larux tmi](https://www.jarilaru.fi/larux-tmi/)
+No, miten tämä käytännössä tehtiin? Pienen googlauksen jälkeen ratkaisu osoittautui kohtalaisen helpoksi! Nimittäin "[ultimate addons for Gutenberg](https://www.ultimategutenberg.com/)" laajennus toi mukanaan paitsi kaipaamani toiminnallisuuden, niin myös hurjan määrän muita hyödyllisiä lohkoja osaksi Gutenberg editoria. Esimerkkejä hyödyllisistä lohkoista ovat varoitusboksit (katso täältä: [Jari Larun puheita ja kirjoituksia](https://www.jarilaru.fi/jari-larun-puheita-ja-kirjoituksia/)) ja sisällysluettelo-lohko, jollainen löytyy mm. tääältä: [Larux tmi](https://www.jarilaru.fi/kouluttaja/)
 
 [Katso video](https://www.youtube.com/watch?v=H4UVrqAUFVQ)
 

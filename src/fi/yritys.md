@@ -3,7 +3,7 @@ layout: base.njk
 title: "Larux t:mi – koulutukset ja puheenvuorot"
 subtitle: Larux t:mi
 description: Larux t:mi tarjoaa koulutuksia, puheenvuoroja ja asiantuntijapalveluita opetusteknologian sekä tekoälyn opetuskäytön teemoista. Kouluttajana Jari Laru, KT, yliopistonlehtori.
-permalink: /larux-tmi/
+permalink: /kouluttaja/
 translationKey: company
 lang: fi
 ---

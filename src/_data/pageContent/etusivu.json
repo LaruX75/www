@@ -9,7 +9,7 @@
       },
       {
         "label": "Kouluttaja (Larux t:mi)",
-        "href": "/larux-tmi/"
+        "href": "/kouluttaja/"
       },
       {
         "label": "Kuntapäättäjä",
@@ -36,7 +36,7 @@
         "title": "Koulutuksen tilaajalle",
         "desc": "Tarvitsetko kouluttajan tai keynote-puhujan? Käytännönläheiset koulutukset tekoälystä, digipedagogiikasta ja oppimisesta organisaatioille ja oppilaitoksille.",
         "cta": "Koulutuspalvelut ja tarjouspyyntö →",
-        "href": "/larux-tmi/"
+        "href": "/kouluttaja/"
       },
       {
         "icon": "bi-journal-text",
@@ -97,7 +97,7 @@
       },
       "cta1": {
         "label": "Tilaa koulutus",
-        "href": "/larux-tmi/"
+        "href": "/kouluttaja/"
       },
       "cta2": {
         "label": "Kaikki esitykset",
@@ -134,7 +134,7 @@
     },
     "cta2": {
       "label": "Katso palvelut",
-      "href": "/larux-tmi/"
+      "href": "/kouluttaja/"
     },
     "cta3": {
       "label": "Tutustu taustaani",
