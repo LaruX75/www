@@ -394,14 +394,21 @@ translationKey: writings_index
 <script id="puheet-data" type="application/json">
 [
   {% for pub in collections.pub_puhe %}
+  {% set resolvedUrl = pub.data.url or pub.url %}
+  {% set councilMeta = oukaCouncilSpeechProtocols.overrides[resolvedUrl] or {} %}
+  {% set resolvedEvent = councilMeta.event or pub.data.event or "" %}
+  {% set resolvedAsiakohta = councilMeta.asiakohta or pub.data.asiakohta or "" %}
+  {% set meetingDate = councilMeta.meetingDate or pub.date.toISOString().slice(0, 10) %}
+  {% set protocolUrl = councilMeta.protocolUrl or (resolvedEvent == "Oulun kaupunginvaltuusto" and oukaCouncilSpeechProtocols.protocolsByDate[meetingDate]) %}
   {
     "title": {{ pub.data.title | jsonSafe | safe }},
     "date": "{{ pub.date }}",
     "formattedDate": "{{ pub.date | dateFormat }}",
     "description": {{ (pub.data.description or "") | jsonSafe | safe }},
-    "event": {{ (pub.data.event or "") | jsonSafe | safe }},
-    "asiakohta": {{ (pub.data.asiakohta or "") | jsonSafe | safe }},
-    "url": "{{ pub.data.url or pub.url }}",
+    "event": {{ resolvedEvent | jsonSafe | safe }},
+    "asiakohta": {{ resolvedAsiakohta | jsonSafe | safe }},
+    "protocolUrl": {{ (protocolUrl or "") | jsonSafe | safe }},
+    "url": "{{ resolvedUrl }}",
     "isExternal": {{ (pub.data.url != null) | jsonSafe | safe }},
     "categories": {{ (pub.data.categories or []) | jsonSafe | safe }},
     "keywords": {{ (pub.data.keywords or []) | jsonSafe | safe }},
@@ -1879,10 +1886,14 @@ section[id] {
         const targetAttr = d.isExternal ? 'target="_blank" rel="noopener"' : '';
         const iconInfo = d.isExternal ? '<i class="bi bi-arrow-up-right"></i>' : '<i class="bi bi-arrow-right"></i>';
         const eventInfo = d.event ? `<br><span class="badge text-bg-light border text-dark mt-1"><i class="bi bi-calendar-event me-1"></i>${escHtml(d.event)}</span>` : '';
+        const asiakohtaLabel = escHtml(d.asiakohta || (d.protocolUrl ? 'Kokouspöytäkirja' : ''));
+        const asiakohtaInfo = d.protocolUrl
+          ? `<a href="${d.protocolUrl}" target="_blank" rel="noopener" class="text-decoration-none">${asiakohtaLabel}</a>`
+          : asiakohtaLabel;
 
         return `<tr>
           <td class="col-date text-center small text-muted font-monospace">${d.formattedDate}</td>
-          <td class="small text-muted">${escHtml(d.asiakohta || '')}</td>
+          <td class="small text-muted">${asiakohtaInfo}</td>
           <td class="col-title fw-medium"><a href="${d.url}" ${targetAttr} class="text-decoration-none">${escHtml(shortTitle(d.title))}</a></td>
           <td class="col-desc small text-muted">${escHtml(d.description)}${eventInfo}</td>
           <td>
