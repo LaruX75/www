@@ -1,9 +1,9 @@
 ---
-title: "Puheenvuoro valtuustossa § 5: Haukiputaan jokirannan asemakaava ja politiikan hitaus"
+title: "Puheenvuoro valtuustossa § 28: Haukiputaan jokirannan asemakaava ja politiikan hitaus"
 date: 2026-04-27
 type: puhe
 event: "Oulun kaupunginvaltuusto"
-asiakohta: "§ 5 – Asemakaava ja tonttijako 564-2588, Haukiputaan kaupunginosa, Haukiputaan jokiranta, Koulukuja ja Jokelantie"
+asiakohta: "§ 28 – Asemakaava ja tonttijako 564-2588, Haukiputaan kaupunginosa, Haukiputaan jokiranta, Koulukuja ja Jokelantie"
 description: "Puheenvuorossa kuvaan Haukiputaan jokirannan asemakaavaa esimerkkinä politiikan hitaudesta ja pitkän valmistelun jälkeen syntyneestä kompromissista."
 tags:
   - publications

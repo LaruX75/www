@@ -1,9 +1,9 @@
 ---
-title: "Puheenvuoro valtuustossa § 1: Vetovoima- ja pitovoimatutkimuksen tulokset avoimesti kaupunkilaisille"
+title: "Puheenvuoro valtuustossa § 11: Vetovoima- ja pitovoimatutkimuksen tulokset avoimesti kaupunkilaisille"
 date: 2026-03-30
 type: puhe
 event: "Oulun kaupunginvaltuusto"
-asiakohta: "Asiakohta 1 – Info: Vetovoima- ja pitovoimatutkimuksen tuloksia"
+asiakohta: "§ 11 – Info: Vetovoima- ja pitovoimatutkimuksen tuloksia"
 description: "Puheenvuorossa korostan hallinnon avoimuutta ja sitä, että Oulun vetovoima- ja pitovoimatutkimuksen tulokset tulee julkaista ymmärrettävästi myös kaupunkilaisille."
 tags:
   - publications

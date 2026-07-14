@@ -1,9 +1,9 @@
 ---
-title: "Puheenvuoro valtuustossa § 1: Lähijunaliikenne ja alueellinen yhdenvertaisuus"
+title: "Puheenvuoro valtuustossa § 24: Lähijunaliikenne ja alueellinen yhdenvertaisuus"
 date: 2026-04-27
 type: puhe
 event: "Oulun kaupunginvaltuusto"
-asiakohta: "§ 1 – Lähijunaliikenteen käynnistäminen ja rahoittaminen"
+asiakohta: "§ 24 – Lähijunaliikenteen käynnistäminen ja rahoittaminen"
 description: "Puheenvuorossa tarkastelen lähijunaliikenteen vaikutuksia Oulun eri alueisiin ja muistutan, että myös raideverkon ulkopuolelle jäävien alueiden saavutettavuudesta on huolehdittava."
 tags:
   - publications
