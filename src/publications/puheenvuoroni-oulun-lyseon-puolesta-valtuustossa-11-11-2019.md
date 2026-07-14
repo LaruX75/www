@@ -1,9 +1,9 @@
 ---
-title: "Puheenvuoro valtuustossa: Oulun Lyseo on säilytettävä opetuskäytössä"
+title: "Puheenvuoro valtuustossa § 113: Oulun Lyseo on säilytettävä opetuskäytössä"
 date: 2019-11-11
 type: puhe
 event: "Oulun kaupunginvaltuusto"
-asiakohta: "Asiakohta 1 – Oulun Lyseon peruskorjauksen hankeselvitys"
+asiakohta: "§ 113 – Info: Oulun Lyseon peruskorjauksen hankeselvitys"
 description: "Puheenvuorossa käsittelen Oulun Lyseon historiallisia arvoja, rakennuksen säilyttämistä opetuskäytössä sekä digitaalisen teknologian hyödyntämistä rakennuksen historian esittelemisessä."
 tags:
   - publications
