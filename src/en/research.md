@@ -30,34 +30,34 @@ templateEngineOverride: njk
       <div class="col-lg-4">
         <div class="row g-3 text-center">
           <div class="col-6">
-            <div class="card border-0 shadow-sm h-100">
+            <div class="card border-0 shadow-sm h-100 research-kpi-card">
               <div class="card-body py-3">
-                <div class="display-5 fw-bold text-primary">{{ researchfi.length }}</div>
-                <div class="small text-muted">publications</div>
+                <div class="display-5 fw-bold research-kpi-number">{{ researchfi.length }}</div>
+                <div class="small text-muted research-kpi-label">publications</div>
               </div>
             </div>
           </div>
           <div class="col-6">
-            <div class="card border-0 shadow-sm h-100">
+            <div class="card border-0 shadow-sm h-100 research-kpi-card">
               <div class="card-body py-3">
-                <div class="display-5 fw-bold text-info">{{ peerReviewedCount }}</div>
-                <div class="small text-muted">peer-reviewed</div>
+                <div class="display-5 fw-bold research-kpi-number">{{ peerReviewedCount }}</div>
+                <div class="small text-muted research-kpi-label">peer-reviewed</div>
               </div>
             </div>
           </div>
           <div class="col-6">
-            <div class="card border-0 shadow-sm h-100">
+            <div class="card border-0 shadow-sm h-100 research-kpi-card">
               <div class="card-body py-3">
-                <div class="display-5 fw-bold text-success">{{ theses.stats.totalGradut }}</div>
-                <div class="small text-muted">master's theses supervised</div>
+                <div class="display-5 fw-bold research-kpi-number">{{ theses.stats.totalGradut }}</div>
+                <div class="small text-muted research-kpi-label">master's theses supervised</div>
               </div>
             </div>
           </div>
           <div class="col-6">
-            <div class="card border-0 shadow-sm h-100">
+            <div class="card border-0 shadow-sm h-100 research-kpi-card">
               <div class="card-body py-3">
-                <div class="display-5 fw-bold text-warning">{{ theses.stats.totalKandit }}</div>
-                <div class="small text-muted">bachelor's theses supervised</div>
+                <div class="display-5 fw-bold research-kpi-number">{{ theses.stats.totalKandit }}</div>
+                <div class="small text-muted research-kpi-label">bachelor's theses supervised</div>
               </div>
             </div>
           </div>
@@ -72,27 +72,27 @@ templateEngineOverride: njk
     <h2 class="h3 fw-bold mb-4">Research themes</h2>
     <div class="row g-4">
       <div class="col-md-4">
-        <div class="card border-0 shadow-sm h-100">
+        <div class="card border-0 shadow-sm h-100 research-theme-card">
           <div class="card-body p-4">
-            <div class="mb-3 text-primary fs-2"><i class="bi bi-people-fill"></i></div>
+            <div class="mb-3 research-theme-icon"><i class="bi bi-people-fill"></i></div>
             <h3 class="h5 fw-bold">Collaborative learning</h3>
             <p class="text-muted mb-0">How collaborative scripts can guide shared inquiry and support knowledge construction in authentic learning settings.</p>
           </div>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="card border-0 shadow-sm h-100">
+        <div class="card border-0 shadow-sm h-100 research-theme-card">
           <div class="card-body p-4">
-            <div class="mb-3 text-success fs-2"><i class="bi bi-phone-fill"></i></div>
+            <div class="mb-3 research-theme-icon"><i class="bi bi-phone-fill"></i></div>
             <h3 class="h5 fw-bold">Mobile learning technology</h3>
             <p class="text-muted mb-0">Long-term work on mobile and wireless technologies in education, including research before the smartphone era.</p>
           </div>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="card border-0 shadow-sm h-100">
+        <div class="card border-0 shadow-sm h-100 research-theme-card">
           <div class="card-body p-4">
-            <div class="mb-3 text-warning fs-2"><i class="bi bi-robot"></i></div>
+            <div class="mb-3 research-theme-icon"><i class="bi bi-robot"></i></div>
             <h3 class="h5 fw-bold">AI literacy</h3>
             <p class="text-muted mb-0">Current focus on teachers' and student teachers' AI literacy, and AI safety education for children through the Generation AI project.</p>
           </div>

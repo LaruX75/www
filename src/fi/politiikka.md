@@ -9,126 +9,238 @@ templateEngineOverride: njk
 ---
 <section class="pol-hero mb-0">
   <div class="site-shell py-5">
-    <div class="row g-4 align-items-center">
-      <div class="col-lg-8">
+    <div class="row g-5 align-items-stretch">
+      <div class="col-lg-7">
         <p class="pol-eyebrow mb-2"><i class="bi bi-building2 me-1"></i>Politiikka</p>
-        <h1 class="display-5 fw-bold mb-3">Jari Laru, poliitikko</h1>
-        <p class="mb-3 pol-hero-text">Kaupungin ja aluehallinnon päätöksenteko perustuu yhteistyöhön. Yksittäinen valtuutettu ei saa asioita eteenpäin ilman verkostoja, dialogia ja yhteistä suuntaa.</p>
-        <p class="mb-3 pol-hero-text pol-hero-text-strong">Olen ollut mukana yhteiskunnallisessa vaikuttamisessa nuoresta asti. Taustani asukasyhdistystoiminnassa, kunnallispolitiikassa ja koulutuksen kentällä näkyy tavassani tehdä politiikkaa: käytännöllisesti, tietoon nojaten ja pitkäjänteisesti.</p>
-        <p class="mb-4 pol-hero-text">Painoalueina toimiva arki lähipalveluineen, hallinnon avoimuus ja tasapainoinen kaupunkikehitys.</p>
+        <h1 class="pol-hero-title mb-3">Jari Laru, poliitikko</h1>
+        <p class="pol-hero-manifesto mb-3">Sivistys, lähipalvelut ja avoin päätöksenteko eivät ole kunnallispolitiikan sivujuonteita vaan sen kovaa ydintä.</p>
+        <p class="mb-4 pol-hero-text">Teen politiikkaa käytännöllisesti ja tietoon nojaten. Tavoitteena on, että päätöksenteko näkyy kuntalaiselle parempina oppimisympäristöinä, toimivampina palveluina ja valmisteluna, jota voi seurata ilman sisäpiiritietoa.</p>
+        <div class="pol-hero-points mb-4">
+          <div class="pol-hero-point">
+            <span class="pol-hero-point-title">Sivistys</span>
+            <span class="pol-hero-point-text">Laadukkaat oppimisympäristöt, koulutuspolitiikka ja pitkät vaikutukset.</span>
+          </div>
+          <div class="pol-hero-point">
+            <span class="pol-hero-point-title">Lähipalvelut</span>
+            <span class="pol-hero-point-text">Koko Oulu mukaan kasvuun, ei vain keskusta tai yksittäiset hankkeet.</span>
+          </div>
+          <div class="pol-hero-point">
+            <span class="pol-hero-point-title">Avoimuus</span>
+            <span class="pol-hero-point-text">Päätösten perustelut, data ja valmistelu näkyviksi myös kuntalaiselle.</span>
+          </div>
+        </div>
         <div class="d-flex flex-wrap gap-2">
-          <a href="#valtuustoaloitteet" class="btn pol-hero-btn-primary">Valtuustoaloitteet</a>
+          <a href="#ydinteemat" class="btn pol-hero-btn-primary">Ydinteemat</a>
+          <a href="#ajankohtaista" class="btn pol-hero-btn-outline">Näyttö käytännössä</a>
         </div>
       </div>
-      <div class="col-lg-4">
-        <div class="pol-hero-card">
+      <div class="col-lg-5">
+        <aside class="pol-hero-card pol-hero-card--profile h-100">
           <img src="/img/uploads/2020/01/WhatsApp-Image-2019-12-02-at-18.58.31-1.jpeg" alt="Jari Laru politiikassa" class="pol-hero-img">
-          <p class="pol-hero-caption">Kunta- ja aluepolitiikkaa yhteistyön, sivistyksen ja toimivan arjen puolesta.</p>
-        </div>
+          <div class="pol-hero-side">
+            <p class="pol-hero-side-kicker">Poliittinen profiili</p>
+            <p class="pol-hero-caption">Käytännöllistä kunnallispolitiikkaa sivistyksen, lähipalvelujen ja avoimuuden puolesta.</p>
+            <dl class="pol-hero-facts mb-0">
+              <div>
+                <dt>Tapa toimia</dt>
+                <dd>Tietoon nojaten, pitkäjänteisesti, yhteistyökykyisesti</dd>
+              </div>
+              <div>
+                <dt>Kysymys jonka esitän</dt>
+                <dd>Miten päätös näkyy tavallisen oululaisen arjessa?</dd>
+              </div>
+              <div>
+                <dt>Näyttö</dt>
+                <dd>Puheenvuorot, aloitteet ja kirjoitukset samasta linjasta</dd>
+              </div>
+            </dl>
+          </div>
+        </aside>
       </div>
     </div>
   </div>
 </section>
 <div class="pol-hero-divider"></div>
 
-<section class="py-5 mb-0" id="poliittiset-teemat">
+{% set politicalSpeechEvents = [
+  "Oulun kaupunginvaltuusto",
+  "Oulun kaupunginvaltuuston vierailu Oulun yliopistolla",
+  "Oulun raati -yleisötilaisuus",
+  "Uuden Oulun kuulemistilaisuus",
+  "Kempeleen kunnan tilaisuus",
+  "Porisuta porvaria koulutuksesta",
+  "OSYK-lukion valtaus"
+] %}
+{% set politicalSpeeches = [] %}
+{% for speech in collections.pub_puhe %}
+  {% if politicalSpeechEvents.indexOf(speech.data.event or "") != -1 %}
+    {% set _ = politicalSpeeches.push(speech) %}
+  {% endif %}
+{% endfor %}
+{% set sortedInitiatives = collections.politics | sort(true, false, "date") %}
+
+<section class="py-5 mb-0" id="ydinteemat">
   <div class="site-shell">
-    <div class="d-flex align-items-end justify-content-between flex-wrap gap-2 mb-4">
-      <div>
-        <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-grid-3x3-gap me-1"></i>Teemat</p>
-        <h2 class="h4 mb-1">Kirjoituksia aiheittain</h2>
-        <p class="text-muted small mb-0">Blogit, puheenvuorot ja mielipidekirjoitukset politiikan keskeisistä teemoista.</p>
-      </div>
-      <a href="/kynasta/" class="btn btn-outline-primary btn-sm">Kaikki kirjoitukset</a>
+    <div class="pol-section-head">
+      <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-bullseye me-1"></i>Ydinteemat</p>
+      <h2 class="pol-section-title">Kolme painopistettä, joihin poliittinen profiilini eniten nojaa</h2>
+      <p class="pol-section-lead mb-0">Nämä ovat teemoja, joissa sisältöni, puheenvuoroni ja aloitteeni muodostavat selkeän jatkuvuuden. Tällä sivulla ne näkyvät linjauksina ensin, todisteina vasta sen jälkeen.</p>
     </div>
-    <div class="d-flex flex-wrap gap-2">
-      <a href="/avainsanat/koulutus/" class="btn btn-outline-secondary btn-sm"><i class="bi bi-mortarboard me-1"></i>Koulutus</a>
-      <a href="/avainsanat/koulu/" class="btn btn-outline-secondary btn-sm"><i class="bi bi-building me-1"></i>Kouluverkko</a>
-      <a href="/avainsanat/valtuustoaloite/" class="btn btn-outline-secondary btn-sm"><i class="bi bi-megaphone me-1"></i>Demokratia</a>
-      <a href="/avainsanat/kaupunki/" class="btn btn-outline-secondary btn-sm"><i class="bi bi-buildings me-1"></i>Kaupunkikehitys</a>
-      <a href="/avainsanat/hyvinvointi/" class="btn btn-outline-secondary btn-sm"><i class="bi bi-heart-pulse me-1"></i>Hyvinvointi</a>
-      <a href="/avainsanat/nuoret/" class="btn btn-outline-secondary btn-sm"><i class="bi bi-people me-1"></i>Nuoret</a>
-      <a href="/avainsanat/talous/" class="btn btn-outline-secondary btn-sm"><i class="bi bi-graph-up me-1"></i>Talous</a>
+    <div id="politics-core-theme-list" class="row g-4"></div>
+    <div id="politics-profile-note" class="mt-3"></div>
+  </div>
+</section>
+
+<section class="py-5 mb-0 bg-body-tertiary" id="toimintatapa">
+  <div class="site-shell">
+    <div class="pol-section-head">
+      <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-diagram-3 me-1"></i>Toimintatapa</p>
+      <h2 class="pol-section-title">Miten teen politiikkaa</h2>
+      <p class="pol-section-lead mb-0">Olennaista ei ole vain se, mistä puhun, vaan miten yritän vaikuttaa. Sisällöissäni toistuu sama työskentelytapa: perehdyn, perustelen ja pidän kokonaisuuden näkyvissä silloinkin, kun keskustelu kaventuu yksittäiseen kiistaan.</p>
+    </div>
+    <div class="pol-method-grid">
+      <article class="pol-method-card">
+        <span class="pol-method-number">1</span>
+        <h3 class="h6">Perehdyn ennen kuin linjaan</h3>
+        <p class="small mb-0">Tilastot, vaikutusarviot ja tausta-aineistot eivät ole koristeita vaan päätösten perusta. Tämä näkyy erityisesti kouluverkkoa, väestökehitystä ja raportointia koskevissa sisällöissä.</p>
+      </article>
+      <article class="pol-method-card">
+        <span class="pol-method-number">2</span>
+        <h3 class="h6">Edistän valmistelun läpinäkyvyyttä</h3>
+        <p class="small mb-0">Päätöksentekoa pitää voida seurata myös organisaation ulkopuolelta. Siksi pidän tärkeänä raportointia, aloitteiden seurantaa, tietojärjestelmiä ja muita käytäntöjä, jotka tekevät valmistelusta aidosti läpinäkyvää.</p>
+      </article>
+      <article class="pol-method-card">
+        <span class="pol-method-number">3</span>
+        <h3 class="h6">Katselen päätöksiä koko Oulun läpi</h3>
+        <p class="small mb-0">Päätösten vaikutuksia pitää tarkastella kaikkien 23 suuralueen ja 105 kaupunginosan näkökulmasta. Siksi puhun palveluverkosta, liikkumisesta ja kasvusta koko kaupungin alueellisena yhdenvertaisuutena, en vain yksittäisinä hankkeina.</p>
+      </article>
+      <article class="pol-method-card">
+        <span class="pol-method-number">4</span>
+        <h3 class="h6">Haen yhteistyötä ilman pehmeyttä</h3>
+        <p class="small mb-0">Yhteistyö ei tarkoita linjattomuutta. Pyrin löytämään toimivia kompromisseja, mutta nostan ongelmat esiin silloin, kun päätökset uhkaavat sivistystä, palveluja tai valmistelun laatua.</p>
+      </article>
     </div>
   </div>
 </section>
 
-<section class="py-5 mb-0 bg-body-tertiary" id="valtuustoaloitteet">
+<section class="py-5 mb-0" id="ajankohtaista">
   <div class="site-shell">
-    <div class="d-flex align-items-end justify-content-between mb-4">
-      <div>
-        <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-file-earmark-text me-1"></i>Aloitteet</p>
-        <h2 class="h4 mb-1">Valtuustoaloitteet</h2>
-        <p class="text-muted small mb-0">{{ collections.politics.length }} aloitetta — avoimuudesta, liikenteestä, urheilusta ja kaupunkikehityksestä</p>
-      </div>
-      <a href="/kynasta/#aloitteet" class="btn btn-outline-primary btn-sm">Kaikki aloitteet</a>
+    <div class="pol-section-head">
+      <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-lightning-charge me-1"></i>Ajankohtaista</p>
+      <h2 class="pol-section-title">Linja näkyy käytännön työnä</h2>
+      <p class="pol-section-lead mb-0">Puheenvuorot ja aloitteet näyttävät, miten poliittinen profiili muuttuu käytännön valtuustotyöksi. Tässä ovat uusimmat esimerkit, ei koko arkisto.</p>
     </div>
 
-    <div class="ouka-scroller d-flex gap-3 pb-3" style="overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;">
-      {% for item in collections.politics | sort(true, false, "date") %}
-      <div class="card border-0 shadow-sm flex-shrink-0" style="width:300px; scroll-snap-align:start;">
-        <div class="card-body d-flex flex-column h-100" style="min-height:200px;">
-          <div class="mb-2">
-            <span class="badge bg-primary-subtle text-primary-emphasis">Valtuustoaloite</span>
-            <span class="text-muted small ms-2">{{ item.date | dateFormat }}</span>
+    <div class="row g-4 align-items-start">
+      <div class="col-xl-7" id="poliittiset-puheet">
+        <section class="pol-current-card">
+          <div class="pol-current-head">
+            <div>
+              <p class="pol-current-kicker mb-1">Puheenvuorot</p>
+              <h3 class="pol-current-title">Tuoreimmat poliittiset puheet</h3>
+              <p class="text-muted small mb-0">{{ politicalSpeeches.length }} puhetta valtuustossa ja muissa yhteiskunnallisissa tilaisuuksissa</p>
+            </div>
+            <a href="/kynasta/#puheet" class="btn btn-outline-primary btn-sm">Kaikki puheet</a>
           </div>
-          <h3 class="h6 fw-semibold mb-auto">{{ item.data.title }}</h3>
-          <div class="mt-3 d-flex flex-wrap gap-2">
-            <a href="{{ item.url }}" class="btn btn-outline-primary btn-sm">Lue aloite</a>
-            {% if item.data.ouka_response_url %}
-            <a href="{{ item.data.ouka_response_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-success btn-sm" title="{{ item.data.ouka_response_body }}">
-              <i class="bi bi-check2-circle me-1"></i>Vastaus
-            </a>
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0 political-speeches-table">
+              <thead>
+                <tr>
+                  <th scope="col">Päivä</th>
+                  <th scope="col">Tapahtuma</th>
+                  <th scope="col">Otsikko</th>
+                  <th scope="col">Asiakohta</th>
+                </tr>
+              </thead>
+              <tbody id="political-speeches-table-body"></tbody>
+            </table>
+          </div>
+          <div class="pol-current-foot">
+            <small id="political-speeches-info" class="text-muted">Näytetään 6 uusinta puhetta</small>
+            <nav aria-label="Poliittisten puheiden sivutus">
+              <ul id="political-speeches-pagination" class="pagination pagination-sm mb-0 flex-wrap"></ul>
+            </nav>
+          </div>
+        </section>
+      </div>
+
+      <div class="col-xl-5" id="valtuustoaloitteet">
+        <section class="pol-current-card">
+          <div class="pol-current-head">
+            <div>
+              <p class="pol-current-kicker mb-1">Aloitteet</p>
+              <h3 class="pol-current-title">Uusimmat valtuustoaloitteet</h3>
+              <p class="text-muted small mb-0">Kuusi uusinta aloitetta avoimuudesta, liikenteestä, hyvinvoinnista ja kaupunkikehityksestä</p>
+            </div>
+            <a href="/kynasta/#aloitteet" class="btn btn-outline-primary btn-sm">Kaikki aloitteet</a>
+          </div>
+          <div class="pol-initiative-list">
+            {% for item in sortedInitiatives %}
+            {% if loop.index <= 6 %}
+            <article class="pol-initiative-item">
+              <div class="pol-initiative-meta">
+                <span class="badge bg-primary-subtle text-primary-emphasis">Valtuustoaloite</span>
+                <span class="small text-muted">{{ item.date | dateFormat }}</span>
+              </div>
+              <h4 class="pol-initiative-title">{{ item.data.title }}</h4>
+              {% if item.data.ouka_response_body %}
+              <p class="pol-initiative-response"><i class="bi bi-building me-1"></i>{{ item.data.ouka_response_body }}</p>
+              {% endif %}
+              <div class="d-flex flex-wrap gap-2">
+                <a href="{{ item.url }}" class="btn btn-outline-primary btn-sm">Lue aloite</a>
+                {% if item.data.ouka_response_url %}
+                <a href="{{ item.data.ouka_response_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-success btn-sm">Vastaus</a>
+                {% endif %}
+              </div>
+            </article>
             {% endif %}
+            {% endfor %}
           </div>
-          {% if item.data.ouka_response_body %}
-          <p class="text-muted mt-2 mb-0" style="font-size:0.75rem;"><i class="bi bi-building me-1"></i>{{ item.data.ouka_response_body }}</p>
-          {% endif %}
-        </div>
+          <p class="text-muted small mb-0">Viralliset asiakirjat ja pöytäkirjat: <a href="http://asiakirjat.ouka.fi/ktwebscr/pk_tek_tweb.htm" target="_blank" rel="noopener noreferrer">Oulun asiakirjajärjestelmä</a></p>
+        </section>
       </div>
-      {% endfor %}
     </div>
-    <p class="text-muted small mt-2">
-      <i class="bi bi-arrow-right me-1"></i>Voit vierittää kortteja vaakatasossa &middot;
-      <a href="http://asiakirjat.ouka.fi/ktwebscr/pk_tek_tweb.htm" target="_blank" rel="noopener noreferrer" class="text-muted">Oulun asiakirjajärjestelmä (KTWeb)</a>
-    </p>
   </div>
 </section>
 
-<section class="py-5 mb-0" id="kokousvideot">
+<section class="py-5 mb-0 bg-body-tertiary" id="laajempi-profiili">
   <div class="site-shell">
-    <div class="d-flex align-items-end justify-content-between mb-4">
-      <div>
-        <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-camera-video me-1"></i>Videot</p>
-        <h2 class="h4 mb-1">Valtuuston kokoukset</h2>
-        <p class="text-muted small mb-0">Oulun kaupunginvaltuuston kokoukset suorana ja tallenteina — lähde: Oulun kaupungin avoin data</p>
-      </div>
-      <a href="https://www.ouka.fi/oulu/kaupunginvaltuusto/kokoukset" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary btn-sm">ouka.fi</a>
+    <div class="pol-section-head">
+      <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-compass me-1"></i>Laajempi profiili</p>
+      <h2 class="pol-section-title">Tukiteemat, jotka täydentävät kokonaisuutta</h2>
+      <p class="pol-section-lead mb-0">Kaikki poliittinen sisältö ei kuulu ydinteemoihin. Nämä teemat täydentävät profiilia etenkin kaupunkikehityksen, hyvinvoinnin ja yhteistyökykyisen päätöksenteon suunnista.</p>
     </div>
+    <div id="politics-support-theme-list" class="row g-4"></div>
+  </div>
+</section>
 
-    {% if oukaCouncilVideos.length > 0 %}
-    <div class="ouka-scroller d-flex gap-3 pb-3" style="overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;">
-      {% for video in oukaCouncilVideos %}
-      <div class="card border-0 shadow-sm flex-shrink-0" style="width:280px; scroll-snap-align:start;">
-        {% if video.thumbnail %}
-        <a href="{{ video.url }}" target="_blank" rel="noopener noreferrer">
-          <img src="{{ video.thumbnail }}" alt="{{ video.title }}" class="card-img-top" style="aspect-ratio:16/9; object-fit:cover;" loading="lazy">
-        </a>
-        {% endif %}
-        <div class="card-body">
-          <p class="small text-muted mb-1">{{ video.dateStr }}</p>
-          <h3 class="h6 fw-semibold mb-2" style="font-size:0.85rem; line-height:1.4;">{{ video.title }}</h3>
-          <a href="{{ video.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-danger btn-sm">
-            <i class="bi bi-youtube me-1"></i>Katso
-          </a>
-        </div>
+<section class="py-5 mb-0" id="arkistot">
+  <div class="site-shell">
+    <div class="pol-archive-band">
+      <div class="pol-archive-copy">
+        <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-archive me-1"></i>Arkistot</p>
+        <h2 class="pol-section-title mb-2">Syvemmälle aineistoon</h2>
+        <p class="mb-0">Politiikkasivu näyttää linjan. Kun haluat koko aineiston, löydät sen kirjoituksista, puheenvuoroista, aloitteista ja kaupungin kokousaineistoista.</p>
       </div>
-      {% endfor %}
+      <div class="pol-archive-links">
+        <a href="/kynasta/" class="pol-archive-link">
+          <strong>Kaikki poliittiset kirjoitukset</strong>
+          <span>Kirjoitusten, puheiden ja kannanottojen kokonaisuus.</span>
+        </a>
+        <a href="/kynasta/#puheet" class="pol-archive-link">
+          <strong>Puheenvuoroarkisto</strong>
+          <span>Valtuustossa ja muissa tilaisuuksissa pidetyt puheet.</span>
+        </a>
+        <a href="/kynasta/#aloitteet" class="pol-archive-link">
+          <strong>Aloitearkisto</strong>
+          <span>Kaikki valtuustoaloitteet vastauksineen ja taustoineen.</span>
+        </a>
+        <a href="https://www.ouka.fi/oulu/kaupunginvaltuusto/kokoukset" target="_blank" rel="noopener noreferrer" class="pol-archive-link">
+          <strong>Kokoukset ja pöytäkirjat</strong>
+          <span>Oulun kaupungin kokoukset, tallenteet ja viralliset asiakirjat.</span>
+        </a>
+      </div>
     </div>
-    <p class="text-muted small mt-2"><i class="bi bi-arrow-right me-1"></i>Voit vierittää kortteja vaakatasossa &middot; Lähde: <a href="https://api.ouka.fi/v1" target="_blank" rel="noopener noreferrer" class="text-muted">api.ouka.fi</a></p>
-    {% else %}
-    <p class="text-muted">Kokousvideoita ei juuri nyt saatavilla.</p>
-    {% endif %}
   </div>
 </section>
 
@@ -139,8 +251,10 @@ templateEngineOverride: njk
     "title": {{ (post.data.title or "") | dump | safe }},
     "url": {{ (post.url or "") | dump | safe }},
     "date": {{ (post.date | dateToRfc3339) | dump | safe }},
+    "tags": {{ (post.data.tags or []) | dump | safe }},
     "categories": {{ (post.data.categories or []) | dump | safe }},
-    "keywords": {{ (post.data.keywords or []) | dump | safe }}
+    "keywords": {{ (post.data.keywords or []) | dump | safe }},
+    "politicalProfiles": {{ (post.data.politicalProfiles or []) | dump | safe }}
   }{% if not loop.last %},{% endif %}
 {% endfor %}
 ]
@@ -155,8 +269,10 @@ templateEngineOverride: njk
     "url": {{ (item.url or "") | dump | safe }},
     "date": {{ (item.date | dateToRfc3339) | dump | safe }},
     "contentType": "Aloite",
+    "tags": {{ (item.data.tags or []) | dump | safe }},
     "categories": {{ (item.data.categories or []) | dump | safe }},
-    "keywords": {{ (item.data.keywords or []) | dump | safe }}
+    "keywords": {{ (item.data.keywords or []) | dump | safe }},
+    "politicalProfiles": {{ (item.data.politicalProfiles or []) | dump | safe }}
   }
 {% endfor %}
 {% for item in collections.pub_kolumni %}{{ comma() }}
@@ -165,8 +281,10 @@ templateEngineOverride: njk
     "url": {{ (item.url or "") | dump | safe }},
     "date": {{ (item.date | dateToRfc3339) | dump | safe }},
     "contentType": "Kolumni",
+    "tags": {{ (item.data.tags or []) | dump | safe }},
     "categories": {{ (item.data.categories or []) | dump | safe }},
-    "keywords": {{ (item.data.keywords or []) | dump | safe }}
+    "keywords": {{ (item.data.keywords or []) | dump | safe }},
+    "politicalProfiles": {{ (item.data.politicalProfiles or []) | dump | safe }}
   }
 {% endfor %}
 {% for item in collections.pub_mielipide %}{{ comma() }}
@@ -175,8 +293,10 @@ templateEngineOverride: njk
     "url": {{ (item.url or "") | dump | safe }},
     "date": {{ (item.date | dateToRfc3339) | dump | safe }},
     "contentType": "Mielipide",
+    "tags": {{ (item.data.tags or []) | dump | safe }},
     "categories": {{ (item.data.categories or []) | dump | safe }},
-    "keywords": {{ (item.data.keywords or []) | dump | safe }}
+    "keywords": {{ (item.data.keywords or []) | dump | safe }},
+    "politicalProfiles": {{ (item.data.politicalProfiles or []) | dump | safe }}
   }
 {% endfor %}
 {% for item in collections.pub_puhe %}{{ comma() }}
@@ -185,18 +305,40 @@ templateEngineOverride: njk
     "url": {{ (item.url or "") | dump | safe }},
     "date": {{ (item.date | dateToRfc3339) | dump | safe }},
     "contentType": "Puheenvuoro",
+    "tags": {{ (item.data.tags or []) | dump | safe }},
     "categories": {{ (item.data.categories or []) | dump | safe }},
-    "keywords": {{ (item.data.keywords or []) | dump | safe }}
+    "keywords": {{ (item.data.keywords or []) | dump | safe }},
+    "politicalProfiles": {{ (item.data.politicalProfiles or []) | dump | safe }}
   }
 {% endfor %}
 ]
 </script>
 
+<script id="political-speeches-data" type="application/json">
+[
+{% for speech in politicalSpeeches %}
+  {
+    "title": {{ (speech.data.title or "") | dump | safe }},
+    "url": {{ (speech.url or "") | dump | safe }},
+    "date": {{ (speech.date | dateToRfc3339) | dump | safe }},
+    "formattedDate": {{ (speech.date | dateFormat) | dump | safe }},
+    "event": {{ (speech.data.event or "") | dump | safe }},
+    "asiakohta": {{ (speech.data.asiakohta or "") | dump | safe }}
+  }{% if not loop.last %},{% endif %}
+{% endfor %}
+]
+</script>
+
 <style>
-  /* ===== HERO ===== */
   .pol-hero {
-    background: linear-gradient(135deg, #eaf3ff 0%, #dcecff 100%);
-    color: #12304f;
+    --pol-ink: #112846;
+    --pol-muted: rgba(17, 40, 70, 0.78);
+    --pol-line: rgba(17, 40, 70, 0.12);
+    --pol-soft: #dbe8f8;
+    background:
+      radial-gradient(circle at top right, rgba(24, 108, 221, 0.14), transparent 34%),
+      linear-gradient(135deg, #f5f9ff 0%, #dce9fb 45%, #eef4fb 100%);
+    color: var(--pol-ink);
     position: relative;
     overflow: hidden;
   }
@@ -204,216 +346,630 @@ templateEngineOverride: njk
     content: '';
     position: absolute;
     inset: 0;
-    background: repeating-linear-gradient(
-      -55deg,
-      transparent,
-      transparent 48px,
-      rgba(13, 110, 253, 0.08) 48px,
-      rgba(13, 110, 253, 0.08) 96px
-    );
+    background:
+      linear-gradient(120deg, transparent 0%, transparent 38%, rgba(17, 40, 70, 0.03) 38%, rgba(17, 40, 70, 0.03) 46%, transparent 46%, transparent 100%);
     pointer-events: none;
   }
   .pol-hero-divider {
     height: 4px;
-    background: linear-gradient(90deg, #0d6efd 0%, #4dabf7 50%, #0d6efd 100%);
+    background: linear-gradient(90deg, #123f74 0%, #3a76bc 45%, #123f74 100%);
   }
   .pol-eyebrow {
-    font-size: 0.7rem;
-    font-weight: 700;
+    font-size: 0.72rem;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: .1em;
-    color: rgba(18, 48, 79, 0.72);
+    letter-spacing: 0.14em;
+    color: rgba(17, 40, 70, 0.68);
   }
   .pol-eyebrow--dark {
-    color: var(--bs-secondary-color);
+    color: rgba(17, 40, 70, 0.64);
+  }
+  .pol-hero-title,
+  .pol-section-title,
+  .pol-current-title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #0f2745;
+  }
+  .pol-hero-title {
+    font-size: clamp(2.6rem, 5vw, 4.25rem);
+    line-height: 0.96;
+    max-width: 10ch;
+  }
+  .pol-hero-manifesto {
+    font-size: clamp(1.2rem, 1.4vw, 1.55rem);
+    line-height: 1.35;
+    color: #14355e;
+    max-width: 34rem;
+  }
+  .pol-hero-text,
+  .pol-section-lead,
+  .pol-archive-copy p {
+    font-size: 1.03rem;
+    line-height: 1.72;
+    color: rgba(17, 40, 70, 0.82);
+  }
+  .pol-hero-points {
+    display: grid;
+    gap: 0.85rem;
+    max-width: 42rem;
+  }
+  .pol-hero-point {
+    display: grid;
+    gap: 0.2rem;
+    padding-left: 1rem;
+    border-left: 3px solid rgba(18, 63, 116, 0.22);
+  }
+  .pol-hero-point-title {
+    font-weight: 700;
+    color: #14355e;
+  }
+  .pol-hero-point-text {
+    color: var(--pol-muted);
+    line-height: 1.55;
   }
   .pol-hero-card {
-    border-radius: 0.5rem;
+    position: relative;
+    border-radius: 1.25rem;
     overflow: hidden;
-    background: rgba(255,255,255,0.7);
-    border: 1px solid rgba(18, 48, 79, 0.15);
-    backdrop-filter: blur(4px);
+    background: rgba(255, 255, 255, 0.76);
+    border: 1px solid var(--pol-line);
+    box-shadow: 0 1.5rem 3rem rgba(17, 40, 70, 0.12);
+    backdrop-filter: blur(8px);
   }
   .pol-hero-img {
     width: 100%;
     display: block;
     object-fit: cover;
-    aspect-ratio: 4/3;
+    aspect-ratio: 4 / 3;
+  }
+  .pol-hero-side {
+    display: grid;
+    gap: 1rem;
+    padding: 1.2rem 1.25rem 1.3rem;
+  }
+  .pol-hero-side-kicker {
+    margin: 0;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(17, 40, 70, 0.62);
   }
   .pol-hero-caption {
-    font-size: 0.8rem;
-    color: rgba(18, 48, 79, 0.8);
-    padding: 0.6rem 0.8rem;
+    margin: 0;
+    font-size: 0.98rem;
+    line-height: 1.6;
+    color: rgba(17, 40, 70, 0.84);
+  }
+  .pol-hero-facts {
+    display: grid;
+    gap: 0.85rem;
     margin: 0;
   }
-  .pol-hero-text { color: rgba(18, 48, 79, 0.82); }
-  .pol-hero-text-strong { color: rgba(18, 48, 79, 0.92); }
+  .pol-hero-facts div {
+    padding-top: 0.8rem;
+    border-top: 1px solid var(--pol-line);
+  }
+  .pol-hero-facts dt {
+    margin-bottom: 0.2rem;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(17, 40, 70, 0.58);
+  }
+  .pol-hero-facts dd {
+    margin: 0;
+    line-height: 1.55;
+    color: rgba(17, 40, 70, 0.84);
+  }
   .pol-hero-btn-primary,
   .pol-hero-btn-outline {
-    font-weight: 600;
+    border-radius: 999px;
+    padding: 0.68rem 1.05rem;
+    font-weight: 700;
     border-width: 1px;
   }
   .pol-hero-btn-primary {
-    background-color: #0d6efd;
+    background: #163e6c;
     color: #fff;
-    border-color: #0d6efd;
+    border-color: #163e6c;
   }
   .pol-hero-btn-primary:hover {
-    background-color: #0b5ed7;
-    border-color: #0b5ed7;
+    background: #102f54;
+    border-color: #102f54;
     color: #fff;
   }
   .pol-hero-btn-outline {
-    background-color: transparent;
-    color: #0d6efd;
-    border-color: #0d6efd;
+    background: transparent;
+    color: #163e6c;
+    border-color: rgba(22, 62, 108, 0.24);
   }
   .pol-hero-btn-outline:hover {
-    background-color: #0d6efd;
-    color: #fff;
-    border-color: #0d6efd;
+    background: rgba(22, 62, 108, 0.08);
+    color: #163e6c;
+    border-color: rgba(22, 62, 108, 0.36);
   }
-  [data-bs-theme="dark"] .pol-hero {
-    background: #0e1c2f;
-    color: #fff;
+  .pol-section-head {
+    max-width: 52rem;
+    margin-bottom: 2rem;
   }
-  [data-bs-theme="dark"] .pol-hero::after {
-    background: repeating-linear-gradient(
-      -55deg,
-      transparent,
-      transparent 48px,
-      rgba(255, 255, 255, 0.018) 48px,
-      rgba(255, 255, 255, 0.018) 96px
-    );
+  .pol-section-title {
+    font-size: clamp(2rem, 3vw, 3rem);
+    line-height: 1.04;
+    margin-bottom: 0.75rem;
   }
-  [data-bs-theme="dark"] .pol-eyebrow { color: rgba(255,255,255,0.5); }
-  [data-bs-theme="dark"] .pol-hero-text { color: rgba(255,255,255,0.75); }
-  [data-bs-theme="dark"] .pol-hero-text-strong { color: rgba(255,255,255,0.85); }
-  [data-bs-theme="dark"] .pol-hero-card {
-    background: rgba(255,255,255,0.06);
-    border-color: rgba(255,255,255,0.12);
-  }
-  [data-bs-theme="dark"] .pol-hero-caption { color: rgba(255,255,255,0.55); }
-  [data-bs-theme="dark"] .pol-hero-btn-primary {
-    background-color: #f8f9fa;
-    color: #1c2e4a;
-    border-color: #f8f9fa;
-  }
-  [data-bs-theme="dark"] .pol-hero-btn-primary:hover {
-    background-color: #ffffff;
-    color: #1c2e4a;
-    border-color: #ffffff;
-  }
-  [data-bs-theme="dark"] .pol-hero-btn-outline {
-    color: #f8f9fa;
-    border-color: #f8f9fa;
-  }
-  [data-bs-theme="dark"] .pol-hero-btn-outline:hover {
-    background-color: rgba(248, 249, 250, 0.1);
-    color: #f8f9fa;
-    border-color: #f8f9fa;
-  }
-
-  /* ===== ROLE CARDS ===== */
-  .pol-role-card {
-    border-top: 3px solid var(--bs-primary) !important;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-  }
-  .pol-role-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 .5rem 1.2rem rgba(0,0,0,.13) !important;
-  }
-  .pol-role-icon {
-    font-size: 1.6rem;
-    color: var(--bs-primary);
-    margin-bottom: 0.5rem;
-    display: block;
-  }
-
-  /* ===== GOAL CARDS ===== */
-  .pol-goal-card {
-    border-left: 4px solid var(--bs-primary) !important;
-    transition: transform 0.15s ease;
-  }
-  .pol-goal-card:hover { transform: translateY(-2px); }
-  .pol-goal-num {
-    font-size: 2.8rem;
-    font-weight: 900;
-    line-height: 1;
-    color: transparent; /* teksti piilotettu, numero tulee ::before-pseudoelementistä */
-    flex-shrink: 0;
-    font-variant-numeric: tabular-nums;
-    margin-top: 0.15rem;
-    position: relative;
-  }
-  .pol-goal-num::before {
-    content: attr(data-num);
-    color: var(--bs-primary);
-    opacity: 0.15;
-    position: absolute;
-    inset: 0;
-  }
-  .pol-goal-icon {
-    font-size: 1.2rem;
-    color: var(--bs-primary);
-  }
-
-  /* ===== THEME CARDS (JS-rendered) ===== */
-  .politics-theme-card {
-    border: 0;
-    border-left: 4px solid var(--pol-theme-color, var(--bs-primary)) !important;
-    box-shadow: var(--bs-box-shadow-sm);
+  .pol-theme-card {
     height: 100%;
-    transition: transform 0.15s ease;
+    padding: 1.5rem 1.45rem;
+    border-radius: 1.2rem;
+    border: 1px solid rgba(17, 40, 70, 0.1);
+    background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(245,249,255,0.92));
+    box-shadow: 0 1.1rem 2.4rem rgba(17, 40, 70, 0.08);
   }
-  .politics-theme-card:hover { transform: translateY(-2px); }
-  .politics-theme-card .theme-links a {
-    display: inline-flex;
+  .pol-theme-card--support {
+    background: rgba(255, 255, 255, 0.9);
+  }
+  .pol-theme-head {
+    display: flex;
     align-items: center;
-    gap: .35rem;
-    text-decoration: none;
+    gap: 0.7rem;
+    margin-bottom: 1rem;
   }
   .pol-theme-icon {
-    font-size: 1.2rem;
-    margin-bottom: 0.4rem;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(var(--bs-primary-rgb), 0.08);
+    font-size: 1rem;
+  }
+  .pol-theme-title {
+    margin: 0;
+    font-size: 1.35rem;
+    font-family: Georgia, "Times New Roman", serif;
+    color: #102845;
+  }
+  .pol-theme-statement {
+    margin: 0 0 0.85rem;
+    font-size: 1.03rem;
+    line-height: 1.55;
+    color: #13345c;
+  }
+  .pol-theme-description {
+    margin: 0 0 1rem;
+    color: rgba(17, 40, 70, 0.78);
+    line-height: 1.62;
+  }
+  .pol-theme-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem 0.9rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: rgba(17, 40, 70, 0.72);
+  }
+  .pol-theme-focus {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .pol-theme-pill {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    padding: 0.28rem 0.62rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: rgba(17, 40, 70, 0.76);
+    background: rgba(17, 40, 70, 0.06);
+  }
+  .pol-theme-proof-label {
+    margin: 0 0 0.55rem;
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(17, 40, 70, 0.58);
+  }
+  .pol-theme-proof-list {
+    display: grid;
+    gap: 0.7rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .pol-theme-proof-item {
+    display: grid;
+    gap: 0.3rem;
+    padding: 0.95rem 1rem;
+    border-radius: 0.95rem;
+    border: 1px solid rgba(17, 40, 70, 0.1);
+    background: rgba(255, 255, 255, 0.9);
+  }
+  .pol-theme-proof-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    font-size: 0.82rem;
+    color: rgba(17, 40, 70, 0.64);
+  }
+  .pol-theme-proof-type {
+    font-weight: 700;
+    color: #163e6c;
+  }
+  .pol-theme-proof-link {
+    text-decoration: none;
+    color: #12355f;
+    line-height: 1.45;
+  }
+  .pol-theme-proof-link:hover {
+    color: #0d4f94;
+  }
+  .pol-theme-footer {
+    margin-top: 1rem;
+  }
+  .pol-theme-footer a {
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .pol-method-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.2rem;
+  }
+  .pol-method-card {
+    position: relative;
+    min-height: 100%;
+    display: grid;
+    align-content: start;
+    gap: 0.75rem;
+    padding: 1.65rem 1.35rem 1.35rem;
+    border-radius: 1.15rem;
+    background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(246,249,255,0.96));
+    border: 1px solid rgba(17, 40, 70, 0.1);
+    box-shadow: 0 1rem 2.2rem rgba(17, 40, 70, 0.08);
+    overflow: hidden;
+  }
+  .pol-method-number {
     display: block;
+    margin: -0.35rem 0 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(3rem, 5vw, 4.6rem);
+    line-height: 0.88;
+    font-weight: 700;
+    letter-spacing: -0.06em;
+    color: rgba(22, 62, 108, 0.2);
   }
-
-  /* ===== HORIZONTAL SCROLLERS ===== */
-  .ouka-scroller {
-    cursor: grab;
-    scrollbar-width: thin;
-    touch-action: pan-x;
+  .pol-method-card h3 {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    max-width: 14ch;
+    font-size: 1.15rem;
+    line-height: 1.15;
+    color: #102845;
   }
-  .ouka-scroller.is-dragging {
-    cursor: grabbing;
-    user-select: none;
+  .pol-method-card p {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: rgba(17, 40, 70, 0.78);
+  }
+  .pol-current-card {
+    height: 100%;
+    padding: 1.35rem;
+    border-radius: 1.2rem;
+    border: 1px solid rgba(17, 40, 70, 0.1);
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 1rem 2.3rem rgba(17, 40, 70, 0.08);
+  }
+  .pol-current-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .pol-current-kicker {
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(17, 40, 70, 0.58);
+  }
+  .pol-current-title {
+    margin-bottom: 0.35rem;
+    font-size: 1.55rem;
+    line-height: 1.1;
+  }
+  .pol-current-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 1rem;
+    margin-top: 0.75rem;
+    border-top: 1px solid rgba(17, 40, 70, 0.08);
+  }
+  .political-speeches-table th {
+    font-size: 0.76rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(17, 40, 70, 0.56);
+    background: rgba(17, 40, 70, 0.04);
+    white-space: nowrap;
+    border-bottom-width: 1px;
+  }
+  .political-speeches-table td {
+    vertical-align: middle;
+    border-color: rgba(17, 40, 70, 0.08);
+  }
+  .political-speech-title {
+    color: #12355f;
+  }
+  .political-speech-title:hover {
+    color: #0d4f94;
+  }
+  .pol-initiative-list {
+    display: grid;
+    gap: 0.9rem;
+    margin-bottom: 1rem;
+  }
+  .pol-initiative-item {
+    padding: 1rem;
+    border-radius: 0.95rem;
+    border: 1px solid rgba(17, 40, 70, 0.1);
+    background: rgba(246, 249, 255, 0.7);
+  }
+  .pol-initiative-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    margin-bottom: 0.65rem;
+  }
+  .pol-initiative-title {
+    margin-bottom: 0.7rem;
+    font-size: 1rem;
+    line-height: 1.45;
+    color: #112846;
+  }
+  .pol-initiative-response {
+    margin-bottom: 0.75rem;
+    font-size: 0.88rem;
+    color: rgba(17, 40, 70, 0.72);
+  }
+  .pol-archive-band {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: 2rem;
+    padding: 2rem;
+    border-radius: 1.35rem;
+    background: linear-gradient(135deg, #102743 0%, #173b64 58%, #1e4d81 100%);
+    color: #f4f8fd;
+    box-shadow: 0 1.3rem 2.6rem rgba(17, 40, 70, 0.16);
+  }
+  .pol-archive-band .pol-eyebrow--dark,
+  .pol-archive-band .pol-section-title,
+  .pol-archive-band .pol-archive-copy p {
+    color: inherit;
+  }
+  .pol-archive-band .pol-eyebrow--dark {
+    color: rgba(255, 255, 255, 0.68);
+  }
+  .pol-archive-links {
+    display: grid;
+    gap: 0.8rem;
+  }
+  .pol-archive-link {
+    display: grid;
+    gap: 0.25rem;
+    padding: 0.95rem 1rem;
+    border-radius: 1rem;
+    text-decoration: none;
+    color: #f4f8fd;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
+  }
+  .pol-archive-link strong {
+    display: block;
+    color: #f7fbff;
+    line-height: 1.35;
+  }
+  .pol-archive-link:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.24);
+    transform: translateY(-1px);
+  }
+  .pol-archive-link span {
+    color: rgba(255, 255, 255, 0.86);
+    line-height: 1.55;
+  }
+  .pol-archive-link:hover strong,
+  .pol-archive-link:hover span {
+    color: #ffffff;
+  }
+  [data-bs-theme="dark"] .pol-hero {
+    --pol-ink: #f3f7fc;
+    --pol-muted: rgba(243, 247, 252, 0.82);
+    --pol-line: rgba(255, 255, 255, 0.12);
+    background:
+      radial-gradient(circle at top right, rgba(125, 184, 240, 0.12), transparent 34%),
+      linear-gradient(135deg, #0d192a 0%, #10233a 52%, #0f1d32 100%);
+    color: #f3f7fc;
+  }
+  [data-bs-theme="dark"] .pol-hero-title,
+  [data-bs-theme="dark"] .pol-section-title,
+  [data-bs-theme="dark"] .pol-current-title,
+  [data-bs-theme="dark"] .pol-theme-title {
+    color: #f7fbff;
+  }
+  [data-bs-theme="dark"] .pol-eyebrow,
+  [data-bs-theme="dark"] .pol-eyebrow--dark,
+  [data-bs-theme="dark"] .pol-current-kicker,
+  [data-bs-theme="dark"] .pol-theme-proof-label {
+    color: rgba(255, 255, 255, 0.64);
+  }
+  [data-bs-theme="dark"] .pol-hero-manifesto,
+  [data-bs-theme="dark"] .pol-theme-statement {
+    color: rgba(255, 255, 255, 0.9);
+  }
+  [data-bs-theme="dark"] .pol-hero-text,
+  [data-bs-theme="dark"] .pol-section-lead,
+  [data-bs-theme="dark"] .pol-theme-description,
+  [data-bs-theme="dark"] .pol-theme-meta,
+  [data-bs-theme="dark"] .pol-initiative-response {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  [data-bs-theme="dark"] .pol-hero-point-text,
+  [data-bs-theme="dark"] .pol-hero-caption,
+  [data-bs-theme="dark"] .pol-hero-facts dd {
+    color: rgba(255, 255, 255, 0.84);
+  }
+  [data-bs-theme="dark"] .pol-hero-side-kicker,
+  [data-bs-theme="dark"] .pol-hero-facts dt {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  [data-bs-theme="dark"] .pol-hero-point {
+    border-left-color: rgba(255, 255, 255, 0.22);
+  }
+  [data-bs-theme="dark"] .pol-hero-point-title,
+  [data-bs-theme="dark"] .pol-theme-proof-link,
+  [data-bs-theme="dark"] .political-speech-title {
+    color: #f4f8fd;
+  }
+  [data-bs-theme="dark"] .pol-hero-card,
+  [data-bs-theme="dark"] .pol-theme-card,
+  [data-bs-theme="dark"] .pol-method-card,
+  [data-bs-theme="dark"] .pol-current-card,
+  [data-bs-theme="dark"] .pol-initiative-item {
+    background: linear-gradient(180deg, rgba(18, 30, 47, 0.92), rgba(13, 24, 38, 0.96));
+    border-color: rgba(255, 255, 255, 0.14);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.22);
+  }
+  [data-bs-theme="dark"] .pol-theme-proof-item,
+  [data-bs-theme="dark"] .pol-archive-link {
+    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(255, 255, 255, 0.16);
+  }
+  [data-bs-theme="dark"] .pol-theme-pill {
+    color: rgba(255, 255, 255, 0.82);
+    background: rgba(255, 255, 255, 0.12);
+  }
+  [data-bs-theme="dark"] .pol-method-number {
+    color: rgba(255, 255, 255, 0.22);
+  }
+  [data-bs-theme="dark"] .pol-method-card h3 {
+    color: #f7fbff;
+  }
+  [data-bs-theme="dark"] .pol-method-card p {
+    color: rgba(255, 255, 255, 0.82);
+  }
+  [data-bs-theme="dark"] .political-speeches-table th {
+    color: rgba(255, 255, 255, 0.78);
+    background: rgba(255, 255, 255, 0.08);
+  }
+  [data-bs-theme="dark"] .political-speeches-table td,
+  [data-bs-theme="dark"] .pol-current-foot {
+    border-color: rgba(255, 255, 255, 0.14);
+  }
+  [data-bs-theme="dark"] .pol-current-card .text-muted,
+  [data-bs-theme="dark"] .pol-initiative-item .text-muted,
+  [data-bs-theme="dark"] #politics-profile-note .text-muted,
+  [data-bs-theme="dark"] .pol-theme-proof-item .text-muted,
+  [data-bs-theme="dark"] .political-speeches-table .text-muted,
+  [data-bs-theme="dark"] #political-speeches-info {
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+  [data-bs-theme="dark"] .pol-current-card .btn-outline-primary,
+  [data-bs-theme="dark"] .pol-initiative-item .btn-outline-primary {
+    color: #f4f8fd;
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+  [data-bs-theme="dark"] .pol-current-card .btn-outline-primary:hover,
+  [data-bs-theme="dark"] .pol-initiative-item .btn-outline-primary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.42);
+  }
+  [data-bs-theme="dark"] .pol-current-card .btn-outline-success,
+  [data-bs-theme="dark"] .pol-initiative-item .btn-outline-success {
+    color: #d7f6df;
+    border-color: rgba(125, 211, 156, 0.42);
+  }
+  [data-bs-theme="dark"] .pol-current-card .btn-outline-success:hover,
+  [data-bs-theme="dark"] .pol-initiative-item .btn-outline-success:hover {
+    background: rgba(125, 211, 156, 0.12);
+    color: #effcf2;
+    border-color: rgba(125, 211, 156, 0.58);
+  }
+  [data-bs-theme="dark"] .pol-hero-btn-primary {
+    background: #f4f8fd;
+    color: #102743;
+    border-color: #f4f8fd;
+  }
+  [data-bs-theme="dark"] .pol-hero-btn-outline {
+    color: #f4f8fd;
+    border-color: rgba(255, 255, 255, 0.24);
+  }
+  [data-bs-theme="dark"] .pol-hero-btn-outline:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+  @media (max-width: 1199.98px) {
+    .pol-method-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .pol-archive-band {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 767.98px) {
+    .pol-hero-title {
+      max-width: none;
+    }
+    .pol-method-grid {
+      grid-template-columns: 1fr;
+    }
+    .pol-current-head,
+    .pol-current-foot {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .pol-initiative-meta,
+    .pol-theme-proof-top {
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
 </style>
 
 <script>
   (() => {
-    const politicsTerms = [
-      'politiikka', 'kuntavaalit', 'aluevaalit', 'valtuusto', 'kaupunginvaltuusto',
-      'kaupunginhallitus', 'lautakunta', 'aloite', 'sidonnaisuudet', 'vaalikone'
-    ];
-
     const blogRaw = JSON.parse(document.getElementById('politics-blog-data')?.textContent || '[]');
-    const politicsBlogData = blogRaw
-      .filter((item) => {
-        const bag = [
-          item.title || '',
-          ...(item.categories || []),
-          ...(item.keywords || [])
-        ].join(' ').toLowerCase();
-        return politicsTerms.some((term) => bag.includes(term));
-      })
-      .sort((a, b) => new Date(b.date) - new Date(a.date));
-
-    const contentData = JSON.parse(document.getElementById('politics-content-data')?.textContent || '[]')
+    const contentRaw = JSON.parse(document.getElementById('politics-content-data')?.textContent || '[]');
+    const politicalSpeechesData = JSON.parse(document.getElementById('political-speeches-data')?.textContent || '[]')
       .filter((item) => item && item.title && item.url)
       .sort((a, b) => new Date(b.date) - new Date(a.date));
-    const themeGrid = document.getElementById('politics-theme-cta-grid');
+    const coreThemeList = document.getElementById('politics-core-theme-list');
+    const supportThemeList = document.getElementById('politics-support-theme-list');
+    const profileNote = document.getElementById('politics-profile-note');
+    const politicalSpeechesTableBody = document.getElementById('political-speeches-table-body');
+    const politicalSpeechesInfo = document.getElementById('political-speeches-info');
+    const politicalSpeechesPagination = document.getElementById('political-speeches-pagination');
 
     const escHtml = (value) => String(value || '')
       .replaceAll('&', '&amp;')
@@ -421,136 +977,165 @@ templateEngineOverride: njk
       .replaceAll('>', '&gt;')
       .replaceAll('"', '&quot;')
       .replaceAll("'", '&#39;');
-
-    const themeDefinitions = [
-      {
-        key: 'koulutus',
-        title: 'Koulutus ja sivistys',
-        description: 'Koulutuksen laatu, oppimisympäristöt, opettajuus ja sivistyspolitiikka.',
-        hint: 'koulu',
-        terms: ['koulu', 'koulutus', 'opetus', 'oppiminen', 'lukio', 'päiväkoti', 'varhaiskasvatus', 'sivistys']
-      },
-      {
-        key: 'kaupunkikehitys',
-        title: 'Kaupunkikehitys ja palveluverkko',
-        description: 'Kaupunginosat, kaavoitus, kampukset, palveluverkko ja arjen infrastruktuuri.',
-        hint: 'palveluverkko',
-        terms: ['kaupunki', 'kaupunginosa', 'palveluverkko', 'kaavo', 'kampus', 'liikenne', 'keskusta', 'alue']
-      },
-      {
-        key: 'demokratia',
-        title: 'Demokratia ja päätöksenteko',
-        description: 'Aloitteet, osallistuminen, hallinnon avoimuus ja luottamus päätöksentekoon.',
-        hint: 'valtuusto',
-        terms: ['valtuusto', 'aloite', 'demokratia', 'osallist', 'päätöksenteko', 'hallinto', 'sidonnaisuudet', 'läpinäkyvyys']
-      },
-      {
-        key: 'hyvinvointi',
-        title: 'Hyvinvointi ja turvallinen arki',
-        description: 'Lasten, nuorten ja perheiden hyvinvointi sekä turvalliset palvelut.',
-        hint: 'hyvinvointi',
-        terms: ['hyvinvointi', 'terveys', 'nuor', 'laps', 'perhe', 'turvall', 'kotout', 'sote']
-      },
-      {
-        key: 'talous',
-        title: 'Talous ja elinvoima',
-        description: 'Kaupungin talous, investoinnit, työ ja pitkän aikavälin kilpailukyky.',
-        hint: 'talous',
-        terms: ['talous', 'invest', 'elinvoima', 'yritys', 'työ', 'budjetti', 'kustann', 'verot']
-      }
-    ];
-    const otherTheme = {
-      key: 'muu',
-      title: 'Muut yhteiskunnalliset teemat',
-      description: 'Muut politiikkaan liittyvät näkökulmat, joita ei voi rajata yhteen pääteemaan.',
-      hint: 'politiikka'
+    const formatFiDate = (value) => {
+      const date = new Date(value || '');
+      if (Number.isNaN(date.getTime())) return '';
+      return date.toLocaleDateString('fi-FI');
     };
 
-    const createBag = (item) => [
-      item.title || '',
-      ...(item.categories || []),
-      ...(item.keywords || [])
-    ].join(' ').toLowerCase();
-
-    const resolveTheme = (item) => {
-      const bag = createBag(item);
-      for (const theme of themeDefinitions) {
-        if (theme.terms.some((term) => bag.includes(term))) return theme;
-      }
-      return otherTheme;
-    };
+    function shortPoliticalSpeechTitle(title) {
+      let s = String(title || '').trim();
+      s = s.replace(/^(?:Valtuustopuheenvuoro|Puheenvuoro(?:ni)?)(?:\s+valtuustossa|\s+kaupunginvaltuuston\s+kokouksessa\.?)?\s*/i, '');
+      const afterParagraph = s.replace(/^.*?§\s*\d+\s*[.:–-]\s*/i, '');
+      if (afterParagraph !== s) return afterParagraph.trim();
+      const afterColon = s.replace(/^[^:]+:\s*/, '');
+      if (afterColon !== s) return afterColon.trim();
+      return s.trim();
+    }
+    const politicsBlogData = blogRaw
+      .filter((item) => item && item.title && item.url && Array.isArray(item.politicalProfiles) && item.politicalProfiles.length > 0)
+      .sort((a, b) => new Date(b.date) - new Date(a.date));
+    const contentData = contentRaw
+      .filter((item) => item && item.title && item.url && Array.isArray(item.politicalProfiles) && item.politicalProfiles.length > 0)
+      .sort((a, b) => new Date(b.date) - new Date(a.date));
 
     const themedItems = [
       ...politicsBlogData.map((item) => ({ ...item, contentType: 'Blogi' })),
       ...contentData
-        .filter((item) => item.contentType === 'Puheenvuoro' || item.contentType === 'Mielipide')
+        .filter((item) => ['Puheenvuoro', 'Mielipide', 'Aloite'].includes(item.contentType))
     ];
-    const themeGroups = {};
-    themedItems.forEach((item) => {
-      const theme = resolveTheme(item);
-      if (!themeGroups[theme.key]) {
-        themeGroups[theme.key] = {
-          ...theme,
-          total: 0,
-          blogi: 0,
-          puheenvuoro: 0,
-          mielipide: 0,
-          items: []
-        };
+    const hasPoliticalProfile = (item, key) => Array.isArray(item.politicalProfiles) && item.politicalProfiles.includes(key);
+    const profileDefinitions = [
+      {
+        key: 'sivistys',
+        title: 'Sivistys ja oppiminen',
+        description: 'Koulutuspolitiikka, terveet oppimisympäristöt ja yliopiston sekä kouluverkon ratkaisut.',
+        statement: 'Koulutuksen pitää näkyä päätöksenteossa laadukkaina arjen ratkaisuina, ei irrallisina hankkeina.',
+        icon: 'bi-mortarboard-fill',
+        color: '#0d6efd',
+        tier: 'core',
+        focus: ['kouluverkko', 'varhaiskasvatus', 'kampusratkaisut']
+      },
+      {
+        key: 'lahipalvelut',
+        title: 'Koko Oulun alueellinen yhdenvertaisuus',
+        description: 'Oulun 23 suuralueen ja 105 kaupunginosan palvelut, saavutettavuus ja tasapuolinen kehitys.',
+        statement: 'Oulua pitää kehittää kokonaisuutena niin, että jokainen suuralue ja kaupunginosa pysyy mukana kasvussa, investoinneissa ja palveluissa.',
+        icon: 'bi-geo-alt-fill',
+        color: '#198754',
+        tier: 'core',
+        focus: ['23 suuraluetta', '105 kaupunginosaa', 'alueellinen yhdenvertaisuus']
+      },
+      {
+        key: 'avoinhallinto',
+        title: 'Avoin hallinto ja tiedolla johtaminen',
+        description: 'Läpinäkyvä päätöksenteko, tietojärjestelmät, avoin data ja seurattavat valmisteluprosessit.',
+        statement: 'Päätöksiä pitää voida seurata, ymmärtää ja arvioida ilman sisäpiiritietoa.',
+        icon: 'bi-bar-chart-steps',
+        color: '#6f42c1',
+        tier: 'core',
+        focus: ['avoin data', 'päätöksenteon avoimuus', 'aloitteiden seuranta']
+      },
+      {
+        key: 'kaupunkikehitys',
+        title: 'Tasapainoinen kaupunkikehitys',
+        description: 'Kaavoitus, liikkuminen, keskustan ja kampusten kehittäminen sekä toimiva kaupunkirakenne.',
+        statement: 'Kasvua pitää tehdä niin, että kokonaisuus toimii: liikkuminen, palvelut ja identiteetti samassa suunnassa.',
+        icon: 'bi-buildings-fill',
+        color: '#fd7e14',
+        tier: 'support',
+        focus: ['kaavoitus', 'liikenne', 'keskustan hankkeet']
+      },
+      {
+        key: 'hyvinvointi',
+        title: 'Lasten, nuorten ja perheiden arki',
+        description: 'Hyvinvointi, turvallinen arki, nuorisotyö ja ennaltaehkäisevät palvelut.',
+        statement: 'Kunnan tärkein tehtävä on luoda turvallinen arki lapsille, nuorille ja perheille.',
+        icon: 'bi-heart-pulse-fill',
+        color: '#dc3545',
+        tier: 'support',
+        focus: ['nuoriso', 'perheiden hyvinvointi', 'ennaltaehkäisy']
+      },
+      {
+        key: 'yhteistyo',
+        title: 'Yhteistyökykyinen Oulu',
+        description: 'Seutuyhteistyö, talousvastuu, aluehallinto ja kaupungin pitkäjänteinen kehittäminen.',
+        statement: 'Politiikka ei ole vain vastakkainasettelua, vaan kykyä tehdä toimivia ratkaisuja yhdessä.',
+        icon: 'bi-diagram-3-fill',
+        color: '#0dcaf0',
+        tier: 'support',
+        focus: ['talous', 'seutuyhteistyö', 'aluehallinto']
       }
-      const bucket = themeGroups[theme.key];
-      bucket.total += 1;
-      if (item.contentType === 'Blogi') bucket.blogi += 1;
-      if (item.contentType === 'Puheenvuoro') bucket.puheenvuoro += 1;
-      if (item.contentType === 'Mielipide') bucket.mielipide += 1;
-      bucket.items.push(item);
-    });
+    ];
+    const profileGroups = profileDefinitions.map((profile) => {
+      const items = themedItems
+        .filter((item) => hasPoliticalProfile(item, profile.key))
+        .sort((a, b) => new Date(b.date) - new Date(a.date));
+      return {
+        ...profile,
+        total: items.length,
+        blogi: items.filter((item) => item.contentType === 'Blogi').length,
+        puheenvuoro: items.filter((item) => item.contentType === 'Puheenvuoro').length,
+        mielipide: items.filter((item) => item.contentType === 'Mielipide').length,
+        aloite: items.filter((item) => item.contentType === 'Aloite').length,
+        items
+      };
+    }).filter((profile) => profile.total > 0);
 
-    const themeVisuals = {
-      koulutus:       { color: '#0d6efd', icon: 'bi-mortarboard-fill' },
-      kaupunkikehitys:{ color: '#198754', icon: 'bi-buildings-fill' },
-      demokratia:     { color: '#dc3545', icon: 'bi-megaphone-fill' },
-      hyvinvointi:    { color: '#fd7e14', icon: 'bi-heart-pulse-fill' },
-      talous:         { color: '#6f42c1', icon: 'bi-graph-up-arrow' },
-      muu:            { color: '#6c757d', icon: 'bi-three-dots' }
+    const contentTypeLabel = (value) => {
+      if (value === 'Puheenvuoro') return 'Puheenvuoro';
+      if (value === 'Mielipide') return 'Mielipide';
+      if (value === 'Aloite') return 'Aloite';
+      return 'Blogi';
     };
 
-    function renderThemeCards() {
-      if (!themeGrid) return;
-      const groups = Object.values(themeGroups)
-        .map((group) => ({
-          ...group,
-          items: [...group.items].sort((a, b) => new Date(b.date) - new Date(a.date))
-        }))
-        .sort((a, b) => b.total - a.total || a.title.localeCompare(b.title, 'fi'));
-
+    function renderThemeGroup(groups, target, emptyMessage) {
+      if (!target) return;
       if (!groups.length) {
-        themeGrid.innerHTML = '<div class="col-12"><div class="alert alert-light border mb-0">Teemoiteltuja sisältöjä ei löytynyt.</div></div>';
+        target.innerHTML = `<div class="col-12"><div class="alert alert-light border mb-0">${emptyMessage}</div></div>`;
         return;
       }
 
-      themeGrid.innerHTML = groups.map((group) => {
-        const visual = themeVisuals[group.key] || themeVisuals.muu;
-        const quickLinks = group.items.slice(0, 3).map((item) => `
-          <a href="${escHtml(item.url)}" class="small">
-            <span class="badge text-bg-light border">${escHtml(item.contentType)}</span>
-            <span>${escHtml(item.title)}</span>
-          </a>
+      target.innerHTML = groups.map((group) => {
+        const accent = group.color;
+        const visibleItems = group.items.slice(0, 2);
+        const focusChips = (group.focus || []).map((focus) => `
+          <span class="pol-theme-pill">${escHtml(focus)}</span>
         `).join('');
+        const metaItems = [
+          `${group.total} sisältöä`,
+          group.puheenvuoro ? `${group.puheenvuoro} puheenvuoroa` : '',
+          group.aloite ? `${group.aloite} aloitetta` : '',
+          group.mielipide ? `${group.mielipide} mielipidettä` : '',
+          group.blogi ? `${group.blogi} blogia` : ''
+        ].filter(Boolean).map((item) => `<span>${escHtml(item)}</span>`).join('');
+        const links = visibleItems.map((item) => `
+          <li class="pol-theme-proof-item">
+            <div class="pol-theme-proof-top">
+              <span class="pol-theme-proof-type">${escHtml(contentTypeLabel(item.contentType))}</span>
+              <span>${escHtml(item.formattedDate || formatFiDate(item.date))}</span>
+            </div>
+            <a href="${escHtml(item.url)}" class="pol-theme-proof-link">${escHtml(item.title)}</a>
+          </li>
+        `).join('');
+
         return `
-          <div class="col-md-6 col-xl-4">
-            <article class="card politics-theme-card" style="--pol-theme-color:${visual.color}">
-              <div class="card-body d-flex flex-column">
-                <i class="bi ${visual.icon} pol-theme-icon" style="color:${visual.color}"></i>
-                <h3 class="h6 mb-2">${escHtml(group.title)}</h3>
-                <p class="text-muted small mb-3">${escHtml(group.description)}</p>
-                <div class="d-flex flex-wrap gap-2 mb-3">
-                  ${group.blogi ? `<span class="badge rounded-pill text-bg-primary-subtle text-primary-emphasis">Blogi ${group.blogi}</span>` : ''}
-                  ${group.puheenvuoro ? `<span class="badge rounded-pill text-bg-danger-subtle text-danger-emphasis">Puheenvuorot ${group.puheenvuoro}</span>` : ''}
-                  ${group.mielipide ? `<span class="badge rounded-pill text-bg-info-subtle text-info-emphasis">Mielipiteet ${group.mielipide}</span>` : ''}
-                </div>
-                <div class="theme-links d-grid gap-2 mb-3">${quickLinks || '<span class="small text-muted">Ei nostoja.</span>'}</div>
-                <a href="/kynasta/" class="btn btn-outline-primary btn-sm mt-auto align-self-start">Avaa Kynästä</a>
+          <div class="${group.tier === 'core' ? 'col-lg-4' : 'col-lg-4'}">
+            <article class="pol-theme-card ${group.tier === 'core' ? 'pol-theme-card--core' : 'pol-theme-card--support'}" style="border-top:4px solid ${accent}">
+              <div class="pol-theme-head">
+                <span class="pol-theme-icon" style="color:${accent}">
+                  <i class="bi ${group.icon}"></i>
+                </span>
+                <h3 class="pol-theme-title">${escHtml(group.title)}</h3>
+              </div>
+              <p class="pol-theme-statement">${escHtml(group.statement)}</p>
+              <p class="pol-theme-description">${escHtml(group.description)}</p>
+              <div class="pol-theme-meta">${metaItems}</div>
+              <div class="pol-theme-focus">${focusChips}</div>
+              <p class="pol-theme-proof-label">Tuoreita nostoja</p>
+              <ul class="pol-theme-proof-list">${links || '<li class="pol-theme-proof-item"><span class="text-muted small">Nostoja ei löytynyt.</span></li>'}</ul>
+              <div class="pol-theme-footer">
+                <a href="/kynasta/">Koko kirjoitusarkisto</a>
               </div>
             </article>
           </div>
@@ -558,126 +1143,64 @@ templateEngineOverride: njk
       }).join('');
     }
 
-    renderThemeCards();
-  })();
+    function renderThemeCards() {
+      if (!coreThemeList && !supportThemeList) return;
+      const groups = [...profileGroups];
+      const coreGroups = groups.filter((group) => group.tier === 'core');
+      const supportGroups = groups.filter((group) => group.tier !== 'core');
 
-  (() => {
-    const scrollers = Array.from(document.querySelectorAll('.ouka-scroller'));
-    if (!scrollers.length) return;
+      renderThemeGroup(coreGroups, coreThemeList, 'Ydinteemoihin sidottuja sisältöjä ei löytynyt.');
+      renderThemeGroup(supportGroups, supportThemeList, 'Tukiteemoihin sidottuja sisältöjä ei löytynyt.');
 
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const autoScroller = document.querySelector('#valtuustoaloitteet .ouka-scroller');
-    let pauseAuto = false;
-    let rafId = null;
-    let lastTs = 0;
-
-    const hasOverflow = (el) => el.scrollWidth - el.clientWidth > 8;
-
-    const stopAuto = () => {
-      if (rafId) {
-        window.cancelAnimationFrame(rafId);
-        rafId = null;
-      }
-      lastTs = 0;
-    };
-
-    const startAuto = () => {
-      if (!autoScroller || prefersReducedMotion || rafId) return;
-      const speedPxPerMs = 0.045;
-      const tick = (ts) => {
-        if (!autoScroller || pauseAuto || !hasOverflow(autoScroller)) {
-          lastTs = ts;
-          rafId = window.requestAnimationFrame(tick);
-          return;
-        }
-        if (!lastTs) lastTs = ts;
-        const delta = ts - lastTs;
-        lastTs = ts;
-        const maxScroll = autoScroller.scrollWidth - autoScroller.clientWidth;
-        const next = autoScroller.scrollLeft + (delta * speedPxPerMs);
-        autoScroller.scrollLeft = next >= maxScroll - 1 ? 0 : next;
-        rafId = window.requestAnimationFrame(tick);
-      };
-      rafId = window.requestAnimationFrame(tick);
-    };
-
-    scrollers.forEach((scroller) => {
-      let dragging = false;
-      let pending = false;
-      let startX = 0;
-      let startScroll = 0;
-      let capturedId = null;
-      const DRAG_THRESHOLD = 6;
-
-      scroller.addEventListener('pointerdown', (event) => {
-        if (event.pointerType === 'mouse' && event.button !== 0) return;
-        pending = true;
-        startX = event.clientX;
-        startScroll = scroller.scrollLeft;
-        capturedId = event.pointerId;
-        if (scroller === autoScroller) pauseAuto = true;
-      });
-
-      scroller.addEventListener('pointermove', (event) => {
-        if (!pending && !dragging) return;
-        const deltaX = event.clientX - startX;
-        if (!dragging && Math.abs(deltaX) > DRAG_THRESHOLD) {
-          dragging = true;
-          scroller.classList.add('is-dragging');
-          try { scroller.setPointerCapture(capturedId); } catch (_) { /* ignore */ }
-        }
-        if (dragging) {
-          scroller.scrollLeft = startScroll - deltaX;
-        }
-      });
-
-      const endDrag = (event) => {
-        if (!pending && !dragging) return;
-        pending = false;
-        dragging = false;
-        scroller.classList.remove('is-dragging');
-        if (typeof capturedId === 'number') {
-          try { scroller.releasePointerCapture(capturedId); } catch (_) { /* ignore */ }
-          capturedId = null;
-        }
-        if (scroller === autoScroller) pauseAuto = false;
-      };
-
-      scroller.addEventListener('pointerup', endDrag);
-      scroller.addEventListener('pointercancel', endDrag);
-      scroller.addEventListener('pointerleave', endDrag);
-
-      scroller.addEventListener('wheel', (event) => {
-        if (!hasOverflow(scroller)) return;
-        if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
-        scroller.scrollLeft += event.deltaY;
-        event.preventDefault();
-      }, { passive: false });
-
-      if (scroller === autoScroller) {
-        scroller.addEventListener('mouseenter', () => { pauseAuto = true; });
-        scroller.addEventListener('mouseleave', () => { pauseAuto = false; });
-        scroller.addEventListener('focusin', () => { pauseAuto = true; });
-        scroller.addEventListener('focusout', () => { pauseAuto = false; });
-      }
-    });
-
-    if (autoScroller && !prefersReducedMotion) {
-      startAuto();
-      window.addEventListener('resize', () => {
-        if (hasOverflow(autoScroller)) {
-          if (!rafId) startAuto();
-        } else {
-          autoScroller.scrollLeft = 0;
-        }
-      }, { passive: true });
-      document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-          stopAuto();
-        } else {
-          startAuto();
-        }
-      });
+      if (!profileNote) return;
+      profileNote.innerHTML = '<small class="text-muted">Luokittelu perustuu sisältöihin lisättyyn politicalProfiles-metadataan. Ydinteemat ja tukiteemat on eroteltu tämän sivun sisältöanalyysin pohjalta, ja sama kirjoitus voi näkyä useammassa teemassa.</small>';
     }
+
+    function renderPoliticalSpeeches(page = 1) {
+      if (!politicalSpeechesTableBody || !politicalSpeechesPagination || !politicalSpeechesInfo) return;
+      const pageSize = 6;
+      const total = politicalSpeechesData.length;
+      const totalPages = Math.max(1, Math.ceil(total / pageSize));
+      const safePage = Math.min(Math.max(page, 1), totalPages);
+      const start = (safePage - 1) * pageSize;
+      const items = politicalSpeechesData.slice(start, start + pageSize);
+
+      politicalSpeechesTableBody.innerHTML = items.map((item) => `
+        <tr>
+          <td class="small text-muted">${escHtml(item.formattedDate)}</td>
+          <td class="small">${escHtml(item.event)}</td>
+          <td><a href="${escHtml(item.url)}" class="fw-semibold text-decoration-none political-speech-title">${escHtml(shortPoliticalSpeechTitle(item.title))}</a></td>
+          <td class="small text-muted">${escHtml(item.asiakohta || '')}</td>
+        </tr>
+      `).join('');
+
+      const first = total ? start + 1 : 0;
+      const last = Math.min(start + pageSize, total);
+      politicalSpeechesInfo.textContent = total
+        ? `Näytetään ${first}–${last} / ${total} puhetta`
+        : 'Puheita ei löytynyt';
+
+      politicalSpeechesPagination.innerHTML = Array.from({ length: totalPages }, (_, index) => {
+        const pageNumber = index + 1;
+        return `
+          <li class="page-item ${pageNumber === safePage ? 'active' : ''}">
+            <button type="button" class="page-link" data-political-speeches-page="${pageNumber}" aria-label="Sivu ${pageNumber}">
+              ${pageNumber}
+            </button>
+          </li>
+        `;
+      }).join('');
+    }
+
+    renderThemeCards();
+    renderPoliticalSpeeches();
+
+    politicalSpeechesPagination?.addEventListener('click', (event) => {
+      const button = event.target.closest('[data-political-speeches-page]');
+      if (!button) return;
+      const page = Number(button.getAttribute('data-political-speeches-page'));
+      if (!Number.isFinite(page)) return;
+      renderPoliticalSpeeches(page);
+    });
   })();
 </script>

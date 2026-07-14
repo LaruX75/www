@@ -219,6 +219,54 @@ html:not([data-bs-theme="dark"]) .subpage-hero-image {
   color: var(--bs-secondary-color);
 }
 
+/* ===== RESEARCH PAGES ===== */
+.research-kpi-card {
+  border: 1px solid color-mix(in srgb, var(--bs-link-color) 14%, var(--bs-border-color)) !important;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--bs-link-color) 4%, #ffffff) 0%, #ffffff 100%) !important;
+}
+
+.research-kpi-number {
+  color: var(--bs-body-color);
+  line-height: 1;
+}
+
+.research-kpi-label {
+  letter-spacing: 0.01em;
+}
+
+.research-theme-card {
+  border: 1px solid color-mix(in srgb, var(--bs-link-color) 12%, var(--bs-border-color)) !important;
+}
+
+.research-theme-icon {
+  width: 3rem;
+  height: 3rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-size: 1.3rem;
+  color: var(--bs-link-color);
+  background: color-mix(in srgb, var(--bs-link-color) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--bs-link-color) 16%, transparent);
+}
+
+[data-bs-theme="dark"] .research-kpi-card {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.02) 100%) !important;
+  border-color: color-mix(in srgb, var(--bs-link-color) 22%, rgba(255, 255, 255, 0.12)) !important;
+}
+
+[data-bs-theme="dark"] .research-theme-card {
+  border-color: color-mix(in srgb, var(--bs-link-color) 18%, rgba(255, 255, 255, 0.12)) !important;
+}
+
+[data-bs-theme="dark"] .research-theme-icon {
+  background: color-mix(in srgb, var(--bs-link-color) 14%, transparent);
+  border-color: color-mix(in srgb, var(--bs-link-color) 26%, transparent);
+}
+
 .bbs-link-card {
   border-color: var(--bs-border-color);
   transition: transform 0.15s, box-shadow 0.15s;
