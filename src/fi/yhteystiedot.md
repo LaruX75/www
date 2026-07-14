@@ -1,5 +1,6 @@
 ---
 title: "Yhteystiedot"
+description: "Jari Larun yhteystiedot: yhteydenottolomake, sähköposti, puhelin sekä yliopisto-, yritys- ja politiikkarooleihin liittyvät kanavat."
 permalink: /yhteystiedot/
 translationKey: contact
 templateEngineOverride: md

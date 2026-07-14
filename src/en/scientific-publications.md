@@ -1,6 +1,7 @@
 ---
 layout: base.njk
 title: Scientific Publications
+description: "Scientific publications by Jari Laru: peer-reviewed articles, conference papers, and other research outputs in one view."
 permalink: /en/scientific-publications/
 translationKey: scientific_publications_index
 lang: en

@@ -2,7 +2,8 @@
 {
   layout: "base.njk",
   eleventyComputed: {
-    title: data => `Kategoria: ${data.category?.name || ""}`
+    title: data => `Kategoria: ${data.category?.name || ""}`,
+    description: data => `Kategoria "${data.category?.name || ""}" kokoaa ${data.category?.count || 0} sisältöä Jari Larun sivustolta: kirjoituksia, puheita ja julkaisuja samasta aihepiiristä.`
   },
   pagination: {
     data: "collections.categoryList",

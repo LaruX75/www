@@ -2,6 +2,7 @@
 layout: page.njk
 templateEngineOverride: md
 title: Contact
+description: "Contact Jari Laru for speaking, training, collaboration, or municipal topics by email or phone."
 permalink: /en/contact/
 translationKey: contact
 lang: en

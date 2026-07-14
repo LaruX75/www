@@ -3,6 +3,7 @@ layout: page.njk
 templateEngineOverride: md
 title: Affiliations and Disclosures
 subtitle: Transparency and trust
+description: "Affiliations, board memberships, and disclosures related to Jari Laru's public and political roles."
 permalink: /en/affiliations/
 translationKey: disclosures
 lang: en

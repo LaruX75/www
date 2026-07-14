@@ -2,6 +2,7 @@
 layout: page.njk
 templateEngineOverride: md
 title: Curriculum Vitae
+description: "Jari Laru's CV in English: academic role, degree, focus areas, and links to core research profiles."
 permalink: /en/cv/
 translationKey: cv
 lang: en

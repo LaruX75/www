@@ -2,7 +2,8 @@
 {
   layout: "base.njk",
   eleventyComputed: {
-    title: data => `Avainsana: ${data.keyword?.name || ""}`
+    title: data => `Avainsana: ${data.keyword?.name || ""}`,
+    description: data => `Avainsana "${data.keyword?.name || ""}" kokoaa ${data.keyword?.count || 0} kirjoitusta, puhetta tai julkaisua Jari Larun sivustolta.`
   },
   pagination: {
     data: "collections.keywordList",

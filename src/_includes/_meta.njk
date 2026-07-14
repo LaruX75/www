@@ -63,11 +63,30 @@
     }
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  {% set currentLang = lang or (page.url | langFromUrl) %}
+  {% set currentLang = lang or ("en" if (page.url and page.url.startsWith("/en/")) else "fi") %}
   {% set isHomePage = page.url == "/" or page.url == "/en/" %}
   {% set needsCharts = page.url == "/julkaisut/" or page.url == "/en/publications/" or page.url == "/kynasta/" %}
   {% set pageTitle = title or site.name %}
-  {% set pageDescription = description or site.description %}
+  {% set siteDescription = site.descriptionEn if currentLang == "en" else site.description %}
+  {% set descriptionMissing = (not description) or description == site.description or description == site.descriptionEn %}
+  {% set pageDescription = description or siteDescription %}
+  {% if descriptionMissing and keyword %}
+    {% if currentLang == "en" %}
+      {% set pageDescription = 'Keyword "' ~ keyword.name ~ '" brings together ' ~ keyword.count ~ ' writings, speeches, or publications from the Jari Laru site.' %}
+    {% else %}
+      {% set pageDescription = 'Avainsana "' ~ keyword.name ~ '" kokoaa ' ~ keyword.count ~ ' kirjoitusta, puhetta tai julkaisua Jari Larun sivustolta.' %}
+    {% endif %}
+  {% elif descriptionMissing and category %}
+    {% if currentLang == "en" %}
+      {% set pageDescription = 'Category "' ~ category.name ~ '" gathers ' ~ category.count ~ ' related items from the Jari Laru site, including writings, speeches, and publications.' %}
+    {% else %}
+      {% set pageDescription = 'Kategoria "' ~ category.name ~ '" kokoaa ' ~ category.count ~ ' sisältöä Jari Larun sivustolta: kirjoituksia, puheita ja julkaisuja samasta aihepiiristä.' %}
+    {% endif %}
+  {% elif descriptionMissing and title and title.startsWith("Avainsana: ") %}
+    {% set pageDescription = 'Avainsana "' ~ (title | replace("Avainsana: ", "")) ~ '" kokoaa kirjoituksia, puheita ja julkaisuja Jari Larun sivustolta.' %}
+  {% elif descriptionMissing and title and title.startsWith("Keyword: ") %}
+    {% set pageDescription = 'Keyword "' ~ (title | replace("Keyword: ", "")) ~ '" brings together writings, speeches, and publications from the Jari Laru site.' %}
+  {% endif %}
   {% set pageUrl = page.url | absoluteUrl(site.url or "https://www.jarilaru.fi") %}
   {% set fiAltPath = collections.all | findTranslationUrl(translationKey, "fi") %}
   {% set enAltPath = collections.all | findTranslationUrl(translationKey, "en") %}

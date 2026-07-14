@@ -2,6 +2,7 @@
 layout: page.njk
 templateEngineOverride: md
 title: Tietosuojaseloste
+description: "Jarilaru.fi-sivuston tietosuojaseloste: localStorage, ulkoiset upotukset, yhteydenottolomake ja rekisteröidyn oikeudet."
 permalink: /tietosuojaseloste/
 translationKey: privacy_notice
 ---

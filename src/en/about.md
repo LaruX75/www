@@ -3,6 +3,7 @@ layout: base.njk
 templateEngineOverride: njk
 title: About
 subtitle: Who is Jari Laru?
+description: "Who Jari Laru is: university lecturer, municipal politician, researcher, entrepreneur, and educator from Oulu, Finland."
 permalink: /en/about/
 translationKey: about
 lang: en

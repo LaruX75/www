@@ -2,6 +2,7 @@
 layout: page.njk
 templateEngineOverride: md
 title: Privacy Notice
+description: "Privacy notice for jarilaru.fi: local storage, external embeds, contact form processing, and data subject rights."
 permalink: /en/privacy/
 translationKey: privacy_notice
 lang: en

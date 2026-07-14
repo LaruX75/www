@@ -3,7 +3,8 @@
   layout: "base.njk",
   lang: "en",
   eleventyComputed: {
-    title: data => `Keyword: ${data.keyword?.name || ""}`
+    title: data => `Keyword: ${data.keyword?.name || ""}`,
+    description: data => `Keyword "${data.keyword?.name || ""}" brings together ${data.keyword?.count || 0} writings, speeches, or publications from Jari Laru's site.`
   },
   pagination: {
     data: "collections.keywordList",
