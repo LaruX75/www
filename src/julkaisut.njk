@@ -10,28 +10,171 @@ translationKey: publications_index
 {%- set bookCount = 0 -%}
 {%- set peerReviewedCount = 0 -%}
 {%- set openAccessCount = 0 -%}
+{%- set pubsA = [] -%}
+{%- set pubsB = [] -%}
+{%- set pubsC = [] -%}
+{%- set pubsD = [] -%}
+{%- set pubsE = [] -%}
+{%- set pubsG = [] -%}
 {%- for pub in researchfi -%}
+  {%- set typeChar = pub.typeCode | first -%}
+  {%- if typeChar == "A" -%}{%- set pubsA = (pubsA.push(pub), pubsA) -%}
+  {%- elif typeChar == "B" -%}{%- set pubsB = (pubsB.push(pub), pubsB) -%}
+  {%- elif typeChar == "C" -%}{%- set pubsC = (pubsC.push(pub), pubsC) -%}
+  {%- elif typeChar == "D" -%}{%- set pubsD = (pubsD.push(pub), pubsD) -%}
+  {%- elif typeChar == "E" -%}{%- set pubsE = (pubsE.push(pub), pubsE) -%}
+  {%- elif typeChar == "G" -%}{%- set pubsG = (pubsG.push(pub), pubsG) -%}
+  {%- endif -%}
   {%- if pub.typeCode == "A1" or pub.typeCode == "A2" -%}{%- set articleCount = articleCount + 1 -%}{%- endif -%}
   {%- if pub.typeCode == "A3" or pub.typeCode == "A4" or pub.typeCode == "B3" -%}{%- set confCount = confCount + 1 -%}{%- endif -%}
   {%- if pub.typeCode == "C1" or pub.typeCode == "C2" or pub.typeCode == "G4" or pub.typeCode == "G5" -%}{%- set bookCount = bookCount + 1 -%}{%- endif -%}
+  {%- if pub.peerReviewed -%}{%- set peerReviewedCount = peerReviewedCount + 1 -%}{%- endif -%}
+  {%- if pub.openAccess -%}{%- set openAccessCount = openAccessCount + 1 -%}{%- endif -%}
 {%- endfor -%}
+{%- set latestResearchHighlights = (researchfi or []).slice(0, 3) -%}
+{%- set latestPeerReviewedHighlights = (pubsA or []).slice(0, 2) -%}
+{%- set latestPublicHighlights = (pubsE or []).slice(0, 2) -%}
 
-<section class="bg-light">
-  <div class="site-shell py-4">
+<section class="publications-hero py-4 py-lg-5">
+  <div class="site-shell">
     <div class="row align-items-center g-4">
-      <div class="col-lg-8">
+      <div class="col-lg-7">
         <p class="text-uppercase small text-muted mb-2">Julkaisut</p>
-        <h1 class="display-6 fw-bold mb-2">Julkaisut & Analytiikka</h1>
-        <p class="text-muted">Tieteelliset julkaisuni suoraan <a href="https://research.fi/en/results/person/0000-0003-0347-0182" target="_blank" rel="noopener noreferrer">Research.fi-profiilista</a> päivitettynä.</p>
+        <h1 class="display-6 fw-bold mb-2">Tutkimusprofiili, julkaisut ja vaikuttavuus</h1>
+        <p class="text-muted mb-3">Tälle sivulle on koottu tutkimusjulkaisuni, niiden ryhmittely sekä viittaus- ja yhteistyödata. Aineisto päivittyy <a href="https://research.fi/en/results/person/0000-0003-0347-0182" target="_blank" rel="noopener noreferrer">Research.fi-profiilista</a>, ja alta pääset suoraan sekä julkaisuluokkiin että analytiikkaan.</p>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="nav-link" href="#julkaisuluokat">Julkaisuluokat <span class="nav-count">{{ researchfi.length }}</span></a>
+          <a class="nav-link" href="#vaitoskirja">Väitöskirja</a>
+          <a class="nav-link" href="#analyticsPanel">Analytiikka</a>
+          <a class="nav-link" href="#card-pub-table-a">Vertaisarvioidut</a>
+        </div>
       </div>
       <div class="col-lg-4">
-        <div class="d-flex flex-wrap gap-2 justify-content-lg-end" id="headerMetrics">
-          <span class="badge text-bg-primary text-dark fs-6">{{ researchfi.length }} julkaisua</span>
-          <span class="badge text-bg-info fs-6">{{ articleCount }} artikkelia</span>
-          <span class="badge text-bg-secondary fs-6">{{ confCount }} konferenssia</span>
-          <span class="badge text-bg-warning fs-6 d-none" id="dynamicTotalCitations" title="Lähde: {{ semanticscholar.metrics.sources }}">... viittausta</span>
-          <span class="badge text-bg-success fs-6 d-none" id="dynamicHIndex" title="Lähde: {{ semanticscholar.metrics.sources }}">... h-indeksi</span>
-        </div>
+        <aside class="publications-hero-aside">
+          <p class="publications-hero-kicker mb-2">Mitä tällä sivulla näkyy</p>
+          <ul class="publications-hero-list mb-0">
+            <li>Vertaisarvioidut, ammatilliset ja yleistajuiset julkaisut on eroteltu omiin ryhmiinsä.</li>
+            <li>Viittausluvut ja h-indeksi lasketaan tämän sivun julkaisuista, eivät yleisestä profiiliyhteenvetosta.</li>
+            <li>Yhteistyöverkosto ja avainsanat auttavat hahmottamaan tutkimuslinjaa yhdellä silmäyksellä.</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="publication-kpi-section">
+  <div class="site-shell">
+    <div class="row g-3">
+      <div class="col-6 col-xl-3">
+        <article class="card border-0 shadow-sm h-100 publication-kpi-card">
+          <div class="card-body">
+            <div class="publication-kpi-value">{{ researchfi.length }}</div>
+            <div class="publication-kpi-label">julkaisua</div>
+          </div>
+        </article>
+      </div>
+      <div class="col-6 col-xl-3">
+        <article class="card border-0 shadow-sm h-100 publication-kpi-card">
+          <div class="card-body">
+            <div class="publication-kpi-value">{{ peerReviewedCount }}</div>
+            <div class="publication-kpi-label">vertaisarvioitua</div>
+          </div>
+        </article>
+      </div>
+      <div class="col-6 col-xl-3">
+        <article class="card border-0 shadow-sm h-100 publication-kpi-card">
+          <div class="card-body">
+            <div class="publication-kpi-value" id="dynamicTotalCitations" title="Lähde: {{ semanticscholar.metrics.sources }}">…</div>
+            <div class="publication-kpi-label">viittausta</div>
+          </div>
+        </article>
+      </div>
+      <div class="col-6 col-xl-3">
+        <article class="card border-0 shadow-sm h-100 publication-kpi-card">
+          <div class="card-body">
+            <div class="publication-kpi-value" id="dynamicHIndex" title="Lähde: {{ semanticscholar.metrics.sources }}">…</div>
+            <div class="publication-kpi-label">h-indeksi</div>
+          </div>
+        </article>
+      </div>
+    </div>
+    <p class="publication-kpi-note text-muted mb-0 mt-3">{{ openAccessCount }} julkaisua on merkitty avoimesti saataviksi, {{ articleCount }} kuuluu lehtiartikkeleihin ja {{ confCount }} konferenssiaineistoon.</p>
+  </div>
+</section>
+
+<section id="aloita-tasta" class="py-4">
+  <div class="site-shell">
+    <div class="row g-4 align-items-stretch">
+      <div class="col-12">
+        <p class="text-uppercase small text-muted mb-1">Aloita tästä</p>
+        <h2 class="h3 mb-1">Nopeimmat reitit julkaisuarkistoon</h2>
+        <p class="text-muted mb-0">Sivun voi lukea joko tutkimusprofiilin esittelynä tai varsinaisena julkaisuarkistona. Nämä sisäänkäynnit vievät suoraan yleisimpiin näkymiin.</p>
+      </div>
+
+      <div class="col-md-6 col-xl-3">
+        <article class="card border-0 shadow-sm h-100 publication-entry-card">
+          <div class="card-body d-flex flex-column">
+            <p class="publication-entry-kicker">Uusimmat</p>
+            <h3 class="h5 mb-2">Viimeisimmät julkaisut</h3>
+            <ul class="publication-entry-list mb-3">
+              {% for pub in latestResearchHighlights %}
+              <li><a href="#julkaisuluokat">{{ pub.title }}</a> <span class="text-muted">({{ pub.year or "—" }})</span></li>
+              {% endfor %}
+            </ul>
+            <a href="#julkaisuluokat" class="btn btn-outline-secondary btn-sm rounded-pill px-3 mt-auto align-self-start">Siirry luokkiin</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="col-md-6 col-xl-3">
+        <article class="card border-0 shadow-sm h-100 publication-entry-card">
+          <div class="card-body d-flex flex-column">
+            <p class="publication-entry-kicker">Vertaisarvioitu tutkimus</p>
+            <h3 class="h5 mb-2">Artikkelit ja konferenssit</h3>
+            <p class="small text-muted mb-3">{{ pubsA.length }} A-luokan julkaisua, joista {{ articleCount }} on lehtiartikkeleita.</p>
+            <ul class="publication-entry-list mb-3">
+              {% for pub in latestPeerReviewedHighlights %}
+              <li><a href="#card-pub-table-a">{{ pub.title }}</a></li>
+              {% endfor %}
+            </ul>
+            <a href="#card-pub-table-a" class="btn btn-outline-secondary btn-sm rounded-pill px-3 mt-auto align-self-start">Avaa A-luokka</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="col-md-6 col-xl-3">
+        <article class="card border-0 shadow-sm h-100 publication-entry-card">
+          <div class="card-body d-flex flex-column">
+            <p class="publication-entry-kicker">Kirjat ja väitöskirja</p>
+            <h3 class="h5 mb-2">Monografiat ja koosteet</h3>
+            <p class="small text-muted mb-3">{{ pubsC.length + pubsG.length }} julkaisua kirjoina, toimitettuina teoksina tai opinnäytteinä.</p>
+            <div class="small text-muted mb-3">Mukana myös väitöskirja <em>Scaffolding learning activities with collaborative scripts and mobile devices</em>.</div>
+            <div class="d-flex flex-wrap gap-2 mt-auto">
+              <a href="#vaitoskirja" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Väitöskirja</a>
+              <a href="#card-pub-table-c" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Kirjat</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="col-md-6 col-xl-3">
+        <article class="card border-0 shadow-sm h-100 publication-entry-card">
+          <div class="card-body d-flex flex-column">
+            <p class="publication-entry-kicker">Laajempi vaikuttavuus</p>
+            <h3 class="h5 mb-2">Ammatilliset ja yleistajuiset tekstit</h3>
+            <p class="small text-muted mb-3">{{ pubsD.length + pubsE.length }} julkaisua ammattiyhteisöille ja suurelle yleisölle.</p>
+            <ul class="publication-entry-list mb-3">
+              {% for pub in latestPublicHighlights %}
+              <li><a href="#card-pub-table-e">{{ pub.title }}</a></li>
+              {% endfor %}
+            </ul>
+            <div class="d-flex flex-wrap gap-2 mt-auto">
+              <a href="#card-pub-table-d" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Ammatilliset</a>
+              <a href="#card-pub-table-e" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Yleistajuiset</a>
+            </div>
+          </div>
+        </article>
       </div>
     </div>
   </div>
@@ -42,6 +185,185 @@ translationKey: publications_index
   [aria-expanded="true"] .analytics-chevron { transform: rotate(180deg); }
   .chart-zoom-btn { opacity: 0.4; transition: opacity .15s; }
   .card:hover .chart-zoom-btn { opacity: 1; }
+  .publications-hero {
+    background: linear-gradient(135deg, #eef2f7 0%, #e2eaf4 100%);
+    border-bottom: 1px solid rgba(15,34,56,0.08);
+  }
+  .publications-hero-aside {
+    padding: 1rem 1.1rem;
+    border-radius: 1rem;
+    background: rgba(15,34,56,0.05);
+    border: 1px solid rgba(15,34,56,0.12);
+  }
+  .publications-hero-kicker {
+    color: #1e3a5f;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .publications-hero-list {
+    padding-left: 1rem;
+    color: rgba(15,34,56,0.72);
+    display: grid;
+    gap: 0.55rem;
+  }
+  .publication-kpi-section {
+    padding: 1.25rem 0 0.5rem;
+  }
+  .publication-kpi-card {
+    border-radius: 1rem;
+  }
+  .publication-kpi-value {
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 0.95;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    color: var(--bs-emphasis-color);
+  }
+  .publication-kpi-label {
+    margin-top: 0.45rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--bs-secondary-color);
+  }
+  .publication-kpi-note {
+    font-size: 0.92rem;
+  }
+  .publication-entry-card {
+    border-radius: 1rem;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .publication-entry-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 1rem 2rem rgba(17, 29, 45, 0.08);
+  }
+  .publication-entry-kicker {
+    margin: 0 0 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--bs-secondary-color);
+  }
+  .publication-entry-list {
+    padding-left: 1rem;
+    display: grid;
+    gap: 0.45rem;
+  }
+  .publication-entry-list a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .publication-entry-list a:hover {
+    text-decoration: underline;
+  }
+  .publication-analytics-card,
+  .publication-spotlight-card,
+  .publication-nav-card {
+    border-radius: 1rem;
+  }
+  .publication-spotlight-card {
+    border-left: 3px solid rgba(148, 163, 184, 0.35);
+  }
+  .publication-section-header {
+    position: relative;
+    padding-left: 1.4rem;
+  }
+  .publication-section-header::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 1rem;
+    bottom: 1rem;
+    width: 3px;
+    border-radius: 999px;
+    background: rgba(148, 163, 184, 0.45);
+  }
+  .publication-group-code {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    background: var(--bs-tertiary-bg);
+    border: 1px solid var(--bs-border-color);
+    color: var(--bs-emphasis-color);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .publication-section-count {
+    background: var(--bs-tertiary-bg);
+    color: var(--bs-emphasis-color);
+    border: 1px solid var(--bs-border-color);
+    font-weight: 600;
+  }
+  .publication-year {
+    color: var(--bs-secondary-color);
+  }
+  .publication-citation-badge {
+    background: var(--bs-tertiary-bg);
+    color: var(--bs-emphasis-color);
+    border: 1px solid var(--bs-border-color);
+  }
+  .publication-jufo {
+    border: 1px solid transparent;
+  }
+  .publication-jufo--3 {
+    background: rgba(25, 135, 84, 0.16);
+    color: #166534;
+    border-color: rgba(25, 135, 84, 0.25);
+  }
+  .publication-jufo--2 {
+    background: rgba(13, 110, 253, 0.14);
+    color: #0b57d0;
+    border-color: rgba(13, 110, 253, 0.24);
+  }
+  .publication-jufo--1 {
+    background: var(--bs-tertiary-bg);
+    color: var(--bs-emphasis-color);
+    border-color: var(--bs-border-color);
+  }
+  .publication-jufo--0 {
+    background: rgba(148, 163, 184, 0.12);
+    color: var(--bs-secondary-color);
+    border-color: rgba(148, 163, 184, 0.2);
+  }
+  html[data-bs-theme="dark"] .publications-hero {
+    background: #0f172a;
+    border-bottom-color: rgba(255,255,255,0.08);
+  }
+  html[data-bs-theme="dark"] .publications-hero p,
+  html[data-bs-theme="dark"] .publications-hero .text-muted {
+    color: rgba(255,255,255,0.68) !important;
+  }
+  html[data-bs-theme="dark"] .publications-hero h1 {
+    color: #fff;
+  }
+  html[data-bs-theme="dark"] .publications-hero-aside {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.14);
+  }
+  html[data-bs-theme="dark"] .publications-hero-kicker {
+    color: rgba(255,255,255,0.82);
+  }
+  html[data-bs-theme="dark"] .publications-hero-list {
+    color: rgba(255,255,255,0.72);
+  }
+  html[data-bs-theme="dark"] .publication-section-header::before {
+    background: rgba(255,255,255,0.16);
+  }
+  html[data-bs-theme="dark"] .publication-jufo--3 {
+    color: #d1fae5;
+  }
+  html[data-bs-theme="dark"] .publication-jufo--2 {
+    color: #dbeafe;
+  }
 
   /* Kanssatutkijat-kortti: häivytys oletuksena, avautuu klikkaamalla */
   .coauthor-table-wrap {
@@ -81,24 +403,29 @@ translationKey: publications_index
 </div>
 
 <!-- ANALYTIIKKA-DASHBOARD -->
-<section class="py-4 bg-body-tertiary">
+<section id="analyticsPanel" class="py-4 bg-body-tertiary">
   <div class="site-shell">
+    <div class="card border-0 shadow-sm publication-analytics-card">
+      <div class="card-body">
+        <div class="d-flex flex-wrap justify-content-between align-items-start gap-3">
+          <div>
+            <p class="text-uppercase small text-muted mb-1">Tilastografiikka</p>
+            <h2 class="h4 mb-1">Vaikuttavuus, yhteistyö ja aihepiirit</h2>
+            <p class="text-muted mb-0">Kaaviot kokoavat julkaisut vuosittain, julkaisutyypeittäin sekä viittausten, kanssatutkijoiden ja otsikkoavainsanojen näkökulmista.</p>
+          </div>
+          <button class="btn btn-outline-secondary d-flex align-items-center gap-2"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#analyticsDashboard"
+                  aria-expanded="false"
+                  aria-controls="analyticsDashboard">
+            <span>Näytä analytiikka</span>
+            <i class="bi bi-chevron-down analytics-chevron"></i>
+          </button>
+        </div>
 
-    <!-- Mobiilinapauttaja — piilotetaan lg+ näytöillä -->
-    <div class="d-lg-none mb-3">
-      <button class="btn btn-outline-secondary w-100 d-flex justify-content-between align-items-center"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#analyticsDashboard"
-              aria-expanded="false"
-              aria-controls="analyticsDashboard">
-        <span><i class="bi bi-bar-chart-fill me-2"></i>Tilastografiikka</span>
-        <i class="bi bi-chevron-down analytics-chevron"></i>
-      </button>
-    </div>
-
-    <div class="collapse d-lg-block" id="analyticsDashboard">
-    <div class="row g-4">
+        <div class="collapse mt-4" id="analyticsDashboard">
+        <div class="row g-4">
 
       <!-- Julkaisut vuosittain -->
       <div class="col-lg-6">
@@ -188,8 +515,10 @@ translationKey: publications_index
         </div>
       </div>
 
+        </div>
+        </div>{# /collapse #}
+      </div>
     </div>
-    </div>{# /collapse #}
   </div>
 </section>
 
@@ -205,15 +534,15 @@ translationKey: publications_index
 </div>
 
 <!-- VÄITÖSKIRJA-NOSTO -->
-<section class="py-4">
+<section id="vaitoskirja" class="py-4">
   <div class="site-shell">
-    <div class="card border-0 shadow-sm" style="border-left: 4px solid var(--bs-success) !important;">
+    <div class="card border-0 shadow-sm publication-spotlight-card">
       <div class="card-body py-3 px-4">
         <div class="row align-items-center g-3">
           <div class="col-lg-9">
             <div class="d-flex align-items-center gap-2 mb-1">
-              <span class="badge text-bg-success">G5</span>
-              <span class="badge text-bg-light text-dark border">Väitöskirja</span>
+              <span class="publication-group-code">G5</span>
+              <span class="badge publication-section-count">Väitöskirja</span>
               <span class="text-muted small">2012</span>
             </div>
             <h2 class="h5 mb-1">Scaffolding learning activities with collaborative scripts and mobile devices</h2>
@@ -222,7 +551,7 @@ translationKey: publications_index
           <div class="col-lg-3 d-flex gap-2 justify-content-lg-end flex-wrap">
             <a href="http://jultika.oulu.fi/Record/isbn978-951-42-9940-7"
                target="_blank" rel="noopener noreferrer"
-               class="btn btn-sm btn-outline-success rounded-pill">
+               class="btn btn-sm btn-outline-secondary rounded-pill">
               <i class="bi bi-box-arrow-up-right me-1"></i>Jultika
             </a>
             <a href="/introduction-scaffolding-learning-activities-with-collaborative-scripts-and-mobile-devices/"
@@ -237,41 +566,37 @@ translationKey: publications_index
 </section>
 
 <!-- JULKAISULISTA -->
-<section id="researchfi-julkaisut" class="py-5">
+<section id="julkaisuluokat" class="py-5">
   <div class="site-shell">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-      <h3 class="mb-0">Kaikki julkaisut</h3>
+    <div class="card border-0 shadow-sm publication-nav-card mb-4">
+      <div class="card-body">
+        <p class="text-uppercase small text-muted mb-1">Julkaisuluokat</p>
+        <h2 class="h3 mb-1">Selaa koko julkaisuarkistoa ryhmittäin</h2>
+        <p class="text-muted mb-3">Alla julkaisut on jaettu tutkimusjulkaisuihin, ammatillisiin teksteihin, suurelle yleisölle suunnattuihin kirjoituksiin sekä opinnäytteisiin. Jokaisessa osiossa on oma suodatus.</p>
+        <div class="d-flex flex-wrap gap-2">
+          <a href="#card-pub-table-a" class="btn btn-outline-secondary btn-sm rounded-pill">A-luokka <span class="ms-1 text-muted">{{ pubsA.length }}</span></a>
+          <a href="#card-pub-table-b" class="btn btn-outline-secondary btn-sm rounded-pill">B-luokka <span class="ms-1 text-muted">{{ pubsB.length }}</span></a>
+          <a href="#card-pub-table-c" class="btn btn-outline-secondary btn-sm rounded-pill">C-luokka <span class="ms-1 text-muted">{{ pubsC.length }}</span></a>
+          <a href="#card-pub-table-d" class="btn btn-outline-secondary btn-sm rounded-pill">D-luokka <span class="ms-1 text-muted">{{ pubsD.length }}</span></a>
+          <a href="#card-pub-table-e" class="btn btn-outline-secondary btn-sm rounded-pill">E-luokka <span class="ms-1 text-muted">{{ pubsE.length }}</span></a>
+          <a href="#card-pub-table-g" class="btn btn-outline-secondary btn-sm rounded-pill">G-luokka <span class="ms-1 text-muted">{{ pubsG.length }}</span></a>
+        </div>
+      </div>
     </div>
 
     {% if researchfi.length %}
 
-      {# Jaa julkaisut tyyleittäin Dataan perustuen #}
-      {% set pubsA = [] %}
-      {% set pubsB = [] %}
-      {% set pubsC = [] %}
-      {% set pubsD = [] %}
-      {% set pubsE = [] %}
-      {% set pubsG = [] %}
-      
-      {% for pub in researchfi %}
-        {% set typeChar = pub.typeCode | first %}
-        {% if typeChar == 'A' %}{% set pubsA = (pubsA.push(pub), pubsA) %}
-        {% elif typeChar == 'B' %}{% set pubsB = (pubsB.push(pub), pubsB) %}
-        {% elif typeChar == 'C' %}{% set pubsC = (pubsC.push(pub), pubsC) %}
-        {% elif typeChar == 'D' %}{% set pubsD = (pubsD.push(pub), pubsD) %}
-        {% elif typeChar == 'E' %}{% set pubsE = (pubsE.push(pub), pubsE) %}
-        {% elif typeChar == 'G' %}{% set pubsG = (pubsG.push(pub), pubsG) %}
-        {% endif %}
-      {% endfor %}
-
       {# Macros for reuse #}
-      {% macro drawTable(title, badge, items, tableId, subtypes) %}
+      {% macro drawTable(groupCode, title, items, tableId, subtypes) %}
       {% if items.length %}
       <div class="card shadow-sm mb-5 section-card" id="card-{{ tableId }}">
-        <div class="card-header bg-transparent py-3">
+        <div class="card-header bg-transparent py-3 publication-section-header">
           <div class="d-flex align-items-start justify-content-between">
             <div>
-              <h4 class="h5 mb-0"><i class="bi bi-journal-text me-2 text-primary"></i>{{ title }}</h4>
+              <div class="d-flex flex-wrap align-items-center gap-2 mb-1">
+                <span class="publication-group-code">{{ groupCode }}</span>
+                <h3 class="h5 mb-0">{{ title }}</h3>
+              </div>
               {% if subtypes and subtypes.length %}
               <div class="mt-1 d-flex flex-wrap">
                 {% for st in subtypes %}
@@ -286,7 +611,7 @@ translationKey: publications_index
             </div>
             <div class="d-flex align-items-center gap-2 flex-shrink-0 ms-3 mt-1">
               <span class="publication-filter-indicator badge border border-info text-info d-none" data-filter-indicator="{{ tableId }}"></span>
-              <span class="badge {{ badge }}">{{ items.length }}</span>
+              <span class="badge publication-section-count">{{ items.length }}</span>
             </div>
           </div>
         </div>
@@ -316,7 +641,7 @@ translationKey: publications_index
                   <tbody>
                     {% for pub in items %}
                     <tr data-authors="{{ pub.authors | escape }}">
-                      <td class="text-center font-monospace small fw-bold text-info">{{ pub.year or '—' }}</td>
+                      <td class="text-center font-monospace small fw-bold publication-year">{{ pub.year or '—' }}</td>
                       <td><span class="badge bg-secondary" title="{{ pub.typeFi }}">{{ pub.typeShort }}</span></td>
                       <td>
                         <span class="fw-medium d-block mb-1">{{ pub.title }}</span>
@@ -329,16 +654,16 @@ translationKey: publications_index
                         <div class="d-flex flex-wrap align-items-center gap-2 mt-1">
                           {% if pub.jufoLevel != null and pub.jufoLevel != undefined %}
                             {% if pub.jufoLevel == "3" %}
-                              <span class="badge rounded-pill" style="background:#198754;color:#fff" title="Julkaisufoorumi-taso 3 – johtava taso">JUFO 3</span>
+                              <span class="badge rounded-pill publication-jufo publication-jufo--3" title="Julkaisufoorumi-taso 3 – johtava taso">JUFO 3</span>
                             {% elif pub.jufoLevel == "2" %}
-                              <span class="badge rounded-pill" style="background:#0d6efd;color:#fff" title="Julkaisufoorumi-taso 2 – korkea taso">JUFO 2</span>
+                              <span class="badge rounded-pill publication-jufo publication-jufo--2" title="Julkaisufoorumi-taso 2 – korkea taso">JUFO 2</span>
                             {% elif pub.jufoLevel == "1" %}
-                              <span class="badge rounded-pill" style="background:#6c757d;color:#fff" title="Julkaisufoorumi-taso 1 – perustaso">JUFO 1</span>
+                              <span class="badge rounded-pill publication-jufo publication-jufo--1" title="Julkaisufoorumi-taso 1 – perustaso">JUFO 1</span>
                             {% else %}
-                              <span class="badge rounded-pill" style="background:#dee2e6;color:#495057" title="Julkaisufoorumi-taso 0 – ei luokiteltu">JUFO 0</span>
+                              <span class="badge rounded-pill publication-jufo publication-jufo--0" title="Julkaisufoorumi-taso 0 – ei luokiteltu">JUFO 0</span>
                             {% endif %}
                           {% endif %}
-                          <span class="badge text-bg-warning rounded-pill" title="Viittaukset">
+                          <span class="badge publication-citation-badge rounded-pill" title="Viittaukset">
                             <i class="bi bi-quote me-1"></i>{{ citationCount }} {{ "viite" if citationCount == 1 else "viittausta" }}
                           </span>
                           <button
@@ -382,17 +707,17 @@ translationKey: publications_index
               {% set citationCount = (semanticscholar.metrics.doiCitations[pub.doi | lower] if pub.doi and semanticscholar.metrics.doiCitations[pub.doi | lower] else 0) %}
               <li class="pub-mobile-item px-3 py-3 border-bottom" data-authors="{{ pub.authors | escape }}" role="listitem">
                 <div class="d-flex align-items-center gap-2 mb-1">
-                  <span class="font-monospace small fw-bold text-info">{{ pub.year or '—' }}</span>
+                  <span class="font-monospace small fw-bold publication-year">{{ pub.year or '—' }}</span>
                   <span class="badge bg-secondary" title="{{ pub.typeFi }}">{{ pub.typeShort }}</span>
                   {% if pub.jufoLevel != null and pub.jufoLevel != undefined %}
                     {% if pub.jufoLevel == "3" %}
-                      <span class="badge rounded-pill" style="background:#198754;color:#fff">JUFO 3</span>
+                      <span class="badge rounded-pill publication-jufo publication-jufo--3">JUFO 3</span>
                     {% elif pub.jufoLevel == "2" %}
-                      <span class="badge rounded-pill" style="background:#0d6efd;color:#fff">JUFO 2</span>
+                      <span class="badge rounded-pill publication-jufo publication-jufo--2">JUFO 2</span>
                     {% elif pub.jufoLevel == "1" %}
-                      <span class="badge rounded-pill" style="background:#6c757d;color:#fff">JUFO 1</span>
+                      <span class="badge rounded-pill publication-jufo publication-jufo--1">JUFO 1</span>
                     {% else %}
-                      <span class="badge rounded-pill" style="background:#dee2e6;color:#495057">JUFO 0</span>
+                      <span class="badge rounded-pill publication-jufo publication-jufo--0">JUFO 0</span>
                     {% endif %}
                   {% endif %}
                 </div>
@@ -412,7 +737,7 @@ translationKey: publications_index
                   <p class="small text-muted fst-italic mb-1">{{ pub.publisher }}{% if pub.isbn %} — ISBN {{ pub.isbn }}{% endif %}</p>
                 {% endif %}
                 <div class="d-flex gap-2 flex-wrap align-items-center mt-1">
-                  <span class="badge text-bg-warning rounded-pill" title="Viittaukset">
+                  <span class="badge publication-citation-badge rounded-pill" title="Viittaukset">
                     <i class="bi bi-quote me-1"></i>{{ citationCount }} {{ "viite" if citationCount == 1 else "viittausta" }}
                   </span>
                   <button
@@ -475,12 +800,12 @@ translationKey: publications_index
         {code: 'G5', desc: 'Väitöskirja (monografia)'}
       ] %}
 
-      {{ drawTable('A - Vertaisarvioidut tieteelliset artikkelit', 'text-bg-primary', pubsA, 'pub-table-a', subtypesA) }}
-      {{ drawTable('B - Vertaisarvioimattomat tieteelliset kirjoitukset', 'text-bg-info', pubsB, 'pub-table-b', subtypesB) }}
-      {{ drawTable('C - Tieteelliset kirjat', 'text-bg-warning', pubsC, 'pub-table-c', subtypesC) }}
-      {{ drawTable('D - Ammattiyhteisölle suunnatut julkaisut', 'text-bg-secondary', pubsD, 'pub-table-d', subtypesD) }}
-      {{ drawTable('E - Suurelle yleisölle suunnatut julkaisut', 'bg-dark', pubsE, 'pub-table-e', subtypesE) }}
-      {{ drawTable('G - Opinnäytteet', 'text-bg-success', pubsG, 'pub-table-g', subtypesG) }}
+      {{ drawTable('A', 'Vertaisarvioidut tieteelliset artikkelit', pubsA, 'pub-table-a', subtypesA) }}
+      {{ drawTable('B', 'Vertaisarvioimattomat tieteelliset kirjoitukset', pubsB, 'pub-table-b', subtypesB) }}
+      {{ drawTable('C', 'Tieteelliset kirjat', pubsC, 'pub-table-c', subtypesC) }}
+      {{ drawTable('D', 'Ammattiyhteisölle suunnatut julkaisut', pubsD, 'pub-table-d', subtypesD) }}
+      {{ drawTable('E', 'Suurelle yleisölle suunnatut julkaisut', pubsE, 'pub-table-e', subtypesE) }}
+      {{ drawTable('G', 'Opinnäytteet', pubsG, 'pub-table-g', subtypesG) }}
       
     {% else %}
       <div class="alert alert-warning">Ei julkaisuja saatavilla.</div>
@@ -569,15 +894,13 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Päivitetään DOM
+  const totalEl = document.getElementById('dynamicTotalCitations');
+  if (totalEl) totalEl.textContent = verifiedTotalCitations;
+
+  const hEl = document.getElementById('dynamicHIndex');
+  if (hEl) hEl.textContent = verifiedHIndex;
+
   if (verifiedTotalCitations > 0) {
-    const totalEl = document.getElementById('dynamicTotalCitations');
-    totalEl.textContent = verifiedTotalCitations + ' viittausta';
-    totalEl.classList.remove('d-none');
-
-    const hEl = document.getElementById('dynamicHIndex');
-    hEl.textContent = 'h-indeksi ' + verifiedHIndex;
-    hEl.classList.remove('d-none');
-
     const headingEl = document.getElementById('yearChartHeading');
     if (headingEl) {
       headingEl.innerHTML = headingEl.innerHTML + ' <span class="fw-normal text-secondary">(' + verifiedTotalCitations + ' viittausta)</span>';
@@ -1324,7 +1647,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     if (activeKeyword && !skipScroll) {
-      document.getElementById('researchfi-julkaisut')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.getElementById('julkaisuluokat')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
     syncPublicationFiltersToUrl();
   }

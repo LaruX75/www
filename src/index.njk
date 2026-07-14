@@ -40,6 +40,22 @@ translationKey: home
 {% set heroPublicationCount = (researchfi or []) | length %}
 {% set heroOpinionCount = (collections.pub_mielipide or []) | length %}
 {% set heroSpeechCount = (collections.pub_puhe or []) | length %}
+{% set heroRoles = [
+    { label: "Kouluttaja (Larux t:mi)", href: "/kouluttaja/" },
+    { label: "Kuntapäättäjä", href: "/politiikka/" },
+    { label: "Yliopistonlehtori", href: "/tyoni-yliopistonlehtorina/" }
+] %}
+{% set homeCopy = {
+    heroTitle: "Koulutan, puhun ja vaikutan koulutuksen tulevaisuuteen.",
+    heroLead: "Autan opettajia, rehtoreita ja organisaatioita ottamaan tekoälyn ja oppimisteknologian käyttöön järkevästi. Samalla vien tutkimukseen nojaavaa ajattelua päätöksentekoon Oulussa.",
+    heroPanelText: "Näistä luvuista näet nopeasti työn laajuuden: koulutuksia, julkaisuja, puheenvuoroja ja ohjattuja opinnäytteitä.",
+    pathsTitle: "Mistä haluat aloittaa?",
+    pathsLead: "Voit siirtyä suoraan koulutuspalveluihin, tutkimukseen tai politiikkaan sen mukaan, miksi tulit sivulle.",
+    focusTitle: "Koulutukset, puheenvuorot ja sparraus",
+    focusLead: "Käytännön työni näkyy koulutuksina, keynote-puheenvuoroina ja kehittämisen tukena. Tutkimus ja kunnallinen vaikuttaminen tuovat siihen näkökulmaa, mutta etusivulla pääosassa on se, miten voin auttaa käytännössä.",
+    recentTitle: "Viimeisimmät nostot",
+    recentLead: "Tuoreista kirjoituksista, esityksistä ja julkaisuista näet nopeasti, mitä teen juuri nyt."
+} %}
 {% set heroStats = [
     { count: heroPresentationCount, label: "Esitystä tai oppimateriaalia", href: "/esitykset/" },
     { count: heroPublicationCount, label: "tieteellistä julkaisua", href: "/julkaisut/" },
@@ -54,22 +70,32 @@ translationKey: home
             <div class="row align-items-center g-4 g-lg-5">
                 <div class="col-lg-7">
                     <p class="home-hero-eyebrow mb-2">{{ pageContent.etusivu.hero.eyebrow }}</p>
-                    <h1 class="home-hero-title mb-3">{{ pageContent.etusivu.hero.title }}</h1>
-                    <div class="home-hero-roles">
-                        {% for role in pageContent.etusivu.hero.roles %}
+                    <h1 class="home-hero-title mb-3">{{ homeCopy.heroTitle }}</h1>
+                    <p class="home-hero-lead mb-4">{{ homeCopy.heroLead }}</p>
+                    <div class="home-hero-roles mb-4">
+                        {% for role in heroRoles %}
                         <a class="home-hero-role-item" href="{{ role.href }}">{{ role.label }}</a>
                         {% endfor %}
                     </div>
+                    <div class="home-hero-actions">
+                        <a class="btn btn-primary rounded-pill px-4" href="{{ pageContent.etusivu.intro.cta1.href }}">{{ pageContent.etusivu.intro.cta1.label }}</a>
+                        <a class="btn btn-outline-secondary rounded-pill px-4 home-hero-btn-secondary" href="/politiikka/">Politiikka</a>
+                        <a class="home-hero-link" href="{{ pageContent.etusivu.intro.cta2.href }}">{{ pageContent.etusivu.intro.cta2.label }}</a>
+                    </div>
                 </div>
-                <div class="col-lg-5 d-none d-lg-flex align-items-center justify-content-end">
-                    <dl class="home-hero-kpi-grid mb-0">
-                        {% for stat in heroStats | sort(true, false, "count") %}
-                        <div class="home-hero-kpi">
-                            <dd class="home-hero-kpi-value"><a class="home-hero-kpi-link" href="{{ stat.href }}">{{ stat.count }}</a></dd>
-                            <dt class="home-hero-kpi-label">{{ stat.label }}</dt>
-                        </div>
-                        {% endfor %}
-                    </dl>
+                <div class="col-lg-5">
+                    <aside class="home-hero-panel">
+                        <p class="home-hero-panel-kicker">Näyttöä työstäni</p>
+                        <p class="home-hero-panel-text">{{ homeCopy.heroPanelText }}</p>
+                        <dl class="home-hero-kpi-grid mb-0">
+                            {% for stat in heroStats | sort(true, false, "count") %}
+                            <div class="home-hero-kpi">
+                                <dd class="home-hero-kpi-value"><a class="home-hero-kpi-link" href="{{ stat.href }}">{{ stat.count }}</a></dd>
+                                <dt class="home-hero-kpi-label">{{ stat.label }}</dt>
+                            </div>
+                            {% endfor %}
+                        </dl>
+                    </aside>
                 </div>
             </div>
         </div>
@@ -81,178 +107,164 @@ translationKey: home
     </div>
 </section>
 
-{# ── Intro: tiivistys + päätoiminnot ──────────────────────────────────── #}
-<section class="py-5 home-intro-section">
+{% set featuredPresentationRows = (canva.fiRows or canva.tableRows or []) | take(3) %}
+{% set recentAcademicPosts = (collections.blogAcademic or []) | take(2) %}
+{% set recentPoliticsItems = [] %}
+{% for post in collections.politicsAndOpinions %}
+    {% if post.fileSlug != "etusivu" and recentPoliticsItems.length < 2 %}
+        {% set _ = (recentPoliticsItems.push(post), null) %}
+    {% endif %}
+{% endfor %}
+{% set featuredPublications = (researchfi or []).slice(0, 2) %}
+{% set featuredRecentPost = (collections.blog or [])[0] %}
+{% set featuredRecentPresentation = ((canva.fiRows or canva.tableRows or [])[0]) %}
+{% set featuredRecentPublication = (researchfi or [])[0] %}
+
+<section class="py-5 home-paths-section">
     <div class="site-shell">
-        <div class="row justify-content-center">
-            <div class="col-lg-8 text-center">
-                <p class="home-intro-text">{{ pageContent.etusivu.intro.text }}</p>
-                <div class="home-intro-actions">
-                    <a class="btn btn-primary rounded-pill px-4" href="{{ pageContent.etusivu.intro.cta1.href }}">{{ pageContent.etusivu.intro.cta1.label }}</a>
-                    <a class="btn btn-outline-secondary rounded-pill px-4" href="{{ pageContent.etusivu.intro.cta2.href }}">{{ pageContent.etusivu.intro.cta2.label }}</a>
-                </div>
-            </div>
+        <div class="home-section-head">
+            <p class="home-section-kicker mb-1">{{ pageContent.etusivu.paths.sectionLabel }}</p>
+            <h2 class="home-section-title">{{ homeCopy.pathsTitle }}</h2>
+            <p class="home-section-lead mb-0">{{ homeCopy.pathsLead }}</p>
+        </div>
+        <div class="home-paths-grid">
+            {% for card in pageContent.etusivu.paths.cards %}
+            <a href="{{ card.href }}" class="home-path-card{% if loop.first %} home-path-card--primary{% endif %}">
+                <span class="home-path-card-icon"><i class="bi {{ card.icon }}"></i></span>
+                <p class="home-path-card-kicker">{{ card.title }}</p>
+                <p class="home-path-card-text">{{ card.desc }}</p>
+                <span class="home-path-card-cta">{{ card.cta }}</span>
+            </a>
+            {% endfor %}
         </div>
     </div>
 </section>
 
-<section class="py-5 home-overview-section">
+<section class="py-5 home-focus-section">
     <div class="site-shell">
-        <div class="row g-4 g-xl-5">
+        <div class="home-section-head">
+            <p class="home-section-kicker mb-1">Painopiste</p>
+            <h2 class="home-section-title">{{ homeCopy.focusTitle }}</h2>
+            <p class="home-section-lead mb-0">{{ homeCopy.focusLead }}</p>
+        </div>
 
-            {# Kortti 1: Yliopistonlehtori #}
-            <div class="col-md-6 col-xl-3 home-overview-col">
-                <div class="d-flex flex-column h-100">
-                    <p class="home-overview-eyebrow">{{ pageContent.etusivu.overview.card1.eyebrow }}</p>
-                    <h2 class="h5 fw-bold mb-2 home-overview-title">
-                        <i class="bi bi-mortarboard me-2 opacity-75"></i>Yliopistonlehtori
-                    </h2>
-                    <div class="home-overview-lead-wrap mb-3">
-                        <p class="small mb-0 home-overview-lead">{{ pageContent.etusivu.overview.card1.lead }}</p>
-                        <div class="home-overview-lead-fade"></div>
+        <div class="home-focus-grid">
+            <article class="home-focus-main">
+                <div class="home-focus-main-head">
+                    <p class="home-focus-eyebrow">{{ pageContent.etusivu.overview.card2.eyebrow }}</p>
+                    <h3 class="home-focus-main-title">Kouluttaja &amp; puhuja</h3>
+                    <p class="home-focus-main-lead">{{ pageContent.etusivu.overview.card2.lead }}</p>
+                </div>
+
+                <div class="home-focus-chip-row">
+                    <span class="home-focus-chip">tekoäly koulun arjessa</span>
+                    <span class="home-focus-chip">keynote-puheenvuorot</span>
+                    <span class="home-focus-chip">työpajat ja sparraus</span>
+                </div>
+
+                <div class="home-focus-kpis">
+                    <div class="home-focus-kpi">
+                        <span class="home-focus-kpi-value">{{ heroPresentationCount }}</span>
+                        <span class="home-focus-kpi-label">esitystä</span>
                     </div>
-                    <div class="home-overview-kpis mb-3">
-                        <div class="home-overview-kpi">
-                            <span class="home-overview-kpi-value">{{ theses.stats.total }}</span>
-                            <span class="home-overview-kpi-label">ohjattua opinnäytettä</span>
-                        </div>
-                        <div class="home-overview-kpi">
-                            <span class="home-overview-kpi-value">{{ pageContent.etusivu.overview.card1.kpi2.value }}</span>
-                            <span class="home-overview-kpi-label">{{ pageContent.etusivu.overview.card1.kpi2.label }}</span>
-                        </div>
+                    <div class="home-focus-kpi">
+                        <span class="home-focus-kpi-value">{{ pageContent.etusivu.overview.card2.kpi2.value }}</span>
+                        <span class="home-focus-kpi-label">{{ pageContent.etusivu.overview.card2.kpi2.label }}</span>
                     </div>
-                    <div class="home-overview-items mb-3">
-                        {% for post in collections.blogAcademic | take(3) %}
-                        <a href="{{ post.url }}" class="home-overview-item">
-                            <p class="home-overview-item-title">{{ post.data.title }}</p>
-                            <p class="home-overview-item-meta">Kirjoitus · {{ post.date | dateFormat }}</p>
-                        </a>
-                        {% endfor %}
-                        <div class="home-overview-items-fade"></div>
-                    </div>
-                    <div class="mt-auto pt-2">
-                        <a href="{{ pageContent.etusivu.overview.card1.cta.href }}" class="btn btn-outline-secondary btn-sm rounded-pill px-3">{{ pageContent.etusivu.overview.card1.cta.label }} <i class="bi bi-arrow-right"></i></a>
+                    <div class="home-focus-kpi">
+                        <span class="home-focus-kpi-value">3</span>
+                        <span class="home-focus-kpi-label">selkeää tapaa aloittaa yhteistyö</span>
                     </div>
                 </div>
-            </div>
 
-            {# Kortti 2: Kouluttaja & puhuja #}
-            <div class="col-md-6 col-xl-3 home-overview-col">
-                <div class="d-flex flex-column h-100">
-                    <p class="home-overview-eyebrow">{{ pageContent.etusivu.overview.card2.eyebrow }}</p>
-                    <h2 class="h5 fw-bold mb-2 home-overview-title">
-                        <i class="bi bi-mic me-2 opacity-75"></i>Kouluttaja &amp; puhuja
-                    </h2>
-                    <div class="home-overview-lead-wrap mb-3">
-                        <p class="small mb-0 home-overview-lead">{{ pageContent.etusivu.overview.card2.lead }}</p>
-                        <div class="home-overview-lead-fade"></div>
-                    </div>
-                    <div class="home-overview-kpis mb-3">
-                        <div class="home-overview-kpi">
-                            <span class="home-overview-kpi-value">{{ heroPresentationCount }}</span>
-                            <span class="home-overview-kpi-label">esitystä</span>
-                        </div>
-                        <div class="home-overview-kpi">
-                            <span class="home-overview-kpi-value">{{ pageContent.etusivu.overview.card2.kpi2.value }}</span>
-                            <span class="home-overview-kpi-label">{{ pageContent.etusivu.overview.card2.kpi2.label }}</span>
+                <div class="home-focus-main-body">
+                    <div class="home-focus-proof">
+                        <p class="home-focus-proof-label">Tuoreita nostoja</p>
+                        <div class="home-focus-proof-list">
+                            {% for row in featuredPresentationRows %}
+                            <a href="{{ row.url }}" target="_blank" rel="noopener noreferrer" class="home-focus-proof-item">
+                                <span class="home-focus-proof-date">{{ row.date | dateFormat }}</span>
+                                <strong>{{ row.title }}</strong>
+                                <span>{{ row.location or "Esitys tai koulutus" }}</span>
+                            </a>
+                            {% endfor %}
                         </div>
                     </div>
-                    <div class="home-overview-items mb-3">
-                        {% for row in (canva.fiRows or canva.tableRows or []) | take(3) %}
-                        <a href="{{ row.url }}" target="_blank" rel="noopener noreferrer" class="home-overview-item">
-                            <p class="home-overview-item-title">{{ row.title }}</p>
-                            <p class="home-overview-item-meta">{% if row.location %}{{ row.location }} · {% endif %}{{ row.date | dateFormat }}</p>
-                        </a>
-                        {% endfor %}
-                        <div class="home-overview-items-fade"></div>
-                    </div>
-                    <div class="d-flex flex-wrap gap-2 mt-auto pt-2">
+                </div>
+
+                <div class="home-focus-main-actions">
+                    <div class="d-flex flex-wrap gap-2">
                         <a href="{{ pageContent.etusivu.overview.card2.cta1.href }}" class="btn btn-primary btn-sm rounded-pill px-3">{{ pageContent.etusivu.overview.card2.cta1.label }}</a>
                         <a href="{{ pageContent.etusivu.overview.card2.cta2.href }}" class="btn btn-outline-secondary btn-sm rounded-pill px-3">{{ pageContent.etusivu.overview.card2.cta2.label }}</a>
                     </div>
+                    <a href="/yhteystiedot/" class="home-focus-inline-link">Keskustele koulutuksesta tai keynote-puheenvuorosta</a>
                 </div>
-            </div>
+            </article>
 
-            {# Kortti 3: Julkaisut #}
-            <div class="col-md-6 col-xl-3 home-overview-col">
-                <div class="d-flex flex-column h-100">
-                    <p class="home-overview-eyebrow">{{ pageContent.etusivu.overview.card3.eyebrow }}</p>
-                    <h2 class="h5 fw-bold mb-2 home-overview-title">
-                        <i class="bi bi-journal-text me-2 opacity-75"></i>Julkaisut
-                    </h2>
-                    <div class="home-overview-lead-wrap mb-3">
-                        <p class="small mb-0 home-overview-lead">{{ pageContent.etusivu.overview.card3.lead }}</p>
-                        <div class="home-overview-lead-fade"></div>
+            <div class="home-focus-side">
+                <article class="home-focus-support">
+                    <p class="home-focus-eyebrow">{{ pageContent.etusivu.overview.card4.eyebrow }}</p>
+                    <h3 class="home-focus-support-title">Politiikka</h3>
+                    <p class="home-focus-support-text">{{ pageContent.etusivu.overview.card4.lead }}</p>
+                    <div class="home-focus-mini-kpis">
+                        <span><strong>{{ heroOpinionCount }}</strong> mielipidettä</span>
+                        <span><strong>{{ heroSpeechCount }}</strong> puheenvuoroa</span>
                     </div>
-                    <div class="home-overview-kpis mb-3">
-                        <div class="home-overview-kpi">
-                            <span class="home-overview-kpi-value">{{ heroPublicationCount }}</span>
-                            <span class="home-overview-kpi-label">julkaisua</span>
-                        </div>
-                        <div class="home-overview-kpi">
-                            <span class="home-overview-kpi-value">{{ semanticscholar.metrics.totalCitations or "600+" }}</span>
-                            <span class="home-overview-kpi-label">viittausta</span>
-                        </div>
-                    </div>
-                    <div class="home-overview-items mb-3">
-                        {% for pub in researchfi.slice(0, 3) %}
-                        {% set pubLink = pub.doiUrl or pub.url %}
-                        <a href="{{ pubLink or '/julkaisut/' }}" {% if pubLink %}target="_blank" rel="noopener noreferrer"{% endif %} class="home-overview-item">
-                            <p class="home-overview-item-title">{{ pub.title | truncate(85) }}</p>
-                            <p class="home-overview-item-meta">{% if pub.authors %}{{ pub.authors | truncate(40) }} · {% endif %}{{ pub.year }}</p>
+                    <div class="home-focus-mini-list">
+                        {% for post in recentPoliticsItems %}
+                        <a href="{{ post.url }}" class="home-focus-mini-item">
+                            <strong>{{ post.data.title }}</strong>
+                            <span>{{ post.date | dateFormat }}</span>
                         </a>
                         {% endfor %}
-                        <div class="home-overview-items-fade"></div>
                     </div>
-                    <div class="mt-auto pt-2">
-                        <a href="{{ pageContent.etusivu.overview.card3.cta.href }}" class="btn btn-outline-secondary btn-sm rounded-pill px-3">{{ pageContent.etusivu.overview.card3.cta.label }}</a>
-                    </div>
-                </div>
-            </div>
-
-            {# Kortti 4: Politiikka #}
-            <div class="col-md-6 col-xl-3 home-overview-col">
-                <div class="d-flex flex-column h-100">
-                    <p class="home-overview-eyebrow">{{ pageContent.etusivu.overview.card4.eyebrow }}</p>
-                    <h2 class="h5 fw-bold mb-2 home-overview-title">
-                        <i class="bi bi-building me-2 opacity-75"></i>Politiikka
-                    </h2>
-                    <div class="home-overview-lead-wrap mb-3">
-                        <p class="small mb-0 home-overview-lead">{{ pageContent.etusivu.overview.card4.lead }}</p>
-                        <div class="home-overview-lead-fade"></div>
-                    </div>
-                    <div class="home-overview-kpis mb-3">
-                        <div class="home-overview-kpi">
-                            <span class="home-overview-kpi-value">{{ heroOpinionCount }}</span>
-                            <span class="home-overview-kpi-label">mielipidettä</span>
-                        </div>
-                        <div class="home-overview-kpi">
-                            <span class="home-overview-kpi-value">{{ heroSpeechCount }}</span>
-                            <span class="home-overview-kpi-label">puheenvuoroa</span>
-                        </div>
-                    </div>
-                    <div class="home-overview-items mb-3">
-                        {% set polItems = [] %}
-                        {% for post in collections.politicsAndOpinions %}
-                            {% if post.fileSlug != "etusivu" and polItems.length < 3 %}
-                                {% set _ = (polItems.push(post), null) %}
-                            {% endif %}
-                        {% endfor %}
-                        {% for post in polItems %}
-                        <a href="{{ post.url }}" class="home-overview-item">
-                            <p class="home-overview-item-title">{{ post.data.title }}</p>
-                            <p class="home-overview-item-meta">{{ post.data.type | capitalize or "Kirjoitus" }} · {{ post.date | dateFormat }}</p>
-                        </a>
-                        {% endfor %}
-                        <div class="home-overview-items-fade"></div>
-                    </div>
-                    <div class="d-flex flex-wrap gap-2 mt-auto pt-2">
+                    <div class="d-flex flex-wrap gap-2">
                         <a href="{{ pageContent.etusivu.overview.card4.cta1.href }}" class="btn btn-outline-secondary btn-sm rounded-pill px-3">{{ pageContent.etusivu.overview.card4.cta1.label }}</a>
                         <a href="{{ pageContent.etusivu.overview.card4.cta2.href }}" class="btn btn-outline-secondary btn-sm rounded-pill px-3">{{ pageContent.etusivu.overview.card4.cta2.label }}</a>
                     </div>
-                </div>
+                </article>
+
+                <article class="home-focus-support">
+                    <p class="home-focus-eyebrow">{{ pageContent.etusivu.overview.card1.eyebrow }}</p>
+                    <h3 class="home-focus-support-title">Yliopistonlehtori</h3>
+                    <p class="home-focus-support-text">{{ pageContent.etusivu.overview.card1.lead }}</p>
+                    <div class="home-focus-mini-kpis">
+                        <span><strong>{{ theses.stats.total }}</strong> ohjattua opinnäytettä</span>
+                        <span><strong>{{ pageContent.etusivu.overview.card1.kpi2.value }}</strong> {{ pageContent.etusivu.overview.card1.kpi2.label }}</span>
+                    </div>
+                    <div class="home-focus-mini-list">
+                        {% for post in recentAcademicPosts %}
+                        <a href="{{ post.url }}" class="home-focus-mini-item">
+                            <strong>{{ post.data.title }}</strong>
+                            <span>{{ post.date | dateFormat }}</span>
+                        </a>
+                        {% endfor %}
+                    </div>
+                    <a href="{{ pageContent.etusivu.overview.card1.cta.href }}" class="btn btn-outline-secondary btn-sm rounded-pill px-3 align-self-start">{{ pageContent.etusivu.overview.card1.cta.label }}</a>
+                </article>
             </div>
 
+            <article class="home-focus-strip">
+                <div class="home-focus-strip-copy">
+                    <p class="home-focus-eyebrow">{{ pageContent.etusivu.overview.card3.eyebrow }}</p>
+                    <h3 class="home-focus-strip-title">Julkaisut</h3>
+                    <p class="home-focus-support-text mb-0">{{ pageContent.etusivu.overview.card3.lead }}</p>
+                </div>
+                <div class="home-focus-strip-kpis">
+                    <span><strong>{{ heroPublicationCount }}</strong> julkaisua</span>
+                    <span><strong>{{ semanticscholar.metrics.totalCitations or "600+" }}</strong> viittausta</span>
+                </div>
+                <div class="home-focus-strip-list">
+                    {% for pub in featuredPublications %}
+                    {% set pubLink = pub.doiUrl or pub.url %}
+                    <a href="{{ pubLink or '/julkaisut/' }}" {% if pubLink %}target="_blank" rel="noopener noreferrer"{% endif %} class="home-focus-strip-item">
+                        <strong>{{ pub.title | truncate(84) }}</strong>
+                        <span>{% if pub.authors %}{{ pub.authors | truncate(42) }} · {% endif %}{{ pub.year }}</span>
+                    </a>
+                    {% endfor %}
+                </div>
+                <a href="{{ pageContent.etusivu.overview.card3.cta.href }}" class="btn btn-outline-secondary btn-sm rounded-pill px-3">{{ pageContent.etusivu.overview.card3.cta.label }}</a>
+            </article>
         </div>
     </div>
 </section>
@@ -261,161 +273,70 @@ translationKey: home
 {% set testimonialPlacement = "home" %}
 {% include "testimonials.njk" %}
 
-{# ── Viimeisin sisältö -ticker ─────────────────────────────────────────── #}
-
-{# Yhdistetään kaikki sisältötyypit ja lajitellaan uusin ensin #}
-{% set allRecentItems = [] %}
-
-{% for post in collections.blog %}
-  {% set item = { sortTs: post.date | toTimestamp, type: "blog", dateLabel: post.date | dateFormat, title: post.data.title, href: post.url, desc: post.data.description, isExternal: false } %}
-  {% set _ = (allRecentItems.push(item), null) %}
-{% endfor %}
-
-{# canva.tableRows käytetään presentations-sijaan: siinä on paikalliset thumbnail-polut #}
-{% for row in (canva.tableRows or []) %}
-  {% set item = { sortTs: row.date | toTimestamp, type: "pres", dateLabel: row.date | dateFormat, title: row.title, href: row.url, desc: row.location, thumbnail: row.thumbnail, isExternal: true } %}
-  {% set _ = (allRecentItems.push(item), null) %}
-{% endfor %}
-{% for row in (youtube.videos or []) %}
-  {% set item = { sortTs: row.publishedAt | toTimestamp, type: "pres", dateLabel: row.publishedAt | dateFormat, title: row.title, href: row.url, desc: row.description, thumbnail: row.thumbnail, isExternal: true } %}
-  {% set _ = (allRecentItems.push(item), null) %}
-{% endfor %}
-
-{% for pub in (researchfi or []) %}
-  {% set pubDateStr = pub.year ~ "-12-31" %}
-  {% set item = { sortTs: pubDateStr | toTimestamp, type: "pub", dateLabel: pub.year, title: pub.title, href: pub.doiUrl or pub.url or "", authors: pub.authors, journal: pub.journal, typeShort: pub.typeShort, isExternal: true, hasDoi: pub.doiUrl } %}
-  {% set _ = (allRecentItems.push(item), null) %}
-{% endfor %}
-
-{% set allRecentSorted = allRecentItems | sort(true, false, "sortTs") | take(9) %}
-
-<section class="py-5 home-recent-section">
+<section class="py-5 home-challenge-section">
     <div class="site-shell">
-        <div class="d-flex align-items-baseline justify-content-between mb-4">
-            <p class="text-uppercase fw-bold mb-0 home-recent-label">Viimeisin sisältö</p>
-            <div class="d-flex gap-3">
-                <a href="/blogi/" class="home-recent-more">Kirjoitukset →</a>
-                <a href="/esitykset/" class="home-recent-more">Esitykset →</a>
-                <a href="/julkaisut/" class="home-recent-more">Julkaisut →</a>
-            </div>
+        <div class="home-section-head">
+            <p class="home-section-kicker mb-1">{{ pageContent.etusivu.challenges.heading }}</p>
+            <h2 class="home-section-title">Miksi tätä työtä tarvitaan juuri nyt</h2>
+            <p class="home-section-lead mb-0">{{ pageContent.etusivu.challenges.lead }}</p>
         </div>
-    </div>
-    <div class="ticker-wrapper home-ticker-wrapper" id="recentTicker">
-        <div class="ticker-track">
-
-            {%- macro tickerCard(item) %}
-            <div class="home-ticker-item home-ticker-item--{{ item.type }}">
-
-                {# Yläosa: sisältö (kuva / viiteteksti / kuvaus) #}
-                <div class="home-ticker-top">
-                    {%- if item.type == "pres" and item.thumbnail %}
-                    <img src="{{ item.thumbnail }}" alt="" loading="lazy" decoding="async">
-                    {%- elif item.type == "pub" %}
-                    <p class="home-apa7">
-                        {%- if item.authors %}<span class="home-apa7-authors">{{ item.authors }}.</span> {% endif -%}
-                        ({{ item.dateLabel }}).
-                        <em>{{ item.title }}</em>.
-                        {%- if item.journal %} <span class="home-apa7-journal">{{ item.journal }}</span>.{% endif %}
-                        {%- if item.hasDoi %} <span class="home-apa7-doi">{{ item.hasDoi }}</span>{% endif %}
-                    </p>
-                    {%- elif item.desc %}
-                    <p class="home-ticker-top-text">{{ item.desc }}</p>
-                    {%- endif %}
-                    <div class="home-ticker-top-fade"></div>
-                </div>
-
-                {# Keskiosa: badge + aikaleima #}
-                <div class="home-ticker-meta">
-                    <span class="home-ticker-badge home-ticker-badge--{{ item.type }}">
-                        {%- if item.type == "blog" %}Kirjoitus{% elif item.type == "pres" %}Esitys{% else %}Julkaisu{% endif -%}
-                    </span>
-                    <span class="home-ticker-date">&nbsp;·&nbsp;{{ item.dateLabel }}</span>
-                    {%- if item.typeShort %}&nbsp;<span class="home-apa7-type">{{ item.typeShort }}</span>{% endif %}
-                </div>
-
-                {# Alaosa: otsikko, max 2 riviä #}
-                <div class="home-ticker-title-wrap">
-                    {%- if item.href %}
-                    <a class="home-ticker-title" href="{{ item.href }}"{% if item.isExternal %} target="_blank" rel="noopener"{% endif %}>{{ item.title }}</a>
-                    {%- else %}
-                    <span class="home-ticker-title">{{ item.title }}</span>
-                    {%- endif %}
-                </div>
-
-            </div>
-            {%- endmacro %}
-
-            {# ── Setti 1 (alkuperäinen) ─── #}
-            <div class="ticker-content">
-                {% for item in allRecentSorted %}{{ tickerCard(item) }}{% endfor %}
-            </div>
-
-            {# ── Setti 2 (klooni saumatonta toistoa varten) ─── #}
-            <div class="ticker-content" aria-hidden="true" inert>
-                {% for item in allRecentSorted %}{{ tickerCard(item) }}{% endfor %}
-            </div>
-
+        <div class="home-challenge-grid">
+            {% for card in pageContent.etusivu.challenges.cards %}
+            <article class="home-challenge-card">
+                <span class="home-challenge-number">{{ card.num }}</span>
+                <h3 class="home-challenge-title">{{ card.title }}</h3>
+                <p class="home-challenge-text">{{ card.text }}</p>
+            </article>
+            {% endfor %}
         </div>
     </div>
 </section>
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    const ticker = document.getElementById("recentTicker");
-    if (!ticker) return;
-    const track = ticker.querySelector(".ticker-track");
-    const tickerContent = ticker.querySelector(".ticker-content");
-    if (!track || !tickerContent) return;
+<section class="py-5 home-recent-section">
+    <div class="site-shell">
+        <div class="home-section-head">
+            <p class="home-section-kicker mb-1">Tuoreimmat sisällöt</p>
+            <h2 class="home-section-title">{{ homeCopy.recentTitle }}</h2>
+            <p class="home-section-lead mb-0">{{ homeCopy.recentLead }}</p>
+        </div>
+        <div class="home-recent-editorial">
+            <article class="home-recent-card">
+                <p class="home-recent-card-kicker">Kirjoitus</p>
+                {% if featuredRecentPost %}
+                <h3 class="home-recent-card-title"><a href="{{ featuredRecentPost.url }}">{{ featuredRecentPost.data.title }}</a></h3>
+                <p class="home-recent-card-meta">{{ featuredRecentPost.date | dateFormat }}</p>
+                {% if featuredRecentPost.data.description %}
+                <p class="home-recent-card-text">{{ featuredRecentPost.data.description | truncate(180) }}</p>
+                {% endif %}
+                <a href="/blogi/" class="home-recent-card-link">Kaikki kirjoitukset</a>
+                {% endif %}
+            </article>
 
-    let direction = -1;
-    const speed = 0.4;
-    let currentX = 0;
-    let animationId;
-    let isDragging = false;
-    let prevX = 0;
+            <article class="home-recent-card">
+                <p class="home-recent-card-kicker">Esitys</p>
+                {% if featuredRecentPresentation %}
+                <h3 class="home-recent-card-title"><a href="{{ featuredRecentPresentation.url }}" target="_blank" rel="noopener noreferrer">{{ featuredRecentPresentation.title }}</a></h3>
+                <p class="home-recent-card-meta">{{ featuredRecentPresentation.date | dateFormat }}{% if featuredRecentPresentation.location %} · {{ featuredRecentPresentation.location }}{% endif %}</p>
+                <p class="home-recent-card-text">Tuore koulutus- tai puheenvuoronosto käytännön tekoälystä, oppimisesta ja koulun arjesta.</p>
+                <a href="/esitykset/" class="home-recent-card-link">Kaikki esitykset</a>
+                {% endif %}
+            </article>
 
-    track.style.animation = "none";
-
-    function animate() {
-        const setWidth = tickerContent.offsetWidth;
-        currentX += direction * speed;
-        if (currentX <= -setWidth) currentX += setWidth;
-        else if (currentX >= 0) currentX -= setWidth;
-        track.style.transform = `translateX(${currentX}px)`;
-        animationId = requestAnimationFrame(animate);
-    }
-
-    animationId = requestAnimationFrame(animate);
-
-    ticker.addEventListener("mouseenter", () => cancelAnimationFrame(animationId));
-    ticker.addEventListener("mouseleave", () => {
-        isDragging = false;
-        ticker.style.cursor = "";
-        animationId = requestAnimationFrame(animate);
-    });
-    ticker.addEventListener("mousedown", (e) => {
-        isDragging = true;
-        prevX = e.clientX;
-        ticker.style.cursor = "grabbing";
-        cancelAnimationFrame(animationId);
-    });
-    ticker.addEventListener("mousemove", (e) => {
-        if (!isDragging) return;
-        const dx = e.clientX - prevX;
-        prevX = e.clientX;
-        direction = dx > 0 ? 1 : -1;
-        currentX += dx;
-        const setWidth = tickerContent.offsetWidth;
-        if (currentX <= -setWidth) currentX += setWidth;
-        else if (currentX >= 0) currentX -= setWidth;
-        track.style.transform = `translateX(${currentX}px)`;
-    });
-    ticker.addEventListener("mouseup", () => {
-        isDragging = false;
-        ticker.style.cursor = "ew-resize";
-    });
-});
-</script>
+            <article class="home-recent-card">
+                <p class="home-recent-card-kicker">Julkaisu</p>
+                {% if featuredRecentPublication %}
+                {% set featuredRecentPublicationLink = featuredRecentPublication.doiUrl or featuredRecentPublication.url %}
+                <h3 class="home-recent-card-title"><a href="{{ featuredRecentPublicationLink or '/julkaisut/' }}" {% if featuredRecentPublicationLink %}target="_blank" rel="noopener noreferrer"{% endif %}>{{ featuredRecentPublication.title }}</a></h3>
+                <p class="home-recent-card-meta">{{ featuredRecentPublication.year }}{% if featuredRecentPublication.journal %} · {{ featuredRecentPublication.journal }}{% endif %}</p>
+                {% if featuredRecentPublication.authors %}
+                <p class="home-recent-card-text">{{ featuredRecentPublication.authors | truncate(160) }}</p>
+                {% endif %}
+                <a href="/julkaisut/" class="home-recent-card-link">Kaikki julkaisut</a>
+                {% endif %}
+            </article>
+        </div>
+    </div>
+</section>
 
 <section class="py-5 bg-body-tertiary home-closing-section" style="border-top: 1px solid var(--bs-border-color-translucent);">
     <div class="site-shell">
@@ -427,9 +348,483 @@ document.addEventListener("DOMContentLoaded", function () {
                     <p class="mb-4">{{ pageContent.etusivu.closing.text }}</p>
                     <div class="home-closing-actions d-flex flex-wrap justify-content-center gap-2 mb-3">
                         <a class="btn btn-primary rounded-pill px-4" href="{{ pageContent.etusivu.closing.cta1.href }}">{{ pageContent.etusivu.closing.cta1.label }}</a>
+                        <a class="btn btn-outline-secondary rounded-pill px-4" href="{{ pageContent.etusivu.closing.cta2.href }}">{{ pageContent.etusivu.closing.cta2.label }}</a>
+                        <a class="btn btn-outline-secondary rounded-pill px-4" href="{{ pageContent.etusivu.closing.cta3.href }}">{{ pageContent.etusivu.closing.cta3.label }}</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<style>
+  .home-hero-lead {
+    max-width: 60ch;
+    font-size: 1.08rem;
+    line-height: 1.75;
+    color: rgba(248, 251, 255, 0.92);
+  }
+  html:not([data-bs-theme="dark"]) .home-hero-lead {
+    color: rgba(15, 34, 56, 0.86);
+  }
+  .home-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.85rem;
+  }
+  .home-hero-btn-secondary {
+    border-color: rgba(19, 45, 74, 0.22);
+    background: rgba(255, 255, 255, 0.62);
+  }
+  [data-bs-theme="dark"] .home-hero-btn-secondary {
+    color: #f8fbff;
+    border-color: rgba(255, 255, 255, 0.26);
+    background: rgba(255, 255, 255, 0.06);
+  }
+  .home-hero-link {
+    font-weight: 700;
+    text-decoration: none;
+    color: inherit;
+  }
+  .home-hero-link:hover {
+    text-decoration: underline;
+  }
+  .home-hero-panel {
+    display: grid;
+    gap: 1rem;
+    padding: 1.2rem;
+    border-radius: 1.1rem;
+    background: rgba(255, 255, 255, 0.48);
+    border: 1px solid rgba(15, 45, 74, 0.12);
+    box-shadow: 0 1rem 2.2rem rgba(15, 34, 56, 0.1);
+    color: #102845;
+    backdrop-filter: blur(8px);
+  }
+  [data-bs-theme="dark"] .home-hero-panel {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.16);
+    box-shadow: 0 1rem 2.3rem rgba(0, 0, 0, 0.24);
+    color: #f8fbff;
+  }
+  .home-hero-panel-kicker,
+  .home-section-kicker,
+  .home-focus-eyebrow,
+  .home-recent-card-kicker {
+    margin: 0;
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(16, 40, 69, 0.62);
+  }
+  [data-bs-theme="dark"] .home-hero-panel-kicker,
+  [data-bs-theme="dark"] .home-section-kicker,
+  [data-bs-theme="dark"] .home-focus-eyebrow,
+  [data-bs-theme="dark"] .home-recent-card-kicker {
+    color: rgba(255, 255, 255, 0.66);
+  }
+  .home-hero-panel-text,
+  .home-section-lead,
+  .home-path-card-text,
+  .home-focus-support-text,
+  .home-recent-card-text {
+    margin: 0;
+    line-height: 1.7;
+    color: rgba(16, 40, 69, 0.8);
+  }
+  [data-bs-theme="dark"] .home-hero-panel-text,
+  [data-bs-theme="dark"] .home-section-lead,
+  [data-bs-theme="dark"] .home-path-card-text,
+  [data-bs-theme="dark"] .home-focus-support-text,
+  [data-bs-theme="dark"] .home-recent-card-text {
+    color: rgba(255, 255, 255, 0.82);
+  }
+  .home-paths-section,
+  .home-focus-section,
+  .home-challenge-section,
+  .home-recent-section {
+    border-bottom: 1px solid var(--bs-border-color-translucent);
+  }
+  .home-section-head {
+    max-width: 56rem;
+    margin-bottom: 2rem;
+  }
+  .home-section-title,
+  .home-focus-main-title,
+  .home-focus-support-title,
+  .home-focus-strip-title,
+  .home-challenge-title,
+  .home-recent-card-title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #102845;
+  }
+  [data-bs-theme="dark"] .home-section-title,
+  [data-bs-theme="dark"] .home-focus-main-title,
+  [data-bs-theme="dark"] .home-focus-support-title,
+  [data-bs-theme="dark"] .home-focus-strip-title,
+  [data-bs-theme="dark"] .home-challenge-title,
+  [data-bs-theme="dark"] .home-recent-card-title {
+    color: #f8fbff;
+  }
+  .home-section-title {
+    font-size: clamp(2rem, 3vw, 3rem);
+    line-height: 1.05;
+    margin-bottom: 0.75rem;
+  }
+  .home-paths-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  .home-path-card {
+    display: grid;
+    gap: 0.75rem;
+    padding: 1.35rem 1.25rem;
+    text-decoration: none;
+    border-radius: 1.1rem;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(16, 40, 69, 0.1);
+    box-shadow: 0 1rem 2rem rgba(15, 34, 56, 0.08);
+    color: inherit;
+  }
+  .home-path-card--primary {
+    background: linear-gradient(145deg, rgba(19, 78, 145, 0.96), rgba(15, 52, 95, 0.98));
+    color: #f8fbff;
+    border-color: rgba(19, 78, 145, 0.4);
+  }
+  .home-path-card--primary .home-path-card-kicker,
+  .home-path-card--primary .home-path-card-text,
+  .home-path-card--primary .home-path-card-cta {
+    color: inherit;
+  }
+  [data-bs-theme="dark"] .home-path-card {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.05));
+    border-color: rgba(255, 255, 255, 0.14);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.24);
+  }
+  .home-path-card-icon {
+    width: 2.75rem;
+    height: 2.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: rgba(19, 78, 145, 0.1);
+    color: #134e91;
+    font-size: 1.1rem;
+  }
+  .home-path-card--primary .home-path-card-icon {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+  }
+  .home-path-card-kicker {
+    margin: 0;
+    font-size: 1.22rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .home-path-card-cta {
+    font-weight: 700;
+    color: #134e91;
+  }
+  .home-focus-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.95fr);
+    gap: 1rem;
+  }
+  .home-focus-main,
+  .home-focus-support,
+  .home-focus-strip,
+  .home-recent-card,
+  .home-challenge-card {
+    border-radius: 1.2rem;
+    border: 1px solid rgba(16, 40, 69, 0.1);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 1rem 2rem rgba(15, 34, 56, 0.08);
+  }
+  [data-bs-theme="dark"] .home-focus-main,
+  [data-bs-theme="dark"] .home-focus-support,
+  [data-bs-theme="dark"] .home-focus-strip,
+  [data-bs-theme="dark"] .home-recent-card,
+  [data-bs-theme="dark"] .home-challenge-card {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.05));
+    border-color: rgba(255, 255, 255, 0.14);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.24);
+  }
+  .home-focus-main {
+    padding: 1.5rem;
+    display: grid;
+    gap: 1.2rem;
+    background:
+      linear-gradient(180deg, rgba(19, 78, 145, 0.1), rgba(255, 255, 255, 0.98) 12rem),
+      rgba(255, 255, 255, 0.98);
+    border-color: rgba(19, 78, 145, 0.16);
+  }
+  [data-bs-theme="dark"] .home-focus-main {
+    background:
+      linear-gradient(180deg, rgba(104, 168, 255, 0.14), rgba(17, 24, 39, 0.92) 12rem),
+      rgba(17, 24, 39, 0.92);
+    border-color: rgba(120, 184, 255, 0.18);
+  }
+  .home-focus-main-title {
+    margin-bottom: 0.6rem;
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    line-height: 0.98;
+  }
+  .home-focus-main-lead {
+    margin: 0;
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: rgba(16, 40, 69, 0.82);
+    max-width: 54ch;
+  }
+  [data-bs-theme="dark"] .home-focus-main-lead {
+    color: rgba(255, 255, 255, 0.84);
+  }
+  .home-focus-chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+  }
+  .home-focus-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.32rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    background: rgba(19, 78, 145, 0.08);
+    color: #134e91;
+  }
+  [data-bs-theme="dark"] .home-focus-chip {
+    background: rgba(255, 255, 255, 0.09);
+    color: rgba(255, 255, 255, 0.86);
+  }
+  .home-focus-kpis {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.8rem;
+  }
+  .home-focus-kpi {
+    display: grid;
+    gap: 0.2rem;
+    padding: 0.9rem 1rem;
+    border-radius: 1rem;
+    background: rgba(19, 78, 145, 0.05);
+    border: 1px solid rgba(19, 78, 145, 0.1);
+  }
+  [data-bs-theme="dark"] .home-focus-kpi {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  .home-focus-kpi-value {
+    font-size: clamp(1.5rem, 2vw, 2rem);
+    font-weight: 800;
+    line-height: 1;
+    color: #102845;
+  }
+  [data-bs-theme="dark"] .home-focus-kpi-value {
+    color: #f8fbff;
+  }
+  .home-focus-kpi-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(16, 40, 69, 0.6);
+  }
+  [data-bs-theme="dark"] .home-focus-kpi-label {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .home-focus-main-body {
+    display: grid;
+    gap: 1rem;
+  }
+  .home-focus-proof-label {
+    margin: 0 0 0.6rem;
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(16, 40, 69, 0.58);
+  }
+  [data-bs-theme="dark"] .home-focus-proof-label {
+    color: rgba(255, 255, 255, 0.68);
+  }
+  .home-focus-proof-list,
+  .home-focus-mini-list,
+  .home-focus-strip-list {
+    display: grid;
+    gap: 0.7rem;
+  }
+  .home-focus-proof-item,
+  .home-focus-mini-item,
+  .home-focus-strip-item {
+    display: grid;
+    gap: 0.2rem;
+    padding: 0.9rem 1rem;
+    border-radius: 0.95rem;
+    text-decoration: none;
+    color: inherit;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(16, 40, 69, 0.1);
+  }
+  [data-bs-theme="dark"] .home-focus-proof-item,
+  [data-bs-theme="dark"] .home-focus-mini-item,
+  [data-bs-theme="dark"] .home-focus-strip-item {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  .home-focus-proof-item strong,
+  .home-focus-mini-item strong,
+  .home-focus-strip-item strong,
+  .home-recent-card-title a {
+    color: #102845;
+    text-decoration: none;
+  }
+  [data-bs-theme="dark"] .home-focus-proof-item strong,
+  [data-bs-theme="dark"] .home-focus-mini-item strong,
+  [data-bs-theme="dark"] .home-focus-strip-item strong,
+  [data-bs-theme="dark"] .home-recent-card-title a {
+    color: #f8fbff;
+  }
+  .home-focus-proof-date,
+  .home-focus-proof-item span,
+  .home-focus-mini-item span,
+  .home-focus-strip-item span,
+  .home-recent-card-meta {
+    font-size: 0.84rem;
+    color: rgba(16, 40, 69, 0.66);
+  }
+  [data-bs-theme="dark"] .home-focus-proof-date,
+  [data-bs-theme="dark"] .home-focus-proof-item span,
+  [data-bs-theme="dark"] .home-focus-mini-item span,
+  [data-bs-theme="dark"] .home-focus-strip-item span,
+  [data-bs-theme="dark"] .home-recent-card-meta {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .home-focus-main-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(16, 40, 69, 0.08);
+  }
+  [data-bs-theme="dark"] .home-focus-main-actions {
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+  .home-focus-inline-link,
+  .home-recent-card-link {
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .home-focus-side {
+    display: grid;
+    gap: 1rem;
+  }
+  .home-focus-support,
+  .home-focus-strip,
+  .home-recent-card,
+  .home-challenge-card {
+    padding: 1.25rem;
+  }
+  .home-focus-support-title,
+  .home-focus-strip-title,
+  .home-recent-card-title,
+  .home-challenge-title {
+    margin: 0 0 0.55rem;
+    font-size: 1.6rem;
+    line-height: 1.08;
+  }
+  .home-focus-mini-kpis,
+  .home-focus-strip-kpis {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 1rem;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+    color: rgba(16, 40, 69, 0.74);
+  }
+  [data-bs-theme="dark"] .home-focus-mini-kpis,
+  [data-bs-theme="dark"] .home-focus-strip-kpis {
+    color: rgba(255, 255, 255, 0.76);
+  }
+  .home-focus-strip {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 0.55fr) minmax(0, 1.1fr) auto;
+    gap: 1rem;
+    align-items: start;
+  }
+  .home-challenge-grid,
+  .home-recent-editorial {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  .home-challenge-card {
+    position: relative;
+    overflow: hidden;
+    min-height: 100%;
+  }
+  .home-challenge-number {
+    display: block;
+    margin-bottom: 0.9rem;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2.7rem, 5vw, 4rem);
+    line-height: 0.9;
+    color: rgba(19, 78, 145, 0.22);
+  }
+  [data-bs-theme="dark"] .home-challenge-number {
+    color: rgba(255, 255, 255, 0.18);
+  }
+  .home-challenge-text {
+    margin: 0;
+    line-height: 1.7;
+    color: rgba(16, 40, 69, 0.8);
+  }
+  [data-bs-theme="dark"] .home-challenge-text {
+    color: rgba(255, 255, 255, 0.82);
+  }
+  .home-recent-card-title {
+    font-size: 1.45rem;
+  }
+  .home-recent-card-link {
+    margin-top: 0.4rem;
+    color: #134e91;
+  }
+  [data-bs-theme="dark"] .home-recent-card-link {
+    color: #9dc8ff;
+  }
+  @media (max-width: 1199.98px) {
+    .home-paths-grid,
+    .home-challenge-grid,
+    .home-recent-editorial,
+    .home-focus-kpis {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .home-focus-grid {
+      grid-template-columns: 1fr;
+    }
+    .home-focus-strip {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 767.98px) {
+    .home-paths-grid,
+    .home-challenge-grid,
+    .home-recent-editorial,
+    .home-focus-kpis {
+      grid-template-columns: 1fr;
+    }
+    .home-hero-actions,
+    .home-focus-main-actions {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

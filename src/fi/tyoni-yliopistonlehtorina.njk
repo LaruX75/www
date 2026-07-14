@@ -13,6 +13,24 @@ templateEngineOverride: njk
   {%- if pub.peerReviewed -%}{%- set peerReviewedCount = peerReviewedCount + 1 -%}{%- endif -%}
 {%- endfor -%}
 
+{% set workCopy = {
+  heroBody: "Työni keskittyy siihen, miten oppiminen, opettaminen ja uudet teknologiat kohtaavat. Opetan tulevia opettajia, ohjaan opinnäytteitä ja tutkin erityisesti digipedagogiikkaa, ohjelmoinnillista ajattelua ja tekoälylukutaitoa.",
+  workTitle: "Työni kolme pääaluetta",
+  teaching: "Opetan teknologiatuetun oppimisen, digipedagogiikan ja tekoälykasvatuksen sisältöjä erityisesti luokanopettajakoulutuksessa. Pyrin siihen, että vaikeatkin ilmiöt muuttuvat käyttökelpoisiksi osiksi opettajan arkea.",
+  research: "Tutkin, miten teknologiaa käytetään opetuksessa tarkoituksenmukaisesti eri koulutusasteilla. Mukana työssäni on sekä pitkä opetusteknologian tutkimuslinja että nykyinen tekoälylukutaitoon liittyvä tutkimus.",
+  outreach: "Vien tutkimukseen nojaavaa osaamista opettajille, kouluille ja verkostoille koulutusten, esitysten ja yhteistyön kautta. Yliopistotyö ei jää kampukselle, vaan näkyy myös käytännön kehittämisessä.",
+  projectKicker: "Ajankohtainen hanke",
+  projectBody: "Generation AI -hankkeessa toimin vuorovaikutusasiantuntijana ja yhdistän tutkimusta, opettajankoulutusta ja käytännön sovelluksia. Työhöni kuuluu myös opettajien tekoälylukutaidon tutkimus sekä hankkeen verkkokokonaisuuden rakentaminen ja ylläpito.",
+  hubTitle: "Tutustu työn eri puoliin",
+  hubLead: "Näiltä sivuilta löydät tutkimuksen, julkaisut, ohjatut opinnäytteet ja opetusprofiilin.",
+  researchHub: "Tutkimushankkeet, teemat, profiilit ja laajempi kuva tutkimustyöstäni.",
+  publicationsHub: "Kaikki julkaisut koottuna yhdelle sivulle OKM:n luokituksen mukaisesti.",
+  thesesHub: "OuluREPO-aineistosta koottu lista ohjaamistani pro graduista ja kandidaatintöistä.",
+  cvHub: "Kokonaiskuva urastani, tehtävistäni ja meriiteistäni yliopistossa.",
+  portfolioHub: "Tiivis kuvaus opetuksesta, pedagogisista ratkaisuista ja opetusajattelustani.",
+  trustLead: "Opetustyö näkyy paitsi kursseissa ja ohjauksessa myös tunnustuksissa sekä opiskelijoilta kertyneessä palautteessa."
+} %}
+
 {# ── HERO ─────────────────────────────────────────────────────────────────── #}
 <section class="ylwork-hero mb-0">
   <div class="ylwork-shell py-5">
@@ -21,7 +39,7 @@ templateEngineOverride: njk
         <p class="ylwork-eyebrow mb-2"><i class="bi bi-mortarboard me-1"></i>Yliopisto</p>
         <h1 class="display-5 fw-bold mb-2">Työni yliopistonlehtorina</h1>
         <p class="mb-3 ylwork-hero-lead">Teknologiatuetun oppimisen ja opetuksen yliopistonlehtori · Kasvatustieteiden tiedekunta · Oulun yliopisto</p>
-        <p class="mb-0 ylwork-hero-lead" style="font-size:1.05rem;">Tutkin ja opetan sitä, miten digitaaliset teknologiat — tekoäly mukaan lukien — muuttavat oppimista ja opettamista. Olen ohjannut yli sataa opinnäytetyötä ja julkaissut tutkimusta kansainvälisissä vertaisarvioiduissa julkaisuissa 2000-luvun alusta lähtien.</p>
+        <p class="mb-0 ylwork-hero-lead" style="font-size:1.05rem;">{{ workCopy.heroBody }}</p>
       </div>
       <div class="col-lg-5">
         <div class="row g-3 text-center">
@@ -60,14 +78,14 @@ templateEngineOverride: njk
 <section class="ylwork-section" id="mita-teen">
   <div class="ylwork-shell">
     <p class="ylwork-eyebrow ylwork-eyebrow--dark mb-1"><i class="bi bi-person-workspace me-1"></i>Työn sisältö</p>
-    <h2 class="h4 mb-4">Mitä teen käytännössä</h2>
+    <h2 class="h4 mb-4">{{ workCopy.workTitle }}</h2>
     <div class="row g-4">
 
       <div class="col-md-4">
         <div class="ylwork-hub-card h-100">
           <div class="ylwork-hub-icon" style="color:#0d6efd"><i class="bi bi-easel2-fill"></i></div>
           <h3 class="h6 mb-1">Opetus</h3>
-          <p class="small text-muted mb-3">Opetan teknologiatuetun oppimisen ja tekoälykasvatuksen sisältöjä luokanopettajakoulutuksessa. Kurssieni keskiössä ovat digitaalinen pedagogiikka, ohjelmoinnillinen ajattelu ja STEAM-integraatio — käytännönläheisesti ilman ohjelmointitaustaa.</p>
+          <p class="small text-muted mb-3">{{ workCopy.teaching }}</p>
           <a href="/portfolio/" class="ylwork-card-link mt-auto">Opetusportfolio <span aria-hidden="true">→</span></a>
         </div>
       </div>
@@ -76,7 +94,7 @@ templateEngineOverride: njk
         <div class="ylwork-hub-card h-100">
           <div class="ylwork-hub-icon" style="color:#198754"><i class="bi bi-search"></i></div>
           <h3 class="h6 mb-1">Tutkimus</h3>
-          <p class="small text-muted mb-3">Tutkin teknologian pedagogista käyttöä perus- ja korkea-asteella. Osallistun Generation AI -hankkeen monitieteiseen tutkimusyhteistyöhön kasvatustieteen, oikeustieteen ja tietojenkäsittelytieteen välillä.</p>
+          <p class="small text-muted mb-3">{{ workCopy.research }}</p>
           <a href="/tutkimus/" class="ylwork-card-link mt-auto">Tutkimussivulle <span aria-hidden="true">→</span></a>
         </div>
       </div>
@@ -85,7 +103,7 @@ templateEngineOverride: njk
         <div class="ylwork-hub-card h-100">
           <div class="ylwork-hub-icon" style="color:#fd7e14"><i class="bi bi-megaphone-fill"></i></div>
           <h3 class="h6 mb-1">Yhteiskunnallinen vaikuttaminen</h3>
-          <p class="small text-muted mb-3">Koulutan opettajia ympäri Suomea tekoälykasvatuksen menetelmistä.</p>
+          <p class="small text-muted mb-3">{{ workCopy.outreach }}</p>
           <a href="/esitykset/" class="ylwork-card-link mt-auto">Esityksiin <span aria-hidden="true">→</span></a>
         </div>
       </div>
@@ -97,11 +115,11 @@ templateEngineOverride: njk
 {# ── HANKENOSTO ───────────────────────────────────────────────────────────── #}
 <section class="ylwork-section bg-body-tertiary" id="generation-ai">
   <div class="ylwork-shell">
-    <p class="ylwork-eyebrow ylwork-eyebrow--dark mb-1"><i class="bi bi-lightning-charge me-1"></i>Hankenosto</p>
+    <p class="ylwork-eyebrow ylwork-eyebrow--dark mb-1"><i class="bi bi-lightning-charge me-1"></i>{{ workCopy.projectKicker }}</p>
     <h2 class="h4 mb-3">Generation AI</h2>
     <div class="card border-0 shadow-sm">
       <div class="card-body p-4">
-        <p>Toimin Generation AI -hankkeen vuorovaikutusasiantuntijana ja vien tutkimustietoa käytäntöön. Toimin myös hankkeen ja opettajankoulutuksen välisenä linkkinä, tutkin opettajien tekoälylukutaitoa ja vastaan hankkeen verkkosivuston rakentamisesta ja ylläpidosta.</p>
+        <p>{{ workCopy.projectBody }}</p>
         <div class="d-flex flex-wrap gap-2">
           <a href="https://generation-ai-stn.fi/" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm">Generation AI -hanke <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a>
           <a href="https://generation-ai-stn.fi/tutkijalle/" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm">Tutkijalle <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a>
@@ -113,17 +131,55 @@ templateEngineOverride: njk
   </div>
 </section>
 
+{# ── TUNNUSTUKSET JA PALAUTE ─────────────────────────────────────────────── #}
+<section class="ylwork-section" id="tunnustukset">
+  <div class="ylwork-shell">
+    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end gap-3 mb-4">
+      <div>
+        <p class="ylwork-eyebrow ylwork-eyebrow--dark mb-1"><i class="bi bi-patch-check me-1"></i>Tunnustuksia opetustyöstä</p>
+        <h2 class="h4 mb-2">Työ on saanut näkyvää tunnustusta myös opetuksen ulkopuolelta.</h2>
+        <p class="text-muted small mb-0">{{ workCopy.trustLead }}</p>
+      </div>
+      <div class="d-flex flex-wrap gap-2">
+        <a href="/palkinnot/" class="btn btn-outline-secondary btn-sm">Palkinnot</a>
+        <a href="/opiskelijoiden-antamaa-palautetta/" class="btn btn-outline-secondary btn-sm">Opiskelijapalaute</a>
+        <a href="/portfolio/" class="btn btn-outline-primary btn-sm">Opetusportfolio</a>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <article class="ylwork-trust-card h-100">
+          <p class="ylwork-trust-kicker">Palkinnot ja tunnustukset</p>
+          <h3 class="h5 mb-2">Avoin tiede, opetustyö ja asiantuntijuuden jakaminen on huomattu valtakunnallisesti.</h3>
+          <p class="small text-muted mb-3">Esimerkiksi kansallinen avoimen tieteen palkinto 2020, Avoimen oppimisen palkinto 2025 sekä Vuoden TVT-opettaja 2014 kertovat pitkäjänteisestä työstä opetuksen ja avoimuuden parissa.</p>
+          <a href="/palkinnot/" class="ylwork-card-link mt-auto">Katso kaikki tunnustukset <span aria-hidden="true">→</span></a>
+        </article>
+      </div>
+      <div class="col-lg-6">
+        <article class="ylwork-trust-card ylwork-trust-card--quote h-100">
+          <p class="ylwork-trust-kicker">Opiskelijapalaute</p>
+          <blockquote class="ylwork-trust-quote mb-3">
+            <p class="mb-0">“Jarin opetustyyli harjoituksissa sekä mahtavat sähköpostiohjeet tukivat oppimista todella hyvin.”</p>
+          </blockquote>
+          <p class="small text-muted mb-3">Vuosien aikana opiskelijoilta on kertynyt myönteistä palautetta sekä opetuksen sisällöstä että siitä, miten vaikeatkin asiat on jäsennetty käytännöllisesti ja kannustavasti.</p>
+          <a href="/opiskelijoiden-antamaa-palautetta/" class="ylwork-card-link mt-auto">Lue opiskelijapalautteita <span aria-hidden="true">→</span></a>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
 {# ── HUB-NAVIGOINTI ───────────────────────────────────────────────────────── #}
 <section class="ylwork-section" id="hub">
   <div class="ylwork-shell">
     <p class="ylwork-eyebrow ylwork-eyebrow--dark mb-1"><i class="bi bi-grid-3x3-gap me-1"></i>Sisältöalueet</p>
-    <h2 class="h4 mb-1">Tutustu lisää</h2>
-    <p class="text-muted small mb-4">Valitse alla olevasta kokonaisuudesta, mitä haluat tarkastella.</p>
+    <h2 class="h4 mb-1">{{ workCopy.hubTitle }}</h2>
+    <p class="text-muted small mb-4">{{ workCopy.hubLead }}</p>
     <article class="ylwork-hub-card ylwork-hub-card--featured mb-4">
       <div class="ylwork-hub-icon" style="color:#0d6efd"><i class="bi bi-graph-up-arrow"></i></div>
       <div>
         <h3 class="h5 mb-1">Tutkimus</h3>
-        <p class="text-muted small mb-3">Tutkimushankkeet, tieteelliset profiilit ja yhteenveto tutkimusurastani.</p>
+        <p class="text-muted small mb-3">{{ workCopy.researchHub }}</p>
         <a href="/tutkimus/" class="ylwork-card-link">Tutkimussivulle <span aria-hidden="true">→</span></a>
       </div>
     </article>
@@ -134,7 +190,7 @@ templateEngineOverride: njk
           <article class="ylwork-hub-card h-100">
             <div class="ylwork-hub-icon" style="color:#198754"><i class="bi bi-journals"></i></div>
             <h3 class="h6 mb-1">Julkaisut</h3>
-            <p class="text-muted small mb-3">OKM:n ohjeiden mukainen kaikki julkaisut sisältävä luettelo.</p>
+            <p class="text-muted small mb-3">{{ workCopy.publicationsHub }}</p>
             <span class="ylwork-card-link mt-auto">Julkaisuluetteloon <span aria-hidden="true">→</span></span>
           </article>
         </a>
@@ -145,7 +201,7 @@ templateEngineOverride: njk
           <article class="ylwork-hub-card h-100">
             <div class="ylwork-hub-icon" style="color:#fd7e14"><i class="bi bi-mortarboard-fill"></i></div>
             <h3 class="h6 mb-1">Ohjatut opinnäytteet</h3>
-            <p class="text-muted small mb-3">OuluREPO-arkistosta haettu lista ohjatuista pro gradu -tutkielmista ja kandidaatintöistä.</p>
+            <p class="text-muted small mb-3">{{ workCopy.thesesHub }}</p>
             <span class="ylwork-card-link mt-auto">Opinnäytteisiin <span aria-hidden="true">→</span></span>
           </article>
         </a>
@@ -156,7 +212,7 @@ templateEngineOverride: njk
           <article class="ylwork-hub-card h-100">
             <div class="ylwork-hub-icon" style="color:#6f42c1"><i class="bi bi-file-person-fill"></i></div>
             <h3 class="h6 mb-1">Ansioluettelo</h3>
-            <p class="text-muted small mb-3">TENK:n ohjeiden mukaisesti laadittu kokonaiskatsaus uraan Oulun yliopistossa.</p>
+            <p class="text-muted small mb-3">{{ workCopy.cvHub }}</p>
             <span class="ylwork-card-link mt-auto">Ansioluetteloon <span aria-hidden="true">→</span></span>
           </article>
         </a>
@@ -167,7 +223,7 @@ templateEngineOverride: njk
           <article class="ylwork-hub-card h-100">
             <div class="ylwork-hub-icon" style="color:#dc3545"><i class="bi bi-collection-fill"></i></div>
             <h3 class="h6 mb-1">Opetusportfolio</h3>
-            <p class="text-muted small mb-3">Tiivistelmä opetusosaamisestani, joka on karttunut 2000-luvun alusta nykypäivään.</p>
+            <p class="text-muted small mb-3">{{ workCopy.portfolioHub }}</p>
             <span class="ylwork-card-link mt-auto">Portfolioon <span aria-hidden="true">→</span></span>
           </article>
         </a>
@@ -264,6 +320,56 @@ templateEngineOverride: njk
     color: rgba(15, 34, 56, 0.6);
   }
   [data-bs-theme="dark"] .ylwork-hero { background: #0e1d30; }
+
+  .ylwork-trust-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--bs-border-color);
+    background: var(--bs-body-bg);
+    box-shadow: 0 0.5rem 1.25rem rgba(15, 34, 56, 0.06);
+    position: relative;
+    overflow: hidden;
+  }
+  .ylwork-trust-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 4px;
+    background: linear-gradient(180deg, #0d6efd 0%, #198754 100%);
+  }
+  .ylwork-trust-kicker {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--bs-secondary-color);
+    margin-bottom: 0.75rem;
+  }
+  .ylwork-trust-card--quote {
+    background: linear-gradient(135deg, rgba(232, 241, 251, 0.9), rgba(255, 255, 255, 0.98));
+  }
+  .ylwork-trust-quote {
+    margin: 0;
+    padding-left: 1rem;
+    border-left: 3px solid rgba(13, 110, 253, 0.18);
+    color: #102a4a;
+    font-size: 1.02rem;
+    line-height: 1.55;
+  }
+  [data-bs-theme="dark"] .ylwork-trust-card {
+    background: #122338;
+    border-color: rgba(255,255,255,0.08);
+    box-shadow: none;
+  }
+  [data-bs-theme="dark"] .ylwork-trust-card--quote {
+    background: linear-gradient(135deg, rgba(18, 35, 56, 0.98), rgba(24, 44, 68, 0.96));
+  }
+  [data-bs-theme="dark"] .ylwork-trust-quote {
+    color: #f3f7fb;
+    border-left-color: rgba(141, 193, 255, 0.3);
+  }
 
   /* ── Hub cards ── */
   .ylwork-hub-card {

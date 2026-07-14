@@ -24,39 +24,127 @@ translationKey: writings_index
   {% endif %}
 {% endfor %}
 {% set totalMaterialsCount = uniqueMaterialKeys | length %}
+{% set latestSpeechHighlights = (collections.pub_puhe or []).slice(0, 3) %}
+{% set latestInitiativeHighlights = (collections.politics or []).slice(0, 3) %}
+{% set latestBlogHighlights = (collections.blog or []).slice(0, 3) %}
+{% set latestPresentationHighlights = (collections.presentations or []).slice(0, 2) %}
 
-<section class="kynasta-hero py-4">
+<section class="kynasta-hero py-3 py-lg-4">
   <div class="site-shell">
     <div class="row align-items-center g-4">
-      <div class="col-lg-8">
+      <div class="col-lg-7">
         <p class="text-uppercase small text-muted mb-2">Kynästä</p>
         <h1 class="display-6 fw-bold mb-2">Kirjoitukset, puheet ja julkaisut</h1>
-        <p class="text-muted">Kooste mielipidekirjoituksista, kolumneista, aloitteista, puheista ja julkaisuista.</p>
-      </div>
-      <div class="col-lg-4 d-none d-lg-block">
-        <nav class="nav nav-pills flex-wrap gap-2 justify-content-lg-end">
+        <p class="text-muted mb-3">Kooste mielipidekirjoituksista, kolumneista, aloitteista, puheista ja julkaisuista. Tämä sivu toimii sekä sisäänkäyntinä ajankohtaiseen sisältöön että koko aineiston arkistona.</p>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="nav-link" href="#puheet">
+            Puheet <span class="nav-count">{{ collections.pub_puhe.length }}</span>
+          </a>
           <a class="nav-link" href="#aloitteet">
             Aloitteet <span class="nav-count">{{ collections.politics.length }}</span>
           </a>
           <a class="nav-link" href="#blogi">
-            Blogi <span class="nav-count">{{ collections.blog.length }}</span>
+            Kirjoitukset <span class="nav-count">{{ collections.blog.length + collections.pub_mielipide.length + collections.pub_kolumni.length }}</span>
           </a>
           <a class="nav-link" href="#esitykset">
             Materiaalit <span class="nav-count">{{ totalMaterialsCount }}</span>
           </a>
-          <a class="nav-link" href="#julkaisut">
-            Julkaisut <span class="nav-count">{{ researchfi.length }}</span>
-          </a>
-          <a class="nav-link" href="#kolumnit">
-            Kolumnit <span class="nav-count">{{ collections.pub_kolumni.length }}</span>
-          </a>
-          <a class="nav-link" href="#mielipiteet">
-            Mielipiteet <span class="nav-count">{{ collections.pub_mielipide.length }}</span>
-          </a>
-          <a class="nav-link" href="#puheet">
-            Puheet <span class="nav-count">{{ collections.pub_puhe.length }}</span>
-          </a>
-        </nav>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <aside class="kynasta-hero-aside">
+          <p class="kynasta-hero-aside-kicker mb-2">Tältä sivulta löydät</p>
+          <ul class="kynasta-hero-aside-list mb-0">
+            <li>Puheet ja aloitteet, joilla olen osallistunut Oulun päätöksentekoon.</li>
+            <li>Kirjoitukset, mielipiteet ja kolumnit, joissa avaan näkemyksiäni pidemmin.</li>
+            <li>Esitykset, materiaalit ja julkaisut, joista näkyy työn tausta ja asiantuntijuus.</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="aloita-tasta">
+  <div class="site-shell">
+    <div class="row g-4 align-items-stretch">
+      <div class="col-12">
+        <div class="d-flex flex-wrap align-items-end justify-content-between gap-2 mb-1">
+          <div>
+            <p class="text-uppercase small text-muted mb-1">Aloita tästä</p>
+            <h2 class="h3 mb-1">Nopeimmat reitit ajankohtaiseen aineistoon</h2>
+            <p class="text-muted mb-0">Jos etsit viimeisimpiä puheita, aloitteita tai kirjoituksia, nämä neljä näkymää vievät suoraan olennaiseen. Täysi arkisto löytyy niiden alta.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-xl-3">
+        <article class="card border-0 shadow-sm h-100 kynasta-entry-card kynasta-entry-card--puheet">
+          <div class="card-body d-flex flex-column">
+            <p class="kynasta-entry-kicker">Valtuustopuheet</p>
+            <h3 class="h5 mb-2">Viimeisimmät puheenvuorot</h3>
+            <p class="small text-muted mb-3">Ajankohtaiset valtuustopuheet, pykälät ja kokouskohtaiset puheenvuorot yhdessä paikassa.</p>
+            <ul class="kynasta-entry-list mb-3">
+              {% for item in latestSpeechHighlights %}
+              <li><a href="{{ item.url }}">{{ item.data.title }}</a></li>
+              {% endfor %}
+            </ul>
+            <a href="#puheet" class="btn btn-outline-secondary btn-sm rounded-pill px-3 mt-auto align-self-start">Siirry puheisiin</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="col-md-6 col-xl-3">
+        <article class="card border-0 shadow-sm h-100 kynasta-entry-card kynasta-entry-card--aloitteet">
+          <div class="card-body d-flex flex-column">
+            <p class="kynasta-entry-kicker">Aloitteet</p>
+            <h3 class="h5 mb-2">Tuoreimmat avaukset</h3>
+            <p class="small text-muted mb-3">Valtuustoaloitteet ja muut kirjalliset avaukset, joilla asioita on viety eteenpäin.</p>
+            <ul class="kynasta-entry-list mb-3">
+              {% for item in latestInitiativeHighlights %}
+              <li><a href="{{ item.data.url or item.url }}">{{ item.data.title }}</a></li>
+              {% endfor %}
+            </ul>
+            <a href="#aloitteet" class="btn btn-outline-secondary btn-sm rounded-pill px-3 mt-auto align-self-start">Siirry aloitteisiin</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="col-md-6 col-xl-3">
+        <article class="card border-0 shadow-sm h-100 kynasta-entry-card kynasta-entry-card--kirjoitukset">
+          <div class="card-body d-flex flex-column">
+            <p class="kynasta-entry-kicker">Kirjoitukset</p>
+            <h3 class="h5 mb-2">Blogi, mielipiteet ja kolumnit</h3>
+            <p class="small text-muted mb-3">Pidemmät perustelut, taustoitukset ja kannanotot löytyvät kirjoitusaineistosta.</p>
+            <ul class="kynasta-entry-list mb-3">
+              {% for item in latestBlogHighlights %}
+              <li><a href="{{ item.url }}">{{ item.data.title }}</a></li>
+              {% endfor %}
+            </ul>
+            <div class="small text-muted mb-3">{{ collections.pub_mielipide.length }} mielipidettä ja {{ collections.pub_kolumni.length }} kolumnia täydentävät blogiaineistoa.</div>
+            <a href="#blogi" class="btn btn-outline-secondary btn-sm rounded-pill px-3 mt-auto align-self-start">Siirry kirjoituksiin</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="col-md-6 col-xl-3">
+        <article class="card border-0 shadow-sm h-100 kynasta-entry-card kynasta-entry-card--materiaalit">
+          <div class="card-body d-flex flex-column">
+            <p class="kynasta-entry-kicker">Avoin aineisto</p>
+            <h3 class="h5 mb-2">Materiaalit ja julkaisut</h3>
+            <p class="small text-muted mb-3">Esitykset, oppimateriaalit ja tieteelliset julkaisut kokoavat työn laajemman asiantuntijapuolen.</p>
+            <ul class="kynasta-entry-list mb-3">
+              {% for item in latestPresentationHighlights %}
+              <li><a href="{{ item.url }}">{{ item.data.title }}</a></li>
+              {% endfor %}
+            </ul>
+            <div class="small text-muted mb-3">{{ totalMaterialsCount }} materiaalia ja {{ researchfi.length }} tieteellistä julkaisua.</div>
+            <div class="d-flex flex-wrap gap-2 mt-auto">
+              <a href="#esitykset" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Materiaalit</a>
+              <a href="#julkaisut" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Julkaisut</a>
+            </div>
+          </div>
+        </article>
       </div>
     </div>
   </div>
@@ -65,9 +153,9 @@ translationKey: writings_index
 <section id="yhteenveto">
   <div class="site-shell">
     <div class="card shadow-sm">
-      <div class="card-header bg-transparent d-flex align-items-center justify-content-between">
-        <h2 class="h4 mb-0"><i class="bi bi-bar-chart-fill me-2 text-primary"></i>Yhteenveto</h2>
-        <span class="badge text-bg-primary">Chart.js</span>
+      <div class="card-header bg-transparent">
+        <h2 class="h4 mb-1"><i class="bi bi-bar-chart-fill me-2 text-primary"></i>Yhteenveto</h2>
+        <p class="small text-muted mb-0">Sisältötyypit yhdellä silmäyksellä. Tarkempi tilastografiikka avautuu tarvittaessa.</p>
       </div>
       <div class="card-body">
         <div class="row g-3 mb-4">
@@ -129,8 +217,7 @@ translationKey: writings_index
           </div>
         </div>
 
-        <!-- Mobiilinapauttaja kaavioille — piilotetaan lg+ näytöillä -->
-        <div class="d-lg-none mt-3">
+        <div class="mt-3">
           <button class="btn btn-outline-secondary w-100 d-flex justify-content-between align-items-center"
                   type="button"
                   data-bs-toggle="collapse"
@@ -142,7 +229,11 @@ translationKey: writings_index
           </button>
         </div>
 
-        <div class="collapse d-lg-block" id="kynastaChartsDashboard">
+        <div class="collapse mt-3" id="kynastaChartsDashboard">
+          <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+            <h3 class="h6 text-muted mb-0">Kaaviot sisältöjen jakaumasta ja vuosittaisesta kehityksestä</h3>
+            <span class="badge text-bg-primary">Chart.js</span>
+          </div>
           <div class="row g-4 mt-0">
             <div class="col-lg-4">
               <h3 class="h6 text-muted mb-2">Sisältöjen jakauma</h3>
@@ -186,9 +277,9 @@ translationKey: writings_index
 <section id="mielipiteet" class="bg-body-tertiary">
   <div class="site-shell">
     <div class="card shadow-sm">
-      <div class="card-header bg-transparent d-flex align-items-center justify-content-between border-start border-4 border-primary">
-        <h2 class="h4 mb-0"><i class="bi bi-chat-square-quote-fill me-2 text-primary"></i>Mielipidekirjoitukset</h2>
-        <span class="badge text-bg-primary">{{ collections.pub_mielipide.length }}</span>
+      <div class="card-header bg-transparent d-flex align-items-center justify-content-between kynasta-section-header">
+        <h2 class="h4 mb-0"><i class="bi bi-chat-square-quote-fill me-2"></i>Mielipidekirjoitukset</h2>
+        <span class="badge kynasta-section-count">{{ collections.pub_mielipide.length }}</span>
       </div>
       <div class="card-body p-0">
         {# ---- Suodatuspalkki ---- #}
@@ -262,9 +353,9 @@ translationKey: writings_index
 <section id="kolumnit">
   <div class="site-shell">
     <div class="card shadow-sm">
-      <div class="card-header bg-transparent d-flex align-items-center justify-content-between border-start border-4 border-success">
-        <h2 class="h4 mb-0"><i class="bi bi-pen-fill me-2 text-success"></i>Kolumnit ja blogivierailut</h2>
-        <span class="badge text-bg-success">{{ collections.pub_kolumni.length }}</span>
+      <div class="card-header bg-transparent d-flex align-items-center justify-content-between kynasta-section-header">
+        <h2 class="h4 mb-0"><i class="bi bi-pen-fill me-2"></i>Kolumnit ja blogivierailut</h2>
+        <span class="badge kynasta-section-count">{{ collections.pub_kolumni.length }}</span>
       </div>
       <div class="card-body p-0">
         {# ---- Suodatuspalkki ---- #}
@@ -337,9 +428,9 @@ translationKey: writings_index
 <section id="aloitteet">
   <div class="site-shell">
     <div class="card shadow-sm">
-      <div class="card-header bg-transparent d-flex align-items-center justify-content-between border-start border-4 border-warning">
-        <h2 class="h4 mb-0"><i class="bi bi-megaphone-fill me-2 text-warning"></i>Aloitteet ja adressit</h2>
-        <span class="badge text-bg-warning text-dark">{{ collections.politics.length }}</span>
+      <div class="card-header bg-transparent d-flex align-items-center justify-content-between kynasta-section-header">
+        <h2 class="h4 mb-0"><i class="bi bi-megaphone-fill me-2"></i>Aloitteet ja adressit</h2>
+        <span class="badge kynasta-section-count">{{ collections.politics.length }}</span>
       </div>
       <div class="card-body p-0">
         {# ---- Suodatuspalkki ---- #}
@@ -421,9 +512,9 @@ translationKey: writings_index
 <section id="puheet">
   <div class="site-shell">
     <div class="card shadow-sm">
-      <div class="card-header bg-transparent d-flex align-items-center justify-content-between border-start border-4 border-danger">
-        <h2 class="h4 mb-0"><i class="bi bi-mic-fill me-2 text-danger"></i>Puheet</h2>
-        <span class="badge text-bg-danger">{{ collections.pub_puhe.length }}</span>
+      <div class="card-header bg-transparent d-flex align-items-center justify-content-between kynasta-section-header">
+        <h2 class="h4 mb-0"><i class="bi bi-mic-fill me-2"></i>Puheet</h2>
+        <span class="badge kynasta-section-count">{{ collections.pub_puhe.length }}</span>
       </div>
       <div class="card-body p-0">
         {# ---- Suodatuspalkki ---- #}
@@ -494,9 +585,9 @@ translationKey: writings_index
 <section id="blogi" class="bg-body-tertiary">
   <div class="site-shell">
     <div class="card shadow-sm">
-      <div class="card-header bg-transparent d-flex align-items-center justify-content-between border-start border-4" style="border-left-color:#6f42c1!important">
-        <h2 class="h4 mb-0"><i class="bi bi-journal-richtext me-2" style="color:#6f42c1"></i>Blogi</h2>
-        <span class="badge" style="background-color:#6f42c1;color:#fff">{{ collections.blog.length }}</span>
+      <div class="card-header bg-transparent d-flex align-items-center justify-content-between kynasta-section-header">
+        <h2 class="h4 mb-0"><i class="bi bi-journal-richtext me-2"></i>Blogi</h2>
+        <span class="badge kynasta-section-count">{{ collections.blog.length }}</span>
       </div>
       <div class="card-body p-0">
         {# ---- Suodatuspalkki ---- #}
@@ -603,9 +694,9 @@ translationKey: writings_index
 <section id="esitykset">
   <div class="site-shell">
     <div class="card shadow-sm">
-      <div class="card-header bg-transparent d-flex align-items-center justify-content-between border-start border-4 border-info">
-        <h2 class="h4 mb-0"><i class="bi bi-book-fill me-2 text-info"></i>Esityksiä ja opetusmateriaaleja</h2>
-        <span class="badge text-bg-info text-dark">{{ totalMaterialsCount }}</span>
+      <div class="card-header bg-transparent d-flex align-items-center justify-content-between kynasta-section-header">
+        <h2 class="h4 mb-0"><i class="bi bi-book-fill me-2"></i>Esityksiä ja opetusmateriaaleja</h2>
+        <span class="badge kynasta-section-count">{{ totalMaterialsCount }}</span>
       </div>
       <div class="card-body p-0">
         <div class="p-3 bg-body-tertiary border-bottom">
@@ -701,9 +792,9 @@ translationKey: writings_index
 <section id="julkaisut" class="bg-body-tertiary">
   <div class="site-shell">
     <div class="card shadow-sm">
-      <div class="card-header bg-transparent d-flex align-items-center justify-content-between border-start border-4 border-secondary">
-        <h2 class="h4 mb-0"><i class="bi bi-journal-bookmark-fill me-2 text-secondary"></i>Tieteelliset julkaisut</h2>
-        <span class="badge text-bg-secondary">{{ researchfi.length }}</span>
+      <div class="card-header bg-transparent d-flex align-items-center justify-content-between kynasta-section-header">
+        <h2 class="h4 mb-0"><i class="bi bi-journal-bookmark-fill me-2"></i>Tieteelliset julkaisut</h2>
+        <span class="badge kynasta-section-count">{{ researchfi.length }}</span>
       </div>
       <div class="card-body p-0">
         {# ---- Suodatuspalkki ---- #}
@@ -765,7 +856,7 @@ translationKey: writings_index
 </section>
 
 <style>
-/* ---- Tilastografiikka-accordion mobiilissa ---- */
+/* ---- Tilastografiikka-accordion ---- */
 .kynasta-chevron { transition: transform .25s ease; }
 [aria-expanded="true"] .kynasta-chevron { transform: rotate(180deg); }
 
@@ -773,6 +864,25 @@ translationKey: writings_index
 .kynasta-hero {
   background-color: #0f172a;
   border-bottom: 2px solid rgba(255,255,255,0.08);
+}
+.kynasta-hero-aside {
+  padding: 1rem 1.1rem;
+  border-radius: 1rem;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.14);
+}
+.kynasta-hero-aside-kicker {
+  color: rgba(255,255,255,0.82);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.kynasta-hero-aside-list {
+  padding-left: 1rem;
+  color: rgba(255,255,255,0.72);
+  display: grid;
+  gap: 0.55rem;
 }
 .kynasta-hero h1 { color: #ffffff; }
 .kynasta-hero p,
@@ -795,6 +905,16 @@ html:not([data-bs-theme="dark"]) .kynasta-hero {
   background: linear-gradient(135deg, #eef2f7 0%, #e2eaf4 100%);
   border-bottom-color: rgba(15,34,56,0.1);
 }
+html:not([data-bs-theme="dark"]) .kynasta-hero-aside {
+  background: rgba(15,34,56,0.05);
+  border-color: rgba(15,34,56,0.12);
+}
+html:not([data-bs-theme="dark"]) .kynasta-hero-aside-kicker {
+  color: #1e3a5f;
+}
+html:not([data-bs-theme="dark"]) .kynasta-hero-aside-list {
+  color: rgba(15,34,56,0.72);
+}
 html:not([data-bs-theme="dark"]) .kynasta-hero h1 { color: #0f2238; }
 html:not([data-bs-theme="dark"]) .kynasta-hero p,
 html:not([data-bs-theme="dark"]) .kynasta-hero .text-muted { color: rgba(15,34,56,0.65) !important; }
@@ -813,6 +933,77 @@ html:not([data-bs-theme="dark"]) .kynasta-hero .nav-link:hover {
 section[id] {
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+.kynasta-entry-card {
+  border-radius: 1rem;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.kynasta-entry-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 1rem 2rem rgba(17, 29, 45, 0.08);
+}
+.kynasta-entry-kicker {
+  margin: 0 0 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bs-secondary-color);
+}
+.kynasta-entry-list {
+  padding-left: 1rem;
+  display: grid;
+  gap: 0.45rem;
+}
+.kynasta-entry-list li {
+  line-height: 1.45;
+}
+.kynasta-entry-list a {
+  color: inherit;
+  text-decoration: none;
+}
+.kynasta-entry-list a:hover {
+  text-decoration: underline;
+}
+.kynasta-entry-card--puheet {
+  border-top: 4px solid var(--bs-danger);
+}
+.kynasta-entry-card--aloitteet {
+  border-top: 4px solid var(--bs-warning);
+}
+.kynasta-entry-card--kirjoitukset {
+  border-top: 4px solid #6f42c1;
+}
+.kynasta-entry-card--materiaalit {
+  border-top: 4px solid var(--bs-info);
+}
+
+.kynasta-section-header {
+  position: relative;
+  padding-left: 1.4rem;
+}
+.kynasta-section-header::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1rem;
+  bottom: 1rem;
+  width: 3px;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.45);
+}
+.kynasta-section-header .bi {
+  color: var(--bs-secondary-color) !important;
+}
+.kynasta-section-count {
+  background: var(--bs-tertiary-bg);
+  color: var(--bs-emphasis-color);
+  border: 1px solid var(--bs-border-color);
+  font-weight: 600;
+}
+html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
+  background: rgba(15, 34, 56, 0.18);
 }
 
 /* ---- Column styles specific to kynasta tables ---- */
@@ -894,8 +1085,8 @@ section[id] {
 
 <script>
 (function () {
-  // Näytä taulukko-osiot aakkosjärjestyksessä (A-Ö) riippumatta lähdekoodin lohkojärjestyksestä.
-  const sectionOrder = ['aloitteet', 'blogi', 'esitykset', 'julkaisut', 'kolumnit', 'mielipiteet', 'puheet'];
+  // Näytä taulukko-osiot tarkoituksellisessa lukujärjestyksessä riippumatta lähdekoodin lohkojärjestyksestä.
+  const sectionOrder = ['puheet', 'aloitteet', 'blogi', 'mielipiteet', 'kolumnit', 'esitykset', 'julkaisut'];
   const sections = sectionOrder
     .map(id => document.getElementById(id))
     .filter(Boolean);
