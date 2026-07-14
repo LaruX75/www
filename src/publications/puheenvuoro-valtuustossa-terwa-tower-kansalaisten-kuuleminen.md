@@ -1,9 +1,9 @@
 ---
-title: "Puheenvuoro valtuustossa § 2: Kansalaisten kuuleminen Terwa Towerin kaavoituksessa"
+title: "Puheenvuoro valtuustossa § 24: Kansalaisten kuuleminen Terwa Towerin kaavoituksessa"
 date: 2024-03-18
 type: puhe
 event: "Oulun kaupunginvaltuusto"
-asiakohta: "§ 2 – Asemakaavan ja tonttijaon muutos, Terwa Tower"
+asiakohta: "§ 24 – Asemakaavan ja tonttijaon muutos 564-2401, I kaupunginosan korttelin 38 tontti nro 5 (Terwa Tower, Kaarlenväylä 1, Meritori, Kaarlenaukio)"
 description: "Puheenvuorossa kommentoin väitteitä kansalaisten kuulematta jättämisestä ja korostan kaavoituksen lakisääteisiä osallistumis- ja vaikutusmahdollisuuksia."
 tags:
   - publications

@@ -1,9 +1,9 @@
 ---
-title: "Puheenvuoro valtuustossa § 8: Maankäytön vaikutukset koulu- ja palveluverkkoon"
+title: "Puheenvuoro valtuustossa § 25: Maankäytön vaikutukset koulu- ja palveluverkkoon"
 date: 2025-04-28
 type: puhe
 event: "Oulun kaupunginvaltuusto"
-asiakohta: "§ 8 – Oulun maankäytön toteuttamisohjelma, väli-MATO 2026–2030"
+asiakohta: "§ 25 – Oulun maankäytön toteuttamisohjelma, väli-MATO 2026–2030"
 description: "Puheenvuorossa käsittelen maankäytön toteuttamisohjelman vaikutuksia koulu- ja palveluverkkoon sekä sivistyslautakunnan lausuntojen huomioimista valmistelussa."
 tags:
   - publications

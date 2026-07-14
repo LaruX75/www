@@ -1,9 +1,9 @@
 ---
-title: "Puheenvuoro valtuustossa § 2: Sivistystoimen johtamisjärjestelmän uudistaminen"
+title: "Puheenvuoro valtuustossa § 81: Sivistystoimen johtamisjärjestelmän uudistaminen"
 date: 2024-11-11
 type: puhe
 event: "Oulun kaupunginvaltuusto"
-asiakohta: "§ 2 – Vuoden 2025 veroprosentit"
+asiakohta: "§ 81 – Tuloveroprosentin ja kiinteistöveroprosenttien vahvistaminen vuodelle 2025"
 description: "Puheenvuorossa esitän sivistystoimen johtamisjärjestelmän uudistamista, nykyisistä palvelualueista luopumista ja palveluverkon tarkastelua kaupunginosien, suuralueiden ja koko kaupungin näkökulmasta."
 tags:
   - publications

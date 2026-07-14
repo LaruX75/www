@@ -1,9 +1,9 @@
 ---
-title: "Puheenvuoro valtuustossa § 1: Koulujen piha-alueiden häiriökäyttäytyminen"
+title: "Puheenvuoro valtuustossa § 43: Koulujen piha-alueiden häiriökäyttäytyminen"
 date: 2024-05-20
 type: puhe
 event: "Oulun kaupunginvaltuusto"
-asiakohta: "§ 1 – Valtuuston kyselytunti: Viitantien liikenneturvallisuus ja Kiiminkipuiston koulun alueen häiriökäyttäytyminen"
+asiakohta: "§ 43 – Valtuuston kyselytunti: Viitantien liikenneturvallisuus ja Kiiminkipuiston koulun alueen häiriökäyttäytyminen"
 description: "Puheenvuorossa kysyn, miten Kiiminkipuiston koulun alueelle suunnitellut toimet skaalautuvat muihin Oulun kouluyksiköihin, joiden piha-alueilla esiintyy vastaavaa häiriökäyttäytymistä."
 tags:
   - publications

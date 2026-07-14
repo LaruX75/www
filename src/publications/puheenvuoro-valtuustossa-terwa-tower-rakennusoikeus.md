@@ -1,9 +1,9 @@
 ---
-title: "Puheenvuoro valtuustossa § 2: Terwa Towerin rakennusoikeus"
+title: "Puheenvuoro valtuustossa § 24: Terwa Towerin rakennusoikeus"
 date: 2024-03-18
 type: puhe
 event: "Oulun kaupunginvaltuusto"
-asiakohta: "§ 2 – Asemakaavan ja tonttijaon muutos, Terwa Tower"
+asiakohta: "§ 24 – Asemakaavan ja tonttijaon muutos 564-2401, I kaupunginosan korttelin 38 tontti nro 5 (Terwa Tower, Kaarlenväylä 1, Meritori, Kaarlenaukio)"
 description: "Puheenvuorossa kysyn, poikkeaako Terwa Towerin uuden kaavaehdotuksen torniosan rakennusoikeus voimassa olevasta asemakaavasta ja mihin lisärakennusoikeus sijoittuu."
 tags:
   - publications

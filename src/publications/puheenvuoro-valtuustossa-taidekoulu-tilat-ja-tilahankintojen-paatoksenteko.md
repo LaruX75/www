@@ -1,9 +1,9 @@
 ---
-title: "Puheenvuoro valtuustossa § 4: Taidekoulun uudet tilat ja tilahankintojen päätöksenteko"
+title: "Puheenvuoro valtuustossa § 58: Taidekoulun uudet tilat ja tilahankintojen päätöksenteko"
 date: 2024-09-09
 type: puhe
 event: "Oulun kaupunginvaltuusto"
-asiakohta: "§ 4 – Oulun kaupungin palveluverkkoselvitys"
+asiakohta: "§ 58 – Hankeselvitys Oulun taidekoulun korvaavien tilojen sekä Keskustan ja Höyhtyän suuralueiden perusopetuksen järjestämiseksi"
 description: "Puheenvuorossa käsittelen Oulun taidekoulun uusia tiloja sekä tarvetta kehittää kaupungin tilahankintojen valmistelua niin, että päättäjät voivat arvioida vaihtoehtoja, kustannuksia ja laatutasoa ajoissa."
 tags:
   - publications
