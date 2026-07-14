@@ -15,6 +15,8 @@ tags:
   - kompostointi
   - ympäristölupa
   - jätehuolto
+politicalProfiles:
+  - yhteistyo
 templateEngineOverride: md
 ---
 

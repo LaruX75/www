@@ -15,6 +15,10 @@ tags:
   - urheilukenttä
   - Torpanmäki
   - kaupunkisuunnittelu
+politicalProfiles:
+  - lahipalvelut
+  - hyvinvointi
+  - yhteistyo
 templateEngineOverride: md
 ---
 

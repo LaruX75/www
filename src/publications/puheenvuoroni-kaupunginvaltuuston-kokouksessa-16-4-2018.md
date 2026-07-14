@@ -24,6 +24,9 @@ keywords:
 type: puhe
 wp_id: 1120
 source_url: "https://www.jarilaru.fi/puheenvuoroni-kaupunginvaltuuston-kokouksessa-16-4-2018/"
+politicalProfiles:
+  - sivistys
+  - lahipalvelut
 templateEngineOverride: md
 ---
 <figure><div>

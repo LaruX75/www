@@ -14,6 +14,9 @@ keywords:
   - välikylä
 wp_id: 928
 source_url: "https://www.jarilaru.fi/ratikalla-ruskoon-kutsutaksilla-kauppaan-vai-sahkoautolla-kirkolle/"
+politicalProfiles:
+  - kaupunkikehitys
+  - lahipalvelut
 templateEngineOverride: md
 ---
 

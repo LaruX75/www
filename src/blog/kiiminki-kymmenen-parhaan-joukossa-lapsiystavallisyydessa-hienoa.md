@@ -15,6 +15,9 @@ keywords:
   - peruspalvelut
 wp_id: 921
 source_url: "https://www.jarilaru.fi/kiiminki-kymmenen-parhaan-joukossa-lapsiystavallisyydessa-hienoa/"
+politicalProfiles:
+  - hyvinvointi
+  - lahipalvelut
 templateEngineOverride: md
 ---
 

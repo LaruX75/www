@@ -11,6 +11,9 @@ tags:
   - kaupunginvaltuusto
   - tietojohtaminen
   - avoin data
+politicalProfiles:
+  - avoinhallinto
+  - yhteistyo
 templateEngineOverride: md
 ---
 

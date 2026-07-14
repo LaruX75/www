@@ -14,6 +14,10 @@ tags:
   - talous
   - Raksila
   - kampus
+politicalProfiles:
+  - sivistys
+  - kaupunkikehitys
+  - yhteistyo
 templateEngineOverride: md
 ---
 

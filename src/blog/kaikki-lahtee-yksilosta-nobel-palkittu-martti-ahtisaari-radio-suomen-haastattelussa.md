@@ -14,6 +14,8 @@ keywords:
   - yksilön vastuu
 wp_id: 929
 source_url: "https://www.jarilaru.fi/kaikki-lahtee-yksilosta-nobel-palkittu-martti-ahtisaari-radio-suomen-haastattelussa/"
+politicalProfiles:
+  - hyvinvointi
 templateEngineOverride: md
 ---
 

@@ -20,6 +20,8 @@ keywords:
 type: puhe
 wp_id: 1128
 source_url: "https://www.jarilaru.fi/valtuusto-26-2-18-kotouttamisohjelma/"
+politicalProfiles:
+  - hyvinvointi
 templateEngineOverride: md
 ---
 <p>Kaupunginvaltuuston kokouksessa 26.2.2018 yksi ennakkoon jo kuumimmaksi ennustettu asiakohta oli ehdottomasti "Yhdessä kotoutuva Oulu. Kotouttamisohjelma 2018-2021" -asiakirjan hyväksyminen. </p>

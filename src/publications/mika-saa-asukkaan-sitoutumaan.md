@@ -22,6 +22,8 @@ keywords:
 type: mielipide
 wp_id: 1162
 source_url: "https://www.jarilaru.fi/mika-saa-asukkaan-sitoutumaan/"
+politicalProfiles:
+  - yhteistyo
 templateEngineOverride: md
 ---
 <p><em>Sanomalehti Kaleva on julkaissut tämän 26.3.2017 vaalikirjoituksia -palstalla.</em></p>

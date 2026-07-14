@@ -16,6 +16,10 @@ tags:
   - talous
   - palveluverkko
   - Oulu
+politicalProfiles:
+  - sivistys
+  - lahipalvelut
+  - yhteistyo
 templateEngineOverride: md
 ---
 

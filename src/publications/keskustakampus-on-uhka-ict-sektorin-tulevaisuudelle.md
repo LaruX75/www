@@ -15,6 +15,8 @@ keywords:
 type: mielipide
 wp_id: 2063
 source_url: "https://www.jarilaru.fi/keskustakampus-on-uhka-ict-sektorin-tulevaisuudelle/"
+politicalProfiles:
+  - sivistys
 templateEngineOverride: md
 ---
 <p><br>Mielipidekirjoitus on julkaistu 10.2.2022 Sanomalehti Kalevan "Lukijalta" palstalla: <a href="https://www.kaleva.fi/keskustakampus-on-uhka-ict-sektorin-tulevaisuudell/4325146" target="_blank" rel="noreferrer noopener">https://www.kaleva.fi/keskustakampus-on-uhka-ict-sektorin-tulevaisuudell/4325146</a> </p>

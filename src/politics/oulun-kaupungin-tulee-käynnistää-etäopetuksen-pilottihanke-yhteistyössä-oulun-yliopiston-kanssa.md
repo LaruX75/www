@@ -4,6 +4,9 @@ date: 2026-03-30
 initiative_type: valtuustoaloite
 description: ''
 url: ''
+politicalProfiles:
+  - sivistys
+  - yhteistyo
 ---
 
 **Tausta**

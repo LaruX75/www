@@ -15,6 +15,9 @@ tags:
   - kampus
   - tutkimus
   - korkeakoulutus
+politicalProfiles:
+  - sivistys
+  - kaupunkikehitys
 templateEngineOverride: md
 ---
 

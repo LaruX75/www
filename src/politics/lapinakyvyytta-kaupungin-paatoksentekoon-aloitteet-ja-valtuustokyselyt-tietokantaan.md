@@ -16,6 +16,8 @@ ouka_response_url: "http://asiakirjat.ouka.fi/ktwebscr/pk_asil_tweb.htm?bid=2745
 ouka_response_body: "Kaupunginhallitus 30.8.2021"
 wp_id: 1660
 source_url: "https://www.jarilaru.fi/lapinakyvyytta-kaupungin-paatoksentekoon-aloitteet-ja-valtuustokyselyt-tietokantaan/"
+politicalProfiles:
+  - avoinhallinto
 templateEngineOverride: md
 ---
 <p><br><em>Laadin ja jätin allaolevan valtuustoaloitteen Oulun kaupunginvaltuuston kokouksessa 29.3.2021</em></p>

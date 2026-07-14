@@ -13,6 +13,8 @@ keywords:
   - Visio
 wp_id: 72
 source_url: "https://www.jarilaru.fi/rantalakeus-249-ei-suur-oulu-vaan-laajempi-yhteinen-oulu/"
+politicalProfiles:
+  - yhteistyo
 templateEngineOverride: md
 ---
 

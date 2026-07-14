@@ -14,6 +14,8 @@ keywords:
   - yle uutinen
 wp_id: 433
 source_url: "https://www.jarilaru.fi/mista-on-hyva-kaupunginvaltuutettu-tehty/"
+politicalProfiles:
+  - yhteistyo
 templateEngineOverride: md
 ---
 

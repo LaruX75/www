@@ -14,6 +14,9 @@ tags:
   - avoimuus
   - viestintä
   - kuntalaiset
+politicalProfiles:
+  - avoinhallinto
+  - yhteistyo
 templateEngineOverride: md
 ---
 

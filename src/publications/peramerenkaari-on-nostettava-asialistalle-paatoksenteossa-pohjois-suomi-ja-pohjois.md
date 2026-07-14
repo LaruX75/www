@@ -14,6 +14,9 @@ keywords:
 type: mielipide
 wp_id: 1889
 source_url: "https://www.jarilaru.fi/peramerenkaari-on-nostettava-asialistalle-paatoksenteossa-pohjois-suomi-ja-pohjois/"
+politicalProfiles:
+  - kaupunkikehitys
+  - yhteistyo
 templateEngineOverride: md
 ---
 <p>Sanomalehti Kaleva julkaisi mielipidekirjoitukseni 22.11.2021 julkaistuaan edellise ä päivänä tästä aiheesta laajan jutun. Olin lähettänyt tekstin Kalevaan jo n. puolitoista viikkoa aiemmin. Alunpitäen laitoin tekstin ehdolle HS:n mielipidepalstalle reagointina lehdessä olleeseen Pohjois-Ruotsia koskevaan juttuun. En ehtinyt kirjoittaa tekstiä riittävän ajoissa, joten tätä ei julkaistu kommentaarina ao. juttuun. </p>

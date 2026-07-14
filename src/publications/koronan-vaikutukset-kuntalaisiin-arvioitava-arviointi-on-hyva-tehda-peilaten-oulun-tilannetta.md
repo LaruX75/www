@@ -13,6 +13,9 @@ keywords:
 type: mielipide
 wp_id: 1580
 source_url: "https://www.jarilaru.fi/koronan-vaikutukset-kuntalaisiin-arvioitava-arviointi-on-hyva-tehda-peilaten-oulun-tilannetta/"
+politicalProfiles:
+  - sivistys
+  - hyvinvointi
 templateEngineOverride: md
 ---
 <p><strong>Sanomalehti Kaleva julkaisi tänään 28.2.2021 Oulun kaupungin sivistys- ja kulttuurilautakunnan jäsenten yhteisen mielipidekirjoituksen. Alkuperäinen teksti löytyy täältä: <a href="https://www.kaleva.fi/koronan-vaikutukset-kuntalaisiin-arvioitava-arvioi/3397221" title="https://www.kaleva.fi/koronan-vaikutukset-kuntalaisiin-arvioitava-arvioi/3397221">https://www.kaleva.fi/koronan-vaikutukset-kuntalaisiin-arvioitava-arvioi/3397221</a></strong></p>

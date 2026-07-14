@@ -15,6 +15,9 @@ tags:
   - kulttuurihistoria
   - DoCoMoMo
   - kulttuuripääkaupunki
+politicalProfiles:
+  - sivistys
+  - kaupunkikehitys
 templateEngineOverride: md
 ---
 

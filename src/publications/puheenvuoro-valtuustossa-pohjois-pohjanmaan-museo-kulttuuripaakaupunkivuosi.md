@@ -14,6 +14,9 @@ tags:
   - Pohjois-Pohjanmaan museo
   - museo
   - kulttuuritilat
+politicalProfiles:
+  - kaupunkikehitys
+  - yhteistyo
 templateEngineOverride: md
 ---
 

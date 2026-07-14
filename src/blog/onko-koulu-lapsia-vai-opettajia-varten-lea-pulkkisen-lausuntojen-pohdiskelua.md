@@ -14,6 +14,9 @@ keywords:
   - perheiden hyvinvointi
 wp_id: 927
 source_url: "https://www.jarilaru.fi/onko-koulu-lapsia-vai-opettajia-varten-lea-pulkkisen-lausuntojen-pohdiskelua/"
+politicalProfiles:
+  - sivistys
+  - hyvinvointi
 templateEngineOverride: md
 ---
 

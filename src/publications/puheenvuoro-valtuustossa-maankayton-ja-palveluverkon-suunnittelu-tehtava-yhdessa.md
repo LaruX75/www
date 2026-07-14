@@ -15,6 +15,10 @@ tags:
   - Hiukkavaara
   - kaavoitus
   - sivistyspalvelut
+politicalProfiles:
+  - sivistys
+  - lahipalvelut
+  - kaupunkikehitys
 templateEngineOverride: md
 ---
 

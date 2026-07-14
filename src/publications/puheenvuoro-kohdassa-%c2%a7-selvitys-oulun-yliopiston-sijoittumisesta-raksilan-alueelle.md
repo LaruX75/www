@@ -15,6 +15,9 @@ tags:
 type: puhe
 wp_id: 1714
 source_url: "https://www.jarilaru.fi/puheenvuoro-kohdassa-%c2%a7-selvitys-oulun-yliopiston-sijoittumisesta-raksilan-alueelle/"
+politicalProfiles:
+  - sivistys
+  - kaupunkikehitys
 templateEngineOverride: md
 ---
 <p>Kalevan toimittaja Rättilä siteeraa Kalevassa puheenvuoroani näin:</p>

@@ -11,6 +11,8 @@ tags:
   - kaupunginvaltuusto
   - Oulun Infra
   - huoltovarmuus
+politicalProfiles:
+  - yhteistyo
 templateEngineOverride: md
 ---
 

@@ -16,6 +16,9 @@ keywords:
 initiative_type: valtuustoaloite
 wp_id: 2087
 source_url: "https://www.jarilaru.fi/oulun-asemakeskusta-koskeva-valtuustoaloite/"
+politicalProfiles:
+  - kaupunkikehitys
+  - yhteistyo
 templateEngineOverride: md
 ---
 <p><strong>VALTUUSTOALOITE: </strong><em>Lämmin puurakenteinen paviljonki linja-autoaseman alueelle + asematunnelin pintaremontti &nbsp;yhteistyössä alueen yhteistyökumppaneiden kanssa</em></p>

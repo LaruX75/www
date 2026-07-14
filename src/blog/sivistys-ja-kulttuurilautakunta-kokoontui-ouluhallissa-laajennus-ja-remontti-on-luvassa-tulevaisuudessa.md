@@ -14,6 +14,9 @@ keywords:
   - sivistys- ja kulttuurilautakunta
 wp_id: 1146
 source_url: "https://www.jarilaru.fi/sivistys-ja-kulttuurilautakunta-kokoontui-ouluhallissa-laajennus-ja-remontti-on-luvassa-tulevaisuudessa/"
+politicalProfiles:
+  - hyvinvointi
+  - sivistys
 templateEngineOverride: md
 ---
 

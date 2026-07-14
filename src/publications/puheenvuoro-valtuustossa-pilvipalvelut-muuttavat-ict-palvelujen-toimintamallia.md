@@ -15,6 +15,8 @@ tags:
   - ulkoistaminen
   - digitalisaatio
   - etätyö
+politicalProfiles:
+  - avoinhallinto
 templateEngineOverride: md
 ---
 

@@ -15,6 +15,9 @@ tags:
   - lähikoulu
   - aluekoulu
   - sivistyspalvelut
+politicalProfiles:
+  - sivistys
+  - lahipalvelut
 templateEngineOverride: md
 ---
 

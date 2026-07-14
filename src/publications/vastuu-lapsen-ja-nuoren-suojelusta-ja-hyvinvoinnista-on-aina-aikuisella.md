@@ -10,6 +10,8 @@ categories:
 type: mielipide
 wp_id: 115
 source_url: "https://www.jarilaru.fi/vastuu-lapsen-ja-nuoren-suojelusta-ja-hyvinvoinnista-on-aina-aikuisella/"
+politicalProfiles:
+  - hyvinvointi
 templateEngineOverride: md
 ---
 <p><em>Oulun kaupungin sivistys- ja kulttuurilautakunnan yhdessä kirjoittama mielipidekirjoitus on julkaistu sanomalehti Kalevassa 15.1.2019 (</em><a rel="noreferrer noopener" href="https://www.kaleva.fi/lukijalta/mielipiteet/vastuu-lapsen-ja-nuoren-suojelusta-ja-hyvinvoinnista-on-aina-aikuisella/813538/?fbclid=IwAR3xeYm02nxZ96F3f-6V3CcR37fP3ufXm3yJtxDytIGPO4VoQ6AUFhJ_7A4" target="_blank"><em>https://www.kaleva.fi/lukijalta/mielipiteet/vastuu-lapsen-ja-nuoren-suojelusta-ja-hyvinvoinnista-on-aina-aikuisella/813538/</em></a><em>)<br></em><br>Suomea pidetään turvallisena maana lapsille. Kuitenkin osa lapsista ja nuorista voi huonosti. Lisäksi lapsiin on kohdistunut karmeita rikoksia, jotka ovat suistaneet lasten ja perheiden elämän raiteiltaan ja satuttaneet koko yhteisöä.</p>

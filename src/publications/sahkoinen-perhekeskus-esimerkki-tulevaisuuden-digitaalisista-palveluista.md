@@ -15,6 +15,9 @@ keywords:
 type: mielipide
 wp_id: 2035
 source_url: "https://www.jarilaru.fi/sahkoinen-perhekeskus-esimerkki-tulevaisuuden-digitaalisista-palveluista/"
+politicalProfiles:
+  - hyvinvointi
+  - yhteistyo
 templateEngineOverride: md
 ---
 <p>Alla oleva teksti on julkaistu Mu Oulu verkkojulkaisussa MA 17.1.2022 <a href="https://www.ouka.fi/oulu/munoulu/artikkeli/-/id/aluevaalit-2022-jari-laru-253-sahkoinen-perhekeskus-esimerkki-tulevaisuuden-digitaalisista-palveluista" target="_blank" rel="noreferrer noopener">https://www.ouka.fi/oulu/munoulu/artikkeli/-/id/aluevaalit-2022-jari-laru-253-sahkoinen-perhekeskus-esimerkki-tulevaisuuden-digitaalisista-palveluista</a></p>

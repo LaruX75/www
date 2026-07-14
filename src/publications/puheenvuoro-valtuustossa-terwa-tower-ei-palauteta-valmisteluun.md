@@ -12,6 +12,8 @@ tags:
   - terwa tower
   - museo- ja tiedekeskus
   - palautusesitys
+politicalProfiles:
+  - kaupunkikehitys
 templateEngineOverride: md
 ---
 

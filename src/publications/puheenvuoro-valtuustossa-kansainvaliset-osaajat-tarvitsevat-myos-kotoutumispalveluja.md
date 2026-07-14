@@ -15,6 +15,10 @@ tags:
   - korkeakoulutus
   - Talent Hub
   - työvoima
+politicalProfiles:
+  - sivistys
+  - hyvinvointi
+  - yhteistyo
 templateEngineOverride: md
 ---
 

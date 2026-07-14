@@ -17,6 +17,11 @@ tags:
   - talousarvio
   - pyöräily
   - koulut
+politicalProfiles:
+  - sivistys
+  - kaupunkikehitys
+  - hyvinvointi
+  - yhteistyo
 templateEngineOverride: md
 ---
 

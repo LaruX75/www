@@ -15,6 +15,10 @@ tags:
   - Linnanmaa
   - tutkimus
   - korkeakoulupolitiikka
+politicalProfiles:
+  - sivistys
+  - kaupunkikehitys
+  - yhteistyo
 templateEngineOverride: md
 ---
 

@@ -13,6 +13,8 @@ keywords:
   - vaalitulos
 wp_id: 1157
 source_url: "https://www.jarilaru.fi/kokoomus-esittaa-minua-sivistys-ja-kulttuurilautakunnan-jaseneksi/"
+politicalProfiles:
+  - sivistys
 templateEngineOverride: md
 ---
 

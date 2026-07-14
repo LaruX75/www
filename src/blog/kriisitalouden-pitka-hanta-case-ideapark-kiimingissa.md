@@ -10,6 +10,9 @@ keywords:
   - talous
 wp_id: 918
 source_url: "https://www.jarilaru.fi/kriisitalouden-pitka-hanta-case-ideapark-kiimingissa/"
+politicalProfiles:
+  - kaupunkikehitys
+  - yhteistyo
 templateEngineOverride: md
 ---
 Sekä Kalevassa että Kauppalehdessä on tänään uutisoitu Toivo Sukarin vaikeuksista hankkia rahaa ideaparkeilleen vallitsevassa taloustilanteessa. On todella ikävää, että Kiiimingin Ideapark hankkeena sattui osumaan juuri historialliseen heikkoon taloussuhdanteeseen. Se, että Amerikan Yhdysvaltojen tohelot poliitikot ja pankkirit ovat saaneet koko maailman talousjärjestyksen kriisin partaalle on johtamassa mahdollisesti jopa vuosien viivästykseen suunnitelmien toteutuksessa.

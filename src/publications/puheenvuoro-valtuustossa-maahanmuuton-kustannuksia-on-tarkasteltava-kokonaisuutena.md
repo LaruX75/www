@@ -17,6 +17,10 @@ tags:
   - verotulot
   - korkeakoulutus
   - talousarvio
+politicalProfiles:
+  - sivistys
+  - hyvinvointi
+  - yhteistyo
 templateEngineOverride: md
 ---
 

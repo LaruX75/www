@@ -20,6 +20,8 @@ keywords:
 type: puhe
 wp_id: 1130
 source_url: "https://www.jarilaru.fi/puhe-valtuustossa-kuka-puolustaisi-kaupungin-jokaista-kaupunginosaa/"
+politicalProfiles:
+  - lahipalvelut
 templateEngineOverride: md
 ---
 <figure><img src="/img/uploads/2021/01/kauposapuhe-813x1024.jpg" alt=""/><figcaption>Puheeni hahmoteltuna muistilapulle ;-) Varsin tyypilinen esimerkki pitämästäni puheesta tai esitelmästä. Käytän yleensä vain apusanoja tai listauksia apuna.</figcaption></figure>

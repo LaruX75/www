@@ -19,6 +19,10 @@ keywords:
 type: mielipide
 wp_id: 1135
 source_url: "https://www.jarilaru.fi/sisailmaongemat-eivat-ole-vain-koulujen-riessa/"
+politicalProfiles:
+  - sivistys
+  - kaupunkikehitys
+  - hyvinvointi
 templateEngineOverride: md
 ---
 <p><em>Julkaistu Sanomalehti Kalevan Mielipiteitä palstalla 29.9.2017</em></p>

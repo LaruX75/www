@@ -14,6 +14,10 @@ tags:
   - palveluverkko
   - sivistyslautakunta
   - Hiukkavaara
+politicalProfiles:
+  - sivistys
+  - lahipalvelut
+  - kaupunkikehitys
 templateEngineOverride: md
 ---
 

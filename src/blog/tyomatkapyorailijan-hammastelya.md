@@ -13,6 +13,9 @@ keywords:
   - valaistus
 wp_id: 919
 source_url: "https://www.jarilaru.fi/tyomatkapyorailijan-hammastelya/"
+politicalProfiles:
+  - lahipalvelut
+  - kaupunkikehitys
 templateEngineOverride: md
 ---
 Jo ennen kuin muutimme Jääliin hämmästelin alueen uskomattoman surkeata katuvalaistusta.Tuntui että taskulampustakin lähtee syksyn pimeillä enemmän valoa kuin tienposkeen harvakseltaan istutetuista katulampuista. Kokemusta on karttunut jo useamman vuoden ajalta, sillä ennen "jääliläistymistä" olen ottanut alueen pimeyteen tuntumaa ulkoiluttamalla täälläpäin anoppini nykyisin jo edesmennyttä koiraa. Koiran kanssa pimeydessä oli sinänsä turvallista kulkea, koska koirahan luottaa hajuaistiinsa enemmän kuin näköönsä. Me ihmiset vain emme pelkällä hajuaistilla pysty navigoimaan ja pimeässä emme tunnetusti kovinkaan hyvin näe.

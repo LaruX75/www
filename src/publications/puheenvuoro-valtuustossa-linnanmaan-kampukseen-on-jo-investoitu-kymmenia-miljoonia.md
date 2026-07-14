@@ -15,6 +15,9 @@ tags:
   - kampus
   - investoinnit
   - korkeakoulutus
+politicalProfiles:
+  - sivistys
+  - kaupunkikehitys
 templateEngineOverride: md
 ---
 

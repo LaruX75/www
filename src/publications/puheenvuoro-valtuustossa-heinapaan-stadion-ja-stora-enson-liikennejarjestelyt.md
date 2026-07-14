@@ -14,6 +14,8 @@ tags:
   - Stora Enso
   - liikenne
   - kaupunkisuunnittelu
+politicalProfiles:
+  - kaupunkikehitys
 templateEngineOverride: md
 ---
 

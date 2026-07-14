@@ -15,6 +15,9 @@ tags:
   - kulttuuri
   - liikunta
   - hyvinvointi
+politicalProfiles:
+  - sivistys
+  - hyvinvointi
 templateEngineOverride: md
 ---
 

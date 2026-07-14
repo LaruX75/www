@@ -14,6 +14,9 @@ tags:
   - vaakuna
   - kaupunkikuva
   - valotaide
+politicalProfiles:
+  - kaupunkikehitys
+  - yhteistyo
 templateEngineOverride: md
 ---
 

@@ -14,6 +14,9 @@ tags:
   - deep space
 wp_id: 2443
 source_url: "https://www.jarilaru.fi/valtuustopuheenvuoro-myllytullin-museo-ja-tiedekeskuksen-rakentamisesta/"
+politicalProfiles:
+  - kaupunkikehitys
+  - yhteistyo
 templateEngineOverride: md
 ---
 

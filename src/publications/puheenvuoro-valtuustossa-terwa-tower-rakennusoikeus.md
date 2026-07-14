@@ -12,6 +12,8 @@ tags:
   - terwa tower
   - asemakaava
   - rakennusoikeus
+politicalProfiles:
+  - kaupunkikehitys
 templateEngineOverride: md
 ---
 

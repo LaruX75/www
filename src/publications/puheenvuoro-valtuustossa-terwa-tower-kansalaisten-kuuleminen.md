@@ -12,6 +12,8 @@ tags:
   - terwa tower
   - kaavoitus
   - osallisuus
+politicalProfiles:
+  - kaupunkikehitys
 templateEngineOverride: md
 ---
 

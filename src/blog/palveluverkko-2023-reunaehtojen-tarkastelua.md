@@ -14,6 +14,9 @@ keywords:
   - koulutuspolitiikka
   - väestösuunnite
 type: artikkeli
+politicalProfiles:
+  - sivistys
+  - lahipalvelut
 templateEngineOverride: md
 ---
 

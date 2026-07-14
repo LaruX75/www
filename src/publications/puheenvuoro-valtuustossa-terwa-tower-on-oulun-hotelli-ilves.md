@@ -12,6 +12,8 @@ tags:
   - terwa tower
   - hotellirakentaminen
   - kaupunkikuva
+politicalProfiles:
+  - kaupunkikehitys
 templateEngineOverride: md
 ---
 

@@ -16,6 +16,8 @@ keywords:
   - popster
 wp_id: 1979
 source_url: "https://www.jarilaru.fi/asiaa-himmeleista-ja-aluehallinnosta/"
+politicalProfiles:
+  - yhteistyo
 templateEngineOverride: md
 ---
 

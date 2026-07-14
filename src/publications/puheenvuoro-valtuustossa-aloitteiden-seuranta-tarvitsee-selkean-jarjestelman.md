@@ -14,6 +14,8 @@ tags:
   - avoimuus
   - digitalisaatio
   - päätöksenteko
+politicalProfiles:
+  - avoinhallinto
 templateEngineOverride: md
 ---
 

@@ -12,6 +12,8 @@ tags:
   - kaupungintalo
   - remontti
   - yleisökäyttö
+politicalProfiles:
+  - kaupunkikehitys
 templateEngineOverride: md
 ---
 

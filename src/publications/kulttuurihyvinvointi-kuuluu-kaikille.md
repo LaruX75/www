@@ -15,6 +15,9 @@ keywords:
 type: kolumni
 wp_id: 1878
 source_url: "https://www.jarilaru.fi/kulttuurihyvinvointi-kuuluu-kaikille/"
+politicalProfiles:
+  - hyvinvointi
+  - yhteistyo
 templateEngineOverride: md
 ---
 <p><em>Kolumni, joka on julkaistu "Päättäjältä" palstalla paikallislehti <a href="https://www.rantapohja.fi/keskustelemme/kolumnit/paattajalta-kulttuurihyvinvointi-kuuluu-kaikille/?fbclid=IwAR28SRdeODST9MvRtktzCvAUh3OaQDcPbJzzB3_rNKv_sEpssUA6OhE6RI" target="_blank" rel="noreferrer noopener">Rantapohjassa 18.11.202</a>1</em><br></p>

@@ -15,6 +15,8 @@ tags:
   - tietojärjestelmät
   - tietojohtaminen
   - digitalisaatio
+politicalProfiles:
+  - avoinhallinto
 templateEngineOverride: md
 ---
 

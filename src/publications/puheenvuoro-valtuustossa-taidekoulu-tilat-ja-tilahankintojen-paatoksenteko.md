@@ -13,6 +13,9 @@ tags:
   - tilahankkeet
   - päätöksenteko
   - palveluverkko
+politicalProfiles:
+  - sivistys
+  - lahipalvelut
 templateEngineOverride: md
 ---
 

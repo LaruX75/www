@@ -19,6 +19,9 @@ keywords:
 type: puhe
 wp_id: 155
 source_url: "https://www.jarilaru.fi/puhe-kaupunginvaltuuston-kokouksessa-20-11-2020/"
+politicalProfiles:
+  - sivistys
+  - kaupunkikehitys
 templateEngineOverride: md
 ---
 <p>Arvoisa puheenjohtaja, hyvät valtuutetut ja yleisö. Oulun yliopisto on ensimmäinen korkeakoulu maassamme, jossa teknillinen korkeakoulu ja perinteinen tiedeyliopisto yhdistettiin. Tavoitteena oli, että eri tieteenalat vuorovaikuttaisivat monitieteisesti keskenään yhdessä kiinteässä kokonaisuudessa.</p>

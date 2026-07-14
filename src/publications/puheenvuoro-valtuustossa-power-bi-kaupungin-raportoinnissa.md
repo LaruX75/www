@@ -15,6 +15,8 @@ tags:
   - avoimuus
   - visualisointi
   - digitalisaatio
+politicalProfiles:
+  - avoinhallinto
 templateEngineOverride: md
 ---
 

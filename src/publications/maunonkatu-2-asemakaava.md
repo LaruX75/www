@@ -11,6 +11,9 @@ tags:
   - kaupunginvaltuusto
   - kaavoitus
   - rakennussuojelu
+politicalProfiles:
+  - sivistys
+  - kaupunkikehitys
 templateEngineOverride: md
 ---
 

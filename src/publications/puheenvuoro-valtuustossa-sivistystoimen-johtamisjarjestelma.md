@@ -13,6 +13,9 @@ tags:
   - johtamisjärjestelmä
   - palveluverkko
   - talouden sopeuttaminen
+politicalProfiles:
+  - sivistys
+  - lahipalvelut
 templateEngineOverride: md
 ---
 

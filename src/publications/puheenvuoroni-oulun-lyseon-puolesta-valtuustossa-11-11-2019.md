@@ -17,6 +17,8 @@ tags:
   - Oulu
 wp_id: 99
 source_url: "https://www.jarilaru.fi/puheenvuoroni-oulun-lyseon-puolesta-valtuustossa-11-11-2019/"
+politicalProfiles:
+  - sivistys
 templateEngineOverride: md
 ---
 

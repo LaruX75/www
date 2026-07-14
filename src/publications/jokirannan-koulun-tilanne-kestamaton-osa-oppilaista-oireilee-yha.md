@@ -24,6 +24,10 @@ keywords:
 type: mielipide
 wp_id: 225
 source_url: "https://www.jarilaru.fi/jokirannan-koulun-tilanne-kestamaton-osa-oppilaista-oireilee-yha/"
+politicalProfiles:
+  - sivistys
+  - lahipalvelut
+  - hyvinvointi
 templateEngineOverride: md
 ---
 <p>Kirjoitus julkaistu Sanomalehti Kalevassa 22.01.2018 (https://www.kaleva.fi/jokirannan-koulun-tilanne-kestamaton-osa-oppilaist/1861861)</p>

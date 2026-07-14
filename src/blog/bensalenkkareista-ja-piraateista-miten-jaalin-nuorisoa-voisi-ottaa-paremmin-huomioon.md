@@ -16,6 +16,9 @@ keywords:
   - päihteet
 wp_id: 924
 source_url: "https://www.jarilaru.fi/bensalenkkareista-ja-piraateista-miten-jaalin-nuorisoa-voisi-ottaa-paremmin-huomioon/"
+politicalProfiles:
+  - hyvinvointi
+  - lahipalvelut
 templateEngineOverride: md
 ---
 

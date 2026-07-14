@@ -17,6 +17,8 @@ keywords:
 type: mielipide
 wp_id: 1811
 source_url: "https://www.jarilaru.fi/luuppi-ansaitsee-kattavan-kokonaisratkaisun-sen-takaa-parhaiten-se-etta-asiat-kasitellaan-perin/"
+politicalProfiles:
+  - kaupunkikehitys
 templateEngineOverride: md
 ---
 <p><em>Mielipidekirjoitus Sanomalehti Kalevassa 25.9.2021: <a href="https://www.kaleva.fi/luuppi-ansaitsee-kattavan-kokonaisratkaisun-sen-ta/3982271">https://www.kaleva.fi/luuppi-ansaitsee-kattavan-kokonaisratkaisun-sen-ta/3982271</a>   </em></p>

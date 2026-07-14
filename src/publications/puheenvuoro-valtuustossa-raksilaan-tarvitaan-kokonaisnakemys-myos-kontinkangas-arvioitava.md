@@ -15,6 +15,9 @@ tags:
   - kampus
   - kaupunkisuunnittelu
   - liikenne
+politicalProfiles:
+  - sivistys
+  - kaupunkikehitys
 templateEngineOverride: md
 ---
 

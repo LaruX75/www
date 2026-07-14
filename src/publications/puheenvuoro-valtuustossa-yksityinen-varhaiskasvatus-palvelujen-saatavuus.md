@@ -15,6 +15,10 @@ tags:
   - yksityinen varhaiskasvatus
   - palvelujen saatavuus
   - perheet
+politicalProfiles:
+  - sivistys
+  - hyvinvointi
+  - yhteistyo
 templateEngineOverride: md
 ---
 

@@ -20,6 +20,9 @@ ouka_response_url: "http://asiakirjat.ouka.fi/ktwebscr/pk_asil_tweb.htm?bid=3736
 ouka_response_body: "Yhdyskuntalautakunta 20.3.2024"
 wp_id: 2135
 source_url: "https://www.jarilaru.fi/oulun-kaupungin-tulee-selvittaa-mahdollisuus-hankkia-kaupunkiin-kaupunkisoutuveneita-muiden-suomalaisten-kaupunkien-mallia-seuraten/"
+politicalProfiles:
+  - kaupunkikehitys
+  - hyvinvointi
 templateEngineOverride: md
 ---
 <p><strong>Soutuveneellä liikkuminen on tehokasta liikuntaa.</strong>&nbsp;<br>Soutaminen on tehokasta treeniä, sillä siitä isot lihasryhmät saavat harjoitusta! Vatsalihaksetkin saavat treeniä soutajan voimavedoissa.&nbsp;</p>

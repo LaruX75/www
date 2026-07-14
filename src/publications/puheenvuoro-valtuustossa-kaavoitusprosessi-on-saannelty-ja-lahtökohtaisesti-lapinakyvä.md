@@ -15,6 +15,9 @@ tags:
   - asukasosallisuus
   - läpinäkyvyys
   - kaupunkisuunnittelu
+politicalProfiles:
+  - avoinhallinto
+  - kaupunkikehitys
 templateEngineOverride: md
 ---
 

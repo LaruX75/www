@@ -13,6 +13,8 @@ keywords:
   - talous
 wp_id: 1073
 source_url: "https://www.jarilaru.fi/te-muut-voisitte-menna-vaikka-kahville-vastine-pauli-maatan-kirjoitukseen-ihanseutuyhteistyosta-2/"
+politicalProfiles:
+  - yhteistyo
 templateEngineOverride: md
 ---
 

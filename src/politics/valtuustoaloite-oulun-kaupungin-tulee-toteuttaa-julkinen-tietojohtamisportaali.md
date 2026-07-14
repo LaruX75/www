@@ -15,6 +15,8 @@ keywords:
   - tietojohtaminen
 wp_id: 2132
 source_url: https://www.jarilaru.fi/valtuustoaloite-oulun-kaupungin-tulee-toteuttaa-julkinen-tietojohtamisportaali/
+politicalProfiles:
+  - avoinhallinto
 templateEngineOverride: md
 ---
 

@@ -10,6 +10,8 @@ keywords:
   - lastensuojelu
 wp_id: 1531
 source_url: "https://www.jarilaru.fi/mina-olen-annaaanilapselle-ehdokas/"
+politicalProfiles:
+  - hyvinvointi
 templateEngineOverride: md
 ---
 

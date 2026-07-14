@@ -14,6 +14,8 @@ keywords:
 type: mielipide
 wp_id: 920
 source_url: "https://www.jarilaru.fi/pohjoismainen-malli-kuntaliitoksiin-vai-oulujoen-kaupunki/"
+politicalProfiles:
+  - yhteistyo
 templateEngineOverride: md
 ---
 <p><strong> Mielipidekirjoitus julkaistu Kalevassa Lauantaina 4.10.2008 otsikolla: "Pyristelyä vääjäämätöntä vastaan"</strong></p>

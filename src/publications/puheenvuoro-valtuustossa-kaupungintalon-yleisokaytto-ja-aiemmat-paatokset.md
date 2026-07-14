@@ -12,6 +12,8 @@ tags:
   - kaupungintalo
   - kulttuuriperintö
   - yleisökäyttö
+politicalProfiles:
+  - kaupunkikehitys
 templateEngineOverride: md
 ---
 

@@ -15,6 +15,8 @@ tags:
   - Monetra
   - hallinto
   - palvelut
+politicalProfiles:
+  - sivistys
 templateEngineOverride: md
 ---
 

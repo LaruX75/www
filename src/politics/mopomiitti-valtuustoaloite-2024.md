@@ -15,6 +15,9 @@ keywords:
   - mopoharrastus
   - nuoret
 initiative_type: valtuustoaloite
+politicalProfiles:
+  - hyvinvointi
+  - lahipalvelut
 templateEngineOverride: md
 ---
 <p><strong>ALOITE: Oulun kaupungin tulee järjestää yhdessä nuorten kanssa mopoaiheinen tapahtuma "mopomiitti" vähintään kerran kesässä</strong></p>

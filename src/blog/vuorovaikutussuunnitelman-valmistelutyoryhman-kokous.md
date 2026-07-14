@@ -15,6 +15,8 @@ keywords:
   - vuorovaikutussuunnitelma
 wp_id: 1114
 source_url: "https://www.jarilaru.fi/vuorovaikutussuunnitelman-valmistelutyoryhman-kokous/"
+politicalProfiles:
+  - avoinhallinto
 templateEngineOverride: md
 ---
 

@@ -13,6 +13,9 @@ keywords:
   - ympäristö
 wp_id: 926
 source_url: "https://www.jarilaru.fi/punaisenladonkankaan-kompostialue-vs-tutkimus-jonka-mukaan-madatys-on-kompostointia-ymparistoystavallisempaa/"
+politicalProfiles:
+  - lahipalvelut
+  - kaupunkikehitys
 templateEngineOverride: md
 ---
 

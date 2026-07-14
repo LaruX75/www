@@ -11,6 +11,8 @@ keywords:
   - talous
 wp_id: 1072
 source_url: "https://www.jarilaru.fi/pohjoismainen-malli-kuntaliitoksiin-vai-oulujoen-kaupunki-2/"
+politicalProfiles:
+  - yhteistyo
 templateEngineOverride: md
 ---
 

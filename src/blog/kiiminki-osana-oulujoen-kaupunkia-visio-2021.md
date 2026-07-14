@@ -15,6 +15,9 @@ keywords:
   - Visio
 wp_id: 917
 source_url: "https://www.jarilaru.fi/kiiminki-osana-oulujoen-kaupunkia-visio-2021/"
+politicalProfiles:
+  - lahipalvelut
+  - yhteistyo
 templateEngineOverride: md
 ---
 

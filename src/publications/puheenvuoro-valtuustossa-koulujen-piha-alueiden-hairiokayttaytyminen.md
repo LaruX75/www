@@ -13,6 +13,11 @@ tags:
   - liikenneturvallisuus
   - häiriökäyttäytyminen
   - Kiiminki
+politicalProfiles:
+  - sivistys
+  - lahipalvelut
+  - kaupunkikehitys
+  - hyvinvointi
 templateEngineOverride: md
 ---
 

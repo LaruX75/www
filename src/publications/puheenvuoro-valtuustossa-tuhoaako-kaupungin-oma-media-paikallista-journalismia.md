@@ -15,6 +15,8 @@ tags:
   - viestintä
   - media
   - Oulu
+politicalProfiles:
+  - avoinhallinto
 templateEngineOverride: md
 ---
 

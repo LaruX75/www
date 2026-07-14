@@ -10,6 +10,8 @@ keywords:
   - yhteiskunta
 wp_id: 913
 source_url: "https://www.jarilaru.fi/onko-nykymuotoinen-tohtorikoulutus-tiensa-paassa-siirretty/"
+politicalProfiles:
+  - sivistys
 templateEngineOverride: md
 ---
 January 4th, 2007 <!-- by jlaru -->

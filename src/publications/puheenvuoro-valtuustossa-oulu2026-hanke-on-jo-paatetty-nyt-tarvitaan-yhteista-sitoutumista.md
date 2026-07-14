@@ -15,6 +15,9 @@ tags:
   - säätiö
   - matkailu
   - kansainvälisyys
+politicalProfiles:
+  - kaupunkikehitys
+  - yhteistyo
 templateEngineOverride: md
 ---
 

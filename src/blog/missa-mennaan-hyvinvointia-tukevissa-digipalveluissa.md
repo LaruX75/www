@@ -14,6 +14,9 @@ keywords:
   - sotedigi
 wp_id: 1990
 source_url: "https://www.jarilaru.fi/missa-mennaan-hyvinvointia-tukevissa-digipalveluissa/"
+politicalProfiles:
+  - hyvinvointi
+  - yhteistyo
 templateEngineOverride: md
 ---
 

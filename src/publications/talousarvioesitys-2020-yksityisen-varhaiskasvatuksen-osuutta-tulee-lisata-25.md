@@ -17,6 +17,11 @@ tags:
   - investoinnit
 wp_id: 1883
 source_url: "https://www.jarilaru.fi/talousarvioesitys-2020-yksityisen-varhaiskasvatuksen-osuutta-tulee-lisata-25/"
+politicalProfiles:
+  - sivistys
+  - lahipalvelut
+  - yhteistyo
+  - hyvinvointi
 templateEngineOverride: md
 ---
 

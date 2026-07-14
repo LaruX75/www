@@ -15,6 +15,9 @@ tags:
   - täydennysrakentaminen
   - palveluverkko
   - koulut
+politicalProfiles:
+  - sivistys
+  - lahipalvelut
 templateEngineOverride: md
 ---
 

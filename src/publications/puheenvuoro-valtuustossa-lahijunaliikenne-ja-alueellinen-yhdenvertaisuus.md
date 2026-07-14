@@ -15,6 +15,9 @@ tags:
   - Oulunsalo
   - Jääli
   - Kiiminki
+politicalProfiles:
+  - lahipalvelut
+  - kaupunkikehitys
 templateEngineOverride: md
 ---
 

@@ -16,6 +16,8 @@ keywords:
 type: mielipide
 wp_id: 972
 source_url: "https://www.jarilaru.fi/oulu-takaisin-koulukaupunkien-joukkoon/"
+politicalProfiles:
+  - sivistys
 templateEngineOverride: md
 ---
 <p><em>Kirjoitus on julkaistu Sanomalehti Kalevan “Lukijalta” -palstalla 16.6.2018<br></em><br>Oulu on ollut Pohjois-Suomen monipuolisin ja suosituin koulukaupunki jo yli 400 vuotta. Viimeisen viidentoista vuoden aikana olemme kuitenkin luopuneet opetuksen laatua kuvaavista kärkisijoista. Annettavan opetuksen määrä on laskenut ja samanaikaisesti keskimääräinen opetusryhmän koko ja tukea tarvitsevien määrä ovat kasvaneet. Jatkuvan kouluverkkokeskustelun rinnalla on aika kysyä, mitä me haluamme kaupungin sivistyspolitiikassa tapahtuvan?</p>

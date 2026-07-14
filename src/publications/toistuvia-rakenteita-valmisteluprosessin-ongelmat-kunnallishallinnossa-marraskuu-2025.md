@@ -19,6 +19,10 @@ keywords:
   - luottamushenkilö
 type: mielipide
 source_url: "https://www.facebook.com/jari.laru.poliitikko/posts/pfbid02w3rpzZczjeVKgXWyojvddThQAU2jQb3Gjt69EmFkGFgUcnfnNAEtRjERmKT66nQ9l"
+politicalProfiles:
+  - sivistys
+  - lahipalvelut
+  - avoinhallinto
 templateEngineOverride: md
 ---
 

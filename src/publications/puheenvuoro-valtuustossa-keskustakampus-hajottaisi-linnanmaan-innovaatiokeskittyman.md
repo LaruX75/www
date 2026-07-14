@@ -16,6 +16,9 @@ tags:
   - innovaatiot
   - tutkimus
   - korkeakoulutus
+politicalProfiles:
+  - sivistys
+  - kaupunkikehitys
 templateEngineOverride: md
 ---
 

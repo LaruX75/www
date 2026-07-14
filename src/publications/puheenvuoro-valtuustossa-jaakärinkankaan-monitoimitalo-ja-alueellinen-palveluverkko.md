@@ -15,6 +15,8 @@ tags:
   - Myllyoja
   - Hiukkavaara
   - Korvensuora
+politicalProfiles:
+  - lahipalvelut
 templateEngineOverride: md
 ---
 

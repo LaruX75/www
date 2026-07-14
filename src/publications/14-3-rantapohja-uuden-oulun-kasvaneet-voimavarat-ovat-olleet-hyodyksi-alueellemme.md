@@ -19,6 +19,9 @@ keywords:
 type: mielipide
 wp_id: 1164
 source_url: "https://www.jarilaru.fi/14-3-rantapohja-uuden-oulun-kasvaneet-voimavarat-ovat-olleet-hyodyksi-alueellemme/"
+politicalProfiles:
+  - lahipalvelut
+  - yhteistyo
 templateEngineOverride: md
 ---
 <p>Vuoden 2016 aikana olemme saaneet lukea eri lehdistä kuinka Rantapohjan levikkialueella kuntalaiset ovat olleet tyytymättömiä uuteen Ouluun. Oulu on tuonut alueellemme kuitenkin myös suoria hyötyjä kasvaneiden voimavarojen myötä. Entisen Kiimingin kunnan veronmaksajana ja jääliläise ä haluan nostaa näitä positiviisia puolia esille.</p>

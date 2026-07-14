@@ -17,6 +17,9 @@ keywords:
   - vectorama
 wp_id: 1187
 source_url: https://www.jarilaru.fi/valtuustoaloite-8-10-2018-e-urheilun-potentiaalin-selvitystyon-aloittaminen/
+politicalProfiles:
+  - hyvinvointi
+  - sivistys
 templateEngineOverride: md
 ---
 

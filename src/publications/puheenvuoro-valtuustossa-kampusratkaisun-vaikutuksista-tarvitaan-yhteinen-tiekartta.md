@@ -16,6 +16,10 @@ tags:
   - kampus
   - ICT
   - kaupunkisuunnittelu
+politicalProfiles:
+  - sivistys
+  - kaupunkikehitys
+  - yhteistyo
 templateEngineOverride: md
 ---
 

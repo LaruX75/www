@@ -16,6 +16,8 @@ keywords:
 type: puhe
 wp_id: 1154
 source_url: "https://www.jarilaru.fi/1-puheenvuoroni-oulun-kaupunginvaltuutettuna/"
+politicalProfiles:
+  - yhteistyo
 templateEngineOverride: md
 ---
 <figure><img src="/img/uploads/2021/01/ekapuhe.jpg" alt=""/><figcaption>Ensimmäinen puheenvuoroni "kirjallisena" .. Tämä on tapani luonnostella puhe, jos sitä ei ole pakko toimittaa kirjallisena.</figcaption></figure>

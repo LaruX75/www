@@ -18,6 +18,9 @@ keywords:
   - perheiden hyvinvointi
 wp_id: 75
 source_url: "https://www.jarilaru.fi/kommentoin-facebookissa-toivetta-saada-lisaresursseja-ennaltaehkaisevaan-tyohon-case-kauhajoki/"
+politicalProfiles:
+  - hyvinvointi
+  - sivistys
 templateEngineOverride: md
 ---
 

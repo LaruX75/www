@@ -14,6 +14,10 @@ tags:
   - jokiranta
   - urheilukenttä
   - päätöksenteko
+politicalProfiles:
+  - lahipalvelut
+  - kaupunkikehitys
+  - hyvinvointi
 templateEngineOverride: md
 ---
 

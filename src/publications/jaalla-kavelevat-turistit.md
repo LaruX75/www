@@ -11,6 +11,9 @@ tags:
   - kaupunginvaltuusto
   - Oulu2026
   - matkailu
+politicalProfiles:
+  - yhteistyo
+  - kaupunkikehitys
 templateEngineOverride: md
 ---
 

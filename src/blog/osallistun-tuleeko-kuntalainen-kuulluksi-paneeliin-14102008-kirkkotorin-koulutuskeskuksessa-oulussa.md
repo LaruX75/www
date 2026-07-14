@@ -11,6 +11,8 @@ keywords:
   - perheiden hyvinvointi
 wp_id: 925
 source_url: "https://www.jarilaru.fi/osallistun-tuleeko-kuntalainen-kuulluksi-paneeliin-14102008-kirkkotorin-koulutuskeskuksessa-oulussa/"
+politicalProfiles:
+  - avoinhallinto
 templateEngineOverride: md
 ---
 

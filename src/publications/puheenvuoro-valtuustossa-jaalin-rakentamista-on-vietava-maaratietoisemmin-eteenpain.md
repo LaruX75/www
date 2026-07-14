@@ -14,6 +14,10 @@ tags:
   - asuminen
   - Jääli
   - Oulu
+politicalProfiles:
+  - sivistys
+  - lahipalvelut
+  - kaupunkikehitys
 templateEngineOverride: md
 ---
 

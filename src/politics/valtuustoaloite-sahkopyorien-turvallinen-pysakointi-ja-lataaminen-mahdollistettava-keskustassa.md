@@ -17,6 +17,8 @@ keywords:
   - sähköpyörä
 wp_id: 2099
 source_url: https://www.jarilaru.fi/valtuustoaloite-sahkopyorien-turvallinen-pysakointi-ja-lataaminen-mahdollistettava-keskustassa/
+politicalProfiles:
+  - kaupunkikehitys
 templateEngineOverride: md
 ---
 

@@ -15,6 +15,9 @@ tags:
   - kulttuurihyvinvointi
   - liikunta
   - sivistyspalvelut
+politicalProfiles:
+  - sivistys
+  - hyvinvointi
 templateEngineOverride: md
 ---
 

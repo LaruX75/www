@@ -20,6 +20,11 @@ tags:
 type: puhe
 wp_id: 491
 source_url: "https://www.jarilaru.fi/kuntalain-94-2%c2%a7-mukainen-keskustelu-yliopiston-muuttosuunnitelmista/"
+politicalProfiles:
+  - sivistys
+  - avoinhallinto
+  - kaupunkikehitys
+  - yhteistyo
 templateEngineOverride: md
 ---
 <h4>Mistä on kyse</h4>

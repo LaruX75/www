@@ -17,6 +17,10 @@ tags:
   - Jääli
 wp_id: 2381
 source_url: "https://www.jarilaru.fi/puheenvuoro-%c2%a72-maankayton-toteuttamisohjelma/"
+politicalProfiles:
+  - sivistys
+  - lahipalvelut
+  - kaupunkikehitys
 templateEngineOverride: md
 ---
 

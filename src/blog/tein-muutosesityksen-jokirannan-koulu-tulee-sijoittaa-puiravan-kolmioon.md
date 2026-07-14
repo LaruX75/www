@@ -17,6 +17,9 @@ keywords:
   - yläkoulu
 wp_id: 1143
 source_url: "https://www.jarilaru.fi/tein-muutosesityksen-jokirannan-koulu-tulee-sijoittaa-puiravan-kolmioon/"
+politicalProfiles:
+  - sivistys
+  - lahipalvelut
 templateEngineOverride: md
 ---
 
