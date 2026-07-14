@@ -335,7 +335,7 @@ module.exports = {
             },
             {
               title: "Yrittäjä",
-              href: "/larux-tmi/",
+              href: "/kouluttaja/",
               icon: "bi bi-building me-2",
               description: "Koulutus- ja asiantuntijapalvelut Larux t:mi:n kautta."
             }
@@ -501,7 +501,7 @@ module.exports = {
           ]
         },
         {
-          heading: "Vaalihistoria",
+          heading: "Vaalit",
           links: [
             {
               title: "Vaalikaudet",
@@ -511,28 +511,10 @@ module.exports = {
               description: "Vaalit ja luottamustoimet vaalikausittain."
             },
             {
-              title: "Kuntavaalit 2025",
+              title: "Kunta- ja aluevaalit 2025",
               href: "/kunta-ja-aluevaalit-2025/",
               icon: "bi bi-chevron-right me-2",
-              description: "Kampanjateemat ja tulos kuntavaaleissa 2025."
-            },
-            {
-              title: "Kuntavaalit 2021",
-              href: "/kuntavaalit-2021/",
-              icon: "bi bi-chevron-right me-2",
-              description: "Vaaliteemat, tavoitteet ja kampanjasisällöt vuodelta 2021."
-            },
-            {
-              title: "Aluevaalit 2022",
-              href: "/jari-laru-aluevaltuustoon/",
-              icon: "bi bi-chevron-right me-2",
-              description: "Näkemykset hyvinvointialueen päätöksenteon kehittämiseen."
-            },
-            {
-              title: "Kunnallisvaalit 2012",
-              href: "/kunnallisvaalit-2012/",
-              icon: "bi bi-chevron-right me-2",
-              description: "Ensimmäisen kampanjan teemat ja taustatiedot."
+              description: "Ajankohtainen vaalisivu teemoineen, taustoineen ja tuloksineen."
             }
           ]
         }
@@ -602,7 +584,7 @@ module.exports = {
           ]
         },
         {
-          heading: "Election History",
+          heading: "Elections",
           links: [
             {
               title: "Election history",
@@ -616,18 +598,6 @@ module.exports = {
               href: "/en/municipal-and-wellbeing-elections-2025/",
               icon: "bi bi-chevron-right me-2",
               description: "Campaign priorities and election outcome in 2025."
-            },
-            {
-              title: "Municipal elections 2021",
-              href: "/kuntavaalit-2021/",
-              icon: "bi bi-chevron-right me-2",
-              description: "Campaign priorities and materials from the 2021 election."
-            },
-            {
-              title: "Wellbeing area elections 2022",
-              href: "/jari-laru-aluevaltuustoon/",
-              icon: "bi bi-chevron-right me-2",
-              description: "Themes and goals for regional wellbeing governance."
             }
           ]
         }
@@ -637,71 +607,66 @@ module.exports = {
   megaMenuWritings: {
     fi: {
       heading: "Kirjoitukset ja puheet",
-      description: "Kaikki tuotettu sisältö yhdessä paikassa.",
-      groupHeading: "Minun kynästä ja suusta",
+      description: "Puheenvuorot, aloitteet ja julkaistut tekstit samasta näkymästä.",
+      groupHeading: "Kynästä",
       contentColumns: [
         {
           links: [
-            { title: "Aloitteet", href: "/kynasta/#aloitteet", icon: "bi bi-megaphone me-2", countKey: "politics", description: "Valtuustoaloitteet ja muut kirjalliset avaukset päätöksentekoon." },
-            { title: "Blogi", href: "/blogi/", icon: "bi bi-pen me-2", countKey: "blog", description: "Ajankohtaiset kirjoitukset opetuksesta, teknologiasta ja yhteiskunnasta." }
+            { title: "Puheenvuorot", href: "/kynasta/#puheet", icon: "bi bi-mic me-2", countKey: "pub_puhe", description: "Valtuustossa ja tapahtumissa pidettyjä puheenvuoroja." },
+            { title: "Aloitteet", href: "/kynasta/#aloitteet", icon: "bi bi-megaphone me-2", countKey: "politics", description: "Valtuustoaloitteet ja muut kirjalliset avaukset päätöksentekoon." }
           ]
         },
         {
           links: [
             { title: "Kolumnit", href: "/kynasta/#kolumnit", icon: "bi bi-journal-richtext me-2", countKey: "pub_kolumni", description: "Taustoittavia näkökulmatekstejä yhteiskunnasta ja koulutuksesta." },
             { title: "Mielipiteet", href: "/kynasta/#mielipiteet", icon: "bi bi-chat-text me-2", countKey: "pub_mielipide", description: "Lehdissä julkaistuja kannanottoja paikallisista ja valtakunnallisista aiheista." },
-            { title: "Puheet", href: "/kynasta/#puheet", icon: "bi bi-mic me-2", countKey: "pub_puhe", description: "Valtuustossa ja tapahtumissa pidettyjä puheenvuoroja." }
+            { title: "Blogi", href: "/blogi/", icon: "bi bi-pen me-2", countKey: "blog", description: "Ajankohtaiset kirjoitukset opetuksesta, teknologiasta ja yhteiskunnasta." }
           ]
         }
       ],
       seeAlso: {
-        heading: "Katso myös",
-        subheading: "Ohjaamiani opinnäytteitä",
+        heading: "Muu aineisto",
+        subheading: "Esitykset ja julkaisut",
         links: [
-          { title: "Kandidaatintutkielmat", href: "/opinnaytteet/#card-bachelor", icon: "bi bi-book-half me-2", countData: "theses_kandit", description: "Ohjaamani opinnäytteet aihepiireittäin ja vuosittain." },
-          { title: "Pro gradut", href: "/opinnaytteet/#card-master", icon: "bi bi-mortarboard me-2", countData: "theses_gradut", description: "Ohjaamani opinnäytteet aihepiireittäin ja vuosittain." }
+          { title: "Esitykset", href: "/esitykset/", icon: "bi bi-easel2 me-2", description: "Puheenvuoroja, koulutussisältöjä ja avoimia oppimateriaaleja." },
+          { title: "Julkaisut", href: "/julkaisut/", icon: "bi bi-journal-text me-2", description: "Tutkimusjulkaisut, artikkelit ja tieteellinen tuotanto." }
         ]
       }
     },
     en: {
       heading: "Writings and Speeches",
-      description: "All produced content.",
-      groupHeading: "From my pen and voice",
+      description: "Speeches, initiatives, and published texts in one place.",
+      groupHeading: "Writings",
       contentColumns: [
         {
           links: [
-            { title: "Articles", href: "/en/writings/#mielipiteet", icon: "bi bi-chat-text me-2", countKey: "pub_mielipide", description: "Opinion texts and public commentary published in media." },
-            { title: "Blog", href: "/en/blog/", icon: "bi bi-pen me-2", countKey: "blog", description: "Posts on education, technology, and public life themes." }
-          ]
-        },
-        {
-          links: [
-            { title: "Columns", href: "/en/writings/#kolumnit", icon: "bi bi-journal-richtext me-2", countKey: "pub_kolumni", description: "Long-form columns on education, society, and local development." },
+            { title: "Speeches", href: "/en/writings/#puheet", icon: "bi bi-mic me-2", countKey: "pub_puhe", description: "Public speeches and council statements in one archive." },
             { title: "Initiatives", href: "/en/writings/#aloitteet", icon: "bi bi-megaphone me-2", countKey: "politics", description: "Council initiatives and concrete proposals in local politics." }
           ]
         },
         {
           links: [
-            { title: "Speeches", href: "/en/writings/#puheet", icon: "bi bi-mic me-2", countKey: "pub_puhe", description: "Public speeches and council statements in one archive." }
+            { title: "Columns", href: "/en/writings/#kolumnit", icon: "bi bi-journal-richtext me-2", countKey: "pub_kolumni", description: "Long-form columns on education, society, and local development." },
+            { title: "Opinion pieces", href: "/en/writings/#mielipiteet", icon: "bi bi-chat-text me-2", countKey: "pub_mielipide", description: "Opinion texts and public commentary published in media." },
+            { title: "Blog", href: "/en/blog/", icon: "bi bi-pen me-2", countKey: "blog", description: "Posts on education, technology, and public life themes." }
           ]
         }
       ],
       seeAlso: {
-        heading: "See also",
-        subheading: "Theses supervised by me",
+        heading: "Related material",
+        subheading: "Presentations and publications",
         links: [
-          { title: "Bachelor's theses", href: "/en/theses/#card-bachelor", icon: "bi bi-book-half me-2", countData: "theses_kandit", description: "Supervised theses listed by topic and year." },
-          { title: "Master's theses", href: "/en/theses/#card-master", icon: "bi bi-mortarboard me-2", countData: "theses_gradut", description: "Supervised theses listed by topic and year." }
+          { title: "Presentations", href: "/en/presentations/", icon: "bi bi-easel2 me-2", description: "Talks, keynote materials, and open learning resources." },
+          { title: "Publications", href: "/en/publications/", icon: "bi bi-journal-text me-2", description: "Research outputs, articles, and academic publishing." }
         ]
       }
     }
   },
   megaMenuWork: {
     fi: {
-      layout: "four-columns",
       sections: [
         {
-          heading: "Opetus",
+          heading: "Yliopistotyö",
           links: [
             {
               title: "Työni yliopistonlehtorina",
@@ -727,6 +692,12 @@ module.exports = {
           heading: "Tutkimus",
           links: [
             {
+              title: "Tutkimus",
+              href: "/tutkimus/",
+              icon: "bi bi-search me-2",
+              description: "Tutkimushankkeet, tutkimusteemat ja laajempi kuva tutkimustyöstäni."
+            },
+            {
               title: "Julkaisuluettelo",
               href: "/julkaisut/",
               icon: "bi bi-journal-text me-2",
@@ -741,11 +712,11 @@ module.exports = {
           ]
         },
         {
-          heading: "Kouluttaja (yrittäjä)",
+          heading: "Kouluttaja & puhuja",
           links: [
             {
-              title: "Tietoa yrityksestä",
-              href: "/larux-tmi/",
+              title: "Kouluttaja",
+              href: "/kouluttaja/",
               icon: "bi bi-building me-2",
               description: "Larux t:mi:n palvelut, tausta ja toimintatapa."
             },
@@ -756,45 +727,10 @@ module.exports = {
               description: "Näytteitä koulutus- ja keynote-esitysten sisällöistä."
             },
             {
-              title: "Tilaa minut kouluttajaksi",
-              href: "/yhteystiedot/",
-              icon: "bi bi-megaphone me-2",
-              cta: true,
-              ctaLabel: "Pyydä tarjous",
-              description: "Koulutukset tekoälystä, oppimisteknologiasta ja modernista pedagogiikasta."
-            }
-          ]
-        },
-        {
-          heading: "Sosiaalinen media",
-          links: [
-            {
-              title: "LinkedIN",
-              href: "https://www.linkedin.com/in/jarilaru/",
-              icon: "bi bi-linkedin me-2",
-              external: true,
-              description: "Ammatillinen profiili, verkostot ja ajankohtaiset nostot."
-            },
-            {
-              title: "ResearchGate",
-              href: "https://www.researchgate.net/profile/Jari-Laru",
-              icon: "bi bi-globe me-2",
-              external: true,
-              description: "Tutkimusprofiili, julkaisut ja tutkimusverkostot."
-            },
-            {
-              title: "ORCID",
-              href: "https://orcid.org/0000-0003-0347-0182",
-              icon: "bi bi-person-vcard me-2",
-              external: true,
-              description: "Pysyvä tutkijatunniste ja julkaisujen metatiedot."
-            },
-            {
-              title: "Google Scholar",
-              href: "https://scholar.google.com/citations?user=HOLu1ZIAAAAJ&hl=en",
-              icon: "bi bi-mortarboard me-2",
-              external: true,
-              description: "Viittaukset, h-indeksi ja julkaisujen näkyvyys."
+              title: "Palkinnot",
+              href: "/palkinnot/",
+              icon: "bi bi-award me-2",
+              description: "Tunnustuksia opetuksesta, avoimuudesta ja asiantuntijatyöstä."
             }
           ]
         }
@@ -807,10 +743,9 @@ module.exports = {
       }
     },
     en: {
-      layout: "four-columns",
       sections: [
         {
-          heading: "Teaching",
+          heading: "University Work",
           links: [
             {
               title: "My Work as a University Lecturer",
@@ -836,6 +771,12 @@ module.exports = {
           heading: "Research",
           links: [
             {
+              title: "Research",
+              href: "/en/research/",
+              icon: "bi bi-search me-2",
+              description: "Research themes, projects, and the broader frame of my academic work."
+            },
+            {
               title: "Publication List",
               href: "/en/publications/",
               icon: "bi bi-journal-text me-2",
@@ -850,10 +791,10 @@ module.exports = {
           ]
         },
         {
-          heading: "Trainer (Entrepreneur)",
+          heading: "Trainer & Speaker",
           links: [
             {
-              title: "About the Company",
+              title: "Trainer",
               href: "/en/company/",
               icon: "bi bi-building me-2",
               description: "Larux services, background, and collaboration model."
@@ -865,45 +806,10 @@ module.exports = {
               description: "Selected decks and keynote examples for different audiences."
             },
             {
-              title: "Book me for training",
-              href: "/en/contact/",
-              icon: "bi bi-megaphone me-2",
-              cta: true,
-              ctaLabel: "Request a quote",
-              description: "Expert talks on AI, EdTech, and modern pedagogy."
-            }
-          ]
-        },
-        {
-          heading: "Social Media",
-          links: [
-            {
-              title: "LinkedIn",
-              href: "https://www.linkedin.com/in/jarilaru/",
-              icon: "bi bi-linkedin me-2",
-              external: true,
-              description: "Professional profile, network, and current updates."
-            },
-            {
-              title: "ResearchGate",
-              href: "https://www.researchgate.net/profile/Jari-Laru",
-              icon: "bi bi-globe me-2",
-              external: true,
-              description: "Research profile with publications and collaboration links."
-            },
-            {
-              title: "ORCID",
-              href: "https://orcid.org/0000-0003-0347-0182",
-              icon: "bi bi-person-vcard me-2",
-              external: true,
-              description: "Persistent researcher identifier and publication metadata."
-            },
-            {
-              title: "Google Scholar",
-              href: "https://scholar.google.com/citations?user=HOLu1ZIAAAAJ&hl=en",
-              icon: "bi bi-mortarboard me-2",
-              external: true,
-              description: "Citation metrics, h-index, and publication visibility."
+              title: "Awards",
+              href: "/en/awards/",
+              icon: "bi bi-award me-2",
+              description: "Recognition received for teaching, openness, and expert work."
             }
           ]
         }
@@ -919,23 +825,12 @@ module.exports = {
   megaMenuContact: {
     fi: {
       heading: "Ota yhteyttä",
-      description: "Lähetä viesti tai valitse suora yhteydenottotapa.",
+      description: "Valitse suora yhteydenottokanava roolin mukaan tai siirry yhteystietosivulle.",
+      layout: "three-columns",
       columns: [
         {
-          type: "form",
-          heading: "Lähetä viesti",
-          form: {
-            action: "https://formspree.io/f/xlgwqwzk",
-            method: "POST",
-            namePlaceholder: "Nimi",
-            emailPlaceholder: "Sähköposti",
-            messagePlaceholder: "Viesti",
-            submitLabel: "Lähetä"
-          }
-        },
-        {
           type: "links",
-          heading: "Työyhteys",
+          heading: "Yliopisto & tutkimus",
           links: [
             { title: "Sähköposti", href: universityEmailHref, icon: "bi bi-envelope me-2", description: "Ensisijainen yliopistosähköposti työasioiden yhteydenottoihin." },
             { title: "Puhelin", href: "tel:+358294483810", icon: "bi bi-telephone me-2", description: "Yliopistotyöhön liittyvät yhteydenotot puhelimitse." },
@@ -945,41 +840,30 @@ module.exports = {
         },
         {
           type: "links",
-          heading: "Larux tmi & politiikka",
+          heading: "Koulutukset & puheenvuorot",
           links: [
             { title: "Yritysyhteys", href: "tel:+358405118478", icon: "bi bi-whatsapp me-2", description: "Larux t:mi:n koulutus- ja puheenvuoropyynnöt tähän numeroon." },
-            { title: "Politiikan sähköposti", href: politicsEmailHref, icon: "bi bi-bank2 me-2", description: "Politiikkaan ja luottamustehtäviin liittyvät viestit." },
-            { title: "Facebook", href: "https://www.facebook.com/jari.laru.poliitikko/", icon: "bi bi-facebook me-2", external: true, description: "Poliittiset päivitykset ja keskustelu sosiaalisessa mediassa." },
+            { title: "Kouluttaja", href: "/kouluttaja/", icon: "bi bi-briefcase me-2", description: "Palvelut, tausta ja yhteistyömahdollisuudet yrityksen kautta." },
+            { title: "Esitykset", href: "/esitykset/", icon: "bi bi-easel2 me-2", description: "Puheenvuorot, materiaalit ja esimerkit koulutussisällöistä." },
             { title: "Yhteystiedot-sivu", href: "/yhteystiedot/", icon: "bi bi-person-lines-fill me-2", description: "Kaikki yhteydenottokanavat yhdellä sivulla." }
           ]
         },
         {
           type: "links",
-          heading: "Pikalinkit",
+          heading: "Politiikka & julkisuus",
           links: [
-            { title: "Larux tmi", href: "/larux-tmi/", icon: "bi bi-briefcase me-2", description: "Palvelut, tausta ja yhteistyömahdollisuudet yrityksen kautta." },
+            { title: "Politiikan sähköposti", href: politicsEmailHref, icon: "bi bi-bank2 me-2", description: "Politiikkaan ja luottamustehtäviin liittyvät viestit." },
             { title: "Politiikka", href: "/politiikka/", icon: "bi bi-megaphone me-2", description: "Luottamustehtävät, tavoitteet ja vaikuttamisen painopisteet." },
-            { title: "Tietosuojaseloste", href: "/tietosuojaseloste/", icon: "bi bi-shield-check me-2", description: "Tietosuojaan ja henkilötietojen käsittelyyn liittyvät periaatteet." }
+            { title: "Facebook", href: "https://www.facebook.com/jari.laru.poliitikko/", icon: "bi bi-facebook me-2", external: true, description: "Poliittiset päivitykset ja keskustelu sosiaalisessa mediassa." }
           ]
         }
       ]
     },
     en: {
       heading: "Contact",
-      description: "Send a message or choose a direct channel.",
+      description: "Choose the most relevant contact route by role or open the full contact page.",
+      layout: "three-columns",
       columns: [
-        {
-          type: "form",
-          heading: "Send a message",
-          form: {
-            action: "https://formspree.io/f/xlgwqwzk",
-            method: "POST",
-            namePlaceholder: "Name",
-            emailPlaceholder: "Email",
-            messagePlaceholder: "Message",
-            submitLabel: "Send"
-          }
-        },
         {
           type: "links",
           heading: "University contact",
@@ -992,21 +876,21 @@ module.exports = {
         },
         {
           type: "links",
-          heading: "Company & politics",
+          heading: "Training & speaking",
           links: [
             { title: "Business contact", href: "tel:+358405118478", icon: "bi bi-whatsapp me-2", description: "Training and keynote requests through Larux contact." },
-            { title: "Politics email", href: politicsEmailHref, icon: "bi bi-bank2 me-2", description: "Messages related to municipal and regional politics." },
-            { title: "Facebook", href: "https://www.facebook.com/jari.laru.poliitikko/", icon: "bi bi-facebook me-2", external: true, description: "Political updates and public discussion channel." },
+            { title: "Trainer", href: "/en/company/", icon: "bi bi-briefcase me-2", description: "Services, focus areas, and collaboration options through Larux." },
+            { title: "Presentations", href: "/en/presentations/", icon: "bi bi-easel2 me-2", description: "Talks, materials, and example keynote content." },
             { title: "Contact page", href: "/en/contact/", icon: "bi bi-person-lines-fill me-2", description: "All contact methods collected on one page." }
           ]
         },
         {
           type: "links",
-          heading: "Quick links",
+          heading: "Politics & public role",
           links: [
-            { title: "Company", href: "/en/company/", icon: "bi bi-briefcase me-2", description: "Services, focus areas, and collaboration options through Larux." },
+            { title: "Politics email", href: politicsEmailHref, icon: "bi bi-bank2 me-2", description: "Messages related to municipal and regional politics." },
             { title: "Politics", href: "/en/politics/", icon: "bi bi-megaphone me-2", description: "Positions of trust, priorities, and policy themes." },
-            { title: "Privacy", href: "/en/privacy/", icon: "bi bi-shield-check me-2", description: "How personal data is handled on this website." }
+            { title: "Facebook", href: "https://www.facebook.com/jari.laru.poliitikko/", icon: "bi bi-facebook me-2", external: true, description: "Political updates and public discussion channel." }
           ]
         }
       ]

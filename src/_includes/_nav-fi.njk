@@ -33,7 +33,7 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          {{ megaNavTrigger(navMe.url or '/tietoa/', navMe.title or 'Minä', navMe.icon or 'bi bi-person-fill', page.url and ('/tietoa/' in page.url or '/autolomat/' in page.url or '/cv/' in page.url or '/portfolio/' in page.url or '/larux-tmi/' in page.url or '/yritys/' in page.url), 'megaMenuMeFi', 'megaToggleMeFi', openSubmenuLabel) }}
+          {{ megaNavTrigger(navMe.url or '/tietoa/', navMe.title or 'Minä', navMe.icon or 'bi bi-person-fill', page.url and ('/tietoa/' in page.url or '/autolomat/' in page.url or '/cv/' in page.url or '/portfolio/' in page.url or '/kouluttaja/' in page.url or '/puhuja/' in page.url or '/larux-tmi/' in page.url or '/yritys/' in page.url), 'megaMenuMeFi', 'megaToggleMeFi', openSubmenuLabel) }}
           <div id="megaMenuMeFi" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleMeFi">
             <div class="mega-wrap grid-8-4">
               <div class="mega-left three-cols">
@@ -290,7 +290,7 @@
                 <h5>{{ contactMegaMenu.heading }}</h5>
                 <p class="menu-desc">{{ contactMegaMenu.description }}</p>
               </section>
-              <div class="mega-left four-cols contact-mega-cols">
+              <div class="mega-left {{ 'three-cols' if contactMegaMenu.layout == 'three-columns' else 'four-cols' }} contact-mega-cols">
                 {% for column in contactMegaMenu.columns %}
                   <section>
                     <h5>{{ column.heading }}</h5>

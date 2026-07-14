@@ -286,7 +286,7 @@
                 <h5>{{ contactMegaMenu.heading }}</h5>
                 <p class="menu-desc">{{ contactMegaMenu.description }}</p>
               </section>
-              <div class="mega-left four-cols contact-mega-cols">
+              <div class="mega-left {{ 'three-cols' if contactMegaMenu.layout == 'three-columns' else 'four-cols' }} contact-mega-cols">
                 {% for column in contactMegaMenu.columns %}
                   <section>
                     <h5>{{ column.heading }}</h5>
