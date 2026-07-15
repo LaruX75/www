@@ -78,6 +78,103 @@ templateEngineOverride: njk
   {% endif %}
 {% endfor %}
 {% set sortedInitiatives = collections.politics | sort(true, false, "date") %}
+{% set currentTrustRoles = [
+  {
+    "area": "Oulu",
+    "title": "2. varavaltuutettu",
+    "org": "Oulun kaupunginvaltuusto"
+  },
+  {
+    "area": "Oulu",
+    "title": "Sivistyslautakunnan jäsen",
+    "org": "Oulun kaupunki"
+  },
+  {
+    "area": "Pohjois-Pohjanmaa",
+    "title": "Aluevaltuuston varajäsen",
+    "org": "Pohjois-Pohjanmaan hyvinvointialue"
+  }
+] %}
+{% set electionPeriods = [
+  {
+    "period": "2025–2029",
+    "title": "Nykyinen vaalikausi",
+    "summary": "Ehdolla sekä kunta- että aluevaaleissa. Nykyiset luottamustehtävät jatkuvat sivistyksen, palvelujen ja avoimen päätöksenteon teemoissa.",
+    "detail": "Luottamustoimet: 2. varavaltuutettu, sivistyslautakunnan jäsen, aluevaltuuston varajäsen.",
+    "link": "/kunta-ja-aluevaalit-2025/",
+    "linkLabel": "Vaalisivusto 2025"
+  },
+  {
+    "period": "2021–2025",
+    "title": "Kaupunginvaltuutettu Oulussa",
+    "summary": "Valittu uudelleen Oulun kaupunginvaltuustoon. Työ painottui erityisesti sivistys- ja kulttuuripalveluihin sekä laajoihin palveluverkkokysymyksiin.",
+    "detail": "Luottamustoimet: kaupunginvaltuutettu, sivistys- ja kulttuurilautakunnan jäsen, maakuntavaltuuston jäsen.",
+    "link": "/kuntavaalit-2021/",
+    "linkLabel": "Kuntavaalit 2021"
+  },
+  {
+    "period": "2017–2021",
+    "title": "Ensimmäinen valtuustokausi",
+    "summary": "Ensimmäinen valinta Oulun kaupunginvaltuustoon. Samalla rakentui linja, jossa yhdistyvät sivistys, alueellinen yhdenvertaisuus ja lähidemokratia.",
+    "detail": "Luottamustoimet: kaupunginvaltuutettu, sivistys- ja kulttuurilautakunnan jäsen, maakuntavaltuuston varavaltuutettu, lähidemokratiatoimikunnan puheenjohtaja.",
+    "link": "/jari-laru-kaupunginvaltuutettu/",
+    "linkLabel": "Arkistosivu 2017–2021"
+  }
+] %}
+
+<section class="py-5 mb-0 bg-body-tertiary" id="vaalikaudet">
+  <div class="site-shell">
+    <div class="pol-section-head">
+      <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-calendar-event me-1"></i>Mandaatit</p>
+      <h2 class="pol-section-title">Vaalikaudet ja nykyiset luottamustehtävät</h2>
+      <p class="pol-section-lead mb-0">Poliittinen profiili ei perustu vain yksittäisiin puheenvuoroihin. Tällä hetkellä tärkeimmät luottamustehtäväni liittyvät Oulun kaupungin päätöksentekoon, sivistyslautakuntaan ja alueelliseen vaikuttamiseen.</p>
+    </div>
+
+    <div class="pol-mandate-layout">
+      <aside class="pol-mandate-card pol-mandate-card--current">
+        <div class="pol-mandate-current-head">
+          <p class="pol-current-kicker mb-1">Nykyiset tehtävät</p>
+          <h3 class="pol-current-title">Vaalikausi 2025–2029</h3>
+          <p class="text-muted small mb-0">Käytännön politiikka näkyy näissä rooleissa juuri nyt.</p>
+        </div>
+        <div class="pol-role-list">
+          {% for role in currentTrustRoles %}
+          <article class="pol-role-item">
+            <p class="pol-role-area">{{ role.area }}</p>
+            <h4 class="pol-role-title">{{ role.title }}</h4>
+            <p class="pol-role-org">{{ role.org }}</p>
+          </article>
+          {% endfor %}
+        </div>
+      </aside>
+
+      <div class="pol-mandate-periods">
+        {% for period in electionPeriods %}
+        <article class="pol-mandate-card pol-mandate-period">
+          <div class="pol-mandate-period-top">
+            <span class="pol-mandate-badge">{{ period.period }}</span>
+            <h3 class="pol-mandate-title">{{ period.title }}</h3>
+          </div>
+          <p class="pol-mandate-summary">{{ period.summary }}</p>
+          <p class="pol-mandate-detail">{{ period.detail }}</p>
+          <a href="{{ period.link }}" class="pol-mandate-link">{{ period.linkLabel }}</a>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="pol-mandate-links">
+      <a href="/vaalihistoria/" class="pol-mandate-link-card">
+        <strong>Vaalihistoria</strong>
+        <span>Koko vaalihistoria, vaalitulokset ja luottamustoimet vaalikausittain.</span>
+      </a>
+      <a href="/sidonnaisuudet/" class="pol-mandate-link-card">
+        <strong>Sidonnaisuudet</strong>
+        <span>Avoin kooste jäsenyyksistä, ilmoituksista ja luottamustehtävistä.</span>
+      </a>
+    </div>
+  </div>
+</section>
 
 <section class="py-5 mb-0" id="ydinteemat">
   <div class="site-shell">
@@ -235,7 +332,7 @@ templateEngineOverride: njk
           <strong>Aloitearkisto</strong>
           <span>Kaikki valtuustoaloitteet vastauksineen ja taustoineen.</span>
         </a>
-        <a href="https://www.ouka.fi/oulu/kaupunginvaltuusto/kokoukset" target="_blank" rel="noopener noreferrer" class="pol-archive-link">
+        <a href="https://www.ouka.fi/valtuusto" target="_blank" rel="noopener noreferrer" class="pol-archive-link">
           <strong>Kokoukset ja pöytäkirjat</strong>
           <span>Oulun kaupungin kokoukset, tallenteet ja viralliset asiakirjat.</span>
         </a>
@@ -500,6 +597,136 @@ templateEngineOverride: njk
     font-size: clamp(2rem, 3vw, 3rem);
     line-height: 1.04;
     margin-bottom: 0.75rem;
+  }
+  .pol-mandate-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    gap: 1.3rem;
+    align-items: start;
+    margin-bottom: 1.25rem;
+  }
+  .pol-mandate-card {
+    border-radius: 1.2rem;
+    border: 1px solid rgba(17, 40, 70, 0.1);
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 1rem 2.3rem rgba(17, 40, 70, 0.08);
+  }
+  .pol-mandate-card--current {
+    padding: 1.35rem;
+  }
+  .pol-mandate-current-head {
+    margin-bottom: 1rem;
+  }
+  .pol-role-list {
+    display: grid;
+    gap: 0.85rem;
+  }
+  .pol-role-item {
+    padding: 1rem;
+    border-radius: 0.95rem;
+    border: 1px solid rgba(17, 40, 70, 0.1);
+    background: rgba(246, 249, 255, 0.7);
+  }
+  .pol-role-area {
+    margin: 0 0 0.3rem;
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(17, 40, 70, 0.58);
+  }
+  .pol-role-title {
+    margin: 0 0 0.22rem;
+    font-size: 1.02rem;
+    line-height: 1.35;
+    color: #102845;
+  }
+  .pol-role-org {
+    margin: 0;
+    color: rgba(17, 40, 70, 0.74);
+    line-height: 1.5;
+  }
+  .pol-mandate-periods {
+    display: grid;
+    gap: 0.95rem;
+  }
+  .pol-mandate-period {
+    padding: 1.2rem 1.2rem 1.1rem;
+  }
+  .pol-mandate-period-top {
+    display: grid;
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
+  }
+  .pol-mandate-badge {
+    display: inline-flex;
+    align-self: flex-start;
+    padding: 0.28rem 0.62rem;
+    border-radius: 999px;
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: rgba(17, 40, 70, 0.08);
+    color: #163e6c;
+  }
+  .pol-mandate-title {
+    margin: 0;
+    font-size: 1.18rem;
+    line-height: 1.2;
+    color: #102845;
+  }
+  .pol-mandate-summary,
+  .pol-mandate-detail {
+    margin: 0 0 0.7rem;
+    line-height: 1.65;
+  }
+  .pol-mandate-summary {
+    color: rgba(17, 40, 70, 0.82);
+  }
+  .pol-mandate-detail {
+    font-size: 0.95rem;
+    color: rgba(17, 40, 70, 0.72);
+  }
+  .pol-mandate-link {
+    display: inline-flex;
+    align-items: center;
+    font-weight: 700;
+    text-decoration: none;
+    color: #12355f;
+  }
+  .pol-mandate-link:hover {
+    color: #0d4f94;
+  }
+  .pol-mandate-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem;
+  }
+  .pol-mandate-link-card {
+    display: grid;
+    gap: 0.28rem;
+    padding: 1rem 1.05rem;
+    border-radius: 1rem;
+    text-decoration: none;
+    color: #102845;
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(17, 40, 70, 0.1);
+    transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease, color 180ms ease;
+  }
+  .pol-mandate-link-card strong {
+    color: #12355f;
+    line-height: 1.35;
+  }
+  .pol-mandate-link-card span {
+    color: rgba(17, 40, 70, 0.74);
+    line-height: 1.55;
+  }
+  .pol-mandate-link-card:hover {
+    transform: translateY(-1px);
+    border-color: rgba(18, 63, 116, 0.22);
+    background: rgba(255, 255, 255, 0.96);
+    color: #102845;
   }
   .pol-theme-card {
     height: 100%;
@@ -819,7 +1046,8 @@ templateEngineOverride: njk
   [data-bs-theme="dark"] .pol-eyebrow,
   [data-bs-theme="dark"] .pol-eyebrow--dark,
   [data-bs-theme="dark"] .pol-current-kicker,
-  [data-bs-theme="dark"] .pol-theme-proof-label {
+  [data-bs-theme="dark"] .pol-theme-proof-label,
+  [data-bs-theme="dark"] .pol-role-area {
     color: rgba(255, 255, 255, 0.64);
   }
   [data-bs-theme="dark"] .pol-hero-manifesto,
@@ -830,7 +1058,11 @@ templateEngineOverride: njk
   [data-bs-theme="dark"] .pol-section-lead,
   [data-bs-theme="dark"] .pol-theme-description,
   [data-bs-theme="dark"] .pol-theme-meta,
-  [data-bs-theme="dark"] .pol-initiative-response {
+  [data-bs-theme="dark"] .pol-initiative-response,
+  [data-bs-theme="dark"] .pol-mandate-summary,
+  [data-bs-theme="dark"] .pol-mandate-detail,
+  [data-bs-theme="dark"] .pol-role-org,
+  [data-bs-theme="dark"] .pol-mandate-link-card span {
     color: rgba(255, 255, 255, 0.8);
   }
   [data-bs-theme="dark"] .pol-hero-point-text,
@@ -847,10 +1079,14 @@ templateEngineOverride: njk
   }
   [data-bs-theme="dark"] .pol-hero-point-title,
   [data-bs-theme="dark"] .pol-theme-proof-link,
-  [data-bs-theme="dark"] .political-speech-title {
+  [data-bs-theme="dark"] .political-speech-title,
+  [data-bs-theme="dark"] .pol-mandate-title,
+  [data-bs-theme="dark"] .pol-role-title,
+  [data-bs-theme="dark"] .pol-mandate-link-card {
     color: #f4f8fd;
   }
   [data-bs-theme="dark"] .pol-hero-card,
+  [data-bs-theme="dark"] .pol-mandate-card,
   [data-bs-theme="dark"] .pol-theme-card,
   [data-bs-theme="dark"] .pol-method-card,
   [data-bs-theme="dark"] .pol-current-card,
@@ -860,9 +1096,15 @@ templateEngineOverride: njk
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.22);
   }
   [data-bs-theme="dark"] .pol-theme-proof-item,
+  [data-bs-theme="dark"] .pol-role-item,
+  [data-bs-theme="dark"] .pol-mandate-link-card,
   [data-bs-theme="dark"] .pol-archive-link {
     background: rgba(255, 255, 255, 0.09);
     border-color: rgba(255, 255, 255, 0.16);
+  }
+  [data-bs-theme="dark"] .pol-mandate-badge {
+    background: rgba(255, 255, 255, 0.12);
+    color: #f4f8fd;
   }
   [data-bs-theme="dark"] .pol-theme-pill {
     color: rgba(255, 255, 255, 0.82);
@@ -929,7 +1171,17 @@ templateEngineOverride: njk
     color: #fff;
     border-color: rgba(255, 255, 255, 0.3);
   }
+  [data-bs-theme="dark"] .pol-mandate-link {
+    color: #cfe4ff;
+  }
+  [data-bs-theme="dark"] .pol-mandate-link:hover,
+  [data-bs-theme="dark"] .pol-mandate-link-card:hover strong {
+    color: #ffffff;
+  }
   @media (max-width: 1199.98px) {
+    .pol-mandate-layout {
+      grid-template-columns: 1fr;
+    }
     .pol-method-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -938,6 +1190,9 @@ templateEngineOverride: njk
     }
   }
   @media (max-width: 767.98px) {
+    .pol-mandate-links {
+      grid-template-columns: 1fr;
+    }
     .pol-hero-title {
       max-width: none;
     }

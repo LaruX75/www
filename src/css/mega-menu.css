@@ -11,6 +11,10 @@
   --mega-cta-hover-border: #243a50;
   --menu-text: #0f172a;
   --menu-muted: #475569;
+  --mega-icon-button-hover-bg: rgba(47, 75, 102, 0.1);
+  --mega-icon-button-hover-border: rgba(47, 75, 102, 0.22);
+  --mega-icon-button-hover-color: #17324d;
+  --mega-nav-underline-color: rgba(47, 75, 102, 0.65);
   --evelenty-nav-gap: 0.25rem;
   --evelenty-panel-padding: 1.5rem;
   --menu-divider: rgba(15, 23, 42, 0.28);
@@ -27,6 +31,10 @@
   --mega-cta-hover-border: #4f7296;
   --menu-text: #e2e8f0;
   --menu-muted: #94a3b8;
+  --mega-icon-button-hover-bg: rgba(79, 114, 150, 0.18);
+  --mega-icon-button-hover-border: rgba(158, 197, 248, 0.28);
+  --mega-icon-button-hover-color: #f8fbff;
+  --mega-nav-underline-color: rgba(212, 228, 247, 0.82);
   --menu-divider: rgba(255, 255, 255, 0.32);
 }
 
@@ -49,6 +57,22 @@
 [data-bs-theme="light"] .site-navbar #themeToggleBtn,
 [data-bs-theme="light"] .site-navbar #searchToggleBtn {
   color: #1f2937;
+}
+
+.site-navbar #themeToggleBtn,
+.site-navbar #searchToggleBtn {
+  border: 1px solid transparent;
+  background: transparent;
+  transition: color 0.18s ease, background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.site-navbar #themeToggleBtn:hover,
+.site-navbar #themeToggleBtn:focus-visible,
+.site-navbar #searchToggleBtn:hover,
+.site-navbar #searchToggleBtn:focus-visible {
+  color: var(--mega-icon-button-hover-color) !important;
+  background-color: var(--mega-icon-button-hover-bg);
+  border-color: var(--mega-icon-button-hover-border);
 }
 
 .site-navbar.navbar-hero-transparent::before {
@@ -78,6 +102,16 @@
   font-size: 1rem;
   font-weight: 600;
   white-space: nowrap;
+}
+
+.site-navbar .nav-link {
+  text-decoration-color: transparent;
+}
+
+.site-navbar .nav-link:hover,
+.site-navbar .nav-link:focus-visible,
+.site-navbar .nav-link.active {
+  text-decoration-color: var(--mega-nav-underline-color);
 }
 
 .nav-link:focus-visible,

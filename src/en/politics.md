@@ -106,7 +106,7 @@ lang: en
         <h2 class="h4 mb-1">Council meetings</h2>
         <p class="text-muted small mb-0">Oulu City Council meetings live and recorded — source: City of Oulu open data</p>
       </div>
-      <a href="https://www.ouka.fi/oulu/kaupunginvaltuusto/kokoukset" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary btn-sm">ouka.fi</a>
+      <a href="https://www.ouka.fi/valtuusto" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary btn-sm">ouka.fi</a>
     </div>
 
     {% if oukaCouncilVideos.length > 0 %}
