@@ -681,10 +681,10 @@ module.exports = {
               description: "Pedagoginen ajattelu, opetusosaaminen ja opetustyön kehittäminen."
             },
             {
-              title: "Opinnäytetyöt",
-              href: "/opinnaytteet/",
-              icon: "bi bi-mortarboard me-2",
-              description: "Ohjatut kandidaatti- ja pro gradu -tutkielmat."
+              title: "Ansioluettelo",
+              href: "/cv/",
+              icon: "bi bi-file-person me-2",
+              description: "Koulutus, työkokemus ja asiantuntijuuden kuvaus."
             }
           ]
         },
@@ -704,10 +704,10 @@ module.exports = {
               description: "Tieteelliset julkaisut, kirjoitukset ja muut tekstisisällöt."
             },
             {
-              title: "Ansioluettelo",
-              href: "/cv/",
-              icon: "bi bi-file-person me-2",
-              description: "Koulutus, työkokemus ja asiantuntijuuden kuvaus."
+              title: "Opinnäytetyöt",
+              href: "/opinnaytteet/",
+              icon: "bi bi-mortarboard me-2",
+              description: "Ohjatut kandidaatti- ja pro gradu -tutkielmat."
             }
           ]
         },
@@ -760,10 +760,10 @@ module.exports = {
               description: "Pedagogical approach, teaching expertise, and development work."
             },
             {
-              title: "Theses",
-              href: "/en/theses/",
-              icon: "bi bi-mortarboard me-2",
-              description: "Bachelor's and master's theses supervised by me."
+              title: "Curriculum Vitae",
+              href: "/en/cv/",
+              icon: "bi bi-file-person me-2",
+              description: "Education, work experience, and professional background."
             }
           ]
         },
@@ -783,10 +783,10 @@ module.exports = {
               description: "Scientific publications, essays, and related outputs."
             },
             {
-              title: "Curriculum Vitae",
-              href: "/en/cv/",
-              icon: "bi bi-file-person me-2",
-              description: "Education, work experience, and professional background."
+              title: "Theses",
+              href: "/en/theses/",
+              icon: "bi bi-mortarboard me-2",
+              description: "Bachelor's and master's theses supervised by me."
             }
           ]
         },
