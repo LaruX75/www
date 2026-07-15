@@ -18,6 +18,9 @@ keywords:
 type: mielipide
 wp_id: 146
 source_url: "https://www.jarilaru.fi/yliopistoa-ja-ammattikorkeakoulua-yhdistettiin-kalliisti-yhteiskunta-on-investoinut-linnanmaan-kampukseen-kymmenia-miljoonia/"
+politicalProfiles:
+  - sivistys
+  - kaupunkikehitys
 templateEngineOverride: md
 ---
 <p><strong>Mielipidekirjoitus on julkaistu Sanomalehti Kalevassa 8.8.2020 otsikolla “Yliopistoa ja ammattikorkeakoulua yhdistettiin kalliisti - yhteiskunta on investoinut Linnanmaan kampukseen kymmeniä miljoonia”</strong>&nbsp;(<a href="http://kaleva.fi/yhteiskunta-on-investoinut-linnanmaan-kampukseen-k/2765024?fbclid=IwAR0pGawS01ppInhNHkFXILbSD2RVSEWXsnkg2gbMvRMhwPrlAdtsf-zcTXQ" rel="noreferrer noopener" target="_blank">kaleva.fi/yhteiskunta-on-investoinut-linnanmaan-kampukseen-k/2765024</a>)</p>
@@ -41,4 +44,3 @@ templateEngineOverride: md
 <p>Maailmantalous on vakavasti häiriintynyt koronakriisin seurauksena. Kaikki edellä mainitut investoinnit ovat yhteiskunnan eli meidän veronmaksajien tekemiä satsauksia ja Oulun kaupungissa on valmisteilla 54 miljoonan euron säästöt.</p>
 <p>Kaupungin johdon intoa edistää keskustakampusta ennen poliittista päätöksentekoa voi myös hämmästellä, sillä yllä luetellut kulut me tiedämme, mutta kolmannen kampuksen todellisia kuluja emme tiedä.</p>
 <p><strong>Jari Laru<br></strong><em>KT, yliopistonlehtori<br>Kaupunginvaltuutettu ja sivistys- ja kulttuurilautakunnan jäsen (kok.)<br>Jääli</em></p>
-

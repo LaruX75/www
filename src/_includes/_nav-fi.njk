@@ -179,9 +179,9 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          {{ megaNavTrigger(navPolitics.url or '/politiikka/', navPolitics.title or 'Politiikka', navPolitics.icon or 'bi bi-bank2', page.url and ('/politiikka/' in page.url or '/politiiikka/' in page.url), 'megaMenuPoliticsFi', 'megaTogglePoliticsFi', openSubmenuLabel) }}
+          {{ megaNavTrigger(navPolitics.url or '/politiikka/', navPolitics.title or 'Politiikka', navPolitics.icon or 'bi bi-bank2', page.url and ('/politiikka/' in page.url or '/politiiikka/' in page.url or '/sidonnaisuudet/' in page.url or '/vaalikaudet/' in page.url or '/vaalihistoria/' in page.url or '/kunta-ja-aluevaalit-2025/' in page.url or '/kuntavaalit-2021/' in page.url or '/jari-laru-aluevaltuustoon/' in page.url or '/kunnallisvaalit-2012/' in page.url or '/jari-laru-kaupunginvaltuutettu/' in page.url), 'megaMenuPoliticsFi', 'megaTogglePoliticsFi', openSubmenuLabel) }}
           <div id="megaMenuPoliticsFi" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaTogglePoliticsFi">
-            <div class="mega-wrap">
+            <div class="mega-wrap{{ ' grid-8-4' if politicsMegaMenu.spotlight }}">
               <div class="mega-left three-cols">
                 {% for section in politicsMegaMenu.sections %}
                   <section>
@@ -204,6 +204,20 @@
                   </section>
                 {% endfor %}
               </div>
+              {% if politicsMegaMenu.spotlight %}
+              <aside class="mega-right cta-card">
+                <h5>{{ politicsMegaMenu.spotlight.title }}</h5>
+                <p class="menu-desc">{{ politicsMegaMenu.spotlight.description }}</p>
+                <ul class="mega-role-list">
+                  {% for role in politicsMegaMenu.spotlight.roles %}
+                  <li>{{ role }}</li>
+                  {% endfor %}
+                </ul>
+                {% if politicsMegaMenu.spotlight.cta %}
+                <a class="btn btn-accent btn-lg w-100 mt-2" href="{{ politicsMegaMenu.spotlight.cta.href }}">{{ politicsMegaMenu.spotlight.cta.label }}</a>
+                {% endif %}
+              </aside>
+              {% endif %}
             </div>
           </div>
         </li>
@@ -219,6 +233,9 @@
                 </section>
                 {% for contentColumn in writingsMegaMenu.contentColumns %}
                   <section class="writings-main-col">
+                    {% if contentColumn.heading %}
+                      <h5>{{ contentColumn.heading }}</h5>
+                    {% endif %}
                     {% for link in contentColumn.links %}
                       {% set linkCount = 0 %}
                       {% if link.countKey %}
@@ -420,6 +437,19 @@
         <div id="mobileNavFiPolitics" class="accordion-collapse collapse" aria-labelledby="mobileNavFiPoliticsHead" data-bs-parent="#mobileNavAccordionFi">
           <div class="accordion-body">
             <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="{{ navPolitics.url or '/politiikka/' }}">Avaa Politiikka-sivu</a>
+            {% if politicsMegaMenu.description %}
+              <p class="menu-desc mb-3">{{ politicsMegaMenu.description }}</p>
+            {% endif %}
+            {% if politicsMegaMenu.spotlight %}
+              <div class="mobile-nav-spotlight">
+                <p class="text-uppercase small text-muted mb-1">{{ politicsMegaMenu.spotlight.title }}</p>
+                <ul class="mega-role-list mega-role-list--compact">
+                  {% for role in politicsMegaMenu.spotlight.roles %}
+                    <li>{{ role }}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+            {% endif %}
             {% for section in politicsMegaMenu.sections %}
               <p class="text-uppercase small text-muted mb-1 mt-2">{{ section.heading }}</p>
               <div class="d-grid gap-1 mb-2">
@@ -438,8 +468,12 @@
         <div id="mobileNavFiWritings" class="accordion-collapse collapse" aria-labelledby="mobileNavFiWritingsHead" data-bs-parent="#mobileNavAccordionFi">
           <div class="accordion-body">
             <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="{{ navWritings.url or '/kynasta/' }}">Avaa Kynästä-sivu</a>
+            <p class="menu-desc mb-3">{{ writingsMegaMenu.description }}</p>
             {% if writingsMegaMenu.contentColumns %}
               {% for contentColumn in writingsMegaMenu.contentColumns %}
+                {% if contentColumn.heading %}
+                  <p class="text-uppercase small text-muted mb-1 mt-2">{{ contentColumn.heading }}</p>
+                {% endif %}
                 <div class="d-grid gap-1 mb-2">
                   {% for link in contentColumn.links %}
                     <a class="mobile-nav-link" href="{{ link.href }}">{{ link.title }}</a>

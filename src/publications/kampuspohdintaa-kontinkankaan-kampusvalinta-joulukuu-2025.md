@@ -17,6 +17,9 @@ keywords:
   - osaoptimointi
 type: mielipide
 source_url: "https://www.facebook.com/jari.laru.poliitikko"
+politicalProfiles:
+  - sivistys
+  - kaupunkikehitys
 templateEngineOverride: md
 ---
 

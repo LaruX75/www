@@ -17,6 +17,7 @@ wp_id: 2063
 source_url: "https://www.jarilaru.fi/keskustakampus-on-uhka-ict-sektorin-tulevaisuudelle/"
 politicalProfiles:
   - sivistys
+  - kaupunkikehitys
 templateEngineOverride: md
 ---
 <p><br>Mielipidekirjoitus on julkaistu 10.2.2022 Sanomalehti Kalevan "Lukijalta" palstalla: <a href="https://www.kaleva.fi/keskustakampus-on-uhka-ict-sektorin-tulevaisuudell/4325146" target="_blank" rel="noreferrer noopener">https://www.kaleva.fi/keskustakampus-on-uhka-ict-sektorin-tulevaisuudell/4325146</a> </p>
@@ -32,4 +33,3 @@ templateEngineOverride: md
 <p>Menestyvä ict-sektori tarkoittaa hyvinvointia kaupungin asukkaille. Tiedeyhteisön jäsenenä korostan, että on olennaista kiinnittää huomiota siihen, mitä yliopiston tulevaisuutta koskevat suunnitelmat merkitsevät tieteelle ja akateemiselle tutkimukselle.</p>
 <p>Jari Laru</p>
 <p><em>KT, yliopistonlehtori</em><br><em>kaupunginvaltuutettu (kok.)</em><br>Oulu</p>
-

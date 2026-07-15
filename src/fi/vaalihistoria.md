@@ -8,25 +8,33 @@ description: "Jari Larun poliittinen työ vaalikausittain: luottamustoimet, vaal
 templateEngineOverride: njk
 ---
 
-{% macro renderContentList(items, emptyText, metaMode="date") %}
+{% macro renderContentList(items, emptyText, listId, metaMode="date") %}
   {% if items.length %}
-  <ul class="term-content-list">
-    {% for item in items %}
-    <li class="term-content-item">
-      <a href="{{ item.url }}" class="term-content-link">{{ item.data.title }}</a>
-      <div class="term-content-meta">
-        <span>{{ item.date | dateFormat }}</span>
-        {% if metaMode == "event" and item.data.event %}
-        <span>{{ item.data.event }}</span>
-        {% elif metaMode == "initiative" %}
-        <span>{{ item.data.initiative_type or "Valtuustoaloite" }}</span>
-        {% elif metaMode == "type" and item.data.type %}
-        <span>{{ item.data.type }}</span>
-        {% endif %}
-      </div>
-    </li>
-    {% endfor %}
-  </ul>
+  <div class="term-content-stack" data-term-pagination data-page-size="3" data-list-id="{{ listId }}">
+    <ul class="term-content-list">
+      {% for item in items %}
+      <li class="term-content-item" data-page-item>
+        <a href="{{ item.url }}" class="term-content-link">{{ item.data.title }}</a>
+        <div class="term-content-meta">
+          <span>{{ item.date | dateFormat }}</span>
+          {% if metaMode == "event" and item.data.event %}
+          <span>{{ item.data.event }}</span>
+          {% elif metaMode == "initiative" %}
+          <span>{{ item.data.initiative_type or "Valtuustoaloite" }}</span>
+          {% elif metaMode == "type" and item.data.type %}
+          <span>{{ item.data.type }}</span>
+          {% endif %}
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    {% if items.length > 3 %}
+    <div class="term-content-pagination">
+      <p class="term-content-pagination__info mb-0" data-page-info aria-live="polite"></p>
+      <ul class="pagination pagination-sm mb-0 flex-wrap" data-page-controls aria-label="Sivutus {{ listId }}"></ul>
+    </div>
+    {% endif %}
+  </div>
   {% else %}
   <p class="term-empty mb-0">{{ emptyText }}</p>
   {% endif %}
@@ -45,19 +53,20 @@ templateEngineOverride: njk
   {
     "anchor": "2025-2029",
     "period": "2025–2029",
-    "title": "2. varavaltuutettu, sivistyslautakunnan jäsen ja aluevaltuuston varajäsen",
-    "summary": "Nykyinen vaalikausi kokoaa yhteen kuntavaalit, aluevaalit sekä nykyiset luottamustehtävät. Painopiste näkyy sivistyksessä, palveluissa ja avoimen päätöksenteon kysymyksissä.",
+    "current": true,
+    "title": "2. varavaltuutettu, sivistyslautakunnan jäsen sekä aluevaltuuston varajäsen",
+    "summary": "Kuluvalla vaalikaudella korostuvat maankäytön ja palveluverkon yhteys, alueellinen yhdenvertaisuus, valmistelun avoimuus sekä kaupungin ja yliopiston suhde. Esillä ovat yhtä aikaa Haukiputaan ja lähijunaliikenteen kaltaiset aluekysymykset, tietoon perustuva päätöksenteko ja opetuksen kehittäminen.",
     "start": "2025-04-14",
     "results": [
       {
         "label": "Kuntavaalit 2025",
         "detail": "Oulu, ehdokas 439",
-        "result": "289 ääntä, 2. varavaltuutettu"
+        "result": "289 ääntä, valittu 2. varavaltuutetuksi"
       },
       {
         "label": "Aluevaalit 2025",
         "detail": "Pohjois-Pohjanmaa",
-        "result": "395 ääntä, aluevaltuuston varajäsen"
+        "result": "395 ääntä, valittu aluevaltuuston varajäseneksi"
       }
     ],
     "roles": [
@@ -76,19 +85,19 @@ templateEngineOverride: njk
     "anchor": "2021-2025",
     "period": "2021–2025",
     "title": "Kaupunginvaltuutettu, sivistys- ja kulttuurilautakunnan jäsen sekä maakuntavaltuuston jäsen",
-    "summary": "Toinen valtuustokausi laajeni myös alueelliseksi vaikuttamiseksi. Kaudella korostuivat sivistys- ja kulttuuripalvelut, palveluverkko, avoimuus sekä hyvinvointialueen käynnistyminen.",
+    "summary": "Toinen valtuustokausi laajeni myös alueelliseen vaikuttamiseen, ja aineistossa painottuvat kaupungin suuret rakennekysymykset. Esillä ovat erityisesti palveluverkko, kampus- ja kaavaratkaisut, kulttuuri- ja hyvinvointipalvelut sekä avoimuus, tiedolla johtaminen ja aloitteiden seuranta.",
     "start": "2021-06-14",
     "end": "2025-04-13",
     "results": [
       {
         "label": "Kuntavaalit 2021",
         "detail": "Oulu, ehdokas 372",
-        "result": "354 ääntä, kaupunginvaltuutettu"
+        "result": "354 ääntä, valittu kaupunginvaltuutetuksi"
       },
       {
         "label": "Aluevaalit 2022",
         "detail": "Pohjois-Pohjanmaa, ehdokas 253",
-        "result": "436 ääntä, aluevaltuuston varajäsen"
+        "result": "436 ääntä, valittu aluevaltuuston varajäseneksi"
       }
     ],
     "roles": [
@@ -111,15 +120,15 @@ templateEngineOverride: njk
   {
     "anchor": "2017-2021",
     "period": "2017–2021",
-    "title": "Ensimmäinen valtuustokausi",
-    "summary": "Ensimmäinen valinta kaupunginvaltuustoon rakensi profiilin, jossa sivistys, alueellinen yhdenvertaisuus ja valmistelun kriittinen tarkastelu kulkivat rinnakkain.",
+    "title": "Kaupunginvaltuutettu, sivistys- ja kulttuurilautakunnan jäsen sekä maakuntavaltuuston varavaltuutettu",
+    "summary": "Ensimmäinen valtuustokausi rakensi profiilia sivistyksen, alueellisen yhdenvertaisuuden ja valmistelun kriittisen tarkastelun varaan. Aineistossa toistuvat kouluverkko, kampusratkaisut, kaupunginosien tasapuolinen kehittäminen sekä kysymys siitä, miten päätöksiä perustellaan ja valmistellaan avoimesti.",
     "start": "2017-04-10",
     "end": "2021-06-13",
     "results": [
       {
         "label": "Kuntavaalit 2017",
         "detail": "Oulu, ehdokas 36",
-        "result": "168 ääntä, kaupunginvaltuutettu"
+        "result": "168 ääntä, valittu kaupunginvaltuutetuksi"
       }
     ],
     "roles": [
@@ -137,15 +146,15 @@ templateEngineOverride: njk
   {
     "anchor": "2013-2017",
     "period": "2013–2017",
-    "title": "Varavaltuutettu ja lähidemokratiatoimikunnan puheenjohtaja",
-    "summary": "Vaalikausi käynnistyi vuoden 2012 kunnallisvaalien jälkeen. Tällä jaksolla painottuivat alueellinen osallisuus, lähipalvelut ja asukasvaikuttaminen.",
+    "title": "Varavaltuutettu sekä lähidemokratiatoimikunnan puheenjohtaja",
+    "summary": "Monikuntaliitoksen jälkeinen ensimmäinen kausi painottui lähidemokratiaan, asukasvaikuttamiseen ja siihen, miten paikallinen ääni kuuluu suuressa Oulussa. Esillä ovat erityisesti Jäälin ja muiden alueiden palvelut, alueellinen osallisuus sekä uuden kaupungin tapa rakentaa luottamusta kuntalaisten suuntaan.",
     "start": "2013-01-01",
     "end": "2017-04-09",
     "results": [
       {
         "label": "Kunnallisvaalit 2012",
         "detail": "Oulu, ehdokas 367",
-        "result": "Varavaltuutettu"
+        "result": "Valittu varavaltuutetuksi"
       }
     ],
     "roles": [
@@ -167,7 +176,7 @@ templateEngineOverride: njk
       <div>
         <p class="term-eyebrow mb-2">Politiikka</p>
         <h1 class="term-hero-title mb-3">Vaalikaudet</h1>
-        <p class="term-hero-lead mb-4">Tämä sivu kokoaa poliittisen työn vaalikausittain monikuntaliitoksesta alkaen, jolloin minusta tuli taas oululainen. Jokaiselta kaudelta löytyvät luottamustoimet, vaalitulokset, puheenvuorot, aloitteet ja muut politiikkaan liittyvät sisällöt samasta näkymästä.</p>
+        <p class="term-hero-lead mb-4">Tämä sivu kokoaa poliittisen työn vaalikausittain monikuntaliitoksesta alkaen, jolloin minusta tuli taas oululainen. Tästä näkymästä löytyvät puheenvuorot, aloitteet ja kirjoitukset vaalikausien mukaan, jotta näet miten vastuut, painotukset ja poliittinen työ ovat muuttuneet ajan myötä.</p>
       </div>
       <aside class="term-hero-card">
         <p class="term-hero-card__kicker">Mitä täältä löytyy</p>
@@ -187,37 +196,6 @@ templateEngineOverride: njk
         <strong>{{ term.title }}</strong>
       </a>
       {% endfor %}
-    </div>
-  </div>
-</section>
-
-<section class="term-archive-page py-5 border-bottom">
-  <div class="site-shell">
-    <div class="term-section-head">
-      <p class="term-eyebrow term-eyebrow--dark mb-1">Rakenne</p>
-      <h2 class="term-section-title">Politiikka-sivu näyttää profiilin, tämä sivu näyttää työjäljen kausittain</h2>
-      <p class="term-section-lead mb-0">Tarkoitus ei ole toistaa vaalisivuja, vaan asettaa puheenvuorot, aloitteet ja kirjoitukset oikeaan vaalikausikontekstiin.</p>
-    </div>
-    <div class="row g-4">
-      <div class="col-lg-7">
-        <div class="term-overview-card h-100">
-          <p class="term-card-kicker mb-2">Periaate</p>
-          <h2 class="h4 fw-bold mb-3">Täällä politiikka näkyy vaalikausina</h2>
-          <p class="mb-0">Tällä sivulla puheenvuorot, aloitteet ja kirjoitukset on koottu sen mukaan, mille vaalikaudelle ne kuuluvat. Näin yksittäiset sisällöt asettuvat oikeaan poliittiseen ja ajalliseen yhteyteensä.</p>
-        </div>
-      </div>
-      <div class="col-lg-5">
-        <div class="term-overview-card h-100">
-          <p class="term-card-kicker mb-2">Nykyiset tehtävät</p>
-          <h2 class="h4 fw-bold mb-3">Nykyinen vaalikausi</h2>
-          <p class="mb-3">Tällä hetkellä työni näkyy erityisesti kaupunginvaltuuston, sivistyslautakunnan ja alueellisen päätöksenteon tehtävissä.</p>
-          <ul class="term-role-list mb-0">
-            <li>2. varavaltuutettu, Oulun kaupunginvaltuusto</li>
-            <li>Sivistyslautakunnan jäsen, Oulun kaupunki</li>
-            <li>Aluevaltuuston varajäsen, Pohjois-Pohjanmaan hyvinvointialue</li>
-          </ul>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -280,6 +258,9 @@ templateEngineOverride: njk
       <div class="term-card__header">
         <div>
           <p class="term-card__period">{{ term.period }}</p>
+          {% if term.current %}
+          <p class="term-current-badge">Kuluva vaalikausi</p>
+          {% endif %}
           <h2 class="term-card__title">{{ term.title }}</h2>
         </div>
         <p class="term-card__summary mb-0">{{ term.summary }}</p>
@@ -324,7 +305,7 @@ templateEngineOverride: njk
             <h3 class="term-content-card__title">Puheenvuorot</h3>
             <span class="term-content-card__count">{{ speeches.length }}</span>
           </div>
-          {{ renderContentList(speeches, "Tälle kaudelle ei ole vielä koottu puheenvuoroja.", "event") }}
+          {{ renderContentList(speeches, "Tälle kaudelle ei ole vielä koottu puheenvuoroja.", term.anchor ~ "-speeches", "event") }}
         </section>
 
         <section class="term-content-card">
@@ -332,7 +313,7 @@ templateEngineOverride: njk
             <h3 class="term-content-card__title">Aloitteet ja vastaukset</h3>
             <span class="term-content-card__count">{{ initiatives.length }}</span>
           </div>
-          {{ renderContentList(initiatives, "Tälle kaudelle ei ole vielä koottu aloitteita.", "initiative") }}
+          {{ renderContentList(initiatives, "Tälle kaudelle ei ole vielä koottu aloitteita.", term.anchor ~ "-initiatives", "initiative") }}
         </section>
 
         <section class="term-content-card">
@@ -340,7 +321,7 @@ templateEngineOverride: njk
             <h3 class="term-content-card__title">Mielipidekirjoitukset ja kolumnit</h3>
             <span class="term-content-card__count">{{ opinionPieces.length }}</span>
           </div>
-          {{ renderContentList(opinionPieces, "Tälle kaudelle ei ole vielä koottu mielipidetekstejä.", "type") }}
+          {{ renderContentList(opinionPieces, "Tälle kaudelle ei ole vielä koottu mielipidetekstejä.", term.anchor ~ "-opinions", "type") }}
         </section>
 
         <section class="term-content-card">
@@ -348,7 +329,7 @@ templateEngineOverride: njk
             <h3 class="term-content-card__title">Muut relevantit sisällöt</h3>
             <span class="term-content-card__count">{{ otherPoliticalItems.length }}</span>
           </div>
-          {{ renderContentList(otherPoliticalItems, "Tälle kaudelle ei ole vielä koottu muita politiikkasisältöjä.", "type") }}
+          {{ renderContentList(otherPoliticalItems, "Tälle kaudelle ei ole vielä koottu muita politiikkasisältöjä.", term.anchor ~ "-other", "type") }}
         </section>
       </div>
     </article>
@@ -531,6 +512,20 @@ templateEngineOverride: njk
   color: #102845;
 }
 
+.term-current-badge {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0 0.7rem;
+  padding: 0.34rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #163e6c;
+  background: rgba(17, 40, 70, 0.08);
+}
+
 .term-card__summary {
   color: rgba(17, 40, 70, 0.76);
   line-height: 1.65;
@@ -660,6 +655,11 @@ templateEngineOverride: njk
   gap: 0.8rem;
 }
 
+.term-content-stack {
+  display: grid;
+  gap: 0.95rem;
+}
+
 .term-content-item {
   padding-top: 0.8rem;
   border-top: 1px solid rgba(100, 116, 139, 0.16);
@@ -692,6 +692,39 @@ templateEngineOverride: njk
   line-height: 1.6;
 }
 
+.term-content-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-top: 0.2rem;
+}
+
+.term-content-pagination__info {
+  font-size: 0.86rem;
+  color: rgba(17, 40, 70, 0.64);
+}
+
+.term-content-pagination .pagination {
+  gap: 0.35rem;
+}
+
+.term-content-pagination .page-item .page-link {
+  min-width: 2rem;
+  border-radius: 999px;
+  border-color: rgba(17, 40, 70, 0.12);
+  background: rgba(255, 255, 255, 0.9);
+  color: #12355f;
+  text-align: center;
+}
+
+.term-content-pagination .page-item.active .page-link {
+  border-color: #163e6c;
+  background: #163e6c;
+  color: #fff;
+}
+
 .term-footer-links {
   display: flex;
   flex-wrap: wrap;
@@ -720,6 +753,7 @@ templateEngineOverride: njk
 
 [data-bs-theme="dark"] .term-eyebrow,
 [data-bs-theme="dark"] .term-jump-period,
+[data-bs-theme="dark"] .term-current-badge,
 [data-bs-theme="dark"] .term-content-card__count {
   color: #bfdbfe;
 }
@@ -735,7 +769,8 @@ templateEngineOverride: njk
 [data-bs-theme="dark"] .term-jump-period,
 [data-bs-theme="dark"] .term-result-card__detail,
 [data-bs-theme="dark"] .term-content-meta,
-[data-bs-theme="dark"] .term-empty {
+[data-bs-theme="dark"] .term-empty,
+[data-bs-theme="dark"] .term-content-pagination__info {
   color: rgba(226, 232, 240, 0.78);
 }
 
@@ -756,6 +791,22 @@ templateEngineOverride: njk
 
 [data-bs-theme="dark"] .term-content-card__count {
   background: rgba(191, 219, 254, 0.14);
+}
+
+[data-bs-theme="dark"] .term-current-badge {
+  background: rgba(191, 219, 254, 0.14);
+}
+
+[data-bs-theme="dark"] .term-content-pagination .page-item .page-link {
+  border-color: rgba(191, 219, 254, 0.2);
+  background: rgba(15, 23, 42, 0.78);
+  color: #dbeafe;
+}
+
+[data-bs-theme="dark"] .term-content-pagination .page-item.active .page-link {
+  border-color: #bfdbfe;
+  background: #bfdbfe;
+  color: #102845;
 }
 
 @media (max-width: 991.98px) {
@@ -791,3 +842,57 @@ templateEngineOverride: njk
   }
 }
 </style>
+
+<script>
+  (() => {
+    const paginatedGroups = document.querySelectorAll('[data-term-pagination]');
+    if (!paginatedGroups.length) return;
+
+    paginatedGroups.forEach((group) => {
+      const items = Array.from(group.querySelectorAll('[data-page-item]'));
+      const info = group.querySelector('[data-page-info]');
+      const controls = group.querySelector('[data-page-controls]');
+      const pageSize = Number(group.getAttribute('data-page-size')) || 3;
+
+      if (items.length <= pageSize || !info || !controls) return;
+
+      const total = items.length;
+      const totalPages = Math.ceil(total / pageSize);
+
+      const renderPage = (page) => {
+        const safePage = Math.min(Math.max(page, 1), totalPages);
+        const start = (safePage - 1) * pageSize;
+        const end = start + pageSize;
+
+        items.forEach((item, index) => {
+          item.hidden = index < start || index >= end;
+        });
+
+        const firstVisible = start + 1;
+        const lastVisible = Math.min(end, total);
+        info.textContent = `Näytetään ${firstVisible}-${lastVisible} / ${total}`;
+
+        controls.innerHTML = Array.from({ length: totalPages }, (_, index) => {
+          const pageNumber = index + 1;
+          return `
+            <li class="page-item ${pageNumber === safePage ? 'active' : ''}">
+              <button type="button" class="page-link" data-page-number="${pageNumber}" aria-label="Sivu ${pageNumber}">
+                ${pageNumber}
+              </button>
+            </li>
+          `;
+        }).join('');
+      };
+
+      controls.addEventListener('click', (event) => {
+        const button = event.target.closest('[data-page-number]');
+        if (!button) return;
+        const page = Number(button.getAttribute('data-page-number'));
+        if (!Number.isFinite(page)) return;
+        renderPage(page);
+      });
+
+      renderPage(1);
+    });
+  })();
+</script>

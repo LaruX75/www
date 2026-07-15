@@ -504,6 +504,37 @@ html:not([data-bs-theme="dark"]) .mega-menu-panel a i {
   object-fit: cover;
 }
 
+.mega-role-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.mega-role-list li {
+  padding: 0.55rem 0.7rem;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 0.8rem;
+  background: rgba(255, 255, 255, 0.24);
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+[data-bs-theme="dark"] .mega-role-list li {
+  background: rgba(15, 23, 42, 0.56);
+  border-color: rgba(148, 163, 184, 0.28);
+}
+
+.mega-role-list--compact {
+  gap: 0.45rem;
+  margin-bottom: 0.9rem;
+}
+
+.mega-role-list--compact li {
+  padding: 0.45rem 0.6rem;
+}
+
 .btn-accent {
   background: var(--mega-cta-bg);
   border-color: var(--mega-cta-border);

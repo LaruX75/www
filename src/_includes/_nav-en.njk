@@ -175,9 +175,9 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          {{ megaNavTrigger(navPolitics.url or '/en/politics/', navPolitics.title or 'Politics', navPolitics.icon or 'bi bi-bank2', page.url and ('/en/politics/' in page.url or '/en/affiliations/' in page.url), 'megaMenuPoliticsEn', 'megaTogglePoliticsEn', openSubmenuLabel) }}
+          {{ megaNavTrigger(navPolitics.url or '/en/politics/', navPolitics.title or 'Politics', navPolitics.icon or 'bi bi-bank2', page.url and ('/en/politics/' in page.url or '/en/affiliations/' in page.url or '/en/election-history/' in page.url or '/en/municipal-and-wellbeing-elections-2025/' in page.url), 'megaMenuPoliticsEn', 'megaTogglePoliticsEn', openSubmenuLabel) }}
           <div id="megaMenuPoliticsEn" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaTogglePoliticsEn">
-            <div class="mega-wrap">
+            <div class="mega-wrap{{ ' grid-8-4' if politicsMegaMenu.spotlight }}">
               <div class="mega-left three-cols">
                 {% for section in politicsMegaMenu.sections %}
                   <section>
@@ -200,6 +200,20 @@
                   </section>
                 {% endfor %}
               </div>
+              {% if politicsMegaMenu.spotlight %}
+              <aside class="mega-right cta-card">
+                <h5>{{ politicsMegaMenu.spotlight.title }}</h5>
+                <p class="menu-desc">{{ politicsMegaMenu.spotlight.description }}</p>
+                <ul class="mega-role-list">
+                  {% for role in politicsMegaMenu.spotlight.roles %}
+                  <li>{{ role }}</li>
+                  {% endfor %}
+                </ul>
+                {% if politicsMegaMenu.spotlight.cta %}
+                <a class="btn btn-accent btn-lg w-100 mt-2" href="{{ politicsMegaMenu.spotlight.cta.href }}">{{ politicsMegaMenu.spotlight.cta.label }}</a>
+                {% endif %}
+              </aside>
+              {% endif %}
             </div>
           </div>
         </li>
@@ -215,6 +229,9 @@
                 </section>
                 {% for contentColumn in writingsMegaMenu.contentColumns %}
                   <section class="writings-main-col">
+                    {% if contentColumn.heading %}
+                      <h5>{{ contentColumn.heading }}</h5>
+                    {% endif %}
                     {% for link in contentColumn.links %}
                       {% set linkCount = 0 %}
                       {% if link.countKey %}
@@ -416,6 +433,19 @@
         <div id="mobileNavEnPolitics" class="accordion-collapse collapse" aria-labelledby="mobileNavEnPoliticsHead" data-bs-parent="#mobileNavAccordionEn">
           <div class="accordion-body">
             <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="{{ navPolitics.url or '/en/politics/' }}">Open Politics page</a>
+            {% if politicsMegaMenu.description %}
+              <p class="menu-desc mb-3">{{ politicsMegaMenu.description }}</p>
+            {% endif %}
+            {% if politicsMegaMenu.spotlight %}
+              <div class="mobile-nav-spotlight">
+                <p class="text-uppercase small text-muted mb-1">{{ politicsMegaMenu.spotlight.title }}</p>
+                <ul class="mega-role-list mega-role-list--compact">
+                  {% for role in politicsMegaMenu.spotlight.roles %}
+                    <li>{{ role }}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+            {% endif %}
             {% for section in politicsMegaMenu.sections %}
               <p class="text-uppercase small text-muted mb-1 mt-2">{{ section.heading }}</p>
               <div class="d-grid gap-1 mb-2">
@@ -434,8 +464,12 @@
         <div id="mobileNavEnWritings" class="accordion-collapse collapse" aria-labelledby="mobileNavEnWritingsHead" data-bs-parent="#mobileNavAccordionEn">
           <div class="accordion-body">
             <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="{{ navWritings.url or '/en/writings/' }}">Open Writings page</a>
+            <p class="menu-desc mb-3">{{ writingsMegaMenu.description }}</p>
             {% if writingsMegaMenu.contentColumns %}
               {% for contentColumn in writingsMegaMenu.contentColumns %}
+                {% if contentColumn.heading %}
+                  <p class="text-uppercase small text-muted mb-1 mt-2">{{ contentColumn.heading }}</p>
+                {% endif %}
                 <div class="d-grid gap-1 mb-2">
                   {% for link in contentColumn.links %}
                     <a class="mobile-nav-link" href="{{ link.href }}">{{ link.title }}</a>

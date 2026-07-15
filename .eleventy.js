@@ -180,7 +180,11 @@ module.exports = function (eleventyConfig) {
         fs.mkdirSync(ogSiteDir, { recursive: true });
         for (const file of fs.readdirSync(ogCacheDir)) {
           if (file !== ".gitkeep") {
-            fs.copyFileSync(path.join(ogCacheDir, file), path.join(ogSiteDir, file));
+            // Cache may contain both image files and preview directories.
+            fs.cpSync(path.join(ogCacheDir, file), path.join(ogSiteDir, file), {
+              force: true,
+              recursive: true,
+            });
           }
         }
       }

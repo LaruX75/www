@@ -14,6 +14,9 @@ keywords:
 type: mielipide
 wp_id: 1712
 source_url: "https://www.jarilaru.fi/linnanmaa-tarjoaa-merkittavia-kasautumisetuja-mita-lisaarvoa-paivittaistavara/"
+politicalProfiles:
+  - sivistys
+  - kaupunkikehitys
 templateEngineOverride: md
 ---
 <p><strong>Mielipidekirjoitus on julkaistu Sanomalehti Kalevassa 24.4.2021: <a href="https://www.kaleva.fi/linnanmaa-tarjoaa-merkittavia-kasautumisetuja-mita/3545531" title="https://www.kaleva.fi/linnanmaa-tarjoaa-merkittavia-kasautumisetuja-mita/3545531">https://www.kaleva.fi/linnanmaa-tarjoaa-merkittavia-kasautumisetuja-mita/3545531</a></strong></p>
@@ -33,4 +36,3 @@ templateEngineOverride: md
 </em></p>
 <p><em>kuntavaaliehdokas (kok.)</em></p>
 <p><em>Oulu</em></p>
-

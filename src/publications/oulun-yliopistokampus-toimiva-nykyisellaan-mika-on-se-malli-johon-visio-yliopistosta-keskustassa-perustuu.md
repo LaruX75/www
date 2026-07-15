@@ -17,6 +17,9 @@ keywords:
 type: mielipide
 wp_id: 87
 source_url: "https://www.jarilaru.fi/oulun-yliopistokampus-toimiva-nykyisellaan-mika-on-se-malli-johon-visio-yliopistosta-keskustassa-perustuu/"
+politicalProfiles:
+  - sivistys
+  - kaupunkikehitys
 templateEngineOverride: md
 ---
 <p><em> Mielipidekirjoitus julkaistu Sanomalehti Kalevassa 19.11.2019</em></p>
@@ -31,4 +34,3 @@ templateEngineOverride: md
 <p>Teknologiakylän ja yliopiston muodostamaa kokonaisuutta on kehitetty yliopiston perusajatuksen mukaisesti, jossa teknilliset tieteet, luonnontieteet ja ihmistieteet stimuloivat elinkeinoelämää. Tämä malli on toiminut hyvin. Mikä on se malli, johon visio yliopistosta keskustassa perustuu? Voiko ainoa peruste olla yliopiston maksama vuokrataso?</p>
 <p>Jari Laru<br>KT, yliopistonlehtori, valtuutettu (kok.) Oulu</p>
 <p>Lue kirjoitus Kalevasta: <a rel="noreferrer noopener" href="https://www.kaleva.fi/lukijalta/mielipiteet/oulun-yliopistokampus-toimiva-nykyisellaan-mika-on-se-malli-johon-visio-yliopistosta-keskustassa-perustuu/830526/?fbclid=IwAR2qs-xPOa5vvPhrpDFCT1EQMn7ZOquYtWYQK5C65ou-ph4dCC6lWstHlxA" target="_blank">https://www.kaleva.fi/lukijalta/mielipiteet/oulun-yliopistokampus-toimiva-nykyisellaan-mika-on-se-malli-johon-visio-yliopistosta-keskustassa-perustuu/830526/</a></p>
-

@@ -438,16 +438,30 @@ module.exports = {
   },
   megaMenuPolitics: {
     fi: {
+      description: "Luottamustoimet, työjälki ja vaalikaudet samasta näkymästä.",
+      spotlight: {
+        title: "Nykyiset luottamustehtävät",
+        description: "Politiikka-sivu näyttää painopisteet. Tästä näet myös, missä nykyinen vastuu näkyy juuri nyt.",
+        roles: [
+          "2. varavaltuutettu, Oulun kaupunginvaltuusto",
+          "Sivistyslautakunnan jäsen, Oulun kaupunki",
+          "Aluevaltuuston varajäsen, Pohjois-Pohjanmaan hyvinvointialue"
+        ],
+        cta: {
+          href: "/politiikka/",
+          label: "Avaa politiikkasivu"
+        }
+      },
       sections: [
         {
           heading: "Rooli & läpinäkyvyys",
           links: [
             {
-              title: "Jari Laru, poliitikko",
+              title: "Politiikkasivu",
               href: "/politiikka/",
               icon: "bi bi-person-badge me-2",
               menuLink: true,
-              description: "Luottamustoimet, tavoitteet ja historia."
+              description: "Luottamustoimet, painopisteet ja poliittinen profiili."
             },
             {
               title: "Sidonnaisuudet",
@@ -501,36 +515,44 @@ module.exports = {
           ]
         },
         {
-          heading: "Vaalit",
+          heading: "Vaalikaudet",
           links: [
             {
               title: "Vaalikaudet",
               href: "/vaalikaudet/",
               icon: "bi bi-calendar-event me-2",
               menuLink: true,
-              description: "Luottamustoimet, vaalitulokset ja poliittinen työ vaalikausittain."
-            },
-            {
-              title: "Kunta- ja aluevaalit 2025",
-              href: "/kunta-ja-aluevaalit-2025/",
-              icon: "bi bi-chevron-right me-2",
-              description: "Ajankohtainen vaalisivu teemoineen, taustoineen ja tuloksineen."
+              description: "Luottamustoimet, vaalitulokset, työjälki ja arkistoidut kampanjasivut vaalikausittain."
             }
           ]
         }
       ]
     },
     en: {
+      description: "Positions of trust, political work, and election periods in one view.",
+      spotlight: {
+        title: "Current positions of trust",
+        description: "The politics page shows the profile. This panel also makes the current responsibilities visible at a glance.",
+        roles: [
+          "2nd deputy councillor, City of Oulu",
+          "Member of the Education Committee, City of Oulu",
+          "Deputy member of the regional council, North Ostrobothnia Wellbeing Services County"
+        ],
+        cta: {
+          href: "/en/politics/",
+          label: "Open politics page"
+        }
+      },
       sections: [
         {
           heading: "Role & Transparency",
           links: [
             {
-              title: "Jari Laru, politician",
+              title: "Politics page",
               href: "/en/politics/",
               icon: "bi bi-person-badge me-2",
               menuLink: true,
-              description: "Positions of trust and goals."
+              description: "Positions of trust, priorities, and political profile."
             },
             {
               title: "Affiliations & Disclosures",
@@ -584,20 +606,14 @@ module.exports = {
           ]
         },
         {
-          heading: "Elections",
+          heading: "Election periods",
           links: [
             {
               title: "Election history",
               href: "/en/election-history/",
               icon: "bi bi-calendar-event me-2",
               menuLink: true,
-              description: "Elections and terms of office."
-            },
-            {
-              title: "Municipal & wellbeing elections 2025",
-              href: "/en/municipal-and-wellbeing-elections-2025/",
-              icon: "bi bi-chevron-right me-2",
-              description: "Campaign priorities and election outcome in 2025."
+              description: "Terms of office, election results, political work, and archived campaign pages in one view."
             }
           ]
         }
@@ -607,26 +623,28 @@ module.exports = {
   megaMenuWritings: {
     fi: {
       heading: "Kirjoitukset ja puheet",
-      description: "Puheenvuorot, aloitteet ja julkaistut tekstit samasta näkymästä.",
+      description: "Puheenvuorot, aloitteet, mielipidekirjoitukset ja muut julkaistut tekstit samasta näkymästä.",
       groupHeading: "Kynästä",
       contentColumns: [
         {
+          heading: "Poliittinen vaikuttaminen",
           links: [
             { title: "Puheenvuorot", href: "/kynasta/#puheet", icon: "bi bi-mic me-2", countKey: "pub_puhe", description: "Valtuustossa ja tapahtumissa pidettyjä puheenvuoroja." },
             { title: "Aloitteet", href: "/kynasta/#aloitteet", icon: "bi bi-megaphone me-2", countKey: "politics", description: "Valtuustoaloitteet ja muut kirjalliset avaukset päätöksentekoon." }
           ]
         },
         {
+          heading: "Kirjoitukset ja kannanotot",
           links: [
-            { title: "Kolumnit", href: "/kynasta/#kolumnit", icon: "bi bi-journal-richtext me-2", countKey: "pub_kolumni", description: "Taustoittavia näkökulmatekstejä yhteiskunnasta ja koulutuksesta." },
-            { title: "Mielipiteet", href: "/kynasta/#mielipiteet", icon: "bi bi-chat-text me-2", countKey: "pub_mielipide", description: "Lehdissä julkaistuja kannanottoja paikallisista ja valtakunnallisista aiheista." },
+            { title: "Kolumnit", href: "/kynasta/#kolumnit", icon: "bi bi-journal-richtext me-2", countKey: "pub_kolumni", description: "Taustoittavia ja esseemäisiä tekstejä opetuksesta, yhteiskunnasta ja ilmiöistä." },
+            { title: "Mielipiteet", href: "/kynasta/#mielipiteet", icon: "bi bi-chat-text me-2", countKey: "pub_mielipide", description: "Lehdissä julkaistuja mielipidekirjoituksia sekä asiantuntija- että poliittisesta roolista." },
             { title: "Blogi", href: "/blogi/", icon: "bi bi-pen me-2", countKey: "blog", description: "Ajankohtaiset kirjoitukset opetuksesta, teknologiasta ja yhteiskunnasta." }
           ]
         }
       ],
       seeAlso: {
-        heading: "Muu aineisto",
-        subheading: "Esitykset ja julkaisut",
+        heading: "Esitykset ja julkaisut",
+        subheading: "Lähisisällöt",
         links: [
           { title: "Esitykset", href: "/esitykset/", icon: "bi bi-easel2 me-2", description: "Puheenvuoroja, koulutussisältöjä ja avoimia oppimateriaaleja." },
           { title: "Julkaisut", href: "/julkaisut/", icon: "bi bi-journal-text me-2", description: "Tutkimusjulkaisut, artikkelit ja tieteellinen tuotanto." }
@@ -635,26 +653,28 @@ module.exports = {
     },
     en: {
       heading: "Writings and Speeches",
-      description: "Speeches, initiatives, and published texts in one place.",
+      description: "Speeches, initiatives, opinion pieces, and other published texts in one place.",
       groupHeading: "Writings",
       contentColumns: [
         {
+          heading: "Political work",
           links: [
             { title: "Speeches", href: "/en/writings/#puheet", icon: "bi bi-mic me-2", countKey: "pub_puhe", description: "Public speeches and council statements in one archive." },
             { title: "Initiatives", href: "/en/writings/#aloitteet", icon: "bi bi-megaphone me-2", countKey: "politics", description: "Council initiatives and concrete proposals in local politics." }
           ]
         },
         {
+          heading: "Writing and commentary",
           links: [
-            { title: "Columns", href: "/en/writings/#kolumnit", icon: "bi bi-journal-richtext me-2", countKey: "pub_kolumni", description: "Long-form columns on education, society, and local development." },
-            { title: "Opinion pieces", href: "/en/writings/#mielipiteet", icon: "bi bi-chat-text me-2", countKey: "pub_mielipide", description: "Opinion texts and public commentary published in media." },
+            { title: "Columns", href: "/en/writings/#kolumnit", icon: "bi bi-journal-richtext me-2", countKey: "pub_kolumni", description: "Long-form texts on education, society, and public questions." },
+            { title: "Opinion pieces", href: "/en/writings/#mielipiteet", icon: "bi bi-chat-text me-2", countKey: "pub_mielipide", description: "Opinion texts published from both expert and political roles." },
             { title: "Blog", href: "/en/blog/", icon: "bi bi-pen me-2", countKey: "blog", description: "Posts on education, technology, and public life themes." }
           ]
         }
       ],
       seeAlso: {
-        heading: "Related material",
-        subheading: "Presentations and publications",
+        heading: "Presentations and publications",
+        subheading: "Related material",
         links: [
           { title: "Presentations", href: "/en/presentations/", icon: "bi bi-easel2 me-2", description: "Talks, keynote materials, and open learning resources." },
           { title: "Publications", href: "/en/publications/", icon: "bi bi-journal-text me-2", description: "Research outputs, articles, and academic publishing." }
