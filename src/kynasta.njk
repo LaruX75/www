@@ -728,7 +728,7 @@ translationKey: writings_index
                 </th>
                 <th style="min-width:220px">Tiivistelmä</th>
                 <th style="min-width:190px">Avainsanat</th>
-                <th style="min-width:170px">
+                <th style="min-width:170px" data-mobile-label="Sovellus">
                   <div class="d-flex flex-column gap-1">
                     <span>Sovellus</span>
                     <select id="esitykset-application-filter" class="form-select form-select-sm" aria-label="Suodata sovelluksen mukaan">
@@ -1031,6 +1031,10 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
 
 /* ---- Mobiili: taulukot korttimaisiksi riveiksi ---- */
 @media (max-width: 767.98px) {
+  .card-body > .table-responsive {
+    padding: 0.55rem 0.7rem 0.9rem;
+  }
+
   .pub-table thead {
     display: none;
   }
@@ -1045,41 +1049,84 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
 
   .pub-table tr {
     border: 1px solid var(--bs-border-color);
-    border-radius: 0.65rem;
-    margin: 0.65rem 0;
-    padding: 0.4rem 0.55rem;
+    border-radius: 0.9rem;
+    margin: 0.8rem 0;
+    padding: 0.9rem 0.95rem;
     background: var(--bs-body-bg);
+    box-shadow: 0 0.45rem 1rem rgba(15, 23, 42, 0.05);
   }
 
   .pub-table td {
     border: 0 !important;
-    padding: 0.38rem 0.2rem;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 0.7rem;
-    text-align: right !important;
+    padding: 0.36rem 0;
+    text-align: left !important;
   }
 
   .pub-table td::before {
     content: attr(data-label);
+    display: block;
+    margin-bottom: 0.18rem;
     color: var(--bs-secondary-color);
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     font-weight: 600;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     text-align: left;
-    flex: 0 0 45%;
   }
 
   .pub-table td > * {
-    max-width: 55%;
+    max-width: none;
   }
 
-  .pub-table td:last-child {
-    margin-top: 0.25rem;
-    padding-top: 0.55rem;
+  .pub-table .col-title,
+  .pub-table .col-title a {
+    font-size: 0.98rem;
+    line-height: 1.35;
+    text-align: left;
+  }
+
+  .pub-table .col-desc {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .pub-table .col-taxonomy {
+    font-size: 0.85rem;
+  }
+
+  .pub-table .summary-text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+
+  .pub-table .col-action {
+    margin-top: 0.45rem;
+    padding-top: 0.7rem;
     border-top: 1px dashed var(--bs-border-color) !important;
+  }
+
+  .pub-table .col-action .d-flex,
+  .pub-table .col-action .btn,
+  .pub-table .col-action.text-center {
+    justify-content: flex-start !important;
+    text-align: left !important;
+  }
+
+  .pub-table .badge {
+    margin-bottom: 0.3rem;
+  }
+
+  .puheet-table .col-taxonomy,
+  .aloitteet-table .col-taxonomy,
+  .blog-table .col-taxonomy,
+  .kolumnit-table .col-taxonomy,
+  .mielipiteet-table .col-taxonomy,
+  .esitykset-table .col-taxonomy,
+  .esitykset-table .col-preview,
+  .pub-table .col-authors {
+    display: none !important;
   }
 }
 </style>
@@ -1144,10 +1191,20 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
     if (iso > MAX_SLIDESHARE_DATE) iso = MAX_SLIDESHARE_DATE;
     return { ...item, date: iso };
   };
+  const cleanMobileLabel = (value) => String(value || '')
+    .replace(/Ei lajittelua/gi, '')
+    .replace(/Pienin ensin/gi, '')
+    .replace(/Suurin ensin/gi, '')
+    .replace(/Uusin ensin/gi, '')
+    .replace(/Vanhin ensin/gi, '')
+    .replace(/A-ÖÖ-A/gi, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+
   const syncMobileTableLabels = () => {
     document.querySelectorAll('.pub-table').forEach((table) => {
       const headers = Array.from(table.querySelectorAll('thead th')).map((th) =>
-        (th.textContent || '').replace(/\s+/g, ' ').trim()
+        cleanMobileLabel(th.dataset.mobileLabel || th.textContent || '')
       );
       table.querySelectorAll('tbody tr').forEach((row) => {
         Array.from(row.children).forEach((cell, idx) => {
@@ -1419,10 +1476,10 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
 
         return `<tr>
           <td class="col-authors small text-muted">${escHtml(d.authors || '—')}</td>
-          <td class="text-center fw-semibold">${d.year || '—'}</td>
+          <td class="col-year text-center fw-semibold">${d.year || '—'}</td>
           <td class="col-title">${escHtml(d.title || '—')}</td>
           <td class="col-pub">${escHtml(d.journal || '—')}</td>
-          <td class="text-center">
+          <td class="col-action text-center">
             <div class="d-flex justify-content-center">
               ${linkCell}
               ${bibButton}
@@ -1615,12 +1672,12 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
         return `<tr>
           <td class="col-date text-center small text-muted font-monospace">${d.formattedDate}</td>
           <td class="col-title fw-medium"><a href="${d.url}" class="text-decoration-none">${escHtml(d.title)}</a></td>
-          <td class="col-desc small text-muted">${escHtml(d.description)}</td>
-          <td>
+          <td class="col-desc small text-muted"><span class="summary-text">${escHtml(d.description)}</span></td>
+          <td class="col-taxonomy">
             <div class="mb-1">${catBadges}</div>
             <div>${keyBadges}</div>
           </td>
-          <td class="text-center">
+          <td class="col-action text-center">
             <a href="${d.url}" class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Lue blogipostaus">
               <i class="bi bi-arrow-right"></i>
             </a>
@@ -1884,7 +1941,9 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
       esityksetTbody.innerHTML = '<tr><td colspan="7" class="text-center text-muted py-5">Ei tuloksia haulla</td></tr>';
     } else {
       esityksetTbody.innerHTML = slice.map(d => {
-        const summaryText = d.summary ? escHtml(d.summary) : '<span class="text-muted small">Ei saatavilla</span>';
+        const summaryText = d.summary
+          ? `<span class="summary-text">${escHtml(d.summary)}</span>`
+          : '<span class="text-muted small">Ei saatavilla</span>';
         const keywordBadges = d.keywordList.length
           ? d.keywordList.map((k) => `<span class="badge text-bg-light text-dark border me-1 mb-1">${escHtml(k)}</span>`).join('')
           : '<span class="text-muted small">Ei saatavilla</span>';
@@ -1899,12 +1958,12 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
 
         return `<tr>
           <td class="col-date text-center small text-muted font-monospace">${escHtml(d.formattedDate || 'Ei saatavilla')}</td>
-          <td class="col-desc small text-muted text-center">${preview}</td>
+          <td class="col-preview small text-muted text-center">${preview}</td>
           <td class="col-title fw-medium">${escHtml(d.title)}</td>
-          <td class="small">${summaryText}</td>
-          <td>${keywordBadges}</td>
-          <td><span class="badge text-bg-light text-dark border">${escHtml(d.application || 'Muu')}</span></td>
-          <td class="text-center">${linkBtn}</td>
+          <td class="col-desc small">${summaryText}</td>
+          <td class="col-taxonomy">${keywordBadges}</td>
+          <td class="col-app"><span class="badge text-bg-light text-dark border">${escHtml(d.application || 'Muu')}</span></td>
+          <td class="col-action text-center">${linkBtn}</td>
         </tr>`;
       }).join('');
     }
@@ -2085,10 +2144,10 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
 
         return `<tr>
           <td class="col-date text-center small text-muted font-monospace">${d.formattedDate}</td>
-          <td class="small text-muted">${asiakohtaInfo}</td>
+          <td class="col-asiakohta small text-muted">${asiakohtaInfo}</td>
           <td class="col-title fw-medium"><a href="${d.url}" ${targetAttr} class="text-decoration-none">${escHtml(shortTitle(d.title))}</a></td>
-          <td class="col-desc small text-muted">${escHtml(d.description)}${eventInfo}</td>
-          <td>
+          <td class="col-desc small text-muted"><span class="summary-text">${escHtml(d.description)}</span>${eventInfo}</td>
+          <td class="col-taxonomy">
             <div class="mb-1">${catBadges}</div>
             <div>${keyBadges}</div>
           </td>
@@ -2232,12 +2291,12 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
         return `<tr>
           <td class="col-date text-center small text-muted font-monospace">${d.formattedDate}</td>
           <td class="col-title fw-medium"><a href="${d.url}" ${targetAttr} class="text-decoration-none">${escHtml(d.title)}</a></td>
-          <td class="col-desc small text-muted">${escHtml(d.description)}${typeInfo}</td>
-          <td>
+          <td class="col-desc small text-muted"><span class="summary-text">${escHtml(d.description)}</span>${typeInfo}</td>
+          <td class="col-taxonomy">
             <div class="mb-1">${catBadges}</div>
             <div>${keyBadges}</div>
           </td>
-          <td class="text-center">
+          <td class="col-action text-center">
             <a href="${d.url}" ${targetAttr} class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Avaa aloite">
               ${iconInfo}
             </a>
@@ -2382,12 +2441,12 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
         return `<tr>
           <td class="col-date text-center small text-muted font-monospace">${d.formattedDate}</td>
           <td class="col-title fw-medium"><a href="${d.url}" ${targetAttr} class="text-decoration-none">${escHtml(d.title)}</a></td>
-          <td class="col-desc small text-muted">${escHtml(d.description)}${pubInfo}</td>
-          <td>
+          <td class="col-desc small text-muted"><span class="summary-text">${escHtml(d.description)}</span>${pubInfo}</td>
+          <td class="col-taxonomy">
             <div class="mb-1">${catBadges}</div>
             <div>${keyBadges}</div>
           </td>
-          <td class="text-center">
+          <td class="col-action text-center">
             <a href="${d.url}" ${targetAttr} class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Avaa kolumni">
               ${iconInfo}
             </a>
@@ -2532,12 +2591,12 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
         return `<tr>
           <td class="col-date text-center small text-muted font-monospace">${d.formattedDate}</td>
           <td class="col-title fw-medium"><a href="${d.url}" ${targetAttr} class="text-decoration-none">${escHtml(d.title)}</a></td>
-          <td class="col-desc small text-muted">${escHtml(d.description)}${pubInfo}</td>
-          <td>
+          <td class="col-desc small text-muted"><span class="summary-text">${escHtml(d.description)}</span>${pubInfo}</td>
+          <td class="col-taxonomy">
             <div class="mb-1">${catBadges}</div>
             <div>${keyBadges}</div>
           </td>
-          <td class="text-center">
+          <td class="col-action text-center">
             <a href="${d.url}" ${targetAttr} class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Avaa mielipidekirjoitus">
               ${iconInfo}
             </a>
