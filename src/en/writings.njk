@@ -26,6 +26,8 @@ lang: en
   {% endif %}
 {% endfor %}
 {% set totalMaterialsCount = uniqueMaterialKeys | length %}
+{% set politicalOpinionCount = (collections.pub_mielipide_political or []) | length %}
+{% set expertOpinionCount = (collections.pub_mielipide_expert or []) | length %}
 
 <section class="kynasta-hero py-4">
   <div class="site-shell">
@@ -95,7 +97,8 @@ lang: en
     "url": "{{ pub.data.url or pub.url }}",
     "isExternal": {{ (pub.data.url != null) | jsonSafe | safe }},
     "categories": {{ (pub.data.categories or []) | jsonSafe | safe }},
-    "keywords": {{ (pub.data.keywords or []) | jsonSafe | safe }}
+    "keywords": {{ (pub.data.keywords or []) | jsonSafe | safe }},
+    "opinionRoles": {{ (pub.data.opinionRoles or []) | jsonSafe | safe }}
   }{% if not loop.last %},{% endif %}
   {% endfor %}
 ]
@@ -111,15 +114,29 @@ lang: en
         <span class="badge text-bg-secondary">{{ collections.pub_mielipide.length }}</span>
       </div>
       <div class="card-body p-0">
+        <div class="px-3 pt-3 pb-0">
+          <p class="small text-muted mb-3">
+            {{ politicalOpinionCount }} texts are marked political and {{ expertOpinionCount }} expert-facing.
+            A single text can belong to both.
+          </p>
+        </div>
         {# ---- Suodatuspalkki ---- #}
         <div class="p-3 bg-light border-bottom">
           <div class="row g-2 align-items-end">
-            <div class="col-md-9">
+            <div class="col-md-7">
               <label for="mielipiteet-search" class="form-label small text-muted mb-1">Search opinion pieces</label>
               <input type="search" id="mielipiteet-search" class="form-control form-control-sm"
                      placeholder="Search by title, summary, publication, categories..." autocomplete="off">
             </div>
-            <div class="col-md-3 d-flex justify-content-md-end gap-2">
+            <div class="col-md-3">
+              <label class="form-label small text-muted mb-1">Filter by role</label>
+              <div class="btn-group btn-group-sm d-flex flex-wrap" role="group" aria-label="Opinion role">
+                <button type="button" class="btn btn-outline-secondary active" data-opinion-role="all">All</button>
+                <button type="button" class="btn btn-outline-secondary" data-opinion-role="political">Political</button>
+                <button type="button" class="btn btn-outline-secondary" data-opinion-role="expert">Expert</button>
+              </div>
+            </div>
+            <div class="col-md-2 d-flex justify-content-md-end gap-2">
               <button id="mielipiteet-reset" class="btn btn-outline-secondary btn-sm w-100">
                 <i class="bi bi-x-circle me-1"></i>Clear
               </button>
@@ -1394,46 +1411,75 @@ section[id] {
   const mielipiteetDataEl = document.getElementById('mielipiteet-data');
   if (!mielipiteetDataEl) return;
   const mielipiteetData = JSON.parse(mielipiteetDataEl.textContent);
+  const urlParams = new URLSearchParams(window.location.search);
+  const initialOpinionRole = urlParams.get('opinions');
 
-  let filteredOpinionsData = [...mielipiteetData];
+  let filteredOpinionsData = [];
   let mielipiteetCurrentPage = 1;
   let mielipiteetSortCol = 'date';
   let mielipiteetSortDir = -1; // -1 = desc
+  let selectedOpinionRole = ['political', 'expert'].includes(initialOpinionRole) ? initialOpinionRole : 'all';
 
   const mielipiteetSearchInp = document.getElementById('mielipiteet-search');
   const mielipiteetTbody = document.getElementById('mielipiteet-tbody');
   const mielipiteetInfo = document.getElementById('mielipiteet-info');
   const mielipiteetPagUl = document.getElementById('mielipiteet-pagination');
+  const opinionRoleButtons = Array.from(document.querySelectorAll('[data-opinion-role]'));
+
+  function sortOpinionsArray(data) {
+    return [...data].sort((a, b) => {
+      let av = a[mielipiteetSortCol] ?? '';
+      let bv = b[mielipiteetSortCol] ?? '';
+      if (typeof av === 'string') av = av.toLowerCase();
+      if (typeof bv === 'string') bv = bv.toLowerCase();
+      if (mielipiteetSortCol === 'date') {
+        return (new Date(av) - new Date(bv)) * mielipiteetSortDir;
+      }
+      return av.toString().localeCompare(bv.toString(), 'en') * mielipiteetSortDir;
+    });
+  }
+
+  function syncOpinionRoleButtons() {
+    opinionRoleButtons.forEach((btn) => {
+      const isActive = btn.dataset.opinionRole === selectedOpinionRole;
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
+  }
+
+  function syncOpinionRoleUrl() {
+    const nextUrl = new URL(window.location.href);
+    if (selectedOpinionRole === 'all') {
+      nextUrl.searchParams.delete('opinions');
+    } else {
+      nextUrl.searchParams.set('opinions', selectedOpinionRole);
+    }
+    history.replaceState({}, '', `${nextUrl.pathname}${nextUrl.search}${window.location.hash}`);
+  }
 
   function applyOpinionsFilters() {
     const q = mielipiteetSearchInp ? mielipiteetSearchInp.value.toLowerCase().trim() : '';
-    filteredOpinionsData = mielipiteetData.filter(d => {
+    filteredOpinionsData = sortOpinionsArray(mielipiteetData.filter(d => {
+      const roles = Array.isArray(d.opinionRoles) ? d.opinionRoles : [];
       const matchQ = !q ||
         (d.title || '').toLowerCase().includes(q) ||
         (d.description || '').toLowerCase().includes(q) ||
         (d.publication || '').toLowerCase().includes(q) ||
         (d.categories || []).some(c => c.toLowerCase().includes(q)) ||
         (d.keywords || []).some(k => k.toLowerCase().includes(q));
-      return matchQ;
-    });
+      const matchRole = selectedOpinionRole === 'all' || roles.includes(selectedOpinionRole);
+      return matchQ && matchRole;
+    }));
     mielipiteetCurrentPage = 1;
+    syncOpinionRoleButtons();
+    syncOpinionRoleUrl();
     renderOpinions();
   }
 
   function sortOpinionsData(col) {
     if (mielipiteetSortCol === col) { mielipiteetSortDir *= -1; }
     else { mielipiteetSortCol = col; mielipiteetSortDir = col === 'date' ? -1 : 1; }
-    
-    filteredOpinionsData.sort((a, b) => {
-      let av = a[col] ?? '';
-      let bv = b[col] ?? '';
-      if (typeof av === 'string') av = av.toLowerCase();
-      if (typeof bv === 'string') bv = bv.toLowerCase();
-      if (col === 'date') {
-        return (new Date(av) - new Date(bv)) * mielipiteetSortDir;
-      }
-      return av.toString().localeCompare(bv.toString(), 'en') * mielipiteetSortDir;
-    });
+    filteredOpinionsData = sortOpinionsArray(filteredOpinionsData);
     mielipiteetCurrentPage = 1;
     renderOpinions();
   }
@@ -1449,17 +1495,21 @@ section[id] {
       mielipiteetTbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-5">No results for this search</td></tr>';
     } else {
       mielipiteetTbody.innerHTML = slice.map(d => {
+        const roleBadges = (d.opinionRoles || []).map((role) => {
+          const label = role === 'political' ? 'Political' : 'Expert';
+          return `<span class="badge text-bg-light border text-dark mt-1 me-1">${label}</span>`;
+        }).join('');
         const catBadges = (d.categories || []).map(c => `<a href="/en/categories/${slugify(c)}/" class="badge text-bg-secondary me-1 text-decoration-none">${c}</a>`).join('');
         const keyBadges = (d.keywords || []).map(k => `<a href="/en/keywords/${slugify(k)}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">${k}</a>`).join('');
 
         const targetAttr = d.isExternal ? 'target="_blank" rel="noopener noreferrer"' : '';
         const iconInfo = d.isExternal ? '<i class="bi bi-arrow-up-right"></i>' : '<i class="bi bi-arrow-right"></i>';
-        const pubInfo = d.publication ? `<br><span class="badge text-bg-light border text-dark mt-1"><i class="bi bi-journal-text me-1"></i>${escHtml(d.publication)}</span>` : '';
+        const pubInfo = d.publication ? `<br><span class="badge text-bg-light border text-dark mt-1 me-1"><i class="bi bi-journal-text me-1"></i>${escHtml(d.publication)}</span>` : '';
 
         return `<tr>
           <td class="col-date text-center small text-muted font-monospace">${d.formattedDate}</td>
           <td class="col-title fw-medium"><a href="${d.url}" ${targetAttr} class="text-decoration-none">${escHtml(d.title)}</a></td>
-          <td class="col-desc small text-muted">${escHtml(d.description)}${pubInfo}</td>
+          <td class="col-desc small text-muted">${escHtml(d.description)}${pubInfo}${roleBadges}</td>
           <td>
             <div class="mb-1">${catBadges}</div>
             <div>${keyBadges}</div>
@@ -1522,11 +1572,19 @@ section[id] {
   }
 
   if (mielipiteetSearchInp) mielipiteetSearchInp.addEventListener('input', applyOpinionsFilters);
+
+  opinionRoleButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      selectedOpinionRole = btn.dataset.opinionRole || 'all';
+      applyOpinionsFilters();
+    });
+  });
   
   const mielipiteetResetBtn = document.getElementById('mielipiteet-reset');
   if (mielipiteetResetBtn) {
     mielipiteetResetBtn.addEventListener('click', () => {
       if (mielipiteetSearchInp) mielipiteetSearchInp.value = '';
+      selectedOpinionRole = 'all';
       applyOpinionsFilters();
     });
   }
@@ -1535,7 +1593,7 @@ section[id] {
     th.addEventListener('click', () => sortOpinionsData(th.dataset.col));
   });
 
-  renderOpinions();
+  applyOpinionsFilters();
 })();
 
 

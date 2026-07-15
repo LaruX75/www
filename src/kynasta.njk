@@ -29,6 +29,8 @@ translationKey: writings_index
 {% set latestInitiativeHighlights = (collections.politics or []).slice(0, 3) %}
 {% set latestBlogHighlights = (collections.blog or []).slice(0, 3) %}
 {% set latestPresentationHighlights = (collections.presentations or []).slice(0, 2) %}
+{% set politicalOpinionCount = (collections.pub_mielipide_political or []) | length %}
+{% set expertOpinionCount = (collections.pub_mielipide_expert or []) | length %}
 
 <section class="kynasta-hero py-3 py-lg-4">
   <div class="site-shell">
@@ -268,7 +270,8 @@ translationKey: writings_index
     "url": "{{ pub.data.url or pub.url }}",
     "isExternal": {{ (pub.data.url != null) | jsonSafe | safe }},
     "categories": {{ (pub.data.categories or []) | jsonSafe | safe }},
-    "keywords": {{ (pub.data.keywords or []) | jsonSafe | safe }}
+    "keywords": {{ (pub.data.keywords or []) | jsonSafe | safe }},
+    "opinionRoles": {{ (pub.data.opinionRoles or []) | jsonSafe | safe }}
   }{% if not loop.last %},{% endif %}
   {% endfor %}
 ]
@@ -283,15 +286,29 @@ translationKey: writings_index
         <span class="badge kynasta-section-count">{{ collections.pub_mielipide.length }}</span>
       </div>
       <div class="card-body p-0">
+        <div class="px-3 pt-3 pb-0">
+          <p class="small text-muted mb-3">
+            {{ politicalOpinionCount }} tekstiä on merkitty poliittisiksi ja {{ expertOpinionCount }} asiantuntijarooliin.
+            Sama kirjoitus voi kuulua molempiin ryhmiin.
+          </p>
+        </div>
         {# ---- Suodatuspalkki ---- #}
         <div class="p-3 bg-body-tertiary border-bottom">
           <div class="row g-2 align-items-end">
-            <div class="col-md-9">
+            <div class="col-md-7">
               <label for="mielipiteet-search" class="form-label small text-muted mb-1">Hae mielipidekirjoituksia</label>
               <input type="search" id="mielipiteet-search" class="form-control form-control-sm"
                      placeholder="Hae otsikosta, tiivistelmästä, julkaisusta, kategorioista..." autocomplete="off">
             </div>
-            <div class="col-md-3 d-flex justify-content-md-end gap-2">
+            <div class="col-md-3">
+              <label class="form-label small text-muted mb-1">Rajaa roolin mukaan</label>
+              <div class="btn-group btn-group-sm d-flex flex-wrap" role="group" aria-label="Mielipiderooli">
+                <button type="button" class="btn btn-outline-secondary active" data-opinion-role="all">Kaikki</button>
+                <button type="button" class="btn btn-outline-secondary" data-opinion-role="political">Poliittiset</button>
+                <button type="button" class="btn btn-outline-secondary" data-opinion-role="expert">Asiantuntija</button>
+              </div>
+            </div>
+            <div class="col-md-2 d-flex justify-content-md-end gap-2">
               <button id="mielipiteet-reset" class="btn btn-outline-secondary btn-sm w-100">
                 <i class="bi bi-x-circle me-1"></i>Tyhjennä
               </button>
@@ -2730,46 +2747,75 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
   const mielipiteetDataEl = document.getElementById('mielipiteet-data');
   if (!mielipiteetDataEl) return;
   const mielipiteetData = JSON.parse(mielipiteetDataEl.textContent);
+  const urlParams = new URLSearchParams(window.location.search);
+  const initialOpinionRole = urlParams.get('opinions');
 
-  let filteredMielipiteetData = [...mielipiteetData].sort((a, b) => new Date(b.date) - new Date(a.date));
+  let filteredMielipiteetData = [];
   let mielipiteetCurrentPage = 1;
   let mielipiteetSortCol = 'date';
   let mielipiteetSortDir = -1; // -1 = desc
+  let selectedOpinionRole = ['political', 'expert'].includes(initialOpinionRole) ? initialOpinionRole : 'all';
 
   const mielipiteetSearchInp = document.getElementById('mielipiteet-search');
   const mielipiteetTbody = document.getElementById('mielipiteet-tbody');
   const mielipiteetInfo = document.getElementById('mielipiteet-info');
   const mielipiteetPagUl = document.getElementById('mielipiteet-pagination');
+  const opinionRoleButtons = Array.from(document.querySelectorAll('[data-opinion-role]'));
+
+  function sortMielipiteetArray(data) {
+    return [...data].sort((a, b) => {
+      let av = a[mielipiteetSortCol] ?? '';
+      let bv = b[mielipiteetSortCol] ?? '';
+      if (typeof av === 'string') av = av.toLowerCase();
+      if (typeof bv === 'string') bv = bv.toLowerCase();
+      if (mielipiteetSortCol === 'date') {
+        return (new Date(av) - new Date(bv)) * mielipiteetSortDir;
+      }
+      return av.toString().localeCompare(bv.toString(), 'fi') * mielipiteetSortDir;
+    });
+  }
+
+  function syncOpinionRoleButtons() {
+    opinionRoleButtons.forEach((btn) => {
+      const isActive = btn.dataset.opinionRole === selectedOpinionRole;
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
+  }
+
+  function syncOpinionRoleUrl() {
+    const nextUrl = new URL(window.location.href);
+    if (selectedOpinionRole === 'all') {
+      nextUrl.searchParams.delete('opinions');
+    } else {
+      nextUrl.searchParams.set('opinions', selectedOpinionRole);
+    }
+    history.replaceState({}, '', `${nextUrl.pathname}${nextUrl.search}${window.location.hash}`);
+  }
 
   function applyMielipiteetFilters() {
     const q = mielipiteetSearchInp ? mielipiteetSearchInp.value.toLowerCase().trim() : '';
-    filteredMielipiteetData = mielipiteetData.filter(d => {
+    filteredMielipiteetData = sortMielipiteetArray(mielipiteetData.filter(d => {
+      const roles = Array.isArray(d.opinionRoles) ? d.opinionRoles : [];
       const matchQ = !q ||
         (d.title || '').toLowerCase().includes(q) ||
         (d.description || '').toLowerCase().includes(q) ||
         (d.publication || '').toLowerCase().includes(q) ||
         (d.categories || []).some(c => c.toLowerCase().includes(q)) ||
         (d.keywords || []).some(k => k.toLowerCase().includes(q));
-      return matchQ;
-    }).sort((a, b) => new Date(b.date) - new Date(a.date));
+      const matchRole = selectedOpinionRole === 'all' || roles.includes(selectedOpinionRole);
+      return matchQ && matchRole;
+    }));
     mielipiteetCurrentPage = 1;
+    syncOpinionRoleButtons();
+    syncOpinionRoleUrl();
     renderMielipiteet();
   }
 
   function sortMielipiteetData(col) {
     if (mielipiteetSortCol === col) { mielipiteetSortDir *= -1; }
     else { mielipiteetSortCol = col; mielipiteetSortDir = col === 'date' ? -1 : 1; }
-    
-    filteredMielipiteetData.sort((a, b) => {
-      let av = a[col] ?? '';
-      let bv = b[col] ?? '';
-      if (typeof av === 'string') av = av.toLowerCase();
-      if (typeof bv === 'string') bv = bv.toLowerCase();
-      if (col === 'date') {
-        return (new Date(av) - new Date(bv)) * mielipiteetSortDir;
-      }
-      return av.toString().localeCompare(bv.toString(), 'fi') * mielipiteetSortDir;
-    });
+    filteredMielipiteetData = sortMielipiteetArray(filteredMielipiteetData);
     mielipiteetCurrentPage = 1;
     renderMielipiteet();
   }
@@ -2785,17 +2831,21 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
       mielipiteetTbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-5">Ei tuloksia haulla</td></tr>';
     } else {
       mielipiteetTbody.innerHTML = slice.map(d => {
+        const roleBadges = (d.opinionRoles || []).map((role) => {
+          const label = role === 'political' ? 'Poliittinen' : 'Asiantuntija';
+          return `<span class="badge text-bg-light border text-dark mt-1 me-1">${label}</span>`;
+        }).join('');
         const catBadges = (d.categories || []).map(c => `<a href="/kategoriat/${slugify(c)}/" class="badge text-bg-secondary me-1 text-decoration-none">${c}</a>`).join('');
         const keyBadges = (d.keywords || []).map(k => `<a href="/avainsanat/${slugify(k)}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">${k}</a>`).join('');
 
         const targetAttr = d.isExternal ? 'target="_blank" rel="noopener"' : '';
         const iconInfo = d.isExternal ? '<i class="bi bi-arrow-up-right"></i>' : '<i class="bi bi-arrow-right"></i>';
-        const pubInfo = d.publication ? `<br><span class="badge text-bg-light border text-dark mt-1"><i class="bi bi-journal-text me-1"></i>${escHtml(d.publication)}</span>` : '';
+        const pubInfo = d.publication ? `<br><span class="badge text-bg-light border text-dark mt-1 me-1"><i class="bi bi-journal-text me-1"></i>${escHtml(d.publication)}</span>` : '';
 
         return `<tr>
           <td class="col-date text-center small text-muted font-monospace">${d.formattedDate}</td>
           <td class="col-title fw-medium"><a href="${d.url}" ${targetAttr} class="text-decoration-none">${escHtml(d.title)}</a></td>
-          <td class="col-desc small text-muted"><span class="summary-text">${escHtml(d.description)}</span>${pubInfo}</td>
+          <td class="col-desc small text-muted"><span class="summary-text">${escHtml(d.description)}</span>${pubInfo}${roleBadges}</td>
           <td class="col-taxonomy">
             <div class="mb-1">${catBadges}</div>
             <div>${keyBadges}</div>
@@ -2858,11 +2908,19 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
   }
 
   if (mielipiteetSearchInp) mielipiteetSearchInp.addEventListener('input', applyMielipiteetFilters);
+
+  opinionRoleButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      selectedOpinionRole = btn.dataset.opinionRole || 'all';
+      applyMielipiteetFilters();
+    });
+  });
   
   const mielipiteetResetBtn = document.getElementById('mielipiteet-reset');
   if (mielipiteetResetBtn) {
     mielipiteetResetBtn.addEventListener('click', () => {
       if (mielipiteetSearchInp) mielipiteetSearchInp.value = '';
+      selectedOpinionRole = 'all';
       applyMielipiteetFilters();
     });
   }
@@ -2871,7 +2929,7 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
     th.addEventListener('click', () => sortMielipiteetData(th.dataset.col));
   });
 
-  renderMielipiteet();
+  applyMielipiteetFilters();
 })();
 
 

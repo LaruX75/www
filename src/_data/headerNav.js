@@ -499,12 +499,12 @@ module.exports = {
               countKey: "pub_puhe"
             },
             {
-              title: "Mielipiteet",
-              href: "/kynasta/#mielipiteet",
-              icon: "bi bi-chat-text me-2",
+              title: "Poliittiset mielipiteet",
+              href: "/kynasta/?opinions=political#mielipiteet",
+              icon: "bi bi-chat-left-quote me-2",
               menuLink: true,
-              description: "Kannanotot ja lehtijutut.",
-              countKey: "pub_mielipide"
+              description: "Lehdissä julkaistut poliittiset kannanotot ja päätöksentekoon liittyvät kirjoitukset.",
+              countKey: "pub_mielipide_political"
             },
             {
               title: "Kaikki kirjoitukset",
@@ -590,12 +590,12 @@ module.exports = {
               countKey: "pub_puhe"
             },
             {
-              title: "Opinion pieces",
-              href: "/en/writings/#mielipiteet",
-              icon: "bi bi-chat-text me-2",
+              title: "Political opinions",
+              href: "/en/writings/?opinions=political#mielipiteet",
+              icon: "bi bi-chat-left-quote me-2",
               menuLink: true,
-              description: "Columns and newspaper articles.",
-              countKey: "pub_mielipide"
+              description: "Published political opinion pieces tied to public decision-making and local government.",
+              countKey: "pub_mielipide_political"
             },
             {
               title: "All writings",
@@ -630,14 +630,15 @@ module.exports = {
           heading: "Poliittinen vaikuttaminen",
           links: [
             { title: "Puheenvuorot", href: "/kynasta/#puheet", icon: "bi bi-mic me-2", countKey: "pub_puhe", description: "Valtuustossa ja tapahtumissa pidettyjä puheenvuoroja." },
-            { title: "Aloitteet", href: "/kynasta/#aloitteet", icon: "bi bi-megaphone me-2", countKey: "politics", description: "Valtuustoaloitteet ja muut kirjalliset avaukset päätöksentekoon." }
+            { title: "Aloitteet", href: "/kynasta/#aloitteet", icon: "bi bi-megaphone me-2", countKey: "politics", description: "Valtuustoaloitteet ja muut kirjalliset avaukset päätöksentekoon." },
+            { title: "Poliittiset mielipiteet", href: "/kynasta/?opinions=political#mielipiteet", icon: "bi bi-chat-left-quote me-2", countKey: "pub_mielipide_political", description: "Mielipidekirjoitukset, joissa näkökulma on selvästi poliittinen tai kunnalliseen päätöksentekoon liittyvä." }
           ]
         },
         {
           heading: "Kirjoitukset ja kannanotot",
           links: [
             { title: "Kolumnit", href: "/kynasta/#kolumnit", icon: "bi bi-journal-richtext me-2", countKey: "pub_kolumni", description: "Taustoittavia ja esseemäisiä tekstejä opetuksesta, yhteiskunnasta ja ilmiöistä." },
-            { title: "Mielipiteet", href: "/kynasta/#mielipiteet", icon: "bi bi-chat-text me-2", countKey: "pub_mielipide", description: "Lehdissä julkaistuja mielipidekirjoituksia sekä asiantuntija- että poliittisesta roolista." },
+            { title: "Asiantuntijamielipiteet", href: "/kynasta/?opinions=expert#mielipiteet", icon: "bi bi-chat-text me-2", countKey: "pub_mielipide_expert", description: "Mielipidekirjoitukset, joissa painopiste on asiantuntijuudessa, tutkimuksessa tai opetuksen kehittämisessä." },
             { title: "Blogi", href: "/blogi/", icon: "bi bi-pen me-2", countKey: "blog", description: "Ajankohtaiset kirjoitukset opetuksesta, teknologiasta ja yhteiskunnasta." }
           ]
         }
@@ -660,14 +661,15 @@ module.exports = {
           heading: "Political work",
           links: [
             { title: "Speeches", href: "/en/writings/#puheet", icon: "bi bi-mic me-2", countKey: "pub_puhe", description: "Public speeches and council statements in one archive." },
-            { title: "Initiatives", href: "/en/writings/#aloitteet", icon: "bi bi-megaphone me-2", countKey: "politics", description: "Council initiatives and concrete proposals in local politics." }
+            { title: "Initiatives", href: "/en/writings/#aloitteet", icon: "bi bi-megaphone me-2", countKey: "politics", description: "Council initiatives and concrete proposals in local politics." },
+            { title: "Political opinions", href: "/en/writings/?opinions=political#mielipiteet", icon: "bi bi-chat-left-quote me-2", countKey: "pub_mielipide_political", description: "Opinion pieces rooted in political work, local governance, and public decision-making." }
           ]
         },
         {
           heading: "Writing and commentary",
           links: [
             { title: "Columns", href: "/en/writings/#kolumnit", icon: "bi bi-journal-richtext me-2", countKey: "pub_kolumni", description: "Long-form texts on education, society, and public questions." },
-            { title: "Opinion pieces", href: "/en/writings/#mielipiteet", icon: "bi bi-chat-text me-2", countKey: "pub_mielipide", description: "Opinion texts published from both expert and political roles." },
+            { title: "Expert opinions", href: "/en/writings/?opinions=expert#mielipiteet", icon: "bi bi-chat-text me-2", countKey: "pub_mielipide_expert", description: "Opinion pieces framed primarily through expertise, research, or educational development." },
             { title: "Blog", href: "/en/blog/", icon: "bi bi-pen me-2", countKey: "blog", description: "Posts on education, technology, and public life themes." }
           ]
         }
