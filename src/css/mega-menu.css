@@ -15,6 +15,7 @@
   --mega-icon-button-hover-border: rgba(47, 75, 102, 0.22);
   --mega-icon-button-hover-color: #17324d;
   --mega-nav-underline-color: rgba(47, 75, 102, 0.65);
+  --mega-nav-hover-color: #17324d;
   --evelenty-nav-gap: 0.25rem;
   --evelenty-panel-padding: 1.5rem;
   --menu-divider: rgba(15, 23, 42, 0.28);
@@ -35,6 +36,7 @@
   --mega-icon-button-hover-border: rgba(158, 197, 248, 0.28);
   --mega-icon-button-hover-color: #f8fbff;
   --mega-nav-underline-color: rgba(212, 228, 247, 0.82);
+  --mega-nav-hover-color: #f8fbff;
   --menu-divider: rgba(255, 255, 255, 0.32);
 }
 
@@ -104,14 +106,29 @@
   white-space: nowrap;
 }
 
-.site-navbar .nav-link {
+.evelenty-main-nav>.nav-item>.nav-link,
+.evelenty-main-nav>.nav-item>.mega-nav-trigger>.nav-link,
+.evelenty-main-nav>.nav-item>.mega-nav-trigger>.mega-nav-toggle {
+  border-radius: 0.8rem;
+  transition: color 0.18s ease, text-decoration-color 0.18s ease;
+}
+
+.site-navbar.navbar .nav-link {
   text-decoration-color: transparent;
 }
 
-.site-navbar .nav-link:hover,
-.site-navbar .nav-link:focus-visible,
-.site-navbar .nav-link.active {
+.site-navbar.navbar .nav-link:hover,
+.site-navbar.navbar .nav-link:focus-visible,
+.site-navbar.navbar .nav-link.active {
+  color: var(--mega-nav-hover-color);
   text-decoration-color: var(--mega-nav-underline-color);
+}
+
+.site-navbar.navbar .mega-nav-toggle:hover,
+.site-navbar.navbar .mega-nav-toggle:focus-visible,
+.site-navbar.navbar .mega-nav-trigger:hover>.mega-nav-toggle,
+.site-navbar.navbar .mega-nav-toggle[aria-expanded="true"] {
+  color: var(--mega-nav-hover-color);
 }
 
 .nav-link:focus-visible,
