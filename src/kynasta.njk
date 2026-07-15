@@ -782,7 +782,11 @@ translationKey: writings_index
     "year": {{ (pub.year or 0) | jsonSafe | safe }},
     "authors": {{ (pub.authors or "") | jsonSafe | safe }},
     "journal": {{ (pub.journal or "") | jsonSafe | safe }},
+    "doi": {{ (pub.doi or "") | jsonSafe | safe }},
     "url": {{ (pub.url or "") | jsonSafe | safe }},
+    "volume": {{ (pub.volume or "") | jsonSafe | safe }},
+    "issue": {{ (pub.issue or "") | jsonSafe | safe }},
+    "pages": {{ (pub.pages or "") | jsonSafe | safe }},
     "type": {{ (pub.typeFi or "") | jsonSafe | safe }},
     "typeCode": {{ (pub.typeCode or "") | jsonSafe | safe }}
   }{% if not loop.last %},{% endif %}
@@ -831,7 +835,7 @@ translationKey: writings_index
                 <th class="sortable text-center" data-col="year" style="width:90px">
                   Vuosi <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
                 </th>
-                <th class="sortable" data-col="title">
+                <th class="sortable" data-col="title" data-mobile-label="APA 7 -viite">
                   Otsikko <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
                 </th>
                 <th class="sortable" data-col="journal" style="min-width:150px">
@@ -1018,6 +1022,12 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
   font-weight: 500;
   line-height: 1.3;
 }
+.pub-title-desktop {
+  display: block;
+}
+.pub-apa-mobile {
+  display: none;
+}
 .pub-table td.col-pub {
   font-size: 0.8rem;
   font-style: italic;
@@ -1150,6 +1160,38 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
   .esitykset-table .col-preview,
   .pub-table .col-authors {
     display: none !important;
+  }
+
+  #julkaisut .pub-table td.col-authors,
+  #julkaisut .pub-table td.col-year,
+  #julkaisut .pub-table td.col-pub {
+    display: none !important;
+  }
+
+  #julkaisut .pub-table td.col-title {
+    padding-top: 0;
+  }
+
+  #julkaisut .pub-title-desktop {
+    display: none !important;
+  }
+
+  #julkaisut .pub-apa-mobile {
+    display: block;
+    font-size: 0.98rem;
+    line-height: 1.55;
+    font-weight: 400;
+    color: var(--bs-body-color);
+  }
+
+  #julkaisut .pub-apa-mobile .apa-journal,
+  #julkaisut .pub-apa-mobile .apa-volume {
+    font-style: italic;
+  }
+
+  #julkaisut .pub-apa-mobile .apa-url {
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
 
   #esitykset .card-footer,
@@ -1504,6 +1546,66 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
     render();
   }
 
+  function buildApaCitationHtml(d) {
+    const authors = escHtml(formatApaAuthors(d.authors));
+    const year = escHtml(String(d.year || '').trim() || 'n.d.');
+    const title = escHtml((d.title || '').trim() || 'Nimetön julkaisu');
+    const journal = escHtml((d.journal || '').trim());
+    const doi = escHtml((d.doi || '').trim());
+    const url = escHtml((d.url || '').trim());
+    const volume = escHtml((d.volume || '').trim());
+    const issue = escHtml((d.issue || '').trim());
+    const pages = escHtml((d.pages || '').trim());
+
+    let citation = `${authors} (${year}). ${title}.`;
+    if (journal) {
+      citation += ` <span class="apa-journal">${journal}</span>`;
+      if (volume) {
+        citation += `, <span class="apa-volume">${volume}</span>`;
+        if (issue) citation += `(${issue})`;
+      } else if (issue) {
+        citation += ` (${issue})`;
+      }
+      if (pages) citation += `, ${pages}`;
+      citation += '.';
+    }
+    if (doi) citation += ` <span class="apa-url">https://doi.org/${doi}</span>`;
+    else if (url) citation += ` <span class="apa-url">${url}</span>`;
+    return citation.trim();
+  }
+
+  function formatApaAuthors(value) {
+    const raw = String(value || '').trim();
+    if (!raw) return 'Tuntematon tekijä';
+
+    const authors = raw
+      .split(';')
+      .map((author) => author.trim())
+      .filter(Boolean)
+      .map((author) => {
+        if (!author.includes(',')) return author;
+        const [family, ...rest] = author.split(',');
+        const given = rest.join(',').trim();
+        if (!given) return family.trim();
+        const initials = given
+          .split(/\s+/)
+          .filter(Boolean)
+          .map((part) => part
+            .split('-')
+            .filter(Boolean)
+            .map((segment) => `${segment.charAt(0).toUpperCase()}.`)
+            .join('-'))
+          .join(' ');
+        return `${family.trim()}, ${initials}`.trim();
+      });
+
+    if (authors.length === 1) return authors[0];
+    if (authors.length <= 20) {
+      return `${authors.slice(0, -1).join(', ')}, & ${authors[authors.length - 1]}`;
+    }
+    return `${authors.slice(0, 19).join(', ')}, ... ${authors[authors.length - 1]}`;
+  }
+
   // --- Renderöinti ---
   function render() {
     if (!tbody || !info) return;
@@ -1533,7 +1635,10 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
         return `<tr>
           <td class="col-authors small text-muted">${escHtml(d.authors || '—')}</td>
           <td class="col-year text-center fw-semibold">${d.year || '—'}</td>
-          <td class="col-title">${escHtml(d.title || '—')}</td>
+          <td class="col-title">
+            <span class="pub-title-desktop">${escHtml(d.title || '—')}</span>
+            <div class="pub-apa-mobile">${buildApaCitationHtml(d)}</div>
+          </td>
           <td class="col-pub">${escHtml(d.journal || '—')}</td>
           <td class="col-action text-center">
             <div class="d-flex justify-content-center">

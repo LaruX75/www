@@ -238,6 +238,12 @@ async function fetchCrossrefMeta(doi) {
             isbn: (msg.ISBN || [])[0] || null,
             issn: (msg.ISSN || [])[0] || null,
             containerTitle: (msg["container-title"] || [])[0] || null,
+            title: (msg.title || [])[0] || null,
+            authorsText: (msg.author || [])
+                .map((author) => [author.family, author.given].filter(Boolean).join(", "))
+                .filter(Boolean)
+                .join("; ") || null,
+            url: msg.URL || msg?.resource?.primary?.URL || null,
         };
     } catch {
         return null;
@@ -283,6 +289,10 @@ async function enrichWithCrossref(publications) {
         if (!meta) return p;
         return {
             ...p,
+            title: p.title || meta.title || null,
+            authors: p.authors || meta.authorsText || "",
+            journal: p.journal || meta.containerTitle || null,
+            url: p.url || meta.url || (p.doi ? `https://doi.org/${p.doi}` : null),
             volume: meta.volume || null,
             issue: meta.issue || null,
             pages: meta.pages || null,
