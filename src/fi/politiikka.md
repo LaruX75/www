@@ -116,9 +116,17 @@ templateEngineOverride: njk
     "period": "2017–2021",
     "title": "Ensimmäinen valtuustokausi",
     "summary": "Ensimmäinen valinta Oulun kaupunginvaltuustoon. Samalla rakentui linja, jossa yhdistyvät sivistys, alueellinen yhdenvertaisuus ja lähidemokratia.",
-    "detail": "Luottamustoimet: kaupunginvaltuutettu, sivistys- ja kulttuurilautakunnan jäsen, maakuntavaltuuston varavaltuutettu, lähidemokratiatoimikunnan puheenjohtaja.",
+    "detail": "Luottamustoimet: kaupunginvaltuutettu, sivistys- ja kulttuurilautakunnan jäsen, maakuntavaltuuston varavaltuutettu.",
     "link": "/jari-laru-kaupunginvaltuutettu/",
     "linkLabel": "Arkistosivu 2017–2021"
+  },
+  {
+    "period": "2013–2017",
+    "title": "Varavaltuutettu ja lähidemokratia",
+    "summary": "Vuoden 2012 vaalien jälkeen alkanut vaalikausi toi mukaan varavaltuutetun vastuun ja lähidemokratiatoimikunnan puheenjohtajuuden. Profiili rakentui vahvasti alueellisen osallisuuden, lähipalvelujen ja asukasvaikuttamisen ympärille.",
+    "detail": "Luottamustoimet: varavaltuutettu ja lähidemokratiatoimikunnan puheenjohtaja.",
+    "link": "/kunnallisvaalit-2012/",
+    "linkLabel": "Kunnallisvaalit 2012"
   }
 ] %}
 

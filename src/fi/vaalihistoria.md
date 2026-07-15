@@ -141,7 +141,7 @@ templateEngineOverride: njk,md
                   </div>
                 </div>
               </div>
-              <p class="small text-muted mb-2">Luottamustoimet 2017&ndash;2021: kaupunginvaltuutettu (Oulun kaupunki), sivistys- ja kulttuurilautakunnan jäsen, maakuntavaltuuston varavaltuutettu (Pohjois-Pohjanmaan liitto), lähidemokratiatoimikunnan puheenjohtaja.</p>
+              <p class="small text-muted mb-2">Luottamustoimet 2017&ndash;2021: kaupunginvaltuutettu (Oulun kaupunki), sivistys- ja kulttuurilautakunnan jäsen, maakuntavaltuuston varavaltuutettu (Pohjois-Pohjanmaan liitto).</p>
               <a class="btn btn-outline-primary btn-sm" href="/jari-laru-kaupunginvaltuutettu/">Lue lisää (arkisto)</a>
             </div>
           </div>
@@ -155,7 +155,7 @@ templateEngineOverride: njk,md
             <div class="flex-grow-1">
               <h3 class="h5 fw-bold mb-1">Kunnallisvaalit 2012</h3>
               <p class="text-muted small mb-2">28.10.2012 &mdash; Oulu &mdash; Kokoomus</p>
-              <p class="mb-2">Ehdokkaana kunnallisvaaleissa Oulussa. Taustaa asukasyhdistyksen puheenjohtajana ja varavaltuutetun tehtävissä.</p>
+              <p class="mb-2">Ehdokkaana kunnallisvaaleissa Oulussa. Taustaa asukasyhdistyksen puheenjohtajana sekä myöhemmin alkaneella vaalikaudella varavaltuutetun ja lähidemokratiatoimikunnan puheenjohtajan tehtävissä.</p>
               <div class="row g-3 mb-3">
                 <div class="col-sm-6">
                   <div class="p-2 border rounded small">
@@ -165,7 +165,7 @@ templateEngineOverride: njk,md
                   </div>
                 </div>
               </div>
-              <p class="small text-muted mb-2">Ensimmäinen laajempi kunnallispoliittinen kampanja Oulussa. Painotus asukasvaikuttamiseen, lähipalveluihin ja alueelliseen kehittämiseen.</p>
+              <p class="small text-muted mb-2">Luottamustoimet 2013&ndash;2017: varavaltuutettu (Oulun kaupunki) ja lähidemokratiatoimikunnan puheenjohtaja. Ensimmäinen laajempi kunnallispoliittinen kampanja Oulussa painottui asukasvaikuttamiseen, lähipalveluihin ja alueelliseen kehittämiseen.</p>
               <a class="btn btn-outline-primary btn-sm" href="/kunnallisvaalit-2012/">Vaalisivusto (arkisto)</a>
             </div>
           </div>
