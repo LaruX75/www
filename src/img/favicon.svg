@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Jari Laru monogram favicon</title>
+  <desc id="desc">JL-monogrammi tummalla pohjalla ja taustalla abstrakti valkoinen sivuprofiili.</desc>
+  <defs>
+    <linearGradient id="bg" x1="84" y1="52" x2="428" y2="460" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#12294f"/>
+      <stop offset="0.55" stop-color="#0c1730"/>
+      <stop offset="1" stop-color="#070d19"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(196 154) rotate(43.4) scale(262 242)">
+      <stop offset="0" stop-color="#8fc1ff" stop-opacity="0.24"/>
+      <stop offset="1" stop-color="#8fc1ff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect x="16" y="16" width="480" height="480" rx="112" fill="url(#bg)"/>
+  <rect x="16" y="16" width="480" height="480" rx="112" fill="url(#glow)"/>
+
+  <path
+    d="M184 114c-18 0-36 7-49 19-13 13-21 31-21 50 0 19 7 37 20 50 9 9 14 22 14 35v20c0 22-9 43-26 58l-12 11h72c16 0 31-6 42-17 11-11 17-26 17-42 0-18-7-35-20-47-10-9-15-22-15-36v-31c0-12 4-23 11-33 7-10 11-22 11-34 0-15-6-29-17-40-11-11-26-17-41-17h-6Z"
+    fill="#f8fbff"
+    opacity="0.18"
+  />
+  <path
+    d="M171 154c19 9 31 28 31 49 0 14-5 27-15 38 18 11 29 31 29 53 0 23-11 45-31 58l37 1c17-11 27-30 27-50 0-18-8-36-22-47-10-8-15-21-15-34v-31c0-14 4-27 12-38-10-11-26-18-41-18h-12Z"
+    fill="#f8fbff"
+    opacity="0.11"
+  />
+
+  <text
+    x="126"
+    y="346"
+    fill="#f7fbff"
+    font-family="Inter, Arial, Helvetica, sans-serif"
+    font-size="246"
+    font-weight="800"
+    letter-spacing="-8"
+  >JL</text>
+
+  <rect x="16" y="16" width="480" height="480" rx="112" fill="none" stroke="#dfeeff" stroke-opacity="0.12" stroke-width="6"/>
+</svg>

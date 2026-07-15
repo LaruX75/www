@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, follow" />
+  <title>SEO — jarilaru.fi admin</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <style>
+    :root {
+      color-scheme: light;
+    }
+    body {
+      padding-top: 40px !important;
+      background: #eef3f8;
+      color: #17212f;
+      font-family: system-ui, sans-serif;
+    }
+    #admin-navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 99999;
+      background: #1a2638; height: 40px;
+      display: flex; align-items: center; padding: 0 16px; gap: 0;
+      font-family: system-ui, sans-serif; font-size: 13px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    }
+    #admin-navbar .nav-brand { color: #e2e8f0; font-weight: 600; margin-right: 20px; white-space: nowrap; }
+    #admin-navbar a {
+      color: #94a3b8; text-decoration: none;
+      padding: 0 14px; height: 40px; display: flex; align-items: center;
+    }
+    #admin-navbar a:hover { color: #e2e8f0; background: rgba(255,255,255,0.07); }
+    #admin-navbar a.active { color: #fff; border-bottom: 2px solid #60a5fa; }
+    #admin-navbar .nav-spacer { flex: 1; }
+
+    .page-shell {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 2rem 1rem 4rem;
+    }
+    .hero-card,
+    .panel-card,
+    .metric-card {
+      background: #fff;
+      border: 1px solid #d9e2ec;
+      border-radius: 18px;
+      box-shadow: 0 12px 28px rgba(19, 33, 56, 0.06);
+    }
+    .hero-card {
+      padding: 1.5rem;
+      margin-bottom: 1.25rem;
+      background: linear-gradient(135deg, rgba(255,255,255,0.98), rgba(240,246,252,0.96));
+    }
+    .hero-kicker {
+      font-size: .74rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #47617d;
+      margin-bottom: .4rem;
+    }
+    .hero-title {
+      font-size: clamp(1.7rem, 3vw, 2.35rem);
+      font-weight: 800;
+      line-height: 1.05;
+      margin-bottom: .55rem;
+    }
+    .hero-text {
+      max-width: 70ch;
+      color: #516171;
+      margin-bottom: 0;
+    }
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+    .metric-card {
+      padding: 1.1rem 1.1rem 1rem;
+    }
+    .metric-label {
+      font-size: .78rem;
+      font-weight: 700;
+      color: #59708a;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: .5rem;
+    }
+    .metric-value {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: .4rem;
+      color: #10233a;
+    }
+    .metric-note {
+      font-size: .9rem;
+      color: #617487;
+      margin-bottom: 0;
+    }
+    .panels-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+    .panel-card {
+      padding: 1.25rem;
+    }
+    .panel-title {
+      font-size: 1rem;
+      font-weight: 800;
+      margin-bottom: .9rem;
+      color: #12263c;
+    }
+    .mini-list {
+      display: grid;
+      gap: .7rem;
+    }
+    .mini-item {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-bottom: .7rem;
+      border-bottom: 1px solid #e6edf5;
+    }
+    .mini-item:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+    .mini-item strong {
+      display: block;
+      margin-bottom: .15rem;
+      font-size: .92rem;
+    }
+    .mini-item small {
+      color: #697b8f;
+    }
+    .badge-ok,
+    .badge-warn {
+      padding: .28rem .58rem;
+      border-radius: 999px;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .badge-ok {
+      background: #e7f8ee;
+      color: #146c43;
+    }
+    .badge-warn {
+      background: #fff3db;
+      color: #9a6700;
+    }
+    .example-list {
+      margin: .8rem 0 0;
+      padding-left: 1.1rem;
+      color: #5f7184;
+      font-size: .92rem;
+    }
+    .inspector-card {
+      background: #fff;
+      border: 1px solid #d9e2ec;
+      border-radius: 18px;
+      box-shadow: 0 12px 28px rgba(19, 33, 56, 0.06);
+      padding: 1.25rem;
+    }
+    .inspector-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .inspector-head p {
+      margin-bottom: 0;
+      color: #607387;
+    }
+    .inspector-form {
+      display: flex;
+      gap: .75rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+    .inspector-form .form-control {
+      min-width: 280px;
+      border-radius: 999px;
+      padding-inline: 1rem;
+    }
+    .inspector-form .btn {
+      border-radius: 999px;
+      padding-inline: 1rem;
+      font-weight: 600;
+    }
+    .page-summary {
+      border: 1px solid #e2eaf2;
+      border-radius: 14px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      background: #fbfdff;
+    }
+    .page-summary h2 {
+      font-size: 1.05rem;
+      margin-bottom: .3rem;
+    }
+    .page-summary .muted-line {
+      color: #66788c;
+      margin-bottom: 0;
+    }
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: .9rem;
+    }
+    .detail-item {
+      border: 1px solid #e5edf4;
+      border-radius: 14px;
+      padding: .9rem 1rem;
+      background: #fff;
+    }
+    .detail-item-label {
+      font-size: .72rem;
+      font-weight: 700;
+      color: #66788c;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: .4rem;
+    }
+    .detail-item-value {
+      font-size: .95rem;
+      color: #13263d;
+      word-break: break-word;
+    }
+    .detail-empty {
+      color: #9aa9b6;
+      font-style: italic;
+    }
+    .status-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .45rem;
+      margin-top: .7rem;
+    }
+    .status-pill {
+      background: #edf4fb;
+      border: 1px solid #d7e4f0;
+      color: #35516f;
+      border-radius: 999px;
+      padding: .28rem .6rem;
+      font-size: .78rem;
+      font-weight: 600;
+    }
+    .empty-state {
+      padding: 1rem 0 .2rem;
+      color: #6a7b8f;
+    }
+    .loading {
+      color: #617487;
+    }
+    @media (max-width: 980px) {
+      .metrics-grid,
+      .panels-grid,
+      .detail-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav id="admin-navbar">
+    <span class="nav-brand">jarilaru.fi</span>
+    <a href="/admin/">Sveltia CMS</a>
+    <a href="/admin/editor/">Editori</a>
+    <a href="/admin/curate/">Kuratointi</a>
+    <a href="/admin/export/">Vie</a>
+    <a href="/admin/seo/" class="active">SEO</a>
+    <span class="nav-spacer"></span>
+    <span id="user-info" style="color:#94a3b8;font-size:12px;padding:0 8px;"></span>
+    <button id="login-btn" style="background:none;border:1px solid #475569;color:#94a3b8;padding:4px 12px;border-radius:5px;cursor:pointer;font-size:12px;font-family:inherit;">Kirjaudu GitHubiin</button>
+    <button id="logout-btn" style="display:none;background:none;border:1px solid #475569;color:#94a3b8;padding:4px 12px;border-radius:5px;cursor:pointer;font-size:12px;font-family:inherit;margin-left:8px;">Kirjaudu ulos</button>
+  </nav>
+
+  <main class="page-shell">
+    <section class="hero-card">
+      <div class="hero-kicker">Admin · SEO</div>
+      <h1 class="hero-title">Perus-SEO yhdellä silmäyksellä</h1>
+      <p class="hero-text">Tämä näkymä näyttää buildatun sivuston sitemap-, robots- ja hreflang-tilanteen sekä sivukohtaiset metatiedot yhdelle polulle. Ensimmäinen versio on tarkoitettu nopeaan tarkistukseen, ei pisteytysleikiksi.</p>
+    </section>
+
+    <section class="metrics-grid" id="metrics">
+      <article class="metric-card">
+        <div class="metric-label">Sivuja</div>
+        <div class="metric-value">...</div>
+        <p class="metric-note">Buildatun sivuston HTML-sivut</p>
+      </article>
+      <article class="metric-card">
+        <div class="metric-label">Indexoitavia</div>
+        <div class="metric-value">...</div>
+        <p class="metric-note">Sivut ilman `noindex`-ohjetta</p>
+      </article>
+      <article class="metric-card">
+        <div class="metric-label">Puuttuva description</div>
+        <div class="metric-value">...</div>
+        <p class="metric-note">Sivut ilman meta descriptionia</p>
+      </article>
+      <article class="metric-card">
+        <div class="metric-label">Puuttuva OG image</div>
+        <div class="metric-value">...</div>
+        <p class="metric-note">Sivut ilman `og:image`-arvoa</p>
+      </article>
+    </section>
+
+    <section class="panels-grid">
+      <article class="panel-card">
+        <h2 class="panel-title">Sivuston tarkistukset</h2>
+        <div class="mini-list" id="site-checks"></div>
+      </article>
+      <article class="panel-card">
+        <h2 class="panel-title">Puutteet ja esimerkit</h2>
+        <div id="examples-panel" class="loading">Ladataan…</div>
+      </article>
+    </section>
+
+    <section class="inspector-card">
+      <div class="inspector-head">
+        <div>
+          <h2 class="panel-title mb-1">Sivukohtainen tarkistin</h2>
+          <p>Syötä polku kuten <code>/politiikka/</code>, <code>/kynasta/</code> tai <code>/en/research/</code>.</p>
+        </div>
+        <div class="text-secondary small" id="generated-at">Ladataan raporttia…</div>
+      </div>
+
+      <form class="inspector-form" id="inspector-form">
+        <input id="path-input" class="form-control" list="page-paths" placeholder="/politiikka/" value="/politiikka/" />
+        <datalist id="page-paths"></datalist>
+        <button class="btn btn-primary" type="submit">Näytä sivu</button>
+      </form>
+
+      <div id="page-inspector" class="empty-state">Valitse polku nähdäksesi sivun metatiedot.</div>
+    </section>
+  </main>
+
+  <script>
+    const dashboardUrl = '/api/seo-dashboard.json';
+    const sourceMapUrl = '/api/seo-source-map.json';
+    const REPO = 'LaruX75/www';
+    const AUTH_URL = 'https://sveltia-cms-auth.fc4ydtm5bs.workers.dev';
+    const AUTH_ORIGIN = new URL(AUTH_URL).origin;
+    const ALLOWED_USERS = ['LaruX75'];
+    const metricsEl = document.getElementById('metrics');
+    const checksEl = document.getElementById('site-checks');
+    const examplesEl = document.getElementById('examples-panel');
+    const inspectorEl = document.getElementById('page-inspector');
+    const formEl = document.getElementById('inspector-form');
+    const pathInputEl = document.getElementById('path-input');
+    const datalistEl = document.getElementById('page-paths');
+    const generatedAtEl = document.getElementById('generated-at');
+    const loginBtnEl = document.getElementById('login-btn');
+    const logoutBtnEl = document.getElementById('logout-btn');
+    const userInfoEl = document.getElementById('user-info');
+
+    let dashboard = null;
+    let sourceMap = null;
+    let token = null;
+
+    function getStoredToken() {
+      try { return sessionStorage.getItem('github-token') || localStorage.getItem('github-token'); } catch { return null; }
+    }
+
+    async function doLogin() {
+      const popup = window.open(
+        `${AUTH_URL}/auth?provider=github&site_id=www.jarilaru.fi`,
+        'gh-auth', 'width=620,height=720,left=200,top=100'
+      );
+      return new Promise((resolve, reject) => {
+        window.addEventListener('message', function handler(e) {
+          if (e.origin !== AUTH_ORIGIN) return;
+          if (e.data === 'authorizing:github') { popup?.postMessage('authorizing:github', AUTH_ORIGIN); return; }
+          const prefix = 'authorization:github:success:';
+          if (typeof e.data === 'string' && e.data.startsWith(prefix)) {
+            window.removeEventListener('message', handler);
+            popup?.close();
+            try {
+              const payload = JSON.parse(e.data.slice(prefix.length));
+              if (payload?.token) resolve(payload.token);
+              else reject(new Error('No token'));
+            } catch {
+              reject(new Error('Parse error'));
+            }
+          }
+          if (typeof e.data === 'string' && e.data.startsWith('authorization:github:error:')) {
+            window.removeEventListener('message', handler);
+            reject(new Error('Auth error'));
+          }
+        });
+      });
+    }
+
+    async function ghGet(url) {
+      const response = await fetch(`https://api.github.com${url}`, {
+        headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' }
+      });
+      if (!response.ok) throw new Error(`GitHub API ${response.status}`);
+      return response.json();
+    }
+
+    async function ghPut(url, body) {
+      const response = await fetch(`https://api.github.com${url}`, {
+        method: 'PUT',
+        headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || `HTTP ${response.status}`);
+      }
+      return response.json();
+    }
+
+    function badge(ok) {
+      return `<span class="${ok ? 'badge-ok' : 'badge-warn'}">${ok ? 'OK' : 'Huomio'}</span>`;
+    }
+
+    function escapeHtml(value) {
+      return String(value || '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;');
+    }
+
+    function formatList(items) {
+      if (!items || !items.length) {
+        return '<p class="mb-0 text-secondary">Ei näytettäviä esimerkkejä.</p>';
+      }
+      return `<ul class="example-list">${items.map((item) => `<li><code>${escapeHtml(item)}</code></li>`).join('')}</ul>`;
+    }
+
+    function renderMetrics(summary) {
+      const cards = metricsEl.querySelectorAll('.metric-card');
+      const values = [
+        summary.pageCount,
+        summary.indexableCount,
+        summary.missingDescriptionCount,
+        summary.missingOgImageCount
+      ];
+      cards.forEach((card, index) => {
+        const target = card.querySelector('.metric-value');
+        if (target) target.textContent = values[index];
+      });
+    }
+
+    function renderChecks(data) {
+      const sitemap = data.checks.sitemap;
+      const hreflang = data.checks.hreflang;
+      const ogBuildNote = data.ogBuildEnabled
+        ? 'OG-kuvat on generoitu tässä buildissä.'
+        : 'OG-kuvat ovat pois päältä tässä buildissä, joten puutelistat eivät ole tältä osin luotettavia.';
+
+      checksEl.innerHTML = `
+        <div class="mini-item">
+          <div>
+            <strong>Sitemap & robots</strong>
+            <small>${sitemap.sitemapUrlCount} URLia sitemapissa, ${sitemap.sitemapLastmodCount} lastmod-kenttää.</small>
+          </div>
+          ${badge(sitemap.sitemapExists && sitemap.robotsExists && sitemap.robotsContainsSitemap && sitemap.missingOutputFiles === 0)}
+        </div>
+        <div class="mini-item">
+          <div>
+            <strong>Sitemap-tiedosto</strong>
+            <small>${sitemap.sitemapExists ? 'Löytyy buildistä.' : 'Puuttuu buildistä.'}</small>
+          </div>
+          ${badge(sitemap.sitemapExists)}
+        </div>
+        <div class="mini-item">
+          <div>
+            <strong>robots.txt</strong>
+            <small>${sitemap.robotsContainsSitemap ? 'Sitemap-rivi löytyi robots.txt:stä.' : 'Sitemap-rivi puuttuu robots.txt:stä.'}</small>
+          </div>
+          ${badge(sitemap.robotsExists && sitemap.robotsContainsSitemap)}
+        </div>
+        <div class="mini-item">
+          <div>
+            <strong>hreflang-targetit</strong>
+            <small>${hreflang.issueCount === 0 ? 'Kaikki tarkistetut hreflang-linkit osoittavat olemassa olevaan sivuun.' : `${hreflang.issueCount} hreflang-ongelmaa buildissä.`}</small>
+          </div>
+          ${badge(hreflang.issueCount === 0)}
+        </div>
+        <div class="mini-item">
+          <div>
+            <strong>OG-buildin tila</strong>
+            <small>${ogBuildNote}</small>
+          </div>
+          ${badge(data.ogBuildEnabled)}
+        </div>
+      `;
+
+      examplesEl.innerHTML = `
+        <div class="mini-item">
+          <div>
+            <strong>Puuttuva description</strong>
+            <small>${data.summary.missingDescriptionCount} sivua</small>
+          </div>
+        </div>
+        ${formatList(data.summary.examples.missingDescription)}
+        <div class="mini-item mt-3">
+          <div>
+            <strong>Puuttuva OG image</strong>
+            <small>${data.summary.missingOgImageCount} sivua</small>
+          </div>
+        </div>
+        ${formatList(data.summary.examples.missingOgImage)}
+      `;
+    }
+
+    function renderDatalist(pages) {
+      datalistEl.innerHTML = pages
+        .map((page) => `<option value="${escapeHtml(page.path)}"></option>`)
+        .join('');
+    }
+
+    function getSourceItem(pathValue) {
+      return sourceMap?.items?.find((item) => item.path === pathValue.trim()) || null;
+    }
+
+    function decodeContent(base64Content) {
+      return decodeURIComponent(escape(atob(base64Content.replace(/\n/g, ''))));
+    }
+
+    function encodeContent(value) {
+      return btoa(unescape(encodeURIComponent(value)));
+    }
+
+    function updateFrontmatterField(content, key, value) {
+      if (!content.startsWith('---\n')) {
+        throw new Error('Tiedostossa ei ole YAML-frontmatteria.');
+      }
+
+      const endIndex = content.indexOf('\n---', 4);
+      if (endIndex === -1) {
+        throw new Error('Frontmatterin loppua ei löytynyt.');
+      }
+
+      const frontmatter = content.slice(4, endIndex);
+      const body = content.slice(endIndex + 4);
+      const lines = frontmatter.split('\n');
+      const fieldRegex = new RegExp(`^${key}:\\s*(.*)$`);
+      let replaced = false;
+      const nextLines = [];
+
+      for (const line of lines) {
+        if (fieldRegex.test(line)) {
+          replaced = true;
+          if (value) {
+            nextLines.push(`${key}: "${value}"`);
+          }
+          continue;
+        }
+        nextLines.push(line);
+      }
+
+      if (!replaced && value) {
+        nextLines.push(`${key}: "${value}"`);
+      }
+
+      return `---\n${nextLines.join('\n')}\n---${body}`;
+    }
+
+    async function saveOgOverride(pathValue) {
+      const source = getSourceItem(pathValue);
+      if (!source?.inputPath) {
+        throw new Error('Tälle sivulle ei löytynyt muokattavaa lähdetiedostoa.');
+      }
+      if (!token) {
+        throw new Error('Kirjaudu ensin GitHubiin.');
+      }
+
+      const input = document.getElementById('og-override-input');
+      const status = document.getElementById('og-override-status');
+      const saveBtn = document.getElementById('og-override-save');
+      const clearBtn = document.getElementById('og-override-clear');
+      const rawValue = input?.value?.trim() || '';
+
+      saveBtn.disabled = true;
+      clearBtn.disabled = true;
+      status.textContent = 'Tallennetaan...';
+      status.className = 'small text-muted mt-2';
+
+      try {
+        const file = await ghGet(`/repos/${REPO}/contents/${source.inputPath}`);
+        const decoded = decodeContent(file.content);
+        const updated = updateFrontmatterField(decoded, 'og_image', rawValue);
+
+        await ghPut(`/repos/${REPO}/contents/${source.inputPath}`, {
+          message: `seo: update og image override for ${pathValue}`,
+          content: encodeContent(updated),
+          sha: file.sha
+        });
+
+        source.ogImageOverride = rawValue;
+        status.textContent = '✓ Tallennettu GitHubiin. Uusi kuva näkyy seuraavassa buildissä.';
+        status.className = 'small text-success mt-2';
+        renderPage(pathValue);
+      } catch (error) {
+        status.textContent = `Virhe: ${error.message}`;
+        status.className = 'small text-danger mt-2';
+      } finally {
+        saveBtn.disabled = false;
+        clearBtn.disabled = false;
+      }
+    }
+
+    function renderOverrideEditor(pathValue) {
+      const source = getSourceItem(pathValue);
+      if (!source?.inputPath) {
+        return `
+          <article class="detail-item" style="grid-column: 1 / -1;">
+            <div class="detail-item-label">OG image override</div>
+            <div class="detail-item-value detail-empty">Tälle sivulle ei löytynyt suoraa lähdetiedostoa SEO-adminin muokkausta varten.</div>
+          </article>
+        `;
+      }
+
+      const currentValue = source.ogImageOverride || '';
+      const disabledAttr = token ? '' : 'disabled';
+      const helpText = token
+        ? 'Anna polku kuten /img/og/politiikka-special.jpg tai absoluuttinen URL.'
+        : 'Kirjaudu GitHubiin, niin voit tallentaa sivukohtaisen OG-kuvan suoraan tästä näkymästä.';
+
+      return `
+        <article class="detail-item" style="grid-column: 1 / -1;">
+          <div class="detail-item-label">OG image override</div>
+          <div class="detail-item-value">
+            <div class="mb-2 ${currentValue ? '' : 'detail-empty'}">${currentValue ? escapeHtml(currentValue) : 'Overridea ei ole asetettu.'}</div>
+            <div class="d-flex flex-wrap gap-2 align-items-center">
+              <input id="og-override-input" class="form-control" style="max-width:640px;" value="${escapeHtml(currentValue)}" placeholder="/img/og/oma-kuva.jpg" ${disabledAttr}>
+              <button id="og-override-save" class="btn btn-primary btn-sm" ${disabledAttr}>Tallenna override</button>
+              <button id="og-override-clear" class="btn btn-outline-secondary btn-sm" ${disabledAttr}>Poista override</button>
+            </div>
+            <div class="small text-muted mt-2">${helpText}</div>
+            <div id="og-override-status" class="small mt-2"></div>
+            <div class="small text-muted mt-2">Lähdetiedosto: <code>${escapeHtml(source.inputPath)}</code></div>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderPage(pathValue) {
+      if (!dashboard) return;
+      const page = dashboard.pages.find((item) => item.path === pathValue.trim());
+      if (!page) {
+        inspectorEl.innerHTML = `<div class="empty-state">Polkua <code>${escapeHtml(pathValue)}</code> ei löytynyt buildistä.</div>`;
+        return;
+      }
+
+      const hreflangItems = Object.entries(page.hreflangs || {});
+      inspectorEl.innerHTML = `
+        <div class="page-summary">
+          <h2>${escapeHtml(page.title || '(ei otsikkoa)')}</h2>
+          <p class="muted-line"><code>${escapeHtml(page.path)}</code></p>
+          <div class="status-pills">
+            <span class="status-pill">${page.isNoindex ? 'noindex' : 'index'}</span>
+            <span class="status-pill">${page.hasDescription ? 'description OK' : 'description puuttuu'}</span>
+            <span class="status-pill">${page.hasCanonical ? 'canonical OK' : 'canonical puuttuu'}</span>
+            <span class="status-pill">${page.hasOgImage ? 'og:image OK' : 'og:image puuttuu'}</span>
+            <span class="status-pill">${page.hasH1 ? 'H1 OK' : 'H1 puuttuu'}</span>
+          </div>
+        </div>
+        <div class="detail-grid">
+          <article class="detail-item">
+            <div class="detail-item-label">Title</div>
+            <div class="detail-item-value ${page.title ? '' : 'detail-empty'}">${page.title ? escapeHtml(page.title) : 'Puuttuu'}</div>
+          </article>
+          <article class="detail-item">
+            <div class="detail-item-label">Meta description</div>
+            <div class="detail-item-value ${page.description ? '' : 'detail-empty'}">${page.description ? escapeHtml(page.description) : 'Puuttuu'}</div>
+          </article>
+          <article class="detail-item">
+            <div class="detail-item-label">Canonical</div>
+            <div class="detail-item-value ${page.canonical ? '' : 'detail-empty'}">${page.canonical ? escapeHtml(page.canonical) : 'Puuttuu'}</div>
+          </article>
+          <article class="detail-item">
+            <div class="detail-item-label">Robots</div>
+            <div class="detail-item-value ${page.robots ? '' : 'detail-empty'}">${page.robots ? escapeHtml(page.robots) : 'Puuttuu'}</div>
+          </article>
+          <article class="detail-item">
+            <div class="detail-item-label">OG image</div>
+            <div class="detail-item-value ${page.ogImage ? '' : 'detail-empty'}">${page.ogImage ? escapeHtml(page.ogImage) : 'Puuttuu'}</div>
+          </article>
+          <article class="detail-item">
+            <div class="detail-item-label">H1</div>
+            <div class="detail-item-value ${page.h1 ? '' : 'detail-empty'}">${page.h1 ? escapeHtml(page.h1) : 'Puuttuu'}</div>
+          </article>
+          <article class="detail-item" style="grid-column: 1 / -1;">
+            <div class="detail-item-label">hreflang-linkit</div>
+            <div class="detail-item-value ${hreflangItems.length ? '' : 'detail-empty'}">
+              ${hreflangItems.length
+                ? hreflangItems.map(([lang, href]) => `<div><strong>${escapeHtml(lang)}</strong>: ${escapeHtml(href)}</div>`).join('')
+                : 'Puuttuu'}
+            </div>
+          </article>
+          ${renderOverrideEditor(pathValue)}
+        </div>
+      `;
+
+      const saveBtn = document.getElementById('og-override-save');
+      const clearBtn = document.getElementById('og-override-clear');
+      const input = document.getElementById('og-override-input');
+      if (saveBtn && input) {
+        saveBtn.addEventListener('click', () => saveOgOverride(pathValue.trim()));
+      }
+      if (clearBtn && input) {
+        clearBtn.addEventListener('click', () => {
+          input.value = '';
+          saveOgOverride(pathValue.trim());
+        });
+      }
+    }
+
+    async function init() {
+      try {
+        const [dashboardResponse, sourceMapResponse] = await Promise.all([
+          fetch(dashboardUrl, { cache: 'no-store' }),
+          fetch(sourceMapUrl, { cache: 'no-store' })
+        ]);
+        if (!dashboardResponse.ok) {
+          throw new Error(`SEO dashboard HTTP ${dashboardResponse.status}`);
+        }
+        if (!sourceMapResponse.ok) {
+          throw new Error(`SEO source map HTTP ${sourceMapResponse.status}`);
+        }
+        dashboard = await dashboardResponse.json();
+        sourceMap = await sourceMapResponse.json();
+        renderMetrics(dashboard.summary);
+        renderChecks(dashboard);
+        renderDatalist(dashboard.pages);
+        generatedAtEl.textContent = `Raportti luotu ${new Date(dashboard.generatedAt).toLocaleString('fi-FI')}`;
+        renderPage(pathInputEl.value);
+      } catch (error) {
+        const message = `SEO-raportin lataus epäonnistui: ${error.message}`;
+        metricsEl.innerHTML = `<article class="metric-card"><div class="metric-label">Virhe</div><div class="metric-note">${escapeHtml(message)}</div></article>`;
+        checksEl.innerHTML = `<p class="mb-0 text-danger">${escapeHtml(message)}</p>`;
+        examplesEl.innerHTML = `<p class="mb-0 text-danger">${escapeHtml(message)}</p>`;
+        inspectorEl.innerHTML = `<div class="empty-state text-danger">${escapeHtml(message)}</div>`;
+        generatedAtEl.textContent = 'Raporttia ei saatu ladattua';
+      }
+    }
+
+    formEl.addEventListener('submit', (event) => {
+      event.preventDefault();
+      renderPage(pathInputEl.value);
+    });
+
+    loginBtnEl.addEventListener('click', async () => {
+      try {
+        token = await doLogin();
+        sessionStorage.setItem('github-token', token);
+        const user = await ghGet('/user');
+        if (!ALLOWED_USERS.includes(user.login)) {
+          throw new Error('Ei käyttöoikeutta.');
+        }
+        userInfoEl.textContent = `@${user.login}`;
+        loginBtnEl.style.display = 'none';
+        logoutBtnEl.style.display = '';
+        renderPage(pathInputEl.value);
+      } catch (error) {
+        alert(`Kirjautuminen epäonnistui: ${error.message}`);
+      }
+    });
+
+    logoutBtnEl.addEventListener('click', () => {
+      token = null;
+      sessionStorage.removeItem('github-token');
+      localStorage.removeItem('github-token');
+      userInfoEl.textContent = '';
+      loginBtnEl.style.display = '';
+      logoutBtnEl.style.display = 'none';
+      renderPage(pathInputEl.value);
+    });
+
+    token = getStoredToken();
+    if (token) {
+      ghGet('/user').then((user) => {
+        if (ALLOWED_USERS.includes(user.login)) {
+          userInfoEl.textContent = `@${user.login}`;
+          loginBtnEl.style.display = 'none';
+          logoutBtnEl.style.display = '';
+          renderPage(pathInputEl.value);
+        }
+      }).catch(() => {
+        token = null;
+        sessionStorage.removeItem('github-token');
+        localStorage.removeItem('github-token');
+      });
+    }
+
+    init();
+  </script>
+</body>
+</html>
