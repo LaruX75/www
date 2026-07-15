@@ -1072,10 +1072,33 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
     letter-spacing: 0.06em;
     text-transform: uppercase;
     text-align: left;
+    white-space: normal;
+    word-break: normal;
+    overflow-wrap: break-word;
   }
 
   .pub-table td > * {
     max-width: none;
+  }
+
+  .pub-table td.col-date,
+  .pub-table td.col-year,
+  .pub-table td.col-title,
+  .pub-table td.col-pub,
+  .pub-table td.col-app,
+  .pub-table td.col-action {
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+  }
+
+  .pub-table td.col-date,
+  .pub-table td.col-year,
+  .pub-table td.col-date::before,
+  .pub-table td.col-year::before {
+    white-space: nowrap;
+    word-break: keep-all;
+    overflow-wrap: normal;
   }
 
   .pub-table .col-title,
@@ -1127,6 +1150,39 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
   .esitykset-table .col-preview,
   .pub-table .col-authors {
     display: none !important;
+  }
+
+  #esitykset .card-footer,
+  #julkaisut .card-footer {
+    flex-direction: column;
+    align-items: stretch !important;
+  }
+
+  #esitykset .card-footer > .d-flex,
+  #esitykset .card-footer nav,
+  #julkaisut .card-footer nav {
+    width: 100%;
+  }
+
+  #esitykset .card-footer > .d-flex {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  #esitykset .card-footer .btn {
+    flex: 1 1 auto;
+  }
+
+  #esitykset-pagination,
+  #pub-pagination {
+    justify-content: center;
+    row-gap: 0.35rem;
+  }
+
+  #esitykset-pagination .page-link,
+  #pub-pagination .page-link {
+    min-width: 2.2rem;
+    text-align: center;
   }
 }
 </style>
@@ -1987,23 +2043,66 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
     if (!esityksetPagUl) return;
     esityksetPagUl.innerHTML = '';
     if (total <= 1) return;
+    const isMobile = window.matchMedia('(max-width: 767.98px)').matches;
 
-    for (let i = 1; i <= total; i++) {
+    const appendPageLink = (label, page, { active = false, disabled = false, ariaLabel = '' } = {}) => {
       const li = document.createElement('li');
-      li.className = `page-item${i === esityksetCurrentPage ? ' active' : ''}`;
+      li.className = `page-item${active ? ' active' : ''}${disabled ? ' disabled' : ''}`;
       const a = document.createElement('a');
       a.className = 'page-link';
       a.href = '#';
-      a.textContent = i;
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        esityksetCurrentPage = i;
-        renderEsitykset();
-        document.getElementById('esitykset')?.scrollIntoView({behavior:'smooth', block:'start'});
-      });
+      a.textContent = label;
+      if (ariaLabel) a.setAttribute('aria-label', ariaLabel);
+      if (!disabled) {
+        a.addEventListener('click', e => {
+          e.preventDefault();
+          esityksetCurrentPage = page;
+          renderEsitykset();
+          document.getElementById('esitykset')?.scrollIntoView({behavior:'smooth', block:'start'});
+        });
+      } else {
+        a.setAttribute('aria-disabled', 'true');
+        a.setAttribute('tabindex', '-1');
+      }
       li.appendChild(a);
       esityksetPagUl.appendChild(li);
+    };
+
+    const appendEllipsis = () => {
+      const li = document.createElement('li');
+      li.className = 'page-item disabled';
+      li.innerHTML = '<span class="page-link">…</span>';
+      esityksetPagUl.appendChild(li);
+    };
+
+    if (!isMobile) {
+      for (let i = 1; i <= total; i++) {
+        appendPageLink(String(i), i, { active: i === esityksetCurrentPage });
+      }
+      return;
     }
+
+    appendPageLink('‹', Math.max(1, esityksetCurrentPage - 1), {
+      disabled: esityksetCurrentPage === 1,
+      ariaLabel: 'Edellinen sivu'
+    });
+
+    const pages = new Set([1, total, esityksetCurrentPage - 1, esityksetCurrentPage, esityksetCurrentPage + 1]);
+    const orderedPages = [...pages].filter((page) => page >= 1 && page <= total).sort((a, b) => a - b);
+
+    let previousPage = null;
+    orderedPages.forEach((page) => {
+      if (previousPage !== null && page - previousPage > 1) {
+        appendEllipsis();
+      }
+      appendPageLink(String(page), page, { active: page === esityksetCurrentPage });
+      previousPage = page;
+    });
+
+    appendPageLink('›', Math.min(total, esityksetCurrentPage + 1), {
+      disabled: esityksetCurrentPage === total,
+      ariaLabel: 'Seuraava sivu'
+    });
   }
 
   function escHtml(str) {
