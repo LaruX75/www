@@ -98,35 +98,35 @@ templateEngineOverride: njk
 {% set electionPeriods = [
   {
     "period": "2025–2029",
-    "title": "Nykyinen vaalikausi",
+    "title": "2. varavaltuutettu ja sivistyslautakunnan jäsen",
     "summary": "Ehdolla sekä kunta- että aluevaaleissa. Nykyiset luottamustehtävät jatkuvat sivistyksen, palvelujen ja avoimen päätöksenteon teemoissa.",
     "detail": "Luottamustoimet: 2. varavaltuutettu, sivistyslautakunnan jäsen, aluevaltuuston varajäsen.",
-    "link": "/kunta-ja-aluevaalit-2025/",
-    "linkLabel": "Vaalisivusto 2025"
+    "link": "/vaalikaudet/#2025-2029",
+    "linkLabel": "Avaa vaalikausi"
   },
   {
     "period": "2021–2025",
-    "title": "Kaupunginvaltuutettu Oulussa",
+    "title": "Kaupunginvaltuutettu ja maakuntavaltuuston jäsen",
     "summary": "Valittu uudelleen Oulun kaupunginvaltuustoon. Työ painottui erityisesti sivistys- ja kulttuuripalveluihin sekä laajoihin palveluverkkokysymyksiin.",
     "detail": "Luottamustoimet: kaupunginvaltuutettu, sivistys- ja kulttuurilautakunnan jäsen, maakuntavaltuuston jäsen.",
-    "link": "/kuntavaalit-2021/",
-    "linkLabel": "Kuntavaalit 2021"
+    "link": "/vaalikaudet/#2021-2025",
+    "linkLabel": "Avaa vaalikausi"
   },
   {
     "period": "2017–2021",
-    "title": "Ensimmäinen valtuustokausi",
+    "title": "Kaupunginvaltuutettu ja maakuntavaltuuston varavaltuutettu",
     "summary": "Ensimmäinen valinta Oulun kaupunginvaltuustoon. Samalla rakentui linja, jossa yhdistyvät sivistys, alueellinen yhdenvertaisuus ja lähidemokratia.",
     "detail": "Luottamustoimet: kaupunginvaltuutettu, sivistys- ja kulttuurilautakunnan jäsen, maakuntavaltuuston varavaltuutettu.",
-    "link": "/jari-laru-kaupunginvaltuutettu/",
-    "linkLabel": "Arkistosivu 2017–2021"
+    "link": "/vaalikaudet/#2017-2021",
+    "linkLabel": "Avaa vaalikausi"
   },
   {
     "period": "2013–2017",
-    "title": "Varavaltuutettu ja lähidemokratia",
+    "title": "Varavaltuutettu ja lähidemokratiatoimikunnan puheenjohtaja",
     "summary": "Vuoden 2012 vaalien jälkeen alkanut vaalikausi toi mukaan varavaltuutetun vastuun ja lähidemokratiatoimikunnan puheenjohtajuuden. Profiili rakentui vahvasti alueellisen osallisuuden, lähipalvelujen ja asukasvaikuttamisen ympärille.",
     "detail": "Luottamustoimet: varavaltuutettu ja lähidemokratiatoimikunnan puheenjohtaja.",
-    "link": "/kunnallisvaalit-2012/",
-    "linkLabel": "Kunnallisvaalit 2012"
+    "link": "/vaalikaudet/#2013-2017",
+    "linkLabel": "Avaa vaalikausi"
   }
 ] %}
 
@@ -172,9 +172,9 @@ templateEngineOverride: njk
     </div>
 
     <div class="pol-mandate-links">
-      <a href="/vaalihistoria/" class="pol-mandate-link-card">
-        <strong>Vaalihistoria</strong>
-        <span>Koko vaalihistoria, vaalitulokset ja luottamustoimet vaalikausittain.</span>
+      <a href="/vaalikaudet/" class="pol-mandate-link-card">
+        <strong>Vaalikaudet</strong>
+        <span>Koko vaalikausien historia, vaalitulokset ja luottamustoimet samassa näkymässä.</span>
       </a>
       <a href="/sidonnaisuudet/" class="pol-mandate-link-card">
         <strong>Sidonnaisuudet</strong>

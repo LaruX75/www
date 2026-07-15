@@ -101,9 +101,9 @@ module.exports = {
           ]
         },
         {
-          heading: "Vaalihistoria",
+          heading: "Vaalikaudet",
           links: [
-            { title: "Vaalikaudet", href: "/vaalihistoria/", icon: "bi bi-calendar-event", description: "Vaalit ja luottamustoimet vaalikausittain." },
+            { title: "Vaalikaudet", href: "/vaalikaudet/", icon: "bi bi-calendar-event", description: "Luottamustoimet, vaalitulokset ja poliittinen työ vaalikausittain." },
             { title: "Kuntavaalit 2025", href: "/kunta-ja-aluevaalit-2025/", icon: "bi bi-chevron-right", description: "Kampanjateemat ja tulos kuntavaaleissa 2025." },
             { title: "Kuntavaalit 2021", href: "/kuntavaalit-2021/", icon: "bi bi-chevron-right", description: "Vaaliteemat, tavoitteet ja kampanjasisällöt vuodelta 2021." },
             { title: "Aluevaalit 2022", href: "/jari-laru-aluevaltuustoon/", icon: "bi bi-chevron-right", description: "Näkemykset hyvinvointialueen päätöksenteon kehittämiseen." }

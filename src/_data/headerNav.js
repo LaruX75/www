@@ -123,8 +123,8 @@ module.exports = {
       data: {
         eleventyNavigation: {
           key: "election_history",
-          title: "Vaalihistoria",
-          url: "/vaalihistoria/",
+          title: "Vaalikaudet",
+          url: "/vaalikaudet/",
           parent: "politics",
           order: 50
         }
@@ -505,10 +505,10 @@ module.exports = {
           links: [
             {
               title: "Vaalikaudet",
-              href: "/vaalihistoria/",
+              href: "/vaalikaudet/",
               icon: "bi bi-calendar-event me-2",
               menuLink: true,
-              description: "Vaalit ja luottamustoimet vaalikausittain."
+              description: "Luottamustoimet, vaalitulokset ja poliittinen työ vaalikausittain."
             },
             {
               title: "Kunta- ja aluevaalit 2025",

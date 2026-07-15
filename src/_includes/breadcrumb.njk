@@ -8,8 +8,8 @@
 {% set lastCrumb = breadcrumbItems[breadcrumbItems.length - 1] if hasNavCrumbs else null %}
 {% set appendCurrent = title and (not lastCrumb or lastCrumb.url != page.url) %}
 {% set shouldRenderFallback = (not hasNavCrumbs) and (not localIsHomePage) and title %}
-{% set electionHistoryUrl = "/en/election-history/" if currentLang == "en" else "/vaalihistoria/" %}
-{% set electionHistoryTitle = "Election History" if currentLang == "en" else "Vaalihistoria" %}
+{% set electionHistoryUrl = "/en/election-history/" if currentLang == "en" else "/vaalikaudet/" %}
+{% set electionHistoryTitle = "Election History" if currentLang == "en" else "Vaalikaudet" %}
 {% set hasElectionHistoryCrumb = hasNavCrumbs and (breadcrumbItems | selectattr("url", "equalto", electionHistoryUrl) | list | length > 0) %}
 
 {% if hasNavCrumbs or shouldRenderFallback %}
