@@ -453,6 +453,7 @@ function renderPaginationShared(ul, total, currentPage, onPageChange) {
   if (total <= 1) return;
 
   const isMobile = window.matchMedia('(max-width: 767.98px)').matches;
+  const WINDOW_SIZE = 10;
 
   const appendPageLink = (label, page, { active = false, disabled = false, ariaLabel = '' } = {}) => {
     const li = document.createElement('li');
@@ -482,30 +483,49 @@ function renderPaginationShared(ul, total, currentPage, onPageChange) {
     ul.appendChild(li);
   };
 
-  if (!isMobile) {
+  if (isMobile) {
+    // Mobiili: kompakti ‹ 1 … nykyinen … N ›
+    appendPageLink('‹', Math.max(1, currentPage - 1), {
+      disabled: currentPage === 1,
+      ariaLabel: 'Edellinen sivu'
+    });
+    const pages = new Set([1, total, currentPage - 1, currentPage, currentPage + 1]);
+    const orderedPages = [...pages].filter(p => p >= 1 && p <= total).sort((a, b) => a - b);
+    let previousPage = null;
+    orderedPages.forEach(page => {
+      if (previousPage !== null && page - previousPage > 1) appendEllipsis();
+      appendPageLink(String(page), page, { active: page === currentPage });
+      previousPage = page;
+    });
+    appendPageLink('›', Math.min(total, currentPage + 1), {
+      disabled: currentPage === total,
+      ariaLabel: 'Seuraava sivu'
+    });
+    return;
+  }
+
+  // Desktop: kaikki sivut jos ≤ WINDOW_SIZE, muuten liukuva ikkuna
+  if (total <= WINDOW_SIZE) {
     for (let i = 1; i <= total; i++) {
       appendPageLink(String(i), i, { active: i === currentPage });
     }
     return;
   }
 
-  appendPageLink('‹', Math.max(1, currentPage - 1), {
-    disabled: currentPage === 1,
-    ariaLabel: 'Edellinen sivu'
-  });
+  // Liukuva ikkuna: aina ensimmäinen + viimeinen, 8 keskisivua nykyisen ympärillä
+  const midSlots = WINDOW_SIZE - 2;
+  let winStart = Math.max(2, currentPage - Math.floor(midSlots / 2));
+  let winEnd = winStart + midSlots - 1;
+  if (winEnd > total - 1) {
+    winEnd = total - 1;
+    winStart = Math.max(2, winEnd - midSlots + 1);
+  }
 
-  const pages = new Set([1, total, currentPage - 1, currentPage, currentPage + 1]);
-  const orderedPages = [...pages].filter(p => p >= 1 && p <= total).sort((a, b) => a - b);
-
-  let previousPage = null;
-  orderedPages.forEach(page => {
-    if (previousPage !== null && page - previousPage > 1) appendEllipsis();
-    appendPageLink(String(page), page, { active: page === currentPage });
-    previousPage = page;
-  });
-
-  appendPageLink('›', Math.min(total, currentPage + 1), {
-    disabled: currentPage === total,
-    ariaLabel: 'Seuraava sivu'
-  });
+  appendPageLink('1', 1, { active: currentPage === 1 });
+  if (winStart > 2) appendEllipsis();
+  for (let i = winStart; i <= winEnd; i++) {
+    appendPageLink(String(i), i, { active: i === currentPage });
+  }
+  if (winEnd < total - 1) appendEllipsis();
+  appendPageLink(String(total), total, { active: currentPage === total });
 }
