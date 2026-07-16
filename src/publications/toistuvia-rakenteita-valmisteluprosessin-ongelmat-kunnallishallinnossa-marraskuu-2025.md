@@ -19,6 +19,11 @@ keywords:
   - johtosääntö
   - luottamushenkilö
 type: mielipide
+opinionRoles:
+  - political
+politicsWritingRole: political
+politicsWritingOrder: 1
+politicsWritingSummary: 'Kirjoitus kokoaa yhteen sen, miksi valmistelun laatu, prosessien johdonmukaisuus ja päätöksenteon läpinäkyvyys ovat kunnallispolitiikan ydinkysymyksiä.'
 source_url: 'https://www.facebook.com/jari.laru.poliitikko/posts/pfbid02w3rpzZczjeVKgXWyojvddThQAU2jQb3Gjt69EmFkGFgUcnfnNAEtRjERmKT66nQ9l'
 politicalProfiles:
   - sivistys

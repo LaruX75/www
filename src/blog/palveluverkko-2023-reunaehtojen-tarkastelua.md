@@ -13,6 +13,9 @@ keywords:
   - koulutuspolitiikka
   - väestösuunnite
 type: artikkeli
+politicsWritingRole: hybrid
+politicsWritingOrder: 1
+politicsWritingSummary: 'Selkein esimerkki siitä, miten data, väestökehitys ja vaikutusten arviointi tukevat poliittista argumenttia palveluverkosta.'
 politicalProfiles:
   - sivistys
   - lahipalvelut

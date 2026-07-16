@@ -16,6 +16,12 @@ keywords:
   - tst-tiedekunta
   - tutkimus
 type: mielipide
+opinionRoles:
+  - political
+  - expert
+politicsWritingRole: hybrid
+politicsWritingOrder: 3
+politicsWritingSummary: 'Hyvä esimerkki hybridistä, jossa asiantuntija-ajattelu, aluekehitys ja poliittinen kannanotto kietoutuvat yhteen.'
 wp_id: 2063
 source_url: 'https://www.jarilaru.fi/keskustakampus-on-uhka-ict-sektorin-tulevaisuudelle/'
 politicalProfiles:

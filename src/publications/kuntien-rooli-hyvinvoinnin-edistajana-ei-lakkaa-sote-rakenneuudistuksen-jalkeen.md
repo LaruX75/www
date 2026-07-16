@@ -16,6 +16,14 @@ keywords:
   - osallisuus
   - yhdyspinta
 type: mielipide
+opinionRoles:
+  - political
+politicalProfiles:
+  - hyvinvointi
+  - yhteistyo
+politicsWritingRole: political
+politicsWritingOrder: 3
+politicsWritingSummary: 'Teksti jäsentää sitä, miten sivistys, hyvinvointi ja kunnan perustehtävä liittyvät toisiinsa myös hallinnollisten muutosten jälkeen.'
 wp_id: 2004
 source_url: 'https://www.jarilaru.fi/kuntien-rooli-hyvinvoinnin-edistajana-ei-lakkaa-sote-rakenneuudistuksen-jalkeen/'
 templateEngineOverride: md
@@ -34,4 +42,3 @@ templateEngineOverride: md
 <p><strong>Jari Laru</strong></p>
 <p><em>Jäälin asukasyhdistyksen puheenjohtaja</em><br><em>aluevaaliehdokas (kok.)</em><br><em>Jääli/Oulu</em></p>
 <figure><a href="https://www.jarilaru.fi/jari-laru-aluevaltuustoon/"><img src="/img/uploads/2021/12/Wheat-Stalks-Store-Header-1-2-1024x178.png" alt=""/></a></figure>
-

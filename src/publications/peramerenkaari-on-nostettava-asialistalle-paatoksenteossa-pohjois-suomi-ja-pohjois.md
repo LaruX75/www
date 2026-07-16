@@ -13,6 +13,11 @@ keywords:
   - perämerenkaari
   - teollisuus
 type: mielipide
+opinionRoles:
+  - political
+politicsWritingRole: political
+politicsWritingOrder: 5
+politicsWritingSummary: 'Tässä näkyy alueellinen katse: Oulun kehitystä on tarkasteltava myös osana laajempaa pohjoista toimintaympäristöä ja sen muutoksia.'
 wp_id: 1889
 source_url: 'https://www.jarilaru.fi/peramerenkaari-on-nostettava-asialistalle-paatoksenteossa-pohjois-suomi-ja-pohjois/'
 politicalProfiles:
@@ -34,4 +39,3 @@ templateEngineOverride: md
 <p><strong>Jari Laru</strong></p>
 <p><em>KT, maakuntavaltuutettu (kok.)</em></p>
 <p><em>Oulu</em></p>
-

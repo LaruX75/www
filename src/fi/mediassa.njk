@@ -1,0 +1,297 @@
+---
+layout: base.njk
+title: Mediassa
+description: "Podcastit, haastattelut, lehtijutut ja muut mediaesiintymiset samassa näkymässä."
+permalink: /mediassa/
+lang: fi
+translationKey: media_index
+---
+
+{% set mediaAbout = mediaArchive.about or [] %}
+{% set mediaGuest = mediaArchive.guest or [] %}
+{% set mediaInterviewer = mediaArchive.interviewer or [] %}
+{% set mediaTotal = (mediaArchive.all or []) | length %}
+{% set mediaHighlights = (mediaArchive.all or []).slice(0, 4) %}
+
+{% macro mediaTypeLabel(type) %}
+  {% if type == "podcast" %}Podcast
+  {% elif type == "article" %}Lehtijuttu
+  {% elif type == "tv" %}TV
+  {% elif type == "radio" %}Radio
+  {% elif type == "video" %}Video
+  {% else %}Media
+  {% endif %}
+{% endmacro %}
+
+{% macro roleHeading(role) %}
+  {% if role == "about" %}Mediassa minusta
+  {% elif role == "interviewer" %}Haastattelijana
+  {% elif role == "guest" %}Vieraana ja keskustelijana
+  {% else %}Mediassa
+  {% endif %}
+{% endmacro %}
+
+{% macro roleLabel(role) %}
+  {% if role == "about" %}Minusta tehty
+  {% elif role == "interviewer" %}Haastattelijana
+  {% elif role == "guest" %}Vieraana
+  {% else %}Media
+  {% endif %}
+{% endmacro %}
+
+{% macro renderMediaSection(items, role, lead) %}
+<section class="py-4 py-lg-5">
+  <div class="site-shell">
+    <div class="card shadow-sm section-card border-0">
+      <div class="card-header bg-transparent py-3 border-0">
+        <div class="d-flex flex-wrap align-items-start justify-content-between gap-3">
+          <div>
+            <p class="text-uppercase text-muted fw-semibold small mb-1">{{ roleHeading(role) }}</p>
+            <h2 class="h4 fw-bold mb-2">{{ roleHeading(role) }}</h2>
+            <p class="text-muted mb-0">{{ lead }}</p>
+          </div>
+          <span class="badge rounded-pill border text-body-secondary media-count-badge">{{ items | length }}</span>
+        </div>
+      </div>
+      <div class="card-body pt-0">
+        {% if items.length %}
+          <div class="media-entry-list">
+            {% for item in items %}
+            <article class="media-entry{% if not loop.last %} border-bottom{% endif %}">
+              <div class="row g-4 align-items-start">
+                <div class="col-lg-8">
+                  <div class="d-flex flex-wrap gap-2 mb-2">
+                    <span class="badge rounded-pill border text-body-secondary">{{ mediaTypeLabel(item.data.mediaType) }}</span>
+                    {% if item.data.mediaOutlet %}
+                    <span class="badge rounded-pill border text-body-secondary">{{ item.data.mediaOutlet }}</span>
+                    {% endif %}
+                  </div>
+                  <h3 class="h5 fw-bold mb-2">
+                    {% if item.data.sourceUrl %}
+                    <a href="{{ item.data.sourceUrl }}" target="_blank" rel="noopener noreferrer" class="text-decoration-none">{{ item.data.title }}</a>
+                    {% else %}
+                    <a href="{{ item.url }}" class="text-decoration-none">{{ item.data.title }}</a>
+                    {% endif %}
+                  </h3>
+                  {% if item.data.description %}
+                  <p class="text-muted mb-3">{{ item.data.description }}</p>
+                  {% endif %}
+                  {% if item.data.categories %}
+                  <div class="d-flex flex-wrap gap-2">
+                    {% for category in item.data.categories %}
+                    <span class="media-topic-chip">{{ category }}</span>
+                    {% endfor %}
+                  </div>
+                  {% endif %}
+                </div>
+                <div class="col-lg-4">
+                  <div class="media-side-card">
+                    {% if item.data.thumbnail %}
+                    <img src="{{ item.data.thumbnail }}" alt="{{ item.data.title }}" class="img-fluid rounded-4 media-entry-thumb" loading="lazy" decoding="async">
+                    {% endif %}
+                    <div class="d-grid gap-2{% if item.data.thumbnail %} mt-3{% endif %}">
+                      {% if item.data.sourceUrl %}
+                      <a href="{{ item.data.sourceUrl }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill">Avaa lähde</a>
+                      {% endif %}
+                      <a href="{{ item.url }}" class="btn btn-outline-secondary rounded-pill">Arkistosivu</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+            {% endfor %}
+          </div>
+        {% else %}
+          <div class="media-empty-state">
+            <h3 class="h6 fw-bold mb-2">{{ roleHeading(role) }} täydentyy</h3>
+            <p class="text-muted mb-0">Tähän ryhmään voidaan koota jatkossa podcasteja, haastatteluja, lehtijuttuja, televisiouutisia ja muita mediaosumia.</p>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endmacro %}
+
+<section class="py-5 bg-body-tertiary border-bottom">
+  <div class="site-shell">
+    <div class="row g-4 align-items-center">
+      <div class="col-lg-7">
+        <p class="text-uppercase text-muted fw-semibold small mb-2">Mediaesiintymiset</p>
+        <h1 class="display-6 fw-bold mb-3">Mediassa</h1>
+        <p class="lead mb-3">Tähän kokonaisuuteen kuuluvat podcastit, haastattelut, lehtijutut, televisiouutiset ja muut sisällöt, joissa olen mukana mutta joita en ole itse julkaissut.</p>
+        <p class="text-muted mb-0"><a href="/kynasta/">Kynästä</a> kokoaa oman kirjoittamisen. <a href="/esitykset/">Esitykset</a> kokoaa omat puheenvuorot ja materiaalit. Mediassa taas näkyy se, miten työni, asiantuntijuuteni ja julkinen roolini ovat esillä muiden tekemissä sisällöissä.</p>
+      </div>
+      <div class="col-lg-5">
+        <aside class="card border-0 shadow-sm media-hero-card">
+          <div class="card-body p-4 p-xl-5">
+            <p class="text-uppercase text-muted fw-semibold small mb-3">Silmäys aineistoon</p>
+            <dl class="home-hero-kpi-grid mb-0">
+              <div class="home-hero-kpi">
+                <dd class="home-hero-kpi-value">{{ mediaTotal }}</dd>
+                <dt class="home-hero-kpi-label">mediaosumaa</dt>
+              </div>
+              <div class="home-hero-kpi">
+                <dd class="home-hero-kpi-value">{{ mediaAbout | length }}</dd>
+                <dt class="home-hero-kpi-label">minusta tehtyä</dt>
+              </div>
+              <div class="home-hero-kpi">
+                <dd class="home-hero-kpi-value">{{ mediaGuest | length }}</dd>
+                <dt class="home-hero-kpi-label">vieraana</dt>
+              </div>
+              <div class="home-hero-kpi">
+                <dd class="home-hero-kpi-value">{{ mediaInterviewer | length }}</dd>
+                <dt class="home-hero-kpi-label">haastattelijana</dt>
+              </div>
+            </dl>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-4 py-lg-5">
+  <div class="site-shell">
+    <div class="mb-4">
+      <p class="text-uppercase text-muted fw-semibold small mb-1">Nostot mediasta</p>
+      <h2 class="h3 fw-bold mb-2">Keskeiset mediaosumat yhdellä silmäyksellä</h2>
+      <p class="text-muted mb-0">Tähän on nostettu muutamia osumia, joista näkyy nopeasti millaisissa podcasteissa, haastatteluissa ja keskusteluissa olen ollut mukana.</p>
+    </div>
+    <div class="row g-4 mb-5">
+      {% for item in mediaHighlights %}
+      <div class="col-md-6">
+        <article class="card border-0 shadow-sm h-100 media-highlight-card">
+          <div class="card-body p-4 d-flex flex-column">
+            <div class="d-flex flex-wrap gap-2 mb-2">
+              <span class="badge rounded-pill border text-body-secondary">{{ roleLabel(item.data.mediaRole) }}</span>
+              <span class="badge rounded-pill border text-body-secondary">{{ mediaTypeLabel(item.data.mediaType) }}</span>
+              {% if item.data.mediaOutlet %}
+              <span class="badge rounded-pill border text-body-secondary">{{ item.data.mediaOutlet }}</span>
+              {% endif %}
+            </div>
+            <h3 class="h5 fw-bold mb-2">
+              {% if item.data.sourceUrl %}
+              <a href="{{ item.data.sourceUrl }}" target="_blank" rel="noopener noreferrer" class="text-decoration-none">{{ item.data.title }}</a>
+              {% else %}
+              <a href="{{ item.url }}" class="text-decoration-none">{{ item.data.title }}</a>
+              {% endif %}
+            </h3>
+            {% if item.data.description %}
+            <p class="text-muted mb-3">{{ item.data.description }}</p>
+            {% endif %}
+            <div class="mt-auto d-flex flex-wrap gap-2">
+              {% if item.data.sourceUrl %}
+              <a href="{{ item.data.sourceUrl }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm rounded-pill">Avaa lähde</a>
+              {% endif %}
+              <a href="{{ item.url }}" class="btn btn-outline-secondary btn-sm rounded-pill">Arkistosivu</a>
+            </div>
+          </div>
+        </article>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <div class="card border-0 shadow-sm h-100 media-role-card">
+          <div class="card-body p-4">
+            <p class="text-uppercase text-muted fw-semibold small mb-2">1</p>
+            <h2 class="h5 fw-bold mb-2">Mediassa minusta</h2>
+            <p class="text-muted mb-0">Kun juttu, podcast tai video on tehty minusta tai asiantuntijuudestani, se kuuluu tähän ryhmään.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card border-0 shadow-sm h-100 media-role-card">
+          <div class="card-body p-4">
+            <p class="text-uppercase text-muted fw-semibold small mb-2">2</p>
+            <h2 class="h5 fw-bold mb-2">Vieraana tai keskustelijana</h2>
+            <p class="text-muted mb-0">Tähän kootaan podcastit, paneelit ja muut keskustelut, joissa olen mukana kutsuttuna vieraana.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card border-0 shadow-sm h-100 media-role-card">
+          <div class="card-body p-4">
+            <p class="text-uppercase text-muted fw-semibold small mb-2">3</p>
+            <h2 class="h5 fw-bold mb-2">Haastattelijana</h2>
+            <p class="text-muted mb-0">Jos roolini on kysyjä, juontaja tai haastattelija, sisältö kuuluu omaan ryhmäänsä eikä esityksiin.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ renderMediaSection(mediaAbout, "about", "Podcastit, haastattelut ja muut mediaosumat, joissa puheenaiheena olen minä, oma asiantuntijuuteni tai julkinen roolini.") }}
+{{ renderMediaSection(mediaGuest, "guest", "Keskustelut, joissa olen mukana vieraana, kommentoijana tai asiantuntijana muiden tuottamissa formaateissa.") }}
+{{ renderMediaSection(mediaInterviewer, "interviewer", "Sisällöt, joissa olen itse haastattelija, keskustelun vetäjä tai juontava osapuoli.") }}
+
+<style>
+  .media-hero-card {
+    border-radius: 1.5rem;
+  }
+
+  .media-role-card,
+  .media-highlight-card,
+  .media-side-card {
+    border-radius: 1.25rem;
+  }
+
+  .media-entry {
+    padding-block: 1.5rem;
+  }
+
+  .media-entry:first-child {
+    padding-top: 1rem;
+  }
+
+  .media-entry:last-child {
+    padding-bottom: 0.5rem;
+  }
+
+  .media-entry-thumb {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .media-topic-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem 0.8rem;
+    border-radius: 999px;
+    border: 1px solid rgba(120, 130, 150, 0.25);
+    background: rgba(120, 130, 150, 0.09);
+    color: var(--bs-secondary-color);
+    font-size: 0.82rem;
+    line-height: 1.2;
+  }
+
+  .media-empty-state {
+    padding: 1.5rem 0.25rem 0.5rem;
+  }
+
+  .media-count-badge {
+    min-width: 2.5rem;
+    justify-content: center;
+    padding-inline: 0.85rem;
+    padding-block: 0.45rem;
+  }
+
+  [data-bs-theme="dark"] .media-topic-chip {
+    border-color: rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.78);
+  }
+
+  @media (max-width: 767.98px) {
+    .media-entry {
+      padding-block: 1.25rem;
+    }
+
+    .media-entry-thumb {
+      border-radius: 1rem;
+    }
+  }
+</style>

@@ -10,6 +10,15 @@ secondaryTheme:
   - Teknologia ja digitaalisuus
 publication: Kaleva
 type: mielipide
+opinionRoles:
+  - political
+politicalProfiles:
+  - sivistys
+  - lahipalvelut
+  - avoinhallinto
+politicsWritingRole: political
+politicsWritingOrder: 2
+politicsWritingSummary: 'Kouluverkkokeskustelun kautta näkyy, miten tärkeää on avata päätösten perusteet, vaikutusarviot ja olennainen tieto myös kuntalaisille.'
 wp_id: 2091
 source_url: 'https://www.jarilaru.fi/kaleva-mielipide-mihin-poliittiset-paatokset-perustuvat-ongelmaksi-esimerkiksi-oulun-kouluve/'
 templateEngineOverride: md
@@ -31,4 +40,3 @@ templateEngineOverride: md
 <p><strong>Jari Laru</strong></p>
 <p><em>KT, valtuutettu ja sivistyslautakunnan jäsen (kok.)</em></p>
 <p><em>Oulu</em></p>
-

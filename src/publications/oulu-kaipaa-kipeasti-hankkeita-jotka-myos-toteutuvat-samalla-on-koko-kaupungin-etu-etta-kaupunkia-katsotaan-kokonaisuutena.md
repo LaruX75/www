@@ -14,6 +14,14 @@ keywords:
   - Oulun yliopiston muutto
   - Raksila
 type: mielipide
+opinionRoles:
+  - political
+politicalProfiles:
+  - kaupunkikehitys
+  - yhteistyo
+politicsWritingRole: political
+politicsWritingOrder: 4
+politicsWritingSummary: 'Kirjoitus kiteyttää ajatuksen siitä, että koko kaupunkia on katsottava kokonaisuutena eikä yksittäisten hankkeiden tai osa-alueiden kautta.'
 wp_id: 141
 source_url: 'https://www.jarilaru.fi/oulu-kaipaa-kipeasti-hankkeita-jotka-myos-toteutuvat-samalla-on-koko-kaupungin-etu-etta-kaupunkia-katsotaan-kokonaisuutena/'
 templateEngineOverride: md
@@ -29,4 +37,3 @@ templateEngineOverride: md
 <p>Yhteiskunnan on reagoitava muutokseen, mutta sen ei tule olla itsetarkoitus. Yliopisto on alueemme keskeisimpiä toimijoita, jolla on suuri merkitys koko Pohjois-Suomelle. Yliopiston kohdallakin on tarkasteltava kokonaisuuksia ja pyrittävä ottamaan niiden vaikutukset huomioon. Vain pitkäjänteinen suunnittelu voi olla kestävää.</p>
 <p><strong>Jari Laru<br></strong><em>KT, valtuutettu (kok.)<br>Oulu</em></p>
 <p>Tämä kirjoitus on julkaistu Sanomalehti Kalevan “Lukijalta” -palstalla 7.11.2020. Alkuperäinen teksti löytyy täältä:<a href="https://www.kaleva.fi/oulu-kaipaa-kipeasti-hankkeita-jotka-myos-toteutuv/3082370?fbclid=IwAR1do1iIMevRvxPrCb7XzWRC4RP_lxCswbKRZqzJ58RHSFbGEYcKjkd9oA8" rel="noreferrer noopener" target="_blank">https://www.kaleva.fi/oulu-kaipaa-kipeasti-hankkeita-jotka-myos-toteutuv/3082370</a></p>
-

@@ -16,6 +16,9 @@ keywords:
   - sotedigi
 wp_id: 1990
 source_url: 'https://www.jarilaru.fi/missa-mennaan-hyvinvointia-tukevissa-digipalveluissa/'
+politicsWritingRole: hybrid
+politicsWritingOrder: 2
+politicsWritingSummary: 'Kirjoitus yhdistää käytännön politiikan, hyvinvointipalvelut ja tiedolla johtamisen välineet samaan keskusteluun.'
 politicalProfiles:
   - hyvinvointi
   - yhteistyo
