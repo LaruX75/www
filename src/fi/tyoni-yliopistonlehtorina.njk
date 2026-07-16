@@ -46,11 +46,11 @@ templateEngineOverride: njk
     "opettajien ja oppijoiden tekoälylukutaito",
     "pitkä tutkimus- ja julkaisuhistoria opetuksen kehittämisen tukena"
   ],
-  outreachBody: "Yliopistotyö ei jää kampukselle. Vien tutkittua tietoa opettajille, kouluille ja verkostoille: koulutuksissa, esityksissä, verkossa ja yhteistyöhankkeissa.",
+  outreachBody: "Yliopistotyö ei jää kampukselle. Vien tutkittua tietoa opettajille, kouluille, verkostoille ja valmisteluun: koulutuksissa, lausunnoissa, verkossa ja yhteistyöhankkeissa.",
   outreachPoints: [
     "koulutukset, puheenvuorot ja avoimet materiaalit",
     "verkostotyö opettajien, koulujen ja hankkeiden kanssa",
-    "kehittäminen, joka nojaa tutkimukseen ja käytäntöön"
+    "lausunnot ja valmistelun kommentointi opetuksen, tekoälyn ja koulutuksen näkökulmasta"
   ],
   projectBody: "Generation AI -hankkeessa toimin vuorovaikutusasiantuntijana. Yhdistän työssäni tutkimusta, opettajankoulutusta ja käytännön sovelluksia. Tutkin opettajien tekoälylukutaitoa, jäsennän hankkeen sisältöjä sekä rakennan ja ylläpidän sen verkkosivuja.",
   projectPoints: [
@@ -241,7 +241,7 @@ templateEngineOverride: njk
     <div class="ylwork-section-head">
       <p class="ylwork-eyebrow ylwork-eyebrow--dark mb-1"><i class="bi bi-journal-richtext me-1"></i>Ajankohtaista työstä</p>
       <h2 class="ylwork-section-title">Tuoreet kirjoitukset, lausunnot, esitykset ja julkaisut</h2>
-      <p class="ylwork-section-lead mb-0">Nostot päivittyvät suoraan aineistosta, joten tässä näkyy, mitä työn alla on juuri nyt ja mihin asiantuntijatyö myös kohdistuu.</p>
+      <p class="ylwork-section-lead mb-0">Nostot päivittyvät suoraan aineistosta, joten tässä näkyy, mitä työn alla on juuri nyt ja miten opetus, opettajankoulutus ja asiantuntijatyö liittyvät toisiinsa.</p>
     </div>
     <div class="ylwork-live-grid">
       <article class="ylwork-live-card">
@@ -269,7 +269,7 @@ templateEngineOverride: njk
         <div class="ylwork-live-head">
           <p class="ylwork-trust-kicker">Lausunnot</p>
           <h3 class="ylwork-live-title">Asiantuntijalausunnot</h3>
-          <p class="ylwork-live-lead">Lausuntoja ja muodollisia asiantuntijakannanottoja, joilla osallistun valmisteluun ja julkiseen ohjaukseen.</p>
+          <p class="ylwork-live-lead">Lausuntoja, joissa tutkimus ja opettajankoulutus kääntyvät näkemyksiksi opetuksen, tekoälyn ja koulutuksen käytännön toimeenpanosta.</p>
         </div>
         <div class="ylwork-live-list">
           {% for item in latestStatements %}
@@ -705,6 +705,7 @@ templateEngineOverride: njk
     gap: 1.2rem;
   }
   .ylwork-live-card {
+    --live-card-bg-end: rgba(255, 255, 255, 0.96);
     display: grid;
     align-content: start;
     gap: 1rem;
@@ -724,10 +725,26 @@ templateEngineOverride: njk
     line-height: 1.18;
     color: #102845;
   }
-  .ylwork-live-lead,
-  .ylwork-live-summary {
+  .ylwork-live-lead {
     line-height: 1.6;
     color: rgba(19, 43, 70, 0.78);
+  }
+  .ylwork-live-summary {
+    position: relative;
+    max-height: calc(2 * 1.6em);
+    overflow: hidden;
+    line-height: 1.6;
+    color: rgba(19, 43, 70, 0.78);
+  }
+  .ylwork-live-summary::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1.4em;
+    background: linear-gradient(to bottom, transparent, var(--live-card-bg-end));
+    pointer-events: none;
   }
   .ylwork-live-list {
     display: grid;
@@ -916,6 +933,12 @@ templateEngineOverride: njk
     background: linear-gradient(180deg, rgba(18, 30, 47, 0.92), rgba(13, 24, 38, 0.96));
     border-color: rgba(255, 255, 255, 0.14);
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.22);
+  }
+  [data-bs-theme="dark"] .ylwork-live-card {
+    --live-card-bg-end: rgba(13, 24, 38, 0.96);
+  }
+  [data-bs-theme="dark"] .ylwork-live-summary {
+    color: rgba(255, 255, 255, 0.82);
   }
   [data-bs-theme="dark"] .ylwork-kpi-grid .site-kpi-card {
     border-radius: 1.2rem;
