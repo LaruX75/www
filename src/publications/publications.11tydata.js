@@ -1,5 +1,6 @@
 const path = require("path");
 const opinionRoles = require("../_data/opinionRoles");
+const writingRoles = require("../_data/writingRoles");
 
 function toArray(value) {
   if (Array.isArray(value)) {
@@ -85,25 +86,47 @@ function resolveOpinionRoles(data) {
   return deriveFallbackOpinionRoles(data);
 }
 
+function resolveWritingRoles(data) {
+  const inputPath = data.page?.inputPath || data.inputPath || "";
+  const basename = path.basename(inputPath, path.extname(inputPath));
+  const explicitRoles = toArray(writingRoles.publications?.[basename]);
+  const mergedRoles = new Set([...explicitRoles, ...toArray(data.writingRoles)]);
+
+  if (data.type === "mielipide") {
+    resolveOpinionRoles(data).forEach((role) => mergedRoles.add(role));
+  }
+
+  return Array.from(mergedRoles);
+}
+
 module.exports = {
   layout: "page.njk",
   lang: "fi",
   eleventyComputed: {
     opinionRoles: (data) => resolveOpinionRoles(data),
+    writingRoles: (data) => resolveWritingRoles(data),
     tags: (data) => {
       const tagSet = new Set(["publications"]);
+      const writingRoleList = resolveWritingRoles(data);
 
       if (data.type === "puhe") {
         tagSet.add("pub_puhe");
       }
       if (data.type === "kolumni") {
         tagSet.add("pub_kolumni");
+        writingRoleList.forEach((role) => tagSet.add(`pub_kolumni_${role}`));
+      }
+      if (data.type === "lausunto") {
+        tagSet.add("pub_lausunto");
+        writingRoleList.forEach((role) => tagSet.add(`pub_lausunto_${role}`));
       }
       if (data.type === "mielipide") {
         tagSet.add("pub_mielipide");
         const roles = resolveOpinionRoles(data);
         roles.forEach((role) => tagSet.add(`pub_mielipide_${role}`));
       }
+
+      writingRoleList.forEach((role) => tagSet.add(`writing_${role}`));
 
       if (isPoliticalPublication(data)) {
         tagSet.add("politics");

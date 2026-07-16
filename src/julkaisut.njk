@@ -68,34 +68,34 @@ translationKey: publications_index
   <div class="site-shell">
     <div class="row g-3">
       <div class="col-6 col-xl-3">
-        <article class="card border-0 shadow-sm h-100 publication-kpi-card">
+        <article class="card border-0 shadow-sm h-100 site-kpi-card publication-kpi-card">
           <div class="card-body">
-            <div class="publication-kpi-value">{{ researchfi.length }}</div>
-            <div class="publication-kpi-label">julkaisua</div>
+            <div class="site-kpi-number publication-kpi-value">{{ researchfi.length }}</div>
+            <div class="site-kpi-label publication-kpi-label">julkaisua</div>
           </div>
         </article>
       </div>
       <div class="col-6 col-xl-3">
-        <article class="card border-0 shadow-sm h-100 publication-kpi-card">
+        <article class="card border-0 shadow-sm h-100 site-kpi-card publication-kpi-card">
           <div class="card-body">
-            <div class="publication-kpi-value">{{ peerReviewedCount }}</div>
-            <div class="publication-kpi-label">vertaisarvioitua</div>
+            <div class="site-kpi-number publication-kpi-value">{{ peerReviewedCount }}</div>
+            <div class="site-kpi-label publication-kpi-label">vertaisarvioitua</div>
           </div>
         </article>
       </div>
       <div class="col-6 col-xl-3">
-        <article class="card border-0 shadow-sm h-100 publication-kpi-card">
+        <article class="card border-0 shadow-sm h-100 site-kpi-card publication-kpi-card">
           <div class="card-body">
-            <div class="publication-kpi-value" id="dynamicTotalCitations" title="Lähde: {{ semanticscholar.metrics.sources }}">…</div>
-            <div class="publication-kpi-label">viittausta</div>
+            <div class="site-kpi-number publication-kpi-value" id="dynamicTotalCitations" title="Lähde: {{ semanticscholar.metrics.sources }}">…</div>
+            <div class="site-kpi-label publication-kpi-label">viittausta</div>
           </div>
         </article>
       </div>
       <div class="col-6 col-xl-3">
-        <article class="card border-0 shadow-sm h-100 publication-kpi-card">
+        <article class="card border-0 shadow-sm h-100 site-kpi-card publication-kpi-card">
           <div class="card-body">
-            <div class="publication-kpi-value" id="dynamicHIndex" title="Lähde: {{ semanticscholar.metrics.sources }}">…</div>
-            <div class="publication-kpi-label">h-indeksi</div>
+            <div class="site-kpi-number publication-kpi-value" id="dynamicHIndex" title="Lähde: {{ semanticscholar.metrics.sources }}">…</div>
+            <div class="site-kpi-label publication-kpi-label">h-indeksi</div>
           </div>
         </article>
       </div>
@@ -211,24 +211,6 @@ translationKey: publications_index
   }
   .publication-kpi-section {
     padding: 1.25rem 0 0.5rem;
-  }
-  .publication-kpi-card {
-    border-radius: 1rem;
-  }
-  .publication-kpi-value {
-    font-size: clamp(2rem, 4vw, 3rem);
-    line-height: 0.95;
-    font-weight: 700;
-    letter-spacing: -0.04em;
-    color: var(--bs-emphasis-color);
-  }
-  .publication-kpi-label {
-    margin-top: 0.45rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-size: 0.72rem;
-    font-weight: 700;
-    color: var(--bs-secondary-color);
   }
   .publication-kpi-note {
     font-size: 0.92rem;

@@ -62,7 +62,7 @@ module.exports = function registerCollections(eleventyConfig) {
       .sort((a, b) => b.date - a.date);
   });
 
-  ["mielipide", "kolumni", "puhe", "tieteellinen", "esitelma"].forEach(type => {
+  ["mielipide", "kolumni", "puhe", "tieteellinen", "esitelma", "lausunto"].forEach(type => {
     eleventyConfig.addCollection(`pub_${type}`, function (collectionApi) {
       return collectionApi
         .getFilteredByGlob("src/publications/*.md")

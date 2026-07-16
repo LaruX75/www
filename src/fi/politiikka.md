@@ -129,6 +129,73 @@ templateEngineOverride: njk
     "linkLabel": "Avaa vaalikausi"
   }
 ] %}
+{% set featuredPoliticalWritings = [
+  {
+    "type": "Mielipide",
+    "date": "22.11.2025",
+    "title": "Toistuvia rakenteita: valmisteluprosessin ongelmat kunnallishallinnossa",
+    "href": "/toistuvia-rakenteita-valmisteluprosessin-ongelmat-kunnallishallinnossa-marraskuu-2025/",
+    "summary": "Kirjoitus kokoaa yhteen sen, miksi valmistelun laatu, prosessien johdonmukaisuus ja päätöksenteon läpinäkyvyys ovat kunnallispolitiikan ydinkysymyksiä."
+  },
+  {
+    "type": "Mielipide",
+    "date": "18.4.2023",
+    "title": "Mihin poliittiset päätökset perustuvat?",
+    "href": "/kaleva-mielipide-mihin-poliittiset-paatokset-perustuvat-ongelmaksi-esimerkiksi-oulun-kouluve/",
+    "summary": "Kouluverkkokeskustelun kautta näkyy, miten tärkeää on avata päätösten perusteet, vaikutusarviot ja olennainen tieto myös kuntalaisille."
+  },
+  {
+    "type": "Mielipide",
+    "date": "15.1.2022",
+    "title": "Kuntien rooli hyvinvoinnin edistajana ei lakkaa sote-rakenneuudistuksen jälkeen",
+    "href": "/kuntien-rooli-hyvinvoinnin-edistajana-ei-lakkaa-sote-rakenneuudistuksen-jalkeen/",
+    "summary": "Teksti jäsentää sitä, miten sivistys, hyvinvointi ja kunnan perustehtävä liittyvät toisiinsa myös hallinnollisten muutosten jälkeen."
+  },
+  {
+    "type": "Kolumni",
+    "date": "18.11.2021",
+    "title": "Kulttuurihyvinvointi kuuluu kaikille",
+    "href": "/kulttuurihyvinvointi-kuuluu-kaikille/",
+    "summary": "Sivistys ei tarkoita vain koulua. Kirjoitus laajentaa poliittista profiilia kulttuurihyvinvointiin, osallisuuteen ja kuntalaisen arkeen."
+  },
+  {
+    "type": "Mielipide",
+    "date": "30.10.2020",
+    "title": "Oulu kaipaa kipeästi hankkeita, jotka myös toteutuvat",
+    "href": "/oulu-kaipaa-kipeasti-hankkeita-jotka-myos-toteutuvat-samalla-on-koko-kaupungin-etu-etta-kaupunkia-katsotaan-kokonaisuutena/",
+    "summary": "Kirjoitus kiteyttää ajatuksen siitä, että koko kaupunkia on katsottava kokonaisuutena eikä yksittäisten hankkeiden tai osa-alueiden kautta."
+  },
+  {
+    "type": "Mielipide",
+    "date": "29.11.2021",
+    "title": "Perämerenkaari on nostettava asialistalle päätöksenteossa",
+    "href": "/peramerenkaari-on-nostettava-asialistalle-paatoksenteossa-pohjois-suomi-ja-pohjois/",
+    "summary": "Tässä näkyy alueellinen katse: Oulun kehitystä on tarkasteltava myös osana laajempaa pohjoista toimintaympäristöä ja sen muutoksia."
+  }
+] %}
+{% set featuredHybridWritings = [
+  {
+    "type": "Blogi",
+    "date": "21.5.2023",
+    "title": "Faktojen tarkastelua: kouluverkko ja syntyvyys",
+    "href": "/palveluverkko-2023-reunaehtojen-tarkastelua/",
+    "summary": "Selkein esimerkki siitä, miten data, väestökehitys ja vaikutusten arviointi tukevat poliittista argumenttia palveluverkosta."
+  },
+  {
+    "type": "Blogi",
+    "date": "9.1.2022",
+    "title": "Missä mennään hyvinvointia tukevissa digipalveluissa?",
+    "href": "/missa-mennaan-hyvinvointia-tukevissa-digipalveluissa/",
+    "summary": "Kirjoitus yhdistää käytännön politiikan, hyvinvointipalvelut ja tiedolla johtamisen välineet samaan keskusteluun."
+  },
+  {
+    "type": "Mielipide",
+    "date": "10.2.2022",
+    "title": "Keskustakampus on uhka ict-sektorin tulevaisuudelle",
+    "href": "/keskustakampus-on-uhka-ict-sektorin-tulevaisuudelle/",
+    "summary": "Hyvä esimerkki hybridistä, jossa asiantuntija-ajattelu, aluekehitys ja poliittinen kannanotto kietoutuvat yhteen."
+  }
+] %}
 
 <section class="py-5 mb-0 bg-body-tertiary" id="vaalikaudet">
   <div class="site-shell">
@@ -302,6 +369,71 @@ templateEngineOverride: njk
             {% endfor %}
           </div>
           <p class="text-muted small mb-0">Viralliset asiakirjat ja pöytäkirjat: <a href="http://asiakirjat.ouka.fi/ktwebscr/pk_tek_tweb.htm" target="_blank" rel="noopener noreferrer">Oulun asiakirjajärjestelmä</a></p>
+        </section>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 mb-0 bg-body-tertiary" id="kirjoitukset">
+  <div class="site-shell">
+    <div class="pol-section-head">
+      <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-journal-text me-1"></i>Kirjoitukset</p>
+      <h2 class="pol-section-title">Kirjoituksia ja kannanottoja poliittisesta työstä</h2>
+      <p class="pol-section-lead mb-0">Tähän on nostettu valikoima tekstejä, jotka näyttävät poliittisen ajatteluni suunnan. Mukana ei ole koko arkistoa, vaan profiilin kannalta olennaisimmat kirjoitukset.</p>
+    </div>
+
+    <div class="row g-4 align-items-start">
+      <div class="col-xl-7">
+        <section class="pol-current-card">
+          <div class="pol-current-head">
+            <div>
+              <p class="pol-current-kicker mb-1">Valitut tekstit</p>
+              <h3 class="pol-current-title">Poliittiset kirjoitukset</h3>
+              <p class="text-muted small mb-0">Kuusi kirjoitusta, joissa näkyvät sivistys, alueellinen yhdenvertaisuus ja valmistelun kriittinen tarkastelu.</p>
+            </div>
+            <a href="/kynasta/" class="btn btn-outline-primary btn-sm">Koko kirjoitusarkisto</a>
+          </div>
+          <div class="pol-writing-list">
+            {% for item in featuredPoliticalWritings %}
+            <article class="pol-writing-item">
+              <div class="pol-writing-meta">
+                <span class="pol-writing-type">{{ item.type }}</span>
+                <span class="small text-muted">{{ item.date }}</span>
+              </div>
+              <h4 class="pol-writing-title"><a href="{{ item.href }}">{{ item.title }}</a></h4>
+              <p class="pol-writing-summary mb-0">{{ item.summary }}</p>
+            </article>
+            {% endfor %}
+          </div>
+        </section>
+      </div>
+
+      <div class="col-xl-5">
+        <section class="pol-current-card pol-current-card--hybrid">
+          <div class="pol-current-head">
+            <div>
+              <p class="pol-current-kicker mb-1">Hybridit</p>
+              <h3 class="pol-current-title">Asiantuntijuus politiikan tukena</h3>
+              <p class="text-muted small mb-0">Kolme tekstiä, joissa tutkimus, koulutus tai analyysi tukee suoraan poliittista kannanottoa.</p>
+            </div>
+          </div>
+          <p class="pol-writing-note">Nämä eivät ole tutkimusprofiilin nostoja, vaan poliittisia tekstejä, joissa asiantuntijuus tekee vaikutuksista, vaihtoehdoista ja perusteluista näkyvämpiä.</p>
+          <div class="pol-writing-list pol-writing-list--compact">
+            {% for item in featuredHybridWritings %}
+            <article class="pol-writing-item">
+              <div class="pol-writing-meta">
+                <span class="pol-writing-type">{{ item.type }}</span>
+                <span class="small text-muted">{{ item.date }}</span>
+              </div>
+              <h4 class="pol-writing-title"><a href="{{ item.href }}">{{ item.title }}</a></h4>
+              <p class="pol-writing-summary mb-0">{{ item.summary }}</p>
+            </article>
+            {% endfor %}
+          </div>
+          <div class="pol-current-foot">
+            <small class="text-muted">Koko aineisto löytyy kirjoitusarkistosta, mutta politiikkasivu näyttää vain profiilin kannalta olennaiset nostot.</small>
+          </div>
         </section>
       </div>
     </div>
@@ -960,6 +1092,62 @@ templateEngineOverride: njk
     gap: 0.9rem;
     margin-bottom: 1rem;
   }
+  .pol-writing-list {
+    display: grid;
+    gap: 0.9rem;
+  }
+  .pol-writing-list--compact {
+    gap: 0.8rem;
+  }
+  .pol-writing-item {
+    padding: 1rem;
+    border-radius: 0.95rem;
+    border: 1px solid rgba(17, 40, 70, 0.1);
+    background: rgba(246, 249, 255, 0.72);
+  }
+  .pol-writing-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    margin-bottom: 0.55rem;
+  }
+  .pol-writing-type {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.28rem 0.62rem;
+    border-radius: 999px;
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: rgba(17, 40, 70, 0.08);
+    color: #163e6c;
+  }
+  .pol-writing-title {
+    margin-bottom: 0.55rem;
+    font-size: 1.02rem;
+    line-height: 1.42;
+    color: #112846;
+  }
+  .pol-writing-title a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .pol-writing-title a:hover {
+    color: #0d4f94;
+  }
+  .pol-writing-summary,
+  .pol-writing-note {
+    color: rgba(17, 40, 70, 0.76);
+    line-height: 1.62;
+  }
+  .pol-writing-note {
+    margin-bottom: 1rem;
+  }
+  .pol-current-card--hybrid .pol-current-foot {
+    margin-top: 1rem;
+  }
   .pol-initiative-item {
     padding: 1rem;
     border-radius: 0.95rem;
@@ -1067,6 +1255,8 @@ templateEngineOverride: njk
   [data-bs-theme="dark"] .pol-theme-description,
   [data-bs-theme="dark"] .pol-theme-meta,
   [data-bs-theme="dark"] .pol-initiative-response,
+  [data-bs-theme="dark"] .pol-writing-summary,
+  [data-bs-theme="dark"] .pol-writing-note,
   [data-bs-theme="dark"] .pol-mandate-summary,
   [data-bs-theme="dark"] .pol-mandate-detail,
   [data-bs-theme="dark"] .pol-role-org,
@@ -1088,6 +1278,8 @@ templateEngineOverride: njk
   [data-bs-theme="dark"] .pol-hero-point-title,
   [data-bs-theme="dark"] .pol-theme-proof-link,
   [data-bs-theme="dark"] .political-speech-title,
+  [data-bs-theme="dark"] .pol-writing-title,
+  [data-bs-theme="dark"] .pol-writing-title a,
   [data-bs-theme="dark"] .pol-mandate-title,
   [data-bs-theme="dark"] .pol-role-title,
   [data-bs-theme="dark"] .pol-mandate-link-card {
@@ -1098,6 +1290,7 @@ templateEngineOverride: njk
   [data-bs-theme="dark"] .pol-theme-card,
   [data-bs-theme="dark"] .pol-method-card,
   [data-bs-theme="dark"] .pol-current-card,
+  [data-bs-theme="dark"] .pol-writing-item,
   [data-bs-theme="dark"] .pol-initiative-item {
     background: linear-gradient(180deg, rgba(18, 30, 47, 0.92), rgba(13, 24, 38, 0.96));
     border-color: rgba(255, 255, 255, 0.14);
@@ -1111,6 +1304,10 @@ templateEngineOverride: njk
     border-color: rgba(255, 255, 255, 0.16);
   }
   [data-bs-theme="dark"] .pol-mandate-badge {
+    background: rgba(255, 255, 255, 0.12);
+    color: #f4f8fd;
+  }
+  [data-bs-theme="dark"] .pol-writing-type {
     background: rgba(255, 255, 255, 0.12);
     color: #f4f8fd;
   }
@@ -1137,6 +1334,7 @@ templateEngineOverride: njk
   }
   [data-bs-theme="dark"] .pol-current-card .text-muted,
   [data-bs-theme="dark"] .pol-initiative-item .text-muted,
+  [data-bs-theme="dark"] .pol-writing-item .text-muted,
   [data-bs-theme="dark"] #politics-profile-note .text-muted,
   [data-bs-theme="dark"] .pol-theme-proof-item .text-muted,
   [data-bs-theme="dark"] .political-speeches-table .text-muted,
@@ -1213,6 +1411,7 @@ templateEngineOverride: njk
       align-items: flex-start;
     }
     .pol-initiative-meta,
+    .pol-writing-meta,
     .pol-theme-proof-top {
       flex-direction: column;
       align-items: flex-start;

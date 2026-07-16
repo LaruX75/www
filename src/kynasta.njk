@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: Kirjoitukset ja puheet
-description: "Jari Larun kirjoitukset, valtuustopuheet, aloitteet ja julkaisut samassa arkistossa: mielipiteet, kolumnit, blogi, esitykset ja avoimet materiaalit."
+description: "Jari Larun kirjoitukset, valtuustopuheet, aloitteet, lausunnot ja julkaisut samassa arkistossa: mielipiteet, kolumnit, blogi, esitykset ja avoimet materiaalit."
 permalink: /kynasta/
 translationKey: writings_index
 ---
@@ -25,10 +25,22 @@ translationKey: writings_index
   {% endif %}
 {% endfor %}
 {% set totalMaterialsCount = uniqueMaterialKeys | length %}
+{% set statementItems = [] %}
+{% for item in (collections.publications or []) %}
+  {% if item.data.type == "lausunto" %}
+    {% set _ = (statementItems.push(item), null) %}
+  {% endif %}
+{% endfor %}
 {% set latestSpeechHighlights = (collections.pub_puhe or []).slice(0, 3) %}
 {% set latestInitiativeHighlights = (collections.politics or []).slice(0, 3) %}
 {% set latestBlogHighlights = (collections.blog or []).slice(0, 3) %}
 {% set latestPresentationHighlights = (collections.presentations or []).slice(0, 2) %}
+{% set speechCount = (collections.pub_puhe or []) | length %}
+{% set initiativeCount = (collections.politics or []) | length %}
+{% set statementCount = statementItems | length %}
+{% set blogCount = (collections.blog or []) | length %}
+{% set opinionCount = (collections.pub_mielipide or []) | length %}
+{% set columnCount = (collections.pub_kolumni or []) | length %}
 {% set politicalOpinionCount = (collections.pub_mielipide_political or []) | length %}
 {% set expertOpinionCount = (collections.pub_mielipide_expert or []) | length %}
 
@@ -38,16 +50,19 @@ translationKey: writings_index
       <div class="col-lg-7">
         <p class="text-uppercase small text-muted mb-2">Kynästä</p>
         <h1 class="display-6 fw-bold mb-2">Kirjoitukset, puheet ja julkaisut</h1>
-        <p class="text-muted mb-3">Kooste mielipidekirjoituksista, kolumneista, aloitteista, puheista ja julkaisuista. Tämä sivu toimii sekä sisäänkäyntinä ajankohtaiseen sisältöön että koko aineiston arkistona.</p>
+        <p class="text-muted mb-3">Kooste mielipidekirjoituksista, kolumneista, lausunnoista, aloitteista, puheista ja julkaisuista. Tämä sivu toimii sekä sisäänkäyntinä ajankohtaiseen sisältöön että koko aineiston arkistona.</p>
         <div class="d-flex flex-wrap gap-2">
           <a class="nav-link" href="#puheet">
-            Puheet <span class="nav-count">{{ collections.pub_puhe.length }}</span>
+            Puheet <span class="nav-count">{{ speechCount }}</span>
           </a>
           <a class="nav-link" href="#aloitteet">
-            Aloitteet <span class="nav-count">{{ collections.politics.length }}</span>
+            Aloitteet <span class="nav-count">{{ initiativeCount }}</span>
+          </a>
+          <a class="nav-link" href="#lausunnot">
+            Lausunnot <span class="nav-count">{{ statementCount }}</span>
           </a>
           <a class="nav-link" href="#blogi">
-            Kirjoitukset <span class="nav-count">{{ collections.blog.length + collections.pub_mielipide.length + collections.pub_kolumni.length }}</span>
+            Kirjoitukset <span class="nav-count">{{ blogCount + opinionCount + columnCount + statementCount }}</span>
           </a>
           <a class="nav-link" href="#esitykset">
             Materiaalit <span class="nav-count">{{ totalMaterialsCount }}</span>
@@ -59,7 +74,7 @@ translationKey: writings_index
           <p class="kynasta-hero-aside-kicker mb-2">Tältä sivulta löydät</p>
           <ul class="kynasta-hero-aside-list mb-0">
             <li>Puheet ja aloitteet, joilla olen osallistunut Oulun päätöksentekoon.</li>
-            <li>Kirjoitukset, mielipiteet ja kolumnit, joissa avaan näkemyksiäni pidemmin.</li>
+            <li>Kirjoitukset, mielipiteet, kolumnit ja lausunnot, joissa avaan näkemyksiäni pidemmin.</li>
             <li>Esitykset, materiaalit ja julkaisut, joista näkyy työn tausta ja asiantuntijuus.</li>
           </ul>
         </aside>
@@ -117,14 +132,14 @@ translationKey: writings_index
         <article class="card border-0 shadow-sm h-100 kynasta-entry-card kynasta-entry-card--kirjoitukset">
           <div class="card-body d-flex flex-column">
             <p class="kynasta-entry-kicker">Kirjoitukset</p>
-            <h3 class="h5 mb-2">Blogi, mielipiteet ja kolumnit</h3>
-            <p class="small text-muted mb-3">Pidemmät perustelut, taustoitukset ja kannanotot löytyvät kirjoitusaineistosta.</p>
+            <h3 class="h5 mb-2">Blogi, mielipiteet, lausunnot ja kolumnit</h3>
+            <p class="small text-muted mb-3">Pidemmät perustelut, taustoitukset, muodolliset kannanotot ja julkiset asiantuntijatekstit löytyvät kirjoitusaineistosta.</p>
             <ul class="kynasta-entry-list mb-3">
               {% for item in latestBlogHighlights %}
               <li><a href="{{ item.url }}">{{ item.data.title }}</a></li>
               {% endfor %}
             </ul>
-            <div class="small text-muted mb-3">{{ collections.pub_mielipide.length }} mielipidettä ja {{ collections.pub_kolumni.length }} kolumnia täydentävät blogiaineistoa.</div>
+            <div class="small text-muted mb-3">{{ opinionCount }} mielipidettä, {{ statementCount }} lausuntoa ja {{ columnCount }} kolumnia täydentävät blogiaineistoa.</div>
             <a href="#blogi" class="btn btn-outline-secondary btn-sm rounded-pill px-3 mt-auto align-self-start">Siirry kirjoituksiin</a>
           </div>
         </article>
@@ -203,6 +218,14 @@ translationKey: writings_index
             </a>
           </div>
           <div class="col-6 col-md-4 col-lg-2">
+            <a href="#lausunnot" class="summary-kpi-link">
+              <div class="summary-kpi kpi-color-lausunnot p-3 rounded border border-start border-4 h-100">
+                <div class="summary-kpi-label">Lausunnot</div>
+                <div id="kpi-lausunnot" class="summary-kpi-value">0</div>
+              </div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
             <a href="#mielipiteet" class="summary-kpi-link">
               <div class="summary-kpi kpi-color-mielipiteet p-3 rounded border border-start border-4 h-100">
                 <div class="summary-kpi-label">Mielipiteet</div>
@@ -252,6 +275,85 @@ translationKey: writings_index
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script id="lausunnot-data" type="application/json">
+[
+  {% for pub in statementItems %}
+  {
+    "title": {{ pub.data.title | jsonSafe | safe }},
+    "date": "{{ pub.date }}",
+    "formattedDate": "{{ pub.date | dateFormat }}",
+    "description": {{ (pub.data.description or "") | jsonSafe | safe }},
+    "publication": {{ (pub.data.publication or "") | jsonSafe | safe }},
+    "url": "{{ pub.data.url or pub.url }}",
+    "isExternal": {{ (pub.data.url != null) | jsonSafe | safe }},
+    "categories": {{ (pub.data.categories or []) | jsonSafe | safe }},
+    "keywords": {{ (pub.data.keywords or []) | jsonSafe | safe }},
+    "writingRoles": {{ (pub.data.writingRoles or []) | jsonSafe | safe }},
+    "statementAuthority": {{ (pub.data.statementAuthority or "") | jsonSafe | safe }},
+    "diaryNumber": {{ (pub.data.diaryNumber or "") | jsonSafe | safe }}
+  }{% if not loop.last %},{% endif %}
+  {% endfor %}
+]
+</script>
+
+<span id="lausunnot-ja-asiantuntijakannanotot"></span>
+<section id="lausunnot">
+  <div class="site-shell">
+    <div class="card shadow-sm">
+      <div class="card-header bg-transparent d-flex align-items-center justify-content-between kynasta-section-header">
+        <h2 class="h4 mb-0"><i class="bi bi-file-earmark-text-fill me-2"></i>Lausunnot</h2>
+        <span class="badge kynasta-section-count">{{ statementCount }}</span>
+      </div>
+      <div class="card-body p-0">
+        <div class="px-3 pt-3 pb-0">
+          <p class="small text-muted mb-3">Lausuntopalvelussa ja muissa valmisteluprosesseissa annetut asiantuntijalausunnot. Nämä tekstit kohdistuvat suoraan valmisteluun, ohjaukseen ja julkiseen päätöksentekoon.</p>
+        </div>
+        <div class="p-3 bg-body-tertiary border-bottom">
+          <div class="row g-2 align-items-end">
+            <div class="col-md-9">
+              <label for="lausunnot-search" class="form-label small text-muted mb-1">Hae lausuntoja</label>
+              <input type="search" id="lausunnot-search" class="form-control form-control-sm"
+                     placeholder="Hae otsikosta, tiivistelmästä, kanavasta, diaarinumerosta, kategorioista..." autocomplete="off">
+            </div>
+            <div class="col-md-3 d-flex justify-content-md-end gap-2">
+              <button id="lausunnot-reset" class="btn btn-outline-secondary btn-sm w-100">
+                <i class="bi bi-x-circle me-1"></i>Tyhjennä
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0 pub-table lausunnot-table">
+            <thead>
+              <tr>
+                <th class="sortable text-center" data-col="date" style="width:140px">
+                  Päivämäärä <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
+                </th>
+                <th class="sortable" data-col="title" style="min-width:200px">
+                  Otsikko <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
+                </th>
+                <th style="min-width:220px">Tiivistelmä & Kanava</th>
+                <th>Kategoriat & Avainsanat</th>
+                <th style="width:80px" class="text-center">Lue</th>
+              </tr>
+            </thead>
+            <tbody id="lausunnot-tbody">
+              <tr><td colspan="5" class="text-center text-muted py-4">Ladataan lausuntoja...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top">
+        <small id="lausunnot-info" class="text-muted"></small>
+        <nav aria-label="Sivutus">
+          <ul id="lausunnot-pagination" class="pagination pagination-sm mb-0 flex-wrap"></ul>
+        </nav>
       </div>
     </div>
   </div>
@@ -1171,6 +1273,7 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
   .puheet-table .col-taxonomy,
   .aloitteet-table .col-taxonomy,
   .blog-table .col-taxonomy,
+  .lausunnot-table .col-taxonomy,
   .kolumnit-table .col-taxonomy,
   .mielipiteet-table .col-taxonomy,
   .esitykset-table .col-taxonomy,
@@ -1249,7 +1352,7 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
 <script>
 (function () {
   // Näytä taulukko-osiot tarkoituksellisessa lukujärjestyksessä riippumatta lähdekoodin lohkojärjestyksestä.
-  const sectionOrder = ['puheet', 'aloitteet', 'blogi', 'mielipiteet', 'kolumnit', 'esitykset', 'julkaisut'];
+  const sectionOrder = ['puheet', 'aloitteet', 'blogi', 'mielipiteet', 'lausunnot', 'kolumnit', 'esitykset', 'julkaisut'];
   const sections = sectionOrder
     .map(id => document.getElementById(id))
     .filter(Boolean);
@@ -1351,6 +1454,7 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
   };
 
   const mielipiteet = parseJson('mielipiteet-data');
+  const lausunnot = parseJson('lausunnot-data');
   const kolumnit = parseJson('kolumnit-data');
   const aloitteet = parseJson('aloitteet-data');
   const puheet = parseJson('puheet-data');
@@ -1369,6 +1473,7 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
 
   const counts = {
     mielipiteet: mielipiteet.length,
+    lausunnot: lausunnot.length,
     kolumnit: kolumnit.length,
     aloitteet: aloitteet.length,
     puheet: puheet.length,
@@ -1382,6 +1487,7 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
     if (el) el.textContent = String(value);
   };
   setText('kpi-mielipiteet', counts.mielipiteet);
+  setText('kpi-lausunnot', counts.lausunnot);
   setText('kpi-kolumnit', counts.kolumnit);
   setText('kpi-aloitteet', counts.aloitteet);
   setText('kpi-puheet', counts.puheet);
@@ -1394,12 +1500,13 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
     arr.forEach((item) => {
       const y = key === 'year' ? Number(item.year) : yearFromDate(item.date);
       if (!y || y < 1990 || y > 2100) return;
-      if (!yearly[y]) yearly[y] = { mielipiteet: 0, kolumnit: 0, aloitteet: 0, puheet: 0, blogi: 0, esitykset: 0, julkaisut: 0 };
+      if (!yearly[y]) yearly[y] = { mielipiteet: 0, lausunnot: 0, kolumnit: 0, aloitteet: 0, puheet: 0, blogi: 0, esitykset: 0, julkaisut: 0 };
       yearly[y][key === 'year' ? 'julkaisut' : key] += 1;
     });
   };
 
   addYear(mielipiteet, 'mielipiteet');
+  addYear(lausunnot, 'lausunnot');
   addYear(kolumnit, 'kolumnit');
   addYear(aloitteet, 'aloitteet');
   addYear(puheet, 'puheet');
@@ -1409,17 +1516,18 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
 
   const years = Object.keys(yearly).map(Number).sort((a, b) => a - b);
 
-  const labels = ['Aloitteet', 'Blogi', 'Esitykset', 'Julkaisut', 'Kolumnit', 'Mielipiteet', 'Puheet'];
+  const labels = ['Aloitteet', 'Blogi', 'Esitykset', 'Julkaisut', 'Kolumnit', 'Lausunnot', 'Mielipiteet', 'Puheet'];
   const values = [
     counts.aloitteet,
     counts.blogi,
     counts.esitykset,
     counts.julkaisut,
     counts.kolumnit,
+    counts.lausunnot,
     counts.mielipiteet,
     counts.puheet
   ];
-  const palette = ['#fd7e14', '#6610f2', '#0dcaf0', '#198754', '#20c997', '#0d6efd', '#dc3545'];
+  const palette = ['#fd7e14', '#6610f2', '#0dcaf0', '#198754', '#20c997', '#495057', '#0d6efd', '#dc3545'];
 
   function drawCharts() {
     if (typeof Chart === 'undefined') return false;
@@ -1458,8 +1566,9 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
             makeSeries('Esitykset', palette[2], 'esitykset'),
             makeSeries('Julkaisut', palette[3], 'julkaisut'),
             makeSeries('Kolumnit', palette[4], 'kolumnit'),
-            makeSeries('Mielipiteet', palette[5], 'mielipiteet'),
-            makeSeries('Puheet', palette[6], 'puheet')
+            makeSeries('Lausunnot', palette[5], 'lausunnot'),
+            makeSeries('Mielipiteet', palette[6], 'mielipiteet'),
+            makeSeries('Puheet', palette[7], 'puheet')
           ]
         },
         options: {
@@ -2736,6 +2845,165 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
   });
 
   renderKolumnit();
+})();
+
+// --- Lausunnot taulukon logiikka ---
+(function () {
+  const LAUSUNNOT_PAGE_SIZE = 5;
+  const lausunnotDataEl = document.getElementById('lausunnot-data');
+  if (!lausunnotDataEl) return;
+  const lausunnotData = JSON.parse(lausunnotDataEl.textContent);
+
+  let filteredLausunnotData = [...lausunnotData].sort((a, b) => new Date(b.date) - new Date(a.date));
+  let lausunnotCurrentPage = 1;
+  let lausunnotSortCol = 'date';
+  let lausunnotSortDir = -1;
+
+  const lausunnotSearchInp = document.getElementById('lausunnot-search');
+  const lausunnotTbody = document.getElementById('lausunnot-tbody');
+  const lausunnotInfo = document.getElementById('lausunnot-info');
+  const lausunnotPagUl = document.getElementById('lausunnot-pagination');
+
+  function applyLausunnotFilters() {
+    const q = lausunnotSearchInp ? lausunnotSearchInp.value.toLowerCase().trim() : '';
+    filteredLausunnotData = lausunnotData.filter((d) => {
+      const matchQ = !q ||
+        (d.title || '').toLowerCase().includes(q) ||
+        (d.description || '').toLowerCase().includes(q) ||
+        (d.publication || '').toLowerCase().includes(q) ||
+        (d.statementAuthority || '').toLowerCase().includes(q) ||
+        (d.diaryNumber || '').toLowerCase().includes(q) ||
+        (d.categories || []).some((c) => c.toLowerCase().includes(q)) ||
+        (d.keywords || []).some((k) => k.toLowerCase().includes(q));
+      return matchQ;
+    }).sort((a, b) => new Date(b.date) - new Date(a.date));
+    lausunnotCurrentPage = 1;
+    renderLausunnot();
+  }
+
+  function sortLausunnotData(col) {
+    if (lausunnotSortCol === col) { lausunnotSortDir *= -1; }
+    else { lausunnotSortCol = col; lausunnotSortDir = col === 'date' ? -1 : 1; }
+
+    filteredLausunnotData.sort((a, b) => {
+      let av = a[col] ?? '';
+      let bv = b[col] ?? '';
+      if (typeof av === 'string') av = av.toLowerCase();
+      if (typeof bv === 'string') bv = bv.toLowerCase();
+      if (col === 'date') {
+        return (new Date(av) - new Date(bv)) * lausunnotSortDir;
+      }
+      return av.toString().localeCompare(bv.toString(), 'fi') * lausunnotSortDir;
+    });
+    lausunnotCurrentPage = 1;
+    renderLausunnot();
+  }
+
+  function renderLausunnot() {
+    if (!lausunnotTbody || !lausunnotInfo) return;
+
+    const totalPages = Math.max(1, Math.ceil(filteredLausunnotData.length / LAUSUNNOT_PAGE_SIZE));
+    const start = (lausunnotCurrentPage - 1) * LAUSUNNOT_PAGE_SIZE;
+    const slice = filteredLausunnotData.slice(start, start + LAUSUNNOT_PAGE_SIZE);
+
+    if (slice.length === 0) {
+      lausunnotTbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-5">Ei tuloksia haulla</td></tr>';
+    } else {
+      lausunnotTbody.innerHTML = slice.map((d) => {
+        const roleBadges = (d.writingRoles || []).map((role) => {
+          const label = role === 'political' ? 'Poliittinen' : role === 'personal' ? 'Henkilökohtainen' : 'Asiantuntija';
+          return `<span class="badge text-bg-light border text-dark mt-1 me-1">${label}</span>`;
+        }).join('');
+        const catBadges = (d.categories || []).map(c => `<a href="/kategoriat/${slugify(c)}/" class="badge text-bg-secondary me-1 text-decoration-none">${c}</a>`).join('');
+        const keyBadges = (d.keywords || []).map(k => `<a href="/avainsanat/${slugify(k)}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">${k}</a>`).join('');
+        const targetAttr = d.isExternal ? 'target="_blank" rel="noopener"' : '';
+        const iconInfo = d.isExternal ? '<i class="bi bi-arrow-up-right"></i>' : '<i class="bi bi-arrow-right"></i>';
+        const metaBits = [
+          d.publication ? `<span class="badge text-bg-light border text-dark mt-1 me-1"><i class="bi bi-building me-1"></i>${escHtml(d.publication)}</span>` : '',
+          d.diaryNumber ? `<span class="badge text-bg-light border text-dark mt-1 me-1"><i class="bi bi-hash me-1"></i>${escHtml(d.diaryNumber)}</span>` : '',
+          roleBadges
+        ].join('');
+
+        return `<tr>
+          <td class="col-date text-center small text-muted font-monospace">${d.formattedDate}</td>
+          <td class="col-title fw-medium"><a href="${d.url}" ${targetAttr} class="text-decoration-none">${escHtml(d.title)}</a></td>
+          <td class="col-desc small text-muted"><span class="summary-text">${escHtml(d.description)}</span><br>${metaBits}</td>
+          <td class="col-taxonomy">
+            <div class="mb-1">${catBadges}</div>
+            <div>${keyBadges}</div>
+          </td>
+          <td class="col-action text-center">
+            <a href="${d.url}" ${targetAttr} class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Avaa lausunto">
+              ${iconInfo}
+            </a>
+          </td>
+        </tr>`;
+      }).join('');
+    }
+
+    const total = filteredLausunnotData.length;
+    const from = total === 0 ? 0 : start + 1;
+    const to = Math.min(start + LAUSUNNOT_PAGE_SIZE, total);
+    lausunnotInfo.textContent = `Näytetään ${from}–${to} / ${total}`;
+
+    renderLausunnotPagination(totalPages);
+
+    document.querySelectorAll('.lausunnot-table th.sortable').forEach((th) => {
+      th.classList.remove('sort-asc', 'sort-desc');
+      if (th.dataset.col === lausunnotSortCol) {
+        th.classList.add(lausunnotSortDir === 1 ? 'sort-asc' : 'sort-desc');
+      }
+    });
+  }
+
+  function renderLausunnotPagination(total) {
+    if (!lausunnotPagUl) return;
+    lausunnotPagUl.innerHTML = '';
+    if (total <= 1) return;
+
+    for (let i = 1; i <= total; i++) {
+      const li = document.createElement('li');
+      li.className = `page-item${i === lausunnotCurrentPage ? ' active' : ''}`;
+      const a = document.createElement('a');
+      a.className = 'page-link';
+      a.href = '#';
+      a.textContent = i;
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        lausunnotCurrentPage = i;
+        renderLausunnot();
+        document.getElementById('lausunnot')?.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+      li.appendChild(a);
+      lausunnotPagUl.appendChild(li);
+    }
+  }
+
+  function escHtml(str) {
+    if (!str) return '';
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function slugify(str) {
+    if (!str) return "";
+    return str.toLowerCase().replace(/ä/g, "a").replace(/ö/g, "o").replace(/å/g, "a").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  }
+
+  if (lausunnotSearchInp) lausunnotSearchInp.addEventListener('input', applyLausunnotFilters);
+
+  const lausunnotResetBtn = document.getElementById('lausunnot-reset');
+  if (lausunnotResetBtn) {
+    lausunnotResetBtn.addEventListener('click', () => {
+      if (lausunnotSearchInp) lausunnotSearchInp.value = '';
+      applyLausunnotFilters();
+    });
+  }
+
+  document.querySelectorAll('.lausunnot-table th.sortable').forEach((th) => {
+    th.addEventListener('click', () => sortLausunnotData(th.dataset.col));
+  });
+
+  renderLausunnot();
 })();
 
 // --- Mielipiteet taulukon logiikka ---

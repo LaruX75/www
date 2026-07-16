@@ -1,0 +1,57 @@
+nykyinen_arvo,esiintymia,toimenpide,uusi_paateema,uusi_kentta,luonne,huomio
+Poliitiikka,53,korvaa,Politiikka ja päätöksenteko,,automaattinen,Yhdistetään samaan kuin politiikka
+politiikka,19,korvaa,Politiikka ja päätöksenteko,,automaattinen,Yhdistetään samaan kuin Poliitiikka
+Kuntavaalit,8,korvaa,Vaalit,campaign,automaattinen,Tarkempi vaali ja vuosi campaign-kenttään
+Aluevaaalit2022,4,korvaa,Vaalit,campaign: Aluevaalit 2022,automaattinen,Kirjoitusasuvirhe korjaantuu samalla
+Seurakuntavaalit,1,korvaa,Vaalit,campaign: Seurakuntavaalit,automaattinen,
+vaalit,1,korvaa,Vaalit,campaign,automaattinen,
+Puheet,14,poista,,,automaattinen,Formaatti jää type-kenttään
+Mielipidekirjoitukset,38,poista,,,automaattinen,Formaatti jää type-kenttään
+Kaleva,29,siirrä,,publication: Kaleva,automaattinen,Julkaisukanava
+Helsingin Sanomat,1,siirrä,,publication: Helsingin Sanomat,automaattinen,Julkaisukanava
+Facebook,2,siirrä,,channel: Facebook,automaattinen,Kanava
+Muut lehdet,2,siirrä,,publicationType: muu lehti,automaattinen,Julkaisuluokka
+Kaupunginvaltuusto,7,siirrä,,forum: Kaupunginvaltuusto,automaattinen,Foorumi ei teema
+Kaupunginvaltuustossa pidetyt puheenvuorot,5,siirrä,,forum: Kaupunginvaltuusto,automaattinen,Duplikaatti edelliseen
+Lautakunta,13,siirrä,,forum: Lautakunta,automaattinen,Foorumi ei teema
+Luottamustehtävät,2,siirrä,,context: Luottamustehtävä,automaattinen,Profiilikonteksti
+Lähidemokratiatoimikunta,1,siirrä,,forum: Lähidemokratiatoimikunta,automaattinen,Foorumi
+Työryhmätyö,1,siirrä,,forum: Työryhmä,automaattinen,Foorumi
+Asukasyhdistys,2,siirrä,,forum: Asukasyhdistys,automaattinen,Foorumi
+yhdistystoiminta,2,siirrä tai poista,,context: yhdistystoiminta,tapauskohtainen,Osa voi olla konteksti eikä teema
+Juhlapuheet,4,siirrä,,eventType: juhlapuhe,automaattinen,Tapahtumatyyppi
+Paneelit,1,siirrä,,eventType: paneeli,automaattinen,Tapahtumatyyppi
+Seminaarit,1,siirrä,,eventType: seminaari,automaattinen,Tapahtumatyyppi
+Tieteelliset tilaisuudet,3,siirrä,,eventType: tieteellinen tilaisuus,automaattinen,Tapahtumatyyppi
+Luennot,1,siirrä,,eventType: luento,automaattinen,Tapahtumatyyppi
+Larun laitenurkka,3,siirrä,,series: Larun laitenurkka,automaattinen,Sarjanimi
+Verkkolive,1,siirrä,,series tai eventType,tapauskohtainen,Riippuu käytöstä
+Kulttuuri,3,korvaa,Kulttuuri ja paikallisidentiteetti,,automaattinen,
+Palveluverkko,1,korvaa,Kaupunkikehitys ja palveluverkko,,automaattinen,
+Koulutuspolitiikka,1,korvaa,Sivistys ja koulutus,secondaryTheme,tapauskohtainen,Jos fokus politiikassa rinnalle Politiikka ja päätöksenteko
+Liikunta,1,korvaa,Hyvinvointi ja osallisuus,,automaattinen,
+Matkailu,4,korvaa,Matkat ja henkilökohtaiset,,automaattinen,Blogissa toimiva
+Henkilökuva,1,korvaa,Matkat ja henkilökohtaiset,,tapauskohtainen,Voi joissain tapauksissa poistua kokonaan
+Yliopistokampus,1,korvaa,Yliopisto ja korkeakoulut,secondaryTheme: Oppimisympäristöt ja tilat,tapauskohtainen,Kampus- ja tilakysymykset rinnalla
+Tutkimus,1,korvaa,Yliopisto ja korkeakoulut,,tapauskohtainen,Jos fokus instituutiossa eikä menetelmässä
+Väitöskirja,2,korvaa,Yliopisto ja korkeakoulut,eventType,tapauskohtainen,Usein myös akateeminen konteksti
+Teknologiatuettu oppiminen ja opetus,11,korvaa,Koulutusteknologia,secondaryTheme,tapauskohtainen,Ei niputeta automaattisesti sivistykseen
+Koulutusteknologi,1,korvaa,Koulutusteknologia,,automaattinen,
+Oppimisympäristöt ja tilat,2,säilytä omana teemana,Oppimisympäristöt ja tilat,secondaryTheme,tapauskohtainen,Voi liittyä kouluun tai yliopistoon
+Avoimet oppimateriaalit ja sisällöt,2,korvaa,Opettajankoulutus tai Koulutusteknologia,,tapauskohtainen,Riippuu painotuksesta
+Käyttöjärjestelmät,1,korvaa,Teknologia ja digitaalisuus,secondaryTheme: Koulutusteknologia,tapauskohtainen,Opetuskonteksti voi näkyä sivuteemassa
+pilvipalvelut ja ekosysteemit,1,korvaa,Teknologia ja digitaalisuus,secondaryTheme: Koulutusteknologia,tapauskohtainen,
+tietotekniikka,2,korvaa,Teknologia ja digitaalisuus,,automaattinen,
+av-tekniikka,1,korvaa,Teknologia ja digitaalisuus,,automaattinen,
+kamerat,1,korvaa,Teknologia ja digitaalisuus,,automaattinen,
+www-sivustot,1,korvaa,Teknologia ja digitaalisuus,,automaattinen,
+digiluokka,1,korvaa,Teknologia ja digitaalisuus,series,tapauskohtainen,Voi olla myös sarjamerkintä
+opetus,1,korvaa,Sivistys ja koulutus,secondaryTheme,tapauskohtainen,Jos opettajankoulutuspainotteinen käytä sitä
+Larux tmi (yritys),2,poista,,,automaattinen,Siirrä context: yritys jos halutaan säilyttää
+Työ,1,poista,,,automaattinen,Liian yleinen
+Oulu,1,poista,,,automaattinen,Liian yleinen jää tarvittaessa avainsanaksi
+Luokittelematon,8,poista,,,automaattinen,Korvattava oikealla teemalla
+Uncategorized,2,poista,,,automaattinen,Korvattava oikealla teemalla
+Yleinen,1,poista,,,automaattinen,Korvattava oikealla teemalla
+Yleistä,1,poista,,,automaattinen,Korvattava oikealla teemalla
+Muut,5,poista,,,automaattinen,Korvattava oikealla teemalla

@@ -58,34 +58,34 @@ templateEngineOverride: njk
       <div class="col-lg-4">
         <div class="row g-3 text-center">
           <div class="col-6">
-            <div class="card border-0 shadow-sm h-100 research-kpi-card">
+            <div class="card border-0 shadow-sm h-100 site-kpi-card research-kpi-card">
               <div class="card-body py-3">
-                <div class="display-5 fw-bold research-kpi-number">{{ researchfi.length }}</div>
-                <div class="small text-muted research-kpi-label">julkaisua</div>
+                <div class="site-kpi-number research-kpi-number">{{ researchfi.length }}</div>
+                <div class="site-kpi-label research-kpi-label">julkaisua</div>
               </div>
             </div>
           </div>
           <div class="col-6">
-            <div class="card border-0 shadow-sm h-100 research-kpi-card">
+            <div class="card border-0 shadow-sm h-100 site-kpi-card research-kpi-card">
               <div class="card-body py-3">
-                <div class="display-5 fw-bold research-kpi-number">{{ peerReviewedCount }}</div>
-                <div class="small text-muted research-kpi-label">vertaisarvioitua</div>
+                <div class="site-kpi-number research-kpi-number">{{ peerReviewedCount }}</div>
+                <div class="site-kpi-label research-kpi-label">vertaisarvioitua</div>
               </div>
             </div>
           </div>
           <div class="col-6">
-            <div class="card border-0 shadow-sm h-100 research-kpi-card">
+            <div class="card border-0 shadow-sm h-100 site-kpi-card research-kpi-card">
               <div class="card-body py-3">
-                <div class="display-5 fw-bold research-kpi-number">{{ theses.stats.totalGradut }}</div>
-                <div class="small text-muted research-kpi-label">gradua ohjattu</div>
+                <div class="site-kpi-number research-kpi-number">{{ theses.stats.totalGradut }}</div>
+                <div class="site-kpi-label research-kpi-label">gradua ohjattu</div>
               </div>
             </div>
           </div>
           <div class="col-6">
-            <div class="card border-0 shadow-sm h-100 research-kpi-card">
+            <div class="card border-0 shadow-sm h-100 site-kpi-card research-kpi-card">
               <div class="card-body py-3">
-                <div class="display-5 fw-bold research-kpi-number">{{ theses.stats.totalKandit }}</div>
-                <div class="small text-muted research-kpi-label">kandia ohjattu</div>
+                <div class="site-kpi-number research-kpi-number">{{ theses.stats.totalKandit }}</div>
+                <div class="site-kpi-label research-kpi-label">kandia ohjattu</div>
               </div>
             </div>
           </div>
@@ -179,34 +179,34 @@ templateEngineOverride: njk
     {% if researchfi.length %}
     <div class="row g-3 mb-4">
       <div class="col-6 col-md-3">
-        <div class="card text-center border-primary h-100 research-kpi-card">
+        <div class="card text-center border-primary h-100 site-kpi-card research-kpi-card">
           <div class="card-body py-3">
-            <div class="display-5 fw-bold research-kpi-number mb-1">{{ countA }}</div>
-            <div class="small text-muted research-kpi-label">Lehtiartikkelit (A)</div>
+            <div class="site-kpi-number research-kpi-number mb-1">{{ countA }}</div>
+            <div class="site-kpi-label research-kpi-label">Lehtiartikkelit (A)</div>
           </div>
         </div>
       </div>
       <div class="col-6 col-md-3">
-        <div class="card text-center border-primary h-100 research-kpi-card">
+        <div class="card text-center border-primary h-100 site-kpi-card research-kpi-card">
           <div class="card-body py-3">
-            <div class="display-5 fw-bold research-kpi-number mb-1">{{ countConf }}</div>
-            <div class="small text-muted research-kpi-label">Konferenssit</div>
+            <div class="site-kpi-number research-kpi-number mb-1">{{ countConf }}</div>
+            <div class="site-kpi-label research-kpi-label">Konferenssit</div>
           </div>
         </div>
       </div>
       <div class="col-6 col-md-3">
-        <div class="card text-center border-primary h-100 research-kpi-card">
+        <div class="card text-center border-primary h-100 site-kpi-card research-kpi-card">
           <div class="card-body py-3">
-            <div class="display-5 fw-bold research-kpi-number mb-1">{{ countC }}</div>
-            <div class="small text-muted research-kpi-label">Kirjat &amp; väitöskirjat</div>
+            <div class="site-kpi-number research-kpi-number mb-1">{{ countC }}</div>
+            <div class="site-kpi-label research-kpi-label">Kirjat &amp; väitöskirjat</div>
           </div>
         </div>
       </div>
       <div class="col-6 col-md-3">
-        <div class="card text-center border-primary h-100 research-kpi-card">
+        <div class="card text-center border-primary h-100 site-kpi-card research-kpi-card">
           <div class="card-body py-3">
-            <div class="display-5 fw-bold research-kpi-number mb-1">{{ countOther }}</div>
-            <div class="small text-muted research-kpi-label">Muut</div>
+            <div class="site-kpi-number research-kpi-number mb-1">{{ countOther }}</div>
+            <div class="site-kpi-label research-kpi-label">Muut</div>
           </div>
         </div>
       </div>

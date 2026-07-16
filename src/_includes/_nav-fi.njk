@@ -240,6 +240,26 @@
                       {% set linkCount = 0 %}
                       {% if link.countKey %}
                         {% set linkCount = (collections[link.countKey] or []) | length %}
+                      {% elif link.countData == "publications_statements" %}
+                        {% for item in (collections.publications or []) %}
+                          {% if item.data.type == "lausunto" %}
+                            {% set linkCount = linkCount + 1 %}
+                          {% endif %}
+                        {% endfor %}
+                      {% elif link.countData == "publications_expert_opinions" %}
+                        {% for item in (collections.pub_mielipide or []) %}
+                          {% set roles = item.data.opinionRoles or item.data.writingRoles or [] %}
+                          {% if roles.indexOf("expert") != -1 %}
+                            {% set linkCount = linkCount + 1 %}
+                          {% endif %}
+                        {% endfor %}
+                      {% elif link.countData == "publications_political_opinions" %}
+                        {% for item in (collections.pub_mielipide or []) %}
+                          {% set roles = item.data.opinionRoles or item.data.writingRoles or [] %}
+                          {% if roles.indexOf("political") != -1 %}
+                            {% set linkCount = linkCount + 1 %}
+                          {% endif %}
+                        {% endfor %}
                       {% elif link.countData == "theses_total" %}
                         {% set linkCount = theses.stats.total if theses and theses.stats else 0 %}
                       {% elif link.countData == "theses_kandit" %}
@@ -267,6 +287,26 @@
                       {% set linkCount = 0 %}
                       {% if link.countKey %}
                         {% set linkCount = (collections[link.countKey] or []) | length %}
+                      {% elif link.countData == "publications_statements" %}
+                        {% for item in (collections.publications or []) %}
+                          {% if item.data.type == "lausunto" %}
+                            {% set linkCount = linkCount + 1 %}
+                          {% endif %}
+                        {% endfor %}
+                      {% elif link.countData == "publications_expert_opinions" %}
+                        {% for item in (collections.pub_mielipide or []) %}
+                          {% set roles = item.data.opinionRoles or item.data.writingRoles or [] %}
+                          {% if roles.indexOf("expert") != -1 %}
+                            {% set linkCount = linkCount + 1 %}
+                          {% endif %}
+                        {% endfor %}
+                      {% elif link.countData == "publications_political_opinions" %}
+                        {% for item in (collections.pub_mielipide or []) %}
+                          {% set roles = item.data.opinionRoles or item.data.writingRoles or [] %}
+                          {% if roles.indexOf("political") != -1 %}
+                            {% set linkCount = linkCount + 1 %}
+                          {% endif %}
+                        {% endfor %}
                       {% elif link.countData == "theses_total" %}
                         {% set linkCount = theses.stats.total if theses and theses.stats else 0 %}
                       {% elif link.countData == "theses_kandit" %}
