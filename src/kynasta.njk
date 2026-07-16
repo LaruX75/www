@@ -352,7 +352,7 @@ translationKey: writings_index
       <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top">
         <small id="lausunnot-info" class="text-muted"></small>
         <nav aria-label="Sivutus">
-          <ul id="lausunnot-pagination" class="pagination pagination-sm mb-0 flex-wrap kynasta-pag"></ul>
+          <ul id="lausunnot-pagination" class="pagination pagination-sm mb-0 flex-wrap site-pag"></ul>
         </nav>
       </div>
     </div>
@@ -443,7 +443,7 @@ translationKey: writings_index
       <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top">
         <small id="mielipiteet-info" class="text-muted"></small>
         <nav aria-label="Sivutus">
-          <ul id="mielipiteet-pagination" class="pagination pagination-sm mb-0 flex-wrap kynasta-pag"></ul>
+          <ul id="mielipiteet-pagination" class="pagination pagination-sm mb-0 flex-wrap site-pag"></ul>
         </nav>
       </div>
     </div>
@@ -519,7 +519,7 @@ translationKey: writings_index
       <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top">
         <small id="kolumnit-info" class="text-muted"></small>
         <nav aria-label="Sivutus">
-          <ul id="kolumnit-pagination" class="pagination pagination-sm mb-0 flex-wrap kynasta-pag"></ul>
+          <ul id="kolumnit-pagination" class="pagination pagination-sm mb-0 flex-wrap site-pag"></ul>
         </nav>
       </div>
     </div>
@@ -594,7 +594,7 @@ translationKey: writings_index
       <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top">
         <small id="aloitteet-info" class="text-muted"></small>
         <nav aria-label="Sivutus">
-          <ul id="aloitteet-pagination" class="pagination pagination-sm mb-0 flex-wrap kynasta-pag"></ul>
+          <ul id="aloitteet-pagination" class="pagination pagination-sm mb-0 flex-wrap site-pag"></ul>
         </nav>
       </div>
     </div>
@@ -678,7 +678,7 @@ translationKey: writings_index
       <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top">
         <small id="puheet-info" class="text-muted"></small>
         <nav aria-label="Sivutus">
-          <ul id="puheet-pagination" class="pagination pagination-sm mb-0 flex-wrap kynasta-pag"></ul>
+          <ul id="puheet-pagination" class="pagination pagination-sm mb-0 flex-wrap site-pag"></ul>
         </nav>
       </div>
     </div>
@@ -752,7 +752,7 @@ translationKey: writings_index
         <small id="blog-info" class="text-muted"></small>
         <div class="d-flex align-items-center gap-3">
           <nav aria-label="Sivutus">
-            <ul id="blog-pagination" class="pagination pagination-sm mb-0 flex-wrap kynasta-pag"></ul>
+            <ul id="blog-pagination" class="pagination pagination-sm mb-0 flex-wrap site-pag"></ul>
           </nav>
           <a href="/blogi/" class="btn btn-outline-primary btn-sm rounded-pill">Kaikki blogipostaukset</a>
         </div>
@@ -868,7 +868,7 @@ translationKey: writings_index
         <small id="esitykset-info" class="text-muted"></small>
         <div class="d-flex align-items-center gap-3">
           <nav aria-label="Sivutus">
-            <ul id="esitykset-pagination" class="pagination pagination-sm mb-0 flex-wrap kynasta-pag"></ul>
+            <ul id="esitykset-pagination" class="pagination pagination-sm mb-0 flex-wrap site-pag"></ul>
           </nav>
           <a href="/esitykset/" class="btn btn-outline-primary btn-sm rounded-pill">Esitykset</a>
           <a href="https://www.finna.fi/Search/Results?lookfor=Jari+Laru&type=Author&filter[]=format%3A%220%2FLearningMaterial%2F%22" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary btn-sm rounded-pill">AOE / Finna <i class="bi bi-arrow-up-right"></i></a>
@@ -972,7 +972,7 @@ translationKey: writings_index
       <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top">
         <small id="pub-info" class="text-muted"></small>
         <nav aria-label="Sivutus">
-          <ul id="pub-pagination" class="pagination pagination-sm mb-0 flex-wrap kynasta-pag"></ul>
+          <ul id="pub-pagination" class="pagination pagination-sm mb-0 flex-wrap site-pag"></ul>
         </nav>
       </div>
     </div>
@@ -1335,15 +1335,6 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
     flex: 1 1 auto;
   }
 
-  .kynasta-pag {
-    justify-content: center;
-    row-gap: 0.35rem;
-  }
-
-  .kynasta-pag .page-link {
-    min-width: 2.2rem;
-    text-align: center;
-  }
 }
 </style>
 
@@ -1607,70 +1598,6 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
     }
   }
 })();
-
-// --- Jaettu paginaatiofunktio ---
-function renderPaginationShared(ul, total, currentPage, onPageChange) {
-  if (!ul) return;
-  ul.innerHTML = '';
-  if (total <= 1) return;
-
-  const isMobile = window.matchMedia('(max-width: 767.98px)').matches;
-
-  const appendPageLink = (label, page, { active = false, disabled = false, ariaLabel = '' } = {}) => {
-    const li = document.createElement('li');
-    li.className = `page-item${active ? ' active' : ''}${disabled ? ' disabled' : ''}`;
-    const a = document.createElement('a');
-    a.className = 'page-link';
-    a.href = '#';
-    a.textContent = label;
-    if (ariaLabel) a.setAttribute('aria-label', ariaLabel);
-    if (!disabled) {
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        onPageChange(page);
-      });
-    } else {
-      a.setAttribute('aria-disabled', 'true');
-      a.setAttribute('tabindex', '-1');
-    }
-    li.appendChild(a);
-    ul.appendChild(li);
-  };
-
-  const appendEllipsis = () => {
-    const li = document.createElement('li');
-    li.className = 'page-item disabled';
-    li.innerHTML = '<span class="page-link">…</span>';
-    ul.appendChild(li);
-  };
-
-  if (!isMobile) {
-    for (let i = 1; i <= total; i++) {
-      appendPageLink(String(i), i, { active: i === currentPage });
-    }
-    return;
-  }
-
-  appendPageLink('‹', Math.max(1, currentPage - 1), {
-    disabled: currentPage === 1,
-    ariaLabel: 'Edellinen sivu'
-  });
-
-  const pages = new Set([1, total, currentPage - 1, currentPage, currentPage + 1]);
-  const orderedPages = [...pages].filter(p => p >= 1 && p <= total).sort((a, b) => a - b);
-
-  let previousPage = null;
-  orderedPages.forEach(page => {
-    if (previousPage !== null && page - previousPage > 1) appendEllipsis();
-    appendPageLink(String(page), page, { active: page === currentPage });
-    previousPage = page;
-  });
-
-  appendPageLink('›', Math.min(total, currentPage + 1), {
-    disabled: currentPage === total,
-    ariaLabel: 'Seuraava sivu'
-  });
-}
 
 (function () {
   const PAGE_SIZE = 5;

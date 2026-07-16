@@ -71,6 +71,17 @@
   color: #ffffff;
 }
 
+/* Shared pagination layout — used across all filterable table sections */
+.site-pag {
+  justify-content: center;
+  row-gap: 0.35rem;
+}
+
+.site-pag .page-link {
+  min-width: 2.2rem;
+  text-align: center;
+}
+
 /* Content wrapper for non-homepage pages */
 [data-bs-theme="dark"] .content-card-list {
   background-color: #243347 !important;

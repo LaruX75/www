@@ -445,3 +445,67 @@
         });
       }
     });
+
+// Jaettu paginaatiofunktio — käytettävissä kaikilla sivuilla
+function renderPaginationShared(ul, total, currentPage, onPageChange) {
+  if (!ul) return;
+  ul.innerHTML = '';
+  if (total <= 1) return;
+
+  const isMobile = window.matchMedia('(max-width: 767.98px)').matches;
+
+  const appendPageLink = (label, page, { active = false, disabled = false, ariaLabel = '' } = {}) => {
+    const li = document.createElement('li');
+    li.className = `page-item${active ? ' active' : ''}${disabled ? ' disabled' : ''}`;
+    const a = document.createElement('a');
+    a.className = 'page-link';
+    a.href = '#';
+    a.textContent = label;
+    if (ariaLabel) a.setAttribute('aria-label', ariaLabel);
+    if (!disabled) {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        onPageChange(page);
+      });
+    } else {
+      a.setAttribute('aria-disabled', 'true');
+      a.setAttribute('tabindex', '-1');
+    }
+    li.appendChild(a);
+    ul.appendChild(li);
+  };
+
+  const appendEllipsis = () => {
+    const li = document.createElement('li');
+    li.className = 'page-item disabled';
+    li.innerHTML = '<span class="page-link">…</span>';
+    ul.appendChild(li);
+  };
+
+  if (!isMobile) {
+    for (let i = 1; i <= total; i++) {
+      appendPageLink(String(i), i, { active: i === currentPage });
+    }
+    return;
+  }
+
+  appendPageLink('‹', Math.max(1, currentPage - 1), {
+    disabled: currentPage === 1,
+    ariaLabel: 'Edellinen sivu'
+  });
+
+  const pages = new Set([1, total, currentPage - 1, currentPage, currentPage + 1]);
+  const orderedPages = [...pages].filter(p => p >= 1 && p <= total).sort((a, b) => a - b);
+
+  let previousPage = null;
+  orderedPages.forEach(page => {
+    if (previousPage !== null && page - previousPage > 1) appendEllipsis();
+    appendPageLink(String(page), page, { active: page === currentPage });
+    previousPage = page;
+  });
+
+  appendPageLink('›', Math.min(total, currentPage + 1), {
+    disabled: currentPage === total,
+    ariaLabel: 'Seuraava sivu'
+  });
+}
