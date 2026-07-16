@@ -10,6 +10,13 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
+keywords:
+  - maankäyttö
+  - MATO
+  - täydennysrakentaminen
+  - palveluverkko
+  - Hiukkavaara
+  - Jääli
 type: puhe
 wp_id: 2381
 source_url: 'https://www.jarilaru.fi/puheenvuoro-%c2%a72-maankayton-toteuttamisohjelma/'
@@ -18,16 +25,6 @@ politicalProfiles:
   - lahipalvelut
   - kaupunkikehitys
 templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
-  - maankäyttö
-  - MATO
-  - täydennysrakentaminen
-  - palveluverkko
-  - Hiukkavaara
-  - Jääli
 ---
 
 Oulun kaupunginvaltuustossa käsiteltiin 29.1.2024 Oulun maankäytön toteuttamisohjelmaa vuosille 2024–2028. Käytin puheenvuoron rakentamisen vaikutuksista palveluverkkoon sekä täydennysrakentamisen suuntaamisesta alueille, joilla koulut ja muut palvelut ovat jo olemassa.

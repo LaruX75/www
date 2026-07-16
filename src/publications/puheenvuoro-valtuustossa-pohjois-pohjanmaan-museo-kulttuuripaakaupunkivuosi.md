@@ -9,20 +9,17 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
-type: puhe
-politicalProfiles:
-  - kaupunkikehitys
-  - yhteistyo
-templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
+keywords:
   - Oulu2026
   - kulttuuripääkaupunki
   - Pohjois-Pohjanmaan museo
   - museo
   - kulttuuritilat
+type: puhe
+politicalProfiles:
+  - kaupunkikehitys
+  - yhteistyo
+templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuustolle esiteltiin 20.6.2022 Oulu2026-ohjelmahakua ja kulttuuripääkaupunkihankkeen ajankohtaisia asioita. Käytin puheenvuoron Pohjois-Pohjanmaan museon uusien tilojen aikataulusta ja hankkeen varautumisesta mahdolliseen viivästymiseen.

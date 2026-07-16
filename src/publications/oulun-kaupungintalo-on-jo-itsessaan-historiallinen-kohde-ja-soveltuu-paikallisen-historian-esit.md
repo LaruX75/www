@@ -7,12 +7,12 @@ categories:
   - Kulttuuri ja paikallisidentiteetti
 publication: Kaleva
 keywords:
-  - erä- ja luontomuseo
+  - luonto- ja erämuseo
   - historia
   - kaupungintalo
   - kaupunki
   - museo
-  - oulun kaupunki
+  - Oulun kaupunki
   - oulun keskusta
 type: mielipide
 wp_id: 1372

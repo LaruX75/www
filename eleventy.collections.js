@@ -1,3 +1,5 @@
+const { normalizeKeywordList } = require("./src/_data/metadata-normalization");
+
 module.exports = function registerCollections(eleventyConfig) {
   const ACADEMIC_TERMS = [
     "koulutusteknologia", "teknologiatuettu", "mobiilioppiminen", "etäopetus",
@@ -12,7 +14,8 @@ module.exports = function registerCollections(eleventyConfig) {
   function buildTermList(items, key) {
     const map = new Map();
     items.forEach(item => {
-      const terms = item.data && item.data[key];
+      const sourceTerms = item.data && item.data[key];
+      const terms = key === "keywords" ? normalizeKeywordList(sourceTerms) : sourceTerms;
       if (!Array.isArray(terms)) return;
       terms.forEach(term => {
         if (!term) return;

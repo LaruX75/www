@@ -13,7 +13,7 @@ forum:
 keywords:
   - home
   - jokiranta
-  - kiiminki
+  - Kiiminki
   - kiiminkipuiston koulu
   - koulu
   - kouluverkko

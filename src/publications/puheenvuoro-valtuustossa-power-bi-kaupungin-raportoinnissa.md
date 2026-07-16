@@ -9,20 +9,17 @@ categories:
   - Teknologia ja digitaalisuus
 forum:
   - Kaupunginvaltuusto
-type: puhe
-politicalProfiles:
-  - avoinhallinto
-templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
+keywords:
   - ympäristöohjelma
   - Power BI
   - tietojohtaminen
   - avoimuus
   - visualisointi
   - digitalisaatio
+type: puhe
+politicalProfiles:
+  - avoinhallinto
+templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto käsitteli 25.4.2022 Oulun kaupungin ympäristöohjelman toteumaa vuodelta 2021. Käytin puheenvuoron erityisesti Power BI -järjestelmän hyödyntämisestä tietojen esittämisessä ja siitä, että vastaavia ratkaisuja pitäisi käyttää laajemmin kaupungin raportoinnissa.

@@ -10,22 +10,19 @@ categories:
   - Hyvinvointi ja osallisuus
 forum:
   - Kaupunginvaltuusto
-type: puhe
-politicalProfiles:
-  - sivistys
-  - hyvinvointi
-  - yhteistyo
-templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
+keywords:
   - kotoutuminen
   - kansainvälisyys
   - osaajat
   - korkeakoulutus
   - Talent Hub
   - työvoima
+type: puhe
+politicalProfiles:
+  - sivistys
+  - hyvinvointi
+  - yhteistyo
+templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto käsitteli 8.11.2021 kaupungin kotoutumisohjelmaa vuosille 2022–2025. Käytin puheenvuoron siitä, että kotoutumispalvelut eivät koske vain yhtä maahanmuuttajaryhmää, vaan myös kansainvälisiä opiskelijoita, tutkijoita ja työntekijöitä.

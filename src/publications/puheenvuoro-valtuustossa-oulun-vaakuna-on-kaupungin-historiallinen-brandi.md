@@ -9,20 +9,17 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
-type: puhe
-politicalProfiles:
-  - kaupunkikehitys
-  - yhteistyo
-templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
+keywords:
   - Oulu
   - brändi
   - vaakuna
   - kaupunkikuva
   - valotaide
+type: puhe
+politicalProfiles:
+  - kaupunkikehitys
+  - yhteistyo
+templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuustolle esiteltiin 8.11.2021 kaupungin uutta brändiä. Käytin puheenvuoron Oulun vaakunasta, kaupungin historiallisesta identiteetistä ja uuden tunnuksen tarpeellisuudesta.

@@ -10,11 +10,11 @@ publication: Rantapohja
 campaign: Kuntavaalit
 keywords:
   - entinen kiimingin kunta
-  - jääli
+  - Jääli
   - jätteiden käsittely
-  - kiiminki
+  - Kiiminki
   - kokemukset
-  - lietteiden käsittely
+  - lietteenkäsittely
   - monikuntaliitos
   - Rantapohja
 type: mielipide

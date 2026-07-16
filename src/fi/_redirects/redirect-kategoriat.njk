@@ -1,0 +1,24 @@
+---js
+{
+  layout: false,
+  pagination: {
+    data: "categoryRedirects.fi",
+    size: 1,
+    alias: "redirect"
+  },
+  permalink: data => data.redirect.from
+}
+---
+<!doctype html>
+<html lang="fi">
+  <head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex, follow">
+    <meta http-equiv="refresh" content="0; url={{ redirect.to }}">
+    <link rel="canonical" href="{{ redirect.to }}">
+    <title>Siirry sivulle</title>
+  </head>
+  <body>
+    <p>Tämä sivu on siirtynyt. <a href="{{ redirect.to }}">Siirry tästä</a>.</p>
+  </body>
+</html>

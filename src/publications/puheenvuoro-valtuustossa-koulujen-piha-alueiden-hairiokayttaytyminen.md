@@ -10,6 +10,11 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
+keywords:
+  - koulut
+  - liikenneturvallisuus
+  - häiriökäyttäytyminen
+  - Kiiminki
 type: puhe
 politicalProfiles:
   - sivistys
@@ -17,14 +22,6 @@ politicalProfiles:
   - kaupunkikehitys
   - hyvinvointi
 templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
-  - koulut
-  - liikenneturvallisuus
-  - häiriökäyttäytyminen
-  - Kiiminki
 ---
 
 Oulun kaupunginvaltuuston kyselytunnilla käsiteltiin 20.5.2024 Kiimingin Viitantien liikenneturvallisuutta ja Kiiminkipuiston koulun alueella esiintyvää häiriökäyttäytymistä. Käytin puheenvuoron siitä, miten suunnitellut toimet voisivat palvella myös muita kaupungin kouluyksiköitä.

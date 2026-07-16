@@ -10,6 +10,17 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
+keywords:
+  - kampus
+  - Linnanmaa
+  - arkkitehtuuri
+  - keskustakampus
+  - Oulun kaupunki
+  - valtuusto
+  - viitasen-lista
+  - Raksilan kampus
+  - Oulun yliopiston muutto
+  - DoCoMoMo
 type: puhe
 wp_id: 491
 source_url: 'https://www.jarilaru.fi/kuntalain-94-2%c2%a7-mukainen-keskustelu-yliopiston-muuttosuunnitelmista/'
@@ -19,19 +30,6 @@ politicalProfiles:
   - kaupunkikehitys
   - yhteistyo
 templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kampus
-  - linnanmaa
-  - arkkitehtuuri
-  - keskustakampus
-  - oulun-kaupunki
-  - valtuusto
-  - viitasen-lista
-  - raksilan-kampus
-  - yliopiston-muutto
-  - docomomo
 ---
 <h4>Mistä on kyse</h4>
 <p>Minä ja 17 muuta kaupunginvaltuuettua pyysimme Oulun kaupunginvaltuustoa koolle käsittelemään suunnitelmaa Oulun yliopiston siirtymisestä raksilaan.</p>

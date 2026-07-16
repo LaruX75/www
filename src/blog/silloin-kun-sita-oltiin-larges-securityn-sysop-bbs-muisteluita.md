@@ -7,7 +7,7 @@ categories:
 keywords:
   - bbs
   - fidonet
-  - Harrastukset
+  - harrastukset
   - modeemi
   - nuoruus
   - retro

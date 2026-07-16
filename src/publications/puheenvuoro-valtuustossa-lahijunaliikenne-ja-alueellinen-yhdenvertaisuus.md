@@ -9,21 +9,18 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
-type: puhe
-politicalProfiles:
-  - lahipalvelut
-  - kaupunkikehitys
-templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
+keywords:
   - lähijuna
   - joukkoliikenne
   - alueellinen yhdenvertaisuus
   - Oulunsalo
   - Jääli
   - Kiiminki
+type: puhe
+politicalProfiles:
+  - lahipalvelut
+  - kaupunkikehitys
+templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuustossa käsiteltiin 27.4.2026 lähijunaliikenteen käynnistämistä ja rahoittamista. Käytin puheenvuoron siitä, miten lähijunaratkaisu vaikuttaa Oulun eri alueisiin ja kuinka myös raideverkon ulkopuolelle jäävien alueiden saavutettavuudesta on huolehdittava.

@@ -8,19 +8,16 @@ categories:
   - Politiikka ja päätöksenteko
 forum:
   - Kaupunginvaltuusto
-type: puhe
-politicalProfiles:
-  - avoinhallinto
-templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
+keywords:
   - valtuustoaloitteet
   - kuntalaisaloitteet
   - avoimuus
   - digitalisaatio
   - päätöksenteko
+type: puhe
+politicalProfiles:
+  - avoinhallinto
+templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto käsitteli 12.9.2022 kuntalaisaloitteita sekä aikaisempia vielä käsittelemättömiä aloitteita. Käytin puheenvuoron aloitteiden käsittelyn hitaudesta ja siitä, miten niiden etenemistä pitäisi voida seurata nykyistä avoimemmin ja selkeämmin.

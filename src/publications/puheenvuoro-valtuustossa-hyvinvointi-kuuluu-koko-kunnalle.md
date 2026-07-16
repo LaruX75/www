@@ -10,21 +10,18 @@ categories:
   - Hyvinvointi ja osallisuus
 forum:
   - Kaupunginvaltuusto
-type: puhe
-politicalProfiles:
-  - sivistys
-  - hyvinvointi
-templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
+keywords:
   - johtamisjärjestelmä
   - hallintosääntö
   - sivistyslautakunta
   - kulttuuri
   - liikunta
   - hyvinvointi
+type: puhe
+politicalProfiles:
+  - sivistys
+  - hyvinvointi
+templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto käsitteli 10.10.2022 kaupungin johtamisjärjestelmän muutoksia ja hallintosäännön muuttamista vuoden 2023 alusta. Puheenvuorossani kannatin sivistys- ja kulttuurilautakunnan jakamista, mutta nostin esiin valmisteluun ja hyvinvointitehtävän organisointiin liittyviä ongelmia.

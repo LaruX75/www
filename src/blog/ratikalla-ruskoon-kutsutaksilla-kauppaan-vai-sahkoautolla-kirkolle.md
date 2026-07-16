@@ -6,10 +6,10 @@ categories:
   - Politiikka ja päätöksenteko
   - Kaupunkikehitys ja palveluverkko
 keywords:
-  - jääli
+  - Jääli
   - joukkoliikenne
   - kaavoitus
-  - kiiminki
+  - Kiiminki
   - liikenne
   - talous
   - välikylä

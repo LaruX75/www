@@ -9,10 +9,10 @@ categories:
 keywords:
   - keskustakampus
   - mielipiteet
-  - oulun kaupungin kaavoitus
-  - oulun yliopisto
-  - oulun yliopiston muutto
-  - raksila
+  - Oulun kaupungin kaavoitus
+  - Oulun yliopisto
+  - Oulun yliopiston muutto
+  - Raksila
 type: mielipide
 wp_id: 141
 source_url: 'https://www.jarilaru.fi/oulu-kaipaa-kipeasti-hankkeita-jotka-myos-toteutuvat-samalla-on-koko-kaupungin-etu-etta-kaupunkia-katsotaan-kokonaisuutena/'

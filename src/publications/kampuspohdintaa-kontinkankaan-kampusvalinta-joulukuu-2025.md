@@ -10,8 +10,8 @@ secondaryTheme:
 channel: Facebook
 keywords:
   - kontinkankaan kampus
-  - linnanmaa
-  - oulun yliopisto
+  - Linnanmaa
+  - Oulun yliopisto
   - kampus
   - SYK
   - yhdyskuntarakenne

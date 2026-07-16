@@ -10,8 +10,8 @@ series: Digiluokka
 keywords:
   - digiluokka
   - modernit opetustilat
-  - Oppimisympäristöt
-  - oulun yliopisto
+  - oppimisympäristöt
+  - Oulun yliopisto
 wp_id: 1701
 source_url: 'https://www.jarilaru.fi/ktk149-digiluokka/'
 templateEngineOverride: md

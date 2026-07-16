@@ -7,7 +7,7 @@ categories:
 keywords:
   - kempele
   - kuntaliitos
-  - oulu
+  - Oulu
   - Oulujoen kaupunki
   - seutuyhteistyö
   - talous

@@ -9,7 +9,7 @@ secondaryTheme:
 publication: Helsingin Sanomat
 keywords:
   - koulun muutos
-  - oppiminen mobiilaitteiden avulla
+  - mobiilioppiminen
   - oppimisen ja osaamisen muutos
   - sosiaalinen media
   - teknologian hyödyntäminen

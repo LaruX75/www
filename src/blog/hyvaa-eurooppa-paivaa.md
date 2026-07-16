@@ -10,10 +10,9 @@ keywords:
   - euroopan unioni
   - eurooppa
   - eurooppa-päivä
-  - eurooppalainen oulunseutu
-  - eurooppalainen ouluseutu
+  - eurooppalainen Oulunseutu
   - eurooppalainen suomi ry
-  - oulun kaupunki
+  - Oulun kaupunki
 wp_id: 978
 source_url: 'https://www.jarilaru.fi/hyvaa-eurooppa-paivaa/'
 templateEngineOverride: md

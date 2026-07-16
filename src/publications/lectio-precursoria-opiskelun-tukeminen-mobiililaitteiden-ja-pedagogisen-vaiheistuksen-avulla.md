@@ -7,8 +7,7 @@ categories:
 context:
   - väitöskirja
 keywords:
-  - lectio precursora
-  - lektio
+  - lectio precursoria
   - suomeksi
   - teknologian opetuskäyttö
   - teoria

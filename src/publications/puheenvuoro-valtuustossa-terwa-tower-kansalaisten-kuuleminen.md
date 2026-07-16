@@ -9,17 +9,14 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
+keywords:
+  - terwa tower
+  - kaavoitus
+  - osallisuus
 type: puhe
 politicalProfiles:
   - kaupunkikehitys
 templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
-  - terwa tower
-  - kaavoitus
-  - osallisuus
 ---
 
 Oulun kaupunginvaltuustossa käsiteltiin 18.3.2024 Terwa Towerin asemakaavan ja tonttijaon muutosta. Käytin puheenvuoron kansalaisten kuulemisesta ja osallistumisesta kaavoitusprosessiin.

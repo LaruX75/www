@@ -12,7 +12,7 @@ keywords:
   - kreikka
   - latvia
   - liettua
-  - pohjois-makedonia
+  - Pohjois-Makedonia
   - puola
   - roadtrip
   - romania

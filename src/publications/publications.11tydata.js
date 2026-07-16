@@ -52,6 +52,22 @@ function deriveFallbackOpinionRoles(data) {
   return Array.from(roles);
 }
 
+function isPoliticalPublication(data) {
+  const categories = toArray(data.categories).map((item) => item.toLowerCase());
+  const secondaryThemes = toArray(data.secondaryTheme).map((item) => item.toLowerCase());
+  const forum = toArray(data.forum).map((item) => item.toLowerCase());
+
+  return (
+    toArray(data.politicalProfiles).length > 0 ||
+    categories.includes("politiikka ja päätöksenteko") ||
+    categories.includes("vaalit") ||
+    secondaryThemes.includes("politiikka ja päätöksenteko") ||
+    forum.includes("kaupunginvaltuusto") ||
+    forum.includes("lautakunta") ||
+    typeof data.campaign === "string"
+  );
+}
+
 function resolveOpinionRoles(data) {
   if (data.type !== "mielipide") {
     return toArray(data.opinionRoles);
@@ -75,7 +91,7 @@ module.exports = {
   eleventyComputed: {
     opinionRoles: (data) => resolveOpinionRoles(data),
     tags: (data) => {
-      const tagSet = new Set(["publications", ...toArray(data.tags)]);
+      const tagSet = new Set(["publications"]);
 
       if (data.type === "puhe") {
         tagSet.add("pub_puhe");
@@ -87,6 +103,10 @@ module.exports = {
         tagSet.add("pub_mielipide");
         const roles = resolveOpinionRoles(data);
         roles.forEach((role) => tagSet.add(`pub_mielipide_${role}`));
+      }
+
+      if (isPoliticalPublication(data)) {
+        tagSet.add("politics");
       }
 
       return Array.from(tagSet);

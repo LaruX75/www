@@ -9,21 +9,18 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
-type: puhe
-politicalProfiles:
-  - avoinhallinto
-  - kaupunkikehitys
-templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
+keywords:
   - kaavoitus
   - Pateniemi
   - Sahantie
   - asukasosallisuus
   - läpinäkyvyys
   - kaupunkisuunnittelu
+type: puhe
+politicalProfiles:
+  - avoinhallinto
+  - kaupunkikehitys
+templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto käsitteli 29.3.2021 asemakaavan ja tonttijaon muutoksia Pateniemen kaupunginosassa osoitteessa Sahantie 10. Käytin puheenvuoron kaavoitusprosessin avoimuudesta ja asukkaiden kuulemisesta.

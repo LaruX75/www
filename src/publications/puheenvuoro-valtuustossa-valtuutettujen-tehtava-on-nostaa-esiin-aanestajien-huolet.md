@@ -10,22 +10,19 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
-type: puhe
-politicalProfiles:
-  - sivistys
-  - kaupunkikehitys
-  - yhteistyo
-templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
+keywords:
   - Oulun yliopisto
   - kampus
   - Raksila
   - Linnanmaa
   - tutkimus
   - korkeakoulupolitiikka
+type: puhe
+politicalProfiles:
+  - sivistys
+  - kaupunkikehitys
+  - yhteistyo
+templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuuston keskustelu Oulun yliopiston keskustakampuksesta jatkui 28.2.2022. Toisessa puheenvuorossani puolustin valtuutettujen oikeutta ja velvollisuutta käsitellä hanketta poliittisesti sekä nostin esiin kampuksen tutkimuksellisen tehtävän.

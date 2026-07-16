@@ -12,7 +12,7 @@ categories:
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - oulun kaupunki
+  - Oulun kaupunki
   - pyörän lataaminen
   - pyörien pysäköinti
   - sähköpyörä

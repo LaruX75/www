@@ -10,8 +10,8 @@ eventType:
 keywords:
   - itse äisyyspäivä
   - kiimingin lukio
-  - kiiminki
-  - oulu
+  - Kiiminki
+  - Oulu
   - puhe
   - ylioppilasjuhla
 type: puhe

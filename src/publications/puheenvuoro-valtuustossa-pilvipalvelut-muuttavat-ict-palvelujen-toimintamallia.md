@@ -9,20 +9,17 @@ categories:
   - Teknologia ja digitaalisuus
 forum:
   - Kaupunginvaltuusto
-type: puhe
-politicalProfiles:
-  - avoinhallinto
-templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
+keywords:
   - Oulun Digi
   - ICT
   - pilvipalvelut
   - ulkoistaminen
   - digitalisaatio
   - etätyö
+type: puhe
+politicalProfiles:
+  - avoinhallinto
+templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto käsitteli 5.10.2020 Oulun Digi -liikelaitoksen ICT-palvelujen ulkoistamista osana ulkoisen arvioinnin jatkotoimenpiteitä. Käytin puheenvuoron ICT-alan rakennemuutoksesta ja pilvipalvelujen vaikutuksesta kaupungin palvelutuotantoon.

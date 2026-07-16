@@ -15,7 +15,7 @@ keywords:
   - maahanmuutto
   - mielipidekirjoitus
   - Oulu 2030 luvulla
-  - raksila
+  - Raksila
   - tuotekehitys
   - tutkimus
 type: mielipide

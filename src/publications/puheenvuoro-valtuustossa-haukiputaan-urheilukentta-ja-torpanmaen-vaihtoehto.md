@@ -11,21 +11,18 @@ categories:
   - Hyvinvointi ja osallisuus
 forum:
   - Kaupunginvaltuusto
+keywords:
+  - talousarvio
+  - Haukipudas
+  - urheilukenttä
+  - Torpanmäki
+  - kaupunkisuunnittelu
 type: puhe
 politicalProfiles:
   - lahipalvelut
   - hyvinvointi
   - yhteistyo
 templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
-  - talousarvio
-  - Haukipudas
-  - urheilukenttä
-  - Torpanmäki
-  - kaupunkisuunnittelu
 ---
 
 Oulun kaupunginvaltuusto käsitteli 28.11.2022 vuoden 2023 talousarviota ja vuosien 2024–2025 taloussuunnitelmaa. Käytin puheenvuoron Haukiputaan urheilukentän sijaintivaihtoehdoista ja siitä, onko järkevää kunnostaa kenttä ensin nykyiselle paikalle ja siirtää se myöhemmin toisaalle.

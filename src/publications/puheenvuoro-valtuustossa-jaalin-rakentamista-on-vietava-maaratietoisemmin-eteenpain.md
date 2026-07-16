@@ -10,21 +10,18 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
+keywords:
+  - maankäyttö
+  - kaavoitus
+  - asuminen
+  - Jääli
+  - Oulu
 type: puhe
 politicalProfiles:
   - sivistys
   - lahipalvelut
   - kaupunkikehitys
 templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
-  - maankäyttö
-  - kaavoitus
-  - asuminen
-  - Jääli
-  - Oulu
 ---
 
 Oulun kaupunginvaltuusto käsitteli 27.1.2020 Oulun maankäytön toteuttamisohjelmaa vuosille 2020–2024. Käytin puheenvuoron Jäälin asuntorakentamisen etenemisestä, Laivakankaan laajennusalueesta ja vanhan koulun tulevaisuudesta.

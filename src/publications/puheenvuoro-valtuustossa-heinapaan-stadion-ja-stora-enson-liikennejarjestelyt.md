@@ -9,19 +9,16 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
-type: puhe
-politicalProfiles:
-  - kaupunkikehitys
-templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
+keywords:
   - Heinäpää
   - jalkapallostadion
   - Stora Enso
   - liikenne
   - kaupunkisuunnittelu
+type: puhe
+politicalProfiles:
+  - kaupunkikehitys
+templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuuston kyselytunnilla 4.4.2022 käsiteltiin Heinäpään jalkapallostadionin vaikutuksia Stora Enson toimintaan ja alueen liikennejärjestelyihin. Käytin puheenvuoron Stora Enson tuotantosuunnan muutoksen ympäristövaikutusten arviointiohjelman keskustelutilaisuudesta saamieni tietojen pohjalta.

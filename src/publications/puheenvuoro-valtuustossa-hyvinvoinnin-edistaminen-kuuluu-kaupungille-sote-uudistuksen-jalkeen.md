@@ -10,21 +10,18 @@ categories:
   - Hyvinvointi ja osallisuus
 forum:
   - Kaupunginvaltuusto
-type: puhe
-politicalProfiles:
-  - sivistys
-  - hyvinvointi
-templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
+keywords:
   - hyvinvointi
   - hyvinvointikertomus
   - sote-uudistus
   - kulttuurihyvinvointi
   - liikunta
   - sivistyspalvelut
+type: puhe
+politicalProfiles:
+  - sivistys
+  - hyvinvointi
+templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto käsitteli 4.4.2022 laajaa hyvinvointikertomusta. Käytin puheenvuoron siitä, että hyvinvoinnin edistäminen säilyy kunnan keskeisenä tehtävänä myös hyvinvointialueiden aloittaessa toimintansa.

@@ -10,17 +10,14 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
+keywords:
+  - kaavoitus
+  - rakennussuojelu
 type: puhe
 politicalProfiles:
   - sivistys
   - kaupunkikehitys
 templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
-  - kaavoitus
-  - rakennussuojelu
 ---
 
 Oulun kaupunginvaltuustossa käsiteltiin 6.2.2023 asiakohdassa 3 Maunonkatu 2:n eli vanhan kauppaoppilaitoksen asemakaavan ja tonttijaon muutosta. Käytin asiasta puheenvuoron. Tässä se kirjallisena.

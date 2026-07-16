@@ -10,21 +10,18 @@ categories:
   - Hyvinvointi ja osallisuus
 forum:
   - Kaupunginvaltuusto
+keywords:
+  - asemakaava
+  - Haukipudas
+  - jokiranta
+  - urheilukenttä
+  - päätöksenteko
 type: puhe
 politicalProfiles:
   - lahipalvelut
   - kaupunkikehitys
   - hyvinvointi
 templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
-  - asemakaava
-  - Haukipudas
-  - jokiranta
-  - urheilukenttä
-  - päätöksenteko
 ---
 
 Oulun kaupunginvaltuustossa käsiteltiin 27.4.2026 Haukiputaan jokirannan asemakaavaa. Käytin puheenvuoron siitä, kuinka pitkään alueen urheilukentän ja ympäristön kehittämistä oli valmisteltu ja miten lopullinen ratkaisu muodostui kompromissiksi.

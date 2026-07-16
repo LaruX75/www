@@ -10,7 +10,7 @@ forum:
   - Asukasyhdistys
 keywords:
   - hiihtolatu
-  - jääli
+  - Jääli
   - jääli-hönttämäki ulkoilureitti
   - laivakangas
   - laivakankaan kenttä

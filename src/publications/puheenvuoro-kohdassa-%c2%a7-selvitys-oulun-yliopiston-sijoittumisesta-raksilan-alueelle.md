@@ -10,6 +10,12 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
+keywords:
+  - Oulun yliopisto
+  - keskustakampus
+  - Raksila
+  - yliopisto
+  - Raksilan kampus
 type: puhe
 wp_id: 1714
 source_url: 'https://www.jarilaru.fi/puheenvuoro-kohdassa-%c2%a7-selvitys-oulun-yliopiston-sijoittumisesta-raksilan-alueelle/'
@@ -17,14 +23,6 @@ politicalProfiles:
   - sivistys
   - kaupunkikehitys
 templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - oulun-yliopisto
-  - keskustakampus
-  - raksila
-  - yliopisto
-  - raksilan-kampus
 ---
 <p>Kalevan toimittaja Rättilä siteeraa Kalevassa puheenvuoroani näin:</p>
 <figure><blockquote><p>Yksittäisissä kannanotoissa kokoomuksen&nbsp;<strong>Jari Laru</strong>&nbsp;arveli kolmen kampuksen mallin aiheuttavan hankaluuksia yliopiston monitieteellisyydelle, henkilöstölle, opiskelijoille ja vierailijoille. Hänen mielestään Linnanmaan ekosysteemistä ei ole varaa luopua. (Kaleva 26.4.2021)</p></blockquote></figure>

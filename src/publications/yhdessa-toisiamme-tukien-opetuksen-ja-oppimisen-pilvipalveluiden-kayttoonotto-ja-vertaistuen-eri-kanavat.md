@@ -13,8 +13,7 @@ keywords:
   - helpdesk
   - käyttäjätuki
   - microsoft
-  - microsoft o365
-  - o365
+  - Microsoft 365
   - pilvipalvelut
   - sosiaalinen media
   - tuki

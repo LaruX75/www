@@ -9,20 +9,17 @@ categories:
   - Sivistys ja koulutus
 forum:
   - Kaupunginvaltuusto
-type: puhe
-politicalProfiles:
-  - sivistys
-templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
+keywords:
   - koulusihteerit
   - koulut
   - varhaiskasvatus
   - Monetra
   - hallinto
   - palvelut
+type: puhe
+politicalProfiles:
+  - sivistys
+templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto käsitteli 5.10.2020 koulusihteeripalvelujen järjestämistä osana ulkoisen arvioinnin jatkotoimenpiteitä. Käytin puheenvuoron koulusihteerien merkityksestä koulun arjelle sekä palvelujen yhdenvertaisesta järjestämisestä.

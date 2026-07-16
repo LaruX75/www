@@ -9,6 +9,10 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
+keywords:
+  - Oulu2026
+  - museo- ja tiedekeskus
+  - deep space
 type: puhe
 wp_id: 2443
 source_url: 'https://www.jarilaru.fi/valtuustopuheenvuoro-myllytullin-museo-ja-tiedekeskuksen-rakentamisesta/'
@@ -16,13 +20,6 @@ politicalProfiles:
   - kaupunkikehitys
   - yhteistyo
 templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
-  - oulu2026
-  - museo- ja tiedekeskus
-  - deep space
 ---
 
 Oulun kaupunginvaltuustossa käsiteltiin 26.2.2024 Oulu2026-kulttuuripääkaupunkihankkeen ajankohtaista tilannetta. Käytin puheenvuoron Myllytullin museo- ja tiedekeskuksen valmistumisesta ja mahdollisiin viivästyksiin varautumisesta.

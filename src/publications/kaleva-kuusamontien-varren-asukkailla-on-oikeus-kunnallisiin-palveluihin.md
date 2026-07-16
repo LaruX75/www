@@ -8,10 +8,10 @@ categories:
 publication: Kaleva
 keywords:
   - hammashoito
-  - jääli
+  - Jääli
   - jari laru
   - jätteidenkäsittely
-  - korvensuora
+  - Korvensuora
   - korvensuoran koulu
   - neuvola
   - talvikangas

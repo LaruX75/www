@@ -12,7 +12,7 @@ keywords:
   - opetus
   - oppiminen
   - työ
-  - web2.0
+  - Web 2.0
 wp_id: 307
 source_url: 'https://www.jarilaru.fi/kehuttua-koulutusteknologian-perusopintojen-johdantoluento/'
 templateEngineOverride: md

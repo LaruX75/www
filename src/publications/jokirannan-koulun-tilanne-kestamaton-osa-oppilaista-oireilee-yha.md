@@ -12,12 +12,12 @@ forum:
 keywords:
   - homekoulu
   - jokirannan koulu
-  - kiiminki
+  - Kiiminki
   - kiiminkipuiston koulu
   - koulu
   - kouluverkko
   - oireilu
-  - oulun kaupunki
+  - Oulun kaupunki
   - rakentaminen
   - remontti
   - siku

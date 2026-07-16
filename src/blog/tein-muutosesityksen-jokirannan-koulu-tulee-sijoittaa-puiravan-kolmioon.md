@@ -11,7 +11,7 @@ forum:
 keywords:
   - hankesuunnitelma
   - jokirannan koulu
-  - kiiminki
+  - Kiiminki
   - kiiminkipuiston koulu
   - koulun suunnittelu
   - muutosesitys

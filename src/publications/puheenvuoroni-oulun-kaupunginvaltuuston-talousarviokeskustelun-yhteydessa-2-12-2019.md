@@ -10,6 +10,12 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
+keywords:
+  - talousarvio
+  - investoinnit
+  - kulttuuri
+  - valotaide
+  - Oulu
 type: puhe
 wp_id: 96
 source_url: 'https://www.jarilaru.fi/puheenvuoroni-oulun-kaupunginvaltuuston-talousarviokeskustelun-yhteydessa-2-12-2019/'
@@ -17,15 +23,6 @@ politicalProfiles:
   - kaupunkikehitys
   - yhteistyo
 templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
-  - talousarvio
-  - investoinnit
-  - kulttuuri
-  - valotaide
-  - Oulu
 ---
 
 Oulun kaupunginvaltuusto käsitteli 2.12.2019 vuoden 2020 talousarviota ja taloussuunnitelmaa vuosille 2021–2022. Käytin puheenvuoron lähipalveluinvestointien merkityksestä sekä kulttuurirakennusten ja -palveluiden jäämisestä liian vähäiselle huomiolle.

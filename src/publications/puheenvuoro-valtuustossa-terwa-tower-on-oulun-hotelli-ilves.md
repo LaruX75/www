@@ -9,17 +9,14 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
+keywords:
+  - terwa tower
+  - hotellirakentaminen
+  - kaupunkikuva
 type: puhe
 politicalProfiles:
   - kaupunkikehitys
 templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
-  - terwa tower
-  - hotellirakentaminen
-  - kaupunkikuva
 ---
 
 Oulun kaupunginvaltuustossa käsiteltiin 18.3.2024 Terwa Towerin asemakaavan ja tonttijaon muutosta. Käytin puheenvuoron hotellitornin paikasta Oulun kaupunkirakenteessa ja vertasin hanketta Tampereen hotelli Ilvekseen.

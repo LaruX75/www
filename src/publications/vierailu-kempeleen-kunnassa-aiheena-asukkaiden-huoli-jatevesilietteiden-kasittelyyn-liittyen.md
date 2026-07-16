@@ -12,8 +12,8 @@ keywords:
   - esitys
   - historia
   - kempele
-  - lietteiden käsittely
-  - oulu
+  - lietteenkäsittely
+  - Oulu
   - vrj
   - ympäristölupa
 type: puhe

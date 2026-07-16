@@ -8,20 +8,17 @@ categories:
   - Politiikka ja päätöksenteko
 forum:
   - Kaupunginvaltuusto
-type: puhe
-politicalProfiles:
-  - avoinhallinto
-templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
+keywords:
   - Mun Oulu
   - kaupunkimedia
   - paikallisjournalismi
   - viestintä
   - media
   - Oulu
+type: puhe
+politicalProfiles:
+  - avoinhallinto
+templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto käsitteli 7.10.2019 tietoiskua Mun Oulu -kaupunkimediasta. Käytin puheenvuoron kaupungin oman median suhteesta paikallislehtiin ja riippumattomaan journalismiin.

@@ -8,20 +8,17 @@ categories:
   - Politiikka ja päätöksenteko
 forum:
   - Kaupunginvaltuusto
-type: puhe
-politicalProfiles:
-  - yhteistyo
-templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
+keywords:
   - yhdyskuntaliete
   - Oulun Vesi
   - kiertotalous
   - kompostointi
   - ympäristölupa
   - jätehuolto
+type: puhe
+politicalProfiles:
+  - yhteistyo
+templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuuston kyselytunnilla 29.3.2021 käsiteltiin Oulun kaupungin yhdyskuntalietteiden käsittelyä. Olin jättänyt asiaa koskevan valtuustokyselyn yhdessä Eeva-Maria Parkkisen kanssa.

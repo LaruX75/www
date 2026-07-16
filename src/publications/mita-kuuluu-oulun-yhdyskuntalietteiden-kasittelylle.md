@@ -9,8 +9,7 @@ publication: Forum 24
 keywords:
   - jätteidenkäsittely
   - lietteenkäsittely
-  - lietteiden käsittely
-  - oulun kaupunki
+  - Oulun kaupunki
   - yhdyskuntaliete
 type: mielipide
 wp_id: 1562

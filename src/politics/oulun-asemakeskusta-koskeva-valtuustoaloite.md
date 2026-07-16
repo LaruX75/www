@@ -10,7 +10,7 @@ forum:
 keywords:
   - Oulun asemakeskus
   - Oulun asematunneli
-  - oulun kaupunginvaltuusto
+  - Oulun kaupunginvaltuusto
   - Oulun linja-autoasema
   - Oulun matkakeskus
   - valtuustoaloite

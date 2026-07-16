@@ -13,10 +13,10 @@ forum:
   - Kaupunginvaltuusto
 keywords:
   - keskustakampus
-  - oulun kaupungin kaavoitus
-  - oulun kaupunginvaltuusto
-  - oulun yliopisto
-  - raksila
+  - Oulun kaupungin kaavoitus
+  - Oulun kaupunginvaltuusto
+  - Oulun yliopisto
+  - Raksila
   - yliopisto
 type: puhe
 wp_id: 155

@@ -10,21 +10,18 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
-type: puhe
-politicalProfiles:
-  - sivistys
-  - lahipalvelut
-templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
+keywords:
   - palveluverkko
   - koulut
   - päiväkodit
   - lähikoulu
   - aluekoulu
   - sivistyspalvelut
+type: puhe
+politicalProfiles:
+  - sivistys
+  - lahipalvelut
+templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto käsitteli 4.4.2022 sivistys- ja kulttuuripalveluiden palveluverkkolinjauksia vuoteen 2030. Käytin puheenvuoron siitä, ettei palveluverkkokeskustelua pidä pelkistää kyläkoulujen ja suurten monitoimitalojen väliseksi vastakkainasetteluksi.

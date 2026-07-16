@@ -9,17 +9,14 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
+keywords:
+  - kaupungintalo
+  - remontti
+  - yleisökäyttö
 type: puhe
 politicalProfiles:
   - kaupunkikehitys
 templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
-  - kaupungintalo
-  - remontti
-  - yleisökäyttö
 ---
 
 Oulun kaupunginvaltuustossa käsiteltiin 11.9.2023 asiakohtaa 3, Oulun kaupungintalon peruskorjauksen määrärahamuutosta. Käytin puheenvuoron kaupungintalon roolista kaupunkilaisten yhteisenä tilana sekä remontin kustannuksista.

@@ -8,7 +8,7 @@ context:
   - blogivierailu
 keywords:
   - ekovoimala
-  - jääli
+  - Jääli
   - jätehuolto
   - jätekeskus
   - jätevesiliete

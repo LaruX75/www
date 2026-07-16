@@ -11,7 +11,7 @@ keywords:
   - kampanjointi
   - kuntavaalit
   - vaalieläimet
-  - vaalit2017
+  - kuntavaalit 2017
 wp_id: 1468
 source_url: 'https://www.jarilaru.fi/vaalielaimet-ja-muu-grafiikka-vuoden-2017-vaaleissa/'
 templateEngineOverride: md

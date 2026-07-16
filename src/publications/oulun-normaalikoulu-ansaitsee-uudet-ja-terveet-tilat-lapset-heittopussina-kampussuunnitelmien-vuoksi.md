@@ -12,7 +12,7 @@ keywords:
   - normaalikoulu
   - opetus
   - oppiminen
-  - raksila
+  - Raksila
 type: mielipide
 wp_id: 1895
 source_url: 'https://www.jarilaru.fi/oulun-normaalikoulu-ansaitsee-uudet-ja-terveet-tilat-lapset-heittopussina-kampussuunnitelmien-vuoksi/'

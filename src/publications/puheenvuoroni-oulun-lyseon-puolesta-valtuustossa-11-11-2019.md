@@ -9,22 +9,19 @@ categories:
   - Sivistys ja koulutus
 forum:
   - Kaupunginvaltuusto
-type: puhe
-wp_id: 99
-source_url: 'https://www.jarilaru.fi/puheenvuoroni-oulun-lyseon-puolesta-valtuustossa-11-11-2019/'
-politicalProfiles:
-  - sivistys
-templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
+keywords:
   - Oulun Lyseo
   - koulutus
   - rakennusperintö
   - kulttuurihistoria
   - digitalisaatio
   - Oulu
+type: puhe
+wp_id: 99
+source_url: 'https://www.jarilaru.fi/puheenvuoroni-oulun-lyseon-puolesta-valtuustossa-11-11-2019/'
+politicalProfiles:
+  - sivistys
+templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto käsitteli 11.11.2019 Oulun Lyseon peruskorjauksen hankeselvitystä. Käytin puheenvuoron rakennuksen historiallisista arvoista, säilyttämisestä opetuskäytössä ja digitaalisen teknologian mahdollisuuksista historian esittelemisessä.

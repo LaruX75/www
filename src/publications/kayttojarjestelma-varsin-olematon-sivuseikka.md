@@ -13,7 +13,7 @@ keywords:
   - käyttöjärjestelmä
   - linux
   - linux-pilottikoulut
-  - microsoft o365
+  - Microsoft 365
   - oulun koulujen tietotekniikka
   - windows
 type: mielipide

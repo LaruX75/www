@@ -10,19 +10,16 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
+keywords:
+  - sivistystoimi
+  - johtamisjärjestelmä
+  - palveluverkko
+  - talouden sopeuttaminen
 type: puhe
 politicalProfiles:
   - sivistys
   - lahipalvelut
 templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
-  - sivistystoimi
-  - johtamisjärjestelmä
-  - palveluverkko
-  - talouden sopeuttaminen
 ---
 
 Oulun kaupunginvaltuustossa käsiteltiin 11.11.2024 kaupungin taloutta ja sivistyspalveluihin kohdistuvia sopeutustarpeita. Käytin puheenvuoron sivistystoimen johtamisjärjestelmän uudistamisesta ja palveluverkon suunnittelun lähtökohdista.

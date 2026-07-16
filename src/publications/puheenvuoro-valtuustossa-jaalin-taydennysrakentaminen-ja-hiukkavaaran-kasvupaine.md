@@ -10,21 +10,18 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
-type: puhe
-politicalProfiles:
-  - sivistys
-  - lahipalvelut
-templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
+keywords:
   - MATO
   - Jääli
   - Hiukkavaara
   - täydennysrakentaminen
   - palveluverkko
   - koulut
+type: puhe
+politicalProfiles:
+  - sivistys
+  - lahipalvelut
+templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto käsitteli 28.2.2022 maankäytön toteuttamisohjelmaa vuosille 2022–2026. Käytin puheenvuoron siitä, miten maankäyttö, asuntorakentaminen, koulut ja palveluverkko pitäisi sovittaa nykyistä paremmin yhteen.

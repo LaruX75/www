@@ -11,21 +11,18 @@ categories:
   - Hyvinvointi ja osallisuus
 forum:
   - Kaupunginvaltuusto
+keywords:
+  - talousarvio
+  - varhaiskasvatus
+  - yksityinen varhaiskasvatus
+  - palvelujen saatavuus
+  - perheet
 type: puhe
 politicalProfiles:
   - sivistys
   - hyvinvointi
   - yhteistyo
 templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
-  - talousarvio
-  - varhaiskasvatus
-  - yksityinen varhaiskasvatus
-  - palvelujen saatavuus
-  - perheet
 ---
 
 Oulun kaupunginvaltuusto käsitteli 28.11.2022 vuoden 2023 talousarviota ja vuosien 2024–2025 taloussuunnitelmaa. Käytin puheenvuoron yksityisen varhaiskasvatuksen merkityksestä palvelujen saatavuudelle ja kaupungin palvelutarjonnan joustavuudelle.

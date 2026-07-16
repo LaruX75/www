@@ -7,7 +7,7 @@ categories:
   - Hyvinvointi ja osallisuus
   - Kaupunkikehitys ja palveluverkko
 keywords:
-  - jääli
+  - Jääli
   - koulu
   - lapsiystävällinen kunta
   - lapsuus

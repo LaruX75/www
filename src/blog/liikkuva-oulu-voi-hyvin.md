@@ -8,7 +8,7 @@ categories:
 keywords:
   - erämaalatu
   - hiihtäminen
-  - jääli
+  - Jääli
   - koiteli
   - liikunta
   - metsätietopolku

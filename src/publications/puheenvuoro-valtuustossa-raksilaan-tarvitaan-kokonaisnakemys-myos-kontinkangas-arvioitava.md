@@ -10,21 +10,18 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
-type: puhe
-politicalProfiles:
-  - sivistys
-  - kaupunkikehitys
-templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
+keywords:
   - Oulun yliopisto
   - Raksila
   - Kontinkangas
   - kampus
   - kaupunkisuunnittelu
   - liikenne
+type: puhe
+politicalProfiles:
+  - sivistys
+  - kaupunkikehitys
+templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto jatkoi 26.4.2021 keskustelua Oulun yliopiston mahdollisesta sijoittumisesta Raksilaan. Toisessa puheenvuorossani korostin kokonaisnäkemyksen tarvetta ja nostin Kontinkankaan vaihtoehdoksi.

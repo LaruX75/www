@@ -8,16 +8,13 @@ categories:
   - Politiikka ja päätöksenteko
 forum:
   - Kaupunginvaltuusto
-type: puhe
-templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
+keywords:
   - perusopetus
   - koulutus
   - oppimisympäristöt
   - Oulu
+type: puhe
+templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto käsitteli 10.12.2018 tietoiskua Suomen kuuden suurimman kaupungin perusopetuksen tunnuslukuvertailusta vuodelta 2017. Käytin puheenvuoron perusopetuksen resursoinnista, oppimisympäristöistä ja lasten koulutukseen investoimisen tärkeydestä.

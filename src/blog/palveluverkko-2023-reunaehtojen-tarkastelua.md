@@ -9,7 +9,7 @@ keywords:
   - palveluverkko
   - syntyvyys
   - kouluikäluokat
-  - oulu
+  - Oulu
   - koulutuspolitiikka
   - väestösuunnite
 type: artikkeli

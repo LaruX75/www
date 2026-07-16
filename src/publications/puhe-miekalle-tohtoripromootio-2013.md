@@ -12,7 +12,7 @@ context:
   - tohtoripromootio
 keywords:
   - akateemiset juhlat
-  - oulun yliopisto
+  - Oulun yliopisto
   - pääpuhe
   - puhe
   - puhe miekalle

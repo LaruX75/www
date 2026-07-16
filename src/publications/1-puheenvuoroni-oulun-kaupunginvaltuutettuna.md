@@ -10,7 +10,7 @@ forum:
   - Kaupunginvaltuusto
 keywords:
   - ensimmäinen puheenvuoro
-  - oulun kaupunginvaltuusto
+  - Oulun kaupunginvaltuusto
 type: puhe
 wp_id: 1154
 source_url: 'https://www.jarilaru.fi/1-puheenvuoroni-oulun-kaupunginvaltuutettuna/'

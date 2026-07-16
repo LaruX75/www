@@ -13,7 +13,7 @@ keywords:
   - kaupalliset palvelut
   - koillisoulu
   - kunnalliset palvelut
-  - oulun kaupunki
+  - Oulun kaupunki
   - palvelut
   - reuna-alue
   - uimahalli

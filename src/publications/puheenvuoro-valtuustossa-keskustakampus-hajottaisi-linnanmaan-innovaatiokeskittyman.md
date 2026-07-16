@@ -10,15 +10,7 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
-type: puhe
-politicalProfiles:
-  - sivistys
-  - kaupunkikehitys
-templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
+keywords:
   - Oulun yliopisto
   - Linnanmaa
   - Raksila
@@ -26,6 +18,11 @@ tags:
   - innovaatiot
   - tutkimus
   - korkeakoulutus
+type: puhe
+politicalProfiles:
+  - sivistys
+  - kaupunkikehitys
+templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto käsitteli 9.11.2020 Oulun yliopiston mahdollista sijoittumista Raksilan alueelle. Käytin puheenvuoron Linnanmaan monitieteisen kampuksen ja sitä ympäröivän innovaatiokeskittymän merkityksestä.

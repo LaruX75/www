@@ -10,16 +10,7 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
-type: puhe
-politicalProfiles:
-  - sivistys
-  - lahipalvelut
-  - yhteistyo
-templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
+keywords:
   - koulusihteerit
   - koulutus
   - Monetra
@@ -27,6 +18,12 @@ tags:
   - talous
   - palveluverkko
   - Oulu
+type: puhe
+politicalProfiles:
+  - sivistys
+  - lahipalvelut
+  - yhteistyo
+templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto käsitteli 7.10.2019 koulusihteeripalvelujen järjestämistä ja niiden mahdollista siirtämistä Monetralle. Käytin puheenvuoron asian palauttamisesta valmisteluun osana kaupungin laajempia talouden tasapainottamistoimia.

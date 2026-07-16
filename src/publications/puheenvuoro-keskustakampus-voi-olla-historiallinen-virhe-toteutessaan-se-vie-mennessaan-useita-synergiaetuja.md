@@ -14,8 +14,8 @@ eventType:
   - seminaari
 keywords:
   - keskustakampus
-  - linnanmaa
-  - raksila
+  - Linnanmaa
+  - Raksila
   - seminaari
 type: puhe
 wp_id: 1819

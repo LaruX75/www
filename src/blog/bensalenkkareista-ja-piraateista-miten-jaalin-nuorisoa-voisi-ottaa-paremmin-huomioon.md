@@ -6,8 +6,8 @@ categories:
   - Hyvinvointi ja osallisuus
 keywords:
   - bändit
-  - Harrastukset
-  - jääli
+  - harrastukset
+  - Jääli
   - kommentti
   - nuoriso
   - nuorisotoimi

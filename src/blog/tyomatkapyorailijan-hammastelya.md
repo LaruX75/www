@@ -6,7 +6,7 @@ categories:
   - Politiikka ja päätöksenteko
   - Kaupunkikehitys ja palveluverkko
 keywords:
-  - jääli
+  - Jääli
   - liikenne
   - liikenneturvallisuus
   - pyöräily

@@ -9,7 +9,7 @@ eventType:
   - tieteellinen tilaisuus
 keywords:
   - kollegio
-  - oulun yliopisto
+  - Oulun yliopisto
   - yliopistokollegio
 type: puhe
 wp_id: 1999

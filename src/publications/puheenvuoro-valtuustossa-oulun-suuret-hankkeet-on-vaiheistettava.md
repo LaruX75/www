@@ -10,21 +10,18 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
+keywords:
+  - investoinnit
+  - hankkeet
+  - talous
+  - Raksila
+  - kampus
 type: puhe
 politicalProfiles:
   - sivistys
   - kaupunkikehitys
   - yhteistyo
 templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
-  - investoinnit
-  - hankkeet
-  - talous
-  - Raksila
-  - kampus
 ---
 
 Oulun kaupunginvaltuuston keskustelussa 26.4.2021 käytin lyhyen repliikin kaupungin suurten hankkeiden määrästä ja niiden vaiheistamisen tarpeesta.

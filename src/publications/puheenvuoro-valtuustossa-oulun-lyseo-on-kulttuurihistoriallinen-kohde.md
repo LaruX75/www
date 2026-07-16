@@ -10,12 +10,7 @@ categories:
   - Sivistys ja koulutus
 forum:
   - Kaupunginvaltuusto
-type: puhe
-templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
+keywords:
   - Oulun Lyseo
   - palveluverkko
   - perusopetus
@@ -24,6 +19,8 @@ tags:
   - rakennusperintö
   - kulttuurihistoria
   - Oulu
+type: puhe
+templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto käsitteli 17.6.2019 tietoiskua sivistys- ja kulttuuripalveluiden palveluverkon valmistelusta. Käytin puheenvuoron Oulun Lyseon kulttuurihistoriallisesta merkityksestä, Linnanmaan kampusmahdollisuuksista sekä sivistystoimen taloudellisesta kantokyvystä.

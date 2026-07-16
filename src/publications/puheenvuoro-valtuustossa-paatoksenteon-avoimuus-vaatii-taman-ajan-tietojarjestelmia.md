@@ -9,20 +9,17 @@ categories:
   - Teknologia ja digitaalisuus
 forum:
   - Kaupunginvaltuusto
-type: puhe
-politicalProfiles:
-  - avoinhallinto
-templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
+keywords:
   - avoimuus
   - vuorovaikutus
   - osallisuus
   - tietojärjestelmät
   - tietojohtaminen
   - digitalisaatio
+type: puhe
+politicalProfiles:
+  - avoinhallinto
+templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto käsitteli 20.6.2022 kaupungin vuorovaikutussuunnitelman toteutumista. Käytin puheenvuoron siitä, kuinka vaikeaa tavallisen kuntalaisen on seurata kaupungin päätöksentekoa ja kuinka vanhentuneet järjestelmät pitäisi korvata selkeillä, visuaalisilla ja reaaliaikaisilla palveluilla.

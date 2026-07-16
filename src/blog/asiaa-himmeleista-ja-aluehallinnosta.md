@@ -11,7 +11,7 @@ keywords:
   - aluevaalit
   - hallintohimmeli
   - organisaatio
-  - pohjois-pohjanmaa
+  - Pohjois-Pohjanmaa
   - politiikka
   - popsote
   - popster

@@ -10,7 +10,7 @@ forum:
 keywords:
   - mopomiitti
   - nuorisotyö
-  - oulun kaupunginvaltuusto
+  - Oulun kaupunginvaltuusto
   - valtuustoaloite
   - mopoharrastus
   - nuoret

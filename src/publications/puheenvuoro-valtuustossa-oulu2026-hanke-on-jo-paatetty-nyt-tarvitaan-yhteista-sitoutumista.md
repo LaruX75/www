@@ -9,21 +9,18 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
-type: puhe
-politicalProfiles:
-  - kaupunkikehitys
-  - yhteistyo
-templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
+keywords:
   - Oulu2026
   - kulttuuripääkaupunki
   - kulttuuri
   - säätiö
   - matkailu
   - kansainvälisyys
+type: puhe
+politicalProfiles:
+  - kaupunkikehitys
+  - yhteistyo
+templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto käsitteli 6.9.2021 Oulu2026-kulttuurisäätiön perustamista ja pääomittamista. Käytin puheenvuoron siitä, että päätös kulttuuripääkaupunkihankkeesta oli jo tehty ja että kaupungin tulisi nyt sitoutua yhdessä sen toteuttamiseen.

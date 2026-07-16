@@ -8,20 +8,17 @@ categories:
   - Politiikka ja päätöksenteko
 forum:
   - Kaupunginvaltuusto
-type: puhe
-politicalProfiles:
-  - avoinhallinto
-  - yhteistyo
-templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
+keywords:
   - vetovoima
   - pitovoima
   - avoimuus
   - viestintä
   - kuntalaiset
+type: puhe
+politicalProfiles:
+  - avoinhallinto
+  - yhteistyo
+templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuustossa esiteltiin 30.3.2026 vetovoima- ja pitovoimatutkimuksen tuloksia. Käytin puheenvuoron tutkimustulosten avoimesta julkaisemisesta ja siitä, miten tuloksista tulisi viestiä tavallisille oululaisille.

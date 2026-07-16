@@ -11,13 +11,13 @@ categories:
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - kaupunginvaltuusto
+  - Oulun kaupunginvaltuusto
   - kiinteistöt
   - kouluverkko
   - lukioverkko
   - opetus
   - oppiminen
-  - oulun kaupunki
+  - Oulun kaupunki
   - palveluverkko
   - puhe
   - tilaliikelaitos

@@ -30,15 +30,6 @@ layout: base.njk
 
       {% if showTaxonomy != false %}
       <div class="mt-4">
-        {% if tags %}
-        <div class="mb-3">
-          {% for tag in tags %}
-          {% if tag != "blog" %}
-          <span class="badge text-bg-secondary me-1">{{ tag }}</span>
-          {% endif %}
-          {% endfor %}
-        </div>
-        {% endif %}
         {% if categories %}
         <div class="mb-3">
           <p class="text-uppercase small text-muted mb-2">{{ txt.categories }}</p>

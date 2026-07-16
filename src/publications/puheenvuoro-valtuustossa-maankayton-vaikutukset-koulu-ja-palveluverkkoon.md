@@ -10,21 +10,18 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
+keywords:
+  - maankäyttö
+  - MATO
+  - palveluverkko
+  - sivistyslautakunta
+  - Hiukkavaara
 type: puhe
 politicalProfiles:
   - sivistys
   - lahipalvelut
   - kaupunkikehitys
 templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
-  - maankäyttö
-  - MATO
-  - palveluverkko
-  - sivistyslautakunta
-  - Hiukkavaara
 ---
 
 Oulun kaupunginvaltuustossa käsiteltiin 28.4.2025 Oulun maankäytön toteuttamisohjelmaa eli väli-MATOa vuosille 2026–2030. Käytin puheenvuoron ohjelman vaikutuksista koulu- ja palveluverkkoon sekä siitä, miten sivistyslautakunnan lausunnot tulisi ottaa huomioon valmistelussa.

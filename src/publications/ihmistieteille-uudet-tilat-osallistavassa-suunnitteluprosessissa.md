@@ -9,10 +9,10 @@ secondaryTheme:
 publication: Kaleva
 keywords:
   - kasvatustieteiden tiedekunta
-  - linnanmaa
-  - Oppimisympäristöt
-  - oulun ammattikorkeakoulu
-  - oulun yliopisto
+  - Linnanmaa
+  - oppimisympäristöt
+  - Oulun ammattikorkeakoulu
+  - Oulun yliopisto
   - suomen yliopistokiinteistöt
   - uudet tilat
   - yhteiskampus

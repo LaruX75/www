@@ -8,7 +8,7 @@ categories:
 campaign: Kuntavaalit
 keywords:
   - kuntavaalit
-  - kuntavaalit2017
+  - kuntavaalit 2017
   - reflektio
   - tunnelmat
   - vaalinalustunnelmia

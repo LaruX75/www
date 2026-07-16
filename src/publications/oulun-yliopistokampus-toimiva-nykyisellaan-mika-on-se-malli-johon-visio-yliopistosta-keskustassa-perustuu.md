@@ -11,9 +11,9 @@ keywords:
   - kampus
   - keskusta
   - keskustakampus
-  - linnanmaa
+  - Linnanmaa
   - muutto
-  - oulun yliopisto
+  - Oulun yliopisto
   - yliopistokampus
 type: mielipide
 wp_id: 87

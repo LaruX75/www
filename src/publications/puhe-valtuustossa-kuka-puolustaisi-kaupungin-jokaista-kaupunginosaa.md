@@ -12,7 +12,7 @@ forum:
 keywords:
   - kaupungistrategia
   - kaupungosat
-  - oulu
+  - Oulu
   - puhe
   - strategia
   - suuralueet

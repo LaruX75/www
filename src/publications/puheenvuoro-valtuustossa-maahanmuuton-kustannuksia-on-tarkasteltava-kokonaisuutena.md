@@ -11,16 +11,7 @@ categories:
   - Hyvinvointi ja osallisuus
 forum:
   - Kaupunginvaltuusto
-type: puhe
-politicalProfiles:
-  - sivistys
-  - hyvinvointi
-  - yhteistyo
-templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
+keywords:
   - maahanmuutto
   - kotoutuminen
   - kansainvälisyys
@@ -28,6 +19,12 @@ tags:
   - verotulot
   - korkeakoulutus
   - talousarvio
+type: puhe
+politicalProfiles:
+  - sivistys
+  - hyvinvointi
+  - yhteistyo
+templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto käsitteli 30.11.2020 vuoden 2021 talousarviota ja vuosien 2022–2023 taloussuunnitelmaa. Käytin puheenvuoron esityksestä, jonka mukaan kaupungin pitäisi selvittää maahanmuuton aiheuttamia kustannuksia.

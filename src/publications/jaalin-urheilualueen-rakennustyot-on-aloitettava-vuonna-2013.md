@@ -9,10 +9,10 @@ categories:
 publication: Kaleva
 keywords:
   - aila postareff-jurvelin
-  - jääli
+  - Jääli
   - liikuntapalvelut
   - olli tapio
-  - oulun kaupunki
+  - Oulun kaupunki
   - palvelurakenne
   - talousarvio
   - timo koskinen

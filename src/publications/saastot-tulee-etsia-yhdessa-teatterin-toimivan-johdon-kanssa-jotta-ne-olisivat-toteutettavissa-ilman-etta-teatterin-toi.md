@@ -8,10 +8,10 @@ categories:
 keywords:
   - kulttuuri
   - mielipiteet
-  - oulu
+  - Oulu
   - oulun kaupungin säästöt
   - oulun kaupunginhallitus
-  - oulun kaupunginvaltuusto
+  - Oulun kaupunginvaltuusto
   - oulun kaupungiteatteri
   - oulun teatteri
   - taide

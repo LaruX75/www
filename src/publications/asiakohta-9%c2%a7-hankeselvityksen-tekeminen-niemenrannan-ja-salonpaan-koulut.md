@@ -9,18 +9,16 @@ categories:
   - Sivistys ja koulutus
 forum:
   - Kaupunginvaltuusto
+keywords:
+  - salonpaa
+  - Oulunsalo
+  - lähikoulu
 type: puhe
 wp_id: 976
 source_url: 'https://www.jarilaru.fi/asiakohta-9%c2%a7-hankeselvityksen-tekeminen-niemenrannan-ja-salonpaan-koulut/'
 politicalProfiles:
   - sivistys
 templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - salonpaa
-  - oulunsalo
-  - lahikoulu
 ---
 <p>Ihan hetkisen kuluttua normaalit ihmiset asettuvat katsomaan iltauutisia. Minä asetun mikrofonin ääreen ja pidän alla olevan puheen. </p>
 <p>ASIAKOHTA: 9§ Hankeselvityksen tekeminen, Niemenrannan ja Salonpään koulut</p>

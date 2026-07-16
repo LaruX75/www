@@ -15,7 +15,7 @@ keywords:
   - sosiaalinen media
   - väitös
   - väitöskirja
-  - web 2.0
+  - Web 2.0
   - yliopisto
 type: tieteellinen
 wp_id: 584

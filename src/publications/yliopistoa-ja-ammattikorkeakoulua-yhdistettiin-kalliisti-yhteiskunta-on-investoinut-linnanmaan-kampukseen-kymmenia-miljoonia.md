@@ -9,13 +9,13 @@ categories:
 keywords:
   - kaleva
   - keskustakampus
-  - linnanmaa
+  - Linnanmaa
   - mielipiteet
-  - oulun ammattikorkeakoulu
-  - oulun kaupungin kaavoitus
+  - Oulun ammattikorkeakoulu
+  - Oulun kaupungin kaavoitus
   - oulun kaupunkisuunnittelu
-  - oulun yliopisto
-  - oulun yliopiston muutto
+  - Oulun yliopisto
+  - Oulun yliopiston muutto
 type: mielipide
 wp_id: 146
 source_url: 'https://www.jarilaru.fi/yliopistoa-ja-ammattikorkeakoulua-yhdistettiin-kalliisti-yhteiskunta-on-investoinut-linnanmaan-kampukseen-kymmenia-miljoonia/'

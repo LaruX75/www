@@ -8,8 +8,8 @@ keywords:
   - kempele
   - kuntaliitos
   - Oulujoen kaupunki
-  - Tulevaisuus
-  - Visio
+  - tulevaisuus
+  - visio
 wp_id: 72
 source_url: 'https://www.jarilaru.fi/rantalakeus-249-ei-suur-oulu-vaan-laajempi-yhteinen-oulu/'
 politicalProfiles:

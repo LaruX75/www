@@ -9,17 +9,14 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
+keywords:
+  - Oulu2026
+  - matkailu
 type: puhe
 politicalProfiles:
   - yhteistyo
   - kaupunkikehitys
 templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
-  - Oulu2026
-  - matkailu
 ---
 
 Oulun kaupunginvaltuustossa käsiteltiin 27.2.2023 asiakohdassa 1 (info: Oulu2026-ajankohtaisasiat) Oulu2026-kulttuuripääkaupunkihankkeen ajankohtaisia asioita. Käytin puheenvuoron jään ja arktisuuden hyödyntämisestä matkailussa.

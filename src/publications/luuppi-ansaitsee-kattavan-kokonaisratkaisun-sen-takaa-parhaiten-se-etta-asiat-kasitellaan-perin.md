@@ -13,7 +13,7 @@ keywords:
   - luuppi
   - museo
   - museo- ja tiedekeskus
-  - oulu
+  - Oulu
 type: mielipide
 wp_id: 1811
 source_url: 'https://www.jarilaru.fi/luuppi-ansaitsee-kattavan-kokonaisratkaisun-sen-takaa-parhaiten-se-etta-asiat-kasitellaan-perin/'

@@ -9,20 +9,17 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
-type: puhe
-politicalProfiles:
-  - lahipalvelut
-templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
+keywords:
   - Jääkärinkangas
   - monitoimitalo
   - palveluverkko
   - Myllyoja
   - Hiukkavaara
   - Korvensuora
+type: puhe
+politicalProfiles:
+  - lahipalvelut
+templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto käsitteli 4.4.2022 Laanilan, Myllyojan, Hiukkavaaran ja Korvensuoran suuralueiden palveluverkkoselvitystä. Käytin puheenvuoron Jääkärinkankaan monitoimitalon sijainnista ja alueellisen palveluverkon kokonaisuudesta.

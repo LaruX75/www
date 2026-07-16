@@ -10,21 +10,18 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
-type: puhe
-politicalProfiles:
-  - sivistys
-  - kaupunkikehitys
-templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
+keywords:
   - Oulun yliopisto
   - Linnanmaa
   - Raksila
   - kampus
   - investoinnit
   - korkeakoulutus
+type: puhe
+politicalProfiles:
+  - sivistys
+  - kaupunkikehitys
+templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuuston keskustelussa 28.2.2022 luin vuonna 2020 kirjoittamani mielipidekirjoituksen, jossa käsittelin Linnanmaan yhteiskampukseen jo tehtyjä mittavia investointeja.

@@ -10,16 +10,7 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
-type: puhe
-politicalProfiles:
-  - sivistys
-  - kaupunkikehitys
-  - yhteistyo
-templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
+keywords:
   - Oulun yliopisto
   - Linnanmaa
   - Kontinkangas
@@ -27,6 +18,12 @@ tags:
   - kampus
   - ICT
   - kaupunkisuunnittelu
+type: puhe
+politicalProfiles:
+  - sivistys
+  - kaupunkikehitys
+  - yhteistyo
+templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto jatkoi 9.11.2020 keskustelua Oulun yliopiston mahdollisesta keskustakampuksesta. Toisessa puheenvuorossani vaadin kaupungilta ja yliopistolta yhteistä tiekarttaa kampusratkaisun vaikutuksista.

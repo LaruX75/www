@@ -12,13 +12,11 @@ context:
   - väitöskirja
 keywords:
   - e-oppiminen
-  - lectio precursora
-  - lektio
+  - lectio precursoria
   - m-oppiminen
   - mobiilioppiminen
   - opetus
   - oppiminen
-  - oppiminen mobiilaitteiden avulla
   - pedagogiikka
   - pedagoginen vaiheistus
   - väitös

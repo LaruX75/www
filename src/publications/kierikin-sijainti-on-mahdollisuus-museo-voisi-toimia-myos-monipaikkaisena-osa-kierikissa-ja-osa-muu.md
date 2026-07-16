@@ -8,13 +8,12 @@ categories:
 publication: Kaleva
 keywords:
   - arkeologia
-  - erä- ja luontomuseo
+  - luonto- ja erämuseo
   - historia
   - kaivaukset
   - kierikki
   - kierikkikeskus
   - kulttuuri
-  - luonto- ja erämuseo
   - luuppi
   - matkailu
   - museo

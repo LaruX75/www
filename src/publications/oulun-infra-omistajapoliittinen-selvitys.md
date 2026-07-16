@@ -9,16 +9,13 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
+keywords:
+  - Oulun Infra
+  - huoltovarmuus
 type: puhe
 politicalProfiles:
   - yhteistyo
 templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
-  - Oulun Infra
-  - huoltovarmuus
 ---
 
 Oulun kaupunginvaltuustossa käsiteltiin 22.5.2023 asiakohdassa 7 Oulun Infra -liikelaitoksen omistajapoliittista selvitystä ja katu- ja viheralueiden kunnossapidon osittaista ulkoistusta. Käytin asiasta puheenvuoron. Tässä se kirjallisena.

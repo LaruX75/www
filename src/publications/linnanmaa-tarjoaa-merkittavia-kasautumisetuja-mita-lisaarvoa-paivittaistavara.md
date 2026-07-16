@@ -10,7 +10,7 @@ publication: Kaleva
 keywords:
   - keskustakampus
   - mielipide
-  - oulun yliopiston muutto
+  - Oulun yliopiston muutto
   - yliopisto
 type: mielipide
 wp_id: 1712

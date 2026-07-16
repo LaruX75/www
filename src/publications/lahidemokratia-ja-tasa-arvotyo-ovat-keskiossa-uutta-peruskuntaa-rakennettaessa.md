@@ -12,7 +12,7 @@ keywords:
   - kuntalaisdemokratia
   - lähidemokratia
   - lähidemokratiatoimikunta
-  - oulun kaupunki
+  - Oulun kaupunki
   - tasa-arvo
   - yhteisöpalvelut
   - yhteisötoiminta

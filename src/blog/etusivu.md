@@ -6,7 +6,7 @@ categories:
   - Politiikka ja päätöksenteko
 keywords:
   - esittely
-  - kiiminki
+  - Kiiminki
   - kuntaliitos
   - Oulujoen kaupunki
   - politiikka

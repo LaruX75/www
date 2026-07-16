@@ -10,22 +10,19 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
-type: puhe
-politicalProfiles:
-  - sivistys
-  - lahipalvelut
-  - kaupunkikehitys
-templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
+keywords:
   - palveluverkko
   - MATO
   - maankäyttö
   - Hiukkavaara
   - kaavoitus
   - sivistyspalvelut
+type: puhe
+politicalProfiles:
+  - sivistys
+  - lahipalvelut
+  - kaupunkikehitys
+templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto käsitteli 4.4.2022 sivistys- ja kulttuuripalveluiden palveluverkkolinjauksia. Toisessa asiakohtaa koskevassa puheenvuorossani nostin esiin maankäytön toteuttamisohjelman ja palveluverkon suunnittelun väliset ongelmat.

@@ -9,17 +9,14 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
+keywords:
+  - terwa tower
+  - museo- ja tiedekeskus
+  - palautusesitys
 type: puhe
 politicalProfiles:
   - kaupunkikehitys
 templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
-  - terwa tower
-  - museo- ja tiedekeskus
-  - palautusesitys
 ---
 
 Oulun kaupunginvaltuustossa käsiteltiin 18.3.2024 Terwa Towerin asemakaavan ja tonttijaon muutosta. Käytin puheenvuoron palautusesityksestä ja perustelin, miksi asian käsittelyä tulee jatkaa.

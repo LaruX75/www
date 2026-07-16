@@ -11,17 +11,7 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
-type: puhe
-politicalProfiles:
-  - sivistys
-  - kaupunkikehitys
-  - hyvinvointi
-  - yhteistyo
-templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
+keywords:
   - kulttuuri
   - kaupunginteatteri
   - hyvinvointi
@@ -29,6 +19,13 @@ tags:
   - talousarvio
   - pyöräily
   - koulut
+type: puhe
+politicalProfiles:
+  - sivistys
+  - kaupunkikehitys
+  - hyvinvointi
+  - yhteistyo
+templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto käsitteli 30.11.2020 vuoden 2021 talousarviota ja vuosien 2022–2023 taloussuunnitelmaa. Käytin puheenvuoron kulttuurin merkityksestä pandemia-aikana sekä eräistä talousarvioon esitetyistä säästöistä ja investoinneista.

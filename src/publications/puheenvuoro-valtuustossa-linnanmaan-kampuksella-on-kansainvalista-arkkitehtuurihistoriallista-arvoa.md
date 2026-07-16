@@ -10,21 +10,18 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
-type: puhe
-politicalProfiles:
-  - sivistys
-  - kaupunkikehitys
-templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
+keywords:
   - Oulun yliopisto
   - Linnanmaa
   - arkkitehtuuri
   - kulttuurihistoria
   - DoCoMoMo
   - kulttuuripääkaupunki
+type: puhe
+politicalProfiles:
+  - sivistys
+  - kaupunkikehitys
+templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto käsitteli 9.11.2020 Oulun yliopiston mahdollista siirtymistä Raksilan alueelle. Kolmannessa puheenvuorossani nostin esiin Linnanmaan kampuksen arkkitehtonisen ja kulttuurihistoriallisen arvon.

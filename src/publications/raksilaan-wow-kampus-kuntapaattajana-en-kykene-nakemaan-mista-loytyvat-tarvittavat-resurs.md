@@ -9,12 +9,12 @@ categories:
 keywords:
   - kaleva
   - keskustakampus
-  - linnanmaa
+  - Linnanmaa
   - matkakeskus
   - mielipit
-  - oulun kaupungin kaavoitus
-  - oulun yliopisto
-  - oulun yliopiston muutto
+  - Oulun kaupungin kaavoitus
+  - Oulun yliopisto
+  - Oulun yliopiston muutto
 type: mielipide
 wp_id: 149
 source_url: 'https://www.jarilaru.fi/raksilaan-wow-kampus-kuntapaattajana-en-kykene-nakemaan-mista-loytyvat-tarvittavat-resurs/'

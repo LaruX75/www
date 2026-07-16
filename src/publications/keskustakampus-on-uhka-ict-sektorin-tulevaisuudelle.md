@@ -11,7 +11,7 @@ publication: Kaleva
 keywords:
   - keskustakampus
   - opetus
-  - oulun yliopisto
+  - Oulun yliopisto
   - politiikka
   - tst-tiedekunta
   - tutkimus

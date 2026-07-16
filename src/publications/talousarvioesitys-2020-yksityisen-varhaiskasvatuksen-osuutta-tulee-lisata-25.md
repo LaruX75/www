@@ -11,6 +11,12 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
+keywords:
+  - varhaiskasvatus
+  - yksityinen varhaiskasvatus
+  - palveluverkko
+  - talousarvio
+  - investoinnit
 type: puhe
 wp_id: 1883
 source_url: 'https://www.jarilaru.fi/talousarvioesitys-2020-yksityisen-varhaiskasvatuksen-osuutta-tulee-lisata-25/'
@@ -20,15 +26,6 @@ politicalProfiles:
   - yhteistyo
   - hyvinvointi
 templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
-  - varhaiskasvatus
-  - yksityinen varhaiskasvatus
-  - palveluverkko
-  - talousarvio
-  - investoinnit
 ---
 
 Oulun kaupunginvaltuusto käsitteli 29.11.2021 vuoden 2022 talousarviota ja vuosien 2023–2024 taloussuunnitelmaa. Käytin puheenvuoron varhaiskasvatuksen kasvavasta palvelutarpeesta, kustannuksista ja yksityisen palvelutuotannon mahdollisuuksista täydentää kaupungin palveluverkkoa.

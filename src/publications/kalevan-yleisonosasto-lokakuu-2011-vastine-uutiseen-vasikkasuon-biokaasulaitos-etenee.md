@@ -8,7 +8,7 @@ publication: Kaleva
 keywords:
   - haju
   - hajuhaitat
-  - jääli
+  - Jääli
   - kaleva
   - kompostointi
   - mädätys

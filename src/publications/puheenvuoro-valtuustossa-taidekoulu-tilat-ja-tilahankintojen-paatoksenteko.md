@@ -10,19 +10,16 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
+keywords:
+  - taidekoulu
+  - tilahankkeet
+  - päätöksenteko
+  - palveluverkko
 type: puhe
 politicalProfiles:
   - sivistys
   - lahipalvelut
 templateEngineOverride: md
-tags:
-  - publications
-  - politics
-  - kaupunginvaltuusto
-  - taidekoulu
-  - tilahankkeet
-  - päätöksenteko
-  - palveluverkko
 ---
 
 Oulun kaupunginvaltuustossa käsiteltiin 9.9.2024 Oulun taidekoulun uusia tiloja ja kaupungin tilahankintojen valmistelua. Käytin puheenvuoron sekä taidekoulun toimintaedellytyksistä että siitä, miten päättäjien mahdollisuuksia vaikuttaa tilaratkaisuihin pitäisi parantaa.
