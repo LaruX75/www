@@ -19,6 +19,7 @@ wp_id: 7
         <h1 class="display-5 fw-bold mb-3">{{ pageContent.tietoa.hero.name }}</h1>
         <p class="lead mb-4">{{ pageContent.tietoa.hero.lead }}</p>
         <p class="mb-4">{{ pageContent.tietoa.hero.bio }}</p>
+        <p class="mb-4">Työssäni ja julkisessa asiantuntijaroolissani palaan usein samaan kysymykseen: miten teknologiaa, tekoälyä ja digitalisaatiota pitäisi käyttää niin, että ne tukevat opetusta, oppimista ja yhdenvertaisuutta eivätkä vie niistä poispäin.</p>
         <div class="d-flex flex-wrap gap-2">
           {% for cta in pageContent.tietoa.hero.ctas %}
           <a href="{{ cta.href }}" class="btn {{ cta.style }}">{{ cta.label }}</a>

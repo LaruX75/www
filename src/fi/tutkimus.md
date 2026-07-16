@@ -22,6 +22,12 @@ templateEngineOverride: njk
   {%- endif -%}
   {%- if pub.peerReviewed -%}{%- set peerReviewedCount = peerReviewedCount + 1 -%}{%- endif -%}
 {%- endfor -%}
+{% set statementItems = [] %}
+{% for item in (collections.publications or []) %}
+  {% if item.data.type == "lausunto" %}
+    {% set _ = (statementItems.push(item), null) %}
+  {% endif %}
+{% endfor %}
 
 {% set researchCopy = {
   heroTitle: "Tutkin, miten teknologia muuttaa oppimista ja opettamista.",
@@ -29,6 +35,7 @@ templateEngineOverride: njk
   areasTitle: "Keskeiset tutkimuslinjani",
   projectLead: "Strategisen tutkimuksen neuvoston rahoittama monitieteinen hanke rakentaa pohjaa tekoäly- ja turvallisuuskasvatukselle esi- ja perusopetuksessa.",
   projectBody: "Työssäni yhdistyvät tutkimustiedon välittäminen, opettajankoulutus ja opettajien tekoälylukutaidon tutkimus. Tavoitteena on tehdä vaikeasta ilmiöstä ymmärrettävä ja käyttökelpoinen koulun arjessa.",
+  impactLead: "Tutkimus ei jää julkaisuihin. Se näkyy myös lausunnoissa ja asiantuntijatyössä, joissa arvioin opetuksen digitalisaatiota, tekoälysuosituksia ja koulutusjärjestelmän käytännön toimeenpanoa.",
   publicationsLead: "Julkaisuni kokoavat yhteen pitkän tutkimuslinjan opetusteknologiasta, yhteisöllisestä oppimisesta ja tekoälylukutaidosta.",
   thesesLead: "Ohjaamani opinnäytetyöt näyttävät, millaisia kysymyksiä opetuksesta, teknologiasta ja oppimisesta on käsitelty eri vuosina.",
   ownThesesTitle: "Omat opinnäytteeni",
@@ -39,6 +46,7 @@ templateEngineOverride: njk
 } %}
 {% set latestResearchPublications = (researchfi or []).slice(0, 4) %}
 {% set latestResearchGradut = ((theses and theses.gradut) or []).slice(0, 4) %}
+{% set latestResearchStatements = statementItems.slice(0, 3) %}
 
 <!-- HERO -->
 <section class="py-5 bg-body-tertiary border-bottom">
@@ -162,6 +170,38 @@ templateEngineOverride: njk
               <dd class="col-7">Oulun yliopisto, Kasvatustieteiden tiedekunta</dd>
             </dl>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VAIKUTTAVUUS -->
+<section class="py-5">
+  <div class="site-shell">
+    <div class="row g-4 align-items-start">
+      <div class="col-lg-5">
+        <p class="text-uppercase text-muted fw-semibold small mb-2">Vaikuttavuus</p>
+        <h2 class="h3 fw-bold mb-3">Tutkimuksesta opetuksen kehittämiseen</h2>
+        <p class="text-muted mb-3">{{ researchCopy.impactLead }}</p>
+        <p class="mb-0">Lausunnoissa painottuu sama kysymys kuin tutkimuksessani: miten teknologia, tekoäly ja digitalisaatio palvelevat opettajaa, oppijaa ja koulun arkea ilman että pedagoginen näkökulma katoaa.</p>
+      </div>
+      <div class="col-lg-7">
+        <div class="row g-3">
+          {% for item in latestResearchStatements %}
+          <div class="col-md-4">
+            <article class="card border-0 shadow-sm h-100">
+              <div class="card-body p-4 d-flex flex-column">
+                <p class="small text-uppercase text-muted fw-semibold mb-2">Lausunto</p>
+                <h3 class="h6 fw-bold mb-2"><a class="text-decoration-none stretched-link" href="{{ item.data.url or item.url }}">{{ item.data.title }}</a></h3>
+                <p class="text-muted small mb-0">{{ item.data.description or (item.templateContent | excerpt) }}</p>
+              </div>
+            </article>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="mt-3">
+          <a href="/kynasta/#lausunnot" class="btn btn-outline-primary btn-sm rounded-pill px-3">Kaikki lausunnot</a>
         </div>
       </div>
     </div>

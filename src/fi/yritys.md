@@ -115,25 +115,32 @@ lang: fi
       </div>
       <div class="col-lg-7">
         <div class="row g-3">
-          <div class="col-md-4">
+          <div class="col-md-6 col-xl-3">
             <article class="larux-proof-card h-100">
               <p class="larux-proof-kicker">Yliopisto</p>
               <h3 class="h6 mb-2">Kasvatustieteen tohtori ja yliopistonlehtori</h3>
               <p class="mb-0 small">Työskentelen Oulun yliopistossa teknologiatuetun oppimisen ja opetuksen yliopistonlehtorina. Opetus ja ohjaus pitävät kiinni koulutuksen arjen todellisuudessa.</p>
             </article>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-6 col-xl-3">
             <article class="larux-proof-card h-100">
               <p class="larux-proof-kicker">Tutkimus</p>
               <h3 class="h6 mb-2">Yli 20 vuotta opetusteknologian kehityksen mukana</h3>
               <p class="mb-0 small">Tutkimuskaari ulottuu mobiililaitteiden opetuskäytöstä nykypäivän tekoälylukutaitoon. Tällä hetkellä työ näkyy muun muassa Generation AI -hankkeessa.</p>
             </article>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-6 col-xl-3">
             <article class="larux-proof-card h-100">
               <p class="larux-proof-kicker">Koulutustyö</p>
               <h3 class="h6 mb-2">Käytännölliset toteutukset eri kohderyhmille</h3>
               <p class="mb-0 small">Olen kouluttanut opettajia, rehtoreita, johtoa ja verkostoja. Sama sisältö ei toimi kaikille, joten toteutus sovitetaan aina tilanteeseen ja tavoitteeseen.</p>
+            </article>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <article class="larux-proof-card h-100">
+              <p class="larux-proof-kicker">Asiantuntijatyö</p>
+              <h3 class="h6 mb-2">Näkemyksiä hyödynnetään myös kansallisessa valmistelussa</h3>
+              <p class="mb-0 small">Olen antanut lausuntoja muun muassa tekoälysuosituksista, opetuksen digitalisaatiosta ja mobiililaitteiden käytöstä koulussa. Sama tutkimuksen, opetuksen ja käytännön yhdistelmä näkyy myös koulutuksissani.</p>
             </article>
           </div>
         </div>

@@ -30,6 +30,17 @@ module.exports = {
     {
       data: {
         eleventyNavigation: {
+          key: "media",
+          title: "Mediassa",
+          url: "/mediassa/",
+          parent: "me",
+          order: 25
+        }
+      }
+    },
+    {
+      data: {
+        eleventyNavigation: {
           key: "work",
           title: "Työ",
           url: "/tyoni-yliopistonlehtorina/",
@@ -289,6 +300,13 @@ module.exports = {
               icon: "bi bi-file-earmark-person me-2",
               menuLink: true,
               description: "Koulutus, kokemus ja keskeiset akateemiset meriitit."
+            },
+            {
+              title: "Mediassa",
+              href: "/mediassa/",
+              icon: "bi bi-mic me-2",
+              menuLink: true,
+              description: "Podcastit, haastattelut, lehtijutut ja muut mediaesiintymiset."
             },
             {
               title: "Palkinnot",
@@ -622,8 +640,8 @@ module.exports = {
   },
   megaMenuWritings: {
     fi: {
-      heading: "Kirjoitukset ja puheet",
-      description: "Puheenvuorot, aloitteet, mielipidekirjoitukset ja muut julkaistut tekstit samasta näkymästä.",
+      heading: "Kirjoitukset, puheet ja kannanotot",
+      description: "Puheenvuorot, aloitteet, lausunnot, mielipidekirjoitukset, kolumnit ja blogi samasta näkymästä.",
       groupHeading: "Kynästä",
       contentColumns: [
         {
@@ -645,17 +663,18 @@ module.exports = {
         }
       ],
       seeAlso: {
-        heading: "Esitykset ja julkaisut",
-        subheading: "Lähisisällöt",
+        heading: "Muut sisältöalueet",
+        subheading: "Eri logiikalla jäsentyvät aineistot löytyvät omilta sivuiltaan.",
         links: [
+          { title: "Mediassa", href: "/mediassa/", icon: "bi bi-camera-video me-2", description: "Haastattelut, podcastit ja muut mediaesiintymiset." },
           { title: "Esitykset", href: "/esitykset/", icon: "bi bi-easel2 me-2", description: "Puheenvuoroja, koulutussisältöjä ja avoimia oppimateriaaleja." },
           { title: "Julkaisut", href: "/julkaisut/", icon: "bi bi-journal-text me-2", description: "Tutkimusjulkaisut, artikkelit ja tieteellinen tuotanto." }
         ]
       }
     },
     en: {
-      heading: "Writings and Speeches",
-      description: "Speeches, initiatives, opinion pieces, and other published texts in one place.",
+      heading: "Writings, Speeches, and Public Commentary",
+      description: "Speeches, initiatives, statements, opinion pieces, columns, and blog posts in one place.",
       groupHeading: "Writings",
       contentColumns: [
         {
@@ -676,9 +695,10 @@ module.exports = {
         }
       ],
       seeAlso: {
-        heading: "Presentations and publications",
-        subheading: "Related material",
+        heading: "Other content areas",
+        subheading: "Material organised by a different logic lives on its own pages.",
         links: [
+          { title: "In the media", href: "/mediassa/", icon: "bi bi-camera-video me-2", description: "Interviews, podcasts, and other media appearances." },
           { title: "Presentations", href: "/en/presentations/", icon: "bi bi-easel2 me-2", description: "Talks, keynote materials, and open learning resources." },
           { title: "Publications", href: "/en/publications/", icon: "bi bi-journal-text me-2", description: "Research outputs, articles, and academic publishing." }
         ]

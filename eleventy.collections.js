@@ -33,6 +33,28 @@ module.exports = function registerCollections(eleventyConfig) {
     })).sort((a, b) => a.name.localeCompare(b.name, "fi"));
   }
 
+  function hasExplicitDate(item) {
+    return Boolean(item?.data && Object.prototype.hasOwnProperty.call(item.data, "date") && item.data.date);
+  }
+
+  function sortByExplicitDateThenOrder(a, b, orderKey = "order") {
+    const aHasDate = hasExplicitDate(a);
+    const bHasDate = hasExplicitDate(b);
+
+    if (aHasDate && bHasDate) {
+      const dateDiff = new Date(b.data.date) - new Date(a.data.date);
+      if (dateDiff !== 0) return dateDiff;
+    } else if (aHasDate !== bHasDate) {
+      return aHasDate ? -1 : 1;
+    }
+
+    const orderA = Number(a?.data?.[orderKey] || 0);
+    const orderB = Number(b?.data?.[orderKey] || 0);
+    if (orderA !== orderB) return orderB - orderA;
+
+    return String(a?.data?.title || "").localeCompare(String(b?.data?.title || ""), "fi");
+  }
+
   eleventyConfig.addCollection("blog", function (collectionApi) {
     return collectionApi
       .getFilteredByGlob("src/blog/*.md")
@@ -106,11 +128,27 @@ module.exports = function registerCollections(eleventyConfig) {
     return collectionApi.getFilteredByGlob("src/presentations/*.md").sort((a, b) => b.date - a.date);
   });
 
+  eleventyConfig.addCollection("media", function (collectionApi) {
+    return collectionApi
+      .getFilteredByGlob("src/media/*.md")
+      .sort((a, b) => sortByExplicitDateThenOrder(a, b, "mediaOrder"));
+  });
+
+  ["about", "guest", "interviewer"].forEach((role) => {
+    eleventyConfig.addCollection(`media_${role}`, function (collectionApi) {
+      return collectionApi
+        .getFilteredByGlob("src/media/*.md")
+        .filter((item) => item.data.mediaRole === role)
+        .sort((a, b) => sortByExplicitDateThenOrder(a, b, "mediaOrder"));
+    });
+  });
+
   eleventyConfig.addCollection("categoryList", function (collectionApi) {
     const items = [
       ...collectionApi.getFilteredByGlob("src/blog/*.md"),
       ...collectionApi.getFilteredByGlob("src/publications/*.md"),
-      ...collectionApi.getFilteredByGlob("src/politics/*.md")
+      ...collectionApi.getFilteredByGlob("src/politics/*.md"),
+      ...collectionApi.getFilteredByGlob("src/media/*.md")
     ];
     return buildTermList(items, "categories");
   });
@@ -119,7 +157,8 @@ module.exports = function registerCollections(eleventyConfig) {
     const items = [
       ...collectionApi.getFilteredByGlob("src/blog/*.md"),
       ...collectionApi.getFilteredByGlob("src/publications/*.md"),
-      ...collectionApi.getFilteredByGlob("src/politics/*.md")
+      ...collectionApi.getFilteredByGlob("src/politics/*.md"),
+      ...collectionApi.getFilteredByGlob("src/media/*.md")
     ];
     return buildTermList(items, "keywords");
   });

@@ -129,73 +129,56 @@ templateEngineOverride: njk
     "linkLabel": "Avaa vaalikausi"
   }
 ] %}
-{% set featuredPoliticalWritings = [
-  {
-    "type": "Mielipide",
-    "date": "22.11.2025",
-    "title": "Toistuvia rakenteita: valmisteluprosessin ongelmat kunnallishallinnossa",
-    "href": "/toistuvia-rakenteita-valmisteluprosessin-ongelmat-kunnallishallinnossa-marraskuu-2025/",
-    "summary": "Kirjoitus kokoaa yhteen sen, miksi valmistelun laatu, prosessien johdonmukaisuus ja päätöksenteon läpinäkyvyys ovat kunnallispolitiikan ydinkysymyksiä."
-  },
-  {
-    "type": "Mielipide",
-    "date": "18.4.2023",
-    "title": "Mihin poliittiset päätökset perustuvat?",
-    "href": "/kaleva-mielipide-mihin-poliittiset-paatokset-perustuvat-ongelmaksi-esimerkiksi-oulun-kouluve/",
-    "summary": "Kouluverkkokeskustelun kautta näkyy, miten tärkeää on avata päätösten perusteet, vaikutusarviot ja olennainen tieto myös kuntalaisille."
-  },
-  {
-    "type": "Mielipide",
-    "date": "15.1.2022",
-    "title": "Kuntien rooli hyvinvoinnin edistajana ei lakkaa sote-rakenneuudistuksen jälkeen",
-    "href": "/kuntien-rooli-hyvinvoinnin-edistajana-ei-lakkaa-sote-rakenneuudistuksen-jalkeen/",
-    "summary": "Teksti jäsentää sitä, miten sivistys, hyvinvointi ja kunnan perustehtävä liittyvät toisiinsa myös hallinnollisten muutosten jälkeen."
-  },
-  {
-    "type": "Kolumni",
-    "date": "18.11.2021",
-    "title": "Kulttuurihyvinvointi kuuluu kaikille",
-    "href": "/kulttuurihyvinvointi-kuuluu-kaikille/",
-    "summary": "Sivistys ei tarkoita vain koulua. Kirjoitus laajentaa poliittista profiilia kulttuurihyvinvointiin, osallisuuteen ja kuntalaisen arkeen."
-  },
-  {
-    "type": "Mielipide",
-    "date": "30.10.2020",
-    "title": "Oulu kaipaa kipeästi hankkeita, jotka myös toteutuvat",
-    "href": "/oulu-kaipaa-kipeasti-hankkeita-jotka-myos-toteutuvat-samalla-on-koko-kaupungin-etu-etta-kaupunkia-katsotaan-kokonaisuutena/",
-    "summary": "Kirjoitus kiteyttää ajatuksen siitä, että koko kaupunkia on katsottava kokonaisuutena eikä yksittäisten hankkeiden tai osa-alueiden kautta."
-  },
-  {
-    "type": "Mielipide",
-    "date": "29.11.2021",
-    "title": "Perämerenkaari on nostettava asialistalle päätöksenteossa",
-    "href": "/peramerenkaari-on-nostettava-asialistalle-paatoksenteossa-pohjois-suomi-ja-pohjois/",
-    "summary": "Tässä näkyy alueellinen katse: Oulun kehitystä on tarkasteltava myös osana laajempaa pohjoista toimintaympäristöä ja sen muutoksia."
-  }
-] %}
-{% set featuredHybridWritings = [
-  {
-    "type": "Blogi",
-    "date": "21.5.2023",
-    "title": "Faktojen tarkastelua: kouluverkko ja syntyvyys",
-    "href": "/palveluverkko-2023-reunaehtojen-tarkastelua/",
-    "summary": "Selkein esimerkki siitä, miten data, väestökehitys ja vaikutusten arviointi tukevat poliittista argumenttia palveluverkosta."
-  },
-  {
-    "type": "Blogi",
-    "date": "9.1.2022",
-    "title": "Missä mennään hyvinvointia tukevissa digipalveluissa?",
-    "href": "/missa-mennaan-hyvinvointia-tukevissa-digipalveluissa/",
-    "summary": "Kirjoitus yhdistää käytännön politiikan, hyvinvointipalvelut ja tiedolla johtamisen välineet samaan keskusteluun."
-  },
-  {
-    "type": "Mielipide",
-    "date": "10.2.2022",
-    "title": "Keskustakampus on uhka ict-sektorin tulevaisuudelle",
-    "href": "/keskustakampus-on-uhka-ict-sektorin-tulevaisuudelle/",
-    "summary": "Hyvä esimerkki hybridistä, jossa asiantuntija-ajattelu, aluekehitys ja poliittinen kannanotto kietoutuvat yhteen."
-  }
-] %}
+{% set politicsWritingItems = [] %}
+{% for post in collections.blog %}
+  {% if post.data.politicsWritingRole %}
+    {% set _ = politicsWritingItems.push({
+      "role": post.data.politicsWritingRole,
+      "order": post.data.politicsWritingOrder or 999,
+      "type": "Blogi",
+      "date": (post.date | dateFormat),
+      "title": post.data.title,
+      "href": post.url,
+      "summary": post.data.politicsWritingSummary or post.data.description or ""
+    }) %}
+  {% endif %}
+{% endfor %}
+{% for item in collections.pub_mielipide %}
+  {% if item.data.politicsWritingRole %}
+    {% set _ = politicsWritingItems.push({
+      "role": item.data.politicsWritingRole,
+      "order": item.data.politicsWritingOrder or 999,
+      "type": "Mielipide",
+      "date": (item.date | dateFormat),
+      "title": item.data.title,
+      "href": item.url,
+      "summary": item.data.politicsWritingSummary or item.data.description or ""
+    }) %}
+  {% endif %}
+{% endfor %}
+{% for item in collections.pub_kolumni %}
+  {% if item.data.politicsWritingRole %}
+    {% set _ = politicsWritingItems.push({
+      "role": item.data.politicsWritingRole,
+      "order": item.data.politicsWritingOrder or 999,
+      "type": "Kolumni",
+      "date": (item.date | dateFormat),
+      "title": item.data.title,
+      "href": item.url,
+      "summary": item.data.politicsWritingSummary or item.data.description or ""
+    }) %}
+  {% endif %}
+{% endfor %}
+{% set sortedPoliticsWritingItems = politicsWritingItems | sort(false, false, "order") %}
+{% set featuredPoliticalWritings = [] %}
+{% set featuredHybridWritings = [] %}
+{% for item in sortedPoliticsWritingItems %}
+  {% if item.role == "political" %}
+    {% set _ = featuredPoliticalWritings.push(item) %}
+  {% elif item.role == "hybrid" %}
+    {% set _ = featuredHybridWritings.push(item) %}
+  {% endif %}
+{% endfor %}
 
 <section class="py-5 mb-0 bg-body-tertiary" id="vaalikaudet">
   <div class="site-shell">
@@ -390,9 +373,9 @@ templateEngineOverride: njk
             <div>
               <p class="pol-current-kicker mb-1">Valitut tekstit</p>
               <h3 class="pol-current-title">Poliittiset kirjoitukset</h3>
-              <p class="text-muted small mb-0">Kuusi kirjoitusta, joissa näkyvät sivistys, alueellinen yhdenvertaisuus ja valmistelun kriittinen tarkastelu.</p>
+              <p class="text-muted small mb-0">{{ featuredPoliticalWritings.length }} kirjoitusta, joissa poliittinen linja näkyy selvimmin sivistyksen, alueellisen yhdenvertaisuuden ja päätöksenteon valmistelun kysymyksissä.</p>
             </div>
-            <a href="/kynasta/" class="btn btn-outline-primary btn-sm">Koko kirjoitusarkisto</a>
+            <a href="/kynasta/?opinions=political#mielipiteet" class="btn btn-outline-primary btn-sm">Poliittiset mielipiteet</a>
           </div>
           <div class="pol-writing-list">
             {% for item in featuredPoliticalWritings %}
@@ -415,7 +398,7 @@ templateEngineOverride: njk
             <div>
               <p class="pol-current-kicker mb-1">Hybridit</p>
               <h3 class="pol-current-title">Asiantuntijuus politiikan tukena</h3>
-              <p class="text-muted small mb-0">Kolme tekstiä, joissa tutkimus, koulutus tai analyysi tukee suoraan poliittista kannanottoa.</p>
+              <p class="text-muted small mb-0">{{ featuredHybridWritings.length }} tekstiä, joissa tutkimus, koulutus tai analyysi tukee suoraan poliittista argumenttia.</p>
             </div>
           </div>
           <p class="pol-writing-note">Nämä eivät ole tutkimusprofiilin nostoja, vaan poliittisia tekstejä, joissa asiantuntijuus tekee vaikutuksista, vaihtoehdoista ja perusteluista näkyvämpiä.</p>
@@ -460,9 +443,9 @@ templateEngineOverride: njk
         <p class="mb-0">Politiikkasivu näyttää linjan. Kun haluat koko aineiston, löydät sen kirjoituksista, puheenvuoroista, aloitteista ja kaupungin kokousaineistoista.</p>
       </div>
       <div class="pol-archive-links">
-        <a href="/kynasta/" class="pol-archive-link">
-          <strong>Kaikki poliittiset kirjoitukset</strong>
-          <span>Kirjoitusten, puheiden ja kannanottojen kokonaisuus.</span>
+        <a href="/kynasta/?opinions=political#mielipiteet" class="pol-archive-link">
+          <strong>Poliittiset mielipiteet</strong>
+          <span>Kirjoitukset, joissa kunnallinen ja alueellinen linja näkyy selvimmin.</span>
         </a>
         <a href="/kynasta/#puheet" class="pol-archive-link">
           <strong>Puheenvuoroarkisto</strong>
@@ -471,6 +454,10 @@ templateEngineOverride: njk
         <a href="/kynasta/#aloitteet" class="pol-archive-link">
           <strong>Aloitearkisto</strong>
           <span>Kaikki valtuustoaloitteet vastauksineen ja taustoineen.</span>
+        </a>
+        <a href="/vaalikaudet/" class="pol-archive-link">
+          <strong>Vaalikaudet</strong>
+          <span>Luottamustoimet, puheenvuorot ja kirjoitukset vaalikausittain jäsennettynä.</span>
         </a>
         <a href="https://www.ouka.fi/valtuusto" target="_blank" rel="noopener noreferrer" class="pol-archive-link">
           <strong>Kokoukset ja pöytäkirjat</strong>

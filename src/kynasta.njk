@@ -1,30 +1,10 @@
 ---
 layout: base.njk
-title: Kirjoitukset ja puheet
-description: "Jari Larun kirjoitukset, valtuustopuheet, aloitteet, lausunnot ja julkaisut samassa arkistossa: mielipiteet, kolumnit, blogi, esitykset ja avoimet materiaalit."
+title: Kirjoitukset, puheet ja kannanotot
+description: "Jari Larun puheenvuorot, aloitteet, lausunnot, mielipidekirjoitukset, kolumnit ja blogikirjoitukset samassa näkymässä."
 permalink: /kynasta/
 translationKey: writings_index
 ---
-{% set uniqueMaterialKeys = [] %}
-{% for item in ((canva and canva.tableRows) or []) %}
-  {% set key = ((item.url or "") ~ "|" ~ (item.title or "")) | trim %}
-  {% if key != "|" and (uniqueMaterialKeys.indexOf(key) == -1) %}
-    {% set _ = (uniqueMaterialKeys.push(key), null) %}
-  {% endif %}
-{% endfor %}
-{% for item in (collections.presentations or []) %}
-  {% set key = (((item.data and item.data.url) or "") ~ "|" ~ ((item.data and item.data.title) or "")) | trim %}
-  {% if key != "|" and (uniqueMaterialKeys.indexOf(key) == -1) %}
-    {% set _ = (uniqueMaterialKeys.push(key), null) %}
-  {% endif %}
-{% endfor %}
-{% for item in ((finnaAoe and finnaAoe.rows) or []) %}
-  {% set key = ((item.url or "") ~ "|" ~ (item.title or "")) | trim %}
-  {% if key != "|" and (uniqueMaterialKeys.indexOf(key) == -1) %}
-    {% set _ = (uniqueMaterialKeys.push(key), null) %}
-  {% endif %}
-{% endfor %}
-{% set totalMaterialsCount = uniqueMaterialKeys | length %}
 {% set statementItems = [] %}
 {% for item in (collections.publications or []) %}
   {% if item.data.type == "lausunto" %}
@@ -34,7 +14,6 @@ translationKey: writings_index
 {% set latestSpeechHighlights = (collections.pub_puhe or []).slice(0, 3) %}
 {% set latestInitiativeHighlights = (collections.politics or []).slice(0, 3) %}
 {% set latestBlogHighlights = (collections.blog or []).slice(0, 3) %}
-{% set latestPresentationHighlights = (collections.presentations or []).slice(0, 2) %}
 {% set speechCount = (collections.pub_puhe or []) | length %}
 {% set initiativeCount = (collections.politics or []) | length %}
 {% set statementCount = statementItems | length %}
@@ -49,8 +28,8 @@ translationKey: writings_index
     <div class="row align-items-center g-4">
       <div class="col-lg-7">
         <p class="text-uppercase small text-muted mb-2">Kynästä</p>
-        <h1 class="display-6 fw-bold mb-2">Kirjoitukset, puheet ja julkaisut</h1>
-        <p class="text-muted mb-3">Kooste mielipidekirjoituksista, kolumneista, lausunnoista, aloitteista, puheista ja julkaisuista. Tämä sivu toimii sekä sisäänkäyntinä ajankohtaiseen sisältöön että koko aineiston arkistona.</p>
+        <h1 class="display-6 fw-bold mb-2">Kirjoitukset, puheet ja kannanotot</h1>
+        <p class="text-muted mb-3">Tämä sivu kokoaa oman kirjoittamiseni ja julkiset puheenvuoroni samaan paikkaan. Mukana ovat puheet, aloitteet, lausunnot, mielipidekirjoitukset, kolumnit ja blogi.</p>
         <div class="d-flex flex-wrap gap-2">
           <a class="nav-link" href="#puheet">
             Puheet <span class="nav-count">{{ speechCount }}</span>
@@ -64,9 +43,6 @@ translationKey: writings_index
           <a class="nav-link" href="#blogi">
             Kirjoitukset <span class="nav-count">{{ blogCount + opinionCount + columnCount + statementCount }}</span>
           </a>
-          <a class="nav-link" href="#esitykset">
-            Materiaalit <span class="nav-count">{{ totalMaterialsCount }}</span>
-          </a>
         </div>
       </div>
       <div class="col-lg-5">
@@ -74,8 +50,8 @@ translationKey: writings_index
           <p class="kynasta-hero-aside-kicker mb-2">Tältä sivulta löydät</p>
           <ul class="kynasta-hero-aside-list mb-0">
             <li>Puheet ja aloitteet, joilla olen osallistunut Oulun päätöksentekoon.</li>
-            <li>Kirjoitukset, mielipiteet, kolumnit ja lausunnot, joissa avaan näkemyksiäni pidemmin.</li>
-            <li>Esitykset, materiaalit ja julkaisut, joista näkyy työn tausta ja asiantuntijuus.</li>
+            <li>Lausunnot, mielipiteet ja kolumnit, joissa avaan näkemyksiäni julkisesti ja perustellen.</li>
+            <li>Blogikirjoitukset, joissa taustoitan ilmiöitä opetuksesta, teknologiasta ja yhteiskunnasta.</li>
           </ul>
         </aside>
       </div>
@@ -91,12 +67,12 @@ translationKey: writings_index
           <div>
             <p class="text-uppercase small text-muted mb-1">Aloita tästä</p>
             <h2 class="h3 mb-1">Nopeimmat reitit ajankohtaiseen aineistoon</h2>
-            <p class="text-muted mb-0">Jos etsit viimeisimpiä puheita, aloitteita tai kirjoituksia, nämä neljä näkymää vievät suoraan olennaiseen. Täysi arkisto löytyy niiden alta.</p>
+            <p class="text-muted mb-0">Jos etsit viimeisimpiä puheita, aloitteita tai kirjoituksia, nämä kolme näkymää vievät suoraan olennaiseen. Täysi arkisto löytyy niiden alta.</p>
           </div>
         </div>
       </div>
 
-      <div class="col-md-6 col-xl-3">
+      <div class="col-md-6 col-lg-4">
         <article class="card border-0 shadow-sm h-100 kynasta-entry-card kynasta-entry-card--puheet">
           <div class="card-body d-flex flex-column">
             <p class="kynasta-entry-kicker">Valtuustopuheet</p>
@@ -112,7 +88,7 @@ translationKey: writings_index
         </article>
       </div>
 
-      <div class="col-md-6 col-xl-3">
+      <div class="col-md-6 col-lg-4">
         <article class="card border-0 shadow-sm h-100 kynasta-entry-card kynasta-entry-card--aloitteet">
           <div class="card-body d-flex flex-column">
             <p class="kynasta-entry-kicker">Aloitteet</p>
@@ -128,7 +104,7 @@ translationKey: writings_index
         </article>
       </div>
 
-      <div class="col-md-6 col-xl-3">
+      <div class="col-md-6 col-lg-4">
         <article class="card border-0 shadow-sm h-100 kynasta-entry-card kynasta-entry-card--kirjoitukset">
           <div class="card-body d-flex flex-column">
             <p class="kynasta-entry-kicker">Kirjoitukset</p>
@@ -145,25 +121,6 @@ translationKey: writings_index
         </article>
       </div>
 
-      <div class="col-md-6 col-xl-3">
-        <article class="card border-0 shadow-sm h-100 kynasta-entry-card kynasta-entry-card--materiaalit">
-          <div class="card-body d-flex flex-column">
-            <p class="kynasta-entry-kicker">Avoin aineisto</p>
-            <h3 class="h5 mb-2">Materiaalit ja julkaisut</h3>
-            <p class="small text-muted mb-3">Esitykset, oppimateriaalit ja tieteelliset julkaisut kokoavat työn laajemman asiantuntijapuolen.</p>
-            <ul class="kynasta-entry-list mb-3">
-              {% for item in latestPresentationHighlights %}
-              <li><a href="{{ item.url }}">{{ item.data.title }}</a></li>
-              {% endfor %}
-            </ul>
-            <div class="small text-muted mb-3">{{ totalMaterialsCount }} materiaalia ja {{ researchfi.length }} tieteellistä julkaisua.</div>
-            <div class="d-flex flex-wrap gap-2 mt-auto">
-              <a href="#esitykset" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Materiaalit</a>
-              <a href="#julkaisut" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Julkaisut</a>
-            </div>
-          </div>
-        </article>
-      </div>
     </div>
   </div>
 </section>
@@ -190,22 +147,6 @@ translationKey: writings_index
               <div class="summary-kpi kpi-color-blogi p-3 rounded border border-start border-4 h-100">
                 <div class="summary-kpi-label">Blogi</div>
                 <div id="kpi-blogi" class="summary-kpi-value">0</div>
-              </div>
-            </a>
-          </div>
-          <div class="col-6 col-md-4 col-lg-2">
-            <a href="#esitykset" class="summary-kpi-link">
-              <div class="summary-kpi kpi-color-esitykset p-3 rounded border border-start border-4 h-100">
-                <div class="summary-kpi-label">Materiaalit</div>
-                <div id="kpi-esitykset" class="summary-kpi-value">0</div>
-              </div>
-            </a>
-          </div>
-          <div class="col-6 col-md-4 col-lg-2">
-            <a href="#julkaisut" class="summary-kpi-link">
-              <div class="summary-kpi kpi-color-julkaisut p-3 rounded border border-start border-4 h-100">
-                <div class="summary-kpi-label">Julkaisut</div>
-                <div id="kpi-julkaisut" class="summary-kpi-value">0</div>
               </div>
             </a>
           </div>
@@ -389,8 +330,40 @@ translationKey: writings_index
       </div>
       <div class="card-body p-0">
         <div class="px-3 pt-3 pb-0">
+          <div class="row g-3 mb-3">
+            <div class="col-md-6">
+              <button type="button"
+                      class="opinion-role-card w-100 text-start"
+                      data-opinion-role-card="political"
+                      aria-pressed="false">
+                <div class="d-flex align-items-start justify-content-between gap-3">
+                  <div>
+                    <p class="opinion-role-kicker mb-1">Poliittinen rooli</p>
+                    <h3 class="h6 mb-1">Poliittiset mielipiteet</h3>
+                    <p class="small text-muted mb-0">Kirjoitukset, joissa näkökulma liittyy vaaleihin, päätöksentekoon, palveluihin tai kunnalliseen vaikuttamiseen.</p>
+                  </div>
+                  <span class="opinion-role-count">{{ politicalOpinionCount }}</span>
+                </div>
+              </button>
+            </div>
+            <div class="col-md-6">
+              <button type="button"
+                      class="opinion-role-card w-100 text-start"
+                      data-opinion-role-card="expert"
+                      aria-pressed="false">
+                <div class="d-flex align-items-start justify-content-between gap-3">
+                  <div>
+                    <p class="opinion-role-kicker mb-1">Asiantuntijarooli</p>
+                    <h3 class="h6 mb-1">Asiantuntijamielipiteet</h3>
+                    <p class="small text-muted mb-0">Kirjoitukset, joissa painopiste on tutkimuksessa, opetuksessa, koulutuksessa tai laajemmassa yhteiskunnallisessa asiantuntijuudessa.</p>
+                  </div>
+                  <span class="opinion-role-count">{{ expertOpinionCount }}</span>
+                </div>
+              </button>
+            </div>
+          </div>
           <p class="small text-muted mb-3">
-            {{ politicalOpinionCount }} tekstiä on merkitty poliittisiksi ja {{ expertOpinionCount }} asiantuntijarooliin.
+            Tällä sivulla mielipidekirjoitukset voi lukea yhtenä kokonaisuutena tai rajata näkyviin vain poliittiset tai asiantuntijaroolista kirjoitetut tekstit.
             Sama kirjoitus voi kuulua molempiin ryhmiin.
           </p>
         </div>
@@ -403,7 +376,7 @@ translationKey: writings_index
                      placeholder="Hae otsikosta, tiivistelmästä, julkaisusta, kategorioista..." autocomplete="off">
             </div>
             <div class="col-md-3">
-              <label class="form-label small text-muted mb-1">Rajaa roolin mukaan</label>
+              <label class="form-label small text-muted mb-1">Näytä näkökulman mukaan</label>
               <div class="btn-group btn-group-sm d-flex flex-wrap" role="group" aria-label="Mielipiderooli">
                 <button type="button" class="btn btn-outline-secondary active" data-opinion-role="all">Kaikki</button>
                 <button type="button" class="btn btn-outline-secondary" data-opinion-role="political">Poliittiset</button>
@@ -762,218 +735,46 @@ translationKey: writings_index
 </section>
 
 {# Kerätään esitykset ja AOE-oppimateriaalit JSON-muotoon JS:ää varten #}
-<script id="esitykset-data" type="application/json">
-[
-  {% set canvaRows = (canva and canva.tableRows) or [] %}
-  {% set aoeRows = finnaAoe.rows or [] %}
-  {% for item in canvaRows %}
-  {
-    "title": {{ item.title | jsonSafe | safe }},
-    "date": {{ (item.date or "") | jsonSafe | safe }},
-    "formattedDate": {{ (item.date or "") | jsonSafe | safe }},
-    "description": {{ (item.description or "") | jsonSafe | safe }},
-    "url": {{ (item.url or "") | jsonSafe | safe }},
-    "thumbnail": {{ (item.thumbnail or "") | jsonSafe | safe }},
-    "categories": {{ (item.categories or []) | jsonSafe | safe }},
-    "keywords": {{ (item.categories or []) | jsonSafe | safe }},
-    "type": "Canva",
-    "source": {{ (item.source or "canva") | jsonSafe | safe }}
-  }{% if not loop.last or collections.presentations.length or aoeRows.length %},{% endif %}
-  {% endfor %}
-  {% for presentation in collections.presentations %}
-  {% set presentationDate = presentation.data.date or presentation.date %}
-  {
-    "title": {{ presentation.data.title | jsonSafe | safe }},
-    "date": {{ presentationDate | jsonSafe | safe }},
-    "formattedDate": "{{ presentationDate | dateFormat }}",
-    "description": {{ (presentation.data.description or (presentation.content | excerpt)) | jsonSafe | safe }},
-    "url": {{ (presentation.data.url or "") | jsonSafe | safe }},
-    "thumbnail": {{ (presentation.data.thumbnail or "") | jsonSafe | safe }},
-    "categories": {{ (presentation.data.categories or []) | jsonSafe | safe }},
-    "keywords": {{ (presentation.data.keywords or []) | jsonSafe | safe }},
-    "type": {{ (presentation.data.type or "Canva") | jsonSafe | safe }},
-    "source": {{ (presentation.data.source or "") | jsonSafe | safe }}
-  }{% if not loop.last or aoeRows.length %},{% endif %}
-  {% endfor %}
-  {% for item in aoeRows %}
-  {
-    "title": {{ item.title | jsonSafe | safe }},
-    "date": "{{ item.year }}-01-01",
-    "formattedDate": {{ item.year | jsonSafe | safe }},
-    "description": {{ (item.summary or "") | jsonSafe | safe }},
-    "url": {{ item.url | jsonSafe | safe }},
-    "thumbnail": {{ (item.image or "") | jsonSafe | safe }},
-    "categories": [],
-    "keywords": [],
-    "type": "AOE / Finna"
-  }{% if not loop.last %},{% endif %}
-  {% endfor %}
-]
-</script>
-
-<section id="esitykset">
+<section id="muut-aineistot" class="bg-body-tertiary">
   <div class="site-shell">
     <div class="card shadow-sm">
-      <div class="card-header bg-transparent d-flex align-items-center justify-content-between kynasta-section-header">
-        <h2 class="h4 mb-0"><i class="bi bi-book-fill me-2"></i>Esityksiä ja opetusmateriaaleja</h2>
-        <span class="badge kynasta-section-count">{{ totalMaterialsCount }}</span>
+      <div class="card-header bg-transparent">
+        <h2 class="h4 mb-1"><i class="bi bi-box-arrow-up-right me-2"></i>Muut aineistot sivustolla</h2>
+        <p class="small text-muted mb-0">Jos etsit esiintymisiä, mediahaastatteluja tai tutkimusjulkaisuja, ne löytyvät omista kokonaisuuksistaan.</p>
       </div>
-      <div class="card-body p-0">
-        <div class="p-3 bg-body-tertiary border-bottom">
-          <div class="row g-2 align-items-end">
-            <div class="col-md-9">
-              <label for="esitykset-search" class="form-label small text-muted mb-1">Hae materiaaleja</label>
-              <input type="search" id="esitykset-search" class="form-control form-control-sm"
-                     placeholder="Hae otsikosta, tiivistelmästä, avainsanoista tai sovelluksesta..." autocomplete="off">
-            </div>
-            <div class="col-md-3 d-flex justify-content-md-end gap-2">
-              <button id="esitykset-reset" class="btn btn-outline-secondary btn-sm w-100">
-                <i class="bi bi-x-circle me-1"></i>Tyhjennä
-              </button>
-            </div>
+      <div class="card-body">
+        <div class="row g-4">
+          <div class="col-md-4">
+            <article class="card border-0 shadow-sm h-100">
+              <div class="card-body d-flex flex-column">
+                <p class="kynasta-entry-kicker">Esiintyminen</p>
+                <h3 class="h5 mb-2">Esitykset ja materiaalit</h3>
+                <p class="small text-muted mb-3">Puheenvuorot, paneelit, videotallenteet, oppimateriaalit ja diasetit löytyvät omalta sivultaan.</p>
+                <a href="/esitykset/" class="btn btn-outline-secondary btn-sm rounded-pill px-3 mt-auto align-self-start">Siirry esityksiin</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-4">
+            <article class="card border-0 shadow-sm h-100">
+              <div class="card-body d-flex flex-column">
+                <p class="kynasta-entry-kicker">Ulkopuolinen näkyvyys</p>
+                <h3 class="h5 mb-2">Mediassa</h3>
+                <p class="small text-muted mb-3">Podcastit, haastattelut, lehtijutut ja muut mediaesiintymiset löytyvät erillisestä mediakokonaisuudesta.</p>
+                <a href="/mediassa/" class="btn btn-outline-secondary btn-sm rounded-pill px-3 mt-auto align-self-start">Siirry mediassa-sivulle</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-4">
+            <article class="card border-0 shadow-sm h-100">
+              <div class="card-body d-flex flex-column">
+                <p class="kynasta-entry-kicker">Tutkimus</p>
+                <h3 class="h5 mb-2">Julkaisut</h3>
+                <p class="small text-muted mb-3">Vertaisarvioidut artikkelit, konferenssijulkaisut ja muu tieteellinen tuotanto löytyvät julkaisuarkistosta.</p>
+                <a href="/julkaisut/" class="btn btn-outline-secondary btn-sm rounded-pill px-3 mt-auto align-self-start">Siirry julkaisuihin</a>
+              </div>
+            </article>
           </div>
         </div>
-
-        <div class="table-responsive">
-          <table class="table table-hover align-middle mb-0 pub-table esitykset-table">
-            <thead>
-              <tr>
-                <th class="sortable text-center" data-col="date" style="width:140px">
-                  Päivämäärä <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
-                </th>
-                <th style="min-width:170px">Esikatselu</th>
-                <th class="sortable" data-col="title" style="min-width:200px;max-width:260px;">
-                  Otsikko <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
-                </th>
-                <th style="min-width:220px">Tiivistelmä</th>
-                <th style="min-width:190px">Avainsanat</th>
-                <th style="min-width:170px" data-mobile-label="Sovellus">
-                  <div class="d-flex flex-column gap-1">
-                    <span>Sovellus</span>
-                    <select id="esitykset-application-filter" class="form-select form-select-sm" aria-label="Suodata sovelluksen mukaan">
-                      <option value="">Kaikki</option>
-                    </select>
-                  </div>
-                </th>
-                <th style="width:90px" class="text-center">Avaa</th>
-              </tr>
-            </thead>
-            <tbody id="esitykset-tbody">
-              <tr><td colspan="7" class="text-center text-muted py-4">Ladataan esityksiä...</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top">
-        <small id="esitykset-info" class="text-muted"></small>
-        <div class="d-flex align-items-center gap-3">
-          <nav aria-label="Sivutus">
-            <ul id="esitykset-pagination" class="pagination pagination-sm mb-0 flex-wrap site-pag"></ul>
-          </nav>
-          <a href="/esitykset/" class="btn btn-outline-primary btn-sm rounded-pill">Esitykset</a>
-          <a href="https://www.finna.fi/Search/Results?lookfor=Jari+Laru&type=Author&filter[]=format%3A%220%2FLearningMaterial%2F%22" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary btn-sm rounded-pill">AOE / Finna <i class="bi bi-arrow-up-right"></i></a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="modal fade" id="esitysPreviewModal" tabindex="-1" aria-labelledby="esitysPreviewModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title fs-6" id="esitysPreviewModalLabel">Esityksen kansi</h2>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Sulje"></button>
-      </div>
-      <div class="modal-body p-0">
-        <img id="esitysPreviewImage" src="" alt="" class="img-fluid w-100">
-      </div>
-    </div>
-  </div>
-</div>
-
-{# Kerätään kaikki Research.fi julkaisut JSON-muotoon JS:ää varten #}
-<script id="pub-data" type="application/json">
-[
-  {% for pub in researchfi %}
-  {
-    "title": {{ pub.title | jsonSafe | safe }},
-    "year": {{ (pub.year or 0) | jsonSafe | safe }},
-    "authors": {{ (pub.authors or "") | jsonSafe | safe }},
-    "journal": {{ (pub.journal or "") | jsonSafe | safe }},
-    "doi": {{ (pub.doi or "") | jsonSafe | safe }},
-    "url": {{ (pub.url or "") | jsonSafe | safe }},
-    "volume": {{ (pub.volume or "") | jsonSafe | safe }},
-    "issue": {{ (pub.issue or "") | jsonSafe | safe }},
-    "pages": {{ (pub.pages or "") | jsonSafe | safe }},
-    "type": {{ (pub.typeFi or "") | jsonSafe | safe }},
-    "typeCode": {{ (pub.typeCode or "") | jsonSafe | safe }}
-  }{% if not loop.last %},{% endif %}
-  {% endfor %}
-]
-</script>
-
-<section id="julkaisut" class="bg-body-tertiary">
-  <div class="site-shell">
-    <div class="card shadow-sm">
-      <div class="card-header bg-transparent d-flex align-items-center justify-content-between kynasta-section-header">
-        <h2 class="h4 mb-0"><i class="bi bi-journal-bookmark-fill me-2"></i>Tieteelliset julkaisut</h2>
-        <span class="badge kynasta-section-count">{{ researchfi.length }}</span>
-      </div>
-      <div class="card-body p-0">
-        {# ---- Suodatuspalkki ---- #}
-        <div class="p-3 bg-body-tertiary border-bottom">
-          <div class="row g-2 align-items-end">
-            <div class="col-md-5">
-              <label for="pub-search" class="form-label small text-muted mb-1">Hae julkaisua</label>
-              <input type="search" id="pub-search" class="form-control form-control-sm"
-                     placeholder="Otsikko, kirjoittaja tai julkaisu..." autocomplete="off">
-            </div>
-            <div class="col-md-3">
-              <label for="pub-year" class="form-label small text-muted mb-1">Vuosiluku</label>
-              <select id="pub-year" class="form-select form-select-sm">
-                <option value="">Kaikki vuodet</option>
-              </select>
-            </div>
-            <div class="col-md-4 d-flex justify-content-md-end gap-2">
-              <button id="pub-reset" class="btn btn-outline-secondary btn-sm">
-                <i class="bi bi-x-circle me-1"></i>Tyhjennä
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {# ---- Taulukko ---- #}
-        <div class="table-responsive">
-          <table class="table table-hover align-middle mb-0 pub-table">
-            <thead>
-              <tr>
-                <th class="sortable" data-col="authors" style="min-width:180px">
-                  Kirjoittajat <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
-                </th>
-                <th class="sortable text-center" data-col="year" style="width:90px">
-                  Vuosi <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
-                </th>
-                <th class="sortable" data-col="title" data-mobile-label="APA 7 -viite">
-                  Otsikko <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
-                </th>
-                <th class="sortable" data-col="journal" style="min-width:150px">
-                  Julkaisun nimi <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
-                </th>
-                <th style="width:110px" class="text-center">Toiminnot</th>
-              </tr>
-            </thead>
-            <tbody id="pub-tbody">
-              <tr><td colspan="5" class="text-center text-muted py-4">Ladataan julkaisuja...</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top">
-        <small id="pub-info" class="text-muted"></small>
-        <nav aria-label="Sivutus">
-          <ul id="pub-pagination" class="pagination pagination-sm mb-0 flex-wrap site-pag"></ul>
-        </nav>
       </div>
     </div>
   </div>
@@ -1099,9 +900,6 @@ section[id] {
 .kynasta-entry-card--kirjoitukset {
   border-top: 4px solid #6f42c1;
 }
-.kynasta-entry-card--materiaalit {
-  border-top: 4px solid var(--bs-info);
-}
 
 .kynasta-section-header {
   position: relative;
@@ -1128,6 +926,46 @@ section[id] {
 }
 html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
   background: rgba(15, 34, 56, 0.18);
+}
+
+.opinion-role-card {
+  border: 1px solid var(--bs-border-color);
+  border-radius: 1rem;
+  background: var(--bs-body-bg);
+  padding: 1rem 1.1rem;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+}
+
+.opinion-role-card:hover {
+  border-color: rgba(var(--bs-primary-rgb), 0.35);
+  box-shadow: 0 0.75rem 1.5rem rgba(15, 23, 42, 0.08);
+  transform: translateY(-1px);
+}
+
+.opinion-role-card.is-active {
+  border-color: rgba(var(--bs-primary-rgb), 0.55);
+  box-shadow: inset 0 0 0 1px rgba(var(--bs-primary-rgb), 0.18);
+}
+
+.opinion-role-kicker {
+  color: var(--bs-secondary-color);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.opinion-role-count {
+  flex: 0 0 auto;
+  min-width: 2.75rem;
+  padding: 0.45rem 0.7rem;
+  border-radius: 999px;
+  background: var(--bs-tertiary-bg);
+  border: 1px solid var(--bs-border-color);
+  color: var(--bs-emphasis-color);
+  font-weight: 700;
+  text-align: center;
+  line-height: 1;
 }
 
 /* ---- Column styles specific to kynasta tables ---- */
@@ -1282,59 +1120,6 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
     display: none !important;
   }
 
-  #julkaisut .pub-table td.col-authors,
-  #julkaisut .pub-table td.col-year,
-  #julkaisut .pub-table td.col-pub {
-    display: none !important;
-  }
-
-  #julkaisut .pub-table td.col-title {
-    padding-top: 0;
-  }
-
-  #julkaisut .pub-title-desktop {
-    display: none !important;
-  }
-
-  #julkaisut .pub-apa-mobile {
-    display: block;
-    font-size: 0.98rem;
-    line-height: 1.55;
-    font-weight: 400;
-    color: var(--bs-body-color);
-  }
-
-  #julkaisut .pub-apa-mobile .apa-journal,
-  #julkaisut .pub-apa-mobile .apa-volume {
-    font-style: italic;
-  }
-
-  #julkaisut .pub-apa-mobile .apa-url {
-    overflow-wrap: anywhere;
-    word-break: break-word;
-  }
-
-  #esitykset .card-footer,
-  #julkaisut .card-footer {
-    flex-direction: column;
-    align-items: stretch !important;
-  }
-
-  #esitykset .card-footer > .d-flex,
-  #esitykset .card-footer nav,
-  #julkaisut .card-footer nav {
-    width: 100%;
-  }
-
-  #esitykset .card-footer > .d-flex {
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  #esitykset .card-footer .btn {
-    flex: 1 1 auto;
-  }
-
 }
 </style>
 
@@ -1421,7 +1206,7 @@ function renderPaginationShared(ul, total, currentPage, onPageChange) {
 
 (function () {
   // Näytä taulukko-osiot tarkoituksellisessa lukujärjestyksessä riippumatta lähdekoodin lohkojärjestyksestä.
-  const sectionOrder = ['puheet', 'aloitteet', 'blogi', 'mielipiteet', 'lausunnot', 'kolumnit', 'esitykset', 'julkaisut'];
+  const sectionOrder = ['puheet', 'aloitteet', 'blogi', 'mielipiteet', 'lausunnot', 'kolumnit'];
   const sections = sectionOrder
     .map(id => document.getElementById(id))
     .filter(Boolean);
@@ -1528,17 +1313,6 @@ function renderPaginationShared(ul, total, currentPage, onPageChange) {
   const aloitteet = parseJson('aloitteet-data');
   const puheet = parseJson('puheet-data');
   const blogi = parseJson('blog-data');
-  const esitykset = parseJson('esitykset-data')
-    .map(normalizeSlidesharePresentation)
-    .filter((item, index, arr) => {
-      const key = `${String(item?.url || '').trim()}|${String(item?.title || '').trim()}`;
-      if (!key || key === '|') return false;
-      return arr.findIndex((candidate) => {
-        const candidateKey = `${String(candidate?.url || '').trim()}|${String(candidate?.title || '').trim()}`;
-        return candidateKey === key;
-      }) === index;
-    });
-  const julkaisut = parseJson('pub-data');
 
   const counts = {
     mielipiteet: mielipiteet.length,
@@ -1546,9 +1320,7 @@ function renderPaginationShared(ul, total, currentPage, onPageChange) {
     kolumnit: kolumnit.length,
     aloitteet: aloitteet.length,
     puheet: puheet.length,
-    blogi: blogi.length,
-    esitykset: esitykset.length,
-    julkaisut: julkaisut.length
+    blogi: blogi.length
   };
 
   const setText = (id, value) => {
@@ -1561,16 +1333,14 @@ function renderPaginationShared(ul, total, currentPage, onPageChange) {
   setText('kpi-aloitteet', counts.aloitteet);
   setText('kpi-puheet', counts.puheet);
   setText('kpi-blogi', counts.blogi);
-  setText('kpi-esitykset', counts.esitykset);
-  setText('kpi-julkaisut', counts.julkaisut);
 
   const yearly = {};
   const addYear = (arr, key) => {
     arr.forEach((item) => {
       const y = key === 'year' ? Number(item.year) : yearFromDate(item.date);
       if (!y || y < 1990 || y > 2100) return;
-      if (!yearly[y]) yearly[y] = { mielipiteet: 0, lausunnot: 0, kolumnit: 0, aloitteet: 0, puheet: 0, blogi: 0, esitykset: 0, julkaisut: 0 };
-      yearly[y][key === 'year' ? 'julkaisut' : key] += 1;
+      if (!yearly[y]) yearly[y] = { mielipiteet: 0, lausunnot: 0, kolumnit: 0, aloitteet: 0, puheet: 0, blogi: 0 };
+      yearly[y][key] += 1;
     });
   };
 
@@ -1580,23 +1350,19 @@ function renderPaginationShared(ul, total, currentPage, onPageChange) {
   addYear(aloitteet, 'aloitteet');
   addYear(puheet, 'puheet');
   addYear(blogi, 'blogi');
-  addYear(esitykset, 'esitykset');
-  addYear(julkaisut, 'year');
 
   const years = Object.keys(yearly).map(Number).sort((a, b) => a - b);
 
-  const labels = ['Aloitteet', 'Blogi', 'Esitykset', 'Julkaisut', 'Kolumnit', 'Lausunnot', 'Mielipiteet', 'Puheet'];
+  const labels = ['Aloitteet', 'Blogi', 'Kolumnit', 'Lausunnot', 'Mielipiteet', 'Puheet'];
   const values = [
     counts.aloitteet,
     counts.blogi,
-    counts.esitykset,
-    counts.julkaisut,
     counts.kolumnit,
     counts.lausunnot,
     counts.mielipiteet,
     counts.puheet
   ];
-  const palette = ['#fd7e14', '#6610f2', '#0dcaf0', '#198754', '#20c997', '#495057', '#0d6efd', '#dc3545'];
+  const palette = ['#fd7e14', '#6610f2', '#20c997', '#495057', '#0d6efd', '#dc3545'];
 
   function drawCharts() {
     if (typeof Chart === 'undefined') return false;
@@ -1632,12 +1398,10 @@ function renderPaginationShared(ul, total, currentPage, onPageChange) {
           datasets: [
             makeSeries('Aloitteet', palette[0], 'aloitteet'),
             makeSeries('Blogi', palette[1], 'blogi'),
-            makeSeries('Esitykset', palette[2], 'esitykset'),
-            makeSeries('Julkaisut', palette[3], 'julkaisut'),
-            makeSeries('Kolumnit', palette[4], 'kolumnit'),
-            makeSeries('Lausunnot', palette[5], 'lausunnot'),
-            makeSeries('Mielipiteet', palette[6], 'mielipiteet'),
-            makeSeries('Puheet', palette[7], 'puheet')
+            makeSeries('Kolumnit', palette[2], 'kolumnit'),
+            makeSeries('Lausunnot', palette[3], 'lausunnot'),
+            makeSeries('Mielipiteet', palette[4], 'mielipiteet'),
+            makeSeries('Puheet', palette[5], 'puheet')
           ]
         },
         options: {
@@ -2946,6 +2710,7 @@ function renderPaginationShared(ul, total, currentPage, onPageChange) {
   const mielipiteetInfo = document.getElementById('mielipiteet-info');
   const mielipiteetPagUl = document.getElementById('mielipiteet-pagination');
   const opinionRoleButtons = Array.from(document.querySelectorAll('[data-opinion-role]'));
+  const opinionRoleCards = Array.from(document.querySelectorAll('[data-opinion-role-card]'));
 
   function sortMielipiteetArray(data) {
     return [...data].sort((a, b) => {
@@ -2965,6 +2730,11 @@ function renderPaginationShared(ul, total, currentPage, onPageChange) {
       const isActive = btn.dataset.opinionRole === selectedOpinionRole;
       btn.classList.toggle('active', isActive);
       btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
+    opinionRoleCards.forEach((card) => {
+      const isActive = card.dataset.opinionRoleCard === selectedOpinionRole;
+      card.classList.toggle('is-active', isActive);
+      card.setAttribute('aria-pressed', isActive ? 'true' : 'false');
     });
   }
 
@@ -3082,6 +2852,13 @@ function renderPaginationShared(ul, total, currentPage, onPageChange) {
   opinionRoleButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
       selectedOpinionRole = btn.dataset.opinionRole || 'all';
+      applyMielipiteetFilters();
+    });
+  });
+
+  opinionRoleCards.forEach((card) => {
+    card.addEventListener('click', () => {
+      selectedOpinionRole = card.dataset.opinionRoleCard || 'all';
       applyMielipiteetFilters();
     });
   });
