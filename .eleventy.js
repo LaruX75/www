@@ -15,6 +15,7 @@ const SUPPORTED_LANGS = ["fi", "en"];
 const shouldCheckExternalLinks = process.env.CHECK_EXTERNAL_LINKS === "true";
 const shouldGenerateOgImages = process.env.DISABLE_OG_IMAGES !== "true";
 const SITE_ORIGIN = process.env.SITE_ORIGIN || "https://www.jarilaru.fi";
+const DEFAULT_OUTPUT_DIR = "_site";
 const LINK_REDIRECT_ALLOWLIST = [
   /^https?:\/\/(dx\.)?doi\.org\/.+/i
 ];
@@ -110,6 +111,16 @@ function isAllowedRedirect(url) {
   return LINK_REDIRECT_ALLOWLIST.some((pattern) => pattern.test(String(url || "")));
 }
 
+function resolveOutputDir(event) {
+  const configuredOutput =
+    event?.directories?.output ||
+    event?.dir?.output ||
+    DEFAULT_OUTPUT_DIR;
+  return path.isAbsolute(configuredOutput)
+    ? configuredOutput
+    : path.join(process.cwd(), configuredOutput);
+}
+
 function writeExternalLinkReport({ brokenLinks, forbiddenLinks, redirectLinks, allowedRedirects }) {
   const report = {
     generatedAt: new Date().toISOString(),
@@ -128,7 +139,7 @@ function writeExternalLinkReport({ brokenLinks, forbiddenLinks, redirectLinks, a
     allowlistedRedirects: allowedRedirects
   };
 
-  const reportDir = path.join(process.cwd(), "_site", "reports");
+  const reportDir = path.join(process.cwd(), DEFAULT_OUTPUT_DIR, "reports");
   const reportPath = path.join(reportDir, "external-links-report.json");
   fs.mkdirSync(reportDir, { recursive: true });
   fs.writeFileSync(reportPath, `${JSON.stringify(report, null, 2)}\n`, "utf8");
@@ -161,9 +172,9 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.setWatchJavaScriptDependencies(false);
 
   // Ensure all generated HTML pages have external iframe consent wrappers.
-  // Also copy persisted OG image cache to _site/og-images/ when OG generation is enabled.
-  eleventyConfig.on("eleventy.after", () => {
-    const outputDir = path.join(process.cwd(), "_site");
+  // Also copy persisted OG image cache to the active output directory when OG generation is enabled.
+  eleventyConfig.on("eleventy.after", (event = {}) => {
+    const outputDir = resolveOutputDir(event);
     const htmlFiles = walkHtmlFiles(outputDir);
     htmlFiles.forEach((filePath) => {
       const original = fs.readFileSync(filePath, "utf8");
@@ -175,7 +186,7 @@ module.exports = function (eleventyConfig) {
 
     if (shouldGenerateOgImages) {
       const ogCacheDir = path.join(process.cwd(), "og-cache");
-      const ogSiteDir = path.join(process.cwd(), "_site", "og-images");
+      const ogSiteDir = path.join(outputDir, "og-images");
       if (fs.existsSync(ogCacheDir)) {
         fs.mkdirSync(ogSiteDir, { recursive: true });
         for (const file of fs.readdirSync(ogCacheDir)) {
@@ -324,7 +335,7 @@ module.exports = function (eleventyConfig) {
     pathPrefix: process.env.ELEVENTY_PATH_PREFIX || "/",
     dir: {
       input: "src",
-      output: "_site",
+      output: DEFAULT_OUTPUT_DIR,
       includes: "_includes",
       data: "_data"
     },

@@ -245,52 +245,30 @@ templateEngineOverride: njk
       <h2 class="ylwork-section-title">Tuoreet kirjoitukset, lausunnot, esitykset ja julkaisut</h2>
       <p class="ylwork-section-lead mb-0">Nostot päivittyvät suoraan aineistosta, joten tässä näkyy, mitä työn alla on juuri nyt ja miten opetus, opettajankoulutus ja asiantuntijatyö liittyvät toisiinsa.</p>
     </div>
-    <div class="ylwork-live-layout">
-      <article class="ylwork-live-card ylwork-live-card--primary">
-        <div class="ylwork-live-head">
-          <p class="ylwork-trust-kicker">Asiantuntijatyö</p>
-          <h3 class="ylwork-live-title">Asiantuntijalausunnot</h3>
-          <p class="ylwork-live-lead">Tässä näkyy suorin reitti siitä, miten tutkimus, opettajankoulutus ja käytännön kehittäminen kääntyvät kannoiksi opetuksesta, tekoälystä ja koulutuksen toimeenpanosta.</p>
-        </div>
-        {% if featuredStatement %}
-        <article class="ylwork-live-feature">
-          <div class="ylwork-live-meta">
-            <span class="ylwork-live-type">Lausunto</span>
-            <span class="ylwork-live-date">{{ featuredStatement.date | dateFormat }}</span>
+    <div class="ylwork-live-stack">
+      <div class="ylwork-live-layout">
+        <article class="ylwork-live-card ylwork-live-card--primary">
+          <div class="ylwork-live-head">
+            <p class="ylwork-trust-kicker">Asiantuntijatyö</p>
+            <h3 class="ylwork-live-title">Asiantuntijalausunnot</h3>
+            <p class="ylwork-live-lead">Tässä näkyy suorin reitti siitä, miten tutkimus, opettajankoulutus ja käytännön kehittäminen kääntyvät kannoiksi opetuksesta, tekoälystä ja koulutuksen toimeenpanosta.</p>
           </div>
-          <h4 class="ylwork-live-feature-title"><a href="{{ featuredStatement.data.url or featuredStatement.url }}">{{ featuredStatement.data.title }}</a></h4>
-          <p class="ylwork-live-feature-summary mb-0">{{ featuredStatement.data.description or (featuredStatement.templateContent | excerpt) }}</p>
-        </article>
-        {% endif %}
-        {% if supportingStatements.length %}
-        <div class="ylwork-live-list ylwork-live-list--supporting">
-          {% for item in supportingStatements %}
-          <article class="ylwork-live-item">
+          {% if featuredStatement %}
+          <article class="ylwork-live-feature">
             <div class="ylwork-live-meta">
               <span class="ylwork-live-type">Lausunto</span>
-              <span class="ylwork-live-date">{{ item.date | dateFormat }}</span>
+              <span class="ylwork-live-date">{{ featuredStatement.date | dateFormat }}</span>
             </div>
-            <h4 class="ylwork-live-item-title"><a href="{{ item.data.url or item.url }}">{{ item.data.title }}</a></h4>
-            <p class="ylwork-live-summary mb-0">{{ item.data.description or (item.templateContent | excerpt) }}</p>
+            <h4 class="ylwork-live-feature-title"><a href="{{ featuredStatement.data.url or featuredStatement.url }}">{{ featuredStatement.data.title }}</a></h4>
+            <p class="ylwork-live-feature-summary mb-0">{{ featuredStatement.data.description or (featuredStatement.templateContent | excerpt) }}</p>
           </article>
-          {% endfor %}
-        </div>
-        {% endif %}
-        <a href="/kynasta/#lausunnot" class="ylwork-card-link">Kaikki lausunnot <span aria-hidden="true">→</span></a>
-      </article>
-
-      <div class="ylwork-live-side">
-        <article class="ylwork-live-card ylwork-live-card--compact">
-          <div class="ylwork-live-head">
-            <p class="ylwork-trust-kicker">Opetus ja koulutukset</p>
-            <h3 class="ylwork-live-title">Tuoreimmat esitykset ja materiaalit</h3>
-            <p class="ylwork-live-lead">Koulutuksia, luentoja ja avoimia materiaaleja, joissa tutkimus muuttuu käytännöksi.</p>
-          </div>
-          <div class="ylwork-live-list">
-            {% for item in latestWorkPresentations %}
+          {% endif %}
+          {% if supportingStatements.length %}
+          <div class="ylwork-live-list ylwork-live-list--supporting">
+            {% for item in supportingStatements %}
             <article class="ylwork-live-item">
               <div class="ylwork-live-meta">
-                <span class="ylwork-live-type">Esitys</span>
+                <span class="ylwork-live-type">Lausunto</span>
                 <span class="ylwork-live-date">{{ item.date | dateFormat }}</span>
               </div>
               <h4 class="ylwork-live-item-title"><a href="{{ item.data.url or item.url }}">{{ item.data.title }}</a></h4>
@@ -298,38 +276,62 @@ templateEngineOverride: njk
             </article>
             {% endfor %}
           </div>
-          <a href="/esitykset/" class="ylwork-card-link">Kaikki esitykset ja materiaalit <span aria-hidden="true">→</span></a>
+          {% endif %}
+          <a href="/kynasta/#lausunnot" class="ylwork-card-link">Kaikki lausunnot <span aria-hidden="true">→</span></a>
         </article>
 
-        <article class="ylwork-live-card ylwork-live-card--compact">
-          <div class="ylwork-live-head">
-            <p class="ylwork-trust-kicker">Tutkimus</p>
-            <h3 class="ylwork-live-title">Tuore tutkimusnäyttö</h3>
-            <p class="ylwork-live-lead">Viimeisimmät julkaisut näyttävät, mihin tutkimus juuri nyt suuntautuu.</p>
-          </div>
-          <div class="ylwork-live-list">
-            {% for pub in latestWorkPublications %}
-            <article class="ylwork-live-item">
-              <div class="ylwork-live-meta">
-                <span class="ylwork-live-type">{{ pub.typeShort or "Julkaisu" }}</span>
-                <span class="ylwork-live-date">{{ pub.year or "" }}</span>
-              </div>
-              <h4 class="ylwork-live-item-title">
-                {% if pub.url %}
-                <a href="{{ pub.url }}" target="_blank" rel="noopener noreferrer">{{ pub.title }}</a>
-                {% else %}
-                {{ pub.title }}
-                {% endif %}
-              </h4>
-              <p class="ylwork-live-summary mb-0">{% if pub.journal %}{{ pub.journal }}{% elseif pub.publisher %}{{ pub.publisher }}{% else %}Julkaisu tutkimusprofiilista.{% endif %}</p>
-            </article>
-            {% endfor %}
-          </div>
-          <a href="/julkaisut/" class="ylwork-card-link">Kaikki julkaisut <span aria-hidden="true">→</span></a>
-        </article>
+        <div class="ylwork-live-side">
+          <article class="ylwork-live-card ylwork-live-card--compact">
+            <div class="ylwork-live-head">
+              <p class="ylwork-trust-kicker">Opetus ja koulutukset</p>
+              <h3 class="ylwork-live-title">Tuoreimmat esitykset ja materiaalit</h3>
+              <p class="ylwork-live-lead">Koulutuksia, luentoja ja avoimia materiaaleja, joissa tutkimus muuttuu käytännöksi.</p>
+            </div>
+            <div class="ylwork-live-list">
+              {% for item in latestWorkPresentations %}
+              <article class="ylwork-live-item">
+                <div class="ylwork-live-meta">
+                  <span class="ylwork-live-type">Esitys</span>
+                  <span class="ylwork-live-date">{{ item.date | dateFormat }}</span>
+                </div>
+                <h4 class="ylwork-live-item-title"><a href="{{ item.data.url or item.url }}">{{ item.data.title }}</a></h4>
+                <p class="ylwork-live-summary mb-0">{{ item.data.description or (item.templateContent | excerpt) }}</p>
+              </article>
+              {% endfor %}
+            </div>
+            <a href="/esitykset/" class="ylwork-card-link">Kaikki esitykset ja materiaalit <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="ylwork-live-card ylwork-live-card--compact ylwork-live-card--muted">
+            <div class="ylwork-live-head">
+              <p class="ylwork-trust-kicker">Tutkimus</p>
+              <h3 class="ylwork-live-title">Tuore tutkimusnäyttö</h3>
+              <p class="ylwork-live-lead">Viimeisimmät julkaisut näyttävät, mihin tutkimus juuri nyt suuntautuu.</p>
+            </div>
+            <div class="ylwork-live-list">
+              {% for pub in latestWorkPublications %}
+              <article class="ylwork-live-item">
+                <div class="ylwork-live-meta">
+                  <span class="ylwork-live-type">{{ pub.typeShort or "Julkaisu" }}</span>
+                  <span class="ylwork-live-date">{{ pub.year or "" }}</span>
+                </div>
+                <h4 class="ylwork-live-item-title">
+                  {% if pub.url %}
+                  <a href="{{ pub.url }}" target="_blank" rel="noopener noreferrer">{{ pub.title }}</a>
+                  {% else %}
+                  {{ pub.title }}
+                  {% endif %}
+                </h4>
+                <p class="ylwork-live-summary mb-0">{% if pub.journal %}{{ pub.journal }}{% elseif pub.publisher %}{{ pub.publisher }}{% else %}Julkaisu tutkimusprofiilista.{% endif %}</p>
+              </article>
+              {% endfor %}
+            </div>
+            <a href="/julkaisut/" class="ylwork-card-link">Kaikki julkaisut <span aria-hidden="true">→</span></a>
+          </article>
+        </div>
       </div>
 
-      <article class="ylwork-live-card ylwork-live-card--wide">
+      <article class="ylwork-live-card ylwork-live-card--support">
         <div class="ylwork-live-head">
           <p class="ylwork-trust-kicker">Kirjoitukset</p>
           <h3 class="ylwork-live-title">Asiantuntijamielipiteet</h3>
@@ -715,6 +717,10 @@ templateEngineOverride: njk
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.2rem;
   }
+  .ylwork-live-stack {
+    display: grid;
+    gap: 1rem;
+  }
   .ylwork-live-layout {
     display: grid;
     grid-template-columns: minmax(0, 1.45fr) minmax(17rem, 0.9fr);
@@ -738,8 +744,15 @@ templateEngineOverride: njk
   .ylwork-live-card--primary {
     background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(240,246,255,0.96));
   }
-  .ylwork-live-card--wide {
-    grid-column: 1 / -1;
+  .ylwork-live-card--muted {
+    background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(247,249,252,0.96));
+  }
+  .ylwork-live-card--support {
+    gap: 0.85rem;
+    padding-top: 1.2rem;
+    padding-bottom: 1.2rem;
+    background: linear-gradient(180deg, rgba(252,253,255,0.98), rgba(245,248,252,0.98));
+    box-shadow: 0 0.75rem 1.8rem rgba(19, 43, 70, 0.06);
   }
   .ylwork-live-feature {
     display: grid;
@@ -790,6 +803,9 @@ templateEngineOverride: njk
   .ylwork-live-list--split {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.9rem 1.1rem;
+  }
+  .ylwork-live-card--support .ylwork-live-item {
+    padding-top: 0.8rem;
   }
   .ylwork-live-item {
     display: grid;
@@ -985,6 +1001,13 @@ templateEngineOverride: njk
   }
   [data-bs-theme="dark"] .ylwork-live-card--primary {
     background: linear-gradient(180deg, rgba(20, 33, 52, 0.96), rgba(14, 27, 44, 0.98));
+  }
+  [data-bs-theme="dark"] .ylwork-live-card--muted {
+    background: linear-gradient(180deg, rgba(17, 29, 45, 0.92), rgba(14, 24, 38, 0.96));
+  }
+  [data-bs-theme="dark"] .ylwork-live-card--support {
+    background: linear-gradient(180deg, rgba(16, 28, 43, 0.94), rgba(12, 22, 35, 0.98));
+    box-shadow: 0 0.8rem 1.8rem rgba(0, 0, 0, 0.2);
   }
   [data-bs-theme="dark"] .ylwork-live-feature {
     background: rgba(255, 255, 255, 0.05);
