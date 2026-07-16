@@ -33,7 +33,7 @@ module.exports = {
           key: "media",
           title: "Mediassa",
           url: "/mediassa/",
-          parent: "me",
+          parent: "writings",
           order: 25
         }
       }
@@ -300,13 +300,6 @@ module.exports = {
               icon: "bi bi-file-earmark-person me-2",
               menuLink: true,
               description: "Koulutus, kokemus ja keskeiset akateemiset meriitit."
-            },
-            {
-              title: "Mediassa",
-              href: "/mediassa/",
-              icon: "bi bi-mic me-2",
-              menuLink: true,
-              description: "Podcastit, haastattelut, lehtijutut ja muut mediaesiintymiset."
             },
             {
               title: "Palkinnot",
@@ -645,32 +638,31 @@ module.exports = {
       groupHeading: "Kynästä",
       contentColumns: [
         {
-          heading: "Poliittinen vaikuttaminen",
+          heading: "Omat tekstit ja avaukset",
           links: [
             { title: "Puheenvuorot", href: "/kynasta/#puheet", icon: "bi bi-mic me-2", countKey: "pub_puhe", description: "Valtuustossa ja tapahtumissa pidettyjä puheenvuoroja." },
             { title: "Aloitteet", href: "/kynasta/#aloitteet", icon: "bi bi-megaphone me-2", countKey: "politics", description: "Valtuustoaloitteet ja muut kirjalliset avaukset päätöksentekoon." },
-            { title: "Poliittiset mielipiteet", href: "/kynasta/?opinions=political#mielipiteet", icon: "bi bi-chat-left-quote me-2", countData: "publications_political_opinions", description: "Mielipidekirjoitukset, joissa näkökulma on selvästi poliittinen tai kunnalliseen päätöksentekoon liittyvä." }
+            { title: "Lausunnot", href: "/kynasta/#lausunnot", icon: "bi bi-file-earmark-text me-2", countData: "publications_statements", description: "Lausuntopalvelussa ja muissa valmisteluprosesseissa annetut asiantuntijalausunnot." }
           ]
         },
         {
           heading: "Kirjoitukset ja kannanotot",
           links: [
-            { title: "Lausunnot", href: "/kynasta/#lausunnot", icon: "bi bi-file-earmark-text me-2", countData: "publications_statements", description: "Lausuntopalvelussa ja muissa valmisteluprosesseissa annetut asiantuntijalausunnot." },
-            { title: "Kolumnit", href: "/kynasta/#kolumnit", icon: "bi bi-journal-richtext me-2", countKey: "pub_kolumni", description: "Taustoittavia ja esseemäisiä tekstejä opetuksesta, yhteiskunnasta ja ilmiöistä." },
+            { title: "Poliittiset mielipiteet", href: "/kynasta/?opinions=political#mielipiteet", icon: "bi bi-chat-left-quote me-2", countData: "publications_political_opinions", description: "Mielipidekirjoitukset, joissa näkökulma on selvästi poliittinen tai kunnalliseen päätöksentekoon liittyvä." },
             { title: "Asiantuntijamielipiteet", href: "/kynasta/?opinions=expert#mielipiteet", icon: "bi bi-chat-text me-2", countData: "publications_expert_opinions", description: "Mielipidekirjoitukset, joissa painopiste on asiantuntijuudessa, tutkimuksessa tai opetuksen kehittämisessä." },
+            { title: "Kolumnit", href: "/kynasta/#kolumnit", icon: "bi bi-journal-richtext me-2", countKey: "pub_kolumni", description: "Taustoittavia ja esseemäisiä tekstejä opetuksesta, yhteiskunnasta ja ilmiöistä." },
             { title: "Blogi", href: "/blogi/", icon: "bi bi-pen me-2", countKey: "blog", description: "Ajankohtaiset kirjoitukset opetuksesta, teknologiasta ja yhteiskunnasta." }
           ]
+        },
+        {
+          heading: "Tutkimus ja esiintymiset",
+          links: [
+            { title: "Tieteelliset julkaisut", href: "/julkaisut/", icon: "bi bi-journal-text me-2", countData: "researchfi_total", description: "Tutkimusjulkaisut, artikkelit ja tieteellinen tuotanto." },
+            { title: "Esitykset ja opetusmateriaalit", href: "/esitykset/", icon: "bi bi-easel2 me-2", countKey: "presentations", description: "Puheenvuoroja, koulutussisältöjä ja avoimia oppimateriaaleja." },
+            { title: "Mediassa", href: "/mediassa/", icon: "bi bi-camera-video me-2", description: "Haastattelut, podcastit ja muut mediaesiintymiset." }
+          ]
         }
-      ],
-      seeAlso: {
-        heading: "Muut sisältöalueet",
-        subheading: "Eri logiikalla jäsentyvät aineistot löytyvät omilta sivuiltaan.",
-        links: [
-          { title: "Mediassa", href: "/mediassa/", icon: "bi bi-camera-video me-2", description: "Haastattelut, podcastit ja muut mediaesiintymiset." },
-          { title: "Esitykset", href: "/esitykset/", icon: "bi bi-easel2 me-2", description: "Puheenvuoroja, koulutussisältöjä ja avoimia oppimateriaaleja." },
-          { title: "Julkaisut", href: "/julkaisut/", icon: "bi bi-journal-text me-2", description: "Tutkimusjulkaisut, artikkelit ja tieteellinen tuotanto." }
-        ]
-      }
+      ]
     },
     en: {
       heading: "Writings, Speeches, and Public Commentary",
@@ -678,31 +670,31 @@ module.exports = {
       groupHeading: "Writings",
       contentColumns: [
         {
-          heading: "Political work",
+          heading: "Texts and public openings",
           links: [
             { title: "Speeches", href: "/en/writings/#puheet", icon: "bi bi-mic me-2", countKey: "pub_puhe", description: "Public speeches and council statements in one archive." },
             { title: "Initiatives", href: "/en/writings/#aloitteet", icon: "bi bi-megaphone me-2", countKey: "politics", description: "Council initiatives and concrete proposals in local politics." },
-            { title: "Political opinions", href: "/en/writings/?opinions=political#mielipiteet", icon: "bi bi-chat-left-quote me-2", countData: "publications_political_opinions", description: "Opinion pieces rooted in political work, local governance, and public decision-making." }
+            { title: "Statements", href: "/en/writings/#lausunnot", icon: "bi bi-file-earmark-text me-2", countData: "publications_statements", description: "Expert statements submitted through public consultation and preparation processes." }
           ]
         },
         {
           heading: "Writing and commentary",
           links: [
-            { title: "Columns", href: "/en/writings/#kolumnit", icon: "bi bi-journal-richtext me-2", countKey: "pub_kolumni", description: "Long-form texts on education, society, and public questions." },
+            { title: "Political opinions", href: "/en/writings/?opinions=political#mielipiteet", icon: "bi bi-chat-left-quote me-2", countData: "publications_political_opinions", description: "Opinion pieces rooted in political work, local governance, and public decision-making." },
             { title: "Expert opinions", href: "/en/writings/?opinions=expert#mielipiteet", icon: "bi bi-chat-text me-2", countData: "publications_expert_opinions", description: "Opinion pieces framed primarily through expertise, research, or educational development." },
+            { title: "Columns", href: "/en/writings/#kolumnit", icon: "bi bi-journal-richtext me-2", countKey: "pub_kolumni", description: "Long-form texts on education, society, and public questions." },
             { title: "Blog", href: "/en/blog/", icon: "bi bi-pen me-2", countKey: "blog", description: "Posts on education, technology, and public life themes." }
           ]
+        },
+        {
+          heading: "Research and appearances",
+          links: [
+            { title: "Scientific publications", href: "/en/publications/", icon: "bi bi-journal-text me-2", countData: "researchfi_total", description: "Research outputs, articles, and academic publishing." },
+            { title: "Presentations and materials", href: "/en/presentations/", icon: "bi bi-easel2 me-2", countKey: "presentations", description: "Talks, keynote materials, and open learning resources." },
+            { title: "In the media", href: "/mediassa/", icon: "bi bi-camera-video me-2", description: "Interviews, podcasts, and other media appearances." }
+          ]
         }
-      ],
-      seeAlso: {
-        heading: "Other content areas",
-        subheading: "Material organised by a different logic lives on its own pages.",
-        links: [
-          { title: "In the media", href: "/mediassa/", icon: "bi bi-camera-video me-2", description: "Interviews, podcasts, and other media appearances." },
-          { title: "Presentations", href: "/en/presentations/", icon: "bi bi-easel2 me-2", description: "Talks, keynote materials, and open learning resources." },
-          { title: "Publications", href: "/en/publications/", icon: "bi bi-journal-text me-2", description: "Research outputs, articles, and academic publishing." }
-        ]
-      }
+      ]
     }
   },
   megaMenuWork: {

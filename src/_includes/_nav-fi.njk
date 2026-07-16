@@ -33,7 +33,7 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          {{ megaNavTrigger(navMe.url or '/tietoa/', navMe.title or 'Minä', navMe.icon or 'bi bi-person-fill', page.url and ('/tietoa/' in page.url or '/autolomat/' in page.url or '/cv/' in page.url or '/mediassa/' in page.url or '/portfolio/' in page.url or '/kouluttaja/' in page.url or '/puhuja/' in page.url or '/larux-tmi/' in page.url or '/yritys/' in page.url), 'megaMenuMeFi', 'megaToggleMeFi', openSubmenuLabel) }}
+          {{ megaNavTrigger(navMe.url or '/tietoa/', navMe.title or 'Minä', navMe.icon or 'bi bi-person-fill', page.url and ('/tietoa/' in page.url or '/autolomat/' in page.url or '/cv/' in page.url or '/portfolio/' in page.url or '/kouluttaja/' in page.url or '/puhuja/' in page.url or '/larux-tmi/' in page.url or '/yritys/' in page.url), 'megaMenuMeFi', 'megaToggleMeFi', openSubmenuLabel) }}
           <div id="megaMenuMeFi" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleMeFi">
             <div class="mega-wrap grid-8-4">
               <div class="mega-left three-cols">
@@ -223,7 +223,7 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          {{ megaNavTrigger(navWritings.url or '/kynasta/', navWritings.title or 'Kynästä', navWritings.icon or 'bi bi-pencil-fill', page.url and ('/kynasta/' in page.url or '/blogi/' in page.url), 'megaMenuWritingsFi', 'megaToggleWritingsFi', openSubmenuLabel) }}
+          {{ megaNavTrigger(navWritings.url or '/kynasta/', navWritings.title or 'Kynästä', navWritings.icon or 'bi bi-pencil-fill', page.url and ('/kynasta/' in page.url or '/blogi/' in page.url or '/mediassa/' in page.url), 'megaMenuWritingsFi', 'megaToggleWritingsFi', openSubmenuLabel) }}
           <div id="megaMenuWritingsFi" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleWritingsFi">
             <div class="mega-wrap writings-mega-layout">
               {% if writingsMegaMenu.contentColumns %}
@@ -266,6 +266,8 @@
                         {% set linkCount = theses.stats.totalKandit if theses and theses.stats else 0 %}
                       {% elif link.countData == "theses_gradut" %}
                         {% set linkCount = theses.stats.totalGradut if theses and theses.stats else 0 %}
+                      {% elif link.countData == "researchfi_total" %}
+                        {% set linkCount = (researchfi or []) | length %}
                       {% endif %}
                       <a class="menu-link-with-count" href="{{ link.href }}">
                         <span><i class="{{ link.icon }}"></i>{{ link.title }}</span>
@@ -313,6 +315,8 @@
                         {% set linkCount = theses.stats.totalKandit if theses and theses.stats else 0 %}
                       {% elif link.countData == "theses_gradut" %}
                         {% set linkCount = theses.stats.totalGradut if theses and theses.stats else 0 %}
+                      {% elif link.countData == "researchfi_total" %}
+                        {% set linkCount = (researchfi or []) | length %}
                       {% endif %}
                       <a class="menu-link-with-count" href="{{ link.href }}">
                         <span><i class="{{ link.icon }}"></i>{{ link.title }}</span>
