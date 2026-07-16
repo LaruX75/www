@@ -6,15 +6,6 @@ permalink: /esitykset/
 translationKey: presentations_index
 ---
 
-{% set tocSource %}
-<h2 id="palveluarkisto-heading">Palvelukohtainen arkisto</h2>
-<h2 id="canva-heading">Canva-esitykset</h2>
-<h2 id="youtube-heading">YouTube-videot</h2>
-<h2 id="aoe-heading">AOE-oppimateriaalit</h2>
-<h2 id="slideshare-heading">SlideShare-esitykset</h2>
-{% endset %}
-{% set tocMarkup = tocSource | toc %}
-
 {# Kerätään SlideShare-esitykset staattisista Markdown-tiedostoista #}
 {% set ssDataItems = [] %}
 {% set canvaPageUrls = [] %}
@@ -84,6 +75,7 @@ translationKey: presentations_index
 {% set latestMediaItems = ((mediaArchive and mediaArchive.guest) or []).slice(0, 2) %}
 {% set youtubeVideoCount = ((youtube and youtube.videos) or []) | length %}
 {% set aoeCount = ((finnaAoe and finnaAoe.rows) or []) | length %}
+{% set ownPresentationCount = (((canva and canva.tableRows) or []) | length) + (ssDataItems | length) %}
 {% set presentationAnalysisCount = 2 %}
 {% set presentationMaterialKeys = [] %}
 {% for item in ((canva and canva.tableRows) or []) %}
@@ -122,7 +114,7 @@ translationKey: presentations_index
         <p class="text-muted mb-4">Jos taas etsit podcasteja, haastatteluja tai muita muiden tuottamia sisältöjä, ne löytyvät erilliseltä <a href="/mediassa/">Mediassa</a>-sivulta. <a href="/kynasta/">Kynästä</a> puolestaan kokoaa kirjoitetut puheenvuorot, lausunnot ja mielipiteet.</p>
         <div class="d-flex flex-wrap gap-2">
           <a href="#ajankohtaiset-nostot" class="btn btn-primary rounded-pill px-4">Ajankohtaiset nostot</a>
-          <a href="#palveluarkisto" class="btn btn-outline-secondary rounded-pill px-4">Palvelukohtainen arkisto</a>
+          <a href="#sisaltotyypit" class="btn btn-outline-secondary rounded-pill px-4">Sisältötyypit</a>
           <a href="/mediassa/" class="btn btn-outline-secondary rounded-pill px-4">Mediassa</a>
         </div>
       </div>
@@ -158,39 +150,51 @@ translationKey: presentations_index
 <section class="py-5">
   <div class="site-shell">
     <div class="presentation-section-head">
-      <p class="presentation-section-kicker mb-1">Mitä tältä sivulta löytyy</p>
-      <h2 class="presentation-section-title">Esitykset, oppimateriaalit ja muu esiintyminen omissa paikoissaan</h2>
-      <p class="presentation-section-lead mb-0">Tällä sivulla ei tarvitse arvailla, mikä on omaa tuotantoa ja mikä muiden tekemää sisältöä. Rakenne erottaa ne toisistaan selvästi.</p>
+      <p class="presentation-section-kicker mb-1">Selaa sisältötyypin mukaan</p>
+      <h2 class="presentation-section-title">Etsi ensin sisältöä, älä palvelua</h2>
+      <p class="presentation-section-lead mb-0">Canva, SlideShare, YouTube ja AOE jäävät lähdetiedoiksi. Tällä sivulla sisältö on järjestetty sen mukaan, mitä käyttäjä todennäköisesti etsii.</p>
     </div>
     <div class="row g-4">
-      <div class="col-lg-4">
-        <article class="card border-0 shadow-sm h-100 presentation-route-card">
+      <div class="col-md-6 col-xl-3">
+        <a href="#esitykset-koulutukset" class="card border-0 shadow-sm h-100 presentation-route-card text-decoration-none text-reset">
           <div class="card-body p-4">
-            <p class="presentation-route-number">1</p>
-            <h3 class="h5 mb-2">Omat puheenvuorot ja koulutusesitykset</h3>
-            <p class="text-muted mb-0">Canva- ja SlideShare-esitykset, tapahtumapuheenvuorot, diasetit ja koulutussisällöt kuuluvat tähän kokonaisuuteen.</p>
+            <p class="presentation-route-number">{{ ownPresentationCount }}</p>
+            <h3 class="h5 mb-2">Koulutukset ja keynote-esitykset</h3>
+            <p class="text-muted mb-0">Omat diaesitykset, koulutusmateriaalit ja tapahtumapuheenvuorot.</p>
           </div>
-        </article>
+        </a>
       </div>
-      <div class="col-lg-4">
-        <article class="card border-0 shadow-sm h-100 presentation-route-card">
+      <div class="col-md-6 col-xl-3">
+        <a href="#esitykset-oppimateriaalit" class="card border-0 shadow-sm h-100 presentation-route-card text-decoration-none text-reset">
           <div class="card-body p-4">
-            <p class="presentation-route-number">2</p>
-            <h3 class="h5 mb-2">Avoimet oppimateriaalit ja tallenteet</h3>
-            <p class="text-muted mb-0">AOE-materiaalit ja mahdolliset videotallenteet näyttävät, mitä aineistoa on jaettu opetuksen tueksi myös esitystilanteen ulkopuolella.</p>
+            <p class="presentation-route-number">{{ aoeCount }}</p>
+            <h3 class="h5 mb-2">Avoimet oppimateriaalit</h3>
+            <p class="text-muted mb-0">Opetuskäyttöön jaetut materiaalit, jotka elävät myös esitystilanteen ulkopuolella.</p>
           </div>
-        </article>
+        </a>
       </div>
-      <div class="col-lg-4">
-        <article class="card border-0 shadow-sm h-100 presentation-route-card">
+      <div class="col-md-6 col-xl-3">
+        <a href="#esitykset-videot" class="card border-0 shadow-sm h-100 presentation-route-card text-decoration-none text-reset">
           <div class="card-body p-4">
-            <p class="presentation-route-number">3</p>
-            <h3 class="h5 mb-2">Muut mediaesiintymiset erillisellä sivulla</h3>
-            <p class="text-muted mb-3">Podcastit, haastattelut ja muut muiden tekemät sisällöt eivät kuulu esityksiin, vaan omalle mediakokonaisuudelleen.</p>
-            <a href="/mediassa/" class="btn btn-outline-primary btn-sm rounded-pill px-3">Siirry mediassa-sivulle</a>
+            <p class="presentation-route-number">{% if youtubeVideoCount %}{{ youtubeVideoCount }}{% else %}<i class="bi bi-youtube"></i>{% endif %}</p>
+            <h3 class="h5 mb-2">Videot ja tallenteet</h3>
+            <p class="text-muted mb-0">Tallennetut esitykset ja videot silloin, kun niitä on saatavilla.</p>
           </div>
-        </article>
+        </a>
       </div>
+      <div class="col-md-6 col-xl-3">
+        <a href="#esitykset-analyysit" class="card border-0 shadow-sm h-100 presentation-route-card text-decoration-none text-reset">
+          <div class="card-body p-4">
+            <p class="presentation-route-number">{{ presentationAnalysisCount }}</p>
+            <h3 class="h5 mb-2">Aineistoanalyysit</h3>
+            <p class="text-muted mb-0">Koosteet siitä, miten esitysten teemat ja painotukset ovat vuosien varrella muuttuneet.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="presentation-media-note mt-4">
+      <span class="presentation-media-note-label">Muiden tekemät sisällöt</span>
+      <span>Podcastit, haastattelut ja lehtijutut kuuluvat <a href="/mediassa/">Mediassa</a>-sivulle.</span>
     </div>
   </div>
 </section>
@@ -326,25 +330,145 @@ translationKey: presentations_index
   </div>
 </section>
 
-<div class="site-shell py-5" id="palveluarkisto">
-  <div class="presentation-section-head mb-5" id="palveluarkisto-heading">
-    <p class="presentation-section-kicker mb-1">Palvelukohtainen arkisto</p>
-    <h2 class="presentation-section-title">Kaikki materiaalit lähteittäin</h2>
-    <p class="presentation-section-lead mb-0">Jos etsit tiettyä palvelua tai haluat selata koko aineiston yhdestä lähteestä, alla ovat erikseen Canva, YouTube, AOE ja SlideShare.</p>
-  </div>
+<section class="py-5" id="sisaltotyypit" aria-labelledby="sisaltotyypit-heading">
+  <div class="site-shell">
+    <div class="presentation-section-head">
+      <p class="presentation-section-kicker mb-1">Sisältötyypit</p>
+      <h2 id="sisaltotyypit-heading" class="presentation-section-title">Materiaalit käyttötarkoituksen mukaan</h2>
+      <p class="presentation-section-lead mb-0">Tämä näkymä kokoaa samantyyppiset aineistot yhteen riippumatta siitä, onko lähde Canva, SlideShare, YouTube vai AOE.</p>
+    </div>
 
-  {% if tocMarkup %}
-  <div class="row justify-content-center mb-5">
-    <div class="col-lg-8">
-      <aside class="card border-0 shadow-sm presentation-archive-toc">
-        <div class="card-body p-3">
-          <p class="text-uppercase small text-muted mb-2">Sisällys</p>
-          {{ tocMarkup | safe }}
+    <div class="presentation-type-stack">
+      <section class="presentation-type-panel presentation-type-panel--featured" aria-labelledby="esitykset-koulutukset">
+        <div class="presentation-type-panel-head">
+          <p class="presentation-section-kicker mb-1">Omat esitykset</p>
+          <h2 id="esitykset-koulutukset" class="presentation-type-title">Koulutukset ja keynote-esitykset</h2>
+          <p class="presentation-type-lead mb-0">Tähän kuuluvat omat puheenvuorot, koulutustilaisuuksien diasetit ja laajemmat esityskokonaisuudet.</p>
         </div>
-      </aside>
+        <div class="presentation-type-grid presentation-type-grid--cards">
+          {% for item in latestShowcaseItems.slice(0, 3) %}
+          <article class="presentation-type-card">
+            {% if item.thumbnail %}
+            <img src="{{ item.thumbnail }}" alt="{{ item.title }}" class="presentation-type-thumb" loading="lazy" decoding="async">
+            {% else %}
+            <div class="presentation-type-thumb presentation-type-thumb--placeholder"><i class="bi bi-easel2"></i></div>
+            {% endif %}
+            <div class="presentation-type-card-body">
+              <div class="d-flex flex-wrap gap-2 mb-2">
+                <span class="badge rounded-pill border text-body-secondary">{{ item.sourceLabel }}</span>
+                {% if item.categories and item.categories[0] %}
+                <span class="badge rounded-pill border text-body-secondary">{{ item.categories[0] }}</span>
+                {% endif %}
+              </div>
+              <p class="text-muted small mb-2">{{ item.date | dateFormat }}</p>
+              <h3 class="h5 mb-2"><a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a></h3>
+              <p class="text-muted small mb-3">{{ item.description }}</p>
+              <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-3">Avaa esitys</a>
+            </div>
+          </article>
+          {% endfor %}
+        </div>
+      </section>
+
+      <div class="presentation-type-columns">
+        <section class="presentation-type-panel" aria-labelledby="esitykset-oppimateriaalit">
+          <div class="presentation-type-panel-head">
+            <p class="presentation-section-kicker mb-1">Opetuskäyttö</p>
+            <h2 id="esitykset-oppimateriaalit" class="presentation-type-title">Avoimet oppimateriaalit</h2>
+            <p class="presentation-type-lead mb-0">Aineistot, joita voi käyttää, soveltaa tai jakaa opetuksen tueksi.</p>
+          </div>
+          <div class="presentation-type-list">
+            {% for item in latestAoeItems %}
+            <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer" class="presentation-mini-link">
+              <span class="presentation-mini-thumb">
+                {% if item.image %}
+                <img src="{{ item.image }}" alt="{{ item.title }}" class="presentation-mini-thumb-image" loading="lazy" decoding="async">
+                {% else %}
+                <span class="presentation-mini-thumb-placeholder"><i class="bi bi-book"></i></span>
+                {% endif %}
+              </span>
+              <span class="presentation-mini-copy">
+                <strong>{{ item.title }}</strong>
+                <span>{% if item.year %}{{ item.year }}{% else %}AOE / Finna{% endif %}</span>
+              </span>
+            </a>
+            {% endfor %}
+          </div>
+        </section>
+
+        <section class="presentation-type-panel" aria-labelledby="esitykset-videot">
+          <div class="presentation-type-panel-head">
+            <p class="presentation-section-kicker mb-1">Tallenteet</p>
+            <h2 id="esitykset-videot" class="presentation-type-title">Videot ja tallenteet</h2>
+            <p class="presentation-type-lead mb-0">Videoaineistot täydentävät esityksiä silloin, kun tallenne on saatavilla.</p>
+          </div>
+          {% if latestVideoItems.length %}
+          <div class="presentation-type-list">
+            {% for item in latestVideoItems %}
+            <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer" class="presentation-mini-link">
+              <span class="presentation-mini-thumb">
+                {% if item.thumbnail %}
+                <img src="{{ item.thumbnail }}" alt="{{ item.title }}" class="presentation-mini-thumb-image" loading="lazy" decoding="async">
+                {% else %}
+                <span class="presentation-mini-thumb-placeholder"><i class="bi bi-youtube"></i></span>
+                {% endif %}
+              </span>
+              <span class="presentation-mini-copy">
+                <strong>{{ item.title }}</strong>
+                <span>{{ item.publishedAt | dateFormat }}</span>
+              </span>
+            </a>
+            {% endfor %}
+          </div>
+          {% else %}
+          <p class="text-muted small mb-3">Tällä hetkellä varsinaiset tallenteet eivät ole sivun pääaineistoa.</p>
+          <a href="https://www.youtube.com/jarilaru" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary btn-sm rounded-pill px-3">YouTube-kanava</a>
+          {% endif %}
+        </section>
+      </div>
+
+      <section class="presentation-type-panel presentation-type-panel--analysis" aria-labelledby="esitykset-analyysit">
+        <div class="presentation-type-panel-head">
+          <p class="presentation-section-kicker mb-1">Aineiston tulkinta</p>
+          <h2 id="esitykset-analyysit" class="presentation-type-title">Aineistoanalyysit</h2>
+          <p class="presentation-type-lead mb-0">Analyysit nostavat esiin vuosien mittaisia teemoja, eivät vain yksittäisiä esityksiä.</p>
+        </div>
+        <div class="presentation-analysis-grid">
+          <a href="/esitykset/canva-analyysi/" class="presentation-analysis-card">
+            <span class="presentation-analysis-icon"><i class="bi bi-bar-chart-line"></i></span>
+            <span>
+              <strong>Canva-esitykset 2021-2026</strong>
+              <span>Teemat, kehityskaaret ja laajimmat esitykset.</span>
+            </span>
+          </a>
+          <a href="/esitykset/slideshare-analyysi/" class="presentation-analysis-card">
+            <span class="presentation-analysis-icon"><i class="bi bi-collection-play"></i></span>
+            <span>
+              <strong>SlideShare-esitykset 2009-2020</strong>
+              <span>Katsotuimmat, teemat ja kehityskaaret vuosikymmenittäin.</span>
+            </span>
+          </a>
+        </div>
+      </section>
     </div>
   </div>
-  {% endif %}
+</section>
+
+<div class="site-shell py-5" id="palveluarkisto">
+  <div class="presentation-section-head mb-5" id="palveluarkisto-heading">
+    <p class="presentation-section-kicker mb-1">Tekninen arkisto</p>
+    <h2 class="presentation-section-title">Palvelukohtainen taulukkoarkisto</h2>
+    <p class="presentation-section-lead mb-0">Jos haluat rajata aineistoa lähteen mukaan, taulukot säilyvät täällä. Tämä on arkistokäyttöä varten, ei sivun ensisijainen lukutapa.</p>
+  </div>
+
+  <details class="presentation-service-archive">
+    <summary>
+      <span>
+        <strong>Avaa palvelukohtaiset taulukot</strong>
+        <span>Canva, YouTube, AOE ja SlideShare lähdekohtaisina arkistoina.</span>
+      </span>
+    </summary>
+    <div class="presentation-service-archive-body">
 
   {# ===================== CANVA ===================== #}
   <section class="mb-5" aria-labelledby="canva-heading">
@@ -627,6 +751,9 @@ translationKey: presentations_index
       </details>
     </div>
   </section>
+
+    </div>
+  </details>
 
 </div>
 
@@ -1052,8 +1179,7 @@ translationKey: presentations_index
 .presentation-hero-panel,
 .presentation-route-card,
 .presentation-latest-card,
-.presentation-signal-card,
-.presentation-archive-toc {
+.presentation-signal-card {
   border-radius: 1.5rem;
 }
 
@@ -1098,10 +1224,209 @@ translationKey: presentations_index
 
 .presentation-route-number {
   color: var(--bs-secondary-color);
-  font-size: 0.78rem;
+  font-size: clamp(1.8rem, 3vw, 2.45rem);
   font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.presentation-route-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  border: 1px solid transparent !important;
+}
+
+.presentation-route-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(13, 110, 253, 0.2) !important;
+  box-shadow: 0 1rem 2rem rgba(19, 43, 70, 0.12) !important;
+}
+
+.presentation-media-note {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.8rem;
+  align-items: center;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 1rem;
+  background: var(--bs-tertiary-bg);
+  color: var(--bs-secondary-color);
+  font-size: 0.95rem;
+}
+
+.presentation-media-note-label {
+  color: var(--bs-body-color);
+  font-weight: 800;
+}
+
+.presentation-type-stack {
+  display: grid;
+  gap: 1.4rem;
+}
+
+.presentation-type-panel {
+  display: grid;
+  gap: 1.2rem;
+  padding: clamp(1.25rem, 2vw, 1.8rem);
+  border: 1px solid var(--bs-border-color);
+  border-radius: 1.5rem;
+  background: rgba(var(--bs-body-bg-rgb), 0.92);
+  box-shadow: 0 0.85rem 2rem rgba(19, 43, 70, 0.07);
+}
+
+.presentation-type-panel--featured {
+  background:
+    radial-gradient(circle at top right, rgba(13, 110, 253, 0.08), transparent 34%),
+    linear-gradient(180deg, rgba(255,255,255,0.98), rgba(244,248,253,0.98));
+}
+
+.presentation-type-panel--analysis {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.98), rgba(247,249,252,0.98));
+}
+
+.presentation-type-panel-head {
+  max-width: 48rem;
+}
+
+.presentation-type-title {
+  margin: 0 0 0.55rem;
+  font-family: 'Bree Serif', serif;
+  font-size: clamp(1.45rem, 2vw, 2rem);
+  line-height: 1.1;
+}
+
+.presentation-type-lead {
+  color: var(--bs-secondary-color);
+  line-height: 1.65;
+}
+
+.presentation-type-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.presentation-type-grid--cards {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.presentation-type-card {
+  display: grid;
+  overflow: hidden;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 1.2rem;
+  background: var(--bs-body-bg);
+}
+
+.presentation-type-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: var(--bs-tertiary-bg);
+}
+
+.presentation-type-thumb--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bs-secondary-color);
+  font-size: 2rem;
+}
+
+.presentation-type-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.15rem;
+}
+
+.presentation-type-card-body h3 a {
+  color: inherit;
+}
+
+.presentation-type-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.4rem;
+}
+
+.presentation-type-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.presentation-analysis-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.presentation-analysis-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.9rem;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 1.1rem;
+  color: inherit;
+  text-decoration: none;
+  background: var(--bs-body-bg);
+}
+
+.presentation-analysis-card strong,
+.presentation-analysis-card span span {
+  display: block;
+}
+
+.presentation-analysis-card span span {
+  color: var(--bs-secondary-color);
+  font-size: 0.92rem;
+  margin-top: 0.15rem;
+}
+
+.presentation-analysis-icon {
+  display: inline-flex;
+  width: 3rem;
+  height: 3rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+  background: var(--bs-tertiary-bg);
+  color: var(--bs-primary);
+  font-size: 1.35rem;
+}
+
+.presentation-service-archive {
+  border: 1px solid var(--bs-border-color);
+  border-radius: 1.4rem;
+  background: var(--bs-body-bg);
+  box-shadow: 0 0.85rem 2rem rgba(19, 43, 70, 0.07);
+  overflow: hidden;
+}
+
+.presentation-service-archive > summary {
+  display: flex;
+  cursor: pointer;
+  padding: 1.2rem 1.35rem;
+  list-style: none;
+}
+
+.presentation-service-archive > summary::-webkit-details-marker {
+  display: none;
+}
+
+.presentation-service-archive > summary span span {
+  display: block;
+  color: var(--bs-secondary-color);
+  font-size: 0.94rem;
+  margin-top: 0.2rem;
+}
+
+.presentation-service-archive-body {
+  padding: 1.35rem;
+  border-top: 1px solid var(--bs-border-color);
 }
 
 .presentation-latest-card .card-body,
@@ -1217,8 +1542,22 @@ translationKey: presentations_index
     radial-gradient(circle at bottom left, rgba(102,163,255,0.16), transparent 60%);
 }
 
-[data-bs-theme="dark"] .presentation-archive-toc {
-  background: rgba(24, 28, 36, 0.92);
+[data-bs-theme="dark"] .presentation-type-panel,
+[data-bs-theme="dark"] .presentation-type-card,
+[data-bs-theme="dark"] .presentation-analysis-card,
+[data-bs-theme="dark"] .presentation-service-archive {
+  background: rgba(24, 36, 54, 0.92);
+  box-shadow: 0 0.85rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+[data-bs-theme="dark"] .presentation-type-panel--featured {
+  background:
+    radial-gradient(circle at top right, rgba(102, 163, 255, 0.16), transparent 34%),
+    linear-gradient(180deg, rgba(28, 43, 65, 0.96), rgba(22, 36, 55, 0.98));
+}
+
+[data-bs-theme="dark"] .presentation-type-panel--analysis {
+  background: linear-gradient(180deg, rgba(24, 36, 54, 0.96), rgba(20, 31, 48, 0.98));
 }
 
 @media (max-width: 575.98px) {
@@ -1231,6 +1570,22 @@ translationKey: presentations_index
     width: 72px;
     height: 72px;
     border-radius: 0.9rem;
+  }
+
+  .presentation-media-note {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .presentation-type-grid--cards,
+  .presentation-type-columns,
+  .presentation-analysis-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .presentation-service-archive-body {
+    padding: 1rem;
   }
 }
 
