@@ -1,10 +1,18 @@
 ---
-title: "Puheenvuoro valtuustossa § 3: Päätöksenteon avoimuus vaatii tämän ajan tietojärjestelmiä"
-date: 2022-06-20
+title: 'Puheenvuoro valtuustossa § 3: Päätöksenteon avoimuus vaatii tämän ajan tietojärjestelmiä'
+date: '2022-06-20'
+description: 'Puheenvuorossa arvostelen kaupungin vaikeakäyttöisiä tietojärjestelmiä ja vaadin kuntalaisille selkeitä, visuaalisia ja reaaliaikaisia tapoja seurata päätöksentekoa ja kaupungin tunnuslukuja.'
+event: Oulun kaupunginvaltuusto
+asiakohta: § 3 – Vuorovaikutussuunnitelman seuranta Oulun kaupungin toimialoilla 2021
+categories:
+  - Politiikka ja päätöksenteko
+  - Teknologia ja digitaalisuus
+forum:
+  - Kaupunginvaltuusto
 type: puhe
-event: "Oulun kaupunginvaltuusto"
-asiakohta: "§ 3 – Vuorovaikutussuunnitelman seuranta Oulun kaupungin toimialoilla 2021"
-description: "Puheenvuorossa arvostelen kaupungin vaikeakäyttöisiä tietojärjestelmiä ja vaadin kuntalaisille selkeitä, visuaalisia ja reaaliaikaisia tapoja seurata päätöksentekoa ja kaupungin tunnuslukuja."
+politicalProfiles:
+  - avoinhallinto
+templateEngineOverride: md
 tags:
   - publications
   - politics
@@ -15,9 +23,6 @@ tags:
   - tietojärjestelmät
   - tietojohtaminen
   - digitalisaatio
-politicalProfiles:
-  - avoinhallinto
-templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto käsitteli 20.6.2022 kaupungin vuorovaikutussuunnitelman toteutumista. Käytin puheenvuoron siitä, kuinka vaikeaa tavallisen kuntalaisen on seurata kaupungin päätöksentekoa ja kuinka vanhentuneet järjestelmät pitäisi korvata selkeillä, visuaalisilla ja reaaliaikaisilla palveluilla.

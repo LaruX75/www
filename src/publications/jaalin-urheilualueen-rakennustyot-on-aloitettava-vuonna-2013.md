@@ -2,6 +2,10 @@
 title: Jäälin urheilualueen rakennustyöt on aloitettava vuonna 2013
 date: '2012-12-31'
 description: 'Oulun kaupunginjohtajan talousarvioesitys vuodelle 2013 ei sisällä Jäälin urheilualuetta. Hanke on alueellisesti erittäin merkittävä, sillä useat urheiluseurat ja alueen oppilaitokset ovat jo pitkää...'
+categories:
+  - Politiikka ja päätöksenteko
+  - Kaupunkikehitys ja palveluverkko
+  - Hyvinvointi ja osallisuus
 publication: Kaleva
 keywords:
   - aila postareff-jurvelin

@@ -1,13 +1,13 @@
 ---
 title: Berliinissä uutena vuotena 2007
-date: 2007-01-01
-description: "Pääsimme tekemää pienen matkan kahdestaan Berliiniin vuodentaitteessa. Oli aika ovelaa olla ilman Hillaa matkalla, sillä olemmehan käyneet tenavan kanssa jo kertaalleen kartoittamassa Maltan pientä saarivaltakuntaa."
+date: '2007-01-01'
+description: 'Pääsimme tekemää pienen matkan kahdestaan Berliiniin vuodentaitteessa. Oli aika ovelaa olla ilman Hillaa matkalla, sillä olemmehan käyneet tenavan kanssa jo kertaalleen kartoittamassa Maltan pientä saarivaltakuntaa.'
 categories:
-  - Luokittelematon
+  - Matkat ja henkilökohtaiset
 keywords:
   - matkailu
 wp_id: 914
-source_url: "https://www.jarilaru.fi/berliinissa-uutena-vuotena-2007/"
+source_url: 'https://www.jarilaru.fi/berliinissa-uutena-vuotena-2007/'
 templateEngineOverride: md
 ---
 

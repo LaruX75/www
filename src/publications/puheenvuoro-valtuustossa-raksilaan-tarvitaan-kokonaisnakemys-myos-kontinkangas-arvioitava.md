@@ -1,10 +1,20 @@
 ---
-title: "Puheenvuoro valtuustossa § 7: Raksilaan tarvitaan kokonaisnäkemys – myös Kontinkangas on arvioitava"
-date: 2021-04-26
+title: 'Puheenvuoro valtuustossa § 7: Raksilaan tarvitaan kokonaisnäkemys – myös Kontinkangas on arvioitava'
+date: '2021-04-26'
+description: 'Puheenvuorossa vaadin Raksilan alueesta kokonaisnäkemystä, nostan Kontinkankaan vaihtoehdoksi ja korostan liikenteen, muuntojoustavuuden sekä havainnollisen suunnitteluaineiston merkitystä.'
+event: Oulun kaupunginvaltuusto
+asiakohta: § 7 – Selvitys Oulun yliopiston sijoittumisesta Raksilan alueelle
+categories:
+  - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
+  - Kaupunkikehitys ja palveluverkko
+forum:
+  - Kaupunginvaltuusto
 type: puhe
-event: "Oulun kaupunginvaltuusto"
-asiakohta: "§ 7 – Selvitys Oulun yliopiston sijoittumisesta Raksilan alueelle"
-description: "Puheenvuorossa vaadin Raksilan alueesta kokonaisnäkemystä, nostan Kontinkankaan vaihtoehdoksi ja korostan liikenteen, muuntojoustavuuden sekä havainnollisen suunnitteluaineiston merkitystä."
+politicalProfiles:
+  - sivistys
+  - kaupunkikehitys
+templateEngineOverride: md
 tags:
   - publications
   - politics
@@ -15,10 +25,6 @@ tags:
   - kampus
   - kaupunkisuunnittelu
   - liikenne
-politicalProfiles:
-  - sivistys
-  - kaupunkikehitys
-templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto jatkoi 26.4.2021 keskustelua Oulun yliopiston mahdollisesta sijoittumisesta Raksilaan. Toisessa puheenvuorossani korostin kokonaisnäkemyksen tarvetta ja nostin Kontinkankaan vaihtoehdoksi.

@@ -6,6 +6,8 @@ event: Oulun kaupunginvaltuusto
 asiakohta: § 30 – Sivistys- ja kulttuuripalveluiden palveluverkkosuunnitelmalinjaukset
 categories:
   - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
+  - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
 keywords:

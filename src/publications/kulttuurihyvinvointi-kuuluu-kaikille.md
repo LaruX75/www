@@ -3,8 +3,9 @@ title: Kulttuurihyvinvointi kuuluu kaikille
 date: '2021-11-18'
 description: 'Kolumni, joka on julkaistu paikallislehti Rantapohjan päättäjältä -palstalla'
 categories:
-  - kolumni
-  - Kulttuuri
+  - Hyvinvointi ja osallisuus
+secondaryTheme:
+  - Kulttuuri ja paikallisidentiteetti
 forum:
   - Lautakunta
 keywords:

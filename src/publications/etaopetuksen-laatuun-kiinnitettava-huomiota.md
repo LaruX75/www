@@ -3,8 +3,9 @@ title: Etäopetuksen laatuun kiinnitettävä huomiota
 date: '2020-04-01'
 description: 'Mielipidekirjoitus, joka on julkaistu useissa Sanomalehdissä 1.4.2020 ( Kaleva ; Turun Sanomat ) Tiedonvälityksen ja viihteen uudet muodot ovat muokanneet ihmisten toimintatapoja viime vuosik...'
 categories:
-  - Oppimisympäristöt ja tilat
-  - Teknologiatuettu oppiminen ja opetus
+  - Sivistys ja koulutus
+secondaryTheme:
+  - Koulutusteknologia
 keywords:
   - covid-19
   - etäopetus

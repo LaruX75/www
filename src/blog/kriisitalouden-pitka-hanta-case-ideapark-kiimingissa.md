@@ -4,6 +4,7 @@ date: '2008-10-01'
 description: 'Sekä Kalevassa että Kauppalehdessä on tähää uutisoitu Toivo Sukarin vaikeuksista hankkia rahaa ideaparkeilleen vallitsevassa taloustilanteessa. On todella ikävää, että Kiiimingin Ideapark hankkeena sattui osum'
 categories:
   - Politiikka ja päätöksenteko
+  - Kaupunkikehitys ja palveluverkko
 keywords:
   - ideapark
   - kriisi

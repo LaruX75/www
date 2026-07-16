@@ -2,6 +2,9 @@
 title: Onko meillä oululaisilla päättäjillä kykyä tarkastella kokonaisuutta?
 date: '2018-03-09'
 description: 'Meillä on vahva paikkasidonnaisuuden perinne, koska juuremme ovat maassa ja luonnossa. Todella vanhaa kaupunkikulttuuria löytyy lähinnä Turusta. Nämä vahvat paikkasidokset ovat olleet voimakkaasti e...'
+categories:
+  - Kaupunkikehitys ja palveluverkko
+  - Kulttuuri ja paikallisidentiteetti
 publication: Kaleva
 keywords:
   - kaupunginosat

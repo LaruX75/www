@@ -1,12 +1,12 @@
 ---
 title: Jari Larun verkkolive
-date: 2020-03-12
-description: "Minä keväällä 2020 olohuonestudiossani Mikä ihmeen verkkolive? Koronakeväänä tein ensimmäisen tuotantokauden Larun verkkoliveä, joka koostuu kymmenestä videolähetyksestä. Haastattelin videoilla valtakunnalli"
+date: '2020-03-12'
+description: 'Minä keväällä 2020 olohuonestudiossani Mikä ihmeen verkkolive? Koronakeväänä tein ensimmäisen tuotantokauden Larun verkkoliveä, joka koostuu kymmenestä videolähetyksestä. Haastattelin videoilla valtakunnalli'
 categories:
-  - Teknologiatuettu oppiminen ja opetus
-  - Verkkolive
+  - Teknologia ja digitaalisuus
+series: Verkkolive
 wp_id: 387
-source_url: "https://www.jarilaru.fi/jari-larun-verkkolive/"
+source_url: 'https://www.jarilaru.fi/jari-larun-verkkolive/'
 templateEngineOverride: md
 ---
 

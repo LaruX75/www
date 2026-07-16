@@ -4,6 +4,7 @@ date: '2017-05-29'
 description: 'Puolueiden välisten neuvotteluiden perusteella Oulun Kokoomus esittää minua Oulun sivistys- ja kulttuurilautakunnan jäseneksi ja varasijalle maakuntavaltuustoon. Olen hyvin kiitollinen saamastani luottamuksesta, kosk'
 categories:
   - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
 forum:
   - Lautakunta
 keywords:

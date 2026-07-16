@@ -4,6 +4,7 @@ date: '2008-10-11'
 description: Pöydälläni on lojunut jo pidemmä aikaa lehtileike vihreiden vaalikampanjan avauksesta. Siitä Oulun läänin vihreät esittävät paikallisjunia ja kutsutakseja Oulun seudun joukkoliikennesolmuja aukomaan. Ensi silm
 categories:
   - Politiikka ja päätöksenteko
+  - Kaupunkikehitys ja palveluverkko
 keywords:
   - jääli
   - joukkoliikenne

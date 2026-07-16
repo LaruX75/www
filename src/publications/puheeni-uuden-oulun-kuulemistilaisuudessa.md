@@ -4,8 +4,7 @@ date: '2011-05-11'
 description: Oulun monikuntaliitoksen valmisteluihin kuului useita kuulemistilaisuuksia. Ohessa video joukkoliikennettä käsittelevästä kommentistani 11.5.2011 pidetystä kuulemistilaisuudesta. Käytin repli...
 event: Uuden Oulun kuulemistilaisuus
 categories:
-  - Muut
-  - Politiikka ja päätöksenteko
+  - Kaupunkikehitys ja palveluverkko
 keywords:
   - henkilöauto
   - joukkoliikenne

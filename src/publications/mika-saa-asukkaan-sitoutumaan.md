@@ -5,6 +5,7 @@ description: 'Sanomalehti Kaleva on julkaissut tämä 26.3.2017 vaalikirjoituksi
 categories:
   - Vaalit
   - Politiikka ja päätöksenteko
+  - Kulttuuri ja paikallisidentiteetti
 publication: Kaleva
 campaign: Kuntavaalit
 keywords:

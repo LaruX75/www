@@ -4,6 +4,7 @@ date: '2020-12-03'
 description: 'Oulun kaupunginhallitus on esittänyt, että teatterin toimintatukea pienennettäisiin 500 000 eurolla vuoden 2019 tasosta. Summa on niin merkittävä ja tulisi voimaan niin nopeasti, että sillä o...'
 categories:
   - Politiikka ja päätöksenteko
+  - Kulttuuri ja paikallisidentiteetti
 keywords:
   - kulttuuri
   - mielipiteet

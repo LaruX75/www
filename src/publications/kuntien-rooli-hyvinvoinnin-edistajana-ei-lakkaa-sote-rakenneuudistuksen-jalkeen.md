@@ -5,6 +5,7 @@ description: 'Mielipidekirjoitukseni, jonka Sanomalehti Kaleva julkaisi 15.1.202
 categories:
   - Vaalit
   - Politiikka ja päätöksenteko
+  - Hyvinvointi ja osallisuus
 publication: Kaleva
 campaign: Aluevaalit 2022
 keywords:

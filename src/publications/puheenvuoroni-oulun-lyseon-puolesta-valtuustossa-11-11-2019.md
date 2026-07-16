@@ -1,10 +1,20 @@
 ---
-title: "Puheenvuoro valtuustossa § 113: Oulun Lyseo on säilytettävä opetuskäytössä"
-date: 2019-11-11
+title: 'Puheenvuoro valtuustossa § 113: Oulun Lyseo on säilytettävä opetuskäytössä'
+date: '2019-11-11'
+description: 'Puheenvuorossa käsittelen Oulun Lyseon historiallisia arvoja, rakennuksen säilyttämistä opetuskäytössä sekä digitaalisen teknologian hyödyntämistä rakennuksen historian esittelemisessä.'
+event: Oulun kaupunginvaltuusto
+asiakohta: '§ 113 – Info: Oulun Lyseon peruskorjauksen hankeselvitys'
+categories:
+  - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
+forum:
+  - Kaupunginvaltuusto
 type: puhe
-event: "Oulun kaupunginvaltuusto"
-asiakohta: "§ 113 – Info: Oulun Lyseon peruskorjauksen hankeselvitys"
-description: "Puheenvuorossa käsittelen Oulun Lyseon historiallisia arvoja, rakennuksen säilyttämistä opetuskäytössä sekä digitaalisen teknologian hyödyntämistä rakennuksen historian esittelemisessä."
+wp_id: 99
+source_url: 'https://www.jarilaru.fi/puheenvuoroni-oulun-lyseon-puolesta-valtuustossa-11-11-2019/'
+politicalProfiles:
+  - sivistys
+templateEngineOverride: md
 tags:
   - publications
   - politics
@@ -15,11 +25,6 @@ tags:
   - kulttuurihistoria
   - digitalisaatio
   - Oulu
-wp_id: 99
-source_url: "https://www.jarilaru.fi/puheenvuoroni-oulun-lyseon-puolesta-valtuustossa-11-11-2019/"
-politicalProfiles:
-  - sivistys
-templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto käsitteli 11.11.2019 Oulun Lyseon peruskorjauksen hankeselvitystä. Käytin puheenvuoron rakennuksen historiallisista arvoista, säilyttämisestä opetuskäytössä ja digitaalisen teknologian mahdollisuuksista historian esittelemisessä.

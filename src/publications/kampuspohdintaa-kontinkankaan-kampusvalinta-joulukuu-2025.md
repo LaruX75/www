@@ -4,7 +4,9 @@ date: '2025-12-01'
 description: 'Oulun yliopiston hallitus valitsi 25.11.2025 jatkokehitettäväksi kampusvaihtoehdoksi yhden kampuksen Kontinkankaalla. Kirjoituksessa arvioidaan valintaa hyvien ja huonojen puolien kautta – ja muistutetaan, että lasku menee veronmaksajalle.'
 categories:
   - Politiikka ja päätöksenteko
-  - Yliopistokampus
+  - Yliopisto ja korkeakoulut
+secondaryTheme:
+  - Oppimisympäristöt ja tilat
 channel: Facebook
 keywords:
   - kontinkankaan kampus

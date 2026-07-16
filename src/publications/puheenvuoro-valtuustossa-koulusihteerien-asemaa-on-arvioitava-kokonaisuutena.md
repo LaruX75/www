@@ -1,10 +1,18 @@
 ---
-title: "Puheenvuoro valtuustossa § 11: Koulusihteerien asemaa on arvioitava kokonaisuutena"
-date: 2020-10-05
+title: 'Puheenvuoro valtuustossa § 11: Koulusihteerien asemaa on arvioitava kokonaisuutena'
+date: '2020-10-05'
+description: 'Puheenvuorossa tarkastelen koulusihteeripalvelujen järjestämistä sekä koulun arjen, työntekijöiden ammatillisen tuen että palvelujen tasapuolisuuden näkökulmasta.'
+event: Oulun kaupunginvaltuusto
+asiakohta: '§ 11 – Ulkoisen arvioinnin jatkotoimenpiteet: koulusihteeripalveluiden tuottaminen tulevaisuudessa'
+categories:
+  - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
+forum:
+  - Kaupunginvaltuusto
 type: puhe
-event: "Oulun kaupunginvaltuusto"
-asiakohta: "§ 11 – Ulkoisen arvioinnin jatkotoimenpiteet: koulusihteeripalveluiden tuottaminen tulevaisuudessa"
-description: "Puheenvuorossa tarkastelen koulusihteeripalvelujen järjestämistä sekä koulun arjen, työntekijöiden ammatillisen tuen että palvelujen tasapuolisuuden näkökulmasta."
+politicalProfiles:
+  - sivistys
+templateEngineOverride: md
 tags:
   - publications
   - politics
@@ -15,9 +23,6 @@ tags:
   - Monetra
   - hallinto
   - palvelut
-politicalProfiles:
-  - sivistys
-templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto käsitteli 5.10.2020 koulusihteeripalvelujen järjestämistä osana ulkoisen arvioinnin jatkotoimenpiteitä. Käytin puheenvuoron koulusihteerien merkityksestä koulun arjelle sekä palvelujen yhdenvertaisesta järjestämisestä.

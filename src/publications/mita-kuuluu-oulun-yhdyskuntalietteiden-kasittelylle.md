@@ -3,8 +3,9 @@ title: Mitä kuuluu Oulun yhdyskuntalietteiden käsittelylle
 date: '2021-02-17'
 description: 'Forum 24: 17.2.2021 julkaisema mielipidekirjoituksemme Alkuperäinen käsikirjoitus: Mitä kuuluu Oulun kaupungin yhdyskuntalietteiden käsittelylle? Oulun kaupungin yhdysku...'
 categories:
-  - Muut lehdet
   - Politiikka ja päätöksenteko
+  - Kaupunkikehitys ja palveluverkko
+publication: Forum 24
 keywords:
   - jätteidenkäsittely
   - lietteenkäsittely

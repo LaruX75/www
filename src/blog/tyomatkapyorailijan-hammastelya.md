@@ -4,6 +4,7 @@ date: '2008-10-01'
 description: Jo ennen kuin muutimme Jääliin hämmästelin alueen uskomattoman surkeata katuvalaistusta.Tuntui että taskulampustakin lähtee syksyn pimeillä enemmä valoa kuin tienposkeen harvakseltaan istutetuista katulampuista.
 categories:
   - Politiikka ja päätöksenteko
+  - Kaupunkikehitys ja palveluverkko
 keywords:
   - jääli
   - liikenne

@@ -1,11 +1,10 @@
 ---
-title: "Faktojen tarkastelua: kouluverkko ja syntyvyys"
-date: 2023-05-21
-description: "Oulun kouluverkkokeskustelu kaipaa faktapohjaa. Olen käynyt läpi Tilastokeskuksen syntyvyystilastot ja Oulun kaupungin väestösuunnitteet – luvut kertovat selkeää kieltä tulevista ikäluokista."
+title: 'Faktojen tarkastelua: kouluverkko ja syntyvyys'
+date: '2023-05-21'
+description: Oulun kouluverkkokeskustelu kaipaa faktapohjaa. Olen käynyt läpi Tilastokeskuksen syntyvyystilastot ja Oulun kaupungin väestösuunnitteet – luvut kertovat selkeää kieltä tulevista ikäluokista.
 categories:
-  - Koulutuspolitiikka
-  - Palveluverkko
-  - Oulu
+  - Sivistys ja koulutus
+  - Kaupunkikehitys ja palveluverkko
 keywords:
   - palveluverkko
   - syntyvyys

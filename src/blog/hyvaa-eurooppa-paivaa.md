@@ -4,6 +4,7 @@ date: '2018-05-09'
 description: Eurooppa-päivää vietetää Euroopassa vuosittain 9. toukokuuta.9. toukokuuta 1950 Robert Schuman esitti ehdotuksensa yhtenäisen Euroopan luomisesta välttämättömänä rauhanomaisten suhteiden ylläpitämiseksi. E
 categories:
   - Politiikka ja päätöksenteko
+context:
   - yhdistystoiminta
 keywords:
   - euroopan unioni

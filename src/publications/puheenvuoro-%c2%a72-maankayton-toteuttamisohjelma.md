@@ -1,10 +1,23 @@
 ---
-title: "Puheenvuoro valtuustossa § 2: Täydennysrakentaminen ja palveluverkon tasapaino"
-date: 2024-01-29
+title: 'Puheenvuoro valtuustossa § 2: Täydennysrakentaminen ja palveluverkon tasapaino'
+date: '2024-01-29'
+description: Puheenvuorossa käsittelen Hiukkavaaran ja Jääkärinkankaan rakentamisen vaikutuksia palveluverkkoon sekä täydennysrakentamisen merkitystä olemassa olevien koulujen ja palveluiden turvaamisessa.
+event: Oulun kaupunginvaltuusto
+asiakohta: § 2 – Oulun maankäytön toteuttamisohjelma 2024–2028
+categories:
+  - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
+  - Kaupunkikehitys ja palveluverkko
+forum:
+  - Kaupunginvaltuusto
 type: puhe
-event: "Oulun kaupunginvaltuusto"
-asiakohta: "§ 2 – Oulun maankäytön toteuttamisohjelma 2024–2028"
-description: "Puheenvuorossa käsittelen Hiukkavaaran ja Jääkärinkankaan rakentamisen vaikutuksia palveluverkkoon sekä täydennysrakentamisen merkitystä olemassa olevien koulujen ja palveluiden turvaamisessa."
+wp_id: 2381
+source_url: 'https://www.jarilaru.fi/puheenvuoro-%c2%a72-maankayton-toteuttamisohjelma/'
+politicalProfiles:
+  - sivistys
+  - lahipalvelut
+  - kaupunkikehitys
+templateEngineOverride: md
 tags:
   - publications
   - politics
@@ -15,13 +28,6 @@ tags:
   - palveluverkko
   - Hiukkavaara
   - Jääli
-wp_id: 2381
-source_url: "https://www.jarilaru.fi/puheenvuoro-%c2%a72-maankayton-toteuttamisohjelma/"
-politicalProfiles:
-  - sivistys
-  - lahipalvelut
-  - kaupunkikehitys
-templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuustossa käsiteltiin 29.1.2024 Oulun maankäytön toteuttamisohjelmaa vuosille 2024–2028. Käytin puheenvuoron rakentamisen vaikutuksista palveluverkkoon sekä täydennysrakentamisen suuntaamisesta alueille, joilla koulut ja muut palvelut ovat jo olemassa.

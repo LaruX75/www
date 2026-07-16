@@ -2,6 +2,9 @@
 title: 'KALEVA 11.12.2021: Oulun nor­maa­li­kou­lu an­sait­see uudet ja terveet tilat – lapset heit­to­pus­si­na kam­pus­suun­ni­tel­mien vuoksi'
 date: '2021-12-11'
 description: Sanomalehti Kalevassa julkaistu mielipidekirjoitus normaalikoulun tilaratkaisuihin liittyen
+categories:
+  - Yliopisto ja korkeakoulut
+  - Kaupunkikehitys ja palveluverkko
 publication: Kaleva
 keywords:
   - keskustakampus

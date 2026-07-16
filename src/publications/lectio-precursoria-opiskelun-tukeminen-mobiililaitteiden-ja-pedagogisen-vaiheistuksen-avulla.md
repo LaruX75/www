@@ -1,9 +1,11 @@
 ---
-title: "LECTIO PRECURSORIA: Opiskelun tukeminen mobiililaitteiden ja pedagogisen vaiheistuksen avulla."
-date: 2012-10-18
-description: "Jari J. Laru: Lectio (puhe) 12.10.2012 Jari J. Laru: LECTIO PRECURSORIAn(Puhe väitöstilaisuuden alussa) Väitöstilaisuus 12.10.2012 Oulun yliopiston Kasvatustieteiden tiedekunnan luentosalissa klo 12...."
+title: 'LECTIO PRECURSORIA: Opiskelun tukeminen mobiililaitteiden ja pedagogisen vaiheistuksen avulla.'
+date: '2012-10-18'
+description: 'Jari J. Laru: Lectio (puhe) 12.10.2012 Jari J. Laru: LECTIO PRECURSORIAn(Puhe väitöstilaisuuden alussa) Väitöstilaisuus 12.10.2012 Oulun yliopiston Kasvatustieteiden tiedekunnan luentosalissa klo 12....'
 categories:
-  - thesis
+  - Koulutusteknologia
+context:
+  - väitöskirja
 keywords:
   - lectio precursora
   - lektio
@@ -13,7 +15,7 @@ keywords:
   - väitös
 type: tieteellinen
 wp_id: 641
-source_url: "https://www.jarilaru.fi/lectio-precursoria-opiskelun-tukeminen-mobiililaitteiden-ja-pedagogisen-vaiheistuksen-avulla/"
+source_url: 'https://www.jarilaru.fi/lectio-precursoria-opiskelun-tukeminen-mobiililaitteiden-ja-pedagogisen-vaiheistuksen-avulla/'
 templateEngineOverride: md
 ---
 <strong>Jari J. Laru: Lectio (puhe) 12.10.2012</strong>

@@ -3,10 +3,10 @@ title: Oulun kaupungin tulee järjestää yhdessä nuorten kanssa mopoaiheinen t
 date: 2024-04-25
 description: "Valtuustoaloite: Oulun kaupungin nuorisotoimi yhdessä nuorten kanssa ryhtyy suunnittelemaan mopomiitti-tapahtumien järjestämistä turvallisesti ja nuoria kiinnostavalla tavalla."
 categories:
+  - Politiikka ja päätöksenteko
+  - Hyvinvointi ja osallisuus
+forum:
   - Kaupunginvaltuusto
-  - politiikka
-  - Valtuustoaloitteet
-  - Nuorisotyö
 keywords:
   - mopomiitti
   - nuorisotyö

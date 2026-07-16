@@ -1,17 +1,16 @@
 ---
 title: Lomamatkat
-date: 2021-04-04
-description: "Tulossa (koronan jälkeen) Photo by David Jakab on Pexels.com Britten saarten kiertäminen \"rantaviivaa\" pitkin autolla (Oulu-UK-Oulu) Tämä on yksi autoloma, jonka haaveilen tekeväni tulevina vuosina. Karkea reittisuu"
+date: '2021-04-04'
+description: 'Tulossa (koronan jälkeen) Photo by David Jakab on Pexels.com Britten saarten kiertäminen "rantaviivaa" pitkin autolla (Oulu-UK-Oulu) Tämä on yksi autoloma, jonka haaveilen tekeväni tulevina vuosina. Karkea reittisuu'
 categories:
-  - Matkailu
-  - Uncategorized
+  - Matkat ja henkilökohtaiset
 keywords:
   - autolomat
   - loma
   - matkailu
   - roadtrip
 wp_id: 1664
-source_url: "https://www.jarilaru.fi/lomamatkat/"
+source_url: 'https://www.jarilaru.fi/lomamatkat/'
 templateEngineOverride: md
 ---
 

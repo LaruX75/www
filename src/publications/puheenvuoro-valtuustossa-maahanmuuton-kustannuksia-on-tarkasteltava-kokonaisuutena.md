@@ -1,11 +1,22 @@
 ---
-title: "Puheenvuoro valtuustossa § 1: Maahanmuuton kustannuksia on tarkasteltava kokonaisuutena"
-date: 2020-11-30
+title: 'Puheenvuoro valtuustossa § 1: Maahanmuuton kustannuksia on tarkasteltava kokonaisuutena'
+date: '2020-11-30'
+description: 'Puheenvuorossa korostan, että maahanmuuton taloudellisia vaikutuksia on arvioitava kokonaisuutena kaupungin kotouttamisohjelman tavoitteiden ja mittareiden pohjalta.'
+event: Oulun kaupunginvaltuusto
+meetingDate: '2020-12-07'
+asiakohta: § 105 – Talousarvio 2021 ja -suunnitelma 2022-2023
+categories:
+  - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
+  - Hyvinvointi ja osallisuus
+forum:
+  - Kaupunginvaltuusto
 type: puhe
-event: "Oulun kaupunginvaltuusto"
-meetingDate: 2020-12-07
-asiakohta: "§ 105 – Talousarvio 2021 ja -suunnitelma 2022-2023"
-description: "Puheenvuorossa korostan, että maahanmuuton taloudellisia vaikutuksia on arvioitava kokonaisuutena kaupungin kotouttamisohjelman tavoitteiden ja mittareiden pohjalta."
+politicalProfiles:
+  - sivistys
+  - hyvinvointi
+  - yhteistyo
+templateEngineOverride: md
 tags:
   - publications
   - politics
@@ -17,11 +28,6 @@ tags:
   - verotulot
   - korkeakoulutus
   - talousarvio
-politicalProfiles:
-  - sivistys
-  - hyvinvointi
-  - yhteistyo
-templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto käsitteli 30.11.2020 vuoden 2021 talousarviota ja vuosien 2022–2023 taloussuunnitelmaa. Käytin puheenvuoron esityksestä, jonka mukaan kaupungin pitäisi selvittää maahanmuuton aiheuttamia kustannuksia.

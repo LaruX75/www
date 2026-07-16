@@ -3,10 +3,10 @@ title: Käyttöjärjestelmä varsin olematon sivuseikka
 date: '2016-10-09'
 description: Oulussa on käyty edellisellä ja tällä valtuustokaudella välillä isoillakin kirjaimilla keskustelua koulujen käyttämästä "käyttöjärjestelmästä" (joka kattaa paljon muutakin)
 categories:
-  - Käyttöjärjestelmät
-  - pilvipalvelut ja ekosysteemit
   - Politiikka ja päätöksenteko
-  - Teknologiatuettu oppiminen ja opetus
+  - Teknologia ja digitaalisuus
+secondaryTheme:
+  - Koulutusteknologia
 publication: Kaleva
 keywords:
   - google suite for education

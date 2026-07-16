@@ -1,12 +1,11 @@
 ---
 title: Matalan kynnyksen videot - osa nykyaikaista oppimisympäristöä
-date: 2017-02-10
-description: "Paula Vaskurin editoima ja minun kirjoittama blogikirjoitus Oulun yliopiston Hyvät, Pahat ja Digit -blogissa, joka on julkaistu 10.2.2017: https://www.oulu.fi/blogs/node/44503Teknologioatuet..."
+date: '2017-02-10'
+description: 'Paula Vaskurin editoima ja minun kirjoittama blogikirjoitus Oulun yliopiston Hyvät, Pahat ja Digit -blogissa, joka on julkaistu 10.2.2017: https://www.oulu.fi/blogs/node/44503Teknologioatuet...'
 categories:
+  - Koulutusteknologia
+context:
   - blogivierailu
-  - Blogivierailut ja kolumnit
-  - Teknologiatuettu oppiminen ja opetus
-  - Videot
 keywords:
   - esimerkki
   - matalan kynnyksen videot
@@ -15,7 +14,7 @@ keywords:
   - videot opetuksessa
 type: kolumni
 wp_id: 1200
-source_url: "https://www.jarilaru.fi/matalan-kynnyksen-videot-osa-nykyaikaista-oppimisymparistoa/"
+source_url: 'https://www.jarilaru.fi/matalan-kynnyksen-videot-osa-nykyaikaista-oppimisymparistoa/'
 templateEngineOverride: md
 ---
 <p><em>Paula Vaskurin editoima ja minun kirjoittama blogikirjoitus Oulun yliopiston Hyvät, Pahat ja Digit -blogissa, joka on julkaistu 10.2.2017: <a href="https://www.oulu.fi/blogs/node/44503" target="_blank" rel="noreferrer noopener">https://www.oulu.fi/blogs/node/44503</a></em></p>

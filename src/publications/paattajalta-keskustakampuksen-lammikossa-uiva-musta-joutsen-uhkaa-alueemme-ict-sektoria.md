@@ -1,9 +1,13 @@
 ---
-title: "Päättäjältä. Rantapohja 3.2.22: Keskustakampuksen lammikossa uiva musta joutsen uhkaa alueemme ICT-sektoria"
-date: 2022-02-03
-description: "Kolumni paikallislehti Rantapohjassa 3.2.2022"
+title: 'Päättäjältä. Rantapohja 3.2.22: Keskustakampuksen lammikossa uiva musta joutsen uhkaa alueemme ICT-sektoria'
+date: '2022-02-03'
+description: Kolumni paikallislehti Rantapohjassa 3.2.2022
 categories:
-  - kolumni
+  - Politiikka ja päätöksenteko
+  - Yliopisto ja korkeakoulut
+secondaryTheme:
+  - Kaupunkikehitys ja palveluverkko
+publication: Rantapohja
 keywords:
   - ICT-sektori
   - keskustakampus
@@ -12,7 +16,7 @@ keywords:
   - teollisuus
 type: kolumni
 wp_id: 2058
-source_url: "https://www.jarilaru.fi/paattajalta-keskustakampuksen-lammikossa-uiva-musta-joutsen-uhkaa-alueemme-ict-sektoria/"
+source_url: 'https://www.jarilaru.fi/paattajalta-keskustakampuksen-lammikossa-uiva-musta-joutsen-uhkaa-alueemme-ict-sektoria/'
 templateEngineOverride: md
 ---
 <p><a href="https://www.rantapohja.fi/keskustelemme/kolumnit/keskustakampuksen-lammikossa-uiva-musta-joutsen-uhkaa-alueemme-ict-sektoria/" target="_blank" rel="noreferrer noopener" title="Paikallislehti Rantapohja 3.2.2022. Päättäjältä-kolumni: https://www.rantapohja.fi/keskustelemme/kolumnit/keskustakampuksen-lammikossa-uiva-musta-joutsen-uhkaa-alueemme-ict-sektoria/">Paikallislehti Rantapohja 3.2.2022. Päättäj</a>ältä-kolumni: <a href="https://www.rantapohja.fi/keskustelemme/kolumnit/keskustakampuksen-lammikossa-uiva-musta-joutsen-uhkaa-alueemme-ict-sektoria/" target="_blank" rel="noreferrer noopener" title="Paikallislehti Rantapohja 3.2.2022. Päättäjältä-kolumni: https://www.rantapohja.fi/keskustelemme/kolumnit/keskustakampuksen-lammikossa-uiva-musta-joutsen-uhkaa-alueemme-ict-sektoria/">https://www.rantapohja.fi/keskustelemme/kolumnit/keskustakampuksen-lammikossa-uiva-musta-joutsen-uhkaa-alueemme-ict-sektoria/</a></p>

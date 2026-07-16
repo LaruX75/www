@@ -4,7 +4,14 @@ date: '2021-10-03'
 description: Kaupunginvaltuuston Linnannmaa-vierailulla pitämäni puheenvuoro
 event: Oulun kaupunginvaltuuston vierailu Oulun yliopistolla
 categories:
-  - Seminaarit
+  - Politiikka ja päätöksenteko
+  - Yliopisto ja korkeakoulut
+secondaryTheme:
+  - Oppimisympäristöt ja tilat
+forum:
+  - Kaupunginvaltuusto
+eventType:
+  - seminaari
 keywords:
   - keskustakampus
   - linnanmaa

@@ -4,8 +4,9 @@ date: '2017-09-27'
 description: 'Tähää Cafe Roosterissa on mukava tapahtuma "porisuta porvaria koulutuksesta" - allekirjoittanut on yksi porisutettavista TAPAHTUMAN KUVAUS:"Tiedätkö oikeasti mitä paikalliset porvarit ajatte...'
 event: Porisuta porvaria koulutuksesta
 categories:
-  - Paneelit
-  - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
+eventType:
+  - paneeli
 keywords:
   - järjestötyö
   - keskustelu

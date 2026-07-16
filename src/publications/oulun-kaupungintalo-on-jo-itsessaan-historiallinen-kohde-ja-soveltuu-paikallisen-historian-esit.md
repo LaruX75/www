@@ -3,8 +3,8 @@ title: Oulun kau­pun­gin­ta­lo on jo it­ses­sään his­to­rial­li­nen 
 date: '2021-01-29'
 description: 'Mielipidekirjoitus on julkaistu Sanomalehti Kalevan "mielipiteitä" palstalla 29.1.2021. ( https://www.kaleva.fi/oulun-kaupungintalo-on-jo-itsessaan-historiallinen/3305217 ) Martti Korhonen es...'
 categories:
-  - Kulttuuri
   - Politiikka ja päätöksenteko
+  - Kulttuuri ja paikallisidentiteetti
 publication: Kaleva
 keywords:
   - erä- ja luontomuseo

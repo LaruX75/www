@@ -1,9 +1,24 @@
 ---
 title: Kuntalain 94.2§ mukainen keskustelu yliopiston muuttosuunnitelmista
-date: 2020-11-10
-event: "Oulun kaupunginvaltuusto"
-meetingDate: 2020-11-09
-description: "Mistä on kyse Minä ja 17 muuta kaupunginvaltuuettua pyysimme Oulun kaupunginvaltuustoa koolle käsittelemää suunnitelmaa Oulun yliopiston siirtymisestä raksilaan. Kahdeksantoista valtu..."
+date: '2020-11-10'
+description: Mistä on kyse Minä ja 17 muuta kaupunginvaltuuettua pyysimme Oulun kaupunginvaltuustoa koolle käsittelemää suunnitelmaa Oulun yliopiston siirtymisestä raksilaan. Kahdeksantoista valtu...
+event: Oulun kaupunginvaltuusto
+meetingDate: '2020-11-09'
+categories:
+  - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
+  - Kaupunkikehitys ja palveluverkko
+forum:
+  - Kaupunginvaltuusto
+type: puhe
+wp_id: 491
+source_url: 'https://www.jarilaru.fi/kuntalain-94-2%c2%a7-mukainen-keskustelu-yliopiston-muuttosuunnitelmista/'
+politicalProfiles:
+  - sivistys
+  - avoinhallinto
+  - kaupunkikehitys
+  - yhteistyo
+templateEngineOverride: md
 tags:
   - publications
   - politics
@@ -17,15 +32,6 @@ tags:
   - raksilan-kampus
   - yliopiston-muutto
   - docomomo
-type: puhe
-wp_id: 491
-source_url: "https://www.jarilaru.fi/kuntalain-94-2%c2%a7-mukainen-keskustelu-yliopiston-muuttosuunnitelmista/"
-politicalProfiles:
-  - sivistys
-  - avoinhallinto
-  - kaupunkikehitys
-  - yhteistyo
-templateEngineOverride: md
 ---
 <h4>Mistä on kyse</h4>
 <p>Minä ja 17 muuta kaupunginvaltuuettua pyysimme Oulun kaupunginvaltuustoa koolle käsittelemään suunnitelmaa Oulun yliopiston siirtymisestä raksilaan.</p>

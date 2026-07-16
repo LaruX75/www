@@ -1,10 +1,11 @@
 ---
 title: Jari Larulle kansallinen avoimen tieteen palkinto
-date: 2020-12-06
-description: "Tieteellisten seurain valtuuskunnan avoimen tieteen kansallinen koordinaatio-ryhmä on päättänyt myöntää Jari Larulle avoimen tieteen kansallisen palkinnon . Koordinaatioryhmä käyttämät perustelut löytyvät"
+date: '2020-12-06'
+description: Tieteellisten seurain valtuuskunnan avoimen tieteen kansallinen koordinaatio-ryhmä on päättänyt myöntää Jari Larulle avoimen tieteen kansallisen palkinnon . Koordinaatioryhmä käyttämät perustelut löytyvät
 categories:
-  - Avoimet oppimateriaalit ja sisällöt
-  - Teknologiatuettu oppiminen ja opetus
+  - Yliopisto ja korkeakoulut
+secondaryTheme:
+  - Koulutusteknologia
 keywords:
   - avoimen tieteen koordinaatioryhmä
   - avoin tiede
@@ -13,7 +14,7 @@ keywords:
   - tieteellisten seurain valtuuskunta
   - tsv
 wp_id: 449
-source_url: "https://www.jarilaru.fi/jari-larulle-kansallinen-avoimen-tieteen-palkinto/"
+source_url: 'https://www.jarilaru.fi/jari-larulle-kansallinen-avoimen-tieteen-palkinto/'
 templateEngineOverride: md
 ---
 

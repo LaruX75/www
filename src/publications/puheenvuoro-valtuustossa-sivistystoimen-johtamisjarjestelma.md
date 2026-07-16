@@ -1,10 +1,20 @@
 ---
-title: "Puheenvuoro valtuustossa § 81: Sivistystoimen johtamisjärjestelmän uudistaminen"
-date: 2024-11-11
+title: 'Puheenvuoro valtuustossa § 81: Sivistystoimen johtamisjärjestelmän uudistaminen'
+date: '2024-11-11'
+description: 'Puheenvuorossa esitän sivistystoimen johtamisjärjestelmän uudistamista, nykyisistä palvelualueista luopumista ja palveluverkon tarkastelua kaupunginosien, suuralueiden ja koko kaupungin näkökulmasta.'
+event: Oulun kaupunginvaltuusto
+asiakohta: § 81 – Tuloveroprosentin ja kiinteistöveroprosenttien vahvistaminen vuodelle 2025
+categories:
+  - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
+  - Kaupunkikehitys ja palveluverkko
+forum:
+  - Kaupunginvaltuusto
 type: puhe
-event: "Oulun kaupunginvaltuusto"
-asiakohta: "§ 81 – Tuloveroprosentin ja kiinteistöveroprosenttien vahvistaminen vuodelle 2025"
-description: "Puheenvuorossa esitän sivistystoimen johtamisjärjestelmän uudistamista, nykyisistä palvelualueista luopumista ja palveluverkon tarkastelua kaupunginosien, suuralueiden ja koko kaupungin näkökulmasta."
+politicalProfiles:
+  - sivistys
+  - lahipalvelut
+templateEngineOverride: md
 tags:
   - publications
   - politics
@@ -13,10 +23,6 @@ tags:
   - johtamisjärjestelmä
   - palveluverkko
   - talouden sopeuttaminen
-politicalProfiles:
-  - sivistys
-  - lahipalvelut
-templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuustossa käsiteltiin 11.11.2024 kaupungin taloutta ja sivistyspalveluihin kohdistuvia sopeutustarpeita. Käytin puheenvuoron sivistystoimen johtamisjärjestelmän uudistamisesta ja palveluverkon suunnittelun lähtökohdista.

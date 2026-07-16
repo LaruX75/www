@@ -1,11 +1,22 @@
 ---
-title: "Puheenvuoro valtuustossa § 12: Yksityinen varhaiskasvatus ja palvelujen saatavuus"
-date: 2022-11-28
+title: 'Puheenvuoro valtuustossa § 12: Yksityinen varhaiskasvatus ja palvelujen saatavuus'
+date: '2022-11-28'
+description: 'Puheenvuorossa perustelen yksityisen varhaiskasvatuksen merkitystä palvelutarjonnan joustavuudelle, saatavuudelle ja kustannustehokkuudelle.'
+event: Oulun kaupunginvaltuusto
+meetingDate: '2022-12-12'
+asiakohta: § 111 – Talousarvio 2023 ja taloussuunnitelma 2024-2025
+categories:
+  - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
+  - Hyvinvointi ja osallisuus
+forum:
+  - Kaupunginvaltuusto
 type: puhe
-event: "Oulun kaupunginvaltuusto"
-meetingDate: 2022-12-12
-asiakohta: "§ 111 – Talousarvio 2023 ja taloussuunnitelma 2024-2025"
-description: "Puheenvuorossa perustelen yksityisen varhaiskasvatuksen merkitystä palvelutarjonnan joustavuudelle, saatavuudelle ja kustannustehokkuudelle."
+politicalProfiles:
+  - sivistys
+  - hyvinvointi
+  - yhteistyo
+templateEngineOverride: md
 tags:
   - publications
   - politics
@@ -15,11 +26,6 @@ tags:
   - yksityinen varhaiskasvatus
   - palvelujen saatavuus
   - perheet
-politicalProfiles:
-  - sivistys
-  - hyvinvointi
-  - yhteistyo
-templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto käsitteli 28.11.2022 vuoden 2023 talousarviota ja vuosien 2024–2025 taloussuunnitelmaa. Käytin puheenvuoron yksityisen varhaiskasvatuksen merkityksestä palvelujen saatavuudelle ja kaupungin palvelutarjonnan joustavuudelle.

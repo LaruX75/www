@@ -3,9 +3,10 @@ title: Oulun asemakeskusta koskeva valtuustoaloite
 date: 2023-02-27
 description: "VALTUUSTOALOITE: Lämmin puurakenteinen paviljonki linja-autoaseman alueelle + asematunnelin pintaremontti &nbsp;yhteistyössä alueen yhteistyökumppaneiden kanssa Vuosikymmeniä jatkunut välitil..."
 categories:
+  - Politiikka ja päätöksenteko
+  - Kaupunkikehitys ja palveluverkko
+forum:
   - Kaupunginvaltuusto
-  - Poliitiikka
-  - Valtuustoaloitteet
 keywords:
   - Oulun asemakeskus
   - Oulun asematunneli

@@ -4,8 +4,9 @@ date: '2018-12-05'
 description: 'Puhe Kiimingin lukion ylioppilasjuhlassa 5.12.2018 Arvoisa rehtori, hyvä juhlayleisö ja hyvät ylioppilaat! &nbsp;Te uudet ylioppilaat olette nyt saavuttaneet välitavoitteenne, ylioppilastutki...'
 event: Kiimingin lukion ylioppilasjuhla
 categories:
-  - Juhlapuheet
-  - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
+eventType:
+  - juhlapuhe
 keywords:
   - itse äisyyspäivä
   - kiimingin lukio

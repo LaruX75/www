@@ -1,10 +1,11 @@
 ---
 title: Kurkistus sivustoni tekniikkaan
-date: 2021-01-04
-description: "Tämä sivusto on toteutettu palvelinhotellipohjaisella wordpress.org -järjestelmällä. Jos et ole ennestää tuttu teknistä ylläpitoa vaativan wordpress-alustan kanssa suosittelen sinulle yksinkertaisempaa wordpres"
+date: '2021-01-04'
+description: Tämä sivusto on toteutettu palvelinhotellipohjaisella wordpress.org -järjestelmällä. Jos et ole ennestää tuttu teknistä ylläpitoa vaativan wordpress-alustan kanssa suosittelen sinulle yksinkertaisempaa wordpres
 categories:
-  - Larux tmi (yritys)
-  - www-sivustot
+  - Teknologia ja digitaalisuus
+context:
+  - yritys
 keywords:
   - how-to
   - laajennukset
@@ -16,7 +17,7 @@ keywords:
   - tutoriaali
   - wordpress
 wp_id: 508
-source_url: "https://www.jarilaru.fi/kurkistus-sivustoni-tekniikkaan/"
+source_url: 'https://www.jarilaru.fi/kurkistus-sivustoni-tekniikkaan/'
 templateEngineOverride: md
 ---
 

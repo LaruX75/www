@@ -4,6 +4,7 @@ date: '2008-09-28'
 description: 'Oulujoen Kaupunki? Allekirjoitin tähää Oulun seudun kokoomusjärjestöjen vision pohjoisesta metropolista, 200 000 asukkaan Oulusta. Tämä viikon Nykypäivässä oli aiheesta koko sivun artikkeli, jossa asian ydin'
 categories:
   - Politiikka ja päätöksenteko
+  - Kaupunkikehitys ja palveluverkko
 keywords:
   - koulu
   - kuntaliitos

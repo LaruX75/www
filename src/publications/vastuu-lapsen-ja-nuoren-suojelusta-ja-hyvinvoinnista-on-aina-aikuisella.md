@@ -4,6 +4,7 @@ date: '2019-01-15'
 description: 'Lapselle ja nuorelle on opetettava, että oma keho on arvokkainta, mitä hänellä on.'
 categories:
   - Politiikka ja päätöksenteko
+  - Hyvinvointi ja osallisuus
 publication: Kaleva
 forum:
   - Lautakunta

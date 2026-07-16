@@ -2,6 +2,11 @@
 title: Lähidemokratia ja tasa-arvotyö ovat keskiössä uutta peruskuntaa rakennettaessa
 date: '2016-09-29'
 description: 'Perjantain Kalevassa 23.9.2016 Taina Pitkänen-Koli ja Terttu Kuusela kirjoittivat tasa-arvosta ja lähidemokratiasta Oulun Naisunioni ry: nimissä. Oulun kaupunginhallituksen kehittämisjaosto piti 20...'
+categories:
+  - Politiikka ja päätöksenteko
+  - Hyvinvointi ja osallisuus
+secondaryTheme:
+  - Kaupunkikehitys ja palveluverkko
 publication: Kaleva
 keywords:
   - kuntalaisdemokratia

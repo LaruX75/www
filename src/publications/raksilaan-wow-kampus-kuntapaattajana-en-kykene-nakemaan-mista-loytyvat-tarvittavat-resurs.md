@@ -4,6 +4,8 @@ date: '2020-05-15'
 description: 'Oulussa &nbsp;on käyty viime aikoina keskustelua Oulun yliopiston suunnitelmista rakentaa kampus Raksilaan. Perusteluina on käytetty väestöennusteita, opiskelijarekrytointia, kaupungin keskustan äi...'
 categories:
   - Politiikka ja päätöksenteko
+  - Yliopisto ja korkeakoulut
+  - Kaupunkikehitys ja palveluverkko
 keywords:
   - kaleva
   - keskustakampus

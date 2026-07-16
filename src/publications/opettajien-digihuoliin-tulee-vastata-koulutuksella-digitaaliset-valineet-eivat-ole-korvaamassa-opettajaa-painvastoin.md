@@ -3,8 +3,9 @@ title: Opettajien digihuoliin tulee vastata koulutuksella - digitaaliset väline
 date: '2017-10-04'
 description: 'Mielipide julkaistiin Sanomalehti Helsingin Sanomissa 4.10.2017: https://www.hs.fi/mielipide/art-2000005393306.htmlToisinkuinmonetväittävät,uudenteknologiankäyttöönottojatehokashyöd...'
 categories:
+  - Opettajankoulutus
+secondaryTheme:
   - Koulutusteknologia
-  - Teknologiatuettu oppiminen ja opetus
 publication: Helsingin Sanomat
 keywords:
   - koulun muutos

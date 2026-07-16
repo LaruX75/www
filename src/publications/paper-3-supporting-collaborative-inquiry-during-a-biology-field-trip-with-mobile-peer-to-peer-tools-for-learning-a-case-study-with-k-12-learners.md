@@ -1,10 +1,12 @@
 ---
-title: "Paper 3: Supporting collaborative inquiry during a biology field trip with mobile peer-to-peer tools for learning: A case study with K-12 learners"
-date: 2012-10-03
-description: "Reference: Laru, J., Järvelä, S., &amp; Clariana, R. B. (2012). Supporting collaborative inquiry during a biology field trip with mobile peer-to-peer tools for learning: a case study with K-12 learne..."
+title: 'Paper 3: Supporting collaborative inquiry during a biology field trip with mobile peer-to-peer tools for learning: A case study with K-12 learners'
+date: '2012-10-03'
+description: 'Reference: Laru, J., Järvelä, S., &amp; Clariana, R. B. (2012). Supporting collaborative inquiry during a biology field trip with mobile peer-to-peer tools for learning: a case study with K-12 learne...'
 categories:
-  - papers
-  - thesis
+  - Koulutusteknologia
+context:
+  - väitöskirja
+  - osatutkimus
 keywords:
   - artikkeli
   - bluetooth
@@ -15,7 +17,7 @@ keywords:
   - väitöskirja
 type: tieteellinen
 wp_id: 596
-source_url: "https://www.jarilaru.fi/paper-3-supporting-collaborative-inquiry-during-a-biology-field-trip-with-mobile-peer-to-peer-tools-for-learning-a-case-study-with-k-12-learners/"
+source_url: 'https://www.jarilaru.fi/paper-3-supporting-collaborative-inquiry-during-a-biology-field-trip-with-mobile-peer-to-peer-tools-for-learning-a-case-study-with-k-12-learners/'
 templateEngineOverride: md
 ---
 <strong>Reference:</strong>

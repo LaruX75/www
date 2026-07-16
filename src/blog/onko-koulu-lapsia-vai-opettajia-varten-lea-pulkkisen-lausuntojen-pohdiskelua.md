@@ -4,6 +4,8 @@ date: '2008-10-11'
 description: 'Jo viikko sitten Professori Lea Pulkkinen otti voimakkaasti kantaa koululaitoksemme nykytilan ongelmiin julkaisemallaan tiedotteella: Nuorisopsykiatriaan panostaminen ei estä hirmutekoja (3.10.2008). Hänen mukaansa Kau'
 categories:
   - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
+  - Hyvinvointi ja osallisuus
 keywords:
   - hyvinvointi
   - koulu

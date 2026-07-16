@@ -1,10 +1,20 @@
 ---
-title: "Puheenvuoro valtuustossa § 4: Raksilan kampushanke on kuin liian lyhyt peitto"
-date: 2022-02-28
+title: 'Puheenvuoro valtuustossa § 4: Raksilan kampushanke on kuin liian lyhyt peitto'
+date: '2022-02-28'
+description: 'Puheenvuorossa arvostelen Raksilan kampushankkeen perusteluja, kustannuksia ja kokonaisnäkemystä sekä kysyn, mitä hyötyä juuri valmistuneen Linnanmaan yhteiskampuksen siirtämisestä syntyy.'
+event: Oulun kaupunginvaltuusto
+asiakohta: § 4 – Oulun yliopiston keskustakampuksen hankesuunnitelma
+categories:
+  - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
+  - Kaupunkikehitys ja palveluverkko
+forum:
+  - Kaupunginvaltuusto
 type: puhe
-event: "Oulun kaupunginvaltuusto"
-asiakohta: "§ 4 – Oulun yliopiston keskustakampuksen hankesuunnitelma"
-description: "Puheenvuorossa arvostelen Raksilan kampushankkeen perusteluja, kustannuksia ja kokonaisnäkemystä sekä kysyn, mitä hyötyä juuri valmistuneen Linnanmaan yhteiskampuksen siirtämisestä syntyy."
+politicalProfiles:
+  - sivistys
+  - kaupunkikehitys
+templateEngineOverride: md
 tags:
   - publications
   - politics
@@ -15,10 +25,6 @@ tags:
   - kampus
   - korkeakoulutus
   - kaupunkisuunnittelu
-politicalProfiles:
-  - sivistys
-  - kaupunkikehitys
-templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto käsitteli 28.2.2022 Oulun yliopiston keskustakampuksen hankesuunnitelmaa. Käytin puheenvuoron hankkeen perusteista, kustannuksista ja siitä, mitä yhteiskunnallista hyötyä juuri valmistuneen Linnanmaan yhteiskampuksen osittaisesta siirtämisestä syntyisi.

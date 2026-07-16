@@ -1,9 +1,9 @@
 ---
 title: Nizza 2018
-date: 2018-07-29
-description: "Kesällä 2018 käytössämme oli niukempi kesäloma puolison aloitettua Pohjois-Pohjanmaan maakunnan palveluksessa. Päätimme, että tällä kertaa emme tee roadtripiä autolla, vaan lennämme perille ihan lentokoneell"
+date: '2018-07-29'
+description: 'Kesällä 2018 käytössämme oli niukempi kesäloma puolison aloitettua Pohjois-Pohjanmaan maakunnan palveluksessa. Päätimme, että tällä kertaa emme tee roadtripiä autolla, vaan lennämme perille ihan lentokoneell'
 categories:
-  - Matkailu
+  - Matkat ja henkilökohtaiset
 keywords:
   - kaupunkiloma
   - loma
@@ -11,7 +11,7 @@ keywords:
   - nizza
   - rantaloma
 wp_id: 1620
-source_url: "https://www.jarilaru.fi/nizza-2018/"
+source_url: 'https://www.jarilaru.fi/nizza-2018/'
 templateEngineOverride: md
 ---
 

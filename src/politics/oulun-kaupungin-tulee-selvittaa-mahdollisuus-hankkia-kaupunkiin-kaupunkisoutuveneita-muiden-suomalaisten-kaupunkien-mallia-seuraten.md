@@ -3,10 +3,11 @@ title: Oulun kaupungin tulee selvittää mahdollisuus hankkia kaupunkiin kaupunk
 date: 2023-11-27
 description: "Soutuveneellä liikkuminen on tehokasta liikuntaa. &nbsp; Soutaminen on tehokasta treeniä, sillä siitä isot lihasryhmät saavat harjoitusta! Vatsalihaksetkin saavat treeniä soutajan voimavedoissa.&nbs..."
 categories:
-  - Luottamustehtävät
-  - Poliitiikka
-  - politiikka
-  - Valtuustoaloitteet
+  - Politiikka ja päätöksenteko
+  - Hyvinvointi ja osallisuus
+  - Kaupunkikehitys ja palveluverkko
+forum:
+  - Kaupunginvaltuusto
 keywords:
   - jokisuisto
   - kaupunkivene

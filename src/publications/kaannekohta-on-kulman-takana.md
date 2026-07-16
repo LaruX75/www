@@ -4,6 +4,8 @@ date: '2025-04-08'
 description: 'Sanomalehti Kaleva julkaisi alla olevan tekstin lyhennetyn (ehdokas)version 8.4.2025. Alkuperäinen teksti on alla (normaali mielipidekirjoituksen mitta) Lue lyhennetty versio täältä: https://www.kal...'
 categories:
   - Politiikka ja päätöksenteko
+  - Kaupunkikehitys ja palveluverkko
+  - Sivistys ja koulutus
 publication: Kaleva
 keywords:
   - asemakeskus

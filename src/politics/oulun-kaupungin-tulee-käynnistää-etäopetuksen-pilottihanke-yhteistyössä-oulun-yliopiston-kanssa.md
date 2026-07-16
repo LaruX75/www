@@ -4,6 +4,14 @@ date: 2026-03-30
 initiative_type: valtuustoaloite
 description: "Valtuustoaloite etäopetuksen pilottihankkeen käynnistämisestä Oulun kaupungin ja Oulun yliopiston yhteistyönä."
 url: ''
+categories:
+  - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
+  - Koulutusteknologia
+secondaryTheme:
+  - Yliopisto ja korkeakoulut
+forum:
+  - Kaupunginvaltuusto
 politicalProfiles:
   - sivistys
   - yhteistyo

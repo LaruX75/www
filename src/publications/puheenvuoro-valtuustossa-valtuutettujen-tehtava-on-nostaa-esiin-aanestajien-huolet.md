@@ -1,10 +1,21 @@
 ---
-title: "Puheenvuoro valtuustossa § 4: Valtuutettujen tehtävä on nostaa esiin äänestäjien huolet"
-date: 2022-02-28
+title: 'Puheenvuoro valtuustossa § 4: Valtuutettujen tehtävä on nostaa esiin äänestäjien huolet'
+date: '2022-02-28'
+description: 'Puheenvuorossa puolustan valtuutettujen oikeutta ja velvollisuutta keskustella kampushankkeesta sekä korostan tutkimuksen, muuntojoustavien tilojen ja tutkijoiden vetovoiman merkitystä.'
+event: Oulun kaupunginvaltuusto
+asiakohta: § 4 – Oulun yliopiston keskustakampuksen hankesuunnitelma
+categories:
+  - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
+  - Kaupunkikehitys ja palveluverkko
+forum:
+  - Kaupunginvaltuusto
 type: puhe
-event: "Oulun kaupunginvaltuusto"
-asiakohta: "§ 4 – Oulun yliopiston keskustakampuksen hankesuunnitelma"
-description: "Puheenvuorossa puolustan valtuutettujen oikeutta ja velvollisuutta keskustella kampushankkeesta sekä korostan tutkimuksen, muuntojoustavien tilojen ja tutkijoiden vetovoiman merkitystä."
+politicalProfiles:
+  - sivistys
+  - kaupunkikehitys
+  - yhteistyo
+templateEngineOverride: md
 tags:
   - publications
   - politics
@@ -15,11 +26,6 @@ tags:
   - Linnanmaa
   - tutkimus
   - korkeakoulupolitiikka
-politicalProfiles:
-  - sivistys
-  - kaupunkikehitys
-  - yhteistyo
-templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuuston keskustelu Oulun yliopiston keskustakampuksesta jatkui 28.2.2022. Toisessa puheenvuorossani puolustin valtuutettujen oikeutta ja velvollisuutta käsitellä hanketta poliittisesti sekä nostin esiin kampuksen tutkimuksellisen tehtävän.

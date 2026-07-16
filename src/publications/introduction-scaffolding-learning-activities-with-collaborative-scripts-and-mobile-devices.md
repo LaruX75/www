@@ -1,10 +1,11 @@
 ---
-title: "Introduction: Scaffolding learning activities with collaborative scripts and mobile devices"
-date: 2012-10-04
-description: "The use of mobile devices, including mobile phones and tablets, is a growing trend in education. The practice has been widely technology driven and often justified simply by the importance of using ..."
+title: 'Introduction: Scaffolding learning activities with collaborative scripts and mobile devices'
+date: '2012-10-04'
+description: 'The use of mobile devices, including mobile phones and tablets, is a growing trend in education. The practice has been widely technology driven and often justified simply by the importance of using ...'
 categories:
-  - introduction
-  - thesis
+  - Koulutusteknologia
+context:
+  - väitöskirja
 keywords:
   - CSCL
   - hajautettu kognitio
@@ -21,7 +22,7 @@ keywords:
   - väitöskirja
 type: tieteellinen
 wp_id: 577
-source_url: "https://www.jarilaru.fi/introduction-scaffolding-learning-activities-with-collaborative-scripts-and-mobile-devices/"
+source_url: 'https://www.jarilaru.fi/introduction-scaffolding-learning-activities-with-collaborative-scripts-and-mobile-devices/'
 templateEngineOverride: md
 ---
 <p>The use of mobile devices, including mobile phones and tablets, is a growing trend in education. The practice has been widely technology driven and often justified simply by the importance of using new technology in a classroom and by claiming such devices to be important in reaching something referred to, although not that well defined, as 21st century skills. This thesis is one answer to the challenge represented by this development. It brings together theoretical ideas of scaffolding learning with collaborative scripts and the use of mobile devices as cognitive tools in a real life educational settings.</p>

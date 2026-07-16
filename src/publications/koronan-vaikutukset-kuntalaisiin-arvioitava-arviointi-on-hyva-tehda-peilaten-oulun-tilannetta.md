@@ -4,6 +4,8 @@ date: '2021-02-28'
 description: 'Sanomalehti Kaleva julkaisi tähää 28.2.2021 Oulun kaupungin sivistys- ja kulttuurilautakunnan jäsenten yhteisen mielipidekirjoituksen. Alkuperäinen teksti löytyy täältä: https://www.kaleva.fi/koron...'
 categories:
   - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
+  - Hyvinvointi ja osallisuus
 publication: Kaleva
 forum:
   - Lautakunta

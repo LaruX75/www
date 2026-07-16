@@ -4,6 +4,8 @@ date: '2018-01-22'
 description: 'Kirjoitus julkaistu Sanomalehti Kalevassa 22.01.2018 (https://www.kaleva.fi/jokirannan-koulun-tilanne-kestamaton-osa-oppilaist/1861861) Jokirannan koulun kestämätöntä tilannetta on jauhettu j...'
 categories:
   - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
+  - Kaupunkikehitys ja palveluverkko
 publication: Kaleva
 forum:
   - Lautakunta

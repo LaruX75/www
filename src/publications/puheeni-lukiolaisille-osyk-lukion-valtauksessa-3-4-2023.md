@@ -4,7 +4,7 @@ date: '2023-10-04'
 description: 'Arvoisat lukiolaiset, kerron teille korona-ajan nuorille terveiset lama-ajan nuorelta. Kun aloitin Saloisten lukion ensimmäisellä luokalla vuonna 1991, tapahtui jotain käsittämätöntä, nimittä...'
 event: OSYK-lukion valtaus
 categories:
-  - Muut
+  - Sivistys ja koulutus
 keywords:
   - lukiolaiset
   - lukion valtaus

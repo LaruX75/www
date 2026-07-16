@@ -1,11 +1,11 @@
 ---
 title: Mä haluun näyttää sulle mun skrätsin
-date: 2014-04-30
-description: "Kasvatus-lehden kolumni vuonna 2014. Kasvatus 5(45)"
+date: '2014-04-30'
+description: Kasvatus-lehden kolumni vuonna 2014. Kasvatus 5(45)
 categories:
-  - Blogivierailut ja kolumnit
-  - kolumni
-  - Teknologiatuettu oppiminen ja opetus
+  - Koulutusteknologia
+context:
+  - blogivierailu
 keywords:
   - koulut
   - mediakasvatus
@@ -15,7 +15,7 @@ keywords:
   - sosiaalinen media
 type: kolumni
 wp_id: 235
-source_url: "https://www.jarilaru.fi/ma-haluun-nayttaa-sulle-mun-skratsin/"
+source_url: 'https://www.jarilaru.fi/ma-haluun-nayttaa-sulle-mun-skratsin/'
 templateEngineOverride: md
 ---
 <p>Kolumni on julkaistu Kasvatus-lehdessä 5(45) vuonna 2014.</p>

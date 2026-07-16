@@ -4,6 +4,8 @@ date: '2020-08-08'
 description: Mielipidekirjoitus on julkaistu Sanomalehti Kalevassa 8.8.2020 otsikolla “Yliopistoa ja ammattikorkeakoulua yhdistettiin kalliisti - yhteiskunta on investoinut Linnanmaan kampukseen kymmeniä miljoon...
 categories:
   - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
+  - Kaupunkikehitys ja palveluverkko
 keywords:
   - kaleva
   - keskustakampus

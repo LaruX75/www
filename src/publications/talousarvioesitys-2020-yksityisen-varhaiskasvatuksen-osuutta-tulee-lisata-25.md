@@ -1,11 +1,25 @@
 ---
-title: "Puheenvuoro valtuustossa § 4: Yksityisen varhaiskasvatuksen osuuden lisääminen"
-date: 2021-11-29
+title: 'Puheenvuoro valtuustossa § 4: Yksityisen varhaiskasvatuksen osuuden lisääminen'
+date: '2021-11-29'
+description: Puheenvuorossa esitän yksityisen varhaiskasvatuksen osuuden kasvattamista osana kaupungin palveluverkon kehittämistä ja investointitarpeiden hallintaa.
+event: Oulun kaupunginvaltuusto
+meetingDate: '2021-12-13'
+asiakohta: § 117 – Talousarvio 2022 ja -suunnitelma 2023-2024
+categories:
+  - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
+  - Kaupunkikehitys ja palveluverkko
+forum:
+  - Kaupunginvaltuusto
 type: puhe
-event: "Oulun kaupunginvaltuusto"
-meetingDate: 2021-12-13
-asiakohta: "§ 117 – Talousarvio 2022 ja -suunnitelma 2023-2024"
-description: "Puheenvuorossa esitän yksityisen varhaiskasvatuksen osuuden kasvattamista osana kaupungin palveluverkon kehittämistä ja investointitarpeiden hallintaa."
+wp_id: 1883
+source_url: 'https://www.jarilaru.fi/talousarvioesitys-2020-yksityisen-varhaiskasvatuksen-osuutta-tulee-lisata-25/'
+politicalProfiles:
+  - sivistys
+  - lahipalvelut
+  - yhteistyo
+  - hyvinvointi
+templateEngineOverride: md
 tags:
   - publications
   - politics
@@ -15,14 +29,6 @@ tags:
   - palveluverkko
   - talousarvio
   - investoinnit
-wp_id: 1883
-source_url: "https://www.jarilaru.fi/talousarvioesitys-2020-yksityisen-varhaiskasvatuksen-osuutta-tulee-lisata-25/"
-politicalProfiles:
-  - sivistys
-  - lahipalvelut
-  - yhteistyo
-  - hyvinvointi
-templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto käsitteli 29.11.2021 vuoden 2022 talousarviota ja vuosien 2023–2024 taloussuunnitelmaa. Käytin puheenvuoron varhaiskasvatuksen kasvavasta palvelutarpeesta, kustannuksista ja yksityisen palvelutuotannon mahdollisuuksista täydentää kaupungin palveluverkkoa.

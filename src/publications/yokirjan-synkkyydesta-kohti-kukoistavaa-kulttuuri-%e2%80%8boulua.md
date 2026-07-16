@@ -1,7 +1,13 @@
 ---
 title: Yökirjan synkkyydestä kohti kukoistavaa kulttuuri-​Oulua
-date: 2021-06-09
-description: "Kirjoitus on julkaistu 9.6.2021 Mu Oulun sarjassa: \" äkökulma-kirjoituksia vaaleihin\". https://www.munoulu.fi/artikkeli/-/id/kuntavaalit2021-yokirjan-synkkyydesta-kohti-kukoistavaa-kulttuuri-oulua-j..."
+date: '2021-06-09'
+description: 'Kirjoitus on julkaistu 9.6.2021 Mu Oulun sarjassa: " äkökulma-kirjoituksia vaaleihin". https://www.munoulu.fi/artikkeli/-/id/kuntavaalit2021-yokirjan-synkkyydesta-kohti-kukoistavaa-kulttuuri-oulua-j...'
+categories:
+  - Kulttuuri ja paikallisidentiteetti
+type: mielipide
+wp_id: 1779
+source_url: 'https://www.jarilaru.fi/yokirjan-synkkyydesta-kohti-kukoistavaa-kulttuuri-%e2%80%8boulua/'
+templateEngineOverride: md
 tags:
   - publications
   - blog
@@ -12,10 +18,6 @@ tags:
   - kukoistus
   - vetovoima
   - kulttuuripaakaupunki
-type: mielipide
-wp_id: 1779
-source_url: "https://www.jarilaru.fi/yokirjan-synkkyydesta-kohti-kukoistavaa-kulttuuri-%e2%80%8boulua/"
-templateEngineOverride: md
 ---
 <p>Kirjoitus on julkaistu 9.6.2021  Mu Oulun sarjassa: " äkökulma-kirjoituksia vaaleihin". <a href="https://www.munoulu.fi/artikkeli/-/id/kuntavaalit2021-yokirjan-synkkyydesta-kohti-kukoistavaa-kulttuuri-oulua-jari-laru-372-" target="_blank" rel="noreferrer noopener">https://www.munoulu.fi/artikkeli/-/id/kuntavaalit2021-yokirjan-synkkyydesta-kohti-kukoistavaa-kulttuuri-oulua-jari-laru-372-</a> </p>
 <p><strong>Oulun ja oululaiste

@@ -1,16 +1,16 @@
 ---
-title: "Roadtrip: Oulu-Krakova-Oulu"
-date: 2021-04-06
-description: "Lautalla Tallinnaan https://www.instagram.com/p/p-r_zfzHeV/YöpyminenAugustowissahttps://www.instagram.com/p/qDupVXTHTy/TuokiokuviaViaBalticaltahttps://www.instagram.com/p/qEg_X2zHcF/https://www.instagram.com/p/q"
+title: 'Roadtrip: Oulu-Krakova-Oulu'
+date: '2021-04-06'
+description: 'Lautalla Tallinnaan https://www.instagram.com/p/p-r_zfzHeV/YöpyminenAugustowissahttps://www.instagram.com/p/qDupVXTHTy/TuokiokuviaViaBalticaltahttps://www.instagram.com/p/qEg_X2zHcF/https://www.instagram.com/p/q'
 categories:
-  - Matkailu
+  - Matkat ja henkilökohtaiset
 keywords:
   - autoloma
   - krakova
   - puola
   - via baltica
 wp_id: 1696
-source_url: "https://www.jarilaru.fi/roadtrip-oulu-krakova-oulu/"
+source_url: 'https://www.jarilaru.fi/roadtrip-oulu-krakova-oulu/'
 templateEngineOverride: md
 ---
 

@@ -4,8 +4,11 @@ date: '2022-01-17'
 description: Mu Oulu lehdessä julkaistu vaalikirjoitus.
 categories:
   - Vaalit
-  - Mu Oulu
   - Politiikka ja päätöksenteko
+  - Hyvinvointi ja osallisuus
+secondaryTheme:
+  - Teknologia ja digitaalisuus
+publication: Mu Oulu
 campaign: Aluevaalit 2022
 keywords:
   - aluevaalit

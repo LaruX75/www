@@ -4,6 +4,8 @@ date: '2017-09-29'
 description: Julkaistu Sanomalehti Kalevan Mielipiteitä palstalla 29.9.2017 Suomen kuusi suurinta kaupungia ovat havahtuneet julkisten rakennusten sisäimaongelmiin ja päättäneet lähteä yhdessä taistelemaa...
 categories:
   - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
+  - Kaupunkikehitys ja palveluverkko
 publication: Kaleva
 forum:
   - Kaupunginvaltuusto

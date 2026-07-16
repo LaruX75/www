@@ -18,17 +18,30 @@ function deriveFallbackOpinionRoles(data) {
 
   const roles = new Set();
   const categories = toArray(data.categories).map((item) => item.toLowerCase());
+  const secondaryThemes = toArray(data.secondaryTheme).map((item) => item.toLowerCase());
+  const forum = toArray(data.forum).map((item) => item.toLowerCase());
 
-  if (toArray(data.politicalProfiles).length > 0 || categories.includes("poliitiikka") || categories.includes("kuntavaalit")) {
+  if (
+    toArray(data.politicalProfiles).length > 0 ||
+    categories.includes("politiikka ja päätöksenteko") ||
+    categories.includes("vaalit") ||
+    forum.includes("kaupunginvaltuusto") ||
+    forum.includes("lautakunta") ||
+    typeof data.campaign === "string"
+  ) {
     roles.add("political");
   }
 
   const expertSignals = [
-    "koulutusteknologi",
+    "opettajankoulutus",
+    "koulutusteknologia",
     "teknologiatuettu oppiminen ja opetus",
-    "oppimisympäristöt ja tilat"
+    "oppimisympäristöt ja tilat",
+    "yliopisto ja korkeakoulut",
+    "teknologia ja digitaalisuus",
+    "sivistys ja koulutus"
   ];
-  if (categories.some((item) => expertSignals.includes(item))) {
+  if ([...categories, ...secondaryThemes].some((item) => expertSignals.includes(item))) {
     roles.add("expert");
   }
 

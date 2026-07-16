@@ -5,9 +5,11 @@ initiative_type: valtuustoaloite
 description: '“Suomalaiset voittivat joukkueensa kanssa Dota 2: ykkösturnauksen ja lähes 10 miljoonaa euroa – ”Suoritus on verrattavissa mihin tahansa arvokisavoittoon” “Assembly esitteli pelimaailman uus...'
 url: ''
 categories:
+  - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
+  - Teknologia ja digitaalisuus
+forum:
   - Kaupunginvaltuusto
-  - Poliitiikka
-  - Valtuustoaloitteet
 keywords:
   - dota
   - e-urheilu

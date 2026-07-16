@@ -4,8 +4,9 @@ date: '2017-03-14'
 description: Vuoden 2016 aikana olemme saaneet lukea eri lehdistä kuinka Rantapohjan levikkialueella kuntalaiset ovat olleet tyytymättömiä uuteen Ouluun. Oulu on tuonut alueellemme kuitenkin myös suoria hyötyjä ...
 categories:
   - Vaalit
-  - Muut lehdet
   - Politiikka ja päätöksenteko
+  - Kaupunkikehitys ja palveluverkko
+publication: Rantapohja
 campaign: Kuntavaalit
 keywords:
   - entinen kiimingin kunta

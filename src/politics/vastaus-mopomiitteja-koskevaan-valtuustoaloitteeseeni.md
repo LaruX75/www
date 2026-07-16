@@ -3,8 +3,10 @@ title: Vastaus mopomiittejä koskevaan valtuustoaloitteeseeni
 date: 2024-08-13
 description: "Alla kaupungin vastaus valtuustoaloitteeseeni \"Mopomiitti-tapahtumien järjestäminen kaupungin toimesta yhteistyössä nuorten ja muiden toimijoiden kanssa: Kiitos aloitteestanne, Vastaus..."
 categories:
-  - Poliitiikka
-  - Valtuustoaloitteet
+  - Politiikka ja päätöksenteko
+  - Hyvinvointi ja osallisuus
+forum:
+  - Kaupunginvaltuusto
 keywords:
   - mopo
   - mopoharrastus

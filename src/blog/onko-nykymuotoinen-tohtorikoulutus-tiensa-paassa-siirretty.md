@@ -1,15 +1,15 @@
 ---
 title: Onko nykymuotoinen tohtorikoulutus tiensä päässä (siirretty)
-date: 2007-01-02
-description: "January 4th, 2007 Uusi vuosi 2007 alkaa koulutuspoliittisesti hyvin mielenkiintoisissa merkeissä. Vanhasen hallitus ei pystynyt päättämää opintotuen nostamisesta ja nyt istuva pääministeri haluaisi korkeakoulupo"
+date: '2007-01-02'
+description: 'January 4th, 2007 Uusi vuosi 2007 alkaa koulutuspoliittisesti hyvin mielenkiintoisissa merkeissä. Vanhasen hallitus ei pystynyt päättämää opintotuen nostamisesta ja nyt istuva pääministeri haluaisi korkeakoulupo'
 categories:
-  - Luokittelematon
+  - Yliopisto ja korkeakoulut
 keywords:
   - koulutus
   - politiikka
   - yhteiskunta
 wp_id: 913
-source_url: "https://www.jarilaru.fi/onko-nykymuotoinen-tohtorikoulutus-tiensa-paassa-siirretty/"
+source_url: 'https://www.jarilaru.fi/onko-nykymuotoinen-tohtorikoulutus-tiensa-paassa-siirretty/'
 politicalProfiles:
   - sivistys
 templateEngineOverride: md

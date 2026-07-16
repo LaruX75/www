@@ -1,9 +1,22 @@
 ---
-title: "Puheenvuoro kohdassa: §7. Selvitys Oulun yliopiston sijoittumisesta Raksilan alueelle"
-date: 2021-04-26
-event: "Oulun kaupunginvaltuusto"
-asiakohta: "§ 33 – Selvitys Oulun yliopiston sijoittumisesta Raksilan alueelle"
-description: "Pidin puheenvuoron kaupunginvaltuuston kokouksessa 26.4.2021 kohdassa §7. Selvitys Oulun yliopiston sijoittumisesta Raksilan alueelle"
+title: 'Puheenvuoro kohdassa: §7. Selvitys Oulun yliopiston sijoittumisesta Raksilan alueelle'
+date: '2021-04-26'
+description: Pidin puheenvuoron kaupunginvaltuuston kokouksessa 26.4.2021 kohdassa §7. Selvitys Oulun yliopiston sijoittumisesta Raksilan alueelle
+event: Oulun kaupunginvaltuusto
+asiakohta: § 33 – Selvitys Oulun yliopiston sijoittumisesta Raksilan alueelle
+categories:
+  - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
+  - Kaupunkikehitys ja palveluverkko
+forum:
+  - Kaupunginvaltuusto
+type: puhe
+wp_id: 1714
+source_url: 'https://www.jarilaru.fi/puheenvuoro-kohdassa-%c2%a7-selvitys-oulun-yliopiston-sijoittumisesta-raksilan-alueelle/'
+politicalProfiles:
+  - sivistys
+  - kaupunkikehitys
+templateEngineOverride: md
 tags:
   - publications
   - politics
@@ -12,13 +25,6 @@ tags:
   - raksila
   - yliopisto
   - raksilan-kampus
-type: puhe
-wp_id: 1714
-source_url: "https://www.jarilaru.fi/puheenvuoro-kohdassa-%c2%a7-selvitys-oulun-yliopiston-sijoittumisesta-raksilan-alueelle/"
-politicalProfiles:
-  - sivistys
-  - kaupunkikehitys
-templateEngineOverride: md
 ---
 <p>Kalevan toimittaja Rättilä siteeraa Kalevassa puheenvuoroani näin:</p>
 <figure><blockquote><p>Yksittäisissä kannanotoissa kokoomuksen&nbsp;<strong>Jari Laru</strong>&nbsp;arveli kolmen kampuksen mallin aiheuttavan hankaluuksia yliopiston monitieteellisyydelle, henkilöstölle, opiskelijoille ja vierailijoille. Hänen mielestään Linnanmaan ekosysteemistä ei ole varaa luopua. (Kaleva 26.4.2021)</p></blockquote></figure>

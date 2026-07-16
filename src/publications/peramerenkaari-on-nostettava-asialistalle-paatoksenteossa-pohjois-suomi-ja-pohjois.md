@@ -2,6 +2,9 @@
 title: Pe­rä­me­ren­kaa­ri on nos­tet­ta­va asia­lis­tal­le pää­tök­sen­teos­sa – Poh­jois-Suo­mi ja Poh­jois-Ruot­si ovat tu­le­vi­na vuo­si­kym­me­ni­nä suurten mul­lis­tus­ten koh­tee­na
 date: '2021-11-29'
 description: 'Mielipidekirjoitus, joka on julkaistu Sanomalehti Kalevassa 22.11.2021'
+categories:
+  - Politiikka ja päätöksenteko
+  - Kaupunkikehitys ja palveluverkko
 publication: Kaleva
 keywords:
   - liikenne

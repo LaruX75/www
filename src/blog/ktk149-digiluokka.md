@@ -1,18 +1,19 @@
 ---
 title: KTK149 digiluokka
-date: 2021-04-07
-description: "Tervetuloa Oulun yliopiston kasvatustieteiden tiedekunnan digiluokkaan Oulun yliopiston kasvatustieteiden tiedekunta muutti uusiin tiloihin vuosien 2018-2019 taitteessa. Tiedekunnalle rakennettiin runsaasti uusia erityis"
+date: '2021-04-07'
+description: Tervetuloa Oulun yliopiston kasvatustieteiden tiedekunnan digiluokkaan Oulun yliopiston kasvatustieteiden tiedekunta muutti uusiin tiloihin vuosien 2018-2019 taitteessa. Tiedekunnalle rakennettiin runsaasti uusia erityis
 categories:
-  - digiluokka
-  - Larun laitenurkka
-  - Teknologiatuettu oppiminen ja opetus
+  - Oppimisympäristöt ja tilat
+secondaryTheme:
+  - Yliopisto ja korkeakoulut
+series: Digiluokka
 keywords:
   - digiluokka
   - modernit opetustilat
   - Oppimisympäristöt
   - oulun yliopisto
 wp_id: 1701
-source_url: "https://www.jarilaru.fi/ktk149-digiluokka/"
+source_url: 'https://www.jarilaru.fi/ktk149-digiluokka/'
 templateEngineOverride: md
 ---
 

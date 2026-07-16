@@ -2,6 +2,12 @@
 title: 'KALEVA Mielipide: Mihin po­liit­ti­set pää­tök­set pe­rus­tu­vat? – on­gel­mak­si esi­mer­kik­si Oulun kou­lu­verk­ko­kes­kus­te­lus­sa muo­dos­tuu se, että tärkeää tietoa jää myös kat­vee­seen'
 date: '2023-04-18'
 description: 'Mielipidekirjoitus Sanomalehti Kalevassa 18.4.2023: https://www.kaleva.fi/mihin-poliittiset-paatokset-perustuvat-ongelmaksi-/5482095SivistysjohtajaMikaPenttiläkolumni”Tulevaisuudenkoul...'
+categories:
+  - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
+  - Kaupunkikehitys ja palveluverkko
+secondaryTheme:
+  - Teknologia ja digitaalisuus
 publication: Kaleva
 type: mielipide
 wp_id: 2091

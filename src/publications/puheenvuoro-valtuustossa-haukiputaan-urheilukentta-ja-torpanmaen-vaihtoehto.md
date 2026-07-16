@@ -1,11 +1,22 @@
 ---
-title: "Puheenvuoro valtuustossa § 12: Haukiputaan urheilukenttä ja Torpanmäen vaihtoehto"
-date: 2022-11-28
+title: 'Puheenvuoro valtuustossa § 12: Haukiputaan urheilukenttä ja Torpanmäen vaihtoehto'
+date: '2022-11-28'
+description: Puheenvuorossa arvostelen Haukiputaan urheilukentän sijaintivaihtoehtojen mustavalkoista vertailua ja kahteen kertaan rakentamisen riskiä.
+event: Oulun kaupunginvaltuusto
+meetingDate: '2022-12-12'
+asiakohta: § 111 – Talousarvio 2023 ja taloussuunnitelma 2024-2025
+categories:
+  - Politiikka ja päätöksenteko
+  - Kaupunkikehitys ja palveluverkko
+  - Hyvinvointi ja osallisuus
+forum:
+  - Kaupunginvaltuusto
 type: puhe
-event: "Oulun kaupunginvaltuusto"
-meetingDate: 2022-12-12
-asiakohta: "§ 111 – Talousarvio 2023 ja taloussuunnitelma 2024-2025"
-description: "Puheenvuorossa arvostelen Haukiputaan urheilukentän sijaintivaihtoehtojen mustavalkoista vertailua ja kahteen kertaan rakentamisen riskiä."
+politicalProfiles:
+  - lahipalvelut
+  - hyvinvointi
+  - yhteistyo
+templateEngineOverride: md
 tags:
   - publications
   - politics
@@ -15,11 +26,6 @@ tags:
   - urheilukenttä
   - Torpanmäki
   - kaupunkisuunnittelu
-politicalProfiles:
-  - lahipalvelut
-  - hyvinvointi
-  - yhteistyo
-templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto käsitteli 28.11.2022 vuoden 2023 talousarviota ja vuosien 2024–2025 taloussuunnitelmaa. Käytin puheenvuoron Haukiputaan urheilukentän sijaintivaihtoehdoista ja siitä, onko järkevää kunnostaa kenttä ensin nykyiselle paikalle ja siirtää se myöhemmin toisaalle.

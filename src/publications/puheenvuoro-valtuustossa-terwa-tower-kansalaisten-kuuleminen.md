@@ -1,10 +1,18 @@
 ---
-title: "Puheenvuoro valtuustossa § 24: Kansalaisten kuuleminen Terwa Towerin kaavoituksessa"
-date: 2024-03-18
+title: 'Puheenvuoro valtuustossa § 24: Kansalaisten kuuleminen Terwa Towerin kaavoituksessa'
+date: '2024-03-18'
+description: Puheenvuorossa kommentoin väitteitä kansalaisten kuulematta jättämisestä ja korostan kaavoituksen lakisääteisiä osallistumis- ja vaikutusmahdollisuuksia.
+event: Oulun kaupunginvaltuusto
+asiakohta: '§ 24 – Asemakaavan ja tonttijaon muutos 564-2401, I kaupunginosan korttelin 38 tontti nro 5 (Terwa Tower, Kaarlenväylä 1, Meritori, Kaarlenaukio)'
+categories:
+  - Politiikka ja päätöksenteko
+  - Kaupunkikehitys ja palveluverkko
+forum:
+  - Kaupunginvaltuusto
 type: puhe
-event: "Oulun kaupunginvaltuusto"
-asiakohta: "§ 24 – Asemakaavan ja tonttijaon muutos 564-2401, I kaupunginosan korttelin 38 tontti nro 5 (Terwa Tower, Kaarlenväylä 1, Meritori, Kaarlenaukio)"
-description: "Puheenvuorossa kommentoin väitteitä kansalaisten kuulematta jättämisestä ja korostan kaavoituksen lakisääteisiä osallistumis- ja vaikutusmahdollisuuksia."
+politicalProfiles:
+  - kaupunkikehitys
+templateEngineOverride: md
 tags:
   - publications
   - politics
@@ -12,9 +20,6 @@ tags:
   - terwa tower
   - kaavoitus
   - osallisuus
-politicalProfiles:
-  - kaupunkikehitys
-templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuustossa käsiteltiin 18.3.2024 Terwa Towerin asemakaavan ja tonttijaon muutosta. Käytin puheenvuoron kansalaisten kuulemisesta ja osallistumisesta kaavoitusprosessiin.

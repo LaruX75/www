@@ -3,10 +3,11 @@ title: Virolaisen opettajankoulutuksen digi-ihmettänäimistelemässä
 date: '2015-02-28'
 description: 'Vieraileva bloggaaja Taloudellisen tiedotustoimisto TAT: "kun koulu loppuu" -blogissa 28.2.2015: https://www.kunkoululoppuu.fi/blogi/virolaisen-opettajankoulutuksen-digi-ihmetta-aimistelemassa/...'
 categories:
-  - blogivierailu
-  - Blogivierailut ja kolumnit
+  - Opettajankoulutus
+secondaryTheme:
   - Koulutusteknologia
-  - Teknologiatuettu oppiminen ja opetus
+context:
+  - blogivierailu
 keywords:
   - opetus
   - oppiminen

@@ -1,13 +1,12 @@
 ---
-title: "Larun laitenurkka testaa: Kandao 360 kokouskamerat"
-date: 2021-06-10
-description: "Mikä ihmeen Kandao? Omien sanojensa mukaan Kandao on hightech-alan yritys, joka toimii innovatiivisten kuvausvälineiden alalla kehittäen sekä kameroita että ohjelmistoja. Se on myös ensimmäinen kiinalainen yritys,"
+title: 'Larun laitenurkka testaa: Kandao 360 kokouskamerat'
+date: '2021-06-10'
+description: 'Mikä ihmeen Kandao? Omien sanojensa mukaan Kandao on hightech-alan yritys, joka toimii innovatiivisten kuvausvälineiden alalla kehittäen sekä kameroita että ohjelmistoja. Se on myös ensimmäinen kiinalainen yritys,'
 categories:
-  - av-tekniikka
-  - kamerat
-  - Larun laitenurkka
-  - Teknologiatuettu oppiminen ja opetus
-  - Uncategorized
+  - Teknologia ja digitaalisuus
+secondaryTheme:
+  - Koulutusteknologia
+series: Larun laitenurkka
 keywords:
   - 360 kamera
   - avaimet-käteen-ratkaisu
@@ -21,7 +20,7 @@ keywords:
   - kokousmikrofoni
   - mikrofoni
 wp_id: 1781
-source_url: "https://www.jarilaru.fi/larun-laitenurkka-testaa-kandao-360-kokouskamerat/"
+source_url: 'https://www.jarilaru.fi/larun-laitenurkka-testaa-kandao-360-kokouskamerat/'
 templateEngineOverride: md
 ---
 

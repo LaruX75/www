@@ -4,6 +4,8 @@ date: '2021-04-24'
 description: Mielipidekirjoitukseni Kalevassa 24.4.2021
 categories:
   - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
+  - Kaupunkikehitys ja palveluverkko
 publication: Kaleva
 keywords:
   - keskustakampus

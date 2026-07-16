@@ -2,6 +2,11 @@
 title: Kes­kus­ta­kam­pus on uhka ict-sek­to­rin tu­le­vai­suu­del­le
 date: '2022-02-10'
 description: Mielipidekirjoitukseni koskien ICT-sektorin merkitystä ja TST-tiedekunnan merkittävyyttä. Kirjoitus on julkaistu Sanomalehti Kalevassa 10.2.2022
+categories:
+  - Politiikka ja päätöksenteko
+  - Yliopisto ja korkeakoulut
+secondaryTheme:
+  - Kaupunkikehitys ja palveluverkko
 publication: Kaleva
 keywords:
   - keskustakampus

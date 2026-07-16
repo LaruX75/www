@@ -3,8 +3,7 @@ title: Olisikohan Oululla mahdollista päästä vastaavaan kukoistukseen kuin mu
 date: '2017-08-04'
 description: Kesälomat alkavat olla meillä kaikilla ohitse ja paluu arkeen on edessä myös koululaisilla Kesälomani aikana olen lueskellut kahta teosta (maailmanhistorian kukoistavimmat kaupungit ja valtuutetun käsikirja) jotka
 categories:
-  - Politiikka ja päätöksenteko
-  - Yleistä
+  - Kulttuuri ja paikallisidentiteetti
 keywords:
   - kaupungit
   - kaupunkikulttuuri

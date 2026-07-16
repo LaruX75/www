@@ -1,10 +1,9 @@
 ---
-title: "Silloin sitä oltiin Large's Securityn SysOp — BBS-muisteluja"
-date: 1998-02-16
-description: "Muisteluja 1990-luvun alun BBS-harrastuksesta Raahessa: Commodore 64:stä modeemiin, Large's Security BBS:n SysOpiksi, Fidonet-solmuksi, ANSI-taiteilijaksi ja lopulta HTML-koodaajaksi."
+title: Silloin sitä oltiin Large's Securityn SysOp — BBS-muisteluja
+date: '1998-02-16'
+description: 'Muisteluja 1990-luvun alun BBS-harrastuksesta Raahessa: Commodore 64:stä modeemiin, Large''s Security BBS:n SysOpiksi, Fidonet-solmuksi, ANSI-taiteilijaksi ja lopulta HTML-koodaajaksi.'
 categories:
-  - Harrastukset
-  - tietotekniikka
+  - Teknologia ja digitaalisuus
 keywords:
   - bbs
   - fidonet
@@ -13,13 +12,13 @@ keywords:
   - nuoruus
   - retro
   - sysop
+wp_id: 911
+source_url: 'https://www.jarilaru.fi/silloin-kun-sita-oltiin-larges-securityn-sysop-bbs-muisteluita/'
+templateEngineOverride: njk
 layout: blog-post-featured.njk
 showArticleHeader: false
 showTaxonomy: false
 showBackLink: false
-templateEngineOverride: njk
-wp_id: 911
-source_url: "https://www.jarilaru.fi/silloin-kun-sita-oltiin-larges-securityn-sysop-bbs-muisteluita/"
 ---
 
 <!-- HERO -->

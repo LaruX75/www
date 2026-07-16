@@ -4,8 +4,9 @@ date: '2022-01-13'
 description: Oulun yliopiston kollegio järjestäytyi 13.1.2022
 event: Oulun yliopiston kollegion järjestäytymiskokous
 categories:
-  - Muut
-  - Tieteelliset tilaisuudet
+  - Yliopisto ja korkeakoulut
+eventType:
+  - tieteellinen tilaisuus
 keywords:
   - kollegio
   - oulun yliopisto

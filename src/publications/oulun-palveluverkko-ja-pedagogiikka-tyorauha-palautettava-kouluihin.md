@@ -4,6 +4,8 @@ date: '2018-04-07'
 description: 'Mielipidekirjoitus on julkaistu Kalevassa 7.4.2018 Kouluja ja päiväkoteja koskevissa päätöksissä unohtuu usein sana pedagogiikka. Pedagogiikka tarkoittaa opetuksen järjestämistä, mutta myös k...'
 categories:
   - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
+  - Kaupunkikehitys ja palveluverkko
 publication: Kaleva
 forum:
   - Lautakunta

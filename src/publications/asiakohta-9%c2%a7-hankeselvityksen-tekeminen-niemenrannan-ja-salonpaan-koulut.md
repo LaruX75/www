@@ -1,21 +1,26 @@
 ---
-title: "ASIAKOHTA: 9§ Hankeselvityksen tekeminen, Niemenrannan ja Salonpään koulut"
-date: 2018-05-14
-event: "Oulun kaupunginvaltuusto"
-asiakohta: "§ 9 – Hankeselvityksen tekeminen, Niemenrannan ja Salonpään koulut"
-description: "Ihan hetkisen kuluttua normaalit ihmiset asettuvat katsomaan iltauutisia. Minä asetun mikrofonin ääreen ja pidä alla olevan puheen. ASIAKOHTA: 9§ Hankeselvityksen tekeminen, Niemenrannan ja ..."
+title: 'ASIAKOHTA: 9§ Hankeselvityksen tekeminen, Niemenrannan ja Salonpään koulut'
+date: '2018-05-14'
+description: 'Ihan hetkisen kuluttua normaalit ihmiset asettuvat katsomaan iltauutisia. Minä asetun mikrofonin ääreen ja pidä alla olevan puheen. ASIAKOHTA: 9§ Hankeselvityksen tekeminen, Niemenrannan ja ...'
+event: Oulun kaupunginvaltuusto
+asiakohta: '§ 9 – Hankeselvityksen tekeminen, Niemenrannan ja Salonpään koulut'
+categories:
+  - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
+forum:
+  - Kaupunginvaltuusto
+type: puhe
+wp_id: 976
+source_url: 'https://www.jarilaru.fi/asiakohta-9%c2%a7-hankeselvityksen-tekeminen-niemenrannan-ja-salonpaan-koulut/'
+politicalProfiles:
+  - sivistys
+templateEngineOverride: md
 tags:
   - publications
   - politics
   - salonpaa
   - oulunsalo
   - lahikoulu
-type: puhe
-wp_id: 976
-source_url: "https://www.jarilaru.fi/asiakohta-9%c2%a7-hankeselvityksen-tekeminen-niemenrannan-ja-salonpaan-koulut/"
-politicalProfiles:
-  - sivistys
-templateEngineOverride: md
 ---
 <p>Ihan hetkisen kuluttua normaalit ihmiset asettuvat katsomaan iltauutisia. Minä asetun mikrofonin ääreen ja pidän alla olevan puheen. </p>
 <p>ASIAKOHTA: 9§ Hankeselvityksen tekeminen, Niemenrannan ja Salonpään koulut</p>

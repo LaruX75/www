@@ -1,9 +1,12 @@
 ---
-title: "KTK149 Digiluokka: äänet"
-date: 2021-02-03
-description: "Onko jossain pienehkö hybridiopetuksen laboratorio? Tämä viikon maanantaina valtakunnalisessa tieto- ja viestintätekniikka opetuksessa ryhmässä käytiin AV-tekniikkaan (erityisesti äänitekniikkaan) liittyvää k"
+title: 'KTK149 Digiluokka: äänet'
+date: '2021-02-03'
+description: Onko jossain pienehkö hybridiopetuksen laboratorio? Tämä viikon maanantaina valtakunnalisessa tieto- ja viestintätekniikka opetuksessa ryhmässä käytiin AV-tekniikkaan (erityisesti äänitekniikkaan) liittyvää k
 categories:
-  - Larun laitenurkka
+  - Teknologia ja digitaalisuus
+secondaryTheme:
+  - Oppimisympäristöt ja tilat
+series: Digiluokka
 keywords:
   - äänentoisto
   - äänet
@@ -11,7 +14,7 @@ keywords:
   - av-tekniikka
   - dante
 wp_id: 1404
-source_url: "https://www.jarilaru.fi/ktk149-digiluokka-aanet/"
+source_url: 'https://www.jarilaru.fi/ktk149-digiluokka-aanet/'
 templateEngineOverride: md
 ---
 

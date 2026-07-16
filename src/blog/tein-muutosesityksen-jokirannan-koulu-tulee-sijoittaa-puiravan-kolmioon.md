@@ -4,6 +4,8 @@ date: '2017-10-31'
 description: 'Lisäys: uusi koulu otettu käyttöö vuoden 2021 alussa muutosesitykseni mukaisessa paikassa. Tein muutosesitykseni vuonna 2017 ja nyt keväällä 2021 koulu on esitykseni mukaisessa paikassa ja käytössä! Hitaita ov'
 categories:
   - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
+  - Kaupunkikehitys ja palveluverkko
 forum:
   - Lautakunta
 keywords:

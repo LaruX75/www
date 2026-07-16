@@ -4,10 +4,12 @@ date: '2013-06-17'
 description: 'Herra rehtori, Arvoisat promoottorit ja promovendit Hyvät naiset ja herrat Meidä aikamme on uniikki. Ei välttämättä historian korkeaveisu tai huippukohta, mutta korkea tasanne joka tapaukses...'
 event: Oulun yliopiston tohtoripromootio
 categories:
-  - Juhlapuheet
-  - Tieteelliset tilaisuudet
-  - Tutkimus
-  - Väitöskirja
+  - Yliopisto ja korkeakoulut
+eventType:
+  - juhlapuhe
+  - tieteellinen tilaisuus
+context:
+  - tohtoripromootio
 keywords:
   - akateemiset juhlat
   - oulun yliopisto

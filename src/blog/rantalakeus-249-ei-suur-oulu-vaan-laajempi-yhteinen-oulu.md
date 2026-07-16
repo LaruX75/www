@@ -3,7 +3,6 @@ title: 'Rantalakeus 24.9: Ei suur-Oulu vaan laajempi yhteinen Oulu'
 date: '2008-09-25'
 description: 'Postilaatikkoon tupsahti perunamarkkinoiden alla Rantalakeus, joka muiden lehtien tavoin tuli luettua erittäin tarkasti. Lehdessä pisti silmää mielenkiintoinen Kempeleläisen ehdokkaan mielipidekirjoitus vaalipostia'
 categories:
-  - Luokittelematon
   - Politiikka ja päätöksenteko
 keywords:
   - kempele

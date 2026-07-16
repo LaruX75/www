@@ -1,11 +1,15 @@
 ---
 title: Vote Jari Laru to Oulu University Collegium
-date: 2021-10-20
-description: "I am ready to represent you. I am candidate running for Oulu University Collegium. I have years of expertise of different academic positions of trust in the University of Oulu. Lately I have been member of Education Coun"
+date: '2021-10-20'
+description: I am ready to represent you. I am candidate running for Oulu University Collegium. I have years of expertise of different academic positions of trust in the University of Oulu. Lately I have been member of Education Coun
 categories:
-  - Yleinen
+  - Vaalit
+  - Yliopisto ja korkeakoulut
+campaign: Yliopiston hallintovaalit
+context:
+  - yliopistotyö
 wp_id: 1844
-source_url: "https://www.jarilaru.fi/vote-jari-laru-to-oulu-university-collegium/"
+source_url: 'https://www.jarilaru.fi/vote-jari-laru-to-oulu-university-collegium/'
 templateEngineOverride: md
 ---
 

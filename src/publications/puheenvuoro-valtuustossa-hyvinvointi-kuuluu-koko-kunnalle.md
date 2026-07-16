@@ -1,10 +1,20 @@
 ---
-title: "Puheenvuoro valtuustossa § 2: Hyvinvointi kuuluu koko kunnalle"
-date: 2022-10-10
+title: 'Puheenvuoro valtuustossa § 2: Hyvinvointi kuuluu koko kunnalle'
+date: '2022-10-10'
+description: 'Puheenvuorossa kannatan sivistys- ja kulttuurilautakunnan jakamista, mutta arvostelen valmistelun vähäistä lautakuntakäsittelyä sekä hyvinvointitehtävän keskittämistä yhdelle lautakunnalle ja uudelle johtajalle.'
+event: Oulun kaupunginvaltuusto
+asiakohta: § 2 – Johtamisjärjestelmän muutokset ja hallintosäännön muuttaminen 1.1.2023
+categories:
+  - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
+  - Hyvinvointi ja osallisuus
+forum:
+  - Kaupunginvaltuusto
 type: puhe
-event: "Oulun kaupunginvaltuusto"
-asiakohta: "§ 2 – Johtamisjärjestelmän muutokset ja hallintosäännön muuttaminen 1.1.2023"
-description: "Puheenvuorossa kannatan sivistys- ja kulttuurilautakunnan jakamista, mutta arvostelen valmistelun vähäistä lautakuntakäsittelyä sekä hyvinvointitehtävän keskittämistä yhdelle lautakunnalle ja uudelle johtajalle."
+politicalProfiles:
+  - sivistys
+  - hyvinvointi
+templateEngineOverride: md
 tags:
   - publications
   - politics
@@ -15,10 +25,6 @@ tags:
   - kulttuuri
   - liikunta
   - hyvinvointi
-politicalProfiles:
-  - sivistys
-  - hyvinvointi
-templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto käsitteli 10.10.2022 kaupungin johtamisjärjestelmän muutoksia ja hallintosäännön muuttamista vuoden 2023 alusta. Puheenvuorossani kannatin sivistys- ja kulttuurilautakunnan jakamista, mutta nostin esiin valmisteluun ja hyvinvointitehtävän organisointiin liittyviä ongelmia.

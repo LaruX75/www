@@ -6,6 +6,7 @@ event: Oulun kaupunginvaltuusto
 asiakohta: § 18 – Kaupunkistrategia Oulu 2026
 categories:
   - Politiikka ja päätöksenteko
+  - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
 keywords:

@@ -4,6 +4,7 @@ date: '2008-10-08'
 description: 'Kuten varmasti jokainen alueemme asukas tietää, ollaan Kuusamontien toiselle puolelle kaavoittamassa suuria kompostointikenttiä jätevesilietteen jälkikäsittelyä varten. Asiasta on tehty vetoomuksia ja valituksia'
 categories:
   - Politiikka ja päätöksenteko
+  - Kaupunkikehitys ja palveluverkko
 keywords:
   - jääli
   - kompostointi

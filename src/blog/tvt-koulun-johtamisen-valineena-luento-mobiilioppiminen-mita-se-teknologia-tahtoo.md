@@ -1,10 +1,13 @@
 ---
-title: "TVT-Koulun johtamisen välineenä luento: \"mobiilioppiminen\" - mitä se teknologia tahtoo"
-date: 2013-02-14
-description: "Keskiviikkona 13.2.2013 pidin verkkoluennon Oulun yliopiston TOPIK-yksikö koulutuksessa \"tvt koulun johtamisen välineenä\". Kohdeyleisö koostui lähinnä perusasteen ja lukioiden rehtoreista. http://www.slideshare.e"
+title: 'TVT-Koulun johtamisen välineenä luento: "mobiilioppiminen" - mitä se teknologia tahtoo'
+date: '2013-02-14'
+description: 'Keskiviikkona 13.2.2013 pidin verkkoluennon Oulun yliopiston TOPIK-yksikö koulutuksessa "tvt koulun johtamisen välineenä". Kohdeyleisö koostui lähinnä perusasteen ja lukioiden rehtoreista. http://www.slideshare.e'
 categories:
-  - Luennot
-  - Teknologiatuettu oppiminen ja opetus
+  - Opettajankoulutus
+secondaryTheme:
+  - Koulutusteknologia
+eventType:
+  - luento
 keywords:
   - CSCL
   - haasteet
@@ -15,7 +18,7 @@ keywords:
   - täydennyskoulutus
   - yhteiskunta
 wp_id: 878
-source_url: "https://www.jarilaru.fi/tvt-koulun-johtamisen-valineena-luento-mobiilioppiminen-mita-se-teknologia-tahtoo/"
+source_url: 'https://www.jarilaru.fi/tvt-koulun-johtamisen-valineena-luento-mobiilioppiminen-mita-se-teknologia-tahtoo/'
 templateEngineOverride: md
 ---
 

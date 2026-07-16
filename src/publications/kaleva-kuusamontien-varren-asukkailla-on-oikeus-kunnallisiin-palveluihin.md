@@ -2,6 +2,9 @@
 title: 'Kaleva: Kuusamontien varren asukkailla on oikeus kunnallisiin palveluihin'
 date: '2012-10-20'
 description: 'Sanomalehti Kaleva julkaisi alla olevan mielipiteen 20.10.2012: Toukokuussa 2012 Kaleva julkaisi Korvensuoran asukasyhdistyksen puheenjohtajan kanssa kirjoittamani mielipiteen otsikolla ” Uim...'
+categories:
+  - Kaupunkikehitys ja palveluverkko
+  - Sivistys ja koulutus
 publication: Kaleva
 keywords:
   - hammashoito

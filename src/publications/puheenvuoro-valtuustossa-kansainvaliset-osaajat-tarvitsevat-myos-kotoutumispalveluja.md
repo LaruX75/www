@@ -1,10 +1,21 @@
 ---
-title: "Puheenvuoro valtuustossa § 5: Kansainväliset osaajat tarvitsevat myös kotoutumispalveluja"
-date: 2021-11-08
+title: 'Puheenvuoro valtuustossa § 5: Kansainväliset osaajat tarvitsevat myös kotoutumispalveluja'
+date: '2021-11-08'
+description: 'Puheenvuorossa korostan, että kotoutumispalveluja tarvitsevat myös kansainväliset opiskelijat, tutkijat, professorit ja teknologia-alan työntekijät.'
+event: Oulun kaupunginvaltuusto
+asiakohta: § 5 – Yhdessä kotoutuva Oulu – Oulun kaupungin kotoutumisohjelma 2022–2025
+categories:
+  - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
+  - Hyvinvointi ja osallisuus
+forum:
+  - Kaupunginvaltuusto
 type: puhe
-event: "Oulun kaupunginvaltuusto"
-asiakohta: "§ 5 – Yhdessä kotoutuva Oulu – Oulun kaupungin kotoutumisohjelma 2022–2025"
-description: "Puheenvuorossa korostan, että kotoutumispalveluja tarvitsevat myös kansainväliset opiskelijat, tutkijat, professorit ja teknologia-alan työntekijät."
+politicalProfiles:
+  - sivistys
+  - hyvinvointi
+  - yhteistyo
+templateEngineOverride: md
 tags:
   - publications
   - politics
@@ -15,11 +26,6 @@ tags:
   - korkeakoulutus
   - Talent Hub
   - työvoima
-politicalProfiles:
-  - sivistys
-  - hyvinvointi
-  - yhteistyo
-templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto käsitteli 8.11.2021 kaupungin kotoutumisohjelmaa vuosille 2022–2025. Käytin puheenvuoron siitä, että kotoutumispalvelut eivät koske vain yhtä maahanmuuttajaryhmää, vaan myös kansainvälisiä opiskelijoita, tutkijoita ja työntekijöitä.

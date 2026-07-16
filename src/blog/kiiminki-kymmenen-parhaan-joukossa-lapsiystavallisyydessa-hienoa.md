@@ -4,6 +4,8 @@ date: '2008-10-02'
 description: TNS Gallupin valituille paloille tekemä tutkimuksen mukaan meidä ikioma Kiiminkimme on kymmenen parhaan joukossa mitattaessa maamme lapsiystävällisimpiä kuntia. Perheemme asui vielä viime talvena Raksilassa Oulun
 categories:
   - Politiikka ja päätöksenteko
+  - Hyvinvointi ja osallisuus
+  - Kaupunkikehitys ja palveluverkko
 keywords:
   - jääli
   - koulu

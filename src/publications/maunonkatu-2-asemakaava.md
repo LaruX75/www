@@ -1,20 +1,26 @@
 ---
-title: "Puheenvuoro kaupunginvaltuuston kokouksessa. §3. Asemakaavan ja tonttijaon muutos, Maunonkatu 2"
-date: 2023-02-06
+title: 'Puheenvuoro kaupunginvaltuuston kokouksessa. §3. Asemakaavan ja tonttijaon muutos, Maunonkatu 2'
+date: '2023-02-06'
+description: Puheenvuoroni Oulun kaupunginvaltuustossa Maunonkadun vanhan kauppaoppilaitoksen kaavamuutoksesta.
+event: Oulun kaupunginvaltuusto
+asiakohta: '3 – Asemakaavan ja tonttijaon muutos, Maunonkatu 2'
+categories:
+  - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
+  - Kaupunkikehitys ja palveluverkko
+forum:
+  - Kaupunginvaltuusto
 type: puhe
-event: "Oulun kaupunginvaltuusto"
-asiakohta: "3 – Asemakaavan ja tonttijaon muutos, Maunonkatu 2"
-description: "Puheenvuoroni Oulun kaupunginvaltuustossa Maunonkadun vanhan kauppaoppilaitoksen kaavamuutoksesta."
+politicalProfiles:
+  - sivistys
+  - kaupunkikehitys
+templateEngineOverride: md
 tags:
   - publications
   - politics
   - kaupunginvaltuusto
   - kaavoitus
   - rakennussuojelu
-politicalProfiles:
-  - sivistys
-  - kaupunkikehitys
-templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuustossa käsiteltiin 6.2.2023 asiakohdassa 3 Maunonkatu 2:n eli vanhan kauppaoppilaitoksen asemakaavan ja tonttijaon muutosta. Käytin asiasta puheenvuoron. Tässä se kirjallisena.

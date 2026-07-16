@@ -4,6 +4,8 @@ date: '2020-10-30'
 description: 'Kaleva julkaisi 30.10. keskustakampusta &nbsp;käsittelevä artikkelin, jossa kerrattiin jo keväällä julkaistuja yliopiston rakennuskonsulteilta saamia alustavia laskelmia. Puolen vuoden aikana asiaa...'
 categories:
   - Politiikka ja päätöksenteko
+  - Yliopisto ja korkeakoulut
+  - Kaupunkikehitys ja palveluverkko
 keywords:
   - keskustakampus
   - mielipiteet

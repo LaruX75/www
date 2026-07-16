@@ -1,10 +1,19 @@
 ---
-title: "Puheenvuoro valtuustossa § 1: Pohjois-Pohjanmaan museon tilat ja kulttuuripääkaupunkivuosi"
-date: 2022-06-20
+title: 'Puheenvuoro valtuustossa § 1: Pohjois-Pohjanmaan museon tilat ja kulttuuripääkaupunkivuosi'
+date: '2022-06-20'
+description: 'Puheenvuorossa kysyn, miten Oulu2026-hanke on varautunut siihen, jos Pohjois-Pohjanmaan museon uudet tilat eivät valmistu kulttuuripääkaupunkivuoteen mennessä.'
+event: Oulun kaupunginvaltuusto
+asiakohta: Asiakohta 1 – Oulu 2026 -ohjelmahaku ja muut ajankohtaiset asiat
+categories:
+  - Politiikka ja päätöksenteko
+  - Kaupunkikehitys ja palveluverkko
+forum:
+  - Kaupunginvaltuusto
 type: puhe
-event: "Oulun kaupunginvaltuusto"
-asiakohta: "Asiakohta 1 – Oulu 2026 -ohjelmahaku ja muut ajankohtaiset asiat"
-description: "Puheenvuorossa kysyn, miten Oulu2026-hanke on varautunut siihen, jos Pohjois-Pohjanmaan museon uudet tilat eivät valmistu kulttuuripääkaupunkivuoteen mennessä."
+politicalProfiles:
+  - kaupunkikehitys
+  - yhteistyo
+templateEngineOverride: md
 tags:
   - publications
   - politics
@@ -14,10 +23,6 @@ tags:
   - Pohjois-Pohjanmaan museo
   - museo
   - kulttuuritilat
-politicalProfiles:
-  - kaupunkikehitys
-  - yhteistyo
-templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuustolle esiteltiin 20.6.2022 Oulu2026-ohjelmahakua ja kulttuuripääkaupunkihankkeen ajankohtaisia asioita. Käytin puheenvuoron Pohjois-Pohjanmaan museon uusien tilojen aikataulusta ja hankkeen varautumisesta mahdolliseen viivästymiseen.

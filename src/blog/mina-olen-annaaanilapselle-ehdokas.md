@@ -5,6 +5,7 @@ description: '“Vaikka talous asettaa paineita, viisas kunta huolehtii lapsista
 categories:
   - Vaalit
   - Politiikka ja päätöksenteko
+  - Hyvinvointi ja osallisuus
 campaign: Kuntavaalit
 keywords:
   - lapset

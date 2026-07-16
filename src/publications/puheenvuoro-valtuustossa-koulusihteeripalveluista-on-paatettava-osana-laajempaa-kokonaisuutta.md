@@ -1,10 +1,21 @@
 ---
-title: "Puheenvuoro valtuustossa § 104: Koulusihteeripalveluista on päätettävä osana laajempaa kokonaisuutta"
-date: 2019-10-07
+title: 'Puheenvuoro valtuustossa § 104: Koulusihteeripalveluista on päätettävä osana laajempaa kokonaisuutta'
+date: '2019-10-07'
+description: 'Puheenvuorossa kannatan koulusihteeripalvelujen asian palauttamista valmisteluun, koska yksittäistä henkilöstöratkaisua ei pidä irrottaa edessä olevista suuremmista palveluverkon ja talouden tasapainottamisen kokonaisratkaisuista.'
+event: Oulun kaupunginvaltuusto
+asiakohta: § 104 – Koulusihteeripalveluiden tuottaminen tulevaisuudessa
+categories:
+  - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
+  - Kaupunkikehitys ja palveluverkko
+forum:
+  - Kaupunginvaltuusto
 type: puhe
-event: "Oulun kaupunginvaltuusto"
-asiakohta: "§ 104 – Koulusihteeripalveluiden tuottaminen tulevaisuudessa"
-description: "Puheenvuorossa kannatan koulusihteeripalvelujen asian palauttamista valmisteluun, koska yksittäistä henkilöstöratkaisua ei pidä irrottaa edessä olevista suuremmista palveluverkon ja talouden tasapainottamisen kokonaisratkaisuista."
+politicalProfiles:
+  - sivistys
+  - lahipalvelut
+  - yhteistyo
+templateEngineOverride: md
 tags:
   - publications
   - politics
@@ -16,11 +27,6 @@ tags:
   - talous
   - palveluverkko
   - Oulu
-politicalProfiles:
-  - sivistys
-  - lahipalvelut
-  - yhteistyo
-templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto käsitteli 7.10.2019 koulusihteeripalvelujen järjestämistä ja niiden mahdollista siirtämistä Monetralle. Käytin puheenvuoron asian palauttamisesta valmisteluun osana kaupungin laajempia talouden tasapainottamistoimia.

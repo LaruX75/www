@@ -4,6 +4,8 @@ date: '2008-10-04'
 description: 'EDIT: Tästä kirjoituksesta oli jäänyt pois paneelin alkamisaika: 16:30. Olen syvästi pahoillani ;I Osallistun Oulussa kirkkotorin koulutuskeskuksessa järjestettävää vaalipaneeliin yhdessä Oululaisen ehdokaskol'
 categories:
   - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
+  - Hyvinvointi ja osallisuus
 keywords:
   - hyvinvointipalvelut
   - nuoriso

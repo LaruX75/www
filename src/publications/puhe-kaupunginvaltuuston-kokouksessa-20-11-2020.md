@@ -7,6 +7,8 @@ meetingDate: '2020-11-09'
 asiakohta: '§ 95 – Oulun yliopiston sijoittuminen Raksilan alueelle, valtuutettu Viitasen ym. kirjelmä'
 categories:
   - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
+  - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
 keywords:

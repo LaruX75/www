@@ -2,6 +2,10 @@
 title: 'KALEVA: Uimahalli ei riitä täyttämään Koillisen suunnan palvelutyhjiötä'
 date: '2012-05-20'
 description: Alla oleva mielipidekirjoitus on julkaistu Sanomalehti Kalevassa toukokuussa 2012 Elisa Koirikivi (Lukijalta 11.5) ja Mikko Sundman (Lukijalta 12.5) vaativat uimahallia osaksi Uuden Oulun koi...
+categories:
+  - Politiikka ja päätöksenteko
+  - Hyvinvointi ja osallisuus
+  - Kaupunkikehitys ja palveluverkko
 publication: Kaleva
 keywords:
   - jaana posio

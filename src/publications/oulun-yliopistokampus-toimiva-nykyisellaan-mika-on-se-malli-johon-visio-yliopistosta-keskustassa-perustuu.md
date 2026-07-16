@@ -4,6 +4,8 @@ date: '2019-12-09'
 description: '”Mikä on se malli, johon visio yliopistosta keskustassa perustuu? Voiko ainoa peruste olla yliopiston maksama vuokrataso?”'
 categories:
   - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
+  - Kaupunkikehitys ja palveluverkko
 keywords:
   - arkkitehtuuri
   - kampus

@@ -3,8 +3,8 @@ title: Liikkuva Oulu voi hyvin
 date: '2021-02-15'
 description: 'Oulussa on erinomainen latuverkosto Tänä talvena monet Oululaiset ovat rientäneet hiihtämää , sillä olosuhteet ovat olleet erinomaiset. Erityisen paljon kehuja on saanut Jäälin ja Hönttämäen välinen latu, jo'
 categories:
-  - Liikunta
   - Politiikka ja päätöksenteko
+  - Hyvinvointi ja osallisuus
 keywords:
   - erämaalatu
   - hiihtäminen

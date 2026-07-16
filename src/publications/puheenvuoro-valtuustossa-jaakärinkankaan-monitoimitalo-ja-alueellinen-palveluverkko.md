@@ -1,10 +1,18 @@
 ---
-title: "Puheenvuoro valtuustossa § 9: Jääkärinkankaan monitoimitalo ja alueellinen palveluverkko"
-date: 2022-04-04
+title: 'Puheenvuoro valtuustossa § 9: Jääkärinkankaan monitoimitalo ja alueellinen palveluverkko'
+date: '2022-04-04'
+description: Puheenvuorossa pidän Jääkärinkankaan monitoimitalon sijaintia onnistuneena ja korostan laajojen alueellisten palveluverkkoratkaisujen merkitystä.
+event: Oulun kaupunginvaltuusto
+asiakohta: '§ 9 – Alueellinen palveluverkkoselvitys Laanilan, Myllyojan, Hiukkavaaran ja Korvensuoran suuralueella'
+categories:
+  - Politiikka ja päätöksenteko
+  - Kaupunkikehitys ja palveluverkko
+forum:
+  - Kaupunginvaltuusto
 type: puhe
-event: "Oulun kaupunginvaltuusto"
-asiakohta: "§ 9 – Alueellinen palveluverkkoselvitys Laanilan, Myllyojan, Hiukkavaaran ja Korvensuoran suuralueella"
-description: "Puheenvuorossa pidän Jääkärinkankaan monitoimitalon sijaintia onnistuneena ja korostan laajojen alueellisten palveluverkkoratkaisujen merkitystä."
+politicalProfiles:
+  - lahipalvelut
+templateEngineOverride: md
 tags:
   - publications
   - politics
@@ -15,9 +23,6 @@ tags:
   - Myllyoja
   - Hiukkavaara
   - Korvensuora
-politicalProfiles:
-  - lahipalvelut
-templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto käsitteli 4.4.2022 Laanilan, Myllyojan, Hiukkavaaran ja Korvensuoran suuralueiden palveluverkkoselvitystä. Käytin puheenvuoron Jääkärinkankaan monitoimitalon sijainnista ja alueellisen palveluverkon kokonaisuudesta.

@@ -1,9 +1,11 @@
 ---
-title: "Arjesta energiaa Blogi: Nykyaikainen jätteidenkäsittely ei häiritse ihmistä, eihän?"
-date: 2012-03-29
-description: "Julkaistu alunperin Oulun jätehuollon blogissa (29.3.2012) osoitteessa http://www.arjestaenergiaa.fi/puhtaampi_arki/ekoblogi?2164&amp;entry=170Muuttaessanivuonna2008asumaanJääliinomakot..."
+title: 'Arjesta energiaa Blogi: Nykyaikainen jätteidenkäsittely ei häiritse ihmistä, eihän?'
+date: '2012-03-29'
+description: 'Julkaistu alunperin Oulun jätehuollon blogissa (29.3.2012) osoitteessa http://www.arjestaenergiaa.fi/puhtaampi_arki/ekoblogi?2164&amp;entry=170Muuttaessanivuonna2008asumaanJääliinomakot...'
 categories:
-  - Blogivierailut ja kolumnit
+  - Kaupunkikehitys ja palveluverkko
+context:
+  - blogivierailu
 keywords:
   - ekovoimala
   - jääli
@@ -17,7 +19,7 @@ keywords:
   - tuhka
 type: kolumni
 wp_id: 233
-source_url: "https://www.jarilaru.fi/arjesta-energiaa-blogi-nykyaikainen-jatteidenkasittely-ei-hairitse-ihmista-eihan/"
+source_url: 'https://www.jarilaru.fi/arjesta-energiaa-blogi-nykyaikainen-jatteidenkasittely-ei-hairitse-ihmista-eihan/'
 templateEngineOverride: md
 ---
 <pre><code>Julkaistu alunperin Oulun jätehuollon blogissa (29.3.2012) osoitteessa <a rel="noreferrer noopener" href="http://www.arjestaenergiaa.fi/puhtaampi_arki/ekoblogi?2164&amp;entry=170&amp;fbclid=IwAR1fDAiaq4Seg5zhK4CGKrxgDHWqyBgTjlgzfBzk4F5SiQhaShxA3kwamus" target="_blank">http://www.arjestaenergiaa.fi/puhtaampi_arki/ekoblogi?2164&amp;entry=170</a> </code></pre>

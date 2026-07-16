@@ -1,7 +1,13 @@
 ---
 title: Di­gi­taa­li­set vä­li­neet kou­luis­sa – joko olisi aika tarjota opet­ta­jil­le riit­tä­vät tiedot ja taidot uusien me­ne­tel­mien ja vä­li­nei­den hyö­dyn­tä­mi­seen?
-date: 2018-11-29
-description: "Mielipidekirjoitus julkaistu Sanomalehti Kalevassa 29.11.2018 Uuden perusopetuksen opetussuunnitelman perusteet, ilmiöpohjainen oppiminen, itseohjautuvuus, digitaaliset välineet opetuksessa j..."
+date: '2018-11-29'
+description: 'Mielipidekirjoitus julkaistu Sanomalehti Kalevassa 29.11.2018 Uuden perusopetuksen opetussuunnitelman perusteet, ilmiöpohjainen oppiminen, itseohjautuvuus, digitaaliset välineet opetuksessa j...'
+categories:
+  - Teknologia ja digitaalisuus
+type: mielipide
+wp_id: 223
+source_url: 'https://www.jarilaru.fi/digitaaliset-valineet-kouluissa-%e2%80%89joko-olisi-aika-tarjota-opettajille-riittavat-tiedot-ja-taidot-uusien-me/'
+templateEngineOverride: md
 tags:
   - publications
   - blog
@@ -12,10 +18,6 @@ tags:
   - valineet-tyokalut
   - tietotekniikka
   - oppiminen
-type: mielipide
-wp_id: 223
-source_url: "https://www.jarilaru.fi/digitaaliset-valineet-kouluissa-%e2%80%89joko-olisi-aika-tarjota-opettajille-riittavat-tiedot-ja-taidot-uusien-me/"
-templateEngineOverride: md
 ---
 <p>Mielipidekirjoitus julkaistu Sanomalehti Kalevassa 29.11.2018</p>
 <p><strong>Uuden perusopetuksen opetussuunnitelman perusteet, ilmiöpohjainen oppiminen, itseohjautuvuus, digitaaliset välineet opetuksessa ja jopa moderni koulurakentaminen ovat kaikki aiheita, joista on käyty kiihkeää yhteiskunnallista ja kasvatusalan keskustelua jo pitkään.</strong></p>

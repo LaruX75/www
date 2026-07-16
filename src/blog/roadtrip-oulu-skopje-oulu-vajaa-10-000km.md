@@ -1,10 +1,9 @@
 ---
 title: Roadtrip Oulu-Skopje-Oulu (~9400km)
-date: 2021-01-17
-description: "Kesällä 2019 jatkoimme uhkarohkeata automatkailua. Puoliso toi keväällä 2019 työmatkaltaan luonnoksen Via Karpathia reitiksi, joka kulkisi aikalailla suoraan Puolasta Kreikkaan. Sepäs olisikin mielenkiintoinen rei"
+date: '2021-01-17'
+description: 'Kesällä 2019 jatkoimme uhkarohkeata automatkailua. Puoliso toi keväällä 2019 työmatkaltaan luonnoksen Via Karpathia reitiksi, joka kulkisi aikalailla suoraan Puolasta Kreikkaan. Sepäs olisikin mielenkiintoinen rei'
 categories:
-  - Henkilökuva
-  - Matkailu
+  - Matkat ja henkilökohtaiset
 keywords:
   - autolla makedoniaan
   - bulgaria
@@ -25,7 +24,7 @@ keywords:
   - unkari
   - viro
 wp_id: 1216
-source_url: "https://www.jarilaru.fi/roadtrip-oulu-skopje-oulu-vajaa-10-000km/"
+source_url: 'https://www.jarilaru.fi/roadtrip-oulu-skopje-oulu-vajaa-10-000km/'
 templateEngineOverride: md
 ---
 

@@ -3,8 +3,9 @@ title: Ihmistieteille uudet tilat osallistavassa suunnitteluprosessissa?
 date: '2016-11-25'
 description: 'Kirjoitus on julkaistu Sanomalehti Kalevan Mielipiteitä -palstalla 25.11.2016 Pentti Koivunen, lehtori emeritus vaati kolumnissaan (Kaleva23.11) meitä kasvatustieteilijöitä ja humanisteja kie...'
 categories:
+  - Yliopisto ja korkeakoulut
+secondaryTheme:
   - Oppimisympäristöt ja tilat
-  - Teknologiatuettu oppiminen ja opetus
 publication: Kaleva
 keywords:
   - kasvatustieteiden tiedekunta

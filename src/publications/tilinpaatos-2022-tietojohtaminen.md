@@ -1,20 +1,24 @@
 ---
-title: "Puheenvuoro kaupunginvaltuuston kokouksessa. §2. Oulun kaupungin tilinpäätös 2022"
-date: 2023-05-22
+title: Puheenvuoro kaupunginvaltuuston kokouksessa. §2. Oulun kaupungin tilinpäätös 2022
+date: '2023-05-22'
+description: 'Puheenvuoroni Oulun kaupunginvaltuustossa henkilöstötilinpäätöksestä, tiedolla johtamisesta ja avoimesta datasta.'
+event: Oulun kaupunginvaltuusto
+asiakohta: 2 – Oulun kaupungin tilinpäätös 2022
+categories:
+  - Politiikka ja päätöksenteko
+forum:
+  - Kaupunginvaltuusto
 type: puhe
-event: "Oulun kaupunginvaltuusto"
-asiakohta: "2 – Oulun kaupungin tilinpäätös 2022"
-description: "Puheenvuoroni Oulun kaupunginvaltuustossa henkilöstötilinpäätöksestä, tiedolla johtamisesta ja avoimesta datasta."
+politicalProfiles:
+  - avoinhallinto
+  - yhteistyo
+templateEngineOverride: md
 tags:
   - publications
   - politics
   - kaupunginvaltuusto
   - tietojohtaminen
   - avoin data
-politicalProfiles:
-  - avoinhallinto
-  - yhteistyo
-templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuustossa käsiteltiin 22.5.2023 asiakohdassa 2 Oulun kaupungin tilinpäätöstä vuodelta 2022. Käytin henkilöstötilinpäätöksen keskustelussa puheenvuoron tiedolla johtamisesta ja avoimesta datasta. Tässä se kirjallisena.

@@ -1,10 +1,12 @@
 ---
-title: "Paper 1: Scaffolding different learning activities with mobile tools in three everyday contexts."
-date: 2012-10-02
-description: "Abstract: The aim of the study is to apply the theoretical framework of collaborative learning and distributed cognition for developing mobile tools which scaffolds people’s everyday learning and info..."
+title: 'Paper 1: Scaffolding different learning activities with mobile tools in three everyday contexts.'
+date: '2012-10-02'
+description: 'Abstract: The aim of the study is to apply the theoretical framework of collaborative learning and distributed cognition for developing mobile tools which scaffolds people’s everyday learning and info...'
 categories:
-  - papers
-  - thesis
+  - Koulutusteknologia
+context:
+  - väitöskirja
+  - osatutkimus
 keywords:
   - dissertation
   - earli sig
@@ -16,7 +18,7 @@ keywords:
   - väitös
 type: tieteellinen
 wp_id: 587
-source_url: "https://www.jarilaru.fi/paper-1-scaffolding-different-learning-activities-with-mobile-tools-in-three-everyday-contexts/"
+source_url: 'https://www.jarilaru.fi/paper-1-scaffolding-different-learning-activities-with-mobile-tools-in-three-everyday-contexts/'
 templateEngineOverride: md
 ---
 <strong>Abstract:</strong> The aim of the study is to apply the theoretical framework of collaborative learning and distributed cognition for developing mobile tools which scaffolds people’s everyday learning and information searching and processing needs. This study includes experimental case studies conducted in natural settings with randomly sampled or conveniently selected subjects. Contexts of the case studies varies from the urban pedestrian street to the main library of the university. Both qualitative and quantitative methods and multiple data collection techniques are used to get information how these tools could be used for scaffolding everyday activities in different contexts. Multiple contexts give more accurate picture how mobile devices can be used as cognitive tools to scaffold activities from collaboration to topical information delivery. Preliminary results shows that subjects used mobile devices versatilely as cognitive tools, but not always in that manner that researchers expected.

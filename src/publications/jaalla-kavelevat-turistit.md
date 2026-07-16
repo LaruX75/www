@@ -1,20 +1,25 @@
 ---
-title: "Puheenvuoro kaupunginvaltuuston kokouksessa. §1. Info: Oulu2026-ajankohtaisasiat"
-date: 2023-02-27
+title: 'Puheenvuoro kaupunginvaltuuston kokouksessa. §1. Info: Oulu2026-ajankohtaisasiat'
+date: '2023-02-27'
+description: Puheenvuoroni Oulun kaupunginvaltuustossa arktisuuden ja jään hyödyntämisestä matkailussa.
+event: Oulun kaupunginvaltuusto
+asiakohta: '1 – Info: Oulu2026-ajankohtaisasiat'
+categories:
+  - Politiikka ja päätöksenteko
+  - Kaupunkikehitys ja palveluverkko
+forum:
+  - Kaupunginvaltuusto
 type: puhe
-event: "Oulun kaupunginvaltuusto"
-asiakohta: "1 – Info: Oulu2026-ajankohtaisasiat"
-description: "Puheenvuoroni Oulun kaupunginvaltuustossa arktisuuden ja jään hyödyntämisestä matkailussa."
+politicalProfiles:
+  - yhteistyo
+  - kaupunkikehitys
+templateEngineOverride: md
 tags:
   - publications
   - politics
   - kaupunginvaltuusto
   - Oulu2026
   - matkailu
-politicalProfiles:
-  - yhteistyo
-  - kaupunkikehitys
-templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuustossa käsiteltiin 27.2.2023 asiakohdassa 1 (info: Oulu2026-ajankohtaisasiat) Oulu2026-kulttuuripääkaupunkihankkeen ajankohtaisia asioita. Käytin puheenvuoron jään ja arktisuuden hyödyntämisestä matkailussa.

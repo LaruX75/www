@@ -3,9 +3,10 @@ title: Läpinäkyvyyttä kaupungin päätöksentekoon - aloitteet ja valtuustoky
 date: 2021-03-29
 description: "Laadin ja jätin allaolevan valtuustoaloitteen Oulun kaupunginvaltuuston kokouksessa 29.3.2021 Oulun kaupunginhallitus hyväksyi kokouksessaan 19.8. Oulun kaupungin vuorovaikutussuunnitelman vu..."
 categories:
+  - Politiikka ja päätöksenteko
+  - Teknologia ja digitaalisuus
+forum:
   - Kaupunginvaltuusto
-  - Poliitiikka
-  - Valtuustoaloitteet
 keywords:
   - kuntalaisaloite
   - valtuustoaloite

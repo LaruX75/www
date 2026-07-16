@@ -1,10 +1,18 @@
 ---
-title: "Puheenvuoro valtuustossa § 11: Vetovoima- ja pitovoimatutkimuksen tulokset avoimesti kaupunkilaisille"
-date: 2026-03-30
+title: 'Puheenvuoro valtuustossa § 11: Vetovoima- ja pitovoimatutkimuksen tulokset avoimesti kaupunkilaisille'
+date: '2026-03-30'
+description: 'Puheenvuorossa korostan hallinnon avoimuutta ja sitä, että Oulun vetovoima- ja pitovoimatutkimuksen tulokset tulee julkaista ymmärrettävästi myös kaupunkilaisille.'
+event: Oulun kaupunginvaltuusto
+asiakohta: '§ 11 – Info: Vetovoima- ja pitovoimatutkimuksen tuloksia'
+categories:
+  - Politiikka ja päätöksenteko
+forum:
+  - Kaupunginvaltuusto
 type: puhe
-event: "Oulun kaupunginvaltuusto"
-asiakohta: "§ 11 – Info: Vetovoima- ja pitovoimatutkimuksen tuloksia"
-description: "Puheenvuorossa korostan hallinnon avoimuutta ja sitä, että Oulun vetovoima- ja pitovoimatutkimuksen tulokset tulee julkaista ymmärrettävästi myös kaupunkilaisille."
+politicalProfiles:
+  - avoinhallinto
+  - yhteistyo
+templateEngineOverride: md
 tags:
   - publications
   - politics
@@ -14,10 +22,6 @@ tags:
   - avoimuus
   - viestintä
   - kuntalaiset
-politicalProfiles:
-  - avoinhallinto
-  - yhteistyo
-templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuustossa esiteltiin 30.3.2026 vetovoima- ja pitovoimatutkimuksen tuloksia. Käytin puheenvuoron tutkimustulosten avoimesta julkaisemisesta ja siitä, miten tuloksista tulisi viestiä tavallisille oululaisille.

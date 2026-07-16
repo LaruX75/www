@@ -5,9 +5,10 @@ initiative_type: valtuustoaloite
 description: Oulun kaupungin avoimet tietovarannot ja äkymät tietoon kaipaavat kehittämistä Oulun kaupunki tarjoaa muiden suomalaisten kuntien tavoin paljon lakisääteisiä tietovarantoja ja äkymiä hallin...
 url: ''
 categories:
-  - Poliitiikka
-  - politiikka
-  - Valtuustoaloitteet
+  - Politiikka ja päätöksenteko
+  - Teknologia ja digitaalisuus
+forum:
+  - Kaupunginvaltuusto
 keywords:
   - avoin data
   - avoin hallinto

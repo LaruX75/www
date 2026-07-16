@@ -4,6 +4,8 @@ date: '2017-02-14'
 description: 'Julkaistu Sanomalehti Kalevan yleisönosastossa 14.2.2017 Kalervo Ukkola liittyi Kalevassa (9.2.) Hietasaaren kaavoituksesta valittaneiden joukkoon epäilemällä, että Hietasaaren kaavoitukseen ...'
 categories:
   - Politiikka ja päätöksenteko
+  - Kaupunkikehitys ja palveluverkko
+  - Hyvinvointi ja osallisuus
 publication: Kaleva
 keywords:
   - asukasvaikuttaminen

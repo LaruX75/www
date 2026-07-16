@@ -4,10 +4,12 @@ date: '2012-10-12'
 description: 'Jari J. Laru: LECTIO PRECURSORIA (Puhe väitöstilaisuuden alussa) Väitöstilaisuus 12.10.2012 Oulun yliopiston Kasvatustieteiden tiedekunnan luentosalissa klo 12. Puheeni videoituna: nht...'
 event: Oulun yliopiston väitöstilaisuus
 categories:
-  - Juhlapuheet
-  - Teknologiatuettu oppiminen ja opetus
-  - Tieteelliset tilaisuudet
-  - Väitöskirja
+  - Koulutusteknologia
+eventType:
+  - juhlapuhe
+  - tieteellinen tilaisuus
+context:
+  - väitöskirja
 keywords:
   - e-oppiminen
   - lectio precursora

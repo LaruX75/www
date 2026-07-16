@@ -4,9 +4,11 @@ date: '2020-12-07'
 description: Avoimen tieteen syyspäivillä 7.12.2020 jaettiin toista kertaa kansallinen avoimen tieteen palkinto ja kaksi avoimen tieteen edistäjät -palkintoa.
 event: Avoimen tieteen syyspäivät
 categories:
-  - Avoimet oppimateriaalit ja sisällöt
-  - Juhlapuheet
-  - Teknologiatuettu oppiminen ja opetus
+  - Yliopisto ja korkeakoulut
+secondaryTheme:
+  - Koulutusteknologia
+eventType:
+  - juhlapuhe
 keywords:
   - avoin tiede
   - creative commons

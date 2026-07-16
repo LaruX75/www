@@ -3,8 +3,9 @@ title: Kommentoin Facebookissa toivetta saada lisäresursseja ennaltaehkäisevä
 date: '2008-09-25'
 description: Facebookkia katselin tässä illan ratoksi ja siellä silmää pisti juuri perustettu ryhmä " Valtio satsaamaan ennaltaehkäisevää oppilashuoltotyöhö ! " . Mielestäni asia on erinomaisen tärkeä - veriteot pitä
 categories:
-  - Luokittelematon
-  - Politiikka ja päätöksenteko
+  - Hyvinvointi ja osallisuus
+secondaryTheme:
+  - Sivistys ja koulutus
 keywords:
   - ennaltaehkäisy
   - facebook

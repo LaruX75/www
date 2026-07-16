@@ -6,6 +6,7 @@ event: Oulun kaupunginvaltuusto
 asiakohta: § 21 – Yhdessä kotoutuva Oulu - Oulun kaupungin kotouttamisohjelma 2018-2021
 categories:
   - Politiikka ja päätöksenteko
+  - Hyvinvointi ja osallisuus
 forum:
   - Kaupunginvaltuusto
 keywords:

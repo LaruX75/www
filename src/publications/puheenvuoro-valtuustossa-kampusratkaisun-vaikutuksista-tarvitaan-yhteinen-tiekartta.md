@@ -1,10 +1,21 @@
 ---
-title: "Puheenvuoro valtuustossa § 8: Kampusratkaisun vaikutuksista tarvitaan yhteinen tiekartta"
-date: 2020-11-09
+title: 'Puheenvuoro valtuustossa § 8: Kampusratkaisun vaikutuksista tarvitaan yhteinen tiekartta'
+date: '2020-11-09'
+description: 'Puheenvuorossa vaadin kaupungilta ja yliopistolta yhteistä tiekarttaa kampusratkaisun vaikutuksista Linnanmaahan, Kontinkankaaseen, ICT-sektoriin ja alueen palveluihin.'
+event: Oulun kaupunginvaltuusto
+asiakohta: § 8 – Oulun yliopiston sijoittuminen Raksilan alueelle
+categories:
+  - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
+  - Kaupunkikehitys ja palveluverkko
+forum:
+  - Kaupunginvaltuusto
 type: puhe
-event: "Oulun kaupunginvaltuusto"
-asiakohta: "§ 8 – Oulun yliopiston sijoittuminen Raksilan alueelle"
-description: "Puheenvuorossa vaadin kaupungilta ja yliopistolta yhteistä tiekarttaa kampusratkaisun vaikutuksista Linnanmaahan, Kontinkankaaseen, ICT-sektoriin ja alueen palveluihin."
+politicalProfiles:
+  - sivistys
+  - kaupunkikehitys
+  - yhteistyo
+templateEngineOverride: md
 tags:
   - publications
   - politics
@@ -16,11 +27,6 @@ tags:
   - kampus
   - ICT
   - kaupunkisuunnittelu
-politicalProfiles:
-  - sivistys
-  - kaupunkikehitys
-  - yhteistyo
-templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto jatkoi 9.11.2020 keskustelua Oulun yliopiston mahdollisesta keskustakampuksesta. Toisessa puheenvuorossani vaadin kaupungilta ja yliopistolta yhteistä tiekarttaa kampusratkaisun vaikutuksista.

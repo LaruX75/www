@@ -1,11 +1,22 @@
 ---
-title: "Puheenvuoro valtuustossa: Kulttuuri-investointeja ei pidä unohtaa kaupungin kehittämisessä"
-date: 2019-12-02
+title: 'Puheenvuoro valtuustossa: Kulttuuri-investointeja ei pidä unohtaa kaupungin kehittämisessä'
+date: '2019-12-02'
+description: 'Puheenvuorossa käsittelen lähipalveluinvestointien myönteisiä puolia sekä kulttuurirakennusten, valotaiteen ja digitaalisten elämysten unohtamista kaupungin kehittämisessä.'
+event: Oulun kaupunginvaltuusto
+meetingDate: '2019-12-09'
+asiakohta: § 128 – Talousarvio 2020 ja -suunnitelma 2021-2022
+categories:
+  - Politiikka ja päätöksenteko
+  - Kaupunkikehitys ja palveluverkko
+forum:
+  - Kaupunginvaltuusto
 type: puhe
-event: "Oulun kaupunginvaltuusto"
-meetingDate: 2019-12-09
-asiakohta: "§ 128 – Talousarvio 2020 ja -suunnitelma 2021-2022"
-description: "Puheenvuorossa käsittelen lähipalveluinvestointien myönteisiä puolia sekä kulttuurirakennusten, valotaiteen ja digitaalisten elämysten unohtamista kaupungin kehittämisessä."
+wp_id: 96
+source_url: 'https://www.jarilaru.fi/puheenvuoroni-oulun-kaupunginvaltuuston-talousarviokeskustelun-yhteydessa-2-12-2019/'
+politicalProfiles:
+  - kaupunkikehitys
+  - yhteistyo
+templateEngineOverride: md
 tags:
   - publications
   - politics
@@ -15,12 +26,6 @@ tags:
   - kulttuuri
   - valotaide
   - Oulu
-wp_id: 96
-source_url: "https://www.jarilaru.fi/puheenvuoroni-oulun-kaupunginvaltuuston-talousarviokeskustelun-yhteydessa-2-12-2019/"
-politicalProfiles:
-  - kaupunkikehitys
-  - yhteistyo
-templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto käsitteli 2.12.2019 vuoden 2020 talousarviota ja taloussuunnitelmaa vuosille 2021–2022. Käytin puheenvuoron lähipalveluinvestointien merkityksestä sekä kulttuurirakennusten ja -palveluiden jäämisestä liian vähäiselle huomiolle.

@@ -4,6 +4,7 @@ date: '2008-10-13'
 description: Asensin viikonloppuna hämäräkytkimen ulkovalaistusta ohjaamaan. Siitä johtoja vedellessä tapani mukaan kuuntelin radiota. Sattumalta olin Radio Suomen taajuudella jossa toimittaja Jari Korkki haastatteli parhaillaan
 categories:
   - Politiikka ja päätöksenteko
+  - Hyvinvointi ja osallisuus
 keywords:
   - hyvinvointi
   - hyvinvointipalvelut

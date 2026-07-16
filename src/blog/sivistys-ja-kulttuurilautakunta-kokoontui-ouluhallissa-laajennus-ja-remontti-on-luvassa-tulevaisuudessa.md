@@ -4,6 +4,8 @@ date: '2017-10-27'
 description: Kommentointia vuonna 2021 Lautakunta piti kokouksen valtuustokauden alkupuolella Ouluhallissa ja sai sittemmin päätettäväkseen hallin peruskorjauksen ja laajennuksen hankesuunnitelman. Nyt valtuustokauden lähestyess
 categories:
   - Politiikka ja päätöksenteko
+  - Hyvinvointi ja osallisuus
+  - Sivistys ja koulutus
 forum:
   - Lautakunta
 keywords:

@@ -4,9 +4,8 @@ date: '2014-03-18'
 description: 'Tässä puheessa tiedustelin mm. Jäälin urheilualueen ja Jääli-Hönttämäki ulkoilureitin perää . Tuolloin toimin Jäälin asukasyhdistyksen puheenjohtajana, lähidemokratiatoimikunnan puheenjohtajana ja ...'
 event: Oulun raati -yleisötilaisuus
 categories:
-  - Harrastukset
-  - Muut
-  - Politiikka ja päätöksenteko
+  - Kaupunkikehitys ja palveluverkko
+  - Hyvinvointi ja osallisuus
 forum:
   - Asukasyhdistys
 keywords:

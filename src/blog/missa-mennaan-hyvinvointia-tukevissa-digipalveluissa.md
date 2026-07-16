@@ -5,6 +5,7 @@ description: 'ALKUTILANNE Kokoomuspoliitikko Jarmo Husso oivallisesti muistutti,
 categories:
   - Vaalit
   - Politiikka ja päätöksenteko
+  - Hyvinvointi ja osallisuus
 campaign: Aluevaalit 2022
 keywords:
   - aluehallinto

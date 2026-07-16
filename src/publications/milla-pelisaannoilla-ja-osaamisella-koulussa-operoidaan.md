@@ -1,12 +1,13 @@
 ---
 title: MILLÄ PELISÄÄNNÖILLÄ JA OSAAMISELLA KOULUSSA OPEROIDAAN?
-date: 2019-02-16
-description: "Tämä teksti on alunperin julkaistu Erja Sandbergin blogissa ja olin tämä artikkelin toinen kirjoittaja: https://www.erjasandberg.eu/milla-pelisaannoilla-ja-osaamisella-koulussa-operoidaan/T..."
+date: '2019-02-16'
+description: 'Tämä teksti on alunperin julkaistu Erja Sandbergin blogissa ja olin tämä artikkelin toinen kirjoittaja: https://www.erjasandberg.eu/milla-pelisaannoilla-ja-osaamisella-koulussa-operoidaan/T...'
 categories:
+  - Sivistys ja koulutus
+secondaryTheme:
+  - Koulutusteknologia
+context:
   - blogivierailu
-  - Blogivierailut ja kolumnit
-  - Pelit ja pelaaminen
-  - Teknologiatuettu oppiminen ja opetus
 keywords:
   - apuvälineet
   - blogivierailu
@@ -17,7 +18,7 @@ keywords:
   - teknologia
 type: kolumni
 wp_id: 1196
-source_url: "https://www.jarilaru.fi/milla-pelisaannoilla-ja-osaamisella-koulussa-operoidaan/"
+source_url: 'https://www.jarilaru.fi/milla-pelisaannoilla-ja-osaamisella-koulussa-operoidaan/'
 templateEngineOverride: md
 ---
 <p><em>Tämä teksti on alunperin julkaistu Erja Sandbergin blogissa ja olin tämän artikkelin toinen kirjoittaja: <a href="https://www.erjasandberg.eu/milla-pelisaannoilla-ja-osaamisella-koulussa-operoidaan/" target="_blank" rel="noreferrer noopener">https://www.erjasandberg.eu/milla-pelisaannoilla-ja-osaamisella-koulussa-operoidaan/</a> </em></p>

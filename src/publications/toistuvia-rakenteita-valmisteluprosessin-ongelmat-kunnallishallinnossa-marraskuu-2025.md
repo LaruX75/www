@@ -4,8 +4,9 @@ date: '2025-11-22'
 description: 'Kunnallishallinnossa toistuu samoja valmistelu- ja päätöksentekoprosessien ongelmia: media uutisoi asiat päätetyiksi ennen päätöstä, strategioita ei siirretä uusille luottamushenkilöille, konsernijaosto toimii liian itsenäisesti. Edessä on vaikeita päätöksiä, jotka vaativat luottamusta ja yhteistä hiileen puhaltamista.'
 categories:
   - Politiikka ja päätöksenteko
-  - Kunnallishallinto
 channel: Facebook
+context:
+  - kunnallishallinto
 keywords:
   - kunnallispolitiikka
   - lautakunta

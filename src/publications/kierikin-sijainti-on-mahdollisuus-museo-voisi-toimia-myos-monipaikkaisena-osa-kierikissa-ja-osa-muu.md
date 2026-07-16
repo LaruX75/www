@@ -3,8 +3,8 @@ title: 'Kie­ri­kin si­jain­ti on mah­dol­li­suus – museo voisi toimia m
 date: '2021-01-22'
 description: 'Mielipidekirjoitus on julkaistu Sanomalehti Kalevassa 22.1.2021: https://www.kaleva.fi/kierikin-sijainti-on-mahdollisuus-museo-voisi-toim/3284045Oulunkaupunginhallituksenpäätöshakeavalta...'
 categories:
-  - Kulttuuri
   - Politiikka ja päätöksenteko
+  - Kulttuuri ja paikallisidentiteetti
 publication: Kaleva
 keywords:
   - arkeologia

@@ -2,6 +2,8 @@
 title: Vastine uutiseen ”Vasikkasuon biokaasulaitos etenee”
 date: '2011-10-27'
 description: 'Mielipidekirjoitus julkaistu Sanomalehti Kalevassa lokakuussa 2011 Kaleva kirjoitti uutisjutussaan (Kaleva PÄIVÄ), miten Vasikkasuon biokaasulaitos etenee. Toimittaja Sankala oli käyttänyt ju...'
+categories:
+  - Kaupunkikehitys ja palveluverkko
 publication: Kaleva
 keywords:
   - haju

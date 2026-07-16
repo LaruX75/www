@@ -4,6 +4,8 @@ date: '2017-11-04'
 description: Kirjoitus on julkaistu Sanomalehti Kalevan Mielipiteitä -palstalla 4.11.2017. Liikelaitos Oulun Tilakeskuksen johtokunta päätti 19.10 pidetyssä kokouksessaan esittää Jokirannan koulun hankese...
 categories:
   - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
+  - Kaupunkikehitys ja palveluverkko
 publication: Kaleva
 forum:
   - Kaupunginvaltuusto

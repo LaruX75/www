@@ -1,9 +1,11 @@
 ---
-title: "Kehuttua: Koulutusteknologian perusopintojen johdantoluento"
-date: 2008-11-15
-description: "Viime viikolla sain kunnian johdatella Koulutusteknologian perusopiskelijoita luennoimalla heille tieto- ja viestintäteknologian opetuskäytö historiasta. Annoin esitykselle nimen \" Learning & Technology - Aikamatka k"
+title: 'Kehuttua: Koulutusteknologian perusopintojen johdantoluento'
+date: '2008-11-15'
+description: Viime viikolla sain kunnian johdatella Koulutusteknologian perusopiskelijoita luennoimalla heille tieto- ja viestintäteknologian opetuskäytö historiasta. Annoin esitykselle nimen " Learning & Technology - Aikamatka k
 categories:
-  - opetus
+  - Opettajankoulutus
+secondaryTheme:
+  - Koulutusteknologia
 keywords:
   - koulutusteknologia
   - luento
@@ -12,7 +14,7 @@ keywords:
   - työ
   - web2.0
 wp_id: 307
-source_url: "https://www.jarilaru.fi/kehuttua-koulutusteknologian-perusopintojen-johdantoluento/"
+source_url: 'https://www.jarilaru.fi/kehuttua-koulutusteknologian-perusopintojen-johdantoluento/'
 templateEngineOverride: md
 ---
 

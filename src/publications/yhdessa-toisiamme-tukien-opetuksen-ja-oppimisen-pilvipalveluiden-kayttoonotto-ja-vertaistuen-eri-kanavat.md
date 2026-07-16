@@ -1,13 +1,13 @@
 ---
-title: "Yhdessä toisiamme tukien: opetuksen ja oppimisen pilvipalveluiden käyttöönotto ja vertaistuen eri kanavat"
-date: 2016-04-21
-description: "Kirjoitukseni Oulun yliopiston Hyvät, Pahat ja Digit blogissa 21.4.2016 https://www.oulu.fi/blogs/yhdess%C3%A4%20toisiamme%20tukien%3A%20opetuksen%20ja%20oppimisen%20pilvipalveluiden%20k%C3%A4ytt%C3..."
+title: 'Yhdessä toisiamme tukien: opetuksen ja oppimisen pilvipalveluiden käyttöönotto ja vertaistuen eri kanavat'
+date: '2016-04-21'
+description: 'Kirjoitukseni Oulun yliopiston Hyvät, Pahat ja Digit blogissa 21.4.2016 https://www.oulu.fi/blogs/yhdess%C3%A4%20toisiamme%20tukien%3A%20opetuksen%20ja%20oppimisen%20pilvipalveluiden%20k%C3%A4ytt%C3...'
 categories:
+  - Koulutusteknologia
+secondaryTheme:
+  - Teknologia ja digitaalisuus
+context:
   - blogivierailu
-  - Blogivierailut ja kolumnit
-  - Käyttöjärjestelmät
-  - pilvipalvelut ja ekosysteemit
-  - Teknologiatuettu oppiminen ja opetus
 keywords:
   - google
   - helpdesk
@@ -22,7 +22,7 @@ keywords:
   - vertaistuki
 type: kolumni
 wp_id: 1203
-source_url: "https://www.jarilaru.fi/yhdessa-toisiamme-tukien-opetuksen-ja-oppimisen-pilvipalveluiden-kayttoonotto-ja-vertaistuen-eri-kanavat/"
+source_url: 'https://www.jarilaru.fi/yhdessa-toisiamme-tukien-opetuksen-ja-oppimisen-pilvipalveluiden-kayttoonotto-ja-vertaistuen-eri-kanavat/'
 templateEngineOverride: md
 ---
 <p><em>Kirjoitukseni Oulun yliopiston Hyvät, Pahat ja Digit blogissa 21.4.2016 <a href="https://www.oulu.fi/blogs/yhdess%C3%A4%20toisiamme%20tukien%3A%20opetuksen%20ja%20oppimisen%20pilvipalveluiden%20k%C3%A4ytt%C3%B6%C3%B6notto%20ja%20vertaistuen%20eri%20kanava" target="_blank" rel="noreferrer noopener">https://www.oulu.fi/blogs/yhdess%C3%A4%20toisiamme%20tukien%3A%20opetuksen%20ja%20oppimisen%20pilvipalveluiden%20k%C3%A4ytt%C3%B6%C3%B6notto%20ja%20vertaistuen%20eri%20kanava</a>t</em></p>

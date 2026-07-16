@@ -4,6 +4,7 @@ date: '2018-06-16'
 description: Kirjoitus on julkaistu Sanomalehti Kalevan “Lukijalta” -palstalla 16.6.2018 Oulu on ollut Pohjois-Suomen monipuolisin ja suosituin koulukaupunki jo yli 400 vuotta. Viimeisen viidentoista vuoden aika...
 categories:
   - Politiikka ja päätöksenteko
+  - Sivistys ja koulutus
 publication: Kaleva
 forum:
   - Lautakunta

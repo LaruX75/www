@@ -7,9 +7,10 @@ url: ''
 ouka_response_body: Yhdyskuntalautakunta 16.1.2024
 ouka_response_url: http://asiakirjat.ouka.fi/ktwebscr/pk_asil_tweb.htm?bid=36557
 categories:
+  - Politiikka ja päätöksenteko
+  - Kaupunkikehitys ja palveluverkko
+forum:
   - Kaupunginvaltuusto
-  - Poliitiikka
-  - Valtuustoaloitteet
 keywords:
   - oulun kaupunki
   - pyörän lataaminen

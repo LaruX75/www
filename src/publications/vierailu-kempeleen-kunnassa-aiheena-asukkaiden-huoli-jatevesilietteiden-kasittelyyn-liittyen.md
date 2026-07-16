@@ -4,9 +4,7 @@ date: '2018-01-11'
 description: Tammikuussa 2018 kävin kempeleläisten kutsumana kertomassa jääliläisten "lietesaagasta"
 event: Kempeleen kunnan tilaisuus
 categories:
-  - Muut
-  - Politiikka ja päätöksenteko
-  - yhdistystoiminta
+  - Kaupunkikehitys ja palveluverkko
 forum:
   - Asukasyhdistys
 keywords:

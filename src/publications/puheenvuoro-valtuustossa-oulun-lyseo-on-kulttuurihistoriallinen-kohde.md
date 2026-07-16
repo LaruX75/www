@@ -1,10 +1,17 @@
 ---
-title: "Puheenvuoro valtuustossa § 58: Oulun Lyseo on kulttuurihistoriallinen kohde"
-date: 2019-06-17
+title: 'Puheenvuoro valtuustossa § 58: Oulun Lyseo on kulttuurihistoriallinen kohde'
+date: '2019-06-17'
+description: 'Valtuustopuheenvuoro Oulun Lyseon säilyttämisestä, Linnanmaan koulutuskampuksen mahdollisuuksista sekä sivistys- ja kulttuuripalvelujen taloudellisesta kantokyvystä.'
+event: Oulun kaupunginvaltuusto
+asiakohta: '§ 58 – Info: Sivistys- ja kulttuuripalveluiden palveluverkon valmistelusta'
+categories:
+  - Politiikka ja päätöksenteko
+  - Kaupunkikehitys ja palveluverkko
+  - Sivistys ja koulutus
+forum:
+  - Kaupunginvaltuusto
 type: puhe
-event: "Oulun kaupunginvaltuusto"
-asiakohta: "§ 58 – Info: Sivistys- ja kulttuuripalveluiden palveluverkon valmistelusta"
-description: "Valtuustopuheenvuoro Oulun Lyseon säilyttämisestä, Linnanmaan koulutuskampuksen mahdollisuuksista sekä sivistys- ja kulttuuripalvelujen taloudellisesta kantokyvystä."
+templateEngineOverride: md
 tags:
   - publications
   - politics
@@ -17,7 +24,6 @@ tags:
   - rakennusperintö
   - kulttuurihistoria
   - Oulu
-templateEngineOverride: md
 ---
 
 Oulun kaupunginvaltuusto käsitteli 17.6.2019 tietoiskua sivistys- ja kulttuuripalveluiden palveluverkon valmistelusta. Käytin puheenvuoron Oulun Lyseon kulttuurihistoriallisesta merkityksestä, Linnanmaan kampusmahdollisuuksista sekä sivistystoimen taloudellisesta kantokyvystä.
