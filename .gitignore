@@ -1,5 +1,6 @@
 node_modules/
 _site/
+_site_esitykset_check/
 
 # OG image cache – generated on build, too large for git; kept via GitHub Actions cache
 og-cache/*
