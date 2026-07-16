@@ -87,6 +87,14 @@ collections:
         widget: "list"
         required: false
         hint: "Esim. Generation AI"
+      - label: "Politiikka-sivun kirjoitusrooli"
+        name: "politicsWritingRole"
+        widget: "select"
+        required: false
+        hint: "Aseta vain jos artikkelin halutaan näkyvän politiikka-sivun kirjoitukset-osiossa"
+        options:
+          - { label: "Poliittinen kirjoitus", value: "political" }
+          - { label: "Hybridirooli (asiantuntija + poliitikko)", value: "hybrid" }
       - label: "Lisenssi"
         name: "license"
         widget: "select"
