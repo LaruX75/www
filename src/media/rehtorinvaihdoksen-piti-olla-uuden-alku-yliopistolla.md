@@ -20,4 +20,8 @@ keywords:
   - hallintouudistus
 ---
 
-Kalevan artikkeli käsittelee Oulun yliopiston hallituskriisiä Arto Maanisen rehtorinvalinnan jälkeen. Kolme hallituksen jäsentä erosi lyhyen ajan sisällä valinnasta. Jari Laru kommentoi ylioppilaskunnan edustajiston jäsenenä hallitusjäsenten eroja vakavana hälytysmerkkinä koko yliopistoyhteisölle ja peräänkuulutti avoimuutta.
+Kalevan artikkeli käsittelee Oulun yliopiston hallituskriisiä Arto Maanisen rehtorinvalinnan jälkeen. Kolme hallituksen jäsentä erosi lyhyen ajan sisällä valinnasta. Jari Laru kommentoi yliopistokollegion jäsenenä hallitusjäsenten eroja vakavana hälytysmerkkinä koko yliopistoyhteisölle ja peräänkuulutti avoimuutta.
+
+> "Eroilmoituksen pitäisi olla iso hälytysmerkki kaikille yliopistoyhteisön jäsenille. Ei tämä ihan tavallinen tilanne ole, eronneet edustajat ovat hallintovaaleilla valittuja henkilökunnan edustajia. Ero on yksi oire vuosia kestäneestä vellonnasta, missä ei ole ihan yhteen hiileen puhallettu."
+
+— Jari Laru, Kaleva 1.10.2024
