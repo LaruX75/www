@@ -8,9 +8,10 @@
   pagination: {
     data: "collections.keywordList",
     size: 1,
-    alias: "keyword"
+    alias: "keyword",
+    before: data => (process.env.BUILD_TAXONOMY_PAGES === "1" || process.env.BUILD_TAXONOMY_PAGES === "true" || process.env.CI === "true") ? data : []
   },
-  permalink: data => `/avainsanat/${data.keyword?.slug}/`
+  permalink: (process.env.BUILD_TAXONOMY_PAGES === "1" || process.env.BUILD_TAXONOMY_PAGES === "true" || process.env.CI === "true") ? (data => `/avainsanat/${data.keyword.slug}/`) : false
 }
 ---
 <section>
