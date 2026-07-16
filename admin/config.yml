@@ -31,13 +31,14 @@ collections:
       - { label: "Sisältö", name: "body", widget: "markdown" }
 
   - name: "publications"
-    label: "Julkaisut (mielipiteet, kolumnit, puheet)"
+    label: "Julkaisut (mielipiteet, kolumnit, puheet, lausunnot)"
     folder: "src/publications"
     create: true
     slug: "{{slug}}"
     sortable_fields: ["date", "title", "type"]
     fields:
       - { label: "Otsikko", name: "title", widget: "string" }
+      - { label: "Alaotsikko", name: "subtitle", widget: "string", required: false }
       - { label: "Päivämäärä", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
       - label: "Tyyppi"
         name: "type"
@@ -47,21 +48,109 @@ collections:
             value: "mielipide"
           - label: "Kolumni"
             value: "kolumni"
-          - label: "Puhe"
+          - label: "Puhe / puheenvuoro"
             value: "puhe"
+          - label: "Lausunto"
+            value: "lausunto"
           - label: "Tieteellinen julkaisu"
             value: "tieteellinen"
           - label: "Esitelmä"
             value: "esitelma"
-      - { label: "Julkaisupaikka/lehti", name: "publication", widget: "string", required: false }
-      - { label: "Tapahtuma", name: "event", widget: "string", required: false, hint: "Puheen tai esitelmän tapahtuma" }
-      - { label: "Asiakohta", name: "asiakohta", widget: "string", required: false, hint: "Esim. §3 tai 1 – Info: Oulu2026-ajankohtaisasiat" }
+      - { label: "Julkaisupaikka/lehti", name: "publication", widget: "string", required: false, hint: "Esim. Lausuntopalvelu.fi tai Kaleva" }
+      - { label: "Tapahtuma", name: "event", widget: "string", required: false, hint: "Puheen tai esitelmän tapahtuma, esim. Oulun kaupunginvaltuusto" }
+      - { label: "Asiakohta", name: "asiakohta", widget: "string", required: false, hint: "Esim. § 83 – Info: Sivistysohjelma" }
+      - label: "Foorumi (puhe)"
+        name: "forum"
+        widget: "list"
+        required: false
+        hint: "Vain puheille, esim. Kaupunginvaltuusto"
+      - { label: "Lausuntopyynnnön diaarinumero", name: "diaryNumber", widget: "string", required: false, hint: "Esim. OPH-6433-2024 tai VN/31530/2023" }
+      - label: "Lausuntokanava"
+        name: "statementChannel"
+        widget: "select"
+        required: false
+        options:
+          - { label: "Lausuntopalvelu.fi", value: "lausuntopalvelu" }
+          - { label: "Muu", value: "muu" }
+      - { label: "Lausuntopyyntö (viranomainen)", name: "statementAuthority", widget: "string", required: false, hint: "Esim. Opetushallitus tai Valtioneuvosto" }
+      - label: "Kirjoitusrooli"
+        name: "writingRoles"
+        widget: "select"
+        required: false
+        multiple: true
+        options:
+          - { label: "Asiantuntija (expert)", value: "expert" }
+          - { label: "Poliittinen toimija", value: "political" }
+          - { label: "Yhteisötoimija", value: "community" }
+      - label: "Liittyvä projekti"
+        name: "relatedProject"
+        widget: "list"
+        required: false
+        hint: "Esim. Generation AI"
+      - label: "Lisenssi"
+        name: "license"
+        widget: "select"
+        required: false
+        options:
+          - { label: "CC BY 4.0", value: "CC-BY-4.0" }
+          - { label: "CC BY-NC-ND 4.0", value: "CC-BY-NC-ND-4.0" }
+          - { label: "Kaikki oikeudet pidätetään", value: "all-rights-reserved" }
       - { label: "Kuvaus", name: "description", widget: "text", required: false }
       - { label: "Linkki", name: "url", widget: "string", required: false }
-      - { label: "Alkuperäinen lähde-URL", name: "source_url", widget: "string", required: false }
-      - { label: "Avainsanat/tunnisteet", name: "tags", widget: "list", required: false }
+      - label: "Kategoriat"
+        name: "categories"
+        widget: "list"
+        required: false
+      - label: "Toissijainen teema"
+        name: "secondaryTheme"
+        widget: "list"
+        required: false
+      - label: "Avainsanat"
+        name: "keywords"
+        widget: "list"
+        required: false
       - { name: "wp_id", widget: "hidden", required: false }
-      - { name: "templateEngineOverride", widget: "hidden", required: false }
+      - { name: "templateEngineOverride", widget: "hidden", default: "md", required: false }
+      - { label: "Sisältö", name: "body", widget: "markdown", required: false }
+
+  - name: "media"
+    label: "Mediassa"
+    folder: "src/media"
+    create: true
+    slug: "{{slug}}"
+    sortable_fields: ["date", "title", "mediaType"]
+    fields:
+      - { label: "Otsikko", name: "title", widget: "string" }
+      - { label: "Kuvaus", name: "description", widget: "text", required: false }
+      - { label: "Päivämäärä", name: "date", widget: "datetime", format: "YYYY-MM-DD", required: false }
+      - label: "Rooli"
+        name: "mediaRole"
+        widget: "select"
+        options:
+          - { label: "Juttu minusta", value: "about" }
+          - { label: "Vieras / haastateltava", value: "guest" }
+      - label: "Sisältötyyppi"
+        name: "mediaType"
+        widget: "select"
+        options:
+          - { label: "Lehtijuttu / artikkeli", value: "article" }
+          - { label: "Podcast", value: "podcast" }
+          - { label: "Video / YouTube", value: "video" }
+          - { label: "Radiohaastattelu", value: "radio" }
+          - { label: "Muu", value: "other" }
+      - { label: "Media / julkaisija", name: "mediaOutlet", widget: "string", hint: "Esim. Rantapohja tai Think Open Digest / Tiederadio" }
+      - { label: "Lähde-URL", name: "sourceUrl", widget: "string" }
+      - { label: "Thumbnail-URL", name: "thumbnail", widget: "string", required: false, hint: "Haetaan automaattisesti lähdesivun OG-kuvasta jos jätetty tyhjäksi — tai lisää URL käsin" }
+      - { label: "Järjestys", name: "mediaOrder", widget: "number", required: false, default: 50, hint: "Suurempi luku = korkeammalle listassa" }
+      - label: "Kategoriat"
+        name: "categories"
+        widget: "list"
+        required: false
+        hint: "Esim. Mediassa, Haastattelut, Tekoäly"
+      - label: "Avainsanat"
+        name: "keywords"
+        widget: "list"
+        required: false
       - { label: "Sisältö", name: "body", widget: "markdown", required: false }
 
   - name: "politics"
