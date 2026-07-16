@@ -1,13 +1,11 @@
 ---
-title: "KALEVA Mielipide: Mihin po­liit­ti­set pää­tök­set pe­rus­tu­vat? – on­gel­mak­si esi­mer­kik­si Oulun kou­lu­verk­ko­kes­kus­te­lus­sa muo­dos­tuu se, että tärkeää tietoa jää myös kat­vee­seen"
-date: 2023-04-18
-description: "Mielipidekirjoitus Sanomalehti Kalevassa 18.4.2023: https://www.kaleva.fi/mihin-poliittiset-paatokset-perustuvat-ongelmaksi-/5482095SivistysjohtajaMikaPenttiläkolumni”Tulevaisuudenkoul..."
-categories:
-  - Kaleva
-  - Mielipidekirjoitukset
+title: 'KALEVA Mielipide: Mihin po­liit­ti­set pää­tök­set pe­rus­tu­vat? – on­gel­mak­si esi­mer­kik­si Oulun kou­lu­verk­ko­kes­kus­te­lus­sa muo­dos­tuu se, että tärkeää tietoa jää myös kat­vee­seen'
+date: '2023-04-18'
+description: 'Mielipidekirjoitus Sanomalehti Kalevassa 18.4.2023: https://www.kaleva.fi/mihin-poliittiset-paatokset-perustuvat-ongelmaksi-/5482095SivistysjohtajaMikaPenttiläkolumni”Tulevaisuudenkoul...'
+publication: Kaleva
 type: mielipide
 wp_id: 2091
-source_url: "https://www.jarilaru.fi/kaleva-mielipide-mihin-poliittiset-paatokset-perustuvat-ongelmaksi-esimerkiksi-oulun-kouluve/"
+source_url: 'https://www.jarilaru.fi/kaleva-mielipide-mihin-poliittiset-paatokset-perustuvat-ongelmaksi-esimerkiksi-oulun-kouluve/'
 templateEngineOverride: md
 ---
 <p>Mielipidekirjoitus Sanomalehti Kalevassa 18.4.2023: <a href="https://www.kaleva.fi/mihin-poliittiset-paatokset-perustuvat-ongelmaksi-/5482095 ">https://www.kaleva.fi/mihin-poliittiset-paatokset-perustuvat-ongelmaksi-/5482095</a></p>

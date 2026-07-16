@@ -1,12 +1,13 @@
 ---
 title: Seurakuntavaalit tulevat ja ehdolla ollaan. Miksi tällainen agnostinen liberaali on näillä selkosilla ehdokkaana?
-date: 2018-10-04
-description: "No juuri siksi! Olen koetellut ja tutkinut suhdettani kirkkoon tutkimalla sitä niin luonnontieteen kuin uskonnon äkökulmasta. Olen epäillyt, torjunut, uskonut, hyväksynyt, ihmetellyt. Suuria mystisiä hetkiä minul"
+date: '2018-10-04'
+description: 'No juuri siksi! Olen koetellut ja tutkinut suhdettani kirkkoon tutkimalla sitä niin luonnontieteen kuin uskonnon äkökulmasta. Olen epäillyt, torjunut, uskonut, hyväksynyt, ihmetellyt. Suuria mystisiä hetkiä minul'
 categories:
-  - Poliitiikka
-  - Seurakuntavaalit
+  - Politiikka ja päätöksenteko
+  - Vaalit
+campaign: Seurakuntavaalit
 wp_id: 974
-source_url: "https://www.jarilaru.fi/seurakuntavaalit-tulevat-ja-ehdolla-ollaan-miksi-tallainen-agnostinen-liberaali-on-nailla-selkosilla-ehdokkaana/"
+source_url: 'https://www.jarilaru.fi/seurakuntavaalit-tulevat-ja-ehdolla-ollaan-miksi-tallainen-agnostinen-liberaali-on-nailla-selkosilla-ehdokkaana/'
 templateEngineOverride: md
 ---
 

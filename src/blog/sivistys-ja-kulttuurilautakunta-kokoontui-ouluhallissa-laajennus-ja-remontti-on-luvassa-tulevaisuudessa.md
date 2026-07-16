@@ -1,10 +1,11 @@
 ---
 title: Sivistys- ja kulttuurilautakunta kokoontui Ouluhallissa. Laajennus ja remontti on luvassa tulevaisuudessa.
-date: 2017-10-27
-description: "Kommentointia vuonna 2021 Lautakunta piti kokouksen valtuustokauden alkupuolella Ouluhallissa ja sai sittemmin päätettäväkseen hallin peruskorjauksen ja laajennuksen hankesuunnitelman. Nyt valtuustokauden lähestyess"
+date: '2017-10-27'
+description: Kommentointia vuonna 2021 Lautakunta piti kokouksen valtuustokauden alkupuolella Ouluhallissa ja sai sittemmin päätettäväkseen hallin peruskorjauksen ja laajennuksen hankesuunnitelman. Nyt valtuustokauden lähestyess
 categories:
+  - Politiikka ja päätöksenteko
+forum:
   - Lautakunta
-  - Poliitiikka
 keywords:
   - kokous
   - lähiliikuntapaikkastrategia
@@ -13,7 +14,7 @@ keywords:
   - ouluhallin peruskorjaus ja laajennus
   - sivistys- ja kulttuurilautakunta
 wp_id: 1146
-source_url: "https://www.jarilaru.fi/sivistys-ja-kulttuurilautakunta-kokoontui-ouluhallissa-laajennus-ja-remontti-on-luvassa-tulevaisuudessa/"
+source_url: 'https://www.jarilaru.fi/sivistys-ja-kulttuurilautakunta-kokoontui-ouluhallissa-laajennus-ja-remontti-on-luvassa-tulevaisuudessa/'
 politicalProfiles:
   - hyvinvointi
   - sivistys

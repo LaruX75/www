@@ -1,11 +1,11 @@
 ---
 title: Porisuta porvaria koulutuksesta
-date: 2017-09-27
-event: "Porisuta porvaria koulutuksesta"
-description: "Tähää Cafe Roosterissa on mukava tapahtuma \"porisuta porvaria koulutuksesta\" - allekirjoittanut on yksi porisutettavista TAPAHTUMAN KUVAUS:\"Tiedätkö oikeasti mitä paikalliset porvarit ajatte..."
+date: '2017-09-27'
+description: 'Tähää Cafe Roosterissa on mukava tapahtuma "porisuta porvaria koulutuksesta" - allekirjoittanut on yksi porisutettavista TAPAHTUMAN KUVAUS:"Tiedätkö oikeasti mitä paikalliset porvarit ajatte...'
+event: Porisuta porvaria koulutuksesta
 categories:
   - Paneelit
-  - Poliitiikka
+  - Politiikka ja päätöksenteko
 keywords:
   - järjestötyö
   - keskustelu
@@ -14,7 +14,7 @@ keywords:
   - m paneeli
 type: puhe
 wp_id: 1149
-source_url: "https://www.jarilaru.fi/porisuta-porvaria-koulutuksesta/"
+source_url: 'https://www.jarilaru.fi/porisuta-porvaria-koulutuksesta/'
 templateEngineOverride: md
 ---
 <p>Tänään Cafe Roosterissa on mukava tapahtuma "porisuta porvaria koulutuksesta" - allekirjoittanut on yksi porisutettavista <img height="16" width="16" alt="🙂" src="https://static.xx.fbcdn.net/images/emoji.php/v9/t4c/1/16/1f642.png"></p>

@@ -1,10 +1,11 @@
 ---
 title: Kulttuurihyvinvointi kuuluu kaikille
-date: 2021-11-18
-description: "Kolumni, joka on julkaistu paikallislehti Rantapohjan päättäjältä -palstalla"
+date: '2021-11-18'
+description: 'Kolumni, joka on julkaistu paikallislehti Rantapohjan päättäjältä -palstalla'
 categories:
   - kolumni
   - Kulttuuri
+forum:
   - Lautakunta
 keywords:
   - aluevaalit
@@ -14,7 +15,7 @@ keywords:
   - yhdyspinta
 type: kolumni
 wp_id: 1878
-source_url: "https://www.jarilaru.fi/kulttuurihyvinvointi-kuuluu-kaikille/"
+source_url: 'https://www.jarilaru.fi/kulttuurihyvinvointi-kuuluu-kaikille/'
 politicalProfiles:
   - hyvinvointi
   - yhteistyo

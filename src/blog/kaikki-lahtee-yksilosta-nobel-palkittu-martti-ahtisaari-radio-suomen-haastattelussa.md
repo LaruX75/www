@@ -1,9 +1,9 @@
 ---
-title: "\"Kaikki lähtee yksilöstä\" - Nobel palkittu Martti Ahtisaari Ylen Ykkösaamun haastattelussa"
-date: 2008-10-13
-description: "Asensin viikonloppuna hämäräkytkimen ulkovalaistusta ohjaamaan. Siitä johtoja vedellessä tapani mukaan kuuntelin radiota. Sattumalta olin Radio Suomen taajuudella jossa toimittaja Jari Korkki haastatteli parhaillaan"
+title: '"Kaikki lähtee yksilöstä" - Nobel palkittu Martti Ahtisaari Ylen Ykkösaamun haastattelussa'
+date: '2008-10-13'
+description: Asensin viikonloppuna hämäräkytkimen ulkovalaistusta ohjaamaan. Siitä johtoja vedellessä tapani mukaan kuuntelin radiota. Sattumalta olin Radio Suomen taajuudella jossa toimittaja Jari Korkki haastatteli parhaillaan
 categories:
-  - politiikka
+  - Politiikka ja päätöksenteko
 keywords:
   - hyvinvointi
   - hyvinvointipalvelut
@@ -13,7 +13,7 @@ keywords:
   - yksilö
   - yksilön vastuu
 wp_id: 929
-source_url: "https://www.jarilaru.fi/kaikki-lahtee-yksilosta-nobel-palkittu-martti-ahtisaari-radio-suomen-haastattelussa/"
+source_url: 'https://www.jarilaru.fi/kaikki-lahtee-yksilosta-nobel-palkittu-martti-ahtisaari-radio-suomen-haastattelussa/'
 politicalProfiles:
   - hyvinvointi
 templateEngineOverride: md

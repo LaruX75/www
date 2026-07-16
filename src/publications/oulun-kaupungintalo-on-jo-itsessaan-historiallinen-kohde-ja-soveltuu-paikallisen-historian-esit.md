@@ -1,12 +1,11 @@
 ---
 title: Oulun kau­pun­gin­ta­lo on jo it­ses­sään his­to­rial­li­nen kohde ja so­vel­tuu pai­kal­li­sen his­to­rian esit­te­lyyn
-date: 2021-01-29
-description: "Mielipidekirjoitus on julkaistu Sanomalehti Kalevan \"mielipiteitä\" palstalla 29.1.2021. ( https://www.kaleva.fi/oulun-kaupungintalo-on-jo-itsessaan-historiallinen/3305217 ) Martti Korhonen es..."
+date: '2021-01-29'
+description: 'Mielipidekirjoitus on julkaistu Sanomalehti Kalevan "mielipiteitä" palstalla 29.1.2021. ( https://www.kaleva.fi/oulun-kaupungintalo-on-jo-itsessaan-historiallinen/3305217 ) Martti Korhonen es...'
 categories:
-  - Kaleva
   - Kulttuuri
-  - Mielipidekirjoitukset
-  - Poliitiikka
+  - Politiikka ja päätöksenteko
+publication: Kaleva
 keywords:
   - erä- ja luontomuseo
   - historia
@@ -17,7 +16,7 @@ keywords:
   - oulun keskusta
 type: mielipide
 wp_id: 1372
-source_url: "https://www.jarilaru.fi/oulun-kaupungintalo-on-jo-itsessaan-historiallinen-kohde-ja-soveltuu-paikallisen-historian-esit/"
+source_url: 'https://www.jarilaru.fi/oulun-kaupungintalo-on-jo-itsessaan-historiallinen-kohde-ja-soveltuu-paikallisen-historian-esit/'
 templateEngineOverride: md
 ---
 <p><em>Mielipidekirjoitus on julkaistu Sanomalehti Kalevan "mielipiteitä" palstalla 29.1.2021. (<a href="https://www.kaleva.fi/oulun-kaupungintalo-on-jo-itsessaan-historiallinen/3305217" target="_blank" rel="noreferrer noopener">https://www.kaleva.fi/oulun-kaupungintalo-on-jo-itsessaan-historiallinen/3305217</a>)</em></p>

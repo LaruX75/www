@@ -1,15 +1,15 @@
 ---
 title: Vastuu lapsen ja nuoren suojelusta ja hy­vin­voin­nis­ta on aina aikuisella
-date: 2019-01-15
-description: "Lapselle ja nuorelle on opetettava, että oma keho on arvokkainta, mitä hänellä on."
+date: '2019-01-15'
+description: 'Lapselle ja nuorelle on opetettava, että oma keho on arvokkainta, mitä hänellä on.'
 categories:
-  - Kaleva
+  - Politiikka ja päätöksenteko
+publication: Kaleva
+forum:
   - Lautakunta
-  - Mielipidekirjoitukset
-  - Poliitiikka
 type: mielipide
 wp_id: 115
-source_url: "https://www.jarilaru.fi/vastuu-lapsen-ja-nuoren-suojelusta-ja-hyvinvoinnista-on-aina-aikuisella/"
+source_url: 'https://www.jarilaru.fi/vastuu-lapsen-ja-nuoren-suojelusta-ja-hyvinvoinnista-on-aina-aikuisella/'
 politicalProfiles:
   - hyvinvointi
 templateEngineOverride: md

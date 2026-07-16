@@ -1,13 +1,13 @@
 ---
-title: Luuppi an­sait­see kat­ta­van ko­ko­nais­rat­kai­sun – sen takaa par­hai­ten se, että asiat kä­si­tel­lään pe­rin­poh­jai­ses­ti nor­maa­lis­sa po­liit­ti­ses­sa kä­sit­te­ly­jär­jes­tyk­ses­sä
-date: 2021-09-25
-description: "Museo- ja tiedekeskus Luuppia käsitttelevä mielipidekirjoitus \"Luuppi an­sait­see kat­ta­van ko­ko­nais­rat­kai­sun – sen takaa par­hai­ten se, että asiat kä­si­tel­lää pe­rin­poh­jai­ses­ti nor­maa­lis­sa po­liit­ti­ses­sa kä­sit­te­ly­jär­jes­tyk­ses­sä\" Sanomalehti Kalevassa 25.9.2021"
+title: 'Luuppi an­sait­see kat­ta­van ko­ko­nais­rat­kai­sun – sen takaa par­hai­ten se, että asiat kä­si­tel­lään pe­rin­poh­jai­ses­ti nor­maa­lis­sa po­liit­ti­ses­sa kä­sit­te­ly­jär­jes­tyk­ses­sä'
+date: '2021-09-25'
+description: 'Museo- ja tiedekeskus Luuppia käsitttelevä mielipidekirjoitus "Luuppi an­sait­see kat­ta­van ko­ko­nais­rat­kai­sun – sen takaa par­hai­ten se, että asiat kä­si­tel­lää pe­rin­poh­jai­ses­ti nor­maa­lis­sa po­liit­ti­ses­sa kä­sit­te­ly­jär­jes­tyk­ses­sä" Sanomalehti Kalevassa 25.9.2021'
 categories:
-  - Kaleva
   - Kulttuuri
+  - Politiikka ja päätöksenteko
+publication: Kaleva
+forum:
   - Lautakunta
-  - Mielipidekirjoitukset
-  - Poliitiikka
 keywords:
   - ainola
   - luuppi
@@ -16,7 +16,7 @@ keywords:
   - oulu
 type: mielipide
 wp_id: 1811
-source_url: "https://www.jarilaru.fi/luuppi-ansaitsee-kattavan-kokonaisratkaisun-sen-takaa-parhaiten-se-etta-asiat-kasitellaan-perin/"
+source_url: 'https://www.jarilaru.fi/luuppi-ansaitsee-kattavan-kokonaisratkaisun-sen-takaa-parhaiten-se-etta-asiat-kasitellaan-perin/'
 politicalProfiles:
   - kaupunkikehitys
 templateEngineOverride: md

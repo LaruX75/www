@@ -1,12 +1,11 @@
 ---
 title: Ihmistieteille uudet tilat osallistavassa suunnitteluprosessissa?
-date: 2016-11-25
-description: "Kirjoitus on julkaistu Sanomalehti Kalevan Mielipiteitä -palstalla 25.11.2016 Pentti Koivunen, lehtori emeritus vaati kolumnissaan (Kaleva23.11) meitä kasvatustieteilijöitä ja humanisteja kie..."
+date: '2016-11-25'
+description: 'Kirjoitus on julkaistu Sanomalehti Kalevan Mielipiteitä -palstalla 25.11.2016 Pentti Koivunen, lehtori emeritus vaati kolumnissaan (Kaleva23.11) meitä kasvatustieteilijöitä ja humanisteja kie...'
 categories:
-  - Kaleva
-  - Mielipidekirjoitukset
   - Oppimisympäristöt ja tilat
   - Teknologiatuettu oppiminen ja opetus
+publication: Kaleva
 keywords:
   - kasvatustieteiden tiedekunta
   - linnanmaa
@@ -18,7 +17,7 @@ keywords:
   - yhteiskampus
 type: mielipide
 wp_id: 453
-source_url: "https://www.jarilaru.fi/ihmistieteille-uudet-tilat-osallistavassa-suunnitteluprosessissa/"
+source_url: 'https://www.jarilaru.fi/ihmistieteille-uudet-tilat-osallistavassa-suunnitteluprosessissa/'
 templateEngineOverride: md
 ---
 <p><em>Kirjoitus on julkaistu Sanomalehti Kalevan Mielipiteitä -palstalla 25.11.2016</em></p>

@@ -1,10 +1,8 @@
 ---
 title: Kes­kus­ta­kam­pus on uhka ict-sek­to­rin tu­le­vai­suu­del­le
-date: 2022-02-10
-description: "Mielipidekirjoitukseni koskien ICT-sektorin merkitystä ja TST-tiedekunnan merkittävyyttä. Kirjoitus on julkaistu Sanomalehti Kalevassa 10.2.2022"
-categories:
-  - Kaleva
-  - Mielipidekirjoitukset
+date: '2022-02-10'
+description: Mielipidekirjoitukseni koskien ICT-sektorin merkitystä ja TST-tiedekunnan merkittävyyttä. Kirjoitus on julkaistu Sanomalehti Kalevassa 10.2.2022
+publication: Kaleva
 keywords:
   - keskustakampus
   - opetus
@@ -14,7 +12,7 @@ keywords:
   - tutkimus
 type: mielipide
 wp_id: 2063
-source_url: "https://www.jarilaru.fi/keskustakampus-on-uhka-ict-sektorin-tulevaisuudelle/"
+source_url: 'https://www.jarilaru.fi/keskustakampus-on-uhka-ict-sektorin-tulevaisuudelle/'
 politicalProfiles:
   - sivistys
   - kaupunkikehitys

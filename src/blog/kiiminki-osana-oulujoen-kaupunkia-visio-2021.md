@@ -1,9 +1,9 @@
 ---
-title: Kiiminki osana Oulujoen kaupunkia, visio 2021
-date: 2008-09-28
-description: "Oulujoen Kaupunki? Allekirjoitin tähää Oulun seudun kokoomusjärjestöjen vision pohjoisesta metropolista, 200 000 asukkaan Oulusta. Tämä viikon Nykypäivässä oli aiheesta koko sivun artikkeli, jossa asian ydin"
+title: 'Kiiminki osana Oulujoen kaupunkia, visio 2021'
+date: '2008-09-28'
+description: 'Oulujoen Kaupunki? Allekirjoitin tähää Oulun seudun kokoomusjärjestöjen vision pohjoisesta metropolista, 200 000 asukkaan Oulusta. Tämä viikon Nykypäivässä oli aiheesta koko sivun artikkeli, jossa asian ydin'
 categories:
-  - politiikka
+  - Politiikka ja päätöksenteko
 keywords:
   - koulu
   - kuntaliitos
@@ -14,7 +14,7 @@ keywords:
   - Tulevaisuus
   - Visio
 wp_id: 917
-source_url: "https://www.jarilaru.fi/kiiminki-osana-oulujoen-kaupunkia-visio-2021/"
+source_url: 'https://www.jarilaru.fi/kiiminki-osana-oulujoen-kaupunkia-visio-2021/'
 politicalProfiles:
   - lahipalvelut
   - yhteistyo

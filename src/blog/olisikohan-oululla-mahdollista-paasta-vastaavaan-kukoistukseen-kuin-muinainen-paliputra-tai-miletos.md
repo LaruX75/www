@@ -1,9 +1,9 @@
 ---
 title: Olisikohan Oululla mahdollista päästä vastaavaan kukoistukseen kuin muinainen Paliputra tai Miletos?
-date: 2017-08-04
-description: "Kesälomat alkavat olla meillä kaikilla ohitse ja paluu arkeen on edessä myös koululaisilla Kesälomani aikana olen lueskellut kahta teosta (maailmanhistorian kukoistavimmat kaupungit ja valtuutetun käsikirja) jotka"
+date: '2017-08-04'
+description: Kesälomat alkavat olla meillä kaikilla ohitse ja paluu arkeen on edessä myös koululaisilla Kesälomani aikana olen lueskellut kahta teosta (maailmanhistorian kukoistavimmat kaupungit ja valtuutetun käsikirja) jotka
 categories:
-  - Poliitiikka
+  - Politiikka ja päätöksenteko
   - Yleistä
 keywords:
   - kaupungit
@@ -14,7 +14,7 @@ keywords:
   - lukeminen
   - maailman historian kukoistavimmat kaupungit
 wp_id: 1151
-source_url: "https://www.jarilaru.fi/olisikohan-oululla-mahdollista-paasta-vastaavaan-kukoistukseen-kuin-muinainen-paliputra-tai-miletos/"
+source_url: 'https://www.jarilaru.fi/olisikohan-oululla-mahdollista-paasta-vastaavaan-kukoistukseen-kuin-muinainen-paliputra-tai-miletos/'
 templateEngineOverride: md
 ---
 

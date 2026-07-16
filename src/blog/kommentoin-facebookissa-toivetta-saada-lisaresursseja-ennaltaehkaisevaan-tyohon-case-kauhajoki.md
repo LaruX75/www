@@ -1,10 +1,10 @@
 ---
 title: Kommentoin Facebookissa toivetta saada lisäresursseja ennaltaehkäisevään työhön (case kauhajoki)
-date: 2008-09-25
-description: "Facebookkia katselin tässä illan ratoksi ja siellä silmää pisti juuri perustettu ryhmä \" Valtio satsaamaan ennaltaehkäisevää oppilashuoltotyöhö ! \" . Mielestäni asia on erinomaisen tärkeä - veriteot pitä"
+date: '2008-09-25'
+description: Facebookkia katselin tässä illan ratoksi ja siellä silmää pisti juuri perustettu ryhmä " Valtio satsaamaan ennaltaehkäisevää oppilashuoltotyöhö ! " . Mielestäni asia on erinomaisen tärkeä - veriteot pitä
 categories:
   - Luokittelematon
-  - politiikka
+  - Politiikka ja päätöksenteko
 keywords:
   - ennaltaehkäisy
   - facebook
@@ -17,7 +17,7 @@ keywords:
   - perhe
   - perheiden hyvinvointi
 wp_id: 75
-source_url: "https://www.jarilaru.fi/kommentoin-facebookissa-toivetta-saada-lisaresursseja-ennaltaehkaisevaan-tyohon-case-kauhajoki/"
+source_url: 'https://www.jarilaru.fi/kommentoin-facebookissa-toivetta-saada-lisaresursseja-ennaltaehkaisevaan-tyohon-case-kauhajoki/'
 politicalProfiles:
   - hyvinvointi
   - sivistys

@@ -1,10 +1,10 @@
 ---
-title: "Rantalakeus 24.9: Ei suur-Oulu vaan laajempi yhteinen Oulu"
-date: 2008-09-25
-description: "Postilaatikkoon tupsahti perunamarkkinoiden alla Rantalakeus, joka muiden lehtien tavoin tuli luettua erittäin tarkasti. Lehdessä pisti silmää mielenkiintoinen Kempeleläisen ehdokkaan mielipidekirjoitus vaalipostia"
+title: 'Rantalakeus 24.9: Ei suur-Oulu vaan laajempi yhteinen Oulu'
+date: '2008-09-25'
+description: 'Postilaatikkoon tupsahti perunamarkkinoiden alla Rantalakeus, joka muiden lehtien tavoin tuli luettua erittäin tarkasti. Lehdessä pisti silmää mielenkiintoinen Kempeleläisen ehdokkaan mielipidekirjoitus vaalipostia'
 categories:
   - Luokittelematon
-  - politiikka
+  - Politiikka ja päätöksenteko
 keywords:
   - kempele
   - kuntaliitos
@@ -12,7 +12,7 @@ keywords:
   - Tulevaisuus
   - Visio
 wp_id: 72
-source_url: "https://www.jarilaru.fi/rantalakeus-249-ei-suur-oulu-vaan-laajempi-yhteinen-oulu/"
+source_url: 'https://www.jarilaru.fi/rantalakeus-249-ei-suur-oulu-vaan-laajempi-yhteinen-oulu/'
 politicalProfiles:
   - yhteistyo
 templateEngineOverride: md

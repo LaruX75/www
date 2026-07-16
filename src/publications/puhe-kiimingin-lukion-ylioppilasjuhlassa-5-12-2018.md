@@ -1,12 +1,11 @@
 ---
 title: Puhe Kiimingin lukion ylioppilasjuhlassa 5.12.2018
-date: 2018-12-05
-event: "Kiimingin lukion ylioppilasjuhla"
-description: "Puhe Kiimingin lukion ylioppilasjuhlassa 5.12.2018 Arvoisa rehtori, hyvä juhlayleisö ja hyvät ylioppilaat! &nbsp;Te uudet ylioppilaat olette nyt saavuttaneet välitavoitteenne, ylioppilastutki..."
+date: '2018-12-05'
+description: 'Puhe Kiimingin lukion ylioppilasjuhlassa 5.12.2018 Arvoisa rehtori, hyvä juhlayleisö ja hyvät ylioppilaat! &nbsp;Te uudet ylioppilaat olette nyt saavuttaneet välitavoitteenne, ylioppilastutki...'
+event: Kiimingin lukion ylioppilasjuhla
 categories:
   - Juhlapuheet
-  - politiikka
-  - Puheet
+  - Politiikka ja päätöksenteko
 keywords:
   - itse äisyyspäivä
   - kiimingin lukio
@@ -16,7 +15,7 @@ keywords:
   - ylioppilasjuhla
 type: puhe
 wp_id: 1111
-source_url: "https://www.jarilaru.fi/puhe-kiimingin-lukion-ylioppilasjuhlassa-5-12-2018/"
+source_url: 'https://www.jarilaru.fi/puhe-kiimingin-lukion-ylioppilasjuhlassa-5-12-2018/'
 politicalProfiles:
   - sivistys
   - lahipalvelut

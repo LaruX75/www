@@ -1,10 +1,9 @@
 ---
-title: Rak­si­laan wow-kam­pus – kun­ta­päät­tä­jä­nä en kykene nä­ke­mään, mistä löy­ty­vät tar­vit­ta­vat re­surs­sit kaiken tämän ra­ken­ta­mi­seen?
-date: 2020-05-15
-description: "Oulussa &nbsp;on käyty viime aikoina keskustelua Oulun yliopiston suunnitelmista rakentaa kampus Raksilaan. Perusteluina on käytetty väestöennusteita, opiskelijarekrytointia, kaupungin keskustan äi..."
+title: 'Rak­si­laan wow-kam­pus – kun­ta­päät­tä­jä­nä en kykene nä­ke­mään, mistä löy­ty­vät tar­vit­ta­vat re­surs­sit kaiken tämän ra­ken­ta­mi­seen?'
+date: '2020-05-15'
+description: 'Oulussa &nbsp;on käyty viime aikoina keskustelua Oulun yliopiston suunnitelmista rakentaa kampus Raksilaan. Perusteluina on käytetty väestöennusteita, opiskelijarekrytointia, kaupungin keskustan äi...'
 categories:
-  - Mielipidekirjoitukset
-  - Poliitiikka
+  - Politiikka ja päätöksenteko
 keywords:
   - kaleva
   - keskustakampus
@@ -16,7 +15,7 @@ keywords:
   - oulun yliopiston muutto
 type: mielipide
 wp_id: 149
-source_url: "https://www.jarilaru.fi/raksilaan-wow-kampus-kuntapaattajana-en-kykene-nakemaan-mista-loytyvat-tarvittavat-resurs/"
+source_url: 'https://www.jarilaru.fi/raksilaan-wow-kampus-kuntapaattajana-en-kykene-nakemaan-mista-loytyvat-tarvittavat-resurs/'
 templateEngineOverride: md
 ---
 <p><strong>Oulussa</strong>&nbsp;on käyty viime aikoina keskustelua Oulun yliopiston suunnitelmista rakentaa kampus Raksilaan. Perusteluina on käytetty väestöennusteita, opiskelijarekrytointia, kaupungin keskustan näivettymistä ja reagointia ilmastonmuutokseen.</p>

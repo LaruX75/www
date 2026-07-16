@@ -1,11 +1,10 @@
 ---
 title: Lin­nan­maa tarjoaa mer­kit­tä­viä ka­sau­tu­mis­etu­ja – mitä li­sä­ar­voa päi­vit­täis­ta­va­ra­kau­pan suur­yk­si­köt tuovat kan­sain­vä­li­sen tie­de­yli­opis­ton toi­min­nal­le?
-date: 2021-04-24
-description: "Mielipidekirjoitukseni Kalevassa 24.4.2021"
+date: '2021-04-24'
+description: Mielipidekirjoitukseni Kalevassa 24.4.2021
 categories:
-  - Kaleva
-  - Mielipidekirjoitukset
-  - Poliitiikka
+  - Politiikka ja päätöksenteko
+publication: Kaleva
 keywords:
   - keskustakampus
   - mielipide
@@ -13,7 +12,7 @@ keywords:
   - yliopisto
 type: mielipide
 wp_id: 1712
-source_url: "https://www.jarilaru.fi/linnanmaa-tarjoaa-merkittavia-kasautumisetuja-mita-lisaarvoa-paivittaistavara/"
+source_url: 'https://www.jarilaru.fi/linnanmaa-tarjoaa-merkittavia-kasautumisetuja-mita-lisaarvoa-paivittaistavara/'
 politicalProfiles:
   - sivistys
   - kaupunkikehitys

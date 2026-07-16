@@ -1,11 +1,10 @@
 ---
 title: Puheeni lukiolaisille OSYK lukion valtauksessa 3.4.2023
-date: 2023-10-04
-event: "OSYK-lukion valtaus"
-description: "Arvoisat lukiolaiset, kerron teille korona-ajan nuorille terveiset lama-ajan nuorelta. Kun aloitin Saloisten lukion ensimmäisellä luokalla vuonna 1991, tapahtui jotain käsittämätöntä, nimittä..."
+date: '2023-10-04'
+description: 'Arvoisat lukiolaiset, kerron teille korona-ajan nuorille terveiset lama-ajan nuorelta. Kun aloitin Saloisten lukion ensimmäisellä luokalla vuonna 1991, tapahtui jotain käsittämätöntä, nimittä...'
+event: OSYK-lukion valtaus
 categories:
   - Muut
-  - Puheet
 keywords:
   - lukiolaiset
   - lukion valtaus
@@ -15,7 +14,7 @@ keywords:
   - säästöt
 type: puhe
 wp_id: 2096
-source_url: "https://www.jarilaru.fi/puheeni-lukiolaisille-osyk-lukion-valtauksessa-3-4-2023/"
+source_url: 'https://www.jarilaru.fi/puheeni-lukiolaisille-osyk-lukion-valtauksessa-3-4-2023/'
 templateEngineOverride: md
 ---
 <p><strong><br>Arvoisat lukiolaiset, kerron teille korona-ajan nuorille terveiset lama-ajan nuorelta.</strong></p>

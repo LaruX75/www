@@ -1,16 +1,16 @@
 ---
 title: Pyristelyä vääjäämätöntä vastaan (julkaistu Kalevassa 4.10.2008)
-date: 2008-10-02
-description: "Lähetin tämä kirjoituksen tähää Rantapohjan ja Kalevan yleisönosastoille. Saapas ähdä julkaisevatkos ;) EDIT: Julkaistu Kalevassa Lauantaina 4.10.2008 otsikolla: \"Pyristelyä vääjäämätöntä vastaan\" EDI"
+date: '2008-10-02'
+description: 'Lähetin tämä kirjoituksen tähää Rantapohjan ja Kalevan yleisönosastoille. Saapas ähdä julkaisevatkos ;) EDIT: Julkaistu Kalevassa Lauantaina 4.10.2008 otsikolla: "Pyristelyä vääjäämätöntä vastaan" EDI'
 categories:
-  - politiikka
+  - Politiikka ja päätöksenteko
 keywords:
   - kuntaliitos
   - Oulujoen kaupunki
   - seutuyhteistyö
   - talous
 wp_id: 1072
-source_url: "https://www.jarilaru.fi/pohjoismainen-malli-kuntaliitoksiin-vai-oulujoen-kaupunki-2/"
+source_url: 'https://www.jarilaru.fi/pohjoismainen-malli-kuntaliitoksiin-vai-oulujoen-kaupunki-2/'
 politicalProfiles:
   - yhteistyo
 templateEngineOverride: md

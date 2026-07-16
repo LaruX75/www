@@ -1,10 +1,8 @@
 ---
 title: Onko meillä oululaisilla päättäjillä kykyä tarkastella kokonaisuutta?
-date: 2018-03-09
-description: "Meillä on vahva paikkasidonnaisuuden perinne, koska juuremme ovat maassa ja luonnossa. Todella vanhaa kaupunkikulttuuria löytyy lähinnä Turusta. Nämä vahvat paikkasidokset ovat olleet voimakkaasti e..."
-categories:
-  - Kaleva
-  - Mielipidekirjoitukset
+date: '2018-03-09'
+description: 'Meillä on vahva paikkasidonnaisuuden perinne, koska juuremme ovat maassa ja luonnossa. Todella vanhaa kaupunkikulttuuria löytyy lähinnä Turusta. Nämä vahvat paikkasidokset ovat olleet voimakkaasti e...'
+publication: Kaleva
 keywords:
   - kaupunginosat
   - kokonaisuudet
@@ -17,7 +15,7 @@ keywords:
   - suuralueet
 type: mielipide
 wp_id: 983
-source_url: "https://www.jarilaru.fi/onko-meilla-oululaisilla-paattajilla-kykya-tarkastella-kokonaisuutta/"
+source_url: 'https://www.jarilaru.fi/onko-meilla-oululaisilla-paattajilla-kykya-tarkastella-kokonaisuutta/'
 templateEngineOverride: md
 ---
 <p>Meillä on vahva paikkasidonnaisuuden perinne, koska juuremme ovat maassa ja luonnossa. Todella vanhaa kaupunkikulttuuria löytyy lähinnä Turusta. Nämä vahvat paikkasidokset ovat olleet voimakkaasti esillä niin mediassa, kaupungin paikallispolitiikassa kuin kuntalaisten keskusteluissa 2010-luvulla tehtyjen kuntaliitosten jälkeen. Me käytämme aikaa mieluummin yksittäisen luontokohteen puimiseen sen sijaan, että keskustelisimme kokonaisuudessaan kaupunkimme kehittämisestä. Esimerkkinä tästä on pitkään jatkunut keskustelu Sanginjoen ulkometsän suojelusta, josta äänestettiin jälleen tänä keväänä.</p>

@@ -1,9 +1,9 @@
 ---
-title: "\"Te muut voisitte mennä vaikka kahville\"- vastine Pauli Määtän kirjoitukseen seutuyhteistyöstä"
-date: 2008-10-20
-description: "Sattumalta törmäsin tähää Pauli Määtä (Kempele, kesk.) vaaliblogissa olevaan mielenkiintoiseen kirjoitukseen \" te muut voisitte mennä vaikka kahville \", jossa ehdokas Määttä käsitteli omasta äkökulmasta"
+title: '"Te muut voisitte mennä vaikka kahville"- vastine Pauli Määtän kirjoitukseen seutuyhteistyöstä'
+date: '2008-10-20'
+description: 'Sattumalta törmäsin tähää Pauli Määtä (Kempele, kesk.) vaaliblogissa olevaan mielenkiintoiseen kirjoitukseen " te muut voisitte mennä vaikka kahville ", jossa ehdokas Määttä käsitteli omasta äkökulmasta'
 categories:
-  - politiikka
+  - Politiikka ja päätöksenteko
 keywords:
   - kempele
   - kuntaliitos
@@ -12,7 +12,7 @@ keywords:
   - seutuyhteistyö
   - talous
 wp_id: 932
-source_url: "https://www.jarilaru.fi/te-muut-voisitte-menna-vaikka-kahville-vastine-pauli-maatan-kirjoitukseen-ihanseutuyhteistyosta/"
+source_url: 'https://www.jarilaru.fi/te-muut-voisitte-menna-vaikka-kahville-vastine-pauli-maatan-kirjoitukseen-ihanseutuyhteistyosta/'
 politicalProfiles:
   - yhteistyo
 templateEngineOverride: md

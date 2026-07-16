@@ -1,12 +1,12 @@
 ---
-title: "KALEVA 15.1.2022: Kuntien rooli hy­vin­voin­nin edis­tä­jä­nä ei lakkaa so­te-ra­ken­neuu­dis­tuk­sen jälkeen"
-date: 2022-01-15
-description: "Mielipidekirjoitukseni, jonka Sanomalehti Kaleva julkaisi 15.1.2022"
+title: 'KALEVA 15.1.2022: Kuntien rooli hy­vin­voin­nin edis­tä­jä­nä ei lakkaa so­te-ra­ken­neuu­dis­tuk­sen jälkeen'
+date: '2022-01-15'
+description: 'Mielipidekirjoitukseni, jonka Sanomalehti Kaleva julkaisi 15.1.2022'
 categories:
-  - Aluevaaalit2022
-  - Kaleva
-  - Mielipidekirjoitukset
-  - Poliitiikka
+  - Vaalit
+  - Politiikka ja päätöksenteko
+publication: Kaleva
+campaign: Aluevaalit 2022
 keywords:
   - aluehallinto
   - hyvinvointi
@@ -16,7 +16,7 @@ keywords:
   - yhdyspinta
 type: mielipide
 wp_id: 2004
-source_url: "https://www.jarilaru.fi/kuntien-rooli-hyvinvoinnin-edistajana-ei-lakkaa-sote-rakenneuudistuksen-jalkeen/"
+source_url: 'https://www.jarilaru.fi/kuntien-rooli-hyvinvoinnin-edistajana-ei-lakkaa-sote-rakenneuudistuksen-jalkeen/'
 templateEngineOverride: md
 ---
 <p><strong>Mielipidekirjoitus on julkaistu Sanomalehti Kalevassa 15.1.2022. Linkki alkuperäiseen tekstiin: <a href="https://www.kaleva.fi/kuntien-rooli-hyvinvoinnin-edistajana-ei-lakkaa-so/4253003" target="_blank" rel="noreferrer noopener">https://www.kaleva.fi/kuntien-rooli-hyvinvoinnin-edistajana-ei-lakkaa-so/4253003</a></strong></p>

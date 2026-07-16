@@ -1,10 +1,10 @@
 ---
 title: Bensalenkkareista ja piraateista - miten Jäälin nuorisoa voisi ottaa paremmin huomioon?
-date: 2008-10-04
-description: "Oululehden Mää Äänestä -palstalla Kiimingin lukiolaiset Jenni Halkola ja Joni Saarela ruotivat nuorten asioita kunnassamme. Saarelaa huolestutti artikkelissa erityisesti Jäälin nuorisotalon tilanne (jolla hä ta"
+date: '2008-10-04'
+description: Oululehden Mää Äänestä -palstalla Kiimingin lukiolaiset Jenni Halkola ja Joni Saarela ruotivat nuorten asioita kunnassamme. Saarelaa huolestutti artikkelissa erityisesti Jäälin nuorisotalon tilanne (jolla hä ta
 categories:
   - Luokittelematon
-  - politiikka
+  - Politiikka ja päätöksenteko
 keywords:
   - bändit
   - Harrastukset
@@ -15,7 +15,7 @@ keywords:
   - nuorten ongelmat
   - päihteet
 wp_id: 924
-source_url: "https://www.jarilaru.fi/bensalenkkareista-ja-piraateista-miten-jaalin-nuorisoa-voisi-ottaa-paremmin-huomioon/"
+source_url: 'https://www.jarilaru.fi/bensalenkkareista-ja-piraateista-miten-jaalin-nuorisoa-voisi-ottaa-paremmin-huomioon/'
 politicalProfiles:
   - hyvinvointi
   - lahipalvelut

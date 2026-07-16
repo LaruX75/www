@@ -1,11 +1,11 @@
 ---
-title: "Toistuvia rakenteita: valmisteluprosessin ongelmat kunnallishallinnossa"
-date: 2025-11-22
-description: "Kunnallishallinnossa toistuu samoja valmistelu- ja päätöksentekoprosessien ongelmia: media uutisoi asiat päätetyiksi ennen päätöstä, strategioita ei siirretä uusille luottamushenkilöille, konsernijaosto toimii liian itsenäisesti. Edessä on vaikeita päätöksiä, jotka vaativat luottamusta ja yhteistä hiileen puhaltamista."
+title: 'Toistuvia rakenteita: valmisteluprosessin ongelmat kunnallishallinnossa'
+date: '2025-11-22'
+description: 'Kunnallishallinnossa toistuu samoja valmistelu- ja päätöksentekoprosessien ongelmia: media uutisoi asiat päätetyiksi ennen päätöstä, strategioita ei siirretä uusille luottamushenkilöille, konsernijaosto toimii liian itsenäisesti. Edessä on vaikeita päätöksiä, jotka vaativat luottamusta ja yhteistä hiileen puhaltamista.'
 categories:
-  - Facebook
-  - Poliitiikka
+  - Politiikka ja päätöksenteko
   - Kunnallishallinto
+channel: Facebook
 keywords:
   - kunnallispolitiikka
   - lautakunta
@@ -18,7 +18,7 @@ keywords:
   - johtosääntö
   - luottamushenkilö
 type: mielipide
-source_url: "https://www.facebook.com/jari.laru.poliitikko/posts/pfbid02w3rpzZczjeVKgXWyojvddThQAU2jQb3Gjt69EmFkGFgUcnfnNAEtRjERmKT66nQ9l"
+source_url: 'https://www.facebook.com/jari.laru.poliitikko/posts/pfbid02w3rpzZczjeVKgXWyojvddThQAU2jQb3Gjt69EmFkGFgUcnfnNAEtRjERmKT66nQ9l'
 politicalProfiles:
   - sivistys
   - lahipalvelut

@@ -1,10 +1,11 @@
 ---
 title: Missä mennään hyvinvointia tukevissa digipalveluissa?
-date: 2022-01-09
-description: "ALKUTILANNE Kokoomuspoliitikko Jarmo Husso oivallisesti muistutti, että Sipilä hallituksen yksi teko oli SoteDigi-yrityksen perustaminen ja toimitusjohtajan palkkaaminen. Siitä keskustelussa jäi selvittämättä, et"
+date: '2022-01-09'
+description: 'ALKUTILANNE Kokoomuspoliitikko Jarmo Husso oivallisesti muistutti, että Sipilä hallituksen yksi teko oli SoteDigi-yrityksen perustaminen ja toimitusjohtajan palkkaaminen. Siitä keskustelussa jäi selvittämättä, et'
 categories:
-  - Aluevaaalit2022
-  - Poliitiikka
+  - Vaalit
+  - Politiikka ja päätöksenteko
+campaign: Aluevaalit 2022
 keywords:
   - aluehallinto
   - aluevaalit
@@ -13,7 +14,7 @@ keywords:
   - politiikka
   - sotedigi
 wp_id: 1990
-source_url: "https://www.jarilaru.fi/missa-mennaan-hyvinvointia-tukevissa-digipalveluissa/"
+source_url: 'https://www.jarilaru.fi/missa-mennaan-hyvinvointia-tukevissa-digipalveluissa/'
 politicalProfiles:
   - hyvinvointi
   - yhteistyo

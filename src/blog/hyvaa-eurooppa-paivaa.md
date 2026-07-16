@@ -1,9 +1,9 @@
 ---
 title: Hyvää Eurooppa-päivää!
-date: 2018-05-09
-description: "Eurooppa-päivää vietetää Euroopassa vuosittain 9. toukokuuta.9. toukokuuta 1950 Robert Schuman esitti ehdotuksensa yhtenäisen Euroopan luomisesta välttämättömänä rauhanomaisten suhteiden ylläpitämiseksi. E"
+date: '2018-05-09'
+description: Eurooppa-päivää vietetää Euroopassa vuosittain 9. toukokuuta.9. toukokuuta 1950 Robert Schuman esitti ehdotuksensa yhtenäisen Euroopan luomisesta välttämättömänä rauhanomaisten suhteiden ylläpitämiseksi. E
 categories:
-  - Poliitiikka
+  - Politiikka ja päätöksenteko
   - yhdistystoiminta
 keywords:
   - euroopan unioni
@@ -14,7 +14,7 @@ keywords:
   - eurooppalainen suomi ry
   - oulun kaupunki
 wp_id: 978
-source_url: "https://www.jarilaru.fi/hyvaa-eurooppa-paivaa/"
+source_url: 'https://www.jarilaru.fi/hyvaa-eurooppa-paivaa/'
 templateEngineOverride: md
 ---
 

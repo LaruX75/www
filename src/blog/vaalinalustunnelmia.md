@@ -1,10 +1,11 @@
 ---
 title: Vaalinalustunnelmia!
-date: 2017-04-08
-description: "Pasi Jokinen kirjoitti sivulleen kaunopuheisen suosituksen äänestää allekirjoittanutta. Kiitos siitä.Olen myös kiitollinen useille muille ihmisille jotka ovat kertoneet päätyneensä äänestämää minua. Teitä"
+date: '2017-04-08'
+description: Pasi Jokinen kirjoitti sivulleen kaunopuheisen suosituksen äänestää allekirjoittanutta. Kiitos siitä.Olen myös kiitollinen useille muille ihmisille jotka ovat kertoneet päätyneensä äänestämää minua. Teitä
 categories:
-  - Kuntavaalit
-  - Poliitiikka
+  - Vaalit
+  - Politiikka ja päätöksenteko
+campaign: Kuntavaalit
 keywords:
   - kuntavaalit
   - kuntavaalit2017
@@ -12,7 +13,7 @@ keywords:
   - tunnelmat
   - vaalinalustunnelmia
 wp_id: 1160
-source_url: "https://www.jarilaru.fi/vaalinalustunnelmia/"
+source_url: 'https://www.jarilaru.fi/vaalinalustunnelmia/'
 templateEngineOverride: md
 ---
 

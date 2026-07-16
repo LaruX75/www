@@ -1,12 +1,12 @@
 ---
 title: Mikä saa asuk­kaan si­tou­tu­maan?
-date: 2017-03-26
-description: "Sanomalehti Kaleva on julkaissut tämä 26.3.2017 vaalikirjoituksia -palstalla. Elinvoiman, väestö ja talouden perusteella Oulun kaupunki kuuluu maamme kuntien parhaimmistoon. Suomen Kuvaleht..."
+date: '2017-03-26'
+description: 'Sanomalehti Kaleva on julkaissut tämä 26.3.2017 vaalikirjoituksia -palstalla. Elinvoiman, väestö ja talouden perusteella Oulun kaupunki kuuluu maamme kuntien parhaimmistoon. Suomen Kuvaleht...'
 categories:
-  - Kaleva
-  - Kuntavaalit
-  - Mielipidekirjoitukset
-  - Poliitiikka
+  - Vaalit
+  - Politiikka ja päätöksenteko
+publication: Kaleva
+campaign: Kuntavaalit
 keywords:
   - elinvoima
   - kaleva
@@ -21,7 +21,7 @@ keywords:
   - vaalikirjoituksia
 type: mielipide
 wp_id: 1162
-source_url: "https://www.jarilaru.fi/mika-saa-asukkaan-sitoutumaan/"
+source_url: 'https://www.jarilaru.fi/mika-saa-asukkaan-sitoutumaan/'
 politicalProfiles:
   - yhteistyo
 templateEngineOverride: md

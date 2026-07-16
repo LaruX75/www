@@ -1,10 +1,11 @@
 ---
 title: Sain Kierikkiä koskevan lisäyksen SIKUn käyttösuunnitelmaan.
-date: 2017-12-21
-description: "Historian tuntemus ja arvostus on eräs meidä kulttuurielämä kohtalonkysymyksistä. Jos emme tunne menneisyyttämme, emme myöskää ymmärrä nykyhetkeä tai tulevaa. Käsittelimme sivistys- ja kulttuuripalveluide"
+date: '2017-12-21'
+description: 'Historian tuntemus ja arvostus on eräs meidä kulttuurielämä kohtalonkysymyksistä. Jos emme tunne menneisyyttämme, emme myöskää ymmärrä nykyhetkeä tai tulevaa. Käsittelimme sivistys- ja kulttuuripalveluide'
 categories:
+  - Politiikka ja päätöksenteko
+forum:
   - Lautakunta
-  - Poliitiikka
 keywords:
   - esihistoria
   - historia
@@ -17,7 +18,7 @@ keywords:
   - sivistys- ja kulttuurilautakunta
   - yli-ii
 wp_id: 1140
-source_url: "https://www.jarilaru.fi/sain-kierikkia-koskevan-lisayksen-sikun-kayttosuunnitelmaan/"
+source_url: 'https://www.jarilaru.fi/sain-kierikkia-koskevan-lisayksen-sikun-kayttosuunnitelmaan/'
 templateEngineOverride: md
 ---
 

@@ -1,12 +1,12 @@
 ---
-title: "14.3. Rantapohja: Uuden Oulun kasvaneet voimavarat ovat olleet hyödyksi alueellemme"
-date: 2017-03-14
-description: "Vuoden 2016 aikana olemme saaneet lukea eri lehdistä kuinka Rantapohjan levikkialueella kuntalaiset ovat olleet tyytymättömiä uuteen Ouluun. Oulu on tuonut alueellemme kuitenkin myös suoria hyötyjä ..."
+title: '14.3. Rantapohja: Uuden Oulun kasvaneet voimavarat ovat olleet hyödyksi alueellemme'
+date: '2017-03-14'
+description: Vuoden 2016 aikana olemme saaneet lukea eri lehdistä kuinka Rantapohjan levikkialueella kuntalaiset ovat olleet tyytymättömiä uuteen Ouluun. Oulu on tuonut alueellemme kuitenkin myös suoria hyötyjä ...
 categories:
-  - Kuntavaalit
-  - Mielipidekirjoitukset
+  - Vaalit
   - Muut lehdet
-  - Poliitiikka
+  - Politiikka ja päätöksenteko
+campaign: Kuntavaalit
 keywords:
   - entinen kiimingin kunta
   - jääli
@@ -18,7 +18,7 @@ keywords:
   - Rantapohja
 type: mielipide
 wp_id: 1164
-source_url: "https://www.jarilaru.fi/14-3-rantapohja-uuden-oulun-kasvaneet-voimavarat-ovat-olleet-hyodyksi-alueellemme/"
+source_url: 'https://www.jarilaru.fi/14-3-rantapohja-uuden-oulun-kasvaneet-voimavarat-ovat-olleet-hyodyksi-alueellemme/'
 politicalProfiles:
   - lahipalvelut
   - yhteistyo

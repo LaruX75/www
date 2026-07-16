@@ -1,11 +1,11 @@
 ---
-title: "Kampuspohdintaa: Oulun yliopiston hallitus valitsi Kontinkankaan jatkokehitettäväksi kampusvaihtoehdoksi"
-date: 2025-12-01
-description: "Oulun yliopiston hallitus valitsi 25.11.2025 jatkokehitettäväksi kampusvaihtoehdoksi yhden kampuksen Kontinkankaalla. Kirjoituksessa arvioidaan valintaa hyvien ja huonojen puolien kautta – ja muistutetaan, että lasku menee veronmaksajalle."
+title: 'Kampuspohdintaa: Oulun yliopiston hallitus valitsi Kontinkankaan jatkokehitettäväksi kampusvaihtoehdoksi'
+date: '2025-12-01'
+description: 'Oulun yliopiston hallitus valitsi 25.11.2025 jatkokehitettäväksi kampusvaihtoehdoksi yhden kampuksen Kontinkankaalla. Kirjoituksessa arvioidaan valintaa hyvien ja huonojen puolien kautta – ja muistutetaan, että lasku menee veronmaksajalle.'
 categories:
-  - Facebook
-  - Poliitiikka
+  - Politiikka ja päätöksenteko
   - Yliopistokampus
+channel: Facebook
 keywords:
   - kontinkankaan kampus
   - linnanmaa
@@ -16,7 +16,7 @@ keywords:
   - veronmaksaja
   - osaoptimointi
 type: mielipide
-source_url: "https://www.facebook.com/jari.laru.poliitikko"
+source_url: 'https://www.facebook.com/jari.laru.poliitikko'
 politicalProfiles:
   - sivistys
   - kaupunkikehitys

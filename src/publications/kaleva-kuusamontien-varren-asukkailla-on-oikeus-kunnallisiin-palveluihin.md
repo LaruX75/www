@@ -1,10 +1,8 @@
 ---
-title: "Kaleva: Kuusamontien varren asukkailla on oikeus kunnallisiin palveluihin"
-date: 2012-10-20
-description: "Sanomalehti Kaleva julkaisi alla olevan mielipiteen 20.10.2012: Toukokuussa 2012 Kaleva julkaisi Korvensuoran asukasyhdistyksen puheenjohtajan kanssa kirjoittamani mielipiteen otsikolla ” Uim..."
-categories:
-  - Kaleva
-  - Mielipidekirjoitukset
+title: 'Kaleva: Kuusamontien varren asukkailla on oikeus kunnallisiin palveluihin'
+date: '2012-10-20'
+description: 'Sanomalehti Kaleva julkaisi alla olevan mielipiteen 20.10.2012: Toukokuussa 2012 Kaleva julkaisi Korvensuoran asukasyhdistyksen puheenjohtajan kanssa kirjoittamani mielipiteen otsikolla ” Uim...'
+publication: Kaleva
 keywords:
   - hammashoito
   - jääli
@@ -16,7 +14,7 @@ keywords:
   - talvikangas
 type: mielipide
 wp_id: 231
-source_url: "https://www.jarilaru.fi/kaleva-kuusamontien-varren-asukkailla-on-oikeus-kunnallisiin-palveluihin/"
+source_url: 'https://www.jarilaru.fi/kaleva-kuusamontien-varren-asukkailla-on-oikeus-kunnallisiin-palveluihin/'
 templateEngineOverride: md
 ---
 <p>Sanomalehti Kaleva julkaisi alla olevan mielipiteen 20.10.2012:</p>

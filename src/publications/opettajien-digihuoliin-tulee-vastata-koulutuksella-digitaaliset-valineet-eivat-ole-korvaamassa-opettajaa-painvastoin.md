@@ -1,12 +1,11 @@
 ---
 title: Opettajien digihuoliin tulee vastata koulutuksella - digitaaliset välineet eivät ole korvaamassa opettajaa - päinvastoin
-date: 2017-10-04
-description: "Mielipide julkaistiin Sanomalehti Helsingin Sanomissa 4.10.2017: https://www.hs.fi/mielipide/art-2000005393306.htmlToisinkuinmonetväittävät,uudenteknologiankäyttöönottojatehokashyöd..."
+date: '2017-10-04'
+description: 'Mielipide julkaistiin Sanomalehti Helsingin Sanomissa 4.10.2017: https://www.hs.fi/mielipide/art-2000005393306.htmlToisinkuinmonetväittävät,uudenteknologiankäyttöönottojatehokashyöd...'
 categories:
-  - Helsingin Sanomat
-  - Koulutusteknologi
-  - Mielipidekirjoitukset
+  - Koulutusteknologia
   - Teknologiatuettu oppiminen ja opetus
+publication: Helsingin Sanomat
 keywords:
   - koulun muutos
   - oppiminen mobiilaitteiden avulla
@@ -17,7 +16,7 @@ keywords:
   - viihde
 type: mielipide
 wp_id: 1191
-source_url: "https://www.jarilaru.fi/opettajien-digihuoliin-tulee-vastata-koulutuksella-digitaaliset-valineet-eivat-ole-korvaamassa-opettajaa-painvastoin/"
+source_url: 'https://www.jarilaru.fi/opettajien-digihuoliin-tulee-vastata-koulutuksella-digitaaliset-valineet-eivat-ole-korvaamassa-opettajaa-painvastoin/'
 templateEngineOverride: md
 ---
 <p>Mielipide julkaistiin Sanomalehti Helsingin Sanomissa 4.10.2017: <a href="https://www.hs.fi/mielipide/art-2000005393306.html" target="_blank" rel="noreferrer noopener">https://www.hs.fi/mielipide/art-2000005393306.html</a></p>

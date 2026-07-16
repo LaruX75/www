@@ -1,16 +1,16 @@
 ---
 title: Osallistun tuleeko kuntalainen kuulluksi? paneeliin 14.10.2008 Kirkkotorin koulutuskeskuksessa Oulussa.
-date: 2008-10-04
-description: "EDIT: Tästä kirjoituksesta oli jäänyt pois paneelin alkamisaika: 16:30. Olen syvästi pahoillani ;I Osallistun Oulussa kirkkotorin koulutuskeskuksessa järjestettävää vaalipaneeliin yhdessä Oululaisen ehdokaskol"
+date: '2008-10-04'
+description: 'EDIT: Tästä kirjoituksesta oli jäänyt pois paneelin alkamisaika: 16:30. Olen syvästi pahoillani ;I Osallistun Oulussa kirkkotorin koulutuskeskuksessa järjestettävää vaalipaneeliin yhdessä Oululaisen ehdokaskol'
 categories:
-  - politiikka
+  - Politiikka ja päätöksenteko
 keywords:
   - hyvinvointipalvelut
   - nuoriso
   - paneeli
   - perheiden hyvinvointi
 wp_id: 925
-source_url: "https://www.jarilaru.fi/osallistun-tuleeko-kuntalainen-kuulluksi-paneeliin-14102008-kirkkotorin-koulutuskeskuksessa-oulussa/"
+source_url: 'https://www.jarilaru.fi/osallistun-tuleeko-kuntalainen-kuulluksi-paneeliin-14102008-kirkkotorin-koulutuskeskuksessa-oulussa/'
 politicalProfiles:
   - avoinhallinto
 templateEngineOverride: md

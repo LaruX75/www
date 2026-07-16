@@ -1,10 +1,8 @@
 ---
 title: Lähidemokratia ja tasa-arvotyö ovat keskiössä uutta peruskuntaa rakennettaessa
-date: 2016-09-29
-description: "Perjantain Kalevassa 23.9.2016 Taina Pitkänen-Koli ja Terttu Kuusela kirjoittivat tasa-arvosta ja lähidemokratiasta Oulun Naisunioni ry: nimissä. Oulun kaupunginhallituksen kehittämisjaosto piti 20..."
-categories:
-  - Kaleva
-  - Mielipidekirjoitukset
+date: '2016-09-29'
+description: 'Perjantain Kalevassa 23.9.2016 Taina Pitkänen-Koli ja Terttu Kuusela kirjoittivat tasa-arvosta ja lähidemokratiasta Oulun Naisunioni ry: nimissä. Oulun kaupunginhallituksen kehittämisjaosto piti 20...'
+publication: Kaleva
 keywords:
   - kuntalaisdemokratia
   - lähidemokratia
@@ -15,7 +13,7 @@ keywords:
   - yhteisötoiminta
 type: mielipide
 wp_id: 969
-source_url: "https://www.jarilaru.fi/lahidemokratia-ja-tasa-arvotyo-ovat-keskiossa-uutta-peruskuntaa-rakennettaessa/"
+source_url: 'https://www.jarilaru.fi/lahidemokratia-ja-tasa-arvotyo-ovat-keskiossa-uutta-peruskuntaa-rakennettaessa/'
 templateEngineOverride: md
 ---
 <p>Perjantain Kalevassa 23.9.2016 Taina Pitkänen-Koli ja Terttu Kuusela kirjoittivat tasa-arvosta ja lähidemokratiasta Oulun Naisunioni ry:n nimissä.<br>Oulun kaupunginhallituksen kehittämisjaosto piti 20.9. kokouksen, jossa päätettiin tasa-arvo- ja lähidemokratiatyössä olevien henkilöstöresurssien ja määrärahojen siirtämisestä sivistys- ja kulttuurilautakunnan alaisuuteen. Näin tehdään, mutta tasa-arvoasiat jäävät edelleen kaupunginhallituksen alaisuuteen, kun se vahvistaa toimikuntien jäsenten valinnat.</p>

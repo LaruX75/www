@@ -1,9 +1,9 @@
 ---
 title: Kiiminki kymmenen parhaan joukossa lapsiystävällisyydessä! Hienoa!
-date: 2008-10-02
-description: "TNS Gallupin valituille paloille tekemä tutkimuksen mukaan meidä ikioma Kiiminkimme on kymmenen parhaan joukossa mitattaessa maamme lapsiystävällisimpiä kuntia. Perheemme asui vielä viime talvena Raksilassa Oulun"
+date: '2008-10-02'
+description: TNS Gallupin valituille paloille tekemä tutkimuksen mukaan meidä ikioma Kiiminkimme on kymmenen parhaan joukossa mitattaessa maamme lapsiystävällisimpiä kuntia. Perheemme asui vielä viime talvena Raksilassa Oulun
 categories:
-  - politiikka
+  - Politiikka ja päätöksenteko
 keywords:
   - jääli
   - koulu
@@ -14,7 +14,7 @@ keywords:
   - perheiden hyvinvointi
   - peruspalvelut
 wp_id: 921
-source_url: "https://www.jarilaru.fi/kiiminki-kymmenen-parhaan-joukossa-lapsiystavallisyydessa-hienoa/"
+source_url: 'https://www.jarilaru.fi/kiiminki-kymmenen-parhaan-joukossa-lapsiystavallisyydessa-hienoa/'
 politicalProfiles:
   - hyvinvointi
   - lahipalvelut

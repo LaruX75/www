@@ -1,13 +1,13 @@
 ---
 title: Käyppäs katsomassa vastauksiani vaalikoneissa
-date: 2008-09-27
-description: "Jos täältä blogista ei ole vielä selvinnyt mitä mieltä olen asioista, lisää tietoa löydät vastauksistani vaalikoneissa. Olen säntillisesti pyrkinyt myös perustelemaan vastaukseni (mikä äyttää olevan harv"
+date: '2008-09-27'
+description: 'Jos täältä blogista ei ole vielä selvinnyt mitä mieltä olen asioista, lisää tietoa löydät vastauksistani vaalikoneissa. Olen säntillisesti pyrkinyt myös perustelemaan vastaukseni (mikä äyttää olevan harv'
 categories:
-  - politiikka
+  - Politiikka ja päätöksenteko
 keywords:
   - vaalikone
 wp_id: 923
-source_url: "https://www.jarilaru.fi/kayppas-katsomassa-vastauksiani-vaalikoneissa/"
+source_url: 'https://www.jarilaru.fi/kayppas-katsomassa-vastauksiani-vaalikoneissa/'
 templateEngineOverride: md
 ---
 

@@ -1,10 +1,9 @@
 ---
-title: Oulu kaipaa kipeästi hankkeita, jotka myös toteutuvat – samalla on koko kaupungin etu, että kaupunkia katsotaan kokonaisuutena
-date: 2020-10-30
-description: "Kaleva julkaisi 30.10. keskustakampusta &nbsp;käsittelevä artikkelin, jossa kerrattiin jo keväällä julkaistuja yliopiston rakennuskonsulteilta saamia alustavia laskelmia. Puolen vuoden aikana asiaa..."
+title: 'Oulu kaipaa kipeästi hankkeita, jotka myös toteutuvat – samalla on koko kaupungin etu, että kaupunkia katsotaan kokonaisuutena'
+date: '2020-10-30'
+description: 'Kaleva julkaisi 30.10. keskustakampusta &nbsp;käsittelevä artikkelin, jossa kerrattiin jo keväällä julkaistuja yliopiston rakennuskonsulteilta saamia alustavia laskelmia. Puolen vuoden aikana asiaa...'
 categories:
-  - Mielipidekirjoitukset
-  - Poliitiikka
+  - Politiikka ja päätöksenteko
 keywords:
   - keskustakampus
   - mielipiteet
@@ -14,7 +13,7 @@ keywords:
   - raksila
 type: mielipide
 wp_id: 141
-source_url: "https://www.jarilaru.fi/oulu-kaipaa-kipeasti-hankkeita-jotka-myos-toteutuvat-samalla-on-koko-kaupungin-etu-etta-kaupunkia-katsotaan-kokonaisuutena/"
+source_url: 'https://www.jarilaru.fi/oulu-kaipaa-kipeasti-hankkeita-jotka-myos-toteutuvat-samalla-on-koko-kaupungin-etu-etta-kaupunkia-katsotaan-kokonaisuutena/'
 templateEngineOverride: md
 ---
 <p><a href="https://www.kaleva.fi/oulun-yliopiston-kampusratkaisun-hintalappu-riippu/3056599?fbclid=IwAR23PX_nqp1HTSldNhQdGFyiexMfKxDhIVMRVFz1EunoyJxOikpSk3ohqJ8" rel="noreferrer noopener" target="_blank">Kaleva julkaisi 30.10. keskustakampusta</a>&nbsp;käsittelevän artikkelin, jossa kerrattiin jo keväällä julkaistuja yliopiston rakennuskonsulteilta saamia alustavia laskelmia. Puolen vuoden aikana asiaa ei ole analysoitu niin, että lukujen taakse katsottaisiin. Konsulttien luvut eivät esimerkiksi huomioi Linnanmaalla tehtyjä laajoja peruskorjauksia.</p>

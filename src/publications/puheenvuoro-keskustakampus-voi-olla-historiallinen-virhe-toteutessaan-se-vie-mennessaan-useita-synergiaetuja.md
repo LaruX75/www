@@ -1,10 +1,9 @@
 ---
-title: "Puheenvuoro: keskustakampus voi olla historiallinen virhe. Toteutessaan se vie mennessään useita synergiaetuja"
-date: 2021-10-03
-event: "Oulun kaupunginvaltuuston vierailu Oulun yliopistolla"
-description: "Kaupunginvaltuuston Linnannmaa-vierailulla pitämäni puheenvuoro"
+title: 'Puheenvuoro: keskustakampus voi olla historiallinen virhe. Toteutessaan se vie mennessään useita synergiaetuja'
+date: '2021-10-03'
+description: Kaupunginvaltuuston Linnannmaa-vierailulla pitämäni puheenvuoro
+event: Oulun kaupunginvaltuuston vierailu Oulun yliopistolla
 categories:
-  - Puheet
   - Seminaarit
 keywords:
   - keskustakampus
@@ -13,7 +12,7 @@ keywords:
   - seminaari
 type: puhe
 wp_id: 1819
-source_url: "https://www.jarilaru.fi/puheenvuoro-keskustakampus-voi-olla-historiallinen-virhe-toteutessaan-se-vie-mennessaan-useita-synergiaetuja/"
+source_url: 'https://www.jarilaru.fi/puheenvuoro-keskustakampus-voi-olla-historiallinen-virhe-toteutessaan-se-vie-mennessaan-useita-synergiaetuja/'
 templateEngineOverride: md
 ---
 <p>Arvoisa puheenjohtaja ja arvoisat valtuutetut.</p>

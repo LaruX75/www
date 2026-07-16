@@ -1,12 +1,12 @@
 ---
-title: Jo­ki­ran­nan koulun tilanne kes­tä­mä­tön, osa op­pi­lais­ta oi­rei­lee yhä
-date: 2018-01-22
-description: "Kirjoitus julkaistu Sanomalehti Kalevassa 22.01.2018 (https://www.kaleva.fi/jokirannan-koulun-tilanne-kestamaton-osa-oppilaist/1861861) Jokirannan koulun kestämätöntä tilannetta on jauhettu j..."
+title: 'Jo­ki­ran­nan koulun tilanne kes­tä­mä­tön, osa op­pi­lais­ta oi­rei­lee yhä'
+date: '2018-01-22'
+description: 'Kirjoitus julkaistu Sanomalehti Kalevassa 22.01.2018 (https://www.kaleva.fi/jokirannan-koulun-tilanne-kestamaton-osa-oppilaist/1861861) Jokirannan koulun kestämätöntä tilannetta on jauhettu j...'
 categories:
-  - Kaleva
+  - Politiikka ja päätöksenteko
+publication: Kaleva
+forum:
   - Lautakunta
-  - Mielipidekirjoitukset
-  - Poliitiikka
 keywords:
   - homekoulu
   - jokirannan koulu
@@ -23,7 +23,7 @@ keywords:
   - yläaste
 type: mielipide
 wp_id: 225
-source_url: "https://www.jarilaru.fi/jokirannan-koulun-tilanne-kestamaton-osa-oppilaista-oireilee-yha/"
+source_url: 'https://www.jarilaru.fi/jokirannan-koulun-tilanne-kestamaton-osa-oppilaista-oireilee-yha/'
 politicalProfiles:
   - sivistys
   - lahipalvelut

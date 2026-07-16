@@ -1,13 +1,13 @@
 ---
 title: Sisäilmaongemat eivät ole vain koulujen riessa
-date: 2017-09-29
-description: "Julkaistu Sanomalehti Kalevan Mielipiteitä palstalla 29.9.2017 Suomen kuusi suurinta kaupungia ovat havahtuneet julkisten rakennusten sisäimaongelmiin ja päättäneet lähteä yhdessä taistelemaa..."
+date: '2017-09-29'
+description: Julkaistu Sanomalehti Kalevan Mielipiteitä palstalla 29.9.2017 Suomen kuusi suurinta kaupungia ovat havahtuneet julkisten rakennusten sisäimaongelmiin ja päättäneet lähteä yhdessä taistelemaa...
 categories:
-  - Kaleva
+  - Politiikka ja päätöksenteko
+publication: Kaleva
+forum:
   - Kaupunginvaltuusto
   - Lautakunta
-  - Mielipidekirjoitukset
-  - Poliitiikka
 keywords:
   - kaupungin kiinteistöt
   - kaupungintalo
@@ -18,7 +18,7 @@ keywords:
   - väistötilat
 type: mielipide
 wp_id: 1135
-source_url: "https://www.jarilaru.fi/sisailmaongemat-eivat-ole-vain-koulujen-riessa/"
+source_url: 'https://www.jarilaru.fi/sisailmaongemat-eivat-ole-vain-koulujen-riessa/'
 politicalProfiles:
   - sivistys
   - kaupunkikehitys

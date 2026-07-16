@@ -1,10 +1,8 @@
 ---
 title: Vastine uutiseen ”Vasikkasuon biokaasulaitos etenee”
-date: 2011-10-27
-description: "Mielipidekirjoitus julkaistu Sanomalehti Kalevassa lokakuussa 2011 Kaleva kirjoitti uutisjutussaan (Kaleva PÄIVÄ), miten Vasikkasuon biokaasulaitos etenee. Toimittaja Sankala oli käyttänyt ju..."
-categories:
-  - Kaleva
-  - Mielipidekirjoitukset
+date: '2011-10-27'
+description: 'Mielipidekirjoitus julkaistu Sanomalehti Kalevassa lokakuussa 2011 Kaleva kirjoitti uutisjutussaan (Kaleva PÄIVÄ), miten Vasikkasuon biokaasulaitos etenee. Toimittaja Sankala oli käyttänyt ju...'
+publication: Kaleva
 keywords:
   - haju
   - hajuhaitat
@@ -17,7 +15,7 @@ keywords:
   - VRJ Järvenpää
 type: mielipide
 wp_id: 945
-source_url: "https://www.jarilaru.fi/kalevan-yleisonosasto-lokakuu-2011-vastine-uutiseen-vasikkasuon-biokaasulaitos-etenee/"
+source_url: 'https://www.jarilaru.fi/kalevan-yleisonosasto-lokakuu-2011-vastine-uutiseen-vasikkasuon-biokaasulaitos-etenee/'
 templateEngineOverride: md
 ---
 <p>Mielipidekirjoitus julkaistu Sanomalehti Kalevassa lokakuussa 2011</p>

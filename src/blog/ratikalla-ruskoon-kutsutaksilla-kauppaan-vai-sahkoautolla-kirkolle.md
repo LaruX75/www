@@ -1,9 +1,9 @@
 ---
-title: Ratikalla Ruskoon, kutsutaksilla kauppaan vai sähköautolla kirkolle?
-date: 2008-10-11
-description: "Pöydälläni on lojunut jo pidemmä aikaa lehtileike vihreiden vaalikampanjan avauksesta. Siitä Oulun läänin vihreät esittävät paikallisjunia ja kutsutakseja Oulun seudun joukkoliikennesolmuja aukomaan. Ensi silm"
+title: 'Ratikalla Ruskoon, kutsutaksilla kauppaan vai sähköautolla kirkolle?'
+date: '2008-10-11'
+description: Pöydälläni on lojunut jo pidemmä aikaa lehtileike vihreiden vaalikampanjan avauksesta. Siitä Oulun läänin vihreät esittävät paikallisjunia ja kutsutakseja Oulun seudun joukkoliikennesolmuja aukomaan. Ensi silm
 categories:
-  - politiikka
+  - Politiikka ja päätöksenteko
 keywords:
   - jääli
   - joukkoliikenne
@@ -13,7 +13,7 @@ keywords:
   - talous
   - välikylä
 wp_id: 928
-source_url: "https://www.jarilaru.fi/ratikalla-ruskoon-kutsutaksilla-kauppaan-vai-sahkoautolla-kirkolle/"
+source_url: 'https://www.jarilaru.fi/ratikalla-ruskoon-kutsutaksilla-kauppaan-vai-sahkoautolla-kirkolle/'
 politicalProfiles:
   - kaupunkikehitys
   - lahipalvelut

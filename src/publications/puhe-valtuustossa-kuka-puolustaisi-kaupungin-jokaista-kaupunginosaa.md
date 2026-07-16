@@ -1,15 +1,13 @@
 ---
-title: "Puhe valtuustossa: kuka puolustaisi kaupungin jokaista kaupunginosaa?"
-date: 2018-02-26
-event: "Oulun kaupunginvaltuusto"
-asiakohta: "§ 18 – Kaupunkistrategia Oulu 2026"
-description: "Puheeni hahmoteltuna muistilapulle ;-) Varsin tyypilinen esimerkki pitämästäni puheesta tai esitelmästä. Käytän yleensä vain apusanoja tai listauksia apuna.  
-https://youtu.be/LzEhIf98YuA?t=45..."
+title: 'Puhe valtuustossa: kuka puolustaisi kaupungin jokaista kaupunginosaa?'
+date: '2018-02-26'
+description: 'Puheeni hahmoteltuna muistilapulle ;-) Varsin tyypilinen esimerkki pitämästäni puheesta tai esitelmästä. Käytän yleensä vain apusanoja tai listauksia apuna.   https://youtu.be/LzEhIf98YuA?t=45...'
+event: Oulun kaupunginvaltuusto
+asiakohta: § 18 – Kaupunkistrategia Oulu 2026
 categories:
+  - Politiikka ja päätöksenteko
+forum:
   - Kaupunginvaltuusto
-  - Kaupunginvaltuustossa pidetyt puheenvuorot
-  - Poliitiikka
-  - Puheet
 keywords:
   - kaupungistrategia
   - kaupungosat
@@ -19,7 +17,7 @@ keywords:
   - suuralueet
 type: puhe
 wp_id: 1130
-source_url: "https://www.jarilaru.fi/puhe-valtuustossa-kuka-puolustaisi-kaupungin-jokaista-kaupunginosaa/"
+source_url: 'https://www.jarilaru.fi/puhe-valtuustossa-kuka-puolustaisi-kaupungin-jokaista-kaupunginosaa/'
 politicalProfiles:
   - lahipalvelut
 templateEngineOverride: md

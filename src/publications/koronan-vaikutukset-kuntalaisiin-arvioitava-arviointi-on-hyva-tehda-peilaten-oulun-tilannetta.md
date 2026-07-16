@@ -1,18 +1,18 @@
 ---
 title: Koronan vai­ku­tuk­set kun­ta­lai­siin ar­vioi­ta­va – ar­vioin­ti on hyvä tehdä pei­la­ten Oulun ti­lan­net­ta ajan­ta­sai­siin tut­ki­mus­tu­lok­siin
-date: 2021-02-28
-description: "Sanomalehti Kaleva julkaisi tähää 28.2.2021 Oulun kaupungin sivistys- ja kulttuurilautakunnan jäsenten yhteisen mielipidekirjoituksen. Alkuperäinen teksti löytyy täältä: https://www.kaleva.fi/koron..."
+date: '2021-02-28'
+description: 'Sanomalehti Kaleva julkaisi tähää 28.2.2021 Oulun kaupungin sivistys- ja kulttuurilautakunnan jäsenten yhteisen mielipidekirjoituksen. Alkuperäinen teksti löytyy täältä: https://www.kaleva.fi/koron...'
 categories:
-  - Kaleva
+  - Politiikka ja päätöksenteko
+publication: Kaleva
+forum:
   - Lautakunta
-  - Mielipidekirjoitukset
-  - Poliitiikka
 keywords:
   - korona
   - sivistys- ja kulttuurilautakunta
 type: mielipide
 wp_id: 1580
-source_url: "https://www.jarilaru.fi/koronan-vaikutukset-kuntalaisiin-arvioitava-arviointi-on-hyva-tehda-peilaten-oulun-tilannetta/"
+source_url: 'https://www.jarilaru.fi/koronan-vaikutukset-kuntalaisiin-arvioitava-arviointi-on-hyva-tehda-peilaten-oulun-tilannetta/'
 politicalProfiles:
   - sivistys
   - hyvinvointi

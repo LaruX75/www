@@ -1,10 +1,8 @@
 ---
 title: Pe­rä­me­ren­kaa­ri on nos­tet­ta­va asia­lis­tal­le pää­tök­sen­teos­sa – Poh­jois-Suo­mi ja Poh­jois-Ruot­si ovat tu­le­vi­na vuo­si­kym­me­ni­nä suurten mul­lis­tus­ten koh­tee­na
-date: 2021-11-29
-description: "Mielipidekirjoitus, joka on julkaistu Sanomalehti Kalevassa 22.11.2021"
-categories:
-  - Kaleva
-  - Mielipidekirjoitukset
+date: '2021-11-29'
+description: 'Mielipidekirjoitus, joka on julkaistu Sanomalehti Kalevassa 22.11.2021'
+publication: Kaleva
 keywords:
   - liikenne
   - maakunta
@@ -13,7 +11,7 @@ keywords:
   - teollisuus
 type: mielipide
 wp_id: 1889
-source_url: "https://www.jarilaru.fi/peramerenkaari-on-nostettava-asialistalle-paatoksenteossa-pohjois-suomi-ja-pohjois/"
+source_url: 'https://www.jarilaru.fi/peramerenkaari-on-nostettava-asialistalle-paatoksenteossa-pohjois-suomi-ja-pohjois/'
 politicalProfiles:
   - kaupunkikehitys
   - yhteistyo

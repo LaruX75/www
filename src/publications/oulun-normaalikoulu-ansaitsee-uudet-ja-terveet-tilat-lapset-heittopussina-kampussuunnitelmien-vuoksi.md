@@ -1,10 +1,8 @@
 ---
-title: "KALEVA 11.12.2021: Oulun nor­maa­li­kou­lu an­sait­see uudet ja terveet tilat – lapset heit­to­pus­si­na kam­pus­suun­ni­tel­mien vuoksi"
-date: 2021-12-11
-description: "Sanomalehti Kalevassa julkaistu mielipidekirjoitus normaalikoulun tilaratkaisuihin liittyen"
-categories:
-  - Kaleva
-  - Mielipidekirjoitukset
+title: 'KALEVA 11.12.2021: Oulun nor­maa­li­kou­lu an­sait­see uudet ja terveet tilat – lapset heit­to­pus­si­na kam­pus­suun­ni­tel­mien vuoksi'
+date: '2021-12-11'
+description: Sanomalehti Kalevassa julkaistu mielipidekirjoitus normaalikoulun tilaratkaisuihin liittyen
+publication: Kaleva
 keywords:
   - keskustakampus
   - koulu
@@ -14,7 +12,7 @@ keywords:
   - raksila
 type: mielipide
 wp_id: 1895
-source_url: "https://www.jarilaru.fi/oulun-normaalikoulu-ansaitsee-uudet-ja-terveet-tilat-lapset-heittopussina-kampussuunnitelmien-vuoksi/"
+source_url: 'https://www.jarilaru.fi/oulun-normaalikoulu-ansaitsee-uudet-ja-terveet-tilat-lapset-heittopussina-kampussuunnitelmien-vuoksi/'
 templateEngineOverride: md
 ---
 <p><em>Sanomalehti Kalevassa julkaistu mielipidekirjoitukseni 11.12.2021:</em> <a href="https://www.kaleva.fi/oulun-normaalikoulu-ansaitsee-uudet-ja-terveet-til/4181835" target="_blank" rel="noreferrer noopener">https://www.kaleva.fi/oulun-normaalikoulu-ansaitsee-uudet-ja-terveet-til/4181835</a></p>

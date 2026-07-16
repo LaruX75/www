@@ -1,10 +1,11 @@
 ---
 title: Asiaa himmeleistä ja aluehallinnosta
-date: 2022-01-09
-description: "Olen tässä melkein kaksi viikkoa katsellut kaksi viikkoa sitten perustamani Oulun ja Oulun seudun politiikka ryhmä keskusteluita aluevaaleihin liittyen. Siellä vilisee varsin sana hallintohimmeli, josta Kokoomuspoli"
+date: '2022-01-09'
+description: 'Olen tässä melkein kaksi viikkoa katsellut kaksi viikkoa sitten perustamani Oulun ja Oulun seudun politiikka ryhmä keskusteluita aluevaaleihin liittyen. Siellä vilisee varsin sana hallintohimmeli, josta Kokoomuspoli'
 categories:
-  - Aluevaaalit2022
-  - Poliitiikka
+  - Vaalit
+  - Politiikka ja päätöksenteko
+campaign: Aluevaalit 2022
 keywords:
   - aluehallinto
   - aluevaalit
@@ -15,7 +16,7 @@ keywords:
   - popsote
   - popster
 wp_id: 1979
-source_url: "https://www.jarilaru.fi/asiaa-himmeleista-ja-aluehallinnosta/"
+source_url: 'https://www.jarilaru.fi/asiaa-himmeleista-ja-aluehallinnosta/'
 politicalProfiles:
   - yhteistyo
 templateEngineOverride: md

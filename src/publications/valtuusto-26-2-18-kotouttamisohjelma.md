@@ -1,14 +1,13 @@
 ---
 title: Valtuusto 26.2.18 kotouttamisohjelma
-date: 2018-02-26
-event: "Oulun kaupunginvaltuusto"
-asiakohta: "§ 21 – Yhdessä kotoutuva Oulu - Oulun kaupungin kotouttamisohjelma 2018-2021"
-description: "Kaupunginvaltuuston kokouksessa 26.2.2018 yksi ennakkoon jo kuumimmaksi ennustettu asiakohta oli ehdottomasti \"Yhdessä kotoutuva Oulu. Kotouttamisohjelma 2018-2021\" -asiakirjan hyväksyminen. ..."
+date: '2018-02-26'
+description: Kaupunginvaltuuston kokouksessa 26.2.2018 yksi ennakkoon jo kuumimmaksi ennustettu asiakohta oli ehdottomasti "Yhdessä kotoutuva Oulu. Kotouttamisohjelma 2018-2021" -asiakirjan hyväksyminen. ...
+event: Oulun kaupunginvaltuusto
+asiakohta: § 21 – Yhdessä kotoutuva Oulu - Oulun kaupungin kotouttamisohjelma 2018-2021
 categories:
+  - Politiikka ja päätöksenteko
+forum:
   - Kaupunginvaltuusto
-  - Kaupunginvaltuustossa pidetyt puheenvuorot
-  - Poliitiikka
-  - Puheet
 keywords:
   - kotoutuva oulu
   - maahanmuutto
@@ -19,7 +18,7 @@ keywords:
   - yliopisto
 type: puhe
 wp_id: 1128
-source_url: "https://www.jarilaru.fi/valtuusto-26-2-18-kotouttamisohjelma/"
+source_url: 'https://www.jarilaru.fi/valtuusto-26-2-18-kotouttamisohjelma/'
 politicalProfiles:
   - hyvinvointi
 templateEngineOverride: md

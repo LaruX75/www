@@ -1,13 +1,13 @@
 ---
 title: Kiiminki ansaitsee monitoimitalon – Jokirannan koulun paikka on SYKE-talon ja lukion läheisyydessä
-date: 2017-11-04
-description: "Kirjoitus on julkaistu Sanomalehti Kalevan Mielipiteitä -palstalla 4.11.2017. Liikelaitos Oulun Tilakeskuksen johtokunta päätti 19.10 pidetyssä kokouksessaan esittää Jokirannan koulun hankese..."
+date: '2017-11-04'
+description: Kirjoitus on julkaistu Sanomalehti Kalevan Mielipiteitä -palstalla 4.11.2017. Liikelaitos Oulun Tilakeskuksen johtokunta päätti 19.10 pidetyssä kokouksessaan esittää Jokirannan koulun hankese...
 categories:
-  - Kaleva
+  - Politiikka ja päätöksenteko
+publication: Kaleva
+forum:
   - Kaupunginvaltuusto
   - Lautakunta
-  - Mielipidekirjoitukset
-  - Poliitiikka
 keywords:
   - home
   - jokiranta
@@ -23,7 +23,7 @@ keywords:
   - uudisrakennus
 type: mielipide
 wp_id: 1133
-source_url: "https://www.jarilaru.fi/kiiminki-ansaitsee-monitoimitalon-jokirannan-koulun-paikka-on-syke-talon-ja-lukion-laheisyydessa/"
+source_url: 'https://www.jarilaru.fi/kiiminki-ansaitsee-monitoimitalon-jokirannan-koulun-paikka-on-syke-talon-ja-lukion-laheisyydessa/'
 politicalProfiles:
   - sivistys
   - lahipalvelut

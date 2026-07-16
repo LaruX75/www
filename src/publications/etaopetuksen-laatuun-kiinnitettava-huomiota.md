@@ -1,9 +1,8 @@
 ---
 title: Etäopetuksen laatuun kiinnitettävä huomiota
-date: 2020-04-01
-description: "Mielipidekirjoitus, joka on julkaistu useissa Sanomalehdissä 1.4.2020 ( Kaleva ; Turun Sanomat ) Tiedonvälityksen ja viihteen uudet muodot ovat muokanneet ihmisten toimintatapoja viime vuosik..."
+date: '2020-04-01'
+description: 'Mielipidekirjoitus, joka on julkaistu useissa Sanomalehdissä 1.4.2020 ( Kaleva ; Turun Sanomat ) Tiedonvälityksen ja viihteen uudet muodot ovat muokanneet ihmisten toimintatapoja viime vuosik...'
 categories:
-  - Mielipidekirjoitukset
   - Oppimisympäristöt ja tilat
   - Teknologiatuettu oppiminen ja opetus
 keywords:
@@ -17,7 +16,7 @@ keywords:
   - turunsanomat
 type: mielipide
 wp_id: 152
-source_url: "https://www.jarilaru.fi/etaopetuksen-laatuun-kiinnitettava-huomiota/"
+source_url: 'https://www.jarilaru.fi/etaopetuksen-laatuun-kiinnitettava-huomiota/'
 templateEngineOverride: md
 ---
 <p><strong>Mielipidekirjoitus, joka on julkaistu useissa Sanomalehdissä 1.4.2020</strong> (<a href="https://www.kaleva.fi/etaopetuksen-laatuun-tulee-kiinnittaa-huomiota-eta/1641586">Kaleva</a>; <a href="https://www.ts.fi/lukijoilta/4911596/Lukijalta+Etaopetuksen+laatuun+kiinnitettava+huomiota">Turun Sanomat</a>)</p>

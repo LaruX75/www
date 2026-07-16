@@ -1,15 +1,16 @@
 ---
 title: Vuoden 2017 vaalien vaalikonevastaukseni
-date: 2017-05-06
-description: "Pyrin vastaamaan aina kaikkiin mahdollisiin vaalikoneisiin. Valitettavasti vaalikoneista harvat s�ilytt�v�t vastaukset vuosikausien p��h� . YLEn laadukas vaalikone on juuri sellainen, sen vastaukset l�ytyv�t vain YLEn ko"
+date: '2017-05-06'
+description: 'Pyrin vastaamaan aina kaikkiin mahdollisiin vaalikoneisiin. Valitettavasti vaalikoneista harvat s�ilytt�v�t vastaukset vuosikausien p��h� . YLEn laadukas vaalikone on juuri sellainen, sen vastaukset l�ytyv�t vain YLEn ko'
 categories:
-  - Kuntavaalit
-  - Poliitiikka
+  - Vaalit
+  - Politiikka ja päätöksenteko
+campaign: Kuntavaalit
 keywords:
   - kuntavaalit 2017
   - vaalikone
 wp_id: 1455
-source_url: "https://www.jarilaru.fi/kuntavaalit-2017-best-of/"
+source_url: 'https://www.jarilaru.fi/kuntavaalit-2017-best-of/'
 templateEngineOverride: md
 ---
 

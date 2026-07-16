@@ -1,10 +1,9 @@
 ---
-title: Säästöt tulee etsiä yhdessä teat­te­rin toi­mi­van johdon kanssa, jotta ne oli­si­vat to­teu­tet­ta­vis­sa ilman, että teat­te­rin toi­min­ta­edel­ly­tyk­set vaa­ran­tu­vat
-date: 2020-12-03
-description: "Oulun kaupunginhallitus on esittänyt, että teatterin toimintatukea pienennettäisiin 500 000 eurolla vuoden 2019 tasosta. Summa on niin merkittävä ja tulisi voimaan niin nopeasti, että sillä o..."
+title: 'Säästöt tulee etsiä yhdessä teat­te­rin toi­mi­van johdon kanssa, jotta ne oli­si­vat to­teu­tet­ta­vis­sa ilman, että teat­te­rin toi­min­ta­edel­ly­tyk­set vaa­ran­tu­vat'
+date: '2020-12-03'
+description: 'Oulun kaupunginhallitus on esittänyt, että teatterin toimintatukea pienennettäisiin 500 000 eurolla vuoden 2019 tasosta. Summa on niin merkittävä ja tulisi voimaan niin nopeasti, että sillä o...'
 categories:
-  - Mielipidekirjoitukset
-  - Poliitiikka
+  - Politiikka ja päätöksenteko
 keywords:
   - kulttuuri
   - mielipiteet
@@ -18,7 +17,7 @@ keywords:
   - valtionosuusjärjestelmä
 type: mielipide
 wp_id: 144
-source_url: "https://www.jarilaru.fi/saastot-tulee-etsia-yhdessa-teatterin-toimivan-johdon-kanssa-jotta-ne-olisivat-toteutettavissa-ilman-etta-teatterin-toi/"
+source_url: 'https://www.jarilaru.fi/saastot-tulee-etsia-yhdessa-teatterin-toimivan-johdon-kanssa-jotta-ne-olisivat-toteutettavissa-ilman-etta-teatterin-toi/'
 templateEngineOverride: md
 ---
 <p>Oulun kaupunginhallitus on esittänyt, että teatterin toimintatukea pienennettäisiin 500 000 eurolla vuoden 2019 tasosta.</p>

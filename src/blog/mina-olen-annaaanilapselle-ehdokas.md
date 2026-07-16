@@ -1,15 +1,16 @@
 ---
-title: Minä olen #annaäänilapselle -ehdokas
-date: 2021-02-10
-description: "“Vaikka talous asettaa paineita, viisas kunta huolehtii lapsista ja perheistä. Se on paras panostus tulevaisuuteen. “ Lastensuojen keskusliitto Törmäsin tähää netin syövereissä Lastensuojelun keskusliiton ko"
+title: Minä olen
+date: '2021-02-10'
+description: '“Vaikka talous asettaa paineita, viisas kunta huolehtii lapsista ja perheistä. Se on paras panostus tulevaisuuteen. “ Lastensuojen keskusliitto Törmäsin tähää netin syövereissä Lastensuojelun keskusliiton ko'
 categories:
-  - Kuntavaalit
-  - Poliitiikka
+  - Vaalit
+  - Politiikka ja päätöksenteko
+campaign: Kuntavaalit
 keywords:
   - lapset
   - lastensuojelu
 wp_id: 1531
-source_url: "https://www.jarilaru.fi/mina-olen-annaaanilapselle-ehdokas/"
+source_url: 'https://www.jarilaru.fi/mina-olen-annaaanilapselle-ehdokas/'
 politicalProfiles:
   - hyvinvointi
 templateEngineOverride: md

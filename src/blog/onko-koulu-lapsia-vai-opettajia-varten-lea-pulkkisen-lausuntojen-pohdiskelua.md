@@ -1,9 +1,9 @@
 ---
 title: Onko koulu lapsia vai opettajia varten? - Lea Pulkkisen lausuntojen pohdiskelua
-date: 2008-10-11
-description: "Jo viikko sitten Professori Lea Pulkkinen otti voimakkaasti kantaa koululaitoksemme nykytilan ongelmiin julkaisemallaan tiedotteella: Nuorisopsykiatriaan panostaminen ei estä hirmutekoja (3.10.2008). Hänen mukaansa Kau"
+date: '2008-10-11'
+description: 'Jo viikko sitten Professori Lea Pulkkinen otti voimakkaasti kantaa koululaitoksemme nykytilan ongelmiin julkaisemallaan tiedotteella: Nuorisopsykiatriaan panostaminen ei estä hirmutekoja (3.10.2008). Hänen mukaansa Kau'
 categories:
-  - politiikka
+  - Politiikka ja päätöksenteko
 keywords:
   - hyvinvointi
   - koulu
@@ -13,7 +13,7 @@ keywords:
   - opetustoimi
   - perheiden hyvinvointi
 wp_id: 927
-source_url: "https://www.jarilaru.fi/onko-koulu-lapsia-vai-opettajia-varten-lea-pulkkisen-lausuntojen-pohdiskelua/"
+source_url: 'https://www.jarilaru.fi/onko-koulu-lapsia-vai-opettajia-varten-lea-pulkkisen-lausuntojen-pohdiskelua/'
 politicalProfiles:
   - sivistys
   - hyvinvointi

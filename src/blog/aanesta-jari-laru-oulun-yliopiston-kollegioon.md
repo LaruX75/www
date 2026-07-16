@@ -1,17 +1,18 @@
 ---
 title: Äänestä Jari Laru Oulun yliopiston kollegioon
-date: 2021-10-10
-description: "Olen käytettävissänne. Olen ehdolla Oulun yliopiston hallintovaaleissa kollegion jäseneksi. Minulla on pitkäaikainen ja laaja kokemus yliopiston hallintotehtävistä. Tällä hetkellä toimin Oulun yliopiston koulut"
+date: '2021-10-10'
+description: Olen käytettävissänne. Olen ehdolla Oulun yliopiston hallintovaaleissa kollegion jäseneksi. Minulla on pitkäaikainen ja laaja kokemus yliopiston hallintotehtävistä. Tällä hetkellä toimin Oulun yliopiston koulut
 categories:
-  - Luottamustehtävät
   - Työ
   - vaalit
+forum:
+  - Luottamustehtävät
 keywords:
   - hallintovaalit
   - kollegio
   - luottamustehtävät
 wp_id: 1821
-source_url: "https://www.jarilaru.fi/aanesta-jari-laru-oulun-yliopiston-kollegioon/"
+source_url: 'https://www.jarilaru.fi/aanesta-jari-laru-oulun-yliopiston-kollegioon/'
 templateEngineOverride: md
 ---
 

@@ -1,21 +1,19 @@
 ---
 title: 1. puheenvuoroni Oulun kaupunginvaltuutettuna
-date: 2017-06-05
-event: "Oulun kaupunginvaltuusto"
-asiakohta: "Kokouspöytäkirja 5.6.2017"
-description: "Ensimmäinen puheenvuoroni \"kirjallisena\" .. Tämä on tapani luonnostella puhe, jos sitä ei ole pakko toimittaa kirjallisena.  
-https://youtu.be/NDbJ2Nf4OxM?t=20856nPuheenvuoronikokouksenlopp..."
+date: '2017-06-05'
+description: 'Ensimmäinen puheenvuoroni "kirjallisena" .. Tämä on tapani luonnostella puhe, jos sitä ei ole pakko toimittaa kirjallisena.   https://youtu.be/NDbJ2Nf4OxM?t=20856nPuheenvuoronikokouksenlopp...'
+event: Oulun kaupunginvaltuusto
+asiakohta: Kokouspöytäkirja 5.6.2017
 categories:
+  - Politiikka ja päätöksenteko
+forum:
   - Kaupunginvaltuusto
-  - Kaupunginvaltuustossa pidetyt puheenvuorot
-  - Poliitiikka
-  - Puheet
 keywords:
   - ensimmäinen puheenvuoro
   - oulun kaupunginvaltuusto
 type: puhe
 wp_id: 1154
-source_url: "https://www.jarilaru.fi/1-puheenvuoroni-oulun-kaupunginvaltuutettuna/"
+source_url: 'https://www.jarilaru.fi/1-puheenvuoroni-oulun-kaupunginvaltuutettuna/'
 politicalProfiles:
   - yhteistyo
 templateEngineOverride: md

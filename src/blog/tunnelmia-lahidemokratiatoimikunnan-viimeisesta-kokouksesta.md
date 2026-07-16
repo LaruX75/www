@@ -1,16 +1,17 @@
 ---
 title: Olipa mukava kausi! Tunnelmia lähidemokratiatoimikunnan viimeisestä kokouksesta
-date: 2017-02-22
-description: "Kuvassa Oulun kaupungin lähidemokratiatoimikunta kevää 2017 toisen kokouksen jälkeen. Tähää listan kuumin asia oli suuralueiden yhteisötoiminnan toimintarahoista päättäminen, mutta oli siitä mukana myös mm"
+date: '2017-02-22'
+description: 'Kuvassa Oulun kaupungin lähidemokratiatoimikunta kevää 2017 toisen kokouksen jälkeen. Tähää listan kuumin asia oli suuralueiden yhteisötoiminnan toimintarahoista päättäminen, mutta oli siitä mukana myös mm'
 categories:
+  - Politiikka ja päätöksenteko
+forum:
   - Lähidemokratiatoimikunta
-  - Poliitiikka
 keywords:
   - lähidemokratiatoimikunta
   - viimeinen kokous
   - yhteisötyö
 wp_id: 1169
-source_url: "https://www.jarilaru.fi/tunnelmia-lahidemokratiatoimikunnan-viimeisesta-kokouksesta/"
+source_url: 'https://www.jarilaru.fi/tunnelmia-lahidemokratiatoimikunnan-viimeisesta-kokouksesta/'
 templateEngineOverride: md
 ---
 

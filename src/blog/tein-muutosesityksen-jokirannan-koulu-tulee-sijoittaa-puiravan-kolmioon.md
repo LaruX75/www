@@ -1,10 +1,11 @@
 ---
-title: "Tein muutosesityksen: Jokirannan koulu tulee sijoittaa Puiravan kolmioon"
-date: 2017-10-31
-description: "Lisäys: uusi koulu otettu käyttöö vuoden 2021 alussa muutosesitykseni mukaisessa paikassa. Tein muutosesitykseni vuonna 2017 ja nyt keväällä 2021 koulu on esitykseni mukaisessa paikassa ja käytössä! Hitaita ov"
+title: 'Tein muutosesityksen: Jokirannan koulu tulee sijoittaa Puiravan kolmioon'
+date: '2017-10-31'
+description: 'Lisäys: uusi koulu otettu käyttöö vuoden 2021 alussa muutosesitykseni mukaisessa paikassa. Tein muutosesitykseni vuonna 2017 ja nyt keväällä 2021 koulu on esitykseni mukaisessa paikassa ja käytössä! Hitaita ov'
 categories:
+  - Politiikka ja päätöksenteko
+forum:
   - Lautakunta
-  - Poliitiikka
 keywords:
   - hankesuunnitelma
   - jokirannan koulu
@@ -16,7 +17,7 @@ keywords:
   - sivistys- ja kulttuurilautakunta
   - yläkoulu
 wp_id: 1143
-source_url: "https://www.jarilaru.fi/tein-muutosesityksen-jokirannan-koulu-tulee-sijoittaa-puiravan-kolmioon/"
+source_url: 'https://www.jarilaru.fi/tein-muutosesityksen-jokirannan-koulu-tulee-sijoittaa-puiravan-kolmioon/'
 politicalProfiles:
   - sivistys
   - lahipalvelut

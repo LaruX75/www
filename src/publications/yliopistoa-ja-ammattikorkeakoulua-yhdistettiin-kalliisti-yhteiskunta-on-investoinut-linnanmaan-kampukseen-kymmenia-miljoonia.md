@@ -1,10 +1,9 @@
 ---
 title: Yliopistoa ja ammattikorkeakoulua yhdistettiin kalliisti - yhteiskunta on investoinut Linnanmaan kampukseen kymmeniä miljoonia
-date: 2020-08-08
-description: "Mielipidekirjoitus on julkaistu Sanomalehti Kalevassa 8.8.2020 otsikolla “Yliopistoa ja ammattikorkeakoulua yhdistettiin kalliisti - yhteiskunta on investoinut Linnanmaan kampukseen kymmeniä miljoon..."
+date: '2020-08-08'
+description: Mielipidekirjoitus on julkaistu Sanomalehti Kalevassa 8.8.2020 otsikolla “Yliopistoa ja ammattikorkeakoulua yhdistettiin kalliisti - yhteiskunta on investoinut Linnanmaan kampukseen kymmeniä miljoon...
 categories:
-  - Mielipidekirjoitukset
-  - Poliitiikka
+  - Politiikka ja päätöksenteko
 keywords:
   - kaleva
   - keskustakampus
@@ -17,7 +16,7 @@ keywords:
   - oulun yliopiston muutto
 type: mielipide
 wp_id: 146
-source_url: "https://www.jarilaru.fi/yliopistoa-ja-ammattikorkeakoulua-yhdistettiin-kalliisti-yhteiskunta-on-investoinut-linnanmaan-kampukseen-kymmenia-miljoonia/"
+source_url: 'https://www.jarilaru.fi/yliopistoa-ja-ammattikorkeakoulua-yhdistettiin-kalliisti-yhteiskunta-on-investoinut-linnanmaan-kampukseen-kymmenia-miljoonia/'
 politicalProfiles:
   - sivistys
   - kaupunkikehitys

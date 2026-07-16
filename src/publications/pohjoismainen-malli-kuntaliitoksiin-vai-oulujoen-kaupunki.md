@@ -1,11 +1,10 @@
 ---
 title: Pyristelyä vääjäämätöntä vastaan
-date: 2008-10-02
-description: "Mielipidekirjoitus julkaistu Kalevassa Lauantaina 4.10.2008 otsikolla: \"Pyristelyä vääjäämätöntä vastaan\" Kempeleen Kokoomuksen edustajat sanoutuivat Kalevassa (2.10.2008) jyrkästi irti “Oulu..."
+date: '2008-10-02'
+description: 'Mielipidekirjoitus julkaistu Kalevassa Lauantaina 4.10.2008 otsikolla: "Pyristelyä vääjäämätöntä vastaan" Kempeleen Kokoomuksen edustajat sanoutuivat Kalevassa (2.10.2008) jyrkästi irti “Oulu...'
 categories:
-  - Kaleva
-  - Mielipidekirjoitukset
-  - politiikka
+  - Politiikka ja päätöksenteko
+publication: Kaleva
 keywords:
   - kuntaliitos
   - Oulujoen kaupunki
@@ -13,7 +12,7 @@ keywords:
   - talous
 type: mielipide
 wp_id: 920
-source_url: "https://www.jarilaru.fi/pohjoismainen-malli-kuntaliitoksiin-vai-oulujoen-kaupunki/"
+source_url: 'https://www.jarilaru.fi/pohjoismainen-malli-kuntaliitoksiin-vai-oulujoen-kaupunki/'
 politicalProfiles:
   - yhteistyo
 templateEngineOverride: md

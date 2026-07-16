@@ -1,10 +1,11 @@
 ---
 title: Mistä on hyvä kaupunginvaltuutettu tehty?
-date: 2021-01-02
-description: "Tämä teksti on päivitetty versio vuoden 2017 kirjoituksesta Kirjoitin tämä tekstin aluperin vuoden 2017 kuntavaaleihin. Tekstin runko ja sisältö olivat sen verran hyvät, että päätin päivittää tämä vuode"
+date: '2021-01-02'
+description: 'Tämä teksti on päivitetty versio vuoden 2017 kirjoituksesta Kirjoitin tämä tekstin aluperin vuoden 2017 kuntavaaleihin. Tekstin runko ja sisältö olivat sen verran hyvät, että päätin päivittää tämä vuode'
 categories:
-  - Kuntavaalit
-  - Poliitiikka
+  - Vaalit
+  - Politiikka ja päätöksenteko
+campaign: Kuntavaalit
 keywords:
   - kuntavaalit
   - markku jokisipilä
@@ -13,7 +14,7 @@ keywords:
   - yle
   - yle uutinen
 wp_id: 433
-source_url: "https://www.jarilaru.fi/mista-on-hyva-kaupunginvaltuutettu-tehty/"
+source_url: 'https://www.jarilaru.fi/mista-on-hyva-kaupunginvaltuutettu-tehty/'
 politicalProfiles:
   - yhteistyo
 templateEngineOverride: md

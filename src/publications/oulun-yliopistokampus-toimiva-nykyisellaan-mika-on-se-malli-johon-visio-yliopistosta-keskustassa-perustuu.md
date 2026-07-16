@@ -1,10 +1,9 @@
 ---
-title: Oulun yli­opis­to­kam­pus toimiva nykyisellään – mikä on se malli, johon visio yliopistosta keskustassa perustuu?
-date: 2019-12-09
-description: "”Mikä on se malli, johon visio yliopistosta keskustassa perustuu? Voiko ainoa peruste olla yliopiston maksama vuokrataso?”"
+title: 'Oulun yli­opis­to­kam­pus toimiva nykyisellään – mikä on se malli, johon visio yliopistosta keskustassa perustuu?'
+date: '2019-12-09'
+description: '”Mikä on se malli, johon visio yliopistosta keskustassa perustuu? Voiko ainoa peruste olla yliopiston maksama vuokrataso?”'
 categories:
-  - Mielipidekirjoitukset
-  - Poliitiikka
+  - Politiikka ja päätöksenteko
 keywords:
   - arkkitehtuuri
   - kampus
@@ -16,7 +15,7 @@ keywords:
   - yliopistokampus
 type: mielipide
 wp_id: 87
-source_url: "https://www.jarilaru.fi/oulun-yliopistokampus-toimiva-nykyisellaan-mika-on-se-malli-johon-visio-yliopistosta-keskustassa-perustuu/"
+source_url: 'https://www.jarilaru.fi/oulun-yliopistokampus-toimiva-nykyisellaan-mika-on-se-malli-johon-visio-yliopistosta-keskustassa-perustuu/'
 politicalProfiles:
   - sivistys
   - kaupunkikehitys

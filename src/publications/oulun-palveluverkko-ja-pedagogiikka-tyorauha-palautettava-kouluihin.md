@@ -1,12 +1,12 @@
 ---
 title: Oulun palveluverkko ja pedagogiikka - työrauha palautettava kouluihin
-date: 2018-04-07
-description: "Mielipidekirjoitus on julkaistu Kalevassa 7.4.2018 Kouluja ja päiväkoteja koskevissa päätöksissä unohtuu usein sana pedagogiikka. Pedagogiikka tarkoittaa opetuksen järjestämistä, mutta myös k..."
+date: '2018-04-07'
+description: 'Mielipidekirjoitus on julkaistu Kalevassa 7.4.2018 Kouluja ja päiväkoteja koskevissa päätöksissä unohtuu usein sana pedagogiikka. Pedagogiikka tarkoittaa opetuksen järjestämistä, mutta myös k...'
 categories:
-  - Kaleva
+  - Politiikka ja päätöksenteko
+publication: Kaleva
+forum:
   - Lautakunta
-  - Mielipidekirjoitukset
-  - Poliitiikka
 keywords:
   - häiriökäyttäytyminen
   - jaksaminen
@@ -19,7 +19,7 @@ keywords:
   - varhaiskasvatus
 type: mielipide
 wp_id: 981
-source_url: "https://www.jarilaru.fi/oulun-palveluverkko-ja-pedagogiikka-tyorauha-palautettava-kouluihin/"
+source_url: 'https://www.jarilaru.fi/oulun-palveluverkko-ja-pedagogiikka-tyorauha-palautettava-kouluihin/'
 politicalProfiles:
   - sivistys
   - lahipalvelut

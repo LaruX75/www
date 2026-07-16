@@ -1,10 +1,11 @@
 ---
 title: Kokoomus esittää minua sivistys- ja kulttuurilautakunnan jäseneksi!
-date: 2017-05-29
-description: "Puolueiden välisten neuvotteluiden perusteella Oulun Kokoomus esittää minua Oulun sivistys- ja kulttuurilautakunnan jäseneksi ja varasijalle maakuntavaltuustoon. Olen hyvin kiitollinen saamastani luottamuksesta, kosk"
+date: '2017-05-29'
+description: 'Puolueiden välisten neuvotteluiden perusteella Oulun Kokoomus esittää minua Oulun sivistys- ja kulttuurilautakunnan jäseneksi ja varasijalle maakuntavaltuustoon. Olen hyvin kiitollinen saamastani luottamuksesta, kosk'
 categories:
+  - Politiikka ja päätöksenteko
+forum:
   - Lautakunta
-  - Poliitiikka
 keywords:
   - paikkajako
   - puolueiden väliset neuvottelut
@@ -12,7 +13,7 @@ keywords:
   - vaalit
   - vaalitulos
 wp_id: 1157
-source_url: "https://www.jarilaru.fi/kokoomus-esittaa-minua-sivistys-ja-kulttuurilautakunnan-jaseneksi/"
+source_url: 'https://www.jarilaru.fi/kokoomus-esittaa-minua-sivistys-ja-kulttuurilautakunnan-jaseneksi/'
 politicalProfiles:
   - sivistys
 templateEngineOverride: md

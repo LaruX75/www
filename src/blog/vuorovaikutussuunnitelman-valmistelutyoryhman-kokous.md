@@ -1,10 +1,11 @@
 ---
-title: "Politiikon arkea: työryhmän kokous"
-date: 2018-05-29
-description: "Kaupunginvaltuutetun tehtävä ei rajoitu pelkkää valtuusto- ja lautakuntatyöskentelyyn.Tähää olemme pohtimassa millainen voisi olla kaupungin tuleva vuorovaikutussuunnitelma? Olen tässä työryhmässä sivistys"
+title: 'Politiikon arkea: työryhmän kokous'
+date: '2018-05-29'
+description: Kaupunginvaltuutetun tehtävä ei rajoitu pelkkää valtuusto- ja lautakuntatyöskentelyyn.Tähää olemme pohtimassa millainen voisi olla kaupungin tuleva vuorovaikutussuunnitelma? Olen tässä työryhmässä sivistys
 categories:
+  - Politiikka ja päätöksenteko
+forum:
   - Lautakunta
-  - Poliitiikka
   - Työryhmätyö
 keywords:
   - arki
@@ -14,7 +15,7 @@ keywords:
   - valmistelutyöryhmä
   - vuorovaikutussuunnitelma
 wp_id: 1114
-source_url: "https://www.jarilaru.fi/vuorovaikutussuunnitelman-valmistelutyoryhman-kokous/"
+source_url: 'https://www.jarilaru.fi/vuorovaikutussuunnitelman-valmistelutyoryhman-kokous/'
 politicalProfiles:
   - avoinhallinto
 templateEngineOverride: md

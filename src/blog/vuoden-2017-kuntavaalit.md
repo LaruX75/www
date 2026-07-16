@@ -1,17 +1,18 @@
 ---
 title: Vuoden 2017 kuntavaalit
-date: 2021-02-15
-description: "Mitä asioita lupasin edistää vuoden 2017 kuntavaaleissa? Vuoden 2017 kuntavaaleissa asetin osaltani tavoitteeksi sen, että virkamiesten ja kuntalaisten/politikoiden välille muodostunut vastakkainasettelu tulee purka"
+date: '2021-02-15'
+description: 'Mitä asioita lupasin edistää vuoden 2017 kuntavaaleissa? Vuoden 2017 kuntavaaleissa asetin osaltani tavoitteeksi sen, että virkamiesten ja kuntalaisten/politikoiden välille muodostunut vastakkainasettelu tulee purka'
 categories:
-  - Kuntavaalit
-  - Poliitiikka
+  - Vaalit
+  - Politiikka ja päätöksenteko
+campaign: Kuntavaalit
 keywords:
   - kuntavaalit 2017
   - tavoitteet
   - teemat
   - vaalikoneet
 wp_id: 1553
-source_url: "https://www.jarilaru.fi/vuoden-2017-kuntavaalit/"
+source_url: 'https://www.jarilaru.fi/vuoden-2017-kuntavaalit/'
 templateEngineOverride: md
 ---
 

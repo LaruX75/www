@@ -1,11 +1,10 @@
 ---
-title: "KALEVA vaalikirjoitus: Käännekohta on kulman takana"
-date: 2025-04-08
-description: "Sanomalehti Kaleva julkaisi alla olevan tekstin lyhennetyn (ehdokas)version 8.4.2025. Alkuperäinen teksti on alla (normaali mielipidekirjoituksen mitta) Lue lyhennetty versio täältä: https://www.kal..."
+title: 'KALEVA vaalikirjoitus: Käännekohta on kulman takana'
+date: '2025-04-08'
+description: 'Sanomalehti Kaleva julkaisi alla olevan tekstin lyhennetyn (ehdokas)version 8.4.2025. Alkuperäinen teksti on alla (normaali mielipidekirjoituksen mitta) Lue lyhennetty versio täältä: https://www.kal...'
 categories:
-  - Kaleva
-  - Mielipidekirjoitukset
-  - Poliitiikka
+  - Politiikka ja päätöksenteko
+publication: Kaleva
 keywords:
   - asemakeskus
   - kaleva
@@ -19,7 +18,7 @@ keywords:
   - tutkimus
 type: mielipide
 wp_id: 2446
-source_url: "https://www.jarilaru.fi/kaannekohta-on-kulman-takana/"
+source_url: 'https://www.jarilaru.fi/kaannekohta-on-kulman-takana/'
 templateEngineOverride: md
 ---
 <p>Sanomalehti Kaleva julkaisi alla olevan tekstin lyhennetyn (ehdokas)version 8.4.2025. Alkuperäinen teksti on alla (normaali mielipidekirjoituksen mitta)<br><br><strong>Lue lyhennetty versio täältä:</strong> <a href="https://www.kaleva.fi/kaannekohta-on-oulussa-kulman-takana/11584194">https://www.kaleva.fi/kaannekohta-on-oulussa-kulman-takana/11584194</a></p>

@@ -1,12 +1,11 @@
 ---
-title: Kie­ri­kin si­jain­ti on mah­dol­li­suus – museo voisi toimia myös mo­ni­paik­kai­se­na, osa Kie­ri­kis­sä ja osa muualla Oulussa
-date: 2021-01-22
-description: "Mielipidekirjoitus on julkaistu Sanomalehti Kalevassa 22.1.2021: https://www.kaleva.fi/kierikin-sijainti-on-mahdollisuus-museo-voisi-toim/3284045Oulunkaupunginhallituksenpäätöshakeavalta..."
+title: 'Kie­ri­kin si­jain­ti on mah­dol­li­suus – museo voisi toimia myös mo­ni­paik­kai­se­na, osa Kie­ri­kis­sä ja osa muualla Oulussa'
+date: '2021-01-22'
+description: 'Mielipidekirjoitus on julkaistu Sanomalehti Kalevassa 22.1.2021: https://www.kaleva.fi/kierikin-sijainti-on-mahdollisuus-museo-voisi-toim/3284045Oulunkaupunginhallituksenpäätöshakeavalta...'
 categories:
-  - Kaleva
   - Kulttuuri
-  - Mielipidekirjoitukset
-  - Poliitiikka
+  - Politiikka ja päätöksenteko
+publication: Kaleva
 keywords:
   - arkeologia
   - erä- ja luontomuseo
@@ -23,7 +22,7 @@ keywords:
   - yli-ii
 type: mielipide
 wp_id: 1240
-source_url: "https://www.jarilaru.fi/kierikin-sijainti-on-mahdollisuus-museo-voisi-toimia-myos-monipaikkaisena-osa-kierikissa-ja-osa-muu/"
+source_url: 'https://www.jarilaru.fi/kierikin-sijainti-on-mahdollisuus-museo-voisi-toimia-myos-monipaikkaisena-osa-kierikissa-ja-osa-muu/'
 templateEngineOverride: md
 ---
 <p><em>Mielipidekirjoitus on julkaistu Sanomalehti Kalevassa 22.1.2021: <a href="https://www.kaleva.fi/kierikin-sijainti-on-mahdollisuus-museo-voisi-toim/3284045">https://www.kaleva.fi/kierikin-sijainti-on-mahdollisuus-museo-voisi-toim/3284045</a></em></p>

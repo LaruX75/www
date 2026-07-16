@@ -1,15 +1,15 @@
 ---
-title: "Kriisitalouden pitkä häntä. Case: Ideapark Kiimingissä"
-date: 2008-10-01
-description: "Sekä Kalevassa että Kauppalehdessä on tähää uutisoitu Toivo Sukarin vaikeuksista hankkia rahaa ideaparkeilleen vallitsevassa taloustilanteessa. On todella ikävää, että Kiiimingin Ideapark hankkeena sattui osum"
+title: 'Kriisitalouden pitkä häntä. Case: Ideapark Kiimingissä'
+date: '2008-10-01'
+description: 'Sekä Kalevassa että Kauppalehdessä on tähää uutisoitu Toivo Sukarin vaikeuksista hankkia rahaa ideaparkeilleen vallitsevassa taloustilanteessa. On todella ikävää, että Kiiimingin Ideapark hankkeena sattui osum'
 categories:
-  - politiikka
+  - Politiikka ja päätöksenteko
 keywords:
   - ideapark
   - kriisi
   - talous
 wp_id: 918
-source_url: "https://www.jarilaru.fi/kriisitalouden-pitka-hanta-case-ideapark-kiimingissa/"
+source_url: 'https://www.jarilaru.fi/kriisitalouden-pitka-hanta-case-ideapark-kiimingissa/'
 politicalProfiles:
   - kaupunkikehitys
   - yhteistyo

@@ -1,10 +1,11 @@
 ---
 title: Vaalieläimet ja muu grafiikka vuoden 2017 vaaleissa
-date: 2017-05-07
-description: "https://www.facebook.com/jari.laru.poliitikko/photos/a.1262505157166670/1319332651483920/https://www.facebook.com/jari.laru.poliitikko/photos/a.1262505157166670/1317149838368868/?cft[0]=AZUKqQzjYD0Z1JZK0-zY3n62NnfvlOSFZ"
+date: '2017-05-07'
+description: 'https://www.facebook.com/jari.laru.poliitikko/photos/a.1262505157166670/1319332651483920/https://www.facebook.com/jari.laru.poliitikko/photos/a.1262505157166670/1317149838368868/?cft[0]=AZUKqQzjYD0Z1JZK0-zY3n62NnfvlOSFZ'
 categories:
-  - Kuntavaalit
-  - Poliitiikka
+  - Vaalit
+  - Politiikka ja päätöksenteko
+campaign: Kuntavaalit
 keywords:
   - grafiikka
   - kampanjointi
@@ -12,7 +13,7 @@ keywords:
   - vaalieläimet
   - vaalit2017
 wp_id: 1468
-source_url: "https://www.jarilaru.fi/vaalielaimet-ja-muu-grafiikka-vuoden-2017-vaaleissa/"
+source_url: 'https://www.jarilaru.fi/vaalielaimet-ja-muu-grafiikka-vuoden-2017-vaaleissa/'
 templateEngineOverride: md
 ---
 

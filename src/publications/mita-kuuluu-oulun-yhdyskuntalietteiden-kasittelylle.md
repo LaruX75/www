@@ -1,11 +1,10 @@
 ---
 title: Mitä kuuluu Oulun yhdyskuntalietteiden käsittelylle
-date: 2021-02-17
-description: "Forum 24: 17.2.2021 julkaisema mielipidekirjoituksemme Alkuperäinen käsikirjoitus: Mitä kuuluu Oulun kaupungin yhdyskuntalietteiden käsittelylle? Oulun kaupungin yhdysku..."
+date: '2021-02-17'
+description: 'Forum 24: 17.2.2021 julkaisema mielipidekirjoituksemme Alkuperäinen käsikirjoitus: Mitä kuuluu Oulun kaupungin yhdyskuntalietteiden käsittelylle? Oulun kaupungin yhdysku...'
 categories:
-  - Mielipidekirjoitukset
   - Muut lehdet
-  - Poliitiikka
+  - Politiikka ja päätöksenteko
 keywords:
   - jätteidenkäsittely
   - lietteenkäsittely
@@ -14,7 +13,7 @@ keywords:
   - yhdyskuntaliete
 type: mielipide
 wp_id: 1562
-source_url: "https://www.jarilaru.fi/mita-kuuluu-oulun-yhdyskuntalietteiden-kasittelylle/"
+source_url: 'https://www.jarilaru.fi/mita-kuuluu-oulun-yhdyskuntalietteiden-kasittelylle/'
 templateEngineOverride: md
 ---
 <h2>Forum 24:n 17.2.2021 julkaisema mielipidekirjoituksemme</h2>

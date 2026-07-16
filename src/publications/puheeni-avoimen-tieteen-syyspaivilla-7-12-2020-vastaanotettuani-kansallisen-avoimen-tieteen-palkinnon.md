@@ -1,12 +1,11 @@
 ---
 title: Puheeni avoimen tieteen syyspäivillä 7.12.2020 vastaanotettuani kansallisen avoimen tieteen palkinnon
-date: 2020-12-07
-event: "Avoimen tieteen syyspäivät"
-description: "Avoimen tieteen syyspäivillä 7.12.2020 jaettiin toista kertaa kansallinen avoimen tieteen palkinto ja kaksi avoimen tieteen edistäjät -palkintoa."
+date: '2020-12-07'
+description: Avoimen tieteen syyspäivillä 7.12.2020 jaettiin toista kertaa kansallinen avoimen tieteen palkinto ja kaksi avoimen tieteen edistäjät -palkintoa.
+event: Avoimen tieteen syyspäivät
 categories:
   - Avoimet oppimateriaalit ja sisällöt
   - Juhlapuheet
-  - Puheet
   - Teknologiatuettu oppiminen ja opetus
 keywords:
   - avoin tiede
@@ -20,7 +19,7 @@ keywords:
   - tutkimus
 type: puhe
 wp_id: 220
-source_url: "https://www.jarilaru.fi/puheeni-avoimen-tieteen-syyspaivilla-7-12-2020-vastaanotettuani-kansallisen-avoimen-tieteen-palkinnon/"
+source_url: 'https://www.jarilaru.fi/puheeni-avoimen-tieteen-syyspaivilla-7-12-2020-vastaanotettuani-kansallisen-avoimen-tieteen-palkinnon/'
 templateEngineOverride: md
 ---
 <p>Arvoisat osallistujat,</p>

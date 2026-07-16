@@ -1,14 +1,14 @@
 ---
 title: Puhe kaupunginvaltuuston kokouksessa 20.11.2020
-date: 2020-11-20
-event: "Oulun kaupunginvaltuusto"
-meetingDate: 2020-11-09
-asiakohta: "§ 95 – Oulun yliopiston sijoittuminen Raksilan alueelle, valtuutettu Viitasen ym. kirjelmä"
-description: "Arvoisa puheenjohtaja, hyvät valtuutetut ja yleisö. Oulun yliopisto on ensimmäinen korkeakoulu maassamme, jossa teknillinen korkeakoulu ja perinteinen tiedeyliopisto yhdistettiin. Tavoitteena oli, e..."
+date: '2020-11-20'
+description: 'Arvoisa puheenjohtaja, hyvät valtuutetut ja yleisö. Oulun yliopisto on ensimmäinen korkeakoulu maassamme, jossa teknillinen korkeakoulu ja perinteinen tiedeyliopisto yhdistettiin. Tavoitteena oli, e...'
+event: Oulun kaupunginvaltuusto
+meetingDate: '2020-11-09'
+asiakohta: '§ 95 – Oulun yliopiston sijoittuminen Raksilan alueelle, valtuutettu Viitasen ym. kirjelmä'
 categories:
+  - Politiikka ja päätöksenteko
+forum:
   - Kaupunginvaltuusto
-  - Kaupunginvaltuustossa pidetyt puheenvuorot
-  - Poliitiikka
 keywords:
   - keskustakampus
   - oulun kaupungin kaavoitus
@@ -18,7 +18,7 @@ keywords:
   - yliopisto
 type: puhe
 wp_id: 155
-source_url: "https://www.jarilaru.fi/puhe-kaupunginvaltuuston-kokouksessa-20-11-2020/"
+source_url: 'https://www.jarilaru.fi/puhe-kaupunginvaltuuston-kokouksessa-20-11-2020/'
 politicalProfiles:
   - sivistys
   - kaupunkikehitys

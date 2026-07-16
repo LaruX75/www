@@ -1,18 +1,18 @@
 ---
 title: Virolaisen opettajankoulutuksen digi-ihmettänäimistelemässä
-date: 2015-02-28
-description: "Vieraileva bloggaaja Taloudellisen tiedotustoimisto TAT: \"kun koulu loppuu\" -blogissa 28.2.2015: https://www.kunkoululoppuu.fi/blogi/virolaisen-opettajankoulutuksen-digi-ihmetta-aimistelemassa/..."
+date: '2015-02-28'
+description: 'Vieraileva bloggaaja Taloudellisen tiedotustoimisto TAT: "kun koulu loppuu" -blogissa 28.2.2015: https://www.kunkoululoppuu.fi/blogi/virolaisen-opettajankoulutuksen-digi-ihmetta-aimistelemassa/...'
 categories:
   - blogivierailu
   - Blogivierailut ja kolumnit
-  - Koulutusteknologi
+  - Koulutusteknologia
   - Teknologiatuettu oppiminen ja opetus
 keywords:
   - opetus
   - oppiminen
 type: kolumni
 wp_id: 237
-source_url: "https://www.jarilaru.fi/virolaisen-opettajankoulutuksen-digi-ihmetta-aimistelemassa/"
+source_url: 'https://www.jarilaru.fi/virolaisen-opettajankoulutuksen-digi-ihmetta-aimistelemassa/'
 templateEngineOverride: md
 ---
 <pre><code>Vieraileva bloggaaja Taloudellisen tiedotustoimisto TAT:n "kun koulu loppuu" -blogissa 28.2.2015:<a href="https://www.kunkoululoppuu.fi/blogi/virolaisen-opettajankoulutuksen-digi-ihmetta-aimistelemassa">https://www.kunkoululoppuu.fi/blogi/virolaisen-opettajankoulutuksen-digi-ihmetta-aimistelemassa</a>/ </code></pre>

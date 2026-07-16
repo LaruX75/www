@@ -1,14 +1,13 @@
 ---
 title: Käyttöjärjestelmä varsin olematon sivuseikka
-date: 2016-10-09
-description: "Oulussa on käyty edellisellä ja tällä valtuustokaudella välillä isoillakin kirjaimilla keskustelua koulujen käyttämästä \"käyttöjärjestelmästä\" (joka kattaa paljon muutakin)"
+date: '2016-10-09'
+description: Oulussa on käyty edellisellä ja tällä valtuustokaudella välillä isoillakin kirjaimilla keskustelua koulujen käyttämästä "käyttöjärjestelmästä" (joka kattaa paljon muutakin)
 categories:
-  - Kaleva
   - Käyttöjärjestelmät
   - pilvipalvelut ja ekosysteemit
-  - Mielipidekirjoitukset
-  - Poliitiikka
+  - Politiikka ja päätöksenteko
   - Teknologiatuettu oppiminen ja opetus
+publication: Kaleva
 keywords:
   - google suite for education
   - käyttöjärjestelmä
@@ -19,7 +18,7 @@ keywords:
   - windows
 type: mielipide
 wp_id: 1166
-source_url: "https://www.jarilaru.fi/kayttojarjestelma-varsin-olematon-sivuseikka/"
+source_url: 'https://www.jarilaru.fi/kayttojarjestelma-varsin-olematon-sivuseikka/'
 templateEngineOverride: md
 ---
 <pre>Yleisönosastokirjoitus<strong> sanomalehti Kalevassa 9.10.2016.</strong></pre>

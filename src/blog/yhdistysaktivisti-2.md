@@ -1,12 +1,13 @@
 ---
 title: Yhdistysaktivisti
-date: 2013-02-05
-description: "Olen aina pitänyt yhdistystoiminnasta. Yhdistykset joiden toiminnassa olen mukana tällä hetkellä Jäälin asukasyhdistys ry, puheenjohtaja Kansallinen lastenliitto, hallituksen jäsen Kiimingin Kokoomus ry, puheenjoh"
+date: '2013-02-05'
+description: 'Olen aina pitänyt yhdistystoiminnasta. Yhdistykset joiden toiminnassa olen mukana tällä hetkellä Jäälin asukasyhdistys ry, puheenjohtaja Kansallinen lastenliitto, hallituksen jäsen Kiimingin Kokoomus ry, puheenjoh'
 categories:
   - Harrastukset
+forum:
   - Luottamustehtävät
 wp_id: 788
-source_url: "https://www.jarilaru.fi/yhdistysaktivisti-2/"
+source_url: 'https://www.jarilaru.fi/yhdistysaktivisti-2/'
 templateEngineOverride: md
 ---
 

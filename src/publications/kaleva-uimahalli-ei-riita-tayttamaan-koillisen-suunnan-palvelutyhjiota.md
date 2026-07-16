@@ -1,10 +1,8 @@
 ---
-title: "KALEVA: Uimahalli ei riitä täyttämään Koillisen suunnan palvelutyhjiötä"
-date: 2012-05-20
-description: "Alla oleva mielipidekirjoitus on julkaistu Sanomalehti Kalevassa toukokuussa 2012 Elisa Koirikivi (Lukijalta 11.5) ja Mikko Sundman (Lukijalta 12.5) vaativat uimahallia osaksi Uuden Oulun koi..."
-categories:
-  - Kaleva
-  - Mielipidekirjoitukset
+title: 'KALEVA: Uimahalli ei riitä täyttämään Koillisen suunnan palvelutyhjiötä'
+date: '2012-05-20'
+description: Alla oleva mielipidekirjoitus on julkaistu Sanomalehti Kalevassa toukokuussa 2012 Elisa Koirikivi (Lukijalta 11.5) ja Mikko Sundman (Lukijalta 12.5) vaativat uimahallia osaksi Uuden Oulun koi...
+publication: Kaleva
 keywords:
   - jaana posio
   - jari laru
@@ -18,7 +16,7 @@ keywords:
   - verotus
 type: mielipide
 wp_id: 227
-source_url: "https://www.jarilaru.fi/kaleva-uimahalli-ei-riita-tayttamaan-koillisen-suunnan-palvelutyhjiota/"
+source_url: 'https://www.jarilaru.fi/kaleva-uimahalli-ei-riita-tayttamaan-koillisen-suunnan-palvelutyhjiota/'
 templateEngineOverride: md
 ---
 <p>Alla oleva mielipidekirjoitus on julkaistu Sanomalehti Kalevassa toukokuussa 2012</p>

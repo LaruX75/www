@@ -1,11 +1,12 @@
 ---
 title: Sähköinen perhekeskus – esimerkki tulevaisuuden digitaalisista palveluista
-date: 2022-01-17
-description: "Mu Oulu lehdessä julkaistu vaalikirjoitus."
+date: '2022-01-17'
+description: Mu Oulu lehdessä julkaistu vaalikirjoitus.
 categories:
-  - Aluevaaalit2022
+  - Vaalit
   - Mu Oulu
-  - Poliitiikka
+  - Politiikka ja päätöksenteko
+campaign: Aluevaalit 2022
 keywords:
   - aluevaalit
   - digitaaliset palvelut
@@ -14,7 +15,7 @@ keywords:
   - perhekeskus
 type: mielipide
 wp_id: 2035
-source_url: "https://www.jarilaru.fi/sahkoinen-perhekeskus-esimerkki-tulevaisuuden-digitaalisista-palveluista/"
+source_url: 'https://www.jarilaru.fi/sahkoinen-perhekeskus-esimerkki-tulevaisuuden-digitaalisista-palveluista/'
 politicalProfiles:
   - hyvinvointi
   - yhteistyo

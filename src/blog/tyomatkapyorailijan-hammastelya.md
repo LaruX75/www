@@ -1,9 +1,9 @@
 ---
-title: "Työmatkapyöräilijä hämmästelee Jäälin \"katuvaloja\" syksyn pimeydessä"
-date: 2008-10-01
-description: "Jo ennen kuin muutimme Jääliin hämmästelin alueen uskomattoman surkeata katuvalaistusta.Tuntui että taskulampustakin lähtee syksyn pimeillä enemmä valoa kuin tienposkeen harvakseltaan istutetuista katulampuista."
+title: Työmatkapyöräilijä hämmästelee Jäälin "katuvaloja" syksyn pimeydessä
+date: '2008-10-01'
+description: Jo ennen kuin muutimme Jääliin hämmästelin alueen uskomattoman surkeata katuvalaistusta.Tuntui että taskulampustakin lähtee syksyn pimeillä enemmä valoa kuin tienposkeen harvakseltaan istutetuista katulampuista.
 categories:
-  - politiikka
+  - Politiikka ja päätöksenteko
 keywords:
   - jääli
   - liikenne
@@ -12,7 +12,7 @@ keywords:
   - talous
   - valaistus
 wp_id: 919
-source_url: "https://www.jarilaru.fi/tyomatkapyorailijan-hammastelya/"
+source_url: 'https://www.jarilaru.fi/tyomatkapyorailijan-hammastelya/'
 politicalProfiles:
   - lahipalvelut
   - kaupunkikehitys

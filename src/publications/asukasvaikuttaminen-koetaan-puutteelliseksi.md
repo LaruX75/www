@@ -1,11 +1,10 @@
 ---
 title: Asukasvaikuttaminen koetaan puutteelliseksi
-date: 2017-02-14
-description: "Julkaistu Sanomalehti Kalevan yleisönosastossa 14.2.2017 Kalervo Ukkola liittyi Kalevassa (9.2.) Hietasaaren kaavoituksesta valittaneiden joukkoon epäilemällä, että Hietasaaren kaavoitukseen ..."
+date: '2017-02-14'
+description: 'Julkaistu Sanomalehti Kalevan yleisönosastossa 14.2.2017 Kalervo Ukkola liittyi Kalevassa (9.2.) Hietasaaren kaavoituksesta valittaneiden joukkoon epäilemällä, että Hietasaaren kaavoitukseen ...'
 categories:
-  - Kaleva
-  - Mielipidekirjoitukset
-  - Poliitiikka
+  - Politiikka ja päätöksenteko
+publication: Kaleva
 keywords:
   - asukasvaikuttaminen
   - hietasaaren kaava
@@ -19,7 +18,7 @@ keywords:
   - yhteisötoiminta
 type: mielipide
 wp_id: 1113
-source_url: "https://www.jarilaru.fi/asukasvaikuttaminen-koetaan-puutteelliseksi/"
+source_url: 'https://www.jarilaru.fi/asukasvaikuttaminen-koetaan-puutteelliseksi/'
 templateEngineOverride: md
 ---
 <pre><em>Julkaistu <strong>Sanomalehti Kalevan yleisönosastossa</strong> 14.2.2017</em></pre>

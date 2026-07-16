@@ -1,9 +1,9 @@
 ---
 title: Tervetuloa!
-date: 2008-09-24
-description: "Käy katsomassa mitä olen vastannut vaalikoneisiin! Lokakuun lopulla Suomen kunnissa tulee valituksi taas uusi valtuusto. Kiimingissä tuore valtuusto joutuu heti isojen päätösten eteen eikä työ tule olemaan helppoa."
+date: '2008-09-24'
+description: Käy katsomassa mitä olen vastannut vaalikoneisiin! Lokakuun lopulla Suomen kunnissa tulee valituksi taas uusi valtuusto. Kiimingissä tuore valtuusto joutuu heti isojen päätösten eteen eikä työ tule olemaan helppoa.
 categories:
-  - politiikka
+  - Politiikka ja päätöksenteko
 keywords:
   - esittely
   - kiiminki
@@ -13,7 +13,7 @@ keywords:
   - talous
   - yleistä
 wp_id: 916
-source_url: "https://www.jarilaru.fi/etusivu/"
+source_url: 'https://www.jarilaru.fi/etusivu/'
 templateEngineOverride: md
 ---
 

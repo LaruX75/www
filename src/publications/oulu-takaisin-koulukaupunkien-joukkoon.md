@@ -1,12 +1,12 @@
 ---
 title: Oulu takaisin koulukaupunkien joukkoon
-date: 2018-06-16
-description: "Kirjoitus on julkaistu Sanomalehti Kalevan “Lukijalta” -palstalla 16.6.2018 Oulu on ollut Pohjois-Suomen monipuolisin ja suosituin koulukaupunki jo yli 400 vuotta. Viimeisen viidentoista vuoden aika..."
+date: '2018-06-16'
+description: Kirjoitus on julkaistu Sanomalehti Kalevan “Lukijalta” -palstalla 16.6.2018 Oulu on ollut Pohjois-Suomen monipuolisin ja suosituin koulukaupunki jo yli 400 vuotta. Viimeisen viidentoista vuoden aika...
 categories:
-  - Kaleva
+  - Politiikka ja päätöksenteko
+publication: Kaleva
+forum:
   - Lautakunta
-  - Mielipidekirjoitukset
-  - Poliitiikka
 keywords:
   - koulu
   - koulukaupunki
@@ -15,7 +15,7 @@ keywords:
   - sivistys- ja kulttuurilautakunta
 type: mielipide
 wp_id: 972
-source_url: "https://www.jarilaru.fi/oulu-takaisin-koulukaupunkien-joukkoon/"
+source_url: 'https://www.jarilaru.fi/oulu-takaisin-koulukaupunkien-joukkoon/'
 politicalProfiles:
   - sivistys
 templateEngineOverride: md

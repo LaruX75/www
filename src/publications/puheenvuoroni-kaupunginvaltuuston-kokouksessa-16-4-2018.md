@@ -1,14 +1,13 @@
 ---
 title: Puheenvuoroni kaupunginvaltuuston kokouksessa 16.4.2018
-date: 2018-04-16
-event: "Oulun kaupunginvaltuusto"
-asiakohta: "§ 30 – Sivistys- ja kulttuuripalveluiden palveluverkkosuunnitelmalinjaukset"
-description: "https://youtu.be/f-jaWyE97P0?t=6365nPuheessanikäsittelenOulunkaupunginpalveluverkkokeskusteluajaerityisestikoulujakäsittelevääkeskustelua.Puheessaniviittaanoululaistenopettajav..."
+date: '2018-04-16'
+description: 'https://youtu.be/f-jaWyE97P0?t=6365nPuheessanikäsittelenOulunkaupunginpalveluverkkokeskusteluajaerityisestikoulujakäsittelevääkeskustelua.Puheessaniviittaanoululaistenopettajav...'
+event: Oulun kaupunginvaltuusto
+asiakohta: § 30 – Sivistys- ja kulttuuripalveluiden palveluverkkosuunnitelmalinjaukset
 categories:
+  - Politiikka ja päätöksenteko
+forum:
   - Kaupunginvaltuusto
-  - Kaupunginvaltuustossa pidetyt puheenvuorot
-  - Poliitiikka
-  - Puheet
 keywords:
   - kaupunginvaltuusto
   - kiinteistöt
@@ -23,7 +22,7 @@ keywords:
   - vuokra
 type: puhe
 wp_id: 1120
-source_url: "https://www.jarilaru.fi/puheenvuoroni-kaupunginvaltuuston-kokouksessa-16-4-2018/"
+source_url: 'https://www.jarilaru.fi/puheenvuoroni-kaupunginvaltuuston-kokouksessa-16-4-2018/'
 politicalProfiles:
   - sivistys
   - lahipalvelut
