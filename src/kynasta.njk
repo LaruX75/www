@@ -1610,6 +1610,70 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
   }
 })();
 
+// --- Jaettu paginaatiofunktio ---
+function renderPaginationShared(ul, total, currentPage, onPageChange) {
+  if (!ul) return;
+  ul.innerHTML = '';
+  if (total <= 1) return;
+
+  const isMobile = window.matchMedia('(max-width: 767.98px)').matches;
+
+  const appendPageLink = (label, page, { active = false, disabled = false, ariaLabel = '' } = {}) => {
+    const li = document.createElement('li');
+    li.className = `page-item${active ? ' active' : ''}${disabled ? ' disabled' : ''}`;
+    const a = document.createElement('a');
+    a.className = 'page-link';
+    a.href = '#';
+    a.textContent = label;
+    if (ariaLabel) a.setAttribute('aria-label', ariaLabel);
+    if (!disabled) {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        onPageChange(page);
+      });
+    } else {
+      a.setAttribute('aria-disabled', 'true');
+      a.setAttribute('tabindex', '-1');
+    }
+    li.appendChild(a);
+    ul.appendChild(li);
+  };
+
+  const appendEllipsis = () => {
+    const li = document.createElement('li');
+    li.className = 'page-item disabled';
+    li.innerHTML = '<span class="page-link">…</span>';
+    ul.appendChild(li);
+  };
+
+  if (!isMobile) {
+    for (let i = 1; i <= total; i++) {
+      appendPageLink(String(i), i, { active: i === currentPage });
+    }
+    return;
+  }
+
+  appendPageLink('‹', Math.max(1, currentPage - 1), {
+    disabled: currentPage === 1,
+    ariaLabel: 'Edellinen sivu'
+  });
+
+  const pages = new Set([1, total, currentPage - 1, currentPage, currentPage + 1]);
+  const orderedPages = [...pages].filter(p => p >= 1 && p <= total).sort((a, b) => a - b);
+
+  let previousPage = null;
+  orderedPages.forEach(page => {
+    if (previousPage !== null && page - previousPage > 1) appendEllipsis();
+    appendPageLink(String(page), page, { active: page === currentPage });
+    previousPage = page;
+  });
+
+  appendPageLink('›', Math.min(total, currentPage + 1), {
+    disabled: currentPage === total,
+    ariaLabel: 'Seuraava sivu'
+  });
+}
+
 (function () {
   const PAGE_SIZE = 5;
   const dataEl = document.getElementById('pub-data');
@@ -1803,27 +1867,11 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
   }
 
   function renderPagination(total) {
-    if (!pagUl) return;
-    pagUl.innerHTML = '';
-    
-    // Yksinkertainen sivutus (1, 2, 3...)
-    for (let i = 1; i <= total; i++) {
-      const li = document.createElement('li');
-      li.className = `page-item${i === currentPage ? ' active' : ''}`;
-      const a = document.createElement('a');
-      a.className = 'page-link';
-      a.href = '#';
-      a.textContent = i;
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        currentPage = i;
-        render();
-        // Skrollaus kortin alkuun
-        document.getElementById('julkaisut')?.scrollIntoView({behavior:'smooth', block:'start'});
-      });
-      li.appendChild(a);
-      pagUl.appendChild(li);
-    }
+    renderPaginationShared(pagUl, total, currentPage, page => {
+      currentPage = page;
+      render();
+      document.getElementById('julkaisut')?.scrollIntoView({behavior:'smooth', block:'start'});
+    });
   }
 
   function escHtml(str) {
@@ -1989,26 +2037,11 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
   }
 
   function renderBlogPagination(total) {
-    if (!blogPagUl) return;
-    blogPagUl.innerHTML = '';
-    if (total <= 1) return;
-    
-    for (let i = 1; i <= total; i++) {
-      const li = document.createElement('li');
-      li.className = `page-item${i === blogCurrentPage ? ' active' : ''}`;
-      const a = document.createElement('a');
-      a.className = 'page-link';
-      a.href = '#';
-      a.textContent = i;
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        blogCurrentPage = i;
-        renderBlog();
-        document.getElementById('blogi')?.scrollIntoView({behavior:'smooth', block:'start'});
-      });
-      li.appendChild(a);
-      blogPagUl.appendChild(li);
-    }
+    renderPaginationShared(blogPagUl, total, blogCurrentPage, page => {
+      blogCurrentPage = page;
+      renderBlog();
+      document.getElementById('blogi')?.scrollIntoView({behavior:'smooth', block:'start'});
+    });
   }
 
   function escHtml(str) {
@@ -2271,68 +2304,10 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
   }
 
   function renderEsityksetPagination(total) {
-    if (!esityksetPagUl) return;
-    esityksetPagUl.innerHTML = '';
-    if (total <= 1) return;
-    const isMobile = window.matchMedia('(max-width: 767.98px)').matches;
-
-    const appendPageLink = (label, page, { active = false, disabled = false, ariaLabel = '' } = {}) => {
-      const li = document.createElement('li');
-      li.className = `page-item${active ? ' active' : ''}${disabled ? ' disabled' : ''}`;
-      const a = document.createElement('a');
-      a.className = 'page-link';
-      a.href = '#';
-      a.textContent = label;
-      if (ariaLabel) a.setAttribute('aria-label', ariaLabel);
-      if (!disabled) {
-        a.addEventListener('click', e => {
-          e.preventDefault();
-          esityksetCurrentPage = page;
-          renderEsitykset();
-          document.getElementById('esitykset')?.scrollIntoView({behavior:'smooth', block:'start'});
-        });
-      } else {
-        a.setAttribute('aria-disabled', 'true');
-        a.setAttribute('tabindex', '-1');
-      }
-      li.appendChild(a);
-      esityksetPagUl.appendChild(li);
-    };
-
-    const appendEllipsis = () => {
-      const li = document.createElement('li');
-      li.className = 'page-item disabled';
-      li.innerHTML = '<span class="page-link">…</span>';
-      esityksetPagUl.appendChild(li);
-    };
-
-    if (!isMobile) {
-      for (let i = 1; i <= total; i++) {
-        appendPageLink(String(i), i, { active: i === esityksetCurrentPage });
-      }
-      return;
-    }
-
-    appendPageLink('‹', Math.max(1, esityksetCurrentPage - 1), {
-      disabled: esityksetCurrentPage === 1,
-      ariaLabel: 'Edellinen sivu'
-    });
-
-    const pages = new Set([1, total, esityksetCurrentPage - 1, esityksetCurrentPage, esityksetCurrentPage + 1]);
-    const orderedPages = [...pages].filter((page) => page >= 1 && page <= total).sort((a, b) => a - b);
-
-    let previousPage = null;
-    orderedPages.forEach((page) => {
-      if (previousPage !== null && page - previousPage > 1) {
-        appendEllipsis();
-      }
-      appendPageLink(String(page), page, { active: page === esityksetCurrentPage });
-      previousPage = page;
-    });
-
-    appendPageLink('›', Math.min(total, esityksetCurrentPage + 1), {
-      disabled: esityksetCurrentPage === total,
-      ariaLabel: 'Seuraava sivu'
+    renderPaginationShared(esityksetPagUl, total, esityksetCurrentPage, page => {
+      esityksetCurrentPage = page;
+      renderEsitykset();
+      document.getElementById('esitykset')?.scrollIntoView({behavior:'smooth', block:'start'});
     });
   }
 
@@ -2498,26 +2473,11 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
   }
 
   function renderPuheetPagination(total) {
-    if (!puheetPagUl) return;
-    puheetPagUl.innerHTML = '';
-    if (total <= 1) return;
-    
-    for (let i = 1; i <= total; i++) {
-      const li = document.createElement('li');
-      li.className = `page-item${i === puheetCurrentPage ? ' active' : ''}`;
-      const a = document.createElement('a');
-      a.className = 'page-link';
-      a.href = '#';
-      a.textContent = i;
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        puheetCurrentPage = i;
-        renderPuheet();
-        document.getElementById('puheet')?.scrollIntoView({behavior:'smooth', block:'start'});
-      });
-      li.appendChild(a);
-      puheetPagUl.appendChild(li);
-    }
+    renderPaginationShared(puheetPagUl, total, puheetCurrentPage, page => {
+      puheetCurrentPage = page;
+      renderPuheet();
+      document.getElementById('puheet')?.scrollIntoView({behavior:'smooth', block:'start'});
+    });
   }
 
   function escHtml(str) {
@@ -2648,26 +2608,11 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
   }
 
   function renderAloitteetPagination(total) {
-    if (!aloitteetPagUl) return;
-    aloitteetPagUl.innerHTML = '';
-    if (total <= 1) return;
-    
-    for (let i = 1; i <= total; i++) {
-      const li = document.createElement('li');
-      li.className = `page-item${i === aloitteetCurrentPage ? ' active' : ''}`;
-      const a = document.createElement('a');
-      a.className = 'page-link';
-      a.href = '#';
-      a.textContent = i;
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        aloitteetCurrentPage = i;
-        renderAloitteet();
-        document.getElementById('aloitteet')?.scrollIntoView({behavior:'smooth', block:'start'});
-      });
-      li.appendChild(a);
-      aloitteetPagUl.appendChild(li);
-    }
+    renderPaginationShared(aloitteetPagUl, total, aloitteetCurrentPage, page => {
+      aloitteetCurrentPage = page;
+      renderAloitteet();
+      document.getElementById('aloitteet')?.scrollIntoView({behavior:'smooth', block:'start'});
+    });
   }
 
   function escHtml(str) {
@@ -2798,26 +2743,11 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
   }
 
   function renderKolumnitPagination(total) {
-    if (!kolumnitPagUl) return;
-    kolumnitPagUl.innerHTML = '';
-    if (total <= 1) return;
-    
-    for (let i = 1; i <= total; i++) {
-      const li = document.createElement('li');
-      li.className = `page-item${i === kolumnitCurrentPage ? ' active' : ''}`;
-      const a = document.createElement('a');
-      a.className = 'page-link';
-      a.href = '#';
-      a.textContent = i;
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        kolumnitCurrentPage = i;
-        renderKolumnit();
-        document.getElementById('kolumnit')?.scrollIntoView({behavior:'smooth', block:'start'});
-      });
-      li.appendChild(a);
-      kolumnitPagUl.appendChild(li);
-    }
+    renderPaginationShared(kolumnitPagUl, total, kolumnitCurrentPage, page => {
+      kolumnitCurrentPage = page;
+      renderKolumnit();
+      document.getElementById('kolumnit')?.scrollIntoView({behavior:'smooth', block:'start'});
+    });
   }
 
   function escHtml(str) {
@@ -2957,26 +2887,11 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
   }
 
   function renderLausunnotPagination(total) {
-    if (!lausunnotPagUl) return;
-    lausunnotPagUl.innerHTML = '';
-    if (total <= 1) return;
-
-    for (let i = 1; i <= total; i++) {
-      const li = document.createElement('li');
-      li.className = `page-item${i === lausunnotCurrentPage ? ' active' : ''}`;
-      const a = document.createElement('a');
-      a.className = 'page-link';
-      a.href = '#';
-      a.textContent = i;
-      a.addEventListener('click', (e) => {
-        e.preventDefault();
-        lausunnotCurrentPage = i;
-        renderLausunnot();
-        document.getElementById('lausunnot')?.scrollIntoView({behavior:'smooth', block:'start'});
-      });
-      li.appendChild(a);
-      lausunnotPagUl.appendChild(li);
-    }
+    renderPaginationShared(lausunnotPagUl, total, lausunnotCurrentPage, page => {
+      lausunnotCurrentPage = page;
+      renderLausunnot();
+      document.getElementById('lausunnot')?.scrollIntoView({behavior:'smooth', block:'start'});
+    });
   }
 
   function escHtml(str) {
@@ -3140,26 +3055,11 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
   }
 
   function renderMielipiteetPagination(total) {
-    if (!mielipiteetPagUl) return;
-    mielipiteetPagUl.innerHTML = '';
-    if (total <= 1) return;
-    
-    for (let i = 1; i <= total; i++) {
-      const li = document.createElement('li');
-      li.className = `page-item${i === mielipiteetCurrentPage ? ' active' : ''}`;
-      const a = document.createElement('a');
-      a.className = 'page-link';
-      a.href = '#';
-      a.textContent = i;
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        mielipiteetCurrentPage = i;
-        renderMielipiteet();
-        document.getElementById('mielipiteet')?.scrollIntoView({behavior:'smooth', block:'start'});
-      });
-      li.appendChild(a);
-      mielipiteetPagUl.appendChild(li);
-    }
+    renderPaginationShared(mielipiteetPagUl, total, mielipiteetCurrentPage, page => {
+      mielipiteetCurrentPage = page;
+      renderMielipiteet();
+      document.getElementById('mielipiteet')?.scrollIntoView({behavior:'smooth', block:'start'});
+    });
   }
 
   function escHtml(str) {
