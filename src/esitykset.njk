@@ -205,6 +205,28 @@ translationKey: presentations_index
   {% endif %}
 {% endfor %}
 {% set presentationMaterialTotal = presentationMaterialKeys | length %}
+{% set presentationContextItems = (presentationContexts and presentationContexts.items) or [] %}
+{% set presentationContextFeedbackRefs = [] %}
+{% for context in presentationContextItems %}
+  {% for feedbackId in (context.feedbackIds or []) %}
+    {% if presentationContextFeedbackRefs.indexOf(feedbackId) == -1 %}
+      {% set _ = (presentationContextFeedbackRefs.push(feedbackId), null) %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+{% set presentationContextFeedbackTotal = presentationContextFeedbackRefs | length %}
+
+{% macro renderContextChips(item) %}
+  {% set itemUrl = item.url or item.externalUrl or item.pageUrl or "" %}
+  {% set itemTitle = item.title or "" %}
+  {% for context in presentationContextItems %}
+    {% set materialUrls = context.materialUrls or [] %}
+    {% set materialTitles = context.materialTitles or [] %}
+    {% if (itemUrl and materialUrls.indexOf(itemUrl) != -1) or (itemTitle and materialTitles.indexOf(itemTitle) != -1) %}
+      <span class="presentation-context-chip">{{ context.typeLabel }}: {{ context.title }}</span>
+    {% endif %}
+  {% endfor %}
+{% endmacro %}
 
 <section class="presentation-hero-section py-5 border-bottom">
   <div class="site-shell">
@@ -230,8 +252,8 @@ translationKey: presentations_index
                 <dt class="home-hero-kpi-label">materiaalia yhteensä</dt>
               </div>
               <div class="home-hero-kpi">
-                <dd class="home-hero-kpi-value">{{ (collections.presentations or []) | length }}</dd>
-                <dt class="home-hero-kpi-label">esityssivua sivustolla</dt>
+                <dd class="home-hero-kpi-value">{{ presentationContextItems | length }}</dd>
+                <dt class="home-hero-kpi-label">käyttökontekstia</dt>
               </div>
               <div class="home-hero-kpi">
                 <dd class="home-hero-kpi-value">{% if videoContentCount %}{{ videoContentCount }}{% else %}{{ presentationAnalysisCount }}{% endif %}</dd>
@@ -301,6 +323,77 @@ translationKey: presentations_index
   </div>
 </section>
 
+<section class="py-5 presentation-context-section border-top" id="kayttokontekstit" aria-labelledby="kayttokontekstit-heading">
+  <div class="site-shell">
+    <div class="presentation-section-head">
+      <p class="presentation-section-kicker mb-1">Käyttökontekstit</p>
+      <h2 id="kayttokontekstit-heading" class="presentation-section-title">Materiaali, tilaisuus ja palaute samaan ketjuun</h2>
+      <p class="presentation-section-lead mb-0">Esitys tai video on harvoin irrallinen tiedosto. Se liittyy yleensä luentoon, harjoitukseen, täydennyskoulutukseen, keynoteen tai julkiseen asiantuntijatilanteeseen. Tämä osio kokoaa ensimmäiset tunnetut yhteydet näkyviin.</p>
+    </div>
+
+    <div class="presentation-context-grid">
+      {% for context in presentationContextItems | sort(attribute="date", reverse=true) %}
+      <article class="presentation-context-card">
+        <div class="presentation-context-card-head">
+          <span class="presentation-context-type">{{ context.typeLabel }}</span>
+          <span class="presentation-context-date">{{ context.displayDate or (context.date | dateFormat) }}</span>
+        </div>
+        <h3 class="presentation-context-title">{{ context.title }}</h3>
+        <p class="presentation-context-summary">{{ context.summary }}</p>
+        <dl class="presentation-context-meta">
+          <div>
+            <dt>Rooli</dt>
+            <dd>{{ context.role }}</dd>
+          </div>
+          <div>
+            <dt>Kohderyhmä</dt>
+            <dd>{{ context.audience }}</dd>
+          </div>
+          <div>
+            <dt>Järjestäjä</dt>
+            <dd>{{ context.organizer }}</dd>
+          </div>
+        </dl>
+        {% if context.topics and context.topics.length %}
+        <div class="presentation-context-topics" aria-label="Teemat">
+          {% for topic in context.topics %}
+          <span>{{ topic }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+        {% if context.materials and context.materials.length %}
+        <div class="presentation-context-materials">
+          <p class="presentation-context-subtitle">Kytketyt aineistot</p>
+          <div class="d-flex flex-wrap gap-2">
+            {% for material in context.materials %}
+              {% if material.url %}
+              <a href="{{ material.url }}"{% if material.url.startsWith("http") %} target="_blank" rel="noopener noreferrer"{% endif %} class="btn btn-outline-primary btn-sm rounded-pill px-3">{{ material.label }}</a>
+              {% else %}
+              <span class="presentation-context-material-static">{{ material.label }}</span>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+        {% if context.feedbackIds and context.feedbackIds.length %}
+        <div class="presentation-context-feedback">
+          <p class="presentation-context-subtitle">Palaute</p>
+          {% for feedback in testimonials.items %}
+            {% if context.feedbackIds.indexOf(feedback.id) != -1 %}
+            <blockquote>
+              <p>“{{ feedback.content.fi.quote }}”</p>
+              <footer>{{ feedback.content.fi.attribution }}</footer>
+            </blockquote>
+            {% endif %}
+          {% endfor %}
+        </div>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
 <section class="py-5 bg-body-tertiary border-top border-bottom" id="ajankohtaiset-nostot">
   <div class="site-shell">
     <div class="presentation-section-head">
@@ -331,6 +424,9 @@ translationKey: presentations_index
                   {% endif %}
                 </div>
                 <p class="text-muted small mb-2">{{ item.date | dateFormat }}</p>
+                <div class="presentation-context-chip-row mb-2">
+                  {{ renderContextChips(item) }}
+                </div>
                 <h3 class="h5 mb-2"><a href="{{ item.url }}"{% if item.external %} target="_blank" rel="noopener noreferrer"{% endif %} class="text-decoration-none">{{ item.title }}</a></h3>
                 <p class="text-muted small mb-3">{{ item.description }}</p>
                 <div class="mt-auto d-flex flex-wrap gap-2">
@@ -493,6 +589,9 @@ translationKey: presentations_index
                 {% endif %}
               </div>
               <p class="text-muted small mb-2">{{ item.date | dateFormat }}</p>
+              <div class="presentation-context-chip-row mb-2">
+                {{ renderContextChips(item) }}
+              </div>
               <h3 class="h5 mb-2"><a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a></h3>
               <p class="text-muted small mb-3">{{ item.description }}</p>
               <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-3">Avaa esitys</a>
@@ -965,6 +1064,7 @@ translationKey: presentations_index
     youtube: {{ (youtube.tableRows or []) | jsonSafe | safe }},
     slideshare: {{ ssDataItems | jsonSafe | safe }}
   };
+  const presentationContexts = {{ presentationContextItems | jsonSafe | safe }};
   const analysisArchiveItems = [
     {
       title: "Canva-esitykset 2021-2026",
@@ -1075,6 +1175,37 @@ translationKey: presentations_index
 
   function linkAttrs(url) {
     return isExternalUrl(url) ? ' target="_blank" rel="noopener noreferrer"' : "";
+  }
+
+  function normalizeContextUrl(value) {
+    return String(value || "").trim().replace(/\/$/, "");
+  }
+
+  function findContextsForItem(item) {
+    const itemUrls = [
+      item.url,
+      item.externalUrl,
+      item.pageUrl
+    ].map(normalizeContextUrl).filter(Boolean);
+    const itemTitle = String(item.title || "").trim();
+
+    return presentationContexts.filter((context) => {
+      const materialUrls = Array.isArray(context.materialUrls)
+        ? context.materialUrls.map(normalizeContextUrl).filter(Boolean)
+        : [];
+      const materialTitles = Array.isArray(context.materialTitles)
+        ? context.materialTitles.map((title) => String(title || "").trim())
+        : [];
+      return itemUrls.some((url) => materialUrls.includes(url)) || (itemTitle && materialTitles.includes(itemTitle));
+    });
+  }
+
+  function renderContextBadges(item) {
+    const matches = findContextsForItem(item).slice(0, 2);
+    if (!matches.length) return "";
+    return `<div class="presentation-context-chip-row">${matches.map((context) => `
+      <span class="presentation-context-chip">${escHtml(context.typeLabel || "Konteksti")}: ${escHtml(context.title || "")}</span>
+    `).join("")}</div>`;
   }
 
   function toDisplayDate(value) {
@@ -1514,6 +1645,7 @@ translationKey: presentations_index
 
     grid.innerHTML = pageItems.map((item) => {
       const primaryUrl = item.pageUrl || item.url || "";
+      const contextBadges = renderContextBadges(item);
       const thumb = item.thumbnail
         ? `<span class="presentation-archive-card-thumb-placeholder"><i class="bi ${escHtml(iconByKey[item.sourceKey] || "bi-easel2")}"></i></span><img src="${escHtml(item.thumbnail)}" alt="" class="presentation-archive-card-thumb-image" loading="lazy" decoding="async" onerror="this.style.display='none';">`
         : `<span class="presentation-archive-card-thumb-placeholder"><i class="bi ${escHtml(iconByKey[item.sourceKey] || "bi-easel2")}"></i></span>`;
@@ -1539,6 +1671,7 @@ translationKey: presentations_index
             </div>
             <h3 class="presentation-archive-card-title">${titleLink}</h3>
             <p class="presentation-archive-card-date">${escHtml(item.date || item.meta || "")}</p>
+            ${contextBadges}
             <p class="presentation-archive-card-desc">${escHtml(truncate(item.description || item.meta || "", 150))}</p>
             <div class="presentation-archive-card-actions">${externalButton}${sourceButton}${pageButton}</div>
           </div>
@@ -1651,6 +1784,161 @@ translationKey: presentations_index
   color: var(--bs-secondary-color);
   font-size: 1.02rem;
   line-height: 1.7;
+}
+
+.presentation-context-section {
+  background:
+    radial-gradient(circle at 12% 8%, rgba(13, 110, 253, 0.08), transparent 34%),
+    linear-gradient(180deg, var(--bs-body-bg), var(--bs-tertiary-bg));
+}
+
+.presentation-context-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.presentation-context-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-height: 100%;
+  padding: clamp(1.15rem, 2vw, 1.6rem);
+  border: 1px solid var(--bs-border-color);
+  border-radius: 1.45rem;
+  background: color-mix(in srgb, var(--bs-body-bg) 94%, var(--bs-primary) 6%);
+  box-shadow: 0 1rem 2.4rem rgba(15, 23, 42, 0.08);
+}
+
+.presentation-context-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.presentation-context-type,
+.presentation-context-date,
+.presentation-context-chip {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  border: 1px solid color-mix(in srgb, var(--bs-primary) 28%, var(--bs-border-color) 72%);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bs-primary) 9%, var(--bs-body-bg) 91%);
+  color: var(--bs-primary);
+  font-size: 0.74rem;
+  font-weight: 750;
+  line-height: 1.2;
+}
+
+.presentation-context-type,
+.presentation-context-date {
+  padding: 0.34rem 0.62rem;
+}
+
+.presentation-context-date {
+  color: var(--bs-secondary-color);
+  background: var(--bs-body-bg);
+}
+
+.presentation-context-title {
+  margin: 0;
+  font-size: clamp(1.15rem, 1.6vw, 1.45rem);
+  line-height: 1.16;
+}
+
+.presentation-context-summary {
+  margin: 0;
+  color: var(--bs-secondary-color);
+  line-height: 1.65;
+}
+
+.presentation-context-meta {
+  display: grid;
+  gap: 0.65rem;
+  margin: 0;
+}
+
+.presentation-context-meta div {
+  display: grid;
+  grid-template-columns: minmax(5.25rem, 0.28fr) 1fr;
+  gap: 0.75rem;
+}
+
+.presentation-context-meta dt,
+.presentation-context-subtitle {
+  margin: 0;
+  color: var(--bs-secondary-color);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.presentation-context-meta dd {
+  margin: 0;
+  color: var(--bs-body-color);
+  font-size: 0.94rem;
+}
+
+.presentation-context-topics,
+.presentation-context-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.presentation-context-topics span {
+  display: inline-flex;
+  padding: 0.3rem 0.55rem;
+  border-radius: 999px;
+  background: var(--bs-body-bg);
+  color: var(--bs-secondary-color);
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.presentation-context-materials,
+.presentation-context-feedback {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.presentation-context-material-static {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 0.32rem 0.75rem;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 999px;
+  color: var(--bs-secondary-color);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.presentation-context-feedback blockquote {
+  margin: 0;
+  padding: 0.8rem 0.9rem;
+  border-left: 3px solid var(--bs-primary);
+  border-radius: 0.85rem;
+  background: var(--bs-body-bg);
+}
+
+.presentation-context-feedback blockquote p {
+  margin: 0 0 0.35rem;
+  color: var(--bs-body-color);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.presentation-context-feedback blockquote footer {
+  color: var(--bs-secondary-color);
+  font-size: 0.82rem;
+}
+
+.presentation-context-chip {
+  padding: 0.26rem 0.54rem;
 }
 
 .presentation-hero-panel {
@@ -2305,6 +2593,20 @@ translationKey: presentations_index
 }
 
 @media (max-width: 767.98px) {
+  .presentation-context-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .presentation-context-meta div {
+    grid-template-columns: 1fr;
+    gap: 0.18rem;
+  }
+
+  .presentation-context-card-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
   .presentation-scroller-card {
     width: 260px;
     flex-basis: 260px;

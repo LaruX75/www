@@ -1,0 +1,159 @@
+{
+  "items": [
+    {
+      "id": "itk-keynote-2026",
+      "title": "ITK 2026 -avauspuheenvuoro",
+      "date": "2026-04-26",
+      "displayDate": "23.-26.4.2026",
+      "type": "keynote",
+      "typeLabel": "Keynote",
+      "format": "tapahtumapuheenvuoro",
+      "role": "avauspuheenvuoron pitäjä",
+      "organizer": "ITK-konferenssi",
+      "audience": "koulutusteknologian, opetuksen ja koulutusjohdon toimijat",
+      "summary": "ITK 2026 -kokonaisuuteen liittyvät sekä keynote-tallenne että tapahtuman Canva-aineistot. Konteksti on valtakunnallinen koulutusteknologian päätapahtuma, joten aineisto toimii sekä asiantuntijapuheenvuorona että koulutuspoliittisena suunnannäyttäjänä.",
+      "topics": ["tekoäly", "koulutusteknologia", "opetus", "työelämä"],
+      "materialTitles": [
+        "ITK-avauksen tallenne: Työkalu? Taikakalu?",
+        "ITK Keynote 2026",
+        "ITK2026 millaisia ovat tekoälyaikakauden opettajaprofiilit"
+      ],
+      "materialUrls": [
+        "https://www.youtube.com/watch?v=0cJ0Ed3Scs4&t=5s",
+        "https://www.canva.com/d/pMm8MIDIyZgTA9x",
+        "https://www.canva.com/d/y9BTv-y2lINNIaE"
+      ],
+      "materials": [
+        {
+          "label": "ITK Keynote 2026",
+          "type": "Canva-esitys",
+          "url": "https://www.canva.com/d/pMm8MIDIyZgTA9x"
+        },
+        {
+          "label": "ITK2026 millaisia ovat tekoälyaikakauden opettajaprofiilit",
+          "type": "Canva-esitys",
+          "url": "https://www.canva.com/d/y9BTv-y2lINNIaE"
+        },
+        {
+          "label": "ITK-avauksen videotallenne",
+          "type": "YouTube-video",
+          "url": "https://www.youtube.com/watch?v=0cJ0Ed3Scs4&t=5s"
+        }
+      ],
+      "feedbackIds": []
+    },
+    {
+      "id": "avi-tekoaly-webinaari-2024",
+      "title": "Opetus ja oppiminen tekoälyajassa",
+      "date": "2024-10-01",
+      "type": "continuing-education",
+      "typeLabel": "Täydennyskoulutus",
+      "format": "webinaari",
+      "role": "pääesityksen pitäjä",
+      "organizer": "Aluehallintovirastot",
+      "audience": "opettajat, koulutusjohto ja varhaiskasvatuksen henkilöstö",
+      "summary": "Täydennyskoulutuksen konteksti, jossa tekoälyä tarkasteltiin käytännön opetustyön, oppimisen ja Generation AI -työkalujen kautta. Sama kokonaisuus yhdistää luento-osuuden ja perusopetukselle suunnatun rinnakkaissession.",
+      "topics": ["tekoäly", "täydennyskoulutus", "opetus", "Generation AI"],
+      "materialTitles": ["Tekoäly on ympärillämme, mutta emme tunnista sitä – neljä näkökulmaa tekoälyn opetuskäyttöön"],
+      "materialUrls": ["https://eventilla.avi.fi/event/OlXJz"],
+      "materials": [
+        {
+          "label": "Tekoäly on ympärillämme, mutta emme tunnista sitä",
+          "type": "esityssivu",
+          "url": "/esitykset/tekoaly-opetuskaytto-avi-webinaari-2024/"
+        },
+        {
+          "label": "Tapahtuman sivu",
+          "type": "tapahtuma",
+          "url": "https://eventilla.avi.fi/event/OlXJz"
+        }
+      ],
+      "feedbackIds": ["fnae-participant"]
+    },
+    {
+      "id": "palveluverkko-asiantuntijavideo-2026",
+      "title": "Palveluverkkokeskustelun tausta-aineisto",
+      "date": "2026-01-19",
+      "type": "expert-video",
+      "typeLabel": "Asiantuntijavideo",
+      "format": "video",
+      "role": "tausta-aineiston kokoaja ja esittäjä",
+      "organizer": "oma asiantuntija- ja luottamushenkilötyö",
+      "audience": "päätöksentekijät, vanhemmat ja palveluverkkokeskustelua seuraavat kaupunkilaiset",
+      "summary": "Video kytkee opetuksen, tilastotiedon ja kunnallisen päätöksenteon samaan kokonaisuuteen. Se ei ole vain tallenne, vaan palveluverkkokeskustelun tueksi tehty asiantuntijamateriaali.",
+      "topics": ["palveluverkko", "päätöksenteko", "tilastotieto", "Oulu"],
+      "materialTitles": ["Oululaisia lapsia ja nuoria koskevien tilastotietojen tarkastelua"],
+      "materialUrls": ["https://www.youtube.com/watch?v=7EXB54VvlsU&t=2s"],
+      "materials": [
+        {
+          "label": "Oululaisia lapsia ja nuoria koskevien tilastotietojen tarkastelua",
+          "type": "YouTube-video",
+          "url": "https://www.youtube.com/watch?v=7EXB54VvlsU&t=2s"
+        }
+      ],
+      "feedbackIds": []
+    },
+    {
+      "id": "jari-larun-verkkolive-2020",
+      "title": "Jari Larun verkkolive",
+      "date": "2020-03-12",
+      "type": "video-series",
+      "typeLabel": "Videosarja",
+      "format": "haastattelusarja",
+      "role": "haastattelija ja tuottaja",
+      "organizer": "oma verkkolivesarja",
+      "audience": "opettajat ja koulutusteknologian toimijat koronakevään etäopetustilanteessa",
+      "summary": "Koronakevään haastattelusarja, jossa opettajat ja koulutusteknologian asiantuntijat käsittelivät etäopetukseen siirtymistä. Tämä kuuluu sekä esitysten että mediassa-sivun rajapintaan: oma tuotanto, jossa haastattelijan rooli on keskeinen.",
+      "topics": ["etäopetus", "verkkolive", "haastattelusarja", "koulutusteknologia"],
+      "materialTitles": ["Jari Larun verkkolive"],
+      "materialUrls": [
+        "/2020/03/12/jari-larun-verkkolive/",
+        "https://www.youtube.com/playlist?list=PLDG0jxUrk8z19_ThqBiynpYG4g-mjwgpt"
+      ],
+      "materials": [
+        {
+          "label": "Jari Larun verkkolive",
+          "type": "koontisivu",
+          "url": "/2020/03/12/jari-larun-verkkolive/"
+        },
+        {
+          "label": "YouTube-soittolista",
+          "type": "soittolista",
+          "url": "https://www.youtube.com/playlist?list=PLDG0jxUrk8z19_ThqBiynpYG4g-mjwgpt"
+        }
+      ],
+      "feedbackIds": []
+    },
+    {
+      "id": "vaitoslektio-2012",
+      "title": "Väitöstilaisuuden lektio ja väitöskirjan kokonaisuus",
+      "date": "2012-01-01",
+      "type": "academic-lecture",
+      "typeLabel": "Akateeminen luento",
+      "format": "lektio",
+      "role": "väittelijä",
+      "organizer": "Oulun yliopisto",
+      "audience": "tiedeyhteisö ja väitöstilaisuuden yleisö",
+      "summary": "Väitöslektio, väitöskirja ja osajulkaisut muodostavat yhden tutkimuksellisen kokonaisuuden. Konteksti auttaa ymmärtämään, miksi video, väitöskirja ja tieteelliset lähteet kuuluvat samalle sivulle.",
+      "topics": ["väitöskirja", "lektio", "mobiilioppiminen", "CSCL"],
+      "materialTitles": ["Väitöstilaisuuden lektio"],
+      "materialUrls": [
+        "/vaitoskirja/",
+        "https://www.youtube.com/watch?v=TIi1tTZqHvU&list=PLDG0jxUrk8z2oNCSbotS_yNVjtnEALFP0"
+      ],
+      "materials": [
+        {
+          "label": "Väitöskirjasivu",
+          "type": "koontisivu",
+          "url": "/vaitoskirja/"
+        },
+        {
+          "label": "Väitöstilaisuuden lektio",
+          "type": "YouTube-video",
+          "url": "https://www.youtube.com/watch?v=TIi1tTZqHvU&list=PLDG0jxUrk8z2oNCSbotS_yNVjtnEALFP0"
+        }
+      ],
+      "feedbackIds": []
+    }
+  ]
+}
