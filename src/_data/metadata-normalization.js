@@ -54,7 +54,9 @@ const KEYWORD_CANONICAL_BY_SLUG = {
   "koiteli": "Koiteli",
   "jokirannan-koulu": "Jokirannan koulu",
   "salonpaa": "Salonpää",
-  "laivakangas": "Laivakangas"
+  "laivakangas": "Laivakangas",
+  "oulun-teatteri": "Oulun teatteri",
+  "tsv": "TSV"
 };
 
 function normalizeKeyword(value) {
