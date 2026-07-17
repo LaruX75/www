@@ -22,4 +22,8 @@ keywords:
   - kaupunkisuunnittelu
 ---
 
-Kalevan artikkeli valtuutettujen näkemyksistä Oulun yliopiston sijainnista: Linnanmaalla vai ydinkeskustassa? Jari Laru kommentoi, että muuton toteutuessa kampus tulisi purkaa suurelta osin ja miettiä alueen maankäyttö uusiksi.
+Kalevan artikkeli valtuutettujen näkemyksistä Oulun yliopiston sijainnista: Linnanmaalla vai ydinkeskustassa?
+
+> Jari Laru totesi, että muuton toteutuessa kampus tulee purkaa suurelta osin ja miettiä alueen maankäyttö uusiksi.
+
+— Kaleva 16.4.2020
