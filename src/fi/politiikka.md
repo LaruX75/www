@@ -179,6 +179,17 @@ templateEngineOverride: njk
     {% set _ = featuredHybridWritings.push(item) %}
   {% endif %}
 {% endfor %}
+{% set politicalVideoHighlights = [
+  {
+    "title": "Oululaisia lapsia ja nuoria koskevien tilastotietojen tarkastelua",
+    "url": "https://www.youtube.com/watch?v=7EXB54VvlsU&t=2s",
+    "thumbnail": "https://i.ytimg.com/vi/7EXB54VvlsU/hqdefault.jpg",
+    "date": "2026-01-19",
+    "label": "Asiantuntijavideo",
+    "context": "Palveluverkkokeskustelu 2026",
+    "summary": "Tausta-aineisto Oulun palveluverkkokeskusteluun: mitä lasten ja nuorten tilastot kertovat päätösten pohjaksi ja koko kaupungin vaikutusten arvioimiseksi."
+  }
+] %}
 
 <section class="py-5 mb-0 bg-body-tertiary" id="vaalikaudet">
   <div class="site-shell">
@@ -283,8 +294,31 @@ templateEngineOverride: njk
     <div class="pol-section-head">
       <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-lightning-charge me-1"></i>Ajankohtaista</p>
       <h2 class="pol-section-title">Linja näkyy käytännön työnä</h2>
-      <p class="pol-section-lead mb-0">Puheenvuorot ja aloitteet näyttävät, miten poliittinen profiili muuttuu käytännön valtuustotyöksi. Tässä ovat uusimmat esimerkit, ei koko arkisto.</p>
+      <p class="pol-section-lead mb-0">Puheenvuorot, aloitteet ja tausta-aineistot näyttävät, miten poliittinen profiili muuttuu käytännön valtuustotyöksi. Tässä ovat uusimmat esimerkit, ei koko arkisto.</p>
     </div>
+
+    {% if politicalVideoHighlights.length %}
+    <div class="pol-video-highlight-list mb-4">
+      {% for video in politicalVideoHighlights %}
+      <article class="pol-current-card pol-video-highlight">
+        <a href="{{ video.url }}" target="_blank" rel="noopener noreferrer" class="pol-video-thumb-link" aria-label="Katso video: {{ video.title }}">
+          <img src="{{ video.thumbnail }}" alt="{{ video.title }}" class="pol-video-thumb" loading="lazy" decoding="async">
+          <span class="pol-video-play"><i class="bi bi-play-fill" aria-hidden="true"></i></span>
+        </a>
+        <div class="pol-video-copy">
+          <div class="pol-video-meta">
+            <span class="pol-writing-type">{{ video.label }}</span>
+            <span class="text-muted small">{{ video.date | dateFormat }}</span>
+          </div>
+          <p class="pol-current-kicker mb-1">{{ video.context }}</p>
+          <h3 class="pol-current-title"><a href="{{ video.url }}" target="_blank" rel="noopener noreferrer">{{ video.title }}</a></h3>
+          <p class="pol-video-summary mb-3">{{ video.summary }}</p>
+          <a href="{{ video.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm rounded-pill px-3">Katso video <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    {% endif %}
 
     <div class="row g-4 align-items-start">
       <div class="col-xl-7" id="poliittiset-puheet">
@@ -1054,6 +1088,70 @@ templateEngineOverride: njk
     margin-top: 0.75rem;
     border-top: 1px solid rgba(17, 40, 70, 0.08);
   }
+  .pol-video-highlight-list {
+    display: grid;
+    gap: 1rem;
+  }
+  .pol-video-highlight {
+    display: grid;
+    grid-template-columns: minmax(16rem, 0.42fr) minmax(0, 0.58fr);
+    gap: 1.25rem;
+    align-items: stretch;
+  }
+  .pol-video-thumb-link {
+    position: relative;
+    display: block;
+    min-height: 100%;
+    border-radius: 1rem;
+    overflow: hidden;
+    background: rgba(17, 40, 70, 0.08);
+  }
+  .pol-video-thumb {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 15rem;
+    object-fit: cover;
+    transition: transform 180ms ease;
+  }
+  .pol-video-thumb-link:hover .pol-video-thumb {
+    transform: scale(1.035);
+  }
+  .pol-video-play {
+    position: absolute;
+    inset: auto 1rem 1rem auto;
+    width: 3.1rem;
+    height: 3.1rem;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background: rgba(15, 39, 69, 0.88);
+    box-shadow: 0 0.75rem 1.5rem rgba(17, 40, 70, 0.2);
+    font-size: 1.7rem;
+  }
+  .pol-video-copy {
+    align-self: center;
+  }
+  .pol-video-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-bottom: 0.85rem;
+  }
+  .pol-video-highlight .pol-current-title a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .pol-video-highlight .pol-current-title a:hover {
+    color: #0d4f94;
+  }
+  .pol-video-summary {
+    color: rgba(17, 40, 70, 0.78);
+    line-height: 1.65;
+  }
   .political-speeches-table th {
     font-size: 0.76rem;
     font-weight: 800;
@@ -1241,6 +1339,7 @@ templateEngineOverride: njk
   [data-bs-theme="dark"] .pol-section-lead,
   [data-bs-theme="dark"] .pol-theme-description,
   [data-bs-theme="dark"] .pol-theme-meta,
+  [data-bs-theme="dark"] .pol-video-summary,
   [data-bs-theme="dark"] .pol-initiative-response,
   [data-bs-theme="dark"] .pol-writing-summary,
   [data-bs-theme="dark"] .pol-writing-note,
@@ -1265,6 +1364,7 @@ templateEngineOverride: njk
   [data-bs-theme="dark"] .pol-hero-point-title,
   [data-bs-theme="dark"] .pol-theme-proof-link,
   [data-bs-theme="dark"] .political-speech-title,
+  [data-bs-theme="dark"] .pol-video-highlight .pol-current-title a,
   [data-bs-theme="dark"] .pol-writing-title,
   [data-bs-theme="dark"] .pol-writing-title a,
   [data-bs-theme="dark"] .pol-mandate-title,
@@ -1310,6 +1410,10 @@ templateEngineOverride: njk
   }
   [data-bs-theme="dark"] .pol-method-card p {
     color: rgba(255, 255, 255, 0.82);
+  }
+  [data-bs-theme="dark"] .pol-video-play {
+    color: #0f2745;
+    background: rgba(244, 248, 253, 0.92);
   }
   [data-bs-theme="dark"] .political-speeches-table th {
     color: rgba(255, 255, 255, 0.78);
@@ -1396,6 +1500,12 @@ templateEngineOverride: njk
     .pol-current-foot {
       flex-direction: column;
       align-items: flex-start;
+    }
+    .pol-video-highlight {
+      grid-template-columns: 1fr;
+    }
+    .pol-video-thumb {
+      min-height: 12rem;
     }
     .pol-initiative-meta,
     .pol-writing-meta,
