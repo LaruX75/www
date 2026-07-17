@@ -1,0 +1,518 @@
+---
+layout: base.njk
+title: "Väitöskirja"
+description: "Jari Larun väitöskirjakokonaisuus: lectio-video, väitöskirja, neljä osajulkaisua ja tutkimuslinjan jatkumo teknologiatuetusta oppimisesta tekoälylukutaitoon."
+permalink: /vaitoskirja/
+translationKey: dissertation
+---
+
+{% set dissertationPapers = [
+  {
+    label: "Johdanto",
+    title: "Scaffolding learning activities with collaborative scripts and mobile devices",
+    authors: "Laru, J.",
+    year: "2012",
+    venue: "Acta Universitatis Ouluensis E, Scientiae rerum socialium, 125",
+    citation: "Laru, J. (2012). Scaffolding learning activities with collaborative scripts and mobile devices [Doctoral dissertation, University of Oulu]. Acta Universitatis Ouluensis E, Scientiae rerum socialium, 125. https://urn.fi/URN:ISBN:9789514299407",
+    text: "Väitöskirjan johdanto kokoaa mobiililaitteet, pedagogisen vaiheistuksen ja yhteisöllisen oppimisen yhdeksi tutkimusasetelmaksi.",
+    href: "/introduction-scaffolding-learning-activities-with-collaborative-scripts-and-mobile-devices/",
+    external: "https://urn.fi/URN:ISBN:9789514299407"
+  },
+  {
+    label: "Paper 1",
+    title: "Scaffolding different learning activities with mobile tools in three everyday contexts",
+    authors: "Laru, J., & Järvelä, S.",
+    year: "2004",
+    venue: "Proceedings of Special interest meeting 2004 of EARLI SIG 6 and SIG 7",
+    citation: "Laru, J., & Järvelä, S. (2004, July 7). Scaffolding different learning activities with mobile tools in three everyday contexts. Proceedings of Special interest meeting 2004 of EARLI SIG 6 and SIG 7, Tübingen, Germany.",
+    text: "Arjen oppimistilanteisiin sijoittuva tutkimus siitä, miten mobiilityökaluja voidaan käyttää tiedonhakuun, yhteistoimintaan ja kognitiiviseen tukeen.",
+    href: "/paper-1-scaffolding-different-learning-activities-with-mobile-tools-in-three-everyday-contexts/",
+    external: ""
+  },
+  {
+    label: "Paper 2",
+    title: "Social patterns in mobile technology mediated collaboration among members of the professional distance education community",
+    authors: "Laru, J., & Järvelä, S.",
+    year: "2008",
+    venue: "Educational Media International, 45(1), 17-32",
+    citation: "Laru, J., & Järvelä, S. (2008). Social patterns in mobile technology mediated collaboration among members of the professional distance education community. Educational Media International, 45(1), 17-32. https://doi.org/10.1080/09523980701847131",
+    text: "Etäopetuksen ammattilaisten yhteisöä tarkasteleva osatutkimus, jossa mobiilivälitteistä yhteistyötä analysoitiin sosiaalisten verkostojen ja käytännön vuorovaikutuksen kautta.",
+    href: "/paper-2-social-patterns-in-mobile-technology-mediated-collaboration-among-members-of-the-professional-distance-education-community/",
+    external: "https://doi.org/10.1080/09523980701847131"
+  },
+  {
+    label: "Paper 3",
+    title: "Supporting collaborative inquiry during a biology field trip with mobile peer-to-peer tools for learning",
+    authors: "Laru, J., Järvelä, S., & Clariana, R. B.",
+    year: "2012",
+    venue: "Interactive Learning Environments, 20(2), 103-117",
+    citation: "Laru, J., Järvelä, S., & Clariana, R. B. (2012). Supporting collaborative inquiry during a biology field trip with mobile peer-to-peer tools for learning: A case study with K-12 learners. Interactive Learning Environments, 20(2), 103-117. https://doi.org/10.1080/10494821003771350",
+    text: "Luontopolkuun sijoittuva tapaustutkimus, jossa mobiilityökalu, opas ja tutorointi tukivat oppilaiden argumentointia ja tutkivaa oppimista.",
+    href: "/paper-3-supporting-collaborative-inquiry-during-a-biology-field-trip-with-mobile-peer-to-peer-tools-for-learning-a-case-study-with-k-12-learners/",
+    external: "https://doi.org/10.1080/10494821003771350"
+  },
+  {
+    label: "Paper 4",
+    title: "Supporting small-group learning using multiple Web 2.0 tools",
+    authors: "Laru, J., Näykki, P., & Järvelä, S.",
+    year: "2012",
+    venue: "The Internet and Higher Education, 15(1), 29-38",
+    citation: "Laru, J., Näykki, P., & Järvelä, S. (2012). Supporting small-group learning using multiple Web 2.0 tools: A case study in the higher education context. The Internet and Higher Education, 15(1), 29-38. https://doi.org/10.1016/j.iheduc.2011.08.004",
+    text: "Korkeakoulukontekstiin sijoittuva tutkimus sosiaalisen median, kuvien, blogien ja wikityöskentelyn kytkeytymisestä pienryhmien oppimiseen.",
+    href: "/paper-3-supporting-small-group-learning-using-multiple-web-2-0-tools-a-case-study-inthe-higher-education-context/",
+    external: "https://doi.org/10.1016/j.iheduc.2011.08.004"
+  }
+] %}
+
+<section class="dissertation-hero">
+  <div class="site-shell">
+    <div class="dissertation-hero-grid">
+      <div class="dissertation-hero-copy">
+        <p class="dissertation-kicker">Väitös 2012</p>
+        <h1>Scaffolding learning activities with collaborative scripts and mobile devices</h1>
+        <p class="dissertation-lead">Väitöskirjani tarkasteli, miten mobiililaitteet, yhteisölliset skriptit ja pedagoginen vaiheistus voivat tukea oppimista todellisissa tilanteissa.</p>
+        <p>Työ syntyi aikana, jolloin mobiililaitteiden opetuskäyttöä perusteltiin usein teknologian uutuudella. Väitöskirjan keskeinen väite oli käytännöllisempi: teknologia tukee oppimista vasta silloin, kun tehtävä, vuorovaikutus ja ohjaus on suunniteltu huolellisesti.</p>
+        <div class="dissertation-actions">
+          <a class="btn btn-primary rounded-pill px-4" href="http://jultika.oulu.fi/Record/isbn978-951-42-9940-7" target="_blank" rel="noopener noreferrer">Avaa väitöskirja Jultikassa</a>
+          <a class="btn btn-outline-secondary rounded-pill px-4" href="#lectio">Katso lectio</a>
+          <a class="btn btn-outline-secondary rounded-pill px-4" href="#osajulkaisut">Osajulkaisut</a>
+        </div>
+      </div>
+      <aside class="dissertation-hero-card" aria-label="Väitöskirjan perustiedot">
+        <img src="/img/uploads/2026/vaitos.webp" alt="Jari Laru väitöstilaisuudessa" loading="eager" decoding="async">
+        <div class="dissertation-hero-card-body">
+          <dl class="dissertation-facts">
+            <div>
+              <dt>Vuosi</dt>
+              <dd>2012</dd>
+            </div>
+            <div>
+              <dt>Yliopisto</dt>
+              <dd>Oulun yliopisto</dd>
+            </div>
+            <div>
+              <dt>Ala</dt>
+              <dd>Kasvatustiede</dd>
+            </div>
+            <div>
+              <dt>Kokonaisuus</dt>
+              <dd>Väitöskirja, lectio ja neljä osajulkaisua</dd>
+            </div>
+          </dl>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="dissertation-section" id="lectio">
+  <div class="site-shell">
+    <div class="dissertation-section-head">
+      <p class="dissertation-kicker">Lectio precursoria</p>
+      <h2>Väitöstilaisuuden avauspuhe videona</h2>
+      <p>Lectio tiivistää tutkimuksen lähtökohdan suomeksi: mobiililaitteet eivät itsessään muuta oppimista, vaan niiden käyttö tarvitsee pedagogisen tarkoituksen, vaiheistuksen ja yhteisen työskentelyn rakenteen.</p>
+    </div>
+    <div class="dissertation-video-card">
+      <div class="dissertation-video-frame">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/TIi1tTZqHvU?list=PLDG0jxUrk8z2oNCSbotS_yNVjtnEALFP0"
+          title="Lectio precursoria: Opiskelun tukeminen mobiililaitteiden ja pedagogisen vaiheistuksen avulla"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          sandbox="allow-scripts allow-same-origin allow-presentation allow-popups">
+        </iframe>
+      </div>
+      <div class="dissertation-video-meta">
+        <h3>Opiskelun tukeminen mobiililaitteiden ja pedagogisen vaiheistuksen avulla</h3>
+        <p>Väitöstilaisuus pidettiin Oulun yliopiston kasvatustieteiden tiedekunnassa 12.10.2012. Sivustolla on myös lectio tekstimuodossa.</p>
+        <a href="/lectio-precursoria-opiskelun-tukeminen-mobiililaitteiden-ja-pedagogisen-vaiheistuksen-avulla/" class="dissertation-text-link">Lue lectio tekstinä</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dissertation-section dissertation-section--muted" id="kokonaisuus">
+  <div class="site-shell">
+    <div class="dissertation-argument-grid">
+      <article class="dissertation-argument-card dissertation-argument-card--primary">
+        <p class="dissertation-kicker">Tutkimuksen ydin</p>
+        <h2>Pelkkä teknologia ei riitä</h2>
+        <p>Väitöskirjan kolme tapaustutkimusta osoittivat, että mobiililaitteiden käyttö oppimisessa ei automaattisesti tuota mielekästä yhteistoimintaa, argumentointia tai tiedonrakentelua. Oppimisen kannalta ratkaisevaa on se, millaiseksi toiminta suunnitellaan.</p>
+      </article>
+      <article class="dissertation-argument-card">
+        <h3>Mobiililaitteet kognitiivisina työkaluina</h3>
+        <p>Laitteet voivat tukea tiedonhakua, dokumentointia, keskustelua ja yhteistä ongelmanratkaisua, mutta niiden mahdollisuudet pitää kytkeä tehtävän tavoitteisiin.</p>
+      </article>
+      <article class="dissertation-argument-card">
+        <h3>Yhteisölliset skriptit</h3>
+        <p>Oppijat tarvitsevat rakenteita, jotka tekevät yhteisestä työskentelystä näkyvää ja suuntaavat keskustelua kohti tiedon rakentamista.</p>
+      </article>
+      <article class="dissertation-argument-card">
+        <h3>Pedagoginen vaiheistus</h3>
+        <p>Oppimisprosessi rakentuu vaiheista, joissa teknologia, tehtävät, ohjaus ja vuorovaikutus tukevat toisiaan.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="dissertation-section" id="osajulkaisut">
+  <div class="site-shell">
+    <span class="visually-hidden" id="julkaisutiedot">Julkaisutiedot</span>
+    <div class="dissertation-section-head">
+      <p class="dissertation-kicker">Väitöskirjan aineisto</p>
+      <h2>Väitöskirja ja osajulkaisut</h2>
+      <p>Väitöskokonaisuus koostuu yhteenveto-osasta ja neljästä osajulkaisusta. Jokaisessa kortissa ovat sekä lyhyt kuvaus että viitetiedot suoraan käytettävässä muodossa.</p>
+    </div>
+    <div class="dissertation-paper-grid">
+      {% for paper in dissertationPapers %}
+      <article class="dissertation-paper-card{% if loop.first %} dissertation-paper-card--intro{% endif %}">
+        <p class="dissertation-paper-label">{{ paper.label }}</p>
+        <h3><a href="{{ paper.href }}">{{ paper.title }}</a></h3>
+        <p>{{ paper.text }}</p>
+        <div class="dissertation-paper-reference">
+          <p class="dissertation-paper-reference-label">Viite</p>
+          <p class="dissertation-paper-reference-citation">{{ paper.citation }}</p>
+        </div>
+        <div class="dissertation-paper-actions">
+          <a class="dissertation-paper-link" href="{{ paper.href }}">Sivuston julkaisutiedot</a>
+          {% if paper.external %}
+          <a class="dissertation-paper-link" href="{{ paper.external }}" target="_blank" rel="noopener noreferrer">Ulkoinen lähde</a>
+          {% endif %}
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="dissertation-section dissertation-section--closing">
+  <div class="site-shell">
+    <div class="dissertation-closing-card">
+      <p class="dissertation-kicker">Jatkumo</p>
+      <h2>Väitöskirja näkyy yhä työssäni</h2>
+      <p>Väitöskirjan peruskysymys on seurannut mukana opetuksessa, tutkimuksessa, koulutuksissa ja asiantuntijatyössä: miten uusi teknologia liitetään oppimiseen niin, että se todella tukee ajattelua, yhteistä työskentelyä ja osaamisen kehittymistä.</p>
+      <div class="dissertation-actions">
+        <a class="btn btn-primary rounded-pill px-4" href="/tutkimus/">Tutkimussivu</a>
+        <a class="btn btn-outline-secondary rounded-pill px-4" href="/julkaisut/">Julkaisut</a>
+        <a class="btn btn-outline-secondary rounded-pill px-4" href="/tyoni-yliopistonlehtorina/">Yliopistotyö</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .dissertation-hero,
+  .dissertation-section {
+    padding: clamp(3rem, 6vw, 5rem) 0;
+  }
+
+  .dissertation-hero {
+    background:
+      radial-gradient(circle at 15% 12%, rgba(var(--bs-primary-rgb), 0.12), transparent 32rem),
+      linear-gradient(135deg, var(--bs-tertiary-bg) 0%, var(--bs-body-bg) 54%, var(--bs-tertiary-bg) 100%);
+  }
+
+  .dissertation-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.72fr);
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+    align-items: center;
+  }
+
+  .dissertation-kicker {
+    margin: 0 0 0.7rem;
+    color: var(--bs-primary);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .dissertation-hero h1,
+  .dissertation-section h2 {
+    color: var(--bs-heading-color);
+    font-family: 'Bree Serif', Georgia, 'Times New Roman', serif;
+    font-weight: 700;
+    line-height: 1.12;
+  }
+
+  .dissertation-hero h1 {
+    max-width: 32ch;
+    margin-bottom: 1.2rem;
+    font-size: clamp(1.9rem, 3.2vw, 3.1rem);
+  }
+
+  .dissertation-lead {
+    max-width: 64rem;
+    color: var(--bs-emphasis-color);
+    font-size: clamp(1.2rem, 2.1vw, 1.55rem);
+    line-height: 1.45;
+  }
+
+  .dissertation-hero-copy > p:not(.dissertation-kicker):not(.dissertation-lead),
+  .dissertation-section-head p,
+  .dissertation-argument-card p,
+  .dissertation-paper-card p,
+  .dissertation-video-meta p,
+  .dissertation-closing-card p {
+    color: var(--bs-secondary-color);
+  }
+
+  .dissertation-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.6rem;
+  }
+
+  .dissertation-hero-card,
+  .dissertation-video-card,
+  .dissertation-argument-card,
+  .dissertation-paper-card,
+  .dissertation-closing-card {
+    border: 1px solid var(--bs-border-color-translucent);
+    border-radius: 1.5rem;
+    background: var(--bs-body-bg);
+    box-shadow: 0 1rem 2.5rem rgba(var(--bs-body-color-rgb), 0.08);
+    overflow: hidden;
+  }
+
+  .dissertation-hero-card img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1.1 / 1;
+    object-fit: cover;
+    object-position: 62% center;
+  }
+
+  .dissertation-hero-card-body {
+    padding: 1.25rem;
+  }
+
+  .dissertation-facts {
+    display: grid;
+    gap: 0.85rem;
+    margin: 0;
+  }
+
+  .dissertation-facts div {
+    display: grid;
+    grid-template-columns: 6.2rem 1fr;
+    gap: 0.75rem;
+    align-items: baseline;
+  }
+
+  .dissertation-facts dt {
+    color: var(--bs-secondary-color);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  .dissertation-facts dd {
+    margin: 0;
+    color: var(--bs-emphasis-color);
+    font-weight: 700;
+  }
+
+  .dissertation-section-head {
+    max-width: 760px;
+    margin-bottom: 1.7rem;
+  }
+
+  .dissertation-section-head h2,
+  .dissertation-closing-card h2 {
+    margin-bottom: 0.8rem;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+  }
+
+  .dissertation-video-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
+    align-items: stretch;
+  }
+
+  .dissertation-video-frame {
+    background: #0e1724;
+  }
+
+  .dissertation-video-frame iframe {
+    display: block;
+    width: 100%;
+    min-height: 420px;
+    aspect-ratio: 16 / 9;
+    border: 0;
+  }
+
+  .dissertation-video-meta {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(1.3rem, 3vw, 2rem);
+  }
+
+  .dissertation-video-meta h3,
+  .dissertation-paper-card h3,
+  .dissertation-argument-card h3 {
+    color: var(--bs-heading-color);
+    font-weight: 800;
+  }
+
+  .dissertation-text-link,
+  .dissertation-paper-link,
+  .dissertation-paper-card h3 a {
+    color: var(--bs-link-color);
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .dissertation-text-link:hover,
+  .dissertation-paper-link:hover,
+  .dissertation-paper-card h3 a:hover {
+    color: var(--bs-link-hover-color);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .dissertation-section--muted {
+    background: var(--bs-tertiary-bg);
+  }
+
+  .dissertation-argument-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .dissertation-argument-card {
+    padding: clamp(1.2rem, 2.5vw, 1.7rem);
+  }
+
+  .dissertation-argument-card--primary {
+    grid-column: span 3;
+    border-left: 0.35rem solid var(--bs-primary);
+    background:
+      linear-gradient(135deg, rgba(var(--bs-primary-rgb), 0.08), transparent 48%),
+      var(--bs-body-bg);
+  }
+
+  .dissertation-argument-card--primary p {
+    max-width: 850px;
+    font-size: 1.08rem;
+  }
+
+  .dissertation-paper-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .dissertation-paper-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    padding: clamp(1.2rem, 2.5vw, 1.65rem);
+  }
+
+  .dissertation-paper-card--intro {
+    grid-column: span 2;
+    background: linear-gradient(135deg, rgba(var(--bs-primary-rgb), 0.08), rgba(var(--bs-primary-rgb), 0.03));
+  }
+
+  .dissertation-paper-label {
+    width: fit-content;
+    margin-bottom: 0.9rem;
+    border-radius: 999px;
+    padding: 0.35rem 0.7rem;
+    background: rgba(var(--bs-primary-rgb), 0.1);
+    color: var(--bs-primary);
+    font-size: 0.76rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .dissertation-paper-reference {
+    margin: 0.35rem 0 1rem;
+    border-top: 1px solid var(--bs-border-color-translucent);
+    padding-top: 1rem;
+  }
+
+  .dissertation-paper-reference-label {
+    margin: 0 0 0.35rem;
+    color: var(--bs-primary);
+    font-size: 0.76rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .dissertation-paper-reference-citation {
+    margin: 0;
+    color: var(--bs-body-color);
+    line-height: 1.55;
+  }
+
+  .dissertation-paper-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: auto;
+  }
+
+  .dissertation-section--closing {
+    padding-top: 0;
+  }
+
+  .dissertation-closing-card {
+    padding: clamp(1.5rem, 4vw, 2.4rem);
+    background:
+      radial-gradient(circle at 88% 16%, rgba(var(--bs-primary-rgb), 0.12), transparent 20rem),
+      var(--bs-body-bg);
+  }
+
+  [data-bs-theme="dark"] .dissertation-hero {
+    background:
+      radial-gradient(circle at 15% 12%, rgba(var(--bs-primary-rgb), 0.18), transparent 32rem),
+      linear-gradient(135deg, var(--bs-tertiary-bg) 0%, var(--bs-body-bg) 56%, var(--bs-tertiary-bg) 100%);
+  }
+
+  @media (max-width: 991.98px) {
+    .dissertation-hero-grid,
+    .dissertation-video-card,
+    .dissertation-argument-grid,
+    .dissertation-paper-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .dissertation-argument-card--primary,
+    .dissertation-paper-card--intro {
+      grid-column: auto;
+    }
+
+    .dissertation-hero h1 {
+      max-width: 32ch;
+    }
+  }
+
+  @media (max-width: 575.98px) {
+    .dissertation-actions {
+      flex-direction: column;
+    }
+
+    .dissertation-actions .btn {
+      width: 100%;
+    }
+
+    .dissertation-video-frame iframe {
+      min-height: 240px;
+    }
+
+    .dissertation-facts div {
+      grid-template-columns: 1fr;
+      gap: 0.2rem;
+    }
+  }
+</style>
