@@ -72,15 +72,25 @@ module.exports = function registerFilters(eleventyConfig) {
   });
 
   eleventyConfig.addFilter("apa7authors", function (authors) {
-    if (!Array.isArray(authors)) return '';
-    return authors.map(name => {
+    if (!Array.isArray(authors)) return "";
+    const formattedAuthors = authors.map(name => {
       const commaIdx = name.indexOf(',');
       if (commaIdx === -1) return name;
       const last = name.slice(0, commaIdx).trim();
       const firsts = name.slice(commaIdx + 1).trim();
-      const initials = firsts.split(/\s+/).filter(Boolean).map(w => w[0].toUpperCase() + '.').join(' ');
+      const initials = firsts
+        .split(/\s+/)
+        .filter(Boolean)
+        .map(part => part
+          .split("-")
+          .filter(Boolean)
+          .map(w => `${w[0].toUpperCase()}.`)
+          .join("-"))
+        .join(" ");
       return `${last}, ${initials}`;
-    }).join('; ');
+    }).filter(Boolean);
+    if (formattedAuthors.length <= 1) return formattedAuthors.join("");
+    return `${formattedAuthors.slice(0, -1).join(", ")}, & ${formattedAuthors[formattedAuthors.length - 1]}`;
   });
 
   eleventyConfig.addFilter("absoluteUrl", function (url, base) {

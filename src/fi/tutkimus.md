@@ -255,7 +255,7 @@ templateEngineOverride: njk
       <div class="card-header bg-transparent py-3">
         <h3 class="h6 text-uppercase text-muted fw-bold mb-0"><i class="bi bi-journal-text me-2 text-primary"></i>Neljä uusinta julkaisua</h3>
       </div>
-      <div class="table-responsive">
+      <div class="table-responsive d-none d-md-block">
         <table class="table table-sm table-hover align-middle mb-0">
           <thead>
             <tr>
@@ -283,6 +283,32 @@ templateEngineOverride: njk
           </tbody>
         </table>
       </div>
+      <ul class="list-unstyled mb-0 d-md-none">
+        {% for pub in latestResearchPublications %}
+        <li class="border-bottom p-3">
+          <article class="d-grid gap-2">
+            <div class="d-flex flex-wrap align-items-center gap-2">
+              <span class="badge rounded-pill text-bg-light border font-monospace">{{ pub.year or '&mdash;' }}</span>
+              <span class="badge rounded-pill bg-secondary" title="{{ pub.typeFi }}">{{ pub.typeShort }}</span>
+              {% if pub.doi and semanticscholar.metrics.doiCitations[pub.doi | lower] %}
+              <span class="badge rounded-pill text-bg-warning" title="Viittaukset"><i class="bi bi-quote me-1"></i>{{ semanticscholar.metrics.doiCitations[pub.doi | lower] }}</span>
+              {% endif %}
+            </div>
+            <h4 class="h6 fw-bold mb-0 lh-sm">{{ pub.title }}</h4>
+            {% if pub.journal %}
+            <p class="text-muted small fst-italic mb-0">{{ pub.journal }}</p>
+            {% endif %}
+            {% if pub.url %}
+            <div>
+              <a href="{{ pub.url }}" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill px-3" rel="noopener noreferrer">
+                Avaa julkaisu <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i>
+              </a>
+            </div>
+            {% endif %}
+          </article>
+        </li>
+        {% endfor %}
+      </ul>
       <div class="card-footer bg-transparent text-center py-3">
         <a href="/julkaisut/" class="btn btn-primary btn-sm">Katso kaikki {{ researchfi.length }} julkaisua &rarr;</a>
       </div>
@@ -338,13 +364,11 @@ templateEngineOverride: njk
       <div class="list-group list-group-flush">
         {% for thesis in latestResearchGradut %}
         <div class="list-group-item px-4 py-3">
-          <div class="d-flex justify-content-between align-items-start gap-2">
-            <div>
-              <span class="fw-medium">{% if thesis.link %}<a href="{{ thesis.link }}" target="_blank" rel="noopener noreferrer" class="text-decoration-none">{{ thesis.title }}</a>{% else %}{{ thesis.title }}{% endif %}</span>
-              {% if thesis.authors.length %}<div class="small text-muted mt-1">{{ thesis.authors | join(", ") }}</div>{% endif %}
-            </div>
-            <span class="badge bg-light text-dark border flex-shrink-0">{{ thesis.year }}</span>
-          </div>
+          <p class="mb-0 small lh-base">
+            {% if thesis.authors and thesis.authors.length %}{{ thesis.authors | apa7authors }}{% else %}Tuntematon tekijä{% endif %} ({{ thesis.year or "n.d." }}).
+            <span class="fst-italic">{{ thesis.title }}</span> [Pro gradu -tutkielma, Oulun yliopisto].
+            {% if thesis.link %}<a href="{{ thesis.link }}" target="_blank" rel="noopener noreferrer">{{ thesis.link }}</a>{% endif %}
+          </p>
         </div>
         {% endfor %}
       </div>
