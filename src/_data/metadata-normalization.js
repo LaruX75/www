@@ -50,7 +50,11 @@ const KEYWORD_CANONICAL_BY_SLUG = {
   "web-2-0": "Web 2.0",
   "web2-0": "Web 2.0",
   "yliopiston-muutto": "Oulun yliopiston muutto",
-  "oulun-yliopiston-muutto": "Oulun yliopiston muutto"
+  "oulun-yliopiston-muutto": "Oulun yliopiston muutto",
+  "koiteli": "Koiteli",
+  "jokirannan-koulu": "Jokirannan koulu",
+  "salonpaa": "Salonpää",
+  "laivakangas": "Laivakangas"
 };
 
 function normalizeKeyword(value) {
