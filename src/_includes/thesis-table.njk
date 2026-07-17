@@ -3,8 +3,14 @@
    - thesisItems: array of thesis objects
    - showType: boolean
    - currentLang: "fi" | "en"  (set by including template)
+   Optional:
+   - showThesisActions: boolean, default true
+   - showMobileItemsImmediately: boolean, default false
 #}
 {% set isEN = (currentLang or lang) == "en" %}
+{% set hasThesisActions = true %}
+{% if showThesisActions == false %}{% set hasThesisActions = false %}{% endif %}
+{% set mobileItemStyle = "" if showMobileItemsImmediately else "display:none" %}
 
 {# ── Desktop: taulukko (piilotetaan mobiilissa) ── #}
 <div class="d-none d-md-block">
@@ -44,6 +50,7 @@
               <a href="{{ thesis.link }}" target="_blank" class="ms-2 text-decoration-none align-middle icon-only-link" rel="noopener noreferrer" aria-label="{{ ('Open thesis: ' if isEN else 'Avaa opinnäytetyö: ') + thesis.title }}">
                 <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
               </a>
+              {% if hasThesisActions %}
               <button
                 type="button"
                 class="btn btn-outline-primary btn-sm rounded-pill px-2 ms-2 thesis-bib-btn"
@@ -56,6 +63,7 @@
               >
                 <i class="bi bi-quote me-1" aria-hidden="true"></i>{{ "Export citation" if isEN else "Vie viite" }}
               </button>
+              {% endif %}
             {% else %}
               <span class="fw-medium">{{ thesis.title }}</span>
             {% endif %}
@@ -63,6 +71,7 @@
           <td class="col-abstract">
             {% if thesis.abstract %}
               <div class="small text-muted thesis-abstract-snippet">{{ thesis.abstract }}</div>
+              {% if hasThesisActions %}
               <button
                 type="button"
                 class="btn btn-link btn-sm p-0 mt-1 thesis-abstract-trigger"
@@ -75,6 +84,7 @@
               >
                 {{ "Open summary" if isEN else "Avaa tiivistelmä" }}
               </button>
+              {% endif %}
             {% else %}
               <span class="text-muted small">—</span>
             {% endif %}
@@ -83,7 +93,11 @@
             {% if thesis.keywords.length %}
               <div class="d-flex flex-wrap gap-1">
                 {% for kw in thesis.keywords %}
+                  {% if hasThesisActions %}
                   <button type="button" class="badge text-bg-light border thesis-keyword-link" data-keyword="{{ kw | escape }}">{{ kw }}</button>
+                  {% else %}
+                  <span class="badge text-bg-light border">{{ kw }}</span>
+                  {% endif %}
                 {% endfor %}
               </div>
             {% else %}
@@ -107,7 +121,7 @@
   {% else %}
     {% set apaTypeLabel = thesis.type or "Opinnäytetyö" %}
   {% endif %}
-  <li class="thesis-mobile-item px-3 py-3 border-bottom" style="display:none" role="listitem">
+  <li class="thesis-mobile-item px-3 py-3 border-bottom" style="{{ mobileItemStyle }}" role="listitem">
     <p class="small mb-2 lh-base">
       <span class="text-muted">{{ thesis.authors | join("; ") }} ({{ thesis.year or "n.d." }}).</span>
       {% if thesis.link %}
@@ -129,12 +143,16 @@
     {% if thesis.keywords.length %}
     <div class="d-flex flex-wrap gap-1 mb-2">
       {% for kw in thesis.keywords %}
+        {% if hasThesisActions %}
         <button type="button" class="badge text-bg-light border thesis-keyword-link" data-keyword="{{ kw | escape }}">{{ kw }}</button>
+        {% else %}
+        <span class="badge text-bg-light border">{{ kw }}</span>
+        {% endif %}
       {% endfor %}
     </div>
     {% endif %}
     <div class="d-flex gap-2 flex-wrap align-items-center mt-1">
-      {% if thesis.abstract %}
+      {% if hasThesisActions and thesis.abstract %}
         <button type="button"
           class="btn btn-outline-secondary btn-sm rounded-pill px-2 thesis-abstract-trigger"
           data-thesis-title="{{ thesis.title | escape }}"
@@ -145,7 +163,7 @@
           data-thesis-type="{{ thesis.type or '' }}"
         >{{ "Summary" if isEN else "Tiivistelmä" }}</button>
       {% endif %}
-      {% if thesis.link %}
+      {% if hasThesisActions and thesis.link %}
         <button type="button"
           class="btn btn-outline-primary btn-sm rounded-pill px-2 thesis-bib-btn"
           data-title="{{ thesis.title | escape }}"

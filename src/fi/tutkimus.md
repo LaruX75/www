@@ -85,7 +85,7 @@ templateEngineOverride: njk
             <div class="card border-0 shadow-sm h-100 site-kpi-card research-kpi-card">
               <div class="card-body py-3">
                 <div class="site-kpi-number research-kpi-number">{{ theses.stats.totalGradut }}</div>
-                <div class="site-kpi-label research-kpi-label">gradua ohjattu</div>
+                <div class="site-kpi-label research-kpi-label">ohjattua gradua</div>
               </div>
             </div>
           </div>
@@ -93,7 +93,7 @@ templateEngineOverride: njk
             <div class="card border-0 shadow-sm h-100 site-kpi-card research-kpi-card">
               <div class="card-body py-3">
                 <div class="site-kpi-number research-kpi-number">{{ theses.stats.totalKandit }}</div>
-                <div class="site-kpi-label research-kpi-label">kandia ohjattu</div>
+                <div class="site-kpi-label research-kpi-label">ohjattua kandidaatintyötä</div>
               </div>
             </div>
           </div>
@@ -361,16 +361,13 @@ templateEngineOverride: njk
       <div class="card-header bg-transparent py-3">
         <h3 class="h6 text-uppercase text-muted fw-bold mb-0"><i class="bi bi-mortarboard-fill me-2 text-primary"></i>Neljä uusinta gradua</h3>
       </div>
-      <div class="list-group list-group-flush">
-        {% for thesis in latestResearchGradut %}
-        <div class="list-group-item px-4 py-3">
-          <p class="mb-0 small lh-base">
-            {% if thesis.authors and thesis.authors.length %}{{ thesis.authors | apa7authors }}{% else %}Tuntematon tekijä{% endif %} ({{ thesis.year or "n.d." }}).
-            <span class="fst-italic">{{ thesis.title }}</span> [Pro gradu -tutkielma, Oulun yliopisto].
-            {% if thesis.link %}<a href="{{ thesis.link }}" target="_blank" rel="noopener noreferrer">{{ thesis.link }}</a>{% endif %}
-          </p>
-        </div>
-        {% endfor %}
+      <div>
+        {% set thesisItems = latestResearchGradut %}
+        {% set showType = false %}
+        {% set currentLang = "fi" %}
+        {% set showThesisActions = false %}
+        {% set showMobileItemsImmediately = true %}
+        {% include "thesis-table.njk" %}
       </div>
       <div class="card-footer bg-transparent text-center py-3">
         <a href="/opinnaytteet/" class="btn btn-outline-primary btn-sm">Katso kaikki {{ theses.stats.total }} opinnäytetyötä &rarr;</a>

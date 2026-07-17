@@ -82,9 +82,24 @@
   text-align: center;
 }
 
+/* Shared thesis table/list styles */
+.thesis-abstract-snippet {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.thesis-mobile-item:last-child {
+  border-bottom: none !important;
+}
+
+.thesis-mobile-list .thesis-abstract-snippet {
+  display: none;
+}
+
 /* Content wrapper for non-homepage pages */
 [data-bs-theme="dark"] .content-card-list {
   background-color: #243347 !important;
   border-color: rgba(255, 255, 255, 0.08) !important;
 }
-
