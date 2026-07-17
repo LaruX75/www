@@ -111,6 +111,17 @@ module.exports = {
     {
       data: {
         eleventyNavigation: {
+          key: "dissertation",
+          title: "Väitöskirja",
+          url: "/vaitoskirja/",
+          parent: "work",
+          order: 25
+        }
+      }
+    },
+    {
+      data: {
+        eleventyNavigation: {
           key: "presentations",
           title: "Esitykset",
           url: "/esitykset/",
@@ -737,6 +748,12 @@ module.exports = {
               href: "/julkaisut/",
               icon: "bi bi-journal-text me-2",
               description: "Tieteelliset julkaisut, kirjoitukset ja muut tekstisisällöt."
+            },
+            {
+              title: "Väitöskirja",
+              href: "/vaitoskirja/",
+              icon: "bi bi-mortarboard-fill me-2",
+              description: "Lectio-video, väitöskirja ja neljä osajulkaisua samassa kokonaisuudessa."
             },
             {
               title: "Opinnäytetyöt",
