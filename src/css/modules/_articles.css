@@ -362,6 +362,12 @@ html:not([data-bs-theme="dark"]) .subpage-hero-image {
   text-align: center;
 }
 
+.bbs-video-wrap [data-external-media-provider="youtube"] .external-media-consent__notice {
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.58)),
+    radial-gradient(circle at 50% 42%, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.5));
+}
+
 .bbs-video-wrap .external-media-consent__iframe {
   position: absolute !important;
   top: 0 !important;

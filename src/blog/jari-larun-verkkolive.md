@@ -1,12 +1,19 @@
 ---
 title: Jari Larun verkkolive
 date: '2020-03-12'
-description: 'Minä keväällä 2020 olohuonestudiossani Mikä ihmeen verkkolive? Koronakeväänä tein ensimmäisen tuotantokauden Larun verkkoliveä, joka koostuu kymmenestä videolähetyksestä. Haastattelin videoilla valtakunnalli'
+description: 'Koronakevään 2020 verkkolive-sarja, jossa Jari Laru haastatteli suomalaisia opettajia ja koulutusteknologeja etäopetuksesta, digipedagogiikasta ja koulun arjesta.'
 categories:
   - Teknologia ja digitaalisuus
 series: Verkkolive
+keywords:
+  - etäopetus
+  - koulutusteknologia
+  - verkkolive
+  - haastattelusarja
+  - korona
 wp_id: 387
 source_url: 'https://www.jarilaru.fi/jari-larun-verkkolive/'
+external_url: 'https://www.youtube.com/playlist?list=PLDG0jxUrk8z19_ThqBiynpYG4g-mjwgpt'
 templateEngineOverride: md
 ---
 
@@ -18,10 +25,18 @@ Koronakeväänä tein ensimmäisen tuotantokauden Larun verkkoliveä, joka koost
 
 Koronaeristyksestä johtuen videolähetykset täytyi toteuttaa kotiolosuhteissa.
 
-Videoista löytyvät automaattisesti syntyneet tallenteet niin Facebookista kuin Youtubesta.  Youtuben soittolista on upotettuna oikealle.
+Videoista löytyvät automaattisesti syntyneet tallenteet niin Facebookista kuin YouTubesta. YouTuben soittolista on upotettuna alle.
 
 Verkkoliven ohella olen tehnyt muitakin videoita, mutta myös kerännyt kokoelman muiden tekemiä videoita ja videoppaita.
 
 ![](/img/uploads/2020/03/studio_wp-723x1024.png)
 
-https://www.youtube.com/embed?listType=playlist&list=PLDG0jxUrk8z19_ThqBiynpYG4g-mjwgpt&layout=gallery[/embedyt]
+<div class="ratio ratio-16x9 my-4">
+  <iframe
+    src="https://www.youtube-nocookie.com/embed/videoseries?list=PLDG0jxUrk8z19_ThqBiynpYG4g-mjwgpt"
+    title="Jari Larun verkkolive - YouTube-soittolista"
+    loading="lazy"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen>
+  </iframe>
+</div>

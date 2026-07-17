@@ -48,9 +48,12 @@ translationKey: presentations_index
       url: item.url,
       thumbnail: item.thumbnail,
       date: item.date,
+      _isoDate: item.date,
       description: showcaseDescription,
       categories: item.categories or [],
-      sourceLabel: "Canva"
+      sourceLabel: "Canva",
+      ctaLabel: "Avaa esitys",
+      external: true
     }), null) %}
   {% endfor %}
 {% else %}
@@ -64,16 +67,103 @@ translationKey: presentations_index
       url: item.url,
       thumbnail: item.data.thumbnail,
       date: item.data.date,
+      _isoDate: item.data.date,
       description: item.data.description or (item.content | excerpt),
       categories: item.data.categories or [],
-      sourceLabel: showcaseSourceLabel
+      sourceLabel: showcaseSourceLabel,
+      ctaLabel: "Avaa esitys",
+      external: false
     }), null) %}
   {% endfor %}
 {% endif %}
 {% set latestVideoItems = ((youtube and youtube.videos) or []).slice(0, 2) %}
+{% set curatedVideoItems = [
+  {
+    title: "ITK-avauksen tallenne: Työkalu? Taikakalu?",
+    url: "https://www.youtube.com/watch?v=0cJ0Ed3Scs4&t=5s",
+    externalUrl: "https://www.youtube.com/watch?v=0cJ0Ed3Scs4&t=5s",
+    thumbnail: "https://i.ytimg.com/vi/0cJ0Ed3Scs4/hqdefault.jpg",
+    date: "2026-04-26",
+    badgeText: "ITK-avauksen videotallenne",
+    listText: "Avauspuheenvuoro koulutusteknologia-alan päätapahtumassa",
+    description: "Avauspuheenvuoro maamme merkittävimmässä koulutusteknologia-alan tapahtumassa. Puhe käsittelee tekoälyn roolia työssä, koulussa ja kotona kognitiivisena työkaluna.",
+    sourceLabel: "YouTube / keynote",
+    external: true
+  },
+  {
+    title: "Oululaisia lapsia ja nuoria koskevien tilastotietojen tarkastelua",
+    url: "https://www.youtube.com/watch?v=7EXB54VvlsU&t=2s",
+    externalUrl: "https://www.youtube.com/watch?v=7EXB54VvlsU&t=2s",
+    thumbnail: "https://i.ytimg.com/vi/7EXB54VvlsU/hqdefault.jpg",
+    date: "2026-01-19",
+    badgeText: "Asiantuntijavideo",
+    listText: "Palveluverkkokeskustelun 2026 tausta-aineisto",
+    description: "Asiantuntijavideo Oulun palveluverkkokeskusteluun: lasten ja nuorten tilastotietoja päätösten pohjaksi ja vaikutusten arvioimiseksi.",
+    sourceLabel: "YouTube / politiikka",
+    external: true
+  }
+] %}
+{% set videoSeriesItems = [
+  {
+    title: "Jari Larun verkkolive",
+    url: "/2020/03/12/jari-larun-verkkolive/",
+    externalUrl: "https://www.youtube.com/playlist?list=PLDG0jxUrk8z19_ThqBiynpYG4g-mjwgpt",
+    thumbnail: "/img/uploads/2021/01/verkkolive.jpg",
+    date: "2020-03-12",
+    itemCount: 10,
+    badgeText: "10 jakson haastattelusarja",
+    listText: "10 jakson oma haastattelusarja",
+    description: "Koronakevään 2020 haastattelusarja, jossa Jari Laru keskusteli suomalaisten opettajien ja koulutusteknologian asiantuntijoiden kanssa etäopetuksen arjesta.",
+    sourceLabel: "YouTube / oma sarja"
+  },
+  {
+    title: "Larun laitenurkka: opetusteknologia läpivalaisussa",
+    url: "https://www.youtube.com/playlist?list=PLDG0jxUrk8z2E7S2ggyzt0bIBXiDEgXob",
+    externalUrl: "https://www.youtube.com/playlist?list=PLDG0jxUrk8z2E7S2ggyzt0bIBXiDEgXob",
+    thumbnail: "https://i.ytimg.com/vi/KXr7AQqOzMQ/hqdefault.jpg",
+    date: "",
+    badgeText: "Opetusteknologian videosarja",
+    listText: "Oma videosarja opetusteknologian välineistä",
+    description: "Videosarja, jossa opetusteknologian välineitä tarkastellaan käytön, pedagogiikan ja arjen opetustyön näkökulmasta.",
+    sourceLabel: "YouTube / oma sarja",
+    external: true
+  },
+  {
+    title: "Larun pikkuvinkit",
+    url: "https://www.youtube.com/playlist?list=PLDG0jxUrk8z3VEOjIFb_q0vdJW6-2oOgY",
+    externalUrl: "https://www.youtube.com/playlist?list=PLDG0jxUrk8z3VEOjIFb_q0vdJW6-2oOgY",
+    thumbnail: "https://i.ytimg.com/vi/hCZ9lgODkes/hqdefault.jpg",
+    date: "",
+    badgeText: "Lyhyiden vinkkien videosarja",
+    listText: "Käytännön vinkkejä opetusteknologian ja digityökalujen arkeen",
+    description: "Lyhyiden vinkkivideoiden sarja opetusteknologian, digityökalujen ja käytännön opetustyön tueksi.",
+    sourceLabel: "YouTube / oma sarja",
+    external: true
+  }
+] %}
+{% set combinedLatestItems = [] %}
+{% for item in curatedVideoItems %}
+  {% set _ = (combinedLatestItems.push({
+    title: item.title,
+    url: item.url or item.externalUrl,
+    thumbnail: item.thumbnail,
+    date: item.date,
+    _isoDate: item.date,
+    description: item.description,
+    categories: ["Video"],
+    sourceLabel: item.sourceLabel,
+    ctaLabel: "Katso tallenne",
+    external: true
+  }), null) %}
+{% endfor %}
+{% for item in latestShowcaseItems %}
+  {% set _ = (combinedLatestItems.push(item), null) %}
+{% endfor %}
+{% set latestShowcaseItems = (combinedLatestItems | sort(attribute="_isoDate", reverse=true)).slice(0, 4) %}
 {% set latestAoeItems = ((finnaAoe and finnaAoe.rows) or []).slice(0, 2) %}
 {% set latestMediaItems = ((mediaArchive and mediaArchive.guest) or []).slice(0, 2) %}
 {% set youtubeVideoCount = ((youtube and youtube.videos) or []) | length %}
+{% set videoContentCount = youtubeVideoCount + (curatedVideoItems | length) + (videoSeriesItems | length) %}
 {% set aoeCount = ((finnaAoe and finnaAoe.rows) or []) | length %}
 {% set ownPresentationCount = (((canva and canva.tableRows) or []) | length) + (ssDataItems | length) %}
 {% set presentationAnalysisCount = 2 %}
@@ -98,6 +188,18 @@ translationKey: presentations_index
 {% endfor %}
 {% for item in ((youtube and youtube.videos) or []) %}
   {% set key = ((item.url or "") ~ "|" ~ (item.title or "")) | trim %}
+  {% if key != "|" and (presentationMaterialKeys.indexOf(key) == -1) %}
+    {% set _ = (presentationMaterialKeys.push(key), null) %}
+  {% endif %}
+{% endfor %}
+{% for item in curatedVideoItems %}
+  {% set key = (((item.url or item.externalUrl) or "") ~ "|" ~ (item.title or "")) | trim %}
+  {% if key != "|" and (presentationMaterialKeys.indexOf(key) == -1) %}
+    {% set _ = (presentationMaterialKeys.push(key), null) %}
+  {% endif %}
+{% endfor %}
+{% for item in videoSeriesItems %}
+  {% set key = (((item.url or item.externalUrl) or "") ~ "|" ~ (item.title or "")) | trim %}
   {% if key != "|" and (presentationMaterialKeys.indexOf(key) == -1) %}
     {% set _ = (presentationMaterialKeys.push(key), null) %}
   {% endif %}
@@ -132,8 +234,8 @@ translationKey: presentations_index
                 <dt class="home-hero-kpi-label">esityssivua sivustolla</dt>
               </div>
               <div class="home-hero-kpi">
-                <dd class="home-hero-kpi-value">{% if youtubeVideoCount %}{{ youtubeVideoCount }}{% else %}{{ presentationAnalysisCount }}{% endif %}</dd>
-                <dt class="home-hero-kpi-label">{% if youtubeVideoCount %}videota tai tallennetta{% else %}aineistoanalyysiä{% endif %}</dt>
+                <dd class="home-hero-kpi-value">{% if videoContentCount %}{{ videoContentCount }}{% else %}{{ presentationAnalysisCount }}{% endif %}</dd>
+                <dt class="home-hero-kpi-label">{% if videoContentCount %}videota tai tallennetta{% else %}aineistoanalyysiä{% endif %}</dt>
               </div>
               <div class="home-hero-kpi">
                 <dd class="home-hero-kpi-value">{{ aoeCount }}</dd>
@@ -176,9 +278,9 @@ translationKey: presentations_index
       <div class="col-md-6 col-xl-3">
         <a href="#esitykset-videot" class="card border-0 shadow-sm h-100 presentation-route-card text-decoration-none text-reset">
           <div class="card-body p-4">
-            <p class="presentation-route-number">{% if youtubeVideoCount %}{{ youtubeVideoCount }}{% else %}<i class="bi bi-youtube"></i>{% endif %}</p>
+            <p class="presentation-route-number">{% if videoContentCount %}{{ videoContentCount }}{% else %}<i class="bi bi-youtube"></i>{% endif %}</p>
             <h3 class="h5 mb-2">Videot ja tallenteet</h3>
-            <p class="text-muted mb-0">Tallennetut esitykset ja videot silloin, kun niitä on saatavilla.</p>
+            <p class="text-muted mb-0">Tallennetut esitykset, omat videosarjat ja YouTube-aineistot.</p>
           </div>
         </a>
       </div>
@@ -204,7 +306,7 @@ translationKey: presentations_index
     <div class="presentation-section-head">
       <p class="presentation-section-kicker mb-1">Ajankohtaista</p>
       <h2 class="presentation-section-title">Tuoreimmat esitykset ja käyttökelpoiset materiaalit yhdellä silmäyksellä</h2>
-      <p class="presentation-section-lead mb-0">Etupää näyttää uusimmat omat esityssivut. Vieressä näkyvät viimeisimmät videot, oppimateriaalit ja linkki muuhun julkiseen esiintymiseen.</p>
+      <p class="presentation-section-lead mb-0">Etupää näyttää tuoreimmat omat esitykset, videotallenteet ja käyttökelpoiset materiaalit samassa näkymässä.</p>
     </div>
     <div class="row g-4 align-items-stretch">
       <div class="col-xl-8">
@@ -229,10 +331,10 @@ translationKey: presentations_index
                   {% endif %}
                 </div>
                 <p class="text-muted small mb-2">{{ item.date | dateFormat }}</p>
-                <h3 class="h5 mb-2"><a href="{{ item.url }}" class="text-decoration-none">{{ item.title }}</a></h3>
+                <h3 class="h5 mb-2"><a href="{{ item.url }}"{% if item.external %} target="_blank" rel="noopener noreferrer"{% endif %} class="text-decoration-none">{{ item.title }}</a></h3>
                 <p class="text-muted small mb-3">{{ item.description }}</p>
                 <div class="mt-auto d-flex flex-wrap gap-2">
-                  <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm rounded-pill px-3">Avaa esitys</a>
+                  <a href="{{ item.url }}"{% if item.external %} target="_blank" rel="noopener noreferrer"{% endif %} class="btn btn-primary btn-sm rounded-pill px-3">{{ item.ctaLabel or "Avaa" }}</a>
                 </div>
               </div>
             </article>
@@ -245,9 +347,39 @@ translationKey: presentations_index
           <article class="card border-0 shadow-sm presentation-signal-card">
             <div class="card-body p-4">
               <p class="presentation-signal-kicker mb-2">Videot ja tallenteet</p>
-              <h3 class="h5 mb-3">{% if latestVideoItems.length %}YouTube täydentää esityksiä{% else %}YouTube-tallenteet täydentyvät myöhemmin{% endif %}</h3>
-              {% if latestVideoItems.length %}
+              <h3 class="h5 mb-3">{% if curatedVideoItems.length or videoSeriesItems.length or latestVideoItems.length %}YouTube täydentää esityksiä{% else %}YouTube-tallenteet täydentyvät myöhemmin{% endif %}</h3>
+              {% if curatedVideoItems.length or videoSeriesItems.length or latestVideoItems.length %}
               <div class="d-grid gap-3">
+                {% for item in curatedVideoItems.slice(0, 1) %}
+                <a href="{{ item.url or item.externalUrl }}"{% if item.external %} target="_blank" rel="noopener noreferrer"{% endif %} class="presentation-mini-link">
+                  <span class="presentation-mini-thumb">
+                    {% if item.thumbnail %}
+                    <img src="{{ item.thumbnail }}" alt="{{ item.title }}" class="presentation-mini-thumb-image" loading="lazy" decoding="async">
+                    {% else %}
+                    <span class="presentation-mini-thumb-placeholder"><i class="bi bi-youtube"></i></span>
+                    {% endif %}
+                  </span>
+                  <span class="presentation-mini-copy">
+                    <strong>{{ item.title }}</strong>
+                    <span>{{ item.badgeText or item.sourceLabel }}</span>
+                  </span>
+                </a>
+                {% endfor %}
+                {% for item in videoSeriesItems.slice(0, 2) %}
+                <a href="{{ item.url or item.externalUrl }}"{% if item.external %} target="_blank" rel="noopener noreferrer"{% endif %} class="presentation-mini-link">
+                  <span class="presentation-mini-thumb">
+                    {% if item.thumbnail %}
+                    <img src="{{ item.thumbnail }}" alt="{{ item.title }}" class="presentation-mini-thumb-image" loading="lazy" decoding="async">
+                    {% else %}
+                    <span class="presentation-mini-thumb-placeholder"><i class="bi bi-youtube"></i></span>
+                    {% endif %}
+                  </span>
+                  <span class="presentation-mini-copy">
+                    <strong>{{ item.title }}</strong>
+                    <span>{{ item.badgeText or item.sourceLabel }}</span>
+                  </span>
+                </a>
+                {% endfor %}
                 {% for item in latestVideoItems %}
                 <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer" class="presentation-mini-link">
                   <span class="presentation-mini-thumb">
@@ -405,11 +537,41 @@ translationKey: presentations_index
         <section class="presentation-type-panel" aria-labelledby="esitykset-videot">
           <div class="presentation-type-panel-head">
             <p class="presentation-section-kicker mb-1">Tallenteet</p>
-            <h2 id="esitykset-videot" class="presentation-type-title">Videot ja tallenteet</h2>
-            <p class="presentation-type-lead mb-0">Videoaineistot täydentävät esityksiä silloin, kun tallenne on saatavilla.</p>
+            <h2 id="esitykset-videot" class="presentation-type-title">Videot, tallenteet ja omat sarjat</h2>
+            <p class="presentation-type-lead mb-0">Videoaineistot täydentävät esityksiä silloin, kun tallenne tai oma videosarja on saatavilla.</p>
           </div>
-          {% if latestVideoItems.length %}
+          {% if curatedVideoItems.length or videoSeriesItems.length or latestVideoItems.length %}
           <div class="presentation-type-list">
+            {% for item in curatedVideoItems %}
+            <a href="{{ item.url or item.externalUrl }}"{% if item.external %} target="_blank" rel="noopener noreferrer"{% endif %} class="presentation-mini-link">
+              <span class="presentation-mini-thumb">
+                {% if item.thumbnail %}
+                <img src="{{ item.thumbnail }}" alt="{{ item.title }}" class="presentation-mini-thumb-image" loading="lazy" decoding="async">
+                {% else %}
+                <span class="presentation-mini-thumb-placeholder"><i class="bi bi-youtube"></i></span>
+                {% endif %}
+              </span>
+              <span class="presentation-mini-copy">
+                <strong>{{ item.title }}</strong>
+                <span>{{ item.listText or item.badgeText or item.sourceLabel }}</span>
+              </span>
+            </a>
+            {% endfor %}
+            {% for item in videoSeriesItems %}
+            <a href="{{ item.url or item.externalUrl }}"{% if item.external %} target="_blank" rel="noopener noreferrer"{% endif %} class="presentation-mini-link">
+              <span class="presentation-mini-thumb">
+                {% if item.thumbnail %}
+                <img src="{{ item.thumbnail }}" alt="{{ item.title }}" class="presentation-mini-thumb-image" loading="lazy" decoding="async">
+                {% else %}
+                <span class="presentation-mini-thumb-placeholder"><i class="bi bi-youtube"></i></span>
+                {% endif %}
+              </span>
+              <span class="presentation-mini-copy">
+                <strong>{{ item.title }}</strong>
+                <span>{{ item.listText or item.badgeText or item.sourceLabel }}</span>
+              </span>
+            </a>
+            {% endfor %}
             {% for item in latestVideoItems %}
             <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer" class="presentation-mini-link">
               <span class="presentation-mini-thumb">
@@ -797,6 +959,8 @@ translationKey: presentations_index
   const rawData = {
     aoe: {{ (finnaAoe.rows or []) | jsonSafe | safe }},
     canva: {{ (canva.tableRows or []) | jsonSafe | safe }},
+    curatedVideos: {{ curatedVideoItems | jsonSafe | safe }},
+    videoSeries: {{ videoSeriesItems | jsonSafe | safe }},
     youtubeVideos: {{ (youtube.videos or []) | jsonSafe | safe }},
     youtube: {{ (youtube.tableRows or []) | jsonSafe | safe }},
     slideshare: {{ ssDataItems | jsonSafe | safe }}
@@ -834,6 +998,8 @@ translationKey: presentations_index
   const iconByKey = {
     aoe: "bi-book",
     canva: "bi-file-earmark-slides",
+    curatedVideos: "bi-camera-video",
+    videoSeries: "bi-collection-play",
     youtubeVideos: "bi-youtube",
     youtube: "bi-youtube",
     slideshare: "bi-collection-play"
@@ -842,6 +1008,8 @@ translationKey: presentations_index
   const linkLabelByKey = {
     aoe: "Avaa Finnassa",
     canva: "Avaa",
+    curatedVideos: "Katso",
+    videoSeries: "Avaa sarja",
     youtubeVideos: "Katso",
     youtube: "YouTube",
     slideshare: "SlideShare",
@@ -863,6 +1031,16 @@ translationKey: presentations_index
       archiveType: "aoe",
       archiveTypeLabel: "Avoin oppimateriaali",
       sourceLabel: "AOE / Finna"
+    },
+    curatedVideos: {
+      archiveType: "video",
+      archiveTypeLabel: "Video / tallenne",
+      sourceLabel: "YouTube / oma puheenvuoro"
+    },
+    videoSeries: {
+      archiveType: "video",
+      archiveTypeLabel: "Videosarja",
+      sourceLabel: "YouTube / oma sarja"
     },
     youtubeVideos: {
       archiveType: "video",
@@ -982,6 +1160,32 @@ translationKey: presentations_index
         meta: "YouTube-video",
         date: toDisplayDate(r.publishedAt || ""),
         _isoDate: toIsoDate(r.publishedAt || "") || ""
+      }));
+    }
+
+    if (key === "curatedVideos") {
+      return rows.map((r) => ({
+        title: r.title || "Nimetön video",
+        url: r.url || r.externalUrl || "",
+        externalUrl: r.externalUrl || "",
+        thumbnail: r.thumbnail || "",
+        description: r.description || "",
+        meta: r.badgeText || "Video / tallenne",
+        date: toDisplayDate(r.date || ""),
+        _isoDate: toIsoDate(r.date || "") || ""
+      }));
+    }
+
+    if (key === "videoSeries") {
+      return rows.map((r) => ({
+        title: r.title || "Nimetön videosarja",
+        url: r.url || r.externalUrl || "",
+        externalUrl: r.externalUrl || "",
+        thumbnail: r.thumbnail || "",
+        description: r.description || "",
+        meta: r.badgeText || (r.itemCount ? `${r.itemCount} videota` : "Videosarja"),
+        date: toDisplayDate(r.date || ""),
+        _isoDate: toIsoDate(r.date || "") || ""
       }));
     }
 
@@ -1316,6 +1520,9 @@ translationKey: presentations_index
       const externalButton = item.url
         ? `<a href="${escHtml(item.url)}"${linkAttrs(item.url)} class="btn btn-outline-primary btn-sm rounded-pill px-3">${escHtml(item.openLabel || "Avaa")}</a>`
         : "";
+      const sourceButton = item.externalUrl && item.externalUrl !== item.url
+        ? `<a href="${escHtml(item.externalUrl)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary btn-sm rounded-pill px-3">YouTube</a>`
+        : "";
       const pageButton = item.pageUrl
         ? `<a href="${escHtml(item.pageUrl)}" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Sivun tiedot</a>`
         : "";
@@ -1333,7 +1540,7 @@ translationKey: presentations_index
             <h3 class="presentation-archive-card-title">${titleLink}</h3>
             <p class="presentation-archive-card-date">${escHtml(item.date || item.meta || "")}</p>
             <p class="presentation-archive-card-desc">${escHtml(truncate(item.description || item.meta || "", 150))}</p>
-            <div class="presentation-archive-card-actions">${externalButton}${pageButton}</div>
+            <div class="presentation-archive-card-actions">${externalButton}${sourceButton}${pageButton}</div>
           </div>
         </article>
       `;

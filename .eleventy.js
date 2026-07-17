@@ -23,12 +23,38 @@ const LINK_REDIRECT_ALLOWLIST = [
 function getProviderFromHost(hostname) {
   const host = String(hostname || "").toLowerCase();
   if (host.includes("facebook.com")) return "facebook";
-  if (host.includes("youtube.com") || host.includes("youtu.be")) return "youtube";
+  if (host.includes("youtube.com") || host.includes("youtube-nocookie.com") || host.includes("youtu.be")) return "youtube";
   if (host.includes("slideshare.net")) return "slideshare";
   if (host.includes("scribd.com")) return "scribd";
   if (host.includes("google.com")) return "google";
   if (host.includes("vimeo.com")) return "vimeo";
   return "external";
+}
+
+function escapeHtmlAttribute(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function getYoutubeVideoId(url) {
+  const host = String(url.hostname || "").toLowerCase();
+  const pathParts = url.pathname.split("/").filter(Boolean);
+  let videoId = "";
+
+  if (host.includes("youtu.be")) {
+    videoId = pathParts[0] || "";
+  } else if (host.includes("youtube.com") || host.includes("youtube-nocookie.com")) {
+    if (pathParts[0] === "embed" || pathParts[0] === "shorts") {
+      videoId = pathParts[1] === "videoseries" ? "" : (pathParts[1] || "");
+    } else {
+      videoId = url.searchParams.get("v") || "";
+    }
+  }
+
+  return /^[A-Za-z0-9_-]{6,}$/.test(videoId) ? videoId : "";
 }
 
 function shouldWrapIframeSrc(src) {
@@ -62,20 +88,25 @@ function wrapExternalIframes(content) {
       return iframeHtml;
     }
     const provider = getProviderFromHost(resolved.hostname);
+    const youtubeVideoId = provider === "youtube" ? getYoutubeVideoId(resolved) : "";
+    const previewHtml = youtubeVideoId
+      ? `<img class="external-media-consent__preview" data-external-media-preview src="https://i.ytimg.com/vi/${escapeHtmlAttribute(youtubeVideoId)}/hqdefault.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer">`
+      : "";
 
     const iframeNoSrc = iframeHtml.replace(/\ssrc\s*=\s*("([^"]*)"|'([^']*)')/i, "");
     const iframeManaged = iframeNoSrc.replace(
       /<iframe\b/i,
-      `<iframe data-consent-src="${srcValue.replace(/"/g, "&quot;")}" data-external-media-managed="true" class="external-media-consent__iframe" hidden`
+      `<iframe data-consent-src="${escapeHtmlAttribute(srcValue)}" data-external-media-managed="true" class="external-media-consent__iframe" hidden`
     );
 
     return [
       `<div class="external-media-consent" data-external-media-provider="${provider}">`,
+      previewHtml,
       `<div class="external-media-consent__notice" data-external-media-notice>`,
       `<p class="external-media-consent__text" data-external-media-text></p>`,
       `<div class="external-media-consent__actions">`,
-      `<button type="button" class="btn btn-primary btn-sm" data-external-media-load></button>`,
-      `<button type="button" class="btn btn-outline-secondary btn-sm" data-external-media-allow-all></button>`,
+      `<button type="button" class="btn btn-primary btn-sm" data-external-media-load>Lataa sisältö</button>`,
+      `<button type="button" class="btn btn-outline-secondary btn-sm" data-external-media-allow-all>Salli kaikki ulkoiset upotukset</button>`,
       `</div>`,
       `</div>`,
       iframeManaged,

@@ -30,12 +30,14 @@ document.addEventListener("DOMContentLoaded", () => {
   function loadWrapper(wrapper) {
     const iframe = wrapper.querySelector("iframe[data-consent-src]");
     const notice = wrapper.querySelector("[data-external-media-notice]");
+    const preview = wrapper.querySelector("[data-external-media-preview]");
     if (!iframe) return;
     if (!iframe.getAttribute("src")) {
       iframe.setAttribute("src", iframe.getAttribute("data-consent-src"));
     }
     iframe.hidden = false;
     if (notice) notice.hidden = true;
+    if (preview) preview.hidden = true;
   }
 
   function loadAllAndPersist() {
@@ -52,11 +54,13 @@ document.addEventListener("DOMContentLoaded", () => {
     wrappers.forEach((wrapper) => {
       const iframe = wrapper.querySelector("iframe[data-consent-src]");
       const notice = wrapper.querySelector("[data-external-media-notice]");
+      const preview = wrapper.querySelector("[data-external-media-preview]");
       if (iframe) {
         iframe.removeAttribute("src");
         iframe.hidden = true;
       }
       if (notice) notice.hidden = false;
+      if (preview) preview.hidden = false;
     });
   }
 
