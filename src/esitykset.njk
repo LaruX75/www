@@ -150,9 +150,9 @@ translationKey: presentations_index
 <section class="py-5">
   <div class="site-shell">
     <div class="presentation-section-head">
-      <p class="presentation-section-kicker mb-1">Selaa sisältötyypin mukaan</p>
-      <h2 class="presentation-section-title">Etsi ensin sisältöä, älä palvelua</h2>
-      <p class="presentation-section-lead mb-0">Canva, SlideShare, YouTube ja AOE jäävät lähdetiedoiksi. Tällä sivulla sisältö on järjestetty sen mukaan, mitä käyttäjä todennäköisesti etsii.</p>
+      <p class="presentation-section-kicker mb-1">Mitä etsit?</p>
+      <h2 class="presentation-section-title">Puheenvuorot, oppimateriaalit ja tallenteet omissa ryhmissään</h2>
+      <p class="presentation-section-lead mb-0">Valitse alta, haluatko selata koulutus- ja keynote-esityksiä, avoimia oppimateriaaleja, videotallenteita vai aineistoanalyysejä. Jokaisesta ryhmästä pääsee myös koko listaan.</p>
     </div>
     <div class="row g-4">
       <div class="col-md-6 col-xl-3">
@@ -335,7 +335,7 @@ translationKey: presentations_index
     <div class="presentation-section-head">
       <p class="presentation-section-kicker mb-1">Sisältötyypit</p>
       <h2 id="sisaltotyypit-heading" class="presentation-section-title">Materiaalit käyttötarkoituksen mukaan</h2>
-      <p class="presentation-section-lead mb-0">Tämä näkymä kokoaa samantyyppiset aineistot yhteen riippumatta siitä, onko lähde Canva, SlideShare, YouTube vai AOE.</p>
+      <p class="presentation-section-lead mb-0">Tästä osiosta löydät nopeasti uusimmat koulutusmateriaalit, avoimet oppimateriaalit, videot ja aineistoa kokoavat analyysit.</p>
     </div>
 
     <div class="presentation-type-stack">
@@ -368,6 +368,9 @@ translationKey: presentations_index
           </article>
           {% endfor %}
         </div>
+        <div>
+          <a href="#kaikki-esitykset" class="btn btn-outline-primary rounded-pill px-4" data-presentation-filter="own">Katso kaikki koulutukset ja keynote-esitykset ({{ ownPresentationCount }})</a>
+        </div>
       </section>
 
       <div class="presentation-type-columns">
@@ -393,6 +396,9 @@ translationKey: presentations_index
               </span>
             </a>
             {% endfor %}
+          </div>
+          <div>
+            <a href="#kaikki-esitykset" class="btn btn-outline-primary btn-sm rounded-pill px-3" data-presentation-filter="aoe">Katso kaikki oppimateriaalit ({{ aoeCount }})</a>
           </div>
         </section>
 
@@ -424,6 +430,9 @@ translationKey: presentations_index
           <p class="text-muted small mb-3">Tällä hetkellä varsinaiset tallenteet eivät ole sivun pääaineistoa.</p>
           <a href="https://www.youtube.com/jarilaru" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary btn-sm rounded-pill px-3">YouTube-kanava</a>
           {% endif %}
+          <div>
+            <a href="#kaikki-esitykset" class="btn btn-outline-primary btn-sm rounded-pill px-3" data-presentation-filter="video">Katso kaikki videot ja tallenteet</a>
+          </div>
         </section>
       </div>
 
@@ -454,10 +463,34 @@ translationKey: presentations_index
   </div>
 </section>
 
+<section class="py-5 bg-body-tertiary border-top border-bottom" id="kaikki-esitykset" aria-labelledby="kaikki-esitykset-heading">
+  <div class="site-shell">
+    <div class="presentation-section-head">
+      <p class="presentation-section-kicker mb-1">Koko aineisto</p>
+      <h2 id="kaikki-esitykset-heading" class="presentation-section-title">Kaikki esitykset ja materiaalit</h2>
+      <p class="presentation-section-lead mb-0">Kun haluat selata koko aineistoa, aloita tästä. Kortit näyttävät otsikon, vuoden, lyhyen kuvauksen ja lähteen; suodattimilla rajaat listan itsellesi sopivaksi.</p>
+    </div>
+
+    <div class="presentation-archive-toolbar" aria-label="Suodata esityksiä sisältötyypin mukaan">
+      <button class="presentation-archive-filter is-active" type="button" data-presentation-filter="all">Kaikki</button>
+      <button class="presentation-archive-filter" type="button" data-presentation-filter="own">Koulutukset ja keynote-esitykset</button>
+      <button class="presentation-archive-filter" type="button" data-presentation-filter="aoe">Avoimet oppimateriaalit</button>
+      <button class="presentation-archive-filter" type="button" data-presentation-filter="video">Videot ja tallenteet</button>
+      <button class="presentation-archive-filter" type="button" data-presentation-filter="analysis">Aineistoanalyysit</button>
+    </div>
+
+    <div class="presentation-archive-status" id="presentation-unified-status" aria-live="polite"></div>
+    <div class="presentation-archive-grid" id="presentation-unified-archive"></div>
+    <nav class="mt-4" aria-label="Kaikki esitykset ja materiaalit -sivutus">
+      <ul class="pagination pagination-sm mb-0 justify-content-center" id="presentation-unified-pagination"></ul>
+    </nav>
+  </div>
+</section>
+
 <div class="site-shell py-5" id="palveluarkisto">
   <div class="presentation-section-head mb-5" id="palveluarkisto-heading">
     <p class="presentation-section-kicker mb-1">Tekninen arkisto</p>
-    <h2 class="presentation-section-title">Palvelukohtainen taulukkoarkisto</h2>
+    <h2 class="presentation-section-title">Lähdekohtainen arkisto</h2>
     <p class="presentation-section-lead mb-0">Jos haluat rajata aineistoa lähteen mukaan, taulukot säilyvät täällä. Tämä on arkistokäyttöä varten, ei sivun ensisijainen lukutapa.</p>
   </div>
 
@@ -760,6 +793,7 @@ translationKey: presentations_index
 <script>
 (() => {
   const PAGE_SIZE = 6;
+  const UNIFIED_PAGE_SIZE = 12;
   const rawData = {
     aoe: {{ (finnaAoe.rows or []) | jsonSafe | safe }},
     canva: {{ (canva.tableRows or []) | jsonSafe | safe }},
@@ -767,6 +801,30 @@ translationKey: presentations_index
     youtube: {{ (youtube.tableRows or []) | jsonSafe | safe }},
     slideshare: {{ ssDataItems | jsonSafe | safe }}
   };
+  const analysisArchiveItems = [
+    {
+      title: "Canva-esitykset 2021-2026",
+      url: "/esitykset/canva-analyysi/",
+      description: "Teemat, kehityskaaret ja laajimmat esitykset.",
+      meta: "Aineistoanalyysi",
+      date: "2026",
+      _isoDate: "2026-12-31",
+      archiveType: "analysis",
+      archiveTypeLabel: "Aineistoanalyysi",
+      sourceLabel: "Sivuston analyysi"
+    },
+    {
+      title: "SlideShare-esitykset 2009-2020",
+      url: "/esitykset/slideshare-analyysi/",
+      description: "Katsotuimmat, teemat ja kehityskaaret vuosikymmenittäin.",
+      meta: "Aineistoanalyysi",
+      date: "2020",
+      _isoDate: "2020-12-31",
+      archiveType: "analysis",
+      archiveTypeLabel: "Aineistoanalyysi",
+      sourceLabel: "Sivuston analyysi"
+    }
+  ];
 
   // Liitetään Canva MD-sivujen sisäiset URLit canva.tableRows-dataan ulkoisen URLin perusteella
   const canvaPageUrlMap = {};
@@ -786,7 +844,36 @@ translationKey: presentations_index
     canva: "Avaa",
     youtubeVideos: "Katso",
     youtube: "YouTube",
-    slideshare: "SlideShare"
+    slideshare: "SlideShare",
+    analysis: "Lue analyysi"
+  };
+
+  const archiveMetaByKey = {
+    canva: {
+      archiveType: "own",
+      archiveTypeLabel: "Koulutus / esitys",
+      sourceLabel: "Canva"
+    },
+    slideshare: {
+      archiveType: "own",
+      archiveTypeLabel: "Koulutus / esitys",
+      sourceLabel: "SlideShare"
+    },
+    aoe: {
+      archiveType: "aoe",
+      archiveTypeLabel: "Avoin oppimateriaali",
+      sourceLabel: "AOE / Finna"
+    },
+    youtubeVideos: {
+      archiveType: "video",
+      archiveTypeLabel: "Video / tallenne",
+      sourceLabel: "YouTube"
+    },
+    youtube: {
+      archiveType: "video",
+      archiveTypeLabel: "Soittolista",
+      sourceLabel: "YouTube"
+    }
   };
 
   function escHtml(value) {
@@ -802,6 +889,14 @@ translationKey: presentations_index
     const text = String(value || "").trim();
     if (!text) return "";
     return text.length > max ? `${text.slice(0, max).trim()}…` : text;
+  }
+
+  function isExternalUrl(url) {
+    return /^https?:\/\//i.test(String(url || ""));
+  }
+
+  function linkAttrs(url) {
+    return isExternalUrl(url) ? ' target="_blank" rel="noopener noreferrer"' : "";
   }
 
   function toDisplayDate(value) {
@@ -1156,6 +1251,146 @@ translationKey: presentations_index
     }).join("");
   }
 
+  function buildUnifiedArchiveItems() {
+    const items = [];
+    Object.entries(rawData).forEach(([key, rows]) => {
+      const meta = archiveMetaByKey[key];
+      if (!meta) return;
+      normalizeRows(key, rows).forEach((item) => {
+        items.push({
+          ...item,
+          archiveType: meta.archiveType,
+          archiveTypeLabel: meta.archiveTypeLabel,
+          sourceLabel: meta.sourceLabel,
+          sourceKey: key,
+          openLabel: linkLabelByKey[key] || "Avaa"
+        });
+      });
+    });
+
+    analysisArchiveItems.forEach((item) => {
+      items.push({
+        ...item,
+        openLabel: linkLabelByKey.analysis
+      });
+    });
+
+    const seen = new Set();
+    return items
+      .filter((item) => {
+        const key = `${item.url || item.pageUrl || ""}|${item.title || ""}`;
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      })
+      .sort((a, b) => (b._isoDate || "").localeCompare(a._isoDate || ""));
+  }
+
+  function renderUnifiedArchive(items, filter, page) {
+    const grid = document.getElementById("presentation-unified-archive");
+    const status = document.getElementById("presentation-unified-status");
+    const pagination = document.getElementById("presentation-unified-pagination");
+    if (!grid || !status || !pagination) return;
+
+    const filtered = filter === "all" ? items : items.filter((item) => item.archiveType === filter);
+    const pageCount = Math.max(1, Math.ceil(filtered.length / UNIFIED_PAGE_SIZE));
+    const safePage = Math.min(Math.max(page, 1), pageCount);
+    const start = (safePage - 1) * UNIFIED_PAGE_SIZE;
+    const pageItems = filtered.slice(start, start + UNIFIED_PAGE_SIZE);
+
+    status.textContent = filtered.length === 1
+      ? "Näytetään 1 aineisto."
+      : `Näytetään ${filtered.length} aineistoa.`;
+
+    if (!pageItems.length) {
+      grid.innerHTML = '<p class="text-muted mb-0">Tästä ryhmästä ei löytynyt aineistoa.</p>';
+      pagination.innerHTML = "";
+      return;
+    }
+
+    grid.innerHTML = pageItems.map((item) => {
+      const primaryUrl = item.pageUrl || item.url || "";
+      const thumb = item.thumbnail
+        ? `<span class="presentation-archive-card-thumb-placeholder"><i class="bi ${escHtml(iconByKey[item.sourceKey] || "bi-easel2")}"></i></span><img src="${escHtml(item.thumbnail)}" alt="" class="presentation-archive-card-thumb-image" loading="lazy" decoding="async" onerror="this.style.display='none';">`
+        : `<span class="presentation-archive-card-thumb-placeholder"><i class="bi ${escHtml(iconByKey[item.sourceKey] || "bi-easel2")}"></i></span>`;
+      const externalButton = item.url
+        ? `<a href="${escHtml(item.url)}"${linkAttrs(item.url)} class="btn btn-outline-primary btn-sm rounded-pill px-3">${escHtml(item.openLabel || "Avaa")}</a>`
+        : "";
+      const pageButton = item.pageUrl
+        ? `<a href="${escHtml(item.pageUrl)}" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Sivun tiedot</a>`
+        : "";
+      const titleLink = primaryUrl
+        ? `<a href="${escHtml(primaryUrl)}"${linkAttrs(primaryUrl)}>${escHtml(item.title)}</a>`
+        : escHtml(item.title);
+      return `
+        <article class="presentation-archive-card">
+          <div class="presentation-archive-card-thumb">${thumb}</div>
+          <div class="presentation-archive-card-body">
+            <div class="presentation-archive-card-meta">
+              <span>${escHtml(item.archiveTypeLabel || "Aineisto")}</span>
+              <span>${escHtml(item.sourceLabel || item.meta || "")}</span>
+            </div>
+            <h3 class="presentation-archive-card-title">${titleLink}</h3>
+            <p class="presentation-archive-card-date">${escHtml(item.date || item.meta || "")}</p>
+            <p class="presentation-archive-card-desc">${escHtml(truncate(item.description || item.meta || "", 150))}</p>
+            <div class="presentation-archive-card-actions">${externalButton}${pageButton}</div>
+          </div>
+        </article>
+      `;
+    }).join("");
+
+    if (pageCount <= 1) {
+      pagination.innerHTML = "";
+      return;
+    }
+
+    pagination.innerHTML = Array.from({ length: pageCount }, (_, index) => {
+      const pageNumber = index + 1;
+      return `
+        <li class="page-item ${pageNumber === safePage ? "active" : ""}">
+          <button class="page-link" type="button" data-unified-page="${pageNumber}">${pageNumber}</button>
+        </li>
+      `;
+    }).join("");
+  }
+
+  function initUnifiedArchive() {
+    const archiveItems = buildUnifiedArchiveItems();
+    const filterControls = [...document.querySelectorAll("[data-presentation-filter]")];
+    let activeFilter = "all";
+    let activePage = 1;
+
+    const applyFilter = (filter, shouldScroll = false) => {
+      activeFilter = filter || "all";
+      activePage = 1;
+      filterControls.forEach((control) => {
+        control.classList.toggle("is-active", control.dataset.presentationFilter === activeFilter);
+      });
+      renderUnifiedArchive(archiveItems, activeFilter, activePage);
+      if (shouldScroll) {
+        document.getElementById("kaikki-esitykset")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    };
+
+    filterControls.forEach((control) => {
+      control.addEventListener("click", (event) => {
+        const filter = control.dataset.presentationFilter || "all";
+        if (control.tagName === "A") event.preventDefault();
+        applyFilter(filter, control.tagName === "A");
+      });
+    });
+
+    document.getElementById("presentation-unified-pagination")?.addEventListener("click", (event) => {
+      const button = event.target.closest("button[data-unified-page]");
+      if (!button) return;
+      activePage = Number(button.dataset.unifiedPage) || 1;
+      renderUnifiedArchive(archiveItems, activeFilter, activePage);
+      document.getElementById("kaikki-esitykset")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    applyFilter("all", false);
+  }
+
   Object.entries(rawData).forEach(([key, rows]) => {
     const normalized = normalizeRows(key, rows);
     if (!normalized.length) return;
@@ -1172,6 +1407,7 @@ translationKey: presentations_index
     };
     rerender(1);
   });
+  initUnifiedArchive();
 })();
 </script>
 
@@ -1398,6 +1634,141 @@ translationKey: presentations_index
   font-size: 1.35rem;
 }
 
+.presentation-archive-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-bottom: 1.15rem;
+}
+
+.presentation-archive-filter {
+  border: 1px solid var(--bs-border-color);
+  border-radius: 999px;
+  background: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  font-weight: 700;
+  padding: 0.65rem 1rem;
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.presentation-archive-filter:hover,
+.presentation-archive-filter.is-active {
+  border-color: var(--bs-primary);
+  background: var(--bs-primary);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.presentation-archive-status {
+  color: var(--bs-secondary-color);
+  font-size: 0.95rem;
+  margin-bottom: 1.25rem;
+}
+
+.presentation-archive-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.presentation-archive-card {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  overflow: hidden;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 1.25rem;
+  background: var(--bs-body-bg);
+  box-shadow: 0 0.85rem 2rem rgba(19, 43, 70, 0.07);
+}
+
+.presentation-archive-card-thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background:
+    linear-gradient(135deg, rgba(13, 110, 253, 0.08), rgba(13, 110, 253, 0.16)),
+    var(--bs-tertiary-bg);
+  overflow: hidden;
+}
+
+.presentation-archive-card-thumb-image,
+.presentation-archive-card-thumb-placeholder {
+  width: 100%;
+  height: 100%;
+}
+
+.presentation-archive-card-thumb-image {
+  position: absolute;
+  inset: 0;
+  display: block;
+  object-fit: cover;
+}
+
+.presentation-archive-card-thumb-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bs-secondary-color);
+  font-size: 2rem;
+}
+
+.presentation-archive-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.55rem;
+  padding: 1.05rem;
+}
+
+.presentation-archive-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.presentation-archive-card-meta span {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 999px;
+  color: var(--bs-secondary-color);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.1;
+  padding: 0.25rem 0.55rem;
+}
+
+.presentation-archive-card-title {
+  font-family: 'Bree Serif', serif;
+  font-size: 1.12rem;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.presentation-archive-card-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.presentation-archive-card-title a:hover {
+  text-decoration: underline;
+}
+
+.presentation-archive-card-date,
+.presentation-archive-card-desc {
+  color: var(--bs-secondary-color);
+  font-size: 0.9rem;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.presentation-archive-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: auto;
+  padding-top: 0.35rem;
+}
+
 .presentation-service-archive {
   border: 1px solid var(--bs-border-color);
   border-radius: 1.4rem;
@@ -1545,6 +1916,7 @@ translationKey: presentations_index
 [data-bs-theme="dark"] .presentation-type-panel,
 [data-bs-theme="dark"] .presentation-type-card,
 [data-bs-theme="dark"] .presentation-analysis-card,
+[data-bs-theme="dark"] .presentation-archive-card,
 [data-bs-theme="dark"] .presentation-service-archive {
   background: rgba(24, 36, 54, 0.92);
   box-shadow: 0 0.85rem 2rem rgba(0, 0, 0, 0.2);
@@ -1580,7 +1952,8 @@ translationKey: presentations_index
 @media (max-width: 991.98px) {
   .presentation-type-grid--cards,
   .presentation-type-columns,
-  .presentation-analysis-grid {
+  .presentation-analysis-grid,
+  .presentation-archive-grid {
     grid-template-columns: 1fr;
   }
 
