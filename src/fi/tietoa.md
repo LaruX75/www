@@ -42,6 +42,13 @@ wp_id: 7
   </div>
 </section>
 
+<nav class="about-mobile-path" aria-label="Tietoa-sivun tärkeimmät osiot">
+  <a href="#roolit">Roolit</a>
+  <a href="#profiili">Näyttö</a>
+  <a href="#oulu">Oulu</a>
+  <a href="#reitit">Reitit</a>
+</nav>
+
 <section class="about-section" id="roolit">
   <div class="site-shell">
     <div class="about-section-head">
@@ -138,87 +145,152 @@ wp_id: 7
   </div>
 </section>
 
-<section class="about-section about-section--photo" id="arki">
+<section class="about-section about-section--photo" id="arki" data-about-mobile-priority="2">
   <div class="site-shell">
-    <div class="about-section-head">
-      <p class="about-kicker">Ihminen työn takana</p>
-      <h2>Perhe, ruoka, remontointi ja pitkät automatkat pitävät kiinni arjessa</h2>
-      <p>Vapaa-aika ei ole sivujuonne, vaan vastapaino työlle. Arki, keittiö, taloremontit ja Euroopan halki kulkevat automatkat tuovat mittakaavaa myös asiantuntijatyöhön.</p>
-    </div>
+    <details class="about-mobile-disclosure" data-about-mobile-collapse open>
+      <summary class="about-mobile-disclosure-summary">
+        <span>Ihminen työn takana</span>
+        <small>Perhe, ruoka, remontointi ja pitkät automatkat</small>
+      </summary>
+      <div class="about-mobile-disclosure-body">
+        <div class="about-section-head">
+          <p class="about-kicker">Ihminen työn takana</p>
+          <h2>Perhe, ruoka, remontointi ja pitkät automatkat pitävät kiinni arjessa</h2>
+          <p>Vapaa-aika ei ole sivujuonne, vaan vastapaino työlle. Arki, keittiö, taloremontit ja Euroopan halki kulkevat automatkat tuovat mittakaavaa myös asiantuntijatyöhön.</p>
+        </div>
 
-    <div class="about-life-grid">
-      <a href="/autolomat/" class="about-life-card about-life-card--wide">
-        <img src="/img/uploads/2021/04/IMG_20190629_153127-edited-1024x578.jpg" alt="Roadtrip Skopje, Pohjois-Makedonia 2019" loading="lazy">
-        <span>
-          <strong>Automatkat Euroopassa</strong>
-          <small>Matkakertomuksia pitkiltä autoreissuilta.</small>
-        </span>
-      </a>
-      <a href="https://www.instagram.com/jarilaru/" target="_blank" rel="noopener noreferrer" class="about-life-card">
-        <img src="/img/uploads/2021/05/IMG_20210425_113524.jpg" alt="Ruoanlaittoa" loading="lazy">
-        <span>
-          <strong>Kulinaristi</strong>
-          <small>Ruokaa, leipomista ja keittokirjoja.</small>
-        </span>
-      </a>
-      <a href="https://www.instagram.com/jarilaru/" target="_blank" rel="noopener noreferrer" class="about-life-card">
-        <img src="/img/uploads/2021/05/IMG_20180714_122145__01-e1619985796461.jpg" alt="Hartiapankkiremontoija" loading="lazy">
-        <span>
-          <strong>Remontointi</strong>
-          <small>1970-luvun talo pitää huolen projekteista.</small>
-        </span>
-      </a>
-      <a href="/1998/02/16/silloin-kun-sita-oltiin-larges-securityn-sysop-bbs-muisteluita/" class="about-life-card">
-        <img src="/img/uploads/2021/01/puiravame.jpg" alt="Varhaisia teknologiaharrastuksia kuvaava nosto" loading="lazy">
-        <span>
-          <strong>Varhainen teknologianörtti</strong>
-          <small>BBS-muistot ajalta ennen nykyistä verkkoa.</small>
-        </span>
-      </a>
-    </div>
+        <div class="about-life-grid">
+          <a href="/autolomat/" class="about-life-card about-life-card--wide">
+            <img src="/img/uploads/2021/04/IMG_20190629_153127-edited-1024x578.jpg" alt="Roadtrip Skopje, Pohjois-Makedonia 2019" loading="lazy">
+            <span>
+              <strong>Automatkat Euroopassa</strong>
+              <small>Matkakertomuksia pitkiltä autoreissuilta.</small>
+            </span>
+          </a>
+          <a href="https://www.instagram.com/jarilaru/" target="_blank" rel="noopener noreferrer" class="about-life-card">
+            <img src="/img/uploads/2021/05/IMG_20210425_113524.jpg" alt="Ruoanlaittoa" loading="lazy">
+            <span>
+              <strong>Kulinaristi</strong>
+              <small>Ruokaa, leipomista ja keittokirjoja.</small>
+            </span>
+          </a>
+          <a href="https://www.instagram.com/jarilaru/" target="_blank" rel="noopener noreferrer" class="about-life-card">
+            <img src="/img/uploads/2021/05/IMG_20180714_122145__01-e1619985796461.jpg" alt="Hartiapankkiremontoija" loading="lazy">
+            <span>
+              <strong>Remontointi</strong>
+              <small>1970-luvun talo pitää huolen projekteista.</small>
+            </span>
+          </a>
+          <a href="/1998/02/16/silloin-kun-sita-oltiin-larges-securityn-sysop-bbs-muisteluita/" class="about-life-card">
+            <img src="/img/uploads/2021/01/puiravame.jpg" alt="Varhaisia teknologiaharrastuksia kuvaava nosto" loading="lazy">
+            <span>
+              <strong>Varhainen teknologianörtti</strong>
+              <small>BBS-muistot ajalta ennen nykyistä verkkoa.</small>
+            </span>
+          </a>
+        </div>
+      </div>
+    </details>
   </div>
 </section>
 
-<section class="about-section about-section--muted" id="reitit">
+<section class="about-section about-section--muted" id="reitit" data-about-mobile-priority="2">
   <div class="site-shell">
-    <div class="about-section-head">
-      <p class="about-kicker">Minne seuraavaksi?</p>
-      <h2>Löydä oikea näkökulma</h2>
-      <p>Jos etsit tarkempaa taustaa, löydät alta ansioluettelon, tunnustukset, opiskelijapalautteen ja yhteystiedot.</p>
-    </div>
+    <details class="about-mobile-disclosure" data-about-mobile-collapse open>
+      <summary class="about-mobile-disclosure-summary">
+        <span>Löydä oikea näkökulma</span>
+        <small>Ansioluettelo, palkinnot, palaute ja yhteystiedot</small>
+      </summary>
+      <div class="about-mobile-disclosure-body">
+        <div class="about-section-head">
+          <p class="about-kicker">Minne seuraavaksi?</p>
+          <h2>Löydä oikea näkökulma</h2>
+          <p>Jos etsit tarkempaa taustaa, löydät alta ansioluettelon, tunnustukset, opiskelijapalautteen ja yhteystiedot.</p>
+        </div>
 
-    <div class="about-link-grid">
-      <a href="/cv/" class="about-link-card">
-        <i class="bi bi-file-earmark-person"></i>
-        <strong>Ansioluettelo</strong>
-        <span>Koulutus, työkokemus ja keskeiset meriitit.</span>
-      </a>
-      <a href="/palkinnot/" class="about-link-card">
-        <i class="bi bi-award"></i>
-        <strong>Palkinnot</strong>
-        <span>Tunnustukset opetuksesta, avoimuudesta ja asiantuntijatyöstä.</span>
-      </a>
-      <a href="/opiskelijoiden-antamaa-palautetta/" class="about-link-card">
-        <i class="bi bi-chat-heart"></i>
-        <strong>Opiskelijapalaute</strong>
-        <span>Miten opetus ja ohjaus ovat näkyneet opiskelijoille.</span>
-      </a>
-      <a href="/yhteystiedot/" class="about-link-card">
-        <i class="bi bi-envelope"></i>
-        <strong>Ota yhteyttä</strong>
-        <span>Koulutuspyynnöt, haastattelut ja yhteistyö.</span>
-      </a>
-    </div>
+        <div class="about-link-grid">
+          <a href="/cv/" class="about-link-card">
+            <i class="bi bi-file-earmark-person"></i>
+            <strong>Ansioluettelo</strong>
+            <span>Koulutus, työkokemus ja keskeiset meriitit.</span>
+          </a>
+          <a href="/palkinnot/" class="about-link-card">
+            <i class="bi bi-award"></i>
+            <strong>Palkinnot</strong>
+            <span>Tunnustukset opetuksesta, avoimuudesta ja asiantuntijatyöstä.</span>
+          </a>
+          <a href="/opiskelijoiden-antamaa-palautetta/" class="about-link-card">
+            <i class="bi bi-chat-heart"></i>
+            <strong>Opiskelijapalaute</strong>
+            <span>Miten opetus ja ohjaus ovat näkyneet opiskelijoille.</span>
+          </a>
+          <a href="/yhteystiedot/" class="about-link-card">
+            <i class="bi bi-envelope"></i>
+            <strong>Ota yhteyttä</strong>
+            <span>Koulutuspyynnöt, haastattelut ja yhteistyö.</span>
+          </a>
+        </div>
 
-    <div class="about-social-strip" aria-label="Verkkoprofiilit">
-      {% for profile in pageContent.tietoa.social.profiles %}
-      <a href="{{ profile.href }}" target="_blank" rel="noopener noreferrer">{{ profile.platform }}</a>
-      {% endfor %}
-    </div>
+        <div class="about-social-strip" aria-label="Verkkoprofiilit">
+          {% for profile in pageContent.tietoa.social.profiles %}
+          <a href="{{ profile.href }}" target="_blank" rel="noopener noreferrer">{{ profile.platform }}</a>
+          {% endfor %}
+        </div>
+      </div>
+    </details>
   </div>
 </section>
+
+<script>
+(() => {
+  const mobileQuery = window.matchMedia("(max-width: 767.98px)");
+  const disclosures = Array.from(document.querySelectorAll("[data-about-mobile-collapse]"));
+  if (!disclosures.length) return;
+
+  const openDisclosureForHash = () => {
+    const hash = window.location.hash;
+    if (!hash) return;
+    const target = document.querySelector(hash);
+    if (!target) return;
+    const disclosure = target.closest("[data-about-mobile-collapse]") || target.querySelector("[data-about-mobile-collapse]");
+    if (disclosure) disclosure.open = true;
+  };
+
+  const applyDisclosureState = () => {
+    disclosures.forEach((disclosure) => {
+      if (!mobileQuery.matches) {
+        disclosure.open = true;
+        disclosure.dataset.aboutMobilePrepared = "false";
+        return;
+      }
+      if (disclosure.dataset.aboutMobilePrepared === "true") return;
+      disclosure.open = false;
+      disclosure.dataset.aboutMobilePrepared = "true";
+    });
+    openDisclosureForHash();
+  };
+
+  applyDisclosureState();
+  mobileQuery.addEventListener("change", applyDisclosureState);
+  window.addEventListener("hashchange", openDisclosureForHash);
+
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", () => {
+      window.setTimeout(openDisclosureForHash, 0);
+    });
+  });
+})();
+</script>
 
 <style>
+.about-mobile-path {
+  display: none;
+}
+
+.about-mobile-disclosure-summary {
+  display: none;
+}
+
 .about-hero-section {
   padding: clamp(3rem, 6vw, 6rem) 0;
   border-bottom: 1px solid var(--bs-border-color);
@@ -593,6 +665,17 @@ wp_id: 7
     linear-gradient(180deg, rgba(24, 36, 54, 0.98), rgba(17, 29, 45, 0.98));
 }
 
+[data-bs-theme="dark"] .about-mobile-disclosure-summary {
+  background: linear-gradient(180deg, rgba(24, 36, 54, 0.96), rgba(18, 28, 44, 0.98));
+  border-color: rgba(255, 255, 255, 0.14);
+  color: #f7fbff;
+  box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.22);
+}
+
+[data-bs-theme="dark"] .about-mobile-disclosure-summary small {
+  color: rgba(255, 255, 255, 0.68);
+}
+
 @media (max-width: 1199.98px) {
   .about-role-grid,
   .about-link-grid {
@@ -609,6 +692,158 @@ wp_id: 7
 
   .about-life-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767.98px) {
+  .about-hero-section {
+    padding-block: 2.6rem;
+  }
+
+  .about-hero-card img {
+    max-height: 22rem;
+    object-position: center 68%;
+  }
+
+  .about-hero-actions {
+    gap: 0.5rem;
+  }
+
+  .about-hero-actions .btn {
+    flex: 1 1 100%;
+    justify-content: center;
+  }
+
+  .about-mobile-path {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    gap: 0.45rem;
+    overflow-x: auto;
+    padding: 0.65rem 0.75rem;
+    border-bottom: 1px solid rgba(19, 43, 70, 0.1);
+    background: color-mix(in srgb, var(--bs-body-bg) 92%, transparent);
+    backdrop-filter: blur(10px);
+    scrollbar-width: none;
+  }
+
+  .about-mobile-path::-webkit-scrollbar {
+    display: none;
+  }
+
+  .about-mobile-path a {
+    flex: 0 0 auto;
+    padding: 0.45rem 0.72rem;
+    border: 1px solid var(--bs-border-color);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--bs-body-bg) 84%, var(--bs-primary) 8%);
+    color: var(--bs-primary);
+    font-size: 0.86rem;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  [data-bs-theme="dark"] .about-mobile-path {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+    background: color-mix(in srgb, var(--bs-body-bg) 88%, transparent);
+  }
+
+  [data-bs-theme="dark"] .about-mobile-path a {
+    border-color: rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.08);
+    color: #f4f8fd;
+  }
+
+  .about-section {
+    padding-block: 2.5rem;
+  }
+
+  [data-about-mobile-priority="2"] {
+    padding-block: 0.75rem;
+  }
+
+  .about-mobile-disclosure {
+    display: block;
+  }
+
+  .about-mobile-disclosure-summary {
+    position: relative;
+    display: grid;
+    gap: 0.2rem;
+    padding: 1rem 3rem 1rem 1rem;
+    border: 1px solid var(--bs-border-color);
+    border-radius: 1rem;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 249, 252, 0.98));
+    box-shadow: 0 0.75rem 1.6rem rgba(19, 43, 70, 0.08);
+    color: var(--bs-body-color);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .about-mobile-disclosure-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .about-mobile-disclosure-summary::after {
+    content: "+";
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    width: 1.65rem;
+    height: 1.65rem;
+    transform: translateY(-50%);
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: color-mix(in srgb, var(--bs-primary) 12%, var(--bs-body-bg) 88%);
+    color: var(--bs-primary);
+    font-weight: 800;
+  }
+
+  .about-mobile-disclosure[open] .about-mobile-disclosure-summary::after {
+    content: "–";
+  }
+
+  .about-mobile-disclosure-summary span {
+    font-weight: 800;
+    line-height: 1.25;
+  }
+
+  .about-mobile-disclosure-summary small {
+    color: var(--bs-secondary-color);
+    font-size: 0.84rem;
+    line-height: 1.35;
+  }
+
+  .about-mobile-disclosure[open] .about-mobile-disclosure-body {
+    margin-top: 1rem;
+  }
+
+  .about-role-card {
+    min-height: auto;
+    padding: 1.1rem;
+  }
+
+  .about-role-card:not(.about-role-card--primary) p:not(.about-role-index) {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+
+  .about-role-index {
+    margin-bottom: 0.7rem;
+    font-size: 1.9rem;
+  }
+
+  .about-place-images figure:nth-child(n+2) {
+    display: none;
+  }
+
+  .about-place-images img {
+    height: 16rem;
   }
 }
 
