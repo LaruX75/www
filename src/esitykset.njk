@@ -271,6 +271,13 @@ translationKey: presentations_index
   </div>
 </section>
 
+<nav class="presentation-mobile-path" aria-label="Esityssivun tärkeimmät osiot">
+  <a href="#ajankohtaiset-nostot">Nostot</a>
+  <a href="#sisaltotyypit">Tyypit</a>
+  <a href="#kaikki-esitykset">Kaikki</a>
+  <a href="#palveluarkisto">Arkisto</a>
+</nav>
+
 <section class="py-5">
   <div class="site-shell">
     <div class="presentation-section-head">
@@ -323,74 +330,82 @@ translationKey: presentations_index
   </div>
 </section>
 
-<section class="py-5 presentation-context-section border-top" id="kayttokontekstit" aria-labelledby="kayttokontekstit-heading">
+<section class="py-5 presentation-context-section border-top" id="kayttokontekstit" aria-labelledby="kayttokontekstit-heading" data-presentation-mobile-priority="3">
   <div class="site-shell">
-    <div class="presentation-section-head">
-      <p class="presentation-section-kicker mb-1">Käyttökontekstit</p>
-      <h2 id="kayttokontekstit-heading" class="presentation-section-title">Materiaali, tilaisuus ja palaute samaan ketjuun</h2>
-      <p class="presentation-section-lead mb-0">Esitys tai video on harvoin irrallinen tiedosto. Se liittyy yleensä luentoon, harjoitukseen, täydennyskoulutukseen, keynoteen tai julkiseen asiantuntijatilanteeseen. Tämä osio kokoaa ensimmäiset tunnetut yhteydet näkyviin.</p>
-    </div>
+    <details class="presentation-mobile-disclosure" data-presentation-mobile-collapse open>
+      <summary class="presentation-mobile-disclosure-summary">
+        <span>Käyttökontekstit</span>
+        <small>Materiaali, tilaisuus ja palaute samassa ketjussa</small>
+      </summary>
+      <div class="presentation-mobile-disclosure-body">
+        <div class="presentation-section-head">
+          <p class="presentation-section-kicker mb-1">Käyttökontekstit</p>
+          <h2 id="kayttokontekstit-heading" class="presentation-section-title">Materiaali, tilaisuus ja palaute samaan ketjuun</h2>
+          <p class="presentation-section-lead mb-0">Esitys tai video on harvoin irrallinen tiedosto. Se liittyy yleensä luentoon, harjoitukseen, täydennyskoulutukseen, keynoteen tai julkiseen asiantuntijatilanteeseen. Tämä osio kokoaa ensimmäiset tunnetut yhteydet näkyviin.</p>
+        </div>
 
-    <div class="presentation-context-grid">
-      {% for context in presentationContextItems | sort(attribute="date", reverse=true) %}
-      <article class="presentation-context-card">
-        <div class="presentation-context-card-head">
-          <span class="presentation-context-type">{{ context.typeLabel }}</span>
-          <span class="presentation-context-date">{{ context.displayDate or (context.date | dateFormat) }}</span>
-        </div>
-        <h3 class="presentation-context-title">{{ context.title }}</h3>
-        <p class="presentation-context-summary">{{ context.summary }}</p>
-        <dl class="presentation-context-meta">
-          <div>
-            <dt>Rooli</dt>
-            <dd>{{ context.role }}</dd>
-          </div>
-          <div>
-            <dt>Kohderyhmä</dt>
-            <dd>{{ context.audience }}</dd>
-          </div>
-          <div>
-            <dt>Järjestäjä</dt>
-            <dd>{{ context.organizer }}</dd>
-          </div>
-        </dl>
-        {% if context.topics and context.topics.length %}
-        <div class="presentation-context-topics" aria-label="Teemat">
-          {% for topic in context.topics %}
-          <span>{{ topic }}</span>
-          {% endfor %}
-        </div>
-        {% endif %}
-        {% if context.materials and context.materials.length %}
-        <div class="presentation-context-materials">
-          <p class="presentation-context-subtitle">Kytketyt aineistot</p>
-          <div class="d-flex flex-wrap gap-2">
-            {% for material in context.materials %}
-              {% if material.url %}
-              <a href="{{ material.url }}"{% if material.url.startsWith("http") %} target="_blank" rel="noopener noreferrer"{% endif %} class="btn btn-outline-primary btn-sm rounded-pill px-3">{{ material.label }}</a>
-              {% else %}
-              <span class="presentation-context-material-static">{{ material.label }}</span>
-              {% endif %}
-            {% endfor %}
-          </div>
-        </div>
-        {% endif %}
-        {% if context.feedbackIds and context.feedbackIds.length %}
-        <div class="presentation-context-feedback">
-          <p class="presentation-context-subtitle">Palaute</p>
-          {% for feedback in testimonials.items %}
-            {% if context.feedbackIds.indexOf(feedback.id) != -1 %}
-            <blockquote>
-              <p>“{{ feedback.content.fi.quote }}”</p>
-              <footer>{{ feedback.content.fi.attribution }}</footer>
-            </blockquote>
+        <div class="presentation-context-grid">
+          {% for context in presentationContextItems | sort(attribute="date", reverse=true) %}
+          <article class="presentation-context-card">
+            <div class="presentation-context-card-head">
+              <span class="presentation-context-type">{{ context.typeLabel }}</span>
+              <span class="presentation-context-date">{{ context.displayDate or (context.date | dateFormat) }}</span>
+            </div>
+            <h3 class="presentation-context-title">{{ context.title }}</h3>
+            <p class="presentation-context-summary">{{ context.summary }}</p>
+            <dl class="presentation-context-meta">
+              <div>
+                <dt>Rooli</dt>
+                <dd>{{ context.role }}</dd>
+              </div>
+              <div>
+                <dt>Kohderyhmä</dt>
+                <dd>{{ context.audience }}</dd>
+              </div>
+              <div>
+                <dt>Järjestäjä</dt>
+                <dd>{{ context.organizer }}</dd>
+              </div>
+            </dl>
+            {% if context.topics and context.topics.length %}
+            <div class="presentation-context-topics" aria-label="Teemat">
+              {% for topic in context.topics %}
+              <span>{{ topic }}</span>
+              {% endfor %}
+            </div>
             {% endif %}
+            {% if context.materials and context.materials.length %}
+            <div class="presentation-context-materials">
+              <p class="presentation-context-subtitle">Kytketyt aineistot</p>
+              <div class="d-flex flex-wrap gap-2">
+                {% for material in context.materials %}
+                  {% if material.url %}
+                  <a href="{{ material.url }}"{% if material.url.startsWith("http") %} target="_blank" rel="noopener noreferrer"{% endif %} class="btn btn-outline-primary btn-sm rounded-pill px-3">{{ material.label }}</a>
+                  {% else %}
+                  <span class="presentation-context-material-static">{{ material.label }}</span>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+            {% endif %}
+            {% if context.feedbackIds and context.feedbackIds.length %}
+            <div class="presentation-context-feedback">
+              <p class="presentation-context-subtitle">Palaute</p>
+              {% for feedback in testimonials.items %}
+                {% if context.feedbackIds.indexOf(feedback.id) != -1 %}
+                <blockquote>
+                  <p>“{{ feedback.content.fi.quote }}”</p>
+                  <footer>{{ feedback.content.fi.attribution }}</footer>
+                </blockquote>
+                {% endif %}
+              {% endfor %}
+            </div>
+            {% endif %}
+          </article>
           {% endfor %}
         </div>
-        {% endif %}
-      </article>
-      {% endfor %}
-    </div>
+      </div>
+    </details>
   </div>
 </section>
 
@@ -558,193 +573,209 @@ translationKey: presentations_index
   </div>
 </section>
 
-<section class="py-5" id="sisaltotyypit" aria-labelledby="sisaltotyypit-heading">
+<section class="py-5" id="sisaltotyypit" aria-labelledby="sisaltotyypit-heading" data-presentation-mobile-priority="2">
   <div class="site-shell">
-    <div class="presentation-section-head">
-      <p class="presentation-section-kicker mb-1">Sisältötyypit</p>
-      <h2 id="sisaltotyypit-heading" class="presentation-section-title">Materiaalit käyttötarkoituksen mukaan</h2>
-      <p class="presentation-section-lead mb-0">Tästä osiosta löydät nopeasti uusimmat koulutusmateriaalit, avoimet oppimateriaalit, videot ja aineistoa kokoavat analyysit.</p>
-    </div>
-
-    <div class="presentation-type-stack">
-      <section class="presentation-type-panel presentation-type-panel--featured" aria-labelledby="esitykset-koulutukset">
-        <div class="presentation-type-panel-head">
-          <p class="presentation-section-kicker mb-1">Omat esitykset</p>
-          <h2 id="esitykset-koulutukset" class="presentation-type-title">Koulutukset ja keynote-esitykset</h2>
-          <p class="presentation-type-lead mb-0">Tähän kuuluvat omat puheenvuorot, koulutustilaisuuksien diasetit ja laajemmat esityskokonaisuudet.</p>
+    <details class="presentation-mobile-disclosure" data-presentation-mobile-collapse open>
+      <summary class="presentation-mobile-disclosure-summary">
+        <span>Selaa sisältötyypin mukaan</span>
+        <small>Koulutukset, oppimateriaalit, videot ja analyysit</small>
+      </summary>
+      <div class="presentation-mobile-disclosure-body">
+        <div class="presentation-section-head">
+          <p class="presentation-section-kicker mb-1">Sisältötyypit</p>
+          <h2 id="sisaltotyypit-heading" class="presentation-section-title">Materiaalit käyttötarkoituksen mukaan</h2>
+          <p class="presentation-section-lead mb-0">Tästä osiosta löydät nopeasti uusimmat koulutusmateriaalit, avoimet oppimateriaalit, videot ja aineistoa kokoavat analyysit.</p>
         </div>
-        <div class="presentation-type-grid presentation-type-grid--cards">
-          {% for item in latestShowcaseItems.slice(0, 3) %}
-          <article class="presentation-type-card">
-            {% if item.thumbnail %}
-            <img src="{{ item.thumbnail }}" alt="{{ item.title }}" class="presentation-type-thumb" loading="lazy" decoding="async">
-            {% else %}
-            <div class="presentation-type-thumb presentation-type-thumb--placeholder"><i class="bi bi-easel2"></i></div>
-            {% endif %}
-            <div class="presentation-type-card-body">
-              <div class="d-flex flex-wrap gap-2 mb-2">
-                <span class="badge rounded-pill border text-body-secondary">{{ item.sourceLabel }}</span>
-                {% if item.categories and item.categories[0] %}
-                <span class="badge rounded-pill border text-body-secondary">{{ item.categories[0] }}</span>
-                {% endif %}
-              </div>
-              <p class="text-muted small mb-2">{{ item.date | dateFormat }}</p>
-              <div class="presentation-context-chip-row mb-2">
-                {{ renderContextChips(item) }}
-              </div>
-              <h3 class="h5 mb-2"><a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a></h3>
-              <p class="text-muted small mb-3">{{ item.description }}</p>
-              <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-3">Avaa esitys</a>
+
+        <div class="presentation-type-stack">
+          <section class="presentation-type-panel presentation-type-panel--featured" aria-labelledby="esitykset-koulutukset">
+            <div class="presentation-type-panel-head">
+              <p class="presentation-section-kicker mb-1">Omat esitykset</p>
+              <h2 id="esitykset-koulutukset" class="presentation-type-title">Koulutukset ja keynote-esitykset</h2>
+              <p class="presentation-type-lead mb-0">Tähän kuuluvat omat puheenvuorot, koulutustilaisuuksien diasetit ja laajemmat esityskokonaisuudet.</p>
             </div>
-          </article>
-          {% endfor %}
-        </div>
-        <div>
-          <a href="#kaikki-esitykset" class="btn btn-outline-primary rounded-pill px-4" data-presentation-filter="own">Katso kaikki koulutukset ja keynote-esitykset ({{ ownPresentationCount }})</a>
-        </div>
-      </section>
+            <div class="presentation-type-grid presentation-type-grid--cards">
+              {% for item in latestShowcaseItems.slice(0, 3) %}
+              <article class="presentation-type-card">
+                {% if item.thumbnail %}
+                <img src="{{ item.thumbnail }}" alt="{{ item.title }}" class="presentation-type-thumb" loading="lazy" decoding="async">
+                {% else %}
+                <div class="presentation-type-thumb presentation-type-thumb--placeholder"><i class="bi bi-easel2"></i></div>
+                {% endif %}
+                <div class="presentation-type-card-body">
+                  <div class="d-flex flex-wrap gap-2 mb-2">
+                    <span class="badge rounded-pill border text-body-secondary">{{ item.sourceLabel }}</span>
+                    {% if item.categories and item.categories[0] %}
+                    <span class="badge rounded-pill border text-body-secondary">{{ item.categories[0] }}</span>
+                    {% endif %}
+                  </div>
+                  <p class="text-muted small mb-2">{{ item.date | dateFormat }}</p>
+                  <div class="presentation-context-chip-row mb-2">
+                    {{ renderContextChips(item) }}
+                  </div>
+                  <h3 class="h5 mb-2"><a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a></h3>
+                  <p class="text-muted small mb-3">{{ item.description }}</p>
+                  <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-3">Avaa esitys</a>
+                </div>
+              </article>
+              {% endfor %}
+            </div>
+            <div>
+              <a href="#kaikki-esitykset" class="btn btn-outline-primary rounded-pill px-4" data-presentation-filter="own">Katso kaikki koulutukset ja keynote-esitykset ({{ ownPresentationCount }})</a>
+            </div>
+          </section>
 
-      <div class="presentation-type-columns">
-        <section class="presentation-type-panel" aria-labelledby="esitykset-oppimateriaalit">
-          <div class="presentation-type-panel-head">
-            <p class="presentation-section-kicker mb-1">Opetuskäyttö</p>
-            <h2 id="esitykset-oppimateriaalit" class="presentation-type-title">Avoimet oppimateriaalit</h2>
-            <p class="presentation-type-lead mb-0">Aineistot, joita voi käyttää, soveltaa tai jakaa opetuksen tueksi.</p>
-          </div>
-          <div class="presentation-type-list">
-            {% for item in latestAoeItems %}
-            <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer" class="presentation-mini-link">
-              <span class="presentation-mini-thumb">
-                {% if item.image %}
-                <img src="{{ item.image }}" alt="{{ item.title }}" class="presentation-mini-thumb-image" loading="lazy" decoding="async">
-                {% else %}
-                <span class="presentation-mini-thumb-placeholder"><i class="bi bi-book"></i></span>
-                {% endif %}
-              </span>
-              <span class="presentation-mini-copy">
-                <strong>{{ item.title }}</strong>
-                <span>{% if item.year %}{{ item.year }}{% else %}AOE / Finna{% endif %}</span>
-              </span>
-            </a>
-            {% endfor %}
-          </div>
-          <div>
-            <a href="#kaikki-esitykset" class="btn btn-outline-primary btn-sm rounded-pill px-3" data-presentation-filter="aoe">Katso kaikki oppimateriaalit ({{ aoeCount }})</a>
-          </div>
-        </section>
+          <div class="presentation-type-columns">
+            <section class="presentation-type-panel" aria-labelledby="esitykset-oppimateriaalit">
+              <div class="presentation-type-panel-head">
+                <p class="presentation-section-kicker mb-1">Opetuskäyttö</p>
+                <h2 id="esitykset-oppimateriaalit" class="presentation-type-title">Avoimet oppimateriaalit</h2>
+                <p class="presentation-type-lead mb-0">Aineistot, joita voi käyttää, soveltaa tai jakaa opetuksen tueksi.</p>
+              </div>
+              <div class="presentation-type-list">
+                {% for item in latestAoeItems %}
+                <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer" class="presentation-mini-link">
+                  <span class="presentation-mini-thumb">
+                    {% if item.image %}
+                    <img src="{{ item.image }}" alt="{{ item.title }}" class="presentation-mini-thumb-image" loading="lazy" decoding="async">
+                    {% else %}
+                    <span class="presentation-mini-thumb-placeholder"><i class="bi bi-book"></i></span>
+                    {% endif %}
+                  </span>
+                  <span class="presentation-mini-copy">
+                    <strong>{{ item.title }}</strong>
+                    <span>{% if item.year %}{{ item.year }}{% else %}AOE / Finna{% endif %}</span>
+                  </span>
+                </a>
+                {% endfor %}
+              </div>
+              <div>
+                <a href="#kaikki-esitykset" class="btn btn-outline-primary btn-sm rounded-pill px-3" data-presentation-filter="aoe">Katso kaikki oppimateriaalit ({{ aoeCount }})</a>
+              </div>
+            </section>
 
-        <section class="presentation-type-panel" aria-labelledby="esitykset-videot">
-          <div class="presentation-type-panel-head">
-            <p class="presentation-section-kicker mb-1">Tallenteet</p>
-            <h2 id="esitykset-videot" class="presentation-type-title">Videot, tallenteet ja omat sarjat</h2>
-            <p class="presentation-type-lead mb-0">Videoaineistot täydentävät esityksiä silloin, kun tallenne tai oma videosarja on saatavilla.</p>
+            <section class="presentation-type-panel" aria-labelledby="esitykset-videot">
+              <div class="presentation-type-panel-head">
+                <p class="presentation-section-kicker mb-1">Tallenteet</p>
+                <h2 id="esitykset-videot" class="presentation-type-title">Videot, tallenteet ja omat sarjat</h2>
+                <p class="presentation-type-lead mb-0">Videoaineistot täydentävät esityksiä silloin, kun tallenne tai oma videosarja on saatavilla.</p>
+              </div>
+              {% if curatedVideoItems.length or videoSeriesItems.length or latestVideoItems.length %}
+              <div class="presentation-type-list">
+                {% for item in curatedVideoItems %}
+                <a href="{{ item.url or item.externalUrl }}"{% if item.external %} target="_blank" rel="noopener noreferrer"{% endif %} class="presentation-mini-link">
+                  <span class="presentation-mini-thumb">
+                    {% if item.thumbnail %}
+                    <img src="{{ item.thumbnail }}" alt="{{ item.title }}" class="presentation-mini-thumb-image" loading="lazy" decoding="async">
+                    {% else %}
+                    <span class="presentation-mini-thumb-placeholder"><i class="bi bi-youtube"></i></span>
+                    {% endif %}
+                  </span>
+                  <span class="presentation-mini-copy">
+                    <strong>{{ item.title }}</strong>
+                    <span>{{ item.listText or item.badgeText or item.sourceLabel }}</span>
+                  </span>
+                </a>
+                {% endfor %}
+                {% for item in videoSeriesItems %}
+                <a href="{{ item.url or item.externalUrl }}"{% if item.external %} target="_blank" rel="noopener noreferrer"{% endif %} class="presentation-mini-link">
+                  <span class="presentation-mini-thumb">
+                    {% if item.thumbnail %}
+                    <img src="{{ item.thumbnail }}" alt="{{ item.title }}" class="presentation-mini-thumb-image" loading="lazy" decoding="async">
+                    {% else %}
+                    <span class="presentation-mini-thumb-placeholder"><i class="bi bi-youtube"></i></span>
+                    {% endif %}
+                  </span>
+                  <span class="presentation-mini-copy">
+                    <strong>{{ item.title }}</strong>
+                    <span>{{ item.listText or item.badgeText or item.sourceLabel }}</span>
+                  </span>
+                </a>
+                {% endfor %}
+                {% for item in latestVideoItems %}
+                <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer" class="presentation-mini-link">
+                  <span class="presentation-mini-thumb">
+                    {% if item.thumbnail %}
+                    <img src="{{ item.thumbnail }}" alt="{{ item.title }}" class="presentation-mini-thumb-image" loading="lazy" decoding="async">
+                    {% else %}
+                    <span class="presentation-mini-thumb-placeholder"><i class="bi bi-youtube"></i></span>
+                    {% endif %}
+                  </span>
+                  <span class="presentation-mini-copy">
+                    <strong>{{ item.title }}</strong>
+                    <span>{{ item.publishedAt | dateFormat }}</span>
+                  </span>
+                </a>
+                {% endfor %}
+              </div>
+              {% else %}
+              <p class="text-muted small mb-3">Tällä hetkellä varsinaiset tallenteet eivät ole sivun pääaineistoa.</p>
+              <a href="https://www.youtube.com/jarilaru" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary btn-sm rounded-pill px-3">YouTube-kanava</a>
+              {% endif %}
+              <div>
+                <a href="#kaikki-esitykset" class="btn btn-outline-primary btn-sm rounded-pill px-3" data-presentation-filter="video">Katso kaikki videot ja tallenteet</a>
+              </div>
+            </section>
           </div>
-          {% if curatedVideoItems.length or videoSeriesItems.length or latestVideoItems.length %}
-          <div class="presentation-type-list">
-            {% for item in curatedVideoItems %}
-            <a href="{{ item.url or item.externalUrl }}"{% if item.external %} target="_blank" rel="noopener noreferrer"{% endif %} class="presentation-mini-link">
-              <span class="presentation-mini-thumb">
-                {% if item.thumbnail %}
-                <img src="{{ item.thumbnail }}" alt="{{ item.title }}" class="presentation-mini-thumb-image" loading="lazy" decoding="async">
-                {% else %}
-                <span class="presentation-mini-thumb-placeholder"><i class="bi bi-youtube"></i></span>
-                {% endif %}
-              </span>
-              <span class="presentation-mini-copy">
-                <strong>{{ item.title }}</strong>
-                <span>{{ item.listText or item.badgeText or item.sourceLabel }}</span>
-              </span>
-            </a>
-            {% endfor %}
-            {% for item in videoSeriesItems %}
-            <a href="{{ item.url or item.externalUrl }}"{% if item.external %} target="_blank" rel="noopener noreferrer"{% endif %} class="presentation-mini-link">
-              <span class="presentation-mini-thumb">
-                {% if item.thumbnail %}
-                <img src="{{ item.thumbnail }}" alt="{{ item.title }}" class="presentation-mini-thumb-image" loading="lazy" decoding="async">
-                {% else %}
-                <span class="presentation-mini-thumb-placeholder"><i class="bi bi-youtube"></i></span>
-                {% endif %}
-              </span>
-              <span class="presentation-mini-copy">
-                <strong>{{ item.title }}</strong>
-                <span>{{ item.listText or item.badgeText or item.sourceLabel }}</span>
-              </span>
-            </a>
-            {% endfor %}
-            {% for item in latestVideoItems %}
-            <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer" class="presentation-mini-link">
-              <span class="presentation-mini-thumb">
-                {% if item.thumbnail %}
-                <img src="{{ item.thumbnail }}" alt="{{ item.title }}" class="presentation-mini-thumb-image" loading="lazy" decoding="async">
-                {% else %}
-                <span class="presentation-mini-thumb-placeholder"><i class="bi bi-youtube"></i></span>
-                {% endif %}
-              </span>
-              <span class="presentation-mini-copy">
-                <strong>{{ item.title }}</strong>
-                <span>{{ item.publishedAt | dateFormat }}</span>
-              </span>
-            </a>
-            {% endfor %}
-          </div>
-          {% else %}
-          <p class="text-muted small mb-3">Tällä hetkellä varsinaiset tallenteet eivät ole sivun pääaineistoa.</p>
-          <a href="https://www.youtube.com/jarilaru" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary btn-sm rounded-pill px-3">YouTube-kanava</a>
-          {% endif %}
-          <div>
-            <a href="#kaikki-esitykset" class="btn btn-outline-primary btn-sm rounded-pill px-3" data-presentation-filter="video">Katso kaikki videot ja tallenteet</a>
-          </div>
-        </section>
+
+          <section class="presentation-type-panel presentation-type-panel--analysis" aria-labelledby="esitykset-analyysit">
+            <div class="presentation-type-panel-head">
+              <p class="presentation-section-kicker mb-1">Aineiston tulkinta</p>
+              <h2 id="esitykset-analyysit" class="presentation-type-title">Aineistoanalyysit</h2>
+              <p class="presentation-type-lead mb-0">Analyysit nostavat esiin vuosien mittaisia teemoja, eivät vain yksittäisiä esityksiä.</p>
+            </div>
+            <div class="presentation-analysis-grid">
+              <a href="/esitykset/canva-analyysi/" class="presentation-analysis-card">
+                <span class="presentation-analysis-icon"><i class="bi bi-bar-chart-line"></i></span>
+                <span>
+                  <strong>Canva-esitykset 2021-2026</strong>
+                  <span>Teemat, kehityskaaret ja laajimmat esitykset.</span>
+                </span>
+              </a>
+              <a href="/esitykset/slideshare-analyysi/" class="presentation-analysis-card">
+                <span class="presentation-analysis-icon"><i class="bi bi-collection-play"></i></span>
+                <span>
+                  <strong>SlideShare-esitykset 2009-2020</strong>
+                  <span>Katsotuimmat, teemat ja kehityskaaret vuosikymmenittäin.</span>
+                </span>
+              </a>
+            </div>
+          </section>
+        </div>
       </div>
-
-      <section class="presentation-type-panel presentation-type-panel--analysis" aria-labelledby="esitykset-analyysit">
-        <div class="presentation-type-panel-head">
-          <p class="presentation-section-kicker mb-1">Aineiston tulkinta</p>
-          <h2 id="esitykset-analyysit" class="presentation-type-title">Aineistoanalyysit</h2>
-          <p class="presentation-type-lead mb-0">Analyysit nostavat esiin vuosien mittaisia teemoja, eivät vain yksittäisiä esityksiä.</p>
-        </div>
-        <div class="presentation-analysis-grid">
-          <a href="/esitykset/canva-analyysi/" class="presentation-analysis-card">
-            <span class="presentation-analysis-icon"><i class="bi bi-bar-chart-line"></i></span>
-            <span>
-              <strong>Canva-esitykset 2021-2026</strong>
-              <span>Teemat, kehityskaaret ja laajimmat esitykset.</span>
-            </span>
-          </a>
-          <a href="/esitykset/slideshare-analyysi/" class="presentation-analysis-card">
-            <span class="presentation-analysis-icon"><i class="bi bi-collection-play"></i></span>
-            <span>
-              <strong>SlideShare-esitykset 2009-2020</strong>
-              <span>Katsotuimmat, teemat ja kehityskaaret vuosikymmenittäin.</span>
-            </span>
-          </a>
-        </div>
-      </section>
-    </div>
+    </details>
   </div>
 </section>
 
-<section class="py-5 bg-body-tertiary border-top border-bottom" id="kaikki-esitykset" aria-labelledby="kaikki-esitykset-heading">
+<section class="py-5 bg-body-tertiary border-top border-bottom" id="kaikki-esitykset" aria-labelledby="kaikki-esitykset-heading" data-presentation-mobile-priority="2">
   <div class="site-shell">
-    <div class="presentation-section-head">
-      <p class="presentation-section-kicker mb-1">Koko aineisto</p>
-      <h2 id="kaikki-esitykset-heading" class="presentation-section-title">Kaikki esitykset ja materiaalit</h2>
-      <p class="presentation-section-lead mb-0">Kun haluat selata koko aineistoa, aloita tästä. Kortit näyttävät otsikon, vuoden, lyhyen kuvauksen ja lähteen; suodattimilla rajaat listan itsellesi sopivaksi.</p>
-    </div>
+    <details class="presentation-mobile-disclosure" data-presentation-mobile-collapse open>
+      <summary class="presentation-mobile-disclosure-summary">
+        <span>Kaikki esitykset ja materiaalit</span>
+        <small>Suodattimet ja paginoitu aineistoluettelo</small>
+      </summary>
+      <div class="presentation-mobile-disclosure-body">
+        <div class="presentation-section-head">
+          <p class="presentation-section-kicker mb-1">Koko aineisto</p>
+          <h2 id="kaikki-esitykset-heading" class="presentation-section-title">Kaikki esitykset ja materiaalit</h2>
+          <p class="presentation-section-lead mb-0">Kun haluat selata koko aineistoa, aloita tästä. Kortit näyttävät otsikon, vuoden, lyhyen kuvauksen ja lähteen; suodattimilla rajaat listan itsellesi sopivaksi.</p>
+        </div>
 
-    <div class="presentation-archive-toolbar" aria-label="Suodata esityksiä sisältötyypin mukaan">
-      <button class="presentation-archive-filter is-active" type="button" data-presentation-filter="all">Kaikki</button>
-      <button class="presentation-archive-filter" type="button" data-presentation-filter="own">Koulutukset ja keynote-esitykset</button>
-      <button class="presentation-archive-filter" type="button" data-presentation-filter="aoe">Avoimet oppimateriaalit</button>
-      <button class="presentation-archive-filter" type="button" data-presentation-filter="video">Videot ja tallenteet</button>
-      <button class="presentation-archive-filter" type="button" data-presentation-filter="analysis">Aineistoanalyysit</button>
-    </div>
+        <div class="presentation-archive-toolbar" aria-label="Suodata esityksiä sisältötyypin mukaan">
+          <button class="presentation-archive-filter is-active" type="button" data-presentation-filter="all">Kaikki</button>
+          <button class="presentation-archive-filter" type="button" data-presentation-filter="own">Koulutukset ja keynote-esitykset</button>
+          <button class="presentation-archive-filter" type="button" data-presentation-filter="aoe">Avoimet oppimateriaalit</button>
+          <button class="presentation-archive-filter" type="button" data-presentation-filter="video">Videot ja tallenteet</button>
+          <button class="presentation-archive-filter" type="button" data-presentation-filter="analysis">Aineistoanalyysit</button>
+        </div>
 
-    <div class="presentation-archive-status" id="presentation-unified-status" aria-live="polite"></div>
-    <div class="presentation-archive-grid" id="presentation-unified-archive"></div>
-    <nav class="mt-4" aria-label="Kaikki esitykset ja materiaalit -sivutus">
-      <ul class="pagination pagination-sm mb-0 justify-content-center" id="presentation-unified-pagination"></ul>
-    </nav>
+        <div class="presentation-archive-status" id="presentation-unified-status" aria-live="polite"></div>
+        <div class="presentation-archive-grid" id="presentation-unified-archive"></div>
+        <nav class="mt-4" aria-label="Kaikki esitykset ja materiaalit -sivutus">
+          <ul class="pagination pagination-sm mb-0 justify-content-center" id="presentation-unified-pagination"></ul>
+        </nav>
+      </div>
+    </details>
   </div>
 </section>
 
@@ -1752,9 +1783,56 @@ translationKey: presentations_index
   });
   initUnifiedArchive();
 })();
+
+(() => {
+  const mobileQuery = window.matchMedia("(max-width: 767.98px)");
+  const disclosures = Array.from(document.querySelectorAll("[data-presentation-mobile-collapse]"));
+  if (!disclosures.length) return;
+
+  const openDisclosureForHash = () => {
+    const hash = window.location.hash;
+    if (!hash) return;
+    const target = document.querySelector(hash);
+    if (!target) return;
+    const disclosure = target.closest("[data-presentation-mobile-collapse]") || target.querySelector("[data-presentation-mobile-collapse]");
+    if (disclosure) disclosure.open = true;
+  };
+
+  const applyDisclosureState = () => {
+    disclosures.forEach((disclosure) => {
+      if (!mobileQuery.matches) {
+        disclosure.open = true;
+        disclosure.dataset.presentationMobilePrepared = "false";
+        return;
+      }
+      if (disclosure.dataset.presentationMobilePrepared === "true") return;
+      disclosure.open = false;
+      disclosure.dataset.presentationMobilePrepared = "true";
+    });
+    openDisclosureForHash();
+  };
+
+  applyDisclosureState();
+  mobileQuery.addEventListener("change", applyDisclosureState);
+  window.addEventListener("hashchange", openDisclosureForHash);
+
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", () => {
+      window.setTimeout(openDisclosureForHash, 0);
+    });
+  });
+})();
 </script>
 
 <style>
+.presentation-mobile-path {
+  display: none;
+}
+
+.presentation-mobile-disclosure-summary {
+  display: none;
+}
+
 .presentation-hero-panel,
 .presentation-route-card,
 .presentation-latest-card,
@@ -2430,6 +2508,17 @@ translationKey: presentations_index
   background: linear-gradient(180deg, rgba(24, 36, 54, 0.96), rgba(20, 31, 48, 0.98));
 }
 
+[data-bs-theme="dark"] .presentation-mobile-disclosure-summary {
+  background: linear-gradient(180deg, rgba(24, 36, 54, 0.96), rgba(18, 28, 44, 0.98));
+  border-color: rgba(255, 255, 255, 0.14);
+  color: #f7fbff;
+  box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.22);
+}
+
+[data-bs-theme="dark"] .presentation-mobile-disclosure-summary small {
+  color: rgba(255, 255, 255, 0.68);
+}
+
 @media (max-width: 575.98px) {
   .presentation-mini-link {
     grid-template-columns: 72px minmax(0, 1fr);
@@ -2596,6 +2685,143 @@ translationKey: presentations_index
 }
 
 @media (max-width: 767.98px) {
+  .presentation-hero-section {
+    padding-block: 2.6rem !important;
+  }
+
+  .presentation-mobile-path {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    gap: 0.45rem;
+    overflow-x: auto;
+    padding: 0.65rem 0.75rem;
+    border-bottom: 1px solid rgba(19, 43, 70, 0.1);
+    background: color-mix(in srgb, var(--bs-body-bg) 92%, transparent);
+    backdrop-filter: blur(10px);
+    scrollbar-width: none;
+  }
+
+  .presentation-mobile-path::-webkit-scrollbar {
+    display: none;
+  }
+
+  .presentation-mobile-path a {
+    flex: 0 0 auto;
+    padding: 0.45rem 0.72rem;
+    border: 1px solid var(--bs-border-color);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--bs-body-bg) 84%, var(--bs-primary) 8%);
+    color: var(--bs-primary);
+    font-size: 0.86rem;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  [data-bs-theme="dark"] .presentation-mobile-path {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+    background: color-mix(in srgb, var(--bs-body-bg) 88%, transparent);
+  }
+
+  [data-bs-theme="dark"] .presentation-mobile-path a {
+    border-color: rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.08);
+    color: #f4f8fd;
+  }
+
+  [data-presentation-mobile-priority="2"],
+  [data-presentation-mobile-priority="3"] {
+    padding-block: 0.75rem !important;
+  }
+
+  .presentation-mobile-disclosure {
+    display: block;
+  }
+
+  .presentation-mobile-disclosure-summary {
+    position: relative;
+    display: grid;
+    gap: 0.2rem;
+    padding: 1rem 3rem 1rem 1rem;
+    border: 1px solid var(--bs-border-color);
+    border-radius: 1rem;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 249, 252, 0.98));
+    box-shadow: 0 0.75rem 1.6rem rgba(19, 43, 70, 0.08);
+    color: var(--bs-body-color);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .presentation-mobile-disclosure-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .presentation-mobile-disclosure-summary::after {
+    content: "+";
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    width: 1.65rem;
+    height: 1.65rem;
+    transform: translateY(-50%);
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: color-mix(in srgb, var(--bs-primary) 12%, var(--bs-body-bg) 88%);
+    color: var(--bs-primary);
+    font-weight: 800;
+  }
+
+  .presentation-mobile-disclosure[open] .presentation-mobile-disclosure-summary::after {
+    content: "–";
+  }
+
+  .presentation-mobile-disclosure-summary span {
+    font-weight: 800;
+    line-height: 1.25;
+  }
+
+  .presentation-mobile-disclosure-summary small {
+    color: var(--bs-secondary-color);
+    font-size: 0.84rem;
+    line-height: 1.35;
+  }
+
+  .presentation-mobile-disclosure[open] .presentation-mobile-disclosure-body {
+    margin-top: 1rem;
+  }
+
+  .presentation-route-card .card-body {
+    padding: 1rem !important;
+  }
+
+  .presentation-route-card .text-muted {
+    display: none;
+  }
+
+  .presentation-route-number {
+    margin-bottom: 0.55rem;
+    font-size: 1.75rem;
+  }
+
+  .presentation-latest-card .card-body,
+  .presentation-signal-card .card-body,
+  .presentation-type-panel,
+  .presentation-context-card,
+  .presentation-archive-card {
+    box-shadow: 0 0.65rem 1.35rem rgba(19, 43, 70, 0.07);
+  }
+
+  .presentation-type-card:nth-child(n+2) {
+    display: none;
+  }
+
+  .presentation-context-card:nth-child(n+3) {
+    display: none;
+  }
+
   .presentation-context-grid {
     grid-template-columns: 1fr;
   }
