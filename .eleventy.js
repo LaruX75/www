@@ -89,8 +89,12 @@ function wrapExternalIframes(content) {
     }
     const provider = getProviderFromHost(resolved.hostname);
     const youtubeVideoId = provider === "youtube" ? getYoutubeVideoId(resolved) : "";
-    const previewHtml = youtubeVideoId
-      ? `<img class="external-media-consent__preview" data-external-media-preview src="https://i.ytimg.com/vi/${escapeHtmlAttribute(youtubeVideoId)}/hqdefault.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer">`
+    const previewSrcMatch = iframeHtml.match(/\sdata-external-media-preview-src\s*=\s*("([^"]*)"|'([^']*)')/i);
+    const previewSrc = previewSrcMatch
+      ? (previewSrcMatch[2] || previewSrcMatch[3] || "")
+      : (youtubeVideoId ? `https://i.ytimg.com/vi/${youtubeVideoId}/hqdefault.jpg` : "");
+    const previewHtml = previewSrc
+      ? `<img class="external-media-consent__preview" data-external-media-preview src="${escapeHtmlAttribute(previewSrc)}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer">`
       : "";
 
     const iframeNoSrc = iframeHtml.replace(/\ssrc\s*=\s*("([^"]*)"|'([^']*)')/i, "");

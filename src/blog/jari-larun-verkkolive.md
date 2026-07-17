@@ -35,6 +35,7 @@ Verkkoliven ohella olen tehnyt muitakin videoita, mutta myös kerännyt kokoelma
   <iframe
     src="https://www.youtube-nocookie.com/embed/videoseries?list=PLDG0jxUrk8z19_ThqBiynpYG4g-mjwgpt"
     title="Jari Larun verkkolive - YouTube-soittolista"
+    data-external-media-preview-src="/img/uploads/2021/01/verkkolive.jpg"
     loading="lazy"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
     allowfullscreen>
