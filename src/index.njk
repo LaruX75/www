@@ -41,6 +41,14 @@ translationKey: home
 {% set heroPublicationCount = (researchfi or []) | length %}
 {% set heroOpinionCount = (collections.pub_mielipide or []) | length %}
 {% set heroSpeechCount = (collections.pub_puhe or []) | length %}
+{% set heroStatementItems = [] %}
+{% for item in (collections.publications or []) %}
+    {% if item.data.type == "lausunto" %}
+        {% set _ = (heroStatementItems.push(item), null) %}
+    {% endif %}
+{% endfor %}
+{% set heroStatementCount = heroStatementItems | length %}
+{% set heroMediaCount = ((mediaArchive and mediaArchive.all) or []) | length %}
 {% set heroRoles = [
     { label: "Kouluttaja (Larux t:mi)", href: "/kouluttaja/" },
     { label: "Kuntapäättäjä", href: "/politiikka/" },
@@ -48,19 +56,20 @@ translationKey: home
 ] %}
 {% set homeCopy = {
     heroTitle: "Koulutan, puhun ja vaikutan koulutuksen tulevaisuuteen.",
-    heroLead: "Autan opettajia, rehtoreita ja organisaatioita ottamaan tekoälyn ja oppimisteknologian käyttöön järkevästi. Samalla vien tutkimukseen nojaavaa ajattelua päätöksentekoon Oulussa.",
-    heroPanelText: "Näistä luvuista näet nopeasti työn laajuuden: koulutuksia, julkaisuja, puheenvuoroja ja ohjattuja opinnäytteitä.",
+    heroLead: "Autan opettajia, rehtoreita ja organisaatioita ottamaan tekoälyn ja oppimisteknologian käyttöön järkevästi. Sama asiantuntijuus näkyy myös lausunnoissa, mediassa ja päätöksenteossa.",
+    heroPanelText: "Näistä luvuista näet nopeasti työn laajuuden: koulutuksia, julkaisuja, lausuntoja, mediaosumia ja ohjattuja opinnäytteitä.",
     pathsTitle: "Mistä haluat aloittaa?",
     pathsLead: "Voit siirtyä suoraan koulutuspalveluihin, tutkimukseen tai politiikkaan sen mukaan, miksi tulit sivulle.",
     focusTitle: "Koulutukset, puheenvuorot ja sparraus",
     focusLead: "Käytännön työni näkyy koulutuksina, keynote-puheenvuoroina ja kehittämisen tukena. Tutkimus ja kunnallinen vaikuttaminen tuovat siihen näkökulmaa, mutta etusivulla pääosassa on se, miten voin auttaa käytännössä.",
-    recentTitle: "Viimeisimmät nostot",
-    recentLead: "Tuoreista kirjoituksista, esityksistä ja julkaisuista näet nopeasti, mitä teen juuri nyt."
+    recentTitle: "Ajankohtaista asiantuntijatyöstä",
+    recentLead: "Tuoreista kirjoituksista, esityksistä, lausunnoista ja mediaosumista näet, missä asiantuntijuus on juuri nyt käytössä."
 } %}
 {% set heroStats = [
     { count: heroPresentationCount, label: "Esitystä tai oppimateriaalia", href: "/esitykset/" },
     { count: heroPublicationCount, label: "tieteellistä julkaisua", href: "/julkaisut/" },
-    { count: heroOpinionCount, label: "mielipidekirjoitusta", href: "/kynasta/#mielipiteet" },
+    { count: heroStatementCount, label: "asiantuntijalausuntoa", href: "/kynasta/#lausunnot" },
+    { count: heroMediaCount, label: "mediaosumaa", href: "/mediassa/" },
     { count: heroSpeechCount, label: "puheenvuoroa", href: "/kynasta/#puheet" },
     { count: theses.stats.total, label: "ohjattua opinnäytettä", href: "/opinnaytteet/" }
 ] %}
@@ -119,7 +128,8 @@ translationKey: home
 {% set featuredPublications = (researchfi or []).slice(0, 2) %}
 {% set featuredRecentPost = (collections.blog or [])[0] %}
 {% set featuredRecentPresentation = ((canva.fiRows or canva.tableRows or [])[0]) %}
-{% set featuredRecentPublication = (researchfi or [])[0] %}
+{% set featuredRecentStatement = heroStatementItems[0] %}
+{% set featuredRecentMedia = ((mediaArchive and mediaArchive.all) or [])[0] %}
 
 <section class="py-5 home-paths-section">
     <div class="site-shell">
@@ -296,7 +306,7 @@ translationKey: home
 <section class="py-5 home-recent-section">
     <div class="site-shell">
         <div class="home-section-head">
-            <p class="home-section-kicker mb-1">Tuoreimmat sisällöt</p>
+            <p class="home-section-kicker mb-1">Asiantuntijatyö</p>
             <h2 class="home-section-title">{{ homeCopy.recentTitle }}</h2>
             <p class="home-section-lead mb-0">{{ homeCopy.recentLead }}</p>
         </div>
@@ -304,7 +314,7 @@ translationKey: home
             <article class="home-recent-card">
                 <p class="home-recent-card-kicker">Kirjoitus</p>
                 {% if featuredRecentPost %}
-                <h3 class="home-recent-card-title"><a href="{{ featuredRecentPost.url }}">{{ featuredRecentPost.data.title }}</a></h3>
+                <h3 class="home-recent-card-title"><a href="{{ featuredRecentPost.url }}">{{ featuredRecentPost.data.title | truncate(76) }}</a></h3>
                 <p class="home-recent-card-meta">{{ featuredRecentPost.date | dateFormat }}</p>
                 {% if featuredRecentPost.data.description %}
                 <p class="home-recent-card-text">{{ featuredRecentPost.data.description | truncate(180) }}</p>
@@ -316,7 +326,7 @@ translationKey: home
             <article class="home-recent-card">
                 <p class="home-recent-card-kicker">Esitys</p>
                 {% if featuredRecentPresentation %}
-                <h3 class="home-recent-card-title"><a href="{{ featuredRecentPresentation.url }}" target="_blank" rel="noopener noreferrer">{{ featuredRecentPresentation.title }}</a></h3>
+                <h3 class="home-recent-card-title"><a href="{{ featuredRecentPresentation.url }}" target="_blank" rel="noopener noreferrer">{{ featuredRecentPresentation.title | truncate(76) }}</a></h3>
                 <p class="home-recent-card-meta">{{ featuredRecentPresentation.date | dateFormat }}{% if featuredRecentPresentation.location %} · {{ featuredRecentPresentation.location }}{% endif %}</p>
                 <p class="home-recent-card-text">Tuore koulutus- tai puheenvuoronosto käytännön tekoälystä, oppimisesta ja koulun arjesta.</p>
                 <a href="/esitykset/" class="home-recent-card-link">Kaikki esitykset</a>
@@ -324,15 +334,30 @@ translationKey: home
             </article>
 
             <article class="home-recent-card">
-                <p class="home-recent-card-kicker">Julkaisu</p>
-                {% if featuredRecentPublication %}
-                {% set featuredRecentPublicationLink = featuredRecentPublication.doiUrl or featuredRecentPublication.url %}
-                <h3 class="home-recent-card-title"><a href="{{ featuredRecentPublicationLink or '/julkaisut/' }}" {% if featuredRecentPublicationLink %}target="_blank" rel="noopener noreferrer"{% endif %}>{{ featuredRecentPublication.title }}</a></h3>
-                <p class="home-recent-card-meta">{{ featuredRecentPublication.year }}{% if featuredRecentPublication.journal %} · {{ featuredRecentPublication.journal }}{% endif %}</p>
-                {% if featuredRecentPublication.authors %}
-                <p class="home-recent-card-text">{{ featuredRecentPublication.authors | truncate(160) }}</p>
+                <p class="home-recent-card-kicker">Lausunto</p>
+                {% if featuredRecentStatement %}
+                <h3 class="home-recent-card-title"><a href="{{ featuredRecentStatement.url }}">{{ featuredRecentStatement.data.title | truncate(76) }}</a></h3>
+                <p class="home-recent-card-meta">{{ featuredRecentStatement.date | dateFormat }}{% if featuredRecentStatement.data.subtitle %} · {{ featuredRecentStatement.data.subtitle }}{% endif %}</p>
+                {% if featuredRecentStatement.data.description %}
+                <p class="home-recent-card-text">{{ featuredRecentStatement.data.description | truncate(180) }}</p>
+                {% else %}
+                <p class="home-recent-card-text">Asiantuntijalausunto opetuksen, tekoälyn tai koulutuksen valmistelun tueksi.</p>
                 {% endif %}
-                <a href="/julkaisut/" class="home-recent-card-link">Kaikki julkaisut</a>
+                <a href="/kynasta/#lausunnot" class="home-recent-card-link">Kaikki lausunnot</a>
+                {% endif %}
+            </article>
+
+            <article class="home-recent-card">
+                <p class="home-recent-card-kicker">Mediassa</p>
+                {% if featuredRecentMedia %}
+                <h3 class="home-recent-card-title"><a href="{{ featuredRecentMedia.url }}">{{ featuredRecentMedia.data.title | truncate(76) }}</a></h3>
+                <p class="home-recent-card-meta">{{ featuredRecentMedia.date | dateFormat }}{% if featuredRecentMedia.data.mediaOutlet %} · {{ featuredRecentMedia.data.mediaOutlet }}{% endif %}</p>
+                {% if featuredRecentMedia.data.description %}
+                <p class="home-recent-card-text">{{ featuredRecentMedia.data.description | truncate(180) }}</p>
+                {% else %}
+                <p class="home-recent-card-text">Haastattelu, podcast tai muu mediaosuma, jossa asiantuntijuus näkyy muiden tuottamassa sisällössä.</p>
+                {% endif %}
+                <a href="/mediassa/" class="home-recent-card-link">Kaikki mediaosumat</a>
                 {% endif %}
             </article>
         </div>
@@ -764,8 +789,13 @@ translationKey: home
   .home-challenge-grid,
   .home-recent-editorial {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1rem;
+  }
+  .home-challenge-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .home-recent-editorial {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
   .home-challenge-card {
     position: relative;

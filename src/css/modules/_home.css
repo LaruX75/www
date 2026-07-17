@@ -29,6 +29,22 @@ html:not([data-bs-theme="dark"]) .home-hero-backdrop {
     var(--hero-img) center / cover;
 }
 
+@media (max-width: 767.98px) {
+  .home-hero-backdrop {
+    background:
+      linear-gradient(110deg, rgba(8, 18, 34, 0.62) 8%, rgba(8, 18, 34, 0.44) 48%, rgba(8, 18, 34, 0.16) 100%),
+      linear-gradient(rgba(18, 42, 71, 0) 62%, rgba(4, 16, 36, 0.80) 92%),
+      var(--hero-img) 32% center / cover;
+  }
+
+  html:not([data-bs-theme="dark"]) .home-hero-backdrop {
+    background:
+      linear-gradient(112deg, rgba(205, 226, 248, 0.9) 8%, rgba(196, 221, 247, 0.7) 52%, rgba(187, 214, 244, 0.35) 100%),
+      linear-gradient(rgba(180, 206, 236, 0.18) 60%, rgba(220, 236, 252, 0.88) 96%),
+      var(--hero-img) 32% center / cover;
+  }
+}
+
 .home-hero-backdrop .home-hero-content {
   padding-top: clamp(5.2rem, 8vw, 7.2rem);
   padding-bottom: clamp(2.2rem, 5vw, 3.4rem);
@@ -1560,6 +1576,8 @@ html:not([data-bs-theme="dark"]) .research-stat-card {
 
 /* External media consent gate */
 .external-media-consent {
+  position: relative;
+  overflow: hidden;
   border: 1px solid var(--bs-border-color);
   border-radius: 0.5rem;
   background: var(--bs-tertiary-bg);
@@ -1567,10 +1585,43 @@ html:not([data-bs-theme="dark"]) .research-stat-card {
   margin: 0.75rem 0;
 }
 
+[data-external-media-provider="youtube"].external-media-consent {
+  aspect-ratio: 16 / 9;
+  padding: 0;
+  border-color: rgba(255, 255, 255, 0.24);
+  background:
+    radial-gradient(circle at 50% 35%, rgba(45, 62, 98, 0.95), rgba(10, 16, 30, 0.98) 62%),
+    #0a101e;
+}
+
+.external-media-consent__preview {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.88) brightness(0.72);
+}
+
 .external-media-consent__notice {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
+}
+
+[data-external-media-provider="youtube"] .external-media-consent__notice {
+  position: absolute;
+  inset: 0;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 3vw, 2rem);
+  text-align: center;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.58)),
+    radial-gradient(circle at 50% 42%, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.5));
 }
 
 .external-media-consent__text {
@@ -1578,16 +1629,71 @@ html:not([data-bs-theme="dark"]) .research-stat-card {
   color: var(--bs-body-color);
 }
 
+[data-external-media-provider="youtube"] .external-media-consent__text {
+  max-width: 34rem;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
+}
+
 .external-media-consent__actions {
+  position: relative;
+  z-index: 3;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 0.5rem;
 }
 
+[data-external-media-provider="youtube"] .external-media-consent__actions .btn {
+  border-width: 1px;
+  box-shadow: 0 0.75rem 1.8rem rgba(0, 0, 0, 0.28);
+}
+
+[data-external-media-provider="youtube"] .external-media-consent__actions .btn-primary {
+  --bs-btn-color: #0b1220;
+  --bs-btn-bg: #ffffff;
+  --bs-btn-border-color: #ffffff;
+  --bs-btn-hover-color: #0b1220;
+  --bs-btn-hover-bg: #eef4ff;
+  --bs-btn-hover-border-color: #eef4ff;
+  color: #0b1220;
+  background-color: #ffffff;
+  border-color: #ffffff;
+}
+
+[data-external-media-provider="youtube"] .external-media-consent__actions .btn-outline-secondary {
+  --bs-btn-color: #ffffff;
+  --bs-btn-border-color: rgba(255, 255, 255, 0.78);
+  --bs-btn-hover-color: #0b1220;
+  --bs-btn-hover-bg: #ffffff;
+  --bs-btn-hover-border-color: #ffffff;
+  color: #ffffff;
+  background-color: rgba(10, 16, 30, 0.72);
+  border-color: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(8px);
+}
+
+[data-external-media-provider="youtube"] .external-media-consent__actions .btn-primary:hover,
+[data-external-media-provider="youtube"] .external-media-consent__actions .btn-primary:focus-visible,
+[data-external-media-provider="youtube"] .external-media-consent__actions .btn-outline-secondary:hover,
+[data-external-media-provider="youtube"] .external-media-consent__actions .btn-outline-secondary:focus-visible {
+  color: #0b1220;
+  background-color: #eef4ff;
+  border-color: #eef4ff;
+}
+
 .external-media-consent__iframe {
+  z-index: 4;
   width: 100%;
   min-height: 320px;
   border: 0;
+}
+
+[data-external-media-provider="youtube"] .external-media-consent__iframe {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  min-height: 0;
 }
 
 .search-overlay-inner {
@@ -1755,4 +1861,3 @@ html:not([data-bs-theme="dark"]) .breadcrumb-item.active {
     overflow-wrap: anywhere;
   }
 }
-

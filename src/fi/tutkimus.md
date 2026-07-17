@@ -370,7 +370,8 @@ templateEngineOverride: njk
             <p class="text-muted mb-2">Oulun yliopisto, kasvatustiede. Väitös 20.11.2012.</p>
             <p class="mb-3">Väitöskirja tutki, miten yhteisöllisiä skriptejä voidaan hyödyntää mobiililaitteiden tukemissa oppimisympäristöissä. Työ yhdistää CSCL-tutkimuksen (Computer-Supported Collaborative Learning) ja mobiiliteknologian.</p>
             <div class="d-flex flex-wrap gap-2">
-              <a href="http://jultika.oulu.fi/Record/isbn978-951-42-9942-4" class="btn btn-sm btn-outline-primary" target="_blank" rel="noopener noreferrer">Jultika-arkisto</a>
+              <a href="/vaitoskirja/" class="btn btn-sm btn-outline-primary">Väitöskokonaisuus</a>
+              <a href="http://jultika.oulu.fi/Record/isbn978-951-42-9940-7" class="btn btn-sm btn-outline-secondary" target="_blank" rel="noopener noreferrer">Jultika-arkisto</a>
             </div>
           </div>
         </div>
