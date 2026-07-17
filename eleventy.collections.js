@@ -12,7 +12,7 @@ module.exports = function registerCollections(eleventyConfig) {
   ];
 
   function buildTermList(items, key) {
-    const map = new Map();
+    const map = new Map(); // keyed by slug to prevent duplicate permalinks
     items.forEach(item => {
       const sourceTerms = item.data && item.data[key];
       const terms = key === "keywords" ? normalizeKeywordList(sourceTerms) : sourceTerms;
@@ -21,13 +21,15 @@ module.exports = function registerCollections(eleventyConfig) {
         if (!term) return;
         const name = String(term).trim();
         if (!name) return;
-        if (!map.has(name)) map.set(name, []);
-        map.get(name).push(item);
+        const slug = eleventyConfig.getFilter("slugify")(name);
+        if (!slug) return;
+        if (!map.has(slug)) map.set(slug, { name, items: [] });
+        map.get(slug).items.push(item);
       });
     });
-    return Array.from(map.entries()).map(([name, items]) => ({
+    return Array.from(map.entries()).map(([slug, { name, items }]) => ({
       name,
-      slug: eleventyConfig.getFilter("slugify")(name),
+      slug,
       items,
       count: items.length
     })).sort((a, b) => a.name.localeCompare(b.name, "fi"));
