@@ -40,9 +40,10 @@ translationKey: media_index
 {% endmacro %}
 
 {% macro renderMediaSection(items, role, lead) %}
+{% set isPaginated = role == "about" %}
 <section class="py-4 py-lg-5">
   <div class="site-shell">
-    <div class="card shadow-sm section-card border-0">
+    <div class="card shadow-sm section-card border-0"{% if isPaginated %} data-media-pagination data-page-size="4"{% endif %}>
       <div class="card-header bg-transparent py-3 border-0">
         <div class="d-flex flex-wrap align-items-start justify-content-between gap-3">
           <div>
@@ -55,9 +56,9 @@ translationKey: media_index
       </div>
       <div class="card-body pt-0">
         {% if items.length %}
-          <div class="media-entry-list">
+          <div class="media-entry-list"{% if isPaginated %} data-media-page-list{% endif %}>
             {% for item in items %}
-            <article class="media-entry{% if not loop.last %} border-bottom{% endif %}">
+            <article class="media-entry{% if not loop.last %} border-bottom{% endif %}"{% if isPaginated %} data-media-page-item{% endif %}>
               <div class="row g-4 align-items-start">
                 <div class="col-lg-8">
                   <div class="d-flex flex-wrap gap-2 mb-2">
@@ -101,6 +102,12 @@ translationKey: media_index
             </article>
             {% endfor %}
           </div>
+          {% if isPaginated and items.length > 4 %}
+          <div class="media-pagination d-flex flex-wrap align-items-center justify-content-between gap-3 pt-3">
+            <p class="media-pagination__info text-muted mb-0" data-media-page-info aria-live="polite"></p>
+            <ul class="pagination pagination-sm mb-0 flex-wrap" data-media-page-controls aria-label="Sivutus: {{ roleHeading(role) }}"></ul>
+          </div>
+          {% endif %}
         {% else %}
           <div class="media-empty-state">
             <h3 class="h6 fw-bold mb-2">{{ roleHeading(role) }} täydentyy</h3>
@@ -279,10 +286,22 @@ translationKey: media_index
     padding-block: 0.45rem;
   }
 
+  .media-pagination {
+    border-top: 1px solid rgba(120, 130, 150, 0.18);
+  }
+
+  .media-pagination__info {
+    font-size: 0.9rem;
+  }
+
   [data-bs-theme="dark"] .media-topic-chip {
     border-color: rgba(255, 255, 255, 0.14);
     background: rgba(255, 255, 255, 0.06);
     color: rgba(255, 255, 255, 0.78);
+  }
+
+  [data-bs-theme="dark"] .media-pagination {
+    border-top-color: rgba(255, 255, 255, 0.12);
   }
 
   @media (max-width: 767.98px) {
@@ -295,3 +314,64 @@ translationKey: media_index
     }
   }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const paginatedSections = document.querySelectorAll('[data-media-pagination]');
+    if (!paginatedSections.length) return;
+
+    paginatedSections.forEach((section) => {
+      const items = Array.from(section.querySelectorAll('[data-media-page-item]'));
+      const controls = section.querySelector('[data-media-page-controls]');
+      const info = section.querySelector('[data-media-page-info]');
+      const pageSize = Number(section.getAttribute('data-page-size')) || 4;
+      const pageCount = Math.ceil(items.length / pageSize);
+      let currentPage = 1;
+
+      if (!items.length || !controls || pageCount <= 1) return;
+
+      const pageLabel = (page) => {
+        const start = (page - 1) * pageSize + 1;
+        const end = Math.min(page * pageSize, items.length);
+        return `Näytetään ${start}-${end} / ${items.length}`;
+      };
+
+      const renderControls = () => {
+        controls.innerHTML = '';
+        for (let page = 1; page <= pageCount; page += 1) {
+          const li = document.createElement('li');
+          li.className = `page-item${page === currentPage ? ' active' : ''}`;
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'page-link';
+          button.dataset.mediaPage = String(page);
+          button.setAttribute('aria-label', `Sivu ${page}`);
+          button.textContent = String(page);
+          li.appendChild(button);
+          controls.appendChild(li);
+        }
+      };
+
+      const renderPage = () => {
+        const startIndex = (currentPage - 1) * pageSize;
+        const endIndex = startIndex + pageSize;
+        items.forEach((item, index) => {
+          item.hidden = index < startIndex || index >= endIndex;
+        });
+        if (info) info.textContent = pageLabel(currentPage);
+        renderControls();
+      };
+
+      controls.addEventListener('click', (event) => {
+        const button = event.target.closest('[data-media-page]');
+        if (!button) return;
+        const nextPage = Number(button.dataset.mediaPage);
+        if (!Number.isFinite(nextPage) || nextPage === currentPage) return;
+        currentPage = nextPage;
+        renderPage();
+      });
+
+      renderPage();
+    });
+  });
+</script>

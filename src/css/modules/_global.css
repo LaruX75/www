@@ -21,8 +21,8 @@
 }
 
 .motion-reveal {
-  opacity: 0;
-  transform: translateY(var(--motion-reveal-distance));
+  opacity: 1;
+  transform: none;
 }
 
 .motion-reveal.is-visible {
