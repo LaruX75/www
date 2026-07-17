@@ -93,6 +93,28 @@ module.exports = function registerCollections(eleventyConfig) {
     });
   });
 
+  eleventyConfig.addCollection("pub_mielipide_political", function (collectionApi) {
+    return collectionApi
+      .getFilteredByGlob("src/publications/*.md")
+      .filter(item => {
+        if (item.data.type !== "mielipide") return false;
+        const roles = item.data.opinionRoles || item.data.writingRoles || [];
+        return roles.includes("political");
+      })
+      .sort((a, b) => b.date - a.date);
+  });
+
+  eleventyConfig.addCollection("pub_mielipide_expert", function (collectionApi) {
+    return collectionApi
+      .getFilteredByGlob("src/publications/*.md")
+      .filter(item => {
+        if (item.data.type !== "mielipide") return false;
+        const roles = item.data.opinionRoles || item.data.writingRoles || [];
+        return roles.includes("expert");
+      })
+      .sort((a, b) => b.date - a.date);
+  });
+
   eleventyConfig.addCollection("politics", function (collectionApi) {
     return collectionApi
       .getFilteredByGlob("src/politics/*.md")
