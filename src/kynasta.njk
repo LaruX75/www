@@ -925,6 +925,7 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
   border-radius: 1rem;
   background: var(--bs-body-bg);
   padding: 1rem 1.1rem;
+  cursor: pointer;
   transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
 }
 
@@ -958,6 +959,17 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
   font-weight: 700;
   text-align: center;
   line-height: 1;
+}
+
+.opinion-role-inline-filter {
+  cursor: pointer;
+  font: inherit;
+}
+
+.opinion-role-inline-filter:hover,
+.opinion-role-inline-filter:focus-visible {
+  border-color: rgba(var(--bs-primary-rgb), 0.55) !important;
+  box-shadow: 0 0 0 0.12rem rgba(var(--bs-primary-rgb), 0.18);
 }
 
 /* ---- Column styles specific to kynasta tables ---- */
@@ -2780,7 +2792,7 @@ function renderPaginationShared(ul, total, currentPage, onPageChange) {
       mielipiteetTbody.innerHTML = slice.map(d => {
         const roleBadges = (d.opinionRoles || []).map((role) => {
           const label = role === 'political' ? 'Poliittinen' : 'Asiantuntija';
-          return `<span class="badge text-bg-light border text-dark mt-1 me-1">${label}</span>`;
+          return `<button type="button" class="badge text-bg-light border text-dark mt-1 me-1 opinion-role-inline-filter" data-opinion-role-inline="${role}" aria-label="Rajaa mielipiteet: ${label}">${label}</button>`;
         }).join('');
         const catBadges = (d.categories || []).map(c => `<a href="/kategoriat/${slugify(c)}/" class="badge text-bg-secondary me-1 text-decoration-none">${c}</a>`).join('');
         const keyBadges = (d.keywords || []).map(k => `<a href="/avainsanat/${slugify(k)}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">${k}</a>`).join('');
@@ -2840,6 +2852,17 @@ function renderPaginationShared(ul, total, currentPage, onPageChange) {
   }
 
   if (mielipiteetSearchInp) mielipiteetSearchInp.addEventListener('input', applyMielipiteetFilters);
+
+  if (mielipiteetTbody) {
+    mielipiteetTbody.addEventListener('click', (event) => {
+      const roleBtn = event.target.closest('[data-opinion-role-inline]');
+      if (!roleBtn) return;
+      event.preventDefault();
+      selectedOpinionRole = roleBtn.dataset.opinionRoleInline || 'all';
+      applyMielipiteetFilters();
+      document.getElementById('mielipiteet')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
 
   opinionRoleButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
