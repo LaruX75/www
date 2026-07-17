@@ -23,4 +23,10 @@ keywords:
   - koulurakentaminen
 ---
 
-Kalevan uutinen Oulun kaupunginvaltuuston kokouksesta 14.5.2018, jossa päätettiin rakentaa Salonpäähän uusi 0–6-luokkien koulu ja laajentaa Niemenrannan koulua. Kokonaisinvestointien kustannusarvio oli 13,8 miljoonaa euroa. Kokoomusvaltuutettu Jari Laru puolusti kokouksessa kaupunginhallituksen esitystä ja painotti, etteivät seinät opi eivätkä opeta.
+Kalevan uutinen Oulun kaupunginvaltuuston kokouksesta 14.5.2018, jossa päätettiin rakentaa Salonpäähän uusi 0–6-luokkien koulu ja laajentaa Niemenrannan koulua. Kokonaisinvestointien kustannusarvio oli 13,8 miljoonaa euroa.
+
+> Ensimmäisen kaupunginhallitusta puolustavan puheenvuoron piti kokoomuksen Jari Laru. Hänen mielestä koulut ovat kärsineet valtuuston päätöksistä.
+>
+> Laru painotti, etteivät seinät mitään opi eivätkä opeta. Hän pelkäsi, että ratkaisu aiheuttaa säästöpaineen koko opetuspuolelle.
+
+— Kaleva 14.5.2018
