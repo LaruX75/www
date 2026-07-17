@@ -85,10 +85,10 @@ jobs:
       - name: FI feed exists
         run: test -f _site/feed.xml
 
-      - name: TOC on presentations pages
+      - name: Canva section on presentations pages
         run: |
-          grep -q 'href="#canva-heading"' _site/esitykset/index.html
-          grep -q 'href="#canva-heading"' _site/en/presentations/index.html
+          grep -q 'id="canva-heading"' _site/esitykset/index.html
+          grep -q 'id="canva-heading"' _site/en/presentations/index.html
 
       - name: EN pages have English skip-link
         run: grep -q 'Skip to main content' _site/en/about/index.html

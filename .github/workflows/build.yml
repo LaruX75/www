@@ -105,7 +105,7 @@ jobs:
           grep -Eq '<loc>https://www\.jarilaru\.fi/esitykset/</loc><lastmod>[0-9]{4}-[0-9]{2}-[0-9]{2}T[^<]+</lastmod>' sitemap.xml
           grep -Eq '<loc>https://www\.jarilaru\.fi/en/presentations/</loc><lastmod>[0-9]{4}-[0-9]{2}-[0-9]{2}T[^<]+</lastmod>' sitemap.xml
           rm -f sitemap.xml
-      - name: Verify production TOC on FI and EN presentations pages
+      - name: Verify production Canva section on FI and EN presentations pages
         run: |
-          curl -fsSL --retry 5 --retry-delay 5 https://www.jarilaru.fi/esitykset/ | grep -q 'href="#canva-heading"'
-          curl -fsSL --retry 5 --retry-delay 5 https://www.jarilaru.fi/en/presentations/ | grep -q 'href="#canva-heading"'
+          curl -fsSL --retry 5 --retry-delay 5 https://www.jarilaru.fi/esitykset/ | grep -q 'id="canva-heading"'
+          curl -fsSL --retry 5 --retry-delay 5 https://www.jarilaru.fi/en/presentations/ | grep -q 'id="canva-heading"'
