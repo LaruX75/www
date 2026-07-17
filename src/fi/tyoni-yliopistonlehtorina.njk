@@ -30,6 +30,32 @@ templateEngineOverride: njk
 {% set featuredStatement = latestStatements[0] %}
 {% set supportingStatements = latestStatements.slice(1, 3) %}
 {% set latestWorkPresentations = (collections.presentations or []).slice(0, 1) %}
+{% set curatedWorkPresentations = [
+  {
+    title: "ITK-avauksen tallenne: Työkalu? Taikakalu?",
+    url: "https://www.youtube.com/watch?v=0cJ0Ed3Scs4&t=5s",
+    thumbnail: "https://i.ytimg.com/vi/0cJ0Ed3Scs4/hqdefault.jpg",
+    date: "2026-04-26",
+    typeLabel: "Keynote / videotallenne",
+    description: "Avauspuheenvuoro ITK 2026 -tapahtumassa tekoälyn roolista työssä, koulussa ja kotona.",
+    external: true
+  }
+] %}
+{% set workPresentationItems = [] %}
+{% for item in curatedWorkPresentations %}
+  {% set _ = (workPresentationItems.push(item), null) %}
+{% endfor %}
+{% for item in (collections.presentations or []).slice(0, 4) %}
+  {% set _ = (workPresentationItems.push({
+    title: item.data.title,
+    url: item.data.url or item.url,
+    date: item.data.date,
+    typeLabel: item.data.source or "Esitys",
+    description: item.data.description or (item.templateContent | excerpt),
+    external: item.data.url and "http" in item.data.url
+  }), null) %}
+{% endfor %}
+{% set latestWorkPresentations = (workPresentationItems | sort(attribute="date", reverse=true)).slice(0, 2) %}
 {% set latestWorkPublications = (researchfi or []).slice(0, 1) %}
 
 {% set workCopy = {
@@ -95,6 +121,9 @@ templateEngineOverride: njk
       </div>
       <div class="col-lg-5">
         <aside class="ylwork-hero-card h-100">
+          <figure class="ylwork-hero-image">
+            <img src="/img/uploads/2026/07/jari-laru-yliopistonlehtorina-hero.jpg" alt="Jari Laru auditorion edessä koulutusyleisön kanssa" loading="eager" decoding="async">
+          </figure>
           <div class="ylwork-hero-side">
             <p class="ylwork-hero-side-kicker">Nykyinen tehtävä</p>
             <p class="ylwork-hero-caption">Teknologiatuetun oppimisen ja opetuksen yliopistonlehtori, Kasvatustieteiden tiedekunta, Oulun yliopisto.</p>
@@ -291,11 +320,11 @@ templateEngineOverride: njk
               {% for item in latestWorkPresentations %}
               <article class="ylwork-live-item">
                 <div class="ylwork-live-meta">
-                  <span class="ylwork-live-type">Esitys</span>
+                  <span class="ylwork-live-type">{{ item.typeLabel or "Esitys" }}</span>
                   <span class="ylwork-live-date">{{ item.date | dateFormat }}</span>
                 </div>
-                <h4 class="ylwork-live-item-title"><a href="{{ item.data.url or item.url }}">{{ item.data.title }}</a></h4>
-                <p class="ylwork-live-summary mb-0">{{ item.data.description or (item.templateContent | excerpt) }}</p>
+                <h4 class="ylwork-live-item-title"><a href="{{ item.url }}"{% if item.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ item.title }}</a></h4>
+                <p class="ylwork-live-summary mb-0">{{ item.description }}</p>
               </article>
               {% endfor %}
             </div>
@@ -543,6 +572,20 @@ templateEngineOverride: njk
     border: 1px solid var(--ylwork-line);
     box-shadow: 0 1.5rem 3rem rgba(19, 43, 70, 0.12);
     backdrop-filter: blur(8px);
+  }
+  .ylwork-hero-image {
+    margin: 0;
+    background: rgba(19, 43, 70, 0.08);
+    overflow: hidden;
+  }
+  .ylwork-hero-image img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    object-position: left bottom;
+    transform: scale(1.14);
+    transform-origin: left bottom;
   }
   .ylwork-hero-side {
     display: grid;
