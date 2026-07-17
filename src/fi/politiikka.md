@@ -187,7 +187,7 @@ templateEngineOverride: njk
     "date": "2026-01-19",
     "label": "Asiantuntijavideo",
     "context": "Palveluverkkokeskustelu 2026",
-    "summary": "Tausta-aineisto Oulun palveluverkkokeskusteluun: mitä lasten ja nuorten tilastot kertovat päätösten pohjaksi ja koko kaupungin vaikutusten arvioimiseksi."
+    "summary": "Tausta-aineisto Oulun palveluverkkokeskusteluun: mitä lasten ja nuorten tilastot kertovat päätöksenteon ja koko kaupunkiin kohdistuvien vaikutusten arvioinnin tueksi."
   }
 ] %}
 
