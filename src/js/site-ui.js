@@ -69,6 +69,47 @@
         navbar.classList.add('navbar-hero-solid');
       }
 
+      // Shared reveal motion for main content. CSS remains harmless without JS:
+      // elements are only hidden after this class is added.
+      const revealNodes = Array.from(document.querySelectorAll([
+        'main > section',
+        'main .card',
+        'main .home-recent-card',
+        'main .presentation-type-panel',
+        'main .presentation-latest-card',
+        'main .pol-current-card',
+        'main .pol-theme-card',
+        'main .about-role-card',
+        'main .about-archive-link'
+      ].join(','))).filter((el, index, arr) => arr.indexOf(el) === index);
+      const reducedMotionMq = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const revealImmediately = () => {
+        revealNodes.forEach((el) => {
+          el.classList.remove('motion-reveal');
+          el.classList.add('is-visible');
+        });
+      };
+
+      if (revealNodes.length) {
+        revealNodes.forEach((el, idx) => {
+          el.classList.add('motion-reveal');
+          el.style.setProperty('--motion-delay', `${Math.min((idx % 6) * 45, 225)}ms`);
+        });
+
+        if (reducedMotionMq.matches || document.documentElement.classList.contains('a11y-reduced-motion') || !('IntersectionObserver' in window)) {
+          revealImmediately();
+        } else {
+          const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            });
+          }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+          revealNodes.forEach((el) => revealObserver.observe(el));
+        }
+      }
+
       // Latest content ticker — data ladataan erillisestä JSON-tiedostosta (ei inline)
       const tickerTracks = Array.from(document.querySelectorAll('.site-news-ticker-track[data-latest-track]'));
       if (tickerTracks.length) {
@@ -208,7 +249,7 @@
         const interactiveItems = getMegaItems(menu);
         interactiveItems.forEach((el, idx) => {
           el.classList.add('stagger-item');
-          el.style.transitionDelay = `${Math.min(idx * 35, 300)}ms`;
+          el.style.animationDelay = `${Math.min(idx * 35, 300)}ms`;
         });
 
         const openMegaMenuDirect = (focusTarget = 'first') => {
@@ -327,6 +368,7 @@
       const searchClose = document.getElementById('searchCloseBtn');
       const searchOverlay = document.getElementById('searchOverlay');
       let lastSearchTrigger = null;
+      let searchCloseTimer = null;
       let pagefindLangSet = false;
       const focusableSelector = 'a[href], area[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
@@ -348,6 +390,10 @@
 
       function openSearch(prefillQuery = '', triggerSource = null) {
         if (!searchOverlay) return;
+        if (searchCloseTimer) {
+          window.clearTimeout(searchCloseTimer);
+          searchCloseTimer = null;
+        }
         lastSearchTrigger = triggerSource instanceof HTMLElement
           ? triggerSource
           : (document.activeElement instanceof HTMLElement ? document.activeElement : null);
@@ -355,6 +401,7 @@
         searchOverlay.style.display = 'flex';
         searchOverlay.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
+        requestAnimationFrame(() => searchOverlay.classList.add('is-open'));
 
         if (!pagefindLangSet && window.PagefindComponents) {
           const isEn = (document.documentElement.lang || '').toLowerCase().startsWith('en');
@@ -377,10 +424,19 @@
 
       function closeSearch({ restoreFocus = true } = {}) {
         if (!searchOverlay) return;
-        searchOverlay.style.display = 'none';
-        searchOverlay.hidden = true;
         searchOverlay.setAttribute('aria-hidden', 'true');
+        searchOverlay.classList.remove('is-open');
         document.body.style.overflow = '';
+        const finishClose = () => {
+          searchOverlay.style.display = 'none';
+          searchOverlay.hidden = true;
+          searchCloseTimer = null;
+        };
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.classList.contains('a11y-reduced-motion')) {
+          finishClose();
+        } else {
+          searchCloseTimer = window.setTimeout(finishClose, 240);
+        }
         if (restoreFocus) {
           const returnTarget = getSearchReturnTarget();
           if (returnTarget) returnTarget.focus();

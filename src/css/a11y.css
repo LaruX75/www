@@ -190,7 +190,7 @@ html.a11y-screen-reader .subpage-hero-placeholder {
     display: none !important;
 }
 
-/* 5. Lukihäiriö-fontti (Dyslexia-friendly) */
+/* 5. Lukemista tukevat asetukset */
 html.a11y-dyslexia-font {
     --a11y-dyslexia-font-stack: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
@@ -223,63 +223,373 @@ html.a11y-dyslexia-font div {
     font-family: var(--a11y-dyslexia-font-stack) !important;
     letter-spacing: 0.05em !important;
     word-spacing: 0.1em !important;
-    line-height: 1.6 !important;
+    line-height: 1.65 !important;
 }
 
-/* FAB Painike */
-.a11y-fab {
+html.a11y-text-spacing p,
+html.a11y-text-spacing li,
+html.a11y-text-spacing td,
+html.a11y-text-spacing th,
+html.a11y-text-spacing figcaption {
+    letter-spacing: 0.06em !important;
+    word-spacing: 0.16em !important;
+    line-height: 1.9 !important;
+}
+
+html[data-a11y-bg="beige"] body {
+    background-color: #f7ecd8 !important;
+}
+
+html[data-a11y-bg="yellow"] body {
+    background-color: #fff8bd !important;
+}
+
+html[data-a11y-bg="blue"] body {
+    background-color: #dcecff !important;
+}
+
+html[data-a11y-bg="green"] body {
+    background-color: #ddf1d6 !important;
+}
+
+html[data-a11y-bg="beige"] main,
+html[data-a11y-bg="yellow"] main,
+html[data-a11y-bg="blue"] main,
+html[data-a11y-bg="green"] main {
+    background: transparent !important;
+}
+
+#a11yReadingGuideLine {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background-color: var(--bs-primary);
+    left: 0;
+    right: 0;
+    top: 45vh;
+    z-index: 1075;
+    display: none;
+    height: 2.75rem;
+    pointer-events: none;
+    background: rgba(255, 222, 77, 0.24);
+    border-top: 2px solid rgba(143, 107, 0, 0.38);
+    border-bottom: 2px solid rgba(143, 107, 0, 0.38);
+}
+
+html.a11y-reading-guide #a11yReadingGuideLine {
+    display: block;
+}
+
+/* Saavutettavuuspaneeli */
+.a11y-toolbar {
+    position: fixed;
+    right: 1rem;
+    bottom: 1.25rem;
+    z-index: 1080;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.55rem;
+}
+
+.a11y-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    min-height: 2.75rem;
+    padding: 0.58rem 0.9rem;
+    border: 1px solid color-mix(in srgb, var(--bs-primary) 72%, #ffffff 28%);
+    border-radius: 999px;
+    background: var(--bs-primary);
     color: #ffffff;
-    /* Pakotettu valkoinen vasten primääriväriä */
+    box-shadow: 0 0.7rem 1.8rem rgba(0, 0, 0, 0.22);
+    font-weight: 800;
+    line-height: 1;
+    cursor: pointer;
+    transition: transform var(--motion-duration-fast, 150ms) var(--motion-ease-standard, ease),
+                background-color var(--motion-duration-fast, 150ms) var(--motion-ease-standard, ease),
+                border-color var(--motion-duration-fast, 150ms) var(--motion-ease-standard, ease);
+}
+
+.a11y-trigger:hover {
+    transform: translateY(-1px);
+    background: color-mix(in srgb, var(--bs-primary) 82%, var(--bs-body-bg) 18%);
+}
+
+.a11y-trigger:focus-visible,
+.a11y-close:focus-visible,
+.a11y-btn:focus-visible,
+.a11y-toggle:focus-visible,
+.a11y-swatch:focus-visible {
+    outline: 3px solid var(--bs-warning);
+    outline-offset: 2px;
+}
+
+.a11y-trigger-icon {
+    flex: 0 0 auto;
+}
+
+.a11y-panel {
+    width: min(19rem, calc(100vw - 2rem));
+    max-height: min(38rem, calc(100vh - 6rem));
+    overflow-y: auto;
+    border: 1px solid var(--bs-border-color);
+    border-radius: 1rem;
+    background: var(--bs-body-bg);
+    color: var(--bs-body-color);
+    box-shadow: 0 1.1rem 3rem rgba(0, 0, 0, 0.28);
+}
+
+.a11y-panel[hidden] {
+    display: none;
+}
+
+.a11y-panel-header {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.8rem 0.95rem;
+    border-bottom: 1px solid var(--bs-border-color);
+    background: color-mix(in srgb, var(--bs-primary) 10%, var(--bs-body-bg) 90%);
+}
+
+.a11y-panel-title {
+    font-size: 0.9rem;
+    font-weight: 800;
+}
+
+.a11y-close {
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--bs-body-color);
+    font-size: 1.25rem;
+    line-height: 1;
     cursor: pointer;
-    z-index: 1040;
-    /* Alle offcanvasin mutta yli muun sisällön */
-    border: none;
-    transition: transform 0.2s ease, background-color 0.2s;
 }
 
-.a11y-fab i {
-    font-size: 1.5rem;
+.a11y-close:hover {
+    background: color-mix(in srgb, var(--bs-primary) 12%, transparent);
 }
 
-.a11y-fab:hover,
-.a11y-fab:focus {
-    transform: scale(1.05);
-    background-color: #000000;
+.a11y-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    padding: 0.72rem 0.95rem;
+    border-bottom: 1px solid var(--bs-border-color-translucent);
+}
+
+.a11y-section:last-child {
+    border-bottom: 0;
+}
+
+.a11y-section-label {
+    color: var(--bs-secondary-color);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.a11y-btn-row {
+    display: flex;
+    gap: 0.45rem;
+}
+
+.a11y-btn,
+.a11y-toggle {
+    border: 1px solid var(--bs-border-color);
+    background: color-mix(in srgb, var(--bs-body-bg) 88%, var(--bs-primary) 12%);
+    color: var(--bs-body-color);
+    cursor: pointer;
+    font-weight: 750;
+    transition: background-color var(--motion-duration-fast, 150ms) var(--motion-ease-standard, ease),
+                border-color var(--motion-duration-fast, 150ms) var(--motion-ease-standard, ease),
+                color var(--motion-duration-fast, 150ms) var(--motion-ease-standard, ease);
+}
+
+.a11y-btn {
+    flex: 1 1 0;
+    min-height: 2.2rem;
+    padding: 0.42rem 0.62rem;
+    border-radius: 0.58rem;
+    text-align: center;
+}
+
+.a11y-btn-large {
+    font-size: 1.08rem;
+}
+
+.a11y-btn:hover,
+.a11y-toggle:hover {
+    border-color: var(--bs-primary);
+    background: color-mix(in srgb, var(--bs-primary) 16%, var(--bs-body-bg) 84%);
+}
+
+.a11y-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.48;
+}
+
+.a11y-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    width: 100%;
+    min-height: 2.35rem;
+    padding: 0.48rem 0.7rem;
+    border-radius: 0.65rem;
+    text-align: left;
+}
+
+.a11y-toggle-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.3rem;
+    color: var(--bs-primary);
+    font-weight: 900;
+}
+
+.a11y-toggle[aria-pressed="true"] {
+    border-color: var(--bs-primary);
+    background: var(--bs-primary);
     color: #ffffff;
 }
 
-[data-bs-theme="dark"] .a11y-fab {
-    background-color: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+.a11y-toggle[aria-pressed="true"] .a11y-toggle-icon {
+    color: #ffffff;
 }
 
-[data-bs-theme="dark"] .a11y-fab:hover {
-    background-color: rgba(255, 255, 255, 0.25);
+.a11y-swatches {
+    display: flex;
+    gap: 0.48rem;
 }
 
-html.a11y-high-contrast .a11y-fab {
-    background-color: #000000 !important;
-    border: 2px solid #ffffff !important;
+.a11y-swatch {
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: 2px solid var(--bs-border-color);
+    border-radius: 999px;
+    cursor: pointer;
+}
+
+.a11y-swatch.is-active {
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 0 2px var(--bs-body-bg), 0 0 0 4px var(--bs-primary);
+}
+
+.a11y-swatch-white {
+    background: #ffffff;
+}
+
+.a11y-swatch-beige {
+    background: #f7ecd8;
+}
+
+.a11y-swatch-yellow {
+    background: #fff8bd;
+}
+
+.a11y-swatch-blue {
+    background: #dcecff;
+}
+
+.a11y-swatch-green {
+    background: #ddf1d6;
+}
+
+.a11y-btn-tts {
+    font-size: 0.9rem;
+}
+
+.a11y-btn-reset {
+    width: 100%;
+    border-color: color-mix(in srgb, var(--bs-danger) 45%, var(--bs-border-color) 55%);
+    background: color-mix(in srgb, var(--bs-danger) 8%, var(--bs-body-bg) 92%);
+    color: var(--bs-danger);
+}
+
+.a11y-btn-reset:hover {
+    border-color: var(--bs-danger);
+    background: color-mix(in srgb, var(--bs-danger) 14%, var(--bs-body-bg) 86%);
+}
+
+[data-bs-theme="dark"] .a11y-trigger {
+    border-color: rgba(255, 255, 255, 0.24);
+    background: color-mix(in srgb, var(--bs-primary) 70%, #ffffff 30%);
+    color: #06121f;
+}
+
+[data-bs-theme="dark"] .a11y-trigger:hover {
+    background: color-mix(in srgb, var(--bs-primary) 58%, #ffffff 42%);
+}
+
+[data-bs-theme="dark"] .a11y-panel {
+    border-color: rgba(255, 255, 255, 0.18);
+    background: #111827;
+    color: #f8fafc;
+}
+
+[data-bs-theme="dark"] .a11y-panel-header {
+    background: rgba(255, 255, 255, 0.07);
+}
+
+[data-bs-theme="dark"] .a11y-btn,
+[data-bs-theme="dark"] .a11y-toggle {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+    color: #f8fafc;
+}
+
+[data-bs-theme="dark"] .a11y-btn:hover,
+[data-bs-theme="dark"] .a11y-toggle:hover {
+    background: rgba(255, 255, 255, 0.14);
+}
+
+html.a11y-high-contrast .a11y-trigger,
+html.a11y-high-contrast .a11y-panel,
+html.a11y-high-contrast .a11y-panel-header,
+html.a11y-high-contrast .a11y-btn,
+html.a11y-high-contrast .a11y-toggle,
+html.a11y-high-contrast .a11y-close {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border-color: #ffffff !important;
     box-shadow: none !important;
 }
 
-html.a11y-high-contrast .a11y-tts-section .btn {
-    border-color: #ffffff !important;
-    color: #ffffff !important;
-    background: #000000 !important;
+html.a11y-high-contrast .a11y-toggle[aria-pressed="true"],
+html.a11y-high-contrast .a11y-btn-reset {
+    background: #ffffff !important;
+    color: #000000 !important;
 }
 
-html.a11y-high-contrast .a11y-tts-section .btn:disabled {
-    opacity: 0.55 !important;
+html.a11y-high-contrast .a11y-swatch {
+    border-color: #ffffff !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .a11y-trigger,
+    .a11y-btn,
+    .a11y-toggle {
+        transition: none !important;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .a11y-toolbar {
+        right: 0.75rem;
+        bottom: 0.75rem;
+    }
+
+    .a11y-panel {
+        width: calc(100vw - 1.5rem);
+        max-height: calc(100vh - 5rem);
+    }
 }

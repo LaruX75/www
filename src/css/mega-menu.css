@@ -620,7 +620,7 @@ html:not([data-bs-theme="dark"]) .mega-menu-panel a i {
 }
 
 .mega-menu-panel.menu-open .stagger-item {
-  animation: megaFadeInUp 300ms ease-out both;
+  animation: megaFadeInUp var(--motion-duration-slow, 360ms) var(--motion-ease-emphasized, ease-out) both;
 }
 
 @keyframes megaFadeInUp {

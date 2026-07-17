@@ -1572,6 +1572,19 @@ html:not([data-bs-theme="dark"]) .research-stat-card {
   justify-content: center;
   padding-top: 5vh;
   backdrop-filter: blur(4px);
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition:
+    opacity var(--motion-duration-base, 220ms) var(--motion-ease-standard, ease),
+    visibility 0s linear var(--motion-duration-base, 220ms);
+}
+
+.search-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+  transition-delay: 0s;
 }
 
 /* External media consent gate */
@@ -1704,6 +1717,23 @@ html:not([data-bs-theme="dark"]) .research-stat-card {
   max-height: 80vh;
   overflow-y: auto;
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: translateY(-8px) scale(0.98);
+  transition:
+    opacity var(--motion-duration-base, 220ms) var(--motion-ease-standard, ease),
+    transform var(--motion-duration-base, 220ms) var(--motion-ease-emphasized, ease);
+}
+
+.search-overlay.is-open .search-overlay-inner {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .search-overlay,
+  .search-overlay-inner {
+    transition: none !important;
+  }
 }
 
 /* Pagefind Component UI overrides */

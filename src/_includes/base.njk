@@ -81,69 +81,88 @@
   <script src="/js/external-media-consent.js" defer></script>
   <script src="/js/site-ui.js" defer></script>
 
-  <!-- Accessibility panel / Saavutettavuuspaneeli -->
-  <button class="a11y-fab" type="button" data-bs-toggle="offcanvas" data-bs-target="#a11yOffcanvas" aria-controls="a11yOffcanvas" aria-label="{{ 'Open accessibility settings' if currentLang == 'en' else 'Avaa saavutettavuusasetukset' }}">
-    <i class="bi bi-person-wheelchair"></i>
-  </button>
+  <!-- Accessibility toolbar / Saavutettavuustyökalut -->
+  <div class="a11y-toolbar" id="a11yToolbar" role="region" aria-label="{{ 'Accessibility tools' if currentLang == 'en' else 'Saavutettavuustyökalut' }}">
+    <button class="a11y-trigger" id="a11yTrigger" type="button" aria-expanded="false" aria-controls="a11yPanel" aria-haspopup="dialog" aria-label="{{ 'Open accessibility tools' if currentLang == 'en' else 'Avaa saavutettavuustyökalut' }}">
+      <svg class="a11y-trigger-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M1.5 12s3.8-7 10.5-7 10.5 7 10.5 7-3.8 7-10.5 7-10.5-7-10.5-7z"/>
+        <circle cx="12" cy="12" r="3"/>
+      </svg>
+      <span aria-hidden="true">Aa</span>
+    </button>
 
-  <div class="offcanvas offcanvas-end" tabindex="-1" id="a11yOffcanvas" aria-labelledby="a11yOffcanvasLabel">
-    <div class="offcanvas-header border-bottom">
-      <h5 class="offcanvas-title fw-bold" id="a11yOffcanvasLabel"><i class="bi bi-universal-access-circle me-2"></i>{{ "Accessibility" if currentLang == "en" else "Saavutettavuus" }}</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="{{ 'Close' if currentLang == 'en' else 'Sulje' }}"></button>
-    </div>
-    <div class="offcanvas-body">
-      <p class="text-muted small mb-4">{{ "Customise the appearance to suit your needs. Settings are saved in your browser." if currentLang == "en" else "Mukauta sivuston ulkoasua omiin tarpeisiisi sopivaksi. Valinnat tallentuvat selaimeesi." }}</p>
-
-      <div class="mb-4">
-        <label for="a11yTextSize" class="form-label fw-bold">{{ "Text size" if currentLang == "en" else "Tekstin koko" }}</label>
-        <select class="form-select" id="a11yTextSize">
-          <option value="normal">{{ "Normal" if currentLang == "en" else "Normaali koko" }}</option>
-          <option value="large">{{ "Large (+15%)" if currentLang == "en" else "Suuri (+15%)" }}</option>
-          <option value="xlarge">{{ "Maximum (+30%)" if currentLang == "en" else "Maksimi (+30%)" }}</option>
-        </select>
+    <div class="a11y-panel" id="a11yPanel" role="dialog" aria-modal="true" aria-labelledby="a11yPanelTitle" hidden>
+      <div class="a11y-panel-header">
+        <span class="a11y-panel-title" id="a11yPanelTitle">{{ "Accessibility tools" if currentLang == "en" else "Saavutettavuustyökalut" }}</span>
+        <button class="a11y-close" id="a11yClose" type="button" aria-label="{{ 'Close' if currentLang == 'en' else 'Sulje' }}">×</button>
       </div>
 
-      <div class="mb-3 form-check form-switch">
-        <input class="form-check-input" type="checkbox" role="switch" id="a11yHighContrast">
-        <label class="form-check-label" for="a11yHighContrast">{{ "High contrast" if currentLang == "en" else "Korkea kontrasti" }}</label>
-      </div>
-
-      <div class="mb-3 form-check form-switch">
-        <input class="form-check-input" type="checkbox" role="switch" id="a11yReducedMotion">
-        <label class="form-check-label" for="a11yReducedMotion">{{ "Reduce animations" if currentLang == "en" else "Vähennä animaatioita" }}</label>
-      </div>
-
-      <div class="mb-3 form-check form-switch">
-        <input class="form-check-input" type="checkbox" role="switch" id="a11yScreenReaderAssist">
-        <label class="form-check-label" for="a11yScreenReaderAssist">{{ "Screen reader support mode" if currentLang == "en" else "Ruudunlukijan tukitila" }}</label>
-        <div class="form-text">{{ "Does not start a screen reader on your device, but makes skip links and keyboard focus easier to follow." if currentLang == "en" else "Ei käynnistä ruudunlukijaa laitteellasi, mutta tekee ohituslinkistä ja näppäimistöfokuksesta helpommin seurattavia." }}</div>
-      </div>
-
-      <div class="mb-4 form-check form-switch">
-        <input class="form-check-input" type="checkbox" role="switch" id="a11yDyslexiaFont">
-        <label class="form-check-label" for="a11yDyslexiaFont">{{ "Dyslexia-friendly font" if currentLang == "en" else "Lukihäiriöystävällinen fontti" }}</label>
-      </div>
-
-      <div class="mb-4 a11y-tts-section">
-        <label class="form-label fw-bold d-block">{{ "Read aloud" if currentLang == "en" else "Lue ääneen" }}</label>
-        <div class="d-flex gap-2">
-          <button type="button" class="btn btn-outline-primary flex-fill" id="a11yTtsPlay">
-            <i class="bi bi-play-fill me-1" aria-hidden="true"></i>{{ "Read aloud" if currentLang == "en" else "Lue ääneen" }}
-          </button>
-          <button type="button" class="btn btn-outline-secondary flex-fill" id="a11yTtsStop" disabled>
-            <i class="bi bi-stop-fill me-1" aria-hidden="true"></i>{{ "Stop" if currentLang == "en" else "Pysäytä" }}
-          </button>
+      <div class="a11y-section">
+        <span class="a11y-section-label">{{ "Text size" if currentLang == "en" else "Tekstin koko" }}</span>
+        <div class="a11y-btn-row">
+          <button class="a11y-btn" id="a11yFontDec" type="button" aria-label="{{ 'Smaller text' if currentLang == 'en' else 'Pienennä tekstiä' }}">A−</button>
+          <button class="a11y-btn" id="a11yFontReset" type="button" aria-label="{{ 'Default text size' if currentLang == 'en' else 'Palauta tekstin koko' }}">A</button>
+          <button class="a11y-btn a11y-btn-large" id="a11yFontInc" type="button" aria-label="{{ 'Larger text' if currentLang == 'en' else 'Suurenna tekstiä' }}">A+</button>
         </div>
-        <div class="form-text">{{ "Uses your browser's speech engine to read the main page content aloud." if currentLang == "en" else "Käyttää selaimen puhesynteesiä sivun pääsisällön lukemiseen ääneen." }}</div>
       </div>
 
-      <hr>
-      <button type="button" class="btn btn-outline-danger w-100 mt-2" id="a11yResetBtn">
-        <i class="bi bi-arrow-counterclockwise me-1"></i> {{ "Reset to defaults" if currentLang == "en" else "Palauta oletukset" }}
-      </button>
+      <div class="a11y-section">
+        <button class="a11y-toggle" id="a11yHighContrast" type="button" aria-pressed="false">
+          <span class="a11y-toggle-icon" aria-hidden="true">◐</span>
+          {{ "High contrast" if currentLang == "en" else "Korkea kontrasti" }}
+        </button>
+        <button class="a11y-toggle" id="a11yReducedMotion" type="button" aria-pressed="false">
+          <span class="a11y-toggle-icon" aria-hidden="true">≈</span>
+          {{ "Reduce motion" if currentLang == "en" else "Vähennä liikettä" }}
+        </button>
+      </div>
+
+      <div class="a11y-section">
+        <button class="a11y-toggle" id="a11yDyslexiaFont" type="button" aria-pressed="false">
+          <span class="a11y-toggle-icon" aria-hidden="true">Aa</span>
+          {{ "Dyslexia-friendly font" if currentLang == "en" else "Lukemista tukeva fontti" }}
+        </button>
+        <button class="a11y-toggle" id="a11yTextSpacing" type="button" aria-pressed="false">
+          <span class="a11y-toggle-icon" aria-hidden="true">☰</span>
+          {{ "Wider text spacing" if currentLang == "en" else "Väljempi tekstiväli" }}
+        </button>
+        <button class="a11y-toggle" id="a11yReadingGuide" type="button" aria-pressed="false">
+          <span class="a11y-toggle-icon" aria-hidden="true">▭</span>
+          {{ "Reading guide" if currentLang == "en" else "Lukuviivain" }}
+        </button>
+        <button class="a11y-toggle" id="a11yFocusAssist" type="button" aria-pressed="false">
+          <span class="a11y-toggle-icon" aria-hidden="true">⌖</span>
+          {{ "Show focus and skip link" if currentLang == "en" else "Näytä fokus ja ohituslinkki" }}
+        </button>
+      </div>
+
+      <div class="a11y-section">
+        <span class="a11y-section-label">{{ "Background" if currentLang == "en" else "Tausta" }}</span>
+        <div class="a11y-swatches">
+          <button class="a11y-swatch a11y-swatch-white" type="button" data-a11y-bg="" aria-label="{{ 'Default background' if currentLang == 'en' else 'Oletustausta' }}"></button>
+          <button class="a11y-swatch a11y-swatch-beige" type="button" data-a11y-bg="beige" aria-label="{{ 'Beige background' if currentLang == 'en' else 'Beige tausta' }}"></button>
+          <button class="a11y-swatch a11y-swatch-yellow" type="button" data-a11y-bg="yellow" aria-label="{{ 'Yellow background' if currentLang == 'en' else 'Keltainen tausta' }}"></button>
+          <button class="a11y-swatch a11y-swatch-blue" type="button" data-a11y-bg="blue" aria-label="{{ 'Blue background' if currentLang == 'en' else 'Sininen tausta' }}"></button>
+          <button class="a11y-swatch a11y-swatch-green" type="button" data-a11y-bg="green" aria-label="{{ 'Green background' if currentLang == 'en' else 'Vihreä tausta' }}"></button>
+        </div>
+      </div>
+
+      <div class="a11y-section a11y-tts-section">
+        <span class="a11y-section-label">{{ "Read aloud" if currentLang == "en" else "Lue ääneen" }}</span>
+        <div class="a11y-btn-row">
+          <button class="a11y-btn a11y-btn-tts" id="a11yTtsPlay" type="button">{{ "Read" if currentLang == "en" else "Lue" }}</button>
+          <button class="a11y-btn a11y-btn-tts" id="a11yTtsStop" type="button" disabled>{{ "Stop" if currentLang == "en" else "Pysäytä" }}</button>
+        </div>
+      </div>
+
+      <div class="a11y-section">
+        <button class="a11y-btn a11y-btn-reset" id="a11yResetBtn" type="button">{{ "Reset all" if currentLang == "en" else "Nollaa kaikki" }}</button>
+      </div>
+
       <div id="a11yStatus" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
     </div>
   </div>
+  <div id="a11yReadingGuideLine" aria-hidden="true"></div>
 
   <script src="/js/table-filters.js" defer></script>
   <script src="/js/a11y.js" defer></script>

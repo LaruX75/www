@@ -9,6 +9,48 @@
   margin-inline: auto;
 }
 
+/* ===== MOTION FOUNDATION ===== */
+
+:root {
+  --motion-duration-fast: 150ms;
+  --motion-duration-base: 220ms;
+  --motion-duration-slow: 360ms;
+  --motion-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --motion-ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-reveal-distance: 10px;
+}
+
+.motion-reveal {
+  opacity: 0;
+  transform: translateY(var(--motion-reveal-distance));
+}
+
+.motion-reveal.is-visible {
+  animation: motionReveal var(--motion-duration-slow) var(--motion-ease-emphasized) both;
+  animation-delay: var(--motion-delay, 0ms);
+}
+
+@keyframes motionReveal {
+  from {
+    opacity: 0;
+    transform: translateY(var(--motion-reveal-distance));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-reveal,
+  .motion-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    animation: none !important;
+  }
+}
+
 /* ===== MOBILE BREAKPOINTS ===== */
 
 @media (max-width: 767.98px) {
