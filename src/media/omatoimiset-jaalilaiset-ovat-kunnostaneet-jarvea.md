@@ -7,6 +7,7 @@ mediaType: article
 mediaOutlet: "Kaleva"
 mediaOrder: 115
 sourceUrl: "https://www.kaleva.fi/omatoimiset-jaalilaiset-ovat-kunnostaneet-jarvea-j/2979759"
+thumbnail: "https://kuvat.kaleva.media/images/v1/kalevacdn/b-saQE2EOf9T4mKqdh1khKbKIVAmK9ZHxkea7Xm4A5V4Lii0Y9AHOioRR4N9jbzxCWW8UmbXlJTSH-59Za2F3xfE5SB8Y_BDV-GdZTIfEJA_9ujcWyLpU4Dcga3z2Y6xuT1oAUOmgwrO6xMov1KmRA.jpg?format=jpeg&quality=75&ol=kalevafi&width=1200&height=630&mode=crop&center-x=0.4146728515625&center-y=0.445220947265625"
 categories:
   - Mediassa
   - Jääli

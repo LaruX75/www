@@ -7,6 +7,7 @@ mediaType: article
 mediaOutlet: "Kaleva"
 mediaOrder: 117
 sourceUrl: "https://www.kaleva.fi/kalevan-kysely-kunnallisveron-nosto-sopii-oulun-va/2945595"
+thumbnail: "https://kuvat.kaleva.media/images/v1/kalevacdn/H-XxpZy3gaG-IGrHwO2sdBNgEYYJ0QIXHsoQRtuQNmw74Gs97g4-XXnCh_olKXlodZegst2f7ueuf0pWMqdH122psrvkqxepzSsVpsnxbburVrtIa-UqBKgEzFcq5Dddj6sxLfiB9gO12HVLEXN9mQ.jpg?format=jpeg&quality=75&ol=kalevafi&width=1200&height=630&mode=crop&center-x=0.49945068359375&center-y=0.4154052734375"
 categories:
   - Mediassa
   - Politiikka

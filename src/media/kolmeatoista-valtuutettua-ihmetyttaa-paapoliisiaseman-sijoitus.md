@@ -7,6 +7,7 @@ mediaType: article
 mediaOutlet: "Kaleva"
 mediaOrder: 108
 sourceUrl: "https://www.kaleva.fi/kolmeatoista-oululaista-kaupunginvaltuutettua-ihme/4154452"
+thumbnail: "https://kuvat.kaleva.media/images/v1/kalevacdn/WYgb0QSM9ZA2MmRaQZnau_xveifjrdK9ljeK3F1Xp1ZWlyEYdgUb9N2WYhRKncdkRenS5dpNhiT5rRc_e-XyuH0sHclq0u-cWuKmojkTazQStbnQObcDbzk7Ls9o4ZJsGLgWKc_MV6Q1O89cp2qcbA.jpg?format=jpeg&quality=75&ol=kalevafi&width=1200&height=630&mode=crop&center-x=0.5162353515625&center-y=0.5016632080078125"
 categories:
   - Mediassa
   - Politiikka

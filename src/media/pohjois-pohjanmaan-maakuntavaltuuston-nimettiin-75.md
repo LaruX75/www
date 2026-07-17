@@ -7,6 +7,7 @@ mediaType: article
 mediaOutlet: "Kaleva"
 mediaOrder: 112
 sourceUrl: "https://www.kaleva.fi/pohjois-pohjanmaan-maakuntavaltuuston-nimettiin-75/4008825"
+thumbnail: "https://kuvat.kaleva.media/images/v1/kalevacdn/JqXM5m1vkcnlLdk9pCmuwtSKto0H2FNhM_H6Rcn2FnfgkdiMC4A-WxyuqGD7CtwBuhmBp1g0EEF8NnkdendBwrCNKy-1JYWH7l6UaybjHRgMB_otPBvxxryKc1P9BK457oXg-eNcYZ1sueLI_xsXgeurleVNveMXd99KNKezLwAXLkfcx8l6JSlBxw.jpg?format=jpeg&quality=75&ol=kalevafi&width=1200&height=630&mode=crop&center-x=0.514862060546875&center-y=0.43603515625"
 categories:
   - Mediassa
   - Politiikka

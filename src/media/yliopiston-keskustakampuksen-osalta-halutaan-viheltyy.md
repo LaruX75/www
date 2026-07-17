@@ -7,6 +7,7 @@ mediaType: article
 mediaOutlet: "Kaleva"
 mediaOrder: 107
 sourceUrl: "https://www.kaleva.fi/yliopiston-keskustakampuksen-osalta-halutaan-vihel/4392154"
+thumbnail: "https://kuvat.kaleva.media/images/v1/kalevacdn/aFTTT_g9TLMeg5cif2tGuN-_oYxRXdMH2BeQ-EElzXl4tcn31VhZu0wef9_sVCX9h3LoZkSN8-dP2I4ctr1i5gvfMrcd3hcV8IRfMWwNian0G7GA_ykS_5wAkLBibU4A4pfHwLS89goTtMSfGGcGqA.jpg?format=jpeg&quality=75&ol=kalevafi&width=1200&height=630&mode=crop&center-x=0.479248046875&center-y=0.370941162109375"
 categories:
   - Mediassa
   - Politiikka

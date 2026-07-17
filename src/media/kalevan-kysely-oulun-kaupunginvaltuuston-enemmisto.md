@@ -7,6 +7,7 @@ mediaType: article
 mediaOutlet: "Kaleva"
 mediaOrder: 111
 sourceUrl: "https://www.kaleva.fi/kalevan-kysely-oulun-kaupunginvaltuuston-enemmisto/4071912"
+thumbnail: "https://kuvat.kaleva.media/images/v1/kalevacdn/X9ySBYwSblOalz9wlTq7Zk4YafbsmsmgCPHuSgHcz_Eu1ixoKPEbZyme4mNPMSsUwu1CKXyGRKDe7Pp_pjtdYDuhBfqhQFNexkWnPSSs3-ExTiHiARKzTl5lMyzTog2utFXHxmgYjtuqyYX368PuSA.jpg?format=jpeg&quality=75&ol=kalevafi&width=1200&height=630&mode=crop&center-x=0.470855712890625&center-y=0.4173431396484375"
 categories:
   - Mediassa
   - Politiikka

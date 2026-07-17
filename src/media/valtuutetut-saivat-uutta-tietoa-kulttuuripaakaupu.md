@@ -7,6 +7,7 @@ mediaType: article
 mediaOutlet: "Kaleva"
 mediaOrder: 103
 sourceUrl: "https://www.kaleva.fi/valtuutetut-saivat-uutta-tietoa-oulun-tulevasta-ku/6240019"
+thumbnail: "https://kuvat.kaleva.media/images/v1/kalevacdn/moSNQaa-m50O8NC-39NaHXWUr2daQ7QbfuAR2-Pz1fs9z86FeJfideHF9WpLbE9rBc7fyi3o27Hqnua_Tp5jG0zBPxaa77EyY7iU2eZXfzC5gP529sAxmmoFtV7jnFusCo9FGbksB-p6uxIcUQTn-kUZOt-duEL_Hg.jpg?format=jpeg&quality=75&ol=kalevafi&width=1200&height=630&mode=crop&center-x=0.4989013671875&center-y=0.47222900390625"
 categories:
   - Mediassa
   - Politiikka

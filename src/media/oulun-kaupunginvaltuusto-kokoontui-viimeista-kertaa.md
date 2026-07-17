@@ -7,6 +7,7 @@ mediaType: article
 mediaOutlet: "Kaleva"
 mediaOrder: 99
 sourceUrl: "https://www.kaleva.fi/oulun-kaupunginvaltuusto-kokoontui-viimeista-kerta/11637022"
+thumbnail: "https://kuvat.kaleva.media/images/v1/kalevacdn/UvpgwsFQx-OPFhjBAYbIBoXufGeM6-WZfNnNBxPR74kzb09bkIFmGmcDXuRGfBWD1SSOZf6-NZQwB8xZ0Lav0-E7Q2LntYNL_TWX3HirnZIFodtzonvfkYfrnNjojMKMCAU7Ej278gloyOb10YNW7TPEUCKKYV_gjagL1cnr6w.jpg?format=jpeg&quality=75&ol=kalevafi&width=1200&height=630&mode=crop&center-x=0.5&center-y=0.45404052734375"
 categories:
   - Mediassa
   - Politiikka

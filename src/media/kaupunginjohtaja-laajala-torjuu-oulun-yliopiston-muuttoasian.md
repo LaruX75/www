@@ -7,6 +7,7 @@ mediaType: article
 mediaOutlet: "Kaleva"
 mediaOrder: 118
 sourceUrl: "https://www.kaleva.fi/kaupunginjohtaja-laajala-torjuu-oulun-yliopiston-m/2896199"
+thumbnail: "https://kuvat.kaleva.media/images/v1/kalevacdn/QA4Jop2Co5eEG9wKXzxbBpK5NUEXV3n1kNqPtrSjLBmKOkNxtGyTyP55wjc0eRl5kGucB87qFIl_QJtx4JHPuvo86FrdpPG7VlGBsdLNRM9k0Ru6TDs6Eqos0avLEkv0PqNwuKkdUTrnWi000Ok67g.jpg?format=jpeg&quality=75&ol=kalevafi&width=1200&height=630&mode=crop&center-x=0.459381103515625&center-y=0.4925537109375"
 categories:
   - Mediassa
   - Politiikka

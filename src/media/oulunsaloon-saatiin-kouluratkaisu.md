@@ -7,6 +7,7 @@ mediaType: article
 mediaOutlet: "Kaleva"
 mediaOrder: 87
 sourceUrl: "https://www.kaleva.fi/oulunsaloon-saatiin-kouluratkaisu-salonpaahan-koko/1816410"
+thumbnail: "https://kuvat.kaleva.media/images/v1/kalevacdn/QkecISMGXHGXvZkszVsyFmjHwx4j5VT-eVXuseWXKAi_hzAzlOMuAeNOFapsXe0f0FxQf7SpZrnla01PZhNYYORrZADo7vGVqp7hBOLkGEipdgOrhdc8q-XFmTxLscwvgKaRLrce.jpg?format=jpeg&quality=75&ol=kalevafi&width=1200&height=630&mode=crop&center-x=0.517242431640625&center-y=0.2598876953125"
 categories:
   - Mediassa
   - Kouluverkko

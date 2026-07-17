@@ -7,6 +7,7 @@ mediaType: article
 mediaOutlet: "Kaleva"
 mediaOrder: 109
 sourceUrl: "https://www.kaleva.fi/oulun-kaupunginvaltuusto-aanesti-11-kertaa-kotoutt/4097625"
+thumbnail: "https://kuvat.kaleva.media/images/v1/kalevacdn/lcxxn9ss7WBNosC60zzZJgLAEnxDBR0agQ1_pX5dwug35A6euz0ElmoQeh6Hlb89_Pl8tBUFTPjfiSHxFMoOLhLAKdKkz3hvN7PChnZ4D_eZ0hYOkHs1nfWBGgHaEZzwkODIKMxOWwAYQkuQ1YyNPQ.jpg?format=jpeg&quality=75&ol=kalevafi&width=1200&height=630&mode=crop&center-x=0.4564971923828125&center-y=0.402984619140625"
 categories:
   - Mediassa
   - Politiikka

@@ -7,6 +7,7 @@ mediaType: article
 mediaOutlet: "Kaleva"
 mediaOrder: 119
 sourceUrl: "https://www.kaleva.fi/keskustakampus-halutaan-valtuuston-kasittelyyn-mah/2840838"
+thumbnail: "https://kuvat.kaleva.media/images/v1/kalevacdn/Vy4QBcYuYuGqDis_85lMcAQuf66HEdi9FF6EZFcUsMbSBJHRTsXHVIjQnAELRle9aFjpgYAiW3JjfKRilSDHTZer09E2HDjkPrW2tXByyoOOxGmacUNWVHLgwb_bo-tP54XkJcVwwl0locAqzx-41A.jpg?format=jpeg&quality=75&ol=kalevafi&width=1200&height=630&mode=crop&center-x=0.4820098876953125&center-y=0.465576171875"
 categories:
   - Mediassa
   - Politiikka
