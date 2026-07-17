@@ -149,6 +149,13 @@ templateEngineOverride: njk
 </section>
 <div class="ylwork-hero-divider"></div>
 
+<nav class="ylwork-mobile-path" aria-label="Yliopistotyön sivun tärkeimmät osiot">
+  <a href="#painopisteet">Ydin</a>
+  <a href="#ajankohtaista-tyosta">Ajankohtaista</a>
+  <a href="#naytto">Näyttö</a>
+  <a href="#aineisto">Aineisto</a>
+</nav>
+
 <section class="ylwork-section ylwork-section--stats" id="naytto">
   <div class="ylwork-shell">
     <div class="ylwork-section-head">
@@ -228,42 +235,50 @@ templateEngineOverride: njk
   </div>
 </section>
 
-<section class="ylwork-section" id="generation-ai">
+<section class="ylwork-section" id="generation-ai" data-mobile-priority="2">
   <div class="ylwork-shell">
-    <div class="ylwork-section-head">
-      <p class="ylwork-eyebrow ylwork-eyebrow--dark mb-1"><i class="bi bi-lightning-charge-fill me-1"></i>Ajankohtaista</p>
-      <h2 class="ylwork-section-title">Tekoälykasvatus on nyt työni keskiössä</h2>
-      <p class="ylwork-section-lead mb-0">Generation AI -hankkeessa tehdään yhtä aikaa tutkimusta, opettajankoulutusta ja käytännön kehittämistä. Juuri sitä työni yliopistossa nyt on.</p>
-    </div>
-    <div class="ylwork-project-layout">
-      <article class="ylwork-project-card ylwork-project-card--primary">
-        <span class="ylwork-project-badge">Generation AI</span>
-        <p class="ylwork-project-text">{{ workCopy.projectBody }}</p>
-        <ul class="ylwork-focus-list ylwork-focus-list--project">
-          {% for point in workCopy.projectPoints %}
-          <li>{{ point }}</li>
-          {% endfor %}
-        </ul>
-        <div class="d-flex flex-wrap gap-2 mt-3">
-          <a href="https://generation-ai-stn.fi/" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm">Hankkeen sivu <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a>
-          <a href="https://generation-ai-stn.fi/tutkijalle/" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm">Tutkijalle <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a>
-          <a href="https://generation-ai-stn.fi/opettajalle/" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm">Opettajalle <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a>
-          <a href="https://www.gen-ai.fi/fi" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm">Sovellukset <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a>
+    <details class="ylwork-mobile-disclosure" data-mobile-collapse open>
+      <summary class="ylwork-mobile-disclosure-summary">
+        <span>Tekoälykasvatus ja Generation AI</span>
+        <small>Ajankohtainen työ omana tiiviinä kokonaisuutenaan</small>
+      </summary>
+      <div class="ylwork-mobile-disclosure-body">
+        <div class="ylwork-section-head">
+          <p class="ylwork-eyebrow ylwork-eyebrow--dark mb-1"><i class="bi bi-lightning-charge-fill me-1"></i>Ajankohtaista</p>
+          <h2 class="ylwork-section-title">Tekoälykasvatus on nyt työni keskiössä</h2>
+          <p class="ylwork-section-lead mb-0">Generation AI -hankkeessa tehdään yhtä aikaa tutkimusta, opettajankoulutusta ja käytännön kehittämistä. Juuri sitä työni yliopistossa nyt on.</p>
         </div>
-      </article>
-      <div class="ylwork-project-side">
-        <article class="ylwork-project-card">
-          <span class="ylwork-project-badge ylwork-project-badge--muted">Opettajankoulutus</span>
-          <h3 class="ylwork-project-title">Tekoäly ei ole erillinen lisä vaan osa opettajan työtä</h3>
-          <p class="ylwork-project-text mb-0">Keskityn nyt siihen, miten tekoälylukutaidosta tulee osa opettajan ammattitaitoa ja arjen ratkaisuja.</p>
-        </article>
-        <article class="ylwork-project-card">
-          <span class="ylwork-project-badge ylwork-project-badge--muted">Käytännön kehittäminen</span>
-          <h3 class="ylwork-project-title">Teen myös materiaaleja, verkkosisältöjä ja käytännön välineitä</h3>
-          <p class="ylwork-project-text mb-0">Tutkimuksen ja opetuksen lisäksi rakennan verkkosivuja, materiaaleja ja välineitä, jotka on tarkoitettu oikeille käyttäjille.</p>
-        </article>
+        <div class="ylwork-project-layout">
+          <article class="ylwork-project-card ylwork-project-card--primary">
+            <span class="ylwork-project-badge">Generation AI</span>
+            <p class="ylwork-project-text">{{ workCopy.projectBody }}</p>
+            <ul class="ylwork-focus-list ylwork-focus-list--project">
+              {% for point in workCopy.projectPoints %}
+              <li>{{ point }}</li>
+              {% endfor %}
+            </ul>
+            <div class="d-flex flex-wrap gap-2 mt-3">
+              <a href="https://generation-ai-stn.fi/" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm">Hankkeen sivu <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a>
+              <a href="https://generation-ai-stn.fi/tutkijalle/" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm">Tutkijalle <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a>
+              <a href="https://generation-ai-stn.fi/opettajalle/" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm">Opettajalle <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a>
+              <a href="https://www.gen-ai.fi/fi" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm">Sovellukset <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a>
+            </div>
+          </article>
+          <div class="ylwork-project-side">
+            <article class="ylwork-project-card">
+              <span class="ylwork-project-badge ylwork-project-badge--muted">Opettajankoulutus</span>
+              <h3 class="ylwork-project-title">Tekoäly ei ole erillinen lisä vaan osa opettajan työtä</h3>
+              <p class="ylwork-project-text mb-0">Keskityn nyt siihen, miten tekoälylukutaidosta tulee osa opettajan ammattitaitoa ja arjen ratkaisuja.</p>
+            </article>
+            <article class="ylwork-project-card">
+              <span class="ylwork-project-badge ylwork-project-badge--muted">Käytännön kehittäminen</span>
+              <h3 class="ylwork-project-title">Teen myös materiaaleja, verkkosisältöjä ja käytännön välineitä</h3>
+              <p class="ylwork-project-text mb-0">Tutkimuksen ja opetuksen lisäksi rakennan verkkosivuja, materiaaleja ja välineitä, jotka on tarkoitettu oikeille käyttäjille.</p>
+            </article>
+          </div>
+        </div>
       </div>
-    </div>
+    </details>
   </div>
 </section>
 
@@ -385,68 +400,84 @@ templateEngineOverride: njk
   </div>
 </section>
 
-<section class="ylwork-section bg-body-tertiary" id="tunnustukset">
+<section class="ylwork-section bg-body-tertiary" id="tunnustukset" data-mobile-priority="3">
   <div class="ylwork-shell">
-    <div class="ylwork-section-head">
-      <p class="ylwork-eyebrow ylwork-eyebrow--dark mb-1"><i class="bi bi-patch-check-fill me-1"></i>Tunnustukset ja palaute</p>
-      <h2 class="ylwork-section-title">Tehdystä työstä kertovat hyvä palaute ja palkinnot</h2>
-      <p class="ylwork-section-lead mb-0">{{ workCopy.trustLead }}</p>
-    </div>
-    <div class="ylwork-trust-grid">
-      <article class="ylwork-trust-card">
-        <p class="ylwork-trust-kicker">Palkinnot ja tunnustukset</p>
-        <h3 class="ylwork-trust-title">Työ avoimuuden ja opetuksen parissa on palkittu useasti</h3>
-        <p class="ylwork-trust-text">{{ workCopy.awardsBody }}</p>
-        <p class="ylwork-trust-text small mb-3">Esimerkiksi kansallinen avoimen tieteen palkinto 2020, Avoimen oppimisen palkinto 2025 ja Vuoden TVT-opettaja 2014.</p>
-        <a href="/palkinnot/" class="ylwork-card-link">Katso kaikki tunnustukset <span aria-hidden="true">→</span></a>
-      </article>
-      <article class="ylwork-trust-card ylwork-trust-card--quote">
-        <p class="ylwork-trust-kicker">Opiskelijapalaute</p>
-        <blockquote class="ylwork-trust-quote mb-3">
-          <p class="mb-0">“Jarin opetustyyli harjoituksissa sekä mahtavat sähköpostiohjeet tukivat oppimista todella hyvin.”</p>
-        </blockquote>
-        <p class="ylwork-trust-text">{{ workCopy.feedbackBody }}</p>
-        <a href="/opiskelijoiden-antamaa-palautetta/" class="ylwork-card-link">Lue opiskelijapalautteita <span aria-hidden="true">→</span></a>
-      </article>
-    </div>
+    <details class="ylwork-mobile-disclosure" data-mobile-collapse open>
+      <summary class="ylwork-mobile-disclosure-summary">
+        <span>Tunnustukset ja palaute</span>
+        <small>Palkinnot ja opiskelijapalaute avattavana taustana</small>
+      </summary>
+      <div class="ylwork-mobile-disclosure-body">
+        <div class="ylwork-section-head">
+          <p class="ylwork-eyebrow ylwork-eyebrow--dark mb-1"><i class="bi bi-patch-check-fill me-1"></i>Tunnustukset ja palaute</p>
+          <h2 class="ylwork-section-title">Tehdystä työstä kertovat hyvä palaute ja palkinnot</h2>
+          <p class="ylwork-section-lead mb-0">{{ workCopy.trustLead }}</p>
+        </div>
+        <div class="ylwork-trust-grid">
+          <article class="ylwork-trust-card">
+            <p class="ylwork-trust-kicker">Palkinnot ja tunnustukset</p>
+            <h3 class="ylwork-trust-title">Työ avoimuuden ja opetuksen parissa on palkittu useasti</h3>
+            <p class="ylwork-trust-text">{{ workCopy.awardsBody }}</p>
+            <p class="ylwork-trust-text small mb-3">Esimerkiksi kansallinen avoimen tieteen palkinto 2020, Avoimen oppimisen palkinto 2025 ja Vuoden TVT-opettaja 2014.</p>
+            <a href="/palkinnot/" class="ylwork-card-link">Katso kaikki tunnustukset <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="ylwork-trust-card ylwork-trust-card--quote">
+            <p class="ylwork-trust-kicker">Opiskelijapalaute</p>
+            <blockquote class="ylwork-trust-quote mb-3">
+              <p class="mb-0">“Jarin opetustyyli harjoituksissa sekä mahtavat sähköpostiohjeet tukivat oppimista todella hyvin.”</p>
+            </blockquote>
+            <p class="ylwork-trust-text">{{ workCopy.feedbackBody }}</p>
+            <a href="/opiskelijoiden-antamaa-palautetta/" class="ylwork-card-link">Lue opiskelijapalautteita <span aria-hidden="true">→</span></a>
+          </article>
+        </div>
+      </div>
+    </details>
   </div>
 </section>
 
-<section class="ylwork-section" id="aineisto">
+<section class="ylwork-section" id="aineisto" data-mobile-priority="4">
   <div class="ylwork-shell">
-    <div class="ylwork-archive-band">
-      <div class="ylwork-archive-copy">
-        <p class="ylwork-eyebrow ylwork-eyebrow--dark mb-1"><i class="bi bi-archive-fill me-1"></i>Syvemmälle aineistoon</p>
-        <h2 class="ylwork-section-title mb-2">Tutkimus, julkaisut ja opetusnäyttö omilla sivuillaan</h2>
-        <p class="mb-0">{{ workCopy.archiveLead }}</p>
+    <details class="ylwork-mobile-disclosure ylwork-mobile-disclosure--archive" data-mobile-collapse open>
+      <summary class="ylwork-mobile-disclosure-summary">
+        <span>Syvemmälle aineistoon</span>
+        <small>Tutkimus, julkaisut, opinnäytteet ja portfolio linkkeinä</small>
+      </summary>
+      <div class="ylwork-mobile-disclosure-body">
+        <div class="ylwork-archive-band">
+          <div class="ylwork-archive-copy">
+            <p class="ylwork-eyebrow ylwork-eyebrow--dark mb-1"><i class="bi bi-archive-fill me-1"></i>Syvemmälle aineistoon</p>
+            <h2 class="ylwork-section-title mb-2">Tutkimus, julkaisut ja opetusnäyttö omilla sivuillaan</h2>
+            <p class="mb-0">{{ workCopy.archiveLead }}</p>
+          </div>
+          <div class="ylwork-archive-links">
+            <a href="/tutkimus/" class="ylwork-archive-link">
+              <strong>Tutkimus</strong>
+              <span>Tutkimusteemat, hankkeet ja tutkimuksen kokonaiskuva.</span>
+            </a>
+            <a href="/julkaisut/" class="ylwork-archive-link">
+              <strong>Julkaisut</strong>
+              <span>Julkaisuluettelo koottuna yhdelle sivulle OKM-luokituksen mukaisesti.</span>
+            </a>
+            <a href="/opinnaytteet/" class="ylwork-archive-link">
+              <strong>Ohjatut opinnäytteet</strong>
+              <span>Pro gradu -tutkielmat ja kandidaatintyöt OuluREPO-aineistosta.</span>
+            </a>
+            <a href="/portfolio/" class="ylwork-archive-link">
+              <strong>Opetusportfolio</strong>
+              <span>Tiivis näkymä opetukseen, ohjaukseen ja pedagogisiin ratkaisuihin.</span>
+            </a>
+            <a href="/cv/" class="ylwork-archive-link">
+              <strong>Ansioluettelo</strong>
+              <span>Kokonaiskuva urasta, tehtävistä ja meriiteistä.</span>
+            </a>
+            <a href="/palkinnot/" class="ylwork-archive-link">
+              <strong>Palkinnot ja palaute</strong>
+              <span>Tunnustukset sekä opiskelijoiden antama palaute omilla sivuillaan.</span>
+            </a>
+          </div>
+        </div>
       </div>
-      <div class="ylwork-archive-links">
-        <a href="/tutkimus/" class="ylwork-archive-link">
-          <strong>Tutkimus</strong>
-          <span>Tutkimusteemat, hankkeet ja tutkimuksen kokonaiskuva.</span>
-        </a>
-        <a href="/julkaisut/" class="ylwork-archive-link">
-          <strong>Julkaisut</strong>
-          <span>Julkaisuluettelo koottuna yhdelle sivulle OKM-luokituksen mukaisesti.</span>
-        </a>
-        <a href="/opinnaytteet/" class="ylwork-archive-link">
-          <strong>Ohjatut opinnäytteet</strong>
-          <span>Pro gradu -tutkielmat ja kandidaatintyöt OuluREPO-aineistosta.</span>
-        </a>
-        <a href="/portfolio/" class="ylwork-archive-link">
-          <strong>Opetusportfolio</strong>
-          <span>Tiivis näkymä opetukseen, ohjaukseen ja pedagogisiin ratkaisuihin.</span>
-        </a>
-        <a href="/cv/" class="ylwork-archive-link">
-          <strong>Ansioluettelo</strong>
-          <span>Kokonaiskuva urasta, tehtävistä ja meriiteistä.</span>
-        </a>
-        <a href="/palkinnot/" class="ylwork-archive-link">
-          <strong>Palkinnot ja palaute</strong>
-          <span>Tunnustukset sekä opiskelijoiden antama palaute omilla sivuillaan.</span>
-        </a>
-      </div>
-    </div>
+    </details>
   </div>
 </section>
 
@@ -480,6 +511,9 @@ templateEngineOverride: njk
   .ylwork-hero-divider {
     height: 4px;
     background: linear-gradient(90deg, #123f74 0%, #3a76bc 45%, #123f74 100%);
+  }
+  .ylwork-mobile-path {
+    display: none;
   }
   .ylwork-eyebrow {
     font-size: 0.72rem;
@@ -1023,6 +1057,9 @@ templateEngineOverride: njk
   .ylwork-archive-link:hover span {
     color: #fff;
   }
+  .ylwork-mobile-disclosure-summary {
+    display: none;
+  }
   [data-bs-theme="dark"] .ylwork-hero {
     --ylwork-ink: #f3f7fc;
     --ylwork-muted: rgba(243, 247, 252, 0.82);
@@ -1134,6 +1171,15 @@ templateEngineOverride: njk
   [data-bs-theme="dark"] .ylwork-card-link:hover {
     color: #ffffff;
   }
+  [data-bs-theme="dark"] .ylwork-mobile-disclosure-summary {
+    background: linear-gradient(180deg, rgba(20, 36, 56, 0.96), rgba(13, 25, 40, 0.98));
+    border-color: rgba(255, 255, 255, 0.14);
+    color: #f7fbff;
+    box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.2);
+  }
+  [data-bs-theme="dark"] .ylwork-mobile-disclosure-summary small {
+    color: rgba(255, 255, 255, 0.68);
+  }
   @media (max-width: 1199.98px) {
     .ylwork-kpi-grid,
     .ylwork-focus-grid {
@@ -1166,6 +1212,48 @@ templateEngineOverride: njk
     }
   }
   @media (max-width: 767.98px) {
+    .ylwork-shell {
+      width: min(100% - 1.25rem, 42rem);
+    }
+    .ylwork-section {
+      padding-block: 2.25rem;
+    }
+    .ylwork-mobile-path {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      gap: 0.45rem;
+      overflow-x: auto;
+      padding: 0.65rem 0.75rem;
+      border-bottom: 1px solid rgba(19, 43, 70, 0.1);
+      background: color-mix(in srgb, var(--bs-body-bg) 92%, transparent);
+      backdrop-filter: blur(10px);
+      scrollbar-width: none;
+    }
+    .ylwork-mobile-path::-webkit-scrollbar {
+      display: none;
+    }
+    .ylwork-mobile-path a {
+      flex: 0 0 auto;
+      padding: 0.45rem 0.72rem;
+      border-radius: 999px;
+      border: 1px solid rgba(19, 43, 70, 0.12);
+      background: rgba(255, 255, 255, 0.78);
+      color: #163e6c;
+      font-size: 0.86rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    [data-bs-theme="dark"] .ylwork-mobile-path {
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+      background: color-mix(in srgb, var(--bs-body-bg) 88%, transparent);
+    }
+    [data-bs-theme="dark"] .ylwork-mobile-path a {
+      border-color: rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.08);
+      color: #f4f8fd;
+    }
     .ylwork-kpi-grid,
     .ylwork-focus-grid,
     .ylwork-trust-grid,
@@ -1179,5 +1267,127 @@ templateEngineOverride: njk
     .ylwork-hero-title {
       max-width: none;
     }
+    .ylwork-hero .ylwork-shell {
+      padding-block: 2.4rem !important;
+    }
+    .ylwork-hero-title {
+      font-size: clamp(2.1rem, 13vw, 3.1rem);
+      line-height: 1;
+    }
+    .ylwork-section-head {
+      margin-bottom: 1.25rem;
+    }
+    .ylwork-section-title {
+      font-size: clamp(1.7rem, 9vw, 2.25rem);
+    }
+    .ylwork-focus-card,
+    .ylwork-project-card,
+    .ylwork-live-card,
+    .ylwork-trust-card {
+      box-shadow: 0 0.65rem 1.35rem rgba(19, 43, 70, 0.07);
+    }
+    .ylwork-focus-list {
+      display: none;
+    }
+    .ylwork-live-list--supporting {
+      display: none;
+    }
+    .ylwork-live-card--primary,
+    .ylwork-live-card--compact,
+    .ylwork-live-card--support {
+      padding: 1.1rem;
+    }
+    .ylwork-live-card--support {
+      border-left-width: 0;
+      border-top: 4px solid rgba(35, 94, 150, 0.24);
+    }
+    [data-mobile-priority="3"],
+    [data-mobile-priority="4"] {
+      padding-block: 0.65rem;
+    }
+    .ylwork-mobile-disclosure {
+      display: block;
+    }
+    .ylwork-mobile-disclosure-summary {
+      position: relative;
+      display: grid;
+      gap: 0.2rem;
+      padding: 1rem 3rem 1rem 1rem;
+      border-radius: 1rem;
+      border: 1px solid rgba(19, 43, 70, 0.1);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(245, 249, 255, 0.96));
+      box-shadow: 0 0.75rem 1.6rem rgba(19, 43, 70, 0.08);
+      color: #102845;
+      cursor: pointer;
+      list-style: none;
+    }
+    .ylwork-mobile-disclosure-summary::-webkit-details-marker {
+      display: none;
+    }
+    .ylwork-mobile-disclosure-summary::after {
+      content: "+";
+      position: absolute;
+      top: 50%;
+      right: 1rem;
+      width: 1.65rem;
+      height: 1.65rem;
+      transform: translateY(-50%);
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(19, 43, 70, 0.08);
+      color: #163e6c;
+      font-weight: 800;
+    }
+    .ylwork-mobile-disclosure[open] .ylwork-mobile-disclosure-summary::after {
+      content: "–";
+    }
+    .ylwork-mobile-disclosure-summary span {
+      font-weight: 800;
+      line-height: 1.25;
+    }
+    .ylwork-mobile-disclosure-summary small {
+      color: rgba(19, 43, 70, 0.66);
+      font-size: 0.84rem;
+      line-height: 1.35;
+    }
+    .ylwork-mobile-disclosure[open] .ylwork-mobile-disclosure-body {
+      margin-top: 1rem;
+    }
+    .ylwork-mobile-disclosure:not([open]) + * {
+      margin-top: 0;
+    }
+    .ylwork-mobile-disclosure--archive[open] .ylwork-archive-band {
+      margin-top: 0;
+    }
+    .ylwork-archive-band {
+      padding: 1.2rem;
+      border-radius: 1rem;
+    }
   }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const mobileQuery = window.matchMedia('(max-width: 767.98px)');
+    const disclosures = Array.from(document.querySelectorAll('[data-mobile-collapse]'));
+    if (!disclosures.length) return;
+
+    const applyMobileDisclosureState = () => {
+      disclosures.forEach((disclosure) => {
+        if (!mobileQuery.matches) {
+          disclosure.open = true;
+          disclosure.dataset.mobilePrepared = 'false';
+          return;
+        }
+        if (disclosure.dataset.mobilePrepared === 'true') return;
+        disclosure.open = false;
+        disclosure.dataset.mobilePrepared = 'true';
+      });
+    };
+
+    applyMobileDisclosureState();
+    mobileQuery.addEventListener('change', applyMobileDisclosureState);
+  });
+</script>
