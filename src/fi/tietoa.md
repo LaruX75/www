@@ -1,7 +1,7 @@
 ---
 title: "Jari Jukka Laru"
 date: 2020-01-17
-description: "Jari Laru – poliitikko, yliopistonlehtori, tutkija, yrittäjä, isä ja oululainen. Tämä sivu kertoo, kuka hän on."
+description: "Jari Laru – kouluttaja, yliopistonlehtori, tutkija, poliitikko ja oululainen. Tämä sivu kokoaa profiilin työn, julkisen vaikuttamisen ja arjen kautta."
 layout: base.njk
 templateEngineOverride: njk
 permalink: /tietoa/
@@ -9,287 +9,623 @@ translationKey: about
 wp_id: 7
 ---
 
-
-<!-- HERO -->
-<section class="py-5 bg-body-tertiary border-bottom">
+<section class="about-hero-section">
   <div class="site-shell">
-    <div class="row align-items-center g-5">
-      <div class="col-lg-7">
-        <p class="text-uppercase text-muted fw-semibold small mb-2">{{ pageContent.tietoa.hero.eyebrow }}</p>
-        <h1 class="display-5 fw-bold mb-3">{{ pageContent.tietoa.hero.name }}</h1>
-        <p class="lead mb-4">{{ pageContent.tietoa.hero.lead }}</p>
-        <p class="mb-4">{{ pageContent.tietoa.hero.bio }}</p>
-        <p class="mb-4">Työssäni ja julkisessa asiantuntijaroolissani palaan usein samaan kysymykseen: miten teknologiaa, tekoälyä ja digitalisaatiota pitäisi käyttää niin, että ne tukevat opetusta, oppimista ja yhdenvertaisuutta eivätkä vie niistä poispäin.</p>
-        <div class="d-flex flex-wrap gap-2">
-          {% for cta in pageContent.tietoa.hero.ctas %}
-          <a href="{{ cta.href }}" class="btn {{ cta.style }}">{{ cta.label }}</a>
-          {% endfor %}
+    <div class="about-hero-grid">
+      <div class="about-hero-copy">
+        <p class="about-kicker">Minä</p>
+        <h1>Jari Laru</h1>
+        <p class="about-hero-lead">Kouluttaja, yliopistonlehtori, tutkija ja poliittinen vaikuttaja Oulusta.</p>
+        <p>Työni liikkuu opetuksen, teknologian, tutkimuksen ja päätöksenteon rajapinnoilla. Koulutan opettajia ja organisaatioita, opetan tulevia opettajia yliopistossa, tutkin teknologiatuettua oppimista ja osallistun Oulun päätöksentekoon.</p>
+        <p>Yhteinen kysymys on pysynyt samana: miten teknologiaa, tekoälyä ja tietoa käytetään niin, että ne vahvistavat oppimista, sivistystä, osallisuutta ja läpinäkyvää päätöksentekoa.</p>
+        <div class="about-hero-actions">
+          <a href="/kouluttaja/" class="btn btn-primary rounded-pill px-4">Kouluttaja ja puhuja</a>
+          <a href="/tyoni-yliopistonlehtorina/" class="btn btn-outline-secondary rounded-pill px-4">Yliopistotyö</a>
+          <a href="/politiikka/" class="btn btn-outline-secondary rounded-pill px-4">Politiikka</a>
+          <a href="/yhteystiedot/" class="btn btn-outline-secondary rounded-pill px-4">Ota yhteyttä</a>
         </div>
       </div>
-      <div class="col-lg-5">
-        <div class="card border-0 shadow-sm overflow-hidden">
-          <img class="card-img-top" src="/img/uploads/2020/01/jari.laru_1397908734_26-e1610053137214.jpg" alt="Jari Laru" loading="eager">
-          <div class="card-body py-2 px-3">
-            <p class="card-text small text-muted mb-0">{{ pageContent.tietoa.hero.photoCaption }}</p>
-          </div>
+
+      <aside class="about-hero-card" aria-label="Jari Laru lyhyesti">
+        <img src="/img/uploads/2026/07/jari-laru-tietoa-hero.jpg" alt="Jari Laru Biennalen edessä" loading="eager" decoding="async">
+        <div class="about-hero-card-body">
+          <p class="about-kicker">Punainen lanka</p>
+          <ul class="about-signal-list">
+            <li>Oppiminen, opetus ja tekoäly</li>
+            <li>Tutkimukseen perustuva käytännön asiantuntijuus</li>
+            <li>Avoimuus, osallisuus ja läpinäkyvä valmistelu</li>
+            <li>Oulu, arki ja päätöksenteon vaikutukset ihmisiin</li>
+          </ul>
         </div>
-      </div>
+      </aside>
     </div>
   </div>
 </section>
 
-<!-- KOTIKAUPUNKI -->
-<section class="py-5 bg-body-tertiary border-top border-bottom">
+<section class="about-section" id="roolit">
   <div class="site-shell">
-    <div class="row align-items-center g-5">
-      <div class="col-lg-6">
-        <h2 class="h3 fw-bold mb-3">{{ pageContent.tietoa.hometown.heading }}</h2>
-        {% for p in pageContent.tietoa.hometown.paragraphs %}
-        <p class="{% if loop.last %}mb-0{% else %}mb-3{% endif %}">{{ p | safe }}</p>
-        {% endfor %}
-      </div>
-      <div class="col-lg-6">
-        <div class="row g-3">
-          <div class="col-6">
-            <div class="card border-0 shadow-sm">
-              <img class="card-img-top jaali-kuva" src="/img/uploads/2021/03/suomi100-200x300.jpg" alt="Jari Laru Suomi 100 -juhlassa Oulussa 2017" loading="lazy">
-              <div class="card-body py-2 px-3">
-                <p class="card-text small text-muted mb-0">Suomi 100 -juhla Oulussa, 2017</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="card border-0 shadow-sm">
-              <img class="card-img-top jaali-kuva" src="/img/uploads/2021/03/asyhds-300x225.jpg" alt="Jari Laru asukasyhdistyksen puheenjohtajana Jäälissä" loading="lazy">
-              <div class="card-body py-2 px-3">
-                <p class="card-text small text-muted mb-0">Asukasyhdistyksen puheenjohtajana Jäälissä</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="about-section-head">
+      <p class="about-kicker">Roolit</p>
+      <h2>Neljä näkökulmaa samaan asiantuntijuuteen</h2>
+      <p>En ajattele näitä erillisinä lokeroina. Sama osaaminen näkyy koulutuksissa, yliopistotyössä, tutkimuksessa ja politiikassa eri tavoilla.</p>
+    </div>
+
+    <div class="about-role-grid">
+      <article class="about-role-card about-role-card--primary">
+        <p class="about-role-index">01</p>
+        <h3>Kouluttaja ja puhuja</h3>
+        <p>Koulutan tekoälystä, digipedagogiikasta ja teknologiatuetusta oppimisesta käytännönläheisesti. Tavoitteena on auttaa opettajia, kouluja ja organisaatioita tekemään parempia valintoja uuden teknologian keskellä.</p>
+        <a href="/kouluttaja/">Tutustu koulutuksiin</a>
+      </article>
+
+      <article class="about-role-card">
+        <p class="about-role-index">02</p>
+        <h3>Yliopistonlehtori</h3>
+        <p>Opetan tulevia opettajia, ohjaan opinnäytteitä ja kehitän opetusta tutkimuksen rinnalla. Yliopistotyössä yhdistyvät pedagogiikka, teknologia ja opettajankoulutuksen arki.</p>
+        <a href="/tyoni-yliopistonlehtorina/">Lue yliopistotyöstä</a>
+      </article>
+
+      <article class="about-role-card">
+        <p class="about-role-index">03</p>
+        <h3>Politiikka</h3>
+        <p>Politiikassa minulle tärkeitä ovat sivistys, palvelut, alueellinen yhdenvertaisuus ja valmistelun läpinäkyvyys. Päätöksiä pitää pystyä arvioimaan koko Oulun mittakaavassa.</p>
+        <a href="/politiikka/">Avaa politiikkasivu</a>
+      </article>
+
+      <article class="about-role-card">
+        <p class="about-role-index">04</p>
+        <h3>Tutkija ja asiantuntija</h3>
+        <p>Tutkimukseni ja asiantuntijatyöni liittyvät teknologiatuettuun oppimiseen, yhteisölliseen työskentelyyn ja tekoälylukutaitoon. Julkaisut, lausunnot ja esitykset muodostavat laajemman työjäljen.</p>
+        <a href="/tutkimus/">Tutustu tutkimukseen</a>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- VAPAA-AIKA & MATKAT – galleria + lightbox -->
-<section class="py-5">
+<section class="about-section about-section--muted" id="profiili">
   <div class="site-shell">
-    <h2 class="h3 fw-bold mb-2">{{ pageContent.tietoa.leisure.heading }}</h2>
-    <p class="text-muted mb-4">{{ pageContent.tietoa.leisure.lead }}</p>
-
-    <!-- Galleria: iso featured + 2×2 thumbnails -->
-    <div class="row g-2 mb-5">
-      <div class="col-lg-6">
-        <a href="/img/uploads/2021/04/IMG_20190629_153127-edited-1024x578.jpg" class="lb-trigger d-block h-100" data-img="/img/uploads/2021/04/IMG_20190629_153127-edited-1024x578.jpg" data-caption="Skopje, Pohjois-Makedonia &ndash; kesä 2019. Oulu&ndash;Skopje&ndash;Oulu, vajaa 10&thinsp;000 km." aria-label="Avaa kuva: Skopje, Pohjois-Makedonia">
-          <img src="/img/uploads/2021/04/IMG_20190629_153127-edited-1024x578.jpg" alt="Roadtrip Skopje, Pohjois-Makedonia 2019" class="galleria-featured w-100 h-100" loading="lazy">
-        </a>
-      </div>
-      <div class="col-lg-6">
-        <div class="row g-2 h-100">
-          <div class="col-6">
-            <a href="/img/uploads/2021/05/197296754_51c407c4b1_o.jpg" class="lb-trigger d-block" data-img="/img/uploads/2021/05/197296754_51c407c4b1_o.jpg" data-caption="Perheenisä &ndash; kolmen lapsen isä ja puoliso. Ruuhkavuodet täydessä vauhdissa." aria-label="Avaa kuva: Perheenisä">
-              <img src="/img/uploads/2021/05/197296754_51c407c4b1_o.jpg" alt="Perheenisä" class="galleria-thumb w-100" loading="lazy">
-            </a>
-          </div>
-          <div class="col-6">
-            <a href="/img/uploads/2021/05/IMG_20210425_113524.jpg" class="lb-trigger d-block" data-img="/img/uploads/2021/05/IMG_20210425_113524.jpg" data-caption="Kulinaristi &ndash; intohimoinen ruoanlaittaja, leipuri ja Suomen juustoseuran jäsen." aria-label="Avaa kuva: Kulinaristi">
-              <img src="/img/uploads/2021/05/IMG_20210425_113524.jpg" alt="Ruoanlaittoa – kulinaristi" class="galleria-thumb w-100" loading="lazy">
-            </a>
-          </div>
-          <div class="col-6">
-            <a href="/img/uploads/2021/05/IMG_20180714_122145__01-e1619985796461.jpg" class="lb-trigger d-block" data-img="/img/uploads/2021/05/IMG_20180714_122145__01-e1619985796461.jpg" data-caption="Suikkamies &ndash; 1970-luvun talo vaatii töitä. Kaivinkoneen ohjaimista tapettipintaan." aria-label="Avaa kuva: Hartiapankkiremontoija">
-              <img src="/img/uploads/2021/05/IMG_20180714_122145__01-e1619985796461.jpg" alt="Hartiapankkiremontoija – suikkamies töissä" class="galleria-thumb w-100" loading="lazy">
-            </a>
-          </div>
-          <div class="col-6">
-            <a href="/img/uploads/2021/03/37522991_10156458618453116_4533218945909391360_o-e1615744405294-300x166.jpg" class="lb-trigger d-block" data-img="/img/uploads/2021/03/37522991_10156458618453116_4533218945909391360_o-e1615744405294-300x166.jpg" data-caption="Nizza, Ranska &ndash; Côte d&rsquo;Azurin aurinkoa Välimeren rannalla." aria-label="Avaa kuva: Nizza, Ranska">
-              <img src="/img/uploads/2021/03/37522991_10156458618453116_4533218945909391360_o-e1615744405294-300x166.jpg" alt="Lomalla Nizzassa, Ranska" class="galleria-thumb w-100" loading="lazy">
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Automatkareissut-info -->
-    <div class="mt-4 p-4 border rounded bg-body-tertiary d-flex flex-wrap align-items-center justify-content-between gap-3">
+    <div class="about-profile-layout">
       <div>
-        <span class="fw-bold">{{ pageContent.tietoa.leisure.travelStrip.label }}</span>
-        <span class="text-muted ms-2 small">{{ pageContent.tietoa.leisure.travelStrip.destinations }}</span>
+        <p class="about-kicker">Mikä yhdistää?</p>
+        <h2>Teknologia ei ole itseisarvo, vaan väline parempaan ajatteluun</h2>
+        <p>Olen tehnyt pitkään työtä tilanteissa, joissa teknologia lupaa paljon mutta onnistuminen riippuu ihmisistä, pedagogiikasta, toimintakulttuurista ja päätöksenteosta. Siksi katson tekoälyä ja digitaalisuutta ensisijaisesti sivistyksen, oppimisen ja organisaatioiden arjen näkökulmasta.</p>
+        <p>Tämä näkyy myös julkisessa työssäni: puhun mielelläni välineistä, mutta lopulta tärkeämpää on se, millaisia ratkaisuja niillä tuetaan ja kenelle niistä on hyötyä.</p>
       </div>
-      <a href="{{ pageContent.tietoa.leisure.travelStrip.cta1.href }}" class="btn btn-primary btn-sm">{{ pageContent.tietoa.leisure.travelStrip.cta1.label }}</a>
+
+      <div class="about-proof-grid" aria-label="Profiilin todisteita">
+        <a href="/esitykset/" class="about-proof-card">
+          <strong>Esitykset ja materiaalit</strong>
+          <span>Koulutukset, puheenvuorot ja avoimet oppimateriaalit.</span>
+        </a>
+        <a href="/kynasta/#lausunnot" class="about-proof-card">
+          <strong>Lausunnot</strong>
+          <span>Asiantuntijatyötä valmistelun ja päätöksenteon tueksi.</span>
+        </a>
+        <a href="/julkaisut/" class="about-proof-card">
+          <strong>Julkaisut</strong>
+          <span>Tieteellinen työ ja tutkimusprofiilin laajempi näyttö.</span>
+        </a>
+        <a href="/mediassa/" class="about-proof-card">
+          <strong>Mediassa</strong>
+          <span>Haastattelut, podcastit ja julkiset asiantuntijakommentit.</span>
+        </a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- LIGHTBOX MODAL -->
-<div class="modal fade" id="lightboxModal" tabindex="-1" aria-label="Kuvan suurennos" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content bg-dark border-0">
-      <div class="modal-header border-0 pb-0">
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Sulje"></button>
+<section class="about-section" id="oulu">
+  <div class="site-shell">
+    <div class="about-place-grid">
+      <div class="about-place-copy">
+        <p class="about-kicker">Oulu ja arki</p>
+        <h2>Oulu on kotikaupunki, työympäristö ja päätöksenteon mittakaava</h2>
+        <p>Olen syntyjään oululainen ja asunut täällä koko elämäni. Perheemme asuu Jäälissä, mutta Oulu ei minulle tarkoita vain yhtä kaupunginosaa tai aluetta. Se tarkoittaa 23 suuralueen ja 105 kaupunginosan kokonaisuutta, jossa päätösten vaikutukset näkyvät ihmisten arjessa eri tavoin.</p>
+        <p>Siksi paikallisuus ei ole minulle nurkkakuntaisuutta, vaan tapa kysyä, miten palvelut, liikkuminen, koulutus, kulttuuri ja osallisuus toimivat koko kaupungissa.</p>
       </div>
-      <div class="modal-body text-center p-3 pt-0">
-        <img id="lightboxImg" src="" alt="" class="img-fluid rounded" style="max-height:75vh;object-fit:contain;">
-        <p id="lightboxCaption" class="text-white-50 small mt-3 mb-0"></p>
+
+      <div class="about-place-images">
+        <figure>
+          <img src="/img/uploads/2021/03/suomi100-200x300.jpg" alt="Jari Laru Suomi 100 -juhlassa Oulussa 2017" loading="lazy">
+          <figcaption>Suomi 100 -juhla Oulussa, 2017</figcaption>
+        </figure>
+        <figure>
+          <img src="/img/uploads/2021/03/asyhds-300x225.jpg" alt="Jari Laru asukasyhdistyksen puheenjohtajana Jäälissä" loading="lazy">
+          <figcaption>Asukasyhdistystyötä Jäälissä</figcaption>
+        </figure>
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- SOME JA YHTEYS -->
-<section class="py-5 bg-body-tertiary border-top">
+<section class="about-section about-section--photo" id="arki">
   <div class="site-shell">
-    <h2 class="h3 fw-bold mb-2">{{ pageContent.tietoa.social.heading }}</h2>
-    <p class="text-muted mb-4">{{ pageContent.tietoa.social.lead }}</p>
-    <div class="row g-3">
+    <div class="about-section-head">
+      <p class="about-kicker">Ihminen työn takana</p>
+      <h2>Perhe, ruoka, remontointi ja pitkät automatkat pitävät kiinni arjessa</h2>
+      <p>Vapaa-aika ei ole sivujuonne, vaan vastapaino työlle. Arki, keittiö, taloremontit ja Euroopan halki kulkevat automatkat tuovat mittakaavaa myös asiantuntijatyöhön.</p>
+    </div>
+
+    <div class="about-life-grid">
+      <a href="/autolomat/" class="about-life-card about-life-card--wide">
+        <img src="/img/uploads/2021/04/IMG_20190629_153127-edited-1024x578.jpg" alt="Roadtrip Skopje, Pohjois-Makedonia 2019" loading="lazy">
+        <span>
+          <strong>Automatkat Euroopassa</strong>
+          <small>Matkakertomuksia pitkiltä autoreissuilta.</small>
+        </span>
+      </a>
+      <a href="https://www.instagram.com/jarilaru/" target="_blank" rel="noopener noreferrer" class="about-life-card">
+        <img src="/img/uploads/2021/05/IMG_20210425_113524.jpg" alt="Ruoanlaittoa" loading="lazy">
+        <span>
+          <strong>Kulinaristi</strong>
+          <small>Ruokaa, leipomista ja keittokirjoja.</small>
+        </span>
+      </a>
+      <a href="https://www.instagram.com/jarilaru/" target="_blank" rel="noopener noreferrer" class="about-life-card">
+        <img src="/img/uploads/2021/05/IMG_20180714_122145__01-e1619985796461.jpg" alt="Hartiapankkiremontoija" loading="lazy">
+        <span>
+          <strong>Remontointi</strong>
+          <small>1970-luvun talo pitää huolen projekteista.</small>
+        </span>
+      </a>
+      <a href="/1998/02/16/silloin-kun-sita-oltiin-larges-securityn-sysop-bbs-muisteluita/" class="about-life-card">
+        <img src="/img/uploads/2021/01/puiravame.jpg" alt="Varhaisia teknologiaharrastuksia kuvaava nosto" loading="lazy">
+        <span>
+          <strong>Varhainen teknologianörtti</strong>
+          <small>BBS-muistot ajalta ennen nykyistä verkkoa.</small>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="about-section about-section--muted" id="reitit">
+  <div class="site-shell">
+    <div class="about-section-head">
+      <p class="about-kicker">Minne seuraavaksi?</p>
+      <h2>Löydä oikea näkökulma</h2>
+      <p>Jos etsit tarkempaa taustaa, löydät alta ansioluettelon, tunnustukset, opiskelijapalautteen ja yhteystiedot.</p>
+    </div>
+
+    <div class="about-link-grid">
+      <a href="/cv/" class="about-link-card">
+        <i class="bi bi-file-earmark-person"></i>
+        <strong>Ansioluettelo</strong>
+        <span>Koulutus, työkokemus ja keskeiset meriitit.</span>
+      </a>
+      <a href="/palkinnot/" class="about-link-card">
+        <i class="bi bi-award"></i>
+        <strong>Palkinnot</strong>
+        <span>Tunnustukset opetuksesta, avoimuudesta ja asiantuntijatyöstä.</span>
+      </a>
+      <a href="/opiskelijoiden-antamaa-palautetta/" class="about-link-card">
+        <i class="bi bi-chat-heart"></i>
+        <strong>Opiskelijapalaute</strong>
+        <span>Miten opetus ja ohjaus ovat näkyneet opiskelijoille.</span>
+      </a>
+      <a href="/yhteystiedot/" class="about-link-card">
+        <i class="bi bi-envelope"></i>
+        <strong>Ota yhteyttä</strong>
+        <span>Koulutuspyynnöt, haastattelut ja yhteistyö.</span>
+      </a>
+    </div>
+
+    <div class="about-social-strip" aria-label="Verkkoprofiilit">
       {% for profile in pageContent.tietoa.social.profiles %}
-      <div class="col-sm-6 col-lg-3">
-        <a href="{{ profile.href }}" target="_blank" rel="noopener noreferrer" class="card border-0 shadow-sm text-decoration-none h-100">
-          <div class="card-body p-4 text-center">
-            <div class="fs-1 mb-2
-              {%- if profile.platform == 'LinkedIn' %}" style="color:#0a66c2"><i class="bi bi-linkedin"></i>
-              {%- elif profile.platform == 'Instagram' %}" style="color:#e1306c"><i class="bi bi-instagram"></i>
-              {%- elif profile.platform == 'YouTube' %} text-danger"><i class="bi bi-youtube"></i>
-              {%- elif profile.platform == 'Facebook' %}" style="color:#1877f2"><i class="bi bi-facebook"></i>
-              {%- elif profile.platform == 'ORCID' %} text-success"><i class="bi bi-person-badge-fill"></i>
-              {%- elif profile.platform == 'Research.fi' %} text-primary"><i class="bi bi-building"></i>
-              {%- elif profile.platform == 'ResearchGate' %} text-success"><i class="bi bi-share-fill"></i>
-              {%- elif profile.platform == 'Google Scholar' %} text-warning"><i class="bi bi-search"></i>
-              {%- else %}"><i class="bi bi-globe"></i>
-              {%- endif %}
-            </div>
-            <h3 class="h6 fw-bold">{{ profile.platform }}</h3>
-            <p class="small text-muted mb-0">{{ profile.desc }}</p>
-          </div>
-        </a>
-      </div>
+      <a href="{{ profile.href }}" target="_blank" rel="noopener noreferrer">{{ profile.platform }}</a>
       {% endfor %}
-    </div>
-    <div class="mt-5 text-center">
-      <p class="text-muted mb-3">{{ pageContent.tietoa.social.contactText }}</p>
-      <a href="{{ pageContent.tietoa.social.contactCta.href }}" class="btn btn-primary"><i class="bi bi-envelope-fill me-2"></i>{{ pageContent.tietoa.social.contactCta.label }}</a>
-    </div>
-  </div>
-</section>
-
-<!-- AIHEALUEET -->
-<section class="py-5 bg-body-tertiary border-top" id="aihealueet" aria-labelledby="aihealueet-heading">
-  <div class="site-shell">
-    <p class="text-uppercase text-muted fw-semibold small mb-1"><i class="bi bi-grid-3x3-gap me-1"></i>Aihealueet</p>
-    <h2 class="h4 fw-bold mb-1" id="aihealueet-heading">Tutustu tarkemmin</h2>
-    <p class="text-muted mb-4">Navigoi aiheittain — työ, politiikka ja kirjoitukset.</p>
-    <div class="row g-4">
-      <div class="col-sm-6 col-lg-3">
-        <a href="/tyoni-yliopistonlehtorina/" class="card h-100 border-0 shadow-sm text-decoration-none hub-nav-card">
-          <div class="card-body p-4">
-            <div class="mb-2 fs-3 text-primary"><i class="bi bi-briefcase-fill"></i></div>
-            <h3 class="h5 fw-bold">Työ</h3>
-            <p class="text-muted small mb-0">Opetus, tutkimus ja asiantuntijakoulutus yliopistonlehtorina.</p>
-          </div>
-        </a>
-      </div>
-      <div class="col-sm-6 col-lg-3">
-        <a href="/politiikka/" class="card h-100 border-0 shadow-sm text-decoration-none hub-nav-card">
-          <div class="card-body p-4">
-            <div class="mb-2 fs-3" style="color:#dc3545"><i class="bi bi-bank2"></i></div>
-            <h3 class="h5 fw-bold">Politiikka</h3>
-            <p class="text-muted small mb-0">Kaupunginvaltuutettu, aloitteet ja vaikuttaminen Oulussa.</p>
-          </div>
-        </a>
-      </div>
-      <div class="col-sm-6 col-lg-3">
-        <a href="/kynasta/" class="card h-100 border-0 shadow-sm text-decoration-none hub-nav-card">
-          <div class="card-body p-4">
-            <div class="mb-2 fs-3 text-success"><i class="bi bi-pencil-fill"></i></div>
-            <h3 class="h5 fw-bold">Kynästä</h3>
-            <p class="text-muted small mb-0">Blogi, julkaisut, esitykset ja mielipidekirjoitukset.</p>
-          </div>
-        </a>
-      </div>
-      <div class="col-sm-6 col-lg-3">
-        <a href="/yhteystiedot/" class="card h-100 border-0 shadow-sm text-decoration-none hub-nav-card">
-          <div class="card-body p-4">
-            <div class="mb-2 fs-3 text-warning"><i class="bi bi-envelope-fill"></i></div>
-            <h3 class="h5 fw-bold">Ota yhteyttä</h3>
-            <p class="text-muted small mb-0">Yhteistyötä, haastattelupyyntöjä tai muuta yhteydenottoa.</p>
-          </div>
-        </a>
-      </div>
     </div>
   </div>
 </section>
 
 <style>
-/* Aihealueet-navigaatiokortit */
-.hub-nav-card { transition: transform 0.15s ease, box-shadow 0.15s ease; }
-.hub-nav-card:hover { transform: translateY(-3px); box-shadow: 0 .5rem 1.2rem rgba(0,0,0,.13) !important; }
+.about-hero-section {
+  padding: clamp(3rem, 6vw, 6rem) 0;
+  border-bottom: 1px solid var(--bs-border-color);
+  background:
+    radial-gradient(circle at 12% 12%, rgba(35, 94, 150, 0.12), transparent 28%),
+    linear-gradient(180deg, rgba(var(--bs-tertiary-bg-rgb), 0.96), rgba(var(--bs-body-bg-rgb), 0.98));
+}
 
-/* Rooli-kuvat – tasainen korkeus */
-.rooli-kuva {
-  height: 200px;
+.about-hero-grid,
+.about-profile-layout,
+.about-place-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(20rem, 0.75fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.about-hero-copy h1,
+.about-section-head h2,
+.about-profile-layout h2,
+.about-place-copy h2 {
+  font-family: 'Bree Serif', serif;
+  color: var(--bs-body-color);
+  line-height: 1.05;
+}
+
+.about-hero-copy h1 {
+  font-size: clamp(3.2rem, 8vw, 6.5rem);
+  letter-spacing: -0.055em;
+  margin-bottom: 1rem;
+}
+
+.about-hero-lead {
+  max-width: 46rem;
+  color: var(--bs-body-color);
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+  line-height: 1.35;
+  margin-bottom: 1.35rem;
+}
+
+.about-hero-copy p:not(.about-kicker):not(.about-hero-lead),
+.about-section-head p,
+.about-profile-layout p,
+.about-place-copy p {
+  color: var(--bs-secondary-color);
+  font-size: 1.03rem;
+  line-height: 1.75;
+}
+
+.about-kicker {
+  color: var(--bs-secondary-color);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.7rem;
+  text-transform: uppercase;
+}
+
+.about-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1.6rem;
+}
+
+.about-hero-card,
+.about-role-card,
+.about-proof-card,
+.about-link-card {
+  border: 1px solid var(--bs-border-color);
+  border-radius: 1.5rem;
+  background: rgba(var(--bs-body-bg-rgb), 0.94);
+  box-shadow: 0 1rem 2.3rem rgba(19, 43, 70, 0.08);
+}
+
+.about-hero-card {
+  overflow: hidden;
+}
+
+.about-hero-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  display: block;
+  object-fit: cover;
+  object-position: center 74%;
+}
+
+.about-hero-card-body {
+  padding: 1.35rem;
+}
+
+.about-signal-list {
+  display: grid;
+  gap: 0.7rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.about-signal-list li {
+  color: var(--bs-secondary-color);
+  line-height: 1.45;
+}
+
+.about-signal-list li::before {
+  content: "";
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--bs-primary);
+  margin-right: 0.55rem;
+  transform: translateY(-0.05rem);
+}
+
+.about-section {
+  padding: clamp(3rem, 6vw, 5.5rem) 0;
+}
+
+.about-section--muted {
+  border-top: 1px solid var(--bs-border-color);
+  border-bottom: 1px solid var(--bs-border-color);
+  background: var(--bs-tertiary-bg);
+}
+
+.about-section--photo {
+  background:
+    linear-gradient(180deg, rgba(var(--bs-body-bg-rgb), 0.98), rgba(var(--bs-tertiary-bg-rgb), 0.72));
+}
+
+.about-section-head {
+  max-width: 56rem;
+  margin-bottom: 2rem;
+}
+
+.about-section-head h2,
+.about-profile-layout h2,
+.about-place-copy h2 {
+  font-size: clamp(2rem, 3vw, 3rem);
+  margin-bottom: 1rem;
+}
+
+.about-role-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.about-role-card {
+  display: flex;
+  min-height: 25rem;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.35rem;
+}
+
+.about-role-card--primary {
+  background:
+    radial-gradient(circle at top right, rgba(35, 94, 150, 0.14), transparent 40%),
+    linear-gradient(180deg, rgba(var(--bs-body-bg-rgb), 0.98), rgba(var(--bs-tertiary-bg-rgb), 0.86));
+  border-color: rgba(35, 94, 150, 0.22);
+}
+
+.about-role-index {
+  color: var(--bs-secondary-color);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  line-height: 1;
+  margin-bottom: 1.2rem;
+}
+
+.about-role-card h3 {
+  font-family: 'Bree Serif', serif;
+  font-size: 1.45rem;
+  line-height: 1.1;
+  margin-bottom: 0.85rem;
+}
+
+.about-role-card p:not(.about-role-index) {
+  color: var(--bs-secondary-color);
+  line-height: 1.6;
+}
+
+.about-role-card a,
+.about-proof-card,
+.about-link-card,
+.about-social-strip a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.about-role-card a {
+  margin-top: auto;
+  color: var(--bs-primary);
+  font-weight: 800;
+}
+
+.about-proof-grid {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.about-proof-card {
+  display: grid;
+  gap: 0.25rem;
+  padding: 1rem;
+}
+
+.about-proof-card strong,
+.about-link-card strong,
+.about-life-card strong {
+  display: block;
+}
+
+.about-proof-card span,
+.about-link-card span,
+.about-life-card small {
+  color: var(--bs-secondary-color);
+  line-height: 1.45;
+}
+
+.about-place-images {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.about-place-images figure,
+.about-life-card {
+  overflow: hidden;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 1.35rem;
+  background: var(--bs-body-bg);
+  box-shadow: 0 0.9rem 2rem rgba(19, 43, 70, 0.08);
+}
+
+.about-place-images img {
+  width: 100%;
+  height: 18rem;
+  display: block;
   object-fit: cover;
   object-position: center top;
 }
 
-/* Jääli-kuvat – tasainen korkeus */
-.jaali-kuva {
-  height: 180px;
+.about-place-images figcaption {
+  color: var(--bs-secondary-color);
+  font-size: 0.9rem;
+  margin: 0;
+  padding: 0.85rem 1rem;
+}
+
+.about-life-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.about-life-card {
+  position: relative;
+  min-height: 20rem;
+  color: #fff;
+  text-decoration: none;
+}
+
+.about-life-card--wide {
+  grid-column: span 2;
+}
+
+.about-life-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  object-position: center top;
+  transition: transform 0.35s ease;
 }
 
-/* Galleria: iso featured-kuva */
-.galleria-featured {
-  object-fit: cover;
-  height: 340px;
-  border-radius: 0.375rem;
-  display: block;
-  transition: opacity 0.2s;
-}
-.lb-trigger:hover .galleria-featured,
-.lb-trigger:hover .galleria-thumb {
-  opacity: 0.88;
+.about-life-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 18, 36, 0.08), rgba(8, 18, 36, 0.82));
 }
 
-/* Galleria: pienet thumbit */
-.galleria-thumb {
-  object-fit: cover;
-  height: 164px;
-  border-radius: 0.375rem;
-  display: block;
-  transition: opacity 0.2s;
+.about-life-card span {
+  position: absolute;
+  inset: auto 1.1rem 1.1rem;
+  z-index: 1;
 }
 
+.about-life-card strong {
+  color: #fff;
+  font-family: 'Bree Serif', serif;
+  font-size: 1.35rem;
+  line-height: 1.1;
+}
 
+.about-life-card small {
+  color: rgba(255,255,255,0.82);
+}
+
+.about-life-card:hover img {
+  transform: scale(1.04);
+}
+
+.about-link-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.about-link-card {
+  display: grid;
+  gap: 0.5rem;
+  padding: 1.2rem;
+}
+
+.about-link-card i {
+  color: var(--bs-primary);
+  font-size: 1.7rem;
+}
+
+.about-social-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 2rem;
+}
+
+.about-social-strip a {
+  border: 1px solid var(--bs-border-color);
+  border-radius: 999px;
+  background: var(--bs-body-bg);
+  color: var(--bs-secondary-color);
+  font-weight: 700;
+  padding: 0.55rem 0.85rem;
+}
+
+.about-proof-card:hover,
+.about-link-card:hover,
+.about-social-strip a:hover {
+  border-color: rgba(35, 94, 150, 0.3);
+  box-shadow: 0 1rem 2rem rgba(19, 43, 70, 0.1);
+  transform: translateY(-2px);
+}
+
+.about-proof-card,
+.about-link-card,
+.about-social-strip a {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+[data-bs-theme="dark"] .about-hero-section {
+  background:
+    radial-gradient(circle at 12% 12%, rgba(106, 172, 234, 0.14), transparent 30%),
+    linear-gradient(180deg, rgba(17, 29, 45, 0.98), rgba(12, 22, 35, 0.98));
+}
+
+[data-bs-theme="dark"] .about-hero-card,
+[data-bs-theme="dark"] .about-role-card,
+[data-bs-theme="dark"] .about-proof-card,
+[data-bs-theme="dark"] .about-link-card,
+[data-bs-theme="dark"] .about-place-images figure {
+  background: rgba(24, 36, 54, 0.94);
+  box-shadow: 0 1rem 2.3rem rgba(0, 0, 0, 0.24);
+}
+
+[data-bs-theme="dark"] .about-role-card--primary {
+  background:
+    radial-gradient(circle at top right, rgba(106, 172, 234, 0.18), transparent 40%),
+    linear-gradient(180deg, rgba(24, 36, 54, 0.98), rgba(17, 29, 45, 0.98));
+}
+
+@media (max-width: 1199.98px) {
+  .about-role-grid,
+  .about-link-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 991.98px) {
+  .about-hero-grid,
+  .about-profile-layout,
+  .about-place-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-life-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 575.98px) {
+  .about-role-grid,
+  .about-link-grid,
+  .about-place-images,
+  .about-life-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-life-card--wide {
+    grid-column: span 1;
+  }
+
+  .about-role-card {
+    min-height: auto;
+  }
+}
 </style>
-
-<script>
-(function () {
-  document.addEventListener('DOMContentLoaded', function () {
-    var modal = document.getElementById('lightboxModal');
-    var img = document.getElementById('lightboxImg');
-    var cap = document.getElementById('lightboxCaption');
-    var canUseBootstrapModal = Boolean(window.bootstrap && window.bootstrap.Modal && modal);
-    var bsModal = canUseBootstrapModal ? new window.bootstrap.Modal(modal) : null;
-
-    document.querySelectorAll('.lb-trigger').forEach(function (el) {
-      var imgUrl = el.dataset.img || el.getAttribute('href');
-      if (imgUrl) {
-        el.setAttribute('href', imgUrl);
-      }
-
-      el.addEventListener('click', function (e) {
-        if (!canUseBootstrapModal || !img || !cap || !imgUrl) {
-          return;
-        }
-        e.preventDefault();
-        img.src = imgUrl;
-        img.alt = (el.querySelector('img') || {}).alt || '';
-        cap.innerHTML = el.dataset.caption || '';
-        bsModal.show();
-      });
-    });
-  });
-})();
-</script>
