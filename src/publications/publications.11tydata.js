@@ -1,6 +1,7 @@
 const path = require("path");
 const opinionRoles = require("../_data/opinionRoles");
 const writingRoles = require("../_data/writingRoles");
+const { resolveContexts } = require("../_data/contentContext");
 
 function toArray(value) {
   if (Array.isArray(value)) {
@@ -112,6 +113,7 @@ module.exports = {
     },
     opinionRoles: (data) => resolveOpinionRoles(data),
     writingRoles: (data) => resolveWritingRoles(data),
+    contexts: (data) => resolveContexts(data),
     tags: (data) => {
       const tagSet = new Set(["publications"]);
       const writingRoleList = resolveWritingRoles(data);

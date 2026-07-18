@@ -1,25 +1,28 @@
 {% set currentLang = lang or (page.url | langFromUrl) %}
 {% set currentTags = tags or [] %}
-{% set relatedItems = collections | relatedContent(page.url, categories, keywords, currentTags, type, 4) %}
+{% set currentContexts = contexts or [] %}
+{% set relatedItems = collections | relatedContent(page.url, categories, keywords, currentTags, type, currentContexts, 4) %}
 {% set termCloud = collections | contentTermCloud([], keywords, 12) %}
 {% set isEnglish = currentLang == "en" %}
 {% set txt = {
   "context": "Collection",
   "toc": "Contents",
   "belongs": "Browse the same material",
+  "contexts": "Context paths",
   "topics": "Topic paths",
   "keywords": "Keywords",
   "related": "Related content",
-  "archive": "Open full list",
+  "archive": "Open full index",
   "noRelated": "No closely related items found yet."
 } if isEnglish else {
   "context": "Kokonaisuus",
   "toc": "Sisällys",
   "belongs": "Selaa samaa aineistoa",
+  "contexts": "Kontekstipolut",
   "topics": "Aihepolut",
   "keywords": "Avainsanat",
   "related": "Samasta aiheesta",
-  "archive": "Avaa koko lista",
+  "archive": "Avaa koko luettelo",
   "noRelated": "Läheisiä sisältöjä ei vielä löytynyt."
 } %}
 
@@ -30,7 +33,23 @@
   {% set typeLabel = "Text" %}
 {% endif %}
 
-{% if "blog" in currentTags %}
+{% if "media" in currentTags %}
+  {% set archiveHref = "/mediassa/" %}
+  {% if mediaType == "podcast" %}
+    {% set typeLabel = "Podcast" %}
+  {% elif mediaType == "video" %}
+    {% set typeLabel = "Mediaosuma / video" %}
+  {% elif mediaType == "radio" %}
+    {% set typeLabel = "Mediaosuma / radio" %}
+  {% elif mediaType == "article" %}
+    {% set typeLabel = "Mediaosuma / lehtijuttu" %}
+  {% else %}
+    {% set typeLabel = "Mediaosuma" %}
+  {% endif %}
+{% elif "presentations" in currentTags %}
+  {% set archiveHref = "/en/presentations/" if isEnglish else "/esitykset/" %}
+  {% set typeLabel = "Presentation or material" if isEnglish else "Esitys tai materiaali" %}
+{% elif "blog" in currentTags %}
   {% set archiveHref = "/en/blog/" if isEnglish else "/blogi/" %}
   {% set typeLabel = "Blog post" if isEnglish else "Blogikirjoitus" %}
 {% elif type == "puhe" %}
@@ -78,6 +97,17 @@
     </a>
   </div>
 
+  {% if currentContexts.length %}
+  <div class="content-context-card">
+    <p class="content-context-kicker">{{ txt.contexts }}</p>
+    <div class="content-context-chiplist">
+      {% for ctx in currentContexts %}
+      <a class="content-context-chip content-context-chip--context" href="{{ ctx | contextHref(currentLang) }}">{{ ctx | contextLabel(currentLang) }}</a>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
   {% if categories %}
   <div class="content-context-card">
     <p class="content-context-kicker">{{ txt.topics }}</p>
@@ -118,5 +148,5 @@
     {% endif %}
   </div>
 
-  <a class="btn btn-outline-primary btn-sm rounded-pill w-100" href="{{ archiveHref }}">{{ txt.archive }}</a>
+  <a class="content-context-archive-link" href="{{ archiveHref }}">{{ txt.archive }}</a>
 </div>

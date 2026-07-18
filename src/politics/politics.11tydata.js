@@ -1,7 +1,12 @@
+const { resolveContexts } = require("../_data/contentContext");
+
 module.exports = {
     layout: "writing-post.njk",
     tags: "politics",
     lang: "fi",
+    eleventyComputed: {
+        contexts: (data) => resolveContexts(data)
+    },
     permalink: function (data) {
         const d = data.page.date;
         if (!d) return `/${data.page.fileSlug}/`;

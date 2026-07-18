@@ -2,6 +2,11 @@ const {
   normalizeCategoryList,
   normalizeKeywordList
 } = require("./src/_data/metadata-normalization");
+const {
+  CONTEXT_ORDER,
+  getContextMeta,
+  resolveContexts
+} = require("./src/_data/contentContext");
 
 module.exports = function registerCollections(eleventyConfig) {
   const ACADEMIC_TERMS = [
@@ -134,6 +139,39 @@ module.exports = function registerCollections(eleventyConfig) {
         ...summarizeTermItems(sortedItems, key)
       };
     }).sort((a, b) => a.name.localeCompare(b.name, "fi"));
+  }
+
+  function buildContextList(items) {
+    const map = new Map();
+
+    items.forEach(item => {
+      const contexts = resolveContexts(item.data || {}, item.inputPath || "");
+      contexts.forEach(context => {
+        const meta = getContextMeta(context, "fi");
+        if (!map.has(context)) {
+          map.set(context, {
+            key: context,
+            name: meta.label,
+            slug: context,
+            href: meta.href,
+            items: []
+          });
+        }
+        map.get(context).items.push(item);
+      });
+    });
+
+    return CONTEXT_ORDER
+      .filter(context => map.has(context))
+      .map(context => {
+        const group = map.get(context);
+        const sortedItems = group.items.sort((a, b) => getItemDate(b) - getItemDate(a));
+        return {
+          ...group,
+          items: sortedItems,
+          count: sortedItems.length
+        };
+      });
   }
 
   function hasExplicitDate(item) {
@@ -292,5 +330,10 @@ module.exports = function registerCollections(eleventyConfig) {
     const items = getTaxonomySourceItems(collectionApi);
     return buildTermList(items, "keywords")
       .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name, "fi"));
+  });
+
+  eleventyConfig.addCollection("contextList", function (collectionApi) {
+    const items = getTaxonomySourceItems(collectionApi);
+    return buildContextList(items);
   });
 };

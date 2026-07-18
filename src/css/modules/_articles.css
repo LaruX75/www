@@ -702,6 +702,30 @@ html:not([data-bs-theme="dark"]) .kynasta-hero {
   font-size: 0.74rem;
 }
 
+.content-context-archive-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: start;
+  width: fit-content;
+  max-width: 100%;
+  border: 1px solid color-mix(in srgb, var(--bs-link-color) 28%, var(--bs-border-color));
+  border-radius: 999px;
+  background: transparent;
+  color: var(--bs-link-color);
+  font-size: 0.82rem;
+  font-weight: 800;
+  line-height: 1.15;
+  padding: 0.48rem 0.78rem;
+  text-decoration: none;
+}
+
+.content-context-archive-link:hover {
+  border-color: var(--bs-link-color);
+  background: color-mix(in srgb, var(--bs-link-color) 8%, transparent);
+  color: var(--bs-link-hover-color);
+}
+
 [data-bs-theme="dark"] .content-context-card {
   background: rgba(255, 255, 255, 0.035);
   border-color: rgba(255, 255, 255, 0.12);

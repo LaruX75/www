@@ -1,5 +1,6 @@
 const path = require("path");
 const writingRoles = require("../_data/writingRoles");
+const { resolveContexts } = require("../_data/contentContext");
 
 function toArray(value) {
   if (Array.isArray(value)) {
@@ -25,6 +26,7 @@ module.exports = {
   lang: "fi",
   eleventyComputed: {
     writingRoles: (data) => resolveWritingRoles(data),
+    contexts: (data) => resolveContexts(data),
     tags: (data) => {
       const tagSet = new Set(toArray(data.tags));
       const roleList = resolveWritingRoles(data);

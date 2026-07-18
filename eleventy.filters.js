@@ -1,6 +1,10 @@
 const fs = require("fs");
 const path = require("path");
 const Image = require("@11ty/eleventy-img");
+const {
+  getContextMeta,
+  resolveContexts
+} = require("./src/_data/contentContext");
 
 function getLangFromUrl(url) {
   return String(url || "").startsWith("/en/") ? "en" : "fi";
@@ -24,7 +28,9 @@ function uniqueContentItems(collections) {
   const sources = [
     ...(collections?.blog || []),
     ...(collections?.publications || []),
-    ...(collections?.politics || [])
+    ...(collections?.politics || []),
+    ...(collections?.media || []),
+    ...(collections?.presentations || [])
   ];
   const seen = new Set();
   return sources.filter((item) => {
@@ -43,6 +49,11 @@ function intersectionCount(values, wanted) {
 function contentTypeLabel(data = {}, tags = [], lang = "fi") {
   const tagSet = new Set(toArray(tags));
   const type = data.type || "";
+  if (data.mediaType === "video") return lang === "en" ? "Video" : "Video";
+  if (data.mediaType === "podcast") return lang === "en" ? "Podcast" : "Podcast";
+  if (data.mediaType === "radio") return lang === "en" ? "Radio" : "Radio";
+  if (data.mediaType === "article") return lang === "en" ? "Media article" : "Lehtijuttu";
+  if (type === "esitys" || tagSet.has("presentations")) return lang === "en" ? "Presentation" : "Esitys";
   if (type === "lausunto") return lang === "en" ? "Expert statement" : "Asiantuntijalausunto";
   if (type === "puhe") return lang === "en" ? "Speech" : "Puheenvuoro";
   if (type === "mielipide") return lang === "en" ? "Opinion" : "Mielipide";
@@ -171,14 +182,16 @@ module.exports = function registerFilters(eleventyConfig) {
     return arr.slice(n);
   });
 
-  eleventyConfig.addFilter("relatedContent", function (collections, pageUrl, categories, keywords, tags, type, limit = 4) {
+  eleventyConfig.addFilter("relatedContent", function (collections, pageUrl, categories, keywords, tags, type, contextsOrLimit = [], maybeLimit = 4) {
     const wantedCategories = normalizeTerms(categories);
     const wantedKeywords = normalizeTerms(keywords);
     const wantedTags = normalizeTerms(tags);
     const wantedType = String(type || "");
+    const wantedContexts = typeof contextsOrLimit === "number" ? new Set() : normalizeTerms(contextsOrLimit);
+    const limit = typeof contextsOrLimit === "number" ? contextsOrLimit : maybeLimit;
     const lang = getLangFromUrl(pageUrl);
 
-    if (!wantedCategories.size && !wantedKeywords.size && !wantedTags.size && !wantedType) return [];
+    if (!wantedCategories.size && !wantedKeywords.size && !wantedTags.size && !wantedContexts.size && !wantedType) return [];
 
     return uniqueContentItems(collections)
       .filter((item) => item.url !== pageUrl)
@@ -187,8 +200,9 @@ module.exports = function registerFilters(eleventyConfig) {
         const categoryScore = intersectionCount(data.categories, wantedCategories) * 5;
         const keywordScore = intersectionCount(data.keywords, wantedKeywords) * 3;
         const tagScore = intersectionCount(data.tags, wantedTags) * 2;
+        const contextScore = intersectionCount(data.contexts, wantedContexts) * 4;
         const typeScore = wantedType && data.type === wantedType ? 2 : 0;
-        const score = categoryScore + keywordScore + tagScore + typeScore;
+        const score = categoryScore + keywordScore + tagScore + contextScore + typeScore;
         return {
           url: item.url,
           title: data.title || "",
@@ -246,6 +260,18 @@ module.exports = function registerFilters(eleventyConfig) {
   eleventyConfig.addFilter("filterByType", function (arr, type) {
     if (!arr) return [];
     return arr.filter(item => item.data.type === type);
+  });
+
+  eleventyConfig.addFilter("resolveContexts", function (data, inputPath = "") {
+    return resolveContexts(data || {}, inputPath);
+  });
+
+  eleventyConfig.addFilter("contextLabel", function (context, lang = "fi") {
+    return getContextMeta(context, lang).label;
+  });
+
+  eleventyConfig.addFilter("contextHref", function (context, lang = "fi") {
+    return getContextMeta(context, lang).href;
   });
 
   eleventyConfig.addFilter("apa7authors", function (authors) {

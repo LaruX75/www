@@ -8,6 +8,8 @@
     {% set breadcrumbKey = "publications" %}
   {% elif page.inputPath and "src/presentations/" in page.inputPath %}
     {% set breadcrumbKey = "presentations" %}
+  {% elif page.inputPath and "src/media/" in page.inputPath %}
+    {% set breadcrumbKey = "media" %}
   {% elif page.inputPath and "src/blog/" in page.inputPath %}
     {% set breadcrumbKey = "blog" %}
   {% elif page.inputPath and "src/politics/" in page.inputPath %}
@@ -20,6 +22,8 @@
     {% set breadcrumbKey = "theses" %}
   {% elif currentUrl == "/blogi/" or currentUrl == "/en/blog/" %}
     {% set breadcrumbKey = "blog" %}
+  {% elif currentUrl == "/mediassa/" %}
+    {% set breadcrumbKey = "media" %}
   {% elif currentUrl == "/tietoa/" or currentUrl == "/autolomat/" or currentUrl == "/cv/" or currentUrl == "/portfolio/" or currentUrl == "/kouluttaja/" or currentUrl == "/puhuja/" or currentUrl == "/larux-tmi/" or currentUrl == "/yritys/" or currentUrl == "/en/about/" or currentUrl == "/en/cv/" or currentUrl == "/en/portfolio/" or currentUrl == "/en/company/" or currentUrl == "/en/road-trips/" %}
     {% set breadcrumbKey = "me" %}
   {% elif currentUrl == "/opetus/" or currentUrl == "/tutkimus/" or currentUrl == "/tyoni-yliopistonlehtorina/" or currentUrl == "/palkinnot/" or currentUrl == "/en/work/" or currentUrl == "/en/writings/" or currentUrl == "/en/research/" or currentUrl == "/en/awards/" %}

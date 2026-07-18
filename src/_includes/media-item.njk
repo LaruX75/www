@@ -1,0 +1,99 @@
+---
+layout: base.njk
+---
+{% set currentLang = lang or (page.url | langFromUrl) %}
+{% set sourceHref = sourceUrl or externalUrl %}
+{% set isVideoPreview = mediaType == "video" or (sourceHref and ("youtube.com" in sourceHref or "youtu.be" in sourceHref)) %}
+
+{% macro mediaTypeLabel(type) %}
+  {% if type == "podcast" %}Podcast
+  {% elif type == "article" %}Lehtijuttu
+  {% elif type == "tv" %}TV
+  {% elif type == "radio" %}Radio
+  {% elif type == "video" %}Video
+  {% else %}Mediaosuma
+  {% endif %}
+{% endmacro %}
+
+{% macro mediaRoleLabel(role) %}
+  {% if role == "about" %}Minusta tehty
+  {% elif role == "interviewer" %}Haastattelijana
+  {% elif role == "guest" %}Vieraana
+  {% else %}Mediassa
+  {% endif %}
+{% endmacro %}
+
+<section class="content-detail-hero content-detail-hero--media py-5 border-bottom">
+  <div class="site-shell">
+    <div class="content-detail-hero-grid">
+      <div class="content-detail-copy">
+        <p class="content-detail-eyebrow mb-2">Mediassa</p>
+        <h1 class="content-detail-title mb-3">{{ title }}</h1>
+        {% if subtitle %}
+          <p class="content-detail-lead mb-3">{{ subtitle }}</p>
+        {% elif description %}
+          <p class="content-detail-lead mb-3">{{ description }}</p>
+        {% endif %}
+        <div class="content-detail-actions">
+          {% if sourceHref %}
+            <a href="{{ sourceHref }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">Avaa alkuperäinen lähde</a>
+          {% endif %}
+          <a href="/mediassa/" class="btn btn-outline-secondary rounded-pill px-4">Kaikki mediaosumat</a>
+        </div>
+      </div>
+
+      <aside class="content-detail-visual" aria-label="Mediaosuman esikatselu">
+        {% if thumbnail %}
+          <a href="{{ sourceHref or page.url }}" {% if sourceHref %}target="_blank" rel="noopener noreferrer"{% endif %} class="content-detail-thumb{% if isVideoPreview %} video-preview{% endif %}">
+            <img src="{{ thumbnail }}" alt="" loading="lazy" decoding="async">
+          </a>
+        {% else %}
+          <div class="content-detail-thumb content-detail-thumb--empty">
+            <i class="bi bi-newspaper" aria-hidden="true"></i>
+          </div>
+        {% endif %}
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="content-detail-body-section py-5">
+  <div class="site-shell">
+    <article class="content-detail-main">
+      <div class="content-detail-card">
+        <p class="content-detail-card-kicker">Lisätiedot</p>
+        <div class="content-prose">{{ content | safe }}</div>
+      </div>
+
+      <div class="content-detail-side-card content-detail-meta-card">
+        <p class="content-detail-card-kicker">Lähde ja rooli</p>
+        <dl class="content-detail-definition-list mb-0">
+          <div>
+            <dt>Muoto</dt>
+            <dd>{{ mediaTypeLabel(mediaType) }}</dd>
+          </div>
+          <div>
+            <dt>Rooli</dt>
+            <dd>{{ mediaRoleLabel(mediaRole) }}</dd>
+          </div>
+          {% if mediaOutlet %}
+          <div>
+            <dt>Lähde</dt>
+            <dd>{{ mediaOutlet }}</dd>
+          </div>
+          {% endif %}
+          {% if date %}
+          <div>
+            <dt>Päiväys</dt>
+            <dd>{{ date | dateFormat }}</dd>
+          </div>
+          {% endif %}
+        </dl>
+      </div>
+
+      <aside class="content-detail-related">
+        {% include "content-context-sidebar.njk" %}
+      </aside>
+    </article>
+  </div>
+</section>

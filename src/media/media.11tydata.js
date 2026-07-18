@@ -1,7 +1,10 @@
+const { resolveContexts } = require("../_data/contentContext");
+
 module.exports = {
-  layout: "page.njk",
   lang: "fi",
   eleventyComputed: {
+    layout: () => "media-item.njk",
+    contexts: (data) => resolveContexts(data),
     tags: (data) => {
       const tagSet = new Set(["media"]);
 
