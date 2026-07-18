@@ -10,6 +10,7 @@ context:
   - yliopistotyö
 wp_id: 1844
 source_url: 'https://www.jarilaru.fi/vote-jari-laru-to-oulu-university-collegium/'
+originalLanguage: en
 templateEngineOverride: md
 ---
 

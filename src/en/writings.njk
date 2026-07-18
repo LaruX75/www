@@ -37,6 +37,7 @@ lang: en
         <p class="text-uppercase small text-muted mb-2">Writings</p>
         <h1 class="display-6 fw-bold mb-2">Writings, speeches and publications</h1>
         <p class="text-muted">A consolidated view of opinion pieces, columns, initiatives, speeches and publications.</p>
+        <p class="small text-muted mb-0">This English view provides structure, summaries and metadata. Most full texts are original Finnish-language sources and are marked accordingly.</p>
       </div>
       <div class="col-lg-4">
         <nav class="nav nav-pills flex-wrap gap-2 justify-content-lg-end">
@@ -416,6 +417,7 @@ lang: en
     "formattedDate": "{{ post.date | dateFormat }}",
     "description": {{ (post.data.description or (post.content | excerpt)) | jsonSafe | safe }},
     "url": "{{ post.url }}",
+    "originalLanguage": "{{ post.data.originalLanguage or post.data.lang or "" }}",
     "categories": {{ (post.data.categories or []) | jsonSafe | safe }},
     "keywords": {{ (post.data.keywords or []) | jsonSafe | safe }}
   }{% if not loop.last %},{% endif %}
@@ -874,17 +876,18 @@ section[id] {
       blogTbody.innerHTML = slice.map(d => {
         const catBadges = (d.categories || []).map(c => `<a href="/en/categories/${slugify(c)}/" class="badge text-bg-secondary me-1 text-decoration-none">${c}</a>`).join('');
         const keyBadges = (d.keywords || []).map(k => `<a href="/en/keywords/${slugify(k)}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">${k}</a>`).join('');
+        const actionTitle = d.originalLanguage === 'en' ? escHtml(d.title) : 'Read in Finnish';
 
         return `<tr>
           <td class="col-date text-center small text-muted font-monospace">${d.formattedDate}</td>
           <td class="col-title fw-medium"><a href="${d.url}" class="text-decoration-none">${escHtml(d.title)}</a></td>
-          <td class="col-desc small text-muted">${escHtml(d.description)}</td>
+          <td class="col-desc small text-muted">${escHtml(d.description)}${finnishOnlyBadge(d)}</td>
           <td>
             <div class="mb-1">${catBadges}</div>
             <div>${keyBadges}</div>
           </td>
           <td class="text-center">
-            <a href="${d.url}" class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Read blogipostaus">
+            <a href="${d.url}" class="btn btn-outline-primary btn-sm rounded-pill px-2" title="${actionTitle}">
               <i class="bi bi-arrow-right"></i>
             </a>
           </td>
@@ -1028,13 +1031,13 @@ section[id] {
         return `<tr>
           <td class="col-date text-center small text-muted font-monospace">${d.formattedDate}</td>
           <td class="col-title fw-medium"><a href="${d.url}" ${targetAttr} class="text-decoration-none">${escHtml(d.title)}</a></td>
-          <td class="col-desc small text-muted">${escHtml(d.description)}${eventInfo}</td>
+          <td class="col-desc small text-muted">${escHtml(d.description)}${eventInfo}${finnishOnlyBadge()}</td>
           <td>
             <div class="mb-1">${catBadges}</div>
             <div>${keyBadges}</div>
           </td>
           <td class="text-center">
-            <a href="${d.url}" ${targetAttr} class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Open speech">
+            <a href="${d.url}" ${targetAttr} class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Read in Finnish">
               ${iconInfo}
             </a>
           </td>
@@ -1178,13 +1181,13 @@ section[id] {
         return `<tr>
           <td class="col-date text-center small text-muted font-monospace">${d.formattedDate}</td>
           <td class="col-title fw-medium"><a href="${d.url}" ${targetAttr} class="text-decoration-none">${escHtml(d.title)}</a></td>
-          <td class="col-desc small text-muted">${escHtml(d.description)}${typeInfo}</td>
+          <td class="col-desc small text-muted">${escHtml(d.description)}${typeInfo}${finnishOnlyBadge()}</td>
           <td>
             <div class="mb-1">${catBadges}</div>
             <div>${keyBadges}</div>
           </td>
           <td class="text-center">
-            <a href="${d.url}" ${targetAttr} class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Open initiative">
+            <a href="${d.url}" ${targetAttr} class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Read in Finnish">
               ${iconInfo}
             </a>
           </td>
@@ -1328,13 +1331,13 @@ section[id] {
         return `<tr>
           <td class="col-date text-center small text-muted font-monospace">${d.formattedDate}</td>
           <td class="col-title fw-medium"><a href="${d.url}" ${targetAttr} class="text-decoration-none">${escHtml(d.title)}</a></td>
-          <td class="col-desc small text-muted">${escHtml(d.description)}${pubInfo}</td>
+          <td class="col-desc small text-muted">${escHtml(d.description)}${pubInfo}${finnishOnlyBadge()}</td>
           <td>
             <div class="mb-1">${catBadges}</div>
             <div>${keyBadges}</div>
           </td>
           <td class="text-center">
-            <a href="${d.url}" ${targetAttr} class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Open column">
+            <a href="${d.url}" ${targetAttr} class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Read in Finnish">
               ${iconInfo}
             </a>
           </td>
@@ -1512,13 +1515,13 @@ section[id] {
         return `<tr>
           <td class="col-date text-center small text-muted font-monospace">${d.formattedDate}</td>
           <td class="col-title fw-medium"><a href="${d.url}" ${targetAttr} class="text-decoration-none">${escHtml(d.title)}</a></td>
-          <td class="col-desc small text-muted">${escHtml(d.description)}${pubInfo}${roleBadges}</td>
+          <td class="col-desc small text-muted">${escHtml(d.description)}${pubInfo}${roleBadges}${finnishOnlyBadge()}</td>
           <td>
             <div class="mb-1">${catBadges}</div>
             <div>${keyBadges}</div>
           </td>
           <td class="text-center">
-            <a href="${d.url}" ${targetAttr} class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Open opinion piece">
+            <a href="${d.url}" ${targetAttr} class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Read in Finnish">
               ${iconInfo}
             </a>
           </td>
@@ -1587,6 +1590,11 @@ section[id] {
       const label = role === 'political' ? 'Political' : role === 'personal' ? 'Personal' : 'Expert';
       return `<span class="badge text-bg-light border text-dark mt-1 me-1">${label}</span>`;
     }).join('');
+  }
+
+  function finnishOnlyBadge(item = {}) {
+    if (item.originalLanguage === 'en') return '';
+    return '<br><span class="badge bg-body-tertiary border text-body mt-1 me-1"><i class="bi bi-translate me-1"></i>Full text available in Finnish only</span>';
   }
 
   function roleMatchesQuery(roles, query) {
