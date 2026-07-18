@@ -1016,6 +1016,29 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
   min-height: 260px;
 }
 
+.kynasta-table-top-pager {
+  position: sticky;
+  top: calc(var(--site-header-offset, 0px) + 0.75rem);
+  z-index: 7;
+  margin: 0.9rem 1rem 1rem;
+  padding: 0.75rem 0.9rem;
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(15, 34, 56, 0.12) !important;
+  box-shadow: 0 0.8rem 1.75rem rgba(15, 23, 42, 0.08);
+  backdrop-filter: blur(14px);
+}
+
+.kynasta-table-top-pager .page-link {
+  min-width: 2.25rem;
+  text-align: center;
+}
+
+[data-bs-theme="dark"] .kynasta-table-top-pager {
+  background: rgba(18, 27, 42, 0.92);
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 0.8rem 1.75rem rgba(0, 0, 0, 0.3);
+}
+
 .kynasta-mobile-path,
 .kynasta-mobile-disclosure-summary {
   display: none;
@@ -1250,13 +1273,52 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
 <script>
 function renderPaginationShared(ul, total, currentPage, onPageChange) {
   if (!ul) return;
-  ul.innerHTML = '';
-  if (total <= 1) return;
-
   const isMobile = window.matchMedia('(max-width: 767.98px)').matches;
   const WINDOW_SIZE = 10;
+  const footer = ul.closest('.card-footer');
+  const cardBody = footer?.previousElementSibling;
+  const paginationId = ul.id || `pagination-${Math.random().toString(36).slice(2)}`;
+  if (!ul.id) ul.id = paginationId;
 
-  const appendPageLink = (label, page, { active = false, disabled = false, ariaLabel = '' } = {}) => {
+  const getOrCreateDesktopMirror = () => {
+    if (isMobile || !cardBody || !footer) {
+      cardBody?.querySelector(`[data-pagination-top-for="${paginationId}"]`)?.remove();
+      return null;
+    }
+
+    let dock = cardBody.querySelector(`[data-pagination-top-for="${paginationId}"]`);
+    if (!dock) {
+      const tableWrap = cardBody.querySelector('.table-responsive');
+      if (!tableWrap) return null;
+
+      dock = document.createElement('div');
+      dock.className = 'kynasta-table-top-pager d-none d-lg-flex flex-wrap align-items-center justify-content-between gap-2 border rounded-4';
+      dock.setAttribute('data-pagination-top-for', paginationId);
+      dock.innerHTML = `
+        <small class="text-muted" data-pagination-top-info></small>
+        <nav aria-label="Sivutus taulukon yläreunassa">
+          <ul class="pagination pagination-sm mb-0 flex-wrap site-pag"></ul>
+        </nav>
+      `;
+      tableWrap.before(dock);
+    }
+
+    const topInfo = dock.querySelector('[data-pagination-top-info]');
+    if (topInfo) topInfo.textContent = total > 1 ? `Sivu ${currentPage}/${total}` : '';
+    return dock.querySelector('ul');
+  };
+
+  const mirrorUl = getOrCreateDesktopMirror();
+  const targets = [ul, mirrorUl].filter(Boolean);
+  targets.forEach(target => {
+    target.innerHTML = '';
+  });
+  if (total <= 1) {
+    cardBody?.querySelector(`[data-pagination-top-for="${paginationId}"]`)?.remove();
+    return;
+  }
+
+  const appendPageLink = (targetUl, label, page, { active = false, disabled = false, ariaLabel = '' } = {}) => {
     const li = document.createElement('li');
     li.className = `page-item${active ? ' active' : ''}${disabled ? ' disabled' : ''}`;
     const a = document.createElement('a');
@@ -1274,18 +1336,18 @@ function renderPaginationShared(ul, total, currentPage, onPageChange) {
       a.setAttribute('tabindex', '-1');
     }
     li.appendChild(a);
-    ul.appendChild(li);
+    targetUl.appendChild(li);
   };
 
-  const appendEllipsis = () => {
+  const appendEllipsis = (targetUl) => {
     const li = document.createElement('li');
     li.className = 'page-item disabled';
     li.innerHTML = '<span class="page-link">…</span>';
-    ul.appendChild(li);
+    targetUl.appendChild(li);
   };
 
   if (isMobile) {
-    appendPageLink('‹', Math.max(1, currentPage - 1), {
+    appendPageLink(ul, '‹', Math.max(1, currentPage - 1), {
       disabled: currentPage === 1,
       ariaLabel: 'Edellinen sivu'
     });
@@ -1293,39 +1355,41 @@ function renderPaginationShared(ul, total, currentPage, onPageChange) {
     const orderedPages = [...pages].filter(p => p >= 1 && p <= total).sort((a, b) => a - b);
     let previousPage = null;
     orderedPages.forEach(page => {
-      if (previousPage !== null && page - previousPage > 1) appendEllipsis();
-      appendPageLink(String(page), page, { active: page === currentPage });
+      if (previousPage !== null && page - previousPage > 1) appendEllipsis(ul);
+      appendPageLink(ul, String(page), page, { active: page === currentPage });
       previousPage = page;
     });
-    appendPageLink('›', Math.min(total, currentPage + 1), {
+    appendPageLink(ul, '›', Math.min(total, currentPage + 1), {
       disabled: currentPage === total,
       ariaLabel: 'Seuraava sivu'
     });
     return;
   }
 
-  if (total <= WINDOW_SIZE) {
-    for (let i = 1; i <= total; i++) {
-      appendPageLink(String(i), i, { active: i === currentPage });
+  targets.forEach((targetUl) => {
+    if (total <= WINDOW_SIZE) {
+      for (let i = 1; i <= total; i++) {
+        appendPageLink(targetUl, String(i), i, { active: i === currentPage });
+      }
+      return;
     }
-    return;
-  }
 
-  const midSlots = WINDOW_SIZE - 2;
-  let winStart = Math.max(2, currentPage - Math.floor(midSlots / 2));
-  let winEnd = winStart + midSlots - 1;
-  if (winEnd > total - 1) {
-    winEnd = total - 1;
-    winStart = Math.max(2, winEnd - midSlots + 1);
-  }
+    const midSlots = WINDOW_SIZE - 2;
+    let winStart = Math.max(2, currentPage - Math.floor(midSlots / 2));
+    let winEnd = winStart + midSlots - 1;
+    if (winEnd > total - 1) {
+      winEnd = total - 1;
+      winStart = Math.max(2, winEnd - midSlots + 1);
+    }
 
-  appendPageLink('1', 1, { active: currentPage === 1 });
-  if (winStart > 2) appendEllipsis();
-  for (let i = winStart; i <= winEnd; i++) {
-    appendPageLink(String(i), i, { active: i === currentPage });
-  }
-  if (winEnd < total - 1) appendEllipsis();
-  appendPageLink(String(total), total, { active: currentPage === total });
+    appendPageLink(targetUl, '1', 1, { active: currentPage === 1 });
+    if (winStart > 2) appendEllipsis(targetUl);
+    for (let i = winStart; i <= winEnd; i++) {
+      appendPageLink(targetUl, String(i), i, { active: i === currentPage });
+    }
+    if (winEnd < total - 1) appendEllipsis(targetUl);
+    appendPageLink(targetUl, String(total), total, { active: currentPage === total });
+  });
 }
 
 (function () {
