@@ -236,20 +236,55 @@ html.a11y-text-spacing figcaption {
     line-height: 1.9 !important;
 }
 
-html[data-a11y-bg="beige"] body {
-    background-color: #f7ecd8 !important;
+/* Kaikki värivaihtoehdot: yhteiset väri- ja tekstimuuttujat */
+html[data-a11y-bg="beige"],
+html[data-a11y-bg="yellow"],
+html[data-a11y-bg="blue"],
+html[data-a11y-bg="green"] {
+    /* Tekstivärit: tummat, teemasta riippumatta */
+    --bs-body-color: #1a1a2e;
+    --bs-body-color-rgb: 26, 26, 46;
+    --bs-secondary-color: rgba(26, 26, 46, 0.72);
+    --bs-tertiary-color: rgba(26, 26, 46, 0.5);
+    --bs-heading-color: #0f0f1a;
+    --bs-link-color: #0f4c81;
+    --bs-link-hover-color: #0b3a62;
 }
 
-html[data-a11y-bg="yellow"] body {
-    background-color: #fff8bd !important;
+html[data-a11y-bg="beige"] {
+    --bs-body-bg: #f7ecd8;
+    --bs-body-bg-rgb: 247, 236, 216;
+    --bs-secondary-bg: #f3e8d2;
+    --bs-tertiary-bg: #eee2cb;
 }
 
-html[data-a11y-bg="blue"] body {
-    background-color: #dcecff !important;
+html[data-a11y-bg="yellow"] {
+    --bs-body-bg: #fff8bd;
+    --bs-body-bg-rgb: 255, 248, 189;
+    --bs-secondary-bg: #fff5aa;
+    --bs-tertiary-bg: #fff197;
 }
 
+html[data-a11y-bg="blue"] {
+    --bs-body-bg: #dcecff;
+    --bs-body-bg-rgb: 220, 236, 255;
+    --bs-secondary-bg: #d0e4ff;
+    --bs-tertiary-bg: #c4dcff;
+}
+
+html[data-a11y-bg="green"] {
+    --bs-body-bg: #ddf1d6;
+    --bs-body-bg-rgb: 221, 241, 214;
+    --bs-secondary-bg: #d1ecc8;
+    --bs-tertiary-bg: #c5e7bb;
+}
+
+html[data-a11y-bg="beige"] body,
+html[data-a11y-bg="yellow"] body,
+html[data-a11y-bg="blue"] body,
 html[data-a11y-bg="green"] body {
-    background-color: #ddf1d6 !important;
+    background-color: var(--bs-body-bg) !important;
+    color: var(--bs-body-color) !important;
 }
 
 html[data-a11y-bg="beige"] main,
@@ -257,6 +292,51 @@ html[data-a11y-bg="yellow"] main,
 html[data-a11y-bg="blue"] main,
 html[data-a11y-bg="green"] main {
     background: transparent !important;
+}
+
+/* Tumman teeman elementit: ylikirjoitetaan kun a11y-bg on päällä.
+   Käytetään [data-a11y-bg]:not([data-a11y-bg=""]) jotta tyhjä arvo
+   (oletusväri) ei aktivoi näitä sääntöjä. Spesifisyys (0,2,x)
+   voittaa dark-teeman (0,1,x)-säännöt. */
+
+html[data-a11y-bg]:not([data-a11y-bg=""]) .card,
+html[data-a11y-bg]:not([data-a11y-bg=""]) .ticker-item {
+    background-color: #ffffff !important;
+    border-color: rgba(0, 0, 0, 0.1) !important;
+    color: var(--bs-body-color) !important;
+}
+
+html[data-a11y-bg]:not([data-a11y-bg=""]) .card .text-muted,
+html[data-a11y-bg]:not([data-a11y-bg=""]) .ticker-item .text-muted {
+    color: var(--bs-secondary-color) !important;
+}
+
+html[data-a11y-bg]:not([data-a11y-bg=""]) .card a,
+html[data-a11y-bg]:not([data-a11y-bg=""]) .card h1 a,
+html[data-a11y-bg]:not([data-a11y-bg=""]) .card h2 a,
+html[data-a11y-bg]:not([data-a11y-bg=""]) .card h3 a,
+html[data-a11y-bg]:not([data-a11y-bg=""]) .card h4 a,
+html[data-a11y-bg]:not([data-a11y-bg=""]) .card h5 a,
+html[data-a11y-bg]:not([data-a11y-bg=""]) .card h6 a,
+html[data-a11y-bg]:not([data-a11y-bg=""]) .ticker-item a {
+    color: var(--bs-link-color) !important;
+}
+
+html[data-a11y-bg]:not([data-a11y-bg=""]) .list-group-item {
+    background-color: #ffffff !important;
+    border-color: rgba(0, 0, 0, 0.1) !important;
+    color: var(--bs-body-color) !important;
+}
+
+html[data-a11y-bg]:not([data-a11y-bg=""]) .bg-adaptive-dark-blue {
+    background-color: var(--bs-secondary-bg) !important;
+}
+
+html[data-a11y-bg]:not([data-a11y-bg=""]) .bg-adaptive-dark-blue h2,
+html[data-a11y-bg]:not([data-a11y-bg=""]) .bg-adaptive-dark-blue h3,
+html[data-a11y-bg]:not([data-a11y-bg=""]) .bg-adaptive-dark-blue h4,
+html[data-a11y-bg]:not([data-a11y-bg=""]) .bg-adaptive-dark-blue p {
+    color: var(--bs-body-color) !important;
 }
 
 #a11yReadingGuideLine {

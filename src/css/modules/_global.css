@@ -83,7 +83,7 @@
 /* GLOBAL LIGHT MODE ENHANCEMENTS               */
 /* ============================================ */
 
-html:not([data-bs-theme="dark"]) body {
+html:not([data-bs-theme="dark"]):not([data-a11y-bg]) body {
   background-color: #f4f6f9 !important;
   /* Soft off-white to contrast with cards */
 }
@@ -102,13 +102,13 @@ html:not([data-bs-theme="dark"]) .ticker-item .ticker-title-link {
   color: var(--bs-body-color) !important;
 }
 
-html:not([data-bs-theme="dark"]) .bg-light,
-html:not([data-bs-theme="dark"]) section.bg-light {
+html:not([data-bs-theme="dark"]):not([data-a11y-bg]) .bg-light,
+html:not([data-bs-theme="dark"]):not([data-a11y-bg]) section.bg-light {
   background-color: #f4f6f9 !important;
   /* Keep sections unified with body bg */
 }
 
-html:not([data-bs-theme="dark"]) .bg-body-tertiary {
+html:not([data-bs-theme="dark"]):not([data-a11y-bg]) .bg-body-tertiary {
   background-color: #dbe2ec !important;
 }
 
@@ -214,13 +214,13 @@ html:not([data-bs-theme="dark"]) select {
 }
 
 /* Sections with bg-light should blend in dark mode */
-[data-bs-theme="dark"] .bg-light,
-[data-bs-theme="dark"] section.bg-light {
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .bg-light,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) section.bg-light {
   background-color: #1e2a3a !important;
   color: #e0e0e0;
 }
 
-[data-bs-theme="dark"] .bg-body-tertiary {
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .bg-body-tertiary {
   background-color: #243549 !important;
 }
 

@@ -846,7 +846,7 @@ document.addEventListener('DOMContentLoaded', () => {
   background-color: var(--bs-secondary-bg);
 }
 
-[data-bs-theme="dark"] .bg-light-subtle { background-color: #1e2a3a !important; }
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .bg-light-subtle { background-color: #1e2a3a !important; }
 [data-bs-theme="dark"] .card { border-color: rgba(255,255,255,0.08) !important; }
 
 .thesis-abstract-snippet {

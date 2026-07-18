@@ -112,7 +112,7 @@ layout: base.njk
   }
   .hub-hero-lead { color: rgba(255,255,255,0.75); }
   html:not([data-bs-theme="dark"]) .hub-hero-lead { color: rgba(15, 34, 56, 0.7); }
-  [data-bs-theme="dark"] .hub-hero { background: #0e1d30; }
+  html[data-bs-theme="dark"]:not([data-a11y-bg]) .hub-hero { background: #0e1d30; }
 
   /* ── Eyebrow ── */
   .hub-eyebrow {
