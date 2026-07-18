@@ -7,11 +7,39 @@ lang: fi
 translationKey: media_index
 ---
 
+{% set mediaItems = mediaArchive.all or [] %}
 {% set mediaAbout = mediaArchive.about or [] %}
 {% set mediaGuest = mediaArchive.guest or [] %}
 {% set mediaInterviewer = mediaArchive.interviewer or [] %}
-{% set mediaTotal = (mediaArchive.all or []) | length %}
-{% set mediaHighlights = (mediaArchive.all or []).slice(0, 4) %}
+{% set mediaTotal = mediaItems | length %}
+{% set mediaArticles = [] %}
+{% set mediaPodcasts = [] %}
+{% set mediaVideos = [] %}
+{% set mediaAudio = [] %}
+{% for item in mediaItems %}
+  {% if item.data.mediaType == "article" %}
+    {% set _ = (mediaArticles.push(item), null) %}
+  {% elif item.data.mediaType == "podcast" %}
+    {% set _ = (mediaPodcasts.push(item), null) %}
+  {% elif item.data.mediaType == "video" %}
+    {% set _ = (mediaVideos.push(item), null) %}
+  {% elif item.data.mediaType == "radio" %}
+    {% set _ = (mediaAudio.push(item), null) %}
+  {% endif %}
+{% endfor %}
+{% set mainHighlight = mediaItems[0] %}
+{% set podcastHighlight = mediaPodcasts[0] %}
+{% set videoHighlight = mediaVideos[0] %}
+{% set guestHighlight = mediaGuest[0] or mediaInterviewer[0] %}
+{% set sideHighlights = [] %}
+{% if podcastHighlight %}{% set _ = (sideHighlights.push(podcastHighlight), null) %}{% endif %}
+{% if videoHighlight and videoHighlight.url != podcastHighlight.url %}{% set _ = (sideHighlights.push(videoHighlight), null) %}{% endif %}
+{% if guestHighlight and guestHighlight.url != podcastHighlight.url and guestHighlight.url != videoHighlight.url %}{% set _ = (sideHighlights.push(guestHighlight), null) %}{% endif %}
+{% for item in mediaItems %}
+  {% if sideHighlights.length < 3 and item.url != mainHighlight.url and item.url != podcastHighlight.url and item.url != videoHighlight.url and item.url != guestHighlight.url %}
+    {% set _ = (sideHighlights.push(item), null) %}
+  {% endif %}
+{% endfor %}
 
 {% macro mediaTypeLabel(type) %}
   {% if type == "podcast" %}Podcast
@@ -23,14 +51,6 @@ translationKey: media_index
   {% endif %}
 {% endmacro %}
 
-{% macro roleHeading(role) %}
-  {% if role == "about" %}Mediassa minusta
-  {% elif role == "interviewer" %}Haastattelijana
-  {% elif role == "guest" %}Vieraana ja keskustelijana
-  {% else %}Mediassa
-  {% endif %}
-{% endmacro %}
-
 {% macro roleLabel(role) %}
   {% if role == "about" %}Minusta tehty
   {% elif role == "interviewer" %}Haastattelijana
@@ -39,297 +59,645 @@ translationKey: media_index
   {% endif %}
 {% endmacro %}
 
-{% macro renderMediaSection(items, role, lead) %}
-{% set isPaginated = role == "about" %}
-<section class="py-4 py-lg-5" id="media-{{ role }}">
-  <div class="site-shell">
-    <details class="media-mobile-disclosure" data-media-mobile-collapse{% if role == "about" %} data-media-mobile-default-open{% endif %} open>
-      <summary class="media-mobile-disclosure-summary">
-        <span>{{ roleHeading(role) }}</span>
-        <small>{{ items | length }} osumaa</small>
-      </summary>
-      <div class="media-mobile-disclosure-body">
-    <div class="card shadow-sm section-card border-0"{% if isPaginated %} data-media-pagination data-page-size="4"{% endif %}>
-      <div class="card-header bg-transparent py-3 border-0">
-        <div class="d-flex flex-wrap align-items-start justify-content-between gap-3">
-          <div>
-            <p class="text-uppercase text-muted fw-semibold small mb-1">{{ roleHeading(role) }}</p>
-            <h2 class="h4 fw-bold mb-2">{{ roleHeading(role) }}</h2>
-            <p class="text-muted mb-0">{{ lead }}</p>
-          </div>
-          <span class="badge rounded-pill border text-body-secondary media-count-badge">{{ items | length }}</span>
-        </div>
-      </div>
-      <div class="card-body pt-0">
-        {% if items.length %}
-          <div class="media-entry-list"{% if isPaginated %} data-media-page-list{% endif %}>
-            {% for item in items %}
-            <article class="media-entry{% if not loop.last %} border-bottom{% endif %}"{% if isPaginated %} data-media-page-item{% endif %}>
-              <div class="row g-4 align-items-start">
-                <div class="col-lg-8">
-                  <div class="d-flex flex-wrap gap-2 mb-2">
-                    <span class="badge rounded-pill border text-body-secondary">{{ mediaTypeLabel(item.data.mediaType) }}</span>
-                    {% if item.data.mediaOutlet %}
-                    <span class="badge rounded-pill border text-body-secondary">{{ item.data.mediaOutlet }}</span>
-                    {% endif %}
-                  </div>
-                  <h3 class="h5 fw-bold mb-2">
-                    {% if item.data.sourceUrl %}
-                    <a href="{{ item.data.sourceUrl }}" target="_blank" rel="noopener noreferrer" class="text-decoration-none">{{ item.data.title }}</a>
-                    {% else %}
-                    <a href="{{ item.url }}" class="text-decoration-none">{{ item.data.title }}</a>
-                    {% endif %}
-                  </h3>
-                  {% if item.data.description %}
-                  <p class="text-muted mb-3">{{ item.data.description }}</p>
-                  {% endif %}
-                  {% if item.data.categories %}
-                  <div class="d-flex flex-wrap gap-2">
-                    {% for category in item.data.categories %}
-                    <span class="media-topic-chip">{{ category }}</span>
-                    {% endfor %}
-                  </div>
-                  {% endif %}
-                </div>
-                <div class="col-lg-4">
-                  <div class="media-side-card">
-                    {% if item.data.thumbnail %}
-                    <img src="{{ item.data.thumbnail }}" alt="{{ item.data.title }}" class="img-fluid rounded-4 media-entry-thumb" loading="lazy" decoding="async">
-                    {% endif %}
-                    <div class="d-grid gap-2{% if item.data.thumbnail %} mt-3{% endif %}">
-                      {% if item.data.sourceUrl %}
-                      <a href="{{ item.data.sourceUrl }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill">Avaa lähde</a>
-                      {% endif %}
-                      <a href="{{ item.url }}" class="btn btn-outline-secondary rounded-pill">Arkistosivu</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </article>
-            {% endfor %}
-          </div>
-          {% if isPaginated and items.length > 4 %}
-          <div class="media-pagination d-flex flex-wrap align-items-center justify-content-between gap-3 pt-3">
-            <p class="media-pagination__info text-muted mb-0" data-media-page-info aria-live="polite"></p>
-            <ul class="pagination pagination-sm mb-0 flex-wrap" data-media-page-controls aria-label="Sivutus: {{ roleHeading(role) }}"></ul>
-          </div>
-          {% endif %}
-        {% else %}
-          <div class="media-empty-state">
-            <h3 class="h6 fw-bold mb-2">{{ roleHeading(role) }} täydentyy</h3>
-            <p class="text-muted mb-0">Tähän ryhmään voidaan koota jatkossa podcasteja, haastatteluja, lehtijuttuja, televisiouutisia ja muita mediaosumia.</p>
-          </div>
-        {% endif %}
-      </div>
-    </div>
-      </div>
-    </details>
-  </div>
-</section>
+{% macro itemUrl(item) %}
+  {{ item.data.sourceUrl or item.url }}
 {% endmacro %}
 
-<section class="py-5 bg-body-tertiary border-bottom">
+{% macro renderMediaThumb(item, modifier="") %}
+  {% if item.data.thumbnail %}
+    {% set isVideoPreview = item.data.mediaType == "video" or (item.data.sourceUrl and ("youtube.com" in item.data.sourceUrl or "youtu.be" in item.data.sourceUrl)) %}
+    <span class="media-thumb {{ modifier }}{% if isVideoPreview %} video-preview video-preview--sm{% endif %}">
+      <img src="{{ item.data.thumbnail }}" alt="{{ item.data.title }}" loading="lazy" decoding="async">
+    </span>
+  {% else %}
+    <span class="media-thumb media-thumb--empty {{ modifier }}">
+      <i class="bi bi-newspaper" aria-hidden="true"></i>
+    </span>
+  {% endif %}
+{% endmacro %}
+
+{% macro renderMeta(item) %}
+  <span>{{ mediaTypeLabel(item.data.mediaType) }}</span>
+  <span>{{ roleLabel(item.data.mediaRole) }}</span>
+  {% if item.data.mediaOutlet %}
+    <span>{{ item.data.mediaOutlet }}</span>
+  {% endif %}
+  {% if item.date %}
+    <span>{{ item.date | dateFormat }}</span>
+  {% endif %}
+{% endmacro %}
+
+<section class="media-hero py-5 border-bottom">
   <div class="site-shell">
-    <div class="row g-4 align-items-center">
-      <div class="col-lg-7">
-        <p class="text-uppercase text-muted fw-semibold small mb-2">Mediaesiintymiset</p>
-        <h1 class="display-6 fw-bold mb-3">Mediassa</h1>
-        <p class="lead mb-3">Tähän kokonaisuuteen kuuluvat podcastit, haastattelut, lehtijutut, televisiouutiset ja muut sisällöt, joissa olen mukana julkisessa roolissa.</p>
-        <p class="text-muted mb-0"><a href="/kynasta/">Kynästä</a> kokoaa oman kirjoittamisen. <a href="/esitykset/">Esitykset</a> kokoaa omat puheenvuorot, materiaalit ja tallenteet. Mediassa taas sisältöjä katsotaan roolin kautta: minusta tehtyinä, vieraana tai haastattelijana.</p>
+    <div class="media-hero-layout">
+      <div class="media-hero-copy">
+        <p class="media-eyebrow mb-2">Mediaesiintymiset</p>
+        <h1 class="media-hero-title mb-3">Mediassa</h1>
+        <p class="media-hero-lead mb-3">Tämä sivu kokoaa muiden tekemät mediaosumat: lehtijutut, podcastit, videot, radiohaastattelut ja muut julkiset sisällöt, joissa olen mukana.</p>
+        <p class="media-hero-text mb-4"><a href="/kynasta/">Kynästä</a> kokoaa omat kirjoitukseni ja lausuntoni. <a href="/esitykset/">Esitykset</a> kokoaa omat puheenvuorot, materiaalit ja tallenteet. Tämä näkymä kertoo, miten työni on näkynyt muiden tuottamissa medioissa.</p>
+        <div class="media-hero-actions">
+          <a href="#media-nostot" class="btn btn-primary rounded-pill px-4">Katso nostot</a>
+          <a href="#media-arkisto" class="btn btn-outline-secondary rounded-pill px-4">Selaa kaikkia mediaosumia</a>
+        </div>
       </div>
-      <div class="col-lg-5">
-        <aside class="card border-0 shadow-sm media-hero-card">
-          <div class="card-body p-4 p-xl-5">
-            <p class="text-uppercase text-muted fw-semibold small mb-3">Silmäys aineistoon</p>
-            <dl class="home-hero-kpi-grid mb-0">
-              <div class="home-hero-kpi">
-                <dd class="home-hero-kpi-value">{{ mediaTotal }}</dd>
-                <dt class="home-hero-kpi-label">mediaosumaa</dt>
-              </div>
-              <div class="home-hero-kpi">
-                <dd class="home-hero-kpi-value">{{ mediaAbout | length }}</dd>
-                <dt class="home-hero-kpi-label">minusta tehtyä</dt>
-              </div>
-              <div class="home-hero-kpi">
-                <dd class="home-hero-kpi-value">{{ mediaGuest | length }}</dd>
-                <dt class="home-hero-kpi-label">vieraana</dt>
-              </div>
-              <div class="home-hero-kpi">
-                <dd class="home-hero-kpi-value">{{ mediaInterviewer | length }}</dd>
-                <dt class="home-hero-kpi-label">haastattelijana</dt>
-              </div>
-            </dl>
+      <aside class="media-hero-panel">
+        <p class="media-panel-kicker">Silmäys aineistoon</p>
+        <dl class="home-hero-kpi-grid mb-0">
+          <div class="home-hero-kpi">
+            <dd class="home-hero-kpi-value">{{ mediaTotal }}</dd>
+            <dt class="home-hero-kpi-label">mediaosumaa</dt>
           </div>
-        </aside>
-      </div>
+          <div class="home-hero-kpi">
+            <dd class="home-hero-kpi-value">{{ mediaArticles | length }}</dd>
+            <dt class="home-hero-kpi-label">lehtijuttua</dt>
+          </div>
+          <div class="home-hero-kpi">
+            <dd class="home-hero-kpi-value">{{ mediaPodcasts | length }}</dd>
+            <dt class="home-hero-kpi-label">podcastia</dt>
+          </div>
+          <div class="home-hero-kpi">
+            <dd class="home-hero-kpi-value">{{ mediaVideos | length }}</dd>
+            <dt class="home-hero-kpi-label">videota</dt>
+          </div>
+        </dl>
+      </aside>
     </div>
   </div>
 </section>
 
 <nav class="media-mobile-path" aria-label="Mediassa-sivun tärkeimmät osiot">
-  <a href="#media-about">Minusta</a>
-  <a href="#media-guest">Vieraana</a>
-  <a href="#media-interviewer">Haastattelijana</a>
   <a href="#media-nostot">Nostot</a>
+  <a href="#media-arkisto">Kaikki</a>
+  <a href="#media-roolit">Roolit</a>
+  <a href="#media-lahteet">Lähteet</a>
 </nav>
 
-<section class="py-4 py-lg-5" id="media-nostot" data-media-mobile-priority="2">
+<section class="media-feature-section py-5" id="media-nostot" aria-labelledby="media-nostot-heading">
   <div class="site-shell">
-    <details class="media-mobile-disclosure" data-media-mobile-collapse open>
-      <summary class="media-mobile-disclosure-summary">
-        <span>Keskeiset mediaosumat</span>
-        <small>Nostot ja roolit yhdellä silmäyksellä</small>
-      </summary>
-      <div class="media-mobile-disclosure-body">
-    <div class="mb-4">
-      <p class="text-uppercase text-muted fw-semibold small mb-1">Nostot mediasta</p>
-      <h2 class="h3 fw-bold mb-2">Keskeiset mediaosumat yhdellä silmäyksellä</h2>
-      <p class="text-muted mb-0">Tähän on nostettu muutamia osumia, joista näkyy nopeasti millaisissa podcasteissa, haastatteluissa ja keskusteluissa olen ollut mukana.</p>
+    <div class="media-section-head">
+      <p class="media-eyebrow mb-1">Nostot</p>
+      <h2 id="media-nostot-heading" class="media-section-title">Tuoreita ja tunnistettavia mediaosumia</h2>
+      <p class="media-section-lead mb-0">Nostot antavat nopean kuvan siitä, millaisissa yhteyksissä media on käsitellyt työtäni, asiantuntijuuttani ja julkista rooliani.</p>
     </div>
-    <div class="row g-4 mb-5">
-      {% for item in mediaHighlights %}
-      <div class="col-md-6">
-        <article class="card border-0 shadow-sm h-100 media-highlight-card">
-          <div class="card-body p-4 d-flex flex-column">
-            <div class="d-flex flex-wrap gap-2 mb-2">
-              <span class="badge rounded-pill border text-body-secondary">{{ roleLabel(item.data.mediaRole) }}</span>
-              <span class="badge rounded-pill border text-body-secondary">{{ mediaTypeLabel(item.data.mediaType) }}</span>
-              {% if item.data.mediaOutlet %}
-              <span class="badge rounded-pill border text-body-secondary">{{ item.data.mediaOutlet }}</span>
-              {% endif %}
-            </div>
-            <h3 class="h5 fw-bold mb-2">
-              {% if item.data.sourceUrl %}
-              <a href="{{ item.data.sourceUrl }}" target="_blank" rel="noopener noreferrer" class="text-decoration-none">{{ item.data.title }}</a>
-              {% else %}
-              <a href="{{ item.url }}" class="text-decoration-none">{{ item.data.title }}</a>
-              {% endif %}
-            </h3>
+
+    <div class="media-feature-grid">
+      {% if mainHighlight %}
+      <article class="media-feature-primary">
+        <a href="{{ itemUrl(mainHighlight) | trim }}" class="media-feature-primary-thumb" target="_blank" rel="noopener noreferrer">
+          {{ renderMediaThumb(mainHighlight, "media-thumb--primary") }}
+        </a>
+        <div class="media-feature-primary-body">
+          <div class="media-meta-row">{{ renderMeta(mainHighlight) }}</div>
+          <h3><a href="{{ itemUrl(mainHighlight) | trim }}" target="_blank" rel="noopener noreferrer">{{ mainHighlight.data.title }}</a></h3>
+          {% if mainHighlight.data.description %}
+          <p>{{ mainHighlight.data.description }}</p>
+          {% endif %}
+          <div class="media-card-actions">
+            <a href="{{ itemUrl(mainHighlight) | trim }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">Avaa lähde</a>
+            <a href="{{ mainHighlight.url }}" class="btn btn-outline-secondary rounded-pill px-4">Lisätiedot</a>
+          </div>
+        </div>
+      </article>
+      {% endif %}
+
+      <div class="media-feature-side">
+        {% for item in sideHighlights %}
+        <article class="media-feature-small">
+          <a href="{{ itemUrl(item) | trim }}" target="_blank" rel="noopener noreferrer" class="media-feature-small-thumb">
+            {{ renderMediaThumb(item, "media-thumb--small") }}
+          </a>
+          <div class="media-feature-small-body">
+            <div class="media-meta-row media-meta-row--small">{{ renderMeta(item) }}</div>
+            <h3><a href="{{ itemUrl(item) | trim }}" target="_blank" rel="noopener noreferrer">{{ item.data.title }}</a></h3>
             {% if item.data.description %}
-            <p class="text-muted mb-3">{{ item.data.description }}</p>
+            <p>{{ item.data.description }}</p>
             {% endif %}
-            <div class="mt-auto d-flex flex-wrap gap-2">
-              {% if item.data.sourceUrl %}
-              <a href="{{ item.data.sourceUrl }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm rounded-pill">Avaa lähde</a>
-              {% endif %}
-              <a href="{{ item.url }}" class="btn btn-outline-secondary btn-sm rounded-pill">Arkistosivu</a>
-            </div>
           </div>
         </article>
-      </div>
-      {% endfor %}
-    </div>
-    <div class="row g-4">
-      <div class="col-lg-4">
-        <div class="card border-0 shadow-sm h-100 media-role-card">
-          <div class="card-body p-4">
-            <p class="text-uppercase text-muted fw-semibold small mb-2">1</p>
-            <h2 class="h5 fw-bold mb-2">Mediassa minusta</h2>
-            <p class="text-muted mb-0">Kun juttu, podcast tai video on tehty minusta tai asiantuntijuudestani, se kuuluu tähän ryhmään.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4">
-        <div class="card border-0 shadow-sm h-100 media-role-card">
-          <div class="card-body p-4">
-            <p class="text-uppercase text-muted fw-semibold small mb-2">2</p>
-            <h2 class="h5 fw-bold mb-2">Vieraana tai keskustelijana</h2>
-            <p class="text-muted mb-0">Tähän kootaan podcastit, paneelit ja muut keskustelut, joissa olen mukana kutsuttuna vieraana.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4">
-        <div class="card border-0 shadow-sm h-100 media-role-card">
-          <div class="card-body p-4">
-            <p class="text-uppercase text-muted fw-semibold small mb-2">3</p>
-            <h2 class="h5 fw-bold mb-2">Haastattelijana</h2>
-            <p class="text-muted mb-0">Jos roolini on kysyjä, juontaja tai haastattelija, sisältö kuuluu omaan ryhmäänsä. Oma tuotanto voi näkyä samalla myös esitysten ja tallenteiden puolella.</p>
-          </div>
-        </div>
+        {% endfor %}
       </div>
     </div>
-      </div>
-    </details>
   </div>
 </section>
 
-{{ renderMediaSection(mediaAbout, "about", "Podcastit, haastattelut ja muut mediaosumat, joissa puheenaiheena olen minä, oma asiantuntijuuteni tai julkinen roolini.") }}
-{{ renderMediaSection(mediaGuest, "guest", "Keskustelut, joissa olen mukana vieraana, kommentoijana tai asiantuntijana muiden tuottamissa formaateissa.") }}
-{{ renderMediaSection(mediaInterviewer, "interviewer", "Sisällöt, joissa olen itse haastattelija, keskustelun vetäjä tai juontava osapuoli.") }}
+<section class="media-browser-section py-5 bg-body-tertiary border-top border-bottom" id="media-arkisto" aria-labelledby="media-arkisto-heading">
+  <div class="site-shell">
+    <div class="media-section-head">
+      <p class="media-eyebrow mb-1">Selaa mediaosumia</p>
+      <h2 id="media-arkisto-heading" class="media-section-title">Kaikki mediaosumat samassa näkymässä</h2>
+      <p class="media-section-lead mb-0">Suodata sisältöä muodon, roolin tai aiheen mukaan. Jokaisesta osumasta voit avata alkuperäisen lähteen tai paikallisen lisätietosivun.</p>
+    </div>
+
+    <div class="media-browser" data-media-browser data-page-size="9">
+      <div class="media-filter-group" aria-label="Suodata mediaosumia sisällön muodon mukaan">
+        <button class="media-filter is-active" type="button" data-media-filter="all">Kaikki</button>
+        <button class="media-filter" type="button" data-media-filter="type:article">Lehtijutut</button>
+        <button class="media-filter" type="button" data-media-filter="type:podcast">Podcastit</button>
+        <button class="media-filter" type="button" data-media-filter="type:video">Videot</button>
+        <button class="media-filter" type="button" data-media-filter="type:radio">Radio</button>
+      </div>
+      <div class="media-filter-group media-filter-group--secondary" aria-label="Suodata mediaosumia roolin ja aiheen mukaan">
+        <button class="media-filter" type="button" data-media-filter="role:about">Minusta tehty</button>
+        <button class="media-filter" type="button" data-media-filter="role:guest">Vieraana</button>
+        <button class="media-filter" type="button" data-media-filter="role:interviewer">Haastattelijana</button>
+        <button class="media-filter" type="button" data-media-filter="topic:politiikka">Politiikka</button>
+        <button class="media-filter" type="button" data-media-filter="topic:tekoaly">Tekoäly ja koulutus</button>
+        <button class="media-filter" type="button" data-media-filter="topic:avoin">Avoin tiede</button>
+        <button class="media-filter" type="button" data-media-filter="topic:paikallinen">Paikallinen vaikuttaminen</button>
+      </div>
+
+      <p class="media-browser-status text-muted mb-3" data-media-browser-status aria-live="polite"></p>
+
+      <div class="media-card-grid" data-media-card-grid>
+        {% for item in mediaItems %}
+          {% set topicText = ((item.data.categories or []) | join(" ")) ~ " " ~ ((item.data.keywords or []) | join(" ")) ~ " " ~ item.data.title ~ " " ~ (item.data.description or "") %}
+          <article
+            class="media-archive-card"
+            data-media-card
+            data-media-type="{{ item.data.mediaType or '' }}"
+            data-media-role="{{ item.data.mediaRole or '' }}"
+            data-media-topics="{{ topicText | lower | escape }}"
+          >
+            <a href="{{ itemUrl(item) | trim }}" target="_blank" rel="noopener noreferrer" class="media-archive-thumb-link">
+              {{ renderMediaThumb(item) }}
+            </a>
+            <div class="media-archive-card-body">
+              <div class="media-meta-row media-meta-row--small">{{ renderMeta(item) }}</div>
+              <h3><a href="{{ itemUrl(item) | trim }}" target="_blank" rel="noopener noreferrer">{{ item.data.title }}</a></h3>
+              {% if item.data.description %}
+              <p>{{ item.data.description }}</p>
+              {% endif %}
+              {% if item.data.categories %}
+              <div class="media-topic-row">
+                {% for category in item.data.categories.slice(0, 4) %}
+                <span>{{ category }}</span>
+                {% endfor %}
+              </div>
+              {% endif %}
+              <div class="media-card-actions">
+                <a href="{{ itemUrl(item) | trim }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-3">Avaa lähde</a>
+                <a href="{{ item.url }}" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Lisätiedot</a>
+              </div>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+
+      <div class="media-pagination d-flex flex-wrap align-items-center justify-content-between gap-3 pt-4">
+        <p class="media-pagination__info text-muted mb-0" data-media-page-info aria-live="polite"></p>
+        <ul class="pagination pagination-sm mb-0 flex-wrap" data-media-page-controls aria-label="Mediaosumien sivutus"></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="media-role-section py-5" id="media-roolit" aria-labelledby="media-roolit-heading">
+  <div class="site-shell">
+    <div class="media-section-head">
+      <p class="media-eyebrow mb-1">Roolit</p>
+      <h2 id="media-roolit-heading" class="media-section-title">Kolme tapaa olla mukana mediassa</h2>
+      <p class="media-section-lead mb-0">Rooli auttaa tulkitsemaan osumaa: onko media tehnyt jutun minusta, olenko mukana keskustelijana vai olenko itse haastattelijana.</p>
+    </div>
+    <div class="media-role-grid">
+      <article class="media-role-card">
+        <span class="media-role-number">{{ mediaAbout | length }}</span>
+        <h3>Mediassa minusta</h3>
+        <p>Jutut, podcastit ja videot, joissa aiheena on oma työni, asiantuntijuuteni tai julkinen roolini.</p>
+        <button class="media-role-link" type="button" data-media-jump-filter="role:about">Rajaa nämä näkyviin</button>
+      </article>
+      <article class="media-role-card">
+        <span class="media-role-number">{{ mediaGuest | length }}</span>
+        <h3>Vieraana ja keskustelijana</h3>
+        <p>Keskustelut ja podcastit, joissa olen mukana kutsuttuna vieraana tai asiantuntijana.</p>
+        <button class="media-role-link" type="button" data-media-jump-filter="role:guest">Rajaa nämä näkyviin</button>
+      </article>
+      <article class="media-role-card">
+        <span class="media-role-number">{{ mediaInterviewer | length }}</span>
+        <h3>Haastattelijana</h3>
+        <p>Sisällöt, joissa roolini on kysyjä, keskustelun vetäjä tai juontava osapuoli.</p>
+        <button class="media-role-link" type="button" data-media-jump-filter="role:interviewer">Rajaa nämä näkyviin</button>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="media-source-section py-5 bg-body-tertiary border-top" id="media-lahteet" aria-labelledby="media-lahteet-heading">
+  <div class="site-shell">
+    <div class="media-source-band">
+      <div>
+        <p class="media-eyebrow mb-1">Lähteet ja muodot</p>
+        <h2 id="media-lahteet-heading" class="media-section-title mb-2">Mediaosumat painottuvat lehtijuttuihin, mutta mukana on myös videoita ja podcasteja</h2>
+        <p class="media-section-lead mb-0">Suurin yksittäinen lähde on Kaleva. Muut osumat täydentävät kuvaa erityisesti opetuksen, tekoälylukutaidon, avoimen tieteen ja paikallisen päätöksenteon näkökulmista.</p>
+      </div>
+      <div class="media-source-stats">
+        <span><strong>{{ mediaArticles | length }}</strong> lehtijuttua</span>
+        <span><strong>{{ mediaVideos | length }}</strong> videota</span>
+        <span><strong>{{ mediaPodcasts | length }}</strong> podcastia</span>
+        <span><strong>{{ mediaAudio | length }}</strong> radio-osuma</span>
+      </div>
+    </div>
+  </div>
+</section>
 
 <style>
-  .media-mobile-path,
-  .media-mobile-disclosure-summary {
+  .media-mobile-path {
     display: none;
   }
 
-  .media-hero-card {
-    border-radius: 1.5rem;
+  .media-hero {
+    background:
+      radial-gradient(circle at 8% 0%, rgba(13, 110, 253, 0.08), transparent 34%),
+      linear-gradient(180deg, rgba(var(--bs-tertiary-bg-rgb), 0.82), rgba(var(--bs-body-bg-rgb), 0.98));
   }
 
+  .media-hero-layout,
+  .media-feature-grid,
+  .media-role-grid,
+  .media-source-band {
+    display: grid;
+    gap: clamp(1rem, 3vw, 1.5rem);
+  }
+
+  .media-hero-layout {
+    grid-template-columns: minmax(0, 1.35fr) minmax(19rem, 0.65fr);
+    align-items: center;
+  }
+
+  .media-eyebrow,
+  .media-panel-kicker {
+    color: var(--bs-secondary-color);
+    font-size: 0.78rem;
+    font-weight: 850;
+    letter-spacing: 0.08em;
+    line-height: 1.1;
+    text-transform: uppercase;
+  }
+
+  .media-hero-title,
+  .media-section-title {
+    font-family: 'Bree Serif', serif;
+    letter-spacing: -0.025em;
+  }
+
+  .media-hero-title {
+    font-size: clamp(3rem, 7vw, 5.8rem);
+    line-height: 0.9;
+  }
+
+  .media-section-title {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1;
+  }
+
+  .media-hero-lead {
+    max-width: 58rem;
+    font-size: clamp(1.12rem, 1.8vw, 1.45rem);
+    line-height: 1.55;
+  }
+
+  .media-hero-text,
+  .media-section-lead {
+    max-width: 62rem;
+    color: var(--bs-secondary-color);
+    line-height: 1.65;
+  }
+
+  .media-hero-actions,
+  .media-card-actions,
+  .media-filter-group,
+  .media-topic-row,
+  .media-source-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+
+  .media-hero-panel,
+  .media-feature-primary,
+  .media-feature-small,
+  .media-archive-card,
   .media-role-card,
-  .media-highlight-card,
-  .media-side-card {
-    border-radius: 1.25rem;
+  .media-source-band {
+    border: 1px solid var(--bs-border-color);
+    border-radius: 1.55rem;
+    background: var(--bs-body-bg);
+    box-shadow: 0 1rem 2.4rem rgba(19, 43, 70, 0.08);
   }
 
-  .media-entry {
-    padding-block: 1.5rem;
+  .media-hero-panel {
+    padding: clamp(1.25rem, 3vw, 2rem);
   }
 
-  .media-entry:first-child {
-    padding-top: 1rem;
+  .media-section-head {
+    margin-bottom: clamp(1.2rem, 3vw, 2rem);
   }
 
-  .media-entry:last-child {
-    padding-bottom: 0.5rem;
+  .media-feature-section {
+    background:
+      radial-gradient(circle at 100% 0%, rgba(13, 110, 253, 0.06), transparent 30%),
+      var(--bs-body-bg);
   }
 
-  .media-entry-thumb {
+  .media-feature-grid {
+    grid-template-columns: minmax(0, 1.25fr) minmax(21rem, 0.75fr);
+    align-items: stretch;
+  }
+
+  .media-feature-primary {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    overflow: hidden;
+  }
+
+  .media-feature-primary-body,
+  .media-feature-small-body,
+  .media-archive-card-body,
+  .media-role-card,
+  .media-source-band {
+    padding: clamp(1.1rem, 2.4vw, 1.7rem);
+  }
+
+  .media-feature-primary h3,
+  .media-feature-small h3,
+  .media-archive-card h3,
+  .media-role-card h3 {
+    margin: 0;
+    font-family: 'Bree Serif', serif;
+    line-height: 1.08;
+  }
+
+  .media-feature-primary h3 {
+    font-size: clamp(2rem, 3.6vw, 3.2rem);
+  }
+
+  .media-feature-small h3,
+  .media-archive-card h3 {
+    font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+  }
+
+  .media-feature-primary h3 a,
+  .media-feature-small h3 a,
+  .media-archive-card h3 a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .media-feature-primary h3 a:hover,
+  .media-feature-small h3 a:hover,
+  .media-archive-card h3 a:hover {
+    text-decoration: underline;
+  }
+
+  .media-feature-primary p,
+  .media-feature-small p,
+  .media-archive-card p,
+  .media-role-card p {
+    margin: 0;
+    color: var(--bs-secondary-color);
+    line-height: 1.58;
+  }
+
+  .media-feature-primary-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .media-feature-side {
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  .media-feature-small {
+    display: grid;
+    grid-template-columns: 8.5rem minmax(0, 1fr);
+    overflow: hidden;
+  }
+
+  .media-feature-small-body {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .media-thumb {
+    position: relative;
+    display: block;
+    overflow: hidden;
     width: 100%;
     aspect-ratio: 16 / 9;
+    border-radius: 1.15rem;
+    background:
+      linear-gradient(135deg, rgba(13, 110, 253, 0.08), rgba(13, 110, 253, 0.16)),
+      var(--bs-tertiary-bg);
+  }
+
+  .media-feature-primary .media-thumb,
+  .media-feature-primary-thumb {
+    border-radius: 1.55rem 1.55rem 0 0;
+  }
+
+  .media-feature-small .media-thumb,
+  .media-feature-small-thumb {
+    height: 100%;
+    border-radius: 1.55rem 0 0 1.55rem;
+  }
+
+  .media-thumb img {
+    display: block;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
   }
 
-  .media-topic-chip {
-    display: inline-flex;
+  .media-thumb--empty {
+    display: flex;
     align-items: center;
-    padding: 0.35rem 0.8rem;
-    border-radius: 999px;
-    border: 1px solid rgba(120, 130, 150, 0.25);
-    background: rgba(120, 130, 150, 0.09);
-    color: var(--bs-secondary-color);
-    font-size: 0.82rem;
-    line-height: 1.2;
-  }
-
-  .media-empty-state {
-    padding: 1.5rem 0.25rem 0.5rem;
-  }
-
-  .media-count-badge {
-    min-width: 2.5rem;
     justify-content: center;
-    padding-inline: 0.85rem;
-    padding-block: 0.45rem;
+    color: var(--bs-secondary-color);
+    font-size: 2rem;
+  }
+
+  .media-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.38rem;
+  }
+
+  .media-meta-row span,
+  .media-topic-row span,
+  .media-filter,
+  .media-source-stats span {
+    display: inline-flex;
+    width: fit-content;
+    align-items: center;
+    border: 1px solid var(--bs-border-color);
+    border-radius: 999px;
+    background: rgba(var(--bs-tertiary-bg-rgb), 0.76);
+    color: var(--bs-secondary-color);
+    font-weight: 800;
+    line-height: 1.1;
+  }
+
+  .media-meta-row span {
+    padding: 0.32rem 0.62rem;
+    font-size: 0.74rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .media-meta-row--small span {
+    font-size: 0.68rem;
+  }
+
+  .media-browser {
+    border: 1px solid var(--bs-border-color);
+    border-radius: 1.6rem;
+    background: var(--bs-body-bg);
+    padding: clamp(1rem, 2.5vw, 1.5rem);
+    box-shadow: 0 1rem 2.4rem rgba(19, 43, 70, 0.07);
+  }
+
+  .media-filter-group {
+    margin-bottom: 0.75rem;
+  }
+
+  .media-filter-group--secondary {
+    margin-bottom: 1.1rem;
+  }
+
+  .media-filter {
+    padding: 0.54rem 0.85rem;
+    cursor: pointer;
+  }
+
+  .media-filter.is-active {
+    color: var(--bs-body-bg);
+    background: var(--bs-body-color);
+    border-color: var(--bs-body-color);
+  }
+
+  .media-card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .media-archive-card {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    overflow: hidden;
+  }
+
+  .media-archive-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .media-archive-card .media-card-actions {
+    margin-top: auto;
+    padding-top: 0.35rem;
+  }
+
+  .media-topic-row span {
+    padding: 0.32rem 0.6rem;
+    font-size: 0.75rem;
   }
 
   .media-pagination {
     border-top: 1px solid rgba(120, 130, 150, 0.18);
   }
 
-  .media-pagination__info {
+  .media-role-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .media-role-card {
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .media-role-number {
+    color: var(--bs-secondary-color);
+    font-family: 'Bree Serif', serif;
+    font-size: clamp(2.3rem, 4vw, 3.7rem);
+    line-height: 0.9;
+  }
+
+  .media-role-link {
+    align-self: flex-start;
+    margin-top: auto;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--bs-link-color);
+    font-weight: 800;
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
+
+  .media-source-band {
+    grid-template-columns: minmax(0, 1.35fr) minmax(18rem, 0.65fr);
+    align-items: center;
+  }
+
+  .media-source-stats span {
+    padding: 0.55rem 0.8rem;
     font-size: 0.9rem;
   }
 
-  [data-bs-theme="dark"] .media-topic-chip {
-    border-color: rgba(255, 255, 255, 0.14);
-    background: rgba(255, 255, 255, 0.06);
-    color: rgba(255, 255, 255, 0.78);
+  .media-source-stats strong {
+    margin-right: 0.25rem;
+    color: var(--bs-body-color);
   }
 
-  [data-bs-theme="dark"] .media-pagination {
-    border-top-color: rgba(255, 255, 255, 0.12);
+  [data-bs-theme="dark"] .media-hero {
+    background:
+      radial-gradient(circle at 8% 0%, rgba(102, 163, 255, 0.14), transparent 34%),
+      linear-gradient(180deg, rgba(17, 27, 42, 0.98), rgba(8, 9, 17, 0.98));
+  }
+
+  [data-bs-theme="dark"] .media-feature-primary,
+  [data-bs-theme="dark"] .media-feature-small,
+  [data-bs-theme="dark"] .media-archive-card,
+  [data-bs-theme="dark"] .media-browser,
+  [data-bs-theme="dark"] .media-role-card,
+  [data-bs-theme="dark"] .media-source-band,
+  [data-bs-theme="dark"] .media-hero-panel {
+    background: rgba(24, 36, 54, 0.94);
+    box-shadow: 0 1rem 2.6rem rgba(0, 0, 0, 0.24);
+  }
+
+  [data-bs-theme="dark"] .media-meta-row span,
+  [data-bs-theme="dark"] .media-topic-row span,
+  [data-bs-theme="dark"] .media-filter,
+  [data-bs-theme="dark"] .media-source-stats span {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.14);
+    color: rgba(255, 255, 255, 0.76);
+  }
+
+  [data-bs-theme="dark"] .media-filter.is-active {
+    color: #111827;
+    background: #f8fbff;
+    border-color: #f8fbff;
+  }
+
+  @media (max-width: 991.98px) {
+    .media-hero-layout,
+    .media-feature-grid,
+    .media-source-band {
+      grid-template-columns: 1fr;
+    }
+
+    .media-card-grid,
+    .media-role-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
   }
 
   @media (max-width: 767.98px) {
@@ -363,6 +731,33 @@ translationKey: media_index
       text-decoration: none;
     }
 
+    .media-card-grid,
+    .media-role-grid,
+    .media-feature-small {
+      grid-template-columns: 1fr;
+    }
+
+    .media-feature-small .media-thumb,
+    .media-feature-small-thumb {
+      border-radius: 1.55rem 1.55rem 0 0;
+    }
+
+    .media-filter-group {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding-bottom: 0.25rem;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .media-filter-group::-webkit-scrollbar {
+      display: none;
+    }
+
+    .media-filter {
+      flex: 0 0 auto;
+      white-space: nowrap;
+    }
+
     [data-bs-theme="dark"] .media-mobile-path {
       background: rgba(13, 18, 28, 0.88);
       border-bottom-color: rgba(255, 255, 255, 0.1);
@@ -373,160 +768,139 @@ translationKey: media_index
       border-color: rgba(255, 255, 255, 0.14);
       color: #f8fbff;
     }
-
-    [data-media-mobile-priority="2"] {
-      padding-block: 1rem;
-    }
-
-    .media-mobile-disclosure {
-      display: block;
-    }
-
-    .media-mobile-disclosure-summary {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 0.35rem 0.8rem;
-      align-items: center;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      border-radius: 1.05rem;
-      border: 1px solid rgba(16, 40, 69, 0.1);
-      background: rgba(255, 255, 255, 0.94);
-      box-shadow: 0 0.75rem 1.7rem rgba(15, 34, 56, 0.08);
-      color: #102845;
-      cursor: pointer;
-      list-style: none;
-    }
-
-    .media-mobile-disclosure-summary::-webkit-details-marker {
-      display: none;
-    }
-
-    .media-mobile-disclosure-summary::after {
-      content: "+";
-      grid-row: 1 / span 2;
-      grid-column: 2;
-      width: 2rem;
-      height: 2rem;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      background: rgba(19, 78, 145, 0.1);
-      color: #134e91;
-      font-weight: 900;
-    }
-
-    .media-mobile-disclosure[open] .media-mobile-disclosure-summary::after {
-      content: "−";
-    }
-
-    .media-mobile-disclosure-summary span {
-      font-weight: 900;
-      line-height: 1.2;
-    }
-
-    .media-mobile-disclosure-summary small {
-      color: rgba(16, 40, 69, 0.62);
-      font-weight: 650;
-    }
-
-    [data-bs-theme="dark"] .media-mobile-disclosure-summary {
-      background: rgba(255, 255, 255, 0.07);
-      border-color: rgba(255, 255, 255, 0.14);
-      color: #f8fbff;
-    }
-
-    [data-bs-theme="dark"] .media-mobile-disclosure-summary small {
-      color: rgba(255, 255, 255, 0.68);
-    }
-
-    .media-entry {
-      padding-block: 1.25rem;
-    }
-
-    .media-entry-thumb {
-      border-radius: 1rem;
-    }
   }
 </style>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const mobileQuery = window.matchMedia('(max-width: 767.98px)');
-    const disclosures = Array.from(document.querySelectorAll('[data-media-mobile-collapse]'));
+    const browser = document.querySelector('[data-media-browser]');
+    if (!browser) return;
 
-    const applyMediaMobileState = () => {
-      disclosures.forEach((disclosure) => {
-        if (!mobileQuery.matches) {
-          disclosure.open = true;
-          disclosure.dataset.mobilePrepared = 'false';
-          return;
-        }
-        if (disclosure.dataset.mobilePrepared === 'true') return;
-        disclosure.open = disclosure.hasAttribute('data-media-mobile-default-open');
-        disclosure.dataset.mobilePrepared = 'true';
+    const items = Array.from(browser.querySelectorAll('[data-media-card]'));
+    const controls = Array.from(browser.querySelectorAll('[data-media-filter]'));
+    const jumpControls = Array.from(document.querySelectorAll('[data-media-jump-filter]'));
+    const pagination = browser.querySelector('[data-media-page-controls]');
+    const pageInfo = browser.querySelector('[data-media-page-info]');
+    const status = browser.querySelector('[data-media-browser-status]');
+    const pageSize = Number(browser.dataset.pageSize) || 9;
+    let activeFilter = 'all';
+    let currentPage = 1;
+
+    const topicAliases = {
+      politiikka: ['politiikka', 'kuntapolitiikka', 'valtuusto', 'vaalit', 'päätöksenteko', 'paatoksenteko', 'kampusratkaisu', 'palveluverkko'],
+      tekoaly: ['tekoäly', 'tekoaly', 'tekoälylukutaito', 'tekoalylukutaito', 'chatgpt', 'generation ai', 'koulutusteknologia', 'digipedagogiikka', 'opetus'],
+      avoin: ['avoin tiede', 'avoimuus', 'avoin oppiminen', 'avoimet oppimateriaalit'],
+      paikallinen: ['oulu', 'jääli', 'jaali', 'kiiminki', 'rantapohja', 'munoulu', 'kaupunginosa', 'paikallisuus', 'asukas']
+    };
+
+    const matchesFilter = (item) => {
+      if (activeFilter === 'all') return true;
+      const [kind, value] = activeFilter.split(':');
+      if (kind === 'type') return item.dataset.mediaType === value;
+      if (kind === 'role') return item.dataset.mediaRole === value;
+      if (kind === 'topic') {
+        const haystack = item.dataset.mediaTopics || '';
+        return (topicAliases[value] || [value]).some((needle) => haystack.includes(needle));
+      }
+      return true;
+    };
+
+    const filteredItems = () => items.filter(matchesFilter);
+
+    const updateControls = () => {
+      controls.forEach((control) => {
+        const isActive = control.dataset.mediaFilter === activeFilter;
+        control.classList.toggle('is-active', isActive);
+        control.setAttribute('aria-pressed', isActive ? 'true' : 'false');
       });
     };
 
-    applyMediaMobileState();
-    mobileQuery.addEventListener('change', applyMediaMobileState);
+    const renderPagination = (pageCount) => {
+      if (!pagination) return;
+      pagination.innerHTML = '';
+      if (pageCount <= 1) return;
 
-    const paginatedSections = document.querySelectorAll('[data-media-pagination]');
-    if (!paginatedSections.length) return;
+      for (let page = 1; page <= pageCount; page += 1) {
+        const li = document.createElement('li');
+        li.className = `page-item${page === currentPage ? ' active' : ''}`;
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'page-link';
+        button.dataset.mediaPage = String(page);
+        button.setAttribute('aria-label', `Sivu ${page}`);
+        button.textContent = String(page);
+        li.appendChild(button);
+        pagination.appendChild(li);
+      }
+    };
 
-    paginatedSections.forEach((section) => {
-      const items = Array.from(section.querySelectorAll('[data-media-page-item]'));
-      const controls = section.querySelector('[data-media-page-controls]');
-      const info = section.querySelector('[data-media-page-info]');
-      const pageSize = Number(section.getAttribute('data-page-size')) || 4;
-      const pageCount = Math.ceil(items.length / pageSize);
-      let currentPage = 1;
+    const render = () => {
+      const visibleItems = filteredItems();
+      const pageCount = Math.max(1, Math.ceil(visibleItems.length / pageSize));
+      currentPage = Math.min(currentPage, pageCount);
+      const start = (currentPage - 1) * pageSize;
+      const end = start + pageSize;
+      const pageItems = new Set(visibleItems.slice(start, end));
 
-      if (!items.length || !controls || pageCount <= 1) return;
-
-      const pageLabel = (page) => {
-        const start = (page - 1) * pageSize + 1;
-        const end = Math.min(page * pageSize, items.length);
-        return `Näytetään ${start}-${end} / ${items.length}`;
-      };
-
-      const renderControls = () => {
-        controls.innerHTML = '';
-        for (let page = 1; page <= pageCount; page += 1) {
-          const li = document.createElement('li');
-          li.className = `page-item${page === currentPage ? ' active' : ''}`;
-          const button = document.createElement('button');
-          button.type = 'button';
-          button.className = 'page-link';
-          button.dataset.mediaPage = String(page);
-          button.setAttribute('aria-label', `Sivu ${page}`);
-          button.textContent = String(page);
-          li.appendChild(button);
-          controls.appendChild(li);
-        }
-      };
-
-      const renderPage = () => {
-        const startIndex = (currentPage - 1) * pageSize;
-        const endIndex = startIndex + pageSize;
-        items.forEach((item, index) => {
-          item.hidden = index < startIndex || index >= endIndex;
-        });
-        if (info) info.textContent = pageLabel(currentPage);
-        renderControls();
-      };
-
-      controls.addEventListener('click', (event) => {
-        const button = event.target.closest('[data-media-page]');
-        if (!button) return;
-        const nextPage = Number(button.dataset.mediaPage);
-        if (!Number.isFinite(nextPage) || nextPage === currentPage) return;
-        currentPage = nextPage;
-        renderPage();
+      items.forEach((item) => {
+        item.hidden = !pageItems.has(item);
       });
 
-      renderPage();
+      const shownStart = visibleItems.length ? start + 1 : 0;
+      const shownEnd = Math.min(end, visibleItems.length);
+      if (status) {
+        status.textContent = visibleItems.length === 1
+          ? 'Löytyi 1 mediaosuma.'
+          : `Löytyi ${visibleItems.length} mediaosumaa.`;
+      }
+      if (pageInfo) {
+        pageInfo.textContent = visibleItems.length
+          ? `Näytetään ${shownStart}-${shownEnd} / ${visibleItems.length}`
+          : 'Tällä suodattimella ei löytynyt mediaosumia.';
+      }
+
+      updateControls();
+      renderPagination(pageCount);
+    };
+
+    const setFilter = (filter, shouldScroll = false) => {
+      activeFilter = filter || 'all';
+      currentPage = 1;
+      render();
+      if (shouldScroll) {
+        document.getElementById('media-arkisto')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    };
+
+    const filterFromUrl = () => {
+      const params = new URLSearchParams(window.location.search);
+      const type = params.get('type');
+      const role = params.get('role');
+      const topic = params.get('topic');
+      if (type) return `type:${type}`;
+      if (role) return `role:${role}`;
+      if (topic) return `topic:${topic}`;
+      return 'all';
+    };
+
+    controls.forEach((control) => {
+      control.setAttribute('aria-pressed', control.classList.contains('is-active') ? 'true' : 'false');
+      control.addEventListener('click', () => setFilter(control.dataset.mediaFilter));
     });
+
+    jumpControls.forEach((control) => {
+      control.addEventListener('click', () => setFilter(control.dataset.mediaJumpFilter, true));
+    });
+
+    pagination?.addEventListener('click', (event) => {
+      const button = event.target.closest('[data-media-page]');
+      if (!button) return;
+      const nextPage = Number(button.dataset.mediaPage);
+      if (!Number.isFinite(nextPage) || nextPage === currentPage) return;
+      currentPage = nextPage;
+      render();
+    });
+
+    setFilter(filterFromUrl(), window.location.search.length > 0);
   });
 </script>
