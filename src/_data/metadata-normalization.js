@@ -59,6 +59,37 @@ const KEYWORD_CANONICAL_BY_SLUG = {
   "tsv": "TSV"
 };
 
+const CATEGORY_CANONICAL_BY_SLUG = {
+  "aluevaaalit2022": "Vaalit",
+  "av-tekniikka": "Teknologia ja digitaalisuus",
+  "digiluokka": "Teknologia ja digitaalisuus",
+  "henkilokuva": "Matkat ja henkilökohtaiset",
+  "hyvinvointi-ja-osallisuus": "Hyvinvointi ja osallisuus",
+  "kamerat": "Teknologia ja digitaalisuus",
+  "kaupunkikehitys-ja-palveluverkko": "Kaupunkikehitys ja palveluverkko",
+  "kayttojarjestelmat": "Teknologia ja digitaalisuus",
+  "koulutusteknologi": "Koulutusteknologia",
+  "koulutusteknologia": "Koulutusteknologia",
+  "kuntavaalit": "Vaalit",
+  "liikunta": "Hyvinvointi ja osallisuus",
+  "matkailu": "Matkat ja henkilökohtaiset",
+  "matkat-ja-henkilokohtaiset": "Matkat ja henkilökohtaiset",
+  "palveluverkko": "Kaupunkikehitys ja palveluverkko",
+  "pilvipalvelut-ja-ekosysteemit": "Teknologia ja digitaalisuus",
+  "poliitiikka": "Politiikka ja päätöksenteko",
+  "politiikka-ja-paatoksenteko": "Politiikka ja päätöksenteko",
+  "seurakuntavaalit": "Vaalit",
+  "teknologia-ja-digitaalisuus": "Teknologia ja digitaalisuus",
+  "teknologiatuettu-oppiminen-ja-opetus": "Koulutusteknologia",
+  "tietotekniikka": "Teknologia ja digitaalisuus",
+  "tutkimus": "Yliopisto ja korkeakoulut",
+  "vaitoskirja": "Yliopisto ja korkeakoulut",
+  "vaalit": "Vaalit",
+  "www-sivustot": "Teknologia ja digitaalisuus",
+  "yliopisto-ja-korkeakoulut": "Yliopisto ja korkeakoulut",
+  "yliopistokampus": "Yliopisto ja korkeakoulut"
+};
+
 function normalizeKeyword(value) {
   const raw = String(value || "").trim();
   if (!raw) {
@@ -69,13 +100,23 @@ function normalizeKeyword(value) {
   return KEYWORD_CANONICAL_BY_SLUG[slug] || raw;
 }
 
-function normalizeKeywordList(values) {
+function normalizeCategory(value) {
+  const raw = String(value || "").trim();
+  if (!raw) {
+    return "";
+  }
+
+  const slug = slugifyTerm(raw);
+  return CATEGORY_CANONICAL_BY_SLUG[slug] || raw;
+}
+
+function normalizeTermList(values, normalizeTerm) {
   const list = Array.isArray(values) ? values : [];
   const seen = new Set();
   const normalized = [];
 
   list.forEach((value) => {
-    const canonical = normalizeKeyword(value);
+    const canonical = normalizeTerm(value);
     const slug = slugifyTerm(canonical);
     if (!slug || seen.has(slug)) {
       return;
@@ -87,8 +128,18 @@ function normalizeKeywordList(values) {
   return normalized;
 }
 
+function normalizeKeywordList(values) {
+  return normalizeTermList(values, normalizeKeyword);
+}
+
+function normalizeCategoryList(values) {
+  return normalizeTermList(values, normalizeCategory);
+}
+
 module.exports = {
   slugifyTerm,
   normalizeKeyword,
-  normalizeKeywordList
+  normalizeKeywordList,
+  normalizeCategory,
+  normalizeCategoryList
 };

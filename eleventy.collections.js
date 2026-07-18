@@ -1,4 +1,7 @@
-const { normalizeKeywordList } = require("./src/_data/metadata-normalization");
+const {
+  normalizeCategoryList,
+  normalizeKeywordList
+} = require("./src/_data/metadata-normalization");
 
 module.exports = function registerCollections(eleventyConfig) {
   const ACADEMIC_TERMS = [
@@ -11,11 +14,96 @@ module.exports = function registerCollections(eleventyConfig) {
     "larun laitenurkka", "oulun yliopisto", "tekoäly"
   ];
 
+  function getItemDate(item) {
+    const date = item?.date || item?.data?.date || 0;
+    const timestamp = new Date(date).getTime();
+    return Number.isFinite(timestamp) ? timestamp : 0;
+  }
+
+  function getTaxonomyType(item) {
+    const data = item?.data || {};
+    const inputPath = item?.inputPath || "";
+    const type = data.type || "";
+
+    if (inputPath.includes("/media/")) {
+      return { key: "media", label: "Mediassa" };
+    }
+
+    if (inputPath.includes("/presentations/")) {
+      return { key: "presentations", label: "Esitykset ja videot" };
+    }
+
+    if (type === "lausunto") return { key: "statements", label: "Lausunnot" };
+    if (type === "puhe") return { key: "speeches", label: "Puheenvuorot" };
+    if (type === "mielipide") return { key: "opinions", label: "Mielipiteet" };
+    if (type === "kolumni") return { key: "columns", label: "Kolumnit" };
+
+    if (inputPath.includes("/politics/")) {
+      return { key: "initiatives", label: "Aloitteet ja asiat" };
+    }
+
+    if (inputPath.includes("/blog/")) {
+      return { key: "blog", label: "Blogikirjoitukset" };
+    }
+
+    return { key: "other", label: "Muut sisällöt" };
+  }
+
+  function summarizeTermItems(items, key) {
+    const typeMap = new Map();
+    const yearMap = new Map();
+    const relatedTermMap = new Map();
+
+    items.forEach((item) => {
+      const type = item.taxonomyType || getTaxonomyType(item);
+      if (!typeMap.has(type.key)) {
+        typeMap.set(type.key, { key: type.key, label: type.label, count: 0 });
+      }
+      typeMap.get(type.key).count += 1;
+
+      const year = new Date(item.date || item.data?.date || 0).getFullYear();
+      if (Number.isFinite(year) && year > 1900) {
+        yearMap.set(year, (yearMap.get(year) || 0) + 1);
+      }
+
+      const sourceTerms = key === "categories" ? item.data?.keywords : item.data?.categories;
+      const terms = key === "categories"
+        ? normalizeKeywordList(sourceTerms)
+        : normalizeCategoryList(sourceTerms);
+      terms.forEach((term) => {
+        const slug = eleventyConfig.getFilter("slugify")(term);
+        if (!slug) return;
+        if (!relatedTermMap.has(slug)) {
+          relatedTermMap.set(slug, {
+            name: term,
+            slug,
+            count: 0,
+            href: key === "categories" ? `/avainsanat/${slug}/` : `/kategoriat/${slug}/`
+          });
+        }
+        relatedTermMap.get(slug).count += 1;
+      });
+    });
+
+    const years = Array.from(yearMap.keys()).sort((a, b) => a - b);
+
+    return {
+      typeSummaries: Array.from(typeMap.values()).sort((a, b) => b.count - a.count || a.label.localeCompare(b.label, "fi")),
+      yearRange: years.length ? `${years[0]}-${years[years.length - 1]}` : "",
+      relatedTerms: Array.from(relatedTermMap.values())
+        .filter(term => term.count > 1)
+        .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name, "fi"))
+        .slice(0, 14)
+    };
+  }
+
   function buildTermList(items, key) {
     const map = new Map(); // keyed by slug to prevent duplicate permalinks
     items.forEach(item => {
       const sourceTerms = item.data && item.data[key];
-      const terms = key === "keywords" ? normalizeKeywordList(sourceTerms) : sourceTerms;
+      const terms = key === "keywords"
+        ? normalizeKeywordList(sourceTerms)
+        : normalizeCategoryList(sourceTerms);
       if (!Array.isArray(terms)) return;
       terms.forEach(term => {
         if (!term) return;
@@ -24,15 +112,28 @@ module.exports = function registerCollections(eleventyConfig) {
         const slug = eleventyConfig.getFilter("slugify")(name);
         if (!slug) return;
         if (!map.has(slug)) map.set(slug, { name, items: [] });
-        map.get(slug).items.push(item);
+        const taxonomyType = getTaxonomyType(item);
+        map.get(slug).items.push({
+          url: item.url,
+          inputPath: item.inputPath,
+          date: item.date,
+          data: item.data,
+          taxonomyType,
+          taxonomyTypeKey: taxonomyType.key,
+          taxonomyTypeLabel: taxonomyType.label
+        });
       });
     });
-    return Array.from(map.entries()).map(([slug, { name, items }]) => ({
-      name,
-      slug,
-      items,
-      count: items.length
-    })).sort((a, b) => a.name.localeCompare(b.name, "fi"));
+    return Array.from(map.entries()).map(([slug, { name, items }]) => {
+      const sortedItems = items.sort((a, b) => getItemDate(b) - getItemDate(a) || String(a.data?.title || "").localeCompare(String(b.data?.title || ""), "fi"));
+      return {
+        name,
+        slug,
+        items: sortedItems,
+        count: sortedItems.length,
+        ...summarizeTermItems(sortedItems, key)
+      };
+    }).sort((a, b) => a.name.localeCompare(b.name, "fi"));
   }
 
   function hasExplicitDate(item) {
@@ -167,23 +268,29 @@ module.exports = function registerCollections(eleventyConfig) {
     });
   });
 
-  eleventyConfig.addCollection("categoryList", function (collectionApi) {
-    const items = [
+  function getTaxonomySourceItems(collectionApi) {
+    return [
       ...collectionApi.getFilteredByGlob("src/blog/*.md"),
       ...collectionApi.getFilteredByGlob("src/publications/*.md"),
       ...collectionApi.getFilteredByGlob("src/politics/*.md"),
-      ...collectionApi.getFilteredByGlob("src/media/*.md")
+      ...collectionApi.getFilteredByGlob("src/media/*.md"),
+      ...collectionApi.getFilteredByGlob("src/presentations/*.md")
     ];
+  }
+
+  eleventyConfig.addCollection("categoryList", function (collectionApi) {
+    const items = getTaxonomySourceItems(collectionApi);
     return buildTermList(items, "categories");
   });
 
   eleventyConfig.addCollection("keywordList", function (collectionApi) {
-    const items = [
-      ...collectionApi.getFilteredByGlob("src/blog/*.md"),
-      ...collectionApi.getFilteredByGlob("src/publications/*.md"),
-      ...collectionApi.getFilteredByGlob("src/politics/*.md"),
-      ...collectionApi.getFilteredByGlob("src/media/*.md")
-    ];
+    const items = getTaxonomySourceItems(collectionApi);
     return buildTermList(items, "keywords");
+  });
+
+  eleventyConfig.addCollection("keywordListByCount", function (collectionApi) {
+    const items = getTaxonomySourceItems(collectionApi);
+    return buildTermList(items, "keywords")
+      .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name, "fi"));
   });
 };
