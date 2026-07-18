@@ -31,6 +31,17 @@ const typeMap = {
     "G5": "Väitöskirja (monografia)"
 };
 
+async function runConcurrent(items, concurrency, asyncFn) {
+    let i = 0;
+    async function worker() {
+        while (i < items.length) {
+            const idx = i++;
+            await asyncFn(items[idx], idx);
+        }
+    }
+    await Promise.all(Array.from({ length: Math.min(concurrency, items.length) }, worker));
+}
+
 function normalizeOpenAccess(value, selfArchivedCode) {
     if (typeof value === "boolean") return value ? 1 : 0;
     if (typeof value === "number") return value > 0 ? 1 : 0;
@@ -265,13 +276,10 @@ async function enrichWithCrossref(publications) {
         const toFetch = dois.filter(doi => !crossrefMap[doi]);
 
         if (toFetch.length > 0) {
-            console.log(`[crossref] Haetaan ${toFetch.length} DOI-metatietoa CrossRefista...`);
-            for (const doi of toFetch) {
-                const meta = await fetchCrossrefMeta(doi);
-                crossrefMap[doi] = meta || {};
-                // Polite pool: max ~5 pyyntöä/s
-                await new Promise(r => setTimeout(r, 210));
-            }
+            console.log(`[crossref] Haetaan ${toFetch.length} DOI-metatietoa CrossRefista (5 rinnakkain)...`);
+            await runConcurrent(toFetch, 5, async (doi) => {
+                crossrefMap[doi] = await fetchCrossrefMeta(doi) || {};
+            });
             console.log(`[crossref] Valmis. Yhteensä ${Object.keys(crossrefMap).length} DOI cachessa.`);
         } else {
             console.log(`[crossref] Kaikki ${dois.length} DOI:ta löytyvät välimuistista.`);
@@ -353,11 +361,10 @@ async function enrichWithJufo(publications) {
         const toFetch = issns.filter(issn => !(issn in jufoMap));
 
         if (toFetch.length > 0) {
-            console.log(`[jufo] Haetaan ${toFetch.length} ISSN:n JUFO-taso...`);
-            for (const issn of toFetch) {
-                jufoMap[issn] = await fetchJufoByIssn(issn); // null = ei löydy
-                await new Promise(r => setTimeout(r, 350)); // ~3 req/s
-            }
+            console.log(`[jufo] Haetaan ${toFetch.length} ISSN:n JUFO-taso (3 rinnakkain)...`);
+            await runConcurrent(toFetch, 3, async (issn) => {
+                jufoMap[issn] = await fetchJufoByIssn(issn);
+            });
             const found = Object.values(jufoMap).filter(v => v && v.level != null).length;
             console.log(`[jufo] Valmis. Löydettiin taso ${found}/${Object.keys(jufoMap).length} kanavasta.`);
         } else {
