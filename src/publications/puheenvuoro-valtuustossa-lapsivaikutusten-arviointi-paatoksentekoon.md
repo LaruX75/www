@@ -20,7 +20,7 @@ keywords:
 type: puhe
 politicalProfiles:
   - sivistys
-  - avoimuus
+  - avoinhallinto
 templateEngineOverride: md
 ---
 
