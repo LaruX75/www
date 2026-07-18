@@ -4,6 +4,7 @@ layout: base.njk
 <section>
   <div class="site-shell">
     {% set currentLang = lang or (page.url | langFromUrl) %}
+    {% set showContextSidebar = ("publications" in (tags or [])) or ("politics" in (tags or [])) %}
     <article class="page-content">
       <div class="card shadow-sm">
         <div class="card-body">
@@ -14,19 +15,29 @@ layout: base.njk
           {% if asiakohta %}
             <p class="text-muted small mb-3"><i class="bi bi-card-list me-1"></i>Asiakohta: {{ asiakohta }}</p>
           {% endif %}
-          <div class="content-prose">{{ content | safe }}</div>
-          {% if categories %}
-            <div class="mt-4">
-              <p class="text-uppercase small text-muted mb-2">{{ "Categories" if currentLang == "en" else "Kategoriat" }}</p>
-              {% for cat in categories %}<a class="badge text-bg-secondary me-1 text-decoration-none" href="/kategoriat/{{ cat | slugify }}/">{{ cat }}</a>{% endfor %}
+          {% include "council-speech-videos.njk" %}
+          <div class="row g-4">
+            <div class="{{ 'col-lg-8' if showContextSidebar else 'col-12' }}">
+              <div class="content-prose">{{ content | safe }}</div>
+              {% if categories and not showContextSidebar %}
+                <div class="mt-4">
+                  <p class="text-uppercase small text-muted mb-2">{{ "Categories" if currentLang == "en" else "Kategoriat" }}</p>
+                  {% for cat in categories %}<a class="badge text-bg-secondary me-1 text-decoration-none" href="{{ '/en/categories/' if currentLang == 'en' else '/kategoriat/' }}{{ cat | slugify }}/">{{ cat }}</a>{% endfor %}
+                </div>
+              {% endif %}
+              {% if keywords and not showContextSidebar %}
+                <div class="mt-3">
+                  <p class="text-uppercase small text-muted mb-2">{{ "Keywords" if currentLang == "en" else "Avainsanat" }}</p>
+                  {% for key in keywords %}<a class="badge text-bg-light text-dark border me-1 text-decoration-none" href="{{ '/en/keywords/' if currentLang == 'en' else '/avainsanat/' }}{{ key | slugify }}/">{{ key }}</a>{% endfor %}
+                </div>
+              {% endif %}
             </div>
-          {% endif %}
-          {% if keywords %}
-            <div class="mt-3">
-              <p class="text-uppercase small text-muted mb-2">{{ "Keywords" if currentLang == "en" else "Avainsanat" }}</p>
-              {% for key in keywords %}<a class="badge text-bg-light text-dark border me-1 text-decoration-none" href="/avainsanat/{{ key | slugify }}/">{{ key }}</a>{% endfor %}
-            </div>
-          {% endif %}
+            {% if showContextSidebar %}
+            <aside class="col-lg-4">
+              {% include "content-context-sidebar.njk" %}
+            </aside>
+            {% endif %}
+          </div>
           {% if "politics" in (tags or []) %}
           <div class="alert alert-secondary mt-4 py-2 small mb-0" role="note">
             <i class="bi bi-c-circle me-1" aria-hidden="true"></i>

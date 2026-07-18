@@ -1,0 +1,55 @@
+{% set speechVideos = councilSpeechVideos.byUrl[page.url] or councilSpeechVideos.byUrl[source_url] or [] %}
+{% if speechVideos.length %}
+  <section class="council-speech-videos my-4" aria-labelledby="council-speech-videos-title">
+    <div class="d-flex align-items-start justify-content-between gap-3 mb-3">
+      <div>
+        <p class="text-uppercase small text-muted mb-1">Kokoustallenne</p>
+        <h2 id="council-speech-videos-title" class="h5 mb-1">Katso puheenvuoro valtuuston videotallenteesta</h2>
+        <p class="text-muted small mb-0">Aikaleima vie suoraan kyseisen puheenvuoron kohtaan.</p>
+      </div>
+    </div>
+    <div class="council-speech-video-list">
+      {% for video in speechVideos %}
+        {% set startText = video.start | secondsToClock %}
+        {% set watchUrl = "https://www.youtube.com/watch?v=" ~ video.youtubeId ~ "&t=" ~ video.start ~ "s" %}
+        {% set embedUrl = "https://www.youtube-nocookie.com/embed/" ~ video.youtubeId ~ "?start=" ~ video.start %}
+        <article class="council-speech-video-card">
+          <div class="council-speech-video-card__meta">
+            <span class="badge text-bg-light border text-dark">{{ startText }}</span>
+            {% if video.verified %}
+              <span class="badge text-bg-success">varmennettu</span>
+            {% endif %}
+          </div>
+          <h3 class="h6 mb-2">{{ video.label or "Puheenvuoro kokoustallenteessa" }}</h3>
+          <p class="small text-muted mb-3">{{ video.source or "Oulun kaupunginvaltuuston kokoustallenne" }}</p>
+          <div class="external-media-consent" data-external-media-provider="youtube">
+            <img
+              class="external-media-consent__preview"
+              data-external-media-preview
+              src="https://img.youtube.com/vi/{{ video.youtubeId }}/hqdefault.jpg"
+              alt=""
+              loading="lazy"
+            >
+            <div class="external-media-consent__notice" data-external-media-notice>
+              <p class="external-media-consent__text" data-external-media-text></p>
+              <div class="external-media-consent__actions">
+                <button type="button" class="btn btn-primary btn-sm" data-external-media-load></button>
+                <button type="button" class="btn btn-outline-secondary btn-sm" data-external-media-allow-all></button>
+              </div>
+              <a href="{{ watchUrl }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light btn-sm">Avaa YouTubessa kohdasta {{ startText }}</a>
+            </div>
+            <iframe
+              class="external-media-consent__iframe"
+              data-consent-src="{{ embedUrl }}"
+              title="{{ video.label or title }}"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+              hidden
+            ></iframe>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
