@@ -9,10 +9,9 @@
   pagination: {
     data: "collections.keywordList",
     size: 1,
-    alias: "keyword",
-    before: data => (process.env.BUILD_TAXONOMY_PAGES === "1" || process.env.BUILD_TAXONOMY_PAGES === "true" || process.env.CI === "true") ? data : []
+    alias: "keyword"
   },
-  permalink: (process.env.BUILD_TAXONOMY_PAGES === "1" || process.env.BUILD_TAXONOMY_PAGES === "true" || process.env.CI === "true") ? (data => `/en/keywords/${data.keyword.slug}/`) : false
+  permalink: data => `/en/keywords/${data.keyword.slug}/`
 }
 ---
 <section>

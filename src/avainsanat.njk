@@ -3,49 +3,191 @@
   layout: "base.njk",
   eleventyComputed: {
     title: data => `Avainsana: ${data.keyword?.name || ""}`,
-    description: data => `Avainsana "${data.keyword?.name || ""}" kokoaa ${data.keyword?.count || 0} kirjoitusta, puhetta tai julkaisua Jari Larun sivustolta.`
+    description: data => `Avainsana "${data.keyword?.name || ""}" kokoaa ${data.keyword?.count || 0} kirjoitusta, puheenvuoroa, esitystä tai mediaosumaa Jari Larun sivustolta.`
   },
   pagination: {
     data: "collections.keywordList",
     size: 1,
-    alias: "keyword",
-    before: data => (process.env.BUILD_TAXONOMY_PAGES === "1" || process.env.BUILD_TAXONOMY_PAGES === "true" || process.env.CI === "true") ? data : []
+    alias: "keyword"
   },
-  permalink: (process.env.BUILD_TAXONOMY_PAGES === "1" || process.env.BUILD_TAXONOMY_PAGES === "true" || process.env.CI === "true") ? (data => `/avainsanat/${data.keyword.slug}/`) : false
+  permalink: data => `/avainsanat/${data.keyword.slug}/`
 }
 ---
-<section>
+<section class="taxonomy-archive taxonomy-archive--keyword">
   <div class="site-shell">
-    <div class="d-flex align-items-center justify-content-between mb-3">
-      <h1 class="h3 mb-0">{{ keyword.name }}</h1>
-      <a class="btn btn-outline-primary btn-sm" href="/avainsanat/">Kaikki avainsanat</a>
-    </div>
-    <p class="text-muted">Yhteensä {{ keyword.count }} artikkelia.</p>
+    <header class="taxonomy-hero">
+      <div class="taxonomy-hero-main">
+        <p class="taxonomy-kicker">Avainsana</p>
+        <h1 class="taxonomy-title">{{ keyword.name }}</h1>
+        <p class="taxonomy-lead">Tähän on koottu sisällöt, joissa sama aihe, paikka tai käsite toistuu eri yhteyksissä.</p>
+        <p class="taxonomy-context">Avainsana on tarkempi reitti kuin kategoria. Sen avulla voit seurata, miten sama teema näkyy esimerkiksi kirjoituksissa, puheenvuoroissa, esityksissä ja mediaosumissa.</p>
+        <div class="taxonomy-actions">
+          <a class="btn btn-primary" href="/avainsanat/">Kaikki avainsanat</a>
+          <a class="btn btn-outline-primary" href="/kategoriat/">Kategoriat</a>
+        </div>
+      </div>
 
-    <div class="row g-4">
-      {% for item in keyword.items %}
-        <div class="col-md-6 col-lg-4">
-          <div class="card h-100 content-card">
-            {% if item.data.thumbnail %}
-              <img src="{{ item.data.thumbnail }}" class="card-img-top content-card-img" alt="{{ item.data.title }}">
+      <aside class="taxonomy-hero-stat" aria-label="Avainsanan yhteenveto">
+        <span class="taxonomy-stat-number">{{ keyword.count }}</span>
+        <span class="taxonomy-stat-label">sisältöä</span>
+        {% if keyword.yearRange %}
+          <span class="taxonomy-stat-range">{{ keyword.yearRange }}</span>
+        {% endif %}
+      </aside>
+    </header>
+
+    <div class="taxonomy-layout">
+      <main class="taxonomy-main">
+        {% if keyword.typeSummaries and keyword.typeSummaries.length %}
+          <section class="taxonomy-section" aria-labelledby="keyword-types-title">
+            <div class="taxonomy-section-head">
+              <p class="taxonomy-kicker">Sisältötyypit</p>
+              <h2 id="keyword-types-title">Missä tämä avainsana esiintyy?</h2>
+            </div>
+
+            <div class="taxonomy-type-grid">
+              {% for type in keyword.typeSummaries %}
+                <a class="taxonomy-type-card{% if loop.first %} taxonomy-type-card--primary{% endif %}" href="#sisallot" data-taxonomy-filter-link="{{ type.key }}">
+                  <span class="taxonomy-type-count">{{ type.count }}</span>
+                  <span class="taxonomy-type-label">{{ type.label }}</span>
+                </a>
+              {% endfor %}
+            </div>
+          </section>
+        {% endif %}
+
+        <section class="taxonomy-section" id="sisallot" aria-labelledby="keyword-items-title">
+          <div class="taxonomy-section-head taxonomy-section-head--inline">
+            <div>
+              <p class="taxonomy-kicker">Arkisto</p>
+              <h2 id="keyword-items-title">Sisällöt avainsanalla {{ keyword.name }}</h2>
+            </div>
+
+            {% if keyword.typeSummaries and keyword.typeSummaries.length > 1 %}
+              <div class="taxonomy-filter" role="group" aria-label="Rajaa sisältötyypin mukaan">
+                <button class="taxonomy-filter-btn is-active" type="button" data-taxonomy-filter="all">Kaikki</button>
+                {% for type in keyword.typeSummaries %}
+                  <button class="taxonomy-filter-btn" type="button" data-taxonomy-filter="{{ type.key }}">{{ type.label }}</button>
+                {% endfor %}
+              </div>
             {% endif %}
-            <div class="card-body">
-              <h3 class="h6">
-                <a href="{{ item.url }}" class="text-decoration-none">{{ item.data.title }}</a>
-              </h3>
-              <p class="text-muted small mb-2">{{ item.date | dateFormat }}</p>
-              <p class="text-muted">{{ item.data.description or (item.content | excerpt) }}</p>
-              {% if item.data.categories %}
-                <div class="mt-2">
-                  {% for cat in item.data.categories %}
-                    <a class="badge text-bg-secondary me-1 text-decoration-none" href="/kategoriat/{{ cat | slugify }}/">{{ cat }}</a>
-                  {% endfor %}
+          </div>
+
+          <div class="taxonomy-list" data-taxonomy-list>
+            {% for item in keyword.items %}
+              <article class="taxonomy-list-item" data-taxonomy-item data-taxonomy-type="{{ item.taxonomyTypeKey }}">
+                <div class="taxonomy-list-date">
+                  <time>{{ item.date | dateFormat }}</time>
+                  <strong>{{ item.taxonomyTypeLabel }}</strong>
                 </div>
-              {% endif %}
+                <div class="taxonomy-list-body">
+                  <h3><a href="{{ item.url }}">{{ item.data.title }}</a></h3>
+                  {% if item.data.description %}
+                    <p>{{ item.data.description }}</p>
+                  {% endif %}
+                  {% if item.data.categories %}
+                    <div class="taxonomy-term-row" aria-label="Kategoriat">
+                      {% for cat in item.data.categories | take(3) %}
+                        <a href="/kategoriat/{{ cat | slugify }}/">{{ cat }}</a>
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+                </div>
+              </article>
+            {% endfor %}
+          </div>
+
+          <button class="taxonomy-show-more" type="button" data-taxonomy-show-more hidden>Näytä lisää</button>
+        </section>
+      </main>
+
+      <aside class="taxonomy-sidebar" aria-label="Avainsanan lisäpolut">
+        {% if keyword.relatedTerms and keyword.relatedTerms.length %}
+          <div class="taxonomy-side-card">
+            <p class="taxonomy-kicker">Liittyvät kategoriat</p>
+            <div class="taxonomy-term-cloud">
+              {% for term in keyword.relatedTerms %}
+                <a href="{{ term.href }}">
+                  <span>{{ term.name }}</span>
+                  <small>{{ term.count }}</small>
+                </a>
+              {% endfor %}
             </div>
           </div>
+        {% endif %}
+
+        <div class="taxonomy-side-card taxonomy-side-card--quiet">
+          <p class="taxonomy-kicker">Avainsanan rooli</p>
+          <p>Avainsana ei korvaa kategoriaa, vaan tarkentaa sitä. Siksi sama sisältö voi löytyä laajasta kategoriasta ja yhdestä tai useammasta tarkemmasta avainsanasta.</p>
         </div>
-      {% endfor %}
+      </aside>
     </div>
   </div>
 </section>
+
+<script>
+(() => {
+  const root = document.querySelector('.taxonomy-archive--keyword');
+  if (!root) return;
+
+  const buttons = root.querySelectorAll('[data-taxonomy-filter]');
+  const items = Array.from(root.querySelectorAll('[data-taxonomy-item]'));
+  const cardLinks = root.querySelectorAll('[data-taxonomy-filter-link]');
+  const showMoreButton = root.querySelector('[data-taxonomy-show-more]');
+  const initialLimit = 8;
+  let currentFilter = 'all';
+  let expanded = false;
+
+  function applyFilter(type) {
+    currentFilter = type || 'all';
+    expanded = false;
+
+    buttons.forEach((button) => {
+      const active = button.dataset.taxonomyFilter === currentFilter;
+      button.classList.toggle('is-active', active);
+      button.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+
+    updateVisibleItems();
+  }
+
+  function updateVisibleItems() {
+    let visibleCount = 0;
+    let totalMatches = 0;
+
+    items.forEach((item) => {
+      const matchesFilter = currentFilter === 'all' || item.dataset.taxonomyType === currentFilter;
+      totalMatches += matchesFilter ? 1 : 0;
+      const shouldShow = matchesFilter && (expanded || visibleCount < initialLimit);
+      item.hidden = !shouldShow;
+      if (matchesFilter) visibleCount += 1;
+    });
+
+    if (showMoreButton) {
+      const canShowMore = !expanded && totalMatches > initialLimit;
+      showMoreButton.hidden = !canShowMore;
+      showMoreButton.textContent = `Näytä lisää (${totalMatches - initialLimit})`;
+    }
+  }
+
+  buttons.forEach((button) => {
+    button.setAttribute('aria-pressed', button.classList.contains('is-active') ? 'true' : 'false');
+    button.addEventListener('click', () => applyFilter(button.dataset.taxonomyFilter || 'all'));
+  });
+
+  cardLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      applyFilter(link.dataset.taxonomyFilterLink || 'all');
+    });
+  });
+
+  if (showMoreButton) {
+    showMoreButton.addEventListener('click', () => {
+      expanded = true;
+      updateVisibleItems();
+    });
+  }
+
+  updateVisibleItems();
+})();
+</script>

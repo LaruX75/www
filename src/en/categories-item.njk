@@ -9,10 +9,9 @@
   pagination: {
     data: "collections.categoryList",
     size: 1,
-    alias: "category",
-    before: data => (process.env.BUILD_TAXONOMY_PAGES === "1" || process.env.BUILD_TAXONOMY_PAGES === "true" || process.env.CI === "true") ? data : []
+    alias: "category"
   },
-  permalink: (process.env.BUILD_TAXONOMY_PAGES === "1" || process.env.BUILD_TAXONOMY_PAGES === "true" || process.env.CI === "true") ? (data => `/en/categories/${data.category.slug}/`) : false
+  permalink: data => `/en/categories/${data.category.slug}/`
 }
 ---
 <section>

@@ -1,20 +1,75 @@
 ---
 layout: base.njk
 title: Avainsanat
-description: "Jarilaru.fi:n avainsanahakemisto kokoaa kirjoitukset, puheenvuorot, esitykset ja julkaisut teemoittain."
+description: "Jarilaru.fi:n avainsanat toimivat tarkempana hakureittinä paikkoihin, käsitteisiin, hankkeisiin ja toistuviin teemoihin."
 permalink: /avainsanat/
 translationKey: keywords_index
 ---
-<section>
+{% set topKeywords = collections.keywordListByCount | take(48) %}
+
+<section class="taxonomy-index taxonomy-index--keywords">
   <div class="site-shell">
-    <h1 class="h3 mb-3">Avainsanat</h1>
-    <div class="list-group">
-      {% for key in collections.keywordList %}
-        <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" href="/avainsanat/{{ key.slug }}/">
-          <span>{{ key.name }}</span>
-          <span class="badge text-bg-secondary rounded-pill">{{ key.count }}</span>
-        </a>
-      {% endfor %}
+    <header class="taxonomy-index-hero">
+      <div>
+        <p class="taxonomy-kicker">Tarkempi hakureitti</p>
+        <h1>Avainsanat</h1>
+        <p class="taxonomy-index-lead">Avainsanat auttavat löytämään samaan paikkaan, käsitteeseen, hankkeeseen tai ilmiöön liittyvät sisällöt eri puolilta sivustoa.</p>
+      </div>
+      <aside class="taxonomy-index-summary" aria-label="Avainsanojen yhteenveto">
+        <span class="taxonomy-stat-number">{{ collections.keywordList.length }}</span>
+        <span class="taxonomy-stat-label">avainsanaa</span>
+        <span class="taxonomy-stat-range">{{ collections.categoryList.length }} kategoriaa</span>
+      </aside>
+    </header>
+
+    <section class="taxonomy-index-section" aria-labelledby="top-keywords-title">
+      <div class="taxonomy-index-section-head">
+        <p class="taxonomy-kicker">Useimmin toistuvat</p>
+        <h2 id="top-keywords-title">Avainsanapilvi</h2>
+        <p>Pilvi nostaa esiin yleisimmät avainsanat. Se toimii nopeana reittinä silloin, kun etsit esimerkiksi paikkaa, teknologiaa, hanketta tai toistuvaa poliittista teemaa.</p>
+      </div>
+
+      <div class="taxonomy-term-cloud taxonomy-keyword-cloud">
+        {% for key in topKeywords %}
+          <a class="taxonomy-keyword-cloud-item{% if key.count >= 10 %} taxonomy-keyword-cloud-item--strong{% elif key.count >= 5 %} taxonomy-keyword-cloud-item--medium{% endif %}" href="/avainsanat/{{ key.slug }}/">
+            <span>{{ key.name }}</span>
+            <small>{{ key.count }}</small>
+          </a>
+        {% endfor %}
+      </div>
+    </section>
+
+    <div class="taxonomy-index-layout">
+      <main class="taxonomy-index-main">
+        <section class="taxonomy-index-section" aria-labelledby="all-keywords-title">
+          <div class="taxonomy-index-section-head taxonomy-index-section-head--compact">
+            <p class="taxonomy-kicker">Kaikki avainsanat</p>
+            <h2 id="all-keywords-title">Aakkosellinen hakemisto</h2>
+            <p>Jos etsit yksittäistä aihetta, tämä lista on pilveä varmempi reitti. Avainsanasivulla näet myös, mihin kategorioihin sama sisältö liittyy.</p>
+          </div>
+
+          <div class="taxonomy-index-list taxonomy-index-list--keywords">
+            {% for key in collections.keywordList %}
+              <a class="taxonomy-index-list-item" href="/avainsanat/{{ key.slug }}/">
+                <span>{{ key.name }}</span>
+                <small>{{ key.count }}</small>
+              </a>
+            {% endfor %}
+          </div>
+        </section>
+      </main>
+
+      <aside class="taxonomy-index-aside" aria-labelledby="keyword-guide-title">
+        <section class="taxonomy-index-section taxonomy-index-section--quiet">
+          <div class="taxonomy-index-section-head taxonomy-index-section-head--compact">
+            <p class="taxonomy-kicker">Miten tätä kannattaa käyttää?</p>
+            <h2 id="keyword-guide-title">Kategoria vai avainsana?</h2>
+            <p>Kategoria näyttää laajemman kokonaisuuden. Avainsana sopii tarkempaan hakuun, kun etsit esimerkiksi Jääliin, Raksilaan, tekoälylukutaitoon tai palveluverkkoon liittyviä sisältöjä.</p>
+          </div>
+
+          <a class="taxonomy-index-more-link" href="/kategoriat/">Siirry kategorioihin</a>
+        </section>
+      </aside>
     </div>
   </div>
 </section>

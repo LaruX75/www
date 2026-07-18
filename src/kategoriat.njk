@@ -3,49 +3,221 @@
   layout: "base.njk",
   eleventyComputed: {
     title: data => `Kategoria: ${data.category?.name || ""}`,
-    description: data => `Kategoria "${data.category?.name || ""}" kokoaa ${data.category?.count || 0} sisältöä Jari Larun sivustolta: kirjoituksia, puheita ja julkaisuja samasta aihepiiristä.`
+    description: data => `Kategoria "${data.category?.name || ""}" kokoaa ${data.category?.count || 0} sisältöä Jari Larun sivustolta.`
   },
   pagination: {
     data: "collections.categoryList",
     size: 1,
-    alias: "category",
-    before: data => (process.env.BUILD_TAXONOMY_PAGES === "1" || process.env.BUILD_TAXONOMY_PAGES === "true" || process.env.CI === "true") ? data : []
+    alias: "category"
   },
-  permalink: (process.env.BUILD_TAXONOMY_PAGES === "1" || process.env.BUILD_TAXONOMY_PAGES === "true" || process.env.CI === "true") ? (data => `/kategoriat/${data.category.slug}/`) : false
+  permalink: data => `/kategoriat/${data.category.slug}/`
 }
 ---
-<section>
-  <div class="site-shell">
-    <div class="d-flex align-items-center justify-content-between mb-3">
-      <h1 class="h3 mb-0">{{ category.name }}</h1>
-      <a class="btn btn-outline-primary btn-sm" href="/kategoriat/">Kaikki kategoriat</a>
-    </div>
-    <p class="text-muted">Yhteensä {{ category.count }} artikkelia.</p>
+{% set profile = taxonomyProfiles.categories[category.slug] or taxonomyProfiles.defaultCategory %}
+{% set featuredItem = category.items[0] %}
+{% set firstTypes = category.typeSummaries | take(6) %}
+{% set relatedTerms = category.relatedTerms | take(14) %}
 
-    <div class="row g-4">
-      {% for item in category.items %}
-        <div class="col-md-6 col-lg-4">
-          <div class="card h-100 content-card">
-            {% if item.data.thumbnail %}
-              <img src="{{ item.data.thumbnail }}" class="card-img-top content-card-img" alt="{{ item.data.title }}">
+<section class="taxonomy-archive taxonomy-archive--category">
+  <div class="site-shell">
+    <header class="taxonomy-hero">
+      <div class="taxonomy-hero-main">
+        <p class="taxonomy-kicker">{{ profile.eyebrow }}</p>
+        <h1 class="taxonomy-title">{{ category.name }}</h1>
+        <p class="taxonomy-lead">{{ profile.lead }}</p>
+        <p class="taxonomy-context">{{ profile.context }}</p>
+        <details class="taxonomy-context-details">
+          <summary>Lue kuvaus</summary>
+          <p>{{ profile.context }}</p>
+        </details>
+        <div class="taxonomy-actions">
+          <a class="btn btn-primary" href="#sisallot">Selaa sisältöjä</a>
+          <a class="btn btn-outline-primary" href="/kategoriat/">{{ profile.backLabel }}</a>
+        </div>
+      </div>
+      <aside class="taxonomy-hero-stat" aria-label="Kategorian yhteenveto">
+        <span class="taxonomy-stat-number">{{ category.count }}</span>
+        <span class="taxonomy-stat-label">sisältöä</span>
+        {% if category.yearRange %}
+          <span class="taxonomy-stat-range">{{ category.yearRange }}</span>
+        {% endif %}
+      </aside>
+    </header>
+
+    <div class="taxonomy-layout">
+      <main class="taxonomy-main">
+        {% if firstTypes.length %}
+        <section class="taxonomy-section" aria-labelledby="taxonomy-types-title">
+          <div class="taxonomy-section-head">
+            <p class="taxonomy-kicker">{{ profile.primaryLabel }}</p>
+            <h2 id="taxonomy-types-title">{{ profile.highlightsTitle }}</h2>
+            <p>{{ profile.primaryText }}</p>
+          </div>
+          <div class="taxonomy-type-grid">
+            {% for type in firstTypes %}
+              <a class="taxonomy-type-card{% if profile.primaryType and type.key == profile.primaryType %} taxonomy-type-card--primary{% endif %}" href="#sisallot" data-taxonomy-filter-link="{{ type.key }}">
+                <span class="taxonomy-type-count">{{ type.count }}</span>
+                <span class="taxonomy-type-label">{{ type.label }}</span>
+              </a>
+            {% endfor %}
+          </div>
+        </section>
+        {% endif %}
+
+        {% if featuredItem %}
+        <section class="taxonomy-feature" aria-labelledby="taxonomy-feature-title">
+          <div class="taxonomy-feature-content">
+            <p class="taxonomy-kicker">Uusin sisältö</p>
+            <h2 id="taxonomy-feature-title">
+              <a href="{{ featuredItem.url }}">{{ featuredItem.data.title }}</a>
+            </h2>
+            <p class="taxonomy-item-meta">
+              <span>{{ featuredItem.taxonomyTypeLabel }}</span>
+              <span>{{ featuredItem.date | dateFormat }}</span>
+            </p>
+            {% if featuredItem.data.description %}
+              <p>{{ featuredItem.data.description }}</p>
             {% endif %}
-            <div class="card-body">
-              <h3 class="h6">
-                <a href="{{ item.url }}" class="text-decoration-none">{{ item.data.title }}</a>
-              </h3>
-              <p class="text-muted small mb-2">{{ item.date | dateFormat }}</p>
-              <p class="text-muted">{{ item.data.description or (item.content | excerpt) }}</p>
-              {% if item.data.keywords %}
-                <div class="mt-2">
-                  {% for key in item.data.keywords %}
-                    <a class="badge text-bg-light text-dark border me-1 text-decoration-none" href="/avainsanat/{{ key | slugify }}/">{{ key }}</a>
-                  {% endfor %}
-                </div>
-              {% endif %}
+          </div>
+          {% if featuredItem.data.thumbnail %}
+            <img class="taxonomy-feature-image" src="{{ featuredItem.data.thumbnail }}" alt="{{ featuredItem.data.title }}" loading="lazy" decoding="async">
+          {% endif %}
+        </section>
+        {% endif %}
+
+        <section class="taxonomy-section" id="sisallot" aria-labelledby="taxonomy-items-title">
+          <div class="taxonomy-section-head taxonomy-section-head--inline">
+            <div>
+              <p class="taxonomy-kicker">Arkisto</p>
+              <h2 id="taxonomy-items-title">{{ profile.browseTitle }}</h2>
+              <p>{{ profile.browseLead }}</p>
             </div>
+            {% if firstTypes.length > 1 %}
+            <div class="taxonomy-filter" role="group" aria-label="Rajaa sisältötyypin mukaan">
+              <button class="taxonomy-filter-btn is-active" type="button" data-taxonomy-filter="all">Kaikki</button>
+              {% for type in firstTypes %}
+                <button class="taxonomy-filter-btn" type="button" data-taxonomy-filter="{{ type.key }}">{{ type.label }}</button>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+
+          <div class="taxonomy-list" data-taxonomy-list>
+            {% for item in category.items %}
+              <article class="taxonomy-list-item" data-taxonomy-item data-taxonomy-type="{{ item.taxonomyTypeKey }}">
+                <div class="taxonomy-list-date">
+                  <span>{{ item.date | dateFormat }}</span>
+                  <strong>{{ item.taxonomyTypeLabel }}</strong>
+                </div>
+                <div class="taxonomy-list-body">
+                  <h3><a href="{{ item.url }}">{{ item.data.title }}</a></h3>
+                  {% if item.data.description %}
+                    <p>{{ item.data.description }}</p>
+                  {% endif %}
+                  {% if item.data.keywords %}
+                    <div class="taxonomy-term-row" aria-label="Avainsanat">
+                      {% for key in item.data.keywords | take(3) %}
+                        <a href="/avainsanat/{{ key | slugify }}/">{{ key }}</a>
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+                </div>
+              </article>
+            {% endfor %}
+          </div>
+          {% if category.items.length > 8 %}
+            <button class="taxonomy-show-more" type="button" data-taxonomy-show-more hidden>Näytä lisää</button>
+          {% endif %}
+        </section>
+      </main>
+
+      <aside class="taxonomy-sidebar" aria-label="Kategorian lisäpolut">
+        {% if relatedTerms.length %}
+        <div class="taxonomy-side-card">
+          <p class="taxonomy-kicker">{{ profile.relatedTitle }}</p>
+          <div class="taxonomy-term-cloud">
+            {% for term in relatedTerms %}
+              <a href="{{ term.href }}">
+                <span>{{ term.name }}</span>
+                <small>{{ term.count }}</small>
+              </a>
+            {% endfor %}
           </div>
         </div>
-      {% endfor %}
+        {% endif %}
+
+        <div class="taxonomy-side-card taxonomy-side-card--quiet">
+          <p class="taxonomy-kicker">{{ profile.guideTitle }}</p>
+          <p>{{ profile.guideText }}</p>
+        </div>
+      </aside>
     </div>
   </div>
 </section>
+
+<script>
+  (() => {
+    const root = document.currentScript.previousElementSibling;
+    if (!root) return;
+
+    const buttons = root.querySelectorAll('[data-taxonomy-filter]');
+    const items = Array.from(root.querySelectorAll('[data-taxonomy-item]'));
+    const cardLinks = root.querySelectorAll('[data-taxonomy-filter-link]');
+    const showMoreButton = root.querySelector('[data-taxonomy-show-more]');
+    const mobileListQuery = window.matchMedia('(max-width: 767.98px)');
+    const mobileItemLimit = 8;
+    let currentFilter = 'all';
+    let listExpanded = false;
+
+    function applyFilter(type) {
+      currentFilter = type;
+      listExpanded = false;
+      buttons.forEach((button) => {
+        const active = button.dataset.taxonomyFilter === type;
+        button.classList.toggle('is-active', active);
+        button.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+
+      updateVisibleItems();
+    }
+
+    function updateVisibleItems() {
+      let visibleCount = 0;
+
+      items.forEach((item) => {
+        const matchesFilter = currentFilter === 'all' || item.dataset.taxonomyType === currentFilter;
+        const withinMobileLimit = !mobileListQuery.matches || listExpanded || visibleCount < mobileItemLimit;
+        item.hidden = !matchesFilter || !withinMobileLimit;
+
+        if (matchesFilter) {
+          visibleCount += 1;
+        }
+      });
+
+      if (showMoreButton) {
+        showMoreButton.hidden = !mobileListQuery.matches || listExpanded || visibleCount <= mobileItemLimit;
+      }
+    }
+
+    buttons.forEach((button) => {
+      button.setAttribute('aria-pressed', button.classList.contains('is-active') ? 'true' : 'false');
+      button.addEventListener('click', () => applyFilter(button.dataset.taxonomyFilter || 'all'));
+    });
+
+    cardLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        applyFilter(link.dataset.taxonomyFilterLink || 'all');
+      });
+    });
+
+    if (showMoreButton) {
+      showMoreButton.addEventListener('click', () => {
+        listExpanded = true;
+        updateVisibleItems();
+      });
+    }
+
+    mobileListQuery.addEventListener('change', updateVisibleItems);
+    updateVisibleItems();
+  })();
+</script>

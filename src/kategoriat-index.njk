@@ -1,20 +1,90 @@
 ---
 layout: base.njk
 title: Kategoriat
-description: "Jarilaru.fi:n kategoriat kokoavat blogikirjoitukset, puheenvuorot, julkaisut ja muun aineiston aihealueittain."
+description: "Jarilaru.fi:n kategoriat kokoavat blogikirjoitukset, puheenvuorot, julkaisut, esitykset ja mediaosumat aihealueittain."
 permalink: /kategoriat/
 translationKey: categories_index
 ---
-<section>
+{% set topKeywords = collections.keywordList | take(40) %}
+
+<section class="taxonomy-index taxonomy-index--categories">
   <div class="site-shell">
-    <h1 class="h3 mb-3">Kategoriat</h1>
-    <div class="list-group">
-      {% for cat in collections.categoryList %}
-        <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" href="/kategoriat/{{ cat.slug }}/">
-          <span>{{ cat.name }}</span>
-          <span class="badge text-bg-secondary rounded-pill">{{ cat.count }}</span>
-        </a>
-      {% endfor %}
+    <header class="taxonomy-index-hero">
+      <div>
+        <p class="taxonomy-kicker">Aihekartta</p>
+        <h1>Kategoriat</h1>
+        <p class="taxonomy-index-lead">Kategoriat näyttävät sivuston sisällöt aihealueittain. Ne auttavat löytämään kokonaisuuksia silloin, kun yksittäinen kirjoitus, puheenvuoro, esitys tai mediaosuma on osa laajempaa teemaa.</p>
+      </div>
+      <aside class="taxonomy-index-summary" aria-label="Kategorioiden yhteenveto">
+        <span class="taxonomy-stat-number">{{ collections.categoryList.length }}</span>
+        <span class="taxonomy-stat-label">kategoriaa</span>
+        <span class="taxonomy-stat-range">{{ collections.keywordList.length }} avainsanaa</span>
+      </aside>
+    </header>
+
+    <section class="taxonomy-index-section" aria-labelledby="profile-categories-title">
+      <div class="taxonomy-index-section-head">
+        <p class="taxonomy-kicker">Profiilikategoriat</p>
+        <h2 id="profile-categories-title">Keskeiset aihekokonaisuudet</h2>
+        <p>Nämä kategoriat ovat sivustolla tavallista arkistoa vahvempia kokonaisuuksia. Niissä on oma johdanto, sisältötyyppien kooste ja reitit saman aiheen tarkempaan selaamiseen.</p>
+      </div>
+
+      <div class="taxonomy-index-profile-grid">
+        {% for cat in collections.categoryList %}
+          {% if taxonomyProfiles.categories[cat.slug] %}
+            {% set profile = taxonomyProfiles.categories[cat.slug] %}
+            <a class="taxonomy-index-profile-card" href="/kategoriat/{{ cat.slug }}/">
+              <span class="taxonomy-index-card-count">{{ cat.count }}</span>
+              <span class="taxonomy-index-card-title">{{ cat.name }}</span>
+              <span class="taxonomy-index-card-text">{{ profile.lead }}</span>
+            </a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </section>
+
+    <div class="taxonomy-index-layout">
+      <main class="taxonomy-index-main">
+        <section class="taxonomy-index-section" aria-labelledby="all-categories-title">
+          <div class="taxonomy-index-section-head taxonomy-index-section-head--compact">
+            <p class="taxonomy-kicker">Kaikki kategoriat</p>
+            <h2 id="all-categories-title">Tarkemmat aihealueet</h2>
+            <p>Pienemmät kategoriat toimivat arkistoreitteinä. Ne eivät tarvitse omaa profiilitekstiä, mutta avaavat sisällöt samalla uudella kategoriasivupohjalla.</p>
+          </div>
+
+          <div class="taxonomy-index-list">
+            {% for cat in collections.categoryList %}
+              {% if not taxonomyProfiles.categories[cat.slug] %}
+                <a class="taxonomy-index-list-item" href="/kategoriat/{{ cat.slug }}/">
+                  <span>{{ cat.name }}</span>
+                  <small>{{ cat.count }}</small>
+                </a>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </section>
+      </main>
+
+      <aside class="taxonomy-index-aside" aria-labelledby="keyword-cloud-title">
+        <section class="taxonomy-index-section taxonomy-index-section--quiet">
+          <div class="taxonomy-index-section-head taxonomy-index-section-head--compact">
+            <p class="taxonomy-kicker">Avainsanat</p>
+            <h2 id="keyword-cloud-title">Tarkempi hakureitti</h2>
+            <p>Avainsanat sopivat silloin, kun etsit tiettyä paikkaa, käsitettä, hanketta tai toistuvaa yksityiskohtaa kategorian sisältä.</p>
+          </div>
+
+          <div class="taxonomy-term-cloud taxonomy-index-keyword-cloud">
+            {% for key in topKeywords %}
+              <a href="/avainsanat/{{ key.slug }}/">
+                <span>{{ key.name }}</span>
+                <small>{{ key.count }}</small>
+              </a>
+            {% endfor %}
+          </div>
+
+          <a class="taxonomy-index-more-link" href="/avainsanat/">Kaikki avainsanat</a>
+        </section>
+      </aside>
     </div>
   </div>
 </section>
