@@ -274,14 +274,14 @@ module.exports = async function () {
     const manualTheses = loadManualTheses();
 
     try {
-        // Hae ohjaajan gradut ja kandit
+        // Hae ohjaajan gradut/kandit ja tarkastetut rinnakkain
         const advisorQuery = buildQuery('thesisadvisor', ['masterThesis', 'bachelorThesis']);
-        const { items: rawAdvisor, hadError: advisorError } = await fetchAll(advisorQuery);
-        const advisor = filterByName(rawAdvisor, NAME, 'thesisadvisor');
-
-        // Hae myös tarkastamat (valinnainen)
         const reviewerQuery = buildQuery('reviewer', ['masterThesis', 'bachelorThesis']);
-        const { items: rawReviewer, hadError: reviewerError } = await fetchAll(reviewerQuery);
+        const [
+            { items: rawAdvisor, hadError: advisorError },
+            { items: rawReviewer, hadError: reviewerError },
+        ] = await Promise.all([fetchAll(advisorQuery), fetchAll(reviewerQuery)]);
+        const advisor = filterByName(rawAdvisor, NAME, 'thesisadvisor');
         const reviewer = filterByName(rawReviewer, NAME, 'reviewer');
 
         // Jos jokin haku epäonnistui osittain, käytetään vanhaa välimuistia
