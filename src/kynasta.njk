@@ -59,6 +59,16 @@ translationKey: writings_index
   </div>
 </section>
 
+<nav class="kynasta-mobile-path" aria-label="Kynästä-sivun tärkeimmät sisällöt">
+  <div class="site-shell">
+    <a href="#puheet">Puheet</a>
+    <a href="#mielipiteet">Mielipiteet</a>
+    <a href="#lausunnot">Lausunnot</a>
+    <a href="#aloitteet">Aloitteet</a>
+    <a href="#blogi">Blogi</a>
+  </div>
+</nav>
+
 <section id="aloita-tasta">
   <div class="site-shell">
     <div class="row g-4 align-items-stretch">
@@ -125,7 +135,9 @@ translationKey: writings_index
   </div>
 </section>
 
-<section id="yhteenveto">
+<details class="kynasta-mobile-disclosure" data-kynasta-mobile-collapse id="yhteenveto" open>
+  <summary class="kynasta-mobile-disclosure-summary">Yhteenveto ja tilastot</summary>
+<section>
   <div class="site-shell">
     <div class="card shadow-sm">
       <div class="card-header bg-transparent">
@@ -220,6 +232,7 @@ translationKey: writings_index
     </div>
   </div>
 </section>
+</details>
 
 <script id="lausunnot-data" type="application/json">
 [
@@ -727,7 +740,9 @@ translationKey: writings_index
 </section>
 
 {# Kerätään esitykset ja AOE-oppimateriaalit JSON-muotoon JS:ää varten #}
-<section id="muut-aineistot" class="bg-body-tertiary">
+<details class="kynasta-mobile-disclosure" data-kynasta-mobile-collapse id="muut-aineistot" open>
+  <summary class="kynasta-mobile-disclosure-summary">Muut aineistot sivustolla</summary>
+<section class="bg-body-tertiary">
   <div class="site-shell">
     <div class="card shadow-sm">
       <div class="card-header bg-transparent">
@@ -771,6 +786,7 @@ translationKey: writings_index
     </div>
   </div>
 </section>
+</details>
 
 <style>
 /* ---- Tilastografiikka-accordion ---- */
@@ -1000,8 +1016,83 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
   min-height: 260px;
 }
 
+.kynasta-mobile-path,
+.kynasta-mobile-disclosure-summary {
+  display: none;
+}
+
 /* ---- Mobiili: taulukot korttimaisiksi riveiksi ---- */
 @media (max-width: 767.98px) {
+  .kynasta-mobile-path {
+    display: block;
+    position: sticky;
+    top: var(--site-header-offset, 0);
+    z-index: 10;
+    padding: 0.75rem 0;
+    background: var(--bs-body-bg);
+    border-bottom: 1px solid var(--bs-border-color);
+  }
+
+  .kynasta-mobile-path .site-shell {
+    display: flex;
+    gap: 0.55rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .kynasta-mobile-path .site-shell::-webkit-scrollbar {
+    display: none;
+  }
+
+  .kynasta-mobile-path a,
+  .kynasta-mobile-disclosure-summary {
+    flex: 0 0 auto;
+    min-height: 2.45rem;
+    border: 1px solid rgba(15, 34, 56, 0.18);
+    border-radius: 999px;
+    background: rgba(15, 34, 56, 0.06);
+    color: #0f2238;
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .kynasta-mobile-path a {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.45rem 0.85rem;
+  }
+
+  .kynasta-mobile-disclosure {
+    border-top: 1px solid var(--bs-border-color);
+  }
+
+  .kynasta-mobile-disclosure-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: calc(100% - 2rem);
+    margin: 1rem auto;
+    padding: 0.55rem 0.9rem;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .kynasta-mobile-disclosure-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .kynasta-mobile-disclosure-summary::after {
+    content: "+";
+    font-size: 1.05rem;
+    line-height: 1;
+  }
+
+  .kynasta-mobile-disclosure[open] .kynasta-mobile-disclosure-summary::after {
+    content: "-";
+  }
+
   .card-body > .table-responsive {
     padding: 0.55rem 0.7rem 0.9rem;
   }
@@ -1124,8 +1215,37 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
     display: none !important;
   }
 
+  [data-bs-theme="dark"] .kynasta-mobile-path {
+    background: var(--bs-body-bg);
+    border-bottom-color: rgba(255, 255, 255, 0.12);
+  }
+
+  [data-bs-theme="dark"] .kynasta-mobile-path a,
+  [data-bs-theme="dark"] .kynasta-mobile-disclosure-summary {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.22);
+    color: rgba(255, 255, 255, 0.86);
+  }
+
 }
 </style>
+
+<script>
+  (() => {
+    const disclosures = Array.from(document.querySelectorAll('[data-kynasta-mobile-collapse]'));
+    if (!disclosures.length) return;
+
+    const mq = window.matchMedia('(max-width: 767.98px)');
+    const syncKynastaMobile = () => {
+      disclosures.forEach((item) => {
+        item.open = !mq.matches;
+      });
+    };
+
+    syncKynastaMobile();
+    mq.addEventListener?.('change', syncKynastaMobile);
+  })();
+</script>
 
 <script>
 function renderPaginationShared(ul, total, currentPage, onPageChange) {

@@ -266,6 +266,8 @@ templateEngineOverride: njk
         <p class="term-card__summary mb-0">{{ term.summary }}</p>
       </div>
 
+      <details class="term-mobile-disclosure" data-term-mobile-collapse data-term-current="{{ term.current }}" open>
+        <summary class="term-mobile-disclosure-summary">Vaalitulokset, luottamustoimet ja arkisto</summary>
       <div class="term-meta-grid">
         <section class="term-meta-card">
           <h3 class="term-meta-card__title">Vaalitulokset</h3>
@@ -298,7 +300,10 @@ templateEngineOverride: njk
           </div>
         </section>
       </div>
+      </details>
 
+      <details class="term-mobile-disclosure" data-term-mobile-collapse data-term-current="{{ term.current }}" open>
+        <summary class="term-mobile-disclosure-summary">Puheenvuorot, aloitteet ja kirjoitukset</summary>
       <div class="term-content-grid">
         <section class="term-content-card">
           <div class="term-content-card__head">
@@ -332,6 +337,7 @@ templateEngineOverride: njk
           {{ renderContentList(otherPoliticalItems, "Tälle kaudelle ei ole vielä koottu muita politiikkasisältöjä.", term.anchor ~ "-other", "type") }}
         </section>
       </div>
+      </details>
     </article>
     {% endfor %}
 
@@ -732,6 +738,10 @@ templateEngineOverride: njk
   margin-top: 2rem;
 }
 
+.term-mobile-disclosure-summary {
+  display: none;
+}
+
 [data-bs-theme="dark"] .term-hero-card,
 [data-bs-theme="dark"] .term-overview-card,
 [data-bs-theme="dark"] .term-card,
@@ -823,9 +833,64 @@ templateEngineOverride: njk
 }
 
 @media (max-width: 767.98px) {
-  .term-jump-grid,
   .term-result-grid {
     grid-template-columns: 1fr;
+  }
+
+  .term-jump-grid {
+    display: flex;
+    gap: 0.65rem;
+    overflow-x: auto;
+    padding-bottom: 0.15rem;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .term-jump-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .term-jump-card {
+    flex: 0 0 72%;
+    min-width: 14rem;
+  }
+
+  .term-mobile-disclosure {
+    border-top: 1px solid rgba(100, 116, 139, 0.16);
+    padding-top: 0.9rem;
+    margin-top: 0.9rem;
+  }
+
+  .term-mobile-disclosure-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    min-height: 2.55rem;
+    margin-bottom: 0.85rem;
+    padding: 0.58rem 0.85rem;
+    border: 1px solid rgba(18, 63, 116, 0.18);
+    border-radius: 999px;
+    background: rgba(18, 63, 116, 0.06);
+    color: #102845;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 800;
+    list-style: none;
+  }
+
+  .term-mobile-disclosure-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .term-mobile-disclosure-summary::after {
+    content: "+";
+    font-size: 1.05rem;
+    line-height: 1;
+  }
+
+  .term-mobile-disclosure[open] .term-mobile-disclosure-summary::after {
+    content: "-";
   }
 
   .term-card,
@@ -839,6 +904,16 @@ templateEngineOverride: njk
 
   .term-footer-links .btn {
     width: 100%;
+  }
+
+  [data-bs-theme="dark"] .term-mobile-disclosure {
+    border-top-color: rgba(148, 163, 184, 0.18);
+  }
+
+  [data-bs-theme="dark"] .term-mobile-disclosure-summary {
+    background: rgba(191, 219, 254, 0.1);
+    border-color: rgba(191, 219, 254, 0.24);
+    color: #dbeafe;
   }
 }
 </style>
@@ -894,5 +969,21 @@ templateEngineOverride: njk
 
       renderPage(1);
     });
+  })();
+
+  (() => {
+    const disclosures = Array.from(document.querySelectorAll('[data-term-mobile-collapse]'));
+    if (!disclosures.length) return;
+
+    const mq = window.matchMedia('(max-width: 767.98px)');
+    const syncTermMobile = () => {
+      disclosures.forEach((item) => {
+        const isCurrent = item.getAttribute('data-term-current') === 'true';
+        item.open = !mq.matches || isCurrent;
+      });
+    };
+
+    syncTermMobile();
+    mq.addEventListener?.('change', syncTermMobile);
   })();
 </script>

@@ -18,6 +18,16 @@ translationKey: theses_index
   </div>
 </section>
 
+<nav class="thesis-mobile-path" aria-label="Opinnäytesivun tärkeimmät osiot">
+  <div class="site-shell">
+    <a href="#card-master">Gradut</a>
+    <a href="#card-bachelor">Kandit</a>
+    {% if theses.reviewerOnly and theses.reviewerOnly.length %}
+    <a href="#card-reviewer">Tarkastajana</a>
+    {% endif %}
+  </div>
+</nav>
+
 <div class="site-shell py-4">
   {# Laskurit #}
   <div class="row g-3 my-4">
@@ -1016,6 +1026,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <style>
 /* ---- Vuosirimps ---- */
+.thesis-mobile-path {
+  display: none;
+}
+
 .thesis-year-btn {
   font-size: 0.8rem;
   font-weight: 500;
@@ -1129,5 +1143,71 @@ document.addEventListener('DOMContentLoaded', () => {
 }
 .thesis-mobile-list .thesis-abstract-snippet {
   display: none; /* ei snippettiä mobiilissa, vain painike */
+}
+
+@media (max-width: 767.98px) {
+  .thesis-mobile-path {
+    display: block;
+    position: sticky;
+    top: var(--site-header-offset, 0);
+    z-index: 10;
+    padding: 0.75rem 0;
+    background: var(--bs-body-bg);
+    border-bottom: 1px solid var(--bs-border-color);
+  }
+
+  .thesis-mobile-path .site-shell {
+    display: flex;
+    gap: 0.55rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .thesis-mobile-path .site-shell::-webkit-scrollbar {
+    display: none;
+  }
+
+  .thesis-mobile-path a {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.45rem;
+    padding: 0.45rem 0.85rem;
+    border: 1px solid rgba(15, 23, 42, 0.18);
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.06);
+    color: #0f172a;
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  #thesis-year-bar {
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    padding-bottom: 0.2rem;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #thesis-year-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  #thesis-year-bar .thesis-year-btn {
+    flex: 0 0 auto;
+  }
+
+  [data-bs-theme="dark"] .thesis-mobile-path {
+    background: var(--bs-body-bg);
+    border-bottom-color: rgba(255, 255, 255, 0.12);
+  }
+
+  [data-bs-theme="dark"] .thesis-mobile-path a {
+    background: rgba(125, 184, 240, 0.1);
+    border-color: rgba(125, 184, 240, 0.24);
+    color: #d9ecff;
+  }
 }
 </style>

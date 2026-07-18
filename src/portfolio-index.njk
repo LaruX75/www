@@ -99,6 +99,15 @@ translationKey: portfolio_index
 </section>
 <div class="portfolio-hero-divider"></div>
 
+<nav class="portfolio-mobile-path" aria-label="Portfoliosivun tärkeimmät osiot">
+  <div class="site-shell">
+    <a href="#opetusajattelu">Periaatteet</a>
+    <a href="#nayttoa-tyosta">Näyttö</a>
+    <a href="#nykyinen-fokus">Nyt</a>
+    <a href="#portfolioaineisto">Aineisto</a>
+  </div>
+</nav>
+
 <section class="py-5">
   <div class="site-shell">
     <div class="row g-3 text-center">
@@ -267,7 +276,9 @@ translationKey: portfolio_index
   </div>
 </section>
 
-<section class="py-5 bg-body-tertiary border-top border-bottom" id="nykyinen-fokus">
+<details class="portfolio-mobile-disclosure" data-portfolio-mobile-collapse id="nykyinen-fokus" open>
+  <summary class="portfolio-mobile-disclosure-summary">Ajankohtainen fokus</summary>
+<section class="py-5 bg-body-tertiary border-top border-bottom">
   <div class="site-shell">
     <div class="portfolio-section-head">
       <p class="portfolio-eyebrow portfolio-eyebrow--dark mb-1"><i class="bi bi-lightning-charge me-1"></i>Ajankohtainen fokus</p>
@@ -318,8 +329,11 @@ translationKey: portfolio_index
     </div>
   </div>
 </section>
+</details>
 
-<section class="py-5" id="portfolioaineisto">
+<details class="portfolio-mobile-disclosure" data-portfolio-mobile-collapse id="portfolioaineisto" open>
+  <summary class="portfolio-mobile-disclosure-summary">Tarkemmat näytöt</summary>
+<section class="py-5">
   <div class="site-shell">
     <div class="portfolio-section-head">
       <p class="portfolio-eyebrow portfolio-eyebrow--dark mb-1"><i class="bi bi-journal-richtext me-1"></i>Tarkemmat näytöt</p>
@@ -419,9 +433,12 @@ translationKey: portfolio_index
     </div>
   </div>
 </section>
+</details>
 
 {% if latestPortfolioPresentations | length %}
-<section class="py-5 bg-body-tertiary border-top border-bottom" id="esitysnostot">
+<details class="portfolio-mobile-disclosure" data-portfolio-mobile-collapse id="esitysnostot" open>
+  <summary class="portfolio-mobile-disclosure-summary">Viimeisimmät esitykset</summary>
+<section class="py-5 bg-body-tertiary border-top border-bottom">
   <div class="site-shell">
     <div class="row g-4 align-items-start">
       <div class="col-xl-5">
@@ -464,9 +481,12 @@ translationKey: portfolio_index
     </div>
   </div>
 </section>
+</details>
 {% endif %}
 
-<section class="py-5" id="portfolionaytteet">
+<details class="portfolio-mobile-disclosure" data-portfolio-mobile-collapse id="portfolionaytteet" open>
+  <summary class="portfolio-mobile-disclosure-summary">Portfolionäytteitä</summary>
+<section class="py-5">
   <div class="site-shell">
     <div class="portfolio-section-head">
       <p class="portfolio-eyebrow portfolio-eyebrow--dark mb-1"><i class="bi bi-collection me-1"></i>Portfolionäytteitä</p>
@@ -512,8 +532,11 @@ translationKey: portfolio_index
     </div>
   </div>
 </section>
+</details>
 
-<section class="py-5 bg-body-tertiary border-top" id="arkistot">
+<details class="portfolio-mobile-disclosure" data-portfolio-mobile-collapse id="arkistot" open>
+  <summary class="portfolio-mobile-disclosure-summary">Laajempi aineisto</summary>
+<section class="py-5 bg-body-tertiary border-top">
   <div class="site-shell">
     <div class="portfolio-section-head">
       <p class="portfolio-eyebrow portfolio-eyebrow--dark mb-1"><i class="bi bi-archive me-1"></i>Laajempi aineisto</p>
@@ -578,6 +601,7 @@ translationKey: portfolio_index
     </div>
   </div>
 </section>
+</details>
 
 <style>
   .portfolio-hero {
@@ -930,10 +954,76 @@ translationKey: portfolio_index
   [data-bs-theme="dark"] .portfolio-resource-kicker {
     color: #9eb7d2;
   }
+  .portfolio-mobile-path {
+    display: none;
+  }
+  .portfolio-mobile-disclosure-summary {
+    display: none;
+  }
 
   @media (max-width: 991.98px) {
   }
   @media (max-width: 767.98px) {
+    .portfolio-mobile-path {
+      display: block;
+      position: sticky;
+      top: var(--site-header-offset, 0);
+      z-index: 10;
+      padding: 0.75rem 0;
+      background: var(--bs-body-bg);
+      border-bottom: 1px solid var(--bs-border-color);
+    }
+    .portfolio-mobile-path .site-shell {
+      display: flex;
+      gap: 0.55rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .portfolio-mobile-path .site-shell::-webkit-scrollbar {
+      display: none;
+    }
+    .portfolio-mobile-path a,
+    .portfolio-mobile-disclosure-summary {
+      flex: 0 0 auto;
+      min-height: 2.45rem;
+      border: 1px solid rgba(28, 76, 133, 0.18);
+      border-radius: 999px;
+      background: rgba(13, 71, 124, 0.06);
+      color: #153a62;
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .portfolio-mobile-path a {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.45rem 0.85rem;
+    }
+    .portfolio-mobile-disclosure {
+      border-top: 1px solid var(--bs-border-color);
+    }
+    .portfolio-mobile-disclosure-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: calc(100% - 2rem);
+      margin: 1rem auto;
+      padding: 0.55rem 0.9rem;
+      cursor: pointer;
+      list-style: none;
+    }
+    .portfolio-mobile-disclosure-summary::-webkit-details-marker {
+      display: none;
+    }
+    .portfolio-mobile-disclosure-summary::after {
+      content: "+";
+      font-size: 1.05rem;
+      line-height: 1;
+    }
+    .portfolio-mobile-disclosure[open] .portfolio-mobile-disclosure-summary::after {
+      content: "-";
+    }
     .portfolio-hero-title {
       max-width: none;
       font-size: 2.5rem;
@@ -949,5 +1039,41 @@ translationKey: portfolio_index
     .portfolio-resource-card .card-body {
       padding: 1.2rem;
     }
+    [data-bs-theme="dark"] .portfolio-mobile-path {
+      background: var(--bs-body-bg);
+      border-bottom-color: rgba(255, 255, 255, 0.12);
+    }
+    [data-bs-theme="dark"] .portfolio-mobile-path a,
+    [data-bs-theme="dark"] .portfolio-mobile-disclosure-summary {
+      background: rgba(158, 197, 248, 0.1);
+      border-color: rgba(158, 197, 248, 0.24);
+      color: #d6e8ff;
+    }
   }
 </style>
+
+<script>
+  (() => {
+    const disclosures = Array.from(document.querySelectorAll('[data-portfolio-mobile-collapse]'));
+    if (!disclosures.length) return;
+
+    const mq = window.matchMedia('(max-width: 767.98px)');
+    const syncPortfolioMobile = () => {
+      disclosures.forEach((item) => {
+        item.open = !mq.matches;
+      });
+    };
+
+    document.querySelectorAll('.portfolio-mobile-path a[href^="#"]').forEach((link) => {
+      link.addEventListener('click', () => {
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target && target.matches('[data-portfolio-mobile-collapse]')) {
+          target.open = true;
+        }
+      });
+    });
+
+    syncPortfolioMobile();
+    mq.addEventListener?.('change', syncPortfolioMobile);
+  })();
+</script>
