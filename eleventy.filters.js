@@ -11,6 +11,22 @@ function buildImgFallback(src, alt, className = "") {
 }
 
 module.exports = function registerFilters(eleventyConfig) {
+  eleventyConfig.addFilter("toManualPub", function (items) {
+    const item = Array.isArray(items) ? items[0] : items;
+    if (!item) return {};
+    const d = item.data || {};
+    const dateStr = String(d.date || "");
+    return {
+      title: d.title || "",
+      year: dateStr.slice(0, 4) || "",
+      authors: d.author || "Jari Laru",
+      url: d.source_url || d.url || "",
+      typeCode: d.publicationType || "",
+      publisherName: d.publisher || d.publication || "",
+      journalName: d.publicationCollection || ""
+    };
+  });
+
   eleventyConfig.addFilter("jsonSafe", function (value) {
     return JSON.stringify(value)
       .replace(/<\/script/gi, "<\\/script")

@@ -32,6 +32,19 @@ translationKey: publications_index
   {%- if pub.peerReviewed -%}{%- set peerReviewedCount = peerReviewedCount + 1 -%}{%- endif -%}
   {%- if pub.openAccess -%}{%- set openAccessCount = openAccessCount + 1 -%}{%- endif -%}
 {%- endfor -%}
+{%- for item in collections.publications -%}
+  {%- if item.data.publicationType -%}
+    {%- set typeChar = item.data.publicationType | first -%}
+    {%- set manualPub = [item] | toManualPub -%}
+    {%- if typeChar == "A" -%}{%- set pubsA = (pubsA.push(manualPub), pubsA) -%}
+    {%- elif typeChar == "B" -%}{%- set pubsB = (pubsB.push(manualPub), pubsB) -%}
+    {%- elif typeChar == "C" -%}{%- set pubsC = (pubsC.push(manualPub), pubsC) -%}
+    {%- elif typeChar == "D" -%}{%- set pubsD = (pubsD.push(manualPub), pubsD) -%}
+    {%- elif typeChar == "E" -%}{%- set pubsE = (pubsE.push(manualPub), pubsE) -%}
+    {%- elif typeChar == "G" -%}{%- set pubsG = (pubsG.push(manualPub), pubsG) -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
 {%- set latestResearchHighlights = (researchfi or []).slice(0, 3) -%}
 {%- set latestPeerReviewedHighlights = (pubsA or []).slice(0, 2) -%}
 {%- set latestPublicHighlights = (pubsE or []).slice(0, 2) -%}
