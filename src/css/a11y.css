@@ -301,7 +301,7 @@ html[data-a11y-bg="green"] main {
 
 html[data-a11y-bg]:not([data-a11y-bg=""]) .card,
 html[data-a11y-bg]:not([data-a11y-bg=""]) .ticker-item {
-    background-color: #ffffff !important;
+    background-color: var(--bs-secondary-bg) !important;
     border-color: rgba(0, 0, 0, 0.1) !important;
     color: var(--bs-body-color) !important;
 }
