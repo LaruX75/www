@@ -31,6 +31,8 @@
     "fetch:keywords": "node scripts/fetch-thesis-keywords.js",
     "keywords:local": "node scripts/extract-local-keywords.js",
     "classify:keywords": "node scripts/classify-keywords.js",
+    "audit:council-videos": "node scripts/audit-council-speech-videos.mjs",
+    "audit:council-video-times": "node scripts/find-council-speech-video-times.mjs",
     "eleventy": "npx @11ty/eleventy",
     "eleventy:serve": "npx @11ty/eleventy --serve",
     "deploy:codeberg": "npm run build:no-og && touch _site/.nojekyll && echo 'codeberg.jarilaru.fi' > _site/.domains && rm -rf _site/.git && cd _site && git init -b main && git config user.name 'Jari Laru' && git config user.email 'jari.laru@gmail.com' && git add . && git commit -m \"deploy: $(date -u +%Y-%m-%dT%H:%M:%SZ) [ci skip]\" && git push --force https://LaruX:${CODEBERG_TOKEN}@codeberg.org/LaruX/pages.git main:main"
