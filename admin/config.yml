@@ -56,7 +56,26 @@ collections:
             value: "tieteellinen"
           - label: "Esitelmä"
             value: "esitelma"
+          - label: "Artikkeli / blogikirjoitus"
+            value: "artikkeli"
+          - label: "Blogikirjoitus"
+            value: "blogikirjoitus"
+      - label: "Julkaisuluokka (Research.fi)"
+        name: "publicationType"
+        widget: "select"
+        required: false
+        hint: "JUFO-luokka, esim. E1 = yleistajuinen artikkeli"
+        options:
+          - { label: "E1 – Yleistajuinen artikkeli, sanomalehtiartikkeli", value: "E1" }
+          - { label: "E2 – Yleistajuinen monografia", value: "E2" }
+          - { label: "D1 – Artikkeli ammatillisessa lehdessä", value: "D1" }
+          - { label: "D2 – Artikkeli ammatillisessa kokoomateoksessa", value: "D2" }
+      - { label: "Julkaisija", name: "publisher", widget: "string", required: false, hint: "Esim. Faktabaari" }
       - { label: "Julkaisupaikka/lehti", name: "publication", widget: "string", required: false, hint: "Esim. Lausuntopalvelu.fi tai Kaleva" }
+      - { label: "Kokoelma / sarja", name: "publicationCollection", widget: "string", required: false, hint: "Esim. Tekoälyopas opettajille" }
+      - { label: "Tekijä(t)", name: "author", widget: "string", required: false, hint: "Esim. Jari Laru tai Laru, J. & Tedre, M." }
+      - { label: "Lähde-URL", name: "source_url", widget: "string", required: false, hint: "Linkki ulkoiseen julkaisuun" }
+      - { label: "Thumbnail-URL", name: "thumbnail", widget: "string", required: false, hint: "Kansikuvan URL" }
       - { label: "Tapahtuma", name: "event", widget: "string", required: false, hint: "Puheen tai esitelmän tapahtuma, esim. Oulun kaupunginvaltuusto" }
       - { label: "Asiakohta", name: "asiakohta", widget: "string", required: false, hint: "Esim. § 83 – Info: Sivistysohjelma" }
       - label: "Foorumi (puhe)"
