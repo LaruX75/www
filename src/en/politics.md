@@ -114,7 +114,7 @@ lang: en
       {% for video in oukaCouncilVideos %}
       <div class="card border-0 shadow-sm flex-shrink-0" style="width:280px; scroll-snap-align:start;">
         {% if video.thumbnail %}
-        <a href="{{ video.url }}" target="_blank" rel="noopener noreferrer">
+        <a href="{{ video.url }}" target="_blank" rel="noopener noreferrer" class="video-preview">
           <img src="{{ video.thumbnail }}" alt="{{ video.title }}" class="card-img-top" style="aspect-ratio:16/9; object-fit:cover;" loading="lazy">
         </a>
         {% endif %}

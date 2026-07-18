@@ -316,9 +316,8 @@ templateEngineOverride: njk
     <div class="pol-video-highlight-list mb-4">
       {% for video in politicalVideoHighlights %}
       <article class="pol-current-card pol-video-highlight">
-        <a href="{{ video.url }}" target="_blank" rel="noopener noreferrer" class="pol-video-thumb-link" aria-label="Katso video: {{ video.title }}">
+        <a href="{{ video.url }}" target="_blank" rel="noopener noreferrer" class="pol-video-thumb-link video-preview" aria-label="Katso video: {{ video.title }}">
           <img src="{{ video.thumbnail }}" alt="{{ video.title }}" class="pol-video-thumb" loading="lazy" decoding="async">
-          <span class="pol-video-play"><i class="bi bi-play-fill" aria-hidden="true"></i></span>
         </a>
         <div class="pol-video-copy">
           <div class="pol-video-meta">
@@ -1158,20 +1157,6 @@ templateEngineOverride: njk
   .pol-video-thumb-link:hover .pol-video-thumb {
     transform: scale(1.035);
   }
-  .pol-video-play {
-    position: absolute;
-    inset: auto 1rem 1rem auto;
-    width: 3.1rem;
-    height: 3.1rem;
-    border-radius: 999px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    background: rgba(15, 39, 69, 0.88);
-    box-shadow: 0 0.75rem 1.5rem rgba(17, 40, 70, 0.2);
-    font-size: 1.7rem;
-  }
   .pol-video-copy {
     align-self: center;
   }
@@ -1451,10 +1436,6 @@ templateEngineOverride: njk
   }
   [data-bs-theme="dark"] .pol-method-card p {
     color: rgba(255, 255, 255, 0.82);
-  }
-  [data-bs-theme="dark"] .pol-video-play {
-    color: #0f2745;
-    background: rgba(244, 248, 253, 0.92);
   }
   [data-bs-theme="dark"] .political-speeches-table th {
     color: rgba(255, 255, 255, 0.78);
