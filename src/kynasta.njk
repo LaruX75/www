@@ -622,6 +622,7 @@ translationKey: writings_index
   {% set resolvedAsiakohta = councilMeta.asiakohta or pub.data.asiakohta or "" %}
   {% set meetingDate = pub.data.meetingDate or councilMeta.meetingDate or pub.date.toISOString().slice(0, 10) %}
   {% set protocolUrl = councilMeta.protocolUrl or (resolvedEvent == "Oulun kaupunginvaltuusto" and oukaCouncilSpeechProtocols.protocolsByDate[meetingDate]) %}
+  {% set councilVideos = councilSpeechVideos.byUrl[resolvedUrl] or councilSpeechVideos.byUrl[pub.data.source_url] or [] %}
   {
     "title": {{ pub.data.title | jsonSafe | safe }},
     "date": "{{ pub.date }}",
@@ -630,6 +631,7 @@ translationKey: writings_index
     "event": {{ resolvedEvent | jsonSafe | safe }},
     "asiakohta": {{ resolvedAsiakohta | jsonSafe | safe }},
     "protocolUrl": {{ (protocolUrl or "") | jsonSafe | safe }},
+    "councilVideos": {{ councilVideos | jsonSafe | safe }},
     "url": "{{ resolvedUrl }}",
     "isExternal": {{ (pub.data.url != null) | jsonSafe | safe }},
     "categories": {{ (pub.data.categories or []) | jsonSafe | safe }},
@@ -2519,6 +2521,16 @@ function syncWritingRoleFilterButtons(buttons, selectedRole) {
     return s.trim();
   }
 
+  function secondsToClock(totalSeconds) {
+    const total = Number(totalSeconds || 0);
+    const hours = Math.floor(total / 3600);
+    const minutes = Math.floor((total % 3600) / 60);
+    const seconds = total % 60;
+    return [hours, minutes, seconds]
+      .map((part, index) => index === 0 ? String(part) : String(part).padStart(2, '0'))
+      .join(':');
+  }
+
   function applyPuheetFilters() {
     const q = puheetSearchInp ? puheetSearchInp.value.toLowerCase().trim() : '';
     filteredPuheetData = puheetData.filter(d => {
@@ -2570,6 +2582,9 @@ function syncWritingRoleFilterButtons(buttons, selectedRole) {
         const targetAttr = d.isExternal ? 'target="_blank" rel="noopener"' : '';
         const iconInfo = d.isExternal ? '<i class="bi bi-arrow-up-right"></i>' : '<i class="bi bi-arrow-right"></i>';
         const eventInfo = d.event ? `<br><span class="badge text-bg-light border text-dark mt-1"><i class="bi bi-calendar-event me-1"></i>${escHtml(d.event)}</span>` : '';
+        const videoInfo = (d.councilVideos || []).length
+          ? `<br><a href="https://www.youtube.com/watch?v=${d.councilVideos[0].youtubeId}&t=${d.councilVideos[0].start}s" target="_blank" rel="noopener" class="badge text-bg-light border text-dark mt-1 text-decoration-none"><i class="bi bi-youtube me-1"></i>Video ${secondsToClock(d.councilVideos[0].start)}</a>`
+          : '';
         const asiakohtaLabel = escHtml(d.asiakohta || (d.protocolUrl ? 'Kokouspöytäkirja' : ''));
         const asiakohtaInfo = d.protocolUrl
           ? `<a href="${d.protocolUrl}" target="_blank" rel="noopener" class="text-decoration-none">${asiakohtaLabel}</a>`
@@ -2579,7 +2594,7 @@ function syncWritingRoleFilterButtons(buttons, selectedRole) {
           <td class="col-date text-center small text-muted font-monospace">${d.formattedDate}</td>
           <td class="col-asiakohta small text-muted">${asiakohtaInfo}</td>
           <td class="col-title fw-medium"><a href="${d.url}" ${targetAttr} class="text-decoration-none">${escHtml(shortTitle(d.title))}</a></td>
-          <td class="col-desc small text-muted"><span class="summary-text">${escHtml(d.description)}</span>${eventInfo}</td>
+          <td class="col-desc small text-muted"><span class="summary-text">${escHtml(d.description)}</span>${eventInfo}${videoInfo}</td>
           <td class="col-taxonomy">
             <div class="mb-1">${catBadges}</div>
             <div>${keyBadges}</div>
@@ -2784,25 +2799,29 @@ function syncWritingRoleFilterButtons(buttons, selectedRole) {
   let kolumnitCurrentPage = 1;
   let kolumnitSortCol = 'date';
   let kolumnitSortDir = -1; // -1 = desc
+  let selectedKolumnitRole = 'all';
 
   const kolumnitSearchInp = document.getElementById('kolumnit-search');
   const kolumnitTbody = document.getElementById('kolumnit-tbody');
   const kolumnitInfo = document.getElementById('kolumnit-info');
   const kolumnitPagUl = document.getElementById('kolumnit-pagination');
+  const kolumnitRoleButtons = Array.from(document.querySelectorAll('[data-kolumnit-role]'));
 
   function applyKolumnitFilters() {
     const q = kolumnitSearchInp ? kolumnitSearchInp.value.toLowerCase().trim() : '';
     filteredKolumnitData = kolumnitData.filter(d => {
+      const roles = d.writingRoles || [];
       const matchQ = !q ||
         (d.title || '').toLowerCase().includes(q) ||
         (d.description || '').toLowerCase().includes(q) ||
         (d.publication || '').toLowerCase().includes(q) ||
-        writingRoleMatchesQuery(d.writingRoles || [], q) ||
+        writingRoleMatchesQuery(roles, q) ||
         (d.categories || []).some(c => c.toLowerCase().includes(q)) ||
         (d.keywords || []).some(k => k.toLowerCase().includes(q));
-      return matchQ;
+      return matchQ && writingRoleMatchesFilter(roles, selectedKolumnitRole);
     }).sort((a, b) => new Date(b.date) - new Date(a.date));
     kolumnitCurrentPage = 1;
+    syncWritingRoleFilterButtons(kolumnitRoleButtons, selectedKolumnitRole);
     renderKolumnit();
   }
 
@@ -2894,11 +2913,19 @@ function syncWritingRoleFilterButtons(buttons, selectedRole) {
   }
 
   if (kolumnitSearchInp) kolumnitSearchInp.addEventListener('input', applyKolumnitFilters);
+
+  kolumnitRoleButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      selectedKolumnitRole = btn.dataset.kolumnitRole || 'all';
+      applyKolumnitFilters();
+    });
+  });
   
   const kolumnitResetBtn = document.getElementById('kolumnit-reset');
   if (kolumnitResetBtn) {
     kolumnitResetBtn.addEventListener('click', () => {
       if (kolumnitSearchInp) kolumnitSearchInp.value = '';
+      selectedKolumnitRole = 'all';
       applyKolumnitFilters();
     });
   }
