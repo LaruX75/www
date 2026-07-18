@@ -62,6 +62,13 @@ templateEngineOverride: njk
 </section>
 <div class="pol-hero-divider"></div>
 
+<nav class="pol-mobile-path" aria-label="Politiikkasivun tärkeimmät osiot">
+  <a href="#vaalikaudet">Tehtävät</a>
+  <a href="#ydinteemat">Ydinteemat</a>
+  <a href="#ajankohtaista">Näyttö</a>
+  <a href="#kirjoitukset">Kirjoitukset</a>
+</nav>
+
 {% set politicalSpeechEvents = [
   "Oulun kaupunginvaltuusto",
   "Oulun kaupunginvaltuuston vierailu Oulun yliopistolla",
@@ -259,33 +266,41 @@ templateEngineOverride: njk
 
 <section class="py-5 mb-0 bg-body-tertiary" id="toimintatapa">
   <div class="site-shell">
-    <div class="pol-section-head">
-      <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-diagram-3 me-1"></i>Toimintatapa</p>
-      <h2 class="pol-section-title">Miten teen politiikkaa</h2>
-      <p class="pol-section-lead mb-0">Olennaista ei ole vain se, mistä puhun, vaan miten yritän vaikuttaa. Sisällöissäni toistuu sama työskentelytapa: perehdyn, perustelen ja pidän kokonaisuuden näkyvissä silloinkin, kun keskustelu kaventuu yksittäiseen kiistaan.</p>
-    </div>
-    <div class="pol-method-grid">
-      <article class="pol-method-card">
-        <span class="pol-method-number">1</span>
-        <h3 class="h6">Perehdyn ennen kuin linjaan</h3>
-        <p class="small mb-0">Tilastot, vaikutusarviot ja tausta-aineistot eivät ole koristeita vaan päätösten perusta. Tämä näkyy erityisesti kouluverkkoa, väestökehitystä ja raportointia koskevissa sisällöissä.</p>
-      </article>
-      <article class="pol-method-card">
-        <span class="pol-method-number">2</span>
-        <h3 class="h6">Edistän valmistelun läpinäkyvyyttä</h3>
-        <p class="small mb-0">Päätöksentekoa pitää voida seurata myös organisaation ulkopuolelta. Siksi pidän tärkeänä raportointia, aloitteiden seurantaa, tietojärjestelmiä ja muita käytäntöjä, jotka tekevät valmistelusta aidosti läpinäkyvää.</p>
-      </article>
-      <article class="pol-method-card">
-        <span class="pol-method-number">3</span>
-        <h3 class="h6">Katselen päätöksiä koko Oulun läpi</h3>
-        <p class="small mb-0">Päätösten vaikutuksia pitää tarkastella kaikkien 23 suuralueen ja 105 kaupunginosan näkökulmasta. Siksi puhun palveluverkosta, liikkumisesta ja kasvusta koko kaupungin alueellisena yhdenvertaisuutena, en vain yksittäisinä hankkeina.</p>
-      </article>
-      <article class="pol-method-card">
-        <span class="pol-method-number">4</span>
-        <h3 class="h6">Haen yhteistyötä ilman pehmeyttä</h3>
-        <p class="small mb-0">Yhteistyö ei tarkoita linjattomuutta. Pyrin löytämään toimivia kompromisseja, mutta nostan ongelmat esiin silloin, kun päätökset uhkaavat sivistystä, palveluja tai valmistelun laatua.</p>
-      </article>
-    </div>
+    <details class="pol-mobile-disclosure" data-pol-mobile-collapse open>
+      <summary class="pol-mobile-disclosure-summary">
+        <span>Miten teen politiikkaa</span>
+        <small>Työskentelytapa ja päätöksenteon periaatteet</small>
+      </summary>
+      <div class="pol-mobile-disclosure-body">
+        <div class="pol-section-head">
+          <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-diagram-3 me-1"></i>Toimintatapa</p>
+          <h2 class="pol-section-title">Miten teen politiikkaa</h2>
+          <p class="pol-section-lead mb-0">Olennaista ei ole vain se, mistä puhun, vaan miten yritän vaikuttaa. Sisällöissäni toistuu sama työskentelytapa: perehdyn, perustelen ja pidän kokonaisuuden näkyvissä silloinkin, kun keskustelu kaventuu yksittäiseen kiistaan.</p>
+        </div>
+        <div class="pol-method-grid">
+          <article class="pol-method-card">
+            <span class="pol-method-number">1</span>
+            <h3 class="h6">Perehdyn ennen kuin linjaan</h3>
+            <p class="small mb-0">Tilastot, vaikutusarviot ja tausta-aineistot eivät ole koristeita vaan päätösten perusta. Tämä näkyy erityisesti kouluverkkoa, väestökehitystä ja raportointia koskevissa sisällöissä.</p>
+          </article>
+          <article class="pol-method-card">
+            <span class="pol-method-number">2</span>
+            <h3 class="h6">Edistän valmistelun läpinäkyvyyttä</h3>
+            <p class="small mb-0">Päätöksentekoa pitää voida seurata myös organisaation ulkopuolelta. Siksi pidän tärkeänä raportointia, aloitteiden seurantaa, tietojärjestelmiä ja muita käytäntöjä, jotka tekevät valmistelusta aidosti läpinäkyvää.</p>
+          </article>
+          <article class="pol-method-card">
+            <span class="pol-method-number">3</span>
+            <h3 class="h6">Katselen päätöksiä koko Oulun läpi</h3>
+            <p class="small mb-0">Päätösten vaikutuksia pitää tarkastella kaikkien 23 suuralueen ja 105 kaupunginosan näkökulmasta. Siksi puhun palveluverkosta, liikkumisesta ja kasvusta koko kaupungin alueellisena yhdenvertaisuutena, en vain yksittäisinä hankkeina.</p>
+          </article>
+          <article class="pol-method-card">
+            <span class="pol-method-number">4</span>
+            <h3 class="h6">Haen yhteistyötä ilman pehmeyttä</h3>
+            <p class="small mb-0">Yhteistyö ei tarkoita linjattomuutta. Pyrin löytämään toimivia kompromisseja, mutta nostan ongelmat esiin silloin, kun päätökset uhkaavat sivistystä, palveluja tai valmistelun laatua.</p>
+          </article>
+        </div>
+      </div>
+    </details>
   </div>
 </section>
 
@@ -459,46 +474,62 @@ templateEngineOverride: njk
 
 <section class="py-5 mb-0 bg-body-tertiary" id="laajempi-profiili">
   <div class="site-shell">
-    <div class="pol-section-head">
-      <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-compass me-1"></i>Laajempi profiili</p>
-      <h2 class="pol-section-title">Tukiteemat, jotka täydentävät kokonaisuutta</h2>
-      <p class="pol-section-lead mb-0">Kaikki poliittinen sisältö ei kuulu ydinteemoihin. Nämä teemat täydentävät profiilia etenkin kaupunkikehityksen, hyvinvoinnin ja yhteistyökykyisen päätöksenteon suunnista.</p>
-    </div>
-    <div id="politics-support-theme-list" class="row g-4"></div>
+    <details class="pol-mobile-disclosure" data-pol-mobile-collapse open>
+      <summary class="pol-mobile-disclosure-summary">
+        <span>Tukiteemat</span>
+        <small>Kaupunkikehitys, hyvinvointi ja yhteistyö</small>
+      </summary>
+      <div class="pol-mobile-disclosure-body">
+        <div class="pol-section-head">
+          <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-compass me-1"></i>Laajempi profiili</p>
+          <h2 class="pol-section-title">Tukiteemat, jotka täydentävät kokonaisuutta</h2>
+          <p class="pol-section-lead mb-0">Kaikki poliittinen sisältö ei kuulu ydinteemoihin. Nämä teemat täydentävät profiilia etenkin kaupunkikehityksen, hyvinvoinnin ja yhteistyökykyisen päätöksenteon suunnista.</p>
+        </div>
+        <div id="politics-support-theme-list" class="row g-4"></div>
+      </div>
+    </details>
   </div>
 </section>
 
 <section class="py-5 mb-0" id="arkistot">
   <div class="site-shell">
-    <div class="pol-archive-band">
-      <div class="pol-archive-copy">
-        <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-archive me-1"></i>Arkistot</p>
-        <h2 class="pol-section-title mb-2">Syvemmälle aineistoon</h2>
-        <p class="mb-0">Politiikkasivu näyttää linjan. Kun haluat koko aineiston, löydät sen kirjoituksista, puheenvuoroista, aloitteista ja kaupungin kokousaineistoista.</p>
+    <details class="pol-mobile-disclosure pol-mobile-disclosure--archive" data-pol-mobile-collapse open>
+      <summary class="pol-mobile-disclosure-summary">
+        <span>Syvemmälle aineistoon</span>
+        <small>Arkistot, pöytäkirjat ja koko kirjoitusaineisto</small>
+      </summary>
+      <div class="pol-mobile-disclosure-body">
+        <div class="pol-archive-band">
+          <div class="pol-archive-copy">
+            <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-archive me-1"></i>Arkistot</p>
+            <h2 class="pol-section-title mb-2">Syvemmälle aineistoon</h2>
+            <p class="mb-0">Politiikkasivu näyttää linjan. Kun haluat koko aineiston, löydät sen kirjoituksista, puheenvuoroista, aloitteista ja kaupungin kokousaineistoista.</p>
+          </div>
+          <div class="pol-archive-links">
+            <a href="/kynasta/?opinions=political#mielipiteet" class="pol-archive-link">
+              <strong>Poliittiset mielipiteet</strong>
+              <span>Kirjoitukset, joissa kunnallinen ja alueellinen linja näkyy selvimmin.</span>
+            </a>
+            <a href="/kynasta/#puheet" class="pol-archive-link">
+              <strong>Puheenvuoroarkisto</strong>
+              <span>Valtuustossa ja muissa tilaisuuksissa pidetyt puheet.</span>
+            </a>
+            <a href="/kynasta/#aloitteet" class="pol-archive-link">
+              <strong>Aloitearkisto</strong>
+              <span>Kaikki valtuustoaloitteet vastauksineen ja taustoineen.</span>
+            </a>
+            <a href="/vaalikaudet/" class="pol-archive-link">
+              <strong>Vaalikaudet</strong>
+              <span>Luottamustoimet, puheenvuorot ja kirjoitukset vaalikausittain jäsennettynä.</span>
+            </a>
+            <a href="https://www.ouka.fi/valtuusto" target="_blank" rel="noopener noreferrer" class="pol-archive-link">
+              <strong>Kokoukset ja pöytäkirjat</strong>
+              <span>Oulun kaupungin kokoukset, tallenteet ja viralliset asiakirjat.</span>
+            </a>
+          </div>
+        </div>
       </div>
-      <div class="pol-archive-links">
-        <a href="/kynasta/?opinions=political#mielipiteet" class="pol-archive-link">
-          <strong>Poliittiset mielipiteet</strong>
-          <span>Kirjoitukset, joissa kunnallinen ja alueellinen linja näkyy selvimmin.</span>
-        </a>
-        <a href="/kynasta/#puheet" class="pol-archive-link">
-          <strong>Puheenvuoroarkisto</strong>
-          <span>Valtuustossa ja muissa tilaisuuksissa pidetyt puheet.</span>
-        </a>
-        <a href="/kynasta/#aloitteet" class="pol-archive-link">
-          <strong>Aloitearkisto</strong>
-          <span>Kaikki valtuustoaloitteet vastauksineen ja taustoineen.</span>
-        </a>
-        <a href="/vaalikaudet/" class="pol-archive-link">
-          <strong>Vaalikaudet</strong>
-          <span>Luottamustoimet, puheenvuorot ja kirjoitukset vaalikausittain jäsennettynä.</span>
-        </a>
-        <a href="https://www.ouka.fi/valtuusto" target="_blank" rel="noopener noreferrer" class="pol-archive-link">
-          <strong>Kokoukset ja pöytäkirjat</strong>
-          <span>Oulun kaupungin kokoukset, tallenteet ja viralliset asiakirjat.</span>
-        </a>
-      </div>
-    </div>
+    </details>
   </div>
 </section>
 
@@ -611,6 +642,15 @@ templateEngineOverride: njk
   .pol-hero-divider {
     height: 4px;
     background: linear-gradient(90deg, #123f74 0%, #3a76bc 45%, #123f74 100%);
+  }
+  .pol-mobile-path {
+    display: none;
+  }
+  .pol-mobile-disclosure-summary {
+    display: none;
+  }
+  .pol-mobile-disclosure-body {
+    display: block;
   }
   .pol-eyebrow {
     font-size: 0.72rem;
@@ -1475,6 +1515,21 @@ templateEngineOverride: njk
   [data-bs-theme="dark"] .pol-mandate-link-card:hover strong {
     color: #ffffff;
   }
+  [data-bs-theme="dark"] .pol-mobile-path {
+    background: rgba(9, 19, 34, 0.96);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+  [data-bs-theme="dark"] .pol-mobile-path a,
+  [data-bs-theme="dark"] .pol-mobile-disclosure-summary {
+    color: #f6f9ff;
+  }
+  [data-bs-theme="dark"] .pol-mobile-disclosure-summary {
+    background: rgba(14, 31, 54, 0.92);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+  [data-bs-theme="dark"] .pol-mobile-disclosure-summary small {
+    color: rgba(246, 249, 255, 0.68);
+  }
   @media (max-width: 1199.98px) {
     .pol-mandate-layout {
       grid-template-columns: 1fr;
@@ -1487,6 +1542,86 @@ templateEngineOverride: njk
     }
   }
   @media (max-width: 767.98px) {
+    .pol-mobile-path {
+      display: flex;
+      gap: 0.5rem;
+      margin: 0;
+      padding: 0.75rem max(1rem, calc((100vw - 1140px) / 2 + 1rem));
+      overflow-x: auto;
+      background: rgba(255, 255, 255, 0.94);
+      border-bottom: 1px solid rgba(17, 40, 70, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      -webkit-overflow-scrolling: touch;
+    }
+    .pol-mobile-path::-webkit-scrollbar {
+      display: none;
+    }
+    .pol-mobile-path a {
+      flex: 0 0 auto;
+      border-radius: 999px;
+      padding: 0.52rem 0.78rem;
+      background: rgba(18, 63, 116, 0.08);
+      color: #123f74;
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .pol-mobile-disclosure {
+      display: block;
+    }
+    .pol-mobile-disclosure-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.05rem;
+      border: 1px solid rgba(17, 40, 70, 0.12);
+      border-radius: 1rem;
+      background: #ffffff;
+      box-shadow: 0 1rem 2rem rgba(17, 40, 70, 0.08);
+      color: #112846;
+      cursor: pointer;
+      list-style: none;
+    }
+    .pol-mobile-disclosure-summary::-webkit-details-marker {
+      display: none;
+    }
+    .pol-mobile-disclosure-summary::after {
+      content: '+';
+      display: inline-grid;
+      place-items: center;
+      flex: 0 0 auto;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 999px;
+      background: rgba(18, 63, 116, 0.08);
+      color: #123f74;
+      font-weight: 900;
+    }
+    .pol-mobile-disclosure[open] .pol-mobile-disclosure-summary::after {
+      content: '-';
+    }
+    .pol-mobile-disclosure-summary span {
+      display: block;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+    .pol-mobile-disclosure-summary small {
+      display: block;
+      margin-top: 0.2rem;
+      color: rgba(17, 40, 70, 0.66);
+      font-size: 0.78rem;
+      line-height: 1.35;
+    }
+    .pol-mobile-disclosure[open] .pol-mobile-disclosure-body {
+      padding-top: 1.25rem;
+    }
+    .pol-initiative-item:nth-child(n+4) {
+      display: none;
+    }
     .pol-mandate-links {
       grid-template-columns: 1fr;
     }
@@ -1529,6 +1664,8 @@ templateEngineOverride: njk
     const politicalSpeechesTableBody = document.getElementById('political-speeches-table-body');
     const politicalSpeechesInfo = document.getElementById('political-speeches-info');
     const politicalSpeechesPagination = document.getElementById('political-speeches-pagination');
+    const mobileQuery = window.matchMedia('(max-width: 767.98px)');
+    const mobileDisclosures = Array.from(document.querySelectorAll('[data-pol-mobile-collapse]'));
 
     const escHtml = (value) => String(value || '')
       .replaceAll('&', '&amp;')
@@ -1551,6 +1688,23 @@ templateEngineOverride: njk
       if (afterColon !== s) return afterColon.trim();
       return s.trim();
     }
+    function currentPoliticalSpeechPageSize() {
+      return mobileQuery.matches ? 3 : 6;
+    }
+
+    function applyPoliticsMobileDisclosureState() {
+      mobileDisclosures.forEach((disclosure) => {
+        if (!mobileQuery.matches) {
+          disclosure.open = true;
+          disclosure.dataset.mobilePrepared = 'false';
+          return;
+        }
+        if (disclosure.dataset.mobilePrepared === 'true') return;
+        disclosure.open = false;
+        disclosure.dataset.mobilePrepared = 'true';
+      });
+    }
+
     const politicsBlogData = blogRaw
       .filter((item) => item && item.title && item.url && Array.isArray(item.politicalProfiles) && item.politicalProfiles.length > 0)
       .sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -1578,12 +1732,12 @@ templateEngineOverride: njk
       {
         key: 'lahipalvelut',
         title: 'Koko Oulun alueellinen yhdenvertaisuus',
-        description: 'Oulun 23 suuralueen ja 105 kaupunginosan palvelut, saavutettavuus ja tasapuolinen kehitys.',
+        description: 'Oulun 23 suuralueen ja 106 kaupunginosan palvelut, saavutettavuus ja tasapuolinen kehitys.',
         statement: 'Oulua pitää kehittää kokonaisuutena niin, että jokainen suuralue ja kaupunginosa pysyy mukana kasvussa, investoinneissa ja palveluissa.',
         icon: 'bi-geo-alt-fill',
         color: '#198754',
         tier: 'core',
-        focus: ['23 suuraluetta', '105 kaupunginosaa', 'alueellinen yhdenvertaisuus']
+        focus: ['23 suuraluetta', '106 kaupunginosaa', 'alueellinen yhdenvertaisuus']
       },
       {
         key: 'avoinhallinto',
@@ -1717,7 +1871,7 @@ templateEngineOverride: njk
 
     function renderPoliticalSpeeches(page = 1) {
       if (!politicalSpeechesTableBody || !politicalSpeechesPagination || !politicalSpeechesInfo) return;
-      const pageSize = 6;
+      const pageSize = currentPoliticalSpeechPageSize();
       const total = politicalSpeechesData.length;
       const totalPages = Math.max(1, Math.ceil(total / pageSize));
       const safePage = Math.min(Math.max(page, 1), totalPages);
@@ -1752,6 +1906,7 @@ templateEngineOverride: njk
     }
 
     renderThemeCards();
+    applyPoliticsMobileDisclosureState();
     renderPoliticalSpeeches();
 
     politicalSpeechesPagination?.addEventListener('click', (event) => {
@@ -1760,6 +1915,10 @@ templateEngineOverride: njk
       const page = Number(button.getAttribute('data-political-speeches-page'));
       if (!Number.isFinite(page)) return;
       renderPoliticalSpeeches(page);
+    });
+    mobileQuery.addEventListener('change', () => {
+      applyPoliticsMobileDisclosureState();
+      renderPoliticalSpeeches(1);
     });
   })();
 </script>
