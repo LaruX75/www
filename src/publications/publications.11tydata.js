@@ -106,6 +106,10 @@ module.exports = {
   layout: "page.njk",
   lang: "fi",
   eleventyComputed: {
+    layout: (data) => {
+      const writingTypes = new Set(["puhe", "mielipide", "kolumni", "lausunto", "blogikirjoitus"]);
+      return writingTypes.has(data.type) ? "writing-post.njk" : "page.njk";
+    },
     opinionRoles: (data) => resolveOpinionRoles(data),
     writingRoles: (data) => resolveWritingRoles(data),
     tags: (data) => {

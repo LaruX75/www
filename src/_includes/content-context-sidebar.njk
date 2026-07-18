@@ -1,0 +1,122 @@
+{% set currentLang = lang or (page.url | langFromUrl) %}
+{% set currentTags = tags or [] %}
+{% set relatedItems = collections | relatedContent(page.url, categories, keywords, currentTags, type, 4) %}
+{% set termCloud = collections | contentTermCloud(categories, keywords, 12) %}
+{% set isEnglish = currentLang == "en" %}
+{% set txt = {
+  "context": "Collection",
+  "toc": "Contents",
+  "belongs": "Browse the same material",
+  "topics": "Topic paths",
+  "keywords": "Keywords",
+  "related": "Related content",
+  "archive": "Open full list",
+  "noRelated": "No closely related items found yet."
+} if isEnglish else {
+  "context": "Kokonaisuus",
+  "toc": "Sisällys",
+  "belongs": "Selaa samaa aineistoa",
+  "topics": "Aihepolut",
+  "keywords": "Avainsanat",
+  "related": "Samasta aiheesta",
+  "archive": "Avaa koko lista",
+  "noRelated": "Läheisiä sisältöjä ei vielä löytynyt."
+} %}
+
+{% set archiveHref = "/kynasta/" %}
+{% set typeLabel = "Kirjoitus" %}
+{% if isEnglish %}
+  {% set archiveHref = "/en/writings/" %}
+  {% set typeLabel = "Text" %}
+{% endif %}
+
+{% if "blog" in currentTags %}
+  {% set archiveHref = "/en/blog/" if isEnglish else "/blogi/" %}
+  {% set typeLabel = "Blog post" if isEnglish else "Blogikirjoitus" %}
+{% elif type == "puhe" %}
+  {% set archiveHref = "/en/writings/#puheet" if isEnglish else "/kynasta/#puheet" %}
+  {% set typeLabel = "Speech" if isEnglish else "Puheenvuoro" %}
+{% elif type == "lausunto" %}
+  {% set archiveHref = "/en/writings/#lausunnot" if isEnglish else "/kynasta/#lausunnot" %}
+  {% set typeLabel = "Expert statement" if isEnglish else "Asiantuntijalausunto" %}
+{% elif type == "mielipide" %}
+  {% if opinionRoles and ("political" in opinionRoles) and ("expert" in opinionRoles) %}
+    {% set archiveHref = "/en/writings/?opinions=hybrid#mielipiteet" if isEnglish else "/kynasta/?opinions=hybrid#mielipiteet" %}
+    {% set typeLabel = "Political + expert opinion" if isEnglish else "Poliittinen ja asiantuntijamielipide" %}
+  {% elif opinionRoles and ("political" in opinionRoles) %}
+    {% set archiveHref = "/en/writings/?opinions=political#mielipiteet" if isEnglish else "/kynasta/?opinions=political#mielipiteet" %}
+    {% set typeLabel = "Political opinion" if isEnglish else "Poliittinen mielipide" %}
+  {% elif opinionRoles and ("expert" in opinionRoles) %}
+    {% set archiveHref = "/en/writings/?opinions=expert#mielipiteet" if isEnglish else "/kynasta/?opinions=expert#mielipiteet" %}
+    {% set typeLabel = "Expert opinion" if isEnglish else "Asiantuntijamielipide" %}
+  {% else %}
+    {% set archiveHref = "/en/writings/#mielipiteet" if isEnglish else "/kynasta/#mielipiteet" %}
+    {% set typeLabel = "Opinion" if isEnglish else "Mielipide" %}
+  {% endif %}
+{% elif type == "kolumni" %}
+  {% set archiveHref = "/en/writings/#kolumnit" if isEnglish else "/kynasta/#kolumnit" %}
+  {% set typeLabel = "Column" if isEnglish else "Kolumni" %}
+{% elif "politics" in currentTags %}
+  {% set archiveHref = "/en/writings/#aloitteet" if isEnglish else "/kynasta/#aloitteet" %}
+  {% set typeLabel = "Initiative" if isEnglish else "Aloite" %}
+{% endif %}
+
+<div class="content-context-sidebar">
+  {% if tocMarkup %}
+  <div class="content-context-card content-context-toc">
+    <p class="content-context-kicker">{{ txt.toc }}</p>
+    {{ tocMarkup | safe }}
+  </div>
+  {% endif %}
+
+  <div class="content-context-card content-context-card--primary">
+    <p class="content-context-kicker">{{ txt.context }}</p>
+    <h2 class="content-context-title">{{ txt.belongs }}</h2>
+    <a class="content-context-type" href="{{ archiveHref }}">
+      <span>{{ typeLabel }}</span>
+      <i class="bi bi-arrow-right" aria-hidden="true"></i>
+    </a>
+  </div>
+
+  {% if categories %}
+  <div class="content-context-card">
+    <p class="content-context-kicker">{{ txt.topics }}</p>
+    <div class="content-context-chiplist">
+      {% for cat in categories %}
+      <a class="content-context-chip content-context-chip--category" href="{{ '/en/categories/' if isEnglish else '/kategoriat/' }}{{ cat | slugify }}/">{{ cat }}</a>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  {% if termCloud.length %}
+  <div class="content-context-card">
+    <p class="content-context-kicker">{{ txt.keywords }}</p>
+    <div class="content-context-cloud">
+      {% for term in termCloud %}
+      <a class="content-context-term content-context-term--{{ term.weight }}" href="{{ '/en/keywords/' if isEnglish else '/avainsanat/' }}{{ term.name | slugify }}/">
+        {{ term.name }}
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="content-context-card">
+    <p class="content-context-kicker">{{ txt.related }}</p>
+    {% if relatedItems.length %}
+    <ol class="content-context-related">
+      {% for item in relatedItems %}
+      <li>
+        <a href="{{ item.url }}">{{ item.title }}</a>
+        <span>{{ item.typeLabel }}</span>
+      </li>
+      {% endfor %}
+    </ol>
+    {% else %}
+    <p class="small text-muted mb-0">{{ txt.noRelated }}</p>
+    {% endif %}
+  </div>
+
+  <a class="btn btn-outline-primary btn-sm rounded-pill w-100" href="{{ archiveHref }}">{{ txt.archive }}</a>
+</div>

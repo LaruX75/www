@@ -219,6 +219,78 @@ html:not([data-bs-theme="dark"]) .subpage-hero-image {
   color: var(--bs-secondary-color);
 }
 
+/* ===== WRITING POST: speeches, initiatives, opinions and statements ===== */
+.writing-post-kicker {
+  margin-bottom: 0.55rem;
+  color: var(--bs-secondary-color);
+  font-size: 0.78rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.writing-post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.25rem 0 1.35rem;
+}
+
+.writing-post-meta > div {
+  min-width: min(100%, 11rem);
+  padding: 0.75rem 0.85rem;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 0.85rem;
+  background: var(--bs-tertiary-bg);
+}
+
+.writing-post-meta dt {
+  margin-bottom: 0.2rem;
+  color: var(--bs-secondary-color);
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.writing-post-meta dd {
+  margin: 0;
+  color: var(--bs-emphasis-color);
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.writing-post-source a {
+  display: inline-flex;
+  align-items: center;
+  color: var(--bs-link-color);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.writing-post-source a:hover {
+  color: var(--bs-link-hover-color);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+[data-bs-theme="dark"] .writing-post-meta > div {
+  background: rgba(255, 255, 255, 0.045);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+@media (max-width: 575.98px) {
+  .writing-post-meta {
+    display: grid;
+    gap: 0.6rem;
+  }
+
+  .writing-post-meta > div {
+    min-width: 0;
+  }
+}
+
 /* ===== SHARED KPI CARDS ===== */
 .site-kpi-card {
   border-radius: 1rem;
@@ -473,6 +545,187 @@ html:not([data-bs-theme="dark"]) .kynasta-hero {
 }
 [data-bs-theme="dark"] .card-header.bg-transparent h2 {
   color: #ffffff;
+}
+
+/* --- Content context sidebar: related paths for articles and writings --- */
+.content-context-sidebar {
+  display: grid;
+  gap: 0.85rem;
+  position: sticky;
+  top: 1rem;
+}
+
+.content-context-card {
+  border: 1px solid var(--bs-border-color);
+  border-radius: 1rem;
+  background: var(--bs-body-bg);
+  padding: 1rem;
+}
+
+.content-context-card--primary {
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--bs-link-color) 10%, transparent), transparent 72%),
+    var(--bs-body-bg);
+  border-color: color-mix(in srgb, var(--bs-link-color) 18%, var(--bs-border-color));
+}
+
+.content-context-kicker {
+  margin-bottom: 0.45rem;
+  color: var(--bs-secondary-color);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.content-context-title {
+  margin-bottom: 0.8rem;
+  font-family: 'Bree Serif', Georgia, 'Times New Roman', serif;
+  font-size: 1.05rem;
+  line-height: 1.25;
+  color: var(--bs-emphasis-color);
+}
+
+.content-context-type {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--bs-link-color);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.content-context-type:hover {
+  color: var(--bs-link-hover-color);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.content-context-toc ul {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0;
+  padding-left: 1rem;
+}
+
+.content-context-toc a {
+  color: var(--bs-body-color);
+  font-size: 0.86rem;
+  font-weight: 650;
+  line-height: 1.3;
+  text-decoration: none;
+}
+
+.content-context-toc a:hover {
+  color: var(--bs-link-color);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.content-context-chiplist,
+.content-context-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.content-context-chip,
+.content-context-term {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 999px;
+  background: var(--bs-tertiary-bg);
+  color: var(--bs-body-color);
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+.content-context-chip {
+  padding: 0.38rem 0.65rem;
+  font-size: 0.78rem;
+  font-weight: 750;
+}
+
+.content-context-chip--category {
+  background: color-mix(in srgb, var(--bs-link-color) 8%, var(--bs-tertiary-bg));
+  border-color: color-mix(in srgb, var(--bs-link-color) 18%, var(--bs-border-color));
+}
+
+.content-context-term {
+  padding: 0.32rem 0.58rem;
+  font-weight: 650;
+}
+
+.content-context-term--sm { font-size: 0.76rem; opacity: 0.82; }
+.content-context-term--md { font-size: 0.86rem; }
+.content-context-term--lg { font-size: 0.96rem; font-weight: 750; }
+.content-context-term--xl { font-size: 1.05rem; font-weight: 800; }
+
+.content-context-chip:hover,
+.content-context-term:hover {
+  border-color: color-mix(in srgb, var(--bs-link-color) 36%, var(--bs-border-color));
+  color: var(--bs-link-color);
+}
+
+.content-context-related {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.content-context-related li::marker {
+  color: var(--bs-secondary-color);
+  font-weight: 800;
+}
+
+.content-context-related a {
+  display: block;
+  color: var(--bs-body-color);
+  font-size: 0.9rem;
+  font-weight: 750;
+  line-height: 1.28;
+  text-decoration: none;
+}
+
+.content-context-related a:hover {
+  color: var(--bs-link-color);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.content-context-related span {
+  display: block;
+  margin-top: 0.15rem;
+  color: var(--bs-secondary-color);
+  font-size: 0.74rem;
+}
+
+[data-bs-theme="dark"] .content-context-card {
+  background: rgba(255, 255, 255, 0.035);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+[data-bs-theme="dark"] .content-context-card--primary {
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--bs-link-color) 18%, transparent), transparent 72%),
+    rgba(255, 255, 255, 0.04);
+  border-color: color-mix(in srgb, var(--bs-link-color) 28%, rgba(255, 255, 255, 0.14));
+}
+
+[data-bs-theme="dark"] .content-context-chip,
+[data-bs-theme="dark"] .content-context-term {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.14);
+  color: var(--bs-body-color);
+}
+
+@media (max-width: 991.98px) {
+  .content-context-sidebar {
+    position: static;
+    margin-top: 1rem;
+  }
 }
 
 /* --- Section anchor scroll offset --- */
@@ -770,4 +1023,31 @@ html:not([data-bs-theme="dark"]) .badge.text-bg-light {
 }
 .header-filter-hidden {
   display: none !important;
+}
+
+/* --- Council speech video cards --- */
+.council-speech-videos {
+  border: 1px solid var(--bs-border-color);
+  border-radius: var(--site-radius-lg, 1.25rem);
+  background: var(--bs-tertiary-bg);
+  padding: clamp(1rem, 2vw, 1.25rem);
+}
+
+.council-speech-video-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.council-speech-video-card {
+  border: 1px solid var(--bs-border-color);
+  border-radius: var(--site-radius-md, 1rem);
+  background: var(--bs-body-bg);
+  padding: 1rem;
+}
+
+.council-speech-video-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
 }

@@ -6,6 +6,81 @@ function getLangFromUrl(url) {
   return String(url || "").startsWith("/en/") ? "en" : "fi";
 }
 
+function toArray(value) {
+  if (Array.isArray(value)) return value.filter(Boolean);
+  if (typeof value === "string" && value.trim()) return [value];
+  return [];
+}
+
+function normalizeTerm(value) {
+  return String(value || "").trim().toLowerCase();
+}
+
+function normalizeTerms(values) {
+  return new Set(toArray(values).map(normalizeTerm).filter(Boolean));
+}
+
+function uniqueContentItems(collections) {
+  const sources = [
+    ...(collections?.blog || []),
+    ...(collections?.publications || []),
+    ...(collections?.politics || [])
+  ];
+  const seen = new Set();
+  return sources.filter((item) => {
+    if (!item || !item.url || !item.data?.title || seen.has(item.url)) return false;
+    seen.add(item.url);
+    return true;
+  });
+}
+
+function intersectionCount(values, wanted) {
+  return toArray(values).reduce((count, value) => (
+    wanted.has(normalizeTerm(value)) ? count + 1 : count
+  ), 0);
+}
+
+function contentTypeLabel(data = {}, tags = [], lang = "fi") {
+  const tagSet = new Set(toArray(tags));
+  const type = data.type || "";
+  if (type === "lausunto") return lang === "en" ? "Expert statement" : "Asiantuntijalausunto";
+  if (type === "puhe") return lang === "en" ? "Speech" : "Puheenvuoro";
+  if (type === "mielipide") return lang === "en" ? "Opinion" : "Mielipide";
+  if (type === "kolumni") return lang === "en" ? "Column" : "Kolumni";
+  if (tagSet.has("politics")) return lang === "en" ? "Initiative" : "Aloite";
+  if (tagSet.has("blog")) return lang === "en" ? "Blog post" : "Blogikirjoitus";
+  return lang === "en" ? "Text" : "Kirjoitus";
+}
+
+function archiveTerms(items, limit = 14, source = "both") {
+  const labels = new Map();
+  const counts = new Map();
+
+  toArray(items).forEach((item) => {
+    const terms = source === "categories"
+      ? toArray(item.data?.categories)
+      : source === "keywords"
+        ? toArray(item.data?.keywords)
+        : [...toArray(item.data?.categories), ...toArray(item.data?.keywords)];
+    terms.forEach((term) => {
+      const normalized = normalizeTerm(term);
+      if (!normalized) return;
+      labels.set(normalized, labels.get(normalized) || term);
+      counts.set(normalized, (counts.get(normalized) || 0) + 1);
+    });
+  });
+
+  return [...counts.entries()]
+    .map(([normalized, count]) => ({
+      name: labels.get(normalized) || normalized,
+      count,
+      weight: count >= 20 ? "xl" : count >= 10 ? "lg" : count >= 5 ? "md" : "sm"
+    }))
+    .filter((term) => term.count > 1)
+    .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name, "fi"))
+    .slice(0, Number(limit) || 14);
+}
+
 function buildImgFallback(src, alt, className = "") {
   return `<img src="${src}" alt="${alt}" class="${className}" loading="lazy" decoding="async">`;
 }
@@ -63,6 +138,16 @@ module.exports = function registerFilters(eleventyConfig) {
     return new Date(date).getFullYear();
   });
 
+  eleventyConfig.addFilter("secondsToClock", function (value) {
+    const total = Number(value || 0);
+    const hours = Math.floor(total / 3600);
+    const minutes = Math.floor((total % 3600) / 60);
+    const seconds = total % 60;
+    return [hours, minutes, seconds]
+      .map((part, index) => index === 0 ? String(part) : String(part).padStart(2, "0"))
+      .join(":");
+  });
+
   eleventyConfig.addFilter("excerpt", function (content) {
     if (!content) return "";
     const text = content.replace(/<[^>]+>/g, "");
@@ -84,6 +169,78 @@ module.exports = function registerFilters(eleventyConfig) {
   eleventyConfig.addFilter("skip", function (arr, n) {
     if (!arr) return [];
     return arr.slice(n);
+  });
+
+  eleventyConfig.addFilter("relatedContent", function (collections, pageUrl, categories, keywords, tags, type, limit = 4) {
+    const wantedCategories = normalizeTerms(categories);
+    const wantedKeywords = normalizeTerms(keywords);
+    const wantedTags = normalizeTerms(tags);
+    const wantedType = String(type || "");
+    const lang = getLangFromUrl(pageUrl);
+
+    if (!wantedCategories.size && !wantedKeywords.size && !wantedTags.size && !wantedType) return [];
+
+    return uniqueContentItems(collections)
+      .filter((item) => item.url !== pageUrl)
+      .map((item) => {
+        const data = item.data || {};
+        const categoryScore = intersectionCount(data.categories, wantedCategories) * 5;
+        const keywordScore = intersectionCount(data.keywords, wantedKeywords) * 3;
+        const tagScore = intersectionCount(data.tags, wantedTags) * 2;
+        const typeScore = wantedType && data.type === wantedType ? 2 : 0;
+        const score = categoryScore + keywordScore + tagScore + typeScore;
+        return {
+          url: item.url,
+          title: data.title || "",
+          description: data.description || "",
+          date: item.date || data.date || null,
+          typeLabel: contentTypeLabel(data, data.tags, lang),
+          score
+        };
+      })
+      .filter((item) => item.score > 0)
+      .sort((a, b) => {
+        if (b.score !== a.score) return b.score - a.score;
+        return new Date(b.date || 0) - new Date(a.date || 0);
+      })
+      .slice(0, Number(limit) || 4);
+  });
+
+  eleventyConfig.addFilter("contentTermCloud", function (collections, categories, keywords, limit = 12) {
+    const ownTerms = [...toArray(categories), ...toArray(keywords)];
+    if (!ownTerms.length) return [];
+
+    const frequencies = new Map();
+    uniqueContentItems(collections).forEach((item) => {
+      [...toArray(item.data?.categories), ...toArray(item.data?.keywords)].forEach((term) => {
+        const normalized = normalizeTerm(term);
+        if (!normalized) return;
+        frequencies.set(normalized, (frequencies.get(normalized) || 0) + 1);
+      });
+    });
+
+    const seen = new Set();
+    return ownTerms
+      .filter((term) => {
+        const normalized = normalizeTerm(term);
+        if (!normalized || seen.has(normalized)) return false;
+        seen.add(normalized);
+        return true;
+      })
+      .map((term) => {
+        const count = frequencies.get(normalizeTerm(term)) || 1;
+        return {
+          name: term,
+          count,
+          weight: count >= 20 ? "xl" : count >= 10 ? "lg" : count >= 5 ? "md" : "sm"
+        };
+      })
+      .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name, "fi"))
+      .slice(0, Number(limit) || 12);
+  });
+
+  eleventyConfig.addFilter("archiveTermCloud", function (items, limit = 14, source = "both") {
+    return archiveTerms(items, limit, source);
   });
 
   eleventyConfig.addFilter("filterByType", function (arr, type) {

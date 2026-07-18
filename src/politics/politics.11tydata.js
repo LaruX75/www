@@ -1,5 +1,5 @@
 module.exports = {
-    layout: "page.njk",
+    layout: "writing-post.njk",
     tags: "politics",
     lang: "fi",
     permalink: function (data) {

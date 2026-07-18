@@ -1,0 +1,130 @@
+---
+layout: base.njk
+---
+{% set currentLang = lang or (page.url | langFromUrl) %}
+{% set currentTags = tags or [] %}
+{% set isEnglish = currentLang == "en" %}
+
+{% set sectionLabel = "Kirjoitus" %}
+{% set backHref = "/kynasta/" %}
+{% set backLabel = "Takaisin Kynästä-sivulle" %}
+
+{% if isEnglish %}
+  {% set sectionLabel = "Text" %}
+  {% set backHref = "/en/writings/" %}
+  {% set backLabel = "Back to writings" %}
+{% endif %}
+
+{% if type == "puhe" %}
+  {% set sectionLabel = "Speech" if isEnglish else "Puheenvuoro" %}
+  {% set backHref = "/en/writings/#puheet" if isEnglish else "/kynasta/#puheet" %}
+{% elif type == "lausunto" %}
+  {% set sectionLabel = "Expert statement" if isEnglish else "Asiantuntijalausunto" %}
+  {% set backHref = "/en/writings/#lausunnot" if isEnglish else "/kynasta/#lausunnot" %}
+{% elif type == "mielipide" %}
+  {% if opinionRoles and ("political" in opinionRoles) and ("expert" in opinionRoles) %}
+    {% set sectionLabel = "Political + expert opinion" if isEnglish else "Poliittinen ja asiantuntijamielipide" %}
+    {% set backHref = "/en/writings/?opinions=hybrid#mielipiteet" if isEnglish else "/kynasta/?opinions=hybrid#mielipiteet" %}
+  {% elif opinionRoles and ("political" in opinionRoles) %}
+    {% set sectionLabel = "Political opinion" if isEnglish else "Poliittinen mielipide" %}
+    {% set backHref = "/en/writings/?opinions=political#mielipiteet" if isEnglish else "/kynasta/?opinions=political#mielipiteet" %}
+  {% elif opinionRoles and ("expert" in opinionRoles) %}
+    {% set sectionLabel = "Expert opinion" if isEnglish else "Asiantuntijamielipide" %}
+    {% set backHref = "/en/writings/?opinions=expert#mielipiteet" if isEnglish else "/kynasta/?opinions=expert#mielipiteet" %}
+  {% else %}
+    {% set sectionLabel = "Opinion" if isEnglish else "Mielipide" %}
+    {% set backHref = "/en/writings/#mielipiteet" if isEnglish else "/kynasta/#mielipiteet" %}
+  {% endif %}
+{% elif type == "kolumni" %}
+  {% set sectionLabel = "Column" if isEnglish else "Kolumni" %}
+  {% set backHref = "/en/writings/#kolumnit" if isEnglish else "/kynasta/#kolumnit" %}
+{% elif initiative_type or ("politics" in currentTags) %}
+  {% set sectionLabel = "Initiative" if isEnglish else "Aloite" %}
+  {% set backHref = "/en/writings/#aloitteet" if isEnglish else "/kynasta/#aloitteet" %}
+{% endif %}
+
+<section>
+  <div class="site-shell">
+    <article class="blog-post writing-post">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <p class="writing-post-kicker">{{ sectionLabel }}</p>
+          <h1 class="display-6 fw-bold">{{ title }}</h1>
+          {% if subtitle %}
+            <p class="lead text-muted">{{ subtitle }}</p>
+          {% endif %}
+
+          <dl class="writing-post-meta">
+            {% if date %}
+              <div>
+                <dt>{{ "Date" if isEnglish else "Päiväys" }}</dt>
+                <dd>{{ date | dateFormat }}</dd>
+              </div>
+            {% endif %}
+            {% if event %}
+              <div>
+                <dt>{{ "Context" if isEnglish else "Tilaisuus" }}</dt>
+                <dd>{{ event }}</dd>
+              </div>
+            {% elif publication %}
+              <div>
+                <dt>{{ "Publication" if isEnglish else "Julkaisupaikka" }}</dt>
+                <dd>{{ publication }}</dd>
+              </div>
+            {% endif %}
+            {% if asiakohta %}
+              <div>
+                <dt>{{ "Agenda item" if isEnglish else "Asiakohta" }}</dt>
+                <dd>{{ asiakohta }}</dd>
+              </div>
+            {% endif %}
+            {% if diaryNumber %}
+              <div>
+                <dt>{{ "Diary number" if isEnglish else "Diaarinumero" }}</dt>
+                <dd>{{ diaryNumber }}</dd>
+              </div>
+            {% endif %}
+          </dl>
+
+          {% if source_url %}
+            <p class="writing-post-source mb-4">
+              <a href="{{ source_url }}" target="_blank" rel="noopener noreferrer">
+                {{ "Open original source" if isEnglish else "Avaa alkuperäinen lähde" }}
+                <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i>
+              </a>
+            </p>
+          {% endif %}
+
+          {% include "council-speech-videos.njk" %}
+
+          {% set tocMarkup = content | toc %}
+          <div class="row g-4">
+            <div class="col-lg-8">
+              {% if thumbnail %}
+                <img loading="lazy" decoding="async" src="{{ thumbnail }}" class="img-fluid rounded mb-4" alt="{{ title }}">
+              {% endif %}
+              <div class="post-content content-prose">{{ content | safe }}</div>
+            </div>
+            <aside class="col-lg-4">
+              {% include "content-context-sidebar.njk" %}
+            </aside>
+          </div>
+
+          {% if "politics" in currentTags %}
+          <div class="alert alert-secondary mt-4 py-2 small mb-0" role="note">
+            <i class="bi bi-c-circle me-1" aria-hidden="true"></i>
+            {% if isEnglish %}
+            This text is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer" class="alert-link">CC BY-NC-ND 4.0</a>. Non-commercial use only, no modifications.
+            {% else %}
+            Tämä kirjoitus on lisensoitu <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer" class="alert-link">CC BY-NC-ND 4.0</a> -lisenssillä — ei kaupalliseen käyttöön, ei muutoksia.
+            {% endif %}
+          </div>
+          {% endif %}
+        </div>
+        <div class="card-footer bg-transparent">
+          <a href="{{ backHref }}" class="btn btn-outline-primary">&larr; {{ backLabel }}</a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
