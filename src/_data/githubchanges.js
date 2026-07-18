@@ -95,12 +95,20 @@ async function fetchAllCommits({ owner, repo, branch, token }) {
 
   const lastPage = Math.min(parseLinkLastPage(resp1.headers.get("Link")) || 1, MAX_PAGES);
 
-  for (let page = 2; page <= lastPage; page++) {
-    const resp = await fetchWithTimeout(buildUrl(page), { headers }, 15000);
-    if (!resp.ok) break;
-    const data = await resp.json();
-    if (!Array.isArray(data) || data.length === 0) break;
-    rows.push(...data.map(normalizeCommit).filter((r) => r.sha && r.url));
+  if (lastPage > 1) {
+    const pageNums = Array.from({ length: lastPage - 1 }, (_, i) => i + 2);
+    const settled = await Promise.allSettled(
+      pageNums.map((page) =>
+        fetchWithTimeout(buildUrl(page), { headers }, 15000).then((r) =>
+          r.ok ? r.json() : []
+        )
+      )
+    );
+    for (const result of settled) {
+      if (result.status === "fulfilled" && Array.isArray(result.value)) {
+        rows.push(...result.value.map(normalizeCommit).filter((r) => r.sha && r.url));
+      }
+    }
   }
 
   return rows;
