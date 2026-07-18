@@ -103,6 +103,17 @@ function resolveWritingRoles(data) {
   return Array.from(mergedRoles);
 }
 
+function resolveForum(data) {
+  const forums = new Set(toArray(data.forum));
+  const event = String(data.event || "").trim().toLowerCase();
+
+  if (data.type === "puhe" && event === "oulun kaupunginvaltuusto") {
+    forums.add("Kaupunginvaltuusto");
+  }
+
+  return Array.from(forums);
+}
+
 module.exports = {
   layout: "page.njk",
   lang: "fi",
@@ -111,6 +122,7 @@ module.exports = {
       const writingTypes = new Set(["puhe", "mielipide", "kolumni", "lausunto", "blogikirjoitus"]);
       return writingTypes.has(data.type) ? "writing-post.njk" : "page.njk";
     },
+    forum: (data) => resolveForum(data),
     opinionRoles: (data) => resolveOpinionRoles(data),
     writingRoles: (data) => resolveWritingRoles(data),
     contexts: (data) => resolveContexts(data),

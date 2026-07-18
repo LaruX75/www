@@ -1,6 +1,7 @@
 {% set currentLang = lang or (page.url | langFromUrl) %}
 {% set currentTags = tags or [] %}
 {% set currentContexts = contexts or [] %}
+{% set currentForums = forum or [] %}
 {% set relatedItems = collections | relatedContent(page.url, categories, keywords, currentTags, type, currentContexts, 4) %}
 {% set termCloud = collections | contentTermCloud([], keywords, 12) %}
 {% set isEnglish = currentLang == "en" %}
@@ -10,9 +11,9 @@
   "belongs": "Browse the same material",
   "contexts": "Context paths",
   "topics": "Topic paths",
+  "forums": "Forum",
   "keywords": "Keywords",
   "related": "Related content",
-  "archive": "Open full index",
   "noRelated": "No closely related items found yet."
 } if isEnglish else {
   "context": "Kokonaisuus",
@@ -20,21 +21,24 @@
   "belongs": "Selaa samaa aineistoa",
   "contexts": "Kontekstipolut",
   "topics": "Aihepolut",
+  "forums": "Toimielin",
   "keywords": "Avainsanat",
   "related": "Samasta aiheesta",
-  "archive": "Avaa koko luettelo",
   "noRelated": "Läheisiä sisältöjä ei vielä löytynyt."
 } %}
 
 {% set archiveHref = "/kynasta/" %}
+{% set archiveLabel = "All writings" if isEnglish else "Kaikki Kynästä-sisällöt" %}
 {% set typeLabel = "Kirjoitus" %}
 {% if isEnglish %}
   {% set archiveHref = "/en/writings/" %}
   {% set typeLabel = "Text" %}
+  {% set archiveLabel = "All writings" %}
 {% endif %}
 
 {% if "media" in currentTags %}
   {% set archiveHref = "/mediassa/" %}
+  {% set archiveLabel = "All media items" if isEnglish else "Kaikki mediaosumat" %}
   {% if mediaType == "podcast" %}
     {% set typeLabel = "Podcast" %}
   {% elif mediaType == "video" %}
@@ -49,35 +53,45 @@
 {% elif "presentations" in currentTags %}
   {% set archiveHref = "/en/presentations/" if isEnglish else "/esitykset/" %}
   {% set typeLabel = "Presentation or material" if isEnglish else "Esitys tai materiaali" %}
+  {% set archiveLabel = "All presentations" if isEnglish else "Kaikki esitykset" %}
 {% elif "blog" in currentTags %}
   {% set archiveHref = "/en/blog/" if isEnglish else "/blogi/" %}
   {% set typeLabel = "Blog post" if isEnglish else "Blogikirjoitus" %}
+  {% set archiveLabel = "All blog posts" if isEnglish else "Kaikki blogikirjoitukset" %}
 {% elif type == "puhe" %}
   {% set archiveHref = "/en/writings/#puheet" if isEnglish else "/kynasta/#puheet" %}
   {% set typeLabel = "Speech" if isEnglish else "Puheenvuoro" %}
+  {% set archiveLabel = "All speeches" if isEnglish else "Kaikki puheenvuorot" %}
 {% elif type == "lausunto" %}
   {% set archiveHref = "/en/writings/#lausunnot" if isEnglish else "/kynasta/#lausunnot" %}
   {% set typeLabel = "Expert statement" if isEnglish else "Asiantuntijalausunto" %}
+  {% set archiveLabel = "All expert statements" if isEnglish else "Kaikki asiantuntijalausunnot" %}
 {% elif type == "mielipide" %}
   {% if opinionRoles and ("political" in opinionRoles) and ("expert" in opinionRoles) %}
     {% set archiveHref = "/en/writings/?opinions=hybrid#mielipiteet" if isEnglish else "/kynasta/?opinions=hybrid#mielipiteet" %}
     {% set typeLabel = "Political + expert opinion" if isEnglish else "Poliittinen ja asiantuntijamielipide" %}
+    {% set archiveLabel = "All political and expert opinions" if isEnglish else "Kaikki poliittiset ja asiantuntijamielipiteet" %}
   {% elif opinionRoles and ("political" in opinionRoles) %}
     {% set archiveHref = "/en/writings/?opinions=political#mielipiteet" if isEnglish else "/kynasta/?opinions=political#mielipiteet" %}
     {% set typeLabel = "Political opinion" if isEnglish else "Poliittinen mielipide" %}
+    {% set archiveLabel = "All political opinions" if isEnglish else "Kaikki poliittiset mielipiteet" %}
   {% elif opinionRoles and ("expert" in opinionRoles) %}
     {% set archiveHref = "/en/writings/?opinions=expert#mielipiteet" if isEnglish else "/kynasta/?opinions=expert#mielipiteet" %}
     {% set typeLabel = "Expert opinion" if isEnglish else "Asiantuntijamielipide" %}
+    {% set archiveLabel = "All expert opinions" if isEnglish else "Kaikki asiantuntijamielipiteet" %}
   {% else %}
     {% set archiveHref = "/en/writings/#mielipiteet" if isEnglish else "/kynasta/#mielipiteet" %}
     {% set typeLabel = "Opinion" if isEnglish else "Mielipide" %}
+    {% set archiveLabel = "All opinion pieces" if isEnglish else "Kaikki mielipidekirjoitukset" %}
   {% endif %}
 {% elif type == "kolumni" %}
   {% set archiveHref = "/en/writings/#kolumnit" if isEnglish else "/kynasta/#kolumnit" %}
   {% set typeLabel = "Column" if isEnglish else "Kolumni" %}
+  {% set archiveLabel = "All columns" if isEnglish else "Kaikki kolumnit" %}
 {% elif "politics" in currentTags %}
   {% set archiveHref = "/en/writings/#aloitteet" if isEnglish else "/kynasta/#aloitteet" %}
   {% set typeLabel = "Initiative" if isEnglish else "Aloite" %}
+  {% set archiveLabel = "All initiatives" if isEnglish else "Kaikki aloitteet" %}
 {% endif %}
 
 <div class="content-context-sidebar">
@@ -105,6 +119,16 @@
       <a class="content-context-chip content-context-chip--context" href="{{ ctx | contextHref(currentLang) }}">{{ ctx | contextLabel(currentLang) }}</a>
       {% endfor %}
     </div>
+    {% if currentForums.length %}
+    <div class="content-context-forum">
+      <p class="content-context-subkicker">{{ txt.forums }}</p>
+      <div class="content-context-chiplist">
+        {% for item in currentForums %}
+        <a class="content-context-chip content-context-chip--forum" href="{{ '/en/writings/#puheet' if isEnglish else '/kynasta/#puheet' }}">{{ item }}</a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
   </div>
   {% endif %}
 
@@ -148,5 +172,5 @@
     {% endif %}
   </div>
 
-  <a class="content-context-archive-link" href="{{ archiveHref }}">{{ txt.archive }}</a>
+  <a class="content-context-archive-link" href="{{ archiveHref }}">{{ archiveLabel }}</a>
 </div>

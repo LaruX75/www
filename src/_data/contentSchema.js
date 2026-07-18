@@ -145,7 +145,7 @@ const contentSchema = {
       glob: "src/publications/*.md",
       required: ["title", "date", "type"],
       recommended: ["categories", "keywords", "writingRoles"],
-      arrayFields: ["categories", "keywords", "writingRoles", "opinionRoles", "politicalProfiles", "contexts"],
+      arrayFields: ["categories", "keywords", "writingRoles", "opinionRoles", "politicalProfiles", "contexts", "forum"],
       controlled: {
         type: "legacyTypes",
         writingRoles: "writingRoles",
@@ -156,7 +156,7 @@ const contentSchema = {
       typeRecommendations: {
         lausunto: ["writingRoles", "sourceUrl"],
         mielipide: ["opinionRoles"],
-        puhe: ["event"],
+        puhe: ["event", "forum"],
         tieteellinen: ["citation"]
       }
     },

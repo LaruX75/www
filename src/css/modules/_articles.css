@@ -578,6 +578,15 @@ html:not([data-bs-theme="dark"]) .kynasta-hero {
   text-transform: uppercase;
 }
 
+.content-context-subkicker {
+  margin: 0 0 0.35rem;
+  color: var(--bs-secondary-color);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
 .content-context-title {
   margin-bottom: 0.8rem;
   font-family: 'Bree Serif', Georgia, 'Times New Roman', serif;
@@ -629,6 +638,12 @@ html:not([data-bs-theme="dark"]) .kynasta-hero {
   gap: 0.45rem;
 }
 
+.content-context-forum {
+  margin-top: 0.8rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid color-mix(in srgb, var(--bs-border-color) 72%, transparent);
+}
+
 .content-context-chip,
 .content-context-term {
   display: inline-flex;
@@ -650,6 +665,12 @@ html:not([data-bs-theme="dark"]) .kynasta-hero {
 .content-context-chip--category {
   background: color-mix(in srgb, var(--bs-link-color) 8%, var(--bs-tertiary-bg));
   border-color: color-mix(in srgb, var(--bs-link-color) 18%, var(--bs-border-color));
+}
+
+.content-context-chip--forum {
+  background: color-mix(in srgb, var(--bs-link-color) 12%, var(--bs-tertiary-bg));
+  border-color: color-mix(in srgb, var(--bs-link-color) 24%, var(--bs-border-color));
+  color: var(--bs-link-color);
 }
 
 .content-context-term {
