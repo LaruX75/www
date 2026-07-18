@@ -103,8 +103,182 @@ templateEngineOverride: njk
   </div>
 </section>
 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const mobileQuery = window.matchMedia("(max-width: 767.98px)");
+  const disclosures = Array.from(document.querySelectorAll("[data-research-mobile-collapse]"));
+  if (!disclosures.length) return;
+
+  const openDisclosureForHash = () => {
+    const hash = window.location.hash;
+    if (!hash) return;
+    const target = document.querySelector(hash);
+    if (!target) return;
+    const disclosure = target.closest("[data-research-mobile-collapse]") || target.querySelector("[data-research-mobile-collapse]");
+    if (disclosure) disclosure.open = true;
+  };
+
+  const applyDisclosureState = () => {
+    disclosures.forEach((disclosure) => {
+      if (!mobileQuery.matches) {
+        disclosure.open = true;
+        disclosure.dataset.researchMobilePrepared = "false";
+        return;
+      }
+
+      if (disclosure.dataset.researchMobilePrepared === "true") return;
+      disclosure.open = false;
+      disclosure.dataset.researchMobilePrepared = "true";
+    });
+
+    openDisclosureForHash();
+  };
+
+  applyDisclosureState();
+  mobileQuery.addEventListener("change", applyDisclosureState);
+  window.addEventListener("hashchange", openDisclosureForHash);
+
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", () => {
+      window.setTimeout(openDisclosureForHash, 0);
+    });
+  });
+});
+</script>
+
+<style>
+.research-mobile-path,
+.research-mobile-disclosure-summary {
+  display: none;
+}
+
+@media (max-width: 767.98px) {
+  .research-mobile-path {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    gap: 0.45rem;
+    overflow-x: auto;
+    padding: 0.65rem 0.75rem;
+    border-bottom: 1px solid rgba(19, 43, 70, 0.1);
+    background: color-mix(in srgb, var(--bs-body-bg) 92%, transparent);
+    backdrop-filter: blur(10px);
+    scrollbar-width: none;
+  }
+
+  .research-mobile-path::-webkit-scrollbar {
+    display: none;
+  }
+
+  .research-mobile-path a {
+    flex: 0 0 auto;
+    padding: 0.45rem 0.72rem;
+    border: 1px solid var(--bs-border-color);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--bs-body-bg) 84%, var(--bs-primary) 8%);
+    color: var(--bs-primary);
+    font-size: 0.86rem;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  [data-bs-theme="dark"] .research-mobile-path {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+    background: color-mix(in srgb, var(--bs-body-bg) 88%, transparent);
+  }
+
+  [data-bs-theme="dark"] .research-mobile-path a {
+    border-color: rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.08);
+    color: #f4f8fd;
+  }
+
+  [data-research-mobile-priority="2"] {
+    padding-block: 0.75rem !important;
+  }
+
+  .research-mobile-disclosure {
+    display: block;
+  }
+
+  .research-mobile-disclosure-summary {
+    position: relative;
+    display: grid;
+    gap: 0.2rem;
+    padding: 1rem 3rem 1rem 1rem;
+    border: 1px solid var(--bs-border-color);
+    border-radius: 1rem;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 249, 252, 0.98));
+    box-shadow: 0 0.75rem 1.6rem rgba(19, 43, 70, 0.08);
+    color: var(--bs-body-color);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .research-mobile-disclosure-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .research-mobile-disclosure-summary::after {
+    content: "+";
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    width: 1.65rem;
+    height: 1.65rem;
+    transform: translateY(-50%);
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: color-mix(in srgb, var(--bs-primary) 12%, var(--bs-body-bg) 88%);
+    color: var(--bs-primary);
+    font-weight: 800;
+  }
+
+  .research-mobile-disclosure[open] .research-mobile-disclosure-summary::after {
+    content: "-";
+  }
+
+  .research-mobile-disclosure-summary span {
+    font-weight: 800;
+    line-height: 1.25;
+  }
+
+  .research-mobile-disclosure-summary small {
+    color: var(--bs-secondary-color);
+    font-size: 0.84rem;
+    line-height: 1.35;
+  }
+
+  .research-mobile-disclosure[open] .research-mobile-disclosure-body {
+    margin-top: 1rem;
+  }
+
+  [data-bs-theme="dark"] .research-mobile-disclosure-summary {
+    border-color: rgba(255, 255, 255, 0.14);
+    background: linear-gradient(180deg, rgba(31, 38, 48, 0.98), rgba(18, 24, 32, 0.98));
+    box-shadow: 0 0.75rem 1.6rem rgba(0, 0, 0, 0.22);
+    color: #f4f8fd;
+  }
+
+  [data-bs-theme="dark"] .research-mobile-disclosure-summary small {
+    color: rgba(244, 248, 253, 0.72);
+  }
+}
+</style>
+
+<nav class="research-mobile-path" aria-label="Tutkimussivun tärkeimmät osiot">
+  <a href="#tutkimuslinjat">Linjat</a>
+  <a href="#generation-ai">Hanke</a>
+  <a href="#julkaisut">Julkaisut</a>
+  <a href="#opinnaytteet">Opinnäytteet</a>
+  <a href="#profiilit">Profiilit</a>
+</nav>
+
 <!-- TUTKIMUSALUEET -->
-<section class="py-5">
+<section class="py-5" id="tutkimuslinjat">
   <div class="site-shell">
     <h2 class="h3 fw-bold mb-4">{{ researchCopy.areasTitle }}</h2>
     <div class="row g-4">
@@ -140,7 +314,7 @@ templateEngineOverride: njk
 </section>
 
 <!-- NYKYINEN HANKE: GENERATION AI -->
-<section class="py-5 bg-body-tertiary border-top border-bottom">
+<section class="py-5 bg-body-tertiary border-top border-bottom" id="generation-ai">
   <div class="site-shell">
     <div class="row align-items-center g-5">
       <div class="col-lg-7">
@@ -209,7 +383,7 @@ templateEngineOverride: njk
 </section>
 
 <!-- JULKAISUT WIDGET -->
-<section class="py-5">
+<section class="py-5" id="julkaisut">
   <div class="site-shell">
     <div class="d-flex justify-content-between align-items-center mb-4">
       <h2 class="h3 fw-bold mb-0">Tieteelliset julkaisut</h2>
@@ -320,7 +494,7 @@ templateEngineOverride: njk
 </section>
 
 <!-- OPINNÄYTTEET WIDGET -->
-<section class="py-5 bg-body-tertiary border-top border-bottom">
+<section class="py-5 bg-body-tertiary border-top border-bottom" id="opinnaytteet">
   <div class="site-shell">
     <div class="d-flex justify-content-between align-items-center mb-4">
       <h2 class="h3 fw-bold mb-0">Ohjatut opinnäytetyöt</h2>
@@ -378,47 +552,60 @@ templateEngineOverride: njk
 </section>
 
 <!-- OMA VÄITÖSKIRJA -->
-<section class="py-5">
+<section class="py-5" id="omat-opinnaytteet" data-research-mobile-priority="2">
   <div class="site-shell">
-    <h2 class="h3 fw-bold mb-2">{{ researchCopy.ownThesesTitle }}</h2>
-    <p class="text-muted mb-4">{{ researchCopy.ownThesesLead }}</p>
-    <div class="row g-4">
-      <div class="col-md-6">
-        <div class="card border-0 shadow-sm h-100">
-          <div class="card-body p-4">
-            <span class="badge bg-primary mb-3">Väitöskirja 2012</span>
-            <h3 class="h5 fw-bold mb-2">Scaffolding learning activities with collaborative scripts and mobile devices</h3>
-            <p class="text-muted mb-2">Oulun yliopisto, kasvatustiede. Väitös 20.11.2012.</p>
-            <p class="mb-3">Väitöskirja tutki, miten yhteisöllisiä skriptejä voidaan hyödyntää mobiililaitteiden tukemissa oppimisympäristöissä. Työ yhdistää CSCL-tutkimuksen (Computer-Supported Collaborative Learning) ja mobiiliteknologian.</p>
-            <div class="d-flex flex-wrap gap-2">
-              <a href="/vaitoskirja/" class="btn btn-sm btn-outline-primary">Väitöskokonaisuus</a>
-              <a href="http://jultika.oulu.fi/Record/isbn978-951-42-9940-7" class="btn btn-sm btn-outline-secondary" target="_blank" rel="noopener noreferrer">Jultika-arkisto</a>
+    <details class="research-mobile-disclosure" data-research-mobile-collapse open>
+      <summary class="research-mobile-disclosure-summary">
+        <span>{{ researchCopy.ownThesesTitle }}</span>
+        <small>Väitöskirja, gradu ja tutkimuslinjan alku</small>
+      </summary>
+      <div class="research-mobile-disclosure-body">
+        <h2 class="h3 fw-bold mb-2">{{ researchCopy.ownThesesTitle }}</h2>
+        <p class="text-muted mb-4">{{ researchCopy.ownThesesLead }}</p>
+        <div class="row g-4">
+          <div class="col-md-6">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="card-body p-4">
+                <span class="badge bg-primary mb-3">Väitöskirja 2012</span>
+                <h3 class="h5 fw-bold mb-2">Scaffolding learning activities with collaborative scripts and mobile devices</h3>
+                <p class="text-muted mb-2">Oulun yliopisto, kasvatustiede. Väitös 20.11.2012.</p>
+                <p class="mb-3">Väitöskirja tutki, miten yhteisöllisiä skriptejä voidaan hyödyntää mobiililaitteiden tukemissa oppimisympäristöissä. Työ yhdistää CSCL-tutkimuksen (Computer-Supported Collaborative Learning) ja mobiiliteknologian.</p>
+                <div class="d-flex flex-wrap gap-2">
+                  <a href="/vaitoskirja/" class="btn btn-sm btn-outline-primary">Väitöskokonaisuus</a>
+                  <a href="http://jultika.oulu.fi/Record/isbn978-951-42-9940-7" class="btn btn-sm btn-outline-secondary" target="_blank" rel="noopener noreferrer">Jultika-arkisto</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="card-body p-4">
+                <span class="badge bg-secondary mb-3">Pro gradu 2003</span>
+                <h3 class="h5 fw-bold mb-2">Langattomat päätelaitteet hajautetun asiantuntijuuden ja yhteisöllisen tiedonrakentelun tukena</h3>
+                <p class="text-muted mb-2">Goman, H. &amp; Laru, J. (2003). Oulun yliopisto.</p>
+                <p class="mb-3">Varhaisvaiheen tutkimus langattomien laitteiden mahdollisuuksista hajautetun asiantuntijuuden ja yhteisöllisen tiedonrakentelun välineinä &ndash; ennen älypuhelinaikaa.</p>
+                <a href="https://www.researchgate.net/publication/259217800_Langattomat_paatelaitteet_hajautetun_asiantuntijuuden_ja_yhteisollisen_tiedonrakentelun_tukena" class="btn btn-sm btn-outline-secondary" target="_blank" rel="noopener noreferrer">ResearchGate</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="card border-0 shadow-sm h-100">
-          <div class="card-body p-4">
-            <span class="badge bg-secondary mb-3">Pro gradu 2003</span>
-            <h3 class="h5 fw-bold mb-2">Langattomat päätelaitteet hajautetun asiantuntijuuden ja yhteisöllisen tiedonrakentelun tukena</h3>
-            <p class="text-muted mb-2">Goman, H. &amp; Laru, J. (2003). Oulun yliopisto.</p>
-            <p class="mb-3">Varhaisvaiheen tutkimus langattomien laitteiden mahdollisuuksista hajautetun asiantuntijuuden ja yhteisöllisen tiedonrakentelun välineinä &ndash; ennen älypuhelinaikaa.</p>
-            <a href="https://www.researchgate.net/publication/259217800_Langattomat_paatelaitteet_hajautetun_asiantuntijuuden_ja_yhteisollisen_tiedonrakentelun_tukena" class="btn btn-sm btn-outline-secondary" target="_blank" rel="noopener noreferrer">ResearchGate</a>
-          </div>
-        </div>
-      </div>
-    </div>
+    </details>
   </div>
 </section>
 
 <!-- TUTKIJAHISTORIA – horisontaalinen aikajana, vanhin ensin -->
-<section class="py-5 bg-body-tertiary border-top border-bottom">
+<section class="py-5 bg-body-tertiary border-top border-bottom" id="tutkimushistoria" data-research-mobile-priority="2">
   <div class="site-shell">
-    <h2 class="h3 fw-bold mb-2">{{ researchCopy.historyTitle }}</h2>
-    <p class="text-muted mb-4">{{ researchCopy.historyLead }}</p>
-    <p class="small text-muted mb-3">Vihje: aikajana vierii sivusuunnassa mobiilissa ja pienillä näytöillä.</p>
-  </div>
+    <details class="research-mobile-disclosure" data-research-mobile-collapse open>
+      <summary class="research-mobile-disclosure-summary">
+        <span>{{ researchCopy.historyTitle }}</span>
+        <small>Hankkeet ja tutkimusvaiheet vuodesta 2003 eteenpäin</small>
+      </summary>
+      <div class="research-mobile-disclosure-body">
+        <h2 class="h3 fw-bold mb-2">{{ researchCopy.historyTitle }}</h2>
+        <p class="text-muted mb-4">{{ researchCopy.historyLead }}</p>
+        <p class="small text-muted mb-3">Vihje: aikajana vierii sivusuunnassa mobiilissa ja pienillä näytöillä.</p>
   <div class="tutkijahistoria-scroll px-3 px-md-4 pb-4">
     <div class="d-flex gap-3 align-items-stretch">
 
@@ -526,85 +713,102 @@ templateEngineOverride: njk
     .tutkijahistoria-card { width: 240px; }
   }
   </style>
+      </div>
+    </details>
+  </div>
 </section>
 
 <!-- APURAHAT JA PALKINNOT -->
-<section class="py-5">
+<section class="py-5" id="apurahat-ja-palkinnot" data-research-mobile-priority="2">
   <div class="site-shell">
-    <div class="row g-5">
-      <div class="col-md-6">
-        <h2 class="h3 fw-bold mb-4">Apurahat</h2>
-        <div class="list-group list-group-flush border rounded">
-          <div class="list-group-item px-4 py-3">
-            <div class="d-flex justify-content-between align-items-start">
-              <div>
-                <div class="fw-bold">Suomen Kulttuurirahasto</div>
-                <div class="small text-muted">Xerox Oy:n rahasto &mdash; väitöskirjatyö</div>
+    <details class="research-mobile-disclosure" data-research-mobile-collapse open>
+      <summary class="research-mobile-disclosure-summary">
+        <span>Apurahat, palkinnot ja tunnustukset</span>
+        <small>Tutkimustyön rahoitus ja tunnustukset</small>
+      </summary>
+      <div class="research-mobile-disclosure-body">
+        <div class="row g-5">
+          <div class="col-md-6">
+            <h2 class="h3 fw-bold mb-4">Apurahat</h2>
+            <div class="list-group list-group-flush border rounded">
+              <div class="list-group-item px-4 py-3">
+                <div class="d-flex justify-content-between align-items-start">
+                  <div>
+                    <div class="fw-bold">Suomen Kulttuurirahasto</div>
+                    <div class="small text-muted">Xerox Oy:n rahasto &mdash; väitöskirjatyö</div>
+                  </div>
+                  <span class="badge bg-warning text-dark">2010</span>
+                </div>
+                <div class="small mt-1 text-success fw-bold">21&thinsp;000 &euro;</div>
               </div>
-              <span class="badge bg-warning text-dark">2010</span>
+              <div class="list-group-item px-4 py-3">
+                <div class="d-flex justify-content-between align-items-start">
+                  <div>
+                    <div class="fw-bold">Oulun yliopiston matka-apuraha</div>
+                    <div class="small text-muted">EARLI 2009 -konferenssi</div>
+                  </div>
+                  <span class="badge bg-secondary">2009</span>
+                </div>
+                <div class="small mt-1 text-success fw-bold">1&thinsp;500 &euro;</div>
+              </div>
+              <div class="list-group-item px-4 py-3">
+                <div class="d-flex justify-content-between align-items-start">
+                  <div>
+                    <div class="fw-bold">Suomen Kulttuurirahasto</div>
+                    <div class="small text-muted">Urpo ja Maija-Liisa Harvan rahasto &mdash; väitöskirjatyö</div>
+                  </div>
+                  <span class="badge bg-secondary">2005</span>
+                </div>
+                <div class="small mt-1 text-success fw-bold">16&thinsp;400 &euro;</div>
+              </div>
             </div>
-            <div class="small mt-1 text-success fw-bold">21&thinsp;000 &euro;</div>
           </div>
-          <div class="list-group-item px-4 py-3">
-            <div class="d-flex justify-content-between align-items-start">
-              <div>
-                <div class="fw-bold">Oulun yliopiston matka-apuraha</div>
-                <div class="small text-muted">EARLI 2009 -konferenssi</div>
+          <div class="col-md-6">
+            <h2 class="h3 fw-bold mb-4">Palkinnot ja tunnustukset</h2>
+            <div class="card border-0 shadow-sm mb-3">
+              <div class="card-body p-4">
+                <div class="d-flex gap-3 align-items-start">
+                  <span class="badge bg-warning text-dark fs-6 px-3 py-2 flex-shrink-0">2020</span>
+                  <div>
+                    <h3 class="h5 fw-bold mb-1">Kansallinen avoimen tieteen palkinto</h3>
+                    <p class="text-muted small mb-2">Tieteellisten seurain valtuuskunta (TSV)</p>
+                    <p class="mb-2 small">Palkinto myönnettiin pitkäaikaisesta avoimuuden edistämisestä opetuksessa ja aktiivisesta tuen tarjoamisesta etäopetuksessa koronapandemian aikana.</p>
+                    <a href="/palkinnot/" class="btn btn-sm btn-outline-warning">Lue lisää</a>
+                  </div>
+                </div>
               </div>
-              <span class="badge bg-secondary">2009</span>
             </div>
-            <div class="small mt-1 text-success fw-bold">1&thinsp;500 &euro;</div>
-          </div>
-          <div class="list-group-item px-4 py-3">
-            <div class="d-flex justify-content-between align-items-start">
-              <div>
-                <div class="fw-bold">Suomen Kulttuurirahasto</div>
-                <div class="small text-muted">Urpo ja Maija-Liisa Harvan rahasto &mdash; väitöskirjatyö</div>
+            <div class="card border-0 shadow-sm">
+              <div class="card-body p-4">
+                <div class="d-flex gap-3 align-items-start">
+                  <span class="badge bg-secondary fs-6 px-3 py-2 flex-shrink-0">2012</span>
+                  <div>
+                    <h3 class="h5 fw-bold mb-1">Omena hyvälle opettajalle</h3>
+                    <p class="text-muted small mb-2">Oulun yliopiston ylioppilaskunta (OYY)</p>
+                    <p class="mb-0 small">LO11-B-opiskelijaryhmän tunnustus erinomaisesta opetuksesta. Lisää <a href="/opiskelijoiden-antamaa-palautetta/">palautesivulla</a>.</p>
+                  </div>
+                </div>
               </div>
-              <span class="badge bg-secondary">2005</span>
             </div>
-            <div class="small mt-1 text-success fw-bold">16&thinsp;400 &euro;</div>
           </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <h2 class="h3 fw-bold mb-4">Palkinnot ja tunnustukset</h2>
-        <div class="card border-0 shadow-sm mb-3">
-          <div class="card-body p-4">
-            <div class="d-flex gap-3 align-items-start">
-              <span class="badge bg-warning text-dark fs-6 px-3 py-2 flex-shrink-0">2020</span>
-              <div>
-                <h3 class="h5 fw-bold mb-1">Kansallinen avoimen tieteen palkinto</h3>
-                <p class="text-muted small mb-2">Tieteellisten seurain valtuuskunta (TSV)</p>
-                <p class="mb-2 small">Palkinto myönnettiin pitkäaikaisesta avoimuuden edistämisestä opetuksessa ja aktiivisesta tuen tarjoamisesta etäopetuksessa koronapandemian aikana.</p>
-                <a href="/palkinnot/" class="btn btn-sm btn-outline-warning">Lue lisää</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card border-0 shadow-sm">
-          <div class="card-body p-4">
-            <div class="d-flex gap-3 align-items-start">
-              <span class="badge bg-secondary fs-6 px-3 py-2 flex-shrink-0">2012</span>
-              <div>
-                <h3 class="h5 fw-bold mb-1">Omena hyvälle opettajalle</h3>
-                <p class="text-muted small mb-2">Oulun yliopiston ylioppilaskunta (OYY)</p>
-                <p class="mb-0 small">LO11-B-opiskelijaryhmän tunnustus erinomaisesta opetuksesta. Lisää <a href="/opiskelijoiden-antamaa-palautetta/">palautesivulla</a>.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    </details>
   </div>
 </section>
 
 <!-- PROFIILIT -->
-<section class="py-5 bg-body-tertiary border-top">
+<section class="py-5 bg-body-tertiary border-top" id="profiilit" data-research-mobile-priority="2">
   <div class="site-shell">
-    <h2 class="h3 fw-bold mb-2">Tutkijaprofiilit</h2>
-    <p class="text-muted mb-4">{{ researchCopy.profilesLead }}</p>
-    <div class="row g-3">
+    <details class="research-mobile-disclosure" data-research-mobile-collapse open>
+      <summary class="research-mobile-disclosure-summary">
+        <span>Tutkijaprofiilit</span>
+        <small>ORCID, Research.fi, Scholar ja muut palvelut</small>
+      </summary>
+      <div class="research-mobile-disclosure-body">
+        <h2 class="h3 fw-bold mb-2">Tutkijaprofiilit</h2>
+        <p class="text-muted mb-4">{{ researchCopy.profilesLead }}</p>
+        <div class="row g-3">
       <div class="col-sm-6 col-lg-3">
         <a href="https://orcid.org/0000-0003-0347-0182" target="_blank" rel="noopener noreferrer" class="card border-0 shadow-sm text-decoration-none h-100">
           <div class="card-body p-4 text-center">
@@ -677,6 +881,8 @@ templateEngineOverride: njk
           </div>
         </a>
       </div>
-    </div>
+        </div>
+      </div>
+    </details>
   </div>
 </section>
