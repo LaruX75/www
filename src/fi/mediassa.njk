@@ -41,8 +41,14 @@ translationKey: media_index
 
 {% macro renderMediaSection(items, role, lead) %}
 {% set isPaginated = role == "about" %}
-<section class="py-4 py-lg-5">
+<section class="py-4 py-lg-5" id="media-{{ role }}">
   <div class="site-shell">
+    <details class="media-mobile-disclosure" data-media-mobile-collapse{% if role == "about" %} data-media-mobile-default-open{% endif %} open>
+      <summary class="media-mobile-disclosure-summary">
+        <span>{{ roleHeading(role) }}</span>
+        <small>{{ items | length }} osumaa</small>
+      </summary>
+      <div class="media-mobile-disclosure-body">
     <div class="card shadow-sm section-card border-0"{% if isPaginated %} data-media-pagination data-page-size="4"{% endif %}>
       <div class="card-header bg-transparent py-3 border-0">
         <div class="d-flex flex-wrap align-items-start justify-content-between gap-3">
@@ -116,6 +122,8 @@ translationKey: media_index
         {% endif %}
       </div>
     </div>
+      </div>
+    </details>
   </div>
 </section>
 {% endmacro %}
@@ -158,8 +166,21 @@ translationKey: media_index
   </div>
 </section>
 
-<section class="py-4 py-lg-5">
+<nav class="media-mobile-path" aria-label="Mediassa-sivun tärkeimmät osiot">
+  <a href="#media-about">Minusta</a>
+  <a href="#media-guest">Vieraana</a>
+  <a href="#media-interviewer">Haastattelijana</a>
+  <a href="#media-nostot">Nostot</a>
+</nav>
+
+<section class="py-4 py-lg-5" id="media-nostot" data-media-mobile-priority="2">
   <div class="site-shell">
+    <details class="media-mobile-disclosure" data-media-mobile-collapse open>
+      <summary class="media-mobile-disclosure-summary">
+        <span>Keskeiset mediaosumat</span>
+        <small>Nostot ja roolit yhdellä silmäyksellä</small>
+      </summary>
+      <div class="media-mobile-disclosure-body">
     <div class="mb-4">
       <p class="text-uppercase text-muted fw-semibold small mb-1">Nostot mediasta</p>
       <h2 class="h3 fw-bold mb-2">Keskeiset mediaosumat yhdellä silmäyksellä</h2>
@@ -227,6 +248,8 @@ translationKey: media_index
         </div>
       </div>
     </div>
+      </div>
+    </details>
   </div>
 </section>
 
@@ -235,6 +258,11 @@ translationKey: media_index
 {{ renderMediaSection(mediaInterviewer, "interviewer", "Sisällöt, joissa olen itse haastattelija, keskustelun vetäjä tai juontava osapuoli.") }}
 
 <style>
+  .media-mobile-path,
+  .media-mobile-disclosure-summary {
+    display: none;
+  }
+
   .media-hero-card {
     border-radius: 1.5rem;
   }
@@ -305,6 +333,114 @@ translationKey: media_index
   }
 
   @media (max-width: 767.98px) {
+    .media-mobile-path {
+      position: sticky;
+      top: 0;
+      z-index: 12;
+      display: flex;
+      gap: 0.55rem;
+      overflow-x: auto;
+      padding: 0.75rem max(0.75rem, env(safe-area-inset-left));
+      background: rgba(255, 255, 255, 0.92);
+      border-bottom: 1px solid rgba(16, 40, 69, 0.1);
+      backdrop-filter: blur(14px);
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .media-mobile-path::-webkit-scrollbar {
+      display: none;
+    }
+
+    .media-mobile-path a {
+      flex: 0 0 auto;
+      padding: 0.48rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(16, 40, 69, 0.12);
+      background: rgba(255, 255, 255, 0.78);
+      color: #102845;
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    [data-bs-theme="dark"] .media-mobile-path {
+      background: rgba(13, 18, 28, 0.88);
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+    }
+
+    [data-bs-theme="dark"] .media-mobile-path a {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.14);
+      color: #f8fbff;
+    }
+
+    [data-media-mobile-priority="2"] {
+      padding-block: 1rem;
+    }
+
+    .media-mobile-disclosure {
+      display: block;
+    }
+
+    .media-mobile-disclosure-summary {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 0.35rem 0.8rem;
+      align-items: center;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 1.05rem;
+      border: 1px solid rgba(16, 40, 69, 0.1);
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: 0 0.75rem 1.7rem rgba(15, 34, 56, 0.08);
+      color: #102845;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .media-mobile-disclosure-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .media-mobile-disclosure-summary::after {
+      content: "+";
+      grid-row: 1 / span 2;
+      grid-column: 2;
+      width: 2rem;
+      height: 2rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: rgba(19, 78, 145, 0.1);
+      color: #134e91;
+      font-weight: 900;
+    }
+
+    .media-mobile-disclosure[open] .media-mobile-disclosure-summary::after {
+      content: "−";
+    }
+
+    .media-mobile-disclosure-summary span {
+      font-weight: 900;
+      line-height: 1.2;
+    }
+
+    .media-mobile-disclosure-summary small {
+      color: rgba(16, 40, 69, 0.62);
+      font-weight: 650;
+    }
+
+    [data-bs-theme="dark"] .media-mobile-disclosure-summary {
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(255, 255, 255, 0.14);
+      color: #f8fbff;
+    }
+
+    [data-bs-theme="dark"] .media-mobile-disclosure-summary small {
+      color: rgba(255, 255, 255, 0.68);
+    }
+
     .media-entry {
       padding-block: 1.25rem;
     }
@@ -317,6 +453,25 @@ translationKey: media_index
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    const mobileQuery = window.matchMedia('(max-width: 767.98px)');
+    const disclosures = Array.from(document.querySelectorAll('[data-media-mobile-collapse]'));
+
+    const applyMediaMobileState = () => {
+      disclosures.forEach((disclosure) => {
+        if (!mobileQuery.matches) {
+          disclosure.open = true;
+          disclosure.dataset.mobilePrepared = 'false';
+          return;
+        }
+        if (disclosure.dataset.mobilePrepared === 'true') return;
+        disclosure.open = disclosure.hasAttribute('data-media-mobile-default-open');
+        disclosure.dataset.mobilePrepared = 'true';
+      });
+    };
+
+    applyMediaMobileState();
+    mobileQuery.addEventListener('change', applyMediaMobileState);
+
     const paginatedSections = document.querySelectorAll('[data-media-pagination]');
     if (!paginatedSections.length) return;
 

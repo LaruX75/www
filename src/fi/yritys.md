@@ -73,6 +73,13 @@ lang: fi
 </section>
 <div class="larux-hero-divider"></div>
 
+<nav class="larux-mobile-path" aria-label="Kouluttajasivun tärkeimmät osiot">
+  <a href="#palvelut">Palvelut</a>
+  <a href="#nayttoa-tyosta">Näyttö</a>
+  <a href="#esimerkit">Esimerkit</a>
+  <a href="#company-faq">FAQ</a>
+</nav>
+
 <section class="larux-section" id="palvelut">
   <div class="larux-shell">
     <p class="larux-eyebrow larux-eyebrow--dark mb-1"><i class="bi bi-grid-3x3-gap me-1"></i>Palvelut</p>
@@ -104,8 +111,14 @@ lang: fi
   </div>
 </section>
 
-<section class="larux-section larux-section--soft" id="miksi-larux">
+<section class="larux-section larux-section--soft" id="miksi-larux" data-larux-mobile-priority="2">
   <div class="larux-shell">
+    <details class="larux-mobile-disclosure" data-larux-mobile-collapse open>
+      <summary class="larux-mobile-disclosure-summary">
+        <span>Miksi tämä toimii</span>
+        <small>Tutkimus, opetus ja käytännön koulutustyö</small>
+      </summary>
+      <div class="larux-mobile-disclosure-body">
     <div class="row g-4 align-items-start">
       <div class="col-lg-5">
         <p class="larux-eyebrow larux-eyebrow--dark mb-1"><i class="bi bi-shield-check me-1"></i>Miksi tämä toimii</p>
@@ -146,11 +159,19 @@ lang: fi
         </div>
       </div>
     </div>
+      </div>
+    </details>
   </div>
 </section>
 
-<section class="larux-section" id="nayttoa-tyosta">
+<section class="larux-section" id="nayttoa-tyosta" data-larux-mobile-priority="2">
   <div class="larux-shell">
+    <details class="larux-mobile-disclosure" data-larux-mobile-collapse open>
+      <summary class="larux-mobile-disclosure-summary">
+        <span>Näyttöä työstä</span>
+        <small>Palkinnot, tunnustukset ja palaute</small>
+      </summary>
+      <div class="larux-mobile-disclosure-body">
     <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end gap-3 mb-4">
       <div>
         <p class="larux-eyebrow larux-eyebrow--dark mb-1"><i class="bi bi-patch-check me-1"></i>Näyttöä työstä</p>
@@ -190,11 +211,19 @@ lang: fi
         </article>
       </div>
     </div>
+      </div>
+    </details>
   </div>
 </section>
 
-<section class="larux-section" id="esimerkit">
+<section class="larux-section" id="esimerkit" data-larux-mobile-priority="3">
   <div class="larux-shell">
+    <details class="larux-mobile-disclosure" data-larux-mobile-collapse open>
+      <summary class="larux-mobile-disclosure-summary">
+        <span>Esimerkkipuheenvuoroja</span>
+        <small>Millaiselta toteutus voi näyttää</small>
+      </summary>
+      <div class="larux-mobile-disclosure-body">
     <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end gap-3 mb-4">
       <div>
         <p class="larux-eyebrow larux-eyebrow--dark mb-1"><i class="bi bi-easel2-fill me-1"></i>Esimerkkipuheenvuoroja</p>
@@ -229,6 +258,8 @@ lang: fi
         </article>
       </div>
     </div>
+      </div>
+    </details>
   </div>
 </section>
 
@@ -238,6 +269,12 @@ lang: fi
 
 <section class="larux-section" id="company-faq">
   <div class="larux-shell">
+    <details class="larux-mobile-disclosure" data-larux-mobile-collapse open>
+      <summary class="larux-mobile-disclosure-summary">
+        <span>Usein kysyttyä</span>
+        <small>Käytännön asiat yhteistyöstä</small>
+      </summary>
+      <div class="larux-mobile-disclosure-body">
     <p class="larux-eyebrow larux-eyebrow--dark mb-1"><i class="bi bi-question-circle me-1"></i>Käytännön asiat</p>
     <h2 class="h3 mb-4">Usein kysyttyä</h2>
     <div class="accordion larux-faq" id="companyFaqFi">
@@ -302,6 +339,8 @@ lang: fi
         </div>
       </div>
     </div>
+      </div>
+    </details>
   </div>
 </section>
 
@@ -376,7 +415,35 @@ lang: fi
 }
 </script>
 
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const mobileQuery = window.matchMedia('(max-width: 767.98px)');
+    const disclosures = Array.from(document.querySelectorAll('[data-larux-mobile-collapse]'));
+
+    const applyLaruxMobileState = () => {
+      disclosures.forEach((disclosure) => {
+        if (!mobileQuery.matches) {
+          disclosure.open = true;
+          disclosure.dataset.mobilePrepared = 'false';
+          return;
+        }
+        if (disclosure.dataset.mobilePrepared === 'true') return;
+        disclosure.open = false;
+        disclosure.dataset.mobilePrepared = 'true';
+      });
+    };
+
+    applyLaruxMobileState();
+    mobileQuery.addEventListener('change', applyLaruxMobileState);
+  });
+</script>
+
 <style>
+  .larux-mobile-path,
+  .larux-mobile-disclosure-summary {
+    display: none;
+  }
+
   .larux-shell {
     width: min(1120px, calc(100% - clamp(2rem, 9vw, 7rem)));
     margin-inline: auto;
@@ -736,6 +803,106 @@ lang: fi
     }
   }
   @media (max-width: 767px) {
+    .larux-mobile-path {
+      position: sticky;
+      top: 0;
+      z-index: 12;
+      display: flex;
+      gap: 0.55rem;
+      overflow-x: auto;
+      padding: 0.75rem max(0.75rem, env(safe-area-inset-left));
+      background: rgba(255, 255, 255, 0.92);
+      border-bottom: 1px solid rgba(16, 40, 69, 0.1);
+      backdrop-filter: blur(14px);
+      -webkit-overflow-scrolling: touch;
+    }
+    .larux-mobile-path::-webkit-scrollbar {
+      display: none;
+    }
+    .larux-mobile-path a {
+      flex: 0 0 auto;
+      padding: 0.48rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(16, 40, 69, 0.12);
+      background: rgba(255, 255, 255, 0.78);
+      color: #102845;
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    [data-bs-theme="dark"] .larux-mobile-path {
+      background: rgba(13, 18, 28, 0.88);
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+    }
+    [data-bs-theme="dark"] .larux-mobile-path a {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.14);
+      color: #f8fbff;
+    }
+    [data-larux-mobile-priority="2"],
+    [data-larux-mobile-priority="3"] {
+      padding-block: 1rem;
+    }
+    .larux-mobile-disclosure {
+      display: block;
+    }
+    .larux-mobile-disclosure-summary {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 0.35rem 0.8rem;
+      align-items: center;
+      padding: 1rem;
+      border-radius: 1.05rem;
+      border: 1px solid rgba(16, 40, 69, 0.1);
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: 0 0.75rem 1.7rem rgba(15, 34, 56, 0.08);
+      color: #102845;
+      cursor: pointer;
+      list-style: none;
+    }
+    .larux-mobile-disclosure-summary::-webkit-details-marker {
+      display: none;
+    }
+    .larux-mobile-disclosure-summary::after {
+      content: "+";
+      grid-row: 1 / span 2;
+      grid-column: 2;
+      width: 2rem;
+      height: 2rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: rgba(22, 52, 85, 0.1);
+      color: #163455;
+      font-weight: 900;
+    }
+    .larux-mobile-disclosure[open] .larux-mobile-disclosure-summary::after {
+      content: "−";
+    }
+    .larux-mobile-disclosure-summary span {
+      font-weight: 900;
+      line-height: 1.2;
+    }
+    .larux-mobile-disclosure-summary small {
+      color: rgba(16, 40, 69, 0.62);
+      font-weight: 650;
+    }
+    .larux-mobile-disclosure[open] .larux-mobile-disclosure-body {
+      padding-top: 1.2rem;
+    }
+    [data-bs-theme="dark"] .larux-mobile-disclosure-summary {
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(255, 255, 255, 0.14);
+      color: #f8fbff;
+    }
+    [data-bs-theme="dark"] .larux-mobile-disclosure-summary small {
+      color: rgba(255, 255, 255, 0.68);
+    }
+    [data-bs-theme="dark"] .larux-mobile-disclosure-summary::after {
+      background: rgba(255, 255, 255, 0.09);
+      color: #f0b254;
+    }
     .larux-shell {
       width: min(100% - 1.5rem, 1120px);
     }
