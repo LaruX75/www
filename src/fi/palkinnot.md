@@ -4,7 +4,7 @@ permalink: /palkinnot/
 layout: page.njk
 lang: fi
 translationKey: awards
-description: "Jari Larun saamat palkinnot, apurahat ja muut huomionosoitukset – avoimen oppimisen palkinto 2025, kansallinen avoimen tieteen palkinto 2020, Vuoden TVT-opettaja 2014 sekä kulttuurirahaston apurahat."
+description: "Jari Larun saamat palkinnot, apurahat ja muut huomionosoitukset – EU Digital Skills Award 2026, avoimen oppimisen palkinto 2025, kansallinen avoimen tieteen palkinto 2020, Vuoden TVT-opettaja 2014 sekä kulttuurirahaston apurahat."
 templateEngineOverride: njk,md
 ---
 
@@ -19,6 +19,28 @@ templateEngineOverride: njk,md
 <section class="py-5">
   <div class="site-shell">
     <h2 class="h3 mb-4">Palkinnot</h2>
+
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-body p-4 p-md-5">
+        <div class="d-flex flex-wrap align-items-start gap-3 mb-3">
+          <div class="flex-shrink-0">
+            <span class="badge bg-warning text-dark fs-6 px-3 py-2">2026</span>
+          </div>
+          <div>
+            <h3 class="h4 fw-bold mb-1">EU Digital Skills Award &mdash; tekoälylukutaidon oppimisratkaisu</h3>
+            <p class="text-muted mb-0">Euroopan unioni &mdash; Generation AI -oppimiskokonaisuus</p>
+          </div>
+        </div>
+
+        <p>Generation AI -oppimiskokonaisuus voitti Euroopan unionin vuoden 2026 digitaalisten taitojen palkinnon lasten ja nuorten tekoälylukutaidon edistämisestä. Tunnustus kohdistui hankkeen tutkimusperustaisiin, avoimiin ja koulukäyttöön rakennettuihin oppimisratkaisuihin.</p>
+
+        <p>Oulun yliopiston tutkijat olivat mukana palkitussa kokonaisuudessa. Jari Laru on toiminut hankkeessa vuorovaikutusasiantuntijana ja osallistunut erityisesti oppimateriaalien, koulujen kanssa tehtävän kehittämistyön ja tekoälylukutaidon kokonaisuuteen.</p>
+
+        <div class="d-flex flex-wrap gap-2 mt-4">
+          <a class="btn btn-outline-secondary btn-sm" href="https://generation-ai-stn.fi/ajankohtaista/oulun-yliopiston-tutkijoita-mukana-palkitussa-tekoaelylukutaidon-oppimisratkaisussa/" target="_blank" rel="noopener noreferrer">Generation AI -uutinen</a>
+        </div>
+      </div>
+    </div>
 
     <div class="card border-0 shadow-sm mb-4">
       <div class="card-body p-4 p-md-5">
@@ -43,6 +65,7 @@ templateEngineOverride: njk,md
 
         <div class="d-flex flex-wrap gap-2 mt-4">
           <a class="btn btn-outline-secondary btn-sm" href="https://avointiede.fi/fi/ajankohtaista/kyberturvallisuus-ja-tekoaly-aiheena-avoimen-oppimisen-palkinnoissa" target="_blank" rel="noopener noreferrer">TSV:n tiedote</a>
+          <a class="btn btn-outline-secondary btn-sm" href="https://www.oulu.fi/fi/uutiset/lasten-ja-nuorten-tekoalylukutaitoa-edistava-hanke-voitti-vuoden-avoin-oppimateriaali-palkinnon" target="_blank" rel="noopener noreferrer">Oulun yliopiston uutinen</a>
         </div>
       </div>
     </div>
