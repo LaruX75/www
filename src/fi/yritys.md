@@ -153,7 +153,7 @@ lang: fi
             <article class="larux-proof-card h-100">
               <p class="larux-proof-kicker">Asiantuntijatyö</p>
               <h3 class="h6 mb-2">Näkemyksiä hyödynnetään myös kansallisessa valmistelussa</h3>
-              <p class="mb-0 small">Olen antanut lausuntoja muun muassa tekoälysuosituksista, opetuksen digitalisaatiosta ja mobiililaitteiden käytöstä koulussa. Sama tutkimuksen, opetuksen ja käytännön yhdistelmä näkyy myös koulutuksissani.</p>
+              <p class="mb-0 small">Olen antanut lausuntoja tekoälysuosituksista, opetuksen digitalisaatiosta ja mobiililaitteiden käytöstä koulussa sekä ollut mukana OKM:n laatija- ja työryhmissä. Sama tutkimuksen, opetuksen ja käytännön yhdistelmä näkyy myös koulutuksissani.</p>
             </article>
           </div>
         </div>

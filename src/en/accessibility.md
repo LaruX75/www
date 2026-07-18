@@ -9,7 +9,7 @@ lang: en
 ---
 
 **Website:** [www.jarilaru.fi](https://www.jarilaru.fi)
-**Last reviewed:** 11 April 2026
+**Last reviewed:** 18 July 2026
 **Target level:** WCAG 2.1 Level AA
 **Status:** Partially conformant
 
@@ -20,6 +20,8 @@ lang: en
 The site is being improved toward WCAG 2.1 Level AA. Based on the updated internal accessibility audit completed in April 2026, the website does not yet meet all WCAG 2.1 AA requirements across all pages and use cases.
 
 The main remaining risks are related to older content, third-party embeds, and the fact that not all pages have yet been verified manually with screen readers and other assistive technologies.
+
+The site also includes an accessibility toolbar on the right edge of the page. It allows visitors to adjust text size, enable high contrast, reduce motion, switch to a reading-friendly font, increase text spacing, enable a reading guide, change the reading background colour, and use browser-based text-to-speech. The colour modes of this tool have been rebuilt around a centralised model so that high contrast and reading background colours apply more consistently to shared cards, tables, panels, and links across the site.
 
 ---
 
@@ -35,6 +37,8 @@ The assessment is based on:
 
 Automated checks are run against the project's own local build to ensure the tests are evaluating this website rather than an external environment. The audit run on 11 April 2026 included 14 automated tests, all of which passed on the audited core pages.
 
+After the accessibility toolbar update, a separate Playwright regression test was run on 18 July 2026. It checked high contrast, reading background colours, and the priority between combined colour settings on five representative page types: the home page, Writings, Presentations, University Work, and an individual council speech page.
+
 ---
 
 ## Scope of Review
@@ -49,6 +53,7 @@ This audit round focused primarily on:
 - contact
 - navigation and search
 - footer, forms, status messages, and filters
+- accessibility toolbar colour modes across representative page types
 
 The English-language pages largely reuse the same shared components and structures, but they have not yet been verified page by page as comprehensively as the Finnish core content in this audit round.
 
@@ -57,6 +62,7 @@ The English-language pages largely reuse the same shared components and structur
 ## Result of This Audit
 
 - The automated audit suite run on 11 April 2026 passed 14/14 tests.
+- The accessibility toolbar regression suite run on 18 July 2026 passed 7/7 tests.
 - No critical axe-core, focus-trap, or button-contrast issues were found on the audited core pages.
 - The main remaining risks concern archived legacy content, third-party embeds, and the lack of comprehensive screen reader validation.
 
@@ -85,6 +91,7 @@ Accessibility work completed during the 2026 audit rounds has already addressed 
 | 1.1.1 Non-text Content | Decorative icons missing `aria-hidden` | Added `aria-hidden="true"` |
 | 1.4.1 Use of Color | Some text links were distinguished mainly by colour | Restored persistent underline styling for content links |
 | 4.1.3 Status Messages | Publication filtering changes were not announced to screen readers | Added `role="status"` and `aria-live` |
+| 1.4.3 Contrast | The accessibility toolbar's high contrast and background colour settings were not applied centrally enough across cards, tables, and panels in different page templates | Rebuilt the colour modes around central CSS variables and added Playwright regression tests |
 
 This audit round also updated the accessibility wording around the site's WCAG badge so that it points to the accessibility statement without implying full conformance.
 
@@ -99,6 +106,7 @@ Automated testing covers only part of WCAG. The following areas still need more 
 - full review of individual blog posts and archive pages
 - legacy third-party embeds and their alternative access paths
 - full page-by-page review of English content pages
+- continued verification of the accessibility toolbar as new page templates and content types are added
 
 ---
 

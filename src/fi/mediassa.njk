@@ -9,6 +9,7 @@ translationKey: media_index
 
 {% set mediaItems = mediaArchive.all or [] %}
 {% set mediaAbout = mediaArchive.about or [] %}
+{% set mediaAssignments = mediaArchive.expertAssignments or [] %}
 {% set mediaGuest = mediaArchive.guest or [] %}
 {% set mediaInterviewer = mediaArchive.interviewer or [] %}
 {% set mediaTotal = mediaItems | length %}
@@ -43,6 +44,7 @@ translationKey: media_index
 
 {% macro mediaTypeLabel(type) %}
   {% if type == "podcast" %}Podcast
+  {% elif type == "assignment" %}Asiantuntijatehtävä
   {% elif type == "article" %}Lehtijuttu
   {% elif type == "tv" %}TV
   {% elif type == "radio" %}Radio
@@ -53,6 +55,7 @@ translationKey: media_index
 
 {% macro roleLabel(role) %}
   {% if role == "about" %}Minusta tehty
+  {% elif role == "expertAssignment" %}Asiantuntijarooli
   {% elif role == "interviewer" %}Haastattelijana
   {% elif role == "guest" %}Vieraana
   {% else %}Media
@@ -93,7 +96,7 @@ translationKey: media_index
       <div class="media-hero-copy">
         <p class="media-eyebrow mb-2">Mediaesiintymiset</p>
         <h1 class="media-hero-title mb-3">Mediassa</h1>
-        <p class="media-hero-lead mb-3">Tämä sivu kokoaa muiden tekemät mediaosumat: lehtijutut, podcastit, videot, radiohaastattelut ja muut julkiset sisällöt, joissa olen mukana.</p>
+        <p class="media-hero-lead mb-3">Tämä sivu kokoaa muiden tekemät mediaosumat sekä julkiset asiantuntijaroolit: lehtijutut, podcastit, videot, radiohaastattelut, työryhmät ja muut sisällöt, joissa olen mukana.</p>
         <p class="media-hero-text mb-4"><a href="/kynasta/">Kynästä</a> kokoaa omat kirjoitukseni ja lausuntoni. <a href="/esitykset/">Esitykset</a> kokoaa omat puheenvuorot, materiaalit ja tallenteet. Tämä näkymä kertoo, miten työni on näkynyt muiden tuottamissa medioissa.</p>
         <div class="media-hero-actions">
           <a href="#media-nostot" class="btn btn-primary rounded-pill px-4">Katso nostot</a>
@@ -195,9 +198,11 @@ translationKey: media_index
         <button class="media-filter" type="button" data-media-filter="type:podcast">Podcastit</button>
         <button class="media-filter" type="button" data-media-filter="type:video">Videot</button>
         <button class="media-filter" type="button" data-media-filter="type:radio">Radio</button>
+        <button class="media-filter" type="button" data-media-filter="type:assignment">Asiantuntijatehtävät</button>
       </div>
       <div class="media-filter-group media-filter-group--secondary" aria-label="Suodata mediaosumia roolin ja aiheen mukaan">
         <button class="media-filter" type="button" data-media-filter="role:about">Minusta tehty</button>
+        <button class="media-filter" type="button" data-media-filter="role:expertAssignment">Asiantuntijaroolit</button>
         <button class="media-filter" type="button" data-media-filter="role:guest">Vieraana</button>
         <button class="media-filter" type="button" data-media-filter="role:interviewer">Haastattelijana</button>
         <button class="media-filter" type="button" data-media-filter="topic:politiikka">Politiikka</button>
@@ -255,8 +260,8 @@ translationKey: media_index
   <div class="site-shell">
     <div class="media-section-head">
       <p class="media-eyebrow mb-1">Roolit</p>
-      <h2 id="media-roolit-heading" class="media-section-title">Kolme tapaa olla mukana mediassa</h2>
-      <p class="media-section-lead mb-0">Rooli auttaa tulkitsemaan osumaa: onko media tehnyt jutun minusta, olenko mukana keskustelijana vai olenko itse haastattelijana.</p>
+      <h2 id="media-roolit-heading" class="media-section-title">Neljä tapaa olla mukana julkisessa aineistossa</h2>
+      <p class="media-section-lead mb-0">Rooli auttaa tulkitsemaan osumaa: onko media tehnyt jutun minusta, olenko mukana keskustelijana, haastattelenko muita vai onko kyse virallisesta asiantuntijatehtävästä.</p>
     </div>
     <div class="media-role-grid">
       <article class="media-role-card">
@@ -264,6 +269,12 @@ translationKey: media_index
         <h3>Mediassa minusta</h3>
         <p>Jutut, podcastit ja videot, joissa aiheena on oma työni, asiantuntijuuteni tai julkinen roolini.</p>
         <button class="media-role-link" type="button" data-media-jump-filter="role:about">Rajaa nämä näkyviin</button>
+      </article>
+      <article class="media-role-card">
+        <span class="media-role-number">{{ mediaAssignments | length }}</span>
+        <h3>Asiantuntijaroolit</h3>
+        <p>Työryhmät, laatijaryhmät ja muut julkiset asiantuntijatehtävät, joissa olen mukana yliopistotyön kautta.</p>
+        <button class="media-role-link" type="button" data-media-jump-filter="role:expertAssignment">Rajaa nämä näkyviin</button>
       </article>
       <article class="media-role-card">
         <span class="media-role-number">{{ mediaGuest | length }}</span>
@@ -287,12 +298,13 @@ translationKey: media_index
       <div>
         <p class="media-eyebrow mb-1">Lähteet ja muodot</p>
         <h2 id="media-lahteet-heading" class="media-section-title mb-2">Mediaosumat painottuvat lehtijuttuihin, mutta mukana on myös videoita ja podcasteja</h2>
-        <p class="media-section-lead mb-0">Suurin yksittäinen lähde on Kaleva. Muut osumat täydentävät kuvaa erityisesti opetuksen, tekoälylukutaidon, avoimen tieteen ja paikallisen päätöksenteon näkökulmista.</p>
+        <p class="media-section-lead mb-0">Suurin yksittäinen lähde on Kaleva. Muut osumat ja asiantuntijatehtävät täydentävät kuvaa erityisesti opetuksen, tekoälylukutaidon, avoimen tieteen ja paikallisen päätöksenteon näkökulmista.</p>
       </div>
       <div class="media-source-stats">
         <span><strong>{{ mediaArticles | length }}</strong> lehtijuttua</span>
         <span><strong>{{ mediaVideos | length }}</strong> videota</span>
         <span><strong>{{ mediaPodcasts | length }}</strong> podcastia</span>
+        <span><strong>{{ mediaAssignments | length }}</strong> asiantuntijatehtävää</span>
         <span><strong>{{ mediaAudio | length }}</strong> radio-osuma</span>
       </div>
     </div>
@@ -611,7 +623,7 @@ translationKey: media_index
   }
 
   .media-role-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .media-role-card {

@@ -72,7 +72,7 @@ test.describe('Navigation and Focus Audits', () => {
         const trigger = page.locator('#searchToggleBtn');
         const dialog = page.locator('#searchOverlay');
         const closeButton = page.locator('#searchCloseBtn');
-        const input = page.locator('#searchOverlay .pf-input');
+        const input = page.locator('#searchOverlay .pagefind-ui__search-input');
 
         await expect(trigger).toBeVisible();
         await trigger.click();
@@ -104,17 +104,18 @@ test.describe('Navigation and Focus Audits', () => {
         await expect(dialog).toBeHidden();
         await expect(trigger).toBeFocused();
 
-        const accessibilityFab = page.locator('.a11y-fab');
-        const screenReaderToggle = page.locator('#a11yScreenReaderAssist');
+        const accessibilityTrigger = page.locator('#a11yTrigger');
+        const focusAssistToggle = page.locator('#a11yFocusAssist');
         const skipLink = page.locator('.skip-link');
         const ttsPlay = page.locator('#a11yTtsPlay');
         const ttsStop = page.locator('#a11yTtsStop');
 
-        await accessibilityFab.click();
-        await expect(screenReaderToggle).toBeVisible();
+        await accessibilityTrigger.click();
+        await expect(focusAssistToggle).toBeVisible();
         await expect(ttsPlay).toBeVisible();
-        await screenReaderToggle.check();
+        await focusAssistToggle.click();
 
+        await expect(focusAssistToggle).toHaveAttribute('aria-pressed', 'true');
         await expect(page.locator('html')).toHaveClass(/a11y-screen-reader/);
         await expect(skipLink).toBeVisible();
 
@@ -130,6 +131,19 @@ test.describe('Navigation and Focus Audits', () => {
         await page.waitForFunction(() => Array.isArray(window.__spokenChunks) && window.__spokenChunks.length > 0);
         const spokenCount = await page.evaluate(() => Array.isArray(window.__spokenChunks) ? window.__spokenChunks.length : 0);
         expect(spokenCount).toBeGreaterThan(0);
+    });
+
+    test('Search dialog returns Pagefind results for a known Finnish term', async ({ page }) => {
+        await gotoAndAssertSite(page, '/');
+
+        await page.locator('#searchToggleBtn').click();
+        const input = page.locator('#searchOverlay .pagefind-ui__search-input');
+
+        await expect(input).toBeVisible();
+        await input.fill('tekoäly');
+
+        await expect(page.locator('#searchOverlay .pagefind-ui__result').first()).toBeVisible({ timeout: 15000 });
+        await expect(page.locator('#searchOverlay .pagefind-ui__message')).toContainText(/tulos/);
     });
 
     test('Theme selection persists across page navigation', async ({ page }) => {

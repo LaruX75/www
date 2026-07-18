@@ -369,7 +369,8 @@
       const searchOverlay = document.getElementById('searchOverlay');
       let lastSearchTrigger = null;
       let searchCloseTimer = null;
-      let pagefindLangSet = false;
+      let pagefindUi = null;
+      let pagefindUiReady = null;
       const focusableSelector = 'a[href], area[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
       const isVisibleElement = (el) => el instanceof HTMLElement && el.isConnected && el.offsetParent !== null;
@@ -388,6 +389,84 @@
         instance.hide();
       }
 
+      const getPagefindInput = () =>
+        searchOverlay?.querySelector('.pagefind-ui__search-input, .pf-input') || null;
+
+      const focusPagefindInput = (prefillQuery = '', { triggerQuery = true } = {}) => {
+        const input = getPagefindInput();
+        if (!input) return false;
+        input.focus({ preventScroll: true });
+        if (prefillQuery && triggerQuery && pagefindUi?.triggerSearch) {
+          pagefindUi.triggerSearch(prefillQuery);
+        } else if (prefillQuery && triggerQuery) {
+          input.value = prefillQuery;
+          input.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+        return document.activeElement === input;
+      };
+
+      const waitForPagefindInput = (prefillQuery = '', attempt = 0) => {
+        if (focusPagefindInput(prefillQuery, { triggerQuery: attempt === 0 })) return;
+        if (attempt < 20) {
+          window.setTimeout(() => waitForPagefindInput(prefillQuery, attempt + 1), 50);
+        }
+      };
+
+      function initPagefindUi() {
+        if (pagefindUiReady) return pagefindUiReady;
+
+        pagefindUiReady = new Promise((resolve) => {
+          const mount = searchOverlay?.querySelector('[data-pagefind-ui]');
+          if (!mount) {
+            resolve(null);
+            return;
+          }
+
+          const waitForUi = (attempt = 0) => {
+            if (!window.PagefindUI) {
+              if (attempt < 40) {
+                window.setTimeout(() => waitForUi(attempt + 1), 50);
+              } else {
+                console.warn('Pagefind UI ei latautunut hakudialogiin.');
+                resolve(null);
+              }
+              return;
+            }
+
+            const isEn = (document.documentElement.lang || '').toLowerCase().startsWith('en');
+            const languageFilter = mount.dataset.pagefindLang || (isEn ? 'English' : 'Suomi');
+            const placeholder = mount.dataset.pagefindPlaceholder || (isEn ? 'Write a search term...' : 'Kirjoita hakusana...');
+
+            pagefindUi = new window.PagefindUI({
+              element: mount,
+              bundlePath: '/pagefind/',
+              pageSize: 6,
+              resetStyles: false,
+              showImages: false,
+              showSubResults: true,
+              excerptLength: 24,
+              autofocus: true,
+              translations: {
+                placeholder,
+                search_label: isEn ? 'Search this site' : 'Hae sivustolta',
+                zero_results: isEn ? 'No results for [SEARCH_TERM]' : 'Ei tuloksia haulle [SEARCH_TERM]',
+                many_results: isEn ? '[COUNT] results for [SEARCH_TERM]' : '[COUNT] tulosta haulle [SEARCH_TERM]',
+                one_result: isEn ? '[COUNT] result for [SEARCH_TERM]' : '[COUNT] tulos haulle [SEARCH_TERM]',
+                load_more: isEn ? 'Show more results' : 'Näytä lisää tuloksia',
+                clear_search: isEn ? 'Clear search' : 'Tyhjennä haku',
+                searching: isEn ? 'Searching [SEARCH_TERM]...' : 'Haetaan [SEARCH_TERM]...'
+              }
+            });
+            pagefindUi.triggerFilters({ Kieli: languageFilter });
+            resolve(pagefindUi);
+          };
+
+          waitForUi();
+        });
+
+        return pagefindUiReady;
+      }
+
       function openSearch(prefillQuery = '', triggerSource = null) {
         if (!searchOverlay) return;
         if (searchCloseTimer) {
@@ -403,23 +482,7 @@
         document.body.style.overflow = 'hidden';
         requestAnimationFrame(() => searchOverlay.classList.add('is-open'));
 
-        if (!pagefindLangSet && window.PagefindComponents) {
-          const isEn = (document.documentElement.lang || '').toLowerCase().startsWith('en');
-          const pfInstance = window.PagefindComponents.getInstanceManager().getInstance('default');
-          pfInstance.triggerFilter('Kieli', [isEn ? 'English' : 'Suomi']);
-          pagefindLangSet = true;
-        }
-
-        setTimeout(() => {
-          const input = searchOverlay.querySelector('.pf-input');
-          if (input) {
-            input.focus();
-            if (prefillQuery) {
-              input.value = prefillQuery;
-              input.dispatchEvent(new Event('input', { bubbles: true }));
-            }
-          }
-        }, 100);
+        initPagefindUi().then(() => waitForPagefindInput(prefillQuery));
       }
 
       function closeSearch({ restoreFocus = true } = {}) {

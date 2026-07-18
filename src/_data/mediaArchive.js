@@ -58,6 +58,7 @@ module.exports = function mediaArchive() {
     return {
       all: [],
       about: [],
+      expertAssignments: [],
       guest: [],
       interviewer: []
     };
@@ -72,6 +73,7 @@ module.exports = function mediaArchive() {
   return {
     all,
     about: all.filter((item) => item.data.mediaRole === "about"),
+    expertAssignments: all.filter((item) => item.data.mediaRole === "expertAssignment"),
     guest: all.filter((item) => item.data.mediaRole === "guest"),
     interviewer: all.filter((item) => item.data.mediaRole === "interviewer")
   };

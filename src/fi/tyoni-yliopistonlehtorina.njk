@@ -29,6 +29,7 @@ templateEngineOverride: njk
 {% set latestStatements = statementItems.slice(0, 3) %}
 {% set featuredStatement = latestStatements[0] %}
 {% set supportingStatements = latestStatements.slice(1, 3) %}
+{% set latestExpertAssignments = (mediaArchive.expertAssignments or []).slice(0, 2) %}
 {% set latestWorkPresentations = (collections.presentations or []).slice(0, 1) %}
 {% set curatedWorkPresentations = [
   {
@@ -325,6 +326,27 @@ templateEngineOverride: njk
         </article>
 
         <div class="ylwork-live-side">
+          <article class="ylwork-live-card ylwork-live-card--compact ylwork-live-card--muted">
+            <div class="ylwork-live-head">
+              <p class="ylwork-trust-kicker">Työryhmät ja laatijaryhmät</p>
+              <h3 class="ylwork-live-title">Asiantuntijaroolit</h3>
+              <p class="ylwork-live-lead">Julkiset asiantuntijatehtävät näyttävät, missä valmistelussa opettajankoulutuksen, koulutusteknologian ja tekoälylukutaidon osaamista on käytetty.</p>
+            </div>
+            <div class="ylwork-live-list">
+              {% for item in latestExpertAssignments %}
+              <article class="ylwork-live-item">
+                <div class="ylwork-live-meta">
+                  <span class="ylwork-live-type">{{ item.data.roleTitle or "Asiantuntijatehtävä" }}</span>
+                  <span class="ylwork-live-date">{{ item.date | dateFormat }}</span>
+                </div>
+                <h4 class="ylwork-live-item-title"><a href="{{ item.url }}">{{ item.data.title }}</a></h4>
+                <p class="ylwork-live-summary mb-0">{{ item.data.description or (item.content | excerpt) }}</p>
+              </article>
+              {% endfor %}
+            </div>
+            <a href="/mediassa/#media-arkisto" class="ylwork-card-link">Asiantuntijaroolit mediassa-sivulla <span aria-hidden="true">→</span></a>
+          </article>
+
           <article class="ylwork-live-card ylwork-live-card--compact">
             <div class="ylwork-live-head">
               <p class="ylwork-trust-kicker">Opetus ja koulutukset</p>

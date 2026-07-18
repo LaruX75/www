@@ -8,7 +8,7 @@ translationKey: accessibility_statement
 ---
 
 **Sivusto:** [www.jarilaru.fi](https://www.jarilaru.fi)
-**Viimeksi arvioitu:** 11.4.2026
+**Viimeksi arvioitu:** 18.7.2026
 **Tavoitetaso:** WCAG 2.1 taso AA
 **Tila:** Osittain vaatimusten mukainen
 
@@ -19,6 +19,8 @@ translationKey: accessibility_statement
 Sivustoa kehitetään WCAG 2.1 AA -tavoitetta kohti. Huhtikuussa 2026 päivitetyn sisäisen auditoinnin perusteella sivusto ei vielä täytä kaikkia WCAG 2.1 AA -vaatimuksia kaikilla sivuilla ja kaikissa käyttötilanteissa.
 
 Keskeiset jäljellä olevat riskit liittyvät vanhempaan sisältöön, kolmannen osapuolen upotuksiin sekä siihen, että kaikkia sivuja ei ole vielä varmennettu manuaalisesti ruudunlukijoilla ja muilla avustavilla teknologioilla.
+
+Sivustolla on lisäksi oikean reunan saavutettavuustyökalu, jolla käyttäjä voi säätää tekstikokoa, käyttää korkeaa kontrastia, vähentää liikettä, vaihtaa lukemista tukevaan fonttiin, lisätä tekstivälejä, ottaa käyttöön lukuviivaimen, vaihtaa lukutaustan väriä ja käyttää selaimen puhesynteesiin perustuvaa lue ääneen -toimintoa. Työkalun väritilat on muutettu keskitettyyn malliin, jotta korkea kontrasti ja lukemista tukevat taustavärit vaikuttavat sivuston yhteisiin kortti-, taulukko-, paneeli- ja linkkityyleihin mahdollisimman yhdenmukaisesti.
 
 ---
 
@@ -34,6 +36,8 @@ Arviointi perustuu seuraaviin menetelmiin:
 
 Automaattinen testaus ajetaan projektin omasta paikallisesta buildista, jotta arviointi kohdistuu varmasti tähän sivustoon eikä ulkopuolisiin ympäristöihin. Auditin 11.4.2026 ajettu testikokonaisuus sisälsi 14 testiä, jotka läpäistiin ilman varsinaisia saavutettavuusvirheitä auditoiduilla ydinsivuilla.
 
+Saavutettavuustyökalun uudistuksen jälkeen 18.7.2026 ajettiin erillinen Playwright-regressiotesti, joka tarkisti korkean kontrastin, lukutaustavärien ja asetusten keskinäisen prioriteetin viidellä edustavalla sivutyypillä: etusivu, Kynästä-sivu, Esitykset-sivu, Työni yliopistonlehtorina -sivu ja yksittäinen valtuustopuheenvuoro.
+
 ---
 
 ## Tarkastuksen kattavuus
@@ -48,6 +52,7 @@ Tämän auditointikierroksen ensisijainen tarkastus kohdistui seuraaviin sivu- j
 - yhteystiedot
 - navigaatio ja haku
 - footer, lomakkeet, tilaviestit ja suodattimet
+- saavutettavuustyökalun väritilat ja niiden toiminta eri sivutyypeillä
 
 Englanninkieliset sivut käyttävät pääosin samoja komponentteja ja rakenteita, mutta niitä ei ole tässä kierroksessa varmennettu yhtä kattavasti sivu sivulta kuin suomenkielisiä ydinsivuja.
 
@@ -56,6 +61,7 @@ Englanninkieliset sivut käyttävät pääosin samoja komponentteja ja rakenteit
 ## Tämän auditoinnin tulos
 
 - 11.4.2026 ajettu automaattinen auditointikokonaisuus läpäisi 14/14 testiä.
+- 18.7.2026 ajettu saavutettavuustyökalun regressiotesti läpäisi 7/7 testiä.
 - Auditoiduilla ydinsivuilla ei havaittu kriittisiä axe-core-, fokusloukku- tai painikekontrastivirheitä.
 - Merkittävimmät jäljellä olevat riskit liittyvät arkistoituun vanhaan sisältöön, ulkoisiin upotuksiin ja manuaalisen ruudunlukijatestauksen keskeneräisyyteen.
 
@@ -84,6 +90,7 @@ Vuoden 2026 auditointikierroksilla on korjattu muun muassa seuraavia puutteita:
 | 1.1.1 Ei-tekstinen sisältö | Koristeikonikuvakkeilla puuttuva `aria-hidden` | Lisätty `aria-hidden="true"` |
 | 1.4.1 Värin käyttö | Osa tekstilinkeistä erottui ympäröivästä tekstistä lähinnä värillä | Palautettu pysyvä alleviivaus sisältölinkeille |
 | 4.1.3 Tilaviestit | Julkaisusivun rajauksesta ei tullut ruudunlukijalle tilaviestia | Lisätty `role="status"` ja `aria-live` |
+| 1.4.3 Kontrasti | Saavutettavuustyökalun korkea kontrasti ja taustavärivalinnat eivät vaikuttaneet riittävän keskitetysti eri sivupohjien kortteihin, taulukoihin ja paneeleihin | Uudistettu saavutettavuustyökalun värimalli keskitettyjen CSS-muuttujien varaan ja lisätty Playwright-regressiotestit |
 
 Tällä auditointikierroksella päivitettiin lisäksi saavutettavuusviestintää niin, että sivuston WCAG-merkintä ohjaa saavutettavuusselosteeseen eikä esitä sivustoa täysin vaatimustenmukaisena.
 
@@ -98,6 +105,7 @@ Automaattinen testaus kattaa vain osan WCAG-kriteereistä. Seuraavat osa-alueet 
 - kaikkien yksittäisten blogi- ja arkistosivujen tarkistus
 - vanhan sisällön kolmannen osapuolen upotukset ja niiden vaihtoehtoiset esitystavat
 - englanninkielisten sisältösivujen täydellinen sivukohtainen läpikäynti
+- saavutettavuustyökalun toiminnan jatkovarmennus uusilla sivupohjilla sitä mukaa, kun sivustolle lisätään uusia sisältötyyppejä
 
 ---
 

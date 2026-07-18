@@ -82,7 +82,7 @@ wp_id: 7
       <article class="about-role-card">
         <p class="about-role-index">04</p>
         <h3>Tutkija ja asiantuntija</h3>
-        <p>Tutkimukseni ja asiantuntijatyöni liittyvät teknologiatuettuun oppimiseen, yhteisölliseen työskentelyyn ja tekoälylukutaitoon. Julkaisut, lausunnot ja esitykset muodostavat laajemman työjäljen.</p>
+        <p>Tutkimukseni ja asiantuntijatyöni liittyvät teknologiatuettuun oppimiseen, yhteisölliseen työskentelyyn ja tekoälylukutaitoon. Julkaisut, lausunnot, asiantuntijaroolit ja esitykset muodostavat laajemman työjäljen.</p>
         <a href="/tutkimus/">Tutustu tutkimukseen</a>
       </article>
     </div>

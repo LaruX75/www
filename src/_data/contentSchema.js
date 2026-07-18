@@ -24,6 +24,9 @@ const contentSchema = {
       "writingRoles",
       "opinionRoles",
       "mediaRole",
+      "expertRoleType",
+      "roleTitle",
+      "roleStatus",
       "politicalProfiles"
     ],
     topics: [
@@ -36,6 +39,8 @@ const contentSchema = {
       "event",
       "venue",
       "organizer",
+      "appointingBody",
+      "organization",
       "series"
     ],
     evidence: [
@@ -70,6 +75,7 @@ const contentSchema = {
       "article",
       "blogPost",
       "column",
+      "expertAssignment",
       "initiative",
       "mediaItem",
       "opinion",
@@ -87,15 +93,24 @@ const contentSchema = {
     ],
     mediaRoles: [
       "about",
+      "expertAssignment",
       "guest",
       "interviewer"
     ],
     mediaTypes: [
+      "assignment",
       "article",
       "podcast",
       "radio",
       "tv",
       "video"
+    ],
+    expertRoleTypes: [
+      "advisoryGroupMember",
+      "expertPanelist",
+      "frameworkAuthor",
+      "reviewer",
+      "workingGroupMember"
     ],
     contexts: [
       "business",
@@ -176,8 +191,10 @@ const contentSchema = {
       recommended: ["date", "mediaOutlet", "sourceUrl", "categories", "keywords", "contexts"],
       arrayFields: ["categories", "keywords", "contexts"],
       controlled: {
+        contentType: "contentTypes",
         mediaRole: "mediaRoles",
         mediaType: "mediaTypes",
+        expertRoleType: "expertRoleTypes",
         contexts: "contexts"
       }
     },

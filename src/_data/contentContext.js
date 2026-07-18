@@ -129,6 +129,11 @@ function inferContexts(data = {}, inputPath = "") {
     addContext(contexts, "media");
   }
 
+  if (data.contentType === "expertAssignment" || data.mediaRole === "expertAssignment" || data.expertRoleType) {
+    addContext(contexts, "education");
+    addContext(contexts, "teaching");
+  }
+
   if (inputPath.includes("/presentations/") || data.type === "esitys") {
     addContext(contexts, "teaching");
   }

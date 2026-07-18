@@ -7,6 +7,7 @@ layout: base.njk
 
 {% macro mediaTypeLabel(type) %}
   {% if type == "podcast" %}Podcast
+  {% elif type == "assignment" %}Asiantuntijatehtävä
   {% elif type == "article" %}Lehtijuttu
   {% elif type == "tv" %}TV
   {% elif type == "radio" %}Radio
@@ -17,6 +18,7 @@ layout: base.njk
 
 {% macro mediaRoleLabel(role) %}
   {% if role == "about" %}Minusta tehty
+  {% elif role == "expertAssignment" %}Asiantuntijarooli
   {% elif role == "interviewer" %}Haastattelijana
   {% elif role == "guest" %}Vieraana
   {% else %}Mediassa
@@ -76,6 +78,18 @@ layout: base.njk
             <dt>Rooli</dt>
             <dd>{{ mediaRoleLabel(mediaRole) }}</dd>
           </div>
+          {% if roleTitle %}
+          <div>
+            <dt>Tehtävä</dt>
+            <dd>{{ roleTitle }}</dd>
+          </div>
+          {% endif %}
+          {% if appointingBody %}
+          <div>
+            <dt>Asettaja</dt>
+            <dd>{{ appointingBody }}</dd>
+          </div>
+          {% endif %}
           {% if mediaOutlet %}
           <div>
             <dt>Lähde</dt>

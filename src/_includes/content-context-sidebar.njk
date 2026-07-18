@@ -41,6 +41,8 @@
   {% set archiveLabel = "All media items" if isEnglish else "Kaikki mediaosumat" %}
   {% if mediaType == "podcast" %}
     {% set typeLabel = "Podcast" %}
+  {% elif mediaType == "assignment" or mediaRole == "expertAssignment" %}
+    {% set typeLabel = "Asiantuntijatehtävä" %}
   {% elif mediaType == "video" %}
     {% set typeLabel = "Mediaosuma / video" %}
   {% elif mediaType == "radio" %}

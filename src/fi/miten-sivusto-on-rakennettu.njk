@@ -19,10 +19,10 @@ description: "Näin jarilaru.fi rakentuu käytännössä: Eleventy, build-putki,
   <div class="site-shell">
     <div class="card border-0 shadow-sm mb-4">
       <div class="card-body">
-        <h2 class="h4 mb-3">1. AI-avusteinen toteutus: Claude Code ja ihmisen ohjaama review</h2>
-        <p>Sivuston kehityksessä tekoäly toimii käytännössä teknisenä työparina. Ihminen määrittää tavoitteet, tarkistaa muutokset ja päättää mitä julkaistaan. AI auttaa koodin kirjoittamisessa, refaktoroinnissa, käännöksissä, rakenteen selkeyttämisessä ja toistuvissa teknisissä korjauksissa.</p>
-        <p><strong>Claude Code</strong> (Anthropic) on projektin pääasiallinen koodaustyökalu. Se tekee konkreettisia muutoksia tiedostoihin, ajaa komentoja, tarkistaa diffit ja auttaa pitämään muutokset teknisesti johdonmukaisina. Kaikki commitit syntyvät tätä kautta.</p>
-        <p class="mb-0">Käytännössä työnkulku on hyvin maanläheinen: muutos pyydetään, Claude ehdottaa toteutuksen, diffi tarkistetaan, build ja tarkistukset ajetaan, ja vasta sitten muutos julkaistaan versionhallinnan kautta.</p>
+        <h2 class="h4 mb-3">1. AI-avusteinen kehitystyö: ihminen, Codex ja Claude Code</h2>
+        <p>Sivuston kehityksessä tekoäly toimii teknisenä työparina, ei automaattisena julkaisijana. Ihminen määrittää suunnan, tarkistaa sisällöt, arvioi muutokset ja päättää mitä lopulta julkaistaan. AI auttaa koodin kirjoittamisessa, refaktoroinnissa, käännöksissä, rakenteen selkeyttämisessä, sisältöanalyysissa ja toistuvissa teknisissä korjauksissa.</p>
+        <p><strong>Codex</strong> ja <strong>Claude Code</strong> ovat molemmat olleet käytössä projektin eri vaiheissa. Codexia on käytetty erityisesti rakenteen, käyttöliittymän, saavutettavuuden, SEO-näkymien, testien, commit-suunnittelun ja laajempien sivustokokonaisuuksien läpivientiin. Claude Codea on käytetty muun muassa tiedostojen muokkaamiseen, kielen hiomiseen ja toteutusvaihtoehtojen kokeiluun.</p>
+        <p class="mb-0">Käytännössä työnkulku on versionhallittu ja tarkistettava: muutos pyydetään, toteutus tehdään pieninä erinä, diffi tarkistetaan, build ja testit ajetaan, ja vasta sen jälkeen muutos commitoidaan ja julkaistaan. Vastuu sisällöstä ja julkaisemisesta säilyy ihmisellä.</p>
       </div>
     </div>
 
@@ -78,14 +78,23 @@ description: "Näin jarilaru.fi rakentuu käytännössä: Eleventy, build-putki,
             </tbody>
           </table>
         </div>
-        <p class="mb-2">Käytännössä build-putki tekee enemmän kuin yhden `11ty`-ajon. Ennen buildiä synkronoidaan paikalliset fallback-stubit, siivotaan OG-kuvat ja rakennetaan sivusto. Tämän jälkeen ajetaan i18n- ja SEO-tarkistukset, muodostetaan Pagefind-hakuindeksi ja julkaistaan lopputulos GitHub Pagesiin.</p>
-        <p class="mb-0">Tuotannossa sama putki tekee vielä smoke-testit sekä lisäksi ajastetun viikoittaisen ajon, jotta sivusto päivittyy myös silloin kun ulkoisista lähteistä muuttuu tietoa ilman käsin tehtyä commitia.</p>
+        <p class="mb-2">Käytännössä build-putki tekee enemmän kuin yhden `11ty`-ajon. Ennen buildiä synkronoidaan paikalliset fallback-stubit, haetaan tarvittaessa opinnäytteiden avainsanoja, siivotaan OG-kuvat ja rakennetaan sivusto. Tämän jälkeen ajetaan i18n- ja SEO-tarkistukset, muodostetaan Pagefind-hakuindeksi ja rakennetaan sivuston oma SEO-dashboard.</p>
+        <p class="mb-0">Tuotannossa sama putki julkaisee lopputuloksen GitHub Pagesiin, tarkistaa keskeiset tiedostot, tekee smoke-testit ja ajaa ajastettuja päivityksiä. Sivustoa voidaan rakentaa myös offline-/fallback-tilassa, jolloin ulkoisten rajapintojen hetkelliset ongelmat eivät pysäytä julkaisua.</p>
       </div>
     </div>
 
     <div class="card border-0 shadow-sm mb-4">
       <div class="card-body">
-        <h2 class="h4 mb-3">3. Datalähteet ja ulkoiset palvelut</h2>
+        <h2 class="h4 mb-3">3. Laadunvarmistus ja ylläpitonäkymät</h2>
+        <p>Sivuston laatu ei perustu pelkkään käsin klikkailuun. Buildin yhteydessä ja erillisissä testiajoissa tarkistetaan muun muassa sivujen muodostuminen, kieliversioiden SEO-rakenne, sisäisen haun indeksi, navigaatio, kontrastit ja saavutettavuuden perusasiat.</p>
+        <p>Playwright-testeillä käydään läpi navigaatiota, hakua, saavutettavuutta ja kontrasteja. Saavutettavuustyökalulle on lisäksi oma regressiotesti, joka varmistaa korkean kontrastin, lukutaustavärien ja niiden keskinäisen prioriteetin eri sivutyypeillä.</p>
+        <p class="mb-0">Sivustolla on myös oma admin-/SEO-näkymä, johon build tuottaa perustietoja esimerkiksi sivujen metatiedoista, canonical-osoitteista, OG-kuvista, sitemapista ja robots-tiedostosta. Se ei korvaa hakukoneiden omia työkaluja, mutta auttaa näkemään nopeasti, onko sivuston tekninen SEO kunnossa.</p>
+      </div>
+    </div>
+
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-body">
+        <h2 class="h4 mb-3">4. Datalähteet ja ulkoiset palvelut</h2>
         <p class="mb-3">Sivusto hakee sisältöä rajapinnoista rakennusvaiheessa (build) ja käyttää lisäksi muutamia ulkoisia palveluja käyttöliittymässä. Osa lähteistä välimuistitetaan ja muunnetaan paikallisiksi fallback-tiedostoiksi, jotta sivusto voidaan rakentaa myös silloin kun lähde ei vastaa.</p>
         <div class="table-responsive mb-3">
           <table class="table table-hover align-middle">
@@ -167,13 +176,13 @@ description: "Näin jarilaru.fi rakentuu käytännössä: Eleventy, build-putki,
         </div>
         <p class="mb-2">Lisäksi osa sisällöstä tulee hallituista paikallisista datatiedostoista ja kuratoiduista stub-tiedostoista. Näin esimerkiksi Canva-, SlideShare-, Finna- ja Research.fi-sisältöjä voidaan pitää hallittavina myös silloin, kun suora API-haku ei ole käytettävissä.</p>
         <p class="mb-2">Teknisesti ulkoista dataa hyödynnetään taulukoina, ticker-nostoina, korttikokoelmina, hakunäkymissä, metriikkalaskureissa ja automaattisesti päivittyvissä muutoslistoissa. Ulkoiset upotukset taas kulkevat suostumuskerroksen läpi ennen latausta.</p>
-        <p class="mb-0">Analyysisivujen rakenne ja osa tiivistyksistä on tehty AI-avusteisesti, mutta lopullinen julkaistava sisältö on edelleen käsin tarkistettu ja versionhallinnan kautta hyväksytty.</p>
+        <p class="mb-0">Analyysisivujen rakenne, taksonomiat ja osa tiivistyksistä on tehty AI-avusteisesti, mutta lopullinen julkaistava sisältö on edelleen käsin tarkistettu ja versionhallinnan kautta hyväksytty.</p>
       </div>
     </div>
 
     <div class="card border-0 shadow-sm">
       <div class="card-body">
-        <h2 class="h4 mb-3">4. Miten aloitat oman vastaavan sivuston</h2>
+        <h2 class="h4 mb-3">5. Miten aloitat oman vastaavan sivuston</h2>
         <ol class="mb-0">
           <li>Ota AI heti mukaan työpariksi: pyydä ensin suunnitelma, sitten pienet toteutusvaiheet. Tarkista diffit ja commitoi usein.</li>
           <li>Luo GitHub-repo ja valitse stack: Eleventy + Bootstrap on kevyt ja skaalautuva.</li>

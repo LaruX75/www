@@ -392,166 +392,225 @@
   </div>
 </nav>
 
-<div class="offcanvas offcanvas-start d-md-none" tabindex="-1" id="mobileNavEn" aria-labelledby="mobileNavEnLabel">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title fw-bold" id="mobileNavEnLabel">Menu</h5>
+<div class="offcanvas offcanvas-start d-md-none mobile-nav-panel" tabindex="-1" id="mobileNavEn" aria-labelledby="mobileNavEnLabel">
+  <div class="offcanvas-header mobile-nav-panel-header">
+    <div>
+      <p class="mobile-nav-eyebrow mb-1">jarilaru.fi</p>
+      <h5 class="offcanvas-title fw-bold" id="mobileNavEnLabel">Choose a path</h5>
+    </div>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
-  <div class="offcanvas-body">
-    <form class="mb-3" data-search-form>
-      <label for="mobileNavEnSearchInput" class="form-label small text-muted">Search this site</label>
-      <div class="input-group input-group-sm">
+  <div class="offcanvas-body mobile-nav-panel-body">
+    <section class="mobile-nav-hero" aria-label="Site navigation">
+      <p class="mb-2">Find the person, work, politics or published content without scrolling through a long list.</p>
+      <form class="mobile-nav-search" data-search-form>
+        <label for="mobileNavEnSearchInput" class="visually-hidden">Search this site</label>
         <input id="mobileNavEnSearchInput" type="search" class="form-control" placeholder="Search..." autocomplete="off" name="q">
-        <button class="btn btn-outline-primary" type="submit" aria-label="Open search">
+        <button class="btn btn-accent" type="submit" aria-label="Open search">
           <i class="bi bi-search"></i>
         </button>
-      </div>
-    </form>
-    <div class="d-flex align-items-center justify-content-between gap-2 mb-3">
+      </form>
+    </section>
+
+    <div class="mobile-nav-tools" aria-label="Language and theme">
       <div class="btn-group btn-group-sm" role="group" aria-label="Language switcher">
         <a class="btn btn-outline-primary{% if currentLang == 'fi' %} active{% endif %}" href="{{ fiPageUrl or '/' }}" lang="fi">FI</a>
         <a class="btn btn-outline-primary{% if currentLang == 'en' %} active{% endif %}" href="{{ enPageUrl or '/en/' }}" lang="en">EN</a>
       </div>
-      <button class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-2" type="button" data-theme-toggle aria-label="Toggle theme">
+      <button class="btn btn-sm btn-outline-primary mobile-nav-tool-button" type="button" data-theme-toggle aria-label="Toggle theme">
         <i class="bi bi-moon-stars-fill" data-theme-icon></i><span>Theme</span>
       </button>
     </div>
-    <div class="d-grid gap-2 mb-3">
-      <a class="btn btn-outline-primary rounded-pill" href="{{ navHome.url or '/en/' }}">Home</a>
+
+    <div class="mobile-nav-feature-grid">
+      <a class="mobile-nav-feature-card{% if page.url == '/en/' %} is-active{% endif %}" href="{{ navHome.url or '/en/' }}">
+        <span class="mobile-nav-feature-icon"><i class="{{ navHome.icon or 'bi bi-house-door-fill' }}"></i></span>
+        <span>
+          <strong>Home</strong>
+          <small>A quick overview.</small>
+        </span>
+      </a>
+      <a class="mobile-nav-feature-card{% if page.url and '/en/work/' in page.url %} is-active{% endif %}" href="{{ navWork.url or '/en/work/' }}">
+        <span class="mobile-nav-feature-icon"><i class="{{ navWork.icon or 'bi bi-briefcase-fill' }}"></i></span>
+        <span>
+          <strong>Work</strong>
+          <small>Teaching, research and expertise.</small>
+        </span>
+      </a>
+      <a class="mobile-nav-feature-card{% if page.url and '/en/politics/' in page.url %} is-active{% endif %}" href="{{ navPolitics.url or '/en/politics/' }}">
+        <span class="mobile-nav-feature-icon"><i class="{{ navPolitics.icon or 'bi bi-bank2' }}"></i></span>
+        <span>
+          <strong>Politics</strong>
+          <small>Roles and public work.</small>
+        </span>
+      </a>
+      <a class="mobile-nav-feature-card{% if page.url and ('/en/writings/' in page.url or '/en/blog/' in page.url) %} is-active{% endif %}" href="{{ navWritings.url or '/en/writings/' }}">
+        <span class="mobile-nav-feature-icon"><i class="{{ navWritings.icon or 'bi bi-pencil-fill' }}"></i></span>
+        <span>
+          <strong>Writings</strong>
+          <small>Texts, speeches and media.</small>
+        </span>
+      </a>
     </div>
-    <div class="accordion accordion-flush mobile-nav-accordion" id="mobileNavAccordionEn">
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="mobileNavEnMeHead">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavEnMe" aria-expanded="false" aria-controls="mobileNavEnMe">Me</button>
-        </h2>
-        <div id="mobileNavEnMe" class="accordion-collapse collapse" aria-labelledby="mobileNavEnMeHead" data-bs-parent="#mobileNavAccordionEn">
-          <div class="accordion-body">
-            <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="{{ navMe.url or '/en/about/' }}">Open Me page</a>
+
+    <div class="mobile-nav-card-stack" aria-label="Detailed navigation">
+      <details class="mobile-nav-card">
+        <summary>
+          <span class="mobile-nav-card-title"><i class="{{ navMe.icon or 'bi bi-person-fill' }}"></i>Me</span>
+          <span class="mobile-nav-card-desc">Profile, background and roles.</span>
+        </summary>
+        <div class="mobile-nav-card-body">
+          <a class="mobile-nav-primary-link" href="{{ navMe.url or '/en/about/' }}">Open Me page</a>
+          <div class="mobile-nav-section-grid">
             {% for section in meMegaMenu.sections %}
-              <p class="text-uppercase small text-muted mb-1 mt-2">{{ section.heading }}</p>
-              <div class="d-grid gap-1 mb-2">
+              <section class="mobile-nav-section-card">
+                <h6>{{ section.heading }}</h6>
                 {% for link in section.links %}
                   {% if link.inlineLinks %}
-                    <div class="mobile-nav-link d-flex align-items-center gap-2 flex-wrap">
+                    <div class="mobile-nav-inline-links">
                       {% for inlineLink in link.inlineLinks %}
                         <a class="mobile-nav-link inline-link" href="{{ inlineLink.href }}"{% if inlineLink.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ inlineLink.title }}</a>{% if not loop.last %}<span class="mobile-nav-inline-separator" aria-hidden="true">|</span>{% endif %}
                       {% endfor %}
                     </div>
                   {% else %}
-                    <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.title }}</a>
+                    <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
+                      <span><i class="{{ link.icon }}"></i>{{ link.title }}</span>
+                    </a>
                   {% endif %}
                 {% endfor %}
-              </div>
+              </section>
             {% endfor %}
           </div>
         </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="mobileNavEnWorkHead">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavEnWork" aria-expanded="false" aria-controls="mobileNavEnWork">Work</button>
-        </h2>
-        <div id="mobileNavEnWork" class="accordion-collapse collapse" aria-labelledby="mobileNavEnWorkHead" data-bs-parent="#mobileNavAccordionEn">
-          <div class="accordion-body">
-            <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="{{ navWork.url or '/en/work/' }}">Open Work page</a>
+      </details>
+
+      <details class="mobile-nav-card">
+        <summary>
+          <span class="mobile-nav-card-title"><i class="{{ navWork.icon or 'bi bi-briefcase-fill' }}"></i>Work</span>
+          <span class="mobile-nav-card-desc">University work, training and research.</span>
+        </summary>
+        <div class="mobile-nav-card-body">
+          <a class="mobile-nav-primary-link" href="{{ navWork.url or '/en/work/' }}">Open Work page</a>
+          <div class="mobile-nav-section-grid">
             {% for section in workMegaMenu.sections %}
-              <p class="text-uppercase small text-muted mb-1 mt-2">{{ section.heading }}</p>
-              <div class="d-grid gap-1 mb-2">
+              <section class="mobile-nav-section-card">
+                <h6>{{ section.heading }}</h6>
                 {% for link in section.links %}
-                  <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.title }}</a>
+                  <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
+                    <span><i class="{{ link.icon }}"></i>{{ link.title }}</span>
+                  </a>
                 {% endfor %}
-              </div>
+              </section>
             {% endfor %}
           </div>
         </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="mobileNavEnPoliticsHead">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavEnPolitics" aria-expanded="false" aria-controls="mobileNavEnPolitics">Politics</button>
-        </h2>
-        <div id="mobileNavEnPolitics" class="accordion-collapse collapse" aria-labelledby="mobileNavEnPoliticsHead" data-bs-parent="#mobileNavAccordionEn">
-          <div class="accordion-body">
-            <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="{{ navPolitics.url or '/en/politics/' }}">Open Politics page</a>
-            {% if politicsMegaMenu.description %}
-              <p class="menu-desc mb-3">{{ politicsMegaMenu.description }}</p>
-            {% endif %}
+      </details>
+
+      <details class="mobile-nav-card">
+        <summary>
+          <span class="mobile-nav-card-title"><i class="{{ navPolitics.icon or 'bi bi-bank2' }}"></i>Politics</span>
+          <span class="mobile-nav-card-desc">Roles, speeches and election periods.</span>
+        </summary>
+        <div class="mobile-nav-card-body">
+          <a class="mobile-nav-primary-link" href="{{ navPolitics.url or '/en/politics/' }}">Open Politics page</a>
+          {% if politicsMegaMenu.description %}
+            <p class="mobile-nav-note">{{ politicsMegaMenu.description }}</p>
+          {% endif %}
+          <div class="mobile-nav-section-grid">
             {% if politicsMegaMenu.spotlight %}
-              <div class="mobile-nav-spotlight">
-                <p class="text-uppercase small text-muted mb-1">{{ politicsMegaMenu.spotlight.title }}</p>
+              <section class="mobile-nav-section-card mobile-nav-section-card--accent">
+                <h6>{{ politicsMegaMenu.spotlight.title }}</h6>
                 <ul class="mega-role-list mega-role-list--compact">
                   {% for role in politicsMegaMenu.spotlight.roles %}
                     <li>{{ role }}</li>
                   {% endfor %}
                 </ul>
-              </div>
+              </section>
             {% endif %}
             {% for section in politicsMegaMenu.sections %}
-              <p class="text-uppercase small text-muted mb-1 mt-2">{{ section.heading }}</p>
-              <div class="d-grid gap-1 mb-2">
+              <section class="mobile-nav-section-card">
+                <h6>{{ section.heading }}</h6>
                 {% for link in section.links %}
-                  <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.title }}</a>
+                  <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
+                    <span><i class="{{ link.icon }}"></i>{{ link.title }}</span>
+                    {% if link.countKey %}<strong>{{ (collections[link.countKey] or []) | length }}</strong>{% endif %}
+                  </a>
                 {% endfor %}
-              </div>
+              </section>
             {% endfor %}
           </div>
         </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="mobileNavEnWritingsHead">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavEnWritings" aria-expanded="false" aria-controls="mobileNavEnWritings">Writings</button>
-        </h2>
-        <div id="mobileNavEnWritings" class="accordion-collapse collapse" aria-labelledby="mobileNavEnWritingsHead" data-bs-parent="#mobileNavAccordionEn">
-          <div class="accordion-body">
-            <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="{{ navWritings.url or '/en/writings/' }}">Open Writings page</a>
-            <p class="menu-desc mb-3">{{ writingsMegaMenu.description }}</p>
+      </details>
+
+      <details class="mobile-nav-card" open>
+        <summary>
+          <span class="mobile-nav-card-title"><i class="{{ navWritings.icon or 'bi bi-pencil-fill' }}"></i>Writings</span>
+          <span class="mobile-nav-card-desc">Texts, speeches, statements and media.</span>
+        </summary>
+        <div class="mobile-nav-card-body">
+          <a class="mobile-nav-primary-link" href="{{ navWritings.url or '/en/writings/' }}">Open Writings page</a>
+          <p class="mobile-nav-note">{{ writingsMegaMenu.description }}</p>
+          <div class="mobile-nav-section-grid">
             {% if writingsMegaMenu.contentColumns %}
               {% for contentColumn in writingsMegaMenu.contentColumns %}
-                {% if contentColumn.heading %}
-                  <p class="text-uppercase small text-muted mb-1 mt-2">{{ contentColumn.heading }}</p>
-                {% endif %}
-                <div class="d-grid gap-1 mb-2">
+                <section class="mobile-nav-section-card">
+                  {% if contentColumn.heading %}
+                    <h6>{{ contentColumn.heading }}</h6>
+                  {% endif %}
                   {% for link in contentColumn.links %}
-                    <a class="mobile-nav-link" href="{{ link.href }}">{{ link.title }}</a>
+                    <a class="mobile-nav-link" href="{{ link.href }}">
+                      <span><i class="{{ link.icon }}"></i>{{ link.title }}</span>
+                      {% if link.countKey %}<strong>{{ (collections[link.countKey] or []) | length }}</strong>{% endif %}
+                    </a>
                   {% endfor %}
-                </div>
+                </section>
               {% endfor %}
               {% if writingsMegaMenu.seeAlso %}
-                <p class="text-uppercase small text-muted mb-1 mt-2">{{ writingsMegaMenu.seeAlso.heading }}</p>
-                <div class="d-grid gap-1 mb-2">
+                <section class="mobile-nav-section-card">
+                  <h6>{{ writingsMegaMenu.seeAlso.heading }}</h6>
                   {% for link in writingsMegaMenu.seeAlso.links %}
-                    <a class="mobile-nav-link" href="{{ link.href }}">{{ link.title }}</a>
+                    <a class="mobile-nav-link" href="{{ link.href }}">
+                      <span><i class="{{ link.icon }}"></i>{{ link.title }}</span>
+                    </a>
                   {% endfor %}
-                </div>
+                </section>
               {% endif %}
             {% else %}
-              <div class="d-grid gap-1 mb-2">
+              <section class="mobile-nav-section-card">
                 {% for link in writingsMegaMenu.links %}
-                  <a class="mobile-nav-link" href="{{ link.href }}">{{ link.title }}</a>
+                  <a class="mobile-nav-link" href="{{ link.href }}">
+                    <span><i class="{{ link.icon }}"></i>{{ link.title }}</span>
+                  </a>
                 {% endfor %}
-              </div>
+              </section>
             {% endif %}
           </div>
         </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="mobileNavEnContactHead">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavEnContact" aria-expanded="false" aria-controls="mobileNavEnContact">Contact</button>
-        </h2>
-        <div id="mobileNavEnContact" class="accordion-collapse collapse" aria-labelledby="mobileNavEnContactHead" data-bs-parent="#mobileNavAccordionEn">
-          <div class="accordion-body">
-            <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="{{ navContact.url or '/en/contact/' }}">Open Contact page</a>
+      </details>
+
+      <details class="mobile-nav-card">
+        <summary>
+          <span class="mobile-nav-card-title"><i class="{{ navContact.icon or 'bi bi-envelope' }}"></i>Contact</span>
+          <span class="mobile-nav-card-desc">Email, social links and contact form.</span>
+        </summary>
+        <div class="mobile-nav-card-body">
+          <a class="mobile-nav-primary-link" href="{{ navContact.url or '/en/contact/' }}">Open Contact page</a>
+          <div class="mobile-nav-section-grid">
             {% for column in contactMegaMenu.columns %}
-              <p class="text-uppercase small text-muted mb-1 mt-2">{{ column.heading }}</p>
+              <section class="mobile-nav-section-card">
+                <h6>{{ column.heading }}</h6>
               {% if column.links %}
-                <div class="d-grid gap-1 mb-2">
-                  {% for link in column.links %}
-                    <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.title }}</a>
-                  {% endfor %}
-                </div>
+                {% for link in column.links %}
+                  <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
+                    <span><i class="{{ link.icon }}"></i>{{ link.title }}</span>
+                  </a>
+                {% endfor %}
               {% endif %}
+              </section>
             {% endfor %}
           </div>
         </div>
-      </div>
+      </details>
     </div>
   </div>
 </div>
@@ -565,10 +624,13 @@
           <i class="bi bi-x-lg"></i>
         </button>
       </div>
-      <pagefind-input placeholder="Write a search term..."></pagefind-input>
-      <pagefind-summary></pagefind-summary>
-      <pagefind-filter-dropdown filter="Kieli" label="Language" single-select></pagefind-filter-dropdown>
-      <pagefind-results></pagefind-results>
+      <div
+        id="siteSearchUi"
+        class="site-search-ui"
+        data-pagefind-ui
+        data-pagefind-lang="English"
+        data-pagefind-placeholder="Write a search term..."
+      ></div>
     </div>
   </div>
 </div>

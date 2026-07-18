@@ -401,166 +401,225 @@
   </div>
 </nav>
 
-<div class="offcanvas offcanvas-start d-md-none" tabindex="-1" id="mobileNavFi" aria-labelledby="mobileNavFiLabel">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title fw-bold" id="mobileNavFiLabel">Valikko</h5>
+<div class="offcanvas offcanvas-start d-md-none mobile-nav-panel" tabindex="-1" id="mobileNavFi" aria-labelledby="mobileNavFiLabel">
+  <div class="offcanvas-header mobile-nav-panel-header">
+    <div>
+      <p class="mobile-nav-eyebrow mb-1">jarilaru.fi</p>
+      <h5 class="offcanvas-title fw-bold" id="mobileNavFiLabel">Valitse reitti</h5>
+    </div>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Sulje"></button>
   </div>
-  <div class="offcanvas-body">
-    <form class="mb-3" data-search-form>
-      <label for="mobileNavFiSearchInput" class="form-label small text-muted">Hae sivustolta</label>
-      <div class="input-group input-group-sm">
+  <div class="offcanvas-body mobile-nav-panel-body">
+    <section class="mobile-nav-hero" aria-label="Sivuston päävalikko">
+      <p class="mb-2">Etsi henkilökuva, työ, politiikka tai julkaistut sisällöt ilman pitkää linkkilistaa.</p>
+      <form class="mobile-nav-search" data-search-form>
+        <label for="mobileNavFiSearchInput" class="visually-hidden">Hae sivustolta</label>
         <input id="mobileNavFiSearchInput" type="search" class="form-control" placeholder="Hae..." autocomplete="off" name="q">
-        <button class="btn btn-outline-primary" type="submit" aria-label="Avaa haku">
+        <button class="btn btn-accent" type="submit" aria-label="Avaa haku">
           <i class="bi bi-search"></i>
         </button>
-      </div>
-    </form>
-    <div class="d-flex align-items-center justify-content-between gap-2 mb-3">
+      </form>
+    </section>
+
+    <div class="mobile-nav-tools" aria-label="Kieli ja teema">
       <div class="btn-group btn-group-sm" role="group" aria-label="Kielen vaihto">
         <a class="btn btn-outline-primary{% if currentLang == 'fi' %} active{% endif %}" href="{{ fiPageUrl or '/' }}" lang="fi">FI</a>
         <a class="btn btn-outline-primary{% if currentLang == 'en' %} active{% endif %}" href="{{ enPageUrl or '/en/' }}" lang="en">EN</a>
       </div>
-      <button class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-2" type="button" data-theme-toggle aria-label="Vaihda teemaa">
+      <button class="btn btn-sm btn-outline-primary mobile-nav-tool-button" type="button" data-theme-toggle aria-label="Vaihda teemaa">
         <i class="bi bi-moon-stars-fill" data-theme-icon></i><span>Teema</span>
       </button>
     </div>
-    <div class="d-grid gap-2 mb-3">
-      <a class="btn btn-outline-primary rounded-pill" href="{{ navHome.url or '/' }}">Etusivu</a>
+
+    <div class="mobile-nav-feature-grid">
+      <a class="mobile-nav-feature-card{% if page.url == '/' %} is-active{% endif %}" href="{{ navHome.url or '/' }}">
+        <span class="mobile-nav-feature-icon"><i class="{{ navHome.icon or 'bi bi-house-door-fill' }}"></i></span>
+        <span>
+          <strong>Etusivu</strong>
+          <small>Nopea kokonaiskuva.</small>
+        </span>
+      </a>
+      <a class="mobile-nav-feature-card{% if page.url and '/tyoni-yliopistonlehtorina/' in page.url %} is-active{% endif %}" href="{{ navWork.url or '/tyoni-yliopistonlehtorina/' }}">
+        <span class="mobile-nav-feature-icon"><i class="{{ navWork.icon or 'bi bi-briefcase-fill' }}"></i></span>
+        <span>
+          <strong>Työ</strong>
+          <small>Opetus, tutkimus ja asiantuntijuus.</small>
+        </span>
+      </a>
+      <a class="mobile-nav-feature-card{% if page.url and '/politiikka/' in page.url %} is-active{% endif %}" href="{{ navPolitics.url or '/politiikka/' }}">
+        <span class="mobile-nav-feature-icon"><i class="{{ navPolitics.icon or 'bi bi-bank2' }}"></i></span>
+        <span>
+          <strong>Politiikka</strong>
+          <small>Luottamustoimet ja työjälki.</small>
+        </span>
+      </a>
+      <a class="mobile-nav-feature-card{% if page.url and ('/kynasta/' in page.url or '/blogi/' in page.url or '/mediassa/' in page.url) %} is-active{% endif %}" href="{{ navWritings.url or '/kynasta/' }}">
+        <span class="mobile-nav-feature-icon"><i class="{{ navWritings.icon or 'bi bi-pencil-fill' }}"></i></span>
+        <span>
+          <strong>Kynästä</strong>
+          <small>Kirjoitukset, puheet ja media.</small>
+        </span>
+      </a>
     </div>
-    <div class="accordion accordion-flush mobile-nav-accordion" id="mobileNavAccordionFi">
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="mobileNavFiMeHead">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavFiMe" aria-expanded="false" aria-controls="mobileNavFiMe">Minä</button>
-        </h2>
-        <div id="mobileNavFiMe" class="accordion-collapse collapse" aria-labelledby="mobileNavFiMeHead" data-bs-parent="#mobileNavAccordionFi">
-          <div class="accordion-body">
-            <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="{{ navMe.url or '/tietoa/' }}">Avaa Minä-sivu</a>
+
+    <div class="mobile-nav-card-stack" aria-label="Tarkemmat valinnat">
+      <details class="mobile-nav-card">
+        <summary>
+          <span class="mobile-nav-card-title"><i class="{{ navMe.icon or 'bi bi-person-fill' }}"></i>Minä</span>
+          <span class="mobile-nav-card-desc">Henkilökuva, tausta ja roolit.</span>
+        </summary>
+        <div class="mobile-nav-card-body">
+          <a class="mobile-nav-primary-link" href="{{ navMe.url or '/tietoa/' }}">Avaa Minä-sivu</a>
+          <div class="mobile-nav-section-grid">
             {% for section in meMegaMenu.sections %}
-              <p class="text-uppercase small text-muted mb-1 mt-2">{{ section.heading }}</p>
-              <div class="d-grid gap-1 mb-2">
+              <section class="mobile-nav-section-card">
+                <h6>{{ section.heading }}</h6>
                 {% for link in section.links %}
                   {% if link.inlineLinks %}
-                    <div class="mobile-nav-link d-flex align-items-center gap-2 flex-wrap">
+                    <div class="mobile-nav-inline-links">
                       {% for inlineLink in link.inlineLinks %}
                         <a class="mobile-nav-link inline-link" href="{{ inlineLink.href }}"{% if inlineLink.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ inlineLink.title }}</a>{% if not loop.last %}<span class="mobile-nav-inline-separator" aria-hidden="true">|</span>{% endif %}
                       {% endfor %}
                     </div>
                   {% else %}
-                    <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.title }}</a>
+                    <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
+                      <span><i class="{{ link.icon }}"></i>{{ link.title }}</span>
+                    </a>
                   {% endif %}
                 {% endfor %}
-              </div>
+              </section>
             {% endfor %}
           </div>
         </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="mobileNavFiWorkHead">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavFiWork" aria-expanded="false" aria-controls="mobileNavFiWork">Työ</button>
-        </h2>
-        <div id="mobileNavFiWork" class="accordion-collapse collapse" aria-labelledby="mobileNavFiWorkHead" data-bs-parent="#mobileNavAccordionFi">
-          <div class="accordion-body">
-            <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="{{ navWork.url or '/tyoni-yliopistonlehtorina/' }}">Avaa Työ-sivu</a>
+      </details>
+
+      <details class="mobile-nav-card">
+        <summary>
+          <span class="mobile-nav-card-title"><i class="{{ navWork.icon or 'bi bi-briefcase-fill' }}"></i>Työ</span>
+          <span class="mobile-nav-card-desc">Yliopistotyö, kouluttaminen ja tutkimus.</span>
+        </summary>
+        <div class="mobile-nav-card-body">
+          <a class="mobile-nav-primary-link" href="{{ navWork.url or '/tyoni-yliopistonlehtorina/' }}">Avaa Työ-sivu</a>
+          <div class="mobile-nav-section-grid">
             {% for section in workMegaMenu.sections %}
-              <p class="text-uppercase small text-muted mb-1 mt-2">{{ section.heading }}</p>
-              <div class="d-grid gap-1 mb-2">
+              <section class="mobile-nav-section-card">
+                <h6>{{ section.heading }}</h6>
                 {% for link in section.links %}
-                  <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.title }}</a>
+                  <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
+                    <span><i class="{{ link.icon }}"></i>{{ link.title }}</span>
+                  </a>
                 {% endfor %}
-              </div>
+              </section>
             {% endfor %}
           </div>
         </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="mobileNavFiPoliticsHead">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavFiPolitics" aria-expanded="false" aria-controls="mobileNavFiPolitics">Politiikka</button>
-        </h2>
-        <div id="mobileNavFiPolitics" class="accordion-collapse collapse" aria-labelledby="mobileNavFiPoliticsHead" data-bs-parent="#mobileNavAccordionFi">
-          <div class="accordion-body">
-            <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="{{ navPolitics.url or '/politiikka/' }}">Avaa Politiikka-sivu</a>
-            {% if politicsMegaMenu.description %}
-              <p class="menu-desc mb-3">{{ politicsMegaMenu.description }}</p>
-            {% endif %}
+      </details>
+
+      <details class="mobile-nav-card">
+        <summary>
+          <span class="mobile-nav-card-title"><i class="{{ navPolitics.icon or 'bi bi-bank2' }}"></i>Politiikka</span>
+          <span class="mobile-nav-card-desc">Luottamustoimet, puheet ja vaalikaudet.</span>
+        </summary>
+        <div class="mobile-nav-card-body">
+          <a class="mobile-nav-primary-link" href="{{ navPolitics.url or '/politiikka/' }}">Avaa Politiikka-sivu</a>
+          {% if politicsMegaMenu.description %}
+            <p class="mobile-nav-note">{{ politicsMegaMenu.description }}</p>
+          {% endif %}
+          <div class="mobile-nav-section-grid">
             {% if politicsMegaMenu.spotlight %}
-              <div class="mobile-nav-spotlight">
-                <p class="text-uppercase small text-muted mb-1">{{ politicsMegaMenu.spotlight.title }}</p>
+              <section class="mobile-nav-section-card mobile-nav-section-card--accent">
+                <h6>{{ politicsMegaMenu.spotlight.title }}</h6>
                 <ul class="mega-role-list mega-role-list--compact">
                   {% for role in politicsMegaMenu.spotlight.roles %}
                     <li>{{ role }}</li>
                   {% endfor %}
                 </ul>
-              </div>
+              </section>
             {% endif %}
             {% for section in politicsMegaMenu.sections %}
-              <p class="text-uppercase small text-muted mb-1 mt-2">{{ section.heading }}</p>
-              <div class="d-grid gap-1 mb-2">
+              <section class="mobile-nav-section-card">
+                <h6>{{ section.heading }}</h6>
                 {% for link in section.links %}
-                  <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.title }}</a>
+                  <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
+                    <span><i class="{{ link.icon }}"></i>{{ link.title }}</span>
+                    {% if link.countKey %}<strong>{{ (collections[link.countKey] or []) | length }}</strong>{% endif %}
+                  </a>
                 {% endfor %}
-              </div>
+              </section>
             {% endfor %}
           </div>
         </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="mobileNavFiWritingsHead">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavFiWritings" aria-expanded="false" aria-controls="mobileNavFiWritings">Kynästä</button>
-        </h2>
-        <div id="mobileNavFiWritings" class="accordion-collapse collapse" aria-labelledby="mobileNavFiWritingsHead" data-bs-parent="#mobileNavAccordionFi">
-          <div class="accordion-body">
-            <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="{{ navWritings.url or '/kynasta/' }}">Avaa Kynästä-sivu</a>
-            <p class="menu-desc mb-3">{{ writingsMegaMenu.description }}</p>
+      </details>
+
+      <details class="mobile-nav-card" open>
+        <summary>
+          <span class="mobile-nav-card-title"><i class="{{ navWritings.icon or 'bi bi-pencil-fill' }}"></i>Kynästä</span>
+          <span class="mobile-nav-card-desc">Kirjoitukset, puheet, lausunnot ja mediassa.</span>
+        </summary>
+        <div class="mobile-nav-card-body">
+          <a class="mobile-nav-primary-link" href="{{ navWritings.url or '/kynasta/' }}">Avaa Kynästä-sivu</a>
+          <p class="mobile-nav-note">{{ writingsMegaMenu.description }}</p>
+          <div class="mobile-nav-section-grid">
             {% if writingsMegaMenu.contentColumns %}
               {% for contentColumn in writingsMegaMenu.contentColumns %}
-                {% if contentColumn.heading %}
-                  <p class="text-uppercase small text-muted mb-1 mt-2">{{ contentColumn.heading }}</p>
-                {% endif %}
-                <div class="d-grid gap-1 mb-2">
+                <section class="mobile-nav-section-card">
+                  {% if contentColumn.heading %}
+                    <h6>{{ contentColumn.heading }}</h6>
+                  {% endif %}
                   {% for link in contentColumn.links %}
-                    <a class="mobile-nav-link" href="{{ link.href }}">{{ link.title }}</a>
+                    <a class="mobile-nav-link" href="{{ link.href }}">
+                      <span><i class="{{ link.icon }}"></i>{{ link.title }}</span>
+                      {% if link.countKey %}<strong>{{ (collections[link.countKey] or []) | length }}</strong>{% endif %}
+                    </a>
                   {% endfor %}
-                </div>
+                </section>
               {% endfor %}
               {% if writingsMegaMenu.seeAlso %}
-                <p class="text-uppercase small text-muted mb-1 mt-2">{{ writingsMegaMenu.seeAlso.heading }}</p>
-                <div class="d-grid gap-1 mb-2">
+                <section class="mobile-nav-section-card">
+                  <h6>{{ writingsMegaMenu.seeAlso.heading }}</h6>
                   {% for link in writingsMegaMenu.seeAlso.links %}
-                    <a class="mobile-nav-link" href="{{ link.href }}">{{ link.title }}</a>
+                    <a class="mobile-nav-link" href="{{ link.href }}">
+                      <span><i class="{{ link.icon }}"></i>{{ link.title }}</span>
+                    </a>
                   {% endfor %}
-                </div>
+                </section>
               {% endif %}
             {% else %}
-              <div class="d-grid gap-1 mb-2">
+              <section class="mobile-nav-section-card">
                 {% for link in writingsMegaMenu.links %}
-                  <a class="mobile-nav-link" href="{{ link.href }}">{{ link.title }}</a>
+                  <a class="mobile-nav-link" href="{{ link.href }}">
+                    <span><i class="{{ link.icon }}"></i>{{ link.title }}</span>
+                  </a>
                 {% endfor %}
-              </div>
+              </section>
             {% endif %}
           </div>
         </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="mobileNavFiContactHead">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavFiContact" aria-expanded="false" aria-controls="mobileNavFiContact">Ota yhteyttä</button>
-        </h2>
-        <div id="mobileNavFiContact" class="accordion-collapse collapse" aria-labelledby="mobileNavFiContactHead" data-bs-parent="#mobileNavAccordionFi">
-          <div class="accordion-body">
-            <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="{{ navContact.url or '/yhteystiedot/' }}">Avaa Yhteystiedot</a>
+      </details>
+
+      <details class="mobile-nav-card">
+        <summary>
+          <span class="mobile-nav-card-title"><i class="{{ navContact.icon or 'bi bi-envelope' }}"></i>Ota yhteyttä</span>
+          <span class="mobile-nav-card-desc">Sähköposti, some ja yhteydenottolomake.</span>
+        </summary>
+        <div class="mobile-nav-card-body">
+          <a class="mobile-nav-primary-link" href="{{ navContact.url or '/yhteystiedot/' }}">Avaa yhteystiedot</a>
+          <div class="mobile-nav-section-grid">
             {% for column in contactMegaMenu.columns %}
-              <p class="text-uppercase small text-muted mb-1 mt-2">{{ column.heading }}</p>
+              <section class="mobile-nav-section-card">
+                <h6>{{ column.heading }}</h6>
               {% if column.links %}
-                <div class="d-grid gap-1 mb-2">
-                  {% for link in column.links %}
-                    <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.title }}</a>
-                  {% endfor %}
-                </div>
+                {% for link in column.links %}
+                  <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
+                    <span><i class="{{ link.icon }}"></i>{{ link.title }}</span>
+                  </a>
+                {% endfor %}
               {% endif %}
+              </section>
             {% endfor %}
           </div>
         </div>
-      </div>
+      </details>
     </div>
   </div>
 </div>
@@ -574,10 +633,13 @@
           <i class="bi bi-x-lg"></i>
         </button>
       </div>
-      <pagefind-input placeholder="Kirjoita hakusana..."></pagefind-input>
-      <pagefind-summary></pagefind-summary>
-      <pagefind-filter-dropdown filter="Kieli" label="Kieli" single-select></pagefind-filter-dropdown>
-      <pagefind-results></pagefind-results>
+      <div
+        id="siteSearchUi"
+        class="site-search-ui"
+        data-pagefind-ui
+        data-pagefind-lang="Suomi"
+        data-pagefind-placeholder="Kirjoita hakusana..."
+      ></div>
     </div>
   </div>
 </div>

@@ -50,7 +50,7 @@
 </head>
 <body>
   {% set currentLang = lang or (page.url | langFromUrl) %}
-  <span hidden data-pagefind-filter="Kieli[{{ 'English' if currentLang == 'en' else 'Suomi' }}]"></span>
+  <span hidden data-pagefind-filter="Kieli:{{ 'English' if currentLang == 'en' else 'Suomi' }}"></span>
   <a class="visually-hidden-focusable skip-link btn btn-primary m-2 position-absolute" style="z-index: 9999; top: 0; left: 0;" href="#main-content">{{ "Skip to main content" if currentLang == "en" else "Hyppää pääsisältöön" }}</a>
 
   {% include "header.njk" %}
