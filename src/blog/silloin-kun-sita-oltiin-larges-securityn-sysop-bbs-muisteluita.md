@@ -319,9 +319,9 @@ showBackLink: false
   <div class="py-3 border-top">
     <div class="d-flex flex-wrap gap-2 align-items-center">
       <span class="small text-muted">Kategoriat:</span>
-      <a class="badge text-bg-secondary text-decoration-none" href="/kategoriat/harrastukset/">Harrastukset</a>
       <a class="badge text-bg-secondary text-decoration-none" href="/kategoriat/tietotekniikka/">tietotekniikka</a>
       <span class="small text-muted ms-2">Avainsanat:</span>
+      <a class="badge text-bg-light text-dark border text-decoration-none" href="/avainsanat/harrastukset/">harrastukset</a>
       <a class="badge text-bg-light text-dark border text-decoration-none" href="/avainsanat/bbs/">bbs</a>
       <a class="badge text-bg-light text-dark border text-decoration-none" href="/avainsanat/fidonet/">fidonet</a>
       <a class="badge text-bg-light text-dark border text-decoration-none" href="/avainsanat/modeemi/">modeemi</a>
@@ -334,4 +334,3 @@ showBackLink: false
   </div>
 
 </div>
-

@@ -40,7 +40,7 @@
   {% set _baseSection = ("Blog" if _baseLang == "en" else "Blogi") if ("blog" in (tags or [])) else (("Publications" if _baseLang == "en" else "Julkaisut") if ("publications" in (tags or [])) else (("Politics" if _baseLang == "en" else "Politiikka") if ("politics" in (tags or [])) else site.name)) %}
   {% setAsync "_ogRaw" %}{% ogImage "og-image.og.njk", { title: _baseTitle, section: _baseSection, siteName: site.name, domain: "jarilaru.fi", ogBgDataUrl: ogBgDataUrl } %}{% endsetAsync %}
   {% set ogImageOverrideValue = og_image or ogImageOverride %}
-  {% set resolvedOgImage = ogImageOverrideValue if ogImageOverrideValue else (_ogRaw if _ogRaw else "/img/WIN_20210329_16_06_01_Pro.jpg") %}
+  {% set resolvedOgImage = ogImageOverrideValue if ogImageOverrideValue else (_ogRaw if _ogRaw and _ogRaw != "null" else "/img/WIN_20210329_16_06_01_Pro.jpg") %}
   {% include "_meta.njk" %}
   {% include "_ldschema.njk" %}
 </head>

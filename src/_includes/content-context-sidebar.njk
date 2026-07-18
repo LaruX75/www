@@ -1,7 +1,7 @@
 {% set currentLang = lang or (page.url | langFromUrl) %}
 {% set currentTags = tags or [] %}
 {% set relatedItems = collections | relatedContent(page.url, categories, keywords, currentTags, type, 4) %}
-{% set termCloud = collections | contentTermCloud(categories, keywords, 12) %}
+{% set termCloud = collections | contentTermCloud([], keywords, 12) %}
 {% set isEnglish = currentLang == "en" %}
 {% set txt = {
   "context": "Collection",
