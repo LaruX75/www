@@ -104,6 +104,14 @@ translationKey: publications_index
   </div>
 </section>
 
+<nav class="publication-mobile-path" aria-label="Julkaisusivun tärkeimmät osiot">
+  <a href="#aloita-tasta">Reitit</a>
+  <a href="#card-pub-table-a">A-luokka</a>
+  <a href="#vaitoskirja">Väitös</a>
+  <a href="#analyticsPanel">Analytiikka</a>
+  <a href="#julkaisuluokat">Arkisto</a>
+</nav>
+
 <section id="aloita-tasta" class="py-4">
   <div class="site-shell">
     <div class="row g-4 align-items-stretch">
@@ -112,7 +120,9 @@ translationKey: publications_index
         <h2 class="h3 mb-1">Nopeimmat reitit julkaisuarkistoon</h2>
         <p class="text-muted mb-0">Sivun voi lukea joko tutkimusprofiilin esittelynä tai varsinaisena julkaisuarkistona. Nämä sisäänkäynnit vievät suoraan yleisimpiin näkymiin.</p>
       </div>
+    </div>
 
+    <div class="row g-3 align-items-stretch publication-entry-grid mt-1">
       <div class="col-md-6 col-xl-3">
         <article class="card border-0 shadow-sm h-100 publication-entry-card">
           <div class="card-body d-flex flex-column">
@@ -215,6 +225,9 @@ translationKey: publications_index
   .publication-kpi-note {
     font-size: 0.92rem;
   }
+  .publication-mobile-path {
+    display: none;
+  }
   .publication-entry-card {
     border-radius: 1rem;
     transition: transform 0.18s ease, box-shadow 0.18s ease;
@@ -242,6 +255,9 @@ translationKey: publications_index
   }
   .publication-entry-list a:hover {
     text-decoration: underline;
+  }
+  .publication-entry-grid {
+    flex-wrap: wrap;
   }
   .publication-analytics-card,
   .publication-spotlight-card,
@@ -346,6 +362,116 @@ translationKey: publications_index
   }
   html[data-bs-theme="dark"] .publication-jufo--2 {
     color: #dbeafe;
+  }
+
+  @media (max-width: 767.98px) {
+    .publications-hero {
+      padding-block: 2rem !important;
+    }
+
+    .publications-hero-aside,
+    .publication-kpi-note {
+      display: none;
+    }
+
+    .publication-kpi-section {
+      padding-top: 0.85rem;
+    }
+
+    .publication-mobile-path {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      gap: 0.45rem;
+      overflow-x: auto;
+      padding: 0.65rem 0.75rem;
+      border-bottom: 1px solid rgba(19, 43, 70, 0.1);
+      background: color-mix(in srgb, var(--bs-body-bg) 92%, transparent);
+      backdrop-filter: blur(10px);
+      scrollbar-width: none;
+    }
+
+    .publication-mobile-path::-webkit-scrollbar {
+      display: none;
+    }
+
+    .publication-mobile-path a {
+      flex: 0 0 auto;
+      padding: 0.45rem 0.72rem;
+      border: 1px solid var(--bs-border-color);
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--bs-body-bg) 84%, var(--bs-primary) 8%);
+      color: var(--bs-primary);
+      font-size: 0.86rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .publication-entry-grid {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding-bottom: 0.6rem;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+
+    .publication-entry-grid::-webkit-scrollbar {
+      display: none;
+    }
+
+    .publication-entry-grid > [class*="col-"] {
+      flex: 0 0 84%;
+      max-width: 84%;
+      scroll-snap-align: start;
+    }
+
+    .publication-entry-card .card-body {
+      min-height: 17rem;
+    }
+
+    .publication-entry-list {
+      max-height: 5.5rem;
+      overflow: hidden;
+    }
+
+    #analyticsPanel {
+      padding-block: 1rem !important;
+    }
+
+    #analyticsPanel .publication-analytics-card .card-body {
+      padding: 1rem;
+    }
+
+    #julkaisuluokat {
+      padding-top: 2rem !important;
+    }
+
+    .publication-nav-card .card-body {
+      padding: 1rem;
+    }
+
+    .publication-filter-bar {
+      padding: 0.75rem !important;
+    }
+  }
+
+  @media (max-width: 430px) {
+    .publication-entry-grid > [class*="col-"] {
+      flex-basis: 88%;
+      max-width: 88%;
+    }
+  }
+
+  html[data-bs-theme="dark"] .publication-mobile-path {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+    background: color-mix(in srgb, var(--bs-body-bg) 88%, transparent);
+  }
+
+  html[data-bs-theme="dark"] .publication-mobile-path a {
+    border-color: rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.08);
+    color: #f4f8fd;
   }
 
   /* Kanssatutkijat-kortti: häivytys oletuksena, avautuu klikkaamalla */
