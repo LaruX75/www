@@ -88,8 +88,8 @@ html:not([data-bs-theme="dark"]):not([data-a11y-bg]) body {
   /* Soft off-white to contrast with cards */
 }
 
-html:not([data-bs-theme="dark"]) .card,
-html:not([data-bs-theme="dark"]) .ticker-item {
+html:not([data-bs-theme="dark"]):not([data-a11y-bg]) .card,
+html:not([data-bs-theme="dark"]):not([data-a11y-bg]) .ticker-item {
   background-color: #ffffff !important;
   border: 1px solid rgba(0, 0, 0, 0.06) !important;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.02) !important;
@@ -244,13 +244,13 @@ html[data-bs-theme="dark"]:not([data-a11y-bg]) .bg-body-tertiary {
 }
 
 /* Cards */
-[data-bs-theme="dark"] .card {
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .card {
   background-color: #2b3e56 !important;
   border-color: rgba(255, 255, 255, 0.10) !important;
   color: #e0e0e0;
 }
 
-[data-bs-theme="dark"] .card .text-muted {
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .card .text-muted {
   color: rgba(255, 255, 255, 0.55) !important;
 }
 
@@ -272,33 +272,33 @@ html[data-bs-theme="dark"]:not([data-a11y-bg]) .bg-body-tertiary {
 }
 
 /* Card title links should be white in dark mode, not the global blue link color */
-[data-bs-theme="dark"] .card .card-title a,
-[data-bs-theme="dark"] .card h1 a,
-[data-bs-theme="dark"] .card h2 a,
-[data-bs-theme="dark"] .card h3 a,
-[data-bs-theme="dark"] .card h4 a,
-[data-bs-theme="dark"] .card h5 a,
-[data-bs-theme="dark"] .card h6 a {
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .card .card-title a,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .card h1 a,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .card h2 a,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .card h3 a,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .card h4 a,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .card h5 a,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .card h6 a {
   color: #ffffff !important;
 }
 
-[data-bs-theme="dark"] .card .card-title a:hover,
-[data-bs-theme="dark"] .card h2 a:hover {
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .card .card-title a:hover,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .card h2 a:hover {
   color: rgba(255, 255, 255, 0.8) !important;
 }
 
 /* List groups (used on /julkaisut/ page and elsewhere) */
-[data-bs-theme="dark"] .list-group-item {
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .list-group-item {
   background-color: #243347 !important;
   border-color: rgba(255, 255, 255, 0.08) !important;
   color: #e0e0e0;
 }
 
-[data-bs-theme="dark"] .list-group-item:hover {
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .list-group-item:hover {
   background-color: #2e3f59 !important;
 }
 
-[data-bs-theme="dark"] .list-group-item .text-muted {
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .list-group-item .text-muted {
   color: rgba(255, 255, 255, 0.55) !important;
 }
 

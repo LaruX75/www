@@ -1138,7 +1138,7 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
   text-align: center;
 }
 
-[data-bs-theme="dark"] .kynasta-table-top-pager {
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .kynasta-table-top-pager {
   background: rgba(18, 27, 42, 0.92);
   border-color: rgba(255, 255, 255, 0.12) !important;
   box-shadow: 0 0.8rem 1.75rem rgba(0, 0, 0, 0.3);
@@ -1355,6 +1355,35 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
     color: rgba(255, 255, 255, 0.86);
   }
 
+}
+
+/* ── Saavutettavuus-taustavärit: hero- ja pagerkorjaukset ── */
+html[data-a11y-bg] .kynasta-hero {
+  background-color: var(--bs-secondary-bg) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.1) !important;
+}
+html[data-a11y-bg] .kynasta-hero-aside {
+  background: rgba(0, 0, 0, 0.04) !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+html[data-a11y-bg] .kynasta-hero-aside-kicker,
+html[data-a11y-bg] .kynasta-hero-aside-list { color: var(--bs-secondary-color) !important; }
+html[data-a11y-bg] .kynasta-hero h1 { color: var(--bs-body-color) !important; }
+html[data-a11y-bg] .kynasta-hero p,
+html[data-a11y-bg] .kynasta-hero .text-muted { color: var(--bs-secondary-color) !important; }
+html[data-a11y-bg] .kynasta-hero .nav-link {
+  color: var(--bs-body-color) !important;
+  background-color: rgba(0, 0, 0, 0.06) !important;
+  border-color: rgba(0, 0, 0, 0.18) !important;
+}
+html[data-a11y-bg] .kynasta-hero .nav-link:hover {
+  background-color: rgba(0, 0, 0, 0.12) !important;
+  border-color: rgba(0, 0, 0, 0.32) !important;
+}
+html[data-a11y-bg] .kynasta-table-top-pager {
+  background: rgba(255, 255, 255, 0.88) !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 0.8rem 1.75rem rgba(0, 0, 0, 0.06) !important;
 }
 </style>
 
