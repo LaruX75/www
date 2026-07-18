@@ -16,6 +16,9 @@ module.exports = function registerFilters(eleventyConfig) {
     if (!item) return {};
     const d = item.data || {};
     const dateStr = String(d.date || "");
+    const pubName = d.publisher || d.publication || "";
+    const collName = d.publicationCollection || "";
+    const journalDisplay = collName && pubName ? `${collName} – ${pubName}` : (collName || pubName);
     return {
       title: d.title || "",
       year: dateStr.slice(0, 4) || "",
@@ -23,8 +26,8 @@ module.exports = function registerFilters(eleventyConfig) {
       url: d.source_url || d.url || "",
       typeCode: d.publicationType || "",
       typeShort: d.publicationType || "",
-      publisher: d.publisher || d.publication || "",
-      journal: d.publicationCollection || ""
+      publisher: pubName,
+      journal: journalDisplay
     };
   });
 

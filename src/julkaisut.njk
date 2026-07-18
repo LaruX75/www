@@ -47,7 +47,7 @@ translationKey: publications_index
 {%- endfor -%}
 {%- set latestResearchHighlights = (researchfi or []).slice(0, 3) -%}
 {%- set latestPeerReviewedHighlights = (pubsA or []).slice(0, 2) -%}
-{%- set latestPublicHighlights = (pubsE or []).slice(0, 2) -%}
+{%- set latestPublicHighlights = pubsE or [] -%}
 
 <section class="publications-hero py-4 py-lg-5">
   <div class="site-shell">
