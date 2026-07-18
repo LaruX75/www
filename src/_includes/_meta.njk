@@ -50,6 +50,14 @@
 
       if (settings.backgroundColor) htmlEl.setAttribute('data-a11y-bg', settings.backgroundColor);
       else htmlEl.removeAttribute('data-a11y-bg');
+
+      if (settings.highContrast) {
+        htmlEl.style.colorScheme = 'dark';
+      } else if (settings.backgroundColor) {
+        htmlEl.style.colorScheme = 'light';
+      } else {
+        htmlEl.style.colorScheme = htmlEl.getAttribute('data-bs-theme') === 'dark' ? 'dark' : 'light';
+      }
     }
 
     try {

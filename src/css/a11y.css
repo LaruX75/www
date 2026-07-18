@@ -673,3 +673,334 @@ html.a11y-high-contrast .a11y-swatch {
         max-height: calc(100vh - 5rem);
     }
 }
+
+/* ===== Central accessibility colour system =====
+   These rules are intentionally loaded last. Accessibility modes must be able
+   to override page-specific colour choices without adding a new exception for
+   every hero, card, table or archive component. */
+
+html[data-a11y-bg]:not([data-a11y-bg=""]) {
+    --a11y-ink: #111827;
+    --a11y-ink-strong: #050816;
+    --a11y-muted: #374151;
+    --a11y-link: #034ea2;
+    --a11y-link-hover: #02386f;
+    --a11y-border: rgba(17, 24, 39, 0.28);
+    --a11y-border-strong: rgba(17, 24, 39, 0.46);
+    --a11y-focus: #7a4f00;
+    --bs-body-color: var(--a11y-ink);
+    --bs-emphasis-color: var(--a11y-ink-strong);
+    --bs-secondary-color: var(--a11y-muted);
+    --bs-tertiary-color: #4b5563;
+    --bs-link-color: var(--a11y-link);
+    --bs-link-hover-color: var(--a11y-link-hover);
+    --bs-primary: var(--a11y-link);
+    --bs-primary-rgb: 3, 78, 162;
+    --bs-border-color: var(--a11y-border);
+    --bs-border-color-translucent: rgba(17, 24, 39, 0.18);
+    color-scheme: light;
+}
+
+html[data-a11y-bg="beige"] {
+    --a11y-page-bg: #f7ecd8;
+    --a11y-surface: #fff7ea;
+    --a11y-surface-muted: #f1e3c9;
+    --bs-body-bg: var(--a11y-page-bg);
+    --bs-body-bg-rgb: 247, 236, 216;
+    --bs-secondary-bg: var(--a11y-surface);
+    --bs-tertiary-bg: var(--a11y-surface-muted);
+}
+
+html[data-a11y-bg="yellow"] {
+    --a11y-page-bg: #fff8bd;
+    --a11y-surface: #fffce0;
+    --a11y-surface-muted: #f5eca4;
+    --bs-body-bg: var(--a11y-page-bg);
+    --bs-body-bg-rgb: 255, 248, 189;
+    --bs-secondary-bg: var(--a11y-surface);
+    --bs-tertiary-bg: var(--a11y-surface-muted);
+}
+
+html[data-a11y-bg="blue"] {
+    --a11y-page-bg: #dcecff;
+    --a11y-surface: #f1f7ff;
+    --a11y-surface-muted: #cbdff7;
+    --bs-body-bg: var(--a11y-page-bg);
+    --bs-body-bg-rgb: 220, 236, 255;
+    --bs-secondary-bg: var(--a11y-surface);
+    --bs-tertiary-bg: var(--a11y-surface-muted);
+}
+
+html[data-a11y-bg="green"] {
+    --a11y-page-bg: #ddf1d6;
+    --a11y-surface: #f1faee;
+    --a11y-surface-muted: #cde7c5;
+    --bs-body-bg: var(--a11y-page-bg);
+    --bs-body-bg-rgb: 221, 241, 214;
+    --bs-secondary-bg: var(--a11y-surface);
+    --bs-tertiary-bg: var(--a11y-surface-muted);
+}
+
+html[data-a11y-bg]:not([data-a11y-bg=""]) body,
+html[data-a11y-bg]:not([data-a11y-bg=""]) main {
+    background: var(--a11y-page-bg) !important;
+    color: var(--a11y-ink) !important;
+}
+
+html[data-a11y-bg]:not([data-a11y-bg=""]) :where(
+    h1, h2, h3, h4, h5, h6,
+    p, li, dt, dd, figcaption,
+    .lead, .text-muted, .small,
+    [class*="title"], [class*="text"], [class*="lead"], [class*="label"], [class*="kicker"], [class*="eyebrow"]
+) {
+    color: var(--a11y-ink) !important;
+}
+
+html[data-a11y-bg]:not([data-a11y-bg=""]) :where(
+    .text-muted, .small, figcaption,
+    [class*="muted"], [class*="meta"], [class*="date"], [class*="caption"]
+) {
+    color: var(--a11y-muted) !important;
+}
+
+html[data-a11y-bg]:not([data-a11y-bg=""]) :where(
+    .card, [class*="-card"], [class*="Card"],
+    .list-group-item, .accordion-item, .accordion-button,
+    .dropdown-menu, .mega-dropdown .dropdown-menu, .mega-menu-header, .mega-menu-header-secondary, .mega-menu-body,
+    .modal-content, .offcanvas, .toast, .popover, .alert,
+    .table, .table-responsive, .pub-table, .content-context-card,
+    .ticker-item, .content-card-list, .bg-light, .bg-white, .bg-body-tertiary, .bg-adaptive-dark-blue,
+    .a11y-panel
+) {
+    background: var(--a11y-surface) !important;
+    background-image: none !important;
+    border-color: var(--a11y-border) !important;
+    color: var(--a11y-ink) !important;
+    box-shadow: none !important;
+}
+
+html[data-a11y-bg]:not([data-a11y-bg=""]) :where(
+    table, thead, tbody, tfoot, tr, th, td,
+    .table > :not(caption) > * > *
+) {
+    background-color: var(--a11y-surface) !important;
+    border-color: var(--a11y-border) !important;
+    color: var(--a11y-ink) !important;
+}
+
+html[data-a11y-bg]:not([data-a11y-bg=""]) :where(a:not(.btn):not(.badge)) {
+    color: var(--a11y-link) !important;
+    text-decoration-color: currentColor !important;
+}
+
+html[data-a11y-bg]:not([data-a11y-bg=""]) :where(a:not(.btn):not(.badge):hover) {
+    color: var(--a11y-link-hover) !important;
+}
+
+html[data-a11y-bg]:not([data-a11y-bg=""]) :where(
+    .btn, button, .page-link, .nav-pills .nav-link, .a11y-btn, .a11y-toggle
+) {
+    border-color: var(--a11y-border-strong) !important;
+}
+
+html[data-a11y-bg]:not([data-a11y-bg=""]) :where(.btn-primary, .a11y-toggle[aria-pressed="true"]) {
+    background: var(--a11y-link) !important;
+    border-color: var(--a11y-link) !important;
+    color: #ffffff !important;
+}
+
+html[data-a11y-bg]:not([data-a11y-bg=""]) :where(.btn-outline-primary, .page-link, .a11y-btn, .a11y-toggle) {
+    background: var(--a11y-surface-muted) !important;
+    color: var(--a11y-link) !important;
+}
+
+html[data-a11y-bg]:not([data-a11y-bg=""]) :where(.badge, [class*="badge"]) {
+    background: var(--a11y-surface-muted) !important;
+    border: 1px solid var(--a11y-border) !important;
+    color: var(--a11y-ink) !important;
+}
+
+html[data-a11y-bg]:not([data-a11y-bg=""]) :focus-visible {
+    outline: 3px solid var(--a11y-focus) !important;
+    outline-offset: 3px !important;
+}
+
+html.a11y-high-contrast {
+    --a11y-hc-bg: #000000;
+    --a11y-hc-ink: #ffffff;
+    --a11y-hc-link: #ffff00;
+    --a11y-hc-focus: #00ffff;
+    --bs-body-bg: var(--a11y-hc-bg);
+    --bs-body-bg-rgb: 0, 0, 0;
+    --bs-body-color: var(--a11y-hc-ink);
+    --bs-emphasis-color: var(--a11y-hc-ink);
+    --bs-secondary-color: var(--a11y-hc-ink);
+    --bs-tertiary-color: var(--a11y-hc-ink);
+    --bs-secondary-bg: var(--a11y-hc-bg);
+    --bs-tertiary-bg: var(--a11y-hc-bg);
+    --bs-border-color: var(--a11y-hc-ink);
+    --bs-border-color-translucent: var(--a11y-hc-ink);
+    --bs-link-color: var(--a11y-hc-link);
+    --bs-link-hover-color: var(--a11y-hc-focus);
+    --bs-primary: var(--a11y-hc-ink);
+    --bs-primary-rgb: 255, 255, 255;
+    color-scheme: dark;
+}
+
+html.a11y-high-contrast,
+html.a11y-high-contrast body,
+html.a11y-high-contrast main {
+    background: var(--a11y-hc-bg) !important;
+    color: var(--a11y-hc-ink) !important;
+}
+
+html.a11y-high-contrast * {
+    text-shadow: none !important;
+    box-shadow: none !important;
+}
+
+html.a11y-high-contrast :where(
+    main, section, article, aside, header, footer, nav,
+    .card, [class*="-card"], [class*="Card"],
+    [class*="-hero"], [class*="Hero"],
+    [class*="-panel"], [class*="Panel"],
+    [class*="-item"], [class*="Item"],
+    .list-group-item, .accordion-item, .accordion-button,
+    .dropdown-menu, .mega-dropdown .dropdown-menu, .mega-menu-header, .mega-menu-header-secondary, .mega-menu-body,
+    .modal-content, .offcanvas, .toast, .popover, .alert,
+    .table, .table-responsive, .pub-table, .content-context-card,
+    .ticker-item, .content-card-list, .bg-light, .bg-white, .bg-body-tertiary, .bg-adaptive-dark-blue,
+    .a11y-panel, .a11y-panel-header
+) {
+    background: var(--a11y-hc-bg) !important;
+    background-image: none !important;
+    border-color: var(--a11y-hc-ink) !important;
+    color: var(--a11y-hc-ink) !important;
+}
+
+html.a11y-high-contrast :where(
+    h1, h2, h3, h4, h5, h6,
+    p, li, dt, dd, figcaption,
+    span, strong, em, small, label,
+    .lead, .text-muted, .small,
+    [class*="title"], [class*="text"], [class*="lead"], [class*="label"], [class*="kicker"], [class*="eyebrow"],
+    [class*="muted"], [class*="meta"], [class*="date"], [class*="caption"]
+) {
+    color: var(--a11y-hc-ink) !important;
+}
+
+html.a11y-high-contrast :where(
+    table, thead, tbody, tfoot, tr, th, td,
+    .table > :not(caption) > * > *
+) {
+    background: var(--a11y-hc-bg) !important;
+    border-color: var(--a11y-hc-ink) !important;
+    color: var(--a11y-hc-ink) !important;
+}
+
+html.a11y-high-contrast :where(a:not(.btn):not(.badge), .nav-link, .navbar-brand) {
+    color: var(--a11y-hc-link) !important;
+    text-decoration: underline !important;
+    text-decoration-thickness: 2px !important;
+    text-underline-offset: 0.18em !important;
+}
+
+html.a11y-high-contrast :where(a:not(.btn):not(.badge):hover, .nav-link:hover) {
+    color: var(--a11y-hc-focus) !important;
+}
+
+html.a11y-high-contrast :where(
+    .btn, button, .page-link, .badge, [class*="badge"], .a11y-btn, .a11y-toggle, .a11y-close, .a11y-trigger
+) {
+    background: var(--a11y-hc-bg) !important;
+    border: 2px solid var(--a11y-hc-ink) !important;
+    color: var(--a11y-hc-ink) !important;
+}
+
+html.a11y-high-contrast :where(
+    .btn:hover, button:hover, .page-link:hover, .a11y-btn:hover, .a11y-toggle:hover, .a11y-trigger:hover
+) {
+    background: var(--a11y-hc-ink) !important;
+    color: var(--a11y-hc-bg) !important;
+}
+
+html.a11y-high-contrast :where(.btn-primary, .a11y-toggle[aria-pressed="true"], .page-item.active .page-link) {
+    background: var(--a11y-hc-ink) !important;
+    border-color: var(--a11y-hc-ink) !important;
+    color: var(--a11y-hc-bg) !important;
+}
+
+html.a11y-high-contrast :where(input, textarea, select, .form-control, .form-select) {
+    background: var(--a11y-hc-bg) !important;
+    border: 2px solid var(--a11y-hc-ink) !important;
+    color: var(--a11y-hc-ink) !important;
+}
+
+html.a11y-high-contrast :focus-visible {
+    outline: 3px solid var(--a11y-hc-focus) !important;
+    outline-offset: 3px !important;
+}
+
+html.a11y-high-contrast :where(img, video, iframe, svg) {
+    background: transparent !important;
+}
+
+/* High contrast is the strongest colour mode. Keep this final layer more
+   specific than the readable-background mode so combined settings cannot
+   leave pages with a coloured background or low-contrast links. */
+html.a11y-high-contrast[data-a11y-bg]:not([data-a11y-bg=""]) {
+    --a11y-page-bg: var(--a11y-hc-bg);
+    --a11y-surface: var(--a11y-hc-bg);
+    --a11y-surface-muted: var(--a11y-hc-bg);
+    --a11y-ink: var(--a11y-hc-ink);
+    --a11y-ink-strong: var(--a11y-hc-ink);
+    --a11y-muted: var(--a11y-hc-ink);
+    --a11y-link: var(--a11y-hc-link);
+    --a11y-link-hover: var(--a11y-hc-focus);
+    --a11y-border: var(--a11y-hc-ink);
+    --a11y-border-strong: var(--a11y-hc-ink);
+    --a11y-focus: var(--a11y-hc-focus);
+    color-scheme: dark;
+}
+
+html.a11y-high-contrast[data-a11y-bg]:not([data-a11y-bg=""]) body,
+html.a11y-high-contrast[data-a11y-bg]:not([data-a11y-bg=""]) main,
+html.a11y-high-contrast[data-a11y-bg]:not([data-a11y-bg=""]) :where(
+    main, section, article, aside, header, footer, nav,
+    .card, [class*="-card"], [class*="Card"],
+    [class*="-hero"], [class*="Hero"],
+    [class*="-panel"], [class*="Panel"],
+    [class*="-item"], [class*="Item"],
+    .list-group-item, .accordion-item, .accordion-button,
+    .dropdown-menu, .mega-dropdown .dropdown-menu, .mega-menu-header, .mega-menu-header-secondary, .mega-menu-body,
+    .modal-content, .offcanvas, .toast, .popover, .alert,
+    .table, .table-responsive, .pub-table, .content-context-card,
+    .ticker-item, .content-card-list, .bg-light, .bg-white, .bg-body-tertiary, .bg-adaptive-dark-blue,
+    .a11y-panel, .a11y-panel-header
+) {
+    background: var(--a11y-hc-bg) !important;
+    background-image: none !important;
+    border-color: var(--a11y-hc-ink) !important;
+    color: var(--a11y-hc-ink) !important;
+}
+
+html.a11y-high-contrast[data-a11y-bg]:not([data-a11y-bg=""]) :where(a:not(.btn):not(.badge), .nav-link, .navbar-brand) {
+    color: var(--a11y-hc-link) !important;
+}
+
+html.a11y-high-contrast[data-bs-theme] .card,
+html.a11y-high-contrast[data-bs-theme] [class*="-card"],
+html.a11y-high-contrast[data-bs-theme] [class*="Card"],
+html.a11y-high-contrast[data-bs-theme] [class*="-panel"],
+html.a11y-high-contrast[data-bs-theme] [class*="Panel"],
+html.a11y-high-contrast[data-bs-theme] .table,
+html.a11y-high-contrast[data-bs-theme] .table-responsive,
+html.a11y-high-contrast[data-bs-theme] .pub-table,
+html.a11y-high-contrast[data-bs-theme] .content-context-card,
+html.a11y-high-contrast[data-bs-theme] .ticker-item,
+html.a11y-high-contrast[data-bs-theme] .content-card-list {
+    background: var(--a11y-hc-bg) !important;
+    background-image: none !important;
+    border-color: var(--a11y-hc-ink) !important;
+    box-shadow: none !important;
+}
