@@ -27,12 +27,17 @@ module.exports = {
     writingRoles: (data) => resolveWritingRoles(data),
     tags: (data) => {
       const tagSet = new Set(toArray(data.tags));
+      const roleList = resolveWritingRoles(data);
       tagSet.add("blog");
 
-      resolveWritingRoles(data).forEach((role) => {
+      roleList.forEach((role) => {
         tagSet.add(`blog_${role}`);
         tagSet.add(`writing_${role}`);
       });
+      if (roleList.includes("political") && roleList.includes("expert")) {
+        tagSet.add("blog_hybrid");
+        tagSet.add("writing_hybrid");
+      }
 
       return Array.from(tagSet);
     }

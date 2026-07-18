@@ -661,6 +661,7 @@ module.exports = {
           links: [
             { title: "Poliittiset mielipiteet", href: "/kynasta/?opinions=political#mielipiteet", icon: "bi bi-chat-left-quote me-2", countData: "publications_political_opinions", description: "Mielipidekirjoitukset, joissa näkökulma on selvästi poliittinen tai kunnalliseen päätöksentekoon liittyvä." },
             { title: "Asiantuntijamielipiteet", href: "/kynasta/?opinions=expert#mielipiteet", icon: "bi bi-chat-text me-2", countData: "publications_expert_opinions", description: "Mielipidekirjoitukset, joissa painopiste on asiantuntijuudessa, tutkimuksessa tai opetuksen kehittämisessä." },
+            { title: "Poliittinen + asiantuntija", href: "/kynasta/?opinions=hybrid#mielipiteet", icon: "bi bi-intersect me-2", countKey: "pub_mielipide_hybrid", description: "Rajatapaukset, joissa asiantuntijuus tukee suoraan poliittista argumenttia." },
             { title: "Kolumnit", href: "/kynasta/#kolumnit", icon: "bi bi-journal-richtext me-2", countKey: "pub_kolumni", description: "Taustoittavia ja esseemäisiä tekstejä opetuksesta, yhteiskunnasta ja ilmiöistä." },
             { title: "Blogi", href: "/blogi/", icon: "bi bi-pen me-2", countKey: "blog", description: "Ajankohtaiset kirjoitukset opetuksesta, teknologiasta ja yhteiskunnasta." }
           ]
@@ -693,6 +694,7 @@ module.exports = {
           links: [
             { title: "Political opinions", href: "/en/writings/?opinions=political#mielipiteet", icon: "bi bi-chat-left-quote me-2", countData: "publications_political_opinions", description: "Opinion pieces rooted in political work, local governance, and public decision-making." },
             { title: "Expert opinions", href: "/en/writings/?opinions=expert#mielipiteet", icon: "bi bi-chat-text me-2", countData: "publications_expert_opinions", description: "Opinion pieces framed primarily through expertise, research, or educational development." },
+            { title: "Political + expert", href: "/en/writings/?opinions=hybrid#mielipiteet", icon: "bi bi-intersect me-2", countKey: "pub_mielipide_hybrid", description: "Boundary cases where expertise directly supports a political argument." },
             { title: "Columns", href: "/en/writings/#kolumnit", icon: "bi bi-journal-richtext me-2", countKey: "pub_kolumni", description: "Long-form texts on education, society, and public questions." },
             { title: "Blog", href: "/en/blog/", icon: "bi bi-pen me-2", countKey: "blog", description: "Posts on education, technology, and public life themes." }
           ]

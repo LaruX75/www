@@ -126,7 +126,13 @@ translationKey: home
     {% endif %}
 {% endfor %}
 {% set featuredPublications = (researchfi or []).slice(0, 2) %}
-{% set featuredRecentPost = (collections.blog or [])[0] %}
+{% set featuredRecentWritingItems = [] %}
+{% for item in (collections.writing_expert or []) | sort(true, false, "date") %}
+    {% if item.data.type != "lausunto" and item.data.type != "puhe" and item.data.title %}
+        {% set _ = (featuredRecentWritingItems.push(item), null) %}
+    {% endif %}
+{% endfor %}
+{% set featuredRecentPost = featuredRecentWritingItems[0] or (collections.blog or [])[0] %}
 {% set featuredRecentPresentation = ((canva.fiRows or canva.tableRows or [])[0]) %}
 {% set featuredRecentStatement = heroStatementItems[0] %}
 {% set featuredRecentMedia = ((mediaArchive and mediaArchive.all) or [])[0] %}
@@ -333,7 +339,17 @@ translationKey: home
         </div>
         <div class="home-recent-editorial">
             <article class="home-recent-card">
-                <p class="home-recent-card-kicker">Kirjoitus</p>
+                {% set featuredRecentPostRoleFlags = [] %}
+                {% if featuredRecentPost and featuredRecentPost.data.opinionRoles %}
+                    {% for role in featuredRecentPost.data.opinionRoles %}
+                        {% set _ = (featuredRecentPostRoleFlags.push(role), null) %}
+                    {% endfor %}
+                {% elif featuredRecentPost and featuredRecentPost.data.writingRoles %}
+                    {% for role in featuredRecentPost.data.writingRoles %}
+                        {% set _ = (featuredRecentPostRoleFlags.push(role), null) %}
+                    {% endfor %}
+                {% endif %}
+                <p class="home-recent-card-kicker">{% if featuredRecentPostRoleFlags.indexOf("political") != -1 and featuredRecentPostRoleFlags.indexOf("expert") != -1 %}Asiantuntija + politiikka{% else %}Asiantuntijakirjoitus{% endif %}</p>
                 {% if featuredRecentPost %}
                 <h3 class="home-recent-card-title"><a href="{{ featuredRecentPost.url }}">{{ featuredRecentPost.data.title | truncate(76) }}</a></h3>
                 <p class="home-recent-card-meta">{{ featuredRecentPost.date | dateFormat }}</p>

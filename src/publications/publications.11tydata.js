@@ -95,6 +95,9 @@ function resolveWritingRoles(data) {
   if (data.type === "mielipide") {
     resolveOpinionRoles(data).forEach((role) => mergedRoles.add(role));
   }
+  if (data.type === "lausunto") {
+    mergedRoles.add("expert");
+  }
 
   return Array.from(mergedRoles);
 }
@@ -108,6 +111,7 @@ module.exports = {
     tags: (data) => {
       const tagSet = new Set(["publications"]);
       const writingRoleList = resolveWritingRoles(data);
+      const isHybridWriting = writingRoleList.includes("political") && writingRoleList.includes("expert");
 
       if (data.type === "puhe") {
         tagSet.add("pub_puhe");
@@ -124,9 +128,15 @@ module.exports = {
         tagSet.add("pub_mielipide");
         const roles = resolveOpinionRoles(data);
         roles.forEach((role) => tagSet.add(`pub_mielipide_${role}`));
+        if (roles.includes("political") && roles.includes("expert")) {
+          tagSet.add("pub_mielipide_hybrid");
+        }
       }
 
       writingRoleList.forEach((role) => tagSet.add(`writing_${role}`));
+      if (isHybridWriting) {
+        tagSet.add("writing_hybrid");
+      }
 
       if (isPoliticalPublication(data)) {
         tagSet.add("politics");

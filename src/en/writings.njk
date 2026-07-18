@@ -28,6 +28,7 @@ lang: en
 {% set totalMaterialsCount = uniqueMaterialKeys | length %}
 {% set politicalOpinionCount = (collections.pub_mielipide_political or []) | length %}
 {% set expertOpinionCount = (collections.pub_mielipide_expert or []) | length %}
+{% set hybridOpinionCount = (collections.pub_mielipide_hybrid or []) | length %}
 
 <section class="kynasta-hero py-4">
   <div class="site-shell">
@@ -98,6 +99,7 @@ lang: en
     "isExternal": {{ (pub.data.url != null) | jsonSafe | safe }},
     "categories": {{ (pub.data.categories or []) | jsonSafe | safe }},
     "keywords": {{ (pub.data.keywords or []) | jsonSafe | safe }},
+    "writingRoles": {{ (pub.data.writingRoles or []) | jsonSafe | safe }},
     "opinionRoles": {{ (pub.data.opinionRoles or []) | jsonSafe | safe }}
   }{% if not loop.last %},{% endif %}
   {% endfor %}
@@ -116,8 +118,7 @@ lang: en
       <div class="card-body p-0">
         <div class="px-3 pt-3 pb-0">
           <p class="small text-muted mb-3">
-            {{ politicalOpinionCount }} texts are marked political and {{ expertOpinionCount }} expert-facing.
-            A single text can belong to both.
+            {{ politicalOpinionCount }} texts are marked political, {{ expertOpinionCount }} expert-facing, and {{ hybridOpinionCount }} sit at the boundary of both roles.
           </p>
         </div>
         {# ---- Suodatuspalkki ---- #}
@@ -134,6 +135,7 @@ lang: en
                 <button type="button" class="btn btn-outline-secondary active" data-opinion-role="all">All</button>
                 <button type="button" class="btn btn-outline-secondary" data-opinion-role="political">Political</button>
                 <button type="button" class="btn btn-outline-secondary" data-opinion-role="expert">Expert</button>
+                <button type="button" class="btn btn-outline-secondary" data-opinion-role="hybrid">Political + expert</button>
               </div>
             </div>
             <div class="col-md-2 d-flex justify-content-md-end gap-2">
@@ -210,7 +212,7 @@ lang: en
             <div class="col-md-9">
               <label for="kolumnit-search" class="form-label small text-muted mb-1">Search columns</label>
               <input type="search" id="kolumnit-search" class="form-control form-control-sm"
-                     placeholder="Search by title, summary, publication, categories..." autocomplete="off">
+                     placeholder="Search by title, publication, topic, or role..." autocomplete="off">
             </div>
             <div class="col-md-3 d-flex justify-content-md-end gap-2">
               <button id="kolumnit-reset" class="btn btn-outline-secondary btn-sm w-100">
@@ -1418,7 +1420,7 @@ section[id] {
   let mielipiteetCurrentPage = 1;
   let mielipiteetSortCol = 'date';
   let mielipiteetSortDir = -1; // -1 = desc
-  let selectedOpinionRole = ['political', 'expert'].includes(initialOpinionRole) ? initialOpinionRole : 'all';
+  let selectedOpinionRole = ['political', 'expert', 'hybrid'].includes(initialOpinionRole) ? initialOpinionRole : 'all';
 
   const mielipiteetSearchInp = document.getElementById('mielipiteet-search');
   const mielipiteetTbody = document.getElementById('mielipiteet-tbody');
@@ -1460,14 +1462,18 @@ section[id] {
   function applyOpinionsFilters() {
     const q = mielipiteetSearchInp ? mielipiteetSearchInp.value.toLowerCase().trim() : '';
     filteredOpinionsData = sortOpinionsArray(mielipiteetData.filter(d => {
-      const roles = Array.isArray(d.opinionRoles) ? d.opinionRoles : [];
+      const roles = Array.isArray(d.opinionRoles) ? d.opinionRoles : (Array.isArray(d.writingRoles) ? d.writingRoles : []);
       const matchQ = !q ||
         (d.title || '').toLowerCase().includes(q) ||
         (d.description || '').toLowerCase().includes(q) ||
         (d.publication || '').toLowerCase().includes(q) ||
+        roleMatchesQuery(roles, q) ||
         (d.categories || []).some(c => c.toLowerCase().includes(q)) ||
         (d.keywords || []).some(k => k.toLowerCase().includes(q));
-      const matchRole = selectedOpinionRole === 'all' || roles.includes(selectedOpinionRole);
+      const matchRole =
+        selectedOpinionRole === 'all' ||
+        roles.includes(selectedOpinionRole) ||
+        (selectedOpinionRole === 'hybrid' && roles.includes('political') && roles.includes('expert'));
       return matchQ && matchRole;
     }));
     mielipiteetCurrentPage = 1;
@@ -1495,10 +1501,7 @@ section[id] {
       mielipiteetTbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-5">No results for this search</td></tr>';
     } else {
       mielipiteetTbody.innerHTML = slice.map(d => {
-        const roleBadges = (d.opinionRoles || []).map((role) => {
-          const label = role === 'political' ? 'Political' : 'Expert';
-          return `<span class="badge text-bg-light border text-dark mt-1 me-1">${label}</span>`;
-        }).join('');
+        const roleBadges = renderRoleBadges(d.opinionRoles || d.writingRoles || []);
         const catBadges = (d.categories || []).map(c => `<a href="/en/categories/${slugify(c)}/" class="badge text-bg-secondary me-1 text-decoration-none">${c}</a>`).join('');
         const keyBadges = (d.keywords || []).map(k => `<a href="/en/keywords/${slugify(k)}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">${k}</a>`).join('');
 
@@ -1569,6 +1572,35 @@ section[id] {
   function slugify(str) {
     if (!str) return "";
     return str.toLowerCase().replace(/ä/g, "a").replace(/ö/g, "o").replace(/å/g, "a").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  }
+
+  function normalizeRoles(roles) {
+    return [...new Set((Array.isArray(roles) ? roles : []).filter(Boolean))];
+  }
+
+  function renderRoleBadges(roles) {
+    const normalized = normalizeRoles(roles);
+    if (normalized.includes('political') && normalized.includes('expert')) {
+      return '<span class="badge text-bg-light border text-dark mt-1 me-1">Political + expert</span>';
+    }
+    return normalized.map((role) => {
+      const label = role === 'political' ? 'Political' : role === 'personal' ? 'Personal' : 'Expert';
+      return `<span class="badge text-bg-light border text-dark mt-1 me-1">${label}</span>`;
+    }).join('');
+  }
+
+  function roleMatchesQuery(roles, query) {
+    const normalized = normalizeRoles(roles);
+    const terms = normalized.flatMap((role) => {
+      if (role === 'political') return ['political', 'politics'];
+      if (role === 'expert') return ['expert', 'expertise'];
+      if (role === 'personal') return ['personal'];
+      return [role];
+    });
+    if (normalized.includes('political') && normalized.includes('expert')) {
+      terms.push('hybrid', 'boundary', 'political expert', 'political + expert');
+    }
+    return terms.some((term) => term.toLowerCase().includes(query));
   }
 
   if (mielipiteetSearchInp) mielipiteetSearchInp.addEventListener('input', applyOpinionsFilters);

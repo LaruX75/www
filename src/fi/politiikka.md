@@ -464,7 +464,8 @@ templateEngineOverride: njk
             {% endfor %}
           </div>
           <div class="pol-current-foot">
-            <small class="text-muted">Koko aineisto löytyy kirjoitusarkistosta, mutta politiikkasivu näyttää vain profiilin kannalta olennaiset nostot.</small>
+            <small class="text-muted">Rajapinnan tekstit ovat poliittisia kannanottoja, joissa asiantuntijuus on osa perustelua.</small>
+            <a href="/kynasta/?opinions=hybrid#mielipiteet" class="btn btn-outline-primary btn-sm mt-3">Rajapinnan kirjoitukset</a>
           </div>
         </section>
       </div>
