@@ -592,7 +592,7 @@ translationKey: home
   .home-path-card--primary .home-path-card-cta {
     color: inherit;
   }
-  [data-bs-theme="dark"] .home-path-card {
+  html[data-bs-theme="dark"]:not([data-a11y-bg]) .home-path-card {
     background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.05));
     border-color: rgba(255, 255, 255, 0.14);
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.24);
@@ -637,11 +637,11 @@ translationKey: home
     background: rgba(255, 255, 255, 0.95);
     box-shadow: 0 1rem 2rem rgba(15, 34, 56, 0.08);
   }
-  [data-bs-theme="dark"] .home-focus-main,
-  [data-bs-theme="dark"] .home-focus-support,
-  [data-bs-theme="dark"] .home-focus-strip,
-  [data-bs-theme="dark"] .home-recent-card,
-  [data-bs-theme="dark"] .home-challenge-card {
+  html[data-bs-theme="dark"]:not([data-a11y-bg]) .home-focus-main,
+  html[data-bs-theme="dark"]:not([data-a11y-bg]) .home-focus-support,
+  html[data-bs-theme="dark"]:not([data-a11y-bg]) .home-focus-strip,
+  html[data-bs-theme="dark"]:not([data-a11y-bg]) .home-recent-card,
+  html[data-bs-theme="dark"]:not([data-a11y-bg]) .home-challenge-card {
     background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.05));
     border-color: rgba(255, 255, 255, 0.14);
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.24);
@@ -655,7 +655,7 @@ translationKey: home
       rgba(255, 255, 255, 0.98);
     border-color: rgba(19, 78, 145, 0.16);
   }
-  [data-bs-theme="dark"] .home-focus-main {
+  html[data-bs-theme="dark"]:not([data-a11y-bg]) .home-focus-main {
     background:
       linear-gradient(180deg, rgba(104, 168, 255, 0.14), rgba(17, 24, 39, 0.92) 12rem),
       rgba(17, 24, 39, 0.92);
@@ -763,9 +763,9 @@ translationKey: home
     background: rgba(255, 255, 255, 0.72);
     border: 1px solid rgba(16, 40, 69, 0.1);
   }
-  [data-bs-theme="dark"] .home-focus-proof-item,
-  [data-bs-theme="dark"] .home-focus-mini-item,
-  [data-bs-theme="dark"] .home-focus-strip-item {
+  html[data-bs-theme="dark"]:not([data-a11y-bg]) .home-focus-proof-item,
+  html[data-bs-theme="dark"]:not([data-a11y-bg]) .home-focus-mini-item,
+  html[data-bs-theme="dark"]:not([data-a11y-bg]) .home-focus-strip-item {
     background: rgba(255, 255, 255, 0.05);
     border-color: rgba(255, 255, 255, 0.1);
   }
@@ -1018,5 +1018,27 @@ translationKey: home
       flex-direction: column;
       align-items: flex-start;
     }
+  }
+
+  /* ── Accessibility background colour overrides ── */
+  html[data-a11y-bg] .home-path-card:not(.home-path-card--primary) {
+    background: #ffffff !important;
+    border-color: rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.06) !important;
+  }
+  html[data-a11y-bg] .home-focus-main,
+  html[data-a11y-bg] .home-focus-support,
+  html[data-a11y-bg] .home-focus-strip,
+  html[data-a11y-bg] .home-recent-card,
+  html[data-a11y-bg] .home-challenge-card {
+    background: #ffffff !important;
+    border-color: rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.06) !important;
+  }
+  html[data-a11y-bg] .home-focus-proof-item,
+  html[data-a11y-bg] .home-focus-mini-item,
+  html[data-a11y-bg] .home-focus-strip-item {
+    background: rgba(255, 255, 255, 0.85) !important;
+    border-color: rgba(0, 0, 0, 0.08) !important;
   }
 </style>
