@@ -321,14 +321,17 @@ module.exports = async function () {
     const tableRows = playlists;
     const tickerRows = playlists.slice(0, playlistTickerLimit);
 
-    let videos = [];
-    for (const playlistId of settings.featuredPlaylistIds) {
-      try {
-        const playlistVideos = await fetchPlaylistVideos(playlistId, apiKey);
-        videos.push(...playlistVideos);
-        console.log(`YouTube: löytyi ${playlistVideos.length} videota soittolistasta ${playlistId}.`);
-      } catch (err) {
-        console.warn(`YouTube: soittolistan ${playlistId} videoiden haku epäonnistui: ${err.message}`);
+    const playlistResults = await Promise.allSettled(
+      settings.featuredPlaylistIds.map((id) => fetchPlaylistVideos(id, apiKey))
+    );
+    const videos = [];
+    for (let i = 0; i < playlistResults.length; i++) {
+      const r = playlistResults[i];
+      if (r.status === "fulfilled") {
+        videos.push(...r.value);
+        console.log(`YouTube: löytyi ${r.value.length} videota soittolistasta ${settings.featuredPlaylistIds[i]}.`);
+      } else {
+        console.warn(`YouTube: soittolistan ${settings.featuredPlaylistIds[i]} videoiden haku epäonnistui: ${r.reason?.message}`);
       }
     }
 
