@@ -22,8 +22,9 @@ module.exports = function registerFilters(eleventyConfig) {
       authors: d.author || "Jari Laru",
       url: d.source_url || d.url || "",
       typeCode: d.publicationType || "",
-      publisherName: d.publisher || d.publication || "",
-      journalName: d.publicationCollection || ""
+      typeShort: d.publicationType || "",
+      publisher: d.publisher || d.publication || "",
+      journal: d.publicationCollection || ""
     };
   });
 
