@@ -1,7 +1,7 @@
 ---
 title: Valtuusto 26.2.18 kotouttamisohjelma
 date: '2018-02-26'
-description: Kaupunginvaltuuston kokouksessa 26.2.2018 yksi ennakkoon jo kuumimmaksi ennustettu asiakohta oli ehdottomasti "Yhdessä kotoutuva Oulu. Kotouttamisohjelma 2018-2021" -asiakirjan hyväksyminen. ...
+description: Puheenvuoro Oulun kotouttamisohjelmasta sekä työ-, opiskelu- ja avioperäisen maahanmuuton huomioimisesta päätöksenteossa.
 event: Oulun kaupunginvaltuusto
 asiakohta: § 21 – Yhdessä kotoutuva Oulu - Oulun kaupungin kotouttamisohjelma 2018-2021
 categories:
@@ -24,10 +24,34 @@ politicalProfiles:
   - hyvinvointi
 templateEngineOverride: md
 ---
-<p>Kaupunginvaltuuston kokouksessa 26.2.2018 yksi ennakkoon jo kuumimmaksi ennustettu asiakohta oli ehdottomasti "Yhdessä kotoutuva Oulu. Kotouttamisohjelma 2018-2021" -asiakirjan hyväksyminen. </p>
-<p>Perussuomalaiset, keskusta ja ASYL kehräsivät ohjelmaan peräti 32 muutosesitystä joista nyt täällä äänestellään. </p>
-<p>Itse pidin tässäkin asiakohdassa puheenvuoron, jossa käytin näkökulmana työ/opiskelu/avio-peräisiä maahanmuuttajia ja erityisesti korkeakouluopiskeljoita. </p>
-<p>Ohjelmaa on käpistelty aiemmin jo lautakunnassa joten minulle se oli hyvinkin tuttu ja jo hyväksi havaittu asiakirja. Valtuuston kokouskäytöksen perusteella kyseessä oli monille varsin punainen vaate..</p>
-<div>
-<div><a href="https://l.facebook.com/l.php?u=http%3A%2F%2Fasiakirjat.ouka.fi%2Fktwebbin%2Fktproxy2.dll%3Fdoctype%3D3%26docid%3D792902%26version%3D1%26fbclid%3DIwAR0sO0GrU9Cfr4KPqJIegVXA54vMAJ1fu6fz2WyspL3vFxRPg3O1hdRqt34&amp;h=AT35I0jntTOFu85JS_9ItcaMeiIlYYzykE7OgsShGspNkL-HEvPzrtiHSlGZlX3iiEyfHu8jBuxyQB9kkqiML3axSlTJ68gGwKo6ClZIAwP7CWcPExDbezathI4BI8lRA&amp;__tn__=-UK-R&amp;c[0]=AT36l-5MNUBtFX7VqwUGSeyxGBi99fRe9DKOM2pIEqdGLOK7Fbd4Mj5_iYIybMkMoVOAMzlC2gnebU9unuBaNEWPABEl9mkBMozJY0nb4-4-7622paHStJSYrrQF_GCi6i5M4cuXIUWMyHywfVVMBehorVt1nPDQu-Ghf6TzcdJiIa1oXYDF5gJJHE9jPtZPtRscDEEzKaA_6M4-7chxZAg4ng" target="_blank" rel="noreferrer noopener">Ohjelma löytyy kokonaisuudessaan täältä</a></div>
-</div>
+Oulun kaupunginvaltuusto käsitteli 26.2.2018 asiakirjaa *Yhdessä kotoutuva Oulu - Oulun kaupungin kotouttamisohjelma 2018-2021*. Ohjelmaa oli käsitelty aiemmin sivistys- ja kulttuurilautakunnassa, joten asiakirja oli minulle tuttu jo ennen valtuustokäsittelyä.
+
+Käytin keskustelussa puheenvuoron erityisesti työ-, opiskelu- ja avioperäisestä maahanmuutosta sekä siitä, miten kansainväliset opiskelijat ja työntekijät näkyvät Oulun kotoutumiskeskustelussa.
+
+## Kotoutumista pitää katsoa myös korkeakoulukaupungin näkökulmasta
+
+Kiitos puheenjohtaja, arvoisat valtuustokollegat.
+
+Tämä asiakirja oli meillä sivistys- ja kulttuurilautakunnassa käsittelyssä, ja sitä käytiin siellä läpi sekä myötä- että vastakarvaan. Jos ohjelmassa on epäloogisuuksia tai selviä korjattavia kohtia, niihin voi tietenkin suhtautua myötämielisesti.
+
+Haluan kuitenkin tuoda keskusteluun mukaan myös Villa Victorin tietoja sekä omia työelämäkokemuksiani korkeakoulukampukselta. Oulussa on Villa Victorin tietojen mukaan 5723 ulkomaalaista, mikä on pikaisella laskulla alle kolme prosenttia kaupungin asukasluvusta. Toisin sanoen 97 prosenttia kaupunkilaisista on muita kuin maahanmuuttajia.
+
+Tästä 5723 henkilön joukosta 93,5 prosenttia on avio-, työ- tai opiskeluperäisiä maahanmuuttajia. Tämä näkökulma on minulle läheinen myös siksi, että osa päivittäistä työtäni on kansainvälisten opiskelijoiden opettamista ja opinnäytteiden ohjaamista.
+
+Oulun yliopistolle on myönnetty Euroopan komission *Human Resources Excellence in Research* -laatuleima. Se liittyy muun muassa rekrytoinnin läpinäkyvyyteen ja siihen, miten tutkijoita kohdellaan ja miten he voivat osallistua työnantajan ja työyhteisön kehittämiseen.
+
+## Kansainväliset osaajat ovat osa Oulun arkea
+
+Valitettavasti moni VTT:llä, yliopistolla, Nokialla ja muualla työskentelevä tai opiskeleva kansainvälinen osaaja on kokenut rasistista kohtelua kaupungilla liikkuessaan. Kaikki eivät myöskään koe Oulua kotoisaksi paikaksi.
+
+Samaan aikaan ohjelmassa todetaan, että valmistuneita opiskelijoita halutaan sitouttaa kaupungin elinkeinoelämään, yritysten vientiin ja liiketoimintaan. Siksi kotoutumista ei pidä tarkastella vain yhden kapean maahanmuuttokuvan kautta.
+
+Työ-, opiskelu- ja avioperäinen maahanmuutto muodostaa suuren osan Oulun kansainvälisestä väestöstä. Pysytään siis numeroissa.
+
+## Ohjelmat pitää ottaa vakavasti
+
+Keskustelun lopuksi halusin vielä muistuttaa siitä, että valtuustoon tulee paljon erilaisia ohjelmia, strategioita ja muita päätöksenteon asiakirjoja. Niihin perehdytään usein innokkaasti ja niihin tehdään kehittämisehdotuksia.
+
+Kotouttamisohjelman kohdalla näkyi kuitenkin selvästi, että kaikki eivät olleet perehtyneet asiaan samalla tavalla. Meillä on iso vastuu siitä, miten Oulussa linjataan kotouttamisen suuntaa.
+
+Toivoin, että seuraavan kotouttamisohjelman kohdalla myös muut ryhmät tekevät aktiivisesti esityksiä ohjelman kehittämiseksi. Samalla pyysin viranhaltijoita katsomaan ohjelman vielä teknisesti läpi, koska tekstissä oli stilistisiä ja kielellisiä virheitä.
