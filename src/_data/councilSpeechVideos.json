@@ -402,7 +402,8 @@
         "youtubeId": "yvAwbDYXO8Q",
         "label": "Puheenvuoro Linnanmaan toimitilamarkkinoita koskevasta selvityksestä",
         "source": "Oulun kaupungin avoin keskustelutilaisuus Raksilan alueen ja Linnanmaan kehittämisestä 2.2.2022",
-        "verified": true
+        "verified": true,
+        "start": 6821
       }
     ],
     "/2022/02/21/kysymykset-linnanmaan-kampuksen-sisailmasta-ja-teuvo-pakkalan-kadun-liikenteesta/": [
@@ -410,6 +411,87 @@
         "youtubeId": "-R2K7iGE4eg",
         "label": "Kysymykset Linnanmaan kampuksen sisäilmasta ja Teuvo Pakkalan kadun liikenteestä",
         "source": "Oulun kaupungin avoin keskustelutilaisuus Raksilan alueen ja Linnanmaan kehittämisestä 9.2.2022",
+        "verified": true
+      }
+    ],
+    "/2018/01/29/puheenvuoro-valtuustossa-jaali-tarvitsee-uusia-tontteja-laivakankaalle-ja-kortekankaalle/": [
+      {
+        "youtubeId": "ryJF54kD-58",
+        "start": 4732,
+        "label": "Puheenvuoro Jäälin Laivakankaan ja Kortekankaan tonttitarpeesta",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne 29.1.2018",
+        "verified": true
+      }
+    ],
+    "/2018/01/29/jokirannan-koulun-vaistotilat-eivat-saa-vaarantaa-opetusta-ja-turvallisuutta/": [
+      {
+        "youtubeId": "ryJF54kD-58",
+        "start": 928,
+        "label": "Puheenvuoro Jokirannan koulun väistötiloista",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne 29.1.2018",
+        "verified": true
+      }
+    ],
+    "/2018/04/16/puheenvuoro-valtuustossa-lapsivaikutusten-arviointi-paatoksentekoon/": [
+      {
+        "youtubeId": "f-jaWyE97P0",
+        "start": 11033,
+        "label": "Puheenvuoro lapsivaikutusten arvioinnista",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne 16.4.2018",
+        "verified": true
+      }
+    ],
+    "/2018/05/14/asiakohta-9%c2%a7-hankeselvityksen-tekeminen-niemenrannan-ja-salonpaan-koulut/": [
+      {
+        "youtubeId": "jzy_BsdgDhY",
+        "start": 12225,
+        "label": "Puheenvuoro Niemenrannan ja Salonpään koulujen hankeselvityksestä",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne 14.5.2018",
+        "verified": true
+      }
+    ],
+    "/2019/06/17/puheenvuoro-valtuustossa-oulun-lyseo-on-kulttuurihistoriallinen-kohde/": [
+      {
+        "youtubeId": "YhP2DqpKdrs",
+        "start": 3808,
+        "label": "Puheenvuoro Oulun Lyseon kulttuurihistoriallisesta merkityksestä",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne 17.6.2019",
+        "verified": true
+      }
+    ],
+    "/2019/10/07/puheenvuoro-valtuustossa-koulusihteeripalveluista-on-paatettava-osana-laajempaa-kokonaisuutta/": [
+      {
+        "youtubeId": "gZsi7ybN_AM",
+        "start": 16426,
+        "label": "Puheenvuoro koulusihteeripalveluista",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne 7.10.2019",
+        "verified": true
+      }
+    ],
+    "/2019/10/07/puheenvuoro-valtuustossa-tuhoaako-kaupungin-oma-media-paikallista-journalismia/": [
+      {
+        "youtubeId": "gZsi7ybN_AM",
+        "start": 9070,
+        "label": "Puheenvuoro kaupungin omasta mediasta ja paikallisesta journalismista",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne 7.10.2019",
+        "verified": true
+      }
+    ],
+    "/2019/11/11/puheenvuoroni-oulun-lyseon-puolesta-valtuustossa-11-11-2019/": [
+      {
+        "youtubeId": "-cKXhhzhsiQ",
+        "start": 2166,
+        "label": "Puheenvuoro Oulun Lyseon säilyttämisestä opetuskäytössä",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne 11.11.2019",
+        "verified": true
+      }
+    ],
+    "/2020/01/27/puheenvuoro-valtuustossa-jaalin-rakentamista-on-vietava-maaratietoisemmin-eteenpain/": [
+      {
+        "youtubeId": "eUBm7mLLvV4",
+        "start": 5465,
+        "label": "Puheenvuoro Jäälin rakentamisen edistämisestä",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne 27.1.2020",
         "verified": true
       }
     ]
