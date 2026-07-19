@@ -4,7 +4,9 @@
   lang: "en",
   eleventyComputed: {
     title: data => `Keyword: ${data.keyword?.name || ""}`,
-    description: data => `Keyword "${data.keyword?.name || ""}" brings together ${data.keyword?.count || 0} writings, speeches, or publications from Jari Laru's site.`
+    description: data => `Keyword "${data.keyword?.name || ""}" brings together ${data.keyword?.count || 0} writings, speeches, or publications from Jari Laru's site.`,
+    robots: () => "noindex, follow",
+    sitemap: () => ({ ignore: true })
   },
   pagination: {
     data: "collections.keywordList",

@@ -3,7 +3,12 @@
   layout: "base.njk",
   eleventyComputed: {
     title: data => `Kategoria: ${data.category?.name || ""}`,
-    description: data => `Kategoria "${data.category?.name || ""}" kokoaa ${data.category?.count || 0} sisältöä Jari Larun sivustolta.`
+    description: data => {
+      const profile = data.taxonomyProfiles?.categories?.[data.category?.slug] || data.taxonomyProfiles?.defaultCategory;
+      return profile?.lead || `Kategoria "${data.category?.name || ""}" kokoaa ${data.category?.count || 0} sisältöä Jari Larun sivustolta.`;
+    },
+    robots: data => (data.category?.count || 0) < 2 ? "noindex, follow" : "index, follow, noai, noimageai",
+    sitemap: data => (data.category?.count || 0) < 2 ? { ignore: true } : undefined
   },
   pagination: {
     data: "collections.categoryList",

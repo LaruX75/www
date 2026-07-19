@@ -9,6 +9,7 @@ eleventyExcludeFromCollections: true
 {%- if item.url
     and not (item.data.sitemap and item.data.sitemap.ignore)
     and not (item.data.robots and "noindex" in item.data.robots)
+    and item.data.layout != false
     and not ("/admin/" in item.url)
 -%}
 {%- set freq = "monthly" %}

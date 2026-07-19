@@ -3,7 +3,9 @@
   layout: "base.njk",
   eleventyComputed: {
     title: data => `Avainsana: ${data.keyword?.name || ""}`,
-    description: data => `Avainsana "${data.keyword?.name || ""}" kokoaa ${data.keyword?.count || 0} kirjoitusta, puheenvuoroa, esitystä tai mediaosumaa Jari Larun sivustolta.`
+    description: data => `Avainsana "${data.keyword?.name || ""}" kokoaa ${data.keyword?.count || 0} kirjoitusta, puheenvuoroa, esitystä tai mediaosumaa Jari Larun sivustolta.`,
+    robots: data => (data.keyword?.count || 0) < 3 ? "noindex, follow" : "index, follow, noai, noimageai",
+    sitemap: data => (data.keyword?.count || 0) < 3 ? { ignore: true } : undefined
   },
   pagination: {
     data: "collections.keywordList",

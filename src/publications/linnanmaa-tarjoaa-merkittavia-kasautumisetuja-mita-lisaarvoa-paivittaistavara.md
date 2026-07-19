@@ -1,7 +1,7 @@
 ---
 title: Lin­nan­maa tarjoaa mer­kit­tä­viä ka­sau­tu­mis­etu­ja – mitä li­sä­ar­voa päi­vit­täis­ta­va­ra­kau­pan suur­yk­si­köt tuovat kan­sain­vä­li­sen tie­de­yli­opis­ton toi­min­nal­le?
 date: '2021-04-24'
-description: Mielipidekirjoitukseni Kalevassa 24.4.2021
+description: Mielipidekirjoitus Linnanmaan kampuksen kasautumiseduista, keskustakampuksen vaikutuksista ja Oulun tiede- ja teknologiayhteisön vahvuuksista.
 categories:
   - Politiikka ja päätöksenteko
   - Sivistys ja koulutus

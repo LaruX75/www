@@ -4,7 +4,9 @@
   lang: "en",
   eleventyComputed: {
     title: data => `Category: ${data.category?.name || ""}`,
-    description: data => `Category "${data.category?.name || ""}" gathers ${data.category?.count || 0} related items from Jari Laru's site, including writings, speeches, and publications.`
+    description: data => `Category "${data.category?.name || ""}" gathers ${data.category?.count || 0} related items from Jari Laru's site, including writings, speeches, and publications.`,
+    robots: () => "noindex, follow",
+    sitemap: () => ({ ignore: true })
   },
   pagination: {
     data: "collections.categoryList",

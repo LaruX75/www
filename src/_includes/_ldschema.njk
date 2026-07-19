@@ -20,6 +20,7 @@
   {% elif descriptionMissing and title and title.startsWith("Keyword: ") %}
     {% set pageDescription = 'Keyword "' ~ (title | replace("Keyword: ", "")) ~ '" brings together writings, speeches, and publications from the Jari Laru site.' %}
   {% endif %}
+  {% set pageDescription = pageDescription | seoDescription({ title: pageTitle, source: source, type: type, date: page.date, pageUrl: page.url, tags: tags, categories: categories, currentLang: currentLang }) %}
   {% set pageUrl = page.url | absoluteUrl(site.url or "https://www.jarilaru.fi") %}
   {% set pageType = "presentation" if type == "esitys" else ("article" if ("blog" in (tags or []) or "politics" in (tags or []) or "publications" in (tags or [])) else "website") %}
   {% set personId = (site.url or "https://www.jarilaru.fi") + "#person" %}

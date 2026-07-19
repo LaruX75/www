@@ -96,6 +96,76 @@ function buildImgFallback(src, alt, className = "") {
   return `<img src="${src}" alt="${alt}" class="${className}" loading="lazy" decoding="async">`;
 }
 
+function cleanSeoTitle(value) {
+  return String(value || "")
+    .replace(/\s+—\s+Jari Laru\s*$/i, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function yearFromDate(value) {
+  if (!value) return "";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    const match = String(value).match(/\b(19|20)\d{2}\b/);
+    return match ? match[0] : "";
+  }
+  return String(date.getFullYear());
+}
+
+function truncateSeoDescription(value, maxLength = 165) {
+  const text = String(value || "").replace(/\s+/g, " ").trim();
+  if (text.length <= maxLength) return text;
+  const cut = text.slice(0, maxLength + 1);
+  const sentenceEnd = Math.max(cut.lastIndexOf(". "), cut.lastIndexOf("? "), cut.lastIndexOf("! "));
+  if (sentenceEnd >= 90) return cut.slice(0, sentenceEnd + 1).trim();
+  const wordEnd = cut.lastIndexOf(" ");
+  return `${cut.slice(0, wordEnd > 90 ? wordEnd : maxLength).trim()}...`;
+}
+
+function contentKindLabel({ type, tags = [], currentLang = "fi" }) {
+  const tagSet = new Set(toArray(tags).map((tag) => String(tag).toLowerCase()));
+  if (type === "esitys" || tagSet.has("presentations")) return currentLang === "en" ? "Presentation" : "Esitys";
+  if (type === "lausunto") return currentLang === "en" ? "Expert statement" : "Asiantuntijalausunto";
+  if (type === "puhe") return currentLang === "en" ? "Speech" : "Puheenvuoro";
+  if (type === "mielipide") return currentLang === "en" ? "Opinion piece" : "Mielipidekirjoitus";
+  if (type === "kolumni") return currentLang === "en" ? "Column" : "Kolumni";
+  if (tagSet.has("blog")) return currentLang === "en" ? "Blog post" : "Blogikirjoitus";
+  if (tagSet.has("politics")) return currentLang === "en" ? "Political content" : "Poliittinen sisältö";
+  return currentLang === "en" ? "Content" : "Sisältö";
+}
+
+function buildSeoFallback(options = {}) {
+  const title = cleanSeoTitle(options.title);
+  const year = yearFromDate(options.date);
+  const kind = contentKindLabel(options);
+  const source = String(options.source || "").toLowerCase();
+  const currentLang = options.currentLang || "fi";
+
+  if (source === "slideshare" || options.type === "esitys") {
+    if (currentLang === "en") {
+      return truncateSeoDescription(`${kind} "${title}" in Jari Laru's presentation archive${year ? ` (${year})` : ""}. The material is available as part of the site's public presentation and teaching-material collection.`);
+    }
+    return truncateSeoDescription(`${kind} "${title}" Jari Larun esitysarkistossa${year ? ` (${year})` : ""}. Materiaali on osa sivuston julkisia esityksiä ja opetusmateriaaleja.`);
+  }
+
+  if (currentLang === "en") {
+    return truncateSeoDescription(`${kind} "${title}" on Jari Laru's site${year ? ` (${year})` : ""}. The page is part of the site's public archive of writing, expertise, research, and public work.`);
+  }
+  return truncateSeoDescription(`${kind} "${title}" Jari Larun sivustolla${year ? ` (${year})` : ""}. Sivu kuuluu kirjoitusten, asiantuntijatyön, tutkimuksen ja julkisen vaikuttamisen arkistoon.`);
+}
+
+function shouldReplaceSeoDescription(description, options = {}) {
+  const text = String(description || "").trim();
+  if (!text) return true;
+  if (/^slideshare-esitys$/i.test(text)) return true;
+  if (/https?:\/\//i.test(text)) return true;
+  if (/(tähää|äyttää|Lastensuojen|Mu Oulu lehdessä)/i.test(text)) return true;
+  if (/(^|\s)äkökulm/i.test(text)) return true;
+  if ((options.type === "esitys" || String(options.source || "").toLowerCase() === "slideshare") && text.length < 70) return true;
+  return false;
+}
+
 module.exports = function registerFilters(eleventyConfig) {
   eleventyConfig.addFilter("toManualPub", function (items) {
     const item = Array.isArray(items) ? items[0] : items;
@@ -163,6 +233,12 @@ module.exports = function registerFilters(eleventyConfig) {
     if (!content) return "";
     const text = content.replace(/<[^>]+>/g, "");
     return text.substring(0, 200) + "...";
+  });
+
+  eleventyConfig.addFilter("seoDescription", function (description, options = {}) {
+    const fallback = buildSeoFallback(options);
+    const raw = shouldReplaceSeoDescription(description, options) ? fallback : description;
+    return truncateSeoDescription(raw);
   });
 
   eleventyConfig.addFilter("slugify", function (str) {

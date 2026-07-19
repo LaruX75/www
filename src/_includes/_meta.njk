@@ -105,6 +105,7 @@
   {% elif descriptionMissing and title and title.startsWith("Keyword: ") %}
     {% set pageDescription = 'Keyword "' ~ (title | replace("Keyword: ", "")) ~ '" brings together writings, speeches, and publications from the Jari Laru site.' %}
   {% endif %}
+  {% set pageDescription = pageDescription | seoDescription({ title: pageTitle, source: source, type: type, date: page.date, pageUrl: page.url, tags: tags, categories: categories, currentLang: currentLang }) %}
   {% set pageUrl = page.url | absoluteUrl(site.url or "https://www.jarilaru.fi") %}
   {% set fiAltPath = collections.all | findTranslationUrl(translationKey, "fi") %}
   {% set enAltPath = collections.all | findTranslationUrl(translationKey, "en") %}
@@ -118,7 +119,7 @@
   {% if site.googleSiteVerification %}
   <meta name="google-site-verification" content="{{ site.googleSiteVerification }}">
   {% endif %}
-  <meta name="robots" content="index, follow, noai, noimageai">
+  <meta name="robots" content="{{ robots or "index, follow, noai, noimageai" }}">
   <meta name="author" content="{{ site.author }}">
   <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
@@ -133,7 +134,8 @@
   {% if enAltPath %}
   <link rel="alternate" hreflang="en" href="{{ enAltPath | absoluteUrl(site.url or "https://www.jarilaru.fi") }}">
   {% endif %}
-  <link rel="alternate" hreflang="x-default" href="{{ (fiAltPath or "/") | absoluteUrl(site.url or "https://www.jarilaru.fi") }}">
+  {% set xDefaultPath = fiAltPath or enAltPath or page.url or "/" %}
+  <link rel="alternate" hreflang="x-default" href="{{ xDefaultPath | absoluteUrl(site.url or "https://www.jarilaru.fi") }}">
   <meta property="og:site_name" content="{{ site.name }}">
   <meta property="og:locale" content="{{ currentLang | localeForLang }}">
   <meta property="og:type" content="{{ pageType }}">
