@@ -681,10 +681,10 @@ translationKey: writings_index
                 <th class="sortable text-center" data-col="date" style="width:140px">
                   Päivämäärä <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
                 </th>
-                <th style="min-width:180px">Asiakohta</th>
                 <th class="sortable" data-col="title" style="min-width:200px">
                   Otsikko <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
                 </th>
+                <th style="min-width:180px">Asiakohta</th>
                 <th style="min-width:200px">Tiivistelmä & Tapahtuma</th>
                 <th>Kategoriat & Avainsanat</th>
               </tr>
@@ -2629,8 +2629,8 @@ function syncWritingRoleFilterButtons(buttons, selectedRole) {
 
         return `<tr>
           <td class="col-date text-center small text-muted font-monospace">${d.formattedDate}</td>
-          <td class="col-asiakohta small text-muted">${asiakohtaInfo}</td>
           <td class="col-title fw-medium"><a href="${d.url}" ${targetAttr} class="text-decoration-none">${escHtml(shortTitle(d.title))}</a></td>
+          <td class="col-asiakohta small text-muted">${asiakohtaInfo}</td>
           <td class="col-desc small text-muted"><span class="summary-text">${escHtml(d.description)}</span>${eventInfo}${videoInfo}</td>
           <td class="col-taxonomy">
             <div class="mb-1">${catBadges}</div>
