@@ -484,6 +484,13 @@
         </div>
         <div class="mini-item">
           <div>
+            <strong>Canonical-osoitteet</strong>
+            <small>${data.summary.indexableRelativeCanonicalCount === 0 ? `Indeksoitavilla sivuilla canonical on absoluuttinen. ${data.summary.relativeCanonicalCount || 0} suhteellista canonicalia on noindex- tai siirtosivuilla.` : `${data.summary.indexableRelativeCanonicalCount} indeksoitavalla sivulla on suhteellinen canonical.`}</small>
+          </div>
+          ${badge(data.summary.indexableRelativeCanonicalCount === 0)}
+        </div>
+        <div class="mini-item">
+          <div>
             <strong>hreflang-targetit</strong>
             <small>${hreflang.issueCount === 0 ? 'Kaikki tarkistetut hreflang-linkit osoittavat olemassa olevaan sivuun.' : `${hreflang.issueCount} hreflang-ongelmaa buildissä.`}</small>
           </div>
@@ -513,6 +520,13 @@
           </div>
         </div>
         ${formatList(data.summary.examples.missingOgImage)}
+        <div class="mini-item mt-3">
+          <div>
+            <strong>Suhteellinen canonical indeksoitavalla sivulla</strong>
+            <small>${data.summary.indexableRelativeCanonicalCount || 0} sivua</small>
+          </div>
+        </div>
+        ${formatList(data.summary.examples.indexableRelativeCanonical)}
       `;
     }
 
@@ -665,6 +679,7 @@
             <span class="status-pill">${page.isNoindex ? 'noindex' : 'index'}</span>
             <span class="status-pill">${page.hasDescription ? 'description OK' : 'description puuttuu'}</span>
             <span class="status-pill">${page.hasCanonical ? 'canonical OK' : 'canonical puuttuu'}</span>
+            <span class="status-pill">${page.hasCanonical && page.canonicalIsAbsolute ? 'canonical absoluuttinen' : (page.hasCanonical ? 'canonical suhteellinen' : 'canonical puuttuu')}</span>
             <span class="status-pill">${page.hasOgImage ? 'og:image OK' : 'og:image puuttuu'}</span>
             <span class="status-pill">${page.hasH1 ? 'H1 OK' : 'H1 puuttuu'}</span>
           </div>
@@ -681,6 +696,10 @@
           <article class="detail-item">
             <div class="detail-item-label">Canonical</div>
             <div class="detail-item-value ${page.canonical ? '' : 'detail-empty'}">${page.canonical ? escapeHtml(page.canonical) : 'Puuttuu'}</div>
+          </article>
+          <article class="detail-item">
+            <div class="detail-item-label">Canonical-muoto</div>
+            <div class="detail-item-value ${page.hasCanonical && page.canonicalIsAbsolute ? '' : 'detail-empty'}">${page.hasCanonical ? (page.canonicalIsAbsolute ? 'Absoluuttinen URL' : 'Suhteellinen URL') : 'Puuttuu'}</div>
           </article>
           <article class="detail-item">
             <div class="detail-item-label">Robots</div>
