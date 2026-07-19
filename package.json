@@ -33,6 +33,7 @@
     "classify:keywords": "node scripts/classify-keywords.js",
     "audit:council-videos": "node scripts/audit-council-speech-videos.mjs",
     "audit:council-video-times": "node scripts/find-council-speech-video-times.mjs",
+    "audit:council-video-times:whisper": "node scripts/find-council-speech-video-times-with-whisper.mjs",
     "audit:content-schema": "node scripts/audit-content-schema.mjs",
     "eleventy": "npx @11ty/eleventy",
     "eleventy:serve": "npx @11ty/eleventy --serve",
