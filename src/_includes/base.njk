@@ -36,6 +36,8 @@
     {% set breadcrumbKey = "election_2025" %}
   {% elif currentUrl == "/kynasta/" %}
     {% set breadcrumbKey = "writings" %}
+  {% elif currentUrl == "/teemat/" or currentUrl.startsWith("/teemat/") %}
+    {% set breadcrumbKey = "writings" %}
   {% elif currentUrl == "/yhteystiedot/" or currentUrl == "/en/contact/" %}
     {% set breadcrumbKey = "contact" %}
   {% endif %}

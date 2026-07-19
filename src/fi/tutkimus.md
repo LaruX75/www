@@ -104,6 +104,13 @@ templateEngineOverride: njk
   </div>
 </section>
 
+{% set topicProfileKeys = ["tekoalylukutaito", "koulutusteknologia-ja-oppimisymparistot", "avoin-tiede-ja-avoimet-oppimateriaalit"] %}
+{% set topicProfileTitleId = "research-topic-profiles-title" %}
+{% set topicProfileEyebrow = "Tutkimusteemat" %}
+{% set topicProfileTitle = "Tutkimus näkyy myös laajemmissa aiheprofiileissa" %}
+{% set topicProfileLead = "Tutkimussivu näyttää julkaisut ja tutkimuslinjan. Teemaprofiilit kokoavat samaan kokonaisuuteen myös lausunnot, mediaosumat, materiaalit ja opetustyön." %}
+{% include "topic-profile-links.njk" %}
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const mobileQuery = window.matchMedia("(max-width: 767.98px)");

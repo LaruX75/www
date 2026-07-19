@@ -20,6 +20,16 @@ function normalizeTerm(value) {
   return String(value || "").trim().toLowerCase();
 }
 
+function normalizeTopicTerm(value) {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
 function normalizeTerms(values) {
   return new Set(toArray(values).map(normalizeTerm).filter(Boolean));
 }
@@ -90,6 +100,91 @@ function archiveTerms(items, limit = 14, source = "both") {
     .filter((term) => term.count > 1)
     .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name, "fi"))
     .slice(0, Number(limit) || 14);
+}
+
+function topicTermSet(values) {
+  return new Set(toArray(values).map(normalizeTopicTerm).filter(Boolean));
+}
+
+function topicTextScore(item, topic = {}) {
+  const data = item?.data || {};
+  const topicTerms = [
+    ...toArray(topic.categories),
+    ...toArray(topic.keywords),
+    topic.title
+  ].map(normalizeTopicTerm).filter(Boolean);
+  const text = [
+    data.title,
+    data.description,
+    data.event,
+    data.venue,
+    data.sourceLabel,
+    ...toArray(data.categories),
+    ...toArray(data.keywords)
+  ].map(normalizeTopicTerm).join(" ");
+
+  return topicTerms.reduce((score, term) => {
+    if (!term || term.length < 3) return score;
+    return text.includes(term) ? score + 1 : score;
+  }, 0);
+}
+
+function topicItemScore(item, topic = {}) {
+  if (!item || !item.url || !item.data?.title) return 0;
+  const inputPath = item.inputPath || "";
+  if (!/src\/(blog|publications|politics|media|presentations)\//.test(inputPath)) return 0;
+
+  const data = item.data || {};
+  const categoryTerms = topicTermSet(topic.categories);
+  const keywordTerms = topicTermSet(topic.keywords);
+  const contextTerms = topicTermSet(topic.contexts);
+  let score = 0;
+
+  score += toArray(data.categories).reduce((sum, value) => (
+    categoryTerms.has(normalizeTopicTerm(value)) ? sum + 5 : sum
+  ), 0);
+  score += toArray(data.keywords).reduce((sum, value) => (
+    keywordTerms.has(normalizeTopicTerm(value)) ? sum + 4 : sum
+  ), 0);
+
+  resolveContexts(data, inputPath).forEach((context) => {
+    if (contextTerms.has(normalizeTopicTerm(context))) score += 2;
+  });
+
+  score += topicTextScore(item, topic);
+  return score;
+}
+
+function dateTimestamp(item) {
+  const timestamp = new Date(item?.date || item?.data?.date || 0).getTime();
+  return Number.isFinite(timestamp) ? timestamp : 0;
+}
+
+function mapTopicItem(item, topic = {}) {
+  const data = item.data || {};
+  return {
+    url: item.url,
+    inputPath: item.inputPath,
+    date: item.date || data.date,
+    data,
+    topicScore: topicItemScore(item, topic),
+    typeLabel: contentTypeLabel(data, data.tags || [], data.lang || "fi")
+  };
+}
+
+function topicItemsFromCollections(collections, topic = {}, limit = 12) {
+  const maxItems = Number(limit) || 12;
+  return uniqueContentItems(collections)
+    .map((item) => mapTopicItem(item, topic))
+    .filter((item) => item.topicScore > 0)
+    .sort((a, b) => b.topicScore - a.topicScore || dateTimestamp(b) - dateTimestamp(a))
+    .slice(0, maxItems)
+    .sort((a, b) => dateTimestamp(b) - dateTimestamp(a) || b.topicScore - a.topicScore);
+}
+
+function selectedTopics(topics, keys = []) {
+  const wanted = topicTermSet(keys);
+  return toArray(topics).filter((topic) => wanted.has(normalizeTopicTerm(topic.slug)));
 }
 
 function buildImgFallback(src, alt, className = "") {
@@ -331,6 +426,18 @@ module.exports = function registerFilters(eleventyConfig) {
 
   eleventyConfig.addFilter("archiveTermCloud", function (items, limit = 14, source = "both") {
     return archiveTerms(items, limit, source);
+  });
+
+  eleventyConfig.addFilter("topicItems", function (collections, topic, limit = 12) {
+    return topicItemsFromCollections(collections, topic, limit);
+  });
+
+  eleventyConfig.addFilter("selectedTopics", function (topics, keys = []) {
+    return selectedTopics(topics, keys);
+  });
+
+  eleventyConfig.addFilter("topicTypeLabel", function (item, lang = "fi") {
+    return contentTypeLabel(item?.data || item || {}, item?.data?.tags || item?.tags || [], lang);
   });
 
   eleventyConfig.addFilter("filterByType", function (arr, type) {

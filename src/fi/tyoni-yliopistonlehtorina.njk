@@ -157,6 +157,13 @@ templateEngineOverride: njk
   <a href="#aineisto">Aineisto</a>
 </nav>
 
+{% set topicProfileKeys = ["opettajankoulutus", "tekoalylukutaito", "avoin-tiede-ja-avoimet-oppimateriaalit"] %}
+{% set topicProfileTitleId = "ylwork-topic-profiles-title" %}
+{% set topicProfileEyebrow = "Aiheprofiilit" %}
+{% set topicProfileTitle = "Yliopistotyö aiheiden kautta" %}
+{% set topicProfileLead = "Tällä sivulla työ näkyy roolina ja kokonaisuutena. Teemaprofiilit näyttävät, miten sama työ jatkuu julkaisuissa, lausunnoissa, materiaaleissa, mediassa ja koulutuksissa." %}
+{% include "topic-profile-links.njk" %}
+
 <section class="ylwork-section ylwork-section--stats" id="naytto">
   <div class="ylwork-shell">
     <div class="ylwork-section-head">

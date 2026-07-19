@@ -406,6 +406,13 @@ templateEngineOverride: njk
   </div>
 </section>
 
+{% set topicProfileKeys = ["oulun-palveluverkko-ja-kaupunkikehitys", "lapinakyva-paatoksenteko-ja-tiedolla-johtaminen", "julkinen-asiantuntijuus-mediassa"] %}
+{% set topicProfileTitleId = "politics-topic-profiles-title" %}
+{% set topicProfileEyebrow = "Teemaprofiilit" %}
+{% set topicProfileTitle = "Poliittinen aineisto aiheittain" %}
+{% set topicProfileLead = "Politiikkasivu näyttää linjan. Teemaprofiilit näyttävät, missä puheenvuorot, aloitteet, mielipiteet ja mediaosumat liittyvät samaan poliittiseen kysymykseen." %}
+{% include "topic-profile-links.njk" %}
+
 <section class="py-5 mb-0 bg-body-tertiary" id="kirjoitukset">
   <div class="site-shell">
     <div class="pol-section-head">

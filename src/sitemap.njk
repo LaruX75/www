@@ -11,6 +11,8 @@ eleventyExcludeFromCollections: true
     and not (item.data.robots and "noindex" in item.data.robots)
     and item.data.layout != false
     and not ("/admin/" in item.url)
+    and item.url != "/teemat/"
+    and not item.url.startsWith("/teemat/")
 -%}
 {%- set freq = "monthly" %}
 {%- set pri  = "0.5" %}
@@ -25,5 +27,10 @@ eleventyExcludeFromCollections: true
 {%- endif %}
 <url><loc>{{ site.url }}{{ item.url }}</loc><lastmod>{{ item.date | dateToRfc3339 }}</lastmod><changefreq>{{ freq }}</changefreq><priority>{{ pri }}</priority></url>
 {%- endif %}
+{%- endfor %}
+{%- set topicLastmod = page.date | dateToRfc3339 %}
+<url><loc>{{ site.url }}/teemat/</loc><lastmod>{{ topicLastmod }}</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+{%- for topic in seoTopics %}
+<url><loc>{{ site.url }}/teemat/{{ topic.slug }}/</loc><lastmod>{{ topicLastmod }}</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 {%- endfor %}
 </urlset>

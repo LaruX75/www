@@ -1,0 +1,41 @@
+---
+layout: base.njk
+title: Teemaprofiilit
+description: "Jari Larun sivuston keskeiset teemaprofiilit: tekoälylukutaito, opettajankoulutus, koulutusteknologia, avoin tiede, politiikka ja julkinen asiantuntijuus."
+permalink: /teemat/
+translationKey: topic_profiles_index
+---
+
+<section class="topic-index">
+  <div class="site-shell">
+    <header class="topic-index-hero">
+      <div>
+        <p class="taxonomy-kicker">Aihepolut</p>
+        <h1>Teemaprofiilit</h1>
+        <p class="topic-index-lead">Nämä sivut kokoavat sivuston vahvimmat asiantuntija- ja vaikuttamisteemat yhteen. Ne eivät ole tavallisia arkistoja, vaan kuratoituja reittejä siihen, missä tutkimus, opetus, lausunnot, esitykset, media ja politiikka kohtaavat.</p>
+      </div>
+      <aside class="topic-index-summary" aria-label="Teemaprofiilien yhteenveto">
+        <span class="taxonomy-stat-number">{{ seoTopics.length }}</span>
+        <span class="taxonomy-stat-label">teemaprofiilia</span>
+        <span class="taxonomy-stat-range">sisältöjen yli</span>
+      </aside>
+    </header>
+
+    <div class="topic-index-grid">
+      {% for topic in seoTopics %}
+        {% set items = collections | topicItems(topic, 99) %}
+        <article class="topic-index-card">
+          <div class="topic-index-card-body">
+            <p class="taxonomy-kicker">{{ topic.eyebrow }}</p>
+            <h2><a href="/teemat/{{ topic.slug }}/">{{ topic.title }}</a></h2>
+            <p>{{ topic.lead }}</p>
+          </div>
+          <div class="topic-index-card-meta">
+            <span>{{ items.length }} osumaa</span>
+            <a href="/teemat/{{ topic.slug }}/">Avaa profiili</a>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>

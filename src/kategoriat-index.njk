@@ -22,6 +22,26 @@ translationKey: categories_index
       </aside>
     </header>
 
+    <section class="taxonomy-index-section" aria-labelledby="topic-profiles-title">
+      <div class="taxonomy-index-section-head">
+        <p class="taxonomy-kicker">Teemaprofiilit</p>
+        <h2 id="topic-profiles-title">Toimitetut aihepolut</h2>
+        <p>Teemaprofiilit kokoavat saman aiheen sisällöt yli kategorioiden, avainsanojen ja sisältötyyppien. Ne sopivat silloin, kun etsit kokonaiskuvaa etkä yksittäistä arkistosanaa.</p>
+      </div>
+
+      <div class="taxonomy-index-profile-grid">
+        {% for topic in seoTopics %}
+          <a class="taxonomy-index-profile-card" href="/teemat/{{ topic.slug }}/">
+            <span class="taxonomy-index-card-count">{{ (collections | topicItems(topic, 99)).length }}</span>
+            <span class="taxonomy-index-card-title">{{ topic.title }}</span>
+            <span class="taxonomy-index-card-text">{{ topic.lead }}</span>
+          </a>
+        {% endfor %}
+      </div>
+
+      <a class="taxonomy-index-more-link" href="/teemat/">Kaikki teemaprofiilit</a>
+    </section>
+
     <section class="taxonomy-index-section" aria-labelledby="profile-categories-title">
       <div class="taxonomy-index-section-head">
         <p class="taxonomy-kicker">Profiilikategoriat</p>

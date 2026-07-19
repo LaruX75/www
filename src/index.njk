@@ -144,6 +144,13 @@ translationKey: home
     <a href="#yhteys">Yhteys</a>
 </nav>
 
+{% set topicProfileKeys = ["tekoalylukutaito", "opettajankoulutus", "julkinen-asiantuntijuus-mediassa"] %}
+{% set topicProfileTitleId = "home-topic-profiles-title" %}
+{% set topicProfileEyebrow = "Aihepolut" %}
+{% set topicProfileTitle = "Keskeiset asiantuntijateemat" %}
+{% set topicProfileLead = "Jos etsit tiettyä asiantuntijuuden aluetta, nämä teemaprofiilit kokoavat yhteen kirjoitukset, lausunnot, esitykset, mediaosumat ja tutkimusnäytön." %}
+{% include "topic-profile-links.njk" %}
+
 <section class="py-5 home-paths-section" id="aloita">
     <div class="site-shell">
         <div class="home-section-head">

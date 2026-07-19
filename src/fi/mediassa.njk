@@ -135,6 +135,13 @@ translationKey: media_index
   <a href="#media-lahteet">Lähteet</a>
 </nav>
 
+{% set topicProfileKeys = ["julkinen-asiantuntijuus-mediassa", "tekoalylukutaito", "opettajankoulutus"] %}
+{% set topicProfileTitleId = "media-topic-profiles-title" %}
+{% set topicProfileEyebrow = "Aiheittain" %}
+{% set topicProfileTitle = "Mediaosumat osana asiantuntijaprofiilia" %}
+{% set topicProfileLead = "Mediassa-sivu näyttää missä olen ollut esillä. Teemaprofiilit näyttävät, mihin asiantuntijuuden alueeseen mediaosumat liittyvät." %}
+{% include "topic-profile-links.njk" %}
+
 <section class="media-feature-section py-5" id="media-nostot" aria-labelledby="media-nostot-heading">
   <div class="site-shell">
     <div class="media-section-head">

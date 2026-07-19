@@ -1,0 +1,101 @@
+---js
+{
+  layout: "base.njk",
+  eleventyComputed: {
+    title: data => `${data.topic?.title || "Teemaprofiili"}`,
+    description: data => data.topic?.description || data.topic?.lead || "Jari Larun sivuston teemaprofiili.",
+    robots: () => "index, follow, noai, noimageai"
+  },
+  pagination: {
+    data: "seoTopics",
+    size: 1,
+    alias: "topic"
+  },
+  permalink: data => `/teemat/${data.topic.slug}/`
+}
+---
+{% set topicItems = collections | topicItems(topic, 18) %}
+{% set featuredItems = topicItems | take(4) %}
+{% set archiveItems = topicItems.slice(4, 14) %}
+
+<section class="topic-profile">
+  <div class="site-shell">
+    <header class="topic-profile-hero">
+      <div class="topic-profile-hero-main">
+        <p class="taxonomy-kicker">{{ topic.eyebrow }}</p>
+        <h1>{{ topic.title }}</h1>
+        <p class="topic-profile-lead">{{ topic.lead }}</p>
+        <p class="topic-profile-context">{{ topic.context }}</p>
+        <div class="topic-profile-actions">
+          <a class="btn btn-primary" href="#naytto">Katso sisältönostot</a>
+          <a class="btn btn-outline-primary" href="/teemat/">Kaikki teemaprofiilit</a>
+        </div>
+      </div>
+      <aside class="topic-profile-summary">
+        <span class="taxonomy-stat-number">{{ topicItems.length }}</span>
+        <span class="taxonomy-stat-label">aiheeseen liittyvää sisältöä</span>
+        <span class="taxonomy-stat-range">eri aineistoista</span>
+      </aside>
+    </header>
+
+    <section class="topic-profile-section topic-profile-promise" aria-labelledby="topic-promise-title">
+      <div>
+        <p class="taxonomy-kicker">Mitä tästä saa irti?</p>
+        <h2 id="topic-promise-title">{{ topic.promise }}</h2>
+      </div>
+      <div class="topic-profile-link-row">
+        {% for link in topic.primaryLinks %}
+          <a href="{{ link.href }}">{{ link.label }}</a>
+        {% endfor %}
+      </div>
+    </section>
+
+    {% if featuredItems.length %}
+    <section class="topic-profile-section" id="naytto" aria-labelledby="topic-featured-title">
+      <div class="topic-profile-section-head">
+        <p class="taxonomy-kicker">Näyttöä aiheesta</p>
+        <h2 id="topic-featured-title">Tuoreimmat sisällöt eri aineistoista</h2>
+        <p>Uusimmat aiheeseen liittyvät sisällöt eri puolilta sivustoa.</p>
+      </div>
+      <div class="topic-feature-grid">
+        {% for item in featuredItems %}
+          <article class="topic-feature-card{% if loop.first %} topic-feature-card--primary{% endif %}">
+            <p class="topic-feature-type">{{ item.typeLabel }}{% if item.date %} · {{ item.date | dateFormat }}{% endif %}</p>
+            <h3><a href="{{ item.url }}">{{ item.data.title }}</a></h3>
+            {% if item.data.description %}
+              <p>{{ item.data.description }}</p>
+            {% endif %}
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+
+    {% if archiveItems.length %}
+    <section class="topic-profile-section" aria-labelledby="topic-archive-title">
+      <div class="topic-profile-section-head">
+        <p class="taxonomy-kicker">Lisää samasta teemasta</p>
+        <h2 id="topic-archive-title">Lisää aiheesta</h2>
+        <p>Vanhempia samaan teemaan liittyviä sisältöjä eri aineistoista.</p>
+      </div>
+      <div class="topic-profile-list">
+        {% for item in archiveItems %}
+          <article class="topic-profile-list-item">
+            <div>
+              <span>{{ item.typeLabel }}{% if item.date %} · {{ item.date | dateFormat }}{% endif %}</span>
+              <h3><a href="{{ item.url }}">{{ item.data.title }}</a></h3>
+            </div>
+            {% if item.data.categories %}
+              <div class="topic-profile-terms">
+                {% for category in item.data.categories | take(2) %}
+                  <a href="/kategoriat/{{ category | slugify }}/">{{ category }}</a>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+  </div>
+</section>

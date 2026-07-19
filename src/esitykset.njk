@@ -331,6 +331,13 @@ translationKey: presentations_index
   <a href="#palveluarkisto">Lähteet</a>
 </nav>
 
+{% set topicProfileKeys = ["tekoalylukutaito", "opettajankoulutus", "koulutusteknologia-ja-oppimisymparistot"] %}
+{% set topicProfileTitleId = "presentations-topic-profiles-title" %}
+{% set topicProfileEyebrow = "Aihepolut" %}
+{% set topicProfileTitle = "Materiaalit osana laajempia asiantuntijateemoja" %}
+{% set topicProfileLead = "Esitykset-sivu näyttää materiaalit. Teemaprofiilit liittävät ne tutkimukseen, lausuntoihin, mediaan ja kirjoituksiin." %}
+{% include "topic-profile-links.njk" %}
+
 <section class="py-5 presentation-feature-section" id="nostot" aria-labelledby="nostot-heading">
   <div class="site-shell">
     <div class="presentation-section-head">
