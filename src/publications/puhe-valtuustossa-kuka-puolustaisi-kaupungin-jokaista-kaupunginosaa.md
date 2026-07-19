@@ -118,5 +118,3 @@ Oulua on rakennettava yhtenä kaupunkina, mutta samalla on tunnistettava sen alu
 Koko Oulun kehittäminen tarkoittaa kaikkien 106 kaupunginosan huomioimista.
 
 <figure><img src="/img/uploads/2021/01/kauposapuhe-813x1024.jpg" alt="Muistilappu Oulun kaupunginosia käsitelleestä valtuustopuheenvuorosta" loading="lazy"><figcaption>Puheenvuoron alkuperäinen muistilappu.</figcaption></figure>
-
-<figure><div>https://youtu.be/LzEhIf98YuA?t=4501</div><figcaption>Puheenvuoro valtuuston videotallenteessa. Jos video ei ala puheenvuoron kohdalta, käytä linkkiä: https://youtu.be/LzEhIf98YuA?t=4501</figcaption></figure>

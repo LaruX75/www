@@ -86,17 +86,6 @@ layout: base.njk
             {% endif %}
           </dl>
 
-          {% if source_url %}
-            <p class="writing-post-source mb-4">
-              <a href="{{ source_url }}" target="_blank" rel="noopener noreferrer">
-                {{ "Open original source" if isEnglish else "Avaa alkuperäinen lähde" }}
-                <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i>
-              </a>
-            </p>
-          {% endif %}
-
-          {% include "council-speech-videos.njk" %}
-
           {% set tocMarkup = content | toc %}
           <div class="row g-4">
             <div class="col-lg-8">
@@ -104,6 +93,7 @@ layout: base.njk
                 <img loading="lazy" decoding="async" src="{{ thumbnail }}" class="img-fluid rounded mb-4" alt="{{ title }}">
               {% endif %}
               <div class="post-content content-prose">{{ content | safe }}</div>
+              {% include "council-speech-videos.njk" %}
             </div>
             <aside class="col-lg-4">
               {% include "content-context-sidebar.njk" %}

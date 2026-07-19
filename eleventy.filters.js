@@ -377,6 +377,21 @@ module.exports = function registerFilters(eleventyConfig) {
     });
   });
 
+  eleventyConfig.addFilter("isoDate", function (date) {
+    if (!date) return "";
+    if (typeof date === "string") {
+      const match = date.match(/\d{4}-\d{2}-\d{2}/);
+      if (match) return match[0];
+    }
+    const parsed = new Date(date);
+    if (Number.isNaN(parsed.getTime())) return "";
+    return [
+      parsed.getFullYear(),
+      String(parsed.getMonth() + 1).padStart(2, "0"),
+      String(parsed.getDate()).padStart(2, "0")
+    ].join("-");
+  });
+
   eleventyConfig.addFilter("dateYear", function (date) {
     return new Date(date).getFullYear();
   });

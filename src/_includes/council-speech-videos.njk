@@ -1,53 +1,102 @@
 {% set speechVideos = councilSpeechVideos.byUrl[page.url] or councilSpeechVideos.byUrl[source_url] or [] %}
-{% if speechVideos.length %}
-  <section class="council-speech-videos my-4" aria-labelledby="council-speech-videos-title">
+{% set speechMeetingDate = meetingDate or (date | isoDate) %}
+{% set fallbackMeetingVideos = [] %}
+{% if not speechVideos.length and speechMeetingDate and type == "puhe" %}
+  {% set fallbackMeetingVideos = councilMeetingYoutubeVideos.byDate[speechMeetingDate] or [] %}
+{% endif %}
+{% if speechVideos.length or fallbackMeetingVideos.length %}
+  <section class="council-speech-videos council-speech-source my-4" aria-labelledby="council-speech-videos-title">
     <div class="d-flex align-items-start justify-content-between gap-3 mb-3">
       <div>
-        <p class="text-uppercase small text-muted mb-1">Kokoustallenne</p>
-        <h2 id="council-speech-videos-title" class="h5 mb-1">Katso puheenvuoro valtuuston videotallenteesta</h2>
-        <p class="text-muted small mb-0">Aikaleima vie suoraan kyseisen puheenvuoron kohtaan.</p>
+        <p class="text-uppercase small text-muted mb-1">Tallenne</p>
+        <h2 id="council-speech-videos-title" class="h6 mb-1">
+          {{ "Puheenvuoro kokoustallenteessa" if speechVideos.length else "Kokoustallenne" }}
+        </h2>
+        <p class="text-muted small mb-0">
+          {% if speechVideos.length %}
+            Aikaleima avaa kaupunginvaltuuston tallenteen suoraan oikeasta kohdasta.
+          {% else %}
+            Tästä kokouksesta on tallenne, mutta puheenvuoron tarkkaa aikaleimaa ei ole vielä merkitty.
+          {% endif %}
+        </p>
       </div>
     </div>
-    <div class="council-speech-video-list">
+    <div class="council-speech-video-list council-speech-source-list">
       {% for video in speechVideos %}
+        {% set hasStart = video.start or video.start == 0 %}
         {% set startText = video.start | secondsToClock %}
-        {% set watchUrl = "https://www.youtube.com/watch?v=" ~ video.youtubeId ~ "&t=" ~ video.start ~ "s" %}
-        {% set embedUrl = "https://www.youtube-nocookie.com/embed/" ~ video.youtubeId ~ "?start=" ~ video.start %}
-        <article class="council-speech-video-card">
-          <div class="council-speech-video-card__meta">
-            <span class="badge text-bg-light border text-dark">{{ startText }}</span>
-            {% if video.verified %}
-              <span class="badge text-bg-success">varmennettu</span>
-            {% endif %}
-          </div>
-          <h3 class="h6 mb-2">{{ video.label or "Puheenvuoro kokoustallenteessa" }}</h3>
-          <p class="small text-muted mb-3">{{ video.source or "Oulun kaupunginvaltuuston kokoustallenne" }}</p>
-          <div class="external-media-consent video-preview" data-external-media-provider="youtube">
+        {% set watchUrl = "https://www.youtube.com/watch?v=" ~ video.youtubeId ~ ("&t=" ~ video.start ~ "s" if hasStart else "") %}
+        <article class="council-speech-video-card council-speech-source-card{% if not hasStart %} council-speech-source-card--warning{% endif %}">
+          <a href="{{ watchUrl }}" target="_blank" rel="noopener noreferrer" class="council-speech-source-card__thumb" aria-label="{{ 'Avaa kokoustallenne YouTubessa kohdasta ' ~ startText if hasStart else 'Avaa tallenne YouTubessa' }}">
             <img
-              class="external-media-consent__preview"
-              data-external-media-preview
-              src="https://img.youtube.com/vi/{{ video.youtubeId }}/hqdefault.jpg"
+              src="https://img.youtube.com/vi/{{ video.youtubeId }}/mqdefault.jpg"
               alt=""
               loading="lazy"
+              decoding="async"
             >
-            <div class="external-media-consent__notice" data-external-media-notice>
-              <p class="external-media-consent__text" data-external-media-text></p>
-              <div class="external-media-consent__actions">
-                <button type="button" class="btn btn-primary btn-sm" data-external-media-load></button>
-                <button type="button" class="btn btn-outline-secondary btn-sm" data-external-media-allow-all></button>
-              </div>
-              <a href="{{ watchUrl }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light btn-sm">Avaa YouTubessa kohdasta {{ startText }}</a>
+            <span class="council-speech-source-card__play" aria-hidden="true">
+              <i class="bi bi-play-fill"></i>
+            </span>
+          </a>
+          <div class="council-speech-source-card__body">
+            <div class="council-speech-video-card__meta">
+              {% if hasStart %}
+                <span class="badge text-bg-light border text-dark">{{ startText }}</span>
+                {% if video.verified %}
+                  <span class="badge text-bg-success">varmennettu</span>
+                {% endif %}
+              {% else %}
+                <span class="badge text-bg-warning text-dark border">
+                  <i class="bi bi-exclamation-triangle-fill me-1" aria-hidden="true"></i>
+                  aikaleima puuttuu
+                </span>
+              {% endif %}
             </div>
-            <iframe
-              class="external-media-consent__iframe"
-              data-consent-src="{{ embedUrl }}"
-              title="{{ video.label or title }}"
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-              hidden
-            ></iframe>
+            <h3 class="h6 mb-1">{{ video.label or ("Puheenvuoro tallenteessa" if not hasStart else "Puheenvuoro kokoustallenteessa") }}</h3>
+            <p class="small text-muted mb-0">
+              {% if hasStart %}
+                {{ video.source or "Oulun kaupunginvaltuuston kokoustallenne" }}
+              {% else %}
+                {{ video.source or "Oulun kaupungin tallenne" }}. Videosta täytyy itse etsiä oikea puheenvuoron kohta.
+              {% endif %}
+            </p>
           </div>
+          <a href="{{ watchUrl }}" target="_blank" rel="noopener noreferrer" class="btn {{ 'btn-outline-primary' if hasStart else 'btn-outline-warning' }} btn-sm council-speech-source-card__link">
+            {{ "Avaa YouTubessa kohdasta " ~ startText if hasStart else "Avaa tallenne" }}
+            <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i>
+          </a>
+        </article>
+      {% endfor %}
+      {% for video in fallbackMeetingVideos %}
+        {% set watchUrl = video.url or ("https://www.youtube.com/watch?v=" ~ video.youtubeId) %}
+        <article class="council-speech-video-card council-speech-source-card council-speech-source-card--warning">
+          <a href="{{ watchUrl }}" target="_blank" rel="noopener noreferrer" class="council-speech-source-card__thumb" aria-label="Avaa kokoustallenne YouTubessa">
+            {% if video.thumbnail or video.youtubeId %}
+              <img
+                src="{{ video.thumbnail or ('https://img.youtube.com/vi/' ~ video.youtubeId ~ '/mqdefault.jpg') }}"
+                alt=""
+                loading="lazy"
+                decoding="async"
+              >
+            {% endif %}
+            <span class="council-speech-source-card__play" aria-hidden="true">
+              <i class="bi bi-play-fill"></i>
+            </span>
+          </a>
+          <div class="council-speech-source-card__body">
+            <div class="council-speech-video-card__meta">
+              <span class="badge text-bg-warning text-dark border">
+                <i class="bi bi-exclamation-triangle-fill me-1" aria-hidden="true"></i>
+                aikaleima puuttuu
+              </span>
+            </div>
+            <h3 class="h6 mb-1">{{ video.title or "Kaupunginvaltuuston kokoustallenne" }}</h3>
+            <p class="small text-muted mb-0">Videosta täytyy itse etsiä oikea puheenvuoron kohta.</p>
+          </div>
+          <a href="{{ watchUrl }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-warning btn-sm council-speech-source-card__link">
+            Avaa kokoustallenne
+            <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i>
+          </a>
         </article>
       {% endfor %}
     </div>

@@ -15,10 +15,10 @@ layout: base.njk
           {% if asiakohta %}
             <p class="text-muted small mb-3"><i class="bi bi-card-list me-1"></i>Asiakohta: {{ asiakohta }}</p>
           {% endif %}
-          {% include "council-speech-videos.njk" %}
           <div class="row g-4">
             <div class="{{ 'col-lg-8' if showContextSidebar else 'col-12' }}">
               <div class="content-prose">{{ content | safe }}</div>
+              {% include "council-speech-videos.njk" %}
               {% if categories and not showContextSidebar %}
                 <div class="mt-4">
                   <p class="text-uppercase small text-muted mb-2">{{ "Categories" if currentLang == "en" else "Kategoriat" }}</p>
