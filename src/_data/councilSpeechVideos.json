@@ -72,52 +72,6 @@
         "verified": true
       }
     ],
-    "/2020/11/10/kuntalain-94-2%c2%a7-mukainen-keskustelu-yliopiston-muuttosuunnitelmista/": [
-      {
-        "youtubeId": "AK9p1OMpnbs",
-        "start": 9455,
-        "label": "Etukäteen valmisteltu puhe Linnanmaan kampuksesta",
-        "source": "Oulun kaupunginvaltuuston kokoustallenne",
-        "verified": true
-      },
-      {
-        "youtubeId": "AK9p1OMpnbs",
-        "start": 13321,
-        "label": "Puheenvuoro kampussuunnitelmien kokonaisvaikutuksista",
-        "source": "Oulun kaupunginvaltuuston kokoustallenne",
-        "verified": true
-      },
-      {
-        "youtubeId": "AK9p1OMpnbs",
-        "start": 15232,
-        "label": "Puheenvuoro Linnanmaan kampuksen arkkitehtuurista",
-        "source": "Oulun kaupunginvaltuuston kokoustallenne",
-        "verified": true
-      }
-    ],
-    "https://www.jarilaru.fi/kuntalain-94-2%c2%a7-mukainen-keskustelu-yliopiston-muuttosuunnitelmista/": [
-      {
-        "youtubeId": "AK9p1OMpnbs",
-        "start": 9455,
-        "label": "Etukäteen valmisteltu puhe Linnanmaan kampuksesta",
-        "source": "Oulun kaupunginvaltuuston kokoustallenne",
-        "verified": true
-      },
-      {
-        "youtubeId": "AK9p1OMpnbs",
-        "start": 13321,
-        "label": "Puheenvuoro kampussuunnitelmien kokonaisvaikutuksista",
-        "source": "Oulun kaupunginvaltuuston kokoustallenne",
-        "verified": true
-      },
-      {
-        "youtubeId": "AK9p1OMpnbs",
-        "start": 15232,
-        "label": "Puheenvuoro Linnanmaan kampuksen arkkitehtuurista",
-        "source": "Oulun kaupunginvaltuuston kokoustallenne",
-        "verified": true
-      }
-    ],
     "/2022/04/04/palveluverkkolinjaukset-eivat-ole-vain-kylakoulukysymys/": [
       {
         "youtubeId": "tIyZ2MHIrSw",
@@ -197,6 +151,24 @@
         "label": "Puheenvuoro valtuuston videotallenteessa",
         "source": "Oulun kaupunginvaltuuston kokoustallenne",
         "verified": false
+      }
+    ],
+    "/2021/11/29/talousarvioesitys-2020-yksityisen-varhaiskasvatuksen-osuutta-tulee-lisata-25/": [
+      {
+        "youtubeId": "y0eDzWABpMs",
+        "start": 11459,
+        "label": "Puheenvuoro yksityisen varhaiskasvatuksen osuudesta",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne 29.11.2021",
+        "verified": true
+      }
+    ],
+    "https://www.jarilaru.fi/talousarvioesitys-2020-yksityisen-varhaiskasvatuksen-osuutta-tulee-lisata-25/": [
+      {
+        "youtubeId": "y0eDzWABpMs",
+        "start": 11459,
+        "label": "Puheenvuoro yksityisen varhaiskasvatuksen osuudesta",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne 29.11.2021",
+        "verified": true
       }
     ],
     "/2022/02/28/puheenvuoro-valtuustossa-linnanmaan-kampukseen-on-jo-investoitu-kymmenia-miljoonia/": [
@@ -394,6 +366,186 @@
         "start": 8565,
         "label": "Puheenvuoro valtuuston videotallenteessa",
         "source": "Oulun kaupunginvaltuuston kokoustallenne",
+        "verified": true
+      }
+    ],
+    "/2023/02/27/jaalla-kavelevat-turistit/": [
+      {
+        "youtubeId": "oE9naTKT6Qc",
+        "start": 2606,
+        "label": "Puheenvuoro valtuuston videotallenteessa",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne",
+        "verified": true
+      }
+    ],
+    "/2023/05/22/tilinpaatos-2022-tietojohtaminen/": [
+      {
+        "youtubeId": "wI7l8mfW1P8",
+        "start": 3935,
+        "label": "Puheenvuoro valtuuston videotallenteessa",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne",
+        "verified": true
+      }
+    ],
+    "/2023/05/22/oulun-infra-omistajapoliittinen-selvitys/": [
+      {
+        "youtubeId": "wI7l8mfW1P8",
+        "start": 14340,
+        "label": "Puheenvuoro valtuuston videotallenteessa",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne",
+        "verified": true
+      }
+    ],
+    "/2023/09/11/puheenvuoro-valtuustossa-kaupungintalon-yleisokaytto-ja-aiemmat-paatokset/": [
+      {
+        "youtubeId": "yj7heRwBFvc",
+        "start": 8592,
+        "label": "Puheenvuoro valtuuston videotallenteessa",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne",
+        "verified": true
+      }
+    ],
+    "/2023/09/11/puheenvuoro-valtuustossa-kaupungintalo-kaupunkilaisten-yhteisena-tilana/": [
+      {
+        "youtubeId": "yj7heRwBFvc",
+        "start": 9678,
+        "label": "Puheenvuoro valtuuston videotallenteessa",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne",
+        "verified": true
+      }
+    ],
+    "/2021/03/29/puheenvuoro-valtuustossa-yhdyskuntalietteiden-kasittely-vuoden-2024-jalkeen/": [
+      {
+        "youtubeId": "diYNDM6rsmE",
+        "start": 3829,
+        "label": "Puheenvuoro valtuuston videotallenteessa",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne",
+        "verified": true
+      }
+    ],
+    "/2021/03/29/puheenvuoro-valtuustossa-kaavoitusprosessi-on-saannelty-ja-lahtökohtaisesti-lapinakyvä/": [
+      {
+        "youtubeId": "diYNDM6rsmE",
+        "start": 13503,
+        "label": "Puheenvuoro valtuuston videotallenteessa",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne",
+        "verified": true
+      }
+    ],
+    "/2021/04/26/puheenvuoro-valtuustossa-keskustakampus-hajottaisi-linnanmaan-monitieteisen-kokonaisuuden/": [
+      {
+        "youtubeId": "jukSAaIHraA",
+        "start": 7212,
+        "label": "Puheenvuoro valtuuston videotallenteessa",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne",
+        "verified": true
+      }
+    ],
+    "/2021/04/26/puheenvuoro-valtuustossa-raksilaan-tarvitaan-kokonaisnakemys-myos-kontinkangas-arvioitava/": [
+      {
+        "youtubeId": "jukSAaIHraA",
+        "start": 10699,
+        "label": "Puheenvuoro valtuuston videotallenteessa",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne",
+        "verified": true
+      }
+    ],
+    "/2021/04/26/puheenvuoro-valtuustossa-oulun-suuret-hankkeet-on-vaiheistettava/": [
+      {
+        "youtubeId": "jukSAaIHraA",
+        "start": 11130,
+        "label": "Puheenvuoro valtuuston videotallenteessa",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne",
+        "verified": true
+      }
+    ],
+    "/2021/09/06/puheenvuoro-valtuustossa-oulu2026-hanke-on-jo-paatetty-nyt-tarvitaan-yhteista-sitoutumista/": [
+      {
+        "youtubeId": "QfwD1xMSyVM",
+        "start": 7506,
+        "label": "Puheenvuoro valtuuston videotallenteessa",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne",
+        "verified": true
+      }
+    ],
+    "/2020/10/05/puheenvuoro-valtuustossa-koulusihteerien-asemaa-on-arvioitava-kokonaisuutena/": [
+      {
+        "youtubeId": "-L5eJMK2_6g",
+        "start": 7562,
+        "label": "Puheenvuoro valtuuston videotallenteessa",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne",
+        "verified": true
+      }
+    ],
+    "/2020/10/05/puheenvuoro-valtuustossa-pilvipalvelut-muuttavat-ict-palvelujen-toimintamallia/": [
+      {
+        "youtubeId": "-L5eJMK2_6g",
+        "start": 9492,
+        "label": "Puheenvuoro valtuuston videotallenteessa",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne",
+        "verified": true
+      }
+    ],
+    "/2020/11/09/puheenvuoro-valtuustossa-keskustakampus-hajottaisi-linnanmaan-innovaatiokeskittyman/": [
+      {
+        "youtubeId": "AK9p1OMpnbs",
+        "start": 9455,
+        "label": "Etukäteen valmisteltu puhe Linnanmaan kampuksesta",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne",
+        "verified": true
+      }
+    ],
+    "/2020/11/09/puheenvuoro-valtuustossa-kampusratkaisun-vaikutuksista-tarvitaan-yhteinen-tiekartta/": [
+      {
+        "youtubeId": "AK9p1OMpnbs",
+        "start": 13321,
+        "label": "Puheenvuoro kampussuunnitelmien kokonaisvaikutuksista",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne",
+        "verified": true
+      }
+    ],
+    "/2020/11/09/puheenvuoro-valtuustossa-linnanmaan-kampuksella-on-kansainvalista-arkkitehtuurihistoriallista-arvoa/": [
+      {
+        "youtubeId": "AK9p1OMpnbs",
+        "start": 15232,
+        "label": "Puheenvuoro Linnanmaan kampuksen arkkitehtuurista",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne",
+        "verified": true
+      }
+    ],
+    "/2022/11/28/puheenvuoro-valtuustossa-yksityinen-varhaiskasvatus-palvelujen-saatavuus/": [
+      {
+        "youtubeId": "vI7neHL5Z6c",
+        "start": 12790,
+        "label": "Puheenvuoro yksityisestä varhaiskasvatuksesta",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne 28.11.2022",
+        "verified": true
+      }
+    ],
+    "/2022/11/28/puheenvuoro-valtuustossa-haukiputaan-urheilukentta-ja-torpanmaen-vaihtoehto/": [
+      {
+        "youtubeId": "vI7neHL5Z6c",
+        "start": 14102,
+        "label": "Puheenvuoro Haukiputaan urheilukentästä ja Torpanmäestä",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne 28.11.2022",
+        "verified": true
+      }
+    ],
+    "/2020/11/30/puheenvuoro-valtuustossa-kulttuurin-merkitys-korostuu-pandemia-aikana/": [
+      {
+        "youtubeId": "VDGDy-02K5s",
+        "start": 11492,
+        "label": "Puheenvuoro kulttuurin merkityksestä pandemia-aikana",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne 30.11.2020",
+        "verified": true
+      }
+    ],
+    "/2020/11/30/puheenvuoro-valtuustossa-maahanmuuton-kustannuksia-on-tarkasteltava-kokonaisuutena/": [
+      {
+        "youtubeId": "VDGDy-02K5s",
+        "start": 15759,
+        "label": "Puheenvuoro maahanmuuton kustannusten tarkastelusta",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne 30.11.2020",
         "verified": true
       }
     ],
