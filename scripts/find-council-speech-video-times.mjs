@@ -64,7 +64,7 @@ function parseFrontmatter(raw) {
 
 function toPermalink(fileName, date) {
   if (!date || !/^\d{4}-\d{2}-\d{2}$/.test(date)) return "";
-  const slug = fileName.replace(/\.md$/, "");
+  const slug = fileName.replace(/\.md$/, "").replace(/^\d{4}-\d{2}-\d{2}-/, "");
   return `/${date.slice(0, 4)}/${date.slice(5, 7)}/${date.slice(8, 10)}/${slug}/`;
 }
 
