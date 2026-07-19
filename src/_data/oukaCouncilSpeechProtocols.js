@@ -61,20 +61,11 @@ const overrides = {
   "/2019/12/02/puheenvuoroni-oulun-kaupunginvaltuuston-talousarviokeskustelun-yhteydessa-2-12-2019/": {
     meetingDate: "2019-12-09"
   },
-  "/2020/11/20/puhe-kaupunginvaltuuston-kokouksessa-20-11-2020/": {
-    event: "Oulun kaupunginvaltuusto",
-    meetingDate: "2020-11-09",
-    asiakohta: "§ 8 – Oulun yliopiston sijoittuminen Raksilan alueelle"
-  },
   "/2020/11/30/puheenvuoro-valtuustossa-kulttuurin-merkitys-korostuu-pandemia-aikana/": {
     meetingDate: "2020-12-07"
   },
   "/2020/11/30/puheenvuoro-valtuustossa-maahanmuuton-kustannuksia-on-tarkasteltava-kokonaisuutena/": {
     meetingDate: "2020-12-07"
-  },
-  "/2021/04/26/puheenvuoro-kohdassa-%c2%a7-selvitys-oulun-yliopiston-sijoittumisesta-raksilan-alueelle/": {
-    event: "Oulun kaupunginvaltuusto",
-    asiakohta: "§ 7 – Selvitys Oulun yliopiston sijoittumisesta Raksilan alueelle"
   },
   "/2021/11/29/talousarvioesitys-2020-yksityisen-varhaiskasvatuksen-osuutta-tulee-lisata-25/": {
     meetingDate: "2021-12-13"
