@@ -1411,6 +1411,7 @@ function renderPaginationShared(ul, total, currentPage, onPageChange) {
   const WINDOW_SIZE = 10;
   const footer = ul.closest('.card-footer');
   const cardBody = footer?.previousElementSibling;
+  const footerInfo = footer?.querySelector('small');
   const paginationId = ul.id || `pagination-${Math.random().toString(36).slice(2)}`;
   if (!ul.id) ul.id = paginationId;
 
@@ -1438,7 +1439,7 @@ function renderPaginationShared(ul, total, currentPage, onPageChange) {
     }
 
     const topInfo = dock.querySelector('[data-pagination-top-info]');
-    if (topInfo) topInfo.textContent = total > 1 ? `Sivu ${currentPage}/${total}` : '';
+    if (topInfo) topInfo.textContent = footerInfo?.textContent || '';
     return dock.querySelector('ul');
   };
 
