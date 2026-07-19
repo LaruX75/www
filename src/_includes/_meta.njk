@@ -109,7 +109,7 @@
   {% set pageUrl = page.url | absoluteUrl(site.url or "https://www.jarilaru.fi") %}
   {% set fiAltPath = collections.all | findTranslationUrl(translationKey, "fi") %}
   {% set enAltPath = collections.all | findTranslationUrl(translationKey, "en") %}
-  {% set pageType = "article" if ("blog" in (tags or []) or "politics" in (tags or []) or "publications" in (tags or [])) else "website" %}
+  {% set pageType = "video.other" if mediaType == "video" else ("article" if type == "esitys" or mediaType or ("blog" in (tags or []) or "politics" in (tags or []) or "publications" in (tags or [])) else "website") %}
   {% set sectionLabel = "Blogi" if page.url and "/blog" in page.url else ("Julkaisut" if page.url and "/julkaisut" in page.url else ("Politiikka" if page.url and "/politics" in page.url else "Sivusto")) %}
   {% set personId = (site.url or "https://www.jarilaru.fi") + "#person" %}
 
