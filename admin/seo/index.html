@@ -456,6 +456,15 @@
     function renderChecks(data) {
       const sitemap = data.checks.sitemap;
       const hreflang = data.checks.hreflang;
+      const structuredData = data.checks.structuredData || { blockCount: 0, invalidCount: 0, examples: [] };
+      const textLimits = data.summary.seoTextLimits || {
+        titleMin: 25,
+        titleMax: 65,
+        descriptionMin: 80,
+        descriptionMax: 170
+      };
+      const titleRiskCount = (data.summary.shortTitleCount || 0) + (data.summary.longTitleCount || 0);
+      const descriptionRiskCount = (data.summary.shortDescriptionCount || 0) + (data.summary.longDescriptionCount || 0);
       const ogBuildNote = data.ogBuildEnabled
         ? 'OG-kuvat on generoitu tässä buildissä.'
         : 'OG-kuvat ovat pois päältä tässä buildissä, joten puutelistat eivät ole tältä osin luotettavia.';
@@ -498,6 +507,20 @@
         </div>
         <div class="mini-item">
           <div>
+            <strong>Rakenteinen data</strong>
+            <small>${structuredData.invalidCount === 0 ? `${structuredData.blockCount} JSON-LD-lohkoa parsii oikein.` : `${structuredData.invalidCount} virheellistä JSON-LD-lohkoa.`}</small>
+          </div>
+          ${badge(structuredData.invalidCount === 0)}
+        </div>
+        <div class="mini-item">
+          <div>
+            <strong>Title- ja description-pituudet</strong>
+            <small>${titleRiskCount + descriptionRiskCount === 0 ? 'Indeksoitavilla sivuilla ei ole pituuspoikkeamia.' : `${titleRiskCount} otsikko- ja ${descriptionRiskCount} description-poikkeamaa.`}</small>
+          </div>
+          ${badge(titleRiskCount + descriptionRiskCount === 0)}
+        </div>
+        <div class="mini-item">
+          <div>
             <strong>OG-buildin tila</strong>
             <small>${ogBuildNote}</small>
           </div>
@@ -527,6 +550,33 @@
           </div>
         </div>
         ${formatList(data.summary.examples.indexableRelativeCanonical)}
+        <div class="mini-item mt-3">
+          <div>
+            <strong>Virheellinen JSON-LD</strong>
+            <small>${structuredData.invalidCount || 0} lohkoa</small>
+          </div>
+        </div>
+        ${formatList((structuredData.examples || []).map((item) => `${item.page}: ${item.message}`))}
+        <div class="mini-item mt-3">
+          <div>
+            <strong>Title-pituuden poikkeamat</strong>
+            <small>${titleRiskCount} sivua, tavoite ${textLimits.titleMin}-${textLimits.titleMax} merkkiä</small>
+          </div>
+        </div>
+        ${formatList([
+          ...(data.summary.examples.shortTitle || []).map((item) => `Lyhyt: ${item}`),
+          ...(data.summary.examples.longTitle || []).map((item) => `Pitkä: ${item}`)
+        ])}
+        <div class="mini-item mt-3">
+          <div>
+            <strong>Description-pituuden poikkeamat</strong>
+            <small>${descriptionRiskCount} sivua, tavoite ${textLimits.descriptionMin}-${textLimits.descriptionMax} merkkiä</small>
+          </div>
+        </div>
+        ${formatList([
+          ...(data.summary.examples.shortDescription || []).map((item) => `Lyhyt: ${item}`),
+          ...(data.summary.examples.longDescription || []).map((item) => `Pitkä: ${item}`)
+        ])}
       `;
     }
 
@@ -687,11 +737,11 @@
         <div class="detail-grid">
           <article class="detail-item">
             <div class="detail-item-label">Title</div>
-            <div class="detail-item-value ${page.title ? '' : 'detail-empty'}">${page.title ? escapeHtml(page.title) : 'Puuttuu'}</div>
+            <div class="detail-item-value ${page.title ? '' : 'detail-empty'}">${page.title ? escapeHtml(page.title) : 'Puuttuu'}${page.title ? `<div class="small text-muted mt-2">${page.titleLength || 0} merkkiä</div>` : ''}</div>
           </article>
           <article class="detail-item">
             <div class="detail-item-label">Meta description</div>
-            <div class="detail-item-value ${page.description ? '' : 'detail-empty'}">${page.description ? escapeHtml(page.description) : 'Puuttuu'}</div>
+            <div class="detail-item-value ${page.description ? '' : 'detail-empty'}">${page.description ? escapeHtml(page.description) : 'Puuttuu'}${page.description ? `<div class="small text-muted mt-2">${page.descriptionLength || 0} merkkiä</div>` : ''}</div>
           </article>
           <article class="detail-item">
             <div class="detail-item-label">Canonical</div>

@@ -9,6 +9,12 @@ const siteRoot = path.join(projectRoot, "_site");
 const apiDir = path.join(siteRoot, "api");
 const outputPath = path.join(apiDir, "seo-dashboard.json");
 const siteOrigin = (process.env.SITE_URL || "https://www.jarilaru.fi").replace(/\/+$/, "");
+const seoTextLimits = {
+  titleMin: 25,
+  titleMax: 65,
+  descriptionMin: 80,
+  descriptionMax: 170
+};
 
 function walkHtmlFiles(dir, list = []) {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
@@ -145,7 +151,10 @@ function collectPageData() {
   const pages = [];
   const pathSet = new Set();
   let hreflangIssues = 0;
+  let structuredDataBlockCount = 0;
+  let structuredDataInvalidCount = 0;
   const hreflangExamples = [];
+  const structuredDataInvalidExamples = [];
 
   for (const filePath of htmlFiles) {
     const html = fs.readFileSync(filePath, "utf8");
@@ -160,6 +169,26 @@ function collectPageData() {
     const ogImage = textOrEmpty($('meta[property="og:image"]').attr("content"));
     const h1 = textOrEmpty($("h1").first().text());
     const hreflangs = {};
+    const structuredDataTypes = [];
+
+    $('script[type="application/ld+json"]').each((_, el) => {
+      structuredDataBlockCount += 1;
+      const rawJson = textOrEmpty($(el).text());
+      try {
+        const parsed = JSON.parse(rawJson);
+        const entries = Array.isArray(parsed) ? parsed : [parsed];
+        for (const entry of entries) {
+          if (entry && entry["@type"]) {
+            structuredDataTypes.push(entry["@type"]);
+          }
+        }
+      } catch (error) {
+        structuredDataInvalidCount += 1;
+        if (structuredDataInvalidExamples.length < 8) {
+          structuredDataInvalidExamples.push({ page: urlPath, message: error.message });
+        }
+      }
+    });
 
     $('link[rel="alternate"][hreflang]').each((_, el) => {
       const lang = textOrEmpty($(el).attr("hreflang"));
@@ -189,10 +218,13 @@ function collectPageData() {
       h1,
       hasH1: Boolean(h1),
       hasDescription: Boolean(description),
+      titleLength: title.length,
+      descriptionLength: description.length,
       hasCanonical: Boolean(canonical),
       canonicalIsAbsolute: isAbsoluteHttpUrl(canonical),
       hasOgImage: isValidMetaValue(ogImage),
       isNoindex: robots.toLowerCase().includes("noindex"),
+      structuredDataTypes,
       hreflangs
     });
   }
@@ -201,7 +233,10 @@ function collectPageData() {
     pages: pages.sort((a, b) => a.path.localeCompare(b.path, "fi")),
     pathSet,
     hreflangIssues,
-    hreflangExamples
+    hreflangExamples,
+    structuredDataBlockCount,
+    structuredDataInvalidCount,
+    structuredDataInvalidExamples
   };
 }
 
@@ -213,6 +248,13 @@ function buildSummary(pages) {
   const indexableRelativeCanonical = indexablePages.filter((page) => page.hasCanonical && !page.canonicalIsAbsolute);
   const missingOgImage = indexablePages.filter((page) => !page.hasOgImage);
   const missingH1 = indexablePages.filter((page) => !page.hasH1);
+  const shortTitle = indexablePages.filter((page) => page.titleLength > 0 && page.titleLength < seoTextLimits.titleMin);
+  const longTitle = indexablePages.filter((page) => page.titleLength > seoTextLimits.titleMax);
+  const shortDescription = indexablePages.filter(
+    (page) => page.descriptionLength > 0 && page.descriptionLength < seoTextLimits.descriptionMin
+  );
+  const longDescription = indexablePages.filter((page) => page.descriptionLength > seoTextLimits.descriptionMax);
+  const textExample = (page) => `${page.path} (${page.titleLength}/${page.descriptionLength})`;
 
   return {
     pageCount: pages.length,
@@ -224,13 +266,22 @@ function buildSummary(pages) {
     indexableRelativeCanonicalCount: indexableRelativeCanonical.length,
     missingOgImageCount: missingOgImage.length,
     missingH1Count: missingH1.length,
+    shortTitleCount: shortTitle.length,
+    longTitleCount: longTitle.length,
+    shortDescriptionCount: shortDescription.length,
+    longDescriptionCount: longDescription.length,
+    seoTextLimits,
     examples: {
       missingDescription: missingDescription.slice(0, 8).map((page) => page.path),
       missingCanonical: missingCanonical.slice(0, 8).map((page) => page.path),
       relativeCanonical: relativeCanonical.slice(0, 8).map((page) => page.path),
       indexableRelativeCanonical: indexableRelativeCanonical.slice(0, 8).map((page) => page.path),
       missingOgImage: missingOgImage.slice(0, 8).map((page) => page.path),
-      missingH1: missingH1.slice(0, 8).map((page) => page.path)
+      missingH1: missingH1.slice(0, 8).map((page) => page.path),
+      shortTitle: shortTitle.slice(0, 8).map(textExample),
+      longTitle: longTitle.slice(0, 8).map(textExample),
+      shortDescription: shortDescription.slice(0, 8).map(textExample),
+      longDescription: longDescription.slice(0, 8).map(textExample)
     }
   };
 }
@@ -242,7 +293,14 @@ function main() {
   }
 
   const sitemap = extractSitemapMetrics();
-  const { pages, hreflangIssues, hreflangExamples } = collectPageData();
+  const {
+    pages,
+    hreflangIssues,
+    hreflangExamples,
+    structuredDataBlockCount,
+    structuredDataInvalidCount,
+    structuredDataInvalidExamples
+  } = collectPageData();
   const summary = buildSummary(pages);
 
   const payload = {
@@ -255,6 +313,11 @@ function main() {
       hreflang: {
         issueCount: hreflangIssues,
         examples: hreflangExamples
+      },
+      structuredData: {
+        blockCount: structuredDataBlockCount,
+        invalidCount: structuredDataInvalidCount,
+        examples: structuredDataInvalidExamples
       }
     },
     pages
