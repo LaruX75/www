@@ -34,6 +34,8 @@
     "audit:council-videos": "node scripts/audit-council-speech-videos.mjs",
     "audit:council-video-times": "node scripts/find-council-speech-video-times.mjs",
     "audit:council-video-times:whisper": "node scripts/find-council-speech-video-times-with-whisper.mjs",
+    "export:macwhisper-transcripts": "node scripts/export-macwhisper-transcripts.mjs",
+    "audit:council-video-times:macwhisper": "node scripts/find-council-speech-times-from-macwhisper.mjs",
     "audit:content-schema": "node scripts/audit-content-schema.mjs",
     "eleventy": "npx @11ty/eleventy",
     "eleventy:serve": "npx @11ty/eleventy --serve",
