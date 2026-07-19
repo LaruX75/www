@@ -99,3 +99,48 @@
     {% endif %}
   </div>
 </section>
+
+{% set topicBaseUrl = site.url or "https://www.jarilaru.fi" %}
+{% set topicPageUrl = page.url | absoluteUrl(topicBaseUrl) %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": {{ topic.title | jsonSafe | safe }},
+  "description": {{ (topic.description or topic.lead) | jsonSafe | safe }},
+  "url": {{ topicPageUrl | jsonSafe | safe }},
+  "inLanguage": "fi-FI",
+  "about": {
+    "@type": "DefinedTerm",
+    "name": {{ topic.title | jsonSafe | safe }},
+    "description": {{ topic.lead | jsonSafe | safe }},
+    "url": {{ topicPageUrl | jsonSafe | safe }},
+    "keywords": {{ (topic.keywords or []) | jsonSafe | safe }}
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "@id": {{ topicBaseUrl | jsonSafe | safe }}
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "name": {{ ("Sisällöt aiheesta " ~ topic.title) | jsonSafe | safe }},
+    "numberOfItems": {{ topicItems.length }},
+    "itemListElement": [
+      {% for item in topicItems %}
+      {
+        "@type": "ListItem",
+        "position": {{ loop.index }},
+        "item": {
+          "@type": "CreativeWork",
+          "name": {{ item.data.title | jsonSafe | safe }},
+          "url": {{ (item.url | absoluteUrl(topicBaseUrl)) | jsonSafe | safe }},
+          "encodingFormat": {{ item.typeLabel | jsonSafe | safe }}{% if item.date %},
+          "datePublished": {{ (item.date | dateToRfc3339) | jsonSafe | safe }}{% endif %}{% if item.data.description %},
+          "description": {{ item.data.description | jsonSafe | safe }}{% endif %}
+        }
+      }{% if not loop.last %},{% endif %}
+      {% endfor %}
+    ]
+  }
+}
+</script>

@@ -39,3 +39,36 @@ translationKey: topic_profiles_index
     </div>
   </div>
 </section>
+
+{% set topicBaseUrl = site.url or "https://www.jarilaru.fi" %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Teemaprofiilit",
+  "description": "Jari Larun sivuston keskeiset teemaprofiilit ja aihepolut.",
+  "url": {{ (page.url | absoluteUrl(topicBaseUrl)) | jsonSafe | safe }},
+  "inLanguage": "fi-FI",
+  "mainEntity": {
+    "@type": "ItemList",
+    "name": "Teemaprofiilit",
+    "numberOfItems": {{ seoTopics.length }},
+    "itemListElement": [
+      {% for topic in seoTopics %}
+      {% set topicUrl = "/teemat/" ~ topic.slug ~ "/" %}
+      {
+        "@type": "ListItem",
+        "position": {{ loop.index }},
+        "item": {
+          "@type": "DefinedTerm",
+          "name": {{ topic.title | jsonSafe | safe }},
+          "description": {{ topic.lead | jsonSafe | safe }},
+          "url": {{ (topicUrl | absoluteUrl(topicBaseUrl)) | jsonSafe | safe }},
+          "keywords": {{ (topic.keywords or []) | jsonSafe | safe }}
+        }
+      }{% if not loop.last %},{% endif %}
+      {% endfor %}
+    ]
+  }
+}
+</script>
