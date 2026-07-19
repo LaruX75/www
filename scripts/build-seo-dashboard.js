@@ -43,6 +43,17 @@ function isValidMetaValue(value) {
   return true;
 }
 
+function isAbsoluteHttpUrl(value) {
+  const normalized = textOrEmpty(value);
+  if (!normalized) return false;
+  try {
+    const parsed = new URL(normalized);
+    return parsed.protocol === "http:" || parsed.protocol === "https:";
+  } catch (_) {
+    return false;
+  }
+}
+
 function normalizeLocalPath(value) {
   if (!value) return null;
   const raw = String(value).trim();
@@ -179,6 +190,7 @@ function collectPageData() {
       hasH1: Boolean(h1),
       hasDescription: Boolean(description),
       hasCanonical: Boolean(canonical),
+      canonicalIsAbsolute: isAbsoluteHttpUrl(canonical),
       hasOgImage: isValidMetaValue(ogImage),
       isNoindex: robots.toLowerCase().includes("noindex"),
       hreflangs
@@ -197,6 +209,8 @@ function buildSummary(pages) {
   const indexablePages = pages.filter((page) => !page.isNoindex);
   const missingDescription = indexablePages.filter((page) => !page.hasDescription);
   const missingCanonical = indexablePages.filter((page) => !page.hasCanonical);
+  const relativeCanonical = pages.filter((page) => page.hasCanonical && !page.canonicalIsAbsolute);
+  const indexableRelativeCanonical = indexablePages.filter((page) => page.hasCanonical && !page.canonicalIsAbsolute);
   const missingOgImage = indexablePages.filter((page) => !page.hasOgImage);
   const missingH1 = indexablePages.filter((page) => !page.hasH1);
 
@@ -206,11 +220,15 @@ function buildSummary(pages) {
     noindexCount: pages.length - indexablePages.length,
     missingDescriptionCount: missingDescription.length,
     missingCanonicalCount: missingCanonical.length,
+    relativeCanonicalCount: relativeCanonical.length,
+    indexableRelativeCanonicalCount: indexableRelativeCanonical.length,
     missingOgImageCount: missingOgImage.length,
     missingH1Count: missingH1.length,
     examples: {
       missingDescription: missingDescription.slice(0, 8).map((page) => page.path),
       missingCanonical: missingCanonical.slice(0, 8).map((page) => page.path),
+      relativeCanonical: relativeCanonical.slice(0, 8).map((page) => page.path),
+      indexableRelativeCanonical: indexableRelativeCanonical.slice(0, 8).map((page) => page.path),
       missingOgImage: missingOgImage.slice(0, 8).map((page) => page.path),
       missingH1: missingH1.slice(0, 8).map((page) => page.path)
     }
