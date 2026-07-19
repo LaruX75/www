@@ -243,6 +243,28 @@ function cleanSeoTitle(value) {
     .trim();
 }
 
+function truncateSeoTitle(value, maxLength = 53) {
+  const text = cleanSeoTitle(value);
+  const limit = Number(maxLength) || 53;
+  if (text.length <= limit) return text;
+
+  const cut = text.slice(0, limit + 1);
+  const punctuationEnd = Math.max(
+    cut.lastIndexOf(": "),
+    cut.lastIndexOf(" - "),
+    cut.lastIndexOf(" – "),
+    cut.lastIndexOf(" — "),
+    cut.lastIndexOf(". ")
+  );
+  if (punctuationEnd >= 25) {
+    return cut.slice(0, punctuationEnd).trim();
+  }
+
+  const wordEnd = cut.slice(0, Math.max(limit - 3, 0)).lastIndexOf(" ");
+  const end = wordEnd >= 30 ? wordEnd : limit - 3;
+  return `${cut.slice(0, end).trim()}...`;
+}
+
 function yearFromDate(value) {
   if (!value) return "";
   const date = new Date(value);
@@ -379,6 +401,10 @@ module.exports = function registerFilters(eleventyConfig) {
     const fallback = buildSeoFallback(options);
     const raw = shouldReplaceSeoDescription(description, options) ? fallback : description;
     return truncateSeoDescription(raw);
+  });
+
+  eleventyConfig.addFilter("seoTitle", function (title, maxLength = 53) {
+    return truncateSeoTitle(title, maxLength);
   });
 
   eleventyConfig.addFilter("slugify", function (str) {
