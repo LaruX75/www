@@ -38,21 +38,33 @@ function normalizePath(href) {
     return null;
   }
 
-  try {
-    return decodeURI(value);
-  } catch {
-    return value;
-  }
+  return value;
 }
 
 function urlExistsInSite(urlPath) {
   if (!urlPath) return true;
 
-  const asDir = path.join(siteRoot, urlPath, 'index.html');
-  const asFile = path.join(siteRoot, urlPath);
-  const asHtml = path.join(siteRoot, `${urlPath}.html`);
+  const candidates = new Set([urlPath]);
 
-  return fs.existsSync(asDir) || fs.existsSync(asFile) || fs.existsSync(asHtml);
+  try {
+    candidates.add(decodeURI(urlPath));
+  } catch {}
+
+  try {
+    candidates.add(encodeURI(decodeURI(urlPath)));
+  } catch {}
+
+  for (const candidate of candidates) {
+    const asDir = path.join(siteRoot, candidate, 'index.html');
+    const asFile = path.join(siteRoot, candidate);
+    const asHtml = path.join(siteRoot, `${candidate}.html`);
+
+    if (fs.existsSync(asDir) || fs.existsSync(asFile) || fs.existsSync(asHtml)) {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 function findAll(regex, input) {
