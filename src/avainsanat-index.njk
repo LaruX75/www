@@ -73,3 +73,39 @@ translationKey: keywords_index
     </div>
   </div>
 </section>
+
+{% set taxonomyBaseUrl = site.url or "https://www.jarilaru.fi" %}
+{% set structuredKeywords = collections.keywordListByCount | take(80) %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Avainsanat",
+  "description": "Jarilaru.fi:n avainsanat toimivat tarkempina reitteinä paikkoihin, käsitteisiin, hankkeisiin ja toistuviin teemoihin.",
+  "url": {{ (page.url | absoluteUrl(taxonomyBaseUrl)) | jsonSafe | safe }},
+  "inLanguage": "fi-FI",
+  "isPartOf": {
+    "@type": "WebSite",
+    "@id": {{ taxonomyBaseUrl | jsonSafe | safe }}
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "name": "Yleisimmät avainsanat",
+    "numberOfItems": {{ structuredKeywords.length }},
+    "itemListElement": [
+      {% for key in structuredKeywords %}
+      {% set keywordUrl = "/avainsanat/" ~ key.slug ~ "/" %}
+      {
+        "@type": "ListItem",
+        "position": {{ loop.index }},
+        "item": {
+          "@type": "DefinedTerm",
+          "name": {{ key.name | jsonSafe | safe }},
+          "url": {{ (keywordUrl | absoluteUrl(taxonomyBaseUrl)) | jsonSafe | safe }}
+        }
+      }{% if not loop.last %},{% endif %}
+      {% endfor %}
+    ]
+  }
+}
+</script>

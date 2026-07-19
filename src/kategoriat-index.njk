@@ -108,3 +108,40 @@ translationKey: categories_index
     </div>
   </div>
 </section>
+
+{% set taxonomyBaseUrl = site.url or "https://www.jarilaru.fi" %}
+{% set structuredCategories = collections.categoryList | take(80) %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Kategoriat",
+  "description": "Jarilaru.fi:n kategoriat kokoavat sisällöt aihealueittain.",
+  "url": {{ (page.url | absoluteUrl(taxonomyBaseUrl)) | jsonSafe | safe }},
+  "inLanguage": "fi-FI",
+  "isPartOf": {
+    "@type": "WebSite",
+    "@id": {{ taxonomyBaseUrl | jsonSafe | safe }}
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "name": "Kategoriat",
+    "numberOfItems": {{ structuredCategories.length }},
+    "itemListElement": [
+      {% for cat in structuredCategories %}
+      {% set categoryUrl = "/kategoriat/" ~ cat.slug ~ "/" %}
+      {
+        "@type": "ListItem",
+        "position": {{ loop.index }},
+        "item": {
+          "@type": "DefinedTerm",
+          "name": {{ cat.name | jsonSafe | safe }},
+          "url": {{ (categoryUrl | absoluteUrl(taxonomyBaseUrl)) | jsonSafe | safe }},
+          "description": {{ ((taxonomyProfiles.categories[cat.slug] or taxonomyProfiles.defaultCategory).lead) | jsonSafe | safe }}
+        }
+      }{% if not loop.last %},{% endif %}
+      {% endfor %}
+    ]
+  }
+}
+</script>

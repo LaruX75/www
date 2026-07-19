@@ -193,3 +193,47 @@
   updateVisibleItems();
 })();
 </script>
+
+{% set taxonomyBaseUrl = site.url or "https://www.jarilaru.fi" %}
+{% set taxonomyPageUrl = page.url | absoluteUrl(taxonomyBaseUrl) %}
+{% set structuredItems = keyword.items | take(30) %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": {{ ("Avainsana: " ~ keyword.name) | jsonSafe | safe }},
+  "description": {{ ("Avainsana " ~ keyword.name ~ " kokoaa samaan aiheeseen liittyvät sisällöt Jari Larun sivustolta.") | jsonSafe | safe }},
+  "url": {{ taxonomyPageUrl | jsonSafe | safe }},
+  "inLanguage": "fi-FI",
+  "about": {
+    "@type": "DefinedTerm",
+    "name": {{ keyword.name | jsonSafe | safe }},
+    "url": {{ taxonomyPageUrl | jsonSafe | safe }}
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "@id": {{ taxonomyBaseUrl | jsonSafe | safe }}
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "name": {{ ("Sisällöt avainsanalla " ~ keyword.name) | jsonSafe | safe }},
+    "numberOfItems": {{ keyword.count }},
+    "itemListElement": [
+      {% for item in structuredItems %}
+      {
+        "@type": "ListItem",
+        "position": {{ loop.index }},
+        "item": {
+          "@type": "CreativeWork",
+          "name": {{ item.data.title | jsonSafe | safe }},
+          "url": {{ (item.url | absoluteUrl(taxonomyBaseUrl)) | jsonSafe | safe }},
+          "encodingFormat": {{ item.taxonomyTypeLabel | jsonSafe | safe }}{% if item.date %},
+          "datePublished": {{ (item.date | dateToRfc3339) | jsonSafe | safe }}{% endif %}{% if item.data.description %},
+          "description": {{ item.data.description | jsonSafe | safe }}{% endif %}
+        }
+      }{% if not loop.last %},{% endif %}
+      {% endfor %}
+    ]
+  }
+}
+</script>
