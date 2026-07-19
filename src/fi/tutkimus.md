@@ -1,10 +1,10 @@
 ---
-title: "Tutkimus"
+title: "Tutkimus, julkaisut ja opinnäytteet"
 permalink: /tutkimus/
 layout: base.njk
 lang: fi
 translationKey: research
-description: "Jari Larun tutkimustyö: yhteisöllinen oppiminen, mobiiliteknologia ja tekoälylukutaito. Tieteelliset julkaisut, ohjatut opinnäytetyöt, tutkimushankkeet ja -profiilit."
+description: "Jari Larun tutkimus kokoaa yhteisöllisen oppimisen, mobiiliteknologian ja tekoälylukutaidon: julkaisut, ohjatut opinnäytetyöt, hankkeet ja asiantuntijatehtävät."
 templateEngineOverride: njk
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "Jari Laru, poliitikko"
-description: "Luottamustehtävät, tavoitteet ja vaikuttamisen painopisteet Oulussa."
+description: "Jari Larun politiikkasivu kokoaa nykyiset luottamustehtävät, vaalikaudet, puheenvuorot, aloitteet ja vaikuttamisen painopisteet Oulussa."
 permalink: /politiikka/
 layout: base.njk
 translationKey: politics_index

@@ -1,7 +1,7 @@
 ---
-title: "Jari Jukka Laru"
+title: "Tietoa Jari Larusta"
 date: 2020-01-17
-description: "Jari Laru – kouluttaja, yliopistonlehtori, tutkija, poliitikko ja oululainen. Tämä sivu kokoaa profiilin työn, julkisen vaikuttamisen ja arjen kautta."
+description: "Tietoa Jari Larusta: kouluttaja, yliopistonlehtori, tutkija, poliitikko ja oululainen, jonka työ yhdistää opetuksen, teknologian ja päätöksenteon."
 layout: base.njk
 templateEngineOverride: njk
 permalink: /tietoa/
