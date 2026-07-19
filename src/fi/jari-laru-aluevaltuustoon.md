@@ -1,7 +1,7 @@
 ---
 title: Jari Laru aluevaalivaltuustoon
 date: 2021-12-20
-description: Olen ehdolla Pohjois-Pohjanmaan aluevaltuustoon aluevaaleissa tammikuussa 2022.
+description: Aluevaalien 2022 sivu Pohjois-Pohjanmaan hyvinvointialueesta, palvelujen järjestämisestä, hyvinvoinnista ja Jari Larun ehdokkuudesta.
 layout: page.njk
 translationKey: fi_only_aluevaltuustoon
 templateEngineOverride: md

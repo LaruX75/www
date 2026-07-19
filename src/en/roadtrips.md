@@ -2,6 +2,7 @@
 layout: page.njk
 templateEngineOverride: md
 title: Road Trips
+metaTitle: Road trips and travel writing by Jari Laru
 subtitle: European car holidays
 description: "European road trips by Jari Laru: travel notes, routes, and car-holiday stories from across the continent."
 permalink: /en/road-trips/

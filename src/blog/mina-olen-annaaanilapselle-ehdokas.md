@@ -1,5 +1,6 @@
 ---
 title: Minä olen
+metaTitle: Minä olen - kuntavaalikirjoitus lapsista ja perheistä
 date: '2021-02-10'
 description: '“Vaikka talous asettaa paineita, viisas kunta huolehtii lapsista ja perheistä. Se on paras panostus tulevaisuuteen. “ Lastensuojen keskusliitto Törmäsin tähää netin syövereissä Lastensuojelun keskusliiton ko'
 categories:

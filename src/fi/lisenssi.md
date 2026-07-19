@@ -1,7 +1,8 @@
 ---
 layout: page.njk
 title: Lisenssi
-description: Jarilaru.fi-sivuston sisällön ja lähdekoodin lisenssiehdot.
+metaTitle: Lisenssi ja uudelleenkäytön ehdot
+description: Jarilaru.fi-sivuston sisällön, poliittisten kirjoitusten, lähdekoodin, uudelleenkäytön ja nimeämisen lisenssiehdot.
 permalink: /lisenssi/
 lang: fi
 translationKey: license_page

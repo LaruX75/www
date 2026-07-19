@@ -1,5 +1,6 @@
 ---
 title: Lomamatkat
+metaTitle: Lomamatkat ja roadtrip-suunnitelmat
 date: '2021-04-04'
 description: 'Tulossa (koronan jälkeen) Photo by David Jakab on Pexels.com Britten saarten kiertäminen "rantaviivaa" pitkin autolla (Oulu-UK-Oulu) Tämä on yksi autoloma, jonka haaveilen tekeväni tulevina vuosina. Karkea reittisuu'
 categories:

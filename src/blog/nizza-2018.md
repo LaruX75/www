@@ -1,5 +1,6 @@
 ---
 title: Nizza 2018
+metaTitle: Nizza 2018 - matkablogi ja kaupunkiloma
 date: '2018-07-29'
 description: 'Kesällä 2018 käytössämme oli niukempi kesäloma puolison aloitettua Pohjois-Pohjanmaan maakunnan palveluksessa. Päätimme, että tällä kertaa emme tee roadtripiä autolla, vaan lennämme perille ihan lentokoneell'
 categories:

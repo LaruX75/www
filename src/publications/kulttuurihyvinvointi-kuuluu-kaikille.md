@@ -1,7 +1,7 @@
 ---
 title: Kulttuurihyvinvointi kuuluu kaikille
 date: '2021-11-18'
-description: 'Kolumni, joka on julkaistu paikallislehti Rantapohjan päättäjältä -palstalla'
+description: Rantapohjan Päättäjältä-kolumni kulttuurihyvinvoinnista, kuntien ja hyvinvointialueiden yhteistyöstä sekä kulttuurisista oikeuksista.
 categories:
   - Hyvinvointi ja osallisuus
 secondaryTheme:
@@ -32,4 +32,3 @@ templateEngineOverride: md
 <p><br>Me Pohjois-Pohjanmaalla asuvat kansalaiset saamme tulevina vuosina erityisen kulttuurihyvinvointiruiskeen, kun Oulun kulttuuripääkaupunkihanke tuo mukanaan kulttuuri-ilmastonmuutoksen. Vaikka osa kulttuuripääkaupunkihankkeen aktiviteeteista on luonteeltaan väliaikaisia, tulemme saamaan myös paljon pysyviä muutoksia alueemme yleiseen ilmapiiriin ja kulttuuriseen hyvinvointiin. Siitä osaltaan tulee huolehtimaan yhdyspintatyö kuntien sivistys- ja kulttuuritoimen ja aluehallinnon välillä.</p>
 <p><br>Jari Laru, KT, aluevaaliehdokas (kok).<br>Kaupunginvaltuutettu ja sivistys- ja kulttuurilautakunnan jäse
 </p>
-

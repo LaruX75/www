@@ -1,7 +1,7 @@
 ---
 title: 'Puheenvuoro: keskustakampus voi olla historiallinen virhe. Toteutessaan se vie mennessään useita synergiaetuja'
 date: '2021-10-03'
-description: Kaupunginvaltuuston Linnannmaa-vierailulla pitämäni puheenvuoro
+description: Puheenvuoro Oulun kaupunginvaltuuston Linnanmaan-vierailulla keskustakampuksen riskeistä, yliopiston synergioista ja TKI-ekosysteemistä.
 event: Oulun kaupunginvaltuuston vierailu Oulun yliopistolla
 categories:
   - Politiikka ja päätöksenteko

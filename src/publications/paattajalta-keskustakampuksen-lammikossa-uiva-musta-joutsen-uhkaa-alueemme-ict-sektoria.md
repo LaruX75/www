@@ -1,7 +1,7 @@
 ---
 title: 'Päättäjältä. Rantapohja 3.2.22: Keskustakampuksen lammikossa uiva musta joutsen uhkaa alueemme ICT-sektoria'
 date: '2022-02-03'
-description: Kolumni paikallislehti Rantapohjassa 3.2.2022
+description: Rantapohjan Päättäjältä-kolumni keskustakampuksen riskeistä Oulun ICT-sektorille, Linnanmaan ekosysteemille ja TKI-yhteistyölle.
 categories:
   - Politiikka ja päätöksenteko
   - Yliopisto ja korkeakoulut
@@ -34,4 +34,3 @@ templateEngineOverride: md
 <p>Tieteellisen tutkimuksen ja siihen perustuvan opetuksen olosuhteiden heikentäminen ei palvele yhteistä etuamme millään tavoin. Alueemme tieto- ja sähkötekniikan sekä ohjelmistoteollisuuden menestys perustuu kansainvälisesti kilpailukykyiseen perustutkimukseen, ei niinkään houkutteleviin rakennuksiin tai komeisiin mainoksiin.</p>
 <p>Veronmaksajana ja päättäjänä toivon, että kään ämme katseen olennaiseen. Menestyvä ICT-sektori tarkoittaa myös verotulojen virtaa kaupungille ja näin ollen hyvinvointia asukkaille.</p>
 <p><em>Jari Laru, KT, kaupunginvaltuutettu ja sivistys- ja kulttuurilautakunnan jäsen, Kokoomus, Oulun kaupunki,&nbsp;Jääli</em></p>
-

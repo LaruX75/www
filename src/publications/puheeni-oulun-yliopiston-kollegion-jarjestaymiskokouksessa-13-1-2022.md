@@ -1,7 +1,7 @@
 ---
 title: Puheeni Oulun yliopiston kollegion järjestäymiskokouksessa 13.1.2022
 date: '2022-01-13'
-description: Oulun yliopiston kollegio järjestäytyi 13.1.2022
+description: Puhe Oulun yliopiston kollegion järjestäytymiskokouksessa 13.1.2022 yliopiston johtamisesta, keskustakampuksesta ja yhteisön kokoamisesta.
 event: Oulun yliopiston kollegion järjestäytymiskokous
 categories:
   - Yliopisto ja korkeakoulut

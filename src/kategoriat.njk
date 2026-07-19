@@ -4,8 +4,10 @@
   eleventyComputed: {
     title: data => `Kategoria: ${data.category?.name || ""}`,
     description: data => {
-      const profile = data.taxonomyProfiles?.categories?.[data.category?.slug] || data.taxonomyProfiles?.defaultCategory;
-      return profile?.lead || `Kategoria "${data.category?.name || ""}" kokoaa ${data.category?.count || 0} sisältöä Jari Larun sivustolta.`;
+      const categoryName = data.category?.name || "";
+      const categoryCount = data.category?.count || 0;
+      const profile = data.taxonomyProfiles?.categories?.[data.category?.slug];
+      return profile?.lead || `Kategoria "${categoryName}" kokoaa ${categoryCount} Jari Larun sivuston sisältöä samasta aihepiiristä: kirjoituksia, puheenvuoroja, esityksiä, mediaosumia ja julkaisuja.`;
     },
     robots: data => (data.category?.count || 0) < 2 ? "noindex, follow" : "index, follow, noai, noimageai",
     sitemap: data => (data.category?.count || 0) < 2 ? { ignore: true } : undefined

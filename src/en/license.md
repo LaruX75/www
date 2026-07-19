@@ -1,7 +1,8 @@
 ---
 layout: page.njk
 title: License
-description: Licensing terms for content and source code on jarilaru.fi.
+metaTitle: License and reuse terms for jarilaru.fi
+description: Licensing terms for jarilaru.fi content, political writings, source code, reuse, attribution, and exceptions for third-party materials.
 permalink: /en/license/
 lang: en
 translationKey: license_page

@@ -1,5 +1,6 @@
 ---
 title: "Vaalikaudet"
+metaTitle: Vaalikaudet ja poliittinen työ
 permalink: /vaalikaudet/
 layout: base.njk
 lang: fi

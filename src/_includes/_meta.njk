@@ -85,7 +85,7 @@
   {% set isHomePage = page.url == "/" or page.url == "/en/" %}
   {% set needsCharts = page.url == "/julkaisut/" or page.url == "/en/publications/" or page.url == "/kynasta/" %}
   {% set pageTitle = title or site.name %}
-  {% set pageMetaTitle = pageTitle | seoTitle(53) %}
+  {% set pageMetaTitle = (metaTitle or pageTitle) | seoTitle(53) %}
   {% set siteDescription = site.descriptionEn if currentLang == "en" else site.description %}
   {% set descriptionMissing = (not description) or description == site.description or description == site.descriptionEn %}
   {% set pageDescription = description or siteDescription %}

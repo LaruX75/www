@@ -1,7 +1,7 @@
 ---
 title: Mä haluun näyttää sulle mun skrätsin
 date: '2014-04-30'
-description: Kasvatus-lehden kolumni vuonna 2014. Kasvatus 5(45)
+description: Kasvatus-lehden kolumni lasten digikulttuurista, Scratchista, sosiaalisesta mediasta ja siitä, miksi teknologia tarvitsee pedagogisen rakenteen.
 categories:
   - Koulutusteknologia
 context:
@@ -26,4 +26,3 @@ templateEngineOverride: md
 <p>Kolmas haaste on koulu itse. Useiden opettajien mielestä tietotekniikka ei useita vuosia elätellyistä toiveista huolimatta ole kuitenkaan muuttunut normaaliksi osaksi peruskoulun ja lukion oppimisympäristöjä. Vaikka ylioppilaskirjoitukset ovat sähköistymässä ja pilviväyliä rakennellaan, keskustelut tuntuvat asiantuntijoidenkin Facebook-ryhmässä usein kääntyvän täydennyskoulutuksen vähäisyyteen ja perinteisten “atk-kurssien” kaipuuseen. Kouluissamme on vielä käytössä perinteiset tiedon tiedon siirtämiseen perustuvat mallit, joissa opettajan keskeinen rooli korostuu.</p>
 <p>Uuden teknologian käyttöönotto ja tehokas hyödyntäminen ei tarkoita hyväksi havaittujen metodien hyllyttämistä, vaan niiden jalostamista. Monissa oppiaineissa sosiaalisen median ja mobiililaitteiden hyväksikäyttö voi avata aivan uusia mahdollisuuksia sekä luokkahuonetyöskentelyyn että luokan ulkopuolella tapahtuvaan opiskeluun. Opetuksen kehittäminen on kuitenkin haasteellista, sillä se vaatii huomion kiinnittämistä oppimisprosessien ymmärtämiseen ja tukemiseen, jotta pystymme hyödyntämään mahdollisimman tehokkaasti kulloinkin käytössä olevia laitteita ja sovelluksia.</p>
 <p>Mobiililaitteet, kuten muutkaan teknologiset sovellukset eivät ole korvaamassa opettajaa, päinvastoin, opettajan kykyä suunnitella ja vaiheistaa pedagogista toimintaa tarvitaan enemmän kuin koskaan aiemmin.</p>
-

@@ -1,5 +1,6 @@
 ---
 title: "Research"
+metaTitle: Research profile in learning technology and AI literacy
 permalink: /en/research/
 layout: base.njk
 lang: en

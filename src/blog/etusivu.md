@@ -1,5 +1,6 @@
 ---
 title: Tervetuloa!
+metaTitle: Kuntavaalien 2008 kirjoitus Kiimingin suunnasta
 date: '2008-09-24'
 description: Käy katsomassa mitä olen vastannut vaalikoneisiin! Lokakuun lopulla Suomen kunnissa tulee valituksi taas uusi valtuusto. Kiimingissä tuore valtuusto joutuu heti isojen päätösten eteen eikä työ tule olemaan helppoa.
 categories:

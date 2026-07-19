@@ -1,7 +1,7 @@
 ---
 title: 'KALEVA 15.1.2022: Kuntien rooli hy­vin­voin­nin edis­tä­jä­nä ei lakkaa so­te-ra­ken­neuu­dis­tuk­sen jälkeen'
 date: '2022-01-15'
-description: 'Mielipidekirjoitukseni, jonka Sanomalehti Kaleva julkaisi 15.1.2022'
+description: Kalevassa julkaistu mielipidekirjoitus kuntien hyvinvointiroolista sote-uudistuksen jälkeen, osallisuudesta ja yhdyspintatyöstä.
 categories:
   - Vaalit
   - Politiikka ja päätöksenteko

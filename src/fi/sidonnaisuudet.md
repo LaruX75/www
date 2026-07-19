@@ -1,7 +1,7 @@
 ---
 title: Sidonnaisuudet
 date: 2022-02-15
-description: Tällä sivulla esittelen sidonnaisuudet äänestäjien arvioitavaksi
+description: "Jari Larun sidonnaisuudet äänestäjien arvioitavaksi: virat, tehtävät, hallintoroolit, yritystoiminta ja muut päätöksenteon sidokset."
 permalink: /sidonnaisuudet/
 templateEngineOverride: md
 translationKey: disclosures
