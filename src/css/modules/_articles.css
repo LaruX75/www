@@ -569,6 +569,13 @@ html:not([data-bs-theme="dark"]) .kynasta-hero {
   border-color: color-mix(in srgb, var(--bs-link-color) 18%, var(--bs-border-color));
 }
 
+.content-context-card--topics {
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--bs-link-color) 12%, transparent), transparent 58%),
+    var(--bs-body-bg);
+  border-color: color-mix(in srgb, var(--bs-link-color) 22%, var(--bs-border-color));
+}
+
 .content-context-kicker {
   margin-bottom: 0.45rem;
   color: var(--bs-secondary-color);
@@ -608,6 +615,42 @@ html:not([data-bs-theme="dark"]) .kynasta-hero {
   color: var(--bs-link-hover-color);
   text-decoration: underline;
   text-underline-offset: 0.18em;
+}
+
+.content-context-topiclist {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.content-context-topic {
+  display: grid;
+  gap: 0.12rem;
+  border: 1px solid color-mix(in srgb, var(--bs-link-color) 18%, var(--bs-border-color));
+  border-radius: 0.85rem;
+  background: color-mix(in srgb, var(--bs-link-color) 6%, var(--bs-tertiary-bg));
+  color: var(--bs-body-color);
+  padding: 0.68rem 0.75rem;
+  text-decoration: none;
+}
+
+.content-context-topic span {
+  color: var(--bs-emphasis-color);
+  font-size: 0.9rem;
+  font-weight: 800;
+  line-height: 1.22;
+}
+
+.content-context-topic small {
+  color: var(--bs-secondary-color);
+  font-size: 0.72rem;
+  font-weight: 750;
+}
+
+.content-context-topic:hover {
+  border-color: color-mix(in srgb, var(--bs-link-color) 44%, var(--bs-border-color));
+  background: color-mix(in srgb, var(--bs-link-color) 10%, var(--bs-tertiary-bg));
+  color: var(--bs-link-color);
+  transform: translateY(-1px);
 }
 
 .content-context-toc ul {
@@ -759,11 +802,28 @@ html:not([data-bs-theme="dark"]) .kynasta-hero {
   border-color: color-mix(in srgb, var(--bs-link-color) 28%, rgba(255, 255, 255, 0.14));
 }
 
+[data-bs-theme="dark"] .content-context-card--topics {
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--bs-link-color) 20%, transparent), transparent 58%),
+    rgba(255, 255, 255, 0.04);
+  border-color: color-mix(in srgb, var(--bs-link-color) 32%, rgba(255, 255, 255, 0.14));
+}
+
 [data-bs-theme="dark"] .content-context-chip,
 [data-bs-theme="dark"] .content-context-term {
   background: rgba(255, 255, 255, 0.06);
   border-color: rgba(255, 255, 255, 0.14);
   color: var(--bs-body-color);
+}
+
+[data-bs-theme="dark"] .content-context-topic {
+  background: rgba(255, 255, 255, 0.055);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+[data-bs-theme="dark"] .content-context-topic:hover {
+  background: color-mix(in srgb, var(--bs-link-color) 18%, rgba(255, 255, 255, 0.05));
+  border-color: color-mix(in srgb, var(--bs-link-color) 42%, rgba(255, 255, 255, 0.16));
 }
 
 /* ===== Taxonomy Archive Pages ===== */

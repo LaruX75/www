@@ -119,8 +119,13 @@ function topicTextScore(item, topic = {}) {
     data.event,
     data.venue,
     data.sourceLabel,
+    data.mediaOutlet,
+    data.roleTitle,
+    data.type,
+    data.mediaType,
     ...toArray(data.categories),
-    ...toArray(data.keywords)
+    ...toArray(data.keywords),
+    ...toArray(data.tags)
   ].map(normalizeTopicTerm).join(" ");
 
   return topicTerms.reduce((score, term) => {
@@ -132,7 +137,11 @@ function topicTextScore(item, topic = {}) {
 function topicItemScore(item, topic = {}) {
   if (!item || !item.url || !item.data?.title) return 0;
   const inputPath = item.inputPath || "";
-  if (!/src\/(blog|publications|politics|media|presentations)\//.test(inputPath)) return 0;
+  const tagSet = new Set(toArray(item.data?.tags).map(normalizeTopicTerm));
+  const supportedByPath = /src\/(blog|publications|politics|media|presentations)\//.test(inputPath);
+  const supportedByTags = ["blog", "publications", "politics", "media", "presentations"].some((tag) => tagSet.has(tag));
+  const supportedByUrl = /^\/(blogi|kynasta|mediassa|esitykset|20\d{2})\//.test(item.url);
+  if (!supportedByPath && !supportedByTags && !supportedByUrl) return 0;
 
   const data = item.data || {};
   const categoryTerms = topicTermSet(topic.categories);
@@ -185,6 +194,42 @@ function topicItemsFromCollections(collections, topic = {}, limit = 12) {
 function selectedTopics(topics, keys = []) {
   const wanted = topicTermSet(keys);
   return toArray(topics).filter((topic) => wanted.has(normalizeTopicTerm(topic.slug)));
+}
+
+function matchingTopicsForPage(
+  topics,
+  title,
+  description,
+  categories,
+  keywords,
+  tags,
+  type,
+  contexts,
+  pageUrl,
+  limit = 3
+) {
+  const item = {
+    url: pageUrl || "/",
+    inputPath: "",
+    data: {
+      title,
+      description,
+      categories,
+      keywords,
+      tags,
+      type,
+      contexts
+    }
+  };
+
+  return toArray(topics)
+    .map((topic) => ({
+      ...topic,
+      topicScore: topicItemScore(item, topic)
+    }))
+    .filter((topic) => topic.topicScore > 0)
+    .sort((a, b) => b.topicScore - a.topicScore || a.title.localeCompare(b.title, "fi"))
+    .slice(0, Number(limit) || 3);
 }
 
 function buildImgFallback(src, alt, className = "") {
@@ -434,6 +479,21 @@ module.exports = function registerFilters(eleventyConfig) {
 
   eleventyConfig.addFilter("selectedTopics", function (topics, keys = []) {
     return selectedTopics(topics, keys);
+  });
+
+  eleventyConfig.addFilter("matchingTopics", function (
+    topics,
+    title,
+    description,
+    categories,
+    keywords,
+    tags,
+    type,
+    contexts,
+    pageUrl,
+    limit = 3
+  ) {
+    return matchingTopicsForPage(topics, title, description, categories, keywords, tags, type, contexts, pageUrl, limit);
   });
 
   eleventyConfig.addFilter("topicTypeLabel", function (item, lang = "fi") {

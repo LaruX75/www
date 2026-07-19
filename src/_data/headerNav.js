@@ -77,6 +77,17 @@ module.exports = {
     {
       data: {
         eleventyNavigation: {
+          key: "topic_profiles",
+          title: "Teemaprofiilit",
+          url: "/teemat/",
+          parent: "home",
+          order: 55
+        }
+      }
+    },
+    {
+      data: {
+        eleventyNavigation: {
           key: "contact",
           title: "Ota yhteyttä",
           url: "/yhteystiedot/",
