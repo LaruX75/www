@@ -3,7 +3,7 @@ title: "Jokirannan koululle tarvitaan terveet ja turvalliset väistötilat"
 date: '2017-11-27'
 description: "Valtuustopuheenvuoro Jokirannan koulun sisäilmaongelmista, väistötiloista sekä opetuksen ja turvallisuuden turvaamisesta talousarviokeskustelussa."
 event: Oulun kaupunginvaltuusto
-asiakohta: 'Talousarvio 2018'
+asiakohta: '§ 152 – Talousarvio 2018 ja taloussuunnitelma 2019-2020'
 categories:
   - Politiikka ja päätöksenteko
   - Kasvatus ja koulutus
