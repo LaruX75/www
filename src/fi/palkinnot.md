@@ -94,6 +94,7 @@ templateEngineOverride: njk,md
         <div class="d-flex flex-wrap gap-2 mt-4">
           <a class="btn btn-outline-primary btn-sm" href="/2020/12/06/jari-larulle-kansallinen-avoimen-tieteen-palkinto/">Lue blogikirjoitus</a>
           <a class="btn btn-outline-secondary btn-sm" href="https://avointiede.fi/fi/ajankohtaista/vuotuiset-avoimen-tieteen-palkinnot-2020-jaettu" target="_blank" rel="noopener noreferrer">TSV:n tiedote</a>
+          <a class="btn btn-outline-secondary btn-sm" href="https://www.youtube.com/watch?v=nqHkzaIvYq8" target="_blank" rel="noopener noreferrer">Puheenvuoro YouTubessa</a>
         </div>
       </div>
     </div>
