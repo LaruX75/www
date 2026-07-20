@@ -704,6 +704,7 @@
     "/2019/12/02/puheenvuoroni-oulun-kaupunginvaltuuston-talousarviokeskustelun-yhteydessa-2-12-2019/": [
       {
         "youtubeId": "pzAqzLVRFjI",
+        "start": 7226,
         "label": "Puheenvuoro kulttuuri-investoinneista talousarviokeskustelussa",
         "source": "Oulun kaupunginvaltuuston kokoustallenne 2.12.2019",
         "verified": true
@@ -715,6 +716,15 @@
         "start": 5465,
         "label": "Puheenvuoro Jäälin rakentamisen edistämisestä",
         "source": "Oulun kaupunginvaltuuston kokoustallenne 27.1.2020",
+        "verified": true
+      }
+    ],
+    "/2017/11/27/puheenvuoro-valtuustossa-jokirannan-koululle-tarvitaan-terveet-ja-turvalliset-vaistotilat/": [
+      {
+        "youtubeId": "SWh6nkVRAIc",
+        "start": 8607,
+        "label": "Puheenvuoro Jokirannan koulun väistötiloista talousarviokeskustelussa",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne 27.11.2017",
         "verified": true
       }
     ]
