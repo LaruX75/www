@@ -5,7 +5,7 @@ import { spawnSync } from "node:child_process";
 const ROOT = process.cwd();
 const CACHE_DIR = path.join(ROOT, ".cache", "council-youtube", "whisper");
 const AUDIO_DIR = path.join(CACHE_DIR, "audio");
-const CHUNK_DIR = path.join(CACHE_DIR, "transcripts", "chunks");
+const CHUNK_ROOT = path.join(CACHE_DIR, "transcripts", "chunks");
 const LOG_DIR = path.join(CACHE_DIR, "logs");
 const CHUNK_AUDIO_DIR = path.join(CACHE_DIR, "chunk-audio");
 const DEFAULT_MODEL = path.join(
@@ -20,8 +20,11 @@ const DEFAULT_MODEL = path.join(
 function parseArgs(argv) {
   const args = {
     youtubeId: "",
+    engine: "whisper-cli",
     model: DEFAULT_MODEL,
     whisperBin: "whisper-cli",
+    mwBin: "/Applications/MacWhisper.app/Contents/MacOS/mw",
+    mwModel: "whisper-cpp:ggml-model-whisper-base",
     chunkSeconds: 900,
     startChunk: 0,
     maxChunks: 0,
@@ -32,9 +35,12 @@ function parseArgs(argv) {
   for (const raw of argv) {
     if (raw === "--force") args.force = true;
     else if (raw === "--precut") args.precut = true;
+    else if (raw.startsWith("--engine=")) args.engine = raw.slice("--engine=".length);
     else if (raw.startsWith("--youtube-id=")) args.youtubeId = raw.slice("--youtube-id=".length);
     else if (raw.startsWith("--model=")) args.model = raw.slice("--model=".length);
     else if (raw.startsWith("--whisper-bin=")) args.whisperBin = raw.slice("--whisper-bin=".length);
+    else if (raw.startsWith("--mw-bin=")) args.mwBin = raw.slice("--mw-bin=".length);
+    else if (raw.startsWith("--mw-model=")) args.mwModel = raw.slice("--mw-model=".length);
     else if (raw.startsWith("--chunk-seconds=")) args.chunkSeconds = Number(raw.slice("--chunk-seconds=".length));
     else if (raw.startsWith("--start-chunk=")) args.startChunk = Number(raw.slice("--start-chunk=".length));
     else if (raw.startsWith("--max-chunks=")) args.maxChunks = Number(raw.slice("--max-chunks=".length));
@@ -65,8 +71,8 @@ function durationSeconds(audioPath) {
   return Math.ceil(Number(result.stdout.trim()) || 0);
 }
 
-function chunkPath(youtubeId, index) {
-  return path.join(CHUNK_DIR, `${youtubeId}-chunk-${String(index).padStart(3, "0")}.json`);
+function chunkPath(youtubeId, index, chunkSeconds) {
+  return path.join(CHUNK_ROOT, `${chunkSeconds}s`, `${youtubeId}-chunk-${String(index).padStart(3, "0")}.json`);
 }
 
 function logPath(youtubeId, index) {
@@ -133,9 +139,10 @@ function extractChunkAudio(args, audioPath, chunkIndex, logFd) {
 }
 
 function transcribeChunk(args, audioPath, chunkIndex) {
-  ensureDir(CHUNK_DIR);
+  ensureDir(path.join(CHUNK_ROOT, `${args.chunkSeconds}s`));
   ensureDir(LOG_DIR);
-  const outputBase = chunkPath(args.youtubeId, chunkIndex).replace(/\.json$/, "");
+  const outputBase = chunkPath(args.youtubeId, chunkIndex, args.chunkSeconds).replace(/\.json$/, "");
+  const outputJson = `${outputBase}.json`;
   const log = logPath(args.youtubeId, chunkIndex);
   const offsetMs = chunkIndex * args.chunkSeconds * 1000;
   const durationMs = args.chunkSeconds * 1000;
@@ -150,6 +157,38 @@ function transcribeChunk(args, audioPath, chunkIndex) {
     if (args.precut) {
       whisperAudioPath = extractChunkAudio(args, audioPath, chunkIndex, fd);
       timingArgs = [];
+    }
+
+    if (args.engine === "mw") {
+      const result = spawnSync(args.mwBin, [
+        "transcribe",
+        whisperAudioPath,
+        "--model",
+        args.mwModel,
+        "--stream"
+      ], {
+        cwd: ROOT,
+        stdio: ["ignore", "pipe", fd],
+        encoding: "utf8"
+      });
+      fs.writeSync(fd, result.stdout || "");
+      if (result.status !== 0) throw new Error(`${args.mwBin} exited with ${result.status}; see ${path.relative(ROOT, log)}`);
+      const text = String(result.stdout || "")
+        .split(/\r?\n/)
+        .filter((line) => !line.startsWith("Transcribing "))
+        .join(" ")
+        .replace(/\s+/g, " ")
+        .trim();
+      fs.writeFileSync(outputJson, `${JSON.stringify({
+        engine: "mw",
+        model: args.mwModel,
+        source: path.relative(ROOT, whisperAudioPath),
+        transcription: text ? [{
+          offsets: { from: 0, to: durationMs },
+          text
+        }] : []
+      }, null, 2)}\n`);
+      return;
     }
 
     const whisperArgs = [
@@ -192,7 +231,7 @@ function main() {
   console.log(`Video ${args.youtubeId}: ${totalSeconds}s, chunks ${args.startChunk}-${endChunk - 1}/${expectedChunks}`);
 
   for (let chunkIndex = args.startChunk; chunkIndex < endChunk; chunkIndex += 1) {
-    const filePath = chunkPath(args.youtubeId, chunkIndex);
+    const filePath = chunkPath(args.youtubeId, chunkIndex, args.chunkSeconds);
     if (!fs.existsSync(filePath) || args.force) {
       console.log(`Transcribing chunk ${chunkIndex}...`);
       transcribeChunk(args, audio, chunkIndex);

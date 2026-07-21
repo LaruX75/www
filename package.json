@@ -36,12 +36,17 @@
     "audit:council-video-times:whisper": "node scripts/find-council-speech-video-times-with-whisper.mjs",
     "audit:council-speech-media": "node scripts/council-speech-media-workflow.mjs",
     "scan:council-video-chunks": "node scripts/scan-council-video-chunks.mjs",
+    "supervise:council-video-chunks": "node scripts/supervise-council-video-chunks.mjs",
+    "start:council-video-chunk-supervisor": "node scripts/start-council-video-chunk-supervisor.mjs",
+    "supervise:council-video-queue": "node scripts/supervise-council-video-queue.mjs",
+    "start:council-video-queue": "node scripts/start-council-video-queue-supervisor.mjs",
     "export:macwhisper-transcripts": "node scripts/export-macwhisper-transcripts.mjs",
     "audit:council-video-times:macwhisper": "node scripts/find-council-speech-times-from-macwhisper.mjs",
     "audit:content-schema": "node scripts/audit-content-schema.mjs",
     "eleventy": "npx @11ty/eleventy",
     "eleventy:serve": "npx @11ty/eleventy --serve",
-    "deploy:codeberg": "npm run build:no-og && touch _site/.nojekyll && echo 'codeberg.jarilaru.fi' > _site/.domains && rm -rf _site/.git && cd _site && git init -b main && git config user.name 'Jari Laru' && git config user.email 'jari.laru@gmail.com' && git add . && git commit -m \"deploy: $(date -u +%Y-%m-%dT%H:%M:%SZ) [ci skip]\" && git push --force https://LaruX:${CODEBERG_TOKEN}@codeberg.org/LaruX/pages.git main:main"
+    "deploy:codeberg": "npm run build:no-og && touch _site/.nojekyll && echo 'codeberg.jarilaru.fi' > _site/.domains && rm -rf _site/.git && cd _site && git init -b main && git config user.name 'Jari Laru' && git config user.email 'jari.laru@gmail.com' && git add . && git commit -m \"deploy: $(date -u +%Y-%m-%dT%H:%M:%SZ) [ci skip]\" && git push --force https://LaruX:${CODEBERG_TOKEN}@codeberg.org/LaruX/pages.git main:main",
+    "audit:council-transcriptions": "node scripts/audit-council-transcription-status.mjs"
   },
   "dependencies": {
     "@11ty/eleventy": "^3.1.5",
