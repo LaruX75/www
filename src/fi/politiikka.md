@@ -1,11 +1,37 @@
 ---
 title: "Jari Laru, poliitikko"
-description: "Jari Larun politiikkasivu kokoaa nykyiset luottamustehtävät, vaalikaudet, puheenvuorot, aloitteet ja vaikuttamisen painopisteet Oulussa."
+description: "Jari Larun poliittinen profiili: sivistys, koko Oulun alueellinen yhdenvertaisuus, avoin päätöksenteko sekä linkit puheenvuoroihin, aloitteisiin, vaalikausiin ja sidonnaisuuksiin."
 permalink: /politiikka/
 layout: base.njk
 translationKey: politics_index
 lang: fi
 templateEngineOverride: njk
+schemaAbout:
+  - "@type": "Thing"
+    name: "Kunnallispolitiikka"
+  - "@type": "Thing"
+    name: "Sivistyspolitiikka"
+  - "@type": "Thing"
+    name: "Läpinäkyvä päätöksenteko"
+  - "@type": "Thing"
+    name: "Alueellinen yhdenvertaisuus"
+  - "@type": "Thing"
+    name: "Vaalikaudet"
+schemaMentions:
+  - "@type": "GovernmentOrganization"
+    name: "Oulun kaupunki"
+    url: "https://www.ouka.fi/"
+  - "@type": "Organization"
+    name: "Oulun kaupunginvaltuusto"
+    url: "https://www.ouka.fi/valtuusto"
+  - "@type": "Organization"
+    name: "Sivistyslautakunta"
+  - "@type": "Organization"
+    name: "Pohjois-Pohjanmaan hyvinvointialue"
+    url: "https://pohde.fi/"
+  - "@type": "GovernmentOrganization"
+    name: "Valtiontalouden tarkastusvirasto"
+    url: "https://www.vaalirahoitusvalvonta.fi/"
 ---
 <section class="pol-hero mb-0">
   <div class="site-shell py-5">
@@ -31,7 +57,7 @@ templateEngineOverride: njk
         </div>
         <div class="d-flex flex-wrap gap-2">
           <a href="#ydinteemat" class="btn pol-hero-btn-primary">Ydinteemat</a>
-          <a href="#ajankohtaista" class="btn pol-hero-btn-outline">Näyttö käytännössä</a>
+          <a href="#naytto" class="btn pol-hero-btn-outline">Näyttö käytännössä</a>
         </div>
       </div>
       <div class="col-lg-5">
@@ -63,10 +89,11 @@ templateEngineOverride: njk
 <div class="pol-hero-divider"></div>
 
 <nav class="pol-mobile-path" aria-label="Politiikkasivun tärkeimmät osiot">
-  <a href="#vaalikaudet">Tehtävät</a>
+  <a href="#nykyinen-rooli">Rooli</a>
   <a href="#ydinteemat">Ydinteemat</a>
-  <a href="#ajankohtaista">Näyttö</a>
+  <a href="#naytto">Näyttö</a>
   <a href="#kirjoitukset">Kirjoitukset</a>
+  <a href="#syvenna">Syvennä</a>
 </nav>
 
 {% set politicalSpeechEvents = [
@@ -197,21 +224,28 @@ templateEngineOverride: njk
     "summary": "Tausta-aineisto Oulun palveluverkkokeskusteluun: mitä lasten ja nuorten tilastot kertovat päätöksenteon ja koko kaupunkiin kohdistuvien vaikutusten arvioinnin tueksi."
   }
 ] %}
+{% set sortedPoliticalSpeeches = politicalSpeeches | sort(true, false, "date") %}
+{% set latestPoliticalSpeech = sortedPoliticalSpeeches[0] %}
+{% set latestInitiative = sortedInitiatives[0] %}
+{% set latestPoliticalWriting = featuredPoliticalWritings[0] %}
+{% set latestHybridWriting = featuredHybridWritings[0] %}
 
-<section class="py-5 mb-0 bg-body-tertiary" id="vaalikaudet">
+<section class="py-5 mb-0 bg-body-tertiary" id="nykyinen-rooli">
   <div class="site-shell">
     <div class="pol-section-head">
-      <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-calendar-event me-1"></i>Mandaatit</p>
-      <h2 class="pol-section-title">Vaalikaudet ja nykyiset luottamustehtävät</h2>
-      <p class="pol-section-lead mb-0">Poliittinen profiili ei perustu vain yksittäisiin puheenvuoroihin. Tällä hetkellä tärkeimmät luottamustehtäväni liittyvät Oulun kaupungin päätöksentekoon, sivistyslautakuntaan ja alueelliseen vaikuttamiseen.</p>
+      <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-person-badge me-1"></i>Nykyinen rooli</p>
+      <h2 class="pol-section-title">Nykyiset luottamustehtävät</h2>
+      <p class="pol-section-lead mb-0">Tämä sivu kertoo poliittisen profiilin. Vaalikausien historia, vaalitulokset ja viralliset sidonnaisuustiedot löytyvät omista näkymistään.</p>
     </div>
 
-    <div class="pol-mandate-layout">
-      <aside class="pol-mandate-card pol-mandate-card--current">
-        <div class="pol-mandate-current-head">
-          <p class="pol-current-kicker mb-1">Nykyiset tehtävät</p>
-          <h3 class="pol-current-title">Vaalikausi 2025–2029</h3>
-          <p class="text-muted small mb-0">Käytännön politiikka näkyy näissä rooleissa juuri nyt.</p>
+    <div class="pol-role-overview-grid">
+      <article class="pol-current-card pol-role-current-card">
+        <div class="pol-current-head">
+          <div>
+            <p class="pol-current-kicker mb-1">Vaalikausi 2025–2029</p>
+            <h3 class="pol-current-title">Työ jatkuu sivistyksen, palvelujen ja avoimuuden teemoissa</h3>
+            <p class="text-muted small mb-0">Nykyiset luottamustehtävät asettavat politiikan käytännön toimintaympäristön.</p>
+          </div>
         </div>
         <div class="pol-role-list">
           {% for role in currentTrustRoles %}
@@ -222,32 +256,22 @@ templateEngineOverride: njk
           </article>
           {% endfor %}
         </div>
-      </aside>
+      </article>
 
-      <div class="pol-mandate-periods">
-        {% for period in electionPeriods %}
-        <article class="pol-mandate-card pol-mandate-period">
-          <div class="pol-mandate-period-top">
-            <span class="pol-mandate-badge">{{ period.period }}</span>
-            <h3 class="pol-mandate-title">{{ period.title }}</h3>
-          </div>
-          <p class="pol-mandate-summary">{{ period.summary }}</p>
-          <p class="pol-mandate-detail">{{ period.detail }}</p>
-          <a href="{{ period.link }}" class="pol-mandate-link">{{ period.linkLabel }}</a>
+      <div class="pol-role-link-stack">
+        <article class="pol-route-card">
+          <span class="pol-route-kicker">Vaalikaudet</span>
+          <h3>Poliittinen työ vaalikausittain</h3>
+          <p>Kun haluat nähdä vaalitulokset, luottamustehtävät, puheenvuorot ja kirjoitukset kausittain, jatka vaalikausien sivulle.</p>
+          <a href="/vaalikaudet/">Avaa vaalikaudet</a>
         </article>
-        {% endfor %}
+        <article class="pol-route-card">
+          <span class="pol-route-kicker">Avoimuus</span>
+          <h3>Sidonnaisuudet ja vaalirahoitus samassa näkymässä</h3>
+          <p>Viralliset rekisterilinkit, ilmoitukset ja keskeiset sidonnaisuustiedot on koottu tarkistettavaksi yhdelle sivulle.</p>
+          <a href="/poliittinen-avoimuus/">Avaa avoimuustiedot</a>
+        </article>
       </div>
-    </div>
-
-    <div class="pol-mandate-links">
-      <a href="/vaalikaudet/" class="pol-mandate-link-card">
-        <strong>Vaalikaudet</strong>
-        <span>Koko vaalikausien historia, vaalitulokset ja luottamustoimet samassa näkymässä.</span>
-      </a>
-      <a href="/sidonnaisuudet/" class="pol-mandate-link-card">
-        <strong>Sidonnaisuudet ja vaalirahoitus</strong>
-        <span>Avoin kooste luottamustehtävistä, sidonnaisuuksista ja vaalirahoitusilmoituksista.</span>
-      </a>
     </div>
   </div>
 </section>
@@ -257,183 +281,126 @@ templateEngineOverride: njk
     <div class="pol-section-head">
       <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-bullseye me-1"></i>Ydinteemat</p>
       <h2 class="pol-section-title">Kolme painopistettä, joihin poliittinen profiilini eniten nojaa</h2>
-      <p class="pol-section-lead mb-0">Nämä ovat teemoja, joissa sisältöni, puheenvuoroni ja aloitteeni muodostavat selkeän jatkuvuuden. Tällä sivulla ne näkyvät linjauksina ensin, todisteina vasta sen jälkeen.</p>
+      <p class="pol-section-lead mb-0">Nämä eivät ole satunnaisia avainsanoja, vaan sisältöanalyysin perusteella erottuvia päälinjoja. Niiden alta löytyy puheita, aloitteita ja kirjoituksia, joissa sama ajattelu toistuu eri päätöksissä.</p>
     </div>
     <div id="politics-core-theme-list" class="row g-4"></div>
     <div id="politics-profile-note" class="mt-3"></div>
   </div>
 </section>
 
-<section class="py-5 mb-0 bg-body-tertiary" id="toimintatapa">
-  <div class="site-shell">
-    <details class="pol-mobile-disclosure" data-pol-mobile-collapse open>
-      <summary class="pol-mobile-disclosure-summary">
-        <span>Miten teen politiikkaa</span>
-        <small>Työskentelytapa ja päätöksenteon periaatteet</small>
-      </summary>
-      <div class="pol-mobile-disclosure-body">
-        <div class="pol-section-head">
-          <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-diagram-3 me-1"></i>Toimintatapa</p>
-          <h2 class="pol-section-title">Miten teen politiikkaa</h2>
-          <p class="pol-section-lead mb-0">Olennaista ei ole vain se, mistä puhun, vaan miten yritän vaikuttaa. Sisällöissäni toistuu sama työskentelytapa: perehdyn, perustelen ja pidän kokonaisuuden näkyvissä silloinkin, kun keskustelu kaventuu yksittäiseen kiistaan.</p>
-        </div>
-        <div class="pol-method-grid">
-          <article class="pol-method-card">
-            <span class="pol-method-number">1</span>
-            <h3 class="h6">Perehdyn ennen kuin linjaan</h3>
-            <p class="small mb-0">Tilastot, vaikutusarviot ja tausta-aineistot eivät ole koristeita vaan päätösten perusta. Tämä näkyy erityisesti kouluverkkoa, väestökehitystä ja raportointia koskevissa sisällöissä.</p>
-          </article>
-          <article class="pol-method-card">
-            <span class="pol-method-number">2</span>
-            <h3 class="h6">Edistän valmistelun läpinäkyvyyttä</h3>
-            <p class="small mb-0">Päätöksentekoa pitää voida seurata myös organisaation ulkopuolelta. Siksi pidän tärkeänä raportointia, aloitteiden seurantaa, tietojärjestelmiä ja muita käytäntöjä, jotka tekevät valmistelusta aidosti läpinäkyvää.</p>
-          </article>
-          <article class="pol-method-card">
-            <span class="pol-method-number">3</span>
-            <h3 class="h6">Katselen päätöksiä koko Oulun läpi</h3>
-            <p class="small mb-0">Päätösten vaikutuksia pitää tarkastella kaikkien 23 suuralueen ja 105 kaupunginosan näkökulmasta. Siksi puhun palveluverkosta, liikkumisesta ja kasvusta koko kaupungin alueellisena yhdenvertaisuutena, en vain yksittäisinä hankkeina.</p>
-          </article>
-          <article class="pol-method-card">
-            <span class="pol-method-number">4</span>
-            <h3 class="h6">Haen yhteistyötä ilman pehmeyttä</h3>
-            <p class="small mb-0">Yhteistyö ei tarkoita linjattomuutta. Pyrin löytämään toimivia kompromisseja, mutta nostan ongelmat esiin silloin, kun päätökset uhkaavat sivistystä, palveluja tai valmistelun laatua.</p>
-          </article>
-        </div>
-      </div>
-    </details>
-  </div>
-</section>
-
-<section class="py-5 mb-0" id="ajankohtaista">
+<section class="py-5 mb-0 bg-body-tertiary" id="naytto">
   <div class="site-shell">
     <div class="pol-section-head">
-      <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-lightning-charge me-1"></i>Ajankohtaista</p>
-      <h2 class="pol-section-title">Linja näkyy käytännön työnä</h2>
-      <p class="pol-section-lead mb-0">Puheenvuorot, aloitteet ja tausta-aineistot näyttävät, miten poliittinen profiili muuttuu käytännön valtuustotyöksi. Tässä ovat uusimmat esimerkit, ei koko arkisto.</p>
+      <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-lightning-charge me-1"></i>Näyttö</p>
+      <h2 class="pol-section-title">Miltä linja näyttää käytännössä</h2>
+      <p class="pol-section-lead mb-0">Tässä on tiivis näyte aineistosta. Video nostetaan tarkoituksella suuremmaksi, koska se kertoo nopeasti, millä tavalla dataa ja perusteluja käytän poliittisessa keskustelussa.</p>
     </div>
 
-    {% if politicalVideoHighlights.length %}
-    <div class="pol-video-highlight-list mb-4">
-      {% for video in politicalVideoHighlights %}
-      <article class="pol-current-card pol-video-highlight">
-        <a href="{{ video.url }}" target="_blank" rel="noopener noreferrer" class="pol-video-thumb-link video-preview" aria-label="Katso video: {{ video.title }}">
-          <img src="{{ video.thumbnail }}" alt="{{ video.title }}" class="pol-video-thumb" loading="lazy" decoding="async">
+    <div class="pol-evidence-grid">
+      {% set video = politicalVideoHighlights[0] %}
+      {% if video %}
+      <article class="pol-evidence-card pol-evidence-card--feature">
+        <a href="{{ video.url }}" target="_blank" rel="noopener noreferrer" class="pol-evidence-thumb-link video-preview" aria-label="Katso video: {{ video.title }}">
+          <img src="{{ video.thumbnail }}" alt="{{ video.title }}" class="pol-evidence-thumb" loading="lazy" decoding="async">
         </a>
-        <div class="pol-video-copy">
-          <div class="pol-video-meta">
-            <span class="pol-writing-type">{{ video.label }}</span>
-            <span class="text-muted small">{{ video.date | dateFormat }}</span>
+        <div class="pol-evidence-copy">
+          <div class="pol-evidence-meta">
+            <span>{{ video.label }}</span>
+            <span>{{ video.date | dateFormat }}</span>
           </div>
-          <p class="pol-current-kicker mb-1">{{ video.context }}</p>
-          <h3 class="pol-current-title"><a href="{{ video.url }}" target="_blank" rel="noopener noreferrer">{{ video.title }}</a></h3>
-          <p class="pol-video-summary mb-3">{{ video.summary }}</p>
+          <p class="pol-evidence-kicker">{{ video.context }}</p>
+          <h3 class="pol-evidence-title"><a href="{{ video.url }}" target="_blank" rel="noopener noreferrer">{{ video.title }}</a></h3>
+          <p class="pol-evidence-summary">{{ video.summary }}</p>
           <a href="{{ video.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm rounded-pill px-3">Katso video <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a>
         </div>
       </article>
-      {% endfor %}
-    </div>
-    {% endif %}
+      {% endif %}
 
-    <div class="row g-4 align-items-start">
-      <div class="col-xl-7" id="poliittiset-puheet">
-        <section class="pol-current-card">
-          <div class="pol-current-head">
-            <div>
-              <p class="pol-current-kicker mb-1">Puheenvuorot</p>
-              <h3 class="pol-current-title">Tuoreimmat poliittiset puheet</h3>
-              <p class="text-muted small mb-0">{{ politicalSpeeches.length }} puhetta valtuustossa ja muissa yhteiskunnallisissa tilaisuuksissa</p>
-            </div>
-            <a href="/kynasta/#puheet" class="btn btn-outline-primary btn-sm">Kaikki puheet</a>
+      <div class="pol-evidence-side">
+        {% if latestPoliticalSpeech %}
+        <article class="pol-evidence-card">
+          <div class="pol-evidence-meta">
+            <span>Puheenvuoro</span>
+            <span>{{ latestPoliticalSpeech.date | dateFormat }}</span>
           </div>
-          <div class="table-responsive">
-            <table class="table table-hover align-middle mb-0 political-speeches-table">
-              <thead>
-                <tr>
-                  <th scope="col">Päivä</th>
-                  <th scope="col">Tapahtuma</th>
-                  <th scope="col">Otsikko</th>
-                  <th scope="col">Asiakohta</th>
-                </tr>
-              </thead>
-              <tbody id="political-speeches-table-body"></tbody>
-            </table>
+          <h3 class="pol-evidence-title pol-evidence-title--small"><a href="{{ latestPoliticalSpeech.url }}">{{ latestPoliticalSpeech.data.title }}</a></h3>
+          <p class="pol-evidence-summary">Uusin politiikkaan liittyvä puheenvuoro valtuustosta tai muusta yhteiskunnallisesta tilaisuudesta.</p>
+          <a href="/kynasta/#puheet" class="pol-inline-link">Kaikki puheenvuorot</a>
+        </article>
+        {% endif %}
+        {% if latestInitiative %}
+        <article class="pol-evidence-card">
+          <div class="pol-evidence-meta">
+            <span>Aloite</span>
+            <span>{{ latestInitiative.date | dateFormat }}</span>
           </div>
-          <div class="pol-current-foot">
-            <small id="political-speeches-info" class="text-muted">Näytetään 6 uusinta puhetta</small>
-            <nav aria-label="Poliittisten puheiden sivutus">
-              <ul id="political-speeches-pagination" class="pagination pagination-sm mb-0 flex-wrap"></ul>
-            </nav>
+          <h3 class="pol-evidence-title pol-evidence-title--small"><a href="{{ latestInitiative.url }}">{{ latestInitiative.data.title }}</a></h3>
+          <p class="pol-evidence-summary">Aloitteissa näkyy, miten periaatteet muuttuvat kirjallisiksi avauksiksi ja seurattaviksi päätöksiksi.</p>
+          <a href="/kynasta/#aloitteet" class="pol-inline-link">Kaikki aloitteet</a>
+        </article>
+        {% endif %}
+        {% if latestPoliticalWriting %}
+        <article class="pol-evidence-card">
+          <div class="pol-evidence-meta">
+            <span>{{ latestPoliticalWriting.type }}</span>
+            <span>{{ latestPoliticalWriting.date }}</span>
           </div>
-        </section>
-      </div>
-
-      <div class="col-xl-5" id="valtuustoaloitteet">
-        <section class="pol-current-card">
-          <div class="pol-current-head">
-            <div>
-              <p class="pol-current-kicker mb-1">Aloitteet</p>
-              <h3 class="pol-current-title">Uusimmat valtuustoaloitteet</h3>
-              <p class="text-muted small mb-0">Kuusi uusinta aloitetta avoimuudesta, liikenteestä, hyvinvoinnista ja kaupunkikehityksestä</p>
-            </div>
-            <a href="/kynasta/#aloitteet" class="btn btn-outline-primary btn-sm">Kaikki aloitteet</a>
-          </div>
-          <div class="pol-initiative-list">
-            {% for item in sortedInitiatives %}
-            {% if loop.index <= 6 %}
-            <article class="pol-initiative-item">
-              <div class="pol-initiative-meta">
-                <span class="badge bg-primary-subtle text-primary-emphasis">Valtuustoaloite</span>
-                <span class="small text-muted">{{ item.date | dateFormat }}</span>
-              </div>
-              <h4 class="pol-initiative-title">{{ item.data.title }}</h4>
-              {% if item.data.ouka_response_body %}
-              <p class="pol-initiative-response"><i class="bi bi-building me-1"></i>{{ item.data.ouka_response_body }}</p>
-              {% endif %}
-              <div class="d-flex flex-wrap gap-2">
-                <a href="{{ item.url }}" class="btn btn-outline-primary btn-sm">Lue aloite</a>
-                {% if item.data.ouka_response_url %}
-                <a href="{{ item.data.ouka_response_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-success btn-sm">Vastaus</a>
-                {% endif %}
-              </div>
-            </article>
-            {% endif %}
-            {% endfor %}
-          </div>
-          <p class="text-muted small mb-0">Viralliset asiakirjat ja pöytäkirjat: <a href="http://asiakirjat.ouka.fi/ktwebscr/pk_tek_tweb.htm" target="_blank" rel="noopener noreferrer">Oulun asiakirjajärjestelmä</a></p>
-        </section>
+          <h3 class="pol-evidence-title pol-evidence-title--small"><a href="{{ latestPoliticalWriting.href }}">{{ latestPoliticalWriting.title }}</a></h3>
+          <p class="pol-evidence-summary">{{ latestPoliticalWriting.summary }}</p>
+          <a href="/kynasta/?opinions=political#mielipiteet" class="pol-inline-link">Poliittiset mielipiteet</a>
+        </article>
+        {% endif %}
       </div>
     </div>
   </div>
 </section>
 
-{% set topicProfileKeys = ["oulun-palveluverkko-ja-kaupunkikehitys", "lapinakyva-paatoksenteko-ja-tiedolla-johtaminen", "julkinen-asiantuntijuus-mediassa"] %}
-{% set topicProfileTitleId = "politics-topic-profiles-title" %}
-{% set topicProfileEyebrow = "Teemaprofiilit" %}
-{% set topicProfileTitle = "Poliittinen aineisto aiheittain" %}
-{% set topicProfileLead = "Politiikkasivu näyttää linjan. Teemaprofiilit näyttävät, missä puheenvuorot, aloitteet, mielipiteet ja mediaosumat liittyvät samaan poliittiseen kysymykseen." %}
-{% include "topic-profile-links.njk" %}
-
-<section class="py-5 mb-0 bg-body-tertiary" id="kirjoitukset">
+<section class="py-5 mb-0" id="kirjoitukset">
   <div class="site-shell">
     <div class="pol-section-head">
       <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-journal-text me-1"></i>Kirjoitukset</p>
-      <h2 class="pol-section-title">Kirjoituksia ja kannanottoja poliittisesta työstä</h2>
-      <p class="pol-section-lead mb-0">Tähän on nostettu valikoima tekstejä, jotka näyttävät poliittisen ajatteluni suunnan. Mukana ei ole koko arkistoa, vaan profiilin kannalta olennaisimmat kirjoitukset.</p>
+      <h2 class="pol-section-title">Kirjoitukset täydentävät puheita ja aloitteita</h2>
+      <p class="pol-section-lead mb-0">Mielipidekirjoitukset ja blogitekstit avaavat niitä perusteluja, joita valtuustossa ei aina ehdi käydä läpi. Siksi ne kuuluvat politiikkasivulle, mutta koko lista on edelleen Kynästä-sivulla.</p>
     </div>
 
-    <div class="row g-4 align-items-start">
-      <div class="col-xl-7">
-        <section class="pol-current-card">
-          <div class="pol-current-head">
-            <div>
-              <p class="pol-current-kicker mb-1">Valitut tekstit</p>
-              <h3 class="pol-current-title">Poliittiset kirjoitukset</h3>
-              <p class="text-muted small mb-0">{{ featuredPoliticalWritings.length }} kirjoitusta, joissa poliittinen linja näkyy selvimmin sivistyksen, alueellisen yhdenvertaisuuden ja päätöksenteon valmistelun kysymyksissä.</p>
-            </div>
-            <a href="/kynasta/?opinions=political#mielipiteet" class="btn btn-outline-primary btn-sm">Poliittiset mielipiteet</a>
+    <div class="pol-writing-focus-grid">
+      <article class="pol-current-card pol-writing-focus-card pol-writing-focus-card--primary">
+        <div class="pol-current-head">
+          <div>
+            <p class="pol-current-kicker mb-1">Poliittiset tekstit</p>
+            <h3 class="pol-current-title">Selkeimmin poliittiseen profiiliin kuuluvat kirjoitukset</h3>
+            <p class="text-muted small mb-0">{{ featuredPoliticalWritings.length }} tekstiä, joissa kunnallinen ja alueellinen linja näkyy suoraan.</p>
           </div>
-          <div class="pol-writing-list">
-            {% for item in featuredPoliticalWritings %}
+        </div>
+        <div class="pol-writing-list">
+          {% for item in featuredPoliticalWritings %}
+          {% if loop.index <= 3 %}
+          <article class="pol-writing-item">
+            <div class="pol-writing-meta">
+              <span class="pol-writing-type">{{ item.type }}</span>
+              <span class="small text-muted">{{ item.date }}</span>
+            </div>
+            <h4 class="pol-writing-title"><a href="{{ item.href }}">{{ item.title }}</a></h4>
+            <p class="pol-writing-summary mb-0">{{ item.summary }}</p>
+          </article>
+          {% endif %}
+          {% endfor %}
+        </div>
+        <a href="/kynasta/?opinions=political#mielipiteet" class="btn btn-outline-primary btn-sm rounded-pill px-3 mt-3">Avaa poliittiset mielipiteet</a>
+      </article>
+
+      <article class="pol-current-card pol-writing-focus-card">
+        <div class="pol-current-head">
+          <div>
+            <p class="pol-current-kicker mb-1">Rajapinta</p>
+            <h3 class="pol-current-title">Asiantuntijuus politiikan perusteluna</h3>
+            <p class="text-muted small mb-0">{{ featuredHybridWritings.length }} tekstiä, joissa tutkimus, koulutus tai analyysi tukee poliittista kannanottoa.</p>
+          </div>
+        </div>
+        {% if latestHybridWriting %}
+        <div class="pol-writing-list">
+          {% for item in featuredHybridWritings %}
+          {% if loop.index <= 2 %}
             <article class="pol-writing-item">
               <div class="pol-writing-meta">
                 <span class="pol-writing-type">{{ item.type }}</span>
@@ -442,101 +409,51 @@ templateEngineOverride: njk
               <h4 class="pol-writing-title"><a href="{{ item.href }}">{{ item.title }}</a></h4>
               <p class="pol-writing-summary mb-0">{{ item.summary }}</p>
             </article>
-            {% endfor %}
-          </div>
-        </section>
-      </div>
-
-      <div class="col-xl-5">
-        <section class="pol-current-card pol-current-card--hybrid">
-          <div class="pol-current-head">
-            <div>
-              <p class="pol-current-kicker mb-1">Hybridit</p>
-              <h3 class="pol-current-title">Asiantuntijuus politiikan tukena</h3>
-              <p class="text-muted small mb-0">{{ featuredHybridWritings.length }} tekstiä, joissa tutkimus, koulutus tai analyysi tukee suoraan poliittista argumenttia.</p>
-            </div>
-          </div>
-          <p class="pol-writing-note">Nämä eivät ole tutkimusprofiilin nostoja, vaan poliittisia tekstejä, joissa asiantuntijuus tekee vaikutuksista, vaihtoehdoista ja perusteluista näkyvämpiä.</p>
-          <div class="pol-writing-list pol-writing-list--compact">
-            {% for item in featuredHybridWritings %}
-            <article class="pol-writing-item">
-              <div class="pol-writing-meta">
-                <span class="pol-writing-type">{{ item.type }}</span>
-                <span class="small text-muted">{{ item.date }}</span>
-              </div>
-              <h4 class="pol-writing-title"><a href="{{ item.href }}">{{ item.title }}</a></h4>
-              <p class="pol-writing-summary mb-0">{{ item.summary }}</p>
-            </article>
-            {% endfor %}
-          </div>
-          <div class="pol-current-foot">
-            <small class="text-muted">Rajapinnan tekstit ovat poliittisia kannanottoja, joissa asiantuntijuus on osa perustelua.</small>
-            <a href="/kynasta/?opinions=hybrid#mielipiteet" class="btn btn-outline-primary btn-sm mt-3">Rajapinnan kirjoitukset</a>
-          </div>
-        </section>
-      </div>
+          {% endif %}
+          {% endfor %}
+        </div>
+        {% endif %}
+        <a href="/kynasta/?opinions=hybrid#mielipiteet" class="btn btn-outline-primary btn-sm rounded-pill px-3 mt-3">Avaa rajapinnan kirjoitukset</a>
+      </article>
     </div>
   </div>
 </section>
 
-<section class="py-5 mb-0 bg-body-tertiary" id="laajempi-profiili">
+<section class="py-5 mb-0 bg-body-tertiary" id="syvenna">
   <div class="site-shell">
-    <details class="pol-mobile-disclosure" data-pol-mobile-collapse open>
-      <summary class="pol-mobile-disclosure-summary">
-        <span>Tukiteemat</span>
-        <small>Kaupunkikehitys, hyvinvointi ja yhteistyö</small>
-      </summary>
-      <div class="pol-mobile-disclosure-body">
-        <div class="pol-section-head">
-          <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-compass me-1"></i>Laajempi profiili</p>
-          <h2 class="pol-section-title">Tukiteemat, jotka täydentävät kokonaisuutta</h2>
-          <p class="pol-section-lead mb-0">Kaikki poliittinen sisältö ei kuulu ydinteemoihin. Nämä teemat täydentävät profiilia etenkin kaupunkikehityksen, hyvinvoinnin ja yhteistyökykyisen päätöksenteon suunnista.</p>
-        </div>
-        <div id="politics-support-theme-list" class="row g-4"></div>
+    <div class="pol-archive-band pol-deep-routes">
+      <div class="pol-archive-copy">
+        <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-compass me-1"></i>Syvennä</p>
+        <h2 class="pol-section-title mb-2">Kun haluat nähdä koko aineiston</h2>
+        <p class="mb-0">Politiikkasivu on profiili. Varsinainen työjälki löytyy erillisistä näkymistä, joissa voi selata puheita, aloitteita, kirjoituksia, vaalikausia ja virallisia lähteitä.</p>
       </div>
-    </details>
-  </div>
-</section>
-
-<section class="py-5 mb-0" id="arkistot">
-  <div class="site-shell">
-    <details class="pol-mobile-disclosure pol-mobile-disclosure--archive" data-pol-mobile-collapse open>
-      <summary class="pol-mobile-disclosure-summary">
-        <span>Syvemmälle aineistoon</span>
-        <small>Arkistot, pöytäkirjat ja koko kirjoitusaineisto</small>
-      </summary>
-      <div class="pol-mobile-disclosure-body">
-        <div class="pol-archive-band">
-          <div class="pol-archive-copy">
-            <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-archive me-1"></i>Arkistot</p>
-            <h2 class="pol-section-title mb-2">Syvemmälle aineistoon</h2>
-            <p class="mb-0">Politiikkasivu näyttää linjan. Kun haluat koko aineiston, löydät sen kirjoituksista, puheenvuoroista, aloitteista ja kaupungin kokousaineistoista.</p>
-          </div>
-          <div class="pol-archive-links">
-            <a href="/kynasta/?opinions=political#mielipiteet" class="pol-archive-link">
-              <strong>Poliittiset mielipiteet</strong>
-              <span>Kirjoitukset, joissa kunnallinen ja alueellinen linja näkyy selvimmin.</span>
-            </a>
-            <a href="/kynasta/#puheet" class="pol-archive-link">
-              <strong>Puheenvuoroarkisto</strong>
-              <span>Valtuustossa ja muissa tilaisuuksissa pidetyt puheet.</span>
-            </a>
-            <a href="/kynasta/#aloitteet" class="pol-archive-link">
-              <strong>Aloitearkisto</strong>
-              <span>Kaikki valtuustoaloitteet vastauksineen ja taustoineen.</span>
-            </a>
-            <a href="/vaalikaudet/" class="pol-archive-link">
-              <strong>Vaalikaudet</strong>
-              <span>Luottamustoimet, puheenvuorot ja kirjoitukset vaalikausittain jäsennettynä.</span>
-            </a>
-            <a href="https://www.ouka.fi/valtuusto" target="_blank" rel="noopener noreferrer" class="pol-archive-link">
-              <strong>Kokoukset ja pöytäkirjat</strong>
-              <span>Oulun kaupungin kokoukset, tallenteet ja viralliset asiakirjat.</span>
-            </a>
-          </div>
-        </div>
+      <div class="pol-archive-links">
+        <a href="/vaalikaudet/" class="pol-archive-link">
+          <strong>Vaalikaudet</strong>
+          <span>Luottamustoimet, vaalitulokset ja sisällöt vaalikausittain.</span>
+        </a>
+        <a href="/kynasta/#puheet" class="pol-archive-link">
+          <strong>Puheenvuorot</strong>
+          <span>Valtuustossa ja muissa tilaisuuksissa pidetyt puheet.</span>
+        </a>
+        <a href="/kynasta/#aloitteet" class="pol-archive-link">
+          <strong>Aloitteet</strong>
+          <span>Valtuustoaloitteet ja niiden eteneminen.</span>
+        </a>
+        <a href="/kynasta/?opinions=political#mielipiteet" class="pol-archive-link">
+          <strong>Poliittiset mielipiteet</strong>
+          <span>Lehdissä julkaistut kannanotot ja poliittiset kirjoitukset.</span>
+        </a>
+        <a href="/poliittinen-avoimuus/" class="pol-archive-link">
+          <strong>Sidonnaisuudet ja vaalirahoitus</strong>
+          <span>Läpinäkyvyyden kannalta keskeiset ilmoitukset ja rekisterilinkit.</span>
+        </a>
+        <a href="https://www.ouka.fi/valtuusto" target="_blank" rel="noopener noreferrer" class="pol-archive-link">
+          <strong>Valtuusto</strong>
+          <span>Oulun kaupunginvaltuuston kokoukset, pöytäkirjat ja tallenteet.</span>
+        </a>
       </div>
-    </details>
+    </div>
   </div>
 </section>
 
@@ -672,7 +589,7 @@ templateEngineOverride: njk
   .pol-hero-title,
   .pol-section-title,
   .pol-current-title {
-    font-family: Georgia, "Times New Roman", serif;
+    font-family: var(--bs-font-family-heading);
     font-weight: 700;
     letter-spacing: -0.03em;
     color: #0f2745;
@@ -805,6 +722,60 @@ templateEngineOverride: njk
     font-size: clamp(2rem, 3vw, 3rem);
     line-height: 1.04;
     margin-bottom: 0.75rem;
+  }
+  .pol-role-overview-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(18rem, 0.95fr);
+    gap: 1.2rem;
+    align-items: stretch;
+  }
+  .pol-role-current-card {
+    display: grid;
+    align-content: start;
+    gap: 1rem;
+  }
+  .pol-role-link-stack {
+    display: grid;
+    gap: 1rem;
+  }
+  .pol-route-card {
+    display: grid;
+    gap: 0.55rem;
+    min-height: 100%;
+    padding: 1.2rem;
+    border-radius: 1.2rem;
+    border: 1px solid rgba(17, 40, 70, 0.1);
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 1rem 2.3rem rgba(17, 40, 70, 0.08);
+  }
+  .pol-route-kicker {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(17, 40, 70, 0.58);
+  }
+  .pol-route-card h3 {
+    margin: 0;
+    font-size: 1.18rem;
+    line-height: 1.25;
+    color: #102845;
+  }
+  .pol-route-card p {
+    margin: 0;
+    line-height: 1.62;
+    color: rgba(17, 40, 70, 0.76);
+  }
+  .pol-route-card a,
+  .pol-inline-link {
+    align-self: end;
+    font-weight: 800;
+    color: #12355f;
+    text-decoration: none;
+  }
+  .pol-route-card a:hover,
+  .pol-inline-link:hover {
+    color: #0d4f94;
   }
   .pol-mandate-layout {
     display: grid;
@@ -966,7 +937,7 @@ templateEngineOverride: njk
   .pol-theme-title {
     margin: 0;
     font-size: 1.35rem;
-    font-family: Georgia, "Times New Roman", serif;
+    font-family: var(--bs-font-family-heading);
     color: #102845;
   }
   .pol-theme-statement {
@@ -1075,7 +1046,7 @@ templateEngineOverride: njk
   .pol-method-number {
     display: block;
     margin: -0.35rem 0 0;
-    font-family: Georgia, "Times New Roman", serif;
+    font-family: var(--bs-font-family-heading);
     font-size: clamp(3rem, 5vw, 4.6rem);
     line-height: 0.88;
     font-weight: 700;
@@ -1106,6 +1077,87 @@ templateEngineOverride: njk
     border: 1px solid rgba(17, 40, 70, 0.1);
     background: rgba(255, 255, 255, 0.96);
     box-shadow: 0 1rem 2.3rem rgba(17, 40, 70, 0.08);
+  }
+  .pol-evidence-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.22fr) minmax(18rem, 0.78fr);
+    gap: 1.2rem;
+    align-items: stretch;
+  }
+  .pol-evidence-side {
+    display: grid;
+    gap: 1rem;
+  }
+  .pol-evidence-card {
+    display: grid;
+    gap: 0.9rem;
+    min-height: 100%;
+    padding: 1.2rem;
+    border-radius: 1.2rem;
+    border: 1px solid rgba(17, 40, 70, 0.1);
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 1rem 2.3rem rgba(17, 40, 70, 0.08);
+  }
+  .pol-evidence-card--feature {
+    padding: 0;
+    overflow: hidden;
+  }
+  .pol-evidence-copy {
+    display: grid;
+    gap: 0.65rem;
+    padding: 1.25rem;
+  }
+  .pol-evidence-thumb-link {
+    display: block;
+    background: #0f2745;
+  }
+  .pol-evidence-thumb {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+  .pol-evidence-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.65rem;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(17, 40, 70, 0.58);
+  }
+  .pol-evidence-kicker {
+    margin: 0;
+    font-size: 0.86rem;
+    font-weight: 800;
+    color: #163e6c;
+  }
+  .pol-evidence-title {
+    margin: 0;
+    font-family: var(--bs-font-family-heading);
+    font-size: clamp(1.55rem, 2.5vw, 2.25rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: #102845;
+  }
+  .pol-evidence-title--small {
+    font-size: 1.08rem;
+    line-height: 1.25;
+  }
+  .pol-evidence-title a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .pol-evidence-title a:hover {
+    color: #0d4f94;
+  }
+  .pol-evidence-summary {
+    margin: 0;
+    line-height: 1.62;
+    color: rgba(17, 40, 70, 0.76);
   }
   .pol-current-head {
     display: flex;
@@ -1266,6 +1318,19 @@ templateEngineOverride: njk
   .pol-current-card--hybrid .pol-current-foot {
     margin-top: 1rem;
   }
+  .pol-writing-focus-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
+    gap: 1.2rem;
+    align-items: stretch;
+  }
+  .pol-writing-focus-card {
+    display: grid;
+    align-content: start;
+  }
+  .pol-writing-focus-card--primary {
+    background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(246,249,255,0.92));
+  }
   .pol-initiative-item {
     padding: 1rem;
     border-radius: 0.95rem;
@@ -1354,6 +1419,7 @@ templateEngineOverride: njk
   [data-bs-theme="dark"] .pol-hero-title,
   [data-bs-theme="dark"] .pol-section-title,
   [data-bs-theme="dark"] .pol-current-title,
+  [data-bs-theme="dark"] .pol-evidence-title,
   [data-bs-theme="dark"] .pol-theme-title {
     color: #f7fbff;
   }
@@ -1361,7 +1427,9 @@ templateEngineOverride: njk
   [data-bs-theme="dark"] .pol-eyebrow--dark,
   [data-bs-theme="dark"] .pol-current-kicker,
   [data-bs-theme="dark"] .pol-theme-proof-label,
-  [data-bs-theme="dark"] .pol-role-area {
+  [data-bs-theme="dark"] .pol-role-area,
+  [data-bs-theme="dark"] .pol-route-kicker,
+  [data-bs-theme="dark"] .pol-evidence-meta {
     color: rgba(255, 255, 255, 0.64);
   }
   [data-bs-theme="dark"] .pol-hero-manifesto,
@@ -1373,12 +1441,14 @@ templateEngineOverride: njk
   [data-bs-theme="dark"] .pol-theme-description,
   [data-bs-theme="dark"] .pol-theme-meta,
   [data-bs-theme="dark"] .pol-video-summary,
+  [data-bs-theme="dark"] .pol-evidence-summary,
   [data-bs-theme="dark"] .pol-initiative-response,
   [data-bs-theme="dark"] .pol-writing-summary,
   [data-bs-theme="dark"] .pol-writing-note,
   [data-bs-theme="dark"] .pol-mandate-summary,
   [data-bs-theme="dark"] .pol-mandate-detail,
   [data-bs-theme="dark"] .pol-role-org,
+  [data-bs-theme="dark"] .pol-route-card p,
   [data-bs-theme="dark"] .pol-mandate-link-card span {
     color: rgba(255, 255, 255, 0.8);
   }
@@ -1398,10 +1468,12 @@ templateEngineOverride: njk
   [data-bs-theme="dark"] .pol-theme-proof-link,
   [data-bs-theme="dark"] .political-speech-title,
   [data-bs-theme="dark"] .pol-video-highlight .pol-current-title a,
+  [data-bs-theme="dark"] .pol-evidence-title a,
   [data-bs-theme="dark"] .pol-writing-title,
   [data-bs-theme="dark"] .pol-writing-title a,
   [data-bs-theme="dark"] .pol-mandate-title,
   [data-bs-theme="dark"] .pol-role-title,
+  [data-bs-theme="dark"] .pol-route-card h3,
   [data-bs-theme="dark"] .pol-mandate-link-card {
     color: #f4f8fd;
   }
@@ -1410,6 +1482,8 @@ templateEngineOverride: njk
   [data-bs-theme="dark"] .pol-theme-card,
   [data-bs-theme="dark"] .pol-method-card,
   [data-bs-theme="dark"] .pol-current-card,
+  [data-bs-theme="dark"] .pol-route-card,
+  [data-bs-theme="dark"] .pol-evidence-card,
   [data-bs-theme="dark"] .pol-writing-item,
   [data-bs-theme="dark"] .pol-initiative-item {
     background: linear-gradient(180deg, rgba(18, 30, 47, 0.92), rgba(13, 24, 38, 0.96));
@@ -1501,7 +1575,12 @@ templateEngineOverride: njk
     color: #cfe4ff;
   }
   [data-bs-theme="dark"] .pol-mandate-link:hover,
-  [data-bs-theme="dark"] .pol-mandate-link-card:hover strong {
+  [data-bs-theme="dark"] .pol-mandate-link-card:hover strong,
+  [data-bs-theme="dark"] .pol-route-card a,
+  [data-bs-theme="dark"] .pol-route-card a:hover,
+  [data-bs-theme="dark"] .pol-inline-link,
+  [data-bs-theme="dark"] .pol-inline-link:hover,
+  [data-bs-theme="dark"] .pol-evidence-kicker {
     color: #ffffff;
   }
   [data-bs-theme="dark"] .pol-mobile-path {
@@ -1520,6 +1599,11 @@ templateEngineOverride: njk
     color: rgba(246, 249, 255, 0.68);
   }
   @media (max-width: 1199.98px) {
+    .pol-role-overview-grid,
+    .pol-evidence-grid,
+    .pol-writing-focus-grid {
+      grid-template-columns: 1fr;
+    }
     .pol-mandate-layout {
       grid-template-columns: 1fr;
     }
@@ -1721,12 +1805,12 @@ templateEngineOverride: njk
       {
         key: 'lahipalvelut',
         title: 'Koko Oulun alueellinen yhdenvertaisuus',
-        description: 'Oulun 23 suuralueen ja 106 kaupunginosan palvelut, saavutettavuus ja tasapuolinen kehitys.',
+        description: 'Suuralueiden ja kaupunginosien palvelut, saavutettavuus ja tasapuolinen kehitys koko kaupungissa.',
         statement: 'Oulua pitää kehittää kokonaisuutena niin, että jokainen suuralue ja kaupunginosa pysyy mukana kasvussa, investoinneissa ja palveluissa.',
         icon: 'bi-geo-alt-fill',
         color: '#198754',
         tier: 'core',
-        focus: ['23 suuraluetta', '106 kaupunginosaa', 'alueellinen yhdenvertaisuus']
+        focus: ['suuralueet', 'kaupunginosat', 'alueellinen yhdenvertaisuus']
       },
       {
         key: 'avoinhallinto',
