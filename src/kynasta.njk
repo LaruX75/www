@@ -318,7 +318,7 @@ translationKey: writings_index
           </table>
         </div>
       </div>
-      <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top">
+      <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top kynasta-table-pager kynasta-table-pager--bottom">
         <small id="lausunnot-info" class="text-muted"></small>
         <nav aria-label="Sivutus">
           <ul id="lausunnot-pagination" class="pagination pagination-sm mb-0 flex-wrap site-pag"></ul>
@@ -448,7 +448,7 @@ translationKey: writings_index
           </table>
         </div>
       </div>
-      <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top">
+      <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top kynasta-table-pager kynasta-table-pager--bottom">
         <small id="mielipiteet-info" class="text-muted"></small>
         <nav aria-label="Sivutus">
           <ul id="mielipiteet-pagination" class="pagination pagination-sm mb-0 flex-wrap site-pag"></ul>
@@ -534,7 +534,7 @@ translationKey: writings_index
           </table>
         </div>
       </div>
-      <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top">
+      <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top kynasta-table-pager kynasta-table-pager--bottom">
         <small id="kolumnit-info" class="text-muted"></small>
         <nav aria-label="Sivutus">
           <ul id="kolumnit-pagination" class="pagination pagination-sm mb-0 flex-wrap site-pag"></ul>
@@ -609,7 +609,7 @@ translationKey: writings_index
           </table>
         </div>
       </div>
-      <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top">
+      <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top kynasta-table-pager kynasta-table-pager--bottom">
         <small id="aloitteet-info" class="text-muted"></small>
         <nav aria-label="Sivutus">
           <ul id="aloitteet-pagination" class="pagination pagination-sm mb-0 flex-wrap site-pag"></ul>
@@ -695,7 +695,7 @@ translationKey: writings_index
           </table>
         </div>
       </div>
-      <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top">
+      <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top kynasta-table-pager kynasta-table-pager--bottom">
         <small id="puheet-info" class="text-muted"></small>
         <nav aria-label="Sivutus">
           <ul id="puheet-pagination" class="pagination pagination-sm mb-0 flex-wrap site-pag"></ul>
@@ -779,7 +779,7 @@ translationKey: writings_index
           </table>
         </div>
       </div>
-      <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top">
+      <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top kynasta-table-pager kynasta-table-pager--bottom">
         <small id="blog-info" class="text-muted"></small>
         <div class="d-flex align-items-center gap-3">
           <nav aria-label="Sivutus">
@@ -1128,27 +1128,24 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
   min-height: 260px;
 }
 
-.kynasta-table-top-pager {
-  position: sticky;
-  top: calc(var(--site-header-offset, 0px) + 0.75rem);
-  z-index: 7;
-  margin: 0.9rem 1rem 1rem;
-  padding: 0.75rem 0.9rem;
-  background: rgba(255, 255, 255, 0.92);
-  border-color: rgba(15, 34, 56, 0.12) !important;
-  box-shadow: 0 0.8rem 1.75rem rgba(15, 23, 42, 0.08);
-  backdrop-filter: blur(14px);
+.kynasta-table-pager {
+  padding: 0.75rem 1rem;
 }
 
-.kynasta-table-top-pager .page-link {
+.kynasta-table-pager .page-link {
   min-width: 2.25rem;
   text-align: center;
 }
 
-html[data-bs-theme="dark"]:not([data-a11y-bg]) .kynasta-table-top-pager {
-  background: rgba(18, 27, 42, 0.92);
-  border-color: rgba(255, 255, 255, 0.12) !important;
-  box-shadow: 0 0.8rem 1.75rem rgba(0, 0, 0, 0.3);
+.kynasta-table-pager--top {
+  position: sticky;
+  top: calc(var(--site-header-offset, 0px) + 0.75rem);
+  z-index: 7;
+  background: var(--bs-body-bg);
+}
+
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .kynasta-table-pager--top {
+  background: var(--bs-body-bg);
 }
 
 .kynasta-mobile-path,
@@ -1387,10 +1384,9 @@ html[data-a11y-bg] .kynasta-hero .nav-link:hover {
   background-color: rgba(0, 0, 0, 0.12) !important;
   border-color: rgba(0, 0, 0, 0.32) !important;
 }
-html[data-a11y-bg] .kynasta-table-top-pager {
-  background: rgba(255, 255, 255, 0.88) !important;
-  border-color: rgba(0, 0, 0, 0.1) !important;
-  box-shadow: 0 0.8rem 1.75rem rgba(0, 0, 0, 0.06) !important;
+html[data-a11y-bg] .kynasta-table-pager--top {
+  background: var(--bs-body-bg) !important;
+  border-color: var(--bs-border-color) !important;
 }
 </style>
 
@@ -1434,7 +1430,7 @@ function renderPaginationShared(ul, total, currentPage, onPageChange) {
       if (!tableWrap) return null;
 
       dock = document.createElement('div');
-      dock.className = 'kynasta-table-top-pager d-none d-lg-flex flex-wrap align-items-center justify-content-between gap-2 border rounded-4';
+      dock.className = 'kynasta-table-pager kynasta-table-pager--top d-none d-lg-flex flex-wrap align-items-center justify-content-between gap-2 border-bottom';
       dock.setAttribute('data-pagination-top-for', paginationId);
       dock.innerHTML = `
         <small class="text-muted" data-pagination-top-info></small>

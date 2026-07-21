@@ -1,6 +1,7 @@
 ---
 title: "Kysymykset Linnanmaan kampuksen sisäilmasta ja Teuvo Pakkalan kadun liikenteestä"
 date: "2022-02-21"
+meetingDate: "2022-02-09"
 description: "Puheenvuorossani kysyin Linnanmaan kampuksen terveysturvallisuudesta sekä Teuvo Pakkalan kadun liikennejärjestelyistä mahdollisen keskustakampuksen toteutuessa."
 event: "Avoin keskustelutilaisuus: Mitä tapahtuu Raksilassa tai Linnanmaalla?"
 categories:

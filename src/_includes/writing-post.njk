@@ -4,6 +4,23 @@ layout: base.njk
 {% set currentLang = lang or (page.url | langFromUrl) %}
 {% set currentTags = tags or [] %}
 {% set isEnglish = currentLang == "en" %}
+{% set externalSourceHref = "" %}
+
+{% if original_url %}
+  {% set externalSourceHref = original_url %}
+{% elif originalUrl %}
+  {% set externalSourceHref = originalUrl %}
+{% elif publication_url %}
+  {% set externalSourceHref = publication_url %}
+{% elif publicationUrl %}
+  {% set externalSourceHref = publicationUrl %}
+{% elif externalUrl %}
+  {% set externalSourceHref = externalUrl %}
+{% elif source_url and source_url.startsWith("http") and not ("jarilaru.fi" in source_url) and not ("localhost" in source_url) %}
+  {% set externalSourceHref = source_url %}
+{% elif sourceUrl and sourceUrl.startsWith("http") and not ("jarilaru.fi" in sourceUrl) and not ("localhost" in sourceUrl) %}
+  {% set externalSourceHref = sourceUrl %}
+{% endif %}
 
 {% set sectionLabel = "Kirjoitus" %}
 {% set backHref = "/kynasta/" %}
@@ -45,7 +62,7 @@ layout: base.njk
 
 <section>
   <div class="site-shell">
-    <article class="blog-post writing-post">
+    <article class="blog-post writing-post{{ (' writing-post--' ~ type) if type else '' }}">
       <div class="card shadow-sm">
         <div class="card-body">
           <p class="writing-post-kicker">{{ sectionLabel }}</p>
@@ -82,6 +99,17 @@ layout: base.njk
               <div>
                 <dt>{{ "Diary number" if isEnglish else "Diaarinumero" }}</dt>
                 <dd>{{ diaryNumber }}</dd>
+              </div>
+            {% endif %}
+            {% if externalSourceHref %}
+              <div class="writing-post-meta__source">
+                <dt>{{ "Original source" if isEnglish else "Alkuperäinen julkaisu" }}</dt>
+                <dd>
+                  <a href="{{ externalSourceHref }}" target="_blank" rel="noopener noreferrer">
+                    {{ "Open source" if isEnglish else "Avaa lähde" }}
+                    <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i>
+                  </a>
+                </dd>
               </div>
             {% endif %}
           </dl>

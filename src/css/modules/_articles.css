@@ -261,6 +261,16 @@ html:not([data-bs-theme="dark"]) .subpage-hero-image {
   line-height: 1.35;
 }
 
+.writing-post-meta a {
+  color: var(--bs-link-color);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
+.writing-post-meta a:hover {
+  color: var(--bs-link-hover-color);
+}
+
 [data-bs-theme="dark"] .writing-post-meta > div {
   background: rgba(255, 255, 255, 0.045);
   border-color: rgba(255, 255, 255, 0.12);
@@ -582,7 +592,7 @@ html:not([data-bs-theme="dark"]) .kynasta-hero {
 
 .content-context-title {
   margin-bottom: 0.8rem;
-  font-family: 'Bree Serif', Georgia, 'Times New Roman', serif;
+  font-family: var(--bs-font-family-heading);
   font-size: 1.05rem;
   line-height: 1.25;
   color: var(--bs-emphasis-color);
@@ -857,7 +867,7 @@ html:not([data-bs-theme="dark"]) .kynasta-hero {
 .taxonomy-title {
   margin: 0;
   color: var(--bs-emphasis-color);
-  font-family: 'Bree Serif', Georgia, 'Times New Roman', serif;
+  font-family: var(--bs-font-family-heading);
   font-size: clamp(2rem, 5vw, 4rem);
   line-height: 0.96;
 }
@@ -904,7 +914,7 @@ html:not([data-bs-theme="dark"]) .kynasta-hero {
 
 .taxonomy-stat-number,
 .taxonomy-type-count {
-  font-family: 'Bree Serif', Georgia, 'Times New Roman', serif;
+  font-family: var(--bs-font-family-heading);
   color: var(--bs-emphasis-color);
   line-height: 0.9;
 }
@@ -959,7 +969,7 @@ html:not([data-bs-theme="dark"]) .kynasta-hero {
 .taxonomy-feature h2 {
   margin: 0;
   color: var(--bs-emphasis-color);
-  font-family: 'Bree Serif', Georgia, 'Times New Roman', serif;
+  font-family: var(--bs-font-family-heading);
 }
 
 .taxonomy-section-head p,
@@ -1511,7 +1521,7 @@ html:not([data-bs-theme="dark"]) .kynasta-hero {
 .taxonomy-index-section-head h2 {
   margin: 0;
   color: var(--bs-emphasis-color);
-  font-family: 'Bree Serif', Georgia, 'Times New Roman', serif;
+  font-family: var(--bs-font-family-heading);
 }
 
 .taxonomy-index-hero h1 {
@@ -1594,7 +1604,7 @@ html:not([data-bs-theme="dark"]) .kynasta-hero {
 
 .taxonomy-index-card-count {
   color: var(--bs-emphasis-color);
-  font-family: 'Bree Serif', Georgia, 'Times New Roman', serif;
+  font-family: var(--bs-font-family-heading);
   font-size: clamp(2.3rem, 5vw, 4rem);
   line-height: 0.9;
 }
@@ -1772,7 +1782,7 @@ html:not([data-bs-theme="dark"]) .kynasta-hero {
 .topic-profile-hero h1 {
   margin: 0;
   color: var(--bs-emphasis-color);
-  font-family: 'Bree Serif', Georgia, 'Times New Roman', serif;
+  font-family: var(--bs-font-family-heading);
   font-size: clamp(2.2rem, 5vw, 4.25rem);
   line-height: 0.96;
 }
@@ -1829,7 +1839,7 @@ html:not([data-bs-theme="dark"]) .kynasta-hero {
 .topic-links-head h2 {
   margin: 0;
   color: var(--bs-emphasis-color);
-  font-family: 'Bree Serif', Georgia, 'Times New Roman', serif;
+  font-family: var(--bs-font-family-heading);
 }
 
 .topic-index-card h2 a,
@@ -1963,7 +1973,7 @@ html:not([data-bs-theme="dark"]) .kynasta-hero {
 }
 
 .topic-feature-card--primary h3 {
-  font-family: 'Bree Serif', Georgia, 'Times New Roman', serif;
+  font-family: var(--bs-font-family-heading);
   font-size: clamp(1.8rem, 3.4vw, 2.75rem);
   font-weight: 400;
   line-height: 1;
@@ -2528,7 +2538,7 @@ html:not([data-bs-theme="dark"]) .badge.text-bg-light {
 
 .council-speech-source-card__thumb {
   position: relative;
-  flex: 0 0 clamp(7rem, 20vw, 10rem);
+  flex: 0 0 clamp(6.25rem, 16vw, 8.5rem);
   overflow: hidden;
   border-radius: 0.75rem;
   background: var(--bs-dark);
@@ -2593,7 +2603,7 @@ html:not([data-bs-theme="dark"]) .badge.text-bg-light {
   .council-speech-source-card__thumb {
     flex-basis: auto;
     width: 100%;
-    max-width: 14rem;
+    max-width: 12rem;
   }
 
   .council-speech-source-card__link {
