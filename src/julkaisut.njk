@@ -6,6 +6,7 @@ description: "Jari Larun tutkimusjulkaisut, viittausdata ja julkaisuluokat Resea
 permalink: /julkaisut/
 translationKey: publications_index
 ---
+{% import "ui.njk" as ui %}
 
 {%- set articleCount = 0 -%}
 {%- set confCount = 0 -%}
@@ -82,36 +83,16 @@ translationKey: publications_index
   <div class="site-shell">
     <div class="row g-3">
       <div class="col-6 col-xl-3">
-        <article class="card border-0 shadow-sm h-100 site-kpi-card publication-kpi-card">
-          <div class="card-body">
-            <div class="site-kpi-number publication-kpi-value">{{ researchfi.length }}</div>
-            <div class="site-kpi-label publication-kpi-label">julkaisua</div>
-          </div>
-        </article>
+        {{ ui.kpiCard("julkaisua", researchfi.length, { tone: "julkaisut", extraClass: "publication-kpi-card" }) }}
       </div>
       <div class="col-6 col-xl-3">
-        <article class="card border-0 shadow-sm h-100 site-kpi-card publication-kpi-card">
-          <div class="card-body">
-            <div class="site-kpi-number publication-kpi-value">{{ peerReviewedCount }}</div>
-            <div class="site-kpi-label publication-kpi-label">vertaisarvioitua</div>
-          </div>
-        </article>
+        {{ ui.kpiCard("vertaisarvioitua", peerReviewedCount, { tone: "julkaisut", extraClass: "publication-kpi-card" }) }}
       </div>
       <div class="col-6 col-xl-3">
-        <article class="card border-0 shadow-sm h-100 site-kpi-card publication-kpi-card">
-          <div class="card-body">
-            <div class="site-kpi-number publication-kpi-value" id="dynamicTotalCitations" title="Lähde: {{ semanticscholar.metrics.sources }}">…</div>
-            <div class="site-kpi-label publication-kpi-label">viittausta</div>
-          </div>
-        </article>
+        {{ ui.kpiCard("viittausta", "…", { id: "dynamicTotalCitations", title: "Lähde: " ~ semanticscholar.metrics.sources, tone: "julkaisut", extraClass: "publication-kpi-card" }) }}
       </div>
       <div class="col-6 col-xl-3">
-        <article class="card border-0 shadow-sm h-100 site-kpi-card publication-kpi-card">
-          <div class="card-body">
-            <div class="site-kpi-number publication-kpi-value" id="dynamicHIndex" title="Lähde: {{ semanticscholar.metrics.sources }}">…</div>
-            <div class="site-kpi-label publication-kpi-label">h-indeksi</div>
-          </div>
-        </article>
+        {{ ui.kpiCard("h-indeksi", "…", { id: "dynamicHIndex", title: "Lähde: " ~ semanticscholar.metrics.sources, tone: "julkaisut", extraClass: "publication-kpi-card" }) }}
       </div>
     </div>
     <p class="publication-kpi-note text-muted mb-0 mt-3">{{ openAccessCount }} julkaisua on merkitty avoimesti saataviksi, {{ articleCount }} kuuluu lehtiartikkeleihin ja {{ confCount }} konferenssiaineistoon.</p>
@@ -1352,17 +1333,22 @@ document.addEventListener('DOMContentLoaded', function() {
     let mobileItems = Array.from(tableContainer.querySelectorAll('.pub-mobile-item'));
 
       // 5. Build Pagination UI
-      let paginationNav = tableContainer.querySelector('.pub-pagination');
-      if (!paginationNav) {
-        paginationNav = document.createElement('nav');
-        const containerId = tableContainer.id || Math.random().toString(36).substring(7);
-        paginationNav.setAttribute('aria-label', `Taulukon sivutus ${containerId}`);
-        paginationNav.className = 'pub-pagination d-flex justify-content-center mt-3';
-        paginationNav.innerHTML = '<ul class="pagination pagination-sm mb-3"></ul>';
-        tableContainer.appendChild(paginationNav);
-      }
+    let paginationNav = tableContainer.querySelector('.pub-pagination');
+    if (!paginationNav) {
+      paginationNav = document.createElement('div');
+      const containerId = tableContainer.id || Math.random().toString(36).substring(7);
+      paginationNav.className = 'pub-pagination site-pagination-bar site-pagination-bar--bottom mt-3';
+      paginationNav.innerHTML = `
+        <small class="site-pagination-info text-muted"></small>
+        <nav aria-label="Taulukon sivutus ${containerId}">
+          <ul class="pagination pagination-sm mb-0 flex-wrap site-pag"></ul>
+        </nav>
+      `;
+      tableContainer.appendChild(paginationNav);
+    }
 
     const ul = paginationNav.querySelector('ul');
+    const paginationInfo = paginationNav.querySelector('.site-pagination-info');
     const filterIndicator = document.querySelector(`[data-filter-indicator="${tableId}"]`);
     let currentPage = 1;
     let filteredRows = [...rows];
@@ -1383,6 +1369,11 @@ document.addEventListener('DOMContentLoaded', function() {
       const end = start + ITEMS_PER_PAGE;
       filteredRows.slice(start, end).forEach(r => r.style.display = '');
       filteredMobileItems.slice(start, end).forEach(r => r.style.display = '');
+      if (paginationInfo) {
+        paginationInfo.textContent = filteredRows.length > 0
+          ? `${start + 1}-${Math.min(end, filteredRows.length)} / ${filteredRows.length} julkaisua`
+          : 'Ei julkaisuja';
+      }
 
       renderPaginationControls(totalPages);
 

@@ -22,6 +22,7 @@ const BASE_URL = 'https://oulurepo.oulu.fi';
 const RPP = 100;
 const NAME = 'Laru';
 const DELAY_MS = 700;
+const CACHE_ONLY_ENV_KEYS = ['CACHE_ONLY', 'ELEVENTY_OFFLINE', 'NO_NETWORK'];
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -37,6 +38,13 @@ function loadCache() {
 
 function saveCache(cache) {
   fs.writeFileSync(CACHE_PATH, JSON.stringify(cache, null, 2) + '\n', 'utf8');
+}
+
+function isCacheOnlyMode() {
+  return CACHE_ONLY_ENV_KEYS.some((key) => {
+    const value = String(process.env[key] || '').trim().toLowerCase();
+    return ['1', 'true', 'yes', 'on'].includes(value);
+  });
 }
 
 async function fetchXml(query, start = 0) {
@@ -134,6 +142,11 @@ async function main() {
   console.log('[keywords] Ladataan cache...');
   const cache = loadCache();
   console.log(`[keywords] Cachessa valmiina: ${Object.keys(cache).length} tietuetta.`);
+
+  if (isCacheOnlyMode()) {
+    console.log('[keywords] Cache-only tila käytössä, OuluREPO-haku ohitetaan.');
+    return;
+  }
 
   console.log('[keywords] Haetaan opinnäyteluettelo OuluREPO:sta...');
   const advisorQ = `dc.contributor.thesisadvisor:${NAME}* AND (type:masterThesis OR type:bachelorThesis)`;

@@ -484,16 +484,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // Create pagination container if it doesn't exist
     let paginationNav = tableContainer.querySelector('.thesis-pagination');
     if (!paginationNav) {
-      paginationNav = document.createElement('nav');
+      paginationNav = document.createElement('div');
       const containerId = tableContainer.id || Math.random().toString(36).substring(7);
-      paginationNav.setAttribute('aria-label', `Taulukon sivutus ${containerId}`);
-      paginationNav.className = 'thesis-pagination d-flex align-items-center justify-content-between mt-3 px-2';
-      paginationNav.innerHTML = '<div class="thesis-pagination-left"></div><ul class="pagination pagination-sm mb-3"></ul>';
+      paginationNav.className = 'thesis-pagination site-pagination-bar site-pagination-bar--bottom mt-3';
+      paginationNav.innerHTML = `
+        <div class="site-pagination-actions thesis-pagination-left"></div>
+        <small class="site-pagination-info text-muted"></small>
+        <nav aria-label="Taulukon sivutus ${containerId}">
+          <ul class="pagination pagination-sm mb-0 flex-wrap site-pag"></ul>
+        </nav>
+      `;
       tableContainer.appendChild(paginationNav);
     }
 
     const ul = paginationNav.querySelector('ul');
     const paginationLeft = paginationNav.querySelector('.thesis-pagination-left');
+    const paginationInfo = paginationNav.querySelector('.site-pagination-info');
 
     let currentPage = 1;
     let showAll = false;
@@ -502,7 +508,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // "Näytä kaikki" -painike
     const showAllBtn = document.createElement('button');
     showAllBtn.type = 'button';
-    showAllBtn.className = 'btn btn-outline-secondary btn-sm mb-3';
+    showAllBtn.className = 'btn btn-outline-secondary btn-sm';
     showAllBtn.innerHTML = '<i class="bi bi-list-ul me-1" aria-hidden="true"></i>Näytä kaikki';
     showAllBtn.addEventListener('click', () => {
       showAll = !showAll;
@@ -591,6 +597,11 @@ document.addEventListener('DOMContentLoaded', () => {
           r.style.display = visible ? '' : 'none';
           if (mobileItems[i]) mobileItems[i].style.display = visible ? '' : 'none';
         });
+        if (paginationInfo) {
+          paginationInfo.textContent = filteredRows.length > 0
+            ? `Näytetään kaikki ${filteredRows.length} opinnäytetyötä`
+            : 'Ei opinnäytetöitä';
+        }
         return;
       }
       currentPage = page;
@@ -612,6 +623,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const i = rows.indexOf(r);
         if (mobileItems[i]) mobileItems[i].style.display = '';
       });
+
+      if (paginationInfo) {
+        paginationInfo.textContent = filteredRows.length > 0
+          ? `${start + 1}-${Math.min(end, filteredRows.length)} / ${filteredRows.length} opinnäytetyötä`
+          : 'Ei opinnäytetöitä';
+      }
 
       renderPaginationControls(totalPages);
     }

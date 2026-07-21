@@ -29,6 +29,7 @@ schemaMentions:
     url: "https://www.oulu.fi/fi/tiedekunnat/kasvatustieteiden-tiedekunta"
 ---
 
+{% import "ui.njk" as ui %}
 {% set totalSupervised = (theses.stats.totalGradut or 0) + (theses.stats.totalKandit or 0) %}
 {% set latestPortfolioPresentations = (collections.presentations or []).slice(0, 4) %}
 {% set portfolioMaterialKeys = [] %}
@@ -135,36 +136,16 @@ schemaMentions:
   <div class="site-shell">
     <div class="row g-3 text-center">
       <div class="col-6 col-lg-3">
-        <div class="card border-0 shadow-sm h-100 site-kpi-card research-kpi-card">
-          <div class="card-body py-3">
-            <div class="site-kpi-number research-kpi-number">20+</div>
-            <div class="site-kpi-label research-kpi-label">vuotta yliopisto-opetusta</div>
-          </div>
-        </div>
+        {{ ui.kpiCard("vuotta yliopisto-opetusta", "20+", { extraClass: "research-kpi-card" }) }}
       </div>
       <div class="col-6 col-lg-3">
-        <div class="card border-0 shadow-sm h-100 site-kpi-card research-kpi-card">
-          <div class="card-body py-3">
-            <div class="site-kpi-number research-kpi-number">{{ totalSupervised }}</div>
-            <div class="site-kpi-label research-kpi-label">ohjattua opinnäytettä</div>
-          </div>
-        </div>
+        {{ ui.kpiCard("ohjattua opinnäytettä", totalSupervised, { extraClass: "research-kpi-card" }) }}
       </div>
       <div class="col-6 col-lg-3">
-        <div class="card border-0 shadow-sm h-100 site-kpi-card research-kpi-card">
-          <div class="card-body py-3">
-            <div class="site-kpi-number research-kpi-number">{{ portfolioMaterialKeys | length }}</div>
-            <div class="site-kpi-label research-kpi-label">esitystä tai oppimateriaalia</div>
-          </div>
-        </div>
+        {{ ui.kpiCard("esitystä tai oppimateriaalia", portfolioMaterialKeys | length, { extraClass: "research-kpi-card" }) }}
       </div>
       <div class="col-6 col-lg-3">
-        <div class="card border-0 shadow-sm h-100 site-kpi-card research-kpi-card">
-          <div class="card-body py-3">
-            <div class="site-kpi-number research-kpi-number">3</div>
-            <div class="site-kpi-label research-kpi-label">merkittävää tunnustusta</div>
-          </div>
-        </div>
+        {{ ui.kpiCard("merkittävää tunnustusta", "3", { extraClass: "research-kpi-card" }) }}
       </div>
     </div>
     <p class="portfolio-stat-note mb-0">

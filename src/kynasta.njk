@@ -28,6 +28,7 @@ schemaMentions:
     name: "Pohjois-Pohjanmaan hyvinvointialue"
     url: "https://pohde.fi/"
 ---
+{% import "ui.njk" as ui %}
 {% set statementItems = [] %}
 {% for item in (collections.publications or []) %}
   {% if item.data.type == "lausunto" %}
@@ -185,52 +186,22 @@ schemaMentions:
       <div class="card-body">
         <div class="row g-3 mb-4">
           <div class="col-6 col-md-4 col-lg-2">
-            <a href="#aloitteet" class="summary-kpi-link">
-              <div class="summary-kpi kpi-color-aloitteet p-3 rounded border border-start border-4 h-100">
-                <div class="summary-kpi-label">Aloitteet</div>
-                <div id="kpi-aloitteet" class="summary-kpi-value">0</div>
-              </div>
-            </a>
+            {{ ui.kpiCard("Aloitteet", "0", { href: "#aloitteet", id: "kpi-aloitteet", tone: "aloitteet" }) }}
           </div>
           <div class="col-6 col-md-4 col-lg-2">
-            <a href="#blogi" class="summary-kpi-link">
-              <div class="summary-kpi kpi-color-blogi p-3 rounded border border-start border-4 h-100">
-                <div class="summary-kpi-label">Blogi</div>
-                <div id="kpi-blogi" class="summary-kpi-value">0</div>
-              </div>
-            </a>
+            {{ ui.kpiCard("Blogi", "0", { href: "#blogi", id: "kpi-blogi", tone: "blogi" }) }}
           </div>
           <div class="col-6 col-md-4 col-lg-2">
-            <a href="#kolumnit" class="summary-kpi-link">
-              <div class="summary-kpi kpi-color-kolumnit p-3 rounded border border-start border-4 h-100">
-                <div class="summary-kpi-label">Kolumnit</div>
-                <div id="kpi-kolumnit" class="summary-kpi-value">0</div>
-              </div>
-            </a>
+            {{ ui.kpiCard("Kolumnit", "0", { href: "#kolumnit", id: "kpi-kolumnit", tone: "kolumnit" }) }}
           </div>
           <div class="col-6 col-md-4 col-lg-2">
-            <a href="#lausunnot" class="summary-kpi-link">
-              <div class="summary-kpi kpi-color-lausunnot p-3 rounded border border-start border-4 h-100">
-                <div class="summary-kpi-label">Lausunnot</div>
-                <div id="kpi-lausunnot" class="summary-kpi-value">0</div>
-              </div>
-            </a>
+            {{ ui.kpiCard("Lausunnot", "0", { href: "#lausunnot", id: "kpi-lausunnot", tone: "lausunnot" }) }}
           </div>
           <div class="col-6 col-md-4 col-lg-2">
-            <a href="#mielipiteet" class="summary-kpi-link">
-              <div class="summary-kpi kpi-color-mielipiteet p-3 rounded border border-start border-4 h-100">
-                <div class="summary-kpi-label">Mielipiteet</div>
-                <div id="kpi-mielipiteet" class="summary-kpi-value">0</div>
-              </div>
-            </a>
+            {{ ui.kpiCard("Mielipiteet", "0", { href: "#mielipiteet", id: "kpi-mielipiteet", tone: "mielipiteet" }) }}
           </div>
           <div class="col-6 col-md-4 col-lg-2">
-            <a href="#puheet" class="summary-kpi-link">
-              <div class="summary-kpi kpi-color-puheet p-3 rounded border border-start border-4 h-100">
-                <div class="summary-kpi-label">Puheet</div>
-                <div id="kpi-puheet" class="summary-kpi-value">0</div>
-              </div>
-            </a>
+            {{ ui.kpiCard("Puheet", "0", { href: "#puheet", id: "kpi-puheet", tone: "puheet" }) }}
           </div>
         </div>
 
@@ -341,12 +312,7 @@ schemaMentions:
           </table>
         </div>
       </div>
-      <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top kynasta-table-pager kynasta-table-pager--bottom">
-        <small id="lausunnot-info" class="text-muted"></small>
-        <nav aria-label="Sivutus">
-          <ul id="lausunnot-pagination" class="pagination pagination-sm mb-0 flex-wrap site-pag"></ul>
-        </nav>
-      </div>
+      {{ ui.paginationBar("lausunnot-info", "lausunnot-pagination", { extraClass: "card-footer bg-transparent kynasta-table-pager" }) }}
     </div>
   </div>
 </section>
@@ -471,12 +437,7 @@ schemaMentions:
           </table>
         </div>
       </div>
-      <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top kynasta-table-pager kynasta-table-pager--bottom">
-        <small id="mielipiteet-info" class="text-muted"></small>
-        <nav aria-label="Sivutus">
-          <ul id="mielipiteet-pagination" class="pagination pagination-sm mb-0 flex-wrap site-pag"></ul>
-        </nav>
-      </div>
+      {{ ui.paginationBar("mielipiteet-info", "mielipiteet-pagination", { extraClass: "card-footer bg-transparent kynasta-table-pager" }) }}
     </div>
   </div>
 </section>
@@ -557,12 +518,7 @@ schemaMentions:
           </table>
         </div>
       </div>
-      <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top kynasta-table-pager kynasta-table-pager--bottom">
-        <small id="kolumnit-info" class="text-muted"></small>
-        <nav aria-label="Sivutus">
-          <ul id="kolumnit-pagination" class="pagination pagination-sm mb-0 flex-wrap site-pag"></ul>
-        </nav>
-      </div>
+      {{ ui.paginationBar("kolumnit-info", "kolumnit-pagination", { extraClass: "card-footer bg-transparent kynasta-table-pager" }) }}
     </div>
   </div>
 </section>
@@ -632,12 +588,7 @@ schemaMentions:
           </table>
         </div>
       </div>
-      <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top kynasta-table-pager kynasta-table-pager--bottom">
-        <small id="aloitteet-info" class="text-muted"></small>
-        <nav aria-label="Sivutus">
-          <ul id="aloitteet-pagination" class="pagination pagination-sm mb-0 flex-wrap site-pag"></ul>
-        </nav>
-      </div>
+      {{ ui.paginationBar("aloitteet-info", "aloitteet-pagination", { extraClass: "card-footer bg-transparent kynasta-table-pager" }) }}
     </div>
   </div>
 </section>
@@ -718,12 +669,7 @@ schemaMentions:
           </table>
         </div>
       </div>
-      <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top kynasta-table-pager kynasta-table-pager--bottom">
-        <small id="puheet-info" class="text-muted"></small>
-        <nav aria-label="Sivutus">
-          <ul id="puheet-pagination" class="pagination pagination-sm mb-0 flex-wrap site-pag"></ul>
-        </nav>
-      </div>
+      {{ ui.paginationBar("puheet-info", "puheet-pagination", { extraClass: "card-footer bg-transparent kynasta-table-pager" }) }}
     </div>
   </div>
 </section>
@@ -802,8 +748,8 @@ schemaMentions:
           </table>
         </div>
       </div>
-      <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top kynasta-table-pager kynasta-table-pager--bottom">
-        <small id="blog-info" class="text-muted"></small>
+      <div class="card-footer bg-transparent site-pagination-bar site-pagination-bar--bottom kynasta-table-pager">
+        <small id="blog-info" class="site-pagination-info text-muted"></small>
         <div class="d-flex align-items-center gap-3">
           <nav aria-label="Sivutus">
             <ul id="blog-pagination" class="pagination pagination-sm mb-0 flex-wrap site-pag"></ul>
@@ -1151,24 +1097,10 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
   min-height: 260px;
 }
 
-.kynasta-table-pager {
-  padding: 0.75rem 1rem;
-}
-
-.kynasta-table-pager .page-link {
-  min-width: 2.25rem;
-  text-align: center;
-}
-
 .kynasta-table-pager--top {
   position: sticky;
   top: calc(var(--site-header-offset, 0px) + 0.75rem);
   z-index: 7;
-  background: var(--bs-body-bg);
-}
-
-html[data-bs-theme="dark"]:not([data-a11y-bg]) .kynasta-table-pager--top {
-  background: var(--bs-body-bg);
 }
 
 .kynasta-mobile-path,
@@ -1453,10 +1385,10 @@ function renderPaginationShared(ul, total, currentPage, onPageChange) {
       if (!tableWrap) return null;
 
       dock = document.createElement('div');
-      dock.className = 'kynasta-table-pager kynasta-table-pager--top d-none d-lg-flex flex-wrap align-items-center justify-content-between gap-2 border-bottom';
+      dock.className = 'site-pagination-bar site-pagination-bar--top kynasta-table-pager kynasta-table-pager--top d-none d-lg-flex';
       dock.setAttribute('data-pagination-top-for', paginationId);
       dock.innerHTML = `
-        <small class="text-muted" data-pagination-top-info></small>
+        <small class="site-pagination-info text-muted" data-pagination-top-info></small>
         <nav aria-label="Sivutus taulukon yläreunassa">
           <ul class="pagination pagination-sm mb-0 flex-wrap site-pag"></ul>
         </nav>

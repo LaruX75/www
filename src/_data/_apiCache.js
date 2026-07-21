@@ -3,6 +3,7 @@ const path = require("path");
 
 const CACHE_DIR = path.join(process.cwd(), ".cache", "api-fallback");
 const OFFLINE_FETCH_ENV_KEYS = [
+  "CACHE_ONLY",
   "PLAYWRIGHT_A11Y_OFFLINE",
   "ELEVENTY_OFFLINE",
   "A11Y_OFFLINE",

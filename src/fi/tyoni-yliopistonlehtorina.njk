@@ -8,6 +8,8 @@ description: Yliopistonlehtorin työssäni yhdistyvät opettajankoulutus, tutkim
 templateEngineOverride: njk
 ---
 
+{% import "ui.njk" as ui %}
+
 {%- set peerReviewedCount = 0 -%}
 {%- for pub in researchfi -%}
   {%- if pub.peerReviewed -%}{%- set peerReviewedCount = peerReviewedCount + 1 -%}{%- endif -%}
@@ -172,22 +174,10 @@ templateEngineOverride: njk
       <p class="ylwork-section-lead mb-0">{{ workCopy.evidenceLead }}</p>
     </div>
     <div class="ylwork-kpi-grid">
-      <article class="site-kpi-card">
-        <span class="site-kpi-number">{{ researchfi.length }}</span>
-        <span class="site-kpi-label">julkaisua</span>
-      </article>
-      <article class="site-kpi-card">
-        <span class="site-kpi-number">{{ peerReviewedCount }}</span>
-        <span class="site-kpi-label">vertaisarvioitua</span>
-      </article>
-      <article class="site-kpi-card">
-        <span class="site-kpi-number">{{ theses.stats.totalGradut }}</span>
-        <span class="site-kpi-label">ohjattua gradua</span>
-      </article>
-      <article class="site-kpi-card">
-        <span class="site-kpi-number">{{ theses.stats.totalKandit }}</span>
-        <span class="site-kpi-label">ohjattua kandidaatintyötä</span>
-      </article>
+      {{ ui.kpiCard("julkaisua", researchfi.length) }}
+      {{ ui.kpiCard("vertaisarvioitua", peerReviewedCount) }}
+      {{ ui.kpiCard("ohjattua gradua", theses.stats.totalGradut) }}
+      {{ ui.kpiCard("ohjattua kandidaatintyötä", theses.stats.totalKandit) }}
     </div>
   </div>
 </section>

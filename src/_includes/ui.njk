@@ -1,0 +1,34 @@
+{% macro kpiCard(label, value, options={}) %}
+{% set tone = options.tone or "default" %}
+{% set href = options.href or "" %}
+{% set id = options.id or "" %}
+{% set title = options.title or "" %}
+{% set extraClass = options.extraClass or "" %}
+{% set content %}
+  <span{% if id %} id="{{ id }}"{% endif %}{% if title %} title="{{ title }}"{% endif %} class="site-kpi-number">{{ value }}</span>
+  <span class="site-kpi-label">{{ label }}</span>
+{% endset %}
+{% if href %}
+<a href="{{ href }}" class="site-kpi-link {{ extraClass }}">
+  <span class="site-kpi-card site-kpi-card--{{ tone }}">
+    {{ content | safe }}
+  </span>
+</a>
+{% else %}
+<div class="site-kpi-card site-kpi-card--{{ tone }} {{ extraClass }}">
+  {{ content | safe }}
+</div>
+{% endif %}
+{% endmacro %}
+
+{% macro paginationBar(infoId, paginationId, options={}) %}
+{% set label = options.label or "Sivutus" %}
+{% set position = options.position or "bottom" %}
+{% set extraClass = options.extraClass or "" %}
+<div class="site-pagination-bar site-pagination-bar--{{ position }} {{ extraClass }}">
+  <small{% if infoId %} id="{{ infoId }}"{% endif %} class="site-pagination-info text-muted"></small>
+  <nav aria-label="{{ label }}">
+    <ul{% if paginationId %} id="{{ paginationId }}"{% endif %} class="pagination pagination-sm mb-0 flex-wrap site-pag"></ul>
+  </nav>
+</div>
+{% endmacro %}

@@ -82,6 +82,44 @@
   text-align: center;
 }
 
+.site-pagination-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+}
+
+.site-pagination-bar--top {
+  margin: 0 0 0.85rem;
+  border-bottom: 1px solid var(--bs-border-color);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--bs-secondary-bg) 64%, transparent), transparent);
+}
+
+.site-pagination-bar--bottom {
+  border-top: 1px solid var(--bs-border-color);
+}
+
+.site-pagination-info {
+  font-weight: 700;
+}
+
+.site-pagination-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+@media (max-width: 575.98px) {
+  .site-pagination-bar {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
 /* Shared thesis table/list styles */
 .thesis-abstract-snippet {
   display: -webkit-box;

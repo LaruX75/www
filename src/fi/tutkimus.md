@@ -31,6 +31,7 @@ schemaMentions:
     url: "https://www.oulu.fi/fi/tiedekunnat/kasvatustieteiden-tiedekunta"
 ---
 
+{% import "ui.njk" as ui %}
 {%- set articleCount = 0 -%}
 {%- set peerReviewedCount = 0 -%}
 {%- set countA = 0 -%}
@@ -90,36 +91,16 @@ schemaMentions:
       <div class="col-lg-4">
         <div class="row g-3 text-center">
           <div class="col-6">
-            <div class="card border-0 shadow-sm h-100 site-kpi-card research-kpi-card">
-              <div class="card-body py-3">
-                <div class="site-kpi-number research-kpi-number">{{ researchfi.length }}</div>
-                <div class="site-kpi-label research-kpi-label">julkaisua</div>
-              </div>
-            </div>
+            {{ ui.kpiCard("julkaisua", researchfi.length, { extraClass: "research-kpi-card" }) }}
           </div>
           <div class="col-6">
-            <div class="card border-0 shadow-sm h-100 site-kpi-card research-kpi-card">
-              <div class="card-body py-3">
-                <div class="site-kpi-number research-kpi-number">{{ peerReviewedCount }}</div>
-                <div class="site-kpi-label research-kpi-label">vertaisarvioitua</div>
-              </div>
-            </div>
+            {{ ui.kpiCard("vertaisarvioitua", peerReviewedCount, { extraClass: "research-kpi-card" }) }}
           </div>
           <div class="col-6">
-            <div class="card border-0 shadow-sm h-100 site-kpi-card research-kpi-card">
-              <div class="card-body py-3">
-                <div class="site-kpi-number research-kpi-number">{{ theses.stats.totalGradut }}</div>
-                <div class="site-kpi-label research-kpi-label">ohjattua gradua</div>
-              </div>
-            </div>
+            {{ ui.kpiCard("ohjattua gradua", theses.stats.totalGradut, { extraClass: "research-kpi-card" }) }}
           </div>
           <div class="col-6">
-            <div class="card border-0 shadow-sm h-100 site-kpi-card research-kpi-card">
-              <div class="card-body py-3">
-                <div class="site-kpi-number research-kpi-number">{{ theses.stats.totalKandit }}</div>
-                <div class="site-kpi-label research-kpi-label">ohjattua kandidaatintyötä</div>
-              </div>
-            </div>
+            {{ ui.kpiCard("ohjattua kandidaatintyötä", theses.stats.totalKandit, { extraClass: "research-kpi-card" }) }}
           </div>
         </div>
       </div>
@@ -436,36 +417,16 @@ document.addEventListener("DOMContentLoaded", () => {
     {% if researchfi.length %}
     <div class="row g-3 mb-4">
       <div class="col-6 col-md-3">
-        <div class="card text-center border-primary h-100 site-kpi-card research-kpi-card">
-          <div class="card-body py-3">
-            <div class="site-kpi-number research-kpi-number mb-1">{{ countA }}</div>
-            <div class="site-kpi-label research-kpi-label">Lehtiartikkelit (A)</div>
-          </div>
-        </div>
+        {{ ui.kpiCard("Lehtiartikkelit (A)", countA, { extraClass: "research-kpi-card" }) }}
       </div>
       <div class="col-6 col-md-3">
-        <div class="card text-center border-primary h-100 site-kpi-card research-kpi-card">
-          <div class="card-body py-3">
-            <div class="site-kpi-number research-kpi-number mb-1">{{ countConf }}</div>
-            <div class="site-kpi-label research-kpi-label">Konferenssit</div>
-          </div>
-        </div>
+        {{ ui.kpiCard("Konferenssit", countConf, { extraClass: "research-kpi-card" }) }}
       </div>
       <div class="col-6 col-md-3">
-        <div class="card text-center border-primary h-100 site-kpi-card research-kpi-card">
-          <div class="card-body py-3">
-            <div class="site-kpi-number research-kpi-number mb-1">{{ countC }}</div>
-            <div class="site-kpi-label research-kpi-label">Kirjat &amp; väitöskirjat</div>
-          </div>
-        </div>
+        {{ ui.kpiCard("Kirjat & väitöskirjat", countC, { extraClass: "research-kpi-card" }) }}
       </div>
       <div class="col-6 col-md-3">
-        <div class="card text-center border-primary h-100 site-kpi-card research-kpi-card">
-          <div class="card-body py-3">
-            <div class="site-kpi-number research-kpi-number mb-1">{{ countOther }}</div>
-            <div class="site-kpi-label research-kpi-label">Muut</div>
-          </div>
-        </div>
+        {{ ui.kpiCard("Muut", countOther, { extraClass: "research-kpi-card" }) }}
       </div>
     </div>
     <div class="card border-0 shadow-sm">
