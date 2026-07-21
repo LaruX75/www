@@ -6,6 +6,26 @@ layout: base.njk
 lang: fi
 description: "Jari Jukka Larun ansioluettelo: tutkinnot, työkokemus, tutkimusrahoitus, julkaisut ja ydinosaaminen."
 templateEngineOverride: md
+schemaAbout:
+  - "@type": "Thing"
+    name: "Kasvatustieteen tohtori"
+    description: "Väitöskirja yhteisöllisestä oppimisesta ja mobiiliteknologiasta, Oulun yliopisto."
+  - "@type": "Thing"
+    name: "Yliopistonlehtori"
+    description: "Teknologiatuettu oppiminen ja opetus, Kasvatustieteiden tiedekunta."
+  - "@type": "Thing"
+    name: "Tutkimusrahoitus ja hankkeet"
+    description: "Kansalliset ja kansainväliset tutkimushankkeet oppimisteknologiasta."
+  - "@type": "Thing"
+    name: "Julkaisutoiminta"
+    description: "Vertaisarvioidut artikkelit, konferenssijulkaisut ja kirjoitukset."
+schemaMentions:
+  - "@type": "CollegeOrUniversity"
+    name: "Oulun yliopisto"
+    url: "https://www.oulu.fi/"
+  - "@type": "Organization"
+    name: "Kasvatustieteiden tiedekunta, Oulun yliopisto"
+    url: "https://www.oulu.fi/fi/tiedekunnat/kasvatustieteiden-tiedekunta"
 ---
 
 <section class="py-5 bg-body-tertiary border-bottom">

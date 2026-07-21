@@ -4,6 +4,29 @@ title: Opetusportfolio
 description: Jari Larun opetusportfolio – yli 20 vuoden kokemus teknologiatuetusta oppimisesta ja opetuksesta Oulun yliopistossa. Sisältää opetusajattelun, ohjauksen, oppimisympäristöt, kehittämistyön ja tunnustukset.
 permalink: /portfolio/
 translationKey: portfolio_index
+schemaAbout:
+  - "@type": "Thing"
+    name: "Opetusajattelu"
+    description: "Pedagoginen filosofia ja lähestymistapa oppimiseen ja opettamiseen."
+  - "@type": "Thing"
+    name: "Opetuskokemus"
+    description: "Yli 20 vuoden kokemus teknologiatuetusta oppimisesta Oulun yliopistossa."
+  - "@type": "Thing"
+    name: "Opinnäytetyöohjaus"
+    description: "Pro gradu- ja kandidaatintöiden ohjaus kasvatustieteissä."
+  - "@type": "Thing"
+    name: "Oppimisympäristöt"
+    description: "Digitaalisten oppimisympäristöjen suunnittelu ja kehittäminen."
+  - "@type": "Thing"
+    name: "Opetuksen tunnustukset"
+    description: "Palkinnot ja tunnustukset opetustyöstä ja kehittämistoiminnasta."
+schemaMentions:
+  - "@type": "CollegeOrUniversity"
+    name: "Oulun yliopisto"
+    url: "https://www.oulu.fi/"
+  - "@type": "Organization"
+    name: "Kasvatustieteiden tiedekunta, Oulun yliopisto"
+    url: "https://www.oulu.fi/fi/tiedekunnat/kasvatustieteiden-tiedekunta"
 ---
 
 {% set totalSupervised = (theses.stats.totalGradut or 0) + (theses.stats.totalKandit or 0) %}
