@@ -7,7 +7,7 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-async function cleanWithRetry(maxRetries = 5) {
+async function cleanWithRetry(maxRetries = 15) {
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     try {
       fs.rmSync(target, { recursive: true, force: true });
@@ -17,7 +17,7 @@ async function cleanWithRetry(maxRetries = 5) {
       if (error.code !== "ENOTEMPTY" || attempt === maxRetries) {
         throw error;
       }
-      await sleep(80 * attempt);
+      await sleep(150 * attempt);
     }
   }
 }

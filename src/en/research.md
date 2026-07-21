@@ -9,6 +9,8 @@ description: "Jari Laru's research profile: collaborative learning, mobile learn
 templateEngineOverride: njk
 ---
 
+{% import "ui.njk" as ui %}
+
 {%- set peerReviewedCount = 0 -%}
 {%- for pub in researchfi -%}
   {%- if pub.peerReviewed -%}{%- set peerReviewedCount = peerReviewedCount + 1 -%}{%- endif -%}
@@ -31,36 +33,16 @@ templateEngineOverride: njk
       <div class="col-lg-4">
         <div class="row g-3 text-center">
           <div class="col-6">
-            <div class="card border-0 shadow-sm h-100 site-kpi-card research-kpi-card">
-              <div class="card-body py-3">
-                <div class="site-kpi-number research-kpi-number">{{ researchfi.length }}</div>
-                <div class="site-kpi-label research-kpi-label">publications</div>
-              </div>
-            </div>
+            {{ ui.kpiCard("publications", researchfi.length, { extraClass: "research-kpi-card" }) }}
           </div>
           <div class="col-6">
-            <div class="card border-0 shadow-sm h-100 site-kpi-card research-kpi-card">
-              <div class="card-body py-3">
-                <div class="site-kpi-number research-kpi-number">{{ peerReviewedCount }}</div>
-                <div class="site-kpi-label research-kpi-label">peer-reviewed</div>
-              </div>
-            </div>
+            {{ ui.kpiCard("peer-reviewed", peerReviewedCount, { extraClass: "research-kpi-card" }) }}
           </div>
           <div class="col-6">
-            <div class="card border-0 shadow-sm h-100 site-kpi-card research-kpi-card">
-              <div class="card-body py-3">
-                <div class="site-kpi-number research-kpi-number">{{ theses.stats.totalGradut }}</div>
-                <div class="site-kpi-label research-kpi-label">master's theses supervised</div>
-              </div>
-            </div>
+            {{ ui.kpiCard("master's theses supervised", theses.stats.totalGradut, { extraClass: "research-kpi-card" }) }}
           </div>
           <div class="col-6">
-            <div class="card border-0 shadow-sm h-100 site-kpi-card research-kpi-card">
-              <div class="card-body py-3">
-                <div class="site-kpi-number research-kpi-number">{{ theses.stats.totalKandit }}</div>
-                <div class="site-kpi-label research-kpi-label">bachelor's theses supervised</div>
-              </div>
-            </div>
+            {{ ui.kpiCard("bachelor's theses supervised", theses.stats.totalKandit, { extraClass: "research-kpi-card" }) }}
           </div>
         </div>
       </div>

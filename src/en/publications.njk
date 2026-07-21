@@ -391,15 +391,20 @@ document.addEventListener('DOMContentLoaded', function() {
       // 5. Build Pagination UI
       let paginationNav = tableContainer.querySelector('.pub-pagination');
       if (!paginationNav) {
-        paginationNav = document.createElement('nav');
+        paginationNav = document.createElement('div');
         const containerId = tableContainer.id || Math.random().toString(36).substring(7);
-        paginationNav.setAttribute('aria-label', `Table pagination ${containerId}`);
-        paginationNav.className = 'pub-pagination d-flex justify-content-center mt-3';
-        paginationNav.innerHTML = '<ul class="pagination pagination-sm mb-3"></ul>';
+        paginationNav.className = 'pub-pagination site-pagination-bar site-pagination-bar--bottom mt-3';
+        paginationNav.innerHTML = `
+          <small class="site-pagination-info text-muted"></small>
+          <nav aria-label="Table pagination ${containerId}">
+            <ul class="pagination pagination-sm mb-0 flex-wrap site-pag"></ul>
+          </nav>
+        `;
         tableContainer.appendChild(paginationNav);
       }
 
     const ul = paginationNav.querySelector('ul');
+    const paginationInfo = paginationNav.querySelector('.site-pagination-info');
     let currentPage = 1;
     let filteredRows = [...rows];
     let filteredMobileItems = [...mobileItems];
@@ -419,6 +424,12 @@ document.addEventListener('DOMContentLoaded', function() {
       const end = start + ITEMS_PER_PAGE;
       filteredRows.slice(start, end).forEach(r => r.style.display = '');
       filteredMobileItems.slice(start, end).forEach(r => r.style.display = '');
+
+      if (paginationInfo) {
+        paginationInfo.textContent = filteredRows.length > 0
+          ? `${start + 1}-${Math.min(end, filteredRows.length)} / ${filteredRows.length} publications`
+          : 'No publications';
+      }
 
       renderPaginationControls(totalPages);
     }

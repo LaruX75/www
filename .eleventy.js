@@ -6,7 +6,6 @@ const markdownItAnchor = require("markdown-it-anchor");
 const fs = require("fs");
 const path = require("path");
 const sharp = require("sharp");
-const { default: EleventyPluginOgImage } = require("eleventy-plugin-og-image");
 const brokenLinksPlugin = require("eleventy-plugin-broken-links");
 const registerCollections = require("./eleventy.collections.js");
 const registerFilters = require("./eleventy.filters.js");
@@ -181,7 +180,7 @@ function writeExternalLinkReport({ brokenLinks, forbiddenLinks, redirectLinks, a
   console.log(`[plugin-broken-links] External link report written: ${reportPath}`);
 }
 
-module.exports = function (eleventyConfig) {
+module.exports = async function (eleventyConfig) {
   eleventyConfig.amendLibrary("md", (mdLib) => {
     mdLib.use(markdownItAnchor, {
       level: [2, 3, 4]
@@ -271,6 +270,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(pluginNavigation);
   eleventyConfig.addPlugin(pluginToc);
   if (shouldGenerateOgImages) {
+    const { default: EleventyPluginOgImage } = await import("eleventy-plugin-og-image");
     eleventyConfig.addPlugin(EleventyPluginOgImage, {
       outputDir: "../og-cache",
       urlPath: "og-images",
