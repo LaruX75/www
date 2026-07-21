@@ -1,11 +1,11 @@
 ---
-title: Ensimmäinen valtuustopuheenvuoro koulujen resursseista
+title: 'Puheenvuoro valtuustossa § 96: Koulujen resurssit ratkaisevat'
 date: '2017-06-05'
 description: 'Ensimmäinen puheenvuoroni Oulun kaupunginvaltuustossa käsitteli opetuksen ja oppimisen arjen resursseja talousarvion suunnitteluohjeen keskustelussa.'
 event: Oulun kaupunginvaltuusto
 meeting: Oulun kaupunginvaltuusto 6/2017
 bid: 13272
-asiakohta: Talousarvio 2018 ja taloussuunnitelma 2019-2020 suunnitteluohje
+asiakohta: § 96 – Talousarvio 2018 ja taloussuunnitelma 2019-2020 suunnitteluohje
 agenda_title: Talousarvio 2018 ja taloussuunnitelma 2019-2020 suunnitteluohje
 agenda_url: 'https://asiakirjat.ouka.fi/ktwebscr/pk_asil_tweb.htm?bid=13272'
 categories:
