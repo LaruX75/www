@@ -138,6 +138,8 @@
       "url": "{{ pageUrl }}",
       "image": "{{ resolvedOgImage | absoluteUrl(site.url or "https://www.jarilaru.fi") }}",
       "inLanguage": "{{ "fi-FI" if currentLang == "fi" else "en-US" }}",
+      {% if schemaAbout and schemaAbout.length %}"about": {{ schemaAbout | jsonSafe | safe }},{% endif %}
+      {% if schemaMentions and schemaMentions.length %}"mentions": {{ schemaMentions | jsonSafe | safe }},{% endif %}
       "isPartOf": {
         "@id": "{{ site.url or "https://www.jarilaru.fi" }}"
       },

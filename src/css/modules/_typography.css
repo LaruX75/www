@@ -41,7 +41,7 @@
 .bss-scope h4,
 .bss-scope h5,
 .bss-scope h6 {
-  font-family: 'Bree Serif', Georgia, 'Times New Roman', serif;
+  font-family: var(--bs-font-family-heading);
 }
 
 .bss-scope h4 {
@@ -50,14 +50,14 @@
 
 /* Article page H1 is outside .bss-scope — apply Bree Serif explicitly */
 .page-content h1 {
-  font-family: 'Bree Serif', Georgia, 'Times New Roman', serif;
+  font-family: var(--bs-font-family-heading);
   line-height: 1.2;
   letter-spacing: -0.01em;
 }
 
 /* Card section headings in content pages */
 .card-body > h2 {
-  font-family: 'Bree Serif', Georgia, 'Times New Roman', serif;
+  font-family: var(--bs-font-family-heading);
   font-size: 1.25rem;
   font-weight: 700;
 }
@@ -83,4 +83,3 @@ html,
 body {
   overflow-x: clip;
 }
-

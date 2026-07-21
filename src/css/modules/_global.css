@@ -9,6 +9,10 @@
   margin-inline: auto;
 }
 
+.site-shell--wide {
+  width: min(1320px, calc(100% - clamp(2rem, 8vw, 7rem)));
+}
+
 /* ===== SHARED CONTENT DETAIL PAGES ===== */
 
 .content-detail-hero {
@@ -38,7 +42,7 @@
 }
 
 .content-detail-title {
-  font-family: 'Bree Serif', serif;
+  font-family: var(--bs-font-family-heading);
   font-size: clamp(2.4rem, 6vw, 4.4rem);
   line-height: 0.98;
   margin: 0;
@@ -596,30 +600,30 @@ html[data-bs-theme="dark"]:not([data-a11y-bg]) .list-group-item .text-muted {
 
 /* Light mode: black outline style for ALL buttons (except close/link) */
 .btn:not(.btn-close):not(.btn-link) {
-  background-color: transparent !important;
-  color: #000000 !important;
-  border: 1px solid #000000 !important;
+  background-color: var(--site-btn-bg) !important;
+  color: var(--site-btn-color) !important;
+  border: 1px solid var(--site-btn-border-color) !important;
   font-weight: 500;
   transition: all 0.2s;
 }
 
 .btn:not(.btn-close):not(.btn-link):hover {
-  background-color: #000000 !important;
-  color: #ffffff !important;
-  border-color: #000000 !important;
+  background-color: var(--site-btn-hover-bg) !important;
+  color: var(--site-btn-hover-color) !important;
+  border-color: var(--site-btn-hover-border-color) !important;
 }
 
 /* Dark mode: white translucent outline for ALL buttons (except close/link) */
 [data-bs-theme="dark"] .btn:not(.btn-close):not(.btn-link) {
-  background-color: transparent !important;
-  color: #ffffff !important;
-  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  background-color: var(--site-btn-bg) !important;
+  color: var(--site-btn-color) !important;
+  border-color: var(--site-btn-border-color) !important;
 }
 
 [data-bs-theme="dark"] .btn:not(.btn-close):not(.btn-link):hover {
-  background-color: rgba(255, 255, 255, 0.1) !important;
-  color: #ffffff !important;
-  border-color: rgba(255, 255, 255, 0.6) !important;
+  background-color: var(--site-btn-hover-bg) !important;
+  color: var(--site-btn-hover-color) !important;
+  border-color: var(--site-btn-hover-border-color) !important;
 }
 
 /* Citation export modals need local button styles instead of the global outline override */

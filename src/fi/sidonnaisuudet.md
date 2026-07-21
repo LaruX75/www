@@ -2,361 +2,568 @@
 title: Sidonnaisuudet ja vaalirahoitus
 date: 2026-07-21
 description: "Jari Larun sidonnaisuudet ja vaalirahoitusilmoitukset: nykyiset tehtävät, sidonnaisuudet, sivutoimet ja vaalikampanjoiden rahoituksen lähteet."
-permalink: /sidonnaisuudet/
-templateEngineOverride: md
+permalink: /poliittinen-avoimuus/
+layout: base.njk
+templateEngineOverride: njk
+pageShell: true
+pageShellClass: site-shell site-shell--wide
+pageScopeClass: disclosures-page-scope
 translationKey: disclosures
 source_url: "https://www.jarilaru.fi/sidonnaisuudet/"
+schemaAbout:
+  - "@type": "Thing"
+    name: "Sidonnaisuudet"
+    description: "Päätöksenteon avoimuuteen liittyvät luottamustehtävät, työroolit, sivutoimet ja muut ilmoitettavat sidokset."
+  - "@type": "Thing"
+    name: "Vaalirahoitus"
+    description: "Vaalikampanjoiden kulut, rahoituksen lähteet ja viralliset vaalirahoitusilmoitukset."
+  - "@type": "Thing"
+    name: "Läpinäkyvä päätöksenteko"
+schemaMentions:
+  - "@type": "GovernmentOrganization"
+    name: "Valtiontalouden tarkastusvirasto"
+    url: "https://www.vaalirahoitusvalvonta.fi/"
+  - "@type": "GovernmentOrganization"
+    name: "Oulun kaupunki"
+    url: "https://www.ouka.fi/"
+  - "@type": "Organization"
+    name: "Oulun kaupunginvaltuusto"
+    url: "https://www.ouka.fi/valtuusto"
+  - "@type": "Organization"
+    name: "Pohjois-Pohjanmaan hyvinvointialue"
+    url: "https://pohde.fi/"
+  - "@type": "CollegeOrUniversity"
+    name: "Oulun yliopisto"
+    url: "https://www.oulu.fi/"
+  - "@type": "Organization"
+    name: "Larux tmi"
+  - "@type": "Organization"
+    name: "Kansallinen Kokoomus"
+    url: "https://www.kokoomus.fi/"
 ---
 <section class="disclosures-page">
   <header class="disclosures-hero">
-    <div>
-      <p class="disclosures-eyebrow">Läpinäkyvyys</p>
+    <div class="disclosures-hero-copy">
+      <p class="disclosures-kicker">Läpinäkyvyys</p>
       <h1>Sidonnaisuudet ja vaalirahoitus</h1>
-      <p class="disclosures-lead">Tämä sivu kokoaa päätöksenteon kannalta olennaiset sidonnaisuuteni sekä vaalirahoitusilmoitukset samaan näkymään. Tarkoitus on, että tehtävät, sivutoimet ja kampanjarahoitus ovat arvioitavissa ilman erillistä etsimistä.</p>
+      <p class="disclosures-lead">Täältä löytyvät päätöksenteon kannalta olennaiset sidonnaisuuteni sekä ne vaalirahoitusilmoitukset, joiden tiedot löytyvät virallisesta vaalirahoitusrekisteristä.</p>
+      <aside class="disclosures-hero-note" aria-labelledby="disclosures-note-title">
+        <p class="disclosures-card-kicker" id="disclosures-note-title">Rajaus</p>
+        <strong>Sivu kokoaa tiedot yhteen</strong>
+        <p>Tämä sivu ei korvaa virallisia rekistereitä. Se kokoaa keskeiset sidonnaisuus- ja vaalirahoitustiedot samaan näkymään ja ohjaa tarkistamaan tiedot alkuperäisistä lähteistä.</p>
+      </aside>
+      <div class="disclosures-hero-actions">
+        <a href="#sidonnaisuudet" class="btn btn-read-more rounded-pill px-4">Sidonnaisuudet</a>
+        <a href="#vaalirahoitus" class="btn btn-outline-primary rounded-pill px-4">Vaalirahoitusilmoitukset</a>
+      </div>
     </div>
-    <aside class="disclosures-hero-card" aria-label="Sivun yhteenveto">
-      <span>Nykyinen kokonaisuus</span>
-      <strong>Luottamustoimet, työrooli, sivutoimi ja vaalirahoitus</strong>
-      <p>Vaalirahoituksen viralliset tiedot linkittyvät Valtiontalouden tarkastusviraston ylläpitämään vaali- ja puoluerahoitusvalvonnan rekisteriin.</p>
+
+    <aside class="disclosures-hero-panel" aria-label="Sivun sisältö">
+      <p class="disclosures-panel-kicker">Tältä sivulta näet</p>
+      <ul class="disclosures-checklist">
+        <li>nykyiset luottamustehtävät ja työroolit</li>
+        <li>sivutoimisen yritystoiminnan</li>
+        <li>kohdat, joissa ilmoitettavaa ei ole</li>
+        <li>vaalikampanjoiden rahoituksen ja viralliset lähdelinkit</li>
+      </ul>
     </aside>
   </header>
 
-  <div class="disclosures-summary-grid" aria-label="Keskeiset tiedot">
-    <article class="disclosures-summary-card">
-      <span>Työ</span>
-      <strong>Yliopistonlehtori</strong>
-      <p>Teknologiatuettu oppiminen ja opetus, Kasvatustieteiden tiedekunta, Oulun yliopisto.</p>
-    </article>
-    <article class="disclosures-summary-card">
-      <span>Luottamustehtävät</span>
-      <strong>Oulu ja Pohjois-Pohjanmaa</strong>
-      <p>Nykyiset tehtävät liittyvät kaupungin päätöksentekoon, sivistyslautakuntaan ja alueelliseen vaikuttamiseen.</p>
-    </article>
-    <article class="disclosures-summary-card">
-      <span>Sivutoimi</span>
-      <strong>Larux tmi</strong>
-      <p>Sivutoiminen toiminimi, jonka liikevaihto on alle 3 000 euroa vuodessa.</p>
-    </article>
+  <div class="disclosures-content-layout">
+    <div class="disclosures-content-main">
+      <section class="disclosures-section" id="sidonnaisuudet" aria-labelledby="sidonnaisuudet-title">
+        <div class="disclosures-section-head">
+          <p class="disclosures-kicker">Sidonnaisuudet</p>
+          <h2 id="sidonnaisuudet-title">Nykyiset tehtävät ja muut sidokset</h2>
+          <p>Sidonnaisuuksissa olennaista on erottaa aktiiviset tehtävät niistä kohdista, joissa ilmoitettavaa ei ole. Oulun kaupungin virallinen sidonnaisuusrekisteri on linkitetty tähän samaan kohtaan.</p>
+          <div class="disclosures-section-actions">
+            <a href="https://www.ouka.fi/sidonnaisuudet" class="btn btn-outline-primary rounded-pill px-4" target="_blank" rel="noopener noreferrer">Oulun sidonnaisuusrekisteri</a>
+          </div>
+        </div>
+
+        <div class="disclosures-current-grid">
+          <article class="disclosures-card disclosures-card--primary">
+            <p class="disclosures-card-kicker">Päätöksenteon roolit</p>
+            <h3>Luottamustehtävät</h3>
+            <ul class="disclosures-role-list">
+              <li>
+                <span>Oulun kaupunginvaltuusto</span>
+                <strong>2. varavaltuutettu</strong>
+              </li>
+              <li>
+                <span>Oulun kaupunki</span>
+                <strong>Sivistyslautakunnan jäsen</strong>
+              </li>
+              <li>
+                <span>Pohjois-Pohjanmaan hyvinvointialue</span>
+                <strong>Aluevaltuuston varajäsen</strong>
+              </li>
+            </ul>
+          </article>
+
+          <div class="disclosures-side-stack">
+            <article class="disclosures-card">
+              <p class="disclosures-card-kicker">Työ ja sivutoimi</p>
+              <dl class="disclosures-definition-list">
+                <div>
+                  <dt>Julkisyhteisön virka tai toimi</dt>
+                  <dd>Yliopistonlehtori, teknologiatuettu oppiminen ja opetus, Kasvatustieteiden tiedekunta, Oulun yliopisto.</dd>
+                </div>
+                <div>
+                  <dt>Ammatin ja elinkeinon harjoittaminen</dt>
+                  <dd>Larux tmi, sivutoiminen toiminimi. Ilmoitushetkellä toiminimen tulot olivat noin 3 000 euroa vuodessa.</dd>
+                </div>
+                <div>
+                  <dt>Palkattu toimi yksityisessä yrityksessä tai yhteisössä</dt>
+                  <dd>Ei ole.</dd>
+                </div>
+              </dl>
+            </article>
+
+            <article class="disclosures-card disclosures-card--quiet">
+              <p class="disclosures-card-kicker">Päättynyt tehtävä</p>
+              <h3>Yliopistokollegio</h3>
+              <p class="disclosures-card-text">Olin Oulun yliopiston yliopistokollegion jäsen vuoden 2025 loppuun. Se ei ole nykyinen luottamustehtävä.</p>
+            </article>
+
+            <article class="disclosures-card disclosures-card--quiet">
+              <p class="disclosures-card-kicker">Ei ilmoitettavaa</p>
+              <ul class="disclosures-compact-list">
+                <li>Ei hallintotehtäviä valtionyhtiöissä, taloudellisesti merkittävissä yrityksissä, pankeissa tai muissa rahalaitoksissa.</li>
+                <li>Ei merkittäviä liike- tai sijoitustoiminnan omistuksia.</li>
+                <li>Ei liike- tai sijoitustoimintaan liittyviä yli 100 000 euron velkoja tai yli 200 000 euron takauksia.</li>
+                <li>Ei merkittäviä kiinteistöjen, asunto-osakeyhtiöiden osakkeiden tai maa- ja metsäomaisuuden omistuksia.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="disclosures-section" id="vaalirahoitus" aria-labelledby="vaalirahoitus-title">
+        <div class="disclosures-section-head">
+          <p class="disclosures-kicker">Vaalirahoitus</p>
+          <h2 id="vaalirahoitus-title">Vaalirahoitusilmoitukset</h2>
+          <p>Alla olevat summat on tarkistettu Valtiontalouden tarkastusviraston vaali- ja puoluerahoitusvalvonnan rekisteristä sekä VTV:n julkaisemista vaalikohtaisista CSV-aineistoista.</p>
+          <div class="disclosures-section-actions">
+            <a href="https://www.vaalirahoitusvalvonta.fi/fi/index/vaalirahoitus/ilmoituksetvaaleittain.html" class="btn btn-outline-primary rounded-pill px-4" target="_blank" rel="noopener noreferrer">VTV:n vaalirahoitusrekisteri</a>
+          </div>
+        </div>
+
+        <div class="campaign-finance-grid">
+          <article class="campaign-finance-card campaign-finance-card--featured">
+            <div class="campaign-finance-card-head">
+              <p class="campaign-year">2025</p>
+              <h3>Kunta- ja aluevaalit</h3>
+              <p>Vuoden 2025 kunta- ja aluevaalien ilmoitukset on rekisterissä linkitetty toisiinsa, koska ehdokkuus oli samanaikaisesti molemmissa vaaleissa.</p>
+            </div>
+            <div class="campaign-finance-metrics" aria-label="Vuoden 2025 vaalirahoituksen yhteenveto">
+              <div class="site-kpi-card campaign-finance-metric">
+                <span class="site-kpi-number">1 388 €</span>
+                <span class="site-kpi-label">kulut</span>
+              </div>
+              <div class="site-kpi-card campaign-finance-metric">
+                <span class="site-kpi-number">1 388 €</span>
+                <span class="site-kpi-label">rahoitus</span>
+              </div>
+              <div class="site-kpi-card campaign-finance-metric">
+                <span class="site-kpi-number">1 188 €</span>
+                <span class="site-kpi-label">omat varat</span>
+              </div>
+              <div class="site-kpi-card campaign-finance-metric">
+                <span class="site-kpi-number">200 €</span>
+                <span class="site-kpi-label">yritystuki</span>
+              </div>
+            </div>
+            <p class="campaign-finance-status">Ei ilmoitettua kampanjalainaa.</p>
+            <div class="campaign-finance-actions">
+              <a href="https://www.vaalirahoitusvalvonta.fi/fi/index/vaalirahoitus/ilmoituksetvaaleittain/kuntavaalit2025/564/0439/vaalirahoitusilmoitus.html" class="btn btn-outline-primary rounded-pill px-4" target="_blank" rel="noopener noreferrer">Kuntavaalit 2025</a>
+              <a href="https://www.vaalirahoitusvalvonta.fi/fi/index/vaalirahoitus/ilmoituksetvaaleittain/aluevaalit2025/19/2417/vaalirahoitusilmoitus.html" class="btn btn-outline-primary rounded-pill px-4" target="_blank" rel="noopener noreferrer">Aluevaalit 2025</a>
+            </div>
+          </article>
+
+          <article class="campaign-finance-card">
+            <div class="campaign-finance-card-head">
+              <p class="campaign-year">2022</p>
+              <h3>Aluevaalit</h3>
+              <p>Pohjois-Pohjanmaan hyvinvointialueen aluevaalien vaalirahoitusilmoitus.</p>
+            </div>
+            <div class="campaign-finance-metrics campaign-finance-metrics--compact" aria-label="Vuoden 2022 vaalirahoituksen yhteenveto">
+              <div class="site-kpi-card campaign-finance-metric">
+                <span class="site-kpi-number">510 €</span>
+                <span class="site-kpi-label">kulut</span>
+              </div>
+              <div class="site-kpi-card campaign-finance-metric">
+                <span class="site-kpi-number">510 €</span>
+                <span class="site-kpi-label">rahoitus</span>
+              </div>
+              <div class="site-kpi-card campaign-finance-metric">
+                <span class="site-kpi-number">500 €</span>
+                <span class="site-kpi-label">omat varat</span>
+              </div>
+              <div class="site-kpi-card campaign-finance-metric">
+                <span class="site-kpi-number">10 €</span>
+                <span class="site-kpi-label">yksityishenkilöt</span>
+              </div>
+            </div>
+            <p class="campaign-finance-status">Ei ilmoitettua kampanjalainaa.</p>
+            <div class="campaign-finance-actions">
+              <a href="https://www.vaalirahoitusvalvonta.fi/fi/index/vaalirahoitus/ilmoituksetvaaleittain/aluevaalit2022/19/0253/vaalirahoitusilmoitus.html" class="btn btn-outline-primary rounded-pill px-4" target="_blank" rel="noopener noreferrer">Aluevaalit 2022</a>
+            </div>
+          </article>
+
+          <article class="campaign-finance-card">
+            <div class="campaign-finance-card-head">
+              <p class="campaign-year">2021</p>
+              <h3>Kuntavaalit</h3>
+              <p>Vuoden 2021 kuntavaalien ilmoitussivu ei ole enää mukana VTV:n nykyisessä vaalikohtaisessa listauksessa. Summat on tarkistettu VTV:n kuntavaalien 2021 CSV-aineistosta.</p>
+            </div>
+            <div class="campaign-finance-metrics campaign-finance-metrics--compact" aria-label="Vuoden 2021 vaalirahoituksen yhteenveto">
+              <div class="site-kpi-card campaign-finance-metric">
+                <span class="site-kpi-number">1 709,53 €</span>
+                <span class="site-kpi-label">kulut</span>
+              </div>
+              <div class="site-kpi-card campaign-finance-metric">
+                <span class="site-kpi-number">1 709,53 €</span>
+                <span class="site-kpi-label">rahoitus</span>
+              </div>
+              <div class="site-kpi-card campaign-finance-metric">
+                <span class="site-kpi-number">1 709,53 €</span>
+                <span class="site-kpi-label">omat varat</span>
+              </div>
+              <div class="site-kpi-card campaign-finance-metric">
+                <span class="site-kpi-number">0 €</span>
+                <span class="site-kpi-label">ulkopuolinen tuki</span>
+              </div>
+            </div>
+            <p class="campaign-finance-status">Ei ilmoitettua kampanjalainaa. Ehdokasnumero 0372, Oulu, Kokoomus.</p>
+            <div class="campaign-finance-actions">
+              <a href="https://www.vaalirahoitusvalvonta.fi/fi/index/vaalirahoitus/haetietoavaalirahoitusilmoituksista/tutkitietoaineistoja/kuntavaalit2021/E_VI_kuntavaalit2021.csv" class="btn btn-outline-primary rounded-pill px-4" target="_blank" rel="noopener noreferrer">Kuntavaalit 2021 CSV</a>
+            </div>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <aside class="content-context-sidebar disclosures-context-sidebar" aria-label="Politiikan konteksti">
+      <div class="content-context-card content-context-card--primary">
+        <p class="content-context-kicker">Kokonaisuus</p>
+        <h2 class="content-context-title">Läpinäkyvyys kuuluu politiikan perustietoihin</h2>
+        <a class="content-context-type" href="/politiikka/">
+          <span>Politiikka</span>
+          <i class="bi bi-arrow-right" aria-hidden="true"></i>
+        </a>
+      </div>
+
+      <div class="content-context-card content-context-card--topics">
+        <p class="content-context-kicker">Jatka samasta kokonaisuudesta</p>
+        <div class="content-context-topiclist">
+          <a class="content-context-topic" href="/vaalikaudet/">
+            <span>Vaalikaudet</span>
+            <small>Luottamustoimet, vaalitulokset ja poliittinen työ kausittain</small>
+          </a>
+          <a class="content-context-topic" href="/kynasta/#puheet">
+            <span>Valtuustopuheenvuorot</span>
+            <small>Puheenvuorot päätöksenteon asiakohdissa</small>
+          </a>
+          <a class="content-context-topic" href="/kynasta/#aloitteet">
+            <span>Aloitteet</span>
+            <small>Kirjalliset avaukset päätöksenteon valmisteluun</small>
+          </a>
+          <a class="content-context-topic" href="/kynasta/?opinions=political#mielipiteet">
+            <span>Poliittiset mielipiteet</span>
+            <small>Lehdissä julkaistut kannanotot ja poliittiset kirjoitukset</small>
+          </a>
+        </div>
+      </div>
+
+      <div class="content-context-card">
+        <p class="content-context-kicker">Viralliset lähteet</p>
+        <div class="content-context-chiplist">
+          <a class="content-context-chip content-context-chip--context" href="https://www.ouka.fi/sidonnaisuudet" target="_blank" rel="noopener noreferrer">Oulun sidonnaisuusrekisteri</a>
+          <a class="content-context-chip content-context-chip--context" href="https://www.vaalirahoitusvalvonta.fi/fi/index/vaalirahoitus/ilmoituksetvaaleittain.html" target="_blank" rel="noopener noreferrer">VTV:n vaalirahoitusrekisteri</a>
+        </div>
+      </div>
+    </aside>
   </div>
 
-  <section class="disclosures-section" aria-labelledby="sidonnaisuudet-title">
-    <div class="disclosures-section-head">
-      <p class="disclosures-eyebrow">Sidonnaisuudet</p>
-      <h2 id="sidonnaisuudet-title">Nykyiset tehtävät ja sidonnaisuudet</h2>
-      <p>Tiedot on ryhmitelty niin, että ensin näkyvät aktiiviset tehtävät ja sen jälkeen ne kohdat, joissa ilmoitettavaa ei ole.</p>
-    </div>
-
-    <div class="disclosures-card-grid">
-      <article class="disclosures-card disclosures-card--wide">
-        <h3>Virat, toimet ja elinkeinotoiminta</h3>
-        <dl class="disclosures-list">
-          <div>
-            <dt>Julkisyhteisön virka tai toimi</dt>
-            <dd>Yliopistonlehtori, teknologiatuettu oppiminen ja opetus, Kasvatustieteiden tiedekunta, Oulun yliopisto.</dd>
-          </div>
-          <div>
-            <dt>Palkattu toimi yksityisessä yrityksessä tai yhteisössä</dt>
-            <dd>Ei ole.</dd>
-          </div>
-          <div>
-            <dt>Ammatin ja elinkeinon harjoittaminen</dt>
-            <dd>Larux tmi, sivutoiminen toiminimi. Liikevaihto alle 3 000 euroa vuodessa.</dd>
-          </div>
-        </dl>
-      </article>
-
-      <article class="disclosures-card">
-        <h3>Nykyiset luottamustehtävät</h3>
-        <ul class="disclosures-plain-list">
-          <li>2. varavaltuutettu, Oulun kaupunginvaltuusto.</li>
-          <li>Sivistyslautakunnan jäsen, Oulun kaupunki.</li>
-          <li>Aluevaltuuston varajäsen, Pohjois-Pohjanmaan hyvinvointialue.</li>
-          <li>Yliopistokollegion jäsen, Oulun yliopisto.</li>
-        </ul>
-      </article>
-
-      <article class="disclosures-card">
-        <h3>Hallintotehtävät ja merkittävät omistukset</h3>
-        <ul class="disclosures-plain-list">
-          <li>Ei hallintotehtäviä valtionyhtiöissä, taloudellisesti merkittävissä yrityksissä, pankeissa tai muissa rahalaitoksissa.</li>
-          <li>Ei merkittäviä liike- tai sijoitustoiminnan omistuksia.</li>
-          <li>Ei liike- tai sijoitustoimintaan liittyviä yli 100 000 euron velkoja tai yli 200 000 euron takauksia.</li>
-          <li>Ei merkittäviä kiinteistöjen, asunto-osakeyhtiöiden osakkeiden tai maa- ja metsäomaisuuden omistuksia.</li>
-        </ul>
-      </article>
-    </div>
-  </section>
-
-  <section class="disclosures-section" aria-labelledby="vaalirahoitus-title">
-    <div class="disclosures-section-head">
-      <p class="disclosures-eyebrow">Vaalirahoitus</p>
-      <h2 id="vaalirahoitus-title">Vaalirahoitusilmoitukset</h2>
-      <p>Vaalirahoitustiedot ovat Valtiontalouden tarkastusviraston vaali- ja puoluerahoitusvalvonnan rekisterissä. Alla on kooste niistä ilmoituksista, joiden tiedot on varmistettu rekisteristä.</p>
-    </div>
-
-    <div class="campaign-finance-list">
-      <article class="campaign-finance-card campaign-finance-card--featured">
-        <div class="campaign-finance-head">
-          <span>2025</span>
-          <h3>Kunta- ja aluevaalit</h3>
-          <p>Vuoden 2025 kunta- ja aluevaalien ilmoitukset on rekisterissä linkitetty toisiinsa, koska ehdokkuus oli samanaikaisesti molemmissa vaaleissa.</p>
-        </div>
-        <div class="campaign-finance-metrics" aria-label="Vuoden 2025 vaalirahoituksen yhteenveto">
-          <div>
-            <span>Kulut</span>
-            <strong>1 388 €</strong>
-          </div>
-          <div>
-            <span>Rahoitus</span>
-            <strong>1 388 €</strong>
-          </div>
-          <div>
-            <span>Omat varat</span>
-            <strong>1 188 €</strong>
-          </div>
-          <div>
-            <span>Yritystuki</span>
-            <strong>200 €</strong>
-          </div>
-        </div>
-        <div class="campaign-finance-note">
-          <span>Ei ilmoitettua kampanjalainaa.</span>
-        </div>
-        <div class="campaign-finance-actions">
-          <a href="https://www.vaalirahoitusvalvonta.fi/fi/index/vaalirahoitus/ilmoituksetvaaleittain/kuntavaalit2025/564/0439/vaalirahoitusilmoitus.html" target="_blank" rel="noopener noreferrer">Kuntavaalit 2025</a>
-          <a href="https://www.vaalirahoitusvalvonta.fi/fi/index/vaalirahoitus/ilmoituksetvaaleittain/aluevaalit2025/19/2417/vaalirahoitusilmoitus.html" target="_blank" rel="noopener noreferrer">Aluevaalit 2025</a>
-        </div>
-      </article>
-
-      <article class="campaign-finance-card">
-        <div class="campaign-finance-head">
-          <span>2022</span>
-          <h3>Aluevaalit</h3>
-          <p>Pohjois-Pohjanmaan hyvinvointialueen aluevaalien vaalirahoitusilmoitus.</p>
-        </div>
-        <div class="campaign-finance-metrics" aria-label="Vuoden 2022 vaalirahoituksen yhteenveto">
-          <div>
-            <span>Kulut</span>
-            <strong>510 €</strong>
-          </div>
-          <div>
-            <span>Rahoitus</span>
-            <strong>510 €</strong>
-          </div>
-          <div>
-            <span>Omat varat</span>
-            <strong>500 €</strong>
-          </div>
-          <div>
-            <span>Yksityishenkilöt</span>
-            <strong>10 €</strong>
-          </div>
-        </div>
-        <div class="campaign-finance-note">
-          <span>Ei ilmoitettua kampanjalainaa.</span>
-        </div>
-        <div class="campaign-finance-actions">
-          <a href="https://www.vaalirahoitusvalvonta.fi/fi/index/vaalirahoitus/ilmoituksetvaaleittain/aluevaalit2022/19/0253/vaalirahoitusilmoitus.html" target="_blank" rel="noopener noreferrer">Aluevaalit 2022</a>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section class="disclosures-source-box" aria-labelledby="lahteet-title">
-    <h2 id="lahteet-title">Lähteet ja rajaukset</h2>
-    <p>Sidonnaisuudet on koottu omien ilmoitusten pohjalta. Vaalirahoituksen summat on tarkistettu Valtiontalouden tarkastusviraston vaali- ja puoluerahoitusvalvonnan rekisteristä.</p>
-    <a href="https://www.vaalirahoitusvalvonta.fi/fi/index/vaalirahoitus/ilmoituksetvaaleittain.html" target="_blank" rel="noopener noreferrer">Avaa vaalirahoitusilmoitukset vaaleittain</a>
-  </section>
 </section>
 
 <style>
   .disclosures-page {
-    --disclosures-ink: #13253a;
-    --disclosures-muted: rgba(19, 37, 58, 0.72);
-    --disclosures-line: rgba(19, 37, 58, 0.12);
-    --disclosures-soft: #eef4f9;
-    --disclosures-accent: #1f5f7a;
+    --disclosures-ink: #102845;
+    --disclosures-muted: rgba(16, 40, 69, 0.78);
+    --disclosures-soft: rgba(19, 78, 145, 0.05);
+    --disclosures-line: rgba(16, 40, 69, 0.12);
+    --disclosures-accent: #16466f;
     display: grid;
-    gap: clamp(2rem, 5vw, 4rem);
+    gap: clamp(2.5rem, 6vw, 5rem);
     color: var(--disclosures-ink);
+    padding-block: clamp(1.25rem, 3vw, 2.25rem) clamp(3rem, 6vw, 5rem);
   }
 
   .disclosures-hero {
     display: grid;
-    grid-template-columns: minmax(0, 1.5fr) minmax(18rem, 0.8fr);
+    grid-template-columns: minmax(0, 1.25fr) minmax(20rem, 0.75fr);
     gap: clamp(1.25rem, 4vw, 2.5rem);
-    align-items: stretch;
-    padding: clamp(1.5rem, 5vw, 3rem);
-    border: 1px solid var(--disclosures-line);
-    border-radius: 2rem;
+    align-items: start;
+    padding: clamp(1.5rem, 5vw, 3.5rem);
+    border-bottom: 1px solid var(--disclosures-line);
     background:
-      radial-gradient(circle at 12% 16%, rgba(59, 130, 153, 0.18), transparent 28rem),
-      linear-gradient(135deg, #f8fbfd 0%, #edf4f8 100%);
+      radial-gradient(circle at 86% 10%, rgba(22, 70, 111, 0.12), transparent 26rem),
+      linear-gradient(180deg, rgba(219, 232, 247, 0.34), rgba(255, 255, 255, 0));
   }
 
-  .disclosures-eyebrow {
-    margin: 0 0 0.5rem;
-    font-size: 0.78rem;
-    font-weight: 800;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--disclosures-accent);
-  }
-
-  .disclosures-hero h1,
-  .disclosures-section h2,
-  .disclosures-source-box h2 {
-    margin: 0;
-    font-family: var(--font-serif);
-    line-height: 1.02;
-  }
-
-  .disclosures-hero h1 {
-    max-width: 12ch;
-    font-size: clamp(2.35rem, 7vw, 5rem);
-  }
-
-  .disclosures-lead {
-    max-width: 68ch;
-    margin: 1.25rem 0 0;
-    font-size: clamp(1.05rem, 2vw, 1.25rem);
-    line-height: 1.65;
-    color: var(--disclosures-muted);
-  }
-
-  .disclosures-hero-card,
-  .disclosures-summary-card,
-  .disclosures-card,
-  .campaign-finance-card,
-  .disclosures-source-box {
-    border: 1px solid var(--disclosures-line);
-    border-radius: 1.5rem;
-    background: rgba(255, 255, 255, 0.86);
-    box-shadow: 0 1rem 2.5rem rgba(19, 37, 58, 0.08);
-  }
-
-  .disclosures-hero-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    gap: 0.75rem;
-    padding: 1.5rem;
-  }
-
-  .disclosures-hero-card span,
-  .disclosures-summary-card span,
-  .campaign-finance-head span,
-  .campaign-finance-metrics span {
+  .disclosures-kicker,
+  .disclosures-panel-kicker,
+  .disclosures-card-kicker,
+  .campaign-year {
+    margin: 0 0 0.6rem;
     font-size: 0.78rem;
     font-weight: 800;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--disclosures-accent);
+    color: rgba(16, 40, 69, 0.62);
   }
 
-  .disclosures-hero-card strong,
-  .disclosures-summary-card strong {
-    font-family: var(--font-serif);
-    font-size: clamp(1.35rem, 2.5vw, 1.75rem);
-    line-height: 1.08;
-  }
-
-  .disclosures-hero-card p,
-  .disclosures-summary-card p,
-  .disclosures-section-head p,
-  .campaign-finance-head p,
-  .disclosures-source-box p {
+  .disclosures-hero h1,
+  .disclosures-section h2,
+  .disclosures-card h3,
+  .campaign-finance-card h3 {
     margin: 0;
+    color: var(--disclosures-ink);
+  }
+
+  .disclosures-hero h1 {
+    max-width: 13ch;
+    font-size: clamp(2.45rem, 5.5vw, 4.8rem);
+    line-height: 0.98;
+  }
+
+  .disclosures-lead {
+    max-width: 48rem;
+    margin: 1.1rem 0 0;
+    font-size: clamp(1.08rem, 2vw, 1.24rem);
+    line-height: 1.7;
     color: var(--disclosures-muted);
+  }
+
+  .disclosures-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.4rem;
+  }
+
+  .disclosures-hero-note {
+    max-width: 48rem;
+    margin-top: 1.25rem;
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--disclosures-line);
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.62);
+  }
+
+  .disclosures-hero-note strong {
+    display: block;
+    color: var(--disclosures-ink);
+    font-size: clamp(1rem, 1.4vw, 1.12rem);
+    line-height: 1.35;
+  }
+
+  .disclosures-hero-note p:last-child {
+    margin: 0.45rem 0 0;
+    color: var(--disclosures-muted);
+    font-size: 0.96rem;
     line-height: 1.6;
   }
 
-  .disclosures-summary-grid,
-  .disclosures-card-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1rem;
+  .disclosures-section-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-top: 1rem;
   }
 
-  .disclosures-summary-card,
+  .disclosures-content-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(17rem, 0.28fr);
+    gap: clamp(1.25rem, 3vw, 2rem);
+    align-items: start;
+  }
+
+  .disclosures-content-main {
+    display: grid;
+    gap: clamp(2.5rem, 5vw, 4rem);
+    min-width: 0;
+  }
+
+  .disclosures-context-sidebar {
+    align-self: start;
+    top: 1.25rem;
+  }
+
+  .disclosures-context-sidebar .content-context-card {
+    background: rgba(255, 255, 255, 0.92);
+    border-color: var(--disclosures-line);
+  }
+
+  .disclosures-hero-panel,
   .disclosures-card,
-  .campaign-finance-card,
-  .disclosures-source-box {
-    padding: clamp(1.1rem, 3vw, 1.6rem);
+  .campaign-finance-card {
+    border: 1px solid var(--disclosures-line);
+    border-radius: 1.2rem;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 1rem 2.3rem rgba(17, 40, 70, 0.08);
+  }
+
+  .disclosures-hero-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: clamp(1.2rem, 3vw, 1.6rem);
+  }
+
+  .disclosures-checklist,
+  .disclosures-role-list,
+  .disclosures-compact-list {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .disclosures-checklist li,
+  .disclosures-compact-list li {
+    position: relative;
+    padding-left: 1.35rem;
+    line-height: 1.58;
+    color: var(--disclosures-muted);
+  }
+
+  .disclosures-checklist li::before,
+  .disclosures-compact-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 999px;
+    background: var(--disclosures-accent);
   }
 
   .disclosures-section {
     display: grid;
-    gap: 1.25rem;
+    gap: 1.5rem;
+    scroll-margin-top: 7rem;
   }
 
   .disclosures-section-head {
     max-width: 58rem;
   }
 
-  .disclosures-section h2,
-  .disclosures-source-box h2 {
-    font-size: clamp(1.8rem, 4vw, 3rem);
+  .disclosures-section h2 {
+    font-size: clamp(1.95rem, 3.5vw, 3.1rem);
+    line-height: 1.04;
   }
 
-  .disclosures-card--wide {
-    grid-column: span 2;
+  .disclosures-section-head p:not(.disclosures-kicker),
+  .campaign-finance-card-head p,
+  .disclosures-definition-list dd {
+    margin: 0;
+    color: var(--disclosures-muted);
+    line-height: 1.65;
+  }
+
+  .disclosures-current-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    gap: 1rem;
+    align-items: start;
+  }
+
+  .disclosures-side-stack {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .disclosures-card,
+  .campaign-finance-card {
+    padding: clamp(1.2rem, 3vw, 1.7rem);
+  }
+
+  .disclosures-card--primary {
+    min-height: 100%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(245, 249, 255, 0.94));
+  }
+
+  .disclosures-card--quiet {
+    background: var(--disclosures-soft);
+    box-shadow: none;
+  }
+
+  .disclosures-card-text {
+    margin: 0;
+    color: var(--disclosures-muted);
+    line-height: 1.62;
   }
 
   .disclosures-card h3,
-  .campaign-finance-head h3 {
-    margin: 0 0 1rem;
-    font-family: var(--font-serif);
-    font-size: clamp(1.35rem, 2.4vw, 1.8rem);
-    line-height: 1.1;
+  .campaign-finance-card h3 {
+    margin-bottom: 1rem;
+    font-size: clamp(1.45rem, 2.4vw, 2rem);
+    line-height: 1.08;
   }
 
-  .disclosures-list {
+  .disclosures-role-list li {
+    display: grid;
+    gap: 0.15rem;
+    padding: 1rem 0;
+    border-top: 1px solid var(--disclosures-line);
+  }
+
+  .disclosures-role-list span,
+  .disclosures-definition-list dt {
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(16, 40, 69, 0.58);
+  }
+
+  .disclosures-role-list strong {
+    font-size: clamp(1rem, 1.6vw, 1.2rem);
+    line-height: 1.28;
+    color: var(--disclosures-ink);
+  }
+
+  .disclosures-definition-list {
     display: grid;
     gap: 1rem;
     margin: 0;
   }
 
-  .disclosures-list div {
+  .disclosures-definition-list div {
     padding-top: 1rem;
     border-top: 1px solid var(--disclosures-line);
   }
 
-  .disclosures-list dt {
-    margin-bottom: 0.3rem;
-    font-weight: 800;
-  }
-
-  .disclosures-list dd {
-    margin: 0;
-    color: var(--disclosures-muted);
-    line-height: 1.55;
-  }
-
-  .disclosures-plain-list {
+  .campaign-finance-grid {
     display: grid;
-    gap: 0.65rem;
-    margin: 0;
-    padding-left: 1.15rem;
-    color: var(--disclosures-muted);
-    line-height: 1.55;
-  }
-
-  .campaign-finance-list {
-    display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    grid-template-columns: minmax(0, 1.16fr) minmax(0, 0.84fr);
     gap: 1rem;
   }
 
   .campaign-finance-card {
     display: grid;
-    gap: 1.25rem;
+    gap: 1.2rem;
   }
 
   .campaign-finance-card--featured {
+    border-color: rgba(22, 70, 111, 0.18);
     background:
-      radial-gradient(circle at top right, rgba(31, 95, 122, 0.16), transparent 22rem),
-      rgba(255, 255, 255, 0.92);
+      linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(245, 249, 255, 0.92));
   }
 
   .campaign-finance-metrics {
@@ -365,121 +572,98 @@ source_url: "https://www.jarilaru.fi/sidonnaisuudet/"
     gap: 0.75rem;
   }
 
-  .campaign-finance-metrics div {
-    padding: 0.9rem;
-    border: 1px solid var(--disclosures-line);
-    border-radius: 1rem;
-    background: var(--disclosures-soft);
+  .campaign-finance-metrics--compact {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .campaign-finance-metrics strong {
-    display: block;
-    margin-top: 0.2rem;
-    font-family: var(--font-serif);
-    font-size: clamp(1.45rem, 3vw, 2.2rem);
-    line-height: 1;
+  .campaign-finance-metric {
+    min-width: 0;
+    padding: 1rem;
+    box-shadow: none;
   }
 
-  .campaign-finance-note {
-    display: inline-flex;
+  .campaign-finance-metric .site-kpi-number {
+    font-size: clamp(1.45rem, 2.8vw, 2.1rem);
+    white-space: nowrap;
+  }
+
+  .campaign-finance-status {
     width: fit-content;
+    margin: 0;
     padding: 0.45rem 0.75rem;
-    border: 1px solid rgba(31, 95, 122, 0.2);
+    border: 1px solid rgba(22, 70, 111, 0.18);
     border-radius: 999px;
+    background: var(--disclosures-soft);
     color: var(--disclosures-accent);
-    background: rgba(31, 95, 122, 0.08);
-    font-weight: 700;
+    font-weight: 800;
   }
 
   .campaign-finance-actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem;
-  }
-
-  .campaign-finance-actions a,
-  .disclosures-source-box a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: fit-content;
-    min-height: 2.7rem;
-    padding: 0.65rem 1rem;
-    border: 1px solid rgba(31, 95, 122, 0.22);
-    border-radius: 999px;
-    color: var(--disclosures-accent);
-    background: rgba(255, 255, 255, 0.72);
-    font-weight: 800;
-    text-decoration: none;
-  }
-
-  .campaign-finance-actions a:hover,
-  .disclosures-source-box a:hover {
-    color: #fff;
-    background: var(--disclosures-accent);
-  }
-
-  .disclosures-source-box {
-    display: grid;
-    gap: 0.9rem;
-    background: linear-gradient(135deg, rgba(238, 244, 249, 0.92), rgba(255, 255, 255, 0.9));
+    gap: 0.7rem;
   }
 
   [data-bs-theme="dark"] .disclosures-page {
-    --disclosures-ink: #f4f8fb;
-    --disclosures-muted: rgba(244, 248, 251, 0.76);
-    --disclosures-line: rgba(244, 248, 251, 0.14);
-    --disclosures-soft: rgba(255, 255, 255, 0.06);
-    --disclosures-accent: #8fd3e8;
+    --disclosures-ink: #f8fbff;
+    --disclosures-muted: rgba(255, 255, 255, 0.78);
+    --disclosures-soft: rgba(255, 255, 255, 0.055);
+    --disclosures-line: rgba(255, 255, 255, 0.13);
+    --disclosures-accent: #9cc7e9;
   }
 
   [data-bs-theme="dark"] .disclosures-hero {
     background:
-      radial-gradient(circle at 12% 16%, rgba(143, 211, 232, 0.16), transparent 28rem),
-      linear-gradient(135deg, rgba(8, 18, 30, 0.96), rgba(13, 31, 46, 0.92));
+      radial-gradient(circle at 86% 10%, rgba(156, 199, 233, 0.13), transparent 26rem),
+      linear-gradient(180deg, rgba(22, 46, 72, 0.34), rgba(12, 18, 28, 0));
   }
 
-  [data-bs-theme="dark"] .disclosures-hero-card,
-  [data-bs-theme="dark"] .disclosures-summary-card,
+  [data-bs-theme="dark"] .disclosures-kicker,
+  [data-bs-theme="dark"] .disclosures-panel-kicker,
+  [data-bs-theme="dark"] .disclosures-card-kicker,
+  [data-bs-theme="dark"] .campaign-year,
+  [data-bs-theme="dark"] .disclosures-role-list span,
+  [data-bs-theme="dark"] .disclosures-definition-list dt {
+    color: rgba(255, 255, 255, 0.66);
+  }
+
+  [data-bs-theme="dark"] .disclosures-hero-panel,
   [data-bs-theme="dark"] .disclosures-card,
-  [data-bs-theme="dark"] .campaign-finance-card,
-  [data-bs-theme="dark"] .disclosures-source-box {
-    background: rgba(9, 20, 32, 0.88);
+  [data-bs-theme="dark"] .campaign-finance-card {
+    background: rgba(13, 22, 34, 0.92);
     box-shadow: none;
   }
 
-  [data-bs-theme="dark"] .campaign-finance-card--featured,
-  [data-bs-theme="dark"] .disclosures-source-box {
-    background:
-      radial-gradient(circle at top right, rgba(143, 211, 232, 0.1), transparent 22rem),
-      rgba(9, 20, 32, 0.88);
+  [data-bs-theme="dark"] .disclosures-hero-note {
+    background: rgba(13, 22, 34, 0.58);
   }
 
-  [data-bs-theme="dark"] .campaign-finance-actions a,
-  [data-bs-theme="dark"] .disclosures-source-box a {
-    color: var(--disclosures-accent);
-    background: rgba(255, 255, 255, 0.04);
+  [data-bs-theme="dark"] .disclosures-card--primary,
+  [data-bs-theme="dark"] .campaign-finance-card--featured {
+    background: linear-gradient(180deg, rgba(18, 32, 48, 0.96), rgba(12, 22, 34, 0.94));
   }
 
-  [data-bs-theme="dark"] .campaign-finance-actions a:hover,
-  [data-bs-theme="dark"] .disclosures-source-box a:hover {
-    color: #07131d;
-    background: var(--disclosures-accent);
+  [data-bs-theme="dark"] .disclosures-card--quiet,
+  [data-bs-theme="dark"] .campaign-finance-status {
+    background: var(--disclosures-soft);
+  }
+
+  [data-bs-theme="dark"] .disclosures-context-sidebar .content-context-card {
+    background: rgba(13, 22, 34, 0.92);
+    border-color: var(--disclosures-line);
   }
 
   @media (max-width: 991.98px) {
     .disclosures-hero,
-    .campaign-finance-list {
+    .disclosures-content-layout,
+    .disclosures-current-grid,
+    .campaign-finance-grid {
       grid-template-columns: 1fr;
+      align-items: stretch;
     }
 
-    .disclosures-summary-grid,
-    .disclosures-card-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .disclosures-card--wide {
-      grid-column: auto;
+    .disclosures-context-sidebar {
+      position: static;
     }
 
     .campaign-finance-metrics {
@@ -488,15 +672,22 @@ source_url: "https://www.jarilaru.fi/sidonnaisuudet/"
   }
 
   @media (max-width: 575.98px) {
-    .disclosures-hero,
-    .disclosures-summary-card,
-    .disclosures-card,
-    .campaign-finance-card,
-    .disclosures-source-box {
-      border-radius: 1.1rem;
+    .disclosures-page {
+      gap: 2.5rem;
     }
 
-    .campaign-finance-metrics {
+    .disclosures-hero {
+      padding: 1.5rem 1rem;
+    }
+
+    .disclosures-hero-panel,
+    .disclosures-card,
+    .campaign-finance-card {
+      border-radius: 1rem;
+    }
+
+    .campaign-finance-metrics,
+    .campaign-finance-metrics--compact {
       grid-template-columns: 1fr;
     }
   }

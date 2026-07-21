@@ -3,6 +3,18 @@
  */
 /* ===== 1. THEME VARIABLES ===== */
 
+/* Sivuston fonttiperheet: sivukohtaiset tyylit viittaavat näihin muuttujiin. */
+:root {
+  --bs-font-family: 'Inter';
+  --bs-font-family-heading: 'Bree Serif', serif;
+  --site-btn-color: #000000;
+  --site-btn-bg: transparent;
+  --site-btn-border-color: #000000;
+  --site-btn-hover-color: #ffffff;
+  --site-btn-hover-bg: #000000;
+  --site-btn-hover-border-color: #000000;
+}
+
 /* ===== Dark theme: Bootstrap-pohjavärien korvaus ===== */
 /* Kevennetty navy-paletti — aiempaa #131d2b kevyempi, parempi tason erottelu */
 [data-bs-theme="dark"] {
@@ -12,6 +24,12 @@
   --bs-tertiary-bg: #1f2f42;
   --bs-border-color: #354f68;
   --bs-border-color-translucent: rgba(255, 255, 255, 0.15);
+  --site-btn-color: #ffffff;
+  --site-btn-bg: transparent;
+  --site-btn-border-color: rgba(255, 255, 255, 0.4);
+  --site-btn-hover-color: #ffffff;
+  --site-btn-hover-bg: rgba(255, 255, 255, 0.1);
+  --site-btn-hover-border-color: rgba(255, 255, 255, 0.6);
 }
 
 /* ===== Light theme: viileä neutraali slate ===== */
@@ -80,4 +98,3 @@ html:not([data-bs-theme="dark"]) .btn-outline-primary {
   --bs-btn-disabled-border-color: #0453b4;
   --bs-btn-focus-shadow-rgb: 4, 83, 180;
 }
-

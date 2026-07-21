@@ -28,7 +28,7 @@
     {% set breadcrumbKey = "me" %}
   {% elif currentUrl == "/opetus/" or currentUrl == "/tutkimus/" or currentUrl == "/tyoni-yliopistonlehtorina/" or currentUrl == "/palkinnot/" or currentUrl == "/en/work/" or currentUrl == "/en/writings/" or currentUrl == "/en/research/" or currentUrl == "/en/awards/" %}
     {% set breadcrumbKey = "work" %}
-  {% elif currentUrl == "/politiikka/" or currentUrl == "/politiiikka/" or currentUrl == "/sidonnaisuudet/" or currentUrl == "/en/politics/" or currentUrl == "/en/affiliations/" %}
+  {% elif currentUrl == "/politiikka/" or currentUrl == "/politiiikka/" or currentUrl == "/poliittinen-avoimuus/" or currentUrl == "/en/politics/" or currentUrl == "/en/affiliations/" %}
     {% set breadcrumbKey = "politics" %}
   {% elif currentUrl == "/vaalikaudet/" or currentUrl == "/vaalihistoria/" or currentUrl == "/en/election-history/" or currentUrl == "/kuntavaalit-2021/" or currentUrl == "/jari-laru-aluevaltuustoon/" or currentUrl == "/kunnallisvaalit-2012/" %}
     {% set breadcrumbKey = "election_history" %}
@@ -65,9 +65,15 @@
 
   {% include "breadcrumb.njk" %}
 
-  <main id="main-content" class="site-main">
-    <div class="bss-scope">
-      {{ content | safe }}
+  <main id="main-content" class="site-main{% if pageMainClass %} {{ pageMainClass }}{% endif %}">
+    <div class="bss-scope{% if pageScopeClass %} {{ pageScopeClass }}{% endif %}">
+      {% if pageShell %}
+        <div class="{{ pageShellClass or 'site-shell' }}">
+          {{ content | safe }}
+        </div>
+      {% else %}
+        {{ content | safe }}
+      {% endif %}
     </div>
   </main>
 
