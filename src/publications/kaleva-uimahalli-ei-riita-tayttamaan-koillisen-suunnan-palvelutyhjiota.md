@@ -19,6 +19,8 @@ keywords:
   - uimahalli
   - verotus
 type: mielipide
+opinionRoles:
+  - political
 wp_id: 227
 source_url: 'https://www.jarilaru.fi/kaleva-uimahalli-ei-riita-tayttamaan-koillisen-suunnan-palvelutyhjiota/'
 templateEngineOverride: md

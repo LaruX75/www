@@ -16,6 +16,8 @@ keywords:
   - opetuksen laatu
   - turunsanomat
 type: mielipide
+opinionRoles:
+  - expert
 wp_id: 152
 source_url: 'https://www.jarilaru.fi/etaopetuksen-laatuun-kiinnitettava-huomiota/'
 templateEngineOverride: md

@@ -13,6 +13,8 @@ keywords:
   - vetovoima
   - kulttuuripääkaupunki
 type: mielipide
+opinionRoles:
+  - political
 wp_id: 1779
 source_url: 'https://www.jarilaru.fi/yokirjan-synkkyydesta-kohti-kukoistavaa-kulttuuri-%e2%80%8boulua/'
 templateEngineOverride: md

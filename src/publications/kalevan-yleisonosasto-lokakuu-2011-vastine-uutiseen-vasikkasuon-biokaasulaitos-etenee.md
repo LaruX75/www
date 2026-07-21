@@ -16,6 +16,8 @@ keywords:
   - Vasikkasuo
   - VRJ Järvenpää
 type: mielipide
+opinionRoles:
+  - political
 wp_id: 945
 source_url: 'https://www.jarilaru.fi/kalevan-yleisonosasto-lokakuu-2011-vastine-uutiseen-vasikkasuon-biokaasulaitos-etenee/'
 templateEngineOverride: md

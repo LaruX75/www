@@ -13,6 +13,9 @@ keywords:
   - korona
   - sivistys- ja kulttuurilautakunta
 type: mielipide
+opinionRoles:
+  - political
+  - expert
 wp_id: 1580
 source_url: 'https://www.jarilaru.fi/koronan-vaikutukset-kuntalaisiin-arvioitava-arviointi-on-hyva-tehda-peilaten-oulun-tilannetta/'
 politicalProfiles:

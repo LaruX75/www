@@ -17,6 +17,9 @@ keywords:
   - Oulun yliopisto
   - Oulun yliopiston muutto
 type: mielipide
+opinionRoles:
+  - political
+  - expert
 wp_id: 146
 source_url: 'https://www.jarilaru.fi/yliopistoa-ja-ammattikorkeakoulua-yhdistettiin-kalliisti-yhteiskunta-on-investoinut-linnanmaan-kampukseen-kymmenia-miljoonia/'
 politicalProfiles:

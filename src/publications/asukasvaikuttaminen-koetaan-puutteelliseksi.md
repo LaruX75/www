@@ -19,6 +19,8 @@ keywords:
   - oulun kaupungin yhteisötoiminta
   - yhteisötoiminta
 type: mielipide
+opinionRoles:
+  - political
 wp_id: 1113
 source_url: 'https://www.jarilaru.fi/asukasvaikuttaminen-koetaan-puutteelliseksi/'
 templateEngineOverride: md

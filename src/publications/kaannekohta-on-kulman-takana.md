@@ -19,6 +19,9 @@ keywords:
   - tuotekehitys
   - tutkimus
 type: mielipide
+opinionRoles:
+  - political
+  - expert
 wp_id: 2446
 source_url: 'https://www.jarilaru.fi/kaannekohta-on-kulman-takana/'
 templateEngineOverride: md

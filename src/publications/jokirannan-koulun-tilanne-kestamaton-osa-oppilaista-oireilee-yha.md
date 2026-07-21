@@ -24,6 +24,9 @@ keywords:
   - sisäilma
   - yläaste
 type: mielipide
+opinionRoles:
+  - political
+  - expert
 wp_id: 225
 source_url: 'https://www.jarilaru.fi/jokirannan-koulun-tilanne-kestamaton-osa-oppilaista-oireilee-yha/'
 politicalProfiles:

@@ -17,6 +17,9 @@ keywords:
   - oulun koulujen tietotekniikka
   - windows
 type: mielipide
+opinionRoles:
+  - political
+  - expert
 wp_id: 1166
 source_url: 'https://www.jarilaru.fi/kayttojarjestelma-varsin-olematon-sivuseikka/'
 templateEngineOverride: md

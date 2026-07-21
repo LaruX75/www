@@ -24,6 +24,9 @@ keywords:
   - sisäilmaongelmat
   - uudisrakennus
 type: mielipide
+opinionRoles:
+  - political
+  - expert
 wp_id: 1133
 source_url: 'https://www.jarilaru.fi/kiiminki-ansaitsee-monitoimitalon-jokirannan-koulun-paikka-on-syke-talon-ja-lukion-laheisyydessa/'
 politicalProfiles:

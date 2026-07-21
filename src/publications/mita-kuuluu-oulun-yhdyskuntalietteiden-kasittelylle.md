@@ -12,6 +12,8 @@ keywords:
   - Oulun kaupunki
   - yhdyskuntaliete
 type: mielipide
+opinionRoles:
+  - political
 wp_id: 1562
 source_url: 'https://www.jarilaru.fi/mita-kuuluu-oulun-yhdyskuntalietteiden-kasittelylle/'
 templateEngineOverride: md

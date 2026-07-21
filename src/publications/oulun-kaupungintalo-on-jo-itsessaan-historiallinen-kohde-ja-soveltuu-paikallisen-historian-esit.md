@@ -15,6 +15,8 @@ keywords:
   - Oulun kaupunki
   - oulun keskusta
 type: mielipide
+opinionRoles:
+  - political
 wp_id: 1372
 source_url: 'https://www.jarilaru.fi/oulun-kaupungintalo-on-jo-itsessaan-historiallinen-kohde-ja-soveltuu-paikallisen-historian-esit/'
 templateEngineOverride: md

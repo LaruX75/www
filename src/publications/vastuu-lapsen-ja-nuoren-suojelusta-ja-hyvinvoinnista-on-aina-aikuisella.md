@@ -9,6 +9,8 @@ publication: Kaleva
 forum:
   - Lautakunta
 type: mielipide
+opinionRoles:
+  - political
 wp_id: 115
 source_url: 'https://www.jarilaru.fi/vastuu-lapsen-ja-nuoren-suojelusta-ja-hyvinvoinnista-on-aina-aikuisella/'
 politicalProfiles:

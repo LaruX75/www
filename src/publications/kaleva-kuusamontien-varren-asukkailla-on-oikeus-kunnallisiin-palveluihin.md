@@ -16,6 +16,9 @@ keywords:
   - neuvola
   - talvikangas
 type: mielipide
+opinionRoles:
+  - political
+  - expert
 wp_id: 231
 source_url: 'https://www.jarilaru.fi/kaleva-kuusamontien-varren-asukkailla-on-oikeus-kunnallisiin-palveluihin/'
 templateEngineOverride: md

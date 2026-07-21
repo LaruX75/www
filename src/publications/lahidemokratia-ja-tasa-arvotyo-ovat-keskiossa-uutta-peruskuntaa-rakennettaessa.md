@@ -17,6 +17,8 @@ keywords:
   - yhteisöpalvelut
   - yhteisötoiminta
 type: mielipide
+opinionRoles:
+  - political
 wp_id: 969
 source_url: 'https://www.jarilaru.fi/lahidemokratia-ja-tasa-arvotyo-ovat-keskiossa-uutta-peruskuntaa-rakennettaessa/'
 templateEngineOverride: md

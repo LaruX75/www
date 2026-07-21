@@ -21,6 +21,8 @@ keywords:
   - työntövoima
   - vaalikirjoituksia
 type: mielipide
+opinionRoles:
+  - political
 wp_id: 1162
 source_url: 'https://www.jarilaru.fi/mika-saa-asukkaan-sitoutumaan/'
 politicalProfiles:

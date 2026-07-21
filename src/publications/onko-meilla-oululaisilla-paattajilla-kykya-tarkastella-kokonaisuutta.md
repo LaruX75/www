@@ -17,6 +17,8 @@ keywords:
   - peruspalvelut
   - suuralueet
 type: mielipide
+opinionRoles:
+  - political
 wp_id: 983
 source_url: 'https://www.jarilaru.fi/onko-meilla-oululaisilla-paattajilla-kykya-tarkastella-kokonaisuutta/'
 templateEngineOverride: md

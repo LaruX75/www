@@ -15,6 +15,8 @@ keywords:
   - museo- ja tiedekeskus
   - Oulu
 type: mielipide
+opinionRoles:
+  - political
 wp_id: 1811
 source_url: 'https://www.jarilaru.fi/luuppi-ansaitsee-kattavan-kokonaisratkaisun-sen-takaa-parhaiten-se-etta-asiat-kasitellaan-perin/'
 politicalProfiles:

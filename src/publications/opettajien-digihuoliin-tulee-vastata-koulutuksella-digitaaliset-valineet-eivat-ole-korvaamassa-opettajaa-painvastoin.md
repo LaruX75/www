@@ -16,6 +16,8 @@ keywords:
   - teknologian käyttöönotto
   - viihde
 type: mielipide
+opinionRoles:
+  - expert
 wp_id: 1191
 source_url: 'https://www.jarilaru.fi/opettajien-digihuoliin-tulee-vastata-koulutuksella-digitaaliset-valineet-eivat-ole-korvaamassa-opettajaa-painvastoin/'
 templateEngineOverride: md

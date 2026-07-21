@@ -19,6 +19,8 @@ keywords:
   - tuomo valkama
   - urheilualue
 type: mielipide
+opinionRoles:
+  - political
 wp_id: 229
 source_url: 'https://www.jarilaru.fi/jaalin-urheilualueen-rakennustyot-on-aloitettava-vuonna-2013/'
 politicalProfiles:

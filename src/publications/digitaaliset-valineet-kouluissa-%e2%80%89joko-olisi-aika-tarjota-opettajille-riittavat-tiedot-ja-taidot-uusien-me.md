@@ -13,6 +13,8 @@ keywords:
   - tietotekniikka
   - oppiminen
 type: mielipide
+opinionRoles:
+  - expert
 wp_id: 223
 source_url: 'https://www.jarilaru.fi/digitaaliset-valineet-kouluissa-%e2%80%89joko-olisi-aika-tarjota-opettajille-riittavat-tiedot-ja-taidot-uusien-me/'
 templateEngineOverride: md

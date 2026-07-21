@@ -15,6 +15,9 @@ keywords:
   - oppiminen
   - sivistys- ja kulttuurilautakunta
 type: mielipide
+opinionRoles:
+  - political
+  - expert
 wp_id: 972
 source_url: 'https://www.jarilaru.fi/oulu-takaisin-koulukaupunkien-joukkoon/'
 politicalProfiles:

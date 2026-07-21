@@ -11,6 +11,8 @@ keywords:
   - seutuyhteistyö
   - talous
 type: mielipide
+opinionRoles:
+  - political
 wp_id: 920
 source_url: 'https://www.jarilaru.fi/pohjoismainen-malli-kuntaliitoksiin-vai-oulujoen-kaupunki/'
 politicalProfiles:

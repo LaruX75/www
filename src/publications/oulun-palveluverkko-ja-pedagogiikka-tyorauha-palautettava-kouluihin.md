@@ -20,6 +20,9 @@ keywords:
   - perusopetus
   - varhaiskasvatus
 type: mielipide
+opinionRoles:
+  - political
+  - expert
 wp_id: 981
 source_url: 'https://www.jarilaru.fi/oulun-palveluverkko-ja-pedagogiikka-tyorauha-palautettava-kouluihin/'
 politicalProfiles:

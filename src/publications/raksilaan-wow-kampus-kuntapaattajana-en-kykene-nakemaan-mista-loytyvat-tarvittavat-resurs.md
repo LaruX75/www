@@ -16,6 +16,9 @@ keywords:
   - Oulun yliopisto
   - Oulun yliopiston muutto
 type: mielipide
+opinionRoles:
+  - political
+  - expert
 wp_id: 149
 source_url: 'https://www.jarilaru.fi/raksilaan-wow-kampus-kuntapaattajana-en-kykene-nakemaan-mista-loytyvat-tarvittavat-resurs/'
 templateEngineOverride: md

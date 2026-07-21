@@ -16,6 +16,9 @@ keywords:
   - Oulun yliopisto
   - yliopistokampus
 type: mielipide
+opinionRoles:
+  - political
+  - expert
 wp_id: 87
 source_url: 'https://www.jarilaru.fi/oulun-yliopistokampus-toimiva-nykyisellaan-mika-on-se-malli-johon-visio-yliopistosta-keskustassa-perustuu/'
 politicalProfiles:

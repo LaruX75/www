@@ -18,6 +18,9 @@ keywords:
   - veronmaksaja
   - osaoptimointi
 type: mielipide
+opinionRoles:
+  - political
+  - expert
 source_url: 'https://www.facebook.com/jari.laru.poliitikko'
 politicalProfiles:
   - sivistys

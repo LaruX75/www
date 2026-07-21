@@ -17,6 +17,9 @@ keywords:
   - uudet tilat
   - yhteiskampus
 type: mielipide
+opinionRoles:
+  - political
+  - expert
 wp_id: 453
 source_url: 'https://www.jarilaru.fi/ihmistieteille-uudet-tilat-osallistavassa-suunnitteluprosessissa/'
 templateEngineOverride: md

@@ -19,6 +19,9 @@ keywords:
   - tilaliikelaitos
   - väistötilat
 type: mielipide
+opinionRoles:
+  - political
+  - expert
 wp_id: 1135
 source_url: 'https://www.jarilaru.fi/sisailmaongemat-eivat-ole-vain-koulujen-riessa/'
 politicalProfiles:

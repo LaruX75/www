@@ -17,6 +17,8 @@ keywords:
   - munoulu
   - perhekeskus
 type: mielipide
+opinionRoles:
+  - political
 wp_id: 2035
 source_url: 'https://www.jarilaru.fi/sahkoinen-perhekeskus-esimerkki-tulevaisuuden-digitaalisista-palveluista/'
 politicalProfiles:

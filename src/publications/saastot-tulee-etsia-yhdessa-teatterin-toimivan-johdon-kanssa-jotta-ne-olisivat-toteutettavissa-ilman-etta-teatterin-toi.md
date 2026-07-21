@@ -17,6 +17,8 @@ keywords:
   - taide
   - valtionosuusjärjestelmä
 type: mielipide
+opinionRoles:
+  - political
 wp_id: 144
 source_url: 'https://www.jarilaru.fi/saastot-tulee-etsia-yhdessa-teatterin-toimivan-johdon-kanssa-jotta-ne-olisivat-toteutettavissa-ilman-etta-teatterin-toi/'
 templateEngineOverride: md

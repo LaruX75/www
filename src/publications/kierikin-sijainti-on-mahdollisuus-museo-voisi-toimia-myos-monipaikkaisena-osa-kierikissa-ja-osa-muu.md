@@ -20,6 +20,8 @@ keywords:
   - turismi
   - yli-ii
 type: mielipide
+opinionRoles:
+  - political
 wp_id: 1240
 source_url: 'https://www.jarilaru.fi/kierikin-sijainti-on-mahdollisuus-museo-voisi-toimia-myos-monipaikkaisena-osa-kierikissa-ja-osa-muu/'
 templateEngineOverride: md

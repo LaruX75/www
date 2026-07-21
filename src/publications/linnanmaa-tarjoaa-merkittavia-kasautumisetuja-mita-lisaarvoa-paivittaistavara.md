@@ -13,6 +13,9 @@ keywords:
   - Oulun yliopiston muutto
   - yliopisto
 type: mielipide
+opinionRoles:
+  - political
+  - expert
 wp_id: 1712
 source_url: 'https://www.jarilaru.fi/linnanmaa-tarjoaa-merkittavia-kasautumisetuja-mita-lisaarvoa-paivittaistavara/'
 politicalProfiles:
