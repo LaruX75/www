@@ -1346,6 +1346,7 @@ html[data-a11y-bg] .kynasta-table-pager--top {
 </style>
 
 <script>
+document.addEventListener('DOMContentLoaded', function () {
 function normalizeWritingRoles(roles) {
   return [...new Set((Array.isArray(roles) ? roles : []).filter(Boolean))];
 }
@@ -3129,7 +3130,7 @@ function syncWritingRoleFilterButtons(buttons, selectedRole) {
   applyMielipiteetFilters();
 })();
 
-
+}); // DOMContentLoaded
 </script>
 
 {# Staattinen arkistolista — takaa inlinkit kaikille julkaisuille hakukoneille #}
