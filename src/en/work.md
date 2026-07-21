@@ -1,8 +1,8 @@
 ---
 layout: hub.njk
 title: University Lecturer Work
-subtitle: Technology-enhanced learning · AI education · University of Oulu
-description: My work as a university lecturer — teaching, research, and societal engagement at the Faculty of Education, University of Oulu.
+subtitle: Technology-enhanced learning · AI literacy · University of Oulu
+description: "My work as a university lecturer: teaching, research, and societal engagement at the Faculty of Education, University of Oulu."
 permalink: /en/work/
 translationKey: university_lecturer_work
 lang: en
@@ -43,13 +43,13 @@ heroButtons:
       <div class="col-6 col-md-3">
         <div class="card border-0 shadow-sm p-3 h-100">
           <div class="display-5 fw-bold text-warning mb-1">{{ theses.stats.totalGradut }}</div>
-          <div class="small text-muted">master's supervised</div>
+          <div class="small text-muted">master's theses supervised</div>
         </div>
       </div>
       <div class="col-6 col-md-3">
         <div class="card border-0 shadow-sm p-3 h-100">
           <div class="display-5 fw-bold text-info mb-1">{{ theses.stats.totalKandit }}</div>
-          <div class="small text-muted">bachelor's supervised</div>
+          <div class="small text-muted">bachelor's theses supervised</div>
         </div>
       </div>
     </div>
@@ -68,7 +68,7 @@ heroButtons:
           <div class="card-body p-4">
             <div class="mb-2 fs-3" style="color:#0d6efd"><i class="bi bi-easel2-fill"></i></div>
             <h3 class="h6 fw-bold mb-2">Teaching</h3>
-            <p class="small text-muted mb-0">I teach technology-enhanced learning and AI education in teacher education programmes. My courses focus on digital pedagogy, computational thinking, and STEAM integration — hands-on, without requiring a programming background.</p>
+            <p class="small text-muted mb-0">I teach technology-enhanced learning and AI literacy in teacher education programmes. My courses focus on digital pedagogy, computational thinking, and STEAM integration — hands-on, without requiring a programming background.</p>
           </div>
         </div>
       </div>
@@ -88,7 +88,7 @@ heroButtons:
           <div class="card-body p-4">
             <div class="mb-2 fs-3" style="color:#fd7e14"><i class="bi bi-megaphone-fill"></i></div>
             <h3 class="h6 fw-bold mb-2">Societal engagement</h3>
-            <p class="small text-muted mb-0">I serve as a dissemination expert in the Generation AI project — bringing research findings into classrooms, teacher education, and policy decision-making. I also train teachers across Finland in AI education methods.</p>
+            <p class="small text-muted mb-0">I work as a stakeholder engagement specialist in the Generation AI project — bringing research findings into classrooms, teacher education, and policy decision-making. I also train teachers across Finland in AI literacy and the pedagogical use of AI.</p>
           </div>
         </div>
       </div>
@@ -144,7 +144,7 @@ heroButtons:
           <div class="card-body">
             <h3 class="h6 mb-3">My role in the project</h3>
             <ul class="list-unstyled small mb-0">
-              <li class="mb-2"><i class="bi bi-broadcast me-2 text-primary"></i>Dissemination expert — translating research into practice</li>
+              <li class="mb-2"><i class="bi bi-broadcast me-2 text-primary"></i>Stakeholder engagement specialist — translating research into practice</li>
               <li class="mb-2"><i class="bi bi-mortarboard me-2 text-success"></i>Link between teacher education and the project</li>
               <li class="mb-2"><i class="bi bi-search me-2 text-warning"></i>Research focus: teachers' AI literacy</li>
               <li class="mb-0"><i class="bi bi-globe me-2 text-danger"></i>Website development and maintenance</li>

@@ -2,7 +2,7 @@
 layout: base.njk
 title: "Larux t:mi – Training and keynote talks"
 subtitle: Larux t:mi
-description: Larux t:mi provides training, keynote talks, and expert services in educational technology and AI in education. Trainer Jari Laru, EdD, university lecturer.
+description: Larux t:mi provides training, keynote talks, and expert services in educational technology, AI literacy, and digital pedagogy. Trainer Jari Laru, EdD, university lecturer.
 permalink: /en/company/
 translationKey: company
 lang: en
@@ -15,7 +15,7 @@ lang: en
         <p class="text-uppercase text-muted fw-semibold small mb-2">Expert and training services</p>
         <h1 class="display-5 fw-bold mb-3">Larux t:mi</h1>
         <p class="lead mb-3">I offer my expertise to your organization. I am an engaging speaker and an experienced trainer.</p>
-        <p class="mb-4">As a part-time entrepreneur, I deliver keynotes, workshops, and expert consulting focused on educational technology, digital pedagogy, and practical AI use in education. My background is strongly academic: I am a Doctor of Education and a university lecturer at the University of Oulu — research always informs the training.</p>
+        <p class="mb-4">As a part-time entrepreneur, I deliver keynotes, workshops, and expert consulting focused on educational technology, digital pedagogy, and practical AI literacy in education. My background is strongly academic: I am a Doctor of Education and a university lecturer at the University of Oulu — research always informs the training.</p>
         <div class="d-flex flex-wrap gap-2">
           <a class="btn btn-primary" href="/en/contact/">Contact me</a>
           <a class="btn btn-outline-primary" href="/en/training/">Training and talks</a>
@@ -49,7 +49,7 @@ lang: en
           <div class="card-body text-center">
             <div class="fs-2 mb-3" aria-hidden="true">🚀</div>
             <h3 class="h5 fw-bold">Early adopter</h3>
-            <p class="mb-0">I have researched learning technologies throughout my career and defended my doctoral thesis on mobile devices in education in 2012. My current focus is AI in education through the Generation AI project.</p>
+            <p class="mb-0">I have researched learning technologies throughout my career and defended my doctoral thesis on mobile devices in education in 2012. My current focus is AI literacy through the Generation AI project.</p>
           </div>
         </article>
       </div>
@@ -103,7 +103,7 @@ lang: en
           <div class="card-body">
             <p class="text-uppercase text-muted small mb-1">Doctoral thesis 2012</p>
             <h3 class="h6 fw-bold mb-2">Mobile devices in education</h3>
-            <p class="mb-0 small">I defended my doctoral thesis on mobile devices in education at the University of Oulu in 2012. The research arc stretches from my master's thesis in 2003 to today's AI education — over 20 years in educational technology.</p>
+            <p class="mb-0 small">I defended my doctoral thesis on mobile devices in education at the University of Oulu in 2012. The research arc stretches from my master's thesis in 2003 to today's AI literacy work — over 20 years in educational technology.</p>
           </div>
         </div>
       </div>
@@ -121,7 +121,7 @@ lang: en
           <div class="card-body d-flex flex-column">
             <p class="text-uppercase text-muted small mb-1">National webinar series</p>
             <h3 class="h5 fw-bold">AVI training webinar</h3>
-            <p>An AI-in-education keynote delivered as part of a national webinar series organized by the Regional State Administrative Agency.</p>
+            <p>An AI literacy keynote delivered as part of a national webinar series organized by the Regional State Administrative Agency.</p>
             <a class="btn btn-outline-primary mt-auto" href="https://www.canva.com/design/DAGSURxXpeI/bri9t7_gR9JbQaWlJA_K4w/view" target="_blank" rel="noopener noreferrer">View slides</a>
           </div>
         </article>

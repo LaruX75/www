@@ -17,7 +17,7 @@ lang: en
         <p class="text-uppercase text-muted fw-semibold small mb-2">About</p>
         <h1 class="display-5 fw-bold mb-3">Jari Laru</h1>
         <p class="lead mb-4">Municipal politician &middot; university lecturer &middot; researcher &middot; entrepreneur &middot; father &middot; food enthusiast &middot; road tripper</p>
-        <p class="mb-4">I am an educator from Oulu, Finland, working across several roles: researching technology-enhanced learning, teaching future teachers at the University of Oulu, serving in local decision-making as a city council member, and delivering training through my company Larux. Outside work, family life, cooking, and long road trips across Europe bring balance and energy.</p>
+        <p class="mb-4">I am an educator from Oulu, Finland, working across several roles: researching technology-enhanced learning, teaching future teachers at the University of Oulu, serving in local decision-making, and delivering training through my company Larux. Outside work, family life, cooking, and long road trips across Europe bring balance and energy.</p>
         <div class="d-flex flex-wrap gap-2">
           <a href="/en/politics/" class="btn btn-primary">Politics</a>
           <a href="/en/work/" class="btn btn-outline-primary">Research &amp; Teaching</a>
@@ -48,8 +48,8 @@ lang: en
           <img class="card-img-top rooli-kuva" src="/img/uploads/2020/01/WhatsApp-Image-2019-12-02-at-18.58.31-1.jpeg" alt="Jari Laru in city council work" loading="lazy">
           <div class="card-body p-4">
             <div class="mb-2 text-primary"><i class="bi bi-building-fill fs-4"></i></div>
-            <h3 class="h5 fw-bold">City Council Member</h3>
-            <p class="text-muted small mb-3">I have been active in local politics throughout the 2000s. Today I serve in the Oulu City Council and in the Education and Culture Committee, with focus on education, culture, and urban development.</p>
+            <h3 class="h5 fw-bold">Municipal politician</h3>
+            <p class="text-muted small mb-3">I have been active in local politics throughout the 2000s. Current roles include 2nd deputy city councillor, member of the Oulu Education Committee, and deputy member of the North Ostrobothnia Wellbeing Area Council.</p>
           </div>
           <div class="card-footer bg-transparent border-0 px-4 pb-4">
             <a href="/en/politics/" class="btn btn-primary btn-sm">Read more</a>
@@ -75,7 +75,7 @@ lang: en
           <div class="card-body p-4">
             <div class="mb-2 text-warning"><i class="bi bi-mic-fill fs-4"></i></div>
             <h3 class="h5 fw-bold">Trainer &amp; Speaker</h3>
-            <p class="text-muted small mb-3">Through Larux, I provide professional learning and keynote talks for educators. Core themes: AI in education, digital pedagogy, and technology-enhanced learning.</p>
+            <p class="text-muted small mb-3">Through Larux, I provide professional learning and keynote talks for educators. Core themes: AI literacy, digital pedagogy, and technology-enhanced learning.</p>
           </div>
           <div class="card-footer bg-transparent border-0 px-4 pb-4">
             <a href="/en/company/" class="btn btn-warning btn-sm">Read more</a>
@@ -104,10 +104,10 @@ lang: en
   <div class="site-shell">
     <div class="row align-items-center g-5">
       <div class="col-lg-6">
-        <h2 class="h3 fw-bold mb-3">From Oulu, living in Jaali</h2>
-        <p class="mb-3">I was born in Oulu and have lived here all my life. Our family &ndash; my spouse and three children &ndash; lives in a detached house in <strong>Jaali</strong>, in the Oulu area. Jaali is calm and close to nature, while still connected to city services.</p>
+        <h2 class="h3 fw-bold mb-3">From Oulu, living in Jääli</h2>
+        <p class="mb-3">I was born in Oulu and have lived here all my life. Our family &ndash; my spouse and three children &ndash; lives in a detached house in <strong>Jääli</strong>, in the Oulu area. Jääli is calm and close to nature, while still connected to city services.</p>
         <p class="mb-3">For me, Oulu is more than a hometown &ndash; it is also a field for research, politics, and community action. I have been involved in local decision-making and civic initiatives for years.</p>
-        <p class="mb-0">As a council member, I work especially for education, culture, and local democracy.</p>
+        <p class="mb-0">In local politics, I work especially for education, culture, local democracy, and balanced development across Oulu.</p>
       </div>
       <div class="col-lg-6">
         <div class="row g-3">
@@ -121,9 +121,9 @@ lang: en
           </div>
           <div class="col-6">
             <div class="card border-0 shadow-sm">
-              <img class="card-img-top jaali-kuva" src="/img/uploads/2021/03/asyhds-300x225.jpg" alt="As residents' association chair in Jaali" loading="lazy">
+              <img class="card-img-top jaali-kuva" src="/img/uploads/2021/03/asyhds-300x225.jpg" alt="As residents' association chair in Jääli" loading="lazy">
               <div class="card-body py-2 px-3">
-                <p class="card-text small text-muted mb-0">Residents' association leadership in Jaali</p>
+                <p class="card-text small text-muted mb-0">Residents' association leadership in Jääli</p>
               </div>
             </div>
           </div>
@@ -377,7 +377,7 @@ lang: en
           <div class="card-body p-4">
             <div class="mb-2 fs-3" style="color:#dc3545"><i class="bi bi-bank2"></i></div>
             <h3 class="h5 fw-bold">Politics</h3>
-            <p class="text-muted small mb-0">City council member, motions and civic influence in Oulu.</p>
+            <p class="text-muted small mb-0">Municipal politics, council motions and civic influence in Oulu.</p>
           </div>
         </a>
       </div>

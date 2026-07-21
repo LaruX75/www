@@ -32,7 +32,7 @@ Political content is licensed under
 [https://creativecommons.org/licenses/by-nc-nd/4.0/](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
 This covers:
-- all content in the Kynästä section (`/en/writings/`) — opinion pieces, speeches, council motions
+- all content in the Writings section (`/en/writings/`) — opinion pieces, speeches, council motions
 - political blog posts
 - any page marked with "This text is licensed under CC BY-NC-ND 4.0"
 

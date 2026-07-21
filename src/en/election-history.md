@@ -25,7 +25,7 @@ templateEngineOverride: njk,md
         <div class="card h-100 border-0 shadow-sm">
           <div class="card-body">
             <p class="text-uppercase text-muted small mb-1">Oulu</p>
-            <h3 class="h6 fw-bold mb-1">2nd Deputy City Councilor</h3>
+            <h3 class="h6 fw-bold mb-1">2nd Deputy City Councillor</h3>
             <p class="text-muted small mb-0">Oulu City Council</p>
           </div>
         </div>
@@ -58,7 +58,7 @@ templateEngineOverride: njk,md
                   <div class="p-2 border rounded small">
                     <strong>Municipal elections (Oulu)</strong><br>
                     Candidate 439 &mdash; 289 votes<br>
-                    Result: 2nd deputy city councilor
+                    Result: 2nd deputy city councillor
                   </div>
                 </div>
                 <div class="col-sm-6">
@@ -69,7 +69,7 @@ templateEngineOverride: njk,md
                   </div>
                 </div>
               </div>
-              <p class="small text-muted mb-2">Positions 2025&ndash;2029: 2nd deputy city councilor (Oulu City Council), member of the Education Committee, deputy member of the Wellbeing Area Council.</p>
+              <p class="small text-muted mb-2">Positions 2025&ndash;2029: 2nd deputy city councillor (Oulu City Council), member of the Education Committee, deputy member of the North Ostrobothnia Wellbeing Area Council.</p>
               <a class="btn btn-outline-primary btn-sm" href="/en/municipal-and-wellbeing-elections-2025/">Campaign archive</a>
             </div>
           </div>
@@ -85,7 +85,7 @@ templateEngineOverride: njk,md
               <p class="text-muted small mb-2">Oulu &mdash; National Coalition Party (Kokoomus)</p>
               <p class="mb-2">Re-elected to Oulu City Council. Term 2021&ndash;2025.</p>
               <ul class="mb-3">
-                <li>City Councilor, Oulu City</li>
+                <li>City Councillor, Oulu City</li>
                 <li>Member, Education &amp; Culture Committee</li>
                 <li>Member, Regional Council of North Ostrobothnia</li>
               </ul>
@@ -121,7 +121,7 @@ templateEngineOverride: njk,md
               <p class="text-muted small mb-2">Oulu &mdash; National Coalition Party (Kokoomus)</p>
               <p class="mb-2">First elected to Oulu City Council. Term 2017&ndash;2021.</p>
               <ul class="mb-3">
-                <li>City Councilor, Oulu City</li>
+                <li>City Councillor, Oulu City</li>
                 <li>Member, Education &amp; Culture Committee</li>
                 <li>Deputy Member, Regional Council of North Ostrobothnia</li>
                 <li>Chair, Local Democracy Committee (2017&ndash;2021)</li>
@@ -139,7 +139,7 @@ templateEngineOverride: njk,md
             <div class="flex-grow-1">
               <h3 class="h5 fw-bold mb-1">Municipal Elections 2012</h3>
               <p class="text-muted small mb-2">Oulu &mdash; National Coalition Party (Kokoomus)</p>
-              <p class="mb-2">Stood as a candidate in the municipal elections in Oulu, with a background as chair of the local residents' association and experience as a deputy councilor.</p>
+              <p class="mb-2">Stood as a candidate in the municipal elections in Oulu, with a background as chair of the local residents' association and experience as a deputy councillor.</p>
               <a class="btn btn-outline-secondary btn-sm" href="/kunnallisvaalit-2012/">Campaign archive (Finnish)</a>
             </div>
           </div>
@@ -152,7 +152,7 @@ templateEngineOverride: njk,md
     <div class="card border-0 shadow-sm">
       <div class="card-body p-4">
         <ul class="mb-0">
-          <li><strong>Member, University Collegium</strong>, University of Oulu (current)</li>
+          <li><strong>Member, University Collegium</strong>, University of Oulu (until the end of 2025)</li>
           <li><strong>Chair, Residents' Association</strong>, Jääli district, Oulu (2000s)</li>
           <li><strong>Member, Student Union Board</strong>, University of Oulu Students' Union (OYY), 2000</li>
         </ul>

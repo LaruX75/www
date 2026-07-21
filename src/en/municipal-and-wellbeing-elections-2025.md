@@ -41,7 +41,7 @@ lang: en
               <li class="mb-2"><strong>Party:</strong> National Coalition Party</li>
               <li class="mb-2"><strong>Candidate number:</strong> 439</li>
               <li class="mb-2"><strong>Votes:</strong> 289 (incl. 110 advance votes)</li>
-              <li class="mb-2"><strong>Result:</strong> 2nd deputy city councilor</li>
+              <li class="mb-2"><strong>Result:</strong> 2nd deputy city councillor</li>
               <li class="mb-0"><strong>Term:</strong> 2025-2029</li>
             </ul>
           </div>
@@ -100,8 +100,8 @@ lang: en
             <h3 class="h5 fw-bold mb-3"><i class="bi bi-ballot me-2 text-primary"></i>Municipal elections 13 April 2025</h3>
             <ul class="mb-0">
               <li>Votes: <strong>289</strong> (advance votes 110)</li>
-              <li>Result: <strong>2nd deputy city councilor</strong></li>
-              <li><strong>2nd deputy city councilor</strong>, Oulu City Council</li>
+              <li>Result: <strong>2nd deputy city councillor</strong></li>
+              <li><strong>2nd deputy city councillor</strong>, Oulu City Council</li>
               <li><strong>Member of the Education Committee</strong>, Oulu City</li>
             </ul>
           </div>

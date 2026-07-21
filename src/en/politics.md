@@ -19,7 +19,7 @@ lang: en
         <div class="d-flex flex-wrap gap-2">
           <a href="#council-initiatives" class="btn pol-hero-btn-primary">Council motions</a>
           <a href="/en/election-history/" class="btn pol-hero-btn-outline">Election history</a>
-          <a href="/en/affiliations/" class="btn pol-hero-btn-outline">Affiliations</a>
+          <a href="/en/affiliations/" class="btn pol-hero-btn-outline">Disclosures and election funding</a>
         </div>
       </div>
       <div class="col-lg-4">
