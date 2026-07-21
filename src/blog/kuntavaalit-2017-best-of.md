@@ -12,6 +12,9 @@ keywords:
 wp_id: 1455
 source_url: 'https://www.jarilaru.fi/kuntavaalit-2017-best-of/'
 templateEngineOverride: md
+writingRoles:
+  - political
+
 ---
 
 Pyrin vastaamaan aina kaikkiin mahdollisiin vaalikoneisiin. Valitettavasti vaalikoneista harvat s�ilytt�v�t vastaukset vuosikausien p��h�n. YLEn laadukas vaalikone on juuri sellainen, sen vastaukset l�ytyv�t vain YLEn kokoamasta Excelist� (ja minun osaltani t�lt� sivulta)

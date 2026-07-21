@@ -18,6 +18,9 @@ source_url: 'https://www.jarilaru.fi/kaikki-lahtee-yksilosta-nobel-palkittu-mart
 politicalProfiles:
   - hyvinvointi
 templateEngineOverride: md
+writingRoles:
+  - political
+
 ---
 
 Asensin viikonloppuna hämäräkytkimen ulkovalaistusta ohjaamaan. Siitä johtoja vedellessä tapani mukaan kuuntelin radiota. Sattumalta olin Radio Suomen taajuudella jossa toimittaja Jari Korkki haastatteli parhaillaan Nobel palkittua Presidentti Martti Ahtisaarta [*Kyseessä oli TV 1:n YLE Ykkösaamun radioitu versio, [tässä linkki alkuperäiseen videoversioo](http://areena.yle.fi/toista?id=1576014)*]. Vaikka suurin osa haastattelusta sivusikin hänen erittäin menestyksekästä diplomaatin uraansa  YK:n ja muiden järjestöjen tehtävissä, toimittaja Korkki kyseli häneltä myös näkemyksiä ajankohtaisiin väkivallantekoihin maassamme. Presidentin vastaus miellytti minua suuresti. Alla vapaasti litteroitu vastaus Toimittaja Korkin tekemään kysymykseen (videoleikkeen perusteella):

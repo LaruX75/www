@@ -17,6 +17,8 @@ keywords:
   - Jääli
   - Kiiminki
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - lahipalvelut
   - kaupunkikehitys

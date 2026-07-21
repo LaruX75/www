@@ -18,6 +18,8 @@ keywords:
   - Hiukkavaara
   - Jääli
 type: puhe
+writingRoles:
+  - political
 wp_id: 2381
 source_url: 'https://www.jarilaru.fi/puheenvuoro-%c2%a72-maankayton-toteuttamisohjelma/'
 politicalProfiles:

@@ -17,6 +17,8 @@ keywords:
   - Jääli
   - kaupunkisuunnittelu
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - lahipalvelut
   - kaupunkikehitys

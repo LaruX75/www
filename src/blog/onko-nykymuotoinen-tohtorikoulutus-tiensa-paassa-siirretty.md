@@ -13,6 +13,9 @@ source_url: 'https://www.jarilaru.fi/onko-nykymuotoinen-tohtorikoulutus-tiensa-p
 politicalProfiles:
   - sivistys
 templateEngineOverride: md
+writingRoles:
+  - expert
+
 ---
 January 4th, 2007 <!-- by jlaru -->
 Uusi vuosi 2007 alkaa koulutuspoliittisesti hyvin mielenkiintoisissa merkeissä. Vanhasen hallitus ei pystynyt päättämään opintotuen nostamisesta ja nyt istuva pääministeri haluaisi korkeakoulupolitiikan seuraavan hallitusohjelman yhdeksi tärkeimmistä asioista. Hämmästyttävää on vain se, että tulevan ohjelman yksi keskeisistä tavoitteista on vahvistaa akateemista tutkimusta tekemällä jatko-opinnoista maksullisia. Hokkus Pokkus.

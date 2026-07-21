@@ -12,6 +12,8 @@ keywords:
   - kuusamontie
   - työmatkaliikenne
 type: puhe
+writingRoles:
+  - political
 wp_id: 1208
 source_url: 'https://www.jarilaru.fi/puheeni-uuden-oulun-kuulemistilaisuudessa/'
 templateEngineOverride: md

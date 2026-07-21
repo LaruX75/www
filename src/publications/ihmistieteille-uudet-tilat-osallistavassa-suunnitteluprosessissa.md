@@ -17,6 +17,9 @@ keywords:
   - uudet tilat
   - yhteiskampus
 type: mielipide
+writingRoles:
+  - political
+  - expert
 opinionRoles:
   - political
   - expert

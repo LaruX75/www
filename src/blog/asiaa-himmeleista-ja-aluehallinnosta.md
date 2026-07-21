@@ -20,6 +20,9 @@ source_url: 'https://www.jarilaru.fi/asiaa-himmeleista-ja-aluehallinnosta/'
 politicalProfiles:
   - yhteistyo
 templateEngineOverride: md
+writingRoles:
+  - political
+
 ---
 
 Olen tässä melkein kaksi viikkoa katsellut kaksi viikkoa sitten perustamani Oulun ja Oulun seudun politiikka ryhmän keskusteluita aluevaaleihin liittyen. Siellä vilisee varsin sana hallintohimmeli, josta [Kokoomuspoliitikko Jarmo Husso](https://www.facebook.com/hussojarmo?__cft__[0]=AZVTOkAovCD3ePygQZt3JIWwkgmiFXhlJMzseTWpiQ1O1QBQA8LwZULQjD_e97k_cxeUj0SsoFyf9cjDes4sB6nqiM9q6BSLZfKpN1lGsT1JqINcBFYsc-AYskh7qSN50JQU6svWQKCsKpKVhW3JKR8K&__tn__=-]K-R) ja [Lauri Nikula](https://www.facebook.com/laurinikula2021?__cft__[0]=AZVTOkAovCD3ePygQZt3JIWwkgmiFXhlJMzseTWpiQ1O1QBQA8LwZULQjD_e97k_cxeUj0SsoFyf9cjDes4sB6nqiM9q6BSLZfKpN1lGsT1JqINcBFYsc-AYskh7qSN50JQU6svWQKCsKpKVhW3JKR8K&__tn__=-]K-R) ovat ainakin peistä taittaneet.

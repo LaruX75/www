@@ -17,6 +17,9 @@ keywords:
   - visualisointi
   - digitalisaatio
 type: puhe
+writingRoles:
+  - political
+  - expert
 politicalProfiles:
   - avoinhallinto
 templateEngineOverride: md

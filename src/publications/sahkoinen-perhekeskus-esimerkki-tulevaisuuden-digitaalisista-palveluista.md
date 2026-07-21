@@ -17,6 +17,8 @@ keywords:
   - munoulu
   - perhekeskus
 type: mielipide
+writingRoles:
+  - political
 opinionRoles:
   - political
 wp_id: 2035

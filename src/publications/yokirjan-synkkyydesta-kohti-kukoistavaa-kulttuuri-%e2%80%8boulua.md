@@ -13,6 +13,8 @@ keywords:
   - vetovoima
   - kulttuuripääkaupunki
 type: mielipide
+writingRoles:
+  - political
 opinionRoles:
   - political
 wp_id: 1779

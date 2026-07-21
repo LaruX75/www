@@ -24,6 +24,9 @@ politicalProfiles:
   - sivistys
   - lahipalvelut
 templateEngineOverride: md
+writingRoles:
+  - political
+
 ---
 
 #### Lisäys: uusi koulu otettu käyttöön vuoden 2021 alussa muutosesitykseni mukaisessa paikassa.

@@ -16,6 +16,8 @@ keywords:
   - päätöksenteko
   - palveluverkko
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - sivistys
   - lahipalvelut

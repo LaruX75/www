@@ -16,6 +16,9 @@ keywords:
 wp_id: 916
 source_url: 'https://www.jarilaru.fi/etusivu/'
 templateEngineOverride: md
+writingRoles:
+  - political
+
 ---
 
 **

@@ -14,6 +14,8 @@ keywords:
   - kaavoitus
   - osallisuus
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - kaupunkikehitys
 templateEngineOverride: md

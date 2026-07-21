@@ -19,6 +19,8 @@ keywords:
   - ICT
   - kaupunkisuunnittelu
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - sivistys
   - kaupunkikehitys

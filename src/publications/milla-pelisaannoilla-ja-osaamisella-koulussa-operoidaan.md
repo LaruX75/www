@@ -17,6 +17,8 @@ keywords:
   - teknolgoiatuettu oppiminen
   - teknologia
 type: kolumni
+writingRoles:
+  - political
 wp_id: 1196
 source_url: 'https://www.jarilaru.fi/milla-pelisaannoilla-ja-osaamisella-koulussa-operoidaan/'
 templateEngineOverride: md

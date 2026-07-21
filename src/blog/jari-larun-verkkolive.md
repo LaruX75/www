@@ -15,6 +15,9 @@ wp_id: 387
 source_url: 'https://www.jarilaru.fi/jari-larun-verkkolive/'
 external_url: 'https://www.youtube.com/playlist?list=PLDG0jxUrk8z19_ThqBiynpYG4g-mjwgpt'
 templateEngineOverride: md
+writingRoles:
+  - expert
+
 ---
 
 ![Minä keväällä 2020 olohuonestudiossani](/img/uploads/2021/01/verkkolive.jpg)

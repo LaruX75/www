@@ -18,6 +18,8 @@ keywords:
   - palvelujen saatavuus
   - perheet
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - sivistys
   - hyvinvointi

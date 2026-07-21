@@ -13,6 +13,8 @@ keywords:
   - osyk
   - säästöt
 type: puhe
+writingRoles:
+  - political
 wp_id: 2096
 source_url: 'https://www.jarilaru.fi/puheeni-lukiolaisille-osyk-lukion-valtauksessa-3-4-2023/'
 templateEngineOverride: md

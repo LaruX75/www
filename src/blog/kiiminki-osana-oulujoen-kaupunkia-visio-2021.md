@@ -20,6 +20,9 @@ politicalProfiles:
   - lahipalvelut
   - yhteistyo
 templateEngineOverride: md
+writingRoles:
+  - political
+
 ---
 
 ### Oulujoen Kaupunki?

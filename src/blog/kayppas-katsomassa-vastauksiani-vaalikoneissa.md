@@ -9,6 +9,9 @@ keywords:
 wp_id: 923
 source_url: 'https://www.jarilaru.fi/kayppas-katsomassa-vastauksiani-vaalikoneissa/'
 templateEngineOverride: md
+writingRoles:
+  - political
+
 ---
 
 Jos täältä blogista ei ole vielä selvinnyt mitä mieltä olen asioista, lisää tietoa löydät vastauksistani vaalikoneissa. Olen säntillisesti pyrkinyt myös perustelemaan vastaukseni (mikä näyttää olevan harvinaista vaalikoneissa). Linkit johtavat suoraan vastauksiini:

@@ -18,6 +18,9 @@ keywords:
   - kampuskehitys
   - korkeakouluyhteistyö
 type: puhe
+writingRoles:
+  - political
+  - expert
 politicalProfiles:
   - sivistys
   - kaupunkikehitys

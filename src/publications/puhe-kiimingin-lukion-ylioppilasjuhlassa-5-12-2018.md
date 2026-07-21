@@ -15,6 +15,8 @@ keywords:
   - puhe
   - ylioppilasjuhla
 type: puhe
+writingRoles:
+  - political
 wp_id: 1111
 source_url: 'https://www.jarilaru.fi/puhe-kiimingin-lukion-ylioppilasjuhlassa-5-12-2018/'
 politicalProfiles:

@@ -18,6 +18,9 @@ politicalProfiles:
   - lahipalvelut
   - kaupunkikehitys
 templateEngineOverride: md
+writingRoles:
+  - political
+
 ---
 Jo ennen kuin muutimme Jääliin hämmästelin alueen uskomattoman surkeata katuvalaistusta.Tuntui että taskulampustakin lähtee syksyn pimeillä enemmän valoa kuin tienposkeen harvakseltaan istutetuista katulampuista. Kokemusta on karttunut jo useamman vuoden ajalta, sillä ennen "jääliläistymistä" olen ottanut alueen pimeyteen tuntumaa ulkoiluttamalla täälläpäin anoppini nykyisin jo edesmennyttä koiraa. Koiran kanssa pimeydessä oli sinänsä turvallista kulkea, koska koirahan luottaa hajuaistiinsa enemmän kuin näköönsä. Me ihmiset vain emme pelkällä hajuaistilla pysty navigoimaan ja pimeässä emme tunnetusti kovinkaan hyvin näe.
 Ns. vanhan jäälin alueella pylväitä on niin harvakseltaan että ei tiedä pitäisikö itkeä vai nauraa. Esimerkiksi meidän talomme tienoo on kuin Raahen merimuseossa pullotettuna lymyävä  "epyktin pimiä". Toisaalta "ison tien varressa" eli laivakankaantiellä osa pylväistä on juntattu niin kauas tiestä ettei niistä ole valaisemaan itse maantietä. Pikemmin niitä voisi pitää eräänlaisina puistovalaisimina ;) No, joku tietysti kysyy että eikös autossasi tai pyörässäsi ole valot. Älä ruikuta.

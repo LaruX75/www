@@ -21,6 +21,9 @@ politicalProfiles:
   - hyvinvointi
   - lahipalvelut
 templateEngineOverride: md
+writingRoles:
+  - political
+
 ---
 
 TNS Gallupin valituille paloille tekemän tutkimuksen mukaan meidän ikioma Kiiminkimme on kymmenen parhaan joukossa mitattaessa maamme lapsiystävällisimpiä kuntia. Perheemme asui vielä viime talvena Raksilassa Oulun ydinkeskustassa joten omakohtaista vertailupohjaa on tutkimuksessa huonosti sijoittuneisiin isoihin kaupunkeihin.TNS Gallupin mukaan seuraavia asioita pidettiin tärkeimpinä kriteereinä:

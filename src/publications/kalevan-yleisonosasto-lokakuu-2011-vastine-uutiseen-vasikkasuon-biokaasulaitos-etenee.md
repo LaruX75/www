@@ -16,6 +16,8 @@ keywords:
   - Vasikkasuo
   - VRJ Järvenpää
 type: mielipide
+writingRoles:
+  - political
 opinionRoles:
   - political
 wp_id: 945

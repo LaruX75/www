@@ -7,6 +7,8 @@ categories:
   - Teknologia ja digitaalisuus
 publication: Kaleva
 type: mielipide
+writingRoles:
+  - expert
 opinionRoles:
   - expert
 source_url: 'https://www.kaleva.fi/digitaaliset-valineet-kouluissa-joko-olisi-aika-ta/1749741'

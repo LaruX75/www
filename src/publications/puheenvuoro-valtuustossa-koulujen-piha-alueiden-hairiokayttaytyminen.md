@@ -16,6 +16,8 @@ keywords:
   - häiriökäyttäytyminen
   - Kiiminki
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - sivistys
   - lahipalvelut

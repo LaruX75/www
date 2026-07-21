@@ -9,6 +9,8 @@ publication: Kaleva
 forum:
   - Lautakunta
 type: mielipide
+writingRoles:
+  - political
 opinionRoles:
   - political
 wp_id: 115

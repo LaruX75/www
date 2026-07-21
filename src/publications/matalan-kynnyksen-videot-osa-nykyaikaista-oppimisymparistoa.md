@@ -13,6 +13,8 @@ keywords:
   - videoiden tekeminen
   - videot opetuksessa
 type: kolumni
+writingRoles:
+  - expert
 wp_id: 1200
 source_url: 'https://www.jarilaru.fi/matalan-kynnyksen-videot-osa-nykyaikaista-oppimisymparistoa/'
 templateEngineOverride: md

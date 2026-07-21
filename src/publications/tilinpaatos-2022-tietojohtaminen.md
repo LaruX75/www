@@ -12,6 +12,8 @@ keywords:
   - tietojohtaminen
   - avoin data
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - avoinhallinto
   - yhteistyo

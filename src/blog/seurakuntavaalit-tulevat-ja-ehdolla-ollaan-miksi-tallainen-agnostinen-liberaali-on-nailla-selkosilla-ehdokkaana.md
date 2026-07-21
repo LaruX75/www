@@ -9,6 +9,9 @@ campaign: Seurakuntavaalit
 wp_id: 974
 source_url: 'https://www.jarilaru.fi/seurakuntavaalit-tulevat-ja-ehdolla-ollaan-miksi-tallainen-agnostinen-liberaali-on-nailla-selkosilla-ehdokkaana/'
 templateEngineOverride: md
+writingRoles:
+  - political
+
 ---
 
 No juuri siksi!

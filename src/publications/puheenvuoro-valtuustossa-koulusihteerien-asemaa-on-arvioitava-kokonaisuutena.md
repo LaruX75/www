@@ -17,6 +17,8 @@ keywords:
   - hallinto
   - palvelut
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - sivistys
 templateEngineOverride: md

@@ -16,6 +16,9 @@ source_url: 'https://www.jarilaru.fi/te-muut-voisitte-menna-vaikka-kahville-vast
 politicalProfiles:
   - yhteistyo
 templateEngineOverride: md
+writingRoles:
+  - political
+
 ---
 
 Sattumalta törmäsin tähää

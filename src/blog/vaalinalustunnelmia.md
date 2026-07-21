@@ -15,6 +15,9 @@ keywords:
 wp_id: 1160
 source_url: 'https://www.jarilaru.fi/vaalinalustunnelmia/'
 templateEngineOverride: md
+writingRoles:
+  - political
+
 ---
 
 [Pasi Jokine](https://www.facebook.com/pasijokinen?__cft__[0]=AZWeY6BBVJ7kxR1_DK3qIjkp3crEiWDE-s616Nlfw7IVIX9YTH-75e_9eHEu7ecri6u0SdOvxJZ6Bb-ym9wvZSX7_8G7xUKQ9uaKvsLdc75aqXrGkSBpmdmK86rltBjDSjj_wQspBcivjOPiAaryLb59AHFfHyM3W3-TPaTRMj3YcOc-SWkfkVxbbIK07O9it2FP0PhKxe-WQpnc400pW6Ts&__tn__=-]K-R) kirjoitti sivulleen kaunopuheisen suosituksen äänestää allekirjoittanutta.

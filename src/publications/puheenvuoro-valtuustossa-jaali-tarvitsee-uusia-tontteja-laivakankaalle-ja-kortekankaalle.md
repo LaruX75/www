@@ -17,6 +17,8 @@ keywords:
   - asuntorakentaminen
   - MATO
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - lahipalvelut
   - kaupunkikehitys

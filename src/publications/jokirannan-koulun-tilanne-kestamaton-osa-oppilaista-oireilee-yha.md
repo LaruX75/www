@@ -24,6 +24,9 @@ keywords:
   - sisäilma
   - yläaste
 type: mielipide
+writingRoles:
+  - political
+  - expert
 opinionRoles:
   - political
   - expert

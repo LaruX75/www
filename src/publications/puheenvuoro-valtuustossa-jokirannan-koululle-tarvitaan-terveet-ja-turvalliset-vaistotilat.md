@@ -18,6 +18,9 @@ keywords:
   - Kiiminki
   - talousarvio
 type: puhe
+writingRoles:
+  - political
+  - expert
 opinionRoles:
   - political
 politicalProfiles:

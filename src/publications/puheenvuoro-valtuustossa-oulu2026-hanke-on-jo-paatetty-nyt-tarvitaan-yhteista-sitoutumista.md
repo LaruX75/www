@@ -17,6 +17,8 @@ keywords:
   - matkailu
   - kansainvälisyys
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - kaupunkikehitys
   - yhteistyo

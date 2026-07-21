@@ -15,6 +15,9 @@ keywords:
   - Rantapohja
   - teollisuus
 type: kolumni
+writingRoles:
+  - political
+  - expert
 wp_id: 2058
 source_url: 'https://www.jarilaru.fi/paattajalta-keskustakampuksen-lammikossa-uiva-musta-joutsen-uhkaa-alueemme-ict-sektoria/'
 templateEngineOverride: md

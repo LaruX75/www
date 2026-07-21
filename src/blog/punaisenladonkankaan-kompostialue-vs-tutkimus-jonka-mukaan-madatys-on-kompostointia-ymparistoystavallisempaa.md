@@ -18,6 +18,9 @@ politicalProfiles:
   - lahipalvelut
   - kaupunkikehitys
 templateEngineOverride: md
+writingRoles:
+  - political
+
 ---
 
 Kuten varmasti jokainen alueemme asukas tietää, ollaan Kuusamontien toiselle puolelle kaavoittamassa suuria kompostointikenttiä jätevesilietteen jälkikäsittelyä varten. Asiasta on tehty [vetoomuksia ja valituksia](http://www.ppkylat.fi/jaali/), niin että Oulun kaupunkikaan ei hankkeeseen enää usko. Tästä esimerkkinä on se, että Oulun vesi on jo ryhtynyt kaikessa hiljaisuudessa [suunnittelemaan mädätyksen käyttöönottoa](http://ktweb.ouka.fi/ktwebbin/ktproxy2.dll?doctype=2&docid=4c4c4c544b5c305c31393035343633332e646f63&pykno=103&elin=LLLTK&lis=0&pvm=20.8.2008%2016%3A15%3A00) Taskilan puhdistamolla.

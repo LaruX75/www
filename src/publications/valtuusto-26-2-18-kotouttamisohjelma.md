@@ -18,6 +18,8 @@ keywords:
   - vtt
   - yliopisto
 type: puhe
+writingRoles:
+  - political
 wp_id: 1128
 source_url: 'https://www.jarilaru.fi/valtuusto-26-2-18-kotouttamisohjelma/'
 politicalProfiles:

@@ -20,6 +20,8 @@ keywords:
   - pyöräily
   - koulut
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - sivistys
   - kaupunkikehitys

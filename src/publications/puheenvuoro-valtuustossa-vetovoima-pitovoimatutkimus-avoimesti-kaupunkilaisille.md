@@ -15,6 +15,8 @@ keywords:
   - viestintä
   - kuntalaiset
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - avoinhallinto
   - yhteistyo

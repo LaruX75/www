@@ -16,6 +16,9 @@ source_url: 'https://www.jarilaru.fi/mina-olen-annaaanilapselle-ehdokas/'
 politicalProfiles:
   - hyvinvointi
 templateEngineOverride: md
+writingRoles:
+  - political
+
 ---
 
 > “Vaikka talous asettaa paineita, viisas kunta huolehtii lapsista ja perheistä. Se on paras panostus tulevaisuuteen. “

@@ -10,6 +10,8 @@ secondaryTheme:
   - Teknologia ja digitaalisuus
 publication: Kaleva
 type: mielipide
+writingRoles:
+  - political
 opinionRoles:
   - political
 politicalProfiles:

@@ -13,6 +13,8 @@ keywords:
   - perämerenkaari
   - teollisuus
 type: mielipide
+writingRoles:
+  - political
 opinionRoles:
   - political
 politicsWritingRole: political

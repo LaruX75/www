@@ -15,6 +15,8 @@ keywords:
   - Oulun kaupunki
   - oulun keskusta
 type: mielipide
+writingRoles:
+  - political
 opinionRoles:
   - political
 wp_id: 1372

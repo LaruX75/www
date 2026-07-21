@@ -10,6 +10,8 @@ categories:
 publication: Faktabaari EDU
 publicationCollection: "Tekoälyopas opettajille"
 type: artikkeli
+writingRoles:
+  - expert
 publicationType: E1
 source_url: 'https://faktabaari.fi/edu/tekoalytaitojen-opettaminen-generation-ai-sovellusten-avulla/'
 thumbnail: 'https://faktabaari.fi/images/10-opettaja-ai-opas.jpg'

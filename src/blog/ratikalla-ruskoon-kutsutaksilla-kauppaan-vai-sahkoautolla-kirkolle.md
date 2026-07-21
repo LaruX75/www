@@ -19,6 +19,9 @@ politicalProfiles:
   - kaupunkikehitys
   - lahipalvelut
 templateEngineOverride: md
+writingRoles:
+  - political
+
 ---
 
 Pöydälläni on lojunut jo pidemmän aikaa lehtileike vihreiden vaalikampanjan avauksesta. Siitä Oulun läänin vihreät esittävät paikallisjunia ja kutsutakseja Oulun seudun joukkoliikennesolmuja aukomaan. Ensi silmäyksellä vihreiden ideat tuntuvat hieman kaukaa haetuilta ja suorastaan naiveilta, mutta he katsovat aloitteellaan horisontin taakse. Saman ilmeisesti ovat huomanneet kaikkien puolueiden edustajat, sillä uusimassa Forum24-lehdessä isoimpien puolueiden edustajat olivat kaikki ajatuksen takana. Innostuin kirjoittamaan aiheesta luettuani Oululaisen ystäväni [Antero Metso](http://antsu1.blogit.uusisuomi.fi/author/antsu1/) vaaliblogista (kristillisten ehdokas) kirjoituksen "[kiskoliikenne joukkoliikenteen ratkaisuvaihtoehtona](http://antsu1.blogit.uusisuomi.fi/2008/10/05/kiskoliikenne-joukkoliikenteen-ratkaisuvaihtoehtona/)".

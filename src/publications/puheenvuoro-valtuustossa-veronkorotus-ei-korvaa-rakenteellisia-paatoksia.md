@@ -16,6 +16,8 @@ keywords:
   - rakenteelliset ratkaisut
   - päätöksenteko
 type: puhe
+writingRoles:
+  - political
 opinionRoles:
   - political
 politicalProfiles:

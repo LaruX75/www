@@ -13,6 +13,9 @@ keywords:
 wp_id: 1169
 source_url: 'https://www.jarilaru.fi/tunnelmia-lahidemokratiatoimikunnan-viimeisesta-kokouksesta/'
 templateEngineOverride: md
+writingRoles:
+  - political
+
 ---
 
 Kuvassa Oulun kaupungin lähidemokratiatoimikunta kevään 2017 toisen kokouksen jälkeen. Tänään listan kuumin asia oli suuralueiden yhteisötoiminnan toimintarahoista päättäminen, mutta oli siitä mukana myös mm. tunnustuspalkinnon hahmottelua ansiokkaasta lähidemokratiatyöstä yms.

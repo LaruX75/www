@@ -18,6 +18,8 @@ keywords:
   - aluekoulu
   - sivistyspalvelut
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - sivistys
   - lahipalvelut

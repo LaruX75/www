@@ -17,6 +17,8 @@ keywords:
   - vrj
   - ympäristölupa
 type: puhe
+writingRoles:
+  - political
 wp_id: 1138
 source_url: 'https://www.jarilaru.fi/vierailu-kempeleen-kunnassa-aiheena-asukkaiden-huoli-jatevesilietteiden-kasittelyyn-liittyen/'
 templateEngineOverride: md

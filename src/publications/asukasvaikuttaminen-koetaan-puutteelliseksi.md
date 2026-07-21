@@ -19,6 +19,8 @@ keywords:
   - oulun kaupungin yhteisötoiminta
   - yhteisötoiminta
 type: mielipide
+writingRoles:
+  - political
 opinionRoles:
   - political
 wp_id: 1113

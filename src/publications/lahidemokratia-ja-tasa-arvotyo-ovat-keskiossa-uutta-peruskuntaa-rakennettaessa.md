@@ -17,6 +17,8 @@ keywords:
   - yhteisöpalvelut
   - yhteisötoiminta
 type: mielipide
+writingRoles:
+  - political
 opinionRoles:
   - political
 wp_id: 969

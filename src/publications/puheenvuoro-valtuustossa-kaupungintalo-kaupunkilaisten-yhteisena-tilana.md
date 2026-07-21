@@ -14,6 +14,8 @@ keywords:
   - remontti
   - yleisökäyttö
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - kaupunkikehitys
 templateEngineOverride: md

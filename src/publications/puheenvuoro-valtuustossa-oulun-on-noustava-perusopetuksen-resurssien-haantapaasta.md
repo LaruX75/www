@@ -14,6 +14,8 @@ keywords:
   - oppimisympäristöt
   - Oulu
 type: puhe
+writingRoles:
+  - political
 templateEngineOverride: md
 ---
 

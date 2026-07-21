@@ -15,6 +15,9 @@ keywords:
 wp_id: 1701
 source_url: 'https://www.jarilaru.fi/ktk149-digiluokka/'
 templateEngineOverride: md
+writingRoles:
+  - expert
+
 ---
 
 ## Tervetuloa Oulun yliopiston kasvatustieteiden tiedekunnan digiluokkaa

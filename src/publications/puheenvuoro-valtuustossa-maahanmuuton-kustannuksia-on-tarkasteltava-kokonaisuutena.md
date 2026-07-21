@@ -20,6 +20,8 @@ keywords:
   - korkeakoulutus
   - talousarvio
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - sivistys
   - hyvinvointi

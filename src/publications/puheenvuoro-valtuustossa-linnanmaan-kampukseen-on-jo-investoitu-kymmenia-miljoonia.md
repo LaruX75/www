@@ -18,6 +18,8 @@ keywords:
   - investoinnit
   - korkeakoulutus
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - sivistys
   - kaupunkikehitys

@@ -19,6 +19,9 @@ keywords:
 wp_id: 508
 source_url: 'https://www.jarilaru.fi/kurkistus-sivustoni-tekniikkaan/'
 templateEngineOverride: md
+writingRoles:
+  - expert
+
 ---
 
 Tämä sivusto on toteutettu palvelinhotellipohjaisella wordpress.org -järjestelmällä. Jos et ole ennestään tuttu teknistä ylläpitoa vaativan wordpress-alustan kanssa suosittelen sinulle yksinkertaisempaa wordpress.com -pilvipalvelua. Nykyään sekin on todella monipuolinen työkalu, vaikka monet hienommista ominaisuuksista erikseen maksavatkin.

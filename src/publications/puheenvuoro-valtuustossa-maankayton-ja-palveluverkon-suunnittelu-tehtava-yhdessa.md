@@ -18,6 +18,8 @@ keywords:
   - kaavoitus
   - sivistyspalvelut
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - sivistys
   - lahipalvelut

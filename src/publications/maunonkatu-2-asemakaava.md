@@ -14,6 +14,8 @@ keywords:
   - kaavoitus
   - rakennussuojelu
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - sivistys
   - kaupunkikehitys

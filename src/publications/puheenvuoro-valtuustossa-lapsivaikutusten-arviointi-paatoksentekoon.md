@@ -18,6 +18,8 @@ keywords:
   - päätöksenteko
   - osallisuus
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - sivistys
   - avoinhallinto

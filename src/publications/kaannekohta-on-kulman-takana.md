@@ -19,6 +19,9 @@ keywords:
   - tuotekehitys
   - tutkimus
 type: mielipide
+writingRoles:
+  - political
+  - expert
 opinionRoles:
   - political
   - expert

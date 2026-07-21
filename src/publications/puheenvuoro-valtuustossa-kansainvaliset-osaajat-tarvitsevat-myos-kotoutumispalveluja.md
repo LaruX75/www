@@ -18,6 +18,8 @@ keywords:
   - Talent Hub
   - työvoima
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - sivistys
   - hyvinvointi

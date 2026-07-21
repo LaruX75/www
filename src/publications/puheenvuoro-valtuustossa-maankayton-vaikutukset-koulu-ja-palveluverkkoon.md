@@ -17,6 +17,8 @@ keywords:
   - sivistyslautakunta
   - Hiukkavaara
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - sivistys
   - lahipalvelut

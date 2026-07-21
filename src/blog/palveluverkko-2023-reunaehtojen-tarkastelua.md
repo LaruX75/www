@@ -20,6 +20,9 @@ politicalProfiles:
   - sivistys
   - lahipalvelut
 templateEngineOverride: md
+writingRoles:
+  - political
+
 ---
 
 Olen käpistellyt aineistoja, jotka liittyvät Oulun kouluverkkokeskusteluun. Ei mielipiteitä vielä – pelkkiä faktoja. Luvut kertovat selvää kieltä siitä, millaisessa väestöllisessä todellisuudessa kouluverkkopäätöksiä tehdään.

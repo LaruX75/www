@@ -14,6 +14,9 @@ keywords:
 wp_id: 1620
 source_url: 'https://www.jarilaru.fi/nizza-2018/'
 templateEngineOverride: md
+writingRoles:
+  - personal
+
 ---
 
 Kesällä 2018 käytössämme oli niukempi kesäloma puolison aloitettua Pohjois-Pohjanmaan maakunnan palveluksessa.

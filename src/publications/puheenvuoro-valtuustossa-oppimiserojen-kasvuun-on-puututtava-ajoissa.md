@@ -15,6 +15,8 @@ keywords:
   - oppimiserot
   - sivistysohjelma
 type: puhe
+writingRoles:
+  - political
 templateEngineOverride: md
 ---
 

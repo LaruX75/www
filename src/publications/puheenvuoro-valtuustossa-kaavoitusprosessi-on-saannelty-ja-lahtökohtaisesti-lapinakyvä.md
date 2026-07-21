@@ -17,6 +17,8 @@ keywords:
   - läpinäkyvyys
   - kaupunkisuunnittelu
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - avoinhallinto
   - kaupunkikehitys

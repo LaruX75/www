@@ -16,6 +16,8 @@ keywords:
   - väitös
   - väitöskirja
 type: tieteellinen
+writingRoles:
+  - expert
 wp_id: 596
 source_url: 'https://www.jarilaru.fi/paper-3-supporting-collaborative-inquiry-during-a-biology-field-trip-with-mobile-peer-to-peer-tools-for-learning-a-case-study-with-k-12-learners/'
 templateEngineOverride: md

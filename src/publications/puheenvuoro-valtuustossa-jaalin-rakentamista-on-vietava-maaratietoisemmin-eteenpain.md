@@ -17,6 +17,8 @@ keywords:
   - Jääli
   - Oulu
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - sivistys
   - lahipalvelut

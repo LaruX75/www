@@ -16,6 +16,9 @@ keywords:
 wp_id: 978
 source_url: 'https://www.jarilaru.fi/hyvaa-eurooppa-paivaa/'
 templateEngineOverride: md
+writingRoles:
+  - political
+
 ---
 
 Eurooppa-päivää vietetään Euroopassa vuosittain 9. toukokuuta.9. toukokuuta 1950 Robert Schuman esitti ehdotuksensa yhtenäisen Euroopan luomisesta välttämättömänä rauhanomaisten suhteiden ylläpitämiseksi.

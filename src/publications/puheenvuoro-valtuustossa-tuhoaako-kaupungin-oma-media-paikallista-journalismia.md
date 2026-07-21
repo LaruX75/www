@@ -16,6 +16,8 @@ keywords:
   - media
   - Oulu
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - avoinhallinto
 templateEngineOverride: md

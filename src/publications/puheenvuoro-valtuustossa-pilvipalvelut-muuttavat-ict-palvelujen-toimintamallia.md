@@ -17,6 +17,9 @@ keywords:
   - digitalisaatio
   - etätyö
 type: puhe
+writingRoles:
+  - political
+  - expert
 politicalProfiles:
   - avoinhallinto
 templateEngineOverride: md

@@ -15,6 +15,9 @@ keywords:
   - oppiminen
   - sivistys- ja kulttuurilautakunta
 type: mielipide
+writingRoles:
+  - political
+  - expert
 opinionRoles:
   - political
   - expert

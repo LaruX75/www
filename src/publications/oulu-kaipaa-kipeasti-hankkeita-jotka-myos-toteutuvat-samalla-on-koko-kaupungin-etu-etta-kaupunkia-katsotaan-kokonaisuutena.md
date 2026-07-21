@@ -14,6 +14,8 @@ keywords:
   - Oulun yliopiston muutto
   - Raksila
 type: mielipide
+writingRoles:
+  - political
 opinionRoles:
   - political
 politicalProfiles:

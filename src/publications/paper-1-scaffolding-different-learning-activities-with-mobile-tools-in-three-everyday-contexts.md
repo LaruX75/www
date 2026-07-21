@@ -17,6 +17,8 @@ keywords:
   - teoria
   - väitös
 type: tieteellinen
+writingRoles:
+  - expert
 wp_id: 587
 source_url: 'https://www.jarilaru.fi/paper-1-scaffolding-different-learning-activities-with-mobile-tools-in-three-everyday-contexts/'
 templateEngineOverride: md

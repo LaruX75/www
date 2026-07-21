@@ -18,6 +18,8 @@ keywords:
   - liikunta
   - sivistyspalvelut
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - sivistys
   - hyvinvointi

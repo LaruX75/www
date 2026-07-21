@@ -21,6 +21,8 @@ keywords:
   - väitös
   - väitöskirja
 type: tieteellinen
+writingRoles:
+  - expert
 wp_id: 577
 source_url: 'https://www.jarilaru.fi/introduction-scaffolding-learning-activities-with-collaborative-scripts-and-mobile-devices/'
 templateEngineOverride: md

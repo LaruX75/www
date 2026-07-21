@@ -16,6 +16,9 @@ keywords:
   - Oulun yliopisto
   - Oulun yliopiston muutto
 type: mielipide
+writingRoles:
+  - political
+  - expert
 opinionRoles:
   - political
   - expert

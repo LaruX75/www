@@ -18,6 +18,8 @@ keywords:
   - seudullinen jätekeskus
   - tuhka
 type: kolumni
+writingRoles:
+  - political
 wp_id: 233
 source_url: 'https://www.jarilaru.fi/arjesta-energiaa-blogi-nykyaikainen-jatteidenkasittely-ei-hairitse-ihmista-eihan/'
 templateEngineOverride: md

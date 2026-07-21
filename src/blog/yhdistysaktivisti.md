@@ -11,6 +11,9 @@ context:
 wp_id: 788
 source_url: 'https://www.jarilaru.fi/yhdistysaktivisti-2/'
 templateEngineOverride: md
+writingRoles:
+  - political
+
 ---
 
 Olen aina pitänyt yhdistystoiminnasta.

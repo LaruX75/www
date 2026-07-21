@@ -19,6 +19,9 @@ keywords:
   - tilaliikelaitos
   - väistötilat
 type: mielipide
+writingRoles:
+  - political
+  - expert
 opinionRoles:
   - political
   - expert

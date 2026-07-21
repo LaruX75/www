@@ -22,6 +22,9 @@ keywords:
 wp_id: 1781
 source_url: 'https://www.jarilaru.fi/larun-laitenurkka-testaa-kandao-360-kokouskamerat/'
 templateEngineOverride: md
+writingRoles:
+  - expert
+
 ---
 
 ![](/img/uploads/2021/06/download-1-e1623331233316.jpg)

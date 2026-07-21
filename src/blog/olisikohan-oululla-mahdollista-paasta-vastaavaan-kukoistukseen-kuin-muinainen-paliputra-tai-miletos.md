@@ -15,6 +15,9 @@ keywords:
 wp_id: 1151
 source_url: 'https://www.jarilaru.fi/olisikohan-oululla-mahdollista-paasta-vastaavaan-kukoistukseen-kuin-muinainen-paliputra-tai-miletos/'
 templateEngineOverride: md
+writingRoles:
+  - political
+
 ---
 
 Kesälomat alkavat olla meillä kaikilla ohitse ja paluu arkeen on edessä myös koululaisilla

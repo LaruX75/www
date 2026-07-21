@@ -13,6 +13,8 @@ keywords:
   - Oulu2026
   - matkailu
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - yhteistyo
   - kaupunkikehitys

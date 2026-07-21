@@ -16,6 +16,8 @@ keywords:
   - teknologian käyttöönotto
   - viihde
 type: mielipide
+writingRoles:
+  - expert
 opinionRoles:
   - expert
 wp_id: 1191

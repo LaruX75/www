@@ -19,6 +19,9 @@ keywords:
   - Kiiminki
   - kouluverkko
 type: puhe
+writingRoles:
+  - political
+  - expert
 opinionRoles:
   - political
 templateEngineOverride: md

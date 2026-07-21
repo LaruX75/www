@@ -21,6 +21,9 @@ politicalProfiles:
   - hyvinvointi
   - sivistys
 templateEngineOverride: md
+writingRoles:
+  - political
+
 ---
 
 #### Kommentointia vuonna 2021

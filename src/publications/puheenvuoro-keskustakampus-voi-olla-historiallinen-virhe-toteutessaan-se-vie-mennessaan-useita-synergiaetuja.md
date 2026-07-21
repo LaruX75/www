@@ -18,6 +18,9 @@ keywords:
   - Raksila
   - seminaari
 type: puhe
+writingRoles:
+  - political
+  - expert
 wp_id: 1819
 source_url: 'https://www.jarilaru.fi/puheenvuoro-keskustakampus-voi-olla-historiallinen-virhe-toteutessaan-se-vie-mennessaan-useita-synergiaetuja/'
 templateEngineOverride: md

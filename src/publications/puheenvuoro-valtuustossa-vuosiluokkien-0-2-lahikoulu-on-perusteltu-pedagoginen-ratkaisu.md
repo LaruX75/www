@@ -18,6 +18,8 @@ keywords:
   - esiopetus
   - alkuopetus
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - sivistys
   - lahipalvelut

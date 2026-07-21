@@ -17,6 +17,8 @@ keywords:
   - peruspalvelut
   - suuralueet
 type: mielipide
+writingRoles:
+  - political
 opinionRoles:
   - political
 wp_id: 983

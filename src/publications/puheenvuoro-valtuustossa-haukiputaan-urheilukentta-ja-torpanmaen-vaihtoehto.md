@@ -18,6 +18,8 @@ keywords:
   - Torpanmäki
   - kaupunkisuunnittelu
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - lahipalvelut
   - hyvinvointi

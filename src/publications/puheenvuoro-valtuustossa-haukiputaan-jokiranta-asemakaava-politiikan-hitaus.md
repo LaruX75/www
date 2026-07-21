@@ -17,6 +17,8 @@ keywords:
   - urheilukenttä
   - päätöksenteko
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - lahipalvelut
   - kaupunkikehitys

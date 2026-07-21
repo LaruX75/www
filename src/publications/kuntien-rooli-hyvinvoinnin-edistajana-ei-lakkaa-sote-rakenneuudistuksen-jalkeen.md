@@ -16,6 +16,8 @@ keywords:
   - osallisuus
   - yhdyspinta
 type: mielipide
+writingRoles:
+  - political
 opinionRoles:
   - political
 politicalProfiles:

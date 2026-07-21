@@ -20,6 +20,8 @@ keywords:
   - verkostot
   - vertaistuki
 type: kolumni
+writingRoles:
+  - expert
 wp_id: 1203
 source_url: 'https://www.jarilaru.fi/yhdessa-toisiamme-tukien-opetuksen-ja-oppimisen-pilvipalveluiden-kayttoonotto-ja-vertaistuen-eri-kanavat/'
 templateEngineOverride: md

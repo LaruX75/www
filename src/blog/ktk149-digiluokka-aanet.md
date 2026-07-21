@@ -16,6 +16,9 @@ keywords:
 wp_id: 1404
 source_url: 'https://www.jarilaru.fi/ktk149-digiluokka-aanet/'
 templateEngineOverride: md
+writingRoles:
+  - expert
+
 ---
 
 ## Onko jossain pienehkö hybridiopetuksen laboratorio?

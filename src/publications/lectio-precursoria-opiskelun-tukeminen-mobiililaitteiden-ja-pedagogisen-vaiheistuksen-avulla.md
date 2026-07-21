@@ -13,6 +13,8 @@ keywords:
   - teoria
   - väitös
 type: tieteellinen
+writingRoles:
+  - expert
 wp_id: 641
 source_url: 'https://www.jarilaru.fi/lectio-precursoria-opiskelun-tukeminen-mobiililaitteiden-ja-pedagogisen-vaiheistuksen-avulla/'
 templateEngineOverride: md

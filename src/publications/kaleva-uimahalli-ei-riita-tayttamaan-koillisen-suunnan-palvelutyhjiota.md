@@ -19,6 +19,8 @@ keywords:
   - uimahalli
   - verotus
 type: mielipide
+writingRoles:
+  - political
 opinionRoles:
   - political
 wp_id: 227

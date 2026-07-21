@@ -16,6 +16,8 @@ keywords:
   - ympäristölupa
   - jätehuolto
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - yhteistyo
 templateEngineOverride: md

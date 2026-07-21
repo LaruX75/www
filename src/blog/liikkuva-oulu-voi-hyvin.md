@@ -17,6 +17,9 @@ keywords:
 wp_id: 1538
 source_url: 'https://www.jarilaru.fi/liikkuva-oulu-voi-hyvin/'
 templateEngineOverride: md
+writingRoles:
+  - political
+
 ---
 
 ![](/img/uploads/2021/02/Copy-of-36-2.webp)

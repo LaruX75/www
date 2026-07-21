@@ -21,6 +21,8 @@ keywords:
   - työntövoima
   - vaalikirjoituksia
 type: mielipide
+writingRoles:
+  - political
 opinionRoles:
   - political
 wp_id: 1162

@@ -14,6 +14,8 @@ keywords:
   - museo- ja tiedekeskus
   - deep space
 type: puhe
+writingRoles:
+  - political
 wp_id: 2443
 source_url: 'https://www.jarilaru.fi/valtuustopuheenvuoro-myllytullin-museo-ja-tiedekeskuksen-rakentamisesta/'
 politicalProfiles:

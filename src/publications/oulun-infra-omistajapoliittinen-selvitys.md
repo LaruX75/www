@@ -13,6 +13,8 @@ keywords:
   - Oulun Infra
   - huoltovarmuus
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - yhteistyo
 templateEngineOverride: md

@@ -15,6 +15,8 @@ keywords:
   - digitalisaatio
   - päätöksenteko
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - avoinhallinto
 templateEngineOverride: md

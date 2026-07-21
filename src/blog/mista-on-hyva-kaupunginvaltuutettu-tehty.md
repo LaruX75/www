@@ -18,6 +18,9 @@ source_url: 'https://www.jarilaru.fi/mista-on-hyva-kaupunginvaltuutettu-tehty/'
 politicalProfiles:
   - yhteistyo
 templateEngineOverride: md
+writingRoles:
+  - political
+
 ---
 
 ##### Tämä teksti on päivitetty versio vuoden 2017 kirjoituksesta

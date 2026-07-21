@@ -20,6 +20,9 @@ keywords:
 wp_id: 878
 source_url: 'https://www.jarilaru.fi/tvt-koulun-johtamisen-valineena-luento-mobiilioppiminen-mita-se-teknologia-tahtoo/'
 templateEngineOverride: md
+writingRoles:
+  - expert
+
 ---
 
 Keskiviikkona 13.2.2013 pidin verkkoluennon Oulun yliopiston TOPIK-yksikön koulutuksessa "tvt koulun johtamisen välineenä". Kohdeyleisö koostui lähinnä perusasteen ja lukioiden rehtoreista.

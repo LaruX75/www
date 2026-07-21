@@ -17,6 +17,10 @@ keywords:
 wp_id: 1821
 source_url: 'https://www.jarilaru.fi/aanesta-jari-laru-oulun-yliopiston-kollegioon/'
 templateEngineOverride: md
+writingRoles:
+  - political
+  - expert
+
 ---
 
 ![](/img/uploads/2021/02/laru_jari_3448_web-removebg-preview-1-e1613760400900.png)

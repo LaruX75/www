@@ -21,6 +21,9 @@ keywords:
   - sisäilma
   - terveysturvallisuus
 type: puhe
+writingRoles:
+  - political
+  - expert
 politicalProfiles:
   - kaupunkikehitys
   - avoimuus

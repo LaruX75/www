@@ -20,6 +20,8 @@ keywords:
   - kulttuurihistoria
   - Oulu
 type: puhe
+writingRoles:
+  - political
 templateEngineOverride: md
 ---
 

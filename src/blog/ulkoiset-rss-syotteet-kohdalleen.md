@@ -9,6 +9,9 @@ keywords:
 wp_id: 915
 source_url: 'https://www.jarilaru.fi/ulkoiset-rss-syotteet-kohdalleen/'
 templateEngineOverride: md
+writingRoles:
+  - expert
+
 ---
 
 Laittelen tässä hiljalleen tätä blogia kirjoituskuntoon. Tänään laitan RSS-syötteitä sivupalkkeihin. Että eipäs tässä sen kummempaa :-D

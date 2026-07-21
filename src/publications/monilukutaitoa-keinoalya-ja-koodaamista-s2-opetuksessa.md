@@ -13,6 +13,8 @@ keywords:
   - ohjelmointi
   - S2-opetus
 type: kolumni
+writingRoles:
+  - political
 wp_id: 1185
 source_url: 'https://www.jarilaru.fi/monilukutaitoa-keinoalya-ja-koodaamista-s2-opetuksessa/'
 templateEngineOverride: md

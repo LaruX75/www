@@ -19,6 +19,8 @@ keywords:
   - tutkimus
   - korkeakoulutus
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - sivistys
   - kaupunkikehitys

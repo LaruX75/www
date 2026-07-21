@@ -18,6 +18,8 @@ keywords:
   - Web 2.0
   - yliopisto
 type: tieteellinen
+writingRoles:
+  - expert
 wp_id: 584
 source_url: 'https://www.jarilaru.fi/paper-3-supporting-small-group-learning-using-multiple-web-2-0-tools-a-case-study-inthe-higher-education-context/'
 templateEngineOverride: md

@@ -15,6 +15,9 @@ keywords:
 wp_id: 1468
 source_url: 'https://www.jarilaru.fi/vaalielaimet-ja-muu-grafiikka-vuoden-2017-vaaleissa/'
 templateEngineOverride: md
+writingRoles:
+  - political
+
 ---
 
 [https://www.facebook.com/jari.laru.poliitikko/photos/a.1262505157166670/1319332651483920/](https://www.facebook.com/jari.laru.poliitikko/photos/a.1262505157166670/1319332651483920/)

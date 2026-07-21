@@ -13,6 +13,8 @@ keywords:
   - tietotekniikka
   - oppiminen
 type: mielipide
+writingRoles:
+  - expert
 opinionRoles:
   - expert
 wp_id: 223

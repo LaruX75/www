@@ -16,6 +16,8 @@ keywords:
   - opetuksen laatu
   - turunsanomat
 type: mielipide
+writingRoles:
+  - expert
 opinionRoles:
   - expert
 wp_id: 152

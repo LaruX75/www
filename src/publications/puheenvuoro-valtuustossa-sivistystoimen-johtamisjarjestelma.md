@@ -16,6 +16,8 @@ keywords:
   - palveluverkko
   - talouden sopeuttaminen
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - sivistys
   - lahipalvelut

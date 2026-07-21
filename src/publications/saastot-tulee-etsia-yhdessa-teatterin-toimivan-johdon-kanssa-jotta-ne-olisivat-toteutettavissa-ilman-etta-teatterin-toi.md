@@ -17,6 +17,8 @@ keywords:
   - taide
   - valtionosuusjärjestelmä
 type: mielipide
+writingRoles:
+  - political
 opinionRoles:
   - political
 wp_id: 144

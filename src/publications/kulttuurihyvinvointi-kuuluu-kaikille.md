@@ -15,6 +15,8 @@ keywords:
   - kulttuuri
   - yhdyspinta
 type: kolumni
+writingRoles:
+  - political
 wp_id: 1878
 source_url: 'https://www.jarilaru.fi/kulttuurihyvinvointi-kuuluu-kaikille/'
 politicalProfiles:

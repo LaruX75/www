@@ -17,6 +17,8 @@ keywords:
   - osaamisen tunnistaminen
   - talousarvio
 type: puhe
+writingRoles:
+  - political
 opinionRoles:
   - political
 politicalProfiles:

@@ -19,6 +19,8 @@ keywords:
   - tohtoripromootio
   - tutkimus
 type: puhe
+writingRoles:
+  - expert
 wp_id: 1175
 source_url: 'https://www.jarilaru.fi/puhe-miekalle-tohtoripromootio-2013/'
 templateEngineOverride: md

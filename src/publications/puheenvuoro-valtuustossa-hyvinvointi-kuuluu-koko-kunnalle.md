@@ -18,6 +18,8 @@ keywords:
   - liikunta
   - hyvinvointi
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - sivistys
   - hyvinvointi

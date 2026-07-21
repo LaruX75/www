@@ -14,6 +14,9 @@ keywords:
 wp_id: 1553
 source_url: 'https://www.jarilaru.fi/vuoden-2017-kuntavaalit/'
 templateEngineOverride: md
+writingRoles:
+  - political
+
 ---
 
 ![](/img/uploads/2021/02/kissa.png)

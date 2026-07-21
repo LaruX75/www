@@ -19,6 +19,9 @@ source_url: 'https://www.jarilaru.fi/vuorovaikutussuunnitelman-valmistelutyoryhm
 politicalProfiles:
   - avoinhallinto
 templateEngineOverride: md
+writingRoles:
+  - political
+
 ---
 
 Kaupunginvaltuutetun tehtävä ei rajoitu pelkkään valtuusto- ja lautakuntatyöskentelyyn.Tänään olemme pohtimassa millainen voisi olla kaupungin tuleva vuorovaikutussuunnitelma?

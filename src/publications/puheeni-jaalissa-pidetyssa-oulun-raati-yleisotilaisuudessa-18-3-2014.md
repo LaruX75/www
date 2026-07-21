@@ -16,6 +16,8 @@ keywords:
   - laivakankaan kenttä
   - urheilualue
 type: puhe
+writingRoles:
+  - political
 wp_id: 1194
 source_url: 'https://www.jarilaru.fi/puheeni-jaalissa-pidetyssa-oulun-raati-yleisotilaisuudessa-18-3-2014/'
 templateEngineOverride: md

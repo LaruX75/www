@@ -18,6 +18,8 @@ keywords:
   - korkeakoulutus
   - kaupunkisuunnittelu
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - sivistys
   - kaupunkikehitys

@@ -18,6 +18,8 @@ keywords:
   - suuralueet
   - Oulu
 type: puhe
+writingRoles:
+  - political
 wp_id: 1130
 source_url: 'https://www.jarilaru.fi/puhe-valtuustossa-kuka-puolustaisi-kaupungin-jokaista-kaupunginosaa/'
 politicalProfiles:

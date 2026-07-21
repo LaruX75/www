@@ -18,6 +18,8 @@ keywords:
   - monikuntaliitos
   - Rantapohja
 type: mielipide
+writingRoles:
+  - political
 opinionRoles:
   - political
 wp_id: 1164

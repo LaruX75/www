@@ -18,6 +18,8 @@ keywords:
   - talous
   - säästöt
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - sivistys
   - hyvinvointi

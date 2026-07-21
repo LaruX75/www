@@ -20,6 +20,9 @@ keywords:
 wp_id: 1140
 source_url: 'https://www.jarilaru.fi/sain-kierikkia-koskevan-lisayksen-sikun-kayttosuunnitelmaan/'
 templateEngineOverride: md
+writingRoles:
+  - political
+
 ---
 
 Historian tuntemus ja arvostus on eräs meidän kulttuurielämän kohtalonkysymyksistä. Jos emme tunne menneisyyttämme, emme myöskään ymmärrä nykyhetkeä tai tulevaa.

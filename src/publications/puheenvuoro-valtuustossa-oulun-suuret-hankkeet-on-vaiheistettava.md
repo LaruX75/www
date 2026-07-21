@@ -17,6 +17,8 @@ keywords:
   - Raksila
   - kampus
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - sivistys
   - kaupunkikehitys

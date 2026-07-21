@@ -12,6 +12,9 @@ keywords:
 wp_id: 1696
 source_url: 'https://www.jarilaru.fi/roadtrip-oulu-krakova-oulu/'
 templateEngineOverride: md
+writingRoles:
+  - personal
+
 ---
 
 ## Lautalla Tallinnaa

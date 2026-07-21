@@ -19,6 +19,8 @@ keywords:
   - tuomo valkama
   - urheilualue
 type: mielipide
+writingRoles:
+  - political
 opinionRoles:
   - political
 wp_id: 229

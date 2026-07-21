@@ -19,6 +19,8 @@ keywords:
   - palveluverkko
   - Oulu
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - sivistys
   - lahipalvelut

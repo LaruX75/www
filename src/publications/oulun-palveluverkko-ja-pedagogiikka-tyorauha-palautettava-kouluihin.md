@@ -20,6 +20,9 @@ keywords:
   - perusopetus
   - varhaiskasvatus
 type: mielipide
+writingRoles:
+  - political
+  - expert
 opinionRoles:
   - political
   - expert

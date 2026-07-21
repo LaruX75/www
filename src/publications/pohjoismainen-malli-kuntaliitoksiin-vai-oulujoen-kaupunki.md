@@ -11,6 +11,8 @@ keywords:
   - seutuyhteistyö
   - talous
 type: mielipide
+writingRoles:
+  - political
 opinionRoles:
   - political
 wp_id: 920

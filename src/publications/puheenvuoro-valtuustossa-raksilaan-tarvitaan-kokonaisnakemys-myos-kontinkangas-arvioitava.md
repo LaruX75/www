@@ -18,6 +18,8 @@ keywords:
   - kaupunkisuunnittelu
   - liikenne
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - sivistys
   - kaupunkikehitys

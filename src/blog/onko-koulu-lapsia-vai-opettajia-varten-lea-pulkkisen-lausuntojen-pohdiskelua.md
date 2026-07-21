@@ -20,6 +20,9 @@ politicalProfiles:
   - sivistys
   - hyvinvointi
 templateEngineOverride: md
+writingRoles:
+  - political
+
 ---
 
 Jo viikko sitten Professori Lea Pulkkinen otti voimakkaasti kantaa koululaitoksemme nykytilan ongelmiin julkaisemallaan tiedotteella: Nuorisopsykiatriaan panostaminen ei estä hirmutekoja (3.10.2008). Hänen mukaansa Kauhajoen ja Jokelan kaltaisia kriisejä ei ehkäistä lisäämällä varoja nuorisopsykiatriaan. Pääviesti Pulkkisen kannanotossa on se, että suomalaista koululaitosta on kehitetty opettajien, ei oppilaiden hyvinvoinnin näkökulmasta.

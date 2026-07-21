@@ -12,6 +12,8 @@ keywords:
   - opetus
   - oppiminen
 type: kolumni
+writingRoles:
+  - expert
 wp_id: 237
 source_url: 'https://www.jarilaru.fi/virolaisen-opettajankoulutuksen-digi-ihmetta-aimistelemassa/'
 templateEngineOverride: md

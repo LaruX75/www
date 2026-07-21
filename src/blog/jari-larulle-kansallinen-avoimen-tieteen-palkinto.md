@@ -16,6 +16,9 @@ keywords:
 wp_id: 449
 source_url: 'https://www.jarilaru.fi/jari-larulle-kansallinen-avoimen-tieteen-palkinto/'
 templateEngineOverride: md
+writingRoles:
+  - expert
+
 ---
 
 Tieteellisten seurain valtuuskunnan avoimen tieteen kansallinen koordinaatio-ryhmä [on päättänyt myöntää Jari Larulle avoimen tieteen kansallisen palkinno](https://avointiede.fi/fi/ajankohtaista/vuotuiset-avoimen-tieteen-palkinnot-2020-jaettu). Koordinaatioryhmän käyttämät perustelut löytyvät alta:

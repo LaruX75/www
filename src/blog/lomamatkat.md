@@ -13,6 +13,9 @@ keywords:
 wp_id: 1664
 source_url: 'https://www.jarilaru.fi/lomamatkat/'
 templateEngineOverride: md
+writingRoles:
+  - personal
+
 ---
 
 ## Tulossa (koronan jälkeen)

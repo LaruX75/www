@@ -24,6 +24,9 @@ keywords:
   - sisäilmaongelmat
   - uudisrakennus
 type: mielipide
+writingRoles:
+  - political
+  - expert
 opinionRoles:
   - political
   - expert

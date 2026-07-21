@@ -19,6 +19,9 @@ layout: blog-post-featured.njk
 showArticleHeader: false
 showTaxonomy: false
 showBackLink: false
+writingRoles:
+  - expert
+
 ---
 
 <!-- HERO -->

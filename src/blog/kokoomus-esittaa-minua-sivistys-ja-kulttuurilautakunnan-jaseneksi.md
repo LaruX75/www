@@ -18,6 +18,9 @@ source_url: 'https://www.jarilaru.fi/kokoomus-esittaa-minua-sivistys-ja-kulttuur
 politicalProfiles:
   - sivistys
 templateEngineOverride: md
+writingRoles:
+  - political
+
 ---
 
 ![](/img/uploads/2021/01/sikusiku.png)

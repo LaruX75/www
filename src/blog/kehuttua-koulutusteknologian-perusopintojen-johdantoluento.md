@@ -16,6 +16,9 @@ keywords:
 wp_id: 307
 source_url: 'https://www.jarilaru.fi/kehuttua-koulutusteknologian-perusopintojen-johdantoluento/'
 templateEngineOverride: md
+writingRoles:
+  - expert
+
 ---
 
 Viime viikolla sain kunnian johdatella Koulutusteknologian perusopiskelijoita luennoimalla heille  tieto- ja viestintäteknologian opetuskäytön historiasta. Annoin esitykselle nimen "*Learning & Technology - Aikamatka kivikaudesta ubiikkiyhteiskuntaa

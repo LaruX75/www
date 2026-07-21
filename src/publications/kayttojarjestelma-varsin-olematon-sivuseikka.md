@@ -17,6 +17,9 @@ keywords:
   - oulun koulujen tietotekniikka
   - windows
 type: mielipide
+writingRoles:
+  - political
+  - expert
 opinionRoles:
   - political
   - expert

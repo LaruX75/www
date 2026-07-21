@@ -19,6 +19,8 @@ keywords:
   - palveluverkko
   - käyttötalous
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - sivistys
   - lahipalvelut

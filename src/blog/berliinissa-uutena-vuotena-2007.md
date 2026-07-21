@@ -9,6 +9,9 @@ keywords:
 wp_id: 914
 source_url: 'https://www.jarilaru.fi/berliinissa-uutena-vuotena-2007/'
 templateEngineOverride: md
+writingRoles:
+  - personal
+
 ---
 
 Pääsimme tekemään pienen matkan kahdestaan Berliiniin vuodentaitteessa. Oli aika ovelaa olla ilman Hillaa matkalla, sillä olemmehan käyneet tenavan kanssa jo kertaalleen kartoittamassa Maltan pientä saarivaltakuntaa ja suuren Amerikan valloitusturneen.

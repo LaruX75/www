@@ -17,6 +17,8 @@ keywords:
   - valotaide
   - Oulu
 type: puhe
+writingRoles:
+  - political
 wp_id: 96
 source_url: 'https://www.jarilaru.fi/puheenvuoroni-oulun-kaupunginvaltuuston-talousarviokeskustelun-yhteydessa-2-12-2019/'
 politicalProfiles:

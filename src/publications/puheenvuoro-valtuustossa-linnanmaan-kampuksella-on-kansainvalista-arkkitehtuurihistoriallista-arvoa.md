@@ -18,6 +18,8 @@ keywords:
   - DoCoMoMo
   - kulttuuripääkaupunki
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - sivistys
   - kaupunkikehitys

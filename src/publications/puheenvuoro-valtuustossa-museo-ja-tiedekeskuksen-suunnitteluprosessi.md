@@ -16,6 +16,8 @@ keywords:
   - valmistelu
   - päätöksenteko
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - sivistys
   - avoinhallinto

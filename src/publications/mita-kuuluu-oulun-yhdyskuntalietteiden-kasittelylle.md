@@ -12,6 +12,8 @@ keywords:
   - Oulun kaupunki
   - yhdyskuntaliete
 type: mielipide
+writingRoles:
+  - political
 opinionRoles:
   - political
 wp_id: 1562

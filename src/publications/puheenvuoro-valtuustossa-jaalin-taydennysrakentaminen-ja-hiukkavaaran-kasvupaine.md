@@ -18,6 +18,8 @@ keywords:
   - palveluverkko
   - koulut
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - sivistys
   - lahipalvelut

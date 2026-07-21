@@ -19,6 +19,9 @@ politicalProfiles:
   - hyvinvointi
   - lahipalvelut
 templateEngineOverride: md
+writingRoles:
+  - political
+
 ---
 
 [![](http://eevis.info/uploads/images/lapset_ja_nuoret_banneri.gif)](http://www.alli.fi/sivu.php?artikkeli_id=3822)Oululehden Mää Äänestän -palstalla Kiimingin lukiolaiset Jenni Halkola ja Joni Saarela ruotivat nuorten asioita kunnassamme. Saarelaa huolestutti artikkelissa erityisesti Jäälin nuorisotalon tilanne (jolla hän tarkoittaa jutussa ns. Lunkin taloa). Aktiivisena musiikinharrastajana hän näkee uhkakuvana epävarmuuden Lunkin kohtalosta, sillä samalla menetettäisiin kipeästi kaivattuja bänditiloja. Uhka on todellinen, Lunkin risteyksen asemakaavaluonnoksen perusteella  talo olisikin häviämässä:

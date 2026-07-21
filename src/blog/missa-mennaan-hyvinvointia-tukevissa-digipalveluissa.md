@@ -23,6 +23,9 @@ politicalProfiles:
   - hyvinvointi
   - yhteistyo
 templateEngineOverride: md
+writingRoles:
+  - political
+
 ---
 
 #### ALKUTILANNE

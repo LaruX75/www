@@ -7,6 +7,8 @@ categories:
   - Liikunta ja ulkoilu
 publication: Kaleva
 type: mielipide
+writingRoles:
+  - expert
 opinionRoles:
   - expert
 source_url: 'https://www.kaleva.fi/jaalissa-polkuluvat-ovat-kunnossa/4761851'

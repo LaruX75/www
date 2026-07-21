@@ -14,6 +14,8 @@ keywords:
   - kulttuuriperintö
   - yleisökäyttö
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - kaupunkikehitys
 templateEngineOverride: md

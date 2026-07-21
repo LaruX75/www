@@ -20,6 +20,8 @@ keywords:
   - tekijänoikeudet
   - tutkimus
 type: puhe
+writingRoles:
+  - expert
 wp_id: 220
 source_url: 'https://www.jarilaru.fi/puheeni-avoimen-tieteen-syyspaivilla-7-12-2020-vastaanotettuani-kansallisen-avoimen-tieteen-palkinnon/'
 templateEngineOverride: md

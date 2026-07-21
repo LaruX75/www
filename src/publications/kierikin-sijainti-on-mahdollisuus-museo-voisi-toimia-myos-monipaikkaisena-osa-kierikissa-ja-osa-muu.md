@@ -20,6 +20,8 @@ keywords:
   - turismi
   - yli-ii
 type: mielipide
+writingRoles:
+  - political
 opinionRoles:
   - political
 wp_id: 1240

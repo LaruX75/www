@@ -16,6 +16,9 @@ source_url: 'https://www.jarilaru.fi/osallistun-tuleeko-kuntalainen-kuulluksi-pa
 politicalProfiles:
   - avoinhallinto
 templateEngineOverride: md
+writingRoles:
+  - political
+
 ---
 
 *EDIT: Tästä kirjoituksesta oli jäänyt pois paneelin alkamisaika: 16:30. Olen syvästi pahoillani ;I*

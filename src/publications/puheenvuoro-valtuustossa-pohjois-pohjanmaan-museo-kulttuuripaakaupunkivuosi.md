@@ -16,6 +16,8 @@ keywords:
   - museo
   - kulttuuritilat
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - kaupunkikehitys
   - yhteistyo

@@ -14,6 +14,9 @@ keywords:
   - oppiminen
   - Raksila
 type: mielipide
+writingRoles:
+  - political
+  - expert
 opinionRoles:
   - political
   - expert

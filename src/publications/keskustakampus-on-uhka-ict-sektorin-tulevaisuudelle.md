@@ -16,6 +16,9 @@ keywords:
   - tst-tiedekunta
   - tutkimus
 type: mielipide
+writingRoles:
+  - political
+  - expert
 opinionRoles:
   - political
   - expert

@@ -17,6 +17,8 @@ keywords:
   - Hiukkavaara
   - Korvensuora
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - lahipalvelut
 templateEngineOverride: md

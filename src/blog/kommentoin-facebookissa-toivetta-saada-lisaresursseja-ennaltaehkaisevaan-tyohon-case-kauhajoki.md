@@ -23,6 +23,9 @@ politicalProfiles:
   - hyvinvointi
   - sivistys
 templateEngineOverride: md
+writingRoles:
+  - political
+
 ---
 
 Facebookkia katselin tässä illan ratoksi ja siellä silmään pisti juuri perustettu ryhmä "[Valtio satsaamaan ennaltaehkäisevään oppilashuoltotyöhön!](http://www.ew.facebook.com/topic.php?topic=5773&uid=27763908913#/group.php?gid=27763908913)" . Mielestäni asia on erinomaisen tärkeä - veriteot pitää nyt kertakaikkiaan saada loppumaan. Provoisoiduin kuitenkin asiaa Facebookissa kommentoimaan, sillä mielestäni pelkkä viranomaisten lisäresurssointi ei muuta yhteiskuntamme syviä virtauksia. Mielestäni ongelma on perhetasolla. Alla olevassa lainauksessa on kirjoitukseni Facebookin keskustelusta:

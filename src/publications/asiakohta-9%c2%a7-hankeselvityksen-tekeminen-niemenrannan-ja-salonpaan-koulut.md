@@ -14,6 +14,8 @@ keywords:
   - Oulunsalo
   - lähikoulu
 type: puhe
+writingRoles:
+  - political
 wp_id: 976
 source_url: 'https://www.jarilaru.fi/asiakohta-9%c2%a7-hankeselvityksen-tekeminen-niemenrannan-ja-salonpaan-koulut/'
 politicalProfiles:

@@ -26,6 +26,9 @@ keywords:
 wp_id: 1216
 source_url: 'https://www.jarilaru.fi/roadtrip-oulu-skopje-oulu-vajaa-10-000km/'
 templateEngineOverride: md
+writingRoles:
+  - personal
+
 ---
 
 Kesällä 2019 jatkoimme uhkarohkeata automatkailua. Puoliso toi keväällä 2019 työmatkaltaan luonnoksen Via Karpathia reitiksi, joka kulkisi aikalailla suoraan Puolasta Kreikkaan. Sepäs olisikin mielenkiintoinen reitti, sillä olimme joka tapauksessa suunnittelemassa matkaa ystävämme luo Pohjois-Makedoniaan.

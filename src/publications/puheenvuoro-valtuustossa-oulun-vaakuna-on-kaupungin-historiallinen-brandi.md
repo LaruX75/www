@@ -16,6 +16,8 @@ keywords:
   - kaupunkikuva
   - valotaide
 type: puhe
+writingRoles:
+  - political
 politicalProfiles:
   - kaupunkikehitys
   - yhteistyo

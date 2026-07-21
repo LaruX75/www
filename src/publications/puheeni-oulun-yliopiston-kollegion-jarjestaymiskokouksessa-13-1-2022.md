@@ -12,6 +12,8 @@ keywords:
   - Oulun yliopisto
   - yliopistokollegio
 type: puhe
+writingRoles:
+  - expert
 wp_id: 1999
 source_url: 'https://www.jarilaru.fi/puheeni-oulun-yliopiston-kollegion-jarjestaymiskokouksessa-13-1-2022/'
 templateEngineOverride: md

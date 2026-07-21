@@ -8,6 +8,8 @@ categories:
   - Kasvatus ja koulutus
 publication: Kaleva
 type: mielipide
+writingRoles:
+  - political
 opinionRoles:
   - political
 source_url: 'https://www.kaleva.fi/koronan-vaikutukset-kuntalaisiin-arvioitava-arvioi/3397221'

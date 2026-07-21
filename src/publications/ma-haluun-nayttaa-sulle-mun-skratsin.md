@@ -14,6 +14,8 @@ keywords:
   - ohjelmointi
   - sosiaalinen media
 type: kolumni
+writingRoles:
+  - expert
 wp_id: 235
 source_url: 'https://www.jarilaru.fi/ma-haluun-nayttaa-sulle-mun-skratsin/'
 templateEngineOverride: md

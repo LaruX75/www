@@ -8,6 +8,8 @@ categories:
   - Kasvatus ja koulutus
 publication: Kaleva
 type: mielipide
+writingRoles:
+  - political
 opinionRoles:
   - political
 source_url: 'https://www.kaleva.fi/ekaluokkalaisten-myohaiset-yksinaiset-aamut/1916153'

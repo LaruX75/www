@@ -15,6 +15,9 @@ source_url: 'https://www.jarilaru.fi/rantalakeus-249-ei-suur-oulu-vaan-laajempi-
 politicalProfiles:
   - yhteistyo
 templateEngineOverride: md
+writingRoles:
+  - political
+
 ---
 
 Postilaatikkoon tupsahti perunamarkkinoiden alla Rantalakeus, joka muiden lehtien tavoin tuli luettua erittäin tarkasti. Lehdessä pisti silmään mielenkiintoinen Kempeleläisen ehdokkaan mielipidekirjoitus vaalipostia-palstalla. Jutussa puoluetoveri [Henry Koivukangas](http://www.koivukangas.info/blogi.html) kirjoittaa:

@@ -19,6 +19,8 @@ keywords:
   - väitös
   - väitöskirja
 type: tieteellinen
+writingRoles:
+  - expert
 wp_id: 579
 source_url: 'https://www.jarilaru.fi/paper-2-social-patterns-in-mobile-technology-mediated-collaboration-among-members-of-the-professional-distance-education-community/'
 templateEngineOverride: md
