@@ -1387,27 +1387,3 @@ templateEngineOverride: njk
     }
   }
 </style>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const mobileQuery = window.matchMedia('(max-width: 767.98px)');
-    const disclosures = Array.from(document.querySelectorAll('[data-mobile-collapse]'));
-    if (!disclosures.length) return;
-
-    const applyMobileDisclosureState = () => {
-      disclosures.forEach((disclosure) => {
-        if (!mobileQuery.matches) {
-          disclosure.open = true;
-          disclosure.dataset.mobilePrepared = 'false';
-          return;
-        }
-        if (disclosure.dataset.mobilePrepared === 'true') return;
-        disclosure.open = false;
-        disclosure.dataset.mobilePrepared = 'true';
-      });
-    };
-
-    applyMobileDisclosureState();
-    mobileQuery.addEventListener('change', applyMobileDisclosureState);
-  });
-</script>

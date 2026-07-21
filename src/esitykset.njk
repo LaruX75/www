@@ -1595,44 +1595,6 @@ schemaMentions:
   initUnifiedArchive();
 })();
 
-(() => {
-  const mobileQuery = window.matchMedia("(max-width: 767.98px)");
-  const disclosures = Array.from(document.querySelectorAll("[data-presentation-mobile-collapse]"));
-  if (!disclosures.length) return;
-
-  const openDisclosureForHash = () => {
-    const hash = window.location.hash;
-    if (!hash) return;
-    const target = document.querySelector(hash);
-    if (!target) return;
-    const disclosure = target.closest("[data-presentation-mobile-collapse]") || target.querySelector("[data-presentation-mobile-collapse]");
-    if (disclosure) disclosure.open = true;
-  };
-
-  const applyDisclosureState = () => {
-    disclosures.forEach((disclosure) => {
-      if (!mobileQuery.matches) {
-        disclosure.open = true;
-        disclosure.dataset.presentationMobilePrepared = "false";
-        return;
-      }
-      if (disclosure.dataset.presentationMobilePrepared === "true") return;
-      disclosure.open = false;
-      disclosure.dataset.presentationMobilePrepared = "true";
-    });
-    openDisclosureForHash();
-  };
-
-  applyDisclosureState();
-  mobileQuery.addEventListener("change", applyDisclosureState);
-  window.addEventListener("hashchange", openDisclosureForHash);
-
-  document.querySelectorAll('a[href^="#"]').forEach((link) => {
-    link.addEventListener("click", () => {
-      window.setTimeout(openDisclosureForHash, 0);
-    });
-  });
-})();
 </script>
 
 <style>

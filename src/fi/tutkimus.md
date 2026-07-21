@@ -115,49 +115,6 @@ schemaMentions:
 {% set topicProfileLead = "Tutkimussivu näyttää julkaisut ja tutkimuslinjan. Teemaprofiilit kokoavat samaan kokonaisuuteen myös lausunnot, mediaosumat, materiaalit ja opetustyön." %}
 {% include "topic-profile-links.njk" %}
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const mobileQuery = window.matchMedia("(max-width: 767.98px)");
-  const disclosures = Array.from(document.querySelectorAll("[data-research-mobile-collapse]"));
-  if (!disclosures.length) return;
-
-  const openDisclosureForHash = () => {
-    const hash = window.location.hash;
-    if (!hash) return;
-    const target = document.querySelector(hash);
-    if (!target) return;
-    const disclosure = target.closest("[data-research-mobile-collapse]") || target.querySelector("[data-research-mobile-collapse]");
-    if (disclosure) disclosure.open = true;
-  };
-
-  const applyDisclosureState = () => {
-    disclosures.forEach((disclosure) => {
-      if (!mobileQuery.matches) {
-        disclosure.open = true;
-        disclosure.dataset.researchMobilePrepared = "false";
-        return;
-      }
-
-      if (disclosure.dataset.researchMobilePrepared === "true") return;
-      disclosure.open = false;
-      disclosure.dataset.researchMobilePrepared = "true";
-    });
-
-    openDisclosureForHash();
-  };
-
-  applyDisclosureState();
-  mobileQuery.addEventListener("change", applyDisclosureState);
-  window.addEventListener("hashchange", openDisclosureForHash);
-
-  document.querySelectorAll('a[href^="#"]').forEach((link) => {
-    link.addEventListener("click", () => {
-      window.setTimeout(openDisclosureForHash, 0);
-    });
-  });
-});
-</script>
-
 <style>
 .research-mobile-path,
 .research-mobile-disclosure-summary {

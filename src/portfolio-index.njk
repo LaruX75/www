@@ -1055,29 +1055,3 @@ schemaMentions:
     }
   }
 </style>
-
-<script>
-  (() => {
-    const disclosures = Array.from(document.querySelectorAll('[data-portfolio-mobile-collapse]'));
-    if (!disclosures.length) return;
-
-    const mq = window.matchMedia('(max-width: 767.98px)');
-    const syncPortfolioMobile = () => {
-      disclosures.forEach((item) => {
-        item.open = !mq.matches;
-      });
-    };
-
-    document.querySelectorAll('.portfolio-mobile-path a[href^="#"]').forEach((link) => {
-      link.addEventListener('click', () => {
-        const target = document.querySelector(link.getAttribute('href'));
-        if (target && target.matches('[data-portfolio-mobile-collapse]')) {
-          target.open = true;
-        }
-      });
-    });
-
-    syncPortfolioMobile();
-    mq.addEventListener?.('change', syncPortfolioMobile);
-  })();
-</script>

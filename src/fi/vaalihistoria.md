@@ -998,19 +998,4 @@ schemaMentions:
     });
   })();
 
-  (() => {
-    const disclosures = Array.from(document.querySelectorAll('[data-term-mobile-collapse]'));
-    if (!disclosures.length) return;
-
-    const mq = window.matchMedia('(max-width: 767.98px)');
-    const syncTermMobile = () => {
-      disclosures.forEach((item) => {
-        const isCurrent = item.getAttribute('data-term-current') === 'true';
-        item.open = !mq.matches || isCurrent;
-      });
-    };
-
-    syncTermMobile();
-    mq.addEventListener?.('change', syncTermMobile);
-  })();
 </script>

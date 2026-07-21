@@ -429,29 +429,6 @@ translationKey: home
     </div>
 </section>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const mobileQuery = window.matchMedia('(max-width: 767.98px)');
-    const disclosures = Array.from(document.querySelectorAll('[data-home-mobile-collapse]'));
-
-    const applyHomeMobileState = () => {
-      disclosures.forEach((disclosure) => {
-        if (!mobileQuery.matches) {
-          disclosure.open = true;
-          disclosure.dataset.mobilePrepared = 'false';
-          return;
-        }
-        if (disclosure.dataset.mobilePrepared === 'true') return;
-        disclosure.open = false;
-        disclosure.dataset.mobilePrepared = 'true';
-      });
-    };
-
-    applyHomeMobileState();
-    mobileQuery.addEventListener('change', applyHomeMobileState);
-  });
-</script>
-
 <style>
   .home-mobile-path,
   .home-mobile-disclosure-summary {

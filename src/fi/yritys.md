@@ -415,29 +415,6 @@ lang: fi
 }
 </script>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const mobileQuery = window.matchMedia('(max-width: 767.98px)');
-    const disclosures = Array.from(document.querySelectorAll('[data-larux-mobile-collapse]'));
-
-    const applyLaruxMobileState = () => {
-      disclosures.forEach((disclosure) => {
-        if (!mobileQuery.matches) {
-          disclosure.open = true;
-          disclosure.dataset.mobilePrepared = 'false';
-          return;
-        }
-        if (disclosure.dataset.mobilePrepared === 'true') return;
-        disclosure.open = false;
-        disclosure.dataset.mobilePrepared = 'true';
-      });
-    };
-
-    applyLaruxMobileState();
-    mobileQuery.addEventListener('change', applyLaruxMobileState);
-  });
-</script>
-
 <style>
   .larux-mobile-path,
   .larux-mobile-disclosure-summary {

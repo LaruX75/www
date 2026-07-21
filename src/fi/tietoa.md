@@ -264,47 +264,6 @@ schemaMentions:
   </div>
 </section>
 
-<script>
-(() => {
-  const mobileQuery = window.matchMedia("(max-width: 767.98px)");
-  const disclosures = Array.from(document.querySelectorAll("[data-about-mobile-collapse]"));
-  if (!disclosures.length) return;
-
-  const openDisclosureForHash = () => {
-    const hash = window.location.hash;
-    if (!hash) return;
-    const target = document.querySelector(hash);
-    if (!target) return;
-    const disclosure = target.closest("[data-about-mobile-collapse]") || target.querySelector("[data-about-mobile-collapse]");
-    if (disclosure) disclosure.open = true;
-  };
-
-  const applyDisclosureState = () => {
-    disclosures.forEach((disclosure) => {
-      if (!mobileQuery.matches) {
-        disclosure.open = true;
-        disclosure.dataset.aboutMobilePrepared = "false";
-        return;
-      }
-      if (disclosure.dataset.aboutMobilePrepared === "true") return;
-      disclosure.open = false;
-      disclosure.dataset.aboutMobilePrepared = "true";
-    });
-    openDisclosureForHash();
-  };
-
-  applyDisclosureState();
-  mobileQuery.addEventListener("change", applyDisclosureState);
-  window.addEventListener("hashchange", openDisclosureForHash);
-
-  document.querySelectorAll('a[href^="#"]').forEach((link) => {
-    link.addEventListener("click", () => {
-      window.setTimeout(openDisclosureForHash, 0);
-    });
-  });
-})();
-</script>
-
 <style>
 .about-mobile-path {
   display: none;

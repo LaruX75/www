@@ -184,6 +184,103 @@
           .catch(() => {});
       }
 
+      // Shared mobile disclosure state for pages that collapse dense sections on phones.
+      // Desktop keeps sections open; mobile closes them once without fighting user choices.
+      const mobileDisclosureMq = window.matchMedia('(max-width: 767.98px)');
+      const mobileDisclosureGroups = [
+        { selector: '[data-home-mobile-collapse]' },
+        { selector: '[data-larux-mobile-collapse]' },
+        { selector: '[data-mobile-collapse]' },
+        { selector: '[data-kynasta-mobile-collapse]', alwaysSync: true },
+        { selector: '[data-presentation-mobile-collapse]', preparedAttr: 'presentationMobilePrepared', hashAware: true },
+        { selector: '[data-portfolio-mobile-collapse]', alwaysSync: true, hashAware: true },
+        { selector: '[data-term-mobile-collapse]', alwaysSync: true, keepOpenAttr: 'termCurrent' },
+        { selector: '[data-about-mobile-collapse]', preparedAttr: 'aboutMobilePrepared', hashAware: true },
+        { selector: '[data-research-mobile-collapse]', preparedAttr: 'researchMobilePrepared', hashAware: true }
+      ];
+      const hashAwareOpeners = [];
+      const mobileDisclosureAppliers = [];
+
+      const addMobileDisclosureGroup = ({
+        selector,
+        preparedAttr = 'mobilePrepared',
+        hashAware = false,
+        alwaysSync = false,
+        keepOpenAttr = null
+      }) => {
+        const disclosures = Array.from(document.querySelectorAll(selector));
+        if (!disclosures.length) return;
+
+        const openDisclosureForHash = () => {
+          if (!hashAware) return;
+          const hash = window.location.hash;
+          if (!hash) return;
+
+          let target = null;
+          try {
+            target = document.querySelector(hash);
+          } catch {
+            return;
+          }
+
+          if (!target) return;
+          const disclosure = target.closest(selector) || target.querySelector(selector);
+          if (disclosure) disclosure.open = true;
+        };
+
+        const applyDisclosureState = () => {
+          disclosures.forEach((disclosure) => {
+            if (!mobileDisclosureMq.matches) {
+              disclosure.open = true;
+              disclosure.dataset[preparedAttr] = 'false';
+              return;
+            }
+
+            if (alwaysSync) {
+              disclosure.open = keepOpenAttr ? disclosure.dataset[keepOpenAttr] === 'true' : false;
+              return;
+            }
+
+            if (disclosure.dataset[preparedAttr] === 'true') return;
+            disclosure.open = false;
+            disclosure.dataset[preparedAttr] = 'true';
+          });
+          openDisclosureForHash();
+        };
+
+        applyDisclosureState();
+        mobileDisclosureAppliers.push(applyDisclosureState);
+
+        if (hashAware) {
+          hashAwareOpeners.push(openDisclosureForHash);
+        }
+      };
+
+      mobileDisclosureGroups.forEach(addMobileDisclosureGroup);
+
+      const syncMobileDisclosureGroups = () => {
+        mobileDisclosureAppliers.forEach((applyDisclosureState) => applyDisclosureState());
+      };
+
+      if (typeof mobileDisclosureMq.addEventListener === 'function') {
+        mobileDisclosureMq.addEventListener('change', syncMobileDisclosureGroups);
+      } else if (typeof mobileDisclosureMq.addListener === 'function') {
+        mobileDisclosureMq.addListener(syncMobileDisclosureGroups);
+      }
+
+      if (hashAwareOpeners.length) {
+        const openHashAwareMobileDisclosures = () => {
+          hashAwareOpeners.forEach((openDisclosureForHash) => openDisclosureForHash());
+        };
+
+        window.addEventListener('hashchange', openHashAwareMobileDisclosures);
+        document.querySelectorAll('a[href^="#"]').forEach((link) => {
+          link.addEventListener('click', () => {
+            window.setTimeout(openHashAwareMobileDisclosures, 0);
+          });
+        });
+      }
+
       // Mega menu interactions (desktop keyboard support + Esc focus return)
       // NOTE: Bootstrap Dropdown API cannot find .mega-menu-panel because the toggle is
       // inside .mega-nav-trigger while the panel is a sibling. We manage visibility directly.
@@ -565,16 +662,58 @@
       }
     });
 
-// Jaettu paginaatiofunktio — käytettävissä kaikilla sivuilla
-function renderPaginationShared(ul, total, currentPage, onPageChange) {
+// Jaettu paginaatiofunktio. Tukee myös desktopissa taulukon yläpuolista peilipageria,
+// jotta sivukohtaisia pagerifunktioita ei tarvitse ylläpitää erikseen.
+window.renderPaginationShared = function renderPaginationShared(ul, total, currentPage, onPageChange) {
   if (!ul) return;
-  ul.innerHTML = '';
-  if (total <= 1) return;
-
   const isMobile = window.matchMedia('(max-width: 767.98px)').matches;
   const WINDOW_SIZE = 10;
+  const footer = ul.closest('.card-footer');
+  const cardBody = footer?.previousElementSibling;
+  const footerInfo = footer?.querySelector('small');
+  const paginationId = ul.id || `pagination-${Math.random().toString(36).slice(2)}`;
+  if (!ul.id) ul.id = paginationId;
 
-  const appendPageLink = (label, page, { active = false, disabled = false, ariaLabel = '' } = {}) => {
+  const getOrCreateDesktopMirror = () => {
+    if (isMobile || !cardBody || !footer) {
+      cardBody?.querySelector(`[data-pagination-top-for="${paginationId}"]`)?.remove();
+      return null;
+    }
+
+    let dock = cardBody.querySelector(`[data-pagination-top-for="${paginationId}"]`);
+    if (!dock) {
+      const tableWrap = cardBody.querySelector('.table-responsive');
+      if (!tableWrap) return null;
+
+      dock = document.createElement('div');
+      dock.className = 'site-pagination-bar site-pagination-bar--top kynasta-table-pager kynasta-table-pager--top d-none d-lg-flex';
+      dock.setAttribute('data-pagination-top-for', paginationId);
+      dock.innerHTML = `
+        <small class="site-pagination-info text-muted" data-pagination-top-info></small>
+        <nav aria-label="Sivutus taulukon yläreunassa">
+          <ul class="pagination pagination-sm mb-0 flex-wrap site-pag"></ul>
+        </nav>
+      `;
+      tableWrap.before(dock);
+    }
+
+    const topInfo = dock.querySelector('[data-pagination-top-info]');
+    if (topInfo) topInfo.textContent = footerInfo?.textContent || '';
+    return dock.querySelector('ul');
+  };
+
+  const mirrorUl = getOrCreateDesktopMirror();
+  const targets = [ul, mirrorUl].filter(Boolean);
+  targets.forEach((target) => {
+    target.innerHTML = '';
+  });
+
+  if (total <= 1) {
+    cardBody?.querySelector(`[data-pagination-top-for="${paginationId}"]`)?.remove();
+    return;
+  }
+
+  const appendPageLink = (targetUl, label, page, { active = false, disabled = false, ariaLabel = '' } = {}) => {
     const li = document.createElement('li');
     li.className = `page-item${active ? ' active' : ''}${disabled ? ' disabled' : ''}`;
     const a = document.createElement('a');
@@ -592,19 +731,19 @@ function renderPaginationShared(ul, total, currentPage, onPageChange) {
       a.setAttribute('tabindex', '-1');
     }
     li.appendChild(a);
-    ul.appendChild(li);
+    targetUl.appendChild(li);
   };
 
-  const appendEllipsis = () => {
+  const appendEllipsis = (targetUl) => {
     const li = document.createElement('li');
     li.className = 'page-item disabled';
     li.innerHTML = '<span class="page-link">…</span>';
-    ul.appendChild(li);
+    targetUl.appendChild(li);
   };
 
   if (isMobile) {
     // Mobiili: kompakti ‹ 1 … nykyinen … N ›
-    appendPageLink('‹', Math.max(1, currentPage - 1), {
+    appendPageLink(ul, '‹', Math.max(1, currentPage - 1), {
       disabled: currentPage === 1,
       ariaLabel: 'Edellinen sivu'
     });
@@ -612,11 +751,11 @@ function renderPaginationShared(ul, total, currentPage, onPageChange) {
     const orderedPages = [...pages].filter(p => p >= 1 && p <= total).sort((a, b) => a - b);
     let previousPage = null;
     orderedPages.forEach(page => {
-      if (previousPage !== null && page - previousPage > 1) appendEllipsis();
-      appendPageLink(String(page), page, { active: page === currentPage });
+      if (previousPage !== null && page - previousPage > 1) appendEllipsis(ul);
+      appendPageLink(ul, String(page), page, { active: page === currentPage });
       previousPage = page;
     });
-    appendPageLink('›', Math.min(total, currentPage + 1), {
+    appendPageLink(ul, '›', Math.min(total, currentPage + 1), {
       disabled: currentPage === total,
       ariaLabel: 'Seuraava sivu'
     });
@@ -624,27 +763,29 @@ function renderPaginationShared(ul, total, currentPage, onPageChange) {
   }
 
   // Desktop: kaikki sivut jos ≤ WINDOW_SIZE, muuten liukuva ikkuna
-  if (total <= WINDOW_SIZE) {
-    for (let i = 1; i <= total; i++) {
-      appendPageLink(String(i), i, { active: i === currentPage });
+  targets.forEach((targetUl) => {
+    if (total <= WINDOW_SIZE) {
+      for (let i = 1; i <= total; i++) {
+        appendPageLink(targetUl, String(i), i, { active: i === currentPage });
+      }
+      return;
     }
-    return;
-  }
 
-  // Liukuva ikkuna: aina ensimmäinen + viimeinen, 8 keskisivua nykyisen ympärillä
-  const midSlots = WINDOW_SIZE - 2;
-  let winStart = Math.max(2, currentPage - Math.floor(midSlots / 2));
-  let winEnd = winStart + midSlots - 1;
-  if (winEnd > total - 1) {
-    winEnd = total - 1;
-    winStart = Math.max(2, winEnd - midSlots + 1);
-  }
+    // Liukuva ikkuna: aina ensimmäinen + viimeinen, 8 keskisivua nykyisen ympärillä
+    const midSlots = WINDOW_SIZE - 2;
+    let winStart = Math.max(2, currentPage - Math.floor(midSlots / 2));
+    let winEnd = winStart + midSlots - 1;
+    if (winEnd > total - 1) {
+      winEnd = total - 1;
+      winStart = Math.max(2, winEnd - midSlots + 1);
+    }
 
-  appendPageLink('1', 1, { active: currentPage === 1 });
-  if (winStart > 2) appendEllipsis();
-  for (let i = winStart; i <= winEnd; i++) {
-    appendPageLink(String(i), i, { active: i === currentPage });
-  }
-  if (winEnd < total - 1) appendEllipsis();
-  appendPageLink(String(total), total, { active: currentPage === total });
-}
+    appendPageLink(targetUl, '1', 1, { active: currentPage === 1 });
+    if (winStart > 2) appendEllipsis(targetUl);
+    for (let i = winStart; i <= winEnd; i++) {
+      appendPageLink(targetUl, String(i), i, { active: i === currentPage });
+    }
+    if (winEnd < total - 1) appendEllipsis(targetUl);
+    appendPageLink(targetUl, String(total), total, { active: currentPage === total });
+  });
+};
