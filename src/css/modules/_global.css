@@ -311,16 +311,16 @@
 /* GLOBAL LIGHT MODE ENHANCEMENTS               */
 /* ============================================ */
 
-html:not([data-bs-theme="dark"]):not([data-a11y-bg]) body {
-  background-color: #f4f6f9 !important;
+html:not([data-bs-theme="dark"]):not(.a11y-high-contrast):not([data-a11y-bg]) body {
+  background-color: var(--site-surface-page) !important;
   /* Soft off-white to contrast with cards */
 }
 
-html:not([data-bs-theme="dark"]):not([data-a11y-bg]) .card,
-html:not([data-bs-theme="dark"]):not([data-a11y-bg]) .ticker-item {
-  background-color: #ffffff !important;
-  border: 1px solid rgba(0, 0, 0, 0.06) !important;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.02) !important;
+html:not([data-bs-theme="dark"]):not(.a11y-high-contrast):not([data-a11y-bg]) .card,
+html:not([data-bs-theme="dark"]):not(.a11y-high-contrast):not([data-a11y-bg]) .ticker-item {
+  background-color: var(--site-surface-card) !important;
+  border: 1px solid var(--site-border-soft) !important;
+  box-shadow: var(--site-shadow-card) !important;
 }
 
 /* Keep ticker card headings visually consistent in light mode */
@@ -330,29 +330,29 @@ html:not([data-bs-theme="dark"]) .ticker-item .ticker-title-link {
   color: var(--bs-body-color) !important;
 }
 
-html:not([data-bs-theme="dark"]):not([data-a11y-bg]) .bg-light,
-html:not([data-bs-theme="dark"]):not([data-a11y-bg]) section.bg-light {
-  background-color: #f4f6f9 !important;
-  /* Keep sections unified with body bg */
+html:not([data-bs-theme="dark"]):not(.a11y-high-contrast):not([data-a11y-bg]) .bg-light,
+html:not([data-bs-theme="dark"]):not(.a11y-high-contrast):not([data-a11y-bg]) section.bg-light {
+  background-color: var(--site-surface-section) !important;
+  /* Give sections a distinct rhythm without adding page-specific colors. */
 }
 
-html:not([data-bs-theme="dark"]):not([data-a11y-bg]) .bg-body-tertiary {
-  background-color: #dbe2ec !important;
+html:not([data-bs-theme="dark"]):not(.a11y-high-contrast):not([data-a11y-bg]) .bg-body-tertiary {
+  background-color: var(--site-surface-muted) !important;
 }
 
 /* Fix contrast for badges in light mode */
-html:not([data-bs-theme="dark"]) .badge.bg-primary,
-html:not([data-bs-theme="dark"]) .badge.text-bg-primary,
-html:not([data-bs-theme="dark"]) .badge.bg-info,
-html:not([data-bs-theme="dark"]) .badge.text-bg-info,
-html:not([data-bs-theme="dark"]) .badge.bg-warning,
-html:not([data-bs-theme="dark"]) .badge.text-bg-warning,
-html:not([data-bs-theme="dark"]) .badge.bg-success,
-html:not([data-bs-theme="dark"]) .badge.text-bg-success,
-html:not([data-bs-theme="dark"]) .badge.bg-dark {
-  background-color: #e9ecef !important;
-  color: #000000 !important;
-  border: 1px solid #ced4da !important;
+html:not([data-bs-theme="dark"]):not(.a11y-high-contrast):not([data-a11y-bg]) .badge.bg-primary,
+html:not([data-bs-theme="dark"]):not(.a11y-high-contrast):not([data-a11y-bg]) .badge.text-bg-primary,
+html:not([data-bs-theme="dark"]):not(.a11y-high-contrast):not([data-a11y-bg]) .badge.bg-info,
+html:not([data-bs-theme="dark"]):not(.a11y-high-contrast):not([data-a11y-bg]) .badge.text-bg-info,
+html:not([data-bs-theme="dark"]):not(.a11y-high-contrast):not([data-a11y-bg]) .badge.bg-warning,
+html:not([data-bs-theme="dark"]):not(.a11y-high-contrast):not([data-a11y-bg]) .badge.text-bg-warning,
+html:not([data-bs-theme="dark"]):not(.a11y-high-contrast):not([data-a11y-bg]) .badge.bg-success,
+html:not([data-bs-theme="dark"]):not(.a11y-high-contrast):not([data-a11y-bg]) .badge.text-bg-success,
+html:not([data-bs-theme="dark"]):not(.a11y-high-contrast):not([data-a11y-bg]) .badge.bg-dark {
+  background-color: var(--site-accent-soft) !important;
+  color: var(--site-accent-strong) !important;
+  border: 1px solid var(--site-accent-border) !important;
 }
 
 /* Fix contrast for pagination active items in light mode */

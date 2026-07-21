@@ -43,9 +43,40 @@
 }
 
 /* 2. Suuri kontrasti (High Contrast) */
+html.a11y-high-contrast {
+    --evelenty-accent: #ffff00;
+    --mega-icon-color: #ffff00;
+    --mega-cta-bg: #000000;
+    --mega-cta-border: #ffffff;
+    --mega-cta-text: #ffffff;
+    --mega-cta-hover-bg: #000000;
+    --mega-cta-hover-border: #ffff00;
+    --mega-nav-underline-color: #ffff00;
+    --mega-nav-hover-color: #ffff00;
+    --mobile-nav-panel-bg: #000000;
+    --mobile-nav-card-bg: #000000;
+    --mobile-nav-card-border: #ffffff;
+    --mobile-nav-card-shadow: none;
+    --mobile-nav-soft-bg: #000000;
+    --mobile-nav-soft-border: #ffffff;
+    --mobile-nav-text: #ffffff;
+    --mobile-nav-muted: #ffffff;
+}
+
 html.a11y-high-contrast body {
     background-color: #000000 !important;
     color: #ffffff !important;
+}
+
+html.a11y-high-contrast .mobile-nav-panel {
+    --mobile-nav-panel-bg: #000000;
+    --mobile-nav-card-bg: #000000;
+    --mobile-nav-card-border: #ffffff;
+    --mobile-nav-card-shadow: none;
+    --mobile-nav-soft-bg: #000000;
+    --mobile-nav-soft-border: #ffffff;
+    --mobile-nav-text: #ffffff;
+    --mobile-nav-muted: #ffffff;
 }
 
 html.a11y-high-contrast * {

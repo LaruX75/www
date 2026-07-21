@@ -1,30 +1,30 @@
 :root {
-  --evelenty-nav-bg: rgba(255, 255, 255, 0.72);
-  --evelenty-menu-bg: rgba(255, 255, 255, 0.52);
+  --evelenty-nav-bg: color-mix(in srgb, var(--site-surface-card, #ffffff) 76%, transparent);
+  --evelenty-menu-bg: color-mix(in srgb, var(--site-surface-card, #ffffff) 82%, transparent);
   --evelenty-blur: 15px;
-  --evelenty-accent: #d4af37;
-  --mega-icon-color: #334155;
-  --mega-cta-bg: #2f4b66;
-  --mega-cta-border: #2f4b66;
+  --evelenty-accent: var(--site-accent, #2f4b66);
+  --mega-icon-color: var(--site-accent-strong, #17324d);
+  --mega-cta-bg: var(--site-accent, #2f4b66);
+  --mega-cta-border: var(--site-accent, #2f4b66);
   --mega-cta-text: #f8fbff;
-  --mega-cta-hover-bg: #243a50;
-  --mega-cta-hover-border: #243a50;
+  --mega-cta-hover-bg: var(--site-accent-strong, #17324d);
+  --mega-cta-hover-border: var(--site-accent-strong, #17324d);
   --menu-text: #0f172a;
   --menu-muted: #475569;
-  --mega-icon-button-hover-bg: rgba(47, 75, 102, 0.1);
-  --mega-icon-button-hover-border: rgba(47, 75, 102, 0.22);
-  --mega-icon-button-hover-color: #17324d;
-  --mega-nav-underline-color: rgba(47, 75, 102, 0.65);
-  --mega-nav-hover-color: #17324d;
+  --mega-icon-button-hover-bg: var(--site-accent-soft, rgba(47, 75, 102, 0.1));
+  --mega-icon-button-hover-border: var(--site-accent-border, rgba(47, 75, 102, 0.22));
+  --mega-icon-button-hover-color: var(--site-accent-strong, #17324d);
+  --mega-nav-underline-color: color-mix(in srgb, var(--site-accent, #2f4b66) 72%, transparent);
+  --mega-nav-hover-color: var(--site-accent-strong, #17324d);
   --evelenty-nav-gap: 0.25rem;
   --evelenty-panel-padding: 1.5rem;
-  --menu-divider: rgba(15, 23, 42, 0.28);
+  --menu-divider: var(--site-border-strong, rgba(15, 23, 42, 0.28));
 }
 
 [data-bs-theme="dark"] {
   --evelenty-nav-bg: rgba(15, 23, 42, 0.68);
   --evelenty-menu-bg: rgba(15, 23, 42, 0.52);
-  --mega-icon-color: #d4af37;
+  --mega-icon-color: var(--site-accent, #8bb2de);
   --mega-cta-bg: #426282;
   --mega-cta-border: #426282;
   --mega-cta-text: #f8fbff;
@@ -191,7 +191,7 @@
   margin-top: 0;
   border-radius: 0;
   border: none;
-  box-shadow: 0 20px 50px rgba(2, 6, 23, 0.16);
+  box-shadow: var(--site-shadow-panel, 0 20px 50px rgba(2, 6, 23, 0.16));
   background-color: var(--evelenty-menu-bg) !important;
   backdrop-filter: blur(calc(var(--evelenty-blur) + 4px)) saturate(130%);
   -webkit-backdrop-filter: blur(calc(var(--evelenty-blur) + 4px)) saturate(130%);
@@ -241,7 +241,7 @@
 }
 
 .mega-wrap h5 {
-  font-family: 'Bree Serif', Georgia, 'Times New Roman', serif;
+  font-family: var(--bs-font-family-heading);
   font-size: 1.1rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
@@ -283,7 +283,7 @@
   color: var(--evelenty-accent);
   opacity: 1;
   transform: translateY(-1px);
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--site-accent-soft, rgba(255, 255, 255, 0.05));
 }
 
 .mega-wrap small,
@@ -341,9 +341,8 @@
 }
 
 /* Force darker icon color in light mode for readability. */
-[data-bs-theme="light"] .mega-menu-panel a i,
-html:not([data-bs-theme="dark"]) .mega-menu-panel a i {
-  color: #334155 !important;
+html:not([data-bs-theme="dark"]):not(.a11y-high-contrast) .mega-menu-panel a i {
+  color: var(--mega-icon-color) !important;
 }
 
 .menu-link-desc {
@@ -380,12 +379,12 @@ html:not([data-bs-theme="dark"]) .mega-menu-panel a i {
 
 .mobile-nav-panel {
   --bs-offcanvas-width: min(100vw, 430px);
-  --mobile-nav-panel-bg: linear-gradient(160deg, rgba(248, 250, 252, 0.98), rgba(226, 232, 240, 0.96));
-  --mobile-nav-card-bg: rgba(255, 255, 255, 0.82);
-  --mobile-nav-card-border: rgba(15, 23, 42, 0.12);
-  --mobile-nav-card-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
-  --mobile-nav-soft-bg: rgba(47, 75, 102, 0.08);
-  --mobile-nav-soft-border: rgba(47, 75, 102, 0.16);
+  --mobile-nav-panel-bg: linear-gradient(160deg, color-mix(in srgb, var(--site-surface-card, #ffffff) 96%, transparent), color-mix(in srgb, var(--site-surface-section, #eef3f7) 96%, transparent));
+  --mobile-nav-card-bg: color-mix(in srgb, var(--site-surface-card, #ffffff) 88%, transparent);
+  --mobile-nav-card-border: var(--site-border-soft, rgba(15, 23, 42, 0.12));
+  --mobile-nav-card-shadow: var(--site-shadow-card, 0 18px 45px rgba(15, 23, 42, 0.12));
+  --mobile-nav-soft-bg: var(--site-accent-soft, rgba(47, 75, 102, 0.08));
+  --mobile-nav-soft-border: var(--site-accent-border, rgba(47, 75, 102, 0.16));
   --mobile-nav-text: #0f172a;
   --mobile-nav-muted: #475569;
   color: var(--mobile-nav-text);
@@ -421,7 +420,7 @@ html:not([data-bs-theme="dark"]) .mega-menu-panel a i {
   border: 1px solid var(--mobile-nav-card-border);
   border-radius: 1.25rem;
   background:
-    radial-gradient(circle at 8% 0%, rgba(212, 175, 55, 0.22), transparent 34%),
+    radial-gradient(circle at 8% 0%, var(--site-accent-soft, rgba(47, 75, 102, 0.12)), transparent 34%),
     var(--mobile-nav-card-bg);
   box-shadow: var(--mobile-nav-card-shadow);
 }
@@ -481,9 +480,9 @@ html:not([data-bs-theme="dark"]) .mega-menu-panel a i {
 .mobile-nav-feature-card:focus-visible,
 .mobile-nav-feature-card.is-active {
   color: var(--mobile-nav-text);
-  border-color: rgba(212, 175, 55, 0.55);
+  border-color: var(--site-accent-border, rgba(47, 75, 102, 0.24));
   background:
-    linear-gradient(135deg, rgba(212, 175, 55, 0.18), transparent 60%),
+    linear-gradient(135deg, var(--site-accent-soft, rgba(47, 75, 102, 0.12)), transparent 60%),
     var(--mobile-nav-card-bg);
   text-decoration: none;
 }
@@ -510,9 +509,9 @@ html:not([data-bs-theme="dark"]) .mega-menu-panel a i {
   justify-content: center;
   width: 2rem;
   height: 2rem;
-  color: #17324d;
+  color: var(--site-accent-strong, #17324d);
   border-radius: 0.8rem;
-  background: rgba(212, 175, 55, 0.22);
+  background: var(--site-accent-soft, rgba(47, 75, 102, 0.12));
 }
 
 .mobile-nav-card-stack {
@@ -630,7 +629,7 @@ html:not([data-bs-theme="dark"]) .mega-menu-panel a i {
 
 .mobile-nav-section-card--accent {
   background:
-    linear-gradient(135deg, rgba(212, 175, 55, 0.18), transparent 68%),
+    linear-gradient(135deg, var(--site-accent-soft, rgba(47, 75, 102, 0.12)), transparent 68%),
     var(--mobile-nav-soft-bg);
 }
 
@@ -712,7 +711,7 @@ html:not([data-bs-theme="dark"]) .mega-menu-panel a i {
 
 [data-bs-theme="dark"] .mobile-nav-feature-icon {
   color: #0f172a;
-  background: rgba(212, 175, 55, 0.9);
+  background: var(--site-accent, #8bb2de);
 }
 
 [data-bs-theme="dark"] .mobile-nav-link strong {
