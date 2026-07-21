@@ -133,6 +133,7 @@ const contentSchema = {
     sources: [
       "aoe",
       "canva",
+      "facebook",
       "finna",
       "lausuntopalvelu",
       "local",
