@@ -235,10 +235,19 @@ schemaMentions:
                 <span class="site-kpi-label">ulkopuolinen tuki</span>
               </div>
             </div>
-            <p class="campaign-finance-status">Ei ilmoitettua kampanjalainaa. Ehdokasnumero 0372, Oulu, Kokoomus.</p>
+            <p class="campaign-finance-status">Ei ilmoitettua kampanjalainaa.</p>
             <div class="campaign-finance-actions">
               <a href="https://www.vaalirahoitusvalvonta.fi/fi/index/vaalirahoitus/haetietoavaalirahoitusilmoituksista/tutkitietoaineistoja/kuntavaalit2021/E_VI_kuntavaalit2021.csv" class="btn btn-outline-primary rounded-pill px-4" target="_blank" rel="noopener noreferrer">Kuntavaalit 2021 CSV</a>
             </div>
+          </article>
+
+          <article class="campaign-finance-card campaign-finance-card--quiet">
+            <div class="campaign-finance-card-head">
+              <p class="campaign-year">2017</p>
+              <h3>Kuntavaalit</h3>
+              <p>VTV:n aineistoa ei enää löydy näille vaaleille.</p>
+            </div>
+            <p class="campaign-finance-status">Ei VTV-aineistoa saatavilla.</p>
           </article>
         </div>
       </section>
@@ -566,6 +575,11 @@ schemaMentions:
       linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(245, 249, 255, 0.92));
   }
 
+  .campaign-finance-card--quiet {
+    background: var(--disclosures-soft);
+    box-shadow: none;
+  }
+
   .campaign-finance-metrics {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -644,6 +658,7 @@ schemaMentions:
   }
 
   [data-bs-theme="dark"] .disclosures-card--quiet,
+  [data-bs-theme="dark"] .campaign-finance-card--quiet,
   [data-bs-theme="dark"] .campaign-finance-status {
     background: var(--disclosures-soft);
   }

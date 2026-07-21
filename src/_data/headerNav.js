@@ -471,10 +471,10 @@ module.exports = {
   },
   megaMenuPolitics: {
     fi: {
-      description: "Luottamustoimet, työjälki ja vaalikaudet samasta näkymästä.",
+      description: "Poliittinen profiili, vaalikaudet, työjälki ja avoimuustiedot samasta näkymästä.",
       spotlight: {
-        title: "Nykyiset luottamustehtävät",
-        description: "Politiikka-sivu näyttää painopisteet. Tästä näet myös, missä nykyinen vastuu näkyy juuri nyt.",
+        title: "Poliittisen työn kokonaiskuva",
+        description: "Politiikka-sivu kertoo nykyisen profiilin. Vaalikaudet, puheenvuorot, aloitteet ja vaalirahoitustiedot täydentävät kokonaisuutta.",
         roles: [
           "2. varavaltuutettu, Oulun kaupunginvaltuusto",
           "Sivistyslautakunnan jäsen, Oulun kaupunki",
@@ -487,75 +487,82 @@ module.exports = {
       },
       sections: [
         {
-          heading: "Rooli & läpinäkyvyys",
+          heading: "Politiikan pääreitit",
           links: [
             {
-              title: "Politiikkasivu",
+              title: "Politiikka",
               href: "/politiikka/",
               icon: "bi bi-person-badge me-2",
               menuLink: true,
-              description: "Luottamustoimet, painopisteet ja poliittinen profiili."
+              description: "Poliittinen profiili, painopisteet ja nykyinen työ."
             },
             {
-              title: "Sidonnaisuudet ja vaalirahoitus",
-              href: "/sidonnaisuudet/",
-              icon: "bi bi-link-45deg me-2",
+              title: "Nykyiset luottamustehtävät",
+              href: "/politiikka/#nykyinen-rooli",
+              icon: "bi bi-clipboard-check me-2",
               menuLink: true,
-              description: "Luottamustoimet, sidonnaisuudet ja vaalirahoitusilmoitukset."
+              description: "Kuluva vaalikausi ja tämänhetkiset vastuut."
             },
             {
-              title: "Facebook",
-              href: "https://www.facebook.com/jari.laru.poliitikko/",
-              icon: "bi bi-facebook me-2",
+              title: "Valtuuston sivut",
+              href: "https://www.ouka.fi/valtuusto",
+              icon: "bi bi-box-arrow-up-right me-2",
               external: true,
-              description: "Ajankohtaiset päivitykset ja keskustelu somessa."
+              description: "Oulun kaupunginvaltuuston virallinen sivu."
             }
           ]
         },
         {
-          heading: "Vaikuttaminen",
-          links: [
-            {
-              title: "Valtuustoaloitteet",
-              href: "/kynasta/#aloitteet",
-              icon: "bi bi-megaphone me-2",
-              menuLink: true,
-              description: "Aloitteet kaupunginvaltuustossa.",
-              countKey: "politics"
-            },
-            {
-              title: "Puheenvuorot",
-              href: "/kynasta/#puheet",
-              icon: "bi bi-mic me-2",
-              menuLink: true,
-              description: "Valtuustopuheenvuorot ja esittelyt.",
-              countKey: "pub_puhe"
-            },
-            {
-              title: "Poliittiset mielipiteet",
-              href: "/kynasta/?opinions=political#mielipiteet",
-              icon: "bi bi-chat-left-quote me-2",
-              menuLink: true,
-              description: "Lehdissä julkaistut poliittiset kannanotot ja päätöksentekoon liittyvät kirjoitukset.",
-              countKey: "pub_mielipide_political"
-            },
-            {
-              title: "Kaikki kirjoitukset",
-              href: "/kynasta/",
-              icon: "bi bi-pencil-square me-2",
-              description: "Kooste puheista, aloitteista, kolumneista ja mielipiteistä."
-            }
-          ]
-        },
-        {
-          heading: "Vaalikaudet",
+          heading: "Työ kausittain",
           links: [
             {
               title: "Vaalikaudet",
               href: "/vaalikaudet/",
               icon: "bi bi-calendar-event me-2",
               menuLink: true,
-              description: "Luottamustoimet, vaalitulokset, työjälki ja arkistoidut kampanjasivut vaalikausittain."
+              description: "Luottamustoimet, vaalitulokset, puheet ja kirjoitukset vaalikausittain."
+            },
+            {
+              title: "Kunta- ja aluevaalit 2025",
+              href: "/kunta-ja-aluevaalit-2025/",
+              icon: "bi bi-archive me-2",
+              menuLink: true,
+              description: "Vaalisivu arkistona: teemat, kampanja ja tulokset."
+            },
+            {
+              title: "Kuntavaalit 2021",
+              href: "/kuntavaalit-2021/",
+              icon: "bi bi-archive me-2",
+              menuLink: true,
+              description: "Edellinen vaalisivu arkistona."
+            }
+          ]
+        },
+        {
+          heading: "Aineistot ja avoimuus",
+          links: [
+            {
+              title: "Sidonnaisuudet ja vaalirahoitus",
+              href: "/sidonnaisuudet/",
+              icon: "bi bi-link-45deg me-2",
+              menuLink: true,
+              description: "Sidonnaisuudet, VTV-linkit ja vaalirahoitus samassa näkymässä."
+            },
+            {
+              title: "Valtuustopuheenvuorot",
+              href: "/kynasta/#puheet",
+              icon: "bi bi-mic me-2",
+              menuLink: true,
+              description: "Kokouksissa pidetyt puheet, pöytäkirjat ja videot.",
+              countKey: "pub_puhe"
+            },
+            {
+              title: "Aloitteet",
+              href: "/kynasta/#aloitteet",
+              icon: "bi bi-megaphone me-2",
+              menuLink: true,
+              description: "Kirjalliset avaukset ja päätöksentekoon viedyt asiat.",
+              countKey: "politics"
             }
           ]
         }
