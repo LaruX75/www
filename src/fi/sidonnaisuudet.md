@@ -247,7 +247,6 @@ schemaMentions:
               <h3>Kuntavaalit</h3>
               <p>VTV:n aineistoa ei enää löydy näille vaaleille.</p>
             </div>
-            <p class="campaign-finance-status">Ei VTV-aineistoa saatavilla.</p>
           </article>
         </div>
       </section>
