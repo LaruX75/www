@@ -344,7 +344,7 @@ templateEngineOverride: njk
 
     <div class="term-footer-links">
       <a class="btn btn-primary" href="/politiikka/">Politiikka-sivulle</a>
-      <a class="btn btn-outline-primary" href="/sidonnaisuudet/">Sidonnaisuudet</a>
+      <a class="btn btn-outline-primary" href="/sidonnaisuudet/">Sidonnaisuudet ja vaalirahoitus</a>
     </div>
   </div>
 </section>

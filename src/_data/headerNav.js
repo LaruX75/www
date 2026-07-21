@@ -497,11 +497,11 @@ module.exports = {
               description: "Luottamustoimet, painopisteet ja poliittinen profiili."
             },
             {
-              title: "Sidonnaisuudet",
+              title: "Sidonnaisuudet ja vaalirahoitus",
               href: "/sidonnaisuudet/",
               icon: "bi bi-link-45deg me-2",
               menuLink: true,
-              description: "Avoimet ilmoitukset jäsenyyksistä."
+              description: "Luottamustoimet, sidonnaisuudet ja vaalirahoitusilmoitukset."
             },
             {
               title: "Facebook",

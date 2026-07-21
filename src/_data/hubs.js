@@ -87,7 +87,7 @@ module.exports = {
           heading: "Rooli & läpinäkyvyys",
           links: [
             { title: "Jari Laru, poliitikko", href: "/politiikka/", icon: "bi bi-person-badge", description: "Luottamustoimet, tavoitteet ja historia." },
-            { title: "Sidonnaisuudet", href: "/sidonnaisuudet/", icon: "bi bi-link-45deg", description: "Avoimet ilmoitukset jäsenyyksistä." },
+            { title: "Sidonnaisuudet ja vaalirahoitus", href: "/sidonnaisuudet/", icon: "bi bi-link-45deg", description: "Luottamustoimet, sidonnaisuudet ja vaalirahoitusilmoitukset." },
             { title: "Facebook", href: "https://www.facebook.com/jari.laru.poliitikko/", icon: "bi bi-facebook", description: "Ajankohtaiset päivitykset ja keskustelu somessa.", external: true }
           ]
         },

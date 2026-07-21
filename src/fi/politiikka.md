@@ -245,8 +245,8 @@ templateEngineOverride: njk
         <span>Koko vaalikausien historia, vaalitulokset ja luottamustoimet samassa näkymässä.</span>
       </a>
       <a href="/sidonnaisuudet/" class="pol-mandate-link-card">
-        <strong>Sidonnaisuudet</strong>
-        <span>Avoin kooste jäsenyyksistä, ilmoituksista ja luottamustehtävistä.</span>
+        <strong>Sidonnaisuudet ja vaalirahoitus</strong>
+        <span>Avoin kooste luottamustehtävistä, sidonnaisuuksista ja vaalirahoitusilmoituksista.</span>
       </a>
     </div>
   </div>
