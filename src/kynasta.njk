@@ -4,6 +4,29 @@ title: Kirjoitukset, puheet ja kannanotot
 description: "Jari Larun puheenvuorot, aloitteet, lausunnot, mielipidekirjoitukset, kolumnit ja blogikirjoitukset samassa näkymässä."
 permalink: /kynasta/
 translationKey: writings_index
+schemaAbout:
+  - "@type": "Thing"
+    name: "Valtuustopuheenvuorot"
+    description: "Puheenvuorot Oulun kaupunginvaltuuston ja hyvinvointialueen kokouksissa."
+  - "@type": "Thing"
+    name: "Valtuustoaloitteet"
+    description: "Kirjalliset aloitteet päätöksenteon valmisteluun."
+  - "@type": "Thing"
+    name: "Asiantuntijalausunnot"
+    description: "Lausunnot opetuksesta, koulutuksesta ja teknologiasta."
+  - "@type": "Thing"
+    name: "Mielipidekirjoitukset ja kolumnit"
+    description: "Lehdissä julkaistut kannanotot ja poliittiset kirjoitukset."
+  - "@type": "Thing"
+    name: "Blogikirjoitukset"
+    description: "Blogissa julkaistut kirjoitukset opetuksesta, teknologiasta ja yhteiskunnasta."
+schemaMentions:
+  - "@type": "GovernmentOrganization"
+    name: "Oulun kaupunginvaltuusto"
+    url: "https://www.ouka.fi/valtuusto"
+  - "@type": "GovernmentOrganization"
+    name: "Pohjois-Pohjanmaan hyvinvointialue"
+    url: "https://pohde.fi/"
 ---
 {% set statementItems = [] %}
 {% for item in (collections.publications or []) %}
