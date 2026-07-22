@@ -12,8 +12,8 @@ pageShell: true
 pageShellClass: site-shell site-shell--wide
 pageScopeClass: council-meeting-page-scope
 eleventyComputed:
-  title: "Valtuustokokous {{ meeting.date }}"
-  description: "Oulun kaupunginvaltuuston kokous {{ meeting.date }}: Jari Larun puheenvuorot, aloitteet ja kyselytunnin kysymykset samassa näkymässä."
+  title: "{{ meeting.meetingLabel }}"
+  description: "{{ meeting.contextLabel }}, {{ meeting.meetingLabel }}: Jari Larun puheenvuorot, aloitteet ja kyselytunnin kysymykset samassa näkymässä."
 schemaAbout:
   - "@type": "Thing"
     name: "Oulun kaupunginvaltuusto"
@@ -62,8 +62,12 @@ schemaMentions:
 <article class="council-meeting-page">
   <header class="council-meeting-hero">
     <div>
-      <p class="term-eyebrow mb-2">Oulun kaupunginvaltuusto</p>
-      <h1 class="term-hero-title mb-3">{{ meeting.date | dateFormat }}</h1>
+      <p class="term-eyebrow mb-2">{{ meeting.contextLabel }}</p>
+      <h1 class="term-hero-title mb-3">{{ meeting.meetingLabel }}</h1>
+      <p class="council-meeting-hero-meta">{{ meeting.date | dateFormat }}</p>
+      {% if meeting.summaryTitle %}
+      <p class="council-meeting-hero-summary">{{ meeting.summaryTitle }}</p>
+      {% endif %}
       <p class="term-hero-lead mb-0">Tällä sivulla näkyvät samaan kokoukseen kytketyt puheenvuorot, aloitteet ja kyselytunnin kysymykset. Kokouspäivä auttaa näkemään, mitkä sisällöt kuuluvat samaan päätöksenteon tilanteeseen.</p>
     </div>
     <aside class="council-meeting-hero-card">
@@ -114,6 +118,7 @@ schemaMentions:
         <p class="content-context-kicker">Kokous</p>
         <h2 class="content-context-title">{{ meeting.meetingLabel }}</h2>
         <p class="content-context-meeting-meta">
+          <span>{{ meeting.contextLabel }}</span>
           <span>{{ meeting.date | dateFormat }}</span>
         </p>
       </div>
@@ -178,6 +183,18 @@ schemaMentions:
   display: flex;
   flex-wrap: wrap;
   gap: 0.65rem;
+}
+
+.council-meeting-hero-meta,
+.council-meeting-hero-summary {
+  margin: -0.4rem 0 0.85rem;
+  color: rgba(17, 40, 70, 0.7);
+  font-weight: 700;
+}
+
+.council-meeting-hero-summary {
+  margin-top: -0.2rem;
+  font-weight: 600;
 }
 
 .council-meeting-summary {
@@ -301,6 +318,11 @@ schemaMentions:
 [data-bs-theme="dark"] .council-meeting-hero-card {
   border-color: rgba(214, 226, 240, 0.18);
   background: rgba(255, 255, 255, 0.06);
+}
+
+[data-bs-theme="dark"] .council-meeting-hero-meta,
+[data-bs-theme="dark"] .council-meeting-hero-summary {
+  color: rgba(236, 242, 248, 0.72);
 }
 
 [data-bs-theme="dark"] .council-meeting-section__head span,

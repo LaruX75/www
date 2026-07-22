@@ -5,6 +5,7 @@ const {
   getContextMeta,
   resolveContexts
 } = require("./src/_data/contentContext");
+const councilMeetingMeta = require("./src/_data/councilMeetingMeta");
 const oukaCouncilSpeechProtocols = require("./src/_data/oukaCouncilSpeechProtocols");
 const councilMeetingYoutubeVideos = require("./src/_data/councilMeetingYoutubeVideos.json");
 const councilSpeechVideos = require("./src/_data/councilSpeechVideos.json");
@@ -140,6 +141,23 @@ function councilMeetingLabelForItem(item, meetingDate = "") {
     || (meetingDate ? `Oulun kaupunginvaltuusto ${meetingDate}` : "Oulun kaupunginvaltuusto");
 }
 
+function formatCouncilMeetingDateShort(meetingDate = "") {
+  const match = String(meetingDate || "").match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!match) return meetingDate;
+  return `${Number(match[3])}.${Number(match[2])}.${match[1]}`;
+}
+
+function councilMeetingMetaForDate(meetingDate = "") {
+  return councilMeetingMeta.byDate?.[meetingDate] || {};
+}
+
+function councilMeetingTitleForDate(meetingDate = "") {
+  const meta = councilMeetingMetaForDate(meetingDate);
+  if (meta.title) return meta.title;
+  if (meta.meetingNumber) return `Kokous ${meta.meetingNumber}`;
+  return meetingDate ? `Kokous ${formatCouncilMeetingDateShort(meetingDate)}` : "Kokous";
+}
+
 function councilItemTypeLabel(data = {}, lang = "fi") {
   const contexts = normalizeTerms(data.contexts);
   const tags = toArray(data.tags).map(normalizeTerm);
@@ -229,11 +247,18 @@ function buildCouncilMeetings(collections, lang = "fi") {
 
     if (!meetings.has(meetingDate)) {
       const meetingVideo = councilMeetingVideoForDate(meetingDate);
+      const meetingMeta = councilMeetingMetaForDate(meetingDate);
+      const officialLabel = councilMeetingLabelForItem(item, meetingDate);
+      const meetingTitle = councilMeetingTitleForDate(meetingDate);
       meetings.set(meetingDate, {
         date: meetingDate,
         meetingDate,
-        label: councilMeetingLabelForItem(item, meetingDate),
-        meetingLabel: councilMeetingLabelForItem(item, meetingDate),
+        label: meetingTitle,
+        meetingLabel: meetingTitle,
+        officialLabel,
+        contextLabel: meetingMeta.contextLabel || "Oulun kaupunginvaltuusto",
+        meetingNumber: meetingMeta.meetingNumber || "",
+        summaryTitle: meetingMeta.summaryTitle || "",
         protocolUrl: oukaCouncilSpeechProtocols.protocolsByDate?.[meetingDate] || "",
         video: meetingVideo,
         items: [],

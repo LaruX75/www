@@ -222,6 +222,7 @@
     <p class="content-context-kicker">{{ txt.sameMeeting }}</p>
     <h2 class="content-context-title">{{ sameMeetingGroup.meetingLabel }}</h2>
     <p class="content-context-meeting-meta">
+      <span>{{ sameMeetingGroup.contextLabel }}</span>
       <span>{{ sameMeetingGroup.meetingDate | dateFormat }}</span>
       <a href="/valtuusto/{{ sameMeetingGroup.meetingDate }}/">{{ txt.meetingPage }}</a>
       {% if sameMeetingGroup.protocolUrl %}

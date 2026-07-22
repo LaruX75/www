@@ -47,6 +47,10 @@ schemaMentions:
       </div>
       <div class="council-meeting-card__body">
         <h2><a href="/valtuusto/{{ meeting.date }}/">{{ meeting.meetingLabel }}</a></h2>
+        <p class="council-meeting-card__meta">{{ meeting.contextLabel }} · {{ meeting.date | dateFormat }}</p>
+        {% if meeting.summaryTitle %}
+        <p class="council-meeting-card__summary">{{ meeting.summaryTitle }}</p>
+        {% endif %}
         <div class="council-meeting-counts" aria-label="Kokouksen sisällöt">
           {% if meeting.counts.speeches %}<span>{{ meeting.counts.speeches }} {{ "puheenvuoro" if meeting.counts.speeches == 1 else "puheenvuoroa" }}</span>{% endif %}
           {% if meeting.counts.questions %}<span>{{ meeting.counts.questions }} {{ "kyselytunnin kysymys" if meeting.counts.questions == 1 else "kyselytunnin kysymystä" }}</span>{% endif %}
@@ -152,6 +156,18 @@ schemaMentions:
   line-height: 1.18;
 }
 
+.council-meeting-card__meta,
+.council-meeting-card__summary {
+  margin: -0.35rem 0 0.8rem;
+  color: rgba(17, 40, 70, 0.68);
+  font-weight: 700;
+}
+
+.council-meeting-card__summary {
+  margin-top: -0.25rem;
+  font-weight: 600;
+}
+
 .council-meeting-card__body h2 a,
 .council-meeting-preview a {
   color: #12355f;
@@ -218,6 +234,11 @@ schemaMentions:
 [data-bs-theme="dark"] .council-meeting-card__body h2 a,
 [data-bs-theme="dark"] .council-meeting-preview a {
   color: #f6fbff;
+}
+
+[data-bs-theme="dark"] .council-meeting-card__meta,
+[data-bs-theme="dark"] .council-meeting-card__summary {
+  color: rgba(236, 242, 248, 0.72);
 }
 
 [data-bs-theme="dark"] .council-meeting-card__date span,
