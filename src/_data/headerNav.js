@@ -155,6 +155,17 @@ module.exports = {
     {
       data: {
         eleventyNavigation: {
+          key: "council_meetings",
+          title: "Valtuustokokoukset",
+          url: "/valtuusto/",
+          parent: "politics",
+          order: 45
+        }
+      }
+    },
+    {
+      data: {
+        eleventyNavigation: {
           key: "election_history",
           title: "Vaalikaudet",
           url: "/vaalikaudet/",

@@ -1,0 +1,244 @@
+---
+title: "Valtuustokokoukset"
+metaTitle: "Valtuustokokoukset ja poliittinen työ"
+description: "Oulun kaupunginvaltuuston kokoukset, joissa Jari Larun puheenvuorot, aloitteet ja kyselytunnin kysymykset näkyvät kokouskohtaisesti."
+permalink: /valtuusto/
+layout: base.njk
+lang: fi
+translationKey: council_meetings
+templateEngineOverride: njk
+pageShell: true
+pageShellClass: site-shell site-shell--wide
+pageScopeClass: council-meetings-page-scope
+schemaAbout:
+  - "@type": "Thing"
+    name: "Oulun kaupunginvaltuusto"
+    description: "Kokouskohtainen näkymä Jari Larun valtuustopuheenvuoroihin, aloitteisiin ja kyselytunnin kysymyksiin."
+schemaMentions:
+  - "@type": "GovernmentOrganization"
+    name: "Oulun kaupunki"
+    url: "https://www.ouka.fi/"
+  - "@type": "Organization"
+    name: "Oulun kaupunginvaltuusto"
+    url: "https://www.ouka.fi/valtuusto"
+---
+
+{% set meetings = councilMeetings %}
+
+<section class="council-meetings">
+  <header class="council-meetings-hero">
+    <div>
+      <p class="term-eyebrow mb-2">Poliittinen työ</p>
+      <h1 class="term-hero-title mb-3">Valtuustokokoukset</h1>
+      <p class="term-hero-lead mb-0">Tämä näkymä kokoaa samaan kokoukseen kuuluvat puheenvuorot, aloitteet ja kyselytunnin kysymykset. Kokous toimii väliportaana yksittäisten tekstien ja vaalikausien välillä.</p>
+    </div>
+    <aside class="council-meetings-hero-card">
+      <p class="term-hero-card__kicker">Kokoussolmu</p>
+      <p>Jokaisella kokouksella näkyvät pöytäkirjalinkki, kokousvideo ja ne sivuston sisällöt, jotka on kytketty samaan päivämäärään.</p>
+      <strong>{{ meetings.length }} kokousta</strong>
+    </aside>
+  </header>
+
+  <div class="council-meetings-list" aria-label="Valtuustokokoukset">
+    {% for meeting in meetings %}
+    <article class="council-meeting-card" id="kokous-{{ meeting.date }}">
+      <div class="council-meeting-card__date">
+        <span>{{ meeting.date | dateFormat }}</span>
+      </div>
+      <div class="council-meeting-card__body">
+        <h2><a href="/valtuusto/{{ meeting.date }}/">{{ meeting.meetingLabel }}</a></h2>
+        <div class="council-meeting-counts" aria-label="Kokouksen sisällöt">
+          {% if meeting.counts.speeches %}<span>{{ meeting.counts.speeches }} {{ "puheenvuoro" if meeting.counts.speeches == 1 else "puheenvuoroa" }}</span>{% endif %}
+          {% if meeting.counts.questions %}<span>{{ meeting.counts.questions }} {{ "kyselytunnin kysymys" if meeting.counts.questions == 1 else "kyselytunnin kysymystä" }}</span>{% endif %}
+          {% if meeting.counts.initiatives %}<span>{{ meeting.counts.initiatives }} {{ "aloite" if meeting.counts.initiatives == 1 else "aloitetta" }}</span>{% endif %}
+          {% if meeting.counts.other %}<span>{{ meeting.counts.other }} {{ "muu sisältö" if meeting.counts.other == 1 else "muuta sisältöä" }}</span>{% endif %}
+        </div>
+        <ul class="council-meeting-preview">
+          {% for item in meeting.items %}
+          {% if loop.index <= 3 %}
+          <li>
+            <a href="{{ item.url }}">{{ item.title }}</a>
+            <span>{{ item.typeLabel }}{% if item.detailLabel %} · {{ item.detailLabel }}{% endif %}</span>
+          </li>
+          {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="council-meeting-card__actions">
+        <a class="btn btn-read-more rounded-pill px-4" href="/valtuusto/{{ meeting.date }}/">Avaa kokous</a>
+        {% if meeting.protocolUrl %}
+        <a class="btn btn-outline-primary rounded-pill px-4" href="{{ meeting.protocolUrl }}" target="_blank" rel="noopener noreferrer">Pöytäkirja</a>
+        {% endif %}
+        {% if meeting.video and meeting.video.url %}
+        <a class="btn btn-outline-primary rounded-pill px-4" href="{{ meeting.video.url }}" target="_blank" rel="noopener noreferrer">Kokousvideo</a>
+        {% endif %}
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<style>
+.council-meetings {
+  display: grid;
+  gap: 2rem;
+  padding: 3rem 0 4rem;
+}
+
+.council-meetings-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.85fr);
+  gap: 1.5rem;
+  align-items: stretch;
+  padding: clamp(1.4rem, 3vw, 2rem);
+  border: 1px solid rgba(17, 40, 70, 0.1);
+  border-radius: 1.4rem;
+  background:
+    radial-gradient(circle at top right, rgba(125, 159, 199, 0.16), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(245, 249, 255, 0.92));
+  box-shadow: 0 1rem 2.4rem rgba(17, 40, 70, 0.08);
+}
+
+.council-meetings-hero-card {
+  display: grid;
+  align-content: center;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  border: 1px solid rgba(17, 40, 70, 0.1);
+  border-radius: 1.2rem;
+  background: rgba(255, 255, 255, 0.82);
+  color: rgba(17, 40, 70, 0.78);
+}
+
+.council-meetings-hero-card p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.council-meetings-hero-card strong {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  line-height: 1;
+  color: #102845;
+}
+
+.council-meetings-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.council-meeting-card {
+  display: grid;
+  grid-template-columns: minmax(9rem, 0.22fr) minmax(0, 1fr) minmax(12rem, 0.26fr);
+  gap: 1.25rem;
+  padding: 1.25rem;
+  border: 1px solid rgba(17, 40, 70, 0.1);
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 0.7rem 1.8rem rgba(17, 40, 70, 0.06);
+}
+
+.council-meeting-card__date span {
+  display: inline-flex;
+  padding: 0.48rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(17, 40, 70, 0.08);
+  color: #163e6c;
+  font-weight: 800;
+}
+
+.council-meeting-card__body h2 {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.25rem, 1rem + 0.8vw, 1.85rem);
+  line-height: 1.18;
+}
+
+.council-meeting-card__body h2 a,
+.council-meeting-preview a {
+  color: #12355f;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
+.council-meeting-counts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 0.9rem;
+}
+
+.council-meeting-counts span {
+  display: inline-flex;
+  padding: 0.32rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(17, 40, 70, 0.08);
+  color: rgba(17, 40, 70, 0.8);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.council-meeting-preview {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.council-meeting-preview li {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.council-meeting-preview span {
+  color: rgba(17, 40, 70, 0.64);
+  font-size: 0.9rem;
+}
+
+.council-meeting-card__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  align-items: stretch;
+}
+
+[data-bs-theme="dark"] .council-meetings-hero,
+[data-bs-theme="dark"] .council-meeting-card {
+  border-color: rgba(214, 226, 240, 0.18);
+  background: linear-gradient(180deg, rgba(23, 36, 54, 0.96), rgba(17, 27, 42, 0.92));
+  box-shadow: none;
+}
+
+[data-bs-theme="dark"] .council-meetings-hero-card {
+  border-color: rgba(214, 226, 240, 0.18);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(236, 242, 248, 0.78);
+}
+
+[data-bs-theme="dark"] .council-meetings-hero-card strong,
+[data-bs-theme="dark"] .council-meeting-card__body h2 a,
+[data-bs-theme="dark"] .council-meeting-preview a {
+  color: #f6fbff;
+}
+
+[data-bs-theme="dark"] .council-meeting-card__date span,
+[data-bs-theme="dark"] .council-meeting-counts span {
+  background: rgba(214, 226, 240, 0.12);
+  color: rgba(246, 251, 255, 0.92);
+}
+
+[data-bs-theme="dark"] .council-meeting-preview span {
+  color: rgba(236, 242, 248, 0.68);
+}
+
+@media (max-width: 900px) {
+  .council-meetings-hero,
+  .council-meeting-card {
+    grid-template-columns: 1fr;
+  }
+
+  .council-meeting-card__actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+</style>

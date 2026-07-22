@@ -31,6 +31,8 @@
     {% set breadcrumbKey = "work" %}
   {% elif currentUrl == "/politiikka/" or currentUrl == "/politiiikka/" or currentUrl == "/poliittinen-avoimuus/" or currentUrl == "/en/politics/" or currentUrl == "/en/affiliations/" %}
     {% set breadcrumbKey = "politics" %}
+  {% elif currentUrl == "/valtuusto/" or currentUrl.startsWith("/valtuusto/") %}
+    {% set breadcrumbKey = "council_meetings" %}
   {% elif currentUrl == "/vaalikaudet/" or currentUrl == "/vaalihistoria/" or currentUrl == "/en/election-history/" or currentUrl == "/kuntavaalit-2021/" or currentUrl == "/jari-laru-aluevaltuustoon/" or currentUrl == "/kunnallisvaalit-2012/" %}
     {% set breadcrumbKey = "election_history" %}
   {% elif currentUrl == "/kunta-ja-aluevaalit-2025/" or currentUrl == "/en/municipal-and-wellbeing-elections-2025/" %}

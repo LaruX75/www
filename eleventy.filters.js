@@ -47,10 +47,15 @@ function uniqueContentItems(collections) {
   ];
   const seen = new Set();
   return sources.filter((item) => {
-    if (!item || !item.url || !item.data?.title || seen.has(item.url)) return false;
-    seen.add(item.url);
+    const url = contentItemUrl(item);
+    if (!item || !url || !item.data?.title || seen.has(url)) return false;
+    seen.add(url);
     return true;
   });
+}
+
+function contentItemUrl(item) {
+  return item?.url || item?.data?.page?.url || item?.data?.permalink || "";
 }
 
 function intersectionCount(values, wanted) {
@@ -93,7 +98,8 @@ function dateOnlyFromValue(value) {
 
 function councilOverrideForItem(item) {
   const data = item?.data || {};
-  return oukaCouncilSpeechProtocols.overrides?.[item?.url]
+  const url = contentItemUrl(item);
+  return oukaCouncilSpeechProtocols.overrides?.[url]
     || oukaCouncilSpeechProtocols.overrides?.[data.source_url]
     || {};
 }
@@ -175,8 +181,9 @@ function councilItemSortKey(data = {}) {
 
 function councilVideoEntriesForItem(item) {
   const data = item?.data || {};
+  const url = contentItemUrl(item);
   return [
-    ...toArray(councilSpeechVideos.byUrl?.[item?.url]),
+    ...toArray(councilSpeechVideos.byUrl?.[url]),
     ...toArray(councilSpeechVideos.byUrl?.[data.source_url])
   ];
 }
@@ -190,7 +197,7 @@ function councilMeetingItemView(item, lang = "fi") {
   const videoEntries = councilVideoEntriesForItem(item);
   const sort = councilItemSortKey(data);
   const itemView = {
-    url: item.url,
+    url: contentItemUrl(item),
     title: data.title || "",
     date: item.date || data.date || null,
     type: data.type || "",
@@ -897,3 +904,5 @@ module.exports = function registerFilters(eleventyConfig) {
     }
   });
 };
+
+module.exports.buildCouncilMeetings = buildCouncilMeetings;

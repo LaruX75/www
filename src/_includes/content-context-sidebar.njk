@@ -27,6 +27,7 @@
   "forums": "Forum",
   "handling": "Handling",
   "sameMeeting": "Same council meeting",
+  "meetingPage": "Open meeting page",
   "protocol": "Minutes",
   "meetingVideo": "Meeting video",
   "tags": "Tags",
@@ -47,6 +48,7 @@
   "forums": "Toimielin",
   "handling": "Käsittely",
   "sameMeeting": "Samassa kokouksessa",
+  "meetingPage": "Avaa kokoussivu",
   "protocol": "Pöytäkirja",
   "meetingVideo": "Kokousvideo",
   "tags": "Tunnisteet",
@@ -221,6 +223,7 @@
     <h2 class="content-context-title">{{ sameMeetingGroup.meetingLabel }}</h2>
     <p class="content-context-meeting-meta">
       <span>{{ sameMeetingGroup.meetingDate | dateFormat }}</span>
+      <a href="/valtuusto/{{ sameMeetingGroup.meetingDate }}/">{{ txt.meetingPage }}</a>
       {% if sameMeetingGroup.protocolUrl %}
       <a href="{{ sameMeetingGroup.protocolUrl }}" target="_blank" rel="noopener">{{ txt.protocol }}</a>
       {% endif %}
