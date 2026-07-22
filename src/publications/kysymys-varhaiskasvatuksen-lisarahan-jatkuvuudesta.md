@@ -38,22 +38,34 @@ Oulun kaupunginvaltuuston kyselytunnilla käsiteltiin varhaiskasvatuksen ryhmäk
 
 Esitin lyhyen kysymyksen siitä, miltä lisärahan jatkuvuus näyttää tulevina vuosina tilanteessa, jossa kaupungilla oli samaan aikaan säästötavoitteita.
 
-Alla oleva teksti on kokoustallenteesta tarkistettu ja kielellisesti siistitty litteraatti.
+Alla oleva kysymys ja vastaus on koottu kokoustallenteesta tarkistetun ja kielellisesti siistityn litteraatin pohjalta.
 
-## Kysymys lisärahan jatkuvuudesta
+<section class="council-question-thread" aria-labelledby="council-question-thread-title">
+  <p class="council-question-thread__eyebrow">Valtuuston kyselytunti</p>
+  <h2 id="council-question-thread-title">Kysymys ja vastaus</h2>
 
-Arvoisa puheenjohtaja, kanssavaltuutetut.
+  <article class="council-question-card council-question-card--question">
+    <div class="council-question-card__header">
+      <p class="council-question-card__role">Kysymys</p>
+      <p class="council-question-card__speaker">Jari Laru</p>
+    </div>
+    <div class="council-question-card__body">
+      <p>Arvoisa puheenjohtaja, kanssavaltuutetut.</p>
+      <p>Minulla on aika lyhyt kysymys.</p>
+      <p>Kun tässä on saatu kuulla, että meillä on säästötavoitteita, kysyn tästä tälle vuodelle osoitetusta lisärahasta:</p>
+      <p><strong>Mitkä ovat tulevaisuuden näkymät?</strong></p>
+    </div>
+  </article>
 
-Minulla on aika lyhyt kysymys.
-
-Kun tässä on saatu kuulla, että meillä on säästötavoitteita, kysyn tästä tälle vuodelle osoitetusta lisärahasta:
-
-Mitkä ovat tulevaisuuden näkymät?
-
-## Sivistys- ja kulttuurijohtaja Mika Penttilän vastaus
-
-Sivistys- ja kulttuurijohtaja Mika Penttilä vastasi kyselytunnilla, että erityistä tukea koskevaa työtä tehdään myös yksityisten päiväkotien suuntaan konsultatiivisesti. Hän totesi, että erityistä tukea tarvitsevat lapset ovat korotetusta palvelusetelistä huolimatta usein kaupungin omassa palvelutuotannossa, mutta tavoitteena on, että myös yksityisellä puolella olisi mahdollisuuksia vastata tähän tarpeeseen.
-
-Penttilän mukaan kaupunki valvoo yksityistä päivähoitoa muun muassa henkilöstöresurssien, sääntökirjan, laadun sekä terveellisten ja turvallisten tilojen näkökulmasta. Perhepäivähoidon osalta hän totesi, että ratkaisut riippuvat palveluohjauksesta ja siitä, missä erityistä tukea on mahdollista ja järkevää järjestää.
-
-Lisärahan jatkosta Penttilä totesi, että kyseinen puolentoista miljoonan euron määräraha oli sivistys- ja kulttuuripalvelujen kuluvan vuoden raamissa. Tulevien vuosien rahoituksesta päättää lopulta valtuusto talousarviokäsittelyssä.
+  <article class="council-question-card council-question-card--answer">
+    <div class="council-question-card__header">
+      <p class="council-question-card__role">Vastaus</p>
+      <p class="council-question-card__speaker">Mika Penttilä, sivistys- ja kulttuurijohtaja</p>
+    </div>
+    <div class="council-question-card__body">
+      <p>Sivistys- ja kulttuurijohtaja Mika Penttilä vastasi kyselytunnilla, että erityistä tukea koskevaa työtä tehdään myös yksityisten päiväkotien suuntaan konsultatiivisesti. Hän totesi, että erityistä tukea tarvitsevat lapset ovat korotetusta palvelusetelistä huolimatta usein kaupungin omassa palvelutuotannossa, mutta tavoitteena on, että myös yksityisellä puolella olisi mahdollisuuksia vastata tähän tarpeeseen.</p>
+      <p>Penttilän mukaan kaupunki valvoo yksityistä päivähoitoa muun muassa henkilöstöresurssien, sääntökirjan, laadun sekä terveellisten ja turvallisten tilojen näkökulmasta. Perhepäivähoidon osalta hän totesi, että ratkaisut riippuvat palveluohjauksesta ja siitä, missä erityistä tukea on mahdollista ja järkevää järjestää.</p>
+      <p>Lisärahan jatkosta Penttilä totesi, että kyseinen puolentoista miljoonan euron määräraha oli sivistys- ja kulttuuripalvelujen kuluvan vuoden raamissa. Tulevien vuosien rahoituksesta päättää lopulta valtuusto talousarviokäsittelyssä.</p>
+    </div>
+  </article>
+</section>
