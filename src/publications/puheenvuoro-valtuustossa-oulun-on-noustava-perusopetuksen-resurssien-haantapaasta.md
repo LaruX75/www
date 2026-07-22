@@ -1,6 +1,6 @@
 ---
 title: 'Puheenvuoro valtuustossa § 121: Oulun on noustava perusopetuksen resurssien häntäpäästä'
-date: '2018-12-17'
+date: 2018-12-17
 description: 'Kuutoskaupunkien vertailu osoittaa, että Oulu käyttää perusopetukseen niukasti resursseja. Lasten ja nuorten tulevaisuuteen on uskallettava investoida pitkäjänteisesti.'
 event: Oulun kaupunginvaltuusto
 asiakohta: '§ 121 – Info: Suomen kuuden suurimman kaupungin perusopetuksen tunnuslukuvertailu vuodelta 2017'
@@ -10,9 +10,7 @@ forum:
   - Kaupunginvaltuusto
 keywords:
   - perusopetus
-  - koulutus
   - oppimisympäristöt
-  - Oulu
 type: puhe
 writingRoles:
   - political

@@ -1,6 +1,6 @@
 ---
 title: 'Puheenvuoro valtuustossa § 7: Hyvinvoinnin edistäminen kuuluu kaupungille myös sote-uudistuksen jälkeen'
-date: '2022-04-04'
+date: 2022-04-04
 description: 'Puheenvuorossa korostan, että hyvinvoinnin edistäminen kuuluu kunnalle myös hyvinvointialueiden aloittamisen jälkeen ja että kaupungin ja hyvinvointialueen yhdyspintatyö on tehtävä näkyväksi.'
 event: Oulun kaupunginvaltuusto
 asiakohta: § 7 – Laaja hyvinvointikertomus 2022
@@ -12,11 +12,9 @@ forum:
   - Kaupunginvaltuusto
 keywords:
   - hyvinvointi
-  - hyvinvointikertomus
-  - sote-uudistus
   - kulttuurihyvinvointi
-  - liikunta
-  - sivistyspalvelut
+  - liikunta ja harrastukset
+  - sivistys ja koulutus
 type: puhe
 writingRoles:
   - political

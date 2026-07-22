@@ -1,6 +1,6 @@
 ---
 title: 'Puheenvuoro valtuustossa § 24: Lähijunaliikenne ja alueellinen yhdenvertaisuus'
-date: '2026-04-27'
+date: 2026-04-27
 description: 'Puheenvuorossa tarkastelen lähijunaliikenteen vaikutuksia Oulun eri alueisiin ja muistutan, että myös raideverkon ulkopuolelle jäävien alueiden saavutettavuudesta on huolehdittava.'
 event: Oulun kaupunginvaltuusto
 asiakohta: § 24 – Lähijunaliikenteen käynnistäminen ja rahoittaminen
@@ -10,12 +10,8 @@ categories:
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - lähijuna
-  - joukkoliikenne
+  - liikenne ja saavutettavuus
   - alueellinen yhdenvertaisuus
-  - Oulunsalo
-  - Jääli
-  - Kiiminki
 type: puhe
 writingRoles:
   - political
@@ -23,6 +19,10 @@ politicalProfiles:
   - lahipalvelut
   - kaupunkikehitys
 templateEngineOverride: md
+places:
+  - Oulunsalo
+  - Jääli
+  - Kiiminki
 ---
 
 Oulun kaupunginvaltuustossa käsiteltiin 27.4.2026 lähijunaliikenteen käynnistämistä ja rahoittamista. Käytin puheenvuoron siitä, miten lähijunaratkaisu vaikuttaa Oulun eri alueisiin ja kuinka myös raideverkon ulkopuolelle jäävien alueiden saavutettavuudesta on huolehdittava.

@@ -1,6 +1,6 @@
 ---
 title: 'Puheenvuoro valtuustossa § 2: Jäälin rakentamista on vietävä määrätietoisemmin eteenpäin'
-date: '2020-01-27'
+date: 2020-01-27
 description: 'Puheenvuorossa käsittelen Jäälin keskustan lainvoimaisen kaava-alueen liian hidasta rakentamistahti, Laivakankaan laajennusalueen suunnittelutilannetta sekä vanhan koulun purkamista.'
 event: Oulun kaupunginvaltuusto
 asiakohta: § 2 – Oulun maankäytön toteuttamisohjelma 2020–2024
@@ -14,8 +14,6 @@ keywords:
   - maankäyttö
   - kaavoitus
   - asuminen
-  - Jääli
-  - Oulu
 type: puhe
 writingRoles:
   - political
@@ -24,6 +22,8 @@ politicalProfiles:
   - lahipalvelut
   - kaupunkikehitys
 templateEngineOverride: md
+places:
+  - Jääli
 ---
 
 Oulun kaupunginvaltuusto käsitteli 27.1.2020 Oulun maankäytön toteuttamisohjelmaa vuosille 2020–2024. Käytin puheenvuoron Jäälin asuntorakentamisen etenemisestä, Laivakankaan laajennusalueesta ja vanhan koulun tulevaisuudesta.

@@ -1,6 +1,6 @@
 ---
 title: 'Puheenvuoro valtuustossa § 3: Kaavoitusprosessi on säännelty ja lähtökohtaisesti läpinäkyvä'
-date: '2021-03-29'
+date: 2021-03-29
 description: 'Puheenvuorossa puolustan kaavoitusprosessin avoimuutta, asukkaiden kuulemista ja kaupungin kaavoitusviranhaltijoiden ammattitaitoa.'
 event: Oulun kaupunginvaltuusto
 asiakohta: '§ 3 – Asemakaavan ja tonttijaon muutokset Pateniemen kaupunginosassa, Sahantie 10'
@@ -11,11 +11,9 @@ forum:
   - Kaupunginvaltuusto
 keywords:
   - kaavoitus
-  - Pateniemi
-  - Sahantie
-  - asukasosallisuus
-  - läpinäkyvyys
-  - kaupunkisuunnittelu
+  - osallisuus ja lähidemokratia
+  - avoimuus
+  - kaupunkikehitys
 type: puhe
 writingRoles:
   - political
@@ -23,6 +21,9 @@ politicalProfiles:
   - avoinhallinto
   - kaupunkikehitys
 templateEngineOverride: md
+places:
+  - Pateniemi
+  - Sahantie
 ---
 
 Oulun kaupunginvaltuusto käsitteli 29.3.2021 asemakaavan ja tonttijaon muutoksia Pateniemen kaupunginosassa osoitteessa Sahantie 10. Käytin puheenvuoron kaavoitusprosessin avoimuudesta ja asukkaiden kuulemisesta.

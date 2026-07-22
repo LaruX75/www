@@ -1,6 +1,6 @@
 ---
 title: 'Puheenvuoro valtuustossa § 24: Museo- ja tiedekeskuksen suunnitteluprosessi'
-date: '2024-03-18'
+date: 2024-03-18
 description: 'Puheenvuorossa käsittelen museo- ja tiedekeskuksen valmistelun ongelmia, hankkeen viivästymistä sekä tarvetta varmistaa Oululle nykyaikaiset museon ja tiedekeskuksen tilat.'
 event: Oulun kaupunginvaltuusto
 asiakohta: '§ 24 – Asemakaavan ja tonttijaon muutos 564-2401, I kaupunginosan korttelin 38 tontti nro 5 (Terwa Tower, Kaarlenväylä 1, Meritori, Kaarlenaukio)'
@@ -10,11 +10,7 @@ categories:
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - museo- ja tiedekeskus
-  - Oulu2026
-  - kulttuuripääkaupunki
-  - valmistelu
-  - päätöksenteko
+  - avoimuus
 type: puhe
 writingRoles:
   - political
@@ -22,6 +18,10 @@ politicalProfiles:
   - sivistys
   - avoinhallinto
 templateEngineOverride: md
+contentContexts:
+  - museo- ja tiedekeskus
+  - Oulu2026
+  - kulttuuripääkaupunki
 ---
 
 Oulun kaupunginvaltuustossa käsiteltiin 18.3.2024 Terwa Towerin asemakaavan ja tonttijaon muutosta. Käytin keskustelussa vielä yhden puheenvuoron museo- ja tiedekeskuksen valmisteluprosessista sekä siitä, miksi hankkeen viivästymisestä huolimatta Oulu tarvitsee pysyvän ja nykyaikaisen kulttuuri-investoinnin.

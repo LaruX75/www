@@ -1,6 +1,6 @@
 ---
 title: Vierailu Kempeleen kunnassa. Aiheena asukkaiden huoli jätevesilietteiden käsittelyyn liittyen.
-date: '2018-01-11'
+date: 2018-01-11
 description: Tammikuussa 2018 kävin kempeleläisten kutsumana kertomassa jääliläisten "lietesaagasta"
 event: Kempeleen kunnan tilaisuus
 categories:
@@ -8,20 +8,18 @@ categories:
 forum:
   - Asukasyhdistys
 keywords:
-  - aumakompostointi
-  - esitys
+  - ympäristö ja kiertotalous
+  - puhetilanne
   - historia
-  - kempele
-  - lietteenkäsittely
-  - Oulu
-  - vrj
-  - ympäristölupa
+  - hallinto ja luottamustoimet
 type: puhe
 writingRoles:
   - political
 wp_id: 1138
 source_url: 'https://www.jarilaru.fi/vierailu-kempeleen-kunnassa-aiheena-asukkaiden-huoli-jatevesilietteiden-kasittelyyn-liittyen/'
 templateEngineOverride: md
+places:
+  - kempele
 ---
 <p>Kävin tiistaina naapurikunnassa asukastilaisuudessa kertomassa kuinka me jääliläiset olemme kamppailleet vuosikaudet jätevesilietteiden kompostointialuetta vastaan. </p>
 <p>Nämä oikeustaistelut, vastineiden laatimiset, yleisönosastokirjoitukset ym. toimet ovat olleet minulle varsinainen politiikan korkeakoulu jonka seurauksena istun nyt myös kaupunginvaltuutettuna. </p>

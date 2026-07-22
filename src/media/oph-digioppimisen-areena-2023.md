@@ -2,8 +2,8 @@
 title: "Digioppimisen areena 2023"
 description: "Opetushallituksen Digioppimisen areena 2023 -tapahtuma, jossa Jari Laru esitteli Generation AI -hankkeen työtä lasten ja nuorten tekoäly- ja koneoppimislukutaidon vahvistamiseksi."
 date: 2023-12-11
-mediaRole: about
-mediaType: event
+mediaRole: expertAssignment
+mediaType: assignment
 mediaOutlet: "Opetushallitus"
 mediaOrder: 137
 sourceUrl: "https://www.oph.fi/fi/tapahtumat/2023/digioppimisen-areena-2023-arena-digitalt-larande-2023"

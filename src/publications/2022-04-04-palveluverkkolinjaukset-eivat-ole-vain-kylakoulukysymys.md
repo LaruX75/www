@@ -1,6 +1,6 @@
 ---
 title: 'Puheenvuoro valtuustossa § 8: Palveluverkkolinjaukset eivät ole vain kyläkoulukysymys'
-date: '2022-04-04'
+date: 2022-04-04
 description: 'Puheenvuorossa korostan, että palveluverkon kehittämistä pitää tarkastella alueellisina kokonaisuuksina eikä pelkkänä kyläkoulujen ja suurten monitoimitalojen vastakkainasetteluna.'
 event: Oulun kaupunginvaltuusto
 asiakohta: § 8 – Sivistys- ja kulttuuripalveluiden palveluverkkolinjaukset 2030
@@ -12,11 +12,9 @@ forum:
   - Kaupunginvaltuusto
 keywords:
   - palveluverkko
-  - koulut
-  - päiväkodit
-  - lähikoulu
-  - aluekoulu
-  - sivistyspalvelut
+  - varhaiskasvatus
+  - kouluverkko
+  - sivistys ja koulutus
 type: puhe
 writingRoles:
   - political

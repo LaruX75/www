@@ -1,6 +1,6 @@
 ---
 title: 'Puheenvuoro valtuustossa § 25: Maankäytön vaikutukset koulu- ja palveluverkkoon'
-date: '2025-04-28'
+date: 2025-04-28
 description: Puheenvuorossa käsittelen maankäytön toteuttamisohjelman vaikutuksia koulu- ja palveluverkkoon sekä sivistyslautakunnan lausuntojen huomioimista valmistelussa.
 event: Oulun kaupunginvaltuusto
 asiakohta: '§ 25 – Oulun maankäytön toteuttamisohjelma, väli-MATO 2026–2030'
@@ -12,10 +12,8 @@ forum:
   - Kaupunginvaltuusto
 keywords:
   - maankäyttö
-  - MATO
   - palveluverkko
   - sivistyslautakunta
-  - Hiukkavaara
 type: puhe
 writingRoles:
   - political
@@ -24,6 +22,10 @@ politicalProfiles:
   - lahipalvelut
   - kaupunkikehitys
 templateEngineOverride: md
+places:
+  - Hiukkavaara
+contentContexts:
+  - MATO
 ---
 
 Oulun kaupunginvaltuustossa käsiteltiin 28.4.2025 Oulun maankäytön toteuttamisohjelmaa eli väli-MATOa vuosille 2026–2030. Käytin puheenvuoron ohjelman vaikutuksista koulu- ja palveluverkkoon sekä siitä, miten sivistyslautakunnan lausunnot tulisi ottaa huomioon valmistelussa.

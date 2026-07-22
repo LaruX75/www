@@ -1,6 +1,6 @@
 ---
 title: 'Puheenvuoro valtuustossa § 1: Heinäpään stadion ja Stora Enson liikennejärjestelyt'
-date: '2022-04-04'
+date: 2022-04-04
 description: 'Puheenvuorossa arvioin Stora Enson YVA-tilaisuuden perusteella, että stadion ja tehdas voivat toimia samalla alueella, kun liikennejärjestelyt suunnitellaan huolellisesti.'
 event: Oulun kaupunginvaltuusto
 meeting: Oulun kaupunginvaltuusto 3/2022
@@ -17,11 +17,9 @@ categories:
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - Heinäpää
-  - jalkapallostadion
-  - Stora Enso
-  - liikenne
-  - kaupunkisuunnittelu
+  - liikunta ja harrastukset
+  - liikenne ja saavutettavuus
+  - kaupunkikehitys
 type: puhe
 contentType: speech
 writingRoles:
@@ -29,6 +27,10 @@ writingRoles:
 politicalProfiles:
   - kaupunkikehitys
 templateEngineOverride: md
+places:
+  - Heinäpää
+entities:
+  - Stora Enso
 ---
 
 Oulun kaupunginvaltuuston kyselytunnilla 4.4.2022 käsiteltiin Heinäpään jalkapallostadionin vaikutuksia Stora Enson toimintaan ja alueen liikennejärjestelyihin. Käytin puheenvuoron Stora Enson tuotantosuunnan muutoksen ympäristövaikutusten arviointiohjelman keskustelutilaisuudesta saamieni tietojen pohjalta.

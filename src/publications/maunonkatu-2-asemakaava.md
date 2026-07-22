@@ -1,6 +1,6 @@
 ---
 title: 'Puheenvuoro kaupunginvaltuuston kokouksessa. §3. Asemakaavan ja tonttijaon muutos, Maunonkatu 2'
-date: '2023-02-06'
+date: 2023-02-06
 description: Puheenvuoroni Oulun kaupunginvaltuustossa Maunonkadun vanhan kauppaoppilaitoksen kaavamuutoksesta.
 event: Oulun kaupunginvaltuusto
 asiakohta: '3 – Asemakaavan ja tonttijaon muutos, Maunonkatu 2'
@@ -12,7 +12,7 @@ forum:
   - Kaupunginvaltuusto
 keywords:
   - kaavoitus
-  - rakennussuojelu
+  - kulttuuriperintö
 type: puhe
 writingRoles:
   - political

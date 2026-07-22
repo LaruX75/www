@@ -1,6 +1,6 @@
 ---
 title: 'Puheenvuoro valtuustossa § 3: Jäälin täydennysrakentaminen ja Hiukkavaaran kasvupaine'
-date: '2022-02-28'
+date: 2022-02-28
 description: 'Puheenvuorossa korostan maankäytön, kouluverkon ja palvelujen yhteensovittamista sekä täydennysrakentamisen suuntaamista alueille, joilla olemassa olevaa kapasiteettia voidaan hyödyntää paremmin.'
 event: Oulun kaupunginvaltuusto
 asiakohta: § 3 – Oulun maankäytön toteuttamisohjelma MATO 2022–2026
@@ -11,12 +11,8 @@ categories:
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - MATO
-  - Jääli
-  - Hiukkavaara
   - täydennysrakentaminen
   - palveluverkko
-  - koulut
 type: puhe
 writingRoles:
   - political
@@ -24,6 +20,11 @@ politicalProfiles:
   - sivistys
   - lahipalvelut
 templateEngineOverride: md
+places:
+  - Jääli
+  - Hiukkavaara
+contentContexts:
+  - MATO
 ---
 
 Oulun kaupunginvaltuusto käsitteli 28.2.2022 maankäytön toteuttamisohjelmaa vuosille 2022–2026. Käytin puheenvuoron siitä, miten maankäyttö, asuntorakentaminen, koulut ja palveluverkko pitäisi sovittaa nykyistä paremmin yhteen.

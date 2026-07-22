@@ -1,6 +1,6 @@
 ---
 title: 'Puheenvuoro valtuustossa § 8: Aloitteiden seuranta tarvitsee selkeän järjestelmän'
-date: '2022-09-12'
+date: 2022-09-12
 description: 'Puheenvuorossa nostan esiin kuntalais- ja valtuustoaloitteiden käsittelyn hitauden sekä tarpeen avoimelle järjestelmälle, josta aloitteiden etenemistä voisi seurata.'
 event: Oulun kaupunginvaltuusto
 asiakohta: § 8 – Kesäkuu 2021–heinäkuu 2022 kuntalaisaloitteet sekä aikaisemmat käsittelemättömät kuntalaisaloitteet
@@ -9,11 +9,9 @@ categories:
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - valtuustoaloitteet
-  - kuntalaisaloitteet
+  - aloitteet ja seuranta
   - avoimuus
   - digitalisaatio
-  - päätöksenteko
 type: puhe
 writingRoles:
   - political

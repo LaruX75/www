@@ -1,9 +1,9 @@
 ---
-title: "Kotoutumista ei pidä kaventaa vain humanitaariseen maahanmuuttoon"
-date: '2017-11-27'
-description: "Valtuustopuheenvuoro siitä, että Oulun kotoutumiskeskustelussa pitää huomioida myös työ-, opiskelu- ja muu maahanmuutto."
+title: Kotoutumista ei pidä kaventaa vain humanitaariseen maahanmuuttoon
+date: 2017-11-27
+description: 'Valtuustopuheenvuoro siitä, että Oulun kotoutumiskeskustelussa pitää huomioida myös työ-, opiskelu- ja muu maahanmuutto.'
 event: Oulun kaupunginvaltuusto
-asiakohta: '§ 152 – Talousarvio 2018 ja taloussuunnitelma 2019-2020'
+asiakohta: § 152 – Talousarvio 2018 ja taloussuunnitelma 2019-2020
 categories:
   - Politiikka ja päätöksenteko
   - Kaupunkikehitys ja palveluverkko
@@ -11,11 +11,8 @@ forum:
   - Kaupunginvaltuusto
 keywords:
   - kotoutuminen
-  - maahanmuutto
-  - työperäinen maahanmuutto
-  - kansainväliset opiskelijat
-  - osaamisen tunnistaminen
-  - talousarvio
+  - kansainvälisyys ja osaajat
+  - osaaminen
 type: puhe
 writingRoles:
   - political
@@ -23,8 +20,10 @@ opinionRoles:
   - political
 politicalProfiles:
   - kaupunkikehitys
-  - avoimuus
+  - avoinhallinto
 templateEngineOverride: md
+contentContexts:
+  - talousarvio
 ---
 
 Oulun kaupunginvaltuusto käsitteli vuoden 2018 talousarviota. Puheenvuoroni ei ollut alun perin suunniteltu, mutta käytin lyhyen repliikin, koska maahanmuutosta ja kotoutumisesta käyty keskustelu kaventui liikaa vain yhteen näkökulmaan.

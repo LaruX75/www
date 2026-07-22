@@ -1,9 +1,9 @@
 ---
 title: 'Puheenvuoro valtuustossa § 30: Vuosiluokkien 0–2 lähikoulu on perusteltu pedagoginen ratkaisu'
-date: '2018-04-16'
+date: 2018-04-16
 description: 'Pienten lasten lähikoulua tulee arvioida opetussuunnitelman nivelvaiheiden, palveluverkon ja opetuksen resurssien kokonaisuutena.'
 event: Oulun kaupunginvaltuusto
-asiakohta: '§ 30 – Sivistys- ja kulttuuripalveluiden palveluverkkosuunnitelmalinjaukset'
+asiakohta: § 30 – Sivistys- ja kulttuuripalveluiden palveluverkkosuunnitelmalinjaukset
 categories:
   - Politiikka ja päätöksenteko
   - Sivistys ja koulutus
@@ -11,11 +11,11 @@ categories:
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - lähikoulu
+  - kouluverkko
   - perusopetus
   - palveluverkko
-  - nivelvaiheet
-  - esiopetus
+  - oppimisen tuki
+  - varhaiskasvatus
   - alkuopetus
 type: puhe
 writingRoles:

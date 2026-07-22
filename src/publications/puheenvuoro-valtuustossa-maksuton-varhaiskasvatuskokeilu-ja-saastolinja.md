@@ -1,9 +1,9 @@
 ---
 title: 'Puheenvuoro valtuustossa § 35: Maksuton varhaiskasvatuskokeilu ja säästölinja'
-date: '2018-04-16'
-description: 'Lyhyessä puheenvuorossa arvioin 5-vuotiaiden maksuttoman varhaiskasvatuksen kokeilua suhteessa sivistys- ja kulttuuripalvelujen säästöpaineisiin.'
+date: 2018-04-16
+description: Lyhyessä puheenvuorossa arvioin 5-vuotiaiden maksuttoman varhaiskasvatuksen kokeilua suhteessa sivistys- ja kulttuuripalvelujen säästöpaineisiin.
 event: Oulun kaupunginvaltuusto
-asiakohta: '§ 35 – Sivistys- ja kulttuurilautakunnan lisämäärärahaesitys 5-vuotiaiden maksuttomaan varhaiskasvatuksen kokeiluun'
+asiakohta: § 35 – Sivistys- ja kulttuurilautakunnan lisämäärärahaesitys 5-vuotiaiden maksuttomaan varhaiskasvatuksen kokeiluun
 categories:
   - Politiikka ja päätöksenteko
   - Sivistys ja koulutus
@@ -12,11 +12,9 @@ forum:
   - Kaupunginvaltuusto
 keywords:
   - varhaiskasvatus
-  - maksuton varhaiskasvatus
-  - ryhmäkoot
-  - sivistys
-  - talous
-  - säästöt
+  - opetuksen resurssit
+  - sivistys ja koulutus
+  - talous ja investoinnit
 type: puhe
 writingRoles:
   - political

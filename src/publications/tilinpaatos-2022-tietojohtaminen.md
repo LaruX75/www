@@ -1,6 +1,6 @@
 ---
 title: Puheenvuoro kaupunginvaltuuston kokouksessa. §2. Oulun kaupungin tilinpäätös 2022
-date: '2023-05-22'
+date: 2023-05-22
 description: 'Puheenvuoroni Oulun kaupunginvaltuustossa henkilöstötilinpäätöksestä, tiedolla johtamisesta ja avoimesta datasta.'
 event: Oulun kaupunginvaltuusto
 asiakohta: 2 – Oulun kaupungin tilinpäätös 2022
@@ -10,7 +10,7 @@ forum:
   - Kaupunginvaltuusto
 keywords:
   - tietojohtaminen
-  - avoin data
+  - avoimuus
 type: puhe
 writingRoles:
   - political

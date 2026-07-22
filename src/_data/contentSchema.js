@@ -35,6 +35,9 @@ const contentSchema = {
     ],
     context: [
       "contexts",
+      "contentContexts",
+      "places",
+      "entities",
       "audience",
       "event",
       "venue",
@@ -150,7 +153,7 @@ const contentSchema = {
       glob: "src/blog/*.md",
       required: ["title", "date"],
       recommended: ["categories", "keywords", "writingRoles"],
-      arrayFields: ["categories", "keywords", "writingRoles", "politicalProfiles", "contexts"],
+      arrayFields: ["categories", "keywords", "writingRoles", "politicalProfiles", "contexts", "contentContexts", "places", "entities"],
       controlled: {
         writingRoles: "writingRoles",
         politicalProfiles: "politicalProfiles",
@@ -161,7 +164,7 @@ const contentSchema = {
       glob: "src/publications/*.md",
       required: ["title", "date", "type"],
       recommended: ["categories", "keywords", "writingRoles"],
-      arrayFields: ["categories", "keywords", "writingRoles", "opinionRoles", "politicalProfiles", "contexts", "forum"],
+      arrayFields: ["categories", "keywords", "writingRoles", "opinionRoles", "politicalProfiles", "contexts", "contentContexts", "places", "entities", "forum"],
       controlled: {
         type: "legacyTypes",
         writingRoles: "writingRoles",
@@ -180,7 +183,7 @@ const contentSchema = {
       glob: "src/politics/*.md",
       required: ["title", "date"],
       recommended: ["categories", "keywords", "politicalProfiles"],
-      arrayFields: ["categories", "keywords", "politicalProfiles", "contexts"],
+      arrayFields: ["categories", "keywords", "politicalProfiles", "contexts", "contentContexts", "places", "entities"],
       controlled: {
         politicalProfiles: "politicalProfiles",
         contexts: "contexts"
@@ -190,7 +193,7 @@ const contentSchema = {
       glob: "src/media/*.md",
       required: ["title", "mediaRole", "mediaType"],
       recommended: ["date", "mediaOutlet", "sourceUrl", "categories", "keywords", "contexts"],
-      arrayFields: ["categories", "keywords", "contexts"],
+      arrayFields: ["categories", "keywords", "contexts", "contentContexts", "places", "entities"],
       controlled: {
         contentType: "contentTypes",
         mediaRole: "mediaRoles",
@@ -203,7 +206,7 @@ const contentSchema = {
       glob: "src/presentations/*.md",
       required: ["title", "date", "type"],
       recommended: ["source", "categories", "keywords", "contexts", "event", "audience"],
-      arrayFields: ["categories", "keywords", "contexts", "audience", "relatedItems", "feedbackRefs"],
+      arrayFields: ["categories", "keywords", "contexts", "contentContexts", "places", "entities", "audience", "relatedItems", "feedbackRefs"],
       controlled: {
         type: "legacyTypes",
         source: "sources",

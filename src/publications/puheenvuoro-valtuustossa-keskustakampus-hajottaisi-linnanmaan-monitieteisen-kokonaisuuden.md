@@ -1,6 +1,6 @@
 ---
 title: 'Puheenvuoro valtuustossa § 7: Keskustakampus hajottaisi Linnanmaan monitieteisen kokonaisuuden'
-date: '2021-04-26'
+date: 2021-04-26
 description: 'Puheenvuorossa arvostelen keskustakampuksen kolmen kampuksen mallia ja puolustan Linnanmaan tutkimuksen, opetuksen ja teknologiayritysten muodostamaa monitieteistä kokonaisuutta.'
 event: Oulun kaupunginvaltuusto
 asiakohta: § 7 – Selvitys Oulun yliopiston sijoittumisesta Raksilan alueelle
@@ -11,12 +11,7 @@ categories:
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - Oulun yliopisto
-  - Linnanmaa
-  - Raksila
-  - kampus
-  - tutkimus
-  - korkeakoulutus
+  - korkeakoulut ja kampukset
 type: puhe
 writingRoles:
   - political
@@ -24,6 +19,11 @@ politicalProfiles:
   - sivistys
   - kaupunkikehitys
 templateEngineOverride: md
+places:
+  - Linnanmaa
+  - Raksila
+entities:
+  - Oulun yliopisto
 ---
 
 Oulun kaupunginvaltuusto käsitteli 26.4.2021 selvitystä Oulun yliopiston sijoittumisesta Raksilan alueelle. Käytin puheenvuoron keskustakampuksen vaikutuksista Linnanmaan monitieteiseen tutkimus-, opetus- ja teknologiakeskittymään.

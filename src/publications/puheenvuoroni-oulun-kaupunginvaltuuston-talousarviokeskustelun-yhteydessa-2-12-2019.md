@@ -1,9 +1,9 @@
 ---
 title: 'Puheenvuoro valtuustossa: Kulttuuri-investointeja ei pidä unohtaa kaupungin kehittämisessä'
-date: '2019-12-02'
+date: 2019-12-02
 description: 'Puheenvuorossa käsittelen lähipalveluinvestointien myönteisiä puolia sekä kulttuurirakennusten, valotaiteen ja digitaalisten elämysten unohtamista kaupungin kehittämisessä.'
 event: Oulun kaupunginvaltuusto
-meetingDate: '2019-12-09'
+meetingDate: 2019-12-09
 asiakohta: § 128 – Talousarvio 2020 ja -suunnitelma 2021-2022
 categories:
   - Politiikka ja päätöksenteko
@@ -11,11 +11,9 @@ categories:
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - talousarvio
-  - investoinnit
+  - talous ja investoinnit
   - kulttuuri
   - valotaide
-  - Oulu
 type: puhe
 writingRoles:
   - political
@@ -25,6 +23,8 @@ politicalProfiles:
   - kaupunkikehitys
   - yhteistyo
 templateEngineOverride: md
+contentContexts:
+  - talousarvio
 ---
 
 Oulun kaupunginvaltuusto käsitteli 2.12.2019 vuoden 2020 talousarviota ja taloussuunnitelmaa vuosille 2021–2022. Käytin puheenvuoron lähipalveluinvestointien merkityksestä sekä kulttuurirakennusten ja -palveluiden jäämisestä liian vähäiselle huomiolle.

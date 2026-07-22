@@ -1,6 +1,6 @@
 ---
 title: 'Puheenvuoro valtuustossa § 24: Terwa Tower on Oulun hotelli Ilves'
-date: '2024-03-18'
+date: 2024-03-18
 description: 'Puheenvuorossa vertaan Terwa Toweria Tampereen hotelli Ilvekseen ja perustelen, miksi Vänmanninsaaren hotellitornilla ja tulevalla asemanseudun hotellilla on omat paikkansa.'
 event: Oulun kaupunginvaltuusto
 asiakohta: '§ 24 – Asemakaavan ja tonttijaon muutos 564-2401, I kaupunginosan korttelin 38 tontti nro 5 (Terwa Tower, Kaarlenväylä 1, Meritori, Kaarlenaukio)'
@@ -10,8 +10,7 @@ categories:
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - terwa tower
-  - hotellirakentaminen
+  - kaupunkikehitys
   - kaupunkikuva
 type: puhe
 writingRoles:
@@ -19,6 +18,8 @@ writingRoles:
 politicalProfiles:
   - kaupunkikehitys
 templateEngineOverride: md
+contentContexts:
+  - Terwa Tower
 ---
 
 Oulun kaupunginvaltuustossa käsiteltiin 18.3.2024 Terwa Towerin asemakaavan ja tonttijaon muutosta. Käytin puheenvuoron hotellitornin paikasta Oulun kaupunkirakenteessa ja vertasin hanketta Tampereen hotelli Ilvekseen.

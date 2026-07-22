@@ -1,6 +1,6 @@
 ---
 title: 'Puheenvuoro valtuustossa § 6: Oulu2026-hanke on jo päätetty – nyt tarvitaan yhteistä sitoutumista'
-date: '2021-09-06'
+date: 2021-09-06
 description: 'Puheenvuorossa muistutan, että Oulu2026-hanke on jo hyväksytty kansainvälisessä arvioinnissa ja että seuraavaksi tarvitaan yhteistä sitoutumista hankkeen toteuttamiseen.'
 event: Oulun kaupunginvaltuusto
 asiakohta: § 6 – Oulu2026-kulttuurisäätiön perustaminen ja pääomittaminen
@@ -10,12 +10,10 @@ categories:
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - Oulu2026
-  - kulttuuripääkaupunki
   - kulttuuri
-  - säätiö
+  - hallinto ja luottamustoimet
   - matkailu
-  - kansainvälisyys
+  - kansainvälisyys ja osaajat
 type: puhe
 writingRoles:
   - political
@@ -23,6 +21,9 @@ politicalProfiles:
   - kaupunkikehitys
   - yhteistyo
 templateEngineOverride: md
+contentContexts:
+  - Oulu2026
+  - kulttuuripääkaupunki
 ---
 
 Oulun kaupunginvaltuusto käsitteli 6.9.2021 Oulu2026-kulttuurisäätiön perustamista ja pääomittamista. Käytin puheenvuoron siitä, että päätös kulttuuripääkaupunkihankkeesta oli jo tehty ja että kaupungin tulisi nyt sitoutua yhdessä sen toteuttamiseen.

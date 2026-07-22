@@ -1,9 +1,9 @@
 ---
 title: 'Puheenvuoro valtuustossa § 1: Kulttuurin merkitys korostuu pandemia-aikana'
-date: '2020-11-30'
+date: 2020-11-30
 description: Puheenvuorossa korostan kulttuurin merkitystä hyvinvoinnille pandemia-aikana ja kannatan kaupunginteatteriin kohdistuvan säästön pienentämistä.
 event: Oulun kaupunginvaltuusto
-meetingDate: '2020-12-07'
+meetingDate: 2020-12-07
 asiakohta: § 105 – Talousarvio 2021 ja -suunnitelma 2022-2023
 categories:
   - Politiikka ja päätöksenteko
@@ -13,12 +13,9 @@ forum:
   - Kaupunginvaltuusto
 keywords:
   - kulttuuri
-  - kaupunginteatteri
   - hyvinvointi
   - koronavirus
-  - talousarvio
-  - pyöräily
-  - koulut
+  - liikenne ja saavutettavuus
 type: puhe
 writingRoles:
   - political
@@ -28,6 +25,10 @@ politicalProfiles:
   - hyvinvointi
   - yhteistyo
 templateEngineOverride: md
+entities:
+  - kaupunginteatteri
+contentContexts:
+  - talousarvio
 ---
 
 Oulun kaupunginvaltuusto käsitteli 30.11.2020 vuoden 2021 talousarviota ja vuosien 2022–2023 taloussuunnitelmaa. Käytin puheenvuoron kulttuurin merkityksestä pandemia-aikana sekä eräistä talousarvioon esitetyistä säästöistä ja investoinneista.

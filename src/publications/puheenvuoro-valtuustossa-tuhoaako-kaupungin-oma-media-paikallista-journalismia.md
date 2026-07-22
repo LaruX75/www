@@ -1,6 +1,6 @@
 ---
 title: 'Puheenvuoro valtuustossa § 99: Tuhoaako kaupungin oma media paikallista journalismia?'
-date: '2019-10-07'
+date: 2019-10-07
 description: 'Puheenvuorossa kysyn, heikentääkö verovaroin tuotettu Mun Oulu -kaupunkimedia paikallisten lehtien toimintaedellytyksiä, ja mikä on kaupungin oman viestinnän ja riippumattoman journalismin rauhanomaisen rinnakkaiselon konsepti.'
 event: Oulun kaupunginvaltuusto
 asiakohta: '§ 99 – Info: Kaupunkimedia Mun Oulu'
@@ -9,18 +9,15 @@ categories:
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - Mun Oulu
-  - kaupunkimedia
-  - paikallisjournalismi
-  - viestintä
-  - media
-  - Oulu
+  - viestintä ja media
 type: puhe
 writingRoles:
   - political
 politicalProfiles:
   - avoinhallinto
 templateEngineOverride: md
+entities:
+  - Mun Oulu
 ---
 
 Oulun kaupunginvaltuusto käsitteli 7.10.2019 tietoiskua Mun Oulu -kaupunkimediasta. Käytin puheenvuoron kaupungin oman median suhteesta paikallislehtiin ja riippumattomaan journalismiin.

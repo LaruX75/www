@@ -1,6 +1,6 @@
 ---
 title: 'Puheenvuoro valtuustossa § 30: Koulun seinät eivät saa viedä opetuksen resursseja'
-date: '2018-04-16'
+date: 2018-04-16
 description: 'Puheenvuorossa käsittelen Oulun palveluverkkolinjauksia, koulurakennusten kustannuksia ja opetuksen resurssien turvaamista.'
 event: Oulun kaupunginvaltuusto
 asiakohta: § 30 – Sivistys- ja kulttuuripalveluiden palveluverkkosuunnitelmalinjaukset
@@ -11,20 +11,12 @@ categories:
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - Oulun kaupunginvaltuusto
-  - kiinteistöt
+  - tilat ja kiinteistöt
   - kouluverkko
-  - lukioverkko
-  - opetus
   - oppiminen
-  - Oulun kaupunki
   - palveluverkko
   - perusopetus
   - opetuksen resurssit
-  - tilavuokrat
-  - puhe
-  - tilaliikelaitos
-  - vuokra
 type: puhe
 writingRoles:
   - political
@@ -35,6 +27,8 @@ politicalProfiles:
   - lahipalvelut
   - kaupunkikehitys
 templateEngineOverride: md
+entities:
+  - Oulun kaupunginvaltuusto
 ---
 
 Oulun kaupunginvaltuusto käsitteli 16.4.2018 sivistys- ja kulttuuripalveluiden palveluverkkosuunnitelmalinjauksia. Käytin puheenvuoron Oulun palveluverkkokeskustelusta, koulurakennusten kustannuksista ja opetuksen resurssien turvaamisesta.

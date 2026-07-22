@@ -1,6 +1,6 @@
 ---
 title: 'Puheenvuoro valtuustossa § 3: Päätöksenteon avoimuus vaatii tämän ajan tietojärjestelmiä'
-date: '2022-06-20'
+date: 2022-06-20
 description: 'Puheenvuorossa arvostelen kaupungin vaikeakäyttöisiä tietojärjestelmiä ja vaadin kuntalaisille selkeitä, visuaalisia ja reaaliaikaisia tapoja seurata päätöksentekoa ja kaupungin tunnuslukuja.'
 event: Oulun kaupunginvaltuusto
 asiakohta: § 3 – Vuorovaikutussuunnitelman seuranta Oulun kaupungin toimialoilla 2021
@@ -11,9 +11,7 @@ forum:
   - Kaupunginvaltuusto
 keywords:
   - avoimuus
-  - vuorovaikutus
-  - osallisuus
-  - tietojärjestelmät
+  - osallisuus ja lähidemokratia
   - tietojohtaminen
   - digitalisaatio
 type: puhe

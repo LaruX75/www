@@ -1,6 +1,6 @@
 ---
 title: 'Puheenvuoro valtuustossa § 7: Oulun suuret hankkeet on vaiheistettava'
-date: '2021-04-26'
+date: 2021-04-26
 description: 'Repliikissä korostan, ettei Oulu voi toteuttaa kaikkia suuria hankkeita samanaikaisesti, vaan investoinnit on asetettava tärkeysjärjestykseen ja vaiheistettava.'
 event: Oulun kaupunginvaltuusto
 asiakohta: § 7 – Selvitys Oulun yliopiston sijoittumisesta Raksilan alueelle
@@ -11,11 +11,9 @@ categories:
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - investoinnit
+  - talous ja investoinnit
   - hankkeet
-  - talous
-  - Raksila
-  - kampus
+  - korkeakoulut ja kampukset
 type: puhe
 writingRoles:
   - political
@@ -24,6 +22,8 @@ politicalProfiles:
   - kaupunkikehitys
   - yhteistyo
 templateEngineOverride: md
+places:
+  - Raksila
 ---
 
 Oulun kaupunginvaltuuston keskustelussa 26.4.2021 käytin lyhyen repliikin kaupungin suurten hankkeiden määrästä ja niiden vaiheistamisen tarpeesta.

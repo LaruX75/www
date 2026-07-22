@@ -1,7 +1,7 @@
 ---
-title: "Jokirannan koulun väistötilat eivät saa vaarantaa opetusta ja turvallisuutta"
-date: '2018-01-29'
-description: "Valtuustopuheenvuoro Jokirannan koulun hajanaisista väistötiloista, kuljetuskustannuksista sekä opetustilojen turvallisuudesta ja pedagogisesta soveltuvuudesta."
+title: Jokirannan koulun väistötilat eivät saa vaarantaa opetusta ja turvallisuutta
+date: 2018-01-29
+description: 'Valtuustopuheenvuoro Jokirannan koulun hajanaisista väistötiloista, kuljetuskustannuksista sekä opetustilojen turvallisuudesta ja pedagogisesta soveltuvuudesta.'
 event: Oulun kaupunginvaltuusto
 meeting: Oulun kaupunginvaltuusto 1/2018
 bid: 14649
@@ -18,12 +18,9 @@ categories:
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - Jokirannan koulu
-  - väistötilat
-  - sisäilma
+  - terveet tilat
   - perusopetus
   - turvallisuus
-  - Kiiminki
   - kouluverkko
 type: puhe
 contentType: speech
@@ -33,6 +30,10 @@ writingRoles:
 opinionRoles:
   - political
 templateEngineOverride: md
+places:
+  - Kiiminki
+entities:
+  - Jokirannan koulu
 ---
 
 Oulun kaupunginvaltuuston kyselytunnilla käsiteltiin Jokirannan koulun opetustilojen terveellisyyttä ja turvallisuutta. Olin jättänyt valtuustokysymyksen:

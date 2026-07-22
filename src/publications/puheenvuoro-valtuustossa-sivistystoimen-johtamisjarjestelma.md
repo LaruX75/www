@@ -1,6 +1,6 @@
 ---
 title: 'Puheenvuoro valtuustossa § 81: Sivistystoimen johtamisjärjestelmän uudistaminen'
-date: '2024-11-11'
+date: 2024-11-11
 description: 'Puheenvuorossa esitän sivistystoimen johtamisjärjestelmän uudistamista, nykyisistä palvelualueista luopumista ja palveluverkon tarkastelua kaupunginosien, suuralueiden ja koko kaupungin näkökulmasta.'
 event: Oulun kaupunginvaltuusto
 asiakohta: § 81 – Tuloveroprosentin ja kiinteistöveroprosenttien vahvistaminen vuodelle 2025
@@ -11,10 +11,10 @@ categories:
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - sivistystoimi
-  - johtamisjärjestelmä
+  - sivistys ja koulutus
+  - sivistyksen johtaminen
   - palveluverkko
-  - talouden sopeuttaminen
+  - talous ja investoinnit
 type: puhe
 writingRoles:
   - political

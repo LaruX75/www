@@ -1,6 +1,6 @@
 ---
-title: 'Mitä Linnanmaan toimitilamarkkinoita koskeva selvitys kertoo?'
-date: '2022-02-02'
+title: Mitä Linnanmaan toimitilamarkkinoita koskeva selvitys kertoo?
+date: 2022-02-02
 description: 'Puheenvuoro Linnanmaan kehittämistyöryhmän raportista, yliopiston tilasuunnitelmien vaikutuksista ja toimitilamarkkinoita koskevan selvityksen avoimuudesta.'
 event: 'Avoin keskustelutilaisuus: Mitä tapahtuu Raksilassa tai Linnanmaalla?'
 categories:
@@ -10,20 +10,21 @@ categories:
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - Linnanmaa
-  - Oulun yliopisto
-  - toimitilat
-  - keskustakampus
-  - Raksila
+  - tilat ja kiinteistöt
+  - korkeakoulut ja kampukset
   - kaupunkikehitys
-  - Catella
-  - kiinteistömarkkinat
 type: puhe
 writingRoles:
   - political
 politicalProfiles:
   - kaupunkikehitys
 templateEngineOverride: md
+places:
+  - Linnanmaa
+  - Raksila
+entities:
+  - Oulun yliopisto
+  - Catella
 ---
 
 Oulun kaupunki järjesti avoimen keskustelutilaisuuden Raksilan alueen ja Linnanmaan kehittämisestä. Tilaisuudessa käsiteltiin muun muassa Oulun yliopiston suunnittelemaa keskustakampusta sekä hankkeen mahdollisia vaikutuksia Linnanmaan alueeseen.

@@ -1,21 +1,17 @@
 ---
-title: "Jääli tarvitsee uusia tontteja Laivakankaalle ja Kortekankaalle"
-date: '2018-01-29'
-description: "Valtuustopuheenvuoro Jäälin asuntorakentamisesta sekä Laivakankaan ja Kortekankaan lisäämisestä Oulun maankäytön toteuttamisohjelmaan."
+title: Jääli tarvitsee uusia tontteja Laivakankaalle ja Kortekankaalle
+date: 2018-01-29
+description: Valtuustopuheenvuoro Jäälin asuntorakentamisesta sekä Laivakankaan ja Kortekankaan lisäämisestä Oulun maankäytön toteuttamisohjelmaan.
 event: Oulun kaupunginvaltuusto
-asiakohta: '§ 2 – Oulun maankäytön toteuttamisohjelma (MATO) 2018–2022'
+asiakohta: § 2 – Oulun maankäytön toteuttamisohjelma (MATO) 2018–2022
 categories:
   - Politiikka ja päätöksenteko
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - Jääli
-  - Laivakangas
-  - Kortekangas
   - kaavoitus
-  - asuntorakentaminen
-  - MATO
+  - asuminen
 type: puhe
 writingRoles:
   - political
@@ -23,6 +19,12 @@ politicalProfiles:
   - lahipalvelut
   - kaupunkikehitys
 templateEngineOverride: md
+places:
+  - Jääli
+  - Laivakangas
+  - Kortekangas
+contentContexts:
+  - MATO
 ---
 
 Oulun kaupunginvaltuusto käsitteli maankäytön toteuttamisohjelmaa vuosille 2018–2022. Keskustelussa esitettiin Laivakankaan ja Kortekankaan lisäämistä kaavoitusohjelmaan.

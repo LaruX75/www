@@ -1,6 +1,6 @@
 ---
 title: 'Puheenvuoro valtuustossa § 2: Power BI:n hyödyntäminen kaupungin raportoinnissa'
-date: '2022-04-25'
+date: 2022-04-25
 description: 'Puheenvuorossa kiitän ympäristöohjelman Power BI -visualisointeja ja esitän, että vastaavia selkeitä tietonäkymiä hyödynnetään laajemmin kaupungin raportoinnissa ja päätöksenteossa.'
 event: Oulun kaupunginvaltuusto
 asiakohta: § 2 – Oulun kaupungin ympäristöohjelman toteuma 2021
@@ -10,11 +10,9 @@ categories:
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - ympäristöohjelma
-  - Power BI
+  - ympäristö ja kiertotalous
   - tietojohtaminen
   - avoimuus
-  - visualisointi
   - digitalisaatio
 type: puhe
 writingRoles:

@@ -1,6 +1,6 @@
 ---
 title: 'Puheenvuoro valtuustossa § 8: Maankäytön ja palveluverkon suunnittelu on tehtävä yhdessä'
-date: '2022-04-04'
+date: 2022-04-04
 description: 'Puheenvuorossa arvostelen maankäytön ja sivistyspalvelujen eritahtista suunnittelua sekä vaadin MATO-ohjelman, kaavoituksen ja palveluverkon nykyistä tiiviimpää yhteensovittamista.'
 event: Oulun kaupunginvaltuusto
 asiakohta: § 8 – Sivistys- ja kulttuuripalveluiden palveluverkkolinjaukset 2030
@@ -12,11 +12,9 @@ forum:
   - Kaupunginvaltuusto
 keywords:
   - palveluverkko
-  - MATO
   - maankäyttö
-  - Hiukkavaara
   - kaavoitus
-  - sivistyspalvelut
+  - sivistys ja koulutus
 type: puhe
 writingRoles:
   - political
@@ -25,6 +23,10 @@ politicalProfiles:
   - lahipalvelut
   - kaupunkikehitys
 templateEngineOverride: md
+places:
+  - Hiukkavaara
+contentContexts:
+  - MATO
 ---
 
 Oulun kaupunginvaltuusto käsitteli 4.4.2022 sivistys- ja kulttuuripalveluiden palveluverkkolinjauksia. Toisessa asiakohtaa koskevassa puheenvuorossani nostin esiin maankäytön toteuttamisohjelman ja palveluverkon suunnittelun väliset ongelmat.

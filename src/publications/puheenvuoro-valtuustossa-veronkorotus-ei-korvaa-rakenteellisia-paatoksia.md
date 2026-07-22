@@ -1,20 +1,17 @@
 ---
-title: "Veronkorotus ei korvaa rakenteellisia päätöksiä"
-date: '2018-11-12'
-description: "Valtuustopuheenvuoro talousarviokeskustelussa siitä, että vaikeita palvelu- ja talousratkaisuja ei voi korvata pelkällä veronkorotuksella."
+title: Veronkorotus ei korvaa rakenteellisia päätöksiä
+date: 2018-11-12
+description: 'Valtuustopuheenvuoro talousarviokeskustelussa siitä, että vaikeita palvelu- ja talousratkaisuja ei voi korvata pelkällä veronkorotuksella.'
 event: Oulun kaupunginvaltuusto
-asiakohta: '§ 96 – Tuloveroprosentin ja kiinteistöveroprosenttien vahvistaminen vuodelle 2019'
+asiakohta: § 96 – Tuloveroprosentin ja kiinteistöveroprosenttien vahvistaminen vuodelle 2019
 categories:
   - Politiikka ja päätöksenteko
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - talousarvio
-  - verotus
+  - talous ja investoinnit
   - palveluverkko
-  - rakenteelliset ratkaisut
-  - päätöksenteko
 type: puhe
 writingRoles:
   - political
@@ -24,6 +21,8 @@ politicalProfiles:
   - avoinhallinto
   - kaupunkikehitys
 templateEngineOverride: md
+contentContexts:
+  - talousarvio
 ---
 
 Oulun kaupunginvaltuusto käsitteli vuoden 2019 tuloveroprosentin ja kiinteistöveroprosenttien vahvistamista. Puheenvuorossani vastasin keskusteluun, jossa vaikeisiin palvelu- ja talousratkaisuihin haettiin ratkaisua veronkorotuksesta.

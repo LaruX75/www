@@ -1,6 +1,6 @@
 ---
 title: 'Puheenvuoro valtuustossa § 53: Linnanmaasta rakentuu Pohjois-Suomen merkittävin korkeakoulukeskittymä'
-date: '2018-05-14'
+date: 2018-05-14
 description: 'Oulun yliopiston ja ammattikorkeakoulun yhteistyö vahvistaa koulutusta, tutkimusta ja alueen elinvoimaa, mutta muutoksessa on huomioitava myös henkilöstön asema.'
 event: Oulun kaupunginvaltuusto
 asiakohta: '§ 53 – Oulun ammattikorkeakoulu Oy:n omistusjärjestely ja määrärahamuutokset'
@@ -11,12 +11,7 @@ categories:
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - korkeakoulutus
-  - Oulun yliopisto
-  - Oulun ammattikorkeakoulu
-  - Linnanmaa
-  - kampuskehitys
-  - korkeakouluyhteistyö
+  - korkeakoulut ja kampukset
 type: puhe
 writingRoles:
   - political
@@ -25,6 +20,11 @@ politicalProfiles:
   - sivistys
   - kaupunkikehitys
 templateEngineOverride: md
+places:
+  - Linnanmaa
+entities:
+  - Oulun yliopisto
+  - Oulun ammattikorkeakoulu
 ---
 
 Oulun kaupunginvaltuusto käsitteli 14.5.2018 kokouksessaan 4/2018 asiaa § 53 Oulun ammattikorkeakoulu Oy:n omistusjärjestelystä ja määrärahamuutoksista. Käytin puheenvuoron Linnanmaan kampuksen kehittymisestä Pohjois-Suomen merkittävimmäksi korkeakoulukeskittymäksi.

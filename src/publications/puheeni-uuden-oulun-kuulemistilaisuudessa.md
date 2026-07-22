@@ -1,22 +1,20 @@
 ---
 title: Puheeni Uuden Oulun kuulemistilaisuudessa
-date: '2011-05-11'
+date: 2011-05-11
 description: Oulun monikuntaliitoksen valmisteluihin kuului useita kuulemistilaisuuksia. Ohessa video joukkoliikennettä käsittelevästä kommentistani 11.5.2011 pidetystä kuulemistilaisuudesta. Käytin repli...
 event: Uuden Oulun kuulemistilaisuus
 categories:
   - Kaupunkikehitys ja palveluverkko
 keywords:
-  - henkilöauto
-  - joukkoliikenne
-  - kaksi autoa
-  - kuusamontie
-  - työmatkaliikenne
+  - liikenne ja saavutettavuus
 type: puhe
 writingRoles:
   - political
 wp_id: 1208
 source_url: 'https://www.jarilaru.fi/puheeni-uuden-oulun-kuulemistilaisuudessa/'
 templateEngineOverride: md
+places:
+  - kuusamontie
 ---
 <p>Oulun monikuntaliitoksen valmisteluihin kuului useita kuulemistilaisuuksia. Ohessa video joukkoliikennettä käsittelevästä kommentistani  11.5.2011 pidetystä kuulemistilaisuudesta.</p>
 <p>Käytin repliikkipuheenvuoron joukkoliikennettä käsittelevässä keskustelussa.</p>

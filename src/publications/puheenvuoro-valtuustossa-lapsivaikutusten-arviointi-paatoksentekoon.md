@@ -1,9 +1,9 @@
 ---
 title: 'Puheenvuoro valtuustossa § 32: Lapsivaikutusten arviointi on tuotava osaksi kaupungin päätöksentekoa'
-date: '2018-04-16'
-description: 'Lapsia ja nuoria koskevien päätösten vaikutukset on arvioitava järjestelmällisesti jo valmisteluvaiheessa.'
+date: 2018-04-16
+description: Lapsia ja nuoria koskevien päätösten vaikutukset on arvioitava järjestelmällisesti jo valmisteluvaiheessa.
 event: Oulun kaupunginvaltuusto
-asiakohta: '§ 32 – Oulun kaupungin lasten ja nuorten hyvinvointisuunnitelma 2018–2021'
+asiakohta: § 32 – Oulun kaupungin lasten ja nuorten hyvinvointisuunnitelma 2018–2021
 categories:
   - Politiikka ja päätöksenteko
   - Sivistys ja koulutus
@@ -11,12 +11,10 @@ categories:
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - lapsivaikutusten arviointi
-  - lapset
-  - nuoret
+  - vaikutusten arviointi
+  - lapset ja nuoret
   - hyvinvointi
-  - päätöksenteko
-  - osallisuus
+  - osallisuus ja lähidemokratia
 type: puhe
 writingRoles:
   - political

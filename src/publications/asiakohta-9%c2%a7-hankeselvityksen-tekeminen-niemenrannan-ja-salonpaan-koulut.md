@@ -1,6 +1,6 @@
 ---
 title: 'ASIAKOHTA: 9§ Hankeselvityksen tekeminen, Niemenrannan ja Salonpään koulut'
-date: '2018-05-14'
+date: 2018-05-14
 description: 'Ihan hetkisen kuluttua normaalit ihmiset asettuvat katsomaan iltauutisia. Minä asetun mikrofonin ääreen ja pidä alla olevan puheen. ASIAKOHTA: 9§ Hankeselvityksen tekeminen, Niemenrannan ja ...'
 event: Oulun kaupunginvaltuusto
 asiakohta: '§ 9 – Hankeselvityksen tekeminen, Niemenrannan ja Salonpään koulut'
@@ -10,9 +10,7 @@ categories:
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - salonpaa
-  - Oulunsalo
-  - lähikoulu
+  - kouluverkko
 type: puhe
 writingRoles:
   - political
@@ -21,6 +19,9 @@ source_url: 'https://www.jarilaru.fi/asiakohta-9%c2%a7-hankeselvityksen-tekemine
 politicalProfiles:
   - sivistys
 templateEngineOverride: md
+places:
+  - Salonpää
+  - Oulunsalo
 ---
 <p>Ihan hetkisen kuluttua normaalit ihmiset asettuvat katsomaan iltauutisia. Minä asetun mikrofonin ääreen ja pidän alla olevan puheen. </p>
 <p>ASIAKOHTA: 9§ Hankeselvityksen tekeminen, Niemenrannan ja Salonpään koulut</p>

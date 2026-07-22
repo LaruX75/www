@@ -1,9 +1,14 @@
 {% set currentLang = lang or (page.url | langFromUrl) %}
 {% set currentTags = tags or [] %}
+{% set currentKeywords = keywords or [] %}
 {% set currentContexts = contexts or [] %}
+{% set currentContentContexts = contentContexts or [] %}
+{% set currentPlaces = places or [] %}
+{% set currentEntities = entities or [] %}
 {% set currentForums = forum or [] %}
-{% set relatedItems = collections | relatedContent(page.url, categories, keywords, currentTags, type, currentContexts, 4) %}
-{% set termCloud = collections | contentTermCloud([], keywords, 12) %}
+{% set isSpeechContext = type == "puhe" %}
+{% set relatedItems = collections | relatedContent(page.url, categories, currentKeywords, currentTags, type, currentContexts, 4) %}
+{% set termCloud = collections | contentTermCloud([], currentKeywords, 12) %}
 {% set isEnglish = currentLang == "en" %}
 {% set txt = {
   "context": "Collection",
@@ -13,7 +18,12 @@
   "topicProfiles": "Topic paths",
   "topicProfilesTitle": "This content is part of",
   "categories": "Categories",
+  "contentContexts": "Content context",
+  "places": "Places and areas",
+  "entities": "People and organizations",
   "forums": "Forum",
+  "handling": "Handling",
+  "tags": "Tags",
   "keywords": "Keywords",
   "related": "Related content",
   "noRelated": "No closely related items found yet."
@@ -25,15 +35,34 @@
   "topicProfiles": "Aihepolut",
   "topicProfilesTitle": "Tämä sisältö liittyy",
   "categories": "Kategoriat",
+  "contentContexts": "Sisältökonteksti",
+  "places": "Paikat ja alueet",
+  "entities": "Toimijat ja organisaatiot",
   "forums": "Toimielin",
+  "handling": "Käsittely",
+  "tags": "Tunnisteet",
   "keywords": "Avainsanat",
   "related": "Samasta aiheesta",
   "noRelated": "Läheisiä sisältöjä ei vielä löytynyt."
 } %}
 
+{% set contentContextLabels = {
+  "akateemiset juhlat": "Akateemiset juhlat",
+  "kaupunkistrategia": "Kaupunkistrategia",
+  "kulttuuripääkaupunki": "Kulttuuripääkaupunki",
+  "lukion valtaus": "Lukion valtaus",
+  "museo- ja tiedekeskus": "Museo- ja tiedekeskus",
+  "pääpuhe": "Pääpuhe",
+  "puhe miekalle": "Puhe miekalle",
+  "talousarvio": "Talousarvio",
+  "tohtoripromootio": "Tohtoripromootio",
+  "valmisteluprosessi": "Valmisteluprosessi",
+  "ylioppilasjuhla": "Ylioppilasjuhla"
+} %}
+
 {% set topicMatches = [] %}
 {% if not isEnglish and seoTopics %}
-  {% set topicMatches = seoTopics | matchingTopics(title, description, categories, keywords, currentTags, type, currentContexts, page.url, 3) %}
+  {% set topicMatches = seoTopics | matchingTopics(title, description, categories, currentKeywords, currentTags, type, currentContexts, page.url, 2 if isSpeechContext else 3) %}
 {% endif %}
 
 {% set archiveHref = "/kynasta/" %}
@@ -137,7 +166,7 @@
   </div>
   {% endif %}
 
-  {% if currentContexts.length %}
+  {% if currentContexts.length and not isSpeechContext %}
   <div class="content-context-card">
     <p class="content-context-kicker">{{ txt.contexts }}</p>
     <div class="content-context-chiplist">
@@ -158,7 +187,54 @@
   </div>
   {% endif %}
 
-  {% if categories %}
+  {% if isSpeechContext and currentForums.length %}
+  <div class="content-context-card">
+    <p class="content-context-kicker">{{ txt.handling }}</p>
+    <div class="content-context-chiplist">
+      {% for item in currentForums %}
+      <a class="content-context-chip content-context-chip--forum" href="{{ '/en/writings/#puheet' if isEnglish else '/kynasta/#puheet' }}">{{ item }}</a>
+      {% endfor %}
+      {% for item in currentContentContexts %}
+      <span class="content-context-chip content-context-chip--context">{{ contentContextLabels[item] or item }}</span>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  {% if not isSpeechContext and (currentContentContexts.length or currentPlaces.length or currentEntities.length) %}
+  <div class="content-context-card">
+    {% if currentContentContexts.length %}
+      <p class="content-context-kicker">{{ txt.contentContexts }}</p>
+      <div class="content-context-chiplist">
+        {% for item in currentContentContexts %}
+        <span class="content-context-chip content-context-chip--context">{{ item }}</span>
+        {% endfor %}
+      </div>
+    {% endif %}
+    {% if currentPlaces.length %}
+      <div class="content-context-forum">
+        <p class="content-context-subkicker">{{ txt.places }}</p>
+        <div class="content-context-chiplist">
+          {% for item in currentPlaces %}
+          <span class="content-context-chip content-context-chip--forum">{{ item }}</span>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+    {% if currentEntities.length %}
+      <div class="content-context-forum">
+        <p class="content-context-subkicker">{{ txt.entities }}</p>
+        <div class="content-context-chiplist">
+          {% for item in currentEntities %}
+          <span class="content-context-chip content-context-chip--category">{{ item }}</span>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  {% if categories and not isSpeechContext %}
   <div class="content-context-card">
     <p class="content-context-kicker">{{ txt.categories }}</p>
     <div class="content-context-chiplist">
@@ -169,7 +245,7 @@
   </div>
   {% endif %}
 
-  {% if termCloud.length %}
+  {% if termCloud.length and not isSpeechContext %}
   <div class="content-context-card">
     <p class="content-context-kicker">{{ txt.keywords }}</p>
     <div class="content-context-cloud">
@@ -177,6 +253,30 @@
       <a class="content-context-term content-context-term--{{ term.weight }}" href="{{ '/en/keywords/' if isEnglish else '/avainsanat/' }}{{ term.name | slugify }}/">
         {{ term.name }}
       </a>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  {% if isSpeechContext and (currentKeywords.length or currentContentContexts.length or currentPlaces.length or currentEntities.length) %}
+  <div class="content-context-card">
+    <p class="content-context-kicker">{{ txt.tags }}</p>
+    <div class="content-context-chiplist">
+      {% if not currentForums.length %}
+        {% for item in currentContentContexts %}
+        <span class="content-context-chip content-context-chip--context">{{ contentContextLabels[item] or item }}</span>
+        {% endfor %}
+      {% endif %}
+      {% for item in currentKeywords %}
+      <a class="content-context-chip content-context-chip--category" href="{{ '/en/keywords/' if isEnglish else '/avainsanat/' }}{{ item | slugify }}/">{{ item }}</a>
+      {% endfor %}
+      {% for item in currentPlaces %}
+      <span class="content-context-chip content-context-chip--forum">{{ item }}</span>
+      {% endfor %}
+      {% for item in currentEntities %}
+        {% if item != "Oulun kaupunginvaltuusto" %}
+        <span class="content-context-chip content-context-chip--category">{{ item }}</span>
+        {% endif %}
       {% endfor %}
     </div>
   </div>

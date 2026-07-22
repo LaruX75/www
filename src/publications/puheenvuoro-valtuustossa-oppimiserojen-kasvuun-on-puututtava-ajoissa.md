@@ -1,9 +1,9 @@
 ---
-title: "Oppimiserojen kasvuun on puututtava ajoissa"
+title: Oppimiserojen kasvuun on puututtava ajoissa
 date: 2018-10-08
-description: "Oulun sivistysohjelman on turvattava koulun perustyön resurssit ja riittävä erityinen tuki, jotta oppilasryhmien väliset erot eivät kasva."
-event: "Oulun kaupunginvaltuusto"
-asiakohta: "§ 83 – Info: Sivistysohjelma"
+description: 'Oulun sivistysohjelman on turvattava koulun perustyön resurssit ja riittävä erityinen tuki, jotta oppilasryhmien väliset erot eivät kasva.'
+event: Oulun kaupunginvaltuusto
+asiakohta: '§ 83 – Info: Sivistysohjelma'
 categories:
   - Politiikka ja päätöksenteko
   - Sivistys ja koulutus
@@ -11,9 +11,8 @@ forum:
   - Kaupunginvaltuusto
 keywords:
   - perusopetus
-  - erityinen tuki
-  - oppimiserot
-  - sivistysohjelma
+  - oppimisen tuki
+  - sivistys ja koulutus
 type: puhe
 writingRoles:
   - political

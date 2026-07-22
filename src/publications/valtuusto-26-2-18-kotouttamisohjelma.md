@@ -1,7 +1,7 @@
 ---
 title: Valtuusto 26.2.18 kotouttamisohjelma
-date: '2018-02-26'
-description: Puheenvuoro Oulun kotouttamisohjelmasta sekä työ-, opiskelu- ja avioperäisen maahanmuuton huomioimisesta päätöksenteossa.
+date: 2018-02-26
+description: 'Puheenvuoro Oulun kotouttamisohjelmasta sekä työ-, opiskelu- ja avioperäisen maahanmuuton huomioimisesta päätöksenteossa.'
 event: Oulun kaupunginvaltuusto
 asiakohta: § 21 – Yhdessä kotoutuva Oulu - Oulun kaupungin kotouttamisohjelma 2018-2021
 categories:
@@ -10,13 +10,10 @@ categories:
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - kotoutuva oulu
-  - maahanmuutto
-  - politiikka
-  - työpaikat
-  - työperäinen maahanmuutto
-  - vtt
-  - yliopisto
+  - kotoutuminen
+  - elinvoima ja työpaikat
+  - kansainvälisyys ja osaajat
+  - korkeakoulut ja kampukset
 type: puhe
 writingRoles:
   - political

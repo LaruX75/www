@@ -1,6 +1,6 @@
 ---
 title: 'Puheenvuoro valtuustossa § 3: Kaupungintalo kaupunkilaisten yhteisenä tilana'
-date: '2023-09-11'
+date: 2023-09-11
 description: 'Puheenvuorossa korostan kaupungintalon merkitystä kaupunkilaisten yhteisenä rakennuksena ja kysyn, kuinka suuri osa remontin kustannuksista liittyy yleisökäytön lisäämiseen.'
 event: Oulun kaupunginvaltuusto
 asiakohta: '§ 3 – Määrärahamuutos, Oulun kaupungintalon peruskorjaus'
@@ -11,8 +11,8 @@ forum:
   - Kaupunginvaltuusto
 keywords:
   - kaupungintalo
-  - remontti
-  - yleisökäyttö
+  - rakentaminen ja korjaaminen
+  - kaupunkilaisten yhteiset tilat
 type: puhe
 writingRoles:
   - political

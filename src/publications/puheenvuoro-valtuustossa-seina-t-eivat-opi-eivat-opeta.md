@@ -1,9 +1,9 @@
 ---
 title: 'Puheenvuoro valtuustossa § 52: Seinät eivät opi eivätkä opeta'
-date: '2018-05-14'
+date: 2018-05-14
 description: 'Salonpään ja Niemenrannan kouluratkaisussa on katsottava rakennuksia pidemmälle: opetuksen laatu syntyy ennen kaikkea henkilöstöstä, tuesta ja toimivasta palveluverkosta.'
 event: Oulun kaupunginvaltuusto
-asiakohta: '§ 52 – Hankeselvityksen tekeminen Niemenrannan ja Salonpään kouluista'
+asiakohta: § 52 – Hankeselvityksen tekeminen Niemenrannan ja Salonpään kouluista
 categories:
   - Politiikka ja päätöksenteko
   - Sivistys ja koulutus
@@ -13,11 +13,9 @@ forum:
 keywords:
   - perusopetus
   - kouluverkko
-  - koulurakentaminen
-  - Salonpää
-  - Niemenranta
+  - terveet tilat
   - palveluverkko
-  - käyttötalous
+  - talous ja investoinnit
 type: puhe
 writingRoles:
   - political
@@ -26,6 +24,9 @@ politicalProfiles:
   - lahipalvelut
   - kaupunkikehitys
 templateEngineOverride: md
+places:
+  - Salonpää
+  - Niemenranta
 ---
 
 Oulun kaupunginvaltuusto käsitteli 14.5.2018 kokouksessaan 4/2018 asiaa § 52 hankeselvityksen tekemisestä Niemenrannan ja Salonpään kouluista. Käytin puheenvuoron kouluratkaisujen arvioimisesta pitkäjänteisenä kokonaisuutena ja opetuksen laadun edellytyksistä.

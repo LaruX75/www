@@ -1,6 +1,6 @@
 ---
 title: Puheeni avoimen tieteen syyspäivillä 7.12.2020 vastaanotettuani kansallisen avoimen tieteen palkinnon
-date: '2020-12-07'
+date: 2020-12-07
 description: Avoimen tieteen syyspäivillä 7.12.2020 jaettiin toista kertaa kansallinen avoimen tieteen palkinto ja kaksi avoimen tieteen edistäjät -palkintoa.
 event: Avoimen tieteen syyspäivät
 categories:
@@ -10,15 +10,10 @@ secondaryTheme:
 eventType:
   - juhlapuhe
 keywords:
-  - avoin tiede
-  - creative commons
-  - jakaminen
-  - korkeakoulutus
-  - opetus
+  - avoin tiede ja avoimet materiaalit
+  - korkeakoulut ja kampukset
   - oppimateriaalit
-  - palkinto
-  - tekijänoikeudet
-  - tutkimus
+  - palkinnot ja tunnustukset
 type: puhe
 writingRoles:
   - expert

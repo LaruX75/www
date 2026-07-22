@@ -1,6 +1,6 @@
 ---
-title: 'Oulua on kehitettävä kaikkien kaupunginosien kaupunkina'
-date: '2018-02-26'
+title: Oulua on kehitettävä kaikkien kaupunginosien kaupunkina
+date: 2018-02-26
 description: 'Oulun strategian tulee huomioida keskustan ja kylien lisäksi kaikki kaupungin 106 kaupunginosaa sekä niiden yhteisöllisyys, asumismukavuus ja tasapuolinen kehitys.'
 event: Oulun kaupunginvaltuusto
 asiakohta: § 18 – Kaupunkistrategia Oulu 2026
@@ -11,12 +11,9 @@ categories:
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - kaupunkistrategia
   - kaupunginosat
   - alueellinen yhdenvertaisuus
   - yhteisöllisyys
-  - suuralueet
-  - Oulu
 type: puhe
 writingRoles:
   - political
@@ -28,6 +25,8 @@ politicalProfiles:
 opinionRoles:
   - political
 templateEngineOverride: md
+contentContexts:
+  - kaupunkistrategia
 ---
 
 Oulun kaupunkistrategiasta käytävässä keskustelussa on noussut voimakkaasti esille yhtäältä kaupungin keskusta ja toisaalta Oulun kylät. Molemmat ovat tärkeitä, mutta Oulu on paljon monimuotoisempi kokonaisuus.

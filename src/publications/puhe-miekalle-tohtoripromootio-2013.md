@@ -1,6 +1,6 @@
 ---
 title: Puhe miekalle (tohtoripromootio 2013)
-date: '2013-06-17'
+date: 2013-06-17
 description: 'Herra rehtori, Arvoisat promoottorit ja promovendit Hyvät naiset ja herrat Meidä aikamme on uniikki. Ei välttämättä historian korkeaveisu tai huippukohta, mutta korkea tasanne joka tapaukses...'
 event: Oulun yliopiston tohtoripromootio
 categories:
@@ -12,18 +12,22 @@ context:
   - tohtoripromootio
 keywords:
   - akateemiset juhlat
-  - Oulun yliopisto
   - pääpuhe
-  - puhe
   - puhe miekalle
   - tohtoripromootio
-  - tutkimus
 type: puhe
 writingRoles:
   - expert
 wp_id: 1175
 source_url: 'https://www.jarilaru.fi/puhe-miekalle-tohtoripromootio-2013/'
 templateEngineOverride: md
+entities:
+  - Oulun yliopisto
+contentContexts:
+  - tohtoripromootio
+  - akateemiset juhlat
+  - pääpuhe
+  - puhe miekalle
 ---
 <h3>Herra rehtori,<br>Arvoisat promoottorit ja promovendit<br>Hyvät naiset ja herrat</h3>
 <p><br>Meidän aikamme on uniikki. Ei välttämättä historian korkeaveisu tai huippukohta, mutta korkea tasanne joka tapauksessa. Sitä leimaavat tulevaisuudenusko ja järjen korostuminen.<br></p>

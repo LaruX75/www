@@ -1,7 +1,7 @@
 ---
 title: 'Puheenvuoro: keskustakampus voi olla historiallinen virhe. Toteutessaan se vie mennessään useita synergiaetuja'
-date: '2021-10-03'
-description: Puheenvuoro Oulun kaupunginvaltuuston Linnanmaan-vierailulla keskustakampuksen riskeistä, yliopiston synergioista ja TKI-ekosysteemistä.
+date: 2021-10-03
+description: 'Puheenvuoro Oulun kaupunginvaltuuston Linnanmaan-vierailulla keskustakampuksen riskeistä, yliopiston synergioista ja TKI-ekosysteemistä.'
 event: Oulun kaupunginvaltuuston vierailu Oulun yliopistolla
 categories:
   - Politiikka ja päätöksenteko
@@ -13,10 +13,7 @@ forum:
 eventType:
   - seminaari
 keywords:
-  - keskustakampus
-  - Linnanmaa
-  - Raksila
-  - seminaari
+  - korkeakoulut ja kampukset
 type: puhe
 writingRoles:
   - political
@@ -24,6 +21,9 @@ writingRoles:
 wp_id: 1819
 source_url: 'https://www.jarilaru.fi/puheenvuoro-keskustakampus-voi-olla-historiallinen-virhe-toteutessaan-se-vie-mennessaan-useita-synergiaetuja/'
 templateEngineOverride: md
+places:
+  - Linnanmaa
+  - Raksila
 ---
 <p>Arvoisa puheenjohtaja ja arvoisat valtuutetut.</p>
 <p>Yliopisto on toiminut Linnanmaalla vuosikymmenten ajan ja alueen toimijoiden välille on kehittynyt hyvin monenlaista synergiaa.</p>

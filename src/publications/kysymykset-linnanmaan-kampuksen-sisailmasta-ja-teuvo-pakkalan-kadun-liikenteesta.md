@@ -1,9 +1,9 @@
 ---
-title: "Kysymykset Linnanmaan kampuksen sisäilmasta ja Teuvo Pakkalan kadun liikenteestä"
-date: "2022-02-21"
-meetingDate: "2022-02-09"
-description: "Puheenvuorossani kysyin Linnanmaan kampuksen terveysturvallisuudesta sekä Teuvo Pakkalan kadun liikennejärjestelyistä mahdollisen keskustakampuksen toteutuessa."
-event: "Avoin keskustelutilaisuus: Mitä tapahtuu Raksilassa tai Linnanmaalla?"
+title: Kysymykset Linnanmaan kampuksen sisäilmasta ja Teuvo Pakkalan kadun liikenteestä
+date: 2022-02-21
+meetingDate: 2022-02-09
+description: Puheenvuorossani kysyin Linnanmaan kampuksen terveysturvallisuudesta sekä Teuvo Pakkalan kadun liikennejärjestelyistä mahdollisen keskustakampuksen toteutuessa.
+event: 'Avoin keskustelutilaisuus: Mitä tapahtuu Raksilassa tai Linnanmaalla?'
 categories:
   - Politiikka ja päätöksenteko
   - Yliopisto ja korkeakoulut
@@ -11,25 +11,25 @@ categories:
 forum:
   - Kaupungin järjestämä keskustelutilaisuus
 keywords:
-  - Oulu
-  - Oulun yliopisto
-  - Linnanmaa
-  - Raksila
-  - keskustakampus
-  - liikenne
-  - Teuvo Pakkalan katu
-  - sisäilma
-  - terveysturvallisuus
+  - korkeakoulut ja kampukset
+  - liikenne ja saavutettavuus
+  - terveet tilat
 type: puhe
 writingRoles:
   - political
   - expert
 politicalProfiles:
   - kaupunkikehitys
-  - avoimuus
+  - avoinhallinto
 opinionRoles:
   - political
 templateEngineOverride: md
+places:
+  - Linnanmaa
+  - Raksila
+  - Teuvo Pakkalan katu
+entities:
+  - Oulun yliopisto
 ---
 
 Oulun kaupungin järjestämässä Raksilan ja Linnanmaan alueiden kehittämistä käsitelleessä keskustelutilaisuudessa esitin kaksi kysymystä. Ensimmäinen koski Linnanmaan yliopistokampuksen sisäilmaa ja terveysturvallisuutta. Toinen kysymys käsitteli Teuvo Pakkalan kadun liikennejärjestelyjä mahdollisen keskustakampuksen toteutuessa.

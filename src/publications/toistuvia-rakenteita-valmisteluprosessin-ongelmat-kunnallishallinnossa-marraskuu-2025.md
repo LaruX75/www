@@ -12,7 +12,6 @@ keywords:
   - lautakunta
   - konsernijaosto
   - valmistelu
-  - päätöksenteko
   - palveluverkko
   - heinätori
   - sivistyslautakunta

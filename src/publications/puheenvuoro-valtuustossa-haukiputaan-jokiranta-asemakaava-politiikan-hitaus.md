@@ -1,6 +1,6 @@
 ---
 title: 'Puheenvuoro valtuustossa § 28: Haukiputaan jokirannan asemakaava ja politiikan hitaus'
-date: '2026-04-27'
+date: 2026-04-27
 description: Puheenvuorossa kuvaan Haukiputaan jokirannan asemakaavaa esimerkkinä politiikan hitaudesta ja pitkän valmistelun jälkeen syntyneestä kompromissista.
 event: Oulun kaupunginvaltuusto
 asiakohta: '§ 28 – Asemakaava ja tonttijako 564-2588, Haukiputaan kaupunginosa, Haukiputaan jokiranta, Koulukuja ja Jokelantie'
@@ -11,11 +11,8 @@ categories:
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - asemakaava
-  - Haukipudas
-  - jokiranta
+  - kaavoitus
   - urheilukenttä
-  - päätöksenteko
 type: puhe
 writingRoles:
   - political
@@ -24,6 +21,9 @@ politicalProfiles:
   - kaupunkikehitys
   - hyvinvointi
 templateEngineOverride: md
+places:
+  - Haukipudas
+  - jokiranta
 ---
 
 Oulun kaupunginvaltuustossa käsiteltiin 27.4.2026 Haukiputaan jokirannan asemakaavaa. Käytin puheenvuoron siitä, kuinka pitkään alueen urheilukentän ja ympäristön kehittämistä oli valmisteltu ja miten lopullinen ratkaisu muodostui kompromissiksi.

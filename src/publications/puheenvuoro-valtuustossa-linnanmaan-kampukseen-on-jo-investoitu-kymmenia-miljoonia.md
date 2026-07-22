@@ -1,6 +1,6 @@
 ---
 title: 'Puheenvuoro valtuustossa § 4: Linnanmaan kampukseen on jo investoitu kymmeniä miljoonia'
-date: '2022-02-28'
+date: 2022-02-28
 description: 'Puheenvuorossa muistutan Linnanmaan yhteiskampukseen, liikennejärjestelyihin ja tutkimusympäristöön jo tehdyistä mittavista julkisista investoinneista.'
 event: Oulun kaupunginvaltuusto
 asiakohta: § 4 – Oulun yliopiston keskustakampuksen hankesuunnitelma
@@ -11,12 +11,8 @@ categories:
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - Oulun yliopisto
-  - Linnanmaa
-  - Raksila
-  - kampus
-  - investoinnit
-  - korkeakoulutus
+  - korkeakoulut ja kampukset
+  - talous ja investoinnit
 type: puhe
 writingRoles:
   - political
@@ -24,6 +20,11 @@ politicalProfiles:
   - sivistys
   - kaupunkikehitys
 templateEngineOverride: md
+places:
+  - Linnanmaa
+  - Raksila
+entities:
+  - Oulun yliopisto
 ---
 
 Oulun kaupunginvaltuuston keskustelussa 28.2.2022 luin vuonna 2020 kirjoittamani mielipidekirjoituksen, jossa käsittelin Linnanmaan yhteiskampukseen jo tehtyjä mittavia investointeja.

@@ -1,6 +1,6 @@
 ---
 title: 'Puheenvuoro valtuustossa § 2: Oulun vaakuna on kaupungin historiallinen brändi'
-date: '2021-11-08'
+date: 2021-11-08
 description: 'Puheenvuorossa kyseenalaistan uuden kaupunkitunnuksen tarpeen ja kysyn, miksi Oulun historiallinen vaakuna ei voisi toimia kaupungin varsinaisena brändinä.'
 event: Oulun kaupunginvaltuusto
 asiakohta: '§ 2 – Infot: Oulun uusi brändi'
@@ -10,9 +10,7 @@ categories:
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - Oulu
-  - brändi
-  - vaakuna
+  - kaupungin identiteetti
   - kaupunkikuva
   - valotaide
 type: puhe

@@ -1,6 +1,6 @@
 ---
 title: 'Puheenvuoro valtuustossa § 8: Keskustakampus hajottaisi Linnanmaan innovaatiokeskittymän'
-date: '2020-11-09'
+date: 2020-11-09
 description: 'Puheenvuorossa puolustan Linnanmaan monitieteistä innovaatiokeskittymää ja varoitan keskustakampuksen hajottavan yliopiston, tutkimuslaitosten ja teknologiayritysten yhteistyötä.'
 event: Oulun kaupunginvaltuusto
 asiakohta: § 8 – Oulun yliopiston sijoittuminen Raksilan alueelle
@@ -11,13 +11,8 @@ categories:
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - Oulun yliopisto
-  - Linnanmaa
-  - Raksila
-  - kampus
-  - innovaatiot
-  - tutkimus
-  - korkeakoulutus
+  - korkeakoulut ja kampukset
+  - ICT ja elinvoima
 type: puhe
 writingRoles:
   - political
@@ -25,6 +20,11 @@ politicalProfiles:
   - sivistys
   - kaupunkikehitys
 templateEngineOverride: md
+places:
+  - Linnanmaa
+  - Raksila
+entities:
+  - Oulun yliopisto
 ---
 
 Oulun kaupunginvaltuusto käsitteli 9.11.2020 Oulun yliopiston mahdollista sijoittumista Raksilan alueelle. Käytin puheenvuoron Linnanmaan monitieteisen kampuksen ja sitä ympäröivän innovaatiokeskittymän merkityksestä.

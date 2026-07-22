@@ -1,6 +1,6 @@
 ---
 title: Puheeni Jäälissä pidetyssä Oulun raati -yleisötilaisuudessa 18.3.2014
-date: '2014-03-18'
+date: 2014-03-18
 description: 'Tässä puheessa tiedustelin mm. Jäälin urheilualueen ja Jääli-Hönttämäki ulkoilureitin perää . Tuolloin toimin Jäälin asukasyhdistyksen puheenjohtajana, lähidemokratiatoimikunnan puheenjohtajana ja ...'
 event: Oulun raati -yleisötilaisuus
 categories:
@@ -9,18 +9,18 @@ categories:
 forum:
   - Asukasyhdistys
 keywords:
-  - hiihtolatu
-  - Jääli
-  - jääli-hönttämäki ulkoilureitti
-  - laivakangas
-  - laivakankaan kenttä
-  - urheilualue
+  - liikunta ja harrastukset
 type: puhe
 writingRoles:
   - political
 wp_id: 1194
 source_url: 'https://www.jarilaru.fi/puheeni-jaalissa-pidetyssa-oulun-raati-yleisotilaisuudessa-18-3-2014/'
 templateEngineOverride: md
+places:
+  - Jääli
+  - jääli-hönttämäki ulkoilureitti
+  - laivakangas
+  - laivakankaan kenttä
 ---
 <p>Tässä puheessa tiedustelin mm. Jäälin urheilualueen ja Jääli-Hönttämäki ulkoilureitin perään. <br>Tuolloin toimin Jäälin asukasyhdistyksen puheenjohtajana, lähidemokratiatoimikunnan puheenjohtajana ja Oulun kaupunginvaltuutettuna.</p>
 <figure><div>

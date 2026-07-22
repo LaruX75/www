@@ -93,7 +93,7 @@ module.exports = [
     context: "Teema ei tarkoita sitä, että yksi päättäjä tekisi valmistelusta näkyvää. Kyse on siitä, että organisaation on rakennettava päätöksentekoon sellaiset tiedot, työkalut ja käytännöt, joiden avulla kuntalaiset ja päättäjät ymmärtävät päätösten perusteita.",
     promise: "Sivu näyttää, missä yhteyksissä olen vaatinut parempaa tietopohjaa ja läpinäkyvämpää valmistelua.",
     categories: ["politiikka-ja-paatoksenteko"],
-    keywords: ["tiedolla johtaminen", "valmistelu", "avoimuus", "tietojohtaminen", "päätöksenteko", "vaikutusten arviointi"],
+    keywords: ["tiedolla johtaminen", "valmistelu", "avoimuus", "tietojohtaminen", "vaikutusten arviointi"],
     contexts: ["politics"],
     primaryLinks: [
       { label: "Aloitteet", href: "/kynasta/#aloitteet" },

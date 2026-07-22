@@ -1,6 +1,6 @@
 ---
 title: 'Puheenvuoro valtuustossa § 12: Pilvipalvelut muuttavat ICT-palvelujen toimintamallia'
-date: '2020-10-05'
+date: 2020-10-05
 description: 'Puheenvuorossa tarkastelen pilvipalvelujen ja etätyön muuttamaa ICT-palvelujen toimintamallia sekä perustelen Oulun Digin tehtävien painottamista tilaajaosaamiseen, laadunvarmistukseen ja kehittämiseen.'
 event: Oulun kaupunginvaltuusto
 asiakohta: '§ 12 – Ulkoisen arvioinnin jatkotoimenpiteet Oulun Digi -liikelaitoksessa: ICT-palveluiden ulkoistaminen'
@@ -10,11 +10,9 @@ categories:
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - Oulun Digi
-  - ICT
-  - pilvipalvelut
-  - ulkoistaminen
+  - ICT ja elinvoima
   - digitalisaatio
+  - omistajaohjaus
   - etätyö
 type: puhe
 writingRoles:
@@ -23,6 +21,8 @@ writingRoles:
 politicalProfiles:
   - avoinhallinto
 templateEngineOverride: md
+entities:
+  - Oulun Digi
 ---
 
 Oulun kaupunginvaltuusto käsitteli 5.10.2020 Oulun Digi -liikelaitoksen ICT-palvelujen ulkoistamista osana ulkoisen arvioinnin jatkotoimenpiteitä. Käytin puheenvuoron ICT-alan rakennemuutoksesta ja pilvipalvelujen vaikutuksesta kaupungin palvelutuotantoon.

@@ -1,6 +1,6 @@
 ---
 title: 'Puheenvuoro valtuustossa § 24: Terwa Towerin rakennusoikeus'
-date: '2024-03-18'
+date: 2024-03-18
 description: 'Puheenvuorossa kysyn, poikkeaako Terwa Towerin uuden kaavaehdotuksen torniosan rakennusoikeus voimassa olevasta asemakaavasta ja mihin lisärakennusoikeus sijoittuu.'
 event: Oulun kaupunginvaltuusto
 asiakohta: '§ 24 – Asemakaavan ja tonttijaon muutos 564-2401, I kaupunginosan korttelin 38 tontti nro 5 (Terwa Tower, Kaarlenväylä 1, Meritori, Kaarlenaukio)'
@@ -10,15 +10,15 @@ categories:
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - terwa tower
-  - asemakaava
-  - rakennusoikeus
+  - kaavoitus
 type: puhe
 writingRoles:
   - political
 politicalProfiles:
   - kaupunkikehitys
 templateEngineOverride: md
+contentContexts:
+  - Terwa Tower
 ---
 
 Oulun kaupunginvaltuustossa käsiteltiin 18.3.2024 Terwa Towerin asemakaavan ja tonttijaon muutosta. Käytin puheenvuoron voimassa olevan asemakaavan ja uuden kaavaehdotuksen rakennusoikeuden eroista.

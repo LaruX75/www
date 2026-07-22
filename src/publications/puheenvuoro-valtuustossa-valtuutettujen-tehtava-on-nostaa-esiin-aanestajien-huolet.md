@@ -1,6 +1,6 @@
 ---
 title: 'Puheenvuoro valtuustossa § 4: Valtuutettujen tehtävä on nostaa esiin äänestäjien huolet'
-date: '2022-02-28'
+date: 2022-02-28
 description: 'Puheenvuorossa puolustan valtuutettujen oikeutta ja velvollisuutta keskustella kampushankkeesta sekä korostan tutkimuksen, muuntojoustavien tilojen ja tutkijoiden vetovoiman merkitystä.'
 event: Oulun kaupunginvaltuusto
 asiakohta: § 4 – Oulun yliopiston keskustakampuksen hankesuunnitelma
@@ -11,12 +11,7 @@ categories:
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - Oulun yliopisto
-  - kampus
-  - Raksila
-  - Linnanmaa
-  - tutkimus
-  - korkeakoulupolitiikka
+  - korkeakoulut ja kampukset
 type: puhe
 writingRoles:
   - political
@@ -25,6 +20,11 @@ politicalProfiles:
   - kaupunkikehitys
   - yhteistyo
 templateEngineOverride: md
+places:
+  - Raksila
+  - Linnanmaa
+entities:
+  - Oulun yliopisto
 ---
 
 Oulun kaupunginvaltuuston keskustelu Oulun yliopiston keskustakampuksesta jatkui 28.2.2022. Toisessa puheenvuorossani puolustin valtuutettujen oikeutta ja velvollisuutta käsitellä hanketta poliittisesti sekä nostin esiin kampuksen tutkimuksellisen tehtävän.

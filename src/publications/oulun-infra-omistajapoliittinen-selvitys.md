@@ -1,6 +1,6 @@
 ---
 title: Puheenvuoro kaupunginvaltuuston kokouksessa. §7. Oulun Infra -liikelaitoksen omistajapoliittinen selvitys
-date: '2023-05-22'
+date: 2023-05-22
 description: Puheenvuoroni Oulun kaupunginvaltuustossa Oulun Infra -liikelaitoksen ulkoistuksesta ja huoltovarmuudesta.
 event: Oulun kaupunginvaltuusto
 asiakohta: 7 – Oulun Infra -liikelaitoksen omistajapoliittinen selvitys ja talouden ulkoisen arvioinnin jatkotoimenpiteet
@@ -10,7 +10,6 @@ categories:
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - Oulun Infra
   - huoltovarmuus
 type: puhe
 writingRoles:
@@ -18,6 +17,8 @@ writingRoles:
 politicalProfiles:
   - yhteistyo
 templateEngineOverride: md
+entities:
+  - Oulun Infra
 ---
 
 Oulun kaupunginvaltuustossa käsiteltiin 22.5.2023 asiakohdassa 7 Oulun Infra -liikelaitoksen omistajapoliittista selvitystä ja katu- ja viheralueiden kunnossapidon osittaista ulkoistusta. Käytin asiasta puheenvuoron. Tässä se kirjallisena.

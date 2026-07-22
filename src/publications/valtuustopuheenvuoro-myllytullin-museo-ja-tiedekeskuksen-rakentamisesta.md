@@ -1,6 +1,6 @@
 ---
 title: 'Puheenvuoro valtuustossa § 1: Museo- ja tiedekeskuksen valmistuminen kulttuuripääkaupunkivuoteen'
-date: '2024-02-26'
+date: 2024-02-26
 description: 'Puheenvuorossa kysyn, miten Oulu2026-hankkeessa on varauduttu Myllytullin museo- ja tiedekeskuksen mahdolliseen viivästymiseen ja Deep Space -tilan käyttöönottoon.'
 event: Oulun kaupunginvaltuusto
 asiakohta: § 1 – Info Oulu2026-kulttuuripääkaupunkihankkeen tilanteesta
@@ -10,9 +10,7 @@ categories:
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - Oulu2026
-  - museo- ja tiedekeskus
-  - deep space
+  - kulttuuri
 type: puhe
 writingRoles:
   - political
@@ -22,6 +20,9 @@ politicalProfiles:
   - kaupunkikehitys
   - yhteistyo
 templateEngineOverride: md
+contentContexts:
+  - Oulu2026
+  - museo- ja tiedekeskus
 ---
 
 Oulun kaupunginvaltuustossa käsiteltiin 26.2.2024 Oulu2026-kulttuuripääkaupunkihankkeen ajankohtaista tilannetta. Käytin puheenvuoron Myllytullin museo- ja tiedekeskuksen valmistumisesta ja mahdollisiin viivästyksiin varautumisesta.

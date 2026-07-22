@@ -1,7 +1,7 @@
 ---
 title: 'Puheenvuoro valtuustossa § 96: Koulujen resurssit ratkaisevat'
-date: '2017-06-05'
-description: 'Ensimmäinen puheenvuoroni Oulun kaupunginvaltuustossa käsitteli opetuksen ja oppimisen arjen resursseja talousarvion suunnitteluohjeen keskustelussa.'
+date: 2017-06-05
+description: Ensimmäinen puheenvuoroni Oulun kaupunginvaltuustossa käsitteli opetuksen ja oppimisen arjen resursseja talousarvion suunnitteluohjeen keskustelussa.
 event: Oulun kaupunginvaltuusto
 meeting: Oulun kaupunginvaltuusto 6/2017
 bid: 13272
@@ -14,13 +14,9 @@ categories:
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - ensimmäinen puheenvuoro
-  - Oulun kaupunginvaltuusto
-  - talousarvio
-  - koulujen resurssit
-  - opetus
+  - valtuustotyö
+  - opetuksen resurssit
   - oppiminen
-  - Oulun Tietotekniikka
 type: puhe
 writingRoles:
   - political
@@ -30,6 +26,11 @@ politicalProfiles:
   - sivistys
   - yhteistyo
 templateEngineOverride: md
+entities:
+  - Oulun kaupunginvaltuusto
+  - Oulun Tietotekniikka
+contentContexts:
+  - talousarvio
 ---
 Oulun kaupunginvaltuustossa käyttämäni ensimmäinen puheenvuoro käsitteli koulujen resursseja talousarvion 2018 ja taloussuunnitelman 2019-2020 suunnitteluohjeen yhteydessä. Puheenvuorossa korostin, että opetuksen ja oppimisen kannalta ratkaisevaa ei ole vain koulurakennus tai sen sijainti, vaan se, millaiset mahdollisuudet opettajilla ja oppilailla on arjen työssä.
 

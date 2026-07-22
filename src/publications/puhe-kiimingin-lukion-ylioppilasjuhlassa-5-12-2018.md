@@ -1,19 +1,12 @@
 ---
 title: Puhe Kiimingin lukion ylioppilasjuhlassa 5.12.2018
-date: '2018-12-05'
+date: 2018-12-05
 description: 'Puhe Kiimingin lukion ylioppilasjuhlassa 5.12.2018 Arvoisa rehtori, hyvä juhlayleisö ja hyvät ylioppilaat! &nbsp;Te uudet ylioppilaat olette nyt saavuttaneet välitavoitteenne, ylioppilastutki...'
 event: Kiimingin lukion ylioppilasjuhla
 categories:
   - Sivistys ja koulutus
 eventType:
   - juhlapuhe
-keywords:
-  - itse äisyyspäivä
-  - kiimingin lukio
-  - Kiiminki
-  - Oulu
-  - puhe
-  - ylioppilasjuhla
 type: puhe
 writingRoles:
   - political
@@ -23,6 +16,12 @@ politicalProfiles:
   - sivistys
   - lahipalvelut
 templateEngineOverride: md
+places:
+  - Kiiminki
+entities:
+  - kiimingin lukio
+contentContexts:
+  - ylioppilasjuhla
 ---
 <p><strong>Puhe Kiimingin lukion ylioppilasjuhlassa 5.12.2018</strong></p>
 <p><strong>Arvoisa rehtori, hyvä juhlayleisö ja hyvät ylioppilaat!</strong>&nbsp;Te uudet ylioppilaat olette nyt saavuttaneet välitavoitteenne, ylioppilastutkinnon. Tästä on nyt hyvä lähteä eteenpäin. Ylioppilaat ovat kautta aikojen olleet tulevaisuuden tekijöitä ja kokijoita, näin olivat myös Kiimingin lukion ensimmäiset ylioppilaat 70-luvun taitteessa 50 vuotta sitten ja Saloisten lukion ylioppilaat mukaan lukien minä 90-luvun puolessa välissä 25 vuotta sitten ja nyt te, Kiimingin lukion uudet ylioppilaat!</p>

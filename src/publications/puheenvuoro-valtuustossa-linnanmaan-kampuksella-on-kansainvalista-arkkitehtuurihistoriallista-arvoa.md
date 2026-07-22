@@ -1,6 +1,6 @@
 ---
 title: 'Puheenvuoro valtuustossa § 8: Linnanmaan kampuksella on kansainvälistä arkkitehtuurihistoriallista arvoa'
-date: '2020-11-09'
+date: 2020-11-09
 description: Puheenvuorossa puolustan Linnanmaan kampusta kansainvälisesti merkittävänä modernin arkkitehtuurin ja kulttuurihistorian kokonaisuutena.
 event: Oulun kaupunginvaltuusto
 asiakohta: § 8 – Oulun yliopiston sijoittuminen Raksilan alueelle
@@ -11,12 +11,7 @@ categories:
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - Oulun yliopisto
-  - Linnanmaa
-  - arkkitehtuuri
-  - kulttuurihistoria
-  - DoCoMoMo
-  - kulttuuripääkaupunki
+  - kulttuuriperintö
 type: puhe
 writingRoles:
   - political
@@ -24,6 +19,12 @@ politicalProfiles:
   - sivistys
   - kaupunkikehitys
 templateEngineOverride: md
+places:
+  - Linnanmaa
+entities:
+  - Oulun yliopisto
+contentContexts:
+  - kulttuuripääkaupunki
 ---
 
 Oulun kaupunginvaltuusto käsitteli 9.11.2020 Oulun yliopiston mahdollista siirtymistä Raksilan alueelle. Kolmannessa puheenvuorossani nostin esiin Linnanmaan kampuksen arkkitehtonisen ja kulttuurihistoriallisen arvon.

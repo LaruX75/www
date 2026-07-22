@@ -1,9 +1,9 @@
 ---
 title: 'Puheenvuoro valtuustossa § 31: Täydentävä rakentaminen vahvistaa Laivakankaan aluetta'
-date: '2018-04-16'
-description: 'Laivakankaantien eteläpuolen rakentaminen hyödyntää olemassa olevia palveluja ja täydentää kaupunkirakennetta järkevällä tavalla.'
+date: 2018-04-16
+description: Laivakankaantien eteläpuolen rakentaminen hyödyntää olemassa olevia palveluja ja täydentää kaupunkirakennetta järkevällä tavalla.
 event: Oulun kaupunginvaltuusto
-asiakohta: '§ 31 – Oulun maankäytön toteuttamisohjelma (MATO) 2018–2022'
+asiakohta: § 31 – Oulun maankäytön toteuttamisohjelma (MATO) 2018–2022
 categories:
   - Politiikka ja päätöksenteko
   - Kaupunkikehitys ja palveluverkko
@@ -11,11 +11,8 @@ forum:
   - Kaupunginvaltuusto
 keywords:
   - maankäyttö
-  - MATO
   - täydennysrakentaminen
-  - Laivakangas
-  - Jääli
-  - kaupunkisuunnittelu
+  - kaupunkikehitys
 type: puhe
 writingRoles:
   - political
@@ -23,6 +20,11 @@ politicalProfiles:
   - lahipalvelut
   - kaupunkikehitys
 templateEngineOverride: md
+places:
+  - Laivakangas
+  - Jääli
+contentContexts:
+  - MATO
 ---
 
 Oulun kaupunginvaltuusto käsitteli 16.4.2018 Oulun maankäytön toteuttamisohjelmaa vuosille 2018–2022. Käytin puheenvuoron Laivakankaantien eteläpuolen täydentävästä rakentamisesta ja siitä, miten uusi rakentaminen voi vahvistaa olemassa olevaa palvelurakennetta.

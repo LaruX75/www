@@ -1,12 +1,12 @@
 ---
-title: 'Kysymys varhaiskasvatuksen lisärahan jatkuvuudesta'
-date: '2017-09-25'
-description: 'Valtuuston kyselytunnilla esitetty kysymys varhaiskasvatuksen ryhmäkokojen pienentämiseen tarkoitetun lisärahan jatkuvuudesta ja tulevien vuosien näkymästä.'
+title: Kysymys varhaiskasvatuksen lisärahan jatkuvuudesta
+date: 2017-09-25
+description: Valtuuston kyselytunnilla esitetty kysymys varhaiskasvatuksen ryhmäkokojen pienentämiseen tarkoitetun lisärahan jatkuvuudesta ja tulevien vuosien näkymästä.
 event: Oulun kaupunginvaltuusto
 meeting: Oulun kaupunginvaltuusto 9/2017
 bid: 13689
 agenda_item: 120
-asiakohta: '§ 120 – Valtuuston kyselytunti'
+asiakohta: § 120 – Valtuuston kyselytunti
 agenda_title: Valtuuston kyselytunti
 agenda_url: 'https://asiakirjat.ouka.fi/ktwebscr/pk_asil_tweb.htm?bid=13689'
 contexts:
@@ -18,11 +18,10 @@ forum:
   - Kaupunginvaltuusto
 keywords:
   - varhaiskasvatus
-  - erityislapset
-  - ryhmäkoot
+  - oppimisen tuki
+  - opetuksen resurssit
   - lisäraha
-  - talousarvio
-  - sivistys- ja kulttuuripalvelut
+  - sivistys ja koulutus
 type: puhe
 contentType: speech
 writingRoles:
@@ -30,8 +29,10 @@ writingRoles:
   - expert
 politicalProfiles:
   - sivistys
-  - avoimuus
+  - avoinhallinto
 templateEngineOverride: md
+contentContexts:
+  - talousarvio
 ---
 
 Oulun kaupunginvaltuuston kyselytunnilla käsiteltiin varhaiskasvatuksen ryhmäkokojen pienentämiseen osoitetun lisärahan käyttöä erityistä tukea tarvitsevat lapset huomioiden.

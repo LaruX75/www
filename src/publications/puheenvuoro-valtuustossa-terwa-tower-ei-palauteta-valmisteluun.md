@@ -1,6 +1,6 @@
 ---
 title: 'Puheenvuoro valtuustossa § 24: Terwa Toweria ei pidä palauttaa valmisteluun'
-date: '2024-03-18'
+date: 2024-03-18
 description: 'Puheenvuorossa perustelen, miksi Terwa Towerin kaava-asiaa ei pidä palauttaa valmisteluun, ja nostan esiin museo- ja tiedekeskuksen merkityksen matkailukohteena.'
 event: Oulun kaupunginvaltuusto
 asiakohta: '§ 24 – Asemakaavan ja tonttijaon muutos 564-2401, I kaupunginosan korttelin 38 tontti nro 5 (Terwa Tower, Kaarlenväylä 1, Meritori, Kaarlenaukio)'
@@ -10,15 +10,16 @@ categories:
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - terwa tower
-  - museo- ja tiedekeskus
-  - palautusesitys
+  - päätösmenettely
 type: puhe
 writingRoles:
   - political
 politicalProfiles:
   - kaupunkikehitys
 templateEngineOverride: md
+contentContexts:
+  - Terwa Tower
+  - museo- ja tiedekeskus
 ---
 
 Oulun kaupunginvaltuustossa käsiteltiin 18.3.2024 Terwa Towerin asemakaavan ja tonttijaon muutosta. Käytin puheenvuoron palautusesityksestä ja perustelin, miksi asian käsittelyä tulee jatkaa.

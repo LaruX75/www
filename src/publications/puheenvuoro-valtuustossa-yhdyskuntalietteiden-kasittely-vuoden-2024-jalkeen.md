@@ -1,6 +1,6 @@
 ---
 title: 'Puheenvuoro valtuustossa § 1: Yhdyskuntalietteiden käsittely vuoden 2024 jälkeen'
-date: '2021-03-29'
+date: 2021-03-29
 description: 'Puheenvuorossa kysyn, kuinka Oulun Vesi aikoo ratkaista yhdyskuntalietteiden käsittelyn kestävällä tavalla vuoden 2024 jälkeen ja mitä suunnitellulla käsittely- ja varastointikentällä tarkoitetaan.'
 event: Oulun kaupunginvaltuusto
 meeting: Oulun kaupunginvaltuusto 3/2021
@@ -16,12 +16,7 @@ categories:
 forum:
   - Kaupunginvaltuusto
 keywords:
-  - yhdyskuntaliete
-  - Oulun Vesi
-  - kiertotalous
-  - kompostointi
-  - ympäristölupa
-  - jätehuolto
+  - ympäristö ja kiertotalous
 type: puhe
 contentType: speech
 writingRoles:
@@ -29,6 +24,8 @@ writingRoles:
 politicalProfiles:
   - yhteistyo
 templateEngineOverride: md
+entities:
+  - Oulun Vesi
 ---
 
 Oulun kaupunginvaltuuston kyselytunnilla 29.3.2021 käsiteltiin Oulun kaupungin yhdyskuntalietteiden käsittelyä. Olin jättänyt asiaa koskevan valtuustokyselyn yhdessä Eeva-Maria Parkkisen kanssa.

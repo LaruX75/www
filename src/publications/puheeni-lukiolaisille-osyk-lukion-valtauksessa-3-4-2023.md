@@ -1,23 +1,24 @@
 ---
 title: Puheeni lukiolaisille OSYK lukion valtauksessa 3.4.2023
-date: '2023-10-04'
+date: 2023-10-04
 description: 'Arvoisat lukiolaiset, kerron teille korona-ajan nuorille terveiset lama-ajan nuorelta. Kun aloitin Saloisten lukion ensimmäisellä luokalla vuonna 1991, tapahtui jotain käsittämätöntä, nimittä...'
 event: OSYK-lukion valtaus
 categories:
   - Sivistys ja koulutus
 keywords:
-  - lukiolaiset
-  - lukion valtaus
+  - lapset ja nuoret
   - opiskelijat
-  - oppilaskunta
-  - osyk
-  - säästöt
+  - talous ja investoinnit
 type: puhe
 writingRoles:
   - political
 wp_id: 2096
 source_url: 'https://www.jarilaru.fi/puheeni-lukiolaisille-osyk-lukion-valtauksessa-3-4-2023/'
 templateEngineOverride: md
+places:
+  - osyk
+contentContexts:
+  - lukion valtaus
 ---
 <p><strong><br>Arvoisat lukiolaiset, kerron teille korona-ajan nuorille terveiset lama-ajan nuorelta.</strong></p>
 <p>Kun aloitin Saloisten lukion ensimmäisellä luokalla vuonna 1991, tapahtui jotain käsittämätöntä, nimittäin Neuvostoliitto romahti. Se kertakaikkiaan lakkasi olemasta. Tämä oli meille kaikille yhtä aikaa ilon, hämmennyksen ja järkytyksen aikaa.</p>

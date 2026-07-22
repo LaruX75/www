@@ -1,6 +1,6 @@
 ---
 title: 'Puheenvuoro valtuustossa: Kaupungintalon yleisökäyttö ja aiemmat päätökset'
-date: '2023-09-11'
+date: 2023-09-11
 description: 'Puheenvuorossa nostan esiin kaupungintalon entisöinnin, aiemmat päätökset yleisökäytön lisäämisestä sekä kysyn, miten jo tehdyt linjaukset etenevät käytännössä.'
 event: Oulun kaupunginvaltuusto
 asiakohta: '§ 3 – Määrärahamuutos, Oulun kaupungintalon peruskorjaus'
@@ -12,7 +12,7 @@ forum:
 keywords:
   - kaupungintalo
   - kulttuuriperintö
-  - yleisökäyttö
+  - kaupunkilaisten yhteiset tilat
 type: puhe
 writingRoles:
   - political
