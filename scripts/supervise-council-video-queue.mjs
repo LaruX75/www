@@ -5,11 +5,12 @@ import { spawnSync } from "node:child_process";
 const ROOT = process.cwd();
 const AUDIO_DIR = path.join(ROOT, ".cache", "council-youtube", "whisper", "audio");
 const REPORT_DIR = path.join(ROOT, "reports");
+const LOCK_DIR = path.join(REPORT_DIR, "locks");
 const VIDEO_DATA_PATH = path.join(ROOT, "src", "_data", "councilMeetingYoutubeVideos.json");
 
 function parseArgs(argv) {
   const args = {
-    engine: "mw",
+    engine: "whisper-cli",
     chunkSeconds: 60,
     batchChunks: 1,
     threads: 8,
@@ -44,6 +45,50 @@ function readJson(filePath, fallback) {
 function writeJson(filePath, data) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath, `${JSON.stringify(data, null, 2)}\n`);
+}
+
+function processIsAlive(pid) {
+  if (!Number.isInteger(pid) || pid <= 0) return false;
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch (error) {
+    if (error?.code === "EPERM") return true;
+    return false;
+  }
+}
+
+function queueLockPath() {
+  return path.join(LOCK_DIR, "council-video-queue.lock");
+}
+
+function readLock(filePath) {
+  try {
+    return JSON.parse(fs.readFileSync(filePath, "utf8"));
+  } catch {
+    return null;
+  }
+}
+
+function acquireQueueLock() {
+  fs.mkdirSync(LOCK_DIR, { recursive: true });
+  const lock = queueLockPath();
+  const existing = readLock(lock);
+  if (existing?.pid && processIsAlive(Number(existing.pid))) {
+    throw new Error(`Queue already active: pid=${existing.pid}`);
+  }
+  if (fs.existsSync(lock)) fs.rmSync(lock);
+  fs.writeFileSync(lock, `${JSON.stringify({
+    kind: "council-video-transcription-queue",
+    pid: process.pid,
+    createdAt: new Date().toISOString()
+  }, null, 2)}\n`, { flag: "wx" });
+}
+
+function releaseQueueLock() {
+  const lock = queueLockPath();
+  const existing = readLock(lock);
+  if (existing?.pid === process.pid && fs.existsSync(lock)) fs.rmSync(lock);
 }
 
 function audioIds() {
@@ -107,62 +152,67 @@ function runVideo(args, item) {
 
 function main() {
   const args = parseArgs(process.argv.slice(2));
+  acquireQueueLock();
   const items = queueItems(args);
   const startedAt = new Date().toISOString();
   const completed = [];
   const failed = [];
 
-  if (items.length === 0) {
-    throw new Error("No local council video audio files found for the queue.");
-  }
+  try {
+    if (items.length === 0) {
+      throw new Error("No local council video audio files found for the queue.");
+    }
 
-  writeJson(statusPath(), {
-    startedAt,
-    updatedAt: startedAt,
-    state: "running",
-    mode: args.allAudio ? "all-audio" : "council-meeting-audio",
-    engine: args.engine,
-    total: items.length,
-    currentIndex: 0,
-    current: items[0],
-    completed,
-    failed
-  });
-
-  console.log(`[${startedAt}] queue started, videos=${items.length}`);
-  for (let index = 0; index < items.length; index += 1) {
-    const item = items[index];
     writeJson(statusPath(), {
       startedAt,
-      updatedAt: new Date().toISOString(),
+      updatedAt: startedAt,
       state: "running",
       mode: args.allAudio ? "all-audio" : "council-meeting-audio",
       engine: args.engine,
       total: items.length,
-      currentIndex: index,
-      current: item,
+      currentIndex: 0,
+      current: items[0],
       completed,
       failed
     });
 
-    console.log(`[${new Date().toISOString()}] ${index + 1}/${items.length} ${item.date || ""} ${item.youtubeId} ${item.title || ""}`.trim());
-    const result = runVideo(args, item);
-    if (result.status === 0) completed.push(item);
-    else failed.push({ ...item, exitCode: result.status ?? 1 });
-  }
+    console.log(`[${startedAt}] queue started, videos=${items.length}`);
+    for (let index = 0; index < items.length; index += 1) {
+      const item = items[index];
+      writeJson(statusPath(), {
+        startedAt,
+        updatedAt: new Date().toISOString(),
+        state: "running",
+        mode: args.allAudio ? "all-audio" : "council-meeting-audio",
+        engine: args.engine,
+        total: items.length,
+        currentIndex: index,
+        current: item,
+        completed,
+        failed
+      });
 
-  writeJson(statusPath(), {
-    startedAt,
-    updatedAt: new Date().toISOString(),
-    state: failed.length > 0 ? "complete-with-failures" : "complete",
-    mode: args.allAudio ? "all-audio" : "council-meeting-audio",
-    engine: args.engine,
-    total: items.length,
-    currentIndex: items.length,
-    current: null,
-    completed,
-    failed
-  });
+      console.log(`[${new Date().toISOString()}] ${index + 1}/${items.length} ${item.date || ""} ${item.youtubeId} ${item.title || ""}`.trim());
+      const result = runVideo(args, item);
+      if (result.status === 0) completed.push(item);
+      else failed.push({ ...item, exitCode: result.status ?? 1 });
+    }
+
+    writeJson(statusPath(), {
+      startedAt,
+      updatedAt: new Date().toISOString(),
+      state: failed.length > 0 ? "complete-with-failures" : "complete",
+      mode: args.allAudio ? "all-audio" : "council-meeting-audio",
+      engine: args.engine,
+      total: items.length,
+      currentIndex: items.length,
+      current: null,
+      completed,
+      failed
+    });
+  } finally {
+    releaseQueueLock();
+  }
 }
 
 try {

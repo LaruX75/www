@@ -7,7 +7,7 @@ const REPORT_DIR = path.join(ROOT, "reports");
 
 function parseArgs(argv) {
   const args = {
-    engine: "mw",
+    engine: "whisper-cli",
     chunkSeconds: 60,
     batchChunks: 1,
     threads: 8,
@@ -31,12 +31,33 @@ function parseArgs(argv) {
   return args;
 }
 
+function processIsAlive(pid) {
+  if (!Number.isInteger(pid) || pid <= 0) return false;
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch (error) {
+    if (error?.code === "EPERM") return true;
+    return false;
+  }
+}
+
+function assertNoRunningSupervisor(pidPath) {
+  if (!fs.existsSync(pidPath)) return;
+  const pid = Number(fs.readFileSync(pidPath, "utf8").trim());
+  if (processIsAlive(pid)) {
+    throw new Error(`Queue supervisor already appears to be running: pid=${pid}. Stop it before starting another one.`);
+  }
+  fs.rmSync(pidPath);
+}
+
 function main() {
   const args = parseArgs(process.argv.slice(2));
   fs.mkdirSync(REPORT_DIR, { recursive: true });
 
   const logPath = path.join(REPORT_DIR, "council-video-transcription-queue.log");
   const pidPath = path.join(REPORT_DIR, "council-video-transcription-queue.pid");
+  assertNoRunningSupervisor(pidPath);
   const out = fs.openSync(logPath, "a");
   const err = fs.openSync(logPath, "a");
 
