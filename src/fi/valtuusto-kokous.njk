@@ -41,8 +41,10 @@ schemaMentions:
         <p>{{ item.typeLabel }}{% if item.detailLabel %} · {{ item.detailLabel }}{% endif %}</p>
       </div>
       <div class="council-meeting-item-meta">
-        {% if item.videoStart %}
-        <span>Videolla {{ item.videoStart | secondsToClock }}</span>
+        {% if item.videoUrl and item.videoStart %}
+        <a href="{{ item.videoUrl }}" target="_blank" rel="noopener noreferrer">Avaa video {{ item.videoStart | secondsToClock }}</a>
+        {% elif item.videoUrl %}
+        <a href="{{ item.videoUrl }}" target="_blank" rel="noopener noreferrer">Avaa video</a>
         {% elif item.hasVideo %}
         <span>Video kytketty</span>
         {% endif %}
@@ -315,7 +317,8 @@ schemaMentions:
   gap: 0.4rem;
 }
 
-.council-meeting-item-meta span {
+.council-meeting-item-meta span,
+.council-meeting-item-meta a {
   display: inline-flex;
   align-items: center;
   min-height: 1.8rem;
@@ -325,6 +328,12 @@ schemaMentions:
   color: rgba(17, 40, 70, 0.78);
   font-size: 0.82rem;
   font-weight: 700;
+}
+
+.council-meeting-item-meta a {
+  color: #12355f;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
 }
 
 .council-meeting-sidebar {
@@ -354,7 +363,8 @@ schemaMentions:
 }
 
 [data-bs-theme="dark"] .council-meeting-section__head span,
-[data-bs-theme="dark"] .council-meeting-item-meta span {
+[data-bs-theme="dark"] .council-meeting-item-meta span,
+[data-bs-theme="dark"] .council-meeting-item-meta a {
   background: rgba(214, 226, 240, 0.12);
   color: rgba(246, 251, 255, 0.92);
 }

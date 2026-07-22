@@ -226,9 +226,20 @@ function councilMeetingAgendaForDate(meetingDate = "") {
   return councilMeetingAgendas?.[meetingDate] || { caption: "", items: [] };
 }
 
+function councilSpeechVideoUrl(video = {}) {
+  const youtubeId = video.youtubeId || "";
+  const baseUrl = video.url || (youtubeId ? `https://www.youtube.com/watch?v=${youtubeId}` : "");
+  const start = Number(video.start);
+  if (!baseUrl) return "";
+  if (!Number.isFinite(start)) return baseUrl;
+  const separator = baseUrl.includes("?") ? "&" : "?";
+  return `${baseUrl}${separator}t=${Math.max(0, Math.round(start))}s`;
+}
+
 function councilMeetingItemView(item, lang = "fi") {
   const data = item?.data || {};
   const videoEntries = councilVideoEntriesForItem(item);
+  const primaryVideoEntry = videoEntries.find((entry) => Number.isFinite(Number(entry.start))) || videoEntries[0] || null;
   const sort = councilItemSortKey(data);
   const itemView = {
     url: contentItemUrl(item),
@@ -242,7 +253,8 @@ function councilMeetingItemView(item, lang = "fi") {
     meetingDate: councilMeetingDateForItem(item),
     hasAgenda: Boolean(data.asiakohta || data.agenda_title || data.agenda_item || data.agendaItem),
     hasVideo: videoEntries.length > 0,
-    videoStart: videoEntries.find((entry) => Number.isFinite(Number(entry.start)))?.start ?? null,
+    videoStart: primaryVideoEntry && Number.isFinite(Number(primaryVideoEntry.start)) ? primaryVideoEntry.start : null,
+    videoUrl: primaryVideoEntry ? councilSpeechVideoUrl(primaryVideoEntry) : "",
     sort
   };
 
