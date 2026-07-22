@@ -28,6 +28,7 @@
   "handling": "Handling",
   "sameMeeting": "Same council meeting",
   "protocol": "Minutes",
+  "meetingVideo": "Meeting video",
   "tags": "Tags",
   "keywords": "Keywords",
   "related": "Related content",
@@ -47,6 +48,7 @@
   "handling": "Käsittely",
   "sameMeeting": "Samassa kokouksessa",
   "protocol": "Pöytäkirja",
+  "meetingVideo": "Kokousvideo",
   "tags": "Tunnisteet",
   "keywords": "Avainsanat",
   "related": "Samasta aiheesta",
@@ -221,6 +223,9 @@
       <span>{{ sameMeetingGroup.meetingDate | dateFormat }}</span>
       {% if sameMeetingGroup.protocolUrl %}
       <a href="{{ sameMeetingGroup.protocolUrl }}" target="_blank" rel="noopener">{{ txt.protocol }}</a>
+      {% endif %}
+      {% if sameMeetingGroup.video and sameMeetingGroup.video.url %}
+      <a href="{{ sameMeetingGroup.video.url }}" target="_blank" rel="noopener">{{ txt.meetingVideo }}</a>
       {% endif %}
     </p>
     <ol class="content-context-related content-context-related--same-meeting">

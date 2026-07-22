@@ -6,6 +6,8 @@ const {
   resolveContexts
 } = require("./src/_data/contentContext");
 const oukaCouncilSpeechProtocols = require("./src/_data/oukaCouncilSpeechProtocols");
+const councilMeetingYoutubeVideos = require("./src/_data/councilMeetingYoutubeVideos.json");
+const councilSpeechVideos = require("./src/_data/councilSpeechVideos.json");
 
 function getLangFromUrl(url) {
   return String(url || "").startsWith("/en/") ? "en" : "fi";
@@ -144,16 +146,24 @@ function councilItemTypeLabel(data = {}, lang = "fi") {
   return contentTypeLabel(data, data.tags, lang);
 }
 
-function councilItemSortKey(data = {}) {
-  const agendaNumber = Number(data.agenda_item || data.agendaItem || 0);
+function isQuestionHourItem(data = {}) {
+  const contexts = normalizeTerms(data.contexts);
+  return data.agenda_title === "Valtuuston kyselytunti" || contexts.has("valtuuston kyselytunti");
+}
+
+function isInitiativeItem(data = {}) {
   const tags = toArray(data.tags).map(normalizeTerm);
   const keywords = toArray(data.keywords).map(normalizeTerm);
-  const isInitiative = data.initiative_type || tags.includes("aloitteet") || keywords.includes("valtuustoaloite") || tags.includes("politics");
-  const typePriority = data.agenda_title === "Valtuuston kyselytunti"
+  return Boolean(data.initiative_type || tags.includes("aloitteet") || keywords.includes("valtuustoaloite") || tags.includes("politics"));
+}
+
+function councilItemSortKey(data = {}) {
+  const agendaNumber = Number(data.agenda_item || data.agendaItem || 0);
+  const typePriority = isQuestionHourItem(data)
     ? 1
     : data.type === "puhe"
       ? 2
-      : isInitiative
+      : isInitiativeItem(data)
         ? 3
         : 4;
   return {
@@ -163,42 +173,136 @@ function councilItemSortKey(data = {}) {
   };
 }
 
-function sameCouncilMeetingGroup(collections, pageUrl, limit = 6, lang = "fi") {
+function councilVideoEntriesForItem(item) {
+  const data = item?.data || {};
+  return [
+    ...toArray(councilSpeechVideos.byUrl?.[item?.url]),
+    ...toArray(councilSpeechVideos.byUrl?.[data.source_url])
+  ];
+}
+
+function councilMeetingVideoForDate(meetingDate = "") {
+  return toArray(councilMeetingYoutubeVideos.byDate?.[meetingDate])[0] || null;
+}
+
+function councilMeetingItemView(item, lang = "fi") {
+  const data = item?.data || {};
+  const videoEntries = councilVideoEntriesForItem(item);
+  const sort = councilItemSortKey(data);
+  const itemView = {
+    url: item.url,
+    title: data.title || "",
+    date: item.date || data.date || null,
+    type: data.type || "",
+    typeLabel: councilItemTypeLabel(data, lang),
+    detailLabel: data.asiakohta || data.agenda_title || data.meeting || data.event || "",
+    agendaTitle: data.agenda_title || "",
+    agendaItem: data.agenda_item || data.agendaItem || "",
+    meetingDate: councilMeetingDateForItem(item),
+    hasAgenda: Boolean(data.asiakohta || data.agenda_title || data.agenda_item || data.agendaItem),
+    hasVideo: videoEntries.length > 0,
+    videoStart: videoEntries.find((entry) => Number.isFinite(Number(entry.start)))?.start ?? null,
+    sort
+  };
+
+  const missingMetadata = [];
+  if (!itemView.hasAgenda && (data.type === "puhe" || isQuestionHourItem(data))) missingMetadata.push("asiakohta");
+  if (data.type === "puhe" && !itemView.hasVideo) missingMetadata.push("video");
+  itemView.missingMetadata = missingMetadata;
+  return itemView;
+}
+
+function buildCouncilMeetings(collections, lang = "fi") {
   const items = uniqueContentItems(collections).filter(isCouncilMeetingItem);
-  const current = items.find((item) => item.url === pageUrl);
-  if (!current) return { meetingDate: "", meetingLabel: "", protocolUrl: "", items: [] };
+  const meetings = new Map();
 
-  const meetingDate = councilMeetingDateForItem(current);
-  if (!meetingDate) return { meetingDate: "", meetingLabel: "", protocolUrl: "", items: [] };
+  items.forEach((item) => {
+    const meetingDate = councilMeetingDateForItem(item);
+    if (!meetingDate) return;
 
-  const meetingLabel = councilMeetingLabelForItem(current, meetingDate);
-  const protocolUrl = oukaCouncilSpeechProtocols.protocolsByDate?.[meetingDate] || "";
-  const maxItems = Number(limit) || 6;
-  const relatedItems = items
-    .filter((item) => item.url !== pageUrl && councilMeetingDateForItem(item) === meetingDate)
-    .map((item) => {
-      const data = item.data || {};
-      return {
-        url: item.url,
-        title: data.title || "",
-        typeLabel: councilItemTypeLabel(data, lang),
-        detailLabel: data.asiakohta || data.agenda_title || data.meeting || data.event || "",
-        sort: councilItemSortKey(data)
-      };
-    })
+    if (!meetings.has(meetingDate)) {
+      const meetingVideo = councilMeetingVideoForDate(meetingDate);
+      meetings.set(meetingDate, {
+        date: meetingDate,
+        meetingDate,
+        label: councilMeetingLabelForItem(item, meetingDate),
+        meetingLabel: councilMeetingLabelForItem(item, meetingDate),
+        protocolUrl: oukaCouncilSpeechProtocols.protocolsByDate?.[meetingDate] || "",
+        video: meetingVideo,
+        items: [],
+        speeches: [],
+        initiatives: [],
+        questions: [],
+        otherItems: [],
+        missingMetadata: []
+      });
+    }
+
+    const meeting = meetings.get(meetingDate);
+    const data = item.data || {};
+    const itemView = councilMeetingItemView(item, lang);
+    meeting.items.push(itemView);
+
+    if (isQuestionHourItem(data)) {
+      meeting.questions.push(itemView);
+    } else if (data.type === "puhe") {
+      meeting.speeches.push(itemView);
+    } else if (isInitiativeItem(data)) {
+      meeting.initiatives.push(itemView);
+    } else {
+      meeting.otherItems.push(itemView);
+    }
+  });
+
+  const sortItems = (meetingItems) => meetingItems
     .sort((a, b) => (
       a.sort.agendaNumber - b.sort.agendaNumber
       || a.sort.typePriority - b.sort.typePriority
       || a.title.localeCompare(b.title, lang === "en" ? "en" : "fi")
     ))
-    .slice(0, maxItems)
     .map(({ sort, ...item }) => item);
 
+  return [...meetings.values()]
+    .map((meeting) => {
+      meeting.items = sortItems(meeting.items);
+      meeting.speeches = sortItems(meeting.speeches);
+      meeting.initiatives = sortItems(meeting.initiatives);
+      meeting.questions = sortItems(meeting.questions);
+      meeting.otherItems = sortItems(meeting.otherItems);
+
+      if (!meeting.protocolUrl) meeting.missingMetadata.push("protocol");
+      if (!meeting.video) meeting.missingMetadata.push("video");
+      meeting.items.forEach((item) => {
+        item.missingMetadata.forEach((field) => {
+          const marker = `${item.url}:${field}`;
+          if (!meeting.missingMetadata.includes(marker)) meeting.missingMetadata.push(marker);
+        });
+      });
+
+      meeting.counts = {
+        items: meeting.items.length,
+        speeches: meeting.speeches.length,
+        initiatives: meeting.initiatives.length,
+        questions: meeting.questions.length,
+        other: meeting.otherItems.length
+      };
+
+      return meeting;
+    })
+    .sort((a, b) => new Date(b.date) - new Date(a.date));
+}
+
+function sameCouncilMeetingGroup(collections, pageUrl, limit = 6, lang = "fi") {
+  const meetings = buildCouncilMeetings(collections, lang);
+  const meeting = meetings.find((item) => item.items.some((meetingItem) => meetingItem.url === pageUrl));
+  if (!meeting) return { meetingDate: "", meetingLabel: "", protocolUrl: "", video: null, items: [] };
+
+  const maxItems = Number(limit) || 6;
   return {
-    meetingDate,
-    meetingLabel,
-    protocolUrl,
-    items: relatedItems
+    ...meeting,
+    items: meeting.items
+      .filter((item) => item.url !== pageUrl)
+      .slice(0, maxItems)
   };
 }
 
@@ -608,6 +712,10 @@ module.exports = function registerFilters(eleventyConfig) {
 
   eleventyConfig.addFilter("sameCouncilMeetingGroup", function (collections, pageUrl, limit = 6, lang = "fi") {
     return sameCouncilMeetingGroup(collections, pageUrl, limit, lang);
+  });
+
+  eleventyConfig.addFilter("councilMeetings", function (collections, lang = "fi") {
+    return buildCouncilMeetings(collections, lang);
   });
 
   eleventyConfig.addFilter("contentTermCloud", function (collections, categories, keywords, limit = 12) {
