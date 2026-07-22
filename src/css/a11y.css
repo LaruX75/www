@@ -16,21 +16,9 @@
     border-color: #cfd6de !important;
 }
 
-[data-bs-theme="light"] .bss-scope a:not(.btn):not(.nav-link):not(.navbar-brand):not(.badge):not(.home-path-card):not(.home-overview-item):not(.home-content-row):not(.home-ticker-item):not(.home-ticker-title):not([class*="home-path"]):not([class*="card"]):not(.home-hero-kpi-link) {
-    color: #0f4c81;
-    text-decoration: underline;
-    text-decoration-thickness: 1.5px;
-    text-underline-offset: 0.16em;
-    text-decoration-skip-ink: auto;
-}
-
-[data-bs-theme="light"] .bss-scope a:not(.btn):not(.nav-link):not(.navbar-brand):not(.badge):not(.home-path-card):not(.home-overview-item):not(.home-content-row):not(.home-ticker-item):not(.home-ticker-title):not([class*="home-path"]):not([class*="card"]):not(.home-hero-kpi-link):hover {
-    color: #0b3a62;
-    text-decoration-thickness: 2px;
-}
-
-[data-bs-theme="light"] .bss-scope a.icon-only-link:not(.btn):not(.nav-link):not(.navbar-brand):not(.badge) {
-    text-decoration: none;
+[data-bs-theme="light"] .bss-scope {
+    --site-content-link-color: #0f4c81;
+    --site-content-link-hover-color: #0b3a62;
 }
 
 /* 1. Tekstikoot */

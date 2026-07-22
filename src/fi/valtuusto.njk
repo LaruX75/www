@@ -31,12 +31,21 @@ schemaMentions:
     <div>
       <p class="term-eyebrow mb-2">Poliittinen työ</p>
       <h1 class="term-hero-title mb-3">Kaupunginvaltuusto</h1>
-      <p class="term-hero-lead mb-0">Tämä näkymä kokoaa samaan kokoukseen kuuluvat puheenvuorot, valtuustoaloitteet ja valtuuston kyselytunnin asiat. Kokous toimii väliportaana yksittäisten tekstien ja vaalikausien välillä.</p>
+      <p class="term-hero-lead mb-0">Kaupunginvaltuuston kokouksista näkee, missä asioissa olen käyttänyt puheenvuoroja, jättänyt valtuustoaloitteita tai kysynyt vastauksia valtuuston kyselytunnilla. Samasta paikasta löytyvät myös pöytäkirjat ja kokousvideot, kun ne ovat tiedossa.</p>
     </div>
     <aside class="council-meetings-hero-card">
-      <p class="term-hero-card__kicker">Kokoussolmu</p>
-      <p>Varsinaisissa korteissa näkyvät kokoukseen kytketyt omat sisällöt. Pienet välimaininnat näyttävät kokoukset, joista sivustolla ei ole omaa puheenvuoroa.</p>
-      <strong>{{ timeline.length }} kokousta</strong>
+      <p class="term-hero-card__kicker">Kokoukset ja aineisto</p>
+      <p>Aikajana näyttää valtuustotyön suhteessa kokouksiin: laajat kortit silloin, kun kokoukseen on kytketty oma sisältö, ja pienet merkinnät niistä kokouksista, jotka kuuluvat valtuuston vuosikelloon.</p>
+      <div class="council-meetings-hero-stats" aria-label="Kokousmäärät">
+        <div>
+          <strong>{{ meetings.length }}</strong>
+          <span>kokousta, joissa oma sisältö näkyy</span>
+        </div>
+        <div>
+          <strong>{{ timeline.length }}</strong>
+          <span>kokousta aikajanalla</span>
+        </div>
+      </div>
     </aside>
   </header>
 
@@ -137,6 +146,27 @@ schemaMentions:
   color: #102845;
 }
 
+.council-meetings-hero-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.council-meetings-hero-stats div {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.85rem 0.9rem;
+  border: 1px solid rgba(17, 40, 70, 0.1);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.66);
+}
+
+.council-meetings-hero-stats span {
+  font-size: 0.88rem;
+  line-height: 1.35;
+  color: rgba(17, 40, 70, 0.68);
+}
+
 .council-meetings-list {
   display: grid;
   gap: 0.65rem;
@@ -168,8 +198,11 @@ schemaMentions:
 .council-meeting-marker a {
   color: rgba(18, 53, 95, 0.72);
   font-weight: 700;
-  text-decoration-thickness: 0.08em;
-  text-underline-offset: 0.18em;
+}
+
+.council-meeting-marker a:hover,
+.council-meeting-marker a:focus-visible {
+  color: #12355f;
 }
 
 .council-meeting-card {
@@ -213,8 +246,13 @@ schemaMentions:
 .council-meeting-card__body h2 a,
 .council-meeting-preview a {
   color: #12355f;
-  text-decoration-thickness: 0.08em;
-  text-underline-offset: 0.18em;
+}
+
+.council-meeting-card__body h2 a:hover,
+.council-meeting-card__body h2 a:focus-visible,
+.council-meeting-preview a:hover,
+.council-meeting-preview a:focus-visible {
+  color: #0d4f94;
 }
 
 .council-meeting-counts {
@@ -280,10 +318,20 @@ schemaMentions:
   color: rgba(214, 226, 240, 0.78);
 }
 
+[data-bs-theme="dark"] .council-meeting-marker a:hover,
+[data-bs-theme="dark"] .council-meeting-marker a:focus-visible {
+  color: #f6fbff;
+}
+
 [data-bs-theme="dark"] .council-meetings-hero-card {
   border-color: rgba(214, 226, 240, 0.18);
   background: rgba(255, 255, 255, 0.06);
   color: rgba(236, 242, 248, 0.78);
+}
+
+[data-bs-theme="dark"] .council-meetings-hero-stats div {
+  border-color: rgba(214, 226, 240, 0.16);
+  background: rgba(255, 255, 255, 0.07);
 }
 
 [data-bs-theme="dark"] .council-meetings-hero-card strong,
@@ -292,8 +340,16 @@ schemaMentions:
   color: #f6fbff;
 }
 
+[data-bs-theme="dark"] .council-meeting-card__body h2 a:hover,
+[data-bs-theme="dark"] .council-meeting-card__body h2 a:focus-visible,
+[data-bs-theme="dark"] .council-meeting-preview a:hover,
+[data-bs-theme="dark"] .council-meeting-preview a:focus-visible {
+  color: #ffffff;
+}
+
 [data-bs-theme="dark"] .council-meeting-card__meta,
-[data-bs-theme="dark"] .council-meeting-card__summary {
+[data-bs-theme="dark"] .council-meeting-card__summary,
+[data-bs-theme="dark"] .council-meetings-hero-stats span {
   color: rgba(236, 242, 248, 0.72);
 }
 

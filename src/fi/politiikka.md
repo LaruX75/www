@@ -137,7 +137,7 @@ schemaMentions:
     "title": "2. varavaltuutettu ja sivistyslautakunnan jäsen",
     "summary": "Ehdolla sekä kunta- että aluevaaleissa. Nykyiset luottamustehtävät jatkuvat sivistyksen, palvelujen ja avoimen päätöksenteon teemoissa.",
     "detail": "Luottamustoimet: 2. varavaltuutettu, sivistyslautakunnan jäsen, aluevaltuuston varajäsen.",
-    "link": "/vaalikaudet/#2025-2029",
+    "link": "/politiikka/vaalikaudet/#2025-2029",
     "linkLabel": "Avaa vaalikausi"
   },
   {
@@ -145,7 +145,7 @@ schemaMentions:
     "title": "Kaupunginvaltuutettu ja maakuntavaltuuston jäsen",
     "summary": "Valittu uudelleen Oulun kaupunginvaltuustoon. Työ painottui erityisesti sivistys- ja kulttuuripalveluihin sekä laajoihin palveluverkkokysymyksiin.",
     "detail": "Luottamustoimet: kaupunginvaltuutettu, sivistys- ja kulttuurilautakunnan jäsen, maakuntavaltuuston jäsen.",
-    "link": "/vaalikaudet/#2021-2025",
+    "link": "/politiikka/vaalikaudet/#2021-2025",
     "linkLabel": "Avaa vaalikausi"
   },
   {
@@ -153,7 +153,7 @@ schemaMentions:
     "title": "Kaupunginvaltuutettu ja maakuntavaltuuston varavaltuutettu",
     "summary": "Ensimmäinen valinta Oulun kaupunginvaltuustoon. Samalla rakentui linja, jossa yhdistyvät sivistys, alueellinen yhdenvertaisuus ja lähidemokratia.",
     "detail": "Luottamustoimet: kaupunginvaltuutettu, sivistys- ja kulttuurilautakunnan jäsen, maakuntavaltuuston varavaltuutettu.",
-    "link": "/vaalikaudet/#2017-2021",
+    "link": "/politiikka/vaalikaudet/#2017-2021",
     "linkLabel": "Avaa vaalikausi"
   },
   {
@@ -161,7 +161,7 @@ schemaMentions:
     "title": "Varavaltuutettu ja lähidemokratiatoimikunnan puheenjohtaja",
     "summary": "Vuoden 2012 vaalien jälkeen alkanut vaalikausi toi mukaan varavaltuutetun vastuun ja lähidemokratiatoimikunnan puheenjohtajuuden. Profiili rakentui vahvasti alueellisen osallisuuden, lähipalvelujen ja asukasvaikuttamisen ympärille.",
     "detail": "Luottamustoimet: varavaltuutettu ja lähidemokratiatoimikunnan puheenjohtaja.",
-    "link": "/vaalikaudet/#2013-2017",
+    "link": "/politiikka/vaalikaudet/#2013-2017",
     "linkLabel": "Avaa vaalikausi"
   }
 ] %}
@@ -278,15 +278,15 @@ schemaMentions:
       <div class="pol-role-link-stack">
         <article class="pol-route-card">
           <span class="pol-route-kicker">Kaupunginvaltuusto</span>
-          <h3>Kokoukset näyttävät, missä työ on tehty</h3>
-          <p>{{ councilMeetingItems.length }} kokousta, joissa on omaa sisältöä: {{ councilMeetingSpeeches.length }} pidettyä puheenvuoroa, {{ councilMeetingInitiatives.length }} valtuustoaloitetta ja {{ councilMeetingQuestions.length }} valtuuston kyselytunnin kysymystä.</p>
+          <h3>Valtuustotyö kokouksittain</h3>
+          <p>{{ councilMeetingItems.length }} kokousta, joihin on kytketty {{ councilMeetingSpeeches.length }} pidettyä puheenvuoroa, {{ councilMeetingInitiatives.length }} valtuustoaloitetta ja {{ councilMeetingQuestions.length }} valtuuston kyselytunnin kysymystä.</p>
           <a href="/politiikka/kaupunginvaltuusto/">Avaa kaupunginvaltuusto</a>
         </article>
         <article class="pol-route-card">
           <span class="pol-route-kicker">Vaalikaudet</span>
           <h3>Työn muutos näkyy vaalikausissa</h3>
           <p>Vaalitulokset, luottamustehtävät ja sisällöt asettuvat kausittain samaan aikajanaan.</p>
-          <a href="/vaalikaudet/">Avaa vaalikaudet</a>
+          <a href="/politiikka/vaalikaudet/">Avaa vaalikaudet</a>
         </article>
         <article class="pol-route-card">
           <span class="pol-route-kicker">Avoimuus</span>
@@ -448,10 +448,10 @@ schemaMentions:
       <div class="pol-archive-copy">
         <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-compass me-1"></i>Syvennä</p>
         <h2 class="pol-section-title mb-2">Kun haluat nähdä koko aineiston</h2>
-        <p class="mb-0">Politiikkasivu on profiili. Varsinainen työjälki löytyy erillisistä näkymistä, joissa voi selata puheita, aloitteita, kirjoituksia, vaalikausia ja virallisia lähteitä.</p>
+        <p class="mb-0">Nykyinen rooli, kokoukset, vaalikaudet ja avoimuustiedot täydentävät toisiaan. Niiden kautta näkee sekä poliittisen linjan että konkreettisen työn.</p>
       </div>
       <div class="pol-archive-links">
-        <a href="/vaalikaudet/" class="pol-archive-link">
+        <a href="/politiikka/vaalikaudet/" class="pol-archive-link">
           <strong>Vaalikaudet</strong>
           <span>Luottamustoimet, vaalitulokset ja sisällöt vaalikausittain.</span>
         </a>

@@ -265,7 +265,7 @@ schemaMentions:
       <div class="content-context-card content-context-card--topics">
         <p class="content-context-kicker">Jatka samasta kokonaisuudesta</p>
         <div class="content-context-topiclist">
-          <a class="content-context-topic" href="/vaalikaudet/">
+          <a class="content-context-topic" href="/politiikka/vaalikaudet/">
             <span>Vaalikaudet</span>
             <small>Luottamustoimet, vaalitulokset ja poliittinen työ kausittain</small>
           </a>

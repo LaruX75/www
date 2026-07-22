@@ -80,7 +80,7 @@ module.exports = [
     contexts: ["politics"],
     primaryLinks: [
       { label: "Politiikka", href: "/politiikka/" },
-      { label: "Vaalikaudet", href: "/vaalikaudet/" },
+      { label: "Vaalikaudet", href: "/politiikka/vaalikaudet/" },
       { label: "Puheenvuorot", href: "/kynasta/#puheet" }
     ]
   },
@@ -98,7 +98,7 @@ module.exports = [
     primaryLinks: [
       { label: "Valtuustoaloitteet", href: "/kynasta/#aloitteet" },
       { label: "Politiikka", href: "/politiikka/" },
-      { label: "Vaalikaudet", href: "/vaalikaudet/" }
+      { label: "Vaalikaudet", href: "/politiikka/vaalikaudet/" }
     ]
   },
   {

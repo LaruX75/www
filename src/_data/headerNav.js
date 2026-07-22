@@ -168,7 +168,7 @@ module.exports = {
         eleventyNavigation: {
           key: "election_history",
           title: "Vaalikaudet",
-          url: "/vaalikaudet/",
+          url: "/politiikka/vaalikaudet/",
           parent: "politics",
           order: 50
         }
@@ -482,10 +482,10 @@ module.exports = {
   },
   megaMenuPolitics: {
     fi: {
-      description: "Poliittinen profiili, vaalikaudet, työjälki ja avoimuustiedot samasta näkymästä.",
+      description: "Poliittinen profiili, kaupunginvaltuuston kokoukset, vaalikaudet ja avoimuustiedot samasta näkymästä.",
       spotlight: {
         title: "Poliittisen työn kokonaiskuva",
-        description: "Politiikka-sivu kertoo nykyisen profiilin. Vaalikaudet, puheenvuorot, valtuustoaloitteet ja vaalirahoitustiedot täydentävät kokonaisuutta.",
+        description: "Politiikka-sivu kertoo nykyisen profiilin. Kaupunginvaltuusto näyttää kokouskohtaisen työn, vaalikaudet työn muutoksen ajassa.",
         roles: [
           "2. varavaltuutettu, Oulun kaupunginvaltuusto",
           "Sivistyslautakunnan jäsen, Oulun kaupunki",
@@ -508,31 +508,24 @@ module.exports = {
               description: "Poliittinen profiili, painopisteet ja nykyinen työ."
             },
             {
-              title: "Nykyiset luottamustehtävät",
-              href: "/politiikka/#nykyinen-rooli",
-              icon: "bi bi-clipboard-check me-2",
+              title: "Kaupunginvaltuusto",
+              href: "/politiikka/kaupunginvaltuusto/",
+              icon: "bi bi-building-check me-2",
               menuLink: true,
-              description: "Kuluva vaalikausi ja tämänhetkiset vastuut."
+              description: "Kokoukset, pöytäkirjat, videot ja oma valtuustotyö kokouksittain."
             },
             {
-              title: "Valtuuston sivut",
-              href: "https://www.ouka.fi/valtuusto",
-              icon: "bi bi-box-arrow-up-right me-2",
-              external: true,
-              description: "Oulun kaupunginvaltuuston virallinen sivu."
+              title: "Vaalikaudet",
+              href: "/politiikka/vaalikaudet/",
+              icon: "bi bi-calendar-event me-2",
+              menuLink: true,
+              description: "Luottamustoimet, vaalitulokset ja poliittinen työ vaalikausittain."
             }
           ]
         },
         {
-          heading: "Työ kausittain",
+          heading: "Vaalisivut arkistona",
           links: [
-            {
-              title: "Vaalikaudet",
-              href: "/vaalikaudet/",
-              icon: "bi bi-calendar-event me-2",
-              menuLink: true,
-              description: "Luottamustoimet, vaalitulokset, puheet ja kirjoitukset vaalikausittain."
-            },
             {
               title: "Kunta- ja aluevaalit 2025",
               href: "/kunta-ja-aluevaalit-2025/",
@@ -546,6 +539,13 @@ module.exports = {
               icon: "bi bi-archive me-2",
               menuLink: true,
               description: "Edellinen vaalisivu arkistona."
+            },
+            {
+              title: "Kunnallisvaalit 2012",
+              href: "/kunnallisvaalit-2012/",
+              icon: "bi bi-archive me-2",
+              menuLink: true,
+              description: "Monikuntaliitoksen jälkeisen vaalikauden tausta."
             }
           ]
         },
@@ -574,6 +574,13 @@ module.exports = {
               menuLink: true,
               description: "Kirjalliset avaukset kaupunginvaltuuston päätöksentekoon.",
               countKey: "politics"
+            },
+            {
+              title: "Virallinen valtuustosivu",
+              href: "https://www.ouka.fi/valtuusto",
+              icon: "bi bi-box-arrow-up-right me-2",
+              external: true,
+              description: "Oulun kaupunginvaltuuston virallinen sivu."
             }
           ]
         }

@@ -1,7 +1,7 @@
 ---
 title: "Vaalikaudet"
 metaTitle: Vaalikaudet ja poliittinen työ
-permalink: /vaalikaudet/
+permalink: /politiikka/vaalikaudet/
 layout: base.njk
 lang: fi
 translationKey: election_history
@@ -206,15 +206,15 @@ schemaMentions:
       <div>
         <p class="term-eyebrow mb-2">Politiikka</p>
         <h1 class="term-hero-title mb-3">Vaalikaudet</h1>
-        <p class="term-hero-lead mb-4">Tämä sivu kokoaa poliittisen työn vaalikausittain monikuntaliitoksesta alkaen, jolloin minusta tuli taas oululainen. Tästä näkymästä löytyvät puheenvuorot, valtuustoaloitteet ja kirjoitukset vaalikausien mukaan, jotta näet miten vastuut, painotukset ja poliittinen työ ovat muuttuneet ajan myötä.</p>
+        <p class="term-hero-lead mb-4">Vaalikaudet kokoavat poliittisen työn monikuntaliitoksesta alkaen, jolloin minusta tuli taas oululainen. Puheenvuorot, valtuustoaloitteet, kyselytunnit ja kirjoitukset asettuvat kausien mukaan samaan ajalliseen yhteyteen.</p>
       </div>
       <aside class="term-hero-card">
         <p class="term-hero-card__kicker">Mitä täältä löytyy</p>
         <ul class="term-hero-card__list">
           <li>vaalitulokset ja luottamustoimet kausittain</li>
-          <li>valtuustopuheenvuorot ja valtuustoaloitteet omissa ryhmissään</li>
+          <li>valtuustopuheenvuorot, valtuustoaloitteet ja kyselytunnit omissa ryhmissään</li>
           <li>mielipidekirjoitukset ja muut relevantit politiikkasisällöt</li>
-          <li>linkit vanhoihin vaalisivuihin arkistona, ei pääreittinä</li>
+          <li>linkit kokouksiin, pöytäkirjoihin ja vanhoihin vaalisivuihin</li>
         </ul>
       </aside>
     </div>
