@@ -258,6 +258,7 @@ function buildCouncilMeetings(collections, lang = "fi") {
         officialLabel,
         contextLabel: meetingMeta.contextLabel || "Oulun kaupunginvaltuusto",
         meetingNumber: meetingMeta.meetingNumber || "",
+        hasQuestionHour: Boolean(meetingMeta.hasQuestionHour),
         summaryTitle: meetingMeta.summaryTitle || "",
         protocolUrl: oukaCouncilSpeechProtocols.protocolsByDate?.[meetingDate] || "",
         video: meetingVideo,

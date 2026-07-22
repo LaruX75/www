@@ -1,8 +1,8 @@
 ---
-title: "Valtuustokokoukset"
-metaTitle: "Valtuustokokoukset ja poliittinen työ"
+title: "Kaupunginvaltuusto"
+metaTitle: "Kaupunginvaltuusto ja poliittinen työ"
 description: "Oulun kaupunginvaltuuston kokoukset, joissa Jari Larun puheenvuorot, aloitteet ja kyselytunnin kysymykset näkyvät kokouskohtaisesti."
-permalink: /valtuusto/
+permalink: /kaupunginvaltuusto/
 layout: base.njk
 lang: fi
 translationKey: council_meetings
@@ -29,7 +29,7 @@ schemaMentions:
   <header class="council-meetings-hero">
     <div>
       <p class="term-eyebrow mb-2">Poliittinen työ</p>
-      <h1 class="term-hero-title mb-3">Valtuustokokoukset</h1>
+      <h1 class="term-hero-title mb-3">Kaupunginvaltuusto</h1>
       <p class="term-hero-lead mb-0">Tämä näkymä kokoaa samaan kokoukseen kuuluvat puheenvuorot, aloitteet ja kyselytunnin kysymykset. Kokous toimii väliportaana yksittäisten tekstien ja vaalikausien välillä.</p>
     </div>
     <aside class="council-meetings-hero-card">
@@ -39,14 +39,14 @@ schemaMentions:
     </aside>
   </header>
 
-  <div class="council-meetings-list" aria-label="Valtuustokokoukset">
+  <div class="council-meetings-list" aria-label="Kaupunginvaltuuston kokoukset">
     {% for meeting in meetings %}
     <article class="council-meeting-card" id="kokous-{{ meeting.date }}">
       <div class="council-meeting-card__date">
         <span>{{ meeting.date | dateFormat }}</span>
       </div>
       <div class="council-meeting-card__body">
-        <h2><a href="/valtuusto/{{ meeting.date }}/">{{ meeting.meetingLabel }}</a></h2>
+        <h2><a href="/kaupunginvaltuusto/{{ meeting.date }}/">{{ meeting.meetingLabel }}</a></h2>
         <p class="council-meeting-card__meta">{{ meeting.contextLabel }} · {{ meeting.date | dateFormat }}</p>
         {% if meeting.summaryTitle %}
         <p class="council-meeting-card__summary">{{ meeting.summaryTitle }}</p>
@@ -69,7 +69,7 @@ schemaMentions:
         </ul>
       </div>
       <div class="council-meeting-card__actions">
-        <a class="btn btn-read-more rounded-pill px-4" href="/valtuusto/{{ meeting.date }}/">Avaa kokous</a>
+        <a class="btn btn-read-more rounded-pill px-4" href="/kaupunginvaltuusto/{{ meeting.date }}/">Avaa kokous</a>
         {% if meeting.protocolUrl %}
         <a class="btn btn-outline-primary rounded-pill px-4" href="{{ meeting.protocolUrl }}" target="_blank" rel="noopener noreferrer">Pöytäkirja</a>
         {% endif %}

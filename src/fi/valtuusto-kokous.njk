@@ -3,7 +3,7 @@ pagination:
   data: councilMeetings
   size: 1
   alias: meeting
-permalink: "/valtuusto/{{ meeting.date }}/"
+permalink: "/kaupunginvaltuusto/{{ meeting.date }}/"
 layout: base.njk
 lang: fi
 translationKey: council_meeting
@@ -12,7 +12,7 @@ pageShell: true
 pageShellClass: site-shell site-shell--wide
 pageScopeClass: council-meeting-page-scope
 eleventyComputed:
-  title: "{{ meeting.meetingLabel }}"
+  title: "{{ meeting.contextLabel }}"
   description: "{{ meeting.contextLabel }}, {{ meeting.meetingLabel }}: Jari Larun puheenvuorot, aloitteet ja kyselytunnin kysymykset samassa näkymässä."
 schemaAbout:
   - "@type": "Thing"
@@ -62,8 +62,8 @@ schemaMentions:
 <article class="council-meeting-page">
   <header class="council-meeting-hero">
     <div>
-      <p class="term-eyebrow mb-2">{{ meeting.contextLabel }}</p>
-      <h1 class="term-hero-title mb-3">{{ meeting.meetingLabel }}</h1>
+      <p class="term-eyebrow mb-2">{{ meeting.meetingLabel }}</p>
+      <h1 class="term-hero-title mb-3">{{ meeting.contextLabel }}</h1>
       <p class="council-meeting-hero-meta">{{ meeting.date | dateFormat }}</p>
       {% if meeting.summaryTitle %}
       <p class="council-meeting-hero-summary">{{ meeting.summaryTitle }}</p>
@@ -79,7 +79,7 @@ schemaMentions:
         {% if meeting.video and meeting.video.url %}
         <a class="btn btn-outline-primary rounded-pill px-4" href="{{ meeting.video.url }}" target="_blank" rel="noopener noreferrer">Kokousvideo</a>
         {% endif %}
-        <a class="btn btn-outline-primary rounded-pill px-4" href="/valtuusto/">Kaikki kokoukset</a>
+        <a class="btn btn-outline-primary rounded-pill px-4" href="/kaupunginvaltuusto/">Kaikki kokoukset</a>
       </div>
     </aside>
   </header>
@@ -90,8 +90,12 @@ schemaMentions:
       <span class="site-kpi-label">puheenvuoroa</span>
     </div>
     <div class="site-kpi-card">
+      {% if meeting.hasQuestionHour %}
       <span class="site-kpi-number">{{ meeting.counts.questions }}</span>
-      <span class="site-kpi-label">kyselytunnin kysymystä</span>
+      <span class="site-kpi-label">{{ "kyselytunnin kysymys" if meeting.counts.questions == 1 else "kyselytunnin kysymystä" }}</span>
+      {% else %}
+      <span class="site-kpi-label site-kpi-label--standalone">Ei kyselytuntia</span>
+      {% endif %}
     </div>
     <div class="site-kpi-card">
       <span class="site-kpi-number">{{ meeting.counts.initiatives }}</span>
@@ -106,7 +110,7 @@ schemaMentions:
   <div class="council-meeting-layout">
     <main class="council-meeting-main">
       {{ renderItems("Puheenvuorot", meeting.speeches, "Tästä kokouksesta ei ole kytketty puheenvuoroja.") }}
-      {{ renderItems("Kyselytunnin kysymykset", meeting.questions, "Tästä kokouksesta ei ole kytketty kyselytunnin kysymyksiä.") }}
+      {{ renderItems("Kyselytunnin kysymykset", meeting.questions, "Tästä kokouksesta ei ole kytketty kyselytunnin kysymyksiä." if meeting.hasQuestionHour else "Kokouksessa ei ollut kyselytuntia.") }}
       {{ renderItems("Aloitteet", meeting.initiatives, "Tästä kokouksesta ei ole kytketty aloitteita.") }}
       {% if meeting.otherItems.length %}
       {{ renderItems("Muut sisällöt", meeting.otherItems, "") }}

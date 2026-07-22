@@ -224,7 +224,7 @@
     <p class="content-context-meeting-meta">
       <span>{{ sameMeetingGroup.contextLabel }}</span>
       <span>{{ sameMeetingGroup.meetingDate | dateFormat }}</span>
-      <a href="/valtuusto/{{ sameMeetingGroup.meetingDate }}/">{{ txt.meetingPage }}</a>
+      <a href="/kaupunginvaltuusto/{{ sameMeetingGroup.meetingDate }}/">{{ txt.meetingPage }}</a>
       {% if sameMeetingGroup.protocolUrl %}
       <a href="{{ sameMeetingGroup.protocolUrl }}" target="_blank" rel="noopener">{{ txt.protocol }}</a>
       {% endif %}
