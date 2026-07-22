@@ -524,28 +524,28 @@ module.exports = {
           ]
         },
         {
-          heading: "Vaalisivut arkistona",
+          heading: "Poliittiset teemat",
           links: [
             {
-              title: "Kunta- ja aluevaalit 2025",
-              href: "/kunta-ja-aluevaalit-2025/",
-              icon: "bi bi-archive me-2",
+              title: "Sivistys ja oppiminen",
+              href: "/kategoriat/sivistys-ja-koulutus/",
+              icon: "bi bi-mortarboard-fill me-2",
               menuLink: true,
-              description: "Vaalisivu arkistona: teemat, kampanja ja tulokset."
+              description: "Koulutuspolitiikka, terveet oppimisympäristöt ja yliopiston sekä kouluverkon ratkaisut."
             },
             {
-              title: "Kuntavaalit 2021",
-              href: "/kuntavaalit-2021/",
-              icon: "bi bi-archive me-2",
+              title: "Koko Oulun alueellinen yhdenvertaisuus",
+              href: "/kategoriat/kaupunkikehitys-ja-palveluverkko/",
+              icon: "bi bi-geo-alt-fill me-2",
               menuLink: true,
-              description: "Edellinen vaalisivu arkistona."
+              description: "Suuralueiden ja kaupunginosien palvelut, saavutettavuus ja tasapuolinen kehitys koko kaupungissa."
             },
             {
-              title: "Kunnallisvaalit 2012",
-              href: "/kunnallisvaalit-2012/",
-              icon: "bi bi-archive me-2",
+              title: "Avoin hallinto ja tiedolla johtaminen",
+              href: "/poliittinen-avoimuus/",
+              icon: "bi bi-bar-chart-steps me-2",
               menuLink: true,
-              description: "Monikuntaliitoksen jälkeisen vaalikauden tausta."
+              description: "Läpinäkyvä päätöksenteko, tietojärjestelmät, avoin data ja seurattavat valmisteluprosessit."
             }
           ]
         },
