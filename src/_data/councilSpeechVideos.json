@@ -79,6 +79,13 @@
         "label": "Jatkokysymys taidemuseon kahvilasta ja patiosta",
         "source": "Oulun kaupunginvaltuuston kokoustallenne",
         "verified": true
+      },
+      {
+        "youtubeId": "h6DmEpC44c0",
+        "start": 3840,
+        "label": "Taidemuseon vastaus jatkokysymykseen",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne",
+        "verified": true
       }
     ],
     "/2017/09/25/kysymys-varhaiskasvatuksen-lisarahan-jatkuvuudesta/": [
@@ -130,7 +137,14 @@
         "start": 1968,
         "label": "Puheenvuoro valtuuston videotallenteessa",
         "source": "Oulun kaupunginvaltuuston kokoustallenne",
-        "verified": false
+        "verified": true
+      },
+      {
+        "youtubeId": "tIyZ2MHIrSw",
+        "start": 2075,
+        "label": "Yhdyskuntajohtaja Marko Kilpeläisen täydennys Stora Enso -neuvotteluista",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne",
+        "verified": true
       }
     ],
     "/2022/04/04/puheenvuoro-valtuustossa-hyvinvoinnin-edistaminen-kuuluu-kaupungille-sote-uudistuksen-jalkeen/": [
@@ -374,6 +388,13 @@
         "label": "Puheenvuoro valtuuston videotallenteessa",
         "source": "Oulun kaupunginvaltuuston kokoustallenne",
         "verified": true
+      },
+      {
+        "youtubeId": "cmlh72xCwT4",
+        "start": 1266,
+        "label": "Kaupungininsinööri Sami Hietakankaan vastaus",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne",
+        "verified": true
       }
     ],
     "/2024/09/09/puheenvuoro-valtuustossa-taidekoulu-tilat-ja-tilahankintojen-paatoksenteko/": [
@@ -444,6 +465,13 @@
         "youtubeId": "diYNDM6rsmE",
         "start": 3829,
         "label": "Puheenvuoro valtuuston videotallenteessa",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne",
+        "verified": true
+      },
+      {
+        "youtubeId": "diYNDM6rsmE",
+        "start": 3930,
+        "label": "Johtaja Jouni Lähdemäen vastaus",
         "source": "Oulun kaupunginvaltuuston kokoustallenne",
         "verified": true
       }
@@ -606,6 +634,20 @@
         "youtubeId": "ryJF54kD-58",
         "start": 928,
         "label": "Puheenvuoro Jokirannan koulun väistötiloista",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne 29.1.2018",
+        "verified": true
+      },
+      {
+        "youtubeId": "ryJF54kD-58",
+        "start": 1097,
+        "label": "Aluepäällikkö Pasi Mäkikyrön vastaus opetuksen järjestämisestä",
+        "source": "Oulun kaupunginvaltuuston kokoustallenne 29.1.2018",
+        "verified": true
+      },
+      {
+        "youtubeId": "ryJF54kD-58",
+        "start": 1177,
+        "label": "Hankepäällikkö Juha Kaisanlahden vastaus turvallisuudesta",
         "source": "Oulun kaupunginvaltuuston kokoustallenne 29.1.2018",
         "verified": true
       }
