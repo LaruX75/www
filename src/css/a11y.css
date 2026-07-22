@@ -421,7 +421,7 @@ html.a11y-reading-guide #a11yReadingGuideLine {
 
 .a11y-trigger:hover {
     transform: translateY(-1px);
-    background: color-mix(in srgb, var(--bs-primary) 82%, var(--bs-body-bg) 18%);
+    background: color-mix(in srgb, var(--bs-primary) 82%, #000 18%);
 }
 
 .a11y-trigger:focus-visible,
