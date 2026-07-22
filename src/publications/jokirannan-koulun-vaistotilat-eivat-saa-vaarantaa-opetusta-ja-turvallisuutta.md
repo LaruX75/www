@@ -1,7 +1,7 @@
 ---
 title: Jokirannan koulun väistötilat eivät saa vaarantaa opetusta ja turvallisuutta
 date: 2018-01-29
-description: 'Valtuustopuheenvuoro Jokirannan koulun hajanaisista väistötiloista, kuljetuskustannuksista sekä opetustilojen turvallisuudesta ja pedagogisesta soveltuvuudesta.'
+description: 'Valtuuston kyselytunnin jatkokysymys Jokirannan koulun hajanaisista väistötiloista, kuljetuskustannuksista sekä opetustilojen turvallisuudesta ja pedagogisesta soveltuvuudesta.'
 event: Oulun kaupunginvaltuusto
 meeting: Oulun kaupunginvaltuusto 1/2018
 bid: 14649

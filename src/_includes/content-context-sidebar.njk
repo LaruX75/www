@@ -6,7 +6,9 @@
 {% set currentPlaces = places or [] %}
 {% set currentEntities = entities or [] %}
 {% set currentForums = forum or [] %}
+{% set currentAgendaTitle = agenda_title or "" %}
 {% set isSpeechContext = type == "puhe" %}
+{% set isQuestionHour = currentAgendaTitle == "Valtuuston kyselytunti" or ("Valtuuston kyselytunti" in currentContexts) %}
 {% set relatedItems = collections | relatedContent(page.url, categories, currentKeywords, currentTags, type, currentContexts, 4) %}
 {% set termCloud = collections | contentTermCloud([], currentKeywords, 12) %}
 {% set isEnglish = currentLang == "en" %}
@@ -100,7 +102,7 @@
   {% set archiveLabel = "All blog posts" if isEnglish else "Kaikki blogikirjoitukset" %}
 {% elif type == "puhe" %}
   {% set archiveHref = "/en/writings/#puheet" if isEnglish else "/kynasta/#puheet" %}
-  {% set typeLabel = "Speech" if isEnglish else "Puheenvuoro" %}
+  {% set typeLabel = "Question hour item" if isEnglish and isQuestionHour else ("Valtuuston kyselytunti" if isQuestionHour else ("Speech" if isEnglish else "Puheenvuoro")) %}
   {% set archiveLabel = "All speeches" if isEnglish else "Kaikki puheenvuorot" %}
 {% elif type == "lausunto" %}
   {% set archiveHref = "/en/writings/#lausunnot" if isEnglish else "/kynasta/#lausunnot" %}
@@ -194,8 +196,13 @@
       {% for item in currentForums %}
       <a class="content-context-chip content-context-chip--forum" href="{{ '/en/writings/#puheet' if isEnglish else '/kynasta/#puheet' }}">{{ item }}</a>
       {% endfor %}
+      {% if isQuestionHour %}
+      <span class="content-context-chip content-context-chip--context">{{ currentAgendaTitle or "Valtuuston kyselytunti" }}</span>
+      {% endif %}
       {% for item in currentContentContexts %}
+      {% if not isQuestionHour or item != "Valtuuston kyselytunti" %}
       <span class="content-context-chip content-context-chip--context">{{ contentContextLabels[item] or item }}</span>
+      {% endif %}
       {% endfor %}
     </div>
   </div>

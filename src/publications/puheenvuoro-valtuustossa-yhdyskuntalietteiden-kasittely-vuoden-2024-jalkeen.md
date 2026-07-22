@@ -1,7 +1,7 @@
 ---
-title: 'Puheenvuoro valtuustossa § 1: Yhdyskuntalietteiden käsittely vuoden 2024 jälkeen'
+title: 'Kysymys valtuuston kyselytunnilla § 1: Yhdyskuntalietteiden käsittely vuoden 2024 jälkeen'
 date: 2021-03-29
-description: 'Puheenvuorossa kysyn, kuinka Oulun Vesi aikoo ratkaista yhdyskuntalietteiden käsittelyn kestävällä tavalla vuoden 2024 jälkeen ja mitä suunnitellulla käsittely- ja varastointikentällä tarkoitetaan.'
+description: 'Valtuuston kyselytunnin kysymyksessä kysyn, kuinka Oulun Vesi aikoo ratkaista yhdyskuntalietteiden käsittelyn kestävällä tavalla vuoden 2024 jälkeen ja mitä suunnitellulla käsittely- ja varastointikentällä tarkoitetaan.'
 event: Oulun kaupunginvaltuusto
 meeting: Oulun kaupunginvaltuusto 3/2021
 bid: 26361

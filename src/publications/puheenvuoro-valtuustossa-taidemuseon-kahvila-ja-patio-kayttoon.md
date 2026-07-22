@@ -1,7 +1,7 @@
 ---
-title: 'Puheenvuoro valtuustossa § 101: Taidemuseon kahvila ja patio käyttöön'
+title: 'Jatkokysymys valtuuston kyselytunnilla § 101: Taidemuseon kahvila ja patio käyttöön'
 date: 2017-06-19
-description: 'Valtuustopuheenvuoro Oulun taidemuseon kahvilasta, pation hyödyntämisestä, pop-up-kahvilasta ja Hupisaarten ympäristön avaamisesta osaksi museokokemusta.'
+description: 'Valtuuston kyselytunnin jatkokysymys Oulun taidemuseon kahvilasta, pation hyödyntämisestä, pop-up-kahvilasta ja Hupisaarten ympäristön avaamisesta osaksi museokokemusta.'
 event: Oulun kaupunginvaltuusto
 meeting: Oulun kaupunginvaltuusto 7/2017
 bid: 13371
@@ -34,7 +34,7 @@ entities:
   - Oulun taidemuseo
 ---
 
-Oulun kaupunginvaltuuston kyselytunnilla käsiteltiin Oulun taidemuseon kahvilaa ja museon tilojen kehittämistä. Käytin lyhyen jatkokysymyksen siitä, voisiko kahvilaa, patiota ja Hupisaarten ympäristöä hyödyntää kevyemmillä ratkaisuilla esimerkiksi pop-up-kahvilan tai paikallisen yrittäjän avulla.
+Oulun kaupunginvaltuuston kyselytunnilla käsiteltiin Oulun taidemuseon kahvilaa ja museon tilojen kehittämistä. Esitin lyhyen jatkokysymyksen siitä, voisiko kahvilaa, patiota ja Hupisaarten ympäristöä hyödyntää kevyemmillä ratkaisuilla esimerkiksi pop-up-kahvilan tai paikallisen yrittäjän avulla.
 
 Alla oleva kysymys ja vastaus on koottu kokoustallenteesta tarkistetun ja kielellisesti siistityn litteraatin pohjalta.
 

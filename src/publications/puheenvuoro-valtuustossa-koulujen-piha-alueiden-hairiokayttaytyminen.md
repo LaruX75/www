@@ -1,7 +1,7 @@
 ---
-title: 'Puheenvuoro valtuustossa § 43: Koulujen piha-alueiden häiriökäyttäytyminen'
+title: 'Jatkokysymys valtuuston kyselytunnilla § 43: Koulujen piha-alueiden häiriökäyttäytyminen'
 date: 2024-05-20
-description: 'Puheenvuorossa kysyn, miten Kiiminkipuiston koulun alueelle suunnitellut toimet skaalautuvat muihin Oulun kouluyksiköihin, joiden piha-alueilla esiintyy vastaavaa häiriökäyttäytymistä.'
+description: 'Valtuuston kyselytunnin jatkokysymyksessä kysyn, miten Kiiminkipuiston koulun alueelle suunnitellut toimet skaalautuvat muihin Oulun kouluyksiköihin, joiden piha-alueilla esiintyy vastaavaa häiriökäyttäytymistä.'
 event: Oulun kaupunginvaltuusto
 meeting: Oulun kaupunginvaltuusto 5/2024
 bid: 38074
@@ -34,7 +34,7 @@ places:
   - Kiiminki
 ---
 
-Oulun kaupunginvaltuuston kyselytunnilla käsiteltiin 20.5.2024 Kiimingin Viitantien liikenneturvallisuutta ja Kiiminkipuiston koulun alueella esiintyvää häiriökäyttäytymistä. Käytin puheenvuoron siitä, miten suunnitellut toimet voisivat palvella myös muita kaupungin kouluyksiköitä.
+Oulun kaupunginvaltuuston kyselytunnilla käsiteltiin 20.5.2024 Kiimingin Viitantien liikenneturvallisuutta ja Kiiminkipuiston koulun alueella esiintyvää häiriökäyttäytymistä. Esitin jatkokysymyksen siitä, miten suunnitellut toimet voisivat palvella myös muita kaupungin kouluyksiköitä.
 
 Alla oleva kysymys ja vastaus on koottu kokoustallenteesta tarkistetun ja kielellisesti siistityn litteraatin pohjalta.
 
