@@ -1,6 +1,7 @@
 const protocolsByDate = {
   "2017-06-05": "https://asiakirjat.ouka.fi/ktwebscr/pk_asil_tweb.htm?bid=13272",
   "2017-06-19": "https://asiakirjat.ouka.fi/ktwebscr/pk_asil_tweb.htm?bid=13371",
+  "2017-09-25": "https://asiakirjat.ouka.fi/ktwebscr/pk_asil_tweb.htm?bid=13689",
   "2018-01-29": "https://asiakirjat.ouka.fi/ktwebscr/pk_asil_tweb.htm?bid=14649",
   "2018-02-26": "https://asiakirjat.ouka.fi/ktwebscr/pk_asil_tweb.htm?bid=14798",
   "2018-04-16": "https://asiakirjat.ouka.fi/ktwebscr/pk_asil_tweb.htm?bid=15011",
