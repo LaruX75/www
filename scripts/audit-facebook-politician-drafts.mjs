@@ -93,6 +93,22 @@ const CURATED_EXISTING_MATCHES = [
       "kaski ry järjesti viime viikolla kyselyn",
       "yli 80% opiskelijoista kokee yliopiston tiedottaneen keskustakampushankkeesta"
     ]
+  },
+  {
+    file: "src/blog/raksilasta-ja-kampuksesta-2019-2022.md",
+    terms: [
+      "raksilasta ja kampuksesta 2019-2022",
+      "asia ei ole uusi vaan käsittely on vellonut jo vuosikaudet",
+      "vähintä mitä voimme tehdä on viheltää peli poikki ja antaa suunnitelmille aikalisä"
+    ]
+  },
+  {
+    file: "src/blog/normaalikoulun-tilapaatos-palautti-kampuskeskustelun-raiteilleen.md",
+    terms: [
+      "oulun normaalikoulu saa vihdoin nykyaikaiset ja terveelliset tilat",
+      "uudishanke sijoittuu opettajia kouluttavan kasvatustieteiden ja psykologian tiedekunnan läheisyyteen",
+      "keskustakampusharhailu katkaisi hyvällä alulla olleet tilasuunnitelmat"
+    ]
   }
 ];
 

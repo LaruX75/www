@@ -19,6 +19,12 @@ schemaAbout:
     name: "Vaalikaudet"
   - "@type": "Thing"
     name: "Kaupunginvaltuuston kokoukset"
+  - "@type": "Thing"
+    name: "Kampus, Raksila ja Linnanmaa"
+  - "@type": "Thing"
+    name: "Palveluverkko ja kaupunginosat"
+  - "@type": "Thing"
+    name: "Avoin valmistelu ja tiedolla johtaminen"
 schemaMentions:
   - "@type": "GovernmentOrganization"
     name: "Oulun kaupunki"
@@ -93,6 +99,7 @@ schemaMentions:
 <nav class="pol-mobile-path" aria-label="Politiikkasivun tärkeimmät osiot">
   <a href="#nykyinen-rooli">Rooli</a>
   <a href="#ydinteemat">Ydinteemat</a>
+  <a href="#aihepolut">Aihepolut</a>
   <a href="#naytto">Näyttö</a>
   <a href="#kirjoitukset">Kirjoitukset</a>
   <a href="#syvenna">Syvennä</a>
@@ -226,6 +233,83 @@ schemaMentions:
     "summary": "Tausta-aineisto Oulun palveluverkkokeskusteluun: mitä lasten ja nuorten tilastot kertovat päätöksenteon ja koko kaupunkiin kohdistuvien vaikutusten arvioinnin tueksi."
   }
 ] %}
+{% set politicsTopicPaths = [
+  {
+    "title": "Kampus, Raksila ja Linnanmaa",
+    "href": "/politiikka/kampus-raksila-linnanmaa/",
+    "type": "Aihepolku",
+    "summary": "Kampusratkaisut, normaalikoulun tilat, Raksilan kehittäminen ja Linnanmaan merkitys samassa pitkässä kaupunkipoliittisessa keskustelussa.",
+    "source": "Puheet, kysymykset ja kuratoidut Facebook-artikkelit",
+    "accent": "#0d6efd",
+    "featured": true
+  },
+  {
+    "title": "Palveluverkko ja kaupunginosat",
+    "href": "/politiikka/palveluverkko/",
+    "type": "Aihepolku",
+    "summary": "Kouluverkko, päiväkodit, väestösuunnitteet, suuralueet ja kaupunginosien tasapuolinen kehitys koko Oulun mittakaavassa.",
+    "source": "Puheenvuorot, palveluverkkotekstit ja kuratoidut artikkelit",
+    "accent": "#198754",
+    "featured": true
+  },
+  {
+    "title": "Avoin valmistelu ja tiedolla johtaminen",
+    "href": "/politiikka/avoin-valmistelu/",
+    "type": "Aihepolku",
+    "summary": "Valmistelun näkyvyys, avoin data, julkiset tietojohtamisen työkalut ja päätöksenteon seurattavuus.",
+    "source": "Aloitteet, kirjoitukset ja kuratoidut prosessikuvaukset",
+    "accent": "#6f42c1",
+    "featured": true
+  },
+  {
+    "title": "Sivistys ja koulun resurssit",
+    "href": "/kategoriat/sivistys-ja-koulutus/",
+    "type": "Kategoria",
+    "summary": "Oppimisen tuki, koulutuksen resurssit, terveet tilat, varhaiskasvatus ja sivistyspalvelujen pitkät vaikutukset.",
+    "source": "Laaja sivistys- ja koulutuskategoria",
+    "accent": "#245c9e"
+  },
+  {
+    "title": "Varhaiskasvatus ja perheiden arki",
+    "href": "/avainsanat/varhaiskasvatus/",
+    "type": "Avainsana",
+    "summary": "Varhaiskasvatuksen rahoitus, palvelujen saatavuus, perheiden arki ja lasten palvelujen jatkuvuus.",
+    "source": "Tarkempi avainsanapolku",
+    "accent": "#b3425a"
+  },
+  {
+    "title": "Kaavoitus ja kaupunkirakenne",
+    "href": "/avainsanat/kaavoitus/",
+    "type": "Avainsana",
+    "summary": "Asemakaavat, rakentaminen, täydennysrakentaminen ja se, miten yksittäiset hankkeet vaikuttavat kaupungin kokonaisuuteen.",
+    "source": "Kaavoitukseen liittyvät puheet ja kirjoitukset",
+    "accent": "#c76821"
+  },
+  {
+    "title": "Liikkuminen ja saavutettavuus",
+    "href": "/avainsanat/liikenne-ja-saavutettavuus/",
+    "type": "Avainsana",
+    "summary": "Joukkoliikenne, pyöräily, liikenneturvallisuus ja palvelujen saavutettavuus osana arjen toimivuutta.",
+    "source": "Liikkumisen ja saavutettavuuden sisällöt",
+    "accent": "#0f766e"
+  },
+  {
+    "title": "Kulttuuri, tilat ja yhteinen kaupunki",
+    "href": "/avainsanat/kulttuuri/",
+    "type": "Avainsana",
+    "summary": "Kulttuuripalvelut, kaupungintalo, museot, tapahtumat ja yhteiset tilat osana kaupungin identiteettiä.",
+    "source": "Kulttuuriin ja tiloihin liittyvät sisällöt",
+    "accent": "#8b4d9f"
+  },
+  {
+    "title": "Vaalit ja poliittinen avoimuus",
+    "href": "/politiikka/vaalikaudet/",
+    "type": "Vaalikaudet",
+    "summary": "Vaalikaudet, luottamustehtävät, vaalitulokset ja avoimuustiedot näyttävät poliittisen työn ajallisen kokonaisuuden.",
+    "source": "Vaalikaudet, sidonnaisuudet ja vaalirahoitus",
+    "accent": "#334155"
+  }
+] %}
 {% set sortedPoliticalSpeeches = politicalSpeeches | sort(true, false, "date") %}
 {% set latestPoliticalSpeech = sortedPoliticalSpeeches[0] %}
 {% set latestInitiative = sortedInitiatives[0] %}
@@ -308,6 +392,27 @@ schemaMentions:
     </div>
     <div id="politics-core-theme-list" class="row g-4"></div>
     <div id="politics-profile-note" class="mt-3"></div>
+  </div>
+</section>
+
+<section class="py-5 mb-0" id="aihepolut">
+  <div class="site-shell">
+    <div class="pol-section-head">
+      <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-signpost-split me-1"></i>Aihepolut</p>
+      <h2 class="pol-section-title">Sukella niihin asiakokonaisuuksiin, joissa työ jatkuu vuodesta toiseen</h2>
+      <p class="pol-section-lead mb-0">Aihepolut yhdistävät puheenvuoroja, valtuustoaloitteita, kirjoituksia, kokouksia ja Facebookista kuratoitavia blogiartikkeleita. Osa on kuratoitu omaksi sivukseen, osa vie suoraan kategoriaan tai avainsanaan, jossa sama keskustelu jatkuu.</p>
+    </div>
+
+    <div class="pol-topic-grid">
+      {% for path in politicsTopicPaths %}
+      <a class="pol-topic-card{% if path.featured %} pol-topic-card--featured{% endif %}" href="{{ path.href }}" style="--pol-topic-accent: {{ path.accent }}">
+        <span class="pol-topic-type">{{ path.type }}</span>
+        <h3>{{ path.title }}</h3>
+        <p>{{ path.summary }}</p>
+        <span class="pol-topic-source">{{ path.source }}</span>
+      </a>
+      {% endfor %}
+    </div>
   </div>
 </section>
 
@@ -941,6 +1046,72 @@ schemaMentions:
   .pol-theme-card--support {
     background: rgba(255, 255, 255, 0.9);
   }
+  .pol-topic-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  .pol-topic-card {
+    position: relative;
+    display: grid;
+    align-content: start;
+    gap: 0.75rem;
+    min-height: 100%;
+    padding: 1.25rem;
+    border-radius: 1.2rem;
+    border: 1px solid rgba(17, 40, 70, 0.1);
+    border-top: 4px solid var(--pol-topic-accent, #12355f);
+    background: rgba(255, 255, 255, 0.92);
+    color: #102845;
+    text-decoration: none;
+    box-shadow: 0 0.85rem 1.8rem rgba(17, 40, 70, 0.07);
+    transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+  }
+  .pol-topic-card--featured {
+    background:
+      radial-gradient(circle at top right, color-mix(in srgb, var(--pol-topic-accent, #12355f) 16%, transparent), transparent 42%),
+      linear-gradient(180deg, rgba(255,255,255,0.98), rgba(245,249,255,0.94));
+    box-shadow: 0 1.1rem 2.3rem rgba(17, 40, 70, 0.1);
+  }
+  .pol-topic-card:hover,
+  .pol-topic-card:focus-visible {
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--pol-topic-accent, #12355f) 36%, rgba(17, 40, 70, 0.12));
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 1.2rem 2.4rem rgba(17, 40, 70, 0.12);
+  }
+  .pol-topic-type {
+    width: fit-content;
+    border-radius: 999px;
+    padding: 0.28rem 0.62rem;
+    background: color-mix(in srgb, var(--pol-topic-accent, #12355f) 12%, transparent);
+    color: color-mix(in srgb, var(--pol-topic-accent, #12355f) 72%, #102845);
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .pol-topic-card h3 {
+    margin: 0;
+    font-family: var(--bs-font-family-heading);
+    font-size: clamp(1.1rem, 1rem + 0.45vw, 1.42rem);
+    line-height: 1.18;
+    color: #102845;
+  }
+  .pol-topic-card p {
+    margin: 0;
+    color: rgba(17, 40, 70, 0.76);
+    line-height: 1.58;
+  }
+  .pol-topic-source {
+    display: block;
+    margin-top: auto;
+    padding-top: 0.4rem;
+    color: rgba(17, 40, 70, 0.62);
+    font-size: 0.88rem;
+    font-weight: 700;
+    line-height: 1.35;
+  }
   .pol-theme-head {
     display: flex;
     align-items: center;
@@ -1497,6 +1668,7 @@ schemaMentions:
   [data-bs-theme="dark"] .pol-mandate-title,
   [data-bs-theme="dark"] .pol-role-title,
   [data-bs-theme="dark"] .pol-route-card h3,
+  [data-bs-theme="dark"] .pol-topic-card h3,
   [data-bs-theme="dark"] .pol-mandate-link-card {
     color: #f4f8fd;
   }
@@ -1506,6 +1678,7 @@ schemaMentions:
   [data-bs-theme="dark"] .pol-method-card,
   [data-bs-theme="dark"] .pol-current-card,
   [data-bs-theme="dark"] .pol-route-card,
+  [data-bs-theme="dark"] .pol-topic-card,
   [data-bs-theme="dark"] .pol-evidence-card,
   [data-bs-theme="dark"] .pol-writing-item,
   [data-bs-theme="dark"] .pol-initiative-item {
@@ -1519,6 +1692,14 @@ schemaMentions:
   [data-bs-theme="dark"] .pol-archive-link {
     background: rgba(255, 255, 255, 0.09);
     border-color: rgba(255, 255, 255, 0.16);
+  }
+  [data-bs-theme="dark"] .pol-topic-card p,
+  [data-bs-theme="dark"] .pol-topic-source {
+    color: rgba(246, 249, 255, 0.76);
+  }
+  [data-bs-theme="dark"] .pol-topic-type {
+    background: rgba(255, 255, 255, 0.12);
+    color: #f4f8fd;
   }
   [data-bs-theme="dark"] .pol-mandate-badge {
     background: rgba(255, 255, 255, 0.12);
@@ -1633,6 +1814,9 @@ schemaMentions:
     .pol-method-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+    .pol-topic-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
     .pol-archive-band {
       grid-template-columns: 1fr;
     }
@@ -1664,6 +1848,12 @@ schemaMentions:
       font-weight: 800;
       text-decoration: none;
       white-space: nowrap;
+    }
+    .pol-topic-grid {
+      grid-template-columns: 1fr;
+    }
+    .pol-topic-card {
+      padding: 1.05rem;
     }
     .pol-mobile-disclosure {
       display: block;
@@ -1823,6 +2013,7 @@ schemaMentions:
         icon: 'bi-mortarboard-fill',
         color: '#0d6efd',
         tier: 'core',
+        detailUrl: '/politiikka/kampus-raksila-linnanmaa/',
         focus: ['kouluverkko', 'varhaiskasvatus', 'kampusratkaisut']
       },
       {
@@ -1833,6 +2024,7 @@ schemaMentions:
         icon: 'bi-geo-alt-fill',
         color: '#198754',
         tier: 'core',
+        detailUrl: '/politiikka/palveluverkko/',
         focus: ['suuralueet', 'kaupunginosat', 'alueellinen yhdenvertaisuus']
       },
       {
@@ -1843,6 +2035,7 @@ schemaMentions:
         icon: 'bi-bar-chart-steps',
         color: '#6f42c1',
         tier: 'core',
+        detailUrl: '/politiikka/avoin-valmistelu/',
         focus: ['avoin data', 'päätöksenteon avoimuus', 'aloitteiden seuranta']
       },
       {
@@ -1944,7 +2137,7 @@ schemaMentions:
               <p class="pol-theme-proof-label">Tuoreita nostoja</p>
               <ul class="pol-theme-proof-list">${links || '<li class="pol-theme-proof-item"><span class="text-muted small">Nostoja ei löytynyt.</span></li>'}</ul>
               <div class="pol-theme-footer">
-                <a href="/kynasta/">Koko kirjoitusarkisto</a>
+                <a href="${escHtml(group.detailUrl || '/kynasta/')}">${group.detailUrl ? 'Avaa päälinja' : 'Koko kirjoitusarkisto'}</a>
               </div>
             </article>
           </div>

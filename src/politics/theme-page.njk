@@ -1,0 +1,118 @@
+---
+pagination:
+  data: politicsThemePages
+  size: 1
+  alias: theme
+permalink: "{{ theme.permalink }}"
+layout: base.njk
+lang: fi
+templateEngineOverride: njk
+pageScopeClass: politics-theme-page-scope
+eleventyComputed:
+  title: "{{ theme.title }}"
+  description: "{{ theme.description }}"
+  schemaAbout:
+    - "@type": "Thing"
+      name: "{{ theme.title }}"
+      description: "{{ theme.description }}"
+  schemaMentions:
+    - "@type": "GovernmentOrganization"
+      name: "Oulun kaupunki"
+      url: "https://www.ouka.fi/"
+---
+
+<section class="politics-theme-hero">
+  <div class="site-shell">
+    <div class="politics-theme-hero__grid">
+      <div class="politics-theme-hero__copy">
+        <p class="content-detail-eyebrow mb-2">{{ theme.eyebrow }}</p>
+        <h1 class="content-detail-title mb-3">{{ theme.title }}</h1>
+        <p class="content-detail-lead mb-0">{{ theme.lead }}</p>
+      </div>
+      <aside class="politics-theme-hero__card" style="--politics-theme-accent: {{ theme.accent }}">
+        <p class="politics-theme-hero__kicker">Päälinja</p>
+        <p>{{ theme.principle }}</p>
+        <div class="politics-theme-stat">
+          <strong>{{ theme.statValue }}</strong>
+          <span>{{ theme.statLabel }}</span>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="politics-theme-section">
+  <div class="site-shell">
+    <div class="politics-theme-layout">
+      <main class="politics-theme-main">
+        <section class="politics-theme-card">
+          <p class="content-detail-eyebrow mb-2">Mitä tämä kokoaa</p>
+          <h2>Teeman ydin</h2>
+          <div class="politics-theme-focus">
+            {% for item in theme.focus %}
+            <span>{{ item }}</span>
+            {% endfor %}
+          </div>
+        </section>
+
+        <section class="politics-theme-card">
+          <p class="content-detail-eyebrow mb-2">Aikajana</p>
+          <h2>Miten teema näkyy sivuston aineistossa</h2>
+          <div class="politics-theme-timeline">
+            {% for item in theme.timeline %}
+            <article class="politics-theme-timeline__item">
+              <div class="politics-theme-timeline__year">{{ item.year }}</div>
+              <div class="politics-theme-timeline__body">
+                <h3>{{ item.title }}</h3>
+                <p>{{ item.text }}</p>
+                {% if item.links and item.links.length %}
+                <div class="politics-theme-links">
+                  {% for link in item.links %}
+                  <a href="{{ link.href }}"{% if link.href.startsWith("http") %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.label }}</a>
+                  {% endfor %}
+                </div>
+                {% endif %}
+              </div>
+            </article>
+            {% endfor %}
+          </div>
+        </section>
+
+        <section class="politics-theme-card politics-theme-card--muted">
+          <p class="content-detail-eyebrow mb-2">Tausta-aineisto</p>
+          <h2>Miten aineisto täydentää kokonaisuutta</h2>
+          <ul class="politics-theme-checklist">
+            {% for item in theme.facebookUse %}
+            <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+        </section>
+      </main>
+
+      <aside class="politics-theme-sidebar">
+        <section class="politics-theme-side-card">
+          <p class="content-detail-card-kicker">Liittyvät näkökulmat</p>
+          <div class="politics-theme-profile-list">
+            {% for profile in theme.profileLabels %}
+            <span>{{ profile }}</span>
+            {% endfor %}
+          </div>
+        </section>
+
+        <section class="politics-theme-side-card">
+          <p class="content-detail-card-kicker">Jatka tästä</p>
+          <div class="politics-theme-next-links">
+            {% for link in theme.nextLinks %}
+            <a href="{{ link.href }}">{{ link.label }}</a>
+            {% endfor %}
+          </div>
+        </section>
+
+        <section class="politics-theme-side-card politics-theme-side-card--note">
+          <p class="content-detail-card-kicker">Mitä nostetaan näkyviin</p>
+          <p>{{ theme.editorialNote }}</p>
+        </section>
+      </aside>
+    </div>
+  </div>
+</section>
