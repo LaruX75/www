@@ -15,6 +15,8 @@ keywords:
   - Oulun matkakeskus
   - valtuustoaloite
 initiative_type: valtuustoaloite
+meeting: Oulun kaupunginvaltuusto
+meetingDate: 2023-02-27
 wp_id: 2087
 source_url: "https://www.jarilaru.fi/oulun-asemakeskusta-koskeva-valtuustoaloite/"
 politicalProfiles:
@@ -35,4 +37,3 @@ templateEngineOverride: md
 <p>Edellämainittuja kohteita voisi hyödyntää mm. kulttuuripääkaupunkiin ja asemakeskushankkeeseen liittyvien suunnitelmien esittelyyn / viestintään. Erityisesti alueen tulevat suunnitelmat kiinnostanevat kyytiään odottelevia ihmisiä. Me allekirjoittaneet esitämme, että asematunnelia ja paviljonkia hyödynnetään kaupungin suurhankkeiden mainonnassa ja viestinnässä.</p>
 <p>Oulussa 27.2.2023</p>
 <p>Jari Laru, kaupunginvaltuutettu ja muut allekirjoittaneet</p>
-

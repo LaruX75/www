@@ -43,11 +43,14 @@ schemaMentions:
       <li class="term-content-item" data-page-item>
         <a href="{{ item.url }}" class="term-content-link">{{ item.data.title }}</a>
         <div class="term-content-meta">
-          <span>{{ item.date | dateFormat }}</span>
+          <span>{{ (item.data.meetingDate or item.date) | dateFormat }}</span>
           {% if metaMode == "event" and item.data.event %}
           <span>{{ item.data.event }}</span>
           {% elif metaMode == "initiative" %}
           <span>{{ item.data.initiative_type or "Valtuustoaloite" }}</span>
+          {% if item.data.meeting %}
+          <span>{{ item.data.meeting }}</span>
+          {% endif %}
           {% elif metaMode == "type" and item.data.type %}
           <span>{{ item.data.type }}</span>
           {% endif %}

@@ -2,6 +2,8 @@
 title: Sankivaaran ensilumen ladun pidentäminen
 date: 2019-04-01
 initiative_type: valtuustoaloite
+meeting: Oulun kaupunginvaltuusto
+meetingDate: 2019-04-01
 description: Sankivaarassa jo oleva ensilumen latu on osoittautunut hyvin suosituksi ja on pahoin ruuhkautunut aamusta iltaan. Reitti on aamusta iltaan eri ikäryhmien käytössä, jonka äkee jo alueen parkkipaikalta. Ruuhkaisuus rajoittaa kuntalaisten mahdollisuuksia kuntoiluun, sillä kaikki eivät täydelle ladulle mahdu hiihtämää tai kokevat sen epämiellyttäväksi.
 url: ''
 ouka_response_body: Sivistys- ja kulttuurilautakunta 18.6.2019

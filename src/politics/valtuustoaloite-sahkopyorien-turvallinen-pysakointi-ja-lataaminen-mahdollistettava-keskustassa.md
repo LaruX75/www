@@ -2,6 +2,8 @@
 title: Sähköpyörien turvallinen pysäköinti ja lataaminen mahdollistettava keskustassa
 date: 2023-10-09
 initiative_type: valtuustoaloite
+meeting: Oulun kaupunginvaltuusto
+meetingDate: 2023-10-09
 description: Jätin allaolevan valtuustoaloitteen kaupunginvaltuuston kokouksessa 9.10.20223 Verovapaa polkupyöräetu on ollut maassamme käytössä vuoden 2021 alusta alkaen. Vuonna 2023 sen pariin tulevat my...
 url: ''
 ouka_response_body: Yhdyskuntalautakunta 16.1.2024

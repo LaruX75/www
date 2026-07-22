@@ -10,6 +10,7 @@
 {% set isSpeechContext = type == "puhe" %}
 {% set isQuestionHour = currentAgendaTitle == "Valtuuston kyselytunti" or ("Valtuuston kyselytunti" in currentContexts) %}
 {% set relatedItems = collections | relatedContent(page.url, categories, currentKeywords, currentTags, type, currentContexts, 4) %}
+{% set sameMeetingGroup = collections | sameCouncilMeetingGroup(page.url, 6, currentLang) %}
 {% set termCloud = collections | contentTermCloud([], currentKeywords, 12) %}
 {% set isEnglish = currentLang == "en" %}
 {% set txt = {
@@ -25,6 +26,8 @@
   "entities": "People and organizations",
   "forums": "Forum",
   "handling": "Handling",
+  "sameMeeting": "Same council meeting",
+  "protocol": "Minutes",
   "tags": "Tags",
   "keywords": "Keywords",
   "related": "Related content",
@@ -42,6 +45,8 @@
   "entities": "Toimijat ja organisaatiot",
   "forums": "Toimielin",
   "handling": "Käsittely",
+  "sameMeeting": "Samassa kokouksessa",
+  "protocol": "Pöytäkirja",
   "tags": "Tunnisteet",
   "keywords": "Avainsanat",
   "related": "Samasta aiheesta",
@@ -205,6 +210,27 @@
       {% endif %}
       {% endfor %}
     </div>
+  </div>
+  {% endif %}
+
+  {% if sameMeetingGroup.items.length %}
+  <div class="content-context-card content-context-card--same-meeting">
+    <p class="content-context-kicker">{{ txt.sameMeeting }}</p>
+    <h2 class="content-context-title">{{ sameMeetingGroup.meetingLabel }}</h2>
+    <p class="content-context-meeting-meta">
+      <span>{{ sameMeetingGroup.meetingDate | dateFormat }}</span>
+      {% if sameMeetingGroup.protocolUrl %}
+      <a href="{{ sameMeetingGroup.protocolUrl }}" target="_blank" rel="noopener">{{ txt.protocol }}</a>
+      {% endif %}
+    </p>
+    <ol class="content-context-related content-context-related--same-meeting">
+      {% for item in sameMeetingGroup.items %}
+      <li>
+        <a href="{{ item.url }}">{{ item.title }}</a>
+        <span>{{ item.typeLabel }}{% if item.detailLabel %} · {{ item.detailLabel }}{% endif %}</span>
+      </li>
+      {% endfor %}
+    </ol>
   </div>
   {% endif %}
 

@@ -5,6 +5,7 @@ const {
   getContextMeta,
   resolveContexts
 } = require("./src/_data/contentContext");
+const oukaCouncilSpeechProtocols = require("./src/_data/oukaCouncilSpeechProtocols");
 
 function getLangFromUrl(url) {
   return String(url || "").startsWith("/en/") ? "en" : "fi";
@@ -71,6 +72,134 @@ function contentTypeLabel(data = {}, tags = [], lang = "fi") {
   if (tagSet.has("politics")) return lang === "en" ? "Initiative" : "Aloite";
   if (tagSet.has("blog")) return lang === "en" ? "Blog post" : "Blogikirjoitus";
   return lang === "en" ? "Text" : "Kirjoitus";
+}
+
+function dateOnlyFromValue(value) {
+  if (!value) return "";
+  if (typeof value === "string") {
+    const match = value.match(/\d{4}-\d{2}-\d{2}/);
+    if (match) return match[0];
+  }
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) return "";
+  return [
+    parsed.getFullYear(),
+    String(parsed.getMonth() + 1).padStart(2, "0"),
+    String(parsed.getDate()).padStart(2, "0")
+  ].join("-");
+}
+
+function councilOverrideForItem(item) {
+  const data = item?.data || {};
+  return oukaCouncilSpeechProtocols.overrides?.[item?.url]
+    || oukaCouncilSpeechProtocols.overrides?.[data.source_url]
+    || {};
+}
+
+function councilMeetingDateForItem(item) {
+  const data = item?.data || {};
+  const override = councilOverrideForItem(item);
+  return dateOnlyFromValue(data.meetingDate || override.meetingDate || data.meeting_date || item?.date || data.date);
+}
+
+function isCouncilMeetingItem(item) {
+  const data = item?.data || {};
+  const tags = toArray(data.tags).map(normalizeTerm);
+  const forums = toArray(data.forum).map(normalizeTerm);
+  const contexts = toArray(data.contexts).map(normalizeTerm);
+  const meetingText = [
+    data.meeting,
+    data.event,
+    data.agenda_title,
+    data.asiakohta,
+    ...forums,
+    ...contexts,
+    ...tags
+  ].join(" ").toLowerCase();
+
+  if (meetingText.includes("kaupunginvaltuusto")) return true;
+  if (meetingText.includes("valtuuston kyselytunti")) return true;
+  return Boolean(data.meetingDate && tags.includes("politics"));
+}
+
+function councilMeetingLabelForItem(item, meetingDate = "") {
+  const data = item?.data || {};
+  const override = councilOverrideForItem(item);
+  return data.meeting
+    || override.meeting
+    || data.event
+    || override.event
+    || (meetingDate ? `Oulun kaupunginvaltuusto ${meetingDate}` : "Oulun kaupunginvaltuusto");
+}
+
+function councilItemTypeLabel(data = {}, lang = "fi") {
+  const contexts = normalizeTerms(data.contexts);
+  const tags = toArray(data.tags).map(normalizeTerm);
+  const keywords = toArray(data.keywords).map(normalizeTerm);
+  const isQuestionHour = data.agenda_title === "Valtuuston kyselytunti" || contexts.has("valtuuston kyselytunti");
+  if (isQuestionHour) return lang === "en" ? "Question hour" : "Kyselytunti";
+  if (data.type === "puhe") return lang === "en" ? "Speech" : "Puheenvuoro";
+  if (data.initiative_type || tags.includes("aloitteet") || keywords.includes("valtuustoaloite")) return lang === "en" ? "Initiative" : "Aloite";
+  if (tags.includes("politics")) return lang === "en" ? "Initiative" : "Aloite";
+  return contentTypeLabel(data, data.tags, lang);
+}
+
+function councilItemSortKey(data = {}) {
+  const agendaNumber = Number(data.agenda_item || data.agendaItem || 0);
+  const tags = toArray(data.tags).map(normalizeTerm);
+  const keywords = toArray(data.keywords).map(normalizeTerm);
+  const isInitiative = data.initiative_type || tags.includes("aloitteet") || keywords.includes("valtuustoaloite") || tags.includes("politics");
+  const typePriority = data.agenda_title === "Valtuuston kyselytunti"
+    ? 1
+    : data.type === "puhe"
+      ? 2
+      : isInitiative
+        ? 3
+        : 4;
+  return {
+    agendaNumber: Number.isFinite(agendaNumber) && agendaNumber > 0 ? agendaNumber : 999,
+    typePriority,
+    title: data.title || ""
+  };
+}
+
+function sameCouncilMeetingGroup(collections, pageUrl, limit = 6, lang = "fi") {
+  const items = uniqueContentItems(collections).filter(isCouncilMeetingItem);
+  const current = items.find((item) => item.url === pageUrl);
+  if (!current) return { meetingDate: "", meetingLabel: "", protocolUrl: "", items: [] };
+
+  const meetingDate = councilMeetingDateForItem(current);
+  if (!meetingDate) return { meetingDate: "", meetingLabel: "", protocolUrl: "", items: [] };
+
+  const meetingLabel = councilMeetingLabelForItem(current, meetingDate);
+  const protocolUrl = oukaCouncilSpeechProtocols.protocolsByDate?.[meetingDate] || "";
+  const maxItems = Number(limit) || 6;
+  const relatedItems = items
+    .filter((item) => item.url !== pageUrl && councilMeetingDateForItem(item) === meetingDate)
+    .map((item) => {
+      const data = item.data || {};
+      return {
+        url: item.url,
+        title: data.title || "",
+        typeLabel: councilItemTypeLabel(data, lang),
+        detailLabel: data.asiakohta || data.agenda_title || data.meeting || data.event || "",
+        sort: councilItemSortKey(data)
+      };
+    })
+    .sort((a, b) => (
+      a.sort.agendaNumber - b.sort.agendaNumber
+      || a.sort.typePriority - b.sort.typePriority
+      || a.title.localeCompare(b.title, lang === "en" ? "en" : "fi")
+    ))
+    .slice(0, maxItems)
+    .map(({ sort, ...item }) => item);
+
+  return {
+    meetingDate,
+    meetingLabel,
+    protocolUrl,
+    items: relatedItems
+  };
 }
 
 function archiveTerms(items, limit = 14, source = "both") {
@@ -475,6 +604,10 @@ module.exports = function registerFilters(eleventyConfig) {
         return new Date(b.date || 0) - new Date(a.date || 0);
       })
       .slice(0, Number(limit) || 4);
+  });
+
+  eleventyConfig.addFilter("sameCouncilMeetingGroup", function (collections, pageUrl, limit = 6, lang = "fi") {
+    return sameCouncilMeetingGroup(collections, pageUrl, limit, lang);
   });
 
   eleventyConfig.addFilter("contentTermCloud", function (collections, categories, keywords, limit = 12) {

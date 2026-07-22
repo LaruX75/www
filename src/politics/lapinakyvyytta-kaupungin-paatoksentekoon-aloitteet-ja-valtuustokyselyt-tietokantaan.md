@@ -13,6 +13,8 @@ keywords:
   - valtuustokysely
   - vuorovaikutussuunnitelma
 initiative_type: valtuustoaloite
+meeting: Oulun kaupunginvaltuusto
+meetingDate: 2021-03-29
 ouka_response_url: "http://asiakirjat.ouka.fi/ktwebscr/pk_asil_tweb.htm?bid=27454"
 ouka_response_body: "Kaupunginhallitus 30.8.2021"
 wp_id: 1660

@@ -527,10 +527,14 @@ schemaMentions:
 <script id="aloitteet-data" type="application/json">
 [
   {% for item in collections.politics %}
+  {% set itemMeetingDate = item.data.meetingDate or (item.date | isoDate) %}
   {
     "title": {{ item.data.title | jsonSafe | safe }},
     "date": "{{ item.date }}",
     "formattedDate": "{{ item.date | dateFormat }}",
+    "meetingDate": "{{ itemMeetingDate | isoDate }}",
+    "formattedMeetingDate": "{{ itemMeetingDate | dateFormat }}",
+    "meeting": {{ (item.data.meeting or "") | jsonSafe | safe }},
     "description": {{ (item.data.description or "") | jsonSafe | safe }},
     "initiative_type": {{ (item.data.initiative_type or "") | jsonSafe | safe }},
     "url": "{{ item.data.url or item.url }}",
@@ -571,8 +575,8 @@ schemaMentions:
           <table class="table table-hover align-middle mb-0 pub-table aloitteet-table">
             <thead>
               <tr>
-                <th class="sortable text-center" data-col="date" style="width:140px">
-                  Päivämäärä <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
+                <th class="sortable text-center" data-col="meetingDate" style="width:150px">
+                  Kokouspvm <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
                 </th>
                 <th class="sortable" data-col="title" style="min-width:200px">
                   Otsikko <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
@@ -2510,9 +2514,9 @@ function syncWritingRoleFilterButtons(buttons, selectedRole) {
   if (!aloitteetDataEl) return;
   const aloitteetData = JSON.parse(aloitteetDataEl.textContent);
 
-  let filteredAloitteetData = [...aloitteetData].sort((a, b) => new Date(b.date) - new Date(a.date));
+  let filteredAloitteetData = [...aloitteetData].sort((a, b) => new Date(b.meetingDate || b.date) - new Date(a.meetingDate || a.date));
   let aloitteetCurrentPage = 1;
-  let aloitteetSortCol = 'date';
+  let aloitteetSortCol = 'meetingDate';
   let aloitteetSortDir = -1; // -1 = desc
 
   const aloitteetSearchInp = document.getElementById('aloitteet-search');
@@ -2526,25 +2530,27 @@ function syncWritingRoleFilterButtons(buttons, selectedRole) {
       const matchQ = !q ||
         (d.title || '').toLowerCase().includes(q) ||
         (d.description || '').toLowerCase().includes(q) ||
+        (d.meeting || '').toLowerCase().includes(q) ||
+        (d.formattedMeetingDate || '').toLowerCase().includes(q) ||
         (d.initiative_type || '').toLowerCase().includes(q) ||
         (d.categories || []).some(c => c.toLowerCase().includes(q)) ||
         (d.keywords || []).some(k => k.toLowerCase().includes(q));
       return matchQ;
-    }).sort((a, b) => new Date(b.date) - new Date(a.date));
+    }).sort((a, b) => new Date(b.meetingDate || b.date) - new Date(a.meetingDate || a.date));
     aloitteetCurrentPage = 1;
     renderAloitteet();
   }
 
   function sortAloitteetData(col) {
     if (aloitteetSortCol === col) { aloitteetSortDir *= -1; }
-    else { aloitteetSortCol = col; aloitteetSortDir = col === 'date' ? -1 : 1; }
+    else { aloitteetSortCol = col; aloitteetSortDir = col === 'date' || col === 'meetingDate' ? -1 : 1; }
     
     filteredAloitteetData.sort((a, b) => {
       let av = a[col] ?? '';
       let bv = b[col] ?? '';
       if (typeof av === 'string') av = av.toLowerCase();
       if (typeof bv === 'string') bv = bv.toLowerCase();
-      if (col === 'date') {
+      if (col === 'date' || col === 'meetingDate') {
         return (new Date(av) - new Date(bv)) * aloitteetSortDir;
       }
       return av.toString().localeCompare(bv.toString(), 'fi') * aloitteetSortDir;
@@ -2570,9 +2576,10 @@ function syncWritingRoleFilterButtons(buttons, selectedRole) {
         const targetAttr = d.isExternal ? 'target="_blank" rel="noopener"' : '';
         const iconInfo = d.isExternal ? '<i class="bi bi-arrow-up-right"></i>' : '<i class="bi bi-arrow-right"></i>';
         const typeInfo = d.initiative_type ? `<br><span class="badge text-bg-light border text-dark mt-1">${escHtml(d.initiative_type)}</span>` : '';
+        const meetingInfo = d.meeting ? `<br><span class="small text-muted">${escHtml(d.meeting)}</span>` : '';
 
         return `<tr>
-          <td class="col-date text-center small text-muted font-monospace">${d.formattedDate}</td>
+          <td class="col-date text-center small text-muted font-monospace">${d.formattedMeetingDate || d.formattedDate}${meetingInfo}</td>
           <td class="col-title fw-medium"><a href="${d.url}" ${targetAttr} class="text-decoration-none">${escHtml(d.title)}</a></td>
           <td class="col-desc small text-muted"><span class="summary-text">${escHtml(d.description)}</span>${typeInfo}</td>
           <td class="col-taxonomy">

@@ -2,6 +2,8 @@
 title: E-urheilun potentiaalin selvitystyön aloittaminen
 date: 2018-10-08
 initiative_type: valtuustoaloite
+meeting: Oulun kaupunginvaltuusto
+meetingDate: 2018-10-08
 description: '“Suomalaiset voittivat joukkueensa kanssa Dota 2: ykkösturnauksen ja lähes 10 miljoonaa euroa – ”Suoritus on verrattavissa mihin tahansa arvokisavoittoon” “Assembly esitteli pelimaailman uus...'
 url: ''
 categories:

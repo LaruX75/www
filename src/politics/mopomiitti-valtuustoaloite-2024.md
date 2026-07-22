@@ -15,6 +15,8 @@ keywords:
   - mopoharrastus
   - nuoret
 initiative_type: valtuustoaloite
+meeting: Oulun kaupunginvaltuusto
+meetingDate: 2024-04-29
 politicalProfiles:
   - hyvinvointi
   - lahipalvelut

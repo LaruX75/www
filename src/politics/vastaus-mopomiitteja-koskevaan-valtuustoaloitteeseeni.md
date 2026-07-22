@@ -14,6 +14,10 @@ keywords:
   - mopot
   - nuorisotyö
 initiative_type: valtuustoaloite
+meeting: Oulun kaupunginvaltuusto
+meetingDate: 2024-04-29
+relatedItems:
+  - /2024/04/25/mopomiitti-valtuustoaloite-2024/
 ouka_case: "OUKA/5299/00.02.00/2024"
 ouka_response_body: "Suora hallinnollinen vastaus, sivistys- ja kulttuurijohtaja 13.8.2024"
 wp_id: 2453
@@ -26,4 +30,3 @@ templateEngineOverride: md
 <p>Mikäli tapahtumalle löytyy vastuullinen järjestäjä, voi nuorisopalvelut olla tukemassa tapahtuman järjestämistä eri tavoin esimerkiksi suunnittelussa, lupiin ja niiden hakemiseen liittyvissä asioissa, vakuutuksissa tai yhteydenpidossa viranomaisiin, kuten poliisin ja pelastuslaitoksen kanssa. Nuorilla on mahdollisuus anoa kaupungilta Nero -toimintarahaa mopomiitin järjestämiseksi <a href="https://www.uortenoulu.fi/nuorten-toimintaraha-nero/" target="_blank" rel="noreferrer noopener">https://www.uortenoulu.fi/nuorten-toimintaraha-nero/</a> . Nuorisopalveluiden työntekijöiden on myös mahdollista jalkautua itse tapahtumaan.</p>
 <p><strong>Valmistelija: </strong>perusopetus- ja nuorisojohtaja Marjut Nurmivuori<br></p>
 <p><br>Ystävällisin terveisin Mika Penttilä<br>sivistys- ja kulttuurijohtaja<br>sivistys- ja kulttuuripalvelut<br>Oulun kaupunki<br></p>
-

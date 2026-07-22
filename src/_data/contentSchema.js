@@ -53,6 +53,7 @@ const contentSchema = {
       "agenda_title",
       "agenda_url",
       "meeting",
+      "meetingDate",
       "bid",
       "youtubeId",
       "youtubeUrl",
@@ -183,7 +184,7 @@ const contentSchema = {
       glob: "src/politics/*.md",
       required: ["title", "date"],
       recommended: ["categories", "keywords", "politicalProfiles"],
-      arrayFields: ["categories", "keywords", "politicalProfiles", "contexts", "contentContexts", "places", "entities"],
+      arrayFields: ["categories", "keywords", "politicalProfiles", "contexts", "contentContexts", "places", "entities", "relatedItems"],
       controlled: {
         politicalProfiles: "politicalProfiles",
         contexts: "contexts"

@@ -17,6 +17,8 @@ keywords:
   - veneily
   - vuokravene
 initiative_type: valtuustoaloite
+meeting: Oulun kaupunginvaltuusto
+meetingDate: 2023-11-27
 ouka_response_url: "http://asiakirjat.ouka.fi/ktwebscr/pk_asil_tweb.htm?bid=37366"
 ouka_response_body: "Yhdyskuntalautakunta 20.3.2024"
 wp_id: 2135
@@ -40,4 +42,3 @@ templateEngineOverride: md
 <p><strong><br>Oulun kaupungin tulee selvittää mahdollisuudet tarjoa kaupunkilaisille kaupunkisoutuvenepalvelu</strong> </p>
 <p>Tässä valtuustoaloitteessa esitetään, että Oulun kaupunki selvittää mahdollisuudet saada kaupunkiin kaupunkisoutuvenepalveluna joko yhteistyössä skipperin&nbsp;tai muun toimijan kanssa tai kaupungin omana palveluna. Kaupunkisoutuveneille soveltuvia paikkoja olisivat mm.&nbsp;Oulun edustan jokisuisto, Oulujokivarsi, Kuivasjärvi,&nbsp;Pyykösjärvi, Jäälinjärvi&nbsp;jne. &nbsp;&nbsp;</p>
 <p>Jari Laru, kaupunginvaltuutettu ja muut allekirjoittaneet&nbsp;</p>
-

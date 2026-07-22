@@ -78,6 +78,21 @@ layout: base.njk
                 <dd>{{ date | dateFormat }}</dd>
               </div>
             {% endif %}
+            {% if meetingDate %}
+              {% set meetingDateLabel = "Meeting date" if isEnglish else "Kokouspäivä" %}
+              {% if initiative_type or ("politics" in currentTags) %}
+                {% set meetingDateLabel = "Submitted in meeting" if isEnglish else "Jätetty kokouksessa" %}
+              {% endif %}
+              <div>
+                <dt>{{ meetingDateLabel }}</dt>
+                <dd>
+                  {{ meetingDate | dateFormat }}
+                  {% if meeting %}
+                    <br><span>{{ meeting }}</span>
+                  {% endif %}
+                </dd>
+              </div>
+            {% endif %}
             {% if event %}
               <div>
                 <dt>{{ "Context" if isEnglish else "Tilaisuus" }}</dt>

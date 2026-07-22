@@ -2,6 +2,8 @@
 title: Oulun kaupungin tulee toteuttaa julkinen tietojohtamisportaali
 date: 2024-02-26
 initiative_type: valtuustoaloite
+meeting: Oulun kaupunginvaltuusto
+meetingDate: 2024-02-26
 description: Oulun kaupungin avoimet tietovarannot ja äkymät tietoon kaipaavat kehittämistä Oulun kaupunki tarjoaa muiden suomalaisten kuntien tavoin paljon lakisääteisiä tietovarantoja ja äkymiä hallin...
 url: ''
 categories:
