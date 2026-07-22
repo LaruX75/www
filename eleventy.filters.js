@@ -943,9 +943,10 @@ module.exports = function registerFilters(eleventyConfig) {
         return true;
       })
       .map((term) => {
+        const name = String(term || "");
         const count = frequencies.get(normalizeTerm(term)) || 1;
         return {
-          name: term,
+          name,
           count,
           weight: count >= 20 ? "xl" : count >= 10 ? "lg" : count >= 5 ? "md" : "sm"
         };

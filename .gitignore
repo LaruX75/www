@@ -47,6 +47,7 @@ images-report.csv
 tmp/facebook-politician-export/
 tmp/facebook-export/
 facebook-export/
+src/blog/_drafts/
 
 # Local one-off helper scripts
 scripts/canva-extract-years.mjs

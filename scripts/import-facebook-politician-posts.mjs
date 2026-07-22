@@ -246,7 +246,21 @@ function normalizeDate(value) {
 }
 
 function firstString(...values) {
-  return values.find((value) => typeof value === "string" && value.trim())?.trim() || "";
+  const value = values.find((candidate) => typeof candidate === "string" && candidate.trim());
+  return value ? decodeMetaExportString(value).trim() : "";
+}
+
+function mojibakeScore(value) {
+  return (String(value).match(/[ÃÂâ][\u0080-\u00ff]?/g) || []).length;
+}
+
+function decodeMetaExportString(value) {
+  const text = String(value || "");
+  if (!/[ÃÂâ][\u0080-\u00ff]?/.test(text)) return text;
+
+  const decoded = Buffer.from(text, "latin1").toString("utf8");
+  if (mojibakeScore(decoded) < mojibakeScore(text)) return decoded;
+  return text;
 }
 
 function extractMetaExportText(item) {
@@ -303,6 +317,16 @@ function flattenCandidates(root) {
       };
     })
     .filter((item) => item.text && item.date);
+}
+
+function dedupeCandidates(candidates) {
+  const seen = new Set();
+  return candidates.filter((post) => {
+    const key = `${post.date}::${post.text.replace(/\s+/g, " ").trim()}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
 }
 
 function sentenceExcerpt(text, maxLength = 220) {
@@ -443,9 +467,9 @@ async function main() {
   if (args.input) roots.push(...readInput(args.input));
   if (args.graphPageId) roots.push(await readGraphPosts(args));
 
-  let candidates = roots.flatMap(flattenCandidates)
+  let candidates = dedupeCandidates(roots.flatMap(flattenCandidates)
     .filter((post) => post.text.length >= args.minChars)
-    .sort((a, b) => b.date.localeCompare(a.date));
+    .sort((a, b) => b.date.localeCompare(a.date)));
 
   if (args.limit > 0) candidates = candidates.slice(0, args.limit);
 

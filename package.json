@@ -48,6 +48,7 @@
     "export:macwhisper-transcripts": "node scripts/export-macwhisper-transcripts.mjs",
     "audit:council-video-times:macwhisper": "node scripts/find-council-speech-times-from-macwhisper.mjs",
     "audit:content-schema": "node scripts/audit-content-schema.mjs",
+    "audit:facebook-politician": "node scripts/audit-facebook-politician-drafts.mjs",
     "import:facebook-politician": "node scripts/import-facebook-politician-posts.mjs",
     "eleventy": "npx @11ty/eleventy",
     "eleventy:quiet": "npx @11ty/eleventy --quiet",
