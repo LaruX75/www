@@ -111,8 +111,8 @@
   {% set archiveLabel = "All blog posts" if isEnglish else "Kaikki blogikirjoitukset" %}
 {% elif type == "puhe" %}
   {% set archiveHref = "/en/writings/#puheet" if isEnglish else "/kynasta/#puheet" %}
-  {% set typeLabel = "Question hour item" if isEnglish and isQuestionHour else ("Valtuuston kyselytunti" if isQuestionHour else ("Speech" if isEnglish else "Puheenvuoro")) %}
-  {% set archiveLabel = "All speeches" if isEnglish else "Kaikki puheenvuorot" %}
+  {% set typeLabel = "Council question hour" if isEnglish and isQuestionHour else ("Valtuuston kyselytunti" if isQuestionHour else ("Speech" if isEnglish else "Puheenvuoro")) %}
+  {% set archiveLabel = "All council question hour items" if isEnglish and isQuestionHour else ("Kaikki kyselytunnin sisällöt" if isQuestionHour else ("All speeches" if isEnglish else "Kaikki puheenvuorot")) %}
 {% elif type == "lausunto" %}
   {% set archiveHref = "/en/writings/#lausunnot" if isEnglish else "/kynasta/#lausunnot" %}
   {% set typeLabel = "Expert statement" if isEnglish else "Asiantuntijalausunto" %}
@@ -141,8 +141,8 @@
   {% set archiveLabel = "All columns" if isEnglish else "Kaikki kolumnit" %}
 {% elif "politics" in currentTags %}
   {% set archiveHref = "/en/writings/#aloitteet" if isEnglish else "/kynasta/#aloitteet" %}
-  {% set typeLabel = "Initiative" if isEnglish else "Aloite" %}
-  {% set archiveLabel = "All initiatives" if isEnglish else "Kaikki aloitteet" %}
+  {% set typeLabel = "Council initiative" if isEnglish else "Valtuustoaloite" %}
+  {% set archiveLabel = "All council initiatives" if isEnglish else "Kaikki valtuustoaloitteet" %}
 {% endif %}
 
 <div class="content-context-sidebar">

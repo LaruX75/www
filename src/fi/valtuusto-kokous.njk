@@ -13,7 +13,7 @@ pageShellClass: site-shell site-shell--wide
 pageScopeClass: council-meeting-page-scope
 eleventyComputed:
   title: "{{ meeting.contextLabel }}"
-  description: "{{ meeting.contextLabel }}, {{ meeting.meetingLabel }}: Jari Larun puheenvuorot, aloitteet ja kyselytunnin kysymykset samassa näkymässä."
+  description: "{{ meeting.contextLabel }}, {{ meeting.meetingLabel }}: Jari Larun puheenvuorot, valtuustoaloitteet ja valtuuston kyselytunnin asiat samassa näkymässä."
 schemaAbout:
   - "@type": "Thing"
     name: "Oulun kaupunginvaltuusto"
@@ -68,7 +68,7 @@ schemaMentions:
       {% if meeting.summaryTitle %}
       <p class="council-meeting-hero-summary">{{ meeting.summaryTitle }}</p>
       {% endif %}
-      <p class="term-hero-lead mb-0">Tällä sivulla näkyvät samaan kokoukseen kytketyt puheenvuorot, aloitteet ja kyselytunnin kysymykset. Kokouspäivä auttaa näkemään, mitkä sisällöt kuuluvat samaan päätöksenteon tilanteeseen.</p>
+      <p class="term-hero-lead mb-0">Tällä sivulla näkyvät samaan kokoukseen kytketyt puheenvuorot, valtuustoaloitteet ja valtuuston kyselytunnin asiat. Kokouspäivä auttaa näkemään, mitkä sisällöt kuuluvat samaan päätöksenteon tilanteeseen.</p>
     </div>
     <aside class="council-meeting-hero-card">
       <p class="term-hero-card__kicker">Kokouksen aineisto</p>
@@ -92,14 +92,14 @@ schemaMentions:
     <div class="site-kpi-card">
       {% if meeting.hasQuestionHour %}
       <span class="site-kpi-number">{{ meeting.counts.questions }}</span>
-      <span class="site-kpi-label">{{ "kyselytunnin kysymys" if meeting.counts.questions == 1 else "kyselytunnin kysymystä" }}</span>
+      <span class="site-kpi-label">{{ "kyselytunnin asia" if meeting.counts.questions == 1 else "kyselytunnin asiaa" }}</span>
       {% else %}
       <span class="site-kpi-label site-kpi-label--standalone">Ei kyselytuntia</span>
       {% endif %}
     </div>
     <div class="site-kpi-card">
       <span class="site-kpi-number">{{ meeting.counts.initiatives }}</span>
-      <span class="site-kpi-label">aloitetta</span>
+      <span class="site-kpi-label">{{ "valtuustoaloite" if meeting.counts.initiatives == 1 else "valtuustoaloitetta" }}</span>
     </div>
     <div class="site-kpi-card">
       <span class="site-kpi-number">{{ meeting.missingMetadata.length }}</span>
@@ -110,8 +110,8 @@ schemaMentions:
   <div class="council-meeting-layout">
     <main class="council-meeting-main">
       {{ renderItems("Puheenvuorot", meeting.speeches, "Tästä kokouksesta ei ole kytketty puheenvuoroja.") }}
-      {{ renderItems("Kyselytunnin kysymykset", meeting.questions, "Tästä kokouksesta ei ole kytketty kyselytunnin kysymyksiä." if meeting.hasQuestionHour else "Kokouksessa ei ollut kyselytuntia.") }}
-      {{ renderItems("Aloitteet", meeting.initiatives, "Tästä kokouksesta ei ole kytketty aloitteita.") }}
+      {{ renderItems("Valtuuston kyselytunti", meeting.questions, "Tästä kokouksesta ei ole kytketty kyselytunnin sisältöjä." if meeting.hasQuestionHour else "Kokouksessa ei ollut valtuuston kyselytuntia.") }}
+      {{ renderItems("Valtuustoaloitteet", meeting.initiatives, "Tästä kokouksesta ei ole kytketty valtuustoaloitteita.") }}
       {% if meeting.otherItems.length %}
       {{ renderItems("Muut sisällöt", meeting.otherItems, "") }}
       {% endif %}

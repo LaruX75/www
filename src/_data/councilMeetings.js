@@ -60,11 +60,16 @@ function readDirectory(directory) {
     .filter((item) => item.url && item.data?.title);
 }
 
-module.exports = function councilMeetingsData() {
-  const collections = SOURCE_DIRECTORIES.reduce((groups, directory) => {
+function readCouncilMeetingCollections() {
+  return SOURCE_DIRECTORIES.reduce((groups, directory) => {
     groups[directory] = readDirectory(directory);
     return groups;
   }, {});
+}
 
+module.exports = function councilMeetingsData() {
+  const collections = readCouncilMeetingCollections();
   return buildCouncilMeetings(collections, "fi");
 };
+
+module.exports.readCouncilMeetingCollections = readCouncilMeetingCollections;

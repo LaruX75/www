@@ -77,7 +77,7 @@ schemaMentions:
               </div>
               <div>
                 <dt>Näyttö</dt>
-                <dd>Puheenvuorot, aloitteet ja kirjoitukset samasta linjasta</dd>
+                <dd>Puheenvuorot, valtuustoaloitteet ja kirjoitukset samasta linjasta</dd>
               </div>
             </dl>
           </div>
@@ -331,12 +331,12 @@ schemaMentions:
         {% if latestInitiative %}
         <article class="pol-evidence-card">
           <div class="pol-evidence-meta">
-            <span>Aloite</span>
+            <span>Valtuustoaloite</span>
             <span>{{ latestInitiative.date | dateFormat }}</span>
           </div>
           <h3 class="pol-evidence-title pol-evidence-title--small"><a href="{{ latestInitiative.url }}">{{ latestInitiative.data.title }}</a></h3>
-          <p class="pol-evidence-summary">Aloitteissa näkyy, miten periaatteet muuttuvat kirjallisiksi avauksiksi ja seurattaviksi päätöksiksi.</p>
-          <a href="/kynasta/#aloitteet" class="pol-inline-link">Kaikki aloitteet</a>
+          <p class="pol-evidence-summary">Valtuustoaloitteissa näkyy, miten periaatteet muuttuvat kirjallisiksi avauksiksi ja seurattaviksi päätöksiksi.</p>
+          <a href="/kynasta/#aloitteet" class="pol-inline-link">Kaikki valtuustoaloitteet</a>
         </article>
         {% endif %}
         {% if latestPoliticalWriting %}
@@ -437,7 +437,7 @@ schemaMentions:
           <span>Valtuustossa ja muissa tilaisuuksissa pidetyt puheet.</span>
         </a>
         <a href="/kynasta/#aloitteet" class="pol-archive-link">
-          <strong>Aloitteet</strong>
+          <strong>Valtuustoaloitteet</strong>
           <span>Valtuustoaloitteet ja niiden eteneminen.</span>
         </a>
         <a href="/kynasta/?opinions=political#mielipiteet" class="pol-archive-link">
@@ -481,7 +481,7 @@ schemaMentions:
     "title": {{ (item.data.title or "") | dump | safe }},
     "url": {{ (item.url or "") | dump | safe }},
     "date": {{ (item.date | dateToRfc3339) | dump | safe }},
-    "contentType": "Aloite",
+    "contentType": "Valtuustoaloite",
     "tags": {{ (item.data.tags or []) | dump | safe }},
     "categories": {{ (item.data.categories or []) | dump | safe }},
     "keywords": {{ (item.data.keywords or []) | dump | safe }},
@@ -1788,7 +1788,7 @@ schemaMentions:
     const themedItems = [
       ...politicsBlogData.map((item) => ({ ...item, contentType: 'Blogi' })),
       ...contentData
-        .filter((item) => ['Puheenvuoro', 'Mielipide', 'Aloite'].includes(item.contentType))
+        .filter((item) => ['Puheenvuoro', 'Mielipide', 'Valtuustoaloite'].includes(item.contentType))
     ];
     const hasPoliticalProfile = (item, key) => Array.isArray(item.politicalProfiles) && item.politicalProfiles.includes(key);
     const profileDefinitions = [
@@ -1863,7 +1863,7 @@ schemaMentions:
         blogi: items.filter((item) => item.contentType === 'Blogi').length,
         puheenvuoro: items.filter((item) => item.contentType === 'Puheenvuoro').length,
         mielipide: items.filter((item) => item.contentType === 'Mielipide').length,
-        aloite: items.filter((item) => item.contentType === 'Aloite').length,
+        aloite: items.filter((item) => item.contentType === 'Valtuustoaloite').length,
         items
       };
     }).filter((profile) => profile.total > 0);
@@ -1871,7 +1871,7 @@ schemaMentions:
     const contentTypeLabel = (value) => {
       if (value === 'Puheenvuoro') return 'Puheenvuoro';
       if (value === 'Mielipide') return 'Mielipide';
-      if (value === 'Aloite') return 'Aloite';
+      if (value === 'Valtuustoaloite') return 'Valtuustoaloite';
       return 'Blogi';
     };
 
@@ -1891,7 +1891,7 @@ schemaMentions:
         const metaItems = [
           `${group.total} sisältöä`,
           group.puheenvuoro ? `${group.puheenvuoro} puheenvuoroa` : '',
-          group.aloite ? `${group.aloite} aloitetta` : '',
+          group.aloite ? `${group.aloite} valtuustoaloitetta` : '',
           group.mielipide ? `${group.mielipide} mielipidettä` : '',
           group.blogi ? `${group.blogi} blogia` : ''
         ].filter(Boolean).map((item) => `<span>${escHtml(item)}</span>`).join('');

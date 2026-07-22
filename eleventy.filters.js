@@ -67,6 +67,8 @@ function intersectionCount(values, wanted) {
 
 function contentTypeLabel(data = {}, tags = [], lang = "fi") {
   const tagSet = new Set(toArray(tags));
+  const contexts = normalizeTerms(data.contexts || []);
+  const keywords = normalizeTerms(data.keywords || []);
   const type = data.type || "";
   if (data.mediaType === "video") return lang === "en" ? "Video" : "Video";
   if (data.mediaType === "podcast") return lang === "en" ? "Podcast" : "Podcast";
@@ -74,10 +76,11 @@ function contentTypeLabel(data = {}, tags = [], lang = "fi") {
   if (data.mediaType === "article") return lang === "en" ? "Media article" : "Lehtijuttu";
   if (type === "esitys" || tagSet.has("presentations")) return lang === "en" ? "Presentation" : "Esitys";
   if (type === "lausunto") return lang === "en" ? "Expert statement" : "Asiantuntijalausunto";
+  if (data.agenda_title === "Valtuuston kyselytunti" || contexts.has("valtuuston kyselytunti") || keywords.has("valtuustokysely")) return lang === "en" ? "Council question hour" : "Valtuuston kyselytunti";
   if (type === "puhe") return lang === "en" ? "Speech" : "Puheenvuoro";
   if (type === "mielipide") return lang === "en" ? "Opinion" : "Mielipide";
   if (type === "kolumni") return lang === "en" ? "Column" : "Kolumni";
-  if (tagSet.has("politics")) return lang === "en" ? "Initiative" : "Aloite";
+  if (tagSet.has("politics")) return lang === "en" ? "Council initiative" : "Valtuustoaloite";
   if (tagSet.has("blog")) return lang === "en" ? "Blog post" : "Blogikirjoitus";
   return lang === "en" ? "Text" : "Kirjoitus";
 }
@@ -155,7 +158,15 @@ function councilMeetingTitleForDate(meetingDate = "") {
   const meta = councilMeetingMetaForDate(meetingDate);
   if (meta.title) return meta.title;
   if (meta.meetingNumber) return `Kokous ${meta.meetingNumber}`;
+  if (meta.timelineTitle) return meta.timelineTitle;
   return meetingDate ? `Kokous ${formatCouncilMeetingDateShort(meetingDate)}` : "Kokous";
+}
+
+function isCouncilAnnualCycleDate(meetingDate = "") {
+  const meta = councilMeetingMetaForDate(meetingDate);
+  if (meta.timelineKind === "annual-cycle") return true;
+  const video = councilMeetingVideoForDate(meetingDate);
+  return /talousarvio/i.test(video?.title || "");
 }
 
 function councilItemTypeLabel(data = {}, lang = "fi") {
@@ -163,10 +174,10 @@ function councilItemTypeLabel(data = {}, lang = "fi") {
   const tags = toArray(data.tags).map(normalizeTerm);
   const keywords = toArray(data.keywords).map(normalizeTerm);
   const isQuestionHour = data.agenda_title === "Valtuuston kyselytunti" || contexts.has("valtuuston kyselytunti");
-  if (isQuestionHour) return lang === "en" ? "Question hour" : "Kyselytunti";
+  if (isQuestionHour) return lang === "en" ? "Council question hour" : "Valtuuston kyselytunti";
   if (data.type === "puhe") return lang === "en" ? "Speech" : "Puheenvuoro";
-  if (data.initiative_type || tags.includes("aloitteet") || keywords.includes("valtuustoaloite")) return lang === "en" ? "Initiative" : "Aloite";
-  if (tags.includes("politics")) return lang === "en" ? "Initiative" : "Aloite";
+  if (data.initiative_type || tags.includes("aloitteet") || keywords.includes("valtuustoaloite")) return lang === "en" ? "Council initiative" : "Valtuustoaloite";
+  if (tags.includes("politics")) return lang === "en" ? "Council initiative" : "Valtuustoaloite";
   return contentTypeLabel(data, data.tags, lang);
 }
 
@@ -323,6 +334,53 @@ function buildCouncilMeetings(collections, lang = "fi") {
       return meeting;
     })
     .sort((a, b) => new Date(b.date) - new Date(a.date));
+}
+
+function buildCouncilMeetingTimeline(collections, lang = "fi") {
+  const contentMeetings = buildCouncilMeetings(collections, lang);
+  const byDate = new Map(contentMeetings.map((meeting) => [meeting.date, {
+    ...meeting,
+    isQuiet: false
+  }]));
+
+  Object.keys(councilMeetingYoutubeVideos.byDate || {})
+    .filter((meetingDate) => meetingDate >= "2017-01-01")
+    .forEach((meetingDate) => {
+      if (byDate.has(meetingDate)) return;
+      const meetingMeta = councilMeetingMetaForDate(meetingDate);
+      const isAnnualCycle = isCouncilAnnualCycleDate(meetingDate);
+      if (!meetingMeta.meetingNumber && !isAnnualCycle) return;
+      byDate.set(meetingDate, {
+        date: meetingDate,
+        meetingDate,
+        label: councilMeetingTitleForDate(meetingDate),
+        meetingLabel: councilMeetingTitleForDate(meetingDate),
+        officialLabel: meetingMeta.officialLabel || "Oulun kaupunginvaltuusto",
+        contextLabel: meetingMeta.contextLabel || "Oulun kaupunginvaltuusto",
+        meetingNumber: meetingMeta.meetingNumber || "",
+        timelineKind: meetingMeta.timelineKind || (isAnnualCycle ? "annual-cycle" : ""),
+        hasQuestionHour: Boolean(meetingMeta.hasQuestionHour),
+        summaryTitle: meetingMeta.summaryTitle || "",
+        protocolUrl: oukaCouncilSpeechProtocols.protocolsByDate?.[meetingDate] || "",
+        video: councilMeetingVideoForDate(meetingDate),
+        items: [],
+        speeches: [],
+        initiatives: [],
+        questions: [],
+        otherItems: [],
+        missingMetadata: [],
+        counts: {
+          items: 0,
+          speeches: 0,
+          initiatives: 0,
+          questions: 0,
+          other: 0
+        },
+        isQuiet: true
+      });
+    });
+
+  return [...byDate.values()].sort((a, b) => new Date(b.date) - new Date(a.date));
 }
 
 function sameCouncilMeetingGroup(collections, pageUrl, limit = 6, lang = "fi") {
@@ -551,10 +609,13 @@ function truncateSeoDescription(value, maxLength = 165) {
   return `${cut.slice(0, wordEnd > 90 ? wordEnd : maxLength).trim()}...`;
 }
 
-function contentKindLabel({ type, tags = [], currentLang = "fi" }) {
+function contentKindLabel({ type, tags = [], contexts = [], keywords = [], agenda_title = "", currentLang = "fi" }) {
   const tagSet = new Set(toArray(tags).map((tag) => String(tag).toLowerCase()));
+  const contextSet = normalizeTerms(contexts);
+  const keywordSet = normalizeTerms(keywords);
   if (type === "esitys" || tagSet.has("presentations")) return currentLang === "en" ? "Presentation" : "Esitys";
   if (type === "lausunto") return currentLang === "en" ? "Expert statement" : "Asiantuntijalausunto";
+  if (agenda_title === "Valtuuston kyselytunti" || contextSet.has("valtuuston kyselytunti") || keywordSet.has("valtuustokysely")) return currentLang === "en" ? "Council question hour" : "Valtuuston kyselytunti";
   if (type === "puhe") return currentLang === "en" ? "Speech" : "Puheenvuoro";
   if (type === "mielipide") return currentLang === "en" ? "Opinion piece" : "Mielipidekirjoitus";
   if (type === "kolumni") return currentLang === "en" ? "Column" : "Kolumni";
@@ -751,6 +812,10 @@ module.exports = function registerFilters(eleventyConfig) {
     return buildCouncilMeetings(collections, lang);
   });
 
+  eleventyConfig.addFilter("councilMeetingTimeline", function (collections, lang = "fi") {
+    return buildCouncilMeetingTimeline(collections, lang);
+  });
+
   eleventyConfig.addFilter("contentTermCloud", function (collections, categories, keywords, limit = 12) {
     const ownTerms = [...toArray(categories), ...toArray(keywords)];
     if (!ownTerms.length) return [];
@@ -932,3 +997,4 @@ module.exports = function registerFilters(eleventyConfig) {
 };
 
 module.exports.buildCouncilMeetings = buildCouncilMeetings;
+module.exports.buildCouncilMeetingTimeline = buildCouncilMeetingTimeline;

@@ -73,6 +73,9 @@
       {% set _ = (ldBcItems.push({ "@type": "ListItem", "position": ldBcItems.length + 1, "name": crumb.title, "item": crumb.url | absoluteUrl(bcSiteBase) }), null) %}
     {% endif %}
   {% endfor %}
+  {% if breadcrumbDetailTitle and bcAppendCurrent %}
+    {% set _ = (ldBcItems.push({ "@type": "ListItem", "position": ldBcItems.length + 1, "name": breadcrumbDetailTitle, "item": breadcrumbDetailUrl | absoluteUrl(bcSiteBase) }), null) %}
+  {% endif %}
   {% if bcAppendCurrent %}
     {% set _ = (ldBcItems.push({ "@type": "ListItem", "position": ldBcItems.length + 1, "name": pageTitle }), null) %}
   {% endif %}

@@ -25,6 +25,7 @@ layout: base.njk
 {% set sectionLabel = "Kirjoitus" %}
 {% set backHref = "/kynasta/" %}
 {% set backLabel = "Takaisin Kynästä-sivulle" %}
+{% set isQuestionHour = agenda_title == "Valtuuston kyselytunti" or ("Valtuuston kyselytunti" in (contexts or [])) %}
 
 {% if isEnglish %}
   {% set sectionLabel = "Text" %}
@@ -32,7 +33,10 @@ layout: base.njk
   {% set backLabel = "Back to writings" %}
 {% endif %}
 
-{% if type == "puhe" %}
+{% if isQuestionHour %}
+  {% set sectionLabel = "Council question hour" if isEnglish else "Valtuuston kyselytunti" %}
+  {% set backHref = "/en/writings/#puheet" if isEnglish else "/kynasta/#puheet" %}
+{% elif type == "puhe" %}
   {% set sectionLabel = "Speech" if isEnglish else "Puheenvuoro" %}
   {% set backHref = "/en/writings/#puheet" if isEnglish else "/kynasta/#puheet" %}
 {% elif type == "lausunto" %}
@@ -56,7 +60,7 @@ layout: base.njk
   {% set sectionLabel = "Column" if isEnglish else "Kolumni" %}
   {% set backHref = "/en/writings/#kolumnit" if isEnglish else "/kynasta/#kolumnit" %}
 {% elif initiative_type or ("politics" in currentTags) %}
-  {% set sectionLabel = "Initiative" if isEnglish else "Aloite" %}
+  {% set sectionLabel = "Council initiative" if isEnglish else "Valtuustoaloite" %}
   {% set backHref = "/en/writings/#aloitteet" if isEnglish else "/kynasta/#aloitteet" %}
 {% endif %}
 

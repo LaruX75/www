@@ -5,7 +5,7 @@ permalink: /vaalikaudet/
 layout: base.njk
 lang: fi
 translationKey: election_history
-description: "Jari Larun poliittinen työ vaalikausittain: luottamustoimet, vaalitulokset, puheenvuorot, aloitteet ja muut relevantit sisällöt samassa näkymässä."
+description: "Jari Larun poliittinen työ vaalikausittain: luottamustoimet, vaalitulokset, puheenvuorot, valtuustoaloitteet ja muut relevantit sisällöt samassa näkymässä."
 templateEngineOverride: njk
 schemaAbout:
   - "@type": "Thing"
@@ -19,7 +19,7 @@ schemaAbout:
     description: "Valtuutettu ja sivistyslautakunnan varajäsen."
   - "@type": "Thing"
     name: "Vaalikaudet ja poliittinen työ"
-    description: "Puheenvuorot, aloitteet ja luottamustoimet vaalikausittain."
+    description: "Puheenvuorot, valtuustoaloitteet ja luottamustoimet vaalikausittain."
 schemaMentions:
   - "@type": "GovernmentOrganization"
     name: "Oulun kaupunginvaltuusto"
@@ -206,13 +206,13 @@ schemaMentions:
       <div>
         <p class="term-eyebrow mb-2">Politiikka</p>
         <h1 class="term-hero-title mb-3">Vaalikaudet</h1>
-        <p class="term-hero-lead mb-4">Tämä sivu kokoaa poliittisen työn vaalikausittain monikuntaliitoksesta alkaen, jolloin minusta tuli taas oululainen. Tästä näkymästä löytyvät puheenvuorot, aloitteet ja kirjoitukset vaalikausien mukaan, jotta näet miten vastuut, painotukset ja poliittinen työ ovat muuttuneet ajan myötä.</p>
+        <p class="term-hero-lead mb-4">Tämä sivu kokoaa poliittisen työn vaalikausittain monikuntaliitoksesta alkaen, jolloin minusta tuli taas oululainen. Tästä näkymästä löytyvät puheenvuorot, valtuustoaloitteet ja kirjoitukset vaalikausien mukaan, jotta näet miten vastuut, painotukset ja poliittinen työ ovat muuttuneet ajan myötä.</p>
       </div>
       <aside class="term-hero-card">
         <p class="term-hero-card__kicker">Mitä täältä löytyy</p>
         <ul class="term-hero-card__list">
           <li>vaalitulokset ja luottamustoimet kausittain</li>
-          <li>valtuustopuheenvuorot ja aloitteet omissa ryhmissään</li>
+          <li>valtuustopuheenvuorot ja valtuustoaloitteet omissa ryhmissään</li>
           <li>mielipidekirjoitukset ja muut relevantit politiikkasisällöt</li>
           <li>linkit vanhoihin vaalisivuihin arkistona, ei pääreittinä</li>
         </ul>
@@ -333,7 +333,7 @@ schemaMentions:
       </details>
 
       <details class="term-mobile-disclosure" data-term-mobile-collapse data-term-current="{{ term.current }}" open>
-        <summary class="term-mobile-disclosure-summary">Puheenvuorot, aloitteet ja kirjoitukset</summary>
+        <summary class="term-mobile-disclosure-summary">Puheenvuorot, valtuustoaloitteet ja kirjoitukset</summary>
       <div class="term-content-grid">
         <section class="term-content-card">
           <div class="term-content-card__head">
@@ -345,7 +345,7 @@ schemaMentions:
 
         <section class="term-content-card">
           <div class="term-content-card__head">
-            <h3 class="term-content-card__title">Aloitteet ja vastaukset</h3>
+            <h3 class="term-content-card__title">Valtuustoaloitteet ja vastaukset</h3>
             <span class="term-content-card__count">{{ initiatives.length }}</span>
           </div>
           {{ renderContentList(initiatives, "Tälle kaudelle ei ole vielä koottu aloitteita.", term.anchor ~ "-initiatives", "initiative") }}

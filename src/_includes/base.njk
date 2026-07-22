@@ -46,6 +46,20 @@
   {% endif %}
   {% set _baseLang = lang or (page.url | langFromUrl) %}
   {% set _baseTitle = title or site.name %}
+  {% set _baseTags = tags or [] %}
+  {% set _baseKeywords = keywords or [] %}
+  {% set _baseContexts = contexts or [] %}
+  {% set isCouncilQuestionBreadcrumb = agenda_title == "Valtuuston kyselytunti" or ("Valtuuston kyselytunti" in _baseContexts) or ("valtuustokysely" in _baseKeywords) %}
+  {% set isCouncilInitiativeBreadcrumb = initiative_type or ("aloitteet" in _baseTags) or ("valtuustoaloite" in _baseKeywords) %}
+  {% set breadcrumbDetailTitle = "" %}
+  {% set breadcrumbDetailUrl = "" %}
+  {% if isCouncilQuestionBreadcrumb %}
+    {% set breadcrumbDetailTitle = "Council question hour" if _baseLang == "en" else "Valtuuston kyselytunti" %}
+    {% set breadcrumbDetailUrl = "/en/writings/#puheet" if _baseLang == "en" else "/kynasta/#puheet" %}
+  {% elif isCouncilInitiativeBreadcrumb %}
+    {% set breadcrumbDetailTitle = "Council initiative" if _baseLang == "en" else "Valtuustoaloite" %}
+    {% set breadcrumbDetailUrl = "/en/writings/#aloitteet" if _baseLang == "en" else "/kynasta/#aloitteet" %}
+  {% endif %}
   {% set _baseSection = ("Blog" if _baseLang == "en" else "Blogi") if ("blog" in (tags or [])) else (("Publications" if _baseLang == "en" else "Julkaisut") if ("publications" in (tags or [])) else (("Politics" if _baseLang == "en" else "Politiikka") if ("politics" in (tags or [])) else site.name)) %}
   {% setAsync "_ogRaw" %}{% ogImage "og-image.og.njk", { title: _baseTitle, section: _baseSection, siteName: site.name, domain: "jarilaru.fi", ogBgDataUrl: ogBgDataUrl } %}{% endsetAsync %}
   {% set ogImageOverrideValue = og_image or ogImageOverride %}

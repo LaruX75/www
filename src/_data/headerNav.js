@@ -485,7 +485,7 @@ module.exports = {
       description: "Poliittinen profiili, vaalikaudet, työjälki ja avoimuustiedot samasta näkymästä.",
       spotlight: {
         title: "Poliittisen työn kokonaiskuva",
-        description: "Politiikka-sivu kertoo nykyisen profiilin. Vaalikaudet, puheenvuorot, aloitteet ja vaalirahoitustiedot täydentävät kokonaisuutta.",
+        description: "Politiikka-sivu kertoo nykyisen profiilin. Vaalikaudet, puheenvuorot, valtuustoaloitteet ja vaalirahoitustiedot täydentävät kokonaisuutta.",
         roles: [
           "2. varavaltuutettu, Oulun kaupunginvaltuusto",
           "Sivistyslautakunnan jäsen, Oulun kaupunki",
@@ -568,11 +568,11 @@ module.exports = {
               countKey: "pub_puhe"
             },
             {
-              title: "Aloitteet",
+              title: "Valtuustoaloitteet",
               href: "/kynasta/#aloitteet",
               icon: "bi bi-megaphone me-2",
               menuLink: true,
-              description: "Kirjalliset avaukset ja päätöksentekoon viedyt asiat.",
+              description: "Kirjalliset avaukset kaupunginvaltuuston päätöksentekoon.",
               countKey: "politics"
             }
           ]
@@ -689,7 +689,7 @@ module.exports = {
           heading: "Luottamushenkilötyö",
           links: [
             { title: "Puheenvuorot", href: "/kynasta/#puheet", icon: "bi bi-mic me-2", countKey: "pub_puhe", description: "Valtuustossa ja tapahtumissa pidettyjä puheenvuoroja." },
-            { title: "Aloitteet", href: "/kynasta/#aloitteet", icon: "bi bi-megaphone me-2", countKey: "politics", description: "Valtuustoaloitteet ja muut kirjalliset avaukset päätöksentekoon." }
+            { title: "Valtuustoaloitteet", href: "/kynasta/#aloitteet", icon: "bi bi-megaphone me-2", countKey: "politics", description: "Valtuustoaloitteet ja muut kirjalliset avaukset päätöksentekoon." }
           ]
         },
         {

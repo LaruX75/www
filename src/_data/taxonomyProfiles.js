@@ -2,11 +2,11 @@ module.exports = {
   categories: {
     "politiikka-ja-paatoksenteko": {
       eyebrow: "Kategoria",
-      lead: "Poliittiset puheenvuorot, aloitteet, mielipidekirjoitukset, blogitekstit ja mediassa näkyneet sisällöt samassa näkymässä.",
+      lead: "Poliittiset puheenvuorot, valtuustoaloitteet, mielipidekirjoitukset, blogitekstit ja mediassa näkyneet sisällöt samassa näkymässä.",
       context: "Tämä kategoria näyttää, miten poliittinen työ on näkynyt sekä päätöksenteossa että julkisessa keskustelussa. Pääpaino on valtuustotyössä, mutta mukana ovat myös kirjoitukset ja esiintymiset, joissa samat teemat jatkuvat eri muodoissa.",
       primaryType: "speeches",
       primaryLabel: "Pääpaino",
-      primaryText: "Valtuustopuheenvuorot muodostavat kategorian rungon. Niiden ympärille asettuvat aloitteet, mielipiteet, blogitekstit ja mediassa näkyneet sisällöt.",
+      primaryText: "Valtuustopuheenvuorot muodostavat kategorian rungon. Niiden ympärille asettuvat valtuustoaloitteet, mielipiteet, blogitekstit ja mediassa näkyneet sisällöt.",
       highlightsTitle: "Sisällöt rooleittain",
       browseTitle: "Kaikki sisällöt",
       browseLead: "Rajaa näkymää sisältötyypin mukaan tai selaa koko kategoriaa uusimmasta vanhimpaan.",

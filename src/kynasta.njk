@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: Kirjoitukset, puheet ja kannanotot
-description: "Jari Larun puheenvuorot, aloitteet, lausunnot, mielipidekirjoitukset, kolumnit ja blogikirjoitukset samassa näkymässä."
+description: "Jari Larun puheenvuorot, valtuustoaloitteet, lausunnot, mielipidekirjoitukset, kolumnit ja blogikirjoitukset samassa näkymässä."
 permalink: /kynasta/
 translationKey: writings_index
 schemaAbout:
@@ -61,13 +61,13 @@ schemaMentions:
       <div class="col-lg-7">
         <p class="text-uppercase small text-muted mb-2">Kynästä</p>
         <h1 class="display-6 fw-bold mb-2">Kirjoitukset, puheet ja kannanotot</h1>
-        <p class="text-muted mb-3">Tämä sivu kokoaa oman kirjoittamiseni ja julkiset puheenvuoroni samaan paikkaan. Mukana ovat puheet, aloitteet, lausunnot, mielipidekirjoitukset, kolumnit ja blogi.</p>
+        <p class="text-muted mb-3">Tämä sivu kokoaa oman kirjoittamiseni ja julkiset puheenvuoroni samaan paikkaan. Mukana ovat puheet, valtuustoaloitteet, lausunnot, mielipidekirjoitukset, kolumnit ja blogi.</p>
         <div class="d-flex flex-wrap gap-2">
           <a class="nav-link" href="#puheet">
             Puheet <span class="nav-count">{{ speechCount }}</span>
           </a>
           <a class="nav-link" href="#aloitteet">
-            Aloitteet <span class="nav-count">{{ initiativeCount }}</span>
+            Valtuustoaloitteet <span class="nav-count">{{ initiativeCount }}</span>
           </a>
           <a class="nav-link" href="#lausunnot">
             Lausunnot <span class="nav-count">{{ statementCount }}</span>
@@ -81,7 +81,7 @@ schemaMentions:
         <aside class="kynasta-hero-aside">
           <p class="kynasta-hero-aside-kicker mb-2">Tältä sivulta löydät</p>
           <ul class="kynasta-hero-aside-list mb-0">
-            <li>Puheet ja aloitteet, joilla olen osallistunut Oulun päätöksentekoon.</li>
+            <li>Puheet ja valtuustoaloitteet, joilla olen osallistunut Oulun päätöksentekoon.</li>
             <li>Lausunnot, mielipiteet ja kolumnit, joissa avaan näkemyksiäni julkisesti ja perustellen.</li>
             <li>Blogikirjoitukset, joissa taustoitan ilmiöitä opetuksesta, teknologiasta ja yhteiskunnasta.</li>
           </ul>
@@ -96,7 +96,7 @@ schemaMentions:
     <a href="#puheet">Puheet</a>
     <a href="#mielipiteet">Mielipiteet</a>
     <a href="#lausunnot">Lausunnot</a>
-    <a href="#aloitteet">Aloitteet</a>
+    <a href="#aloitteet">Valtuustoaloitteet</a>
     <a href="#blogi">Blogi</a>
   </div>
 </nav>
@@ -140,7 +140,7 @@ schemaMentions:
       <div class="col-md-6 col-lg-4">
         <article class="card border-0 shadow-sm h-100 kynasta-entry-card kynasta-entry-card--aloitteet">
           <div class="card-body d-flex flex-column">
-            <p class="kynasta-entry-kicker">Aloitteet</p>
+            <p class="kynasta-entry-kicker">Valtuustoaloitteet</p>
             <h3 class="h5 mb-2">Tuoreimmat avaukset</h3>
             <p class="small text-muted mb-3">Valtuustoaloitteet ja muut kirjalliset avaukset, joilla asioita on viety eteenpäin.</p>
             <ul class="kynasta-entry-list mb-3">
@@ -148,7 +148,7 @@ schemaMentions:
               <li><a href="{{ item.data.url or item.url }}">{{ item.data.title }}</a></li>
               {% endfor %}
             </ul>
-            <a href="#aloitteet" class="btn btn-outline-secondary btn-sm rounded-pill px-3 mt-auto align-self-start">Siirry aloitteisiin</a>
+            <a href="#aloitteet" class="btn btn-outline-secondary btn-sm rounded-pill px-3 mt-auto align-self-start">Siirry valtuustoaloitteisiin</a>
           </div>
         </article>
       </div>
@@ -186,7 +186,7 @@ schemaMentions:
       <div class="card-body">
         <div class="row g-3 mb-4">
           <div class="col-6 col-md-4 col-lg-2">
-            {{ ui.kpiCard("Aloitteet", "0", { href: "#aloitteet", id: "kpi-aloitteet", tone: "aloitteet" }) }}
+            {{ ui.kpiCard("Valtuustoaloitteet", "0", { href: "#aloitteet", id: "kpi-aloitteet", tone: "aloitteet" }) }}
           </div>
           <div class="col-6 col-md-4 col-lg-2">
             {{ ui.kpiCard("Blogi", "0", { href: "#blogi", id: "kpi-blogi", tone: "blogi" }) }}
@@ -550,7 +550,7 @@ schemaMentions:
   <div class="site-shell">
     <div class="card shadow-sm">
       <div class="card-header bg-transparent d-flex align-items-center justify-content-between kynasta-section-header">
-        <h2 class="h4 mb-0"><i class="bi bi-megaphone-fill me-2"></i>Aloitteet ja adressit</h2>
+        <h2 class="h4 mb-0"><i class="bi bi-megaphone-fill me-2"></i>Valtuustoaloitteet ja adressit</h2>
         <span class="badge kynasta-section-count">{{ collections.politics.length }}</span>
       </div>
       <div class="card-body p-0">
@@ -558,7 +558,7 @@ schemaMentions:
         <div class="p-3 bg-body-tertiary border-bottom">
           <div class="row g-2 align-items-end">
             <div class="col-md-9">
-              <label for="aloitteet-search" class="form-label small text-muted mb-1">Hae aloitteita</label>
+              <label for="aloitteet-search" class="form-label small text-muted mb-1">Hae valtuustoaloitteita</label>
               <input type="search" id="aloitteet-search" class="form-control form-control-sm"
                      placeholder="Hae otsikosta, tiivistelmästä, tyypistä, kategorioista..." autocomplete="off">
             </div>
@@ -1557,7 +1557,7 @@ function syncWritingRoleFilterButtons(buttons, selectedRole) {
 
   const years = Object.keys(yearly).map(Number).sort((a, b) => a - b);
 
-  const labels = ['Aloitteet', 'Blogi', 'Kolumnit', 'Lausunnot', 'Mielipiteet', 'Puheet'];
+  const labels = ['Valtuustoaloitteet', 'Blogi', 'Kolumnit', 'Lausunnot', 'Mielipiteet', 'Puheet'];
   const values = [
     counts.aloitteet,
     counts.blogi,
@@ -1600,7 +1600,7 @@ function syncWritingRoleFilterButtons(buttons, selectedRole) {
         data: {
           labels: years,
           datasets: [
-            makeSeries('Aloitteet', palette[0], 'aloitteet'),
+            makeSeries('Valtuustoaloitteet', palette[0], 'aloitteet'),
             makeSeries('Blogi', palette[1], 'blogi'),
             makeSeries('Kolumnit', palette[2], 'kolumnit'),
             makeSeries('Lausunnot', palette[3], 'lausunnot'),

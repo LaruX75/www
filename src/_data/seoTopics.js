@@ -96,7 +96,7 @@ module.exports = [
     keywords: ["tiedolla johtaminen", "valmistelu", "avoimuus", "tietojohtaminen", "vaikutusten arviointi"],
     contexts: ["politics"],
     primaryLinks: [
-      { label: "Aloitteet", href: "/kynasta/#aloitteet" },
+      { label: "Valtuustoaloitteet", href: "/kynasta/#aloitteet" },
       { label: "Politiikka", href: "/politiikka/" },
       { label: "Vaalikaudet", href: "/vaalikaudet/" }
     ]

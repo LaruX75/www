@@ -274,8 +274,8 @@ schemaMentions:
             <small>Puheenvuorot päätöksenteon asiakohdissa</small>
           </a>
           <a class="content-context-topic" href="/kynasta/#aloitteet">
-            <span>Aloitteet</span>
-            <small>Kirjalliset avaukset päätöksenteon valmisteluun</small>
+            <span>Valtuustoaloitteet</span>
+            <small>Kirjalliset avaukset kaupunginvaltuuston päätöksentekoon</small>
           </a>
           <a class="content-context-topic" href="/kynasta/?opinions=political#mielipiteet">
             <span>Poliittiset mielipiteet</span>

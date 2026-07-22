@@ -1,7 +1,7 @@
 ---
 title: "Kaupunginvaltuusto"
 metaTitle: "Kaupunginvaltuusto ja poliittinen työ"
-description: "Oulun kaupunginvaltuuston kokoukset, joissa Jari Larun puheenvuorot, aloitteet ja kyselytunnin kysymykset näkyvät kokouskohtaisesti."
+description: "Oulun kaupunginvaltuuston kokoukset, joissa Jari Larun puheenvuorot, valtuustoaloitteet ja valtuuston kyselytunnin asiat näkyvät kokouskohtaisesti."
 permalink: /kaupunginvaltuusto/
 layout: base.njk
 lang: fi
@@ -13,7 +13,7 @@ pageScopeClass: council-meetings-page-scope
 schemaAbout:
   - "@type": "Thing"
     name: "Oulun kaupunginvaltuusto"
-    description: "Kokouskohtainen näkymä Jari Larun valtuustopuheenvuoroihin, aloitteisiin ja kyselytunnin kysymyksiin."
+    description: "Kokouskohtainen näkymä Jari Larun valtuustopuheenvuoroihin, valtuustoaloitteisiin ja valtuuston kyselytunnin asioihin."
 schemaMentions:
   - "@type": "GovernmentOrganization"
     name: "Oulun kaupunki"
@@ -24,23 +24,34 @@ schemaMentions:
 ---
 
 {% set meetings = councilMeetings %}
+{% set timeline = councilMeetingTimeline %}
 
 <section class="council-meetings">
   <header class="council-meetings-hero">
     <div>
       <p class="term-eyebrow mb-2">Poliittinen työ</p>
       <h1 class="term-hero-title mb-3">Kaupunginvaltuusto</h1>
-      <p class="term-hero-lead mb-0">Tämä näkymä kokoaa samaan kokoukseen kuuluvat puheenvuorot, aloitteet ja kyselytunnin kysymykset. Kokous toimii väliportaana yksittäisten tekstien ja vaalikausien välillä.</p>
+      <p class="term-hero-lead mb-0">Tämä näkymä kokoaa samaan kokoukseen kuuluvat puheenvuorot, valtuustoaloitteet ja valtuuston kyselytunnin asiat. Kokous toimii väliportaana yksittäisten tekstien ja vaalikausien välillä.</p>
     </div>
     <aside class="council-meetings-hero-card">
       <p class="term-hero-card__kicker">Kokoussolmu</p>
-      <p>Jokaisella kokouksella näkyvät pöytäkirjalinkki, kokousvideo ja ne sivuston sisällöt, jotka on kytketty samaan päivämäärään.</p>
-      <strong>{{ meetings.length }} kokousta</strong>
+      <p>Varsinaisissa korteissa näkyvät kokoukseen kytketyt omat sisällöt. Pienet välimaininnat näyttävät kokoukset, joista sivustolla ei ole omaa puheenvuoroa.</p>
+      <strong>{{ timeline.length }} kokousta</strong>
     </aside>
   </header>
 
   <div class="council-meetings-list" aria-label="Kaupunginvaltuuston kokoukset">
-    {% for meeting in meetings %}
+    {% for meeting in timeline %}
+    {% if meeting.isQuiet %}
+    <div class="council-meeting-marker" id="kokous-{{ meeting.date }}">
+      <span class="council-meeting-marker__date">{{ meeting.date | dateFormat }}</span>
+      <span class="council-meeting-marker__title">{% if meeting.meetingNumber %}Kokous {{ meeting.meetingNumber }}{% else %}{{ meeting.meetingLabel }}{% endif %}</span>
+      <span class="council-meeting-marker__note">{% if meeting.timelineKind == "annual-cycle" %}Valtuuston vuosikello{% else %}Ei omaa puheenvuoroa sivustolla{% endif %}</span>
+      {% if meeting.video and meeting.video.url %}
+      <a href="{{ meeting.video.url }}" target="_blank" rel="noopener noreferrer">Kokousvideo</a>
+      {% endif %}
+    </div>
+    {% else %}
     <article class="council-meeting-card" id="kokous-{{ meeting.date }}">
       <div class="council-meeting-card__date">
         <span>{{ meeting.date | dateFormat }}</span>
@@ -53,8 +64,8 @@ schemaMentions:
         {% endif %}
         <div class="council-meeting-counts" aria-label="Kokouksen sisällöt">
           {% if meeting.counts.speeches %}<span>{{ meeting.counts.speeches }} {{ "puheenvuoro" if meeting.counts.speeches == 1 else "puheenvuoroa" }}</span>{% endif %}
-          {% if meeting.counts.questions %}<span>{{ meeting.counts.questions }} {{ "kyselytunnin kysymys" if meeting.counts.questions == 1 else "kyselytunnin kysymystä" }}</span>{% endif %}
-          {% if meeting.counts.initiatives %}<span>{{ meeting.counts.initiatives }} {{ "aloite" if meeting.counts.initiatives == 1 else "aloitetta" }}</span>{% endif %}
+          {% if meeting.counts.questions %}<span>{{ meeting.counts.questions }} {{ "kyselytunnin asia" if meeting.counts.questions == 1 else "kyselytunnin asiaa" }}</span>{% endif %}
+          {% if meeting.counts.initiatives %}<span>{{ meeting.counts.initiatives }} {{ "valtuustoaloite" if meeting.counts.initiatives == 1 else "valtuustoaloitetta" }}</span>{% endif %}
           {% if meeting.counts.other %}<span>{{ meeting.counts.other }} {{ "muu sisältö" if meeting.counts.other == 1 else "muuta sisältöä" }}</span>{% endif %}
         </div>
         <ul class="council-meeting-preview">
@@ -78,6 +89,7 @@ schemaMentions:
         {% endif %}
       </div>
     </article>
+    {% endif %}
     {% endfor %}
   </div>
 </section>
@@ -127,7 +139,37 @@ schemaMentions:
 
 .council-meetings-list {
   display: grid;
-  gap: 1rem;
+  gap: 0.65rem;
+}
+
+.council-meeting-marker {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 0.7rem;
+  padding: 0.35rem 1rem;
+  margin-inline: clamp(0rem, 2vw, 1.5rem);
+  border: 1px dashed rgba(17, 40, 70, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.44);
+  color: rgba(17, 40, 70, 0.58);
+  font-size: 0.86rem;
+}
+
+.council-meeting-marker__date,
+.council-meeting-marker__title {
+  font-weight: 800;
+}
+
+.council-meeting-marker__note {
+  color: rgba(17, 40, 70, 0.5);
+}
+
+.council-meeting-marker a {
+  color: rgba(18, 53, 95, 0.72);
+  font-weight: 700;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
 }
 
 .council-meeting-card {
@@ -222,6 +264,20 @@ schemaMentions:
   border-color: rgba(214, 226, 240, 0.18);
   background: linear-gradient(180deg, rgba(23, 36, 54, 0.96), rgba(17, 27, 42, 0.92));
   box-shadow: none;
+}
+
+[data-bs-theme="dark"] .council-meeting-marker {
+  border-color: rgba(214, 226, 240, 0.16);
+  background: rgba(255, 255, 255, 0.035);
+  color: rgba(236, 242, 248, 0.58);
+}
+
+[data-bs-theme="dark"] .council-meeting-marker__note {
+  color: rgba(236, 242, 248, 0.48);
+}
+
+[data-bs-theme="dark"] .council-meeting-marker a {
+  color: rgba(214, 226, 240, 0.78);
 }
 
 [data-bs-theme="dark"] .council-meetings-hero-card {

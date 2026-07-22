@@ -35,6 +35,15 @@
           {% endif %}
         {% endif %}
       {% endfor %}
+      {% if breadcrumbDetailTitle and appendCurrent %}
+        <li class="breadcrumb-item">
+          {% if breadcrumbDetailUrl %}
+            <a href="{{ breadcrumbDetailUrl }}">{{ breadcrumbDetailTitle }}</a>
+          {% else %}
+            <span>{{ breadcrumbDetailTitle }}</span>
+          {% endif %}
+        </li>
+      {% endif %}
       {% if appendCurrent %}
         <li class="breadcrumb-item active" aria-current="page">{{ title }}</li>
       {% endif %}
