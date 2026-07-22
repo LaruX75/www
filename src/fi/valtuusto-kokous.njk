@@ -13,7 +13,7 @@ pageShellClass: site-shell site-shell--wide
 pageScopeClass: council-meeting-page-scope
 eleventyComputed:
   title: "{{ meeting.contextLabel }}"
-  description: "{{ meeting.contextLabel }}, {{ meeting.meetingLabel }}: Jari Larun puheenvuorot, valtuustoaloitteet ja valtuuston kyselytunnin asiat samassa näkymässä."
+  description: "{% if meeting.heroSummary.agendaLead %}{{ meeting.heroSummary.agendaLead }} {% endif %}{{ meeting.heroSummary.activityLead or (meeting.contextLabel ~ ', ' ~ meeting.meetingLabel) }}"
 schemaAbout:
   - "@type": "Thing"
     name: "Oulun kaupunginvaltuusto"
@@ -68,7 +68,14 @@ schemaMentions:
       {% if meeting.summaryTitle %}
       <p class="council-meeting-hero-summary">{{ meeting.summaryTitle }}</p>
       {% endif %}
-      <p class="term-hero-lead mb-0">Tällä sivulla näkyvät samaan kokoukseen kytketyt puheenvuorot, valtuustoaloitteet ja valtuuston kyselytunnin asiat. Kokouspäivä auttaa näkemään, mitkä sisällöt kuuluvat samaan päätöksenteon tilanteeseen.</p>
+      <div class="council-meeting-hero-brief">
+        {% if meeting.heroSummary.agendaLead %}
+        <p>{{ meeting.heroSummary.agendaLead }}</p>
+        {% endif %}
+        {% if meeting.heroSummary.activityLead %}
+        <p>{{ meeting.heroSummary.activityLead }}</p>
+        {% endif %}
+      </div>
     </div>
     <aside class="council-meeting-hero-card">
       <p class="term-hero-card__kicker">Kokouksen aineisto</p>
@@ -201,6 +208,19 @@ schemaMentions:
   font-weight: 600;
 }
 
+.council-meeting-hero-brief {
+  display: grid;
+  gap: 0.6rem;
+  max-width: 62rem;
+}
+
+.council-meeting-hero-brief p {
+  margin: 0;
+  color: rgba(17, 40, 70, 0.78);
+  font-size: clamp(1rem, 0.96rem + 0.25vw, 1.14rem);
+  line-height: 1.65;
+}
+
 .council-meeting-summary {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -327,6 +347,10 @@ schemaMentions:
 [data-bs-theme="dark"] .council-meeting-hero-meta,
 [data-bs-theme="dark"] .council-meeting-hero-summary {
   color: rgba(236, 242, 248, 0.72);
+}
+
+[data-bs-theme="dark"] .council-meeting-hero-brief p {
+  color: rgba(236, 242, 248, 0.74);
 }
 
 [data-bs-theme="dark"] .council-meeting-section__head span,

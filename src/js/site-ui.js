@@ -69,6 +69,14 @@
         navbar.classList.add('navbar-hero-solid');
       }
 
+      document.querySelectorAll('[data-history-back]').forEach((link) => {
+        link.addEventListener('click', (event) => {
+          if (window.history.length <= 1) return;
+          event.preventDefault();
+          window.history.back();
+        });
+      });
+
       // Shared reveal motion for main content. CSS remains harmless without JS:
       // elements are only hidden after this class is added.
       const revealNodes = Array.from(document.querySelectorAll([

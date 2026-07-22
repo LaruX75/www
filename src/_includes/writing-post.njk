@@ -24,13 +24,13 @@ layout: base.njk
 
 {% set sectionLabel = "Kirjoitus" %}
 {% set backHref = "/kynasta/" %}
-{% set backLabel = "Takaisin Kynästä-sivulle" %}
+{% set backLabel = "Takaisin edelliselle sivulle" %}
 {% set isQuestionHour = agenda_title == "Valtuuston kyselytunti" or ("Valtuuston kyselytunti" in (contexts or [])) %}
 
 {% if isEnglish %}
   {% set sectionLabel = "Text" %}
   {% set backHref = "/en/writings/" %}
-  {% set backLabel = "Back to writings" %}
+  {% set backLabel = "Back to previous page" %}
 {% endif %}
 
 {% if isQuestionHour %}
@@ -159,7 +159,7 @@ layout: base.njk
           {% endif %}
         </div>
         <div class="card-footer bg-transparent">
-          <a href="{{ backHref }}" class="btn btn-outline-primary">&larr; {{ backLabel }}</a>
+          <a href="{{ backHref }}" class="btn btn-outline-primary" data-history-back>&larr; {{ backLabel }}</a>
         </div>
       </div>
     </article>

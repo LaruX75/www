@@ -6,6 +6,7 @@ const {
   resolveContexts
 } = require("./src/_data/contentContext");
 const councilMeetingMeta = require("./src/_data/councilMeetingMeta");
+const councilMeetingAgendas = require("./src/_data/councilMeetingAgendas.json");
 const oukaCouncilSpeechProtocols = require("./src/_data/oukaCouncilSpeechProtocols");
 const councilMeetingYoutubeVideos = require("./src/_data/councilMeetingYoutubeVideos.json");
 const councilSpeechVideos = require("./src/_data/councilSpeechVideos.json");
@@ -221,6 +222,10 @@ function councilMeetingVideoForDate(meetingDate = "") {
   return toArray(councilMeetingYoutubeVideos.byDate?.[meetingDate])[0] || null;
 }
 
+function councilMeetingAgendaForDate(meetingDate = "") {
+  return councilMeetingAgendas?.[meetingDate] || { caption: "", items: [] };
+}
+
 function councilMeetingItemView(item, lang = "fi") {
   const data = item?.data || {};
   const videoEntries = councilVideoEntriesForItem(item);
@@ -248,6 +253,90 @@ function councilMeetingItemView(item, lang = "fi") {
   return itemView;
 }
 
+function cleanCouncilAgendaLabel(value = "") {
+  return String(value || "")
+    .replace(/\s+/g, " ")
+    .replace(/^asiakohta\s+/i, "")
+    .replace(/^§\s*\d+[a-z]?\s*[–:-]\s*/i, "")
+    .replace(/^\d+\s*§\s*[–:-]?\s*/i, "")
+    .replace(/^\d+\s*[–:-]\s*/i, "")
+    .trim();
+}
+
+function uniqueLabels(values = []) {
+  const seen = new Set();
+  return toArray(values)
+    .map(cleanCouncilAgendaLabel)
+    .filter(Boolean)
+    .filter((value) => {
+      const normalized = normalizeTerm(value);
+      if (seen.has(normalized)) return false;
+      seen.add(normalized);
+      return true;
+    });
+}
+
+function formatCouncilAgendaItem(item = {}) {
+  const title = cleanCouncilAgendaLabel(item.title || "");
+  const section = String(item.section || "").trim();
+  if (!title) return "";
+  return section ? `§ ${section} ${title}` : title;
+}
+
+function formatLocalizedList(values = [], lang = "fi") {
+  const items = toArray(values);
+  if (items.length <= 1) return items[0] || "";
+  const conjunction = lang === "en" ? "and" : "ja";
+  if (items.length === 2) return `${items[0]} ${conjunction} ${items[1]}`;
+  return `${items.slice(0, -1).join(", ")} ${conjunction} ${items[items.length - 1]}`;
+}
+
+function buildCouncilMeetingHeroSummary(meeting = {}, lang = "fi") {
+  const isEnglish = lang === "en";
+  const protocolAgendaTopics = uniqueLabels(toArray(meeting.agendaItems)
+    .map(formatCouncilAgendaItem)
+  );
+  const ownAgendaTopics = uniqueLabels(meeting.items
+    .map((item) => item.agendaTitle || item.detailLabel)
+    .filter((label) => normalizeTerm(label) !== "valtuuston kyselytunti")
+  );
+  const agendaTopics = protocolAgendaTopics.length ? protocolAgendaTopics : ownAgendaTopics;
+  const agendaCount = protocolAgendaTopics.length || agendaTopics.length;
+
+  const actions = [];
+  if (meeting.counts?.speeches === 1) {
+    actions.push(isEnglish ? "one delivered speech" : "yksi pidetty puheenvuoro");
+  } else if (meeting.counts?.speeches > 1) {
+    actions.push(isEnglish ? `${meeting.counts.speeches} delivered speeches` : `${meeting.counts.speeches} pidettyä puheenvuoroa`);
+  }
+  if (meeting.counts?.initiatives === 1) {
+    actions.push(isEnglish ? "one council initiative" : "yksi valtuustoaloite");
+  } else if (meeting.counts?.initiatives > 1) {
+    actions.push(isEnglish ? `${meeting.counts.initiatives} council initiatives` : `${meeting.counts.initiatives} valtuustoaloitetta`);
+  }
+  if (meeting.counts?.questions === 1) {
+    actions.push(isEnglish ? "one council question hour question with its response" : "yksi valtuuston kyselytunnin kysymys vastauksineen");
+  } else if (meeting.counts?.questions > 1) {
+    actions.push(isEnglish ? `${meeting.counts.questions} council question hour questions with responses` : `${meeting.counts.questions} valtuuston kyselytunnin kysymystä vastauksineen`);
+  }
+
+  return {
+    agendaLead: agendaTopics.length
+      ? (isEnglish
+        ? `Agenda items in the minutes (${agendaCount}): ${agendaTopics.join("; ")}.`
+        : `Pöytäkirjan varsinaiset asiakohdat (${agendaCount}): ${agendaTopics.join("; ")}.`)
+      : "",
+    activityLead: actions.length
+      ? (isEnglish
+        ? `Jari Laru participated in the meeting through ${formatLocalizedList(actions, lang)}.`
+        : `Jari Laru oli kokouksessa aktiivinen: ${formatLocalizedList(actions, lang)}.`)
+      : "",
+    agendaTopics,
+    agendaCount,
+    actions
+  };
+}
+
 function buildCouncilMeetings(collections, lang = "fi") {
   const items = uniqueContentItems(collections).filter(isCouncilMeetingItem);
   const meetings = new Map();
@@ -259,6 +348,7 @@ function buildCouncilMeetings(collections, lang = "fi") {
     if (!meetings.has(meetingDate)) {
       const meetingVideo = councilMeetingVideoForDate(meetingDate);
       const meetingMeta = councilMeetingMetaForDate(meetingDate);
+      const meetingAgenda = councilMeetingAgendaForDate(meetingDate);
       const officialLabel = councilMeetingLabelForItem(item, meetingDate);
       const meetingTitle = councilMeetingTitleForDate(meetingDate);
       meetings.set(meetingDate, {
@@ -271,7 +361,9 @@ function buildCouncilMeetings(collections, lang = "fi") {
         meetingNumber: meetingMeta.meetingNumber || "",
         hasQuestionHour: Boolean(meetingMeta.hasQuestionHour),
         summaryTitle: meetingMeta.summaryTitle || "",
-        protocolUrl: oukaCouncilSpeechProtocols.protocolsByDate?.[meetingDate] || "",
+        protocolUrl: oukaCouncilSpeechProtocols.protocolsByDate?.[meetingDate] || meetingAgenda.protocolUrl || "",
+        agendaCaption: meetingAgenda.caption || "",
+        agendaItems: toArray(meetingAgenda.items),
         video: meetingVideo,
         items: [],
         speeches: [],
@@ -330,6 +422,7 @@ function buildCouncilMeetings(collections, lang = "fi") {
         questions: meeting.questions.length,
         other: meeting.otherItems.length
       };
+      meeting.heroSummary = buildCouncilMeetingHeroSummary(meeting, lang);
 
       return meeting;
     })
