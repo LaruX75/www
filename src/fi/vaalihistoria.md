@@ -284,6 +284,14 @@ schemaMentions:
         {% endif %}
       {% endfor %}
 
+      {% set termCouncilMeetings = [] %}
+      {% for meeting in councilMeetings %}
+        {% set meetingTs = meeting.date | toTimestamp %}
+        {% if meetingTs >= startTs and meetingTs <= endTs %}
+          {% set _ = termCouncilMeetings.push(meeting) %}
+        {% endif %}
+      {% endfor %}
+
     <article id="{{ term.anchor }}" class="term-card mb-5">
       <div class="term-card__header">
         <div>
@@ -328,6 +336,16 @@ schemaMentions:
             <a href="{{ link.href }}" class="term-inline-link">{{ link.label }}</a>
             {% endfor %}
           </div>
+        </section>
+
+        <section class="term-meta-card">
+          <h3 class="term-meta-card__title">Kaupunginvaltuusto</h3>
+          {% if termCouncilMeetings.length %}
+          <p class="term-meta-card__text">{{ termCouncilMeetings.length }} kokousta, joissa tällä vaalikaudella näkyy omaa valtuustotyötä.</p>
+          <a href="/politiikka/kaupunginvaltuusto/" class="term-inline-link">Avaa kokoukset</a>
+          {% else %}
+          <p class="term-meta-card__text mb-0">Tälle vaalikaudelle ei ole vielä kytketty kaupunginvaltuuston kokouksia.</p>
+          {% endif %}
         </section>
       </div>
       </details>
@@ -575,7 +593,7 @@ schemaMentions:
 }
 
 .term-meta-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   margin-bottom: 1.1rem;
 }
 
@@ -620,6 +638,12 @@ schemaMentions:
 .term-result-card__outcome {
   margin: 0;
   font-size: 0.95rem;
+}
+
+.term-meta-card__text {
+  margin: 0.75rem 0 1rem;
+  line-height: 1.6;
+  color: rgba(17, 40, 70, 0.72);
 }
 
 .term-result-card__detail {
@@ -808,6 +832,7 @@ schemaMentions:
 
 [data-bs-theme="dark"] .term-jump-period,
 [data-bs-theme="dark"] .term-result-card__detail,
+[data-bs-theme="dark"] .term-meta-card__text,
 [data-bs-theme="dark"] .term-content-meta,
 [data-bs-theme="dark"] .term-empty,
 [data-bs-theme="dark"] .term-content-pagination__info {

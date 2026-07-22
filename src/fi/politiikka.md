@@ -17,6 +17,8 @@ schemaAbout:
     name: "Alueellinen yhdenvertaisuus"
   - "@type": "Thing"
     name: "Vaalikaudet"
+  - "@type": "Thing"
+    name: "Kaupunginvaltuuston kokoukset"
 schemaMentions:
   - "@type": "GovernmentOrganization"
     name: "Oulun kaupunki"
@@ -229,6 +231,21 @@ schemaMentions:
 {% set latestInitiative = sortedInitiatives[0] %}
 {% set latestPoliticalWriting = featuredPoliticalWritings[0] %}
 {% set latestHybridWriting = featuredHybridWritings[0] %}
+{% set councilMeetingItems = councilMeetings or [] %}
+{% set councilMeetingSpeeches = [] %}
+{% set councilMeetingInitiatives = [] %}
+{% set councilMeetingQuestions = [] %}
+{% for meeting in councilMeetingItems %}
+  {% for item in meeting.speeches %}
+    {% set _ = councilMeetingSpeeches.push(item) %}
+  {% endfor %}
+  {% for item in meeting.initiatives %}
+    {% set _ = councilMeetingInitiatives.push(item) %}
+  {% endfor %}
+  {% for item in meeting.questions %}
+    {% set _ = councilMeetingQuestions.push(item) %}
+  {% endfor %}
+{% endfor %}
 
 <section class="py-5 mb-0 bg-body-tertiary" id="nykyinen-rooli">
   <div class="site-shell">
@@ -260,9 +277,15 @@ schemaMentions:
 
       <div class="pol-role-link-stack">
         <article class="pol-route-card">
+          <span class="pol-route-kicker">Kaupunginvaltuusto</span>
+          <h3>Kokoukset näyttävät, missä työ on tehty</h3>
+          <p>{{ councilMeetingItems.length }} kokousta, joissa on omaa sisältöä: {{ councilMeetingSpeeches.length }} pidettyä puheenvuoroa, {{ councilMeetingInitiatives.length }} valtuustoaloitetta ja {{ councilMeetingQuestions.length }} valtuuston kyselytunnin kysymystä.</p>
+          <a href="/politiikka/kaupunginvaltuusto/">Avaa kaupunginvaltuusto</a>
+        </article>
+        <article class="pol-route-card">
           <span class="pol-route-kicker">Vaalikaudet</span>
-          <h3>Poliittinen työ vaalikausittain</h3>
-          <p>Kun haluat nähdä vaalitulokset, luottamustehtävät, puheenvuorot ja kirjoitukset kausittain, jatka vaalikausien sivulle.</p>
+          <h3>Työn muutos näkyy vaalikausissa</h3>
+          <p>Vaalitulokset, luottamustehtävät ja sisällöt asettuvat kausittain samaan aikajanaan.</p>
           <a href="/vaalikaudet/">Avaa vaalikaudet</a>
         </article>
         <article class="pol-route-card">
@@ -448,9 +471,9 @@ schemaMentions:
           <strong>Sidonnaisuudet ja vaalirahoitus</strong>
           <span>Läpinäkyvyyden kannalta keskeiset ilmoitukset ja rekisterilinkit.</span>
         </a>
-        <a href="https://www.ouka.fi/valtuusto" target="_blank" rel="noopener noreferrer" class="pol-archive-link">
-          <strong>Valtuusto</strong>
-          <span>Oulun kaupunginvaltuuston kokoukset, pöytäkirjat ja tallenteet.</span>
+        <a href="/politiikka/kaupunginvaltuusto/" class="pol-archive-link">
+          <strong>Kaupunginvaltuusto</strong>
+          <span>Kokoukset, pöytäkirjat, videot ja omat sisällöt samassa kontekstissa.</span>
         </a>
       </div>
     </div>
