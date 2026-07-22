@@ -8,6 +8,7 @@ categories:
 keywords:
   - liikenne ja saavutettavuus
 type: puhe
+speechContext: julkinen-tilaisuus
 writingRoles:
   - political
 wp_id: 1208
@@ -20,4 +21,3 @@ places:
 <p>Käytin repliikkipuheenvuoron joukkoliikennettä käsittelevässä keskustelussa.</p>
 <figure><div>
 https://youtu.be/KiSFg7SKKqM?t=1246</div><figcaption>Tällä videolla kommentoin Mari-Leena talvitien puheenvuoroa repliikillä. Repliikkipuheenvuorossani kerron millaista on asua Jäälissä ja elää "kahden auton loukussa". Jos puheenvuoro ei ala oikealta kohdalta, käytä tätä linkkiä: <a href="https://youtu.be/KiSFg7SKKqM?t=1246" target="_blank" rel="noreferrer noopener">https://youtu.be/KiSFg7SKKqM?t=1246</a></figcaption></figure>
-

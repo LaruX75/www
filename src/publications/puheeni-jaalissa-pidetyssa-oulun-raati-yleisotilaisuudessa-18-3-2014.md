@@ -11,6 +11,7 @@ forum:
 keywords:
   - liikunta ja harrastukset
 type: puhe
+speechContext: julkinen-tilaisuus
 writingRoles:
   - political
 wp_id: 1194
@@ -25,4 +26,3 @@ places:
 <p>Tässä puheessa tiedustelin mm. Jäälin urheilualueen ja Jääli-Hönttämäki ulkoilureitin perään. <br>Tuolloin toimin Jäälin asukasyhdistyksen puheenjohtajana, lähidemokratiatoimikunnan puheenjohtajana ja Oulun kaupunginvaltuutettuna.</p>
 <figure><div>
 https://youtu.be/iD8Gon-47Lg?t=1917</div><figcaption>Puheeni asukastilaisuudessa. Jos puhe ei ala oikeasta kohtaa, käytä tätä linkkiä: https://youtu.be/iD8Gon-47Lg?t=1917</figcaption></figure>
-

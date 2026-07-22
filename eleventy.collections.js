@@ -178,6 +178,21 @@ module.exports = function registerCollections(eleventyConfig) {
     return Boolean(item?.data && Object.prototype.hasOwnProperty.call(item.data, "date") && item.data.date);
   }
 
+  function isCouncilSpeech(item) {
+    const data = item?.data || {};
+    if (data.type !== "puhe") return false;
+
+    const speechContext = String(data.speechContext || "").trim();
+    const forums = Array.isArray(data.forum) ? data.forum : (data.forum ? [data.forum] : []);
+
+    return (
+      speechContext === "valtuusto" ||
+      speechContext === "kyselytunti" ||
+      data.event === "Oulun kaupunginvaltuusto" ||
+      forums.includes("Kaupunginvaltuusto")
+    );
+  }
+
   function sortByExplicitDateThenOrder(a, b, orderKey = "order") {
     const aHasDate = hasExplicitDate(a);
     const bHasDate = hasExplicitDate(b);
@@ -232,6 +247,20 @@ module.exports = function registerCollections(eleventyConfig) {
         .filter(item => item.data.type === type)
         .sort((a, b) => b.date - a.date);
     });
+  });
+
+  eleventyConfig.addCollection("pub_puhe_valtuusto", function (collectionApi) {
+    return collectionApi
+      .getFilteredByGlob("src/publications/*.md")
+      .filter(item => isCouncilSpeech(item))
+      .sort((a, b) => b.date - a.date);
+  });
+
+  eleventyConfig.addCollection("pub_puhe_julkinen", function (collectionApi) {
+    return collectionApi
+      .getFilteredByGlob("src/publications/*.md")
+      .filter(item => item.data.type === "puhe" && !isCouncilSpeech(item))
+      .sort((a, b) => b.date - a.date);
   });
 
   eleventyConfig.addCollection("pub_mielipide_political", function (collectionApi) {

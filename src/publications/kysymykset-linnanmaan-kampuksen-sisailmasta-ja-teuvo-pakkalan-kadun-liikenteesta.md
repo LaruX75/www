@@ -15,6 +15,7 @@ keywords:
   - liikenne ja saavutettavuus
   - terveet tilat
 type: puhe
+speechContext: julkinen-tilaisuus
 writingRoles:
   - political
   - expert

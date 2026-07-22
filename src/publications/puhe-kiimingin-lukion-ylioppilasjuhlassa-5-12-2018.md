@@ -8,6 +8,7 @@ categories:
 eventType:
   - juhlapuhe
 type: puhe
+speechContext: juhlapuhe
 writingRoles:
   - political
 wp_id: 1111

@@ -61,6 +61,41 @@ const CONTENT_THEMES = [
   }
 ];
 
+const CURATED_EXISTING_MATCHES = [
+  {
+    file: "src/publications/keskustakampus-on-uhka-ict-sektorin-tulevaisuudelle.md",
+    terms: [
+      "mielipidekirjoitus sanomalehti kaleva 10.2.2022",
+      "raksilan yliopistokiinteistöä koskevat suunnitelmat uhkaavat alueemme ict-sektorin tulevaisuutta",
+      "kymmenen tst:n tutkimusyksiköiden johtajina toimivaa professoria"
+    ]
+  },
+  {
+    file: "src/publications/paattajalta-keskustakampuksen-lammikossa-uiva-musta-joutsen-uhkaa-alueemme-ict-sektoria.md",
+    terms: [
+      "paikallislehti rantapohja julkaisi tänään kolumnini",
+      "alueemme ict-sektorin kovia vientilukuja",
+      "keskustakampuksen lammikossa uiva musta joutsen"
+    ]
+  },
+  {
+    file: "src/publications/puhe-kaikkien-kampus-mielenosoitus-2022.md",
+    terms: [
+      "puhe kaikkien kampus mielenosoituksessa",
+      "keskustakampushanketta on ajettu kuin käärmettä pyssyyn",
+      "peli on syytä viheltää poikki ja luopua raksilan suunnitelmista"
+    ]
+  },
+  {
+    file: "src/blog/opiskelijoiden-kysely-kertoi-miksi-keskustakampus-heratti-vastustusta.md",
+    terms: [
+      "uusin opiskelijoiden kysely keskustakampuksesta",
+      "kaski ry järjesti viime viikolla kyselyn",
+      "yli 80% opiskelijoista kokee yliopiston tiedottaneen keskustakampushankkeesta"
+    ]
+  }
+];
+
 function parseArgs(argv) {
   const args = { input: DEFAULT_INPUT };
   for (let i = 2; i < argv.length; i += 1) {
@@ -194,13 +229,31 @@ function detectFormat(title, text) {
   return "oma teksti";
 }
 
+function isBlogArticleCandidate(item) {
+  if (item.duplicateOf || item.existingMatch) return false;
+  if (item.length < 650) return false;
+  if (item.format === "kuva/nosto" && item.length < 1200) return false;
+
+  const articleThemes = [
+    "Kampus, Raksila ja Linnanmaa",
+    "Palveluverkko ja kaupunginosat",
+    "Avoimuus, data ja tiedolla johtaminen",
+    "Sivistyslautakunta ja koulutuspolitiikka",
+    "Hyvinvointialue ja sote",
+    "Liikenne ja kaupunkirakenne"
+  ];
+
+  return item.themes.some((theme) => articleThemes.includes(theme));
+}
+
 function actionFor(item) {
   if (item.duplicateOf) return "yhdistä duplikaattiin";
   if (item.existingMatch) return "yhdistä olemassa olevaan sivuun";
+  if (isBlogArticleCandidate(item)) return "julkaise blogiartikkelina";
   if (item.themes.includes("Vaalit ja kampanja")) return "siirrä vaaliarkistoon";
   if (item.length < 300 && item.format !== "oma teksti") return "jätä taustadokumentiksi";
-  if (item.themes.includes("Kampus, Raksila ja Linnanmaa")) return "kuratoi politiikkakirjoitukseksi";
-  if (item.themes.includes("Palveluverkko ja kaupunginosat")) return "kuratoi politiikkakirjoitukseksi";
+  if (item.themes.includes("Kampus, Raksila ja Linnanmaa")) return "tiivistä aihepolun nostoihin";
+  if (item.themes.includes("Palveluverkko ja kaupunginosat")) return "tiivistä aihepolun nostoihin";
   if (item.themes.includes("Sivistyslautakunta ja koulutuspolitiikka")) return "liitä vaalikausi- tai kokouskontekstiin";
   if (item.length >= 900) return "arvioi blogiksi";
   return "säilytä migraatioaineistossa";
@@ -243,6 +296,11 @@ function loadExistingContent() {
 function findExistingMatch(text, existing) {
   const normalized = normalizeText(text);
   if (normalized.length < 180) return "";
+  const curatedMatch = CURATED_EXISTING_MATCHES.find((entry) =>
+    entry.terms.every((term) => normalized.includes(normalizeText(term)))
+  );
+  if (curatedMatch) return curatedMatch.file;
+
   const needle = normalized.slice(0, 180);
   const match = existing.find((entry) => entry.text.includes(needle));
   return match?.file || "";
@@ -275,6 +333,7 @@ function writeReports(items, summaries) {
   fs.writeFileSync(path.resolve(ROOT, REPORT_CSV), `${csvRows.map((row) => row.map(csvEscape).join(",")).join("\n")}\n`);
 
   const highPriority = items.filter((item) => item.priority === "korkea" && !item.duplicateOf).slice(0, 30);
+  const blogCandidates = items.filter((item) => item.action === "julkaise blogiartikkelina").slice(0, 30);
   const actions = Object.entries(summaries.actions)
     .sort((a, b) => b[1] - a[1])
     .map(([name, count]) => `- ${name}: ${count}`)
@@ -292,6 +351,7 @@ Luotu: ${new Date().toISOString()}
 
 - Draftit yhteensä: ${items.length}
 - Korkean prioriteetin kuratointiehdokkaita: ${items.filter((item) => item.priority === "korkea" && !item.duplicateOf).length}
+- Blogiartikkeliksi nostettavia: ${items.filter((item) => item.action === "julkaise blogiartikkelina").length}
 - Duplikaatteja tai saman tekstin toistoja: ${items.filter((item) => item.duplicateOf).length}
 - Olemassa olevaan sivuun osuvia tekstikatkelmia: ${items.filter((item) => item.existingMatch).length}
 - Geneerisen Facebook-otsikon sisältäviä: ${items.filter((item) => item.genericTitle).length}
@@ -304,7 +364,13 @@ ${actions}
 
 ${themes}
 
-## Ensimmäiset kuratointiehdokkaat
+## Ensimmäiset blogiartikkeliehdokkaat
+
+| Pvm | Ehdotettu otsikko | Teemat | Tiedosto |
+| --- | --- | --- | --- |
+${blogCandidates.map((item) => `| ${item.date} | ${item.suggestedTitle.replace(/\|/g, "\\|")} | ${item.themes.join(", ").replace(/\|/g, "\\|")} | \`${item.file}\` |`).join("\n")}
+
+## Muut korkean prioriteetin kuratointiehdokkaat
 
 | Pvm | Suositus | Ehdotettu otsikko | Teemat | Tiedosto |
 | --- | --- | --- | --- | --- |
@@ -312,7 +378,7 @@ ${highPriority.map((item) => `| ${item.date} | ${item.action} | ${item.suggested
 
 ## Huomio
 
-Tämä raportti ei vielä päätä, mitä julkaistaan. Se tekee raakatuonnista hallittavan työlistan: ensin kuratoidaan vahvimmat tekstit, sitten yhdistetään duplikaatit ja lopuksi päätetään, mitkä jäävät vain paikalliseksi migraatioaineistoksi.
+Tämä raportti ei vielä julkaise mitään automaattisesti. Se tekee raakatuonnista hallittavan työlistan: ensin nostetaan vahvimmat tekstit blogiartikkeleiksi, sitten tiivistetään kevyemmät päivitykset aihepolkujen tueksi, yhdistetään duplikaatit ja lopuksi päätetään, mitkä jäävät vain paikalliseksi migraatioaineistoksi.
 `;
   fs.writeFileSync(path.resolve(ROOT, REPORT_MD), md);
 }

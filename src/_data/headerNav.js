@@ -565,7 +565,7 @@ module.exports = {
               icon: "bi bi-mic me-2",
               menuLink: true,
               description: "Kokouksissa pidetyt puheet, pöytäkirjat ja videot.",
-              countKey: "pub_puhe"
+              countKey: "pub_puhe_valtuusto"
             },
             {
               title: "Valtuustoaloitteet",
@@ -645,7 +645,7 @@ module.exports = {
               icon: "bi bi-mic me-2",
               menuLink: true,
               description: "Council speeches and statements.",
-              countKey: "pub_puhe"
+              countKey: "pub_puhe_valtuusto"
             },
             {
               title: "Political opinions",
@@ -695,7 +695,7 @@ module.exports = {
         {
           heading: "Luottamushenkilötyö",
           links: [
-            { title: "Puheenvuorot", href: "/kynasta/#puheet", icon: "bi bi-mic me-2", countKey: "pub_puhe", description: "Valtuustossa ja tapahtumissa pidettyjä puheenvuoroja." },
+            { title: "Valtuustopuheenvuorot", href: "/kynasta/#puheet", icon: "bi bi-mic me-2", countKey: "pub_puhe_valtuusto", description: "Kaupunginvaltuuston kokouksissa pidetyt puheenvuorot." },
             { title: "Valtuustoaloitteet", href: "/kynasta/#aloitteet", icon: "bi bi-megaphone me-2", countKey: "politics", description: "Valtuustoaloitteet ja muut kirjalliset avaukset päätöksentekoon." }
           ]
         },
@@ -703,6 +703,7 @@ module.exports = {
           heading: "Asiantuntijavaikuttaminen",
           links: [
             { title: "Lausunnot", href: "/kynasta/#lausunnot", icon: "bi bi-file-earmark-text me-2", countData: "publications_statements", description: "Lausuntopalvelussa ja muissa valmisteluprosesseissa annetut asiantuntijalausunnot." },
+            { title: "Muut julkiset puheet", href: "/kynasta/#julkiset-puheet", icon: "bi bi-megaphone-fill me-2", countKey: "pub_puhe_julkinen", description: "Juhlapuheet, yliopistopuheet ja yleisötilaisuuksien puheenvuorot." },
             { title: "Teemaprofiilit", href: "/teemat/", icon: "bi bi-diagram-3 me-2", description: "Toimitetut aihepolut, joissa sama teema näkyy kirjoituksissa, esityksissä, lausunnoissa ja mediassa." },
             { title: "Esitykset ja materiaalit", href: "/esitykset/", icon: "bi bi-easel2 me-2", countKey: "presentations", description: "Puheenvuoroja, koulutussisältöjä ja avoimia oppimateriaaleja." },
             { title: "Tieteelliset julkaisut", href: "/julkaisut/", icon: "bi bi-journal-text me-2", countData: "researchfi_total", description: "Tutkimusjulkaisut, artikkelit ja tieteellinen tuotanto." },
@@ -734,7 +735,7 @@ module.exports = {
         {
           heading: "Elected-office work",
           links: [
-            { title: "Speeches", href: "/en/writings/#puheet", icon: "bi bi-mic me-2", countKey: "pub_puhe", description: "Public speeches and council statements in one archive." },
+            { title: "Speeches", href: "/en/writings/#puheet", icon: "bi bi-mic me-2", countKey: "pub_puhe_valtuusto", description: "Council speeches and statements." },
             { title: "Initiatives", href: "/en/writings/#aloitteet", icon: "bi bi-megaphone me-2", countKey: "politics", description: "Council initiatives and concrete proposals in local politics." }
           ]
         },

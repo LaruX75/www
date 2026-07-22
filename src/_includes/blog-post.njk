@@ -12,6 +12,16 @@ layout: base.njk
   catBase:    "/en/categories/" if currentLang == "en" else "/kategoriat/",
   kwBase:     "/en/keywords/" if currentLang == "en" else "/avainsanat/"
 } %}
+{% set externalSourceHref = "" %}
+{% if sourceUrl %}
+  {% set externalSourceHref = sourceUrl %}
+{% elif source_url %}
+  {% set externalSourceHref = source_url %}
+{% elif originalUrl %}
+  {% set externalSourceHref = originalUrl %}
+{% elif original_url %}
+  {% set externalSourceHref = original_url %}
+{% endif %}
 <section>
   <div class="site-shell">
     <article class="blog-post">
@@ -27,6 +37,23 @@ layout: base.njk
                 <img loading="lazy" decoding="async" src="{{ thumbnail }}" class="img-fluid rounded mb-4" alt="{{ title }}">
               {% endif %}
               <div class="post-content content-prose">{{ content | safe }}</div>
+              {% if externalSourceHref %}
+                <aside class="content-detail-card my-4" aria-labelledby="blog-original-source-title">
+                  <p class="content-detail-card-kicker">{{ "Original source" if currentLang == "en" else "Alkuperäinen lähde" }}</p>
+                  <h2 id="blog-original-source-title" class="h5">{{ "This text is based on an earlier publication" if currentLang == "en" else "Teksti pohjautuu aiempaan julkaisuun" }}</h2>
+                  <p>
+                    {% if sourceLabel %}
+                      {{ "Original publication:" if currentLang == "en" else "Alkuperäinen julkaisu:" }} {{ sourceLabel }}.
+                    {% else %}
+                      {{ "Open the original source for context." if currentLang == "en" else "Avaa alkuperäinen lähde taustatiedoksi." }}
+                    {% endif %}
+                  </p>
+                  <a class="btn btn-outline-primary" href="{{ externalSourceHref }}" target="_blank" rel="noopener noreferrer">
+                    {{ "Open original source" if currentLang == "en" else "Avaa alkuperäinen julkaisu" }}
+                    <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i>
+                  </a>
+                </aside>
+              {% endif %}
             </div>
             <aside class="col-lg-4">
               {% include "content-context-sidebar.njk" %}

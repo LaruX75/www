@@ -10,6 +10,7 @@ eventType:
 keywords:
   - yliopistokollegio
 type: puhe
+speechContext: akateeminen-puhe
 writingRoles:
   - expert
 wp_id: 1999

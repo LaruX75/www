@@ -10,6 +10,7 @@ keywords:
   - opiskelijat
   - talous ja investoinnit
 type: puhe
+speechContext: julkinen-tilaisuus
 writingRoles:
   - political
 wp_id: 2096

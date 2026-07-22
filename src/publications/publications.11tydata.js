@@ -114,6 +114,50 @@ function resolveForum(data) {
   return Array.from(forums);
 }
 
+function resolveSpeechContext(data) {
+  if (data.type !== "puhe") {
+    return "";
+  }
+
+  const explicitContext = String(data.speechContext || "").trim();
+  if (explicitContext) {
+    return explicitContext;
+  }
+
+  const title = String(data.title || "").toLowerCase();
+  const event = String(data.event || "").trim().toLowerCase();
+  const agendaTitle = String(data.agenda_title || data.agendaTitle || "").trim().toLowerCase();
+  const contentContexts = toArray(data.contentContexts).map((item) => item.toLowerCase());
+  const forums = resolveForum(data).map((item) => item.toLowerCase());
+
+  if (
+    title.includes("kyselytunn") ||
+    agendaTitle === "valtuuston kyselytunti" ||
+    contentContexts.includes("valtuuston kyselytunti")
+  ) {
+    return "kyselytunti";
+  }
+
+  if (event === "oulun kaupunginvaltuusto" || forums.includes("kaupunginvaltuusto")) {
+    return "valtuusto";
+  }
+
+  if (title.includes("ylioppilasjuhlassa") || toArray(data.eventType).map((item) => item.toLowerCase()).includes("juhlapuhe")) {
+    return "juhlapuhe";
+  }
+
+  if (
+    event.includes("tohtoripromootio") ||
+    event.includes("kollegio") ||
+    event.includes("avoimen tieteen") ||
+    contentContexts.includes("akateemiset juhlat")
+  ) {
+    return "akateeminen-puhe";
+  }
+
+  return "julkinen-tilaisuus";
+}
+
 module.exports = {
   layout: "page.njk",
   lang: "fi",
@@ -123,6 +167,7 @@ module.exports = {
       return writingTypes.has(data.type) ? "writing-post.njk" : "page.njk";
     },
     forum: (data) => resolveForum(data),
+    speechContext: (data) => resolveSpeechContext(data),
     opinionRoles: (data) => resolveOpinionRoles(data),
     writingRoles: (data) => resolveWritingRoles(data),
     contexts: (data) => resolveContexts(data),
@@ -133,6 +178,15 @@ module.exports = {
 
       if (data.type === "puhe") {
         tagSet.add("pub_puhe");
+        const speechContext = resolveSpeechContext(data);
+        if (speechContext === "valtuusto" || speechContext === "kyselytunti") {
+          tagSet.add("pub_puhe_valtuusto");
+        } else {
+          tagSet.add("pub_puhe_julkinen");
+        }
+        if (speechContext) {
+          tagSet.add(`pub_puhe_${speechContext}`);
+        }
       }
       if (data.type === "kolumni") {
         tagSet.add("pub_kolumni");

@@ -15,6 +15,7 @@ keywords:
   - oppimateriaalit
   - palkinnot ja tunnustukset
 type: puhe
+speechContext: akateeminen-puhe
 writingRoles:
   - expert
 wp_id: 220

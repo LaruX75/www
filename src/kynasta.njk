@@ -35,10 +35,24 @@ schemaMentions:
     {% set _ = (statementItems.push(item), null) %}
   {% endif %}
 {% endfor %}
-{% set latestSpeechHighlights = (collections.pub_puhe or []).slice(0, 3) %}
+{% set councilSpeechItems = [] %}
+{% set publicSpeechItems = [] %}
+{% for item in (collections.pub_puhe or []) %}
+  {% set speechContext = item.data.speechContext or "" %}
+  {% set forums = item.data.forum or [] %}
+  {% set isCouncilSpeech = speechContext == "valtuusto" or speechContext == "kyselytunti" or item.data.event == "Oulun kaupunginvaltuusto" or forums.indexOf("Kaupunginvaltuusto") != -1 %}
+  {% if isCouncilSpeech %}
+    {% set _ = (councilSpeechItems.push(item), null) %}
+  {% else %}
+    {% set _ = (publicSpeechItems.push(item), null) %}
+  {% endif %}
+{% endfor %}
+{% set latestSpeechHighlights = (councilSpeechItems or []).slice(0, 3) %}
 {% set latestInitiativeHighlights = (collections.politics or []).slice(0, 3) %}
 {% set latestBlogHighlights = (collections.blog or []).slice(0, 3) %}
 {% set speechCount = (collections.pub_puhe or []) | length %}
+{% set councilSpeechCount = councilSpeechItems | length %}
+{% set publicSpeechCount = publicSpeechItems | length %}
 {% set initiativeCount = (collections.politics or []) | length %}
 {% set statementCount = statementItems | length %}
 {% set blogCount = (collections.blog or []) | length %}
@@ -64,7 +78,10 @@ schemaMentions:
         <p class="text-muted mb-3">Tämä sivu kokoaa oman kirjoittamiseni ja julkiset puheenvuoroni samaan paikkaan. Mukana ovat puheet, valtuustoaloitteet, lausunnot, mielipidekirjoitukset, kolumnit ja blogi.</p>
         <div class="d-flex flex-wrap gap-2">
           <a class="nav-link" href="#puheet">
-            Puheet <span class="nav-count">{{ speechCount }}</span>
+            Valtuustopuheet <span class="nav-count">{{ councilSpeechCount }}</span>
+          </a>
+          <a class="nav-link" href="#julkiset-puheet">
+            Muut puheet <span class="nav-count">{{ publicSpeechCount }}</span>
           </a>
           <a class="nav-link" href="#aloitteet">
             Valtuustoaloitteet <span class="nav-count">{{ initiativeCount }}</span>
@@ -81,9 +98,9 @@ schemaMentions:
         <aside class="kynasta-hero-aside">
           <p class="kynasta-hero-aside-kicker mb-2">Tältä sivulta löydät</p>
           <ul class="kynasta-hero-aside-list mb-0">
-            <li>Puheet ja valtuustoaloitteet, joilla olen osallistunut Oulun päätöksentekoon.</li>
+            <li>Valtuustopuheet ja valtuustoaloitteet, joilla olen osallistunut Oulun päätöksentekoon.</li>
+            <li>Muut julkiset puheet, kuten juhlapuheet, yliopistopuheet ja tilaisuuspuheenvuorot.</li>
             <li>Lausunnot, mielipiteet ja kolumnit, joissa avaan näkemyksiäni julkisesti ja perustellen.</li>
-            <li>Blogikirjoitukset, joissa taustoitan ilmiöitä opetuksesta, teknologiasta ja yhteiskunnasta.</li>
           </ul>
         </aside>
       </div>
@@ -94,6 +111,7 @@ schemaMentions:
 <nav class="kynasta-mobile-path" aria-label="Kynästä-sivun tärkeimmät sisällöt">
   <div class="site-shell">
     <a href="#puheet">Puheet</a>
+    <a href="#julkiset-puheet">Muut puheet</a>
     <a href="#mielipiteet">Mielipiteet</a>
     <a href="#lausunnot">Lausunnot</a>
     <a href="#aloitteet">Valtuustoaloitteet</a>
@@ -201,7 +219,7 @@ schemaMentions:
             {{ ui.kpiCard("Mielipiteet", "0", { href: "#mielipiteet", id: "kpi-mielipiteet", tone: "mielipiteet" }) }}
           </div>
           <div class="col-6 col-md-4 col-lg-2">
-            {{ ui.kpiCard("Puheet", "0", { href: "#puheet", id: "kpi-puheet", tone: "puheet" }) }}
+            {{ ui.kpiCard("Valtuustopuheet", "0", { href: "#puheet", id: "kpi-puheet", tone: "puheet" }) }}
           </div>
         </div>
 
@@ -600,7 +618,7 @@ schemaMentions:
 {# Kerätään kaikki puheet JSON-muotoon JS:ää varten #}
 <script id="puheet-data" type="application/json">
 [
-  {% for pub in collections.pub_puhe %}
+  {% for pub in councilSpeechItems %}
   {% set resolvedUrl = pub.data.url or pub.url %}
   {% set councilMeta = oukaCouncilSpeechProtocols.overrides[resolvedUrl] or {} %}
   {% set resolvedEvent = councilMeta.event or pub.data.event or "" %}
@@ -619,6 +637,7 @@ schemaMentions:
     "councilVideos": {{ councilVideos | jsonSafe | safe }},
     "url": "{{ resolvedUrl }}",
     "isExternal": {{ (pub.data.url != null) | jsonSafe | safe }},
+    "speechContext": {{ (pub.data.speechContext or "") | jsonSafe | safe }},
     "categories": {{ (pub.data.categories or []) | jsonSafe | safe }},
     "keywords": {{ (pub.data.keywords or []) | jsonSafe | safe }},
     "tags": {{ (pub.data.tags or []) | jsonSafe | safe }}
@@ -631,15 +650,15 @@ schemaMentions:
   <div class="site-shell">
     <div class="card shadow-sm">
       <div class="card-header bg-transparent d-flex align-items-center justify-content-between kynasta-section-header">
-        <h2 class="h4 mb-0"><i class="bi bi-mic-fill me-2"></i>Puheet</h2>
-        <span class="badge kynasta-section-count">{{ collections.pub_puhe.length }}</span>
+        <h2 class="h4 mb-0"><i class="bi bi-mic-fill me-2"></i>Valtuustopuheenvuorot</h2>
+        <span class="badge kynasta-section-count">{{ councilSpeechCount }}</span>
       </div>
       <div class="card-body p-0">
         {# ---- Suodatuspalkki ---- #}
         <div class="p-3 bg-body-tertiary border-bottom">
           <div class="row g-2 align-items-end">
             <div class="col-md-9">
-              <label for="puheet-search" class="form-label small text-muted mb-1">Hae puheita</label>
+              <label for="puheet-search" class="form-label small text-muted mb-1">Hae valtuustopuheenvuoroja</label>
               <input type="search" id="puheet-search" class="form-control form-control-sm"
                      placeholder="Hae otsikosta, tapahtumasta, kategorioista..." autocomplete="off">
             </div>
@@ -674,6 +693,80 @@ schemaMentions:
         </div>
       </div>
       {{ ui.paginationBar("puheet-info", "puheet-pagination", { extraClass: "card-footer bg-transparent kynasta-table-pager" }) }}
+    </div>
+  </div>
+</section>
+
+<script id="julkiset-puheet-data" type="application/json">
+[
+  {% for pub in publicSpeechItems %}
+  {
+    "title": {{ pub.data.title | jsonSafe | safe }},
+    "date": "{{ pub.date }}",
+    "formattedDate": "{{ pub.date | dateFormat }}",
+    "description": {{ (pub.data.description or "") | jsonSafe | safe }},
+    "event": {{ (pub.data.event or "") | jsonSafe | safe }},
+    "url": "{{ pub.data.url or pub.url }}",
+    "isExternal": {{ (pub.data.url != null) | jsonSafe | safe }},
+    "speechContext": {{ (pub.data.speechContext or "") | jsonSafe | safe }},
+    "categories": {{ (pub.data.categories or []) | jsonSafe | safe }},
+    "keywords": {{ (pub.data.keywords or []) | jsonSafe | safe }}
+  }{% if not loop.last %},{% endif %}
+  {% endfor %}
+]
+</script>
+
+<section id="julkiset-puheet" class="bg-body-tertiary">
+  <div class="site-shell">
+    <div class="card shadow-sm">
+      <div class="card-header bg-transparent d-flex align-items-center justify-content-between kynasta-section-header">
+        <div>
+          <h2 class="h4 mb-1"><i class="bi bi-megaphone-fill me-2"></i>Muut julkiset puheet</h2>
+          <p class="small text-muted mb-0">Tilaisuuksissa, juhlapäivissä ja yliopistoyhteisössä pidettyjä puheita, jotka eivät ole kaupunginvaltuuston kokouspuheenvuoroja.</p>
+        </div>
+        <span class="badge kynasta-section-count">{{ publicSpeechCount }}</span>
+      </div>
+      <div class="card-body p-0">
+        <div class="p-3 bg-body-tertiary border-bottom">
+          <div class="row g-2 align-items-end">
+            <div class="col-md-9">
+              <label for="julkiset-puheet-search" class="form-label small text-muted mb-1">Hae muita julkisia puheita</label>
+              <input type="search" id="julkiset-puheet-search" class="form-control form-control-sm"
+                     placeholder="Hae otsikosta, tilaisuudesta, kontekstista tai avainsanoista..." autocomplete="off">
+            </div>
+            <div class="col-md-3 d-flex justify-content-md-end gap-2">
+              <button id="julkiset-puheet-reset" class="btn btn-outline-secondary btn-sm w-100">
+                <i class="bi bi-x-circle me-1"></i>Tyhjennä
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0 pub-table julkiset-puheet-table">
+            <thead>
+              <tr>
+                <th class="sortable text-center" data-col="date" style="width:140px">
+                  Päivämäärä <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
+                </th>
+                <th class="sortable" data-col="title" style="min-width:220px">
+                  Otsikko <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
+                </th>
+                <th class="sortable" data-col="event" style="min-width:220px">
+                  Tilaisuus <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
+                </th>
+                <th style="min-width:180px">Konteksti</th>
+                <th style="min-width:220px">Tiivistelmä</th>
+                <th>Kategoriat & Avainsanat</th>
+              </tr>
+            </thead>
+            <tbody id="julkiset-puheet-tbody">
+              <tr><td colspan="6" class="text-center text-muted py-4">Ladataan julkisia puheita...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      {{ ui.paginationBar("julkiset-puheet-info", "julkiset-puheet-pagination", { extraClass: "card-footer bg-transparent kynasta-table-pager" }) }}
     </div>
   </div>
 </section>
@@ -1410,7 +1503,7 @@ function syncWritingRoleFilterButtons(buttons, selectedRole) {
 
 (function () {
   // Näytä taulukko-osiot tarkoituksellisessa lukujärjestyksessä riippumatta lähdekoodin lohkojärjestyksestä.
-  const sectionOrder = ['puheet', 'aloitteet', 'blogi', 'mielipiteet', 'lausunnot', 'kolumnit'];
+  const sectionOrder = ['puheet', 'julkiset-puheet', 'aloitteet', 'blogi', 'mielipiteet', 'lausunnot', 'kolumnit'];
   const sections = sectionOrder
     .map(id => document.getElementById(id))
     .filter(Boolean);
@@ -2505,6 +2598,142 @@ function syncWritingRoleFilterButtons(buttons, selectedRole) {
   });
 
   renderPuheet();
+})();
+
+// --- Muut julkiset puheet taulukon logiikka ---
+(function () {
+  const PUBLIC_SPEECH_PAGE_SIZE = 5;
+  const dataEl = document.getElementById('julkiset-puheet-data');
+  if (!dataEl) return;
+  const allData = JSON.parse(dataEl.textContent);
+
+  let filteredData = [...allData].sort((a, b) => new Date(b.date) - new Date(a.date));
+  let currentPage = 1;
+  let sortCol = 'date';
+  let sortDir = -1;
+
+  const searchInp = document.getElementById('julkiset-puheet-search');
+  const tbody = document.getElementById('julkiset-puheet-tbody');
+  const info = document.getElementById('julkiset-puheet-info');
+  const pagUl = document.getElementById('julkiset-puheet-pagination');
+
+  function contextLabel(value) {
+    if (value === 'akateeminen-puhe') return 'Akateeminen puhe';
+    if (value === 'juhlapuhe') return 'Juhlapuhe';
+    if (value === 'julkinen-tilaisuus') return 'Julkinen tilaisuus';
+    return 'Julkinen puhe';
+  }
+
+  function applyFilters() {
+    const q = searchInp ? searchInp.value.toLowerCase().trim() : '';
+    filteredData = allData.filter(d => {
+      const context = contextLabel(d.speechContext).toLowerCase();
+      return !q ||
+        (d.title || '').toLowerCase().includes(q) ||
+        (d.event || '').toLowerCase().includes(q) ||
+        (d.description || '').toLowerCase().includes(q) ||
+        context.includes(q) ||
+        (d.categories || []).some(c => c.toLowerCase().includes(q)) ||
+        (d.keywords || []).some(k => k.toLowerCase().includes(q));
+    }).sort((a, b) => new Date(b.date) - new Date(a.date));
+    currentPage = 1;
+    renderTable();
+  }
+
+  function sortData(col) {
+    if (sortCol === col) sortDir *= -1;
+    else {
+      sortCol = col;
+      sortDir = col === 'date' ? -1 : 1;
+    }
+
+    filteredData.sort((a, b) => {
+      let av = a[col] ?? '';
+      let bv = b[col] ?? '';
+      if (typeof av === 'string') av = av.toLowerCase();
+      if (typeof bv === 'string') bv = bv.toLowerCase();
+      if (col === 'date') return (new Date(av) - new Date(bv)) * sortDir;
+      return av.toString().localeCompare(bv.toString(), 'fi') * sortDir;
+    });
+    currentPage = 1;
+    renderTable();
+  }
+
+  function renderTable() {
+    if (!tbody || !info) return;
+
+    const totalPages = Math.max(1, Math.ceil(filteredData.length / PUBLIC_SPEECH_PAGE_SIZE));
+    const start = (currentPage - 1) * PUBLIC_SPEECH_PAGE_SIZE;
+    const slice = filteredData.slice(start, start + PUBLIC_SPEECH_PAGE_SIZE);
+
+    if (slice.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="6" class="text-center text-muted py-5">Ei tuloksia haulla</td></tr>';
+    } else {
+      tbody.innerHTML = slice.map(d => {
+        const catBadges = (d.categories || []).map(c => `<a href="/kategoriat/${slugify(c)}/" class="badge text-bg-secondary me-1 text-decoration-none">${escHtml(c)}</a>`).join('');
+        const keyBadges = (d.keywords || []).map(k => `<a href="/avainsanat/${slugify(k)}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">${escHtml(k)}</a>`).join('');
+        const targetAttr = d.isExternal ? 'target="_blank" rel="noopener"' : '';
+        const eventInfo = d.event ? `<span class="badge text-bg-light border text-dark"><i class="bi bi-calendar-event me-1"></i>${escHtml(d.event)}</span>` : '<span class="text-muted">Ei tilaisuustietoa</span>';
+        const summary = d.description ? escHtml(d.description) : '<span class="text-muted">Ei tiivistelmää</span>';
+
+        return `<tr>
+          <td class="col-date text-center small text-muted font-monospace">${escHtml(d.formattedDate)}</td>
+          <td class="col-title fw-medium"><a href="${escHtml(d.url)}" ${targetAttr} class="text-decoration-none">${escHtml(d.title)}</a></td>
+          <td class="col-event small text-muted">${eventInfo}</td>
+          <td class="col-context small"><span class="badge text-bg-light border text-dark">${escHtml(contextLabel(d.speechContext))}</span></td>
+          <td class="col-desc small text-muted"><span class="summary-text">${summary}</span></td>
+          <td class="col-taxonomy">
+            <div class="mb-1">${catBadges}</div>
+            <div>${keyBadges}</div>
+          </td>
+        </tr>`;
+      }).join('');
+    }
+
+    const total = filteredData.length;
+    const from = total === 0 ? 0 : start + 1;
+    const to = Math.min(start + PUBLIC_SPEECH_PAGE_SIZE, total);
+    info.textContent = `Näytetään ${from}–${to} / ${total}`;
+
+    renderPaginationShared(pagUl, totalPages, currentPage, page => {
+      currentPage = page;
+      renderTable();
+      document.getElementById('julkiset-puheet')?.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+
+    document.querySelectorAll('.julkiset-puheet-table th.sortable').forEach(th => {
+      th.classList.remove('sort-asc', 'sort-desc');
+      if (th.dataset.col === sortCol) {
+        th.classList.add(sortDir === 1 ? 'sort-asc' : 'sort-desc');
+      }
+    });
+  }
+
+  function escHtml(str) {
+    if (!str) return '';
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function slugify(str) {
+    if (!str) return "";
+    return str.toLowerCase().replace(/ä/g, "a").replace(/ö/g, "o").replace(/å/g, "a").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  }
+
+  if (searchInp) searchInp.addEventListener('input', applyFilters);
+
+  const resetBtn = document.getElementById('julkiset-puheet-reset');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      if (searchInp) searchInp.value = '';
+      applyFilters();
+    });
+  }
+
+  document.querySelectorAll('.julkiset-puheet-table th.sortable').forEach(th => {
+    th.addEventListener('click', () => sortData(th.dataset.col));
+  });
+
+  renderTable();
 })();
 
 // --- Aloitteet taulukon logiikka ---
