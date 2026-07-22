@@ -44,6 +44,9 @@ canva-analysis.json
 slideshare-analyysi.md
 reports/
 images-report.csv
+tmp/facebook-politician-export/
+tmp/facebook-export/
+facebook-export/
 
 # Local one-off helper scripts
 scripts/canva-extract-years.mjs
