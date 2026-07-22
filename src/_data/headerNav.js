@@ -157,7 +157,7 @@ module.exports = {
         eleventyNavigation: {
           key: "council_meetings",
           title: "Kaupunginvaltuusto",
-          url: "/kaupunginvaltuusto/",
+          url: "/politiikka/kaupunginvaltuusto/",
           parent: "politics",
           order: 45
         }

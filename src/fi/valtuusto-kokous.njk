@@ -3,7 +3,7 @@ pagination:
   data: councilMeetings
   size: 1
   alias: meeting
-permalink: "/kaupunginvaltuusto/{{ meeting.date }}/"
+permalink: "/politiikka/kaupunginvaltuusto/kokoukset/{{ meeting.date }}/"
 layout: base.njk
 lang: fi
 translationKey: council_meeting
@@ -12,7 +12,7 @@ pageShell: true
 pageShellClass: site-shell site-shell--wide
 pageScopeClass: council-meeting-page-scope
 eleventyComputed:
-  title: "{{ meeting.contextLabel }}"
+  title: "{{ meeting.meetingLabel }}"
   description: "{% if meeting.heroSummary.agendaLead %}{{ meeting.heroSummary.agendaLead }} {% endif %}{{ meeting.heroSummary.activityLead or (meeting.contextLabel ~ ', ' ~ meeting.meetingLabel) }}"
 schemaAbout:
   - "@type": "Thing"
@@ -62,8 +62,8 @@ schemaMentions:
 <article class="council-meeting-page">
   <header class="council-meeting-hero">
     <div>
-      <p class="term-eyebrow mb-2">{{ meeting.meetingLabel }}</p>
-      <h1 class="term-hero-title mb-3">{{ meeting.contextLabel }}</h1>
+      <p class="term-eyebrow mb-2">{{ meeting.contextLabel }}</p>
+      <h1 class="term-hero-title mb-3">{{ meeting.meetingLabel }}</h1>
       <p class="council-meeting-hero-meta">{{ meeting.date | dateFormat }}</p>
       {% if meeting.summaryTitle %}
       <p class="council-meeting-hero-summary">{{ meeting.summaryTitle }}</p>
@@ -86,7 +86,7 @@ schemaMentions:
         {% if meeting.video and meeting.video.url %}
         <a class="btn btn-outline-primary rounded-pill px-4" href="{{ meeting.video.url }}" target="_blank" rel="noopener noreferrer">Kokousvideo</a>
         {% endif %}
-        <a class="btn btn-outline-primary rounded-pill px-4" href="/kaupunginvaltuusto/">Kaikki kokoukset</a>
+        <a class="btn btn-outline-primary rounded-pill px-4" href="/politiikka/kaupunginvaltuusto/">Kaikki kokoukset</a>
       </div>
     </aside>
   </header>

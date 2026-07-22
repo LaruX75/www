@@ -2,7 +2,7 @@
 title: "Kaupunginvaltuusto"
 metaTitle: "Kaupunginvaltuusto ja poliittinen työ"
 description: "Oulun kaupunginvaltuuston kokoukset, joissa Jari Larun puheenvuorot, valtuustoaloitteet ja valtuuston kyselytunnin asiat näkyvät kokouskohtaisesti."
-permalink: /kaupunginvaltuusto/
+permalink: /politiikka/kaupunginvaltuusto/
 layout: base.njk
 lang: fi
 translationKey: council_meetings
@@ -57,7 +57,7 @@ schemaMentions:
         <span>{{ meeting.date | dateFormat }}</span>
       </div>
       <div class="council-meeting-card__body">
-        <h2><a href="/kaupunginvaltuusto/{{ meeting.date }}/">{{ meeting.meetingLabel }}</a></h2>
+        <h2><a href="/politiikka/kaupunginvaltuusto/kokoukset/{{ meeting.date }}/">{{ meeting.meetingLabel }}</a></h2>
         <p class="council-meeting-card__meta">{{ meeting.contextLabel }} · {{ meeting.date | dateFormat }}</p>
         {% if meeting.summaryTitle %}
         <p class="council-meeting-card__summary">{{ meeting.summaryTitle }}</p>
@@ -80,7 +80,7 @@ schemaMentions:
         </ul>
       </div>
       <div class="council-meeting-card__actions">
-        <a class="btn btn-read-more rounded-pill px-4" href="/kaupunginvaltuusto/{{ meeting.date }}/">Avaa kokous</a>
+        <a class="btn btn-read-more rounded-pill px-4" href="/politiikka/kaupunginvaltuusto/kokoukset/{{ meeting.date }}/">Avaa kokous</a>
         {% if meeting.protocolUrl %}
         <a class="btn btn-outline-primary rounded-pill px-4" href="{{ meeting.protocolUrl }}" target="_blank" rel="noopener noreferrer">Pöytäkirja</a>
         {% endif %}
