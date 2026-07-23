@@ -109,6 +109,70 @@ const CURATED_EXISTING_MATCHES = [
       "uudishanke sijoittuu opettajia kouluttavan kasvatustieteiden ja psykologian tiedekunnan läheisyyteen",
       "keskustakampusharhailu katkaisi hyvällä alulla olleet tilasuunnitelmat"
     ]
+  },
+  {
+    file: "src/blog/normaalikoulun-tilaratkaisu-alkoi-vihdoin-edeta.md",
+    terms: [
+      "oulun yliopiston hallitus on vihdoin päättänyt ratkaista oulun normaalikoulun tila-asiat",
+      "osa koulusta siirtyy jo ensi syksynä tilaelementtiin",
+      "keskustakampuskokonaisuuteen liittynyt normaalikoulun tilaseikkailu vei mustaan aukkoon"
+    ]
+  },
+  {
+    file: "src/publications/kysyin-keskustakampusseminaarissa-tst-tiedekunnan-siirron-perusteita.md",
+    terms: [
+      "keskustakampusseminaari 31.1.2022",
+      "miksi yliopisto pakottaa tieto- ja sähkötekniikan tiedekunnan tutkijat ja opiskelijat pois linnanmaalta",
+      "tutkimus on kuitenkin yliopiston päätehtävä"
+    ]
+  },
+  {
+    file: "src/publications/kysymykset-linnanmaan-kampuksen-sisailmasta-ja-teuvo-pakkalan-kadun-liikenteesta.md",
+    terms: [
+      "avoin keskustelutilaisuus linnanmaasta ja raksilasta",
+      "ovatko linnanmaan tilat terveysturvalliset",
+      "teuvo pakkalankadun vetokyky kampushankkeen toteutuessa"
+    ]
+  },
+  {
+    file: "src/publications/puheenvuoro-valtuustossa-raksilan-kampushanke-on-kuin-liian-lyhyt-peitto.md",
+    terms: [
+      "1. puheenvuoroni kaupunginvaltuuston kokouksessa",
+      "raksilan kampushanketta sopii kuvaamaan liian lyhyt peitto",
+      "siksi kannatan mikko viitasen esittämää pontta"
+    ]
+  },
+  {
+    file: "src/blog/valtuutettujen-vetoomus-toi-keskustakampuksen-valtuuston-kasiteltavaksi.md",
+    terms: [
+      "vuoden viimeisen valtuuston kokouksen yhteydessä keräsimme nopeasti 25 valtuutetun vetoomuksen",
+      "tuoda keskustakampuksen hankesuunnitelma valtuuston käsittelyyn",
+      "on hyvä, että näin merkittävää asiaa käsitellään myös julkisessa valtuuston kokouksessa"
+    ]
+  },
+  {
+    file: "src/blog/raksilan-vesiliikuntakeskus-on-osa-laajempaa-kaupunkirakennetta.md",
+    terms: [
+      "sekä kaleva että munoulu uutisoivat 5.2.2025 raksilan vesiliikuntakeskuksen suunnitelmista",
+      "asemakaava ja tonttijako 564-2577",
+      "yhdyskuntalautakunnan esityslistamateriaalien joukossa on paljon kiinnostavia aiheita"
+    ]
+  },
+  {
+    file: "src/blog/palveluverkko-2023-reunaehtojen-tarkastelua.md",
+    terms: [
+      "sosiaalisen median eri kanavissa eteeni tupsahti tällä viikolla karttasommitelma",
+      "palveluverkko tai kouluverkko, kutsutaan sitä sitten millä nimellä hyvänsä",
+      "tein taas muutaman visualisoinnin iltapuhteiksi koskien kouluverkkoasiaa"
+    ]
+  },
+  {
+    file: "src/blog/tilasto-ei-riita-jos-rajaukset-eivat-nay.md",
+    terms: [
+      "tilasto ja tilasto - mistä numerot tulevat",
+      "oulu on suomen viidenneksi suurin matkailualue",
+      "jos matkailua käsittelevästä tutkimuksesta puuttuu merkittävä osa maamme keskeisistä matkailualueista"
+    ]
   }
 ];
 

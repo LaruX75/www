@@ -38,7 +38,11 @@ layout: base.njk
   {% set backHref = "/en/writings/#puheet" if isEnglish else "/kynasta/#puheet" %}
 {% elif type == "puhe" %}
   {% set sectionLabel = "Speech" if isEnglish else "Puheenvuoro" %}
-  {% set backHref = "/en/writings/#puheet" if isEnglish else "/kynasta/#puheet" %}
+  {% if speechContext == "valtuusto" or speechContext == "kyselytunti" %}
+    {% set backHref = "/en/writings/#puheet" if isEnglish else "/kynasta/#puheet" %}
+  {% else %}
+    {% set backHref = "/en/writings/#puheet" if isEnglish else "/kynasta/#julkiset-puheet" %}
+  {% endif %}
 {% elif type == "lausunto" %}
   {% set sectionLabel = "Expert statement" if isEnglish else "Asiantuntijalausunto" %}
   {% set backHref = "/en/writings/#lausunnot" if isEnglish else "/kynasta/#lausunnot" %}

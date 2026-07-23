@@ -53,6 +53,10 @@ module.exports = [
           {
             label: "Oulun normaalikoulu ansaitsee uudet ja terveet tilat",
             href: "/2021/12/11/oulun-normaalikoulu-ansaitsee-uudet-ja-terveet-tilat-lapset-heittopussina-kampussuunnitelmien-vuoksi/"
+          },
+          {
+            label: "Valtuutettujen vetoomus toi keskustakampuksen valtuuston käsiteltäväksi",
+            href: "/2021/12/13/valtuutettujen-vetoomus-toi-keskustakampuksen-valtuuston-kasiteltavaksi/"
           }
         ]
       },
@@ -66,6 +70,10 @@ module.exports = [
             href: "/2022/02/21/kysymykset-linnanmaan-kampuksen-sisailmasta-ja-teuvo-pakkalan-kadun-liikenteesta/"
           },
           {
+            label: "Puheenvuoro keskustakampuksen yleisötilaisuudessa: TST-tiedekunnan siirron perusteet",
+            href: "/2022/01/31/kysyin-keskustakampusseminaarissa-tst-tiedekunnan-siirron-perusteita/"
+          },
+          {
             label: "Keskustakampus voi olla historiallinen virhe",
             href: "/2022/02/28/puheenvuoro-keskustakampus-voi-olla-historiallinen-virhe-toteutuessaan-se-vie-mennessaan-useita-synergiaetuja/"
           }
@@ -77,8 +85,16 @@ module.exports = [
         text: "Facebook-aineistossa ja julkaistuissa kirjoituksissa kampuskiista näyttäytyy pitkänä prosessina, jossa normaalikoulun tilaratkaisu, Raksilan kehittäminen ja Linnanmaan asema kytkeytyvät toisiinsa.",
         links: [
           {
+            label: "Normaalikoulun tilaratkaisu alkoi vihdoin edetä",
+            href: "/2023/09/21/normaalikoulun-tilaratkaisu-alkoi-vihdoin-edeta/"
+          },
+          {
             label: "Normaalikoulun tilapäätös palautti kampuskeskustelun raiteilleen",
             href: "/2025/03/25/normaalikoulun-tilapaatos-palautti-kampuskeskustelun-raiteilleen/"
+          },
+          {
+            label: "Raksilan vesiliikuntakeskus on osa laajempaa kaupunkirakennetta",
+            href: "/2025/02/08/raksilan-vesiliikuntakeskus-on-osa-laajempaa-kaupunkirakennetta/"
           },
           {
             label: "Kampuspohdintaa Kontinkankaan kampusvalinnasta",
@@ -154,7 +170,7 @@ module.exports = [
         text: "Facebook-aineistosta noussut palveluverkkokokonaisuus on jo osin kuratoitu sivustolle: syntyvyys, ikäluokat ja alueellinen muutos näyttävät, miksi kouluverkkokeskustelu tarvitsee dataa.",
         links: [
           {
-            label: "Faktojen tarkastelua: kouluverkko ja syntyvyys",
+            label: "Kouluverkkoa ei voi mitoittaa ilman väestödataa",
             href: "/2023/05/21/palveluverkko-2023-reunaehtojen-tarkastelua/"
           }
         ]
@@ -221,7 +237,12 @@ module.exports = [
         year: "2023",
         title: "Tilastojen ja tietolähteiden kriittinen lukeminen",
         text: "Facebook-aineistossa toistuu tapa tarkistaa, mistä luvut tulevat ja mitä niistä voi päätellä. Tämä on samaa poliittista profiilia kuin palveluverkon dataperustainen tarkastelu.",
-        links: []
+        links: [
+          {
+            label: "Tilasto ei riitä, jos rajaukset eivät näy",
+            href: "/2023/08/20/tilasto-ei-riita-jos-rajaukset-eivat-nay/"
+          }
+        ]
       },
       {
         year: "2024",
