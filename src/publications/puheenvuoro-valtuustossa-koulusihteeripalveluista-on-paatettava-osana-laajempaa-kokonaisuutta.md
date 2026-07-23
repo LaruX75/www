@@ -17,6 +17,7 @@ keywords:
   - talous ja investoinnit
   - palveluverkko
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:

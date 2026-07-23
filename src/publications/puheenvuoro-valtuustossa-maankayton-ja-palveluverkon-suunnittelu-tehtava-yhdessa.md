@@ -16,6 +16,7 @@ keywords:
   - kaavoitus
   - sivistys ja koulutus
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:

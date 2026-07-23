@@ -15,6 +15,7 @@ keywords:
   - tietojohtaminen
   - digitalisaatio
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
   - expert

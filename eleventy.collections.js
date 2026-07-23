@@ -185,9 +185,11 @@ module.exports = function registerCollections(eleventyConfig) {
     const speechContext = String(data.speechContext || "").trim();
     const forums = Array.isArray(data.forum) ? data.forum : (data.forum ? [data.forum] : []);
 
+    if (speechContext) {
+      return speechContext === "valtuusto" || speechContext === "kyselytunti";
+    }
+
     return (
-      speechContext === "valtuusto" ||
-      speechContext === "kyselytunti" ||
       data.event === "Oulun kaupunginvaltuusto" ||
       forums.includes("Kaupunginvaltuusto")
     );

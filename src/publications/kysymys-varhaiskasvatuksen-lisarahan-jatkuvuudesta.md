@@ -23,6 +23,7 @@ keywords:
   - lisäraha
   - sivistys ja koulutus
 type: puhe
+speechContext: kyselytunti
 contentType: speech
 writingRoles:
   - political

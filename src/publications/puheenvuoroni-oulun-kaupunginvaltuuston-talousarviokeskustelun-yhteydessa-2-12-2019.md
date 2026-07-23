@@ -15,6 +15,7 @@ keywords:
   - kulttuuri
   - valotaide
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 wp_id: 96

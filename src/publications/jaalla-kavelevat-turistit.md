@@ -12,6 +12,7 @@ forum:
 keywords:
   - matkailu
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:

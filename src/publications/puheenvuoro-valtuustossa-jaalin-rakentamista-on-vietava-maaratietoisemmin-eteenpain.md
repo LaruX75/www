@@ -15,6 +15,7 @@ keywords:
   - kaavoitus
   - asuminen
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:

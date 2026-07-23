@@ -14,6 +14,7 @@ keywords:
   - viestintä ja media
   - kuntalaiset
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:

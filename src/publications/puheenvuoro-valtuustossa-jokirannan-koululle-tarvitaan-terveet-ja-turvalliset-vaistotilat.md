@@ -14,6 +14,7 @@ keywords:
   - terveet tilat
   - perusopetus
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
   - expert

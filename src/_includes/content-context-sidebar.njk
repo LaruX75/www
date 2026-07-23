@@ -110,9 +110,25 @@
   {% set typeLabel = "Blog post" if isEnglish else "Blogikirjoitus" %}
   {% set archiveLabel = "All blog posts" if isEnglish else "Kaikki blogikirjoitukset" %}
 {% elif type == "puhe" %}
-  {% set archiveHref = "/en/writings/#puheet" if isEnglish else "/kynasta/#puheet" %}
-  {% set typeLabel = "Council question hour" if isEnglish and isQuestionHour else ("Valtuuston kyselytunti" if isQuestionHour else ("Speech" if isEnglish else "Puheenvuoro")) %}
-  {% set archiveLabel = "All council question hour items" if isEnglish and isQuestionHour else ("Kaikki kyselytunnin sisällöt" if isQuestionHour else ("All speeches" if isEnglish else "Kaikki puheenvuorot")) %}
+  {% if speechContext == "valtuusto" %}
+    {% set archiveHref = "/en/writings/#puheet" if isEnglish else "/kynasta/#puheet" %}
+    {% set typeLabel = "Council speech" if isEnglish else "Valtuustopuheenvuoro" %}
+    {% set archiveLabel = "All council speeches" if isEnglish else "Kaikki valtuustopuheenvuorot" %}
+  {% elif speechContext == "kyselytunti" or isQuestionHour %}
+    {% set archiveHref = "/en/writings/#puheet" if isEnglish else "/kynasta/#puheet" %}
+    {% set typeLabel = "Council question hour" if isEnglish else "Valtuuston kyselytunti" %}
+    {% set archiveLabel = "All council question hour items" if isEnglish else "Kaikki kyselytunnin sisällöt" %}
+  {% else %}
+    {% set archiveHref = "/en/writings/#puheet" if isEnglish else "/kynasta/#julkiset-puheet" %}
+    {% if speechContext == "akateeminen-puhe" %}
+      {% set typeLabel = "Academic speech" if isEnglish else "Akateeminen puhe" %}
+    {% elif speechContext == "juhlapuhe" %}
+      {% set typeLabel = "Ceremonial speech" if isEnglish else "Juhlapuhe" %}
+    {% else %}
+      {% set typeLabel = "Public speech" if isEnglish else "Julkinen puhe" %}
+    {% endif %}
+    {% set archiveLabel = "All public speeches" if isEnglish else "Kaikki muut julkiset puheet" %}
+  {% endif %}
 {% elif type == "lausunto" %}
   {% set archiveHref = "/en/writings/#lausunnot" if isEnglish else "/kynasta/#lausunnot" %}
   {% set typeLabel = "Expert statement" if isEnglish else "Asiantuntijalausunto" %}
@@ -277,19 +293,19 @@
   {% endif %}
 
   {% if categories and not isSpeechContext %}
-  <div class="content-context-card">
-    <p class="content-context-kicker">{{ txt.categories }}</p>
+  <details class="content-context-card content-context-details">
+    <summary class="content-context-details-summary">{{ txt.categories }}</summary>
     <div class="content-context-chiplist">
       {% for cat in categories %}
       <a class="content-context-chip content-context-chip--category" href="{{ '/en/categories/' if isEnglish else '/kategoriat/' }}{{ cat | slugify }}/">{{ cat }}</a>
       {% endfor %}
     </div>
-  </div>
+  </details>
   {% endif %}
 
   {% if termCloud.length and not isSpeechContext %}
-  <div class="content-context-card">
-    <p class="content-context-kicker">{{ txt.keywords }}</p>
+  <details class="content-context-card content-context-details">
+    <summary class="content-context-details-summary">{{ txt.keywords }}</summary>
     <div class="content-context-cloud">
       {% for term in termCloud %}
       <a class="content-context-term content-context-term--{{ term.weight }}" href="{{ '/en/keywords/' if isEnglish else '/avainsanat/' }}{{ term.name | slugify }}/">
@@ -297,12 +313,12 @@
       </a>
       {% endfor %}
     </div>
-  </div>
+  </details>
   {% endif %}
 
   {% if isSpeechContext and (currentKeywords.length or currentContentContexts.length or currentPlaces.length or currentEntities.length) %}
-  <div class="content-context-card">
-    <p class="content-context-kicker">{{ txt.tags }}</p>
+  <details class="content-context-card content-context-details">
+    <summary class="content-context-details-summary">{{ txt.tags }}</summary>
     <div class="content-context-chiplist">
       {% if not currentForums.length %}
         {% for item in currentContentContexts %}
@@ -321,7 +337,7 @@
         {% endif %}
       {% endfor %}
     </div>
-  </div>
+  </details>
   {% endif %}
 
   <div class="content-context-card">

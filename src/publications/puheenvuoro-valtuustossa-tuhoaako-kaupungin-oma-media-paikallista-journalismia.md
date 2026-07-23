@@ -11,6 +11,7 @@ forum:
 keywords:
   - viestintä ja media
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:

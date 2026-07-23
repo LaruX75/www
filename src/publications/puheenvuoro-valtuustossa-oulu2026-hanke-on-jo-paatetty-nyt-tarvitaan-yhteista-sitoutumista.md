@@ -15,6 +15,7 @@ keywords:
   - matkailu
   - kansainvälisyys ja osaajat
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:

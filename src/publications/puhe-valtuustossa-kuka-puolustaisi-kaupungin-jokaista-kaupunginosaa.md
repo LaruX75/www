@@ -15,6 +15,7 @@ keywords:
   - alueellinen yhdenvertaisuus
   - yhteisöllisyys
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 wp_id: 1130

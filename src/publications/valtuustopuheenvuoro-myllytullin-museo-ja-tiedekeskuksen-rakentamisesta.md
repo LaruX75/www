@@ -12,6 +12,7 @@ forum:
 keywords:
   - kulttuuri
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 wp_id: 2443

@@ -37,10 +37,17 @@ layout: base.njk
   {% set sectionLabel = "Council question hour" if isEnglish else "Valtuuston kyselytunti" %}
   {% set backHref = "/en/writings/#puheet" if isEnglish else "/kynasta/#puheet" %}
 {% elif type == "puhe" %}
-  {% set sectionLabel = "Speech" if isEnglish else "Puheenvuoro" %}
-  {% if speechContext == "valtuusto" or speechContext == "kyselytunti" %}
+  {% if speechContext == "valtuusto" %}
+    {% set sectionLabel = "Council speech" if isEnglish else "Valtuustopuheenvuoro" %}
     {% set backHref = "/en/writings/#puheet" if isEnglish else "/kynasta/#puheet" %}
+  {% elif speechContext == "akateeminen-puhe" %}
+    {% set sectionLabel = "Academic speech" if isEnglish else "Akateeminen puhe" %}
+    {% set backHref = "/en/writings/#puheet" if isEnglish else "/kynasta/#julkiset-puheet" %}
+  {% elif speechContext == "juhlapuhe" %}
+    {% set sectionLabel = "Ceremonial speech" if isEnglish else "Juhlapuhe" %}
+    {% set backHref = "/en/writings/#puheet" if isEnglish else "/kynasta/#julkiset-puheet" %}
   {% else %}
+    {% set sectionLabel = "Public speech" if isEnglish else "Julkinen puhe" %}
     {% set backHref = "/en/writings/#puheet" if isEnglish else "/kynasta/#julkiset-puheet" %}
   {% endif %}
 {% elif type == "lausunto" %}

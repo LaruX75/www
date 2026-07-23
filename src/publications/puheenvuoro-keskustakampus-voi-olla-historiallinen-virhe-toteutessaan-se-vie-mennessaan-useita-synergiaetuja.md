@@ -15,6 +15,7 @@ eventType:
 keywords:
   - korkeakoulut ja kampukset
 type: puhe
+speechContext: julkinen-tilaisuus
 writingRoles:
   - political
   - expert

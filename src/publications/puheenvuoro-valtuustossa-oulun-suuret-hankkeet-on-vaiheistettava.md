@@ -15,6 +15,7 @@ keywords:
   - hankkeet
   - korkeakoulut ja kampukset
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:

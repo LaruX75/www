@@ -14,6 +14,7 @@ keywords:
   - täydennysrakentaminen
   - palveluverkko
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:

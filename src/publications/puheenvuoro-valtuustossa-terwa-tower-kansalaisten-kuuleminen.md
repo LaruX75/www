@@ -13,6 +13,7 @@ keywords:
   - kaavoitus
   - osallisuus ja lähidemokratia
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:

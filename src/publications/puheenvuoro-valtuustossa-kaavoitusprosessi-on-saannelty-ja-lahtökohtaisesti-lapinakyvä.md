@@ -15,6 +15,7 @@ keywords:
   - avoimuus
   - kaupunkikehitys
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:

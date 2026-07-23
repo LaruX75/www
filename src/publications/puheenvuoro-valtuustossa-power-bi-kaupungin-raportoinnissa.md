@@ -15,6 +15,7 @@ keywords:
   - avoimuus
   - digitalisaatio
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
   - expert

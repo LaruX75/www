@@ -21,6 +21,7 @@ keywords:
   - liikenne ja saavutettavuus
   - turvallisuus
 type: puhe
+speechContext: kyselytunti
 contentType: speech
 writingRoles:
   - political

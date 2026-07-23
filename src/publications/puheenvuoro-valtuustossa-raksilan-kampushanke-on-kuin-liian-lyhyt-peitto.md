@@ -14,6 +14,7 @@ keywords:
   - korkeakoulut ja kampukset
   - kaupunkikehitys
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:

@@ -13,6 +13,7 @@ keywords:
   - historia
   - hallinto ja luottamustoimet
 type: puhe
+speechContext: julkinen-tilaisuus
 writingRoles:
   - political
 wp_id: 1138

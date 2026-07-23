@@ -12,6 +12,7 @@ forum:
 keywords:
   - kouluverkko
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 wp_id: 976

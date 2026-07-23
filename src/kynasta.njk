@@ -40,7 +40,11 @@ schemaMentions:
 {% for item in (collections.pub_puhe or []) %}
   {% set speechContext = item.data.speechContext or "" %}
   {% set forums = item.data.forum or [] %}
-  {% set isCouncilSpeech = speechContext == "valtuusto" or speechContext == "kyselytunti" or item.data.event == "Oulun kaupunginvaltuusto" or forums.indexOf("Kaupunginvaltuusto") != -1 %}
+  {% if speechContext %}
+    {% set isCouncilSpeech = speechContext == "valtuusto" or speechContext == "kyselytunti" %}
+  {% else %}
+    {% set isCouncilSpeech = item.data.event == "Oulun kaupunginvaltuusto" or forums.indexOf("Kaupunginvaltuusto") != -1 %}
+  {% endif %}
   {% if isCouncilSpeech %}
     {% set _ = (councilSpeechItems.push(item), null) %}
   {% else %}
@@ -119,11 +123,11 @@ schemaMentions:
   </div>
 </nav>
 
-{% set topicProfileKeys = ["tekoalylukutaito", "oulun-palveluverkko-ja-kaupunkikehitys", "lapinakyva-paatoksenteko-ja-tiedolla-johtaminen"] %}
+{% set topicProfileKeys = ["oulun-palveluverkko-ja-kaupunkikehitys", "lapinakyva-paatoksenteko-ja-tiedolla-johtaminen", "opettajankoulutus", "tekoalylukutaito", "avoin-tiede-ja-avoimet-oppimateriaalit", "julkinen-asiantuntijuus-mediassa"] %}
 {% set topicProfileTitleId = "kynasta-topic-profiles-title" %}
 {% set topicProfileEyebrow = "Aiheittain" %}
 {% set topicProfileTitle = "Kirjoitukset ja puheet suuremmissa kokonaisuuksissa" %}
-{% set topicProfileLead = "Kynästä-sivu näyttää sisältötyypit. Teemaprofiilit kokoavat samat sisällöt aiheiden mukaan yli puheiden, mielipiteiden, lausuntojen ja blogikirjoitusten." %}
+{% set topicProfileLead = "Samat kysymykset kulkevat puheissa, mielipiteissä, lausunnoissa ja blogikirjoituksissa. Aihepolut kokoavat nämä sisällöt yhteen teeman, eivät julkaisumuodon, perusteella." %}
 {% include "topic-profile-links.njk" %}
 
 <section id="aloita-tasta">

@@ -13,6 +13,7 @@ keywords:
   - monitoimitalot
   - palveluverkko
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:

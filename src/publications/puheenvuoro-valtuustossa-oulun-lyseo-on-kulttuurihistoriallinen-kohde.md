@@ -16,6 +16,7 @@ keywords:
   - lukiokoulutus
   - kulttuuriperintö
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 templateEngineOverride: md

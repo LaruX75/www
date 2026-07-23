@@ -21,6 +21,7 @@ keywords:
   - elinvoima ja työpaikat
   - kulttuuri
 type: puhe
+speechContext: kyselytunti
 contentType: speech
 writingRoles:
   - political

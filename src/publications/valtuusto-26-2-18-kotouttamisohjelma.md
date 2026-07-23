@@ -15,6 +15,7 @@ keywords:
   - kansainvälisyys ja osaajat
   - korkeakoulut ja kampukset
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 wp_id: 1128

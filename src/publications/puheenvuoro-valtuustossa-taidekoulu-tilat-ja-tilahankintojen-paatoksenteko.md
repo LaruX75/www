@@ -14,6 +14,7 @@ keywords:
   - tilat ja kiinteistöt
   - palveluverkko
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:

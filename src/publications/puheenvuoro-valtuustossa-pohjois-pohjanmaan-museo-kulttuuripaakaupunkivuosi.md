@@ -13,6 +13,7 @@ keywords:
   - museo
   - kulttuuri
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:

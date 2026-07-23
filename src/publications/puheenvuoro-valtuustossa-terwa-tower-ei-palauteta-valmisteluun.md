@@ -12,6 +12,7 @@ forum:
 keywords:
   - päätösmenettely
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:

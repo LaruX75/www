@@ -14,6 +14,7 @@ keywords:
   - kaavoitus
   - urheilukenttä
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:

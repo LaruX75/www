@@ -16,6 +16,7 @@ keywords:
   - korkeakoulut ja kampukset
   - työvoima
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:

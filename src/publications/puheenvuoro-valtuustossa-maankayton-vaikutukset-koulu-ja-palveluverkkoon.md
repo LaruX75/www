@@ -15,6 +15,7 @@ keywords:
   - palveluverkko
   - sivistyslautakunta
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:

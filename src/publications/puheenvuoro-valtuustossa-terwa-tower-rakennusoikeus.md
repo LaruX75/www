@@ -12,6 +12,7 @@ forum:
 keywords:
   - kaavoitus
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:

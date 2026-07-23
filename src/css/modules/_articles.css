@@ -681,6 +681,57 @@ html:not([data-bs-theme="dark"]) .kynasta-hero {
   padding: 1rem;
 }
 
+.content-context-details {
+  padding: 0;
+  overflow: clip;
+}
+
+.content-context-details-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  min-height: 3rem;
+  padding: 0.9rem 1rem;
+  color: var(--bs-secondary-color);
+  cursor: pointer;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  list-style: none;
+  text-transform: uppercase;
+}
+
+.content-context-details-summary::-webkit-details-marker {
+  display: none;
+}
+
+.content-context-details-summary::after {
+  content: "+";
+  display: inline-grid;
+  place-items: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  border: 1px solid color-mix(in srgb, var(--bs-link-color) 22%, var(--bs-border-color));
+  border-radius: 999px;
+  color: var(--bs-link-color);
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.content-context-details[open] .content-context-details-summary::after {
+  content: "−";
+}
+
+.content-context-details > .content-context-chiplist,
+.content-context-details > .content-context-cloud {
+  padding: 0 1rem 1rem;
+}
+
+.content-context-details-summary:hover {
+  color: var(--bs-link-color);
+}
+
 .content-context-card--primary {
   background:
     linear-gradient(135deg, color-mix(in srgb, var(--bs-link-color) 10%, transparent), transparent 72%),

@@ -16,6 +16,7 @@ keywords:
   - sivistys ja koulutus
   - talous ja investoinnit
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:

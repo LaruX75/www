@@ -16,6 +16,7 @@ keywords:
   - hyvinvointi
   - osallisuus ja lähidemokratia
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:

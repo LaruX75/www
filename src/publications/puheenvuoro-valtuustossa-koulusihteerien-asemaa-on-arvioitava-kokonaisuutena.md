@@ -15,6 +15,7 @@ keywords:
   - Monetra
   - hallinto ja luottamustoimet
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:

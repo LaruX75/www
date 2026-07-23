@@ -15,6 +15,7 @@ keywords:
   - ICT ja elinvoima
   - kaupunkikehitys
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:

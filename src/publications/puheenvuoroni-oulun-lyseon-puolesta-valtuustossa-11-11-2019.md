@@ -13,6 +13,7 @@ keywords:
   - kulttuuriperintö
   - digitalisaatio
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 wp_id: 99

@@ -18,6 +18,7 @@ keywords:
   - varhaiskasvatus
   - alkuopetus
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:

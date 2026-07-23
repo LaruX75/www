@@ -18,6 +18,7 @@ keywords:
   - perusopetus
   - opetuksen resurssit
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 wp_id: 1120

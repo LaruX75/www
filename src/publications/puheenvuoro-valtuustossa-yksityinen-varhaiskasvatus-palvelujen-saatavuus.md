@@ -16,6 +16,7 @@ keywords:
   - palvelujen saavutettavuus
   - lapset ja nuoret
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:

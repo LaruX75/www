@@ -13,6 +13,7 @@ keywords:
   - liikenne ja saavutettavuus
   - alueellinen yhdenvertaisuus
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:

@@ -13,6 +13,7 @@ keywords:
   - kaupunkikehitys
   - kaupunkikuva
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:

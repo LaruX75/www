@@ -14,6 +14,7 @@ keywords:
   - rakentaminen ja korjaaminen
   - kaupunkilaisten yhteiset tilat
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:

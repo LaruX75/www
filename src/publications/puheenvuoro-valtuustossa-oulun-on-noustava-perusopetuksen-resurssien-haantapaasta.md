@@ -12,6 +12,7 @@ keywords:
   - perusopetus
   - oppimisympäristöt
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 templateEngineOverride: md

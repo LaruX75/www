@@ -14,6 +14,7 @@ keywords:
   - korkeakoulut ja kampukset
   - ICT ja elinvoima
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:

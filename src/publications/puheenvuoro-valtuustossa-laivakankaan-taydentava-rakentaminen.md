@@ -14,6 +14,7 @@ keywords:
   - täydennysrakentaminen
   - kaupunkikehitys
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:

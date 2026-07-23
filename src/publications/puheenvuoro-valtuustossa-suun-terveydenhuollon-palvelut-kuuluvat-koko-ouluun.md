@@ -19,6 +19,7 @@ keywords:
   - Oulunsalo
   - Kaakkuri
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 opinionRoles:

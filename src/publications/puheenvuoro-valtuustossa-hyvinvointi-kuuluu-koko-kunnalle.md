@@ -18,6 +18,7 @@ keywords:
   - liikunta ja harrastukset
   - hyvinvointi
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:

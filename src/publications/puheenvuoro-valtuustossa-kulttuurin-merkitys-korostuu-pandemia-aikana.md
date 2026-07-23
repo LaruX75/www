@@ -17,6 +17,7 @@ keywords:
   - koronavirus
   - liikenne ja saavutettavuus
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:

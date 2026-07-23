@@ -23,6 +23,7 @@ keywords:
   - turvallisuus
   - kouluverkko
 type: puhe
+speechContext: kyselytunti
 contentType: speech
 writingRoles:
   - political

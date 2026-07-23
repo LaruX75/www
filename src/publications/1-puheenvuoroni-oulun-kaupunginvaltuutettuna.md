@@ -18,6 +18,7 @@ keywords:
   - opetuksen resurssit
   - oppiminen
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 wp_id: 1154

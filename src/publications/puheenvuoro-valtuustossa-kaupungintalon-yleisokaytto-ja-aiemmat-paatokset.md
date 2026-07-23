@@ -14,6 +14,7 @@ keywords:
   - kulttuuriperintö
   - kaupunkilaisten yhteiset tilat
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:

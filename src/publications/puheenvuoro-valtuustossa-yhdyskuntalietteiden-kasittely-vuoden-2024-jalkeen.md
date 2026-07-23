@@ -18,6 +18,7 @@ forum:
 keywords:
   - ympäristö ja kiertotalous
 type: puhe
+speechContext: kyselytunti
 contentType: speech
 writingRoles:
   - political

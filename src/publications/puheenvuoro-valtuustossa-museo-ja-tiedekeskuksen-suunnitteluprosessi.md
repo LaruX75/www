@@ -12,6 +12,7 @@ forum:
 keywords:
   - avoimuus
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:

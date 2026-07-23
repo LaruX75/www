@@ -15,6 +15,7 @@ keywords:
   - omistajaohjaus
   - etätyö
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
   - expert

@@ -14,6 +14,7 @@ keywords:
   - kansainvälisyys ja osaajat
   - osaaminen
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 opinionRoles:

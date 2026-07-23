@@ -14,6 +14,7 @@ keywords:
   - oppimisen tuki
   - sivistys ja koulutus
 type: puhe
+speechContext: valtuusto
 writingRoles:
   - political
 templateEngineOverride: md
