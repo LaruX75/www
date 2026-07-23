@@ -34,7 +34,12 @@ layout: base.njk
           <div class="row g-4">
             <div class="col-lg-8">
               {% if thumbnail %}
-                <img loading="lazy" decoding="async" src="{{ thumbnail }}" class="img-fluid rounded mb-4" alt="{{ title }}">
+                <figure class="mb-4">
+                  <img loading="lazy" decoding="async" src="{{ thumbnail }}" class="img-fluid rounded" alt="{{ imageAlt or title }}">
+                  {% if imageCaption %}
+                    <figcaption class="small text-muted mt-2">{{ imageCaption }}</figcaption>
+                  {% endif %}
+                </figure>
               {% endif %}
               <div class="post-content content-prose">{{ content | safe }}</div>
               {% if externalSourceHref %}
