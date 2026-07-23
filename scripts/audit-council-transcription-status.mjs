@@ -21,6 +21,87 @@ const referenceContext = /laru\s+puhui|larun\s+puheenvuoro|vastauksena\s+larulle
 
 const manualHitReviews = [
   {
+    youtubeId: "_s4SnjPh0PE",
+    startsAt: 4260,
+    toleranceSeconds: 90,
+    classification: "hylätty väärä puhuja",
+    reviewDecision: "rejected",
+    speaker: "Lawson-Hellu",
+    note: "Tarkistettu litteraatista: puheenjohtaja antaa vuoron Lawson-Hellulle/Lateko-Hellulle, ei Jari Larulle."
+  },
+  {
+    youtubeId: "_s4SnjPh0PE",
+    startsAt: 11100,
+    toleranceSeconds: 120,
+    classification: "hylätty nimilista/aloitteiden lukeminen",
+    reviewDecision: "rejected",
+    speaker: "sihteeri",
+    note: "Tarkistettu litteraatista: kyse on asiakohtien ja valtuustoaloitteiden lukemisesta, ei Jari Larun puheenvuorosta."
+  },
+  {
+    youtubeId: "dc_YU-ZjToc",
+    startsAt: 9420,
+    toleranceSeconds: 120,
+    classification: "hylätty lautakuntajäsenten vaalilista",
+    reviewDecision: "rejected",
+    speaker: "valtuutettu Kolmonen",
+    note: "Tarkistettu litteraatista: kohdassa esitetään sivistys- ja kulttuurilautakunnan jäseniä, mukana Jari Laru nimilistassa."
+  },
+  {
+    youtubeId: "NDbJ2Nf4OxM",
+    startsAt: 9420,
+    toleranceSeconds: 120,
+    classification: "hylätty lautakuntajäsenten vaalilista",
+    reviewDecision: "rejected",
+    speaker: "valtuutettu Kolmonen",
+    note: "Tarkistettu litteraatista: kyse on samasta sivistys- ja kulttuurilautakunnan jäsenten vaalilistasta kuin rinnakkaisessa 5.6.2017 tallenteessa."
+  },
+  {
+    youtubeId: "ryJF54kD-58",
+    startsAt: 1800,
+    toleranceSeconds: 120,
+    classification: "viittaus Jari Laruun",
+    reviewDecision: "reference",
+    speaker: "Sirviö",
+    note: "Tarkistettu litteraatista: kyse on Sirviön kysymyksestä, jossa viitataan valtuutettu Laruun; ei Jari Larun puheenvuoro."
+  },
+  {
+    youtubeId: "ryJF54kD-58",
+    startsAt: 14940,
+    toleranceSeconds: 120,
+    classification: "hylätty väärä puhuja",
+    reviewDecision: "rejected",
+    speaker: "Lawson-Hellu",
+    note: "Tarkistettu litteraatista: puheenjohtaja antaa vuoron Lawson-Hellulle, ei Jari Larulle."
+  },
+  {
+    youtubeId: "ryJF54kD-58",
+    startsAt: 16440,
+    toleranceSeconds: 120,
+    classification: "hylätty väärä puhuja",
+    reviewDecision: "rejected",
+    speaker: "Oja-Lehto",
+    note: "Tarkistettu litteraatista: kohta on Oja-Lehdon puheenvuoro, ei Jari Larun puheenvuoro."
+  },
+  {
+    youtubeId: "Xpsqd8oegrg",
+    startsAt: 6060,
+    toleranceSeconds: 90,
+    classification: "hylätty väärä puhuja",
+    reviewDecision: "rejected",
+    speaker: "Lawson-Hellu",
+    note: "Tarkistettu litteraatista: kohta jatkuu Lawson-Hellun kysymykseen, ei Jari Larun puheenvuoroon."
+  },
+  {
+    youtubeId: "aoDtYnge4LU",
+    startsAt: 10411.28,
+    toleranceSeconds: 90,
+    classification: "hylätty väärä puhuja",
+    reviewDecision: "rejected",
+    speaker: "Lawson-Hellu",
+    note: "Tarkistettu litteraatista: puheenjohtaja antaa vuoron Lawson-Hellulle, ei Jari Larulle."
+  },
+  {
     youtubeId: "MSwNnPOutVE",
     startsAt: 10860,
     toleranceSeconds: 90,
@@ -28,6 +109,105 @@ const manualHitReviews = [
     reviewDecision: "rejected",
     speaker: "Lawson-Hellu",
     note: "Kuunneltu käsin: kohdassa puhuu Lawson-Hellu, ei Jari Laru."
+  },
+  {
+    youtubeId: "SWh6nkVRAIc",
+    startsAt: 9420,
+    toleranceSeconds: 120,
+    classification: "hylätty väärä puhuja",
+    reviewDecision: "rejected",
+    speaker: "Lawson-Hellu",
+    note: "Tarkistettu litteraatista: 27.11.2017 talousarviokeskustelun kohdassa puhuu Lawson-Hellu, ei Jari Laru."
+  },
+  {
+    youtubeId: "mvSWzUYaMyM",
+    startsAt: 7980,
+    toleranceSeconds: 90,
+    classification: "hylätty väärä puhuja",
+    reviewDecision: "rejected",
+    speaker: "Lawson-Hellu",
+    note: "Tarkistettu litteraatista: kyselytunnin viimeinen kysymys menee Lawson-Hellulle, ei Jari Larulle."
+  },
+  {
+    youtubeId: "mvSWzUYaMyM",
+    startsAt: 17832,
+    toleranceSeconds: 120,
+    classification: "hylätty valtuustoaloitteiden lukeminen",
+    reviewDecision: "rejected",
+    speaker: "sihteeri",
+    note: "Tarkistettu litteraatista: kyse on valtuustoaloitteen lukemisesta, ei puheenvuorosta."
+  },
+  {
+    youtubeId: "pzAqzLVRFjI",
+    startsAt: 8040,
+    toleranceSeconds: 120,
+    classification: "hylätty väärä puhuja",
+    reviewDecision: "rejected",
+    speaker: "Lappalainen",
+    note: "Tarkistettu litteraatista: puheenjohtaja antaa vuoron Lappalaiselle, ei Jari Larulle."
+  },
+  {
+    youtubeId: "Hagilx03nzk",
+    startsAt: 8172,
+    toleranceSeconds: 90,
+    classification: "hylätty väärä puhuja",
+    reviewDecision: "rejected",
+    speaker: "Lawson-Hellu",
+    note: "Tarkistettu litteraatista: kohta on Lawson-Hellun puheenvuoro Oulunsalon hammashoitolasta."
+  },
+  {
+    youtubeId: "Hagilx03nzk",
+    startsAt: 10172.72,
+    toleranceSeconds: 90,
+    classification: "viittaus Jari Larun puheenvuoroon",
+    reviewDecision: "reference",
+    speaker: "toinen valtuutettu",
+    note: "Tarkistettu litteraatista: toinen valtuutettu täydentää valtuutettu Larun kaupunginosa- ja suuraluepuheenvuoroa."
+  },
+  {
+    youtubeId: "f-jaWyE97P0",
+    startsAt: 9120,
+    toleranceSeconds: 90,
+    classification: "viittaus Jari Laruun",
+    reviewDecision: "reference",
+    speaker: "toinen valtuutettu",
+    note: "Tarkistettu litteraatista: toinen valtuutettu viittaa Laruun yliopiston koulutusneuvostossa, ei Jari Larun puheenvuoro."
+  },
+  {
+    youtubeId: "f-jaWyE97P0",
+    startsAt: 11680,
+    toleranceSeconds: 120,
+    classification: "hylätty väärä puhuja",
+    reviewDecision: "rejected",
+    speaker: "Lawson-Hellu",
+    note: "Tarkistettu litteraatista: puheenjohtaja antaa vuoron Lateko/Lawson-Hellulle, ei Jari Larulle."
+  },
+  {
+    youtubeId: "jzy_BsdgDhY",
+    startsAt: 15854,
+    toleranceSeconds: 120,
+    classification: "viittaus Jari Laruun",
+    reviewDecision: "reference",
+    speaker: "toinen valtuutettu",
+    note: "Tarkistettu litteraatista: toinen valtuutettu sanoo jakavansa huolta valtuutettu Larun kanssa; ei Jari Larun puheenvuoro."
+  },
+  {
+    youtubeId: "gZsi7ybN_AM",
+    startsAt: 16589,
+    toleranceSeconds: 240,
+    classification: "linkitetty puheenvuoro",
+    reviewDecision: "mapped",
+    speaker: "Jari Laru",
+    note: "Tarkistettu litteraatista: sama koulusihteeripuheenvuoro on jo sivulla /2019/10/07/puheenvuoro-valtuustossa-koulusihteeripalveluista-on-paatettava-osana-laajempaa-kokonaisuutta/."
+  },
+  {
+    youtubeId: "-cKXhhzhsiQ",
+    startsAt: 3456,
+    toleranceSeconds: 120,
+    classification: "viittaus Jari Larun puheenvuoroon",
+    reviewDecision: "reference",
+    speaker: "toinen valtuutettu",
+    note: "Tarkistettu litteraatista: toinen valtuutettu viittaa Larun aiempaan kommenttiin Oulun rakennussuojelusta; ei Jari Larun puheenvuoro."
   }
 ];
 
