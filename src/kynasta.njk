@@ -103,7 +103,7 @@ schemaMentions:
           <p class="kynasta-hero-aside-kicker mb-2">Tältä sivulta löydät</p>
           <ul class="kynasta-hero-aside-list mb-0">
             <li>Valtuustopuheet ja valtuustoaloitteet, joilla olen osallistunut Oulun päätöksentekoon.</li>
-            <li>Muut julkiset puheet, kuten juhlapuheet, yliopistopuheet ja tilaisuuspuheenvuorot.</li>
+            <li>Julkiset puheet, kuten juhlapuheet, yliopistopuheet ja tilaisuuspuheenvuorot.</li>
             <li>Lausunnot, mielipiteet ja kolumnit, joissa avaan näkemyksiäni julkisesti ja perustellen.</li>
           </ul>
         </aside>
@@ -725,7 +725,7 @@ schemaMentions:
     <div class="card shadow-sm">
       <div class="card-header bg-transparent d-flex align-items-center justify-content-between kynasta-section-header">
         <div>
-          <h2 class="h4 mb-1"><i class="bi bi-megaphone-fill me-2"></i>Muut julkiset puheet</h2>
+          <h2 class="h4 mb-1"><i class="bi bi-megaphone-fill me-2"></i>Julkiset puheet</h2>
           <p class="small text-muted mb-0">Tilaisuuksissa, juhlapäivissä ja yliopistoyhteisössä pidettyjä puheita, jotka eivät ole kaupunginvaltuuston kokouspuheenvuoroja.</p>
         </div>
         <span class="badge kynasta-section-count">{{ publicSpeechCount }}</span>
@@ -2604,7 +2604,7 @@ function syncWritingRoleFilterButtons(buttons, selectedRole) {
   renderPuheet();
 })();
 
-// --- Muut julkiset puheet taulukon logiikka ---
+// --- Julkiset puheet taulukon logiikka ---
 (function () {
   const PUBLIC_SPEECH_PAGE_SIZE = 5;
   const dataEl = document.getElementById('julkiset-puheet-data');

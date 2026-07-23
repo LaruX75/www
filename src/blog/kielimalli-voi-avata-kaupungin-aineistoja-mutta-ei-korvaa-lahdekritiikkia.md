@@ -48,7 +48,7 @@ contentContexts:
   - avoin data
   - julkiset asiakirjat
 source: facebook
-sourceLabel: Facebook-aineisto
+sourceLabel: oma Facebook-arkisto
 facebookImport:
   sourceIndex: 401
   sourceFiles:

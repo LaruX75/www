@@ -42,7 +42,7 @@ contentContexts:
   - museot
   - rakennusperintö
 source: facebook
-sourceLabel: Facebook-aineisto
+sourceLabel: oma Facebook-arkisto
 facebookImport:
   sourceIndex: 576
   sourceFiles:

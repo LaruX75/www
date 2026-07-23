@@ -230,7 +230,7 @@ schemaMentions:
     "date": "2026-01-19",
     "label": "Asiantuntijavideo",
     "context": "Palveluverkkokeskustelu 2026",
-    "summary": "Tausta-aineisto Oulun palveluverkkokeskusteluun: mitä lasten ja nuorten tilastot kertovat päätöksenteon ja koko kaupunkiin kohdistuvien vaikutusten arvioinnin tueksi."
+    "summary": "Video näyttää, miten lasten ja nuorten tilastotietoa voi käyttää palveluverkkokeskustelussa koko kaupunkiin kohdistuvien vaikutusten arviointiin."
   }
 ] %}
 {% set politicsTopicPaths = [
@@ -239,7 +239,7 @@ schemaMentions:
     "href": "/politiikka/kampus-raksila-linnanmaa/",
     "type": "Aihepolku",
     "summary": "Kampusratkaisut, normaalikoulun tilat, Raksilan kehittäminen ja Linnanmaan merkitys samassa pitkässä kaupunkipoliittisessa keskustelussa.",
-    "source": "Puheet, kysymykset ja kuratoidut Facebook-artikkelit",
+    "source": "Puheet, kysymykset ja blogiartikkelit",
     "accent": "#0d6efd",
     "featured": true
   },
@@ -248,7 +248,7 @@ schemaMentions:
     "href": "/politiikka/palveluverkko/",
     "type": "Aihepolku",
     "summary": "Kouluverkko, päiväkodit, väestösuunnitteet, suuralueet ja kaupunginosien tasapuolinen kehitys koko Oulun mittakaavassa.",
-    "source": "Puheenvuorot, palveluverkkotekstit ja kuratoidut artikkelit",
+    "source": "Puheenvuorot, valtuustoaloitteet ja blogiartikkelit",
     "accent": "#198754",
     "featured": true
   },
@@ -257,7 +257,7 @@ schemaMentions:
     "href": "/politiikka/avoin-valmistelu/",
     "type": "Aihepolku",
     "summary": "Valmistelun näkyvyys, avoin data, julkiset tietojohtamisen työkalut ja päätöksenteon seurattavuus.",
-    "source": "Aloitteet, kirjoitukset ja kuratoidut prosessikuvaukset",
+    "source": "Aloitteet, puheenvuorot ja prosessia avaavat kirjoitukset",
     "accent": "#6f42c1",
     "featured": true
   },
@@ -400,7 +400,7 @@ schemaMentions:
     <div class="pol-section-head">
       <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-signpost-split me-1"></i>Aihepolut</p>
       <h2 class="pol-section-title">Sukella niihin asiakokonaisuuksiin, joissa työ jatkuu vuodesta toiseen</h2>
-      <p class="pol-section-lead mb-0">Aihepolut yhdistävät puheenvuoroja, valtuustoaloitteita, kirjoituksia, kokouksia ja Facebookista kuratoitavia blogiartikkeleita. Osa on kuratoitu omaksi sivukseen, osa vie suoraan kategoriaan tai avainsanaan, jossa sama keskustelu jatkuu.</p>
+      <p class="pol-section-lead mb-0">Aihepolut yhdistävät puheenvuoroja, valtuustoaloitteita, kirjoituksia, kokouksia ja blogiartikkeleita. Osa avautuu omana kokonaisuutenaan, osa vie kategoriaan tai avainsanaan, jossa sama keskustelu jatkuu.</p>
     </div>
 
     <div class="pol-topic-grid">
@@ -447,13 +447,14 @@ schemaMentions:
       <div class="pol-evidence-side">
         {% if latestPoliticalSpeech %}
         <article class="pol-evidence-card">
+          {% set latestSpeechIsCouncil = latestPoliticalSpeech.data.speechContext == "valtuusto" or latestPoliticalSpeech.data.speechContext == "kyselytunti" %}
           <div class="pol-evidence-meta">
-            <span>Puheenvuoro</span>
+            <span>{{ latestPoliticalSpeech | topicTypeLabel }}</span>
             <span>{{ latestPoliticalSpeech.date | dateFormat }}</span>
           </div>
           <h3 class="pol-evidence-title pol-evidence-title--small"><a href="{{ latestPoliticalSpeech.url }}">{{ latestPoliticalSpeech.data.title }}</a></h3>
-          <p class="pol-evidence-summary">Uusin politiikkaan liittyvä puheenvuoro valtuustosta tai muusta yhteiskunnallisesta tilaisuudesta.</p>
-          <a href="/kynasta/#puheet" class="pol-inline-link">Kaikki puheenvuorot</a>
+          <p class="pol-evidence-summary">Uusin politiikkaan liittyvä puheenvuoro valtuustosta tai yhteiskunnallisesta tilaisuudesta.</p>
+          <a href="{{ "/kynasta/#puheet" if latestSpeechIsCouncil else "/kynasta/#julkiset-puheet" }}" class="pol-inline-link">{{ "Kaikki valtuustopuheenvuorot" if latestSpeechIsCouncil else "Kaikki julkiset puheet" }}</a>
         </article>
         {% endif %}
         {% if latestInitiative %}
@@ -561,8 +562,12 @@ schemaMentions:
           <span>Luottamustoimet, vaalitulokset ja sisällöt vaalikausittain.</span>
         </a>
         <a href="/kynasta/#puheet" class="pol-archive-link">
-          <strong>Puheenvuorot</strong>
-          <span>Valtuustossa ja muissa tilaisuuksissa pidetyt puheet.</span>
+          <strong>Valtuustopuheenvuorot</strong>
+          <span>Kaupunginvaltuustossa pidetyt puheenvuorot.</span>
+        </a>
+        <a href="/kynasta/#julkiset-puheet" class="pol-archive-link">
+          <strong>Julkiset puheet</strong>
+          <span>Yleisötilaisuuksissa, juhlapuheissa ja yliopistoyhteisössä pidetyt puheet.</span>
         </a>
         <a href="/kynasta/#aloitteet" class="pol-archive-link">
           <strong>Valtuustoaloitteet</strong>
@@ -645,7 +650,8 @@ schemaMentions:
     "title": {{ (item.data.title or "") | dump | safe }},
     "url": {{ (item.url or "") | dump | safe }},
     "date": {{ (item.date | dateToRfc3339) | dump | safe }},
-    "contentType": "Puheenvuoro",
+    "contentType": {{ (item | topicTypeLabel) | dump | safe }},
+    "speechContext": {{ (item.data.speechContext or "") | dump | safe }},
     "tags": {{ (item.data.tags or []) | dump | safe }},
     "categories": {{ (item.data.categories or []) | dump | safe }},
     "keywords": {{ (item.data.keywords or []) | dump | safe }},
@@ -2001,7 +2007,7 @@ schemaMentions:
     const themedItems = [
       ...politicsBlogData.map((item) => ({ ...item, contentType: 'Blogi' })),
       ...contentData
-        .filter((item) => ['Puheenvuoro', 'Mielipide', 'Valtuustoaloite'].includes(item.contentType))
+        .filter((item) => ['Valtuustopuheenvuoro', 'Valtuuston kyselytunti', 'Julkinen puhe', 'Akateeminen puhe', 'Juhlapuhe', 'Puhe', 'Mielipide', 'Valtuustoaloite'].includes(item.contentType))
     ];
     const hasPoliticalProfile = (item, key) => Array.isArray(item.politicalProfiles) && item.politicalProfiles.includes(key);
     const profileDefinitions = [
@@ -2077,7 +2083,7 @@ schemaMentions:
         ...profile,
         total: items.length,
         blogi: items.filter((item) => item.contentType === 'Blogi').length,
-        puheenvuoro: items.filter((item) => item.contentType === 'Puheenvuoro').length,
+        puheenvuoro: items.filter((item) => ['Valtuustopuheenvuoro', 'Valtuuston kyselytunti', 'Julkinen puhe', 'Akateeminen puhe', 'Juhlapuhe', 'Puhe'].includes(item.contentType)).length,
         mielipide: items.filter((item) => item.contentType === 'Mielipide').length,
         aloite: items.filter((item) => item.contentType === 'Valtuustoaloite').length,
         items
@@ -2085,7 +2091,7 @@ schemaMentions:
     }).filter((profile) => profile.total > 0);
 
     const contentTypeLabel = (value) => {
-      if (value === 'Puheenvuoro') return 'Puheenvuoro';
+      if (['Valtuustopuheenvuoro', 'Valtuuston kyselytunti', 'Julkinen puhe', 'Akateeminen puhe', 'Juhlapuhe', 'Puhe'].includes(value)) return value;
       if (value === 'Mielipide') return 'Mielipide';
       if (value === 'Valtuustoaloite') return 'Valtuustoaloite';
       return 'Blogi';

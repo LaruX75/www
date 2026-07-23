@@ -4,7 +4,7 @@ module.exports = {
       eyebrow: "Kategoria",
       lead: "Poliittiset puheenvuorot, valtuustoaloitteet, mielipidekirjoitukset, blogitekstit ja mediassa näkyneet sisällöt samassa näkymässä.",
       context: "Tämä kategoria näyttää, miten poliittinen työ on näkynyt sekä päätöksenteossa että julkisessa keskustelussa. Pääpaino on valtuustotyössä, mutta mukana ovat myös kirjoitukset ja esiintymiset, joissa samat teemat jatkuvat eri muodoissa.",
-      primaryType: "speeches",
+      primaryType: "council-speeches",
       primaryLabel: "Pääpaino",
       primaryText: "Valtuustopuheenvuorot muodostavat kategorian rungon. Niiden ympärille asettuvat valtuustoaloitteet, mielipiteet, blogitekstit ja mediassa näkyneet sisällöt.",
       highlightsTitle: "Sisällöt rooleittain",
@@ -19,7 +19,7 @@ module.exports = {
       eyebrow: "Kategoria",
       lead: "Kaupunkikehityksen, maankäytön, liikkumisen ja palveluverkon ratkaisut koottuna samaan näkymään.",
       context: "Tämä kategoria kokoaa sisällöt, joissa tarkastelen Oulun kasvua koko kaupungin arjen näkökulmasta. Mukana ovat palveluverkon muutokset, koulujen ja muiden palvelujen sijainti, maankäyttö, kaavoitus, liikkuminen sekä isot kaupunkirakenteen ratkaisut.",
-      primaryType: "speeches",
+      primaryType: "council-speeches",
       primaryLabel: "Pääpaino",
       primaryText: "Valtuustopuheenvuoroissa näkyy, miten palveluverkkoa ja kaupunkirakennetta on käsitelty päätöksenteon eri vaiheissa. Mielipidekirjoitukset ja blogitekstit avaavat samaa kokonaisuutta laajemmin: mitä vaikutuksia ratkaisuilla on asukkaiden arkeen, alueiden tasapuolisuuteen ja valmistelun laatuun.",
       highlightsTitle: "Kaupunkikehitys päätöksissä ja keskustelussa",
@@ -27,14 +27,14 @@ module.exports = {
       browseLead: "Rajaa näkymää sisältötyypin mukaan tai selaa kokonaisuutta uusimmasta vanhimpaan.",
       relatedTitle: "Toistuvat teemat",
       guideTitle: "Miten tätä kannattaa lukea",
-      guideText: "Aloita puheenvuoroista, jos haluat nähdä päätöksenteon vaiheet. Avainsanat, kuten palveluverkko, maankäyttö, Jääli, Raksila ja Linnanmaa, näyttävät miten samat kysymykset palaavat eri vuosina eri muodossa.",
+      guideText: "Aloita valtuustopuheenvuoroista, jos haluat nähdä päätöksenteon vaiheet. Avainsanat, kuten palveluverkko, maankäyttö, Jääli, Raksila ja Linnanmaa, näyttävät miten samat kysymykset palaavat eri vuosina eri muodossa.",
       backLabel: "Kaikki kategoriat"
     },
     "sivistys-ja-koulutus": {
       eyebrow: "Kategoria",
       lead: "Sivistyksen, koulutuksen, varhaiskasvatuksen ja oppimisen palvelujen ratkaisut samassa näkymässä.",
       context: "Tämä kategoria kokoaa sisällöt, joissa tarkastelen sivistystä kaupungin pitkäjänteisenä perustana. Mukana ovat kouluverkko, varhaiskasvatus, oppimisen tuki, nuorten hyvinvointi, kulttuuri- ja taidekasvatus, korkeakoulutus sekä se, millaisella tiedolla näitä päätöksiä valmistellaan.",
-      primaryType: "speeches",
+      primaryType: "council-speeches",
       primaryLabel: "Pääpaino",
       primaryText: "Valtuustopuheenvuoroissa sivistys näkyy palveluverkon, talouden, tilojen, johtamisen ja yhdenvertaisuuden kysymyksinä. Kirjoitukset ja blogitekstit täydentävät kokonaisuutta avaamalla, miten päätökset vaikuttavat lapsiin, nuoriin, opiskelijoihin, perheisiin ja koko kaupungin osaamispohjaan.",
       highlightsTitle: "Sivistys päätöksissä ja arjessa",
@@ -42,7 +42,7 @@ module.exports = {
       browseLead: "Rajaa näkymää sisältötyypin mukaan tai selaa kokonaisuutta uusimmasta vanhimpaan.",
       relatedTitle: "Toistuvat teemat",
       guideTitle: "Miten tätä kannattaa lukea",
-      guideText: "Puheenvuorot näyttävät, miten sivistyspalveluista on päätetty valtuustossa. Avainsanat, kuten palveluverkko, kouluverkko, varhaiskasvatus, kampus ja hyvinvointi, auttavat seuraamaan samaa kysymystä eri vuosien keskusteluissa.",
+      guideText: "Valtuustopuheenvuorot näyttävät, miten sivistyspalveluista on päätetty valtuustossa. Avainsanat, kuten palveluverkko, kouluverkko, varhaiskasvatus, kampus ja hyvinvointi, auttavat seuraamaan samaa kysymystä eri vuosien keskusteluissa.",
       backLabel: "Kaikki kategoriat"
     },
     "yliopisto-ja-korkeakoulut": {
@@ -109,7 +109,7 @@ module.exports = {
   defaultCategory: {
     eyebrow: "Kategoria",
     lead: "Tähän kategoriaan kootut sisällöt samasta aihepiiristä.",
-    context: "Kategoriasivu toimii arkistona: uusimmat sisällöt näkyvät ensin, ja laajemman kokonaisuuden voi hahmottaa sisältötyyppien ja avainsanojen kautta.",
+    context: "Kategoriasivu kokoaa saman aihepiirin sisällöt yhteen: uusimmat näkyvät ensin, ja laajemman kokonaisuuden voi hahmottaa sisältötyyppien ja avainsanojen kautta.",
     primaryLabel: "Sisältöjä",
     primaryText: "Sivu kokoaa samaan aihepiiriin liittyvät kirjoitukset, puheenvuorot, julkaisut ja muut sisällöt.",
     highlightsTitle: "Sisältötyypit",

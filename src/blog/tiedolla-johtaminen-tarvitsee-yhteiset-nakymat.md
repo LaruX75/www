@@ -52,7 +52,7 @@ contentContexts:
   - palveluverkko
   - väestödata
 source: facebook
-sourceLabel: Facebook-aineisto
+sourceLabel: oma Facebook-arkisto
 facebookImport:
   sourceIndex: 386
   sourceFiles:

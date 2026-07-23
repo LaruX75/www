@@ -46,7 +46,7 @@ contentContexts:
   - väestösuunnite
   - syntyvyys
 source: facebook
-sourceLabel: Facebook-aineisto ja Canva-esitys
+sourceLabel: oma Facebook-arkisto ja Canva-esitys
 facebookImport:
   sourceFiles:
     - src/blog/_drafts/facebook-politician/2023-05-14-jari-laru-kuntapaattaja-lisasi-4-uutta-kuvaa.md

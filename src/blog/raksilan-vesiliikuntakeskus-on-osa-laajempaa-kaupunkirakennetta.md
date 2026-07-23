@@ -37,7 +37,7 @@ contentContexts:
   - kaavoitus
   - liikuntaolosuhteet
 source: facebook
-sourceLabel: Facebook-aineisto
+sourceLabel: oma Facebook-arkisto
 facebookImport:
   sourceFiles:
     - src/blog/_drafts/facebook-politician/2025-02-08-jari-laru-kuntapaattaja-lisasi-3-uutta-kuvaa.md

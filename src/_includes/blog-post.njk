@@ -42,7 +42,7 @@ layout: base.njk
                 </figure>
               {% endif %}
               <div class="post-content content-prose">{{ content | safe }}</div>
-              {% if externalSourceHref %}
+              {% if externalSourceHref or sourceLabel %}
                 <aside class="content-detail-card my-4" aria-labelledby="blog-original-source-title">
                   <p class="content-detail-card-kicker">{{ "Original source" if currentLang == "en" else "Alkuperäinen lähde" }}</p>
                   <h2 id="blog-original-source-title" class="h5">{{ "This text is based on an earlier publication" if currentLang == "en" else "Teksti pohjautuu aiempaan julkaisuun" }}</h2>
@@ -52,11 +52,16 @@ layout: base.njk
                     {% else %}
                       {{ "Open the original source for context." if currentLang == "en" else "Avaa alkuperäinen lähde taustatiedoksi." }}
                     {% endif %}
+                    {% if not externalSourceHref %}
+                      {{ "A permanent public link is not stored in the page metadata." if currentLang == "en" else "Pysyvää julkista linkkiä ei ole tallennettu sivun metadataan." }}
+                    {% endif %}
                   </p>
+                  {% if externalSourceHref %}
                   <a class="btn btn-outline-primary" href="{{ externalSourceHref }}" target="_blank" rel="noopener noreferrer">
                     {{ "Open original source" if currentLang == "en" else "Avaa alkuperäinen julkaisu" }}
                     <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i>
                   </a>
+                  {% endif %}
                 </aside>
               {% endif %}
             </div>

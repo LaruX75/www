@@ -54,7 +54,7 @@ contentContexts:
   - teollisuus
   - julkinen valmistelu
 source: facebook
-sourceLabel: Facebook-aineisto
+sourceLabel: oma Facebook-arkisto
 sourceUrl: 'https://avi.fi/asioi/yritys-tai-yhteiso/luvat-ilmoitukset-ja-hakemukset/vesi-ja-ymparisto/ymparistolupa'
 facebookImport:
   sourceIndex: 414

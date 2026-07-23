@@ -10,7 +10,7 @@ keywords:
   - tiedolla johtaminen
   - matkailu
   - Oulu
-  - päätöksenteko
+  - päätösten tietopohja
   - tietolähteet
   - vaikutusten arviointi
 writingRoles:
@@ -34,7 +34,7 @@ contentContexts:
   - tilastot
   - matkailu
 source: facebook
-sourceLabel: Facebook-aineisto
+sourceLabel: oma Facebook-arkisto
 facebookImport:
   sourceFiles:
     - src/blog/_drafts/facebook-politician/2023-08-20-jari-laru-kuntapaattaja-lisasi-3-uutta-kuvaa.md

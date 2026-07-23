@@ -82,7 +82,7 @@ module.exports = [
       {
         year: "2023–2025",
         title: "Normaalikoulun ratkaisu ja jälkikäteinen arvio",
-        text: "Facebook-aineistossa ja julkaistuissa kirjoituksissa kampuskiista näyttäytyy pitkänä prosessina, jossa normaalikoulun tilaratkaisu, Raksilan kehittäminen ja Linnanmaan asema kytkeytyvät toisiinsa.",
+        text: "Julkaistuissa kirjoituksissa kampuskiista näyttäytyy pitkänä prosessina, jossa normaalikoulun tilaratkaisu, Raksilan kehittäminen ja Linnanmaan asema kytkeytyvät toisiinsa.",
         links: [
           {
             label: "Normaalikoulun tilaratkaisu alkoi vihdoin edetä",
@@ -103,12 +103,12 @@ module.exports = [
         ]
       }
     ],
-    facebookUse: [
-      "Vahvat Facebook-tekstit voidaan muokata omiksi blogiartikkeleikseen, jos niissä on selkeä argumentti, asiakirjaviite tai oma analyysi.",
-      "Lyhyempiä päivityksiä käytetään aikajanan täydentämiseen silloin, kun ne näyttävät, miten julkinen keskustelu eteni ennen virallista puheenvuoroa tai sen jälkeen.",
-      "Pelkkä reaktio tai jako jää tausta-aineistoksi, ellei se auta ymmärtämään prosessin vaihetta."
+    evidenceNotes: [
+      "Aineisto yhdistää valtuustopuheita, yleisötilaisuuksien puheenvuoroja, kysymyksiä ja myöhemmin kirjoitettuja blogiartikkeleita.",
+      "Aikajana auttaa näkemään, miten kampuskeskustelu eteni ennen virallisia päätöksiä ja niiden jälkeen.",
+      "Lyhyemmätkin merkinnät ovat mukana silloin, kun ne auttavat ymmärtämään prosessin vaihetta tai julkisen keskustelun suuntaa."
     ],
-    editorialNote: "Tähän kokonaisuuteen nostetaan Facebook-aineistosta blogiartikkeleiksi ne tekstit, joissa näkyy kampuskiistan eteneminen, normaalikoulun tilaratkaisun tausta tai Raksilan ja Linnanmaan vaikutusten arviointi. Kevyemmät päivitykset tukevat aikajanaa.",
+    editorialNote: "Kokonaisuus painottuu teksteihin, joissa kampuskiistan eteneminen, normaalikoulun tilaratkaisun tausta tai Raksilan ja Linnanmaan vaikutusten arviointi näkyvät selvästi. Kevyemmät päivitykset toimivat taustana aikajanan ymmärtämiselle.",
     nextLinks: [
       { label: "Kaupunginvaltuuston kokoukset", href: "/politiikka/kaupunginvaltuusto/" },
       { label: "Vaalikaudet", href: "/politiikka/vaalikaudet/" },
@@ -167,7 +167,7 @@ module.exports = [
       {
         year: "2023",
         title: "Väestösuunnitteet ja kouluverkon reunaehdot",
-        text: "Facebook-aineistosta noussut palveluverkkokokonaisuus on jo osin kuratoitu sivustolle: syntyvyys, ikäluokat ja alueellinen muutos näyttävät, miksi kouluverkkokeskustelu tarvitsee dataa.",
+        text: "Palveluverkkokokonaisuuteen nostetut kirjoitukset näyttävät, miksi syntyvyys, ikäluokat ja alueellinen muutos ovat välttämätön osa kouluverkkokeskustelua.",
         links: [
           {
             label: "Kouluverkkoa ei voi mitoittaa ilman väestödataa",
@@ -187,12 +187,12 @@ module.exports = [
         ]
       }
     ],
-    facebookUse: [
-      "Palveluverkkoa koskevat pitkät Facebook-tekstit kannattaa muokata blogiartikkeleiksi silloin, kun ne avaavat väestödataa, kouluverkkovaikutuksia tai valmistelun ongelmia.",
-      "Kuvapostaukset ja visualisoinnit voivat täydentää artikkeleita, jos ne näyttävät, miten väestödataa käytettiin poliittisen argumentin rakentamiseen.",
-      "Vaalikampanjan aikaiset palveluverkkotekstit voidaan liittää vaaliarkistoon, jos ne ovat ensisijaisesti kampanjaviestintää."
+    evidenceNotes: [
+      "Aineisto yhdistää valtuustopuheita, aloitteita, väestödataa avaavia kirjoituksia ja palveluverkkokeskustelun taustamateriaaleja.",
+      "Visualisoinnit ja karttanäkymät täydentävät tekstejä silloin, kun ne näyttävät, miten väestödataa on käytetty poliittisen argumentin rakentamiseen.",
+      "Vaalikampanjan aikaiset palveluverkkotekstit sijoitetaan tähän vain silloin, kun ne avaavat asiaa myös vaalien ulkopuolella."
     ],
-    editorialNote: "Tähän kokonaisuuteen nostetaan blogiartikkeleiksi ne päivitykset, joissa käsitellään väestösuunnitteita, kouluverkkovaikutuksia ja kaupunginosittaista tarkastelua riittävän itsenäisesti. Kampanjaluonteiset nostot jäävät vaaliarkiston kontekstiin.",
+    editorialNote: "Kokonaisuus painottuu teksteihin, joissa väestösuunnitteet, kouluverkkovaikutukset ja kaupunginosittainen tarkastelu muodostavat itsenäisen asiakokonaisuuden. Puhtaasti kampanjaluonteiset nostot jäävät vaaliarkiston kontekstiin.",
     nextLinks: [
       { label: "Palveluverkko 2023", href: "/2023/05/21/palveluverkko-2023-reunaehtojen-tarkastelua/" },
       { label: "Poliittiset mielipiteet", href: "/kynasta/?opinions=political#mielipiteet" },
@@ -236,7 +236,7 @@ module.exports = [
       {
         year: "2023",
         title: "Tilastojen ja tietolähteiden kriittinen lukeminen",
-        text: "Facebook-aineistossa toistuu tapa tarkistaa, mistä luvut tulevat ja mitä niistä voi päätellä. Tämä on samaa poliittista profiilia kuin palveluverkon dataperustainen tarkastelu.",
+        text: "Kirjoituksissa toistuu tapa tarkistaa, mistä luvut tulevat ja mitä niistä voi päätellä. Tämä on samaa poliittista profiilia kuin palveluverkon dataperustainen tarkastelu.",
         links: [
           {
             label: "Tilasto ei riitä, jos rajaukset eivät näy",
@@ -258,7 +258,7 @@ module.exports = [
       {
         year: "2025",
         title: "Valmisteluprosessin toistuvat ongelmat",
-        text: "Facebookista jo kuratoitu kirjoitus kokoaa yhteen valmistelun, toimivallan ja luottamushenkilöiden tiedonsaannin ongelmia kunnallishallinnossa.",
+        text: "Kirjoitus kokoaa yhteen valmistelun, toimivallan ja luottamushenkilöiden tiedonsaannin ongelmia kunnallishallinnossa.",
         links: [
           {
             label: "Toistuvia rakenteita: valmisteluprosessin ongelmat kunnallishallinnossa",
@@ -271,12 +271,12 @@ module.exports = [
         ]
       }
     ],
-    facebookUse: [
-      "Facebook-aineistosta nostetaan blogiartikkeleiksi tekstit, joissa avataan asiakirjoja, toimivaltaa, prosessin vaiheita tai päätöksenteon tietopohjaa.",
-      "Pelkkä reaktio uutiseen ei riitä omaksi artikkeliksi, mutta se voi toimia aikajanan merkintänä, jos se osoittaa milloin keskustelu avautui.",
-      "Tämä teema kytketään myös sidonnaisuus- ja vaalirahoitussivuun, koska avoimuus koskee sekä päätöksiä että päättäjän omaa asemaa."
+    evidenceNotes: [
+      "Aineisto yhdistää valtuustoaloitteita, puheenvuoroja, asiakirjoja avaavia kirjoituksia ja päätöksenteon tietopohjaa koskevia nostoja.",
+      "Lyhyemmät merkinnät voivat toimia aikajanan kohtina silloin, kun ne näyttävät milloin keskustelu avautui tai mihin valmisteluvaiheeseen asia liittyi.",
+      "Teema kytkeytyy myös sidonnaisuus- ja vaalirahoitussivuun, koska avoimuus koskee sekä päätöksiä että päättäjän omaa asemaa."
     ],
-    editorialNote: "Tähän kokonaisuuteen nostetaan blogiartikkeleiksi tekstit, joissa avataan asiakirjoja, toimivaltaa, valmistelun vaiheita tai tiedolla johtamisen puutteita. Pelkät lyhyet kannanotot eivät yksin muodosta omaa artikkelia.",
+    editorialNote: "Kokonaisuus painottuu teksteihin, joissa avataan asiakirjoja, toimivaltaa, valmistelun vaiheita tai tiedolla johtamisen puutteita. Pelkät lyhyet kannanotot eivät yksin kanna kokonaisuutta.",
     nextLinks: [
       { label: "Sidonnaisuudet ja vaalirahoitus", href: "/poliittinen-avoimuus/" },
       { label: "Valtuustoaloitteet", href: "/kynasta/#aloitteet" },

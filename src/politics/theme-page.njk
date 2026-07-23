@@ -79,10 +79,10 @@ eleventyComputed:
         </section>
 
         <section class="politics-theme-card politics-theme-card--muted">
-          <p class="content-detail-eyebrow mb-2">Tausta-aineisto</p>
-          <h2>Miten aineisto täydentää kokonaisuutta</h2>
+          <p class="content-detail-eyebrow mb-2">Tausta</p>
+          <h2>Miten kokonaisuus rakentuu</h2>
           <ul class="politics-theme-checklist">
-            {% for item in theme.facebookUse %}
+            {% for item in theme.evidenceNotes %}
             <li>{{ item }}</li>
             {% endfor %}
           </ul>
@@ -109,7 +109,7 @@ eleventyComputed:
         </section>
 
         <section class="politics-theme-side-card politics-theme-side-card--note">
-          <p class="content-detail-card-kicker">Mitä nostetaan näkyviin</p>
+          <p class="content-detail-card-kicker">Kokonaisuuden rajaus</p>
           <p>{{ theme.editorialNote }}</p>
         </section>
       </aside>

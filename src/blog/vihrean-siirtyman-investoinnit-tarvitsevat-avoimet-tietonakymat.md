@@ -47,7 +47,7 @@ contentContexts:
   - aluekehitys
   - elinvoima
 source: facebook
-sourceLabel: Facebook-aineisto
+sourceLabel: oma Facebook-arkisto
 sourceUrl: 'https://ek.fi/tutkittua-tietoa/vihreat-investoinnit/'
 facebookImport:
   sourceIndex: 415

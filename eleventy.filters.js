@@ -71,14 +71,21 @@ function contentTypeLabel(data = {}, tags = [], lang = "fi") {
   const contexts = normalizeTerms(data.contexts || []);
   const keywords = normalizeTerms(data.keywords || []);
   const type = data.type || "";
+  const speechContext = String(data.speechContext || "").trim();
   if (data.mediaType === "video") return lang === "en" ? "Video" : "Video";
   if (data.mediaType === "podcast") return lang === "en" ? "Podcast" : "Podcast";
   if (data.mediaType === "radio") return lang === "en" ? "Radio" : "Radio";
   if (data.mediaType === "article") return lang === "en" ? "Media article" : "Lehtijuttu";
   if (type === "esitys" || tagSet.has("presentations")) return lang === "en" ? "Presentation" : "Esitys";
   if (type === "lausunto") return lang === "en" ? "Expert statement" : "Asiantuntijalausunto";
-  if (data.agenda_title === "Valtuuston kyselytunti" || contexts.has("valtuuston kyselytunti") || keywords.has("valtuustokysely")) return lang === "en" ? "Council question hour" : "Valtuuston kyselytunti";
-  if (type === "puhe") return lang === "en" ? "Speech" : "Puheenvuoro";
+  if (data.agenda_title === "Valtuuston kyselytunti" || contexts.has("valtuuston kyselytunti") || keywords.has("valtuustokysely") || speechContext === "kyselytunti") return lang === "en" ? "Council question hour" : "Valtuuston kyselytunti";
+  if (type === "puhe") {
+    if (speechContext === "valtuusto") return lang === "en" ? "Council speech" : "Valtuustopuheenvuoro";
+    if (speechContext === "akateeminen-puhe") return lang === "en" ? "Academic speech" : "Akateeminen puhe";
+    if (speechContext === "juhlapuhe") return lang === "en" ? "Ceremonial speech" : "Juhlapuhe";
+    if (speechContext === "julkinen-tilaisuus") return lang === "en" ? "Public speech" : "Julkinen puhe";
+    return lang === "en" ? "Speech" : "Puhe";
+  }
   if (type === "mielipide") return lang === "en" ? "Opinion" : "Mielipide";
   if (type === "kolumni") return lang === "en" ? "Column" : "Kolumni";
   if (tagSet.has("politics")) return lang === "en" ? "Council initiative" : "Valtuustoaloite";
@@ -174,9 +181,10 @@ function councilItemTypeLabel(data = {}, lang = "fi") {
   const contexts = normalizeTerms(data.contexts);
   const tags = toArray(data.tags).map(normalizeTerm);
   const keywords = toArray(data.keywords).map(normalizeTerm);
-  const isQuestionHour = data.agenda_title === "Valtuuston kyselytunti" || contexts.has("valtuuston kyselytunti");
+  const speechContext = String(data.speechContext || "").trim();
+  const isQuestionHour = data.agenda_title === "Valtuuston kyselytunti" || contexts.has("valtuuston kyselytunti") || speechContext === "kyselytunti";
   if (isQuestionHour) return lang === "en" ? "Council question hour" : "Valtuuston kyselytunti";
-  if (data.type === "puhe") return lang === "en" ? "Speech" : "Puheenvuoro";
+  if (data.type === "puhe") return lang === "en" ? "Council speech" : "Valtuustopuheenvuoro";
   if (data.initiative_type || tags.includes("aloitteet") || keywords.includes("valtuustoaloite")) return lang === "en" ? "Council initiative" : "Valtuustoaloite";
   if (tags.includes("politics")) return lang === "en" ? "Council initiative" : "Valtuustoaloite";
   return contentTypeLabel(data, data.tags, lang);
@@ -714,14 +722,30 @@ function truncateSeoDescription(value, maxLength = 165) {
   return `${cut.slice(0, wordEnd > 90 ? wordEnd : maxLength).trim()}...`;
 }
 
-function contentKindLabel({ type, tags = [], contexts = [], keywords = [], agenda_title = "", currentLang = "fi" }) {
+function contentKindLabel(options = {}) {
+  const {
+    type,
+    tags = [],
+    contexts = [],
+    keywords = [],
+    agenda_title = "",
+    currentLang = "fi",
+    speechContext: rawSpeechContext = ""
+  } = options;
   const tagSet = new Set(toArray(tags).map((tag) => String(tag).toLowerCase()));
   const contextSet = normalizeTerms(contexts);
   const keywordSet = normalizeTerms(keywords);
+  const speechContext = String(rawSpeechContext || "").trim();
   if (type === "esitys" || tagSet.has("presentations")) return currentLang === "en" ? "Presentation" : "Esitys";
   if (type === "lausunto") return currentLang === "en" ? "Expert statement" : "Asiantuntijalausunto";
-  if (agenda_title === "Valtuuston kyselytunti" || contextSet.has("valtuuston kyselytunti") || keywordSet.has("valtuustokysely")) return currentLang === "en" ? "Council question hour" : "Valtuuston kyselytunti";
-  if (type === "puhe") return currentLang === "en" ? "Speech" : "Puheenvuoro";
+  if (agenda_title === "Valtuuston kyselytunti" || contextSet.has("valtuuston kyselytunti") || keywordSet.has("valtuustokysely") || speechContext === "kyselytunti") return currentLang === "en" ? "Council question hour" : "Valtuuston kyselytunti";
+  if (type === "puhe") {
+    if (speechContext === "valtuusto") return currentLang === "en" ? "Council speech" : "Valtuustopuheenvuoro";
+    if (speechContext === "akateeminen-puhe") return currentLang === "en" ? "Academic speech" : "Akateeminen puhe";
+    if (speechContext === "juhlapuhe") return currentLang === "en" ? "Ceremonial speech" : "Juhlapuhe";
+    if (speechContext === "julkinen-tilaisuus") return currentLang === "en" ? "Public speech" : "Julkinen puhe";
+    return currentLang === "en" ? "Speech" : "Puhe";
+  }
   if (type === "mielipide") return currentLang === "en" ? "Opinion piece" : "Mielipidekirjoitus";
   if (type === "kolumni") return currentLang === "en" ? "Column" : "Kolumni";
   if (tagSet.has("blog")) return currentLang === "en" ? "Blog post" : "Blogikirjoitus";

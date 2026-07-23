@@ -703,7 +703,7 @@ module.exports = {
           heading: "Asiantuntijavaikuttaminen",
           links: [
             { title: "Lausunnot", href: "/kynasta/#lausunnot", icon: "bi bi-file-earmark-text me-2", countData: "publications_statements", description: "Lausuntopalvelussa ja muissa valmisteluprosesseissa annetut asiantuntijalausunnot." },
-            { title: "Muut julkiset puheet", href: "/kynasta/#julkiset-puheet", icon: "bi bi-megaphone-fill me-2", countKey: "pub_puhe_julkinen", description: "Juhlapuheet, yliopistopuheet ja yleisötilaisuuksien puheenvuorot." },
+            { title: "Julkiset puheet", href: "/kynasta/#julkiset-puheet", icon: "bi bi-megaphone-fill me-2", countKey: "pub_puhe_julkinen", description: "Juhlapuheet, yliopistopuheet ja yleisötilaisuuksien puheenvuorot." },
             { title: "Teemaprofiilit", href: "/teemat/", icon: "bi bi-diagram-3 me-2", description: "Toimitetut aihepolut, joissa sama teema näkyy kirjoituksissa, esityksissä, lausunnoissa ja mediassa." },
             { title: "Esitykset ja materiaalit", href: "/esitykset/", icon: "bi bi-easel2 me-2", countKey: "presentations", description: "Puheenvuoroja, koulutussisältöjä ja avoimia oppimateriaaleja." },
             { title: "Tieteelliset julkaisut", href: "/julkaisut/", icon: "bi bi-journal-text me-2", countData: "researchfi_total", description: "Tutkimusjulkaisut, artikkelit ja tieteellinen tuotanto." },

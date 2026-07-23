@@ -44,7 +44,7 @@ contentContexts:
   - palveluverkko
   - liikuntaolosuhteet
 source: facebook
-sourceLabel: Facebook-aineisto
+sourceLabel: oma Facebook-arkisto
 facebookImport:
   sourceIndex: 380
   sourceFiles:

@@ -40,7 +40,7 @@ contentContexts:
   - lähidemokratia
   - osallisuus
 source: facebook
-sourceLabel: Facebook-aineisto ja Kalevan juttu
+sourceLabel: oma Facebook-arkisto ja Kalevan juttu
 sourceUrl: 'https://www.kaleva.fi/oulun-seudun-viiden-kunnan-liitoksessa-on-eletty-k/5203825'
 facebookImport:
   sourceIndex: 442

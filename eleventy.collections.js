@@ -29,6 +29,7 @@ module.exports = function registerCollections(eleventyConfig) {
     const data = item?.data || {};
     const inputPath = item?.inputPath || "";
     const type = data.type || "";
+    const speechContext = String(data.speechContext || "").trim();
 
     if (inputPath.includes("/media/")) {
       return { key: "media", label: "Mediassa" };
@@ -39,7 +40,14 @@ module.exports = function registerCollections(eleventyConfig) {
     }
 
     if (type === "lausunto") return { key: "statements", label: "Lausunnot" };
-    if (type === "puhe") return { key: "speeches", label: "Puheenvuorot" };
+    if (type === "puhe") {
+      if (speechContext === "kyselytunti") return { key: "council-question-hours", label: "Valtuuston kyselytunnit" };
+      if (speechContext === "valtuusto") return { key: "council-speeches", label: "Valtuustopuheenvuorot" };
+      if (speechContext === "akateeminen-puhe") return { key: "academic-speeches", label: "Akateemiset puheet" };
+      if (speechContext === "juhlapuhe") return { key: "ceremonial-speeches", label: "Juhlapuheet" };
+      if (speechContext === "julkinen-tilaisuus") return { key: "public-speeches", label: "Julkiset puheet" };
+      return { key: "speeches", label: "Puheet" };
+    }
     if (type === "mielipide") return { key: "opinions", label: "Mielipiteet" };
     if (type === "kolumni") return { key: "columns", label: "Kolumnit" };
 
