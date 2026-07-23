@@ -55,9 +55,9 @@ translationKey: home
     { label: "Yliopistonlehtori", href: "/tyoni-yliopistonlehtorina/" }
 ] %}
 {% set homeCopy = {
-    heroTitle: "Koulutan, puhun ja vaikutan koulutuksen tulevaisuuteen.",
-    heroLead: "Autan opettajia, rehtoreita ja organisaatioita ottamaan tekoälyn ja oppimisteknologian käyttöön järkevästi. Sama asiantuntijuus näkyy myös lausunnoissa, mediassa ja päätöksenteossa.",
-    heroPanelText: "Näistä luvuista näet nopeasti työn laajuuden: koulutuksia, julkaisuja, lausuntoja, mediaosumia ja ohjattuja opinnäytteitä.",
+    heroTitle: "Koulutan, puhun ja vaikutan. Koulutuksen tulevaisuuden puolesta.",
+    heroLead: "Koulutan ja puhun tekoälylukutaidosta, oppimisesta ja teknologian järkevästä käytöstä. Sama asiantuntijuus näkyy tutkimuksessa, lausunnoissa, mediassa ja päätöksenteossa.",
+    heroPanelText: "Luvut kokoavat kouluttaja- ja puhujatyötä, tutkimusta, lausuntoja, mediaosumia, ohjausta ja poliittisia puheenvuoroja. Ne näyttävät, miten asiantuntijuus näkyy eri rooleissa.",
     pathsTitle: "Mistä haluat aloittaa?",
     pathsLead: "Voit siirtyä suoraan koulutuspalveluihin, tutkimukseen tai politiikkaan sen mukaan, miksi tulit sivulle.",
     focusTitle: "Koulutukset, puheenvuorot ja sparraus",
@@ -95,7 +95,7 @@ translationKey: home
                 </div>
                 <div class="col-lg-5">
                     <div class="home-hero-panel">
-                        <p class="home-hero-panel-kicker">Näyttöä työstäni</p>
+                        <p class="home-hero-panel-kicker">Näyttöä eri rooleista</p>
                         <p class="home-hero-panel-text">{{ homeCopy.heroPanelText }}</p>
                         <dl class="home-hero-kpi-grid mb-0">
                             {% for stat in heroStats | sort(true, false, "count") %}
