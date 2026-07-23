@@ -181,6 +181,10 @@ module.exports = [
         text: "Aineistossa korostuu vaatimus siitä, että palveluverkkoa koskeva tieto tuodaan julkisesti esille jo ennen päätöksentekoa ja että keskustelu perustuu samaan tietopohjaan.",
         links: [
           {
+            label: "Palveluverkkoselvityksen tietopohjan pitää näkyä ajoissa",
+            href: "/2025/03/11/palveluverkkoselvityksen-tietopohjan-pitaa-nakya-ajoissa/"
+          },
+          {
             label: "Oululaisia lapsia ja nuoria koskevien tilastotietojen tarkastelua",
             href: "https://www.youtube.com/watch?v=7EXB54VvlsU&t=2s"
           }
