@@ -9,6 +9,7 @@ const CHUNK_ROOT = path.join(ROOT, ".cache", "council-youtube", "whisper", "tran
 const MEETING_VIDEO_DATA = path.join(ROOT, "src", "_data", "councilMeetingYoutubeVideos.json");
 const SPEECH_VIDEO_DATA = path.join(ROOT, "src", "_data", "councilSpeechVideos.json");
 const QUEUE_STATUS = path.join(REPORT_DIR, "council-video-transcription-queue-status.json");
+const MACWHISPER_CANDIDATES = path.join(REPORT_DIR, "council-speech-macwhisper-candidates.json");
 const OUT_JSON = path.join(REPORT_DIR, "council-video-transcription-audit.json");
 const OUT_MD = path.join(REPORT_DIR, "council-video-transcription-audit.md");
 
@@ -17,6 +18,18 @@ const looseName = /valtuutettu\s+(?:la|lar|laar|laur|lalu)/i;
 const speechContext = /olkaa\s+hyv[aä]|arvoisa\s+puheenjohtaja|puheenjohtaja|kannatan|esit[aä]n|kysyn|haluan\s+nostaa|valtuutettu\s+laru/i;
 const listContext = /nimenhuuto|poissa|l[aä]sn[aä]|varaj[aä]sen|lautakunta|valitaan|j[aä]seneksi|[a-zåäö]+,\s+[a-zåäö]+,\s+[a-zåäö]+,/i;
 const referenceContext = /laru\s+puhui|larun\s+puheenvuoro|vastauksena\s+larulle|valtuutettu\s+larulle/i;
+
+const manualHitReviews = [
+  {
+    youtubeId: "MSwNnPOutVE",
+    startsAt: 10860,
+    toleranceSeconds: 90,
+    classification: "hylätty väärä puhuja",
+    reviewDecision: "rejected",
+    speaker: "Lawson-Hellu",
+    note: "Kuunneltu käsin: kohdassa puhuu Lawson-Hellu, ei Jari Laru."
+  }
+];
 
 function readJson(filePath, fallback = null) {
   try {
@@ -78,6 +91,36 @@ function linkedSpeechVideos() {
   return byYoutubeId;
 }
 
+function macwhisperCandidateMatches() {
+  const data = readJson(MACWHISPER_CANDIDATES, { rows: [] });
+  const byDate = new Map();
+
+  for (const row of data.rows || []) {
+    if (!row.date) continue;
+    const candidate = {
+      title: row.title,
+      permalink: row.permalink,
+      file: row.file,
+      context: row.context,
+      bestStart: row.bestStart ?? null,
+      bestTime: row.bestStart != null ? formatTime(row.bestStart) : "",
+      confidence: row.confidence || "none",
+      bestTranscript: row.bestTranscript || "",
+      bestTranscriptPath: row.bestTranscriptPath || "",
+      score: row.transcriptResults?.[0]?.candidates?.[0]?.score || 0
+    };
+    const items = byDate.get(row.date) || [];
+    items.push(candidate);
+    byDate.set(row.date, items);
+  }
+
+  for (const items of byDate.values()) {
+    items.sort((a, b) => (a.bestStart ?? 0) - (b.bestStart ?? 0) || a.title.localeCompare(b.title));
+  }
+
+  return byDate;
+}
+
 function chunkFiles(youtubeId) {
   const candidates = [];
   for (const dir of [CHUNK_ROOT, path.join(CHUNK_ROOT, "10s"), path.join(CHUNK_ROOT, "60s")]) {
@@ -109,7 +152,15 @@ function classifyHit(text) {
   return "tarkistettava osuma";
 }
 
-function scanHits(files) {
+function applyManualHitReview(youtubeId, hit) {
+  const review = manualHitReviews.find((item) => {
+    if (item.youtubeId !== youtubeId) return false;
+    return Math.abs(Number(hit.startsAt || 0) - item.startsAt) <= (item.toleranceSeconds || 0);
+  });
+  return review ? { ...hit, ...review } : hit;
+}
+
+function scanHits(youtubeId, files) {
   const hits = [];
   for (const item of files) {
     const json = readJson(item.filePath, {});
@@ -121,19 +172,19 @@ function scanHits(files) {
       if (!isStrict && !isLoose) continue;
       const segmentOffsetSeconds = Number(segment.start || 0) || Number(segment.offsets?.from || 0) / 1000 || 0;
       const startsAt = item.chunkIndex * item.chunkSeconds + segmentOffsetSeconds;
-      hits.push({
+      hits.push(applyManualHitReview(youtubeId, {
         startsAt,
         time: formatTime(startsAt),
         type: isStrict ? "strict" : "loose",
         classification: classifyHit(text),
         text
-      });
+      }));
     }
   }
   return hits.sort((a, b) => a.startsAt - b.startsAt);
 }
 
-function statusFor(video, linkedByVideo) {
+function statusFor(video, linkedByVideo, macwhisperByDate) {
   const audioPath = path.join(AUDIO_DIR, `${video.youtubeId}.wav`);
   const duration = durationSeconds(audioPath);
   const files = chunkFiles(video.youtubeId);
@@ -168,22 +219,25 @@ function statusFor(video, linkedByVideo) {
     expectedChunks,
     completion,
     linkedSpeechPages: linkedByVideo.get(video.youtubeId) || [],
-    hits: scanHits(preferredFiles).slice(0, 40)
+    macwhisperCandidates: macwhisperByDate.get(video.date) || [],
+    hits: scanHits(video.youtubeId, preferredFiles).slice(0, 40)
   };
 }
 
 function markdownTable(rows) {
-  const header = "| Päivä | Video | Tila | Linkitettyjä puhesivuja | Osumat | Huomio |\n|---|---|---:|---:|---:|---|";
+  const header = "| Päivä | Video | Tila | Linkitettyjä puhesivuja | MacWhisper-osumia | Nimi-/puheosumat | Huomio |\n|---|---|---:|---:|---:|---:|---|";
   const body = rows.map((row) => {
     const speechCandidates = row.hits.filter((hit) => hit.classification === "puhe-ehdokas").length;
-    const mentions = row.hits.length - speechCandidates;
-    const note = speechCandidates > 0
-      ? `${speechCandidates} puhe-ehdokasta`
-      : row.hits.length > 0
-        ? `${mentions} nimimainintaa/viittausta`
-        : "";
+    const rejected = row.hits.filter((hit) => hit.reviewDecision === "rejected").length;
+    const mentions = row.hits.length - speechCandidates - rejected;
+    const notes = [];
+    if (speechCandidates > 0) notes.push(`${speechCandidates} ${speechCandidates === 1 ? "puhe-ehdokas" : "puhe-ehdokasta"}`);
+    if (rejected > 0) notes.push(`${rejected} ${rejected === 1 ? "hylätty vääränä puhujana" : "hylättyä vääränä puhujana"}`);
+    if (!speechCandidates && row.hits.length > 0 && mentions > 0) notes.push(`${mentions} ${mentions === 1 ? "nimimaininta/viittaus" : "nimimainintaa/viittausta"}`);
+    if (row.macwhisperCandidates.length > 0) notes.push(`${row.macwhisperCandidates.length} ${row.macwhisperCandidates.length === 1 ? "tekstimatch" : "tekstimatchia"}`);
+    const note = notes.join(", ");
     const title = row.url ? `[${row.title}](${row.url})` : row.title;
-    return `| ${row.date} | ${title} | ${row.completion} ${row.completedChunks}/${row.expectedChunks || "?"} | ${row.linkedSpeechPages.length} | ${row.hits.length} | ${note} |`;
+    return `| ${row.date} | ${title} | ${row.completion} ${row.completedChunks}/${row.expectedChunks || "?"} | ${row.linkedSpeechPages.length} | ${row.macwhisperCandidates.length} | ${row.hits.length} | ${note} |`;
   });
   return [header, ...body].join("\n");
 }
@@ -191,9 +245,10 @@ function markdownTable(rows) {
 function main() {
   const videos = allMeetingVideos();
   const linkedByVideo = linkedSpeechVideos();
+  const macwhisperByDate = macwhisperCandidateMatches();
   const rows = videos
     .filter((video) => fs.existsSync(path.join(AUDIO_DIR, `${video.youtubeId}.wav`)) || linkedByVideo.has(video.youtubeId))
-    .map((video) => statusFor(video, linkedByVideo));
+    .map((video) => statusFor(video, linkedByVideo, macwhisperByDate));
   const queue = readJson(QUEUE_STATUS, null);
   const report = {
     generatedAt: new Date().toISOString(),
@@ -203,6 +258,8 @@ function main() {
       complete: rows.filter((row) => row.completion === "valmis").length,
       partial: rows.filter((row) => row.completion === "kesken").length,
       withSpeechCandidates: rows.filter((row) => row.hits.some((hit) => hit.classification === "puhe-ehdokas")).length,
+      withMacwhisperCandidates: rows.filter((row) => row.macwhisperCandidates.length > 0).length,
+      rejectedManualHits: rows.flatMap((row) => row.hits).filter((hit) => hit.reviewDecision === "rejected").length,
       withLinkedSpeechPages: rows.filter((row) => row.linkedSpeechPages.length > 0).length
     },
     rows
@@ -214,7 +271,7 @@ function main() {
     "",
     `Päivitetty: ${report.generatedAt}`,
     "",
-    `Yhteenveto: ${report.summary.videos} videota, ${report.summary.complete} valmista litterointia, ${report.summary.partial} kesken, ${report.summary.withSpeechCandidates} videossa puhe-ehdokas.`,
+    `Yhteenveto: ${report.summary.videos} videota, ${report.summary.complete} valmista litterointia, ${report.summary.partial} kesken, ${report.summary.withSpeechCandidates} videossa puhe-ehdokas, ${report.summary.withMacwhisperCandidates} videossa tekstimatch, ${report.summary.rejectedManualHits} ${report.summary.rejectedManualHits === 1 ? "käsin hylätty osuma" : "käsin hylättyä osumaa"}.`,
     "",
     markdownTable(rows),
     ""
