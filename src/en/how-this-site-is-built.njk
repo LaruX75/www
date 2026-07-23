@@ -4,14 +4,14 @@ title: How This Site Is Built
 permalink: /en/how-this-site-is-built/
 translationKey: how_site_built
 lang: en
-description: "How jarilaru.fi is built in practice: Eleventy, build automation, external data, quality checks, and AI-assisted development."
+description: "How jarilaru.fi is built in practice: Eleventy, a custom content model, external data, caches, quality checks, and AI-assisted development."
 ---
 
 <section class="py-4 bg-body-tertiary border-bottom">
   <div class="site-shell">
     <p class="text-uppercase small text-muted mb-2">Build Guide</p>
     <h1 class="display-6 fw-bold mb-2">How This Site Is Built</h1>
-    <p class="mb-0 text-muted">A practical overview of how this website is produced with generative AI support and a modern static site stack.</p>
+    <p class="mb-0 text-muted">A practical overview of how this website is produced with a static site generator, a custom content model, external data sources, and AI-assisted development.</p>
   </div>
 </section>
 
@@ -19,9 +19,9 @@ description: "How jarilaru.fi is built in practice: Eleventy, build automation, 
   <div class="site-shell">
     <div class="card border-0 shadow-sm mb-4">
       <div class="card-body">
-        <h2 class="h4 mb-3">1. AI-assisted development: human direction, Codex and Claude Code</h2>
+        <h2 class="h4 mb-3">1. AI-assisted development: human direction, tools in support</h2>
         <p>In this project, AI acts as a technical pair rather than an autopilot. The human sets the direction, reviews content, evaluates changes, decides what gets published, and remains responsible for quality. AI helps with code edits, refactoring, translation, structural cleanup, content analysis, and repetitive implementation work.</p>
-        <p><strong>Codex</strong> and <strong>Claude Code</strong> have both been used at different stages of the project. Codex has been used especially for structure, interface work, accessibility, SEO views, testing, commit planning, and larger site-wide changes. Claude Code has also been used for file edits, language polishing, and exploring implementation alternatives.</p>
+        <p><strong>Codex</strong> and <strong>Claude Code</strong> have both been used at different stages of the project. Codex has been used especially for site structure, interface work, accessibility, SEO views, tests, commit planning, council meeting views, and larger site-wide changes. Claude Code has also been used for language polishing, exploring implementation alternatives, and focused file edits.</p>
         <p class="mb-0">In practical terms, the workflow is version-controlled and reviewable: a change is requested, implementation is done in small batches, the diff is reviewed, the build and tests are run, and only then the change is committed and published. Responsibility for the content and publication remains with the human.</p>
       </div>
     </div>
@@ -29,7 +29,7 @@ description: "How jarilaru.fi is built in practice: Eleventy, build automation, 
     <div class="card border-0 shadow-sm mb-4">
       <div class="card-body">
         <h2 class="h4 mb-3">2. Core building blocks</h2>
-        <p class="mb-3">These tools form the day-to-day stack behind the site. On top of them, the project uses its own build pipeline, validation scripts, and cache strategy so external data does not make publishing fragile.</p>
+        <p class="mb-3">The site is a static Eleventy site. Pages are generated as ready-made HTML before publication. The public site does not require a custom server, database, or login. Dynamic-looking sections are produced through build-time data collection, local data files, and browser-side interface scripts.</p>
         <div class="table-responsive">
           <table class="table table-hover align-middle">
             <thead>
@@ -52,7 +52,7 @@ description: "How jarilaru.fi is built in practice: Eleventy, build automation, 
               </tr>
               <tr>
                 <td><strong>Bootstrap 5 + Bootstrap Icons</strong></td>
-                <td>Bootstrap provides responsive layout primitives and UI components; Bootstrap Icons adds a consistent icon system.</td>
+                <td>Bootstrap provides the baseline responsive grid, utility classes, and icons. The site's visual identity, cards, hero sections, tables, megamenu, and accessibility toolbar are implemented in a custom CSS layer on top of it.</td>
                 <td><a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/" target="_blank" rel="noopener noreferrer">Bootstrap</a> · <a href="https://icons.getbootstrap.com/" target="_blank" rel="noopener noreferrer">Icons</a></td>
               </tr>
               <tr>
@@ -79,16 +79,17 @@ description: "How jarilaru.fi is built in practice: Eleventy, build automation, 
           </table>
         </div>
         <p class="mb-2">In practice, the pipeline does more than run `11ty` once. Before each build it syncs curated fallback stubs, fetches thesis keywords when needed, cleans OG-image output, and generates the site. After that it runs i18n and SEO checks, builds the Pagefind search index, and generates the site's own SEO dashboard.</p>
-        <p class="mb-0">In production, the same pipeline deploys the result to GitHub Pages, verifies key files, runs smoke tests, and supports scheduled rebuilds. The site can also be built in offline/fallback mode so temporary external API problems do not stop publication.</p>
+        <p class="mb-0">Local development also has a lightweight build path that uses caches and skips heavier OG-image generation. In production, the full pipeline deploys the result to GitHub Pages, verifies key files, runs smoke tests, and supports scheduled rebuilds.</p>
       </div>
     </div>
 
     <div class="card border-0 shadow-sm mb-4">
       <div class="card-body">
-        <h2 class="h4 mb-3">3. Quality checks and maintenance views</h2>
-        <p>Site quality is not based only on manual clicking. During builds and separate test runs, the project checks page generation, multilingual SEO structure, the internal search index, navigation, contrast, and basic accessibility behaviour.</p>
-        <p>Playwright tests cover navigation, search, accessibility, and contrast. The accessibility toolbar also has its own regression test to verify high contrast, reading background colours, and the priority between combined colour settings across representative page types.</p>
-        <p class="mb-0">The site also includes an admin/SEO view. During build, it receives basic data about page metadata, canonical URLs, OG images, the sitemap, and robots.txt. It does not replace search engine tools, but it makes the site's technical SEO state easier to inspect quickly.</p>
+        <h2 class="h4 mb-3">3. Content model: texts are not just standalone articles</h2>
+        <p>Content is connected through metadata. Speeches, council initiatives, city council question-hour items, opinion pieces, statements, media appearances, presentations, and blog posts have their own fields so they can be shown in the right context.</p>
+        <p>For political content, the key node is a city council meeting. A speech, initiative, or question-hour item can be linked to the same meeting, allowing the site to show the minutes, meeting video, timestamps, related content from the same meeting, and the broader election-period context.</p>
+        <p>Taxonomies are not just tag clouds. The site uses categories, keywords, roles, contexts, topic paths, and theme profiles so the same content can appear in political, research, teaching, media, or expert-work contexts without being duplicated.</p>
+        <p class="mb-0">Facebook page material is not published automatically. It is first imported into drafts and audit reports. Selected core items are then edited into proper blog posts and connected to topic paths when they add value to the site.</p>
       </div>
     </div>
 
@@ -134,7 +135,7 @@ description: "How jarilaru.fi is built in practice: Eleventy, build automation, 
               <tr>
                 <td><strong>Oulu open data API</strong><br><code>city_council_meeting_videos</code></td>
                 <td>City of Oulu</td>
-                <td>City council meeting videos on politics pages.</td>
+                <td>City council meeting videos, meeting-level links, and video cards for politics and council-meeting pages.</td>
               </tr>
               <tr>
                 <td><strong>OuluREPO OpenSearch</strong></td>
@@ -167,6 +168,16 @@ description: "How jarilaru.fi is built in practice: Eleventy, build automation, 
                 <td>YouTube playlist data on the presentations page.</td>
               </tr>
               <tr>
+                <td><strong>MacWhisper + local audit scripts</strong></td>
+                <td>Local transcription workflow and Node scripts</td>
+                <td>City council video transcripts, speech timestamp candidates, and audits for missing speeches. Results are reviewed before publication.</td>
+              </tr>
+              <tr>
+                <td><strong>Facebook export and Graph API import</strong></td>
+                <td>Meta / Facebook</td>
+                <td>Importing older politician-page posts into drafts for later use as blog posts or background material.</td>
+              </tr>
+              <tr>
                 <td><strong>Formspree</strong></td>
                 <td>Formspree</td>
                 <td>Contact form delivery without maintaining custom server-side form handling.</td>
@@ -175,14 +186,24 @@ description: "How jarilaru.fi is built in practice: Eleventy, build automation, 
           </table>
         </div>
         <p class="mb-2">Some content also lives in curated local data files and generated stub files. This makes Canva, SlideShare, Finna, and Research.fi driven sections more stable when live fetching is unavailable or incomplete.</p>
-        <p class="mb-2">Technically, these sources become tables, ticker highlights, cards, searchable views, metric counters, and automatically updated change lists. External embeds are routed through a consent layer before loading.</p>
+        <p class="mb-2">Technically, these sources become tables, cards, searchable views, metric counters, topic paths, meeting views, and automatically updated change lists. External embeds are routed through a consent layer before loading.</p>
         <p class="mb-0">The structure, taxonomies, and some summarisation on analysis pages have been AI-assisted, but the final published content is still manually reviewed and accepted through version control.</p>
+      </div>
+    </div>
+
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-body">
+        <h2 class="h4 mb-3">5. Quality checks and maintenance views</h2>
+        <p>Site quality is not based only on manual clicking. During builds and separate test runs, the project checks page generation, multilingual SEO structure, the internal search index, navigation, contrast, basic accessibility behaviour, and metadata consistency.</p>
+        <p>Playwright tests cover navigation, search, accessibility, and contrast. The accessibility toolbar also has its own regression test to verify high contrast, reading background colours, and the priority between combined colour settings across representative page types.</p>
+        <p>Custom scripts audit content as well. They check council speech videos and timestamps, MacWhisper transcripts, Facebook imports, categories, keywords, language versions, canonical URLs, and SEO profiles.</p>
+        <p class="mb-0">The site also includes an admin/SEO view. During build, it receives basic data about page metadata, canonical URLs, OG images, the sitemap, and robots.txt. It does not replace search engine tools, but it makes the site's technical SEO state easier to inspect quickly.</p>
       </div>
     </div>
 
     <div class="card border-0 shadow-sm">
       <div class="card-body">
-        <h2 class="h4 mb-3">5. Popular-level roadmap to build your own site</h2>
+        <h2 class="h4 mb-3">6. Popular-level roadmap to build your own site</h2>
         <ol class="mb-0">
           <li>Bring AI in from step one: ask for a plan first, then implement in small, reviewable change batches.</li>
           <li>Create a GitHub repository and pick a simple stack (Eleventy + Bootstrap works well).</li>

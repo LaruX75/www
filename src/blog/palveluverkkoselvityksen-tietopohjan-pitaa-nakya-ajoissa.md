@@ -46,7 +46,7 @@ facebookImport:
 templateEngineOverride: md
 ---
 
-Oulun vuoden 2025 palveluverkkoselvitys oli tärkeä siksi, että se toi palveluverkkoa koskevaa tietoa julkisesti näkyville ennen varsinaisia ratkaisuja. Juuri tätä olen pitänyt olennaisena: vaikeista koulu- ja palveluverkkokysymyksistä pitää keskustella ennen päätöksiä, ei vasta niiden jälkeen.
+Oulun vuoden 2025 palveluverkkoselvitys oli tärkeä siksi, että se toi palveluverkkoa koskevaa tietoa julkisesti näkyville jo hyvissä ajoin ennen kuntavaaleja 2025, ja tietopohjaa täydennettiin jatkuvasti ennen varsinaisia ratkaisuja. Juuri tätä olen pitänyt olennaisena: vaikeista koulu- ja palveluverkkokysymyksistä pitää keskustella ennen päätöksiä, ei vasta niiden jälkeen.
 
 Palveluverkko ei ole vain luettelo kouluista, päiväkodeista ja muista toimipisteistä. Se on kuva siitä, miten kaupunki järjestää palvelunsa muuttuvassa väestötilanteessa, tiukkenevassa taloudessa ja eri puolilla Oulua erilaisena näkyvässä arjessa.
 

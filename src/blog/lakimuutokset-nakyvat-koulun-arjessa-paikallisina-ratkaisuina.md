@@ -1,5 +1,5 @@
 ---
-title: Lakimuutokset näkyvät koulun arjessa vasta paikallisina ratkaisuina
+title: Lakimuutokset näkyvät koulun arjessa paikallisina ratkaisuina
 date: '2025-06-24'
 description: Sivistyslautakunnan uuden kauden ensimmäinen kokous näytti, miten perusopetuslain muutokset, puhelinlinjaukset ja oppimisen tuki muuttuvat paikallisiksi päätöksiksi Oulussa.
 categories:

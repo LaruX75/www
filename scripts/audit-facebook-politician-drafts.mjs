@@ -167,6 +167,22 @@ const CURATED_EXISTING_MATCHES = [
     ]
   },
   {
+    file: "src/blog/palveluverkkoselvityksen-tietopohjan-pitaa-nakya-ajoissa.md",
+    terms: [
+      "nyt se on julkaistu! nimittäin palveluverkkotyötä käsittelevä sivusto",
+      "olen pyytänyt sivistysjohtaja mika penttilää tuomaan faktoja julkisesti näkyville",
+      "palveluverkkoselvitys viedään päätöksentekoon yhtenä kokonaisuutena"
+    ]
+  },
+  {
+    file: "src/blog/lakimuutokset-nakyvat-koulun-arjessa-paikallisina-ratkaisuina.md",
+    terms: [
+      "sivistyslautakunnan uusi kausi lähti liikkeelle jämerästi",
+      "lakimuutos koskien puhelinten ja muiden mobiililaitteiden käyttöä oppitunnilla",
+      "oppimisen tuen uudistus"
+    ]
+  },
+  {
     file: "src/blog/tilasto-ei-riita-jos-rajaukset-eivat-nay.md",
     terms: [
       "tilasto ja tilasto - mistä numerot tulevat",

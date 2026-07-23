@@ -4,14 +4,14 @@ title: Miten tämä sivusto on rakennettu
 permalink: /miten-sivusto-on-rakennettu/
 translationKey: how_site_built
 lang: fi
-description: "Näin jarilaru.fi rakentuu käytännössä: Eleventy, build-putki, datalähteet, laadunvarmistus ja AI-avusteinen kehitystyö."
+description: "Näin jarilaru.fi rakentuu käytännössä: Eleventy, oma sisältömalli, datalähteet, välimuistit, laadunvarmistus ja AI-avusteinen kehitystyö."
 ---
 
 <section class="py-4 bg-body-tertiary border-bottom">
   <div class="site-shell">
     <p class="text-uppercase small text-muted mb-2">Rakennustapa</p>
     <h1 class="display-6 fw-bold mb-2">Miten tämä sivusto on tehty</h1>
-    <p class="mb-0 text-muted">Käytännön selitys siitä, miten sivusto syntyy generatiivisen tekoälyn ja modernin staattisen verkkopinon avulla.</p>
+    <p class="mb-0 text-muted">Käytännön kuvaus siitä, miten sivusto syntyy staattisesta sivugeneraattorista, omasta sisältömallista, ulkoisista datalähteistä ja AI-avusteisesta kehitystyöstä.</p>
   </div>
 </section>
 
@@ -19,17 +19,17 @@ description: "Näin jarilaru.fi rakentuu käytännössä: Eleventy, build-putki,
   <div class="site-shell">
     <div class="card border-0 shadow-sm mb-4">
       <div class="card-body">
-        <h2 class="h4 mb-3">1. AI-avusteinen kehitystyö: ihminen, Codex ja Claude Code</h2>
+        <h2 class="h4 mb-3">1. AI-avusteinen kehitystyö: ihminen päättää, työkalut auttavat</h2>
         <p>Sivuston kehityksessä tekoäly toimii teknisenä työparina, ei automaattisena julkaisijana. Ihminen määrittää suunnan, tarkistaa sisällöt, arvioi muutokset ja päättää mitä lopulta julkaistaan. AI auttaa koodin kirjoittamisessa, refaktoroinnissa, käännöksissä, rakenteen selkeyttämisessä, sisältöanalyysissa ja toistuvissa teknisissä korjauksissa.</p>
-        <p><strong>Codex</strong> ja <strong>Claude Code</strong> ovat molemmat olleet käytössä projektin eri vaiheissa. Codexia on käytetty erityisesti rakenteen, käyttöliittymän, saavutettavuuden, SEO-näkymien, testien, commit-suunnittelun ja laajempien sivustokokonaisuuksien läpivientiin. Claude Codea on käytetty muun muassa tiedostojen muokkaamiseen, kielen hiomiseen ja toteutusvaihtoehtojen kokeiluun.</p>
-        <p class="mb-0">Käytännössä työnkulku on versionhallittu ja tarkistettava: muutos pyydetään, toteutus tehdään pieninä erinä, diffi tarkistetaan, build ja testit ajetaan, ja vasta sen jälkeen muutos commitoidaan ja julkaistaan. Vastuu sisällöstä ja julkaisemisesta säilyy ihmisellä.</p>
+        <p><strong>Codex</strong> ja <strong>Claude Code</strong> ovat molemmat olleet käytössä projektin eri vaiheissa. Codexia on käytetty erityisesti sivuston rakenteen, käyttöliittymien, saavutettavuuden, SEO-näkymien, testien, commit-suunnittelun, valtuustokokouskokonaisuuksien ja laajojen sivustotasoisten muutosten läpivientiin. Claude Codea on käytetty muun muassa kielen hiomiseen, vaihtoehtoisten toteutusten kokeiluun ja yksittäisten tiedostomuutosten tekemiseen.</p>
+        <p class="mb-0">Käytännössä työnkulku on versionhallittu ja tarkistettava: muutos pyydetään, toteutus tehdään pieninä erinä, diffi tarkistetaan, build ja testit ajetaan, ja vasta sen jälkeen muutos commitoidaan ja julkaistaan. Vastuu sisällöstä, valinnoista ja julkaisemisesta säilyy ihmisellä.</p>
       </div>
     </div>
 
     <div class="card border-0 shadow-sm mb-4">
       <div class="card-body">
-        <h2 class="h4 mb-3">2. Sivuston rakennuspalikat (stack)</h2>
-        <p class="mb-3">Alla olevat työkalut muodostavat sivuston käytännön konehuoneen. Niiden lisäksi projektissa on oma build-putki, tarkistusskriptit ja välimuististrategia, jotta ulkoiset datalähteet eivät tee julkaisusta haavoittuvaa.</p>
+        <h2 class="h4 mb-3">2. Sivuston rakennuspalikat</h2>
+        <p class="mb-3">Sivusto on staattinen Eleventy-sivusto. Se tarkoittaa, että sivut rakennetaan valmiiksi HTML-tiedostoiksi ennen julkaisua. Julkisella sivustolla ei tarvita omaa palvelinta, tietokantaa tai kirjautumista, vaan dynaamisuus syntyy build-vaiheen datankeruusta, paikallisista datatiedostoista ja selaimessa toimivista käyttöliittymäskripteistä.</p>
         <div class="table-responsive">
           <table class="table table-hover align-middle">
             <thead>
@@ -52,7 +52,7 @@ description: "Näin jarilaru.fi rakentuu käytännössä: Eleventy, build-putki,
               </tr>
               <tr>
                 <td><strong>Bootstrap 5 + Bootstrap Icons</strong></td>
-                <td>Bootstrap tarjoaa valmiin responsiivisen layout-järjestelmän ja UI-komponentit. Bootstrap Icons täydentää käyttöliittymää selkeillä ikoneilla.</td>
+                <td>Bootstrap tarjoaa responsiivisen perusgridin, hyötyluokkia ja ikonit. Sivuston varsinainen ilme, kortit, hero-osiot, taulukot, megamenu ja saavutettavuustyökalu on rakennettu oman CSS-kerroksen päälle.</td>
                 <td><a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/" target="_blank" rel="noopener noreferrer">Bootstrap</a> · <a href="https://icons.getbootstrap.com/" target="_blank" rel="noopener noreferrer">Icons</a></td>
               </tr>
               <tr>
@@ -79,16 +79,17 @@ description: "Näin jarilaru.fi rakentuu käytännössä: Eleventy, build-putki,
           </table>
         </div>
         <p class="mb-2">Käytännössä build-putki tekee enemmän kuin yhden `11ty`-ajon. Ennen buildiä synkronoidaan paikalliset fallback-stubit, haetaan tarvittaessa opinnäytteiden avainsanoja, siivotaan OG-kuvat ja rakennetaan sivusto. Tämän jälkeen ajetaan i18n- ja SEO-tarkistukset, muodostetaan Pagefind-hakuindeksi ja rakennetaan sivuston oma SEO-dashboard.</p>
-        <p class="mb-0">Tuotannossa sama putki julkaisee lopputuloksen GitHub Pagesiin, tarkistaa keskeiset tiedostot, tekee smoke-testit ja ajaa ajastettuja päivityksiä. Sivustoa voidaan rakentaa myös offline-/fallback-tilassa, jolloin ulkoisten rajapintojen hetkelliset ongelmat eivät pysäytä julkaisua.</p>
+        <p class="mb-0">Paikalliseen kehitykseen on lisäksi kevyt build-polku, joka käyttää välimuisteja ja ohittaa raskaammat OG-kuvien muodostukset. Tuotannossa sama putki julkaisee lopputuloksen GitHub Pagesiin, tarkistaa keskeiset tiedostot, tekee smoke-testit ja ajaa ajastettuja päivityksiä.</p>
       </div>
     </div>
 
     <div class="card border-0 shadow-sm mb-4">
       <div class="card-body">
-        <h2 class="h4 mb-3">3. Laadunvarmistus ja ylläpitonäkymät</h2>
-        <p>Sivuston laatu ei perustu pelkkään käsin klikkailuun. Buildin yhteydessä ja erillisissä testiajoissa tarkistetaan muun muassa sivujen muodostuminen, kieliversioiden SEO-rakenne, sisäisen haun indeksi, navigaatio, kontrastit ja saavutettavuuden perusasiat.</p>
-        <p>Playwright-testeillä käydään läpi navigaatiota, hakua, saavutettavuutta ja kontrasteja. Saavutettavuustyökalulle on lisäksi oma regressiotesti, joka varmistaa korkean kontrastin, lukutaustavärien ja niiden keskinäisen prioriteetin eri sivutyypeillä.</p>
-        <p class="mb-0">Sivustolla on myös oma admin-/SEO-näkymä, johon build tuottaa perustietoja esimerkiksi sivujen metatiedoista, canonical-osoitteista, OG-kuvista, sitemapista ja robots-tiedostosta. Se ei korvaa hakukoneiden omia työkaluja, mutta auttaa näkemään nopeasti, onko sivuston tekninen SEO kunnossa.</p>
+        <h2 class="h4 mb-3">3. Sisältömalli: tekstit eivät ole vain irrallisia artikkeleita</h2>
+        <p>Sivuston sisältöjä yhdistetään metatiedolla. Puheenvuoroilla, valtuustoaloitteilla, valtuuston kyselytunnin kysymyksillä, mielipidekirjoituksilla, lausunnoilla, mediaosumilla, esityksillä ja blogiteksteillä on omia kenttiään, joiden avulla ne voidaan näyttää oikeassa kontekstissa.</p>
+        <p>Politiikkasisällöissä keskeinen solmu on kaupunginvaltuuston kokous. Yksittäinen puheenvuoro, valtuustoaloite tai kyselytunnin asia voidaan kytkeä samaan kokoukseen, jolloin sivustolla voidaan näyttää pöytäkirja, kokousvideo, aikaleimat, samassa kokouksessa käsitellyt omat sisällöt ja vaalikauden kokonaiskuva.</p>
+        <p>Taksonomiat eivät ole vain avainsanapilviä. Sivustolla käytetään kategorioita, avainsanoja, rooleja, konteksteja, aihepolkuja ja teemaprofiileja, jotta sama sisältö voi näkyä esimerkiksi politiikan, tutkimuksen, opetuksen, median tai asiantuntijatyön yhteydessä ilman että sitä kopioidaan moneen paikkaan.</p>
+        <p class="mb-0">Facebookista tuotu poliitikkosivun aineisto ei mene suoraan julkaisuun. Se tuodaan ensin luonnoksiksi ja auditointiraporteiksi. Sen jälkeen siitä valitaan ydinartikkelit, jotka muokataan varsinaisiksi blogiteksteiksi ja liitetään aihepolkuihin, jos ne tuovat sivustolle lisäarvoa.</p>
       </div>
     </div>
 
@@ -134,7 +135,7 @@ description: "Näin jarilaru.fi rakentuu käytännössä: Eleventy, build-putki,
               <tr>
                 <td><strong>Oulun kaupungin avoin API</strong><br><code>city_council_meeting_videos</code></td>
                 <td>Oulun kaupunki</td>
-                <td>Valtuustovideot politiikkasivulle.</td>
+                <td>Valtuustovideot, kokouskohtaiset linkitykset ja puheenvuorojen videokortit politiikka- ja valtuustosivuille.</td>
               </tr>
               <tr>
                 <td><strong>OuluREPO OpenSearch</strong></td>
@@ -167,6 +168,16 @@ description: "Näin jarilaru.fi rakentuu käytännössä: Eleventy, build-putki,
                 <td>YouTube-soittolistat esityssivulle.</td>
               </tr>
               <tr>
+                <td><strong>MacWhisper + paikalliset auditointiskriptit</strong></td>
+                <td>Paikallinen litterointityö ja Node-skriptit</td>
+                <td>Valtuustovideoiden litteraatit, puheenvuorojen aikaleimaehdokkaat ja puuttuvien puheiden auditointi. Tulokset tarkistetaan ennen julkaisua.</td>
+              </tr>
+              <tr>
+                <td><strong>Facebook-export ja Graph API -tuonti</strong></td>
+                <td>Meta / Facebook</td>
+                <td>Poliitikkosivun vanhojen julkaisujen tuonti luonnoksiksi ja jatkokäsittely blogiartikkeleiksi tai tausta-aineistoksi.</td>
+              </tr>
+              <tr>
                 <td><strong>Formspree</strong></td>
                 <td>Formspree</td>
                 <td>Yhteydenottolomakkeen viestien välitys ilman omaa palvelinpuolen lomakelogiikkaa.</td>
@@ -175,14 +186,24 @@ description: "Näin jarilaru.fi rakentuu käytännössä: Eleventy, build-putki,
           </table>
         </div>
         <p class="mb-2">Lisäksi osa sisällöstä tulee hallituista paikallisista datatiedostoista ja kuratoiduista stub-tiedostoista. Näin esimerkiksi Canva-, SlideShare-, Finna- ja Research.fi-sisältöjä voidaan pitää hallittavina myös silloin, kun suora API-haku ei ole käytettävissä.</p>
-        <p class="mb-2">Teknisesti ulkoista dataa hyödynnetään taulukoina, ticker-nostoina, korttikokoelmina, hakunäkymissä, metriikkalaskureissa ja automaattisesti päivittyvissä muutoslistoissa. Ulkoiset upotukset taas kulkevat suostumuskerroksen läpi ennen latausta.</p>
+        <p class="mb-2">Teknisesti ulkoista dataa hyödynnetään taulukoina, korttikokoelmina, hakunäkymissä, metriikkalaskureissa, aihepoluissa, kokousnäkymissä ja automaattisesti päivittyvissä muutoslistoissa. Ulkoiset upotukset taas kulkevat suostumuskerroksen läpi ennen latausta.</p>
         <p class="mb-0">Analyysisivujen rakenne, taksonomiat ja osa tiivistyksistä on tehty AI-avusteisesti, mutta lopullinen julkaistava sisältö on edelleen käsin tarkistettu ja versionhallinnan kautta hyväksytty.</p>
+      </div>
+    </div>
+
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-body">
+        <h2 class="h4 mb-3">5. Laadunvarmistus ja ylläpitonäkymät</h2>
+        <p>Sivuston laatu ei perustu pelkkään käsin klikkailuun. Buildin yhteydessä ja erillisissä testiajoissa tarkistetaan muun muassa sivujen muodostuminen, kieliversioiden SEO-rakenne, sisäisen haun indeksi, navigaatio, kontrastit, saavutettavuuden perusasiat ja sisällön metatietojen eheys.</p>
+        <p>Playwright-testeillä käydään läpi navigaatiota, hakua, saavutettavuutta ja kontrasteja. Saavutettavuustyökalulle on lisäksi oma regressiotesti, joka varmistaa korkean kontrastin, lukutaustavärien ja niiden keskinäisen prioriteetin eri sivutyypeillä.</p>
+        <p>Sisältöä auditoidaan omilla skripteillä. Niillä tarkistetaan esimerkiksi valtuustopuheiden videoita ja aikaleimoja, MacWhisper-litteraatteja, Facebook-tuontia, kategorioita, avainsanoja, kieliversioita, canonical-osoitteita ja SEO-profiileja.</p>
+        <p class="mb-0">Sivustolla on myös oma admin-/SEO-näkymä, johon build tuottaa perustietoja esimerkiksi sivujen metatiedoista, canonical-osoitteista, OG-kuvista, sitemapista ja robots-tiedostosta. Se ei korvaa hakukoneiden omia työkaluja, mutta auttaa näkemään nopeasti, onko sivuston tekninen SEO kunnossa.</p>
       </div>
     </div>
 
     <div class="card border-0 shadow-sm">
       <div class="card-body">
-        <h2 class="h4 mb-3">5. Miten aloitat oman vastaavan sivuston</h2>
+        <h2 class="h4 mb-3">6. Miten aloitat oman vastaavan sivuston</h2>
         <ol class="mb-0">
           <li>Ota AI heti mukaan työpariksi: pyydä ensin suunnitelma, sitten pienet toteutusvaiheet. Tarkista diffit ja commitoi usein.</li>
           <li>Luo GitHub-repo ja valitse stack: Eleventy + Bootstrap on kevyt ja skaalautuva.</li>
