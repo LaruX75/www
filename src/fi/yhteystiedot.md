@@ -4,7 +4,7 @@ metaTitle: Yhteystiedot ja yhteydenotto
 description: "Jari Larun yhteystiedot: yhteydenottolomake, sähköposti, puhelin sekä yliopisto-, yritys- ja politiikkarooleihin liittyvät kanavat."
 permalink: /yhteystiedot/
 translationKey: contact
-templateEngineOverride: md
+templateEngineOverride: njk
 ---
 <p class="lead">Jari Laru, KT, KM — yliopistonlehtori, opettajankouluttaja ja koulutusteknologi. Yrittäjä ja kaupunginvaltuutettu (Kok.).</p>
 
@@ -15,11 +15,13 @@ templateEngineOverride: md
         <h2 class="h4 mb-3"><i class="bi bi-envelope me-2 text-primary"></i>Ota yhteyttä</h2>
         <p class="text-muted mb-4">Lähetä viesti suoraan lomakkeella. Vastaan mahdollisimman pian.</p>
 
-        <form action="https://formspree.io/f/xlgwqwzk" method="POST">
+        <form action="https://formspree.io/f/xlgwqwzk" method="POST" accept-charset="UTF-8">
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="visually-hidden" aria-hidden="true">
+          <input type="hidden" name="_subject" value="Yhteydenotto jarilaru.fi-sivustolta">
           <div class="row g-3">
             <div class="col-md-6">
               <label for="name" class="form-label">Nimi</label>
-              <input type="text" name="name" id="name" class="form-control" placeholder="Etunimi Sukunimi">
+              <input type="text" name="name" id="name" class="form-control" placeholder="Etunimi Sukunimi" autocomplete="name">
             </div>
             <div class="col-md-6">
               <label for="email" class="form-label">Sähköposti</label>
