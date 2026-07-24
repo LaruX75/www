@@ -880,3 +880,12 @@ schemaMentions:
     </details>
   </div>
 </section>
+
+<section class="site-shell py-0 pb-5">
+  {% set relatedSivuyhteys = "tutkimus" %}
+  {% set relatedTitle = "Tutkimustyöhön liittyviä esityksiä" %}
+  {% set relatedLimit = 4 %}
+  {% set relatedLinkHref = "/esitykset/" %}
+  {% set relatedLinkLabel = "Kaikki esitykset ja materiaalit →" %}
+  {% include "related-presentations.njk" %}
+</section>

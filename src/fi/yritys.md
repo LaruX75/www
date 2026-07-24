@@ -901,3 +901,12 @@ lang: fi
     }
   }
 </style>
+
+<section class="site-shell py-0 pb-5">
+  {% set relatedSivuyhteys = "kouluttaja-sivu" %}
+  {% set relatedTitle = "Viimeisimpiä koulutusesityksiä" %}
+  {% set relatedLimit = 3 %}
+  {% set relatedLinkHref = "/esitykset/" %}
+  {% set relatedLinkLabel = "Kaikki esitykset ja materiaalit →" %}
+  {% include "related-presentations.njk" %}
+</section>

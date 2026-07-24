@@ -501,6 +501,15 @@ templateEngineOverride: njk
   </div>
 </section>
 
+<section class="site-shell py-0 pb-5">
+  {% set relatedSivuyhteys = "tyoni-yliopistonlehtorina" %}
+  {% set relatedTitle = "Yliopistopedagogiikkaan liittyviä esityksiä" %}
+  {% set relatedLimit = 3 %}
+  {% set relatedLinkHref = "/esitykset/" %}
+  {% set relatedLinkLabel = "Kaikki esitykset ja materiaalit →" %}
+  {% include "related-presentations.njk" %}
+</section>
+
 <style>
   .ylwork-shell {
     width: min(1120px, calc(100% - clamp(2rem, 10vw, 8rem)));
