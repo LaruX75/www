@@ -6,6 +6,10 @@ categories:
   - Politiikka ja päätöksenteko
 forum:
   - Lautakunta
+politicalBody: sivistys-ja-kulttuurilautakunta
+committeeMeetingDate: '2017-12-20'
+activityType: muutosesitys
+agendaTitle: Sivistys- ja kulttuuripalveluiden käyttösuunnitelma 2018
 keywords:
   - esihistoria
   - historia

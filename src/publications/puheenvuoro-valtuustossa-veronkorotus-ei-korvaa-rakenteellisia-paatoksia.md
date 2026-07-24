@@ -24,6 +24,8 @@ politicalProfiles:
 templateEngineOverride: md
 contentContexts:
   - talousarvio
+textVersion: true
+textVersionSource: 'Puheenvuoron tekstiversio on sivustolle toimitettu ja tarkistettu kokoustallenteen aikaleiman perusteella.'
 ---
 
 Oulun kaupunginvaltuusto käsitteli vuoden 2019 tuloveroprosentin ja kiinteistöveroprosenttien vahvistamista. Puheenvuorossani vastasin keskusteluun, jossa vaikeisiin palvelu- ja talousratkaisuihin haettiin ratkaisua veronkorotuksesta.

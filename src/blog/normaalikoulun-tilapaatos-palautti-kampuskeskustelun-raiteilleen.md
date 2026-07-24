@@ -35,8 +35,9 @@ contentContexts:
   - keskustakampus
   - opettajankoulutus
 source: facebook
-sourceLabel: Kalevan uutinen
-sourceUrl: 'https://www.kaleva.fi/oulun-normaalikoulun-tuleva-sijainti-linnanmaan-ka/11567833'
+sourceLabel: oma Facebook-arkisto
+referenceLabel: Kalevan uutinen Oulun normaalikoulun tulevasta sijainnista
+referenceUrl: 'https://www.kaleva.fi/oulun-normaalikoulun-tuleva-sijainti-linnanmaan-ka/11567833'
 facebookImport:
   sourceIndex: 306
 templateEngineOverride: md

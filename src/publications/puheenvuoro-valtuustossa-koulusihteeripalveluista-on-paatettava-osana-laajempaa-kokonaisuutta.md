@@ -22,9 +22,11 @@ writingRoles:
   - political
 politicalProfiles:
   - sivistys
-  - lahipalvelut
+  - palveluverkko
   - yhteistyo
 templateEngineOverride: md
+textVersion: true
+textVersionSource: 'Puheenvuoron tekstiversio on sivustolle toimitettu ja tarkistettu kokoustallenteen aikaleiman perusteella.'
 ---
 
 Oulun kaupunginvaltuusto käsitteli 7.10.2019 koulusihteeripalvelujen järjestämistä ja niiden mahdollista siirtämistä Monetralle. Käytin puheenvuoron asian palauttamisesta valmisteluun osana kaupungin laajempia talouden tasapainottamistoimia.

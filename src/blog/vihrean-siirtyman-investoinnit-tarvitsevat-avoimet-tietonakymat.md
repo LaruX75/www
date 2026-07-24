@@ -48,7 +48,8 @@ contentContexts:
   - elinvoima
 source: facebook
 sourceLabel: oma Facebook-arkisto
-sourceUrl: 'https://ek.fi/tutkittua-tietoa/vihreat-investoinnit/'
+referenceLabel: Elinkeinoelämän keskusliiton vihreiden investointien dataikkuna
+referenceUrl: 'https://ek.fi/tutkittua-tietoa/vihreat-investoinnit/'
 facebookImport:
   sourceIndex: 415
   sourceFiles:

@@ -19,7 +19,7 @@ meeting: Oulun kaupunginvaltuusto
 meetingDate: 2024-04-29
 politicalProfiles:
   - hyvinvointi
-  - lahipalvelut
+  - palveluverkko
 templateEngineOverride: md
 ---
 <p><strong>ALOITE: Oulun kaupungin tulee järjestää yhdessä nuorten kanssa mopoaiheinen tapahtuma "mopomiitti" vähintään kerran kesässä</strong></p>

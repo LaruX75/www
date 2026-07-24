@@ -39,7 +39,8 @@ contentContexts:
   - tiedolla johtaminen
 source: facebook
 sourceLabel: oma Facebook-arkisto
-sourceUrl: 'https://www.ouka.fi/palveluverkkoselvitys-2025?accordion=accordion-66'
+referenceLabel: Oulun kaupungin palveluverkkoselvitys 2025
+referenceUrl: 'https://www.ouka.fi/palveluverkkoselvitys-2025?accordion=accordion-66'
 facebookImport:
   sourceFiles:
     - src/blog/_drafts/facebook-politician/2025-03-11-jari-laru-kuntapaattaja-jakoi-linkin-ryhmalle-oulun-puskaradio.md

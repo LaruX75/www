@@ -30,6 +30,8 @@ entities:
   - Jokirannan koulu
 contentContexts:
   - talousarvio
+textVersion: true
+textVersionSource: 'Puheenvuoron tekstiversio on sivustolle toimitettu ja tarkistettu kokoustallenteen aikaleiman perusteella.'
 ---
 
 Oulun kaupunginvaltuusto käsitteli vuoden 2018 talousarviota. Puheenvuorossani nostin esiin Jokirannan koulun sisäilmaongelmat, väistötilojen hajanaisuuden ja tarpeen turvata oppilaille sekä henkilökunnalle terveet ja turvalliset tilat.

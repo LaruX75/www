@@ -23,6 +23,8 @@ source_url: 'https://www.jarilaru.fi/valtuusto-26-2-18-kotouttamisohjelma/'
 politicalProfiles:
   - hyvinvointi
 templateEngineOverride: md
+textVersion: true
+textVersionSource: 'Puheenvuoron tekstiversio on sivustolle toimitettu ja tarkistettu kokoustallenteen aikaleiman perusteella.'
 ---
 Oulun kaupunginvaltuusto käsitteli 26.2.2018 asiakirjaa *Yhdessä kotoutuva Oulu - Oulun kaupungin kotouttamisohjelma 2018-2021*. Ohjelmaa oli käsitelty aiemmin sivistys- ja kulttuurilautakunnassa, joten asiakirja oli minulle tuttu jo ennen valtuustokäsittelyä.
 

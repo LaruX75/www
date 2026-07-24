@@ -24,6 +24,8 @@ places:
   - Linnanmaa
 entities:
   - Oulun Lyseo
+textVersion: true
+textVersionSource: 'Puheenvuoron tekstiversio on sivustolle toimitettu ja tarkistettu kokoustallenteen aikaleiman perusteella.'
 ---
 
 Oulun kaupunginvaltuusto käsitteli 17.6.2019 tietoiskua sivistys- ja kulttuuripalveluiden palveluverkon valmistelusta. Käytin puheenvuoron Oulun Lyseon kulttuurihistoriallisesta merkityksestä, Linnanmaan kampusmahdollisuuksista sekä sivistystoimen taloudellisesta kantokyvystä.

@@ -8,6 +8,10 @@ categories:
   - Kaupunkikehitys ja palveluverkko
 forum:
   - Lautakunta
+politicalBody: sivistys-ja-kulttuurilautakunta
+committeeMeetingDate: '2017-10-31'
+activityType: muutosesitys
+agendaTitle: Jokirannan koulun hankesuunnitelma
 keywords:
   - hankesuunnitelma
   - jokirannan koulu
@@ -22,7 +26,7 @@ wp_id: 1143
 source_url: 'https://www.jarilaru.fi/tein-muutosesityksen-jokirannan-koulu-tulee-sijoittaa-puiravan-kolmioon/'
 politicalProfiles:
   - sivistys
-  - lahipalvelut
+  - palveluverkko
 templateEngineOverride: md
 writingRoles:
   - political

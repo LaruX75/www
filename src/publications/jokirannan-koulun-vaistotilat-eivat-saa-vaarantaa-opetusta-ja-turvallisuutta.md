@@ -35,6 +35,8 @@ places:
   - Kiiminki
 entities:
   - Jokirannan koulu
+textVersion: true
+textVersionSource: 'Puheenvuoron tekstiversio on sivustolle toimitettu ja tarkistettu kokoustallenteen aikaleiman perusteella.'
 ---
 
 Oulun kaupunginvaltuuston kyselytunnilla käsiteltiin Jokirannan koulun opetustilojen terveellisyyttä ja turvallisuutta. Olin jättänyt valtuustokysymyksen:

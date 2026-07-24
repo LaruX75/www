@@ -30,7 +30,7 @@ wp_id: 981
 source_url: 'https://www.jarilaru.fi/oulun-palveluverkko-ja-pedagogiikka-tyorauha-palautettava-kouluihin/'
 politicalProfiles:
   - sivistys
-  - lahipalvelut
+  - palveluverkko
   - hyvinvointi
 templateEngineOverride: md
 ---

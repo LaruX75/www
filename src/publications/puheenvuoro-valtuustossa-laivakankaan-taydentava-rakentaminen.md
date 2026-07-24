@@ -18,7 +18,7 @@ speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:
-  - lahipalvelut
+  - palveluverkko
   - kaupunkikehitys
 templateEngineOverride: md
 places:
@@ -26,6 +26,8 @@ places:
   - Jääli
 contentContexts:
   - MATO
+textVersion: true
+textVersionSource: 'Puheenvuoron tekstiversio on sivustolle toimitettu ja tarkistettu kokoustallenteen aikaleiman perusteella.'
 ---
 
 Oulun kaupunginvaltuusto käsitteli 16.4.2018 Oulun maankäytön toteuttamisohjelmaa vuosille 2018–2022. Käytin puheenvuoron Laivakankaantien eteläpuolen täydentävästä rakentamisesta ja siitä, miten uusi rakentaminen voi vahvistaa olemassa olevaa palvelurakennetta.

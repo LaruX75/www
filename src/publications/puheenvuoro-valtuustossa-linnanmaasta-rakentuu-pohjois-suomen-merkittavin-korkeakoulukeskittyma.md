@@ -26,6 +26,8 @@ places:
 entities:
   - Oulun yliopisto
   - Oulun ammattikorkeakoulu
+textVersion: true
+textVersionSource: 'Puheenvuoron tekstiversio on sivustolle toimitettu ja tarkistettu kokoustallenteen aikaleiman perusteella.'
 ---
 
 Oulun kaupunginvaltuusto käsitteli 14.5.2018 kokouksessaan 4/2018 asiaa § 53 Oulun ammattikorkeakoulu Oy:n omistusjärjestelystä ja määrärahamuutoksista. Käytin puheenvuoron Linnanmaan kampuksen kehittymisestä Pohjois-Suomen merkittävimmäksi korkeakoulukeskittymäksi.

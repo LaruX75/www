@@ -16,7 +16,7 @@ opinionRoles:
   - political
 politicalProfiles:
   - sivistys
-  - lahipalvelut
+  - palveluverkko
   - avoinhallinto
 politicsWritingRole: political
 politicsWritingOrder: 2

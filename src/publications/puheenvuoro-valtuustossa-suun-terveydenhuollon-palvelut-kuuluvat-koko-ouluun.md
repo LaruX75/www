@@ -25,7 +25,7 @@ writingRoles:
 opinionRoles:
   - political
 politicalProfiles:
-  - lahipalvelut
+  - palveluverkko
   - kaupunkikehitys
   - hyvinvointi
 templateEngineOverride: md

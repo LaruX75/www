@@ -9,6 +9,10 @@ categories:
 publication: Kaleva
 forum:
   - Lautakunta
+politicalBody: sivistys-ja-kulttuurilautakunta
+committeeMeetingDate: '2017-10-31'
+activityType: kannanotto
+agendaTitle: Jokirannan koulun tilanne ja lautakunnan aiempi lausunto
 keywords:
   - homekoulu
   - jokirannan koulu
@@ -34,7 +38,7 @@ wp_id: 225
 source_url: 'https://www.jarilaru.fi/jokirannan-koulun-tilanne-kestamaton-osa-oppilaista-oireilee-yha/'
 politicalProfiles:
   - sivistys
-  - lahipalvelut
+  - palveluverkko
   - hyvinvointi
 templateEngineOverride: md
 ---
@@ -57,4 +61,3 @@ templateEngineOverride: md
 </p>
 <p>Jari Laru<br>valtuutettu, sivistys- ja kulttuurilautakunnan jäsen (kok.)<br><br>Sanna Pakane
 <br>vanhempaintoimikunnan puheenjohtaja (kok.)<br>Oulu</p>
-

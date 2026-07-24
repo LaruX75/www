@@ -27,7 +27,7 @@ wp_id: 229
 source_url: 'https://www.jarilaru.fi/jaalin-urheilualueen-rakennustyot-on-aloitettava-vuonna-2013/'
 politicalProfiles:
   - sivistys
-  - lahipalvelut
+  - palveluverkko
   - yhteistyo
 templateEngineOverride: md
 ---

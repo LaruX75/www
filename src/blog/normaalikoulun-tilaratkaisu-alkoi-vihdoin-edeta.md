@@ -35,8 +35,9 @@ contentContexts:
   - keskustakampus
   - opettajankoulutus
 source: facebook
-sourceLabel: Kalevan uutinen
-sourceUrl: 'https://www.kaleva.fi/oulun-normaalikoulun-oppilaat-muuttavat-kalliisiin/5894655'
+sourceLabel: oma Facebook-arkisto
+referenceLabel: Kalevan uutinen Oulun normaalikoulun väistötiloista
+referenceUrl: 'https://www.kaleva.fi/oulun-normaalikoulun-oppilaat-muuttavat-kalliisiin/5894655'
 facebookImport:
   sourceIndex: 412
 templateEngineOverride: md

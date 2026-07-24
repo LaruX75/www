@@ -18,7 +18,7 @@ speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:
-  - lahipalvelut
+  - palveluverkko
   - kaupunkikehitys
   - hyvinvointi
 templateEngineOverride: md

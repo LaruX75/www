@@ -17,7 +17,7 @@ speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:
-  - lahipalvelut
+  - palveluverkko
   - kaupunkikehitys
 templateEngineOverride: md
 places:
@@ -26,6 +26,8 @@ places:
   - Kortekangas
 contentContexts:
   - MATO
+textVersion: true
+textVersionSource: 'Puheenvuoron tekstiversio on sivustolle toimitettu ja tarkistettu kokoustallenteen aikaleiman perusteella.'
 ---
 
 Oulun kaupunginvaltuusto käsitteli maankäytön toteuttamisohjelmaa vuosille 2018–2022. Keskustelussa esitettiin Laivakankaan ja Kortekankaan lisäämistä kaavoitusohjelmaan.

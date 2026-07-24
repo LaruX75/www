@@ -17,7 +17,7 @@ wp_id: 102
 source_url: https://www.jarilaru.fi/valtuustoaloite-sankivaaran-ensilumen-ladun-pidentaminen/
 politicalProfiles:
   - hyvinvointi
-  - lahipalvelut
+  - palveluverkko
 templateEngineOverride: md
 ---
 

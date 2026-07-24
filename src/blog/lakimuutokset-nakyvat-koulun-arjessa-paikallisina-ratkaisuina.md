@@ -15,6 +15,10 @@ keywords:
   - koulutuspolitiikka
   - Oulu
 type: artikkeli
+politicalBody: sivistyslautakunta
+committeeMeetingDate: '2025-06-24'
+activityType: kokousanalyysi
+agendaTitle: Perusopetuslain muutosten paikallinen toimeenpano
 politicsWritingRole: political
 politicsWritingOrder: 1
 politicsWritingSummary: Esimerkki siitä, miten valtakunnalliset koulutuspoliittiset muutokset muuttuvat paikallisiksi ratkaisuiksi sivistyslautakunnan työssä.

@@ -34,7 +34,7 @@ wp_id: 1133
 source_url: 'https://www.jarilaru.fi/kiiminki-ansaitsee-monitoimitalon-jokirannan-koulun-paikka-on-syke-talon-ja-lukion-laheisyydessa/'
 politicalProfiles:
   - sivistys
-  - lahipalvelut
+  - palveluverkko
   - hyvinvointi
 templateEngineOverride: md
 ---

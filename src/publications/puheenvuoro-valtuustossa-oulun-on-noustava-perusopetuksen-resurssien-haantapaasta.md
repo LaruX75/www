@@ -16,6 +16,8 @@ speechContext: valtuusto
 writingRoles:
   - political
 templateEngineOverride: md
+textVersion: true
+textVersionSource: 'Puheenvuoron tekstiversio on sivustolle toimitettu ja tarkistettu kokoustallenteen aikaleiman perusteella.'
 ---
 
 Oulun kaupunginvaltuusto käsitteli 17.12.2018 tietoiskua Suomen kuuden suurimman kaupungin perusopetuksen tunnuslukuvertailusta vuodelta 2017. Käytin puheenvuoron perusopetuksen resursoinnista, oppimisympäristöistä ja lasten koulutukseen investoimisen tärkeydestä.

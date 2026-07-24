@@ -55,7 +55,8 @@ contentContexts:
   - julkinen valmistelu
 source: facebook
 sourceLabel: oma Facebook-arkisto
-sourceUrl: 'https://avi.fi/asioi/yritys-tai-yhteiso/luvat-ilmoitukset-ja-hakemukset/vesi-ja-ymparisto/ymparistolupa'
+referenceLabel: Aluehallintoviraston ympäristölupien asiointipalvelu
+referenceUrl: 'https://avi.fi/asioi/yritys-tai-yhteiso/luvat-ilmoitukset-ja-hakemukset/vesi-ja-ymparisto/ymparistolupa'
 facebookImport:
   sourceIndex: 414
   sourceFiles:

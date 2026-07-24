@@ -20,11 +20,13 @@ writingRoles:
   - political
 politicalProfiles:
   - sivistys
-  - lahipalvelut
+  - palveluverkko
   - kaupunkikehitys
 templateEngineOverride: md
 places:
   - Jääli
+textVersion: true
+textVersionSource: 'Puheenvuoron tekstiversio on sivustolle toimitettu teksti; automaattinen kokouslitteraatti puuttuu vielä.'
 ---
 
 Oulun kaupunginvaltuusto käsitteli 27.1.2020 Oulun maankäytön toteuttamisohjelmaa vuosille 2020–2024. Käytin puheenvuoron Jäälin asuntorakentamisen etenemisestä, Laivakankaan laajennusalueesta ja vanhan koulun tulevaisuudesta.

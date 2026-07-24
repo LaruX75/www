@@ -23,6 +23,8 @@ politicalProfiles:
   - sivistys
   - hyvinvointi
 templateEngineOverride: md
+textVersion: true
+textVersionSource: 'Puheenvuoron tekstiversio on sivustolle toimitettu ja tarkistettu kokoustallenteen aikaleiman perusteella.'
 ---
 
 Oulun kaupunginvaltuusto käsitteli 16.4.2018 sivistys- ja kulttuurilautakunnan lisämäärärahaesitystä 5-vuotiaiden maksuttomaan varhaiskasvatuksen kokeiluun. Käytin lyhyen puheenvuoron siitä, miksi uutta kokeilua oli vaikea sovittaa yhteen sivistys- ja kulttuuripalvelujen samanaikaisten säästöpaineiden kanssa.

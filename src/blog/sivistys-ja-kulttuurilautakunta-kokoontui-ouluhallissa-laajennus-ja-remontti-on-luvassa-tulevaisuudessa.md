@@ -8,6 +8,10 @@ categories:
   - Sivistys ja koulutus
 forum:
   - Lautakunta
+politicalBody: sivistys-ja-kulttuurilautakunta
+committeeMeetingDate: '2017-10-10'
+activityType: kokousanalyysi
+agendaTitle: Ouluhallin peruskorjaus ja liikuntapalvelut
 keywords:
   - kokous
   - lähiliikuntapaikkastrategia

@@ -17,7 +17,7 @@ speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:
-  - lahipalvelut
+  - palveluverkko
 templateEngineOverride: md
 places:
   - Jääkärinkangas

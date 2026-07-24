@@ -19,6 +19,8 @@ politicalProfiles:
 templateEngineOverride: md
 entities:
   - Mun Oulu
+textVersion: true
+textVersionSource: 'Puheenvuoron tekstiversio on sivustolle toimitettu ja tarkistettu kokoustallenteen aikaleiman perusteella.'
 ---
 
 Oulun kaupunginvaltuusto käsitteli 7.10.2019 tietoiskua Mun Oulu -kaupunkimediasta. Käytin puheenvuoron kaupungin oman median suhteesta paikallislehtiin ja riippumattomaan journalismiin.

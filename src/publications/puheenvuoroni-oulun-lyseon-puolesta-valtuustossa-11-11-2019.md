@@ -23,6 +23,8 @@ politicalProfiles:
 templateEngineOverride: md
 entities:
   - Oulun Lyseo
+textVersion: true
+textVersionSource: 'Puheenvuoron tekstiversio on sivustolle toimitettu ja tarkistettu kokoustallenteen aikaleiman perusteella.'
 ---
 
 Oulun kaupunginvaltuusto käsitteli 11.11.2019 Oulun Lyseon peruskorjauksen hankeselvitystä. Käytin puheenvuoron rakennuksen historiallisista arvoista, säilyttämisestä opetuskäytössä ja digitaalisen teknologian mahdollisuuksista historian esittelemisessä.

@@ -22,12 +22,14 @@ writingRoles:
   - political
 politicalProfiles:
   - sivistys
-  - lahipalvelut
+  - palveluverkko
   - kaupunkikehitys
 templateEngineOverride: md
 places:
   - Salonpää
   - Niemenranta
+textVersion: true
+textVersionSource: 'Puheenvuoron tekstiversio on sivustolle toimitettu ja tarkistettu kokoustallenteen aikaleiman perusteella.'
 ---
 
 Oulun kaupunginvaltuusto käsitteli 14.5.2018 kokouksessaan 4/2018 asiaa § 52 hankeselvityksen tekemisestä Niemenrannan ja Salonpään kouluista. Käytin puheenvuoron kouluratkaisujen arvioimisesta pitkäjänteisenä kokonaisuutena ja opetuksen laadun edellytyksistä.

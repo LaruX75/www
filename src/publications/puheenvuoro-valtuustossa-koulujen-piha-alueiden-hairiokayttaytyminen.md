@@ -27,7 +27,7 @@ writingRoles:
   - political
 politicalProfiles:
   - sivistys
-  - lahipalvelut
+  - palveluverkko
   - kaupunkikehitys
   - hyvinvointi
 templateEngineOverride: md

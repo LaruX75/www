@@ -23,6 +23,8 @@ politicalProfiles:
   - sivistys
   - avoinhallinto
 templateEngineOverride: md
+textVersion: true
+textVersionSource: 'Puheenvuoron tekstiversio on sivustolle toimitettu ja tarkistettu kokoustallenteen aikaleiman perusteella.'
 ---
 
 Oulun kaupunginvaltuusto käsitteli 16.4.2018 kaupungin lasten ja nuorten hyvinvointisuunnitelmaa vuosille 2018–2021. Käytin puheenvuoron siitä, miksi lapsivaikutusten arvioinnin pitää olla järjestelmällinen osa kaupungin päätöksentekoa.

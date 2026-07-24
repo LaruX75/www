@@ -26,6 +26,8 @@ entities:
   - Oulun yliopisto
 contentContexts:
   - kulttuuripääkaupunki
+textVersion: true
+textVersionSource: 'Puheenvuoron tekstiversio on sivustolle toimitettu teksti; automaattinen kokouslitteraatti puuttuu vielä.'
 ---
 
 Oulun kaupunginvaltuusto käsitteli 9.11.2020 Oulun yliopiston mahdollista siirtymistä Raksilan alueelle. Kolmannessa puheenvuorossani nostin esiin Linnanmaan kampuksen arkkitehtonisen ja kulttuurihistoriallisen arvon.

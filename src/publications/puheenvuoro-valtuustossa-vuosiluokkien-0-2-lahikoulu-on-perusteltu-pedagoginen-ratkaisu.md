@@ -23,9 +23,11 @@ writingRoles:
   - political
 politicalProfiles:
   - sivistys
-  - lahipalvelut
+  - palveluverkko
   - kaupunkikehitys
 templateEngineOverride: md
+textVersion: true
+textVersionSource: 'Puheenvuoron tekstiversio on sivustolle toimitettu ja tarkistettu kokoustallenteen aikaleiman perusteella.'
 ---
 
 Oulun kaupunginvaltuusto käsitteli 16.4.2018 sivistys- ja kulttuuripalveluiden palveluverkkosuunnitelmalinjauksia. Käytin puheenvuoron vuosiluokkien 0–2 lähikoulumallista, koulupolun nivelvaiheista ja päätöksenteon tietopohjasta.

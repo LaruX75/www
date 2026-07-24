@@ -29,6 +29,8 @@ places:
   - Raksila
 entities:
   - Oulun yliopisto
+textVersion: true
+textVersionSource: 'Puheenvuoron tekstiversio on sivustolle toimitettu teksti; automaattinen kokouslitteraatti puuttuu vielä.'
 ---
 
 Oulun kaupunginvaltuusto jatkoi 9.11.2020 keskustelua Oulun yliopiston mahdollisesta keskustakampuksesta. Toisessa puheenvuorossani vaadin kaupungilta ja yliopistolta yhteistä tiekarttaa kampusratkaisun vaikutuksista.

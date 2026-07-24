@@ -19,7 +19,7 @@ speechContext: valtuusto
 writingRoles:
   - political
 politicalProfiles:
-  - lahipalvelut
+  - palveluverkko
   - hyvinvointi
   - yhteistyo
 templateEngineOverride: md

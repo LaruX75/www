@@ -25,6 +25,8 @@ politicalProfiles:
 templateEngineOverride: md
 contentContexts:
   - talousarvio
+textVersion: true
+textVersionSource: 'Puheenvuoron tekstiversio on sivustolle toimitettu ja tarkistettu kokoustallenteen aikaleiman perusteella.'
 ---
 
 Oulun kaupunginvaltuusto käsitteli vuoden 2018 talousarviota. Puheenvuoroni ei ollut alun perin suunniteltu, mutta käytin lyhyen repliikin, koska maahanmuutosta ja kotoutumisesta käyty keskustelu kaventui liikaa vain yhteen näkökulmaan.

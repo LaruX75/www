@@ -25,7 +25,7 @@ opinionRoles:
 wp_id: 1164
 source_url: 'https://www.jarilaru.fi/14-3-rantapohja-uuden-oulun-kasvaneet-voimavarat-ovat-olleet-hyodyksi-alueellemme/'
 politicalProfiles:
-  - lahipalvelut
+  - palveluverkko
   - yhteistyo
 templateEngineOverride: md
 ---

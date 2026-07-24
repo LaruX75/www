@@ -23,6 +23,8 @@ templateEngineOverride: md
 places:
   - Salonpää
   - Oulunsalo
+textVersion: true
+textVersionSource: 'Puheenvuoron tekstiversio on sivustolle toimitettu ja tarkistettu kokoustallenteen aikaleiman perusteella.'
 ---
 <p>Ihan hetkisen kuluttua normaalit ihmiset asettuvat katsomaan iltauutisia. Minä asetun mikrofonin ääreen ja pidän alla olevan puheen. </p>
 <p>ASIAKOHTA: 9§ Hankeselvityksen tekeminen, Niemenrannan ja Salonpään koulut</p>

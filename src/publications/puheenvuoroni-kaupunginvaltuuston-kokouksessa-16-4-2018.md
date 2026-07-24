@@ -25,11 +25,13 @@ wp_id: 1120
 source_url: 'https://www.jarilaru.fi/puheenvuoroni-kaupunginvaltuuston-kokouksessa-16-4-2018/'
 politicalProfiles:
   - sivistys
-  - lahipalvelut
+  - palveluverkko
   - kaupunkikehitys
 templateEngineOverride: md
 entities:
   - Oulun kaupunginvaltuusto
+textVersion: true
+textVersionSource: 'Puheenvuoron tekstiversio on sivustolle toimitettu ja tarkistettu kokoustallenteen aikaleiman perusteella.'
 ---
 
 Oulun kaupunginvaltuusto käsitteli 16.4.2018 sivistys- ja kulttuuripalveluiden palveluverkkosuunnitelmalinjauksia. Käytin puheenvuoron Oulun palveluverkkokeskustelusta, koulurakennusten kustannuksista ja opetuksen resurssien turvaamisesta.

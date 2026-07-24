@@ -26,6 +26,8 @@ politicalProfiles:
 templateEngineOverride: md
 contentContexts:
   - talousarvio
+textVersion: true
+textVersionSource: 'Puheenvuoron tekstiversio on sivustolle toimitettu ja tarkistettu kokoustallenteen aikaleiman perusteella.'
 ---
 
 Oulun kaupunginvaltuusto käsitteli 2.12.2019 vuoden 2020 talousarviota ja taloussuunnitelmaa vuosille 2021–2022. Käytin puheenvuoron lähipalveluinvestointien merkityksestä sekä kulttuurirakennusten ja -palveluiden jäämisestä liian vähäiselle huomiolle.

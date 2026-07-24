@@ -33,7 +33,6 @@ writingRoles:
   - expert
 politicalProfiles:
   - avoinhallinto
-  - tekoaly
 contexts:
   - politics
   - expertise

@@ -18,6 +18,8 @@ speechContext: valtuusto
 writingRoles:
   - political
 templateEngineOverride: md
+textVersion: true
+textVersionSource: 'Puheenvuoron tekstiversio on sivustolle toimitettu ja tarkistettu kokoustallenteen aikaleiman perusteella.'
 ---
 
 Oulu on perinteikäs koulukaupunki. Kaupungissamme opitaan päiväkodeista yliopistoon, ja Suomi tunnetaan edelleen kansainvälisesti vahvana koulutusmaana.

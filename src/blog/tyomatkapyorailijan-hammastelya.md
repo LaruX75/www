@@ -15,7 +15,7 @@ keywords:
 wp_id: 919
 source_url: 'https://www.jarilaru.fi/tyomatkapyorailijan-hammastelya/'
 politicalProfiles:
-  - lahipalvelut
+  - palveluverkko
   - kaupunkikehitys
 templateEngineOverride: md
 writingRoles:

@@ -21,13 +21,15 @@ writingRoles:
 wp_id: 1130
 source_url: 'https://www.jarilaru.fi/puhe-valtuustossa-kuka-puolustaisi-kaupungin-jokaista-kaupunginosaa/'
 politicalProfiles:
-  - lahipalvelut
+  - palveluverkko
   - kaupunkikehitys
 opinionRoles:
   - political
 templateEngineOverride: md
 contentContexts:
   - kaupunkistrategia
+textVersion: true
+textVersionSource: 'Puheenvuoron tekstiversio on sivustolle toimitettu ja tarkistettu kokoustallenteen aikaleiman perusteella.'
 ---
 
 Oulun kaupunkistrategiasta käytävässä keskustelussa on noussut voimakkaasti esille yhtäältä kaupungin keskusta ja toisaalta Oulun kylät. Molemmat ovat tärkeitä, mutta Oulu on paljon monimuotoisempi kokonaisuus.
