@@ -137,13 +137,6 @@ translationKey: home
 {% set featuredRecentStatement = heroStatementItems[0] %}
 {% set featuredRecentMedia = ((mediaArchive and mediaArchive.all) or [])[0] %}
 
-<nav class="home-mobile-path" aria-label="Etusivun tärkeimmät osiot">
-    <a href="#aloita">Aloita</a>
-    <a href="#painopiste">Kouluttaja</a>
-    <a href="#ajankohtaista">Ajankohtaista</a>
-    <a href="#yhteys">Yhteys</a>
-</nav>
-
 {% set topicProfileKeys = ["tekoalylukutaito", "opettajankoulutus", "julkinen-asiantuntijuus-mediassa"] %}
 {% set topicProfileTitleId = "home-topic-profiles-title" %}
 {% set topicProfileEyebrow = "Aihepolut" %}
@@ -431,7 +424,6 @@ translationKey: home
 </section>
 
 <style>
-  .home-mobile-path,
   .home-mobile-disclosure-summary {
     display: none;
   }
@@ -938,8 +930,7 @@ translationKey: home
       line-height: 1.55;
     }
     .home-hero-roles {
-      gap: 0.45rem;
-      margin-bottom: 1rem !important;
+      display: none;
     }
     .home-hero-role-item {
       padding: 0.42rem 0.72rem;
@@ -973,21 +964,9 @@ translationKey: home
       padding-inline: 0.85rem !important;
     }
     .home-hero-link {
-      grid-column: 1 / -1;
-      justify-self: start;
-      padding: 0.15rem 0.1rem;
+      display: none;
     }
     .home-hero-panel {
-      gap: 0.75rem;
-      margin-top: 1.25rem;
-      padding: 1rem;
-      border-radius: 1rem;
-      background: rgba(255, 255, 255, 0.68);
-    }
-    [data-bs-theme="dark"] .home-hero-panel {
-      background: rgba(6, 14, 26, 0.66);
-    }
-    .home-hero-panel-text {
       display: none;
     }
     .home-hero-kpi-grid {
@@ -1010,42 +989,6 @@ translationKey: home
     }
     .home-hero-wave svg {
       height: 24px;
-    }
-    .home-mobile-path {
-      position: sticky;
-      top: 0;
-      z-index: 12;
-      display: flex;
-      gap: 0.55rem;
-      overflow-x: auto;
-      padding: 0.75rem max(0.75rem, env(safe-area-inset-left));
-      background: rgba(255, 255, 255, 0.9);
-      border-bottom: 1px solid rgba(16, 40, 69, 0.1);
-      backdrop-filter: blur(14px);
-      -webkit-overflow-scrolling: touch;
-    }
-    .home-mobile-path::-webkit-scrollbar {
-      display: none;
-    }
-    .home-mobile-path a {
-      flex: 0 0 auto;
-      padding: 0.48rem 0.8rem;
-      border-radius: 999px;
-      border: 1px solid rgba(16, 40, 69, 0.12);
-      background: rgba(255, 255, 255, 0.78);
-      color: #102845;
-      font-size: 0.82rem;
-      font-weight: 800;
-      text-decoration: none;
-    }
-    [data-bs-theme="dark"] .home-mobile-path {
-      background: rgba(13, 18, 28, 0.88);
-      border-bottom-color: rgba(255, 255, 255, 0.1);
-    }
-    [data-bs-theme="dark"] .home-mobile-path a {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.14);
-      color: #f8fbff;
     }
     [data-home-mobile-priority="2"] {
       padding-block: 1rem;
