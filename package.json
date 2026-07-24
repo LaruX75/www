@@ -63,7 +63,7 @@
     "@11ty/eleventy-img": "^6.0.4",
     "@11ty/eleventy-navigation": "^1.0.5",
     "@11ty/eleventy-plugin-rss": "^3.0.0",
-    "@anthropic-ai/sdk": "^0.96.0",
+    "@anthropic-ai/sdk": "^0.111.0",
     "@fontsource/bree-serif": "^5.2.8",
     "@fontsource/inter": "^5.2.8",
     "cheerio": "^1.2.0",
