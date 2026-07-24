@@ -143,6 +143,22 @@ const CURATED_EXISTING_MATCHES = [
     ]
   },
   {
+    file: "src/publications/puheenvuoro-valtuustossa-jaakärinkankaan-monitoimitalo-ja-alueellinen-palveluverkko.md",
+    terms: [
+      "alueellinen palveluverkkoselvitys laanilan, myllyojan, hiukkavaaran ja korvensuoran suuralueella",
+      "jääkärinkankaan monitoimitaloon siirtyy seuraavat palvelut",
+      "myllyojan koulun sanginsuun sivukoulua ei ole tarkasteltu tässä selvityksessä"
+    ]
+  },
+  {
+    file: "src/publications/puheenvuoro-valtuustossa-jaakärinkankaan-monitoimitalo-ja-alueellinen-palveluverkko.md",
+    terms: [
+      "oulun kaupungin sivistys- ja kulttuurilautakunta kokoontuu n. 2 viikon välein",
+      "seuraava kokous on tiistaina 22.2",
+      "olen naksutellut loota-järjestelmän tuottamat kymmenet pdf:t auki"
+    ]
+  },
+  {
     file: "src/blog/valtuutettujen-vetoomus-toi-keskustakampuksen-valtuuston-kasiteltavaksi.md",
     terms: [
       "vuoden viimeisen valtuuston kokouksen yhteydessä keräsimme nopeasti 25 valtuutetun vetoomuksen",
@@ -159,6 +175,22 @@ const CURATED_EXISTING_MATCHES = [
     ]
   },
   {
+    file: "src/blog/raksilan-vesiliikuntakeskus-on-osa-laajempaa-kaupunkirakennetta.md",
+    terms: [
+      "raksilan vesiliikuntakeskuksen suunnitelmista",
+      "asemakaava ja tonttijako 564-2577",
+      "hulevesiselvitys"
+    ]
+  },
+  {
+    file: "src/blog/linnanmaan-uimahalli-muistuttaa-politiikan-pitkista-kaarista.md",
+    terms: [
+      "rakennetaankohan sitä linnanmaan uimahallia tälläkään vuosikymmenellä",
+      "ensimmäiset suunnitelmat tehtiin jo 1970 luvun lopulla",
+      "linnanmaan hankesuunnitelma on hyväksytty kh:n kokouksessa"
+    ]
+  },
+  {
     file: "src/blog/palveluverkko-2023-reunaehtojen-tarkastelua.md",
     terms: [
       "sosiaalisen median eri kanavissa eteeni tupsahti tällä viikolla karttasommitelma",
@@ -167,11 +199,43 @@ const CURATED_EXISTING_MATCHES = [
     ]
   },
   {
+    file: "src/blog/palveluverkko-2023-reunaehtojen-tarkastelua.md",
+    terms: [
+      "valtionosuuksien ja kuntalisän muutos oppilasmäärän laskiessa tuhansilla",
+      "okm:n vipunen tietokannasta tehty tämän lukukauden oppilasmääriin tehty tarkastelu",
+      "lakkatuslistalla on ollut vain yksi koulu, pikkarala, muut ovat yksiköitä"
+    ]
+  },
+  {
+    file: "src/blog/palveluverkko-2023-reunaehtojen-tarkastelua.md",
+    terms: [
+      "avoindata.fi palvelusta löytyvän excel muotoisen väestösuunnitteen",
+      "perusopetuksessa oppilasmäärä vähenee luokilla 1-6 ennusteen mukaisesti",
+      "väestösuunnite pitäisi pikapikaa muuttaa microsoft bi näkymäksi"
+    ]
+  },
+  {
+    file: "src/blog/palveluverkko-2023-reunaehtojen-tarkastelua.md",
+    terms: [
+      "palveluverkko tai kouluverkko, kutsutaan sitä sitten millä nimellä hyvänsä",
+      "vuoden 2030 kouluverkon mitoitus on käytännössä selvillä",
+      "tähän en tarvitse edes kristallipalloa"
+    ]
+  },
+  {
     file: "src/blog/palveluverkkoselvityksen-tietopohjan-pitaa-nakya-ajoissa.md",
     terms: [
       "nyt se on julkaistu! nimittäin palveluverkkotyötä käsittelevä sivusto",
       "olen pyytänyt sivistysjohtaja mika penttilää tuomaan faktoja julkisesti näkyville",
       "palveluverkkoselvitys viedään päätöksentekoon yhtenä kokonaisuutena"
+    ]
+  },
+  {
+    file: "src/blog/lahikoulu-ja-aluekouluperiaate-kuuluvat-palveluverkon-valmisteluun.md",
+    terms: [
+      "tiistaina 8.2.2022 on sivistys- ja kulttuurilautakunnan kokous",
+      "sivistys- ja kulttuuripalveluiden palveluverkkolinjaukset 2030",
+      "lähikoulu- ja aluekouluperiaatteen sisällyttämiseksi päälinjauksiin"
     ]
   },
   {
@@ -188,6 +252,54 @@ const CURATED_EXISTING_MATCHES = [
       "tilasto ja tilasto - mistä numerot tulevat",
       "oulu on suomen viidenneksi suurin matkailualue",
       "jos matkailua käsittelevästä tutkimuksesta puuttuu merkittävä osa maamme keskeisistä matkailualueista"
+    ]
+  },
+  {
+    file: "src/blog/pohjoisen-suomen-ohjelma-ansaitsee-julkisen-keskustelun.md",
+    terms: [
+      "pohjoisen suomen ohjelman luonnos ei ole herättänyt juuri minkäänlaista keskustelua",
+      "luonnoksessa esitetään maakuntien laatima tilannekuva",
+      "lausuntopalvelu.fi kokonaisuudessa"
+    ]
+  },
+  {
+    file: "src/blog/pohjoisen-suomen-ohjelma-ansaitsee-julkisen-keskustelun.md",
+    terms: [
+      "oletko perehtynyt pohjoisen ohjelman luonnokseen",
+      "kokonaisuus muodostuu itse ohjelman luonnoksesta ja eri osapuolten lausunnoista",
+      "eräänlaisen näkymän eri toimijoiden tahtotilaan"
+    ]
+  },
+  {
+    file: "src/blog/kuntaliitos-ratkaisi-rajat-mutta-ei-yhteisen-kaupungin-kysymysta.md",
+    terms: [
+      "tämän aamun kaleva 31.12.2022 muistutti tärkeästä etapista oulun seudulle",
+      "itse olin ja olen monikuntaliitoksen kannalla",
+      "seuraava vuosikymmen olisi nimenomaan oulun kehittämistä ja yhteen hiileen puhaltamista"
+    ]
+  },
+  {
+    file: "src/blog/kuntaliitos-ratkaisi-rajat-mutta-ei-yhteisen-kaupungin-kysymysta.md",
+    terms: [
+      "tänään vietämme monikuntaliitoksen merkkipäivää",
+      "uusi oulu",
+      "monikuntaliitos"
+    ]
+  },
+  {
+    file: "src/blog/sivistyslautakunnan-uusi-alku-nakyi-jo-vuoden-2022-viimeisissa-kokouksissa.md",
+    terms: [
+      "politiikan joulu alkaa huomenna sivistys- ja kulttuurilautakunnan viimeisen kokouksen myötä",
+      "ensi vuodesta alkaen lautakunta jatkaa kahtia jakautuneena",
+      "hyväksyttiin oulun kaupungin lähiliikuntapaikkaohjelma"
+    ]
+  },
+  {
+    file: "src/blog/oululla-ei-ole-syyta-heikkoon-itseluottamukseen.md",
+    terms: [
+      "tulin eilen yli kaksi viikkoa kestäneeltä euroopan turneelta",
+      "linnanmaalla rakennetaan tehdasta ja sen yhteyteen kansainvälisesti merkittävää radioteknologian tuotekehityskeskusta",
+      "kempele ei ole vertailukelpoinen, se on pieni kunta joka toimii osana oulun kaupunkirakennetta"
     ]
   }
 ];
