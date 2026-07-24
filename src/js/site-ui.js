@@ -199,7 +199,7 @@
         { selector: '[data-home-mobile-collapse]' },
         { selector: '[data-larux-mobile-collapse]' },
         { selector: '[data-mobile-collapse]' },
-        { selector: '[data-kynasta-mobile-collapse]', alwaysSync: true, hashAware: true },
+        { selector: '[data-kynasta-mobile-collapse]', alwaysSync: true, hashAware: true, desktopOpen: false, closePeersOnHash: true },
         { selector: '[data-presentation-mobile-collapse]', preparedAttr: 'presentationMobilePrepared', hashAware: true },
         { selector: '[data-portfolio-mobile-collapse]', alwaysSync: true, hashAware: true },
         { selector: '[data-term-mobile-collapse]', alwaysSync: true, keepOpenAttr: 'termCurrent' },
@@ -215,10 +215,17 @@
         preparedAttr = 'mobilePrepared',
         hashAware = false,
         alwaysSync = false,
-        keepOpenAttr = null
+        keepOpenAttr = null,
+        desktopOpen = true,
+        closePeersOnHash = false
       }) => {
         const disclosures = Array.from(document.querySelectorAll(selector));
         if (!disclosures.length) return;
+        disclosures.forEach((disclosure) => {
+          if (disclosure.dataset.defaultOpen === undefined) {
+            disclosure.dataset.defaultOpen = disclosure.open ? 'true' : 'false';
+          }
+        });
 
         const openDisclosureForHash = () => {
           if (!hashAware) return;
@@ -234,13 +241,20 @@
 
           if (!target) return;
           const disclosure = target.closest(selector) || target.querySelector(selector);
-          if (disclosure) disclosure.open = true;
+          if (disclosure) {
+            if (closePeersOnHash) {
+              disclosures.forEach((peer) => {
+                if (peer !== disclosure) peer.open = false;
+              });
+            }
+            disclosure.open = true;
+          }
         };
 
         const applyDisclosureState = () => {
           disclosures.forEach((disclosure) => {
             if (!mobileDisclosureMq.matches) {
-              disclosure.open = true;
+              disclosure.open = desktopOpen ? true : disclosure.dataset.defaultOpen === 'true';
               disclosure.dataset[preparedAttr] = 'false';
               return;
             }

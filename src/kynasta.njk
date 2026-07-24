@@ -79,7 +79,7 @@ schemaMentions:
       <div class="col-lg-7">
         <p class="text-uppercase small text-muted mb-2">Kynästä</p>
         <h1 class="display-6 fw-bold mb-2">Kirjoitukset, puheet ja kannanotot</h1>
-        <p class="text-muted mb-3">Tämä sivu kokoaa oman kirjoittamiseni ja julkiset puheenvuoroni samaan paikkaan. Mukana ovat puheet, valtuustoaloitteet, lausunnot, mielipidekirjoitukset, kolumnit ja blogi.</p>
+        <p class="text-muted mb-3">Puheet, valtuustoaloitteet, lausunnot, mielipidekirjoitukset, kolumnit ja blogi koottuna sisältötyypeittäin.</p>
         <div class="d-flex flex-wrap gap-2">
           <a class="nav-link" href="#puheet">
             Valtuustopuheet <span class="nav-count">{{ councilSpeechCount }}</span>
@@ -100,11 +100,10 @@ schemaMentions:
       </div>
       <div class="col-lg-5">
         <aside class="kynasta-hero-aside">
-          <p class="kynasta-hero-aside-kicker mb-2">Tältä sivulta löydät</p>
+          <p class="kynasta-hero-aside-kicker mb-2">Lue kahdella tavalla</p>
           <ul class="kynasta-hero-aside-list mb-0">
-            <li>Valtuustopuheet ja valtuustoaloitteet, joilla olen osallistunut Oulun päätöksentekoon.</li>
-            <li>Julkiset puheet, kuten juhlapuheet, yliopistopuheet ja tilaisuuspuheenvuorot.</li>
-            <li>Lausunnot, mielipiteet ja kolumnit, joissa avaan näkemyksiäni julkisesti ja perustellen.</li>
+            <li>Sisältötyyppi kertoo, onko kyse puheesta, aloitteesta, lausunnosta vai kirjoituksesta.</li>
+            <li>Aihepolku kokoaa samaan teemaan liittyvät tekstit yli sisältötyyppien.</li>
           </ul>
         </aside>
       </div>
@@ -136,60 +135,46 @@ schemaMentions:
       <div class="col-12">
         <div class="d-flex flex-wrap align-items-end justify-content-between gap-2 mb-1">
           <div>
-            <p class="text-uppercase small text-muted mb-1">Aloita tästä</p>
-            <h2 class="h3 mb-1">Nopeimmat reitit ajankohtaiseen aineistoon</h2>
-            <p class="text-muted mb-0">Jos etsit viimeisimpiä puheita, aloitteita tai kirjoituksia, nämä kolme näkymää vievät suoraan olennaiseen. Täysi arkisto löytyy niiden alta.</p>
+            <p class="text-uppercase small text-muted mb-1">Sisältötyypit</p>
+            <h2 class="h3 mb-1">Valitse ensin aineiston muoto</h2>
+            <p class="text-muted mb-0">Koko arkisto on mukana, mutta raskaat listat avautuvat vasta kun tarvitset niitä.</p>
           </div>
         </div>
       </div>
 
-      <div class="col-md-6 col-lg-4">
-        <article class="card border-0 shadow-sm h-100 kynasta-entry-card kynasta-entry-card--puheet">
-          <div class="card-body d-flex flex-column">
-            <p class="kynasta-entry-kicker">Valtuustopuheet</p>
-            <h3 class="h5 mb-2">Viimeisimmät puheenvuorot</h3>
-            <p class="small text-muted mb-3">Ajankohtaiset valtuustopuheet, pykälät ja kokouskohtaiset puheenvuorot yhdessä paikassa.</p>
-            <ul class="kynasta-entry-list mb-3">
-              {% for item in latestSpeechHighlights %}
-              <li><a href="{{ item.url }}">{{ item.data.title }}</a></li>
-              {% endfor %}
-            </ul>
-            <a href="#puheet" class="btn btn-outline-secondary btn-sm rounded-pill px-3 mt-auto align-self-start">Siirry puheisiin</a>
-          </div>
-        </article>
-      </div>
-
-      <div class="col-md-6 col-lg-4">
-        <article class="card border-0 shadow-sm h-100 kynasta-entry-card kynasta-entry-card--aloitteet">
-          <div class="card-body d-flex flex-column">
-            <p class="kynasta-entry-kicker">Valtuustoaloitteet</p>
-            <h3 class="h5 mb-2">Tuoreimmat avaukset</h3>
-            <p class="small text-muted mb-3">Valtuustoaloitteet ja muut kirjalliset avaukset, joilla asioita on viety eteenpäin.</p>
-            <ul class="kynasta-entry-list mb-3">
-              {% for item in latestInitiativeHighlights %}
-              <li><a href="{{ item.data.url or item.url }}">{{ item.data.title }}</a></li>
-              {% endfor %}
-            </ul>
-            <a href="#aloitteet" class="btn btn-outline-secondary btn-sm rounded-pill px-3 mt-auto align-self-start">Siirry valtuustoaloitteisiin</a>
-          </div>
-        </article>
-      </div>
-
-      <div class="col-md-6 col-lg-4">
-        <article class="card border-0 shadow-sm h-100 kynasta-entry-card kynasta-entry-card--kirjoitukset">
-          <div class="card-body d-flex flex-column">
-            <p class="kynasta-entry-kicker">Kirjoitukset</p>
-            <h3 class="h5 mb-2">Blogi, mielipiteet, lausunnot ja kolumnit</h3>
-            <p class="small text-muted mb-3">Pidemmät perustelut, taustoitukset, muodolliset kannanotot ja julkiset asiantuntijatekstit löytyvät kirjoitusaineistosta.</p>
-            <ul class="kynasta-entry-list mb-3">
-              {% for item in latestBlogHighlights %}
-              <li><a href="{{ item.url }}">{{ item.data.title }}</a></li>
-              {% endfor %}
-            </ul>
-            <div class="small text-muted mb-3">{{ opinionCount }} mielipidettä, {{ statementCount }} lausuntoa ja {{ columnCount }} kolumnia täydentävät blogiaineistoa.</div>
-            <a href="#blogi" class="btn btn-outline-secondary btn-sm rounded-pill px-3 mt-auto align-self-start">Siirry kirjoituksiin</a>
-          </div>
-        </article>
+      <div class="col-12">
+        <div class="kynasta-type-grid" aria-label="Kynästä-sivun sisältötyypit">
+          <a class="kynasta-type-card kynasta-entry-card--puheet" href="#puheet">
+            <span class="kynasta-entry-kicker">Kaupunginvaltuusto</span>
+            <strong>Valtuustopuheet</strong>
+            <small>{{ councilSpeechCount }} puheenvuoroa</small>
+          </a>
+          <a class="kynasta-type-card kynasta-entry-card--public-speeches" href="#julkiset-puheet">
+            <span class="kynasta-entry-kicker">Tilaisuudet</span>
+            <strong>Julkiset puheet</strong>
+            <small>{{ publicSpeechCount }} puhetta</small>
+          </a>
+          <a class="kynasta-type-card kynasta-entry-card--aloitteet" href="#aloitteet">
+            <span class="kynasta-entry-kicker">Valtuusto</span>
+            <strong>Valtuustoaloitteet</strong>
+            <small>{{ initiativeCount }} aloitetta jätetty</small>
+          </a>
+          <a class="kynasta-type-card kynasta-entry-card--kirjoitukset" href="#blogi">
+            <span class="kynasta-entry-kicker">Blogi</span>
+            <strong>Blogikirjoitukset</strong>
+            <small>{{ blogCount }} kirjoitusta</small>
+          </a>
+          <a class="kynasta-type-card kynasta-entry-card--opinions" href="#mielipiteet">
+            <span class="kynasta-entry-kicker">Lehdet</span>
+            <strong>Mielipidekirjoitukset</strong>
+            <small>{{ opinionCount }} kirjoitusta</small>
+          </a>
+          <a class="kynasta-type-card kynasta-entry-card--statements" href="#lausunnot">
+            <span class="kynasta-entry-kicker">Asiantuntijatyö</span>
+            <strong>Lausunnot</strong>
+            <small>{{ statementCount }} lausuntoa</small>
+          </a>
+        </div>
       </div>
 
     </div>
@@ -287,7 +272,7 @@ schemaMentions:
 </script>
 
 <span id="lausunnot-ja-asiantuntijakannanotot"></span>
-<details class="kynasta-mobile-disclosure kynasta-archive-disclosure" data-kynasta-mobile-collapse open>
+<details class="kynasta-mobile-disclosure kynasta-archive-disclosure" data-kynasta-mobile-collapse>
   <summary class="kynasta-mobile-disclosure-summary">
     <span>Lausunnot</span>
     <small>{{ statementCount }} asiantuntijalausuntoa</small>
@@ -367,7 +352,7 @@ schemaMentions:
 </script>
 
 <span id="mielipidekirjoitukset-eri-sanomalehdissa"></span>
-<details class="kynasta-mobile-disclosure kynasta-archive-disclosure" data-kynasta-mobile-collapse open>
+<details class="kynasta-mobile-disclosure kynasta-archive-disclosure" data-kynasta-mobile-collapse>
   <summary class="kynasta-mobile-disclosure-summary">
     <span>Mielipidekirjoitukset</span>
     <small>{{ collections.pub_mielipide.length }} kirjoitusta</small>
@@ -497,7 +482,7 @@ schemaMentions:
 </script>
 
 <span id="kolumnit-ja-blogivierailut"></span>
-<details class="kynasta-mobile-disclosure kynasta-archive-disclosure" data-kynasta-mobile-collapse open>
+<details class="kynasta-mobile-disclosure kynasta-archive-disclosure" data-kynasta-mobile-collapse>
   <summary class="kynasta-mobile-disclosure-summary">
     <span>Kolumnit ja blogivierailut</span>
     <small>{{ collections.pub_kolumni.length }} tekstiä</small>
@@ -586,10 +571,10 @@ schemaMentions:
 ]
 </script>
 
-<details class="kynasta-mobile-disclosure kynasta-archive-disclosure" data-kynasta-mobile-collapse open>
+<details class="kynasta-mobile-disclosure kynasta-archive-disclosure" data-kynasta-mobile-collapse>
   <summary class="kynasta-mobile-disclosure-summary">
     <span>Valtuustoaloitteet ja adressit</span>
-    <small>{{ collections.politics.length }} avausta</small>
+    <small>{{ collections.politics.length }} aloitetta jätetty</small>
   </summary>
 <section id="aloitteet">
   <div class="site-shell">
@@ -750,7 +735,7 @@ schemaMentions:
 ]
 </script>
 
-<details class="kynasta-mobile-disclosure kynasta-archive-disclosure" data-kynasta-mobile-collapse open>
+<details class="kynasta-mobile-disclosure kynasta-archive-disclosure" data-kynasta-mobile-collapse>
   <summary class="kynasta-mobile-disclosure-summary">
     <span>Julkiset puheet</span>
     <small>{{ publicSpeechCount }} muuta puhetta</small>
@@ -829,7 +814,7 @@ schemaMentions:
 ]
 </script>
 
-<details class="kynasta-mobile-disclosure kynasta-archive-disclosure" data-kynasta-mobile-collapse open>
+<details class="kynasta-mobile-disclosure kynasta-archive-disclosure" data-kynasta-mobile-collapse>
   <summary class="kynasta-mobile-disclosure-summary">
     <span>Blogi</span>
     <small>{{ collections.blog.length }} kirjoitusta</small>
@@ -1064,14 +1049,57 @@ section[id] {
 .kynasta-entry-list a:hover {
   text-decoration: underline;
 }
+.kynasta-type-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+.kynasta-type-card {
+  display: grid;
+  gap: 0.25rem;
+  min-height: 8.25rem;
+  padding: 1rem;
+  border: 1px solid var(--bs-border-color);
+  border-top-width: 4px;
+  border-radius: 1rem;
+  background: var(--bs-body-bg);
+  color: inherit;
+  text-decoration: none;
+  box-shadow: var(--bs-box-shadow-sm);
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+.kynasta-type-card:hover {
+  color: inherit;
+  border-color: rgba(var(--bs-primary-rgb), 0.32);
+  box-shadow: 0 0.85rem 1.75rem rgba(15, 23, 42, 0.08);
+  transform: translateY(-2px);
+}
+.kynasta-type-card strong {
+  font-size: 1rem;
+  line-height: 1.18;
+}
+.kynasta-type-card small {
+  align-self: end;
+  color: var(--bs-secondary-color);
+  font-weight: 700;
+}
 .kynasta-entry-card--puheet {
   border-top: 4px solid var(--bs-danger);
+}
+.kynasta-entry-card--public-speeches {
+  border-top: 4px solid var(--bs-info);
 }
 .kynasta-entry-card--aloitteet {
   border-top: 4px solid var(--bs-warning);
 }
 .kynasta-entry-card--kirjoitukset {
   border-top: 4px solid #6f42c1;
+}
+.kynasta-entry-card--opinions {
+  border-top: 4px solid var(--bs-primary);
+}
+.kynasta-entry-card--statements {
+  border-top: 4px solid var(--bs-success);
 }
 
 .kynasta-section-header {
@@ -1251,6 +1279,86 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
   display: none;
 }
 
+.kynasta-archive-disclosure {
+  margin: 0;
+  border-top: 1px solid var(--bs-border-color);
+}
+
+.kynasta-archive-disclosure > .kynasta-mobile-disclosure-summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 0.15rem 0.75rem;
+  align-items: center;
+  width: min(1120px, calc(100% - clamp(2rem, 10vw, 8rem)));
+  margin: 1rem auto;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 1rem;
+  background: var(--bs-body-bg);
+  box-shadow: var(--bs-box-shadow-sm);
+  cursor: pointer;
+  list-style: none;
+}
+
+.kynasta-archive-disclosure > .kynasta-mobile-disclosure-summary::-webkit-details-marker {
+  display: none;
+}
+
+.kynasta-archive-disclosure > .kynasta-mobile-disclosure-summary::after {
+  content: "+";
+  grid-row: 1 / span 2;
+  grid-column: 3;
+  display: inline-grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  border: 1px solid var(--bs-border-color);
+  color: var(--bs-emphasis-color);
+  font-weight: 800;
+}
+
+.kynasta-archive-disclosure[open] > .kynasta-mobile-disclosure-summary::after {
+  content: "-";
+}
+
+.kynasta-archive-disclosure > .kynasta-mobile-disclosure-summary span {
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.kynasta-archive-disclosure > .kynasta-mobile-disclosure-summary small {
+  color: var(--bs-secondary-color);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.kynasta-archive-disclosure > section {
+  padding-top: 0.25rem;
+}
+
+.kynasta-archive-disclosure > section .card > .card-header {
+  display: none !important;
+}
+
+@media (max-width: 1199.98px) {
+  .kynasta-type-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767.98px) {
+  .kynasta-type-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+  }
+
+  .kynasta-type-card {
+    min-height: 7.75rem;
+    padding: 0.85rem;
+  }
+}
+
 /* ---- Mobiili: taulukot korttimaisiksi riveiksi ---- */
 @media (max-width: 767.98px) {
   .kynasta-mobile-path {
@@ -1322,6 +1430,9 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
     content: "+";
     grid-row: 1 / span 2;
     grid-column: 2;
+    width: auto;
+    height: auto;
+    border: 0;
     font-size: 1.05rem;
     line-height: 1;
   }
@@ -1571,17 +1682,18 @@ function syncWritingRoleFilterButtons(buttons, selectedRole) {
 }
 
 (function () {
-  // Näytä taulukko-osiot tarkoituksellisessa lukujärjestyksessä riippumatta lähdekoodin lohkojärjestyksestä.
+  // Näytä arkistokokonaisuudet tarkoituksellisessa lukujärjestyksessä rikkomatta accordion-rakennetta.
   const sectionOrder = ['puheet', 'julkiset-puheet', 'aloitteet', 'blogi', 'mielipiteet', 'lausunnot', 'kolumnit'];
-  const sections = sectionOrder
-    .map(id => document.getElementById(id))
+  const archiveWrappers = sectionOrder
+    .map(id => document.getElementById(id)?.closest('.kynasta-archive-disclosure'))
     .filter(Boolean);
-  if (sections.length > 1) {
-    const parent = sections[0].parentElement;
+  const uniqueArchiveWrappers = [...new Set(archiveWrappers)];
+  if (uniqueArchiveWrappers.length > 1) {
+    const parent = uniqueArchiveWrappers[0].parentElement;
     const anchor = document.createComment('kynasta-sections-order-anchor');
-    parent.insertBefore(anchor, sections[0]);
+    parent.insertBefore(anchor, uniqueArchiveWrappers[0]);
     const fragment = document.createDocumentFragment();
-    sections.forEach(section => fragment.appendChild(section));
+    uniqueArchiveWrappers.forEach(wrapper => fragment.appendChild(wrapper));
     parent.insertBefore(fragment, anchor);
     anchor.remove();
   }
