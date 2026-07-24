@@ -112,7 +112,7 @@ lang: en
       </div>
     </div>
 
-    {% if canva and canva.tableRows and canva.tableRows.length %}
+    {% if canva and canva.enRows and canva.enRows.length %}
       <div id="featured-canva"></div>
       <div class="table-responsive">
         <table class="table table-hover align-middle mb-0 pub-table">
@@ -331,7 +331,7 @@ lang: en
   const PAGE_SIZE = 6;
   const rawData = {
     aoe: {{ (finnaAoe.rows or []) | jsonSafe | safe }},
-    canva: {{ (canva.tableRows or []) | jsonSafe | safe }},
+    canva: {{ (canva.enRows or []) | jsonSafe | safe }},
     youtubeVideos: {{ (youtube.videos or []) | jsonSafe | safe }},
     youtube: {{ (youtube.tableRows or []) | jsonSafe | safe }},
     slideshare: {{ ssDataItems | jsonSafe | safe }}

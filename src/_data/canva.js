@@ -20,7 +20,12 @@ module.exports = function () {
       location: item.location || "",
       folder: item.folder || "",
       lang: item.lang || "fi",
-      source: "json"
+      source: "json",
+      jarjestaja: item.jarjestaja || "",
+      kategoria: item.kategoria || "",
+      paakortti: item.paakortti === true,
+      asiantuntijaprofiili: Array.isArray(item.asiantuntijaprofiili) ? item.asiantuntijaprofiili : [],
+      sivuyhteys: Array.isArray(item.sivuyhteys) ? item.sivuyhteys : [],
     };
   }).filter((item) => !hidden.has(item.id));
 
