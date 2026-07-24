@@ -340,6 +340,13 @@ function buildCouncilMeetingHeroSummary(meeting = {}, lang = "fi") {
     actions.push(isEnglish ? `${meeting.counts.questions} council question hour questions with responses` : `${meeting.counts.questions} valtuuston kyselytunnin kysymystä vastauksineen`);
   }
 
+  const otherContentTitles = actions.length
+    ? []
+    : uniqueLabels(toArray(meeting.otherItems)
+      .map((item) => item.title)
+      .filter(Boolean)
+      .slice(0, 2));
+
   return {
     agendaLead: agendaTopics.length
       ? (isEnglish
@@ -350,6 +357,10 @@ function buildCouncilMeetingHeroSummary(meeting = {}, lang = "fi") {
       ? (isEnglish
         ? `Jari Laru participated in the meeting through ${formatLocalizedList(actions, lang)}.`
         : `Jari Laru oli kokouksessa aktiivinen: ${formatLocalizedList(actions, lang)}.`)
+      : otherContentTitles.length
+        ? (isEnglish
+          ? `This meeting context is linked to public content on the site: ${formatLocalizedList(otherContentTitles, lang)}.`
+          : `Tähän kokoukseen liittyy sivustolla julkaistu sisältö: ${formatLocalizedList(otherContentTitles, lang)}.`)
       : "",
     agendaTopics,
     agendaCount,
@@ -453,6 +464,7 @@ function buildCouncilMeetingTimeline(collections, lang = "fi") {
   const contentMeetings = buildCouncilMeetings(collections, lang);
   const byDate = new Map(contentMeetings.map((meeting) => [meeting.date, {
     ...meeting,
+    year: String(meeting.date).slice(0, 4),
     isQuiet: false
   }]));
 
@@ -466,6 +478,7 @@ function buildCouncilMeetingTimeline(collections, lang = "fi") {
       byDate.set(meetingDate, {
         date: meetingDate,
         meetingDate,
+        year: meetingDate.slice(0, 4),
         label: councilMeetingTitleForDate(meetingDate),
         meetingLabel: councilMeetingTitleForDate(meetingDate),
         officialLabel: meetingMeta.officialLabel || "Oulun kaupunginvaltuusto",

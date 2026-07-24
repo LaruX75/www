@@ -199,10 +199,11 @@
         { selector: '[data-home-mobile-collapse]' },
         { selector: '[data-larux-mobile-collapse]' },
         { selector: '[data-mobile-collapse]' },
-        { selector: '[data-kynasta-mobile-collapse]', alwaysSync: true },
+        { selector: '[data-kynasta-mobile-collapse]', alwaysSync: true, hashAware: true },
         { selector: '[data-presentation-mobile-collapse]', preparedAttr: 'presentationMobilePrepared', hashAware: true },
         { selector: '[data-portfolio-mobile-collapse]', alwaysSync: true, hashAware: true },
         { selector: '[data-term-mobile-collapse]', alwaysSync: true, keepOpenAttr: 'termCurrent' },
+        { selector: '[data-council-mobile-collapse]', alwaysSync: true, keepOpenAttr: 'councilCurrent', hashAware: true },
         { selector: '[data-about-mobile-collapse]', preparedAttr: 'aboutMobilePrepared', hashAware: true },
         { selector: '[data-research-mobile-collapse]', preparedAttr: 'researchMobilePrepared', hashAware: true }
       ];

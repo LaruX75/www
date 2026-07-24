@@ -48,6 +48,10 @@ const contentSchema = {
     ],
     evidence: [
       "sourceUrl",
+      "referenceLabel",
+      "referenceUrl",
+      "backgroundLabel",
+      "backgroundUrl",
       "externalUrl",
       "agenda_item",
       "agenda_title",
@@ -130,7 +134,7 @@ const contentSchema = {
       "avoinhallinto",
       "hyvinvointi",
       "kaupunkikehitys",
-      "lahipalvelut",
+      "palveluverkko",
       "sivistys",
       "yhteistyo"
     ],

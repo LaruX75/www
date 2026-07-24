@@ -155,6 +155,10 @@ module.exports = [
         text: "Puheenvuoroissa palveluverkko kytkeytyy maankäyttöön, investointeihin ja siihen, miten lasten ja nuorten palvelut sijoittuvat kasvavaan kaupunkiin.",
         links: [
           {
+            label: "Lähikoulu- ja aluekouluperiaate kuuluvat palveluverkon valmisteluun",
+            href: "/2022/02/06/lahikoulu-ja-aluekouluperiaate-kuuluvat-palveluverkon-valmisteluun/"
+          },
+          {
             label: "Maankäytön vaikutukset koulu- ja palveluverkkoon",
             href: "/2022/04/04/puheenvuoro-valtuustossa-maankayton-vaikutukset-koulu-ja-palveluverkkoon/"
           },
@@ -250,12 +254,16 @@ module.exports = [
       },
       {
         year: "2024",
-        title: "Aloitteet ja julkinen tietojohtaminen",
-        text: "Valtuustoaloitteissa avoimuus muuttuu konkreettiseksi vaatimukseksi: päätöksenteon seurantaan tarvitaan julkisia tietojohtamisen välineitä.",
+        title: "Aloitteet, ohjelmat ja julkinen tietopohja",
+        text: "Avoimuus näkyy sekä valtuustoaloitteissa että laajemmissa ohjelma- ja lausuntoprosesseissa: päätöksenteon aineistojen pitää olla nähtävissä ennen kuin linjaukset lukkiutuvat.",
         links: [
           {
             label: "Valtuustoaloite julkisesta tietojohtamisportaalista",
             href: "/2024/02/26/valtuustoaloite-oulun-kaupungin-tulee-toteuttaa-julkinen-tietojohtamisportaali/"
+          },
+          {
+            label: "Pohjoisen Suomen ohjelma ansaitsee julkisen keskustelun",
+            href: "/2024/12/01/pohjoisen-suomen-ohjelma-ansaitsee-julkisen-keskustelun/"
           }
         ]
       },

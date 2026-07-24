@@ -166,6 +166,17 @@ module.exports = {
     {
       data: {
         eleventyNavigation: {
+          key: "education_committee",
+          title: "Sivistyslautakunta",
+          url: "/politiikka/sivistyslautakunta/",
+          parent: "politics",
+          order: 47
+        }
+      }
+    },
+    {
+      data: {
+        eleventyNavigation: {
           key: "election_history",
           title: "Vaalikaudet",
           url: "/politiikka/vaalikaudet/",

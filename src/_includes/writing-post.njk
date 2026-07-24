@@ -150,6 +150,12 @@ layout: base.njk
               {% if thumbnail %}
                 <img loading="lazy" decoding="async" src="{{ thumbnail }}" class="img-fluid rounded mb-4" alt="{{ title }}">
               {% endif %}
+              {% if textVersion %}
+                <div class="writing-post-text-version alert alert-secondary small" role="note">
+                  <p class="text-uppercase small text-muted mb-1">{{ "Text version" if isEnglish else "Tekstiversio" }}</p>
+                  <p class="mb-0">{{ textVersionSource or ("The text below is an edited text version of the speech." if isEnglish else "Alla oleva teksti on toimitettu tekstiversio puheenvuorosta.") }}</p>
+                </div>
+              {% endif %}
               <div class="post-content content-prose">{{ content | safe }}</div>
               {% include "council-speech-videos.njk" %}
             </div>

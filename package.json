@@ -54,7 +54,8 @@
     "eleventy:quiet": "npx @11ty/eleventy --quiet",
     "eleventy:serve": "npx @11ty/eleventy --serve",
     "deploy:codeberg": "npm run build:no-og && touch _site/.nojekyll && echo 'codeberg.jarilaru.fi' > _site/.domains && rm -rf _site/.git && cd _site && git init -b main && git config user.name 'Jari Laru' && git config user.email 'jari.laru@gmail.com' && git add . && git commit -m \"deploy: $(date -u +%Y-%m-%dT%H:%M:%SZ) [ci skip]\" && git push --force https://LaruX:${CODEBERG_TOKEN}@codeberg.org/LaruX/pages.git main:main",
-    "audit:council-transcriptions": "node scripts/audit-council-transcription-status.mjs"
+    "audit:council-transcriptions": "node scripts/audit-council-transcription-status.mjs",
+    "audit:facebook-profile": "node scripts/audit-facebook-profile-export.mjs"
   },
   "dependencies": {
     "@11ty/eleventy": "^3.1.5",

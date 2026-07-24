@@ -22,6 +22,17 @@ layout: base.njk
 {% elif original_url %}
   {% set externalSourceHref = original_url %}
 {% endif %}
+{% set referenceHref = "" %}
+{% if referenceUrl %}
+  {% set referenceHref = referenceUrl %}
+{% elif reference_url %}
+  {% set referenceHref = reference_url %}
+{% elif backgroundUrl %}
+  {% set referenceHref = backgroundUrl %}
+{% elif background_url %}
+  {% set referenceHref = background_url %}
+{% endif %}
+{% set referenceSourceLabel = referenceLabel or backgroundLabel or "" %}
 <section>
   <div class="site-shell">
     <article class="blog-post">
@@ -44,13 +55,13 @@ layout: base.njk
               <div class="post-content content-prose">{{ content | safe }}</div>
               {% if externalSourceHref or sourceLabel %}
                 <aside class="content-detail-card my-4" aria-labelledby="blog-original-source-title">
-                  <p class="content-detail-card-kicker">{{ "Original source" if currentLang == "en" else "Alkuperäinen lähde" }}</p>
-                  <h2 id="blog-original-source-title" class="h5">{{ "This text is based on an earlier publication" if currentLang == "en" else "Teksti pohjautuu aiempaan julkaisuun" }}</h2>
+                  <p class="content-detail-card-kicker">{{ "Text source" if currentLang == "en" else "Tekstin pohja" }}</p>
+                  <h2 id="blog-original-source-title" class="h5">{{ "Source material for this text" if currentLang == "en" else "Tämän tekstin lähdeaineisto" }}</h2>
                   <p>
                     {% if sourceLabel %}
-                      {{ "Original publication:" if currentLang == "en" else "Alkuperäinen julkaisu:" }} {{ sourceLabel }}.
+                      {{ "Source:" if currentLang == "en" else "Lähde:" }} {{ sourceLabel }}.
                     {% else %}
-                      {{ "Open the original source for context." if currentLang == "en" else "Avaa alkuperäinen lähde taustatiedoksi." }}
+                      {{ "Open the source for context." if currentLang == "en" else "Avaa lähde taustatiedoksi." }}
                     {% endif %}
                     {% if not externalSourceHref %}
                       {{ "A permanent public link is not stored in the page metadata." if currentLang == "en" else "Pysyvää julkista linkkiä ei ole tallennettu sivun metadataan." }}
@@ -58,7 +69,26 @@ layout: base.njk
                   </p>
                   {% if externalSourceHref %}
                   <a class="btn btn-outline-primary" href="{{ externalSourceHref }}" target="_blank" rel="noopener noreferrer">
-                    {{ "Open original source" if currentLang == "en" else "Avaa alkuperäinen julkaisu" }}
+                    {{ "Open source" if currentLang == "en" else "Avaa lähde" }}
+                    <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i>
+                  </a>
+                  {% endif %}
+                </aside>
+              {% endif %}
+              {% if referenceHref or referenceSourceLabel %}
+                <aside class="content-detail-card my-4" aria-labelledby="blog-reference-source-title">
+                  <p class="content-detail-card-kicker">{{ "Background source" if currentLang == "en" else "Taustalähde" }}</p>
+                  <h2 id="blog-reference-source-title" class="h5">{{ "Background material used in this article" if currentLang == "en" else "Artikkelissa käytetty tausta-aineisto" }}</h2>
+                  <p>
+                    {% if referenceSourceLabel %}
+                      {{ "Background source:" if currentLang == "en" else "Taustalähde:" }} {{ referenceSourceLabel }}.
+                    {% else %}
+                      {{ "Open the background source for context." if currentLang == "en" else "Avaa taustalähde lisätiedoksi." }}
+                    {% endif %}
+                  </p>
+                  {% if referenceHref %}
+                  <a class="btn btn-outline-primary" href="{{ referenceHref }}" target="_blank" rel="noopener noreferrer">
+                    {{ "Open background source" if currentLang == "en" else "Avaa taustalähde" }}
                     <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i>
                   </a>
                   {% endif %}
