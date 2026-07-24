@@ -21,7 +21,31 @@ description: "How jarilaru.fi is built in practice: Eleventy, a custom content m
       <div class="card-body">
         <h2 class="h4 mb-3">1. AI-assisted development: human direction, tools in support</h2>
         <p>In this project, AI acts as a technical pair rather than an autopilot. The human sets the direction, reviews content, evaluates changes, decides what gets published, and remains responsible for quality. AI helps with code edits, refactoring, translation, structural cleanup, content analysis, and repetitive implementation work.</p>
-        <p><strong>Codex</strong> and <strong>Claude Code</strong> have both been used at different stages of the project. Codex has been used especially for site structure, interface work, accessibility, SEO views, tests, commit planning, council meeting views, and larger site-wide changes. Claude Code has also been used for language polishing, exploring implementation alternatives, and focused file edits.</p>
+        <p>The Git history is not an agent-by-agent time sheet. Commits are authored by the same human, and each commit does not reliably say whether the implementation was produced with Claude Code, Codex, or by hand. It does show the shape of the work: the original build guide was added in March 2026, it was explicitly updated in May toward <code>Codex → Claude Code</code>, and in July 2026 the site has been developed extensively with Codex.</p>
+        <div class="table-responsive my-3">
+          <table class="table table-hover align-middle">
+            <thead>
+              <tr>
+                <th>Role</th>
+                <th>What the history and workflow support saying</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Claude Code</strong></td>
+                <td>Claude Code has been part of earlier development work, including page templates, content pages, translations, language polish, interface alternatives, security checks, and focused implementation tasks. The May commit to this build guide shows that Claude Code was not merely a later copy-editing tool, but part of how the site's technical development was described.</td>
+              </tr>
+              <tr>
+                <td><strong>Codex</strong></td>
+                <td>Codex has been used heavily in the most recent development phase. July commit topics include the council-meeting content model, meeting and video pages, the accessibility tool, SEO dashboard work, taxonomies, media and presentation page restructuring, Facebook import auditing, and lightweight build improvements.</td>
+              </tr>
+              <tr>
+                <td><strong>Jari Laru</strong></td>
+                <td>The human sets the editorial direction, corrects facts, evaluates wording, decides what is published, and remains responsible for the site. AI tools support implementation and thinking; they are not independent authors of the website.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <p class="mb-0">In practical terms, the workflow is version-controlled and reviewable: a change is requested, implementation is done in small batches, the diff is reviewed, the build and tests are run, and only then the change is committed and published. Responsibility for the content and publication remains with the human.</p>
       </div>
     </div>

@@ -51,6 +51,20 @@ schemaMentions:
 
   <div class="council-meetings-list" aria-label="Kaupunginvaltuuston kokoukset">
     {% for meeting in timeline %}
+    {% set currentYear = meeting.year %}
+    {% set previousYear = timeline[loop.index0 - 1].year if not loop.first else "" %}
+    {% if loop.first or currentYear != previousYear %}
+    {% if not loop.first %}
+      </div>
+    </details>
+    {% endif %}
+    <details class="council-year-block" data-council-mobile-collapse {% if loop.first %}data-council-current="true"{% endif %} open>
+      <summary class="council-year-summary">
+        <span>{{ currentYear }}</span>
+        <small>Kaupunginvaltuuston kokoukset</small>
+      </summary>
+      <div class="council-year-items">
+    {% endif %}
     {% if meeting.isQuiet %}
     <div class="council-meeting-marker" id="kokous-{{ meeting.date }}">
       <span class="council-meeting-marker__date">{{ meeting.date | dateFormat }}</span>
@@ -98,6 +112,10 @@ schemaMentions:
         {% endif %}
       </div>
     </article>
+    {% endif %}
+    {% if loop.last %}
+      </div>
+    </details>
     {% endif %}
     {% endfor %}
   </div>
@@ -168,6 +186,20 @@ schemaMentions:
 }
 
 .council-meetings-list {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.council-year-block {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.council-year-summary {
+  display: none;
+}
+
+.council-year-items {
   display: grid;
   gap: 0.65rem;
 }
@@ -372,6 +404,107 @@ schemaMentions:
   .council-meeting-card__actions {
     flex-direction: row;
     flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .council-meetings {
+    gap: 1.2rem;
+    padding-top: 2rem;
+  }
+
+  .council-meetings-hero {
+    padding: 1.2rem;
+  }
+
+  .council-meetings-hero-card {
+    align-content: start;
+  }
+
+  .council-year-block {
+    border: 1px solid rgba(17, 40, 70, 0.1);
+    border-radius: 1.15rem;
+    background: rgba(255, 255, 255, 0.58);
+    overflow: hidden;
+  }
+
+  .council-year-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    padding: 0.9rem 1rem;
+    color: #102845;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .council-year-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .council-year-summary::after {
+    content: "+";
+    flex: 0 0 auto;
+    width: 1.65rem;
+    height: 1.65rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: rgba(17, 40, 70, 0.08);
+    color: #163e6c;
+    font-weight: 900;
+  }
+
+  .council-year-block[open] .council-year-summary::after {
+    content: "–";
+  }
+
+  .council-year-summary span {
+    font-weight: 900;
+    font-size: 1.1rem;
+  }
+
+  .council-year-summary small {
+    color: rgba(17, 40, 70, 0.64);
+    font-weight: 700;
+  }
+
+  .council-year-items {
+    padding: 0 0.7rem 0.7rem;
+  }
+
+  .council-meeting-card {
+    padding: 1rem;
+    border-radius: 1rem;
+  }
+
+  .council-meeting-marker {
+    margin-inline: 0;
+    border-radius: 0.9rem;
+  }
+
+  .council-meeting-card__actions .btn {
+    flex: 1 1 100%;
+  }
+
+  [data-bs-theme="dark"] .council-year-block {
+    border-color: rgba(214, 226, 240, 0.16);
+    background: rgba(255, 255, 255, 0.035);
+  }
+
+  [data-bs-theme="dark"] .council-year-summary {
+    color: #f6fbff;
+  }
+
+  [data-bs-theme="dark"] .council-year-summary small {
+    color: rgba(236, 242, 248, 0.68);
+  }
+
+  [data-bs-theme="dark"] .council-year-summary::after {
+    background: rgba(214, 226, 240, 0.12);
+    color: #f6fbff;
   }
 }
 </style>

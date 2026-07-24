@@ -21,7 +21,31 @@ description: "Näin jarilaru.fi rakentuu käytännössä: Eleventy, oma sisält�
       <div class="card-body">
         <h2 class="h4 mb-3">1. AI-avusteinen kehitystyö: ihminen päättää, työkalut auttavat</h2>
         <p>Sivuston kehityksessä tekoäly toimii teknisenä työparina, ei automaattisena julkaisijana. Ihminen määrittää suunnan, tarkistaa sisällöt, arvioi muutokset ja päättää mitä lopulta julkaistaan. AI auttaa koodin kirjoittamisessa, refaktoroinnissa, käännöksissä, rakenteen selkeyttämisessä, sisältöanalyysissa ja toistuvissa teknisissä korjauksissa.</p>
-        <p><strong>Codex</strong> ja <strong>Claude Code</strong> ovat molemmat olleet käytössä projektin eri vaiheissa. Codexia on käytetty erityisesti sivuston rakenteen, käyttöliittymien, saavutettavuuden, SEO-näkymien, testien, commit-suunnittelun, valtuustokokouskokonaisuuksien ja laajojen sivustotasoisten muutosten läpivientiin. Claude Codea on käytetty muun muassa kielen hiomiseen, vaihtoehtoisten toteutusten kokeiluun ja yksittäisten tiedostomuutosten tekemiseen.</p>
+        <p>Git-historia ei ole agenttikohtainen työaikakirjanpito. Commitien tekijänä näkyy sama ihminen, eikä jokainen muutos kerro, syntyikö toteutus Claude Codella, Codexilla vai käsin. Historiasta voi silti lukea työn vaiheita: sivun alkuperäinen rakennuskuvaus lisättiin maaliskuussa 2026, toukokuussa sitä päivitettiin nimenomaisesti suuntaan <code>Codex → Claude Code</code>, ja heinäkuussa 2026 sivustoa on kehitetty laajasti Codexin kanssa.</p>
+        <div class="table-responsive my-3">
+          <table class="table table-hover align-middle">
+            <thead>
+              <tr>
+                <th>Rooli</th>
+                <th>Mitä historiasta ja työstä voi rehellisesti sanoa</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Claude Code</strong></td>
+                <td>Claude Code on ollut mukana aiemmissa kehitysvaiheissa muun muassa sivupohjien, sisältösivujen, käännösten, kieliasun, käyttöliittymävaihtoehtojen, tietoturvatarkistusten ja rajattujen toteutusten tekemisessä. Toukokuun commit rakennussivulle osoittaa, että Claude Code ei ole ollut vain jälkikäteinen kielenhuoltaja, vaan osa sivuston teknisen kehityksen kuvausta.</td>
+              </tr>
+              <tr>
+                <td><strong>Codex</strong></td>
+                <td>Codex on ollut vahvasti mukana viimeisimmässä kehitysvaiheessa. Heinäkuun commit-aiheissa korostuvat valtuustokokouksiin perustuva sisältömalli, kokous- ja videosivut, saavutettavuustyökalu, SEO-dashboard, taksonomiat, media- ja esityssivujen uudelleenjäsennys, Facebook-tuonnin auditointi sekä buildin keventäminen.</td>
+              </tr>
+              <tr>
+                <td><strong>Jari Laru</strong></td>
+                <td>Ihminen määrittää sisällöllisen suunnan, korjaa faktat, arvioi kieliasun, päättää julkaistavat muutokset ja kantaa vastuun sivuston sisällöstä. AI-työkalut ovat toteutuksen ja ajattelun apuvälineitä, eivät sivuston itsenäisiä tekijöitä.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <p class="mb-0">Käytännössä työnkulku on versionhallittu ja tarkistettava: muutos pyydetään, toteutus tehdään pieninä erinä, diffi tarkistetaan, build ja testit ajetaan, ja vasta sen jälkeen muutos commitoidaan ja julkaistaan. Vastuu sisällöstä, valinnoista ja julkaisemisesta säilyy ihmisellä.</p>
       </div>
     </div>

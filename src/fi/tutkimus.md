@@ -74,14 +74,14 @@ schemaMentions:
 {% set latestResearchAssignments = (mediaArchive.expertAssignments or []).slice(0, 2) %}
 
 <!-- HERO -->
-<section class="py-5 bg-body-tertiary border-bottom">
+<section class="research-hero py-5 bg-body-tertiary border-bottom">
   <div class="site-shell">
     <div class="row align-items-center g-4">
       <div class="col-lg-8">
         <p class="text-uppercase text-muted fw-semibold small mb-2">Tutkimus</p>
         <h1 class="display-6 fw-bold mb-3">{{ researchCopy.heroTitle }}</h1>
         <p class="lead mb-3">{{ researchCopy.heroLead }}</p>
-        <div class="d-flex flex-wrap gap-2">
+        <div class="research-hero-actions d-flex flex-wrap gap-2">
           <a href="/julkaisut/" class="btn btn-read-more btn-sm rounded-pill px-3">Tieteelliset julkaisut</a>
           <a href="/opinnaytteet/" class="btn btn-read-more btn-sm rounded-pill px-3">Ohjatut opinnäytetyöt</a>
           <a href="https://orcid.org/0000-0003-0347-0182" class="btn btn-read-more btn-sm rounded-pill px-3" target="_blank" rel="noopener noreferrer">ORCID-profiili</a>
@@ -122,6 +122,39 @@ schemaMentions:
 }
 
 @media (max-width: 767.98px) {
+  .research-hero .site-shell > .row,
+  #generation-ai .site-shell > .row,
+  .site-shell > .row.align-items-start {
+    --bs-gutter-x: 0;
+    margin-inline: 0;
+  }
+
+  .research-hero .site-shell > .row > *,
+  #generation-ai .site-shell > .row > *,
+  .site-shell > .row.align-items-start > * {
+    padding-inline: 0;
+    min-width: 0;
+  }
+
+  .research-hero h1 {
+    font-size: clamp(2rem, 9.6vw, 2.65rem);
+    line-height: 1.08;
+    hyphens: auto;
+    overflow-wrap: anywhere;
+  }
+
+  .research-hero .lead {
+    font-size: clamp(1.04rem, 4.8vw, 1.22rem);
+    line-height: 1.48;
+  }
+
+  .research-hero-actions .btn {
+    flex: 1 1 100%;
+    display: inline-flex;
+    justify-content: center;
+    max-width: 100%;
+  }
+
   .research-mobile-path {
     position: sticky;
     top: 0;

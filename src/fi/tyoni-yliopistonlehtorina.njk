@@ -1234,6 +1234,7 @@ templateEngineOverride: njk
   @media (max-width: 767.98px) {
     .ylwork-shell {
       width: min(100% - 1.25rem, 42rem);
+      overflow-x: clip;
     }
     .ylwork-section {
       padding-block: 2.25rem;
@@ -1280,9 +1281,24 @@ templateEngineOverride: njk
     .ylwork-archive-links {
       grid-template-columns: 1fr;
     }
+    .ylwork-hero .row {
+      --bs-gutter-x: 0;
+      margin-inline: 0;
+    }
+    .ylwork-hero .row > * {
+      padding-inline: 0;
+      min-width: 0;
+    }
     .ylwork-live-side,
     .ylwork-live-list--split {
       grid-template-columns: 1fr;
+    }
+    .ylwork-live-layout {
+      max-width: 100%;
+      overflow-x: clip;
+    }
+    .ylwork-hero-image img {
+      max-width: 100%;
     }
     .ylwork-hero-title {
       max-width: none;
@@ -1291,8 +1307,10 @@ templateEngineOverride: njk
       padding-block: 2.4rem !important;
     }
     .ylwork-hero-title {
-      font-size: clamp(2.1rem, 13vw, 3.1rem);
-      line-height: 1;
+      font-size: clamp(1.85rem, 10.5vw, 2.55rem);
+      line-height: 1.04;
+      hyphens: auto;
+      overflow-wrap: anywhere;
     }
     .ylwork-section-head {
       margin-bottom: 1.25rem;

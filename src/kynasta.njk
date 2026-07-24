@@ -287,6 +287,11 @@ schemaMentions:
 </script>
 
 <span id="lausunnot-ja-asiantuntijakannanotot"></span>
+<details class="kynasta-mobile-disclosure kynasta-archive-disclosure" data-kynasta-mobile-collapse open>
+  <summary class="kynasta-mobile-disclosure-summary">
+    <span>Lausunnot</span>
+    <small>{{ statementCount }} asiantuntijalausuntoa</small>
+  </summary>
 <section id="lausunnot">
   <div class="site-shell">
     <div class="card shadow-sm">
@@ -338,6 +343,7 @@ schemaMentions:
     </div>
   </div>
 </section>
+</details>
 
 {# Kerätään kaikki mielipiteet JSON-muotoon JS:ää varten #}
 <script id="mielipiteet-data" type="application/json">
@@ -361,6 +367,11 @@ schemaMentions:
 </script>
 
 <span id="mielipidekirjoitukset-eri-sanomalehdissa"></span>
+<details class="kynasta-mobile-disclosure kynasta-archive-disclosure" data-kynasta-mobile-collapse open>
+  <summary class="kynasta-mobile-disclosure-summary">
+    <span>Mielipidekirjoitukset</span>
+    <small>{{ collections.pub_mielipide.length }} kirjoitusta</small>
+  </summary>
 <section id="mielipiteet" class="bg-body-tertiary">
   <div class="site-shell">
     <div class="card shadow-sm">
@@ -463,6 +474,7 @@ schemaMentions:
     </div>
   </div>
 </section>
+</details>
 
 {# Kerätään kaikki kolumnit JSON-muotoon JS:ää varten #}
 <script id="kolumnit-data" type="application/json">
@@ -485,6 +497,11 @@ schemaMentions:
 </script>
 
 <span id="kolumnit-ja-blogivierailut"></span>
+<details class="kynasta-mobile-disclosure kynasta-archive-disclosure" data-kynasta-mobile-collapse open>
+  <summary class="kynasta-mobile-disclosure-summary">
+    <span>Kolumnit ja blogivierailut</span>
+    <small>{{ collections.pub_kolumni.length }} tekstiä</small>
+  </summary>
 <section id="kolumnit">
   <div class="site-shell">
     <div class="card shadow-sm">
@@ -544,6 +561,7 @@ schemaMentions:
     </div>
   </div>
 </section>
+</details>
 
 {# Kerätään kaikki aloitteet JSON-muotoon JS:ää varten #}
 <script id="aloitteet-data" type="application/json">
@@ -568,6 +586,11 @@ schemaMentions:
 ]
 </script>
 
+<details class="kynasta-mobile-disclosure kynasta-archive-disclosure" data-kynasta-mobile-collapse open>
+  <summary class="kynasta-mobile-disclosure-summary">
+    <span>Valtuustoaloitteet ja adressit</span>
+    <small>{{ collections.politics.length }} avausta</small>
+  </summary>
 <section id="aloitteet">
   <div class="site-shell">
     <div class="card shadow-sm">
@@ -618,6 +641,7 @@ schemaMentions:
     </div>
   </div>
 </section>
+</details>
 
 {# Kerätään kaikki puheet JSON-muotoon JS:ää varten #}
 <script id="puheet-data" type="application/json">
@@ -650,6 +674,11 @@ schemaMentions:
 ]
 </script>
 
+<details class="kynasta-mobile-disclosure kynasta-archive-disclosure" data-kynasta-mobile-collapse open>
+  <summary class="kynasta-mobile-disclosure-summary">
+    <span>Valtuustopuheenvuorot</span>
+    <small>{{ councilSpeechCount }} puheenvuoroa</small>
+  </summary>
 <section id="puheet">
   <div class="site-shell">
     <div class="card shadow-sm">
@@ -700,6 +729,7 @@ schemaMentions:
     </div>
   </div>
 </section>
+</details>
 
 <script id="julkiset-puheet-data" type="application/json">
 [
@@ -720,6 +750,11 @@ schemaMentions:
 ]
 </script>
 
+<details class="kynasta-mobile-disclosure kynasta-archive-disclosure" data-kynasta-mobile-collapse open>
+  <summary class="kynasta-mobile-disclosure-summary">
+    <span>Julkiset puheet</span>
+    <small>{{ publicSpeechCount }} muuta puhetta</small>
+  </summary>
 <section id="julkiset-puheet" class="bg-body-tertiary">
   <div class="site-shell">
     <div class="card shadow-sm">
@@ -774,6 +809,7 @@ schemaMentions:
     </div>
   </div>
 </section>
+</details>
 
 {# Kerätään kaikki blogipostaukset JSON-muotoon JS:ää varten #}
 <script id="blog-data" type="application/json">
@@ -793,6 +829,11 @@ schemaMentions:
 ]
 </script>
 
+<details class="kynasta-mobile-disclosure kynasta-archive-disclosure" data-kynasta-mobile-collapse open>
+  <summary class="kynasta-mobile-disclosure-summary">
+    <span>Blogi</span>
+    <small>{{ collections.blog.length }} kirjoitusta</small>
+  </summary>
 <section id="blogi" class="bg-body-tertiary">
   <div class="site-shell">
     <div class="card shadow-sm">
@@ -861,6 +902,7 @@ schemaMentions:
     </div>
   </div>
 </section>
+</details>
 
 {# Kerätään esitykset ja AOE-oppimateriaalit JSON-muotoon JS:ää varten #}
 <details class="kynasta-mobile-disclosure" data-kynasta-mobile-collapse id="muut-aineistot" open>
@@ -1256,13 +1298,18 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
     border-top: 1px solid var(--bs-border-color);
   }
 
+  .kynasta-archive-disclosure {
+    padding-block: 0.15rem;
+  }
+
   .kynasta-mobile-disclosure-summary {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.1rem 0.65rem;
     align-items: center;
-    justify-content: space-between;
     width: calc(100% - 2rem);
     margin: 1rem auto;
-    padding: 0.55rem 0.9rem;
+    padding: 0.72rem 0.9rem;
     cursor: pointer;
     list-style: none;
   }
@@ -1273,12 +1320,30 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
 
   .kynasta-mobile-disclosure-summary::after {
     content: "+";
+    grid-row: 1 / span 2;
+    grid-column: 2;
     font-size: 1.05rem;
     line-height: 1;
   }
 
   .kynasta-mobile-disclosure[open] .kynasta-mobile-disclosure-summary::after {
     content: "-";
+  }
+
+  .kynasta-mobile-disclosure-summary span {
+    font-weight: 800;
+    line-height: 1.18;
+  }
+
+  .kynasta-mobile-disclosure-summary small {
+    color: var(--bs-secondary-color);
+    font-size: 0.78rem;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  .kynasta-mobile-disclosure[open] > section {
+    padding-top: 0.25rem;
   }
 
   .card-body > .table-responsive {

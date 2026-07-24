@@ -47,7 +47,7 @@ schemaMentions:
       <div class="col-lg-7">
         <p class="pol-eyebrow mb-2"><i class="bi bi-building2 me-1"></i>Politiikka</p>
         <h1 class="pol-hero-title mb-3">Jari Laru, poliitikko</h1>
-        <p class="pol-hero-manifesto mb-3">Sivistys, lähipalvelut ja avoin päätöksenteko eivät ole kunnallispolitiikan sivujuonteita vaan sen kovaa ydintä.</p>
+        <p class="pol-hero-manifesto mb-3">Sivistys, palveluverkko ja avoin päätöksenteko eivät ole kunnallispolitiikan sivujuonteita vaan sen kovaa ydintä.</p>
         <p class="mb-4 pol-hero-text">Teen politiikkaa käytännöllisesti ja tietoon nojaten. Tavoitteena on, että päätöksenteko näkyy kuntalaiselle parempina oppimisympäristöinä, toimivampina palveluina ja valmisteluna, jota voi seurata ilman sisäpiiritietoa.</p>
         <div class="pol-hero-points mb-4">
           <div class="pol-hero-point">
@@ -55,7 +55,7 @@ schemaMentions:
             <span class="pol-hero-point-text">Laadukkaat oppimisympäristöt, koulutuspolitiikka ja pitkät vaikutukset.</span>
           </div>
           <div class="pol-hero-point">
-            <span class="pol-hero-point-title">Lähipalvelut</span>
+            <span class="pol-hero-point-title">Palveluverkko</span>
             <span class="pol-hero-point-text">Koko Oulu mukaan kasvuun, ei vain keskusta tai yksittäiset hankkeet.</span>
           </div>
           <div class="pol-hero-point">
@@ -367,6 +367,12 @@ schemaMentions:
           <a href="/politiikka/kaupunginvaltuusto/">Avaa kaupunginvaltuusto</a>
         </article>
         <article class="pol-route-card">
+          <span class="pol-route-kicker">Sivistyslautakunta</span>
+          <h3>Lautakuntatyö kokouksittain</h3>
+          <p>Sivistyslautakunnan ja sitä edeltäneen sivistys- ja kulttuurilautakunnan kokoukset näyttävät, missä vaiheessa koulutuksen, varhaiskasvatuksen, kulttuurin ja palveluverkon valmisteluun on vaikutettu.</p>
+          <a href="/politiikka/sivistyslautakunta/">Avaa sivistyslautakunta</a>
+        </article>
+        <article class="pol-route-card">
           <span class="pol-route-kicker">Vaalikaudet</span>
           <h3>Työn muutos näkyy vaalikausissa</h3>
           <p>Vaalitulokset, luottamustehtävät ja sisällöt asettuvat kausittain samaan aikajanaan.</p>
@@ -584,6 +590,10 @@ schemaMentions:
         <a href="/politiikka/kaupunginvaltuusto/" class="pol-archive-link">
           <strong>Kaupunginvaltuusto</strong>
           <span>Kokoukset, pöytäkirjat, videot ja omat sisällöt samassa kontekstissa.</span>
+        </a>
+        <a href="/politiikka/sivistyslautakunta/" class="pol-archive-link">
+          <strong>Sivistyslautakunta</strong>
+          <span>Lautakuntakokoukset, pöytäkirjat ja sivistyspalvelujen valmisteluun liittyvät sisällöt.</span>
         </a>
       </div>
     </div>
@@ -2023,7 +2033,7 @@ schemaMentions:
         focus: ['kouluverkko', 'varhaiskasvatus', 'kampusratkaisut']
       },
       {
-        key: 'lahipalvelut',
+        key: 'palveluverkko',
         title: 'Koko Oulun alueellinen yhdenvertaisuus',
         description: 'Suuralueiden ja kaupunginosien palvelut, saavutettavuus ja tasapuolinen kehitys koko kaupungissa.',
         statement: 'Oulua pitää kehittää kokonaisuutena niin, että jokainen suuralue ja kaupunginosa pysyy mukana kasvussa, investoinneissa ja palveluissa.',
