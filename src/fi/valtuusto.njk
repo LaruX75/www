@@ -49,6 +49,7 @@ schemaMentions:
     </aside>
   </header>
 
+  <h2 class="visually-hidden">Kaupunginvaltuuston kokoukset</h2>
   <div class="council-meetings-list" aria-label="Kaupunginvaltuuston kokoukset">
     {% for meeting in timeline %}
     {% set currentYear = meeting.year %}
@@ -80,7 +81,7 @@ schemaMentions:
         <span>{{ meeting.date | dateFormat }}</span>
       </div>
       <div class="council-meeting-card__body">
-        <h2><a href="/politiikka/kaupunginvaltuusto/kokoukset/{{ meeting.date }}/">{{ meeting.meetingLabel }}</a></h2>
+        <h3><a href="/politiikka/kaupunginvaltuusto/kokoukset/{{ meeting.date }}/">{{ meeting.meetingLabel }}</a></h3>
         <p class="council-meeting-card__meta">{{ meeting.contextLabel }} · {{ meeting.date | dateFormat }}</p>
         {% if meeting.summaryTitle %}
         <p class="council-meeting-card__summary">{{ meeting.summaryTitle }}</p>
@@ -257,7 +258,7 @@ schemaMentions:
   font-weight: 800;
 }
 
-.council-meeting-card__body h2 {
+.council-meeting-card__body h3 {
   margin: 0 0 0.75rem;
   font-size: clamp(1.25rem, 1rem + 0.8vw, 1.85rem);
   line-height: 1.18;
@@ -275,13 +276,13 @@ schemaMentions:
   font-weight: 600;
 }
 
-.council-meeting-card__body h2 a,
+.council-meeting-card__body h3 a,
 .council-meeting-preview a {
   color: #12355f;
 }
 
-.council-meeting-card__body h2 a:hover,
-.council-meeting-card__body h2 a:focus-visible,
+.council-meeting-card__body h3 a:hover,
+.council-meeting-card__body h3 a:focus-visible,
 .council-meeting-preview a:hover,
 .council-meeting-preview a:focus-visible {
   color: #0d4f94;
@@ -367,13 +368,13 @@ schemaMentions:
 }
 
 [data-bs-theme="dark"] .council-meetings-hero-card strong,
-[data-bs-theme="dark"] .council-meeting-card__body h2 a,
+[data-bs-theme="dark"] .council-meeting-card__body h3 a,
 [data-bs-theme="dark"] .council-meeting-preview a {
   color: #f6fbff;
 }
 
-[data-bs-theme="dark"] .council-meeting-card__body h2 a:hover,
-[data-bs-theme="dark"] .council-meeting-card__body h2 a:focus-visible,
+[data-bs-theme="dark"] .council-meeting-card__body h3 a:hover,
+[data-bs-theme="dark"] .council-meeting-card__body h3 a:focus-visible,
 [data-bs-theme="dark"] .council-meeting-preview a:hover,
 [data-bs-theme="dark"] .council-meeting-preview a:focus-visible {
   color: #ffffff;

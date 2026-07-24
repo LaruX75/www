@@ -295,11 +295,11 @@ schemaMentions:
     <article id="{{ term.anchor }}" class="term-card mb-5">
       <div class="term-card__header">
         <div>
-          <p class="term-card__period">{{ term.period }}</p>
+          <h2 class="term-card__title">{{ term.period }}</h2>
           {% if term.current %}
           <p class="term-current-badge">Kuluva vaalikausi</p>
           {% endif %}
-          <h2 class="term-card__title">{{ term.title }}</h2>
+          <p class="term-card__role">{{ term.title }}</p>
         </div>
         <p class="term-card__summary mb-0">{{ term.summary }}</p>
       </div>
@@ -566,6 +566,14 @@ schemaMentions:
   color: #102845;
 }
 
+.term-card__role {
+  margin: 0.45rem 0 0;
+  color: rgba(17, 40, 70, 0.72);
+  font-size: clamp(1rem, 0.92rem + 0.25vw, 1.16rem);
+  font-weight: 800;
+  line-height: 1.35;
+}
+
 .term-current-badge {
   display: inline-flex;
   align-items: center;
@@ -826,6 +834,7 @@ schemaMentions:
 [data-bs-theme="dark"] .term-section-lead,
 [data-bs-theme="dark"] .term-hero-card__list,
 [data-bs-theme="dark"] .term-card__summary,
+[data-bs-theme="dark"] .term-card__role,
 [data-bs-theme="dark"] .term-role-list li {
   color: rgba(226, 232, 240, 0.82);
 }
