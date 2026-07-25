@@ -568,41 +568,8 @@ module.exports = {
           ]
         },
         {
-          heading: "Poliittiset teemat",
+          heading: "Aineistot ja läpinäkyvyys",
           links: [
-            {
-              title: "Sivistys ja oppiminen",
-              href: "/kategoriat/sivistys-ja-koulutus/",
-              icon: "bi bi-mortarboard-fill me-2",
-              menuLink: true,
-              description: "Koulutuspolitiikka, terveet oppimisympäristöt ja yliopiston sekä kouluverkon ratkaisut."
-            },
-            {
-              title: "Koko Oulun alueellinen yhdenvertaisuus",
-              href: "/kategoriat/kaupunkikehitys-ja-palveluverkko/",
-              icon: "bi bi-geo-alt-fill me-2",
-              menuLink: true,
-              description: "Suuralueiden ja kaupunginosien palvelut, saavutettavuus ja tasapuolinen kehitys koko kaupungissa."
-            },
-            {
-              title: "Avoin hallinto ja tiedolla johtaminen",
-              href: "/poliittinen-avoimuus/",
-              icon: "bi bi-bar-chart-steps me-2",
-              menuLink: true,
-              description: "Läpinäkyvä päätöksenteko, tietojärjestelmät, avoin data ja seurattavat valmisteluprosessit."
-            }
-          ]
-        },
-        {
-          heading: "Aineistot ja avoimuus",
-          links: [
-            {
-              title: "Sidonnaisuudet ja vaalirahoitus",
-              href: "/sidonnaisuudet/",
-              icon: "bi bi-link-45deg me-2",
-              menuLink: true,
-              description: "Sidonnaisuudet, VTV-linkit ja vaalirahoitus samassa näkymässä."
-            },
             {
               title: "Valtuustopuheenvuorot",
               href: "/kynasta/#puheet",
@@ -620,11 +587,11 @@ module.exports = {
               countKey: "politics"
             },
             {
-              title: "Virallinen valtuustosivu",
-              href: "https://www.ouka.fi/valtuusto",
-              icon: "bi bi-box-arrow-up-right me-2",
-              external: true,
-              description: "Oulun kaupunginvaltuuston virallinen sivu."
+              title: "Sidonnaisuudet ja vaalirahoitus",
+              href: "/sidonnaisuudet/",
+              icon: "bi bi-link-45deg me-2",
+              menuLink: true,
+              description: "Sidonnaisuudet, VTV-linkit ja vaalirahoitus samassa näkymässä."
             }
           ]
         }
