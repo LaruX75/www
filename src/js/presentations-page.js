@@ -1113,17 +1113,35 @@
     const archiveItems = buildUnifiedArchiveItems();
     const filterControls = [...document.querySelectorAll("[data-presentation-filter]")];
     const archiveGrid = document.getElementById("presentation-unified-archive");
+    const validFilters = new Set(["all", ...filterControls.map((control) => control.dataset.presentationFilter || "all")]);
     let activeFilter = "all";
     let activePage = 1;
     renderPresentationFilterCounts(archiveItems);
 
+    const readFilterFromUrl = () => {
+      const params = new URLSearchParams(window.location.search);
+      const urlFilter = params.get("esitykset");
+      return urlFilter && validFilters.has(urlFilter) ? urlFilter : "all";
+    };
+
+    const writeFilterToUrl = (filter) => {
+      const url = new URL(window.location.href);
+      if (!filter || filter === "all") {
+        url.searchParams.delete("esitykset");
+      } else {
+        url.searchParams.set("esitykset", filter);
+      }
+      window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
+    };
+
     const applyFilter = (filter, shouldScroll = false) => {
-      activeFilter = filter || "all";
+      activeFilter = validFilters.has(filter) ? filter : "all";
       activePage = 1;
       filterControls.forEach((control) => {
         control.classList.toggle("is-active", control.dataset.presentationFilter === activeFilter);
       });
       renderUnifiedArchive(archiveItems, activeFilter, activePage);
+      writeFilterToUrl(activeFilter);
       if (shouldScroll) {
         document.getElementById("kaikki-esitykset")?.scrollIntoView({ behavior: "smooth", block: "start" });
       }
@@ -1152,7 +1170,7 @@
       document.getElementById("kaikki-esitykset")?.scrollIntoView({ behavior: "smooth", block: "start" });
     });
 
-    applyFilter("all", false);
+    applyFilter(readFilterFromUrl(), false);
   }
 
   Object.entries(rawData).forEach(([key, rows]) => {
