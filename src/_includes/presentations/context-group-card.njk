@@ -1,0 +1,32 @@
+<article class="presentation-context-group-card">
+  <div class="presentation-context-group-head">
+    <span class="presentation-context-group-icon"><i class="bi {{ group.icon }}"></i></span>
+    <div>
+      <p class="presentation-context-group-kicker mb-1">{{ group.kicker }}</p>
+      <h3 class="presentation-context-group-title mb-0">{{ group.title }}</h3>
+    </div>
+    <span class="presentation-context-group-count">{{ group.totalCount }}</span>
+  </div>
+  <p class="presentation-context-group-desc">{{ group.description }}</p>
+  <ul class="presentation-context-group-list">
+    {% for item in group.featured %}
+    <li>
+      <a href="{{ item.url }}">{{ item.title }}</a>
+      <span class="presentation-context-group-date">{{ item.date | dateFormat }}</span>
+    </li>
+    {% endfor %}
+  </ul>
+  {% if group.rest.length %}
+  <details class="presentation-context-group-rest">
+    <summary>Näytä loput ({{ group.rest.length }})</summary>
+    <ul class="presentation-context-group-list">
+      {% for item in group.rest %}
+      <li>
+        <a href="{{ item.url }}">{{ item.title }}</a>
+        <span class="presentation-context-group-date">{{ item.date | dateFormat }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </details>
+  {% endif %}
+</article>

@@ -1,0 +1,12 @@
+<a href="{{ presentationAnalysisHref }}" class="presentation-analysis-link">
+  <span class="presentation-analysis-icon"><i class="bi {{ presentationAnalysisIcon }}"></i></span>
+  {% if presentationAnalysisTextWrap %}
+  <span>
+    <strong>{{ presentationAnalysisTitle }}</strong>
+    <small>{{ presentationAnalysisDescription }}</small>
+  </span>
+  {% else %}
+  <strong>{{ presentationAnalysisTitle }}</strong>
+  <small>{{ presentationAnalysisDescription }}</small>
+  {% endif %}
+</a>

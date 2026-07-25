@@ -1,0 +1,9 @@
+<a href="#kaikki-esitykset" class="presentation-route-card card border-0 shadow-sm" data-presentation-filter="{{ routeCard.filter }}">
+  <div class="card-body p-4 p-xl-5">
+    <span class="presentation-route-number">{{ routeCard.number }}</span>
+    <p class="presentation-browse-label mb-2">{{ routeCard.label }}</p>
+    <strong class="presentation-route-title d-block mb-2">{{ routeCard.title }}</strong>
+    <p class="text-muted mb-3">{{ routeCard.description }}</p>
+    <small data-presentation-count="{{ routeCard.filter }}"></small>
+  </div>
+</a>

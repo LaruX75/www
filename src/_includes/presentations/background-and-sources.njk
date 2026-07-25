@@ -7,16 +7,19 @@
     </div>
 
     <div class="presentation-analysis-links mb-4">
-      <a href="/esitykset/canva-analyysi/" class="presentation-analysis-link">
-        <span class="presentation-analysis-icon"><i class="bi bi-bar-chart-line"></i></span>
-        <strong>Canva-esitykset 2021-2026</strong>
-        <small>75 analysoitua esitystä, joissa näkyy uudempi kouluttaja- ja tekoälylukutaitoprofiili.</small>
-      </a>
-      <a href="/esitykset/slideshare-analyysi/" class="presentation-analysis-link">
-        <span class="presentation-analysis-icon"><i class="bi bi-collection-play"></i></span>
-        <strong>SlideShare-esitykset 2009-2020</strong>
-        <small>Vanhempi esityskaari mobiilioppimisesta, CSCL:stä ja opettajankoulutuksesta.</small>
-      </a>
+      {% set presentationAnalysisTextWrap = false %}
+
+      {% set presentationAnalysisHref = "/esitykset/canva-analyysi/" %}
+      {% set presentationAnalysisIcon = "bi-bar-chart-line" %}
+      {% set presentationAnalysisTitle = "Canva-esitykset 2021-2026" %}
+      {% set presentationAnalysisDescription = "75 analysoitua esitystä, joissa näkyy uudempi kouluttaja- ja tekoälylukutaitoprofiili." %}
+      {% include "presentations/analysis-link.njk" %}
+
+      {% set presentationAnalysisHref = "/esitykset/slideshare-analyysi/" %}
+      {% set presentationAnalysisIcon = "bi-collection-play" %}
+      {% set presentationAnalysisTitle = "SlideShare-esitykset 2009-2020" %}
+      {% set presentationAnalysisDescription = "Vanhempi esityskaari mobiilioppimisesta, CSCL:stä ja opettajankoulutuksesta." %}
+      {% include "presentations/analysis-link.njk" %}
     </div>
 
     <div class="presentation-background-stack">
@@ -47,38 +50,7 @@
         <div class="presentation-service-archive-body">
           <div class="presentation-context-groups">
             {% for group in presentationContextGroups.groups %}
-            <article class="presentation-context-group-card">
-              <div class="presentation-context-group-head">
-                <span class="presentation-context-group-icon"><i class="bi {{ group.icon }}"></i></span>
-                <div>
-                  <p class="presentation-context-group-kicker mb-1">{{ group.kicker }}</p>
-                  <h3 class="presentation-context-group-title mb-0">{{ group.title }}</h3>
-                </div>
-                <span class="presentation-context-group-count">{{ group.totalCount }}</span>
-              </div>
-              <p class="presentation-context-group-desc">{{ group.description }}</p>
-              <ul class="presentation-context-group-list">
-                {% for item in group.featured %}
-                <li>
-                  <a href="{{ item.url }}">{{ item.title }}</a>
-                  <span class="presentation-context-group-date">{{ item.date | dateFormat }}</span>
-                </li>
-                {% endfor %}
-              </ul>
-              {% if group.rest.length %}
-              <details class="presentation-context-group-rest">
-                <summary>Näytä loput ({{ group.rest.length }})</summary>
-                <ul class="presentation-context-group-list">
-                  {% for item in group.rest %}
-                  <li>
-                    <a href="{{ item.url }}">{{ item.title }}</a>
-                    <span class="presentation-context-group-date">{{ item.date | dateFormat }}</span>
-                  </li>
-                  {% endfor %}
-                </ul>
-              </details>
-              {% endif %}
-            </article>
+            {% include "presentations/context-group-card.njk" %}
             {% endfor %}
           </div>
         </div>
