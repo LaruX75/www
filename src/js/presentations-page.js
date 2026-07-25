@@ -338,7 +338,9 @@
 
     let routePrimary = "";
     if (item.archiveType !== "analysis") {
-      if (
+      if (item.archiveType === "video" || item.archiveType === "aoe") {
+        routePrimary = "route:materiaalit";
+      } else if (
         categoryTags.includes("konferenssi-keynote") ||
         categoryTags.includes("kansainvälinen-konferenssi")
       ) {
@@ -350,8 +352,6 @@
         categoryTags.includes("tdk-luento")
       ) {
         routePrimary = "route:koulutukset";
-      } else if (item.archiveType === "video" || item.archiveType === "aoe") {
-        routePrimary = "route:materiaalit";
       } else if (routeTags.includes("route:puheenvuorot")) {
         routePrimary = "route:puheenvuorot";
       } else if (routeTags.includes("route:koulutukset")) {
