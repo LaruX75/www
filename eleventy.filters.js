@@ -572,10 +572,7 @@ function topicTextScore(item, topic = {}) {
     data.mediaOutlet,
     data.roleTitle,
     data.type,
-    data.mediaType,
-    ...toArray(data.categories),
-    ...toArray(data.keywords),
-    ...toArray(data.tags)
+    data.mediaType
   ].map(normalizeTopicTerm).join(" ");
 
   return topicTerms.reduce((score, term) => {
@@ -647,9 +644,10 @@ const TOPIC_MIN_SCORE = 5;
 
 function topicItemsFromCollections(collections, topic = {}, limit = 12) {
   const maxItems = Number(limit) || 12;
+  const minScore = Number(topic.minScore) || TOPIC_MIN_SCORE;
   const all = uniqueContentItems(collections)
     .map((item) => mapTopicItem(item, topic))
-    .filter((item) => item.topicScore >= TOPIC_MIN_SCORE)
+    .filter((item) => item.topicScore >= minScore)
     .sort((a, b) => b.topicScore - a.topicScore || dateTimestamp(b) - dateTimestamp(a));
   const items = all
     .slice(0, maxItems)

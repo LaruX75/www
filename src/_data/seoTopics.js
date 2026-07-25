@@ -75,6 +75,7 @@ module.exports = [
     lead: "Oulun palveluverkko ja kaupunkikehitys kokoaa poliittisen aineiston, jossa päätöksiä arvioidaan koko kaupungin, suuralueiden ja kaupunginosien näkökulmasta.",
     context: "Teema sisältää valtuustopuheenvuoroja, aloitteita, mielipidekirjoituksia ja mediaosumia kouluverkosta, kampusratkaisuista, kaavoituksesta, liikkumisesta ja alueellisesta yhdenvertaisuudesta. Painopiste ei ole yksittäisessä kyläkulmassa vaan koko Oulun rakenteessa.",
     promise: "Sivu auttaa näkemään, miten palveluverkko, kaupunkirakenne ja asukkaiden arki kytkeytyvät päätöksenteossa.",
+    minScore: 7,
     categories: ["kaupunkikehitys-ja-palveluverkko"],
     keywords: ["palveluverkko", "kaupunkikehitys", "kaupunginosat", "suuralueet", "kouluverkko", "Linnanmaa", "Raksila"],
     contexts: ["politics"],
