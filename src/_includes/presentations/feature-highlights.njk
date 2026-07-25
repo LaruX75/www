@@ -23,49 +23,8 @@
 
     <div class="presentation-context-grid presentation-context-grid--preview">
       {% for context in highlightedContextItems %}
-      <article class="presentation-context-card">
-        <div class="presentation-context-card-head">
-          <span class="presentation-context-type">{{ context.typeLabel }}</span>
-          <span class="presentation-context-date">{{ context.displayDate or (context.date | dateFormat) }}</span>
-        </div>
-        <h3 class="presentation-context-title">{{ context.title }}</h3>
-        <p class="presentation-context-summary">{{ context.summary }}</p>
-        <dl class="presentation-context-meta">
-          <div>
-            <dt>Rooli</dt>
-            <dd>{{ context.role }}</dd>
-          </div>
-          <div>
-            <dt>Kohderyhmä</dt>
-            <dd>{{ context.audience }}</dd>
-          </div>
-          <div>
-            <dt>Järjestäjä</dt>
-            <dd>{{ context.organizer }}</dd>
-          </div>
-        </dl>
-        {% if context.topics and context.topics.length %}
-        <div class="presentation-context-topics" aria-label="Teemat">
-          {% for topic in context.topics %}
-          <span>{{ topic }}</span>
-          {% endfor %}
-        </div>
-        {% endif %}
-        {% if context.materials and context.materials.length %}
-        <div class="presentation-context-materials">
-          <p class="presentation-context-subtitle">Kytketyt aineistot</p>
-          <div class="d-flex flex-wrap gap-2">
-            {% for material in context.materials %}
-              {% if material.url %}
-              <a href="{{ material.url }}"{% if material.url.startsWith("http") %} target="_blank" rel="noopener noreferrer"{% endif %} class="btn btn-outline-primary btn-sm rounded-pill px-3">{{ material.label }}</a>
-              {% else %}
-              <span class="presentation-context-material-static">{{ material.label }}</span>
-              {% endif %}
-            {% endfor %}
-          </div>
-        </div>
-        {% endif %}
-      </article>
+      {% set presentationContextCardShowFeedback = false %}
+      {% include "presentations/context-card.njk" %}
       {% endfor %}
     </div>
 
