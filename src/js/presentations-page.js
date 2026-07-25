@@ -328,10 +328,44 @@
       uniquePush(routeTags, "route:puheenvuorot");
     }
 
+    if (!routeTags.length && item.archiveType === "own") {
+      if (has(/teacher education|opettajankoulutus|opettaj|pedagog|opetus|oppiminen|learning|education|kurssi|luento|workshop|mobiilioppiminen|multimedia|social media|teknologiatuettu/)) {
+        uniquePush(routeTags, "route:koulutukset");
+      } else {
+        uniquePush(routeTags, "route:puheenvuorot");
+      }
+    }
+
+    let routePrimary = "";
+    if (item.archiveType !== "analysis") {
+      if (
+        categoryTags.includes("konferenssi-keynote") ||
+        categoryTags.includes("kansainvälinen-konferenssi")
+      ) {
+        routePrimary = "route:puheenvuorot";
+      } else if (
+        categoryTags.includes("täydennyskoulutus") ||
+        categoryTags.includes("webinaari") ||
+        categoryTags.includes("hanke-esittely") ||
+        categoryTags.includes("tdk-luento")
+      ) {
+        routePrimary = "route:koulutukset";
+      } else if (item.archiveType === "video" || item.archiveType === "aoe") {
+        routePrimary = "route:materiaalit";
+      } else if (routeTags.includes("route:puheenvuorot")) {
+        routePrimary = "route:puheenvuorot";
+      } else if (routeTags.includes("route:koulutukset")) {
+        routePrimary = "route:koulutukset";
+      } else if (routeTags.includes("route:materiaalit")) {
+        routePrimary = "route:materiaalit";
+      }
+    }
+
     return {
       categoryTags,
       profileTags,
       routeTags,
+      routePrimary,
       primaryCategory: categoryTags[0] || ""
     };
   }
@@ -758,6 +792,7 @@
           categoryTags: taxonomy.categoryTags,
           profileTags: taxonomy.profileTags,
           routeTags: taxonomy.routeTags,
+          routePrimary: taxonomy.routePrimary,
           kategoria: item.kategoria || taxonomy.primaryCategory
         });
       });
@@ -773,6 +808,7 @@
         categoryTags: taxonomy.categoryTags,
         profileTags: taxonomy.profileTags,
         routeTags: taxonomy.routeTags,
+        routePrimary: taxonomy.routePrimary,
         kategoria: item.kategoria || taxonomy.primaryCategory
       });
     });
@@ -791,13 +827,13 @@
   function matchesPresentationFilter(item, filter) {
     if (!filter || filter === "all") return true;
     if (filter === "route:puheenvuorot") {
-      return Array.isArray(item.routeTags) && item.routeTags.includes(filter);
+      return item.routePrimary === filter;
     }
     if (filter === "route:koulutukset") {
-      return Array.isArray(item.routeTags) && item.routeTags.includes(filter);
+      return item.routePrimary === filter;
     }
     if (filter === "route:materiaalit") {
-      return Array.isArray(item.routeTags) && item.routeTags.includes(filter);
+      return item.routePrimary === filter;
     }
     if (["own", "aoe", "video", "analysis"].includes(filter)) return item.archiveType === filter;
     if (filter.startsWith("category:")) {
