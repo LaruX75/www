@@ -2,7 +2,7 @@
 title: "Opettaja tekoälyn ja -älyttömyyden turbulenssissa. Tampere 2025"
 description: "Konferenssiesitys Tampereella opettajan roolista tekoälyn aikakaudella — mahdollisuudet, riskit ja kriittiset äkökulmat."
 date: 2025-10-30
-url: "https://www.canva.com/d/lRZpuZC9RLomY4L"
+url: "https://www.canva.com/design/lRZpuZC9RLomY4L/view"
 thumbnail: "https://design.canva.ai/f_VroP01veWBfKy"
 categories: ["Tekoäly","Opettajuus","Konferenssi"]
 type: "esitys"
@@ -13,4 +13,4 @@ topics:
   - tekoalylukutaito
 ---
 
-Tämä on automaattisesti tuotu Canva-esitys. Voit katsoa esityksen suoraan [Canvassa tästä linkistä](https://www.canva.com/d/lRZpuZC9RLomY4L).
+Tämä on automaattisesti tuotu Canva-esitys. Voit katsoa esityksen suoraan [Canvassa tästä linkistä](https://www.canva.com/design/lRZpuZC9RLomY4L/view).

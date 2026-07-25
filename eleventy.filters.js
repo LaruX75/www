@@ -10,6 +10,7 @@ const councilMeetingAgendas = require("./src/_data/councilMeetingAgendas.json");
 const oukaCouncilSpeechProtocols = require("./src/_data/oukaCouncilSpeechProtocols");
 const councilMeetingYoutubeVideos = require("./src/_data/councilMeetingYoutubeVideos.json");
 const councilSpeechVideos = require("./src/_data/councilSpeechVideos.json");
+const { normalizeCanvaUrl } = require("./src/_data/canvaUrl");
 
 function getLangFromUrl(url) {
   return String(url || "").startsWith("/en/") ? "en" : "fi";
@@ -1083,6 +1084,10 @@ module.exports = function registerFilters(eleventyConfig) {
     const normalizedBase = (base || "").replace(/\/+$/, "");
     const normalizedUrl = String(url).startsWith("/") ? url : `/${url}`;
     return `${normalizedBase}${normalizedUrl}`;
+  });
+
+  eleventyConfig.addFilter("canvaPublicUrl", function (url) {
+    return normalizeCanvaUrl(url);
   });
 
   eleventyConfig.addFilter("langFromUrl", function (url) {

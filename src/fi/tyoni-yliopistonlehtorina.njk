@@ -313,7 +313,7 @@ templateEngineOverride: njk
                 <span class="ylwork-live-type">Lausunto</span>
                 <span class="ylwork-live-date">{{ item.date | dateFormat }}</span>
               </div>
-              <h4 class="ylwork-live-item-title"><a href="{{ item.data.url or item.url }}">{{ item.data.title }}</a></h4>
+              <h4 class="ylwork-live-item-title"><a href="{{ (item.data.url or item.url) | canvaPublicUrl }}">{{ item.data.title }}</a></h4>
               <p class="ylwork-live-summary mb-0">{{ item.data.description or (item.templateContent | excerpt) }}</p>
             </article>
             {% endfor %}

@@ -122,7 +122,7 @@ Jos kuntalaiset, luottamushenkilöt ja viranhaltijat katsovat samaa aineistoa, m
   <div class="ratio ratio-16x9 my-4">
     <iframe loading="lazy" src="https://www.canva.com/design/ZNeBoffbYLNc_O0/view?embed" allowfullscreen title="Palveluverkko 2023: reunaehtojen tarkastelua" sandbox="allow-scripts allow-same-origin allow-popups allow-presentation allow-forms"></iframe>
   </div>
-  <a class="btn btn-outline-primary" href="https://www.canva.com/d/ZNeBoffbYLNc_O0" target="_blank" rel="noopener noreferrer">
+  <a class="btn btn-outline-primary" href="https://www.canva.com/design/ZNeBoffbYLNc_O0/view" target="_blank" rel="noopener noreferrer">
     Avaa esitys Canvassa
     <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i>
   </a>

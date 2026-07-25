@@ -9,6 +9,7 @@ const sharp = require("sharp");
 const brokenLinksPlugin = require("eleventy-plugin-broken-links");
 const registerCollections = require("./eleventy.collections.js");
 const registerFilters = require("./eleventy.filters.js");
+const { rewriteCanvaUrlsInText } = require("./src/_data/canvaUrl");
 
 const SUPPORTED_LANGS = ["fi", "en"];
 const shouldCheckExternalLinks = process.env.CHECK_EXTERNAL_LINKS === "true";
@@ -118,6 +119,11 @@ function wrapExternalIframes(content) {
   });
 }
 
+function rewriteCanvaLinksInHtml(content) {
+  if (!content || !content.includes("canva.com/")) return content;
+  return rewriteCanvaUrlsInText(content);
+}
+
 function walkHtmlFiles(dir, files = []) {
   if (!fs.existsSync(dir)) return files;
   const entries = fs.readdirSync(dir, { withFileTypes: true });
@@ -212,7 +218,7 @@ module.exports = async function (eleventyConfig) {
     const htmlFiles = walkHtmlFiles(outputDir);
     htmlFiles.forEach((filePath) => {
       const original = fs.readFileSync(filePath, "utf8");
-      const updated = wrapExternalIframes(original);
+      const updated = rewriteCanvaLinksInHtml(wrapExternalIframes(original));
       if (updated !== original) {
         fs.writeFileSync(filePath, updated, "utf8");
       }

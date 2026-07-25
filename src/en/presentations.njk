@@ -31,7 +31,7 @@ lang: en
       keywords: item.data.keywords or []
     }), null) %}
   {% elif item.data.url and "canva.com" in item.data.url %}
-    {% set _ = (canvaPageUrls.push({ externalUrl: item.data.url, pageUrl: item.url }), null) %}
+    {% set _ = (canvaPageUrls.push({ externalUrl: item.data.url | canvaPublicUrl, pageUrl: item.url }), null) %}
   {% endif %}
 {% endfor %}
 

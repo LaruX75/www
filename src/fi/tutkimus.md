@@ -369,7 +369,7 @@ schemaMentions:
             <article class="card border-0 shadow-sm h-100">
               <div class="card-body p-4 d-flex flex-column">
                 <p class="small text-uppercase text-muted fw-semibold mb-2">Lausunto</p>
-                <h3 class="h6 fw-bold mb-2"><a class="text-decoration-none stretched-link" href="{{ item.data.url or item.url }}">{{ item.data.title }}</a></h3>
+                <h3 class="h6 fw-bold mb-2"><a class="text-decoration-none stretched-link" href="{{ (item.data.url or item.url) | canvaPublicUrl }}">{{ item.data.title }}</a></h3>
                 <p class="text-muted small mb-0">{{ item.data.description or (item.templateContent | excerpt) }}</p>
               </div>
             </article>
