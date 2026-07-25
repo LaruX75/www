@@ -2,7 +2,7 @@
 layout: base.njk
 ---
 {% set currentLang = lang or (page.url | langFromUrl) %}
-{% set sourceHref = sourceUrl or url %}
+{% set sourceHref = publicUrl or sourceUrl or url %}
 {% set publicSourceHref = sourceHref %}
 {% if sourceHref and "canva.com" in sourceHref %}
   {% set publicSourceHref = sourceHref | canvaPublicUrl %}

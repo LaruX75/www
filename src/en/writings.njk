@@ -8,13 +8,13 @@ lang: en
 ---
 {% set uniqueMaterialKeys = [] %}
 {% for row in (canva.tableRows or []) %}
-  {% set key = (row.url or row.title or ('canva-' ~ loop.index)) %}
+  {% set key = (row.sourceUrl or row.url or row.pageUrl or row.title or ('canva-' ~ loop.index)) %}
   {% if key and (key not in uniqueMaterialKeys) %}
     {% set uniqueMaterialKeys = uniqueMaterialKeys.concat([key]) %}
   {% endif %}
 {% endfor %}
 {% for item in (collections.presentations or []) %}
-  {% set key = (item.data.url or item.url or item.fileSlug or ('slideshare-' ~ loop.index)) %}
+  {% set key = (item.data.sourceUrl or item.data.url or item.url or item.fileSlug or ('slideshare-' ~ loop.index)) %}
   {% if key and (key not in uniqueMaterialKeys) %}
     {% set uniqueMaterialKeys = uniqueMaterialKeys.concat([key]) %}
   {% endif %}

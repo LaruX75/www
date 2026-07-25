@@ -8,13 +8,13 @@ translationKey: home
 
 {% set uniquePresentationKeys = [] %}
 {% for item in ((canva and canva.tableRows) or []) %}
-  {% set key = ((item.url or "") ~ "|" ~ (item.title or "")) | trim %}
+  {% set key = ((item.sourceUrl or item.url or item.pageUrl or "") ~ "|" ~ (item.title or "")) | trim %}
   {% if key != "|" and (uniquePresentationKeys.indexOf(key) == -1) %}
     {% set _ = (uniquePresentationKeys.push(key), null) %}
   {% endif %}
 {% endfor %}
 {% for item in (collections.presentations or []) %}
-  {% set key = (((item.data and item.data.url) or "") ~ "|" ~ ((item.data and item.data.title) or "")) | trim %}
+  {% set key = ((((item.data and (item.data.sourceUrl or item.data.url or item.url)) or "") ~ "|" ~ ((item.data and item.data.title) or ""))) | trim %}
   {% if key != "|" and (uniquePresentationKeys.indexOf(key) == -1) %}
     {% set _ = (uniquePresentationKeys.push(key), null) %}
   {% endif %}
@@ -207,7 +207,8 @@ translationKey: home
                         <p class="home-focus-proof-label">Tuoreita nostoja</p>
                         <div class="home-focus-proof-list">
                             {% for row in featuredPresentationRows %}
-                            <a href="{{ row.url }}" target="_blank" rel="noopener noreferrer" class="home-focus-proof-item">
+                            {% set rowHref = row.url or row.pageUrl or "/esitykset/" %}
+                            <a href="{{ rowHref }}"{% if row.url and row.url == rowHref %} target="_blank" rel="noopener noreferrer"{% endif %} class="home-focus-proof-item">
                                 <span class="home-focus-proof-date">{{ row.date | dateFormat }}</span>
                                 <strong>{{ row.title }}</strong>
                                 <span>{{ row.location or "Esitys tai koulutus" }}</span>

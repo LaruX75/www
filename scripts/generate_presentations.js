@@ -164,13 +164,13 @@ data.forEach(item => {
     const filename = `${safeTitle}.md`;
     const filepath = path.join(dir, filename);
 
-    const publicUrl = normalizeCanvaUrl(item.url);
+    const publicUrl = normalizeCanvaUrl(item.publicUrl || item.url);
     const content = `---
 title: "${item.title.replace(/"/g, '\\"')}"
 description: "${item.description.replace(/"/g, '\\"')}"
 date: ${item.date}
 url: "${item.url}"
-thumbnail: "${item.thumbnail}"
+${publicUrl ? `publicUrl: "${publicUrl}"\n` : ""}thumbnail: "${item.thumbnail}"
 categories: ${JSON.stringify(item.categories)}
 type: "${item.type}"
 layout: base.njk

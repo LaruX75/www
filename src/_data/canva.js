@@ -1,17 +1,29 @@
 const presentations = require("./canva-presentations.json");
 const { loadHiddenIds } = require("./_curatedStubs");
 const { getCanvaDesignId, normalizeCanvaUrl } = require("./canvaUrl");
+const {
+  readLocalPresentationSources,
+  createCanvaPresentationLookup
+} = require("./presentationSources");
 
 module.exports = function () {
   const hidden = loadHiddenIds('canva');
+  const canvaLookup = createCanvaPresentationLookup(readLocalPresentationSources());
   const rows = presentations.map((item) => {
-    const id = getCanvaDesignId(item.link || "");
-    const url = normalizeCanvaUrl(item.link || "");
+    const sourceUrl = String(item.link || "").trim();
+    const publicUrl = normalizeCanvaUrl(item.publicUrl || sourceUrl);
+    const id = getCanvaDesignId(sourceUrl || publicUrl);
+    const localMatch = canvaLookup.get(id) || {};
+    const resolvedPublicUrl = publicUrl || localMatch.publicUrl || null;
+    const resolvedSourceUrl = sourceUrl || localMatch.sourceUrl || null;
     return {
       id,
       title: item.title || "Nimetön esitys",
       description: item.summary || "",
-      url: url || null,
+      url: resolvedPublicUrl,
+      publicUrl: resolvedPublicUrl,
+      sourceUrl: resolvedSourceUrl,
+      pageUrl: localMatch.pageUrl || null,
       thumbnail: item.thumbnail || null,
       date: item.date || item.publishedAt || item.createdAt || item.updatedAt || null,
       categories: Array.isArray(item.keywords) ? item.keywords : [],

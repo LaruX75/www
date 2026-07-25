@@ -9,13 +9,13 @@ permalink: /en/
 
 {% set uniquePresentationKeys = [] %}
 {% for item in ((canva and canva.tableRows) or []) %}
-  {% set key = ((item.url or "") ~ "|" ~ (item.title or "")) | trim %}
+  {% set key = ((item.sourceUrl or item.url or item.pageUrl or "") ~ "|" ~ (item.title or "")) | trim %}
   {% if key != "|" and (uniquePresentationKeys.indexOf(key) == -1) %}
     {% set _ = (uniquePresentationKeys.push(key), null) %}
   {% endif %}
 {% endfor %}
 {% for item in (collections.presentations or []) %}
-  {% set key = (((item.data and item.data.url) or "") ~ "|" ~ ((item.data and item.data.title) or "")) | trim %}
+  {% set key = ((((item.data and (item.data.sourceUrl or item.data.url or item.url)) or "") ~ "|" ~ ((item.data and item.data.title) or ""))) | trim %}
   {% if key != "|" and (uniquePresentationKeys.indexOf(key) == -1) %}
     {% set _ = (uniquePresentationKeys.push(key), null) %}
   {% endif %}
@@ -161,7 +161,8 @@ permalink: /en/
                     </div>
                     <div class="home-overview-items mb-3">
                         {% for row in (canva.enRows or canva.tableRows or []) | take(3) %}
-                        <a href="{{ row.url }}" target="_blank" rel="noopener noreferrer" class="home-overview-item">
+                        {% set rowHref = row.url or row.pageUrl or "/en/presentations/" %}
+                        <a href="{{ rowHref }}"{% if row.url and row.url == rowHref %} target="_blank" rel="noopener noreferrer"{% endif %} class="home-overview-item">
                             <p class="home-overview-item-title">{{ row.title }}</p>
                             <p class="home-overview-item-meta">{% if row.location %}{{ row.location }} · {% endif %}{{ row.date | dateFormat }}</p>
                         </a>
@@ -273,7 +274,7 @@ permalink: /en/
 {% endfor %}
 
 {% for row in (canva.enRows or canva.tableRows or []) %}
-  {% set item = { sortTs: row.date | toTimestamp, type: "pres", dateLabel: row.date | dateFormat, title: row.title, href: row.url, desc: row.location, thumbnail: row.thumbnail, isExternal: true } %}
+  {% set item = { sortTs: row.date | toTimestamp, type: "pres", dateLabel: row.date | dateFormat, title: row.title, href: row.url or row.pageUrl or "/en/presentations/", desc: row.location, thumbnail: row.thumbnail, isExternal: (row.url and true) or false } %}
   {% set _ = (allRecentItems.push(item), null) %}
 {% endfor %}
 {% for row in (youtube.videos or []) %}

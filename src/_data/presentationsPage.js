@@ -1,9 +1,4 @@
-const fs = require("fs");
-const path = require("path");
-const yaml = require("js-yaml");
-const { getCanvaDesignId } = require("./canvaUrl");
-
-const PRESENTATIONS_DIR = path.join(__dirname, "..", "presentations");
+const { createCanvaPresentationLookup, readLocalPresentationSources } = require("./presentationSources");
 
 const CURATED_VIDEO_ITEMS = [
   {
@@ -123,54 +118,6 @@ function toArray(value) {
   return Array.isArray(value) ? value : [];
 }
 
-function walkPresentationFiles(dir, results = []) {
-  if (!fs.existsSync(dir)) return results;
-  for (const name of fs.readdirSync(dir)) {
-    const fullPath = path.join(dir, name);
-    const stat = fs.statSync(fullPath);
-    if (stat.isDirectory()) {
-      walkPresentationFiles(fullPath, results);
-    } else if (name.endsWith(".md")) {
-      results.push(fullPath);
-    }
-  }
-  return results;
-}
-
-function parsePresentationFile(filePath) {
-  const raw = fs.readFileSync(filePath, "utf8");
-  const match = raw.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
-  if (!match) return null;
-
-  let frontMatter;
-  try {
-    frontMatter = yaml.load(match[1]) || {};
-  } catch (_) {
-    return null;
-  }
-
-  const fileSlug = path.basename(filePath, ".md");
-  const body = String(match[2] || "").trim();
-  return {
-    title: frontMatter.title || "",
-    url: frontMatter.url || "",
-    thumbnail: frontMatter.thumbnail || "",
-    date: frontMatter.date || "",
-    description: frontMatter.description || body,
-    categories: frontMatter.categories || [],
-    keywords: frontMatter.keywords || [],
-    source: frontMatter.source || "",
-    pageUrl: `/presentations/${fileSlug}/`
-  };
-}
-
-function readLocalPresentationSources() {
-  return walkPresentationFiles(PRESENTATIONS_DIR)
-    .map(parsePresentationFile)
-    .filter(Boolean)
-    .sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")));
-}
-
 function sortByDateDesc(items, field = "_isoDate") {
   return [...toArray(items)].sort((a, b) => String(b?.[field] || "").localeCompare(String(a?.[field] || "")));
 }
@@ -191,13 +138,10 @@ function createSlideshareItems(presentations = []) {
 }
 
 function createCanvaPageUrls(presentations = []) {
-  return presentations
-    .filter((item) => item?.url && String(item.url).includes("canva.com"))
-    .map((item) => {
-      const id = getCanvaDesignId(item.url);
-      return id ? { id, pageUrl: item.pageUrl } : null;
-    })
-    .filter(Boolean);
+  return Array.from(createCanvaPresentationLookup(presentations), ([id, item]) => ({
+    id,
+    pageUrl: item.pageUrl || ""
+  })).filter((item) => item.id && item.pageUrl);
 }
 
 function countPresentationMaterials({
@@ -214,8 +158,8 @@ function countPresentationMaterials({
     if (key !== "|") keys.add(key);
   };
 
-  canvaRows.forEach((item) => add(item?.url, item?.title));
-  presentations.forEach((item) => add(item?.url, item?.title));
+  canvaRows.forEach((item) => add(item?.sourceUrl || item?.url || item?.pageUrl, item?.title));
+  presentations.forEach((item) => add(item?.sourceUrl || item?.url || item?.pageUrl, item?.title));
   aoeRows.forEach((item) => add(item?.url, item?.title));
   youtubeVideos.forEach((item) => add(item?.url, item?.title));
   curatedVideos.forEach((item) => add(item?.url || item?.externalUrl, item?.title));

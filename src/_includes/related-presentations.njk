@@ -54,9 +54,11 @@
 
   <ul class="list-unstyled related-presentations-list mb-0">
     {% for item in _showFeatured %}
+    {% set _href = item.url or item.pageUrl or _linkHref %}
+    {% set _isExternal = item.url and item.url == _href %}
     <li class="related-presentations-item{% if item.paakortti %} related-presentations-item--featured{% endif %}">
       {% if item.thumbnail %}
-      <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer" class="related-presentations-thumb" aria-hidden="true" tabindex="-1">
+      <a href="{{ _href }}"{% if _isExternal %} target="_blank" rel="noopener noreferrer"{% endif %} class="related-presentations-thumb" aria-hidden="true" tabindex="-1">
         <img src="{{ item.thumbnail }}" alt="" loading="lazy" decoding="async">
       </a>
       {% else %}
@@ -71,7 +73,7 @@
           {% if item.date %}<span class="text-muted small">{{ item.date | dateFormat }}</span>{% endif %}
         </div>
         <p class="related-presentations-title fw-semibold mb-1">
-          <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a>
+          <a href="{{ _href }}"{% if _isExternal %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ item.title }}</a>
         </p>
         {% if item.jarjestaja %}
         <p class="related-presentations-org text-muted small mb-1">{{ item.jarjestaja }}</p>
@@ -84,9 +86,11 @@
     {% endfor %}
 
     {% for item in _showOthers %}
+    {% set _href = item.url or item.pageUrl or _linkHref %}
+    {% set _isExternal = item.url and item.url == _href %}
     <li class="related-presentations-item">
       {% if item.thumbnail %}
-      <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer" class="related-presentations-thumb" aria-hidden="true" tabindex="-1">
+      <a href="{{ _href }}"{% if _isExternal %} target="_blank" rel="noopener noreferrer"{% endif %} class="related-presentations-thumb" aria-hidden="true" tabindex="-1">
         <img src="{{ item.thumbnail }}" alt="" loading="lazy" decoding="async">
       </a>
       {% else %}
@@ -101,7 +105,7 @@
           {% if item.date %}<span class="text-muted small">{{ item.date | dateFormat }}</span>{% endif %}
         </div>
         <p class="related-presentations-title fw-semibold mb-1">
-          <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a>
+          <a href="{{ _href }}"{% if _isExternal %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ item.title }}</a>
         </p>
         {% if item.jarjestaja %}
         <p class="related-presentations-org text-muted small mb-1">{{ item.jarjestaja }}</p>
