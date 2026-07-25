@@ -903,7 +903,7 @@ schemaMentions:
   }
   .pol-topic-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
   }
   .pol-topic-card {
@@ -1424,6 +1424,7 @@ schemaMentions:
   }
   .pol-archive-links {
     display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.8rem;
   }
   .pol-archive-link {
@@ -1709,6 +1710,9 @@ schemaMentions:
     }
     .pol-topic-card {
       padding: 1.05rem;
+    }
+    .pol-archive-links {
+      grid-template-columns: 1fr;
     }
     .pol-mobile-disclosure {
       display: block;
