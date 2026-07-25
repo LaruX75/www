@@ -856,6 +856,48 @@
     });
   }
 
+  function describePresentationFilter(filter) {
+    const labels = {
+      all: { label: "Kaikki aineistot", note: "" },
+      "route:puheenvuorot": { label: "Puheenvuorot", note: "Pääreitti käyttää ensisijaista reittiluokitusta." },
+      "route:koulutukset": { label: "Koulutukset", note: "Pääreitti käyttää ensisijaista reittiluokitusta." },
+      "route:materiaalit": { label: "Videot ja materiaalit", note: "Pääreitti käyttää ensisijaista reittiluokitusta." },
+      own: { label: "Omat esitykset", note: "" },
+      aoe: { label: "Avoimet oppimateriaalit", note: "" },
+      video: { label: "Videot", note: "" },
+      analysis: { label: "Analyysit", note: "" }
+    };
+    if (labels[filter]) return labels[filter];
+
+    if (filter.startsWith("category:")) {
+      const suffix = filter.slice("category:".length);
+      const categoryLabels = {
+        "konferenssi-keynote": "Keynotet",
+        "kansainvälinen-konferenssi": "Kansainväliset konferenssit",
+        "täydennyskoulutus": "Täydennyskoulutukset",
+        "tdk-luento": "Yliopistoluennot",
+        "webinaari": "Webinaarit"
+      };
+      return { label: categoryLabels[suffix] || suffix, note: "Suodatus perustuu aineistolle annettuihin tai johdettuihin kategorioihin." };
+    }
+
+    if (filter.startsWith("profile:")) {
+      const suffix = filter.slice("profile:".length);
+      const profileLabels = {
+        kouluttaja: "Kouluttaja",
+        tutkija: "Tutkija",
+        asiantuntija: "Asiantuntija"
+      };
+      return { label: profileLabels[suffix] || suffix, note: "Suodatus perustuu asiantuntijaprofiiliin." };
+    }
+
+    if (filter.startsWith("context:")) {
+      return { label: filter.slice("context:".length), note: "Suodatus perustuu sivuyhteyteen." };
+    }
+
+    return { label: "Valittu suodatus", note: "" };
+  }
+
   function renderUnifiedArchive(items, filter, page) {
     const grid = document.getElementById("presentation-unified-archive");
     const status = document.getElementById("presentation-unified-status");
@@ -867,13 +909,16 @@
     const safePage = Math.min(Math.max(page, 1), pageCount);
     const start = (safePage - 1) * UNIFIED_PAGE_SIZE;
     const pageItems = filtered.slice(start, start + UNIFIED_PAGE_SIZE);
+    const filterInfo = describePresentationFilter(filter || "all");
 
-    status.textContent = filtered.length === 1
-      ? "Näytetään 1 aineisto."
-      : `Näytetään ${filtered.length} aineistoa.`;
+    status.innerHTML = `
+      <span class="presentation-archive-status-badge">${escHtml(filterInfo.label)}</span>
+      <span>${filtered.length === 1 ? "Näytetään 1 aineisto." : `Näytetään ${filtered.length} aineistoa.`}</span>
+      ${filterInfo.note ? `<small>${escHtml(filterInfo.note)}</small>` : ""}
+    `;
 
     if (!pageItems.length) {
-      grid.innerHTML = '<p class="text-muted mb-0">Tästä ryhmästä ei löytynyt aineistoa.</p>';
+      grid.innerHTML = `<p class="text-muted mb-0">Suodatuksella “${escHtml(filterInfo.label)}” ei löytynyt aineistoa.</p>`;
       pagination.innerHTML = "";
       return;
     }
