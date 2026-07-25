@@ -24,7 +24,7 @@ jobs:
         run: npm ci
 
       - name: Cache API fallback data
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: .cache/api-fallback
           key: api-fallback-${{ runner.os }}-${{ github.run_id }}

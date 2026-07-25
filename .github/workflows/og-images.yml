@@ -27,7 +27,7 @@ jobs:
           cache: "npm"
       - run: npm ci
       - name: Restore OG image cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: og-cache
           key: og-cache-${{ runner.os }}-${{ github.sha }}
