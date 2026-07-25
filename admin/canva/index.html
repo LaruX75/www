@@ -436,7 +436,7 @@ function getCanvaDesignId(url) {
   if (!value) return '';
   try {
     const parsed = new URL(value);
-    if (!/^www\\.canva\\.com$/i.test(parsed.hostname)) return '';
+    if (!/^www\.canva\.com$/i.test(parsed.hostname)) return '';
     const parts = parsed.pathname.split('/').filter(Boolean);
     if (parts[0] === 'd' && parts[1]) return parts[1];
     if (parts[0] === 'design' && parts[1]) return parts[1];
@@ -451,11 +451,16 @@ function normalizeCanvaPublicUrl(url) {
   if (!value) return '';
   try {
     const parsed = new URL(value);
-    if (/^canva\\.link$/i.test(parsed.hostname)) return value;
-    if (!/^www\\.canva\\.com$/i.test(parsed.hostname)) return '';
+    if (/^canva\.link$/i.test(parsed.hostname)) return value;
+    if (!/^www\.canva\.com$/i.test(parsed.hostname)) return '';
+
     const parts = parsed.pathname.split('/').filter(Boolean);
-    if (parts[0] === 'design' && parts[1] && parts[2] && !['view', 'edit'].includes(parts[2])) {
-      return `https://www.canva.com/design/${parts[1]}/${parts[2]}/view`;
+    if (parts[0] === 'design' && parts[1] && parts[2]) {
+      const designId = parts[1];
+      const maybeShareId = parts[2];
+      if (maybeShareId && !['view', 'edit'].includes(maybeShareId)) {
+        return `https://www.canva.com/design/${designId}/${maybeShareId}/view`;
+      }
     }
   } catch (_) {
     return '';
