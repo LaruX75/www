@@ -109,9 +109,9 @@ module.exports = [
     lead: "Julkinen asiantuntijuus mediassa kokoaa haastattelut, podcastit, videot ja asiantuntijatehtävät, joissa työ näkyy oman sivuston ulkopuolella.",
     context: "Mediassa-osio ei ole sama asia kuin oma kirjoittaminen tai omat esitykset. Tämä teema näyttää, missä minua on haastateltu, missä olen esiintynyt asiantuntijana ja missä olen toiminut keskustelun avaajana tai haastattelijana.",
     promise: "Sivu auttaa löytämään julkiset esiintymiset ja asiantuntijaroolit yhdestä paikasta.",
-    categories: ["asiantuntijatehtävät", "tekoäly", "yliopisto-ja-korkeakoulut"],
-    keywords: ["podcast", "video", "haastattelu", "mediassa", "asiantuntija", "youtube"],
-    contexts: ["media", "education", "research"],
+    categories: ["asiantuntijatehtävät"],
+    keywords: ["podcast", "haastattelu", "youtube"],
+    contexts: ["media"],
     primaryLinks: [
       { label: "Mediassa", href: "/mediassa/" },
       { label: "Esitykset", href: "/esitykset/" },
