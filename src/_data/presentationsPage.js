@@ -1,0 +1,277 @@
+const fs = require("fs");
+const path = require("path");
+const yaml = require("js-yaml");
+const { getCanvaDesignId } = require("./canvaUrl");
+
+const PRESENTATIONS_DIR = path.join(__dirname, "..", "presentations");
+
+const CURATED_VIDEO_ITEMS = [
+  {
+    title: "ITK-avauksen tallenne: Työkalu? Taikakalu?",
+    url: "https://www.youtube.com/watch?v=0cJ0Ed3Scs4&t=5s",
+    externalUrl: "https://www.youtube.com/watch?v=0cJ0Ed3Scs4&t=5s",
+    thumbnail: "https://i.ytimg.com/vi/0cJ0Ed3Scs4/hqdefault.jpg",
+    date: "2026-04-26",
+    badgeText: "ITK-avauksen videotallenne",
+    listText: "Avauspuheenvuoro koulutusteknologia-alan päätapahtumassa",
+    description: "Avauspuheenvuoro maamme merkittävimmässä koulutusteknologia-alan tapahtumassa. Puhe käsittelee tekoälyn roolia työssä, koulussa ja kotona kognitiivisena työkaluna.",
+    sourceLabel: "YouTube / keynote",
+    external: true
+  },
+  {
+    title: "Oululaisia lapsia ja nuoria koskevien tilastotietojen tarkastelua",
+    url: "https://www.youtube.com/watch?v=7EXB54VvlsU&t=2s",
+    externalUrl: "https://www.youtube.com/watch?v=7EXB54VvlsU&t=2s",
+    thumbnail: "https://i.ytimg.com/vi/7EXB54VvlsU/hqdefault.jpg",
+    date: "2026-01-19",
+    badgeText: "Asiantuntijavideo",
+    listText: "Palveluverkkokeskustelun 2026 tausta-aineisto",
+    description: "Asiantuntijavideo Oulun palveluverkkokeskusteluun: lasten ja nuorten tilastotietoja päätösten pohjaksi ja vaikutusten arvioimiseksi.",
+    sourceLabel: "YouTube / politiikka",
+    external: true
+  },
+  {
+    title: "Kuinka Generatiivinen tekoäly toimii? Pieni kielikone on vastaus tähän kysymykseen!",
+    url: "https://www.youtube.com/watch?v=RyItZto47t8",
+    externalUrl: "https://www.youtube.com/watch?v=RyItZto47t8",
+    thumbnail: "https://i.ytimg.com/vi/RyItZto47t8/maxresdefault.jpg",
+    date: "2025-10-21",
+    badgeText: "Webinaaritallenne",
+    listText: "Generation AI: Pieni kielikone havainnollistaa tekoälyä",
+    description: "Webinaaritallenne 21.10.2025. Jari Laru esittelee Generation AI -hankkeen kehittämän pienen kielikoneen, joka havainnollistaa kuinka generatiivinen tekoäly toimii.",
+    sourceLabel: "YouTube / webinaari",
+    external: true
+  },
+  {
+    title: "Generation AI: Selitettävä tekoäly, mitä se on ja miksi se on tärkeä huomioida opetuksessa?",
+    url: "https://www.youtube.com/watch?v=q2K04VmN3sQ",
+    externalUrl: "https://www.youtube.com/watch?v=q2K04VmN3sQ",
+    thumbnail: "https://i.ytimg.com/vi/q2K04VmN3sQ/maxresdefault.jpg",
+    date: "2025-03-11",
+    badgeText: "Webinaaritallenne",
+    listText: "Generation AI: Selitettävä tekoäly opetuksessa",
+    description: "Webinaaritallenne 11.3.2025. Jari Laru esittelee selitettävän tekoälyn käsitteen ja Generation AI -hankkeessa kehitettyjä tekoälytaitojen opetustyökaluja.",
+    sourceLabel: "YouTube / webinaari",
+    external: true
+  },
+  {
+    title: "ITK-webinaari: Miten opetan tekoälyä oppilaille? Generation AI",
+    url: "https://www.youtube.com/watch?v=U4iFFFY3rhM",
+    externalUrl: "https://www.youtube.com/watch?v=U4iFFFY3rhM",
+    thumbnail: "https://i.ytimg.com/vi/U4iFFFY3rhM/maxresdefault.jpg",
+    date: "2024-04-02",
+    badgeText: "ITK-webinaaritallenne",
+    listText: "Tekoälyn opettaminen oppilaille - Generation AI -ratkaisu",
+    description: "ITK-webinaaritallenne 2.4.2024. Jari Laru esittelee Generation AI -hankkeen tutkimusperustaisen ratkaisun tekoälyn opettamiseen oppilaille.",
+    sourceLabel: "YouTube / ITK-webinaari",
+    external: true
+  },
+  {
+    title: "ITK-webinaari: Generation AI - kyberturvallisen ajattelutavan opettaminen tekoälysukupolvelle",
+    url: "https://www.youtube.com/watch?v=fcDjAZZZs4U",
+    externalUrl: "https://www.youtube.com/watch?v=fcDjAZZZs4U",
+    thumbnail: "https://i.ytimg.com/vi/fcDjAZZZs4U/maxresdefault.jpg",
+    date: "2023-03-28",
+    badgeText: "ITK-webinaaritallenne",
+    listText: "Generation AI: Kyberturvallinen ajattelutapa tekoälysukupolvelle",
+    description: "ITK-webinaaritallenne 28.3.2023. Jari Laru, Matti Tedre ja Henriikka Vartiainen esittelevät kyberturvallisuus- ja tekoälykasvatuksen haasteita ja ratkaisuja.",
+    sourceLabel: "YouTube / ITK-webinaari",
+    external: true
+  }
+];
+
+const VIDEO_SERIES_ITEMS = [
+  {
+    title: "Jari Larun verkkolive",
+    url: "/2020/03/12/jari-larun-verkkolive/",
+    externalUrl: "https://www.youtube.com/playlist?list=PLDG0jxUrk8z19_ThqBiynpYG4g-mjwgpt",
+    thumbnail: "/img/uploads/2021/01/verkkolive.jpg",
+    date: "2020-03-12",
+    itemCount: 10,
+    badgeText: "10 jakson haastattelusarja",
+    listText: "10 jakson oma haastattelusarja",
+    description: "Koronakevään 2020 haastattelusarja, jossa Jari Laru keskusteli suomalaisten opettajien ja koulutusteknologian asiantuntijoiden kanssa etäopetuksen arjesta.",
+    sourceLabel: "YouTube / oma sarja"
+  },
+  {
+    title: "Larun laitenurkka: opetusteknologia läpivalaisussa",
+    url: "https://www.youtube.com/playlist?list=PLDG0jxUrk8z2E7S2ggyzt0bIBXiDEgXob",
+    externalUrl: "https://www.youtube.com/playlist?list=PLDG0jxUrk8z2E7S2ggyzt0bIBXiDEgXob",
+    thumbnail: "https://i.ytimg.com/vi/KXr7AQqOzMQ/hqdefault.jpg",
+    date: "",
+    badgeText: "Opetusteknologian videosarja",
+    listText: "Oma videosarja opetusteknologian välineistä",
+    description: "Videosarja, jossa opetusteknologian välineitä tarkastellaan käytön, pedagogiikan ja arjen opetustyön näkökulmasta.",
+    sourceLabel: "YouTube / oma sarja",
+    external: true
+  },
+  {
+    title: "Larun pikkuvinkit",
+    url: "https://www.youtube.com/playlist?list=PLDG0jxUrk8z3VEOjIFb_q0vdJW6-2oOgY",
+    externalUrl: "https://www.youtube.com/playlist?list=PLDG0jxUrk8z3VEOjIFb_q0vdJW6-2oOgY",
+    thumbnail: "https://i.ytimg.com/vi/hCZ9lgODkes/hqdefault.jpg",
+    date: "",
+    badgeText: "Lyhyiden vinkkien videosarja",
+    listText: "Käytännön vinkkejä opetusteknologian ja digityökalujen arkeen",
+    description: "Lyhyiden vinkkivideoiden sarja opetusteknologian, digityökalujen ja käytännön opetustyön tueksi.",
+    sourceLabel: "YouTube / oma sarja",
+    external: true
+  }
+];
+
+function toArray(value) {
+  return Array.isArray(value) ? value : [];
+}
+
+function walkPresentationFiles(dir, results = []) {
+  if (!fs.existsSync(dir)) return results;
+  for (const name of fs.readdirSync(dir)) {
+    const fullPath = path.join(dir, name);
+    const stat = fs.statSync(fullPath);
+    if (stat.isDirectory()) {
+      walkPresentationFiles(fullPath, results);
+    } else if (name.endsWith(".md")) {
+      results.push(fullPath);
+    }
+  }
+  return results;
+}
+
+function parsePresentationFile(filePath) {
+  const raw = fs.readFileSync(filePath, "utf8");
+  const match = raw.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
+  if (!match) return null;
+
+  let frontMatter;
+  try {
+    frontMatter = yaml.load(match[1]) || {};
+  } catch (_) {
+    return null;
+  }
+
+  const fileSlug = path.basename(filePath, ".md");
+  const body = String(match[2] || "").trim();
+  return {
+    title: frontMatter.title || "",
+    url: frontMatter.url || "",
+    thumbnail: frontMatter.thumbnail || "",
+    date: frontMatter.date || "",
+    description: frontMatter.description || body,
+    categories: frontMatter.categories || [],
+    keywords: frontMatter.keywords || [],
+    source: frontMatter.source || "",
+    pageUrl: `/presentations/${fileSlug}/`
+  };
+}
+
+function readLocalPresentationSources() {
+  return walkPresentationFiles(PRESENTATIONS_DIR)
+    .map(parsePresentationFile)
+    .filter(Boolean)
+    .sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")));
+}
+
+function sortByDateDesc(items, field = "_isoDate") {
+  return [...toArray(items)].sort((a, b) => String(b?.[field] || "").localeCompare(String(a?.[field] || "")));
+}
+
+function createSlideshareItems(presentations = []) {
+  return presentations
+    .filter((item) => item?.source === "slideshare")
+    .map((item) => ({
+      title: item.title,
+      url: item.url,
+      pageUrl: item.pageUrl,
+      thumbnail: item.thumbnail,
+      date: item.date,
+      description: item.description || "",
+      categories: item.categories || [],
+      keywords: item.keywords || []
+    }));
+}
+
+function createCanvaPageUrls(presentations = []) {
+  return presentations
+    .filter((item) => item?.url && String(item.url).includes("canva.com"))
+    .map((item) => {
+      const id = getCanvaDesignId(item.url);
+      return id ? { id, pageUrl: item.pageUrl } : null;
+    })
+    .filter(Boolean);
+}
+
+function countPresentationMaterials({
+  canvaRows = [],
+  presentations = [],
+  aoeRows = [],
+  youtubeVideos = [],
+  curatedVideos = [],
+  videoSeries = []
+}) {
+  const keys = new Set();
+  const add = (url, title) => {
+    const key = `${String(url || "").trim()}|${String(title || "").trim()}`;
+    if (key !== "|") keys.add(key);
+  };
+
+  canvaRows.forEach((item) => add(item?.url, item?.title));
+  presentations.forEach((item) => add(item?.url, item?.title));
+  aoeRows.forEach((item) => add(item?.url, item?.title));
+  youtubeVideos.forEach((item) => add(item?.url, item?.title));
+  curatedVideos.forEach((item) => add(item?.url || item?.externalUrl, item?.title));
+  videoSeries.forEach((item) => add(item?.url || item?.externalUrl, item?.title));
+
+  return keys.size;
+}
+
+function countFeedbackRefs(items = []) {
+  const ids = new Set();
+  items.forEach((context) => {
+    toArray(context?.feedbackIds).forEach((feedbackId) => {
+      if (feedbackId) ids.add(feedbackId);
+    });
+  });
+  return ids.size;
+}
+
+function buildPresentationsPageModel(data = {}) {
+  const presentations = readLocalPresentationSources();
+  const contextItems = sortByDateDesc(data.presentationContexts?.items || [], "date");
+  const curatedVideos = CURATED_VIDEO_ITEMS.map((item) => ({ ...item }));
+  const videoSeries = VIDEO_SERIES_ITEMS.map((item) => ({ ...item }));
+  const slideshareItems = createSlideshareItems(presentations);
+  const canvaPageUrls = createCanvaPageUrls(presentations);
+
+  return {
+    ssDataItems: slideshareItems,
+    canvaPageUrls,
+    curatedVideoItems: curatedVideos,
+    videoSeriesItems: videoSeries,
+    videoContentCount: toArray(data.youtube?.videos).length + curatedVideos.length + videoSeries.length,
+    presentationAnalysisCount: 2,
+    presentationMaterialTotal: countPresentationMaterials({
+      canvaRows: toArray(data.canva?.tableRows),
+      presentations,
+      aoeRows: toArray(data.finnaAoe?.rows),
+      youtubeVideos: toArray(data.youtube?.videos),
+      curatedVideos,
+      videoSeries
+    }),
+    presentationContextItems: contextItems,
+    presentationContextFeedbackTotal: countFeedbackRefs(contextItems),
+    highlightedContextItems: contextItems.slice(0, 4),
+    rawData: {
+      aoe: toArray(data.finnaAoe?.rows),
+      canva: toArray(data.canva?.tableRows),
+      curatedVideos,
+      videoSeries,
+      youtubeVideos: toArray(data.youtube?.videos),
+      youtube: toArray(data.youtube?.tableRows),
+      slideshare: slideshareItems
+    }
+  };
+}
+
+module.exports = {
+  buildPresentationsPageModel
+};
