@@ -538,6 +538,13 @@ module.exports = {
           heading: "Päälinjat",
           links: [
             {
+              title: "Sivistys ja koulutus",
+              href: "/politiikka/sivistys-ja-koulutus/",
+              icon: "bi bi-mortarboard-fill me-2",
+              menuLink: true,
+              description: "Perusopetus, sivistyslautakunta, opettajankoulutus ja tekoäly opetuksessa — aikajana ja perustelut."
+            },
+            {
               title: "Kampus, Raksila ja Linnanmaa",
               href: "/politiikka/kampus-raksila-linnanmaa/",
               icon: "bi bi-building-fill me-2",

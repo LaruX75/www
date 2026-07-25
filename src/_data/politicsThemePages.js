@@ -251,23 +251,58 @@ module.exports = [
       },
       {
         year: "2023",
-        title: "Tilastojen ja tietolähteiden kriittinen lukeminen",
-        text: "Kirjoituksissa toistuu tapa tarkistaa, mistä luvut tulevat ja mitä niistä voi päätellä. Tämä on samaa poliittista profiilia kuin palveluverkon dataperustainen tarkastelu.",
+        title: "Avoin data ja tilastojen kriittinen lukeminen",
+        text: "Vuoden kirjoituksissa toistuu tapa tarkistaa, mistä luvut tulevat ja mitä niistä voi päätellä. Avoin data on hyödytön ilman lukijoita — ympäristöluvat, tilastot ja tietonäkymät vaativat kykyä tulkita, ei vain julkaista.",
         links: [
           {
             label: "Tilasto ei riitä, jos rajaukset eivät näy",
             href: "/2023/08/20/tilasto-ei-riita-jos-rajaukset-eivat-nay/"
+          },
+          {
+            label: "Ympäristöluvat näyttävät, miksi avoin data tarvitsee lukijoita",
+            href: "/2023/09/02/ymparistoluvat-nayttavat-miksi-avoin-data-tarvitsee-lukijoita/"
+          },
+          {
+            label: "Vihreän siirtymän investoinnit tarvitsevat avoimet tietonäkymät",
+            href: "/2023/08/29/vihrean-siirtyman-investoinnit-tarvitsevat-avoimet-tietonakymat/"
+          },
+          {
+            label: "KALEVA Mielipide: Mihin poliittiset päätökset perustuvat?",
+            href: "/2023/04/18/kaleva-mielipide-mihin-poliittiset-paatokset-perustuvat-ongelmaksi-esimerkiksi-oulun-kouluve/"
           }
         ]
       },
       {
-        year: "2024",
-        title: "Aloitteet, ohjelmat ja julkinen tietopohja",
-        text: "Avoimuus näkyy sekä valtuustoaloitteissa että laajemmissa ohjelma- ja lausuntoprosesseissa: päätöksenteon aineistojen pitää olla nähtävissä ennen kuin linjaukset lukkiutuvat.",
+        year: "2024 alkupuoli",
+        title: "Case-esimerkit valmistelun avoimuudesta",
+        text: "Konkreettiset kaavoitus- ja tilahankkeet nostivat esiin kysymyksen, milloin valmistelu on aidosti läpinäkyvää ja milloin päätökset lukkiutuvat ennen kuin luottamushenkilöt tai kuntalaiset ovat nähneet perusteet.",
+        links: [
+          {
+            label: "Puheenvuoro § 24: Kansalaisten kuuleminen Terwa Towerin kaavoituksessa",
+            href: "/2024/03/18/puheenvuoro-valtuustossa-terwa-tower-kansalaisten-kuuleminen/"
+          },
+          {
+            label: "Puheenvuoro § 24: Museo- ja tiedekeskuksen suunnitteluprosessi",
+            href: "/2024/03/18/puheenvuoro-valtuustossa-museo-ja-tiedekeskuksen-suunnitteluprosessi/"
+          },
+          {
+            label: "Puheenvuoro § 24: Terwa Toweria ei pidä palauttaa valmisteluun",
+            href: "/2024/03/18/puheenvuoro-valtuustossa-terwa-tower-ei-palauteta-valmisteluun/"
+          }
+        ]
+      },
+      {
+        year: "2024 loppupuoli",
+        title: "Tietojohtaminen aloitteina ja työkaluina",
+        text: "Vuoden jälkipuolella avoimuus konkretisoitui työkalu- ja tietovarantokysymykseksi: julkinen tietojohtamisportaali on nostettava aloitteeksi, ja BI- sekä karttanäkymät on saatava yhtenäiseen käyttöön koko organisaatiossa.",
         links: [
           {
             label: "Valtuustoaloite julkisesta tietojohtamisportaalista",
             href: "/2024/02/26/valtuustoaloite-oulun-kaupungin-tulee-toteuttaa-julkinen-tietojohtamisportaali/"
+          },
+          {
+            label: "Tiedolla johtamiseen tarvitaan yhtenäisiä BI- ja karttanäkymiä",
+            href: "/2024/10/29/tiedolla-johtaminen-tarvitsee-yhteiset-nakymat/"
           },
           {
             label: "Pohjoisen Suomen ohjelma ansaitsee julkisen keskustelun",
@@ -277,8 +312,19 @@ module.exports = [
       },
       {
         year: "2025",
-        title: "Valmisteluprosessin toistuvat ongelmat",
-        text: "Kirjoitus kokoaa yhteen valmistelun, toimivallan ja luottamushenkilöiden tiedonsaannin ongelmia kunnallishallinnossa.",
+        title: "Palveluverkkoselvitys ja tietopohjan ajoitus",
+        text: "Palveluverkkoselvityksen käsittely nosti esiin kysymyksen siitä, milloin tietopohja on julkisesti nähtävillä. Päätökset eivät saa perustua sisäisen valmistelun lukuihin, joita luottamushenkilöt näkevät vasta äänestyshetkellä.",
+        links: [
+          {
+            label: "Palveluverkkoselvityksen tietopohjan pitää näkyä ajoissa",
+            href: "/2025/03/11/palveluverkkoselvityksen-tietopohjan-pitaa-nakya-ajoissa/"
+          }
+        ]
+      },
+      {
+        year: "2025 loppu",
+        title: "Valmisteluprosessin toistuvat rakenneongelmat",
+        text: "Loppuvuoden kirjoitus kokoaa yhteen valmistelun, toimivallan ja luottamushenkilöiden tiedonsaannin ongelmia kunnallishallinnossa — ne toistuvat rakenteellisesti riippumatta yksittäisistä asiakohdista.",
         links: [
           {
             label: "Toistuvia rakenteita: valmisteluprosessin ongelmat kunnallishallinnossa",
@@ -305,6 +351,125 @@ module.exports = [
     linkedTopic: {
       slug: "lapinakyva-paatoksenteko-ja-tiedolla-johtaminen",
       label: "Läpinäkyvä päätöksenteko ja tiedolla johtaminen"
+    }
+  },
+  {
+    key: "sivistys-ja-koulutus",
+    permalink: "/politiikka/sivistys-ja-koulutus/",
+    title: "Sivistys ja koulutus",
+    eyebrow: "Päälinja 4",
+    description: "Perusopetus, sivistyslautakunta, opettajankoulutus ja tekoälylukutaito kunnallis- ja kansallispolitiikassa.",
+    lead: "Sivistys on kaupungin perusinfra siinä missä katu tai vesijohto. Perusopetuksen laatu, opettajien osaaminen ja lasten oppiminen ovat kysymyksiä, joita on arvioitava koko kaupungin mittakaavassa ja pitkällä aikajanalla.",
+    principle: "Sivistyspalveluja pitää arvioida sivistyksen omalla logiikalla: oppimisen tuki, opettajien osaaminen ja lasten arki ratkaisevat, ei tila- tai talouslinjaus yksin.",
+    accent: "#d97706",
+    statLabel: "sivistyslautakunta",
+    statValue: "2021–",
+    profileLabels: [
+      "Sivistys ja oppiminen",
+      "Palveluverkko ja kaupunginosat",
+      "Avoin valmistelu ja tiedolla johtaminen"
+    ],
+    focus: [
+      "perusopetuksen laatu ja oppimisen tuki",
+      "sivistyslautakunnan päätöksenteko",
+      "tekoälylukutaito opetuksessa ja lainsäädännössä",
+      "opettajien osaaminen ja opettajankoulutus"
+    ],
+    timeline: [
+      {
+        year: "2022",
+        title: "Palveluverkon periaatteet sivistyksen näkökulmasta",
+        text: "Alkuvaiheen puheenvuoroissa palveluverkkoa arvioitiin sivistyksen ja lasten arjen kautta: lähikoulu- ja aluekouluperiaate kuuluvat palveluverkon valmisteluun, eivät ainoastaan talousraameihin.",
+        links: [
+          {
+            label: "Lähikoulu- ja aluekouluperiaate kuuluvat palveluverkon valmisteluun",
+            href: "/2022/02/06/lahikoulu-ja-aluekouluperiaate-kuuluvat-palveluverkon-valmisteluun/"
+          }
+        ]
+      },
+      {
+        year: "2023",
+        title: "Kouluverkon reunaehdot ja tietopohjan vaatimus",
+        text: "Vuoden aikana korostui, ettei kouluverkkoa voi mitoittaa ilman väestödataa ja että päätösten pitää perustua julkiseen tietopohjaan — ei valmisteluvaiheen sisäisiin lukuihin.",
+        links: [
+          {
+            label: "Kouluverkkoa ei voi mitoittaa ilman väestödataa",
+            href: "/2023/05/21/palveluverkko-2023-reunaehtojen-tarkastelua/"
+          },
+          {
+            label: "KALEVA Mielipide: Mihin poliittiset päätökset perustuvat?",
+            href: "/2023/04/18/kaleva-mielipide-mihin-poliittiset-paatokset-perustuvat-ongelmaksi-esimerkiksi-oulun-kouluve/"
+          }
+        ]
+      },
+      {
+        year: "2024",
+        title: "Sivistyksen johtaminen ja tilaresurssit valtuustotyössä",
+        text: "Valtuustopuheissa sivistyksen johtamisjärjestelmä, tilat ja resurssien kohdentaminen nousivat omaksi kokonaisuudekseen. Painopiste oli rakenteessa, joka tukee opetusta ja lasten arkea.",
+        links: [
+          {
+            label: "Puheenvuoro § 81: Sivistystoimen johtamisjärjestelmän uudistaminen",
+            href: "/2024/11/11/puheenvuoro-valtuustossa-sivistystoimen-johtamisjarjestelma/"
+          },
+          {
+            label: "Puheenvuoro § 58: Taidekoulun uudet tilat ja tilahankintojen päätöksenteko",
+            href: "/2024/09/09/puheenvuoro-valtuustossa-taidekoulu-tilat-ja-tilahankintojen-paatoksenteko/"
+          },
+          {
+            label: "Lausunto: Perusopetuslain muuttaminen — puhelimet ja mobiililaitteet",
+            href: "/2024/11/22/lausunto-perusopetuslain-muuttaminen-puhelimet-ja-mobiililaitteet/"
+          }
+        ]
+      },
+      {
+        year: "2025",
+        title: "Tekoäly opetuksessa lakina ja käytäntönä",
+        text: "Tekoälyn tulo opetukseen näkyi sekä valtioneuvostotasoisina lausuntoina että arjen ratkaisuina: lakimuutokset näkyvät koulun arjessa paikallisina päätöksinä, ja tekoälyn käyttö varhaiskasvatuksessa ja koulutuksessa vaatii selkeät lainsäädännölliset raamit.",
+        links: [
+          {
+            label: "Lausunto: Tekoäly varhaiskasvatuksessa ja koulutuksessa",
+            href: "/2025/02/05/lausunto-tekoaly-varhaiskasvatuksessa-ja-koulutuksessa/"
+          },
+          {
+            label: "Lakimuutokset näkyvät koulun arjessa paikallisina ratkaisuina",
+            href: "/2025/06/24/lakimuutokset-nakyvat-koulun-arjessa-paikallisina-ratkaisuina/"
+          },
+          {
+            label: "Palveluverkkoselvityksen tietopohjan pitää näkyä ajoissa",
+            href: "/2025/03/11/palveluverkkoselvityksen-tietopohjan-pitaa-nakya-ajoissa/"
+          }
+        ]
+      },
+      {
+        year: "2025–2026",
+        title: "Tekoälylukutaito politiikan ja opetuksen ytimessä",
+        text: "Tekoälylukutaidosta tuli sivistys- ja koulutuspolitiikan keskiö. Kansallinen viitekehys, palkitut oppimisratkaisut ja yleistajuinen materiaali tuovat aiheen kuntalaisen arkeen.",
+        links: [
+          {
+            label: "24 myyttiä tekoälystä ja datasta -joulukalenteri",
+            href: "/2025/12/24/24-myyttia-tekoalysta-ja-datasta-joulukalenteri/"
+          },
+          {
+            label: "Oulun yliopiston tutkijoita palkitussa tekoälylukutaidon oppimisratkaisussa",
+            href: "/2026/07/04/oulun-yliopiston-tutkijoita-mukana-palkitussa-tekoalylukutaidon-oppimisratkaisussa/"
+          }
+        ]
+      }
+    ],
+    evidenceNotes: [
+      "Aineisto yhdistää valtuustopuheita, lausuntoja OKM:lle ja eduskunnalle, blogitekstejä sekä mediahaastatteluja tekoälystä ja opetuksesta.",
+      "Sivistys näkyy sekä paikallispolitiikassa (sivistyslautakunta, kouluverkko) että kansallisessa lainsäädäntötyössä (lausunnot perusopetuslakiin ja tekoälysääntelyyn).",
+      "Ammattiroolin (opettajankouluttaja, tutkija) ja poliittisen roolin (sivistyslautakunta) välinen kytkös näkyy erityisesti tekoälylukutaidon kysymyksissä."
+    ],
+    editorialNote: "Kokonaisuus painottuu teksteihin, joissa sivistyslautakunnan työ, kouluverkon opetuksellinen näkökulma tai tekoälylukutaidon lainsäädäntö nousevat itsenäiseksi asiakysymykseksi. Puhtaasti ammatilliset esitykset ja pedagogiset materiaalit löytyvät teemaprofiileista.",
+    nextLinks: [
+      { label: "Sivistyslautakunta", href: "/politiikka/sivistyslautakunta/" },
+      { label: "Opettajankoulutus (teemaprofiili)", href: "/teemat/opettajankoulutus/" },
+      { label: "Tekoälylukutaito (teemaprofiili)", href: "/teemat/tekoalylukutaito/" }
+    ],
+    linkedTopic: {
+      slug: "opettajankoulutus",
+      label: "Opettajankoulutus ja opetuksen kehittäminen"
     }
   }
 ];

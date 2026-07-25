@@ -14,6 +14,9 @@ module.exports = [
       { label: "Tutkimus", href: "/tutkimus/" },
       { label: "Esitykset", href: "/esitykset/" },
       { label: "Lausunnot", href: "/kynasta/#lausunnot" }
+    ],
+    linkedPolitics: [
+      { href: "/politiikka/sivistys-ja-koulutus/", label: "Sivistys ja koulutus" }
     ]
   },
   {
@@ -31,6 +34,9 @@ module.exports = [
       { label: "Yliopistotyö", href: "/tyoni-yliopistonlehtorina/" },
       { label: "Kouluttaja", href: "/kouluttaja/" },
       { label: "Opetusportfolio", href: "/portfolio/" }
+    ],
+    linkedPolitics: [
+      { href: "/politiikka/sivistys-ja-koulutus/", label: "Sivistys ja koulutus" }
     ]
   },
   {
