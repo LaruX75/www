@@ -2040,11 +2040,15 @@ html:not([data-bs-theme="dark"]) .kynasta-hero {
 
 .topic-index-card {
   display: grid;
+  grid-template-rows: 1fr auto;
   min-height: 15rem;
   overflow: hidden;
 }
 
 .topic-index-card-body {
+  display: grid;
+  align-content: start;
+  gap: 0.5rem;
   padding: 1.1rem;
 }
 
