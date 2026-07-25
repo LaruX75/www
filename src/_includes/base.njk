@@ -68,6 +68,9 @@
   {% set resolvedOgImage = ogImageOverrideValue if ogImageOverrideValue else (_ogRaw if _ogRaw and _ogRaw != "null" else "/img/WIN_20210329_16_06_01_Pro.jpg") %}
   {% include "_meta.njk" %}
   {% include "_ldschema.njk" %}
+  {% for stylesheet in (pageStyles or []) %}
+  <link rel="stylesheet" href="{{ stylesheet }}">
+  {% endfor %}
 </head>
 <body>
   {% set currentLang = lang or (page.url | langFromUrl) %}
@@ -197,5 +200,8 @@
 
   <script src="/js/table-filters.js" defer></script>
   <script src="/js/a11y.js" defer></script>
+  {% for scriptPath in (pageScripts or []) %}
+  <script src="{{ scriptPath }}" defer></script>
+  {% endfor %}
 </body>
 </html>

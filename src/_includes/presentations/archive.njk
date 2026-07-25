@@ -1,0 +1,51 @@
+<section class="py-5 bg-body-tertiary border-top border-bottom" id="kaikki-esitykset" aria-labelledby="kaikki-esitykset-heading" data-presentation-mobile-priority="2">
+  <div class="site-shell">
+    <details class="presentation-mobile-disclosure" data-presentation-mobile-collapse open>
+      <summary class="presentation-mobile-disclosure-summary">
+        <span>Kaikki esitykset ja materiaalit</span>
+        <small>Suodattimet ja paginoitu aineistoluettelo</small>
+      </summary>
+      <div class="presentation-mobile-disclosure-body">
+        <div class="presentation-section-head">
+          <p class="presentation-section-kicker mb-1">Koko aineisto</p>
+          <h2 id="kaikki-esitykset-heading" class="presentation-section-title">Aineistoluettelo</h2>
+          <p class="presentation-section-lead mb-0">Sama luettelo yhdistää Canva-esitykset, videot, avoimet oppimateriaalit, SlideShare-aineiston ja analyysisivut. Suodatus perustuu ensisijaisesti sisältöön ja rooliin.</p>
+        </div>
+
+        <div class="presentation-archive-toolbar" aria-label="Suodata esityksiä käyttötavan, roolin tai lähdetyypin mukaan">
+          <div class="presentation-archive-filter-group">
+            <span class="presentation-archive-filter-label">Aloita</span>
+            <button class="presentation-archive-filter is-active" type="button" data-presentation-filter="all">Kaikki</button>
+          </div>
+          <div class="presentation-archive-filter-group">
+            <span class="presentation-archive-filter-label">Pääreitit</span>
+            <button class="presentation-archive-filter" type="button" data-presentation-filter="route:puheenvuorot">Puheenvuorot</button>
+            <button class="presentation-archive-filter" type="button" data-presentation-filter="route:koulutukset">Koulutukset</button>
+            <button class="presentation-archive-filter" type="button" data-presentation-filter="route:materiaalit">Videot ja materiaalit</button>
+          </div>
+          <div class="presentation-archive-filter-group">
+            <span class="presentation-archive-filter-label">Rooli</span>
+            <button class="presentation-archive-filter" type="button" data-presentation-filter="profile:kouluttaja">Kouluttaja</button>
+            <button class="presentation-archive-filter" type="button" data-presentation-filter="profile:tutkija">Tutkija</button>
+            <button class="presentation-archive-filter" type="button" data-presentation-filter="profile:asiantuntija">Asiantuntija</button>
+          </div>
+          <div class="presentation-archive-filter-group">
+            <span class="presentation-archive-filter-label">Aineistotyyppi</span>
+            <button class="presentation-archive-filter" type="button" data-presentation-filter="category:konferenssi-keynote">Keynotet</button>
+            <button class="presentation-archive-filter" type="button" data-presentation-filter="category:täydennyskoulutus">Täydennyskoulutukset</button>
+            <button class="presentation-archive-filter" type="button" data-presentation-filter="category:webinaari">Webinaarit</button>
+            <button class="presentation-archive-filter" type="button" data-presentation-filter="aoe">Avoimet oppimateriaalit</button>
+            <button class="presentation-archive-filter" type="button" data-presentation-filter="video">Videot</button>
+            <button class="presentation-archive-filter" type="button" data-presentation-filter="analysis">Analyysit</button>
+          </div>
+        </div>
+
+        <div class="presentation-archive-status" id="presentation-unified-status" aria-live="polite"></div>
+        <div class="presentation-archive-grid" id="presentation-unified-archive"></div>
+        <nav class="mt-4" aria-label="Kaikki esitykset ja materiaalit -sivutus">
+          <ul class="pagination pagination-sm mb-0 justify-content-center" id="presentation-unified-pagination"></ul>
+        </nav>
+      </div>
+    </details>
+  </div>
+</section>

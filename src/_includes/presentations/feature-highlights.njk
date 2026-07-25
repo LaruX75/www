@@ -1,0 +1,77 @@
+<section class="py-5 presentation-feature-section" id="kokonaisuudet" aria-labelledby="kokonaisuudet-heading">
+  <div class="site-shell">
+    <div class="presentation-section-head">
+      <p class="presentation-section-kicker mb-1">Valitut kokonaisuudet</p>
+      <h2 id="kokonaisuudet-heading" class="presentation-section-title">Tärkeimmät puheenvuorot, koulutukset ja käyttötilanteet ensin</h2>
+      <p class="presentation-section-lead mb-0">Sivun alussa näkyvät sekä kuratoidut päänostot että tilanteet, joissa materiaali, tilaisuus ja mahdollinen palaute muodostavat yhden kokonaisuuden. Näin aineisto avautuu heti käytön, ei pelkän lähdepalvelun, kautta.</p>
+    </div>
+
+    <div id="presentation-feature-showcase" class="presentation-feature-showcase" aria-live="polite"></div>
+
+    {% if highlightedContextItems.length %}
+    <div class="presentation-context-preview-head">
+      <div class="presentation-context-preview-copy">
+        <p class="presentation-section-kicker mb-1">Missä aineisto on ollut käytössä?</p>
+        <h3 class="presentation-section-subtitle mb-2">Neljä esimerkkiä käyttötilanteista</h3>
+        <p class="presentation-section-lead mb-0">Näissä korteissa näkyvät tilaisuuden rooli, kohderyhmä, järjestäjä ja siihen kytketyt materiaalit samassa näkymässä.</p>
+      </div>
+      <div class="presentation-context-preview-stats">
+        <span><strong>{{ presentationContextItems | length }}</strong> tunnistettua käyttötilannetta</span>
+        <span><strong>{{ presentationContextFeedbackTotal }}</strong> palautteeseen kytkettyä viitettä</span>
+      </div>
+    </div>
+
+    <div class="presentation-context-grid presentation-context-grid--preview">
+      {% for context in highlightedContextItems %}
+      <article class="presentation-context-card">
+        <div class="presentation-context-card-head">
+          <span class="presentation-context-type">{{ context.typeLabel }}</span>
+          <span class="presentation-context-date">{{ context.displayDate or (context.date | dateFormat) }}</span>
+        </div>
+        <h3 class="presentation-context-title">{{ context.title }}</h3>
+        <p class="presentation-context-summary">{{ context.summary }}</p>
+        <dl class="presentation-context-meta">
+          <div>
+            <dt>Rooli</dt>
+            <dd>{{ context.role }}</dd>
+          </div>
+          <div>
+            <dt>Kohderyhmä</dt>
+            <dd>{{ context.audience }}</dd>
+          </div>
+          <div>
+            <dt>Järjestäjä</dt>
+            <dd>{{ context.organizer }}</dd>
+          </div>
+        </dl>
+        {% if context.topics and context.topics.length %}
+        <div class="presentation-context-topics" aria-label="Teemat">
+          {% for topic in context.topics %}
+          <span>{{ topic }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+        {% if context.materials and context.materials.length %}
+        <div class="presentation-context-materials">
+          <p class="presentation-context-subtitle">Kytketyt aineistot</p>
+          <div class="d-flex flex-wrap gap-2">
+            {% for material in context.materials %}
+              {% if material.url %}
+              <a href="{{ material.url }}"{% if material.url.startsWith("http") %} target="_blank" rel="noopener noreferrer"{% endif %} class="btn btn-outline-primary btn-sm rounded-pill px-3">{{ material.label }}</a>
+              {% else %}
+              <span class="presentation-context-material-static">{{ material.label }}</span>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </div>
+
+    <div class="presentation-context-preview-actions">
+      <a href="#tausta-ja-lahteet" class="btn btn-outline-secondary rounded-pill px-4">Avaa kaikki käyttötilanteet ja lähteet</a>
+    </div>
+    {% endif %}
+  </div>
+</section>
