@@ -906,9 +906,17 @@
         "tdk-luento": "Yliopistoopetus",
         "muu": ""
       };
+      const routeLabels = {
+        "route:puheenvuorot": "Pääreitti: Puheenvuorot",
+        "route:koulutukset": "Pääreitti: Koulutukset",
+        "route:materiaalit": "Pääreitti: Videot ja materiaalit"
+      };
       const kategoriaLabel = item.kategoria ? (kategoriaLabels[item.kategoria] || item.kategoria) : "";
       const kategoriaBadge = kategoriaLabel
         ? `<span class="badge text-bg-secondary me-1" style="font-size:.65rem;">${escHtml(kategoriaLabel)}</span>`
+        : "";
+      const routeBadge = item.routePrimary && routeLabels[item.routePrimary]
+        ? `<span class="presentation-archive-card-route">${escHtml(routeLabels[item.routePrimary])}</span>`
         : "";
       const jarjestajaLine = (item.sourceKey === "canva" && item.jarjestaja)
         ? `<p class="presentation-archive-card-date">${escHtml(item.jarjestaja)}${item.date ? ` · ${escHtml(item.date)}` : ""}</p>`
@@ -918,7 +926,7 @@
           <div class="presentation-archive-card-thumb ${isVideoThumb ? "video-preview video-preview--sm" : ""}">${thumb}</div>
           <div class="presentation-archive-card-body">
             <div class="presentation-archive-card-meta">
-              ${kategoriaBadge}<span>${escHtml(item.archiveTypeLabel || "Aineisto")}</span>
+              ${routeBadge}${kategoriaBadge}<span>${escHtml(item.archiveTypeLabel || "Aineisto")}</span>
               <span>${escHtml(item.sourceLabel || item.meta || "")}</span>
             </div>
             <h3 class="presentation-archive-card-title">${titleLink}</h3>

@@ -1073,6 +1073,12 @@
   padding: 0.25rem 0.55rem;
 }
 
+.presentation-archive-card-meta .presentation-archive-card-route {
+  background: color-mix(in srgb, var(--bs-primary) 12%, transparent);
+  border-color: color-mix(in srgb, var(--bs-primary) 35%, var(--bs-border-color));
+  color: var(--bs-primary-text-emphasis, var(--bs-primary));
+}
+
 .presentation-archive-card-title {
   font-family: 'Bree Serif', serif;
   font-size: 1.12rem;
