@@ -24,7 +24,7 @@ module.exports = [
     lead: "Opettajankoulutus on sivustolla sekä yliopistotyötä, tutkimukseen perustuvaa asiantuntijuutta että käytännön koulutus- ja kehittämistyötä.",
     context: "Teema kokoaa sisällöt, joissa opettajan osaamista, opetuksen suunnittelua, digipedagogiikkaa ja tekoälylukutaitoa käsitellään eri rooleissa: luennoilla, täydennyskoulutuksissa, lausunnoissa, tutkimuksessa, blogiteksteissä ja mediassa.",
     promise: "Sivu näyttää, miten yliopistotyö, asiantuntijalausunnot ja koulutukset kytkeytyvät samaan opettajankoulutuksen kokonaisuuteen.",
-    categories: ["opettajankoulutus", "koulutusteknologia"],
+    categories: ["opettajankoulutus"],
     keywords: ["opettajankoulutus", "opetus", "opettaja", "täydennyskoulutus", "veso", "digipedagogiikka"],
     contexts: ["education", "teaching", "research", "business"],
     primaryLinks: [
@@ -41,7 +41,7 @@ module.exports = [
     lead: "Koulutusteknologia ja oppimisympäristöt näyttävät pitkän jatkumon väitöskirjasta, julkaisuista ja opetusmateriaaleista nykyisiin tekoälyaiheisiin koulutuksiin.",
     context: "Teema painottaa sitä, ettei teknologia itsessään riitä. Olennaista on pedagoginen rakenne: mitä välineillä tehdään, millaista ajattelua ne tukevat ja miten oppimisympäristö auttaa opiskelijaa, opettajaa ja yhteistä työskentelyä.",
     promise: "Sivu kokoaa teknologian opetuskäytön näyttöä tutkimuksesta käytännön materiaaleihin.",
-    categories: ["koulutusteknologia", "teknologiatuettu-oppiminen-ja-opetus", "oppimisympäristöt"],
+    categories: ["teknologiatuettu-oppiminen-ja-opetus", "oppimisympäristöt"],
     keywords: ["koulutusteknologia", "oppimisympäristö", "mobiilioppiminen", "digiluokka", "cscl", "scaffolding"],
     contexts: ["research", "teaching", "education"],
     primaryLinks: [
@@ -58,7 +58,7 @@ module.exports = [
     lead: "Avoin tiede ja avoimet oppimateriaalit näkyvät sivustolla palkintoina, asiantuntijatehtävinä, materiaaleina ja käytännön jakamisen kulttuurina.",
     context: "Tämä teema kokoaa työn, jossa tutkimus, opetus ja osaamisen jakaminen eivät jää suljettuihin ympäristöihin. Mukana ovat avoimen tieteen tunnustukset, AOE-materiaalit, lausunnot ja mediaosumat, joissa avoimuuden merkitys näkyy käytännössä.",
     promise: "Sivu näyttää, miten avoimuus on ollut osa opetusta, tutkimusta ja asiantuntijatyötä.",
-    categories: ["avoin-tiede", "yliopisto-ja-korkeakoulut"],
+    categories: ["avoin-tiede"],
     keywords: ["avoin tiede", "avoimet oppimateriaalit", "aoe", "avoin oppiminen", "creative commons", "palkinto"],
     contexts: ["open-science", "teaching", "research", "education"],
     primaryLinks: [
@@ -76,7 +76,7 @@ module.exports = [
     context: "Teema sisältää valtuustopuheenvuoroja, aloitteita, mielipidekirjoituksia ja mediaosumia kouluverkosta, kampusratkaisuista, kaavoituksesta, liikkumisesta ja alueellisesta yhdenvertaisuudesta. Painopiste ei ole yksittäisessä kyläkulmassa vaan koko Oulun rakenteessa.",
     promise: "Sivu auttaa näkemään, miten palveluverkko, kaupunkirakenne ja asukkaiden arki kytkeytyvät päätöksenteossa.",
     categories: ["kaupunkikehitys-ja-palveluverkko"],
-    keywords: ["palveluverkko", "kaupunkikehitys", "kaupunginosat", "suuralueet", "Oulu", "kouluverkko", "Linnanmaa", "Raksila"],
+    keywords: ["palveluverkko", "kaupunkikehitys", "kaupunginosat", "suuralueet", "kouluverkko", "Linnanmaa", "Raksila"],
     contexts: ["politics"],
     primaryLinks: [
       { label: "Politiikka", href: "/politiikka/" },
