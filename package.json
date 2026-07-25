@@ -22,6 +22,7 @@
     "prebuild:local": "CACHE_ONLY=true node scripts/clean-output-dir.js && CACHE_ONLY=true node scripts/sync-curated-stubs.js && node scripts/clean-og-images.js && CACHE_ONLY=true node scripts/fetch-thesis-keywords.js",
     "build:local": "CACHE_ONLY=true DISABLE_OG_IMAGES=true npm run eleventy:quiet",
     "build:local:full": "npm run build:local && DISABLE_OG_IMAGES=true node scripts/run-pagefind.js && DISABLE_OG_IMAGES=true node scripts/build-seo-dashboard.js",
+    "build:single": "DISABLE_OG_IMAGES=true node scripts/build-single-page.js",
     "prebuild:no-og": "node scripts/clean-output-dir.js && node scripts/sync-curated-stubs.js && node scripts/clean-og-images.js && (node scripts/fetch-thesis-keywords.js || true)",
     "build:no-og": "DISABLE_OG_IMAGES=true npm run eleventy",
     "build:no-og:taxonomy": "BUILD_TAXONOMY_PAGES=true npm run build:no-og",
