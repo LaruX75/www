@@ -237,8 +237,8 @@
       }
     }
 
-    if (!categoryTags.length || has(/\b(cscl|isls|earli|iste|hicss|site|edmedia|ed-media|ectel|icls|edulearn|steam|arctic frontiers|fablearn|conference|symposium|kongressi|konferenssi)\b/)) {
-      if (has(/\b(cscl|isls|earli|iste|hicss|site|edmedia|ed-media|ectel|icls|edulearn|steam|arctic frontiers|fablearn|conference|symposium|kongressi|konferenssi)\b/)) {
+    if (!categoryTags.length || has(/\b(isls|earli|iste|hicss|site|edmedia|ed-media|ectel|icls|edulearn|steam|arctic frontiers|fablearn|conference|symposium|kongressi|konferenssi)\b/)) {
+      if (has(/\b(isls|earli|iste|hicss|site|edmedia|ed-media|ectel|icls|edulearn|steam|arctic frontiers|fablearn|conference|symposium|kongressi|konferenssi)\b/)) {
         uniquePush(categoryTags, "kansainvälinen-konferenssi");
       }
     }
@@ -306,21 +306,23 @@
     const isAcademicLectureOnly =
       categoryTags.length === 1 &&
       categoryTags[0] === "tdk-luento";
+    const hasTrainingCategory =
+      categoryTags.includes("täydennyskoulutus") ||
+      categoryTags.includes("webinaari") ||
+      categoryTags.includes("hanke-esittely") ||
+      categoryTags.includes("tdk-luento");
 
     if (
       categoryTags.includes("konferenssi-keynote") ||
       categoryTags.includes("kansainvälinen-konferenssi") ||
-      (profileTags.includes("tutkija") && !isAcademicLectureOnly)
+      (profileTags.includes("tutkija") &&
+        !isAcademicLectureOnly &&
+        !hasTrainingCategory)
     ) {
       uniquePush(routeTags, "route:puheenvuorot");
     }
 
-    if (
-      categoryTags.includes("täydennyskoulutus") ||
-      categoryTags.includes("webinaari") ||
-      categoryTags.includes("hanke-esittely") ||
-      categoryTags.includes("tdk-luento")
-    ) {
+    if (hasTrainingCategory) {
       uniquePush(routeTags, "route:koulutukset");
     }
 
