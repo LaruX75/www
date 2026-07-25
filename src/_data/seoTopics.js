@@ -7,7 +7,7 @@ module.exports = [
     lead: "Tekoälylukutaito kokoaa yhteen tutkimuksen, opettajankoulutuksen, lausunnot, koulutukset ja julkisen keskustelun tekoälyn ymmärtämisestä.",
     context: "Tässä teemassa tekoäly ei ole yksittäinen työkalu vaan kasvatuksen, opetuksen, päätöksenteon ja kansalaistaitojen kysymys. Aineisto näyttää, miten sama aihe näkyy Generation AI -työssä, lausunnoissa, koulutuksissa, mediahaastatteluissa ja opetuksen käytännöissä.",
     promise: "Sivu auttaa hahmottamaan, millä perusteilla tekoälylukutaitoa kannattaa opettaa, arvioida ja kehittää.",
-    categories: ["tekoäly", "koulutusteknologia", "opettajankoulutus"],
+    categories: ["tekoäly"],
     keywords: ["tekoälylukutaito", "tekoaly", "generation-ai", "tekoäly", "tekoalylukutaito"],
     contexts: ["education", "research", "teaching", "media"],
     primaryLinks: [
@@ -24,7 +24,7 @@ module.exports = [
     lead: "Opettajankoulutus on sivustolla sekä yliopistotyötä, tutkimukseen perustuvaa asiantuntijuutta että käytännön koulutus- ja kehittämistyötä.",
     context: "Teema kokoaa sisällöt, joissa opettajan osaamista, opetuksen suunnittelua, digipedagogiikkaa ja tekoälylukutaitoa käsitellään eri rooleissa: luennoilla, täydennyskoulutuksissa, lausunnoissa, tutkimuksessa, blogiteksteissä ja mediassa.",
     promise: "Sivu näyttää, miten yliopistotyö, asiantuntijalausunnot ja koulutukset kytkeytyvät samaan opettajankoulutuksen kokonaisuuteen.",
-    categories: ["opettajankoulutus", "sivistys-ja-koulutus", "koulutusteknologia"],
+    categories: ["opettajankoulutus", "koulutusteknologia"],
     keywords: ["opettajankoulutus", "opetus", "opettaja", "täydennyskoulutus", "veso", "digipedagogiikka"],
     contexts: ["education", "teaching", "research", "business"],
     primaryLinks: [
@@ -58,7 +58,7 @@ module.exports = [
     lead: "Avoin tiede ja avoimet oppimateriaalit näkyvät sivustolla palkintoina, asiantuntijatehtävinä, materiaaleina ja käytännön jakamisen kulttuurina.",
     context: "Tämä teema kokoaa työn, jossa tutkimus, opetus ja osaamisen jakaminen eivät jää suljettuihin ympäristöihin. Mukana ovat avoimen tieteen tunnustukset, AOE-materiaalit, lausunnot ja mediaosumat, joissa avoimuuden merkitys näkyy käytännössä.",
     promise: "Sivu näyttää, miten avoimuus on ollut osa opetusta, tutkimusta ja asiantuntijatyötä.",
-    categories: ["avoin-tiede", "yliopisto-ja-korkeakoulut", "opettajankoulutus"],
+    categories: ["avoin-tiede", "yliopisto-ja-korkeakoulut"],
     keywords: ["avoin tiede", "avoimet oppimateriaalit", "aoe", "avoin oppiminen", "creative commons", "palkinto"],
     contexts: ["open-science", "teaching", "research", "education"],
     primaryLinks: [
@@ -75,7 +75,7 @@ module.exports = [
     lead: "Oulun palveluverkko ja kaupunkikehitys kokoaa poliittisen aineiston, jossa päätöksiä arvioidaan koko kaupungin, suuralueiden ja kaupunginosien näkökulmasta.",
     context: "Teema sisältää valtuustopuheenvuoroja, aloitteita, mielipidekirjoituksia ja mediaosumia kouluverkosta, kampusratkaisuista, kaavoituksesta, liikkumisesta ja alueellisesta yhdenvertaisuudesta. Painopiste ei ole yksittäisessä kyläkulmassa vaan koko Oulun rakenteessa.",
     promise: "Sivu auttaa näkemään, miten palveluverkko, kaupunkirakenne ja asukkaiden arki kytkeytyvät päätöksenteossa.",
-    categories: ["kaupunkikehitys-ja-palveluverkko", "politiikka-ja-paatoksenteko", "sivistys-ja-koulutus"],
+    categories: ["kaupunkikehitys-ja-palveluverkko"],
     keywords: ["palveluverkko", "kaupunkikehitys", "kaupunginosat", "suuralueet", "Oulu", "kouluverkko", "Linnanmaa", "Raksila"],
     contexts: ["politics"],
     primaryLinks: [
@@ -92,7 +92,7 @@ module.exports = [
     lead: "Läpinäkyvä päätöksenteko ja tiedolla johtaminen kokoaa sisällöt, joissa valmistelun avoimuus, vaikutusten arviointi ja paremmat tietotyökalut nousevat esiin.",
     context: "Teema ei tarkoita sitä, että yksi päättäjä tekisi valmistelusta näkyvää. Kyse on siitä, että organisaation on rakennettava päätöksentekoon sellaiset tiedot, työkalut ja käytännöt, joiden avulla kuntalaiset ja päättäjät ymmärtävät päätösten perusteita.",
     promise: "Sivu näyttää, missä yhteyksissä olen vaatinut parempaa tietopohjaa ja läpinäkyvämpää valmistelua.",
-    categories: ["politiikka-ja-paatoksenteko"],
+    categories: [],
     keywords: ["tiedolla johtaminen", "valmistelu", "avoimuus", "tietojohtaminen", "vaikutusten arviointi"],
     contexts: ["politics"],
     primaryLinks: [

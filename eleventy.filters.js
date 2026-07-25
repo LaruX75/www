@@ -599,15 +599,22 @@ function topicItemScore(item, topic = {}) {
   const contextTerms = topicTermSet(topic.contexts);
   let score = 0;
 
-  score += toArray(data.categories).reduce((sum, value) => (
-    categoryTerms.has(normalizeTopicTerm(value)) ? sum + 5 : sum
-  ), 0);
+  // Item's categories vs topic categories (+5) or topic keywords (+4) — whichever is higher
+  score += toArray(data.categories).reduce((sum, value) => {
+    const norm = normalizeTopicTerm(value);
+    if (categoryTerms.has(norm)) return sum + 5;
+    if (keywordTerms.has(norm)) return sum + 4;
+    return sum;
+  }, 0);
+
+  // Item's frontmatter keywords vs topic keywords (+4 each)
   score += toArray(data.keywords).reduce((sum, value) => (
     keywordTerms.has(normalizeTopicTerm(value)) ? sum + 4 : sum
   ), 0);
 
+  // Inferred/explicit context match: +1 each (lower weight to reduce noise)
   resolveContexts(data, inputPath).forEach((context) => {
-    if (contextTerms.has(normalizeTopicTerm(context))) score += 2;
+    if (contextTerms.has(normalizeTopicTerm(context))) score += 1;
   });
 
   score += topicTextScore(item, topic);
@@ -631,14 +638,19 @@ function mapTopicItem(item, topic = {}) {
   };
 }
 
+const TOPIC_MIN_SCORE = 5;
+
 function topicItemsFromCollections(collections, topic = {}, limit = 12) {
   const maxItems = Number(limit) || 12;
-  return uniqueContentItems(collections)
+  const all = uniqueContentItems(collections)
     .map((item) => mapTopicItem(item, topic))
-    .filter((item) => item.topicScore > 0)
-    .sort((a, b) => b.topicScore - a.topicScore || dateTimestamp(b) - dateTimestamp(a))
+    .filter((item) => item.topicScore >= TOPIC_MIN_SCORE)
+    .sort((a, b) => b.topicScore - a.topicScore || dateTimestamp(b) - dateTimestamp(a));
+  const items = all
     .slice(0, maxItems)
     .sort((a, b) => dateTimestamp(b) - dateTimestamp(a) || b.topicScore - a.topicScore);
+  items.totalCount = all.length;
+  return items;
 }
 
 function selectedTopics(topics, keys = []) {
