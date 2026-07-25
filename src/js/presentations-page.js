@@ -177,6 +177,7 @@
     const routeTags = [];
     const explicitCategory = String(item.kategoria || "").trim();
     const explicitProfiles = Array.isArray(item.asiantuntijaprofiili) ? item.asiantuntijaprofiili : [];
+    const explicitPrimaryRoute = String(item.paareitti || "").trim();
     const contextTypes = contexts.map((context) => String(context.type || "").trim()).filter(Boolean);
     const text = createMatcherText([
       item.title,
@@ -342,9 +343,15 @@
       }
     }
 
+    if (explicitPrimaryRoute) {
+      uniquePush(routeTags, explicitPrimaryRoute);
+    }
+
     let routePrimary = "";
     if (item.archiveType !== "analysis") {
-      if (item.archiveType === "video" || item.archiveType === "aoe") {
+      if (explicitPrimaryRoute) {
+        routePrimary = explicitPrimaryRoute;
+      } else if (item.archiveType === "video" || item.archiveType === "aoe") {
         routePrimary = "route:materiaalit";
       } else if (
         categoryTags.includes("konferenssi-keynote") ||
@@ -457,6 +464,7 @@
           jarjestaja: r.jarjestaja || "",
           kategoria: r.kategoria || "",
           paakortti: r.paakortti === true,
+          paareitti: r.paareitti || "",
           asiantuntijaprofiili: Array.isArray(r.asiantuntijaprofiili) ? r.asiantuntijaprofiili : [],
           sivuyhteys: Array.isArray(r.sivuyhteys) ? r.sivuyhteys : [],
         };

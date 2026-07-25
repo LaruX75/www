@@ -780,6 +780,7 @@
     "lang": "en",
     "jarjestaja": "Generation AI -hanke (kansainvälinen workshop)",
     "kategoria": "kansainvälinen-konferenssi",
+    "paareitti": "route:koulutukset",
     "paakortti": false,
     "asiantuntijaprofiili": [
       "tutkija",
@@ -1695,6 +1696,7 @@
     "date": "2024-11-29",
     "jarjestaja": "DIGIERKO (digitaalisen erityisosaamisen erikoistumiskoulutus)",
     "kategoria": "konferenssi-keynote",
+    "paareitti": "route:koulutukset",
     "paakortti": false,
     "asiantuntijaprofiili": [
       "yliopistonlehtori",
