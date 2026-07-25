@@ -9,6 +9,8 @@ categories: ["Avoin tiede", "Avoin oppiminen", "Palkinto"]
 type: "esitys"
 layout: page.njk
 templateEngineOverride: md
+topics:
+  - avoin-tiede-ja-avoimet-oppimateriaalit
 ---
 
 Avoimen tieteen koordinaation julkaisema puheenvuoro avoimesta oppimisesta ja opetuksesta. Video liittyy kansalliseen avoimen tieteen palkintoon, jonka Tieteellisten seurain valtuuskunnan avoimen tieteen koordinaatioryhmä myönsi Jari Larulle avoimen tieteen syyspäivillä 7.12.2020.

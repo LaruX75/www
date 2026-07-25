@@ -25,6 +25,9 @@ keywords:
   - Generation AI
   - tutkijahaastattelut
   - YouTube
+topics:
+  - julkinen-asiantuntijuus-mediassa
+  - tekoalylukutaito
 ---
 
 **24 myyttiä tekoälystä ja datasta** on Generation AI -hankkeen joulukalenterimuotoinen videosarja, jossa haastattelen tekoälyn, datan ja koulutuksen tutkijoita. Sarjassa puretaan tekoälyyn liittyviä väitteitä ja arkisia oletuksia tutkimukseen perustuvan keskustelun kautta.

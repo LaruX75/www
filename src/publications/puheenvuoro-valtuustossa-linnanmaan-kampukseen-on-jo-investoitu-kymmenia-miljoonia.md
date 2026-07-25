@@ -26,6 +26,8 @@ places:
   - Raksila
 entities:
   - Oulun yliopisto
+topics:
+  - oulun-palveluverkko-ja-kaupunkikehitys
 ---
 
 Oulun kaupunginvaltuuston keskustelussa 28.2.2022 luin vuonna 2020 kirjoittamani mielipidekirjoituksen, jossa käsittelin Linnanmaan yhteiskampukseen jo tehtyjä mittavia investointeja.

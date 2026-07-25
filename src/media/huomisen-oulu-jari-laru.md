@@ -21,6 +21,8 @@ keywords:
   - politiikka
   - huomisen oulu
   - kaupunkivisio
+topics:
+  - julkinen-asiantuntijuus-mediassa
 ---
 
 Oulun Kokoomuksen julkaisema video Huomisen Oulu -kirjan julkaisun yhteydessä. Kirja on Ajatuspaja Toivon #Kaupunkivisio2030-sarjan osa, jossa tarkastellaan Oulua kaupunkipolitiikan ja tulevaisuuden näkökulmista. Kirja käsittelee hyvinvointia, koulutusta, taloutta, kaupunkikehitystä ja yhteisöllisyyttä.

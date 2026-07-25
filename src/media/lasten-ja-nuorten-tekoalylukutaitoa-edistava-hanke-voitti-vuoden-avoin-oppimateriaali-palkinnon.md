@@ -24,6 +24,9 @@ keywords:
   - Somekone
   - Oulun yliopisto
   - TSV
+topics:
+  - avoin-tiede-ja-avoimet-oppimateriaalit
+  - tekoalylukutaito
 ---
 
 Oulun yliopiston uutinen kertoo, että lasten ja nuorten tekoälylukutaitoa edistävä Generation AI -hanke voitti vuoden 2025 kansallisen Vuoden avoin oppimateriaali -palkinnon.

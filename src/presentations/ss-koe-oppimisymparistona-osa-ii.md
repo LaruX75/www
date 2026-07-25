@@ -9,6 +9,8 @@ type: 'esitys'
 source: 'slideshare'
 layout: page.njk
 templateEngineOverride: md
+topics:
+  - koulutusteknologia-ja-oppimisymparistot
 ---
 
 Tämä esitys on saatavilla SlideSharessa. [Avaa esitys SlideSharessa](https://www.slideshare.net/slideshow/koe-oppimisympristn-osa-ii/2542680).

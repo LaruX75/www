@@ -26,6 +26,8 @@ places:
   - Linnanmaa
 entities:
   - Oulun yliopisto
+topics:
+  - oulun-palveluverkko-ja-kaupunkikehitys
 ---
 
 Oulun kaupunginvaltuusto käsitteli 28.2.2022 Oulun yliopiston keskustakampuksen hankesuunnitelmaa. Käytin puheenvuoron hankkeen perusteista, kustannuksista ja siitä, mitä yhteiskunnallista hyötyä juuri valmistuneen Linnanmaan yhteiskampuksen osittaisesta siirtämisestä syntyisi.

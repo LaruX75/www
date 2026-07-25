@@ -22,6 +22,10 @@ keywords:
   - koulutusteknologia
   - opettajat
   - korona
+topics:
+  - julkinen-asiantuntijuus-mediassa
+  - koulutusteknologia-ja-oppimisymparistot
+  - opettajankoulutus
 ---
 
 Koronakeväällä 2020 koulut siirtyivät nopeasti etäopetukseen. Tein silloin **Jari Larun verkkolive** -sarjan, jossa haastattelin suomalaisia opettajia ja koulutusteknologian asiantuntijoita tilanteesta, johon moni joutui reagoimaan lähes yhdessä yössä.

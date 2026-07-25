@@ -18,6 +18,8 @@ writingRoles:
 wp_id: 1200
 source_url: 'https://www.jarilaru.fi/matalan-kynnyksen-videot-osa-nykyaikaista-oppimisymparistoa/'
 templateEngineOverride: md
+topics:
+  - koulutusteknologia-ja-oppimisymparistot
 ---
 <p><em>Paula Vaskurin editoima ja minun kirjoittama blogikirjoitus Oulun yliopiston Hyvät, Pahat ja Digit -blogissa, joka on julkaistu 10.2.2017: <a href="https://www.oulu.fi/blogs/node/44503" target="_blank" rel="noreferrer noopener">https://www.oulu.fi/blogs/node/44503</a></em></p>
 <p>Teknologioatuetun opetuksen ja oppimisen yliopistonlehtori Jari Laru on mies, joka elää kuten saarnaa.</p>

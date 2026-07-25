@@ -44,6 +44,8 @@ sourceUrl: 'https://www.facebook.com/watch/?v=2902969169995121'
 facebookImport:
   sourceIndex: 509
 templateEngineOverride: md
+topics:
+  - oulun-palveluverkko-ja-kaupunkikehitys
 ---
 
 Kirjoitin tämän koonnin tammikuun 2022 lopussa, juuri ennen kuin Oulun kaupunginvaltuusto sai seminaarissa ja kokouksessa eteensä Raksilan yliopistokiinteistöä koskevan tilannekuvan. Keskustakampushanke ei kuitenkaan alkanut siitä viikosta. Sitä oli käsitelty, kritisoitu ja perusteltu jo vuodesta 2019 lähtien.

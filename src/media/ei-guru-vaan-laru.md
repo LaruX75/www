@@ -19,6 +19,9 @@ keywords:
   - Oulun yliopisto
   - palkinto
   - TSV
+topics:
+  - avoin-tiede-ja-avoimet-oppimateriaalit
+  - julkinen-asiantuntijuus-mediassa
 ---
 
 Kansallisen avoimen tieteen palkinnon voittanut teknologiatuetun oppimisen ja opettamisen yliopistonlehtori Jari Laru (OY) on edistänyt avointa oppimista jo pitkään.

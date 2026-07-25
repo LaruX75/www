@@ -21,6 +21,9 @@ keywords:
   - digipedagogiikka
   - sulautuva oppiminen
   - Oulun yliopisto
+topics:
+  - julkinen-asiantuntijuus-mediassa
+  - koulutusteknologia-ja-oppimisymparistot
 ---
 
 Oulun ylioppilaslehden haastattelu korona-ajan opetuskokemuksista. Jari Laru korostaa, että etäopetus on vain yksi digiopetuksen muoto, ja kannustaa sulautuvaan oppimiseen — fyysisen ja digitaalisen ympäristön yhdistelmään. Kasvokkain tapaamisen sosiaalinen ulottuvuus jää etäopetuksessa puuttumaan, mutta tulevaisuudessa lisätty todellisuus ja hologrammiteknologia voivat täyttää aukkoa.

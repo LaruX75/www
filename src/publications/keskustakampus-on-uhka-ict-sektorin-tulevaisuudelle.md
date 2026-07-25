@@ -31,6 +31,8 @@ politicalProfiles:
   - sivistys
   - kaupunkikehitys
 templateEngineOverride: md
+topics:
+  - oulun-palveluverkko-ja-kaupunkikehitys
 ---
 <p><br>Mielipidekirjoitus on julkaistu 10.2.2022 Sanomalehti Kalevan "Lukijalta" palstalla: <a href="https://www.kaleva.fi/keskustakampus-on-uhka-ict-sektorin-tulevaisuudell/4325146" target="_blank" rel="noreferrer noopener">https://www.kaleva.fi/keskustakampus-on-uhka-ict-sektorin-tulevaisuudell/4325146</a> </p>
 <p>Oulu on merkittävä tutkimus-, kehittämis- ja innovaatiotoiminnan (TKI) keskus. Linnanmaalla on erittäin vahva teknologiayritysten keskittymä. Ajankohtaisen, Oulun kaupungin vetämän, Linnanmaan kehittämisen ohjausryhmän mukaan kyseessä on ainutlaatuinen, monialainen tutkimus- ja tuotekehityskeskittymä, jossa tehdään kansainvälisesti merkittävää tutkimusta.</p>

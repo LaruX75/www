@@ -58,6 +58,8 @@ facebookImport:
   sourceFiles:
     - src/blog/_drafts/facebook-politician/2024-10-29-jari-laru-kuntapaattaja-lisasi-3-uutta-kuvaa.md
 templateEngineOverride: md
+topics:
+  - lapinakyva-paatoksenteko-ja-tiedolla-johtaminen
 ---
 
 Poliittinen vaikuttaminen on joskus hidasta. Olen kahden valtuustokauden aikana nostanut toistuvasti esiin, että kaupungin tiedolla johtamisen työkalut ovat olleet liian hajanaisia, vaikeakäyttöisiä tai vanhentuneita.

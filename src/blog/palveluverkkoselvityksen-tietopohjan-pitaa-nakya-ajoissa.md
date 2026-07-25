@@ -45,6 +45,8 @@ facebookImport:
   sourceFiles:
     - src/blog/_drafts/facebook-politician/2025-03-11-jari-laru-kuntapaattaja-jakoi-linkin-ryhmalle-oulun-puskaradio.md
 templateEngineOverride: md
+topics:
+  - lapinakyva-paatoksenteko-ja-tiedolla-johtaminen
 ---
 
 Oulun vuoden 2025 palveluverkkoselvitys oli tärkeä siksi, että se toi palveluverkkoa koskevaa tietoa julkisesti näkyville jo hyvissä ajoin ennen kuntavaaleja 2025, ja tietopohjaa täydennettiin jatkuvasti ennen varsinaisia ratkaisuja. Juuri tätä olen pitänyt olennaisena: vaikeista koulu- ja palveluverkkokysymyksistä pitää keskustella ennen päätöksiä, ei vasta niiden jälkeen.

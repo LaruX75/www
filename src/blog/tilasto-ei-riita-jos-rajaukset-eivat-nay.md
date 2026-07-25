@@ -39,6 +39,8 @@ facebookImport:
   sourceFiles:
     - src/blog/_drafts/facebook-politician/2023-08-20-jari-laru-kuntapaattaja-lisasi-3-uutta-kuvaa.md
 templateEngineOverride: md
+topics:
+  - lapinakyva-paatoksenteko-ja-tiedolla-johtaminen
 ---
 
 Oulusta uutisoitiin elokuussa 2023 iloisesti: kaupunki oli noussut Suomen viidenneksi suurimmaksi matkailualueeksi. Se on sellainen otsikko, jonka äärellä tekisi mieli nyökätä ja jatkaa eteenpäin.

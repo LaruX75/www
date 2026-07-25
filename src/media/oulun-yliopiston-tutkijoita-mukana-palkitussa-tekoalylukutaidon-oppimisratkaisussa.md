@@ -24,6 +24,9 @@ keywords:
   - oppimisratkaisut
   - Oulun yliopisto
   - Euroopan unioni
+topics:
+  - avoin-tiede-ja-avoimet-oppimateriaalit
+  - tekoalylukutaito
 ---
 
 Generation AI -hankkeen uutinen kertoo, että suomalainen Generation AI -oppimiskokonaisuus voitti Euroopan unionin vuoden 2026 digitaalisten taitojen palkinnon lasten ja nuorten tekoälylukutaidon edistämisestä.

@@ -20,6 +20,8 @@ keywords:
   - Oulun palvelumalli
   - Kiiminki
   - kuntalaisosallistuminen
+topics:
+  - julkinen-asiantuntijuus-mediassa
 ---
 
 Kalevan artikkeli ensimmäisestä Oulun raati -tilaisuudesta Kiimingin Sykkeen auditorissa. Tilaisuus käsitteli Oulun palvelumallia 2020 ja keräsi lähes sata osallistujaa Jäälin, Kiimingin, Yli-Iin ja Ylikiimingin suuralueen asukkaille. Jäälin asukasyhdistyksen puheenjohtaja Jari Laru kommentoi odottavansa kaupungilta aitoa kuuntelua pelkän kuulemisen sijaan.

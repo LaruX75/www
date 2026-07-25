@@ -25,6 +25,8 @@ politicalProfiles:
   - sivistys
   - kaupunkikehitys
 templateEngineOverride: md
+topics:
+  - oulun-palveluverkko-ja-kaupunkikehitys
 ---
 <p><strong>Mielipidekirjoitus on julkaistu Sanomalehti Kalevassa 24.4.2021: <a href="https://www.kaleva.fi/linnanmaa-tarjoaa-merkittavia-kasautumisetuja-mita/3545531" title="https://www.kaleva.fi/linnanmaa-tarjoaa-merkittavia-kasautumisetuja-mita/3545531">https://www.kaleva.fi/linnanmaa-tarjoaa-merkittavia-kasautumisetuja-mita/3545531</a></strong></p>
 <p><a href="https://www.kaleva.fi/oulun-on-tartuttava-tilaisuuteen-yliopistokampukse/3505891">Juhana Siljander esitti (Kaleva 11.4./Lukijalta)</a>, että keskustakampus tulisi rakentaa ydinkeskustaan. Keskustaan syntyvä kriittinen massa loisi pohjan uudelle innovaatiokeskukselle ja tarjoaisi merkittäviä kasautumisetuja toimitilojen täyttyessä yliopistosta hyötyvistä yrityksistä.</p>

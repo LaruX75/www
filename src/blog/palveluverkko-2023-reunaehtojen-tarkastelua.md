@@ -53,6 +53,8 @@ facebookImport:
     - src/blog/_drafts/facebook-politician/2023-05-21-jari-laru-kuntapaattaja-lisasi-2-uutta-kuvaa.md
     - src/blog/_drafts/facebook-politician/2023-06-06-jari-laru-kuntapaattaja-lisasi-3-uutta-kuvaa.md
 templateEngineOverride: md
+topics:
+  - lapinakyva-paatoksenteko-ja-tiedolla-johtaminen
 ---
 
 Oulun palveluverkosta keskustellaan usein yksittäisten koulujen, kylien tai kaupunginosien kautta. Se on ymmärrettävää, koska palveluverkko näkyy ihmisten arjessa juuri lähellä: koulumatkana, päiväkotipaikkana, harrastuksena ja perheen aikatauluina.

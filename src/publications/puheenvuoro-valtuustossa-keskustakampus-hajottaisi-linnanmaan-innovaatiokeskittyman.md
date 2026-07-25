@@ -28,6 +28,8 @@ entities:
   - Oulun yliopisto
 textVersion: true
 textVersionSource: 'Puheenvuoron tekstiversio on sivustolle toimitettu teksti; automaattinen kokouslitteraatti puuttuu vielä.'
+topics:
+  - oulun-palveluverkko-ja-kaupunkikehitys
 ---
 
 Oulun kaupunginvaltuusto käsitteli 9.11.2020 Oulun yliopiston mahdollista sijoittumista Raksilan alueelle. Käytin puheenvuoron Linnanmaan monitieteisen kampuksen ja sitä ympäröivän innovaatiokeskittymän merkityksestä.

@@ -47,6 +47,8 @@ facebookImport:
   sourceFiles:
     - src/blog/_drafts/facebook-politician/2022-12-11-jari-laru-kuntapaattaja-lisasi-uuden-kuvan.md
 templateEngineOverride: md
+topics:
+  - lapinakyva-paatoksenteko-ja-tiedolla-johtaminen
 ---
 
 DigiOne oli joulukuun 2022 sivistys- ja kulttuurilautakunnan listalla sopimusasiana, mutta sen merkitys oli käytännössä paljon laajempi. Kyse ei ollut vain yhden järjestelmän käyttöönotosta tai yhteistyösopimuksen muuttamisesta, vaan siitä, millaisilla välineillä koulun arkea tulevaisuudessa johdetaan, viestitään ja tehdään näkyväksi.

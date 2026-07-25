@@ -21,6 +21,8 @@ politicalProfiles:
   - avoinhallinto
   - yhteistyo
 templateEngineOverride: md
+topics:
+  - lapinakyva-paatoksenteko-ja-tiedolla-johtaminen
 ---
 
 Oulun kaupunginvaltuustossa esiteltiin 30.3.2026 vetovoima- ja pitovoimatutkimuksen tuloksia. Käytin puheenvuoron tutkimustulosten avoimesta julkaisemisesta ja siitä, miten tuloksista tulisi viestiä tavallisille oululaisille.

@@ -19,6 +19,8 @@ keywords:
   - oulun yliopisto
   - tutkija
   - yliopistonlehtori
+topics:
+  - julkinen-asiantuntijuus-mediassa
 ---
 
 Podcast-jaksossa minua haastatellaan tutkijan ja yliopistonlehtorin roolissa. Tämä kuuluu Mediassa-kokonaisuuteen, koska kyse ei ole omasta puheenvuorostani tai itse julkaisemastani kirjoituksesta vaan toisen toimijan tuottamasta haastattelusisällöstä.

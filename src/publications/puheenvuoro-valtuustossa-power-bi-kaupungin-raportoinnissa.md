@@ -22,6 +22,8 @@ writingRoles:
 politicalProfiles:
   - avoinhallinto
 templateEngineOverride: md
+topics:
+  - lapinakyva-paatoksenteko-ja-tiedolla-johtaminen
 ---
 
 Oulun kaupunginvaltuusto käsitteli 25.4.2022 Oulun kaupungin ympäristöohjelman toteumaa vuodelta 2021. Käytin puheenvuoron erityisesti Power BI -järjestelmän hyödyntämisestä tietojen esittämisessä ja siitä, että vastaavia ratkaisuja pitäisi käyttää laajemmin kaupungin raportoinnissa.

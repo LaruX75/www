@@ -39,6 +39,8 @@ contentContexts:
   - korkeakoulut ja kampukset
   - avoin valmistelu
   - keskustakampus
+topics:
+  - oulun-palveluverkko-ja-kaupunkikehitys
 ---
 
 Pidin tämän puheen Kaikkien kampus -mielenosoituksessa 26.2.2022. Puheessa käsittelin Oulun yliopiston keskustakampushanketta, valmistelun avoimuutta sekä opiskelijoiden ja henkilöstön kuulemista.

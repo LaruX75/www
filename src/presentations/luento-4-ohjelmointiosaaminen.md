@@ -8,6 +8,8 @@ categories: ["Ohjelmointi","Luento","Opettajankoulutus"]
 type: "esitys"
 layout: page.njk
 templateEngineOverride: md
+topics:
+  - opettajankoulutus
 ---
 
 Tämä on automaattisesti tuotu Canva-esitys. Voit katsoa esityksen suoraan [Canvassa tästä linkistä](https://www.canva.com/d/_K98Sie1DPAYz2E).

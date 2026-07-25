@@ -41,6 +41,8 @@ source: facebook
 sourceLabel: Facebook
 sourceUrl: 'https://www.facebook.com/jari.laru.poliitikko/posts/318722386935595'
 templateEngineOverride: md
+topics:
+  - oulun-palveluverkko-ja-kaupunkikehitys
 ---
 
 Oulun kasvatustieteiden kilta Kaski ry julkaisi helmikuussa 2022 opiskelijakyselyn tuloksia keskustakampussuunnitelmista. Kysely tuli julki juuri ennen kaupunginvaltuuston kokousta, jossa Raksilaan suunniteltua yliopistokiinteistöä käsiteltiin.

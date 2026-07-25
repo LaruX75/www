@@ -34,6 +34,9 @@ relatedProject:
   - Generation AI
 license: "CC-BY-4.0"
 templateEngineOverride: md
+topics:
+  - opettajankoulutus
+  - tekoalylukutaito
 ---
 
 Lausunto Opetushallituksen lausuntopyyntöön *Tekoäly varhaiskasvatuksessa ja koulutuksessa

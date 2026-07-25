@@ -21,6 +21,9 @@ keywords:
   - perusopetus
   - Oulun yliopisto
   - YouTube
+topics:
+  - julkinen-asiantuntijuus-mediassa
+  - tekoalylukutaito
 ---
 
 Webinaaritallenne 11.3.2025. Jari Laru esittelee selitettävän tekoälyn käsitteen ja Generation AI -hankkeessa kehitettyjä tekoälytaitojen opetustyökaluja.

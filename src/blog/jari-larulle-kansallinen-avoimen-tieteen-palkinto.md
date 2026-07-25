@@ -19,6 +19,8 @@ templateEngineOverride: md
 writingRoles:
   - expert
 
+topics:
+  - avoin-tiede-ja-avoimet-oppimateriaalit
 ---
 
 Tieteellisten seurain valtuuskunnan avoimen tieteen kansallinen koordinaatio-ryhmä [on päättänyt myöntää Jari Larulle avoimen tieteen kansallisen palkinno](https://avointiede.fi/fi/ajankohtaista/vuotuiset-avoimen-tieteen-palkinnot-2020-jaettu). Koordinaatioryhmän käyttämät perustelut löytyvät alta:

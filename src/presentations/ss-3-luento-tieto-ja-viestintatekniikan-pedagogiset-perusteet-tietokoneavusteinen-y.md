@@ -9,6 +9,8 @@ type: 'esitys'
 source: 'slideshare'
 layout: page.njk
 templateEngineOverride: md
+topics:
+  - koulutusteknologia-ja-oppimisymparistot
 ---
 
 Tämä esitys on saatavilla SlideSharessa. [Avaa esitys SlideSharessa](https://www.slideshare.net/slideshow/3-luento-tieto-ja-viestinttekniikan-pedagogiset-perusteet-tietokoneavusteinen-yhteisllinen-oppiminen-cscl/9167433).

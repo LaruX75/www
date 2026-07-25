@@ -25,6 +25,8 @@ opinionRoles:
 wp_id: 149
 source_url: 'https://www.jarilaru.fi/raksilaan-wow-kampus-kuntapaattajana-en-kykene-nakemaan-mista-loytyvat-tarvittavat-resurs/'
 templateEngineOverride: md
+topics:
+  - oulun-palveluverkko-ja-kaupunkikehitys
 ---
 <p><strong>Oulussa</strong>&nbsp;on käyty viime aikoina keskustelua Oulun yliopiston suunnitelmista rakentaa kampus Raksilaan. Perusteluina on käytetty väestöennusteita, opiskelijarekrytointia, kaupungin keskustan näivettymistä ja reagointia ilmastonmuutokseen.</p>
 <p>Nämä kaikki ovat seikkoja, joiden on nähty ratkeavan siirtämällä yliopiston toiminnat keskustaan. On kiinnostava kysymys, kuinka visio voidaan rakentaa uhkien varaan? Millainen olisi mahdollisuuksien varaan rakentuva visio?</p>

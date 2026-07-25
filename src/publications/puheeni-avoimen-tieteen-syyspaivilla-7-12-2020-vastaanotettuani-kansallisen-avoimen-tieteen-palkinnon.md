@@ -21,6 +21,8 @@ writingRoles:
 wp_id: 220
 source_url: 'https://www.jarilaru.fi/puheeni-avoimen-tieteen-syyspaivilla-7-12-2020-vastaanotettuani-kansallisen-avoimen-tieteen-palkinnon/'
 templateEngineOverride: md
+topics:
+  - avoin-tiede-ja-avoimet-oppimateriaalit
 ---
 <p>Arvoisat osallistujat,</p>
 <p>Korkeakoulut ovat viime vuosina siirtyneet yhä enemmän avoimeen julkaisemiseen ja tutkimusdataan sekä kehittäneet erilaisia massiivisia avoimia verkkokursseja opiskelijoiden houkuttelemiseksi. Nämä muutokset ovat osittain Euroopan Unionin avoimen tieteen suositusten ansiota.</p>

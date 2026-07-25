@@ -9,6 +9,9 @@ categories: ["Sähköiset oppimisympäristöt", "Opettajankoulutus", "EU-hanke"]
 type: "esitys"
 layout: page.njk
 templateEngineOverride: md
+topics:
+  - koulutusteknologia-ja-oppimisymparistot
+  - opettajankoulutus
 ---
 
 LEA (Learning Technology Accelerator) oli EU:n H2020-rahoitteinen koordinaatio- ja tukihanke (2018–2020), jonka tavoitteena oli edistää innovatiivisen oppimistiknologian hankintaa Euroopassa. Hanketta koordinoi Jyväskylän yliopisto, ja siihen osallistui 17 organisaatiota eri EU-maista.

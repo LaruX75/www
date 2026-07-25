@@ -23,6 +23,8 @@ templateEngineOverride: md
 writingRoles:
   - expert
 
+topics:
+  - opettajankoulutus
 ---
 
 Keskiviikkona 13.2.2013 pidin verkkoluennon Oulun yliopiston TOPIK-yksikön koulutuksessa "tvt koulun johtamisen välineenä". Kohdeyleisö koostui lähinnä perusasteen ja lukioiden rehtoreista.

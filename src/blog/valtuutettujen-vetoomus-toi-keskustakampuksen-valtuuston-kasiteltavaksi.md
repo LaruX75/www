@@ -37,6 +37,8 @@ sourceUrl: 'https://www.facebook.com/jari.laru.poliitikko/posts/288215369986297'
 facebookImport:
   sourceIndex: 26
 templateEngineOverride: md
+topics:
+  - oulun-palveluverkko-ja-kaupunkikehitys
 ---
 
 Vuoden 2021 viimeisen valtuustokokouksen yhteydessä keräsimme nopeasti 25 valtuutetun vetoomuksen, jotta Oulun yliopiston keskustakampuksen hankesuunnitelma tuotaisiin kaupunginvaltuuston käsiteltäväksi.

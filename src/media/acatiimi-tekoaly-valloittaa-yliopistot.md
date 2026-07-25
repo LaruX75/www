@@ -20,6 +20,9 @@ keywords:
   - Generation AI
   - Acatiimi
   - koulutusteknologia
+topics:
+  - julkinen-asiantuntijuus-mediassa
+  - tekoalylukutaito
 ---
 
 Acatiimiä-lehden artikkeli käsittelee generatiivisen tekoälyn käyttöönottoa yliopistoissa. Jari Laru kommentoi yliopistonlehtorina ja Generation AI -projektin asiantuntijana: pedagogin täytyy muuttaa käytänteitään ajan mukaan, eikä vain reaktiivisesti laatia sääntöjä — pitää proaktiivisesti miettiä, kuinka kehitämme akateemista osaamista.

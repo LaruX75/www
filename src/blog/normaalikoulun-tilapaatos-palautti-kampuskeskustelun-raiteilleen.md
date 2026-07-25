@@ -41,6 +41,8 @@ referenceUrl: 'https://www.kaleva.fi/oulun-normaalikoulun-tuleva-sijainti-linnan
 facebookImport:
   sourceIndex: 306
 templateEngineOverride: md
+topics:
+  - oulun-palveluverkko-ja-kaupunkikehitys
 ---
 
 Oulun yliopiston hallituksen päätös käynnistää Oulun normaalikoulun varsinaisen suunnitteluvaiheen ja sijoittaa uusi koulu Linnanmaan kampusalueen luoteiskulmaan oli tärkeä käänne pitkään jatkuneessa kampus- ja tilakeskustelussa.

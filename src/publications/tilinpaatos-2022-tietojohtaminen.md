@@ -19,6 +19,8 @@ politicalProfiles:
   - avoinhallinto
   - yhteistyo
 templateEngineOverride: md
+topics:
+  - lapinakyva-paatoksenteko-ja-tiedolla-johtaminen
 ---
 
 Oulun kaupunginvaltuustossa käsiteltiin 22.5.2023 asiakohdassa 2 Oulun kaupungin tilinpäätöstä vuodelta 2022. Käytin henkilöstötilinpäätöksen keskustelussa puheenvuoron tiedolla johtamisesta ja avoimesta datasta. Tässä se kirjallisena.

@@ -23,6 +23,8 @@ opinionRoles:
 wp_id: 1895
 source_url: 'https://www.jarilaru.fi/oulun-normaalikoulu-ansaitsee-uudet-ja-terveet-tilat-lapset-heittopussina-kampussuunnitelmien-vuoksi/'
 templateEngineOverride: md
+topics:
+  - oulun-palveluverkko-ja-kaupunkikehitys
 ---
 <p><em>Sanomalehti Kalevassa julkaistu mielipidekirjoitukseni 11.12.2021:</em> <a href="https://www.kaleva.fi/oulun-normaalikoulu-ansaitsee-uudet-ja-terveet-til/4181835" target="_blank" rel="noreferrer noopener">https://www.kaleva.fi/oulun-normaalikoulu-ansaitsee-uudet-ja-terveet-til/4181835</a></p>
 <p>Oulun normaalikoulu tarjoaa perusopetusta Kaijonharjun ja Koskelan suuralueiden lapsille ja lukiokoutusta nuorille asuinkunnasta riippumatta. Normaalikouluilla on valtakunnallinen erityistehtävä. Opettajaksi opiskelevat suorittavat pääosan opetusharjoitteluista niissä. Lisäksi normaalikouluissa tehdään monipuolista kokeilu-, kehittämis-, tutkimus- ja täydennyskoulutustoimintaa.&nbsp;</p>

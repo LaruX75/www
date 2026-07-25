@@ -34,6 +34,8 @@ relatedProject:
   - Generation AI
 license: "CC-BY-4.0"
 templateEngineOverride: md
+topics:
+  - opettajankoulutus
 ---
 
 Lausunto valtioneuvoston selontekoluonnoksesta *Uutta suuntaa Suomen digitaaliseen

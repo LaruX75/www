@@ -24,4 +24,7 @@ keywords:
   - opettajankoulutus
   - Oulun yliopisto
 templateEngineOverride: md
+topics:
+  - opettajankoulutus
+  - tekoalylukutaito
 ---

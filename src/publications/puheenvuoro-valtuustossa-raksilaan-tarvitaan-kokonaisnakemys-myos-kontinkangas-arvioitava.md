@@ -27,6 +27,8 @@ places:
   - Kontinkangas
 entities:
   - Oulun yliopisto
+topics:
+  - oulun-palveluverkko-ja-kaupunkikehitys
 ---
 
 Oulun kaupunginvaltuusto jatkoi 26.4.2021 keskustelua Oulun yliopiston mahdollisesta sijoittumisesta Raksilaan. Toisessa puheenvuorossani korostin kokonaisnäkemyksen tarvetta ja nostin Kontinkankaan vaihtoehdoksi.

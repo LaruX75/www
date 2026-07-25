@@ -21,6 +21,8 @@ keywords:
   - opettajankoulutus
   - Generation AI
 templateEngineOverride: md
+topics:
+  - tekoalylukutaito
 ---
 
 Generatiivinen tekoäly ja suuret kielimallit toivat tekoälyteknologiat nopeasti tietotyötä tekevien ihmisten tietoisuuteen, vaikka tekoäly on ollut sulautuneena jokapäiväiseen elämään jo hyvinkin pitkään. Nykyaikainen kulutuselektroniikka, ajoneuvot, kodinkoneet ja digitaaliset työkalut ja sovellukset hyödyntävät usein tekoälyä useilla eri tavoilla. Generation AI -tutkimushankkeen johtaja professori Matti Tedre totesi joskus, että "kaikki siistit ja mageet jutut perustuvat tekoälyyn".

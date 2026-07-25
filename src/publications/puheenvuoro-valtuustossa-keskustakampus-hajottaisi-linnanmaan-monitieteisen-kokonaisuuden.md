@@ -25,6 +25,8 @@ places:
   - Raksila
 entities:
   - Oulun yliopisto
+topics:
+  - oulun-palveluverkko-ja-kaupunkikehitys
 ---
 
 Oulun kaupunginvaltuusto käsitteli 26.4.2021 selvitystä Oulun yliopiston sijoittumisesta Raksilan alueelle. Käytin puheenvuoron keskustakampuksen vaikutuksista Linnanmaan monitieteiseen tutkimus-, opetus- ja teknologiakeskittymään.

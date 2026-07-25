@@ -22,6 +22,9 @@ keywords:
   - perusopetus
   - Oulun yliopisto
   - YouTube
+topics:
+  - julkinen-asiantuntijuus-mediassa
+  - tekoalylukutaito
 ---
 
 Webinaaritallenne 21.10.2025. Jari Laru esittelee Generation AI -hankkeen kehittämän pienen kielikoneen, joka vastaa kysymykseen: kuinka generatiivinen tekoäly toimii?

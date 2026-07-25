@@ -9,6 +9,8 @@ categories: ["Etäopetus", "Digiopetus", "XR", "Konferenssi"]
 type: "esitys"
 layout: page.njk
 templateEngineOverride: md
+topics:
+  - koulutusteknologia-ja-oppimisymparistot
 ---
 
 Puheenvuoro EDUXR-tapahtumassa vuonna 2020. Esityksessä pohditaan, miten digiopettajan rooli ja osaaminen muuntuvat, kun siirrytään lähiopetuksesta etäopetukseen — ja mitä tämä "360° suunnanmuutos" tarkoittaa käytännössä.

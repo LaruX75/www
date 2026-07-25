@@ -21,6 +21,9 @@ keywords:
   - korkeakoulut
   - inos
   - erasmus+
+topics:
+  - avoin-tiede-ja-avoimet-oppimateriaalit
+  - julkinen-asiantuntijuus-mediassa
 ---
 
 INOS (Integrating Open and Citizen Science into Active Learning Approaches in Higher Education) on Erasmus+-rahoitteinen hanke, jonka tavoitteena on integroida avoin tiede ja kansalaistiede korkeakouluopetukseen aktiivisten oppimismenetelmien avulla. Konsortiossa ovat mukana Aalborgin yliopisto, Tallinnan yliopisto, Web2Learn, Oulun yliopisto, Liber ja Bordeaux'n yliopisto.

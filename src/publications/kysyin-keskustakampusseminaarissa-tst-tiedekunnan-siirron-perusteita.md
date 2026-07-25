@@ -52,6 +52,8 @@ sourceUrl: 'https://www.facebook.com/photo/?fbid=317892990351868'
 facebookImport:
   sourceIndex: 508
 templateEngineOverride: md
+topics:
+  - oulun-palveluverkko-ja-kaupunkikehitys
 ---
 
 Pidin tämän puheenvuoron keskustakampusta koskevassa yleisötilaisuudessa 31.1.2022. Kysyin, miksi Oulun yliopiston tieto- ja sähkötekniikan tiedekuntaa oltiin siirtämässä pois Linnanmaalta.

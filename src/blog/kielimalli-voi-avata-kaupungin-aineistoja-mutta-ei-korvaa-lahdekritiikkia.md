@@ -55,6 +55,9 @@ facebookImport:
     - src/blog/_drafts/facebook-politician/2024-06-10-jari-laru-kuntapaattaja-jakoi-julkaisun-ryhmalle-oulun-ja-oulun-seudun-politiikka.md
     - src/blog/_drafts/facebook-politician/2024-06-10-jari-laru-kuntapaattaja-jakoi-julkaisun-ryhmalle-oulun-vaalipiirin-poliittinen-keskustelur.md
 templateEngineOverride: md
+topics:
+  - lapinakyva-paatoksenteko-ja-tiedolla-johtaminen
+  - tekoalylukutaito
 ---
 
 Kun Oulun kaupungin tilastollinen vuosikirja ilmestyy pdf-muotoisena, se on samaan aikaan arvokas tietolähde ja hankala käyttöliittymä. Tieto on olemassa, mutta sitä ei ole välttämättä helppo kysyä, vertailla tai yhdistää muuhun aineistoon.

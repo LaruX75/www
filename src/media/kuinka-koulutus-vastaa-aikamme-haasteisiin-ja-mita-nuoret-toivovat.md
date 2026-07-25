@@ -20,6 +20,9 @@ keywords:
   - opettajankoulutus
   - nuoret
   - työelämä
+topics:
+  - julkinen-asiantuntijuus-mediassa
+  - opettajankoulutus
 ---
 
 Sivistyksen Supervoimia -podcastissa keskustelen Satu Kalevan kanssa siitä, miten koulutus vastaa työelämän muutoksiin, millaista osaamista tulevaisuudessa tarvitaan ja mitä nuoret itse toivovat koulutukselta. Tämä kuuluu Mediassa-kokonaisuuden vieraana ja keskustelijana -ryhmään, koska kyse on ulkopuolisen toimijan tuottamasta podcast-jaksosta.

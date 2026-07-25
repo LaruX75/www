@@ -28,6 +28,8 @@ politicalProfiles:
   - sivistys
   - kaupunkikehitys
 templateEngineOverride: md
+topics:
+  - oulun-palveluverkko-ja-kaupunkikehitys
 ---
 <p><em> Mielipidekirjoitus julkaistu Sanomalehti Kalevassa 19.11.2019</em></p>
 <p>Oulun kaupungissa on käyty viime aikoina keskustelua Oulun lyseon lukion kulttuurihistoriallisista arvoista. Harva tulee ajatelleeksi, että pohjoismaisen arkkitehtuurikilpailun tuloksena syntynyt Oulun yliopiston Linnanmaan kampus on yhtä merkittävä kohde.</p>

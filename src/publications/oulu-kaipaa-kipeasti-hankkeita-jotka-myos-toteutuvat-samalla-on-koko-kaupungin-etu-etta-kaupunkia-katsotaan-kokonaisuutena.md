@@ -27,6 +27,8 @@ politicsWritingSummary: 'Kirjoitus kiteyttää ajatuksen siitä, että koko kaup
 wp_id: 141
 source_url: 'https://www.jarilaru.fi/oulu-kaipaa-kipeasti-hankkeita-jotka-myos-toteutuvat-samalla-on-koko-kaupungin-etu-etta-kaupunkia-katsotaan-kokonaisuutena/'
 templateEngineOverride: md
+topics:
+  - oulun-palveluverkko-ja-kaupunkikehitys
 ---
 <p><a href="https://www.kaleva.fi/oulun-yliopiston-kampusratkaisun-hintalappu-riippu/3056599?fbclid=IwAR23PX_nqp1HTSldNhQdGFyiexMfKxDhIVMRVFz1EunoyJxOikpSk3ohqJ8" rel="noreferrer noopener" target="_blank">Kaleva julkaisi 30.10. keskustakampusta</a>&nbsp;käsittelevän artikkelin, jossa kerrattiin jo keväällä julkaistuja yliopiston rakennuskonsulteilta saamia alustavia laskelmia. Puolen vuoden aikana asiaa ei ole analysoitu niin, että lukujen taakse katsottaisiin. Konsulttien luvut eivät esimerkiksi huomioi Linnanmaalla tehtyjä laajoja peruskorjauksia.</p>
 <p>Konsulttilukuja vastaan olisi ollut hyvä saada Linnanmaan kiinteistön omistajan, SYK:n, näkemys asiasta. SYK on investoinut kampukseen lähes 100 miljoonaa euroa. Sen sijaan valittiin vastakkainasettelu yliopiston konsulttien ja kaupunginvaltuutetun välillä.</p>

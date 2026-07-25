@@ -55,6 +55,8 @@ facebookImport:
   sourceFiles:
     - src/blog/_drafts/facebook-politician/2023-08-29-jari-laru-kuntapaattaja-lisasi-uuden-kuvan.md
 templateEngineOverride: md
+topics:
+  - lapinakyva-paatoksenteko-ja-tiedolla-johtaminen
 ---
 
 Helsingin Sanomat kirjoitti elokuussa 2023 vihreän siirtymän investoinneista ja niiden sijoittumisesta eri puolille Suomea. Jutun taustalla oli Elinkeinoelämän keskusliiton avaama vihreiden investointien dataikkuna.

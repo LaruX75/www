@@ -29,6 +29,8 @@ politicalProfiles:
   - sivistys
   - kaupunkikehitys
 templateEngineOverride: md
+topics:
+  - oulun-palveluverkko-ja-kaupunkikehitys
 ---
 <p><strong>Mielipidekirjoitus on julkaistu Sanomalehti Kalevassa 8.8.2020 otsikolla “Yliopistoa ja ammattikorkeakoulua yhdistettiin kalliisti - yhteiskunta on investoinut Linnanmaan kampukseen kymmeniä miljoonia”</strong>&nbsp;(<a href="http://kaleva.fi/yhteiskunta-on-investoinut-linnanmaan-kampukseen-k/2765024?fbclid=IwAR0pGawS01ppInhNHkFXILbSD2RVSEWXsnkg2gbMvRMhwPrlAdtsf-zcTXQ" rel="noreferrer noopener" target="_blank">kaleva.fi/yhteiskunta-on-investoinut-linnanmaan-kampukseen-k/2765024</a>)</p>
 <p>Oulun ammattikorkeakoulun muuttopäätös vuonna 2016 Linnanmaan yliopistokampukselle käynnisti poikkeuksellisen laajan muutto- ja peruskorjausruljanssin.</p>

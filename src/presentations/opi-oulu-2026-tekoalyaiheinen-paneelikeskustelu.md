@@ -7,6 +7,8 @@ categories: ["Paneelikeskustelut","Tekoäly","Opettajankoulutus"]
 type: "esitys"
 layout: page.njk
 templateEngineOverride: md
+topics:
+  - opettajankoulutus
 ---
 
 Pohjois-Suomen Opettajainpäivillä järjestetty tekoälyaiheinen paneelikeskustelu. Tapahtuman ohjelmasivun mukaan keskustelu pidettiin Oulun yliopiston Linnanmaan kampuksella lauantaina 31.1.2026 klo 12.00-13.00. Kyse on esitykset-kokonaisuuteen kuuluvasta tapahtumaesiintymisestä, ei mediassa-sisällöstä.

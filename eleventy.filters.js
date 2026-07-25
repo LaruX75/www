@@ -599,6 +599,11 @@ function topicItemScore(item, topic = {}) {
   const contextTerms = topicTermSet(topic.contexts);
   let score = 0;
 
+  // Explicit topics: frontmatter field overrides everything (+10)
+  if (topic.slug && toArray(data.topics).map(s => String(s).trim()).includes(topic.slug)) {
+    score += 10;
+  }
+
   // Item's categories vs topic categories (+5) or topic keywords (+4) — whichever is higher
   score += toArray(data.categories).reduce((sum, value) => {
     const norm = normalizeTopicTerm(value);

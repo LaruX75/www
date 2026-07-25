@@ -9,6 +9,8 @@ type: 'esitys'
 source: 'slideshare'
 layout: page.njk
 templateEngineOverride: md
+topics:
+  - koulutusteknologia-ja-oppimisymparistot
 ---
 
 Tämä esitys on saatavilla SlideSharessa. [Avaa esitys SlideSharessa](https://www.slideshare.net/slideshow/cscl-tietokoneavusteinen-yhteisllinen-oppiminen-kotu2011a/10410251).

@@ -19,6 +19,9 @@ keywords:
   - Oulun yliopisto
   - TSV
   - avoimet oppimateriaalit
+topics:
+  - avoin-tiede-ja-avoimet-oppimateriaalit
+  - julkinen-asiantuntijuus-mediassa
 ---
 
 Avoimen tieteen syyspäivillä 7.12.2020 jaettiin toista kertaa kansallinen avoimen tieteen palkinto ja kaksi avoimen tieteen edistäjät -palkintoa.

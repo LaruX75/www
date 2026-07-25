@@ -34,6 +34,8 @@ keywords:
   - koulutuspolitiikka
 license: "CC-BY-NC-ND-4.0"
 templateEngineOverride: md
+topics:
+  - opettajankoulutus
 ---
 
 Lausunto Liikenne- ja viestintäministeriön lausuntopyyntöön *Luonnos Suomen digitaaliseksi

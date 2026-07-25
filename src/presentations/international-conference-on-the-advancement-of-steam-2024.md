@@ -8,6 +8,8 @@ categories: ["STEAM","Tekoäly","Konferenssi","Tutkimus"]
 type: "esitys"
 layout: page.njk
 templateEngineOverride: md
+topics:
+  - tekoalylukutaito
 ---
 
 Tämä on automaattisesti tuotu Canva-esitys. Voit katsoa esityksen suoraan [Canvassa tästä linkistä](https://www.canva.com/d/ZSS9BH47n8CC49l).

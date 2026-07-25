@@ -18,6 +18,8 @@ writingRoles:
 wp_id: 1185
 source_url: 'https://www.jarilaru.fi/monilukutaitoa-keinoalya-ja-koodaamista-s2-opetuksessa/'
 templateEngineOverride: md
+topics:
+  - opettajankoulutus
 ---
 <p><em>Alla olevan blogikirjoituksen päävastuullinen tekijä on Päivi Jokinen, olin mukana asiantuntijana ja kommentoijana. Kirjoitus löytyy täältä: <a href="https://taitavaksis2opettajaksi.blogspot.com/2019/12/v-behaviorurldefaultvmlo.html" target="_blank" rel="noreferrer noopener">https://taitavaksis2opettajaksi.blogspot.com/2019/12/v-behaviorurldefaultvmlo.html</a></em></p>
 <p><strong>Monilukutaitoa, keinoälyä ja koodaamista S2-opetuksessa</strong></p>

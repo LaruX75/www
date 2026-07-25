@@ -21,6 +21,9 @@ keywords:
   - digipedagogiikka
   - opettajankoulutus
   - haastattelu
+topics:
+  - julkinen-asiantuntijuus-mediassa
+  - tekoalylukutaito
 ---
 
 DigiErkon julkaisemassa haastattelussa vastaan kysymyksiin opetusteknologiasta, opettamisesta, tekoälystä ja koulutuksen tulevaisuudesta. Tämä kuuluu Mediassa-kokonaisuuden ryhmään "Mediassa minusta", koska kyse on ulkopuolisen toimijan tekemästä asiantuntijahaastattelusta.

@@ -21,6 +21,8 @@ source_url: https://www.jarilaru.fi/valtuustoaloite-oulun-kaupungin-tulee-toteut
 politicalProfiles:
   - avoinhallinto
 templateEngineOverride: md
+topics:
+  - lapinakyva-paatoksenteko-ja-tiedolla-johtaminen
 ---
 
 <p><strong>Oulun kaupungin avoimet tietovarannot ja näkymät tietoon kaipaavat kehittämistä</strong></p>

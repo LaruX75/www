@@ -22,6 +22,9 @@ keywords:
   - opettajankoulutus
   - Oulun yliopisto
   - YouTube
+topics:
+  - julkinen-asiantuntijuus-mediassa
+  - tekoalylukutaito
 ---
 
 ITK-webinaaritallenne 2.4.2024. Jari Laru esittelee miten tekoälyä opetetaan oppilaille Generation AI -hankkeen tutkimusperustaisen lähestymistavan kautta.

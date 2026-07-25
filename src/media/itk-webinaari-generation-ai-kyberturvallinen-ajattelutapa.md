@@ -22,6 +22,9 @@ keywords:
   - perusopetus
   - Oulun yliopisto
   - YouTube
+topics:
+  - julkinen-asiantuntijuus-mediassa
+  - tekoalylukutaito
 ---
 
 ITK-webinaaritallenne 28.3.2023. Jari Laru (Oulun yliopisto), Matti Tedre ja Henriikka Vartiainen (Itä-Suomen yliopisto) esittelevät Generation AI -hankkeen lähestymistavan kyberturvallisen ajattelutavan opettamiseen tekoälysukupolvelle.

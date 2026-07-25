@@ -33,6 +33,8 @@ politicalProfiles:
   - palveluverkko
   - hyvinvointi
 templateEngineOverride: md
+topics:
+  - oulun-palveluverkko-ja-kaupunkikehitys
 ---
 <p>Mielipidekirjoitus on julkaistu Kalevassa 7.4.2018</p>
 <p><strong>Kouluja ja</strong> päiväkoteja koskevissa päätöksissä unohtuu usein sana pedagogiikka. Pedagogiikka tarkoittaa opetuksen järjestämistä, mutta myös kasvatuksen ja opetuksen arvopohjaa ja siitä kumpuavia keinoja päästä kasvatukselle ja opetukselle asetettuihin päämääriin.</p>

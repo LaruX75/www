@@ -19,6 +19,8 @@ writingRoles:
 politicalProfiles:
   - avoinhallinto
 templateEngineOverride: md
+topics:
+  - lapinakyva-paatoksenteko-ja-tiedolla-johtaminen
 ---
 
 Oulun kaupunginvaltuusto käsitteli 12.9.2022 kuntalaisaloitteita sekä aikaisempia vielä käsittelemättömiä aloitteita. Käytin puheenvuoron aloitteiden käsittelyn hitaudesta ja siitä, miten niiden etenemistä pitäisi voida seurata nykyistä avoimemmin ja selkeämmin.

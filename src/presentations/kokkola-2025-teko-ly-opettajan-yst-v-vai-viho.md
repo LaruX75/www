@@ -8,6 +8,9 @@ categories: ["Tekoäly","Opettajuus","Koulutus"]
 type: "esitys"
 layout: page.njk
 templateEngineOverride: md
+topics:
+  - opettajankoulutus
+  - tekoalylukutaito
 ---
 
 Tämä on automaattisesti tuotu Canva-esitys. Voit katsoa esityksen suoraan [Canvassa tästä linkistä](https://www.canva.com/d/fRVY_8QVfYju6_Z).

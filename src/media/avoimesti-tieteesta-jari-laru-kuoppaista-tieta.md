@@ -22,6 +22,9 @@ keywords:
   - think open digest
   - tiederadio
   - oulun yliopisto
+topics:
+  - avoin-tiede-ja-avoimet-oppimateriaalit
+  - julkinen-asiantuntijuus-mediassa
 ---
 
 Think Open Digestin julkaisemassa podcast-jaksossa Ilmari Jauhiainen haastattelee minua avoimen opetuksen, oppimisen ja oman urapolkuni teemoista. Jakso kuuluu Mediassa-kokonaisuuteen, koska kyse on ulkopuolisen toimijan julkaisemasta haastattelusta.

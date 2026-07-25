@@ -25,4 +25,6 @@ keywords:
   - Shield
   - Oulun yliopisto
 templateEngineOverride: md
+topics:
+  - tekoalylukutaito
 ---
