@@ -303,10 +303,14 @@
       uniquePush(routeTags, "route:materiaalit");
     }
 
+    const isAcademicLectureOnly =
+      categoryTags.length === 1 &&
+      categoryTags[0] === "tdk-luento";
+
     if (
       categoryTags.includes("konferenssi-keynote") ||
       categoryTags.includes("kansainvälinen-konferenssi") ||
-      profileTags.includes("tutkija")
+      (profileTags.includes("tutkija") && !isAcademicLectureOnly)
     ) {
       uniquePush(routeTags, "route:puheenvuorot");
     }
