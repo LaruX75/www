@@ -859,9 +859,9 @@
   function describePresentationFilter(filter) {
     const labels = {
       all: { label: "Kaikki aineistot", note: "" },
-      "route:puheenvuorot": { label: "Puheenvuorot", note: "Pääreitti käyttää ensisijaista reittiluokitusta." },
-      "route:koulutukset": { label: "Koulutukset", note: "Pääreitti käyttää ensisijaista reittiluokitusta." },
-      "route:materiaalit": { label: "Videot ja materiaalit", note: "Pääreitti käyttää ensisijaista reittiluokitusta." },
+      "route:puheenvuorot": { label: "Puheenvuorot", note: "Näytetään aineistot, joiden ensisijainen pääreitti on puheenvuorot." },
+      "route:koulutukset": { label: "Koulutukset", note: "Näytetään aineistot, joiden ensisijainen pääreitti on koulutukset." },
+      "route:materiaalit": { label: "Videot ja materiaalit", note: "Näytetään aineistot, joiden ensisijainen pääreitti on videot ja materiaalit." },
       own: { label: "Omat esitykset", note: "" },
       aoe: { label: "Avoimet oppimateriaalit", note: "" },
       video: { label: "Videot", note: "" },
