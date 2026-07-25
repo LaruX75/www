@@ -98,8 +98,7 @@ schemaMentions:
 
 <nav class="pol-mobile-path" aria-label="Politiikkasivun tärkeimmät osiot">
   <a href="#nykyinen-rooli">Rooli</a>
-  <a href="#ydinteemat">Ydinteemat</a>
-  <a href="#aihepolut">Aihepolut</a>
+  <a href="#paalinjat">Päälinjat</a>
   <a href="#naytto">Näyttö</a>
   <a href="#kirjoitukset">Kirjoitukset</a>
   <a href="#syvenna">Syvennä</a>
@@ -233,83 +232,6 @@ schemaMentions:
     "summary": "Video näyttää, miten lasten ja nuorten tilastotietoa voi käyttää palveluverkkokeskustelussa koko kaupunkiin kohdistuvien vaikutusten arviointiin."
   }
 ] %}
-{% set politicsTopicPaths = [
-  {
-    "title": "Kampus, Raksila ja Linnanmaa",
-    "href": "/politiikka/kampus-raksila-linnanmaa/",
-    "type": "Aihepolku",
-    "summary": "Kampusratkaisut, normaalikoulun tilat, Raksilan kehittäminen ja Linnanmaan merkitys samassa pitkässä kaupunkipoliittisessa keskustelussa.",
-    "source": "Puheet, kysymykset ja blogiartikkelit",
-    "accent": "#0d6efd",
-    "featured": true
-  },
-  {
-    "title": "Palveluverkko ja kaupunginosat",
-    "href": "/politiikka/palveluverkko/",
-    "type": "Aihepolku",
-    "summary": "Kouluverkko, päiväkodit, väestösuunnitteet, suuralueet ja kaupunginosien tasapuolinen kehitys koko Oulun mittakaavassa.",
-    "source": "Puheenvuorot, valtuustoaloitteet ja blogiartikkelit",
-    "accent": "#198754",
-    "featured": true
-  },
-  {
-    "title": "Avoin valmistelu ja tiedolla johtaminen",
-    "href": "/politiikka/avoin-valmistelu/",
-    "type": "Aihepolku",
-    "summary": "Valmistelun näkyvyys, avoin data, julkiset tietojohtamisen työkalut ja päätöksenteon seurattavuus.",
-    "source": "Aloitteet, puheenvuorot ja prosessia avaavat kirjoitukset",
-    "accent": "#6f42c1",
-    "featured": true
-  },
-  {
-    "title": "Sivistys ja koulun resurssit",
-    "href": "/kategoriat/sivistys-ja-koulutus/",
-    "type": "Kategoria",
-    "summary": "Oppimisen tuki, koulutuksen resurssit, terveet tilat, varhaiskasvatus ja sivistyspalvelujen pitkät vaikutukset.",
-    "source": "Laaja sivistys- ja koulutuskategoria",
-    "accent": "#245c9e"
-  },
-  {
-    "title": "Varhaiskasvatus ja perheiden arki",
-    "href": "/avainsanat/varhaiskasvatus/",
-    "type": "Avainsana",
-    "summary": "Varhaiskasvatuksen rahoitus, palvelujen saatavuus, perheiden arki ja lasten palvelujen jatkuvuus.",
-    "source": "Tarkempi avainsanapolku",
-    "accent": "#b3425a"
-  },
-  {
-    "title": "Kaavoitus ja kaupunkirakenne",
-    "href": "/avainsanat/kaavoitus/",
-    "type": "Avainsana",
-    "summary": "Asemakaavat, rakentaminen, täydennysrakentaminen ja se, miten yksittäiset hankkeet vaikuttavat kaupungin kokonaisuuteen.",
-    "source": "Kaavoitukseen liittyvät puheet ja kirjoitukset",
-    "accent": "#c76821"
-  },
-  {
-    "title": "Liikkuminen ja saavutettavuus",
-    "href": "/avainsanat/liikenne-ja-saavutettavuus/",
-    "type": "Avainsana",
-    "summary": "Joukkoliikenne, pyöräily, liikenneturvallisuus ja palvelujen saavutettavuus osana arjen toimivuutta.",
-    "source": "Liikkumisen ja saavutettavuuden sisällöt",
-    "accent": "#0f766e"
-  },
-  {
-    "title": "Kulttuuri, tilat ja yhteinen kaupunki",
-    "href": "/avainsanat/kulttuuri/",
-    "type": "Avainsana",
-    "summary": "Kulttuuripalvelut, kaupungintalo, museot, tapahtumat ja yhteiset tilat osana kaupungin identiteettiä.",
-    "source": "Kulttuuriin ja tiloihin liittyvät sisällöt",
-    "accent": "#8b4d9f"
-  },
-  {
-    "title": "Vaalit ja poliittinen avoimuus",
-    "href": "/politiikka/vaalikaudet/",
-    "type": "Vaalikaudet",
-    "summary": "Vaalikaudet, luottamustehtävät, vaalitulokset ja avoimuustiedot näyttävät poliittisen työn ajallisen kokonaisuuden.",
-    "source": "Vaalikaudet, sidonnaisuudet ja vaalirahoitus",
-    "accent": "#334155"
-  }
-] %}
 {% set sortedPoliticalSpeeches = politicalSpeeches | sort(true, false, "date") %}
 {% set latestPoliticalSpeech = sortedPoliticalSpeeches[0] %}
 {% set latestInitiative = sortedInitiatives[0] %}
@@ -389,33 +311,21 @@ schemaMentions:
   </div>
 </section>
 
-<section class="py-5 mb-0" id="ydinteemat">
+<section class="py-5 mb-0" id="paalinjat">
   <div class="site-shell">
     <div class="pol-section-head">
-      <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-bullseye me-1"></i>Ydinteemat</p>
-      <h2 class="pol-section-title">Kolme painopistettä, joihin poliittinen profiilini eniten nojaa</h2>
-      <p class="pol-section-lead mb-0">Nämä eivät ole satunnaisia avainsanoja, vaan sisältöanalyysin perusteella erottuvia päälinjoja. Niiden alta löytyy puheita, aloitteita ja kirjoituksia, joissa sama ajattelu toistuu eri päätöksissä.</p>
-    </div>
-    <div id="politics-core-theme-list" class="row g-4"></div>
-    <div id="politics-profile-note" class="mt-3"></div>
-  </div>
-</section>
-
-<section class="py-5 mb-0" id="aihepolut">
-  <div class="site-shell">
-    <div class="pol-section-head">
-      <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-signpost-split me-1"></i>Aihepolut</p>
-      <h2 class="pol-section-title">Sukella niihin asiakokonaisuuksiin, joissa työ jatkuu vuodesta toiseen</h2>
-      <p class="pol-section-lead mb-0">Aihepolut yhdistävät puheenvuoroja, valtuustoaloitteita, kirjoituksia, kokouksia ja blogiartikkeleita. Osa avautuu omana kokonaisuutenaan, osa vie kategoriaan tai avainsanaan, jossa sama keskustelu jatkuu.</p>
+      <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-signpost-split me-1"></i>Poliittiset päälinjat</p>
+      <h2 class="pol-section-title">Neljä kuratoitua kokonaisuutta, joissa työ jatkuu vuodesta toiseen</h2>
+      <p class="pol-section-lead mb-0">Päälinjat kokoavat puheenvuorot, valtuustoaloitteet, mielipidekirjoitukset ja blogitekstit yhtenäiseksi aikajanaksi. Jokainen sivu näyttää argumentaation etenemisen ja perustelut, ei pelkkää artikkelilistaa.</p>
     </div>
 
     <div class="pol-topic-grid">
-      {% for path in politicsTopicPaths %}
-      <a class="pol-topic-card{% if path.featured %} pol-topic-card--featured{% endif %}" href="{{ path.href }}" style="--pol-topic-accent: {{ path.accent }}">
-        <span class="pol-topic-type">{{ path.type }}</span>
-        <h3>{{ path.title }}</h3>
-        <p>{{ path.summary }}</p>
-        <span class="pol-topic-source">{{ path.source }}</span>
+      {% for theme in politicsThemePages %}
+      <a class="pol-topic-card pol-topic-card--featured" href="{{ theme.permalink }}" style="--pol-topic-accent: {{ theme.accent }}">
+        <span class="pol-topic-type">{{ theme.eyebrow }}</span>
+        <h3>{{ theme.title }}</h3>
+        <p>{{ theme.description }}</p>
+        <span class="pol-topic-source">Aikajana, perustelut ja valikoidut lähteet</span>
       </a>
       {% endfor %}
     </div>
@@ -599,77 +509,6 @@ schemaMentions:
     </div>
   </div>
 </section>
-
-<script id="politics-blog-data" type="application/json">
-[
-{% for post in collections.blog %}
-  {
-    "title": {{ (post.data.title or "") | dump | safe }},
-    "url": {{ (post.url or "") | dump | safe }},
-    "date": {{ (post.date | dateToRfc3339) | dump | safe }},
-    "tags": {{ (post.data.tags or []) | dump | safe }},
-    "categories": {{ (post.data.categories or []) | dump | safe }},
-    "keywords": {{ (post.data.keywords or []) | dump | safe }},
-    "politicalProfiles": {{ (post.data.politicalProfiles or []) | dump | safe }}
-  }{% if not loop.last %},{% endif %}
-{% endfor %}
-]
-</script>
-
-<script id="politics-content-data" type="application/json">
-[
-{% set comma = joiner(",") %}
-{% for item in collections.politics %}{{ comma() }}
-  {
-    "title": {{ (item.data.title or "") | dump | safe }},
-    "url": {{ (item.url or "") | dump | safe }},
-    "date": {{ (item.date | dateToRfc3339) | dump | safe }},
-    "contentType": "Valtuustoaloite",
-    "tags": {{ (item.data.tags or []) | dump | safe }},
-    "categories": {{ (item.data.categories or []) | dump | safe }},
-    "keywords": {{ (item.data.keywords or []) | dump | safe }},
-    "politicalProfiles": {{ (item.data.politicalProfiles or []) | dump | safe }}
-  }
-{% endfor %}
-{% for item in collections.pub_kolumni %}{{ comma() }}
-  {
-    "title": {{ (item.data.title or "") | dump | safe }},
-    "url": {{ (item.url or "") | dump | safe }},
-    "date": {{ (item.date | dateToRfc3339) | dump | safe }},
-    "contentType": "Kolumni",
-    "tags": {{ (item.data.tags or []) | dump | safe }},
-    "categories": {{ (item.data.categories or []) | dump | safe }},
-    "keywords": {{ (item.data.keywords or []) | dump | safe }},
-    "politicalProfiles": {{ (item.data.politicalProfiles or []) | dump | safe }}
-  }
-{% endfor %}
-{% for item in collections.pub_mielipide %}{{ comma() }}
-  {
-    "title": {{ (item.data.title or "") | dump | safe }},
-    "url": {{ (item.url or "") | dump | safe }},
-    "date": {{ (item.date | dateToRfc3339) | dump | safe }},
-    "contentType": "Mielipide",
-    "tags": {{ (item.data.tags or []) | dump | safe }},
-    "categories": {{ (item.data.categories or []) | dump | safe }},
-    "keywords": {{ (item.data.keywords or []) | dump | safe }},
-    "politicalProfiles": {{ (item.data.politicalProfiles or []) | dump | safe }}
-  }
-{% endfor %}
-{% for item in collections.pub_puhe %}{{ comma() }}
-  {
-    "title": {{ (item.data.title or "") | dump | safe }},
-    "url": {{ (item.url or "") | dump | safe }},
-    "date": {{ (item.date | dateToRfc3339) | dump | safe }},
-    "contentType": {{ (item | topicTypeLabel) | dump | safe }},
-    "speechContext": {{ (item.data.speechContext or "") | dump | safe }},
-    "tags": {{ (item.data.tags or []) | dump | safe }},
-    "categories": {{ (item.data.categories or []) | dump | safe }},
-    "keywords": {{ (item.data.keywords or []) | dump | safe }},
-    "politicalProfiles": {{ (item.data.politicalProfiles or []) | dump | safe }}
-  }
-{% endfor %}
-]
-</script>
 
 <script id="political-speeches-data" type="application/json">
 [
@@ -1955,14 +1794,9 @@ schemaMentions:
 
 <script>
   (() => {
-    const blogRaw = JSON.parse(document.getElementById('politics-blog-data')?.textContent || '[]');
-    const contentRaw = JSON.parse(document.getElementById('politics-content-data')?.textContent || '[]');
     const politicalSpeechesData = JSON.parse(document.getElementById('political-speeches-data')?.textContent || '[]')
       .filter((item) => item && item.title && item.url)
       .sort((a, b) => new Date(b.date) - new Date(a.date));
-    const coreThemeList = document.getElementById('politics-core-theme-list');
-    const supportThemeList = document.getElementById('politics-support-theme-list');
-    const profileNote = document.getElementById('politics-profile-note');
     const politicalSpeechesTableBody = document.getElementById('political-speeches-table-body');
     const politicalSpeechesInfo = document.getElementById('political-speeches-info');
     const politicalSpeechesPagination = document.getElementById('political-speeches-pagination');
@@ -2007,173 +1841,6 @@ schemaMentions:
       });
     }
 
-    const politicsBlogData = blogRaw
-      .filter((item) => item && item.title && item.url && Array.isArray(item.politicalProfiles) && item.politicalProfiles.length > 0)
-      .sort((a, b) => new Date(b.date) - new Date(a.date));
-    const contentData = contentRaw
-      .filter((item) => item && item.title && item.url && Array.isArray(item.politicalProfiles) && item.politicalProfiles.length > 0)
-      .sort((a, b) => new Date(b.date) - new Date(a.date));
-
-    const themedItems = [
-      ...politicsBlogData.map((item) => ({ ...item, contentType: 'Blogi' })),
-      ...contentData
-        .filter((item) => ['Valtuustopuheenvuoro', 'Valtuuston kyselytunti', 'Julkinen puhe', 'Akateeminen puhe', 'Juhlapuhe', 'Puhe', 'Mielipide', 'Valtuustoaloite'].includes(item.contentType))
-    ];
-    const hasPoliticalProfile = (item, key) => Array.isArray(item.politicalProfiles) && item.politicalProfiles.includes(key);
-    const profileDefinitions = [
-      {
-        key: 'sivistys',
-        title: 'Sivistys ja oppiminen',
-        description: 'Koulutuspolitiikka, terveet oppimisympäristöt ja yliopiston sekä kouluverkon ratkaisut.',
-        statement: 'Koulutuksen pitää näkyä päätöksenteossa laadukkaina arjen ratkaisuina, ei irrallisina hankkeina.',
-        icon: 'bi-mortarboard-fill',
-        color: '#0d6efd',
-        tier: 'core',
-        detailUrl: '/politiikka/kampus-raksila-linnanmaa/',
-        focus: ['kouluverkko', 'varhaiskasvatus', 'kampusratkaisut']
-      },
-      {
-        key: 'palveluverkko',
-        title: 'Koko Oulun alueellinen yhdenvertaisuus',
-        description: 'Suuralueiden ja kaupunginosien palvelut, saavutettavuus ja tasapuolinen kehitys koko kaupungissa.',
-        statement: 'Oulua pitää kehittää kokonaisuutena niin, että jokainen suuralue ja kaupunginosa pysyy mukana kasvussa, investoinneissa ja palveluissa.',
-        icon: 'bi-geo-alt-fill',
-        color: '#198754',
-        tier: 'core',
-        detailUrl: '/politiikka/palveluverkko/',
-        focus: ['suuralueet', 'kaupunginosat', 'alueellinen yhdenvertaisuus']
-      },
-      {
-        key: 'avoinhallinto',
-        title: 'Avoin hallinto ja tiedolla johtaminen',
-        description: 'Läpinäkyvä päätöksenteko, tietojärjestelmät, avoin data ja seurattavat valmisteluprosessit.',
-        statement: 'Päätöksiä pitää voida seurata, ymmärtää ja arvioida ilman sisäpiiritietoa.',
-        icon: 'bi-bar-chart-steps',
-        color: '#6f42c1',
-        tier: 'core',
-        detailUrl: '/politiikka/avoin-valmistelu/',
-        focus: ['avoin data', 'päätöksenteon avoimuus', 'aloitteiden seuranta']
-      },
-      {
-        key: 'kaupunkikehitys',
-        title: 'Tasapainoinen kaupunkikehitys',
-        description: 'Kaavoitus, liikkuminen, keskustan ja kampusten kehittäminen sekä toimiva kaupunkirakenne.',
-        statement: 'Kasvua pitää tehdä niin, että kokonaisuus toimii: liikkuminen, palvelut ja identiteetti samassa suunnassa.',
-        icon: 'bi-buildings-fill',
-        color: '#fd7e14',
-        tier: 'support',
-        focus: ['kaavoitus', 'liikenne', 'keskustan hankkeet']
-      },
-      {
-        key: 'hyvinvointi',
-        title: 'Lasten, nuorten ja perheiden arki',
-        description: 'Hyvinvointi, turvallinen arki, nuorisotyö ja ennaltaehkäisevät palvelut.',
-        statement: 'Kunnan tärkein tehtävä on luoda turvallinen arki lapsille, nuorille ja perheille.',
-        icon: 'bi-heart-pulse-fill',
-        color: '#dc3545',
-        tier: 'support',
-        focus: ['nuoriso', 'perheiden hyvinvointi', 'ennaltaehkäisy']
-      },
-      {
-        key: 'yhteistyo',
-        title: 'Yhteistyökykyinen Oulu',
-        description: 'Seutuyhteistyö, talousvastuu, aluehallinto ja kaupungin pitkäjänteinen kehittäminen.',
-        statement: 'Politiikka ei ole vain vastakkainasettelua, vaan kykyä tehdä toimivia ratkaisuja yhdessä.',
-        icon: 'bi-diagram-3-fill',
-        color: '#0dcaf0',
-        tier: 'support',
-        focus: ['talous', 'seutuyhteistyö', 'aluehallinto']
-      }
-    ];
-    const profileGroups = profileDefinitions.map((profile) => {
-      const items = themedItems
-        .filter((item) => hasPoliticalProfile(item, profile.key))
-        .sort((a, b) => new Date(b.date) - new Date(a.date));
-      return {
-        ...profile,
-        total: items.length,
-        blogi: items.filter((item) => item.contentType === 'Blogi').length,
-        puheenvuoro: items.filter((item) => ['Valtuustopuheenvuoro', 'Valtuuston kyselytunti', 'Julkinen puhe', 'Akateeminen puhe', 'Juhlapuhe', 'Puhe'].includes(item.contentType)).length,
-        mielipide: items.filter((item) => item.contentType === 'Mielipide').length,
-        aloite: items.filter((item) => item.contentType === 'Valtuustoaloite').length,
-        items
-      };
-    }).filter((profile) => profile.total > 0);
-
-    const contentTypeLabel = (value) => {
-      if (['Valtuustopuheenvuoro', 'Valtuuston kyselytunti', 'Julkinen puhe', 'Akateeminen puhe', 'Juhlapuhe', 'Puhe'].includes(value)) return value;
-      if (value === 'Mielipide') return 'Mielipide';
-      if (value === 'Valtuustoaloite') return 'Valtuustoaloite';
-      return 'Blogi';
-    };
-
-    function renderThemeGroup(groups, target, emptyMessage) {
-      if (!target) return;
-      if (!groups.length) {
-        target.innerHTML = `<div class="col-12"><div class="alert alert-light border mb-0">${emptyMessage}</div></div>`;
-        return;
-      }
-
-      target.innerHTML = groups.map((group) => {
-        const accent = group.color;
-        const visibleItems = group.items.slice(0, 2);
-        const focusChips = (group.focus || []).map((focus) => `
-          <span class="pol-theme-pill">${escHtml(focus)}</span>
-        `).join('');
-        const metaItems = [
-          `${group.total} sisältöä`,
-          group.puheenvuoro ? `${group.puheenvuoro} puheenvuoroa` : '',
-          group.aloite ? `${group.aloite} valtuustoaloitetta` : '',
-          group.mielipide ? `${group.mielipide} mielipidettä` : '',
-          group.blogi ? `${group.blogi} blogia` : ''
-        ].filter(Boolean).map((item) => `<span>${escHtml(item)}</span>`).join('');
-        const links = visibleItems.map((item) => `
-          <li class="pol-theme-proof-item">
-            <div class="pol-theme-proof-top">
-              <span class="pol-theme-proof-type">${escHtml(contentTypeLabel(item.contentType))}</span>
-              <span>${escHtml(item.formattedDate || formatFiDate(item.date))}</span>
-            </div>
-            <a href="${escHtml(item.url)}" class="pol-theme-proof-link">${escHtml(item.title)}</a>
-          </li>
-        `).join('');
-
-        return `
-          <div class="${group.tier === 'core' ? 'col-lg-4' : 'col-lg-4'}">
-            <article class="pol-theme-card ${group.tier === 'core' ? 'pol-theme-card--core' : 'pol-theme-card--support'}" style="border-top:4px solid ${accent}">
-              <div class="pol-theme-head">
-                <span class="pol-theme-icon" style="color:${accent}">
-                  <i class="bi ${group.icon}"></i>
-                </span>
-                <h3 class="pol-theme-title">${escHtml(group.title)}</h3>
-              </div>
-              <p class="pol-theme-statement">${escHtml(group.statement)}</p>
-              <p class="pol-theme-description">${escHtml(group.description)}</p>
-              <div class="pol-theme-meta">${metaItems}</div>
-              <div class="pol-theme-focus">${focusChips}</div>
-              <p class="pol-theme-proof-label">Tuoreita nostoja</p>
-              <ul class="pol-theme-proof-list">${links || '<li class="pol-theme-proof-item"><span class="text-muted small">Nostoja ei löytynyt.</span></li>'}</ul>
-              <div class="pol-theme-footer">
-                <a href="${escHtml(group.detailUrl || '/kynasta/')}">${group.detailUrl ? 'Avaa päälinja' : 'Koko kirjoitusarkisto'}</a>
-              </div>
-            </article>
-          </div>
-        `;
-      }).join('');
-    }
-
-    function renderThemeCards() {
-      if (!coreThemeList && !supportThemeList) return;
-      const groups = [...profileGroups];
-      const coreGroups = groups.filter((group) => group.tier === 'core');
-      const supportGroups = groups.filter((group) => group.tier !== 'core');
-
-      renderThemeGroup(coreGroups, coreThemeList, 'Ydinteemoihin sidottuja sisältöjä ei löytynyt.');
-      renderThemeGroup(supportGroups, supportThemeList, 'Tukiteemoihin sidottuja sisältöjä ei löytynyt.');
-
-      if (!profileNote) return;
-      profileNote.innerHTML = '<small class="text-muted">Luokittelu perustuu sisältöihin lisättyyn politicalProfiles-metadataan. Ydinteemat ja tukiteemat on eroteltu tämän sivun sisältöanalyysin pohjalta, ja sama kirjoitus voi näkyä useammassa teemassa.</small>';
-    }
-
     function renderPoliticalSpeeches(page = 1) {
       if (!politicalSpeechesTableBody || !politicalSpeechesPagination || !politicalSpeechesInfo) return;
       const pageSize = currentPoliticalSpeechPageSize();
@@ -2210,7 +1877,6 @@ schemaMentions:
       }).join('');
     }
 
-    renderThemeCards();
     applyPoliticsMobileDisclosureState();
     renderPoliticalSpeeches();
 
