@@ -83,6 +83,10 @@ module.exports = [
       { label: "Politiikka", href: "/politiikka/" },
       { label: "Vaalikaudet", href: "/politiikka/vaalikaudet/" },
       { label: "Puheenvuorot", href: "/kynasta/#puheet" }
+    ],
+    linkedPolitics: [
+      { href: "/politiikka/palveluverkko/", label: "Palveluverkko ja kaupunginosat" },
+      { href: "/politiikka/kampus-raksila-linnanmaa/", label: "Kampus, Raksila ja Linnanmaa" }
     ]
   },
   {
@@ -100,6 +104,9 @@ module.exports = [
       { label: "Valtuustoaloitteet", href: "/kynasta/#aloitteet" },
       { label: "Politiikka", href: "/politiikka/" },
       { label: "Vaalikaudet", href: "/politiikka/vaalikaudet/" }
+    ],
+    linkedPolitics: [
+      { href: "/politiikka/avoin-valmistelu/", label: "Avoin valmistelu ja tiedolla johtaminen" }
     ]
   },
   {

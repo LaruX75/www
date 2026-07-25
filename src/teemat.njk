@@ -38,6 +38,21 @@
       </aside>
     </header>
 
+    {% if topic.linkedPolitics and topic.linkedPolitics.length %}
+    <aside class="topic-profile-callout" aria-labelledby="topic-linked-politics-title">
+      <div>
+        <p class="taxonomy-kicker">Syvempää taustoitusta</p>
+        <h2 id="topic-linked-politics-title">Poliittinen päälinja aiheesta</h2>
+        <p>Kuratoitu aikajana ja argumentaation kaari — vain keskeiset teot ja niiden perustelut.</p>
+      </div>
+      <div class="topic-profile-link-row">
+        {% for link in topic.linkedPolitics %}
+          <a class="btn btn-outline-primary" href="{{ link.href }}">{{ link.label }} →</a>
+        {% endfor %}
+      </div>
+    </aside>
+    {% endif %}
+
     <section class="topic-profile-section topic-profile-promise" aria-labelledby="topic-promise-title">
       <div>
         <p class="taxonomy-kicker">Mitä tästä saa irti?</p>

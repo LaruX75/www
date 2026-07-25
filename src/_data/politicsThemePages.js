@@ -113,7 +113,11 @@ module.exports = [
       { label: "Kaupunginvaltuuston kokoukset", href: "/politiikka/kaupunginvaltuusto/" },
       { label: "Vaalikaudet", href: "/politiikka/vaalikaudet/" },
       { label: "Kynästä", href: "/kynasta/" }
-    ]
+    ],
+    linkedTopic: {
+      slug: "oulun-palveluverkko-ja-kaupunkikehitys",
+      label: "Oulun palveluverkko ja kaupunkikehitys"
+    }
   },
   {
     key: "palveluverkko",
@@ -205,7 +209,11 @@ module.exports = [
       { label: "Palveluverkko 2023", href: "/2023/05/21/palveluverkko-2023-reunaehtojen-tarkastelua/" },
       { label: "Poliittiset mielipiteet", href: "/kynasta/?opinions=political#mielipiteet" },
       { label: "Vaalikaudet", href: "/politiikka/vaalikaudet/" }
-    ]
+    ],
+    linkedTopic: {
+      slug: "oulun-palveluverkko-ja-kaupunkikehitys",
+      label: "Oulun palveluverkko ja kaupunkikehitys"
+    }
   },
   {
     key: "avoin-valmistelu",
@@ -293,6 +301,10 @@ module.exports = [
       { label: "Sidonnaisuudet ja vaalirahoitus", href: "/poliittinen-avoimuus/" },
       { label: "Valtuustoaloitteet", href: "/kynasta/#aloitteet" },
       { label: "Kaupunginvaltuusto", href: "/politiikka/kaupunginvaltuusto/" }
-    ]
+    ],
+    linkedTopic: {
+      slug: "lapinakyva-paatoksenteko-ja-tiedolla-johtaminen",
+      label: "Läpinäkyvä päätöksenteko ja tiedolla johtaminen"
+    }
   }
 ];

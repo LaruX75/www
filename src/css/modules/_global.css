@@ -1049,6 +1049,11 @@ html[data-bs-theme="dark"]:not([data-a11y-bg]) .list-group-item .text-muted {
   background: var(--bs-tertiary-bg);
 }
 
+.politics-theme-side-card--linked {
+  border-left: 4px solid var(--bs-link-color);
+  background: color-mix(in srgb, var(--bs-link-color) 6%, var(--bs-body-bg));
+}
+
 @media (max-width: 991.98px) {
   .politics-theme-hero__grid,
   .politics-theme-layout,

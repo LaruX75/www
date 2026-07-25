@@ -108,6 +108,19 @@ eleventyComputed:
           </div>
         </section>
 
+        {% if theme.linkedTopic %}
+        {% set linkedTopicMatch = null %}
+        {% for t in seoTopics %}
+          {% if t.slug == theme.linkedTopic.slug %}{% set linkedTopicMatch = t %}{% endif %}
+        {% endfor %}
+        {% set linkedTopicItems = collections | topicItems(linkedTopicMatch, 9999) if linkedTopicMatch else null %}
+        <section class="politics-theme-side-card politics-theme-side-card--linked">
+          <p class="content-detail-card-kicker">Kaikki aineistot</p>
+          <p>Tämä päälinja kokoaa kuratoidun kaaren. Aiheen kaikki sivuston sisällöt — puheenvuorot, blogit, esitykset, mediaosumat — löytyvät teemaprofiilista.</p>
+          <a class="btn btn-outline-primary btn-sm" href="/teemat/{{ theme.linkedTopic.slug }}/">{{ theme.linkedTopic.label }}{% if linkedTopicItems and linkedTopicItems.totalCount %} ({{ linkedTopicItems.totalCount }}){% endif %} →</a>
+        </section>
+        {% endif %}
+
         <section class="politics-theme-side-card politics-theme-side-card--note">
           <p class="content-detail-card-kicker">Kokonaisuuden rajaus</p>
           <p>{{ theme.editorialNote }}</p>

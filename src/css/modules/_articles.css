@@ -2129,6 +2129,34 @@ html:not([data-bs-theme="dark"]) .kynasta-hero {
     var(--bs-body-bg);
 }
 
+.topic-profile-callout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: center;
+  padding: clamp(1rem, 2.4vw, 1.45rem);
+  margin-top: clamp(1rem, 3vw, 1.6rem);
+  border-left: 4px solid var(--bs-link-color);
+  background: color-mix(in srgb, var(--bs-link-color) 6%, var(--bs-body-bg));
+  border-radius: 0.5rem;
+}
+
+.topic-profile-callout h2 {
+  font-size: 1.15rem;
+  margin: 0.15rem 0 0.35rem;
+}
+
+.topic-profile-callout p {
+  margin: 0;
+  color: var(--bs-secondary-color);
+}
+
+@media (max-width: 767.98px) {
+  .topic-profile-callout {
+    grid-template-columns: 1fr;
+  }
+}
+
 .topic-profile-link-row a {
   display: inline-flex;
   align-items: center;

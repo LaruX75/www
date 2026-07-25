@@ -535,6 +535,32 @@ module.exports = {
           ]
         },
         {
+          heading: "Päälinjat",
+          links: [
+            {
+              title: "Kampus, Raksila ja Linnanmaa",
+              href: "/politiikka/kampus-raksila-linnanmaa/",
+              icon: "bi bi-building-fill me-2",
+              menuLink: true,
+              description: "Kampusratkaisut, normaalikoulun tilat ja Linnanmaan asema — aikajana ja perustelut."
+            },
+            {
+              title: "Palveluverkko ja kaupunginosat",
+              href: "/politiikka/palveluverkko/",
+              icon: "bi bi-diagram-3-fill me-2",
+              menuLink: true,
+              description: "Kouluverkko, väestösuunnitteet ja alueellinen yhdenvertaisuus koko kaupungin mittakaavassa."
+            },
+            {
+              title: "Avoin valmistelu ja tiedolla johtaminen",
+              href: "/politiikka/avoin-valmistelu/",
+              icon: "bi bi-bar-chart-steps me-2",
+              menuLink: true,
+              description: "Valmistelun läpinäkyvyys, avoimet asiakirjat ja tiedolla johtamisen työkalut."
+            }
+          ]
+        },
+        {
           heading: "Poliittiset teemat",
           links: [
             {
