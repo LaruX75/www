@@ -963,15 +963,15 @@
       };
       const kategoriaLabel = item.kategoria ? (kategoriaLabels[item.kategoria] || item.kategoria) : "";
       const kategoriaBadge = kategoriaLabel
-        ? `<span class="badge text-bg-secondary me-1" style="font-size:.65rem;">${escHtml(kategoriaLabel)}</span>`
+        ? `<button type="button" class="presentation-archive-card-chip presentation-archive-card-chip-secondary" data-presentation-filter="category:${escHtml(item.kategoria)}">${escHtml(kategoriaLabel)}</button>`
         : "";
       const routeBadge = item.routePrimary && routeLabels[item.routePrimary]
-        ? `<span class="presentation-archive-card-route">${escHtml(routeLabels[item.routePrimary])}</span>`
+        ? `<button type="button" class="presentation-archive-card-route" data-presentation-filter="${escHtml(item.routePrimary)}">${escHtml(routeLabels[item.routePrimary])}</button>`
         : "";
       const routeSecondaryBadges = Array.isArray(item.routeTags)
         ? item.routeTags
           .filter((route) => route && route !== item.routePrimary && secondaryRouteLabels[route])
-          .map((route) => `<span class="presentation-archive-card-route-secondary">${escHtml(secondaryRouteLabels[route])}</span>`)
+          .map((route) => `<button type="button" class="presentation-archive-card-route-secondary" data-presentation-filter="${escHtml(route)}">${escHtml(secondaryRouteLabels[route])}</button>`)
           .join("")
         : "";
       const jarjestajaLine = (item.sourceKey === "canva" && item.jarjestaja)
@@ -1112,6 +1112,7 @@
   function initUnifiedArchive() {
     const archiveItems = buildUnifiedArchiveItems();
     const filterControls = [...document.querySelectorAll("[data-presentation-filter]")];
+    const archiveGrid = document.getElementById("presentation-unified-archive");
     let activeFilter = "all";
     let activePage = 1;
     renderPresentationFilterCounts(archiveItems);
@@ -1134,6 +1135,13 @@
         if (control.tagName === "A") event.preventDefault();
         applyFilter(filter, control.tagName === "A");
       });
+    });
+
+    archiveGrid?.addEventListener("click", (event) => {
+      const button = event.target.closest("button[data-presentation-filter]");
+      if (!button) return;
+      const filter = button.dataset.presentationFilter || "all";
+      applyFilter(filter, false);
     });
 
     document.getElementById("presentation-unified-pagination")?.addEventListener("click", (event) => {

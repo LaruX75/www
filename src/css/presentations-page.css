@@ -1084,16 +1084,32 @@
   gap: 0.4rem;
 }
 
-.presentation-archive-card-meta span {
+.presentation-archive-card-meta span,
+.presentation-archive-card-meta button {
   display: inline-flex;
   align-items: center;
   border: 1px solid var(--bs-border-color);
   border-radius: 999px;
+  background: transparent;
   color: var(--bs-secondary-color);
   font-size: 0.75rem;
   font-weight: 700;
   line-height: 1.1;
   padding: 0.25rem 0.55rem;
+  appearance: none;
+  text-decoration: none;
+}
+
+.presentation-archive-card-meta button {
+  cursor: pointer;
+}
+
+.presentation-archive-card-meta button:hover,
+.presentation-archive-card-meta button:focus-visible {
+  transform: translateY(-1px);
+  border-color: var(--bs-primary);
+  color: var(--bs-primary);
+  outline: none;
 }
 
 .presentation-archive-card-meta .presentation-archive-card-route {
@@ -1105,6 +1121,10 @@
 .presentation-archive-card-meta .presentation-archive-card-route-secondary {
   background: color-mix(in srgb, var(--bs-secondary-color) 8%, transparent);
   border-style: dashed;
+}
+
+.presentation-archive-card-meta .presentation-archive-card-chip-secondary {
+  background: color-mix(in srgb, var(--bs-secondary-bg) 65%, transparent);
 }
 
 .presentation-archive-card-title {
