@@ -1,13 +1,11 @@
 const presentations = require("./canva-presentations.json");
 const { loadHiddenIds } = require("./_curatedStubs");
-const { normalizeCanvaUrl } = require("./canvaUrl");
+const { getCanvaDesignId, normalizeCanvaUrl } = require("./canvaUrl");
 
 module.exports = function () {
   const hidden = loadHiddenIds('canva');
   const rows = presentations.map((item) => {
-    const urlMatch = String(item.link || "").match(/\/d\/([A-Za-z0-9_-]+)/);
-    const designMatch = String(item.link || "").match(/\/design\/([A-Za-z0-9_-]+)\//);
-    const id = designMatch ? designMatch[1] : (urlMatch ? urlMatch[1] : "");
+    const id = getCanvaDesignId(item.link || "");
     const url = normalizeCanvaUrl(item.link || "");
     return {
       id,

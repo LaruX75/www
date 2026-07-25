@@ -164,18 +164,19 @@ data.forEach(item => {
     const filename = `${safeTitle}.md`;
     const filepath = path.join(dir, filename);
 
+    const publicUrl = normalizeCanvaUrl(item.url);
     const content = `---
 title: "${item.title.replace(/"/g, '\\"')}"
 description: "${item.description.replace(/"/g, '\\"')}"
 date: ${item.date}
-url: "${normalizeCanvaUrl(item.url)}"
+url: "${item.url}"
 thumbnail: "${item.thumbnail}"
 categories: ${JSON.stringify(item.categories)}
 type: "${item.type}"
 layout: base.njk
 ---
 
-Tämä on automaattisesti tuotu Canva-esitys. Voit katsoa esityksen suoraan [Canvassa tästä linkistä](${normalizeCanvaUrl(item.url)}).
+Tämä on automaattisesti tuotu Canva-esitys.${publicUrl ? ` Voit katsoa esityksen suoraan [Canvassa tästä linkistä](${publicUrl}).` : ` Julkinen Canva-jakolinkki lisätään tälle sivulle, kun oikea katselulinkki on tallennettu aineistoon.`}
 `;
 
     fs.writeFileSync(filepath, content);

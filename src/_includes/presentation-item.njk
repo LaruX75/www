@@ -3,6 +3,10 @@ layout: base.njk
 ---
 {% set currentLang = lang or (page.url | langFromUrl) %}
 {% set sourceHref = sourceUrl or url %}
+{% set publicSourceHref = sourceHref %}
+{% if sourceHref and "canva.com" in sourceHref %}
+  {% set publicSourceHref = sourceHref | canvaPublicUrl %}
+{% endif %}
 {% set sourceText = "Esitys" %}
 {% if source == "slideshare" %}
   {% set sourceText = "SlideShare" %}
@@ -13,7 +17,7 @@ layout: base.njk
 {% elif sourceHref and ("youtube.com" in sourceHref or "youtu.be" in sourceHref) %}
   {% set sourceText = "YouTube" %}
 {% endif %}
-{% set isVideoPreview = sourceHref and ("youtube.com" in sourceHref or "youtu.be" in sourceHref) %}
+{% set isVideoPreview = publicSourceHref and ("youtube.com" in publicSourceHref or "youtu.be" in publicSourceHref) %}
 
 <section class="content-detail-hero content-detail-hero--presentation py-5 border-bottom">
   <div class="site-shell">
@@ -27,8 +31,8 @@ layout: base.njk
           <p class="content-detail-lead mb-3">{{ description }}</p>
         {% endif %}
         <div class="content-detail-actions">
-          {% if sourceHref %}
-            <a href="{{ sourceHref }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">{% if isVideoPreview %}Katso tallenne{% else %}Avaa materiaali{% endif %}</a>
+          {% if publicSourceHref %}
+            <a href="{{ publicSourceHref }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">{% if isVideoPreview %}Katso tallenne{% else %}Avaa materiaali{% endif %}</a>
           {% endif %}
           <a href="/esitykset/" class="btn btn-outline-secondary rounded-pill px-4">Kaikki esitykset</a>
         </div>
@@ -36,7 +40,7 @@ layout: base.njk
 
       <aside class="content-detail-visual" aria-label="Esityksen esikatselu">
         {% if thumbnail %}
-          <a href="{{ sourceHref or page.url }}" {% if sourceHref %}target="_blank" rel="noopener noreferrer"{% endif %} class="content-detail-thumb{% if isVideoPreview %} video-preview{% endif %}">
+          <a href="{{ publicSourceHref or page.url }}" {% if publicSourceHref %}target="_blank" rel="noopener noreferrer"{% endif %} class="content-detail-thumb{% if isVideoPreview %} video-preview{% endif %}">
             <img src="{{ thumbnail }}" alt="" loading="lazy" decoding="async">
           </a>
         {% else %}

@@ -472,8 +472,9 @@ schemaMentions:
                 {% endif %}
                 <div class="d-flex flex-wrap gap-2 mt-auto">
                   <a href="{{ pres.url }}" class="btn btn-outline-primary btn-sm">Lue lisää</a>
-                  {% if pres.data.url %}
-                  <a href="{{ pres.data.url | canvaPublicUrl }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary btn-sm">Avaa esitys</a>
+                  {% set presPublicUrl = pres.data.url | canvaPublicUrl %}
+                  {% if presPublicUrl %}
+                  <a href="{{ presPublicUrl }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary btn-sm">Avaa Canvassa</a>
                   {% endif %}
                 </div>
               </div>

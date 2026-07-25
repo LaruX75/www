@@ -40,14 +40,14 @@
     }
   ];
 
-  // Liitetään Canva MD-sivujen sisäiset URLit canva.tableRows-dataan ulkoisen URLin perusteella
+  // Liitetään Canva MD-sivujen sisäiset URLit canva.tableRows-dataan design-id:n perusteella
   const canvaPageUrlMap = {};
   canvaPageUrls.forEach((item) => {
-    canvaPageUrlMap[item.externalUrl] = item.pageUrl;
+    canvaPageUrlMap[item.id] = item.pageUrl;
   });
   if (!Array.isArray(rawData.canva)) rawData.canva = [];
   rawData.canva.forEach((item) => {
-    item.pageUrl = canvaPageUrlMap[item.url] || null;
+    item.pageUrl = canvaPageUrlMap[item.id] || null;
   });
 
   const iconByKey = {
@@ -130,6 +130,10 @@
 
   function linkAttrs(url) {
     return isExternalUrl(url) ? ' target="_blank" rel="noopener noreferrer"' : "";
+  }
+
+  function primaryUrl(item) {
+    return item.url || item.pageUrl || item.externalUrl || "";
   }
 
   function normalizeContextUrl(value) {
@@ -453,8 +457,10 @@
       return rows.map((r) => {
         const iso = toIsoDate(r.date || r.publishedAt || r.createdAt || r.updatedAt || "") || "";
         return {
+          id: r.id || "",
           title: r.title || "Nimetön esitys",
           url: r.url || "",
+          pageUrl: r.pageUrl || "",
           thumbnail: r.thumbnail || "",
           description: r.description || "",
           keywords: Array.isArray(r.categories) ? r.categories.filter(Boolean) : [],
@@ -565,6 +571,8 @@
       : `<div class="featured-thumb" style="background:var(--bs-secondary-bg);display:flex;align-items:center;justify-content:center;color:var(--bs-secondary-color);font-size:1.5rem;"><i class="bi ${icon}"></i></div>`;
     const label = escHtml(linkLabelByKey[key] || "Avaa");
     const desc = escHtml(truncate(item.description || item.meta || "", 130));
+    const href = primaryUrl(item);
+    const buttonLabel = item.url ? label : "Avaa esityssivu";
     host.innerHTML = `
       <div class="card border-0 shadow-sm mb-4 overflow-hidden">
         <div class="d-flex align-items-stretch">
@@ -576,7 +584,7 @@
             </p>
             <h3 class="h6 fw-bold mb-1 lh-sm">${escHtml(item.title)}</h3>
             ${desc ? `<p class="text-muted small mb-2">${desc}</p>` : ""}
-            ${item.url ? `<a href="${escHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm rounded-pill px-3 align-self-start">${label} <i class="bi bi-arrow-up-right"></i></a>` : ""}
+            ${href ? `<a href="${escHtml(href)}"${linkAttrs(href)} class="btn btn-primary btn-sm rounded-pill px-3 align-self-start">${buttonLabel} <i class="bi bi-arrow-up-right"></i></a>` : ""}
           </div>
         </div>
       </div>`;
@@ -613,10 +621,11 @@
              <div class="scroller-placeholder" style="display:none;"><i class="bi ${escHtml(iconByKey[key] || "bi-file-earmark")}"></i></div>
            </div>`
         : `<div class="scroller-placeholder"><i class="bi ${escHtml(iconByKey[key] || "bi-file-earmark")}"></i></div>`;
-      const link = item.url
-        ? `<a href="${escHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm rounded-pill px-3">${escHtml(linkLabelByKey[key] || "Avaa")} <i class="bi bi-arrow-up-right"></i></a>`
+      const href = primaryUrl(item);
+      const link = href
+        ? `<a href="${escHtml(href)}"${linkAttrs(href)} class="btn btn-primary btn-sm rounded-pill px-3">${escHtml(item.url ? (linkLabelByKey[key] || "Avaa") : "Avaa esityssivu")} <i class="bi bi-arrow-up-right"></i></a>`
         : `<span class="text-muted small"><i class="bi bi-link-45deg"></i> Ei linkkiä</span>`;
-      const pageLink = item.pageUrl
+      const pageLink = item.url && item.pageUrl
         ? `<a href="${escHtml(item.pageUrl)}" class="btn btn-outline-secondary btn-sm rounded-pill px-2 ms-1" title="Esityksen sivu"><i class="bi bi-file-earmark-text"></i></a>`
         : "";
       return `
@@ -677,8 +686,8 @@
             <td class="small" data-label="Kuvaus">${desc}</td>
             <td class="text-nowrap" data-label="Päiväys">${escHtml(item.date || "-")}</td>
             <td data-label="Avaa">
-              ${item.url
-                ? `<a href="${escHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-3">Katso</a>`
+              ${primaryUrl(item)
+                ? `<a href="${escHtml(primaryUrl(item))}"${linkAttrs(primaryUrl(item))} class="btn btn-outline-primary btn-sm rounded-pill px-3">${item.url ? "Katso" : "Avaa esityssivu"}</a>`
                 : `<span class="text-muted small">Ei linkkiä</span>`}
             </td>
           </tr>
@@ -707,10 +716,10 @@
             <td data-label="Avainsanat">${keywordHtml}</td>
             <td class="text-center" data-label="Avaa">
               <div class="d-flex gap-1 justify-content-center flex-wrap">
-              ${item.url
-                ? `<a href="${escHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Avaa esitys"><i class="bi bi-arrow-up-right"></i></a>`
+              ${primaryUrl(item)
+                ? `<a href="${escHtml(primaryUrl(item))}"${linkAttrs(primaryUrl(item))} class="btn btn-outline-primary btn-sm rounded-pill px-2" title="${item.url ? "Avaa esitys" : "Avaa esityssivu"}"><i class="bi bi-arrow-up-right"></i></a>`
                 : `<span class="text-muted small">Ei linkkiä</span>`}
-              ${item.pageUrl
+              ${item.url && item.pageUrl
                 ? `<a href="${escHtml(item.pageUrl)}" class="btn btn-outline-secondary btn-sm rounded-pill px-2" title="Esityksen sivu"><i class="bi bi-file-earmark-text"></i></a>`
                 : ""}
               </div>
@@ -728,8 +737,8 @@
           </td>
           <td class="text-nowrap" data-label="Päiväys / vuosi">${escHtml(item.date || "-")}</td>
           <td data-label="Avaa">
-            ${item.url
-              ? `<a href="${escHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-3">${escHtml(linkLabelByKey[key] || "Avaa")}</a>`
+            ${primaryUrl(item)
+              ? `<a href="${escHtml(primaryUrl(item))}"${linkAttrs(primaryUrl(item))} class="btn btn-outline-primary btn-sm rounded-pill px-3">${escHtml(item.url ? (linkLabelByKey[key] || "Avaa") : "Avaa esityssivu")}</a>`
               : `<span class="text-muted small">Ei linkkiä</span>`}
           </td>
         </tr>

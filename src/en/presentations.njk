@@ -31,7 +31,10 @@ lang: en
       keywords: item.data.keywords or []
     }), null) %}
   {% elif item.data.url and "canva.com" in item.data.url %}
-    {% set _ = (canvaPageUrls.push({ externalUrl: item.data.url | canvaPublicUrl, pageUrl: item.url }), null) %}
+    {% set canvaId = item.data.url | canvaDesignId %}
+    {% if canvaId %}
+      {% set _ = (canvaPageUrls.push({ id: canvaId, pageUrl: item.url }), null) %}
+    {% endif %}
   {% endif %}
 {% endfor %}
 
@@ -337,10 +340,10 @@ lang: en
     slideshare: {{ ssDataItems | jsonSafe | safe }}
   };
 
-  // Map Canva MD page URLs to external Canva URLs
+  // Map Canva MD page URLs to Canva design IDs
   const canvaPageUrlMap = {};
-  {{ canvaPageUrls | jsonSafe | safe }}.forEach(p => { canvaPageUrlMap[p.externalUrl] = p.pageUrl; });
-  rawData.canva.forEach(item => { item.pageUrl = canvaPageUrlMap[item.url] || null; });
+  {{ canvaPageUrls | jsonSafe | safe }}.forEach(p => { canvaPageUrlMap[p.id] = p.pageUrl; });
+  rawData.canva.forEach(item => { item.pageUrl = canvaPageUrlMap[item.id] || null; });
 
   const iconByKey = {
     aoe: "bi-book",
@@ -371,6 +374,18 @@ lang: en
     const text = String(value || "").trim();
     if (!text) return "";
     return text.length > max ? `${text.slice(0, max).trim()}…` : text;
+  }
+
+  function isExternalUrl(url) {
+    return /^https?:\/\//i.test(String(url || ""));
+  }
+
+  function linkAttrs(url) {
+    return isExternalUrl(url) ? ' target="_blank" rel="noopener noreferrer"' : "";
+  }
+
+  function primaryUrl(item) {
+    return item.url || item.pageUrl || "";
   }
 
   function toDisplayDate(value) {
@@ -431,8 +446,10 @@ lang: en
       return rows.map((r) => {
         const iso = toIsoDate(r.date || r.publishedAt || r.createdAt || r.updatedAt || "") || "";
         return {
+          id: r.id || "",
           title: r.title || "Unnamed presentation",
           url: r.url || "",
+          pageUrl: r.pageUrl || "",
           thumbnail: r.thumbnail || "",
           description: r.description || "",
           keywords: Array.isArray(r.categories) ? r.categories.filter(Boolean) : [],
@@ -524,6 +541,8 @@ lang: en
       : `<div class="featured-thumb" style="background:var(--bs-secondary-bg);display:flex;align-items:center;justify-content:center;color:var(--bs-secondary-color);font-size:1.5rem;"><i class="bi ${icon}"></i></div>`;
     const label = escHtml(linkLabelByKey[key] || "Open");
     const desc = escHtml(truncate(item.description || item.meta || "", 130));
+    const href = primaryUrl(item);
+    const buttonLabel = item.url ? label : "Open page";
     host.innerHTML = `
       <div class="card border-0 shadow-sm mb-4 overflow-hidden">
         <div class="d-flex align-items-stretch">
@@ -535,7 +554,7 @@ lang: en
             </p>
             <h3 class="h6 fw-bold mb-1 lh-sm">${escHtml(item.title)}</h3>
             ${desc ? `<p class="text-muted small mb-2">${desc}</p>` : ""}
-            ${item.url ? `<a href="${escHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm rounded-pill px-3 align-self-start">${label} <i class="bi bi-arrow-up-right"></i></a>` : ""}
+            ${href ? `<a href="${escHtml(href)}"${linkAttrs(href)} class="btn btn-primary btn-sm rounded-pill px-3 align-self-start">${buttonLabel} <i class="bi bi-arrow-up-right"></i></a>` : ""}
           </div>
         </div>
       </div>`;
@@ -557,10 +576,11 @@ lang: en
              <div class="scroller-placeholder" style="display:none;"><i class="bi ${escHtml(iconByKey[key] || "bi-file-earmark")}"></i></div>
            </div>`
         : `<div class="scroller-placeholder"><i class="bi ${escHtml(iconByKey[key] || "bi-file-earmark")}"></i></div>`;
-      const link = item.url
-        ? `<a href="${escHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm rounded-pill px-3">${escHtml(linkLabelByKey[key] || "Open")} <i class="bi bi-arrow-up-right"></i></a>`
+      const href = primaryUrl(item);
+      const link = href
+        ? `<a href="${escHtml(href)}"${linkAttrs(href)} class="btn btn-primary btn-sm rounded-pill px-3">${escHtml(item.url ? (linkLabelByKey[key] || "Open") : "Open page")} <i class="bi bi-arrow-up-right"></i></a>`
         : `<span class="text-muted small"><i class="bi bi-link-45deg"></i> No link</span>`;
-      const pageLink = item.pageUrl
+      const pageLink = item.url && item.pageUrl
         ? `<a href="${escHtml(item.pageUrl)}" class="btn btn-outline-secondary btn-sm rounded-pill px-2 ms-1" title="Presentation page"><i class="bi bi-file-earmark-text"></i></a>`
         : "";
       return `
@@ -621,8 +641,8 @@ lang: en
             <td class="small" data-label="Description">${desc}</td>
             <td class="text-nowrap" data-label="Date">${escHtml(item.date || "-")}</td>
             <td data-label="Open">
-              ${item.url
-                ? `<a href="${escHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-3">Watch</a>`
+              ${primaryUrl(item)
+                ? `<a href="${escHtml(primaryUrl(item))}"${linkAttrs(primaryUrl(item))} class="btn btn-outline-primary btn-sm rounded-pill px-3">${item.url ? "Watch" : "Open page"}</a>`
                 : `<span class="text-muted small">No link</span>`}
             </td>
           </tr>
@@ -651,10 +671,10 @@ lang: en
             <td data-label="Keywords">${keywordHtml}</td>
             <td class="text-center" data-label="Open">
               <div class="d-flex gap-1 justify-content-center flex-wrap">
-              ${item.url
-                ? `<a href="${escHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Open presentation"><i class="bi bi-arrow-up-right"></i></a>`
+              ${primaryUrl(item)
+                ? `<a href="${escHtml(primaryUrl(item))}"${linkAttrs(primaryUrl(item))} class="btn btn-outline-primary btn-sm rounded-pill px-2" title="${item.url ? "Open presentation" : "Open page"}"><i class="bi bi-arrow-up-right"></i></a>`
                 : `<span class="text-muted small">No link</span>`}
-              ${item.pageUrl
+              ${item.url && item.pageUrl
                 ? `<a href="${escHtml(item.pageUrl)}" class="btn btn-outline-secondary btn-sm rounded-pill px-2" title="Presentation page"><i class="bi bi-file-earmark-text"></i></a>`
                 : ""}
               </div>
@@ -672,8 +692,8 @@ lang: en
           </td>
           <td class="text-nowrap" data-label="Date / year">${escHtml(item.date || "-")}</td>
           <td data-label="Open">
-            ${item.url
-              ? `<a href="${escHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-3">${escHtml(linkLabelByKey[key] || "Open")}</a>`
+            ${primaryUrl(item)
+              ? `<a href="${escHtml(primaryUrl(item))}"${linkAttrs(primaryUrl(item))} class="btn btn-outline-primary btn-sm rounded-pill px-3">${escHtml(item.url ? (linkLabelByKey[key] || "Open") : "Open page")}</a>`
               : `<span class="text-muted small">No link</span>`}
           </td>
         </tr>

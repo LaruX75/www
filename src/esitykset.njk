@@ -47,7 +47,10 @@ schemaMentions:
       keywords: item.data.keywords or []
     }), null) %}
   {% elif item.data.url and "canva.com" in item.data.url %}
-    {% set _ = (canvaPageUrls.push({ externalUrl: item.data.url | canvaPublicUrl, pageUrl: item.url }), null) %}
+    {% set canvaId = item.data.url | canvaDesignId %}
+    {% if canvaId %}
+      {% set _ = (canvaPageUrls.push({ id: canvaId, pageUrl: item.url }), null) %}
+    {% endif %}
   {% endif %}
 {% endfor %}
 {% for item in ((canva and canva.tableRows) or []) %}
@@ -61,45 +64,24 @@ schemaMentions:
 {% endfor %}
 {% set latestPresentationPages = (collections.presentations or []).slice(0, 4) %}
 {% set latestShowcaseItems = [] %}
-{% if canva and canva.tableRows and canva.tableRows.length %}
-  {% for item in (canva.tableRows or []).slice(0, 4) %}
-    {% set showcaseDescription = item.description %}
-    {% if not showcaseDescription %}
-      {% set showcaseDescription = (item.categories or []) | join(", ") %}
-    {% endif %}
-    {% set _ = (latestShowcaseItems.push({
-      title: item.title,
-      url: item.url,
-      thumbnail: item.thumbnail,
-      date: item.date,
-      _isoDate: item.date,
-      description: showcaseDescription,
-      categories: item.categories or [],
-      sourceLabel: "Canva",
-      ctaLabel: "Avaa esitys",
-      external: true
-    }), null) %}
-  {% endfor %}
-{% else %}
-  {% for item in latestPresentationPages %}
-    {% set showcaseSourceLabel = "Esitys" %}
-    {% if item.data.source == "slideshare" %}
-      {% set showcaseSourceLabel = "SlideShare" %}
-    {% endif %}
-    {% set _ = (latestShowcaseItems.push({
-      title: item.data.title,
-      url: item.url,
-      thumbnail: item.data.thumbnail,
-      date: item.data.date,
-      _isoDate: item.data.date,
-      description: item.data.description or (item.content | excerpt),
-      categories: item.data.categories or [],
-      sourceLabel: showcaseSourceLabel,
-      ctaLabel: "Avaa esitys",
-      external: false
-    }), null) %}
-  {% endfor %}
-{% endif %}
+{% for item in latestPresentationPages %}
+  {% set showcaseSourceLabel = "Esitys" %}
+  {% if item.data.source == "slideshare" %}
+    {% set showcaseSourceLabel = "SlideShare" %}
+  {% endif %}
+  {% set _ = (latestShowcaseItems.push({
+    title: item.data.title,
+    url: item.url,
+    thumbnail: item.data.thumbnail,
+    date: item.data.date,
+    _isoDate: item.data.date,
+    description: item.data.description or (item.content | excerpt),
+    categories: item.data.categories or [],
+    sourceLabel: showcaseSourceLabel,
+    ctaLabel: "Avaa esityssivu",
+    external: false
+  }), null) %}
+{% endfor %}
 {% set latestVideoItems = ((youtube and youtube.videos) or []).slice(0, 2) %}
 {% set curatedVideoItems = [
   {
