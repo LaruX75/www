@@ -1,4 +1,5 @@
 const { createCanvaPresentationLookup, readLocalPresentationSources } = require("./presentationSources");
+const { getCanvaDesignId } = require("./canvaUrl");
 
 const CURATED_VIDEO_ITEMS = [
   {
@@ -144,6 +145,89 @@ function createCanvaPageUrls(presentations = []) {
   })).filter((item) => item.id && item.pageUrl);
 }
 
+function buildCanvaMaterialLookup({ canvaRows = [], presentations = [] } = {}) {
+  const lookup = new Map(createCanvaPresentationLookup(presentations));
+  const titleLookup = new Map();
+
+  toArray(presentations).forEach((item) => {
+    const title = String(item?.title || "").trim().toLowerCase();
+    if (!title) return;
+    titleLookup.set(title, {
+      pageUrl: item?.pageUrl || "",
+      publicUrl: item?.publicUrl || "",
+      sourceUrl: item?.sourceUrl || item?.url || "",
+      title: item?.title || ""
+    });
+  });
+
+  toArray(canvaRows).forEach((item) => {
+    const candidateUrl = item?.sourceUrl || item?.publicUrl || item?.url || "";
+    const id = getCanvaDesignId(candidateUrl);
+    const titleKey = String(item?.title || "").trim().toLowerCase();
+    const previous = id ? (lookup.get(id) || {}) : {};
+    const normalizedItem = {
+      pageUrl: previous.pageUrl || item?.pageUrl || "",
+      publicUrl: previous.publicUrl || item?.publicUrl || item?.url || "",
+      sourceUrl: previous.sourceUrl || item?.sourceUrl || "",
+      title: item?.title || ""
+    };
+
+    if (id) {
+      lookup.set(id, normalizedItem);
+    }
+
+    if (titleKey) {
+      const previousByTitle = titleLookup.get(titleKey) || {};
+      titleLookup.set(titleKey, {
+        pageUrl: previousByTitle.pageUrl || normalizedItem.pageUrl,
+        publicUrl: previousByTitle.publicUrl || normalizedItem.publicUrl,
+        sourceUrl: previousByTitle.sourceUrl || normalizedItem.sourceUrl,
+        title: previousByTitle.title || normalizedItem.title
+      });
+    }
+  });
+
+  return { byId: lookup, byTitle: titleLookup };
+}
+
+function resolveContextMaterialUrl(url, label, canvaLookup) {
+  const id = getCanvaDesignId(url);
+  if (id) {
+    const match = canvaLookup.byId.get(id);
+    if (match?.publicUrl) return match.publicUrl;
+    if (match?.sourceUrl) return match.sourceUrl;
+  }
+
+  const titleKey = String(label || "").trim().toLowerCase();
+  if (titleKey) {
+    const matchByTitle = canvaLookup.byTitle.get(titleKey);
+    if (matchByTitle?.publicUrl) return matchByTitle.publicUrl;
+    if (matchByTitle?.sourceUrl) return matchByTitle.sourceUrl;
+  }
+
+  return String(url || "").trim();
+}
+
+function enrichPresentationContexts(contextItems = [], canvaLookup = { byId: new Map(), byTitle: new Map() }) {
+  return toArray(contextItems).map((context) => {
+    const materialTitles = toArray(context.materialTitles);
+    const materials = toArray(context.materials).map((material) => ({
+      ...material,
+      url: resolveContextMaterialUrl(material?.url, material?.label, canvaLookup)
+    }));
+
+    const materialUrls = toArray(context.materialUrls).map((url, index) =>
+      resolveContextMaterialUrl(url, materialTitles[index] || "", canvaLookup)
+    );
+
+    return {
+      ...context,
+      materials,
+      materialUrls
+    };
+  });
+}
+
 function countPresentationMaterials({
   canvaRows = [],
   presentations = [],
@@ -180,7 +264,12 @@ function countFeedbackRefs(items = []) {
 
 function buildPresentationsPageModel(data = {}) {
   const presentations = readLocalPresentationSources();
-  const contextItems = sortByDateDesc(data.presentationContexts?.items || [], "date");
+  const canvaRows = toArray(data.canva?.tableRows);
+  const canvaLookup = buildCanvaMaterialLookup({ canvaRows, presentations });
+  const contextItems = sortByDateDesc(
+    enrichPresentationContexts(data.presentationContexts?.items || [], canvaLookup),
+    "date"
+  );
   const curatedVideos = CURATED_VIDEO_ITEMS.map((item) => ({ ...item }));
   const videoSeries = VIDEO_SERIES_ITEMS.map((item) => ({ ...item }));
   const slideshareItems = createSlideshareItems(presentations);
@@ -194,7 +283,7 @@ function buildPresentationsPageModel(data = {}) {
     videoContentCount: toArray(data.youtube?.videos).length + curatedVideos.length + videoSeries.length,
     presentationAnalysisCount: 2,
     presentationMaterialTotal: countPresentationMaterials({
-      canvaRows: toArray(data.canva?.tableRows),
+      canvaRows,
       presentations,
       aoeRows: toArray(data.finnaAoe?.rows),
       youtubeVideos: toArray(data.youtube?.videos),

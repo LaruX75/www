@@ -223,11 +223,31 @@
     .link-input {
       min-width: 320px;
     }
+    .link-input input.input-ready {
+      border-color: #12b76a;
+      background: #f2fff8;
+      box-shadow: inset 0 0 0 1px rgba(18, 183, 106, 0.08);
+    }
+    .link-input input.input-ready:focus {
+      border-color: #12b76a;
+      box-shadow: 0 0 0 .2rem rgba(18, 183, 106, 0.18);
+    }
     .row-actions {
       display: flex;
       flex-wrap: wrap;
       gap: .4rem;
       min-width: 180px;
+    }
+    .btn-public-ready {
+      border-color: #12b76a;
+      color: #067647;
+      background: #ecfdf3;
+    }
+    .btn-public-ready:hover,
+    .btn-public-ready:focus {
+      border-color: #067647;
+      color: #ffffff;
+      background: #067647;
     }
     .status-badge {
       display: inline-flex;
@@ -623,8 +643,45 @@ function updateMetrics() {
   document.getElementById('save-all-btn').disabled = dirtyCount === 0 || state.saving;
 }
 
+function captureFocusState() {
+  const active = document.activeElement;
+  const input = active?.matches?.('[data-action="edit-public"]') ? active : null;
+  if (!input) return null;
+
+  const scrollContainer = input.closest('.table-responsive');
+  return {
+    index: input.dataset.index,
+    selectionStart: input.selectionStart,
+    selectionEnd: input.selectionEnd,
+    scrollTop: scrollContainer ? scrollContainer.scrollTop : null
+  };
+}
+
+function restoreFocusState(focusState) {
+  if (!focusState?.index) return;
+
+  const nextInput = document.querySelector(
+    `[data-action="edit-public"][data-index="${focusState.index}"]`
+  );
+  if (!nextInput) return;
+
+  const scrollContainer = nextInput.closest('.table-responsive');
+  if (scrollContainer && typeof focusState.scrollTop === 'number') {
+    scrollContainer.scrollTop = focusState.scrollTop;
+  }
+
+  nextInput.focus({ preventScroll: true });
+  if (
+    typeof focusState.selectionStart === 'number' &&
+    typeof focusState.selectionEnd === 'number'
+  ) {
+    nextInput.setSelectionRange(focusState.selectionStart, focusState.selectionEnd);
+  }
+}
+
 function renderRows() {
   const tbody = document.getElementById('rows-body');
+  const focusState = captureFocusState();
   const rows = visibleItems();
 
   if (!rows.length) {
@@ -644,7 +701,7 @@ function renderRows() {
       ? `<a href="${esc(sourceLink)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary btn-sm">Lähde</a>`
       : '';
     const publicButton = normalized
-      ? `<a href="${esc(normalized)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm">Avaa public</a>`
+      ? `<a href="${esc(normalized)}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-public-ready">Avaa public</a>`
       : '';
     const autofillButton = item._linkSuggestion
       ? `<button class="btn btn-outline-secondary btn-sm" data-action="autofill" data-index="${item._index}">Käytä source-linkkiä</button>`
@@ -676,7 +733,7 @@ function renderRows() {
         </td>
         <td class="link-input">
           <input
-            class="form-control form-control-sm"
+            class="form-control form-control-sm${normalized ? ' input-ready' : ''}"
             type="url"
             value="${esc(publicValue)}"
             placeholder="https://www.canva.com/design/.../shareId/view"
@@ -704,6 +761,7 @@ function renderRows() {
   }).join('');
 
   updateMetrics();
+  restoreFocusState(focusState);
 }
 
 async function loadCanvaData() {
