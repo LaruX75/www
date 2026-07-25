@@ -247,11 +247,11 @@
       uniquePush(categoryTags, "webinaari");
     }
 
-    if (has(/\bveso\b|täydennyskoulut|taydennyskoulut|koulutuspaketti|opettajille suunnattu|opettajien täydennys|digierko|opopassi|koulutus\b/)) {
+    if (has(/\bveso\b|täydennyskoulut|taydennyskoulut|koulutuspaketti|opettajille suunnattu|opettajien täydennys|digierko|opopassi|\bavi\b/)) {
       uniquePush(categoryTags, "täydennyskoulutus");
     }
 
-    if (has(/\bhanke\b|generation ai|hankkeen|project presentation|esittely japanilaiselle vieraalle/)) {
+    if (has(/\bhanke\b|hankkeen|project presentation|hankeesittely|esittely japanilaiselle vieraalle/)) {
       uniquePush(categoryTags, "hanke-esittely");
     }
 
@@ -295,7 +295,7 @@
       uniquePush(profileTags, "tutkija");
     }
 
-    if (has(/kouluttaja|workshop|työpaja|opettajille|opetus|oppiminen|oppimateriaali|kurssi|luento/)) {
+    if (has(/kouluttaja|workshop|työpaja|opettajille suunnattu|opettajien täydennys|digierko|veso/)) {
       uniquePush(profileTags, "kouluttaja");
     }
 
@@ -315,8 +315,7 @@
       categoryTags.includes("täydennyskoulutus") ||
       categoryTags.includes("webinaari") ||
       categoryTags.includes("hanke-esittely") ||
-      categoryTags.includes("tdk-luento") ||
-      profileTags.includes("kouluttaja")
+      categoryTags.includes("tdk-luento")
     ) {
       uniquePush(routeTags, "route:koulutukset");
     }
