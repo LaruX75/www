@@ -860,7 +860,7 @@
     const labels = {
       all: { label: "Kaikki aineistot", note: "" },
       "route:puheenvuorot": { label: "Puheenvuorot", note: "Näytetään aineistot, joiden ensisijainen pääreitti on puheenvuorot." },
-      "route:koulutukset": { label: "Koulutukset", note: "Näytetään aineistot, joiden ensisijainen pääreitti on koulutukset." },
+      "route:koulutukset": { label: "Koulutukset, luennot ja työpajat", note: "Näytetään aineistot, joiden ensisijainen pääreitti on koulutukset, luennot tai työpajat." },
       "route:materiaalit": { label: "Videot ja materiaalit", note: "Näytetään aineistot, joiden ensisijainen pääreitti on videot ja materiaalit." },
       own: { label: "Omat esitykset", note: "" },
       aoe: { label: "Avoimet oppimateriaalit", note: "" },
@@ -953,12 +953,12 @@
       };
       const routeLabels = {
         "route:puheenvuorot": "Pääreitti: Puheenvuorot",
-        "route:koulutukset": "Pääreitti: Koulutukset",
+        "route:koulutukset": "Pääreitti: Koulutukset, luennot ja työpajat",
         "route:materiaalit": "Pääreitti: Videot ja materiaalit"
       };
       const secondaryRouteLabels = {
         "route:puheenvuorot": "Myös: Puheenvuorot",
-        "route:koulutukset": "Myös: Koulutukset",
+        "route:koulutukset": "Myös: Koulutukset, luennot ja työpajat",
         "route:materiaalit": "Myös: Videot ja materiaalit"
       };
       const kategoriaLabel = item.kategoria ? (kategoriaLabels[item.kategoria] || item.kategoria) : "";
