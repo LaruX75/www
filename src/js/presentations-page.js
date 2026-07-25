@@ -136,6 +136,22 @@
     return String(value || "").trim().replace(/\/$/, "");
   }
 
+  function uniquePush(list, value) {
+    const normalized = String(value || "").trim();
+    if (!normalized || list.includes(normalized)) return;
+    list.push(normalized);
+  }
+
+  function createMatcherText(parts) {
+    return parts
+      .flatMap((part) => {
+        if (Array.isArray(part)) return part;
+        return [part];
+      })
+      .map((value) => String(value || "").toLowerCase())
+      .join(" ");
+  }
+
   function findContextsForItem(item) {
     const itemUrls = [
       item.url,
@@ -155,8 +171,174 @@
     });
   }
 
+  function classifyPresentationItem(item, contexts = []) {
+    const categoryTags = [];
+    const profileTags = [];
+    const routeTags = [];
+    const explicitCategory = String(item.kategoria || "").trim();
+    const explicitProfiles = Array.isArray(item.asiantuntijaprofiili) ? item.asiantuntijaprofiili : [];
+    const contextTypes = contexts.map((context) => String(context.type || "").trim()).filter(Boolean);
+    const text = createMatcherText([
+      item.title,
+      item.description,
+      item.meta,
+      item.sourceLabel,
+      item.archiveTypeLabel,
+      item.jarjestaja,
+      item.organizer,
+      item.sourceKey,
+      item.keywords,
+      item.categories,
+      contexts.map((context) => [
+        context.title,
+        context.type,
+        context.typeLabel,
+        context.format,
+        context.role,
+        context.organizer,
+        context.audience,
+        context.summary,
+        context.topics
+      ])
+    ]);
+    const has = (pattern) => pattern.test(text);
+
+    if (explicitCategory) uniquePush(categoryTags, explicitCategory);
+    explicitProfiles.forEach((profile) => uniquePush(profileTags, profile));
+
+    if (contextTypes.includes("keynote")) {
+      uniquePush(categoryTags, "konferenssi-keynote");
+      uniquePush(profileTags, "asiantuntija");
+    }
+
+    if (contextTypes.includes("continuing-education")) {
+      uniquePush(categoryTags, "täydennyskoulutus");
+      uniquePush(profileTags, "kouluttaja");
+    }
+
+    if (contextTypes.includes("academic-lecture")) {
+      uniquePush(categoryTags, "tdk-luento");
+      uniquePush(profileTags, "tutkija");
+      uniquePush(profileTags, "kouluttaja");
+    }
+
+    if (contextTypes.includes("expert-video")) {
+      uniquePush(profileTags, "asiantuntija");
+    }
+
+    if (contextTypes.includes("video-series")) {
+      uniquePush(profileTags, "kouluttaja");
+      uniquePush(routeTags, "route:materiaalit");
+    }
+
+    if (!categoryTags.length || has(/\bkeynote\b|avauspuheenvuoro|avauspuhe|plenary|opening keynote/)) {
+      if (has(/\bkeynote\b|avauspuheenvuoro|avauspuhe|plenary|opening keynote/)) {
+        uniquePush(categoryTags, "konferenssi-keynote");
+      }
+    }
+
+    if (!categoryTags.length || has(/\b(cscl|isls|earli|iste|hicss|site|edmedia|ed-media|ectel|icls|edulearn|steam|arctic frontiers|fablearn|conference|symposium|kongressi|konferenssi)\b/)) {
+      if (has(/\b(cscl|isls|earli|iste|hicss|site|edmedia|ed-media|ectel|icls|edulearn|steam|arctic frontiers|fablearn|conference|symposium|kongressi|konferenssi)\b/)) {
+        uniquePush(categoryTags, "kansainvälinen-konferenssi");
+      }
+    }
+
+    if (has(/\bwebinaari\b|\bwebinar\b|itk-webinaari|verkkoluent|verkkolive/)) {
+      uniquePush(categoryTags, "webinaari");
+    }
+
+    if (has(/\bveso\b|täydennyskoulut|taydennyskoulut|koulutuspaketti|opettajille suunnattu|opettajien täydennys|digierko|opopassi|koulutus\b/)) {
+      uniquePush(categoryTags, "täydennyskoulutus");
+    }
+
+    if (has(/\bhanke\b|generation ai|hankkeen|project presentation|esittely japanilaiselle vieraalle/)) {
+      uniquePush(categoryTags, "hanke-esittely");
+    }
+
+    if (has(/\bluento\b|opintojak|kurssi|kurssin|väitös|vaitos|doctoral defence|akateeminen luento|\b\d{5,6}[a-z]\b/)) {
+      uniquePush(categoryTags, "tdk-luento");
+    }
+
+    if (categoryTags.includes("konferenssi-keynote") || categoryTags.includes("kansainvälinen-konferenssi")) {
+      uniquePush(profileTags, "tutkija");
+      uniquePush(profileTags, "asiantuntija");
+    }
+
+    if (categoryTags.includes("täydennyskoulutus") || categoryTags.includes("webinaari") || categoryTags.includes("hanke-esittely")) {
+      uniquePush(profileTags, "kouluttaja");
+    }
+
+    if (categoryTags.includes("tdk-luento")) {
+      uniquePush(profileTags, "kouluttaja");
+      uniquePush(profileTags, "tutkija");
+    }
+
+    if (item.archiveType === "aoe") {
+      uniquePush(profileTags, "kouluttaja");
+    }
+
+    if (item.archiveType === "analysis") {
+      uniquePush(profileTags, "asiantuntija");
+      uniquePush(profileTags, "tutkija");
+    }
+
+    if (item.sourceKey === "videoSeries") {
+      uniquePush(profileTags, "kouluttaja");
+      uniquePush(profileTags, "asiantuntija");
+    }
+
+    if (has(/asiantuntija|paneeli|palveluverkko|tausta-aineisto|päätöksenteko/)) {
+      uniquePush(profileTags, "asiantuntija");
+    }
+
+    if (has(/väittelijä|research|doctoral|väitös|vaitos|conference|symposium|cscl|learning analytics/)) {
+      uniquePush(profileTags, "tutkija");
+    }
+
+    if (has(/kouluttaja|workshop|työpaja|opettajille|opetus|oppiminen|oppimateriaali|kurssi|luento/)) {
+      uniquePush(profileTags, "kouluttaja");
+    }
+
+    if (item.archiveType === "video" || item.archiveType === "aoe") {
+      uniquePush(routeTags, "route:materiaalit");
+    }
+
+    if (
+      categoryTags.includes("konferenssi-keynote") ||
+      categoryTags.includes("kansainvälinen-konferenssi") ||
+      profileTags.includes("tutkija")
+    ) {
+      uniquePush(routeTags, "route:puheenvuorot");
+    }
+
+    if (
+      categoryTags.includes("täydennyskoulutus") ||
+      categoryTags.includes("webinaari") ||
+      categoryTags.includes("hanke-esittely") ||
+      categoryTags.includes("tdk-luento") ||
+      profileTags.includes("kouluttaja")
+    ) {
+      uniquePush(routeTags, "route:koulutukset");
+    }
+
+    if (
+      profileTags.includes("asiantuntija") &&
+      !routeTags.includes("route:koulutukset") &&
+      item.archiveType !== "aoe"
+    ) {
+      uniquePush(routeTags, "route:puheenvuorot");
+    }
+
+    return {
+      categoryTags,
+      profileTags,
+      routeTags,
+      primaryCategory: categoryTags[0] || ""
+    };
+  }
+
   function renderContextBadges(item) {
-    const matches = findContextsForItem(item).slice(0, 2);
+    const matches = (Array.isArray(item.matchedContexts) ? item.matchedContexts : findContextsForItem(item)).slice(0, 2);
     if (!matches.length) return "";
     return `<div class="presentation-context-chip-row">${matches.map((context) => `
       <span class="presentation-context-chip">${escHtml(context.typeLabel || "Konteksti")}: ${escHtml(context.title || "")}</span>
@@ -555,21 +737,44 @@
       const meta = archiveMetaByKey[key];
       if (!meta) return;
       normalizeRows(key, rows).forEach((item) => {
+        const matchedContexts = findContextsForItem(item);
+        const taxonomy = classifyPresentationItem(
+          {
+            ...item,
+            archiveType: meta.archiveType,
+            archiveTypeLabel: meta.archiveTypeLabel,
+            sourceLabel: meta.sourceLabel,
+            sourceKey: key
+          },
+          matchedContexts
+        );
         items.push({
           ...item,
           archiveType: meta.archiveType,
           archiveTypeLabel: meta.archiveTypeLabel,
           sourceLabel: meta.sourceLabel,
           sourceKey: key,
-          openLabel: linkLabelByKey[key] || "Avaa"
+          openLabel: linkLabelByKey[key] || "Avaa",
+          matchedContexts,
+          categoryTags: taxonomy.categoryTags,
+          profileTags: taxonomy.profileTags,
+          routeTags: taxonomy.routeTags,
+          kategoria: item.kategoria || taxonomy.primaryCategory
         });
       });
     });
 
     analysisArchiveItems.forEach((item) => {
+      const matchedContexts = findContextsForItem(item);
+      const taxonomy = classifyPresentationItem(item, matchedContexts);
       items.push({
         ...item,
-        openLabel: linkLabelByKey.analysis
+        openLabel: linkLabelByKey.analysis,
+        matchedContexts,
+        categoryTags: taxonomy.categoryTags,
+        profileTags: taxonomy.profileTags,
+        routeTags: taxonomy.routeTags,
+        kategoria: item.kategoria || taxonomy.primaryCategory
       });
     });
 
@@ -587,27 +792,20 @@
   function matchesPresentationFilter(item, filter) {
     if (!filter || filter === "all") return true;
     if (filter === "route:puheenvuorot") {
-      return (
-        item.kategoria === "konferenssi-keynote" ||
-        item.kategoria === "kansainvälinen-konferenssi" ||
-        (Array.isArray(item.asiantuntijaprofiili) && item.asiantuntijaprofiili.includes("tutkija"))
-      );
+      return Array.isArray(item.routeTags) && item.routeTags.includes(filter);
     }
     if (filter === "route:koulutukset") {
-      return (
-        item.kategoria === "täydennyskoulutus" ||
-        item.kategoria === "webinaari" ||
-        item.kategoria === "hanke-esittely" ||
-        (Array.isArray(item.asiantuntijaprofiili) && item.asiantuntijaprofiili.includes("kouluttaja"))
-      );
+      return Array.isArray(item.routeTags) && item.routeTags.includes(filter);
     }
     if (filter === "route:materiaalit") {
-      return item.archiveType === "aoe" || item.archiveType === "video";
+      return Array.isArray(item.routeTags) && item.routeTags.includes(filter);
     }
     if (["own", "aoe", "video", "analysis"].includes(filter)) return item.archiveType === filter;
-    if (filter.startsWith("category:")) return item.kategoria === filter.slice("category:".length);
+    if (filter.startsWith("category:")) {
+      return Array.isArray(item.categoryTags) && item.categoryTags.includes(filter.slice("category:".length));
+    }
     if (filter.startsWith("profile:")) {
-      return Array.isArray(item.asiantuntijaprofiili) && item.asiantuntijaprofiili.includes(filter.slice("profile:".length));
+      return Array.isArray(item.profileTags) && item.profileTags.includes(filter.slice("profile:".length));
     }
     if (filter.startsWith("context:")) {
       return Array.isArray(item.sivuyhteys) && item.sivuyhteys.includes(filter.slice("context:".length));
@@ -674,7 +872,7 @@
         "muu": ""
       };
       const kategoriaLabel = item.kategoria ? (kategoriaLabels[item.kategoria] || item.kategoria) : "";
-      const kategoriaBadge = (item.sourceKey === "canva" && kategoriaLabel)
+      const kategoriaBadge = kategoriaLabel
         ? `<span class="badge text-bg-secondary me-1" style="font-size:.65rem;">${escHtml(kategoriaLabel)}</span>`
         : "";
       const jarjestajaLine = (item.sourceKey === "canva" && item.jarjestaja)
