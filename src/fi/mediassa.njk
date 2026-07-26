@@ -32,6 +32,9 @@ translationKey: media_index
 {% set podcastHighlight = mediaPodcasts[0] %}
 {% set videoHighlight = mediaVideos[0] %}
 {% set guestHighlight = mediaGuest[0] or mediaInterviewer[0] %}
+{% set aboutHighlight = mediaAbout[0] %}
+{% set assignmentHighlight = mediaAssignments[0] %}
+{% set interviewerHighlight = mediaInterviewer[0] %}
 {% set sideHighlights = [] %}
 {% if podcastHighlight %}{% set _ = (sideHighlights.push(podcastHighlight), null) %}{% endif %}
 {% if videoHighlight and videoHighlight.url != podcastHighlight.url %}{% set _ = (sideHighlights.push(videoHighlight), null) %}{% endif %}
@@ -41,6 +44,8 @@ translationKey: media_index
     {% set _ = (sideHighlights.push(item), null) %}
   {% endif %}
 {% endfor %}
+{% set publicConversationCount = (mediaGuest | length) + (mediaInterviewer | length) %}
+{% set expertRouteCount = (mediaAssignments | length) + (mediaPodcasts | length) + (mediaVideos | length) %}
 
 {% macro mediaTypeLabel(type) %}
   {% if type == "podcast" %}Podcast
@@ -129,11 +134,94 @@ translationKey: media_index
 </section>
 
 <nav class="media-mobile-path" aria-label="Mediassa-sivun tärkeimmät osiot">
+  <a href="#media-reitit">Reitit</a>
   <a href="#media-nostot">Nostot</a>
   <a href="#media-arkisto">Kaikki</a>
   <a href="#media-roolit">Roolit</a>
   <a href="#media-lahteet">Lähteet</a>
 </nav>
+
+<section class="media-route-section py-5" id="media-reitit" aria-labelledby="media-reitit-heading">
+  <div class="site-shell">
+    <div class="media-section-head">
+      <p class="media-eyebrow mb-1">Kolme reittiä</p>
+      <h2 id="media-reitit-heading" class="media-section-title">Kolme tapaa lukea mediaesiintymisiä</h2>
+      <p class="media-section-lead mb-0">Mediassa-sivu ei ole vain lista haastatteluja ja juttuja. Sitä voi lukea sen mukaan, etsitkö näkyvyyttä omalle työlle, virallisia asiantuntijarooleja vai keskusteluja, joissa olen mukana vieraana tai haastattelijana.</p>
+    </div>
+
+    <div class="media-route-grid">
+      <article class="media-route-card">
+        <div class="media-route-card-body">
+          <p class="media-route-kicker">Näkyvyys</p>
+          <h3>Minusta ja työstäni tehdyt mediaosumat</h3>
+          <p>Lehtijutut, podcastit ja videot, joissa työn, tutkimuksen tai asiantuntijuuden näkyvyys rakentuu muiden toimijoiden tuottamana.</p>
+          <div class="media-source-stats">
+            <span><strong>{{ mediaAbout | length }}</strong> osumaa</span>
+            <span><strong>{{ mediaArticles | length }}</strong> lehtijuttua</span>
+            <span><strong>{{ mediaVideos | length }}</strong> videota</span>
+          </div>
+          {% if aboutHighlight %}
+          <div class="media-route-example">
+            <p class="media-route-example-label">Esimerkkiosuma</p>
+            <a href="{{ itemUrl(aboutHighlight) | trim }}" target="_blank" rel="noopener noreferrer">{{ aboutHighlight.data.title }}</a>
+          </div>
+          {% endif %}
+          <div class="media-card-actions">
+            <button class="btn btn-outline-primary btn-sm rounded-pill px-3" type="button" data-media-jump-filter="role:about">Rajaa nämä näkyviin</button>
+            <a href="#media-arkisto" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Selaa arkistossa</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="media-route-card">
+        <div class="media-route-card-body">
+          <p class="media-route-kicker">Asiantuntijuus</p>
+          <h3>Asiantuntijaroolit, työryhmät ja julkinen käyttö</h3>
+          <p>Tämä reitti näyttää, missä asiantuntijuutta hyödynnetään valmistelussa, viitekehyksissä, työryhmissä ja opetuksen tai tekoälyn julkisessa keskustelussa.</p>
+          <div class="media-source-stats">
+            <span><strong>{{ mediaAssignments | length }}</strong> asiantuntijatehtävää</span>
+            <span><strong>{{ mediaPodcasts | length }}</strong> podcastia</span>
+            <span><strong>{{ expertRouteCount }}</strong> osumaa yhteensä</span>
+          </div>
+          {% if assignmentHighlight %}
+          <div class="media-route-example">
+            <p class="media-route-example-label">Esimerkkiosuma</p>
+            <a href="{{ itemUrl(assignmentHighlight) | trim }}" target="_blank" rel="noopener noreferrer">{{ assignmentHighlight.data.title }}</a>
+          </div>
+          {% endif %}
+          <div class="media-card-actions">
+            <button class="btn btn-outline-primary btn-sm rounded-pill px-3" type="button" data-media-jump-filter="role:expertAssignment">Rajaa nämä näkyviin</button>
+            <a href="/tutkimus/" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Tutkimukseen</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="media-route-card">
+        <div class="media-route-card-body">
+          <p class="media-route-kicker">Keskustelut</p>
+          <h3>Vieraana, keskustelijana ja haastattelijana</h3>
+          <p>Täällä painottuvat keskustelut, joissa olen mukana kutsuttuna vieraana, juontavana osapuolena tai haastattelijana muiden aiheiden äärellä.</p>
+          <div class="media-source-stats">
+            <span><strong>{{ mediaGuest | length }}</strong> vieraana</span>
+            <span><strong>{{ mediaInterviewer | length }}</strong> haastattelijana</span>
+            <span><strong>{{ publicConversationCount }}</strong> keskusteluosumaa</span>
+          </div>
+          {% if guestHighlight or interviewerHighlight %}
+          {% set conversationHighlight = guestHighlight or interviewerHighlight %}
+          <div class="media-route-example">
+            <p class="media-route-example-label">Esimerkkiosuma</p>
+            <a href="{{ itemUrl(conversationHighlight) | trim }}" target="_blank" rel="noopener noreferrer">{{ conversationHighlight.data.title }}</a>
+          </div>
+          {% endif %}
+          <div class="media-card-actions">
+            <button class="btn btn-outline-primary btn-sm rounded-pill px-3" type="button" data-media-jump-filter="role:guest">Rajaa vierailut</button>
+            <button class="btn btn-outline-secondary btn-sm rounded-pill px-3" type="button" data-media-jump-filter="role:interviewer">Rajaa haastattelut</button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
 
 {% set topicProfileKeys = ["julkinen-asiantuntijuus-mediassa", "tekoalylukutaito", "opettajankoulutus"] %}
 {% set topicProfileTitleId = "media-topic-profiles-title" %}
@@ -146,7 +234,7 @@ translationKey: media_index
   <div class="site-shell">
     <div class="media-section-head">
       <p class="media-eyebrow mb-1">Nostot</p>
-      <h2 id="media-nostot-heading" class="media-section-title">Tuoreita ja tunnistettavia mediaosumia</h2>
+      <h2 id="media-nostot-heading" class="media-section-title">Valittuja ja tunnistettavia mediaosumia</h2>
       <p class="media-section-lead mb-0">Nostot antavat nopean kuvan siitä, millaisissa yhteyksissä media on käsitellyt työtäni, asiantuntijuuttani ja julkista rooliani.</p>
     </div>
 
@@ -330,6 +418,7 @@ translationKey: media_index
   }
 
   .media-hero-layout,
+  .media-route-grid,
   .media-feature-grid,
   .media-role-grid,
   .media-source-band {
@@ -392,6 +481,7 @@ translationKey: media_index
   }
 
   .media-hero-panel,
+  .media-route-card,
   .media-feature-primary,
   .media-feature-small,
   .media-archive-card,
@@ -409,6 +499,82 @@ translationKey: media_index
 
   .media-section-head {
     margin-bottom: clamp(1.2rem, 3vw, 2rem);
+  }
+
+  .media-route-section {
+    background:
+      radial-gradient(circle at 0% 0%, rgba(13, 110, 253, 0.05), transparent 28%),
+      linear-gradient(180deg, rgba(var(--bs-tertiary-bg-rgb), 0.52), rgba(var(--bs-body-bg-rgb), 0.98));
+  }
+
+  .media-route-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .media-route-card {
+    min-height: 100%;
+  }
+
+  .media-route-card-body,
+  .media-source-band {
+    padding: clamp(1.1rem, 2.4vw, 1.7rem);
+  }
+
+  .media-route-card-body {
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .media-route-kicker {
+    margin: 0;
+    color: var(--bs-secondary-color);
+    font-size: 0.78rem;
+    font-weight: 850;
+    letter-spacing: 0.08em;
+    line-height: 1.1;
+    text-transform: uppercase;
+  }
+
+  .media-route-card h3 {
+    margin: 0;
+    font-family: 'Bree Serif', serif;
+    font-size: clamp(1.35rem, 2.2vw, 1.8rem);
+    line-height: 1.08;
+  }
+
+  .media-route-card p {
+    margin: 0;
+    color: var(--bs-secondary-color);
+    line-height: 1.58;
+  }
+
+  .media-route-example {
+    margin-top: auto;
+    padding: 0.95rem 1rem;
+    border: 1px solid rgba(120, 130, 150, 0.18);
+    border-radius: 1.1rem;
+    background: rgba(var(--bs-tertiary-bg-rgb), 0.5);
+  }
+
+  .media-route-example-label {
+    margin-bottom: 0.35rem;
+    color: var(--bs-secondary-color);
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .media-route-example a {
+    color: inherit;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .media-route-example a:hover {
+    text-decoration: underline;
   }
 
   .media-feature-section {
@@ -685,10 +851,17 @@ translationKey: media_index
   [data-bs-theme="dark"] .media-archive-card,
   [data-bs-theme="dark"] .media-browser,
   [data-bs-theme="dark"] .media-role-card,
+  [data-bs-theme="dark"] .media-route-card,
   [data-bs-theme="dark"] .media-source-band,
   [data-bs-theme="dark"] .media-hero-panel {
     background: rgba(24, 36, 54, 0.94);
     box-shadow: 0 1rem 2.6rem rgba(0, 0, 0, 0.24);
+  }
+
+  [data-bs-theme="dark"] .media-route-section {
+    background:
+      radial-gradient(circle at 0% 0%, rgba(102, 163, 255, 0.1), transparent 30%),
+      linear-gradient(180deg, rgba(17, 27, 42, 0.98), rgba(8, 9, 17, 0.98));
   }
 
   [data-bs-theme="dark"] .media-meta-row span,
@@ -708,6 +881,7 @@ translationKey: media_index
 
   @media (max-width: 991.98px) {
     .media-hero-layout,
+    .media-route-grid,
     .media-feature-grid,
     .media-source-band {
       grid-template-columns: 1fr;

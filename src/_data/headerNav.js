@@ -33,8 +33,8 @@ module.exports = {
           key: "media",
           title: "Mediassa",
           url: "/mediassa/",
-          parent: "writings",
-          order: 25
+          parent: "home",
+          order: 55
         }
       }
     },
@@ -81,7 +81,7 @@ module.exports = {
           title: "Teemaprofiilit",
           url: "/teemat/",
           parent: "home",
-          order: 55
+          order: 57
         }
       }
     },
@@ -692,7 +692,7 @@ module.exports = {
   megaMenuWritings: {
     fi: {
       heading: "Kirjoitukset, puheet ja kannanotot",
-      description: "Omat kirjoitukset, luottamushenkilötyö, asiantuntijavaikuttaminen ja mediaesiintymiset omissa kokonaisuuksissaan.",
+      description: "Omat kirjoitukset, puheenvuorot, lausunnot ja muut itse tuotetut sisällöt yhdessä näkymässä.",
       groupHeading: "Kynästä",
       contentColumns: [
         {
@@ -719,20 +719,19 @@ module.exports = {
             { title: "Esitykset ja materiaalit", href: "/esitykset/", icon: "bi bi-easel2 me-2", countKey: "presentations", description: "Puheenvuoroja, koulutussisältöjä ja avoimia oppimateriaaleja." },
             { title: "Tieteelliset julkaisut", href: "/julkaisut/", icon: "bi bi-journal-text me-2", countData: "researchfi_total", description: "Tutkimusjulkaisut, artikkelit ja tieteellinen tuotanto." },
           ]
-        },
-        {
-          heading: "Mediassa",
-          links: [
-            { title: "Haastattelut", href: "/mediassa/?type=article", icon: "bi bi-newspaper me-2", description: "Lehtijutut ja verkkomedian haastattelut." },
-            { title: "Podcastit", href: "/mediassa/?type=podcast", icon: "bi bi-broadcast me-2", description: "Podcastit, joissa olen haastateltavana tai keskustelijana." },
-            { title: "Videot", href: "/mediassa/?type=video", icon: "bi bi-camera-video me-2", description: "Videot, uutiset ja muut tallenteet, joissa työni näkyy." }
-          ]
         }
-      ]
+      ],
+      seeAlso: {
+        heading: "Erilliset reitit",
+        subheading: "Mediassa näyttää ulkopuolisten tekemän näkyvyyden. Se ei ole Kynästä-sivun alalaji vaan oma sisältöreittinsä.",
+        links: [
+          { title: "Mediassa", href: "/mediassa/", icon: "bi bi-camera-reels me-2", description: "Haastattelut, podcastit, videot ja julkiset asiantuntijaroolit omana kokonaisuutenaan." }
+        ]
+      }
     },
     en: {
       heading: "Writings, Speeches, and Public Commentary",
-      description: "Writing, elected-office work, expert contributions, and media appearances as separate paths.",
+      description: "Writing, speeches, statements, and other self-authored content in one place.",
       groupHeading: "Writings",
       contentColumns: [
         {
@@ -757,16 +756,15 @@ module.exports = {
             { title: "Presentations and materials", href: "/en/presentations/", icon: "bi bi-easel2 me-2", countKey: "presentations", description: "Talks, keynote materials, and open learning resources." },
             { title: "Scientific publications", href: "/en/publications/", icon: "bi bi-journal-text me-2", countData: "researchfi_total", description: "Research outputs, articles, and academic publishing." },
           ]
-        },
-        {
-          heading: "In the media",
-          links: [
-            { title: "Interviews", href: "/mediassa/?type=article", icon: "bi bi-newspaper me-2", description: "Articles and web media interviews." },
-            { title: "Podcasts", href: "/mediassa/?type=podcast", icon: "bi bi-broadcast me-2", description: "Podcast episodes where I am interviewed or take part in discussion." },
-            { title: "Videos", href: "/mediassa/?type=video", icon: "bi bi-camera-video me-2", description: "Videos, news clips, and recordings where my work appears." }
-          ]
         }
-      ]
+      ],
+      seeAlso: {
+        heading: "Separate routes",
+        subheading: "Media appearances belong to their own route rather than under writings.",
+        links: [
+          { title: "In the media", href: "/mediassa/", icon: "bi bi-camera-reels me-2", description: "Interviews, podcasts, videos, and public expert roles as a separate collection." }
+        ]
+      }
     }
   },
   megaMenuWork: {
@@ -779,7 +777,7 @@ module.exports = {
               title: "Työni yliopistonlehtorina",
               href: "/tyoni-yliopistonlehtorina/",
               icon: "bi bi-briefcase me-2",
-              description: "Kurssit, opetusvastuut ja pedagoginen kehitystyö."
+              description: "Kokonaiskuva roolista, painopisteistä ja reiteistä tutkimukseen, opetukseen ja näyttöön."
             },
             {
               title: "Opetusportfolio",
@@ -802,13 +800,13 @@ module.exports = {
               title: "Tutkimus",
               href: "/tutkimus/",
               icon: "bi bi-search me-2",
-              description: "Tutkimushankkeet, tutkimusteemat ja laajempi kuva tutkimustyöstäni."
+              description: "Tutkimushankkeet, tutkimusteemat ja pidempi tutkimuslinja omalla sivullaan."
             },
             {
               title: "Julkaisuluettelo",
               href: "/julkaisut/",
               icon: "bi bi-journal-text me-2",
-              description: "Tieteelliset julkaisut, kirjoitukset ja muut tekstisisällöt."
+              description: "Tieteelliset julkaisut ja viitetiedot koottuna yhteen näkymään."
             },
             {
               title: "Väitöskirja",
@@ -820,7 +818,7 @@ module.exports = {
               title: "Opinnäytetyöt",
               href: "/opinnaytteet/",
               icon: "bi bi-mortarboard me-2",
-              description: "Ohjatut kandidaatti- ja pro gradu -tutkielmat."
+              description: "Ohjatut kandidaatti- ja pro gradu -tutkielmat omana kokonaisuutenaan."
             }
           ]
         },
@@ -837,7 +835,7 @@ module.exports = {
               title: "Esitykset",
               href: "/esitykset/",
               icon: "bi bi-easel2 me-2",
-              description: "Näytteitä koulutus- ja keynote-esitysten sisällöistä."
+              description: "Koulutukset, keynote-puheenvuorot ja avoimet materiaalit omalla sivullaan."
             },
             {
               title: "Palkinnot",

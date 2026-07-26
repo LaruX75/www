@@ -56,14 +56,14 @@ translationKey: home
 ] %}
 {% set homeCopy = {
     heroTitle: "Koulutan, puhun ja vaikutan. Koulutuksen tulevaisuuden puolesta.",
-    heroLead: "Koulutan ja puhun tekoälylukutaidosta, oppimisesta ja teknologian järkevästä käytöstä. Sama asiantuntijuus näkyy tutkimuksessa, lausunnoissa, mediassa ja päätöksenteossa.",
-    heroPanelText: "Luvut kokoavat kouluttaja- ja puhujatyötä, tutkimusta, lausuntoja, mediaosumia, ohjausta ja poliittisia puheenvuoroja. Ne näyttävät, miten asiantuntijuus näkyy eri rooleissa.",
-    pathsTitle: "Mistä haluat aloittaa?",
-    pathsLead: "Voit siirtyä suoraan koulutuspalveluihin, tutkimukseen tai politiikkaan sen mukaan, miksi tulit sivulle.",
+    heroLead: "Koulutan ja puhun tekoälylukutaidosta, oppimisesta ja teknologian järkevästä käytöstä. Sivusto jakautuu neljään pääreittiin: työ, oma ääni, julkinen näkyvyys ja päätöksenteko.",
+    heroPanelText: "Luvut kokoavat kouluttaja- ja puhujatyötä, tutkimusta, lausuntoja, mediaosumia, ohjausta ja poliittisia puheenvuoroja. Ne näyttävät, miten sama asiantuntijuus näkyy eri rooleissa ja eri pääsivuilla.",
+    pathsTitle: "Neljä pääreittiä sivustolle",
+    pathsLead: "Aloita siitä näkökulmasta, jota etsit: ammatillinen kokonaiskuva, omat puheenvuorot, julkinen näkyvyys tai politiikka.",
     focusTitle: "Koulutukset, puheenvuorot ja sparraus",
     focusLead: "Käytännön työni näkyy koulutuksina, keynote-puheenvuoroina ja kehittämisen tukena. Tutkimus ja kunnallinen vaikuttaminen tuovat siihen näkökulmaa, mutta etusivulla pääosassa on se, miten voin auttaa käytännössä.",
     recentTitle: "Ajankohtaista asiantuntijatyöstä",
-    recentLead: "Tuoreista kirjoituksista, esityksistä, lausunnoista ja mediaosumista näet, missä asiantuntijuus on juuri nyt käytössä."
+    recentLead: "Tuoreista kirjoituksista, esityksistä, lausunnoista ja mediaosumista näet, miten eri pääreitit elävät juuri nyt rinnakkain."
 } %}
 {% set heroStats = [
     { count: heroPresentationCount, label: "Esitystä tai oppimateriaalia", href: "/esitykset/" },
@@ -546,7 +546,7 @@ translationKey: home
   }
   .home-paths-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
   }
   .home-path-card {

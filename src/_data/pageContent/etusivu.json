@@ -29,27 +29,34 @@
     }
   },
   "paths": {
-    "sectionLabel": "Mistä lähteä liikkeelle?",
+    "sectionLabel": "Pääreitit",
     "cards": [
       {
-        "icon": "bi-person-workspace",
-        "title": "Koulutuksen tilaajalle",
-        "desc": "Tarvitsetko kouluttajan tai keynote-puhujan? Käytännönläheiset koulutukset tekoälystä, digipedagogiikasta ja oppimisesta organisaatioille ja oppilaitoksille.",
-        "cta": "Koulutuspalvelut ja tarjouspyyntö →",
-        "href": "/kouluttaja/"
+        "icon": "bi-briefcase",
+        "title": "Työ",
+        "desc": "Kokonaiskuva yliopistotyöstäni: opetus, tutkimus, ohjaus ja kehittäminen sekä reitit syvemmälle tutkimukseen, julkaisuihin, esityksiin ja opinnäytteisiin.",
+        "cta": "Työ-sivulle →",
+        "href": "/tyoni-yliopistonlehtorina/"
       },
       {
-        "icon": "bi-journal-text",
-        "title": "Tutkijalle & kollegalle",
-        "desc": "Tutkimusta teknologiatuetun oppimisen ja opettamisen alueella jo vuosituhannen alusta. Olen ollut aina kiinnostunut nousevista teknologioista (emergent technologies). Tällä hetkellä tutkin tekoälylukutaitoa.",
-        "cta": "Tutkimussivulle →",
-        "href": "/tutkimus/"
+        "icon": "bi-pencil-square",
+        "title": "Kynästä",
+        "desc": "Omat puheenvuorot, lausunnot, mielipidekirjoitukset, kolumnit ja blogitekstit silloin, kun haluat lukea mitä itse kirjoitan ja sanon.",
+        "cta": "Kynästä-sivulle →",
+        "href": "/kynasta/"
+      },
+      {
+        "icon": "bi-camera-reels",
+        "title": "Mediassa",
+        "desc": "Haastattelut, podcastit, videot ja muut mediaosumat, joissa työni ja asiantuntijuuteni näkyvät muiden tuottamissa sisällöissä.",
+        "cta": "Mediassa-sivulle →",
+        "href": "/mediassa/"
       },
       {
         "icon": "bi-building-check",
-        "title": "Oululaiselle & äänestäjälle",
-        "desc": "Varavaltuutettu ja sivistyslautakunnan jäsen Oulussa (Kokoomus). Seuraa valtuustoaloitteita, puheenvuoroja ja mielipidekirjoituksia — painoalueina kouluverkko, hallinnon avoimuus ja kaupunkialueiden tasapuolinen kehitys.",
-        "cta": "Politiikkasivu →",
+        "title": "Politiikka",
+        "desc": "Luottamustyö, valtuustopuheenvuorot, aloitteet ja paikallinen päätöksenteko silloin, kun etsit poliittista profiilia ja työjälkeä.",
+        "cta": "Politiikka-sivulle →",
         "href": "/politiikka/"
       }
     ]

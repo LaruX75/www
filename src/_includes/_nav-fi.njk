@@ -224,7 +224,7 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          {{ megaNavTrigger(navWritings.url or '/kynasta/', navWritings.title or 'Kynästä', navWritings.icon or 'bi bi-pencil-fill', page.url and ('/kynasta/' in page.url or '/blogi/' in page.url or '/mediassa/' in page.url), 'megaMenuWritingsFi', 'megaToggleWritingsFi', openSubmenuLabel) }}
+          {{ megaNavTrigger(navWritings.url or '/kynasta/', navWritings.title or 'Kynästä', navWritings.icon or 'bi bi-pencil-fill', page.url and ('/kynasta/' in page.url or '/blogi/' in page.url), 'megaMenuWritingsFi', 'megaToggleWritingsFi', openSubmenuLabel) }}
           <div id="megaMenuWritingsFi" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleWritingsFi">
             <div class="mega-wrap writings-mega-layout">
               {% if writingsMegaMenu.contentColumns %}
@@ -342,6 +342,12 @@
           </div>
         </li>
 
+        <li class="nav-item">
+          <a class="nav-link {% if page.url and '/mediassa/' in page.url %}active{% endif %}" href="/mediassa/"{% if page.url and '/mediassa/' in page.url %} aria-current="page"{% endif %}>
+            <i class="bi bi-camera-reels-fill me-1"></i>Mediassa
+          </a>
+        </li>
+
         <li class="nav-item dropdown mega-dropdown">
           {{ megaNavTrigger(navContact.url or '/yhteystiedot/', navContact.title or 'Ota yhteyttä', navContact.icon or 'bi bi-envelope', page.url and '/yhteystiedot/' in page.url, 'megaMenuContactFi', 'megaToggleContactFi', openSubmenuLabel) }}
           <div id="megaMenuContactFi" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleContactFi">
@@ -453,11 +459,18 @@
           <small>Luottamustoimet ja työjälki.</small>
         </span>
       </a>
-      <a class="mobile-nav-feature-card{% if page.url and ('/kynasta/' in page.url or '/blogi/' in page.url or '/mediassa/' in page.url) %} is-active{% endif %}" href="{{ navWritings.url or '/kynasta/' }}">
+      <a class="mobile-nav-feature-card{% if page.url and ('/kynasta/' in page.url or '/blogi/' in page.url) %} is-active{% endif %}" href="{{ navWritings.url or '/kynasta/' }}">
         <span class="mobile-nav-feature-icon"><i class="{{ navWritings.icon or 'bi bi-pencil-fill' }}"></i></span>
         <span>
           <strong>Kynästä</strong>
-          <small>Kirjoitukset, puheet ja media.</small>
+          <small>Kirjoitukset, puheet ja lausunnot.</small>
+        </span>
+      </a>
+      <a class="mobile-nav-feature-card{% if page.url and '/mediassa/' in page.url %} is-active{% endif %}" href="/mediassa/">
+        <span class="mobile-nav-feature-icon"><i class="bi bi-camera-reels-fill"></i></span>
+        <span>
+          <strong>Mediassa</strong>
+          <small>Haastattelut, podcastit ja videoesiintymiset.</small>
         </span>
       </a>
     </div>
@@ -554,7 +567,7 @@
       <details class="mobile-nav-card" open>
         <summary>
           <span class="mobile-nav-card-title"><i class="{{ navWritings.icon or 'bi bi-pencil-fill' }}"></i>Kynästä</span>
-          <span class="mobile-nav-card-desc">Kirjoitukset, puheet, lausunnot ja mediassa.</span>
+          <span class="mobile-nav-card-desc">Kirjoitukset, puheet ja asiantuntijatekstit.</span>
         </summary>
         <div class="mobile-nav-card-body">
           <a class="mobile-nav-primary-link" href="{{ navWritings.url or '/kynasta/' }}">Avaa Kynästä-sivu</a>
@@ -593,6 +606,43 @@
                 {% endfor %}
               </section>
             {% endif %}
+          </div>
+        </div>
+      </details>
+
+      <details class="mobile-nav-card">
+        <summary>
+          <span class="mobile-nav-card-title"><i class="bi bi-camera-reels-fill"></i>Mediassa</span>
+          <span class="mobile-nav-card-desc">Haastattelut, podcastit, videot ja julkiset asiantuntijaroolit.</span>
+        </summary>
+        <div class="mobile-nav-card-body">
+          <a class="mobile-nav-primary-link" href="/mediassa/">Avaa Mediassa-sivu</a>
+          <p class="mobile-nav-note">Tämä reitti kokoaa muiden tuottamat mediaosumat erilleen omista kirjoituksista ja puheenvuoroista.</p>
+          <div class="mobile-nav-section-grid">
+            <section class="mobile-nav-section-card">
+              <h6>Nopeat reitit</h6>
+              <a class="mobile-nav-link" href="/mediassa/#media-reitit">
+                <span><i class="bi bi-signpost-split"></i>Kolme reittiä</span>
+              </a>
+              <a class="mobile-nav-link" href="/mediassa/#media-nostot">
+                <span><i class="bi bi-stars"></i>Nostot</span>
+              </a>
+              <a class="mobile-nav-link" href="/mediassa/#media-arkisto">
+                <span><i class="bi bi-collection"></i>Kaikki mediaosumat</span>
+              </a>
+            </section>
+            <section class="mobile-nav-section-card">
+              <h6>Sisältötyypit</h6>
+              <a class="mobile-nav-link" href="/mediassa/?type=article">
+                <span><i class="bi bi-newspaper"></i>Lehtijutut</span>
+              </a>
+              <a class="mobile-nav-link" href="/mediassa/?type=podcast">
+                <span><i class="bi bi-broadcast"></i>Podcastit</span>
+              </a>
+              <a class="mobile-nav-link" href="/mediassa/?type=video">
+                <span><i class="bi bi-camera-video"></i>Videot</span>
+              </a>
+            </section>
           </div>
         </div>
       </details>

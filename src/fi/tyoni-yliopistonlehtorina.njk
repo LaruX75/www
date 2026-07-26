@@ -62,9 +62,9 @@ templateEngineOverride: njk
 {% set latestWorkPublications = (researchfi or []).slice(0, 1) %}
 
 {% set workCopy = {
-  heroLead: "Opetan tulevia opettajia, ohjaan opinnäytteitä ja kehitän opetusta tutkimuksen rinnalla. Teknologia ei ole itsetarkoitus vaan keino tehdä oppimisesta ja opetuksesta parempaa.",
-  heroBody: "Opetan luokanopettajakoulutuksessa digipedagogiikkaa, ohjelmoinnillista ajattelua ja tekoälylukutaitoa. Samalla kehitän opetusta käytännössä. Tavoitteeni on tehdä vaikeistakin asioista opettajalle käyttökelpoisia ja opiskelijalle ymmärrettäviä.",
-  evidenceLead: "Työstäni kertovat julkaisut, ohjatut opinnäytteet, kehittämishankkeet ja avoimet materiaalit. Yhtä lailla siitä kertoo opiskelijoiden ja kollegoiden luottamus.",
+  heroLead: "Tämä sivu on kokonaiskuva yliopistotyöstäni. Se näyttää, miten opetus, tutkimus, ohjaus ja kehittäminen liittyvät toisiinsa, ja mistä pääset syvemmälle tutkimukseen, julkaisuihin, esityksiin ja opinnäytteisiin.",
+  heroBody: "Opetan luokanopettajakoulutuksessa digipedagogiikkaa, ohjelmoinnillista ajattelua ja tekoälylukutaitoa. Samalla teen tutkimusta, ohjaan opinnäytteitä ja kehitän opetusta käytännössä. Tässä näkymässä työ näkyy kokonaisuutena, kun taas tarkemmat aineistot ovat omilla sivuillaan.",
+  evidenceLead: "Työstäni kertovat julkaisut, ohjatut opinnäytteet, kehittämishankkeet, avoimet materiaalit ja asiantuntijatehtävät. Tämä sivu kokoaa ne yhteen ennen kuin siirryt yksittäisiin aineistoihin.",
   teachingBody: "Opetan teknologiatuettua oppimista, digipedagogiikkaa ja tekoälykasvatusta erityisesti luokanopettajakoulutuksessa. Haluan, että teoria muuttuu opetuksessa käytännöksi eikä jää pelkäksi käsitteeksi.",
   teachingPoints: [
     "luokanopettajakoulutus ja opettajankoulutuksen arki",
@@ -100,7 +100,7 @@ templateEngineOverride: njk
     <div class="row g-5 align-items-stretch">
       <div class="col-lg-7">
         <p class="ylwork-eyebrow mb-2"><i class="bi bi-mortarboard-fill me-1"></i>Yliopistotyö</p>
-        <h1 class="ylwork-hero-title mb-3">Työni yliopistonlehtorina yhdistää opetuksen, tutkimuksen ja kehittämisen</h1>
+        <h1 class="ylwork-hero-title mb-3">Työni yliopistonlehtorina: kokonaiskuva opetuksesta, tutkimuksesta ja kehittämisestä</h1>
         <p class="ylwork-hero-manifesto mb-3">Teknologia on minulle opetuksessa väline, ei päämäärä. Tärkeintä on, mitä se saa aikaan oppimisessa ja opetuksessa.</p>
         <p class="ylwork-hero-text mb-4">{{ workCopy.heroLead }}</p>
         <div class="ylwork-hero-points mb-4">
@@ -153,11 +153,44 @@ templateEngineOverride: njk
 <div class="ylwork-hero-divider"></div>
 
 <nav class="ylwork-mobile-path" aria-label="Yliopistotyön sivun tärkeimmät osiot">
+  <a href="#reitit">Reitit</a>
   <a href="#painopisteet">Ydin</a>
   <a href="#ajankohtaista-tyosta">Ajankohtaista</a>
   <a href="#naytto">Näyttö</a>
   <a href="#aineisto">Aineisto</a>
 </nav>
+
+<section class="ylwork-section ylwork-section--routes" id="reitit">
+  <div class="ylwork-shell">
+    <div class="ylwork-section-head">
+      <p class="ylwork-eyebrow ylwork-eyebrow--dark mb-1"><i class="bi bi-signpost-split-fill me-1"></i>Jatka tästä</p>
+      <h2 class="ylwork-section-title">Työ näkyy täällä kokonaisuutena, syvemmät aineistot löytyvät omilta sivuiltaan</h2>
+      <p class="ylwork-section-lead mb-0">Jos etsit tiettyä näyttöä tai aineistoa, nämä reitit vievät suoraan oikeaan paikkaan. Työ-sivu kertoo kokonaisuudesta, muut sivut avaavat sen tarkemmin.</p>
+    </div>
+    <div class="ylwork-route-grid">
+      <a href="/tutkimus/" class="ylwork-route-card">
+        <p class="ylwork-route-kicker">Tutkimus</p>
+        <h3>Tutkimusteemat ja tutkimuslinjat</h3>
+        <p>Kun haluat nähdä tutkimuksen suunnan, ohjelmat ja pidemmän akateemisen kaaren.</p>
+      </a>
+      <a href="/julkaisut/" class="ylwork-route-card">
+        <p class="ylwork-route-kicker">Julkaisut</p>
+        <h3>Tieteellinen tuotanto</h3>
+        <p>Kun tarvitset varsinaiset julkaisut, viitetiedot ja tuotannon koottuna yhdelle sivulle.</p>
+      </a>
+      <a href="/esitykset/" class="ylwork-route-card">
+        <p class="ylwork-route-kicker">Esitykset</p>
+        <h3>Koulutukset, puheenvuorot ja materiaalit</h3>
+        <p>Kun etsit kouluttaja- ja puhujatyön näkyvää käytännön jälkeä.</p>
+      </a>
+      <a href="/opinnaytteet/" class="ylwork-route-card">
+        <p class="ylwork-route-kicker">Opinnäytteet</p>
+        <h3>Ohjaus ja tutkimusaiheet</h3>
+        <p>Kun haluat tarkastella ohjattujen kandidaatintöiden ja gradujen kokonaisuutta.</p>
+      </a>
+    </div>
+  </div>
+</section>
 
 {% set topicProfileKeys = ["opettajankoulutus", "tekoalylukutaito", "avoin-tiede-ja-avoimet-oppimateriaalit"] %}
 {% set topicProfileTitleId = "ylwork-topic-profiles-title" %}
@@ -519,6 +552,12 @@ templateEngineOverride: njk
   .ylwork-section {
     padding-block: 3.75rem;
   }
+  .ylwork-section--routes {
+    padding-block: 3rem 2.5rem;
+    background:
+      radial-gradient(circle at 0% 0%, rgba(24, 108, 221, 0.06), transparent 30%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 250, 255, 0.98));
+  }
   .ylwork-hero {
     --ylwork-ink: #132b46;
     --ylwork-muted: rgba(19, 43, 70, 0.8);
@@ -582,6 +621,49 @@ templateEngineOverride: njk
     font-size: 1.03rem;
     line-height: 1.72;
     color: rgba(19, 43, 70, 0.82);
+  }
+  .ylwork-route-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  .ylwork-route-card {
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    gap: 0.7rem;
+    padding: 1.2rem 1.25rem;
+    border: 1px solid rgba(19, 43, 70, 0.12);
+    border-radius: 1.3rem;
+    background: #fff;
+    box-shadow: 0 1rem 2.4rem rgba(19, 43, 70, 0.08);
+    color: inherit;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .ylwork-route-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(24, 108, 221, 0.22);
+    box-shadow: 0 1.2rem 2.8rem rgba(19, 43, 70, 0.12);
+  }
+  .ylwork-route-card h3 {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.3rem;
+    line-height: 1.12;
+    color: #102845;
+  }
+  .ylwork-route-card p {
+    margin: 0;
+    color: rgba(19, 43, 70, 0.78);
+    line-height: 1.58;
+  }
+  .ylwork-route-kicker {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(19, 43, 70, 0.58);
   }
   .ylwork-hero-points {
     display: grid;
@@ -1211,6 +1293,7 @@ templateEngineOverride: njk
     color: rgba(255, 255, 255, 0.68);
   }
   @media (max-width: 1199.98px) {
+    .ylwork-route-grid,
     .ylwork-kpi-grid,
     .ylwork-focus-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1286,6 +1369,7 @@ templateEngineOverride: njk
       color: #f4f8fd;
     }
     .ylwork-kpi-grid,
+    .ylwork-route-grid,
     .ylwork-focus-grid,
     .ylwork-trust-grid,
     .ylwork-archive-links {
