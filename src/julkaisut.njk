@@ -744,7 +744,7 @@ translationKey: publications_index
                   </thead>
                   <tbody>
                     {% for pub in items %}
-                    <tr data-authors="{{ pub.authors | escape }}">
+                    <tr{% if pub.anchorId %} id="{{ pub.anchorId }}"{% endif %} data-authors="{{ pub.authors | escape }}">
                       <td class="text-center font-monospace small fw-bold publication-year">{{ pub.year or '—' }}</td>
                       <td><span class="badge bg-secondary" title="{{ pub.typeFi }}">{{ pub.typeShort }}</span></td>
                       <td>
@@ -809,7 +809,7 @@ translationKey: publications_index
             <ul class="list-unstyled mb-0 d-md-none pub-mobile-list" role="list">
               {% for pub in items %}
               {% set citationCount = (semanticscholar.metrics.doiCitations[pub.doi | lower] if pub.doi and semanticscholar.metrics.doiCitations[pub.doi | lower] else 0) %}
-              <li class="pub-mobile-item px-3 py-3 border-bottom" data-authors="{{ pub.authors | escape }}" role="listitem">
+              <li{% if pub.anchorId %} id="{{ pub.anchorId }}-mobile"{% endif %} class="pub-mobile-item px-3 py-3 border-bottom" data-authors="{{ pub.authors | escape }}" role="listitem">
                 <div class="d-flex align-items-center gap-2 mb-1">
                   <span class="font-monospace small fw-bold publication-year">{{ pub.year or '—' }}</span>
                   <span class="badge bg-secondary" title="{{ pub.typeFi }}">{{ pub.typeShort }}</span>

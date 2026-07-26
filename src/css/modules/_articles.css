@@ -1369,6 +1369,21 @@ html:not([data-bs-theme="dark"]) .kynasta-hero {
   line-height: 1.5;
 }
 
+.taxonomy-publication-citation {
+  font-size: 0.96rem;
+  line-height: 1.6;
+}
+
+.taxonomy-citation-label {
+  display: inline-flex;
+  margin-right: 0.55rem;
+  color: var(--bs-emphasis-color);
+  font-size: 0.72rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .taxonomy-term-row,
 .taxonomy-term-cloud {
   display: flex;
@@ -1660,6 +1675,10 @@ html:not([data-bs-theme="dark"]) .kynasta-hero {
     margin-top: 0.35rem;
     font-size: 0.92rem;
     line-height: 1.45;
+  }
+
+  .taxonomy-publication-citation {
+    font-size: 0.9rem;
   }
 
   .taxonomy-term-row {

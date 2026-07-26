@@ -181,7 +181,7 @@ lang: en
                   </thead>
                   <tbody>
                     {% for pub in items %}
-                    <tr data-authors="{{ pub.authors | escape }}">
+                    <tr{% if pub.anchorId %} id="{{ pub.anchorId }}"{% endif %} data-authors="{{ pub.authors | escape }}">
                       <td class="text-center font-monospace small fw-bold text-info">{{ pub.year or '—' }}</td>
                       <td><span class="badge bg-secondary" title="Type {{ pub.typeCode }}">{{ pub.typeShort }}</span></td>
                       <td>
@@ -209,7 +209,7 @@ lang: en
             {# ── Mobile view: compact card list (hidden on desktop) ── #}
             <ul class="list-unstyled mb-0 d-md-none pub-mobile-list" role="list">
               {% for pub in items %}
-              <li class="pub-mobile-item px-3 py-3 border-bottom" data-authors="{{ pub.authors | escape }}" role="listitem">
+              <li{% if pub.anchorId %} id="{{ pub.anchorId }}-mobile"{% endif %} class="pub-mobile-item px-3 py-3 border-bottom" data-authors="{{ pub.authors | escape }}" role="listitem">
                 <div class="d-flex align-items-center gap-2 mb-1">
                   <span class="font-monospace small fw-bold text-info">{{ pub.year or '—' }}</span>
                   <span class="badge bg-secondary" title="Type {{ pub.typeCode }}">{{ pub.typeShort }}</span>

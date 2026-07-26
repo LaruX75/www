@@ -25,6 +25,74 @@ function isAllowedLicense(uri) {
     return ALLOWED_LICENSE_PREFIXES.some(p => lower.startsWith(p.toLowerCase()));
 }
 
+function normalizeText(value) {
+    return String(value || '').replace(/\s+/g, ' ').trim();
+}
+
+function formatAuthorInitials(value) {
+    return normalizeText(value)
+        .split(/[\s-]+/)
+        .filter(Boolean)
+        .map((part) => `${part.charAt(0).toUpperCase()}.`)
+        .join(' ');
+}
+
+function formatAuthorApa(author) {
+    const normalized = normalizeText(author);
+    if (!normalized) return '';
+
+    if (normalized.includes(',')) {
+        const [lastName, ...rest] = normalized.split(',');
+        const initials = formatAuthorInitials(rest.join(' '));
+        return initials ? `${normalizeText(lastName)}, ${initials}` : normalizeText(lastName);
+    }
+
+    const parts = normalized.split(/\s+/).filter(Boolean);
+    if (parts.length === 1) return parts[0];
+
+    const lastName = parts.pop();
+    const initials = formatAuthorInitials(parts.join(' '));
+    return initials ? `${lastName}, ${initials}` : lastName;
+}
+
+function formatAuthorsApa(authors = []) {
+    const formatted = (Array.isArray(authors) ? authors : [])
+        .map(formatAuthorApa)
+        .filter(Boolean);
+
+    if (!formatted.length) return '';
+    if (formatted.length === 1) return formatted[0];
+    if (formatted.length === 2) return `${formatted[0]}, & ${formatted[1]}`;
+    return `${formatted.slice(0, -1).join(', ')}, & ${formatted[formatted.length - 1]}`;
+}
+
+function getThesisLevelLabel(type) {
+    if (type === 'masterThesis') return 'Pro gradu -tutkielma';
+    if (type === 'bachelorThesis') return 'Kandidaatintutkielma';
+    return 'Opinnäytetyö';
+}
+
+function buildApaCitation(thesis) {
+    const authors = formatAuthorsApa(thesis.authors || []);
+    const year = normalizeText(thesis.year) || 'n.d.';
+    const title = normalizeText(thesis.title);
+    const level = getThesisLevelLabel(thesis.type);
+    const url = normalizeText(thesis.link);
+
+    let citation = authors ? `${authors} (${year}). ${title}` : `(${year}). ${title}`;
+    citation += ` [${level}, Oulun yliopisto].`;
+    if (url) citation += ` ${url}`;
+    return citation.trim();
+}
+
+function withCitation(thesis) {
+    return {
+        ...thesis,
+        citationApa: buildApaCitation(thesis),
+        citationStyle: 'APA 7',
+    };
+}
+
 function buildEmptyResult(error = null, source = 'fallback') {
     return {
         gradut: [],
@@ -63,7 +131,7 @@ function loadManualTheses() {
       subjects: t.subjects || [],
       keywords: t.keywords || [],
       manual: true,
-    }));
+    })).map(withCitation);
   } catch {
     return [];
   }
@@ -210,11 +278,11 @@ function filterByName(items, name, role) {
 function mergeManualIntoCache(data, keywordsCache) {
     const applyKw = items => items.map(t => {
         const cached = getCacheEntry(keywordsCache, t.link);
-        return {
+        return withCitation({
             ...t,
             keywords: t.manual ? (t.keywords || []) : cached.keywords,
             abstract: t.abstract || (t.manual ? '' : cached.abstract),
-        };
+        });
     });
 
     const manual = loadManualTheses().filter(t => t.type === 'bachelorThesis');
@@ -265,11 +333,11 @@ module.exports = async function () {
 
     const addKeywords = items => items.map(t => {
         const cached = getCacheEntry(keywordsCache, t.link);
-        return {
+        return withCitation({
             ...t,
             keywords: t.manual ? (t.keywords || []) : cached.keywords,
             abstract: t.abstract || (t.manual ? '' : cached.abstract),
-        };
+        });
     });
     const manualTheses = loadManualTheses();
 

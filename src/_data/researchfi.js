@@ -31,6 +31,24 @@ const typeMap = {
     "G5": "Väitöskirja (monografia)"
 };
 
+function slugifyFragment(value) {
+    return String(value || "")
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/(^-|-$)/g, "");
+}
+
+function buildAnchorId(pub, typeCode, doi) {
+    const doiSlug = slugifyFragment(String(doi || "").replace(/\//g, "-"));
+    const publicationId = slugifyFragment(pub.publicationId || "");
+    const titleSlug = slugifyFragment(pub.publicationName || pub.title || "");
+    const fallback = publicationId || doiSlug || titleSlug || "publication";
+    const prefix = typeCode ? String(typeCode).toLowerCase() : "rf";
+    return `rf-${prefix}-${fallback}`;
+}
+
 async function runConcurrent(items, concurrency, asyncFn) {
     let i = 0;
     async function worker() {
@@ -391,8 +409,10 @@ async function enrichWithJufo(publications) {
 function normalizePublication(pub) {
     const typeCode = normalizeTypeCode(pub);
     const doi = pub.doi || null;
+    const anchorId = buildAnchorId(pub, typeCode, doi);
 
     return {
+        anchorId,
         title: pub.publicationName || pub.title || "Ei otsikkoa",
         authors: pub.authorsText || pub.authors || "",
         year: pub.publicationYear || pub.year || null,

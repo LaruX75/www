@@ -2,6 +2,7 @@ const {
   normalizeCategoryList,
   normalizeKeywordList
 } = require("./src/_data/metadata-normalization");
+const loadResearchfiContent = require("./src/_data/researchfiContent");
 const {
   CONTEXT_ORDER,
   getContextMeta,
@@ -57,6 +58,10 @@ module.exports = function registerCollections(eleventyConfig) {
 
     if (inputPath.includes("/blog/")) {
       return { key: "blog", label: "Blogikirjoitukset" };
+    }
+
+    if (data.contentType === "scientificPublication" || data.source === "researchfi") {
+      return { key: "scientific-publications", label: "Tieteelliset julkaisut" };
     }
 
     return { key: "other", label: "Muut sisällöt" };
@@ -330,6 +335,11 @@ module.exports = function registerCollections(eleventyConfig) {
     return collectionApi.getFilteredByGlob("src/presentations/*.md").sort((a, b) => b.date - a.date);
   });
 
+  eleventyConfig.addCollection("researchfiPublications", async function () {
+    const items = await loadResearchfiContent();
+    return loadResearchfiContent.toCollectionItems(items);
+  });
+
   eleventyConfig.addCollection("media", function (collectionApi) {
     return collectionApi
       .getFilteredByGlob("src/media/*.md")
@@ -345,34 +355,35 @@ module.exports = function registerCollections(eleventyConfig) {
     });
   });
 
-  function getTaxonomySourceItems(collectionApi) {
+  async function getTaxonomySourceItems(collectionApi) {
     return [
       ...collectionApi.getFilteredByGlob("src/blog/*.md"),
       ...collectionApi.getFilteredByGlob("src/publications/*.md"),
       ...collectionApi.getFilteredByGlob("src/politics/*.md"),
       ...collectionApi.getFilteredByGlob("src/media/*.md"),
-      ...collectionApi.getFilteredByGlob("src/presentations/*.md")
+      ...collectionApi.getFilteredByGlob("src/presentations/*.md"),
+      ...loadResearchfiContent.toCollectionItems(await loadResearchfiContent())
     ];
   }
 
-  eleventyConfig.addCollection("categoryList", function (collectionApi) {
-    const items = getTaxonomySourceItems(collectionApi);
+  eleventyConfig.addCollection("categoryList", async function (collectionApi) {
+    const items = await getTaxonomySourceItems(collectionApi);
     return buildTermList(items, "categories");
   });
 
-  eleventyConfig.addCollection("keywordList", function (collectionApi) {
-    const items = getTaxonomySourceItems(collectionApi);
+  eleventyConfig.addCollection("keywordList", async function (collectionApi) {
+    const items = await getTaxonomySourceItems(collectionApi);
     return buildTermList(items, "keywords");
   });
 
-  eleventyConfig.addCollection("keywordListByCount", function (collectionApi) {
-    const items = getTaxonomySourceItems(collectionApi);
+  eleventyConfig.addCollection("keywordListByCount", async function (collectionApi) {
+    const items = await getTaxonomySourceItems(collectionApi);
     return buildTermList(items, "keywords")
       .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name, "fi"));
   });
 
-  eleventyConfig.addCollection("contextList", function (collectionApi) {
-    const items = getTaxonomySourceItems(collectionApi);
+  eleventyConfig.addCollection("contextList", async function (collectionApi) {
+    const items = await getTaxonomySourceItems(collectionApi);
     return buildContextList(items);
   });
 };

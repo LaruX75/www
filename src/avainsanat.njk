@@ -77,6 +77,10 @@
 
           <div class="taxonomy-list" data-taxonomy-list>
             {% for item in keyword.items %}
+              {% set itemText = item.data.description %}
+              {% if item.taxonomyTypeKey == "scientific-publications" and item.data.citation %}
+                {% set itemText = item.data.citation %}
+              {% endif %}
               <article class="taxonomy-list-item" data-taxonomy-item data-taxonomy-type="{{ item.taxonomyTypeKey }}">
                 <div class="taxonomy-list-date">
                   <time>{{ item.date | dateFormat }}</time>
@@ -84,8 +88,13 @@
                 </div>
                 <div class="taxonomy-list-body">
                   <h3><a href="{{ item.url }}">{{ item.data.title }}</a></h3>
-                  {% if item.data.description %}
-                    <p>{{ item.data.description }}</p>
+                  {% if itemText %}
+                    <p{% if item.taxonomyTypeKey == "scientific-publications" and item.data.citation %} class="taxonomy-publication-citation"{% endif %}>
+                      {% if item.taxonomyTypeKey == "scientific-publications" and item.data.citation %}
+                        <span class="taxonomy-citation-label">{{ item.data.citationStyle or "APA 7" }}</span>
+                      {% endif %}
+                      {{ itemText }}
+                    </p>
                   {% endif %}
                   {% if item.data.categories %}
                     <div class="taxonomy-term-row" aria-label="Kategoriat">

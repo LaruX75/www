@@ -30,6 +30,7 @@ module.exports = class {
     });
 
     const rfPubs = (data.researchfi || []).map(p => ({
+      anchorId: p.anchorId || "",
       title: p.title || '',
       authors: p.authors || '',
       year: p.year || null,
@@ -47,9 +48,29 @@ module.exports = class {
       jufoLevel: p.jufoLevel || null,
     }));
 
+    const rfContent = (data.researchfiContent || []).map((item) => ({
+      anchorId: item.anchorId || "",
+      title: item.title || "",
+      description: item.description || "",
+      citation: item.citation || "",
+      citationStyle: item.citationStyle || "",
+      date: item.date || "",
+      type: item.type || "",
+      contentType: item.contentType || "",
+      source: item.source || "",
+      categories: item.categories || [],
+      keywords: item.keywords || [],
+      contexts: item.contexts || [],
+      entities: item.entities || [],
+      referenceLabel: item.referenceLabel || "",
+      referenceUrl: item.referenceUrl || "",
+      url: item.url || ""
+    }));
+
     return JSON.stringify({
       localPublications: localPubs,
       researchfiPublications: rfPubs,
+      researchfiContentItems: rfContent,
       cv: data.cv || {},
       generated: new Date().toISOString(),
     });
