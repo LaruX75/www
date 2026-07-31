@@ -308,7 +308,7 @@ module.exports = {
         eleventyNavigation: {
           key: "societal_interaction",
           title: "Societal Engagement",
-          url: "/en/work/#what-i-do",
+          url: "/en/societal-engagement/",
           parent: "work",
           order: 15
         }
@@ -322,6 +322,17 @@ module.exports = {
           url: "/en/publications/",
           parent: "work",
           order: 20
+        }
+      }
+    },
+    {
+      data: {
+        eleventyNavigation: {
+          key: "dissertation",
+          title: "Doctoral Dissertation",
+          url: "/en/dissertation/",
+          parent: "work",
+          order: 25
         }
       }
     },
@@ -931,7 +942,7 @@ module.exports = {
             },
             {
               title: "Doctoral dissertation",
-              href: "/vaitoskirja/",
+              href: "/en/dissertation/",
               icon: "bi bi-mortarboard-fill me-2",
               description: "Lectio video, dissertation, and four original publications in one place."
             },
@@ -954,7 +965,7 @@ module.exports = {
           links: [
             {
               title: "Societal engagement",
-              href: "/en/work/#what-i-do",
+              href: "/en/societal-engagement/",
               icon: "bi bi-diagram-3 me-2",
               description: "How research and teaching continue in materials, statements, media, and decision-making."
             },

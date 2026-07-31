@@ -75,7 +75,7 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          {{ megaNavTrigger(navWork.url or '/en/work/', navWork.title or 'Work', navWork.icon or 'bi bi-briefcase-fill', page.url and ('/en/publications/' in page.url or '/en/theses/' in page.url or '/en/presentations/' in page.url), 'megaMenuWorkEn', 'megaToggleWorkEn', openSubmenuLabel) }}
+          {{ megaNavTrigger(navWork.url or '/en/work/', navWork.title or 'Work', navWork.icon or 'bi bi-briefcase-fill', page.url and ('/en/work/' in page.url or '/en/research/' in page.url or '/en/societal-engagement/' in page.url or '/en/dissertation/' in page.url or '/en/publications/' in page.url or '/en/theses/' in page.url or '/en/presentations/' in page.url), 'megaMenuWorkEn', 'megaToggleWorkEn', openSubmenuLabel) }}
           <div id="megaMenuWorkEn" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleWorkEn">
             {% if workMegaMenu and workMegaMenu.sections %}
             {% if workMegaMenu.layout == "four-columns" %}
@@ -436,11 +436,11 @@
           <small>A quick overview.</small>
         </span>
       </a>
-      <a class="mobile-nav-feature-card{% if page.url and '/en/work/' in page.url %} is-active{% endif %}" href="{{ navWork.url or '/en/work/' }}">
+      <a class="mobile-nav-feature-card{% if page.url and ('/en/work/' in page.url or '/en/societal-engagement/' in page.url) %} is-active{% endif %}" href="{{ navWork.url or '/en/work/' }}">
         <span class="mobile-nav-feature-icon"><i class="{{ navWork.icon or 'bi bi-briefcase-fill' }}"></i></span>
         <span>
           <strong>Work</strong>
-          <small>Teaching, research and expertise.</small>
+          <small>Teaching, research and societal engagement.</small>
         </span>
       </a>
       <a class="mobile-nav-feature-card{% if page.url and '/en/politics/' in page.url %} is-active{% endif %}" href="{{ navPolitics.url or '/en/politics/' }}">

@@ -1,0 +1,200 @@
+---
+title: Societal Engagement
+layout: base.njk
+permalink: /en/societal-engagement/
+lang: en
+translationKey: societal_interaction
+description: "Jari Laru's societal engagement brings together expert statements, open materials, media appearances, network work and decision-making around education, AI and learning."
+pageStyles:
+  - /css/societal-engagement-page.css
+templateEngineOverride: njk
+schemaAbout:
+  - "@type": Thing
+    name: Societal engagement
+    description: Bringing research, teaching and expertise into public debate, preparation processes and educational practice.
+  - "@type": Thing
+    name: Educational development
+    description: Research-based development work with teachers, schools and professional networks.
+schemaMentions:
+  - "@type": CollegeOrUniversity
+    name: University of Oulu
+    url: https://www.oulu.fi/
+---
+
+{% set statementItems = [] %}
+{% for item in (collections.publications or []) %}
+  {% if item.data.type == "lausunto" %}
+    {% set _ = (statementItems.push(item), null) %}
+  {% endif %}
+{% endfor %}
+{% set featuredStatement = statementItems[0] %}
+{% set expertMediaItems = (mediaArchive.expertAssignments or []) %}
+{% set featuredExpertMedia = expertMediaItems[0] or (mediaArchive.guest or [])[0] %}
+{% set featuredPresentation = (collections.presentations or [])[0] %}
+{% set expertMediaCount = (mediaArchive.expertAssignments or []) | length %}
+{% set publicConversationCount = ((mediaArchive.guest or []) | length) + ((mediaArchive.interviewer or []) | length) %}
+{% set presentationCount = (collections.presentations or []) | length %}
+
+<section class="engagement-hero">
+  <div class="site-shell py-5">
+    <div class="engagement-hero-layout">
+      <div>
+        <p class="engagement-eyebrow mb-2"><i class="bi bi-diagram-3-fill me-1"></i>The university's third mission</p>
+        <h1 class="engagement-hero-title mb-3">Societal engagement turns research and teaching into shared work.</h1>
+        <p class="engagement-hero-lead mb-3">University work does not stop at lectures or publications. I bring research-based knowledge and teaching expertise to teachers, schools, networks, preparation processes and public debate.</p>
+        <p class="engagement-hero-text mb-4">This page shows routes into existing material. It is not a separate archive, but a way to see where expertise becomes conversations, statements, materials and decision-making work.</p>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-primary rounded-pill px-4" href="#routes">Three routes</a>
+          <a class="btn btn-outline-secondary rounded-pill px-4" href="#evidence">See examples</a>
+        </div>
+      </div>
+      <aside class="engagement-hero-panel">
+        <p class="engagement-panel-kicker">Engagement in practice</p>
+        <dl class="engagement-kpi-grid mb-0">
+          <div>
+            <dd>{{ statementItems | length }}</dd>
+            <dt>expert statements</dt>
+          </div>
+          <div>
+            <dd>{{ expertMediaCount }}</dd>
+            <dt>expert roles in media</dt>
+          </div>
+          <div>
+            <dd>{{ presentationCount }}</dd>
+            <dt>presentations and materials</dt>
+          </div>
+          <div>
+            <dd>{{ publicConversationCount }}</dd>
+            <dt>public conversation roles</dt>
+          </div>
+        </dl>
+        <p class="engagement-panel-note mb-0">The figures show the breadth of the material. Impact comes from how these formats serve the same questions of education and learning.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<nav class="engagement-mobile-path" aria-label="Main sections on the societal engagement page">
+  <a href="#routes">Routes</a>
+  <a href="#evidence">Examples</a>
+  <a href="#whole">Whole</a>
+</nav>
+
+<section class="engagement-section" id="routes">
+  <div class="site-shell">
+    <div class="engagement-section-head">
+      <p class="engagement-eyebrow mb-1">Three routes</p>
+      <h2>Expertise appears differently for different audiences</h2>
+      <p class="mb-0">Choose the route based on whether you are looking for usable knowledge for educational practice, expert statements and public debate, or decision-making work. The underlying materials remain on their own stronger archive pages.</p>
+    </div>
+    <div class="engagement-route-grid">
+      <article class="engagement-route-card engagement-route-card--materials">
+        <span class="engagement-route-icon"><i class="bi bi-easel2-fill"></i></span>
+        <p class="engagement-route-kicker">Educational development</p>
+        <h3>Research knowledge in use with teachers, schools and networks</h3>
+        <p>In training, talks and open materials, difficult topics such as AI literacy and digital pedagogy are translated into practices that fit everyday education.</p>
+        <a href="/en/presentations/" class="engagement-route-link">Presentations and open materials <span aria-hidden="true">-></span></a>
+      </article>
+      <article class="engagement-route-card engagement-route-card--statements">
+        <span class="engagement-route-icon"><i class="bi bi-chat-square-text-fill"></i></span>
+        <p class="engagement-route-kicker">Public expertise</p>
+        <h3>Research-based perspectives for preparation and public debate</h3>
+        <p>Statements, writings, media appearances and expert assignments make questions of education, technology and AI visible outside the university as well.</p>
+        <div class="engagement-route-actions">
+          <a href="/en/writings/#lausunnot" class="engagement-route-link">Statements and commentary <span aria-hidden="true">-></span></a>
+          <a href="/en/media/" class="engagement-route-link">Media <span aria-hidden="true">-></span></a>
+        </div>
+      </article>
+      <article class="engagement-route-card engagement-route-card--politics">
+        <span class="engagement-route-icon"><i class="bi bi-bank2"></i></span>
+        <p class="engagement-route-kicker">Decision-making</p>
+        <h3>Local public work is its own responsible role</h3>
+        <p>In positions of trust, expertise meets practical decisions, services and long-term planning. Political material is openly available on its own page.</p>
+        <a href="/en/politics/" class="engagement-route-link">Politics and decision-making <span aria-hidden="true">-></span></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="engagement-section engagement-section--evidence" id="evidence">
+  <div class="site-shell">
+    <div class="engagement-section-head">
+      <p class="engagement-eyebrow mb-1">From the material</p>
+      <h2>Three examples of societal engagement in practice</h2>
+      <p class="mb-0">These highlights come from the same collections as their main archives. They are not a definition of the whole work, but a quick route to current examples.</p>
+    </div>
+    <div class="engagement-evidence-grid">
+      <article class="engagement-evidence-card">
+        <p class="engagement-evidence-kicker"><i class="bi bi-file-earmark-text-fill me-1"></i>Preparation and commentary</p>
+        <h3>Expert statements</h3>
+        {% if featuredStatement %}
+        <p class="engagement-evidence-meta">{{ featuredStatement.date | dateFormat }}</p>
+        <h4><a href="{{ featuredStatement.data.url or featuredStatement.url }}">{{ featuredStatement.data.title }}</a></h4>
+        <p>{{ featuredStatement.data.description or (featuredStatement.templateContent | excerpt) | truncate(230) }}</p>
+        {% else %}
+        <p>Statements bring research- and teaching-based perspectives into education policy preparation.</p>
+        {% endif %}
+        <a href="/en/writings/#lausunnot" class="engagement-card-link">All statements <span aria-hidden="true">-></span></a>
+      </article>
+      <article class="engagement-evidence-card">
+        <p class="engagement-evidence-kicker"><i class="bi bi-mic-fill me-1"></i>Public debate</p>
+        <h3>As an expert in media</h3>
+        {% if featuredExpertMedia %}
+        <p class="engagement-evidence-meta">{{ featuredExpertMedia.date | dateFormat }}{% if featuredExpertMedia.data.mediaOutlet %} · {{ featuredExpertMedia.data.mediaOutlet }}{% endif %}</p>
+        <h4><a href="{{ featuredExpertMedia.data.sourceUrl or featuredExpertMedia.data.url or featuredExpertMedia.url }}">{{ featuredExpertMedia.data.title }}</a></h4>
+        <p>{{ featuredExpertMedia.data.description or (featuredExpertMedia.content | excerpt) | truncate(230) }}</p>
+        {% else %}
+        <p>Media appearances and expert roles bring educational questions into public conversation.</p>
+        {% endif %}
+        <a href="/en/media/" class="engagement-card-link">All media appearances <span aria-hidden="true">-></span></a>
+      </article>
+      <article class="engagement-evidence-card">
+        <p class="engagement-evidence-kicker"><i class="bi bi-people-fill me-1"></i>Educational development</p>
+        <h3>Talks and open materials</h3>
+        {% if featuredPresentation %}
+        <p class="engagement-evidence-meta">{{ featuredPresentation.data.date | dateFormat }}{% if featuredPresentation.data.source %} · {{ featuredPresentation.data.source }}{% endif %}</p>
+        <h4><a href="{{ featuredPresentation.data.url or featuredPresentation.url }}">{{ featuredPresentation.data.title }}</a></h4>
+        <p>{{ featuredPresentation.data.description or (featuredPresentation.templateContent | excerpt) | truncate(230) }}</p>
+        {% else %}
+        <p>Presentations and materials make research-based perspectives usable in different educational contexts.</p>
+        {% endif %}
+        <a href="/en/presentations/" class="engagement-card-link">All presentations <span aria-hidden="true">-></span></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="engagement-section" id="whole">
+  <div class="site-shell">
+    <div class="engagement-loop">
+      <div class="engagement-loop-copy">
+        <p class="engagement-eyebrow mb-1">Same work, different forms</p>
+        <h2>Societal engagement is not decorative cream on top of research or teaching.</h2>
+        <p>It is a way in which research questions become sharper through practical encounters, and teaching-based understanding returns to educational development. That is why materials, statements, media and decision-making meet on this page, even when their archives remain separate.</p>
+      </div>
+      <ol class="engagement-loop-steps">
+        <li><span>Research</span><strong>Knowledge about learning, technology and education.</strong></li>
+        <li><span>Teaching and development</span><strong>Bringing research into teaching, training and collaborative development.</strong></li>
+        <li><span>Societal engagement</span><strong>Carrying perspectives into materials, conversations, preparation processes and decision-making.</strong></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="engagement-section engagement-section--sources">
+  <div class="site-shell">
+    <div class="engagement-sources">
+      <div>
+        <p class="engagement-eyebrow mb-1">Go deeper</p>
+        <h2>When you need details, continue to the original collection.</h2>
+      </div>
+      <div class="engagement-source-links">
+        <a href="/en/presentations/">Presentations and materials</a>
+        <a href="/en/writings/">Writings and statements</a>
+        <a href="/en/media/">Media appearances</a>
+        <a href="/en/politics/">Politics</a>
+        <a href="/en/research/">Research</a>
+      </div>
+    </div>
+  </div>
+</section>

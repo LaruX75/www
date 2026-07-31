@@ -1,0 +1,192 @@
+---
+layout: base.njk
+title: "Doctoral Dissertation"
+metaTitle: Doctoral dissertation and original publications
+description: "Jari Laru's doctoral dissertation: lectio video, dissertation summary, four original publications and a research trajectory from mobile learning to AI literacy."
+permalink: /en/dissertation/
+translationKey: dissertation
+lang: en
+templateEngineOverride: njk
+---
+
+{% set dissertationPapers = [
+  {
+    label: "Introduction",
+    title: "Scaffolding learning activities with collaborative scripts and mobile devices",
+    citation: "Laru, J. (2012). Scaffolding learning activities with collaborative scripts and mobile devices [Doctoral dissertation, University of Oulu]. Acta Universitatis Ouluensis E, Scientiae rerum socialium, 125. https://urn.fi/URN:ISBN:9789514299407",
+    text: "The dissertation summary connects mobile devices, collaborative scripts and pedagogical scaffolding into one research design.",
+    href: "/introduction-scaffolding-learning-activities-with-collaborative-scripts-and-mobile-devices/",
+    external: "https://urn.fi/URN:ISBN:9789514299407"
+  },
+  {
+    label: "Paper 1",
+    title: "Scaffolding different learning activities with mobile tools in three everyday contexts",
+    citation: "Laru, J., & Järvelä, S. (2004, July 7). Scaffolding different learning activities with mobile tools in three everyday contexts. Proceedings of Special interest meeting 2004 of EARLI SIG 6 and SIG 7, Tübingen, Germany.",
+    text: "A study of everyday learning situations and how mobile tools can support information seeking, collaboration and cognitive work.",
+    href: "/paper-1-scaffolding-different-learning-activities-with-mobile-tools-in-three-everyday-contexts/",
+    external: ""
+  },
+  {
+    label: "Paper 2",
+    title: "Social patterns in mobile technology mediated collaboration among members of the professional distance education community",
+    citation: "Laru, J., & Järvelä, S. (2008). Social patterns in mobile technology mediated collaboration among members of the professional distance education community. Educational Media International, 45(1), 17-32. https://doi.org/10.1080/09523980701847131",
+    text: "A study of a professional distance education community, analysed through social networks and practical interaction.",
+    href: "/paper-2-social-patterns-in-mobile-technology-mediated-collaboration-among-members-of-the-professional-distance-education-community/",
+    external: "https://doi.org/10.1080/09523980701847131"
+  },
+  {
+    label: "Paper 3",
+    title: "Supporting collaborative inquiry during a biology field trip with mobile peer-to-peer tools for learning",
+    citation: "Laru, J., Järvelä, S., & Clariana, R. B. (2012). Supporting collaborative inquiry during a biology field trip with mobile peer-to-peer tools for learning: A case study with K-12 learners. Interactive Learning Environments, 20(2), 103-117. https://doi.org/10.1080/10494821003771350",
+    text: "A field-trip case study where a mobile tool, guide and tutoring supported pupils' argumentation and inquiry learning.",
+    href: "/paper-3-supporting-collaborative-inquiry-during-a-biology-field-trip-with-mobile-peer-to-peer-tools-for-learning-a-case-study-with-k-12-learners/",
+    external: "https://doi.org/10.1080/10494821003771350"
+  },
+  {
+    label: "Paper 4",
+    title: "Supporting small-group learning using multiple Web 2.0 tools",
+    citation: "Laru, J., Näykki, P., & Järvelä, S. (2012). Supporting small-group learning using multiple Web 2.0 tools: A case study in the higher education context. The Internet and Higher Education, 15(1), 29-38. https://doi.org/10.1016/j.iheduc.2011.08.004",
+    text: "A higher education study on how social media, images, blogs and wiki work became part of small-group learning.",
+    href: "/paper-3-supporting-small-group-learning-using-multiple-web-2-0-tools-a-case-study-inthe-higher-education-context/",
+    external: "https://doi.org/10.1016/j.iheduc.2011.08.004"
+  }
+] %}
+
+<section class="py-5 bg-body-tertiary border-bottom">
+  <div class="site-shell">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-7">
+        <p class="text-uppercase fw-bold small text-primary mb-2">Doctoral defence 2012</p>
+        <h1 class="display-5 fw-bold mb-3">Scaffolding learning activities with collaborative scripts and mobile devices</h1>
+        <p class="lead mb-3">My dissertation examined how mobile devices, collaborative scripts and pedagogical scaffolding can support learning in real-life contexts.</p>
+        <p class="text-muted mb-4">The core argument remains practical: technology supports learning only when the task, interaction and guidance have been carefully designed.</p>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-primary rounded-pill px-4" href="http://jultika.oulu.fi/Record/isbn978-951-42-9940-7" target="_blank" rel="noopener noreferrer">Open dissertation in Jultika</a>
+          <a class="btn btn-outline-secondary rounded-pill px-4" href="#lectio">Watch lectio</a>
+          <a class="btn btn-outline-secondary rounded-pill px-4" href="#papers">Original publications</a>
+        </div>
+      </div>
+      <aside class="col-lg-5">
+        <div class="card border-0 shadow-sm overflow-hidden">
+          <img src="/img/uploads/2026/vaitos.webp" alt="Jari Laru at the doctoral defence" class="card-img-top" loading="eager" decoding="async">
+          <div class="card-body">
+            <dl class="row mb-0 small">
+              <dt class="col-4 text-muted">Year</dt>
+              <dd class="col-8 fw-semibold">2012</dd>
+              <dt class="col-4 text-muted">University</dt>
+              <dd class="col-8 fw-semibold">University of Oulu</dd>
+              <dt class="col-4 text-muted">Field</dt>
+              <dd class="col-8 fw-semibold">Education</dd>
+              <dt class="col-4 text-muted">Whole</dt>
+              <dd class="col-8 fw-semibold">Dissertation, lectio and four original publications</dd>
+            </dl>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 border-bottom" id="lectio">
+  <div class="site-shell">
+    <div class="mb-4">
+      <p class="text-uppercase fw-bold small text-primary mb-1">Lectio precursoria</p>
+      <h2 class="h3 fw-bold mb-2">Opening lecture from the defence</h2>
+      <p class="text-muted mb-0">The lectio summarises the starting point of the research in Finnish: mobile devices do not change learning by themselves. They need pedagogical purpose, scaffolding and a structure for collaborative work.</p>
+    </div>
+    <div class="ratio ratio-16x9 rounded-4 overflow-hidden shadow-sm">
+      <iframe
+        src="https://www.youtube-nocookie.com/embed/TIi1tTZqHvU?list=PLDG0jxUrk8z2oNCSbotS_yNVjtnEALFP0"
+        title="Lectio precursoria: supporting learning with mobile devices and pedagogical scaffolding"
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+        sandbox="allow-scripts allow-same-origin allow-presentation allow-popups">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 bg-body-tertiary border-bottom">
+  <div class="site-shell">
+    <div class="row g-3">
+      <div class="col-lg-6">
+        <div class="h-100 p-4 p-lg-5 rounded-4 border bg-body">
+          <p class="text-uppercase fw-bold small text-primary mb-1">Core argument</p>
+          <h2 class="h3 fw-bold mb-3">Technology alone is not enough</h2>
+          <p class="text-muted mb-0">The dissertation's case studies showed that mobile devices do not automatically produce meaningful collaboration, argumentation or knowledge building. What matters for learning is how the activity is designed.</p>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="h-100 p-4 rounded-4 border bg-body">
+              <h3 class="h6 fw-bold">Mobile devices as cognitive tools</h3>
+              <p class="small text-muted mb-0">Devices can support information seeking, documentation, conversation and shared problem-solving when connected to the learning task.</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="h-100 p-4 rounded-4 border bg-body">
+              <h3 class="h6 fw-bold">Collaborative scripts</h3>
+              <p class="small text-muted mb-0">Learners need structures that make joint work visible and guide discussion toward knowledge building.</p>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="h-100 p-4 rounded-4 border bg-body">
+              <h3 class="h6 fw-bold">Pedagogical scaffolding</h3>
+              <p class="small text-muted mb-0">The learning process is built through phases where technology, tasks, guidance and interaction support each other.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5" id="papers">
+  <div class="site-shell">
+    <div class="mb-4">
+      <p class="text-uppercase fw-bold small text-primary mb-1">Dissertation material</p>
+      <h2 class="h3 fw-bold mb-2">Dissertation and original publications</h2>
+      <p class="text-muted mb-0">The dissertation consists of a summary section and four original publications. Each card includes a short description and citation information.</p>
+    </div>
+    <div class="row g-3">
+      {% for paper in dissertationPapers %}
+      <div class="col-md-6{% if loop.first %} col-lg-12{% endif %}">
+        <article class="card h-100 border-0 shadow-sm">
+          <div class="card-body">
+            <p class="badge text-bg-primary rounded-pill mb-3">{{ paper.label }}</p>
+            <h3 class="h5 fw-bold"><a href="{{ paper.href }}">{{ paper.title }}</a></h3>
+            <p class="text-muted">{{ paper.text }}</p>
+            <div class="border-top pt-3 mt-3">
+              <p class="text-uppercase fw-bold small text-primary mb-1">Citation</p>
+              <p class="small mb-0">{{ paper.citation }}</p>
+            </div>
+            <div class="d-flex flex-wrap gap-2 mt-3">
+              <a class="btn btn-outline-secondary btn-sm rounded-pill px-3" href="{{ paper.href }}">Local metadata (FI)</a>
+              {% if paper.external %}
+              <a class="btn btn-outline-primary btn-sm rounded-pill px-3" href="{{ paper.external }}" target="_blank" rel="noopener noreferrer">External source</a>
+              {% endif %}
+            </div>
+          </div>
+        </article>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="py-5 bg-body-tertiary border-top">
+  <div class="site-shell">
+    <div class="p-4 p-lg-5 rounded-4 border bg-body">
+      <p class="text-uppercase fw-bold small text-primary mb-1">Continuity</p>
+      <h2 class="h3 fw-bold mb-3">The dissertation still shows in my work</h2>
+      <p class="text-muted mb-4">The basic question has followed my teaching, research, training and expert work: how can new technology be connected to learning in a way that genuinely supports thinking, collaboration and competence development?</p>
+      <div class="d-flex flex-wrap gap-2">
+        <a class="btn btn-primary rounded-pill px-4" href="/en/research/">Research</a>
+        <a class="btn btn-outline-secondary rounded-pill px-4" href="/en/publications/">Publications</a>
+        <a class="btn btn-outline-secondary rounded-pill px-4" href="/en/work/">University work</a>
+      </div>
+    </div>
+  </div>
+</section>
