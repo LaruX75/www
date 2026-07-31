@@ -7,6 +7,13 @@ permalink: /en/company/
 translationKey: company
 lang: en
 schemaType: LocalBusiness
+services:
+  - name: "Keynote talk"
+    description: "A big-picture keynote for conferences, seminars, and staff days on AI, digital pedagogy, and educational technology."
+  - name: "Workshop"
+    description: "A hands-on training workshop for teachers, leaders, or development teams. Tailored to the audience's needs."
+  - name: "Expert consulting"
+    description: "Research-informed sparring for developing education: planning, strategy, and practical implementation."
 ---
 
 <section class="py-5 bg-body-tertiary border-bottom">

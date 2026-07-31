@@ -10,6 +10,13 @@ pageStyles:
   - /css/larux-page.css
 suppressSubpageHero: true
 schemaType: LocalBusiness
+services:
+  - name: "Keynote-puheenvuoro"
+    description: "Kokonaiskuva tapahtumaan, seminaariin tai henkilöstöpäivään tekoälyn, digipedagogiikan ja oppimisteknologian teemoista."
+  - name: "Työpaja"
+    description: "Osallistava koulutustyöpaja opettajille, johdolle tai kehittämistiimeille. Räätälöity kohderyhmän tarpeisiin."
+  - name: "Asiantuntijasparraus"
+    description: "Tutkimukseen nojaava sparraus koulutuksen kehittämiseen: suunnittelu, linjaukset ja käytännön toimeenpano."
 ---
 
 <section class="larux-hero mb-0">

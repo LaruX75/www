@@ -198,6 +198,28 @@
       "isPartOf": { "@id": websiteId }
     } %}
     {% if not isHomePage and ldBcItems.length %}{% set bizNode = (bizNode | merge({ "breadcrumb": { "@id": breadcrumbId } })) %}{% endif %}
+    {% if services and services.length %}
+      {% set offerItems = [] %}
+      {% for svc in services %}
+        {% set _ = (offerItems.push({
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": svc.name,
+            "description": svc.description,
+            "provider": { "@id": orgId },
+            "areaServed": { "@type": "Country", "name": "Finland" }
+          }
+        }), null) %}
+      {% endfor %}
+      {% set bizNode = (bizNode | merge({
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": ("Services" if currentLang == "en" else "Palvelut"),
+          "itemListElement": offerItems
+        }
+      })) %}
+    {% endif %}
     {% set _ = (graph.push(bizNode), null) %}
 
   {% elif pageBlockType == "thesis" %}
