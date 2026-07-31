@@ -68,6 +68,50 @@
   line-height: 1.75;
 }
 
+/* Vertical rhythm inside prose: consistent heading + paragraph spacing.
+   Headings get more top margin than bottom to visually group them with
+   the paragraph that follows. First child never gets a top margin. */
+.content-prose h1,
+.content-prose h2,
+.content-prose h3,
+.content-prose h4,
+.content-prose h5,
+.content-prose h6 {
+  font-family: var(--bs-font-family-heading);
+  line-height: 1.25;
+  color: inherit;
+}
+
+.content-prose h1 { margin: 0 0 1rem; font-size: 2rem; }
+.content-prose h2 { margin: 2.5rem 0 0.75rem; font-size: 1.5rem; }
+.content-prose h3 { margin: 2rem 0 0.5rem; font-size: 1.25rem; }
+.content-prose h4 { margin: 1.5rem 0 0.5rem; font-size: 1.1rem; }
+.content-prose h5,
+.content-prose h6 { margin: 1.25rem 0 0.5rem; font-size: 1rem; }
+
+.content-prose > :first-child { margin-top: 0; }
+.content-prose > :last-child  { margin-bottom: 0; }
+
+.content-prose p,
+.content-prose ul,
+.content-prose ol,
+.content-prose blockquote,
+.content-prose figure,
+.content-prose pre,
+.content-prose table {
+  margin: 0 0 1rem;
+}
+
+.content-prose li + li {
+  margin-top: 0.35rem;
+}
+
+.content-prose blockquote {
+  padding: 0.5rem 1.15rem;
+  border-left: 3px solid var(--bs-border-color);
+  color: var(--bs-secondary-color);
+}
+
 /* Full-width main content to match hero width */
 #main-content .container,
 #main-content .container-sm,

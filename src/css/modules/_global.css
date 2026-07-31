@@ -1224,6 +1224,42 @@ html[data-bs-theme="dark"]:not([data-a11y-bg]) .list-group-item .text-muted {
   transition: all 0.2s;
 }
 
+/* Unify button shape site-wide: pill radius for all action buttons.
+   Excludes UI toggles (dropdown, navbar, a11y toolbar) whose original
+   shape carries meaning. */
+.btn:not(.btn-close):not(.btn-link):not(.dropdown-toggle):not(.navbar-toggler):not(.a11y-btn):not(.a11y-toggle):not(.a11y-trigger):not(.a11y-close):not(.a11y-swatch) {
+  border-radius: 999px;
+}
+
+/* Filled primary CTA in hero/content-detail contexts.
+   Overrides the site-wide black outline treatment specifically for
+   primary action buttons in hero areas, so the main call-to-action
+   stands out visually against secondary/outline buttons. */
+.content-detail-actions .btn.btn-primary,
+.home-hero-actions .btn.btn-primary,
+.larux-hero .btn.btn-primary,
+.pol-hero .btn.btn-primary {
+  background-color: var(--bs-primary) !important;
+  color: #fff !important;
+  border-color: var(--bs-primary) !important;
+  box-shadow: 0 0.5rem 1.25rem rgba(13, 110, 253, 0.22);
+}
+
+.content-detail-actions .btn.btn-primary:hover,
+.content-detail-actions .btn.btn-primary:focus-visible,
+.home-hero-actions .btn.btn-primary:hover,
+.home-hero-actions .btn.btn-primary:focus-visible,
+.larux-hero .btn.btn-primary:hover,
+.larux-hero .btn.btn-primary:focus-visible,
+.pol-hero .btn.btn-primary:hover,
+.pol-hero .btn.btn-primary:focus-visible {
+  background-color: #0a58ca !important;
+  color: #fff !important;
+  border-color: #0a58ca !important;
+  box-shadow: 0 0.75rem 1.75rem rgba(10, 88, 202, 0.32);
+  transform: translateY(-1px);
+}
+
 .btn:not(.btn-close):not(.btn-link):hover {
   background-color: var(--site-btn-hover-bg) !important;
   color: var(--site-btn-hover-color) !important;
