@@ -75,120 +75,110 @@ layout: base.njk
   {% set backHref = "/en/writings/#aloitteet" if isEnglish else "/kynasta/#aloitteet" %}
 {% endif %}
 
-{% set hasMeta = date or meetingDate or event or publication or asiakohta or diaryNumber %}
-
-<section class="content-detail-hero content-detail-hero--writing py-5 border-bottom">
+<section>
   <div class="site-shell">
-    <div class="content-detail-hero-grid">
-      <div class="content-detail-copy">
-        <p class="content-detail-eyebrow mb-2">{{ sectionLabel }}</p>
-        <h1 class="content-detail-title mb-3">{{ title }}</h1>
-        {% if subtitle %}
-          <p class="content-detail-lead mb-3">{{ subtitle }}</p>
-        {% endif %}
-        <div class="content-detail-actions">
-          {% if externalSourceHref %}
-            <a href="{{ externalSourceHref }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">
-              {{ "Open source" if isEnglish else "Avaa lähde" }}
-              <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i>
-            </a>
+    <article class="blog-post writing-post{{ (' writing-post--' ~ type) if type else '' }}">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <p class="writing-post-kicker">{{ sectionLabel }}</p>
+          <h1 class="display-6 fw-bold">{{ title }}</h1>
+          {% if subtitle %}
+            <p class="lead text-muted">{{ subtitle }}</p>
           {% endif %}
-          <a href="{{ backHref }}" class="btn btn-outline-secondary rounded-pill px-4" data-history-back>&larr; {{ backLabel }}</a>
-        </div>
-      </div>
 
-      {% if thumbnail %}
-      <aside class="content-detail-visual" aria-label="{{ 'Preview' if isEnglish else 'Esikatselu' }}">
-        <div class="content-detail-thumb">
-          <img src="{{ thumbnail }}" alt="{{ title }}" loading="lazy" decoding="async">
-        </div>
-      </aside>
-      {% endif %}
-    </div>
-  </div>
-</section>
-
-<section class="content-detail-body-section py-5">
-  <div class="site-shell">
-    <article class="content-detail-main">
-      <div class="content-detail-card">
-        <p class="content-detail-card-kicker">{{ "Text" if isEnglish else "Sisältö" }}</p>
-        {% if textVersion %}
-          <div class="writing-post-text-version alert alert-secondary small" role="note">
-            <p class="text-uppercase small text-muted mb-1">{{ "Text version" if isEnglish else "Tekstiversio" }}</p>
-            <p class="mb-0">{{ textVersionSource or ("The text below is an edited text version of the speech." if isEnglish else "Alla oleva teksti on toimitettu tekstiversio puheenvuorosta.") }}</p>
-          </div>
-        {% endif %}
-        <div class="post-content content-prose">{{ content | safe }}</div>
-        {% include "council-speech-videos.njk" %}
-
-        {% if "politics" in currentTags %}
-        <div class="alert alert-secondary mt-4 py-2 small mb-0" role="note">
-          <i class="bi bi-c-circle me-1" aria-hidden="true"></i>
-          {% if isEnglish %}
-          This text is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer" class="alert-link">CC BY-NC-ND 4.0</a>. Non-commercial use only, no modifications.
-          {% else %}
-          Tämä kirjoitus on lisensoitu <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer" class="alert-link">CC BY-NC-ND 4.0</a> -lisenssillä — ei kaupalliseen käyttöön, ei muutoksia.
-          {% endif %}
-        </div>
-        {% endif %}
-      </div>
-
-      {% if hasMeta %}
-      <div class="content-detail-side-card content-detail-meta-card">
-        <p class="content-detail-card-kicker">{{ "Metadata" if isEnglish else "Metatiedot" }}</p>
-        <dl class="content-detail-definition-list mb-0">
-          {% if date %}
-            <div>
-              <dt>{{ "Date" if isEnglish else "Päiväys" }}</dt>
-              <dd>{{ date | dateFormat }}</dd>
-            </div>
-          {% endif %}
-          {% if meetingDate %}
-            {% set meetingDateLabel = "Meeting date" if isEnglish else "Kokouspäivä" %}
-            {% if initiative_type or ("politics" in currentTags) %}
-              {% set meetingDateLabel = "Submitted in meeting" if isEnglish else "Jätetty kokouksessa" %}
+          <dl class="writing-post-meta">
+            {% if date %}
+              <div>
+                <dt>{{ "Date" if isEnglish else "Päiväys" }}</dt>
+                <dd>{{ date | dateFormat }}</dd>
+              </div>
             {% endif %}
-            <div>
-              <dt>{{ meetingDateLabel }}</dt>
-              <dd>
-                {{ meetingDate | dateFormat }}
-                {% if meeting %}
-                  <br><span>{{ meeting }}</span>
-                {% endif %}
-              </dd>
-            </div>
-          {% endif %}
-          {% if event %}
-            <div>
-              <dt>{{ "Context" if isEnglish else "Tilaisuus" }}</dt>
-              <dd>{{ event }}</dd>
-            </div>
-          {% elif publication %}
-            <div>
-              <dt>{{ "Publication" if isEnglish else "Julkaisupaikka" }}</dt>
-              <dd>{{ publication }}</dd>
-            </div>
-          {% endif %}
-          {% if asiakohta %}
-            <div>
-              <dt>{{ "Agenda item" if isEnglish else "Asiakohta" }}</dt>
-              <dd>{{ asiakohta }}</dd>
-            </div>
-          {% endif %}
-          {% if diaryNumber %}
-            <div>
-              <dt>{{ "Diary number" if isEnglish else "Diaarinumero" }}</dt>
-              <dd>{{ diaryNumber }}</dd>
-            </div>
-          {% endif %}
-        </dl>
-      </div>
-      {% endif %}
+            {% if meetingDate %}
+              {% set meetingDateLabel = "Meeting date" if isEnglish else "Kokouspäivä" %}
+              {% if initiative_type or ("politics" in currentTags) %}
+                {% set meetingDateLabel = "Submitted in meeting" if isEnglish else "Jätetty kokouksessa" %}
+              {% endif %}
+              <div>
+                <dt>{{ meetingDateLabel }}</dt>
+                <dd>
+                  {{ meetingDate | dateFormat }}
+                  {% if meeting %}
+                    <br><span>{{ meeting }}</span>
+                  {% endif %}
+                </dd>
+              </div>
+            {% endif %}
+            {% if event %}
+              <div>
+                <dt>{{ "Context" if isEnglish else "Tilaisuus" }}</dt>
+                <dd>{{ event }}</dd>
+              </div>
+            {% elif publication %}
+              <div>
+                <dt>{{ "Publication" if isEnglish else "Julkaisupaikka" }}</dt>
+                <dd>{{ publication }}</dd>
+              </div>
+            {% endif %}
+            {% if asiakohta %}
+              <div>
+                <dt>{{ "Agenda item" if isEnglish else "Asiakohta" }}</dt>
+                <dd>{{ asiakohta }}</dd>
+              </div>
+            {% endif %}
+            {% if diaryNumber %}
+              <div>
+                <dt>{{ "Diary number" if isEnglish else "Diaarinumero" }}</dt>
+                <dd>{{ diaryNumber }}</dd>
+              </div>
+            {% endif %}
+            {% if externalSourceHref %}
+              <div class="writing-post-meta__source">
+                <dt>{{ "Original source" if isEnglish else "Alkuperäinen julkaisu" }}</dt>
+                <dd>
+                  <a href="{{ externalSourceHref }}" target="_blank" rel="noopener noreferrer">
+                    {{ "Open source" if isEnglish else "Avaa lähde" }}
+                    <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i>
+                  </a>
+                </dd>
+              </div>
+            {% endif %}
+          </dl>
 
-      <aside class="content-detail-related">
-        {% include "content-context-sidebar.njk" %}
-      </aside>
+          {% set tocMarkup = content | toc %}
+          <div class="row g-4">
+            <div class="col-lg-8">
+              {% if thumbnail %}
+                <img loading="lazy" decoding="async" src="{{ thumbnail }}" class="img-fluid rounded mb-4" alt="{{ title }}">
+              {% endif %}
+              {% if textVersion %}
+                <div class="writing-post-text-version alert alert-secondary small" role="note">
+                  <p class="text-uppercase small text-muted mb-1">{{ "Text version" if isEnglish else "Tekstiversio" }}</p>
+                  <p class="mb-0">{{ textVersionSource or ("The text below is an edited text version of the speech." if isEnglish else "Alla oleva teksti on toimitettu tekstiversio puheenvuorosta.") }}</p>
+                </div>
+              {% endif %}
+              <div class="post-content content-prose">{{ content | safe }}</div>
+              {% include "council-speech-videos.njk" %}
+            </div>
+            <aside class="col-lg-4">
+              {% include "content-context-sidebar.njk" %}
+            </aside>
+          </div>
+
+          {% if "politics" in currentTags %}
+          <div class="alert alert-secondary mt-4 py-2 small mb-0" role="note">
+            <i class="bi bi-c-circle me-1" aria-hidden="true"></i>
+            {% if isEnglish %}
+            This text is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer" class="alert-link">CC BY-NC-ND 4.0</a>. Non-commercial use only, no modifications.
+            {% else %}
+            Tämä kirjoitus on lisensoitu <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer" class="alert-link">CC BY-NC-ND 4.0</a> -lisenssillä — ei kaupalliseen käyttöön, ei muutoksia.
+            {% endif %}
+          </div>
+          {% endif %}
+        </div>
+        <div class="card-footer bg-transparent">
+          <a href="{{ backHref }}" class="btn btn-outline-primary" data-history-back>&larr; {{ backLabel }}</a>
+        </div>
+      </div>
     </article>
   </div>
 </section>

@@ -4,6 +4,7 @@ layout: base.njk
 {% set currentLang = lang or (page.url | langFromUrl) %}
 {% set txt = {
   section:    "Blog" if currentLang == "en" else "Blogi",
+  toc:        "Contents" if currentLang == "en" else "Sisällys",
   categories: "Categories" if currentLang == "en" else "Kategoriat",
   keywords:   "Keywords" if currentLang == "en" else "Avainsanat",
   back:       "Back to blog" if currentLang == "en" else "Takaisin blogiin",
@@ -32,108 +33,87 @@ layout: base.njk
   {% set referenceHref = background_url %}
 {% endif %}
 {% set referenceSourceLabel = referenceLabel or backgroundLabel or "" %}
-
-<section class="content-detail-hero content-detail-hero--blog py-5 border-bottom">
+<section>
   <div class="site-shell">
-    <div class="content-detail-hero-grid">
-      <div class="content-detail-copy">
-        <p class="content-detail-eyebrow mb-2">{{ txt.section }}</p>
-        <h1 class="content-detail-title mb-3">{{ title }}</h1>
-        {% if subtitle %}
-          <p class="content-detail-lead mb-3">{{ subtitle }}</p>
-        {% elif description %}
-          <p class="content-detail-lead mb-3">{{ description }}</p>
-        {% endif %}
-        <p class="text-muted mb-3">{{ date | dateFormat }}</p>
-        <div class="content-detail-actions">
-          {% if externalSourceHref %}
-            <a href="{{ externalSourceHref }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">
-              {{ "Open source" if currentLang == "en" else "Avaa lähde" }}
-              <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i>
-            </a>
-          {% endif %}
-          <a href="{{ txt.backHref }}" class="btn btn-outline-secondary rounded-pill px-4" data-history-back>&larr; {{ txt.back }}</a>
-        </div>
-      </div>
-
-      {% if thumbnail %}
-      <aside class="content-detail-visual" aria-label="{{ 'Post image' if currentLang == 'en' else 'Kirjoituksen kuva' }}">
-        <div class="content-detail-thumb">
-          <img src="{{ thumbnail }}" alt="{{ imageAlt or title }}" loading="lazy" decoding="async">
-        </div>
-        {% if imageCaption %}
-          <p class="small text-muted mt-2 mb-0">{{ imageCaption }}</p>
-        {% endif %}
-      </aside>
-      {% endif %}
-    </div>
-  </div>
-</section>
-
-<section class="content-detail-body-section py-5">
-  <div class="site-shell">
-    <article class="content-detail-main">
-      <div class="content-detail-card">
-        <p class="content-detail-card-kicker">{{ "Text" if currentLang == "en" else "Kirjoitus" }}</p>
-        <div class="post-content content-prose">{{ content | safe }}</div>
-
-        {% if externalSourceHref or sourceLabel %}
-          <aside class="mt-4 p-3 border rounded bg-body-tertiary" aria-labelledby="blog-original-source-title">
-            <p class="content-detail-card-kicker">{{ "Text source" if currentLang == "en" else "Tekstin pohja" }}</p>
-            <h2 id="blog-original-source-title" class="h5">{{ "Source material for this text" if currentLang == "en" else "Tämän tekstin lähdeaineisto" }}</h2>
-            <p>
-              {% if sourceLabel %}
-                {{ "Source:" if currentLang == "en" else "Lähde:" }} {{ sourceLabel }}.
-              {% else %}
-                {{ "Open the source for context." if currentLang == "en" else "Avaa lähde taustatiedoksi." }}
+    <article class="blog-post">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <p class="text-uppercase small text-muted mb-2">{{ txt.section }}</p>
+          <h1 class="display-6 fw-bold">{{ title }}</h1>
+          <p class="text-muted mb-4">{{ date | dateFormat }}</p>
+          {% set tocMarkup = content | toc %}
+          <div class="row g-4">
+            <div class="col-lg-8">
+              {% if thumbnail %}
+                <figure class="mb-4">
+                  <img loading="lazy" decoding="async" src="{{ thumbnail }}" class="img-fluid rounded" alt="{{ imageAlt or title }}">
+                  {% if imageCaption %}
+                    <figcaption class="small text-muted mt-2">{{ imageCaption }}</figcaption>
+                  {% endif %}
+                </figure>
               {% endif %}
-              {% if not externalSourceHref %}
-                {{ "A permanent public link is not stored in the page metadata." if currentLang == "en" else "Pysyvää julkista linkkiä ei ole tallennettu sivun metadataan." }}
+              <div class="post-content content-prose">{{ content | safe }}</div>
+              {% if externalSourceHref or sourceLabel %}
+                <aside class="content-detail-card my-4" aria-labelledby="blog-original-source-title">
+                  <p class="content-detail-card-kicker">{{ "Text source" if currentLang == "en" else "Tekstin pohja" }}</p>
+                  <h2 id="blog-original-source-title" class="h5">{{ "Source material for this text" if currentLang == "en" else "Tämän tekstin lähdeaineisto" }}</h2>
+                  <p>
+                    {% if sourceLabel %}
+                      {{ "Source:" if currentLang == "en" else "Lähde:" }} {{ sourceLabel }}.
+                    {% else %}
+                      {{ "Open the source for context." if currentLang == "en" else "Avaa lähde taustatiedoksi." }}
+                    {% endif %}
+                    {% if not externalSourceHref %}
+                      {{ "A permanent public link is not stored in the page metadata." if currentLang == "en" else "Pysyvää julkista linkkiä ei ole tallennettu sivun metadataan." }}
+                    {% endif %}
+                  </p>
+                  {% if externalSourceHref %}
+                  <a class="btn btn-outline-primary" href="{{ externalSourceHref }}" target="_blank" rel="noopener noreferrer">
+                    {{ "Open source" if currentLang == "en" else "Avaa lähde" }}
+                    <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i>
+                  </a>
+                  {% endif %}
+                </aside>
               {% endif %}
-            </p>
-            {% if externalSourceHref %}
-            <a class="btn btn-outline-primary" href="{{ externalSourceHref }}" target="_blank" rel="noopener noreferrer">
-              {{ "Open source" if currentLang == "en" else "Avaa lähde" }}
-              <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i>
-            </a>
+              {% if referenceHref or referenceSourceLabel %}
+                <aside class="content-detail-card my-4" aria-labelledby="blog-reference-source-title">
+                  <p class="content-detail-card-kicker">{{ "Background source" if currentLang == "en" else "Taustalähde" }}</p>
+                  <h2 id="blog-reference-source-title" class="h5">{{ "Background material used in this article" if currentLang == "en" else "Artikkelissa käytetty tausta-aineisto" }}</h2>
+                  <p>
+                    {% if referenceSourceLabel %}
+                      {{ "Background source:" if currentLang == "en" else "Taustalähde:" }} {{ referenceSourceLabel }}.
+                    {% else %}
+                      {{ "Open the background source for context." if currentLang == "en" else "Avaa taustalähde lisätiedoksi." }}
+                    {% endif %}
+                  </p>
+                  {% if referenceHref %}
+                  <a class="btn btn-outline-primary" href="{{ referenceHref }}" target="_blank" rel="noopener noreferrer">
+                    {{ "Open background source" if currentLang == "en" else "Avaa taustalähde" }}
+                    <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i>
+                  </a>
+                  {% endif %}
+                </aside>
+              {% endif %}
+            </div>
+            <aside class="col-lg-4">
+              {% include "content-context-sidebar.njk" %}
+            </aside>
+          </div>
+          {% if page.fileSlug in ncNdBlogPosts %}
+          <div class="alert alert-secondary mt-4 py-2 small mb-0" role="note">
+            <i class="bi bi-c-circle me-1" aria-hidden="true"></i>
+            {% if currentLang == "en" %}
+            This text is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer" class="alert-link">CC BY-NC-ND 4.0</a>. Non-commercial use only, no modifications.
+            {% else %}
+            Tämä kirjoitus on lisensoitu <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer" class="alert-link">CC BY-NC-ND 4.0</a> -lisenssillä — ei kaupalliseen käyttöön, ei muutoksia.
             {% endif %}
-          </aside>
-        {% endif %}
-        {% if referenceHref or referenceSourceLabel %}
-          <aside class="mt-4 p-3 border rounded bg-body-tertiary" aria-labelledby="blog-reference-source-title">
-            <p class="content-detail-card-kicker">{{ "Background source" if currentLang == "en" else "Taustalähde" }}</p>
-            <h2 id="blog-reference-source-title" class="h5">{{ "Background material used in this article" if currentLang == "en" else "Artikkelissa käytetty tausta-aineisto" }}</h2>
-            <p>
-              {% if referenceSourceLabel %}
-                {{ "Background source:" if currentLang == "en" else "Taustalähde:" }} {{ referenceSourceLabel }}.
-              {% else %}
-                {{ "Open the background source for context." if currentLang == "en" else "Avaa taustalähde lisätiedoksi." }}
-              {% endif %}
-            </p>
-            {% if referenceHref %}
-            <a class="btn btn-outline-primary" href="{{ referenceHref }}" target="_blank" rel="noopener noreferrer">
-              {{ "Open background source" if currentLang == "en" else "Avaa taustalähde" }}
-              <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i>
-            </a>
-            {% endif %}
-          </aside>
-        {% endif %}
-
-        {% if page.fileSlug in ncNdBlogPosts %}
-        <div class="alert alert-secondary mt-4 py-2 small mb-0" role="note">
-          <i class="bi bi-c-circle me-1" aria-hidden="true"></i>
-          {% if currentLang == "en" %}
-          This text is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer" class="alert-link">CC BY-NC-ND 4.0</a>. Non-commercial use only, no modifications.
-          {% else %}
-          Tämä kirjoitus on lisensoitu <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer" class="alert-link">CC BY-NC-ND 4.0</a> -lisenssillä — ei kaupalliseen käyttöön, ei muutoksia.
+          </div>
           {% endif %}
         </div>
-        {% endif %}
+        <div class="card-footer bg-transparent">
+          <a href="{{ txt.backHref }}" class="btn btn-outline-primary">&larr; {{ txt.back }}</a>
+        </div>
       </div>
-
-      <aside class="content-detail-related">
-        {% include "content-context-sidebar.njk" %}
-      </aside>
     </article>
   </div>
 </section>
