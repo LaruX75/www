@@ -81,7 +81,7 @@
 
   {% include "header.njk" %}
 
-  {% if not isHomePage %}
+  {% if not isHomePage and not suppressSubpageHero %}
   <section class="subpage-hero-placeholder" aria-hidden="true">
     <div class="subpage-hero-image"></div>
   </section>

@@ -734,7 +734,7 @@ html:not([data-bs-theme="dark"]):not(.a11y-high-contrast) .mega-menu-panel a i {
 
 .writings-mega-layout {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.9rem;
   align-items: start;
 }
@@ -761,7 +761,6 @@ html:not([data-bs-theme="dark"]):not(.a11y-high-contrast) .mega-menu-panel a i {
 }
 
 .writings-side-col {
-  grid-column: 3;
   grid-row: 2;
   min-width: 0;
 }
@@ -1061,7 +1060,7 @@ html:not([data-bs-theme="dark"]):not(.a11y-high-contrast) .mega-menu-panel a i {
   }
 
   .writings-mega-layout {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0.65rem;
   }
 

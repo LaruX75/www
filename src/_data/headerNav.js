@@ -537,6 +537,13 @@ module.exports = {
               description: "Kokoukset, pöytäkirjat, videot ja oma valtuustotyö kokouksittain."
             },
             {
+              title: "Sivistyslautakunta",
+              href: "/politiikka/sivistyslautakunta/",
+              icon: "bi bi-clipboard-check me-2",
+              menuLink: true,
+              description: "Kokouskohtainen näkymä sivistyslautakunnan ja aiemman sivistys- ja kulttuurilautakunnan työhön."
+            },
+            {
               title: "Vaalikaudet",
               href: "/politiikka/vaalikaudet/",
               icon: "bi bi-calendar-event me-2",
@@ -722,23 +729,14 @@ module.exports = {
           ]
         },
         {
-          heading: "Asiantuntijavaikuttaminen",
+          heading: "Asiantuntijatekstit ja puheet",
           links: [
             { title: "Lausunnot", href: "/kynasta/#lausunnot", icon: "bi bi-file-earmark-text me-2", countData: "publications_statements", description: "Lausuntopalvelussa ja muissa valmisteluprosesseissa annetut asiantuntijalausunnot." },
             { title: "Julkiset puheet", href: "/kynasta/#julkiset-puheet", icon: "bi bi-megaphone-fill me-2", countKey: "pub_puhe_julkinen", description: "Juhlapuheet, yliopistopuheet ja yleisötilaisuuksien puheenvuorot." },
-            { title: "Teemaprofiilit", href: "/teemat/", icon: "bi bi-diagram-3 me-2", description: "Toimitetut aihepolut, joissa sama teema näkyy kirjoituksissa, esityksissä, lausunnoissa ja mediassa." },
-            { title: "Esitykset ja materiaalit", href: "/esitykset/", icon: "bi bi-easel2 me-2", countKey: "presentations", description: "Puheenvuoroja, koulutussisältöjä ja avoimia oppimateriaaleja." },
-            { title: "Tieteelliset julkaisut", href: "/julkaisut/", icon: "bi bi-journal-text me-2", countData: "researchfi_total", description: "Tutkimusjulkaisut, artikkelit ja tieteellinen tuotanto." },
+            { title: "Teemaprofiilit", href: "/teemat/", icon: "bi bi-diagram-3 me-2", description: "Toimitetut aihepolut, joissa sama teema näkyy kirjoituksissa, puheissa ja lausunnoissa." }
           ]
         }
-      ],
-      seeAlso: {
-        heading: "Erilliset reitit",
-        subheading: "Mediassa näyttää ulkopuolisten tekemän näkyvyyden. Se ei ole Kynästä-sivun alalaji vaan oma sisältöreittinsä.",
-        links: [
-          { title: "Mediassa", href: "/mediassa/", icon: "bi bi-camera-reels me-2", description: "Haastattelut, podcastit, videot ja julkiset asiantuntijaroolit omana kokonaisuutenaan." }
-        ]
-      }
+      ]
     },
     en: {
       heading: "Writings, Speeches, and Public Commentary",
@@ -764,18 +762,10 @@ module.exports = {
           heading: "Expert contributions",
           links: [
             { title: "Statements", href: "/en/writings/#lausunnot", icon: "bi bi-file-earmark-text me-2", countData: "publications_statements", description: "Expert statements submitted through public consultation and preparation processes." },
-            { title: "Presentations and materials", href: "/en/presentations/", icon: "bi bi-easel2 me-2", countKey: "presentations", description: "Talks, keynote materials, and open learning resources." },
-            { title: "Scientific publications", href: "/en/publications/", icon: "bi bi-journal-text me-2", countData: "researchfi_total", description: "Research outputs, articles, and academic publishing." },
+            { title: "Public speeches", href: "/en/writings/#julkiset-puheet", icon: "bi bi-megaphone-fill me-2", countKey: "pub_puhe_julkinen", description: "Ceremonial speeches, university talks, and public addresses." }
           ]
         }
-      ],
-      seeAlso: {
-        heading: "Separate routes",
-        subheading: "Media appearances belong to their own route rather than under writings.",
-        links: [
-          { title: "In the media", href: "/mediassa/", icon: "bi bi-camera-reels me-2", description: "Interviews, podcasts, videos, and public expert roles as a separate collection." }
-        ]
-      }
+      ]
     }
   },
   megaMenuWork: {
@@ -789,6 +779,12 @@ module.exports = {
               href: "/tyoni-yliopistonlehtorina/",
               icon: "bi bi-briefcase me-2",
               description: "Kokonaiskuva opetuksesta, tutkimuksesta ja yhteiskunnallisesta vuorovaikutuksesta."
+            },
+            {
+              title: "Esitykset",
+              href: "/esitykset/",
+              icon: "bi bi-easel2 me-2",
+              description: "Luentoja, opetussisältöjä ja avoimia opetusmateriaaleja yliopistotyön näkökulmasta."
             },
             {
               title: "Opetusportfolio",
@@ -814,16 +810,16 @@ module.exports = {
               description: "Tutkimushankkeet, tutkimusteemat ja pidempi tutkimuslinja omalla sivullaan."
             },
             {
-              title: "Julkaisuluettelo",
-              href: "/julkaisut/",
-              icon: "bi bi-journal-text me-2",
-              description: "Tieteelliset julkaisut ja viitetiedot koottuna yhteen näkymään."
-            },
-            {
               title: "Väitöskirja",
               href: "/vaitoskirja/",
               icon: "bi bi-mortarboard-fill me-2",
               description: "Lectio-video, väitöskirja ja neljä osajulkaisua samassa kokonaisuudessa."
+            },
+            {
+              title: "Julkaisuluettelo",
+              href: "/julkaisut/",
+              icon: "bi bi-journal-text me-2",
+              description: "Tieteelliset julkaisut ja viitetiedot koottuna yhteen näkymään."
             },
             {
               title: "Opinnäytetyöt",
@@ -882,6 +878,12 @@ module.exports = {
               description: "Courses, teaching responsibilities, and pedagogical development."
             },
             {
+              title: "Presentations",
+              href: "/en/presentations/",
+              icon: "bi bi-easel2 me-2",
+              description: "Lectures, teaching content, and open educational materials from the university work perspective."
+            },
+            {
               title: "Teaching Portfolio",
               href: "/en/portfolio/",
               icon: "bi bi-folder me-2",
@@ -903,6 +905,12 @@ module.exports = {
               href: "/en/research/",
               icon: "bi bi-search me-2",
               description: "Research themes, projects, and the broader frame of my academic work."
+            },
+            {
+              title: "Doctoral dissertation",
+              href: "/vaitoskirja/",
+              icon: "bi bi-mortarboard-fill me-2",
+              description: "Lectio video, dissertation, and four original publications in one place."
             },
             {
               title: "Publication List",
