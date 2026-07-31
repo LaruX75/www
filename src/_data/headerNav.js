@@ -33,6 +33,7 @@ module.exports = {
           key: "media",
           title: "Mediassa",
           url: "/mediassa/",
+          icon: "bi bi-camera-reels-fill",
           parent: "home",
           order: 55
         }
@@ -996,6 +997,158 @@ module.exports = {
         href: "/en/contact/",
         label: "Request a quote"
       }
+    }
+  },
+  megaMenuMedia: {
+    fi: {
+      heading: "Mediassa",
+      description: "Haastattelut, podcastit, videot ja muut mediaosumat, joissa Jari Larun työ näkyy muiden tuottamissa sisällöissä.",
+      sections: [
+        {
+          heading: "Aloita tästä",
+          links: [
+            {
+              title: "Mediassa-sivu",
+              href: "/mediassa/",
+              icon: "bi bi-camera-reels me-2",
+              description: "Kokonaiskuva mediaosumista, rooleista ja julkisista asiantuntijakommenteista."
+            },
+            {
+              title: "Nostot",
+              href: "/mediassa/#media-nostot",
+              icon: "bi bi-stars me-2",
+              description: "Poimintoja haastatteluista, podcasteista, videoista ja asiantuntijaroolista."
+            },
+            {
+              title: "Kaikki mediaosumat",
+              href: "/mediassa/#media-arkisto",
+              icon: "bi bi-collection me-2",
+              description: "Selaa koko media-arkistoa yhdessä paikassa."
+            }
+          ]
+        },
+        {
+          heading: "Sisältötyypit",
+          links: [
+            {
+              title: "Lehtijutut",
+              href: "/mediassa/?type=article",
+              icon: "bi bi-newspaper me-2",
+              description: "Artikkelit, haastattelut ja uutisjutut."
+            },
+            {
+              title: "Podcastit ja radio",
+              href: "/mediassa/?type=podcast",
+              icon: "bi bi-broadcast me-2",
+              description: "Keskustelut, podcast-jaksot ja radioesiintymiset."
+            },
+            {
+              title: "Videot",
+              href: "/mediassa/?type=video",
+              icon: "bi bi-camera-video me-2",
+              description: "Videot, tallenteet ja verkossa julkaistut esiintymiset."
+            }
+          ]
+        },
+        {
+          heading: "Liittyvät sivut",
+          links: [
+            {
+              title: "Yhteiskunnallinen vuorovaikutus",
+              href: "/yhteiskunnallinen-vuorovaikutus/",
+              icon: "bi bi-diagram-3 me-2",
+              description: "Miten tutkimus ja opetus näkyvät mediassa, lausunnoissa, materiaaleissa ja päätöksenteossa."
+            },
+            {
+              title: "Kynästä",
+              href: "/kynasta/",
+              icon: "bi bi-pencil me-2",
+              description: "Jari Larun omat puheet, kirjoitukset ja lausunnot."
+            },
+            {
+              title: "Esitykset",
+              href: "/esitykset/",
+              icon: "bi bi-easel2 me-2",
+              description: "Koulutukset, luennot, videot ja avoimet materiaalit."
+            }
+          ]
+        }
+      ]
+    },
+    en: {
+      heading: "Media",
+      description: "Interviews, podcasts, videos, and media appearances where Jari Laru's work appears in content produced by others.",
+      sections: [
+        {
+          heading: "Start here",
+          links: [
+            {
+              title: "Media page",
+              href: "/en/media/",
+              icon: "bi bi-camera-reels me-2",
+              description: "Overview of media appearances, public expert roles, and interviews."
+            },
+            {
+              title: "Roles in media",
+              href: "/en/media/#media-roles",
+              icon: "bi bi-stars me-2",
+              description: "How interviews, podcasts, videos, and expert appearances relate to public work."
+            },
+            {
+              title: "All media appearances",
+              href: "/en/media/#media-archive",
+              icon: "bi bi-collection me-2",
+              description: "Browse the full media archive in one place."
+            }
+          ]
+        },
+        {
+          heading: "Content types",
+          links: [
+            {
+              title: "Articles",
+              href: "/en/media/?type=article",
+              icon: "bi bi-newspaper me-2",
+              description: "Articles, interviews, and news stories."
+            },
+            {
+              title: "Podcasts and radio",
+              href: "/en/media/?type=podcast",
+              icon: "bi bi-broadcast me-2",
+              description: "Podcast episodes, radio items, and conversations."
+            },
+            {
+              title: "Videos",
+              href: "/en/media/?type=video",
+              icon: "bi bi-camera-video me-2",
+              description: "Videos, recordings, and online appearances."
+            }
+          ]
+        },
+        {
+          heading: "Related pages",
+          links: [
+            {
+              title: "Societal engagement",
+              href: "/en/societal-engagement/",
+              icon: "bi bi-diagram-3 me-2",
+              description: "How research and teaching continue in media, statements, materials, and decision-making."
+            },
+            {
+              title: "Writings",
+              href: "/en/writings/",
+              icon: "bi bi-pencil me-2",
+              description: "Jari Laru's own writings, speeches, and statements."
+            },
+            {
+              title: "Presentations",
+              href: "/en/presentations/",
+              icon: "bi bi-easel2 me-2",
+              description: "Talks, training materials, videos, and open materials."
+            }
+          ]
+        }
+      ]
     }
   },
   megaMenuContact: {

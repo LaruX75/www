@@ -342,10 +342,29 @@
           </div>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link {% if page.url and '/mediassa/' in page.url %}active{% endif %}" href="/mediassa/"{% if page.url and '/mediassa/' in page.url %} aria-current="page"{% endif %}>
-            <i class="bi bi-camera-reels-fill me-1"></i>Mediassa
-          </a>
+        <li class="nav-item dropdown mega-dropdown">
+          {{ megaNavTrigger(navMedia.url or '/mediassa/', navMedia.title or 'Mediassa', navMedia.icon or 'bi bi-camera-reels-fill', page.url and '/mediassa/' in page.url, 'megaMenuMediaFi', 'megaToggleMediaFi', openSubmenuLabel) }}
+          <div id="megaMenuMediaFi" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleMediaFi">
+            <div class="mega-wrap">
+              <section class="w-100 mb-3">
+                <h5>{{ mediaMegaMenu.heading }}</h5>
+                <p class="menu-desc">{{ mediaMegaMenu.description }}</p>
+              </section>
+              <div class="mega-left three-cols">
+                {% for section in mediaMegaMenu.sections %}
+                  <section>
+                    <h5>{{ section.heading }}</h5>
+                    {% for link in section.links %}
+                      <a href="{{ link.href }}"><i class="{{ link.icon }}"></i>{{ link.title }}</a>
+                      {% if link.description %}
+                        <small class="menu-link-desc">{{ link.description }}</small>
+                      {% endif %}
+                    {% endfor %}
+                  </section>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
