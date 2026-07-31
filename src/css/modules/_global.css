@@ -475,19 +475,19 @@ html:not([data-bs-theme="dark"]) select {
 
 /* Body & main background */
 [data-bs-theme="dark"] body {
-  background-color: #1a2232 !important;
-  color: #e0e0e0;
+  background-color: var(--site-surface-page) !important;
+  color: var(--bs-body-color);
 }
 
 /* Sections with bg-light should blend in dark mode */
 html[data-bs-theme="dark"]:not([data-a11y-bg]) .bg-light,
 html[data-bs-theme="dark"]:not([data-a11y-bg]) section.bg-light {
-  background-color: #1e2a3a !important;
-  color: #e0e0e0;
+  background-color: var(--site-surface-section) !important;
+  color: var(--bs-body-color);
 }
 
 html[data-bs-theme="dark"]:not([data-a11y-bg]) .bg-body-tertiary {
-  background-color: #243549 !important;
+  background-color: var(--site-surface-muted) !important;
 }
 
 /* All headings should be white in dark mode */
@@ -497,27 +497,27 @@ html[data-bs-theme="dark"]:not([data-a11y-bg]) .bg-body-tertiary {
 [data-bs-theme="dark"] h4,
 [data-bs-theme="dark"] h5,
 [data-bs-theme="dark"] h6 {
-  color: #ffffff;
+  color: var(--bs-body-color);
 }
 
 /* Links */
 [data-bs-theme="dark"] a:not(.btn):not(.nav-link):not(.navbar-brand):not(.badge) {
-  color: #7db8f0;
+  color: var(--site-accent);
 }
 
 [data-bs-theme="dark"] a:not(.btn):not(.nav-link):not(.navbar-brand):not(.badge):hover {
-  color: #a8d4ff;
+  color: var(--site-accent-strong);
 }
 
 /* Cards */
 html[data-bs-theme="dark"]:not([data-a11y-bg]) .card {
-  background-color: #2b3e56 !important;
-  border-color: rgba(255, 255, 255, 0.10) !important;
-  color: #e0e0e0;
+  background-color: var(--site-surface-card) !important;
+  border-color: var(--site-border-soft) !important;
+  color: var(--bs-body-color);
 }
 
 html[data-bs-theme="dark"]:not([data-a11y-bg]) .card .text-muted {
-  color: rgba(255, 255, 255, 0.55) !important;
+  color: var(--bs-secondary-color) !important;
 }
 
 /* Site changes KPI cards need explicit dark-theme colors for safe text contrast */
@@ -545,73 +545,72 @@ html[data-bs-theme="dark"]:not([data-a11y-bg]) .card h3 a,
 html[data-bs-theme="dark"]:not([data-a11y-bg]) .card h4 a,
 html[data-bs-theme="dark"]:not([data-a11y-bg]) .card h5 a,
 html[data-bs-theme="dark"]:not([data-a11y-bg]) .card h6 a {
-  color: #ffffff !important;
+  color: var(--bs-body-color) !important;
 }
 
 html[data-bs-theme="dark"]:not([data-a11y-bg]) .card .card-title a:hover,
 html[data-bs-theme="dark"]:not([data-a11y-bg]) .card h2 a:hover {
-  color: rgba(255, 255, 255, 0.8) !important;
+  color: var(--site-accent-strong) !important;
 }
 
 /* List groups (used on /julkaisut/ page and elsewhere) */
 html[data-bs-theme="dark"]:not([data-a11y-bg]) .list-group-item {
-  background-color: #243347 !important;
-  border-color: rgba(255, 255, 255, 0.08) !important;
-  color: #e0e0e0;
+  background-color: var(--site-surface-card) !important;
+  border-color: var(--site-border-soft) !important;
+  color: var(--bs-body-color);
 }
 
 html[data-bs-theme="dark"]:not([data-a11y-bg]) .list-group-item:hover {
-  background-color: #2e3f59 !important;
+  background-color: var(--site-surface-muted) !important;
 }
 
 html[data-bs-theme="dark"]:not([data-a11y-bg]) .list-group-item .text-muted {
-  color: rgba(255, 255, 255, 0.55) !important;
+  color: var(--bs-secondary-color) !important;
 }
 
 /* Form field contrast fixes for dark mode */
 [data-bs-theme="dark"] .form-control,
 [data-bs-theme="dark"] .form-select,
 [data-bs-theme="dark"] textarea.form-control {
-  background-color: #223247 !important;
-  color: #e9f2ff !important;
-  border-color: rgba(189, 206, 228, 0.28) !important;
+  background-color: var(--site-surface-section) !important;
+  color: var(--bs-body-color) !important;
+  border-color: var(--site-border-strong) !important;
 }
 
 [data-bs-theme="dark"] .form-control::placeholder,
 [data-bs-theme="dark"] textarea.form-control::placeholder {
-  color: rgba(221, 233, 250, 0.62) !important;
+  color: var(--bs-secondary-color) !important;
 }
 
 [data-bs-theme="dark"] .form-control:focus,
 [data-bs-theme="dark"] .form-select:focus,
 [data-bs-theme="dark"] textarea.form-control:focus {
-  border-color: #8bb2de !important;
-  box-shadow: 0 0 0 0.2rem rgba(125, 184, 240, 0.2) !important;
+  border-color: var(--site-accent) !important;
+  box-shadow: 0 0 0 0.2rem var(--site-accent-soft) !important;
 }
 
 [data-bs-theme="dark"] .input-group-text {
-  background-color: #243347 !important;
-  color: #d7e6fb !important;
-  border-color: rgba(189, 206, 228, 0.28) !important;
+  background-color: var(--site-surface-muted) !important;
+  color: var(--bs-body-color) !important;
+  border-color: var(--site-border-strong) !important;
 }
 
 [data-bs-theme="dark"] input:not([type="checkbox"]):not([type="radio"]),
 [data-bs-theme="dark"] textarea,
 [data-bs-theme="dark"] select {
-  background-color: #223247 !important;
-  color: #e9f2ff !important;
-  border: 1px solid rgba(189, 206, 228, 0.28) !important;
+  background-color: var(--site-surface-section) !important;
+  color: var(--bs-body-color) !important;
+  border: 1px solid var(--site-border-strong) !important;
 }
 
 /* General text-muted */
 [data-bs-theme="dark"] .text-muted {
-  color: rgba(255, 255, 255, 0.55) !important;
+  color: var(--bs-secondary-color) !important;
 }
 
 /* Page content inside bss-scope */
 [data-bs-theme="dark"] .bss-scope {
-  color: #e0e0e0;
-  /* --bs-primary: #ffffff and --bs-border-width: 0 are set near top of file */
+  color: var(--bs-body-color);
 }
 
 /* Borders & dividers */
@@ -651,7 +650,7 @@ html[data-bs-theme="dark"]:not([data-a11y-bg]) .list-group-item .text-muted {
   border-color: var(--site-btn-hover-border-color) !important;
 }
 
-/* Dark mode: white translucent outline for ALL buttons (except close/link) */
+/* Dark mode: quiet outline buttons and a clear primary action. */
 [data-bs-theme="dark"] .btn:not(.btn-close):not(.btn-link) {
   background-color: var(--site-btn-bg) !important;
   color: var(--site-btn-color) !important;
@@ -662,6 +661,19 @@ html[data-bs-theme="dark"]:not([data-a11y-bg]) .list-group-item .text-muted {
   background-color: var(--site-btn-hover-bg) !important;
   color: var(--site-btn-hover-color) !important;
   border-color: var(--site-btn-hover-border-color) !important;
+}
+
+[data-bs-theme="dark"] .btn.btn-primary:not(.btn-close):not(.btn-link) {
+  background-color: var(--site-accent) !important;
+  color: #17222d !important;
+  border-color: var(--site-accent) !important;
+}
+
+[data-bs-theme="dark"] .btn.btn-primary:not(.btn-close):not(.btn-link):hover,
+[data-bs-theme="dark"] .btn.btn-primary:not(.btn-close):not(.btn-link):focus-visible {
+  background-color: #d3eafe !important;
+  color: #17222d !important;
+  border-color: #d3eafe !important;
 }
 
 /* Citation export modals need local button styles instead of the global outline override */

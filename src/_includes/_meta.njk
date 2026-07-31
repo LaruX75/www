@@ -127,7 +127,9 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
   <link rel="shortcut icon" href="/favicon.ico">
-  <meta name="theme-color" content="#0c1730">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f3ee">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#202833">
+  <meta id="themeColor" name="theme-color" content="#f6f3ee">
   <link rel="canonical" href="{{ pageUrl }}">
   {% if fiAltPath %}
   <link rel="alternate" hreflang="fi" href="{{ fiAltPath | absoluteUrl(site.url or "https://www.jarilaru.fi") }}">

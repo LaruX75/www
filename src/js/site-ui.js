@@ -19,6 +19,8 @@
         const resolvedTheme = theme === 'dark' ? 'dark' : 'light';
         document.documentElement.setAttribute('data-bs-theme', resolvedTheme);
         document.documentElement.style.colorScheme = resolvedTheme;
+        const themeColor = document.getElementById('themeColor');
+        if (themeColor) themeColor.setAttribute('content', resolvedTheme === 'dark' ? '#202833' : '#f6f3ee');
         updateIcon(resolvedTheme);
         return resolvedTheme;
       };

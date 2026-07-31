@@ -1462,8 +1462,8 @@ schemaMentions:
     --pol-muted: rgba(243, 247, 252, 0.82);
     --pol-line: rgba(255, 255, 255, 0.12);
     background:
-      radial-gradient(circle at top right, rgba(125, 184, 240, 0.12), transparent 34%),
-      linear-gradient(135deg, #0d192a 0%, #10233a 52%, #0f1d32 100%);
+      radial-gradient(circle at top right, rgba(169, 212, 243, 0.14), transparent 34%),
+      linear-gradient(135deg, var(--site-surface-section) 0%, var(--bs-body-bg) 100%);
     color: #f3f7fc;
   }
   [data-bs-theme="dark"] .pol-hero-title,
@@ -1538,9 +1538,9 @@ schemaMentions:
   [data-bs-theme="dark"] .pol-evidence-card,
   [data-bs-theme="dark"] .pol-writing-item,
   [data-bs-theme="dark"] .pol-initiative-item {
-    background: linear-gradient(180deg, rgba(18, 30, 47, 0.92), rgba(13, 24, 38, 0.96));
-    border-color: rgba(255, 255, 255, 0.14);
-    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.22);
+    background: var(--site-surface-card);
+    border-color: var(--site-border-soft);
+    box-shadow: var(--site-shadow-card);
   }
   [data-bs-theme="dark"] .pol-theme-proof-item,
   [data-bs-theme="dark"] .pol-role-item,
@@ -1618,9 +1618,9 @@ schemaMentions:
     border-color: rgba(125, 211, 156, 0.58);
   }
   [data-bs-theme="dark"] .pol-hero-btn-primary {
-    background: #f4f8fd;
-    color: #102743;
-    border-color: #f4f8fd;
+    background: var(--site-accent);
+    color: #17222d;
+    border-color: var(--site-accent);
   }
   [data-bs-theme="dark"] .pol-hero-btn-outline {
     color: #f4f8fd;

@@ -453,8 +453,8 @@
 
 [data-bs-theme="dark"] .presentation-hero-panel {
   background:
-    linear-gradient(180deg, rgba(24,28,36,0.96), rgba(19,23,31,0.96)),
-    radial-gradient(circle at top right, rgba(102,163,255,0.18), transparent 55%);
+    linear-gradient(180deg, var(--site-surface-card), var(--site-surface-section)),
+    radial-gradient(circle at top right, rgba(169,212,243,0.16), transparent 55%);
 }
 
 .presentation-feature-section {
@@ -1311,14 +1311,14 @@
 [data-bs-theme="dark"] .presentation-analysis-link,
 [data-bs-theme="dark"] .presentation-archive-card,
 [data-bs-theme="dark"] .presentation-service-archive {
-  background: rgba(24, 36, 54, 0.92);
-  box-shadow: 0 0.85rem 2rem rgba(0, 0, 0, 0.2);
+  background: var(--site-surface-card);
+  box-shadow: var(--site-shadow-card);
 }
 
 [data-bs-theme="dark"] .presentation-type-panel--featured {
   background:
-    radial-gradient(circle at top right, rgba(102, 163, 255, 0.16), transparent 34%),
-    linear-gradient(180deg, rgba(28, 43, 65, 0.96), rgba(22, 36, 55, 0.98));
+    radial-gradient(circle at top right, rgba(169, 212, 243, 0.16), transparent 34%),
+    linear-gradient(180deg, var(--site-surface-muted), var(--site-surface-card));
 }
 
 [data-bs-theme="dark"] .presentation-type-panel--analysis {
@@ -1327,14 +1327,14 @@
 
 [data-bs-theme="dark"] .presentation-analysis-era-section {
   background:
-    radial-gradient(circle at 12% 0%, rgba(102, 163, 255, 0.14), transparent 34%),
-    linear-gradient(180deg, rgba(17, 27, 42, 0.98), rgba(13, 20, 31, 0.98));
+    radial-gradient(circle at 12% 0%, rgba(169, 212, 243, 0.12), transparent 34%),
+    linear-gradient(180deg, var(--site-surface-section), var(--bs-body-bg));
 }
 
 [data-bs-theme="dark"] .presentation-browse-section {
   background:
-    radial-gradient(circle at 92% 0%, rgba(102, 163, 255, 0.12), transparent 30%),
-    linear-gradient(180deg, rgba(17, 27, 42, 0.78), var(--bs-body-bg));
+    radial-gradient(circle at 92% 0%, rgba(169, 212, 243, 0.1), transparent 30%),
+    linear-gradient(180deg, var(--site-surface-section), var(--bs-body-bg));
 }
 
 [data-bs-theme="dark"] .presentation-era-card--slideshare {
@@ -1351,14 +1351,14 @@
 
 [data-bs-theme="dark"] .presentation-feature-section {
   background:
-    radial-gradient(circle at 5% 0%, rgba(102, 163, 255, 0.12), transparent 34%),
-    linear-gradient(180deg, var(--bs-body-bg), rgba(17, 27, 42, 0.74));
+    radial-gradient(circle at 5% 0%, rgba(169, 212, 243, 0.1), transparent 34%),
+    linear-gradient(180deg, var(--bs-body-bg), var(--site-surface-section));
 }
 
 [data-bs-theme="dark"] .presentation-feature-primary,
 [data-bs-theme="dark"] .presentation-feature-small {
-  background: rgba(24, 36, 54, 0.94);
-  box-shadow: 0 1rem 2.6rem rgba(0, 0, 0, 0.24);
+  background: var(--site-surface-card);
+  box-shadow: var(--site-shadow-card);
 }
 
 [data-bs-theme="dark"] .presentation-feature-small--video {

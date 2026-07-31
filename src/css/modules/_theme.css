@@ -27,33 +27,39 @@
   --site-btn-hover-border-color: #000000;
 }
 
-/* ===== Dark theme: Bootstrap-pohjavärien korvaus ===== */
-/* Kevennetty navy-paletti — aiempaa #131d2b kevyempi, parempi tason erottelu */
+/* ===== Dark theme: rauhallinen hämärä lukutila ===== */
+/* Sivuston varsinainen brändi on vaalea. Tummassa tilassa sininen jää aksentiksi,
+   jotta pitkät sisällöt eivät muutu raskaaksi laivastonsiniseksi pinnaksi. */
 [data-bs-theme="dark"] {
-  --bs-body-bg: #1a2638;
-  --bs-body-color: #dde4ee;
-  --bs-secondary-bg: #243549;
-  --bs-tertiary-bg: #1f2f42;
-  --bs-border-color: #354f68;
-  --bs-border-color-translucent: rgba(255, 255, 255, 0.15);
-  --site-surface-page: #1a2638;
-  --site-surface-section: #1f2f42;
-  --site-surface-card: #243549;
-  --site-surface-muted: #2a3c52;
-  --site-border-soft: rgba(255, 255, 255, 0.14);
-  --site-border-strong: rgba(255, 255, 255, 0.22);
-  --site-shadow-card: 0 16px 38px rgba(0, 0, 0, 0.32);
-  --site-shadow-panel: 0 22px 54px rgba(0, 0, 0, 0.38);
-  --site-accent: #8bb2de;
-  --site-accent-strong: #dbeafe;
-  --site-accent-soft: rgba(139, 178, 222, 0.14);
-  --site-accent-border: rgba(139, 178, 222, 0.3);
-  --site-btn-color: #ffffff;
+  --bs-body-bg: #202833;
+  --bs-body-color: #edf2f7;
+  --bs-secondary-color: #c0cad5;
+  --bs-secondary-bg: #2e3b49;
+  --bs-tertiary-bg: #27323e;
+  --bs-border-color: #4a5b6e;
+  --bs-border-color-translucent: rgba(237, 242, 247, 0.15);
+  --bs-link-color: #a9d4f3;
+  --bs-link-color-rgb: 169, 212, 243;
+  --bs-link-hover-color: #e6f3ff;
+  --bs-link-hover-color-rgb: 230, 243, 255;
+  --site-surface-page: #202833;
+  --site-surface-section: #27323e;
+  --site-surface-card: #2e3b49;
+  --site-surface-muted: #364657;
+  --site-border-soft: rgba(237, 242, 247, 0.14);
+  --site-border-strong: rgba(237, 242, 247, 0.24);
+  --site-shadow-card: 0 14px 30px rgba(8, 13, 19, 0.2);
+  --site-shadow-panel: 0 20px 46px rgba(8, 13, 19, 0.26);
+  --site-accent: #a9d4f3;
+  --site-accent-strong: #e6f3ff;
+  --site-accent-soft: rgba(169, 212, 243, 0.14);
+  --site-accent-border: rgba(169, 212, 243, 0.32);
+  --site-btn-color: #edf2f7;
   --site-btn-bg: transparent;
-  --site-btn-border-color: rgba(255, 255, 255, 0.4);
-  --site-btn-hover-color: #ffffff;
-  --site-btn-hover-bg: rgba(255, 255, 255, 0.1);
-  --site-btn-hover-border-color: rgba(255, 255, 255, 0.6);
+  --site-btn-border-color: rgba(237, 242, 247, 0.46);
+  --site-btn-hover-color: #edf2f7;
+  --site-btn-hover-bg: rgba(237, 242, 247, 0.1);
+  --site-btn-hover-border-color: rgba(237, 242, 247, 0.68);
 }
 
 /* ===== Light theme: lämmin neutraali slate ===== */
@@ -84,11 +90,24 @@ html:not([data-bs-theme="dark"]) .bss-scope {
   --bs-border-width: 1px;
 }
 
-/* Dark theme: bss-scope uses white as primary (white buttons on dark bg) */
+/* Dark theme: primary actions use the shared accent rather than stark white. */
 [data-bs-theme="dark"] .bss-scope {
-  --bs-primary: #ffffff;
-  --bs-primary-rgb: 255, 255, 255;
-  --bs-border-width: 0;
+  --bs-primary: #a9d4f3;
+  --bs-primary-rgb: 169, 212, 243;
+  --bs-border-width: 1px;
+}
+
+[data-bs-theme="dark"] .btn-primary {
+  --bs-btn-color: #17222d;
+  --bs-btn-bg: #a9d4f3;
+  --bs-btn-border-color: #a9d4f3;
+  --bs-btn-hover-color: #17222d;
+  --bs-btn-hover-bg: #d3eafe;
+  --bs-btn-hover-border-color: #d3eafe;
+  --bs-btn-active-color: #17222d;
+  --bs-btn-active-bg: #d3eafe;
+  --bs-btn-active-border-color: #d3eafe;
+  --bs-btn-focus-shadow-rgb: 169, 212, 243;
 }
 
 /* Light theme: btn-primary uses site blue */
