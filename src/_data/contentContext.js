@@ -48,7 +48,7 @@ const CONTEXT_META = {
   },
   media: {
     label: { fi: "Mediassa", en: "Media" },
-    href: { fi: "/mediassa/", en: "/en/" }
+    href: { fi: "/mediassa/", en: "/en/media/" }
   },
   "open-science": {
     label: { fi: "Avoin tiede", en: "Open science" },

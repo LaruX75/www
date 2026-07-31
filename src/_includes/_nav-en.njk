@@ -333,6 +333,12 @@
           </div>
         </li>
 
+        <li class="nav-item">
+          <a class="nav-link {% if page.url and '/en/media/' in page.url %}active{% endif %}" href="{{ navMedia.url or '/en/media/' }}"{% if page.url and '/en/media/' in page.url %} aria-current="page"{% endif %}>
+            <i class="{{ navMedia.icon or 'bi bi-camera-reels-fill' }} me-1"></i>{{ navMedia.title or 'Media' }}
+          </a>
+        </li>
+
         <li class="nav-item dropdown mega-dropdown">
           {{ megaNavTrigger(navContact.url or '/en/contact/', navContact.title or 'Contact', navContact.icon or 'bi bi-envelope', page.url and '/en/contact/' in page.url, 'megaMenuContactEn', 'megaToggleContactEn', openSubmenuLabel) }}
           <div id="megaMenuContactEn" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleContactEn">
@@ -449,6 +455,13 @@
         <span>
           <strong>Writings</strong>
           <small>Texts, speeches and media.</small>
+        </span>
+      </a>
+      <a class="mobile-nav-feature-card{% if page.url and '/en/media/' in page.url %} is-active{% endif %}" href="{{ navMedia.url or '/en/media/' }}">
+        <span class="mobile-nav-feature-icon"><i class="{{ navMedia.icon or 'bi bi-camera-reels-fill' }}"></i></span>
+        <span>
+          <strong>Media</strong>
+          <small>Interviews, podcasts and videos.</small>
         </span>
       </a>
     </div>
@@ -584,6 +597,24 @@
                 {% endfor %}
               </section>
             {% endif %}
+          </div>
+        </div>
+      </details>
+
+      <details class="mobile-nav-card">
+        <summary>
+          <span class="mobile-nav-card-title"><i class="{{ navMedia.icon or 'bi bi-camera-reels-fill' }}"></i>Media</span>
+          <span class="mobile-nav-card-desc">Interviews, podcasts, videos and expert roles.</span>
+        </summary>
+        <div class="mobile-nav-card-body">
+          <a class="mobile-nav-primary-link" href="{{ navMedia.url or '/en/media/' }}">Open Media page</a>
+          <div class="mobile-nav-section-grid">
+            <section class="mobile-nav-section-card">
+              <h6>Media routes</h6>
+              <a class="mobile-nav-link" href="/en/media/#media-archive"><span><i class="bi bi-grid-3x3-gap me-2"></i>All media appearances</span></a>
+              <a class="mobile-nav-link" href="/en/media/#media-roles"><span><i class="bi bi-person-lines-fill me-2"></i>Roles in public material</span></a>
+              <a class="mobile-nav-link" href="/en/media/#media-links"><span><i class="bi bi-link-45deg me-2"></i>Related content</span></a>
+            </section>
           </div>
         </div>
       </details>

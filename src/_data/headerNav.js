@@ -271,6 +271,18 @@ module.exports = {
     {
       data: {
         eleventyNavigation: {
+          key: "media",
+          title: "Media",
+          url: "/en/media/",
+          icon: "bi bi-camera-reels-fill",
+          parent: "home",
+          order: 55
+        }
+      }
+    },
+    {
+      data: {
+        eleventyNavigation: {
           key: "contact",
           title: "Contact",
           url: "/en/contact/",
@@ -288,6 +300,17 @@ module.exports = {
           url: "/en/blog/",
           parent: "writings",
           order: 10
+        }
+      }
+    },
+    {
+      data: {
+        eleventyNavigation: {
+          key: "societal_interaction",
+          title: "Societal Engagement",
+          url: "/en/work/#what-i-do",
+          parent: "work",
+          order: 15
         }
       }
     },
@@ -927,25 +950,31 @@ module.exports = {
           ]
         },
         {
-          heading: "Trainer & Speaker",
+          heading: "Societal Engagement",
           links: [
             {
-              title: "Trainer",
+              title: "Societal engagement",
+              href: "/en/work/#what-i-do",
+              icon: "bi bi-diagram-3 me-2",
+              description: "How research and teaching continue in materials, statements, media, and decision-making."
+            },
+            {
+              title: "Presentations and open materials",
+              href: "/en/presentations/",
+              icon: "bi bi-easel2 me-2",
+              description: "Teaching expertise and research-based materials for teachers, schools, and networks."
+            },
+            {
+              title: "Media",
+              href: "/en/media/",
+              icon: "bi bi-camera-reels me-2",
+              description: "Interviews, podcasts, and media appearances as part of public expert work."
+            },
+            {
+              title: "Training services",
               href: "/en/company/",
               icon: "bi bi-building me-2",
               description: "Larux services, background, and collaboration model."
-            },
-            {
-              title: "Presentations",
-              href: "/en/presentations/",
-              icon: "bi bi-easel2 me-2",
-              description: "Selected decks and keynote examples for different audiences."
-            },
-            {
-              title: "Awards",
-              href: "/en/awards/",
-              icon: "bi bi-award me-2",
-              description: "Recognition received for teaching, openness, and expert work."
             }
           ]
         }

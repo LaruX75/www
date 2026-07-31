@@ -42,12 +42,51 @@ permalink: /en/
 {% set heroPublicationCount = (researchfi or []) | length %}
 {% set heroOpinionCount = (collections.pub_mielipide or []) | length %}
 {% set heroSpeechCount = (collections.pub_puhe or []) | length %}
+{% set heroStatementItems = [] %}
+{% for item in (collections.publications or []) %}
+    {% if item.data.type == "lausunto" %}
+        {% set _ = (heroStatementItems.push(item), null) %}
+    {% endif %}
+{% endfor %}
+{% set heroStatementCount = heroStatementItems | length %}
+{% set heroMediaCount = ((mediaArchive and mediaArchive.all) or []) | length %}
 {% set heroStats = [
     { count: heroPresentationCount, label: "presentations", href: "/en/presentations/" },
     { count: heroPublicationCount, label: "publications", href: "/en/publications/" },
-    { count: heroOpinionCount, label: "opinion pieces", href: "/en/writings/#opinions" },
-    { count: heroSpeechCount, label: "speeches", href: "/en/writings/#speeches" },
+    { count: heroStatementCount, label: "expert statements", href: "/en/writings/#lausunnot" },
+    { count: heroMediaCount, label: "media appearances", href: "/en/media/" },
+    { count: heroSpeechCount, label: "speeches", href: "/en/writings/#puheet" },
     { count: theses.stats.total, label: "theses supervised", href: "/en/theses/" }
+] %}
+{% set homePathCards = [
+    {
+        icon: "bi-briefcase",
+        title: "Work",
+        desc: "The overall picture of my university work: teaching, research, supervision, development, and routes deeper into publications, presentations, and theses.",
+        cta: "Open Work",
+        href: "/en/work/"
+    },
+    {
+        icon: "bi-pencil-square",
+        title: "Writings",
+        desc: "Self-authored speeches, statements, opinion pieces, columns, and blog posts when you want to read what I write and say myself.",
+        cta: "Open Writings",
+        href: "/en/writings/"
+    },
+    {
+        icon: "bi-camera-reels",
+        title: "Media",
+        desc: "Interviews, podcasts, videos, and other media appearances where my work and expertise are visible in content produced by others.",
+        cta: "Open Media",
+        href: "/en/media/"
+    },
+    {
+        icon: "bi-building-check",
+        title: "Politics",
+        desc: "Positions of trust, council speeches, initiatives, and local decision-making when you are looking for my public policy profile and record.",
+        cta: "Open Politics",
+        href: "/en/politics/"
+    }
 ] %}
 
 <section class="section-flush home-hero-section" id="heroSection">
@@ -56,12 +95,17 @@ permalink: /en/
             <div class="row align-items-center g-4 g-lg-5">
                 <div class="col-lg-7">
                     <p class="home-hero-eyebrow mb-2">Jari Laru</p>
-                    <h1 class="home-hero-title mb-3">I train and research how AI and learning technology work in everyday education.</h1>
-                    <div class="home-hero-roles">
+                    <h1 class="home-hero-title mb-3">From research to teaching, tools and decision-making.</h1>
+                    <p class="home-intro-text text-start mx-0 mb-4" style="color: inherit;">My work is about making research on learning, technology and AI understandable and useful. It shows in teacher education, open materials, professional development for teachers, expert statements, media, and public decision-making.</p>
+                    <div class="home-hero-roles mb-4">
                         <a class="home-hero-role-item" href="/en/work/">University Lecturer</a>
                         <a class="home-hero-role-item" href="/en/company/">Trainer (Larux t:mi)</a>
                         <a class="home-hero-role-item" href="/en/politics/">City Councillor</a>
                         <a class="home-hero-role-item" href="/en/about/">About me</a>
+                    </div>
+                    <div class="home-intro-actions justify-content-start">
+                        <a class="btn btn-primary rounded-pill px-4" href="/en/contact/">Get in touch</a>
+                        <a class="btn btn-outline-secondary rounded-pill px-4" href="/en/presentations/">Presentations</a>
                     </div>
                 </div>
                 <div class="col-lg-5 d-none d-lg-flex align-items-center justify-content-end">
@@ -88,11 +132,77 @@ permalink: /en/
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8 text-center">
-                <p class="home-intro-text">I work at the intersection of education, technology, and civic life. As a university lecturer I study AI and learning technology; as a trainer I help organisations and educators put them to practical use; in municipal politics I pursue evidence-informed local policy.</p>
+                <p class="home-intro-text">The site is organised around four main routes: professional work, self-authored texts, media visibility, and public decision-making. Start from the purpose you have, not from the content type.</p>
                 <div class="home-intro-actions">
                     <a class="btn btn-primary rounded-pill px-4" href="/en/presentations/">Presentations</a>
                     <a class="btn btn-outline-secondary rounded-pill px-4" href="/en/about/">About me</a>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 home-paths-section" id="start">
+    <div class="container">
+        <div class="row justify-content-between align-items-end mb-4 g-3">
+            <div class="col-lg-8">
+                <p class="text-uppercase fw-bold small text-muted mb-1">Main routes</p>
+                <h2 class="h3 fw-bold mb-2">Four ways into the site</h2>
+                <p class="text-muted mb-0">Choose the route that matches what you are looking for: professional context, self-authored writing, public visibility, or politics.</p>
+            </div>
+        </div>
+        <div class="row g-3">
+            {% for card in homePathCards %}
+            <div class="col-md-6 col-xl-3">
+                <a href="{{ card.href }}" class="home-path-card">
+                    <span class="home-path-icon"><i class="bi {{ card.icon }}"></i></span>
+                    <span class="home-path-title">{{ card.title }}</span>
+                    <span class="home-path-desc">{{ card.desc }}</span>
+                    <span class="home-path-cta">{{ card.cta }} <i class="bi bi-arrow-right-short"></i></span>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="py-5 border-bottom">
+    <div class="container">
+        <div class="p-4 p-lg-5 rounded-4 border bg-body-tertiary">
+            <p class="text-uppercase fw-bold small text-muted mb-1">University work</p>
+            <h2 class="h3 fw-bold mb-2">Research, teaching and societal engagement</h2>
+            <p class="lead fw-semibold mb-2">Research becomes teaching, tools and public expertise.</p>
+            <p class="text-muted mb-4">The same expertise moves between teacher education, research projects, open materials, professional development, media, statements and public decision-making.</p>
+            <div class="row g-3">
+                <div class="col-md-6 col-xl-3">
+                    <div class="h-100 p-3 rounded-3 border bg-body">
+                        <h3 class="h6 fw-bold">Training</h3>
+                        <p class="small text-muted mb-0">Teacher education and professional development bring research into everyday practice for teachers and organisations.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xl-3">
+                    <div class="h-100 p-3 rounded-3 border bg-body">
+                        <h3 class="h6 fw-bold">Competence</h3>
+                        <p class="small text-muted mb-0">AI literacy, digital pedagogy and thoughtful technology use are strengthened through concrete work.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xl-3">
+                    <div class="h-100 p-3 rounded-3 border bg-body">
+                        <h3 class="h6 fw-bold">Materials and tools</h3>
+                        <p class="small text-muted mb-0">Open presentations, learning materials and experimental tools make complex phenomena discussable.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xl-3">
+                    <div class="h-100 p-3 rounded-3 border bg-body">
+                        <h3 class="h6 fw-bold">Decision-making and public debate</h3>
+                        <p class="small text-muted mb-0">Statements, media and positions of trust bring research-based perspectives into education development and decision-making.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-wrap gap-2 mt-4">
+                <a href="/en/research/" class="btn btn-outline-primary rounded-pill px-4">Research</a>
+                <a href="/en/portfolio/" class="btn btn-outline-primary rounded-pill px-4">Teaching</a>
+                <a href="/en/work/#what-i-do" class="btn btn-outline-primary rounded-pill px-4">Societal engagement</a>
             </div>
         </div>
     </div>
@@ -425,6 +535,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     <p class="mb-4">I am available for training sessions, keynotes, and research collaboration on AI literacy, learning technology, and educational development.</p>
                     <div class="home-closing-actions d-flex flex-wrap justify-content-center gap-2 mb-3">
                         <a class="btn btn-primary rounded-pill px-4" href="/en/contact/">Get in touch</a>
+                        <a class="btn btn-outline-secondary rounded-pill px-4" href="/en/company/">Training services</a>
+                        <a class="btn btn-outline-secondary rounded-pill px-4" href="/en/about/">About me</a>
                     </div>
                 </div>
             </div>

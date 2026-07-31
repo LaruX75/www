@@ -1,0 +1,192 @@
+---
+layout: base.njk
+title: "In the Media: podcasts, videos and interviews"
+description: "Jari Laru in the media: interviews, podcasts, videos, articles and public expert roles related to education, technology, AI and politics."
+permalink: /en/media/
+lang: en
+translationKey: media_index
+---
+
+{% set mediaItems = mediaArchive.all or [] %}
+{% set mediaAbout = mediaArchive.about or [] %}
+{% set mediaAssignments = mediaArchive.expertAssignments or [] %}
+{% set mediaGuest = mediaArchive.guest or [] %}
+{% set mediaInterviewer = mediaArchive.interviewer or [] %}
+{% set mediaTotal = mediaItems | length %}
+{% set mediaArticles = [] %}
+{% set mediaPodcasts = [] %}
+{% set mediaVideos = [] %}
+{% set mediaAudio = [] %}
+{% for item in mediaItems %}
+  {% if item.data.mediaType == "article" %}
+    {% set _ = (mediaArticles.push(item), null) %}
+  {% elif item.data.mediaType == "podcast" %}
+    {% set _ = (mediaPodcasts.push(item), null) %}
+  {% elif item.data.mediaType == "video" %}
+    {% set _ = (mediaVideos.push(item), null) %}
+  {% elif item.data.mediaType == "radio" %}
+    {% set _ = (mediaAudio.push(item), null) %}
+  {% endif %}
+{% endfor %}
+
+{% macro itemUrl(item) %}
+  {{ item.data.sourceUrl or item.url }}
+{% endmacro %}
+
+{% macro mediaTypeLabel(type) %}
+  {% if type == "podcast" %}Podcast
+  {% elif type == "assignment" %}Expert assignment
+  {% elif type == "article" %}Article
+  {% elif type == "tv" %}TV
+  {% elif type == "radio" %}Radio
+  {% elif type == "video" %}Video
+  {% else %}Media
+  {% endif %}
+{% endmacro %}
+
+{% macro roleLabel(role) %}
+  {% if role == "about" %}About my work
+  {% elif role == "expertAssignment" %}Expert role
+  {% elif role == "interviewer" %}As interviewer
+  {% elif role == "guest" %}As guest
+  {% else %}Media
+  {% endif %}
+{% endmacro %}
+
+<section class="py-5 border-bottom bg-body-tertiary">
+  <div class="site-shell">
+    <div class="row g-4 align-items-center">
+      <div class="col-lg-8">
+        <p class="text-uppercase fw-bold small text-muted mb-2">Media appearances</p>
+        <h1 class="display-5 fw-bold mb-3">In the Media</h1>
+        <p class="lead mb-3">This page collects media appearances and public expert roles: articles, podcasts, videos, radio interviews, working groups and other content where I am involved.</p>
+        <p class="text-muted mb-4"><a href="/en/writings/">Writings</a> collects self-authored texts and statements. <a href="/en/presentations/">Presentations</a> collects my talks, slides and materials. This view shows how the work appears in material produced by others.</p>
+        <div class="d-flex flex-wrap gap-2">
+          <a href="#media-archive" class="btn btn-primary rounded-pill px-4">Browse media</a>
+          <a href="#media-roles" class="btn btn-outline-secondary rounded-pill px-4">See roles</a>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <dl class="row g-2 mb-0 text-center">
+          <div class="col-6">
+            <div class="p-3 rounded-3 border bg-body h-100">
+              <dd class="h2 fw-bold mb-0">{{ mediaTotal }}</dd>
+              <dt class="small text-muted">media items</dt>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="p-3 rounded-3 border bg-body h-100">
+              <dd class="h2 fw-bold mb-0">{{ mediaArticles | length }}</dd>
+              <dt class="small text-muted">articles</dt>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="p-3 rounded-3 border bg-body h-100">
+              <dd class="h2 fw-bold mb-0">{{ mediaPodcasts | length }}</dd>
+              <dt class="small text-muted">podcasts</dt>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="p-3 rounded-3 border bg-body h-100">
+              <dd class="h2 fw-bold mb-0">{{ mediaVideos | length }}</dd>
+              <dt class="small text-muted">videos</dt>
+            </div>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 border-bottom" id="media-roles">
+  <div class="site-shell">
+    <div class="mb-4">
+      <p class="text-uppercase fw-bold small text-muted mb-1">Public role</p>
+      <h2 class="h3 fw-bold mb-2">Four ways of appearing in public material</h2>
+      <p class="text-muted mb-0">The role helps interpret each item: is the piece about my work, am I a guest, am I interviewing someone, or is the item an official expert assignment?</p>
+    </div>
+    <div class="row g-3">
+      <div class="col-md-6 col-xl-3">
+        <div class="h-100 p-4 rounded-4 border bg-body-tertiary">
+          <span class="display-6 fw-bold text-primary">{{ mediaAbout | length }}</span>
+          <h3 class="h6 fw-bold mt-2">About my work</h3>
+          <p class="small text-muted mb-0">Articles, podcasts and videos where the topic is my work, expertise or public role.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-xl-3">
+        <div class="h-100 p-4 rounded-4 border bg-body-tertiary">
+          <span class="display-6 fw-bold text-primary">{{ mediaAssignments | length }}</span>
+          <h3 class="h6 fw-bold mt-2">Expert roles</h3>
+          <p class="small text-muted mb-0">Working groups, expert panels and public assignments connected to university work.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-xl-3">
+        <div class="h-100 p-4 rounded-4 border bg-body-tertiary">
+          <span class="display-6 fw-bold text-primary">{{ mediaGuest | length }}</span>
+          <h3 class="h6 fw-bold mt-2">As guest</h3>
+          <p class="small text-muted mb-0">Discussions and podcasts where I participate as an invited guest or expert.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-xl-3">
+        <div class="h-100 p-4 rounded-4 border bg-body-tertiary">
+          <span class="display-6 fw-bold text-primary">{{ mediaInterviewer | length }}</span>
+          <h3 class="h6 fw-bold mt-2">As interviewer</h3>
+          <p class="small text-muted mb-0">Content where my role is to ask questions, host or guide the conversation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 bg-body-tertiary border-bottom" id="media-archive">
+  <div class="site-shell">
+    <div class="mb-4">
+      <p class="text-uppercase fw-bold small text-muted mb-1">Archive</p>
+      <h2 class="h3 fw-bold mb-2">All media appearances</h2>
+      <p class="text-muted mb-0">Open the original source when available, or the local detail page for additional metadata and context.</p>
+    </div>
+    <div class="row g-3">
+      {% for item in mediaItems %}
+      <div class="col-md-6 col-xl-4">
+        <article class="card h-100 border-0 shadow-sm">
+          {% if item.data.thumbnail %}
+          <a href="{{ itemUrl(item) | trim }}" target="_blank" rel="noopener noreferrer">
+            <img src="{{ item.data.thumbnail }}" alt="" class="card-img-top" loading="lazy" decoding="async">
+          </a>
+          {% endif %}
+          <div class="card-body d-flex flex-column">
+            <p class="small text-muted mb-2">
+              {{ mediaTypeLabel(item.data.mediaType) }} · {{ roleLabel(item.data.mediaRole) }}
+              {% if item.data.mediaOutlet %} · {{ item.data.mediaOutlet }}{% endif %}
+              {% if item.date %} · {{ item.date | dateFormat }}{% endif %}
+            </p>
+            <h3 class="h6 fw-bold"><a href="{{ itemUrl(item) | trim }}" target="_blank" rel="noopener noreferrer">{{ item.data.title }}</a></h3>
+            {% if item.data.description %}
+            <p class="small text-muted">{{ item.data.description | truncate(170) }}</p>
+            {% endif %}
+            <div class="d-flex flex-wrap gap-2 mt-auto">
+              <a href="{{ itemUrl(item) | trim }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-3">Open source</a>
+              <a href="{{ item.url }}" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Details (FI)</a>
+            </div>
+          </div>
+        </article>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="py-5" id="media-links">
+  <div class="site-shell">
+    <div class="p-4 rounded-4 border">
+      <p class="text-uppercase fw-bold small text-muted mb-1">Related routes</p>
+      <h2 class="h4 fw-bold mb-3">Media is one public-facing layer of the same expertise</h2>
+      <div class="d-flex flex-wrap gap-2">
+        <a href="/en/writings/" class="btn btn-outline-primary rounded-pill px-4">Self-authored writings</a>
+        <a href="/en/presentations/" class="btn btn-outline-primary rounded-pill px-4">Presentations and materials</a>
+        <a href="/en/research/" class="btn btn-outline-primary rounded-pill px-4">Research</a>
+        <a href="/en/politics/" class="btn btn-outline-primary rounded-pill px-4">Politics</a>
+      </div>
+    </div>
+  </div>
+</section>
