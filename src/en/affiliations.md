@@ -11,6 +11,7 @@ pageShell: true
 pageShellClass: site-shell site-shell--wide
 pageScopeClass: disclosures-page-scope
 source_url: "https://www.jarilaru.fi/poliittinen-avoimuus/"
+schemaType: AboutPage
 schemaAbout:
   - "@type": "Thing"
     name: "Disclosures"

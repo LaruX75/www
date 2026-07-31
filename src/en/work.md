@@ -10,6 +10,7 @@ hubKey: work
 eyebrow: University of Oulu
 eyebrowIcon: bi bi-mortarboard
 templateEngineOverride: njk
+schemaType: ProfilePage
 heroButtons:
   - href: "#what-i-do"
     label: "What I do"

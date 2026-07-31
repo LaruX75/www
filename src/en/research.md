@@ -7,6 +7,7 @@ lang: en
 translationKey: research
 description: "Jari Laru's research profile: collaborative learning, mobile learning technology, and AI literacy in education."
 templateEngineOverride: njk
+schemaType: CollectionPage
 ---
 
 {% import "ui.njk" as ui %}

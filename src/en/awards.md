@@ -6,6 +6,7 @@ lang: en
 translationKey: awards
 description: "Awards, grants, and recognitions received by Jari Laru for open science, teaching, and research."
 templateEngineOverride: njk,md
+schemaType: CollectionPage
 ---
 
 <section class="py-5 bg-body-tertiary border-bottom">

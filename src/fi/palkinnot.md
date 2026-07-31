@@ -6,6 +6,7 @@ lang: fi
 translationKey: awards
 description: "Jari Larun saamat palkinnot, apurahat ja muut huomionosoitukset – EU Digital Skills Award 2026, avoimen oppimisen palkinto 2025, kansallinen avoimen tieteen palkinto 2020, Vuoden TVT-opettaja 2014 sekä kulttuurirahaston apurahat."
 templateEngineOverride: njk,md
+schemaType: CollectionPage
 ---
 
 <section class="py-5 bg-body-tertiary border-bottom awards-hero">

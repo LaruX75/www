@@ -6,6 +6,7 @@ lang: fi
 translationKey: research
 description: "Jari Larun tutkimus kokoaa yhteisöllisen oppimisen, mobiiliteknologian ja tekoälylukutaidon: julkaisut, ohjatut opinnäytetyöt, hankkeet ja asiantuntijatehtävät."
 templateEngineOverride: njk
+schemaType: CollectionPage
 schemaAbout:
   - "@type": "Thing"
     name: "Teknologiatuettu oppiminen"

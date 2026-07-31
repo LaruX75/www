@@ -6,6 +6,7 @@ lang: en
 translationKey: election_history
 description: "Jari Laru's election history and positions of trust – municipal elections, wellbeing area elections, and other civic roles in Oulu."
 templateEngineOverride: njk,md
+schemaType: CollectionPage
 ---
 
 <section class="py-5 bg-body-tertiary border-bottom">

@@ -7,6 +7,7 @@ lang: fi
 translationKey: election_history
 description: "Jari Larun poliittinen työ vaalikausittain: luottamustoimet, vaalitulokset, puheenvuorot, valtuustoaloitteet ja muut relevantit sisällöt samassa näkymässä."
 templateEngineOverride: njk
+schemaType: CollectionPage
 schemaAbout:
   - "@type": "Thing"
     name: "Oulun kaupunginvaltuusto 2025–2029"

@@ -10,6 +10,7 @@ pageShellClass: site-shell site-shell--wide
 pageScopeClass: disclosures-page-scope
 translationKey: disclosures
 source_url: "https://www.jarilaru.fi/sidonnaisuudet/"
+schemaType: AboutPage
 schemaAbout:
   - "@type": "Thing"
     name: "Sidonnaisuudet"
