@@ -3,6 +3,71 @@
  */
 /* ===== TABLES, BADGES & PAGINATION ===== */
 
+/* Shared table header filters and compact sort controls. */
+.table-header-filter-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.table-header-filter-label {
+  display: block;
+}
+
+.table-header-filter-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.table-header-filter-input {
+  width: 100%;
+  min-width: 7rem;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.table-header-sort-select {
+  width: 100%;
+  min-width: 9rem;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.table-header-filter-controls .table-header-sort-select {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.table-header-sort-button {
+  display: inline-grid;
+  flex: 0 0 auto;
+  width: 1.5rem;
+  height: 1.9rem;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 0.25rem;
+  background: transparent;
+  color: var(--bs-secondary-color);
+  line-height: 1;
+}
+
+.table-header-sort-button:hover,
+.table-header-sort-button.active {
+  color: var(--bs-emphasis-color);
+  background: var(--bs-tertiary-bg);
+}
+
+.table-header-sort-button:focus-visible {
+  outline: 2px solid var(--bs-focus-ring-color);
+  outline-offset: 1px;
+}
+
+.header-filter-hidden {
+  display: none !important;
+}
+
 /* Zotero citation text in dark mode */
 [data-bs-theme="dark"] .zotero-citation {
   color: rgba(255, 255, 255, 0.85);

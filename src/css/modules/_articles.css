@@ -2792,31 +2792,6 @@ html:not([data-bs-theme="dark"]) .badge.text-bg-light {
   color: rgba(255,255,255,0.8) !important;
 }
 
-/* ===== TABLE HEADER FILTERS ===== */
-.table-header-filter-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-.table-header-filter-label {
-  display: block;
-}
-.table-header-filter-input {
-  width: 100%;
-  min-width: 7rem;
-  text-transform: none;
-  letter-spacing: normal;
-}
-.table-header-sort-select {
-  width: 100%;
-  min-width: 9rem;
-  text-transform: none;
-  letter-spacing: normal;
-}
-.header-filter-hidden {
-  display: none !important;
-}
-
 /* --- Council speech source links --- */
 .council-speech-videos {
   border: 1px solid var(--bs-border-color);

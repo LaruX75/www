@@ -22,6 +22,48 @@ function sortByPriorityAndYear(items = []) {
   });
 }
 
+const RESEARCH_THEME_LABELS = {
+  "tekoalylukutaito": "Tekoälylukutaito",
+  "opettajankoulutus": "Opettajankoulutus",
+  "ohjelmoinnillinen-ajattelu": "Ohjelmoinnillinen ajattelu",
+  "ohjelmointi": "Ohjelmointi",
+  "digipedagogiikka": "Digipedagogiikka",
+  "yhteisollinen-oppiminen": "Yhteisöllinen oppiminen",
+  "cscl": "CSCL",
+  "mobiilioppiminen": "Mobiilioppiminen",
+  "oppimisymparistot": "Oppimisympäristöt",
+  "teknologiakasvatus": "Teknologiakasvatus",
+  "selitettava-tekoaly": "Selitettävä tekoäly",
+  "tietosuoja": "Tietosuoja",
+  "koneoppiminen": "Koneoppiminen"
+};
+
+const RESEARCH_AUDIENCE_LABELS = {
+  "esi-ja-alkuopetus": "Esi- ja alkuopetus",
+  "esi-ja-perusopetus": "Esi- ja perusopetus",
+  "perusopetus": "Perusopetus",
+  "opettajankoulutus": "Opettajankoulutus",
+  "korkeakoulutus": "Korkeakoulutus",
+  "laaja-yleiso": "Laaja yleisö"
+};
+
+function buildArchiveFilters(publications, lines) {
+  const usedThemes = new Set(publications.flatMap((item) => toArray(item.researchThemes)));
+  const usedAudiences = new Set(publications.flatMap((item) => toArray(item.researchAudience)));
+
+  return {
+    lines: lines
+      .filter((line) => publications.some((item) => item.researchLine === line.key))
+      .map((line) => ({ value: line.key, label: line.title })),
+    themes: Object.entries(RESEARCH_THEME_LABELS)
+      .filter(([value]) => usedThemes.has(value))
+      .map(([value, label]) => ({ value, label })),
+    audiences: Object.entries(RESEARCH_AUDIENCE_LABELS)
+      .filter(([value]) => usedAudiences.has(value))
+      .map(([value, label]) => ({ value, label }))
+  };
+}
+
 function pickOrderedItems(keys = [], itemMap) {
   return toArray(keys)
     .map((key) => itemMap.get(key))
@@ -98,6 +140,14 @@ module.exports = async function loadResearchProgram() {
     };
   });
   const visibleLines = lines.filter((line) => line.showOnResearchPage !== false);
+  const archiveFilters = buildArchiveFilters(publications, lines);
+  const publicationMetaByAnchor = Object.fromEntries(
+    publications.map((item) => [item.anchorId, {
+      researchLine: item.researchLine,
+      researchThemes: item.researchThemes,
+      researchAudience: item.researchAudience
+    }])
+  );
 
   const currentLine = lines.find((line) => line.key === curatedProgram.currentLineKey) || visibleLines[0] || lines[0] || null;
   const featuredPublications = pickOrderedItems(curatedProgram.featuredPublicationIds, publicationMap);
@@ -125,6 +175,8 @@ module.exports = async function loadResearchProgram() {
     featuredPublications,
     featuredTheses,
     publications,
+    publicationMetaByAnchor,
+    archiveFilters,
     theses,
     missingPublicationIds,
     missingThesisLinks,
