@@ -1,0 +1,388 @@
+{
+  "currentLineKey": "ai-literacy",
+  "featuredPublicationIds": [
+    "rf-a1-02254916yj",
+    "rf-rf-10-1080-08993408-2026-2665188",
+    "rf-a1-0275689216",
+    "rf-a1-0699440925"
+  ],
+  "featuredThesisLinks": [
+    "https://oulurepo.oulu.fi/handle/10024/64139",
+    "https://oulurepo.oulu.fi/handle/10024/63433",
+    "https://oulurepo.oulu.fi/handle/10024/49413",
+    "https://oulurepo.oulu.fi/handle/10024/41543"
+  ],
+  "lines": [
+    {
+      "key": "ai-literacy",
+      "eyebrow": "Nykyinen painopiste",
+      "title": "Tekoälylukutaito ja tekoälykasvatus",
+      "description": "Tutkin opettajien, opettajaopiskelijoiden ja lasten suhdetta tekoälyyn: mitä pitäisi osata, miten osaaminen rakentuu ja millaisia pedagogisia ratkaisuja koulussa tarvitaan.",
+      "themeUrl": "/teemat/tekoalylukutaito/",
+      "themeLabel": "Aiheprofiili",
+      "secondaryUrl": "/julkaisut/",
+      "secondaryLabel": "Kaikki julkaisut",
+      "maxPublications": 2,
+      "maxTheses": 2
+    },
+    {
+      "key": "teacher-education",
+      "eyebrow": "Opetuksen kehittäminen",
+      "title": "Opettajankoulutus ja pedagoginen muutos",
+      "description": "Toinen tutkimuslinja tarkastelee, miten opettajankoulutus muuttuu teknologian, pedagogisten mallien ja uusien osaamisvaatimusten mukana.",
+      "themeUrl": "/teemat/opettajankoulutus/",
+      "themeLabel": "Aiheprofiili",
+      "secondaryUrl": "/opinnaytteet/",
+      "secondaryLabel": "Ohjatut opinnäytteet",
+      "maxPublications": 2,
+      "maxTheses": 2
+    },
+    {
+      "key": "long-term-learning",
+      "eyebrow": "Pitkä tutkimuslinja",
+      "title": "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu",
+      "description": "Tutkimusurani peruslinja kulkee mobiiliteknologian, yhteisöllisen oppimisen ja teknologiatuetun tiedonrakentelun kautta aina 2000-luvun alkuun.",
+      "themeUrl": "/teemat/koulutusteknologia-ja-oppimisymparistot/",
+      "themeLabel": "Aiheprofiili",
+      "secondaryUrl": "/vaitoskirja/",
+      "secondaryLabel": "Väitöskirja",
+      "maxPublications": 2,
+      "maxTheses": 2
+    },
+    {
+      "key": "adjacent-education",
+      "eyebrow": "Laajempi kenttä",
+      "title": "Muut ohjatut kasvatuksen ja oppimisen aiheet",
+      "description": "Ohjatut opinnäytteet, jotka liittyvät kasvatukseen, oppimiseen tai koulun arkeen, mutta eivät kuulu tutkimus-sivun kolmeen päälinjaan.",
+      "themeUrl": "/opinnaytteet/",
+      "themeLabel": "Opinnäytteet",
+      "secondaryUrl": "/opinnaytteet/",
+      "secondaryLabel": "Kaikki opinnäytteet",
+      "maxPublications": 0,
+      "maxTheses": 0,
+      "showOnResearchPage": false
+    }
+  ],
+  "publicationMeta": {
+    "rf-a1-02254916yj": {
+      "researchLine": "ai-literacy",
+      "themes": ["tekoalylukutaito", "opettajankoulutus"],
+      "audience": ["opettajankoulutus", "esi-ja-perusopetus"],
+      "featuredOn": ["research-current", "research-evidence"],
+      "priority": 100,
+      "summary": "Tutkii, miten opettajaopiskelijat rakentavat tekoälylukutaitoa ja mukauttavat opetusta generatiivisen tekoälyn avulla."
+    },
+    "rf-a1-0699440925": {
+      "researchLine": "ai-literacy",
+      "themes": ["tekoalylukutaito", "opettajankoulutus"],
+      "audience": ["opettajankoulutus"],
+      "featuredOn": ["research-line", "research-evidence"],
+      "priority": 95,
+      "summary": "Avaa tekoälylukutaidon ennakkoehtoja opettajaopiskelijoiden asenteiden, kokemusten ja koneoppimisen tiedon kautta."
+    },
+    "rf-a3-0693115624": {
+      "researchLine": "ai-literacy",
+      "themes": ["tekoalylukutaito", "opettajankoulutus"],
+      "audience": ["opettajankoulutus"],
+      "featuredOn": ["research-line"],
+      "priority": 90,
+      "summary": "Kuvaa yhteisöllisiä projekteja, joissa opettajaopiskelijat oppivat tekoälylukutaitoa rakentamalla omia sovelluksia."
+    },
+    "rf-rf-10-1080-08993408-2026-2665188": {
+      "researchLine": "teacher-education",
+      "themes": ["opettajankoulutus", "ohjelmoinnillinen-ajattelu"],
+      "audience": ["opettajankoulutus", "korkeakoulutus"],
+      "featuredOn": ["research-evidence"],
+      "priority": 100,
+      "summary": "Tarkastelee, miten laskennallinen ajattelu näkyy yhteisöllisessä ohjelmointikeskustelussa opettajankoulutuksen kontekstissa."
+    },
+    "rf-a4-0695153322": {
+      "researchLine": "teacher-education",
+      "themes": ["opettajankoulutus", "ohjelmointi"],
+      "audience": ["opettajankoulutus"],
+      "featuredOn": ["research-line"],
+      "priority": 95,
+      "summary": "Näyttää, millaisia yhteyksiä opettajaopiskelijat rakentavat ohjelmoinnin ja laskennallisen ajattelun välille."
+    },
+    "rf-d2-02092364yj": {
+      "researchLine": "teacher-education",
+      "themes": ["opettajankoulutus", "digipedagogiikka"],
+      "audience": ["esi-ja-alkuopetus", "opettajankoulutus"],
+      "featuredOn": ["research-line"],
+      "priority": 90,
+      "summary": "Käsittelee sitä, miten ohjelmoinnin ja digitaalisen ajattelun opetusta voidaan tukea esi- ja alkuopetuksessa."
+    },
+    "rf-a1-0275689216": {
+      "researchLine": "long-term-learning",
+      "themes": ["yhteisollinen-oppiminen", "cscl", "mobiilioppiminen"],
+      "audience": ["korkeakoulutus", "perusopetus"],
+      "featuredOn": ["research-line", "research-evidence"],
+      "priority": 100,
+      "summary": "Tiivistää pitkän tutkimuslinjan ytimeen: miten yhteisesti säädeltyä oppimista voidaan ymmärtää ja tukea CSCL-ympäristöissä."
+    },
+    "rf-a1-0670374012": {
+      "researchLine": "long-term-learning",
+      "themes": ["mobiilioppiminen", "yhteisollinen-oppiminen"],
+      "audience": ["perusopetus"],
+      "featuredOn": ["research-line"],
+      "priority": 95,
+      "summary": "Esittelee mobiilien vertaisvälineiden käyttöä biologian kenttäretkellä yhteisöllisen tutkivan oppimisen tukena."
+    },
+    "rf-g5-0672764912": {
+      "researchLine": "long-term-learning",
+      "themes": ["mobiilioppiminen", "yhteisollinen-oppiminen", "oppimisymparistot"],
+      "audience": ["korkeakoulutus", "perusopetus"],
+      "featuredOn": ["research-line"],
+      "priority": 90,
+      "summary": "Väitöskirja kokoaa yhteen yhteisölliset skriptit ja mobiililaitteet osana laajempaa oppimistoiminnan jäsentämistä."
+    },
+    "rf-d2-0704947326": {
+      "researchLine": "ai-literacy",
+      "themes": ["tekoalylukutaito", "ohjelmoinnillinen-ajattelu", "teknologiakasvatus"],
+      "audience": ["esi-ja-alkuopetus", "opettajankoulutus"],
+      "priority": 70,
+      "summary": "Kytkee ohjelmoinnillisen ajattelun ja tekoälytaitojen kehittämisen esi- ja alkuopetukseen."
+    },
+    "rf-a4-02241881yj": {
+      "researchLine": "ai-literacy",
+      "themes": ["tekoalylukutaito", "selitettava-tekoaly", "tietosuoja"],
+      "audience": ["esi-ja-perusopetus"],
+      "priority": 75,
+      "summary": "Käsittelee selitettävää tekoälyä, profilointia ja suosittelujärjestelmiä K-12-opetuksen välineenä."
+    },
+    "rf-b3-0701014225": {
+      "researchLine": "ai-literacy"
+    },
+    "rf-e1-02249624yj": {
+      "researchLine": "ai-literacy"
+    },
+    "rf-e1-02249625yj": {
+      "researchLine": "ai-literacy"
+    },
+    "rf-e1-02249626yj": {
+      "researchLine": "ai-literacy"
+    },
+    "rf-a4-02191260yj": {
+      "researchLine": "ai-literacy"
+    },
+    "rf-a4-02191261yj": {
+      "researchLine": "ai-literacy",
+      "themes": ["tekoalylukutaito", "koneoppiminen", "ohjelmointi"],
+      "audience": ["esi-ja-perusopetus", "opettajankoulutus"],
+      "priority": 70,
+      "summary": "Käsittelee no-code-työkalua, jolla oppilaat voivat oppia tekoälystä rakentamalla koneoppimiseen perustuvia sovelluksia."
+    },
+    "rf-a3-0693114024": {
+      "researchLine": "ai-literacy"
+    },
+    "rf-rf-10-35542-osf-io-3qx2h": {
+      "researchLine": "ai-literacy"
+    },
+    "rf-rf-10-1108-978-1-83608-852-320241015": {
+      "researchLine": "ai-literacy"
+    },
+    "rf-rf-0675293923": {
+      "researchLine": "ai-literacy"
+    },
+    "rf-b1-0675293523": {
+      "researchLine": "teacher-education"
+    },
+    "rf-c2-0675313623": {
+      "researchLine": "teacher-education"
+    },
+    "rf-d3-0678154023": {
+      "researchLine": "teacher-education"
+    },
+    "rf-d2-0369490020": {
+      "researchLine": "teacher-education"
+    },
+    "rf-a1-0369656620": {
+      "researchLine": "teacher-education",
+      "themes": ["ohjelmoinnillinen-ajattelu", "teknologiakasvatus"],
+      "audience": ["esi-ja-perusopetus", "opettajankoulutus"],
+      "priority": 70,
+      "summary": "Tarkastelee maker-kasvatuksen mahdollisuuksia ja haasteita 2000-luvun taitojen sekä laskennallisen ajattelun kehittämisessä."
+    },
+    "rf-a1-0370691220": {
+      "researchLine": "teacher-education",
+      "themes": ["teknologiakasvatus", "digipedagogiikka", "opettajankoulutus"],
+      "audience": ["esi-ja-perusopetus", "opettajankoulutus"],
+      "priority": 75,
+      "summary": "Kuvaa STEAM- ja digitaalisen tekemisen ympärille rakentuvaa paikallista opettajien yhteisöä Oulussa."
+    },
+    "rf-a1-0370897320": {
+      "researchLine": "teacher-education",
+      "themes": ["teknologiakasvatus", "digipedagogiikka", "oppimisymparistot"],
+      "audience": ["esi-ja-perusopetus", "opettajankoulutus"],
+      "priority": 70,
+      "summary": "Tarkastelee Fab Lab -ohjaajien pedagogista roolia ja aloittelevien oppijoiden tukemista digitaalisessa tekemisessä."
+    },
+    "rf-a4-0377746820": {
+      "researchLine": "teacher-education"
+    },
+    "rf-b3-0341044819": {
+      "researchLine": "teacher-education"
+    },
+    "rf-a4-0341600219": {
+      "researchLine": "teacher-education"
+    },
+    "rf-b3-0341600419": {
+      "researchLine": "teacher-education"
+    },
+    "rf-a4-0370560620": {
+      "researchLine": "teacher-education"
+    },
+    "rf-a1-0669729323": {
+      "researchLine": "long-term-learning"
+    },
+    "rf-a1-0363111019": {
+      "researchLine": "long-term-learning"
+    },
+    "rf-a3-0338292119": {
+      "researchLine": "long-term-learning"
+    },
+    "rf-a4-0370602819": {
+      "researchLine": "long-term-learning"
+    },
+    "rf-rf-10-1007-978-981-13-3071-1-8": {
+      "researchLine": "long-term-learning"
+    },
+    "rf-a4-0256101915": {
+      "researchLine": "long-term-learning",
+      "themes": ["yhteisollinen-oppiminen", "cscl", "mobiilioppiminen"],
+      "audience": ["perusopetus", "korkeakoulutus"],
+      "priority": 75,
+      "summary": "Kuvaa kevyiden yhteiskirjoittamisen ja mobiilityökalujen käyttöä yhteisesti säädellyn oppimisen tukena."
+    },
+    "rf-a3-0275678415": {
+      "researchLine": "long-term-learning"
+    },
+    "rf-a1-0006395715": {
+      "researchLine": "long-term-learning",
+      "themes": ["mobiilioppiminen", "oppimisymparistot"],
+      "audience": ["perusopetus", "korkeakoulutus"],
+      "priority": 70,
+      "summary": "Jäsentää ubiikin tietotekniikan opetuskäytön tutkimuksen kehitysvaiheita ja niiden pedagogista merkitystä."
+    },
+    "rf-rf-integrated-use-of-multiple-social-software-tools-and-face-to-face-activities-to-support-self-regulated-learning-a-case-study-in-a-higher-education-context": {
+      "researchLine": "long-term-learning"
+    },
+    "rf-a4-0672505713": {
+      "researchLine": "long-term-learning"
+    },
+    "rf-a1-0673206412": {
+      "researchLine": "long-term-learning"
+    },
+    "rf-d2-0694454912": {
+      "researchLine": "long-term-learning"
+    },
+    "rf-a4-0669832409": {
+      "researchLine": "long-term-learning"
+    },
+    "rf-a4-0669836109": {
+      "researchLine": "long-term-learning"
+    },
+    "rf-rf-does-social-software-fit-for-all-examining-student-s-profiles-and-activities-in-collaborative-learning-mediated-by-social-software": {
+      "researchLine": "long-term-learning"
+    },
+    "rf-b3-0670082308": {
+      "researchLine": "long-term-learning"
+    },
+    "rf-b3-0670082408": {
+      "researchLine": "long-term-learning"
+    },
+    "rf-rf-10-1080-09523980701847131": {
+      "researchLine": "long-term-learning"
+    },
+    "rf-rf-structuring-and-regulating-collaborative-learning-in-higher-education-with-wireless-networks-and-mobile-tools": {
+      "researchLine": "long-term-learning"
+    },
+    "rf-b2-0670672706": {
+      "researchLine": "long-term-learning",
+      "themes": ["mobiilioppiminen", "yhteisollinen-oppiminen", "oppimisymparistot"],
+      "audience": ["perusopetus"],
+      "priority": 70,
+      "summary": "Käsittelee mobiilityökalujen käyttöä yhteisöllisen tutkivan oppimisen tukena luontopolulla."
+    },
+    "rf-b3-0670962504": {
+      "researchLine": "long-term-learning"
+    },
+    "rf-b3-0671195903": {
+      "researchLine": "long-term-learning"
+    }
+  },
+  "thesisMeta": {
+    "https://oulurepo.oulu.fi/handle/10024/64139": {
+      "researchLine": "ai-literacy",
+      "themes": ["tekoalylukutaito", "opettajankoulutus"],
+      "audience": ["opettajankoulutus"],
+      "featuredOn": ["research-line", "research-evidence"],
+      "priority": 100,
+      "summary": "Tutkii, miten tekoälylukutaito näkyy luokanopettajaopiskelijoiden portfolioissa."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/63335": {
+      "researchLine": "ai-literacy",
+      "themes": ["tekoalylukutaito", "opettajankoulutus"],
+      "audience": ["opettajankoulutus"],
+      "featuredOn": ["research-line"],
+      "priority": 95,
+      "summary": "Tarkastelee pienen kielimallin käyttöä tekoäly-ymmärryksen rakentamisessa opettajaopiskelijoilla."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/61153": {
+      "researchLine": "ai-literacy",
+      "themes": ["tekoalylukutaito", "monilukutaito"],
+      "audience": ["esi-ja-perusopetus"],
+      "featuredOn": ["research-line"],
+      "priority": 90,
+      "summary": "Kytkee tekoälylukutaidon osaksi monilukutaidon opetusta."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/63433": {
+      "researchLine": "teacher-education",
+      "themes": ["opettajankoulutus", "teknologiakasvatus"],
+      "audience": ["opettajankoulutus"],
+      "featuredOn": ["research-line", "research-evidence"],
+      "priority": 100,
+      "summary": "Piirtää kuvaa teknologiakasvattajan osaamisesta ja ammatillisesta profiilista."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/53198": {
+      "researchLine": "teacher-education",
+      "themes": ["opettajankoulutus", "tekoaly-opetuksessa"],
+      "audience": ["opettajankoulutus"],
+      "featuredOn": ["research-line"],
+      "priority": 95,
+      "summary": "Kuvaa opettajaopiskelijoiden käsityksiä tekoälystä ja sen käytöstä opettajan työssä."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/19306": {
+      "researchLine": "teacher-education",
+      "themes": ["opettajankoulutus", "ohjelmointi"],
+      "audience": ["perusopetus"],
+      "featuredOn": ["research-line"],
+      "priority": 90,
+      "summary": "Tapaustutkimus ohjelmoinnin opettamisesta suomalaisissa peruskouluissa."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/49413": {
+      "researchLine": "long-term-learning",
+      "themes": ["yhteisollinen-oppiminen", "steam", "oppimisymparistot"],
+      "audience": ["perusopetus"],
+      "featuredOn": ["research-line", "research-evidence"],
+      "priority": 100,
+      "summary": "Tapaustutkimus yhteisöllisestä ongelmanratkaisusta STEAM-pakopelissä."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/41543": {
+      "researchLine": "long-term-learning",
+      "themes": ["mobiilioppiminen", "oppimisymparistot"],
+      "audience": ["perusopetus"],
+      "featuredOn": ["research-line", "research-evidence"],
+      "priority": 95,
+      "summary": "Tarkastelee tablettien käyttöä opetuksessa pedagogisten keinojen ja motivaation näkökulmasta."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/13035": {
+      "researchLine": "long-term-learning",
+      "themes": ["mobiilioppiminen", "digipedagogiikka"],
+      "audience": ["opettajankoulutus"],
+      "featuredOn": ["research-line"],
+      "priority": 90,
+      "summary": "Kuvaa opettajaopiskelijoiden ajatuksia videon tuottamisesta pedagogisena työvälineenä."
+    }
+  }
+}

@@ -2,6 +2,7 @@ const loadResearchfi = require("./researchfi");
 const { readCache } = require("./_apiCache");
 const { normalizeCategoryList, normalizeKeywordList } = require("./metadata-normalization");
 const { resolveContexts } = require("./contentContext");
+const curatedProgram = require("../curated/research-program.json");
 
 const ENRICHMENT_CACHE_KEYS = [
   "publication-abstract-enrichments-v2",
@@ -24,7 +25,24 @@ const GENERIC_KEYWORD_BLACKLIST = new Set([
   "world wide web"
 ]);
 
+const RESEARCH_THEME_KEYWORDS = {
+  "cscl": "CSCL",
+  "digipedagogiikka": "digipedagogiikka",
+  "koneoppiminen": "koneoppiminen",
+  "mobiilioppiminen": "mobiilioppiminen",
+  "ohjelmointi": "ohjelmointi",
+  "ohjelmoinnillinen-ajattelu": "laskennallinen ajattelu",
+  "opettajankoulutus": "opettajankoulutus",
+  "oppimisymparistot": "oppimisympäristöt",
+  "selitettava-tekoaly": "selitettävä tekoäly",
+  "tekoalylukutaito": "tekoälylukutaito",
+  "teknologiakasvatus": "teknologiakasvatus",
+  "tietosuoja": "tietosuoja",
+  "yhteisollinen-oppiminen": "yhteisöllinen oppiminen"
+};
+
 let memoizedContentPromise = null;
+const CURATED_PUBLICATION_META = curatedProgram.publicationMeta || {};
 
 function toArray(value) {
   return Array.isArray(value) ? value.filter(Boolean) : [];
@@ -261,6 +279,28 @@ function buildEntities(publication, enrichment) {
   return Array.from(entities);
 }
 
+function applyCuratedMeta(item) {
+  const meta = CURATED_PUBLICATION_META[item.anchorId] || CURATED_PUBLICATION_META[item.sourceAnchorId];
+  if (!meta) return item;
+
+  const researchThemes = toArray(meta.themes);
+  const curatedKeywords = researchThemes
+    .map((theme) => RESEARCH_THEME_KEYWORDS[theme])
+    .filter(Boolean);
+
+  return {
+    ...item,
+    researchLine: meta.researchLine || null,
+    researchThemes,
+    researchAudience: toArray(meta.audience),
+    featuredOn: toArray(meta.featuredOn),
+    researchPriority: Number.isFinite(meta.priority) ? meta.priority : 0,
+    researchSummary: normalizeText(meta.summary || ""),
+    // Curated themes become shared keywords without altering Research.fi fields.
+    keywords: normalizeKeywordList([...curatedKeywords, ...item.keywords]).slice(0, 8)
+  };
+}
+
 function mapPublication(publication, enrichmentMap) {
   const doiKey = String(publication.doi || "").trim().toLowerCase();
   const enrichment = enrichmentMap[doiKey] || null;
@@ -279,6 +319,7 @@ function mapPublication(publication, enrichmentMap) {
     contentType: "scientificPublication",
     source: "researchfi",
     sourceLabel: "Research.fi",
+    taxonomyIdentity: `researchfi:${publication.sourceKey || publication.anchorId}`,
     categories,
     keywords,
     contexts: resolveContexts({
@@ -294,6 +335,7 @@ function mapPublication(publication, enrichmentMap) {
     entities: buildEntities(publication, enrichment),
     organization: "Oulun yliopisto",
     publicationId: publication.publicationId || null,
+    sourceAnchorId: publication.sourceAnchorId || publication.anchorId,
     publicationTypeCode: publication.typeCode || "",
     publicationTypeLabel: publication.typeFi || "",
     publicationVenue: publication.journal || "",
@@ -311,7 +353,7 @@ function mapPublication(publication, enrichmentMap) {
     item.primaryTopic = enrichment.primaryTopic;
   }
 
-  return item;
+  return applyCuratedMeta(item);
 }
 
 function toCollectionItems(items = []) {

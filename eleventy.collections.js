@@ -356,7 +356,7 @@ module.exports = function registerCollections(eleventyConfig) {
   });
 
   async function getTaxonomySourceItems(collectionApi) {
-    return [
+    const sourceItems = [
       ...collectionApi.getFilteredByGlob("src/blog/*.md"),
       ...collectionApi.getFilteredByGlob("src/publications/*.md"),
       ...collectionApi.getFilteredByGlob("src/politics/*.md"),
@@ -364,6 +364,15 @@ module.exports = function registerCollections(eleventyConfig) {
       ...collectionApi.getFilteredByGlob("src/presentations/*.md"),
       ...loadResearchfiContent.toCollectionItems(await loadResearchfiContent())
     ];
+
+    const seenTaxonomyIdentities = new Set();
+    return sourceItems.filter((item) => {
+      const identity = String(item?.data?.taxonomyIdentity || "").trim();
+      if (!identity) return true;
+      if (seenTaxonomyIdentities.has(identity)) return false;
+      seenTaxonomyIdentities.add(identity);
+      return true;
+    });
   }
 
   eleventyConfig.addCollection("categoryList", async function (collectionApi) {

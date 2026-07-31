@@ -68,67 +68,13 @@ schemaMentions:
   historyLead: "Alla ovat keskeiset tutkimusvaiheet ja hankkeet urani varrelta vanhimmasta uusimpaan.",
   profilesLead: "Tutkimusprofiilini, julkaisuni ja viittausdatani löytyvät myös näistä palveluista."
 } %}
-{% set latestResearchPublications = (researchfi or []).slice(0, 4) %}
-{% set latestResearchPublicationCitations = (researchfiContent or []).slice(0, 4) %}
-{% set latestResearchGradut = ((theses and theses.gradut) or []).slice(0, 4) %}
+{% set researchProgramModel = researchProgram or {} %}
+{% set researchLines = researchProgramModel.visibleLines or researchProgramModel.lines or [] %}
+{% set currentResearchLine = researchProgramModel.currentLine or null %}
+{% set featuredResearchPublications = researchProgramModel.featuredPublications or [] %}
+{% set featuredResearchTheses = researchProgramModel.featuredTheses or [] %}
 {% set latestResearchStatements = statementItems.slice(0, 3) %}
 {% set latestResearchAssignments = (mediaArchive.expertAssignments or []).slice(0, 2) %}
-{% set allSupervisedTheses = [] %}
-{% for thesis in ((theses and theses.gradut) or []) %}
-  {% set _ = (allSupervisedTheses.push(thesis), null) %}
-{% endfor %}
-{% for thesis in ((theses and theses.kandit) or []) %}
-  {% set _ = (allSupervisedTheses.push(thesis), null) %}
-{% endfor %}
-{% set aiPublications = [] %}
-{% set teacherEducationPublications = [] %}
-{% set collaborativePublications = [] %}
-{% for item in (researchfiContent or []) %}
-  {% set routeText = (((item.title or "") ~ " " ~ (item.description or "") ~ " " ~ ((item.categories or []) | join(" ")) ~ " " ~ ((item.keywords or []) | join(" "))) | lower) %}
-  {% if aiPublications.length < 2 and (routeText.indexOf("tekoäly") != -1 or routeText.indexOf("tekoaly") != -1 or routeText.indexOf("ai literacy") != -1 or routeText.indexOf("artificial intelligence") != -1 or routeText.indexOf("genai") != -1 or routeText.indexOf("machine learning") != -1 or routeText.indexOf("koneopp") != -1) %}
-    {% set _ = (aiPublications.push(item), null) %}
-  {% endif %}
-  {% if teacherEducationPublications.length < 2 and (routeText.indexOf("opettajankoulut") != -1 or routeText.indexOf("teacher education") != -1 or routeText.indexOf("pre-service teacher") != -1 or routeText.indexOf("luokanopettajaopiskel") != -1 or routeText.indexOf("pedagog") != -1) %}
-    {% set _ = (teacherEducationPublications.push(item), null) %}
-  {% endif %}
-  {% if collaborativePublications.length < 2
-    and (item.year or 9999) <= 2018
-    and routeText.indexOf("tekoäly") == -1
-    and routeText.indexOf("tekoaly") == -1
-    and routeText.indexOf("genai") == -1
-    and routeText.indexOf("artificial intelligence") == -1
-    and (routeText.indexOf("mobiili") != -1 or routeText.indexOf("mobile") != -1 or routeText.indexOf("yhteisöll") != -1 or routeText.indexOf("cscl") != -1 or routeText.indexOf("web 2.0") != -1 or routeText.indexOf("seamless") != -1 or routeText.indexOf("social software") != -1) %}
-    {% set _ = (collaborativePublications.push(item), null) %}
-  {% endif %}
-{% endfor %}
-{% set aiTheses = [] %}
-{% set teacherEducationTheses = [] %}
-{% set collaborativeTheses = [] %}
-{% for thesis in allSupervisedTheses %}
-  {% set thesisText = (((thesis.title or "") ~ " " ~ (thesis.abstract or "") ~ " " ~ ((thesis.keywords or []) | join(" ")) ~ " " ~ ((thesis.subjects or []) | join(" "))) | lower) %}
-  {% if aiTheses.length < 2 and (thesisText.indexOf("tekoäly") != -1 or thesisText.indexOf("tekoaly") != -1 or thesisText.indexOf("generation ai") != -1 or thesisText.indexOf("koneopp") != -1) %}
-    {% set _ = (aiTheses.push(thesis), null) %}
-  {% endif %}
-  {% if teacherEducationTheses.length < 2 and (thesisText.indexOf("opettajankoulut") != -1 or thesisText.indexOf("luokanopettajaopiskel") != -1 or thesisText.indexOf("teacher education") != -1 or thesisText.indexOf("pedagog") != -1 or thesisText.indexOf("teknologiakasvatus") != -1) %}
-    {% set _ = (teacherEducationTheses.push(thesis), null) %}
-  {% endif %}
-  {% if collaborativeTheses.length < 2
-    and thesisText.indexOf("tekoäly") == -1
-    and thesisText.indexOf("tekoaly") == -1
-    and thesisText.indexOf("artificial intelligence") == -1
-    and thesisText.indexOf("genai") == -1
-    and (
-      thesisText.indexOf("mobiili") != -1
-      or thesisText.indexOf("mobile") != -1
-      or thesisText.indexOf("yhteisöll") != -1
-      or thesisText.indexOf("cscl") != -1
-      or thesisText.indexOf("steam") != -1
-      or thesisText.indexOf("seamless") != -1
-      or thesisText.indexOf("technology-enhanced learning") != -1
-    ) %}
-    {% set _ = (collaborativeTheses.push(thesis), null) %}
-  {% endif %}
-{% endfor %}
 
 <!-- HERO -->
 <section class="research-hero py-5 bg-body-tertiary border-bottom">
@@ -357,9 +303,9 @@ schemaMentions:
         <div class="card border-0 shadow-sm h-100">
           <div class="card-body p-4 d-flex flex-column">
             <h3 class="h6 text-uppercase text-muted fw-bold mb-3">Tuore tutkimusnäyttö tästä linjasta</h3>
-            {% if aiPublications.length %}
+            {% if currentResearchLine and currentResearchLine.publications.length %}
               <div class="d-grid gap-3">
-                {% for pub in aiPublications %}
+                {% for pub in currentResearchLine.publications %}
                 <article>
                   <p class="small fw-semibold mb-1">{{ pub.title }}</p>
                   <p class="small mb-2">{{ pub.citation }}</p>
@@ -402,16 +348,17 @@ schemaMentions:
     </div>
 
     <div class="row g-4">
+      {% for line in researchLines %}
       <div class="col-lg-4">
         <article class="card border-0 shadow-sm h-100">
           <div class="card-body p-4 d-flex flex-column">
-            <p class="small text-uppercase text-muted fw-semibold mb-2">Nykyinen painopiste</p>
-            <h3 class="h5 fw-bold mb-2">Tekoälylukutaito ja tekoälykasvatus</h3>
-            <p class="text-muted small mb-3">Tutkin opettajien, opettajaopiskelijoiden ja lasten suhdetta tekoälyyn: mitä pitäisi osata, miten osaaminen rakentuu ja millaisia pedagogisia ratkaisuja koulussa tarvitaan.</p>
+            <p class="small text-uppercase text-muted fw-semibold mb-2">{{ line.eyebrow }}</p>
+            <h3 class="h5 fw-bold mb-2">{{ line.title }}</h3>
+            <p class="text-muted small mb-3">{{ line.description }}</p>
             <p class="small text-uppercase text-muted fw-semibold mb-2">Julkaisut</p>
-            {% if aiPublications.length %}
+            {% if line.publications.length %}
               <div class="d-grid gap-3 mb-3">
-                {% for pub in aiPublications %}
+                {% for pub in line.publications %}
                 <div>
                   <p class="small fw-semibold mb-1">{{ pub.title }}</p>
                   <p class="small text-muted mb-1">{{ pub.citation }}</p>
@@ -420,12 +367,12 @@ schemaMentions:
                 {% endfor %}
               </div>
             {% else %}
-              <p class="text-muted small mb-3">Ei vielä poimittuja julkaisuja tähän linjaan.</p>
+              <p class="text-muted small mb-3">Tähän tutkimuslinjaan ei ole vielä kuratoitu julkaisuostoja.</p>
             {% endif %}
             <p class="small text-uppercase text-muted fw-semibold mb-2">Liittyvät opinnäytteet</p>
-            {% if aiTheses.length %}
+            {% if line.theses.length %}
               <ul class="small ps-3 mb-4">
-                {% for thesis in aiTheses %}
+                {% for thesis in line.theses %}
                 <li>
                   <a href="{{ thesis.link }}" target="_blank" rel="noopener noreferrer">{{ thesis.title }}</a><br>
                   <span class="text-muted">{{ thesis.citationApa }}</span>
@@ -433,97 +380,16 @@ schemaMentions:
                 {% endfor %}
               </ul>
             {% else %}
-              <p class="text-muted small mb-4">Opinnäytelinkitys täydentyy avainsanojen tarkentuessa.</p>
+              <p class="text-muted small mb-4">Tähän tutkimuslinjaan ei ole vielä kuratoitu opinnäytenostoja.</p>
             {% endif %}
             <div class="mt-auto d-flex flex-wrap gap-2">
-              <a href="/teemat/tekoalylukutaito/" class="btn btn-sm btn-outline-primary rounded-pill px-3">Aiheprofiili</a>
-              <a href="/julkaisut/" class="btn btn-sm btn-outline-secondary rounded-pill px-3">Kaikki julkaisut</a>
+              <a href="{{ line.themeUrl }}" class="btn btn-sm btn-outline-primary rounded-pill px-3">{{ line.themeLabel or "Aiheprofiili" }}</a>
+              <a href="{{ line.secondaryUrl }}" class="btn btn-sm btn-outline-secondary rounded-pill px-3">{{ line.secondaryLabel }}</a>
             </div>
           </div>
         </article>
       </div>
-
-      <div class="col-lg-4">
-        <article class="card border-0 shadow-sm h-100">
-          <div class="card-body p-4 d-flex flex-column">
-            <p class="small text-uppercase text-muted fw-semibold mb-2">Opetuksen kehittäminen</p>
-            <h3 class="h5 fw-bold mb-2">Opettajankoulutus ja pedagoginen muutos</h3>
-            <p class="text-muted small mb-3">Toinen tutkimuslinja tarkastelee, miten opettajankoulutus muuttuu teknologian, pedagogisten mallien ja uusien osaamisvaatimusten mukana.</p>
-            <p class="small text-uppercase text-muted fw-semibold mb-2">Julkaisut</p>
-            {% if teacherEducationPublications.length %}
-              <div class="d-grid gap-3 mb-3">
-                {% for pub in teacherEducationPublications %}
-                <div>
-                  <p class="small fw-semibold mb-1">{{ pub.title }}</p>
-                  <p class="small text-muted mb-1">{{ pub.citation }}</p>
-                  <a href="{{ pub.url }}" class="small text-decoration-none">Avaa lähdeviite</a>
-                </div>
-                {% endfor %}
-              </div>
-            {% else %}
-              <p class="text-muted small mb-3">Ei vielä poimittuja julkaisuja tähän linjaan.</p>
-            {% endif %}
-            <p class="small text-uppercase text-muted fw-semibold mb-2">Liittyvät opinnäytteet</p>
-            {% if teacherEducationTheses.length %}
-              <ul class="small ps-3 mb-4">
-                {% for thesis in teacherEducationTheses %}
-                <li>
-                  <a href="{{ thesis.link }}" target="_blank" rel="noopener noreferrer">{{ thesis.title }}</a><br>
-                  <span class="text-muted">{{ thesis.citationApa }}</span>
-                </li>
-                {% endfor %}
-              </ul>
-            {% else %}
-              <p class="text-muted small mb-4">Opinnäytelinkitys täydentyy avainsanojen tarkentuessa.</p>
-            {% endif %}
-            <div class="mt-auto d-flex flex-wrap gap-2">
-              <a href="/teemat/opettajankoulutus/" class="btn btn-sm btn-outline-primary rounded-pill px-3">Aiheprofiili</a>
-              <a href="/opinnaytteet/" class="btn btn-sm btn-outline-secondary rounded-pill px-3">Ohjatut opinnäytteet</a>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <div class="col-lg-4">
-        <article class="card border-0 shadow-sm h-100">
-          <div class="card-body p-4 d-flex flex-column">
-            <p class="small text-uppercase text-muted fw-semibold mb-2">Pitkä tutkimuslinja</p>
-            <h3 class="h5 fw-bold mb-2">Mobiilioppiminen ja yhteisöllinen tiedonrakentelu</h3>
-            <p class="text-muted small mb-3">Tutkimusurani peruslinja kulkee mobiiliteknologian, yhteisöllisen oppimisen ja teknologiatuetun tiedonrakentelun kautta aina 2000-luvun alkuun.</p>
-            <p class="small text-uppercase text-muted fw-semibold mb-2">Julkaisut</p>
-            {% if collaborativePublications.length %}
-              <div class="d-grid gap-3 mb-3">
-                {% for pub in collaborativePublications %}
-                <div>
-                  <p class="small fw-semibold mb-1">{{ pub.title }}</p>
-                  <p class="small text-muted mb-1">{{ pub.citation }}</p>
-                  <a href="{{ pub.url }}" class="small text-decoration-none">Avaa lähdeviite</a>
-                </div>
-                {% endfor %}
-              </div>
-            {% else %}
-              <p class="text-muted small mb-3">Ei vielä poimittuja julkaisuja tähän linjaan.</p>
-            {% endif %}
-            <p class="small text-uppercase text-muted fw-semibold mb-2">Liittyvät opinnäytteet</p>
-            {% if collaborativeTheses.length %}
-              <ul class="small ps-3 mb-4">
-                {% for thesis in collaborativeTheses %}
-                <li>
-                  <a href="{{ thesis.link }}" target="_blank" rel="noopener noreferrer">{{ thesis.title }}</a><br>
-                  <span class="text-muted">{{ thesis.citationApa }}</span>
-                </li>
-                {% endfor %}
-              </ul>
-            {% else %}
-              <p class="text-muted small mb-4">Opinnäytelinkitys täydentyy avainsanojen tarkentuessa.</p>
-            {% endif %}
-            <div class="mt-auto d-flex flex-wrap gap-2">
-              <a href="/teemat/koulutusteknologia-ja-oppimisymparistot/" class="btn btn-sm btn-outline-primary rounded-pill px-3">Aiheprofiili</a>
-              <a href="/vaitoskirja/" class="btn btn-sm btn-outline-secondary rounded-pill px-3">Väitöskirja</a>
-            </div>
-          </div>
-        </article>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </section>
@@ -626,9 +492,9 @@ schemaMentions:
                 {{ ui.kpiCard("Vertaisarvioitua", peerReviewedCount, { extraClass: "research-kpi-card" }) }}
               </div>
             </div>
-            {% if latestResearchPublicationCitations.length %}
+            {% if featuredResearchPublications.length %}
             <div class="d-grid gap-3">
-              {% for pub in latestResearchPublicationCitations %}
+              {% for pub in featuredResearchPublications %}
               <article class="border rounded p-3">
                 <p class="small fw-semibold mb-1">{{ pub.title }}</p>
                 <p class="small text-muted mb-2">{{ pub.citation }}</p>
@@ -674,9 +540,9 @@ schemaMentions:
               {% endfor %}
             </div>
             {% endif %}
-            {% if latestResearchGradut.length %}
+            {% if featuredResearchTheses.length %}
             <div class="d-grid gap-3">
-              {% for thesis in latestResearchGradut %}
+              {% for thesis in featuredResearchTheses %}
               <article class="border rounded p-3">
                 <h4 class="h6 fw-bold mb-1"><a href="{{ thesis.link }}" target="_blank" rel="noopener noreferrer" class="text-decoration-none">{{ thesis.title }}</a></h4>
                 <p class="small text-muted mb-0">{{ thesis.citationApa }}</p>

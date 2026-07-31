@@ -2,6 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const { isOfflineFetchMode, readCache, readCacheIfFresh, writeCache } = require('./_apiCache');
 const { loadHiddenIds } = require('./_curatedStubs');
+const curatedProgram = require('../curated/research-program.json');
+const curatedThesisMeta = require('../curated/research-thesis-meta.json');
 
 const CACHE_KEY = 'theses-oulurepo-v2';
 const CACHE_TTL_HOURS = 6;
@@ -9,6 +11,10 @@ const CACHE_TTL_HOURS = 6;
 const BASE = 'https://oulurepo.oulu.fi/open-search/';
 const NAME = 'Laru';  // ← vaihda ohjaajan sukunimi
 const RPP = 100;
+const CURATED_THESIS_META = {
+    ...(curatedThesisMeta || {}),
+    ...((curatedProgram && curatedProgram.thesisMeta) || {}),
+};
 
 // Lisenssit, joiden tiivistelmä saa näkyä (ei NC-ehtoa).
 const ALLOWED_LICENSE_PREFIXES = [
@@ -86,10 +92,17 @@ function buildApaCitation(thesis) {
 }
 
 function withCitation(thesis) {
+    const meta = CURATED_THESIS_META[thesis.link] || {};
     return {
         ...thesis,
         citationApa: buildApaCitation(thesis),
         citationStyle: 'APA 7',
+        researchLine: meta.researchLine || null,
+        researchThemes: Array.isArray(meta.themes) ? meta.themes.filter(Boolean) : [],
+        researchAudience: Array.isArray(meta.audience) ? meta.audience.filter(Boolean) : [],
+        featuredOn: Array.isArray(meta.featuredOn) ? meta.featuredOn.filter(Boolean) : [],
+        researchPriority: Number.isFinite(meta.priority) ? meta.priority : 0,
+        researchSummary: normalizeText(meta.summary || ''),
     };
 }
 
