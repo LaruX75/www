@@ -499,12 +499,51 @@ translationKey: dissertation
   }
 
   @media (max-width: 575.98px) {
+    .dissertation-hero,
+    .dissertation-section {
+      padding-block: 2.3rem;
+    }
+
+    .dissertation-hero h1 {
+      margin-bottom: 0.9rem;
+      font-size: clamp(1.72rem, 9vw, 2.25rem);
+      line-height: 1.08;
+    }
+
+    .dissertation-lead {
+      margin-bottom: 0.9rem;
+      font-size: 1.05rem;
+      line-height: 1.45;
+    }
+
+    .dissertation-hero-copy > p:not(.dissertation-kicker):not(.dissertation-lead) {
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      line-height: 1.55;
+    }
+
     .dissertation-actions {
-      flex-direction: column;
+      gap: 0.5rem;
     }
 
     .dissertation-actions .btn {
-      width: 100%;
+      flex: 1 1 calc(50% - 0.5rem);
+      padding-inline: 0.8rem !important;
+    }
+
+    .dissertation-hero-card {
+      display: none;
+    }
+
+    .dissertation-section-head {
+      margin-bottom: 1.1rem;
+    }
+
+    .dissertation-section-head h2,
+    .dissertation-closing-card h2 {
+      font-size: clamp(1.55rem, 8vw, 2rem);
     }
 
     .dissertation-video-frame iframe {

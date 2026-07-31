@@ -8,7 +8,7 @@ description: "Jari Larun saamat palkinnot, apurahat ja muut huomionosoitukset �
 templateEngineOverride: njk,md
 ---
 
-<section class="py-5 bg-body-tertiary border-bottom">
+<section class="py-5 bg-body-tertiary border-bottom awards-hero">
   <div class="site-shell">
     <p class="text-uppercase text-muted fw-semibold small mb-2">Palkinnot ja tunnustukset</p>
     <h2 class="display-6 fw-bold mb-3">Huomionosoitukset</h2>
@@ -16,11 +16,11 @@ templateEngineOverride: njk,md
   </div>
 </section>
 
-<section class="py-5">
+<section class="py-5 awards-section">
   <div class="site-shell">
     <h2 class="h3 mb-4">Palkinnot</h2>
 
-    <div class="card border-0 shadow-sm mb-4">
+    <div class="card border-0 shadow-sm mb-4 awards-card">
       <div class="card-body p-4 p-md-5">
         <div class="d-flex flex-wrap align-items-start gap-3 mb-3">
           <div class="flex-shrink-0">
@@ -42,7 +42,7 @@ templateEngineOverride: njk,md
       </div>
     </div>
 
-    <div class="card border-0 shadow-sm mb-4">
+    <div class="card border-0 shadow-sm mb-4 awards-card">
       <div class="card-body p-4 p-md-5">
         <div class="d-flex flex-wrap align-items-start gap-3 mb-3">
           <div class="flex-shrink-0">
@@ -70,7 +70,7 @@ templateEngineOverride: njk,md
       </div>
     </div>
 
-    <div class="card border-0 shadow-sm mb-4">
+    <div class="card border-0 shadow-sm mb-4 awards-card">
       <div class="card-body p-4 p-md-5">
         <div class="d-flex flex-wrap align-items-start gap-3 mb-3">
           <div class="flex-shrink-0">
@@ -99,7 +99,7 @@ templateEngineOverride: njk,md
       </div>
     </div>
 
-    <div class="card border-0 shadow-sm mb-4">
+    <div class="card border-0 shadow-sm mb-4 awards-card">
       <div class="card-body p-4 p-md-5">
         <div class="d-flex flex-wrap align-items-start gap-3 mb-3">
           <div class="flex-shrink-0">
@@ -129,14 +129,14 @@ templateEngineOverride: njk,md
   </div>
 </section>
 
-<section class="py-5 bg-body-tertiary border-top border-bottom">
+<section class="py-5 bg-body-tertiary border-top border-bottom awards-section awards-section--muted">
   <div class="site-shell">
     <h2 class="h3 mb-4">Apurahat</h2>
     <p class="text-muted mb-4">Tutkimustyötäni ovat tukeneet seuraavat apurahat:</p>
 
     <div class="row g-4">
       <div class="col-md-4">
-        <div class="card h-100 border-0 shadow-sm">
+        <div class="card h-100 border-0 shadow-sm awards-card">
           <div class="card-body p-4">
             <span class="badge bg-secondary mb-3">2010</span>
             <h3 class="h5 fw-bold">Suomen Kulttuurirahasto</h3>
@@ -147,7 +147,7 @@ templateEngineOverride: njk,md
         </div>
       </div>
       <div class="col-md-4">
-        <div class="card h-100 border-0 shadow-sm">
+        <div class="card h-100 border-0 shadow-sm awards-card">
           <div class="card-body p-4">
             <span class="badge bg-secondary mb-3">2009</span>
             <h3 class="h5 fw-bold">Oulun yliopiston matka-apuraha</h3>
@@ -158,7 +158,7 @@ templateEngineOverride: njk,md
         </div>
       </div>
       <div class="col-md-4">
-        <div class="card h-100 border-0 shadow-sm">
+        <div class="card h-100 border-0 shadow-sm awards-card">
           <div class="card-body p-4">
             <span class="badge bg-secondary mb-3">2005</span>
             <h3 class="h5 fw-bold">Suomen Kulttuurirahasto</h3>
@@ -172,11 +172,11 @@ templateEngineOverride: njk,md
   </div>
 </section>
 
-<section class="py-5">
+<section class="py-5 awards-section">
   <div class="site-shell">
     <h2 class="h3 mb-4">Opiskelijoiden tunnustukset</h2>
 
-    <div class="card border-0 shadow-sm">
+    <div class="card border-0 shadow-sm awards-card">
       <div class="card-body p-4">
         <div class="d-flex flex-wrap align-items-start gap-3 mb-3">
           <span class="badge bg-secondary fs-6 px-3 py-2">2012</span>
@@ -190,3 +190,50 @@ templateEngineOverride: njk,md
     </div>
   </div>
 </section>
+
+<style>
+@media (max-width: 575.98px) {
+  .awards-hero,
+  .awards-section {
+    padding-block: 2rem !important;
+  }
+
+  .awards-hero .lead {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    font-size: 1.02rem;
+    line-height: 1.5;
+  }
+
+  .awards-card {
+    border-radius: 1rem;
+  }
+
+  .awards-card .card-body {
+    padding: 1.1rem !important;
+  }
+
+  .awards-card h3 {
+    font-size: 1.08rem !important;
+    line-height: 1.22;
+  }
+
+  .awards-card .badge {
+    padding: 0.42rem 0.62rem !important;
+    font-size: 0.82rem !important;
+  }
+
+  .awards-card .blockquote {
+    margin-block: 1rem !important;
+    padding-left: 0.85rem !important;
+    font-size: 0.95rem;
+  }
+
+  .awards-card .d-flex.flex-wrap.gap-2 .btn {
+    flex: 1 1 100%;
+    justify-content: center;
+  }
+}
+</style>
