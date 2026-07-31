@@ -897,6 +897,33 @@ schemaMentions:
 }
 
 @media (max-width: 767.98px) {
+  .term-archive-page--hero {
+    padding-top: 2rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+
+  .term-hero {
+    gap: 1rem;
+  }
+
+  .term-hero-title {
+    font-size: clamp(2.2rem, 13vw, 3.2rem);
+  }
+
+  .term-hero-lead {
+    display: -webkit-box;
+    margin-bottom: 1rem !important;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    font-size: 0.98rem;
+    line-height: 1.55;
+  }
+
+  .term-hero-card {
+    display: none;
+  }
+
   .term-result-grid {
     grid-template-columns: 1fr;
   }
@@ -915,8 +942,9 @@ schemaMentions:
   }
 
   .term-jump-card {
-    flex: 0 0 72%;
+    flex: 0 0 48%;
     min-width: 14rem;
+    padding: 0.85rem;
   }
 
   .term-mobile-disclosure {

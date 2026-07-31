@@ -66,10 +66,10 @@ schemaMentions:
 </section>
 
 <nav class="about-mobile-path" aria-label="Tietoa-sivun tärkeimmät osiot">
+  <a href="#reitit">Reitit</a>
   <a href="#roolit">Roolit</a>
   <a href="#profiili">Näyttö</a>
   <a href="#oulu">Oulu</a>
-  <a href="#reitit">Reitit</a>
 </nav>
 
 <section class="about-section" id="roolit">
@@ -679,21 +679,47 @@ schemaMentions:
 
 @media (max-width: 767.98px) {
   .about-hero-section {
-    padding-block: 2.6rem;
+    padding-block: 2rem 1.35rem;
   }
 
-  .about-hero-card img {
-    max-height: 22rem;
-    object-position: center 68%;
+  .about-hero-copy h1 {
+    margin-bottom: 0.6rem;
+    font-size: clamp(2.85rem, 18vw, 4.6rem);
+  }
+
+  .about-hero-lead {
+    margin-bottom: 0.9rem;
+    font-size: clamp(1.08rem, 6vw, 1.28rem);
+  }
+
+  .about-hero-copy > p:nth-of-type(3) {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    font-size: 0.98rem;
+    line-height: 1.55;
+  }
+
+  .about-hero-copy > p:nth-of-type(4) {
+    display: none;
+  }
+
+  .about-hero-card {
+    display: none;
   }
 
   .about-hero-actions {
     gap: 0.5rem;
+    margin-top: 1rem;
   }
 
   .about-hero-actions .btn {
-    flex: 1 1 100%;
+    flex: 1 1 calc(50% - 0.5rem);
     justify-content: center;
+    min-height: 2.75rem;
+    padding-inline: 0.8rem !important;
+    font-size: 0.9rem;
   }
 
   .about-mobile-path {
