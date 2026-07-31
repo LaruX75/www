@@ -135,8 +135,8 @@ translationKey: media_index
 
 <nav class="media-mobile-path" aria-label="Mediassa-sivun tärkeimmät osiot">
   <a href="#media-reitit">Reitit</a>
-  <a href="#media-nostot">Nostot</a>
   <a href="#media-arkisto">Kaikki</a>
+  <a href="#media-nostot">Nostot</a>
   <a href="#media-roolit">Roolit</a>
   <a href="#media-lahteet">Lähteet</a>
 </nav>
@@ -966,6 +966,30 @@ translationKey: media_index
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    const mobileArchiveMq = window.matchMedia('(max-width: 767.98px)');
+    const routeSection = document.getElementById('media-reitit');
+    const archiveSection = document.getElementById('media-arkisto');
+    const archiveOriginalMarker = document.createComment('media archive desktop position');
+
+    if (routeSection && archiveSection && archiveSection.parentNode) {
+      archiveSection.parentNode.insertBefore(archiveOriginalMarker, archiveSection);
+
+      const applyArchiveOrder = () => {
+        if (mobileArchiveMq.matches) {
+          routeSection.insertAdjacentElement('afterend', archiveSection);
+        } else if (archiveOriginalMarker.parentNode) {
+          archiveOriginalMarker.parentNode.insertBefore(archiveSection, archiveOriginalMarker.nextSibling);
+        }
+      };
+
+      applyArchiveOrder();
+      if (typeof mobileArchiveMq.addEventListener === 'function') {
+        mobileArchiveMq.addEventListener('change', applyArchiveOrder);
+      } else if (typeof mobileArchiveMq.addListener === 'function') {
+        mobileArchiveMq.addListener(applyArchiveOrder);
+      }
+    }
+
     const browser = document.querySelector('[data-media-browser]');
     if (!browser) return;
 
