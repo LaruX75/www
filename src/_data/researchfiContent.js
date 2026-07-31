@@ -183,9 +183,13 @@ function buildDescription(publication, enrichment) {
 
 function formatAuthorInitials(value) {
   return normalizeText(value)
-    .split(/[\s-]+/)
+    .split(/\s+/)
     .filter(Boolean)
-    .map((part) => `${part.charAt(0).toUpperCase()}.`)
+    .map((part) => part
+      .split("-")
+      .filter(Boolean)
+      .map((name) => `${name.charAt(0).toUpperCase()}.`)
+      .join("-"))
     .join(" ");
 }
 
@@ -201,6 +205,16 @@ function formatAuthorApa(author) {
 
   const parts = normalized.split(/\s+/).filter(Boolean);
   if (parts.length === 1) return parts[0];
+
+  // Research.fi commonly provides names as "Surname A." instead of "Surname, A.".
+  // Pull trailing initials out before applying the usual given-name/surname fallback.
+  const trailingInitials = [];
+  while (parts.length > 1 && /^[A-ZÅÄÖ](?:\.)?(?:-[A-ZÅÄÖ](?:\.)?)*$/iu.test(parts.at(-1))) {
+    trailingInitials.unshift(parts.pop());
+  }
+  if (trailingInitials.length) {
+    return `${parts.join(" ")}, ${formatAuthorInitials(trailingInitials.join(" "))}`;
+  }
 
   const lastName = parts.pop();
   const initials = formatAuthorInitials(parts.join(" "));

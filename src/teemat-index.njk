@@ -24,6 +24,8 @@ translationKey: topic_profiles_index
     <div class="topic-index-grid">
       {% for topic in seoTopics %}
         {% set items = collections | topicItems(topic, 9999) %}
+        {% set researchPublications = researchfiContent | curatedResearchForTopic(topic.researchThemes, 9999) %}
+        {% set topicContentCount = items.totalCount + researchPublications.length %}
         <article class="topic-index-card">
           <div class="topic-index-card-body">
             <p class="taxonomy-kicker">{{ topic.eyebrow }}</p>
@@ -31,7 +33,7 @@ translationKey: topic_profiles_index
             <p>{{ topic.lead }}</p>
           </div>
           <div class="topic-index-card-meta">
-            <span>{{ items.totalCount }} osumaa</span>
+            <span>{{ topicContentCount }} osumaa</span>
             <a href="/teemat/{{ topic.slug }}/">Avaa profiili</a>
           </div>
         </article>

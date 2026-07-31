@@ -32,8 +32,11 @@ translationKey: categories_index
 
       <div class="taxonomy-index-profile-grid">
         {% for topic in seoTopics %}
+          {% set topicItems = collections | topicItems(topic, 9999) %}
+          {% set researchPublications = researchfiContent | curatedResearchForTopic(topic.researchThemes, 9999) %}
+          {% set topicContentCount = topicItems.totalCount + researchPublications.length %}
           <a class="taxonomy-index-profile-card" href="/teemat/{{ topic.slug }}/">
-            <span class="taxonomy-index-card-count">{{ (collections | topicItems(topic, 99)).length }}</span>
+            <span class="taxonomy-index-card-count">{{ topicContentCount }}</span>
             <span class="taxonomy-index-card-title">{{ topic.title }}</span>
             <span class="taxonomy-index-card-text">{{ topic.lead }}</span>
           </a>
