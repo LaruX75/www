@@ -5,9 +5,10 @@ layout: base.njk
 lang: fi
 description: "Analyysi 83 Canva-esityksestä vuosilta 2021–2026 – teemat, kehityskaaret ja laajimmat esitykset."
 templateEngineOverride: njk
+pageScopeClass: presentation-analysis-page
 ---
 
-<section class="py-5 bg-body-tertiary border-bottom">
+<section class="py-5 bg-body-tertiary border-bottom presentation-analysis-hero">
   <div class="site-shell">
     <p class="text-uppercase text-muted fw-semibold small mb-2">Esitykset &rsaquo; Canva</p>
     <h1 class="display-6 fw-bold mb-3">Canva-esitykset 2021–2026</h1>
@@ -22,6 +23,16 @@ templateEngineOverride: njk
     </div>
   </div>
 </section>
+
+<nav class="presentation-analysis-mobile-path" aria-label="Canva-analyysin tärkeimmät kohdat">
+  <div class="site-shell">
+    <a href="#kaudet">Kaudet</a>
+    <a href="#langat">Punaiset langat</a>
+    <a href="#laajimmat">Laajimmat</a>
+    <a href="#aihepiirit">Aihepiirit</a>
+    <a href="#vertailu">Vertailu</a>
+  </div>
+</nav>
 
 {# KPI-kortit #}
 <section class="py-5 border-bottom canva-analysis-kpi">
@@ -56,7 +67,7 @@ templateEngineOverride: njk
 </section>
 
 {# Kolme kautta #}
-<section class="py-5 border-bottom canva-analysis-phase">
+<section class="py-5 border-bottom canva-analysis-phase" id="kaudet">
   <div class="site-shell">
     <h2 class="h3 fw-bold mb-4">Kolme kautta</h2>
     <div class="row g-4">
@@ -131,7 +142,7 @@ templateEngineOverride: njk
 </section>
 
 {# Punaiset langat #}
-<section class="py-5 border-bottom bg-body-tertiary">
+<section class="py-5 border-bottom bg-body-tertiary" id="langat">
   <div class="site-shell">
     <h2 class="h3 fw-bold mb-4">Punaiset langat läpi kaikkien kausien</h2>
     <div class="row g-4">
@@ -176,7 +187,7 @@ templateEngineOverride: njk
 </section>
 
 {# Top 10 #}
-<section class="py-5 border-bottom">
+<section class="py-5 border-bottom" id="laajimmat">
   <div class="site-shell">
     <h2 class="h3 fw-bold mb-4">Laajimmat esitykset</h2>
     <div class="table-responsive">
@@ -269,7 +280,7 @@ templateEngineOverride: njk
 </section>
 
 {# Aihepiirit vuosittain #}
-<section class="py-5 border-bottom bg-body-tertiary">
+<section class="py-5 border-bottom bg-body-tertiary" id="aihepiirit">
   <div class="site-shell">
     <h2 class="h3 fw-bold mb-4">Aihepiirit vuosittain</h2>
     <div class="row g-2">
@@ -294,7 +305,7 @@ templateEngineOverride: njk
 </section>
 
 {# SlideShare-vertailu #}
-<section class="py-5 border-bottom">
+<section class="py-5 border-bottom" id="vertailu">
   <div class="site-shell">
     <h2 class="h3 fw-bold mb-4">SlideShare-kaudesta Canva-kauteen</h2>
     <div class="row g-4">

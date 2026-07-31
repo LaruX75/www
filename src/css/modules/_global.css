@@ -437,6 +437,10 @@ html:not([data-bs-theme="dark"]) .site-changes-kpi-value--date {
   display: none;
 }
 
+.presentation-analysis-mobile-path {
+  display: none;
+}
+
 .campaign-archive-notice {
   margin-bottom: 1.25rem;
   padding: 1rem 1.1rem;
@@ -669,6 +673,173 @@ html:not([data-bs-theme="dark"]) .site-changes-kpi-value--date {
   .campaign-archive-page .content-prose figure,
   .campaign-archive-page .content-prose > div {
     max-width: 100%;
+  }
+
+  .presentation-analysis-page .presentation-analysis-hero,
+  .presentation-analysis-page section {
+    padding-block: 2rem !important;
+  }
+
+  .presentation-analysis-page .presentation-analysis-hero .display-6 {
+    font-size: clamp(2rem, 12vw, 2.55rem);
+    line-height: 0.98;
+  }
+
+  .presentation-analysis-page .presentation-analysis-hero .lead {
+    font-size: 1.02rem;
+    line-height: 1.45;
+  }
+
+  .presentation-analysis-page .presentation-analysis-hero .d-flex.flex-wrap.gap-2 {
+    gap: 0.45rem !important;
+  }
+
+  .presentation-analysis-page .presentation-analysis-hero .badge {
+    font-size: 0.78rem;
+    white-space: normal;
+    text-align: left;
+  }
+
+  .presentation-analysis-mobile-path {
+    display: block;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    padding-block: 0.6rem;
+    background: rgba(var(--bs-body-bg-rgb), 0.94);
+    border-bottom: 1px solid var(--site-border-soft);
+    backdrop-filter: blur(12px);
+  }
+
+  .presentation-analysis-mobile-path .site-shell {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.1rem;
+    scrollbar-width: none;
+  }
+
+  .presentation-analysis-mobile-path .site-shell::-webkit-scrollbar {
+    display: none;
+  }
+
+  .presentation-analysis-mobile-path a {
+    flex: 0 0 auto;
+    padding: 0.42rem 0.75rem;
+    border: 1px solid var(--site-border-soft);
+    border-radius: 999px;
+    background: var(--site-surface-card);
+    color: var(--bs-body-color);
+    font-size: 0.86rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .presentation-analysis-page .row.g-3,
+  .presentation-analysis-page .row.g-4,
+  .presentation-analysis-page .row.g-2 {
+    --bs-gutter-x: 0.85rem;
+    --bs-gutter-y: 0.85rem;
+  }
+
+  .presentation-analysis-page .analysis-card {
+    border-radius: 1rem;
+  }
+
+  .presentation-analysis-page .analysis-card.p-3,
+  .presentation-analysis-page .analysis-card .card-body,
+  .presentation-analysis-page .analysis-card .card-footer {
+    padding: 1rem !important;
+  }
+
+  .presentation-analysis-page .analysis-card .display-6 {
+    font-size: 1.55rem;
+    line-height: 1.05;
+  }
+
+  .presentation-analysis-page h2 {
+    font-size: 1.22rem !important;
+    line-height: 1.25;
+    margin-bottom: 1rem !important;
+  }
+
+  .presentation-analysis-page .analysis-thread-item,
+  .presentation-analysis-page .analysis-year-item {
+    gap: 0.7rem !important;
+    padding: 0.85rem;
+  }
+
+  .presentation-analysis-page .analysis-thread-item > .flex-shrink-0 {
+    font-size: 1.15rem !important;
+  }
+
+  .presentation-analysis-page .analysis-year-item {
+    align-items: stretch !important;
+    flex-direction: column;
+  }
+
+  .presentation-analysis-page .analysis-year-item .badge {
+    width: fit-content;
+  }
+
+  .presentation-analysis-page .table-responsive {
+    margin-inline: -1rem;
+    padding-inline: 1rem;
+  }
+
+  .presentation-analysis-page table {
+    font-size: 0.88rem;
+  }
+
+  .presentation-analysis-page th,
+  .presentation-analysis-page td {
+    padding: 0.55rem 0.6rem;
+  }
+
+  .presentation-analysis-page td:nth-child(2) {
+    min-width: 13rem;
+  }
+
+  .presentation-analysis-page section:last-of-type .card-body {
+    align-items: stretch !important;
+  }
+
+  .presentation-analysis-page section:last-of-type .btn {
+    width: 100%;
+  }
+
+  .legacy-portfolio-page {
+    padding-inline: 0 !important;
+  }
+
+  .legacy-portfolio-page > .card:first-child .card-body {
+    padding: 1rem !important;
+  }
+
+  .legacy-portfolio-page > .card:first-child h2 {
+    font-size: 1.12rem;
+  }
+
+  .legacy-portfolio-page .card {
+    border-radius: 1rem;
+  }
+
+  .legacy-portfolio-page .card-header,
+  .legacy-portfolio-page .card-body {
+    padding: 1rem !important;
+  }
+
+  .legacy-portfolio-page .table-responsive {
+    margin-inline: -1rem;
+    padding-inline: 1rem;
+  }
+
+  .legacy-portfolio-page table {
+    font-size: 0.86rem;
+  }
+
+  .legacy-portfolio-page blockquote {
+    padding-left: 0.85rem;
   }
 }
 

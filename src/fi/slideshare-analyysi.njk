@@ -5,9 +5,10 @@ layout: base.njk
 lang: fi
 description: "Analyysi Jari Larun 117 SlideShare-esityksestä vuosilta 2009–2020 – teemat, kohderyhmät, kehityskaaret ja katsotuimmat esitykset vuosikymmenittäin."
 templateEngineOverride: njk
+pageScopeClass: presentation-analysis-page
 ---
 
-<section class="py-5 bg-body-tertiary border-bottom">
+<section class="py-5 bg-body-tertiary border-bottom presentation-analysis-hero">
   <div class="site-shell">
     <p class="text-uppercase text-muted fw-semibold small mb-2">Esitykset &rsaquo; SlideShare</p>
     <h1 class="display-6 fw-bold mb-3">SlideShare-esitykset 2009–2020</h1>
@@ -20,6 +21,15 @@ templateEngineOverride: njk
     </div>
   </div>
 </section>
+
+<nav class="presentation-analysis-mobile-path" aria-label="SlideShare-analyysin tärkeimmät kohdat">
+  <div class="site-shell">
+    <a href="#kaudet">Kaudet</a>
+    <a href="#langat">Punaiset langat</a>
+    <a href="#katsotuimmat">Katsotuimmat</a>
+    <a href="#aihepiirit">Aihepiirit</a>
+  </div>
+</nav>
 
 {# KPI-kortit #}
 <section class="py-5 border-bottom slideshare-analysis-kpi">
@@ -54,7 +64,7 @@ templateEngineOverride: njk
 </section>
 
 {# Kolme kautta #}
-<section class="py-5 border-bottom slideshare-analysis-phase">
+<section class="py-5 border-bottom slideshare-analysis-phase" id="kaudet">
   <div class="site-shell">
     <h2 class="h3 fw-bold mb-4">Kolme kautta</h2>
     <div class="row g-4">
@@ -127,7 +137,7 @@ templateEngineOverride: njk
 </section>
 
 {# Punaiset langat #}
-<section class="py-5 border-bottom bg-body-tertiary">
+<section class="py-5 border-bottom bg-body-tertiary" id="langat">
   <div class="site-shell">
     <h2 class="h3 fw-bold mb-4">Punaiset langat läpi kaikkien kausien</h2>
     <div class="row g-4">
@@ -172,7 +182,7 @@ templateEngineOverride: njk
 </section>
 
 {# Top 10 #}
-<section class="py-5 border-bottom">
+<section class="py-5 border-bottom" id="katsotuimmat">
   <div class="site-shell">
     <h2 class="h3 fw-bold mb-4">Katsotuimmat esitykset</h2>
     <div class="table-responsive">
@@ -254,7 +264,7 @@ templateEngineOverride: njk
 </section>
 
 {# Aihepiirit vuosittain #}
-<section class="py-5 border-bottom bg-body-tertiary">
+<section class="py-5 border-bottom bg-body-tertiary" id="aihepiirit">
   <div class="site-shell">
     <h2 class="h3 fw-bold mb-4">Aihepiirit vuosittain</h2>
     <div class="row g-2">
