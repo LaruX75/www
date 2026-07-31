@@ -286,7 +286,7 @@ translationKey: media_index
       <p class="media-section-lead mb-0">Suodata sisältöä muodon, roolin tai aiheen mukaan. Jokaisesta osumasta voit avata alkuperäisen lähteen tai paikallisen lisätietosivun.</p>
     </div>
 
-    <div class="media-browser" data-media-browser data-page-size="9">
+    <div class="media-browser" data-media-browser data-page-size="9" data-mobile-page-size="4">
       <div class="media-filter-group" aria-label="Suodata mediaosumia sisällön muodon mukaan">
         <button class="media-filter is-active" type="button" data-media-filter="all">Kaikki</button>
         <button class="media-filter" type="button" data-media-filter="type:article">Lehtijutut</button>
@@ -975,7 +975,10 @@ translationKey: media_index
     const pagination = browser.querySelector('[data-media-page-controls]');
     const pageInfo = browser.querySelector('[data-media-page-info]');
     const status = browser.querySelector('[data-media-browser-status]');
-    const pageSize = Number(browser.dataset.pageSize) || 9;
+    const desktopPageSize = Number(browser.dataset.pageSize) || 9;
+    const mobilePageSize = Number(browser.dataset.mobilePageSize) || Math.min(desktopPageSize, 4);
+    const mobilePageSizeMq = window.matchMedia('(max-width: 767.98px)');
+    const getPageSize = () => mobilePageSizeMq.matches ? mobilePageSize : desktopPageSize;
     let activeFilter = 'all';
     let currentPage = 1;
 
@@ -1029,6 +1032,7 @@ translationKey: media_index
 
     const render = () => {
       const visibleItems = filteredItems();
+      const pageSize = getPageSize();
       const pageCount = Math.max(1, Math.ceil(visibleItems.length / pageSize));
       currentPage = Math.min(currentPage, pageCount);
       const start = (currentPage - 1) * pageSize;
@@ -1093,6 +1097,18 @@ translationKey: media_index
       currentPage = nextPage;
       render();
     });
+
+    if (typeof mobilePageSizeMq.addEventListener === 'function') {
+      mobilePageSizeMq.addEventListener('change', () => {
+        currentPage = 1;
+        render();
+      });
+    } else if (typeof mobilePageSizeMq.addListener === 'function') {
+      mobilePageSizeMq.addListener(() => {
+        currentPage = 1;
+        render();
+      });
+    }
 
     setFilter(filterFromUrl(), window.location.search.length > 0);
   });

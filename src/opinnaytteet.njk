@@ -49,33 +49,33 @@ schemaMentions:
 
 <div class="site-shell py-4">
   {# Laskurit #}
-  <div class="row g-3 my-4">
-    <div class="col-md-3">
-      <div class="card text-center border-primary h-100">
+  <div class="row g-2 g-md-3 my-4 thesis-stats-row">
+    <div class="col-6 col-md-3">
+      <div class="card text-center border-primary h-100 thesis-stat-card">
         <div class="card-body d-flex flex-column justify-content-center">
           <div class="display-4 fw-bold text-primary">{{ theses.stats.totalGradut }}</div>
           <div class="text-muted">ohjattua gradua</div>
         </div>
       </div>
     </div>
-    <div class="col-md-3">
-      <div class="card text-center border-info h-100">
+    <div class="col-6 col-md-3">
+      <div class="card text-center border-info h-100 thesis-stat-card">
         <div class="card-body d-flex flex-column justify-content-center">
           <div class="display-4 fw-bold text-info">{{ theses.stats.totalKandit }}</div>
           <div class="text-muted">ohjattua kandidaatintyötä</div>
         </div>
       </div>
     </div>
-    <div class="col-md-3">
-      <div class="card text-center h-100">
+    <div class="col-6 col-md-3">
+      <div class="card text-center h-100 thesis-stat-card">
         <div class="card-body d-flex flex-column justify-content-center">
           <div class="display-4 fw-bold">{{ theses.stats.total }}</div>
           <div class="text-muted">työtä yhteensä</div>
         </div>
       </div>
     </div>
-    <div class="col-md-3">
-      <div class="card text-center border-secondary h-100">
+    <div class="col-6 col-md-3">
+      <div class="card text-center border-secondary h-100 thesis-stat-card">
         <div class="card-body d-flex flex-column justify-content-center">
           <div class="display-4 fw-bold text-secondary">{{ theses.stats.totalReviewer }}</div>
           <div class="text-muted">muuta työtä, jotka olen tarkastanut</div>
@@ -1221,6 +1221,10 @@ document.addEventListener('DOMContentLoaded', () => {
   outline-offset: 1px;
 }
 
+.thesis-stat-card .display-4 {
+  font-size: clamp(2.4rem, 4vw, 3.5rem);
+}
+
 .thesis-filter-group .thesis-filter-icon {
   background-color: #0f172a;
   color: #ffffff;
@@ -1374,6 +1378,26 @@ html[data-bs-theme="dark"]:not([data-a11y-bg]) .bg-light-subtle { background-col
 
   #thesis-year-bar .thesis-year-btn {
     flex: 0 0 auto;
+  }
+
+  .thesis-stats-row {
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .thesis-stat-card .card-body {
+    min-height: 6.6rem;
+    padding: 0.8rem 0.55rem;
+  }
+
+  .thesis-stat-card .display-4 {
+    font-size: clamp(2rem, 11vw, 2.7rem);
+    line-height: 0.95;
+  }
+
+  .thesis-stat-card .text-muted {
+    font-size: 0.82rem;
+    line-height: 1.15;
   }
 
   [data-bs-theme="dark"] .thesis-mobile-path {

@@ -30,33 +30,33 @@ lang: en
   {% endif %}
 
   {# Laskurit #}
-  <div class="row g-3 my-4">
-    <div class="col-md-3">
-      <div class="card text-center border-primary h-100">
+  <div class="row g-2 g-md-3 my-4 thesis-stats-row">
+    <div class="col-6 col-md-3">
+      <div class="card text-center border-primary h-100 thesis-stat-card">
         <div class="card-body d-flex flex-column justify-content-center">
           <div class="display-4 fw-bold text-primary">{{ theses.stats.totalGradut }}</div>
           <div class="text-muted">Master's thesis</div>
         </div>
       </div>
     </div>
-    <div class="col-md-3">
-      <div class="card text-center border-info h-100">
+    <div class="col-6 col-md-3">
+      <div class="card text-center border-info h-100 thesis-stat-card">
         <div class="card-body d-flex flex-column justify-content-center">
           <div class="display-4 fw-bold text-info">{{ theses.stats.totalKandit }}</div>
           <div class="text-muted">Bachelor's thesis</div>
         </div>
       </div>
     </div>
-    <div class="col-md-3">
-      <div class="card text-center h-100">
+    <div class="col-6 col-md-3">
+      <div class="card text-center h-100 thesis-stat-card">
         <div class="card-body d-flex flex-column justify-content-center">
           <div class="display-4 fw-bold">{{ theses.stats.total }}</div>
           <div class="text-muted">Total</div>
         </div>
       </div>
     </div>
-    <div class="col-md-3">
-      <div class="card text-center border-secondary h-100">
+    <div class="col-6 col-md-3">
+      <div class="card text-center border-secondary h-100 thesis-stat-card">
         <div class="card-body d-flex flex-column justify-content-center">
           <div class="display-4 fw-bold text-secondary">{{ theses.stats.totalReviewer }}</div>
           <div class="text-muted">Reviewed</div>
@@ -860,6 +860,10 @@ document.addEventListener('DOMContentLoaded', () => {
 html[data-bs-theme="dark"]:not([data-a11y-bg]) .bg-light-subtle { background-color: #1e2a3a !important; }
 [data-bs-theme="dark"] .card { border-color: rgba(255,255,255,0.08) !important; }
 
+.thesis-stat-card .display-4 {
+  font-size: clamp(2.4rem, 4vw, 3.5rem);
+}
+
 .thesis-abstract-snippet {
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -898,5 +902,27 @@ html[data-bs-theme="dark"]:not([data-a11y-bg]) .bg-light-subtle { background-col
 
 [data-bs-theme="dark"] #thesis-subject-cloud .accordion-item {
   border-bottom-color: rgba(255, 255, 255, 0.12);
+}
+
+@media (max-width: 767.98px) {
+  .thesis-stats-row {
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .thesis-stat-card .card-body {
+    min-height: 6.6rem;
+    padding: 0.8rem 0.55rem;
+  }
+
+  .thesis-stat-card .display-4 {
+    font-size: clamp(2rem, 11vw, 2.7rem);
+    line-height: 0.95;
+  }
+
+  .thesis-stat-card .text-muted {
+    font-size: 0.82rem;
+    line-height: 1.15;
+  }
 }
 </style>

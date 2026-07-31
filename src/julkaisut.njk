@@ -1104,8 +1104,12 @@ document.addEventListener('DOMContentLoaded', function() {
   Chart.defaults.color = textColor;
   Chart.defaults.borderColor = gridColor;
 
-  // Pagination for pub tables
-  const ITEMS_PER_PAGE = 10;
+  // Pagination for pub tables. Mobile publication cards are text-heavy, so use
+  // a tighter page size there without changing the desktop archive rhythm.
+  const DESKTOP_ITEMS_PER_PAGE = 10;
+  const MOBILE_ITEMS_PER_PAGE = 5;
+  const publicationPageSizeMq = window.matchMedia('(max-width: 767.98px)');
+  const getPublicationPageSize = () => publicationPageSizeMq.matches ? MOBILE_ITEMS_PER_PAGE : DESKTOP_ITEMS_PER_PAGE;
   const urlState = new URL(window.location.href);
   const urlParams = urlState.searchParams;
   const initialCoauthor = (urlParams.get('coauthor') || '').trim();
@@ -1591,15 +1595,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function renderPage(page) {
       currentPage = page;
-      const totalPages = Math.ceil(filteredRows.length / ITEMS_PER_PAGE);
+      const itemsPerPage = getPublicationPageSize();
+      const totalPages = Math.ceil(filteredRows.length / itemsPerPage);
       if (currentPage < 1) currentPage = 1;
       if (currentPage > totalPages && totalPages > 0) currentPage = totalPages;
 
       rows.forEach(r => r.style.display = 'none');
       mobileItems.forEach(r => r.style.display = 'none');
 
-      const start = (currentPage - 1) * ITEMS_PER_PAGE;
-      const end = start + ITEMS_PER_PAGE;
+      const start = (currentPage - 1) * itemsPerPage;
+      const end = start + itemsPerPage;
       filteredRows.slice(start, end).forEach(r => r.style.display = '');
       filteredMobileItems.slice(start, end).forEach(r => r.style.display = '');
       if (paginationInfo) {
@@ -1691,6 +1696,12 @@ document.addEventListener('DOMContentLoaded', function() {
     if (searchInput) searchInput.addEventListener('input', applyFilters);
     tableFilterRefreshers.push(applyFilters);
     applyFilters();
+
+    if (typeof publicationPageSizeMq.addEventListener === 'function') {
+      publicationPageSizeMq.addEventListener('change', () => renderPage(1));
+    } else if (typeof publicationPageSizeMq.addListener === 'function') {
+      publicationPageSizeMq.addListener(() => renderPage(1));
+    }
 
     // Kun table-filters.js lajittelee DOM-rivit uudelleen, kutsutaan applyFilters,
     // joka lukee rivit aina tuoreena DOM:sta (rows päivitetään applyFilters-alussa).
