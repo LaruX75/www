@@ -75,17 +75,46 @@ layout: base.njk
   {% set backHref = "/en/writings/#aloitteet" if isEnglish else "/kynasta/#aloitteet" %}
 {% endif %}
 
+{% macro heroCopy(wrapperClass) %}
+  <div class="{{ wrapperClass }}">
+    <p class="content-detail-eyebrow mb-2">{{ sectionLabel }}</p>
+    <h1 class="content-detail-title mb-3">{{ title }}</h1>
+    {% if subtitle %}
+      <p class="content-detail-lead mb-2">{{ subtitle }}</p>
+    {% endif %}
+    {% if externalSourceHref %}
+      <div class="content-detail-actions">
+        <a href="{{ externalSourceHref }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">
+          {{ "Open source" if isEnglish else "Avaa lähde" }}
+          <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i>
+        </a>
+      </div>
+    {% endif %}
+  </div>
+{% endmacro %}
+
+<section class="content-detail-hero content-detail-hero--writing py-5 border-bottom">
+  <div class="site-shell">
+    {% if thumbnail %}
+      <div class="content-detail-hero-grid">
+        {{ heroCopy("content-detail-copy") }}
+        <aside class="content-detail-visual" aria-label="{{ 'Preview' if isEnglish else 'Esikatselu' }}">
+          <div class="content-detail-thumb">
+            <img src="{{ thumbnail }}" alt="{{ title }}" loading="lazy" decoding="async">
+          </div>
+        </aside>
+      </div>
+    {% else %}
+      {{ heroCopy("") }}
+    {% endif %}
+  </div>
+</section>
+
 <section>
   <div class="site-shell">
     <article class="blog-post writing-post{{ (' writing-post--' ~ type) if type else '' }}">
       <div class="card shadow-sm">
         <div class="card-body">
-          <p class="writing-post-kicker">{{ sectionLabel }}</p>
-          <h1 class="display-6 fw-bold">{{ title }}</h1>
-          {% if subtitle %}
-            <p class="lead text-muted">{{ subtitle }}</p>
-          {% endif %}
-
           <dl class="writing-post-meta">
             {% if date %}
               <div>
@@ -147,9 +176,6 @@ layout: base.njk
           {% set tocMarkup = content | toc %}
           <div class="row g-4">
             <div class="col-lg-8">
-              {% if thumbnail %}
-                <img loading="lazy" decoding="async" src="{{ thumbnail }}" class="img-fluid rounded mb-4" alt="{{ title }}">
-              {% endif %}
               {% if textVersion %}
                 <div class="writing-post-text-version alert alert-secondary small" role="note">
                   <p class="text-uppercase small text-muted mb-1">{{ "Text version" if isEnglish else "Tekstiversio" }}</p>
