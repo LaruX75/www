@@ -54,12 +54,12 @@ schemaMentions:
   </header>
 
   <section class="committee-focus-grid" aria-label="Lautakuntatyön painopisteet">
-    <article>
+    <article class="committee-focus-card">
       <p class="term-hero-card__kicker">Miksi kokoukset ovat mukana</p>
       <h2>Ratkaisut näkyvät ensin lautakunnan listalla</h2>
       <p>Kouluverkko, tilaratkaisut, oppimisen tuki ja palvelujen järjestäminen tulevat usein lautakuntaan ennen kuin ne näkyvät valtuustossa tai julkisessa keskustelussa isompina kokonaisuuksina.</p>
     </article>
-    <article>
+    <article class="committee-focus-card committee-focus-card--secondary">
       <p class="term-hero-card__kicker">Oma julkinen jälki</p>
       <h2>Kaikki lautakuntatyö ei näy puheenvuoroina</h2>
       <p>Lautakunnan keskustelut eivät ole valtuustopuheiden tapaan julkisia tallenteita. Siksi olen liittänyt mukaan ne kirjoitukset, muutosesitykset ja taustoitukset, joissa olen avannut omaa ajatteluani julkisesti.</p>
@@ -652,5 +652,80 @@ html[data-bs-theme="dark"] .committee-season-stats dt {
     grid-template-columns: 1fr;
   }
 
+}
+
+@media (max-width: 767.98px) {
+  .committee-meetings {
+    gap: 1rem;
+    padding-top: 1.25rem;
+  }
+
+  .committee-meetings-hero {
+    padding: 1rem;
+  }
+
+  .committee-meetings-hero .term-hero-title {
+    font-size: clamp(2.2rem, 13vw, 3.2rem);
+  }
+
+  .committee-meetings-hero .term-hero-lead {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    font-size: 0.98rem;
+    line-height: 1.55;
+  }
+
+  .committee-hero-card {
+    display: none;
+  }
+
+  .committee-focus-grid {
+    gap: 0.65rem;
+    padding: 0;
+    background: transparent;
+  }
+
+  .committee-focus-card {
+    padding: 0.9rem;
+  }
+
+  .committee-focus-card--secondary p:last-child {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .committee-season-card__summary {
+    gap: 0.7rem;
+    padding: 1rem;
+  }
+
+  .committee-season-card__summary p {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-height: 1.5;
+  }
+
+  .committee-season-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.35rem;
+  }
+
+  .committee-season-stats div {
+    padding: 0.6rem 0.5rem;
+  }
+
+  .committee-season-stats dt {
+    font-size: 0.66rem;
+  }
+
+  .committee-season-stats dd {
+    font-size: 1.35rem;
+  }
 }
 </style>

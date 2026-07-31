@@ -411,15 +411,28 @@ schemaMentions:
 @media (max-width: 767.98px) {
   .council-meetings {
     gap: 1.2rem;
-    padding-top: 2rem;
+    padding-top: 1.25rem;
   }
 
   .council-meetings-hero {
-    padding: 1.2rem;
+    padding: 1rem;
+  }
+
+  .council-meetings-hero .term-hero-title {
+    font-size: clamp(2.2rem, 13vw, 3.2rem);
+  }
+
+  .council-meetings-hero .term-hero-lead {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    font-size: 0.98rem;
+    line-height: 1.55;
   }
 
   .council-meetings-hero-card {
-    align-content: start;
+    display: none;
   }
 
   .council-year-block {
