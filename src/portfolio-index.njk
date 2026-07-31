@@ -969,6 +969,15 @@ schemaMentions:
   @media (max-width: 991.98px) {
   }
   @media (max-width: 767.98px) {
+    .portfolio-hero .site-shell {
+      padding-top: 2rem !important;
+      padding-bottom: 1.25rem !important;
+    }
+
+    .portfolio-hero-divider {
+      height: 10px;
+    }
+
     .portfolio-mobile-path {
       display: block;
       position: sticky;
@@ -1031,7 +1040,33 @@ schemaMentions:
     }
     .portfolio-hero-title {
       max-width: none;
-      font-size: 2.5rem;
+      font-size: clamp(2rem, 10vw, 2.5rem);
+      line-height: 1.02;
+    }
+    .portfolio-hero-lead {
+      display: -webkit-box;
+      margin-bottom: 1rem !important;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    .portfolio-hero-points {
+      gap: 0.45rem;
+      margin-bottom: 1rem !important;
+    }
+    .portfolio-hero-point .card-body {
+      padding: 0.7rem 0.8rem;
+    }
+    .portfolio-hero-point-title {
+      line-height: 1.2;
+    }
+    .portfolio-hero-point-text {
+      display: none;
+    }
+    .portfolio-hero-card {
+      display: none;
     }
     .portfolio-hero-card .card-body,
     .portfolio-principle-card .card-body,
