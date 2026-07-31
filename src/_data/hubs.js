@@ -1,34 +1,37 @@
 module.exports = {
   fi: {
     work: {
-      ingress: "Yliopisto-opetus, tutkimus ja asiantuntijakoulutus — kolme roolia, yksi tarkoitus.",
+      ingress: "Opetus, tutkimus ja yhteiskunnallinen vuorovaikutus - yksi yliopistotyön kokonaisuus.",
       groups: [
         {
-          heading: "Opetus",
+          heading: "Yliopistotyö",
           links: [
             { title: "Työni yliopistonlehtorina", href: "/tyoni-yliopistonlehtorina/", icon: "bi bi-mortarboard", description: "Kurssit, opetusvastuut ja pedagoginen kehitystyö Oulun yliopistossa." },
+            { title: "Esitykset", href: "/esitykset/", icon: "bi bi-easel2", description: "Luentoja, koulutuksia ja opetusmateriaaleja tekoälystä, oppimisesta ja pedagogiikasta." },
             { title: "Opetusportfolio", href: "/portfolio/", icon: "bi bi-collection", description: "Pedagoginen filosofia ja koulutuksen kehittyminen vuosien varrella." },
-            { title: "Esitykset", href: "/esitykset/", icon: "bi bi-easel2", description: "Koulutus- ja konferenssiesityksiä tekoälystä, oppimisesta ja pedagogiikasta." },
-            { title: "Ohjatut opinnäytteet", href: "/opinnaytteet/", icon: "bi bi-mortarboard-fill", description: "Ohjatut kandidaatti- ja pro gradu -tutkielmat aiheittain ja vuosittain." }
+            { title: "Ansioluettelo", href: "/cv/", icon: "bi bi-file-earmark-person", description: "Yhteenveto akateemisesta urasta, meriiteistä ja tehtävistä." }
           ]
         },
         {
           heading: "Tutkimus",
           links: [
-            { title: "Tutkimussivulle", href: "/tutkimus/", icon: "bi bi-graph-up-arrow", description: "Tutkimushankkeet, tieteelliset profiilit ja yhteenveto tutkimusurastani." },
-            { title: "Ansioluettelo", href: "/cv/", icon: "bi bi-file-earmark-person", description: "Yhteenveto akateemisesta urasta, meriiteistä ja tehtävistä." },
-            { title: "Julkaisuluettelo", href: "/julkaisut/", icon: "bi bi-journal-text", description: "Kaikki tieteelliset julkaisut, kirjoitukset ja muut tekstisisällöt." }
+            { title: "Tutkimus", href: "/tutkimus/", icon: "bi bi-graph-up-arrow", description: "Tutkimuslinjat, hankkeet ja tutkimusperustainen asiantuntijuus." },
+            { title: "Väitöskirja", href: "/vaitoskirja/", icon: "bi bi-book", description: "Lectio-video, väitöskirja ja neljä osajulkaisua samassa kokonaisuudessa." },
+            { title: "Julkaisuluettelo", href: "/julkaisut/", icon: "bi bi-journal-text", description: "Tieteelliset julkaisut, asiantuntijatekstit ja muut tekstisisällöt." },
+            { title: "Ohjatut opinnäytteet", href: "/opinnaytteet/", icon: "bi bi-mortarboard-fill", description: "Ohjatut kandidaatti- ja pro gradu -tutkielmat aiheittain ja vuosittain." }
           ]
         },
         {
-          heading: "Kouluttaja (yrittäjä)",
+          heading: "Yhteiskunnallinen vuorovaikutus",
           links: [
-            { title: "Larux t:mi", href: "/kouluttaja/", icon: "bi bi-building", description: "AI-koulutukset, keynote-esitykset ja pedagoginen asiantuntemus yrityksen kautta." },
-            { title: "Esitykset", href: "/esitykset/", icon: "bi bi-easel2", description: "Näytteitä koulutus- ja keynote-esitysten sisällöistä." }
+            { title: "Yhteiskunnallinen vuorovaikutus", href: "/yhteiskunnallinen-vuorovaikutus/", icon: "bi bi-diagram-3", description: "Miten tutkimus, opetus ja asiantuntijatyö näkyvät yhteiskunnassa." },
+            { title: "Lausunnot ja kannanotot", href: "/kynasta/#lausunnot", icon: "bi bi-file-text", description: "Asiantuntijalausunnot, kannanotot ja osallistuminen valmisteluun." },
+            { title: "Esitykset ja avoimet materiaalit", href: "/esitykset/", icon: "bi bi-easel2", description: "Jaettavia puheenvuoroja, koulutuksia ja opetuksen tukimateriaaleja." },
+            { title: "Mediassa", href: "/mediassa/", icon: "bi bi-newspaper", description: "Haastattelut, mediaosumat ja julkinen keskustelu." }
           ]
         },
         {
-          heading: "Tutkijaprofiili",
+          heading: "Tutkijaprofiilit",
           links: [
             { title: "LinkedIn", href: "https://www.linkedin.com/in/jarilaru/", icon: "bi bi-linkedin", description: "Ammatillinen profiili, verkostot ja ajankohtaiset nostot.", external: true },
             { title: "ResearchGate", href: "https://www.researchgate.net/profile/Jari-Laru", icon: "bi bi-globe", description: "Tutkimusprofiili, julkaisut ja tutkimusverkostot.", external: true },
@@ -114,29 +117,33 @@ module.exports = {
   },
   en: {
     work: {
-      ingress: "University teaching, research and professional training — three roles, one shared purpose.",
+      ingress: "Teaching, research and societal engagement - one coherent university work profile.",
       groups: [
         {
-          heading: "Teaching",
+          heading: "University Work",
           links: [
             { title: "My Work as a University Lecturer", href: "/en/work/", icon: "bi bi-mortarboard", description: "Courses, teaching responsibilities, and pedagogical development at the University of Oulu." },
+            { title: "Presentations", href: "/en/presentations/", icon: "bi bi-easel2", description: "Lectures, training materials, and teaching resources on AI, learning, and pedagogy." },
             { title: "Teaching Portfolio", href: "/en/portfolio/", icon: "bi bi-collection", description: "Educational philosophy and pedagogical development over the years." },
-            { title: "Presentations", href: "/en/presentations/", icon: "bi bi-easel2", description: "Training and conference presentations on AI, learning, and pedagogy." },
-            { title: "Supervised Theses", href: "/en/theses/", icon: "bi bi-mortarboard-fill", description: "Bachelor's and master's theses supervised by me, listed by topic and year." }
+            { title: "Curriculum Vitae", href: "/en/cv/", icon: "bi bi-file-earmark-person", description: "Academic profile, key roles, and professional merits." }
           ]
         },
         {
           heading: "Research",
           links: [
-            { title: "Curriculum Vitae", href: "/en/cv/", icon: "bi bi-file-earmark-person", description: "Academic profile, key roles, and professional merits." },
-            { title: "Publication List", href: "/en/publications/", icon: "bi bi-journal-text", description: "Scientific publications, essays, and related outputs in one view." }
+            { title: "Research", href: "/en/research/", icon: "bi bi-graph-up-arrow", description: "Research lines, projects, and research-based expertise." },
+            { title: "Doctoral Dissertation", href: "/en/dissertation/", icon: "bi bi-book", description: "Lectio video, dissertation, and four original publications in one place." },
+            { title: "Publication List", href: "/en/publications/", icon: "bi bi-journal-text", description: "Scientific publications, expert texts, and related outputs in one view." },
+            { title: "Supervised Theses", href: "/en/theses/", icon: "bi bi-mortarboard-fill", description: "Bachelor's and master's theses supervised by me, listed by topic and year." }
           ]
         },
         {
-          heading: "Trainer (Entrepreneur)",
+          heading: "Societal Engagement",
           links: [
-            { title: "Larux — Training & Expert Services", href: "/en/company/", icon: "bi bi-building", description: "AI education, keynote talks, and pedagogy training through Larux." },
-            { title: "Presentations", href: "/en/presentations/", icon: "bi bi-easel2", description: "Selected decks and keynote examples for different audiences." }
+            { title: "Societal Engagement", href: "/en/societal-engagement/", icon: "bi bi-diagram-3", description: "How research, teaching, and expertise connect with society." },
+            { title: "Statements and Commentary", href: "/en/writings/#lausunnot", icon: "bi bi-file-text", description: "Expert statements and commentary connected to policy preparation and public debate." },
+            { title: "Presentations and Open Materials", href: "/en/presentations/", icon: "bi bi-easel2", description: "Shareable talks, training materials, and teaching resources." },
+            { title: "Media", href: "/en/media/", icon: "bi bi-newspaper", description: "Interviews, media mentions, and public discussion." }
           ]
         },
         {

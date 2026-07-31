@@ -970,6 +970,12 @@ module.exports = {
               description: "How research and teaching continue in materials, statements, media, and decision-making."
             },
             {
+              title: "Statements and commentary",
+              href: "/en/writings/#lausunnot",
+              icon: "bi bi-file-earmark-text me-2",
+              description: "Expert statements and commentary connected to education policy and public debate."
+            },
+            {
               title: "Presentations and open materials",
               href: "/en/presentations/",
               icon: "bi bi-easel2 me-2",
@@ -980,12 +986,6 @@ module.exports = {
               href: "/en/media/",
               icon: "bi bi-camera-reels me-2",
               description: "Interviews, podcasts, and media appearances as part of public expert work."
-            },
-            {
-              title: "Training services",
-              href: "/en/company/",
-              icon: "bi bi-building me-2",
-              description: "Larux services, background, and collaboration model."
             }
           ]
         }
