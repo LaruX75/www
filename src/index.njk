@@ -169,7 +169,26 @@ translationKey: home
             <div>
                 <p class="home-section-kicker mb-1">Yliopistotyö</p>
                 <h2 class="h3 mb-2">Tutkimus, opetus ja yhteiskunnallinen vuorovaikutus</h2>
-                <p class="mb-0 text-muted">Tutkin oppimista ja teknologiaa, opetan tulevia opettajia ja vien tutkimustietoa kouluihin, verkostoihin, valmisteluun ja julkiseen keskusteluun. Näin tutkimus, opetus ja päätöksenteko voivat kohdata käytännössä.</p>
+                <p class="home-impact-statement mb-2">Tutkimuksesta opetukseen, työkaluihin ja päätöksentekoon.</p>
+                <p class="mb-0 text-muted">Työni ydin on tehdä oppimisen, teknologian ja tekoälyn tutkimuksesta ymmärrettävää ja käyttökelpoista. Se näkyy opettajankoulutuksessa, materiaaleissa, opettajien täydennyskoulutuksissa, lausunnoissa ja julkisessa keskustelussa.</p>
+                <div class="home-impact-grid" aria-label="Mitä työstä syntyy">
+                    <div>
+                        <span>Koulutus</span>
+                        <p>Opettajankoulutus ja täydennyskoulutukset vievät tutkimusta opettajien ja organisaatioiden arkeen.</p>
+                    </div>
+                    <div>
+                        <span>Osaaminen</span>
+                        <p>Tekoälylukutaito, digipedagogiikka ja teknologian ymmärtävä käyttö vahvistuvat käytännön kautta.</p>
+                    </div>
+                    <div>
+                        <span>Materiaalit ja työkalut</span>
+                        <p>Avoimet esitykset, oppimateriaalit ja kokeiluympäristöt tekevät ilmiöistä käsiteltäviä.</p>
+                    </div>
+                    <div>
+                        <span>Päätöksenteko ja julkinen keskustelu</span>
+                        <p>Lausunnot, media ja luottamustehtävät tuovat tutkimusperustaisia näkökulmia koulutuksen kehittämiseen ja päätöksentekoon.</p>
+                    </div>
+                </div>
             </div>
             <div class="home-university-mission-links">
                 <a href="/tutkimus/">Tutkimus</a>
@@ -396,19 +415,58 @@ translationKey: home
 
   .home-university-mission {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 1.5rem;
-    align-items: end;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    align-items: start;
     padding: 1.5rem;
     border: 1px solid var(--bs-border-color);
     border-radius: 1.25rem;
     background: color-mix(in srgb, var(--bs-body-bg) 88%, var(--bs-primary) 4%);
   }
 
+  .home-impact-statement {
+    max-width: 42rem;
+    font-size: clamp(1.05rem, 1.6vw, 1.24rem);
+    font-weight: 800;
+    line-height: 1.35;
+    color: var(--bs-heading-color);
+  }
+
+  .home-impact-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  .home-impact-grid div {
+    min-width: 0;
+    padding: 0.9rem;
+    border: 1px solid color-mix(in srgb, var(--bs-border-color) 85%, var(--bs-primary) 15%);
+    border-radius: 0.9rem;
+    background: color-mix(in srgb, var(--bs-body-bg) 92%, var(--bs-primary) 4%);
+  }
+
+  .home-impact-grid span {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 0.82rem;
+    font-weight: 850;
+    color: var(--bs-heading-color);
+  }
+
+  .home-impact-grid p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: var(--bs-secondary-color);
+  }
+
   .home-university-mission-links {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
+    padding-top: 0.2rem;
   }
 
   .home-university-mission-links a {
@@ -829,6 +887,7 @@ translationKey: home
   }
   @media (max-width: 1199.98px) {
     .home-paths-grid,
+    .home-impact-grid,
     .home-challenge-grid,
     .home-recent-editorial,
     .home-focus-kpis {
@@ -987,6 +1046,7 @@ translationKey: home
       padding-top: 1.2rem;
     }
     .home-paths-grid,
+    .home-impact-grid,
     .home-challenge-grid,
     .home-recent-editorial,
     .home-focus-kpis {
