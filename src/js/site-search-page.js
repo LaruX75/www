@@ -12,8 +12,26 @@
   const isEn = (document.documentElement.lang || "").toLowerCase().startsWith("en");
   const languageFilter = mount.dataset.pagefindLang || (isEn ? "English" : "Suomi");
   const placeholder = mount.dataset.pagefindPlaceholder || (isEn ? "Type a search term..." : "Kirjoita hakusana...");
+  const fallbackForm = document.querySelector("[data-search-page-fallback]");
+  const fallbackInput = fallbackForm?.querySelector("[data-search-page-fallback-input]");
 
   let pagefindUi = null;
+
+  if (fallbackInput && initialQuery) {
+    fallbackInput.value = initialQuery;
+  }
+
+  if (fallbackForm) {
+    fallbackForm.addEventListener("submit", (event) => {
+      const query = String(fallbackInput?.value || "").trim();
+      if (!pagefindUi || !query) return;
+      event.preventDefault();
+      const params = new URLSearchParams(window.location.search);
+      params.set("q", query);
+      window.history.replaceState({}, "", `${window.location.pathname}?${params.toString()}${window.location.hash}`);
+      applyQuery(query);
+    });
+  }
 
   function initUi() {
     if (!window.PagefindUI) return false;
@@ -53,6 +71,10 @@
             searching: "Haetaan hakusanalla [SEARCH_TERM]..."
           }
     });
+
+    if (fallbackForm) {
+      fallbackForm.hidden = true;
+    }
 
     if (typeof pagefindUi.filters === "function") {
       pagefindUi.filters({ Kieli: languageFilter });
@@ -101,6 +123,9 @@
       window.setTimeout(() => waitForPagefind(attempt + 1), 50);
     } else {
       console.warn("PagefindUI ei latautunut hakusivulle.");
+      mount.innerHTML = `<p class="alert alert-info mb-0">${isEn
+        ? "The search index is not available in this build yet. The search field above is still shown, and full results are available after the Pagefind index has been generated."
+        : "Hakemisto ei ole käytettävissä tässä buildissä. Hakukenttä näkyy silti yllä, ja varsinaiset tulokset toimivat, kun Pagefind-indeksi on generoitu."}</p>`;
     }
   }
 
