@@ -139,33 +139,8 @@ schemaMentions:
   </div>
   {% endif %}
 
-  {# ---- Avainsanapilvi kategorioittain ---- #}
-  {% if keywordCategories %}
-  <script type="application/json" id="thesis-keyword-categories">{{ keywordCategories | jsonSafe | safe }}</script>
-  {% endif %}
   {# Ruudunlukijan ilmoitusalue suodatustuloksille #}
   <div id="thesis-filter-status" role="status" aria-live="polite" aria-atomic="true" class="visually-hidden"></div>
-  <div class="accordion shadow-sm mb-5" id="thesis-subject-cloud">
-    <div class="accordion-item">
-      <h2 class="accordion-header">
-        <button class="accordion-button collapsed py-2 small fw-semibold" type="button"
-                data-bs-toggle="collapse" data-bs-target="#thesis-cloud-collapse"
-                aria-expanded="false" aria-controls="thesis-cloud-collapse">
-          <i class="bi bi-tags-fill me-2 text-primary" aria-hidden="true"></i>Avainsanat kategorioittain
-        </button>
-      </h2>
-      <div id="thesis-cloud-collapse" class="accordion-collapse collapse">
-        <div class="accordion-body p-0 d-flex align-items-center justify-content-end px-3 pt-2" style="min-height:0">
-          <button type="button" class="btn btn-link btn-sm p-0 text-muted" id="thesis-cloud-clear" style="display:none!important">
-            <i class="bi bi-x-circle me-1" aria-hidden="true"></i>Poista suodatus
-          </button>
-        </div>
-        <div class="p-0" id="thesis-cloud-container">
-          <span class="text-muted small p-3 d-block">Ladataan...</span>
-        </div>
-      </div>
-    </div>
-  </div>
 
   {# ---- Pro Gradut Card ---- #}
   <div class="card shadow-sm mb-5 section-card" id="card-master">
@@ -1150,7 +1125,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function getKeywordFromUrlContext() {
-    const direct = (urlParams.get('keyword') || urlParams.get('avainsana') || '').trim();
+    const direct = (urlParams.get('th_research_keyword') || urlParams.get('keyword') || urlParams.get('avainsana') || '').trim();
     if (direct) return direct;
     const searchKeys = Array.from(urlParams.keys()).filter((key) => /^th_.+_q$/.test(key));
     for (const key of searchKeys) {
@@ -1174,27 +1149,22 @@ document.addEventListener('DOMContentLoaded', () => {
     if (twitterTitleMeta) twitterTitleMeta.setAttribute('content', dynamicTitle);
   }
 
-  // Delegoitu klikkaus kaikille avainsanapainikkeille (pilvi + taulukon rivit)
+  // Rivin avainsana asettaa saman rajauksen kuin yläosan avainsanavalikko.
   document.addEventListener('click', (event) => {
     const kwBtn = event.target.closest('.thesis-keyword-link');
     if (!kwBtn) return;
-    const kw = kwBtn.dataset.keyword || '';
-    activateKeywordContext(kw);
-
-    // Aseta hakusana kaikkiin hakukenttiin ja käynnistä suodatus
-    document.querySelectorAll('[data-thesis-search]').forEach(input => {
-      input.value = kw;
-      input.dispatchEvent(new Event('input', { bubbles: true }));
-    });
+    const kw = (kwBtn.dataset.keyword || '').trim().toLowerCase();
+    if (thesisResearchKeywordSelect && Array.from(thesisResearchKeywordSelect.options).some((option) => option.value === kw)) {
+      thesisResearchKeywordSelect.value = kw;
+      thesisResearchKeywordSelect.dispatchEvent(new Event('change', { bubbles: true }));
+    }
 
     // Vieritä ensimmäiseen taulukkoon
     const firstCard = document.getElementById('card-master');
     if (firstCard) firstCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
-  buildKeywordCloud();
   const initialKeyword = getKeywordFromUrlContext();
-  if (initialKeyword) activateKeywordContext(initialKeyword);
   applyKeywordToPageShareMeta(initialKeyword);
 
   // ---- Vuosirimps: interaktiivinen vuosisuodatin ----
