@@ -52,8 +52,13 @@ schemaMentions:
   {% endif %}
 {% endfor %}
 {% set latestSpeechHighlights = (councilSpeechItems or []).slice(0, 3) %}
+{% set latestPublicSpeechHighlights = (publicSpeechItems or []).slice(0, 3) %}
 {% set latestInitiativeHighlights = (collections.politics or []).slice(0, 3) %}
 {% set latestBlogHighlights = (collections.blog or []).slice(0, 3) %}
+{% set latestStatementHighlights = statementItems.slice(0, 3) %}
+{% set latestOpinionHighlights = (collections.pub_mielipide or []).slice(0, 3) %}
+{% set latestColumnHighlights = (collections.pub_kolumni or []).slice(0, 3) %}
+{% set latestExpertOpinionHighlights = ((collections.pub_mielipide_expert or []) or []).slice(0, 3) %}
 {% set speechCount = (collections.pub_puhe or []) | length %}
 {% set councilSpeechCount = councilSpeechItems | length %}
 {% set publicSpeechCount = publicSpeechItems | length %}
@@ -72,6 +77,9 @@ schemaMentions:
   {% endif %}
 {% endfor %}
 {% set hybridOpinionCount = hybridOpinionItems | length %}
+{% set decisionRouteCount = councilSpeechCount + initiativeCount + statementCount %}
+{% set commentaryRouteCount = opinionCount + columnCount + blogCount %}
+{% set expertRouteCount = statementCount + expertOpinionCount + publicSpeechCount %}
 
 <section class="kynasta-hero py-3 py-lg-4">
   <div class="site-shell">
@@ -79,22 +87,19 @@ schemaMentions:
       <div class="col-lg-7">
         <p class="text-uppercase small text-muted mb-2">Kynästä</p>
         <h1 class="display-6 fw-bold mb-2">Kirjoitukset, puheet ja kannanotot</h1>
-        <p class="text-muted mb-3">Puheet, valtuustoaloitteet, lausunnot, mielipidekirjoitukset, kolumnit ja blogi koottuna sisältötyypeittäin.</p>
+        <p class="text-muted mb-3">Puheet, valtuustoaloitteet, lausunnot, mielipidekirjoitukset, kolumnit ja blogi samassa kokonaisuudessa. Sivun voi lukea käyttötarkoituksen, roolin tai sisältötyypin kautta.</p>
         <div class="d-flex flex-wrap gap-2">
-          <a class="nav-link" href="#puheet">
-            Valtuustopuheet <span class="nav-count">{{ councilSpeechCount }}</span>
+          <a class="nav-link" href="#reitti-paatoksenteko">
+            Päätöksenteko <span class="nav-count">{{ decisionRouteCount }}</span>
           </a>
-          <a class="nav-link" href="#julkiset-puheet">
-            Muut puheet <span class="nav-count">{{ publicSpeechCount }}</span>
+          <a class="nav-link" href="#reitti-kannanotot">
+            Kannanotot <span class="nav-count">{{ commentaryRouteCount }}</span>
           </a>
-          <a class="nav-link" href="#aloitteet">
-            Valtuustoaloitteet <span class="nav-count">{{ initiativeCount }}</span>
+          <a class="nav-link" href="#reitti-asiantuntijuus">
+            Asiantuntijarooli <span class="nav-count">{{ expertRouteCount }}</span>
           </a>
-          <a class="nav-link" href="#lausunnot">
-            Lausunnot <span class="nav-count">{{ statementCount }}</span>
-          </a>
-          <a class="nav-link" href="#blogi">
-            Kirjoitukset <span class="nav-count">{{ blogCount + opinionCount + columnCount + statementCount }}</span>
+          <a class="nav-link" href="#arkisto">
+            Arkisto <span class="nav-count">{{ speechCount + initiativeCount + statementCount + opinionCount + columnCount + blogCount }}</span>
           </a>
         </div>
       </div>
@@ -113,14 +118,147 @@ schemaMentions:
 
 <nav class="kynasta-mobile-path" aria-label="Kynästä-sivun tärkeimmät sisällöt">
   <div class="site-shell">
-    <a href="#puheet">Puheet</a>
-    <a href="#julkiset-puheet">Muut puheet</a>
-    <a href="#mielipiteet">Mielipiteet</a>
-    <a href="#lausunnot">Lausunnot</a>
-    <a href="#aloitteet">Valtuustoaloitteet</a>
-    <a href="#blogi">Blogi</a>
+    <a href="#reitti-paatoksenteko">Päätökset</a>
+    <a href="#reitti-kannanotot">Kannanotot</a>
+    <a href="#reitti-asiantuntijuus">Asiantuntijuus</a>
+    <a href="#kynasta-topic-profiles-title">Aiheet</a>
+    <a href="#arkisto">Arkisto</a>
   </div>
 </nav>
+
+<section id="aloita-tasta" class="py-5">
+  <div class="site-shell">
+    <div class="row g-4 align-items-end mb-2">
+      <div class="col-lg-8">
+        <p class="text-uppercase small text-muted mb-2">Kolme pääreittiä</p>
+        <h2 class="h3 mb-2">Kolme tapaa lukea samaa aineistoa</h2>
+        <p class="text-muted mb-0">Tällä sivulla sama aihe voi näkyä puheena, lausuntona, mielipidekirjoituksena tai blogitekstinä. Siksi varsinainen selaus kannattaa aloittaa siitä, etsitkö päätöksentekoon liittyviä tekstejä, julkisia kannanottoja vai asiantuntijaroolissa tehtyjä sisältöjä.</p>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-4" id="reitti-paatoksenteko">
+        <article class="card border-0 shadow-sm h-100 kynasta-route-card">
+          <div class="card-body p-4 d-flex flex-column">
+            <p class="kynasta-entry-kicker">Vaikuttaminen</p>
+            <h3 class="h5 mb-2">Päätöksenteko, valmistelu ja viralliset kannat</h3>
+            <p class="small text-muted mb-3">Tämä reitti kokoaa sisällöt, joissa teksti liittyy suoraan valmisteluun, valtuustotyöhön tai julkiseen päätöksentekoon.</p>
+            <div class="d-flex flex-wrap gap-2 mb-3">
+              <span class="badge text-bg-light border">Lausunnot {{ statementCount }}</span>
+              <span class="badge text-bg-light border">Valtuustopuheet {{ councilSpeechCount }}</span>
+              <span class="badge text-bg-light border">Aloitteet {{ initiativeCount }}</span>
+            </div>
+            <div class="d-grid gap-3 mb-4">
+              {% if latestStatementHighlights[0] %}
+              <div>
+                <p class="small text-uppercase text-muted fw-semibold mb-1">Lausuntonosto</p>
+                <a class="text-decoration-none fw-semibold" href="{{ latestStatementHighlights[0].data.url or latestStatementHighlights[0].url }}">{{ latestStatementHighlights[0].data.title }}</a>
+              </div>
+              {% endif %}
+              {% if latestSpeechHighlights[0] %}
+              <div>
+                <p class="small text-uppercase text-muted fw-semibold mb-1">Puheenvuoronosto</p>
+                <a class="text-decoration-none fw-semibold" href="{{ latestSpeechHighlights[0].data.url or latestSpeechHighlights[0].url }}">{{ latestSpeechHighlights[0].data.title }}</a>
+              </div>
+              {% endif %}
+              {% if latestInitiativeHighlights[0] %}
+              <div>
+                <p class="small text-uppercase text-muted fw-semibold mb-1">Aloitenosto</p>
+                <a class="text-decoration-none fw-semibold" href="{{ latestInitiativeHighlights[0].data.url or latestInitiativeHighlights[0].url }}">{{ latestInitiativeHighlights[0].data.title }}</a>
+              </div>
+              {% endif %}
+            </div>
+            <div class="mt-auto d-flex flex-wrap gap-2">
+              <a class="btn btn-outline-primary btn-sm rounded-pill px-3" href="#lausunnot">Lausunnot</a>
+              <a class="btn btn-outline-primary btn-sm rounded-pill px-3" href="#puheet">Valtuustopuheet</a>
+              <a class="btn btn-outline-secondary btn-sm rounded-pill px-3" href="#aloitteet">Aloitteet</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="col-lg-4" id="reitti-kannanotot">
+        <article class="card border-0 shadow-sm h-100 kynasta-route-card">
+          <div class="card-body p-4 d-flex flex-column">
+            <p class="kynasta-entry-kicker">Julkinen keskustelu</p>
+            <h3 class="h5 mb-2">Mielipiteet, kolumnit ja blogitekstit</h3>
+            <p class="small text-muted mb-3">Tämä reitti näyttää, miten teemat näkyvät julkisina kannanottoina, pidempinä kirjoituksina ja omassa blogissa.</p>
+            <div class="d-flex flex-wrap gap-2 mb-3">
+              <span class="badge text-bg-light border">Mielipiteet {{ opinionCount }}</span>
+              <span class="badge text-bg-light border">Kolumnit {{ columnCount }}</span>
+              <span class="badge text-bg-light border">Blogi {{ blogCount }}</span>
+            </div>
+            <div class="d-grid gap-3 mb-4">
+              {% if latestOpinionHighlights[0] %}
+              <div>
+                <p class="small text-uppercase text-muted fw-semibold mb-1">Mielipidenosto</p>
+                <a class="text-decoration-none fw-semibold" href="{{ latestOpinionHighlights[0].data.url or latestOpinionHighlights[0].url }}">{{ latestOpinionHighlights[0].data.title }}</a>
+              </div>
+              {% endif %}
+              {% if latestColumnHighlights[0] %}
+              <div>
+                <p class="small text-uppercase text-muted fw-semibold mb-1">Kolumninosto</p>
+                <a class="text-decoration-none fw-semibold" href="{{ latestColumnHighlights[0].data.url or latestColumnHighlights[0].url }}">{{ latestColumnHighlights[0].data.title }}</a>
+              </div>
+              {% endif %}
+              {% if latestBlogHighlights[0] %}
+              <div>
+                <p class="small text-uppercase text-muted fw-semibold mb-1">Bloginosto</p>
+                <a class="text-decoration-none fw-semibold" href="{{ latestBlogHighlights[0].url }}">{{ latestBlogHighlights[0].data.title }}</a>
+              </div>
+              {% endif %}
+            </div>
+            <div class="mt-auto d-flex flex-wrap gap-2">
+              <a class="btn btn-outline-primary btn-sm rounded-pill px-3" href="#mielipiteet">Mielipiteet</a>
+              <a class="btn btn-outline-primary btn-sm rounded-pill px-3" href="#kolumnit">Kolumnit</a>
+              <a class="btn btn-outline-secondary btn-sm rounded-pill px-3" href="#blogi">Blogi</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="col-lg-4" id="reitti-asiantuntijuus">
+        <article class="card border-0 shadow-sm h-100 kynasta-route-card">
+          <div class="card-body p-4 d-flex flex-column">
+            <p class="kynasta-entry-kicker">Roolin kautta</p>
+            <h3 class="h5 mb-2">Asiantuntijarooli yli eri sisältömuotojen</h3>
+            <p class="small text-muted mb-3">Jos etsit nimenomaan opetukseen, tutkimukseen ja teknologiaan nojaavaa asiantuntijatyötä, tämä reitti kokoaa sen yhteen yli formaattien.</p>
+            <div class="d-flex flex-wrap gap-2 mb-3">
+              <span class="badge text-bg-light border">Lausunnot {{ statementCount }}</span>
+              <span class="badge text-bg-light border">Asiantuntijamielipiteet {{ expertOpinionCount }}</span>
+              <span class="badge text-bg-light border">Julkiset puheet {{ publicSpeechCount }}</span>
+            </div>
+            <div class="d-grid gap-3 mb-4">
+              {% if latestExpertOpinionHighlights[0] %}
+              <div>
+                <p class="small text-uppercase text-muted fw-semibold mb-1">Asiantuntijamielipide</p>
+                <a class="text-decoration-none fw-semibold" href="{{ latestExpertOpinionHighlights[0].data.url or latestExpertOpinionHighlights[0].url }}">{{ latestExpertOpinionHighlights[0].data.title }}</a>
+              </div>
+              {% endif %}
+              {% if latestStatementHighlights[0] %}
+              <div>
+                <p class="small text-uppercase text-muted fw-semibold mb-1">Lausuntonosto</p>
+                <a class="text-decoration-none fw-semibold" href="{{ latestStatementHighlights[0].data.url or latestStatementHighlights[0].url }}">{{ latestStatementHighlights[0].data.title }}</a>
+              </div>
+              {% endif %}
+              {% if latestPublicSpeechHighlights[0] %}
+              <div>
+                <p class="small text-uppercase text-muted fw-semibold mb-1">Julkisen puheen nosto</p>
+                <a class="text-decoration-none fw-semibold" href="{{ latestPublicSpeechHighlights[0].data.url or latestPublicSpeechHighlights[0].url }}">{{ latestPublicSpeechHighlights[0].data.title }}</a>
+              </div>
+              {% endif %}
+            </div>
+            <div class="mt-auto d-flex flex-wrap gap-2">
+              <a class="btn btn-outline-primary btn-sm rounded-pill px-3" href="#lausunnot">Lausunnot</a>
+              <a class="btn btn-outline-primary btn-sm rounded-pill px-3" href="#julkiset-puheet">Julkiset puheet</a>
+              <a class="btn btn-outline-secondary btn-sm rounded-pill px-3" href="#mielipiteet">Roolijaottelu</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
 
 {% set topicProfileKeys = ["oulun-palveluverkko-ja-kaupunkikehitys", "lapinakyva-paatoksenteko-ja-tiedolla-johtaminen", "opettajankoulutus", "tekoalylukutaito"] %}
 {% set topicProfileTitleId = "kynasta-topic-profiles-title" %}
@@ -129,15 +267,15 @@ schemaMentions:
 {% set topicProfileLead = "Samat kysymykset kulkevat puheissa, mielipiteissä, lausunnoissa ja blogikirjoituksissa. Aihepolut kokoavat nämä sisällöt yhteen teeman, eivät julkaisumuodon, perusteella." %}
 {% include "topic-profile-links.njk" %}
 
-<section id="aloita-tasta">
+<section id="arkisto">
   <div class="site-shell">
     <div class="row g-4 align-items-stretch">
       <div class="col-12">
         <div class="d-flex flex-wrap align-items-end justify-content-between gap-2 mb-1">
           <div>
-            <p class="text-uppercase small text-muted mb-1">Sisältötyypit</p>
-            <h2 class="h3 mb-1">Valitse ensin aineiston muoto</h2>
-            <p class="text-muted mb-0">Koko arkisto on mukana, mutta raskaat listat avautuvat vasta kun tarvitset niitä.</p>
+            <p class="text-uppercase small text-muted mb-1">Arkisto</p>
+            <h2 class="h3 mb-1">Selaa koko aineistoa sisältötyypeittäin</h2>
+            <p class="text-muted mb-0">Kun tiedät jo etsimäsi muodon, voit siirtyä suoraan puheisiin, lausuntoihin, mielipiteisiin, kolumneihin, blogiin tai aloitteisiin.</p>
           </div>
         </div>
       </div>
@@ -304,7 +442,7 @@ schemaMentions:
         </div>
 
         <div class="table-responsive">
-          <table class="table table-hover align-middle mb-0 pub-table lausunnot-table">
+          <table class="table table-hover align-middle mb-0 pub-table lausunnot-table" data-no-header-filters>
             <thead>
               <tr>
                 <th class="sortable text-center" data-col="date" style="width:140px">
@@ -420,12 +558,20 @@ schemaMentions:
         {# ---- Suodatuspalkki ---- #}
         <div class="p-3 bg-body-tertiary border-bottom">
           <div class="row g-2 align-items-end">
-            <div class="col-md-10">
+            <div class="col-lg-5">
               <label for="mielipiteet-search" class="form-label small text-muted mb-1">Hae mielipidekirjoituksia</label>
               <input type="search" id="mielipiteet-search" class="form-control form-control-sm"
                      placeholder="Hae otsikosta, julkaisusta, aiheesta tai roolista, esim. asiantuntija..." autocomplete="off">
             </div>
-            <div class="col-md-2 d-flex justify-content-md-end gap-2">
+            <div class="col-sm-3 col-lg-2">
+              <label for="mielipiteet-year" class="form-label small text-muted mb-1">Vuosi</label>
+              <select id="mielipiteet-year" class="form-select form-select-sm" aria-label="Rajaa mielipidekirjoitukset vuoden mukaan"><option value="" selected>Kaikki vuodet</option></select>
+            </div>
+            <div class="col-sm-5 col-lg-3">
+              <label for="mielipiteet-publication" class="form-label small text-muted mb-1">Julkaisu</label>
+              <select id="mielipiteet-publication" class="form-select form-select-sm" aria-label="Rajaa mielipidekirjoitukset julkaisun mukaan"><option value="" selected>Kaikki julkaisut</option></select>
+            </div>
+            <div class="col-sm-4 col-lg-2 d-flex justify-content-md-end gap-2">
               <button id="mielipiteet-reset" class="btn btn-outline-secondary btn-sm w-100">
                 <i class="bi bi-x-circle me-1"></i>Tyhjennä
               </button>
@@ -435,16 +581,24 @@ schemaMentions:
 
         {# ---- Taulukko ---- #}
         <div class="table-responsive">
-          <table class="table table-hover align-middle mb-0 pub-table mielipiteet-table">
+          <table class="table table-hover align-middle mb-0 pub-table mielipiteet-table" data-no-header-filters>
             <thead>
               <tr>
-                <th class="sortable text-center" data-col="date" style="width:140px">
-                  Päivämäärä <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
+                <th class="text-center" data-mobile-label="Päivämäärä" style="width:170px">
+                  <div class="table-header-filter-controls">
+                    <span class="table-header-filter-label">Päivämäärä</span>
+                    <button id="mielipiteet-sort-date" type="button" class="table-header-sort-button" aria-pressed="true"><i class="bi bi-arrow-down"></i></button>
+                  </div>
                 </th>
-                <th class="sortable" data-col="title" style="min-width:200px">
-                  Otsikko <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
+                <th data-mobile-label="Otsikko" style="min-width:200px">
+                  <div class="table-header-filter-controls">
+                    <span class="table-header-filter-label">Otsikko</span>
+                    <button id="mielipiteet-sort-title" type="button" class="table-header-sort-button" aria-pressed="false"><i class="bi bi-arrow-down"></i></button>
+                  </div>
                 </th>
-                <th style="min-width:200px">Tiivistelmä & Julkaisu</th>
+                <th data-mobile-label="Tiivistelmä ja julkaisu" style="min-width:200px">
+                  Tiivistelmä & Julkaisu
+                </th>
                 <th>Kategoriat & Avainsanat</th>
                 <th style="width:80px" class="text-center">Lue</th>
               </tr>
@@ -498,7 +652,7 @@ schemaMentions:
         {# ---- Suodatuspalkki ---- #}
         <div class="p-3 bg-body-tertiary border-bottom">
           <div class="row g-2 align-items-end">
-            <div class="col-lg-6">
+            <div class="col-lg-5">
               <label for="kolumnit-search" class="form-label small text-muted mb-1">Hae kolumneja</label>
               <input type="search" id="kolumnit-search" class="form-control form-control-sm"
                      placeholder="Hae otsikosta, julkaisusta, aiheesta tai roolista..." autocomplete="off">
@@ -512,26 +666,42 @@ schemaMentions:
                 <button type="button" class="btn btn-outline-secondary btn-sm" data-kolumnit-role="hybrid">Rajapinta</button>
               </div>
             </div>
-            <div class="col-lg-2 d-flex justify-content-lg-end gap-2">
+            <div class="col-lg-3 d-flex justify-content-lg-end gap-2">
               <button id="kolumnit-reset" class="btn btn-outline-secondary btn-sm w-100">
                 <i class="bi bi-x-circle me-1"></i>Tyhjennä
               </button>
+            </div>
+            <div class="col-sm-4 col-lg-2">
+              <label for="kolumnit-year" class="form-label small text-muted mb-1">Vuosi</label>
+              <select id="kolumnit-year" class="form-select form-select-sm" aria-label="Rajaa kolumnit vuoden mukaan"><option value="" selected>Kaikki vuodet</option></select>
+            </div>
+            <div class="col-sm-8 col-lg-4">
+              <label for="kolumnit-publication" class="form-label small text-muted mb-1">Julkaisu</label>
+              <select id="kolumnit-publication" class="form-select form-select-sm" aria-label="Rajaa kolumnit julkaisun mukaan"><option value="" selected>Kaikki julkaisut</option></select>
             </div>
           </div>
         </div>
 
         {# ---- Taulukko ---- #}
         <div class="table-responsive">
-          <table class="table table-hover align-middle mb-0 pub-table kolumnit-table">
+          <table class="table table-hover align-middle mb-0 pub-table kolumnit-table" data-no-header-filters>
             <thead>
               <tr>
-                <th class="sortable text-center" data-col="date" style="width:140px">
-                  Päivämäärä <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
+                <th class="text-center" data-mobile-label="Päivämäärä" style="width:170px">
+                  <div class="table-header-filter-controls">
+                    <span class="table-header-filter-label">Päivämäärä</span>
+                    <button id="kolumnit-sort-date" type="button" class="table-header-sort-button" aria-pressed="true"><i class="bi bi-arrow-down"></i></button>
+                  </div>
                 </th>
-                <th class="sortable" data-col="title" style="min-width:200px">
-                  Otsikko <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
+                <th data-mobile-label="Otsikko" style="min-width:200px">
+                  <div class="table-header-filter-controls">
+                    <span class="table-header-filter-label">Otsikko</span>
+                    <button id="kolumnit-sort-title" type="button" class="table-header-sort-button" aria-pressed="false"><i class="bi bi-arrow-down"></i></button>
+                  </div>
                 </th>
-                <th style="min-width:200px">Tiivistelmä & Julkaisu</th>
+                <th data-mobile-label="Tiivistelmä ja julkaisu" style="min-width:200px">
+                  Tiivistelmä & Julkaisu
+                </th>
                 <th>Kategoriat & Avainsanat</th>
                 <th style="width:80px" class="text-center">Lue</th>
               </tr>
@@ -602,7 +772,7 @@ schemaMentions:
 
         {# ---- Taulukko ---- #}
         <div class="table-responsive">
-          <table class="table table-hover align-middle mb-0 pub-table aloitteet-table">
+          <table class="table table-hover align-middle mb-0 pub-table aloitteet-table" data-no-header-filters>
             <thead>
               <tr>
                 <th class="sortable text-center" data-col="meetingDate" style="width:150px">
@@ -690,7 +860,7 @@ schemaMentions:
 
         {# ---- Taulukko ---- #}
         <div class="table-responsive">
-          <table class="table table-hover align-middle mb-0 pub-table puheet-table">
+          <table class="table table-hover align-middle mb-0 pub-table puheet-table" data-no-header-filters>
             <thead>
               <tr>
                 <th class="sortable text-center" data-col="date" style="width:140px">
@@ -767,7 +937,7 @@ schemaMentions:
         </div>
 
         <div class="table-responsive">
-          <table class="table table-hover align-middle mb-0 pub-table julkiset-puheet-table">
+          <table class="table table-hover align-middle mb-0 pub-table julkiset-puheet-table" data-no-header-filters>
             <thead>
               <tr>
                 <th class="sortable text-center" data-col="date" style="width:140px">
@@ -855,7 +1025,7 @@ schemaMentions:
 
         {# ---- Taulukko ---- #}
         <div class="table-responsive">
-          <table class="table table-hover align-middle mb-0 pub-table blog-table">
+          <table class="table table-hover align-middle mb-0 pub-table blog-table" data-no-header-filters>
             <thead>
               <tr>
                 <th class="sortable text-center" data-col="date" style="width:140px">
@@ -1048,6 +1218,22 @@ section[id] {
 }
 .kynasta-entry-list a:hover {
   text-decoration: underline;
+}
+.kynasta-route-card {
+  border-radius: 1.1rem;
+  overflow: hidden;
+}
+.kynasta-route-card::before {
+  content: "";
+  display: block;
+  height: 4px;
+  background: linear-gradient(90deg, #0d6efd 0%, #2e8b57 100%);
+}
+.kynasta-route-card .card-body {
+  gap: 0.15rem;
+}
+.kynasta-route-card .badge {
+  font-weight: 600;
 }
 .kynasta-type-grid {
   display: grid;
@@ -1679,6 +1865,44 @@ function syncWritingRoleFilterButtons(buttons, selectedRole) {
     btn.classList.toggle('active', isActive);
     btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
   });
+}
+
+function archiveYear(value) {
+  const match = String(value || '').match(/\b(19|20)\d{2}\b/);
+  return match ? match[0] : '';
+}
+
+function populateArchiveFilter(select, values, emptyLabel, compare) {
+  if (!select) return;
+  const uniqueValues = [...new Set(values.map((value) => String(value || '').trim()).filter(Boolean))]
+    .sort(compare || ((a, b) => a.localeCompare(b, 'fi')));
+  const emptyOption = document.createElement('option');
+  emptyOption.value = '';
+  emptyOption.textContent = emptyLabel;
+  emptyOption.defaultSelected = true;
+  emptyOption.selected = true;
+  select.replaceChildren(emptyOption, ...uniqueValues.map((value) => new Option(value, value)));
+}
+
+function restoreArchiveFilterFromUrl(select, value) {
+  const selectedValue = String(value || '').trim();
+  if (!select || !selectedValue) return;
+  if (Array.from(select.options).some((option) => option.value === selectedValue)) {
+    select.value = selectedValue;
+  }
+}
+
+function syncArchiveSortButton(button, isActive, direction, columnLabel) {
+  if (!button) return;
+  const directionLabel = columnLabel === 'Päivämäärä'
+    ? (direction === 1 ? 'vanhin ensin' : 'uusin ensin')
+    : (direction === 1 ? 'A-Ö' : 'Ö-A');
+  button.classList.toggle('active', isActive);
+  button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+  button.setAttribute('aria-label', isActive ? `${columnLabel}: ${directionLabel}` : `Lajittele: ${columnLabel}`);
+  button.title = isActive ? `${columnLabel}: ${directionLabel}` : `Lajittele: ${columnLabel}`;
+  const icon = button.querySelector('i');
+  if (icon) icon.className = `bi ${direction === 1 ? 'bi-arrow-up' : 'bi-arrow-down'}`;
 }
 
 (function () {
@@ -3061,21 +3285,46 @@ function syncWritingRoleFilterButtons(buttons, selectedRole) {
   const kolumnitDataEl = document.getElementById('kolumnit-data');
   if (!kolumnitDataEl) return;
   const kolumnitData = JSON.parse(kolumnitDataEl.textContent);
+  const kolumnitUrlParams = new URLSearchParams(window.location.search);
 
   let filteredKolumnitData = [...kolumnitData].sort((a, b) => new Date(b.date) - new Date(a.date));
   let kolumnitCurrentPage = 1;
   let kolumnitSortCol = 'date';
   let kolumnitSortDir = -1; // -1 = desc
-  let selectedKolumnitRole = 'all';
+  let selectedKolumnitRole = ['political', 'expert', 'hybrid'].includes(kolumnitUrlParams.get('columnsRole'))
+    ? kolumnitUrlParams.get('columnsRole')
+    : 'all';
 
   const kolumnitSearchInp = document.getElementById('kolumnit-search');
+  const kolumnitYearSel = document.getElementById('kolumnit-year');
+  const kolumnitPublicationSel = document.getElementById('kolumnit-publication');
+  const kolumnitDateSortBtn = document.getElementById('kolumnit-sort-date');
+  const kolumnitTitleSortBtn = document.getElementById('kolumnit-sort-title');
   const kolumnitTbody = document.getElementById('kolumnit-tbody');
   const kolumnitInfo = document.getElementById('kolumnit-info');
   const kolumnitPagUl = document.getElementById('kolumnit-pagination');
   const kolumnitRoleButtons = Array.from(document.querySelectorAll('[data-kolumnit-role]'));
 
+  populateArchiveFilter(kolumnitYearSel, kolumnitData.map((item) => archiveYear(item.date)), 'Kaikki vuodet', (a, b) => Number(b) - Number(a));
+  populateArchiveFilter(kolumnitPublicationSel, kolumnitData.map((item) => item.publication), 'Kaikki julkaisut');
+  restoreArchiveFilterFromUrl(kolumnitYearSel, kolumnitUrlParams.get('columnsYear'));
+  restoreArchiveFilterFromUrl(kolumnitPublicationSel, kolumnitUrlParams.get('columnsPublication'));
+
+  function syncKolumnitUrl() {
+    const nextUrl = new URL(window.location.href);
+    const filters = [
+      ['columnsRole', selectedKolumnitRole === 'all' ? '' : selectedKolumnitRole],
+      ['columnsYear', kolumnitYearSel?.value || ''],
+      ['columnsPublication', kolumnitPublicationSel?.value || '']
+    ];
+    filters.forEach(([key, value]) => value ? nextUrl.searchParams.set(key, value) : nextUrl.searchParams.delete(key));
+    history.replaceState({}, '', `${nextUrl.pathname}${nextUrl.search}${window.location.hash}`);
+  }
+
   function applyKolumnitFilters() {
     const q = kolumnitSearchInp ? kolumnitSearchInp.value.toLowerCase().trim() : '';
+    const year = kolumnitYearSel?.value || '';
+    const publication = kolumnitPublicationSel?.value || '';
     filteredKolumnitData = kolumnitData.filter(d => {
       const roles = d.writingRoles || [];
       const matchQ = !q ||
@@ -3085,10 +3334,14 @@ function syncWritingRoleFilterButtons(buttons, selectedRole) {
         writingRoleMatchesQuery(roles, q) ||
         (d.categories || []).some(c => c.toLowerCase().includes(q)) ||
         (d.keywords || []).some(k => k.toLowerCase().includes(q));
-      return matchQ && writingRoleMatchesFilter(roles, selectedKolumnitRole);
+      return matchQ &&
+        (!year || archiveYear(d.date) === year) &&
+        (!publication || d.publication === publication) &&
+        writingRoleMatchesFilter(roles, selectedKolumnitRole);
     }).sort((a, b) => new Date(b.date) - new Date(a.date));
     kolumnitCurrentPage = 1;
     syncWritingRoleFilterButtons(kolumnitRoleButtons, selectedKolumnitRole);
+    syncKolumnitUrl();
     renderKolumnit();
   }
 
@@ -3127,12 +3380,12 @@ function syncWritingRoleFilterButtons(buttons, selectedRole) {
 
         const targetAttr = d.isExternal ? 'target="_blank" rel="noopener"' : '';
         const iconInfo = d.isExternal ? '<i class="bi bi-arrow-up-right"></i>' : '<i class="bi bi-arrow-right"></i>';
-        const pubInfo = d.publication ? `<br><span class="badge text-bg-light border text-dark mt-1"><i class="bi bi-journal-text me-1"></i>${escHtml(d.publication)}</span>` : '';
+        const publicationTitle = d.publication ? `<strong class="d-block text-body mb-1">${escHtml(d.publication)}</strong>` : '';
 
         return `<tr>
           <td class="col-date text-center small text-muted font-monospace">${d.formattedDate}</td>
           <td class="col-title fw-medium"><a href="${d.url}" ${targetAttr} class="text-decoration-none">${escHtml(d.title)}</a></td>
-          <td class="col-desc small text-muted"><span class="summary-text">${escHtml(d.description)}</span>${pubInfo}${roleBadges}</td>
+          <td class="col-desc small text-muted">${publicationTitle}<span class="summary-text">${escHtml(d.description)}</span>${roleBadges}</td>
           <td class="col-taxonomy">
             <div class="mb-1">${catBadges}</div>
             <div>${keyBadges}</div>
@@ -3153,12 +3406,8 @@ function syncWritingRoleFilterButtons(buttons, selectedRole) {
 
     renderKolumnitPagination(totalPages);
 
-    document.querySelectorAll('.kolumnit-table th.sortable').forEach(th => {
-      th.classList.remove('sort-asc', 'sort-desc');
-      if (th.dataset.col === kolumnitSortCol) {
-        th.classList.add(kolumnitSortDir === 1 ? 'sort-asc' : 'sort-desc');
-      }
-    });
+    syncArchiveSortButton(kolumnitDateSortBtn, kolumnitSortCol === 'date', kolumnitSortDir, 'Päivämäärä');
+    syncArchiveSortButton(kolumnitTitleSortBtn, kolumnitSortCol === 'title', kolumnitSortDir, 'Otsikko');
   }
 
   function renderKolumnitPagination(total) {
@@ -3180,6 +3429,10 @@ function syncWritingRoleFilterButtons(buttons, selectedRole) {
   }
 
   if (kolumnitSearchInp) kolumnitSearchInp.addEventListener('input', applyKolumnitFilters);
+  if (kolumnitYearSel) kolumnitYearSel.addEventListener('change', applyKolumnitFilters);
+  if (kolumnitPublicationSel) kolumnitPublicationSel.addEventListener('change', applyKolumnitFilters);
+  if (kolumnitDateSortBtn) kolumnitDateSortBtn.addEventListener('click', () => sortKolumnitData('date'));
+  if (kolumnitTitleSortBtn) kolumnitTitleSortBtn.addEventListener('click', () => sortKolumnitData('title'));
 
   kolumnitRoleButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -3192,16 +3445,14 @@ function syncWritingRoleFilterButtons(buttons, selectedRole) {
   if (kolumnitResetBtn) {
     kolumnitResetBtn.addEventListener('click', () => {
       if (kolumnitSearchInp) kolumnitSearchInp.value = '';
+      if (kolumnitYearSel) kolumnitYearSel.value = '';
+      if (kolumnitPublicationSel) kolumnitPublicationSel.value = '';
       selectedKolumnitRole = 'all';
       applyKolumnitFilters();
     });
   }
 
-  document.querySelectorAll('.kolumnit-table th.sortable').forEach(th => {
-    th.addEventListener('click', () => sortKolumnitData(th.dataset.col));
-  });
-
-  renderKolumnit();
+  applyKolumnitFilters();
 })();
 
 // --- Lausunnot taulukon logiikka ---
@@ -3362,11 +3613,20 @@ function syncWritingRoleFilterButtons(buttons, selectedRole) {
   let selectedOpinionRole = ['political', 'expert', 'hybrid'].includes(initialOpinionRole) ? initialOpinionRole : 'all';
 
   const mielipiteetSearchInp = document.getElementById('mielipiteet-search');
+  const mielipiteetYearSel = document.getElementById('mielipiteet-year');
+  const mielipiteetPublicationSel = document.getElementById('mielipiteet-publication');
+  const mielipiteetDateSortBtn = document.getElementById('mielipiteet-sort-date');
+  const mielipiteetTitleSortBtn = document.getElementById('mielipiteet-sort-title');
   const mielipiteetTbody = document.getElementById('mielipiteet-tbody');
   const mielipiteetInfo = document.getElementById('mielipiteet-info');
   const mielipiteetPagUl = document.getElementById('mielipiteet-pagination');
   const opinionRoleButtons = Array.from(document.querySelectorAll('[data-opinion-role]'));
   const opinionRoleCards = Array.from(document.querySelectorAll('[data-opinion-role-card]'));
+
+  populateArchiveFilter(mielipiteetYearSel, mielipiteetData.map((item) => archiveYear(item.date)), 'Kaikki vuodet', (a, b) => Number(b) - Number(a));
+  populateArchiveFilter(mielipiteetPublicationSel, mielipiteetData.map((item) => item.publication), 'Kaikki julkaisut');
+  restoreArchiveFilterFromUrl(mielipiteetYearSel, urlParams.get('opinionsYear'));
+  restoreArchiveFilterFromUrl(mielipiteetPublicationSel, urlParams.get('opinionsPublication'));
 
   function sortMielipiteetArray(data) {
     return [...data].sort((a, b) => {
@@ -3394,18 +3654,21 @@ function syncWritingRoleFilterButtons(buttons, selectedRole) {
     });
   }
 
-  function syncOpinionRoleUrl() {
+  function syncOpinionFiltersUrl() {
     const nextUrl = new URL(window.location.href);
-    if (selectedOpinionRole === 'all') {
-      nextUrl.searchParams.delete('opinions');
-    } else {
-      nextUrl.searchParams.set('opinions', selectedOpinionRole);
-    }
+    const filters = [
+      ['opinions', selectedOpinionRole === 'all' ? '' : selectedOpinionRole],
+      ['opinionsYear', mielipiteetYearSel?.value || ''],
+      ['opinionsPublication', mielipiteetPublicationSel?.value || '']
+    ];
+    filters.forEach(([key, value]) => value ? nextUrl.searchParams.set(key, value) : nextUrl.searchParams.delete(key));
     history.replaceState({}, '', `${nextUrl.pathname}${nextUrl.search}${window.location.hash}`);
   }
 
   function applyMielipiteetFilters() {
     const q = mielipiteetSearchInp ? mielipiteetSearchInp.value.toLowerCase().trim() : '';
+    const year = mielipiteetYearSel?.value || '';
+    const publication = mielipiteetPublicationSel?.value || '';
     filteredMielipiteetData = sortMielipiteetArray(mielipiteetData.filter(d => {
       const roles = Array.isArray(d.opinionRoles) ? d.opinionRoles : [];
       const matchQ = !q ||
@@ -3419,11 +3682,14 @@ function syncWritingRoleFilterButtons(buttons, selectedRole) {
         selectedOpinionRole === 'all' ||
         roles.includes(selectedOpinionRole) ||
         (selectedOpinionRole === 'hybrid' && roles.includes('political') && roles.includes('expert'));
-      return matchQ && matchRole;
+      return matchQ &&
+        (!year || archiveYear(d.date) === year) &&
+        (!publication || d.publication === publication) &&
+        matchRole;
     }));
     mielipiteetCurrentPage = 1;
     syncOpinionRoleButtons();
-    syncOpinionRoleUrl();
+    syncOpinionFiltersUrl();
     renderMielipiteet();
   }
 
@@ -3452,12 +3718,12 @@ function syncWritingRoleFilterButtons(buttons, selectedRole) {
 
         const targetAttr = d.isExternal ? 'target="_blank" rel="noopener"' : '';
         const iconInfo = d.isExternal ? '<i class="bi bi-arrow-up-right"></i>' : '<i class="bi bi-arrow-right"></i>';
-        const pubInfo = d.publication ? `<br><span class="badge text-bg-light border text-dark mt-1 me-1"><i class="bi bi-journal-text me-1"></i>${escHtml(d.publication)}</span>` : '';
+        const publicationTitle = d.publication ? `<strong class="d-block text-body mb-1">${escHtml(d.publication)}</strong>` : '';
 
         return `<tr>
           <td class="col-date text-center small text-muted font-monospace">${d.formattedDate}</td>
           <td class="col-title fw-medium"><a href="${d.url}" ${targetAttr} class="text-decoration-none">${escHtml(d.title)}</a></td>
-          <td class="col-desc small text-muted"><span class="summary-text">${escHtml(d.description)}</span>${pubInfo}${roleBadges}</td>
+          <td class="col-desc small text-muted">${publicationTitle}<span class="summary-text">${escHtml(d.description)}</span>${roleBadges}</td>
           <td class="col-taxonomy">
             <div class="mb-1">${catBadges}</div>
             <div>${keyBadges}</div>
@@ -3478,12 +3744,8 @@ function syncWritingRoleFilterButtons(buttons, selectedRole) {
 
     renderMielipiteetPagination(totalPages);
 
-    document.querySelectorAll('.mielipiteet-table th.sortable').forEach(th => {
-      th.classList.remove('sort-asc', 'sort-desc');
-      if (th.dataset.col === mielipiteetSortCol) {
-        th.classList.add(mielipiteetSortDir === 1 ? 'sort-asc' : 'sort-desc');
-      }
-    });
+    syncArchiveSortButton(mielipiteetDateSortBtn, mielipiteetSortCol === 'date', mielipiteetSortDir, 'Päivämäärä');
+    syncArchiveSortButton(mielipiteetTitleSortBtn, mielipiteetSortCol === 'title', mielipiteetSortDir, 'Otsikko');
   }
 
   function renderMielipiteetPagination(total) {
@@ -3505,6 +3767,10 @@ function syncWritingRoleFilterButtons(buttons, selectedRole) {
   }
 
   if (mielipiteetSearchInp) mielipiteetSearchInp.addEventListener('input', applyMielipiteetFilters);
+  if (mielipiteetYearSel) mielipiteetYearSel.addEventListener('change', applyMielipiteetFilters);
+  if (mielipiteetPublicationSel) mielipiteetPublicationSel.addEventListener('change', applyMielipiteetFilters);
+  if (mielipiteetDateSortBtn) mielipiteetDateSortBtn.addEventListener('click', () => sortMielipiteetData('date'));
+  if (mielipiteetTitleSortBtn) mielipiteetTitleSortBtn.addEventListener('click', () => sortMielipiteetData('title'));
 
   if (mielipiteetTbody) {
     mielipiteetTbody.addEventListener('click', (event) => {
@@ -3535,14 +3801,12 @@ function syncWritingRoleFilterButtons(buttons, selectedRole) {
   if (mielipiteetResetBtn) {
     mielipiteetResetBtn.addEventListener('click', () => {
       if (mielipiteetSearchInp) mielipiteetSearchInp.value = '';
+      if (mielipiteetYearSel) mielipiteetYearSel.value = '';
+      if (mielipiteetPublicationSel) mielipiteetPublicationSel.value = '';
       selectedOpinionRole = 'all';
       applyMielipiteetFilters();
     });
   }
-
-  document.querySelectorAll('.mielipiteet-table th.sortable').forEach(th => {
-    th.addEventListener('click', () => sortMielipiteetData(th.dataset.col));
-  });
 
   applyMielipiteetFilters();
 })();
