@@ -687,17 +687,70 @@ schemaMentions:
 
   @media (max-width: 575.98px) {
     .disclosures-page {
-      gap: 2.5rem;
+      gap: 1.6rem;
+      padding-block: 1rem 2rem;
     }
 
     .disclosures-hero {
-      padding: 1.5rem 1rem;
+      padding: 1.25rem 1rem;
     }
 
-    .disclosures-hero-panel,
+    .disclosures-hero h1 {
+      max-width: none;
+      font-size: clamp(2.05rem, 13vw, 3rem);
+    }
+
+    .disclosures-lead {
+      display: -webkit-box;
+      margin-top: 0.8rem;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .disclosures-hero-note {
+      margin-top: 1rem;
+      padding: 0.85rem;
+    }
+
+    .disclosures-hero-note p:last-child {
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      line-height: 1.5;
+    }
+
+    .disclosures-hero-actions {
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .disclosures-hero-actions .btn,
+    .disclosures-section-actions .btn,
+    .campaign-finance-actions .btn {
+      flex: 1 1 100%;
+      justify-content: center;
+    }
+
+    .disclosures-hero-panel {
+      display: none;
+    }
+
     .disclosures-card,
     .campaign-finance-card {
       border-radius: 1rem;
+      padding: 1rem;
+    }
+
+    .disclosures-section {
+      gap: 1rem;
+    }
+
+    .disclosures-section h2 {
+      font-size: clamp(1.65rem, 9vw, 2.2rem);
     }
 
     .campaign-finance-metrics,

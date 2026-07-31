@@ -28,7 +28,7 @@ schemaMentions:
     url: "https://www.oulu.fi/fi/tiedekunnat/kasvatustieteiden-tiedekunta"
 ---
 
-<section class="py-5 bg-body-tertiary border-bottom">
+<section class="py-5 bg-body-tertiary border-bottom cv-hero">
   <div class="site-shell">
     <div class="row g-4 align-items-stretch">
       <div class="col-lg-8">
@@ -64,7 +64,7 @@ schemaMentions:
   </div>
 </section>
 
-<section class="py-5">
+<section class="py-5 cv-section">
   <div class="site-shell">
     <div class="row g-4">
       <div class="col-xl-6">
@@ -100,7 +100,7 @@ schemaMentions:
   </div>
 </section>
 
-<section class="py-5 bg-body-tertiary border-top border-bottom">
+<section class="py-5 bg-body-tertiary border-top border-bottom cv-section">
   <div class="site-shell">
     <h2 class="h3 mb-4">Tutkinnot ja oppiarvot</h2>
     <div class="row g-4">
@@ -132,7 +132,7 @@ schemaMentions:
   </div>
 </section>
 
-<section class="py-5">
+<section class="py-5 cv-section">
   <div class="site-shell">
     <h2 class="h3 mb-4">Työkokemus</h2>
     <div class="row g-4">
@@ -171,7 +171,7 @@ schemaMentions:
   </div>
 </section>
 
-<section class="py-5 bg-body-tertiary border-top border-bottom">
+<section class="py-5 bg-body-tertiary border-top border-bottom cv-section">
   <div class="site-shell">
     <h2 class="h3 mb-4">Hankkeet ja apurahat</h2>
     <div class="row g-4">
@@ -204,7 +204,7 @@ schemaMentions:
   </div>
 </section>
 
-<section class="py-5">
+<section class="py-5 cv-section">
   <div class="site-shell">
     <h2 class="h3 mb-4">Tutkimuksen tuotokset</h2>
     <div class="row g-4">
@@ -237,3 +237,63 @@ schemaMentions:
     </div>
   </div>
 </section>
+
+<style>
+@media (max-width: 575.98px) {
+  .cv-hero,
+  .cv-section {
+    padding-block: 2rem !important;
+  }
+
+  .cv-hero .card,
+  .cv-section .card {
+    border-radius: 1rem;
+  }
+
+  .cv-hero .card-body,
+  .cv-section .card-body {
+    padding: 1.1rem !important;
+  }
+
+  .cv-hero h1 {
+    font-size: clamp(2rem, 11vw, 2.65rem);
+    line-height: 1.05;
+  }
+
+  .cv-hero .lead {
+    margin-bottom: 0.75rem !important;
+    font-size: 1.04rem;
+    line-height: 1.45;
+  }
+
+  .cv-hero .card-body > p:not(.text-uppercase):not(.lead) {
+    display: -webkit-box;
+    margin-bottom: 1rem !important;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-height: 1.5;
+  }
+
+  .cv-hero .d-flex.flex-wrap.gap-2 .btn,
+  .cv-section .d-grid.gap-2 .btn {
+    flex: 1 1 calc(50% - 0.5rem);
+    justify-content: center;
+    padding-inline: 0.75rem;
+  }
+
+  .cv-section h2 {
+    margin-bottom: 1rem !important;
+    font-size: 1.35rem;
+  }
+
+  .cv-section h3 {
+    font-size: 1.08rem !important;
+    line-height: 1.25;
+  }
+
+  .cv-section ul {
+    padding-left: 1.1rem;
+  }
+}
+</style>
