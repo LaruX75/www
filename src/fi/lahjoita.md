@@ -6,9 +6,14 @@ layout: page.njk
 translationKey: fi_only_lahjoita
 templateEngineOverride: md
 permalink: /lahjoita/
+pageScopeClass: campaign-archive-page
 wp_id: 1737
 source_url: "https://www.jarilaru.fi/lahjoita/"
 ---
+<div class="campaign-archive-notice campaign-archive-notice--warning" role="note">
+  <strong>Arkistohuomautus.</strong> Tämä on vanha vaalirahoituksen tukisivu. Alla olevia tietoja ei pidä tulkita nykyiseksi lahjoitusohjeeksi. Ajantasainen vaalirahoituksen ja sidonnaisuuksien kokonaisuus löytyy <a href="/poliittinen-avoimuus/">poliittisen avoimuuden sivulta</a>.
+</div>
+
 <p>Vaikka asiaa ei tule ajatelleeksi, niin monet poliitikot rahoittavat kampanjansa itse. Niin tein minäkin kuntavaaleissa 2017. </p>
 
 

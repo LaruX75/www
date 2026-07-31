@@ -437,6 +437,40 @@ html:not([data-bs-theme="dark"]) .site-changes-kpi-value--date {
   display: none;
 }
 
+.campaign-archive-notice {
+  margin-bottom: 1.25rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--site-accent-border);
+  border-left: 0.35rem solid var(--site-accent);
+  border-radius: 1rem;
+  background: var(--site-accent-soft);
+  color: var(--bs-body-color);
+}
+
+.campaign-archive-notice a {
+  font-weight: 700;
+}
+
+.campaign-archive-notice--warning {
+  border-color: rgba(176, 102, 0, 0.35);
+  border-left-color: #b86600;
+  background: rgba(255, 193, 7, 0.14);
+}
+
+.campaign-archive-page .content-prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.9rem;
+}
+
+.campaign-archive-page .content-prose figure {
+  margin: 1.25rem 0;
+}
+
+.campaign-archive-page .content-prose a {
+  overflow-wrap: anywhere;
+}
+
 @media (max-width: 575.98px) {
   .site-build-hero,
   .site-changes-hero,
@@ -558,6 +592,83 @@ html:not([data-bs-theme="dark"]) .site-changes-kpi-value--date {
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     line-clamp: 2;
+  }
+
+  .kunta-aluevaalit-2025 {
+    padding-block: 2rem !important;
+  }
+
+  .kunta-aluevaalit-2025 .display-6 {
+    font-size: clamp(2rem, 12vw, 2.55rem);
+    line-height: 0.98;
+  }
+
+  .kunta-aluevaalit-2025 .lead {
+    font-size: 1.02rem;
+    line-height: 1.45;
+  }
+
+  .kunta-aluevaalit-2025 .row.g-4 {
+    --bs-gutter-x: 0.85rem;
+    --bs-gutter-y: 0.85rem;
+  }
+
+  .kunta-aluevaalit-2025 .card {
+    border-radius: 1rem;
+  }
+
+  .kunta-aluevaalit-2025 .card-body,
+  .kunta-aluevaalit-2025 .card-header {
+    padding: 1rem !important;
+  }
+
+  .kunta-aluevaalit-2025 h2 {
+    font-size: 1.2rem !important;
+    line-height: 1.25;
+  }
+
+  .kunta-aluevaalit-2025 .d-flex.flex-wrap.gap-2 .btn {
+    flex: 1 1 100%;
+    justify-content: center;
+  }
+
+  .campaign-archive-page .page-content > .card > .card-body {
+    padding: 1rem !important;
+  }
+
+  .campaign-archive-page .page-content h1 {
+    font-size: clamp(2rem, 12vw, 2.5rem);
+    line-height: 1;
+  }
+
+  .campaign-archive-notice {
+    margin-bottom: 1rem;
+    padding: 0.85rem 0.9rem;
+    border-radius: 0.9rem;
+    font-size: 0.94rem;
+    line-height: 1.45;
+  }
+
+  .campaign-archive-page .content-prose h2,
+  .campaign-archive-page .content-prose h3,
+  .campaign-archive-page .content-prose h4,
+  .campaign-archive-page .content-prose h5 {
+    margin-top: 1.35rem;
+    line-height: 1.2;
+  }
+
+  .campaign-archive-page .content-prose p,
+  .campaign-archive-page .content-prose li {
+    line-height: 1.55;
+  }
+
+  .campaign-archive-page .content-prose ul {
+    padding-left: 1.1rem;
+  }
+
+  .campaign-archive-page .content-prose figure,
+  .campaign-archive-page .content-prose > div {
+    max-width: 100%;
   }
 }
 

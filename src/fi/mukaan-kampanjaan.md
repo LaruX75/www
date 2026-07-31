@@ -6,9 +6,14 @@ layout: page.njk
 translationKey: fi_only_mukaan_kampanjaan
 templateEngineOverride: md
 permalink: /mukaan-kampanjaan/
+pageScopeClass: campaign-archive-page
 wp_id: 472
 source_url: "https://www.jarilaru.fi/mukaan-kampanjaan/"
 ---
+<div class="campaign-archive-notice" role="note">
+  <strong>Arkistohuomautus.</strong> Tämä on vanhan vaalikampanjan arkistosivu. Ajantasaiset yhteydenottotavat löytyvät <a href="/yhteystiedot/">yhteystietosivulta</a>.
+</div>
+
 <p>Kaikki apu vaalikampanjan toteuttamiseksi on tarpeen. Tässä vaiheessa voit auttaa kampanjassa paitsi kertomalla kampanjasta kavereille, tykkäämällä Facebookissa<a href="https://www.facebook.com/jari.laru.poliitikko"> <strong>poliitikkosivustani</strong> </a>myös liittymällä<strong> kampanjatiimiini.</strong></p>
 
 

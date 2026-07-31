@@ -6,9 +6,14 @@ layout: page.njk
 translationKey: fi_only_kuntavaalit2021
 templateEngineOverride: md
 permalink: /kuntavaalit-2021/
+pageScopeClass: campaign-archive-page
 wp_id: 1804
 source_url: "https://www.jarilaru.fi/kuntavaalit-2021/"
 ---
+<div class="campaign-archive-notice" role="note">
+  <strong>Arkistohuomautus.</strong> Tämä on vuoden 2021 kuntavaalikampanjan arkistosivu. Ajantasainen kuva poliittisesta työstä löytyy <a href="/politiikka/">politiikan pääsivulta</a> ja vaalikausien kokonaisuus <a href="/politiikka/vaalikaudet/">vaalikausisivulta</a>.
+</div>
+
 <p>Tämä on kuntavaalien "arkistosivu", jonne olen siirtänyt sisältöä mm. etusivulta. </p>
 
 

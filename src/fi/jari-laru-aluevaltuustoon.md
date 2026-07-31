@@ -6,9 +6,14 @@ layout: page.njk
 translationKey: fi_only_aluevaltuustoon
 templateEngineOverride: md
 permalink: /jari-laru-aluevaltuustoon/
+pageScopeClass: campaign-archive-page
 wp_id: 1904
 source_url: "https://www.jarilaru.fi/jari-laru-aluevaltuustoon/"
 ---
+<div class="campaign-archive-notice" role="note">
+  <strong>Arkistohuomautus.</strong> Tämä on vuoden 2022 aluevaalikampanjan arkistosivu. Nykyiset luottamustehtävät ja vaalikausien kokonaisuus löytyvät <a href="/politiikka/vaalikaudet/">vaalikausisivulta</a>.
+</div>
+
 <p></p>
 
 

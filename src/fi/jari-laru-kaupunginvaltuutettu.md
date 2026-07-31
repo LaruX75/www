@@ -6,9 +6,14 @@ layout: page.njk
 translationKey: fi_only_kaupunginvaltuutettu
 templateEngineOverride: md
 permalink: /jari-laru-kaupunginvaltuutettu/
+pageScopeClass: campaign-archive-page
 wp_id: 1453
 source_url: "https://www.jarilaru.fi/jari-laru-kaupunginvaltuutettu/"
 ---
+<div class="campaign-archive-notice" role="note">
+  <strong>Arkistohuomautus.</strong> Tämä on aiemman vaalikauden kampanja- ja taustasivu. Nykyinen politiikan kokonaisuus löytyy <a href="/politiikka/">politiikan pääsivulta</a> ja vaalikaudet <a href="/politiikka/vaalikaudet/">vaalikausisivulta</a>.
+</div>
+
 <p>Olen toiminut vaalikaudella 2017-2021 Oulun kaupunginvaltuutettuna, sivistys- ja kulttuurilautakunnan jäsenenä sekä maakuntavaltuuston varavaltuutettuna. </p>
 
 
