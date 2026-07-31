@@ -7,7 +7,7 @@ lang: en
 description: "How jarilaru.fi is built in practice: Eleventy, a custom content model, external data, caches, quality checks, and AI-assisted development."
 ---
 
-<section class="py-4 bg-body-tertiary border-bottom">
+<section class="py-4 bg-body-tertiary border-bottom site-build-hero">
   <div class="site-shell">
     <p class="text-uppercase small text-muted mb-2">Build Guide</p>
     <h1 class="display-6 fw-bold mb-2">How This Site Is Built</h1>
@@ -15,9 +15,19 @@ description: "How jarilaru.fi is built in practice: Eleventy, a custom content m
   </div>
 </section>
 
-<section class="py-4">
+<nav class="site-build-mobile-path" aria-label="Key sections on the build guide">
   <div class="site-shell">
-    <div class="card border-0 shadow-sm mb-4">
+    <a href="#ai-work">AI work</a>
+    <a href="#building-blocks">Building blocks</a>
+    <a href="#content-model">Content model</a>
+    <a href="#data">Data</a>
+    <a href="#quality">Quality</a>
+  </div>
+</nav>
+
+<section class="py-4 site-build-page">
+  <div class="site-shell">
+    <div class="card border-0 shadow-sm mb-4" id="ai-work">
       <div class="card-body">
         <h2 class="h4 mb-3">1. AI-assisted development: human direction, tools in support</h2>
         <p>In this project, AI acts as a technical pair rather than an autopilot. The human sets the direction, reviews content, evaluates changes, decides what gets published, and remains responsible for quality. AI helps with code edits, refactoring, translation, structural cleanup, content analysis, and repetitive implementation work.</p>
@@ -50,7 +60,7 @@ description: "How jarilaru.fi is built in practice: Eleventy, a custom content m
       </div>
     </div>
 
-    <div class="card border-0 shadow-sm mb-4">
+    <div class="card border-0 shadow-sm mb-4" id="building-blocks">
       <div class="card-body">
         <h2 class="h4 mb-3">2. Core building blocks</h2>
         <p class="mb-3">The site is a static Eleventy site. Pages are generated as ready-made HTML before publication. The public site does not require a custom server, database, or login. Dynamic-looking sections are produced through build-time data collection, local data files, and browser-side interface scripts.</p>
@@ -107,7 +117,7 @@ description: "How jarilaru.fi is built in practice: Eleventy, a custom content m
       </div>
     </div>
 
-    <div class="card border-0 shadow-sm mb-4">
+    <div class="card border-0 shadow-sm mb-4" id="content-model">
       <div class="card-body">
         <h2 class="h4 mb-3">3. Content model: texts are not just standalone articles</h2>
         <p>Content is connected through metadata. Speeches, council initiatives, city council question-hour items, opinion pieces, statements, media appearances, presentations, and blog posts have their own fields so they can be shown in the right context.</p>
@@ -117,7 +127,7 @@ description: "How jarilaru.fi is built in practice: Eleventy, a custom content m
       </div>
     </div>
 
-    <div class="card border-0 shadow-sm mb-4">
+    <div class="card border-0 shadow-sm mb-4" id="data">
       <div class="card-body">
         <h2 class="h4 mb-3">4. External data sources and services</h2>
         <p class="mb-3">The site fetches external data during build and also uses a few external services in the interface. Some sources are cached and mirrored into local fallback files so the site can still build when a source is unavailable.</p>
@@ -215,7 +225,7 @@ description: "How jarilaru.fi is built in practice: Eleventy, a custom content m
       </div>
     </div>
 
-    <div class="card border-0 shadow-sm mb-4">
+    <div class="card border-0 shadow-sm mb-4" id="quality">
       <div class="card-body">
         <h2 class="h4 mb-3">5. Quality checks and maintenance views</h2>
         <p>Site quality is not based only on manual clicking. During builds and separate test runs, the project checks page generation, multilingual SEO structure, the internal search index, navigation, contrast, basic accessibility behaviour, and metadata consistency.</p>

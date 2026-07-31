@@ -7,7 +7,7 @@ lang: fi
 description: "Näin jarilaru.fi rakentuu käytännössä: Eleventy, oma sisältömalli, datalähteet, välimuistit, laadunvarmistus ja AI-avusteinen kehitystyö."
 ---
 
-<section class="py-4 bg-body-tertiary border-bottom">
+<section class="py-4 bg-body-tertiary border-bottom site-build-hero">
   <div class="site-shell">
     <p class="text-uppercase small text-muted mb-2">Rakennustapa</p>
     <h1 class="display-6 fw-bold mb-2">Miten tämä sivusto on tehty</h1>
@@ -15,9 +15,19 @@ description: "Näin jarilaru.fi rakentuu käytännössä: Eleventy, oma sisält�
   </div>
 </section>
 
-<section class="py-4">
+<nav class="site-build-mobile-path" aria-label="Rakennussivun tärkeimmät kohdat">
   <div class="site-shell">
-    <div class="card border-0 shadow-sm mb-4">
+    <a href="#ai-tyo">AI-työ</a>
+    <a href="#palikat">Palikat</a>
+    <a href="#sisaltomalli">Sisältömalli</a>
+    <a href="#data">Data</a>
+    <a href="#laatu">Laatu</a>
+  </div>
+</nav>
+
+<section class="py-4 site-build-page">
+  <div class="site-shell">
+    <div class="card border-0 shadow-sm mb-4" id="ai-tyo">
       <div class="card-body">
         <h2 class="h4 mb-3">1. AI-avusteinen kehitystyö: ihminen päättää, työkalut auttavat</h2>
         <p>Sivuston kehityksessä tekoäly toimii teknisenä työparina, ei automaattisena julkaisijana. Ihminen määrittää suunnan, tarkistaa sisällöt, arvioi muutokset ja päättää mitä lopulta julkaistaan. AI auttaa koodin kirjoittamisessa, refaktoroinnissa, käännöksissä, rakenteen selkeyttämisessä, sisältöanalyysissa ja toistuvissa teknisissä korjauksissa.</p>
@@ -50,7 +60,7 @@ description: "Näin jarilaru.fi rakentuu käytännössä: Eleventy, oma sisält�
       </div>
     </div>
 
-    <div class="card border-0 shadow-sm mb-4">
+    <div class="card border-0 shadow-sm mb-4" id="palikat">
       <div class="card-body">
         <h2 class="h4 mb-3">2. Sivuston rakennuspalikat</h2>
         <p class="mb-3">Sivusto on staattinen Eleventy-sivusto. Se tarkoittaa, että sivut rakennetaan valmiiksi HTML-tiedostoiksi ennen julkaisua. Julkisella sivustolla ei tarvita omaa palvelinta, tietokantaa tai kirjautumista, vaan dynaamisuus syntyy build-vaiheen datankeruusta, paikallisista datatiedostoista ja selaimessa toimivista käyttöliittymäskripteistä.</p>
@@ -107,7 +117,7 @@ description: "Näin jarilaru.fi rakentuu käytännössä: Eleventy, oma sisält�
       </div>
     </div>
 
-    <div class="card border-0 shadow-sm mb-4">
+    <div class="card border-0 shadow-sm mb-4" id="sisaltomalli">
       <div class="card-body">
         <h2 class="h4 mb-3">3. Sisältömalli: tekstit eivät ole vain irrallisia artikkeleita</h2>
         <p>Sivuston sisältöjä yhdistetään metatiedolla. Puheenvuoroilla, valtuustoaloitteilla, valtuuston kyselytunnin kysymyksillä, mielipidekirjoituksilla, lausunnoilla, mediaosumilla, esityksillä ja blogiteksteillä on omia kenttiään, joiden avulla ne voidaan näyttää oikeassa kontekstissa.</p>
@@ -117,7 +127,7 @@ description: "Näin jarilaru.fi rakentuu käytännössä: Eleventy, oma sisält�
       </div>
     </div>
 
-    <div class="card border-0 shadow-sm mb-4">
+    <div class="card border-0 shadow-sm mb-4" id="data">
       <div class="card-body">
         <h2 class="h4 mb-3">4. Datalähteet ja ulkoiset palvelut</h2>
         <p class="mb-3">Sivusto hakee sisältöä rajapinnoista rakennusvaiheessa (build) ja käyttää lisäksi muutamia ulkoisia palveluja käyttöliittymässä. Osa lähteistä välimuistitetaan ja muunnetaan paikallisiksi fallback-tiedostoiksi, jotta sivusto voidaan rakentaa myös silloin kun lähde ei vastaa.</p>
@@ -215,7 +225,7 @@ description: "Näin jarilaru.fi rakentuu käytännössä: Eleventy, oma sisält�
       </div>
     </div>
 
-    <div class="card border-0 shadow-sm mb-4">
+    <div class="card border-0 shadow-sm mb-4" id="laatu">
       <div class="card-body">
         <h2 class="h4 mb-3">5. Laadunvarmistus ja ylläpitonäkymät</h2>
         <p>Sivuston laatu ei perustu pelkkään käsin klikkailuun. Buildin yhteydessä ja erillisissä testiajoissa tarkistetaan muun muassa sivujen muodostuminen, kieliversioiden SEO-rakenne, sisäisen haun indeksi, navigaatio, kontrastit, saavutettavuuden perusasiat ja sisällön metatietojen eheys.</p>

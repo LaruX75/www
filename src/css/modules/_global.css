@@ -433,6 +433,134 @@ html:not([data-bs-theme="dark"]) .site-changes-kpi-value--date {
   color: #495057 !important;
 }
 
+.site-build-mobile-path {
+  display: none;
+}
+
+@media (max-width: 575.98px) {
+  .site-build-hero,
+  .site-changes-hero,
+  .site-build-page,
+  .site-changes-page {
+    padding-block: 2rem !important;
+  }
+
+  .site-build-hero .display-6,
+  .site-changes-hero .display-6 {
+    font-size: clamp(2rem, 12vw, 2.5rem);
+    line-height: 0.98;
+  }
+
+  .site-build-hero p.mb-0,
+  .site-changes-hero p.mb-0 {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+  }
+
+  .site-build-mobile-path {
+    display: block;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    padding-block: 0.6rem;
+    background: rgba(var(--bs-body-bg-rgb), 0.94);
+    border-bottom: 1px solid var(--site-border-soft);
+    backdrop-filter: blur(12px);
+  }
+
+  .site-build-mobile-path .site-shell {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.1rem;
+    scrollbar-width: none;
+  }
+
+  .site-build-mobile-path .site-shell::-webkit-scrollbar {
+    display: none;
+  }
+
+  .site-build-mobile-path a {
+    flex: 0 0 auto;
+    padding: 0.42rem 0.75rem;
+    border: 1px solid var(--site-border-soft);
+    border-radius: 999px;
+    background: var(--site-surface-card);
+    color: var(--bs-body-color);
+    font-size: 0.86rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .site-build-page .card,
+  .site-changes-page .card {
+    border-radius: 1rem;
+  }
+
+  .site-build-page .card-body,
+  .site-changes-page .card-body {
+    padding: 1rem !important;
+  }
+
+  .site-build-page h2 {
+    font-size: 1.18rem !important;
+    line-height: 1.25;
+  }
+
+  .site-build-page p,
+  .site-build-page li {
+    line-height: 1.55;
+  }
+
+  .site-build-page .table-responsive,
+  .site-changes-page .table-responsive {
+    margin-inline: -1rem;
+    padding-inline: 1rem;
+  }
+
+  .site-build-page table,
+  .site-changes-page table {
+    font-size: 0.88rem;
+  }
+
+  .site-build-page th,
+  .site-build-page td,
+  .site-changes-page th,
+  .site-changes-page td {
+    padding: 0.55rem 0.6rem;
+  }
+
+  .site-changes-page .alert {
+    margin-bottom: 0.75rem;
+  }
+
+  .site-changes-page .row.g-3 {
+    --bs-gutter-x: 0.75rem;
+    --bs-gutter-y: 0.75rem;
+  }
+
+  .site-changes-page .site-changes-kpi-value {
+    font-size: 1.28rem !important;
+    line-height: 1.1;
+  }
+
+  .site-changes-page .site-changes-kpi-label {
+    font-size: 0.76rem;
+    line-height: 1.2;
+  }
+
+  .site-changes-page #github-changes-table td:nth-child(2) a {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+}
+
 /* Form field contrast fixes for light mode */
 html:not([data-bs-theme="dark"]) .form-control,
 html:not([data-bs-theme="dark"]) .form-select,
