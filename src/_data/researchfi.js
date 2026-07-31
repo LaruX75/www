@@ -49,6 +49,46 @@ function buildAnchorId(pub, typeCode, doi) {
     return `rf-${prefix}-${fallback}`;
 }
 
+function buildSourceKey(pub) {
+    const publicationId = String(pub?.publicationId || "").trim();
+    if (publicationId) return `id:${publicationId}`;
+
+    const normalizedDoi = String(pub?.doi || "").trim().toLowerCase();
+    if (normalizedDoi) return `doi:${normalizedDoi}`;
+
+    // Older source records sometimes lack both an identifier and DOI.
+    // The key is only used to deduplicate taxonomy entries, never to replace source data.
+    const fingerprint = [
+        pub?.publicationName || pub?.title,
+        pub?.publicationYear || pub?.year,
+        pub?.authorsText || pub?.authors,
+        pub?.publicationTypeCode || pub?.typeCode,
+        pub?.journalName || pub?.parentPublicationName || pub?.journal
+    ]
+        .map((value) => String(value || "").replace(/\s+/g, " ").trim().toLowerCase())
+        .join("|");
+
+    return `record:${fingerprint}`;
+}
+
+function ensureUniqueAnchorIds(publications) {
+    const usedAnchorIds = new Set();
+
+    return publications.map((publication, index) => {
+        const baseAnchorId = publication.anchorId || `rf-publication-${index + 1}`;
+        let anchorId = baseAnchorId;
+        let suffix = 2;
+
+        while (usedAnchorIds.has(anchorId)) {
+            anchorId = `${baseAnchorId}-${suffix}`;
+            suffix += 1;
+        }
+
+        usedAnchorIds.add(anchorId);
+        return { ...publication, anchorId, sourceAnchorId: baseAnchorId };
+    });
+}
+
 async function runConcurrent(items, concurrency, asyncFn) {
     let i = 0;
     async function worker() {
@@ -426,13 +466,16 @@ function normalizePublication(pub) {
         peerReviewed: normalizePeerReviewed(pub.peerReviewed, typeCode),
         openAccess: normalizeOpenAccess(pub.openAccess, pub.selfArchivedCode),
         publicationId: pub.publicationId || null,
+        sourceKey: buildSourceKey(pub),
         keywords: extractKeywords(pub)
     };
 }
 
 module.exports = async function () {
     const hidden = loadHiddenIds('researchfi');
-    const applyCuration = (pubs) => pubs.filter((p) => !hidden.has(String(p.publicationId)));
+    const preparePublications = (pubs) => ensureUniqueAnchorIds(
+        pubs.filter((p) => !hidden.has(String(p.publicationId)))
+    );
 
     const orcidId = process.env.ORCID_ID || "0000-0003-0347-0182";
 
@@ -440,7 +483,7 @@ module.exports = async function () {
     if (fresh?.data) {
         const freshPubs = fresh.data.map(normalizePublication);
         console.log(`Research.fi: käytetään tuoretta välimuistia (${fresh.savedAt}), ${freshPubs.length} julkaisua.`);
-        return enrichWithJufo(await enrichWithCrossref(applyCuration(freshPubs)));
+        return enrichWithJufo(await enrichWithCrossref(preparePublications(freshPubs)));
     }
 
     const cached = readCache(CACHE_KEY);
@@ -477,7 +520,7 @@ module.exports = async function () {
             console.error(`Research.fi API palautti virheen: ${response.status}`);
             if (cachedPublications) {
                 console.warn(`Research.fi: käytetään välimuistia (${cached.savedAt}).`);
-                return cachedPublications;
+                return enrichWithJufo(await enrichWithCrossref(preparePublications(cachedPublications)));
             }
             return [];
         }
@@ -490,7 +533,7 @@ module.exports = async function () {
             console.error("Research.fi: henkilöä ei löytynyt.");
             if (cachedPublications) {
                 console.warn(`Research.fi: käytetään välimuistia (${cached.savedAt}).`);
-                return cachedPublications;
+                return enrichWithJufo(await enrichWithCrossref(preparePublications(cachedPublications)));
             }
             return [];
         }
@@ -499,7 +542,7 @@ module.exports = async function () {
         const rawPubs = person?.activity?.publications || [];
 
         // Parsitaan ja järjestetään
-        const publications = rawPubs.map(normalizePublication);
+        const publications = preparePublications(rawPubs.map(normalizePublication));
 
         // Uusimmat ensin
         publications.sort((a, b) => (b.year || 0) - (a.year || 0));
@@ -510,17 +553,17 @@ module.exports = async function () {
             writeCache(CACHE_KEY, rawPubs);
         } else if (cachedPublications) {
             console.warn(`Research.fi palautti tyhjän listan, käytetään välimuistia (${cached.savedAt}).`);
-            return cachedPublications;
+            return enrichWithJufo(await enrichWithCrossref(preparePublications(cachedPublications)));
         }
 
         console.log(`Löydettiin ${publications.length} Research.fi-julkaisua.`);
-        return enrichWithJufo(await enrichWithCrossref(applyCuration(publications)));
+        return enrichWithJufo(await enrichWithCrossref(publications));
 
     } catch (error) {
         console.error("Research.fi API haku epäonnistui:", error.message);
         if (cachedPublications) {
             console.warn(`Research.fi: käytetään välimuistia (${cached.savedAt}).`);
-            return enrichWithJufo(await enrichWithCrossref(applyCuration(cachedPublications)));
+            return enrichWithJufo(await enrichWithCrossref(preparePublications(cachedPublications)));
         }
         return [];
     }
