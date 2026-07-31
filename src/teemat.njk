@@ -17,6 +17,8 @@
 {% set topicItems = collections | topicItems(topic, 18) %}
 {% set featuredItems = topicItems | take(4) %}
 {% set archiveItems = topicItems.slice(4, 14) %}
+{% set researchPublications = researchfiContent | curatedResearchForTopic(topic.researchThemes, 3) %}
+{% set topicContentCount = topicItems.totalCount + researchPublications.length %}
 
 <section class="topic-profile">
   <div class="site-shell">
@@ -32,7 +34,7 @@
         </div>
       </div>
       <aside class="topic-profile-summary">
-        <span class="taxonomy-stat-number">{{ topicItems.totalCount }}</span>
+        <span class="taxonomy-stat-number">{{ topicContentCount }}</span>
         <span class="taxonomy-stat-label">aiheeseen liittyvää sisältöä</span>
         <span class="taxonomy-stat-range">eri aineistoista</span>
       </aside>
@@ -64,6 +66,29 @@
         {% endfor %}
       </div>
     </section>
+
+    {% if researchPublications.length %}
+    <section class="topic-profile-section topic-research-section" aria-labelledby="topic-research-title">
+      <div class="topic-profile-section-head">
+        <p class="taxonomy-kicker">Tutkimusjulkaisut</p>
+        <h2 id="topic-research-title">Valittuja tutkimusjulkaisuja</h2>
+        <p>Toimitettu tutkimusnäyttö tästä aiheesta. Viitteet avautuvat julkaisuarkiston oikeaan kohtaan.</p>
+      </div>
+      <div class="topic-research-list">
+        {% for publication in researchPublications %}
+        <article class="topic-research-item">
+          <p class="topic-research-meta">Research.fi · {{ publication.year or "—" }}</p>
+          <h3><a href="{{ publication.url }}">{{ publication.title }}</a></h3>
+          {% if publication.researchSummary %}
+          <p class="topic-research-summary">{{ publication.researchSummary }}</p>
+          {% endif %}
+          <p class="topic-research-citation">{{ publication.citation }}</p>
+          <a class="topic-research-link" href="{{ publication.url }}">Avaa lähdeviite julkaisuarkistossa</a>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
 
     {% if featuredItems.length %}
     <section class="topic-profile-section" id="naytto" aria-labelledby="topic-featured-title">

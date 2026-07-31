@@ -9,6 +9,7 @@ module.exports = [
     promise: "Sivu auttaa hahmottamaan, millä perusteilla tekoälylukutaitoa kannattaa opettaa, arvioida ja kehittää.",
     categories: ["tekoäly"],
     keywords: ["tekoälylukutaito", "tekoaly", "generation-ai", "tekoäly", "tekoalylukutaito"],
+    researchThemes: ["tekoalylukutaito", "selitettava-tekoaly", "koneoppiminen"],
     contexts: ["education", "research", "teaching", "media"],
     primaryLinks: [
       { label: "Tutkimus", href: "/tutkimus/" },
@@ -29,6 +30,7 @@ module.exports = [
     promise: "Sivu näyttää, miten yliopistotyö, asiantuntijalausunnot ja koulutukset kytkeytyvät samaan opettajankoulutuksen kokonaisuuteen.",
     categories: ["opettajankoulutus"],
     keywords: ["opettajankoulutus", "opetus", "opettaja", "täydennyskoulutus", "veso", "digipedagogiikka"],
+    researchThemes: ["opettajankoulutus", "digipedagogiikka", "teknologiakasvatus", "ohjelmoinnillinen-ajattelu"],
     contexts: ["education", "teaching", "research", "business"],
     primaryLinks: [
       { label: "Yliopistotyö", href: "/tyoni-yliopistonlehtorina/" },
@@ -49,6 +51,7 @@ module.exports = [
     promise: "Sivu kokoaa teknologian opetuskäytön näyttöä tutkimuksesta käytännön materiaaleihin.",
     categories: ["teknologiatuettu-oppiminen-ja-opetus", "oppimisympäristöt"],
     keywords: ["koulutusteknologia", "oppimisympäristö", "mobiilioppiminen", "digiluokka", "cscl", "scaffolding"],
+    researchThemes: ["mobiilioppiminen", "yhteisollinen-oppiminen", "cscl", "oppimisymparistot"],
     contexts: ["research", "teaching", "education"],
     primaryLinks: [
       { label: "Väitöskirja", href: "/vaitoskirja/" },

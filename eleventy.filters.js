@@ -657,6 +657,20 @@ function topicItemsFromCollections(collections, topic = {}, limit = 12) {
   return items;
 }
 
+function curatedResearchForTopic(items, researchThemes = [], limit = 3) {
+  const wantedThemes = new Set(toArray(researchThemes));
+  if (!wantedThemes.size) return [];
+
+  return toArray(items)
+    .filter((item) => toArray(item?.researchThemes).some((theme) => wantedThemes.has(theme)))
+    .sort((a, b) => (
+      Number(b?.researchPriority || 0) - Number(a?.researchPriority || 0)
+      || Number(b?.year || 0) - Number(a?.year || 0)
+      || String(a?.title || "").localeCompare(String(b?.title || ""), "fi")
+    ))
+    .slice(0, Number(limit) || 3);
+}
+
 function selectedTopics(topics, keys = []) {
   const wanted = topicTermSet(keys);
   return toArray(topics).filter((topic) => wanted.has(normalizeTopicTerm(topic.slug)));
@@ -1014,6 +1028,10 @@ module.exports = function registerFilters(eleventyConfig) {
 
   eleventyConfig.addFilter("topicItems", function (collections, topic, limit = 12) {
     return topicItemsFromCollections(collections, topic, limit);
+  });
+
+  eleventyConfig.addFilter("curatedResearchForTopic", function (items, researchThemes, limit = 3) {
+    return curatedResearchForTopic(items, researchThemes, limit);
   });
 
   eleventyConfig.addFilter("selectedTopics", function (topics, keys = []) {
