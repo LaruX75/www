@@ -23,6 +23,8 @@ schemaMentions:
     url: "https://oulurepo.oulu.fi/"
 ---
 
+{% set thesisResearchFilters = researchProgram.thesisArchiveFilters or {} %}
+
 <section class="kynasta-hero py-4">
   <div class="site-shell">
     <div class="row align-items-center g-3">
@@ -81,6 +83,47 @@ schemaMentions:
       </div>
     </div>
   </div>
+
+  {% if thesisResearchFilters.lines and thesisResearchFilters.lines.length %}
+  <section class="card border-0 shadow-sm mb-4" aria-labelledby="thesis-research-filter-heading">
+    <div class="card-body">
+      <div class="row g-3 align-items-end">
+        <div class="col-12">
+          <p class="text-uppercase small text-muted mb-1">Tutkimuskonteksti</p>
+          <h2 class="h5 mb-1" id="thesis-research-filter-heading">Rajaa opinnäytteitä kontekstin ja aiheen mukaan</h2>
+          <p class="small text-muted mb-0">Rajaus käyttää samaa tutkimusohjelman luokittelua kuin tutkimus- ja julkaisusivut. Tarkastajana arvioidut työt säilyvät omana arkistonaan.</p>
+        </div>
+        <div class="col-12"><p class="small text-uppercase text-muted fw-semibold mb-0">Konteksti</p></div>
+        <div class="col-md-6">
+          <label for="thesis-research-line" class="form-label small text-muted mb-1">Tutkimuslinja</label>
+          <select id="thesis-research-line" class="form-select form-select-sm" aria-label="Rajaa ohjatut opinnäytteet tutkimuslinjan mukaan">
+            <option value="">Kaikki tutkimuslinjat</option>
+            {% for option in thesisResearchFilters.lines %}
+            <option value="{{ option.value }}">{{ option.label }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label for="thesis-research-audience" class="form-label small text-muted mb-1">Kohderyhmä</label>
+          <select id="thesis-research-audience" class="form-select form-select-sm"><option value="">Kaikki kohderyhmät</option>{% for option in thesisResearchFilters.audiences %}<option value="{{ option.value }}">{{ option.label }}</option>{% endfor %}</select>
+        </div>
+        <div class="col-12"><p class="small text-uppercase text-muted fw-semibold mb-0">Aihe</p></div>
+        <div class="col-md-6">
+          <label for="thesis-research-theme" class="form-label small text-muted mb-1">Teema</label>
+          <select id="thesis-research-theme" class="form-select form-select-sm"><option value="">Kaikki teemat</option>{% for option in thesisResearchFilters.themes %}<option value="{{ option.value }}">{{ option.label }}</option>{% endfor %}</select>
+        </div>
+        <div class="col-md-6">
+          <label for="thesis-research-keyword" class="form-label small text-muted mb-1">Avainsana</label>
+          <select id="thesis-research-keyword" class="form-select form-select-sm"><option value="">Kaikki avainsanat</option></select>
+        </div>
+      </div>
+      <div class="d-flex flex-wrap align-items-center gap-2 mt-3">
+        <p id="thesis-research-filter-summary" class="small text-muted mb-0">Ei aktiivisia rajauksia.</p>
+        <button id="thesis-research-filter-reset" type="button" class="btn btn-link btn-sm p-0 text-decoration-none" hidden>Tyhjennä rajaukset</button>
+      </div>
+    </div>
+  </section>
+  {% endif %}
 
   {# Vuosittainen palkki (interaktiivinen) #}
   {% if theses.stats.byYear %}
@@ -330,6 +373,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const defaultOgTitle = ogTitleMeta?.getAttribute('content') || '';
   const defaultTwitterTitle = twitterTitleMeta?.getAttribute('content') || '';
   const filterKey = (tableId, kind) => `th_${tableId}_${kind}`;
+  const thesisResearchLineSelect = document.getElementById('thesis-research-line');
+  const thesisResearchThemeSelect = document.getElementById('thesis-research-theme');
+  const thesisResearchAudienceSelect = document.getElementById('thesis-research-audience');
+  const thesisResearchKeywordSelect = document.getElementById('thesis-research-keyword');
+  const thesisResearchFilterSummary = document.getElementById('thesis-research-filter-summary');
+  const thesisResearchFilterReset = document.getElementById('thesis-research-filter-reset');
+  let activeThesisResearchLine = (urlParams.get('th_research_line') || '').trim();
+  let activeThesisResearchTheme = (urlParams.get('th_research_theme') || '').trim();
+  let activeThesisResearchAudience = (urlParams.get('th_research_audience') || '').trim();
+  let activeThesisResearchKeyword = (urlParams.get('th_research_keyword') || '').trim().toLowerCase();
+  const tableFilterRefreshers = [];
   const setFilterParam = (key, value) => {
     if (!value) {
       urlParams.delete(key);
@@ -343,6 +397,59 @@ document.addEventListener('DOMContentLoaded', () => {
     window.history.replaceState({}, '', next);
     applyKeywordToPageShareMeta(getKeywordFromUrlContext());
   };
+
+  if (thesisResearchLineSelect) {
+    const hasInitialResearchLine = Array.from(thesisResearchLineSelect.options)
+      .some((option) => option.value === activeThesisResearchLine);
+    if (hasInitialResearchLine) thesisResearchLineSelect.value = activeThesisResearchLine;
+    else activeThesisResearchLine = '';
+  }
+
+  function updateResearchFilterSummary() {
+    const activeLabels = [thesisResearchLineSelect, thesisResearchThemeSelect, thesisResearchAudienceSelect, thesisResearchKeywordSelect]
+      .filter((select) => select?.value)
+      .map((select) => select.options[select.selectedIndex].textContent);
+    if (thesisResearchFilterSummary) {
+      thesisResearchFilterSummary.textContent = activeLabels.length
+        ? `Rajattu: ${activeLabels.join(', ')}.`
+        : 'Ei aktiivisia rajauksia.';
+    }
+    if (thesisResearchFilterReset) thesisResearchFilterReset.hidden = activeLabels.length === 0;
+  }
+
+  function getResearchFilterRows() {
+    return Array.from(document.querySelectorAll('#gradutabl tbody tr, #kanditabl tbody tr'));
+  }
+
+  function matchesResearchFacets(row, ignoredFacet = '') {
+    const text = row.textContent.toLowerCase();
+    const themes = (row.dataset.researchThemes || '').split(' ');
+    const audiences = (row.dataset.researchAudience || '').split(' ');
+    return (ignoredFacet === 'line' || !activeThesisResearchLine || row.dataset.researchLine === activeThesisResearchLine)
+      && (ignoredFacet === 'theme' || !activeThesisResearchTheme || themes.includes(activeThesisResearchTheme))
+      && (ignoredFacet === 'audience' || !activeThesisResearchAudience || audiences.includes(activeThesisResearchAudience))
+      && (ignoredFacet === 'keyword' || !activeThesisResearchKeyword || text.includes(activeThesisResearchKeyword));
+  }
+
+  function refreshResearchFilterOptions() {
+    const facets = [
+      [thesisResearchLineSelect, 'line', (row, value) => row.dataset.researchLine === value],
+      [thesisResearchThemeSelect, 'theme', (row, value) => (row.dataset.researchThemes || '').split(' ').includes(value)],
+      [thesisResearchAudienceSelect, 'audience', (row, value) => (row.dataset.researchAudience || '').split(' ').includes(value)],
+      [thesisResearchKeywordSelect, 'keyword', (row, value) => row.textContent.toLowerCase().includes(value)]
+    ];
+    const rows = getResearchFilterRows();
+    facets.forEach(([select, facet, matchesValue]) => {
+      if (!select) return;
+      Array.from(select.options).forEach((option) => {
+        if (!option.value) return;
+        const available = rows.some((row) => matchesResearchFacets(row, facet) && matchesValue(row, option.value));
+        const selected = option.value === select.value;
+        option.hidden = !available && !selected;
+        option.disabled = !available && !selected;
+      });
+    });
+  }
 
   function buildThesisBibTeX(payload) {
     const title = (payload.title || '').trim();
@@ -529,6 +636,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchParamKey = filterKey(tableContainer.id, 'q');
     const yearParamKey = filterKey(tableContainer.id, 'y');
     const typeParamKey = filterKey(tableContainer.id, 't');
+    const supportsResearchLine = tableContainer.id !== 'reviewertabl';
 
     if (searchInput) {
       searchInput.value = urlParams.get(searchParamKey) || '';
@@ -560,6 +668,10 @@ document.addEventListener('DOMContentLoaded', () => {
       setFilterParam(searchParamKey, searchInput?.value || '');
       setFilterParam(yearParamKey, yearSelect?.value || '');
       setFilterParam(typeParamKey, typeSelect?.value || '');
+      setFilterParam('th_research_line', activeThesisResearchLine);
+      setFilterParam('th_research_theme', activeThesisResearchTheme);
+      setFilterParam('th_research_audience', activeThesisResearchAudience);
+      setFilterParam('th_research_keyword', activeThesisResearchKeyword);
       updateFilterUrl();
     }
 
@@ -575,7 +687,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const matchesSearch = !q || rowText.includes(q);
         const matchesYear = !year || rowYear === year;
         const matchesType = !type || rowType === type;
-        return matchesSearch && matchesYear && matchesType;
+        const matchesResearchLine = !supportsResearchLine || !activeThesisResearchLine || row.dataset.researchLine === activeThesisResearchLine;
+        const matchesResearchTheme = !supportsResearchLine || !activeThesisResearchTheme || row.dataset.researchThemes.split(' ').includes(activeThesisResearchTheme);
+        const matchesResearchAudience = !supportsResearchLine || !activeThesisResearchAudience || row.dataset.researchAudience.split(' ').includes(activeThesisResearchAudience);
+        const matchesResearchKeyword = !supportsResearchLine || !activeThesisResearchKeyword || row.textContent.toLowerCase().includes(activeThesisResearchKeyword);
+        return matchesSearch && matchesYear && matchesType && matchesResearchLine && matchesResearchTheme && matchesResearchAudience && matchesResearchKeyword;
       });
       syncFiltersToUrl();
       renderPage(showAll ? 'all' : 1);
@@ -684,6 +800,8 @@ document.addEventListener('DOMContentLoaded', () => {
       typeSelect.addEventListener('change', applyFilters);
     }
 
+    tableFilterRefreshers.push(applyFilters);
+
     // Initial render
     applyFilters();
   }
@@ -695,6 +813,61 @@ document.addEventListener('DOMContentLoaded', () => {
       initTablePagination(container);
     }
   });
+
+  if (thesisResearchLineSelect) {
+    thesisResearchLineSelect.addEventListener('change', () => {
+      activeThesisResearchLine = thesisResearchLineSelect.value || '';
+      refreshResearchFilterOptions();
+      updateResearchFilterSummary();
+      tableFilterRefreshers.forEach((refresh) => refresh());
+    });
+  }
+  [thesisResearchThemeSelect, thesisResearchAudienceSelect].forEach((select) => {
+    if (!select) return;
+    const key = select === thesisResearchThemeSelect ? 'th_research_theme' : 'th_research_audience';
+    const value = urlParams.get(key) || '';
+    if (Array.from(select.options).some((option) => option.value === value)) select.value = value;
+    select.addEventListener('change', () => {
+      if (select === thesisResearchThemeSelect) activeThesisResearchTheme = select.value || '';
+      else activeThesisResearchAudience = select.value || '';
+      refreshResearchFilterOptions();
+      updateResearchFilterSummary();
+      tableFilterRefreshers.forEach((refresh) => refresh());
+    });
+  });
+
+  if (thesisResearchKeywordSelect) {
+    const keywords = [...new Set(Array.from(document.querySelectorAll('.thesis-keyword-link[data-keyword]'))
+      .map((button) => (button.dataset.keyword || '').trim())
+      .filter(Boolean))].sort((a, b) => a.localeCompare(b, 'fi'));
+    keywords.forEach((keyword) => thesisResearchKeywordSelect.add(new Option(keyword, keyword.toLowerCase())));
+    if (Array.from(thesisResearchKeywordSelect.options).some((option) => option.value === activeThesisResearchKeyword)) {
+      thesisResearchKeywordSelect.value = activeThesisResearchKeyword;
+    } else activeThesisResearchKeyword = '';
+    thesisResearchKeywordSelect.addEventListener('change', () => {
+      activeThesisResearchKeyword = thesisResearchKeywordSelect.value || '';
+      refreshResearchFilterOptions();
+      updateResearchFilterSummary();
+      tableFilterRefreshers.forEach((refresh) => refresh());
+    });
+  }
+
+  if (thesisResearchFilterReset) {
+    thesisResearchFilterReset.addEventListener('click', () => {
+      activeThesisResearchLine = '';
+      activeThesisResearchTheme = '';
+      activeThesisResearchAudience = '';
+      activeThesisResearchKeyword = '';
+      [thesisResearchLineSelect, thesisResearchThemeSelect, thesisResearchAudienceSelect, thesisResearchKeywordSelect]
+        .forEach((select) => { if (select) select.value = ''; });
+      refreshResearchFilterOptions();
+      updateResearchFilterSummary();
+      tableFilterRefreshers.forEach((refresh) => refresh());
+    });
+  }
+
+  updateResearchFilterSummary();
+  refreshResearchFilterOptions();
 
   let currentCitationPayload = null;
   const thesisCitationModalEl = document.getElementById('thesisCitationModal');

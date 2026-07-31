@@ -11,6 +11,8 @@
 {% set hasThesisActions = true %}
 {% if showThesisActions == false %}{% set hasThesisActions = false %}{% endif %}
 {% set mobileItemStyle = "" if showMobileItemsImmediately else "display:none" %}
+{% set thesisResearchLineLabels = researchProgram.thesisLineLabels or {} %}
+{% set thesisResearchThemeLabels = researchProgram.thesisThemeLabels or {} %}
 
 {# ── Desktop: taulukko (piilotetaan mobiilissa) ── #}
 <div class="d-none d-md-block">
@@ -28,7 +30,7 @@
       </thead>
       <tbody>
         {% for thesis in thesisItems %}
-        <tr data-year="{{ thesis.year }}" data-type="{{ thesis.type or '' }}">
+        <tr data-year="{{ thesis.year }}" data-type="{{ thesis.type or '' }}" data-research-line="{{ thesis.researchLine or '' }}" data-research-themes="{{ thesis.researchThemes | join(' ') }}" data-research-audience="{{ thesis.researchAudience | join(' ') }}">
           <td class="small">{{ thesis.authors | join("; ") }}</td>
           <td class="col-year text-center font-monospace small fw-bold text-info">
             {{ thesis.year }}
@@ -63,6 +65,14 @@
               >
                 <i class="bi bi-quote me-1" aria-hidden="true"></i>{{ "Export citation" if isEN else "Vie viite" }}
               </button>
+              {% endif %}
+              {% if thesis.researchLine %}
+              <div class="mt-1">
+                <span class="badge text-bg-light border text-dark">{{ thesisResearchLineLabels[thesis.researchLine] or thesis.researchLine }}</span>
+                {% for theme in thesis.researchThemes %}
+                <span class="badge text-bg-light border text-secondary ms-1">{{ thesisResearchThemeLabels[theme] or theme }}</span>
+                {% endfor %}
+              </div>
               {% endif %}
             {% else %}
               <span class="fw-medium">{{ thesis.title }}</span>
@@ -121,7 +131,7 @@
   {% else %}
     {% set apaTypeLabel = thesis.type or "Opinnäytetyö" %}
   {% endif %}
-  <li class="thesis-mobile-item px-3 py-3 border-bottom" style="{{ mobileItemStyle }}" role="listitem">
+  <li class="thesis-mobile-item px-3 py-3 border-bottom" style="{{ mobileItemStyle }}" data-research-line="{{ thesis.researchLine or '' }}" data-research-themes="{{ thesis.researchThemes | join(' ') }}" data-research-audience="{{ thesis.researchAudience | join(' ') }}" role="listitem">
     <p class="small mb-2 lh-base">
       <span class="text-muted">{{ thesis.authors | join("; ") }} ({{ thesis.year or "n.d." }}).</span>
       {% if thesis.link %}
@@ -138,6 +148,14 @@
       {% elif thesis.type == "bachelorThesis" %}
         <span class="badge bg-info">{{ "Bachelor's thesis" if isEN else "Kandidaatintyö" }}</span>
       {% endif %}
+    </div>
+    {% endif %}
+    {% if thesis.researchLine %}
+    <div class="mb-2">
+      <span class="badge text-bg-light border text-dark">{{ thesisResearchLineLabels[thesis.researchLine] or thesis.researchLine }}</span>
+      {% for theme in thesis.researchThemes %}
+      <span class="badge text-bg-light border text-secondary ms-1">{{ thesisResearchThemeLabels[theme] or theme }}</span>
+      {% endfor %}
     </div>
     {% endif %}
     {% if thesis.keywords.length %}

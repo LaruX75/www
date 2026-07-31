@@ -98,6 +98,7 @@ function withCitation(thesis) {
         citationApa: buildApaCitation(thesis),
         citationStyle: 'APA 7',
         researchLine: meta.researchLine || null,
+        researchExcluded: meta.excludeFromResearchProgram === true,
         researchThemes: Array.isArray(meta.themes) ? meta.themes.filter(Boolean) : [],
         researchAudience: Array.isArray(meta.audience) ? meta.audience.filter(Boolean) : [],
         featuredOn: Array.isArray(meta.featuredOn) ? meta.featuredOn.filter(Boolean) : [],

@@ -472,6 +472,476 @@
       "priority": 95,
       "summary": "Tarkastelee pienen kielimallin käyttöä tekoäly-ymmärryksen rakentamisessa opettajaopiskelijoilla."
     },
+    "https://oulurepo.oulu.fi/handle/10024/63041": {
+      "researchLine": "ai-literacy",
+      "themes": ["tekoalylukutaito", "opettajankoulutus"],
+      "audience": ["opettajankoulutus"],
+      "summary": "Käsittelee opettajaopiskelijoiden ajatuksia tekoälyn mahdollisuuksista ja tulevaisuuden merkityksestä opettajan työssä."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/62907": {
+      "researchLine": "ai-literacy",
+      "themes": ["tekoalylukutaito", "koneoppiminen", "opettajankoulutus"],
+      "audience": ["opettajankoulutus"],
+      "summary": "Tarkastelee opettajaopiskelijoiden tekoälytaitojen näkyvyyttä heidän rakentamissaan luokittelijasovelluksissa."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/62912": {
+      "researchLine": "ai-literacy",
+      "themes": ["tekoalylukutaito"],
+      "audience": ["opettajat"],
+      "summary": "Käsittelee opettajien tulevaisuuskäsityksiä tekoälystä ja sen vaikutuksista opetukseen."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/61633": {
+      "researchLine": "ai-literacy",
+      "themes": ["tekoalylukutaito", "koneoppiminen"],
+      "audience": ["opettajat"],
+      "summary": "Käsittelee luokanopettajien tulevaisuudenkuvia tekoälystä osana opettajan työtä."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/54662": {
+      "researchLine": "ai-literacy",
+      "themes": ["tekoalylukutaito", "koneoppiminen"],
+      "audience": ["perusopetus"],
+      "summary": "Käsittelee opettajien näkemyksiä tekoälyn opettamisesta peruskoulussa ja siihen tarvittavista oppimateriaaleista."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/52013": {
+      "researchLine": "ai-literacy",
+      "themes": ["tekoalylukutaito", "tietosuoja"],
+      "audience": ["opettajankoulutus"],
+      "summary": "Käsittelee opettajaopiskelijoiden käsityksiä TikTokin tekoälystä, datankeruusta ja käytön riskeistä."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/51343": {
+      "researchLine": "ai-literacy",
+      "themes": ["tekoalylukutaito"],
+      "audience": ["varhaiskasvatus"],
+      "summary": "Käsittelee varhaiskasvatuksen opettajien käsityksiä tekoälystä ja sen hyödyntämisestä varhaiskasvatuksessa."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/56195": {
+      "researchLine": "ai-literacy",
+      "themes": ["tekoalylukutaito"],
+      "audience": ["esi-ja-perusopetus"],
+      "summary": "Käsittelee generatiivisen tekoälyn tuloa kouluun autoetnografisesta näkökulmasta."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/49727": {
+      "researchLine": "ai-literacy",
+      "themes": ["tekoalylukutaito", "koneoppiminen"],
+      "audience": ["perusopetus"],
+      "summary": "Käsittelee tekoälyn haasteita ja mahdollisuuksia alakoulun opetuksessa."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/56297": {
+      "researchLine": "adjacent-education",
+      "themes": ["monilukutaito"],
+      "audience": ["perusopetus"],
+      "summary": "Käsittelee opettajien havaintoja sosiaalisen median vaikutuksista 4.-9.-luokkalaisten arkeen ja mediakasvatuksen toteuttamiseen koulussa."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/48915": {
+      "researchLine": "adjacent-education",
+      "themes": [],
+      "audience": ["perusopetus"],
+      "summary": "Käsittelee luokanopettajien käsityksiä alakouluikäisistä ADHD-oppilaista, heidän vahvuuksistaan ja tukemisestaan."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/46894": {
+      "researchLine": "teacher-education",
+      "themes": ["opettajankoulutus", "yhteisollinen-oppiminen"],
+      "audience": ["opettajat"],
+      "summary": "Käsittelee Instagramiin rakentuneen opettajien käytäntöyhteisön hyötyjä ja haasteita ammatillisen kehittymisen näkökulmasta."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/46896": {
+      "researchLine": "long-term-learning",
+      "themes": ["digipedagogiikka", "oppimisymparistot"],
+      "audience": ["perusopetus"],
+      "summary": "Käsittelee iWall-peliseinän käyttöä liikuntapedagogisena työvälineenä sekä opettajien kokemuksia sen hyödyistä ja haasteista."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/42430": {
+      "researchLine": "long-term-learning",
+      "themes": ["digipedagogiikka", "oppimisymparistot"],
+      "audience": ["esi-ja-alkuopetus"],
+      "summary": "Käsittelee esi- ja alkuopetuksen opettajien kokemuksia Ekapelin käytöstä lukemaan oppimisessa, kun oppilaalla on lukivaikeusriskejä."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/42244": {
+      "researchLine": "teacher-education",
+      "themes": ["opettajankoulutus", "yhteisollinen-oppiminen", "teknologiakasvatus"],
+      "audience": ["opettajankoulutus"],
+      "summary": "Käsittelee johtajuuden rakentumista opettajaopiskelijoiden yhteisöllisessä oppimisessa maker education -projektissa."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/41417": {
+      "researchLine": "adjacent-education",
+      "themes": [],
+      "audience": ["perusopetus"],
+      "summary": "Käsittelee luokanopettajien kokemuksia kouluruokailusta sekä keinoja toteuttaa ruokakasvatusta koulun arjessa."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/20268": {
+      "researchLine": "teacher-education",
+      "themes": ["digipedagogiikka", "monilukutaito"],
+      "audience": ["opettajat"],
+      "summary": "Käsittelee alakouluopettajien käsityksiä ja kokemuksia sosiaalisen median asemasta opetustyössä."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/20738": {
+      "researchLine": "adjacent-education",
+      "themes": [],
+      "audience": ["perusopetus"],
+      "summary": "Käsittelee opettajan motivointikeinoja ja oppilaiden motivoitumista periskoopin valmistuksessa käsityön tunnilla."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/62157": {
+      "researchLine": "adjacent-education",
+      "themes": [],
+      "audience": ["perusopetus"],
+      "summary": "Käsittelee ADHD-oireisten kokemuksia peruskoulun kuormittavista tekijöistä, koulussa jaksamisesta ja saadusta tuesta."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/62935": {
+      "researchLine": "adjacent-education",
+      "themes": [],
+      "audience": ["perusopetus"],
+      "summary": "Käsittelee emotionaalisen älykkyyden ja koulukiusaamisen välisiä yhteyksiä alakoulussa."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/61940": {
+      "researchLine": "adjacent-education",
+      "themes": [],
+      "audience": ["perusopetus"],
+      "summary": "Käsittelee yläkouluikäisten älypuhelimen käyttöä ja ruutuajan yhteyksiä tunnetaitoihin."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/64129": {
+      "researchLine": "adjacent-education",
+      "themes": [],
+      "audience": ["perusopetus"],
+      "summary": "Käsittelee nuorten kokemuksia sosiaalisen median vaikutuksista itsetuntoon."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/62934": {
+      "researchLine": "adjacent-education",
+      "themes": [],
+      "audience": ["perusopetus"],
+      "summary": "Käsittelee pedagogisen vuorovaikutuksen roolia opetustilanteessa."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/62325": {
+      "researchLine": "long-term-learning",
+      "themes": ["steam"],
+      "audience": ["perusopetus"],
+      "summary": "Käsittelee STEAM-opetuksen yhteyttä oppilaan osallisuuden kokemukseen."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/57121": {
+      "researchLine": "adjacent-education",
+      "themes": [],
+      "audience": ["perusopetus"],
+      "summary": "Käsittelee yhdeksäsluokkalaisten kokemuksia sosiaalisen median vaikutuksista minäkäsitykseen."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/57286": {
+      "researchLine": "adjacent-education",
+      "themes": [],
+      "audience": ["perusopetus"],
+      "summary": "Käsittelee kestävän tulevaisuuden näkymistä perusopetuksen opetussuunnitelman perusteissa."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/57134": {
+      "researchLine": "ai-literacy",
+      "themes": ["tekoalylukutaito", "monilukutaito"],
+      "audience": ["perusopetus"],
+      "summary": "Käsittelee monilukutaidon ja vaikuttamisen keinojen opetusta musiikkiluokalla, jossa sosiaalisen median profilointi ja kohdentaminen tehdään näkyviksi Somekone-työkalulla."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/54334": {
+      "researchLine": "long-term-learning",
+      "themes": ["digipedagogiikka", "monilukutaito"],
+      "audience": ["varhaiskasvatus", "esi-ja-alkuopetus"],
+      "summary": "Käsittelee lasten digihyvinvoinnin tukemista varhaiskasvatuksessa ja esiopetuksessa mediakasvatuksen, osaamisen ja pedagogisen suunnittelun näkökulmista."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/54333": {
+      "researchLine": "adjacent-education",
+      "themes": [],
+      "audience": ["perusopetus"],
+      "summary": "Käsittelee liikunnan yhteyksiä oppimistuloksiin ja kognitiivisiin taitoihin kouluympäristössä."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/54006": {
+      "researchLine": "long-term-learning",
+      "themes": ["ohjelmoinnillinen-ajattelu", "ohjelmointi"],
+      "audience": ["perusopetus"],
+      "summary": "Käsittelee ohjelmoinnillisen ajattelun ja musiikin yhteyksiä perusopetuksessa sekä niiden opetuksellisia mahdollisuuksia."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/57209": {
+      "researchLine": "adjacent-education",
+      "themes": [],
+      "audience": ["perusopetus", "opettajat"],
+      "summary": "Käsittelee liikunnallista oppimista suomalaisessa koulujärjestelmässä opetusmenetelmänä, koulun toimintakulttuurina ja koulutuspolitiikan kysymyksenä."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/60043": {
+      "researchLine": "teacher-education",
+      "themes": ["digipedagogiikka"],
+      "audience": ["opettajat"],
+      "summary": "Käsittelee tieto- ja viestintätekniikan käyttöä pedagogisessa toiminnassa koululaitoksen ja opettajien näkökulmasta."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/57123": {
+      "researchLine": "adjacent-education",
+      "themes": [],
+      "audience": ["laaja-yleiso"],
+      "summary": "Käsittelee Call of Duty Warzone -pelaajien tunnekokemuksia ja niiden mahdollista merkitystä kasvatuksen näkökulmasta."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/57233": {
+      "researchLine": "long-term-learning",
+      "themes": ["digipedagogiikka", "oppimisymparistot"],
+      "audience": ["perusopetus"],
+      "summary": "Käsittelee älypuhelimien ja koulussa käytettävän teknologian vaikutuksia peruskouluikäisten oppimiseen ja koulunkäyntiin."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/49726": {
+      "researchLine": "long-term-learning",
+      "themes": ["digipedagogiikka", "oppimisymparistot"],
+      "audience": ["perusopetus"],
+      "summary": "Käsittelee fyysisesti passiivisten lasten ja nuorten motivoimista liikkumaan teknologian avulla."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/48601": {
+      "researchLine": "long-term-learning",
+      "themes": ["digipedagogiikka", "oppimisymparistot"],
+      "audience": ["esi-ja-alkuopetus"],
+      "summary": "Käsittelee alkuopettajien asenteita liikuntateknologiaan ja sen pedagogisia mahdollisuuksia liikunnan opetuksessa."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/51005": {
+      "researchLine": null,
+      "excludeFromResearchProgram": true,
+      "themes": [],
+      "audience": [],
+      "summary": "Käsittelee organisaatio-oppimista ja ajallisuutta yritysfuusion jälkeisessä integraatioprosessissa."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/48497": {
+      "researchLine": "adjacent-education",
+      "themes": [],
+      "audience": ["perusopetus"],
+      "summary": "Käsittelee pedagogisen rakkauden merkitystä erityisherkän oppilaan kohtaamisessa."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/49928": {
+      "researchLine": "long-term-learning",
+      "themes": ["steam"],
+      "audience": ["perusopetus"],
+      "summary": "Käsittelee STEAM-pedagogiikan mahdollisuuksia tulevaisuuden osaamisen tukemisessa."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/50893": {
+      "researchLine": "adjacent-education",
+      "themes": [],
+      "audience": ["varhaiskasvatus"],
+      "summary": "Käsittelee varhaiskasvattajien työhyvinvointiin vaikuttavia tekijöitä, kuten työyhteisöä, kiusaamista ja kuormitusta."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/49416": {
+      "researchLine": "long-term-learning",
+      "themes": ["digipedagogiikka", "oppimisymparistot"],
+      "audience": ["korkeakoulutus"],
+      "summary": "Käsittelee Minecraft: Education Editionin käyttöä musiikinteorian oppimisympäristönä ja opiskelijoiden kokemuksia oppimisesta sekä motivaatiosta."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/41448": {
+      "researchLine": "adjacent-education",
+      "themes": ["monilukutaito"],
+      "audience": ["perusopetus"],
+      "summary": "Käsittelee elokuvan mahdollisuuksia media- ja monilukutaidon opetuksen välineenä."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/42361": {
+      "researchLine": null,
+      "excludeFromResearchProgram": true,
+      "themes": [],
+      "audience": [],
+      "summary": "Esittää käsitteellisen mallin teknologisten strategioiden ja sosiaalisten verkostojen yhdistämisestä kansainvälisten maisteriopiskelijoiden työllistymisen tueksi."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/41989": {
+      "researchLine": "adjacent-education",
+      "themes": ["monilukutaito"],
+      "audience": ["perusopetus"],
+      "summary": "Käsittelee lukutaitoa monimediaisessa maailmassa sekä koulun roolia kriittisen media- ja monilukutaidon tukemisessa."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/42420": {
+      "researchLine": "teacher-education",
+      "themes": ["monilukutaito"],
+      "audience": ["opettajat"],
+      "summary": "Käsittelee sosiaalisen median luomien trendien vaikutuksia opettajan työhön koulussa."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/42713": {
+      "researchLine": "adjacent-education",
+      "themes": [],
+      "audience": ["perusopetus"],
+      "summary": "Käsittelee oppijaminäkäsityksen yhteyttä alakouluikäisen oppilaan pystyvyyden kokemuksiin, motivaatioon ja opettajan toimintaan."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/42159": {
+      "researchLine": "adjacent-education",
+      "themes": [],
+      "audience": ["perusopetus"],
+      "summary": "Käsittelee oppilasarviointia ja monimateriaalisuuden haasteita yhteisessä käsityönopetuksessa."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/41924": {
+      "researchLine": "long-term-learning",
+      "themes": ["digipedagogiikka", "oppimisymparistot"],
+      "audience": ["perusopetus"],
+      "summary": "Käsittelee oppimateriaalien muuttuvaa roolia sekä digitaalisten oppimateriaalien käsitteitä peruskoulun kontekstissa."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/41910": {
+      "researchLine": "adjacent-education",
+      "themes": [],
+      "audience": ["perusopetus"],
+      "summary": "Käsittelee seksuaalisuuden ja sukupuolen moninaisuuden näkyvyyttä alakoulun seksuaalikasvatuksessa ja oppimateriaaleissa."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/46895": {
+      "researchLine": "long-term-learning",
+      "themes": ["digipedagogiikka", "oppimisymparistot"],
+      "audience": ["esi-ja-alkuopetus"],
+      "summary": "Käsittelee iWall-pelihetkiä esiopetuksen työtapana lasten itsesäätelytaitojen näkökulmasta."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/46597": {
+      "researchLine": "adjacent-education",
+      "themes": [],
+      "audience": ["perusopetus"],
+      "summary": "Käsittelee tunnetaitoja ja tunnekasvatusta alakoulussa."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/42439": {
+      "researchLine": null,
+      "excludeFromResearchProgram": true,
+      "themes": [],
+      "audience": [],
+      "summary": "Esittää kokonaisvaltaisen henkilöstön osaamisen kehittämisen mallin kiinalaisille pienille ja keskisuurille yrityksille."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/42436": {
+      "researchLine": "adjacent-education",
+      "themes": [],
+      "audience": ["laaja-yleiso"],
+      "summary": "Käsittelee vanhempien käsityksiä lasten ruutuajasta ja pelaamisesta."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/21188": {
+      "researchLine": "long-term-learning",
+      "themes": ["teknologiakasvatus"],
+      "audience": ["perusopetus"],
+      "summary": "Käsittelee teknologiakasvatuksen vaiheita suomalaisessa peruskoulussa ja sen vaikutuksia käsityökasvatukseen."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/19901": {
+      "researchLine": "long-term-learning",
+      "themes": ["digipedagogiikka", "oppimisymparistot"],
+      "audience": ["laaja-yleiso"],
+      "summary": "Käsittelee digitaalisten pelien käyttöä kognitiivisina työvälineinä, pelipohjaista oppimista ja pelillistämistä."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/21330": {
+      "researchLine": "long-term-learning",
+      "themes": ["ohjelmoinnillinen-ajattelu", "ohjelmointi"],
+      "audience": ["perusopetus"],
+      "summary": "Käsittelee ohjelmoinnillista ajattelua opetuksessa."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/21326": {
+      "researchLine": "long-term-learning",
+      "themes": ["teknologiakasvatus", "steam"],
+      "audience": ["perusopetus"],
+      "summary": "Käsittelee teknologiakasvatuksen ja STEAM-toiminnan eroja sekä yhtäläisyyksiä."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/20174": {
+      "researchLine": "adjacent-education",
+      "themes": [],
+      "audience": ["laaja-yleiso"],
+      "summary": "Käsittelee vanhempien käsityksiä pelikasvatuksesta ja heidän roolistaan pelikasvattajina."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/19329": {
+      "researchLine": "adjacent-education",
+      "themes": ["monilukutaito"],
+      "audience": ["perusopetus"],
+      "summary": "Käsittelee näkemyksiä mediakasvatuksesta ja aikuisten roolista lasten tukemisessa mediaympäristöissä."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/17505": {
+      "researchLine": "long-term-learning",
+      "themes": ["digipedagogiikka"],
+      "audience": ["opettajat"],
+      "summary": "Käsittelee lukio-opiskelijoiden ja erityisopettajan käsityksiä lukivaikeuden kompensoimisesta teknologian avulla."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/17534": {
+      "researchLine": "adjacent-education",
+      "themes": [],
+      "audience": ["perusopetus"],
+      "summary": "Käsittelee luokanopettajien kokemuksia valmiuksistaan opettaa tunnetaitoja 3.-6.-luokkalaisille."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/18391": {
+      "researchLine": "long-term-learning",
+      "themes": ["teknologiakasvatus", "oppimisymparistot"],
+      "audience": ["korkeakoulutus"],
+      "summary": "Käsittelee maker educationin toteuttamista verkossa korkeakoulukurssilla COVID-19-pandemian aikana."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/18096": {
+      "researchLine": "teacher-education",
+      "themes": ["opettajankoulutus", "digipedagogiikka"],
+      "audience": ["opettajat"],
+      "summary": "Käsittelee teknologian opetuskäyttöön liittyvää ammatillista kehittymistä täydennyskoulutuksen järjestäjien näkökulmasta."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/18286": {
+      "researchLine": "teacher-education",
+      "themes": ["opettajankoulutus", "teknologiakasvatus"],
+      "audience": ["opettajat"],
+      "summary": "Käsittelee opettajien ja kasvattajien kokemuksia maker educationista, valmiuksista, asenteista ja haasteista."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/15076": {
+      "researchLine": "teacher-education",
+      "themes": ["digipedagogiikka"],
+      "audience": ["opettajat"],
+      "summary": "Käsittelee digiorientoituneiden naisopettajien kokemuksia minäpystyvyydestä ja roolimallina toimimisesta."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/16307": {
+      "researchLine": "teacher-education",
+      "themes": ["digipedagogiikka"],
+      "audience": ["opettajat"],
+      "summary": "Käsittelee musiikinopettajien kokemuksia digiloikasta ja teknologian käytöstä musiikinopetuksessa."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/16211": {
+      "researchLine": "teacher-education",
+      "themes": ["monilukutaito"],
+      "audience": ["opettajat"],
+      "summary": "Käsittelee luokanopettajien käsityksiä monilukutaidosta."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/14991": {
+      "researchLine": "teacher-education",
+      "themes": ["opettajankoulutus", "digipedagogiikka"],
+      "audience": ["opettajat"],
+      "summary": "Käsittelee opettajien tarvitsemaa tukea opetusteknologian käytössä."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/16302": {
+      "researchLine": "adjacent-education",
+      "themes": [],
+      "audience": ["opettajankoulutus"],
+      "summary": "Käsittelee opettajaopiskelijoiden kokemuksia pelaamisesta ja näkemyksiä pelaamisen merkityksestä hyvinvoinnille."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/13246": {
+      "researchLine": "long-term-learning",
+      "themes": ["ohjelmoinnillinen-ajattelu", "ohjelmointi"],
+      "audience": ["esi-ja-alkuopetus"],
+      "summary": "Käsittelee ohjelmoinnillisen ajattelun oppimistoimintojen suunnittelua alkuopetuksen iltapäivän koodikerhossa."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/14530": {
+      "researchLine": "long-term-learning",
+      "themes": ["digipedagogiikka"],
+      "audience": ["perusopetus"],
+      "summary": "Käsittelee vanhempien näkökulmia tieto- ja viestintäteknologiaan sekä sen käyttöön luokkahuoneessa."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/14325": {
+      "researchLine": "teacher-education",
+      "themes": ["digipedagogiikka"],
+      "audience": ["opettajat"],
+      "summary": "Käsittelee peruskoulun opettajien kokemuksia tieto- ja viestintäteknologiaan liittyvistä haasteista opetustilanteissa."
+    },
+    "https://oulurepo.oulu.fi/handle/10024/14792": { "researchLine": "long-term-learning", "themes": ["digipedagogiikka"], "audience": ["perusopetus"], "summary": "Käsittelee tieto- ja viestintäteknologian tarkoituksenmukaista hyödyntämistä opetuksessa." },
+    "https://oulurepo.oulu.fi/handle/10024/14608": { "researchLine": "long-term-learning", "themes": ["teknologiakasvatus", "oppimisymparistot"], "audience": ["perusopetus"], "summary": "Käsittelee digitaalisen valmistamisen oppimistoimintojen suunnittelun edellytyksiä formaalissa koulutuksessa." },
+    "https://oulurepo.oulu.fi/handle/10024/11738": { "researchLine": null, "excludeFromResearchProgram": true, "themes": [], "audience": [], "summary": "Käsittelee merkityksellistä oppimista tukevan opetuksen suunnittelua korkeakoulutuksessa." },
+    "https://oulurepo.oulu.fi/handle/10024/12265": { "researchLine": "long-term-learning", "themes": ["ohjelmoinnillinen-ajattelu", "ohjelmointi", "oppimisymparistot"], "audience": ["perusopetus"], "summary": "Käsittelee algoritmista ajattelua opettavan Minecraft-pelikokemuksen suunnittelua ohjelmointikerhossa." },
+    "https://oulurepo.oulu.fi/handle/10024/10642": { "researchLine": "teacher-education", "themes": [], "audience": ["opettajat"], "summary": "Käsittelee opettajien tukemista laaja-alaisen osaamisen taitojen arvioinnin suunnittelussa alakoulussa." },
+    "https://oulurepo.oulu.fi/handle/10024/11553": { "researchLine": "long-term-learning", "themes": ["digipedagogiikka", "oppimisymparistot"], "audience": ["korkeakoulutus"], "summary": "Käsittelee sitoutumisen tukemista omaan tahtiin etenevillä verkossa toteutettavilla arabian kielen MOOC-kursseilla." },
+    "https://oulurepo.oulu.fi/handle/10024/10583": { "researchLine": "adjacent-education", "themes": [], "audience": ["perusopetus"], "summary": "Käsittelee sosiaalisen median roolia kuudesluokkalaisten elämässä ja minäkäsityksen rakentumisessa." },
+    "https://oulurepo.oulu.fi/handle/10024/11520": { "researchLine": "long-term-learning", "themes": ["ohjelmoinnillinen-ajattelu", "yhteisollinen-oppiminen", "oppimisymparistot"], "audience": ["perusopetus"], "summary": "Käsittelee Minecraftin käyttöä luovuuden, yhteisöllisen työskentelyn ja motivaation tukena pelipohjaisessa oppimisessa." },
+    "https://oulurepo.oulu.fi/handle/10024/9314": { "researchLine": "long-term-learning", "themes": ["oppimisymparistot"], "audience": ["korkeakoulutus"], "summary": "Käsittelee oppimisen hallintajärjestelmien toimivuutta käyttäjäkokemuksen näkökulmasta korkeakouluissa." },
+    "https://oulurepo.oulu.fi/handle/10024/9282": { "researchLine": null, "excludeFromResearchProgram": true, "themes": [], "audience": [], "summary": "Käsittelee Bangladeshin informaatio- ja kirjastohallinnon opiskelijoiden ICT-lukutaitoa sekä vertaisten epämuodollista oppimista." },
+    "https://oulurepo.oulu.fi/handle/10024/8401": { "researchLine": "adjacent-education", "themes": ["monilukutaito"], "audience": ["varhaiskasvatus"], "summary": "Käsittelee lastentarhanopettajien käsityksiä lapsuudesta mediakasvatuksen näkökulmasta." },
+    "https://oulurepo.oulu.fi/handle/10024/8221": { "researchLine": "long-term-learning", "themes": ["yhteisollinen-oppiminen", "cscl", "oppimisymparistot"], "audience": ["perusopetus"], "summary": "Käsittelee Minecraftin käyttöä oppimisen ja opetuksen välineenä formaaleissa ja epäformaaleissa oppimistilanteissa." },
+    "https://oulurepo.oulu.fi/handle/10024/10129": { "researchLine": "teacher-education", "themes": ["opettajankoulutus", "oppimisymparistot"], "audience": ["opettajankoulutus"], "summary": "Käsittelee opettajaopiskelijoiden oppimista Minecraftia hyödyntävällä oppimisympäristökurssilla." },
+    "https://oulurepo.oulu.fi/handle/10024/9546": { "researchLine": "adjacent-education", "themes": [], "audience": ["perusopetus"], "summary": "Käsittelee opettajien kokemuksia oppimisympäristön vaikutuksista oppilaiden työskentelymotivaatioon ja kouluviihtyvyyteen." },
+    "https://oulurepo.oulu.fi/handle/10024/5854": { "researchLine": "long-term-learning", "themes": ["digipedagogiikka", "oppimisymparistot"], "audience": ["laaja-yleiso"], "summary": "Käsittelee verkko-oppimista ammatillisessa aikuisoppilaitoksessa Optima-oppimisalustan tapaustutkimuksena." },
+    "https://oulurepo.oulu.fi/handle/10024/6759": { "researchLine": null, "excludeFromResearchProgram": true, "themes": [], "audience": [], "summary": "Käsittelee asiantuntijuuden kehittämistä virtuaaliorganisaatioissa IT-palveluyritysten kontekstissa." },
+    "https://oulurepo.oulu.fi/handle/10024/6895": { "researchLine": "long-term-learning", "themes": ["digipedagogiikka", "oppimisymparistot"], "audience": ["perusopetus"], "summary": "Käsittelee K-12-oppijoille suunniteltujen Minecraft-pelipohjaisten oppimiskokemusten suunnittelua epämuodollisessa kerhotoiminnassa." },
+    "https://oulurepo.oulu.fi/handle/10024/7821": { "researchLine": "adjacent-education", "themes": [], "audience": ["perusopetus"], "summary": "Käsittelee kaupungin rakennusprojektia matemaattisena oppimisympäristönä alakoulussa." },
+    "https://oulurepo.oulu.fi/handle/10024/6576": { "researchLine": "long-term-learning", "themes": ["yhteisollinen-oppiminen", "cscl", "oppimisymparistot"], "audience": ["perusopetus"], "summary": "Käsittelee Kodu Game Labin käyttöä alakoulun opetuksessa yhteisöllisen oppimisen ja vuorovaikutuksen näkökulmasta." },
+    "https://oulurepo.oulu.fi/handle/10024/6518": { "researchLine": "long-term-learning", "themes": ["digipedagogiikka", "oppimisymparistot"], "audience": ["perusopetus"], "summary": "Käsittelee koettua autonomiaa teknologiatuetussa liikunnanopetuksessa." },
+    "https://oulurepo.oulu.fi/handle/10024/6612": { "researchLine": "long-term-learning", "themes": ["oppimisymparistot", "yhteisollinen-oppiminen"], "audience": ["perusopetus"], "summary": "Käsittelee leikin näkymistä digitaalisessa pelissä MinecraftEDU-kerhon kontekstissa." },
+    "https://oulurepo.oulu.fi/handle/10024/8016": { "researchLine": "adjacent-education", "themes": [], "audience": ["esi-ja-alkuopetus"], "summary": "Käsittelee ongelmanratkaisu- ja yhteistyötaitoja tasogeometrian opetuskokeilussa alkuopetuksessa." },
+    "https://oulurepo.oulu.fi/handle/10024/7879": { "researchLine": "long-term-learning", "themes": ["digipedagogiikka", "monilukutaito"], "audience": ["laaja-yleiso"], "summary": "Käsittelee videopeliä oppimisen alustana kulttuurisen oppimisen, identiteetin ja medialukutaidon näkökulmista." },
+    "https://oulurepo.oulu.fi/handle/10024/41044": { "researchLine": "long-term-learning", "themes": ["digipedagogiikka"], "audience": ["opettajat"], "summary": "Käsittelee opettajien näkemyksiä koulun ja työelämän yhdistämisestä tieto- ja viestintäteknologian avulla." },
+    "https://oulurepo.oulu.fi/handle/10024/40510": { "researchLine": "adjacent-education", "themes": [], "audience": ["perusopetus"], "summary": "Käsittelee dinosaurusnäyttelyä koulun ulkopuolisena oppimisympäristönä." },
+    "https://oulurepo.oulu.fi/handle/10024/40116": { "researchLine": "long-term-learning", "themes": ["digipedagogiikka", "oppimisymparistot"], "audience": ["korkeakoulutus"], "summary": "Käsittelee GeoGebraa derivaattakurssin työvälineenä tietokoneavusteisessa ja tutkivassa oppimisessa." },
+    "https://oulurepo.oulu.fi/handle/10024/40854": { "researchLine": "teacher-education", "themes": ["opettajankoulutus", "digipedagogiikka"], "audience": ["esi-ja-alkuopetus"], "summary": "Käsittelee lastentarhanopettajien TPACK-taitoja matematiikan opetuksessa esiopetuskontekstissa." },
+    "https://oulurepo.oulu.fi/handle/10024/41124": { "researchLine": "adjacent-education", "themes": [], "audience": ["opettajat"], "summary": "Käsittelee luokanopettajien ja matematiikan aineenopettajien käsityksiä matematiikan opetuksesta." },
+    "https://oulurepo.oulu.fi/handle/10024/40480": { "researchLine": "adjacent-education", "themes": [], "audience": ["opettajat"], "summary": "Käsittelee oppilaan matematiikan oppimisen haasteita opettajan näkökulmasta." },
+    "https://oulurepo.oulu.fi/handle/10024/40656": { "researchLine": "adjacent-education", "themes": [], "audience": ["perusopetus"], "summary": "Käsittelee pedagogista roolipeliä humanitaarisen oikeuden opetusmenetelmänä ja asennekasvatuksen välineenä." },
+    "https://oulurepo.oulu.fi/handle/10024/40776": { "researchLine": "long-term-learning", "themes": ["ohjelmoinnillinen-ajattelu", "ohjelmointi"], "audience": ["perusopetus"], "summary": "Käsittelee Scratch-ohjelmoinnin vaikutusta kuudesluokkalaisten käsityksiin itsestään arkisten ongelmien ratkaisijoina." },
+    "https://oulurepo.oulu.fi/handle/10024/39052": { "researchLine": "long-term-learning", "themes": ["digipedagogiikka", "oppimisymparistot"], "audience": ["perusopetus"], "summary": "Käsittelee digitaalisten pelien hyödyntämistä tulevaisuuden taitojen harjoittelussa ja oppimisessa." },
+    "https://oulurepo.oulu.fi/handle/10024/39727": { "researchLine": "adjacent-education", "themes": [], "audience": ["opettajat"], "summary": "Käsittelee luokanopettajien tietoperustan rakennetta alakoulun kemianopetuksessa." },
+    "https://oulurepo.oulu.fi/handle/10024/39172": { "researchLine": "long-term-learning", "themes": ["digipedagogiikka", "monilukutaito", "oppimisymparistot"], "audience": ["perusopetus"], "summary": "Käsittelee verkkojulkaisemisen pedagogiikkaa alakoulussa digitaalisen sisällöntuotannon, osallisuuden ja mediakasvatuksen näkökulmista." },
+    "https://oulurepo.oulu.fi/handle/10024/38572": { "researchLine": "teacher-education", "themes": ["opettajankoulutus", "digipedagogiikka", "yhteisollinen-oppiminen"], "audience": ["opettajankoulutus"], "summary": "Käsittelee opettajaopiskelijoiden käsityksiä sosiaalisesta mediasta ja sen roolista verkostoituneen oppimisen tukena Namibiassa." },
     "https://oulurepo.oulu.fi/handle/10024/61153": {
       "researchLine": "ai-literacy",
       "themes": ["tekoalylukutaito", "monilukutaito"],

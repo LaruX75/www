@@ -24,6 +24,8 @@ function sortByPriorityAndYear(items = []) {
 
 const RESEARCH_THEME_LABELS = {
   "tekoalylukutaito": "Tekoälylukutaito",
+  "tekoaly-opetuksessa": "Tekoäly opetuksessa",
+  "monilukutaito": "Monilukutaito",
   "opettajankoulutus": "Opettajankoulutus",
   "ohjelmoinnillinen-ajattelu": "Ohjelmoinnillinen ajattelu",
   "ohjelmointi": "Ohjelmointi",
@@ -32,6 +34,7 @@ const RESEARCH_THEME_LABELS = {
   "cscl": "CSCL",
   "mobiilioppiminen": "Mobiilioppiminen",
   "oppimisymparistot": "Oppimisympäristöt",
+  "steam": "STEAM",
   "teknologiakasvatus": "Teknologiakasvatus",
   "selitettava-tekoaly": "Selitettävä tekoäly",
   "tietosuoja": "Tietosuoja",
@@ -39,6 +42,8 @@ const RESEARCH_THEME_LABELS = {
 };
 
 const RESEARCH_AUDIENCE_LABELS = {
+  "varhaiskasvatus": "Varhaiskasvatus",
+  "opettajat": "Opettajat",
   "esi-ja-alkuopetus": "Esi- ja alkuopetus",
   "esi-ja-perusopetus": "Esi- ja perusopetus",
   "perusopetus": "Perusopetus",
@@ -64,6 +69,18 @@ function buildArchiveFilters(publications, lines) {
   };
 }
 
+function buildThesisArchiveFilters(theses, lines) {
+  const usedThemes = new Set(theses.flatMap((item) => toArray(item.researchThemes)));
+  const usedAudiences = new Set(theses.flatMap((item) => toArray(item.researchAudience)));
+  return {
+    lines: lines
+      .filter((line) => theses.some((item) => item.researchLine === line.key))
+      .map((line) => ({ value: line.key, label: line.title })),
+    themes: Object.entries(RESEARCH_THEME_LABELS).filter(([value]) => usedThemes.has(value)).map(([value, label]) => ({ value, label })),
+    audiences: Object.entries(RESEARCH_AUDIENCE_LABELS).filter(([value]) => usedAudiences.has(value)).map(([value, label]) => ({ value, label }))
+  };
+}
+
 function pickOrderedItems(keys = [], itemMap) {
   return toArray(keys)
     .map((key) => itemMap.get(key))
@@ -79,7 +96,7 @@ function annotateWarnings(items, itemMap, kind) {
 }
 
 function logMissingResearchLines(items, kind) {
-  const missing = toArray(items).filter((item) => !item.researchLine);
+  const missing = toArray(items).filter((item) => !item.researchLine && !item.researchExcluded);
   if (!missing.length) return missing;
 
   const preview = missing
@@ -141,6 +158,8 @@ module.exports = async function loadResearchProgram() {
   });
   const visibleLines = lines.filter((line) => line.showOnResearchPage !== false);
   const archiveFilters = buildArchiveFilters(publications, lines);
+  const thesisArchiveFilters = buildThesisArchiveFilters(theses, lines);
+  const thesisLineLabels = Object.fromEntries(lines.map((line) => [line.key, line.title]));
   const publicationMetaByAnchor = Object.fromEntries(
     publications.map((item) => [item.anchorId, {
       researchLine: item.researchLine,
@@ -177,6 +196,9 @@ module.exports = async function loadResearchProgram() {
     publications,
     publicationMetaByAnchor,
     archiveFilters,
+    thesisArchiveFilters,
+    thesisLineLabels,
+    thesisThemeLabels: RESEARCH_THEME_LABELS,
     theses,
     missingPublicationIds,
     missingThesisLinks,
