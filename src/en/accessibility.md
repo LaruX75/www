@@ -6,6 +6,7 @@ description: "Accessibility statement for jarilaru.fi: WCAG 2.1 AA target level,
 permalink: /en/accessibility/
 translationKey: accessibility_statement
 lang: en
+pageScopeClass: document-guide-page
 ---
 
 **Website:** [www.jarilaru.fi](https://www.jarilaru.fi)
@@ -15,7 +16,20 @@ lang: en
 
 ---
 
-## Summary
+<div class="document-guide-summary" role="note">
+  <strong>Status in short:</strong> the site is being improved toward WCAG 2.1 AA. Automated audits pass on the core pages, but legacy archive content, third-party embeds, and full screen reader validation still require continued work.
+</div>
+
+<nav class="document-guide-path" aria-label="Main sections in the accessibility statement">
+  <a href="#summary">Summary</a>
+  <a href="#method">Method</a>
+  <a href="#result">Result</a>
+  <a href="#fixed">Fixed issues</a>
+  <a href="#limitations">Limitations</a>
+  <a href="#feedback">Feedback</a>
+</nav>
+
+<h2 id="summary">Summary</h2>
 
 The site is being improved toward WCAG 2.1 Level AA. Based on the updated internal accessibility audit completed in April 2026, the website does not yet meet all WCAG 2.1 AA requirements across all pages and use cases.
 
@@ -25,7 +39,7 @@ The site also includes an accessibility toolbar on the right edge of the page. I
 
 ---
 
-## Assessment Methodology
+<h2 id="method">Assessment Methodology</h2>
 
 The assessment is based on:
 
@@ -41,7 +55,7 @@ After the accessibility toolbar update, a separate Playwright regression test wa
 
 ---
 
-## Scope of Review
+<h2 id="scope">Scope of Review</h2>
 
 This audit round focused primarily on:
 
@@ -59,7 +73,7 @@ The English-language pages largely reuse the same shared components and structur
 
 ---
 
-## Result of This Audit
+<h2 id="result">Result of This Audit</h2>
 
 - The automated audit suite run on 11 April 2026 passed 14/14 tests.
 - The accessibility toolbar regression suite run on 18 July 2026 passed 7/7 tests.
@@ -68,7 +82,7 @@ The English-language pages largely reuse the same shared components and structur
 
 ---
 
-## Issues Found and Fixed
+<h2 id="fixed">Issues Found and Fixed</h2>
 
 Accessibility work completed during the 2026 audit rounds has already addressed issues such as:
 
@@ -97,7 +111,7 @@ This audit round also updated the accessibility wording around the site's WCAG b
 
 ---
 
-## Known Limitations and Remaining Work
+<h2 id="limitations">Known Limitations and Remaining Work</h2>
 
 Automated testing covers only part of WCAG. The following areas still need more work or verification:
 
@@ -110,7 +124,7 @@ Automated testing covers only part of WCAG. The following areas still need more 
 
 ---
 
-## Feedback
+<h2 id="feedback">Feedback</h2>
 
 If you encounter an accessibility issue on this website, please contact:
 
@@ -119,7 +133,7 @@ Email: <a href="mailto:%6A%61%72%69%2E%6C%61%72%75%40%6F%75%6C%75%2E%66%69" aria
 
 ---
 
-## References
+<h2 id="references">References</h2>
 
 - [WCAG 2.1 Guidelines (W3C)](https://www.w3.org/TR/WCAG21/)
 - [Understanding WCAG 2.1 (W3C)](https://www.w3.org/WAI/WCAG21/Understanding/)

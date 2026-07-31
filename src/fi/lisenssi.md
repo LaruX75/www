@@ -6,9 +6,21 @@ description: Jarilaru.fi-sivuston sisällön, poliittisten kirjoitusten, lähdek
 permalink: /lisenssi/
 lang: fi
 translationKey: license_page
+pageScopeClass: document-guide-page
 ---
 
-## Sisältö — CC BY 4.0
+<div class="document-guide-summary" role="note">
+  <strong>Lyhyesti:</strong> suurin osa sivuston alkuperäisestä sisällöstä on vapaasti käytettävissä nimeämällä tekijä. Poliittisissa kirjoituksissa ja kolmannen osapuolen materiaaleissa on tiukemmat rajaukset.
+</div>
+
+<nav class="document-guide-path" aria-label="Lisenssisivun pääkohdat">
+  <a href="#content-license">Sisältö</a>
+  <a href="#political-license">Poliittiset kirjoitukset</a>
+  <a href="#code-license">Lähdekoodi</a>
+  <a href="#third-party">Kolmas osapuoli</a>
+</nav>
+
+<h2 id="content-license">Sisältö — CC BY 4.0</h2>
 
 Sivuston alkuperäinen sisältö on lisensoitu **Creative Commons Nimeä 4.0 Kansainvälinen (CC BY 4.0)** -lisenssillä, ellei toisin mainita.
 
@@ -20,7 +32,7 @@ Tämä koskee akateemisia ja ammatillisia tekstejä, opetusmateriaaleja, teknisi
 
 ---
 
-## Poliittiset kirjoitukset — CC BY-NC-ND 4.0
+<h2 id="political-license">Poliittiset kirjoitukset — CC BY-NC-ND 4.0</h2>
 
 Poliittinen sisältö on lisensoitu **Creative Commons Nimeä-EiKaupallinen-EiMuutoksia 4.0 Kansainvälinen (CC BY-NC-ND 4.0)** -lisenssillä.
 
@@ -33,7 +45,7 @@ Tämä koskee:
 
 ---
 
-## Lähdekoodi — MIT
+<h2 id="code-license">Lähdekoodi — MIT</h2>
 
 Sivuston lähdekoodi (templaatit, JavaScript, CSS, konfiguraatiotiedostot) on lisensoitu **MIT-lisenssillä**.
 
@@ -41,7 +53,7 @@ Sivuston lähdekoodi (templaatit, JavaScript, CSS, konfiguraatiotiedostot) on li
 
 ---
 
-## Kolmannen osapuolen sisältö
+<h2 id="third-party">Kolmannen osapuolen sisältö</h2>
 
 Nämä lisenssit eivät koske:
 

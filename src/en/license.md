@@ -6,9 +6,21 @@ description: Licensing terms for jarilaru.fi content, political writings, source
 permalink: /en/license/
 lang: en
 translationKey: license_page
+pageScopeClass: document-guide-page
 ---
 
-## Content — CC BY 4.0
+<div class="document-guide-summary" role="note">
+  <strong>In short:</strong> most original site content can be reused with attribution. Political writings and third-party materials have stricter limits.
+</div>
+
+<nav class="document-guide-path" aria-label="Main sections on the license page">
+  <a href="#content-license">Content</a>
+  <a href="#political-license">Political writings</a>
+  <a href="#code-license">Source code</a>
+  <a href="#third-party">Third party</a>
+</nav>
+
+<h2 id="content-license">Content — CC BY 4.0</h2>
 
 All original content on jarilaru.fi is licensed under
 **Creative Commons Attribution 4.0 International (CC BY 4.0)**,
@@ -23,7 +35,7 @@ writing, and general site content.
 
 ---
 
-## Political writings — CC BY-NC-ND 4.0
+<h2 id="political-license">Political writings — CC BY-NC-ND 4.0</h2>
 
 Political content is licensed under
 **Creative Commons Attribution–NonCommercial–NoDerivatives 4.0 International
@@ -38,7 +50,7 @@ This covers:
 
 ---
 
-## Source code — MIT
+<h2 id="code-license">Source code — MIT</h2>
 
 The site's source code (templates, JavaScript, CSS, configuration files) is licensed
 under the **MIT License**.
@@ -47,7 +59,7 @@ under the **MIT License**.
 
 ---
 
-## Third-party content
+<h2 id="third-party">Third-party content</h2>
 
 These licenses do not cover:
 

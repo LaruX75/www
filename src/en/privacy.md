@@ -6,17 +6,30 @@ description: "Privacy notice for jarilaru.fi: local storage, external embeds, co
 permalink: /en/privacy/
 translationKey: privacy_notice
 lang: en
+pageScopeClass: document-guide-page
 ---
 This page explains how www.jarilaru.fi processes technical data related to website use.
 
-## 1. Controller
+<div class="document-guide-summary" role="note">
+  <strong>In short:</strong> local settings are not used for advertising or profiling. External embeds load only after consent, and contact form data is used only to handle the message.
+</div>
+
+<nav class="document-guide-path" aria-label="Main sections in the privacy notice">
+  <a href="#controller">Controller</a>
+  <a href="#embeds">Embeds</a>
+  <a href="#local-storage">LocalStorage</a>
+  <a href="#contact-form">Contact form</a>
+  <a href="#rights">Rights</a>
+</nav>
+
+<h2 id="controller">1. Controller</h2>
 
 Jari Laru  
 Contact: <a href="mailto:%6A%61%72%69%2E%6C%61%72%75%40%6F%75%6C%75%2E%66%69" aria-label="Email jari.laru@oulu.fi"><span>jari.laru</span><span aria-hidden="true">@</span><span>oulu.fi</span></a>
 
 **Last updated:** March 6, 2026
 
-## 2. External embeds and consent
+<h2 id="embeds">2. External embeds and consent</h2>
 
 The website may include embedded third-party content (for example Facebook, SlideShare, Scribd, or Google).
 
@@ -38,7 +51,7 @@ Please note: once third-party content is loaded, that service may set its own co
   <div class="small text-muted mt-2" data-external-media-reset-status></div>
 </div>
 
-## 3. Local storage (`localStorage`)
+<h2 id="local-storage">3. Local storage (`localStorage`)</h2>
 
 The site uses browser local storage for functional settings:
 
@@ -48,22 +61,22 @@ The site uses browser local storage for functional settings:
 
 These values are not used for advertising or profiling.
 
-## 4. Contact form
+<h2 id="contact-form">4. Contact form</h2>
 
 The contact form uses Formspree to deliver messages.
 Submitted data is used only for handling contact requests.
 
-## 5. Data retention
+<h2 id="retention">5. Data retention</h2>
 
 Browser local settings remain on the user's device until the user deletes or changes them.
 
 Contact form data is retained only as long as needed to process the request.
 
-## 6. Your rights
+<h2 id="rights">6. Your rights</h2>
 
 You can request more information about processing or request deletion of your data by contacting the controller.
 
-## 7. Data Protection Officer (DPO) and request channel
+<h2 id="request-channel">7. Data Protection Officer (DPO) and request channel</h2>
 
 No separate Data Protection Officer has been appointed for this website.
 

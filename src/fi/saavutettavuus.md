@@ -5,6 +5,7 @@ title: Saavutettavuusseloste
 description: "Jarilaru.fi-sivuston saavutettavuusseloste: WCAG 2.1 AA -tavoitetaso, auditoinnin tulokset, tunnetut rajoitukset ja palautekanava."
 permalink: /saavutettavuus/
 translationKey: accessibility_statement
+pageScopeClass: document-guide-page
 ---
 
 **Sivusto:** [www.jarilaru.fi](https://www.jarilaru.fi)
@@ -14,7 +15,20 @@ translationKey: accessibility_statement
 
 ---
 
-## Yhteenveto
+<div class="document-guide-summary" role="note">
+  <strong>Tilanne lyhyesti:</strong> sivustoa kehitetään WCAG 2.1 AA -tavoitetta kohti. Automaattiset auditoinnit ovat läpäisseet ydinsivut, mutta vanha arkistosisältö, ulkoiset upotukset ja ruudunlukijavarmennus vaativat edelleen jatkotyötä.
+</div>
+
+<nav class="document-guide-path" aria-label="Saavutettavuusselosteen pääkohdat">
+  <a href="#summary">Yhteenveto</a>
+  <a href="#method">Menetelmä</a>
+  <a href="#result">Tulos</a>
+  <a href="#fixed">Korjatut</a>
+  <a href="#limitations">Rajoitukset</a>
+  <a href="#feedback">Palaute</a>
+</nav>
+
+<h2 id="summary">Yhteenveto</h2>
 
 Sivustoa kehitetään WCAG 2.1 AA -tavoitetta kohti. Huhtikuussa 2026 päivitetyn sisäisen auditoinnin perusteella sivusto ei vielä täytä kaikkia WCAG 2.1 AA -vaatimuksia kaikilla sivuilla ja kaikissa käyttötilanteissa.
 
@@ -24,7 +38,7 @@ Sivustolla on lisäksi oikean reunan saavutettavuustyökalu, jolla käyttäjä v
 
 ---
 
-## Arviointimenetelmä
+<h2 id="method">Arviointimenetelmä</h2>
 
 Arviointi perustuu seuraaviin menetelmiin:
 
@@ -40,7 +54,7 @@ Saavutettavuustyökalun uudistuksen jälkeen 18.7.2026 ajettiin erillinen Playwr
 
 ---
 
-## Tarkastuksen kattavuus
+<h2 id="scope">Tarkastuksen kattavuus</h2>
 
 Tämän auditointikierroksen ensisijainen tarkastus kohdistui seuraaviin sivu- ja toimintokokonaisuuksiin:
 
@@ -58,7 +72,7 @@ Englanninkieliset sivut käyttävät pääosin samoja komponentteja ja rakenteit
 
 ---
 
-## Tämän auditoinnin tulos
+<h2 id="result">Tämän auditoinnin tulos</h2>
 
 - 11.4.2026 ajettu automaattinen auditointikokonaisuus läpäisi 14/14 testiä.
 - 18.7.2026 ajettu saavutettavuustyökalun regressiotesti läpäisi 7/7 testiä.
@@ -67,7 +81,7 @@ Englanninkieliset sivut käyttävät pääosin samoja komponentteja ja rakenteit
 
 ---
 
-## Havaitut ja korjatut ongelmat
+<h2 id="fixed">Havaitut ja korjatut ongelmat</h2>
 
 Vuoden 2026 auditointikierroksilla on korjattu muun muassa seuraavia puutteita:
 
@@ -96,7 +110,7 @@ Tällä auditointikierroksella päivitettiin lisäksi saavutettavuusviestintää
 
 ---
 
-## Tunnetut rajoitukset ja keskeneräiset kohdat
+<h2 id="limitations">Tunnetut rajoitukset ja keskeneräiset kohdat</h2>
 
 Automaattinen testaus kattaa vain osan WCAG-kriteereistä. Seuraavat osa-alueet ovat edelleen osittain kesken tai vaativat lisävarmennusta:
 
@@ -109,7 +123,7 @@ Automaattinen testaus kattaa vain osan WCAG-kriteereistä. Seuraavat osa-alueet 
 
 ---
 
-## Palautetta saavutettavuudesta
+<h2 id="feedback">Palautetta saavutettavuudesta</h2>
 
 Jos kohtaat saavutettavuusongelman sivustolla, otathan yhteyttä:
 
@@ -118,7 +132,7 @@ Sähköposti: <a href="mailto:%6A%61%72%69%2E%6C%61%72%75%40%6F%75%6C%75%2E%66%6
 
 ---
 
-## Viittaukset
+<h2 id="references">Viittaukset</h2>
 
 - [WCAG 2.1 -ohjeistus (W3C)](https://www.w3.org/TR/WCAG21/)
 - [Saavutettavuusdirektiivin vaatimukset (Traficom)](https://www.traficom.fi/fi/viestinta/digitaaliset-palvelut/saavutettavuus)

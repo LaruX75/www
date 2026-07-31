@@ -441,6 +441,42 @@ html:not([data-bs-theme="dark"]) .site-changes-kpi-value--date {
   display: none;
 }
 
+.document-guide-summary {
+  margin: 0 0 1.25rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--site-accent-border);
+  border-left: 0.35rem solid var(--site-accent);
+  border-radius: 1rem;
+  background: var(--site-accent-soft);
+  color: var(--bs-body-color);
+}
+
+.document-guide-path {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 1.5rem;
+}
+
+.document-guide-path a {
+  padding: 0.42rem 0.75rem;
+  border: 1px solid var(--site-border-soft);
+  border-radius: 999px;
+  background: var(--site-surface-card);
+  color: var(--bs-body-color);
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.document-guide-page .content-prose a {
+  overflow-wrap: anywhere;
+}
+
+.document-guide-page .content-prose table {
+  width: 100%;
+}
+
 .campaign-archive-notice {
   margin-bottom: 1.25rem;
   padding: 1rem 1.1rem;
@@ -840,6 +876,69 @@ html:not([data-bs-theme="dark"]) .site-changes-kpi-value--date {
 
   .legacy-portfolio-page blockquote {
     padding-left: 0.85rem;
+  }
+
+  .document-guide-page .page-content > .card > .card-body {
+    padding: 1rem !important;
+  }
+
+  .document-guide-page .page-content h1 {
+    font-size: clamp(2rem, 12vw, 2.5rem);
+    line-height: 1;
+  }
+
+  .document-guide-summary {
+    margin-bottom: 1rem;
+    padding: 0.85rem 0.9rem;
+    border-radius: 0.9rem;
+    font-size: 0.94rem;
+    line-height: 1.45;
+  }
+
+  .document-guide-path {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin-inline: -1rem;
+    padding: 0 1rem 0.15rem;
+    scrollbar-width: none;
+  }
+
+  .document-guide-path::-webkit-scrollbar {
+    display: none;
+  }
+
+  .document-guide-path a {
+    flex: 0 0 auto;
+    font-size: 0.84rem;
+  }
+
+  .document-guide-page .content-prose h2 {
+    margin-top: 1.6rem;
+    font-size: 1.18rem !important;
+    line-height: 1.25;
+  }
+
+  .document-guide-page .content-prose h3 {
+    font-size: 1rem !important;
+    line-height: 1.25;
+  }
+
+  .document-guide-page .content-prose p,
+  .document-guide-page .content-prose li {
+    line-height: 1.55;
+  }
+
+  .document-guide-page .content-prose ul {
+    padding-left: 1.1rem;
+  }
+
+  .document-guide-page .content-prose table {
+    display: block;
+    overflow-x: auto;
+    margin-inline: -1rem;
+    padding-inline: 1rem;
+    font-size: 0.86rem;
+    white-space: nowrap;
   }
 }
 
