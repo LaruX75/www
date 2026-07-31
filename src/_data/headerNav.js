@@ -777,7 +777,7 @@ module.exports = {
               title: "Työni yliopistonlehtorina",
               href: "/tyoni-yliopistonlehtorina/",
               icon: "bi bi-briefcase me-2",
-              description: "Kokonaiskuva roolista, painopisteistä ja reiteistä tutkimukseen, opetukseen ja näyttöön."
+              description: "Kokonaiskuva opetuksesta, tutkimuksesta ja yhteiskunnallisesta vuorovaikutuksesta."
             },
             {
               title: "Opetusportfolio",
@@ -823,34 +823,34 @@ module.exports = {
           ]
         },
         {
-          heading: "Kouluttaja & puhuja",
+          heading: "Yhteiskunnallinen vuorovaikutus",
           links: [
             {
-              title: "Kouluttaja",
-              href: "/kouluttaja/",
-              icon: "bi bi-building me-2",
-              description: "Larux t:mi:n palvelut, tausta ja toimintatapa."
+              title: "Lausunnot ja kannanotot",
+              href: "/kynasta/#lausunnot",
+              icon: "bi bi-file-earmark-text me-2",
+              description: "Tutkimustiedon ja asiantuntijuuden vieminen valmisteluun ja julkiseen keskusteluun."
             },
             {
-              title: "Esitykset",
+              title: "Esitykset ja avoimet materiaalit",
               href: "/esitykset/",
               icon: "bi bi-easel2 me-2",
-              description: "Koulutukset, keynote-puheenvuorot ja avoimet materiaalit omalla sivullaan."
+              description: "Opetusosaamista ja tutkimustietoa opettajille, kouluille ja verkostoille."
             },
             {
-              title: "Palkinnot",
-              href: "/palkinnot/",
-              icon: "bi bi-award me-2",
-              description: "Tunnustuksia opetuksesta, avoimuudesta ja asiantuntijatyöstä."
+              title: "Mediassa",
+              href: "/mediassa/",
+              icon: "bi bi-camera-reels me-2",
+              description: "Haastattelut, podcastit ja mediaesiintymiset asiantuntijatyön jatkumona."
             }
           ]
         }
       ],
       cta: {
-        title: "Tilaa minut kouluttajaksi",
+        title: "Larux t:mi",
         description: "Koulutukset tekoälystä, oppimisteknologiasta ja modernista pedagogiikasta.",
-        href: "/yhteystiedot/",
-        label: "Pyydä tarjous"
+        href: "/kouluttaja/",
+        label: "Tutustu palveluihin"
       }
     },
     en: {
