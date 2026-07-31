@@ -89,7 +89,7 @@ schemaType: CollectionPage
         {{ ui.kpiCard("julkaisua", researchfi.length, { tone: "julkaisut", extraClass: "publication-kpi-card" }) }}
       </div>
       <div class="col-6 col-xl-3">
-        {{ ui.kpiCard("vertaisarvioitua", peerReviewedCount, { tone: "julkaisut", extraClass: "publication-kpi-card" }) }}
+        {{ ui.kpiCard("vertaisarvioitua julkaisua", peerReviewedCount, { tone: "julkaisut", extraClass: "publication-kpi-card" }) }}
       </div>
       <div class="col-6 col-xl-3">
         {{ ui.kpiCard("viittausta", "…", { id: "dynamicTotalCitations", title: "Lähde: " ~ semanticscholar.metrics.sources, tone: "julkaisut", extraClass: "publication-kpi-card" }) }}

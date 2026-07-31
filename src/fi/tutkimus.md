@@ -99,7 +99,7 @@ schemaMentions:
             {{ ui.kpiCard("julkaisua", researchfi.length, { extraClass: "research-kpi-card" }) }}
           </div>
           <div class="col-6">
-            {{ ui.kpiCard("vertaisarvioitua", peerReviewedCount, { extraClass: "research-kpi-card" }) }}
+            {{ ui.kpiCard("vertaisarvioitua julkaisua", peerReviewedCount, { extraClass: "research-kpi-card" }) }}
           </div>
           <div class="col-6">
             {{ ui.kpiCard("ohjattua gradua", theses.stats.totalGradut, { extraClass: "research-kpi-card" }) }}
@@ -515,7 +515,7 @@ schemaMentions:
                 {{ ui.kpiCard("Kirjat ja väitökset", countC, { extraClass: "research-kpi-card" }) }}
               </div>
               <div class="col-6 col-md-3">
-                {{ ui.kpiCard("Vertaisarvioitua", peerReviewedCount, { extraClass: "research-kpi-card" }) }}
+                {{ ui.kpiCard("Vertaisarvioitua julkaisua", peerReviewedCount, { extraClass: "research-kpi-card" }) }}
               </div>
             </div>
             {% if featuredResearchPublications.length %}
