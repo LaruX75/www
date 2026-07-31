@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: Kirjoitukset, puheet ja kannanotot
-description: "Jari Larun puheenvuorot, valtuustoaloitteet, lausunnot, mielipidekirjoitukset, kolumnit ja blogikirjoitukset koottuna teemoittain ja julkaisumuodoittain."
+description: "Jari Larun puheenvuorot, valtuustoaloitteet, lausunnot, mielipidekirjoitukset, kolumnit ja blogikirjoitukset päätöksenteon, julkisen keskustelun ja asiantuntijatyön näkökulmista."
 permalink: /kynasta/
 translationKey: writings_index
 schemaType: CollectionPage
@@ -88,16 +88,16 @@ schemaMentions:
       <div class="col-lg-7">
         <p class="text-uppercase small text-muted mb-2">Kynästä</p>
         <h1 class="display-6 fw-bold mb-2">Kirjoitukset, puheet ja kannanotot</h1>
-        <p class="text-muted mb-3">Täältä löydät Jari Larun puheet, valtuustoaloitteet, lausunnot, mielipidekirjoitukset, kolumnit ja blogikirjoitukset. Voit aloittaa päätöksenteosta, julkisista kannanotoista, asiantuntijateksteistä tai arkistosta.</p>
+        <p class="text-muted mb-3">Täältä löydät Jari Larun puheet, valtuustoaloitteet, lausunnot, mielipidekirjoitukset, kolumnit ja blogikirjoitukset. Voit aloittaa päätöksenteosta, julkisesta keskustelusta, asiantuntijataustaisista teksteistä tai arkistosta.</p>
         <div class="d-flex flex-wrap gap-2">
           <a class="nav-link" href="#reitti-paatoksenteko">
             Päätöksenteko <span class="nav-count">{{ decisionRouteCount }}</span>
           </a>
           <a class="nav-link" href="#reitti-kannanotot">
-            Kannanotot <span class="nav-count">{{ commentaryRouteCount }}</span>
+            Julkinen keskustelu <span class="nav-count">{{ commentaryRouteCount }}</span>
           </a>
           <a class="nav-link" href="#reitti-asiantuntijuus">
-            Asiantuntijarooli <span class="nav-count">{{ expertRouteCount }}</span>
+            Asiantuntijatausta <span class="nav-count">{{ expertRouteCount }}</span>
           </a>
           <a class="nav-link" href="#arkisto">
             Arkisto <span class="nav-count">{{ speechCount + initiativeCount + statementCount + opinionCount + columnCount + blogCount }}</span>
@@ -108,7 +108,7 @@ schemaMentions:
         <aside class="kynasta-hero-aside">
           <p class="kynasta-hero-aside-kicker mb-2">Näin löydät etsimäsi</p>
           <ul class="kynasta-hero-aside-list mb-0">
-            <li>Valitse ensin, etsitkö päätöksentekoa, kannanottoja vai asiantuntijatekstejä.</li>
+            <li>Valitse ensin, etsitkö päätöksentekoa, julkista keskustelua vai asiantuntijataustaisia tekstejä.</li>
             <li>Jos tiedät jo muodon, siirry suoraan puheisiin, aloitteisiin, lausuntoihin tai kirjoituksiin.</li>
           </ul>
         </aside>
@@ -120,8 +120,8 @@ schemaMentions:
 <nav class="kynasta-mobile-path" aria-label="Kynästä-sivun tärkeimmät sisällöt">
   <div class="site-shell">
     <a href="#reitti-paatoksenteko">Päätökset</a>
-    <a href="#reitti-kannanotot">Kannanotot</a>
-    <a href="#reitti-asiantuntijuus">Asiantuntijuus</a>
+    <a href="#reitti-kannanotot">Keskustelu</a>
+    <a href="#reitti-asiantuntijuus">Asiantuntijatausta</a>
     <a href="#kynasta-topic-profiles-title">Aiheet</a>
     <a href="#arkisto">Arkisto</a>
   </div>
@@ -132,8 +132,8 @@ schemaMentions:
     <div class="row g-4 align-items-end mb-2">
       <div class="col-lg-8">
         <p class="text-uppercase small text-muted mb-2">Aloita tästä</p>
-        <h2 class="h3 mb-2">Kolme tapaa lukea samaa aineistoa</h2>
-        <p class="text-muted mb-0">Sama aihe voi näkyä puheena, lausuntona, mielipidekirjoituksena tai blogitekstinä. Aloita siitä, etsitkö päätöksentekoon liittyviä tekstejä, julkisia kannanottoja vai asiantuntijaroolissa kirjoitettuja sisältöjä.</p>
+        <h2 class="h3 mb-2">Valitse, millaista tekstiä etsit</h2>
+        <p class="text-muted mb-0">Jos etsit vaikuttamista, aloita päätöksenteosta. Jos haluat seurata julkista keskustelua, siirry lehtikirjoituksiin, kolumneihin ja blogiin. Jos taustalla kiinnostaa opetus, tutkimus tai teknologia, katso tekstit, joissa asiantuntijuus on mukana.</p>
       </div>
     </div>
 
@@ -141,9 +141,9 @@ schemaMentions:
       <div class="col-lg-4" id="reitti-paatoksenteko">
         <article class="card border-0 shadow-sm h-100 kynasta-route-card">
           <div class="card-body p-4 d-flex flex-column">
-            <p class="kynasta-entry-kicker">Vaikuttaminen</p>
-            <h3 class="h5 mb-2">Päätöksenteko, valmistelu ja viralliset kannat</h3>
-            <p class="small text-muted mb-3">Täältä löydät sisällöt, joissa teksti liittyy suoraan valmisteluun, valtuustotyöhön tai julkiseen päätöksentekoon.</p>
+            <p class="kynasta-entry-kicker">Päätöksenteko</p>
+            <h3 class="h5 mb-2">Puheet, aloitteet ja lausunnot valmistelussa</h3>
+            <p class="small text-muted mb-3">Täältä löydät sisällöt, joissa Jari Laru osallistuu valmisteluun, valtuustotyöhön tai julkiseen päätöksentekoon.</p>
             <div class="d-flex flex-wrap gap-2 mb-3">
               <span class="badge text-bg-light border">Lausunnot {{ statementCount }}</span>
               <span class="badge text-bg-light border">Valtuustopuheet {{ councilSpeechCount }}</span>
@@ -183,7 +183,7 @@ schemaMentions:
           <div class="card-body p-4 d-flex flex-column">
             <p class="kynasta-entry-kicker">Julkinen keskustelu</p>
             <h3 class="h5 mb-2">Mielipiteet, kolumnit ja blogitekstit</h3>
-            <p class="small text-muted mb-3">Täältä näet, miten teemat näkyvät julkisina kannanottoina, pidempinä kirjoituksina ja blogissa.</p>
+            <p class="small text-muted mb-3">Täältä näet, miten samat aiheet jatkuvat lehtikirjoituksissa, kolumneissa ja blogissa.</p>
             <div class="d-flex flex-wrap gap-2 mb-3">
               <span class="badge text-bg-light border">Mielipiteet {{ opinionCount }}</span>
               <span class="badge text-bg-light border">Kolumnit {{ columnCount }}</span>
@@ -221,18 +221,18 @@ schemaMentions:
       <div class="col-lg-4" id="reitti-asiantuntijuus">
         <article class="card border-0 shadow-sm h-100 kynasta-route-card">
           <div class="card-body p-4 d-flex flex-column">
-            <p class="kynasta-entry-kicker">Roolin kautta</p>
-            <h3 class="h5 mb-2">Asiantuntijarooli yli eri sisältömuotojen</h3>
-            <p class="small text-muted mb-3">Jos etsit opetukseen, tutkimukseen ja teknologiaan nojaavia tekstejä, aloita tästä.</p>
+            <p class="kynasta-entry-kicker">Asiantuntijatausta</p>
+            <h3 class="h5 mb-2">Opetuksen, tutkimuksen ja teknologian näkökulmat</h3>
+            <p class="small text-muted mb-3">Jos etsit tekstejä, joissa yliopistotyö ja koulutusalan osaaminen ovat mukana, aloita tästä.</p>
             <div class="d-flex flex-wrap gap-2 mb-3">
               <span class="badge text-bg-light border">Lausunnot {{ statementCount }}</span>
-              <span class="badge text-bg-light border">Asiantuntijamielipiteet {{ expertOpinionCount }}</span>
+              <span class="badge text-bg-light border">Asiantuntijataustaiset mielipiteet {{ expertOpinionCount }}</span>
               <span class="badge text-bg-light border">Julkiset puheet {{ publicSpeechCount }}</span>
             </div>
             <div class="d-grid gap-3 mb-4">
               {% if latestExpertOpinionHighlights[0] %}
               <div>
-                <p class="small text-uppercase text-muted fw-semibold mb-1">Asiantuntijamielipide</p>
+                <p class="small text-uppercase text-muted fw-semibold mb-1">Asiantuntijataustainen kirjoitus</p>
                 <a class="text-decoration-none fw-semibold" href="{{ latestExpertOpinionHighlights[0].data.url or latestExpertOpinionHighlights[0].url }}">{{ latestExpertOpinionHighlights[0].data.title }}</a>
               </div>
               {% endif %}
@@ -252,7 +252,7 @@ schemaMentions:
             <div class="mt-auto d-flex flex-wrap gap-2">
               <a class="btn btn-outline-primary btn-sm rounded-pill px-3" href="#lausunnot">Lausunnot</a>
               <a class="btn btn-outline-primary btn-sm rounded-pill px-3" href="#julkiset-puheet">Julkiset puheet</a>
-              <a class="btn btn-outline-secondary btn-sm rounded-pill px-3" href="#mielipiteet">Roolijaottelu</a>
+              <a class="btn btn-outline-secondary btn-sm rounded-pill px-3" href="#mielipiteet">Asiantuntijataustaiset tekstit</a>
             </div>
           </div>
         </article>
@@ -265,7 +265,7 @@ schemaMentions:
 {% set topicProfileTitleId = "kynasta-topic-profiles-title" %}
 {% set topicProfileEyebrow = "Aiheittain" %}
 {% set topicProfileTitle = "Kirjoitukset ja puheet teemoittain" %}
-{% set topicProfileLead = "Samat kysymykset kulkevat puheissa, mielipiteissä, lausunnoissa ja blogikirjoituksissa. Teemoittelu auttaa löytämään samaan aiheeseen liittyvät tekstit riippumatta siitä, missä muodossa ne on julkaistu." %}
+{% set topicProfileLead = "Samat kysymykset kulkevat puheissa, mielipiteissä, lausunnoissa ja blogikirjoituksissa. Teemoittelu auttaa löytämään samaan aiheeseen liittyvät tekstit yhdestä paikasta." %}
 {% include "topic-profile-links.njk" %}
 
 <section id="arkisto">
@@ -276,7 +276,7 @@ schemaMentions:
           <div>
             <p class="text-uppercase small text-muted mb-1">Arkisto</p>
             <h2 class="h3 mb-1">Selaa puheita, lausuntoja ja kirjoituksia</h2>
-            <p class="text-muted mb-0">Kun tiedät jo etsimäsi muodon, voit siirtyä suoraan puheisiin, lausuntoihin, mielipiteisiin, kolumneihin, blogiin tai aloitteisiin.</p>
+            <p class="text-muted mb-0">Kun tiedät jo, mitä etsit, voit siirtyä suoraan puheisiin, lausuntoihin, mielipidekirjoituksiin, kolumneihin, blogiin tai aloitteisiin.</p>
           </div>
         </div>
       </div>
@@ -309,7 +309,7 @@ schemaMentions:
             <small>{{ opinionCount }} kirjoitusta</small>
           </a>
           <a class="kynasta-type-card kynasta-entry-card--statements" href="#lausunnot">
-            <span class="kynasta-entry-kicker">Asiantuntijatyö</span>
+            <span class="kynasta-entry-kicker">Asiantuntijatausta</span>
             <strong>Lausunnot</strong>
             <small>{{ statementCount }} lausuntoa</small>
           </a>
@@ -327,7 +327,7 @@ schemaMentions:
     <div class="card shadow-sm">
       <div class="card-header bg-transparent">
         <h2 class="h4 mb-1"><i class="bi bi-bar-chart-fill me-2 text-primary"></i>Yhteenveto</h2>
-        <p class="small text-muted mb-0">Sisältötyypit yhdellä silmäyksellä. Tarkempi tilastografiikka avautuu tarvittaessa.</p>
+        <p class="small text-muted mb-0">Puheet, lausunnot, kirjoitukset ja aloitteet yhdellä silmäyksellä. Tarkempi tilastografiikka avautuu tarvittaessa.</p>
       </div>
       <div class="card-body">
         <div class="row g-3 mb-4">
@@ -517,8 +517,8 @@ schemaMentions:
                       aria-pressed="false">
                 <div class="d-flex align-items-start justify-content-between gap-3">
                   <div>
-                    <p class="opinion-role-kicker mb-1">Poliittinen rooli</p>
-                    <h3 class="h6 mb-1">Poliittiset mielipiteet</h3>
+                    <p class="opinion-role-kicker mb-1">Päätöksenteko</p>
+                    <h3 class="h6 mb-1">Kannanotot politiikasta ja palveluista</h3>
                     <p class="small text-muted mb-0">Kirjoitukset, joissa näkökulma liittyy vaaleihin, päätöksentekoon, palveluihin tai kunnalliseen vaikuttamiseen.</p>
                   </div>
                   <span class="opinion-role-count">{{ politicalOpinionCount }}</span>
@@ -532,9 +532,9 @@ schemaMentions:
                       aria-pressed="false">
                 <div class="d-flex align-items-start justify-content-between gap-3">
                   <div>
-                    <p class="opinion-role-kicker mb-1">Asiantuntijarooli</p>
-                    <h3 class="h6 mb-1">Asiantuntijamielipiteet</h3>
-                    <p class="small text-muted mb-0">Kirjoitukset, joissa painopiste on tutkimuksessa, opetuksessa, koulutuksessa tai laajemmassa yhteiskunnallisessa asiantuntijuudessa.</p>
+                    <p class="opinion-role-kicker mb-1">Asiantuntijatausta</p>
+                    <h3 class="h6 mb-1">Opetus, tutkimus ja teknologia</h3>
+                    <p class="small text-muted mb-0">Kirjoitukset, joissa painopiste on tutkimuksessa, opetuksessa, koulutuksessa tai teknologiassa.</p>
                   </div>
                   <span class="opinion-role-count">{{ expertOpinionCount }}</span>
                 </div>
@@ -547,9 +547,9 @@ schemaMentions:
                       aria-pressed="false">
                 <div class="d-flex align-items-start justify-content-between gap-3">
                   <div>
-                    <p class="opinion-role-kicker mb-1">Rajapinta</p>
-                    <h3 class="h6 mb-1">Poliittinen + asiantuntija</h3>
-                    <p class="small text-muted mb-0">Kirjoitukset, joissa tutkimus, koulutus tai analyysi tukee suoraan poliittista argumenttia.</p>
+                    <p class="opinion-role-kicker mb-1">Asiantuntijuus mukana</p>
+                    <h3 class="h6 mb-1">Kun työtausta liittyy päätöksiin</h3>
+                    <p class="small text-muted mb-0">Kirjoitukset, joissa opetus, tutkimus tai teknologia auttaa avaamaan päätöksenteon kysymyksiä.</p>
                   </div>
                   <span class="opinion-role-count">{{ hybridOpinionCount }}</span>
                 </div>
@@ -557,7 +557,7 @@ schemaMentions:
             </div>
           </div>
           <p class="small text-muted mb-3">
-            Jaottelu kertoo, mistä roolista teksti on kirjoitettu. Rajapinnan teksteissä poliittinen kannanotto nojaa selvästi asiantuntijuuteen, tutkimukseen, opetukseen tai valmistelun analyysiin.
+            Valinnat auttavat erottamaan päätöksentekoon liittyvät kannanotot, asiantuntijataustaiset kirjoitukset ja tekstit, joissa nämä kaksi näkökulmaa kulkevat yhdessä.
           </p>
         </div>
         {# ---- Suodatuspalkki ---- #}
@@ -566,7 +566,7 @@ schemaMentions:
             <div class="col-lg-5">
               <label for="mielipiteet-search" class="form-label small text-muted mb-1">Hae mielipidekirjoituksia</label>
               <input type="search" id="mielipiteet-search" class="form-control form-control-sm"
-                     placeholder="Hae otsikosta, julkaisusta, aiheesta tai roolista, esim. asiantuntija..." autocomplete="off">
+                     placeholder="Hae otsikosta, julkaisusta, aiheesta tai näkökulmasta, esim. asiantuntijatausta..." autocomplete="off">
             </div>
             <div class="col-sm-3 col-lg-2">
               <label for="mielipiteet-year" class="form-label small text-muted mb-1">Vuosi</label>
@@ -663,12 +663,12 @@ schemaMentions:
                      placeholder="Hae otsikosta, julkaisusta, aiheesta tai roolista..." autocomplete="off">
             </div>
             <div class="col-lg-4">
-              <label class="form-label small text-muted mb-1">Rajaa roolin mukaan</label>
-              <div class="role-filter-group" role="group" aria-label="Rajaa kolumnit roolin mukaan">
+              <label class="form-label small text-muted mb-1">Rajaa näkökulman mukaan</label>
+              <div class="role-filter-group" role="group" aria-label="Rajaa kolumnit näkökulman mukaan">
                 <button type="button" class="btn btn-outline-secondary btn-sm active" data-kolumnit-role="all">Kaikki</button>
-                <button type="button" class="btn btn-outline-secondary btn-sm" data-kolumnit-role="political">Poliittinen</button>
-                <button type="button" class="btn btn-outline-secondary btn-sm" data-kolumnit-role="expert">Asiantuntija</button>
-                <button type="button" class="btn btn-outline-secondary btn-sm" data-kolumnit-role="hybrid">Rajapinta</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm" data-kolumnit-role="political">Päätöksenteko</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm" data-kolumnit-role="expert">Asiantuntijatausta</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm" data-kolumnit-role="hybrid">Asiantuntijuus mukana</button>
               </div>
             </div>
             <div class="col-lg-3 d-flex justify-content-lg-end gap-2">
@@ -1034,15 +1034,15 @@ schemaMentions:
             <div class="col-lg-6">
               <label for="blog-search" class="form-label small text-muted mb-1">Hae kirjoituksia</label>
               <input type="search" id="blog-search" class="form-control form-control-sm"
-                     placeholder="Hae otsikosta, aiheesta tai roolista..." autocomplete="off">
+                     placeholder="Hae otsikosta, aiheesta tai näkökulmasta..." autocomplete="off">
             </div>
             <div class="col-lg-4">
-              <label class="form-label small text-muted mb-1">Rajaa roolin mukaan</label>
-              <div class="role-filter-group" role="group" aria-label="Rajaa blogikirjoitukset roolin mukaan">
+              <label class="form-label small text-muted mb-1">Rajaa näkökulman mukaan</label>
+              <div class="role-filter-group" role="group" aria-label="Rajaa blogikirjoitukset näkökulman mukaan">
                 <button type="button" class="btn btn-outline-secondary btn-sm active" data-blog-role="all">Kaikki</button>
-                <button type="button" class="btn btn-outline-secondary btn-sm" data-blog-role="political">Poliittinen</button>
-                <button type="button" class="btn btn-outline-secondary btn-sm" data-blog-role="expert">Asiantuntija</button>
-                <button type="button" class="btn btn-outline-secondary btn-sm" data-blog-role="hybrid">Rajapinta</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm" data-blog-role="political">Päätöksenteko</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm" data-blog-role="expert">Asiantuntijatausta</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm" data-blog-role="hybrid">Asiantuntijuus mukana</button>
                 <button type="button" class="btn btn-outline-secondary btn-sm" data-blog-role="personal">Henkilökohtainen</button>
               </div>
             </div>
@@ -1096,13 +1096,13 @@ schemaMentions:
 
 {# Kerätään esitykset ja AOE-oppimateriaalit JSON-muotoon JS:ää varten #}
 <details class="kynasta-mobile-disclosure" data-kynasta-mobile-collapse id="muut-aineistot" open>
-  <summary class="kynasta-mobile-disclosure-summary">Muut aineistot sivustolla</summary>
+  <summary class="kynasta-mobile-disclosure-summary">Muualla sivustolla</summary>
 <section class="bg-body-tertiary">
   <div class="site-shell">
     <div class="card shadow-sm">
       <div class="card-header bg-transparent">
-        <h2 class="h4 mb-1"><i class="bi bi-box-arrow-up-right me-2"></i>Muut aineistot sivustolla</h2>
-        <p class="small text-muted mb-0">Jos etsit esiintymisiä, mediahaastatteluja tai tutkimusjulkaisuja, ne löytyvät omista kokonaisuuksistaan.</p>
+        <h2 class="h4 mb-1"><i class="bi bi-box-arrow-up-right me-2"></i>Muualla sivustolla</h2>
+        <p class="small text-muted mb-0">Jos etsit esityksiä, mediahaastatteluja tai tutkimusjulkaisuja, jatka näille sivuille.</p>
       </div>
       <div class="card-body">
         <div class="row g-4">
@@ -1121,7 +1121,7 @@ schemaMentions:
               <div class="card-body d-flex flex-column">
                 <p class="kynasta-entry-kicker">Ulkopuolinen näkyvyys</p>
                 <h3 class="h5 mb-2">Mediassa</h3>
-                <p class="small text-muted mb-3">Podcastit, haastattelut, lehtijutut ja muut mediaesiintymiset löytyvät erillisestä mediakokonaisuudesta.</p>
+                <p class="small text-muted mb-3">Podcastit, haastattelut, lehtijutut ja muut mediaesiintymiset löytyvät media-sivulta.</p>
                 <a href="/mediassa/" class="btn btn-outline-secondary btn-sm rounded-pill px-3 mt-auto align-self-start">Siirry mediassa-sivulle</a>
               </div>
             </article>
@@ -1861,25 +1861,25 @@ function renderWritingRoleBadges(roles, options = {}) {
   const dataAttr = options.button ? 'data-opinion-role-inline' : 'data-writing-role';
 
   if (normalizedRoles.includes('political') && normalizedRoles.includes('expert')) {
-    return `<${tagName}${buttonAttrs} class="${className} writing-role-badge--hybrid" ${dataAttr}="hybrid" aria-label="Rooli: poliittinen ja asiantuntija">Poliittinen + asiantuntija</${tagName}>`;
+    return `<${tagName}${buttonAttrs} class="${className} writing-role-badge--hybrid" ${dataAttr}="hybrid" aria-label="Näkökulma: asiantuntijuus mukana päätöksenteossa">Asiantuntijuus mukana</${tagName}>`;
   }
 
   return normalizedRoles.map((role) => {
-    const label = role === 'political' ? 'Poliittinen' : role === 'personal' ? 'Henkilökohtainen' : 'Asiantuntija';
+    const label = role === 'political' ? 'Päätöksenteko' : role === 'personal' ? 'Henkilökohtainen' : 'Asiantuntijatausta';
     const modifier = ['political', 'expert', 'personal'].includes(role) ? role : 'expert';
-    return `<${tagName}${buttonAttrs} class="${className} writing-role-badge--${modifier}" ${dataAttr}="${role}" aria-label="Rooli: ${label}">${label}</${tagName}>`;
+    return `<${tagName}${buttonAttrs} class="${className} writing-role-badge--${modifier}" ${dataAttr}="${role}" aria-label="Näkökulma: ${label}">${label}</${tagName}>`;
   }).join('');
 }
 
 function writingRoleMatchesQuery(roles, query) {
   const terms = normalizeWritingRoles(roles).flatMap((role) => {
-    if (role === 'political') return ['political', 'poliittinen', 'politiikka'];
-    if (role === 'expert') return ['expert', 'asiantuntija', 'asiantuntijuus'];
+    if (role === 'political') return ['political', 'poliittinen', 'politiikka', 'päätöksenteko', 'kannanotto'];
+    if (role === 'expert') return ['expert', 'asiantuntija', 'asiantuntijuus', 'asiantuntijatausta'];
     if (role === 'personal') return ['personal', 'henkilökohtainen'];
     return [role];
   });
   if (terms.includes('political') && terms.includes('expert')) {
-    terms.push('hybrid', 'raja', 'poliittinen asiantuntija', 'poliittinen + asiantuntija');
+    terms.push('hybrid', 'raja', 'asiantuntijuus mukana', 'päätöksenteko asiantuntijuus', 'poliittinen asiantuntija', 'poliittinen + asiantuntija');
   }
   return terms.some((term) => term.toLowerCase().includes(query));
 }
