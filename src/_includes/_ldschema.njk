@@ -123,6 +123,17 @@
     "sameAs": (site.sameAs or [])
   }), null) %}
 
+  {% if pageBlockType != "business" %}
+    {% set _ = (graph.push({
+      "@type": "Organization",
+      "@id": orgId,
+      "name": "Larux t:mi",
+      "url": siteBase + ("/en/company/" if currentLang == "en" else "/kouluttaja/"),
+      "logo": { "@type": "ImageObject", "url": imageAbs },
+      "founder": { "@id": personId }
+    }), null) %}
+  {% endif %}
+
   {% set _ = (graph.push({
     "@type": "CollegeOrUniversity",
     "@id": uniId,
@@ -170,7 +181,7 @@
       "datePublished": (page.date | dateToRfc3339),
       "inLanguage": langCode,
       "author": { "@id": personId },
-      "publisher": { "@id": personId },
+      "publisher": { "@id": orgId },
       "isPartOf": { "@id": websiteId }
     } %}
     {% set effectiveModified = modified or gitDates[page.inputPath] %}
