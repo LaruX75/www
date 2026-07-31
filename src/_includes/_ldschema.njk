@@ -173,7 +173,8 @@
       "publisher": { "@id": personId },
       "isPartOf": { "@id": websiteId }
     } %}
-    {% if modified %}{% set articleNode = (articleNode | merge({ "dateModified": (modified | dateToRfc3339) })) %}{% endif %}
+    {% set effectiveModified = modified or gitDates[page.inputPath] %}
+    {% if effectiveModified %}{% set articleNode = (articleNode | merge({ "dateModified": (effectiveModified | dateToRfc3339) })) %}{% endif %}
     {% if categories and categories.length %}{% set articleNode = (articleNode | merge({ "articleSection": categories })) %}{% endif %}
     {% if keywords and keywords.length %}{% set articleNode = (articleNode | merge({ "keywords": keywords })) %}{% endif %}
     {% if extSameAs.length %}{% set articleNode = (articleNode | merge({ "sameAs": extSameAs })) %}{% endif %}
