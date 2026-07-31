@@ -571,12 +571,35 @@ html:not([data-bs-theme="dark"]) .larux-hero-btn-outline:hover {
   }
 
   .larux-hero .larux-shell {
-    padding-block: 2.25rem !important;
+    padding-block: 1.8rem !important;
   }
 
   .larux-hero-title {
     max-width: none;
     font-size: clamp(2rem, 9vw, 2.75rem);
+  }
+
+  .larux-hero-lead {
+    font-size: 1rem;
+    line-height: 1.45;
+  }
+
+  .larux-hero-points {
+    gap: 0.45rem;
+    margin-bottom: 1rem !important;
+  }
+
+  .larux-hero-point {
+    padding: 0.65rem 0.75rem;
+    border-radius: 0.85rem;
+  }
+
+  .larux-hero-point-title {
+    margin-bottom: 0;
+  }
+
+  .larux-hero-point-text {
+    display: none;
   }
 
   .larux-hero .col-lg-5 {

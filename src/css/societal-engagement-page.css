@@ -333,8 +333,45 @@
 }
 
 @media (max-width: 767.98px) {
+  .engagement-hero .site-shell {
+    padding-top: 2rem !important;
+    padding-bottom: 1.25rem !important;
+  }
+
   .engagement-hero-title {
-    max-width: 14ch;
+    max-width: 100%;
+    font-size: clamp(2.05rem, 10vw, 2.75rem);
+    line-height: 1;
+  }
+
+  .engagement-hero-lead {
+    margin-bottom: 0.85rem !important;
+    font-size: 1rem;
+    line-height: 1.45;
+  }
+
+  .engagement-hero-text {
+    display: -webkit-box;
+    margin-bottom: 1rem !important;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .engagement-hero-panel {
+    display: none;
+  }
+
+  .engagement-section {
+    padding-block: 2.5rem;
+  }
+
+  .engagement-section-head {
+    margin-bottom: 1.2rem;
+  }
+
+  .engagement-section-head h2 {
+    font-size: clamp(1.55rem, 8vw, 2.1rem);
   }
 
   .engagement-mobile-path {
