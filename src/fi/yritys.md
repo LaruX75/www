@@ -9,6 +9,7 @@ lang: fi
 pageStyles:
   - /css/larux-page.css
 suppressSubpageHero: true
+schemaType: LocalBusiness
 ---
 
 <section class="larux-hero mb-0">

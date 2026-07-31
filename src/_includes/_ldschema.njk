@@ -21,21 +21,64 @@
     {% set pageDescription = 'Keyword "' ~ (title | replace("Keyword: ", "")) ~ '" brings together writings, speeches, and publications from the Jari Laru site.' %}
   {% endif %}
   {% set pageDescription = pageDescription | seoDescription({ title: pageTitle, source: source, type: type, date: page.date, pageUrl: page.url, tags: tags, categories: categories, currentLang: currentLang }) %}
-  {% set pageUrl = page.url | absoluteUrl(site.url or "https://www.jarilaru.fi") %}
-  {% set pageType = "presentation" if type == "esitys" else ("article" if mediaType or contentType or ("blog" in (tags or []) or "politics" in (tags or []) or "publications" in (tags or [])) else "website") %}
-  {% set articleSchemaType = "Article" if mediaType or contentType else "BlogPosting" %}
-  {% set personId = (site.url or "https://www.jarilaru.fi") + "#person" %}
+  {% set siteBase = site.url or "https://www.jarilaru.fi" %}
+  {% set pageUrl = page.url | absoluteUrl(siteBase) %}
+  {% set imageAbs = resolvedOgImage | absoluteUrl(siteBase) %}
+  {% set personId = siteBase + "#person" %}
+  {% set orgId = siteBase + "#laruxtmi" %}
+  {% set websiteId = siteBase + "#website" %}
+
+  {# --- Tyyppilogiikka: schemaType-frontmatter voittaa aina --- #}
+  {% set resolvedSchemaType = schemaType %}
+  {% if not resolvedSchemaType %}
+    {% if type == "esitys" %}
+      {% set resolvedSchemaType = "PresentationDigitalDocument" %}
+    {% elif type == "tieteellinen" %}
+      {% set resolvedSchemaType = "ScholarlyArticle" %}
+    {% elif type == "mielipide" %}
+      {% set resolvedSchemaType = "OpinionNewsArticle" %}
+    {% elif type == "kolumni" %}
+      {% set resolvedSchemaType = "NewsArticle" %}
+    {% elif type == "lausunto" or type == "puhe" or type == "artikkeli" %}
+      {% set resolvedSchemaType = "Article" %}
+    {% elif type == "blogikirjoitus" %}
+      {% set resolvedSchemaType = "BlogPosting" %}
+    {% elif mediaType or contentType %}
+      {% set resolvedSchemaType = "NewsArticle" if mediaType else "Article" %}
+    {% elif ("blog" in (tags or [])) %}
+      {% set resolvedSchemaType = "BlogPosting" %}
+    {% elif ("politics" in (tags or [])) or ("publications" in (tags or [])) %}
+      {% set resolvedSchemaType = "Article" %}
+    {% endif %}
+  {% endif %}
+
+  {% set articleTypes = ["Article","BlogPosting","NewsArticle","OpinionNewsArticle","ScholarlyArticle"] %}
+  {% set collectionTypes = ["CollectionPage","ItemList"] %}
+  {% set pageBlockType = "webpage" %}
+  {% if resolvedSchemaType == "PresentationDigitalDocument" %}
+    {% set pageBlockType = "presentation" %}
+  {% elif resolvedSchemaType in articleTypes %}
+    {% set pageBlockType = "article" %}
+  {% elif resolvedSchemaType == "LocalBusiness" or resolvedSchemaType == "Organization" %}
+    {% set pageBlockType = "business" %}
+  {% elif resolvedSchemaType == "Thesis" %}
+    {% set pageBlockType = "thesis" %}
+  {% elif resolvedSchemaType == "AboutPage" or resolvedSchemaType == "ProfilePage" or resolvedSchemaType == "ContactPage" or resolvedSchemaType == "CollectionPage" or resolvedSchemaType == "FAQPage" %}
+    {% set pageBlockType = "specialpage" %}
+    {% set specialPageType = resolvedSchemaType %}
+  {% endif %}
 
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "name": "{{ site.name | escape }}",
-      "url": "{{ site.url or "https://www.jarilaru.fi" }}",
-      "description": "{{ (site.descriptionEn if currentLang == "en" else site.description) | escape }}",
-      "inLanguage": "{{ "fi-FI" if currentLang == "fi" else "en-US" }}",
+      "@id": {{ websiteId | jsonSafe | safe }},
+      "name": {{ site.name | jsonSafe | safe }},
+      "url": {{ siteBase | jsonSafe | safe }},
+      "description": {{ siteDescription | jsonSafe | safe }},
+      "inLanguage": {{ ("fi-FI" if currentLang == "fi" else "en-US") | jsonSafe | safe }},
       "publisher": {
-        "@id": "{{ personId }}"
+        "@id": {{ personId | jsonSafe | safe }}
       }
     }
   </script>
@@ -43,16 +86,27 @@
     {
       "@context": "https://schema.org",
       "@type": "Person",
-      "@id": "{{ personId }}",
-      "name": "{{ site.author | escape }}",
+      "@id": {{ personId | jsonSafe | safe }},
+      "name": {{ site.author | jsonSafe | safe }},
       "givenName": "Jari",
       "familyName": "Laru",
-      "url": "{{ site.url or "https://www.jarilaru.fi" }}",
-      "image": "{{ resolvedOgImage | absoluteUrl(site.url or "https://www.jarilaru.fi") }}",
-      "jobTitle": "{{ "University Lecturer" if currentLang == "en" else "Yliopistonlehtori" }}",
+      "honorificPrefix": {{ ("EdD" if currentLang == "en" else "KT") | jsonSafe | safe }},
+      "url": {{ siteBase | jsonSafe | safe }},
+      "image": {{ imageAbs | jsonSafe | safe }},
+      "jobTitle": {{ ("University Lecturer" if currentLang == "en" else "Yliopistonlehtori") | jsonSafe | safe }},
+      "worksFor": {
+        "@type": "CollegeOrUniversity",
+        "name": {{ ("University of Oulu" if currentLang == "en" else "Oulun yliopisto") | jsonSafe | safe }},
+        "url": "https://www.oulu.fi"
+      },
       "affiliation": {
-        "@type": "Organization",
-        "name": "{{ "University of Oulu" if currentLang == "en" else "Oulun yliopisto" }}",
+        "@type": "CollegeOrUniversity",
+        "name": {{ ("University of Oulu" if currentLang == "en" else "Oulun yliopisto") | jsonSafe | safe }},
+        "url": "https://www.oulu.fi"
+      },
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": {{ ("University of Oulu" if currentLang == "en" else "Oulun yliopisto") | jsonSafe | safe }},
         "url": "https://www.oulu.fi"
       },
       "knowsLanguage": ["fi", "en"],
@@ -60,7 +114,7 @@
     }
   </script>
   {% if not isHomePage %}
-  {% set bcSiteBase = site.url or "https://www.jarilaru.fi" %}
+  {% set bcSiteBase = siteBase %}
   {% set bcHomeUrl = "/en/" if currentLang == "en" else "/" %}
   {% set bcHomeTitle = "Home" if currentLang == "en" else "Etusivu" %}
   {% set bcNodes = headerNav.en if currentLang == "en" else headerNav.fi %}
@@ -87,48 +141,121 @@
     }
   </script>
   {% endif %}
-  {% if pageType == "presentation" %}
+  {% if pageBlockType == "presentation" %}
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "PresentationDigitalDocument",
-      "name": "{{ pageTitle | escape }}",
-      "description": "{{ pageDescription | escape }}",
-      "url": "{{ pageUrl }}",
-      "thumbnailUrl": "{{ thumbnail }}",
-      "datePublished": "{{ page.date | dateToRfc3339 }}",
-      "inLanguage": "{{ "fi-FI" if currentLang == "fi" else "en-US" }}",
-      {% if url %}"sameAs": "{{ url | escape }}",{% endif %}
-      "author": {
-        "@id": "{{ personId }}"
-      }
+      "@id": {{ pageUrl | jsonSafe | safe }},
+      "name": {{ pageTitle | jsonSafe | safe }},
+      "description": {{ pageDescription | jsonSafe | safe }},
+      "url": {{ pageUrl | jsonSafe | safe }},
+      {% if thumbnail %}"thumbnailUrl": {{ thumbnail | jsonSafe | safe }},{% endif %}
+      "datePublished": {{ (page.date | dateToRfc3339) | jsonSafe | safe }},
+      "inLanguage": {{ ("fi-FI" if currentLang == "fi" else "en-US") | jsonSafe | safe }},
+      {% if url %}"sameAs": [{{ url | jsonSafe | safe }}],{% endif %}
+      "author": { "@id": {{ personId | jsonSafe | safe }} },
+      "publisher": { "@id": {{ personId | jsonSafe | safe }} }
     }
   </script>
-  {% elif pageType == "article" %}
+  {% elif pageBlockType == "article" %}
+  {% set extSameAs = [] %}
+  {% if sourceUrl %}{% set _ = (extSameAs.push(sourceUrl), null) %}{% endif %}
+  {% if externalUrl and externalUrl != sourceUrl %}{% set _ = (extSameAs.push(externalUrl), null) %}{% endif %}
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "{{ articleSchemaType }}",
-      "headline": "{{ pageTitle | escape }}",
-      "description": "{{ pageDescription | escape }}",
-      "url": "{{ pageUrl }}",
+      "@type": {{ resolvedSchemaType | jsonSafe | safe }},
+      "@id": {{ pageUrl | jsonSafe | safe }},
+      "headline": {{ pageTitle | jsonSafe | safe }},
+      "description": {{ pageDescription | jsonSafe | safe }},
+      "url": {{ pageUrl | jsonSafe | safe }},
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "{{ pageUrl }}"
+        "@id": {{ pageUrl | jsonSafe | safe }}
       },
-      "image": "{{ resolvedOgImage | absoluteUrl(site.url or "https://www.jarilaru.fi") }}",
-      "datePublished": "{{ page.date | dateToRfc3339 }}",
-      "dateModified": "{{ (modified or page.date) | dateToRfc3339 }}",
-      "inLanguage": "{{ "fi-FI" if currentLang == "fi" else "en-US" }}",
+      "image": {
+        "@type": "ImageObject",
+        "url": {{ imageAbs | jsonSafe | safe }}
+      },
+      "datePublished": {{ (page.date | dateToRfc3339) | jsonSafe | safe }},
+      {% if modified %}"dateModified": {{ (modified | dateToRfc3339) | jsonSafe | safe }},{% endif %}
+      "inLanguage": {{ ("fi-FI" if currentLang == "fi" else "en-US") | jsonSafe | safe }},
       {% if categories and categories.length %}"articleSection": {{ categories | jsonSafe | safe }},{% endif %}
       {% if keywords and keywords.length %}"keywords": {{ keywords | jsonSafe | safe }},{% endif %}
-      {% if sourceUrl or externalUrl %}"sameAs": "{{ (sourceUrl or externalUrl) | escape }}",{% endif %}
-      "author": {
-        "@id": "{{ personId }}"
+      {% if extSameAs.length %}"sameAs": {{ extSameAs | jsonSafe | safe }},{% endif %}
+      "author": { "@id": {{ personId | jsonSafe | safe }} },
+      "publisher": { "@id": {{ personId | jsonSafe | safe }} }
+    }
+  </script>
+  {% elif pageBlockType == "business" %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": {{ resolvedSchemaType | jsonSafe | safe }},
+      "@id": {{ orgId | jsonSafe | safe }},
+      "name": "Larux t:mi",
+      "alternateName": {{ pageTitle | jsonSafe | safe }},
+      "description": {{ pageDescription | jsonSafe | safe }},
+      "url": {{ pageUrl | jsonSafe | safe }},
+      "image": {
+        "@type": "ImageObject",
+        "url": {{ imageAbs | jsonSafe | safe }}
       },
+      "inLanguage": {{ ("fi-FI" if currentLang == "fi" else "en-US") | jsonSafe | safe }},
+      "areaServed": {
+        "@type": "Country",
+        "name": "Finland"
+      },
+      "founder": { "@id": {{ personId | jsonSafe | safe }} },
+      "employee": { "@id": {{ personId | jsonSafe | safe }} },
+      "sameAs": {{ (site.sameAs or []) | jsonSafe | safe }}
+    }
+  </script>
+  {% elif pageBlockType == "thesis" %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Thesis",
+      "@id": {{ pageUrl | jsonSafe | safe }},
+      "name": {{ pageTitle | jsonSafe | safe }},
+      "description": {{ pageDescription | jsonSafe | safe }},
+      "url": {{ pageUrl | jsonSafe | safe }},
+      "image": {
+        "@type": "ImageObject",
+        "url": {{ imageAbs | jsonSafe | safe }}
+      },
+      "inLanguage": {{ ("fi-FI" if currentLang == "fi" else "en-US") | jsonSafe | safe }},
+      "datePublished": {{ (datePublished or page.date | dateToRfc3339) | jsonSafe | safe }},
+      "author": { "@id": {{ personId | jsonSafe | safe }} },
       "publisher": {
-        "@id": "{{ personId }}"
-      }
+        "@type": "CollegeOrUniversity",
+        "name": {{ ("University of Oulu" if currentLang == "en" else "Oulun yliopisto") | jsonSafe | safe }},
+        "url": "https://www.oulu.fi"
+      },
+      "inSupportOf": "PhD"
+    }
+  </script>
+  {% elif pageBlockType == "specialpage" %}
+  {% set specialAbout = schemaAbout %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": {{ specialPageType | jsonSafe | safe }},
+      "@id": {{ pageUrl | jsonSafe | safe }},
+      "name": {{ pageTitle | jsonSafe | safe }},
+      "description": {{ pageDescription | jsonSafe | safe }},
+      "url": {{ pageUrl | jsonSafe | safe }},
+      "image": {
+        "@type": "ImageObject",
+        "url": {{ imageAbs | jsonSafe | safe }}
+      },
+      "inLanguage": {{ ("fi-FI" if currentLang == "fi" else "en-US") | jsonSafe | safe }},
+      {% if specialAbout and specialAbout.length %}"about": {{ specialAbout | jsonSafe | safe }},{% endif %}
+      {% if schemaMentions and schemaMentions.length %}"mentions": {{ schemaMentions | jsonSafe | safe }},{% endif %}
+      "isPartOf": { "@id": {{ websiteId | jsonSafe | safe }} },
+      {% if specialPageType == "ProfilePage" or specialPageType == "AboutPage" %}"mainEntity": { "@id": {{ personId | jsonSafe | safe }} },{% endif %}
+      "author": { "@id": {{ personId | jsonSafe | safe }} }
     }
   </script>
   {% else %}
@@ -136,19 +263,19 @@
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
-      "name": "{{ pageTitle | escape }}",
-      "description": "{{ pageDescription | escape }}",
-      "url": "{{ pageUrl }}",
-      "image": "{{ resolvedOgImage | absoluteUrl(site.url or "https://www.jarilaru.fi") }}",
-      "inLanguage": "{{ "fi-FI" if currentLang == "fi" else "en-US" }}",
+      "@id": {{ pageUrl | jsonSafe | safe }},
+      "name": {{ pageTitle | jsonSafe | safe }},
+      "description": {{ pageDescription | jsonSafe | safe }},
+      "url": {{ pageUrl | jsonSafe | safe }},
+      "image": {
+        "@type": "ImageObject",
+        "url": {{ imageAbs | jsonSafe | safe }}
+      },
+      "inLanguage": {{ ("fi-FI" if currentLang == "fi" else "en-US") | jsonSafe | safe }},
       {% if schemaAbout and schemaAbout.length %}"about": {{ schemaAbout | jsonSafe | safe }},{% endif %}
       {% if schemaMentions and schemaMentions.length %}"mentions": {{ schemaMentions | jsonSafe | safe }},{% endif %}
-      "isPartOf": {
-        "@id": "{{ site.url or "https://www.jarilaru.fi" }}"
-      },
-      "author": {
-        "@id": "{{ personId }}"
-      }
+      "isPartOf": { "@id": {{ websiteId | jsonSafe | safe }} },
+      "author": { "@id": {{ personId | jsonSafe | safe }} }
     }
   </script>
   {% endif %}

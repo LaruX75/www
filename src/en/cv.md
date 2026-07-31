@@ -6,6 +6,7 @@ description: "Jari Laru's CV in English: academic role, degree, focus areas, and
 permalink: /en/cv/
 translationKey: cv
 lang: en
+schemaType: ProfilePage
 ---
 ## Jari Jukka Laru
 

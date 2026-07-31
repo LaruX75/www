@@ -6,6 +6,7 @@ description: Larux t:mi provides training, keynote talks, and expert services in
 permalink: /en/company/
 translationKey: company
 lang: en
+schemaType: LocalBusiness
 ---
 
 <section class="py-5 bg-body-tertiary border-bottom">

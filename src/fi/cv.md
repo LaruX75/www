@@ -6,6 +6,7 @@ layout: base.njk
 lang: fi
 description: "Jari Jukka Larun ansioluettelo: tutkinnot, työkokemus, tutkimusrahoitus, julkaisut ja ydinosaaminen."
 templateEngineOverride: md
+schemaType: ProfilePage
 schemaAbout:
   - "@type": "Thing"
     name: "Kasvatustieteen tohtori"

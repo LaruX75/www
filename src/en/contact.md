@@ -6,6 +6,7 @@ description: "Contact Jari Laru for speaking, training, collaboration, universit
 permalink: /en/contact/
 translationKey: contact
 lang: en
+schemaType: ContactPage
 ---
 <p class="lead">Contact Jari Laru about speaking, training, collaboration, university work, media requests, or municipal topics.</p>
 

@@ -7,6 +7,7 @@ description: "Who Jari Laru is: university lecturer, municipal politician, resea
 permalink: /en/about/
 translationKey: about
 lang: en
+schemaType: AboutPage
 ---
 
 <!-- HERO -->

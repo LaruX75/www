@@ -7,6 +7,7 @@ templateEngineOverride: njk
 permalink: /tietoa/
 translationKey: about
 wp_id: 7
+schemaType: AboutPage
 schemaAbout:
   - "@type": "Thing"
     name: "Kouluttaja ja asiantuntija"

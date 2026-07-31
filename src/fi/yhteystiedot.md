@@ -5,6 +5,7 @@ description: "Jari Larun yhteystiedot: yhteydenottolomake, sähköposti, puhelin
 permalink: /yhteystiedot/
 translationKey: contact
 templateEngineOverride: njk
+schemaType: ContactPage
 ---
 <section class="contact-page">
 <p class="lead contact-lead">Jari Laru, KT, KM — yliopistonlehtori, opettajankouluttaja ja koulutusteknologi. Yrittäjä ja kaupunginvaltuutettu (Kok.).</p>
