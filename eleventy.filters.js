@@ -5,6 +5,7 @@ const {
   getContextMeta,
   resolveContexts
 } = require("./src/_data/contentContext");
+const taxonomyLabels = require("./src/_data/taxonomyLabels");
 const councilMeetingMeta = require("./src/_data/councilMeetingMeta");
 const councilMeetingAgendas = require("./src/_data/councilMeetingAgendas.json");
 const oukaCouncilSpeechProtocols = require("./src/_data/oukaCouncilSpeechProtocols");
@@ -926,6 +927,10 @@ module.exports = function registerFilters(eleventyConfig) {
     return str.toLowerCase()
       .replace(/ä/g, "a").replace(/ö/g, "o").replace(/å/g, "a")
       .replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  });
+
+  eleventyConfig.addFilter("termLabel", function (value, lang = "fi", kind = "category") {
+    return taxonomyLabels.term(value, lang, kind);
   });
 
   eleventyConfig.addFilter("take", function (arr, n) {

@@ -297,7 +297,7 @@
     <summary class="content-context-details-summary">{{ txt.categories }}</summary>
     <div class="content-context-chiplist">
       {% for cat in categories %}
-      <a class="content-context-chip content-context-chip--category" href="{{ '/en/categories/' if isEnglish else '/kategoriat/' }}{{ cat | slugify }}/">{{ cat }}</a>
+      <a class="content-context-chip content-context-chip--category" href="{{ '/en/categories/' if isEnglish else '/kategoriat/' }}{{ cat | slugify }}/">{{ cat | termLabel("en" if isEnglish else "fi", "category") }}</a>
       {% endfor %}
     </div>
   </details>

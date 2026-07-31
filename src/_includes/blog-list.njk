@@ -159,7 +159,7 @@ layout: base.njk
                 </td>
                 <td>
                   {% for cat in (post.data.categories or []) %}
-                  <a href="{{ catBase }}{{ cat | slugify }}/" class="badge text-bg-secondary me-1 text-decoration-none">{{ cat }}</a>
+                  <a href="{{ catBase }}{{ cat | slugify }}/" class="badge text-bg-secondary me-1 text-decoration-none">{{ cat | termLabel(currentLang, "category") }}</a>
                   {% endfor %}
                   {% for kw in (post.data.keywords or []) %}
                   <a href="{{ kwBase }}{{ kw | slugify }}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">{{ kw }}</a>

@@ -12,7 +12,7 @@ lang: en
     <div class="list-group">
       {% for cat in collections.categoryList %}
       <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" href="/en/categories/{{ cat.slug }}/">
-        <span>{{ cat.name }}</span>
+        <span>{{ cat.name | termLabel("en", "category") }}</span>
         <span class="badge text-bg-secondary rounded-pill">{{ cat.count }}</span>
       </a>
       {% endfor %}

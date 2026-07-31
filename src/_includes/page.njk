@@ -22,7 +22,7 @@ layout: base.njk
               {% if categories and not showContextSidebar %}
                 <div class="mt-4">
                   <p class="text-uppercase small text-muted mb-2">{{ "Categories" if currentLang == "en" else "Kategoriat" }}</p>
-                  {% for cat in categories %}<a class="badge text-bg-secondary me-1 text-decoration-none" href="{{ '/en/categories/' if currentLang == 'en' else '/kategoriat/' }}{{ cat | slugify }}/">{{ cat }}</a>{% endfor %}
+                  {% for cat in categories %}<a class="badge text-bg-secondary me-1 text-decoration-none" href="{{ '/en/categories/' if currentLang == 'en' else '/kategoriat/' }}{{ cat | slugify }}/">{{ cat | termLabel(currentLang, "category") }}</a>{% endfor %}
                 </div>
               {% endif %}
               {% if keywords and not showContextSidebar %}

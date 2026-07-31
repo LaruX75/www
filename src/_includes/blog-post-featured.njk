@@ -34,7 +34,7 @@ layout: base.njk
         <div class="mb-3">
           <p class="text-uppercase small text-muted mb-2">{{ txt.categories }}</p>
           {% for cat in categories %}
-          <a class="badge text-bg-secondary me-1 text-decoration-none" href="{{ txt.catBase }}{{ cat | slugify }}/">{{ cat }}</a>
+          <a class="badge text-bg-secondary me-1 text-decoration-none" href="{{ txt.catBase }}{{ cat | slugify }}/">{{ cat | termLabel(currentLang, "category") }}</a>
           {% endfor %}
         </div>
         {% endif %}
