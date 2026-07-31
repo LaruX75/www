@@ -6,9 +6,23 @@ layout: page.njk
 translationKey: fi_only_privacy_oembed
 templateEngineOverride: md
 permalink: /privacy-policy-for-oembed-fb-app/
+pageScopeClass: document-guide-page
 wp_id: 1210
 source_url: "https://www.jarilaru.fi/privacy-policy-for-oembed-fb-app/"
 ---
+<div class="document-guide-summary" role="note">
+  <strong>Technical app policy.</strong> This legacy page exists for the Facebook oEmbed application context. The current website privacy notice is maintained separately at <a href="/tietosuojaseloste/">/tietosuojaseloste/</a> and <a href="/en/privacy/">/en/privacy/</a>.
+</div>
+
+<nav class="document-guide-path" aria-label="Main sections in this Facebook oEmbed privacy policy">
+  <a href="#owner_of_the_data">Owner</a>
+  <a href="#types_of_data">Data types</a>
+  <a href="#place_of_processing">Processing</a>
+  <a href="#use_collected_data">Purposes</a>
+  <a href="#facebook_permissions">Facebook</a>
+  <a href="#rights_subjects">Rights</a>
+</nav>
+
 <p>In order to receive information about your Personal Data, the purposes and the parties the Data is shared with, contact the owner of the www.jarilaru.fi.<br>For more information and to understand your rights, you can also view the complete version of this privacy policy, by clicking the link at the bottom right of this page.</p>
 
 

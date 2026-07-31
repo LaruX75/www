@@ -7,9 +7,18 @@ templateEngineOverride: md
 permalink: /puheenvuorot-ja-koulutukset/
 translationKey: training_index
 lang: fi
+pageScopeClass: legacy-content-page
 wp_id: 2299
 source_url: "https://www.jarilaru.fi/puheenvuorot-ja-koulutukset/"
 ---
+<div class="legacy-content-notice" role="note">
+  <strong>Arkistohuomautus.</strong> Tämä on vanha raakatietomainen koontisivu puheenvuoroista ja koulutuksista. Varsinainen ajantasainen selaus löytyy nykyiseltä esityssivulta.
+  <div class="legacy-content-actions">
+    <a class="btn btn-primary btn-sm" href="/esitykset/">Avaa esitykset</a>
+    <a class="btn btn-outline-secondary btn-sm" href="/kouluttaja/">Kouluttaja ja keynote-puhuja</a>
+  </div>
+</div>
+
 <div>
 <p>ITK-webinaari Generation AI N 28.3.2023 </p>
 

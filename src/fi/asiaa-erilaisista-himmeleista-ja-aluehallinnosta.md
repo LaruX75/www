@@ -6,9 +6,18 @@ layout: page.njk
 translationKey: fi_only_aluehallinto
 templateEngineOverride: md
 permalink: /asiaa-erilaisista-himmeleista-ja-aluehallinnosta/
+pageScopeClass: legacy-content-page
 wp_id: 1976
 source_url: "https://www.jarilaru.fi/asiaa-erilaisista-himmeleista-ja-aluehallinnosta/"
 ---
+<div class="legacy-content-notice" role="note">
+  <strong>Arkistohuomautus.</strong> Tämä on 9.1.2022 julkaistu aluevaaleihin ja aluehallintouudistukseen liittyvä taustakirjoitus. Nykyinen poliittisen työn kokonaisuus löytyy politiikan pääsivulta ja vaalikausien koonnista.
+  <div class="legacy-content-actions">
+    <a class="btn btn-outline-primary btn-sm" href="/politiikka/">Politiikan pääsivu</a>
+    <a class="btn btn-outline-secondary btn-sm" href="/politiikka/vaalikaudet/">Vaalikaudet</a>
+  </div>
+</div>
+
 <p>Olen tässä melkein kaksi viikkoa katsellut kaksi viikkoa sitten perustamani Oulun ja Oulun seudun politiikka ryhmän keskusteluita aluevaaleihin liittyen. Siellä vilisee varsin sana hallintohimmeli, josta <a href="https://www.facebook.com/hussojarmo?__cft__[0]=AZVTOkAovCD3ePygQZt3JIWwkgmiFXhlJMzseTWpiQ1O1QBQA8LwZULQjD_e97k_cxeUj0SsoFyf9cjDes4sB6nqiM9q6BSLZfKpN1lGsT1JqINcBFYsc-AYskh7qSN50JQU6svWQKCsKpKVhW3JKR8K&amp;__tn__=-]K-R">Kokoomuspoliitikko Jarmo Husso</a> ja <a href="https://www.facebook.com/laurinikula2021?__cft__[0]=AZVTOkAovCD3ePygQZt3JIWwkgmiFXhlJMzseTWpiQ1O1QBQA8LwZULQjD_e97k_cxeUj0SsoFyf9cjDes4sB6nqiM9q6BSLZfKpN1lGsT1JqINcBFYsc-AYskh7qSN50JQU6svWQKCsKpKVhW3JKR8K&amp;__tn__=-]K-R">Lauri Nikula</a> ovat ainakin peistä taittaneet. </p>
 
 
