@@ -1231,6 +1231,49 @@ html[data-bs-theme="dark"]:not([data-a11y-bg]) .list-group-item .text-muted {
   border-radius: 999px;
 }
 
+/* Inline site search field in the primary navigation (desktop only).
+   Submitting the form opens the existing #searchOverlay Pagefind modal
+   with the query prefilled — handled by [data-search-form] JS. */
+.site-nav-search {
+  position: relative;
+  align-items: center;
+}
+
+.site-nav-search-input {
+  border-radius: 999px !important;
+  padding-right: 2.35rem;
+  width: 9rem;
+  height: 2.15rem;
+  font-size: 0.85rem;
+  transition: width 0.2s ease;
+}
+
+.site-nav-search-input:focus {
+  width: 14rem;
+}
+
+.site-nav-search-btn {
+  position: absolute;
+  right: 0.15rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.85rem;
+  height: 1.85rem;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0 !important;
+  background: transparent !important;
+  color: var(--bs-secondary-color) !important;
+}
+
+.site-nav-search-btn:hover,
+.site-nav-search-btn:focus-visible {
+  color: var(--bs-body-color) !important;
+  background: transparent !important;
+}
+
 /* Filled primary CTA in hero/content-detail contexts.
    Overrides the site-wide black outline treatment specifically for
    primary action buttons in hero areas, so the main call-to-action

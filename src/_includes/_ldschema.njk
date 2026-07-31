@@ -96,6 +96,7 @@
   {# --- Rakennetaan @graph-noodit --- #}
   {% set graph = [] %}
 
+  {% set searchUrlTemplate = siteBase + ("/en/search/?q={search_term_string}" if currentLang == "en" else "/haku/?q={search_term_string}") %}
   {% set _ = (graph.push({
     "@type": "WebSite",
     "@id": websiteId,
@@ -103,7 +104,15 @@
     "name": site.name,
     "description": siteDescription,
     "inLanguage": langCode,
-    "publisher": { "@id": personId }
+    "publisher": { "@id": personId },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": searchUrlTemplate
+      },
+      "query-input": "required name=search_term_string"
+    }
   }), null) %}
 
   {% set _ = (graph.push({

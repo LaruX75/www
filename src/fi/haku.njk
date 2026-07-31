@@ -1,0 +1,37 @@
+---
+layout: base.njk
+title: Hae sivustolta
+metaTitle: Hae sivustolta
+description: "Hae Jari Larun sivustolta kirjoituksia, puheita, mediaosumia, esityksiä ja tieteellisiä julkaisuja."
+permalink: /haku/
+translationKey: search
+lang: fi
+robots: noindex, follow
+pageScripts:
+  - /js/site-search-page.js
+---
+
+<section class="content-detail-hero content-detail-hero--search py-5 border-bottom">
+  <div class="site-shell">
+    <div>
+      <p class="content-detail-eyebrow mb-2">Sivuston haku</p>
+      <h1 class="content-detail-title mb-3">Hae sivustolta</h1>
+      <p class="content-detail-lead mb-0">Etsi kirjoituksia, puheita, mediaosumia, esityksiä ja tieteellisiä julkaisuja. Sivustolla on yli 2500 sivua sisältöä.</p>
+    </div>
+  </div>
+</section>
+
+<section class="py-4">
+  <div class="site-shell">
+    <div
+      id="siteSearchPageUi"
+      class="site-search-page-ui"
+      data-pagefind-ui
+      data-pagefind-lang="Suomi"
+      data-pagefind-placeholder="Kirjoita hakusana..."
+    ></div>
+    <noscript>
+      <p class="alert alert-warning mt-3">Haku vaatii JavaScriptin. Aktivoi selaimen JavaScript käyttääksesi hakua.</p>
+    </noscript>
+  </div>
+</section>

@@ -389,7 +389,14 @@
 
         <li class="nav-item ms-md-auto mt-2 mt-md-0">
           <div class="d-flex align-items-center gap-2">
-            <button class="btn btn-sm rounded-circle d-flex align-items-center justify-content-center" id="searchToggleBtn" data-search-toggle style="width: 38px; height: 38px;" aria-label="Hae sivustolta" title="Hae sivustolta">
+            <form class="site-nav-search d-none d-xl-flex" role="search" data-search-form>
+              <label for="siteNavSearchInputFi" class="visually-hidden">Hae sivustolta</label>
+              <input id="siteNavSearchInputFi" type="search" class="form-control form-control-sm site-nav-search-input" placeholder="Hae sivustolta..." autocomplete="off" name="q" aria-label="Hae sivustolta">
+              <button class="btn btn-sm site-nav-search-btn" type="submit" aria-label="Hae">
+                <i class="bi bi-search" aria-hidden="true"></i>
+              </button>
+            </form>
+            <button class="btn btn-sm rounded-circle d-flex d-xl-none align-items-center justify-content-center" id="searchToggleBtn" data-search-toggle style="width: 38px; height: 38px;" aria-label="Hae sivustolta" title="Hae sivustolta">
               <i class="bi bi-search"></i>
             </button>
             <button class="btn btn-sm rounded-circle d-flex align-items-center justify-content-center" id="themeToggleBtn" data-theme-toggle style="width: 38px; height: 38px;" aria-label="Vaihda teemaa" title="Vaihda teemaa">
@@ -690,6 +697,11 @@
         data-pagefind-lang="Suomi"
         data-pagefind-placeholder="Kirjoita hakusana..."
       ></div>
+      <p class="text-center small mt-3 mb-0">
+        <a href="/haku/" class="text-decoration-none" data-search-page-link>
+          <i class="bi bi-arrow-up-right-square me-1" aria-hidden="true"></i>Näytä koko sivulla
+        </a>
+      </p>
     </div>
   </div>
 </div>

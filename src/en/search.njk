@@ -1,0 +1,37 @@
+---
+layout: base.njk
+title: Search the site
+metaTitle: Search the site
+description: "Search Jari Laru's site for writings, speeches, media appearances, presentations, and scientific publications."
+permalink: /en/search/
+translationKey: search
+lang: en
+robots: noindex, follow
+pageScripts:
+  - /js/site-search-page.js
+---
+
+<section class="content-detail-hero content-detail-hero--search py-5 border-bottom">
+  <div class="site-shell">
+    <div>
+      <p class="content-detail-eyebrow mb-2">Site search</p>
+      <h1 class="content-detail-title mb-3">Search the site</h1>
+      <p class="content-detail-lead mb-0">Search for writings, speeches, media appearances, presentations, and scientific publications. Over 2,500 pages of content indexed.</p>
+    </div>
+  </div>
+</section>
+
+<section class="py-4">
+  <div class="site-shell">
+    <div
+      id="siteSearchPageUi"
+      class="site-search-page-ui"
+      data-pagefind-ui
+      data-pagefind-lang="English"
+      data-pagefind-placeholder="Type a search term..."
+    ></div>
+    <noscript>
+      <p class="alert alert-warning mt-3">Search requires JavaScript. Please enable JavaScript to use search.</p>
+    </noscript>
+  </div>
+</section>
