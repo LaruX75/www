@@ -298,7 +298,7 @@ schemaMentions:
         </article>
         <article class="pol-route-card">
           <span class="pol-route-kicker">Vaalikaudet</span>
-          <h3>Työn muutos näkyy vaalikausissa</h3>
+          <h3>Kokemus rakentuu vaalikausittain</h3>
           <p>Vaalitulokset, luottamustehtävät ja sisällöt asettuvat kausittain samaan aikajanaan.</p>
           <a href="/politiikka/vaalikaudet/">Avaa vaalikaudet</a>
         </article>
@@ -406,17 +406,17 @@ schemaMentions:
   <div class="site-shell">
     <div class="pol-section-head">
       <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-journal-text me-1"></i>Kirjoitukset</p>
-      <h2 class="pol-section-title">Kirjoitukset täydentävät puheita ja aloitteita</h2>
-      <p class="pol-section-lead mb-0">Mielipidekirjoitukset ja blogitekstit avaavat niitä perusteluja, joita valtuustossa ei aina ehdi käydä läpi. Siksi ne kuuluvat politiikkasivulle, mutta koko lista on edelleen Kynästä-sivulla.</p>
+      <h2 class="pol-section-title">Kirjoitukset avaavat päätösten taustoja</h2>
+      <p class="pol-section-lead mb-0">Mielipidekirjoituksissa ja blogiteksteissä Jari Laru käsittelee sivistystä, palveluverkkoa, kaupunkikehitystä ja avoimuutta laajemmin kuin yksittäisessä kokouspuheenvuorossa on yleensä mahdollista.</p>
     </div>
 
     <div class="pol-writing-focus-grid">
       <article class="pol-current-card pol-writing-focus-card pol-writing-focus-card--primary">
         <div class="pol-current-head">
           <div>
-            <p class="pol-current-kicker mb-1">Poliittiset tekstit</p>
-            <h3 class="pol-current-title">Selkeimmin poliittiseen profiiliin kuuluvat kirjoitukset</h3>
-            <p class="text-muted small mb-0">{{ featuredPoliticalWritings.length }} tekstiä, joissa kunnallinen ja alueellinen linja näkyy suoraan.</p>
+            <p class="pol-current-kicker mb-1">Kannanotot</p>
+            <h3 class="pol-current-title">Kirjoitukset päätöksenteosta ja Oulun palveluista</h3>
+            <p class="text-muted small mb-0">{{ featuredPoliticalWritings.length }} tekstiä, joissa sivistys, palveluverkko, kaupunkikehitys tai päätöksenteon avoimuus on pääaiheena.</p>
           </div>
         </div>
         <div class="pol-writing-list">
@@ -433,15 +433,15 @@ schemaMentions:
           {% endif %}
           {% endfor %}
         </div>
-        <a href="/kynasta/?opinions=political#mielipiteet" class="btn btn-outline-primary btn-sm rounded-pill px-3 mt-3">Avaa poliittiset mielipiteet</a>
+        <a href="/kynasta/?opinions=political#mielipiteet" class="btn btn-outline-primary btn-sm rounded-pill px-3 mt-3">Avaa kannanotot</a>
       </article>
 
       <article class="pol-current-card pol-writing-focus-card">
         <div class="pol-current-head">
           <div>
-            <p class="pol-current-kicker mb-1">Rajapinta</p>
-            <h3 class="pol-current-title">Asiantuntijuus politiikan perusteluna</h3>
-            <p class="text-muted small mb-0">{{ featuredHybridWritings.length }} tekstiä, joissa tutkimus, koulutus tai analyysi tukee poliittista kannanottoa.</p>
+            <p class="pol-current-kicker mb-1">Asiantuntijuus</p>
+            <h3 class="pol-current-title">Yliopistotyö tuo asiantuntijuutta myös politiikkaan</h3>
+            <p class="text-muted small mb-0">{{ featuredHybridWritings.length }} tekstiä, joissa opetus, tutkimus tai teknologia auttaa avaamaan julkisen päätöksenteon kysymyksiä.</p>
           </div>
         </div>
         {% if latestHybridWriting %}
@@ -460,7 +460,7 @@ schemaMentions:
           {% endfor %}
         </div>
         {% endif %}
-        <a href="/kynasta/?opinions=hybrid#mielipiteet" class="btn btn-outline-primary btn-sm rounded-pill px-3 mt-3">Avaa rajapinnan kirjoitukset</a>
+        <a href="/kynasta/?opinions=hybrid#mielipiteet" class="btn btn-outline-primary btn-sm rounded-pill px-3 mt-3">Avaa asiantuntijataustaiset kirjoitukset</a>
       </article>
     </div>
   </div>
