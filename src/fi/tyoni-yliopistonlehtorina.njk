@@ -118,7 +118,8 @@ templateEngineOverride: njk
           </div>
         </div>
         <div class="d-flex flex-wrap gap-2">
-          <a href="#painopisteet" class="btn ylwork-hero-btn-primary">Työn ydinalueet</a>
+          <a href="#reitit" class="btn ylwork-hero-btn-primary">Jatka reitteihin</a>
+          <a href="#painopisteet" class="btn ylwork-hero-btn-outline">Työn ydinalueet</a>
           <a href="#aineisto" class="btn ylwork-hero-btn-outline">Syvemmälle aineistoon</a>
         </div>
       </div>
@@ -1398,13 +1399,47 @@ templateEngineOverride: njk
       max-width: none;
     }
     .ylwork-hero .ylwork-shell {
-      padding-block: 2.4rem !important;
+      padding-block: 1.65rem !important;
     }
     .ylwork-hero-title {
       font-size: clamp(1.85rem, 10.5vw, 2.55rem);
       line-height: 1.04;
       hyphens: auto;
       overflow-wrap: anywhere;
+    }
+    .ylwork-hero-manifesto {
+      margin-bottom: 0.75rem !important;
+      font-size: 1rem;
+      line-height: 1.45;
+    }
+    .ylwork-hero-text {
+      display: -webkit-box;
+      margin-bottom: 1rem !important;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      font-size: 0.95rem;
+      line-height: 1.45;
+    }
+    .ylwork-hero-points {
+      grid-template-columns: 1fr;
+      gap: 0.45rem;
+      margin-bottom: 1rem !important;
+    }
+    .ylwork-hero-point {
+      padding: 0.62rem 0.75rem;
+      border-left: 0;
+      border-radius: 0.85rem;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(19, 43, 70, 0.1);
+    }
+    .ylwork-hero-point-title {
+      font-size: 0.86rem;
+    }
+    .ylwork-hero-point-text,
+    .ylwork-hero-card,
+    .ylwork-hero-divider {
+      display: none;
     }
     .ylwork-section-head {
       margin-bottom: 1.25rem;

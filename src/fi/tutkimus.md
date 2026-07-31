@@ -85,13 +85,14 @@ schemaMentions:
         <h1 class="display-6 fw-bold mb-3">{{ researchCopy.heroTitle }}</h1>
         <p class="lead mb-3">{{ researchCopy.heroLead }}</p>
         <div class="research-hero-actions d-flex flex-wrap gap-2">
+          <a href="#tutkimuslinjat" class="btn btn-read-more btn-sm rounded-pill px-3">Tutkimuslinjat</a>
           <a href="/julkaisut/" class="btn btn-read-more btn-sm rounded-pill px-3">Tieteelliset julkaisut</a>
           <a href="/opinnaytteet/" class="btn btn-read-more btn-sm rounded-pill px-3">Ohjatut opinnäytetyöt</a>
-          <a href="https://orcid.org/0000-0003-0347-0182" class="btn btn-read-more btn-sm rounded-pill px-3" target="_blank" rel="noopener noreferrer">ORCID-profiili</a>
-          <a href="https://research.fi/en/results/person/0000-0003-0347-0182" class="btn btn-read-more btn-sm rounded-pill px-3" target="_blank" rel="noopener noreferrer">Research.fi</a>
+          <a href="https://orcid.org/0000-0003-0347-0182" class="btn btn-read-more btn-sm rounded-pill px-3 research-hero-secondary-action" target="_blank" rel="noopener noreferrer">ORCID-profiili</a>
+          <a href="https://research.fi/en/results/person/0000-0003-0347-0182" class="btn btn-read-more btn-sm rounded-pill px-3 research-hero-secondary-action" target="_blank" rel="noopener noreferrer">Research.fi</a>
         </div>
       </div>
-      <div class="col-lg-4">
+      <div class="col-lg-4 research-hero-kpis">
         <div class="row g-3 text-center">
           <div class="col-6">
             {{ ui.kpiCard("julkaisua", researchfi.length, { extraClass: "research-kpi-card" }) }}
@@ -149,6 +150,30 @@ schemaMentions:
     display: inline-flex;
     justify-content: center;
     max-width: 100%;
+  }
+
+  .research-hero.py-5,
+  #generation-ai.py-5 {
+    padding-block: 1.85rem !important;
+  }
+
+  .research-hero-secondary-action,
+  .research-hero-kpis,
+  .research-current-evidence {
+    display: none !important;
+  }
+
+  #generation-ai .lead {
+    font-size: 1.03rem;
+    line-height: 1.45;
+  }
+
+  #generation-ai .card {
+    box-shadow: 0 0.65rem 1.35rem rgba(19, 43, 70, 0.07) !important;
+  }
+
+  #generation-ai .card-body {
+    padding: 1rem !important;
   }
 
   .research-mobile-path {
@@ -299,7 +324,7 @@ schemaMentions:
           <a href="/esitykset/" class="btn btn-outline-secondary">Esitykset ja materiaalit</a>
         </div>
       </div>
-      <div class="col-lg-5">
+      <div class="col-lg-5 research-current-evidence">
         <div class="card border-0 shadow-sm h-100">
           <div class="card-body p-4 d-flex flex-column">
             <h3 class="h6 text-uppercase text-muted fw-bold mb-3">Tuore tutkimusnäyttö tästä linjasta</h3>

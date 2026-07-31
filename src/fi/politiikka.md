@@ -64,7 +64,8 @@ schemaMentions:
           </div>
         </div>
         <div class="d-flex flex-wrap gap-2">
-          <a href="#ydinteemat" class="btn pol-hero-btn-primary">Ydinteemat</a>
+          <a href="#nykyinen-rooli" class="btn pol-hero-btn-primary">Nykyinen rooli</a>
+          <a href="#paalinjat" class="btn pol-hero-btn-outline">Päälinjat</a>
           <a href="#naytto" class="btn pol-hero-btn-outline">Näyttö käytännössä</a>
         </div>
       </div>
@@ -1704,6 +1705,39 @@ schemaMentions:
       font-weight: 800;
       text-decoration: none;
       white-space: nowrap;
+    }
+    .pol-hero .site-shell {
+      padding-block: 1.65rem !important;
+    }
+    .pol-hero-title {
+      font-size: clamp(2.1rem, 12vw, 3rem);
+      line-height: 0.98;
+    }
+    .pol-hero-manifesto {
+      margin-bottom: 0.75rem !important;
+      font-size: 1rem;
+      line-height: 1.45;
+    }
+    .pol-hero-text {
+      display: -webkit-box;
+      margin-bottom: 1rem !important;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      font-size: 0.95rem;
+      line-height: 1.45;
+    }
+    .pol-hero-points {
+      gap: 0.45rem;
+      margin-bottom: 1rem !important;
+    }
+    .pol-hero-point {
+      padding: 0.62rem 0.75rem;
+    }
+    .pol-hero-point-text,
+    .pol-hero-card,
+    .pol-hero-divider {
+      display: none;
     }
     .pol-topic-grid {
       grid-template-columns: 1fr;
