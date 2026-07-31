@@ -855,6 +855,12 @@ module.exports = function registerFilters(eleventyConfig) {
       .replace(/<!--/g, "<\\!--");
   });
 
+  eleventyConfig.addFilter("merge", function (target, source) {
+    if (!target || typeof target !== "object") return source || {};
+    if (!source || typeof source !== "object") return target;
+    return Object.assign({}, target, source);
+  });
+
   eleventyConfig.addFilter("inlineCSS", function (relativePath) {
     const fullPath = path.join(__dirname, "src/css", relativePath);
     try {

@@ -27,6 +27,10 @@
   {% set personId = siteBase + "#person" %}
   {% set orgId = siteBase + "#laruxtmi" %}
   {% set websiteId = siteBase + "#website" %}
+  {% set breadcrumbId = pageUrl + "#breadcrumb" %}
+  {% set uniName = "University of Oulu" if currentLang == "en" else "Oulun yliopisto" %}
+  {% set uniId = "https://www.oulu.fi/#organization" %}
+  {% set langCode = "fi-FI" if currentLang == "fi" else "en-US" %}
 
   {# --- Tyyppilogiikka: schemaType-frontmatter voittaa aina --- #}
   {% set resolvedSchemaType = schemaType %}
@@ -53,7 +57,6 @@
   {% endif %}
 
   {% set articleTypes = ["Article","BlogPosting","NewsArticle","OpinionNewsArticle","ScholarlyArticle"] %}
-  {% set collectionTypes = ["CollectionPage","ItemList"] %}
   {% set pageBlockType = "webpage" %}
   {% if resolvedSchemaType == "PresentationDigitalDocument" %}
     {% set pageBlockType = "presentation" %}
@@ -68,214 +71,188 @@
     {% set specialPageType = resolvedSchemaType %}
   {% endif %}
 
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "@id": {{ websiteId | jsonSafe | safe }},
-      "name": {{ site.name | jsonSafe | safe }},
-      "url": {{ siteBase | jsonSafe | safe }},
-      "description": {{ siteDescription | jsonSafe | safe }},
-      "inLanguage": {{ ("fi-FI" if currentLang == "fi" else "en-US") | jsonSafe | safe }},
-      "publisher": {
-        "@id": {{ personId | jsonSafe | safe }}
-      }
-    }
-  </script>
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "@id": {{ personId | jsonSafe | safe }},
-      "name": {{ site.author | jsonSafe | safe }},
-      "givenName": "Jari",
-      "familyName": "Laru",
-      "honorificPrefix": {{ ("EdD" if currentLang == "en" else "KT") | jsonSafe | safe }},
-      "url": {{ siteBase | jsonSafe | safe }},
-      "image": {{ imageAbs | jsonSafe | safe }},
-      "jobTitle": {{ ("University Lecturer" if currentLang == "en" else "Yliopistonlehtori") | jsonSafe | safe }},
-      "worksFor": {
-        "@type": "CollegeOrUniversity",
-        "name": {{ ("University of Oulu" if currentLang == "en" else "Oulun yliopisto") | jsonSafe | safe }},
-        "url": "https://www.oulu.fi"
-      },
-      "affiliation": {
-        "@type": "CollegeOrUniversity",
-        "name": {{ ("University of Oulu" if currentLang == "en" else "Oulun yliopisto") | jsonSafe | safe }},
-        "url": "https://www.oulu.fi"
-      },
-      "alumniOf": {
-        "@type": "CollegeOrUniversity",
-        "name": {{ ("University of Oulu" if currentLang == "en" else "Oulun yliopisto") | jsonSafe | safe }},
-        "url": "https://www.oulu.fi"
-      },
-      "knowsLanguage": ["fi", "en"],
-      "sameAs": {{ (site.sameAs or []) | jsonSafe | safe }}
-    }
-  </script>
-  {% if not isHomePage %}
-  {% set bcSiteBase = siteBase %}
-  {% set bcHomeUrl = "/en/" if currentLang == "en" else "/" %}
-  {% set bcHomeTitle = "Home" if currentLang == "en" else "Etusivu" %}
-  {% set bcNodes = headerNav.en if currentLang == "en" else headerNav.fi %}
-  {% set bcNavItems = (bcNodes | eleventyNavigationBreadcrumb(breadcrumbKey, { includeSelf: true, allowMissing: true })) if breadcrumbKey else [] %}
-  {% set bcAppendCurrent = pageTitle and (not bcNavItems.length or bcNavItems[bcNavItems.length - 1].url != page.url) %}
+  {# --- Breadcrumb-lista rakennetaan aina jos ei kotisivu --- #}
   {% set ldBcItems = [] %}
-  {% set _ = (ldBcItems.push({ "@type": "ListItem", "position": 1, "name": bcHomeTitle, "item": bcHomeUrl | absoluteUrl(bcSiteBase) }), null) %}
-  {% for crumb in bcNavItems %}
-    {% if crumb.url != bcHomeUrl and crumb.title != bcHomeTitle %}
-      {% set _ = (ldBcItems.push({ "@type": "ListItem", "position": ldBcItems.length + 1, "name": crumb.title, "item": crumb.url | absoluteUrl(bcSiteBase) }), null) %}
+  {% if not isHomePage %}
+    {% set bcHomeUrl = "/en/" if currentLang == "en" else "/" %}
+    {% set bcHomeTitle = "Home" if currentLang == "en" else "Etusivu" %}
+    {% set bcNodes = headerNav.en if currentLang == "en" else headerNav.fi %}
+    {% set bcNavItems = (bcNodes | eleventyNavigationBreadcrumb(breadcrumbKey, { includeSelf: true, allowMissing: true })) if breadcrumbKey else [] %}
+    {% set bcAppendCurrent = pageTitle and (not bcNavItems.length or bcNavItems[bcNavItems.length - 1].url != page.url) %}
+    {% set _ = (ldBcItems.push({ "@type": "ListItem", "position": 1, "name": bcHomeTitle, "item": bcHomeUrl | absoluteUrl(siteBase) }), null) %}
+    {% for crumb in bcNavItems %}
+      {% if crumb.url != bcHomeUrl and crumb.title != bcHomeTitle %}
+        {% set _ = (ldBcItems.push({ "@type": "ListItem", "position": ldBcItems.length + 1, "name": crumb.title, "item": crumb.url | absoluteUrl(siteBase) }), null) %}
+      {% endif %}
+    {% endfor %}
+    {% if breadcrumbDetailTitle and bcAppendCurrent %}
+      {% set _ = (ldBcItems.push({ "@type": "ListItem", "position": ldBcItems.length + 1, "name": breadcrumbDetailTitle, "item": breadcrumbDetailUrl | absoluteUrl(siteBase) }), null) %}
     {% endif %}
-  {% endfor %}
-  {% if breadcrumbDetailTitle and bcAppendCurrent %}
-    {% set _ = (ldBcItems.push({ "@type": "ListItem", "position": ldBcItems.length + 1, "name": breadcrumbDetailTitle, "item": breadcrumbDetailUrl | absoluteUrl(bcSiteBase) }), null) %}
+    {% if bcAppendCurrent %}
+      {% set _ = (ldBcItems.push({ "@type": "ListItem", "position": ldBcItems.length + 1, "name": pageTitle }), null) %}
+    {% endif %}
   {% endif %}
-  {% if bcAppendCurrent %}
-    {% set _ = (ldBcItems.push({ "@type": "ListItem", "position": ldBcItems.length + 1, "name": pageTitle }), null) %}
-  {% endif %}
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
+
+  {# --- Rakennetaan @graph-noodit --- #}
+  {% set graph = [] %}
+
+  {% set _ = (graph.push({
+    "@type": "WebSite",
+    "@id": websiteId,
+    "url": siteBase,
+    "name": site.name,
+    "description": siteDescription,
+    "inLanguage": langCode,
+    "publisher": { "@id": personId }
+  }), null) %}
+
+  {% set _ = (graph.push({
+    "@type": "Person",
+    "@id": personId,
+    "name": site.author,
+    "givenName": "Jari",
+    "familyName": "Laru",
+    "honorificPrefix": ("EdD" if currentLang == "en" else "KT"),
+    "url": siteBase,
+    "image": imageAbs,
+    "jobTitle": ("University Lecturer" if currentLang == "en" else "Yliopistonlehtori"),
+    "worksFor": { "@id": uniId },
+    "affiliation": { "@id": uniId },
+    "alumniOf": { "@id": uniId },
+    "knowsLanguage": ["fi", "en"],
+    "sameAs": (site.sameAs or [])
+  }), null) %}
+
+  {% set _ = (graph.push({
+    "@type": "CollegeOrUniversity",
+    "@id": uniId,
+    "name": uniName,
+    "url": "https://www.oulu.fi"
+  }), null) %}
+
+  {% if not isHomePage and ldBcItems.length %}
+    {% set _ = (graph.push({
       "@type": "BreadcrumbList",
-      "itemListElement": {{ ldBcItems | jsonSafe | safe }}
-    }
-  </script>
+      "@id": breadcrumbId,
+      "itemListElement": ldBcItems
+    }), null) %}
   {% endif %}
+
   {% if pageBlockType == "presentation" %}
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
+    {% set presNode = {
       "@type": "PresentationDigitalDocument",
-      "@id": {{ pageUrl | jsonSafe | safe }},
-      "name": {{ pageTitle | jsonSafe | safe }},
-      "description": {{ pageDescription | jsonSafe | safe }},
-      "url": {{ pageUrl | jsonSafe | safe }},
-      {% if thumbnail %}"thumbnailUrl": {{ thumbnail | jsonSafe | safe }},{% endif %}
-      "datePublished": {{ (page.date | dateToRfc3339) | jsonSafe | safe }},
-      "inLanguage": {{ ("fi-FI" if currentLang == "fi" else "en-US") | jsonSafe | safe }},
-      {% if url %}"sameAs": [{{ url | jsonSafe | safe }}],{% endif %}
-      "author": { "@id": {{ personId | jsonSafe | safe }} },
-      "publisher": { "@id": {{ personId | jsonSafe | safe }} }
-    }
-  </script>
+      "@id": pageUrl,
+      "name": pageTitle,
+      "description": pageDescription,
+      "url": pageUrl,
+      "datePublished": (page.date | dateToRfc3339),
+      "inLanguage": langCode,
+      "author": { "@id": personId },
+      "publisher": { "@id": personId }
+    } %}
+    {% if thumbnail %}{% set _ = (presNode.__setitem__ if false else null) %}{% set presNode = (presNode | merge({ "thumbnailUrl": thumbnail })) %}{% endif %}
+    {% if url %}{% set presNode = (presNode | merge({ "sameAs": [url] })) %}{% endif %}
+    {% if not isHomePage and ldBcItems.length %}{% set presNode = (presNode | merge({ "breadcrumb": { "@id": breadcrumbId } })) %}{% endif %}
+    {% set _ = (graph.push(presNode), null) %}
+
   {% elif pageBlockType == "article" %}
-  {% set extSameAs = [] %}
-  {% if sourceUrl %}{% set _ = (extSameAs.push(sourceUrl), null) %}{% endif %}
-  {% if externalUrl and externalUrl != sourceUrl %}{% set _ = (extSameAs.push(externalUrl), null) %}{% endif %}
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": {{ resolvedSchemaType | jsonSafe | safe }},
-      "@id": {{ pageUrl | jsonSafe | safe }},
-      "headline": {{ pageTitle | jsonSafe | safe }},
-      "description": {{ pageDescription | jsonSafe | safe }},
-      "url": {{ pageUrl | jsonSafe | safe }},
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": {{ pageUrl | jsonSafe | safe }}
-      },
-      "image": {
-        "@type": "ImageObject",
-        "url": {{ imageAbs | jsonSafe | safe }}
-      },
-      "datePublished": {{ (page.date | dateToRfc3339) | jsonSafe | safe }},
-      {% if modified %}"dateModified": {{ (modified | dateToRfc3339) | jsonSafe | safe }},{% endif %}
-      "inLanguage": {{ ("fi-FI" if currentLang == "fi" else "en-US") | jsonSafe | safe }},
-      {% if categories and categories.length %}"articleSection": {{ categories | jsonSafe | safe }},{% endif %}
-      {% if keywords and keywords.length %}"keywords": {{ keywords | jsonSafe | safe }},{% endif %}
-      {% if extSameAs.length %}"sameAs": {{ extSameAs | jsonSafe | safe }},{% endif %}
-      "author": { "@id": {{ personId | jsonSafe | safe }} },
-      "publisher": { "@id": {{ personId | jsonSafe | safe }} }
-    }
-  </script>
+    {% set extSameAs = [] %}
+    {% if sourceUrl %}{% set _ = (extSameAs.push(sourceUrl), null) %}{% endif %}
+    {% if externalUrl and externalUrl != sourceUrl %}{% set _ = (extSameAs.push(externalUrl), null) %}{% endif %}
+    {% set articleNode = {
+      "@type": resolvedSchemaType,
+      "@id": pageUrl,
+      "headline": pageTitle,
+      "description": pageDescription,
+      "url": pageUrl,
+      "mainEntityOfPage": { "@type": "WebPage", "@id": pageUrl },
+      "image": { "@type": "ImageObject", "url": imageAbs },
+      "datePublished": (page.date | dateToRfc3339),
+      "inLanguage": langCode,
+      "author": { "@id": personId },
+      "publisher": { "@id": personId },
+      "isPartOf": { "@id": websiteId }
+    } %}
+    {% if modified %}{% set articleNode = (articleNode | merge({ "dateModified": (modified | dateToRfc3339) })) %}{% endif %}
+    {% if categories and categories.length %}{% set articleNode = (articleNode | merge({ "articleSection": categories })) %}{% endif %}
+    {% if keywords and keywords.length %}{% set articleNode = (articleNode | merge({ "keywords": keywords })) %}{% endif %}
+    {% if extSameAs.length %}{% set articleNode = (articleNode | merge({ "sameAs": extSameAs })) %}{% endif %}
+    {% if not isHomePage and ldBcItems.length %}{% set articleNode = (articleNode | merge({ "breadcrumb": { "@id": breadcrumbId } })) %}{% endif %}
+    {% set _ = (graph.push(articleNode), null) %}
+
   {% elif pageBlockType == "business" %}
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": {{ resolvedSchemaType | jsonSafe | safe }},
-      "@id": {{ orgId | jsonSafe | safe }},
+    {% set bizNode = {
+      "@type": resolvedSchemaType,
+      "@id": orgId,
       "name": "Larux t:mi",
-      "alternateName": {{ pageTitle | jsonSafe | safe }},
-      "description": {{ pageDescription | jsonSafe | safe }},
-      "url": {{ pageUrl | jsonSafe | safe }},
-      "image": {
-        "@type": "ImageObject",
-        "url": {{ imageAbs | jsonSafe | safe }}
-      },
-      "inLanguage": {{ ("fi-FI" if currentLang == "fi" else "en-US") | jsonSafe | safe }},
-      "areaServed": {
-        "@type": "Country",
-        "name": "Finland"
-      },
-      "founder": { "@id": {{ personId | jsonSafe | safe }} },
-      "employee": { "@id": {{ personId | jsonSafe | safe }} },
-      "sameAs": {{ (site.sameAs or []) | jsonSafe | safe }}
-    }
-  </script>
+      "alternateName": pageTitle,
+      "description": pageDescription,
+      "url": pageUrl,
+      "image": { "@type": "ImageObject", "url": imageAbs },
+      "inLanguage": langCode,
+      "areaServed": { "@type": "Country", "name": "Finland" },
+      "founder": { "@id": personId },
+      "employee": { "@id": personId },
+      "sameAs": (site.sameAs or []),
+      "isPartOf": { "@id": websiteId }
+    } %}
+    {% if not isHomePage and ldBcItems.length %}{% set bizNode = (bizNode | merge({ "breadcrumb": { "@id": breadcrumbId } })) %}{% endif %}
+    {% set _ = (graph.push(bizNode), null) %}
+
   {% elif pageBlockType == "thesis" %}
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
+    {% set thesisNode = {
       "@type": "Thesis",
-      "@id": {{ pageUrl | jsonSafe | safe }},
-      "name": {{ pageTitle | jsonSafe | safe }},
-      "description": {{ pageDescription | jsonSafe | safe }},
-      "url": {{ pageUrl | jsonSafe | safe }},
-      "image": {
-        "@type": "ImageObject",
-        "url": {{ imageAbs | jsonSafe | safe }}
-      },
-      "inLanguage": {{ ("fi-FI" if currentLang == "fi" else "en-US") | jsonSafe | safe }},
-      "datePublished": {{ (datePublished or page.date | dateToRfc3339) | jsonSafe | safe }},
-      "author": { "@id": {{ personId | jsonSafe | safe }} },
-      "publisher": {
-        "@type": "CollegeOrUniversity",
-        "name": {{ ("University of Oulu" if currentLang == "en" else "Oulun yliopisto") | jsonSafe | safe }},
-        "url": "https://www.oulu.fi"
-      },
-      "inSupportOf": "PhD"
-    }
-  </script>
+      "@id": pageUrl,
+      "name": pageTitle,
+      "description": pageDescription,
+      "url": pageUrl,
+      "image": { "@type": "ImageObject", "url": imageAbs },
+      "inLanguage": langCode,
+      "datePublished": (datePublished or (page.date | dateToRfc3339)),
+      "author": { "@id": personId },
+      "publisher": { "@id": uniId },
+      "inSupportOf": "PhD",
+      "isPartOf": { "@id": websiteId }
+    } %}
+    {% if not isHomePage and ldBcItems.length %}{% set thesisNode = (thesisNode | merge({ "breadcrumb": { "@id": breadcrumbId } })) %}{% endif %}
+    {% set _ = (graph.push(thesisNode), null) %}
+
   {% elif pageBlockType == "specialpage" %}
-  {% set specialAbout = schemaAbout %}
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": {{ specialPageType | jsonSafe | safe }},
-      "@id": {{ pageUrl | jsonSafe | safe }},
-      "name": {{ pageTitle | jsonSafe | safe }},
-      "description": {{ pageDescription | jsonSafe | safe }},
-      "url": {{ pageUrl | jsonSafe | safe }},
-      "image": {
-        "@type": "ImageObject",
-        "url": {{ imageAbs | jsonSafe | safe }}
-      },
-      "inLanguage": {{ ("fi-FI" if currentLang == "fi" else "en-US") | jsonSafe | safe }},
-      {% if specialAbout and specialAbout.length %}"about": {{ specialAbout | jsonSafe | safe }},{% endif %}
-      {% if schemaMentions and schemaMentions.length %}"mentions": {{ schemaMentions | jsonSafe | safe }},{% endif %}
-      "isPartOf": { "@id": {{ websiteId | jsonSafe | safe }} },
-      {% if specialPageType == "ProfilePage" or specialPageType == "AboutPage" %}"mainEntity": { "@id": {{ personId | jsonSafe | safe }} },{% endif %}
-      "author": { "@id": {{ personId | jsonSafe | safe }} }
-    }
-  </script>
+    {% set specialNode = {
+      "@type": specialPageType,
+      "@id": pageUrl,
+      "name": pageTitle,
+      "description": pageDescription,
+      "url": pageUrl,
+      "image": { "@type": "ImageObject", "url": imageAbs },
+      "inLanguage": langCode,
+      "isPartOf": { "@id": websiteId },
+      "author": { "@id": personId }
+    } %}
+    {% if schemaAbout and schemaAbout.length %}{% set specialNode = (specialNode | merge({ "about": schemaAbout })) %}{% endif %}
+    {% if schemaMentions and schemaMentions.length %}{% set specialNode = (specialNode | merge({ "mentions": schemaMentions })) %}{% endif %}
+    {% if specialPageType == "ProfilePage" or specialPageType == "AboutPage" %}{% set specialNode = (specialNode | merge({ "mainEntity": { "@id": personId } })) %}{% endif %}
+    {% if not isHomePage and ldBcItems.length %}{% set specialNode = (specialNode | merge({ "breadcrumb": { "@id": breadcrumbId } })) %}{% endif %}
+    {% set _ = (graph.push(specialNode), null) %}
+
   {% else %}
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
+    {% set webNode = {
       "@type": "WebPage",
-      "@id": {{ pageUrl | jsonSafe | safe }},
-      "name": {{ pageTitle | jsonSafe | safe }},
-      "description": {{ pageDescription | jsonSafe | safe }},
-      "url": {{ pageUrl | jsonSafe | safe }},
-      "image": {
-        "@type": "ImageObject",
-        "url": {{ imageAbs | jsonSafe | safe }}
-      },
-      "inLanguage": {{ ("fi-FI" if currentLang == "fi" else "en-US") | jsonSafe | safe }},
-      {% if schemaAbout and schemaAbout.length %}"about": {{ schemaAbout | jsonSafe | safe }},{% endif %}
-      {% if schemaMentions and schemaMentions.length %}"mentions": {{ schemaMentions | jsonSafe | safe }},{% endif %}
-      "isPartOf": { "@id": {{ websiteId | jsonSafe | safe }} },
-      "author": { "@id": {{ personId | jsonSafe | safe }} }
-    }
-  </script>
+      "@id": pageUrl,
+      "name": pageTitle,
+      "description": pageDescription,
+      "url": pageUrl,
+      "image": { "@type": "ImageObject", "url": imageAbs },
+      "inLanguage": langCode,
+      "isPartOf": { "@id": websiteId },
+      "author": { "@id": personId }
+    } %}
+    {% if schemaAbout and schemaAbout.length %}{% set webNode = (webNode | merge({ "about": schemaAbout })) %}{% endif %}
+    {% if schemaMentions and schemaMentions.length %}{% set webNode = (webNode | merge({ "mentions": schemaMentions })) %}{% endif %}
+    {% if not isHomePage and ldBcItems.length %}{% set webNode = (webNode | merge({ "breadcrumb": { "@id": breadcrumbId } })) %}{% endif %}
+    {% set _ = (graph.push(webNode), null) %}
   {% endif %}
+
+  <script type="application/ld+json">
+  {{ { "@context": "https://schema.org", "@graph": graph } | jsonSafe | safe }}
+  </script>
