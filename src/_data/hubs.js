@@ -48,7 +48,7 @@ module.exports = {
       }
     },
     me: {
-      ingress: "Yliopistonlehtori, poliitikko, yrittäjä, isä ja oululainen — neljä roolia, yksi ihminen.",
+      ingress: "Yliopistonlehtori, poliitikko, yrittäjä, isä sekä Raahesta Ouluun ja Jääliin kulkenut ihminen.",
       groups: [
         {
           heading: "Jari lyhyesti",

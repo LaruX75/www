@@ -8,7 +8,7 @@ templateEngineOverride: njk
 schemaType: ContactPage
 ---
 <section class="contact-page">
-<p class="lead contact-lead">Jari Laru, KT, KM — yliopistonlehtori, opettajankouluttaja ja koulutusteknologi. Yrittäjä ja kaupunginvaltuutettu (Kok.).</p>
+<p class="lead contact-lead">Jari Laru, KT, KM — yliopistonlehtori, opettajankouluttaja ja koulutusteknologi. Yrittäjä sekä Oulun kaupunginvaltuuston 2. varavaltuutettu ja sivistyslautakunnan jäsen (Kok.).</p>
 
 <nav class="contact-quick-actions" aria-label="Nopeat yhteydenottotavat">
   <a href="#contact-form"><i class="bi bi-send me-1" aria-hidden="true"></i>Lomake</a>
@@ -66,7 +66,7 @@ schemaType: ContactPage
         <div class="card-body">
           <h2 class="h5 mb-3">Työpaikan yhteystiedot</h2>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item"><strong>Toimisto:</strong> KTK201, Kasvatustieteiden tiedekunta, Oulun yliopisto, Linnanmaa</li>
+            <li class="list-group-item"><strong>Toimisto:</strong> KTK201, Kasvatustieteiden ja psykologian tiedekunta, Oulun yliopisto, Linnanmaa</li>
             <li class="list-group-item"><strong>Opetus:</strong> Digiluokka KTK149</li>
             <li class="list-group-item"><strong>Postiosoite:</strong> KTK201, PL8000, 90014 Oulun yliopisto</li>
             <li class="list-group-item"><strong>Sähköposti:</strong> <a href="mailto:%6A%61%72%69%2E%6C%61%72%75%40%6F%75%6C%75%2E%66%69" aria-label="Sähköposti jari.laru@oulu.fi"><span>jari.laru</span><span aria-hidden="true">@</span><span>oulu.fi</span></a></li>
@@ -78,7 +78,7 @@ schemaType: ContactPage
 
       <div class="card border-0 shadow-sm h-100 contact-card contact-side-card">
         <div class="card-body">
-          <h2 class="h5 mb-3">Larux tmi</h2>
+          <h2 class="h5 mb-3">Larux t:mi</h2>
           <ul class="list-group list-group-flush mb-3">
             <li class="list-group-item"><strong>Puhelin:</strong> (+358) 40 511 8478 (WhatsApp, puhelin, SMS)</li>
             <li class="list-group-item"><strong>Sähköposti:</strong> <a href="mailto:%6A%61%72%69%2E%6C%61%72%75%40%6F%75%6C%75%2E%66%69" aria-label="Sähköposti jari.laru@oulu.fi"><span>jari.laru</span><span aria-hidden="true">@</span><span>oulu.fi</span></a></li>

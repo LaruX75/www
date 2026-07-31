@@ -1,7 +1,7 @@
 ---
 title: "Tietoa Jari Larusta"
 date: 2020-01-17
-description: "Tietoa Jari Larusta: kouluttaja, yliopistonlehtori, tutkija, poliitikko ja oululainen, jonka työ yhdistää opetuksen, teknologian ja päätöksenteon."
+description: "Tietoa Jari Larusta: Raahessa kasvanut, opintojen myötä oululaistunut kouluttaja, yliopistonlehtori, tutkija ja poliitikko, jonka työ yhdistää opetuksen, teknologian ja päätöksenteon."
 layout: base.njk
 templateEngineOverride: njk
 permalink: /tietoa/
@@ -39,7 +39,7 @@ schemaMentions:
       <div class="about-hero-copy">
         <p class="about-kicker">Jari Laru</p>
         <h1>Jari Laru</h1>
-        <p class="about-hero-lead">Kouluttaja, yliopistonlehtori, tutkija ja poliittinen vaikuttaja Oulusta.</p>
+        <p class="about-hero-lead">Raahessa kasvanut, opintojen myötä oululaistunut kouluttaja, yliopistonlehtori, tutkija ja poliittinen vaikuttaja.</p>
         <p>Jari Larun työ liikkuu opetuksen, teknologian, tutkimuksen ja päätöksenteon rajapinnoilla. Hän kouluttaa opettajia ja organisaatioita, opettaa tulevia opettajia yliopistossa, tutkii teknologiatuettua oppimista ja osallistuu Oulun päätöksentekoon.</p>
         <p>Yhteinen kysymys on pysynyt samana: miten teknologiaa, tekoälyä ja tietoa käytetään niin, että ne vahvistavat oppimista, sivistystä, osallisuutta ja läpinäkyvää päätöksentekoa.</p>
         <div class="about-hero-actions">
@@ -150,9 +150,9 @@ schemaMentions:
     <div class="about-place-grid">
       <div class="about-place-copy">
         <p class="about-kicker">Oulu ja arki</p>
-        <h2>Oulu on kotikaupunki, työympäristö ja päätöksenteon mittakaava</h2>
-        <p>Olen syntyjään oululainen ja asunut täällä koko elämäni. Perheemme asuu Jäälissä, mutta Oulu ei minulle tarkoita vain yhtä kaupunginosaa tai aluetta. Se tarkoittaa 23 suuralueen ja 105 kaupunginosan kokonaisuutta, jossa päätösten vaikutukset näkyvät ihmisten arjessa eri tavoin.</p>
-        <p>Siksi paikallisuus ei ole minulle nurkkakuntaisuutta, vaan tapa kysyä, miten palvelut, liikkuminen, koulutus, kulttuuri ja osallisuus toimivat koko kaupungissa.</p>
+        <h2>Raahe, Oulu ja Jääli muodostavat paikallisen mittakaavan</h2>
+        <p>Jari Laru on viettänyt lapsuutensa ja nuoruutensa Raahessa ja oululaistunut opintojen myötä. Nykyään perhe asuu Jäälissä, mutta Oulu ei tarkoita vain yhtä kaupunginosaa tai aluetta. Se tarkoittaa 23 suuralueen ja 105 kaupunginosan kaupunkia, jossa päätösten vaikutukset näkyvät ihmisten arjessa eri tavoin.</p>
+        <p>Siksi paikallisuus ei ole nurkkakuntaisuutta, vaan tapa kysyä, miten palvelut, liikkuminen, koulutus, kulttuuri ja osallisuus toimivat koko kaupungissa.</p>
       </div>
 
       <div class="about-place-images">

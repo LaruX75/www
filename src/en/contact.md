@@ -72,7 +72,7 @@ schemaType: ContactPage
 
       <div class="card border-0 shadow-sm h-100">
         <div class="card-body">
-          <h2 class="h5 mb-3">Larux tmi</h2>
+          <h2 class="h5 mb-3">Larux t:mi</h2>
           <ul class="list-group list-group-flush mb-3">
             <li class="list-group-item"><strong>Phone:</strong> (+358) 40 511 8478 (WhatsApp, phone, SMS)</li>
             <li class="list-group-item"><strong>Email:</strong> <a href="mailto:%6A%61%72%69%2E%6C%61%72%75%40%6F%75%6C%75%2E%66%69" aria-label="Email jari.laru@oulu.fi"><span>jari.laru</span><span aria-hidden="true">@</span><span>oulu.fi</span></a></li>
