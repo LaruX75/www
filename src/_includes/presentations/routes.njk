@@ -4,30 +4,30 @@
       {
         number: "01",
         label: "Vaikuttavat puheenvuorot",
-        title: "Keynotet, konferenssit ja tutkimuksen kautta painavat esiintymiset",
-        description: "Tällä pääreitillä näkyvät aineistot, joiden ensisijainen käyttö on keynote-puheenvuoroissa, konferensseissa tai tutkimuksen kautta painavissa asiantuntijaesiintymisissä.",
+        title: "Keynotet, konferenssit ja tutkimukseen nojaavat asiantuntijapuheenvuorot",
+        description: "Aloita tästä, kun etsit laajoja puheenvuoroja tekoälystä, oppimisesta, teknologiasta ja koulutuksen muutoksesta.",
         filter: "route:puheenvuorot"
       },
       {
         number: "02",
         label: "Koulutukset, luennot ja työpajat",
         title: "Opettajille, opiskelijoille ja verkostoille tehdyt käytännön materiaalit",
-        description: "Tällä pääreitillä näkyvät aineistot, joiden ensisijainen käyttö on täydennyskoulutuksissa, yliopistoluenoissa, webinaareissa, hankkeiden esittelyissä tai työpajamaisissa kokonaisuuksissa.",
+        description: "Täältä löydät materiaaleja täydennyskoulutuksiin, yliopistoluennolle, webinaareihin, hankkeiden esittelyihin ja työpajoihin.",
         filter: "route:koulutukset"
       },
       {
         number: "03",
         label: "Videot ja avoimet materiaalit",
         title: "Tallenteet, videosarjat ja julkiseen käyttöön jaetut oppimateriaalit",
-        description: "Tällä pääreitillä näkyvät aineistot, jotka on tarkoitettu ennen kaikkea katsottaviksi, jaettaviksi tai suoraan opetukseen vietäviksi materiaaleiksi.",
+        description: "Aloita tästä, kun haluat katsoa tallenteen, jakaa materiaalin tai käyttää avointa oppimateriaalia opetuksen tukena.",
         filter: "route:materiaalit"
       }
     ] %}
 
     <div class="presentation-section-head">
       <p class="presentation-section-kicker mb-1">Aloita tästä</p>
-      <h2 id="reitit-heading" class="presentation-section-title">Kolme pääreittiä aineistoon</h2>
-      <p class="presentation-section-lead mb-0">Valitse reitti sen mukaan, mikä on aineiston ensisijainen käyttötapa. Sama aineisto voi liittyä myös muihin reitteihin, mutta tässä näkymässä se näkyy yhden pääreitin kautta.</p>
+      <h2 id="reitit-heading" class="presentation-section-title">Millaista materiaalia etsit?</h2>
+      <p class="presentation-section-lead mb-0">Sivua voi selata käyttötarkoituksen mukaan: puheenvuorot, koulutukset ja luennot sekä katsottavat tai jaettavat materiaalit.</p>
     </div>
 
     <div class="presentation-route-grid">
@@ -41,13 +41,13 @@
       {% set presentationAnalysisTextWrap = true %}
 
       {% set presentationAnalysisIcon = "bi-bar-chart-line" %}
-      {% set presentationAnalysisTitle = "Aineiston tulkinta ja kehityskaaret" %}
-      {% set presentationAnalysisDescription = "Kaksi analyysisivua ja käyttökontekstien tausta alempana samalla sivulla." %}
+      {% set presentationAnalysisTitle = "Miten teemat ovat kehittyneet?" %}
+      {% set presentationAnalysisDescription = "Canva- ja SlideShare-koonnit avaavat, miten aiheet ovat muuttuneet vuosien varrella." %}
       {% include "presentations/analysis-link.njk" %}
 
       {% set presentationAnalysisIcon = "bi-archive" %}
-      {% set presentationAnalysisTitle = "Lähdepalvelut ja tekninen arkisto" %}
-      {% set presentationAnalysisDescription = "Canva, YouTube, AOE ja SlideShare löytyvät edelleen, mutta ne eivät enää ohjaa sivun ensisijaista lukutapaa." %}
+      {% set presentationAnalysisTitle = "Mistä alkuperäiset sisällöt löytyvät?" %}
+      {% set presentationAnalysisDescription = "Canva, YouTube, AOE ja SlideShare löytyvät omista koonneistaan sivun lopusta." %}
       {% include "presentations/analysis-link.njk" %}
     </div>
   </div>

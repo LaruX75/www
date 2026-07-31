@@ -875,16 +875,16 @@
     document.querySelectorAll("[data-presentation-count]").forEach((node) => {
       const filter = node.dataset.presentationCount || "all";
       const count = items.filter((item) => matchesPresentationFilter(item, filter)).length;
-      node.textContent = count === 1 ? "1 aineisto" : `${count} aineistoa`;
+      node.textContent = count === 1 ? "1 sisältö" : `${count} sisältöä`;
     });
   }
 
   function describePresentationFilter(filter) {
     const labels = {
-      all: { label: "Kaikki aineistot", note: "" },
-      "route:puheenvuorot": { label: "Puheenvuorot", note: "Näytetään aineistot, joiden ensisijainen pääreitti on puheenvuorot." },
-      "route:koulutukset": { label: "Koulutukset, luennot ja työpajat", note: "Näytetään aineistot, joiden ensisijainen pääreitti on koulutukset, luennot tai työpajat." },
-      "route:materiaalit": { label: "Videot ja materiaalit", note: "Näytetään aineistot, joiden ensisijainen pääreitti on videot ja materiaalit." },
+      all: { label: "Kaikki sisällöt", note: "" },
+      "route:puheenvuorot": { label: "Puheenvuorot", note: "Mukana ovat keynote- ja konferenssipuheenvuorot sekä muut laajat asiantuntijaesiintymiset." },
+      "route:koulutukset": { label: "Koulutukset, luennot ja työpajat", note: "Mukana ovat koulutuksiin, yliopistoluennolle, webinaareihin ja työpajoihin liittyvät materiaalit." },
+      "route:materiaalit": { label: "Videot ja materiaalit", note: "Mukana ovat tallenteet, videosarjat ja jaettavat oppimateriaalit." },
       own: { label: "Omat esitykset", note: "" },
       aoe: { label: "Avoimet oppimateriaalit", note: "" },
       video: { label: "Videot", note: "" },
@@ -901,7 +901,7 @@
         "tdk-luento": "Yliopistoluennot",
         "webinaari": "Webinaarit"
       };
-      return { label: categoryLabels[suffix] || suffix, note: "Suodatus perustuu aineistolle annettuihin tai johdettuihin kategorioihin." };
+      return { label: categoryLabels[suffix] || suffix, note: "Rajaus kokoaa samaan tyyppiin kuuluvat sisällöt." };
     }
 
     if (filter.startsWith("profile:")) {
@@ -936,12 +936,12 @@
 
     status.innerHTML = `
       <span class="presentation-archive-status-badge">${escHtml(filterInfo.label)}</span>
-      <span>${filtered.length === 1 ? "Näytetään 1 aineisto." : `Näytetään ${filtered.length} aineistoa.`}</span>
+      <span>${filtered.length === 1 ? "Näytetään 1 sisältö." : `Näytetään ${filtered.length} sisältöä.`}</span>
       ${filterInfo.note ? `<small>${escHtml(filterInfo.note)}</small>` : ""}
     `;
 
     if (!pageItems.length) {
-      grid.innerHTML = `<p class="text-muted mb-0">Suodatuksella “${escHtml(filterInfo.label)}” ei löytynyt aineistoa.</p>`;
+      grid.innerHTML = `<p class="text-muted mb-0">Rajauksella “${escHtml(filterInfo.label)}” ei löytynyt sisältöjä.</p>`;
       pagination.innerHTML = "";
       return;
     }
@@ -975,9 +975,9 @@
         "muu": ""
       };
       const routeLabels = {
-        "route:puheenvuorot": "Pääreitti: Puheenvuorot",
-        "route:koulutukset": "Pääreitti: Koulutukset, luennot ja työpajat",
-        "route:materiaalit": "Pääreitti: Videot ja materiaalit"
+        "route:puheenvuorot": "Puheenvuorot",
+        "route:koulutukset": "Koulutukset, luennot ja työpajat",
+        "route:materiaalit": "Videot ja materiaalit"
       };
       const secondaryRouteLabels = {
         "route:puheenvuorot": "Myös: Puheenvuorot",
@@ -1005,7 +1005,7 @@
           <div class="presentation-archive-card-thumb ${isVideoThumb ? "video-preview video-preview--sm" : ""}">${thumb}</div>
           <div class="presentation-archive-card-body">
             <div class="presentation-archive-card-meta">
-              ${routeBadge}${routeSecondaryBadges}${kategoriaBadge}<span>${escHtml(item.archiveTypeLabel || "Aineisto")}</span>
+              ${routeBadge}${routeSecondaryBadges}${kategoriaBadge}<span>${escHtml(item.archiveTypeLabel || "Sisältö")}</span>
               <span>${escHtml(item.sourceLabel || item.meta || "")}</span>
             </div>
             <h3 class="presentation-archive-card-title">${titleLink}</h3>
@@ -1075,7 +1075,7 @@
               ${featured.date ? `<span>${escHtml(featured.date)}</span>` : ""}
             </div>
             <h3><a href="${escHtml(featured.url)}" target="_blank" rel="noopener noreferrer">${escHtml(featured.title)}</a></h3>
-            <p>${escHtml(featured.description || "Analyysidatan perusteella päänostoksi merkitty esitys.")}</p>
+            <p>${escHtml(featured.description || "Esitys kuuluu sivun keskeisiin nostoihin.")}</p>
             <div class="presentation-feature-actions">
               <a href="${escHtml(featured.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">Avaa esitys <i class="bi bi-arrow-up-right"></i></a>
               <a href="#kaikki-esitykset" class="btn btn-outline-secondary rounded-pill px-4" data-presentation-filter="category:${escHtml(featured.kategoria || "konferenssi-keynote")}">Näytä sama ryhmä</a>

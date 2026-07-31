@@ -3,19 +3,19 @@
     <div class="row g-4 align-items-center">
       <div class="col-lg-7">
         <p class="text-uppercase text-muted fw-semibold small mb-2">Esitykset, koulutukset ja avoimet materiaalit</p>
-        <h1 class="display-5 fw-bold mb-3">Materiaalit kertovat, missä asiantuntijuus on ollut liikkeessä</h1>
-        <p class="lead mb-3">Tälle sivulle on koottu itse julkaisemani esitykset, koulutusaineistot, videotallenteet ja avoimet oppimateriaalit. Mukana näkyvät sekä käytännön koulutukset että tutkimusperustaiset keynote- ja konferenssipuheenvuorot.</p>
-        <p class="text-muted mb-4">Canva-aineisto on nyt analysoitu sisällön, roolin ja käyttökontekstin mukaan. Siksi materiaaleja voi selata aiheen ja käyttötavan perusteella, ei vain sen mukaan missä palvelussa ne on julkaistu.</p>
+        <h1 class="display-5 fw-bold mb-3">Tekoälyä, oppimista ja teknologiaa käsittelevät esitykset ja materiaalit</h1>
+        <p class="lead mb-3">Jari Larun esitykset, koulutusaineistot, videotallenteet ja avoimet oppimateriaalit kokoavat yhteen teemoja, joista hän kouluttaa, opettaa ja puhuu eri yleisöille.</p>
+        <p class="text-muted mb-4">Voit aloittaa siitä, etsitkö keynote- ja konferenssipuheenvuoroja, koulutuksiin ja luentoihin liittyviä materiaaleja vai suoraan katsottavia ja jaettavia sisältöjä.</p>
         <div class="d-flex flex-wrap gap-2">
-          <a href="#reitit" class="btn btn-primary rounded-pill px-4">Aloita kolmesta reitistä</a>
+          <a href="#reitit" class="btn btn-primary rounded-pill px-4">Mistä aloittaa?</a>
           <a href="#kokonaisuudet" class="btn btn-outline-secondary rounded-pill px-4">Katso kokonaisuudet</a>
-          <a href="#kaikki-esitykset" class="btn btn-outline-secondary rounded-pill px-4">Siirry aineistoarkistoon</a>
+          <a href="#kaikki-esitykset" class="btn btn-outline-secondary rounded-pill px-4">Selaa kaikkia</a>
         </div>
       </div>
       <div class="col-lg-5">
         <div class="card border-0 shadow-sm presentation-hero-panel">
           <div class="card-body p-4 p-xl-5">
-            <p class="presentation-hero-panel-kicker mb-3">Silmäys aineistoon</p>
+            <p class="presentation-hero-panel-kicker mb-3">Sivulla mukana</p>
             <dl class="home-hero-kpi-grid mb-0">
               <div class="home-hero-kpi">
                 <dd class="home-hero-kpi-value">{{ presentationMaterialTotal }}</dd>
@@ -23,15 +23,15 @@
               </div>
               <div class="home-hero-kpi">
                 <dd class="home-hero-kpi-value">{{ ((canva and canva.tableRows) or []) | length }}</dd>
-                <dt class="home-hero-kpi-label">analysoitua Canva-esitystä</dt>
+                <dt class="home-hero-kpi-label">Canva-esitystä</dt>
               </div>
               <div class="home-hero-kpi">
                 <dd class="home-hero-kpi-value">{% if videoContentCount %}{{ videoContentCount }}{% else %}{{ presentationAnalysisCount }}{% endif %}</dd>
-                <dt class="home-hero-kpi-label">{% if videoContentCount %}videota tai tallennetta{% else %}aineistoanalyysiä{% endif %}</dt>
+                <dt class="home-hero-kpi-label">{% if videoContentCount %}videota tai tallennetta{% else %}taustakoontia{% endif %}</dt>
               </div>
               <div class="home-hero-kpi">
                 <dd class="home-hero-kpi-value">{{ presentationContextItems | length }}</dd>
-                <dt class="home-hero-kpi-label">käyttökontekstia</dt>
+                <dt class="home-hero-kpi-label">tilaisuutta ja käyttöyhteyttä</dt>
               </div>
             </dl>
           </div>
@@ -42,8 +42,8 @@
 </section>
 
 <nav class="presentation-mobile-path" aria-label="Esityssivun tärkeimmät osiot">
-  <a href="#reitit">Reitit</a>
+  <a href="#reitit">Aloita</a>
   <a href="#kokonaisuudet">Kokonaisuudet</a>
-  <a href="#kaikki-esitykset">Aineisto</a>
+  <a href="#kaikki-esitykset">Kaikki</a>
   <a href="#tausta-ja-lahteet">Tausta</a>
 </nav>

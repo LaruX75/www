@@ -2,8 +2,8 @@
   <div class="site-shell">
     <div class="presentation-section-head">
       <p class="presentation-section-kicker mb-1">Tausta ja lähteet</p>
-      <h2 id="tausta-ja-lahteet-heading" class="presentation-section-title">Analyysit, käyttötilanteet ja lähdepalvelut samalla tasolla</h2>
-      <p class="presentation-section-lead mb-0">Tämä osio kokoaa sivun taustakerrokset yhteen. Täältä löytyvät aineiston kehityskaaret, kaikki tunnistetut käyttötilanteet, käyttötavan mukaan ryhmitelty esityshistoria sekä alkuperäiset palvelukohtaiset lähdeluettelot.</p>
+      <h2 id="tausta-ja-lahteet-heading" class="presentation-section-title">Jos haluat tarkistaa taustan, jatka tänne</h2>
+      <p class="presentation-section-lead mb-0">Täältä löydät esitysten kehityskaaret, tilaisuuksiin liittyvät materiaalit sekä alkuperäiset Canva-, YouTube-, AOE- ja SlideShare-linkit.</p>
     </div>
 
     <div class="presentation-analysis-links mb-4">
@@ -12,7 +12,7 @@
       {% set presentationAnalysisHref = "/esitykset/canva-analyysi/" %}
       {% set presentationAnalysisIcon = "bi-bar-chart-line" %}
       {% set presentationAnalysisTitle = "Canva-esitykset 2021-2026" %}
-      {% set presentationAnalysisDescription = "75 analysoitua esitystä, joissa näkyy uudempi kouluttaja- ja tekoälylukutaitoprofiili." %}
+      {% set presentationAnalysisDescription = "Uudempi esityskaari koulutuksista, tekoälylukutaidosta ja avoimista materiaaleista." %}
       {% include "presentations/analysis-link.njk" %}
 
       {% set presentationAnalysisHref = "/esitykset/slideshare-analyysi/" %}
@@ -26,8 +26,8 @@
       <details class="presentation-service-archive">
         <summary>
           <span>
-            <strong>Kaikki käyttötilanteet ja palautteet</strong>
-            <span>{{ presentationContextItems | length }} tunnistettua tilannetta, joissa materiaali liittyy tiettyyn luentoon, koulutukseen, keynoteen tai työpajaan.</span>
+            <strong>Tilaisuudet ja palautteet</strong>
+            <span>{{ presentationContextItems | length }} tilaisuutta, joissa materiaali liittyy tiettyyn luentoon, koulutukseen, keynoteen tai työpajaan.</span>
           </span>
         </summary>
         <div class="presentation-service-archive-body">
@@ -43,7 +43,7 @@
       <details class="presentation-service-archive">
         <summary>
           <span>
-            <strong>Käyttötavan mukaan ryhmitelty koko esityskaari</strong>
+            <strong>Esitykset käyttötavan mukaan</strong>
             <span>Kaikki {{ presentationContextGroups.total }} esitystä käyttötavan mukaan: yliopistokurssit, täydennyskoulutukset, konferenssit, webinaarit ja työpajat.</span>
           </span>
         </summary>
@@ -59,8 +59,8 @@
       <details class="presentation-service-archive">
         <summary>
           <span>
-            <strong>Palvelukohtaiset lähdeluettelot</strong>
-            <span>Canva, YouTube, AOE ja SlideShare alkuperäisten lähteiden mukaan. Tätä osaa tarvitaan, kun haluat tarkistaa lähteen tai etsiä tietyn palvelun sisältöjä.</span>
+            <strong>Alkuperäiset lähteet</strong>
+            <span>Canva-, YouTube-, AOE- ja SlideShare-linkit löytyvät omista koonneistaan, jos haluat tarkistaa lähteen tai etsiä tietyn palvelun sisältöjä.</span>
           </span>
         </summary>
         <div class="presentation-service-archive-body">
