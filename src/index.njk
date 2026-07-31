@@ -55,15 +55,15 @@ translationKey: home
     { label: "Yliopistonlehtori", href: "/tyoni-yliopistonlehtorina/" }
 ] %}
 {% set homeCopy = {
-    heroTitle: "Koulutan, puhun ja vaikutan. Koulutuksen tulevaisuuden puolesta.",
-    heroLead: "Koulutan ja puhun tekoälylukutaidosta, oppimisesta ja teknologian järkevästä käytöstä. Sivusto jakautuu neljään pääreittiin: työ, oma ääni, julkinen näkyvyys ja päätöksenteko.",
-    heroPanelText: "Luvut kokoavat kouluttaja- ja puhujatyötä, tutkimusta, lausuntoja, mediaosumia, ohjausta ja poliittisia puheenvuoroja. Ne näyttävät, miten sama asiantuntijuus näkyy eri rooleissa ja eri pääsivuilla.",
-    pathsTitle: "Neljä pääreittiä sivustolle",
-    pathsLead: "Aloita siitä näkökulmasta, jota etsit: ammatillinen kokonaiskuva, omat puheenvuorot, julkinen näkyvyys tai politiikka.",
+    heroTitle: "Tekoälyä, oppimista ja teknologiaa ymmärrettävästi.",
+    heroLead: "Etsitkö koulutusta, puheenvuoroa tai taustaa tekoälylukutaidosta, oppimisesta ja teknologian järkevästä käytöstä? Tältä sivustolta löydät Jari Larun työn, kirjoitukset, mediaosumat ja päätöksentekoon liittyvät aineistot.",
+    heroPanelText: "Luvut näyttävät, missä Jari Larun työ on ollut esillä: koulutuksissa, esityksissä, tutkimuksessa, lausunnoissa, mediassa, opinnäytteiden ohjauksessa ja poliittisissa puheenvuoroissa.",
+    pathsTitle: "Mitä etsit?",
+    pathsLead: "Valitse aloituskohta sen mukaan, etsitkö ammatillista taustaa, kirjoituksia ja puheenvuoroja, mediaosumia vai poliittista työtä.",
     focusTitle: "Koulutukset, puheenvuorot ja sparraus",
-    focusLead: "Käytännön työni näkyy koulutuksina, keynote-puheenvuoroina ja kehittämisen tukena. Tutkimus ja kunnallinen vaikuttaminen tuovat siihen näkökulmaa, mutta etusivulla pääosassa on se, miten voin auttaa käytännössä.",
-    recentTitle: "Ajankohtaista asiantuntijatyöstä",
-    recentLead: "Tuoreista kirjoituksista, esityksistä, lausunnoista ja mediaosumista näet, miten eri pääreitit elävät juuri nyt rinnakkain."
+    focusLead: "Jari Larun käytännön työ näkyy koulutuksina, keynote-puheenvuoroina ja kehittämisen tukena. Tutkimus ja kunnallinen päätöksenteko tuovat siihen taustaa.",
+    recentTitle: "Viimeksi esillä",
+    recentLead: "Kirjoituksista, esityksistä, lausunnoista ja mediaosumista näet, mitä Jari Larun eri rooleissa on viimeksi tapahtunut."
 } %}
 {% set heroStats = [
     { count: heroPresentationCount, label: "Esitystä tai oppimateriaalia", href: "/esitykset/" },
@@ -139,9 +139,9 @@ translationKey: home
 
 {% set topicProfileKeys = ["tekoalylukutaito", "opettajankoulutus", "julkinen-asiantuntijuus-mediassa"] %}
 {% set topicProfileTitleId = "home-topic-profiles-title" %}
-{% set topicProfileEyebrow = "Aihepolut" %}
+{% set topicProfileEyebrow = "Teemat" %}
 {% set topicProfileTitle = "Keskeiset asiantuntijateemat" %}
-{% set topicProfileLead = "Jos etsit tiettyä asiantuntijuuden aluetta, nämä teemaprofiilit kokoavat yhteen kirjoitukset, lausunnot, esitykset, mediaosumat ja tutkimusnäytön." %}
+{% set topicProfileLead = "Jos etsit tiettyä aihetta, näiltä sivuilta löydät samaan teemaan liittyvät kirjoitukset, lausunnot, esitykset, mediaosumat ja tutkimusnäytön." %}
 
 <section class="py-5 home-paths-section" id="aloita">
     <div class="site-shell">
@@ -170,7 +170,7 @@ translationKey: home
                 <p class="home-section-kicker mb-1">Yliopistotyö</p>
                 <h2 class="h3 mb-2">Tutkimus, opetus ja yhteiskunnallinen vuorovaikutus</h2>
                 <p class="home-impact-statement mb-2">Tutkimuksesta opetukseen, työkaluihin ja päätöksentekoon.</p>
-                <p class="mb-0 text-muted">Työni ydin on tehdä oppimisen, teknologian ja tekoälyn tutkimuksesta ymmärrettävää ja käyttökelpoista. Se näkyy opettajankoulutuksessa, materiaaleissa, opettajien täydennyskoulutuksissa, lausunnoissa ja julkisessa keskustelussa.</p>
+                <p class="mb-0 text-muted">Jari Laru tekee oppimisen, teknologian ja tekoälyn tutkimuksesta ymmärrettävää ja käyttökelpoista. Työ näkyy opettajankoulutuksessa, materiaaleissa, täydennyskoulutuksissa, lausunnoissa ja julkisessa keskustelussa.</p>
                 <div class="home-impact-grid" aria-label="Mitä työstä syntyy">
                     <div>
                         <span>Koulutus</span>
@@ -204,11 +204,11 @@ translationKey: home
         <details class="home-mobile-disclosure" data-home-mobile-collapse open>
             <summary class="home-mobile-disclosure-summary">
                 <span>{{ homeCopy.recentTitle }}</span>
-                <small>Kirjoitukset, esitykset, lausunnot ja media</small>
+                <small>Kirjoitukset, esitykset, lausunnot ja mediaosumat</small>
             </summary>
             <div class="home-mobile-disclosure-body">
         <div class="home-section-head">
-            <p class="home-section-kicker mb-1">Asiantuntijatyö</p>
+            <p class="home-section-kicker mb-1">Kirjoitukset ja esiintymiset</p>
             <h2 class="home-section-title">{{ homeCopy.recentTitle }}</h2>
             <p class="home-section-lead mb-0">{{ homeCopy.recentLead }}</p>
         </div>
@@ -240,7 +240,7 @@ translationKey: home
                 {% if featuredRecentPresentation %}
                 <h3 class="home-recent-card-title"><a href="{{ featuredRecentPresentation.url }}" target="_blank" rel="noopener noreferrer">{{ featuredRecentPresentation.title | truncate(76) }}</a></h3>
                 <p class="home-recent-card-meta">{{ featuredRecentPresentation.date | dateFormat }}{% if featuredRecentPresentation.location %} · {{ featuredRecentPresentation.location }}{% endif %}</p>
-                <p class="home-recent-card-text">Tuore koulutus- tai puheenvuoronosto käytännön tekoälystä, oppimisesta ja koulun arjesta.</p>
+                <p class="home-recent-card-text">Nosto koulutuksesta tai puheenvuorosta, jossa käsitellään tekoälyä, oppimista tai koulun arkea.</p>
                 <a href="/esitykset/" class="home-recent-card-link">Kaikki esitykset</a>
                 {% endif %}
             </article>
@@ -267,7 +267,7 @@ translationKey: home
                 {% if featuredRecentMedia.data.description %}
                 <p class="home-recent-card-text">{{ featuredRecentMedia.data.description | truncate(180) }}</p>
                 {% else %}
-                <p class="home-recent-card-text">Haastattelu, podcast tai muu mediaosuma, jossa asiantuntijuus näkyy muiden tuottamassa sisällössä.</p>
+                <p class="home-recent-card-text">Haastattelu, podcast tai muu mediaosuma, jossa Jari Laru on mukana asiantuntijana.</p>
                 {% endif %}
                 <a href="/mediassa/" class="home-recent-card-link">Kaikki mediaosumat</a>
                 {% endif %}

@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: Kirjoitukset, puheet ja kannanotot
-description: "Jari Larun puheenvuorot, valtuustoaloitteet, lausunnot, mielipidekirjoitukset, kolumnit ja blogikirjoitukset samassa näkymässä."
+description: "Jari Larun puheenvuorot, valtuustoaloitteet, lausunnot, mielipidekirjoitukset, kolumnit ja blogikirjoitukset koottuna teemoittain ja julkaisumuodoittain."
 permalink: /kynasta/
 translationKey: writings_index
 schemaType: CollectionPage
@@ -88,7 +88,7 @@ schemaMentions:
       <div class="col-lg-7">
         <p class="text-uppercase small text-muted mb-2">Kynästä</p>
         <h1 class="display-6 fw-bold mb-2">Kirjoitukset, puheet ja kannanotot</h1>
-        <p class="text-muted mb-3">Puheet, valtuustoaloitteet, lausunnot, mielipidekirjoitukset, kolumnit ja blogi samassa kokonaisuudessa. Sivun voi lukea käyttötarkoituksen, roolin tai sisältötyypin kautta.</p>
+        <p class="text-muted mb-3">Täältä löydät Jari Larun puheet, valtuustoaloitteet, lausunnot, mielipidekirjoitukset, kolumnit ja blogikirjoitukset. Voit aloittaa päätöksenteosta, julkisista kannanotoista, asiantuntijateksteistä tai arkistosta.</p>
         <div class="d-flex flex-wrap gap-2">
           <a class="nav-link" href="#reitti-paatoksenteko">
             Päätöksenteko <span class="nav-count">{{ decisionRouteCount }}</span>
@@ -106,10 +106,10 @@ schemaMentions:
       </div>
       <div class="col-lg-5">
         <aside class="kynasta-hero-aside">
-          <p class="kynasta-hero-aside-kicker mb-2">Lue kahdella tavalla</p>
+          <p class="kynasta-hero-aside-kicker mb-2">Näin löydät etsimäsi</p>
           <ul class="kynasta-hero-aside-list mb-0">
-            <li>Sisältötyyppi kertoo, onko kyse puheesta, aloitteesta, lausunnosta vai kirjoituksesta.</li>
-            <li>Aihepolku kokoaa samaan teemaan liittyvät tekstit yli sisältötyyppien.</li>
+            <li>Valitse ensin, etsitkö päätöksentekoa, kannanottoja vai asiantuntijatekstejä.</li>
+            <li>Jos tiedät jo muodon, siirry suoraan puheisiin, aloitteisiin, lausuntoihin tai kirjoituksiin.</li>
           </ul>
         </aside>
       </div>
@@ -131,9 +131,9 @@ schemaMentions:
   <div class="site-shell">
     <div class="row g-4 align-items-end mb-2">
       <div class="col-lg-8">
-        <p class="text-uppercase small text-muted mb-2">Kolme pääreittiä</p>
+        <p class="text-uppercase small text-muted mb-2">Aloita tästä</p>
         <h2 class="h3 mb-2">Kolme tapaa lukea samaa aineistoa</h2>
-        <p class="text-muted mb-0">Tällä sivulla sama aihe voi näkyä puheena, lausuntona, mielipidekirjoituksena tai blogitekstinä. Siksi varsinainen selaus kannattaa aloittaa siitä, etsitkö päätöksentekoon liittyviä tekstejä, julkisia kannanottoja vai asiantuntijaroolissa tehtyjä sisältöjä.</p>
+        <p class="text-muted mb-0">Sama aihe voi näkyä puheena, lausuntona, mielipidekirjoituksena tai blogitekstinä. Aloita siitä, etsitkö päätöksentekoon liittyviä tekstejä, julkisia kannanottoja vai asiantuntijaroolissa kirjoitettuja sisältöjä.</p>
       </div>
     </div>
 
@@ -143,7 +143,7 @@ schemaMentions:
           <div class="card-body p-4 d-flex flex-column">
             <p class="kynasta-entry-kicker">Vaikuttaminen</p>
             <h3 class="h5 mb-2">Päätöksenteko, valmistelu ja viralliset kannat</h3>
-            <p class="small text-muted mb-3">Tämä reitti kokoaa sisällöt, joissa teksti liittyy suoraan valmisteluun, valtuustotyöhön tai julkiseen päätöksentekoon.</p>
+            <p class="small text-muted mb-3">Täältä löydät sisällöt, joissa teksti liittyy suoraan valmisteluun, valtuustotyöhön tai julkiseen päätöksentekoon.</p>
             <div class="d-flex flex-wrap gap-2 mb-3">
               <span class="badge text-bg-light border">Lausunnot {{ statementCount }}</span>
               <span class="badge text-bg-light border">Valtuustopuheet {{ councilSpeechCount }}</span>
@@ -183,7 +183,7 @@ schemaMentions:
           <div class="card-body p-4 d-flex flex-column">
             <p class="kynasta-entry-kicker">Julkinen keskustelu</p>
             <h3 class="h5 mb-2">Mielipiteet, kolumnit ja blogitekstit</h3>
-            <p class="small text-muted mb-3">Tämä reitti näyttää, miten teemat näkyvät julkisina kannanottoina, pidempinä kirjoituksina ja omassa blogissa.</p>
+            <p class="small text-muted mb-3">Täältä näet, miten teemat näkyvät julkisina kannanottoina, pidempinä kirjoituksina ja blogissa.</p>
             <div class="d-flex flex-wrap gap-2 mb-3">
               <span class="badge text-bg-light border">Mielipiteet {{ opinionCount }}</span>
               <span class="badge text-bg-light border">Kolumnit {{ columnCount }}</span>
@@ -223,7 +223,7 @@ schemaMentions:
           <div class="card-body p-4 d-flex flex-column">
             <p class="kynasta-entry-kicker">Roolin kautta</p>
             <h3 class="h5 mb-2">Asiantuntijarooli yli eri sisältömuotojen</h3>
-            <p class="small text-muted mb-3">Jos etsit nimenomaan opetukseen, tutkimukseen ja teknologiaan nojaavaa asiantuntijatyötä, tämä reitti kokoaa sen yhteen yli formaattien.</p>
+            <p class="small text-muted mb-3">Jos etsit opetukseen, tutkimukseen ja teknologiaan nojaavia tekstejä, aloita tästä.</p>
             <div class="d-flex flex-wrap gap-2 mb-3">
               <span class="badge text-bg-light border">Lausunnot {{ statementCount }}</span>
               <span class="badge text-bg-light border">Asiantuntijamielipiteet {{ expertOpinionCount }}</span>
@@ -264,8 +264,8 @@ schemaMentions:
 {% set topicProfileKeys = ["oulun-palveluverkko-ja-kaupunkikehitys", "lapinakyva-paatoksenteko-ja-tiedolla-johtaminen", "opettajankoulutus", "tekoalylukutaito"] %}
 {% set topicProfileTitleId = "kynasta-topic-profiles-title" %}
 {% set topicProfileEyebrow = "Aiheittain" %}
-{% set topicProfileTitle = "Kirjoitukset ja puheet suuremmissa kokonaisuuksissa" %}
-{% set topicProfileLead = "Samat kysymykset kulkevat puheissa, mielipiteissä, lausunnoissa ja blogikirjoituksissa. Aihepolut kokoavat nämä sisällöt yhteen teeman, eivät julkaisumuodon, perusteella." %}
+{% set topicProfileTitle = "Kirjoitukset ja puheet teemoittain" %}
+{% set topicProfileLead = "Samat kysymykset kulkevat puheissa, mielipiteissä, lausunnoissa ja blogikirjoituksissa. Teemoittelu auttaa löytämään samaan aiheeseen liittyvät tekstit riippumatta siitä, missä muodossa ne on julkaistu." %}
 {% include "topic-profile-links.njk" %}
 
 <section id="arkisto">
@@ -275,7 +275,7 @@ schemaMentions:
         <div class="d-flex flex-wrap align-items-end justify-content-between gap-2 mb-1">
           <div>
             <p class="text-uppercase small text-muted mb-1">Arkisto</p>
-            <h2 class="h3 mb-1">Selaa koko aineistoa sisältötyypeittäin</h2>
+            <h2 class="h3 mb-1">Selaa puheita, lausuntoja ja kirjoituksia</h2>
             <p class="text-muted mb-0">Kun tiedät jo etsimäsi muodon, voit siirtyä suoraan puheisiin, lausuntoihin, mielipiteisiin, kolumneihin, blogiin tai aloitteisiin.</p>
           </div>
         </div>

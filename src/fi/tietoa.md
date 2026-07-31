@@ -14,7 +14,7 @@ schemaAbout:
     description: "Koulutukset ja puhe-esiintymiset opetuksesta, tekoälystä ja teknologiasta."
   - "@type": "Thing"
     name: "Yliopistonlehtori"
-    description: "Opetustehtävät Oulun yliopiston kasvatustieteiden tiedekunnassa."
+    description: "Opetustehtävät Oulun yliopiston Kasvatustieteiden ja psykologian tiedekunnassa."
   - "@type": "Thing"
     name: "Tutkija"
     description: "Teknologiatuetun oppimisen ja tekoälylukutaidon tutkimus."
@@ -37,10 +37,10 @@ schemaMentions:
   <div class="site-shell">
     <div class="about-hero-grid">
       <div class="about-hero-copy">
-        <p class="about-kicker">Minä</p>
+        <p class="about-kicker">Jari Laru</p>
         <h1>Jari Laru</h1>
         <p class="about-hero-lead">Kouluttaja, yliopistonlehtori, tutkija ja poliittinen vaikuttaja Oulusta.</p>
-        <p>Työni liikkuu opetuksen, teknologian, tutkimuksen ja päätöksenteon rajapinnoilla. Koulutan opettajia ja organisaatioita, opetan tulevia opettajia yliopistossa, tutkin teknologiatuettua oppimista ja osallistun Oulun päätöksentekoon.</p>
+        <p>Jari Larun työ liikkuu opetuksen, teknologian, tutkimuksen ja päätöksenteon rajapinnoilla. Hän kouluttaa opettajia ja organisaatioita, opettaa tulevia opettajia yliopistossa, tutkii teknologiatuettua oppimista ja osallistuu Oulun päätöksentekoon.</p>
         <p>Yhteinen kysymys on pysynyt samana: miten teknologiaa, tekoälyä ja tietoa käytetään niin, että ne vahvistavat oppimista, sivistystä, osallisuutta ja läpinäkyvää päätöksentekoa.</p>
         <div class="about-hero-actions">
           <a href="/kouluttaja/" class="btn btn-primary rounded-pill px-4">Kouluttaja ja puhuja</a>
@@ -67,7 +67,7 @@ schemaMentions:
 </section>
 
 <nav class="about-mobile-path" aria-label="Tietoa-sivun tärkeimmät osiot">
-  <a href="#reitit">Reitit</a>
+  <a href="#reitit">Aloita</a>
   <a href="#roolit">Roolit</a>
   <a href="#profiili">Näyttö</a>
   <a href="#oulu">Oulu</a>
@@ -77,36 +77,36 @@ schemaMentions:
   <div class="site-shell">
     <div class="about-section-head">
       <p class="about-kicker">Roolit</p>
-      <h2>Neljä näkökulmaa samaan asiantuntijuuteen</h2>
-      <p>En ajattele näitä erillisinä lokeroina. Sama osaaminen näkyy koulutuksissa, yliopistotyössä, tutkimuksessa ja politiikassa eri tavoilla.</p>
+      <h2>Neljä näkökulmaa samaan työhön</h2>
+      <p>Sama osaaminen näkyy koulutuksissa, yliopistotyössä, tutkimuksessa ja politiikassa eri tavoilla.</p>
     </div>
 
     <div class="about-role-grid">
       <article class="about-role-card about-role-card--primary">
         <p class="about-role-index">01</p>
         <h3>Kouluttaja ja puhuja</h3>
-        <p>Koulutan tekoälystä, digipedagogiikasta ja teknologiatuetusta oppimisesta käytännönläheisesti. Tavoitteena on auttaa opettajia, kouluja ja organisaatioita tekemään parempia valintoja uuden teknologian keskellä.</p>
+        <p>Jari Laru kouluttaa tekoälystä, digipedagogiikasta ja teknologiatuetusta oppimisesta käytännönläheisesti. Tavoitteena on auttaa opettajia, kouluja ja organisaatioita tekemään parempia valintoja uuden teknologian keskellä.</p>
         <a href="/kouluttaja/">Tutustu koulutuksiin</a>
       </article>
 
       <article class="about-role-card">
         <p class="about-role-index">02</p>
         <h3>Yliopistonlehtori</h3>
-        <p>Opetan tulevia opettajia, ohjaan opinnäytteitä ja kehitän opetusta tutkimuksen rinnalla. Yliopistotyössä yhdistyvät pedagogiikka, teknologia ja opettajankoulutuksen arki.</p>
+        <p>Yliopistotyössä Jari Laru opettaa tulevia opettajia, ohjaa opinnäytteitä ja kehittää opetusta tutkimuksen rinnalla. Työssä yhdistyvät pedagogiikka, teknologia ja opettajankoulutuksen arki.</p>
         <a href="/tyoni-yliopistonlehtorina/">Lue yliopistotyöstä</a>
       </article>
 
       <article class="about-role-card">
         <p class="about-role-index">03</p>
         <h3>Politiikka</h3>
-        <p>Politiikassa minulle tärkeitä ovat sivistys, palvelut, alueellinen yhdenvertaisuus ja valmistelun läpinäkyvyys. Päätöksiä pitää pystyä arvioimaan koko Oulun mittakaavassa.</p>
+        <p>Politiikassa Jari Larulle tärkeitä ovat sivistys, palvelut, alueellinen yhdenvertaisuus ja valmistelun läpinäkyvyys. Päätöksiä pitää pystyä arvioimaan koko Oulun mittakaavassa.</p>
         <a href="/politiikka/">Avaa politiikkasivu</a>
       </article>
 
       <article class="about-role-card">
         <p class="about-role-index">04</p>
         <h3>Tutkija ja asiantuntija</h3>
-        <p>Tutkimukseni ja asiantuntijatyöni liittyvät teknologiatuettuun oppimiseen, yhteisölliseen työskentelyyn ja tekoälylukutaitoon. Julkaisut, lausunnot, asiantuntijaroolit ja esitykset muodostavat laajemman työjäljen.</p>
+        <p>Tutkimus liittyy teknologiatuettuun oppimiseen, yhteisölliseen työskentelyyn ja tekoälylukutaitoon. Julkaisut, lausunnot, asiantuntijaroolit ja esitykset näyttävät, miten samat teemat jatkuvat eri yhteyksissä.</p>
         <a href="/tutkimus/">Tutustu tutkimukseen</a>
       </article>
     </div>
@@ -119,8 +119,8 @@ schemaMentions:
       <div>
         <p class="about-kicker">Mikä yhdistää?</p>
         <h2>Teknologia ei ole itseisarvo, vaan väline parempaan ajatteluun</h2>
-        <p>Olen tehnyt pitkään työtä tilanteissa, joissa teknologia lupaa paljon mutta onnistuminen riippuu ihmisistä, pedagogiikasta, toimintakulttuurista ja päätöksenteosta. Siksi katson tekoälyä ja digitaalisuutta ensisijaisesti sivistyksen, oppimisen ja organisaatioiden arjen näkökulmasta.</p>
-        <p>Tämä näkyy myös julkisessa työssäni: puhun mielelläni välineistä, mutta lopulta tärkeämpää on se, millaisia ratkaisuja niillä tuetaan ja kenelle niistä on hyötyä.</p>
+        <p>Jari Laru on tehnyt pitkään työtä tilanteissa, joissa teknologia lupaa paljon mutta onnistuminen riippuu ihmisistä, pedagogiikasta, toimintakulttuurista ja päätöksenteosta. Siksi hän katsoo tekoälyä ja digitaalisuutta ensisijaisesti sivistyksen, oppimisen ja organisaatioiden arjen näkökulmasta.</p>
+        <p>Tämä näkyy myös julkisessa työssä: välineistä voi puhua suoraan, mutta lopulta tärkeämpää on se, millaisia ratkaisuja niillä tuetaan ja kenelle niistä on hyötyä.</p>
       </div>
 
       <div class="about-proof-grid" aria-label="Profiilin todisteita">

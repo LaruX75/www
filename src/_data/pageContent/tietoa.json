@@ -3,7 +3,7 @@
     "eyebrow": "Tietoa",
     "name": "Jari Laru",
     "lead": "Poliitikko · yliopistonlehtori · tutkija · yrittäjä · isä · kulinaristi · automatkailija",
-    "bio": "Olen oululainen kasvatustieteiden tohtori, joka tekee töitä monella rintamalla: tutkin teknologiaa oppimisessa, opetan tulevia opettajia Oulun yliopistossa, vaikutan Oulu-kaupungin päätöksenteossa kaupunginvaltuutettuna ja tarjoan koulutuksia Larux t:mi -yritykseni kautta. Vapaa-ajalla ruoanlaitosta ja pitkistä automatkareissuista tulee voimaa kaikkeen muuhun.",
+    "bio": "Jari Laru on oululainen kasvatustieteiden tohtori, joka tekee töitä monella rintamalla: tutkii teknologiaa oppimisessa, opettaa tulevia opettajia Oulun yliopistossa, toimii Oulun kaupungin päätöksenteossa varavaltuutettuna ja sivistyslautakunnan jäsenenä sekä tarjoaa koulutuksia Larux t:mi -yrityksen kautta. Vapaa-ajalla ruoanlaitto ja pitkät automatkat tuovat vastapainoa työlle.",
     "photoCaption": "Jari Laru – yliopistonlehtori, tutkija, poliitikko",
     "ctas": [
       { "label": "Politiikka",     "href": "/politiikka/",           "style": "btn-primary" },
@@ -17,8 +17,8 @@
     "lead": "Ammatillinen elämäni jakautuu neljään toisiaan täydentävään rooliin.",
     "cards": [
       {
-        "title": "Kaupunginvaltuutettu",
-        "desc": "Olen toiminut politiikassa koko 2000-luvun. Nykyään toimin Oulun kaupunginvaltuutettuna ja sivistys- ja kulttuurilautakunnan jäsenenä. Aiheina erityisesti koulutus, kulttuuri ja kaupunkikehitys.",
+        "title": "Varavaltuutettu ja sivistyslautakunnan jäsen",
+        "desc": "Jari Laru on toiminut politiikassa koko 2000-luvun. Nykyiset luottamustehtävät liittyvät Oulun kaupunginvaltuustoon varavaltuutettuna sekä sivistyslautakunnan työhön. Aiheina korostuvat koulutus, kulttuuri ja kaupunkikehitys.",
         "cta": "Lue lisää politiikasta",
         "href": "/politiikka/"
       },
@@ -47,7 +47,7 @@
     "paragraphs": [
       "Olen syntyjään oululainen ja asunut kaupungissa koko elämäni. Perheemme – puoliso ja kolme lasta – asuu omakotitalossa <strong>Jäälissä</strong>, Oulun eteläosassa. Jääli on rauhallinen lähiö järven ja luonnon äärellä, mutta kuitenkin lähellä kaupungin palveluita.",
       "Oulu on minulle enemmän kuin kotikaupunki – se on myös tutkimuksen, politiikan ja yhteisöllisyyden kenttä. Olen ollut mukana oululaisessa päätöksenteossa ja kansalaistoiminnassa pitkään.",
-      "Kaupunginvaltuutettuna pyrin edistämään erityisesti koulutuksen, kulttuurin ja lähidemokratian asiaa."
+      "Varavaltuutettuna ja sivistyslautakunnan jäsenenä Jari Laru edistää erityisesti koulutuksen, kulttuurin ja lähidemokratian asioita."
     ]
   },
   "leisure": {

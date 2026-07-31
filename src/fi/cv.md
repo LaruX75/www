@@ -13,7 +13,7 @@ schemaAbout:
     description: "Väitöskirja yhteisöllisestä oppimisesta ja mobiiliteknologiasta, Oulun yliopisto."
   - "@type": "Thing"
     name: "Yliopistonlehtori"
-    description: "Teknologiatuettu oppiminen ja opetus, Kasvatustieteiden tiedekunta."
+    description: "Teknologiatuettu oppiminen ja opetus, Kasvatustieteiden ja psykologian tiedekunta."
   - "@type": "Thing"
     name: "Tutkimusrahoitus ja hankkeet"
     description: "Kansalliset ja kansainväliset tutkimushankkeet oppimisteknologiasta."
@@ -25,8 +25,8 @@ schemaMentions:
     name: "Oulun yliopisto"
     url: "https://www.oulu.fi/"
   - "@type": "Organization"
-    name: "Kasvatustieteiden tiedekunta, Oulun yliopisto"
-    url: "https://www.oulu.fi/fi/tiedekunnat/kasvatustieteiden-tiedekunta"
+    name: "Kasvatustieteiden ja psykologian tiedekunta, Oulun yliopisto"
+    url: "https://www.oulu.fi/fi/yliopisto/tiedekunnat/kasvatustieteiden-ja-psykologian-tiedekunta"
 ---
 
 <section class="py-5 bg-body-tertiary border-bottom cv-hero">

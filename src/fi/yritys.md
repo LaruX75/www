@@ -12,7 +12,7 @@ suppressSubpageHero: true
 schemaType: LocalBusiness
 services:
   - name: "Keynote-puheenvuoro"
-    description: "Kokonaiskuva tapahtumaan, seminaariin tai henkilöstöpäivään tekoälyn, digipedagogiikan ja oppimisteknologian teemoista."
+    description: "Selkeä jäsennys tapahtumaan, seminaariin tai henkilöstöpäivään tekoälyn, digipedagogiikan ja oppimisteknologian teemoista."
   - name: "Työpaja"
     description: "Osallistava koulutustyöpaja opettajille, johdolle tai kehittämistiimeille. Räätälöity kohderyhmän tarpeisiin."
   - name: "Asiantuntijasparraus"
@@ -29,7 +29,7 @@ services:
         <div class="larux-hero-points mb-4">
           <div class="larux-hero-point">
             <span class="larux-hero-point-title"><i class="bi bi-mic-fill" aria-hidden="true"></i> Keynote</span>
-            <span class="larux-hero-point-text">Kokonaiskuva tapahtumaan, seminaariin tai henkilöstöpäivään.</span>
+            <span class="larux-hero-point-text">Selkeä jäsennys tapahtumaan, seminaariin tai henkilöstöpäivään.</span>
           </div>
           <div class="larux-hero-point">
             <span class="larux-hero-point-title"><i class="bi bi-people-fill" aria-hidden="true"></i> Työpaja</span>
@@ -94,14 +94,14 @@ services:
 <section class="larux-section" id="palvelut">
   <div class="larux-shell">
     <p class="larux-eyebrow larux-eyebrow--dark mb-1"><i class="bi bi-grid-3x3-gap me-1"></i>Palvelut</p>
-    <h2 class="h3 mb-2">Kolme tapaa hyödyntää osaamistani</h2>
+    <h2 class="h3 mb-2">Kolme tapaa hyödyntää Jari Larun osaamista</h2>
     <p class="larux-section-lead mb-4">Kaikki toteutukset rakennetaan niin, että osallistujille jää mukaan muutakin kuin hyvä fiilis: selkeä ymmärrys, yhteinen kieli ja konkreettinen seuraava askel.</p>
     <div class="row g-4">
       <div class="col-md-4">
         <article class="larux-service-card h-100">
           <div class="larux-service-icon" aria-hidden="true"><i class="bi bi-mic-fill"></i></div>
           <h3 class="h5 mb-2">Puheenvuoro, joka tekee vaikeasta aiheesta ymmärrettävän</h3>
-          <p class="mb-0">Sopii tapahtumiin, seminaareihin ja henkilöstöpäiviin, kun tekoälystä, oppimisteknologiasta tai koulutuksen muutoksesta tarvitaan jäsennelty, uskottava ja helposti seurattava kokonaiskuva.</p>
+          <p class="mb-0">Sopii tapahtumiin, seminaareihin ja henkilöstöpäiviin, kun tekoälystä, oppimisteknologiasta tai koulutuksen muutoksesta tarvitaan jäsennelty, uskottava ja helposti seurattava avaus.</p>
         </article>
       </div>
       <div class="col-md-4">
@@ -134,7 +134,7 @@ services:
       <div class="col-lg-5">
         <p class="larux-eyebrow larux-eyebrow--dark mb-1"><i class="bi bi-shield-check me-1"></i>Miksi tämä toimii</p>
         <h2 class="h3 mb-3">Taustalla on pitkä työ oppimisen, opetuksen ja teknologian rajapinnassa.</h2>
-        <p class="larux-section-lead mb-3">En puhu aiheista ulkopuolelta. Työni rakentuu yliopisto-opetuksen, tutkimuksen, hanketyön ja käytännön koulutusten yhdistelmälle.</p>
+        <p class="larux-section-lead mb-3">Jari Laru ei puhu aiheista ulkopuolelta. Työ rakentuu yliopisto-opetuksen, tutkimuksen, hanketyön ja käytännön koulutusten yhdistelmälle.</p>
         <p class="mb-0 text-muted">Siksi koulutuksissa ei tarvitse valita kahdesta huonosta vaihtoehdosta: liian teoreettisesta tai liian kevyestä. Sisältö on tarkoitettu käyttöön.</p>
       </div>
       <div class="col-lg-7">
@@ -143,7 +143,7 @@ services:
             <article class="larux-proof-card h-100">
               <p class="larux-proof-kicker">Yliopisto</p>
               <h3 class="h6 mb-2">Kasvatustieteen tohtori ja yliopistonlehtori</h3>
-              <p class="mb-0 small">Työskentelen Oulun yliopistossa teknologiatuetun oppimisen ja opetuksen yliopistonlehtorina. Opetus ja ohjaus pitävät kiinni koulutuksen arjen todellisuudessa.</p>
+              <p class="mb-0 small">Jari Laru työskentelee Oulun yliopistossa teknologiatuetun oppimisen ja opetuksen yliopistonlehtorina. Opetus ja ohjaus pitävät kiinni koulutuksen arjen todellisuudessa.</p>
             </article>
           </div>
           <div class="col-md-6 col-xl-3">
@@ -157,14 +157,14 @@ services:
             <article class="larux-proof-card h-100">
               <p class="larux-proof-kicker">Koulutustyö</p>
               <h3 class="h6 mb-2">Käytännölliset toteutukset eri kohderyhmille</h3>
-              <p class="mb-0 small">Olen kouluttanut opettajia, rehtoreita, johtoa ja verkostoja. Sama sisältö ei toimi kaikille, joten toteutus sovitetaan aina tilanteeseen ja tavoitteeseen.</p>
+              <p class="mb-0 small">Koulutuksia on toteutettu opettajille, rehtoreille, johdolle ja verkostoille. Sama sisältö ei toimi kaikille, joten toteutus sovitetaan aina tilanteeseen ja tavoitteeseen.</p>
             </article>
           </div>
           <div class="col-md-6 col-xl-3">
             <article class="larux-proof-card h-100">
               <p class="larux-proof-kicker">Asiantuntijatyö</p>
               <h3 class="h6 mb-2">Näkemyksiä hyödynnetään myös kansallisessa valmistelussa</h3>
-              <p class="mb-0 small">Olen antanut lausuntoja tekoälysuosituksista, opetuksen digitalisaatiosta ja mobiililaitteiden käytöstä koulussa sekä ollut mukana OKM:n laatija- ja työryhmissä. Sama tutkimuksen, opetuksen ja käytännön yhdistelmä näkyy myös koulutuksissani.</p>
+              <p class="mb-0 small">Jari Laru on antanut lausuntoja tekoälysuosituksista, opetuksen digitalisaatiosta ja mobiililaitteiden käytöstä koulussa sekä ollut mukana OKM:n laatija- ja työryhmissä. Sama tutkimuksen, opetuksen ja käytännön yhdistelmä näkyy myös koulutuksissa.</p>
             </article>
           </div>
         </div>
@@ -187,7 +187,7 @@ services:
       <div>
         <p class="larux-eyebrow larux-eyebrow--dark mb-1"><i class="bi bi-patch-check me-1"></i>Näyttöä työstä</p>
         <h2 class="h3 mb-2">Luottamus ei perustu vain puheeseen vaan myös tunnustuksiin ja palautteeseen.</h2>
-        <p class="larux-section-lead mb-0">Koulutus- ja asiantuntijatyöni näkyy sekä valtakunnallisina tunnustuksina että palautteena ihmisiltä, joiden kanssa olen tehnyt töitä.</p>
+        <p class="larux-section-lead mb-0">Koulutus- ja asiantuntijatyö näkyy sekä valtakunnallisina tunnustuksina että palautteena ihmisiltä, joiden kanssa Jari Laru on tehnyt töitä.</p>
       </div>
       <div class="d-flex flex-wrap gap-2">
         <a class="btn btn-outline-primary rounded-pill px-4" href="/palkinnot/">Kaikki palkinnot</a>
@@ -337,7 +337,7 @@ services:
           </button>
         </h3>
         <div id="company-faq-fi-4" class="accordion-collapse collapse" aria-labelledby="company-faq-fi-4-heading" data-bs-parent="#companyFaqFi">
-          <div class="accordion-body">Lyhimmillään noin tunnin keynote tai webinaari, pisimmillään kokopäivän tai useamman session koulutuskokonaisuus. Tavallisin toteutus on 1,5–3 tunnin koulutus tai puolipäiväinen työpaja.</div>
+          <div class="accordion-body">Lyhimmillään noin tunnin keynote tai webinaari, pisimmillään kokopäivän tai useamman session koulutus. Tavallisin toteutus on 1,5–3 tunnin koulutus tai puolipäiväinen työpaja.</div>
         </div>
       </div>
       <div class="accordion-item">
@@ -414,7 +414,7 @@ services:
       "name": "Minkä pituisia koulutuksia järjestetään?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Lyhimmillään noin tunnin keynote tai webinaari, pisimmillään kokopäivän koulutuskokonaisuus. Tavallisin formaatti on 1,5–3 tunnin sessio tai puolipäiväinen työpaja."
+        "text": "Lyhimmillään noin tunnin keynote tai webinaari, pisimmillään kokopäivän koulutus. Tavallisin formaatti on 1,5–3 tunnin sessio tai puolipäiväinen työpaja."
       }
     },
     {

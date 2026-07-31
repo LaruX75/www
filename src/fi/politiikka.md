@@ -1,6 +1,6 @@
 ---
 title: "Jari Laru, poliitikko"
-description: "Jari Larun poliittinen profiili: sivistys, koko Oulun alueellinen yhdenvertaisuus, avoin päätöksenteko sekä linkit puheenvuoroihin, aloitteisiin, vaalikausiin ja sidonnaisuuksiin."
+description: "Jari Larun poliittinen työ: sivistys, koko Oulun alueellinen yhdenvertaisuus, avoin päätöksenteko sekä linkit puheenvuoroihin, aloitteisiin, vaalikausiin ja sidonnaisuuksiin."
 permalink: /politiikka/
 layout: base.njk
 translationKey: politics_index
@@ -49,7 +49,7 @@ schemaMentions:
         <p class="pol-eyebrow mb-2"><i class="bi bi-building2 me-1"></i>Politiikka</p>
         <h1 class="pol-hero-title mb-3">Jari Laru, poliitikko</h1>
         <p class="pol-hero-manifesto mb-3">Sivistys, palveluverkko ja avoin päätöksenteko eivät ole kunnallispolitiikan sivujuonteita vaan sen kovaa ydintä.</p>
-        <p class="mb-4 pol-hero-text">Teen politiikkaa käytännöllisesti ja tietoon nojaten. Tavoitteena on, että päätöksenteko näkyy kuntalaiselle parempina oppimisympäristöinä, toimivampina palveluina ja valmisteluna, jota voi seurata ilman sisäpiiritietoa.</p>
+        <p class="mb-4 pol-hero-text">Jari Laru tekee politiikkaa käytännöllisesti ja tietoon nojaten. Tavoitteena on, että päätöksenteko näkyy kuntalaiselle parempina oppimisympäristöinä, toimivampina palveluina ja valmisteluna, jota voi seurata ilman sisäpiiritietoa.</p>
         <div class="pol-hero-points mb-4">
           <div class="pol-hero-point">
             <span class="pol-hero-point-title">Sivistys</span>
@@ -74,7 +74,7 @@ schemaMentions:
         <aside class="pol-hero-card pol-hero-card--profile h-100">
           <img src="/img/uploads/2020/01/WhatsApp-Image-2019-12-02-at-18.58.31-1.jpeg" alt="Jari Laru politiikassa" class="pol-hero-img">
           <div class="pol-hero-side">
-            <p class="pol-hero-side-kicker">Poliittinen profiili</p>
+            <p class="pol-hero-side-kicker">Poliittinen työ</p>
             <p class="pol-hero-caption">Käytännöllistä kunnallispolitiikkaa sivistyksen, lähipalvelujen ja avoimuuden puolesta.</p>
             <dl class="pol-hero-facts mb-0">
               <div>
@@ -304,7 +304,7 @@ schemaMentions:
         </article>
         <article class="pol-route-card">
           <span class="pol-route-kicker">Avoimuus</span>
-          <h3>Sidonnaisuudet ja vaalirahoitus samassa näkymässä</h3>
+          <h3>Sidonnaisuudet ja vaalirahoitus samalla sivulla</h3>
           <p>Viralliset rekisterilinkit, ilmoitukset ja keskeiset sidonnaisuustiedot on koottu tarkistettavaksi yhdelle sivulle.</p>
           <a href="/poliittinen-avoimuus/">Avaa avoimuustiedot</a>
         </article>
