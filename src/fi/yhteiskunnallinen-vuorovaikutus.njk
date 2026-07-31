@@ -1,0 +1,200 @@
+---
+title: Yhteiskunnallinen vuorovaikutus
+layout: base.njk
+permalink: /yhteiskunnallinen-vuorovaikutus/
+lang: fi
+translationKey: societal_interaction
+description: "Jari Larun yhteiskunnallinen vuorovaikutus kokoaa asiantuntijalausunnot, avoimet materiaalit, mediaesiintymiset, verkostotyön ja päätöksenteon koulutuksen, tekoälyn ja oppimisen teemoissa."
+pageStyles:
+  - /css/societal-engagement-page.css
+templateEngineOverride: njk
+schemaAbout:
+  - "@type": Thing
+    name: Yhteiskunnallinen vuorovaikutus
+    description: Tutkimustiedon, opetuksen ja asiantuntijuuden vieminen julkiseen keskusteluun, valmisteluun ja käytäntöihin.
+  - "@type": Thing
+    name: Koulutuksen kehittäminen
+    description: Tutkimukseen perustuva kehittämistyö opettajien, koulujen ja verkostojen kanssa.
+schemaMentions:
+  - "@type": CollegeOrUniversity
+    name: Oulun yliopisto
+    url: https://www.oulu.fi/
+---
+
+{% set statementItems = [] %}
+{% for item in (collections.publications or []) %}
+  {% if item.data.type == "lausunto" %}
+    {% set _ = (statementItems.push(item), null) %}
+  {% endif %}
+{% endfor %}
+{% set featuredStatement = statementItems[0] %}
+{% set expertMediaItems = (mediaArchive.expertAssignments or []) %}
+{% set featuredExpertMedia = expertMediaItems[0] or (mediaArchive.guest or [])[0] %}
+{% set featuredPresentation = (collections.presentations or [])[0] %}
+{% set expertMediaCount = (mediaArchive.expertAssignments or []) | length %}
+{% set publicConversationCount = ((mediaArchive.guest or []) | length) + ((mediaArchive.interviewer or []) | length) %}
+{% set presentationCount = (collections.presentations or []) | length %}
+
+<section class="engagement-hero">
+  <div class="site-shell py-5">
+    <div class="engagement-hero-layout">
+      <div>
+        <p class="engagement-eyebrow mb-2"><i class="bi bi-diagram-3-fill me-1"></i>Yliopiston kolmas tehtävä</p>
+        <h1 class="engagement-hero-title mb-3">Yhteiskunnallinen vuorovaikutus tekee tutkimuksesta ja opetuksesta yhteistä työtä.</h1>
+        <p class="engagement-hero-lead mb-3">Yliopistotyö ei jää luentosaliin tai julkaisuun. Vien tutkimustietoa ja opetusosaamista opettajille, kouluille, verkostoihin, valmisteluun ja julkiseen keskusteluun.</p>
+        <p class="engagement-hero-text mb-4">Tämä sivu näyttää reitit olemassa olevaan aineistoon. Se ei ole uusi arkisto, vaan kokoaa yhteen, missä asiantuntijuus muuttuu keskusteluiksi, kannanotoiksi, materiaaleiksi ja päätöksenteon työksi.</p>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-primary rounded-pill px-4" href="#reitit">Kolme reittiä</a>
+          <a class="btn btn-outline-secondary rounded-pill px-4" href="#ajankohtaiset-naytot">Katso tuoreet näytöt</a>
+        </div>
+      </div>
+      <aside class="engagement-hero-panel">
+        <p class="engagement-panel-kicker">Vuorovaikutus käytännössä</p>
+        <dl class="engagement-kpi-grid mb-0">
+          <div>
+            <dd>{{ statementItems | length }}</dd>
+            <dt>asiantuntijalausuntoa</dt>
+          </div>
+          <div>
+            <dd>{{ expertMediaCount }}</dd>
+            <dt>asiantuntijaroolia mediassa</dt>
+          </div>
+          <div>
+            <dd>{{ presentationCount }}</dd>
+            <dt>esitystä ja materiaalia</dt>
+          </div>
+          <div>
+            <dd>{{ publicConversationCount }}</dd>
+            <dt>julkista keskusteluroolia</dt>
+          </div>
+        </dl>
+        <p class="engagement-panel-note mb-0">Luvut kertovat aineiston laajuudesta. Vaikuttavuus syntyy siitä, että eri muodot palvelevat samaa koulutuksen ja oppimisen kysymystä.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<nav class="engagement-mobile-path" aria-label="Yhteiskunnallisen vuorovaikutuksen tärkeimmät osiot">
+  <a href="#reitit">Reitit</a>
+  <a href="#ajankohtaiset-naytot">Näytöt</a>
+  <a href="#kokonaisuus">Kokonaisuus</a>
+</nav>
+
+<section class="engagement-section" id="reitit">
+  <div class="site-shell">
+    <div class="engagement-section-head">
+      <p class="engagement-eyebrow mb-1">Kolme reittiä</p>
+      <h2>Asiantuntijuus näkyy eri tavoin eri yleisöille</h2>
+      <p class="mb-0">Valitse reitti sen mukaan, etsitkö käyttökelpoista tietoa koulutuksen arkeen, kannanottoja ja julkista keskustelua vai päätöksenteon työtä. Varsinainen aineisto säilyy omilla vahvoilla sivuillaan.</p>
+    </div>
+    <div class="engagement-route-grid">
+      <article class="engagement-route-card engagement-route-card--materials">
+        <span class="engagement-route-icon"><i class="bi bi-easel2-fill"></i></span>
+        <p class="engagement-route-kicker">Koulutuksen kehittäminen</p>
+        <h3>Tutkimustieto käyttöön opettajien, koulujen ja verkostojen kanssa</h3>
+        <p>Koulutuksissa, puheenvuoroissa ja avoimissa materiaaleissa vaikeat aiheet, kuten tekoälylukutaito ja digipedagogiikka, muutetaan opetuksen arkeen sopiviksi käytännöiksi.</p>
+        <a href="/esitykset/" class="engagement-route-link">Esitykset ja avoimet materiaalit <span aria-hidden="true">→</span></a>
+      </article>
+      <article class="engagement-route-card engagement-route-card--statements">
+        <span class="engagement-route-icon"><i class="bi bi-chat-square-text-fill"></i></span>
+        <p class="engagement-route-kicker">Julkinen asiantuntijuus</p>
+        <h3>Tutkimukseen perustuvia näkökulmia valmisteluun ja keskusteluun</h3>
+        <p>Lausunnot, kirjoitukset, mediaesiintymiset ja asiantuntijatehtävät tekevät koulutuksen, teknologian ja tekoälyn kysymyksiä näkyviksi myös yliopiston ulkopuolella.</p>
+        <div class="engagement-route-actions">
+          <a href="/kynasta/#lausunnot" class="engagement-route-link">Lausunnot ja kannanotot <span aria-hidden="true">→</span></a>
+          <a href="/mediassa/" class="engagement-route-link">Mediassa <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+      <article class="engagement-route-card engagement-route-card--politics">
+        <span class="engagement-route-icon"><i class="bi bi-bank2"></i></span>
+        <p class="engagement-route-kicker">Päätöksenteko</p>
+        <h3>Paikallinen vaikuttaminen on oma vastuullinen roolinsa</h3>
+        <p>Luottamustoimissa asiantuntijuus kohtaa käytännön päätökset, palvelut ja pitkän aikavälin suunnittelun. Politiikan aineisto on avoimesti omalla sivullaan.</p>
+        <a href="/politiikka/" class="engagement-route-link">Politiikka ja päätöksenteko <span aria-hidden="true">→</span></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="engagement-section engagement-section--evidence" id="ajankohtaiset-naytot">
+  <div class="site-shell">
+    <div class="engagement-section-head">
+      <p class="engagement-eyebrow mb-1">Aineistosta juuri nyt</p>
+      <h2>Kolme esimerkkiä siitä, miten vuorovaikutus tulee näkyväksi</h2>
+      <p class="mb-0">Nostot päivittyvät samoista kokoelmista kuin niiden varsinaiset arkistot. Ne eivät määritä koko työtä, vaan tarjoavat nopean tien ajankohtaisiin esimerkkeihin.</p>
+    </div>
+    <div class="engagement-evidence-grid">
+      <article class="engagement-evidence-card">
+        <p class="engagement-evidence-kicker"><i class="bi bi-file-earmark-text-fill me-1"></i>Valmistelu ja kannanotot</p>
+        <h3>Asiantuntijalausunnot</h3>
+        {% if featuredStatement %}
+        <p class="engagement-evidence-meta">{{ featuredStatement.date | dateFormat }}</p>
+        <h4><a href="{{ featuredStatement.data.url or featuredStatement.url }}">{{ featuredStatement.data.title }}</a></h4>
+        <p>{{ featuredStatement.data.description or (featuredStatement.templateContent | excerpt) | truncate(230) }}</p>
+        {% else %}
+        <p>Lausunnot kokoavat tutkimukseen ja opetuskokemukseen perustuvia näkökulmia koulutuksen valmisteluun.</p>
+        {% endif %}
+        <a href="/kynasta/#lausunnot" class="engagement-card-link">Kaikki lausunnot <span aria-hidden="true">→</span></a>
+      </article>
+      <article class="engagement-evidence-card">
+        <p class="engagement-evidence-kicker"><i class="bi bi-mic-fill me-1"></i>Julkinen keskustelu</p>
+        <h3>Asiantuntijana mediassa</h3>
+        {% if featuredExpertMedia %}
+        <p class="engagement-evidence-meta">{{ featuredExpertMedia.date | dateFormat }}{% if featuredExpertMedia.data.mediaOutlet %} · {{ featuredExpertMedia.data.mediaOutlet }}{% endif %}</p>
+        <h4><a href="{{ featuredExpertMedia.data.sourceUrl or featuredExpertMedia.data.url or featuredExpertMedia.url }}">{{ featuredExpertMedia.data.title }}</a></h4>
+        <p>{{ featuredExpertMedia.data.description or (featuredExpertMedia.content | excerpt) | truncate(230) }}</p>
+        {% else %}
+        <p>Mediaesiintymiset ja asiantuntijaroolit vievät koulutuksen kysymyksiä julkiseen keskusteluun.</p>
+        {% endif %}
+        <a href="/mediassa/" class="engagement-card-link">Kaikki mediaosumat <span aria-hidden="true">→</span></a>
+      </article>
+      <article class="engagement-evidence-card">
+        <p class="engagement-evidence-kicker"><i class="bi bi-people-fill me-1"></i>Koulutuksen kehittäminen</p>
+        <h3>Puheenvuorot ja avoimet materiaalit</h3>
+        {% if featuredPresentation %}
+        <p class="engagement-evidence-meta">{{ featuredPresentation.data.date | dateFormat }}{% if featuredPresentation.data.source %} · {{ featuredPresentation.data.source }}{% endif %}</p>
+        <h4><a href="{{ featuredPresentation.data.url or featuredPresentation.url }}">{{ featuredPresentation.data.title }}</a></h4>
+        <p>{{ featuredPresentation.data.description or (featuredPresentation.templateContent | excerpt) | truncate(230) }}</p>
+        {% else %}
+        <p>Esitykset ja materiaalit tekevät tutkimukseen perustuvista näkökulmista käyttökelpoisia koulutuksen eri tilanteissa.</p>
+        {% endif %}
+        <a href="/esitykset/" class="engagement-card-link">Kaikki esitykset <span aria-hidden="true">→</span></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="engagement-section" id="kokonaisuus">
+  <div class="site-shell">
+    <div class="engagement-loop">
+      <div class="engagement-loop-copy">
+        <p class="engagement-eyebrow mb-1">Sama työ, eri muodot</p>
+        <h2>Vuorovaikutus ei ole tutkimuksen tai opetuksen päälle liimattu lisä.</h2>
+        <p>Se on tapa, jolla tutkimuskysymykset tarkentuvat käytännön kohtaamisissa ja jolla opetuksesta kertynyt ymmärrys palaa takaisin koulutuksen kehittämiseen. Siksi tällä sivulla kohtaavat materiaalit, lausunnot, media ja päätöksenteko, vaikka niiden arkistot ovat erillisiä.</p>
+      </div>
+      <ol class="engagement-loop-steps">
+        <li><span>Tutkimus</span><strong>Tietoa oppimisesta, teknologiasta ja koulutuksesta.</strong></li>
+        <li><span>Opetus ja kehittäminen</span><strong>Tutkimustiedon vieminen opetukseen, koulutuksiin ja yhteiseen kehittämiseen.</strong></li>
+        <li><span>Yhteiskunnallinen vuorovaikutus</span><strong>Näkökulmien vieminen materiaaleihin, keskusteluihin, valmisteluun ja päätöksentekoon.</strong></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="engagement-section engagement-section--sources">
+  <div class="site-shell">
+    <div class="engagement-sources">
+      <div>
+        <p class="engagement-eyebrow mb-1">Syvenny aineistoon</p>
+        <h2>Kun tarvitset yksityiskohdat, jatka alkuperäiseen kokoelmaan.</h2>
+      </div>
+      <div class="engagement-source-links">
+        <a href="/esitykset/">Esitykset ja materiaalit</a>
+        <a href="/kynasta/">Kirjoitukset ja lausunnot</a>
+        <a href="/mediassa/">Mediaosumat</a>
+        <a href="/politiikka/">Politiikka</a>
+        <a href="/tutkimus/">Tutkimus</a>
+      </div>
+    </div>
+  </div>
+</section>

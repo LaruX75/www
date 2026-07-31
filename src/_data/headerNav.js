@@ -111,6 +111,17 @@ module.exports = {
     {
       data: {
         eleventyNavigation: {
+          key: "societal_interaction",
+          title: "Yhteiskunnallinen vuorovaikutus",
+          url: "/yhteiskunnallinen-vuorovaikutus/",
+          parent: "work",
+          order: 15
+        }
+      }
+    },
+    {
+      data: {
+        eleventyNavigation: {
           key: "publications",
           title: "Julkaisut",
           url: "/julkaisut/",
@@ -825,6 +836,12 @@ module.exports = {
         {
           heading: "Yhteiskunnallinen vuorovaikutus",
           links: [
+            {
+              title: "Yhteiskunnallinen vuorovaikutus",
+              href: "/yhteiskunnallinen-vuorovaikutus/",
+              icon: "bi bi-diagram-3 me-2",
+              description: "Kokonaiskuva siitä, miten tutkimus ja opetus jatkuvat materiaaleissa, lausunnoissa, mediassa ja päätöksenteossa."
+            },
             {
               title: "Lausunnot ja kannanotot",
               href: "/kynasta/#lausunnot",

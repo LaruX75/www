@@ -75,7 +75,7 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          {{ megaNavTrigger(navWork.url or '/tyoni-yliopistonlehtorina/', navWork.title or 'Työ', navWork.icon or 'bi bi-briefcase-fill', page.url and ('/opetus/' in page.url or '/portfolio/' in page.url or '/tutkimus/' in page.url or '/vaitoskirja/' in page.url or '/v%C3%A4it%C3%B6skirja/' in page.url or '/väitöskirja/' in page.url or '/palkinnot/' in page.url), 'megaMenuWorkFi', 'megaToggleWorkFi', openSubmenuLabel) }}
+          {{ megaNavTrigger(navWork.url or '/tyoni-yliopistonlehtorina/', navWork.title or 'Työ', navWork.icon or 'bi bi-briefcase-fill', page.url and ('/opetus/' in page.url or '/portfolio/' in page.url or '/tutkimus/' in page.url or '/yhteiskunnallinen-vuorovaikutus/' in page.url or '/vaitoskirja/' in page.url or '/v%C3%A4it%C3%B6skirja/' in page.url or '/väitöskirja/' in page.url or '/palkinnot/' in page.url), 'megaMenuWorkFi', 'megaToggleWorkFi', openSubmenuLabel) }}
           <div id="megaMenuWorkFi" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleWorkFi">
             {% if workMegaMenu and workMegaMenu.sections %}
             {% if workMegaMenu.layout == "four-columns" %}
@@ -445,11 +445,11 @@
           <small>Nopea kokonaiskuva.</small>
         </span>
       </a>
-      <a class="mobile-nav-feature-card{% if page.url and '/tyoni-yliopistonlehtorina/' in page.url %} is-active{% endif %}" href="{{ navWork.url or '/tyoni-yliopistonlehtorina/' }}">
+      <a class="mobile-nav-feature-card{% if page.url and ('/tyoni-yliopistonlehtorina/' in page.url or '/yhteiskunnallinen-vuorovaikutus/' in page.url) %} is-active{% endif %}" href="{{ navWork.url or '/tyoni-yliopistonlehtorina/' }}">
         <span class="mobile-nav-feature-icon"><i class="{{ navWork.icon or 'bi bi-briefcase-fill' }}"></i></span>
         <span>
           <strong>Työ</strong>
-          <small>Opetus, tutkimus ja asiantuntijuus.</small>
+          <small>Opetus, tutkimus ja yhteiskunnallinen vuorovaikutus.</small>
         </span>
       </a>
       <a class="mobile-nav-feature-card{% if page.url and '/politiikka/' in page.url %} is-active{% endif %}" href="{{ navPolitics.url or '/politiikka/' }}">
@@ -509,7 +509,7 @@
       <details class="mobile-nav-card">
         <summary>
           <span class="mobile-nav-card-title"><i class="{{ navWork.icon or 'bi bi-briefcase-fill' }}"></i>Työ</span>
-          <span class="mobile-nav-card-desc">Yliopistotyö, kouluttaminen ja tutkimus.</span>
+          <span class="mobile-nav-card-desc">Yliopistotyö, tutkimus ja yhteiskunnallinen vuorovaikutus.</span>
         </summary>
         <div class="mobile-nav-card-body">
           <a class="mobile-nav-primary-link" href="{{ navWork.url or '/tyoni-yliopistonlehtorina/' }}">Avaa Työ-sivu</a>
