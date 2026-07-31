@@ -6,6 +6,7 @@ description: "Positions of trust, goals and priorities in Oulu municipal and reg
 permalink: /en/politics/
 translationKey: politics_index
 lang: en
+schemaType: CollectionPage
 ---
 <section class="pol-hero mb-0">
   <div class="site-shell py-5">

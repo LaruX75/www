@@ -6,6 +6,7 @@ layout: base.njk
 translationKey: politics_index
 lang: fi
 templateEngineOverride: njk
+schemaType: CollectionPage
 schemaAbout:
   - "@type": "Thing"
     name: "Kunnallispolitiikka"
