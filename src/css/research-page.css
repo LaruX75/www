@@ -1,0 +1,206 @@
+/* Research page-specific styles.
+ * Loaded via pageStyles from src/fi/tutkimus.md.
+ */
+/* Extracted block 1 */
+.research-mobile-path,
+.research-mobile-disclosure-summary {
+display: none;
+}
+
+@media (max-width: 767.98px) {
+.research-hero .site-shell > .row,
+#generation-ai .site-shell > .row,
+.site-shell > .row.align-items-start {
+  --bs-gutter-x: 0;
+  margin-inline: 0;
+}
+
+.research-hero .site-shell > .row > *,
+#generation-ai .site-shell > .row > *,
+.site-shell > .row.align-items-start > * {
+  padding-inline: 0;
+  min-width: 0;
+}
+
+.research-hero h1 {
+  font-size: clamp(2rem, 9.6vw, 2.65rem);
+  line-height: 1.08;
+  hyphens: auto;
+  overflow-wrap: anywhere;
+}
+
+.research-hero .lead {
+  font-size: clamp(1.04rem, 4.8vw, 1.22rem);
+  line-height: 1.48;
+}
+
+.research-hero-actions .btn {
+  flex: 1 1 100%;
+  display: inline-flex;
+  justify-content: center;
+  max-width: 100%;
+}
+
+.research-hero.py-5,
+#generation-ai.py-5 {
+  padding-block: 1.85rem !important;
+}
+
+.research-hero-secondary-action,
+.research-hero-kpis,
+.research-current-evidence {
+  display: none !important;
+}
+
+#generation-ai .lead {
+  font-size: 1.03rem;
+  line-height: 1.45;
+}
+
+#generation-ai .card {
+  box-shadow: 0 0.65rem 1.35rem rgba(19, 43, 70, 0.07) !important;
+}
+
+#generation-ai .card-body {
+  padding: 1rem !important;
+}
+
+.research-mobile-path {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  gap: 0.45rem;
+  overflow-x: auto;
+  padding: 0.65rem 0.75rem;
+  border-bottom: 1px solid rgba(19, 43, 70, 0.1);
+  background: color-mix(in srgb, var(--bs-body-bg) 92%, transparent);
+  backdrop-filter: blur(10px);
+  scrollbar-width: none;
+}
+
+.research-mobile-path::-webkit-scrollbar {
+  display: none;
+}
+
+.research-mobile-path a {
+  flex: 0 0 auto;
+  padding: 0.45rem 0.72rem;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bs-body-bg) 84%, var(--bs-primary) 8%);
+  color: var(--bs-primary);
+  font-size: 0.86rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+[data-bs-theme="dark"] .research-mobile-path {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+  background: color-mix(in srgb, var(--bs-body-bg) 88%, transparent);
+}
+
+[data-bs-theme="dark"] .research-mobile-path a {
+  border-color: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.08);
+  color: #f4f8fd;
+}
+
+[data-research-mobile-priority="2"] {
+  padding-block: 0.75rem !important;
+}
+
+.research-mobile-disclosure {
+  display: block;
+}
+
+.research-mobile-disclosure-summary {
+  position: relative;
+  display: grid;
+  gap: 0.2rem;
+  padding: 1rem 3rem 1rem 1rem;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 1rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 249, 252, 0.98));
+  box-shadow: 0 0.75rem 1.6rem rgba(19, 43, 70, 0.08);
+  color: var(--bs-body-color);
+  cursor: pointer;
+  list-style: none;
+}
+
+.research-mobile-disclosure-summary::-webkit-details-marker {
+  display: none;
+}
+
+.research-mobile-disclosure-summary::after {
+  content: "+";
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  width: 1.65rem;
+  height: 1.65rem;
+  transform: translateY(-50%);
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--bs-primary) 12%, var(--bs-body-bg) 88%);
+  color: var(--bs-primary);
+  font-weight: 800;
+}
+
+.research-mobile-disclosure[open] .research-mobile-disclosure-summary::after {
+  content: "-";
+}
+
+.research-mobile-disclosure-summary span {
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.research-mobile-disclosure-summary small {
+  color: var(--bs-secondary-color);
+  font-size: 0.84rem;
+  line-height: 1.35;
+}
+
+.research-mobile-disclosure[open] .research-mobile-disclosure-body {
+  margin-top: 1rem;
+}
+
+[data-bs-theme="dark"] .research-mobile-disclosure-summary {
+  border-color: rgba(255, 255, 255, 0.14);
+  background: linear-gradient(180deg, rgba(31, 38, 48, 0.98), rgba(18, 24, 32, 0.98));
+  box-shadow: 0 0.75rem 1.6rem rgba(0, 0, 0, 0.22);
+  color: #f4f8fd;
+}
+
+[data-bs-theme="dark"] .research-mobile-disclosure-summary small {
+  color: rgba(244, 248, 253, 0.72);
+}
+}
+
+/* Extracted block 2 */
+.tutkijahistoria-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+.tutkijahistoria-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+.tutkijahistoria-scroll::-webkit-scrollbar-track {
+  background: var(--bs-border-color);
+  border-radius: 3px;
+}
+.tutkijahistoria-scroll::-webkit-scrollbar-thumb {
+  background: var(--bs-secondary-color);
+  border-radius: 3px;
+}
+.tutkijahistoria-card {
+  width: 280px;
+  min-height: 200px;
+}
+@media (max-width: 576px) {
+  .tutkijahistoria-card { width: 240px; }
+}
