@@ -1030,15 +1030,15 @@ schemaMentions:
       <div class="card-body p-0">
         {# ---- Suodatuspalkki ---- #}
         <div class="p-3 bg-body-tertiary border-bottom">
-          <div class="row g-2 align-items-end">
-            <div class="col-lg-6">
+          <div class="kynasta-blog-filter-row">
+            <div class="kynasta-blog-filter-search">
               <label for="blog-search" class="form-label small text-muted mb-1">Hae kirjoituksia</label>
               <input type="search" id="blog-search" class="form-control form-control-sm"
                      placeholder="Hae otsikosta, aiheesta tai näkökulmasta..." autocomplete="off">
             </div>
-            <div class="col-lg-4">
+            <div class="kynasta-blog-filter-role">
               <label class="form-label small text-muted mb-1">Rajaa näkökulman mukaan</label>
-              <div class="role-filter-group" role="group" aria-label="Rajaa blogikirjoitukset näkökulman mukaan">
+              <div class="role-filter-group role-filter-group--compact" role="group" aria-label="Rajaa blogikirjoitukset näkökulman mukaan">
                 <button type="button" class="btn btn-outline-secondary btn-sm active" data-blog-role="all">Kaikki</button>
                 <button type="button" class="btn btn-outline-secondary btn-sm" data-blog-role="political">Päätöksenteko</button>
                 <button type="button" class="btn btn-outline-secondary btn-sm" data-blog-role="expert">Asiantuntijatausta</button>
@@ -1046,14 +1046,14 @@ schemaMentions:
                 <button type="button" class="btn btn-outline-secondary btn-sm" data-blog-role="personal">Henkilökohtainen</button>
               </div>
             </div>
-            <div class="col-lg-2 d-flex justify-content-lg-end gap-2">
+            <div class="kynasta-blog-filter-year">
+              <label for="blog-year" class="form-label small text-muted mb-1">Vuosi</label>
+              <select id="blog-year" class="form-select form-select-sm" aria-label="Rajaa blogikirjoitukset vuoden mukaan"><option value="" selected>Kaikki vuodet</option></select>
+            </div>
+            <div class="kynasta-blog-filter-reset">
               <button id="blog-reset" class="btn btn-outline-secondary btn-sm w-100">
                 <i class="bi bi-x-circle me-1"></i>Tyhjennä
               </button>
-            </div>
-            <div class="col-sm-5 col-lg-2">
-              <label for="blog-year" class="form-label small text-muted mb-1">Vuosi</label>
-              <select id="blog-year" class="form-select form-select-sm" aria-label="Rajaa blogikirjoitukset vuoden mukaan"><option value="" selected>Kaikki vuodet</option></select>
             </div>
           </div>
         </div>
@@ -1408,8 +1408,54 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
   gap: 0.35rem;
 }
 
+.role-filter-group--compact {
+  flex-wrap: nowrap;
+  max-width: 100%;
+  overflow-x: auto;
+  padding-bottom: 0.1rem;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+
 .role-filter-group .btn {
   border-radius: 999px !important;
+}
+
+.role-filter-group--compact .btn {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.kynasta-blog-filter-row {
+  display: grid;
+  grid-template-columns: minmax(16rem, 1.25fr) minmax(20rem, 1.8fr) minmax(8.5rem, 0.6fr) auto;
+  grid-template-areas: "search role year reset";
+  gap: 0.6rem;
+  align-items: end;
+}
+
+.kynasta-blog-filter-search,
+.kynasta-blog-filter-role,
+.kynasta-blog-filter-year,
+.kynasta-blog-filter-reset {
+  min-width: 0;
+}
+
+.kynasta-blog-filter-search {
+  grid-area: search;
+}
+
+.kynasta-blog-filter-role {
+  grid-area: role;
+}
+
+.kynasta-blog-filter-year {
+  grid-area: year;
+}
+
+.kynasta-blog-filter-reset {
+  grid-area: reset;
+  min-width: 7.5rem;
 }
 
 .writing-role-badge {
@@ -1503,6 +1549,12 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
 .kynasta-archive-disclosure {
   margin: 0;
   border-top: 1px solid var(--bs-border-color);
+  transition: background-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.kynasta-archive-disclosure[open] {
+  background: var(--bs-tertiary-bg);
+  box-shadow: inset 0 1px 0 var(--bs-border-color), inset 0 -1px 0 var(--bs-border-color);
 }
 
 .kynasta-archive-disclosure > .kynasta-mobile-disclosure-summary {
@@ -1519,6 +1571,12 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
   box-shadow: var(--bs-box-shadow-sm);
   cursor: pointer;
   list-style: none;
+  scroll-margin-top: calc(var(--site-header-offset, 0px) + 1rem);
+}
+
+.kynasta-archive-disclosure[open] > .kynasta-mobile-disclosure-summary {
+  background: #fff;
+  color: #0f2238;
 }
 
 .kynasta-archive-disclosure > .kynasta-mobile-disclosure-summary::-webkit-details-marker {
@@ -1554,8 +1612,13 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
   font-weight: 700;
 }
 
+.kynasta-archive-disclosure[open] > .kynasta-mobile-disclosure-summary small {
+  color: rgba(15, 34, 56, 0.68);
+}
+
 .kynasta-archive-disclosure > section {
   padding-top: 0.25rem;
+  padding-bottom: 1rem;
 }
 
 .kynasta-archive-disclosure > section .card > .card-header {
@@ -1563,12 +1626,31 @@ html:not([data-bs-theme="dark"]) .kynasta-section-header::before {
 }
 
 @media (max-width: 1199.98px) {
+  .kynasta-blog-filter-row {
+    grid-template-columns: minmax(14rem, 1fr) minmax(18rem, 1.35fr);
+    grid-template-areas:
+      "search role"
+      "year reset";
+  }
+
+  .kynasta-blog-filter-reset {
+    min-width: 0;
+  }
+
   .kynasta-type-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 767.98px) {
+  .kynasta-blog-filter-row {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas:
+      "search search"
+      "role role"
+      "year reset";
+  }
+
   .kynasta-type-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.6rem;
@@ -1965,6 +2047,41 @@ function syncArchiveSortButton(button, isActive, direction, columnLabel) {
     parent.insertBefore(fragment, anchor);
     anchor.remove();
   }
+
+  const closeOtherArchiveAccordions = (activeWrapper) => {
+    uniqueArchiveWrappers.forEach((wrapper) => {
+      if (wrapper !== activeWrapper) wrapper.open = false;
+    });
+  };
+
+  const focusArchiveAccordionTitle = (wrapper) => {
+    const summary = wrapper.querySelector(':scope > .kynasta-mobile-disclosure-summary');
+    if (!summary) return;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        summary.focus({ preventScroll: true });
+        summary.scrollIntoView({
+          block: 'start',
+          inline: 'nearest',
+          behavior: prefersReducedMotion ? 'auto' : 'smooth'
+        });
+      });
+    });
+  };
+
+  const initiallyOpenArchiveWrappers = uniqueArchiveWrappers.filter((wrapper) => wrapper.open);
+  initiallyOpenArchiveWrappers.slice(1).forEach((wrapper) => {
+    wrapper.open = false;
+  });
+
+  uniqueArchiveWrappers.forEach((wrapper) => {
+    wrapper.addEventListener('toggle', () => {
+      if (!wrapper.open) return;
+      closeOtherArchiveAccordions(wrapper);
+      focusArchiveAccordionTitle(wrapper);
+    });
+  });
 
   const parseJson = (id) => {
     const el = document.getElementById(id);
