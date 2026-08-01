@@ -1045,3 +1045,253 @@ html.a11y-high-contrast[data-bs-theme] .content-card-list {
     border-color: var(--a11y-hc-ink) !important;
     box-shadow: none !important;
 }
+
+/* High contrast: navigation and mega menu must be brutally explicit.
+   Brand gradients and translucent pills are useful normally, but in this
+   mode they can create black-on-black or white-on-light combinations. */
+html.a11y-high-contrast .site-navbar,
+html.a11y-high-contrast .site-navbar::before,
+html.a11y-high-contrast .site-navbar.mega-open::before,
+html.a11y-high-contrast .navbar .mega-dropdown .mega-menu-panel,
+html.a11y-high-contrast .mega-menu-panel,
+html.a11y-high-contrast .mega-wrap,
+html.a11y-high-contrast .mega-left,
+html.a11y-high-contrast .mega-right,
+html.a11y-high-contrast .showcase-card,
+html.a11y-high-contrast .cta-card,
+html.a11y-high-contrast .work-inline-cta,
+html.a11y-high-contrast .mobile-nav-panel,
+html.a11y-high-contrast .mobile-nav-panel-body,
+html.a11y-high-contrast .mobile-nav-hero,
+html.a11y-high-contrast .mobile-nav-tools,
+html.a11y-high-contrast .mobile-nav-feature-card,
+html.a11y-high-contrast .mobile-nav-card,
+html.a11y-high-contrast .mobile-nav-card summary,
+html.a11y-high-contrast .mobile-nav-section-card {
+    background: var(--a11y-hc-bg) !important;
+    background-color: var(--a11y-hc-bg) !important;
+    background-image: none !important;
+    border-color: var(--a11y-hc-ink) !important;
+    color: var(--a11y-hc-ink) !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+html.a11y-high-contrast .site-navbar::before,
+html.a11y-high-contrast .site-navbar.mega-open::before {
+    border-bottom: 2px solid var(--a11y-hc-ink) !important;
+}
+
+html.a11y-high-contrast .site-navbar .navbar-brand,
+html.a11y-high-contrast .site-navbar .nav-link,
+html.a11y-high-contrast .site-navbar .mega-nav-link,
+html.a11y-high-contrast .site-navbar .mega-nav-toggle,
+html.a11y-high-contrast .site-navbar .dropdown-toggle {
+    background: transparent !important;
+    border-color: transparent !important;
+    color: var(--a11y-hc-link) !important;
+    opacity: 1 !important;
+    text-decoration-color: currentColor !important;
+}
+
+html.a11y-high-contrast .site-navbar .navbar-brand:hover,
+html.a11y-high-contrast .site-navbar .navbar-brand:focus-visible,
+html.a11y-high-contrast .site-navbar .nav-link:hover,
+html.a11y-high-contrast .site-navbar .nav-link:focus-visible,
+html.a11y-high-contrast .site-navbar .nav-link.active,
+html.a11y-high-contrast .site-navbar .mega-nav-trigger:hover > .mega-nav-toggle,
+html.a11y-high-contrast .site-navbar .mega-nav-toggle:hover,
+html.a11y-high-contrast .site-navbar .mega-nav-toggle:focus-visible,
+html.a11y-high-contrast .site-navbar .mega-nav-toggle[aria-expanded="true"] {
+    background: var(--a11y-hc-ink) !important;
+    border-color: var(--a11y-hc-focus) !important;
+    color: var(--a11y-hc-bg) !important;
+    outline-color: var(--a11y-hc-focus) !important;
+    text-decoration-color: currentColor !important;
+}
+
+html.a11y-high-contrast .site-navbar .nav-link i,
+html.a11y-high-contrast .site-navbar .mega-nav-toggle::after,
+html.a11y-high-contrast .site-navbar .dropdown-toggle::after {
+    color: currentColor !important;
+    opacity: 1 !important;
+}
+
+html.a11y-high-contrast .site-navbar .mega-nav-toggle .visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+html.a11y-high-contrast .mega-wrap h5,
+html.a11y-high-contrast .mega-wrap h6,
+html.a11y-high-contrast .mega-wrap p,
+html.a11y-high-contrast .mega-wrap small,
+html.a11y-high-contrast .menu-desc,
+html.a11y-high-contrast .menu-link-desc,
+html.a11y-high-contrast .showcase-card h5,
+html.a11y-high-contrast .showcase-card p,
+html.a11y-high-contrast .cta-card h5,
+html.a11y-high-contrast .cta-card p,
+html.a11y-high-contrast .offcanvas-title,
+html.a11y-high-contrast .mobile-nav-card-title,
+html.a11y-high-contrast .mobile-nav-card-desc,
+html.a11y-high-contrast .mobile-nav-section-card h6,
+html.a11y-high-contrast .mobile-nav-feature-card strong,
+html.a11y-high-contrast .mobile-nav-feature-card small,
+html.a11y-high-contrast .mobile-nav-link span,
+html.a11y-high-contrast .mobile-nav-inline-separator {
+    color: var(--a11y-hc-ink) !important;
+    opacity: 1 !important;
+}
+
+html.a11y-high-contrast .mega-wrap a:not(.btn),
+html.a11y-high-contrast .mega-mobile-jump,
+html.a11y-high-contrast .menu-link,
+html.a11y-high-contrast .menu-link-inline-anchor,
+html.a11y-high-contrast .mobile-nav-feature-card,
+html.a11y-high-contrast .mobile-nav-primary-link,
+html.a11y-high-contrast .mobile-nav-link,
+html.a11y-high-contrast .mobile-nav-link.inline-link {
+    background: var(--a11y-hc-bg) !important;
+    border-color: var(--a11y-hc-ink) !important;
+    color: var(--a11y-hc-link) !important;
+    opacity: 1 !important;
+    text-decoration: underline !important;
+    text-decoration-thickness: 2px !important;
+    text-underline-offset: 0.18em !important;
+}
+
+html.a11y-high-contrast .mega-wrap a:not(.btn):hover,
+html.a11y-high-contrast .mega-wrap a:not(.btn):focus-visible,
+html.a11y-high-contrast .menu-link:hover,
+html.a11y-high-contrast .menu-link:focus-visible,
+html.a11y-high-contrast .mobile-nav-feature-card:hover,
+html.a11y-high-contrast .mobile-nav-feature-card:focus-visible,
+html.a11y-high-contrast .mobile-nav-primary-link:hover,
+html.a11y-high-contrast .mobile-nav-primary-link:focus-visible,
+html.a11y-high-contrast .mobile-nav-link:hover,
+html.a11y-high-contrast .mobile-nav-link:focus-visible {
+    background: var(--a11y-hc-ink) !important;
+    border-color: var(--a11y-hc-focus) !important;
+    color: var(--a11y-hc-bg) !important;
+    transform: none !important;
+}
+
+html.a11y-high-contrast .mega-menu-panel i,
+html.a11y-high-contrast .mobile-nav-panel i,
+html.a11y-high-contrast .mobile-nav-feature-icon {
+    background: transparent !important;
+    color: currentColor !important;
+}
+
+html.a11y-high-contrast .mobile-nav-tools .btn,
+html.a11y-high-contrast .mobile-nav-tool-button,
+html.a11y-high-contrast .mega-menu-panel .btn,
+html.a11y-high-contrast .mega-wrap .btn,
+html.a11y-high-contrast .site-navbar #themeToggleBtn,
+html.a11y-high-contrast .site-navbar #searchToggleBtn,
+html.a11y-high-contrast .site-nav-search-btn {
+    background: var(--a11y-hc-bg) !important;
+    border: 2px solid var(--a11y-hc-ink) !important;
+    color: var(--a11y-hc-ink) !important;
+}
+
+html.a11y-high-contrast .mobile-nav-tools .btn:hover,
+html.a11y-high-contrast .mobile-nav-tools .btn:focus-visible,
+html.a11y-high-contrast .mobile-nav-tools .btn.active,
+html.a11y-high-contrast .mobile-nav-tool-button:hover,
+html.a11y-high-contrast .mobile-nav-tool-button:focus-visible,
+html.a11y-high-contrast .mega-menu-panel .btn:hover,
+html.a11y-high-contrast .mega-menu-panel .btn:focus-visible,
+html.a11y-high-contrast .mega-wrap .btn:hover,
+html.a11y-high-contrast .mega-wrap .btn:focus-visible,
+html.a11y-high-contrast .site-navbar #themeToggleBtn:hover,
+html.a11y-high-contrast .site-navbar #themeToggleBtn:focus-visible,
+html.a11y-high-contrast .site-navbar #searchToggleBtn:hover,
+html.a11y-high-contrast .site-navbar #searchToggleBtn:focus-visible,
+html.a11y-high-contrast .site-nav-search-btn:hover,
+html.a11y-high-contrast .site-nav-search-btn:focus-visible {
+    background: var(--a11y-hc-ink) !important;
+    border-color: var(--a11y-hc-focus) !important;
+    color: var(--a11y-hc-bg) !important;
+}
+
+html.a11y-high-contrast .mobile-nav-link strong,
+html.a11y-high-contrast .menu-link-count,
+html.a11y-high-contrast .mobile-nav-feature-card.is-active {
+    background: var(--a11y-hc-bg) !important;
+    border: 2px solid var(--a11y-hc-link) !important;
+    color: var(--a11y-hc-ink) !important;
+}
+
+/* Keep this late and specific: normal light-theme hero navbar rules are
+   intentionally specific, so the high-contrast top-level nav needs to be
+   more explicit than the generic mega menu rules above. */
+html.a11y-high-contrast[data-bs-theme] .site-navbar.navbar,
+html.a11y-high-contrast[data-bs-theme] .site-navbar.navbar.navbar-hero-solid,
+html.a11y-high-contrast[data-bs-theme] .site-navbar.navbar.navbar-hero-transparent,
+html.a11y-high-contrast[data-bs-theme] .site-navbar.navbar::before,
+html.a11y-high-contrast[data-bs-theme] .site-navbar.navbar.navbar-hero-solid::before,
+html.a11y-high-contrast[data-bs-theme] .site-navbar.navbar.navbar-hero-transparent::before {
+    background: var(--a11y-hc-bg) !important;
+    background-color: var(--a11y-hc-bg) !important;
+    background-image: none !important;
+    color: var(--a11y-hc-ink) !important;
+    border-color: var(--a11y-hc-ink) !important;
+    box-shadow: none !important;
+}
+
+html.a11y-high-contrast[data-bs-theme] .site-navbar.navbar .navbar-brand,
+html.a11y-high-contrast[data-bs-theme] .site-navbar.navbar .evelenty-main-nav > .nav-item > .nav-link,
+html.a11y-high-contrast[data-bs-theme] .site-navbar.navbar .evelenty-main-nav > .nav-item > .mega-nav-trigger > .nav-link,
+html.a11y-high-contrast[data-bs-theme] .site-navbar.navbar .evelenty-main-nav > .nav-item > .mega-nav-trigger > .mega-nav-toggle,
+html.a11y-high-contrast[data-bs-theme] .site-navbar.navbar .nav-link[lang],
+html.a11y-high-contrast[data-bs-theme] .site-navbar.navbar #themeToggleBtn,
+html.a11y-high-contrast[data-bs-theme] .site-navbar.navbar #searchToggleBtn {
+    background: transparent !important;
+    border-color: transparent !important;
+    color: var(--a11y-hc-link) !important;
+    opacity: 1 !important;
+    text-decoration-color: currentColor !important;
+}
+
+html.a11y-high-contrast[data-bs-theme] .site-navbar.navbar .navbar-brand:hover,
+html.a11y-high-contrast[data-bs-theme] .site-navbar.navbar .navbar-brand:focus-visible,
+html.a11y-high-contrast[data-bs-theme] .site-navbar.navbar .evelenty-main-nav > .nav-item > .nav-link:hover,
+html.a11y-high-contrast[data-bs-theme] .site-navbar.navbar .evelenty-main-nav > .nav-item > .nav-link:focus-visible,
+html.a11y-high-contrast[data-bs-theme] .site-navbar.navbar .evelenty-main-nav > .nav-item > .nav-link.active,
+html.a11y-high-contrast[data-bs-theme] .site-navbar.navbar .evelenty-main-nav > .nav-item > .mega-nav-trigger:hover > .mega-nav-toggle,
+html.a11y-high-contrast[data-bs-theme] .site-navbar.navbar .evelenty-main-nav > .nav-item > .mega-nav-trigger > .mega-nav-link:hover,
+html.a11y-high-contrast[data-bs-theme] .site-navbar.navbar .evelenty-main-nav > .nav-item > .mega-nav-trigger > .mega-nav-link:focus-visible,
+html.a11y-high-contrast[data-bs-theme] .site-navbar.navbar .evelenty-main-nav > .nav-item > .mega-nav-trigger > .mega-nav-link.active,
+html.a11y-high-contrast[data-bs-theme] .site-navbar.navbar .evelenty-main-nav > .nav-item > .mega-nav-trigger > .mega-nav-toggle:hover,
+html.a11y-high-contrast[data-bs-theme] .site-navbar.navbar .evelenty-main-nav > .nav-item > .mega-nav-trigger > .mega-nav-toggle:focus-visible,
+html.a11y-high-contrast[data-bs-theme] .site-navbar.navbar .evelenty-main-nav > .nav-item > .mega-nav-trigger > .mega-nav-toggle[aria-expanded="true"],
+html.a11y-high-contrast[data-bs-theme] .site-navbar.navbar .nav-link[lang]:hover,
+html.a11y-high-contrast[data-bs-theme] .site-navbar.navbar .nav-link[lang]:focus-visible,
+html.a11y-high-contrast[data-bs-theme] .site-navbar.navbar #themeToggleBtn:hover,
+html.a11y-high-contrast[data-bs-theme] .site-navbar.navbar #themeToggleBtn:focus-visible,
+html.a11y-high-contrast[data-bs-theme] .site-navbar.navbar #searchToggleBtn:hover,
+html.a11y-high-contrast[data-bs-theme] .site-navbar.navbar #searchToggleBtn:focus-visible {
+    background: var(--a11y-hc-ink) !important;
+    border-color: var(--a11y-hc-focus) !important;
+    color: var(--a11y-hc-bg) !important;
+    outline-color: var(--a11y-hc-focus) !important;
+    text-decoration-color: currentColor !important;
+}
+
+html.a11y-high-contrast[data-bs-theme] .site-navbar.navbar .nav-link i,
+html.a11y-high-contrast[data-bs-theme] .site-navbar.navbar #themeToggleBtn i,
+html.a11y-high-contrast[data-bs-theme] .site-navbar.navbar #searchToggleBtn i,
+html.a11y-high-contrast[data-bs-theme] .site-navbar.navbar .dropdown-toggle::after {
+    color: currentColor !important;
+    opacity: 1 !important;
+}

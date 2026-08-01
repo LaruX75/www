@@ -63,9 +63,27 @@
 
 .site-navbar #themeToggleBtn,
 .site-navbar #searchToggleBtn {
+  width: 2.15rem;
+  height: 2.15rem;
+  padding: 0;
   border: 1px solid transparent;
-  background: transparent;
+  background-color: transparent;
+  color: var(--mega-icon-color);
   transition: color 0.18s ease, background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.site-navbar #themeToggleBtn i,
+.site-navbar #searchToggleBtn i {
+  color: inherit;
+  font-size: 0.875rem;
+  line-height: 1;
+}
+
+.site-navbar #themeToggleBtn:hover i,
+.site-navbar #themeToggleBtn:focus-visible i,
+.site-navbar #searchToggleBtn:hover i,
+.site-navbar #searchToggleBtn:focus-visible i {
+  color: inherit;
 }
 
 .site-navbar #themeToggleBtn:hover,
@@ -73,8 +91,17 @@
 .site-navbar #searchToggleBtn:hover,
 .site-navbar #searchToggleBtn:focus-visible {
   color: var(--mega-icon-button-hover-color) !important;
-  background-color: var(--mega-icon-button-hover-bg);
-  border-color: var(--mega-icon-button-hover-border);
+  background-color: var(--mega-icon-button-hover-bg) !important;
+  border-color: var(--mega-icon-button-hover-border) !important;
+}
+
+html:not([data-bs-theme="dark"]) .site-navbar #themeToggleBtn:hover,
+html:not([data-bs-theme="dark"]) .site-navbar #themeToggleBtn:focus-visible,
+html:not([data-bs-theme="dark"]) .site-navbar #searchToggleBtn:hover,
+html:not([data-bs-theme="dark"]) .site-navbar #searchToggleBtn:focus-visible {
+  color: #ffffff !important;
+  background-color: #17324d !important;
+  border-color: #17324d !important;
 }
 
 .site-navbar.navbar-hero-transparent::before {
@@ -924,6 +951,30 @@ html:not([data-bs-theme="dark"]):not(.a11y-high-contrast) .mega-menu-panel a i {
 [data-bs-theme="light"] .site-navbar.navbar-hero-transparent .navbar-toggler-icon,
 [data-bs-theme="light"] .site-navbar.navbar-hero-solid .navbar-toggler-icon {
   filter: none;
+}
+
+[data-bs-theme="light"] .site-navbar.navbar-hero-solid #themeToggleBtn:hover,
+[data-bs-theme="light"] .site-navbar.navbar-hero-solid #themeToggleBtn:focus-visible,
+[data-bs-theme="light"] .site-navbar.navbar-hero-transparent #themeToggleBtn:hover,
+[data-bs-theme="light"] .site-navbar.navbar-hero-transparent #themeToggleBtn:focus-visible,
+[data-bs-theme="light"] .site-navbar.navbar-hero-solid #searchToggleBtn:hover,
+[data-bs-theme="light"] .site-navbar.navbar-hero-solid #searchToggleBtn:focus-visible,
+[data-bs-theme="light"] .site-navbar.navbar-hero-transparent #searchToggleBtn:hover,
+[data-bs-theme="light"] .site-navbar.navbar-hero-transparent #searchToggleBtn:focus-visible {
+  color: #ffffff !important;
+  background-color: #17324d !important;
+  border-color: #17324d !important;
+}
+
+[data-bs-theme="light"] .site-navbar.navbar-hero-solid #themeToggleBtn:hover i,
+[data-bs-theme="light"] .site-navbar.navbar-hero-solid #themeToggleBtn:focus-visible i,
+[data-bs-theme="light"] .site-navbar.navbar-hero-transparent #themeToggleBtn:hover i,
+[data-bs-theme="light"] .site-navbar.navbar-hero-transparent #themeToggleBtn:focus-visible i,
+[data-bs-theme="light"] .site-navbar.navbar-hero-solid #searchToggleBtn:hover i,
+[data-bs-theme="light"] .site-navbar.navbar-hero-solid #searchToggleBtn:focus-visible i,
+[data-bs-theme="light"] .site-navbar.navbar-hero-transparent #searchToggleBtn:hover i,
+[data-bs-theme="light"] .site-navbar.navbar-hero-transparent #searchToggleBtn:focus-visible i {
+  color: inherit !important;
 }
 
 .mega-menu-panel .stagger-item {
