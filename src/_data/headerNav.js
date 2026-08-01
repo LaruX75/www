@@ -81,7 +81,7 @@ module.exports = {
           key: "topic_profiles",
           title: "Teemaprofiilit",
           url: "/teemat/",
-          parent: "home",
+          parent: "writings",
           order: 57
         }
       }
