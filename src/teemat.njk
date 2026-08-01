@@ -4,7 +4,7 @@
   eleventyComputed: {
     title: data => `${data.topic?.title || "Teemaprofiili"}`,
     description: data => data.topic?.description || data.topic?.lead || "Jari Larun sivuston teemaprofiili.",
-    robots: () => "index, follow, noai, noimageai"
+    robots: () => "index, follow"
   },
   pagination: {
     data: "seoTopics",

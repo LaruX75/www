@@ -9,18 +9,31 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
-# Google AI training opt-out while keeping search indexing
+# AI answer/search visibility. Google currently uses Google-Extended for Gemini
+# apps and grounding as well as future Gemini model training controls.
 User-agent: Google-Extended
-Disallow: /
+Allow: /
 
-# Common AI crawlers
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+# Training and broad dataset crawlers remain blocked.
 User-agent: GPTBot
 Disallow: /
 
 User-agent: ClaudeBot
-Disallow: /
-
-User-agent: PerplexityBot
 Disallow: /
 
 User-agent: CCBot
