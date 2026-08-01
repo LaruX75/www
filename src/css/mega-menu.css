@@ -251,22 +251,6 @@ html:not([data-bs-theme="dark"]) .site-navbar #searchToggleBtn:focus-visible {
   align-items: start;
 }
 
-.two-cols {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-}
-
-.two-cols>section:nth-child(n+2) {
-  border-left: 1px solid var(--menu-divider);
-  padding-left: 1.1rem;
-}
-
-.single-col {
-  display: grid;
-  grid-template-columns: 1fr;
-}
-
 .mega-wrap h5 {
   font-family: var(--bs-font-family-heading);
   font-size: 1.1rem;
@@ -669,10 +653,6 @@ html:not([data-bs-theme="dark"]):not(.a11y-high-contrast) .mega-menu-panel a i {
   text-transform: uppercase;
 }
 
-.mobile-nav-accordion .accordion-button {
-  font-weight: 700;
-}
-
 .mobile-nav-link {
   display: flex;
   align-items: center;
@@ -753,10 +733,6 @@ html:not([data-bs-theme="dark"]):not(.a11y-high-contrast) .mega-menu-panel a i {
 
 [data-bs-theme="dark"] .contact-mega-form .form-control::placeholder {
   color: rgba(226, 232, 240, 0.66);
-}
-
-.writings-mega-grid section {
-  min-width: 0;
 }
 
 .writings-mega-layout {
@@ -1173,12 +1149,10 @@ html:not([data-bs-theme="dark"]):not(.a11y-high-contrast) .mega-menu-panel a i {
   .grid-8-4,
   .three-cols,
   .four-cols,
-  .two-cols,
   .writings-mega-layout {
     grid-template-columns: 1fr;
   }
 
-  .two-cols>section:nth-child(n+2),
   .writings-main-col,
   .writings-side-col {
     border-left: none;

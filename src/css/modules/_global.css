@@ -33,7 +33,7 @@
 }
 
 .bss-scope :where(
-  a:not(.btn):not(.nav-link):not(.navbar-brand):not(.dropdown-item):not(.badge):not(.page-link):not(.stretched-link):not(.text-decoration-none):not(.icon-only-link):not(.home-path-card):not(.home-overview-item):not(.home-content-row):not(.home-ticker-item):not(.home-ticker-title):not(.home-hero-kpi-link)
+  a:not(.btn):not(.nav-link):not(.navbar-brand):not(.dropdown-item):not(.badge):not(.page-link):not(.stretched-link):not(.text-decoration-none):not(.icon-only-link):not(.home-path-card):not(.home-overview-item):not(.home-ticker-item):not(.home-ticker-title):not(.home-hero-kpi-link)
 ) {
   color: var(--site-content-link-color);
   text-decoration-line: underline;
@@ -45,7 +45,7 @@
 }
 
 .bss-scope :where(
-  a:not(.btn):not(.nav-link):not(.navbar-brand):not(.dropdown-item):not(.badge):not(.page-link):not(.stretched-link):not(.text-decoration-none):not(.icon-only-link):not(.home-path-card):not(.home-overview-item):not(.home-content-row):not(.home-ticker-item):not(.home-ticker-title):not(.home-hero-kpi-link):is(:hover, :focus-visible)
+  a:not(.btn):not(.nav-link):not(.navbar-brand):not(.dropdown-item):not(.badge):not(.page-link):not(.stretched-link):not(.text-decoration-none):not(.icon-only-link):not(.home-path-card):not(.home-overview-item):not(.home-ticker-item):not(.home-ticker-title):not(.home-hero-kpi-link):is(:hover, :focus-visible)
 ) {
   color: var(--site-content-link-hover-color);
   text-decoration-color: var(--site-content-link-underline-hover-color);
@@ -329,20 +329,6 @@
     display: none;
   }
 
-  .home-feature-section .ticker-item {
-    width: 280px;
-    min-height: 350px;
-    max-height: none;
-  }
-
-  .home-feature-image-col {
-    display: block;
-    height: 220px;
-  }
-
-  .home-feature-image-col > div {
-    height: 220px !important;
-  }
 }
 
 /* ============================================ */
@@ -363,8 +349,7 @@ html:not([data-bs-theme="dark"]):not(.a11y-high-contrast):not([data-a11y-bg]) .t
 
 /* Keep ticker card headings visually consistent in light mode */
 html:not([data-bs-theme="dark"]) .ticker-item h3,
-html:not([data-bs-theme="dark"]) .ticker-item h3 a,
-html:not([data-bs-theme="dark"]) .ticker-item .ticker-title-link {
+html:not([data-bs-theme="dark"]) .ticker-item h3 a {
   color: var(--bs-body-color) !important;
 }
 

@@ -85,8 +85,6 @@
         'main > section',
         'main .card',
         'main .home-recent-card',
-        'main .presentation-type-panel',
-        'main .presentation-latest-card',
         'main .pol-current-card',
         'main .pol-theme-card',
         'main .about-role-card',

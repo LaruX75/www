@@ -98,27 +98,19 @@ html.a11y-high-contrast .badge {
 html.a11y-high-contrast .site-navbar,
 html.a11y-high-contrast .site-navbar.navbar-hero-transparent,
 html.a11y-high-contrast .site-navbar.navbar-hero-solid,
-html.a11y-high-contrast .navbar .mega-dropdown .dropdown-menu,
-html.a11y-high-contrast .mega-menu-header,
-html.a11y-high-contrast .mega-menu-header-secondary,
-html.a11y-high-contrast .mega-menu-body {
+html.a11y-high-contrast .navbar .mega-dropdown .dropdown-menu {
     background: #000000 !important;
     color: #ffffff !important;
     border-color: #ffffff !important;
 }
 
 html.a11y-high-contrast .site-navbar .navbar-brand,
-html.a11y-high-contrast .site-navbar .nav-link,
-html.a11y-high-contrast .mega-menu-header h5,
-html.a11y-high-contrast .mega-menu-header p,
-html.a11y-high-contrast .mega-menu-item h6 a,
-html.a11y-high-contrast .mega-menu-item p {
+html.a11y-high-contrast .site-navbar .nav-link {
     color: #ffffff !important;
 }
 
 /* High contrast: ticker / skrolleri */
-html.a11y-high-contrast .ticker-item,
-html.a11y-high-contrast .content-card-list {
+html.a11y-high-contrast .ticker-item {
     background: #000000 !important;
     color: #ffffff !important;
     border: 1px solid #ffffff !important;
@@ -344,17 +336,6 @@ html[data-a11y-bg]:not([data-a11y-bg=""]) .ticker-item a {
 html[data-a11y-bg]:not([data-a11y-bg=""]) .list-group-item {
     background-color: #ffffff !important;
     border-color: rgba(0, 0, 0, 0.1) !important;
-    color: var(--bs-body-color) !important;
-}
-
-html[data-a11y-bg]:not([data-a11y-bg=""]) .bg-adaptive-dark-blue {
-    background-color: var(--bs-secondary-bg) !important;
-}
-
-html[data-a11y-bg]:not([data-a11y-bg=""]) .bg-adaptive-dark-blue h2,
-html[data-a11y-bg]:not([data-a11y-bg=""]) .bg-adaptive-dark-blue h3,
-html[data-a11y-bg]:not([data-a11y-bg=""]) .bg-adaptive-dark-blue h4,
-html[data-a11y-bg]:not([data-a11y-bg=""]) .bg-adaptive-dark-blue p {
     color: var(--bs-body-color) !important;
 }
 
@@ -793,10 +774,10 @@ html[data-a11y-bg]:not([data-a11y-bg=""]) :where(
 html[data-a11y-bg]:not([data-a11y-bg=""]) :where(
     .card, [class*="-card"], [class*="Card"],
     .list-group-item, .accordion-item, .accordion-button,
-    .dropdown-menu, .mega-dropdown .dropdown-menu, .mega-menu-header, .mega-menu-header-secondary, .mega-menu-body,
+    .dropdown-menu, .mega-dropdown .dropdown-menu,
     .modal-content, .offcanvas, .toast, .popover, .alert,
     .table, .table-responsive, .pub-table, .content-context-card,
-    .ticker-item, .content-card-list, .bg-light, .bg-white, .bg-body-tertiary, .bg-adaptive-dark-blue,
+    .ticker-item, .bg-light, .bg-white, .bg-body-tertiary,
     .a11y-panel
 ) {
     background: var(--a11y-surface) !important;
@@ -907,10 +888,10 @@ html.a11y-high-contrast :where(
     [class*="-panel"], [class*="Panel"],
     [class*="-item"], [class*="Item"],
     .list-group-item, .accordion-item, .accordion-button,
-    .dropdown-menu, .mega-dropdown .dropdown-menu, .mega-menu-header, .mega-menu-header-secondary, .mega-menu-body,
+    .dropdown-menu, .mega-dropdown .dropdown-menu,
     .modal-content, .offcanvas, .toast, .popover, .alert,
     .table, .table-responsive, .pub-table, .content-context-card,
-    .ticker-item, .content-card-list, .bg-light, .bg-white, .bg-body-tertiary, .bg-adaptive-dark-blue,
+    .ticker-item, .bg-light, .bg-white, .bg-body-tertiary,
     .a11y-panel, .a11y-panel-header
 ) {
     background: var(--a11y-hc-bg) !important;
@@ -1013,10 +994,10 @@ html.a11y-high-contrast[data-a11y-bg]:not([data-a11y-bg=""]) :where(
     [class*="-panel"], [class*="Panel"],
     [class*="-item"], [class*="Item"],
     .list-group-item, .accordion-item, .accordion-button,
-    .dropdown-menu, .mega-dropdown .dropdown-menu, .mega-menu-header, .mega-menu-header-secondary, .mega-menu-body,
+    .dropdown-menu, .mega-dropdown .dropdown-menu,
     .modal-content, .offcanvas, .toast, .popover, .alert,
     .table, .table-responsive, .pub-table, .content-context-card,
-    .ticker-item, .content-card-list, .bg-light, .bg-white, .bg-body-tertiary, .bg-adaptive-dark-blue,
+    .ticker-item, .bg-light, .bg-white, .bg-body-tertiary,
     .a11y-panel, .a11y-panel-header
 ) {
     background: var(--a11y-hc-bg) !important;
@@ -1038,8 +1019,7 @@ html.a11y-high-contrast[data-bs-theme] .table,
 html.a11y-high-contrast[data-bs-theme] .table-responsive,
 html.a11y-high-contrast[data-bs-theme] .pub-table,
 html.a11y-high-contrast[data-bs-theme] .content-context-card,
-html.a11y-high-contrast[data-bs-theme] .ticker-item,
-html.a11y-high-contrast[data-bs-theme] .content-card-list {
+html.a11y-high-contrast[data-bs-theme] .ticker-item {
     background: var(--a11y-hc-bg) !important;
     background-image: none !important;
     border-color: var(--a11y-hc-ink) !important;

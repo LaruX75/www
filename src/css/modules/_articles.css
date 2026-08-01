@@ -219,16 +219,6 @@ html:not([data-bs-theme="dark"]) .subpage-hero-image {
   color: var(--bs-secondary-color);
 }
 
-/* ===== WRITING POST: speeches, initiatives, opinions and statements ===== */
-.writing-post-kicker {
-  margin-bottom: 0.55rem;
-  color: var(--bs-secondary-color);
-  font-size: 0.78rem;
-  font-weight: 850;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
 .writing-post-meta {
   display: flex;
   flex-wrap: wrap;
@@ -403,8 +393,7 @@ html:not([data-bs-theme="dark"]) .subpage-hero-image {
   box-shadow: 0 1rem 2rem rgba(19, 43, 70, 0.11);
 }
 
-.site-kpi-number,
-.research-kpi-number {
+.site-kpi-number {
   display: block;
   font-family: var(--bs-body-font-family), var(--bs-font-family), sans-serif;
   font-size: clamp(2.25rem, 3.8vw, 3.1rem);
@@ -414,8 +403,7 @@ html:not([data-bs-theme="dark"]) .subpage-hero-image {
   color: var(--bs-emphasis-color);
 }
 
-.site-kpi-label,
-.research-kpi-label {
+.site-kpi-label {
   display: block;
   margin-top: 0.45rem;
   font-family: var(--bs-body-font-family), var(--bs-font-family), sans-serif;
@@ -429,7 +417,6 @@ html:not([data-bs-theme="dark"]) .subpage-hero-image {
 
 .site-kpi-card--aloitteet { --site-kpi-accent: #b85f19; border-left: 4px solid var(--site-kpi-accent) !important; }
 .site-kpi-card--blogi { --site-kpi-accent: #6a4fb3; border-left: 4px solid var(--site-kpi-accent) !important; }
-.site-kpi-card--esitykset { --site-kpi-accent: #0b6f92; border-left: 4px solid var(--site-kpi-accent) !important; }
 .site-kpi-card--julkaisut { --site-kpi-accent: #247a4b; border-left: 4px solid var(--site-kpi-accent) !important; }
 .site-kpi-card--kolumnit { --site-kpi-accent: #14776f; border-left: 4px solid var(--site-kpi-accent) !important; }
 .site-kpi-card--lausunnot { --site-kpi-accent: #56616e; border-left: 4px solid var(--site-kpi-accent) !important; }
@@ -453,14 +440,6 @@ html:not([data-bs-theme="dark"]) .subpage-hero-image {
   border: 1px solid color-mix(in srgb, var(--bs-link-color) 14%, var(--bs-border-color)) !important;
   background:
     linear-gradient(180deg, color-mix(in srgb, var(--bs-link-color) 4%, #ffffff) 0%, #ffffff 100%) !important;
-}
-
-.research-kpi-number {
-  color: var(--bs-body-color);
-}
-
-.research-kpi-label {
-  letter-spacing: 0.01em;
 }
 
 .research-theme-card {
@@ -2596,11 +2575,6 @@ html:not([data-bs-theme="dark"]) .pub-table th {
   border-color: rgba(255,255,255,0.07) !important;
 }
 
-/* Tekijä vuosi-solun alla mobiilissa — oletuksena piilotettu */
-.pub-table .col-year-author {
-  display: none;
-}
-
 /* Sarakeleveydet — hallitaan CSS:ssä eikä inline-tyyleissä */
 .pub-table .col-year  { width: 60px; }
 .pub-table .col-type  { width: 120px; }
@@ -2637,18 +2611,6 @@ html:not([data-bs-theme="dark"]) .pub-table th {
     white-space: normal;
   }
   .pub-table th.col-year { font-size: 0.72rem; }
-
-  /* Näytä tekijä vuosiluvun alla */
-  .pub-table .col-year-author {
-    display: block;
-    font-family: var(--bs-font-sans-serif);
-    font-size: 0.65rem;
-    font-weight: 400;
-    color: var(--bs-secondary-color);
-    margin-top: 3px;
-    white-space: normal;
-    word-break: break-word;
-  }
 
   /* Piilotetaan "Vie viite" -nappi — tilaa otsikkosolun tekstille */
   .pub-table .thesis-bib-btn { display: none !important; }

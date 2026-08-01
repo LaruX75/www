@@ -20,13 +20,6 @@
   gap: 0.25rem;
 }
 
-.table-header-filter-input {
-  width: 100%;
-  min-width: 7rem;
-  text-transform: none;
-  letter-spacing: normal;
-}
-
 .table-header-sort-select {
   width: 100%;
   min-width: 9rem;
@@ -83,15 +76,6 @@ html[data-a11y-bg]:not([data-a11y-bg=""]) .table-header-sort-button[aria-pressed
   color: #ffffff !important;
   border-color: #111827 !important;
   background-color: #111827 !important;
-}
-
-.header-filter-hidden {
-  display: none !important;
-}
-
-/* Zotero citation text in dark mode */
-[data-bs-theme="dark"] .zotero-citation {
-  color: rgba(255, 255, 255, 0.85);
 }
 
 /* Table styling for dark mode */
@@ -227,10 +211,4 @@ html[data-a11y-bg]:not([data-a11y-bg=""]) .table-header-sort-button[aria-pressed
 
 .thesis-mobile-list .thesis-abstract-snippet {
   display: none;
-}
-
-/* Content wrapper for non-homepage pages */
-[data-bs-theme="dark"] .content-card-list {
-  background-color: #243347 !important;
-  border-color: rgba(255, 255, 255, 0.08) !important;
 }
