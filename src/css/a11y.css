@@ -396,7 +396,7 @@ html.a11y-reading-guide #a11yReadingGuideLine {
     padding: 0.58rem 0.9rem;
     border: 1px solid color-mix(in srgb, var(--bs-primary) 72%, #ffffff 28%);
     border-radius: 999px;
-    background: var(--bs-primary);
+    background-color: var(--bs-primary);
     color: #ffffff;
     box-shadow: 0 0.7rem 1.8rem rgba(0, 0, 0, 0.22);
     font-weight: 800;
@@ -409,7 +409,8 @@ html.a11y-reading-guide #a11yReadingGuideLine {
 
 .a11y-trigger:hover {
     transform: translateY(-1px);
-    background: color-mix(in srgb, var(--bs-primary) 82%, #000 18%);
+    background-color: #111827;
+    color: #ffffff;
 }
 
 .a11y-trigger:focus-visible,
@@ -620,13 +621,20 @@ html.a11y-reading-guide #a11yReadingGuideLine {
 }
 
 [data-bs-theme="dark"] .a11y-trigger {
-    border-color: rgba(255, 255, 255, 0.24);
-    background: color-mix(in srgb, var(--bs-primary) 70%, #ffffff 30%);
-    color: #06121f;
+    border-color: #b8dcff;
+    background-color: #b8dcff;
+    color: #102035;
 }
 
 [data-bs-theme="dark"] .a11y-trigger:hover {
-    background: color-mix(in srgb, var(--bs-primary) 58%, #ffffff 42%);
+    background-color: #f8fbff;
+    border-color: #f8fbff;
+    color: #102035;
+}
+
+[data-bs-theme="dark"] .a11y-trigger svg,
+[data-bs-theme="dark"] .a11y-trigger span {
+    color: inherit;
 }
 
 [data-bs-theme="dark"] .a11y-panel {
@@ -842,6 +850,20 @@ html[data-a11y-bg]:not([data-a11y-bg=""]) :where(.badge, [class*="badge"]) {
 html[data-a11y-bg]:not([data-a11y-bg=""]) :focus-visible {
     outline: 3px solid var(--a11y-focus) !important;
     outline-offset: 3px !important;
+}
+
+html[data-a11y-bg]:not([data-a11y-bg=""]) .a11y-trigger,
+html[data-a11y-bg]:not([data-a11y-bg=""]) .a11y-trigger:hover,
+html[data-a11y-bg]:not([data-a11y-bg=""]) .a11y-trigger:focus-visible {
+    background-color: #111827 !important;
+    background-image: none !important;
+    border-color: #111827 !important;
+    color: #ffffff !important;
+}
+
+html[data-a11y-bg]:not([data-a11y-bg=""]) .a11y-trigger svg,
+html[data-a11y-bg]:not([data-a11y-bg=""]) .a11y-trigger span {
+    color: inherit !important;
 }
 
 html.a11y-high-contrast {

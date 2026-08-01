@@ -652,14 +652,41 @@
           openSearch('', e.currentTarget);
         });
       });
+      const runSearchForm = (form, sourceEvent = null) => {
+        if (!(form instanceof HTMLFormElement)) return;
+        const formData = new FormData(form);
+        const query = String(formData.get('q') || '').trim();
+        const action = form.getAttribute('action');
+
+        if (action) {
+          if (sourceEvent) sourceEvent.preventDefault();
+          const url = new URL(action, window.location.origin);
+          if (query) url.searchParams.set('q', query);
+          window.location.href = url.toString();
+          return;
+        }
+
+        if (sourceEvent) sourceEvent.preventDefault();
+        const fallbackTrigger = searchToggles.find((toggle) => isVisibleElement(toggle)) || null;
+        closeContainingOffcanvas(form);
+        openSearch(query, fallbackTrigger);
+      };
+
       searchForms.forEach((form) => {
         form.addEventListener('submit', (e) => {
-          e.preventDefault();
-          const formData = new FormData(form);
-          const query = String(formData.get('q') || '').trim();
-          const fallbackTrigger = searchToggles.find((toggle) => isVisibleElement(toggle)) || null;
-          closeContainingOffcanvas(form);
-          openSearch(query, fallbackTrigger);
+          runSearchForm(form, e);
+        });
+
+        form.querySelectorAll('input[type="search"], input[name="q"]').forEach((input) => {
+          input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') runSearchForm(form, e);
+          });
+        });
+
+        form.querySelectorAll('button[type="submit"]').forEach((button) => {
+          button.addEventListener('click', (e) => {
+            runSearchForm(form, e);
+          });
         });
       });
       if (searchClose) searchClose.addEventListener('click', () => closeSearch());

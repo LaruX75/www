@@ -46,22 +46,43 @@
   height: 1.9rem;
   place-items: center;
   padding: 0;
-  border: 0;
+  border: 1px solid transparent;
   border-radius: 0.25rem;
-  background: transparent;
+  background-color: transparent;
   color: var(--bs-secondary-color);
   line-height: 1;
 }
 
 .table-header-sort-button:hover,
-.table-header-sort-button.active {
-  color: var(--bs-emphasis-color);
-  background: var(--bs-tertiary-bg);
+.table-header-sort-button:focus-visible,
+.table-header-sort-button.active,
+.table-header-sort-button[aria-pressed="true"] {
+  color: #ffffff;
+  border-color: #17324d;
+  background-color: #17324d;
 }
 
 .table-header-sort-button:focus-visible {
   outline: 2px solid var(--bs-focus-ring-color);
   outline-offset: 1px;
+}
+
+[data-bs-theme="dark"]:not([data-a11y-bg]) .table-header-sort-button:hover,
+[data-bs-theme="dark"]:not([data-a11y-bg]) .table-header-sort-button:focus-visible,
+[data-bs-theme="dark"]:not([data-a11y-bg]) .table-header-sort-button.active,
+[data-bs-theme="dark"]:not([data-a11y-bg]) .table-header-sort-button[aria-pressed="true"] {
+  color: #102035;
+  border-color: #b8dcff;
+  background-color: #b8dcff;
+}
+
+html[data-a11y-bg]:not([data-a11y-bg=""]) .table-header-sort-button:hover,
+html[data-a11y-bg]:not([data-a11y-bg=""]) .table-header-sort-button:focus-visible,
+html[data-a11y-bg]:not([data-a11y-bg=""]) .table-header-sort-button.active,
+html[data-a11y-bg]:not([data-a11y-bg=""]) .table-header-sort-button[aria-pressed="true"] {
+  color: #ffffff !important;
+  border-color: #111827 !important;
+  background-color: #111827 !important;
 }
 
 .header-filter-hidden {
@@ -106,9 +127,16 @@
 [data-bs-theme="dark"] .badge.bg-danger,
 [data-bs-theme="dark"] .badge.bg-dark,
 [data-bs-theme="dark"] .badge.text-bg-secondary {
-  background-color: rgba(255, 255, 255, 0.15) !important;
+  background-color: rgba(184, 220, 255, 0.08) !important;
   color: #ffffff !important;
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  border: 1px solid rgba(184, 220, 255, 0.76) !important;
+}
+
+[data-bs-theme="dark"] .badge.text-bg-light,
+[data-bs-theme="dark"] .badge.bg-light {
+  background-color: rgba(184, 220, 255, 0.08) !important;
+  color: #ffffff !important;
+  border-color: rgba(184, 220, 255, 0.76) !important;
 }
 
 /* Pagination hover contrast — Bootstrap default fails WCAG 2.1 AA (4.5:1) */

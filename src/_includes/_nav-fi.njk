@@ -408,7 +408,7 @@
 
         <li class="nav-item ms-md-auto mt-2 mt-md-0">
           <div class="d-flex align-items-center gap-2">
-            <form class="site-nav-search d-none d-xl-flex" role="search" data-search-form>
+            <form class="site-nav-search d-none d-xl-flex" role="search" action="/haku/" method="get" data-search-form>
               <label for="siteNavSearchInputFi" class="visually-hidden">Hae sivustolta</label>
               <input id="siteNavSearchInputFi" type="search" class="form-control form-control-sm site-nav-search-input" placeholder="Hae sivustolta..." autocomplete="off" name="q" aria-label="Hae sivustolta">
               <button class="btn btn-sm site-nav-search-btn" type="submit" aria-label="Hae">
@@ -444,7 +444,7 @@
   <div class="offcanvas-body mobile-nav-panel-body">
     <section class="mobile-nav-hero" aria-label="Sivuston päävalikko">
       <p class="mb-2">Etsi henkilökuva, työ, politiikka tai julkaistut sisällöt ilman pitkää linkkilistaa.</p>
-      <form class="mobile-nav-search" data-search-form>
+      <form class="mobile-nav-search" action="/haku/" method="get" data-search-form>
         <label for="mobileNavFiSearchInput" class="visually-hidden">Hae sivustolta</label>
         <input id="mobileNavFiSearchInput" type="search" class="form-control" placeholder="Hae..." autocomplete="off" name="q">
         <button class="btn btn-accent" type="submit" aria-label="Avaa haku">

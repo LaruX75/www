@@ -2779,9 +2779,9 @@ html:not([data-bs-theme="dark"]) .badge.text-bg-light {
 }
 
 [data-bs-theme="dark"] .badge.text-bg-light {
-  background-color: #1e3a5f !important; /* tumma sininen */
-  color: #bfdbfe !important;            /* blue-200, kontrasti ~8:1 */
-  border-color: #3b82f6 !important;     /* blue-500 */
+  background-color: rgba(184, 220, 255, 0.08) !important;
+  color: #eaf3ff !important;
+  border-color: rgba(184, 220, 255, 0.76) !important;
 }
 
 /* --- Card utilities --- */

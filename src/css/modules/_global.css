@@ -1183,6 +1183,125 @@ html[data-bs-theme="dark"]:not([data-a11y-bg]) .list-group-item .text-muted {
   border: 1px solid var(--site-border-strong) !important;
 }
 
+/* Shared dark-theme contrast layer for third-party and chip-like UI.
+   Keep this central: these patterns appear on search, archives, badges and cards. */
+html[data-bs-theme="dark"]:not([data-a11y-bg]) {
+  --site-chip-text: #eaf3ff;
+  --site-chip-muted-text: rgba(234, 243, 255, 0.84);
+  --site-chip-bg: rgba(184, 220, 255, 0.08);
+  --site-chip-border: rgba(184, 220, 255, 0.76);
+  --site-chip-active-bg: var(--site-accent);
+  --site-chip-active-text: #17222d;
+  --pagefind-ui-primary: var(--site-accent);
+  --pagefind-ui-text: #edf6ff;
+  --pagefind-ui-background: rgba(184, 220, 255, 0.12);
+  --pagefind-ui-border: rgba(184, 220, 255, 0.78);
+  --pagefind-ui-tag: rgba(255, 255, 255, 0.1);
+}
+
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .text-success {
+  color: #7ee2ba !important;
+}
+
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-ui,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-page-ui,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .search-overlay-inner {
+  --pagefind-ui-primary: var(--site-accent);
+  --pagefind-ui-text: #edf6ff;
+  --pagefind-ui-background: rgba(184, 220, 255, 0.12);
+  --pagefind-ui-border: rgba(184, 220, 255, 0.78);
+  --pagefind-ui-tag: rgba(255, 255, 255, 0.1);
+  --pf-text: #edf6ff;
+  --pf-text-muted: rgba(237, 246, 255, 0.82);
+  --pf-text-secondary: rgba(237, 246, 255, 0.9);
+  --pf-background: var(--site-surface-section);
+  --pf-border: rgba(184, 220, 255, 0.78);
+  --pf-hover: rgba(255, 255, 255, 0.08);
+}
+
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-ui .pagefind-ui__search-input,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-page-ui .pagefind-ui__search-input {
+  background-color: rgba(184, 220, 255, 0.12) !important;
+  border-color: var(--pagefind-ui-border) !important;
+}
+
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-ui .pagefind-ui__search-input,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-page-ui .pagefind-ui__search-input,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-ui .pagefind-ui__search-clear,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-page-ui .pagefind-ui__search-clear,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-ui .pagefind-ui__button,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-page-ui .pagefind-ui__button,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-ui .pagefind-ui__filter-label,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-page-ui .pagefind-ui__filter-label,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-ui .pagefind-ui__filter-name,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-page-ui .pagefind-ui__filter-name,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-ui .pagefind-ui__filter-panel-label,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-page-ui .pagefind-ui__filter-panel-label,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-ui .pagefind-ui__filter-group-label,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-page-ui .pagefind-ui__filter-group-label,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-ui .pagefind-ui__message,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-page-ui .pagefind-ui__message,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-ui .pagefind-ui__result-excerpt {
+  color: var(--pagefind-ui-text) !important;
+}
+
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-ui .pagefind-ui__message,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-page-ui .pagefind-ui__message,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-ui .pagefind-ui__result-excerpt,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-page-ui .pagefind-ui__result-excerpt,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-ui .pagefind-ui__filter-label {
+  color: rgba(237, 246, 255, 0.84) !important;
+}
+
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-ui .pagefind-ui__result,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-page-ui .pagefind-ui__result {
+  border-color: rgba(255, 255, 255, 0.22) !important;
+}
+
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-ui .pagefind-ui__result-link,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-page-ui .pagefind-ui__result-link,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-ui .pagefind-ui__result-title,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-page-ui .pagefind-ui__result-title,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-ui .pagefind-ui__result-title a,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-page-ui .pagefind-ui__result-title a {
+  color: #b8dcff !important;
+}
+
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-ui mark,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-page-ui mark {
+  background: rgba(255, 210, 0, 0.42) !important;
+  color: #fff8d6 !important;
+}
+
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-ui .pagefind-ui__search-clear,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .site-search-page-ui .pagefind-ui__search-clear {
+  background: rgba(184, 220, 255, 0.12) !important;
+  border-color: var(--pagefind-ui-border) !important;
+}
+
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .badge:not([class*="text-bg-"]):not(.bg-primary):not(.bg-secondary):not(.bg-success):not(.bg-info):not(.bg-warning):not(.bg-danger):not(.bg-light):not(.bg-dark),
+html[data-bs-theme="dark"]:not([data-a11y-bg]) [class*="-badge"]:not(.footer-wcag-badge),
+html[data-bs-theme="dark"]:not([data-a11y-bg]) [class*="-chip"],
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .presentation-archive-filter,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .presentation-archive-card-route {
+  background: var(--site-chip-bg) !important;
+  border-color: var(--site-chip-border) !important;
+  color: var(--site-chip-text) !important;
+}
+
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .presentation-archive-filter:hover,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .presentation-archive-filter:focus-visible,
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .presentation-archive-filter.is-active {
+  background: var(--site-chip-active-bg) !important;
+  border-color: var(--site-chip-active-bg) !important;
+  color: var(--site-chip-active-text) !important;
+}
+
+html[data-bs-theme="dark"]:not([data-a11y-bg]) .writing-role-badge--expert {
+  --role-badge-color: #8ff0c2;
+  color: #8ff0c2 !important;
+}
+
 /* General text-muted */
 [data-bs-theme="dark"] .text-muted {
   color: var(--bs-secondary-color) !important;
@@ -1232,8 +1351,7 @@ html[data-bs-theme="dark"]:not([data-a11y-bg]) .list-group-item .text-muted {
 }
 
 /* Inline site search field in the primary navigation (desktop only).
-   Submitting the form opens the existing #searchOverlay Pagefind modal
-   with the query prefilled — handled by [data-search-form] JS. */
+   Submitting the form opens the full search page with the query prefilled. */
 .site-nav-search {
   position: relative;
   align-items: center;
@@ -1263,15 +1381,15 @@ html[data-bs-theme="dark"]:not([data-a11y-bg]) .list-group-item .text-muted {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 0 !important;
-  background: transparent !important;
-  color: var(--bs-secondary-color) !important;
+  border: 1px solid rgba(var(--bs-body-color-rgb), 0.12) !important;
+  background: rgba(var(--bs-body-bg-rgb), 0.72) !important;
+  color: var(--bs-body-color) !important;
 }
 
 .site-nav-search-btn:hover,
 .site-nav-search-btn:focus-visible {
   color: var(--bs-body-color) !important;
-  background: transparent !important;
+  background: var(--bs-body-bg) !important;
 }
 
 /* Filled primary CTA in hero/content-detail contexts.
