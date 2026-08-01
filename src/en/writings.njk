@@ -7,6 +7,25 @@ translationKey: writings_index
 lang: en
 schemaType: CollectionPage
 ---
+{% set statementItems = [] %}
+{% for item in (collections.publications or []) %}
+  {% if item.data.type == "lausunto" %}
+    {% set _ = (statementItems.push(item), null) %}
+  {% endif %}
+{% endfor %}
+{% set publicSpeechItems = [] %}
+{% for item in (collections.pub_puhe or []) %}
+  {% set speechContext = item.data.speechContext or "" %}
+  {% set forums = item.data.forum or [] %}
+  {% if speechContext %}
+    {% set isCouncilSpeech = speechContext == "valtuusto" or speechContext == "kyselytunti" %}
+  {% else %}
+    {% set isCouncilSpeech = item.data.event == "Oulun kaupunginvaltuusto" or forums.indexOf("Kaupunginvaltuusto") != -1 %}
+  {% endif %}
+  {% if not isCouncilSpeech %}
+    {% set _ = (publicSpeechItems.push(item), null) %}
+  {% endif %}
+{% endfor %}
 {% set uniqueMaterialKeys = [] %}
 {% for row in (canva.tableRows or []) %}
   {% set key = (row.sourceUrl or row.url or row.pageUrl or row.title or ('canva-' ~ loop.index)) %}
@@ -30,6 +49,8 @@ schemaType: CollectionPage
 {% set politicalOpinionCount = (collections.pub_mielipide_political or []) | length %}
 {% set expertOpinionCount = (collections.pub_mielipide_expert or []) | length %}
 {% set hybridOpinionCount = (collections.pub_mielipide_hybrid or []) | length %}
+{% set statementCount = statementItems | length %}
+{% set publicSpeechCount = publicSpeechItems | length %}
 
 <section class="kynasta-hero py-4">
   <div class="site-shell">
@@ -53,6 +74,12 @@ schemaType: CollectionPage
           </a>
           <a class="nav-link" href="#puheet">
             Speeches <span class="nav-count">{{ collections.pub_puhe.length }}</span>
+          </a>
+          <a class="nav-link" href="#lausunnot">
+            Statements <span class="nav-count">{{ statementCount }}</span>
+          </a>
+          <a class="nav-link" href="#julkiset-puheet">
+            Public speeches <span class="nav-count">{{ publicSpeechCount }}</span>
           </a>
           <a class="nav-link" href="#blogi">
             Blog <span class="nav-count">{{ collections.blog.length }}</span>
@@ -81,6 +108,66 @@ schemaType: CollectionPage
         <div class="d-flex flex-wrap gap-2">
           <a href="/en/presentations/" class="btn btn-outline-primary btn-sm rounded-pill">Open presentations</a>
           <a href="https://www.finna.fi/Search/Results?lookfor=Jari+Laru&type=Author&filter[]=format%3A%220%2FLearningMaterial%2F%22" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary btn-sm rounded-pill">AOE / Finna <i class="bi bi-arrow-up-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<span id="statements"></span>
+<section id="lausunnot">
+  <div class="site-shell">
+    <div class="card shadow-sm">
+      <div class="card-header bg-transparent d-flex align-items-center justify-content-between">
+        <div>
+          <h2 class="h4 mb-1"><i class="bi bi-file-earmark-text-fill me-2"></i>Statements</h2>
+          <p class="small text-muted mb-0">Expert statements submitted to public consultation and preparation processes.</p>
+        </div>
+        <span class="badge text-bg-secondary">{{ statementCount }}</span>
+      </div>
+      <div class="card-body p-0">
+        <div class="px-3 pt-3 pb-0">
+          <p class="small text-muted mb-3">This English section provides navigation metadata and summaries. The linked original statement texts are mainly in Finnish.</p>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0 pub-table" data-no-header-filters>
+            <thead>
+              <tr>
+                <th class="text-center" style="width:140px">Date</th>
+                <th style="min-width:220px">Title</th>
+                <th style="min-width:240px">Summary / channel</th>
+                <th style="min-width:180px">Reference</th>
+                <th style="width:90px" class="text-center">Read</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for pub in statementItems %}
+                {% set href = pub.data.url or pub.url %}
+                <tr>
+                  <td class="col-date text-center small text-muted font-monospace">{{ pub.date | dateFormat }}</td>
+                  <td class="col-title fw-medium">
+                    <a href="{{ href }}" class="text-decoration-none"{% if pub.data.url %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ pub.data.title }}</a>
+                  </td>
+                  <td class="small text-muted">
+                    {{ pub.data.description or "Expert statement." }}
+                    {% if pub.data.statementAuthority %}
+                      <br><span class="badge text-bg-light border text-dark mt-1">{{ pub.data.statementAuthority }}</span>
+                    {% endif %}
+                  </td>
+                  <td class="small text-muted">
+                    {{ pub.data.publication or pub.data.diaryNumber or "Public consultation" }}
+                  </td>
+                  <td class="text-center">
+                    <a href="{{ href }}" class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Open original statement"{% if pub.data.url %} target="_blank" rel="noopener noreferrer"{% endif %}>
+                      <i class="bi bi-arrow-{% if pub.data.url %}up-right{% else %}right{% endif %}"></i>
+                    </a>
+                  </td>
+                </tr>
+              {% else %}
+                <tr><td colspan="5" class="text-center text-muted py-4">No statements listed yet.</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -364,6 +451,9 @@ schemaType: CollectionPage
         <span class="badge text-bg-secondary">{{ collections.pub_puhe.length }}</span>
       </div>
       <div class="card-body p-0">
+        <div class="px-3 pt-3 pb-0">
+          <p class="small text-muted mb-3">The linked speech texts and recordings are in Finnish. This English page provides titles, summaries and metadata for navigation.</p>
+        </div>
         {# ---- Suodatuspalkki ---- #}
         <div class="p-3 bg-light border-bottom">
           <div class="row g-2 align-items-end">
@@ -407,6 +497,59 @@ schemaType: CollectionPage
         <nav aria-label="Pagination">
           <ul id="puheet-pagination" class="pagination pagination-sm mb-0 flex-wrap"></ul>
         </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+<span id="public-speeches"></span>
+<section id="julkiset-puheet">
+  <div class="site-shell">
+    <div class="card shadow-sm">
+      <div class="card-header bg-transparent d-flex align-items-center justify-content-between">
+        <div>
+          <h2 class="h4 mb-1"><i class="bi bi-megaphone-fill me-2"></i>Public speeches</h2>
+          <p class="small text-muted mb-0">Ceremonial speeches, university talks and other public addresses outside council meetings.</p>
+        </div>
+        <span class="badge text-bg-secondary">{{ publicSpeechCount }}</span>
+      </div>
+      <div class="card-body p-0">
+        <div class="px-3 pt-3 pb-0">
+          <p class="small text-muted mb-3">The linked speech texts and recordings are in Finnish. This section gives English navigation context for the original materials.</p>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0 pub-table" data-no-header-filters>
+            <thead>
+              <tr>
+                <th class="text-center" style="width:140px">Date</th>
+                <th style="min-width:220px">Title</th>
+                <th style="min-width:220px">Event</th>
+                <th style="min-width:260px">Summary</th>
+                <th style="width:90px" class="text-center">Read</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for pub in publicSpeechItems %}
+                {% set href = pub.data.url or pub.url %}
+                <tr>
+                  <td class="col-date text-center small text-muted font-monospace">{{ pub.date | dateFormat }}</td>
+                  <td class="col-title fw-medium">
+                    <a href="{{ href }}" class="text-decoration-none"{% if pub.data.url %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ pub.data.title }}</a>
+                  </td>
+                  <td class="small text-muted">{{ pub.data.event or pub.data.speechContext or "Public speech" }}</td>
+                  <td class="small text-muted">{{ pub.data.description or "Public speech in Finnish." }}</td>
+                  <td class="text-center">
+                    <a href="{{ href }}" class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Open original Finnish speech"{% if pub.data.url %} target="_blank" rel="noopener noreferrer"{% endif %}>
+                      <i class="bi bi-arrow-{% if pub.data.url %}up-right{% else %}right{% endif %}"></i>
+                    </a>
+                  </td>
+                </tr>
+              {% else %}
+                <tr><td colspan="5" class="text-center text-muted py-4">No public speeches listed yet.</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
