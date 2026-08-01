@@ -10,10 +10,11 @@
  *  modules/_theme.css .......... Sections 1–2: Bootstrap token overrides + BSS-scope
  *                                (inlined in <head> in _meta.njk — critical CSS for LCP)
  *  modules/_typography.css ..... Section  3:   Fonts, overflow, container widths
- *  modules/_home.css ........... Sections 4–15: All home-page sections
- *  modules/_global.css ......... Sections 16–21: Search overlay, breadcrumbs,
- *                                              mobile breakpoints, global light/dark mode,
+ *  modules/_global.css ......... Sections 16–21: Mobile breakpoints, global light/dark mode,
  *                                              button overrides
+ *  modules/_components.css ..... Shared UI components: search overlay, breadcrumbs,
+ *                                              footer ticker, KPIs, testimonials
+ *  modules/_home.css ........... Home-page sections, loaded via pageStyles in _meta.njk
  *  modules/_tables.css ......... Section 22:   Tables, badges, pagination & shared header filters
  *  modules/_articles.css ....... Sections 23–25: Subpage hero, BBS article & terminal,
  *                                              shared components
@@ -22,7 +23,8 @@
 
 /* _theme.css inlined in <head> (critical CSS) */
 @import "modules/_typography.css";
-@import "modules/_home.css";
 @import "modules/_global.css";
+@import "modules/_components.css";
+@import "modules/_home.css";
 @import "modules/_tables.css";
 @import "modules/_articles.css";
