@@ -70,6 +70,9 @@
   line-height: 1.72;
   color: rgba(17, 40, 70, 0.82);
 }
+.pol-hero-text-strong {
+  color: rgba(17, 40, 70, 0.9);
+}
 .pol-hero-points {
   display: grid;
   gap: 0.85rem;
@@ -458,6 +461,22 @@
   background: rgba(var(--bs-primary-rgb), 0.08);
   font-size: 1rem;
 }
+.politics-theme-card {
+  border: 0;
+  border-left: 4px solid var(--pol-theme-color, var(--bs-primary)) !important;
+  box-shadow: var(--bs-box-shadow-sm);
+  height: 100%;
+  transition: transform 0.15s ease;
+}
+.politics-theme-card:hover {
+  transform: translateY(-2px);
+}
+.politics-theme-card .theme-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  text-decoration: none;
+}
 .pol-theme-title {
   margin: 0;
   font-size: 1.35rem;
@@ -775,6 +794,19 @@
   vertical-align: middle;
   border-color: rgba(17, 40, 70, 0.08);
 }
+.politics-table th {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  border-bottom-width: 1px;
+}
+.politics-table td {
+  vertical-align: middle;
+}
+.politics-table .col-date {
+  white-space: nowrap;
+  color: var(--bs-secondary-color);
+}
 .political-speech-title {
   color: #12355f;
 }
@@ -792,6 +824,15 @@
 }
 .pol-writing-list--compact {
   gap: 0.8rem;
+}
+.ouka-scroller {
+  cursor: grab;
+  scrollbar-width: thin;
+  touch-action: pan-x;
+}
+.ouka-scroller.is-dragging {
+  cursor: grabbing;
+  user-select: none;
 }
 .pol-writing-item {
   padding: 1rem;
@@ -976,6 +1017,9 @@
 [data-bs-theme="dark"] .pol-route-card p,
 [data-bs-theme="dark"] .pol-mandate-link-card span {
   color: rgba(255, 255, 255, 0.8);
+}
+[data-bs-theme="dark"] .pol-hero-text-strong {
+  color: rgba(255, 255, 255, 0.9);
 }
 [data-bs-theme="dark"] .pol-hero-point-text,
 [data-bs-theme="dark"] .pol-hero-caption,
