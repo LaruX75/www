@@ -542,9 +542,9 @@
       <p class="hero-kicker">Admin / Canva / Kurssitarkistus</p>
       <h2 class="hero-title">Canva-materiaalien opintojaksokonteksti</h2>
       <p class="hero-text">
-        Tämä on kuratoinnin työlista. Näkymä ehdottaa mahdollisia opintojaksokonteksteja
-        otsikon, kuvauksen, avainsanojen ja järjestäjän perusteella, mutta ei tallenna
-        kytkentöjä automaattisesti. Hyväksy kytkentä vain, jos tiedät materiaalin kuuluvan kurssille.
+        Tämä on kuratoinnin työlista. Näkymä nostaa esiin vain Canva-rivit, joissa on
+        kurssimateriaalin tunnusmerkki, kuten kurssikoodi tai sana luento. Pelkkä aihe,
+        esimerkiksi tekoäly, ei enää riitä opintojaksoehdotukseksi.
       </p>
     </section>
 
@@ -552,7 +552,7 @@
       <article class="metric-card">
         <p class="metric-label">Tarkistettavia</p>
         <p class="metric-value" id="review-metric-total">0</p>
-        <p class="metric-note">Canva-rivit, joille löytyi opetuskäyttöinen ehdokas</p>
+        <p class="metric-note">Canva-rivit, joissa näkyy kurssikoodi tai luentomerkki</p>
       </article>
       <article class="metric-card">
         <p class="metric-label">Kurssiehdokkaita</p>
@@ -628,13 +628,6 @@ const state = {
 };
 
 const COURSE_REVIEW_CATALOG = [
-  {
-    key: 'tekoaly-oppimisessa-ja-opetuksessa',
-    courseName: 'Tekoäly oppimisessa ja opetuksessa',
-    courseId: '',
-    terms: ['tekoäly', 'tekoaly', 'ai literacy', 'tekoälylukutaito', 'generative ai', 'chatgpt', 'generation ai', 'selitettävä tekoäly', 'xai', 'somekone', 'opetettava kone', 'teachable machine', 'eu ai act', 'pieni kielikone', 'tekoäly opettajan työkaluna'],
-    rationale: 'Tekoäly, selitettävä tekoäly tai tekoälylukutaito on materiaalin pääteema.'
-  },
   {
     key: '405040y',
     courseName: 'Teknologiatuettu oppiminen ja työskentely',
@@ -737,6 +730,33 @@ function itemReviewText(item) {
   ].filter(Boolean).join(' ');
 }
 
+function courseCodesFromText(value) {
+  return [...String(value || '').matchAll(/\b\d{5,6}[A-Z]\b/gi)]
+    .map((match) => match[0].toUpperCase());
+}
+
+function courseReviewSignals(item) {
+  const rawText = itemReviewText(item);
+  const normalized = normalizeText(rawText);
+  const signals = [];
+  const codeMatches = courseCodesFromText(rawText);
+  [...new Set(codeMatches)].forEach((code) => {
+    signals.push({
+      type: 'course-code',
+      label: `Kurssikoodi ${code}`,
+      value: code
+    });
+  });
+  if (/\bluento\b|\bluentodiat\b|\bluentomateriaali\b|\bverkkoluento\b/.test(normalized)) {
+    signals.push({
+      type: 'lecture',
+      label: 'Tekstissä luento',
+      value: 'luento'
+    });
+  }
+  return signals;
+}
+
 function confidenceForHits(hitCount, item) {
   if (hitCount >= 3) return 'high';
   if (hitCount >= 2) return 'medium';
@@ -745,16 +765,33 @@ function confidenceForHits(hitCount, item) {
   return 'low';
 }
 
+function courseIdentifierTerms(course) {
+  return [
+    course.courseId,
+    course.courseName
+  ].filter(Boolean);
+}
+
 function courseReviewCandidates(item) {
   const text = itemReviewText(item);
+  const signals = courseReviewSignals(item);
+  if (!signals.length) return [];
+  const signalCourseCodes = signals
+    .filter((signal) => signal.type === 'course-code')
+    .map((signal) => normalizeText(signal.value));
   return COURSE_REVIEW_CATALOG
     .map((course) => {
-      const matchedTerms = course.terms.filter((term) => includesTerm(text, term));
+      const courseIdMatch = courseCodesFromText(course.courseId).some((code) => signalCourseCodes.includes(normalizeText(code)));
+      const identifierMatches = courseIdentifierTerms(course).filter((term) => includesTerm(text, term));
+      const matchedTerms = [
+        ...(courseIdMatch ? [course.courseId] : []),
+        ...identifierMatches
+      ];
       if (!matchedTerms.length) return null;
       return {
         ...course,
-        matchedTerms,
-        confidence: confidenceForHits(matchedTerms.length, item)
+        matchedTerms: [...new Set(matchedTerms)],
+        confidence: courseIdMatch ? 'high' : 'medium'
       };
     })
     .filter(Boolean)
@@ -841,9 +878,10 @@ function reviewRows() {
   return state.items
     .map((item) => ({
       item,
-      candidates: courseReviewCandidates(item)
+      candidates: courseReviewCandidates(item),
+      signals: courseReviewSignals(item)
     }))
-    .filter((row) => row.candidates.length);
+    .filter((row) => row.signals.length);
 }
 
 function visibleReviewRows() {
@@ -853,7 +891,8 @@ function visibleReviewRows() {
     if (state.reviewConfidence !== 'all' && !row.candidates.some((candidate) => candidate.confidence === state.reviewConfidence)) return false;
     if (!query) return true;
     const candidateText = row.candidates.map((candidate) => [candidate.courseId, candidate.courseName, candidate.matchedTerms.join(' ')].join(' ')).join(' ');
-    return normalizeText(`${itemReviewText(row.item)} ${candidateText}`).includes(query);
+    const signalText = row.signals.map((signal) => signal.label).join(' ');
+    return normalizeText(`${itemReviewText(row.item)} ${candidateText} ${signalText}`).includes(query);
   });
 }
 
@@ -895,7 +934,7 @@ function renderCourseReview() {
     return;
   }
 
-  host.innerHTML = visible.map(({ item, candidates }) => {
+  host.innerHTML = visible.map(({ item, candidates, signals }) => {
     const sourceUrl = String(item.publicUrl || item.link || '').trim();
     const selectedCandidate = selectedCourseCandidate(item, candidates);
     const selectedKey = selectedCandidate?.key || '';
@@ -916,6 +955,7 @@ function renderCourseReview() {
         </div>
       </div>
     `).join('');
+    const signalHtml = signals.map((signal) => `<span class="review-tag">${esc(signal.label)}</span>`).join('');
     return `
       <article class="review-card">
         <div>
@@ -927,8 +967,11 @@ function renderCourseReview() {
           <div class="review-tag-row">
             ${(Array.isArray(item.keywords) ? item.keywords.slice(0, 8) : []).map((term) => `<span class="review-tag">${esc(term)}</span>`).join('')}
           </div>
+          ${signalHtml ? `<div class="review-tag-row" aria-label="Kurssimateriaalin tunnusmerkit">${signalHtml}</div>` : ''}
         </div>
-        <div class="review-course-list">${candidateHtml}</div>
+        <div class="review-course-list">
+          ${candidateHtml || '<div class="review-empty">Tunnusmerkki löytyi, mutta turvallista opintojaksoehdokasta ei löytynyt.</div>'}
+        </div>
         <div class="review-action-list">
           <div class="review-state-row">
             <span class="status-badge ${esc(status.tone)}">
@@ -936,14 +979,14 @@ function renderCourseReview() {
               ${esc(status.label)}
             </span>
           </div>
-          <div class="review-course-picker">
+          ${candidates.length ? `<div class="review-course-picker">
             <label for="course-pick-${item._index}">Valitse oikea opintojaksoehdokas</label>
             <select id="course-pick-${item._index}" class="form-select form-select-sm" data-action="select-course-candidate" data-index="${item._index}">
               ${candidateOptions}
             </select>
-          </div>
+          </div>` : '<div class="row-help">Hyväksyntä edellyttää kurssikoodiin tai kurssin nimeen osuvaa opintojaksoehdokasta.</div>'}
           ${sourceUrl ? `<a href="${esc(sourceUrl)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary btn-sm">Avaa Canva</a>` : ''}
-          <button class="btn btn-success btn-sm" data-action="accept-course-context" data-index="${item._index}">Hyväksy valittu kurssi</button>
+          ${candidates.length ? `<button class="btn btn-success btn-sm" data-action="accept-course-context" data-index="${item._index}">Hyväksy valittu kurssi</button>` : ''}
           <button class="btn btn-outline-danger btn-sm" data-action="reject-course-context" data-index="${item._index}">Hylkää: ei kurssikytkentää</button>
           <button class="btn btn-outline-secondary btn-sm" data-action="pending-course-context" data-index="${item._index}">Jätä odottamaan</button>
           <div class="row-help">
