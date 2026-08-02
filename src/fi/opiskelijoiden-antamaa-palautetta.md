@@ -7,6 +7,7 @@ layout: base.njk
 templateEngineOverride: njk,md
 translationKey: fi_only_opiskelijapalaute
 permalink: /opiskelijoiden-antamaa-palautetta/
+pageShell: true
 wp_id: 820
 source_url: "https://www.jarilaru.fi/opiskelijoiden-antamaa-palautetta/"
 schemaAbout:
@@ -113,29 +114,6 @@ schemaAbout:
 </article>
 
 </div>
-
-<section class="sfb-impact">
-  <p class="sfb-kicker">Portfolio · vaikuttavuus</p>
-  <h2>Miten palautetta on hyödynnetty</h2>
-  <p>Palaute ohjaa opetuksen suunnittelua kolmella tavalla:</p>
-
-  <ol class="sfb-impact-list">
-    <li>
-      <strong>Rakenne ja ohjeistus.</strong>
-      <span>Tehtävänannot ja arviointikriteerit jaetaan kurssin alussa kokonaisuutena. Aikataulut ja mahdolliset poikkeukset viestitään aiempaa ennakoivammin.</span>
-    </li>
-    <li>
-      <strong>Aikaresurssin varaaminen.</strong>
-      <span>Uusien työkalujen ja harjoitusten kokeiluun varataan enemmän aikaa. Itsenäisen työskentelyn osuus on täsmennetty.</span>
-    </li>
-    <li>
-      <strong>Kurssikuvauksen vastaavuus.</strong>
-      <span>Kurssikuvauksen ja toteutuksen johdonmukaisuus tarkistetaan suunnitteluvaiheessa. Kurssin ytimeen kuulumattomat elementit (kuten erilliset MOOC-osiot) sijoitetaan selvästi tunnistettaviksi lisäosiksi tai poistetaan.</span>
-    </li>
-  </ol>
-
-  <p class="sfb-impact-note">Portfoliovastauksia (esim. LUKO–ERKKA-kurssin tekoälyharjoitus 2023) käytetään myös opetuksen pedagogisen laadun arvioinnissa ja tekoäly- ja teknologiapainotteisen opetuksen suunnittelussa. Kevään 2023 Teknologiatuettu oppiminen -kurssin portfoliovastauksia (n = 106 tutkimuskäyttöön luvan antanutta) hyödynnetään myös opetuksen tutkimuksellisessa kehittämistyössä.</p>
-</section>
 
 <section class="sfb-meta">
   <div class="sfb-meta-block">
