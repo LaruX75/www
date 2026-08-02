@@ -73,6 +73,19 @@ const CURATED_VIDEO_ITEMS = [
     description: "ITK-webinaaritallenne 28.3.2023. Jari Laru, Matti Tedre ja Henriikka Vartiainen esittelevät kyberturvallisuus- ja tekoälykasvatuksen haasteita ja ratkaisuja.",
     sourceLabel: "YouTube / ITK-webinaari",
     external: true
+  },
+  {
+    title: "Teknologia, oppiminen ja osaaminen yhteiskunnassa - videotallenne",
+    url: "https://www.youtube.com/watch?v=SoeW6zexrWQ",
+    pageUrl: "/presentations/ss-teknologia-oppiminen-ja-osaaminen-yhteiskunnassa-uudet-teknologiat-isannan-vai-r/",
+    externalUrl: "https://www.youtube.com/watch?v=SoeW6zexrWQ",
+    thumbnail: "https://i.ytimg.com/vi/SoeW6zexrWQ/hqdefault.jpg",
+    date: "2013-02-21",
+    badgeText: "Verkkoluennon tallenne",
+    listText: "www.etäopetus.fi: uudet teknologiat isännän vai rengin roolissa",
+    description: "EKO - Etäopetuksen koordinointihankkeen verkkoluentotallenne 21.2.2013. Puheenvuoro käsittelee teknologian, oppimisen ja osaamisen suhdetta yhteiskunnassa.",
+    sourceLabel: "YouTube / www.etäopetus.fi",
+    external: true
   }
 ];
 
@@ -103,13 +116,14 @@ const VIDEO_SERIES_ITEMS = [
   },
   {
     title: "Larun pikkuvinkit",
-    url: "https://www.youtube.com/playlist?list=PLDG0jxUrk8z3VEOjIFb_q0vdJW6-2oOgY",
-    externalUrl: "https://www.youtube.com/playlist?list=PLDG0jxUrk8z3VEOjIFb_q0vdJW6-2oOgY",
+    url: "https://www.youtube.com/watch?v=hCZ9lgODkes&list=PLDG0jxUrk8z3VEOjIFb_q0vdJW6-2oOgY",
+    pageUrl: "/presentations/larun-pikkuvinkit/",
+    externalUrl: "https://www.youtube.com/watch?v=hCZ9lgODkes&list=PLDG0jxUrk8z3VEOjIFb_q0vdJW6-2oOgY",
     thumbnail: "https://i.ytimg.com/vi/hCZ9lgODkes/hqdefault.jpg",
-    date: "",
-    badgeText: "Lyhyiden vinkkien videosarja",
-    listText: "Käytännön vinkkejä opetusteknologian ja digityökalujen arkeen",
-    description: "Lyhyiden vinkkivideoiden sarja opetusteknologian, digityökalujen ja käytännön opetustyön tueksi.",
+    date: "2020",
+    badgeText: "Koronakevään pikkuvinkit",
+    listText: "Korona-ajan lyhyitä käytännön vinkkejä etäopetuksen tueksi",
+    description: "Koronakevään 2020 lyhytvideosarja, jossa Jari Laru jakoi käytännön pikkuvinkkejä etäopetuksen, digityökalujen ja opetusteknologian arkeen.",
     sourceLabel: "YouTube / oma sarja",
     external: true
   }
@@ -150,7 +164,8 @@ function createSlideshareItems(presentations = []) {
       date: item.date,
       description: item.description || "",
       categories: item.categories || [],
-      keywords: item.keywords || []
+      keywords: item.keywords || [],
+      courseContexts: item.courseContexts || []
     }));
 }
 

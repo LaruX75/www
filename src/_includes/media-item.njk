@@ -67,46 +67,48 @@ layout: base.njk
         <div class="content-prose">{{ content | safe }}</div>
       </div>
 
-      <div class="content-detail-side-card content-detail-meta-card">
-        <p class="content-detail-card-kicker">Lähde ja rooli</p>
-        <dl class="content-detail-definition-list mb-0">
-          <div>
-            <dt>Muoto</dt>
-            <dd>{{ mediaTypeLabel(mediaType) }}</dd>
-          </div>
-          <div>
-            <dt>Rooli</dt>
-            <dd>{{ mediaRoleLabel(mediaRole) }}</dd>
-          </div>
-          {% if roleTitle %}
-          <div>
-            <dt>Tehtävä</dt>
-            <dd>{{ roleTitle }}</dd>
-          </div>
-          {% endif %}
-          {% if appointingBody %}
-          <div>
-            <dt>Asettaja</dt>
-            <dd>{{ appointingBody }}</dd>
-          </div>
-          {% endif %}
-          {% if mediaOutlet %}
-          <div>
-            <dt>Lähde</dt>
-            <dd>{{ mediaOutlet }}</dd>
-          </div>
-          {% endif %}
-          {% if date %}
-          <div>
-            <dt>Päiväys</dt>
-            <dd>{{ date | dateFormat }}</dd>
-          </div>
-          {% endif %}
-        </dl>
-      </div>
+      <aside class="content-detail-sidebar">
+        <div class="content-detail-side-card content-detail-meta-card">
+          <p class="content-detail-card-kicker">Lähde ja rooli</p>
+          <dl class="content-detail-definition-list mb-0">
+            <div>
+              <dt>Muoto</dt>
+              <dd>{{ mediaTypeLabel(mediaType) }}</dd>
+            </div>
+            <div>
+              <dt>Rooli</dt>
+              <dd>{{ mediaRoleLabel(mediaRole) }}</dd>
+            </div>
+            {% if roleTitle %}
+            <div>
+              <dt>Tehtävä</dt>
+              <dd>{{ roleTitle }}</dd>
+            </div>
+            {% endif %}
+            {% if appointingBody %}
+            <div>
+              <dt>Asettaja</dt>
+              <dd>{{ appointingBody }}</dd>
+            </div>
+            {% endif %}
+            {% if mediaOutlet %}
+            <div>
+              <dt>Lähde</dt>
+              <dd>{{ mediaOutlet }}</dd>
+            </div>
+            {% endif %}
+            {% if date %}
+            <div>
+              <dt>Päiväys</dt>
+              <dd>{{ date | dateFormat }}</dd>
+            </div>
+            {% endif %}
+          </dl>
+        </div>
 
-      <aside class="content-detail-related">
-        {% include "content-context-sidebar.njk" %}
+        <div class="content-detail-related">
+          {% include "content-context-sidebar.njk" %}
+        </div>
       </aside>
     </article>
   </div>

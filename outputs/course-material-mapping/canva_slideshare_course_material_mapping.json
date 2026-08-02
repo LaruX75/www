@@ -1,0 +1,2340 @@
+{
+  "schema_version": "1.0",
+  "created_at": "2026-08-02T18:37:44.268Z",
+  "source_files": {
+    "course_context": "/Users/jlaru/Downloads/jari_laru_course_material_mapping_codex.json",
+    "canva": "src/_data/canva-presentations.json",
+    "slideshare_pages": "src/presentations/*.md where frontmatter source is slideshare"
+  },
+  "interpretation_rules": {
+    "explicit_course_code": "Course code appears in material metadata/content.",
+    "explicit_course_name": "Course name or clear name variant appears in material metadata/content.",
+    "probable_legacy_course_material": "Legacy lecture-series title pattern maps to a known course but should be reviewed if used as official evidence.",
+    "contextual_topic_or_pathway": "Topic/pathway connection only; not a confirmed official course material link.",
+    "possible_teaching_material_no_confirmed_course": "Teaching-looking material without course code/name evidence.",
+    "canva_context_policy": "Canva rows are linked to a course only when a course code or official course name is visible in the metadata. Broader topic matches are kept as possible teaching materials."
+  },
+  "summary": {
+    "slideshare_materials_checked": 115,
+    "canva_materials_checked": 75,
+    "mapped_rows": 41,
+    "mapped_rows_by_source": {
+      "slideshare": 41
+    },
+    "mapped_rows_by_link_type": {
+      "explicit_course_code": 9,
+      "explicit_course_name": 4,
+      "probable_legacy_course_material": 17,
+      "possible_reuse_of_course_material": 1,
+      "contextual_topic_or_pathway": 10
+    },
+    "possible_teaching_materials_without_course": 100,
+    "deduplication": "Mapped rows are collapsed to one row per material-course pair; strongest evidence type is retained and secondary matched terms are listed."
+  },
+  "mapped_materials": [
+    {
+      "material_source": "slideshare",
+      "material_title": "Yhteiskunnallisia haasteita & johdanto aiheeseen 050091A Tieto- ja viestintätekniikka opetuksessa ja opiskelussa",
+      "material_date": "2013-05-06",
+      "material_url": "https://www.slideshare.net/slideshow/yhteiskunnallisia-haasteita-johdanto-aiheeseen050091a-tieto-ja-viestinttekniikka-opetuksessa-ja-opiskelussa/20643075",
+      "material_reference": "src/presentations/ss-yhteiskunnallisia-haasteita-johdanto-aiheeseen-050091a-tieto-ja-viestintatekniik.md",
+      "linked_course_id": "050091A",
+      "linked_course_name": "Tieto- ja viestintätekniikka opetuksessa ja opiskelussa",
+      "course_evidence_level": "strong",
+      "link_type": "explicit_course_code",
+      "matched_term": "050091A; Tieto- ja viestintätekniikka opetuksessa ja opiskelussa; yhteiskunnallisia haasteita; tieto ja viestintätekniikka opetuksessa ja opiskelussa",
+      "evidence_summary": "Materiaalin metadatassa tai sisällössä esiintyy kurssikoodi 050091A. Lisätunnisteet: Tieto- ja viestintätekniikka opetuksessa ja opiskelussa; yhteiskunnallisia haasteita; tieto ja viestintätekniikka opetuksessa ja opiskelussa.",
+      "course_source_reference_ids": [
+        "turn7search87",
+        "turn18search163"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Luento1. Johdanto (410014Y TVT pedagogiset perusteet)",
+      "material_date": "2013-08-27",
+      "material_url": "https://www.slideshare.net/slideshow/luento1-johdanto-410014y-tvt-pedagogiset-perusteet/25638735",
+      "material_reference": "src/presentations/ss-luento1-johdanto-410014y-tvt-pedagogiset-perusteet.md",
+      "linked_course_id": "410014Y",
+      "linked_course_name": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+      "course_evidence_level": "strong",
+      "link_type": "explicit_course_code",
+      "matched_term": "410014Y; tvt pedagogiset perusteet",
+      "evidence_summary": "Materiaalin metadatassa tai sisällössä esiintyy kurssikoodi 410014Y. Lisätunnisteet: tvt pedagogiset perusteet.",
+      "course_source_reference_ids": [
+        "turn23search228",
+        "turn19search200",
+        "turn23search222",
+        "turn23search219",
+        "turn23search220",
+        "turn23search221",
+        "turn23search223",
+        "turn23search218",
+        "turn7search87",
+        "turn7search105"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Luento 2. Teoria (410014Y) Tieto- ja viestintätekniikka pedagogisena välineenä",
+      "material_date": "2013-08-29",
+      "material_url": "https://www.slideshare.net/slideshow/luento-2-teoria-410014y-tieto-ja-viestinttekniikka-pedagogisena-vlineen/25706607",
+      "material_reference": "src/presentations/ss-luento-2-teoria-410014y-tieto-ja-viestintatekniikka-pedagogisena-valineena.md",
+      "linked_course_id": "410014Y",
+      "linked_course_name": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+      "course_evidence_level": "strong",
+      "link_type": "explicit_course_code",
+      "matched_term": "410014Y",
+      "evidence_summary": "Materiaalin metadatassa tai sisällössä esiintyy kurssikoodi 410014Y.",
+      "course_source_reference_ids": [
+        "turn23search228",
+        "turn19search200",
+        "turn23search222",
+        "turn23search219",
+        "turn23search220",
+        "turn23search221",
+        "turn23search223",
+        "turn23search218",
+        "turn7search87",
+        "turn7search105"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Luento 3. Suunnittelu ja pedagogiset mallit (410014Y) Tieto- ja viestintätekniikka pedagogisena välineenä",
+      "material_date": "2013-09-04",
+      "material_url": "https://www.slideshare.net/slideshow/luento-2-teoria-410014y-tieto-ja-viestinttekniikka-pedagogisena-vlineen-144-views-presentations63-luento-2-teoria-410014y-tieto-ja-viestinttekniikka-pedagogisena-vlineen-luento1-johdanto-410014y-tvt-pedagogiset-perusteet-using-gartners-hype-curve-as-a-bas/25871563",
+      "material_reference": "src/presentations/ss-luento-3-suunnittelu-ja-pedagogiset-mallit-410014y-tieto-ja-viestintatekniikka-p.md",
+      "linked_course_id": "410014Y",
+      "linked_course_name": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+      "course_evidence_level": "strong",
+      "link_type": "explicit_course_code",
+      "matched_term": "410014Y; tvt pedagogiset perusteet",
+      "evidence_summary": "Materiaalin metadatassa tai sisällössä esiintyy kurssikoodi 410014Y. Lisätunnisteet: tvt pedagogiset perusteet.",
+      "course_source_reference_ids": [
+        "turn23search228",
+        "turn19search200",
+        "turn23search222",
+        "turn23search219",
+        "turn23search220",
+        "turn23search221",
+        "turn23search223",
+        "turn23search218",
+        "turn7search87",
+        "turn7search105"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Luento 5: haasteet ja koulun todellisuus (410014Y)",
+      "material_date": "2013-09-10",
+      "material_url": "https://www.slideshare.net/slideshow/luento-5-haasteet-ja-koulun-todellisuus-410014y/26060987",
+      "material_reference": "src/presentations/ss-luento-5-haasteet-ja-koulun-todellisuus-410014y.md",
+      "linked_course_id": "410014Y",
+      "linked_course_name": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+      "course_evidence_level": "strong",
+      "link_type": "explicit_course_code",
+      "matched_term": "410014Y; haasteet ja koulun todellisuus",
+      "evidence_summary": "Materiaalin metadatassa tai sisällössä esiintyy kurssikoodi 410014Y. Lisätunnisteet: haasteet ja koulun todellisuus.",
+      "course_source_reference_ids": [
+        "turn23search228",
+        "turn19search200",
+        "turn23search222",
+        "turn23search219",
+        "turn23search220",
+        "turn23search221",
+        "turn23search223",
+        "turn23search218",
+        "turn7search87",
+        "turn7search105"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "410014Y Johdantoluento. Tieto- ja viestintätekniikka pedagogisena työvälineenä 2014",
+      "material_date": "2014-08-29",
+      "material_url": "https://www.slideshare.net/slideshow/410014y-johdantoluento-tieto-ja-viestinttekniikka-pedagogisena-tyvlineen-2014/38480588",
+      "material_reference": "src/presentations/ss-410014y-johdantoluento-tieto-ja-viestintatekniikka-pedagogisena-tyovalineena-201.md",
+      "linked_course_id": "410014Y",
+      "linked_course_name": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+      "course_evidence_level": "strong",
+      "link_type": "explicit_course_code",
+      "matched_term": "410014Y; Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+      "evidence_summary": "Materiaalin metadatassa tai sisällössä esiintyy kurssikoodi 410014Y. Lisätunnisteet: Tieto- ja viestintätekniikka pedagogisena työvälineenä.",
+      "course_source_reference_ids": [
+        "turn23search228",
+        "turn19search200",
+        "turn23search222",
+        "turn23search219",
+        "turn23search220",
+        "turn23search221",
+        "turn23search223",
+        "turn23search218",
+        "turn7search87",
+        "turn7search105"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "410014Y LUENTO 2: Tämän vuosisadan ydintaidot – 21th skills (ja koulun muutospaineet)",
+      "material_date": "2014-08-29",
+      "material_url": "https://www.slideshare.net/slideshow/410014y-luento-2-tmn-vuosisadan-ydintaidot-21th-skills-ja-koulun-muutospaineet/38481523",
+      "material_reference": "src/presentations/ss-410014y-luento-2-taman-vuosisadan-ydintaidot-21th-skills-ja-koulun-muutospaineet.md",
+      "linked_course_id": "410014Y",
+      "linked_course_name": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+      "course_evidence_level": "strong",
+      "link_type": "explicit_course_code",
+      "matched_term": "410014Y",
+      "evidence_summary": "Materiaalin metadatassa tai sisällössä esiintyy kurssikoodi 410014Y.",
+      "course_source_reference_ids": [
+        "turn23search228",
+        "turn19search200",
+        "turn23search222",
+        "turn23search219",
+        "turn23search220",
+        "turn23search221",
+        "turn23search223",
+        "turn23search218",
+        "turn7search87",
+        "turn7search105"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "410014Y Luento 4: Sopimukset ja tekijänoikeudet",
+      "material_date": "2014-09-03",
+      "material_url": "https://www.slideshare.net/slideshow/410014y-luento-4-sopimukset-ja-tekijnoikeudet/38636228",
+      "material_reference": "src/presentations/ss-410014y-luento-4-sopimukset-ja-tekijanoikeudet.md",
+      "linked_course_id": "410014Y",
+      "linked_course_name": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+      "course_evidence_level": "strong",
+      "link_type": "explicit_course_code",
+      "matched_term": "410014Y; sopimukset ja tekijänoikeudet",
+      "evidence_summary": "Materiaalin metadatassa tai sisällössä esiintyy kurssikoodi 410014Y. Lisätunnisteet: sopimukset ja tekijänoikeudet.",
+      "course_source_reference_ids": [
+        "turn23search228",
+        "turn19search200",
+        "turn23search222",
+        "turn23search219",
+        "turn23search220",
+        "turn23search221",
+        "turn23search223",
+        "turn23search218",
+        "turn7search87",
+        "turn7search105"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Luentodiat digitaalinen media oppimisessa ja opettamisessa (410017Y) 2015",
+      "material_date": "2015-01-30",
+      "material_url": "https://www.slideshare.net/slideshow/luentodiat-digitaalinen-media-oppimisessa-ja-opettamisessa-410017y-2015/44064982",
+      "material_reference": "src/presentations/ss-luentodiat-digitaalinen-media-oppimisessa-ja-opettamisessa-410017y-2015.md",
+      "linked_course_id": "410017Y",
+      "linked_course_name": "Multimedia oppimisprojektina / Digitaalinen media opetuksessa ja oppimisessa / Digitaalinen media oppimisessa ja opettamisessa",
+      "course_evidence_level": "strong",
+      "link_type": "explicit_course_code",
+      "matched_term": "410017Y; Digitaalinen media oppimisessa ja opettamisessa; digitaalinen media oppimisessa ja opettamisessa",
+      "evidence_summary": "Materiaalin metadatassa tai sisällössä esiintyy kurssikoodi 410017Y. Lisätunnisteet: Digitaalinen media oppimisessa ja opettamisessa; digitaalinen media oppimisessa ja opettamisessa.",
+      "course_source_reference_ids": [
+        "turn7search105",
+        "turn7search97",
+        "turn7search145",
+        "turn7search113",
+        "turn7search133",
+        "turn7search137",
+        "turn7search139",
+        "turn7search126",
+        "turn22search200",
+        "turn23search218"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Tietotyon pedagogisia haasteita",
+      "material_date": "2011-01-14",
+      "material_url": "https://www.slideshare.net/slideshow/tietotyon-p-haasteita/6568725",
+      "material_reference": "src/presentations/ss-tietotyon-pedagogisia-haasteita.md",
+      "linked_course_id": "405021Y",
+      "linked_course_name": "Tietotyö pedagogisena haasteena / Tietotyön pedagogisia haasteita",
+      "course_evidence_level": "strong",
+      "link_type": "explicit_course_name",
+      "matched_term": "Tietotyön pedagogisia haasteita; tietotyon pedagogisia haasteita",
+      "evidence_summary": "Materiaalin otsikossa, kuvauksessa tai tekstissä esiintyy kurssinimi tai nimivariantti: Tietotyön pedagogisia haasteita. Lisätunnisteet: tietotyon pedagogisia haasteita.",
+      "course_source_reference_ids": [
+        "turn7search87",
+        "turn18search180",
+        "turn22search200",
+        "turn23search218"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Luento 1: Tieto- ja viestintätekniikka pedagogisena työvälineenä (ääni ja diat eivät ole synkassa, siitä saa kiiittää Slidesharea)",
+      "material_date": "2012-08-30",
+      "material_url": "https://www.slideshare.net/slideshow/tieto-ja-viestinttekniikan/14116017",
+      "material_reference": "src/presentations/ss-luento-1-tieto-ja-viestintatekniikka-pedagogisena-tyovalineena-aani-ja-diat-eiva.md",
+      "linked_course_id": "410014Y",
+      "linked_course_name": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+      "course_evidence_level": "strong",
+      "link_type": "explicit_course_name",
+      "matched_term": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+      "evidence_summary": "Materiaalin otsikossa, kuvauksessa tai tekstissä esiintyy kurssinimi tai nimivariantti: Tieto- ja viestintätekniikka pedagogisena työvälineenä.",
+      "course_source_reference_ids": [
+        "turn23search228",
+        "turn19search200",
+        "turn23search222",
+        "turn23search219",
+        "turn23search220",
+        "turn23search221",
+        "turn23search223",
+        "turn23search218",
+        "turn7search87",
+        "turn7search105"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Tieto ja viestintätekniikka pedagogisena työvälineenä. luento 1",
+      "material_date": "2015-08-31",
+      "material_url": "https://www.slideshare.net/slideshow/tieto-ja-viestintatekniikka-pedagogisena-tyovalineena-luento-1/52268646",
+      "material_reference": "src/presentations/ss-tieto-ja-viestinta-tekniikka-pedagogisena-tyo-va-lineena-luento-1.md",
+      "linked_course_id": "410014Y",
+      "linked_course_name": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+      "course_evidence_level": "strong",
+      "link_type": "explicit_course_name",
+      "matched_term": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+      "evidence_summary": "Materiaalin otsikossa, kuvauksessa tai tekstissä esiintyy kurssinimi tai nimivariantti: Tieto- ja viestintätekniikka pedagogisena työvälineenä.",
+      "course_source_reference_ids": [
+        "turn23search228",
+        "turn19search200",
+        "turn23search222",
+        "turn23search219",
+        "turn23search220",
+        "turn23search221",
+        "turn23search223",
+        "turn23search218",
+        "turn7search87",
+        "turn7search105"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Digitaalinen media oppimisessa ja opettamisessa (2015)",
+      "material_date": "2015-03-16",
+      "material_url": "https://www.slideshare.net/slideshow/digitaalinen-media-oppimisessa-ja-opettamisessa-2015/45880729",
+      "material_reference": "src/presentations/ss-digitaalinen-media-oppimisessa-ja-opettamisessa-2015.md",
+      "linked_course_id": "410017Y",
+      "linked_course_name": "Multimedia oppimisprojektina / Digitaalinen media opetuksessa ja oppimisessa / Digitaalinen media oppimisessa ja opettamisessa",
+      "course_evidence_level": "strong",
+      "link_type": "explicit_course_name",
+      "matched_term": "Digitaalinen media oppimisessa ja opettamisessa; digitaalinen media oppimisessa ja opettamisessa",
+      "evidence_summary": "Materiaalin otsikossa, kuvauksessa tai tekstissä esiintyy kurssinimi tai nimivariantti: Digitaalinen media oppimisessa ja opettamisessa. Lisätunnisteet: digitaalinen media oppimisessa ja opettamisessa.",
+      "course_source_reference_ids": [
+        "turn7search105",
+        "turn7search97",
+        "turn7search145",
+        "turn7search113",
+        "turn7search133",
+        "turn7search137",
+        "turn7search139",
+        "turn7search126",
+        "turn22search200",
+        "turn23search218"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "1. luento tieto- ja viestintätekniikan perusteet opintojaksolla: TVT opetuskäytön historia",
+      "material_date": "2011-08-31",
+      "material_url": "https://www.slideshare.net/slideshow/1-luento-tieto-ja-viestinttekniikan-perusteet-opintojaksolla-tvt-opetuskytn-historia/9088829",
+      "material_reference": "src/presentations/ss-1-luento-tieto-ja-viestintatekniikan-perusteet-opintojaksolla-tvt-opetuskayton-h.md",
+      "linked_course_id": "410014Y",
+      "linked_course_name": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+      "course_evidence_level": "strong",
+      "link_type": "probable_legacy_course_material",
+      "matched_term": "tvt opetuskäytön historia",
+      "evidence_summary": "Materiaalista löytyi tunniste \"tvt opetuskäytön historia\" (vanhan 410014Y-luentosarjan otsikko- tai teemakaava).",
+      "course_source_reference_ids": [
+        "turn23search228",
+        "turn19search200",
+        "turn23search222",
+        "turn23search219",
+        "turn23search220",
+        "turn23search221",
+        "turn23search223",
+        "turn23search218",
+        "turn7search87",
+        "turn7search105"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "2. luento tieto- ja viestintätekniikan pedagogiset perusteet kurssilla. TVT ja yhteiskunta",
+      "material_date": "2011-09-01",
+      "material_url": "https://www.slideshare.net/slideshow/2-luento-tieto-ja-viestinttekniikan-pedagogiset-perusteet-kurssilla-tvt-ja-yhteiskunta/9101048",
+      "material_reference": "src/presentations/ss-2-luento-tieto-ja-viestintatekniikan-pedagogiset-perusteet-kurssilla-tvt-ja-yhte.md",
+      "linked_course_id": "410014Y",
+      "linked_course_name": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+      "course_evidence_level": "strong",
+      "link_type": "probable_legacy_course_material",
+      "matched_term": "tieto ja viestintätekniikan pedagogiset perusteet",
+      "evidence_summary": "Materiaalista löytyi tunniste \"tieto ja viestintätekniikan pedagogiset perusteet\" (vanhan 410014Y-luentosarjan otsikko- tai teemakaava).",
+      "course_source_reference_ids": [
+        "turn23search228",
+        "turn19search200",
+        "turn23search222",
+        "turn23search219",
+        "turn23search220",
+        "turn23search221",
+        "turn23search223",
+        "turn23search218",
+        "turn7search87",
+        "turn7search105"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "3. luento tieto- ja viestintätekniikan pedagogiset perusteet: tietokoneavusteinen yhteisöllinen oppiminen (CSCL)",
+      "material_date": "2011-09-07",
+      "material_url": "https://www.slideshare.net/slideshow/3-luento-tieto-ja-viestinttekniikan-pedagogiset-perusteet-tietokoneavusteinen-yhteisllinen-oppiminen-cscl/9167433",
+      "material_reference": "src/presentations/ss-3-luento-tieto-ja-viestintatekniikan-pedagogiset-perusteet-tietokoneavusteinen-y.md",
+      "linked_course_id": "410014Y",
+      "linked_course_name": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+      "course_evidence_level": "strong",
+      "link_type": "probable_legacy_course_material",
+      "matched_term": "tieto ja viestintätekniikan pedagogiset perusteet",
+      "evidence_summary": "Materiaalista löytyi tunniste \"tieto ja viestintätekniikan pedagogiset perusteet\" (vanhan 410014Y-luentosarjan otsikko- tai teemakaava).",
+      "course_source_reference_ids": [
+        "turn23search228",
+        "turn19search200",
+        "turn23search222",
+        "turn23search219",
+        "turn23search220",
+        "turn23search221",
+        "turn23search223",
+        "turn23search218",
+        "turn7search87",
+        "turn7search105"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "4. luento: tieto ja viestintätekniikan pedagogiset perusteet: nykyajan medialukutataito",
+      "material_date": "2011-09-09",
+      "material_url": "https://www.slideshare.net/slideshow/4-luento-tieto-ja-viestinttekniikan-pedagogiset-perusteet-nykyajan-medialukutataito/9195772",
+      "material_reference": "src/presentations/ss-4-luento-tieto-ja-viestintatekniikan-pedagogiset-perusteet-nykyajan-medialukutat.md",
+      "linked_course_id": "410014Y",
+      "linked_course_name": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+      "course_evidence_level": "strong",
+      "link_type": "probable_legacy_course_material",
+      "matched_term": "tieto ja viestintätekniikan pedagogiset perusteet",
+      "evidence_summary": "Materiaalista löytyi tunniste \"tieto ja viestintätekniikan pedagogiset perusteet\" (vanhan 410014Y-luentosarjan otsikko- tai teemakaava).",
+      "course_source_reference_ids": [
+        "turn23search228",
+        "turn19search200",
+        "turn23search222",
+        "turn23search219",
+        "turn23search220",
+        "turn23search221",
+        "turn23search223",
+        "turn23search218",
+        "turn7search87",
+        "turn7search105"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "5. Luento tieto- ja viestintätekniikan pedagogiset perusteet: tulevaisuus syntyy tutkimalla",
+      "material_date": "2011-09-19",
+      "material_url": "https://www.slideshare.net/slideshow/luento5tutkimus-final/9318465",
+      "material_reference": "src/presentations/ss-5-luento-tieto-ja-viestintatekniikan-pedagogiset-perusteet-tulevaisuus-syntyy-tu.md",
+      "linked_course_id": "410014Y",
+      "linked_course_name": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+      "course_evidence_level": "strong",
+      "link_type": "probable_legacy_course_material",
+      "matched_term": "tieto ja viestintätekniikan pedagogiset perusteet",
+      "evidence_summary": "Materiaalista löytyi tunniste \"tieto ja viestintätekniikan pedagogiset perusteet\" (vanhan 410014Y-luentosarjan otsikko- tai teemakaava).",
+      "course_source_reference_ids": [
+        "turn23search228",
+        "turn19search200",
+        "turn23search222",
+        "turn23search219",
+        "turn23search220",
+        "turn23search221",
+        "turn23search223",
+        "turn23search218",
+        "turn7search87",
+        "turn7search105"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Luento 2: Tieto- ja viestintätekniikan opetuskäyttö ja yhteiskunta (diat ja ääni eivät ole synkassa, kiittäkäämme siitä slidesharea)",
+      "material_date": "2012-09-04",
+      "material_url": "https://www.slideshare.net/slideshow/ktk-tvt-luento2yhteiskunta/14161524",
+      "material_reference": "src/presentations/ss-luento-2-tieto-ja-viestintatekniikan-opetuskaytto-ja-yhteiskunta-diat-ja-aani-ei.md",
+      "linked_course_id": "410014Y",
+      "linked_course_name": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+      "course_evidence_level": "strong",
+      "link_type": "probable_legacy_course_material",
+      "matched_term": "tieto ja viestintätekniikan opetuskäyttö ja yhteiskunta",
+      "evidence_summary": "Materiaalista löytyi tunniste \"tieto ja viestintätekniikan opetuskäyttö ja yhteiskunta\" (vanhan 410014Y-luentosarjan otsikko- tai teemakaava).",
+      "course_source_reference_ids": [
+        "turn23search228",
+        "turn19search200",
+        "turn23search222",
+        "turn23search219",
+        "turn23search220",
+        "turn23search221",
+        "turn23search223",
+        "turn23search218",
+        "turn7search87",
+        "turn7search105"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Luento 3: Opetuksen uudet ympäristöt ja teknologiat (äänet eivät ole synkassa diojen kanssa, kiitos slidesharen)",
+      "material_date": "2012-09-04",
+      "material_url": "https://www.slideshare.net/slideshow/opetuksen-uudet-ympristt-ja-teknologiat/14169484",
+      "material_reference": "src/presentations/ss-luento-3-opetuksen-uudet-ymparistot-ja-teknologiat-aanet-eivat-ole-synkassa-dioj.md",
+      "linked_course_id": "410014Y",
+      "linked_course_name": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+      "course_evidence_level": "strong",
+      "link_type": "probable_legacy_course_material",
+      "matched_term": "opetuksen uudet ympäristöt ja teknologiat",
+      "evidence_summary": "Materiaalista löytyi tunniste \"opetuksen uudet ympäristöt ja teknologiat\" (vanhan 410014Y-luentosarjan otsikko- tai teemakaava).",
+      "course_source_reference_ids": [
+        "turn23search228",
+        "turn19search200",
+        "turn23search222",
+        "turn23search219",
+        "turn23search220",
+        "turn23search221",
+        "turn23search223",
+        "turn23search218",
+        "turn7search87",
+        "turn7search105"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "TVT Oppimisen tukena (ääni ei ole synkassa diojen kanssa, kiitos slidesharen)",
+      "material_date": "2012-10-09",
+      "material_url": "https://www.slideshare.net/slideshow/tvt-oppimisen-tukena/14647647",
+      "material_reference": "src/presentations/ss-tvt-oppimisen-tukena-aani-ei-ole-synkassa-diojen-kanssa-kiitos-slidesharen.md",
+      "linked_course_id": "410014Y",
+      "linked_course_name": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+      "course_evidence_level": "strong",
+      "link_type": "probable_legacy_course_material",
+      "matched_term": "tvt oppimisen tukena",
+      "evidence_summary": "Materiaalista löytyi tunniste \"tvt oppimisen tukena\" (vanhan 410014Y-luentosarjan otsikko- tai teemakaava).",
+      "course_source_reference_ids": [
+        "turn23search228",
+        "turn19search200",
+        "turn23search222",
+        "turn23search219",
+        "turn23search220",
+        "turn23search221",
+        "turn23search223",
+        "turn23search218",
+        "turn7search87",
+        "turn7search105"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Teoria suunnittelu a_otvt",
+      "material_date": "2013-05-14",
+      "material_url": "https://www.slideshare.net/slideshow/teoria-suunnittelu-aotvt/21178375",
+      "material_reference": "src/presentations/ss-teoria-suunnittelu-a-otvt.md",
+      "linked_course_id": "410014Y",
+      "linked_course_name": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+      "course_evidence_level": "strong",
+      "link_type": "probable_legacy_course_material",
+      "matched_term": "teoria suunnittelu a otvt",
+      "evidence_summary": "Materiaalista löytyi tunniste \"teoria suunnittelu a otvt\" (vanhan 410014Y-luentosarjan otsikko- tai teemakaava).",
+      "course_source_reference_ids": [
+        "turn23search228",
+        "turn19search200",
+        "turn23search222",
+        "turn23search219",
+        "turn23search220",
+        "turn23search221",
+        "turn23search223",
+        "turn23search218",
+        "turn7search87",
+        "turn7search105"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Multimedia I “perinteinen” tuotettu multimedia murroksessa",
+      "material_date": "2012-01-09",
+      "material_url": "https://www.slideshare.net/slideshow/multimedia-i-perinteinen-tuotettu-multimedia-murroksessa/10904451",
+      "material_reference": "src/presentations/ss-multimedia-i-perinteinen-tuotettu-multimedia-murroksessa.md",
+      "linked_course_id": "410017Y",
+      "linked_course_name": "Multimedia oppimisprojektina / Digitaalinen media opetuksessa ja oppimisessa / Digitaalinen media oppimisessa ja opettamisessa",
+      "course_evidence_level": "strong",
+      "link_type": "probable_legacy_course_material",
+      "matched_term": "multimedia i",
+      "evidence_summary": "Materiaalista löytyi tunniste \"multimedia i\" (digitaalisen median ja multimedia-kurssikokonaisuuden otsikko- tai luentokaava).",
+      "course_source_reference_ids": [
+        "turn7search105",
+        "turn7search97",
+        "turn7search145",
+        "turn7search113",
+        "turn7search133",
+        "turn7search137",
+        "turn7search139",
+        "turn7search126",
+        "turn22search200",
+        "turn23search218"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Multimedia II. multimedian peruselementit: ääni, kuva, video, teksti",
+      "material_date": "2012-01-11",
+      "material_url": "https://www.slideshare.net/slideshow/multimedia-ii-multimedian-peruselementit-ni-kuva-video-teksti/10957217",
+      "material_reference": "src/presentations/ss-multimedia-ii-multimedian-peruselementit-aani-kuva-video-teksti.md",
+      "linked_course_id": "410017Y",
+      "linked_course_name": "Multimedia oppimisprojektina / Digitaalinen media opetuksessa ja oppimisessa / Digitaalinen media oppimisessa ja opettamisessa",
+      "course_evidence_level": "strong",
+      "link_type": "probable_legacy_course_material",
+      "matched_term": "multimedia ii",
+      "evidence_summary": "Materiaalista löytyi tunniste \"multimedia ii\" (digitaalisen median ja multimedia-kurssikokonaisuuden otsikko- tai luentokaava).",
+      "course_source_reference_ids": [
+        "turn7search105",
+        "turn7search97",
+        "turn7search145",
+        "turn7search113",
+        "turn7search133",
+        "turn7search137",
+        "turn7search139",
+        "turn7search126",
+        "turn22search200",
+        "turn23search218"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Multimedia III: Itse tuotettu multimedia",
+      "material_date": "2012-01-16",
+      "material_url": "https://www.slideshare.net/slideshow/multimedia-iii-itse-tuotettu-multimedia/11072883",
+      "material_reference": "src/presentations/ss-multimedia-iii-itse-tuotettu-multimedia.md",
+      "linked_course_id": "410017Y",
+      "linked_course_name": "Multimedia oppimisprojektina / Digitaalinen media opetuksessa ja oppimisessa / Digitaalinen media oppimisessa ja opettamisessa",
+      "course_evidence_level": "strong",
+      "link_type": "probable_legacy_course_material",
+      "matched_term": "multimedia iii",
+      "evidence_summary": "Materiaalista löytyi tunniste \"multimedia iii\" (digitaalisen median ja multimedia-kurssikokonaisuuden otsikko- tai luentokaava).",
+      "course_source_reference_ids": [
+        "turn7search105",
+        "turn7search97",
+        "turn7search145",
+        "turn7search113",
+        "turn7search133",
+        "turn7search137",
+        "turn7search139",
+        "turn7search126",
+        "turn22search200",
+        "turn23search218"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Multimedia IV: valmiiden tuotosten käyttäminen ja omien jakaminen tekijänoikeuden valossa",
+      "material_date": "2012-01-18",
+      "material_url": "https://www.slideshare.net/slideshow/multimedia-iv-valmiiden-tuotosten-kyttminen-ja-omien-jakaminen-tekijnoikeuden-valossa/11127436",
+      "material_reference": "src/presentations/ss-multimedia-iv-valmiiden-tuotosten-kayttaminen-ja-omien-jakaminen-tekijanoikeuden.md",
+      "linked_course_id": "410017Y",
+      "linked_course_name": "Multimedia oppimisprojektina / Digitaalinen media opetuksessa ja oppimisessa / Digitaalinen media oppimisessa ja opettamisessa",
+      "course_evidence_level": "strong",
+      "link_type": "probable_legacy_course_material",
+      "matched_term": "multimedia iv",
+      "evidence_summary": "Materiaalista löytyi tunniste \"multimedia iv\" (digitaalisen median ja multimedia-kurssikokonaisuuden otsikko- tai luentokaava).",
+      "course_source_reference_ids": [
+        "turn7search105",
+        "turn7search97",
+        "turn7search145",
+        "turn7search113",
+        "turn7search133",
+        "turn7search137",
+        "turn7search139",
+        "turn7search126",
+        "turn22search200",
+        "turn23search218"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Multimedia V: Opetussuunnitelmasta digitarinaan",
+      "material_date": "2012-01-25",
+      "material_url": "https://www.slideshare.net/slideshow/luento-5-opetussuunnitelmasta-digitarinaan/11248661",
+      "material_reference": "src/presentations/ss-multimedia-v-opetussuunnitelmasta-digitarinaan.md",
+      "linked_course_id": "410017Y",
+      "linked_course_name": "Multimedia oppimisprojektina / Digitaalinen media opetuksessa ja oppimisessa / Digitaalinen media oppimisessa ja opettamisessa",
+      "course_evidence_level": "strong",
+      "link_type": "probable_legacy_course_material",
+      "matched_term": "multimedia v; opetussuunnitelmasta digitarinaan",
+      "evidence_summary": "Materiaalista löytyi tunniste \"multimedia v\" (digitaalisen median ja multimedia-kurssikokonaisuuden otsikko- tai luentokaava). Lisätunnisteet: opetussuunnitelmasta digitarinaan.",
+      "course_source_reference_ids": [
+        "turn7search105",
+        "turn7search97",
+        "turn7search145",
+        "turn7search113",
+        "turn7search133",
+        "turn7search137",
+        "turn7search139",
+        "turn7search126",
+        "turn22search200",
+        "turn23search218"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Luento 1: mediakasvatuksesta kohti monilukutaitoa (digitaalinen media oppimisprojektina 2014)",
+      "material_date": "2014-01-09",
+      "material_url": "https://www.slideshare.net/slideshow/luento-1-mediakasvatuksesta-kohti-monilukutaitoa-digitaalinen-media-oppimisprojektina-2014/29836950",
+      "material_reference": "src/presentations/ss-luento-1-mediakasvatuksesta-kohti-monilukutaitoa-digitaalinen-media-oppimisproje.md",
+      "linked_course_id": "410017Y",
+      "linked_course_name": "Multimedia oppimisprojektina / Digitaalinen media opetuksessa ja oppimisessa / Digitaalinen media oppimisessa ja opettamisessa",
+      "course_evidence_level": "strong",
+      "link_type": "probable_legacy_course_material",
+      "matched_term": "digitaalinen media oppimisprojektina; mediakasvatuksesta kohti monilukutaitoa",
+      "evidence_summary": "Materiaalista löytyi tunniste \"digitaalinen media oppimisprojektina\" (digitaalisen median ja multimedia-kurssikokonaisuuden otsikko- tai luentokaava). Lisätunnisteet: mediakasvatuksesta kohti monilukutaitoa.",
+      "course_source_reference_ids": [
+        "turn7search105",
+        "turn7search97",
+        "turn7search145",
+        "turn7search113",
+        "turn7search133",
+        "turn7search137",
+        "turn7search139",
+        "turn7search126",
+        "turn22search200",
+        "turn23search218"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Koulu (tieto)yhteiskunnassa (TEL2)",
+      "material_date": "2013-03-13",
+      "material_url": "https://www.slideshare.net/slideshow/koulu-tieto-yhtkuntatel2/17179684",
+      "material_reference": "src/presentations/ss-koulu-tieto-yhteiskunnassa-tel2.md",
+      "linked_course_id": "413314S",
+      "linked_course_name": "Designing Technology-Enhanced Learning in Global School Systems (TEL2)",
+      "course_evidence_level": "strong",
+      "link_type": "probable_legacy_course_material",
+      "matched_term": "tel2",
+      "evidence_summary": "Materiaalista löytyi tunniste \"tel2\" (TEL2-polun otsikko- tai lyhenneosuma).",
+      "course_source_reference_ids": [
+        "turn7search87"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Quali lecture 1: Understanding the research process",
+      "material_date": "2013-03-11",
+      "material_url": "https://www.slideshare.net/slideshow/quali-lecture-1-17116725/17116725",
+      "material_reference": "src/presentations/ss-quali-lecture-1-understanding-the-research-process.md",
+      "linked_course_id": "413315S-01",
+      "linked_course_name": "Research Methodology: Qualitative Research (QUALI)",
+      "course_evidence_level": "strong",
+      "link_type": "probable_legacy_course_material",
+      "matched_term": "quali lecture; understanding the research process",
+      "evidence_summary": "Materiaalista löytyi tunniste \"quali lecture\" (QUALI-opintojakson luentootsikko). Lisätunnisteet: understanding the research process.",
+      "course_source_reference_ids": [
+        "turn7search87"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "OSAAVA VESO: Tieto- ja viestintätekniikka pedagogisena työvälineenä. Raahe 2015",
+      "material_date": "2015-10-10",
+      "material_url": "https://www.slideshare.net/slideshow/tieto-ja-viestinttekniikka-pedagogisena-tyvlineen-raahe-2015/53761850",
+      "material_reference": "src/presentations/ss-osaava-veso-tieto-ja-viestintatekniikka-pedagogisena-tyovalineena-raahe-2015.md",
+      "linked_course_id": "410014Y",
+      "linked_course_name": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+      "course_evidence_level": "strong",
+      "link_type": "possible_reuse_of_course_material",
+      "matched_term": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+      "evidence_summary": "Materiaalin otsikossa, kuvauksessa tai tekstissä esiintyy kurssinimi tai nimivariantti: Tieto- ja viestintätekniikka pedagogisena työvälineenä.; materiaali näyttää olevan muussa koulutus- tai tapahtumakontekstissa, joten tätä ei merkitä suoraksi kurssimateriaaliksi.",
+      "course_source_reference_ids": [
+        "turn23search228",
+        "turn19search200",
+        "turn23search222",
+        "turn23search219",
+        "turn23search220",
+        "turn23search221",
+        "turn23search223",
+        "turn23search218",
+        "turn7search87",
+        "turn7search105"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Developing Computational Thinking Practises through Digital Fabrication Activities",
+      "material_date": "2019-06-13",
+      "material_url": "https://www.slideshare.net/slideshow/developing-computational-thinking-practises-through-digital-fabrication-activities/149380656",
+      "material_reference": "src/presentations/ss-developing-computational-thinking-practises-through-digital-fabrication-activiti.md",
+      "linked_course_id": "407062A",
+      "linked_course_name": "Ohjelmointi perusopetuksessa",
+      "course_evidence_level": "strong",
+      "link_type": "contextual_topic_or_pathway",
+      "matched_term": "computational thinking",
+      "evidence_summary": "Materiaalista löytyi tunniste \"computational thinking\" (ohjelmointi- ja computational thinking -teemaosuma).",
+      "course_source_reference_ids": [
+        "turn7search144",
+        "turn23search218",
+        "turn16search160",
+        "turn16search163"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Supporting Fab Lab facilitators to develop pedagogical practices to improve learning in digital fabrication activities",
+      "material_date": "2019-05-29",
+      "material_url": "https://www.slideshare.net/slideshow/supporting-fab-lab-facilitators-to-develop-pedagogical-practices-to-improve-learning-in-digital-fabrication-activities/148128991",
+      "material_reference": "src/presentations/ss-supporting-fab-lab-facilitators-to-develop-pedagogical-practices-to-improve-lear.md",
+      "linked_course_id": "418028P",
+      "linked_course_name": "Learning Environments and Technologies / Technology Enhanced Learning and Digital Fabrication",
+      "course_evidence_level": "strong",
+      "link_type": "contextual_topic_or_pathway",
+      "matched_term": "digital fabrication; fab lab",
+      "evidence_summary": "Materiaalista löytyi tunniste \"digital fabrication\" (uudemman LET/digital fabrication -alueen teemaosuma; tarkista toteutuskytkentä erikseen). Lisätunnisteet: fab lab.",
+      "course_source_reference_ids": [
+        "turn18search170",
+        "turn18search181",
+        "turn16search171",
+        "turn16search142",
+        "turn1search8",
+        "turn1search22"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Developing Computational Thinking Practises through Digital Fabrication Activities",
+      "material_date": "2019-06-13",
+      "material_url": "https://www.slideshare.net/slideshow/developing-computational-thinking-practises-through-digital-fabrication-activities/149380656",
+      "material_reference": "src/presentations/ss-developing-computational-thinking-practises-through-digital-fabrication-activiti.md",
+      "linked_course_id": "418028P",
+      "linked_course_name": "Learning Environments and Technologies / Technology Enhanced Learning and Digital Fabrication",
+      "course_evidence_level": "strong",
+      "link_type": "contextual_topic_or_pathway",
+      "matched_term": "digital fabrication",
+      "evidence_summary": "Materiaalista löytyi tunniste \"digital fabrication\" (uudemman LET/digital fabrication -alueen teemaosuma; tarkista toteutuskytkentä erikseen).",
+      "course_source_reference_ids": [
+        "turn18search170",
+        "turn18search181",
+        "turn16search171",
+        "turn16search142",
+        "turn1search8",
+        "turn1search22"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "3. luento tieto- ja viestintätekniikan pedagogiset perusteet: tietokoneavusteinen yhteisöllinen oppiminen (CSCL)",
+      "material_date": "2011-09-07",
+      "material_url": "https://www.slideshare.net/slideshow/3-luento-tieto-ja-viestinttekniikan-pedagogiset-perusteet-tietokoneavusteinen-yhteisllinen-oppiminen-cscl/9167433",
+      "material_reference": "src/presentations/ss-3-luento-tieto-ja-viestintatekniikan-pedagogiset-perusteet-tietokoneavusteinen-y.md",
+      "linked_course_id": "",
+      "linked_course_name": "Collaborative Learning",
+      "course_evidence_level": "contextual",
+      "link_type": "contextual_topic_or_pathway",
+      "matched_term": "yhteisöllinen oppiminen; cscl",
+      "evidence_summary": "Materiaalista löytyi tunniste \"yhteisöllinen oppiminen\" (tutkimus- ja opetusteema, joka kuuluu LET-polkuun mutta ei yksinään nimeä opintojaksoa). Lisätunnisteet: cscl.",
+      "course_source_reference_ids": [
+        "turn23search218",
+        "turn18search185"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Scaffolding collaborative learning with cognitive tools based on mobile computers (2011)",
+      "material_date": "2011-11-16",
+      "material_url": "https://www.slideshare.net/slideshow/scaffolding-collaborative-learning-with-cognitive-tools-based-on-mobile-computers-10188888/10188888",
+      "material_reference": "src/presentations/ss-scaffolding-collaborative-learning-with-cognitive-tools-based-on-mobile-computer.md",
+      "linked_course_id": "",
+      "linked_course_name": "Collaborative Learning",
+      "course_evidence_level": "contextual",
+      "link_type": "contextual_topic_or_pathway",
+      "matched_term": "Collaborative Learning",
+      "evidence_summary": "Materiaalin otsikossa, kuvauksessa tai tekstissä esiintyy kurssinimi tai nimivariantti: Collaborative Learning.",
+      "course_source_reference_ids": [
+        "turn23search218",
+        "turn18search185"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "CSCL Luento B: Esimerkkejä todellisesta elämästä ja laboratorion perukoilta",
+      "material_date": "2011-12-01",
+      "material_url": "https://www.slideshare.net/slideshow/cscl-luento-b-esimerkkej-todellisesta-elmst-ja-laboratorion-perukoilta/10410352",
+      "material_reference": "src/presentations/ss-cscl-luento-b-esimerkkeja-todellisesta-elamasta-ja-laboratorion-perukoilta.md",
+      "linked_course_id": "",
+      "linked_course_name": "Collaborative Learning",
+      "course_evidence_level": "contextual",
+      "link_type": "contextual_topic_or_pathway",
+      "matched_term": "cscl",
+      "evidence_summary": "Materiaalista löytyi tunniste \"cscl\" (tutkimus- ja opetusteema, joka kuuluu LET-polkuun mutta ei yksinään nimeä opintojaksoa).",
+      "course_source_reference_ids": [
+        "turn23search218",
+        "turn18search185"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "CSCL - Tietokoneavusteinen yhteisöllinen oppiminen (kotu2011A)",
+      "material_date": "2011-12-01",
+      "material_url": "https://www.slideshare.net/slideshow/cscl-tietokoneavusteinen-yhteisllinen-oppiminen-kotu2011a/10410251",
+      "material_reference": "src/presentations/ss-cscl-tietokoneavusteinen-yhteisollinen-oppiminen-kotu2011a.md",
+      "linked_course_id": "",
+      "linked_course_name": "Collaborative Learning",
+      "course_evidence_level": "contextual",
+      "link_type": "contextual_topic_or_pathway",
+      "matched_term": "yhteisöllinen oppiminen; cscl",
+      "evidence_summary": "Materiaalista löytyi tunniste \"yhteisöllinen oppiminen\" (tutkimus- ja opetusteema, joka kuuluu LET-polkuun mutta ei yksinään nimeä opintojaksoa). Lisätunnisteet: cscl.",
+      "course_source_reference_ids": [
+        "turn23search218",
+        "turn18search185"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Using Gartner’s Hype Curve as a basis to analyze research on the educational use of ubiquitous computing�",
+      "material_date": "2013-06-19",
+      "material_url": "https://www.slideshare.net/slideshow/cscl-laru-presentationbfinc-23201943/23201943",
+      "material_reference": "src/presentations/ss-using-gartner-s-hype-curve-as-a-basis-to-analyze-research-on-the-educational-use.md",
+      "linked_course_id": "",
+      "linked_course_name": "Collaborative Learning",
+      "course_evidence_level": "contextual",
+      "link_type": "contextual_topic_or_pathway",
+      "matched_term": "cscl",
+      "evidence_summary": "Materiaalista löytyi tunniste \"cscl\" (tutkimus- ja opetusteema, joka kuuluu LET-polkuun mutta ei yksinään nimeä opintojaksoa).",
+      "course_source_reference_ids": [
+        "turn23search218",
+        "turn18search185"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Designing learning activities for socially shared regulation in seamless learning contexts.",
+      "material_date": "2014-11-30",
+      "material_url": "https://www.slideshare.net/slideshow/designing-learning-activities-for-socially-shared-regulation-in-seamless-learning-contexts/42192519",
+      "material_reference": "src/presentations/ss-designing-learning-activities-for-socially-shared-regulation-in-seamless-learnin.md",
+      "linked_course_id": "",
+      "linked_course_name": "Self-Regulated Learning",
+      "course_evidence_level": "contextual",
+      "link_type": "contextual_topic_or_pathway",
+      "matched_term": "socially shared regulation",
+      "evidence_summary": "Materiaalista löytyi tunniste \"socially shared regulation\" (LET-polun teoreettinen teema, ei yksinään opintojaksotodiste).",
+      "course_source_reference_ids": [
+        "turn23search218",
+        "turn18search185"
+      ]
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Technology choices (TEL1)",
+      "material_date": "2013-03-13",
+      "material_url": "https://www.slideshare.net/slideshow/technology-choices-tel1/17178124",
+      "material_reference": "src/presentations/ss-technology-choices-tel1.md",
+      "linked_course_id": "",
+      "linked_course_name": "Technology Enhanced Learning I",
+      "course_evidence_level": "contextual",
+      "link_type": "contextual_topic_or_pathway",
+      "matched_term": "tel1; technology choices tel1",
+      "evidence_summary": "Materiaalista löytyi tunniste \"tel1\" (TEL1-polun otsikko- tai lyhenneosuma; ei yksinään todista virallista opintojaksototeutusta). Lisätunnisteet: technology choices tel1.",
+      "course_source_reference_ids": [
+        "turn23search218",
+        "turn18search185"
+      ]
+    }
+  ],
+  "possible_teaching_materials_without_confirmed_course": [
+    {
+      "material_source": "canva",
+      "material_title": "AI Friend or Foe? – Tekoäly: ystävä vai vihollinen?",
+      "material_date": "2026-05-07",
+      "material_url": "https://www.canva.com/design/DAHI6X6dR_g/_Jy-hfDeDZU5UA6DVkWjrQ/view",
+      "material_reference": "src/_data/canva-presentations.json#1",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "ai literacy"
+      ],
+      "evidence_summary": "Aihe liittyy opetukseen (ai literacy), mutta Canva-metadatasta ei löytynyt kurssikoodia tai virallista kurssinimeä. Ei sidota kurssiin ilman käsin varmistettua kytkentää."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Sivistysverkosto 4.5.",
+      "material_date": "2026-05-04",
+      "material_url": "https://canva.link/vqtdccorb3yxb9h",
+      "material_reference": "src/_data/canva-presentations.json#2",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoäly",
+        "tekoaly",
+        "koulutus"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (tekoäly, tekoaly, koulutus), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "ITK2026 millaisia ovat tekoälyaikakauden opettajaprofiilit",
+      "material_date": "2026-04-23",
+      "material_url": "https://canva.link/0esdy3ncxld18eo",
+      "material_reference": "src/_data/canva-presentations.json#3",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoäly",
+        "tekoaly"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (tekoäly, tekoaly), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "ITK Keynote 2026",
+      "material_date": "2026-04-21",
+      "material_url": "https://canva.link/3jrd9fl161kwo7z",
+      "material_reference": "src/_data/canva-presentations.json#4",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoälylukutaito"
+      ],
+      "evidence_summary": "Aihe liittyy opetukseen (tekoälylukutaito), mutta Canva-metadatasta ei löytynyt kurssikoodia tai virallista kurssinimeä. Ei sidota kurssiin ilman käsin varmistettua kytkentää."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "OPH esitys 18.3.",
+      "material_date": "2026-03-17",
+      "material_url": "https://canva.link/epspgvg60zgkj4s",
+      "material_reference": "src/_data/canva-presentations.json#6",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "opetus",
+        "tekoäly",
+        "tekoaly"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (opetus, tekoäly, tekoaly), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Riko, rakenna ja ymmärrä – Kohti kriittistä tekoälylukutaitoa",
+      "material_date": "2026-02-16",
+      "material_url": "https://www.canva.com/d/Qj3UMnjU3RwRv7P",
+      "material_reference": "src/_data/canva-presentations.json#31",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoälylukutaito"
+      ],
+      "evidence_summary": "Aihe liittyy opetukseen (tekoälylukutaito), mutta Canva-metadatasta ei löytynyt kurssikoodia tai virallista kurssinimeä. Ei sidota kurssiin ilman käsin varmistettua kytkentää."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Ihmeitä tekevä tekoäly vai tavallinen työkalu? – VESO 2026",
+      "material_date": "2026-01-22",
+      "material_url": "https://www.canva.com/d/aTM5lGaNw5NYCtj",
+      "material_reference": "src/_data/canva-presentations.json#32",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoälylukutaito"
+      ],
+      "evidence_summary": "Aihe liittyy opetukseen (tekoälylukutaito), mutta Canva-metadatasta ei löytynyt kurssikoodia tai virallista kurssinimeä. Ei sidota kurssiin ilman käsin varmistettua kytkentää."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "VESO 2026 – Tekoäly opetuksessa",
+      "material_date": "2026-01-21",
+      "material_url": "https://www.canva.com/d/DCBR_muSwblqYUG",
+      "material_reference": "src/_data/canva-presentations.json#33",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoäly",
+        "tekoaly",
+        "koulutus"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (tekoäly, tekoaly, koulutus), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Konenäkö, vibe coding ja robotiikka – Robokampus 2026",
+      "material_date": "2026-01-20",
+      "material_url": "https://www.canva.com/d/9vbIlfCJtVMnz0L",
+      "material_reference": "src/_data/canva-presentations.json#34",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoäly",
+        "tekoaly"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (tekoäly, tekoaly), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Tekoälyagentit",
+      "material_date": "2025-11-18",
+      "material_url": "https://www.canva.com/d/EAMOOLnvrmnE_0g",
+      "material_reference": "src/_data/canva-presentations.json#35",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "koulutus"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (koulutus), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Tekoäly opettajan työkaluna",
+      "material_date": "2025-11-17",
+      "material_url": "https://www.canva.com/d/NwJZ8FVrbTIF80L",
+      "material_reference": "src/_data/canva-presentations.json#36",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoäly opettajan työkaluna"
+      ],
+      "evidence_summary": "Aihe liittyy opetukseen (tekoäly opettajan työkaluna), mutta Canva-metadatasta ei löytynyt kurssikoodia tai virallista kurssinimeä. Ei sidota kurssiin ilman käsin varmistettua kytkentää."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Opettaja tekoälyn ja -älyttömyyden turbulenssissa",
+      "material_date": "2025-10-30",
+      "material_url": "https://www.canva.com/d/A3EfkY3y1avAegc",
+      "material_reference": "src/_data/canva-presentations.json#37",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoälylukutaito"
+      ],
+      "evidence_summary": "Aihe liittyy opetukseen (tekoälylukutaito), mutta Canva-metadatasta ei löytynyt kurssikoodia tai virallista kurssinimeä. Ei sidota kurssiin ilman käsin varmistettua kytkentää."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Digipedailtapäivä – Tekoäly opetuksessa",
+      "material_date": "2025-10-29",
+      "material_url": "https://www.canva.com/d/fMchhKOJuh9LPSe",
+      "material_reference": "src/_data/canva-presentations.json#38",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoälylukutaito"
+      ],
+      "evidence_summary": "Aihe liittyy opetukseen (tekoälylukutaito), mutta Canva-metadatasta ei löytynyt kurssikoodia tai virallista kurssinimeä. Ei sidota kurssiin ilman käsin varmistettua kytkentää."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Kuinka tekoäly toimii? – Webinaari",
+      "material_date": "2025-10-21",
+      "material_url": "https://www.canva.com/d/7IyyLkfG4NvVNFy",
+      "material_reference": "src/_data/canva-presentations.json#39",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoäly",
+        "tekoaly",
+        "webinaari"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (tekoäly, tekoaly, webinaari), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Tekoälylukutaitoinen digiosaaja – Millaisia taitoja opettajalla tulisi olla?",
+      "material_date": "2025-10-07",
+      "material_url": "https://www.canva.com/d/RIjexbw0vJhknqR",
+      "material_reference": "src/_data/canva-presentations.json#40",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoälylukutaito"
+      ],
+      "evidence_summary": "Aihe liittyy opetukseen (tekoälylukutaito), mutta Canva-metadatasta ei löytynyt kurssikoodia tai virallista kurssinimeä. Ei sidota kurssiin ilman käsin varmistettua kytkentää."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Tekoäly: opettajan ystävä vai vihollinen? Matkalla kohti tekoälylukutaitoa",
+      "material_date": "2025-09-30",
+      "material_url": "https://www.canva.com/d/HkRvziyrg2IqL5S",
+      "material_reference": "src/_data/canva-presentations.json#41",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoälylukutaito"
+      ],
+      "evidence_summary": "Aihe liittyy opetukseen (tekoälylukutaito), mutta Canva-metadatasta ei löytynyt kurssikoodia tai virallista kurssinimeä. Ei sidota kurssiin ilman käsin varmistettua kytkentää."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Tekoäly yhdistystoiminnassa",
+      "material_date": "2025-09-10",
+      "material_url": "https://www.canva.com/d/IMm6-JD8PRTBK2F",
+      "material_reference": "src/_data/canva-presentations.json#42",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoäly",
+        "tekoaly"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (tekoäly, tekoaly), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Teachable Machine and Somekone – Demo Session EARLI 2025",
+      "material_date": "2025-08-24",
+      "material_url": "https://canva.link/d6kheuhj8xk6m3h",
+      "material_reference": "src/_data/canva-presentations.json#11",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "ai literacy"
+      ],
+      "evidence_summary": "Aihe liittyy opetukseen (ai literacy), mutta Canva-metadatasta ei löytynyt kurssikoodia tai virallista kurssinimeä. Ei sidota kurssiin ilman käsin varmistettua kytkentää."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "AI, Friend or Foe? (EN)",
+      "material_date": "2025-08-18",
+      "material_url": "https://www.canva.com/d/Cms-4m8mJZ9yK4e",
+      "material_reference": "src/_data/canva-presentations.json#43",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "ai literacy"
+      ],
+      "evidence_summary": "Aihe liittyy opetukseen (ai literacy), mutta Canva-metadatasta ei löytynyt kurssikoodia tai virallista kurssinimeä. Ei sidota kurssiin ilman käsin varmistettua kytkentää."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Tekoäly, ystävä vai vihollinen? (FIN)",
+      "material_date": "2025-08-18",
+      "material_url": "https://www.canva.com/d/sdrdv3W33qRpdA8",
+      "material_reference": "src/_data/canva-presentations.json#44",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoälylukutaito"
+      ],
+      "evidence_summary": "Aihe liittyy opetukseen (tekoälylukutaito), mutta Canva-metadatasta ei löytynyt kurssikoodia tai virallista kurssinimeä. Ei sidota kurssiin ilman käsin varmistettua kytkentää."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "How to Teach AI Literacy to Primary School Children",
+      "material_date": "2025-08-14",
+      "material_url": "https://canva.link/njzgya3gi1x98h7",
+      "material_reference": "src/_data/canva-presentations.json#12",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoälylukutaito"
+      ],
+      "evidence_summary": "Aihe liittyy opetukseen (tekoälylukutaito), mutta Canva-metadatasta ei löytynyt kurssikoodia tai virallista kurssinimeä. Ei sidota kurssiin ilman käsin varmistettua kytkentää."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Tekoälyluento ja työpaja (EN)",
+      "material_date": "2025-08-05",
+      "material_url": "https://www.canva.com/d/Th9VKpjA84-sgKY",
+      "material_reference": "src/_data/canva-presentations.json#45",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "ai literacy"
+      ],
+      "evidence_summary": "Aihe liittyy opetukseen (ai literacy), mutta Canva-metadatasta ei löytynyt kurssikoodia tai virallista kurssinimeä. Ei sidota kurssiin ilman käsin varmistettua kytkentää."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Tekoälyluento ja työpaja (FIN)",
+      "material_date": "2025-08-04",
+      "material_url": "https://www.canva.com/d/jT1t-KBLsuVoxiG",
+      "material_reference": "src/_data/canva-presentations.json#46",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoälylukutaito"
+      ],
+      "evidence_summary": "Aihe liittyy opetukseen (tekoälylukutaito), mutta Canva-metadatasta ei löytynyt kurssikoodia tai virallista kurssinimeä. Ei sidota kurssiin ilman käsin varmistettua kytkentää."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Miksi some koukuttaa? Somekoneen uusi työkalu",
+      "material_date": "2025-05-15",
+      "material_url": "https://canva.link/zbw32teldfkpf43",
+      "material_reference": "src/_data/canva-presentations.json#13",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "media"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (media), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Tekoälyn vaikutuksia korkeakoulupedagogiikkaan",
+      "material_date": "2025-05-11",
+      "material_url": "https://www.canva.com/d/qxV96znMIpZ5Q2a",
+      "material_reference": "src/_data/canva-presentations.json#47",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoälylukutaito"
+      ],
+      "evidence_summary": "Aihe liittyy opetukseen (tekoälylukutaito), mutta Canva-metadatasta ei löytynyt kurssikoodia tai virallista kurssinimeä. Ei sidota kurssiin ilman käsin varmistettua kytkentää."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Älyä! Teko! Tekoälyajan kognitiiviset työkalut ja ydintaidot",
+      "material_date": "2025-05-05",
+      "material_url": "https://www.canva.com/d/nJE4skdc9hohwL0",
+      "material_reference": "src/_data/canva-presentations.json#48",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoälylukutaito"
+      ],
+      "evidence_summary": "Aihe liittyy opetukseen (tekoälylukutaito), mutta Canva-metadatasta ei löytynyt kurssikoodia tai virallista kurssinimeä. Ei sidota kurssiin ilman käsin varmistettua kytkentää."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "ITK2025 Areena",
+      "material_date": "2025-04-24",
+      "material_url": "https://canva.link/0wntulrm8xeayqa",
+      "material_reference": "src/_data/canva-presentations.json#14",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoälylukutaito"
+      ],
+      "evidence_summary": "Aihe liittyy opetukseen (tekoälylukutaito), mutta Canva-metadatasta ei löytynyt kurssikoodia tai virallista kurssinimeä. Ei sidota kurssiin ilman käsin varmistettua kytkentää."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Miksi some koukuttaa? Miten tekoäly toimii? – ITK2025 Foorum",
+      "material_date": "2025-04-22",
+      "material_url": "https://www.canva.com/d/BHFIfQOhEw4ABCA",
+      "material_reference": "src/_data/canva-presentations.json#15",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "media",
+        "tekoäly",
+        "tekoaly"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (media, tekoäly, tekoaly), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Miten tekoälyn kehitys on muuttanut korkeakoulujen toimintaa?",
+      "material_date": "2025-04-14",
+      "material_url": "https://www.canva.com/d/gkvZ4JJwmVa0Knk",
+      "material_reference": "src/_data/canva-presentations.json#49",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoälylukutaito"
+      ],
+      "evidence_summary": "Aihe liittyy opetukseen (tekoälylukutaito), mutta Canva-metadatasta ei löytynyt kurssikoodia tai virallista kurssinimeä. Ei sidota kurssiin ilman käsin varmistettua kytkentää."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Tekoäly arjessa – Helsinki Education HUB",
+      "material_date": "2025-04-09",
+      "material_url": "https://www.canva.com/d/Un4WxPZdZD5qG6a",
+      "material_reference": "src/_data/canva-presentations.json#16",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "luento",
+        "media",
+        "tekoäly",
+        "tekoaly"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (luento, media, tekoäly, tekoaly), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Robotiikkaa ja selitettävää tekoälyä – Opetettavan koneen ja Somekoneen uudet ominaisuudet",
+      "material_date": "2025-03-20",
+      "material_url": "https://www.canva.com/d/CRypZKJybJhhwBd",
+      "material_reference": "src/_data/canva-presentations.json#17",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoäly",
+        "tekoaly"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (tekoäly, tekoaly), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Generation AI – Esittely japanilaiselle vieraalle",
+      "material_date": "2025-03-18",
+      "material_url": "https://www.canva.com/d/qx9PoFlOBrBceoH",
+      "material_reference": "src/_data/canva-presentations.json#18",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "ai literacy"
+      ],
+      "evidence_summary": "Aihe liittyy opetukseen (ai literacy), mutta Canva-metadatasta ei löytynyt kurssikoodia tai virallista kurssinimeä. Ei sidota kurssiin ilman käsin varmistettua kytkentää."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Selitettävä tekoäly opetuksessa – ITK-webinaari",
+      "material_date": "2025-03-11",
+      "material_url": "https://www.canva.com/d/jkh6GGDWw4nOc3_",
+      "material_reference": "src/_data/canva-presentations.json#19",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoäly",
+        "tekoaly",
+        "webinaari"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (tekoäly, tekoaly, webinaari), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Generative AI as a Tool to Adapt Teaching to Learner's Needs",
+      "material_date": "2025-02-25",
+      "material_url": "https://www.canva.com/d/qX_3Ld__WgjScWJ",
+      "material_reference": "src/_data/canva-presentations.json#20",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "learning",
+        "tekoäly",
+        "tekoaly"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (learning, tekoäly, tekoaly), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Generative AI as a Professional Tool – Agent, Coach or Friend?",
+      "material_date": "2025-02-05",
+      "material_url": "https://www.canva.com/d/z50JNAQrXmpHanN",
+      "material_reference": "src/_data/canva-presentations.json#21",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoälylukutaito"
+      ],
+      "evidence_summary": "Aihe liittyy opetukseen (tekoälylukutaito), mutta Canva-metadatasta ei löytynyt kurssikoodia tai virallista kurssinimeä. Ei sidota kurssiin ilman käsin varmistettua kytkentää."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Tekoäly, opettajan työ ja arvioinnin muutos",
+      "material_date": "2025-02-04",
+      "material_url": "https://www.canva.com/d/aDY3w1A8bLJm0kr",
+      "material_reference": "src/_data/canva-presentations.json#51",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoäly",
+        "tekoaly"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (tekoäly, tekoaly), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Voiko tekoälyn käyttöä oikeasti kieltää?",
+      "material_date": "2025-02-03",
+      "material_url": "https://www.canva.com/d/OhD7wKtj_XV-VGg",
+      "material_reference": "src/_data/canva-presentations.json#52",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoälylukutaito"
+      ],
+      "evidence_summary": "Aihe liittyy opetukseen (tekoälylukutaito), mutta Canva-metadatasta ei löytynyt kurssikoodia tai virallista kurssinimeä. Ei sidota kurssiin ilman käsin varmistettua kytkentää."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Generatiivinen tekoäly – Tekoäly työkaluna III",
+      "material_date": "2025-01-16",
+      "material_url": "https://www.canva.com/d/I-r13uz6Wiip2cC",
+      "material_reference": "src/_data/canva-presentations.json#53",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoäly",
+        "tekoaly"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (tekoäly, tekoaly), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Innokas 2025 – Muutama sananen selitettävästä tekoälystä",
+      "material_date": "2025-01-16",
+      "material_url": "https://canva.link/nteaui2pa0a3zom",
+      "material_reference": "src/_data/canva-presentations.json#8",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoälylukutaito"
+      ],
+      "evidence_summary": "Aihe liittyy opetukseen (tekoälylukutaito), mutta Canva-metadatasta ei löytynyt kurssikoodia tai virallista kurssinimeä. Ei sidota kurssiin ilman käsin varmistettua kytkentää."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Miten tekoäly toimii? Miksi some koukuttaa?",
+      "material_date": "2025-01-16",
+      "material_url": "https://www.canva.com/d/Mh-ALQxZX1-EQaB",
+      "material_reference": "src/_data/canva-presentations.json#55",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "media",
+        "tekoäly",
+        "tekoaly"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (media, tekoäly, tekoaly), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Tekoäly osana arkisia sovelluksia",
+      "material_date": "2025-01-16",
+      "material_url": "https://www.canva.com/d/4zq6qy9B3GX9FQK",
+      "material_reference": "src/_data/canva-presentations.json#54",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "opetus",
+        "tekoäly",
+        "tekoaly"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (opetus, tekoäly, tekoaly), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Tekoälyosaamista kieltenopetukseen",
+      "material_date": "2025-01-10",
+      "material_url": "https://www.canva.com/d/uZIb__sx1r4EAqT",
+      "material_reference": "src/_data/canva-presentations.json#22",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "luento",
+        "opetus",
+        "tekoäly",
+        "tekoaly"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (luento, opetus, tekoäly, tekoaly), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Tekoälyn ajankohtaiskatsaus – OTAVIA 2025",
+      "material_date": "2025-01-02",
+      "material_url": "https://www.canva.com/d/I1SYHLZ9wRiCanl",
+      "material_reference": "src/_data/canva-presentations.json#56",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoäly",
+        "tekoaly"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (tekoäly, tekoaly), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Digitutorit 2024 – Tekoäly opetuksessa",
+      "material_date": "2024-12-10",
+      "material_url": "https://www.canva.com/d/BwG8adUhENZ7jrX",
+      "material_reference": "src/_data/canva-presentations.json#57",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoäly",
+        "tekoaly",
+        "koulutus"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (tekoäly, tekoaly, koulutus), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Learning AI Literacy in Collaborative Projects with an AI Education Tool",
+      "material_date": "2024-12-10",
+      "material_url": "https://www.canva.com/d/UigBOzdI_YhoZZG",
+      "material_reference": "src/_data/canva-presentations.json#23",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "Collaborative Learning"
+      ],
+      "evidence_summary": "Aihe liittyy opetukseen (Collaborative Learning), mutta Canva-metadatasta ei löytynyt kurssikoodia tai virallista kurssinimeä. Ei sidota kurssiin ilman käsin varmistettua kytkentää."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "DIGIERKO 2024 – Risteilyesitys",
+      "material_date": "2024-11-29",
+      "material_url": "https://www.canva.com/d/LxK-UqOjO0Ti57w",
+      "material_reference": "src/_data/canva-presentations.json#58",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoälylukutaito"
+      ],
+      "evidence_summary": "Aihe liittyy opetukseen (tekoälylukutaito), mutta Canva-metadatasta ei löytynyt kurssikoodia tai virallista kurssinimeä. Ei sidota kurssiin ilman käsin varmistettua kytkentää."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Annie Advisor – Generative AI as a Tool to Adapt Teaching",
+      "material_date": "2024-11-05",
+      "material_url": "https://www.canva.com/d/y4oM9QaEQrxs2Lq",
+      "material_reference": "src/_data/canva-presentations.json#24",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "learning",
+        "tekoäly",
+        "tekoaly"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (learning, tekoäly, tekoaly), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Generation AI Workshop",
+      "material_date": "2024-11-05",
+      "material_url": "https://www.canva.com/d/-eSwZknSARYMaO9",
+      "material_reference": "src/_data/canva-presentations.json#25",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoälylukutaito"
+      ],
+      "evidence_summary": "Aihe liittyy opetukseen (tekoälylukutaito), mutta Canva-metadatasta ei löytynyt kurssikoodia tai virallista kurssinimeä. Ei sidota kurssiin ilman käsin varmistettua kytkentää."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "International Conference on the Advancement of STEAM 2024",
+      "material_date": "2024-10-28",
+      "material_url": "https://www.canva.com/d/CYteD0Z-U5Z6TzJ",
+      "material_reference": "src/_data/canva-presentations.json#26",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "steam education"
+      ],
+      "evidence_summary": "Aihe liittyy opetukseen (steam education), mutta Canva-metadatasta ei löytynyt kurssikoodia tai virallista kurssinimeä. Ei sidota kurssiin ilman käsin varmistettua kytkentää."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Tekoälyluento – OSYK",
+      "material_date": "2024-10-08",
+      "material_url": "https://www.canva.com/d/H13QgkxVZpEyel5",
+      "material_reference": "src/_data/canva-presentations.json#60",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "media",
+        "tekoäly",
+        "tekoaly"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (media, tekoäly, tekoaly), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Opopassi-koulutus – Tekoäly ohjauksessa",
+      "material_date": "2024-10-03",
+      "material_url": "https://www.canva.com/d/hmeIKU2KmombmX2",
+      "material_reference": "src/_data/canva-presentations.json#61",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoälylukutaito"
+      ],
+      "evidence_summary": "Aihe liittyy opetukseen (tekoälylukutaito), mutta Canva-metadatasta ei löytynyt kurssikoodia tai virallista kurssinimeä. Ei sidota kurssiin ilman käsin varmistettua kytkentää."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "AVI-koulutus – Tekoäly opetuksessa",
+      "material_date": "2024-10-01",
+      "material_url": "https://www.canva.com/d/o2KsaiK39PKEN2g",
+      "material_reference": "src/_data/canva-presentations.json#62",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoälylukutaito"
+      ],
+      "evidence_summary": "Aihe liittyy opetukseen (tekoälylukutaito), mutta Canva-metadatasta ei löytynyt kurssikoodia tai virallista kurssinimeä. Ei sidota kurssiin ilman käsin varmistettua kytkentää."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Monilukutaito on opettajan supervoima – Tekoälylukutaito",
+      "material_date": "2024-09-26",
+      "material_url": "https://www.canva.com/d/DUFz3anJzfZmV8G",
+      "material_reference": "src/_data/canva-presentations.json#63",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoälylukutaito"
+      ],
+      "evidence_summary": "Aihe liittyy opetukseen (tekoälylukutaito), mutta Canva-metadatasta ei löytynyt kurssikoodia tai virallista kurssinimeä. Ei sidota kurssiin ilman käsin varmistettua kytkentää."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Tekoäly on jo kaikkialla – Miten ilmiötä tulisi lähestyä?",
+      "material_date": "2024-09-26",
+      "material_url": "https://www.canva.com/d/F5-Wd95VzJy0JoP",
+      "material_reference": "src/_data/canva-presentations.json#64",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoälylukutaito"
+      ],
+      "evidence_summary": "Aihe liittyy opetukseen (tekoälylukutaito), mutta Canva-metadatasta ei löytynyt kurssikoodia tai virallista kurssinimeä. Ei sidota kurssiin ilman käsin varmistettua kytkentää."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Tekoälytyökalut – Webinaari 2024",
+      "material_date": "2024-09-24",
+      "material_url": "https://www.canva.com/d/m5VefIslzj_iYuG",
+      "material_reference": "src/_data/canva-presentations.json#65",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoälylukutaito"
+      ],
+      "evidence_summary": "Aihe liittyy opetukseen (tekoälylukutaito), mutta Canva-metadatasta ei löytynyt kurssikoodia tai virallista kurssinimeä. Ei sidota kurssiin ilman käsin varmistettua kytkentää."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Tekoäly arjessa – EDUTEN/Opinvirta",
+      "material_date": "2024-09-19",
+      "material_url": "https://www.canva.com/d/WNfJmky8Se8aUa6",
+      "material_reference": "src/_data/canva-presentations.json#66",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "media",
+        "tekoäly",
+        "tekoaly"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (media, tekoäly, tekoaly), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "VESO 2024 – Tekoäly opetuksessa",
+      "material_date": "2024-08-30",
+      "material_url": "https://www.canva.com/d/i5qAHZkGYqjOGZV",
+      "material_reference": "src/_data/canva-presentations.json#67",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoäly",
+        "tekoaly",
+        "koulutus"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (tekoäly, tekoaly, koulutus), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "VESO elokuu 2024 – Tekoäly koulussa",
+      "material_date": "2024-08-30",
+      "material_url": "https://www.canva.com/d/H8tSyhG_9jcwRpr",
+      "material_reference": "src/_data/canva-presentations.json#68",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoäly",
+        "tekoaly"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (tekoäly, tekoaly), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "VESO 2024 – Tekoäly oppimassa ja opettamassa",
+      "material_date": "2024-08-05",
+      "material_url": "https://www.canva.com/d/SiQ1lIJLHO9eT0t",
+      "material_reference": "src/_data/canva-presentations.json#69",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "media",
+        "tekoäly",
+        "tekoaly"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (media, tekoäly, tekoaly), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "From EU AI Act to National AI Guidelines",
+      "material_date": "2024-06-27",
+      "material_url": "https://www.canva.com/d/c8WhYSwnqMjsYUZ",
+      "material_reference": "src/_data/canva-presentations.json#28",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "ai literacy"
+      ],
+      "evidence_summary": "Aihe liittyy opetukseen (ai literacy), mutta Canva-metadatasta ei löytynyt kurssikoodia tai virallista kurssinimeä. Ei sidota kurssiin ilman käsin varmistettua kytkentää."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Fedutalk – Generative AI in Education",
+      "material_date": "2024-06-26",
+      "material_url": "https://www.canva.com/d/tjjrZpkP2brKCKh",
+      "material_reference": "src/_data/canva-presentations.json#29",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoäly",
+        "tekoaly",
+        "koulutus"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (tekoäly, tekoaly, koulutus), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Fedutalk – Generative AI in Education (Kosovo)",
+      "material_date": "2024-06-26",
+      "material_url": "https://canva.link/gkabrxufe8dhnjp",
+      "material_reference": "src/_data/canva-presentations.json#9",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "ai literacy"
+      ],
+      "evidence_summary": "Aihe liittyy opetukseen (ai literacy), mutta Canva-metadatasta ei löytynyt kurssikoodia tai virallista kurssinimeä. Ei sidota kurssiin ilman käsin varmistettua kytkentää."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "FCLAB ja norssit – Generation AI",
+      "material_date": "2024-04-17",
+      "material_url": "https://www.canva.com/d/yBTK1xtETo0tuLp",
+      "material_reference": "src/_data/canva-presentations.json#70",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "fab lab"
+      ],
+      "evidence_summary": "Aihe liittyy opetukseen (fab lab), mutta Canva-metadatasta ei löytynyt kurssikoodia tai virallista kurssinimeä. Ei sidota kurssiin ilman käsin varmistettua kytkentää."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "ITK2024",
+      "material_date": "2024-04-12",
+      "material_url": "https://www.canva.com/d/1U8nu6YXdIOguXc",
+      "material_reference": "src/_data/canva-presentations.json#30",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoäly",
+        "tekoaly"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (tekoäly, tekoaly), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Tekoäly opettajan työkaluna – Inspiraatiosessio",
+      "material_date": "2024-03-13",
+      "material_url": "https://www.canva.com/d/S9UhE1RwcwtuNMz",
+      "material_reference": "src/_data/canva-presentations.json#71",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoäly opettajan työkaluna"
+      ],
+      "evidence_summary": "Aihe liittyy opetukseen (tekoäly opettajan työkaluna), mutta Canva-metadatasta ei löytynyt kurssikoodia tai virallista kurssinimeä. Ei sidota kurssiin ilman käsin varmistettua kytkentää."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "Kuntaliitto digiverkosto – Tekoäly koulutuksessa",
+      "material_date": "2024-03-11",
+      "material_url": "https://www.canva.com/d/rcjGtO0E3RNGeXW",
+      "material_reference": "src/_data/canva-presentations.json#72",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoäly",
+        "tekoaly"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (tekoäly, tekoaly), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "OAJ SAUNA – Tekoäly ja opettajuus",
+      "material_date": "2024-02-06",
+      "material_url": "https://www.canva.com/d/tjqmy-4Lc_5j41O",
+      "material_reference": "src/_data/canva-presentations.json#74",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoäly",
+        "tekoaly"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (tekoäly, tekoaly), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "canva",
+      "material_title": "OPH-webinaari – Tekoäly opetuksessa 2023",
+      "material_date": "2023-11-20",
+      "material_url": "https://www.canva.com/d/d6ho42WobmfnVvc",
+      "material_reference": "src/_data/canva-presentations.json#75",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tekoäly",
+        "tekoaly",
+        "webinaari"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (tekoäly, tekoaly, webinaari), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "\"Digital enabled learning\" (Arctic frontiers speech 2020)",
+      "material_date": "2020-02-18",
+      "material_url": "https://www.slideshare.net/slideshow/digital-enabled-learning-arctic-frontiers-speech-2020/228552429",
+      "material_reference": "src/presentations/ss-digital-enabled-learning-arctic-frontiers-speech-2020.md",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "learning"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (learning), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Are we currently moving from the age of mobolism to age of artificail intelligence, learning analytics and robotics? Yes were are! How to couple emerging technology with learning and teaching?",
+      "material_date": "2019-03-11",
+      "material_url": "https://www.slideshare.net/slideshow/are-we-currently-moving-from-the-age-of-mobilism-to-age-of-artificial-intelligence-learning-analytics-and-robotics-yes-we-arehow-to-couple-emergent-technology-with-learning-and-teaching/135625316",
+      "material_reference": "src/presentations/ss-are-we-currently-moving-from-the-age-of-mobolism-to-age-of-artificail-intelligen.md",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "learning"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (learning), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Social media as a tool for researchers",
+      "material_date": "2018-07-05",
+      "material_url": "https://www.slideshare.net/slideshow/social-media-as-a-tool-for-researchers/104399008",
+      "material_reference": "src/presentations/ss-social-media-as-a-tool-for-researchers.md",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "media"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (media), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Puheenvuoro RAKLI:n vierailulla: Teknologiatuettu oppiminen ja oppimisen uudet ympäristöt",
+      "material_date": "2018-06-18",
+      "material_url": "https://www.slideshare.net/slideshow/puheenvuoro-raklin-vierailulla-teknologiatuettu-oppiminen-ja-oppimisen-uudet-ympristt/102588039",
+      "material_reference": "src/presentations/ss-puheenvuoro-rakli-n-vierailulla-teknologiatuettu-oppiminen-ja-oppimisen-uudet-ym.md",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "oppiminen",
+        "teknologiatuettu"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (oppiminen, teknologiatuettu), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Lito2018 workshop arviointi suurilla verkkokursseilla",
+      "material_date": "2018-05-28",
+      "material_url": "https://www.slideshare.net/slideshow/lito2018-workshop-arviointi-suurilla-verkkokursseilla/99171640",
+      "material_reference": "src/presentations/ss-lito2018-workshop-arviointi-suurilla-verkkokursseilla.md",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "workshop"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (workshop), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Teknologiatuettu oppiminen ja opetus 4op - johdantoluento + digitalisaatio",
+      "material_date": "2017-09-06",
+      "material_url": "https://www.slideshare.net/slideshow/teknologiatuettu-oppiminen-ja-opetus-4op-johdantoluento-digitalisaatio/79479675",
+      "material_reference": "src/presentations/ss-teknologiatuettu-oppiminen-ja-opetus-4op-johdantoluento-digitalisaatio.md",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "opetus",
+        "oppiminen",
+        "teknologiatuettu"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (opetus, oppiminen, teknologiatuettu), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Teknologiatuettu oppiminen ja opetus - luento asiantuntijafoorumissa",
+      "material_date": "2017-02-06",
+      "material_url": "https://www.slideshare.net/slideshow/teknologiatuettu-oppiminen-ja-opetus-luento-asiantuntijafoorumissa/71802225",
+      "material_reference": "src/presentations/ss-teknologiatuettu-oppiminen-ja-opetus-luento-asiantuntijafoorumissa.md",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "luento",
+        "opetus",
+        "oppiminen",
+        "teknologiatuettu"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (luento, opetus, oppiminen, teknologiatuettu), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Luento 1: ilmiöstä",
+      "material_date": "2016-01-11",
+      "material_url": "https://www.slideshare.net/slideshow/luento-1-ilmist/56928812",
+      "material_reference": "src/presentations/ss-luento-1-ilmiosta.md",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "luento"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (luento), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Wrap up luento (dime 2015)",
+      "material_date": "2015-05-05",
+      "material_url": "https://www.slideshare.net/slideshow/wrap-up-luento-dime-2015/47760384",
+      "material_reference": "src/presentations/ss-wrap-up-luento-dime-2015.md",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "luento"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (luento), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Mobiililaitteilla tuettu oppiminen (BYOD): miten suunnitella tämän vuosisadan ydintaitoja tukevaa osaamisen kehittämistä?",
+      "material_date": "2015-03-26",
+      "material_url": "https://www.slideshare.net/slideshow/webinari-esitysrapo/46310032",
+      "material_reference": "src/presentations/ss-mobiililaitteilla-tuettu-oppiminen-byod-miten-suunnitella-taman-vuosisadan-ydint.md",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "oppiminen"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (oppiminen), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Teknologia ja monilukutaito – merkittävä osa tämän vuosisadan ydintaitoja",
+      "material_date": "2015-02-07",
+      "material_url": "https://www.slideshare.net/slideshow/sukol2015seinajoki-44375884/44375884",
+      "material_reference": "src/presentations/ss-teknologia-ja-monilukutaito-merkittava-osa-taman-vuosisadan-ydintaitoja.md",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "monilukutaito"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (monilukutaito), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Luentosali II: 2000-luvun taidot & luento, mahdollista? Kyllä.",
+      "material_date": "2014-11-30",
+      "material_url": "https://www.slideshare.net/slideshow/luentosali-ii-2000luvun-taidot-luento-mahdollista-kyll/42187867",
+      "material_reference": "src/presentations/ss-luentosali-ii-2000-luvun-taidot-luento-mahdollista-kylla.md",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "luento"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (luento), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Tutkija ja sosiaalinen media",
+      "material_date": "2014-11-21",
+      "material_url": "https://www.slideshare.net/slideshow/tutkija-ja-sosiaalinen-media/41848237",
+      "material_reference": "src/presentations/ss-tutkija-ja-sosiaalinen-media.md",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "media"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (media), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "The role and importance of social media in science",
+      "material_date": "2014-10-10",
+      "material_url": "https://www.slideshare.net/slideshow/the-role-and-importance-of-social-media-in-science/40101721",
+      "material_reference": "src/presentations/ss-the-role-and-importance-of-social-media-in-science.md",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "media"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (media), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "LUENTO 3: TPACK-taidot – teknologiatuettu oppiminen ja opetus",
+      "material_date": "2014-09-02",
+      "material_url": "https://www.slideshare.net/slideshow/luento-3-tpacktaidot-teknologiatuettu-oppiminen-ja-opetus/38595557",
+      "material_reference": "src/presentations/ss-luento-3-tpack-taidot-teknologiatuettu-oppiminen-ja-opetus.md",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "luento",
+        "opetus",
+        "oppiminen",
+        "teknologiatuettu"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (luento, opetus, oppiminen, teknologiatuettu), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Professional use of social media (web2.0)",
+      "material_date": "2014-05-21",
+      "material_url": "https://www.slideshare.net/slideshow/professional-use-of-social-media-web20/34945863",
+      "material_reference": "src/presentations/ss-professional-use-of-social-media-web2-0.md",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "media"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (media), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Tämän vuosituhannen ydintaidot ja teknologian opetus- ja oppimiskäyttö",
+      "material_date": "2014-04-04",
+      "material_url": "https://www.slideshare.net/slideshow/tmn-vuosituhannen-ydintaidot-ja-teknologian-opetus-ja-oppimiskytt/33125143",
+      "material_reference": "src/presentations/ss-taman-vuosituhannen-ydintaidot-ja-teknologian-opetus-ja-oppimiskaytto.md",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "opetus"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (opetus), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Luento II: Yhteisöllinen ongelmalähtöinen oppiminen",
+      "material_date": "2014-03-17",
+      "material_url": "https://www.slideshare.net/slideshow/voot-luento2/32397040",
+      "material_reference": "src/presentations/ss-luento-ii-yhteisollinen-ongelmalahtoinen-oppiminen.md",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "luento",
+        "oppiminen"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (luento, oppiminen), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Opettajien orientoivia tvt-opintoja kehittämässä. CASE: Oulun yliopisto",
+      "material_date": "2013-11-21",
+      "material_url": "https://www.slideshare.net/slideshow/kt-paivat-2013/28483217",
+      "material_reference": "src/presentations/ss-opettajien-orientoivia-tvt-opintoja-kehittamassa-case-oulun-yliopisto.md",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tvt"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (tvt), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Teknologiatuettu oppiminen - luksia.",
+      "material_date": "2013-11-06",
+      "material_url": "https://www.slideshare.net/slideshow/teknologiatuettu-oppiminen-luksia/27954193",
+      "material_reference": "src/presentations/ss-teknologiatuettu-oppiminen-luksia.md",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "oppiminen",
+        "teknologiatuettu"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (oppiminen, teknologiatuettu), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Teknologia, oppiminen ja osaaminen yhteiskunnassa - uudet teknologiat isännän vai rengin roolissa",
+      "material_date": "2013-02-21",
+      "material_url": "https://www.slideshare.net/slideshow/teknologia-oppiminen-ja-osaaminen-yhteiskunnassa-uudet-teknologiat-isnnn-vai-rengin-roolissa/16672046",
+      "material_reference": "src/presentations/ss-teknologia-oppiminen-ja-osaaminen-yhteiskunnassa-uudet-teknologiat-isannan-vai-r.md",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "luento",
+        "opetus",
+        "oppiminen",
+        "materiaali"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (luento, opetus, oppiminen, materiaali), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Luento 5: Tietotekniiikan opetuskäytön suunnittelu (ääni ei ole synkassa diojen kanssa, kiitos slidesharen)",
+      "material_date": "2012-09-20",
+      "material_url": "https://www.slideshare.net/slideshow/luento-5-tietotekniiikan-opetuskytn-suunnittelu/14847181",
+      "material_reference": "src/presentations/ss-luento-5-tietotekniiikan-opetuskayton-suunnittelu-aani-ei-ole-synkassa-diojen-ka.md",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "luento"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (luento), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Luento 4: Oppimisen uudet mallit ja teoriat (diat ja ääni eivät ole synkassa, kiitos siitä slidesharelle)",
+      "material_date": "2012-09-11",
+      "material_url": "https://www.slideshare.net/slideshow/luento-4-oppimisen-uudet-mallit-ja-teoriat/14244953",
+      "material_reference": "src/presentations/ss-luento-4-oppimisen-uudet-mallit-ja-teoriat-diat-ja-aani-eivat-ole-synkassa-kiito.md",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "luento"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (luento), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Scaffolding learning activities in real life contexts with collaborative scripts and mobile computers",
+      "material_date": "2012-04-25",
+      "material_url": "https://www.slideshare.net/slideshow/laru-thesisintro2012/12684734",
+      "material_reference": "src/presentations/ss-scaffolding-learning-activities-in-real-life-contexts-with-collaborative-scripts.md",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "learning"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (learning), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Luento: Powerpoint harjoitus",
+      "material_date": "2011-12-12",
+      "material_url": "https://www.slideshare.net/slideshow/powerpoint-harjoitus/10557979",
+      "material_reference": "src/presentations/ss-luento-powerpoint-harjoitus.md",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "luento"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (luento), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Mobiilioppimisesta - About Mobile learning",
+      "material_date": "2011-10-06",
+      "material_url": "https://www.slideshare.net/slideshow/mobiilioppimisesta-about-mobile-learning/9581844",
+      "material_reference": "src/presentations/ss-mobiilioppimisesta-about-mobile-learning.md",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "learning"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (learning), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "405514Y Multimedia as a Learning Project, 3 c",
+      "material_date": "2011-02-17",
+      "material_url": "https://www.slideshare.net/slideshow/405514y-multimedia-as-a-learning-project-3-c/6958208",
+      "material_reference": "src/presentations/ss-405514y-multimedia-as-a-learning-project-3-c.md",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "multimedia",
+        "learning"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (multimedia, learning), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "TVT opetuskäytön historiaa [finnish]",
+      "material_date": "2010-10-05",
+      "material_url": "https://www.slideshare.net/slideshow/tvt-opetuskytn-historiaa-finnish/5361471",
+      "material_reference": "src/presentations/ss-tvt-opetuskayton-historiaa-finnish.md",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tvt"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (tvt), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Oppiminen Ja Vuorovaikutus",
+      "material_date": "2009-11-19",
+      "material_url": "https://www.slideshare.net/slideshow/oppiminen-ja-vuorovaikutus/2537550",
+      "material_reference": "src/presentations/ss-oppiminen-ja-vuorovaikutus.md",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "oppiminen"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (oppiminen), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Sosiaalinen media opetuskäytössä",
+      "material_date": "2009-11-19",
+      "material_url": "https://www.slideshare.net/slideshow/sosiaalinen-media-opetuskytss/2537603",
+      "material_reference": "src/presentations/ss-sosiaalinen-media-opetuskaytossa.md",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "media"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (media), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "Sosiaalinen media ja sen sovellutukset - koulutusteknologin näkökulma medialasien läpi katsottuna",
+      "material_date": "2009-05-05",
+      "material_url": "https://www.slideshare.net/slideshow/sosiaalinen-media-ja-sen-sovellutukset-koulutusteknologin-nkkulma-medialasien-lpi-katsottuna/1386778",
+      "material_reference": "src/presentations/ss-sosiaalinen-media-ja-sen-sovellutukset-koulutusteknologin-nakokulma-medialasien-.md",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "media"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (media), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    },
+    {
+      "material_source": "slideshare",
+      "material_title": "TVT-opetuskäytön historiaa: visionääreistä web2.0:n aikakauteen",
+      "material_date": "2008-11-12",
+      "material_url": "https://www.slideshare.net/slideshow/tvtopetuskytn-historiaa-visionreist-web20n-aikakauteen-presentation/744528",
+      "material_reference": "src/presentations/ss-tvt-opetuskayton-historiaa-visionaareista-web2-0-n-aikakauteen.md",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "matched_terms": [
+        "tvt"
+      ],
+      "evidence_summary": "Materiaalissa on opetukseen tai oppimiseen liittyviä tunnisteita (tvt), mutta kurssikoodia tai lähdeaineiston mukaista kurssinimeä ei löytynyt."
+    }
+  ],
+  "legacy_source_evidence_links": [
+    {
+      "presentation_title_or_file": "intro-110831170815-phpapp02.ppt",
+      "year_or_date": "2011",
+      "linked_course_id": "410014Y",
+      "linked_course_name": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+      "link_type": "explicit_course_link",
+      "evidence_summary": "Slide states course name, 3 op, year 2011, Jari Laru as teacher, and lists SlideShare lecture links under this course.",
+      "source_reference_ids": [
+        "turn23search228"
+      ]
+    },
+    {
+      "presentation_title_or_file": "tvt1luentohistoria-110831172503-phpapp01.ppt",
+      "year_or_date": "2011",
+      "linked_course_id": "410014Y",
+      "linked_course_name": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+      "link_type": "explicit_course_link",
+      "evidence_summary": "Slide text states 'Tieto- ja viestintätekniikka pedagogisena työvälineenä, 3 op 2011' and Jari Laru.",
+      "source_reference_ids": [
+        "turn19search200"
+      ]
+    },
+    {
+      "presentation_title_or_file": "ktktvtluento2yhteiskunta-120904013709-phpapp01.ppt",
+      "year_or_date": "2012/2013 file context",
+      "linked_course_id": "410014Y",
+      "linked_course_name": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+      "link_type": "explicit_course_link",
+      "evidence_summary": "Slide text states 'TVT ja yhteiskunta 410014Y Tieto- ja viestintätekniikka pedagogisena työvälineenä'.",
+      "source_reference_ids": [
+        "turn23search222"
+      ]
+    },
+    {
+      "presentation_title_or_file": "Luento3_periodi_B.pptx",
+      "year_or_date": "2012",
+      "linked_course_id": "410014Y",
+      "linked_course_name": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+      "link_type": "explicit_course_link",
+      "evidence_summary": "Slide text states '410014Y Tieto- ja viestintätekniikka pedagogisena työvälineenä'.",
+      "source_reference_ids": [
+        "turn23search219"
+      ]
+    },
+    {
+      "presentation_title_or_file": "luento5haasteet-130910084845-phpapp02.pptx",
+      "year_or_date": "2013",
+      "linked_course_id": "410014Y",
+      "linked_course_name": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+      "link_type": "explicit_course_link",
+      "evidence_summary": "Title states 'Luento 5: Haasteet ja arkirealismi 410014Y Tieto- ja viestintätekniikka pedagogisena työvälineenä'.",
+      "source_reference_ids": [
+        "turn23search220"
+      ]
+    },
+    {
+      "presentation_title_or_file": "TVTLuento2_2014.pptx",
+      "year_or_date": "2014",
+      "linked_course_id": "410014Y",
+      "linked_course_name": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+      "link_type": "explicit_course_link",
+      "evidence_summary": "Slide text states '410014Y Tieto- ja viestintätekniikka pedagogisena työvälineenä 2014'.",
+      "source_reference_ids": [
+        "turn23search221"
+      ]
+    },
+    {
+      "presentation_title_or_file": "Luento5_suunnittelu.pptx",
+      "year_or_date": "2014",
+      "linked_course_id": "410014Y",
+      "linked_course_name": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+      "link_type": "explicit_course_link",
+      "evidence_summary": "Slide text states '410014Y Tieto- ja viestintätekniikka pedagogisena työvälineenä LUENTO 5 Suunnittelu ja pedagogiset mallit (2014)'.",
+      "source_reference_ids": [
+        "turn23search223"
+      ]
+    },
+    {
+      "presentation_title_or_file": "luento1_johdanto.pptx",
+      "year_or_date": "2013",
+      "linked_course_id": "410014Y",
+      "linked_course_name": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+      "link_type": "explicit_course_link",
+      "evidence_summary": "Slide text states '410014Y Tieto- ja viestintätekniikka pedagogisena työvälineenä Luento1: Johdanto'. It also lists related course/pathway items.",
+      "source_reference_ids": [
+        "turn23search218"
+      ]
+    },
+    {
+      "presentation_title_or_file": "Tieto –ja viestintätekniikka opettajankoulutuksessa + infrastruktuurin päivittäminen.pptx",
+      "year_or_date": "2012",
+      "linked_course_id": "",
+      "linked_course_name": "TVT-opettajankoulutuksen tarjontakalvo",
+      "link_type": "course_offering_context",
+      "evidence_summary": "Slide lists offering: Tieto- ja viestintätekniikka pedagogisena työvälineenä, Multimedia oppimisprojektina, and Tietotyö pedagogisena haasteena.",
+      "source_reference_ids": [
+        "turn22search200",
+        "turn22search208"
+      ]
+    },
+    {
+      "presentation_title_or_file": "Luento 2. Ilmiön teoreettista taustaa.pptx",
+      "year_or_date": "22.4.2009",
+      "linked_course_id": "",
+      "linked_course_name": "",
+      "link_type": "possible_teaching_material_no_confirmed_course",
+      "evidence_summary": "Slide text states LET unit, Jari Laru, 22.4.2009; topics include CSCL, collaborative learning and self-regulated learning. Exact course is not named in the source gathered so far.",
+      "source_reference_ids": [
+        "turn22search211"
+      ]
+    }
+  ]
+}
