@@ -281,6 +281,128 @@
       color: #66768a;
       line-height: 1.35;
     }
+    .review-toolbar-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.8fr) minmax(220px, 320px) minmax(180px, 240px);
+      gap: .85rem;
+      align-items: end;
+    }
+    .review-grid {
+      display: grid;
+      gap: .85rem;
+    }
+    .review-card {
+      display: grid;
+      grid-template-columns: minmax(220px, .9fr) minmax(0, 1.4fr) minmax(180px, .55fr);
+      gap: 1rem;
+      border: 1px solid #d9e2ec;
+      border-radius: 16px;
+      background: #fff;
+      padding: 1rem;
+    }
+    .review-title {
+      font-weight: 800;
+      color: #12263c;
+      line-height: 1.25;
+      margin-bottom: .3rem;
+    }
+    .review-meta,
+    .review-evidence {
+      color: #617487;
+      font-size: .84rem;
+      line-height: 1.45;
+      margin-bottom: .45rem;
+    }
+    .review-course-list,
+    .review-action-list {
+      display: grid;
+      gap: .45rem;
+    }
+    .review-course {
+      border: 1px solid #d7e3ef;
+      border-radius: 12px;
+      background: #f8fbfe;
+      padding: .65rem .75rem;
+    }
+    .review-course.is-selected {
+      border-color: #7ab7ff;
+      background: #eef7ff;
+      box-shadow: inset 0 0 0 1px rgba(42, 126, 211, .18);
+    }
+    .review-course-title {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .35rem;
+      align-items: center;
+      color: #10233a;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: .25rem;
+    }
+    .review-course-title code {
+      background: #eaf1f8;
+      border-radius: 7px;
+      color: #31475f;
+      padding: .12rem .4rem;
+    }
+    .review-course small {
+      display: block;
+      color: #617487;
+      line-height: 1.35;
+    }
+    .review-tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .35rem;
+      margin-top: .45rem;
+    }
+    .review-tag {
+      display: inline-flex;
+      border-radius: 999px;
+      background: #edf2f7;
+      color: #31475f;
+      font-size: .74rem;
+      font-weight: 700;
+      padding: .22rem .5rem;
+    }
+    .review-confidence {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      font-size: .72rem;
+      font-weight: 800;
+      padding: .22rem .5rem;
+    }
+    .review-confidence.high { background: #ecfdf3; color: #027a48; }
+    .review-confidence.medium { background: #fff7e8; color: #b54708; }
+    .review-confidence.low { background: #edf2f7; color: #516171; }
+    .review-course-picker {
+      display: grid;
+      gap: .35rem;
+    }
+    .review-course-picker label {
+      color: #40556b;
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .review-state-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .45rem;
+      align-items: center;
+    }
+    .review-action-list .btn {
+      width: 100%;
+    }
+    .review-empty {
+      border: 1px dashed #c9d7e5;
+      border-radius: 16px;
+      color: #60748a;
+      padding: 1.6rem;
+      text-align: center;
+    }
     .empty-state {
       padding: 2.2rem 1rem;
       text-align: center;
@@ -291,6 +413,10 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
       .toolbar-grid {
+        grid-template-columns: 1fr;
+      }
+      .review-toolbar-grid,
+      .review-card {
         grid-template-columns: 1fr;
       }
       .table-responsive {
@@ -411,6 +537,73 @@
         </table>
       </div>
     </section>
+
+    <section class="hero-card mt-4" id="course-review">
+      <p class="hero-kicker">Admin / Canva / Kurssitarkistus</p>
+      <h2 class="hero-title">Canva-materiaalien opintojaksokonteksti</h2>
+      <p class="hero-text">
+        Tämä on kuratoinnin työlista. Näkymä ehdottaa mahdollisia opintojaksokonteksteja
+        otsikon, kuvauksen, avainsanojen ja järjestäjän perusteella, mutta ei tallenna
+        kytkentöjä automaattisesti. Hyväksy kytkentä vain, jos tiedät materiaalin kuuluvan kurssille.
+      </p>
+    </section>
+
+    <section class="metrics-grid" id="review-metrics-grid">
+      <article class="metric-card">
+        <p class="metric-label">Tarkistettavia</p>
+        <p class="metric-value" id="review-metric-total">0</p>
+        <p class="metric-note">Canva-rivit, joille löytyi opetuskäyttöinen ehdokas</p>
+      </article>
+      <article class="metric-card">
+        <p class="metric-label">Kurssiehdokkaita</p>
+        <p class="metric-value" id="review-metric-candidates">0</p>
+        <p class="metric-note">Ehdotetut kurssikontekstit yhteensä</p>
+      </article>
+      <article class="metric-card">
+        <p class="metric-label">Hyväksytty</p>
+        <p class="metric-value" id="review-metric-high">0</p>
+        <p class="metric-note">Käsin hyväksytyt kurssikytkennät</p>
+      </article>
+      <article class="metric-card">
+        <p class="metric-label">Näkyvissä</p>
+        <p class="metric-value" id="review-metric-visible">0</p>
+        <p class="metric-note">Nykyisen haun ja kurssisuodattimen jälkeen</p>
+      </article>
+    </section>
+
+    <section class="panel-card">
+      <div class="review-toolbar-grid">
+        <div>
+          <label class="toolbar-label" for="review-search-input">Haku</label>
+          <input id="review-search-input" class="form-control" type="search" placeholder="Hae otsikolla, järjestäjällä, avainsanalla tai kurssilla">
+        </div>
+        <div>
+          <label class="toolbar-label" for="review-course-select">Kurssiehdokas</label>
+          <select id="review-course-select" class="form-select">
+            <option value="all">Kaikki kurssiehdokkaat</option>
+          </select>
+        </div>
+        <div>
+          <label class="toolbar-label" for="review-confidence-select">Varmuus</label>
+          <select id="review-confidence-select" class="form-select">
+            <option value="all">Kaikki</option>
+            <option value="high">Vain vahvemmat</option>
+            <option value="medium">Keskitaso</option>
+            <option value="low">Heikot</option>
+          </select>
+        </div>
+      </div>
+      <div class="status-strip">
+        <span class="pill-stat"><strong id="review-visible-count">0</strong> näkyvää ehdokasta</span>
+        <span class="status-note">Tee riville päätös: hyväksy oikea kurssi, hylkää epärelevanttina tai jätä odottamaan.</span>
+      </div>
+    </section>
+
+    <section class="panel-card">
+      <div id="course-review-list" class="review-grid">
+        <div class="review-empty">Ladataan kurssitarkistuksen ehdokkaita…</div>
+      </div>
+    </section>
   </div>
 </div>
 
@@ -428,8 +621,84 @@ const state = {
   items: [],
   query: '',
   filter: 'missing',
+  reviewQuery: '',
+  reviewCourse: 'all',
+  reviewConfidence: 'all',
   saving: false
 };
+
+const COURSE_REVIEW_CATALOG = [
+  {
+    key: 'tekoaly-oppimisessa-ja-opetuksessa',
+    courseName: 'Tekoäly oppimisessa ja opetuksessa',
+    courseId: '',
+    terms: ['tekoäly', 'tekoaly', 'ai literacy', 'tekoälylukutaito', 'generative ai', 'chatgpt', 'generation ai', 'selitettävä tekoäly', 'xai', 'somekone', 'opetettava kone', 'teachable machine', 'eu ai act', 'pieni kielikone', 'tekoäly opettajan työkaluna'],
+    rationale: 'Tekoäly, selitettävä tekoäly tai tekoälylukutaito on materiaalin pääteema.'
+  },
+  {
+    key: '405040y',
+    courseName: 'Teknologiatuettu oppiminen ja työskentely',
+    courseId: '405040Y',
+    terms: ['teknologiatuettu', 'digipedagogiikka', 'korkeakoulupedagogiikka', 'higher education', 'university pedagogy', 'hybridiopetus', 'oppimisympäristö', 'learning environments', 'digitalisaatio', 'opintori'],
+    rationale: 'Materiaali liittyy oppimisen teknologioihin, korkeakoulupedagogiikkaan tai digitaaliseen työskentelyyn.'
+  },
+  {
+    key: '410014y',
+    courseName: 'Tieto- ja viestintätekniikka pedagogisena työvälineenä',
+    courseId: '410014Y',
+    terms: ['tvt', 'digitaaliset välineet', 'opettajan työkaluna', 'opetusteknologia', 'opettajankoulutus', 'teacher education', 'digital competence', 'opettajuus', 'opettajaprofiili'],
+    rationale: 'Materiaali käsittelee teknologian pedagogista käyttöä tai opettajankoulutuksen digiosaamista.'
+  },
+  {
+    key: '410017y',
+    courseName: 'Digitaalinen media oppimisessa ja opettamisessa',
+    courseId: '410017Y',
+    terms: ['media', 'monilukutaito', 'mediakasvatus', 'sosiaalinen media', 'some', 'somekone', 'koukuttaa', 'suosittelujärjestelmä', 'profilointi'],
+    rationale: 'Materiaali käsittelee digitaalista mediaa, monilukutaitoa tai sosiaalisen median toimintaperiaatteita.'
+  },
+  {
+    key: '418028p',
+    courseName: 'Learning Environments and Technologies / Technology Enhanced Learning and Digital Fabrication',
+    courseId: '418028P',
+    terms: ['digital fabrication', 'fab lab', 'maker', 'maker education', 'robotiikka', 'konenäkö', 'vibe coding', 'learning environments', 'technology enhanced learning'],
+    rationale: 'Materiaali liittyy oppimisympäristöihin, maker-toimintaan, robotiikkaan tai digital fabrication -alueeseen.'
+  },
+  {
+    key: '407062a',
+    courseName: 'Ohjelmointi perusopetuksessa',
+    courseId: '407062A',
+    terms: ['ohjelmointi', 'coding', 'computational thinking', 'robotiikka', 'vibe coding', 'perusopetus', 'primary school'],
+    rationale: 'Materiaali liittyy ohjelmointiin, computational thinking -osaamiseen tai perusopetuksen teknologiasisältöihin.'
+  },
+  {
+    key: '402730p',
+    courseName: 'Johdatus STEAMiin',
+    courseId: '402730P',
+    terms: ['steam', 'steam education', 'advancement of steam'],
+    rationale: 'Materiaali liittyy STEAM-kasvatukseen.'
+  },
+  {
+    key: '402734p-ke00ag98',
+    courseName: 'STEAM-työpajat / STEAM työpaja',
+    courseId: '402734P / KE00AG98',
+    terms: ['steam-työpaja', 'steam työpaja', 'workshop', 'työpaja', 'robokampus'],
+    rationale: 'Materiaali on työpajamainen tai liittyy STEAM-/robotiikkatyöpajoihin.'
+  },
+  {
+    key: '407061a',
+    courseName: 'Avoin workshop',
+    courseId: '407061A',
+    terms: ['workshop', 'työpaja', 'demo session', 'toimintasessio'],
+    rationale: 'Materiaali on selvästi työpaja- tai demosessiokontekstissa.'
+  },
+  {
+    key: '418019p',
+    courseName: 'Introduction to Learning and Educational Technology',
+    courseId: '418019P',
+    terms: ['educational technology', 'edtech', 'learning technology', 'learning and educational technology'],
+    rationale: 'Materiaali liittyy koulutusteknologian yleisiin johdantoteemoihin.'
+  }
+];
 
 function esc(value) {
   return String(value ?? '')
@@ -437,6 +706,253 @@ function esc(value) {
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
+}
+
+function normalizeText(value) {
+  return String(value || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function includesTerm(haystack, term) {
+  const normalizedTerm = normalizeText(term);
+  if (!normalizedTerm) return false;
+  return ` ${normalizeText(haystack)} `.includes(` ${normalizedTerm} `);
+}
+
+function itemReviewText(item) {
+  return [
+    item.title,
+    item.summary,
+    item.description,
+    item.folder,
+    item.kategoria,
+    item.jarjestaja,
+    item.location,
+    ...(Array.isArray(item.keywords) ? item.keywords : [])
+  ].filter(Boolean).join(' ');
+}
+
+function confidenceForHits(hitCount, item) {
+  if (hitCount >= 3) return 'high';
+  if (hitCount >= 2) return 'medium';
+  const text = normalizeText([item.folder, item.kategoria, item.jarjestaja].join(' '));
+  if (/koulutukset|kurssimateriaalit|tdk luento|yliopisto|opetus/.test(text)) return 'medium';
+  return 'low';
+}
+
+function courseReviewCandidates(item) {
+  const text = itemReviewText(item);
+  return COURSE_REVIEW_CATALOG
+    .map((course) => {
+      const matchedTerms = course.terms.filter((term) => includesTerm(text, term));
+      if (!matchedTerms.length) return null;
+      return {
+        ...course,
+        matchedTerms,
+        confidence: confidenceForHits(matchedTerms.length, item)
+      };
+    })
+    .filter(Boolean)
+    .sort((a, b) => {
+      const confidenceRank = { high: 0, medium: 1, low: 2 };
+      return confidenceRank[a.confidence] - confidenceRank[b.confidence] || b.matchedTerms.length - a.matchedTerms.length || a.courseName.localeCompare(b.courseName, 'fi');
+    })
+    .slice(0, 4);
+}
+
+function courseKeyForContext(context) {
+  const courseId = normalizeText(context?.courseId || '');
+  const courseName = normalizeText(context?.courseName || '');
+  const found = COURSE_REVIEW_CATALOG.find((course) => {
+    return (courseId && normalizeText(course.courseId) === courseId) || normalizeText(course.courseName) === courseName;
+  });
+  return found?.key || '';
+}
+
+function initialCourseReviewStatus(item) {
+  if (item.courseReview?.status) return item.courseReview.status;
+  if (Array.isArray(item.courseContexts) && item.courseContexts.length) return 'accepted';
+  return 'pending';
+}
+
+function initialCourseReviewKey(item) {
+  if (item.courseReview?.courseKey) return item.courseReview.courseKey;
+  if (Array.isArray(item.courseContexts) && item.courseContexts[0]) return courseKeyForContext(item.courseContexts[0]);
+  return '';
+}
+
+function createCourseContext(item, candidate) {
+  const context = {
+    courseName: candidate.courseName,
+    evidenceLevel: 'manual-review',
+    linkType: 'accepted_canva_teaching_material',
+    matchedTerms: candidate.matchedTerms,
+    evidenceSummary: `Canva-materiaali "${item.title}" liitettiin opintojaksokontekstiin adminin kurssitarkistuksessa käsin hyväksyttynä.`
+  };
+  if (candidate.courseId) context.courseId = candidate.courseId;
+  return context;
+}
+
+function selectedCourseCandidate(item, candidates) {
+  const selectedKey = item._draftCourseKey || candidates[0]?.key || '';
+  return candidates.find((candidate) => candidate.key === selectedKey) || candidates[0] || null;
+}
+
+function courseLabel(candidate) {
+  if (!candidate) return '';
+  return candidate.courseId ? `${candidate.courseId} ${candidate.courseName}` : candidate.courseName;
+}
+
+function courseReviewChanged(item) {
+  return String(item._draftCourseReviewStatus || 'pending') !== String(item._originalCourseReviewStatus || 'pending')
+    || String(item._draftCourseKey || '') !== String(item._originalCourseKey || '')
+    || JSON.stringify(item._draftCourseContexts || []) !== String(item._originalCourseContextsJson || '[]')
+    || String(item._draftCourseReviewNote || '') !== String(item._originalCourseReviewNote || '');
+}
+
+function courseReviewStatus(item, candidates) {
+  const status = item._draftCourseReviewStatus || 'pending';
+  const candidate = selectedCourseCandidate(item, candidates);
+  const changed = courseReviewChanged(item);
+  if (status === 'accepted') {
+    return {
+      tone: changed ? 'warn' : 'ok',
+      label: `Hyväksytty${candidate ? `: ${courseLabel(candidate)}` : ''}`
+    };
+  }
+  if (status === 'rejected') {
+    return {
+      tone: changed ? 'warn' : 'muted',
+      label: changed ? 'Hylkäys odottaa tallennusta' : 'Hylätty: ei kurssikytkentää'
+    };
+  }
+  return {
+    tone: changed ? 'warn' : 'muted',
+    label: changed ? 'Palautus odottaa tallennusta' : 'Odottaa tarkistusta'
+  };
+}
+
+function reviewRows() {
+  return state.items
+    .map((item) => ({
+      item,
+      candidates: courseReviewCandidates(item)
+    }))
+    .filter((row) => row.candidates.length);
+}
+
+function visibleReviewRows() {
+  const query = normalizeText(state.reviewQuery);
+  return reviewRows().filter((row) => {
+    if (state.reviewCourse !== 'all' && !row.candidates.some((candidate) => candidate.key === state.reviewCourse)) return false;
+    if (state.reviewConfidence !== 'all' && !row.candidates.some((candidate) => candidate.confidence === state.reviewConfidence)) return false;
+    if (!query) return true;
+    const candidateText = row.candidates.map((candidate) => [candidate.courseId, candidate.courseName, candidate.matchedTerms.join(' ')].join(' ')).join(' ');
+    return normalizeText(`${itemReviewText(row.item)} ${candidateText}`).includes(query);
+  });
+}
+
+function renderCourseReviewOptions(rows) {
+  const select = document.getElementById('review-course-select');
+  if (!select) return;
+  const counts = new Map();
+  rows.forEach((row) => {
+    row.candidates.forEach((candidate) => {
+      const current = counts.get(candidate.key) || { label: candidate.courseId ? `${candidate.courseId} ${candidate.courseName}` : candidate.courseName, count: 0 };
+      current.count += 1;
+      counts.set(candidate.key, current);
+    });
+  });
+  const selected = state.reviewCourse;
+  const options = [...counts.entries()]
+    .sort(([, a], [, b]) => a.label.localeCompare(b.label, 'fi'))
+    .map(([key, value]) => `<option value="${esc(key)}"${selected === key ? ' selected' : ''}>${esc(value.label)} (${value.count})</option>`);
+  select.innerHTML = `<option value="all"${selected === 'all' ? ' selected' : ''}>Kaikki kurssiehdokkaat</option>${options.join('')}`;
+}
+
+function renderCourseReview() {
+  const host = document.getElementById('course-review-list');
+  if (!host) return;
+  const rows = reviewRows();
+  const visible = visibleReviewRows();
+  const candidateTotal = rows.reduce((sum, row) => sum + row.candidates.length, 0);
+  const acceptedCount = state.items.filter((item) => item._draftCourseReviewStatus === 'accepted').length;
+
+  document.getElementById('review-metric-total').textContent = String(rows.length);
+  document.getElementById('review-metric-candidates').textContent = String(candidateTotal);
+  document.getElementById('review-metric-high').textContent = String(acceptedCount);
+  document.getElementById('review-metric-visible').textContent = String(visible.length);
+  document.getElementById('review-visible-count').textContent = String(visible.length);
+  renderCourseReviewOptions(rows);
+
+  if (!visible.length) {
+    host.innerHTML = '<div class="review-empty">Ei kurssiehdokkaita tällä haulla tai suodatuksella.</div>';
+    return;
+  }
+
+  host.innerHTML = visible.map(({ item, candidates }) => {
+    const sourceUrl = String(item.publicUrl || item.link || '').trim();
+    const selectedCandidate = selectedCourseCandidate(item, candidates);
+    const selectedKey = selectedCandidate?.key || '';
+    const status = courseReviewStatus(item, candidates);
+    const candidateOptions = candidates.map((candidate) => {
+      return `<option value="${esc(candidate.key)}"${selectedKey === candidate.key ? ' selected' : ''}>${esc(courseLabel(candidate))}</option>`;
+    }).join('');
+    const candidateHtml = candidates.map((candidate) => `
+      <div class="review-course${selectedKey === candidate.key ? ' is-selected' : ''}">
+        <div class="review-course-title">
+          ${candidate.courseId ? `<code>${esc(candidate.courseId)}</code>` : ''}
+          <span>${esc(candidate.courseName)}</span>
+          <span class="review-confidence ${esc(candidate.confidence)}">${candidate.confidence === 'high' ? 'vahvempi' : candidate.confidence === 'medium' ? 'keskitaso' : 'heikko'}</span>
+        </div>
+        <small>${esc(candidate.rationale)}</small>
+        <div class="review-tag-row">
+          ${candidate.matchedTerms.slice(0, 6).map((term) => `<span class="review-tag">${esc(term)}</span>`).join('')}
+        </div>
+      </div>
+    `).join('');
+    return `
+      <article class="review-card">
+        <div>
+          <div class="review-title">${esc(item.title || 'Nimetön Canva-esitys')}</div>
+          <div class="review-meta">
+            ${item.date ? `${esc(item.date)} · ` : ''}${item.jarjestaja ? `${esc(item.jarjestaja)} · ` : ''}${item.kategoria ? esc(item.kategoria) : 'ei kategoriaa'}
+          </div>
+          <div class="review-evidence">${esc(item.summary || item.description || 'Ei kuvausta.')}</div>
+          <div class="review-tag-row">
+            ${(Array.isArray(item.keywords) ? item.keywords.slice(0, 8) : []).map((term) => `<span class="review-tag">${esc(term)}</span>`).join('')}
+          </div>
+        </div>
+        <div class="review-course-list">${candidateHtml}</div>
+        <div class="review-action-list">
+          <div class="review-state-row">
+            <span class="status-badge ${esc(status.tone)}">
+              <i class="bi ${status.tone === 'ok' ? 'bi-check-circle-fill' : status.tone === 'warn' ? 'bi-exclamation-circle-fill' : 'bi-dash-circle'}"></i>
+              ${esc(status.label)}
+            </span>
+          </div>
+          <div class="review-course-picker">
+            <label for="course-pick-${item._index}">Valitse oikea opintojaksoehdokas</label>
+            <select id="course-pick-${item._index}" class="form-select form-select-sm" data-action="select-course-candidate" data-index="${item._index}">
+              ${candidateOptions}
+            </select>
+          </div>
+          ${sourceUrl ? `<a href="${esc(sourceUrl)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary btn-sm">Avaa Canva</a>` : ''}
+          <button class="btn btn-success btn-sm" data-action="accept-course-context" data-index="${item._index}">Hyväksy valittu kurssi</button>
+          <button class="btn btn-outline-danger btn-sm" data-action="reject-course-context" data-index="${item._index}">Hylkää: ei kurssikytkentää</button>
+          <button class="btn btn-outline-secondary btn-sm" data-action="pending-course-context" data-index="${item._index}">Jätä odottamaan</button>
+          <div class="row-help">
+            Hyväksy vain käsin varmistettu kytkentä. Hylkää, jos materiaali ei kuulu mihinkään opintojaksoon.
+          </div>
+        </div>
+      </article>
+    `;
+  }).join('');
 }
 
 function encodeUtf8Base64(value) {
@@ -552,19 +1068,35 @@ function enrichItems(items) {
   return items.map((item, index) => {
     const sourceUrl = String(item.link || '').trim();
     const publicUrl = String(item.publicUrl || '').trim();
+    const originalReviewStatus = initialCourseReviewStatus(item);
+    const originalCourseKey = initialCourseReviewKey(item);
+    const originalCourseContexts = Array.isArray(item.courseContexts) ? item.courseContexts : [];
+    const originalReviewNote = String(item.courseReview?.note || '').trim();
     return {
       ...item,
       _index: index,
       _designId: getCanvaDesignId(sourceUrl || publicUrl),
       _originalPublicUrl: publicUrl,
       _draftPublicUrl: publicUrl,
-      _linkSuggestion: normalizeCanvaPublicUrl(sourceUrl)
+      _linkSuggestion: normalizeCanvaPublicUrl(sourceUrl),
+      _originalCourseReviewStatus: originalReviewStatus,
+      _draftCourseReviewStatus: originalReviewStatus,
+      _originalCourseKey: originalCourseKey,
+      _draftCourseKey: originalCourseKey,
+      _originalCourseContextsJson: JSON.stringify(originalCourseContexts),
+      _draftCourseContexts: originalCourseContexts,
+      _originalCourseReviewNote: originalReviewNote,
+      _draftCourseReviewNote: originalReviewNote
     };
   });
 }
 
-function rowHasChanges(item) {
+function publicUrlChanged(item) {
   return String(item._draftPublicUrl || '').trim() !== String(item._originalPublicUrl || '').trim();
+}
+
+function rowHasChanges(item) {
+  return publicUrlChanged(item) || courseReviewChanged(item);
 }
 
 function currentNormalizedPublicUrl(item) {
@@ -576,8 +1108,8 @@ function rowStatus(item) {
   const normalized = currentNormalizedPublicUrl(item);
   if (normalized) {
     return {
-      tone: rowHasChanges(item) ? 'warn' : 'ok',
-      label: rowHasChanges(item) ? 'Muutettu, valmis tallennettavaksi' : 'Julkinen linkki kunnossa',
+      tone: publicUrlChanged(item) ? 'warn' : 'ok',
+      label: publicUrlChanged(item) ? 'Muutettu, valmis tallennettavaksi' : 'Julkinen linkki kunnossa',
       help: normalized
     };
   }
@@ -772,6 +1304,7 @@ async function loadCanvaData() {
   state.fileSha = file.sha;
   state.items = enrichItems(parsed);
   renderRows();
+  renderCourseReview();
   setStatus('Aineisto ladattu.', 'success');
 }
 
@@ -779,16 +1312,41 @@ function buildPayloadItems() {
   return state.items.map((item) => {
     const next = { ...item };
     const normalized = normalizeCanvaPublicUrl(item._draftPublicUrl || '');
+    const reviewStatus = item._draftCourseReviewStatus || 'pending';
     if (normalized) {
       next.publicUrl = normalized;
     } else {
       delete next.publicUrl;
     }
-    delete next._index;
-    delete next._designId;
-    delete next._originalPublicUrl;
-    delete next._draftPublicUrl;
-    delete next._linkSuggestion;
+
+    if (reviewStatus === 'accepted' && Array.isArray(item._draftCourseContexts) && item._draftCourseContexts.length) {
+      next.courseContexts = item._draftCourseContexts;
+      next.courseReview = {
+        status: 'accepted',
+        courseKey: item._draftCourseKey || '',
+        note: item._draftCourseReviewNote || 'Käsin hyväksytty adminin kurssitarkistuksessa.'
+      };
+    } else if (reviewStatus === 'rejected') {
+      delete next.courseContexts;
+      next.courseReview = {
+        status: 'rejected',
+        note: item._draftCourseReviewNote || 'Ei liitetä opintojaksoon.'
+      };
+    } else {
+      delete next.courseContexts;
+      if (item._originalCourseReviewStatus && item._originalCourseReviewStatus !== 'pending') {
+        next.courseReview = {
+          status: 'pending',
+          note: item._draftCourseReviewNote || 'Palautettu odottamaan tarkistusta.'
+        };
+      } else {
+        delete next.courseReview;
+      }
+    }
+
+    Object.keys(next).forEach((key) => {
+      if (key.startsWith('_')) delete next[key];
+    });
     return next;
   });
 }
@@ -805,6 +1363,10 @@ async function persistItems(commitMessage) {
   state.items.forEach((item) => {
     item._originalPublicUrl = normalizeCanvaPublicUrl(item._draftPublicUrl || '') || '';
     item._draftPublicUrl = item._originalPublicUrl;
+    item._originalCourseReviewStatus = item._draftCourseReviewStatus || 'pending';
+    item._originalCourseKey = item._draftCourseKey || '';
+    item._originalCourseContextsJson = JSON.stringify(item._draftCourseContexts || []);
+    item._originalCourseReviewNote = item._draftCourseReviewNote || '';
   });
 }
 
@@ -830,8 +1392,9 @@ async function saveAllChanges() {
   updateMetrics();
   setStatus(`Tallennetaan ${changed.length} muutosta GitHubiin…`);
   try {
-    await persistItems(`canva: update public links via admin (${changed.length} rows)`);
+    await persistItems(`canva: update links and course review via admin (${changed.length} rows)`);
     renderRows();
+    renderCourseReview();
     setStatus(`Tallennettu ${changed.length} Canva-riviä.`, 'success');
   } catch (error) {
     setStatus(`Tallennus epäonnistui: ${error.message}`, 'error');
@@ -853,8 +1416,9 @@ async function saveSingleRow(index) {
   updateMetrics();
   setStatus(`Tallennetaan rivi: ${item.title}`);
   try {
-    await persistItems(`canva: update public link for ${item.title}`);
+    await persistItems(`canva: update Canva admin row for ${item.title}`);
     renderRows();
+    renderCourseReview();
     setStatus(`Tallennettu: ${item.title}`, 'success');
   } catch (error) {
     setStatus(`Rivin tallennus epäonnistui: ${error.message}`, 'error');
@@ -880,6 +1444,21 @@ function bindToolbar() {
   });
 
   document.getElementById('save-all-btn').addEventListener('click', saveAllChanges);
+
+  document.getElementById('review-search-input').addEventListener('input', (event) => {
+    state.reviewQuery = event.target.value || '';
+    renderCourseReview();
+  });
+
+  document.getElementById('review-course-select').addEventListener('change', (event) => {
+    state.reviewCourse = event.target.value || 'all';
+    renderCourseReview();
+  });
+
+  document.getElementById('review-confidence-select').addEventListener('change', (event) => {
+    state.reviewConfidence = event.target.value || 'all';
+    renderCourseReview();
+  });
 }
 
 document.addEventListener('input', (event) => {
@@ -890,6 +1469,23 @@ document.addEventListener('input', (event) => {
   if (!item) return;
   item._draftPublicUrl = String(input.value || '').trim();
   renderRows();
+});
+
+document.addEventListener('change', (event) => {
+  const select = event.target.closest('[data-action="select-course-candidate"]');
+  if (!select) return;
+  const index = Number(select.dataset.index);
+  const item = state.items[index];
+  if (!item) return;
+  const candidates = courseReviewCandidates(item);
+  const candidate = candidates.find((entry) => entry.key === select.value);
+  item._draftCourseKey = candidate?.key || '';
+  if (item._draftCourseReviewStatus === 'accepted' && candidate) {
+    item._draftCourseContexts = [createCourseContext(item, candidate)];
+    item._draftCourseReviewNote = `Hyväksytty adminissa: ${courseLabel(candidate)}.`;
+  }
+  renderCourseReview();
+  updateMetrics();
 });
 
 document.addEventListener('click', async (event) => {
@@ -909,13 +1505,56 @@ document.addEventListener('click', async (event) => {
 
   if (action === 'reset') {
     item._draftPublicUrl = item._originalPublicUrl || '';
+    item._draftCourseReviewStatus = item._originalCourseReviewStatus || 'pending';
+    item._draftCourseKey = item._originalCourseKey || '';
+    item._draftCourseContexts = JSON.parse(item._originalCourseContextsJson || '[]');
+    item._draftCourseReviewNote = item._originalCourseReviewNote || '';
     renderRows();
+    renderCourseReview();
     setStatus(`Palautettu alkuperäinen arvo: ${item.title}`);
     return;
   }
 
   if (action === 'save-row') {
     await saveSingleRow(index);
+  }
+
+  if (action === 'accept-course-context') {
+    const candidates = courseReviewCandidates(item);
+    const candidate = selectedCourseCandidate(item, candidates);
+    if (!candidate) {
+      setStatus('Valitse ensin kurssiehdokas.', 'error');
+      return;
+    }
+    item._draftCourseReviewStatus = 'accepted';
+    item._draftCourseKey = candidate.key;
+    item._draftCourseContexts = [createCourseContext(item, candidate)];
+    item._draftCourseReviewNote = `Hyväksytty adminissa: ${courseLabel(candidate)}.`;
+    renderCourseReview();
+    updateMetrics();
+    setStatus(`Kurssikytkentä hyväksytty luonnokseen: ${item.title}`, 'success');
+    return;
+  }
+
+  if (action === 'reject-course-context') {
+    item._draftCourseReviewStatus = 'rejected';
+    item._draftCourseKey = '';
+    item._draftCourseContexts = [];
+    item._draftCourseReviewNote = 'Ei liitetä opintojaksoon.';
+    renderCourseReview();
+    updateMetrics();
+    setStatus(`Kurssiehdotus hylätty luonnokseen: ${item.title}`, 'success');
+    return;
+  }
+
+  if (action === 'pending-course-context') {
+    item._draftCourseReviewStatus = 'pending';
+    item._draftCourseKey = '';
+    item._draftCourseContexts = [];
+    item._draftCourseReviewNote = '';
+    renderCourseReview();
+    updateMetrics();
+    setStatus(`Rivi jätetty odottamaan tarkistusta: ${item.title}`);
   }
 });
 

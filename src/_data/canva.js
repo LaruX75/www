@@ -36,6 +36,7 @@ module.exports = function () {
       paakortti: item.paakortti === true,
       asiantuntijaprofiili: Array.isArray(item.asiantuntijaprofiili) ? item.asiantuntijaprofiili : [],
       sivuyhteys: Array.isArray(item.sivuyhteys) ? item.sivuyhteys : [],
+      courseContexts: Array.isArray(item.courseContexts) ? item.courseContexts : [],
     };
   }).filter((item) => !hidden.has(item.id));
 
