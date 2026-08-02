@@ -36,7 +36,11 @@
     "sivuyhteys": [
       "kouluttaja-sivu",
       "mediassa"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/sivistysverkosto-4-5.png",
@@ -65,7 +69,11 @@
     "sivuyhteys": [
       "tyoni-yliopistonlehtorina"
     ],
-    "publicUrl": "https://canva.link/vqtdccorb3yxb9h"
+    "publicUrl": "https://canva.link/vqtdccorb3yxb9h",
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/itk2026-millaisia-ovat-tekoalyaikakauden-opettajaprofiilit.png",
@@ -99,7 +107,11 @@
       "kouluttaja-sivu",
       "tutkimus"
     ],
-    "publicUrl": "https://canva.link/0esdy3ncxld18eo"
+    "publicUrl": "https://canva.link/0esdy3ncxld18eo",
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/itk-keynote-2026.png",
@@ -133,7 +145,11 @@
       "tutkimus",
       "mediassa"
     ],
-    "publicUrl": "https://canva.link/3jrd9fl161kwo7z"
+    "publicUrl": "https://canva.link/3jrd9fl161kwo7z",
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/it-kouluttajat-meriseminaari-generation-ai-tyokalut.png",
@@ -164,7 +180,11 @@
     "sivuyhteys": [
       "kouluttaja-sivu"
     ],
-    "publicUrl": "https://canva.link/vk311eej0al4lxw"
+    "publicUrl": "https://canva.link/vk311eej0al4lxw",
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/oph-esitys-18-3.png",
@@ -194,7 +214,11 @@
     "sivuyhteys": [
       "kouluttaja-sivu"
     ],
-    "publicUrl": "https://canva.link/epspgvg60zgkj4s"
+    "publicUrl": "https://canva.link/epspgvg60zgkj4s",
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/tkaedite-kosovo-finland-teachers-professional-development.png",
@@ -227,7 +251,11 @@
       "tutkimus",
       "mediassa"
     ],
-    "publicUrl": "https://canva.link/vqtdccorb3yxb9h"
+    "publicUrl": "https://canva.link/vqtdccorb3yxb9h",
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/innokas-2025-muutama-sananen-selitettavasta-tekoalystä.png",
@@ -258,7 +286,11 @@
       "tutkimus",
       "kouluttaja-sivu"
     ],
-    "publicUrl": "https://canva.link/nteaui2pa0a3zom"
+    "publicUrl": "https://canva.link/nteaui2pa0a3zom",
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/fedutalk-generative-ai-in-education-kosovo.png",
@@ -291,7 +323,11 @@
       "tutkimus",
       "mediassa"
     ],
-    "publicUrl": "https://canva.link/gkabrxufe8dhnjp"
+    "publicUrl": "https://canva.link/gkabrxufe8dhnjp",
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/finnish-teacher-education-professional-development.png",
@@ -327,7 +363,11 @@
       "tutkimus",
       "tyoni-yliopistonlehtorina"
     ],
-    "publicUrl": "https://canva.link/vqtdccorb3yxb9h"
+    "publicUrl": "https://canva.link/vqtdccorb3yxb9h",
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/teachable-machine-and-somekone-demo-session-earli-2025.png",
@@ -356,7 +396,11 @@
     "sivuyhteys": [
       "tutkimus"
     ],
-    "publicUrl": "https://canva.link/d6kheuhj8xk6m3h"
+    "publicUrl": "https://canva.link/d6kheuhj8xk6m3h",
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/how-to-teach-ai-literacy-to-primary-school-children.png",
@@ -391,7 +435,11 @@
       "tutkimus",
       "kouluttaja-sivu"
     ],
-    "publicUrl": "https://canva.link/njzgya3gi1x98h7"
+    "publicUrl": "https://canva.link/njzgya3gi1x98h7",
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/miksi-some-koukuttaa-somekoneen-uusi-tyokalu.png",
@@ -421,7 +469,11 @@
       "tutkimus",
       "kouluttaja-sivu"
     ],
-    "publicUrl": "https://canva.link/zbw32teldfkpf43"
+    "publicUrl": "https://canva.link/zbw32teldfkpf43",
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/itk2025-areena.png",
@@ -452,7 +504,11 @@
       "kouluttaja-sivu",
       "tutkimus"
     ],
-    "publicUrl": "https://canva.link/0wntulrm8xeayqa"
+    "publicUrl": "https://canva.link/0wntulrm8xeayqa",
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/miksi-some-koukuttaa-miten-tekoaly-toimii-itk2025-foorum.png",
@@ -482,7 +538,11 @@
     "sivuyhteys": [
       "kouluttaja-sivu",
       "tutkimus"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/tekoaly-arjessa-helsinki-education-hub.png",
@@ -513,7 +573,11 @@
     ],
     "sivuyhteys": [
       "kouluttaja-sivu"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/robotiikkaa-ja-selitettavaa-tekoalya-opetettavan-koneen-ja-s.png",
@@ -543,7 +607,11 @@
     "sivuyhteys": [
       "kouluttaja-sivu",
       "tutkimus"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/generation-ai-esittely-japanilaiselle-vieraalle.png",
@@ -571,7 +639,11 @@
     ],
     "sivuyhteys": [
       "tutkimus"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/selitettava-tekoaly-opetuksessa-itk-webinaari.png",
@@ -601,7 +673,11 @@
     "sivuyhteys": [
       "tutkimus",
       "kouluttaja-sivu"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/generative-ai-as-a-tool-to-adapt-teaching-to-learner-s-needs.png",
@@ -636,7 +712,11 @@
     "sivuyhteys": [
       "tutkimus",
       "mediassa"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/generative-ai-as-a-professional-tool-agent-coach-or-friend.png",
@@ -671,7 +751,11 @@
     ],
     "sivuyhteys": [
       "mediassa"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/tekoalyosaamista-kieltenopetukseen.png",
@@ -699,7 +783,11 @@
     ],
     "sivuyhteys": [
       "kouluttaja-sivu"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/learning-ai-literacy-in-collaborative-projects-with-an-ai-ed.png",
@@ -734,7 +822,11 @@
     "sivuyhteys": [
       "tutkimus",
       "tyoni-yliopistonlehtorina"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/annie-advisor-generative-ai-as-a-tool-to-adapt-teaching.png",
@@ -767,7 +859,11 @@
     ],
     "sivuyhteys": [
       "tutkimus"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/generation-ai-workshop.png",
@@ -803,7 +899,11 @@
     "sivuyhteys": [
       "tutkimus",
       "kouluttaja-sivu"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/international-conference-on-the-advancement-of-steam-2024.png",
@@ -834,7 +934,11 @@
     ],
     "sivuyhteys": [
       "tutkimus"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/digivoo-kommenttipuheenvuoro.png",
@@ -861,7 +965,11 @@
     ],
     "sivuyhteys": [
       "mediassa"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/from-eu-ai-act-to-national-ai-guidelines.png",
@@ -894,7 +1002,11 @@
     "sivuyhteys": [
       "tutkimus",
       "mediassa"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/fedutalk-generative-ai-in-education.png",
@@ -925,7 +1037,11 @@
       "tutkimus",
       "mediassa"
     ],
-    "jarjestaja": "Fedutalk (Prishtinan opetusalan foorumi)"
+    "jarjestaja": "Fedutalk (Prishtinan opetusalan foorumi)",
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/itk2024.png",
@@ -951,7 +1067,11 @@
       "kouluttaja-sivu",
       "tutkimus"
     ],
-    "jarjestaja": "Interaktiivinen Tekniikka Koulutuksessa -konferenssi (ITK)"
+    "jarjestaja": "Interaktiivinen Tekniikka Koulutuksessa -konferenssi (ITK)",
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/riko-rakenna-ja-ymmarra-kohti-kriittista-tekoalylukutaitoa.png",
@@ -975,7 +1095,11 @@
     "sivuyhteys": [
       "kouluttaja-sivu"
     ],
-    "jarjestaja": "Finnoschool / LUKUTAITO-koulutus"
+    "jarjestaja": "Finnoschool / LUKUTAITO-koulutus",
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/ihmeita-tekeva-tekoaly-vai-tavallinen-tyokalu-veso-2026.png",
@@ -1000,7 +1124,11 @@
     "sivuyhteys": [
       "kouluttaja-sivu"
     ],
-    "jarjestaja": "Riihimäen kaupunki (VESO-koulutus)"
+    "jarjestaja": "Riihimäen kaupunki (VESO-koulutus)",
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/veso-2026-tekoaly-opetuksessa.png",
@@ -1025,7 +1153,11 @@
     "sivuyhteys": [
       "kouluttaja-sivu"
     ],
-    "jarjestaja": "Kempeleen kunta (VESO-koulutus)"
+    "jarjestaja": "Kempeleen kunta (VESO-koulutus)",
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/konenako-vibe-coding-ja-robotiikka-robokampus-2026.png",
@@ -1051,7 +1183,11 @@
     "sivuyhteys": [
       "kouluttaja-sivu"
     ],
-    "jarjestaja": "Riihimäen Robokampus 2026"
+    "jarjestaja": "Riihimäen Robokampus 2026",
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/tekoalyagentit.png",
@@ -1102,7 +1238,11 @@
     "sivuyhteys": [
       "kouluttaja-sivu"
     ],
-    "jarjestaja": "Tekoälyagentit opettajankoulutuksessa -hanke (OKF), Oulun yliopisto"
+    "jarjestaja": "Tekoälyagentit opettajankoulutuksessa -hanke (OKF), Oulun yliopisto",
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/opettaja-tekoalyn-ja-alyttomyyden-turbulenssissa.png",
@@ -1127,7 +1267,11 @@
     "sivuyhteys": [
       "kouluttaja-sivu"
     ],
-    "jarjestaja": "Tampereen kaupunki (opettajankoulutuspäivä)"
+    "jarjestaja": "Tampereen kaupunki (opettajankoulutuspäivä)",
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/digipedailtapaiva-tekoaly-opetuksessa.png",
@@ -1152,7 +1296,11 @@
     "sivuyhteys": [
       "kouluttaja-sivu"
     ],
-    "jarjestaja": "Tampereen kaupunki (Perusopetuksen digiosaamisen iltapäivä)"
+    "jarjestaja": "Tampereen kaupunki (Perusopetuksen digiosaamisen iltapäivä)",
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/kuinka-tekoaly-toimii-webinaari.png",
@@ -1176,7 +1324,11 @@
     "sivuyhteys": [
       "kouluttaja-sivu"
     ],
-    "jarjestaja": "ITK / ITK-webinaari"
+    "jarjestaja": "ITK / ITK-webinaari",
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/tekoalylukutaitoinen-digiosaaja-millaisia-taitoja-opettajall.png",
@@ -1202,7 +1354,11 @@
     "sivuyhteys": [
       "kouluttaja-sivu"
     ],
-    "jarjestaja": "Opetus- ja kulttuuriministeriö (OKM) — Osaava DigiOpe kick-off"
+    "jarjestaja": "Opetus- ja kulttuuriministeriö (OKM) — Osaava DigiOpe kick-off",
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/tekoaly-opettajan-ystava-vai-vihollinen-matkalla-kohti-tekoa.png",
@@ -1226,7 +1382,11 @@
     "sivuyhteys": [
       "kouluttaja-sivu"
     ],
-    "jarjestaja": "Kokkolan kaupunki (opettajien koulutus)"
+    "jarjestaja": "Kokkolan kaupunki (opettajien koulutus)",
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/tekoaly-yhdistystoiminnassa.png",
@@ -1250,7 +1410,11 @@
     "sivuyhteys": [
       "kouluttaja-sivu"
     ],
-    "jarjestaja": "Opintokeskus Sivis"
+    "jarjestaja": "Opintokeskus Sivis",
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/ai-friend-or-foe-en.png",
@@ -1281,7 +1445,11 @@
     "sivuyhteys": [
       "kouluttaja-sivu",
       "mediassa"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/tekoaly-ystava-vai-vihollinen-fin.png",
@@ -1309,7 +1477,11 @@
     ],
     "sivuyhteys": [
       "kouluttaja-sivu"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/tekoalyluento-ja-tyopaja-en.png",
@@ -1343,7 +1515,11 @@
     ],
     "sivuyhteys": [
       "kouluttaja-sivu"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/tekoalyluento-ja-tyopaja-fin.png",
@@ -1372,7 +1548,11 @@
     ],
     "sivuyhteys": [
       "kouluttaja-sivu"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/tekoalyn-vaikutuksia-korkeakoulupedagogiikkaan.png",
@@ -1401,7 +1581,11 @@
     "sivuyhteys": [
       "tyoni-yliopistonlehtorina",
       "kouluttaja-sivu"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/alya-teko-tekoalyajan-kognitiiviset-tyokalut-ja-ydintaidot.png",
@@ -1430,7 +1614,11 @@
     ],
     "sivuyhteys": [
       "kouluttaja-sivu"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/miten-tekoalyn-kehitys-on-muuttanut-korkeakoulujen-toimintaa.png",
@@ -1460,7 +1648,11 @@
     ],
     "sivuyhteys": [
       "tyoni-yliopistonlehtorina"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/kuinka-opettaa-tekoalytaitoja-esi-ja-perusopetuksessa-praba.png",
@@ -1491,7 +1683,11 @@
     "sivuyhteys": [
       "kouluttaja-sivu",
       "tutkimus"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/tekoaly-opettajan-tyo-ja-arvioinnin-muutos.png",
@@ -1518,7 +1714,11 @@
     ],
     "sivuyhteys": [
       "kouluttaja-sivu"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/voiko-tekoalyn-kayttoa-oikeasti-kieltaa.png",
@@ -1549,7 +1749,11 @@
     "sivuyhteys": [
       "kouluttaja-sivu",
       "mediassa"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/generatiivinen-tekoaly-tekoaly-tyokaluna-iii.png",
@@ -1577,7 +1781,11 @@
     ],
     "sivuyhteys": [
       "kouluttaja-sivu"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/tekoaly-osana-arkisia-sovelluksia.png",
@@ -1606,7 +1814,11 @@
     ],
     "sivuyhteys": [
       "kouluttaja-sivu"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/miten-tekoaly-toimii-miksi-some-koukuttaa.png",
@@ -1634,7 +1846,11 @@
     ],
     "sivuyhteys": [
       "kouluttaja-sivu"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/tekoalyn-ajankohtaiskatsaus-otavia-2025.png",
@@ -1662,7 +1878,11 @@
     ],
     "sivuyhteys": [
       "kouluttaja-sivu"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/digitutorit-2024-tekoaly-opetuksessa.png",
@@ -1689,7 +1909,11 @@
     ],
     "sivuyhteys": [
       "kouluttaja-sivu"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/digierko-2024-risteilyesitys.png",
@@ -1719,7 +1943,11 @@
     "sivuyhteys": [
       "tyoni-yliopistonlehtorina",
       "kouluttaja-sivu"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/millaisia-tekoalytaitoja-peruskoulussa-tulisi-opettaa-2020-l.png",
@@ -1748,7 +1976,11 @@
     "sivuyhteys": [
       "kouluttaja-sivu",
       "tutkimus"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/tekoalyluento-osyk.png",
@@ -1776,7 +2008,11 @@
     ],
     "sivuyhteys": [
       "kouluttaja-sivu"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/opopassi-koulutus-tekoaly-ohjauksessa.png",
@@ -1804,7 +2040,11 @@
     ],
     "sivuyhteys": [
       "kouluttaja-sivu"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/avi-koulutus-tekoaly-opetuksessa.png",
@@ -1835,7 +2075,11 @@
     ],
     "sivuyhteys": [
       "kouluttaja-sivu"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/monilukutaito-on-opettajan-supervoima-tekoalylukutaito.png",
@@ -1864,7 +2108,11 @@
     ],
     "sivuyhteys": [
       "kouluttaja-sivu"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/tekoaly-on-jo-kaikkialla-miten-ilmiota-tulisi-lahestya.png",
@@ -1895,7 +2143,11 @@
     ],
     "sivuyhteys": [
       "kouluttaja-sivu"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/tekoalytyokalut-webinaari-2024.png",
@@ -1924,7 +2176,11 @@
     ],
     "sivuyhteys": [
       "kouluttaja-sivu"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/tekoaly-arjessa-eduten-opinvirta.png",
@@ -1953,7 +2209,11 @@
     ],
     "sivuyhteys": [
       "kouluttaja-sivu"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/veso-2024-tekoaly-opetuksessa.png",
@@ -1981,7 +2241,11 @@
     ],
     "sivuyhteys": [
       "kouluttaja-sivu"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/veso-elokuu-2024-tekoaly-koulussa.png",
@@ -2012,7 +2276,11 @@
     ],
     "sivuyhteys": [
       "kouluttaja-sivu"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/veso-2024-tekoaly-oppimassa-ja-opettamassa.png",
@@ -2040,7 +2308,11 @@
     ],
     "sivuyhteys": [
       "kouluttaja-sivu"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/fclab-ja-norssit-generation-ai.png",
@@ -2072,7 +2344,11 @@
     "sivuyhteys": [
       "tyoni-yliopistonlehtorina",
       "kouluttaja-sivu"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/tekoaly-opettajan-tyokaluna-inspiraatiosessio.png",
@@ -2104,7 +2380,11 @@
     ],
     "sivuyhteys": [
       "kouluttaja-sivu"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/kuntaliitto-digiverkosto-tekoaly-koulutuksessa.png",
@@ -2133,7 +2413,11 @@
     ],
     "sivuyhteys": [
       "mediassa"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/oppiva-verkosto-analytiikkaesitys.png",
@@ -2164,7 +2448,11 @@
     ],
     "sivuyhteys": [
       "tutkimus"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/oaj-sauna-tekoaly-ja-opettajuus.png",
@@ -2195,7 +2483,11 @@
     "sivuyhteys": [
       "kouluttaja-sivu",
       "mediassa"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   },
   {
     "thumbnail": "/images/canva-thumbnails/oph-webinaari-tekoaly-opetuksessa-2023.png",
@@ -2226,6 +2518,10 @@
     ],
     "sivuyhteys": [
       "kouluttaja-sivu"
-    ]
+    ],
+    "courseReview": {
+      "status": "rejected",
+      "note": "Ei liitetä opintojaksoon."
+    }
   }
 ]
