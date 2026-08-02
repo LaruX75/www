@@ -53,7 +53,7 @@
 
 .presentation-route-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1rem;
   margin-bottom: 1.25rem;
 }
@@ -702,6 +702,60 @@
   align-items: center;
 }
 
+.presentation-archive-filter-group--primary {
+  gap: 0.65rem;
+}
+
+.presentation-archive-filter-group--select {
+  align-items: center;
+}
+
+.presentation-archive-filter-group[hidden],
+.presentation-archive-refiners[hidden],
+.presentation-archive-refiner[hidden] {
+  display: none;
+}
+
+.presentation-archive-refiners {
+  border: 1px solid color-mix(in srgb, var(--bs-primary) 22%, var(--bs-border-color));
+  border-radius: 1.25rem;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(var(--bs-primary-rgb), 0.08), transparent 36%),
+    color-mix(in srgb, var(--bs-body-bg) 90%, var(--bs-tertiary-bg));
+  padding: 0.8rem;
+}
+
+.presentation-archive-refiner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  align-items: center;
+}
+
+.presentation-archive-advanced {
+  border: 1px solid var(--bs-border-color);
+  border-radius: 1.25rem;
+  background: color-mix(in srgb, var(--bs-body-bg) 86%, var(--bs-tertiary-bg));
+  padding: 0.35rem;
+}
+
+.presentation-archive-advanced summary {
+  cursor: pointer;
+  color: var(--bs-body-color);
+  font-weight: 800;
+  padding: 0.7rem 0.85rem;
+}
+
+.presentation-archive-advanced summary::marker {
+  color: var(--bs-primary);
+}
+
+.presentation-archive-advanced-body {
+  display: grid;
+  gap: 0.75rem;
+  padding: 0.2rem 0.85rem 0.85rem;
+}
+
 .presentation-archive-filter-label {
   color: var(--bs-secondary-color);
   font-size: 0.72rem;
@@ -719,6 +773,22 @@
   font-weight: 700;
   padding: 0.65rem 1rem;
   transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.presentation-archive-select {
+  width: min(100%, 24rem);
+  border: 1px solid color-mix(in srgb, var(--bs-primary) 68%, var(--bs-border-color));
+  border-radius: 999px;
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  font-weight: 700;
+  padding: 0.65rem 2.35rem 0.65rem 1rem;
+}
+
+.presentation-archive-select:focus {
+  border-color: var(--bs-primary);
+  box-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--bs-primary) 18%, transparent);
+  outline: 0;
 }
 
 .presentation-archive-filter:hover,
@@ -893,6 +963,41 @@
   font-size: 0.9rem;
   line-height: 1.45;
   margin: 0;
+}
+
+.presentation-course-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.presentation-course-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  width: fit-content;
+  border: 1px solid color-mix(in srgb, var(--bs-primary) 42%, var(--bs-border-color));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bs-primary) 10%, var(--bs-body-bg));
+  color: var(--bs-primary);
+  font-size: 0.78rem;
+  font-weight: 800;
+  line-height: 1.1;
+  padding: 0.34rem 0.65rem;
+  text-decoration: none;
+}
+
+button.presentation-course-chip {
+  cursor: pointer;
+}
+
+.presentation-course-chip:hover,
+.presentation-course-chip:focus-visible {
+  border-color: var(--bs-primary);
+  background: var(--bs-primary);
+  color: #fff;
+  outline: none;
+  transform: translateY(-1px);
 }
 
 .presentation-archive-card-actions {

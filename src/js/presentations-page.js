@@ -39,6 +39,18 @@
       sourceLabel: "Sivuston analyysi"
     }
   ];
+  const courseFilterLabels = new Map();
+  const refinerParentByFilter = {
+    "category:konferenssi-keynote": "route:puheenvuorot",
+    "category:kansainvälinen-konferenssi": "route:puheenvuorot",
+    "category:tdk-luento": "route:opintojaksot",
+    "category:täydennyskoulutus": "route:koulutukset",
+    "category:webinaari": "route:koulutukset",
+    "category:hanke-esittely": "route:koulutukset",
+    aoe: "route:materiaalit",
+    video: "route:materiaalit",
+    analysis: "route:materiaalit"
+  };
 
   // Liitetään Canva MD-sivujen sisäiset URLit canva.tableRows-dataan design-id:n perusteella
   const canvaPageUrlMap = {};
@@ -153,6 +165,33 @@
     list.push(normalized);
   }
 
+  function slugifyFilterValue(value) {
+    return String(value || "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+  }
+
+  function courseFilterValue(course) {
+    const id = String(course?.courseId || "").trim();
+    const name = String(course?.courseName || "").trim();
+    const value = id ? slugifyFilterValue(id) : slugifyFilterValue(name);
+    return value ? `course:${value}` : "";
+  }
+
+  function courseFilterLabel(course) {
+    const id = String(course?.courseId || "").trim();
+    const name = String(course?.courseName || "").trim();
+    if (id && name) return `${id} ${name}`;
+    return id || name || "Opintojaksokonteksti";
+  }
+
+  function itemCourseContexts(item) {
+    return Array.isArray(item?.courseContexts) ? item.courseContexts : [];
+  }
+
   function createMatcherText(parts) {
     return parts
       .flatMap((part) => {
@@ -189,6 +228,7 @@
     const explicitCategory = String(item.kategoria || "").trim();
     const explicitProfiles = Array.isArray(item.asiantuntijaprofiili) ? item.asiantuntijaprofiili : [];
     const explicitPrimaryRoute = String(item.paareitti || "").trim();
+    const hasCourseContext = itemCourseContexts(item).length > 0;
     const contextTypes = contexts.map((context) => String(context.type || "").trim()).filter(Boolean);
     const text = createMatcherText([
       item.title,
@@ -315,6 +355,10 @@
       uniquePush(routeTags, "route:materiaalit");
     }
 
+    if (hasCourseContext) {
+      uniquePush(routeTags, "route:opintojaksot");
+    }
+
     const isAcademicLectureOnly =
       categoryTags.length === 1 &&
       categoryTags[0] === "tdk-luento";
@@ -362,6 +406,8 @@
     if (item.archiveType !== "analysis") {
       if (explicitPrimaryRoute) {
         routePrimary = explicitPrimaryRoute;
+      } else if (hasCourseContext) {
+        routePrimary = "route:opintojaksot";
       } else if (item.archiveType === "video" || item.archiveType === "aoe") {
         routePrimary = "route:materiaalit";
       } else if (
@@ -400,6 +446,27 @@
     return `<div class="presentation-context-chip-row">${matches.map((context) => `
       <span class="presentation-context-chip">${escHtml(context.typeLabel || "Konteksti")}: ${escHtml(context.title || "")}</span>
     `).join("")}</div>`;
+  }
+
+  function courseBadgeText(course) {
+    const id = String(course?.courseId || "").trim();
+    const name = String(course?.courseName || "").trim();
+    if (id) return id;
+    if (!name) return "Opintojaksokonteksti";
+    return name.length > 34 ? `${name.slice(0, 31).trim()}…` : name;
+  }
+
+  function renderCourseBadges(item) {
+    const courses = itemCourseContexts(item).slice(0, 3);
+    if (!courses.length) return "";
+    return `<div class="presentation-course-chip-row" aria-label="Opintojaksokontekstit">${courses.map((course) => {
+      const filter = courseFilterValue(course);
+      const label = courseFilterLabel(course);
+      const text = courseBadgeText(course);
+      return filter
+        ? `<button type="button" class="presentation-course-chip" data-presentation-filter="${escHtml(filter)}" title="${escHtml(label)}"><i class="bi bi-mortarboard" aria-hidden="true"></i>${escHtml(text)}</button>`
+        : `<span class="presentation-course-chip" title="${escHtml(label)}"><i class="bi bi-mortarboard" aria-hidden="true"></i>${escHtml(text)}</span>`;
+    }).join("")}</div>`;
   }
 
   function toDisplayDate(value) {
@@ -480,6 +547,7 @@
           paareitti: r.paareitti || "",
           asiantuntijaprofiili: Array.isArray(r.asiantuntijaprofiili) ? r.asiantuntijaprofiili : [],
           sivuyhteys: Array.isArray(r.sivuyhteys) ? r.sivuyhteys : [],
+          courseContexts: Array.isArray(r.courseContexts) ? r.courseContexts : [],
         };
       });
     }
@@ -500,6 +568,7 @@
       return rows.map((r) => ({
         title: r.title || "Nimetön video",
         url: r.url || r.externalUrl || "",
+        pageUrl: r.pageUrl || "",
         externalUrl: r.externalUrl || "",
         thumbnail: r.thumbnail || "",
         description: r.description || "",
@@ -513,6 +582,7 @@
       return rows.map((r) => ({
         title: r.title || "Nimetön videosarja",
         url: r.url || r.externalUrl || "",
+        pageUrl: r.pageUrl || "",
         externalUrl: r.externalUrl || "",
         thumbnail: r.thumbnail || "",
         description: r.description || "",
@@ -559,6 +629,7 @@
             ...(Array.isArray(r.categories) ? r.categories : []),
             ...(Array.isArray(r.keywords) ? r.keywords : [])
           ].map((value) => String(value || "").trim()).filter(Boolean),
+          courseContexts: Array.isArray(r.courseContexts) ? r.courseContexts : [],
           _isoDate: iso
         };
       });
@@ -856,8 +927,14 @@
 
   function matchesPresentationFilter(item, filter) {
     if (!filter || filter === "all") return true;
+    if (filter.startsWith("course:")) {
+      return itemCourseContexts(item).some((course) => courseFilterValue(course) === filter);
+    }
     if (filter === "route:puheenvuorot") {
       return item.routePrimary === filter;
+    }
+    if (filter === "route:opintojaksot") {
+      return item.routePrimary === filter || itemCourseContexts(item).length > 0;
     }
     if (filter === "route:koulutukset") {
       return item.routePrimary === filter;
@@ -886,11 +963,50 @@
     });
   }
 
+  function presentationRefinerKey(filter) {
+    if (filter?.startsWith?.("course:")) return "route:opintojaksot";
+    if (String(filter || "").startsWith("route:")) return filter;
+    return refinerParentByFilter[filter] || "";
+  }
+
+  function populatePresentationCourseFilter(items) {
+    const select = document.getElementById("presentation-course-filter");
+    if (!select) return [];
+
+    courseFilterLabels.clear();
+    const courses = new Map();
+    items.forEach((item) => {
+      itemCourseContexts(item).forEach((course) => {
+        const value = courseFilterValue(course);
+        if (!value) return;
+        const previous = courses.get(value) || {
+          label: courseFilterLabel(course),
+          count: 0
+        };
+        previous.count += 1;
+        courses.set(value, previous);
+        courseFilterLabels.set(value, previous.label);
+      });
+    });
+
+    const options = [...courses.entries()]
+      .sort(([, a], [, b]) => a.label.localeCompare(b.label, "fi"))
+      .map(([value, item]) => ({ value, ...item }));
+
+    select.innerHTML = [
+      '<option value="all">Kaikki opintojaksot</option>',
+      ...options.map((item) => `<option value="${escHtml(item.value)}">${escHtml(item.label)} (${item.count})</option>`)
+    ].join("");
+    select.disabled = options.length === 0;
+    return options.map((item) => item.value);
+  }
+
   function describePresentationFilter(filter) {
     const labels = {
       all: { label: "Kaikki sisällöt", note: "" },
       "route:puheenvuorot": { label: "Puheenvuorot", note: "Mukana ovat keynote- ja konferenssipuheenvuorot sekä muut laajat asiantuntijaesiintymiset." },
-      "route:koulutukset": { label: "Koulutukset, luennot ja työpajat", note: "Mukana ovat koulutuksiin, yliopistoluennolle, webinaareihin ja työpajoihin liittyvät materiaalit." },
+      "route:opintojaksot": { label: "Opintojaksot", note: "Mukana ovat sisällöt, joille on merkitty opintojaksokonteksti. Voit tarkentaa valintaa opintojaksovalikosta." },
+      "route:koulutukset": { label: "Koulutukset ja työpajat", note: "Mukana ovat täydennyskoulutuksiin, webinaareihin ja työpajoihin liittyvät materiaalit." },
       "route:materiaalit": { label: "Videot ja materiaalit", note: "Mukana ovat tallenteet, videosarjat ja jaettavat oppimateriaalit." },
       own: { label: "Omat esitykset", note: "" },
       aoe: { label: "Avoimet oppimateriaalit", note: "" },
@@ -905,6 +1021,7 @@
         "konferenssi-keynote": "Keynotet",
         "kansainvälinen-konferenssi": "Kansainväliset konferenssit",
         "täydennyskoulutus": "Täydennyskoulutukset",
+        "hanke-esittely": "Hanke-esittelyt",
         "tdk-luento": "Yliopistoluennot",
         "webinaari": "Webinaarit"
       };
@@ -919,6 +1036,13 @@
         asiantuntija: "Asiantuntija"
       };
       return { label: profileLabels[suffix] || suffix, note: "Suodatus perustuu asiantuntijaprofiiliin." };
+    }
+
+    if (filter.startsWith("course:")) {
+      return {
+        label: courseFilterLabels.get(filter) || "Opintojaksokonteksti",
+        note: "Rajaus näyttää materiaalit, joiden metadatassa on tämä opintojaksokonteksti."
+      };
     }
 
     if (filter.startsWith("context:")) {
@@ -956,6 +1080,7 @@
     grid.innerHTML = pageItems.map((item) => {
       const primaryUrl = item.pageUrl || item.url || "";
       const contextBadges = renderContextBadges(item);
+      const courseBadges = renderCourseBadges(item);
       const isVideoThumb = item.sourceKey === "youtubeVideos" || item.sourceKey === "videoSeries";
       const thumb = item.thumbnail
         ? `<span class="presentation-archive-card-thumb-placeholder"><i class="bi ${escHtml(iconByKey[item.sourceKey] || "bi-easel2")}"></i></span><img src="${escHtml(item.thumbnail)}" alt="" class="presentation-archive-card-thumb-image" loading="lazy" decoding="async" onerror="this.style.display='none';">`
@@ -983,12 +1108,14 @@
       };
       const routeLabels = {
         "route:puheenvuorot": "Puheenvuorot",
-        "route:koulutukset": "Koulutukset, luennot ja työpajat",
+        "route:opintojaksot": "Opintojaksot",
+        "route:koulutukset": "Koulutukset ja työpajat",
         "route:materiaalit": "Videot ja materiaalit"
       };
       const secondaryRouteLabels = {
         "route:puheenvuorot": "Myös: Puheenvuorot",
-        "route:koulutukset": "Myös: Koulutukset, luennot ja työpajat",
+        "route:opintojaksot": "Myös: Opintojaksot",
+        "route:koulutukset": "Myös: Koulutukset ja työpajat",
         "route:materiaalit": "Myös: Videot ja materiaalit"
       };
       const kategoriaLabel = item.kategoria ? (kategoriaLabels[item.kategoria] || item.kategoria) : "";
@@ -1017,6 +1144,7 @@
             </div>
             <h3 class="presentation-archive-card-title">${titleLink}</h3>
             ${jarjestajaLine}
+            ${courseBadges}
             ${contextBadges}
             <p class="presentation-archive-card-desc">${escHtml(truncate(item.description || item.meta || "", 150))}</p>
             <div class="presentation-archive-card-actions">${externalButton}${sourceButton}${pageButton}</div>
@@ -1142,8 +1270,16 @@
   function initUnifiedArchive() {
     const archiveItems = buildUnifiedArchiveItems();
     const filterControls = [...document.querySelectorAll("[data-presentation-filter]")];
+    const courseFilterSelect = document.getElementById("presentation-course-filter");
+    const refinerHost = document.querySelector("[data-presentation-refiners]");
+    const refinerPanels = [...document.querySelectorAll("[data-presentation-refiner]")];
     const archiveGrid = document.getElementById("presentation-unified-archive");
-    const validFilters = new Set(["all", ...filterControls.map((control) => control.dataset.presentationFilter || "all")]);
+    const courseFilters = populatePresentationCourseFilter(archiveItems);
+    const validFilters = new Set([
+      "all",
+      ...filterControls.map((control) => control.dataset.presentationFilter || "all"),
+      ...courseFilters
+    ]);
     let activeFilter = "all";
     let activePage = 1;
     renderPresentationFilterCounts(archiveItems);
@@ -1166,10 +1302,27 @@
 
     const applyFilter = (filter, shouldScroll = false) => {
       activeFilter = validFilters.has(filter) ? filter : "all";
+      const refinerKey = presentationRefinerKey(activeFilter);
       activePage = 1;
       filterControls.forEach((control) => {
-        control.classList.toggle("is-active", control.dataset.presentationFilter === activeFilter);
+        const controlFilter = control.dataset.presentationFilter || "all";
+        control.classList.toggle(
+          "is-active",
+          controlFilter === activeFilter || (activeFilter !== "all" && controlFilter === refinerKey)
+        );
       });
+      if (courseFilterSelect) {
+        courseFilterSelect.value = activeFilter.startsWith("course:") ? activeFilter : "all";
+      }
+      if (refinerHost) {
+        refinerHost.hidden = !refinerKey || activeFilter === "all";
+      }
+      refinerPanels.forEach((panel) => {
+        panel.hidden = panel.dataset.presentationRefiner !== refinerKey;
+      });
+      if (refinerKey !== "route:opintojaksot" && courseFilterSelect) {
+        courseFilterSelect.value = "all";
+      }
       renderUnifiedArchive(archiveItems, activeFilter, activePage);
       writeFilterToUrl(activeFilter);
       if (shouldScroll) {
@@ -1183,6 +1336,11 @@
         if (control.tagName === "A") event.preventDefault();
         applyFilter(filter, control.tagName === "A");
       });
+    });
+
+    courseFilterSelect?.addEventListener("change", () => {
+      const value = courseFilterSelect.value || "all";
+      applyFilter(value === "all" ? "route:opintojaksot" : value, false);
     });
 
     archiveGrid?.addEventListener("click", (event) => {
