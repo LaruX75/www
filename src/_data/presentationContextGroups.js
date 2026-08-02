@@ -160,7 +160,7 @@ function readPresentation(fp) {
       ? data.date.substring(0, 10)
       : new Date(data.date).toISOString().substring(0, 10);
   const baseName = path.basename(fp, ".md");
-  const url = `/${isoDate.replace(/-/g, "/")}/${baseName}/`;
+  const url = data.pageUrl || `/presentations/${baseName}/`;
   return {
     title: data.title,
     date: isoDate,

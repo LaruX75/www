@@ -115,6 +115,22 @@ const VIDEO_SERIES_ITEMS = [
   }
 ];
 
+const CUSTOM_MATERIAL_ITEMS = [
+  {
+    title: "Arjen tekoälyhaaste",
+    url: "https://www.ouka.fi/lukevinkaupunni/arjen-tekoalyhaaste",
+    pageUrl: "/presentations/arjen-tekoalyhaaste/",
+    externalUrl: "https://www.ouka.fi/lukevinkaupunni/arjen-tekoalyhaaste",
+    thumbnail: "https://www.ouka.fi/themes/custom/ouka/ouka_some_share.png",
+    date: "2026-05-06",
+    badgeText: "Verkkohaaste",
+    listText: "Arjen tekoälyhaaste tekoälylukutaidon harjoitteluun",
+    description: "Oulun kaupungin Lukevin kaupunni -sivustolla julkaistu verkkohaaste, joka auttaa tunnistamaan arjen tekoälytilanteita ja vahvistamaan tekoälylukutaitoa.",
+    sourceLabel: "Oulun kaupunki / verkkomateriaali",
+    external: true
+  }
+];
+
 function toArray(value) {
   return Array.isArray(value) ? value : [];
 }
@@ -234,7 +250,8 @@ function countPresentationMaterials({
   aoeRows = [],
   youtubeVideos = [],
   curatedVideos = [],
-  videoSeries = []
+  videoSeries = [],
+  customMaterials = []
 }) {
   const keys = new Set();
   const add = (url, title) => {
@@ -248,6 +265,7 @@ function countPresentationMaterials({
   youtubeVideos.forEach((item) => add(item?.url, item?.title));
   curatedVideos.forEach((item) => add(item?.url || item?.externalUrl, item?.title));
   videoSeries.forEach((item) => add(item?.url || item?.externalUrl, item?.title));
+  customMaterials.forEach((item) => add(item?.url || item?.externalUrl, item?.title));
 
   return keys.size;
 }
@@ -272,6 +290,7 @@ function buildPresentationsPageModel(data = {}) {
   );
   const curatedVideos = CURATED_VIDEO_ITEMS.map((item) => ({ ...item }));
   const videoSeries = VIDEO_SERIES_ITEMS.map((item) => ({ ...item }));
+  const customMaterials = CUSTOM_MATERIAL_ITEMS.map((item) => ({ ...item }));
   const slideshareItems = createSlideshareItems(presentations);
   const canvaPageUrls = createCanvaPageUrls(presentations);
 
@@ -280,6 +299,7 @@ function buildPresentationsPageModel(data = {}) {
     canvaPageUrls,
     curatedVideoItems: curatedVideos,
     videoSeriesItems: videoSeries,
+    customMaterialItems: customMaterials,
     videoContentCount: toArray(data.youtube?.videos).length + curatedVideos.length + videoSeries.length,
     presentationAnalysisCount: 2,
     presentationMaterialTotal: countPresentationMaterials({
@@ -288,7 +308,8 @@ function buildPresentationsPageModel(data = {}) {
       aoeRows: toArray(data.finnaAoe?.rows),
       youtubeVideos: toArray(data.youtube?.videos),
       curatedVideos,
-      videoSeries
+      videoSeries,
+      customMaterials
     }),
     presentationContextItems: contextItems,
     presentationContextFeedbackTotal: countFeedbackRefs(contextItems),
@@ -296,6 +317,7 @@ function buildPresentationsPageModel(data = {}) {
     rawData: {
       aoe: toArray(data.finnaAoe?.rows),
       canva: toArray(data.canva?.tableRows),
+      customMaterials,
       curatedVideos,
       videoSeries,
       youtubeVideos: toArray(data.youtube?.videos),

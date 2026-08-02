@@ -54,6 +54,7 @@
     aoe: "bi-book",
     canva: "bi-file-earmark-slides",
     curatedVideos: "bi-camera-video",
+    customMaterials: "bi-box-arrow-up-right",
     videoSeries: "bi-collection-play",
     youtubeVideos: "bi-youtube",
     youtube: "bi-youtube",
@@ -64,6 +65,7 @@
     aoe: "Avaa Finnassa",
     canva: "Avaa",
     curatedVideos: "Katso",
+    customMaterials: "Avaa materiaali",
     videoSeries: "Avaa sarja",
     youtubeVideos: "Katso",
     youtube: "YouTube",
@@ -91,6 +93,11 @@
       archiveType: "video",
       archiveTypeLabel: "Video / tallenne",
       sourceLabel: "YouTube / oma puheenvuoro"
+    },
+    customMaterials: {
+      archiveType: "aoe",
+      archiveTypeLabel: "Verkkomateriaali",
+      sourceLabel: "Oulun kaupunki"
     },
     videoSeries: {
       archiveType: "video",

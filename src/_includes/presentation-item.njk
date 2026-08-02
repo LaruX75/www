@@ -12,6 +12,8 @@ layout: base.njk
   {% set sourceText = "SlideShare" %}
 {% elif source == "aoe" %}
   {% set sourceText = "AOE" %}
+{% elif source == "ouka" %}
+  {% set sourceText = "Oulun kaupunki / verkkomateriaali" %}
 {% elif sourceHref and "canva.com" in sourceHref %}
   {% set sourceText = "Canva" %}
 {% elif sourceHref and ("youtube.com" in sourceHref or "youtu.be" in sourceHref) %}
