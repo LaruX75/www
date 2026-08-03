@@ -75,23 +75,32 @@
     {
       "id": "418028P-let-2023",
       "vuosi": "2023",
-      "nimi": "418028P Learning Environments and Technologies",
-      "aineistonTyyppi": "Peppi-palaute (3 vastausta), itsearviointilomake sekä ohjelmajohdon välittämä opiskelijapalaute",
+      "nimi": "418028P Learning Environments and Technologies (23LET)",
+      "aineistonTyyppi": "Microsoft Forms itse- ja vertaisarviointi (27 vastaajaa: 9 kandidaattivaiheen opiskelijaa, 15 maisteriopiskelijaa, 2 vaihto-opiskelijaa, 1 muu) · Peppi-palaute (3 vastausta) · ohjelmajohdon välittämä opiskelijapalaute",
+      "mittarit": [
+        { "label": "Kurssin arvosana (vastaajien keskiarvo)", "arvo": "4,56 / 5" },
+        { "label": "Ryhmätyömallin toimivuus", "arvo": "4,30 / 5" },
+        { "label": "Ryhmälopputöiden taso", "arvo": "4,44 / 5" },
+        { "label": "Portfolio-työskentelyn arvio", "arvo": "3,93 / 5" }
+      ],
       "myonteinen": [
         { "teksti": "It was my favourite course ever!", "featured_home": true, "featured_company": true, "featured_yritys_trust": false },
-        { "teksti": "Jari was always available." },
         { "teksti": "I really appreciated that it was very hands-on and practical. That is how I can learn the most." },
         { "teksti": "I feel so much more confident in what I am doing now and well prepared for my future job through this course!", "featured_yritys_trust": true },
-        { "teksti": "Kurssi on ollut monelle opiskelijalle yksi suurimpia syitä hakeutua LETiin opiskelemaan." }
+        { "teksti": "Kurssi on ollut monelle opiskelijalle yksi suurimpia syitä hakeutua LETiin opiskelemaan." },
+        { "teksti": "I believe that my biggest takeaway from this course is that I learned how to navigate new technologies and how to connect them to each other and to learning contexts. now I can make online or fabric materials which are very interesting and engaging." },
+        { "teksti": "This course helped us learn a lot of tools for example Thinglink, Spatial IO, Use of AI, Education through Game Design, Lumi, 360 Camera and voice recorder, Podcast recording and a lot more." },
+        { "teksti": "I was thrilled to use 3D machines and now I can use them confidently." }
       ],
       "kehittaminen": [
+        { "teksti": "The aim of the project, roles of each person and the rules of group work were not communicated in the beginning of the course (the should've been scripted in the course assignment)." },
+        { "teksti": "But I was confused that what we had to write to our blogs because we didn't have clear instructions for that." },
+        { "teksti": "there was no structure given by teacher of the expectations of the blog - what kind of posts, what are the questions for reflection - so I can't say I did the job well" },
         { "teksti": "I sometimes did not know what kind of assignment will be graded and which won't. A table or something sent at the beginning of the course could be good." },
-        { "teksti": "Opiskelijat kokevat, että kurssi ei vastaa Pepin kurssikuvausta ja he eivät saa kurssilta sitä, mitä kurssikuvauksen ja sisältöjen perusteella olivat odottaneet." },
-        { "teksti": "Kurssin tehtävänannot ovat epäselviä." },
-        { "teksti": "Elements of AI 2 op MOOC-kurssi ei opiskelijoiden kokemuksen mukaan ole keskeistä Learning environments and technologies -kurssin sisältöä." },
-        { "teksti": "Aikataulujen muutokset, opetuskertojen peruutukset ja epäselvyydet toteutuksessa mainitaan palautteessa." },
-        { "teksti": "Opiskelijat ovat selvän struktuurin perään ja epävarmuuksien ja yllätysten tuntuvat vaikeilta." }
-      ]
+        { "teksti": "Opiskelijat ovat selvän struktuurin perään ja epävarmuuksien ja yllätysten tuntuvat vaikeilta." },
+        { "teksti": "Elements of AI 2 op MOOC-kurssi ei opiskelijoiden kokemuksen mukaan ole keskeistä Learning environments and technologies -kurssin sisältöä." }
+      ],
+      "huomautus": "Kolmesta lähteestä (Peppi, ohjelmajohto ja itsearviointi) toistuu yhdenmukainen signaali ohjeistuksen selkeydestä: portfolio-/blogitehtävän odotuksia ei koettu tarpeeksi rakenteistetuiksi, ryhmätyön sääntöjen kommunikointia kurssin alussa toivottiin selkeämmäksi ja Elements of AI -MOOC:in sidos kurssin sisältöön nostettiin kritiikkinä. Kurssin lopputuotoksien (peli/pakohuone ja muut materiaalit) arviot ovat kuitenkin korkeat: 4,44 / 5. Vuoden 2024 toteutuksesta katso seuraava kortti."
     },
     {
       "id": "418028P-let-2024",
@@ -120,7 +129,7 @@
         { "teksti": "Moreover, we lacked a clear vision of our goal at first, which made it difficult to work efficiently on the project. A brief discussion with one of our lecturers helped me have a clearer goal for our project." },
         { "teksti": "There are many tools covered during the course, and it's a challenge to remember all of them and fully understand their uses." }
       ],
-      "huomautus": "Vertailu vuoden 2023 ohjelmajohdon välittämään palautteeseen: 2023 nostetuista teemoista ohjeiden ajoitus näkyy yhä yksittäisissä 24LET-vastauksissa (mm. lopputyön ohjeet), mutta Elements of AI -kritiikkiä ei aineistossa mainita. Kolmiosainen kurssirakenne — työpajat, portfolio ja ryhmälopputyö — toistuu vastauksissa. Oppimistavoitteista vahvin näyttö on omien digitaalisten taitojen tunnistamisessa (19/35 vahvasti samaa mieltä) ja teknologioiden integroinnissa (13/35)."
+      "huomautus": "Vertailu vuoden 2023 samasta kurssista kerättyyn aineistoon (27 vastaajaa): kurssin arvosanan vastaajien keskiarvo laski 4,56 → 4,17 ja lopputyön arvio 4,44 → 4,20; ryhmätyömallin toimivuus (4,30 → 4,31) ja portfolio-työskentelyn arvio (3,93 → 3,89) pysyivät samalla tasolla. Vuoden 2023 keskeinen kritiikki ohjeistuksen selkeydestä toistuu 24LET-vastauksissa vain yksittäisissä maininnoissa (mm. lopputyön ohjeiden ajoitus), eikä Elements of AI -MOOC-sidosta enää mainita."
     }
   ],
   "keruunJaljet": [
