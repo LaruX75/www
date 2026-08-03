@@ -82,6 +82,23 @@
           "attribution": "Opelle omppu 2024 student teacher appreciation, Faculty of Education and Psychology"
         }
       }
+    },
+    {
+      "id": "opelle-omppu-2024-tekoaly",
+      "category": "university",
+      "placements": ["home", "company"],
+      "source": "padlet-opelle-omppu-2024",
+      "publicationStatus": "already-published",
+      "content": {
+        "fi": {
+          "quote": "Larun innostus eri teknologioihin ja tekoälyyn on mukaansatempaavaa!",
+          "attribution": "Opelle omppu 2024 -opiskelijapalaute, Kasvatustieteiden ja psykologian tiedekunta"
+        },
+        "en": {
+          "quote": "Laru's enthusiasm for various technologies and AI is contagious!",
+          "attribution": "Opelle omppu 2024 student teacher appreciation, Faculty of Education and Psychology"
+        }
+      }
     }
   ]
 }
