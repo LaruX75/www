@@ -116,6 +116,9 @@
                         {% endif %}
                       {% endif %}
                     {% endfor %}
+                    {% if loop.last and workMegaMenu.cta %}
+                      <a class="btn btn-accent btn-lg w-100 mt-3" href="{{ workMegaMenu.cta.href }}">{{ workMegaMenu.cta.label }}</a>
+                    {% endif %}
                   </section>
                 {% endfor %}
               </div>

@@ -191,6 +191,7 @@ services:
       </div>
       <div class="d-flex flex-wrap gap-2">
         <a class="btn btn-outline-primary rounded-pill px-4" href="/palkinnot/">Kaikki palkinnot</a>
+        <a class="btn btn-outline-secondary rounded-pill px-4" href="/koulutuspalaute/">Koulutuspalaute</a>
         <a class="btn btn-outline-secondary rounded-pill px-4" href="/opiskelijoiden-antamaa-palautetta/">Opiskelijapalautteet</a>
       </div>
     </div>

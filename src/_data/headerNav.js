@@ -805,6 +805,7 @@ module.exports = {
   },
   megaMenuWork: {
     fi: {
+      layout: "four-columns",
       sections: [
         {
           heading: "Yliopistotyö",
@@ -832,6 +833,12 @@ module.exports = {
               href: "/cv/",
               icon: "bi bi-file-person me-2",
               description: "Koulutus, työkokemus ja asiantuntijuuden kuvaus."
+            },
+            {
+              title: "Opiskelijapalaute",
+              href: "/opiskelijoiden-antamaa-palautetta/",
+              icon: "bi bi-chat-square-text me-2",
+              description: "Kurssikohtainen opiskelijapalaute yliopisto-opintojaksoilta ja opetuksen kehittäminen."
             }
           ]
         },
@@ -890,6 +897,23 @@ module.exports = {
               href: "/mediassa/",
               icon: "bi bi-camera-reels me-2",
               description: "Haastattelut, podcastit ja mediaesiintymiset asiantuntijatyön jatkumona."
+            }
+          ]
+        },
+        {
+          heading: "Kouluttaja & palaute",
+          links: [
+            {
+              title: "Kouluttaja (Larux t:mi)",
+              href: "/kouluttaja/",
+              icon: "bi bi-building me-2",
+              description: "Koulutus- ja asiantuntijapalvelut Larux t:mi:n kautta."
+            },
+            {
+              title: "Koulutuspalaute",
+              href: "/koulutuspalaute/",
+              icon: "bi bi-chat-square-quote me-2",
+              description: "Täydennyskoulutusten ja asiantuntijatilaisuuksien palautteen kooste 2017–2026."
             }
           ]
         }
