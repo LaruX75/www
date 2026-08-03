@@ -1,0 +1,176 @@
+{
+  "meta": {
+    "aikavali": "2017–2026",
+    "tilaisuuksia": 7,
+    "opoAIOsallistujia": 98,
+    "kainutlaatuinenKeskiarvo": "4,2 / 5"
+  },
+  "toistuvatTeemat": {
+    "vahvuudet": [
+      "Asiantuntijuus",
+      "Käytännönläheisyys ja konkreettiset työkalut (mm. Somekone)",
+      "Tekoälyn hyödyntämisen konkretisointi kouluarjessa",
+      "Inspiraatio ja madaltunut kynnys kokeiluun"
+    ],
+    "kehityskohteet": [
+      "Enemmän aikaa harjoittelulle ja omalle kokeilulle",
+      "Rauhallisempi tempo ja termien selkeys",
+      "Kohderyhmäräätälöinti eri kouluasteille ja toimialoille",
+      "Ennakkomateriaali ajoissa, kirjallista tukimateriaalia työkalujen rinnalle"
+    ]
+  },
+  "aikajana": [
+    { "vuosi": "2017", "kuvaus": "Kainutlaatuinen ope" },
+    { "vuosi": "2024", "kuvaus": "OpoAI, STEAM, Kaakkuri, SUKOL" },
+    { "vuosi": "2025", "kuvaus": "Sivis · Tekoäly yhdistystoiminnassa" },
+    { "vuosi": "2026", "kuvaus": "Kriittinen lukutaito (Finnoschool)" }
+  ],
+  "vaikutukset": [
+    {
+      "otsikko": "Kainutlaatuinen ope 2017 — päätös järjestää tapahtuma uudelleen.",
+      "kuvaus": "Palautekoosteen keskiarvo 4,2/5 ja onnistuneeksi arvioitu kokonaisuus johtivat päätökseen järjestää tapahtuma uudelleen."
+    },
+    {
+      "otsikko": "Siviksen tekoälywebinaari — sisältö suunnattiin käytännönläheisemmäksi.",
+      "kuvaus": "Aiemmassa palautteessa toivottiin enemmän yhdistystoiminnan arkeen liittyviä esimerkkejä. Palautteen perusteella sisältöä suunnattiin käytännönläheisemmäksi."
+    },
+    {
+      "otsikko": "Kriittinen lukutaito 2026 — osallistujien konkreettiset aikomukset viedä oppia työhön.",
+      "kuvaus": "Osallistujat mainitsivat aikovansa kokeilla Somekonetta, Copilotia, NotebookLM:ää ja muita työkaluja omassa opetuksessaan välittömästi koulutuksen jälkeen (\"Aion kokeilla huomenna heti somekonetta kakkosluokkalaisten kanssa\"). Tämä on evidenssi siitä, että koulutus siirtyy käytäntöön."
+    }
+  ],
+  "tilaisuudet": [
+    {
+      "id": "kriittinen-lukutaito-2026",
+      "nimi": "Kriittinen lukutaito ja tekoälyn käyttöesimerkkejä opetuksessa",
+      "meta": "17.2.2026 klo 15–18 · Finnoschool / LUKUTAITO-koulutus · osallistujien raakapalaute",
+      "evidenceLevel": "vahva",
+      "evidenceLabel": "Vahva näyttö",
+      "havainnot": [
+        "Somekone nousee toistuvasti esiin konkreettisena, heti sovellettavana työkaluna (\"Erityisesti somekone oli huikea\", \"Aion kokeilla huomenna heti somekonetta kakkosluokkalaisten kanssa\").",
+        "Osallistujat kuvaavat kynnyksen tekoälyn kokeilemiseen madaltuneen ja saaneensa \"kipinän\" testata työkaluja omassa työssään.",
+        "Loppuosan konkreettisia esimerkkejä pidettiin toivottuina (\"Loppuosan konkreettiset esimerkit olivat juuri sitä, mitä kaipasin!\").",
+        "Aiotut kokeilut opetuksessa: Somekone, Copilot, NotebookLM, Teamsin tekoälytyökalut, Classroomin työkalut, GenAI-materiaalit, oman agentin luominen."
+      ],
+      "kehittamiskohteet": [
+        "Ajan riittämättömyys toistui useissa palautteissa (\"HARMI, että aika loppui kesken\", \"Liian lyhyt aika, koska materiaalia niin paljon\", \"Lisää aikaa!\").",
+        "Ennakkomateriaalin ajoitus: \"Harmitti, kun aineistot tulivat niin myöhään, etten ehtinyt etukäteen tutustumaan.\"",
+        "Kohderyhmäräätälöinti: \"Sisältö ei ollut kovin hyödyllinen lukio-opettajalle\" — vastaavasti alakoulun näkökulmaa toivottiin lisää.",
+        "Termien ja käsitteiden selkeys: \"Olisin kaivannut vähän enemmän karvalakkiversiota luennolla\", \"olisi hyödyllistä vähän hitaammin alleviivata otsikkoa ja sovellusta\".",
+        "Kirjallista tukimateriaalia: \"Olisin toivonut kriittisestä lukutaidosta lähdemateriaalia ja selkeät diat\", \"artikkeleita ja selkeitä ohjeita\".",
+        "Enemmän ohjattua omaa tekemistä: \"Olisin halunnut lisää aikaa siihen, että olisimme oikeasti luoneet jotain lyhyesti, jotta osaisi sitten toimia.\""
+      ],
+      "esitys": {
+        "nimi": "Riko, rakenna ja ymmärrä – Kohti kriittistä tekoälylukutaitoa",
+        "url": "https://www.canva.com/d/Qj3UMnjU3RwRv7P"
+      },
+      "featured_quote": {
+        "teksti": "Aion kokeilla huomenna heti somekonetta kakkosluokkalaisten kanssa.",
+        "featured_home": true,
+        "featured_company": true
+      }
+    },
+    {
+      "id": "opoai-2024",
+      "nimi": "OpoAI-koulutus",
+      "meta": "2024 · osallistujapalaute",
+      "evidenceLevel": "vahva",
+      "evidenceLabel": "Vahva näyttö",
+      "havainnot": [
+        "Palautetta antoi 98 osallistujaa.",
+        "Suurin osa vastaajista arvioi koulutuksen erittäin tai melko hyödylliseksi.",
+        "Suurin osa suosittelisi koulutusta kollegoilleen.",
+        "Palautteissa kiiteltiin käytännönläheisyyttä, tekoälyn sovellusmahdollisuuksia ja asiantuntijuutta."
+      ],
+      "kehittamiskohteet": [
+        "Joidenkin osallistujien mielestä esityksen tempo oli nopea.",
+        "Lisää aikaa harjoittelulle toivottiin."
+      ],
+      "esitys": {
+        "nimi": "Opopassi-koulutus – Tekoäly ohjauksessa",
+        "url": "https://www.canva.com/d/hmeIKU2KmombmX2",
+        "huomautus": "todennäköinen materiaali"
+      },
+      "featured_quote": {
+        "teksti": "Palautteissa kiiteltiin käytännönläheisyyttä, tekoälyn sovellusmahdollisuuksia ja asiantuntijuutta.",
+        "attribution": "OpoAI-koulutus, 2024 (kooste 98 osallistujan palautteesta)",
+        "featured_company": true
+      }
+    },
+    {
+      "id": "kainutlaatuinen-ope-2017",
+      "nimi": "Kainutlaatuinen ope",
+      "meta": "2017 · palautekooste",
+      "evidenceLevel": "keskivahva",
+      "evidenceLabel": "Keskivahva näyttö",
+      "havainnot": [
+        "Kaikkien vastausten keskiarvo oli 4,2/5.",
+        "Kouluttajien ja asiantuntijoiden osaaminen sai parhaat arvioinnit.",
+        "Tapahtuma arvioitiin onnistuneeksi kokonaisuudeksi.",
+        "Palautteen perusteella tapahtuma päätettiin järjestää uudelleen."
+      ],
+      "rajoitteet": [
+        "Varsinainen palautekoosteliite ei ole vielä purettu."
+      ],
+      "featured_quote": {
+        "teksti": "Saimme aivan huikean hyvät arvioinnit. Kokonaiskeskiarvo 4,2 / 5 oli erinomainen.",
+        "attribution": "Kainutlaatuinen ope -täydennyskoulutus, 2017 (järjestäjä)",
+        "featured_company": true
+      }
+    },
+    {
+      "id": "kaakkuri-metsokangas",
+      "nimi": "Metsokankaan ja Kaakkurin koulujen koulutusiltapäivä",
+      "meta": "Koulutusiltapäivä · järjestäjän välittämä palaute",
+      "evidenceLevel": "keskivahva",
+      "evidenceLabel": "Keskivahva näyttö",
+      "havainnot": [
+        "Luennosta ja työpajoista kerrottiin saadun paljon positiivista palautetta.",
+        "Järjestäjän mukaan osallistujille jäi oppia ja pohdittavaa jatkoa varten."
+      ]
+    },
+    {
+      "id": "sukol-talvi",
+      "nimi": "SUKOLin talvikoulutuspäivä",
+      "meta": "Koulutuspäivä · järjestäjän välittämä palaute",
+      "evidenceLevel": "keskivahva",
+      "evidenceLabel": "Keskivahva näyttö",
+      "havainnot": [
+        "Esityksen kerrottiin saaneen hyvää palautetta."
+      ]
+    },
+    {
+      "id": "sivis-tekoalywebinaari",
+      "nimi": "Siviksen tekoälywebinaari",
+      "meta": "Webinaari · sisällön suuntaaminen palautteen perusteella",
+      "evidenceLevel": "keskivahva",
+      "evidenceLabel": "Keskivahva näyttö",
+      "havainnot": [
+        "Aiemmassa palautteessa toivottiin enemmän yhdistystoiminnan arkeen liittyviä esimerkkejä.",
+        "Palautteen perusteella sisältöä suunnattiin käytännönläheisemmäksi."
+      ],
+      "esitys": {
+        "nimi": "Tekoäly yhdistystoiminnassa",
+        "url": "https://www.canva.com/d/IMm6-JD8PRTBK2F"
+      }
+    },
+    {
+      "id": "steam-2024",
+      "nimi": "STEAM-koulutus",
+      "meta": "Palauteyhteenvetoon viittaava lähde",
+      "evidenceLevel": "heikko",
+      "evidenceLabel": "Heikko näyttö",
+      "havainnot": [
+        "Koulutusta on kehuttu.",
+        "Palauteyhteenveto on ollut olemassa."
+      ],
+      "rajoitteet": [
+        "Varsinaista palauteyhteenvetoa ei löytynyt."
+      ],
+      "esitys": {
+        "nimi": "International Conference on the Advancement of STEAM 2024",
+        "url": "https://www.canva.com/d/CYteD0Z-U5Z6TzJ"
+      }
+    }
+  ]
+}
