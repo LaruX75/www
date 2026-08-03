@@ -1,11 +1,52 @@
 {% set testimonialLocale = testimonials.locales[testimonialLang] or testimonials.locales.fi %}
 {% set isHomeTestimonials = testimonialPlacement == "home" %}
-{% set visibleTestimonials = [] %}
-{% for testimonial in testimonials.items %}
-  {% if testimonialPlacement in testimonial.placements and (not isHomeTestimonials or visibleTestimonials.length < 3) %}
-    {% set _ = (visibleTestimonials.push(testimonial), null) %}
+{% set testimonialItems = [] %}
+
+{# 1) studentFeedback: kurssien myonteiset lainaukset joilla on featured-lippu (vain suomeksi) #}
+{% if testimonialLang == "fi" and studentFeedback and studentFeedback.kurssit %}
+  {% for kurssi in studentFeedback.kurssit %}
+    {% for lainaus in kurssi.myonteinen or [] %}
+      {% set featureMatch = (isHomeTestimonials and lainaus.featured_home) or (not isHomeTestimonials and lainaus.featured_company) %}
+      {% if featureMatch %}
+        {% set _ = (testimonialItems.push({
+          quote: lainaus.teksti,
+          attribution: kurssi.nimi + " -kurssi, " + kurssi.vuosi
+        }), null) %}
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+{% endif %}
+
+{# 2) trainingFeedback: tilaisuuksien featured_quote #}
+{% if testimonialLang == "fi" and trainingFeedback and trainingFeedback.tilaisuudet %}
+  {% for tilaisuus in trainingFeedback.tilaisuudet %}
+    {% if tilaisuus.featured_quote %}
+      {% set fq = tilaisuus.featured_quote %}
+      {% set featureMatch = (isHomeTestimonials and fq.featured_home) or (not isHomeTestimonials and fq.featured_company) %}
+      {% if featureMatch %}
+        {% set _ = (testimonialItems.push({
+          quote: fq.teksti,
+          attribution: fq.attribution or tilaisuus.nimi
+        }), null) %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{# 3) testimonials.json: orphaanit (lainaukset joilla ei ole kytkosta palautesivuille) #}
+{% for item in testimonials.items %}
+  {% if testimonialPlacement in item.placements %}
+    {% set localizedTestimonial = item.content[testimonialLang] or item.content.fi %}
+    {% set _ = (testimonialItems.push({
+      quote: localizedTestimonial.quote,
+      attribution: localizedTestimonial.attribution
+    }), null) %}
   {% endif %}
 {% endfor %}
+
+{# Etusivulla nayta maksimissaan 3 lainausta #}
+{% set visibleTestimonials = testimonialItems | take(3) if isHomeTestimonials else testimonialItems %}
+
 <section class="py-5 bg-body-tertiary border-top border-bottom home-testimonials-section"{% if isHomeTestimonials %} aria-labelledby="home-testimonials-heading"{% else %} id="{{ "testimonials" if testimonialLang == "en" else "palautteet" }}" aria-labelledby="company-testimonials-heading"{% endif %}>
   <div class="site-shell">
     <h2 class="h4 fw-bold text-center mb-4 home-testimonials-label" id="{{ "home-testimonials-heading" if isHomeTestimonials else "company-testimonials-heading" }}">
@@ -13,13 +54,12 @@
     </h2>
     <div class="row g-4 justify-content-center">
       {% for testimonial in visibleTestimonials %}
-        {% set localizedTestimonial = testimonial.content[testimonialLang] or testimonial.content.fi %}
         <div class="{{ "col-md-4" if isHomeTestimonials else "col-md-6" }}">
           <figure class="home-quote h-100 mb-0">
             <blockquote class="mb-2">
-              <p>“{{ localizedTestimonial.quote }}”</p>
+              <p>“{{ testimonial.quote }}”</p>
             </blockquote>
-            <figcaption class="home-quote-footer">{{ localizedTestimonial.attribution }}</figcaption>
+            <figcaption class="home-quote-footer">{{ testimonial.attribution }}</figcaption>
           </figure>
         </div>
       {% endfor %}
