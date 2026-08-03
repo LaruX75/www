@@ -1,7 +1,7 @@
 {
   "meta": {
     "aikavali": "2013–2024",
-    "kursseja": 8,
+    "kursseja": 9,
     "portfoliovastauksia": 106,
     "tel1Keskiarvo": "4,55 / 5"
   },
@@ -112,6 +112,29 @@
       "huomautus": "Kaksi selvintä signaalia: ohjeistuksen selkeys on Likert-mittariston alhaisin arvo (2,71 / 5) ja toistuu avovastauksissa erityisesti kehittämiskohteena (34 mainintaa 114 vastauksesta). Toisaalta käytännön harjoitukset (34 mainintaa, pääosin myönteisiä) ja käytettävissä oleva teknologia arvioidaan onnistuneiksi. Vuoden 2018–2019 toteutukseen verrattuna ohjeistuksen selkeys nousi 2,53 → 2,71, mutta pysyi mittariston alhaisimpana. Sama ohjeistus-teema toistuu vielä myöhempinä vuosina 2023–2024 (418028P Learning Environments and Technologies)."
     },
     {
+      "id": "405028Y-2020-2021",
+      "vuosi": "2020–2021",
+      "nimi": "405028Y Teknologiatuettu oppiminen ja opintoihin orientoituminen — TVT-osuus",
+      "aineistonTyyppi": "Oulun yliopiston opintojaksopalauteraportti (02.09.2020–07.01.2021) · 321 rekisteröityä opiskelijaa · 5,3 % vastausprosentti Likert-osioon · 53 avovastauskatkelmaa · koronapandemian etäopetusvuosi",
+      "myonteinen": [
+        { "teksti": "Kurssilla käytiin todella monipuolisesti tekniikkaa läpi ja kurssi toimi melko hyvin etänäkin." },
+        { "teksti": "Monipuolinen tutustuminen erilaisiin sovelluksiin Etäopetus huomioonottaen kurssi oli toteutettu hyvin." },
+        { "teksti": "Erityisesti pidin siitä, että kurssilla pääsi itse tekemään esimerkiksi oppimateriaalia." },
+        { "teksti": "Oli mukava, että kurssia oli muutettu juuri omaan kasvatusalaan sopivaksi." },
+        { "teksti": "Oli mielenkiintoista nähdä toisten tekemiä juttuja, joista sai paloa, että minäkin haluan opetella käyttämään tuota!" },
+        { "teksti": "Tunneillasi on hyvä meininki ja autat mielelläsi oli tilanne mikä tahansa." }
+      ],
+      "kehittaminen": [
+        { "teksti": "Kurssin palautettavien tehtävien ohjeistus olisi voinut olla selkeämpi, koska kukaan ei oikein tajunnut tehtävänantoa eikä sen laajuutta ollut määritelty mitenkään." },
+        { "teksti": "Olisi kuitenkin ollut mukava oppia, jotain ns. enemmän tuntemattomista palveluista tai laitteista, sillä kurssilla keskityttiin lähinnä Officen perusohjelmien käyttöön, jotka ovat monella jo hallussa." },
+        { "teksti": "Teams oli alustana itselle tuntematon ja hieman sekava, minkä takia joitakin kurssiin liittyviä asioita oli hankala löytää." },
+        { "teksti": "Olin pettynyt siihen, että luennot ja harjoituskerrat alkoivat usein myöhässä." },
+        { "teksti": "En saanut itse luennoista hirveästi mitään irti." },
+        { "teksti": "Opiskelujen aloittaminen etänä ja eri ohjelmien opettelu teettivät paljon työtä ja tämän kurssin rakenne aiheutti todella paljon ylimääräistä stressiä ja sekavuuden tunnetta." }
+      ],
+      "huomautus": "Koronapandemian etäopetusvuosi: Likert-osion vastausprosentti oli poikkeuksellisen matala (5,3 %) eikä raportti sisällä lukuja, joten mittarit puuttuvat kortista. Ohjeistuksen selkeys nousee edelleen selvimpänä kehittämiskohteena kuten aiempinakin vuosina; lisäksi Teams-alustan sekavuus, luentojen myöhästymiset ja opetuksen liika keskittyminen jo tuttuihin Office-perusohjelmiin nousevat toistuvasti esille. Myönteinen palaute korostaa etäopetuksen sujuvaa toteutusta ja mahdollisuutta valita omia kiinnostavia teemoja."
+    },
+    {
       "id": "luko-erkka-2023",
       "vuosi": "2023",
       "nimi": "Teknologiatuettu oppiminen — LUKO–ERKKA tekoälyharjoitus",
@@ -191,7 +214,6 @@
     }
   ],
   "keruunJaljet": [
-    { "koodi": "405028Y", "nimi": "Teknologiatuettu oppiminen ja opintoihin orientoituminen", "vuodet": "2020–2021 (2018–2019 ja 2019–2020 kortit yllä)" },
     { "koodi": "407062A", "nimi": "Ohjelmointi perusopetuksessa", "vuodet": "2018–2020" },
     { "koodi": "413314S", "nimi": "LET 2nd year Designing technology-enhanced learning", "vuodet": "2018–2021" },
     { "koodi": "413325S", "nimi": "Emergent technologies", "vuodet": "2018–2021" },
