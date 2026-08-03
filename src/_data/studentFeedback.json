@@ -8,6 +8,7 @@
   "kurssit": [
     {
       "id": "tel1-2013",
+      "courseFamily": "tel1",
       "vuosi": "2013",
       "nimi": "TEL1 – Technology Enhanced Learning",
       "aineistonTyyppi": "Kirjallinen palauteraportti · 18 vastaajaa",
@@ -31,6 +32,7 @@
     },
     {
       "id": "tvt-2015-2016",
+      "courseFamily": "tvt",
       "vuosi": "2015–2016",
       "nimi": "Tieto- ja viestintätekniikka pedagogisena työvälineenä (3 op)",
       "aineistonTyyppi": "Sähköpostitse välitetty opiskelijapalaute",
@@ -45,6 +47,7 @@
     },
     {
       "id": "digitaalinen-media-2015-2016",
+      "courseFamily": "digitaalinen-media",
       "vuosi": "2015–2016",
       "nimi": "Digitaalinen media opetuksessa ja oppimisessa (2 op)",
       "aineistonTyyppi": "Sähköpostitse välitetty opiskelijapalaute",
@@ -55,6 +58,7 @@
     },
     {
       "id": "405028Y-2018-2019",
+      "courseFamily": "405028Y",
       "vuosi": "2018–2019",
       "nimi": "405028Y Teknologiatuettu oppiminen ja opintoihin orientoituminen — TVT-osuus",
       "aineistonTyyppi": "Oulun yliopiston opintojaksopalauteraportti (29.08.2018–10.01.2019) · 274 rekisteröityä opiskelijaa · 12,77 % vastausprosentti Likert-osioon · 112 avovastauskatkelmaa",
@@ -84,6 +88,7 @@
     },
     {
       "id": "405028Y-2019-2020",
+      "courseFamily": "405028Y",
       "vuosi": "2019–2020",
       "nimi": "405028Y Teknologiatuettu oppiminen ja opintoihin orientoituminen — TVT-osuus",
       "aineistonTyyppi": "Oulun yliopiston opintojaksopalauteraportti (04.09.2019–09.01.2020) · 293 rekisteröityä opiskelijaa · 17,06 % vastausprosentti Likert-osioon · 114 avovastauskatkelmaa",
@@ -113,6 +118,7 @@
     },
     {
       "id": "405028Y-2020-2021",
+      "courseFamily": "405028Y",
       "vuosi": "2020–2021",
       "nimi": "405028Y Teknologiatuettu oppiminen ja opintoihin orientoituminen — TVT-osuus",
       "aineistonTyyppi": "Oulun yliopiston opintojaksopalauteraportti (02.09.2020–07.01.2021) · 321 rekisteröityä opiskelijaa · 5,3 % vastausprosentti Likert-osioon · 53 avovastauskatkelmaa · koronapandemian etäopetusvuosi",
@@ -136,6 +142,7 @@
     },
     {
       "id": "luko-erkka-2023",
+      "courseFamily": "luko-erkka",
       "vuosi": "2023",
       "nimi": "Teknologiatuettu oppiminen — LUKO–ERKKA tekoälyharjoitus",
       "aineistonTyyppi": "Portfoliopohjainen opiskelija-aineisto (syksy 2023) · lisäksi kevään 2023 laajempi portfolioaineisto (106 vastaajaa) taustavahvistuksena",
@@ -155,6 +162,7 @@
     },
     {
       "id": "418028P-let-2023",
+      "courseFamily": "418028P",
       "vuosi": "2023",
       "nimi": "418028P Learning Environments and Technologies (23LET)",
       "aineistonTyyppi": "Microsoft Forms itse- ja vertaisarviointi (27 vastaajaa: 9 kandidaattivaiheen opiskelijaa, 15 maisteriopiskelijaa, 2 vaihto-opiskelijaa, 1 muu) · Peppi-palaute (3 vastausta) · ohjelmajohdon välittämä opiskelijapalaute",
@@ -185,6 +193,7 @@
     },
     {
       "id": "418028P-let-2024",
+      "courseFamily": "418028P",
       "vuosi": "2024",
       "nimi": "418028P Learning Environments and Technologies (24LET)",
       "aineistonTyyppi": "Microsoft Forms itse- ja vertaisarviointilomake · 35 vastaajaa (24 kandidaattivaiheen opiskelijaa, 10 maisteriopiskelijaa, 1 vaihto-opiskelija)",
@@ -221,5 +230,45 @@
     { "koodi": "418028P", "nimi": "Technology Enhanced Learning and Digital Fabrication", "vuodet": "2018–2021" },
     { "koodi": "410014Y", "nimi": "Tieto- ja viestintätekniikka pedagogisena työvälineenä", "vuodet": "2013–2015" },
     { "koodi": "410017Y", "nimi": "Multimedia oppimisprojektina / Digitaalinen media", "vuodet": "2013–2015" }
+  ],
+  "courseFamilies": [
+    { "id": "405028Y", "chip": "405028Y (3)", "fullName": "405028Y Teknologiatuettu oppiminen — TVT-osuus", "count": 3, "vuosivali": "2018–2021",
+      "kaari": {
+        "vuodet": ["2018–2019", "2019–2020", "2020–2021"],
+        "trends": [
+          { "label": "Saavutin osaamistavoitteet", "arvot": ["3,56", "3,76", "—"] },
+          { "label": "Sisältö tuki osaamistavoitteita", "arvot": ["3,51", "3,88", "—"] },
+          { "label": "Ohjeistukset olivat selkeitä", "arvot": ["2,53", "2,71", "—"] },
+          { "label": "Tukea ja ohjausta oli riittävästi", "arvot": ["3,06", "3,32", "—"] }
+        ],
+        "toistuvat": [
+          "Ohjeistuksen selkeys oli kaikkina kolmena vuonna mittariston alhaisin arvo (2,53 → 2,71 → mittausta ei julkaistu 2020–2021).",
+          "Käytännön harjoitukset ja pienryhmätyö saivat myönteisen palautteen läpi vuosien.",
+          "Kurssin sisällön kohdentaminen eri opiskelijaryhmille (KAKO/VAKA) toistuvana kehittämisteemana.",
+          "Koronavuoden 2020–2021 uudet teemat: Teams-alustan sekavuus ja etäopetuksen kuormitus."
+        ]
+      }
+    },
+    { "id": "418028P", "chip": "418028P (2)", "fullName": "418028P Learning Environments and Technologies", "count": 2, "vuosivali": "2023–2024",
+      "kaari": {
+        "vuodet": ["2023", "2024"],
+        "trends": [
+          { "label": "Kurssin arvosana (vastaajien keskiarvo)", "arvot": ["4,56", "4,17"] },
+          { "label": "Ryhmätyömallin toimivuus", "arvot": ["4,30", "4,31"] },
+          { "label": "Ryhmälopputöiden taso", "arvot": ["4,44", "4,20"] },
+          { "label": "Portfolio-työskentelyn arvio", "arvot": ["3,93", "3,89"] }
+        ],
+        "toistuvat": [
+          "Käytännönläheisyys ja hands-on-työskentely pysyy vahvuutena.",
+          "Ohjeistuksen selkeys näkyi 2023 vielä toistuvana teemana, 2024 vain yksittäisinä mainintoina.",
+          "Elements of AI -MOOC-sidoksen kritiikki katosi 2023 → 2024.",
+          "Kurssin arvosana laski vastaajien keskiarvona 4,56 → 4,17."
+        ]
+      }
+    },
+    { "id": "tel1", "chip": "TEL1", "fullName": "TEL1 – Technology Enhanced Learning", "count": 1, "vuosivali": "2013" },
+    { "id": "tvt", "chip": "TVT", "fullName": "Tieto- ja viestintätekniikka pedagogisena työvälineenä", "count": 1, "vuosivali": "2015–2016" },
+    { "id": "digitaalinen-media", "chip": "Digimedia", "fullName": "Digitaalinen media opetuksessa ja oppimisessa", "count": 1, "vuosivali": "2015–2016" },
+    { "id": "luko-erkka", "chip": "LUKO–ERKKA", "fullName": "Teknologiatuettu oppiminen — LUKO–ERKKA tekoälyharjoitus", "count": 1, "vuosivali": "2023" }
   ]
 }

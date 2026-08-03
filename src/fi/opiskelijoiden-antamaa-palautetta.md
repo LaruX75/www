@@ -46,8 +46,61 @@ schemaAbout:
   <p class="sfb-rajaus"><em>Rajaus: vain yliopisto-opintojaksojen opiskelijapalaute. Täydennyskoulutusten palaute on koottu omalle sivulleen <a href="/koulutuspalaute/">Täydennyskoulutuspalaute</a>.</em></p>
 </header>
 
+<nav class="sfb-filter-bar" data-sfb-filter-bar aria-label="Suodata palautetta kurssin mukaan">
+  <span class="sfb-filter-label">Suodata kurssi</span>
+  <button type="button" class="sfb-filter is-active" data-sfb-filter="all" aria-pressed="true">Kaikki ({{ studentFeedback.kurssit | length }})</button>
+  {% for family in studentFeedback.courseFamilies %}
+  <button type="button" class="sfb-filter" data-sfb-filter="{{ family.id }}" aria-pressed="false" title="{{ family.fullName }} · {{ family.vuosivali }}">{{ family.chip }}</button>
+  {% endfor %}
+</nav>
+
+{% for family in studentFeedback.courseFamilies %}
+{% if family.kaari %}
+<section class="sfb-course-arc" data-sfb-kaari="{{ family.id }}" aria-label="{{ family.fullName }} — {{ family.count }} vuoden kaari" hidden>
+  <header class="sfb-arc-head">
+    <p class="sfb-kicker">Kurssin kaari · {{ family.vuosivali }}</p>
+    <h2>{{ family.fullName }}</h2>
+    <p class="sfb-arc-lead">Kooste {{ family.count }} vuoden palauteaineistoista: vuosittaiset mittariarvot ja toistuvat teemat.</p>
+  </header>
+  <div class="sfb-arc-body">
+    <div class="sfb-arc-trends">
+      <h3>Mittariarvojen kehitys</h3>
+      <table class="sfb-arc-table">
+        <thead>
+          <tr>
+            <th scope="col">Mittari</th>
+            {% for vuosi in family.kaari.vuodet %}
+            <th scope="col">{{ vuosi }}</th>
+            {% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for trend in family.kaari.trends %}
+          <tr>
+            <th scope="row">{{ trend.label }}</th>
+            {% for arvo in trend.arvot %}
+            <td>{{ arvo }}</td>
+            {% endfor %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="sfb-arc-themes">
+      <h3>Toistuvat havainnot</h3>
+      <ul>
+        {% for havainto in family.kaari.toistuvat %}
+        <li>{{ havainto }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+{% endif %}
+{% endfor %}
+
 {% for kurssi in studentFeedback.kurssit %}
-<section class="sfb-course">
+<section class="sfb-course" data-sfb-course-family="{{ kurssi.courseFamily }}">
   <header class="sfb-course-head">
     <div>
       <p class="sfb-kicker">{{ kurssi.vuosi }}</p>
@@ -451,4 +504,249 @@ schemaAbout:
     overflow-x: auto;
   }
 }
+
+/* Suodatinnauha */
+.sfb-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 0.95rem;
+  margin-bottom: 1.35rem;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 0.85rem;
+  background: var(--bs-tertiary-bg);
+  position: sticky;
+  top: 0.5rem;
+  z-index: 10;
+}
+
+.sfb-filter-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--bs-secondary-color);
+  margin-right: 0.25rem;
+}
+
+.sfb-filter {
+  appearance: none;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  background: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.sfb-filter:hover {
+  border-color: var(--bs-primary);
+  color: var(--bs-primary);
+}
+
+.sfb-filter.is-active {
+  background: var(--bs-primary);
+  border-color: var(--bs-primary);
+  color: #fff;
+}
+
+.sfb-filter:focus-visible {
+  outline: 2px solid var(--bs-primary);
+  outline-offset: 2px;
+}
+
+/* Kurssin kaari -osio */
+.sfb-course-arc {
+  padding: 1.35rem clamp(1rem, 2.5vw, 1.75rem);
+  margin-bottom: 1.35rem;
+  border: 1px solid var(--bs-primary);
+  border-radius: 1rem;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(13, 110, 253, 0.07), transparent 50%),
+    var(--bs-body-bg);
+}
+
+.sfb-course-arc[hidden] {
+  display: none;
+}
+
+.sfb-arc-head {
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--bs-border-color);
+  margin-bottom: 1.15rem;
+}
+
+.sfb-arc-head h2 {
+  font-family: var(--bs-font-family-heading);
+  font-size: 1.35rem;
+  margin: 0 0 0.35rem;
+  line-height: 1.2;
+}
+
+.sfb-arc-lead {
+  color: var(--bs-secondary-color);
+  font-size: 0.92rem;
+  margin: 0;
+}
+
+.sfb-arc-body {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 992px) {
+  .sfb-arc-body {
+    grid-template-columns: 1.15fr 1fr;
+    gap: 1.75rem;
+  }
+}
+
+.sfb-arc-trends h3,
+.sfb-arc-themes h3 {
+  font-family: var(--bs-font-family-heading);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--bs-secondary-color);
+  margin: 0 0 0.65rem;
+}
+
+.sfb-arc-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.sfb-arc-table th,
+.sfb-arc-table td {
+  padding: 0.5rem 0.6rem;
+  text-align: left;
+  border-bottom: 1px solid var(--bs-border-color);
+  vertical-align: top;
+}
+
+.sfb-arc-table thead th {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--bs-secondary-color);
+  background: var(--bs-tertiary-bg);
+}
+
+.sfb-arc-table tbody th {
+  font-weight: 600;
+  color: var(--bs-body-color);
+}
+
+.sfb-arc-table tbody td {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: var(--bs-body-color);
+}
+
+.sfb-arc-themes ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.sfb-arc-themes li {
+  padding: 0.6rem 0.85rem 0.6rem 2rem;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 0.6rem;
+  background: var(--bs-tertiary-bg);
+  color: var(--bs-body-color);
+  font-size: 0.92rem;
+  line-height: 1.45;
+  position: relative;
+}
+
+.sfb-arc-themes li::before {
+  content: "▸";
+  position: absolute;
+  left: 0.75rem;
+  top: 0.62rem;
+  color: var(--bs-primary);
+  font-weight: 700;
+}
+
+/* Suodatuksen aikana piilotettu kortti */
+.sfb-course[hidden] {
+  display: none;
+}
+
+@media (max-width: 575.98px) {
+  .sfb-filter-bar {
+    position: static;
+    padding: 0.65rem;
+  }
+  .sfb-filter {
+    padding: 0.3rem 0.7rem;
+    font-size: 0.82rem;
+  }
+  .sfb-arc-table {
+    font-size: 0.82rem;
+  }
+  .sfb-arc-table th,
+  .sfb-arc-table td {
+    padding: 0.4rem 0.5rem;
+  }
+}
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const bar = document.querySelector('[data-sfb-filter-bar]');
+  if (!bar) return;
+
+  const page = document.querySelector('.student-feedback-page');
+  const buttons = Array.from(bar.querySelectorAll('[data-sfb-filter]'));
+  const cards = Array.from(page.querySelectorAll('[data-sfb-course-family]'));
+  const kaariBlocks = Array.from(page.querySelectorAll('[data-sfb-kaari]'));
+
+  const applyFilter = (family) => {
+    buttons.forEach((btn) => {
+      const isActive = btn.dataset.sfbFilter === family;
+      btn.classList.toggle('is-active', isActive);
+      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
+    cards.forEach((card) => {
+      const matches = family === 'all' || card.dataset.sfbCourseFamily === family;
+      card.hidden = !matches;
+    });
+    kaariBlocks.forEach((block) => {
+      block.hidden = block.dataset.sfbKaari !== family;
+    });
+    const targetHash = family === 'all' ? '' : '#' + family;
+    if (window.location.hash !== targetHash) {
+      history.replaceState(null, '', window.location.pathname + window.location.search + targetHash);
+    }
+  };
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      applyFilter(btn.dataset.sfbFilter);
+    });
+  });
+
+  window.addEventListener('hashchange', () => {
+    const hash = window.location.hash.replace('#', '');
+    const valid = buttons.find((b) => b.dataset.sfbFilter === hash);
+    applyFilter(valid ? hash : 'all');
+  });
+
+  const initialHash = window.location.hash.replace('#', '');
+  const initialValid = buttons.find((b) => b.dataset.sfbFilter === initialHash);
+  applyFilter(initialValid ? initialHash : 'all');
+});
+</script>
