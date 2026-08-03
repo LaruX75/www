@@ -20,193 +20,72 @@ schemaAbout:
 <section class="student-feedback-page">
 
 <header class="sfb-hero">
-  <p class="sfb-kicker">Opetusportfolio · palaute 2013–2023</p>
+  <p class="sfb-kicker">Opetusportfolio · palaute {{ studentFeedback.meta.aikavali }}</p>
   <h1 class="sfb-title">Opiskelijapalaute ja opetuksen kehittäminen</h1>
   <p class="sfb-lead">Tämä osio kokoaa yliopiston opintojaksoihini liittyvää opiskelijapalautetta kurssikohtaisesti. Aineisto on kerätty kurssikohtaisista palauteraporteista (Peppi/WebOodi), sähköpostitse välitetyistä opiskelijapalautteista sekä kurssien portfoliovastauksista.</p>
 
   <dl class="sfb-kpi-grid">
     <div class="sfb-kpi">
       <dt>Aikaväli</dt>
-      <dd>2013–2023</dd>
+      <dd>{{ studentFeedback.meta.aikavali }}</dd>
     </div>
     <div class="sfb-kpi">
       <dt>Kursseja</dt>
-      <dd>7</dd>
+      <dd>{{ studentFeedback.meta.kursseja }}</dd>
     </div>
     <div class="sfb-kpi">
       <dt>TEL1-kurssi (2013)</dt>
-      <dd>4,55 / 5</dd>
+      <dd>{{ studentFeedback.meta.tel1Keskiarvo }}</dd>
     </div>
     <div class="sfb-kpi">
       <dt>Portfoliovastauksia</dt>
-      <dd>106</dd>
+      <dd>{{ studentFeedback.meta.portfoliovastauksia }}</dd>
     </div>
   </dl>
 
   <p class="sfb-rajaus"><em>Rajaus: vain yliopisto-opintojaksojen opiskelijapalaute. Täydennyskoulutusten palaute on koottu omalle sivulleen <a href="/koulutuspalaute/">Täydennyskoulutuspalaute</a>.</em></p>
 </header>
 
+{% for kurssi in studentFeedback.kurssit %}
 <section class="sfb-course">
   <header class="sfb-course-head">
     <div>
-      <p class="sfb-kicker">2013</p>
-      <h2>TEL1 – Technology Enhanced Learning</h2>
-      <p class="sfb-course-meta">Kirjallinen palauteraportti · 18 vastaajaa</p>
+      <p class="sfb-kicker">{{ kurssi.vuosi }}</p>
+      <h2>{{ kurssi.nimi }}</h2>
+      <p class="sfb-course-meta">{{ kurssi.aineistonTyyppi }}</p>
     </div>
+    {% if kurssi.mittarit and kurssi.mittarit.length %}
     <dl class="sfb-course-metrics">
-      <div><dt>Kokonaiskeskiarvo (oppimistavoitteet)</dt><dd>4,32 / 5</dd></div>
-      <div><dt>Kokonaiskeskiarvo (kurssin väittämät)</dt><dd>4,55 / 5</dd></div>
-      <div><dt>Tehtävät tukivat oppimista</dt><dd>4,72 / 5</dd></div>
-      <div><dt>Kurssi oli hyödyllinen</dt><dd>4,76 / 5</dd></div>
+      {% for mittari in kurssi.mittarit %}
+      <div><dt>{{ mittari.label }}</dt><dd>{{ mittari.arvo }}</dd></div>
+      {% endfor %}
     </dl>
+    {% endif %}
   </header>
 
   <div class="sfb-course-body">
+    {% if kurssi.myonteinen and kurssi.myonteinen.length %}
     <div class="sfb-course-col sfb-course-col--positive">
       <h3>Myönteinen palaute</h3>
-      <blockquote>"Most importantly I also learned the skills to work collaboratively with other experts to start and complete a project."</blockquote>
-      <blockquote>"All technological decisions must be well pedagogically grounded, otherwise the use of technology is worthless."</blockquote>
-      <blockquote>"It was my favorite course, where I managed to consolidate my pedagogical knowledge, then to get technological experience and a lot of practices in implementation of all ideas and thoughts."</blockquote>
+      {% for lainaus in kurssi.myonteinen %}
+      <blockquote>{{ lainaus.teksti }}</blockquote>
+      {% endfor %}
     </div>
+    {% endif %}
+    {% if kurssi.kehittaminen and kurssi.kehittaminen.length %}
     <div class="sfb-course-col sfb-course-col--growth">
       <h3>Kehittämiskohteet</h3>
-      <blockquote>"Time was a challenge."</blockquote>
-      <blockquote>"It would have been nice to know beforehand about different tasks and deadlines."</blockquote>
-      <blockquote>"It would have been nice to look through some example scripts."</blockquote>
+      {% for lainaus in kurssi.kehittaminen %}
+      <blockquote>{{ lainaus.teksti }}</blockquote>
+      {% endfor %}
     </div>
+    {% endif %}
+    {% if kurssi.huomautus %}
+    <p class="sfb-course-note">{{ kurssi.huomautus }}</p>
+    {% endif %}
   </div>
 </section>
-
-<section class="sfb-course">
-  <header class="sfb-course-head">
-    <div>
-      <p class="sfb-kicker">2015–2016</p>
-      <h2>Tieto- ja viestintätekniikka pedagogisena työvälineenä (3 op)</h2>
-      <p class="sfb-course-meta">Sähköpostitse välitetty opiskelijapalaute</p>
-    </div>
-  </header>
-
-  <div class="sfb-course-body">
-    <div class="sfb-course-col sfb-course-col--positive">
-      <h3>Myönteinen palaute</h3>
-      <blockquote>"Ajantasainen kurssi, mielenkiintoinen ja monipuolinen."</blockquote>
-    </div>
-    <div class="sfb-course-col sfb-course-col--growth">
-      <h3>Kehittämiskohteet</h3>
-      <blockquote>"Opettajan yliopiston ulkopuoliset matkustamista vaatineet luentovierailut hieman häiritsivät kurssin kulkua, koska tieto niistä ei jostain syystä aina tullut opiskelijoille."</blockquote>
-      <blockquote>"Tehtäviä oli paljon, mutta ohjeet eivät olleet kovin hyvät."</blockquote>
-      <blockquote>"Kurssi ei edistänyt juurikaan oppimistani, olisin kaivannut enemmän apua kurssin suorituksessa. Koko kurssi pitäisi suunnitella paremmin."</blockquote>
-    </div>
-  </div>
-</section>
-
-<section class="sfb-course">
-  <header class="sfb-course-head">
-    <div>
-      <p class="sfb-kicker">2015–2016</p>
-      <h2>Digitaalinen media opetuksessa ja oppimisessa (2 op)</h2>
-      <p class="sfb-course-meta">Sähköpostitse välitetty opiskelijapalaute</p>
-    </div>
-  </header>
-
-  <div class="sfb-course-body">
-    <div class="sfb-course-col sfb-course-col--growth">
-      <h3>Kehittämiskohteet</h3>
-      <blockquote>"Kurssin sisältöä voisi kehittää enemmän myös kasvatustieteilijöille sopivammaksi ja mielekkäämmäksi."</blockquote>
-      <blockquote>"Nyt kurssi keskittyi lähinnä luokanopettajien tarvitsemiin välineisiin."</blockquote>
-    </div>
-  </div>
-</section>
-
-<section class="sfb-course">
-  <header class="sfb-course-head">
-    <div>
-      <p class="sfb-kicker">2023</p>
-      <h2>Learning Environments &amp; Technologies</h2>
-      <p class="sfb-course-meta">Peppi-palaute (3 vastausta) + itsearviointilomake · määrällinen palaute lähellä maksimia</p>
-    </div>
-  </header>
-
-  <div class="sfb-course-body">
-    <div class="sfb-course-col sfb-course-col--positive">
-      <h3>Myönteinen palaute</h3>
-      <blockquote>"It was my favourite course ever!"</blockquote>
-      <blockquote>"Jari was always available."</blockquote>
-      <blockquote>"I really appreciated that it was very hands-on and practical. That is how I can learn the most."</blockquote>
-      <blockquote>"I feel so much more confident in what I am doing now and well prepared for my future job through this course!"</blockquote>
-    </div>
-    <div class="sfb-course-col sfb-course-col--growth">
-      <h3>Kehittämiskohteet</h3>
-      <blockquote>"I sometimes did not know what kind of assignment will be graded and which won't. A table or something sent at the beginning of the course could be good."</blockquote>
-    </div>
-  </div>
-</section>
-
-<section class="sfb-course">
-  <header class="sfb-course-head">
-    <div>
-      <p class="sfb-kicker">2023</p>
-      <h2>418028P Learning Environments and Technologies</h2>
-      <p class="sfb-course-meta">Ohjelmajohdon välittämä opiskelijapalaute</p>
-    </div>
-  </header>
-
-  <div class="sfb-course-body">
-    <div class="sfb-course-col sfb-course-col--positive">
-      <h3>Myönteinen palaute</h3>
-      <blockquote>"Kurssi on ollut monelle opiskelijalle yksi suurimpia syitä hakeutua LETiin opiskelemaan."</blockquote>
-    </div>
-    <div class="sfb-course-col sfb-course-col--growth">
-      <h3>Kehittämiskohteet</h3>
-      <blockquote>"Opiskelijat kokevat, että kurssi ei vastaa Pepin kurssikuvausta ja he eivät saa kurssilta sitä, mitä kurssikuvauksen ja sisältöjen perusteella olivat odottaneet."</blockquote>
-      <blockquote>"Kurssin tehtävänannot ovat epäselviä."</blockquote>
-      <blockquote>"Elements of AI 2 op MOOC-kurssi ei opiskelijoiden kokemuksen mukaan ole keskeistä Learning environments and technologies -kurssin sisältöä."</blockquote>
-      <blockquote>"Aikataulujen muutokset, opetuskertojen peruutukset ja epäselvyydet toteutuksessa mainitaan palautteessa."</blockquote>
-      <blockquote>"Opiskelijat ovat selvän struktuurin perään ja epävarmuuksien ja yllätysten tuntuvat vaikeilta."</blockquote>
-    </div>
-  </div>
-</section>
-
-<section class="sfb-course">
-  <header class="sfb-course-head">
-    <div>
-      <p class="sfb-kicker">syksy 2023</p>
-      <h2>Teknologiatuettu oppiminen — LUKO–ERKKA tekoälyharjoitus</h2>
-      <p class="sfb-course-meta">Portfoliopohjainen opiskelija-aineisto</p>
-    </div>
-  </header>
-
-  <div class="sfb-course-body">
-    <div class="sfb-course-col sfb-course-col--positive">
-      <h3>Myönteinen palaute</h3>
-      <blockquote>"Harjoitus sujui hyvin ja oli hauskaa käyttää tekoälysovellusta. Sen käyttö oli meidän ikäisille yksinkertaista, mutta ala-asteikäisille se saattaa olla vaikeampaa."</blockquote>
-      <blockquote>"Harjoituskerta oli todella hyödyllinen tulevaisuutta ajatellen. Tekoäly kun yleistyy kaiken aikaa myös koulumaailmassa."</blockquote>
-      <blockquote>"Luokittelijasovelluksen tekeminen oli todella mielenkiintoista. Asioiden tekeminen käytännössä helpottaa niiden ymmärtämistä ja hahmottamista."</blockquote>
-      <blockquote>"Harjoituksesta jäi kaikinpuolin hyvä tunnelma, ja innostus tutustua tekoälyn mahdollisuuksiin opettajan näkökulmasta enemmän."</blockquote>
-      <blockquote>"Harjoitukseen oli saatu hyvin tiivistettyä keskeiset asiat ja käsitteet tekoälystä ja koneoppimisesta."</blockquote>
-    </div>
-    <div class="sfb-course-col sfb-course-col--growth">
-      <h3>Kehittämiskohteet</h3>
-      <blockquote>"Jostakin syystä luokittelijan opettaminen ei aina mene läpi."</blockquote>
-      <blockquote>"Kaksoistunti on suhteellisen lyhyt aika, eikä siinä ajassa saa vielä kovin monipuolista tietoa ja taitoa, joten itse opiskeltavaakin varmasti jää."</blockquote>
-      <blockquote>"Harjoitus kuitenkin eteni todella nopeasti, joten toivoin, että joihinkin asioihin olisi ehtinyt perehtyä syvällisemminkin."</blockquote>
-    </div>
-  </div>
-</section>
-
-<section class="sfb-course">
-  <header class="sfb-course-head">
-    <div>
-      <p class="sfb-kicker">kevät 2023</p>
-      <h2>Teknologiatuettu oppiminen — portfolioaineisto</h2>
-      <p class="sfb-course-meta">Portfoliopohjainen aineisto · 106 tutkimuskäyttöön luvan antanutta</p>
-    </div>
-  </header>
-
-  <div class="sfb-course-body">
-    <p class="sfb-course-note">Kurssin portfolioaineistosta on käsitelty kategoriat "Miten käyttäisit GenAI-sovellusta opettajana" ja "Harjoituksen yleinen palaute". Aineisto toimii pääasiassa taustavahvistuksena tekoälyharjoituksen laajemmasta opiskelijoiden vastausjoukosta, eikä sitä käytetä yksittäisinä lainauksina tässä osiossa.</p>
-  </div>
-</section>
+{% endfor %}
 
 <section class="sfb-collection-traces">
   <h2>Palautteen keruun jäljet muilla kursseilla</h2>
@@ -216,14 +95,9 @@ schemaAbout:
       <tr><th>Kurssikoodi</th><th>Kurssin nimi</th><th>Vuodet</th></tr>
     </thead>
     <tbody>
-      <tr><td>405028Y</td><td>Teknologiatuettu oppiminen ja opintoihin orientoituminen</td><td>2018–2021</td></tr>
-      <tr><td>407062A</td><td>Ohjelmointi perusopetuksessa</td><td>2018–2020</td></tr>
-      <tr><td>413314S</td><td>LET 2nd year Designing technology-enhanced learning</td><td>2018–2021</td></tr>
-      <tr><td>413325S</td><td>Emergent technologies</td><td>2018–2021</td></tr>
-      <tr><td>418025P</td><td>Oppimisen ympäristöt ja teknologiat</td><td>2018–2021</td></tr>
-      <tr><td>418028P</td><td>Technology Enhanced Learning and Digital Fabrication</td><td>2018–2021</td></tr>
-      <tr><td>410014Y</td><td>Tieto- ja viestintätekniikka pedagogisena työvälineenä</td><td>2013–2015</td></tr>
-      <tr><td>410017Y</td><td>Multimedia oppimisprojektina / Digitaalinen media</td><td>2013–2015</td></tr>
+      {% for kurssi in studentFeedback.keruunJaljet %}
+      <tr><td>{{ kurssi.koodi }}</td><td>{{ kurssi.nimi }}</td><td>{{ kurssi.vuodet }}</td></tr>
+      {% endfor %}
     </tbody>
   </table>
 </section>

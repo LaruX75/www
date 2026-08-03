@@ -3,7 +3,7 @@ title: Täydennyskoulutuspalaute
 metaTitle: Täydennyskoulutuspalaute ja koulutustyön kehittäminen
 description: "Täydennyskoulutusten ja asiantuntijatilaisuuksien palautteen kooste 2017–2026: toistuvat vahvuudet (käytännönläheisyys, konkreettiset työkalut kuten Somekone, tekoälyn hyödyntämisen konkretisointi) ja kehittämiskohteet (aika harjoittelulle, rauhallisempi tempo, kohderyhmäräätälöinti, ennakkomateriaali ajoissa)."
 date: 2026-08-02
-modified: 2026-08-02
+modified: 2026-08-03
 layout: base.njk
 templateEngineOverride: njk,md
 translationKey: fi_only_koulutuspalaute
@@ -22,39 +22,38 @@ schemaAbout:
 <section class="training-feedback-page">
 
 <header class="tfb-hero">
-  <p class="tfb-kicker">Larux · palaute 2017–2026</p>
+  <p class="tfb-kicker">Larux · palaute {{ trainingFeedback.meta.aikavali }}</p>
   <h1 class="tfb-title">Täydennyskoulutuspalaute</h1>
   <p class="tfb-lead">Tämä osio kokoaa täydennyskoulutuksista, webinaareista ja asiantuntijatilaisuuksista saatua palautetta. Aineisto koostuu osallistujakyselyistä, palautekoosteista, järjestäjien välittämistä palautteista sekä osallistujien raakalainauksista. Jokaisen lähteen kohdalla on merkitty näytön vahvuus.</p>
 
   <dl class="tfb-kpi-grid">
     <div class="tfb-kpi">
       <dt>Aikaväli</dt>
-      <dd>2017–2026</dd>
+      <dd>{{ trainingFeedback.meta.aikavali }}</dd>
     </div>
     <div class="tfb-kpi">
       <dt>Tilaisuuksia aineistossa</dt>
-      <dd>7</dd>
+      <dd>{{ trainingFeedback.meta.tilaisuuksia }}</dd>
     </div>
     <div class="tfb-kpi">
-      <dt>Vahvaa näyttöä</dt>
-      <dd>2 tilaisuutta</dd>
+      <dt>OpoAI-osallistujia</dt>
+      <dd>{{ trainingFeedback.meta.opoAIOsallistujia }}</dd>
     </div>
     <div class="tfb-kpi">
-      <dt>Osallistujapalautteita</dt>
-      <dd>138+</dd>
+      <dt>Kainutlaatuinen ope 2017</dt>
+      <dd>{{ trainingFeedback.meta.kainutlaatuinenKeskiarvo }}</dd>
     </div>
   </dl>
 
-  <p class="tfb-rajaus"><em>Osio ei sisällä yliopiston opintojaksojen opiskelijapalautetta. Ne on koottu omalle sivulleen <a href="/opiskelijoiden-antamaa-palautetta/">Opiskelijapalaute ja opetuksen kehittäminen</a>.</em></p>
+  <p class="tfb-rajaus"><em>Rajaus: Osio ei sisällä yliopiston opintojaksojen opiskelijapalautetta. Ne on koottu omalle sivulleen <a href="/opiskelijoiden-antamaa-palautetta/">Opiskelijapalaute ja opetuksen kehittäminen</a>.</em></p>
 </header>
 
 <section class="tfb-timeline" aria-label="Palautteen kertymisen aikajana">
   <p class="tfb-kicker">Aikajana</p>
   <ol class="tfb-timeline-track">
-    <li><span class="tfb-timeline-year">2017</span><span class="tfb-timeline-label">Kainutlaatuinen ope</span></li>
-    <li><span class="tfb-timeline-year">2024</span><span class="tfb-timeline-label">OpoAI, STEAM, Kaakkuri, SUKOL</span></li>
-    <li><span class="tfb-timeline-year">2025</span><span class="tfb-timeline-label">Sivis · Tekoäly yhdistystoiminnassa</span></li>
-    <li><span class="tfb-timeline-year">2026</span><span class="tfb-timeline-label">Kriittinen lukutaito (Finnoschool)</span></li>
+    {% for kohta in trainingFeedback.aikajana %}
+    <li><span class="tfb-timeline-year">{{ kohta.vuosi }}</span><span class="tfb-timeline-label">{{ kohta.kuvaus }}</span></li>
+    {% endfor %}
   </ol>
 </section>
 
@@ -63,20 +62,18 @@ schemaAbout:
 <article class="tfb-column tfb-column--positive">
   <h2>Toistuvat vahvuudet</h2>
   <ul class="tfb-theme-list">
-    <li>Käytännönläheisyys ja konkreettiset työkalut (mm. Somekone)</li>
-    <li>Tekoälyn hyödyntämisen konkretisointi kouluarjessa</li>
-    <li>Inspiraatio ja madaltunut kynnys kokeiluun</li>
-    <li>Asiantuntijuus</li>
+    {% for teema in trainingFeedback.toistuvatTeemat.vahvuudet %}
+    <li>{{ teema }}</li>
+    {% endfor %}
   </ul>
 </article>
 
 <article class="tfb-column tfb-column--growth">
   <h2>Toistuvat kehityskohteet</h2>
   <ul class="tfb-theme-list">
-    <li>Enemmän aikaa harjoittelulle ja omalle kokeilulle</li>
-    <li>Rauhallisempi tempo ja termien selkeys</li>
-    <li>Kohderyhmäräätälöinti eri kouluasteille ja toimialoille</li>
-    <li>Ennakkomateriaali ajoissa, kirjallista tukimateriaalia työkalujen rinnalle</li>
+    {% for teema in trainingFeedback.toistuvatTeemat.kehityskohteet %}
+    <li>{{ teema }}</li>
+    {% endfor %}
   </ul>
 </article>
 
@@ -88,18 +85,12 @@ schemaAbout:
   <p>Aineistossa on kolme tapausta, joissa palautteella on ollut dokumentoitu vaikutus koulutuksen jatkoon tai osallistujien toimintaan:</p>
 
   <ol class="tfb-impact-list">
+    {% for vaikutus in trainingFeedback.vaikutukset %}
     <li>
-      <strong>Kainutlaatuinen ope 2017 — päätös järjestää tapahtuma uudelleen.</strong>
-      <span>Palautekoosteen keskiarvo 4,2/5 ja onnistuneeksi arvioitu kokonaisuus johtivat päätökseen järjestää tapahtuma uudelleen.</span>
+      <strong>{{ vaikutus.otsikko }}</strong>
+      <span>{{ vaikutus.kuvaus }}</span>
     </li>
-    <li>
-      <strong>Siviksen tekoälywebinaari — sisältö suunnattiin käytännönläheisemmäksi.</strong>
-      <span>Aiemmassa palautteessa toivottiin enemmän yhdistystoiminnan arkeen liittyviä esimerkkejä. Palautteen perusteella sisältöä suunnattiin käytännönläheisemmäksi.</span>
-    </li>
-    <li>
-      <strong>Kriittinen lukutaito 2026 — osallistujien konkreettiset aikomukset viedä oppia työhön.</strong>
-      <span>Osallistujat mainitsivat aikovansa kokeilla Somekonetta, Copilotia, NotebookLM:ää ja muita työkaluja omassa opetuksessaan välittömästi koulutuksen jälkeen ("Aion kokeilla huomenna heti somekonetta kakkosluokkalaisten kanssa"). Tämä on evidenssi siitä, että koulutus siirtyy käytäntöön.</span>
-    </li>
+    {% endfor %}
   </ol>
 </section>
 
@@ -114,157 +105,46 @@ schemaAbout:
   </ul>
 
   <div class="tfb-source-list">
-
+    {% for tilaisuus in trainingFeedback.tilaisuudet %}
     <article class="tfb-source-card">
       <header class="tfb-source-head">
         <div>
-          <h3>Kriittinen lukutaito ja tekoälyn käyttöesimerkkejä opetuksessa</h3>
-          <p class="tfb-source-meta">17.2.2026 klo 15–18 · Finnoschool / LUKUTAITO-koulutus · osallistujien raakapalaute</p>
+          <h3>{{ tilaisuus.nimi }}</h3>
+          <p class="tfb-source-meta">{{ tilaisuus.meta }}</p>
         </div>
-        <span class="tfb-badge tfb-badge--strong">Vahva näyttö</span>
+        <span class="tfb-badge tfb-badge--{{ tilaisuus.evidenceLevel }}">{{ tilaisuus.evidenceLabel }}</span>
       </header>
       <div class="tfb-source-body">
+        {% if tilaisuus.havainnot and tilaisuus.havainnot.length %}
         <h4>Havainnot</h4>
         <ul>
-          <li>Somekone nousee toistuvasti esiin konkreettisena, heti sovellettavana työkaluna ("Erityisesti somekone oli huikea", "Aion kokeilla huomenna heti somekonetta kakkosluokkalaisten kanssa").</li>
-          <li>Osallistujat kuvaavat kynnyksen tekoälyn kokeilemiseen madaltuneen ja saaneensa "kipinän" testata työkaluja omassa työssään.</li>
-          <li>Loppuosan konkreettisia esimerkkejä pidettiin toivottuina ("Loppuosan konkreettiset esimerkit olivat juuri sitä, mitä kaipasin!").</li>
-          <li>Aiotut kokeilut opetuksessa: Somekone, Copilot, NotebookLM, Teamsin tekoälytyökalut, Classroomin työkalut, GenAI-materiaalit, oman agentin luominen.</li>
+          {% for h in tilaisuus.havainnot %}
+          <li>{{ h }}</li>
+          {% endfor %}
         </ul>
+        {% endif %}
+        {% if tilaisuus.kehittamiskohteet and tilaisuus.kehittamiskohteet.length %}
         <h4>Kehittämiskohteet</h4>
         <ul>
-          <li>Ajan riittämättömyys toistui useissa palautteissa ("HARMI, että aika loppui kesken", "Liian lyhyt aika, koska materiaalia niin paljon", "Lisää aikaa!").</li>
-          <li>Ennakkomateriaalin ajoitus: "Harmitti, kun aineistot tulivat niin myöhään, etten ehtinyt etukäteen tutustumaan."</li>
-          <li>Kohderyhmäräätälöinti: "Sisältö ei ollut kovin hyödyllinen lukio-opettajalle" — vastaavasti alakoulun näkökulmaa toivottiin lisää.</li>
-          <li>Termien ja käsitteiden selkeys: "Olisin kaivannut vähän enemmän karvalakkiversiota luennolla", "olisi hyödyllistä vähän hitaammin alleviivata otsikkoa ja sovellusta".</li>
-          <li>Kirjallista tukimateriaalia: "Olisin toivonut kriittisestä lukutaidosta lähdemateriaalia ja selkeät diat", "artikkeleita ja selkeitä ohjeita".</li>
-          <li>Enemmän ohjattua omaa tekemistä: "Olisin halunnut lisää aikaa siihen, että olisimme oikeasti luoneet jotain lyhyesti, jotta osaisi sitten toimia."</li>
+          {% for k in tilaisuus.kehittamiskohteet %}
+          <li>{{ k }}</li>
+          {% endfor %}
         </ul>
-        <p class="tfb-source-link"><a href="https://www.canva.com/d/Qj3UMnjU3RwRv7P" target="_blank" rel="noopener noreferrer">Esitys "Riko, rakenna ja ymmärrä – Kohti kriittistä tekoälylukutaitoa" Canvassa <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a></p>
-      </div>
-    </article>
-
-    <article class="tfb-source-card">
-      <header class="tfb-source-head">
-        <div>
-          <h3>OpoAI-koulutus</h3>
-          <p class="tfb-source-meta">2024 · osallistujapalaute</p>
-        </div>
-        <span class="tfb-badge tfb-badge--strong">Vahva näyttö</span>
-      </header>
-      <div class="tfb-source-body">
-        <h4>Havainnot</h4>
-        <ul>
-          <li>Palautetta antoi 98 osallistujaa.</li>
-          <li>Suurin osa vastaajista arvioi koulutuksen erittäin tai melko hyödylliseksi.</li>
-          <li>Suurin osa suosittelisi koulutusta kollegoilleen.</li>
-          <li>Palautteissa kiiteltiin käytännönläheisyyttä, tekoälyn sovellusmahdollisuuksia ja asiantuntijuutta.</li>
-        </ul>
-        <h4>Kehittämiskohteet</h4>
-        <ul>
-          <li>Joidenkin osallistujien mielestä esityksen tempo oli nopea.</li>
-          <li>Lisää aikaa harjoittelulle toivottiin.</li>
-        </ul>
-        <p class="tfb-source-link"><a href="https://www.canva.com/d/hmeIKU2KmombmX2" target="_blank" rel="noopener noreferrer">Esitys "Opopassi-koulutus – Tekoäly ohjauksessa" Canvassa (todennäköinen materiaali) <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a></p>
-      </div>
-    </article>
-
-    <article class="tfb-source-card">
-      <header class="tfb-source-head">
-        <div>
-          <h3>Kainutlaatuinen ope</h3>
-          <p class="tfb-source-meta">2017 · palautekooste</p>
-        </div>
-        <span class="tfb-badge tfb-badge--medium">Keskivahva näyttö</span>
-      </header>
-      <div class="tfb-source-body">
-        <h4>Havainnot</h4>
-        <ul>
-          <li>Kaikkien vastausten keskiarvo oli 4,2/5.</li>
-          <li>Kouluttajien ja asiantuntijoiden osaaminen sai parhaat arvioinnit.</li>
-          <li>Tapahtuma arvioitiin onnistuneeksi kokonaisuudeksi.</li>
-          <li>Palautteen perusteella tapahtuma päätettiin järjestää uudelleen.</li>
-        </ul>
+        {% endif %}
+        {% if tilaisuus.rajoitteet and tilaisuus.rajoitteet.length %}
         <h4>Rajoitteet</h4>
         <ul>
-          <li>Varsinainen palautekoosteliite ei ole vielä purettu.</li>
+          {% for r in tilaisuus.rajoitteet %}
+          <li>{{ r }}</li>
+          {% endfor %}
         </ul>
+        {% endif %}
+        {% if tilaisuus.esitys %}
+        <p class="tfb-source-link"><a href="{{ tilaisuus.esitys.url }}" target="_blank" rel="noopener noreferrer">Esitys "{{ tilaisuus.esitys.nimi }}" Canvassa{% if tilaisuus.esitys.huomautus %} ({{ tilaisuus.esitys.huomautus }}){% endif %} <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a></p>
+        {% endif %}
       </div>
     </article>
-
-    <article class="tfb-source-card">
-      <header class="tfb-source-head">
-        <div>
-          <h3>Metsokankaan ja Kaakkurin koulujen koulutusiltapäivä</h3>
-          <p class="tfb-source-meta">Koulutusiltapäivä · järjestäjän välittämä palaute</p>
-        </div>
-        <span class="tfb-badge tfb-badge--medium">Keskivahva näyttö</span>
-      </header>
-      <div class="tfb-source-body">
-        <h4>Havainnot</h4>
-        <ul>
-          <li>Luennosta ja työpajoista kerrottiin saadun paljon positiivista palautetta.</li>
-          <li>Järjestäjän mukaan osallistujille jäi oppia ja pohdittavaa jatkoa varten.</li>
-        </ul>
-      </div>
-    </article>
-
-    <article class="tfb-source-card">
-      <header class="tfb-source-head">
-        <div>
-          <h3>SUKOLin talvikoulutuspäivä</h3>
-          <p class="tfb-source-meta">Koulutuspäivä · järjestäjän välittämä palaute</p>
-        </div>
-        <span class="tfb-badge tfb-badge--medium">Keskivahva näyttö</span>
-      </header>
-      <div class="tfb-source-body">
-        <h4>Havainnot</h4>
-        <ul>
-          <li>Esityksen kerrottiin saaneen hyvää palautetta.</li>
-        </ul>
-      </div>
-    </article>
-
-    <article class="tfb-source-card">
-      <header class="tfb-source-head">
-        <div>
-          <h3>Siviksen tekoälywebinaari</h3>
-          <p class="tfb-source-meta">Webinaari · sisällön suuntaaminen palautteen perusteella</p>
-        </div>
-        <span class="tfb-badge tfb-badge--medium">Keskivahva näyttö</span>
-      </header>
-      <div class="tfb-source-body">
-        <h4>Havainnot</h4>
-        <ul>
-          <li>Aiemmassa palautteessa toivottiin enemmän yhdistystoiminnan arkeen liittyviä esimerkkejä.</li>
-          <li>Palautteen perusteella sisältöä suunnattiin käytännönläheisemmäksi.</li>
-        </ul>
-        <p class="tfb-source-link"><a href="https://www.canva.com/d/IMm6-JD8PRTBK2F" target="_blank" rel="noopener noreferrer">Esitys "Tekoäly yhdistystoiminnassa" Canvassa <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a></p>
-      </div>
-    </article>
-
-    <article class="tfb-source-card">
-      <header class="tfb-source-head">
-        <div>
-          <h3>STEAM-koulutus</h3>
-          <p class="tfb-source-meta">Palauteyhteenvetoon viittaava lähde</p>
-        </div>
-        <span class="tfb-badge tfb-badge--weak">Heikko näyttö</span>
-      </header>
-      <div class="tfb-source-body">
-        <h4>Havainnot</h4>
-        <ul>
-          <li>Koulutusta on kehuttu.</li>
-          <li>Palauteyhteenveto on ollut olemassa.</li>
-        </ul>
-        <h4>Rajoitteet</h4>
-        <ul>
-          <li>Varsinaista palauteyhteenvetoa ei löytynyt.</li>
-        </ul>
-        <p class="tfb-source-link"><a href="https://www.canva.com/d/CYteD0Z-U5Z6TzJ" target="_blank" rel="noopener noreferrer">Esitys "International Conference on the Advancement of STEAM 2024" Canvassa <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a></p>
-      </div>
-    </article>
-
+    {% endfor %}
   </div>
 </section>
 
@@ -651,32 +531,32 @@ schemaAbout:
   letter-spacing: 0.03em;
 }
 
-.tfb-badge--strong {
+.tfb-badge--vahva {
   background: rgba(25, 135, 84, 0.15);
   color: #146c43;
 }
 
-.tfb-badge--medium {
+.tfb-badge--keskivahva {
   background: rgba(255, 193, 7, 0.18);
   color: #997404;
 }
 
-.tfb-badge--weak {
+.tfb-badge--heikko {
   background: rgba(108, 117, 125, 0.16);
   color: #495057;
 }
 
-[data-bs-theme="dark"] .tfb-badge--strong {
+[data-bs-theme="dark"] .tfb-badge--vahva {
   background: rgba(25, 135, 84, 0.28);
   color: #75d798;
 }
 
-[data-bs-theme="dark"] .tfb-badge--medium {
+[data-bs-theme="dark"] .tfb-badge--keskivahva {
   background: rgba(255, 193, 7, 0.28);
   color: #ffd45c;
 }
 
-[data-bs-theme="dark"] .tfb-badge--weak {
+[data-bs-theme="dark"] .tfb-badge--heikko {
   background: rgba(108, 117, 125, 0.28);
   color: #adb5bd;
 }
