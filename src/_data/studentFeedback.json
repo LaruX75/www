@@ -1,7 +1,7 @@
 {
   "meta": {
     "aikavali": "2013–2024",
-    "kursseja": 13,
+    "kursseja": 14,
     "portfoliovastauksia": 106,
     "tel1Keskiarvo": "4,55 / 5"
   },
@@ -81,6 +81,36 @@
         { "teksti": "Poissaolojen jälkeen opiskelijat toivoivat mahdollisuutta kokeilla esimerkiksi robotiikkavälineitä myöhemmin." }
       ],
       "huomautus": "Vastausprosentti oli 14,63 % (noin 6 vastaajaa 41 rekisteröidystä). Ohjeistuksen selkeys nousee alhaisimmaksi mittariksi (2,33 / 5), samoin kuin samanaikaisten 405028Y-kurssien (2018–2019) aineistossa. Käytännönläheisyys ja työelämärelevanssi arvioidaan onnistuneiksi. Avovastauskohdat ovat raportista koottuja yhteenvetoja, eivät verbatim-lainauksia."
+    },
+    {
+      "id": "413314S-2018",
+      "courseFamily": "413314S",
+      "vuosi": "2018",
+      "nimi": "413314S Designing Technology-Enhanced Learning (LET 2nd year)",
+      "aineistonTyyppi": "Oulun yliopiston opintojaksopalauteraportti (20.02.2018–29.05.2018) · 16 rekisteröityä opiskelijaa · 87,5 % vastausprosentti (14 vastaajaa)",
+      "mittarit": [
+        { "label": "Saavutin osaamistavoitteet", "arvo": "4,43 / 5" },
+        { "label": "Sisältö tuki osaamistavoitteita", "arvo": "4,21 / 5" },
+        { "label": "Ohjeistukset olivat selkeitä", "arvo": "4,36 / 5" },
+        { "label": "Tukea ja ohjausta oli riittävästi", "arvo": "4,43 / 5" }
+      ],
+      "myonteinen": [
+        { "teksti": "using real world cases" },
+        { "teksti": "very structured course design with certain freedom" },
+        { "teksti": "all instructions are clearly written and visible anytime" },
+        { "teksti": "good comprehensive course to summarise two years of study in LET Master's programme" },
+        { "teksti": "solving current problems with LET expertise" },
+        { "teksti": "freedom to design own project" }
+      ],
+      "kehittaminen": [
+        { "teksti": "provide assessment criteria" },
+        { "teksti": "publish assessment link more clearly" },
+        { "teksti": "provide interesting problem cases" },
+        { "teksti": "more time for discussion" },
+        { "teksti": "should be placed into first year studies" },
+        { "teksti": "clearer instructions" }
+      ],
+      "huomautus": "Vastausprosentti oli sivun ehdoton korkein (87,5 % 16 opiskelijasta = 14 vastaajaa), aineisto on siis erittäin edustava. Kaikki mittarit ovat vahvassa myönteisessä kentässä (4,14–4,43); ohjeistuksen selkeys 4,36 / 5 — huomattavasti korkeampi kuin samanaikaisilla perusopintokursseilla (esim. 407062A-2018 samasta keväästä: 2,33 / 5). Kurssi on LET-maisteriohjelman 2. vuoden syventävä (S) opintojakso, mikä näkyy palautteen aiheissa: kurssi koetaan yhteenvetona kaksivuotisesta ohjelmasta, ja jotkut ehdottavat siirtämistä 1. vuoden opintoihin. Palautekohdat ovat raportista koottuja tiivistelmiä, eivät verbatim-lainauksia."
     },
     {
       "id": "405028Y-2018-2019",
@@ -336,7 +366,7 @@
     }
   ],
   "keruunJaljet": [
-    { "koodi": "413314S", "nimi": "LET 2nd year Designing technology-enhanced learning", "vuodet": "2018–2021" },
+    { "koodi": "413314S", "nimi": "LET 2nd year Designing technology-enhanced learning", "vuodet": "2019–2021 (2018 kortti yllä)" },
     { "koodi": "413325S", "nimi": "Emergent technologies", "vuodet": "2018–2020 (2021 kortti yllä)" },
     { "koodi": "418025P", "nimi": "Oppimisen ympäristöt ja teknologiat", "vuodet": "2018, 2020–2021 (2019–2020 kortti yllä)" },
     { "koodi": "418028P", "nimi": "Technology Enhanced Learning and Digital Fabrication", "vuodet": "2018–2021" },
@@ -395,6 +425,7 @@
         ]
       }
     },
+    { "id": "413314S", "chip": "413314S", "fullName": "413314S Designing Technology-Enhanced Learning (LET 2nd year)", "count": 1, "vuosivali": "2018" },
     { "id": "413325S", "chip": "413325S", "fullName": "413325S Emergent Technologies", "count": 1, "vuosivali": "2021" },
     { "id": "418025P", "chip": "418025P", "fullName": "418025P Oppimisen ympäristöt ja teknologiat", "count": 1, "vuosivali": "2019–2020" },
     { "id": "tel1", "chip": "TEL1", "fullName": "TEL1 – Technology Enhanced Learning", "count": 1, "vuosivali": "2013" },
