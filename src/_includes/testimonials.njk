@@ -1,73 +1,118 @@
 {% set testimonialLocale = testimonials.locales[testimonialLang] or testimonials.locales.fi %}
 {% set isHomeTestimonials = testimonialPlacement == "home" %}
-{% set testimonialItems = [] %}
+{% set universityItems = [] %}
+{% set trainingItems = [] %}
+{% set orphanItems = [] %}
 
-{# 1) studentFeedback: kurssien myonteiset lainaukset joilla on featured-lippu (vain suomeksi) #}
+{# 1) studentFeedback: yliopisto-opintojaksot -> universityItems #}
 {% if testimonialLang == "fi" and studentFeedback and studentFeedback.kurssit %}
   {% for kurssi in studentFeedback.kurssit %}
     {% for lainaus in kurssi.myonteinen or [] %}
       {% set featureMatch = (isHomeTestimonials and lainaus.featured_home) or (not isHomeTestimonials and lainaus.featured_company) %}
       {% if featureMatch %}
-        {% set _ = (testimonialItems.push({
+        {% set _ = (universityItems.push({
           quote: lainaus.teksti,
-          attribution: kurssi.nimi + " -kurssi, " + kurssi.vuosi
+          attribution: kurssi.nimi + " -kurssi, " + kurssi.vuosi,
+          category: "university"
         }), null) %}
       {% endif %}
     {% endfor %}
   {% endfor %}
 {% endif %}
 
-{# 2) trainingFeedback: tilaisuuksien featured_quote #}
+{# 2) trainingFeedback: taydennyskoulutukset -> trainingItems #}
 {% if testimonialLang == "fi" and trainingFeedback and trainingFeedback.tilaisuudet %}
   {% for tilaisuus in trainingFeedback.tilaisuudet %}
     {% if tilaisuus.featured_quote %}
       {% set fq = tilaisuus.featured_quote %}
       {% set featureMatch = (isHomeTestimonials and fq.featured_home) or (not isHomeTestimonials and fq.featured_company) %}
       {% if featureMatch %}
-        {% set _ = (testimonialItems.push({
+        {% set _ = (trainingItems.push({
           quote: fq.teksti,
-          attribution: fq.attribution or tilaisuus.nimi
+          attribution: fq.attribution or tilaisuus.nimi,
+          category: "training"
         }), null) %}
       {% endif %}
     {% endif %}
   {% endfor %}
 {% endif %}
 
-{# 3) testimonials.json: orphaanit (lainaukset joilla ei ole kytkosta palautesivuille) #}
+{# 3) testimonials.json: orphaanit -> orphanItems (menevat koulutus-osastoon) #}
 {% for item in testimonials.items %}
   {% if testimonialPlacement in item.placements %}
     {% set localizedTestimonial = item.content[testimonialLang] or item.content.fi %}
-    {% set _ = (testimonialItems.push({
+    {% set _ = (orphanItems.push({
       quote: localizedTestimonial.quote,
-      attribution: localizedTestimonial.attribution
+      attribution: localizedTestimonial.attribution,
+      category: "general"
     }), null) %}
   {% endif %}
 {% endfor %}
 
-{# Etusivulla nayta maksimissaan 3 lainausta #}
-{% set visibleTestimonials = testimonialItems | take(3) if isHomeTestimonials else testimonialItems %}
+{% macro categoryBadge(category) %}
+  {% if category == "university" %}<span class="testimonial-badge testimonial-badge--university">Yliopisto-opinto</span>
+  {% elif category == "training" %}<span class="testimonial-badge testimonial-badge--training">Täydennyskoulutus</span>
+  {% elif category == "general" %}<span class="testimonial-badge testimonial-badge--general">Yleinen palaute</span>
+  {% endif %}
+{% endmacro %}
+
+{% macro testimonialCard(item, colClasses) %}
+  <div class="{{ colClasses }}">
+    <figure class="home-quote h-100 mb-0">
+      {{ categoryBadge(item.category) }}
+      <blockquote class="mb-2">
+        <p>“{{ item.quote }}”</p>
+      </blockquote>
+      <figcaption class="home-quote-footer">{{ item.attribution }}</figcaption>
+    </figure>
+  </div>
+{% endmacro %}
 
 <section class="py-5 bg-body-tertiary border-top border-bottom home-testimonials-section"{% if isHomeTestimonials %} aria-labelledby="home-testimonials-heading"{% else %} id="{{ "testimonials" if testimonialLang == "en" else "palautteet" }}" aria-labelledby="company-testimonials-heading"{% endif %}>
   <div class="site-shell">
     <h2 class="h4 fw-bold text-center mb-4 home-testimonials-label" id="{{ "home-testimonials-heading" if isHomeTestimonials else "company-testimonials-heading" }}">
       {{ testimonialLocale.homeHeading if isHomeTestimonials else testimonialLocale.companyHeading }}
     </h2>
-    <div class="row g-4 justify-content-center">
-      {% for testimonial in visibleTestimonials %}
-        <div class="{{ "col-md-4" if isHomeTestimonials else "col-md-6" }}">
-          <figure class="home-quote h-100 mb-0">
-            <blockquote class="mb-2">
-              <p>“{{ testimonial.quote }}”</p>
-            </blockquote>
-            <figcaption class="home-quote-footer">{{ testimonial.attribution }}</figcaption>
-          </figure>
-        </div>
-      {% endfor %}
-    </div>
+
     {% if isHomeTestimonials %}
+      {# Etusivu: yhdista kaikki, nayta 3 ensimmaista, kategoria-lipuke kortissa #}
+      {% set homeItems = [] %}
+      {% for i in universityItems %}{% set _ = (homeItems.push(i), null) %}{% endfor %}
+      {% for i in trainingItems %}{% set _ = (homeItems.push(i), null) %}{% endfor %}
+      {% for i in orphanItems %}{% set _ = (homeItems.push(i), null) %}{% endfor %}
+      {% set visibleHome = homeItems | take(3) %}
+      <div class="row g-4 justify-content-center">
+        {% for testimonial in visibleHome %}
+          {{ testimonialCard(testimonial, "col-md-4") }}
+        {% endfor %}
+      </div>
       <div class="text-center mt-4">
         <a class="btn btn-outline-primary rounded-pill px-4" href="{{ testimonialLocale.ctaHref }}">{{ testimonialLocale.ctaLabel }}</a>
       </div>
+
+    {% else %}
+      {# Kouluttaja/company: osastojako - yliopisto vs koulutukset #}
+      {% if universityItems.length %}
+        <h3 class="h6 text-uppercase text-muted fw-bold mt-2 mb-3">Palautetta yliopisto-opintojaksoilta</h3>
+        <div class="row g-3 mb-4">
+          {% for testimonial in universityItems %}
+            {{ testimonialCard(testimonial, "col-md-6 col-lg-4") }}
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {% if trainingItems.length or orphanItems.length %}
+        <h3 class="h6 text-uppercase text-muted fw-bold mt-4 mb-3">Palautetta koulutuksista ja puheenvuoroista</h3>
+        <div class="row g-3">
+          {% for testimonial in trainingItems %}
+            {{ testimonialCard(testimonial, "col-md-6 col-lg-4") }}
+          {% endfor %}
+          {% for testimonial in orphanItems %}
+            {{ testimonialCard(testimonial, "col-md-6 col-lg-4") }}
+          {% endfor %}
+        </div>
+      {% endif %}
+
     {% endif %}
   </div>
 </section>

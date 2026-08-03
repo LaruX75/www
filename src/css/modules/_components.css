@@ -150,6 +150,48 @@ html:not([data-bs-theme="dark"]) .home-hero-kpi-label {
   color: var(--bs-secondary-color);
 }
 
+/* Kategoria-lipuke testimonial-korteille */
+.testimonial-badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.22rem 0.55rem;
+  border-radius: 999px;
+  margin-bottom: 0.65rem;
+  letter-spacing: 0.03em;
+  text-transform: none;
+}
+
+.testimonial-badge--university {
+  background: rgba(13, 110, 253, 0.14);
+  color: #0a4baa;
+}
+
+.testimonial-badge--training {
+  background: rgba(25, 135, 84, 0.15);
+  color: #146c43;
+}
+
+.testimonial-badge--general {
+  background: rgba(108, 117, 125, 0.16);
+  color: #495057;
+}
+
+[data-bs-theme="dark"] .testimonial-badge--university {
+  background: rgba(13, 110, 253, 0.28);
+  color: #6ea8ff;
+}
+
+[data-bs-theme="dark"] .testimonial-badge--training {
+  background: rgba(25, 135, 84, 0.28);
+  color: #75d798;
+}
+
+[data-bs-theme="dark"] .testimonial-badge--general {
+  background: rgba(108, 117, 125, 0.28);
+  color: #adb5bd;
+}
+
 /* Footer news ticker */
 .site-news-ticker {
   border-top: 1px solid color-mix(in srgb, var(--bs-border-color) 55%, transparent);
