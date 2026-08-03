@@ -1,15 +1,13 @@
 ---
 title: Opiskelijapalaute ja opetuksen kehittäminen
 date: 2013-02-07
-modified: 2026-08-02
-description: "Opetusportfolion opiskelijapalaute-osio: käytännönläheisen ja pedagogisesti perustellun teknologian käytön merkitys korostuu, samoin kehittämiskohteet tehtävänannoista, arvioinnista ja aikatauluista. Palaute on koottu useilta yliopiston opintojaksoilta 2013–2023."
+modified: 2026-08-03
+description: "Opetusportfolion opiskelijapalaute-osio: yliopiston opintojaksojen kurssikohtainen palaute 2013–2023, mukana sekä myönteiset teemat että kehittämiskohteet."
 layout: base.njk
 templateEngineOverride: njk,md
 translationKey: fi_only_opiskelijapalaute
 permalink: /opiskelijoiden-antamaa-palautetta/
 pageShell: true
-wp_id: 820
-source_url: "https://www.jarilaru.fi/opiskelijoiden-antamaa-palautetta/"
 schemaAbout:
   - "@type": "Thing"
     name: "Opiskelijapalaute"
@@ -24,7 +22,7 @@ schemaAbout:
 <header class="sfb-hero">
   <p class="sfb-kicker">Opetusportfolio · palaute 2013–2023</p>
   <h1 class="sfb-title">Opiskelijapalaute ja opetuksen kehittäminen</h1>
-  <p class="sfb-lead">Tämä osio kokoaa yliopiston opintojaksoihini liittyvää opiskelijapalautetta. Aineisto on kerätty kurssikohtaisista palauteraporteista (Peppi/WebOodi), sähköpostitse välitetyistä opiskelijapalautteista sekä kurssien portfoliovastauksista. Osio sisältää sekä toistuvat myönteiset teemat että kehittämiskohteet.</p>
+  <p class="sfb-lead">Tämä osio kokoaa yliopiston opintojaksoihini liittyvää opiskelijapalautetta kurssikohtaisesti. Aineisto on kerätty kurssikohtaisista palauteraporteista (Peppi/WebOodi), sähköpostitse välitetyistä opiskelijapalautteista sekä kurssien portfoliovastauksista.</p>
 
   <dl class="sfb-kpi-grid">
     <div class="sfb-kpi">
@@ -32,127 +30,202 @@ schemaAbout:
       <dd>2013–2023</dd>
     </div>
     <div class="sfb-kpi">
-      <dt>Kursseja aineistossa</dt>
+      <dt>Kursseja</dt>
       <dd>7</dd>
     </div>
     <div class="sfb-kpi">
-      <dt>Aineistoja yhteensä</dt>
-      <dd>11</dd>
+      <dt>TEL1-kurssi (2013)</dt>
+      <dd>4,55 / 5</dd>
     </div>
     <div class="sfb-kpi">
-      <dt>TEL1-kurssin keskiarvo</dt>
-      <dd>4,55 / 5</dd>
+      <dt>Portfoliovastauksia</dt>
+      <dd>106</dd>
     </div>
   </dl>
 
-  <p class="sfb-rajaus"><strong>Rajaus:</strong> vain yliopisto-opintojaksojen opiskelijapalaute. Täydennyskoulutusten, webinaarien tai kansallisten opettajakyselyiden palaute ei kuulu tähän osioon.</p>
+  <p class="sfb-rajaus"><em>Rajaus: vain yliopisto-opintojaksojen opiskelijapalaute. Täydennyskoulutusten palaute on koottu omalle sivulleen <a href="/koulutuspalaute/">Täydennyskoulutuspalaute</a>.</em></p>
 </header>
 
-<div class="sfb-columns">
+<section class="sfb-course">
+  <header class="sfb-course-head">
+    <div>
+      <p class="sfb-kicker">2013</p>
+      <h2>TEL1 – Technology Enhanced Learning</h2>
+      <p class="sfb-course-meta">Kirjallinen palauteraportti · 18 vastaajaa</p>
+    </div>
+    <dl class="sfb-course-metrics">
+      <div><dt>Kokonaiskeskiarvo (oppimistavoitteet)</dt><dd>4,32 / 5</dd></div>
+      <div><dt>Kokonaiskeskiarvo (kurssin väittämät)</dt><dd>4,55 / 5</dd></div>
+      <div><dt>Tehtävät tukivat oppimista</dt><dd>4,72 / 5</dd></div>
+      <div><dt>Kurssi oli hyödyllinen</dt><dd>4,76 / 5</dd></div>
+    </dl>
+  </header>
 
-<article class="sfb-column sfb-column--positive">
-  <h2>Myönteiset teemat</h2>
-
-  <section class="sfb-theme">
-    <h3>Käytännön tekeminen ja kokeilu tukevat oppimista</h3>
-    <p class="sfb-theme-note">Aineistossa toistuu, että konkreettinen tekeminen, harjoitukset ja omien opetussovellusten kokeilu tukevat oppimista.</p>
-    <blockquote>"Most importantly I also learned the skills to work collaboratively with other experts to start and complete a project." <cite>— TEL1, 2013</cite></blockquote>
-    <blockquote>"I really appreciated that it was very hands-on and practical." <cite>— Learning Environments &amp; Technologies, 2023</cite></blockquote>
-    <blockquote>"Asioiden tekeminen käytännössä helpottaa niiden ymmärtämistä ja hahmottamista." <cite>— LUKO–ERKKA-portfolio, 2023</cite></blockquote>
-  </section>
-
-  <section class="sfb-theme">
-    <h3>Pedagogiikka ennen teknologiaa</h3>
-    <p class="sfb-theme-note">Teknologian käyttöä perustellaan pedagogisesti eikä käsitellä irrallisena välineenä.</p>
-    <blockquote>"All technological decisions must be well pedagogically grounded, otherwise the use of technology is worthless." <cite>— TEL1, 2013</cite></blockquote>
-    <blockquote>"The learning and pedagogical considerations are the most important starting points and technology only considered after them." <cite>— TEL1, 2013</cite></blockquote>
-  </section>
-
-  <section class="sfb-theme">
-    <h3>Yhteys tulevaan opettajan työhön</h3>
-    <p class="sfb-theme-note">Palautteissa opiskelijat pohtivat, miten sisällöt kytkeytyvät tulevaan työhön.</p>
-    <blockquote>"I feel so much more confident in what I am doing now and well prepared for my future job through this course!" <cite>— Learning Environments &amp; Technologies, 2023</cite></blockquote>
-    <blockquote>"Innostus tutustua tekoälyn mahdollisuuksiin opettajan näkökulmasta enemmän." <cite>— LUKO–ERKKA-portfolio, 2023</cite></blockquote>
-  </section>
-
-  <section class="sfb-theme">
-    <h3>Yhteisöllinen työskentely</h3>
-    <p class="sfb-theme-note">Yhdessä työskentely ja projektimainen tekeminen koetaan hyödyllisenä.</p>
-    <blockquote>"It was my favorite course, where I managed to consolidate my pedagogical knowledge, then to get technological experience and a lot of practices in implementation of all ideas and thoughts." <cite>— TEL1, 2013</cite></blockquote>
-  </section>
-</article>
-
-<article class="sfb-column sfb-column--growth">
-  <h2>Kehittämiskohteet</h2>
-  <p class="sfb-column-note">Osion tarkoitus ei ole selittää palautetta pois vaan osoittaa, että se on otettu vakavasti.</p>
-
-  <section class="sfb-theme">
-    <h3>Tehtävänannot, arviointi ja aikataulut</h3>
-    <blockquote>"I sometimes did not know what kind of assignment will be graded and which won't. A table or something sent at the beginning of the course could be good." <cite>— Learning Environments &amp; Technologies, 2023</cite></blockquote>
-    <blockquote>"Tehtäviä oli paljon, mutta ohjeet eivät olleet kovin hyvät." <cite>— TVT pedagogisena työvälineenä, 2015–2016</cite></blockquote>
-    <blockquote>"It would have been nice to know beforehand about different tasks and deadlines." <cite>— TEL1, 2013</cite></blockquote>
-  </section>
-
-  <section class="sfb-theme">
-    <h3>Tekniset ohjeet ja välineiden käytettävyys</h3>
-    <p class="sfb-theme-note">Tekninen ongelma yhdessä työkalussa ei tarkoita ongelmaa koko kurssissa, mutta se on syytä ohjeistaa paremmin.</p>
-    <blockquote>"Jostakin syystä luokittelijan opettaminen ei aina mene läpi." <cite>— LUKO–ERKKA-portfolio, 2023</cite></blockquote>
-  </section>
-
-  <section class="sfb-theme">
-    <h3>Riittävä aika uusien työkalujen kokeiluun</h3>
-    <blockquote>"Kaksoistunti on suhteellisen lyhyt aika, eikä siinä ajassa saa vielä kovin monipuolista tietoa ja taitoa." <cite>— LUKO–ERKKA-portfolio, 2023</cite></blockquote>
-    <blockquote>"Harjoitus kuitenkin eteni todella nopeasti, joten toivoin, että joihinkin asioihin olisi ehtinyt perehtyä syvällisemminkin." <cite>— LUKO–ERKKA-portfolio, 2023</cite></blockquote>
-    <blockquote>"Time was a challenge." <cite>— TEL1, 2013</cite></blockquote>
-  </section>
-
-  <section class="sfb-theme">
-    <h3>Kurssin rakenne ja kurssikuvauksen vastaavuus</h3>
-    <blockquote>"Opiskelijat kokevat, että kurssi ei vastaa Pepin kurssikuvausta ja he eivät saa kurssilta sitä, mitä kurssikuvauksen ja sisältöjen perusteella olivat odottaneet." <cite>— LET-ohjelman opiskelijapalaute, 2023</cite></blockquote>
-    <blockquote>"Kurssin sisältöä voisi kehittää enemmän myös kasvatustieteilijöille sopivammaksi ja mielekkäämmäksi." <cite>— Digitaalinen media opetuksessa, 2015–2016</cite></blockquote>
-  </section>
-</article>
-
-</div>
-
-<section class="sfb-meta">
-  <div class="sfb-meta-block">
-    <h2>Lähteet</h2>
-    <table>
-      <thead>
-        <tr><th>Kurssi / konteksti</th><th>Vuosi</th><th>Aineiston tyyppi</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>TEL1</td><td>2013</td><td>Kirjallinen palauteraportti (n = 18)</td></tr>
-        <tr><td>Tieto- ja viestintätekniikka pedagogisena työvälineenä</td><td>2015–2016</td><td>Sähköpostitse välitetty palaute</td></tr>
-        <tr><td>Digitaalinen media opetuksessa ja oppimisessa</td><td>2015–2016</td><td>Sähköpostitse välitetty palaute</td></tr>
-        <tr><td>Learning Environments &amp; Technologies</td><td>2023</td><td>Peppi-palaute (n = 3) + itsearviointilomake</td></tr>
-        <tr><td>418028P Learning Environments and Technologies</td><td>2023</td><td>Ohjelmajohdon välittämä opiskelijapalaute</td></tr>
-        <tr><td>Teknologiatuettu oppiminen / LUKO–ERKKA</td><td>syksy 2023</td><td>Portfoliopohjainen opiskelija-aineisto</td></tr>
-        <tr><td>Teknologiatuettu oppiminen</td><td>kevät 2023</td><td>Portfolio (n = 106 tutkimuskäyttöluvin)</td></tr>
-      </tbody>
-    </table>
+  <div class="sfb-course-body">
+    <div class="sfb-course-col sfb-course-col--positive">
+      <h3>Myönteinen palaute</h3>
+      <blockquote>"Most importantly I also learned the skills to work collaboratively with other experts to start and complete a project."</blockquote>
+      <blockquote>"All technological decisions must be well pedagogically grounded, otherwise the use of technology is worthless."</blockquote>
+      <blockquote>"It was my favorite course, where I managed to consolidate my pedagogical knowledge, then to get technological experience and a lot of practices in implementation of all ideas and thoughts."</blockquote>
+    </div>
+    <div class="sfb-course-col sfb-course-col--growth">
+      <h3>Kehittämiskohteet</h3>
+      <blockquote>"Time was a challenge."</blockquote>
+      <blockquote>"It would have been nice to know beforehand about different tasks and deadlines."</blockquote>
+      <blockquote>"It would have been nice to look through some example scripts."</blockquote>
+    </div>
   </div>
+</section>
 
-  <div class="sfb-meta-block">
-    <h2>Palautteen keruun jäljet</h2>
-    <p class="sfb-meta-note">Palautetta on kerätty systemaattisesti myös kursseilta, joiden koosteet ovat sähköpostiliitteinä ja joiden sisältöä ei ole vielä purettu tähän osioon.</p>
-    <table>
-      <thead>
-        <tr><th>Kurssikoodi</th><th>Kurssin nimi</th><th>Vuodet</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>405028Y</td><td>Teknologiatuettu oppiminen ja opintoihin orientoituminen</td><td>2018–2021</td></tr>
-        <tr><td>407062A</td><td>Ohjelmointi perusopetuksessa</td><td>2018–2020</td></tr>
-        <tr><td>413314S</td><td>LET 2nd year Designing technology-enhanced learning</td><td>2018–2021</td></tr>
-        <tr><td>413325S</td><td>Emergent technologies</td><td>2018–2021</td></tr>
-        <tr><td>418025P</td><td>Oppimisen ympäristöt ja teknologiat</td><td>2018–2021</td></tr>
-        <tr><td>418028P</td><td>Technology Enhanced Learning and Digital Fabrication</td><td>2018–2021</td></tr>
-        <tr><td>410014Y</td><td>Tieto- ja viestintätekniikka pedagogisena työvälineenä</td><td>2013–2015</td></tr>
-        <tr><td>410017Y</td><td>Multimedia oppimisprojektina / Digitaalinen media</td><td>2013–2015</td></tr>
-      </tbody>
-    </table>
+<section class="sfb-course">
+  <header class="sfb-course-head">
+    <div>
+      <p class="sfb-kicker">2015–2016</p>
+      <h2>Tieto- ja viestintätekniikka pedagogisena työvälineenä (3 op)</h2>
+      <p class="sfb-course-meta">Sähköpostitse välitetty opiskelijapalaute</p>
+    </div>
+  </header>
+
+  <div class="sfb-course-body">
+    <div class="sfb-course-col sfb-course-col--positive">
+      <h3>Myönteinen palaute</h3>
+      <blockquote>"Ajantasainen kurssi, mielenkiintoinen ja monipuolinen."</blockquote>
+    </div>
+    <div class="sfb-course-col sfb-course-col--growth">
+      <h3>Kehittämiskohteet</h3>
+      <blockquote>"Opettajan yliopiston ulkopuoliset matkustamista vaatineet luentovierailut hieman häiritsivät kurssin kulkua, koska tieto niistä ei jostain syystä aina tullut opiskelijoille."</blockquote>
+      <blockquote>"Tehtäviä oli paljon, mutta ohjeet eivät olleet kovin hyvät."</blockquote>
+      <blockquote>"Kurssi ei edistänyt juurikaan oppimistani, olisin kaivannut enemmän apua kurssin suorituksessa. Koko kurssi pitäisi suunnitella paremmin."</blockquote>
+    </div>
   </div>
+</section>
+
+<section class="sfb-course">
+  <header class="sfb-course-head">
+    <div>
+      <p class="sfb-kicker">2015–2016</p>
+      <h2>Digitaalinen media opetuksessa ja oppimisessa (2 op)</h2>
+      <p class="sfb-course-meta">Sähköpostitse välitetty opiskelijapalaute</p>
+    </div>
+  </header>
+
+  <div class="sfb-course-body">
+    <div class="sfb-course-col sfb-course-col--growth">
+      <h3>Kehittämiskohteet</h3>
+      <blockquote>"Kurssin sisältöä voisi kehittää enemmän myös kasvatustieteilijöille sopivammaksi ja mielekkäämmäksi."</blockquote>
+      <blockquote>"Nyt kurssi keskittyi lähinnä luokanopettajien tarvitsemiin välineisiin."</blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="sfb-course">
+  <header class="sfb-course-head">
+    <div>
+      <p class="sfb-kicker">2023</p>
+      <h2>Learning Environments &amp; Technologies</h2>
+      <p class="sfb-course-meta">Peppi-palaute (3 vastausta) + itsearviointilomake · määrällinen palaute lähellä maksimia</p>
+    </div>
+  </header>
+
+  <div class="sfb-course-body">
+    <div class="sfb-course-col sfb-course-col--positive">
+      <h3>Myönteinen palaute</h3>
+      <blockquote>"It was my favourite course ever!"</blockquote>
+      <blockquote>"Jari was always available."</blockquote>
+      <blockquote>"I really appreciated that it was very hands-on and practical. That is how I can learn the most."</blockquote>
+      <blockquote>"I feel so much more confident in what I am doing now and well prepared for my future job through this course!"</blockquote>
+    </div>
+    <div class="sfb-course-col sfb-course-col--growth">
+      <h3>Kehittämiskohteet</h3>
+      <blockquote>"I sometimes did not know what kind of assignment will be graded and which won't. A table or something sent at the beginning of the course could be good."</blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="sfb-course">
+  <header class="sfb-course-head">
+    <div>
+      <p class="sfb-kicker">2023</p>
+      <h2>418028P Learning Environments and Technologies</h2>
+      <p class="sfb-course-meta">Ohjelmajohdon välittämä opiskelijapalaute</p>
+    </div>
+  </header>
+
+  <div class="sfb-course-body">
+    <div class="sfb-course-col sfb-course-col--positive">
+      <h3>Myönteinen palaute</h3>
+      <blockquote>"Kurssi on ollut monelle opiskelijalle yksi suurimpia syitä hakeutua LETiin opiskelemaan."</blockquote>
+    </div>
+    <div class="sfb-course-col sfb-course-col--growth">
+      <h3>Kehittämiskohteet</h3>
+      <blockquote>"Opiskelijat kokevat, että kurssi ei vastaa Pepin kurssikuvausta ja he eivät saa kurssilta sitä, mitä kurssikuvauksen ja sisältöjen perusteella olivat odottaneet."</blockquote>
+      <blockquote>"Kurssin tehtävänannot ovat epäselviä."</blockquote>
+      <blockquote>"Elements of AI 2 op MOOC-kurssi ei opiskelijoiden kokemuksen mukaan ole keskeistä Learning environments and technologies -kurssin sisältöä."</blockquote>
+      <blockquote>"Aikataulujen muutokset, opetuskertojen peruutukset ja epäselvyydet toteutuksessa mainitaan palautteessa."</blockquote>
+      <blockquote>"Opiskelijat ovat selvän struktuurin perään ja epävarmuuksien ja yllätysten tuntuvat vaikeilta."</blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="sfb-course">
+  <header class="sfb-course-head">
+    <div>
+      <p class="sfb-kicker">syksy 2023</p>
+      <h2>Teknologiatuettu oppiminen — LUKO–ERKKA tekoälyharjoitus</h2>
+      <p class="sfb-course-meta">Portfoliopohjainen opiskelija-aineisto</p>
+    </div>
+  </header>
+
+  <div class="sfb-course-body">
+    <div class="sfb-course-col sfb-course-col--positive">
+      <h3>Myönteinen palaute</h3>
+      <blockquote>"Harjoitus sujui hyvin ja oli hauskaa käyttää tekoälysovellusta. Sen käyttö oli meidän ikäisille yksinkertaista, mutta ala-asteikäisille se saattaa olla vaikeampaa."</blockquote>
+      <blockquote>"Harjoituskerta oli todella hyödyllinen tulevaisuutta ajatellen. Tekoäly kun yleistyy kaiken aikaa myös koulumaailmassa."</blockquote>
+      <blockquote>"Luokittelijasovelluksen tekeminen oli todella mielenkiintoista. Asioiden tekeminen käytännössä helpottaa niiden ymmärtämistä ja hahmottamista."</blockquote>
+      <blockquote>"Harjoituksesta jäi kaikinpuolin hyvä tunnelma, ja innostus tutustua tekoälyn mahdollisuuksiin opettajan näkökulmasta enemmän."</blockquote>
+      <blockquote>"Harjoitukseen oli saatu hyvin tiivistettyä keskeiset asiat ja käsitteet tekoälystä ja koneoppimisesta."</blockquote>
+    </div>
+    <div class="sfb-course-col sfb-course-col--growth">
+      <h3>Kehittämiskohteet</h3>
+      <blockquote>"Jostakin syystä luokittelijan opettaminen ei aina mene läpi."</blockquote>
+      <blockquote>"Kaksoistunti on suhteellisen lyhyt aika, eikä siinä ajassa saa vielä kovin monipuolista tietoa ja taitoa, joten itse opiskeltavaakin varmasti jää."</blockquote>
+      <blockquote>"Harjoitus kuitenkin eteni todella nopeasti, joten toivoin, että joihinkin asioihin olisi ehtinyt perehtyä syvällisemminkin."</blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="sfb-course">
+  <header class="sfb-course-head">
+    <div>
+      <p class="sfb-kicker">kevät 2023</p>
+      <h2>Teknologiatuettu oppiminen — portfolioaineisto</h2>
+      <p class="sfb-course-meta">Portfoliopohjainen aineisto · 106 tutkimuskäyttöön luvan antanutta</p>
+    </div>
+  </header>
+
+  <div class="sfb-course-body">
+    <p class="sfb-course-note">Kurssin portfolioaineistosta on käsitelty kategoriat "Miten käyttäisit GenAI-sovellusta opettajana" ja "Harjoituksen yleinen palaute". Aineisto toimii pääasiassa taustavahvistuksena tekoälyharjoituksen laajemmasta opiskelijoiden vastausjoukosta, eikä sitä käytetä yksittäisinä lainauksina tässä osiossa.</p>
+  </div>
+</section>
+
+<section class="sfb-collection-traces">
+  <h2>Palautteen keruun jäljet muilla kursseilla</h2>
+  <p class="sfb-column-note">Palautetta on kerätty systemaattisesti myös näiltä kursseilta, mutta koosteet ovat sähköpostiliitteinä eikä niiden sisältöä ole vielä purettu tähän osioon.</p>
+  <table>
+    <thead>
+      <tr><th>Kurssikoodi</th><th>Kurssin nimi</th><th>Vuodet</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>405028Y</td><td>Teknologiatuettu oppiminen ja opintoihin orientoituminen</td><td>2018–2021</td></tr>
+      <tr><td>407062A</td><td>Ohjelmointi perusopetuksessa</td><td>2018–2020</td></tr>
+      <tr><td>413314S</td><td>LET 2nd year Designing technology-enhanced learning</td><td>2018–2021</td></tr>
+      <tr><td>413325S</td><td>Emergent technologies</td><td>2018–2021</td></tr>
+      <tr><td>418025P</td><td>Oppimisen ympäristöt ja teknologiat</td><td>2018–2021</td></tr>
+      <tr><td>418028P</td><td>Technology Enhanced Learning and Digital Fabrication</td><td>2018–2021</td></tr>
+      <tr><td>410014Y</td><td>Tieto- ja viestintätekniikka pedagogisena työvälineenä</td><td>2013–2015</td></tr>
+      <tr><td>410017Y</td><td>Multimedia oppimisprojektina / Digitaalinen media</td><td>2013–2015</td></tr>
+    </tbody>
+  </table>
 </section>
 
 <details class="sfb-historical">
@@ -185,7 +258,7 @@ schemaAbout:
 /* Hero */
 .sfb-hero {
   padding: 1.5rem clamp(1rem, 3vw, 2rem);
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.5rem;
   border: 1px solid var(--bs-border-color);
   border-radius: 1.25rem;
   background:
@@ -199,7 +272,7 @@ schemaAbout:
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--bs-secondary-color);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
 .sfb-title {
@@ -218,8 +291,8 @@ schemaAbout:
 }
 
 .sfb-rajaus {
-  margin: 1.15rem 0 0;
-  font-size: 0.9rem;
+  margin: 1rem 0 0;
+  font-size: 0.88rem;
   color: var(--bs-secondary-color);
 }
 
@@ -254,72 +327,114 @@ schemaAbout:
   line-height: 1.1;
 }
 
-/* Kaksisarakegrid */
-.sfb-columns {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.25rem;
-  margin-bottom: 2rem;
-}
-
-@media (min-width: 992px) {
-  .sfb-columns {
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-  }
-}
-
-.sfb-column {
-  padding: 1.25rem clamp(1rem, 2.5vw, 1.5rem);
+/* Kurssiosio */
+.sfb-course {
+  padding: 1.35rem clamp(1rem, 2.5vw, 1.75rem);
+  margin-bottom: 1.35rem;
   border: 1px solid var(--bs-border-color);
   border-radius: 1rem;
   background: var(--bs-body-bg);
 }
 
-.sfb-column--positive {
-  border-top: 3px solid var(--bs-success);
+.sfb-course-head {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--bs-border-color);
+  margin-bottom: 1.15rem;
+  display: grid;
+  gap: 1rem;
 }
 
-.sfb-column--growth {
-  border-top: 3px solid var(--bs-warning);
+@media (min-width: 992px) {
+  .sfb-course-head {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 1.5rem;
+  }
 }
 
-.sfb-column h2 {
+.sfb-course-head h2 {
   font-family: var(--bs-font-family-heading);
   font-size: 1.4rem;
-  margin: 0 0 0.85rem;
+  margin: 0 0 0.35rem;
+  line-height: 1.2;
 }
 
-.sfb-column-note {
+.sfb-course-meta {
   color: var(--bs-secondary-color);
-  font-size: 0.92rem;
-  margin: -0.25rem 0 1rem;
+  font-size: 0.88rem;
+  margin: 0;
 }
 
-.sfb-theme {
-  margin: 1.35rem 0 0;
-  padding-top: 1.35rem;
-  border-top: 1px solid var(--bs-border-color);
+.sfb-course-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem 1rem;
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 0.65rem;
+  background: var(--bs-tertiary-bg);
+  min-width: 0;
 }
 
-.sfb-theme:first-of-type {
-  border-top: 0;
-  padding-top: 0;
-  margin-top: 0;
+.sfb-course-metrics > div {
+  min-width: 0;
 }
 
-.sfb-theme h3 {
+.sfb-course-metrics dt {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--bs-secondary-color);
+  margin-bottom: 0.15rem;
+  line-height: 1.2;
+}
+
+.sfb-course-metrics dd {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--bs-body-color);
+  line-height: 1.1;
+}
+
+.sfb-course-body {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .sfb-course-body {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.sfb-course-col h3 {
   font-family: var(--bs-font-family-heading);
   font-size: 1.05rem;
-  margin: 0 0 0.4rem;
+  margin: 0 0 0.75rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 2px solid var(--bs-border-color);
+}
+
+.sfb-course-col--positive h3 {
+  border-bottom-color: var(--bs-success);
   color: var(--bs-body-color);
 }
 
-.sfb-theme-note {
+.sfb-course-col--growth h3 {
+  border-bottom-color: var(--bs-warning);
+  color: var(--bs-body-color);
+}
+
+.sfb-course-note {
   color: var(--bs-secondary-color);
-  font-size: 0.9rem;
-  margin: 0 0 0.75rem;
-  line-height: 1.5;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  margin: 0;
 }
 
 /* Blockquotet */
@@ -334,6 +449,14 @@ schemaAbout:
   line-height: 1.55;
 }
 
+.sfb-course-col--positive blockquote {
+  border-left-color: var(--bs-success);
+}
+
+.sfb-course-col--growth blockquote {
+  border-left-color: var(--bs-warning);
+}
+
 .student-feedback-page blockquote cite {
   display: block;
   margin-top: 0.5rem;
@@ -342,115 +465,43 @@ schemaAbout:
   font-style: normal;
 }
 
-.sfb-column--growth blockquote {
-  border-left-color: var(--bs-warning);
-}
-
-/* Impact / hyödyntäminen */
-.sfb-impact {
-  padding: 1.5rem clamp(1rem, 3vw, 2rem);
-  margin-bottom: 2rem;
+/* Palautteen keruun jäljet */
+.sfb-collection-traces {
+  padding: 1.35rem clamp(1rem, 2.5vw, 1.75rem);
+  margin-bottom: 1.35rem;
   border: 1px solid var(--bs-border-color);
   border-radius: 1rem;
   background: var(--bs-body-bg);
 }
 
-.sfb-impact h2 {
-  font-family: var(--bs-font-family-heading);
-  font-size: 1.5rem;
-  margin: 0.35rem 0 0.85rem;
-}
-
-.sfb-impact-list {
-  list-style: none;
-  padding: 0;
-  counter-reset: sfb-impact;
-  margin: 1rem 0 1rem;
-  display: grid;
-  gap: 0.85rem;
-}
-
-.sfb-impact-list li {
-  counter-increment: sfb-impact;
-  position: relative;
-  padding: 1rem 1.15rem 1rem 3rem;
-  border: 1px solid var(--bs-border-color);
-  border-radius: 0.75rem;
-  background: var(--bs-tertiary-bg);
-}
-
-.sfb-impact-list li::before {
-  content: counter(sfb-impact, decimal-leading-zero);
-  position: absolute;
-  left: 1rem;
-  top: 1rem;
-  font-family: var(--bs-font-family-heading);
-  font-size: 1.05rem;
-  font-weight: 800;
-  color: var(--bs-primary);
-}
-
-.sfb-impact-list strong {
-  display: block;
-  margin-bottom: 0.35rem;
-  font-size: 1rem;
-}
-
-.sfb-impact-list span {
-  color: var(--bs-secondary-color);
-  font-size: 0.95rem;
-  line-height: 1.5;
-}
-
-.sfb-impact-note {
-  margin: 0.85rem 0 0;
-  font-size: 0.9rem;
-  color: var(--bs-secondary-color);
-  line-height: 1.5;
-}
-
-/* Meta-osio (lähteet + palautteen keruu) */
-.sfb-meta {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-@media (min-width: 992px) {
-  .sfb-meta {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.sfb-meta-block h2 {
+.sfb-collection-traces h2 {
   font-family: var(--bs-font-family-heading);
   font-size: 1.25rem;
   margin: 0 0 0.5rem;
 }
 
-.sfb-meta-note {
+.sfb-column-note {
   color: var(--bs-secondary-color);
   font-size: 0.9rem;
-  margin: 0 0 0.75rem;
-  line-height: 1.5;
+  margin: 0 0 1rem;
+  line-height: 1.55;
 }
 
-.sfb-meta table {
+.sfb-collection-traces table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.88rem;
+  font-size: 0.9rem;
 }
 
-.sfb-meta th,
-.sfb-meta td {
-  padding: 0.55rem 0.65rem;
+.sfb-collection-traces th,
+.sfb-collection-traces td {
+  padding: 0.55rem 0.75rem;
   text-align: left;
   border-bottom: 1px solid var(--bs-border-color);
   vertical-align: top;
 }
 
-.sfb-meta th {
+.sfb-collection-traces th {
   background: var(--bs-tertiary-bg);
   font-weight: 600;
   color: var(--bs-secondary-color);
@@ -461,7 +512,7 @@ schemaAbout:
 
 /* Historia */
 .sfb-historical {
-  margin: 1.5rem 0 0;
+  margin: 0.5rem 0 0;
   padding: 0.85rem 1.15rem;
   border: 1px solid var(--bs-border-color);
   border-radius: 0.85rem;
@@ -517,7 +568,7 @@ schemaAbout:
     font-size: 0.92rem;
   }
 
-  .sfb-meta table {
+  .sfb-collection-traces table {
     display: block;
     overflow-x: auto;
   }
