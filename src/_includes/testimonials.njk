@@ -37,15 +37,23 @@
   {% endfor %}
 {% endif %}
 
-{# 3) testimonials.json: orphaanit -> orphanItems (menevat koulutus-osastoon) #}
+{# 3) testimonials.json: orphaanit -> reititys item.category-arvon mukaan oikeaan osastoon #}
 {% for item in testimonials.items %}
   {% if testimonialPlacement in item.placements %}
     {% set localizedTestimonial = item.content[testimonialLang] or item.content.fi %}
-    {% set _ = (orphanItems.push({
+    {% set orphanCategory = item.category or "general" %}
+    {% set orphanCard = {
       quote: localizedTestimonial.quote,
       attribution: localizedTestimonial.attribution,
-      category: "general"
-    }), null) %}
+      category: orphanCategory
+    } %}
+    {% if orphanCategory == "university" %}
+      {% set _ = (universityItems.push(orphanCard), null) %}
+    {% elif orphanCategory == "training" or orphanCategory == "speaking" %}
+      {% set _ = (trainingItems.push(orphanCard), null) %}
+    {% else %}
+      {% set _ = (orphanItems.push(orphanCard), null) %}
+    {% endif %}
   {% endif %}
 {% endfor %}
 

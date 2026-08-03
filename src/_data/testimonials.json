@@ -65,6 +65,23 @@
           "attribution": "Paid seminar, organizer"
         }
       }
+    },
+    {
+      "id": "opelle-omppu-2024",
+      "category": "university",
+      "placements": ["home", "company"],
+      "source": "padlet-opelle-omppu-2024",
+      "publicationStatus": "already-published",
+      "content": {
+        "fi": {
+          "quote": "Tekee työtä aidolla innostuksella, onnistuen myös tartuttamaan innostuksen usein opiskelijoihin.",
+          "attribution": "Opelle omppu 2024 -opiskelijapalaute, Kasvatustieteiden ja psykologian tiedekunta"
+        },
+        "en": {
+          "quote": "Works with genuine enthusiasm and often succeeds in spreading that enthusiasm to students.",
+          "attribution": "Opelle omppu 2024 student teacher appreciation, Faculty of Education and Psychology"
+        }
+      }
     }
   ]
 }
