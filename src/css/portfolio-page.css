@@ -89,15 +89,25 @@
 .portfolio-hero-card-media {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 10;
+  flex: 1 1 0;
+  min-height: 260px;
   object-fit: cover;
-  object-position: center;
+  object-position: center top;
 }
 .portfolio-hero-card .card-body {
   display: flex;
   flex-direction: column;
+  flex: 0 0 auto;
   gap: 1rem;
   padding: 1.6rem;
+}
+
+@media (max-width: 991.98px) {
+  .portfolio-hero-card-media {
+    aspect-ratio: 16 / 10;
+    flex: 0 0 auto;
+    min-height: 0;
+  }
 }
 .portfolio-hero-card-kicker,
 .portfolio-feature-kicker {
