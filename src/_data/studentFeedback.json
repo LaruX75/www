@@ -1,7 +1,7 @@
 {
   "meta": {
     "aikavali": "2013–2024",
-    "kursseja": 10,
+    "kursseja": 11,
     "portfoliovastauksia": 106,
     "tel1Keskiarvo": "4,55 / 5"
   },
@@ -55,6 +55,32 @@
         { "teksti": "Kurssin sisältöä voisi kehittää enemmän myös kasvatustieteilijöille sopivammaksi ja mielekkäämmäksi." },
         { "teksti": "Nyt kurssi keskittyi lähinnä luokanopettajien tarvitsemiin välineisiin." }
       ]
+    },
+    {
+      "id": "407062A-2018",
+      "courseFamily": "407062A",
+      "vuosi": "2018",
+      "nimi": "407062A Ohjelmointi perusopetuksessa",
+      "aineistonTyyppi": "Oulun yliopiston opintojaksopalauteraportti (11.01.2018–25.05.2018) · 41 rekisteröityä opiskelijaa · 14,63 % vastausprosentti (noin 6 vastaajaa)",
+      "mittarit": [
+        { "label": "Saavutin osaamistavoitteet", "arvo": "3,50 / 5" },
+        { "label": "Sisältö tuki osaamistavoitteita", "arvo": "4,17 / 5" },
+        { "label": "Ohjeistukset olivat selkeitä", "arvo": "2,33 / 5" },
+        { "label": "Tukea ja ohjausta oli riittävästi", "arvo": "3,33 / 5" }
+      ],
+      "myonteinen": [
+        { "teksti": "Monipuolinen kurssi ja materiaaleja oli hyvin saatavilla." },
+        { "teksti": "Opettajan asiantuntijuus ja pätevyys välittyivät opiskelijoille." },
+        { "teksti": "Kurssi tarjosi runsaasti käytännön esimerkkejä työelämää varten." },
+        { "teksti": "Suoritustapojen joustavuus ja mahdollisuus valita omiin lähtökohtiin sopivat toteutustavat koettiin erittäin positiiviseksi." },
+        { "teksti": "Kurssi tarjosi aloittelijalle sopivasti haasteita ja oppia ohjelmoinnin perusteista." },
+        { "teksti": "Opetus koettiin mielenkiintoiseksi ja opettavaiseksi." }
+      ],
+      "kehittaminen": [
+        { "teksti": "Kurssin ohjeistusta, toteutustapaa ja suoritusvaihtoehtoja voisi selventää jo kurssin alkuvaiheessa." },
+        { "teksti": "Poissaolojen jälkeen opiskelijat toivoivat mahdollisuutta kokeilla esimerkiksi robotiikkavälineitä myöhemmin." }
+      ],
+      "huomautus": "Vastausprosentti oli 14,63 % (noin 6 vastaajaa 41 rekisteröidystä). Ohjeistuksen selkeys nousee alhaisimmaksi mittariksi (2,33 / 5), samoin kuin samanaikaisten 405028Y-kurssien (2018–2019) aineistossa. Käytännönläheisyys ja työelämärelevanssi arvioidaan onnistuneiksi. Avovastauskohdat ovat raportista koottuja yhteenvetoja, eivät verbatim-lainauksia."
     },
     {
       "id": "405028Y-2018-2019",
@@ -292,7 +318,23 @@
         ]
       }
     },
-    { "id": "407062A", "chip": "407062A", "fullName": "407062A Ohjelmointi perusopetuksessa", "count": 1, "vuosivali": "2020" },
+    { "id": "407062A", "chip": "407062A (2)", "fullName": "407062A Ohjelmointi perusopetuksessa", "count": 2, "vuosivali": "2018, 2020",
+      "kaari": {
+        "vuodet": ["2018", "2020"],
+        "trends": [
+          { "label": "Saavutin osaamistavoitteet", "arvot": ["3,50", "4,50"] },
+          { "label": "Sisältö tuki osaamistavoitteita", "arvot": ["4,17", "4,50"] },
+          { "label": "Ohjeistukset olivat selkeitä", "arvot": ["2,33", "4,50"] },
+          { "label": "Tukea ja ohjausta oli riittävästi", "arvot": ["3,33", "5,00"] }
+        ],
+        "toistuvat": [
+          "Käytännönläheisyys ja työelämärelevanssi pysyvät vahvuutena molempina vuosina.",
+          "Ohjeistuksen selkeys nostettiin 2018 kehittämiskohteena (2,33 / 5); 2020 mittari oli 4,50, mutta 2020 otos on vain noin 2 vastaajaa eli muutos ei ole tilastollisesti tulkittavissa.",
+          "Molempien vuosien vastausprosentti jäi alhaiseksi (14,63 % → 8,7 %), joten mittariarvot heijastavat pientä vastaajajoukkoa eivätkä yleistyy kokonaisopiskelijoiden mielipiteeksi.",
+          "COVID-vuoden 2020 palautteessa näkyy asynkronisiin materiaaleihin liittyvä maininta, mitä 2018 aineistossa ei ollut."
+        ]
+      }
+    },
     { "id": "tel1", "chip": "TEL1", "fullName": "TEL1 – Technology Enhanced Learning", "count": 1, "vuosivali": "2013" },
     { "id": "tvt", "chip": "TVT", "fullName": "Tieto- ja viestintätekniikka pedagogisena työvälineenä", "count": 1, "vuosivali": "2015–2016" },
     { "id": "digitaalinen-media", "chip": "Digimedia", "fullName": "Digitaalinen media opetuksessa ja oppimisessa", "count": 1, "vuosivali": "2015–2016" },
