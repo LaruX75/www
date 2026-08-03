@@ -139,6 +139,13 @@ schemaAbout:
   {% if kurssi.huomautus %}
   <p class="sfb-course-note">{{ kurssi.huomautus }}</p>
   {% endif %}
+  {% if kurssi.materiaali %}
+  <p class="sfb-course-materiaali">
+    <i class="bi bi-link-45deg" aria-hidden="true"></i>
+    Kurssin avoin oppimateriaali:
+    <a href="{{ kurssi.materiaali.url }}" target="_blank" rel="noopener noreferrer">{{ kurssi.materiaali.label }} <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a>
+  </p>
+  {% endif %}
 </section>
 {% endfor %}
 
@@ -366,6 +373,24 @@ schemaAbout:
   margin: 1.15rem 0 0;
   padding-top: 1rem;
   border-top: 1px dashed var(--bs-border-color);
+}
+
+.sfb-course-materiaali {
+  margin: 0.85rem 0 0;
+  padding: 0.7rem 0.9rem;
+  border-radius: 0.6rem;
+  background: var(--bs-tertiary-bg);
+  border-left: 0.2rem solid var(--bs-primary);
+  font-size: 0.92rem;
+  color: var(--bs-body-color);
+}
+.sfb-course-materiaali a {
+  font-weight: 600;
+  color: var(--bs-primary);
+  text-decoration: none;
+}
+.sfb-course-materiaali a:hover {
+  text-decoration: underline;
 }
 
 /* Blockquotet */
