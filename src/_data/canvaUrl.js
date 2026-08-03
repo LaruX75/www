@@ -32,8 +32,13 @@ function hasCanvaPublicUrl(url) {
     if (!/^www\.canva\.com$/i.test(parsed.hostname)) return false;
 
     const parts = parsed.pathname.split("/").filter(Boolean);
-    if (parts[0] !== "design" || !parts[1] || !parts[2]) return false;
-    return !["view", "edit"].includes(parts[2]);
+    // canva.com/d/[view-token]
+    if (parts[0] === "d" && parts[1]) return true;
+    // canva.com/design/DESIGN_ID/SHARE_ID/view
+    if (parts[0] === "design" && parts[1] && parts[2]) {
+      return !["view", "edit"].includes(parts[2]);
+    }
+    return false;
   } catch (_) {
     return false;
   }
@@ -50,6 +55,11 @@ function normalizeCanvaUrl(url) {
     if (!/^www\.canva\.com$/i.test(parsed.hostname)) return "";
 
     const parts = parsed.pathname.split("/").filter(Boolean);
+    // canva.com/d/[view-token] — palauta sellaisenaan (toimiva view-linkki)
+    if (parts[0] === "d" && parts[1]) {
+      return stripped;
+    }
+    // canva.com/design/DESIGN_ID/SHARE_ID/view
     if (parts[0] === "design" && parts[1] && parts[2]) {
       const designId = parts[1];
       const maybeShareId = parts[2] || "";

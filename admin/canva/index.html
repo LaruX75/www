@@ -1034,6 +1034,11 @@ function normalizeCanvaPublicUrl(url) {
     if (!/^www\.canva\.com$/i.test(parsed.hostname)) return '';
 
     const parts = parsed.pathname.split('/').filter(Boolean);
+    // canva.com/d/[view-token] – toimiva julkinen view-linkki
+    if (parts[0] === 'd' && parts[1]) {
+      return value;
+    }
+    // canva.com/design/DESIGN_ID/SHARE_ID/view
     if (parts[0] === 'design' && parts[1] && parts[2]) {
       const designId = parts[1];
       const maybeShareId = parts[2];
