@@ -1,7 +1,7 @@
 {
   "meta": {
     "aikavali": "2013–2024",
-    "kursseja": 12,
+    "kursseja": 13,
     "portfoliovastauksia": 106,
     "tel1Keskiarvo": "4,55 / 5"
   },
@@ -141,6 +141,36 @@
         { "teksti": "En koe, että suurimmasta osasta harkkaryhmän tehtävistä olisi minulle ammatillista hyötyä." }
       ],
       "huomautus": "Kaksi selvintä signaalia: ohjeistuksen selkeys on Likert-mittariston alhaisin arvo (2,71 / 5) ja toistuu avovastauksissa erityisesti kehittämiskohteena (34 mainintaa 114 vastauksesta). Toisaalta käytännön harjoitukset (34 mainintaa, pääosin myönteisiä) ja käytettävissä oleva teknologia arvioidaan onnistuneiksi. Vuoden 2018–2019 toteutukseen verrattuna ohjeistuksen selkeys nousi 2,53 → 2,71, mutta pysyi mittariston alhaisimpana. Sama ohjeistus-teema toistuu vielä myöhempinä vuosina 2023–2024 (418028P Learning Environments and Technologies)."
+    },
+    {
+      "id": "418025P-2019-2020",
+      "courseFamily": "418025P",
+      "vuosi": "2019–2020",
+      "nimi": "418025P Oppimisen ympäristöt ja teknologiat",
+      "aineistonTyyppi": "Oulun yliopiston opintojaksopalauteraportti (11.09.2019–09.01.2020) · 25 rekisteröityä opiskelijaa · 56,0 % vastausprosentti (14 vastaajaa)",
+      "mittarit": [
+        { "label": "Saavutin osaamistavoitteet", "arvo": "4,43 / 5" },
+        { "label": "Sisältö tuki osaamistavoitteita", "arvo": "4,43 / 5" },
+        { "label": "Ohjeistukset olivat selkeitä", "arvo": "3,71 / 5" },
+        { "label": "Tukea ja ohjausta oli riittävästi", "arvo": "4,07 / 5" }
+      ],
+      "myonteinen": [
+        { "teksti": "Rich materials and resources to explore about technology in education" },
+        { "teksti": "I discovered many useful applications and pedagogical tools" },
+        { "teksti": "Projects were varied and there was a lot of material available" },
+        { "teksti": "One of the best courses taken" },
+        { "teksti": "Access to many tools and opportunities to experiment" },
+        { "teksti": "KTK149 digital lab is a learning paradise" }
+      ],
+      "kehittaminen": [
+        { "teksti": "Give the course a clearer structure" },
+        { "teksti": "Explain expectations more clearly" },
+        { "teksti": "Four-hour classes are too long" },
+        { "teksti": "Be calmer during lessons" },
+        { "teksti": "Use Microsoft Teams instead of Google Classroom" },
+        { "teksti": "Peer evaluation and written project assessment" }
+      ],
+      "huomautus": "Vastausprosentti oli 56 % (14 vastaajaa 25 rekisteröidystä), aineisto on siis huomattavan edustava. Kaikki keskeiset mittarit ovat vahvassa myönteisessä kentässä (3,71–4,57), ohjeistuksen selkeys alhaisimpana (3,71 / 5). Kuormittavuus jakaa vastaajia: 7 arvioi 'sopiva', 7 (3+4) 'paljon tai erittäin kuormittava'. Kurssi kulki rinnakkain 405028Y-kurssin kanssa samana syyslukukautena 2019, mutta 418025P:n ohjeistus-arvio (3,71) on selvästi korkeampi kuin 405028Y:n samana kautena (2,71). Palautekohdat ovat raportista koottuja tiivistelmiä, eivät verbatim-lainauksia."
     },
     {
       "id": "407062A-2020",
@@ -308,7 +338,7 @@
   "keruunJaljet": [
     { "koodi": "413314S", "nimi": "LET 2nd year Designing technology-enhanced learning", "vuodet": "2018–2021" },
     { "koodi": "413325S", "nimi": "Emergent technologies", "vuodet": "2018–2020 (2021 kortti yllä)" },
-    { "koodi": "418025P", "nimi": "Oppimisen ympäristöt ja teknologiat", "vuodet": "2018–2021" },
+    { "koodi": "418025P", "nimi": "Oppimisen ympäristöt ja teknologiat", "vuodet": "2018, 2020–2021 (2019–2020 kortti yllä)" },
     { "koodi": "418028P", "nimi": "Technology Enhanced Learning and Digital Fabrication", "vuodet": "2018–2021" },
     { "koodi": "410014Y", "nimi": "Tieto- ja viestintätekniikka pedagogisena työvälineenä", "vuodet": "2013–2015" },
     { "koodi": "410017Y", "nimi": "Multimedia oppimisprojektina / Digitaalinen media", "vuodet": "2013–2015" }
@@ -366,6 +396,7 @@
       }
     },
     { "id": "413325S", "chip": "413325S", "fullName": "413325S Emergent Technologies", "count": 1, "vuosivali": "2021" },
+    { "id": "418025P", "chip": "418025P", "fullName": "418025P Oppimisen ympäristöt ja teknologiat", "count": 1, "vuosivali": "2019–2020" },
     { "id": "tel1", "chip": "TEL1", "fullName": "TEL1 – Technology Enhanced Learning", "count": 1, "vuosivali": "2013" },
     { "id": "tvt", "chip": "TVT", "fullName": "Tieto- ja viestintätekniikka pedagogisena työvälineenä", "count": 1, "vuosivali": "2015–2016" },
     { "id": "digitaalinen-media", "chip": "Digimedia", "fullName": "Digitaalinen media opetuksessa ja oppimisessa", "count": 1, "vuosivali": "2015–2016" },
