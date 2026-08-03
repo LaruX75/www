@@ -196,26 +196,58 @@ schemaMentions:
   </div>
 </section>
 
-<section class="py-5" id="nayttoa-tyosta">
+<section class="py-5" id="kaytannon-kokemus">
   <div class="site-shell">
     <div class="portfolio-section-head">
-      <p class="portfolio-eyebrow portfolio-eyebrow--dark mb-1"><i class="bi bi-patch-check me-1"></i>Näyttöä työstä</p>
-      <h2 class="portfolio-section-title">Opetusosaaminen näkyy ohjauksessa, ympäristöissä ja avoimesti jaetuissa materiaaleissa</h2>
-      <p class="portfolio-section-lead mb-0">{{ portfolioCopy.practiceLead }}</p>
+      <p class="portfolio-eyebrow portfolio-eyebrow--dark mb-1"><i class="bi bi-briefcase me-1"></i>Käytännön kokemus</p>
+      <h2 class="portfolio-section-title">Opetuskokemus, ohjaus, oppimisympäristöt ja johtamistyö</h2>
+      <p class="portfolio-section-lead mb-0">Kaksi vuosikymmentä opettajankoulutuksessa: kurssikattaus suomeksi ja englanniksi, yli sadan opinnäytteen ohjaus, digiluokan ja muiden oppimisympäristöjen kehittäminen sekä opetusteknologian johtamis- ja verkostorooleja tiedekunta- ja yliopistotasolla.</p>
     </div>
 
     <div class="row g-4 align-items-stretch">
-      <div class="col-xl-6">
+      <div class="col-lg-6">
         <article class="card border-0 shadow-sm h-100 portfolio-feature-card portfolio-feature-card--primary">
           <div class="card-body d-flex flex-column h-100">
-            <p class="portfolio-feature-kicker">Ohjaus ja oppimisen tuki</p>
-            <h3 class="h4 mb-3">Yli sadan opinnäytteen ohjaus näkyy tavassa tehdä vaikeat asiat hallittaviksi.</h3>
-            <p class="mb-3">Olen toiminut perustutkinto-opiskelijoiden virallisesti nimettynä ohjaajana vuodesta 2013 ja ohjannut suuren määrän pro gradu -tutkielmia ja kandidaatintöitä. Ohjaustyössä minulle olennaista ovat selkeä rakenne, saavutettava tuki ja opiskelijan ajattelun kehittäminen, ei vain työn vieminen maaliin.</p>
-            <ul class="portfolio-inline-list mb-4">
-              <li>Pääohjaajana {{ theses.stats.totalGradut }} gradua</li>
-              <li>Kandiohjauksia {{ theses.stats.totalKandit }}</li>
-              <li>Tarkastajana {{ theses.stats.totalReviewer }} gradua</li>
-              <li>5 jatko-opiskelijaa ohjattavana</li>
+            <p class="portfolio-feature-kicker">Opetuskokemus</p>
+            <h3 class="h4 mb-3">Kahden vuosikymmenen opetuskokemus opettajankoulutuksessa</h3>
+            <p class="mb-3">Olen opettanut useilla opettajankoulutuksen kursseilla sekä suomeksi että englanniksi. Pääosa opetuksesta sijoittuu digitalisaation ja opettajuuden leikkauspisteeseen. Vuodesta 2018 opetusta myös yhteisöllistä ongelmanratkaisua tukevassa digiluokassa. Toiminut myös omaopettajana ja HOPS-ohjaajana useina vuosina.</p>
+            <div class="row g-3 mb-3">
+              <div class="col-md-6">
+                <h4 class="h6 mb-2">Suomenkielinen opetus</h4>
+                <ul class="portfolio-bullet-list mb-0 small">
+                  <li>410014Y Tieto- ja viestintätekniikka pedagogisena työvälineenä</li>
+                  <li>405040Y Teknologiatuettu oppiminen ja työskentely</li>
+                  <li>407059A Uusi teknologia ja tämän vuosisadan ydintaidot</li>
+                  <li>407062A Ohjelmointi perusopetuksessa</li>
+                  <li>408017S Pedagoginen seminaari III</li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <h4 class="h6 mb-2">Englanninkielinen opetus</h4>
+                <ul class="portfolio-bullet-list mb-0 small">
+                  <li>418025P Learning Environments &amp; Technologies</li>
+                  <li>418028P Learning Environments and Technologies</li>
+                  <li>413314S Designing Technology-Enhanced Learning</li>
+                  <li>413325S Emergent Technologies</li>
+                </ul>
+              </div>
+            </div>
+            <a href="/opiskelijoiden-antamaa-palautetta/" class="portfolio-card-link mt-auto">Kurssikohtaiset palauteaineistot <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+      </div>
+
+      <div class="col-lg-6">
+        <article class="card border-0 shadow-sm h-100 portfolio-feature-card">
+          <div class="card-body d-flex flex-column h-100">
+            <p class="portfolio-feature-kicker">Ohjaus</p>
+            <h3 class="h5 mb-2">Yli sadan opinnäytteen ohjaus ja jatko-opiskelijoiden mentorointi</h3>
+            <p class="small text-muted mb-3">Olen toiminut perustutkinto-opiskelijoiden virallisesti nimettynä ohjaajana vuodesta 2013. Ohjaustyössä olennaisia ovat selkeä rakenne, saavutettava tuki ja opiskelijan ajattelun kehittäminen, ei vain työn vieminen maaliin.</p>
+            <ul class="portfolio-inline-list mb-3">
+              <li>Pääohjaajana <strong>{{ theses.stats.totalGradut }}</strong> gradua</li>
+              <li>Kandiohjauksia <strong>{{ theses.stats.totalKandit }}</strong></li>
+              <li>Tarkastajana <strong>{{ theses.stats.totalReviewer }}</strong> gradua</li>
+              <li><strong>5</strong> jatko-opiskelijaa ohjattavana</li>
             </ul>
             <div class="d-flex flex-wrap gap-2 mt-auto">
               <a href="/opinnaytteet/" class="btn btn-outline-primary btn-sm">Ohjatut opinnäytteet</a>
@@ -225,33 +257,51 @@ schemaMentions:
         </article>
       </div>
 
-      <div class="col-xl-6">
-        <div class="row g-4 h-100">
-          <div class="col-12">
-            <article class="card border-0 shadow-sm h-100 portfolio-feature-card">
-              <div class="card-body d-flex flex-column h-100">
-                <p class="portfolio-feature-kicker">Oppimisympäristöjen kehittäminen</p>
-                <h3 class="h5 mb-2">Opetustilat ja välineet ovat osa pedagogiikkaa, eivät sen taustarekvisiittaa.</h3>
-                <p class="small text-muted mb-3">Olen ollut mukana rakentamassa digiluokkaa, LeaForum-tutkimusinfraa, L2-luentosalia ja kollaboraatiokuutioita. Tavoitteena on ollut luoda tiloja, joissa yhteisöllinen työskentely, hybridiopetus ja teknologian käyttö tukevat oikeasti oppimista.</p>
-                <a href="/2021/04/07/ktk149-digiluokka/" class="portfolio-card-link mt-auto">KTK149 Digiluokka <span aria-hidden="true">→</span></a>
-              </div>
-            </article>
+      <div class="col-lg-6">
+        <article class="card border-0 shadow-sm h-100 portfolio-feature-card">
+          <div class="card-body d-flex flex-column h-100">
+            <p class="portfolio-feature-kicker">Oppimisympäristöjen kehittäminen</p>
+            <h3 class="h5 mb-2">Opetustilat ja välineet ovat osa pedagogiikkaa, eivät sen taustarekvisiittaa.</h3>
+            <p class="small text-muted mb-3">Olen ollut mukana rakentamassa digiluokkaa, LeaForum-tutkimusinfraa, L2-luentosalia ja kollaboraatiokuutioita. Tavoitteena on ollut luoda tiloja, joissa yhteisöllinen työskentely, hybridiopetus ja teknologian käyttö tukevat oikeasti oppimista.</p>
+            <a href="/2021/04/07/ktk149-digiluokka/" class="portfolio-card-link mt-auto">KTK149 Digiluokka <span aria-hidden="true">→</span></a>
           </div>
-          <div class="col-12">
-            <article class="card border-0 shadow-sm h-100 portfolio-feature-card">
-              <div class="card-body d-flex flex-column h-100">
-                <p class="portfolio-feature-kicker">Avoimet materiaalit ja yhteisöt</p>
-                <h3 class="h5 mb-2">Jaan materiaaleja ja kokemuksia myös oman kurssin ulkopuolelle.</h3>
-                <p class="small text-muted mb-3">Esityksiä, avoimia oppimateriaaleja ja käytännön ratkaisuja on kertynyt laaja kokonaisuus. Lisäksi olen ylläpitänyt opettajayhteisöjä, joissa materiaaleja ja ideoita on jaettu valtakunnallisesti jo vuosien ajan.</p>
-                <ul class="portfolio-inline-list mb-3">
-                  <li>Tieto- ja viestintätekniikka opetuksessa, yli 20 000 jäsentä</li>
-                  <li>Microsoft Office 365 oppimisessa ja opetuksessa, yli 10 000 jäsentä</li>
-                </ul>
-                <a href="/esitykset/" class="portfolio-card-link mt-auto">Esitykset ja oppimateriaalit <span aria-hidden="true">→</span></a>
-              </div>
-            </article>
+        </article>
+      </div>
+
+      <div class="col-lg-6">
+        <article class="card border-0 shadow-sm h-100 portfolio-feature-card">
+          <div class="card-body d-flex flex-column h-100">
+            <p class="portfolio-feature-kicker">Avoimet materiaalit ja yhteisöt</p>
+            <h3 class="h5 mb-2">Jaan materiaaleja ja kokemuksia myös oman kurssin ulkopuolelle.</h3>
+            <p class="small text-muted mb-3">Esityksiä, avoimia oppimateriaaleja ja käytännön ratkaisuja on kertynyt laaja kokonaisuus. Lisäksi olen ylläpitänyt opettajayhteisöjä, joissa materiaaleja ja ideoita on jaettu valtakunnallisesti jo vuosien ajan.</p>
+            <ul class="portfolio-inline-list mb-3">
+              <li>Tieto- ja viestintätekniikka opetuksessa, yli 20 000 jäsentä</li>
+              <li>Microsoft Office 365 oppimisessa ja opetuksessa, yli 10 000 jäsentä</li>
+            </ul>
+            <a href="/esitykset/" class="portfolio-card-link mt-auto">Esitykset ja oppimateriaalit <span aria-hidden="true">→</span></a>
           </div>
-        </div>
+        </article>
+      </div>
+
+      <div class="col-12">
+        <article class="card border-0 shadow-sm portfolio-feature-card">
+          <div class="card-body">
+            <p class="portfolio-feature-kicker">Opetuksen ja koulutuksen johtaminen</p>
+            <h3 class="h5 mb-2">Roolit koulutuksen ja opetusteknologian johtamis- ja kehittämistyössä</h3>
+            <p class="small text-muted mb-3">Opetuksen kehittämistä ja koordinointia tiedekunta- ja yliopistotasolla sekä osallistumista kansallisiin verkostoihin.</p>
+            <ul class="portfolio-bullet-list mb-0">
+              <li>ITK-johtoryhmän jäsen</li>
+              <li>STEAM in Oulu -sivuaineen vastuuhenkilö</li>
+              <li>OPH:n digipedagogiikan verkostojen jäsen</li>
+              <li>Koulutusneuvoston ja digitutor-ajattelun kehittämistyötä Oulun yliopistossa</li>
+              <li>Puheenjohtajana yliopiston tieto- ja viestintätekniikan pedagogisen kehittämisen ryhmässä</li>
+              <li>Mukana Microsoftin ja Googlen opetusta tukevien pilvipalvelujen käyttöönotossa sekä digitutor-ajattelun kehittämisessä</li>
+              <li>Mukana valitsemassa verkko-oppimisympäristöjä ja kehittämässä AV-ratkaisuja sekä digitaalisia opetustiloja</li>
+              <li>Vuosien ajan osavastuussa tiedekunnan esitystekniikasta, iPad-laitteista sekä 3D-tulostimien ja laserleikkurin käyttöönotosta</li>
+              <li>Materiaalien avoin jakaminen (esitykset, kurssisivustot) läpi työuran aina kun se on ollut mahdollista</li>
+            </ul>
+          </div>
+        </article>
       </div>
     </div>
 
@@ -306,6 +356,49 @@ schemaMentions:
   </div>
 </section>
 
+<section class="py-5" id="osaamisen-yllapito">
+  <div class="site-shell">
+    <div class="portfolio-section-head">
+      <p class="portfolio-eyebrow portfolio-eyebrow--dark mb-1"><i class="bi bi-mortarboard me-1"></i>Osaamisen ylläpitäminen ja kehittäminen</p>
+      <h2 class="portfolio-section-title">Tutkintotausta ja pedagoginen koulutus</h2>
+      <p class="portfolio-section-lead mb-0">Kelpoisuus, jatko-opinnot ja koulutuksellinen perusta joka on kehittynyt läpi työuran. Ajankohtainen osaamisen ylläpito näkyy tutkimustyössä, konferenssiesiintymisissä ja täydennyskoulutuksen kehittämisessä.</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-8">
+        <article class="card border-0 shadow-sm h-100 portfolio-detail-panel">
+          <div class="card-body">
+            <p class="portfolio-feature-kicker">Perusta</p>
+            <h3 class="h5 mb-2">Tutkinnot, kelpoisuus ja jatko-opinnot</h3>
+            <ul class="portfolio-bullet-list mb-0">
+              <li><strong>Kasvatustieteiden tohtori, KT</strong> – Oulun yliopisto, kasvatustiede, jatkotutkintokoulutus. Valmistunut 21.11.2012.</li>
+              <li><strong>Kasvatustieteiden maisteri, luokanopettaja, KM</strong> – Oulun yliopisto, teknologiapainotteinen luokanopettajakoulutus. Valmistunut 14.5.2003.</li>
+              <li>Opettajankelpoisuus vuonna 2003 luokanopettajaopinnoista.</li>
+              <li>Tietojenkäsittelytieteen sivuainekokonaisuus, Oulun yliopisto.</li>
+              <li>Jatko-opinnot kansallisessa oppimisympäristöjen monitieteisessä tutkijakoulussa (OPMON).</li>
+              <li>Koulutusteknologian aineopinnot Oulun yliopistossa.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+
+      <div class="col-lg-4">
+        <article class="card border-0 shadow-sm h-100 portfolio-detail-panel">
+          <div class="card-body d-flex flex-column h-100">
+            <p class="portfolio-feature-kicker">Jatkuva kehittäminen</p>
+            <h3 class="h5 mb-2">Osaaminen kehittyy tutkimuksen ja täydennyskoulutuksen kautta</h3>
+            <p class="small text-muted mb-3">Opetukseen liittyvä tieteellinen tutkimus, konferenssiesiintymiset ja täydennyskoulutuksen kehittäminen pitävät osaamisen ajan tasalla.</p>
+            <div class="d-flex flex-wrap gap-2 mt-auto">
+              <a href="/tutkimus/" class="btn btn-outline-primary btn-sm">Tutkimus</a>
+              <a href="/koulutuspalaute/" class="btn btn-outline-secondary btn-sm">Täydennyskoulutus</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
 <details class="portfolio-mobile-disclosure" data-portfolio-mobile-collapse id="nykyinen-fokus" open>
   <summary class="portfolio-mobile-disclosure-summary">Ajankohtainen fokus</summary>
 <section class="py-5 bg-body-tertiary border-top border-bottom">
@@ -340,125 +433,7 @@ schemaMentions:
               </div>
             </article>
           </div>
-          <div class="col-12">
-            <article class="card border-0 shadow-sm h-100 portfolio-current-card">
-              <div class="card-body d-flex flex-column h-100">
-                <span class="portfolio-current-badge portfolio-current-badge--muted">Jatkuva</span>
-                <h3 class="h5 mb-2">Verkostot ja yhteinen kehittäminen</h3>
-                <ul class="portfolio-inline-list mb-0">
-                  <li>ITK-johtoryhmän jäsen</li>
-                  <li>STEAM in Oulu -sivuaineen vastuuhenkilö</li>
-                  <li>OPH:n digipedagogiikan verkostojen verkoston jäsen</li>
-                  <li>Koulutusneuvoston ja digitutor-ajattelun kehittämistyötä Oulun yliopistossa</li>
-                </ul>
-              </div>
-            </article>
-          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-</details>
-
-<details class="portfolio-mobile-disclosure" data-portfolio-mobile-collapse id="portfolioaineisto" open>
-  <summary class="portfolio-mobile-disclosure-summary">Tarkemmat näytöt</summary>
-<section class="py-5">
-  <div class="site-shell">
-    <div class="portfolio-section-head">
-      <p class="portfolio-eyebrow portfolio-eyebrow--dark mb-1"><i class="bi bi-journal-richtext me-1"></i>Tarkemmat näytöt</p>
-      <h2 class="portfolio-section-title">Taustat, kurssit ja kehittämistyö tarkemmin</h2>
-      <p class="portfolio-section-lead mb-0">{{ portfolioCopy.evidenceLead }}</p>
-    </div>
-
-    <div class="row g-4">
-      <div class="col-lg-6">
-        <article class="card border-0 shadow-sm h-100 portfolio-detail-panel">
-          <div class="card-body">
-            <p class="portfolio-feature-kicker">Perusta</p>
-            <h3 class="h5 mb-2">Tutkintotausta ja pedagoginen koulutus</h3>
-            <p class="small text-muted mb-3">Kelpoisuus, jatko-opinnot ja koulutuksellinen perusta.</p>
-            <ul class="portfolio-bullet-list mb-0">
-              <li><strong>Kasvatustieteiden tohtori, KT</strong> – Oulun yliopisto, kasvatustiede, jatkotutkintokoulutus. Valmistunut 21.11.2012.</li>
-              <li><strong>Kasvatustieteiden maisteri, luokanopettaja, KM</strong> – Oulun yliopisto, teknologiapainotteinen luokanopettajakoulutus. Valmistunut 14.5.2003.</li>
-              <li>Opettajankelpoisuus vuonna 2003 luokanopettajaopinnoista.</li>
-              <li>Tietojenkäsittelytieteen sivuainekokonaisuus, Oulun yliopisto.</li>
-              <li>Jatko-opinnot kansallisessa oppimisympäristöjen monitieteisessä tutkijakoulussa (OPMON).</li>
-              <li>Koulutusteknologian aineopinnot Oulun yliopistossa.</li>
-            </ul>
-          </div>
-        </article>
-      </div>
-
-      <div class="col-lg-6">
-        <article class="card border-0 shadow-sm h-100 portfolio-detail-panel">
-          <div class="card-body">
-            <p class="portfolio-feature-kicker">Ohjaus</p>
-            <h3 class="h5 mb-2">Ohjauskokemus</h3>
-            <p class="small text-muted mb-3">Perustutkinnot, opinnäytteet ja jatko-opiskelijat.</p>
-            <p class="small text-muted">Toimin perustutkinto-opiskelijoiden virallisesti nimettynä ohjaajana vuodesta 2013 alkaen. Nykyisin käytössä oleva OuluREPO-palvelu kokoaa opinnäytetietoja vuodesta {{ theses.stats.firstYear }} eteenpäin.</p>
-            <ul class="portfolio-bullet-list mb-0">
-              <li>Pääohjaaja: <strong>{{ theses.stats.totalGradut }}</strong> valmista pro gradu -tutkielmaa</li>
-              <li>Tarkastajana: <strong>{{ theses.stats.totalReviewer }}</strong> valmista pro gradu -tutkielmaa</li>
-              <li>Kandidaatin tutkielmien ohjaaja: <strong>{{ theses.stats.totalKandit }}</strong> työtä</li>
-              <li>Jatko-opiskelijoita ohjattavana tällä hetkellä 5</li>
-            </ul>
-          </div>
-        </article>
-      </div>
-
-      <div class="col-lg-6">
-        <article class="card border-0 shadow-sm h-100 portfolio-detail-panel">
-          <div class="card-body">
-            <p class="portfolio-feature-kicker">Opetus</p>
-            <h3 class="h5 mb-2">Opetuskokemuksen näytteet</h3>
-            <p class="small text-muted mb-3">Kurssit, omaopettajuus ja digiluokka.</p>
-            <p class="small text-muted">Kahden vuosikymmenen aikana olen opettanut useilla opettajankoulutuksen kursseilla sekä suomeksi että englanniksi. Pääosa niistä sijoittuu digitalisaation ja opettajuuden leikkauspisteeseen.</p>
-            <div class="row g-3 mb-3">
-              <div class="col-md-6">
-                <h3 class="h6">Suomenkielinen opetus</h3>
-                <ul class="portfolio-bullet-list mb-0">
-                  <li>410014Y Tieto- ja viestintätekniikka pedagogisena työvälineenä</li>
-                  <li>405040Y Teknologiatuettu oppiminen ja työskentely</li>
-                  <li>407059A Uusi teknologia ja tämän vuosisadan ydintaidot</li>
-                  <li>407062A Ohjelmointi perusopetuksessa</li>
-                  <li>408017S Pedagoginen seminaari III</li>
-                </ul>
-              </div>
-              <div class="col-md-6">
-                <h3 class="h6">Englanninkielinen opetus</h3>
-                <ul class="portfolio-bullet-list mb-0">
-                  <li>418025P Learning Environments &amp; Technologies</li>
-                  <li>418028P Learning Environments and Technologies</li>
-                  <li>413314S Designing Technology-Enhanced Learning</li>
-                  <li>413325S Emergent Technologies</li>
-                </ul>
-              </div>
-            </div>
-            <ul class="portfolio-bullet-list mb-0">
-              <li>Omaopettajana ja HOPS-ohjaajana useina eri vuosina.</li>
-              <li>Vuodesta 2018 opetusta yhteisöllistä ongelmanratkaisua tukevassa digiluokassa.</li>
-              <li>Mukana L2-luentosalin, LeaForumin ja kollaboraatiokuutioiden kehittämisessä.</li>
-            </ul>
-          </div>
-        </article>
-      </div>
-
-      <div class="col-lg-6">
-        <article class="card border-0 shadow-sm h-100 portfolio-detail-panel">
-          <div class="card-body">
-            <p class="portfolio-feature-kicker">Kehittäminen</p>
-            <h3 class="h5 mb-2">Kehittämis- ja verkostotyö</h3>
-            <p class="small text-muted mb-3">Yliopistotaso, tiedekuntataso ja kansalliset yhteisöt.</p>
-            <ul class="portfolio-bullet-list mb-0">
-              <li>Puheenjohtajana yliopiston tieto- ja viestintätekniikan pedagogisen kehittämisen ryhmässä.</li>
-              <li>Mukana Microsoftin ja Googlen opetusta tukevien pilvipalvelujen käyttöönotossa sekä digitutor-ajattelun kehittämisessä.</li>
-              <li>Mukana valitsemassa verkko-oppimisympäristöjä ja kehittämässä AV-ratkaisuja sekä digitaalisia opetustiloja.</li>
-              <li>Vuosien ajan osavastuussa tiedekunnan esitystekniikasta, iPad-laitteista sekä 3D-tulostimien ja laserleikkurin käyttöönotosta.</li>
-              <li>Olen jakanut esityksiä, kurssisivustoja ja materiaaleja avoimesti koko työurani ajan aina kun se on ollut mahdollista.</li>
-            </ul>
-          </div>
-        </article>
       </div>
     </div>
   </div>
