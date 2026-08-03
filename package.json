@@ -35,6 +35,7 @@
     "check:i18n-seo": "node scripts/check-i18n-seo.js",
     "check:seo-health": "node scripts/check-seo-health.js",
     "check:jsonld": "node scripts/check-jsonld.js",
+    "build:feedback-index": "node scripts/build-presentation-feedback-index.js",
     "analyze:publications": "node scripts/analyze-publications.mjs",
     "check:researchfi-integrity": "CACHE_ONLY=true node scripts/check-researchfi-integrity.js",
     "enrich:publication-abstracts": "node scripts/enrich-publication-abstracts.mjs",
