@@ -586,6 +586,11 @@ html:not([data-bs-theme="dark"]) .site-changes-kpi-value--date {
   overflow-wrap: anywhere;
 }
 
+.content-prose img {
+  max-width: 100%;
+  height: auto;
+}
+
 .legacy-content-page .content-prose img {
   max-width: 100%;
   height: auto;
