@@ -15,9 +15,77 @@
   },
   "items": [
     {
-      "id": "ai-staff-event",
+      "id": "kriittinen-lukutaito-2026-somekone",
       "category": "training",
       "placements": ["home", "company"],
+      "source": "koulutuspalaute:Kriittinen lukutaito:2026",
+      "publicationStatus": "already-published",
+      "content": {
+        "fi": {
+          "quote": "Aion kokeilla huomenna heti somekonetta kakkosluokkalaisten kanssa.",
+          "attribution": "Kriittinen lukutaito -koulutus, 2026 (Finnoschool / LUKUTAITO)"
+        },
+        "en": {
+          "quote": "I'll try Somekone with my second-graders tomorrow.",
+          "attribution": "Critical literacy training, 2026 (Finnoschool)"
+        }
+      }
+    },
+    {
+      "id": "let-2023-favourite-course",
+      "category": "teaching",
+      "placements": ["home", "company"],
+      "source": "opiskelijapalaute:Learning Environments & Technologies:2023",
+      "publicationStatus": "already-published",
+      "content": {
+        "fi": {
+          "quote": "It was my favourite course ever!",
+          "attribution": "Learning Environments & Technologies -kurssi, 2023"
+        },
+        "en": {
+          "quote": "It was my favourite course ever!",
+          "attribution": "Learning Environments & Technologies course, 2023"
+        }
+      }
+    },
+    {
+      "id": "tel1-2013-pedagogy",
+      "category": "teaching",
+      "placements": ["home", "company"],
+      "source": "opiskelijapalaute:TEL1:2013",
+      "publicationStatus": "already-published",
+      "content": {
+        "fi": {
+          "quote": "Pedagogiset lähtökohdat ovat tärkeimmät, ja teknologia harkitaan vasta niiden jälkeen.",
+          "attribution": "TEL1 – Technology Enhanced Learning -kurssi, 2013"
+        },
+        "en": {
+          "quote": "The learning and pedagogical considerations are the most important starting points and technology only considered after them.",
+          "attribution": "TEL1 – Technology Enhanced Learning course, 2013"
+        }
+      }
+    },
+    {
+      "id": "opoai-2024-summary",
+      "category": "training",
+      "placements": ["company"],
+      "source": "koulutuspalaute:OpoAI:2024",
+      "publicationStatus": "already-published",
+      "content": {
+        "fi": {
+          "quote": "Palautteissa kiiteltiin käytännönläheisyyttä, tekoälyn sovellusmahdollisuuksia ja asiantuntijuutta.",
+          "attribution": "OpoAI-koulutus, 2024 (kooste 98 osallistujan palautteesta)"
+        },
+        "en": {
+          "quote": "Participants praised the practical approach, AI application possibilities, and expertise.",
+          "attribution": "OpoAI training, 2024 (summary of 98 participants' feedback)"
+        }
+      }
+    },
+    {
+      "id": "ai-staff-event",
+      "category": "training",
+      "placements": ["company"],
       "source": "existing-site-copy",
       "publicationStatus": "already-published",
       "content": {
@@ -35,23 +103,23 @@
       "id": "continuing-education-rating",
       "category": "training",
       "placements": ["company"],
-      "source": "existing-site-copy",
+      "source": "koulutuspalaute:Kainutlaatuinen ope:2017",
       "publicationStatus": "already-published",
       "content": {
         "fi": {
           "quote": "Saimme aivan huikean hyvät arvioinnit. Kokonaiskeskiarvo 4,2 / 5 oli erinomainen.",
-          "attribution": "Valtion täydennyskoulutus, järjestäjä"
+          "attribution": "Kainutlaatuinen ope -täydennyskoulutus, 2017 (järjestäjä)"
         },
         "en": {
           "quote": "We received excellent evaluations. The overall average of 4.2/5 was outstanding.",
-          "attribution": "Public-sector continuing education, organizer"
+          "attribution": "Kainutlaatuinen ope continuing-education event, 2017 (organizer)"
         }
       }
     },
     {
       "id": "fnae-participant",
       "category": "training",
-      "placements": ["home", "company"],
+      "placements": ["company"],
       "source": "existing-site-copy",
       "publicationStatus": "already-published",
       "content": {
@@ -68,7 +136,7 @@
     {
       "id": "seminar-best-speaker",
       "category": "speaking",
-      "placements": ["home", "company"],
+      "placements": ["company"],
       "source": "existing-site-copy",
       "publicationStatus": "already-published",
       "content": {

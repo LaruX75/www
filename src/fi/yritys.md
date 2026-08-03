@@ -214,9 +214,10 @@ services:
       </div>
       <div class="col-lg-4">
         <article class="larux-trust-card larux-trust-card--quote h-100">
-          <p class="larux-proof-kicker">Opiskelijapalaute</p>
+          <p class="larux-proof-kicker">Opiskelijapalaute · 2023</p>
           <blockquote class="larux-trust-quote mb-3">
-            <p class="mb-0">“Jarin opetustyyli harjoituksissa sekä selkeät sähköpostiohjeet tukivat oppimista todella hyvin.”</p>
+            <p class="mb-0">“I feel so much more confident in what I am doing now and well prepared for my future job through this course!”</p>
+            <footer class="small text-muted mt-2">Learning Environments &amp; Technologies -kurssi</footer>
           </blockquote>
           <p class="small text-muted mb-3">Yksittäisten koulutustilaisuuksien lisäksi saman työn jälki näkyy myös yliopisto-opetuksessa. Vuosien varrella kertyneitä palautteita on koottu omalle sivulleen.</p>
           <a class="larux-inline-link mt-auto" href="/opiskelijoiden-antamaa-palautetta/">Selaa opiskelijapalautteita <i class="bi bi-arrow-right ms-1" aria-hidden="true"></i></a>
