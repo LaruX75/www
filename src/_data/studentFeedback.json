@@ -1,7 +1,7 @@
 {
   "meta": {
     "aikavali": "2013–2024",
-    "kursseja": 11,
+    "kursseja": 12,
     "portfoliovastauksia": 106,
     "tel1Keskiarvo": "4,55 / 5"
   },
@@ -194,6 +194,36 @@
       "huomautus": "Koronapandemian etäopetusvuosi: Likert-osion vastausprosentti oli poikkeuksellisen matala (5,3 %) eikä raportti sisällä lukuja, joten mittarit puuttuvat kortista. Ohjeistuksen selkeys nousee edelleen selvimpänä kehittämiskohteena kuten aiempinakin vuosina; lisäksi Teams-alustan sekavuus, luentojen myöhästymiset ja opetuksen liika keskittyminen jo tuttuihin Office-perusohjelmiin nousevat toistuvasti esille. Myönteinen palaute korostaa etäopetuksen sujuvaa toteutusta ja mahdollisuutta valita omia kiinnostavia teemoja."
     },
     {
+      "id": "413325S-2021",
+      "courseFamily": "413325S",
+      "vuosi": "2021",
+      "nimi": "413325S Emergent Technologies",
+      "aineistonTyyppi": "Oulun yliopiston opintojaksopalauteraportti (22.01.2021–19.04.2021) · 12 rekisteröityä opiskelijaa · 58,33 % vastausprosentti (7 vastaajaa) · koronapandemian hybridivuosi",
+      "mittarit": [
+        { "label": "Saavutin osaamistavoitteet", "arvo": "4,29 / 5" },
+        { "label": "Sisältö tuki osaamistavoitteita", "arvo": "4,29 / 5" },
+        { "label": "Ohjeistukset olivat selkeitä", "arvo": "3,57 / 5" },
+        { "label": "Tukea ja ohjausta oli riittävästi", "arvo": "4,14 / 5" }
+      ],
+      "myonteinen": [
+        { "teksti": "I really liked the motivation and kindness of the teacher. I was a pleasure to go in class and follow the lectures." },
+        { "teksti": "There is a high amount of practical tasks, testing and technology tasting, and good amount of freedom to complete assignments." },
+        { "teksti": "The lecturer's style of teaching makes the course content look interesting even though there are some serious and deep course content. That way, the course does not make me feel overwhelmed much." },
+        { "teksti": "Introduction to emergent technologies that are also relevant under the current circumstances" },
+        { "teksti": "The instructions improved in relation to the L.E.T. course" },
+        { "teksti": "Great course in the covid reality" }
+      ],
+      "kehittaminen": [
+        { "teksti": "Teams is convenient in many ways. SOmetimes info can get lost on it though. I am aware that the platform changes regularly and appreciate the chance to try others as well in the teaching/learing contexts." },
+        { "teksti": "Have an official 15-20min break in the middle of a 3.5-hr session." },
+        { "teksti": "Maybe design the course that we are not learning 4 hours straights. Perhaps 2 hours twice a week :)" },
+        { "teksti": "Transparent instruction (in the beginning mentioning of habitica group work and could not realize during this course - was confused a little bit)" },
+        { "teksti": "Focusing on one or two tools and pedagogy vs getting to know many tools and no pedagogy" },
+        { "teksti": "Try to follow a true hybrid/blended model where students receive or have access to material to go through prior to the lesson (like a couple of articles and a video or a pre-recorded presentation) and then have more discussions, collaboration and/or hands-on tasks with the tools and technologies being studied during the synchronous sessions." }
+      ],
+      "huomautus": "Vastausprosentti oli poikkeuksellisen korkea (58,33 % 12 opiskelijasta = 7 vastaajaa), aineisto on siis huomattavan edustava. Kaikki mittarit ovat vahvassa myönteisessä kentässä (3,57–4,57), ohjeistuksen selkeys alhaisimpana (3,57 / 5). Yksi opiskelija huomauttaa suoraan, että ohjeistus parani L.E.T.-kurssiin verrattuna. Yleisimmät kehittämiskohteet: pitkien synkronisten istuntojen (3,5 h) rytmitys, Teams-alustan navigointi, Habitica-työkalun seuranta ja siirtyminen kohti käänteistä/hybridi-mallia. Kurssi järjestettiin koronapandemian kevään aikana."
+    },
+    {
       "id": "luko-erkka-2023",
       "courseFamily": "luko-erkka",
       "vuosi": "2023",
@@ -277,7 +307,7 @@
   ],
   "keruunJaljet": [
     { "koodi": "413314S", "nimi": "LET 2nd year Designing technology-enhanced learning", "vuodet": "2018–2021" },
-    { "koodi": "413325S", "nimi": "Emergent technologies", "vuodet": "2018–2021" },
+    { "koodi": "413325S", "nimi": "Emergent technologies", "vuodet": "2018–2020 (2021 kortti yllä)" },
     { "koodi": "418025P", "nimi": "Oppimisen ympäristöt ja teknologiat", "vuodet": "2018–2021" },
     { "koodi": "418028P", "nimi": "Technology Enhanced Learning and Digital Fabrication", "vuodet": "2018–2021" },
     { "koodi": "410014Y", "nimi": "Tieto- ja viestintätekniikka pedagogisena työvälineenä", "vuodet": "2013–2015" },
@@ -335,6 +365,7 @@
         ]
       }
     },
+    { "id": "413325S", "chip": "413325S", "fullName": "413325S Emergent Technologies", "count": 1, "vuosivali": "2021" },
     { "id": "tel1", "chip": "TEL1", "fullName": "TEL1 – Technology Enhanced Learning", "count": 1, "vuosivali": "2013" },
     { "id": "tvt", "chip": "TVT", "fullName": "Tieto- ja viestintätekniikka pedagogisena työvälineenä", "count": 1, "vuosivali": "2015–2016" },
     { "id": "digitaalinen-media", "chip": "Digimedia", "fullName": "Digitaalinen media opetuksessa ja oppimisessa", "count": 1, "vuosivali": "2015–2016" },
