@@ -52,7 +52,7 @@ jobs:
         run: 'grep -q "User-agent: GPTBot" _site/robots.txt'
 
       - name: Homepage robots meta
-        run: grep -q '<meta name="robots" content="index, follow, noai, noimageai">' _site/index.html
+        run: grep -q '<meta name="robots" content="index, follow">' _site/index.html
 
       - name: Homepage has description meta
         run: grep -q '<meta name="description" content="' _site/index.html
