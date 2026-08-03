@@ -1,7 +1,7 @@
 {
   "meta": {
     "aikavali": "2013–2024",
-    "kursseja": 9,
+    "kursseja": 10,
     "portfoliovastauksia": 106,
     "tel1Keskiarvo": "4,55 / 5"
   },
@@ -117,6 +117,33 @@
       "huomautus": "Kaksi selvintä signaalia: ohjeistuksen selkeys on Likert-mittariston alhaisin arvo (2,71 / 5) ja toistuu avovastauksissa erityisesti kehittämiskohteena (34 mainintaa 114 vastauksesta). Toisaalta käytännön harjoitukset (34 mainintaa, pääosin myönteisiä) ja käytettävissä oleva teknologia arvioidaan onnistuneiksi. Vuoden 2018–2019 toteutukseen verrattuna ohjeistuksen selkeys nousi 2,53 → 2,71, mutta pysyi mittariston alhaisimpana. Sama ohjeistus-teema toistuu vielä myöhempinä vuosina 2023–2024 (418028P Learning Environments and Technologies)."
     },
     {
+      "id": "407062A-2020",
+      "courseFamily": "407062A",
+      "vuosi": "2020",
+      "nimi": "407062A Ohjelmointi perusopetuksessa",
+      "aineistonTyyppi": "Oulun yliopiston opintojaksopalauteraportti (09.01.2020–29.05.2020) · 23 rekisteröityä opiskelijaa · 8,7 % vastausprosentti (noin 2 vastaajaa) · koronapandemian etäopetuskevät",
+      "mittarit": [
+        { "label": "Saavutin osaamistavoitteet", "arvo": "4,5 / 5" },
+        { "label": "Sisältö tuki osaamistavoitteita", "arvo": "4,5 / 5" },
+        { "label": "Ohjeistukset olivat selkeitä", "arvo": "4,5 / 5" },
+        { "label": "Tukea ja ohjausta oli riittävästi", "arvo": "5,0 / 5" }
+      ],
+      "myonteinen": [
+        { "teksti": "Opettajan tarjoama sisältö oli riittävä." },
+        { "teksti": "Ohjaus koettiin erittäin hyväksi." },
+        { "teksti": "Kurssin tavoitteet olivat selkeitä ja helposti ymmärrettäviä." },
+        { "teksti": "Opettaja tarjosi esimerkkejä ja lisäapua tarvittaessa." },
+        { "teksti": "Kurssi oli hyvin organisoitu." },
+        { "teksti": "COVID-19-poikkeustilanteesta huolimatta oppiminen jatkui asynkronisten materiaalien avulla." }
+      ],
+      "kehittaminen": [
+        { "teksti": "Kurssi keskeytyi osittain COVID-19-eristystoimien vuoksi." },
+        { "teksti": "Kurssia toivottiin tarjottavan myös englanniksi." },
+        { "teksti": "Kansainvälisten ja suomalaisten opiskelijoiden yhteistä opiskelua toivottiin lisää." }
+      ],
+      "huomautus": "Vastausprosentti oli 8,7 % (noin 2 vastaajaa 23 rekisteröidystä), joten mittarikeskiarvot 4,5–5,0 perustuvat kahden opiskelijan itsearvioihin — tuloksia ei voi yleistää. Palautekohdat ovat raportista koottuja yhteenvetoja, eivät verbatim-lainauksia. Kurssi järjestettiin koronapandemian etäopetuskeväänä 2020, mikä näkyy sekä myönteisessä palautteessa (asynkroniset materiaalit) että kehittämiskohteissa (kurssin osittainen keskeytyminen)."
+    },
+    {
       "id": "405028Y-2020-2021",
       "courseFamily": "405028Y",
       "vuosi": "2020–2021",
@@ -223,7 +250,6 @@
     }
   ],
   "keruunJaljet": [
-    { "koodi": "407062A", "nimi": "Ohjelmointi perusopetuksessa", "vuodet": "2018–2020" },
     { "koodi": "413314S", "nimi": "LET 2nd year Designing technology-enhanced learning", "vuodet": "2018–2021" },
     { "koodi": "413325S", "nimi": "Emergent technologies", "vuodet": "2018–2021" },
     { "koodi": "418025P", "nimi": "Oppimisen ympäristöt ja teknologiat", "vuodet": "2018–2021" },
@@ -266,6 +292,7 @@
         ]
       }
     },
+    { "id": "407062A", "chip": "407062A", "fullName": "407062A Ohjelmointi perusopetuksessa", "count": 1, "vuosivali": "2020" },
     { "id": "tel1", "chip": "TEL1", "fullName": "TEL1 – Technology Enhanced Learning", "count": 1, "vuosivali": "2013" },
     { "id": "tvt", "chip": "TVT", "fullName": "Tieto- ja viestintätekniikka pedagogisena työvälineenä", "count": 1, "vuosivali": "2015–2016" },
     { "id": "digitaalinen-media", "chip": "Digimedia", "fullName": "Digitaalinen media opetuksessa ja oppimisessa", "count": 1, "vuosivali": "2015–2016" },
