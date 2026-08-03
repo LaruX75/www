@@ -5,7 +5,7 @@ description: "Täydennyskoulutusten ja asiantuntijatilaisuuksien palautteen koos
 date: 2026-08-02
 modified: 2026-08-03
 layout: base.njk
-templateEngineOverride: njk,md
+templateEngineOverride: njk
 translationKey: fi_only_koulutuspalaute
 permalink: /koulutuspalaute/
 pageShell: true

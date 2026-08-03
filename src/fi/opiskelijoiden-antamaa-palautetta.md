@@ -4,7 +4,7 @@ date: 2013-02-07
 modified: 2026-08-03
 description: "Opetusportfolion opiskelijapalaute-osio: yliopiston opintojaksojen kurssikohtainen palaute 2013–2023, mukana sekä myönteiset teemat että kehittämiskohteet."
 layout: base.njk
-templateEngineOverride: njk,md
+templateEngineOverride: njk
 translationKey: fi_only_opiskelijapalaute
 permalink: /opiskelijoiden-antamaa-palautetta/
 pageShell: true
@@ -63,6 +63,7 @@ schemaAbout:
     {% endif %}
   </header>
 
+  {% if (kurssi.myonteinen and kurssi.myonteinen.length) or (kurssi.kehittaminen and kurssi.kehittaminen.length) %}
   <div class="sfb-course-body">
     {% if kurssi.myonteinen and kurssi.myonteinen.length %}
     <div class="sfb-course-col sfb-course-col--positive">
@@ -80,10 +81,11 @@ schemaAbout:
       {% endfor %}
     </div>
     {% endif %}
-    {% if kurssi.huomautus %}
-    <p class="sfb-course-note">{{ kurssi.huomautus }}</p>
-    {% endif %}
   </div>
+  {% endif %}
+  {% if kurssi.huomautus %}
+  <p class="sfb-course-note">{{ kurssi.huomautus }}</p>
+  {% endif %}
 </section>
 {% endfor %}
 
@@ -281,7 +283,7 @@ schemaAbout:
 
 @media (min-width: 768px) {
   .sfb-course-body {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(min(22rem, 100%), 1fr));
     gap: 1.5rem;
   }
 }
@@ -308,7 +310,9 @@ schemaAbout:
   color: var(--bs-secondary-color);
   font-size: 0.95rem;
   line-height: 1.55;
-  margin: 0;
+  margin: 1.15rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--bs-border-color);
 }
 
 /* Blockquotet */

@@ -1,7 +1,7 @@
 {
   "meta": {
-    "aikavali": "2013–2023",
-    "kursseja": 7,
+    "aikavali": "2013–2024",
+    "kursseja": 6,
     "portfoliovastauksia": 106,
     "tel1Keskiarvo": "4,55 / 5"
   },
@@ -54,41 +54,10 @@
       ]
     },
     {
-      "id": "learning-environments-2023",
-      "vuosi": "2023",
-      "nimi": "Learning Environments & Technologies",
-      "aineistonTyyppi": "Peppi-palaute (3 vastausta) + itsearviointilomake · määrällinen palaute lähellä maksimia",
-      "myonteinen": [
-        { "teksti": "It was my favourite course ever!", "featured_home": true, "featured_company": true, "featured_yritys_trust": false },
-        { "teksti": "Jari was always available." },
-        { "teksti": "I really appreciated that it was very hands-on and practical. That is how I can learn the most." },
-        { "teksti": "I feel so much more confident in what I am doing now and well prepared for my future job through this course!", "featured_yritys_trust": true }
-      ],
-      "kehittaminen": [
-        { "teksti": "I sometimes did not know what kind of assignment will be graded and which won't. A table or something sent at the beginning of the course could be good." }
-      ]
-    },
-    {
-      "id": "418028P-let-2023",
-      "vuosi": "2023",
-      "nimi": "418028P Learning Environments and Technologies",
-      "aineistonTyyppi": "Ohjelmajohdon välittämä opiskelijapalaute",
-      "myonteinen": [
-        { "teksti": "Kurssi on ollut monelle opiskelijalle yksi suurimpia syitä hakeutua LETiin opiskelemaan." }
-      ],
-      "kehittaminen": [
-        { "teksti": "Opiskelijat kokevat, että kurssi ei vastaa Pepin kurssikuvausta ja he eivät saa kurssilta sitä, mitä kurssikuvauksen ja sisältöjen perusteella olivat odottaneet." },
-        { "teksti": "Kurssin tehtävänannot ovat epäselviä." },
-        { "teksti": "Elements of AI 2 op MOOC-kurssi ei opiskelijoiden kokemuksen mukaan ole keskeistä Learning environments and technologies -kurssin sisältöä." },
-        { "teksti": "Aikataulujen muutokset, opetuskertojen peruutukset ja epäselvyydet toteutuksessa mainitaan palautteessa." },
-        { "teksti": "Opiskelijat ovat selvän struktuurin perään ja epävarmuuksien ja yllätysten tuntuvat vaikeilta." }
-      ]
-    },
-    {
       "id": "luko-erkka-2023",
-      "vuosi": "syksy 2023",
+      "vuosi": "2023",
       "nimi": "Teknologiatuettu oppiminen — LUKO–ERKKA tekoälyharjoitus",
-      "aineistonTyyppi": "Portfoliopohjainen opiskelija-aineisto",
+      "aineistonTyyppi": "Portfoliopohjainen opiskelija-aineisto (syksy 2023) · lisäksi kevään 2023 laajempi portfolioaineisto (106 vastaajaa) taustavahvistuksena",
       "myonteinen": [
         { "teksti": "Harjoitus sujui hyvin ja oli hauskaa käyttää tekoälysovellusta. Sen käyttö oli meidän ikäisille yksinkertaista, mutta ala-asteikäisille se saattaa olla vaikeampaa." },
         { "teksti": "Harjoituskerta oli todella hyödyllinen tulevaisuutta ajatellen. Tekoäly kun yleistyy kaiken aikaa myös koulumaailmassa." },
@@ -100,14 +69,58 @@
         { "teksti": "Jostakin syystä luokittelijan opettaminen ei aina mene läpi." },
         { "teksti": "Kaksoistunti on suhteellisen lyhyt aika, eikä siinä ajassa saa vielä kovin monipuolista tietoa ja taitoa, joten itse opiskeltavaakin varmasti jää." },
         { "teksti": "Harjoitus kuitenkin eteni todella nopeasti, joten toivoin, että joihinkin asioihin olisi ehtinyt perehtyä syvällisemminkin." }
+      ],
+      "huomautus": "Kevään 2023 laajemmasta portfolioaineistosta (106 tutkimuskäyttöön luvan antanutta vastaajaa) on käsitelty kategoriat \"Miten käyttäisit GenAI-sovellusta opettajana\" ja \"Harjoituksen yleinen palaute\". Aineisto toimii taustavahvistuksena tekoälyharjoituksen tuloksille, eikä sitä käytetä yksittäisinä lainauksina tässä osiossa."
+    },
+    {
+      "id": "418028P-let-2023",
+      "vuosi": "2023",
+      "nimi": "418028P Learning Environments and Technologies",
+      "aineistonTyyppi": "Peppi-palaute (3 vastausta), itsearviointilomake sekä ohjelmajohdon välittämä opiskelijapalaute",
+      "myonteinen": [
+        { "teksti": "It was my favourite course ever!", "featured_home": true, "featured_company": true, "featured_yritys_trust": false },
+        { "teksti": "Jari was always available." },
+        { "teksti": "I really appreciated that it was very hands-on and practical. That is how I can learn the most." },
+        { "teksti": "I feel so much more confident in what I am doing now and well prepared for my future job through this course!", "featured_yritys_trust": true },
+        { "teksti": "Kurssi on ollut monelle opiskelijalle yksi suurimpia syitä hakeutua LETiin opiskelemaan." }
+      ],
+      "kehittaminen": [
+        { "teksti": "I sometimes did not know what kind of assignment will be graded and which won't. A table or something sent at the beginning of the course could be good." },
+        { "teksti": "Opiskelijat kokevat, että kurssi ei vastaa Pepin kurssikuvausta ja he eivät saa kurssilta sitä, mitä kurssikuvauksen ja sisältöjen perusteella olivat odottaneet." },
+        { "teksti": "Kurssin tehtävänannot ovat epäselviä." },
+        { "teksti": "Elements of AI 2 op MOOC-kurssi ei opiskelijoiden kokemuksen mukaan ole keskeistä Learning environments and technologies -kurssin sisältöä." },
+        { "teksti": "Aikataulujen muutokset, opetuskertojen peruutukset ja epäselvyydet toteutuksessa mainitaan palautteessa." },
+        { "teksti": "Opiskelijat ovat selvän struktuurin perään ja epävarmuuksien ja yllätysten tuntuvat vaikeilta." }
       ]
     },
     {
-      "id": "teknologiatuettu-oppiminen-kevat-2023",
-      "vuosi": "kevät 2023",
-      "nimi": "Teknologiatuettu oppiminen — portfolioaineisto",
-      "aineistonTyyppi": "Portfoliopohjainen aineisto · 106 tutkimuskäyttöön luvan antanutta",
-      "huomautus": "Kurssin portfolioaineistosta on käsitelty kategoriat \"Miten käyttäisit GenAI-sovellusta opettajana\" ja \"Harjoituksen yleinen palaute\". Aineisto toimii pääasiassa taustavahvistuksena tekoälyharjoituksen laajemmasta opiskelijoiden vastausjoukosta, eikä sitä käytetä yksittäisinä lainauksina tässä osiossa."
+      "id": "418028P-let-2024",
+      "vuosi": "2024",
+      "nimi": "418028P Learning Environments and Technologies (24LET)",
+      "aineistonTyyppi": "Microsoft Forms itse- ja vertaisarviointilomake · 35 vastaajaa (24 kandidaattivaiheen opiskelijaa, 10 maisteriopiskelijaa, 1 vaihto-opiskelija)",
+      "mittarit": [
+        { "label": "Kurssin arvosana (vastaajien keskiarvo)", "arvo": "4,17 / 5" },
+        { "label": "Ryhmätyömallin toimivuus", "arvo": "4,31 / 5" },
+        { "label": "Ryhmälopputöiden taso", "arvo": "4,20 / 5" },
+        { "label": "Portfolio-työskentelyn arvio", "arvo": "3,89 / 5" }
+      ],
+      "myonteinen": [
+        { "teksti": "Kurssin alussa tiedolliset lähtökohdat olivat aika pienet, mutta kurssin aikana opin paljon uutta. Mielenkiinto pysyi yllä koko kurssin ajan. Pidin erityisesti harjoituskertojen sisällöistä ja itse asioiden kokeilemisesta." },
+        { "teksti": "Opin kurssin aikana promptaamaan paremmin ja näkemään, kuinka tekoälyä voi oikeasti hyödyntää tosi laajasti monien asioiden tukena." },
+        { "teksti": "Aluksi kurssi ja aiheet tuntuivat vaikeilta mutta erityisesti lopputyön parissa huomasin oppineeni aihealueista paljon." },
+        { "teksti": "Kurssi innosti minua miettimään kurssin teemoihin liittyvää valinnaista 5.-6.luokkalaisille." },
+        { "teksti": "On top of that my group created an excellent final project, which will be a valuable resource in my classroom." },
+        { "teksti": "At the start, I was really confused about a lot of the technologies and tools we went over, but with time, I have a much stronger understanding and am more confident in their use." },
+        { "teksti": "This course sparked a lot of curiosity and motivation in me, and I was truly excited to learn something new in every class." }
+      ],
+      "kehittaminen": [
+        { "teksti": "Ohjeet loppytyöhön tuli aika myöhään, mikä aiheutti aikataulullisia haasteita." },
+        { "teksti": "Meidän ainut ongelma oli aikatauluttaminen. Oli paljon muita kursseja ja projekteja samaan aikaan, mistä johtuen aikataulumme ei aina osunut kohdilleen." },
+        { "teksti": "I didn't perform as well on the workshops than the other students. I think I needed the most assistance and scaffolding." },
+        { "teksti": "Moreover, we lacked a clear vision of our goal at first, which made it difficult to work efficiently on the project. A brief discussion with one of our lecturers helped me have a clearer goal for our project." },
+        { "teksti": "There are many tools covered during the course, and it's a challenge to remember all of them and fully understand their uses." }
+      ],
+      "huomautus": "Vertailu vuoden 2023 ohjelmajohdon välittämään palautteeseen: 2023 nostetuista teemoista ohjeiden ajoitus näkyy yhä yksittäisissä 24LET-vastauksissa (mm. lopputyön ohjeet), mutta Elements of AI -kritiikkiä ei aineistossa mainita. Kolmiosainen kurssirakenne — työpajat, portfolio ja ryhmälopputyö — toistuu vastauksissa. Oppimistavoitteista vahvin näyttö on omien digitaalisten taitojen tunnistamisessa (19/35 vahvasti samaa mieltä) ja teknologioiden integroinnissa (13/35)."
     }
   ],
   "keruunJaljet": [
