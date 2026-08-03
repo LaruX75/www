@@ -1,7 +1,7 @@
 {
   "meta": {
     "aikavali": "2013–2024",
-    "kursseja": 7,
+    "kursseja": 8,
     "portfoliovastauksia": 106,
     "tel1Keskiarvo": "4,55 / 5"
   },
@@ -54,6 +54,35 @@
       ]
     },
     {
+      "id": "405028Y-2018-2019",
+      "vuosi": "2018–2019",
+      "nimi": "405028Y Teknologiatuettu oppiminen ja opintoihin orientoituminen — TVT-osuus",
+      "aineistonTyyppi": "Oulun yliopiston opintojaksopalauteraportti (29.08.2018–10.01.2019) · 274 rekisteröityä opiskelijaa · 12,77 % vastausprosentti Likert-osioon · 112 avovastauskatkelmaa",
+      "mittarit": [
+        { "label": "Saavutin osaamistavoitteet", "arvo": "3,56 / 5" },
+        { "label": "Sisältö tuki osaamistavoitteita", "arvo": "3,51 / 5" },
+        { "label": "Ohjeistukset olivat selkeitä", "arvo": "2,53 / 5" },
+        { "label": "Tukea ja ohjausta oli riittävästi", "arvo": "3,06 / 5" }
+      ],
+      "myonteinen": [
+        { "teksti": "Opetus todella mieluisaa ja kiinnostavaa. Opetusta ei kuitenkaa ole liikaa, vaan itsekin sai tehdä opetettuja asioita käytännössä." },
+        { "teksti": "Hyvin toiminut kokonaisuus. Koko porukalle pieni teoria-paketti, jonka jälkeen oman ryhmän kanssa saanut itse tehdä ja kokeilla asioita käytännössä." },
+        { "teksti": "Aihekokonaisuus oli uusi ja mielenkiintoinen. Luennot olivat mielenkiintoisia, luennoitsija osaa aiheensa kyllä käsitellä ja opettaa mielenkiintoisesti!" },
+        { "teksti": "Pienryhmät toimivat hyvin, ja tunsin että opin paljon käytännön asioita. Pienryhmässä myös huomioitiin erityispedagogiikan näkökulma!" },
+        { "teksti": "Teoria ja käytäntö täsmäsivät. Työelämäyhteistyö aivan mahtava kokemus. Monipuoliset laitteet ja tehtävät." },
+        { "teksti": "Todella mielenkiintoinen kurssi kokonaisuudessaan. Kurssi oli ajankohtainen ja todellakin toi arkeen ja työelämään paljon uutta." }
+      ],
+      "kehittaminen": [
+        { "teksti": "Joidenkin tehtävien suhteen ohjeistukset olivat melko epäselviä (kukaan ei tiedä mitä pitää tehdä ja millon pitää tehdä)." },
+        { "teksti": "Teams ja OneNoten käyttöä olisi meille opiskelijoille voinut avata enemmän. Myös tehtävän portfolion ohjeistus oli todella sekava." },
+        { "teksti": "Tehtävien ohjeistus on ollut heikkoa ja epäselvyyksiä oli paljon. En kokenut saavani ajoissa tarpeeksi ohjeistusta pedagogisen portfolion tekemiseen." },
+        { "teksti": "Tehtävänannot olivat aivan järkyttävän epäselviä. Etenkin kurssin projektityö jäi aivan auki itselleni, enkä tiennyt mitä siltä vaditaan." },
+        { "teksti": "Suurryhmäopetus (luennot) olivat kamala kokemus pienten tilojen vuoksi." },
+        { "teksti": "Kurssin järjestämiseksi kaikkien opettajien tulisi tehdä yhteistyötä!" }
+      ],
+      "huomautus": "Ohjeistuksen selkeys on Likert-mittariston selvästi alhaisin arvo (2,53 / 5) ja toistuu 37 mainintana 112 avovastauksesta — mm. Teams/OneNote-onboarding ja projektityön ohjeistus mainitaan. Käytännön harjoitukset ja pienryhmätyö arvioidaan pääosin onnistuneiksi. Toistuva teema on myös luennoitsijan ja harjoitusryhmien vetäjien välinen koordinaatio. Seuraavan vuoden (2019–2020) toteutuksessa ohjeistuksen selkeys nousi 2,71:een, mutta pysyi edelleen mittariston alhaisimpana."
+    },
+    {
       "id": "405028Y-2019-2020",
       "vuosi": "2019–2020",
       "nimi": "405028Y Teknologiatuettu oppiminen ja opintoihin orientoituminen — TVT-osuus",
@@ -80,7 +109,7 @@
         { "teksti": "Liikaa asiaa, ja liian nopeassa tahdissa" },
         { "teksti": "En koe, että suurimmasta osasta harkkaryhmän tehtävistä olisi minulle ammatillista hyötyä." }
       ],
-      "huomautus": "Kaksi selvintä signaalia: ohjeistuksen selkeys on Likert-mittariston alhaisin arvo (2,71 / 5) ja toistuu avovastauksissa erityisesti kehittämiskohteena (34 mainintaa 114 vastauksesta). Toisaalta käytännön harjoitukset (34 mainintaa, pääosin myönteisiä) ja käytettävissä oleva teknologia arvioidaan onnistuneiksi. Ohjeistuksen selkeys pysyy toistuvana palauteteemana samankaltaisilla teknologiakursseilla myös vuosien 2023–2024 aineistoissa (418028P Learning Environments and Technologies)."
+      "huomautus": "Kaksi selvintä signaalia: ohjeistuksen selkeys on Likert-mittariston alhaisin arvo (2,71 / 5) ja toistuu avovastauksissa erityisesti kehittämiskohteena (34 mainintaa 114 vastauksesta). Toisaalta käytännön harjoitukset (34 mainintaa, pääosin myönteisiä) ja käytettävissä oleva teknologia arvioidaan onnistuneiksi. Vuoden 2018–2019 toteutukseen verrattuna ohjeistuksen selkeys nousi 2,53 → 2,71, mutta pysyi mittariston alhaisimpana. Sama ohjeistus-teema toistuu vielä myöhempinä vuosina 2023–2024 (418028P Learning Environments and Technologies)."
     },
     {
       "id": "luko-erkka-2023",
@@ -162,7 +191,7 @@
     }
   ],
   "keruunJaljet": [
-    { "koodi": "405028Y", "nimi": "Teknologiatuettu oppiminen ja opintoihin orientoituminen", "vuodet": "2018–2019, 2021 (2019–2020 kortti yllä)" },
+    { "koodi": "405028Y", "nimi": "Teknologiatuettu oppiminen ja opintoihin orientoituminen", "vuodet": "2020–2021 (2018–2019 ja 2019–2020 kortit yllä)" },
     { "koodi": "407062A", "nimi": "Ohjelmointi perusopetuksessa", "vuodet": "2018–2020" },
     { "koodi": "413314S", "nimi": "LET 2nd year Designing technology-enhanced learning", "vuodet": "2018–2021" },
     { "koodi": "413325S", "nimi": "Emergent technologies", "vuodet": "2018–2021" },
