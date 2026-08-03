@@ -84,6 +84,14 @@
   border: 1px solid rgba(84, 108, 140, 0.16);
   background: rgba(255, 255, 255, 0.88);
   box-shadow: 0 1.1rem 2.7rem rgba(23, 37, 56, 0.08);
+  overflow: hidden;
+}
+.portfolio-hero-card-media {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: center;
 }
 .portfolio-hero-card .card-body {
   display: flex;
