@@ -136,6 +136,21 @@ schemaMentions:
   </div>
 </nav>
 
+<nav class="portfolio-toc" aria-label="Portfolion sisällysluettelo">
+  <p class="portfolio-toc-title">Sisältö</p>
+  <ol>
+    <li><a href="#tiivistelma" data-toc-link>Tiivistelmä</a></li>
+    <li><a href="#opetusajattelu" data-toc-link>Opetusajattelu</a></li>
+    <li><a href="#kaytannon-kokemus" data-toc-link>Käytännön kokemus</a></li>
+    <li><a href="#arviot-ja-palautteet" data-toc-link>Arviot ja palautteet</a></li>
+    <li><a href="#osaamisen-yllapito" data-toc-link>Osaamisen ylläpito</a></li>
+    <li><a href="#nykyinen-fokus" data-toc-link>Nykyinen fokus</a></li>
+    <li><a href="#esitysnostot" data-toc-link>Esitykset</a></li>
+    <li><a href="#portfolionaytteet" data-toc-link>Näytteitä</a></li>
+    <li><a href="#arkistot" data-toc-link>Arkistot</a></li>
+  </ol>
+</nav>
+
 <section class="py-5" id="tiivistelma">
   <div class="site-shell">
     <div class="portfolio-section-head">
@@ -517,7 +532,7 @@ schemaMentions:
   <div class="site-shell">
     <div class="portfolio-section-head">
       <p class="portfolio-eyebrow portfolio-eyebrow--dark mb-1"><i class="bi bi-collection me-1"></i>Portfolionäytteitä</p>
-      <h2 class="portfolio-section-title">Muutama konkreettinen esimerkki siitä, miltä kehittämistyö näyttää käytännössä</h2>
+      <h2 class="portfolio-section-title">Konkreettisia näytteitä: oppimisympäristöistä, avoimista aineistoista ja saaduista tunnustuksista</h2>
     </div>
     <div class="row g-4">
       <div class="col-md-6 col-xl-3">
@@ -638,4 +653,36 @@ schemaMentions:
   </div>
 </section>
 </details>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const tocLinks = Array.from(document.querySelectorAll('[data-toc-link]'));
+  if (!tocLinks.length) return;
+
+  const sections = tocLinks
+    .map((link) => document.querySelector(link.getAttribute('href')))
+    .filter(Boolean);
+  if (!sections.length) return;
+
+  const setActive = (id) => {
+    tocLinks.forEach((link) => {
+      link.classList.toggle('is-active', link.getAttribute('href') === '#' + id);
+    });
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visible = entries
+        .filter((e) => e.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+      if (visible.length) {
+        setActive(visible[0].target.id);
+      }
+    },
+    { rootMargin: '-35% 0px -55% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+});
+</script>
 
