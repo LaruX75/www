@@ -93,8 +93,8 @@ schemaMentions:
           </div>
         </div>
         <div class="d-flex flex-wrap gap-2">
-          <a href="#nayttoa-tyosta" class="btn btn-primary rounded-pill px-4">Näyttöä työstä</a>
-          <a href="#portfolioaineisto" class="btn btn-outline-secondary rounded-pill px-4">Tarkemmat näytöt</a>
+          <a href="#tiivistelma" class="btn btn-primary rounded-pill px-4">Lue tiivistelmä</a>
+          <a href="#kaytannon-kokemus" class="btn btn-outline-secondary rounded-pill px-4">Käytännön kokemus</a>
           <a href="/tyoni-yliopistonlehtorina/" class="btn btn-outline-secondary rounded-pill px-4">Yliopistotyö</a>
         </div>
       </div>
@@ -127,16 +127,22 @@ schemaMentions:
 
 <nav class="portfolio-mobile-path" aria-label="Portfoliosivun tärkeimmät osiot">
   <div class="site-shell">
+    <a href="#tiivistelma">Tiivistelmä</a>
     <a href="#opetusajattelu">Periaatteet</a>
-    <a href="#nayttoa-tyosta">Näyttö</a>
+    <a href="#kaytannon-kokemus">Kokemus</a>
+    <a href="#arviot-ja-palautteet">Palaute</a>
     <a href="#nykyinen-fokus">Nyt</a>
-    <a href="#portfolioaineisto">Aineisto</a>
   </div>
 </nav>
 
-<section class="py-5">
+<section class="py-5" id="tiivistelma">
   <div class="site-shell">
-    <div class="row g-3 text-center">
+    <div class="portfolio-section-head">
+      <p class="portfolio-eyebrow portfolio-eyebrow--dark mb-1"><i class="bi bi-card-text me-1"></i>Tiivistelmä</p>
+      <h2 class="portfolio-section-title">Yhteenveto opetusurasta ja portfolion sisällöstä</h2>
+    </div>
+
+    <div class="row g-3 text-center mb-4">
       <div class="col-6 col-lg-3">
         {{ ui.kpiCard("vuotta yliopisto-opetusta", "20+", { extraClass: "research-kpi-card" }) }}
       </div>
@@ -150,10 +156,21 @@ schemaMentions:
         {{ ui.kpiCard("merkittävää tunnustusta", "3", { extraClass: "research-kpi-card" }) }}
       </div>
     </div>
-    <p class="portfolio-stat-note mb-0">
-      Opinnäytteet: <a href="https://oulurepo.oulu.fi/" target="_blank" rel="noopener noreferrer">OuluREPO</a>.
-      Materiaalit: esitysarkisto, Canva ja <a href="https://aoe.fi/" target="_blank" rel="noopener noreferrer">AOE</a>.
-    </p>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="portfolio-tiivistelma">
+          <p class="lead mb-3">Olen kasvatustieteiden tohtori (KT, 2012) ja Oulun yliopiston kasvatustieteiden tiedekunnan yliopistonlehtori teknologiatuetun oppimisen ja opettamisen alalla. Opetuskokemusta on kertynyt yli kaksi vuosikymmentä opettajankoulutuksessa sekä perustutkinto- että maisteriohjelmissa, suomeksi ja englanniksi.</p>
+          <p>Ohjaan aktiivisesti opinnäytetöitä (yli sata valmista pro gradua ja kandidaatintutkielmaa) ja mentoroin viittä jatko-opiskelijaa. Kehittämistyössä olen ollut mukana rakentamassa tiedekunnan digitaalisia opetustiloja (mm. KTK149-digiluokka, LeaForum, L2-luentosali) sekä toimin ITK-johtoryhmässä, STEAM in Oulu -sivuaineen vastuuhenkilönä ja OPH:n digipedagogiikan verkostoissa.</p>
+          <p>Opiskelijapalauteaineisto kattaa 14 kurssikorttia vuosilta 2013–2024 kahdeksasta opintojaksosta; palautteessa toistuvat käytännönläheisyys ja avoimuus. Työni on saanut kolme näkyvää tunnustusta: Kansallinen avoimen tieteen palkinto 2020, Avoimen oppimisen palkinto 2025 ja Vuoden TVT-opettaja 2014.</p>
+          <p class="mb-0">Opetusajatteluani ohjaavat kolme periaatetta: teknologia kognitiivisena työkaluna, oppiminen yhteisöllisenä ongelmanratkaisuna ja selkeä ohjaus laatutekijänä.</p>
+        </div>
+        <p class="portfolio-stat-note mb-0 mt-3">
+          Opinnäytteet: <a href="https://oulurepo.oulu.fi/" target="_blank" rel="noopener noreferrer">OuluREPO</a>.
+          Materiaalit: esitysarkisto, Canva ja <a href="https://aoe.fi/" target="_blank" rel="noopener noreferrer">AOE</a>.
+        </p>
+      </div>
+    </div>
   </div>
 </section>
 

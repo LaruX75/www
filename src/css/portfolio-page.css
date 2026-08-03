@@ -157,6 +157,22 @@
   line-height: 1.7;
   max-width: 62ch;
 }
+.portfolio-tiivistelma {
+  padding: 1.5rem clamp(1rem, 3vw, 2rem);
+  border: 1px solid var(--bs-border-color);
+  border-left: 0.3rem solid var(--bs-primary);
+  border-radius: 0.85rem;
+  background: var(--bs-body-bg);
+}
+.portfolio-tiivistelma p {
+  line-height: 1.7;
+  color: var(--bs-body-color);
+}
+.portfolio-tiivistelma p.lead {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--bs-body-color);
+}
 .portfolio-principle-card {
   position: relative;
   overflow: hidden;
