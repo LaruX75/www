@@ -1,11 +1,18 @@
 ---
-title: Etäopetuksen näytön paikka — yhteistyössä toimitettu Wikikirja koronakevään 2020 opettajille
+title: 'Etäopetuksen näytön paikka'
 date: '2020-04-15'
-description: Koronakevään 2020 poikkeustilassa opettajien avuksi syntyi avoin, yhteistyössä toimitettu Wikikirja "Etäopetuksen näytön paikka". Olin mukana toimittamisessa.
+description: 'Koronakevään 2020 poikkeustilassa opettajien avuksi syntyi avoin, yhteistyössä toimitettu Wikikirja "Etäopetuksen näytön paikka". CC BY-SA 4.0 -lisensoitu opas kaikille oppiasteille — Jari Laru osallistui toimittamiseen.'
 categories:
   - Oppimisympäristöt ja tilat
 secondaryTheme:
   - Yliopisto ja korkeakoulut
+author: "Yhteistyössä toimitettu (usea kirjoittaja)"
+publication: "Wikikirjasto"
+type: opas
+writingRoles:
+  - expert
+publicationType: D5
+source_url: 'https://fi.wikibooks.org/wiki/Et%C3%A4opetuksen_n%C3%A4yt%C3%B6n_paikka'
 keywords:
   - etäopetus
   - koronakevät 2020
@@ -13,9 +20,6 @@ keywords:
   - Wikikirja
   - opettajankoulutus
 templateEngineOverride: md
-writingRoles:
-  - expert
-
 ---
 
 ## Wikikirja opettajien avuksi poikkeuskeväänä

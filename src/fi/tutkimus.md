@@ -554,6 +554,22 @@ schemaMentions:
         <i class="bi bi-arrow-right fs-4"></i>
       </div>
 
+      <div class="tutkijahistoria-card card border-0 shadow-sm flex-shrink-0">
+        <div class="card-body p-4">
+          <span class="badge bg-secondary mb-3">Pohjoismainen hanke</span>
+          <h3 class="h5 fw-bold mb-1">MAKECT</h3>
+          <p class="text-muted small mb-3">Assessing CT in Nordic Maker Education &mdash; pohjoismainen yhteistyö</p>
+          <p class="small mb-0">Tutkimushanke laskennallisen ajattelun (Computational Thinking) arvioinnista ja integroinnista maker-kasvatuksen kontekstissa peruskoulussa. Yhteistyö pohjoismaisten korkeakoulujen ja koulujen kanssa.</p>
+        </div>
+        <div class="card-footer bg-transparent border-0 px-4 pb-3 pt-0">
+          <a href="https://sites.google.com/edu.oulu.fi/makect/home" class="btn btn-sm btn-outline-secondary" target="_blank" rel="noopener noreferrer">Hankkeen sivusto</a>
+        </div>
+      </div>
+
+      <div class="tutkijahistoria-arrow align-self-center text-muted flex-shrink-0" aria-hidden="true">
+        <i class="bi bi-arrow-right fs-4"></i>
+      </div>
+
       <div class="tutkijahistoria-card card border-success shadow-sm flex-shrink-0" style="border-width: 2px !important;">
         <div class="card-body p-4">
           <span class="badge bg-success mb-3">2024&ndash;</span>

@@ -84,28 +84,6 @@
       archiveTypeLabel: "Oppimisympäristö",
       sourceLabel: "Google Sites"
     },
-    {
-      title: "MAKECT — Assessing CT in Nordic Maker Education",
-      url: "https://sites.google.com/edu.oulu.fi/makect/home",
-      description: "Pohjoismainen tutkimushanke laskennallisen ajattelun arvioinnista maker-kasvatuksessa peruskoulussa.",
-      meta: "Google Sites · Hankesivusto",
-      date: "",
-      _isoDate: "2022-01-01",
-      archiveType: "oppimisymparisto",
-      archiveTypeLabel: "Oppimisympäristö",
-      sourceLabel: "Google Sites"
-    },
-    {
-      title: "Etäopetuksen näytön paikka",
-      url: "https://fi.wikibooks.org/wiki/Et%C3%A4opetuksen_n%C3%A4yt%C3%B6n_paikka",
-      description: "Koronakevään 2020 yhteistyössä toimitettu avoin Wikikirja opettajille. CC BY-SA 4.0.",
-      meta: "Wikikirja · Avoin oppikirja",
-      date: "2020",
-      _isoDate: "2020-04-15",
-      archiveType: "oppimisymparisto",
-      archiveTypeLabel: "Oppimisympäristö",
-      sourceLabel: "Wikikirja"
-    }
   ];
   const courseFilterLabels = new Map();
   const refinerParentByFilter = {
