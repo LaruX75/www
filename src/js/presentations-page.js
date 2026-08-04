@@ -39,6 +39,74 @@
       sourceLabel: "Sivuston analyysi"
     }
   ];
+  const learningEnvironmentItems = [
+    {
+      title: "418025P LET -kurssin oppimateriaalisivusto",
+      url: "https://sites.google.com/oulu.fi/let/home/assesment",
+      description: "Learning Environments and Technologies -kurssin oppimateriaalisivusto Google Sitesissa.",
+      meta: "Google Sites · Kurssisivusto",
+      date: "2019",
+      _isoDate: "2019-09-01",
+      archiveType: "oppimisymparisto",
+      archiveTypeLabel: "Oppimisympäristö",
+      sourceLabel: "Google Sites"
+    },
+    {
+      title: "410017Y Digitaalinen media oppimisprojektina — kurssisivusto",
+      url: "https://sites.google.com/oulu.fi/410017/etusivu",
+      description: "Kurssin verkkosivusto Google Sitesissa.",
+      meta: "Google Sites · Kurssisivusto",
+      date: "2015",
+      _isoDate: "2015-09-01",
+      archiveType: "oppimisymparisto",
+      archiveTypeLabel: "Oppimisympäristö",
+      sourceLabel: "Google Sites"
+    },
+    {
+      title: "CSCL2019 — Computer-Supported Collaborative Learning",
+      url: "https://sites.google.com/edu.oulu.fi/cscl2019/home",
+      description: "Kansainvälinen 4 yliopiston (Oulu, Turku, Saarland, Alankomaat) verkkokurssi CSCL-teemasta.",
+      meta: "Google Sites · Kv. verkkokurssi",
+      date: "2019",
+      _isoDate: "2019-10-07",
+      archiveType: "oppimisymparisto",
+      archiveTypeLabel: "Oppimisympäristö",
+      sourceLabel: "Google Sites"
+    },
+    {
+      title: "CSCL2020 — Computer-Supported Collaborative Learning",
+      url: "https://sites.google.com/edu.oulu.fi/cscl2020/home",
+      description: "Kansainvälinen 4 yliopiston verkkokurssi CSCL-teemasta, syksy 2020.",
+      meta: "Google Sites · Kv. verkkokurssi",
+      date: "2020",
+      _isoDate: "2020-10-09",
+      archiveType: "oppimisymparisto",
+      archiveTypeLabel: "Oppimisympäristö",
+      sourceLabel: "Google Sites"
+    },
+    {
+      title: "MAKECT — Assessing CT in Nordic Maker Education",
+      url: "https://sites.google.com/edu.oulu.fi/makect/home",
+      description: "Pohjoismainen tutkimushanke laskennallisen ajattelun arvioinnista maker-kasvatuksessa peruskoulussa.",
+      meta: "Google Sites · Hankesivusto",
+      date: "",
+      _isoDate: "2022-01-01",
+      archiveType: "oppimisymparisto",
+      archiveTypeLabel: "Oppimisympäristö",
+      sourceLabel: "Google Sites"
+    },
+    {
+      title: "Etäopetuksen näytön paikka",
+      url: "https://fi.wikibooks.org/wiki/Et%C3%A4opetuksen_n%C3%A4yt%C3%B6n_paikka",
+      description: "Koronakevään 2020 yhteistyössä toimitettu avoin Wikikirja opettajille. CC BY-SA 4.0.",
+      meta: "Wikikirja · Avoin oppikirja",
+      date: "2020",
+      _isoDate: "2020-04-15",
+      archiveType: "oppimisymparisto",
+      archiveTypeLabel: "Oppimisympäristö",
+      sourceLabel: "Wikikirja"
+    }
+  ];
   const courseFilterLabels = new Map();
   const refinerParentByFilter = {
     "category:konferenssi-keynote": "route:puheenvuorot",
@@ -49,7 +117,8 @@
     "category:hanke-esittely": "route:koulutukset",
     aoe: "route:materiaalit",
     video: "route:materiaalit",
-    analysis: "route:materiaalit"
+    analysis: "route:materiaalit",
+    oppimisymparisto: "route:materiaalit"
   };
 
   // Liitetään Canva MD-sivujen sisäiset URLit canva.tableRows-dataan design-id:n perusteella
@@ -82,7 +151,8 @@
     youtubeVideos: "Katso",
     youtube: "YouTube",
     slideshare: "SlideShare",
-    analysis: "Lue analyysi"
+    analysis: "Lue analyysi",
+    oppimisymparisto: "Avaa sivusto"
   };
 
   const archiveMetaByKey = {
@@ -914,6 +984,21 @@
       });
     });
 
+    learningEnvironmentItems.forEach((item) => {
+      const matchedContexts = findContextsForItem(item);
+      const taxonomy = classifyPresentationItem(item, matchedContexts);
+      items.push({
+        ...item,
+        openLabel: linkLabelByKey.oppimisymparisto,
+        matchedContexts,
+        categoryTags: taxonomy.categoryTags,
+        profileTags: taxonomy.profileTags,
+        routeTags: taxonomy.routeTags,
+        routePrimary: "route:materiaalit",
+        kategoria: item.kategoria || taxonomy.primaryCategory
+      });
+    });
+
     const seen = new Set();
     return items
       .filter((item) => {
@@ -942,7 +1027,7 @@
     if (filter === "route:materiaalit") {
       return item.routePrimary === filter;
     }
-    if (["own", "aoe", "video", "analysis"].includes(filter)) return item.archiveType === filter;
+    if (["own", "aoe", "video", "analysis", "oppimisymparisto"].includes(filter)) return item.archiveType === filter;
     if (filter.startsWith("category:")) {
       return Array.isArray(item.categoryTags) && item.categoryTags.includes(filter.slice("category:".length));
     }
@@ -1011,7 +1096,8 @@
       own: { label: "Omat esitykset", note: "" },
       aoe: { label: "Avoimet oppimateriaalit", note: "" },
       video: { label: "Videot", note: "" },
-      analysis: { label: "Analyysit", note: "" }
+      analysis: { label: "Analyysit", note: "" },
+      oppimisymparisto: { label: "Oppimisympäristöt", note: "Kurssien ja hankkeiden avoimet verkkosivustot (Google Sites, Wikikirjat)." }
     };
     if (labels[filter]) return labels[filter];
 
