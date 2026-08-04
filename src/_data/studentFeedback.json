@@ -231,7 +231,11 @@
         { "teksti": "Kurssia toivottiin tarjottavan myös englanniksi." },
         { "teksti": "Kansainvälisten ja suomalaisten opiskelijoiden yhteistä opiskelua toivottiin lisää." }
       ],
-      "huomautus": "Vastausprosentti oli 8,7 % (noin 2 vastaajaa 23 rekisteröidystä), joten mittarikeskiarvot 4,5–5,0 perustuvat kahden opiskelijan itsearvioihin — tuloksia ei voi yleistää. Palautekohdat ovat raportista koottuja yhteenvetoja, eivät verbatim-lainauksia. Kurssi järjestettiin koronapandemian etäopetuskeväänä 2020, mikä näkyy sekä myönteisessä palautteessa (asynkroniset materiaalit) että kehittämiskohteissa (kurssin osittainen keskeytyminen)."
+      "huomautus": "Vastausprosentti oli 8,7 % (noin 2 vastaajaa 23 rekisteröidystä), joten mittarikeskiarvot 4,5–5,0 perustuvat kahden opiskelijan itsearvioihin — tuloksia ei voi yleistää. Palautekohdat ovat raportista koottuja yhteenvetoja, eivät verbatim-lainauksia. Kurssi järjestettiin koronapandemian etäopetuskeväänä 2020, mikä näkyy sekä myönteisessä palautteessa (asynkroniset materiaalit) että kehittämiskohteissa (kurssin osittainen keskeytyminen).",
+      "materiaali": {
+        "label": "407062A Ohjelmointi perusopetuksessa -kurssisivusto (Google Sites, sama sivusto myös 2019)",
+        "url": "https://sites.google.com/edu.oulu.fi/ohjelmointi-perusopetuksessa20/etusivu-frontpage"
+      }
     },
     {
       "id": "405028Y-2020-2021",

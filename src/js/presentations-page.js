@@ -84,6 +84,17 @@
       archiveTypeLabel: "Oppimisympäristö",
       sourceLabel: "Google Sites"
     },
+    {
+      title: "407062A Ohjelmointi perusopetuksessa — kurssisivusto",
+      url: "https://sites.google.com/edu.oulu.fi/ohjelmointi-perusopetuksessa20/etusivu-frontpage",
+      description: "Kurssin verkkosivusto (kevät 2020, samaa käytettiin myös vuonna 2019). Digitaalinen ja algoritminen ajattelu, koneeton ja graafinen ohjelmointi, robotiikka. Kaksikielinen (fi/en).",
+      meta: "Google Sites · Kurssisivusto",
+      date: "2020",
+      _isoDate: "2020-01-09",
+      archiveType: "oppimisymparisto",
+      archiveTypeLabel: "Oppimisympäristö",
+      sourceLabel: "Google Sites"
+    },
   ];
   const courseFilterLabels = new Map();
   const refinerParentByFilter = {
