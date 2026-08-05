@@ -625,7 +625,7 @@ module.exports = {
           links: [
             {
               title: "Valtuustopuheenvuorot",
-              href: "/kynasta/#puheet",
+              href: "/valtuustotyo/#puheet",
               icon: "bi bi-mic me-2",
               menuLink: true,
               description: "Kokouksissa pidetyt puheet, pöytäkirjat ja videot.",
@@ -633,7 +633,7 @@ module.exports = {
             },
             {
               title: "Valtuustoaloitteet",
-              href: "/kynasta/#aloitteet",
+              href: "/valtuustotyo/#aloitteet",
               icon: "bi bi-megaphone me-2",
               menuLink: true,
               description: "Kirjalliset avaukset kaupunginvaltuuston päätöksentekoon.",
@@ -751,23 +751,26 @@ module.exports = {
         {
           heading: "Kirjoitukset",
           links: [
+            { title: "Kirjoitukset (koontisivu)", href: "/kirjoitukset/", icon: "bi bi-pencil-square me-2", description: "Blogi, kolumnit ja mielipidekirjoitukset yhdessä näkymässä." },
             { title: "Blogi", href: "/blogi/", icon: "bi bi-pen me-2", countKey: "blog", description: "Ajankohtaiset kirjoitukset opetuksesta, teknologiasta ja yhteiskunnasta." },
-            { title: "Kolumnit", href: "/kynasta/#kolumnit", icon: "bi bi-journal-richtext me-2", countKey: "pub_kolumni", description: "Taustoittavia ja esseemäisiä tekstejä opetuksesta, yhteiskunnasta ja ilmiöistä." },
-            { title: "Mielipidekirjoitukset", href: "/kynasta/#mielipiteet", icon: "bi bi-chat-left-quote me-2", countKey: "pub_mielipide", description: "Lehdissä julkaistut mielipidekirjoitukset yhtenä kokonaisuutena." }
+            { title: "Kolumnit", href: "/kirjoitukset/#kolumnit", icon: "bi bi-journal-richtext me-2", countKey: "pub_kolumni", description: "Taustoittavia ja esseemäisiä tekstejä opetuksesta, yhteiskunnasta ja ilmiöistä." },
+            { title: "Mielipidekirjoitukset", href: "/kirjoitukset/#mielipiteet", icon: "bi bi-chat-left-quote me-2", countKey: "pub_mielipide", description: "Lehdissä julkaistut mielipidekirjoitukset yhtenä kokonaisuutena." }
           ]
         },
         {
-          heading: "Luottamushenkilötyö",
+          heading: "Valtuustotyö",
           links: [
-            { title: "Valtuustopuheenvuorot", href: "/kynasta/#puheet", icon: "bi bi-mic me-2", countKey: "pub_puhe_valtuusto", description: "Kaupunginvaltuuston kokouksissa pidetyt puheenvuorot." },
-            { title: "Valtuustoaloitteet", href: "/kynasta/#aloitteet", icon: "bi bi-megaphone me-2", countKey: "politics", description: "Valtuustoaloitteet ja muut kirjalliset avaukset päätöksentekoon." }
+            { title: "Valtuustotyö (koontisivu)", href: "/valtuustotyo/", icon: "bi bi-building me-2", description: "Puheenvuorot ja aloitteet kaupunginvaltuustossa." },
+            { title: "Valtuustopuheenvuorot", href: "/valtuustotyo/#puheet", icon: "bi bi-mic me-2", countKey: "pub_puhe_valtuusto", description: "Kaupunginvaltuuston kokouksissa pidetyt puheenvuorot." },
+            { title: "Valtuustoaloitteet", href: "/valtuustotyo/#aloitteet", icon: "bi bi-megaphone me-2", countKey: "politics", description: "Valtuustoaloitteet ja muut kirjalliset avaukset päätöksentekoon." }
           ]
         },
         {
-          heading: "Asiantuntijatekstit ja puheet",
+          heading: "Lausunnot ja julkiset puheet",
           links: [
-            { title: "Lausunnot", href: "/kynasta/#lausunnot", icon: "bi bi-file-earmark-text me-2", countData: "publications_statements", description: "Lausuntopalvelussa ja muissa valmisteluprosesseissa annetut asiantuntijalausunnot." },
-            { title: "Julkiset puheet", href: "/kynasta/#julkiset-puheet", icon: "bi bi-megaphone-fill me-2", countKey: "pub_puhe_julkinen", description: "Juhlapuheet, yliopistopuheet ja yleisötilaisuuksien puheenvuorot." },
+            { title: "Lausunnot ja julkiset puheet (koontisivu)", href: "/lausunnot/", icon: "bi bi-file-earmark-text me-2", description: "Asiantuntijalausunnot ja julkiset puheet yhdessä näkymässä." },
+            { title: "Lausunnot", href: "/lausunnot/#lausunnot", icon: "bi bi-file-earmark-text me-2", countData: "publications_statements", description: "Lausuntopalvelussa ja muissa valmisteluprosesseissa annetut asiantuntijalausunnot." },
+            { title: "Julkiset puheet", href: "/lausunnot/#julkiset-puheet", icon: "bi bi-megaphone-fill me-2", countKey: "pub_puhe_julkinen", description: "Juhlapuheet, yliopistopuheet ja yleisötilaisuuksien puheenvuorot." },
             { title: "Teemaprofiilit", href: "/teemat/", icon: "bi bi-diagram-3 me-2", description: "Toimitetut aihepolut, joissa sama teema näkyy kirjoituksissa, puheissa ja lausunnoissa." }
           ]
         }
@@ -882,7 +885,7 @@ module.exports = {
             },
             {
               title: "Lausunnot ja kannanotot",
-              href: "/kynasta/#lausunnot",
+              href: "/lausunnot/#lausunnot",
               icon: "bi bi-file-earmark-text me-2",
               description: "Tutkimustiedon ja asiantuntijuuden vieminen valmisteluun ja julkiseen keskusteluun."
             },

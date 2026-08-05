@@ -289,7 +289,7 @@ schemaMentions:
           {% endfor %}
         </div>
         <div class="mt-3 d-flex flex-wrap gap-2">
-          <a href="/kynasta/#lausunnot" class="btn btn-outline-primary btn-sm rounded-pill px-3">Kaikki lausunnot</a>
+          <a href="/lausunnot/#lausunnot" class="btn btn-outline-primary btn-sm rounded-pill px-3">Kaikki lausunnot</a>
           <a href="/mediassa/#media-arkisto" class="btn btn-outline-primary btn-sm rounded-pill px-3">Asiantuntijaroolit</a>
           <a href="/esitykset/" class="btn btn-outline-primary btn-sm rounded-pill px-3">Esitykset ja materiaalit</a>
         </div>

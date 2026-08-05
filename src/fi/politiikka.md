@@ -374,7 +374,7 @@ schemaMentions:
           </div>
           <h3 class="pol-evidence-title pol-evidence-title--small"><a href="{{ latestPoliticalSpeech.url }}">{{ latestPoliticalSpeech.data.title }}</a></h3>
           <p class="pol-evidence-summary">Uusin politiikkaan liittyvä puheenvuoro valtuustosta tai yhteiskunnallisesta tilaisuudesta.</p>
-          <a href="{{ "/kynasta/#puheet" if latestSpeechIsCouncil else "/kynasta/#julkiset-puheet" }}" class="pol-inline-link">{{ "Kaikki valtuustopuheenvuorot" if latestSpeechIsCouncil else "Kaikki julkiset puheet" }}</a>
+          <a href="{{ "/valtuustotyo/#puheet" if latestSpeechIsCouncil else "/lausunnot/#julkiset-puheet" }}" class="pol-inline-link">{{ "Kaikki valtuustopuheenvuorot" if latestSpeechIsCouncil else "Kaikki julkiset puheet" }}</a>
         </article>
         {% endif %}
         {% if latestInitiative %}
@@ -385,7 +385,7 @@ schemaMentions:
           </div>
           <h3 class="pol-evidence-title pol-evidence-title--small"><a href="{{ latestInitiative.url }}">{{ latestInitiative.data.title }}</a></h3>
           <p class="pol-evidence-summary">Valtuustoaloitteissa näkyy, miten periaatteet muuttuvat kirjallisiksi avauksiksi ja seurattaviksi päätöksiksi.</p>
-          <a href="/kynasta/#aloitteet" class="pol-inline-link">Kaikki valtuustoaloitteet</a>
+          <a href="/valtuustotyo/#aloitteet" class="pol-inline-link">Kaikki valtuustoaloitteet</a>
         </article>
         {% endif %}
         {% if latestPoliticalWriting %}
@@ -396,7 +396,7 @@ schemaMentions:
           </div>
           <h3 class="pol-evidence-title pol-evidence-title--small"><a href="{{ latestPoliticalWriting.href }}">{{ latestPoliticalWriting.title }}</a></h3>
           <p class="pol-evidence-summary">{{ latestPoliticalWriting.summary }}</p>
-          <a href="/kynasta/?opinions=political#mielipiteet" class="pol-inline-link">Poliittiset mielipiteet</a>
+          <a href="/kirjoitukset/?opinions=political#mielipiteet" class="pol-inline-link">Poliittiset mielipiteet</a>
         </article>
         {% endif %}
       </div>
@@ -435,7 +435,7 @@ schemaMentions:
           {% endif %}
           {% endfor %}
         </div>
-        <a href="/kynasta/?opinions=political#mielipiteet" class="btn btn-outline-primary btn-sm rounded-pill px-3 mt-3">Avaa kannanotot</a>
+        <a href="/kirjoitukset/?opinions=political#mielipiteet" class="btn btn-outline-primary btn-sm rounded-pill px-3 mt-3">Avaa kannanotot</a>
       </article>
 
       <article class="pol-current-card pol-writing-focus-card">
@@ -462,7 +462,7 @@ schemaMentions:
           {% endfor %}
         </div>
         {% endif %}
-        <a href="/kynasta/?opinions=hybrid#mielipiteet" class="btn btn-outline-primary btn-sm rounded-pill px-3 mt-3">Avaa asiantuntijataustaiset kirjoitukset</a>
+        <a href="/kirjoitukset/?opinions=hybrid#mielipiteet" class="btn btn-outline-primary btn-sm rounded-pill px-3 mt-3">Avaa asiantuntijataustaiset kirjoitukset</a>
       </article>
     </div>
   </div>
@@ -481,19 +481,19 @@ schemaMentions:
           <strong>Vaalikaudet</strong>
           <span>Luottamustoimet, vaalitulokset ja sisällöt vaalikausittain.</span>
         </a>
-        <a href="/kynasta/#puheet" class="pol-archive-link">
+        <a href="/valtuustotyo/#puheet" class="pol-archive-link">
           <strong>Valtuustopuheenvuorot</strong>
           <span>Kaupunginvaltuustossa pidetyt puheenvuorot.</span>
         </a>
-        <a href="/kynasta/#julkiset-puheet" class="pol-archive-link">
+        <a href="/lausunnot/#julkiset-puheet" class="pol-archive-link">
           <strong>Julkiset puheet</strong>
           <span>Yleisötilaisuuksissa, juhlapuheissa ja yliopistoyhteisössä pidetyt puheet.</span>
         </a>
-        <a href="/kynasta/#aloitteet" class="pol-archive-link">
+        <a href="/valtuustotyo/#aloitteet" class="pol-archive-link">
           <strong>Valtuustoaloitteet</strong>
           <span>Valtuustoaloitteet ja niiden eteneminen.</span>
         </a>
-        <a href="/kynasta/?opinions=political#mielipiteet" class="pol-archive-link">
+        <a href="/kirjoitukset/?opinions=political#mielipiteet" class="pol-archive-link">
           <strong>Poliittiset mielipiteet</strong>
           <span>Lehdissä julkaistut kannanotot ja poliittiset kirjoitukset.</span>
         </a>

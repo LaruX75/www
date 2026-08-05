@@ -14,7 +14,7 @@ module.exports = [
     primaryLinks: [
       { label: "Tutkimus", href: "/tutkimus/" },
       { label: "Esitykset", href: "/esitykset/" },
-      { label: "Lausunnot", href: "/kynasta/#lausunnot" }
+      { label: "Lausunnot", href: "/lausunnot/#lausunnot" }
     ],
     linkedPolitics: [
       { href: "/politiikka/sivistys-ja-koulutus/", label: "Sivistys ja koulutus" }
@@ -91,7 +91,7 @@ module.exports = [
     primaryLinks: [
       { label: "Politiikka", href: "/politiikka/" },
       { label: "Vaalikaudet", href: "/politiikka/vaalikaudet/" },
-      { label: "Puheenvuorot", href: "/kynasta/#puheet" }
+      { label: "Puheenvuorot", href: "/valtuustotyo/#puheet" }
     ],
     linkedPolitics: [
       { href: "/politiikka/palveluverkko/", label: "Palveluverkko ja kaupunginosat" },
@@ -110,7 +110,7 @@ module.exports = [
     keywords: ["tiedolla johtaminen", "valmistelu", "avoimuus", "tietojohtaminen", "vaikutusten arviointi"],
     contexts: ["politics"],
     primaryLinks: [
-      { label: "Valtuustoaloitteet", href: "/kynasta/#aloitteet" },
+      { label: "Valtuustoaloitteet", href: "/valtuustotyo/#aloitteet" },
       { label: "Politiikka", href: "/politiikka/" },
       { label: "Vaalikaudet", href: "/politiikka/vaalikaudet/" }
     ],

@@ -130,7 +130,7 @@ schemaMentions:
           <strong>Esitykset ja materiaalit</strong>
           <span>Koulutukset, puheenvuorot ja avoimet oppimateriaalit.</span>
         </a>
-        <a href="/kynasta/#lausunnot" class="about-proof-card">
+        <a href="/lausunnot/#lausunnot" class="about-proof-card">
           <strong>Lausunnot</strong>
           <span>Asiantuntijatyötä valmistelun ja päätöksenteon tueksi.</span>
         </a>

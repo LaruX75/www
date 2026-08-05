@@ -61,10 +61,10 @@
   {% set breadcrumbDetailUrl = "" %}
   {% if isCouncilQuestionBreadcrumb %}
     {% set breadcrumbDetailTitle = "Council question hour" if _baseLang == "en" else "Valtuuston kyselytunti" %}
-    {% set breadcrumbDetailUrl = "/en/writings/#puheet" if _baseLang == "en" else "/kynasta/#puheet" %}
+    {% set breadcrumbDetailUrl = "/en/writings/#puheet" if _baseLang == "en" else "/valtuustotyo/#puheet" %}
   {% elif isCouncilInitiativeBreadcrumb %}
     {% set breadcrumbDetailTitle = "Council initiative" if _baseLang == "en" else "Valtuustoaloite" %}
-    {% set breadcrumbDetailUrl = "/en/writings/#aloitteet" if _baseLang == "en" else "/kynasta/#aloitteet" %}
+    {% set breadcrumbDetailUrl = "/en/writings/#aloitteet" if _baseLang == "en" else "/valtuustotyo/#aloitteet" %}
   {% endif %}
   {% set _baseSection = ("Blog" if _baseLang == "en" else "Blogi") if ("blog" in (tags or [])) else (("Publications" if _baseLang == "en" else "Julkaisut") if ("publications" in (tags or [])) else (("Politics" if _baseLang == "en" else "Politiikka") if ("politics" in (tags or [])) else site.name)) %}
   {% setAsync "_ogRaw" %}{% ogImage "og-image.og.njk", { title: _baseTitle, section: _baseSection, siteName: site.name, domain: "jarilaru.fi", ogBgDataUrl: ogBgDataUrl } %}{% endsetAsync %}

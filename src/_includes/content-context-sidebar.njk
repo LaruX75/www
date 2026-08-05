@@ -111,15 +111,15 @@
   {% set archiveLabel = "All blog posts" if isEnglish else "Kaikki blogikirjoitukset" %}
 {% elif type == "puhe" %}
   {% if speechContext == "valtuusto" %}
-    {% set archiveHref = "/en/writings/#puheet" if isEnglish else "/kynasta/#puheet" %}
+    {% set archiveHref = "/en/writings/#puheet" if isEnglish else "/valtuustotyo/#puheet" %}
     {% set typeLabel = "Council speech" if isEnglish else "Valtuustopuheenvuoro" %}
     {% set archiveLabel = "All council speeches" if isEnglish else "Kaikki valtuustopuheenvuorot" %}
   {% elif speechContext == "kyselytunti" or isQuestionHour %}
-    {% set archiveHref = "/en/writings/#puheet" if isEnglish else "/kynasta/#puheet" %}
+    {% set archiveHref = "/en/writings/#puheet" if isEnglish else "/valtuustotyo/#puheet" %}
     {% set typeLabel = "Council question hour" if isEnglish else "Valtuuston kyselytunti" %}
     {% set archiveLabel = "All council question hour items" if isEnglish else "Kaikki kyselytunnin sisällöt" %}
   {% else %}
-    {% set archiveHref = "/en/writings/#puheet" if isEnglish else "/kynasta/#julkiset-puheet" %}
+    {% set archiveHref = "/en/writings/#puheet" if isEnglish else "/lausunnot/#julkiset-puheet" %}
     {% if speechContext == "akateeminen-puhe" %}
       {% set typeLabel = "Academic speech" if isEnglish else "Akateeminen puhe" %}
     {% elif speechContext == "juhlapuhe" %}
@@ -130,33 +130,33 @@
     {% set archiveLabel = "All public speeches" if isEnglish else "Kaikki muut julkiset puheet" %}
   {% endif %}
 {% elif type == "lausunto" %}
-  {% set archiveHref = "/en/writings/#lausunnot" if isEnglish else "/kynasta/#lausunnot" %}
+  {% set archiveHref = "/en/writings/#lausunnot" if isEnglish else "/lausunnot/#lausunnot" %}
   {% set typeLabel = "Expert statement" if isEnglish else "Asiantuntijalausunto" %}
   {% set archiveLabel = "All expert statements" if isEnglish else "Kaikki asiantuntijalausunnot" %}
 {% elif type == "mielipide" %}
   {% if opinionRoles and ("political" in opinionRoles) and ("expert" in opinionRoles) %}
-    {% set archiveHref = "/en/writings/?opinions=hybrid#mielipiteet" if isEnglish else "/kynasta/?opinions=hybrid#mielipiteet" %}
+    {% set archiveHref = "/en/writings/?opinions=hybrid#mielipiteet" if isEnglish else "/kirjoitukset/?opinions=hybrid#mielipiteet" %}
     {% set typeLabel = "Political + expert opinion" if isEnglish else "Poliittinen ja asiantuntijamielipide" %}
     {% set archiveLabel = "All political and expert opinions" if isEnglish else "Kaikki poliittiset ja asiantuntijamielipiteet" %}
   {% elif opinionRoles and ("political" in opinionRoles) %}
-    {% set archiveHref = "/en/writings/?opinions=political#mielipiteet" if isEnglish else "/kynasta/?opinions=political#mielipiteet" %}
+    {% set archiveHref = "/en/writings/?opinions=political#mielipiteet" if isEnglish else "/kirjoitukset/?opinions=political#mielipiteet" %}
     {% set typeLabel = "Political opinion" if isEnglish else "Poliittinen mielipide" %}
     {% set archiveLabel = "All political opinions" if isEnglish else "Kaikki poliittiset mielipiteet" %}
   {% elif opinionRoles and ("expert" in opinionRoles) %}
-    {% set archiveHref = "/en/writings/?opinions=expert#mielipiteet" if isEnglish else "/kynasta/?opinions=expert#mielipiteet" %}
+    {% set archiveHref = "/en/writings/?opinions=expert#mielipiteet" if isEnglish else "/kirjoitukset/?opinions=expert#mielipiteet" %}
     {% set typeLabel = "Expert opinion" if isEnglish else "Asiantuntijamielipide" %}
     {% set archiveLabel = "All expert opinions" if isEnglish else "Kaikki asiantuntijamielipiteet" %}
   {% else %}
-    {% set archiveHref = "/en/writings/#mielipiteet" if isEnglish else "/kynasta/#mielipiteet" %}
+    {% set archiveHref = "/en/writings/#mielipiteet" if isEnglish else "/kirjoitukset/#mielipiteet" %}
     {% set typeLabel = "Opinion" if isEnglish else "Mielipide" %}
     {% set archiveLabel = "All opinion pieces" if isEnglish else "Kaikki mielipidekirjoitukset" %}
   {% endif %}
 {% elif type == "kolumni" %}
-  {% set archiveHref = "/en/writings/#kolumnit" if isEnglish else "/kynasta/#kolumnit" %}
+  {% set archiveHref = "/en/writings/#kolumnit" if isEnglish else "/kirjoitukset/#kolumnit" %}
   {% set typeLabel = "Column" if isEnglish else "Kolumni" %}
   {% set archiveLabel = "All columns" if isEnglish else "Kaikki kolumnit" %}
 {% elif "politics" in currentTags %}
-  {% set archiveHref = "/en/writings/#aloitteet" if isEnglish else "/kynasta/#aloitteet" %}
+  {% set archiveHref = "/en/writings/#aloitteet" if isEnglish else "/valtuustotyo/#aloitteet" %}
   {% set typeLabel = "Council initiative" if isEnglish else "Valtuustoaloite" %}
   {% set archiveLabel = "All council initiatives" if isEnglish else "Kaikki valtuustoaloitteet" %}
 {% endif %}
@@ -206,7 +206,7 @@
       <p class="content-context-subkicker">{{ txt.forums }}</p>
       <div class="content-context-chiplist">
         {% for item in currentForums %}
-        <a class="content-context-chip content-context-chip--forum" href="{{ '/en/writings/#puheet' if isEnglish else '/kynasta/#puheet' }}">{{ item }}</a>
+        <a class="content-context-chip content-context-chip--forum" href="{{ '/en/writings/#puheet' if isEnglish else '/valtuustotyo/#puheet' }}">{{ item }}</a>
         {% endfor %}
       </div>
     </div>
@@ -219,7 +219,7 @@
     <p class="content-context-kicker">{{ txt.handling }}</p>
     <div class="content-context-chiplist">
       {% for item in currentForums %}
-      <a class="content-context-chip content-context-chip--forum" href="{{ '/en/writings/#puheet' if isEnglish else '/kynasta/#puheet' }}">{{ item }}</a>
+      <a class="content-context-chip content-context-chip--forum" href="{{ '/en/writings/#puheet' if isEnglish else '/valtuustotyo/#puheet' }}">{{ item }}</a>
       {% endfor %}
       {% if isQuestionHour %}
       <span class="content-context-chip content-context-chip--context">{{ currentAgendaTitle or "Valtuuston kyselytunti" }}</span>

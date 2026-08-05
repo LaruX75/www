@@ -207,7 +207,7 @@ module.exports = [
     editorialNote: "Kokonaisuus painottuu teksteihin, joissa väestösuunnitteet, kouluverkkovaikutukset ja kaupunginosittainen tarkastelu muodostavat itsenäisen asiakokonaisuuden. Puhtaasti kampanjaluonteiset nostot jäävät vaaliarkiston kontekstiin.",
     nextLinks: [
       { label: "Palveluverkko 2023", href: "/2023/05/21/palveluverkko-2023-reunaehtojen-tarkastelua/" },
-      { label: "Poliittiset mielipiteet", href: "/kynasta/?opinions=political#mielipiteet" },
+      { label: "Poliittiset mielipiteet", href: "/kirjoitukset/?opinions=political#mielipiteet" },
       { label: "Vaalikaudet", href: "/politiikka/vaalikaudet/" }
     ],
     linkedTopic: {
@@ -345,7 +345,7 @@ module.exports = [
     editorialNote: "Kokonaisuus painottuu teksteihin, joissa avataan asiakirjoja, toimivaltaa, valmistelun vaiheita tai tiedolla johtamisen puutteita. Pelkät lyhyet kannanotot eivät yksin kanna kokonaisuutta.",
     nextLinks: [
       { label: "Sidonnaisuudet ja vaalirahoitus", href: "/poliittinen-avoimuus/" },
-      { label: "Valtuustoaloitteet", href: "/kynasta/#aloitteet" },
+      { label: "Valtuustoaloitteet", href: "/valtuustotyo/#aloitteet" },
       { label: "Kaupunginvaltuusto", href: "/politiikka/kaupunginvaltuusto/" }
     ],
     linkedTopic: {

@@ -272,15 +272,15 @@ schemaMentions:
             <span>Vaalikaudet</span>
             <small>Luottamustoimet, vaalitulokset ja poliittinen työ kausittain</small>
           </a>
-          <a class="content-context-topic" href="/kynasta/#puheet">
+          <a class="content-context-topic" href="/valtuustotyo/#puheet">
             <span>Valtuustopuheenvuorot</span>
             <small>Puheenvuorot päätöksenteon asiakohdissa</small>
           </a>
-          <a class="content-context-topic" href="/kynasta/#aloitteet">
+          <a class="content-context-topic" href="/valtuustotyo/#aloitteet">
             <span>Valtuustoaloitteet</span>
             <small>Kirjalliset avaukset kaupunginvaltuuston päätöksentekoon</small>
           </a>
-          <a class="content-context-topic" href="/kynasta/?opinions=political#mielipiteet">
+          <a class="content-context-topic" href="/kirjoitukset/?opinions=political#mielipiteet">
             <span>Poliittiset mielipiteet</span>
             <small>Lehdissä julkaistut kannanotot ja poliittiset kirjoitukset</small>
           </a>

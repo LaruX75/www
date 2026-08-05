@@ -25,7 +25,7 @@ module.exports = {
           heading: "Yhteiskunnallinen vuorovaikutus",
           links: [
             { title: "Yhteiskunnallinen vuorovaikutus", href: "/yhteiskunnallinen-vuorovaikutus/", icon: "bi bi-diagram-3", description: "Miten tutkimus, opetus ja asiantuntijatyö näkyvät yhteiskunnassa." },
-            { title: "Lausunnot ja kannanotot", href: "/kynasta/#lausunnot", icon: "bi bi-file-text", description: "Asiantuntijalausunnot, kannanotot ja osallistuminen valmisteluun." },
+            { title: "Lausunnot ja kannanotot", href: "/lausunnot/#lausunnot", icon: "bi bi-file-text", description: "Asiantuntijalausunnot, kannanotot ja osallistuminen valmisteluun." },
             { title: "Esitykset ja avoimet materiaalit", href: "/esitykset/", icon: "bi bi-easel2", description: "Jaettavia puheenvuoroja, koulutuksia ja opetuksen tukimateriaaleja." },
             { title: "Mediassa", href: "/mediassa/", icon: "bi bi-newspaper", description: "Haastattelut, mediaosumat ja julkinen keskustelu." }
           ]
@@ -97,9 +97,9 @@ module.exports = {
         {
           heading: "Vaikuttaminen",
           links: [
-            { title: "Valtuustoaloitteet", href: "/kynasta/#aloitteet", icon: "bi bi-megaphone", description: "Kirjalliset aloitteet kaupunginvaltuustossa." },
-            { title: "Puheenvuorot", href: "/kynasta/#puheet", icon: "bi bi-mic", description: "Valtuustopuheenvuorot ja esittelyt." },
-            { title: "Mielipiteet", href: "/kynasta/#mielipiteet", icon: "bi bi-chat-text", description: "Kannanotot ja lehtijutut." },
+            { title: "Valtuustoaloitteet", href: "/valtuustotyo/#aloitteet", icon: "bi bi-megaphone", description: "Kirjalliset aloitteet kaupunginvaltuustossa." },
+            { title: "Puheenvuorot", href: "/valtuustotyo/#puheet", icon: "bi bi-mic", description: "Valtuustopuheenvuorot ja esittelyt." },
+            { title: "Mielipiteet", href: "/kirjoitukset/#mielipiteet", icon: "bi bi-chat-text", description: "Kannanotot ja lehtijutut." },
             { title: "Kaikki kirjoitukset", href: "/kynasta/", icon: "bi bi-pencil-square", description: "Kooste puheista, aloitteista, kolumneista ja mielipiteistä." }
           ]
         },
