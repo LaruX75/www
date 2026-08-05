@@ -100,10 +100,14 @@ schemaAbout:
 <aside class="ewp-crosslinks">
   <h2>Muualla sivustolla</h2>
   <ul>
-    <li><a href="/kynasta/">Kynästä-hub</a> — kaikki kirjoitukset, puheet ja kannanotot yhdessä paikassa</li>
-    <li><a href="/kirjoitukset/">Kirjoitukset</a> — blogi, mielipiteet ja kolumnit (sisarsivu)</li>
-    <li><a href="/valtuustotyo/">Valtuustotyö</a> — valtuustopuheenvuorot ja aloitteet (sisarsivu)</li>
     <li><a href="/tutkimus/">Tutkimus</a> — julkaisut ja tutkimushankkeet, joiden pohjalta lausunnot rakentuvat</li>
+    <li>
+      <a href="/kynasta/">Kynästä-hub</a> — kaikki kirjoitukset, puheet ja kannanotot yhdessä paikassa
+      <ul>
+        <li><a href="/kirjoitukset/">Kirjoitukset</a> — blogi, mielipiteet ja kolumnit (sisarsivu)</li>
+        <li><a href="/valtuustotyo/">Valtuustotyö</a> — valtuustopuheenvuorot ja aloitteet (sisarsivu)</li>
+      </ul>
+    </li>
     <li><a href="/mediassa/">Mediassa</a> — kun lausunto tai puhe saa mediahuomiota</li>
   </ul>
 </aside>
@@ -291,6 +295,17 @@ schemaAbout:
   color: var(--bs-body-color);
   font-size: 0.92rem;
   line-height: 1.6;
+}
+
+.ewp-crosslinks ul ul {
+  margin: 0.35rem 0 0.6rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--bs-border-color);
+  font-size: 0.88rem;
+}
+
+.ewp-crosslinks > ul > li {
+  margin-bottom: 0.35rem;
 }
 
 .ewp-crosslinks a {
