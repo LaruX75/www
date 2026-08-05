@@ -1,0 +1,1322 @@
+---
+layout: base.njk
+title: Valtuustotyö — puheenvuorot ja aloitteet
+description: "Jari Larun valtuustopuheenvuorot ja valtuustoaloitteet Oulun kaupunginvaltuustossa ja hyvinvointialueella. Aineisto koottu hakuun ja suodatukseen sopivaksi näkymäksi."
+permalink: /valtuustotyo/
+translationKey: writings_council
+pageStyles:
+  - /css/kynasta-page.css
+schemaType: CollectionPage
+schemaAbout:
+  - "@type": "Thing"
+    name: "Valtuustopuheenvuorot"
+    description: "Puheenvuorot Oulun kaupunginvaltuuston ja hyvinvointialueen kokouksissa."
+  - "@type": "Thing"
+    name: "Valtuustoaloitteet"
+    description: "Kirjalliset aloitteet päätöksenteon valmisteluun."
+schemaMentions:
+  - "@type": "GovernmentOrganization"
+    name: "Oulun kaupunginvaltuusto"
+    url: "https://www.ouka.fi/valtuusto"
+  - "@type": "GovernmentOrganization"
+    name: "Pohjois-Pohjanmaan hyvinvointialue"
+    url: "https://pohde.fi/"
+---
+{% import "ui.njk" as ui %}
+{% set statementItems = [] %}
+{% for item in (collections.publications or []) %}
+  {% if item.data.type == "lausunto" %}
+    {% set _ = (statementItems.push(item), null) %}
+  {% endif %}
+{% endfor %}
+{% set councilSpeechItems = [] %}
+{% set publicSpeechItems = [] %}
+{% for item in (collections.pub_puhe or []) %}
+  {% set speechContext = item.data.speechContext or "" %}
+  {% set forums = item.data.forum or [] %}
+  {% if speechContext %}
+    {% set isCouncilSpeech = speechContext == "valtuusto" or speechContext == "kyselytunti" %}
+  {% else %}
+    {% set isCouncilSpeech = item.data.event == "Oulun kaupunginvaltuusto" or forums.indexOf("Kaupunginvaltuusto") != -1 %}
+  {% endif %}
+  {% if isCouncilSpeech %}
+    {% set _ = (councilSpeechItems.push(item), null) %}
+  {% else %}
+    {% set _ = (publicSpeechItems.push(item), null) %}
+  {% endif %}
+{% endfor %}
+{% set latestSpeechHighlights = (councilSpeechItems or []).slice(0, 3) %}
+{% set latestPublicSpeechHighlights = (publicSpeechItems or []).slice(0, 3) %}
+{% set latestInitiativeHighlights = (collections.politics or []).slice(0, 3) %}
+{% set latestBlogHighlights = (collections.blog or []).slice(0, 3) %}
+{% set latestStatementHighlights = statementItems.slice(0, 3) %}
+{% set latestOpinionHighlights = (collections.pub_mielipide or []).slice(0, 3) %}
+{% set latestColumnHighlights = (collections.pub_kolumni or []).slice(0, 3) %}
+{% set latestExpertOpinionHighlights = ((collections.pub_mielipide_expert or []) or []).slice(0, 3) %}
+{% set speechCount = (collections.pub_puhe or []) | length %}
+{% set councilSpeechCount = councilSpeechItems | length %}
+{% set publicSpeechCount = publicSpeechItems | length %}
+{% set initiativeCount = (collections.politics or []) | length %}
+{% set statementCount = statementItems | length %}
+{% set blogCount = (collections.blog or []) | length %}
+{% set opinionCount = (collections.pub_mielipide or []) | length %}
+{% set columnCount = (collections.pub_kolumni or []) | length %}
+{% set politicalOpinionCount = (collections.pub_mielipide_political or []) | length %}
+{% set expertOpinionCount = (collections.pub_mielipide_expert or []) | length %}
+{% set hybridOpinionItems = [] %}
+{% for item in (collections.pub_mielipide or []) %}
+  {% set roles = item.data.opinionRoles or item.data.writingRoles or [] %}
+  {% if roles.indexOf("political") != -1 and roles.indexOf("expert") != -1 %}
+    {% set _ = (hybridOpinionItems.push(item), null) %}
+  {% endif %}
+{% endfor %}
+{% set hybridOpinionCount = hybridOpinionItems | length %}
+{% set decisionRouteCount = councilSpeechCount + initiativeCount + statementCount %}
+{% set commentaryRouteCount = opinionCount + columnCount + blogCount %}
+{% set expertRouteCount = statementCount + expertOpinionCount + publicSpeechCount %}
+
+<section class="kynasta-hero py-3 py-lg-4">
+  <div class="site-shell">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-8">
+        <p class="text-uppercase small text-muted mb-2">Valtuustotyö</p>
+        <h1 class="display-6 fw-bold mb-2">Puheenvuorot ja aloitteet valtuustossa</h1>
+        <p class="text-muted mb-3">Kaupunginvaltuuston puheenvuorot ja valtuustoaloitteet yhdellä sivulla: {{ councilSpeechCount }} valtuustopuhetta ja {{ initiativeCount }} aloitetta. Voit hakea, suodattaa ja lajitella niitä alla.</p>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="nav-link" href="#puheet">Valtuustopuheet <span class="nav-count">{{ councilSpeechCount }}</span></a>
+          <a class="nav-link" href="#aloitteet">Aloitteet <span class="nav-count">{{ initiativeCount }}</span></a>
+        </div>
+        <p class="small text-muted mt-3 mb-0">
+          Etsitkö julkisia puheita, lausuntoja, blogia tai mielipidekirjoituksia? <a href="/kynasta/">Palaa Kynästä-hubiin</a> — löydät sieltä kaikki sisältölajit. Politiikan kokonaiskuva näkyy myös <a href="/politiikka/">Politiikka-sivulla</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+{# Kerätään kaikki aloitteet JSON-muotoon JS:ää varten #}
+<script id="aloitteet-data" type="application/json">
+[
+  {% for item in collections.politics %}
+  {% set itemMeetingDate = item.data.meetingDate or (item.date | isoDate) %}
+  {
+    "title": {{ item.data.title | jsonSafe | safe }},
+    "date": "{{ item.date }}",
+    "formattedDate": "{{ item.date | dateFormat }}",
+    "meetingDate": "{{ itemMeetingDate | isoDate }}",
+    "formattedMeetingDate": "{{ itemMeetingDate | dateFormat }}",
+    "meeting": {{ (item.data.meeting or "") | jsonSafe | safe }},
+    "description": {{ (item.data.description or "") | jsonSafe | safe }},
+    "initiative_type": {{ (item.data.initiative_type or "") | jsonSafe | safe }},
+    "url": "{{ item.data.url or item.url }}",
+    "isExternal": {{ (item.data.url != null) | jsonSafe | safe }},
+    "categories": {{ (item.data.categories or []) | jsonSafe | safe }},
+    "keywords": {{ (item.data.keywords or []) | jsonSafe | safe }}
+  }{% if not loop.last %},{% endif %}
+  {% endfor %}
+]
+</script>
+
+<details class="kynasta-mobile-disclosure kynasta-archive-disclosure" data-kynasta-mobile-collapse>
+  <summary class="kynasta-mobile-disclosure-summary">
+    <span>Valtuustoaloitteet ja adressit</span>
+    <small>{{ collections.politics.length }} aloitetta jätetty</small>
+  </summary>
+<section id="aloitteet">
+  <div class="site-shell">
+    <div class="card shadow-sm">
+      <div class="card-header bg-transparent d-flex align-items-center justify-content-between kynasta-section-header">
+        <h2 class="h4 mb-0"><i class="bi bi-megaphone-fill me-2"></i>Valtuustoaloitteet ja adressit</h2>
+        <span class="badge kynasta-section-count">{{ collections.politics.length }}</span>
+      </div>
+      <div class="card-body p-0">
+        {# ---- Suodatuspalkki ---- #}
+        <div class="p-3 bg-body-tertiary border-bottom">
+          <div class="row g-2 align-items-end">
+            <div class="col-lg-7">
+              <label for="aloitteet-search" class="form-label small text-muted mb-1">Hae valtuustoaloitteita</label>
+              <input type="search" id="aloitteet-search" class="form-control form-control-sm"
+                     placeholder="Hae otsikosta, tiivistelmästä, tyypistä, kategorioista..." autocomplete="off">
+            </div>
+            <div class="col-sm-5 col-lg-3">
+              <label for="aloitteet-year" class="form-label small text-muted mb-1">Vuosi</label>
+              <select id="aloitteet-year" class="form-select form-select-sm" aria-label="Rajaa valtuustoaloitteet vuoden mukaan"><option value="" selected>Kaikki vuodet</option></select>
+            </div>
+            <div class="col-sm-7 col-lg-2 d-flex justify-content-md-end gap-2">
+              <button id="aloitteet-reset" class="btn btn-outline-secondary btn-sm w-100">
+                <i class="bi bi-x-circle me-1"></i>Tyhjennä
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {# ---- Taulukko ---- #}
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0 pub-table aloitteet-table" data-no-header-filters>
+            <thead>
+              <tr>
+                <th class="sortable text-center" data-col="meetingDate" style="width:150px">
+                  Kokouspvm <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
+                </th>
+                <th class="sortable" data-col="title" style="min-width:200px">
+                  Otsikko <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
+                </th>
+                <th style="min-width:200px">Tiivistelmä & Tyyppi</th>
+                <th>Kategoriat & Avainsanat</th>
+                <th style="width:80px" class="text-center">Lue</th>
+              </tr>
+            </thead>
+            <tbody id="aloitteet-tbody">
+              <tr><td colspan="5" class="text-center text-muted py-4">Ladataan aloitteita...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      {{ ui.paginationBar("aloitteet-info", "aloitteet-pagination", { extraClass: "card-footer bg-transparent kynasta-table-pager" }) }}
+    </div>
+  </div>
+</section>
+</details>
+
+{# Kerätään kaikki puheet JSON-muotoon JS:ää varten #}
+<script id="puheet-data" type="application/json">
+[
+  {% for pub in councilSpeechItems %}
+  {% set resolvedUrl = pub.data.url or pub.url %}
+  {% set councilMeta = oukaCouncilSpeechProtocols.overrides[resolvedUrl] or {} %}
+  {% set resolvedEvent = councilMeta.event or pub.data.event or "" %}
+  {% set resolvedAsiakohta = councilMeta.asiakohta or pub.data.asiakohta or "" %}
+  {% set publicationDate = pub.date | isoDate %}
+  {% set declaredMeetingDate = (pub.data.meetingDate or councilMeta.meetingDate or pub.date) | isoDate %}
+  {% set publicationMeetingMeta = councilMeetingMeta.byDate[publicationDate] or {} %}
+  {% set meetingDate = publicationMeetingMeta.timelineTitle and publicationDate or declaredMeetingDate %}
+  {% set meetingMeta = councilMeetingMeta.byDate[meetingDate] or {} %}
+  {% set protocolUrl = councilMeta.protocolUrl or (resolvedEvent == "Oulun kaupunginvaltuusto" and oukaCouncilSpeechProtocols.protocolsByDate[meetingDate]) %}
+  {% set councilVideos = councilSpeechVideos.byUrl[resolvedUrl] or councilSpeechVideos.byUrl[pub.data.source_url] or [] %}
+  {
+    "title": {{ pub.data.title | jsonSafe | safe }},
+    "date": "{{ pub.date }}",
+    "formattedDate": "{{ pub.date | dateFormat }}",
+    "description": {{ (pub.data.description or "") | jsonSafe | safe }},
+    "event": {{ resolvedEvent | jsonSafe | safe }},
+    "meetingNumber": {{ (meetingMeta.meetingNumber or "") | jsonSafe | safe }},
+    "meetingLabel": {{ (meetingMeta.meetingNumber or meetingMeta.timelineTitle or "") | jsonSafe | safe }},
+    "asiakohta": {{ resolvedAsiakohta | jsonSafe | safe }},
+    "protocolUrl": {{ (protocolUrl or "") | jsonSafe | safe }},
+    "councilVideos": {{ councilVideos | jsonSafe | safe }},
+    "url": "{{ resolvedUrl }}",
+    "isExternal": {{ (pub.data.url != null) | jsonSafe | safe }},
+    "speechContext": {{ (pub.data.speechContext or "") | jsonSafe | safe }},
+    "categories": {{ (pub.data.categories or []) | jsonSafe | safe }},
+    "keywords": {{ (pub.data.keywords or []) | jsonSafe | safe }},
+    "tags": {{ (pub.data.tags or []) | jsonSafe | safe }}
+  }{% if not loop.last %},{% endif %}
+  {% endfor %}
+]
+</script>
+
+<details class="kynasta-mobile-disclosure kynasta-archive-disclosure" data-kynasta-mobile-collapse open>
+  <summary class="kynasta-mobile-disclosure-summary">
+    <span>Valtuustopuheenvuorot</span>
+    <small>{{ councilSpeechCount }} puheenvuoroa</small>
+  </summary>
+<section id="puheet">
+  <div class="site-shell">
+    <div class="card shadow-sm">
+      <div class="card-header bg-transparent d-flex align-items-center justify-content-between kynasta-section-header">
+        <h2 class="h4 mb-0"><i class="bi bi-mic-fill me-2"></i>Valtuustopuheenvuorot</h2>
+        <span class="badge kynasta-section-count">{{ councilSpeechCount }}</span>
+      </div>
+      <div class="card-body p-0">
+        {# ---- Suodatuspalkki ---- #}
+        <div class="p-3 bg-body-tertiary border-bottom">
+          <div class="row g-2 align-items-end">
+            <div class="col-lg-5">
+              <label for="puheet-search" class="form-label small text-muted mb-1">Hae valtuustopuheenvuoroja</label>
+              <input type="search" id="puheet-search" class="form-control form-control-sm"
+                     placeholder="Hae otsikosta, tapahtumasta, kategorioista..." autocomplete="off">
+            </div>
+            <div class="col-sm-4 col-lg-2">
+              <label for="puheet-year" class="form-label small text-muted mb-1">Vuosi</label>
+              <select id="puheet-year" class="form-select form-select-sm" aria-label="Rajaa valtuustopuheenvuorot vuoden mukaan"><option value="" selected>Kaikki vuodet</option></select>
+            </div>
+            <div class="col-sm-8 col-lg-3">
+              <label for="puheet-meeting" class="form-label small text-muted mb-1">Kokous</label>
+              <select id="puheet-meeting" class="form-select form-select-sm" aria-label="Rajaa valtuustopuheenvuorot kokouksen mukaan"><option value="" selected>Kaikki kokoukset</option></select>
+            </div>
+            <div class="col-lg-2 d-flex justify-content-md-end gap-2">
+              <button id="puheet-reset" class="btn btn-outline-secondary btn-sm w-100">
+                <i class="bi bi-x-circle me-1"></i>Tyhjennä
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {# ---- Taulukko ---- #}
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0 pub-table puheet-table" data-no-header-filters>
+            <thead>
+              <tr>
+                <th class="sortable text-center" data-col="date" style="width:140px">
+                  Päivämäärä <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
+                </th>
+                <th class="sortable" data-col="title" style="min-width:200px">
+                  Otsikko <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
+                </th>
+                <th style="min-width:180px">Asiakohta</th>
+                <th style="min-width:200px">Tiivistelmä & Tapahtuma</th>
+                <th>Kategoriat & Avainsanat</th>
+              </tr>
+            </thead>
+            <tbody id="puheet-tbody">
+              <tr><td colspan="5" class="text-center text-muted py-4">Ladataan puheita...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      {{ ui.paginationBar("puheet-info", "puheet-pagination", { extraClass: "card-footer bg-transparent kynasta-table-pager" }) }}
+    </div>
+  </div>
+</section>
+</details>
+
+
+
+
+
+{# Kerätään esitykset ja AOE-oppimateriaalit JSON-muotoon JS:ää varten #}
+<details class="kynasta-mobile-disclosure" data-kynasta-mobile-collapse id="muut-aineistot" open>
+  <summary class="kynasta-mobile-disclosure-summary">Muualla sivustolla</summary>
+<section class="bg-body-tertiary">
+  <div class="site-shell">
+    <div class="card shadow-sm">
+      <div class="card-header bg-transparent">
+        <h2 class="h4 mb-1"><i class="bi bi-box-arrow-up-right me-2"></i>Muualla sivustolla</h2>
+        <p class="small text-muted mb-0">Jos etsit esityksiä, mediahaastatteluja tai tutkimusjulkaisuja, jatka näille sivuille.</p>
+      </div>
+      <div class="card-body">
+        <div class="row g-4">
+          <div class="col-md-4">
+            <article class="card border-0 shadow-sm h-100">
+              <div class="card-body d-flex flex-column">
+                <p class="kynasta-entry-kicker">Esiintyminen</p>
+                <h3 class="h5 mb-2">Esitykset ja materiaalit</h3>
+                <p class="small text-muted mb-3">Puheenvuorot, paneelit, videotallenteet, oppimateriaalit ja diasetit löytyvät omalta sivultaan.</p>
+                <a href="/esitykset/" class="btn btn-outline-secondary btn-sm rounded-pill px-3 mt-auto align-self-start">Siirry esityksiin</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-4">
+            <article class="card border-0 shadow-sm h-100">
+              <div class="card-body d-flex flex-column">
+                <p class="kynasta-entry-kicker">Ulkopuolinen näkyvyys</p>
+                <h3 class="h5 mb-2">Mediassa</h3>
+                <p class="small text-muted mb-3">Podcastit, haastattelut, lehtijutut ja muut mediaesiintymiset löytyvät media-sivulta.</p>
+                <a href="/mediassa/" class="btn btn-outline-secondary btn-sm rounded-pill px-3 mt-auto align-self-start">Siirry mediassa-sivulle</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-4">
+            <article class="card border-0 shadow-sm h-100">
+              <div class="card-body d-flex flex-column">
+                <p class="kynasta-entry-kicker">Tutkimus</p>
+                <h3 class="h5 mb-2">Julkaisut</h3>
+                <p class="small text-muted mb-3">Vertaisarvioidut artikkelit, konferenssijulkaisut ja muu tieteellinen tuotanto löytyvät julkaisuarkistosta.</p>
+                <a href="/julkaisut/" class="btn btn-outline-secondary btn-sm rounded-pill px-3 mt-auto align-self-start">Siirry julkaisuihin</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</details>
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+function normalizeWritingRoles(roles) {
+  return [...new Set((Array.isArray(roles) ? roles : []).filter(Boolean))];
+}
+
+function renderWritingRoleBadges(roles, options = {}) {
+  const normalizedRoles = normalizeWritingRoles(roles);
+  if (!normalizedRoles.length) return '';
+
+  const className = options.button
+    ? 'badge writing-role-badge mt-1 me-1 opinion-role-inline-filter'
+    : 'badge writing-role-badge mt-1 me-1';
+  const tagName = options.button ? 'button' : 'span';
+  const buttonAttrs = options.button ? ' type="button"' : '';
+  const dataAttr = options.button ? 'data-opinion-role-inline' : 'data-writing-role';
+
+  if (normalizedRoles.includes('political') && normalizedRoles.includes('expert')) {
+    return `<${tagName}${buttonAttrs} class="${className} writing-role-badge--hybrid" ${dataAttr}="hybrid" aria-label="Näkökulma: asiantuntijuus mukana päätöksenteossa">Asiantuntijuus mukana</${tagName}>`;
+  }
+
+  return normalizedRoles.map((role) => {
+    const label = role === 'political' ? 'Päätöksenteko' : role === 'personal' ? 'Henkilökohtainen' : 'Asiantuntijatausta';
+    const modifier = ['political', 'expert', 'personal'].includes(role) ? role : 'expert';
+    return `<${tagName}${buttonAttrs} class="${className} writing-role-badge--${modifier}" ${dataAttr}="${role}" aria-label="Näkökulma: ${label}">${label}</${tagName}>`;
+  }).join('');
+}
+
+function writingRoleMatchesQuery(roles, query) {
+  const terms = normalizeWritingRoles(roles).flatMap((role) => {
+    if (role === 'political') return ['political', 'poliittinen', 'politiikka', 'päätöksenteko', 'kannanotto'];
+    if (role === 'expert') return ['expert', 'asiantuntija', 'asiantuntijuus', 'asiantuntijatausta'];
+    if (role === 'personal') return ['personal', 'henkilökohtainen'];
+    return [role];
+  });
+  if (terms.includes('political') && terms.includes('expert')) {
+    terms.push('hybrid', 'raja', 'asiantuntijuus mukana', 'päätöksenteko asiantuntijuus', 'poliittinen asiantuntija', 'poliittinen + asiantuntija');
+  }
+  return terms.some((term) => term.toLowerCase().includes(query));
+}
+
+function writingRoleMatchesFilter(roles, selectedRole) {
+  if (!selectedRole || selectedRole === 'all') return true;
+  const normalizedRoles = normalizeWritingRoles(roles);
+  if (selectedRole === 'hybrid') {
+    return normalizedRoles.includes('political') && normalizedRoles.includes('expert');
+  }
+  return normalizedRoles.includes(selectedRole);
+}
+
+function syncWritingRoleFilterButtons(buttons, selectedRole) {
+  buttons.forEach((btn) => {
+    const role = btn.dataset.blogRole || btn.dataset.kolumnitRole || 'all';
+    const isActive = role === selectedRole;
+    btn.classList.toggle('active', isActive);
+    btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+  });
+}
+
+function archiveYear(value) {
+  const match = String(value || '').match(/\b(19|20)\d{2}\b/);
+  return match ? match[0] : '';
+}
+
+function populateArchiveFilter(select, values, emptyLabel, compare) {
+  if (!select) return;
+  const uniqueValues = [...new Set(values.map((value) => String(value || '').trim()).filter(Boolean))]
+    .sort(compare || ((a, b) => a.localeCompare(b, 'fi')));
+  const emptyOption = document.createElement('option');
+  emptyOption.value = '';
+  emptyOption.textContent = emptyLabel;
+  emptyOption.defaultSelected = true;
+  emptyOption.selected = true;
+  select.replaceChildren(emptyOption, ...uniqueValues.map((value) => new Option(value, value)));
+}
+
+function restoreArchiveFilterFromUrl(select, value) {
+  const selectedValue = String(value || '').trim();
+  if (!select || !selectedValue) return;
+  if (Array.from(select.options).some((option) => option.value === selectedValue)) {
+    select.value = selectedValue;
+  }
+}
+
+function compareCouncilMeetings(a, b) {
+  const [aNumber, aYear] = String(a).split('/').map(Number);
+  const [bNumber, bYear] = String(b).split('/').map(Number);
+  if (Number.isFinite(aNumber) && Number.isFinite(aYear) && Number.isFinite(bNumber) && Number.isFinite(bYear)) {
+    return (bYear - aYear) || (bNumber - aNumber);
+  }
+  return String(a).localeCompare(String(b), 'fi');
+}
+
+function syncArchiveSortButton(button, isActive, direction, columnLabel) {
+  if (!button) return;
+  const directionLabel = columnLabel === 'Päivämäärä'
+    ? (direction === 1 ? 'vanhin ensin' : 'uusin ensin')
+    : (direction === 1 ? 'A-Ö' : 'Ö-A');
+  button.classList.toggle('active', isActive);
+  button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+  button.setAttribute('aria-label', isActive ? `${columnLabel}: ${directionLabel}` : `Lajittele: ${columnLabel}`);
+  button.title = isActive ? `${columnLabel}: ${directionLabel}` : `Lajittele: ${columnLabel}`;
+  const icon = button.querySelector('i');
+  if (icon) icon.className = `bi ${direction === 1 ? 'bi-arrow-up' : 'bi-arrow-down'}`;
+}
+
+(function () {
+  // Näytä arkistokokonaisuudet tarkoituksellisessa lukujärjestyksessä rikkomatta accordion-rakennetta.
+  const sectionOrder = ['puheet', 'julkiset-puheet', 'aloitteet', 'blogi', 'mielipiteet', 'lausunnot', 'kolumnit'];
+  const archiveWrappers = sectionOrder
+    .map(id => document.getElementById(id)?.closest('.kynasta-archive-disclosure'))
+    .filter(Boolean);
+  const uniqueArchiveWrappers = [...new Set(archiveWrappers)];
+  if (uniqueArchiveWrappers.length > 1) {
+    const parent = uniqueArchiveWrappers[0].parentElement;
+    const anchor = document.createComment('kynasta-sections-order-anchor');
+    parent.insertBefore(anchor, uniqueArchiveWrappers[0]);
+    const fragment = document.createDocumentFragment();
+    uniqueArchiveWrappers.forEach(wrapper => fragment.appendChild(wrapper));
+    parent.insertBefore(fragment, anchor);
+    anchor.remove();
+  }
+
+  const closeOtherArchiveAccordions = (activeWrapper) => {
+    uniqueArchiveWrappers.forEach((wrapper) => {
+      if (wrapper !== activeWrapper) wrapper.open = false;
+    });
+  };
+
+  const focusArchiveAccordionTitle = (wrapper) => {
+    const summary = wrapper.querySelector(':scope > .kynasta-mobile-disclosure-summary');
+    if (!summary) return;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        summary.focus({ preventScroll: true });
+        summary.scrollIntoView({
+          block: 'start',
+          inline: 'nearest',
+          behavior: prefersReducedMotion ? 'auto' : 'smooth'
+        });
+      });
+    });
+  };
+
+  const initiallyOpenArchiveWrappers = uniqueArchiveWrappers.filter((wrapper) => wrapper.open);
+  initiallyOpenArchiveWrappers.slice(1).forEach((wrapper) => {
+    wrapper.open = false;
+  });
+
+  uniqueArchiveWrappers.forEach((wrapper) => {
+    wrapper.addEventListener('toggle', () => {
+      if (!wrapper.open) return;
+      closeOtherArchiveAccordions(wrapper);
+      focusArchiveAccordionTitle(wrapper);
+    });
+  });
+
+  const parseJson = (id) => {
+    const el = document.getElementById(id);
+    if (!el) return [];
+    try { return JSON.parse(el.textContent || '[]'); } catch (_) { return []; }
+  };
+  const MAX_SLIDESHARE_DATE = '2020-12-31';
+  const isSlideshareItem = (item) => {
+    const src = String(item?.source || '').toLowerCase();
+    const type = String(item?.type || '').toLowerCase();
+    const url = String(item?.url || '').toLowerCase();
+    return src === 'slideshare' || type.includes('slideshare') || url.includes('slideshare.net');
+  };
+  const toIsoDate = (value) => {
+    if (value === null || value === undefined) return null;
+    const raw = String(value).trim();
+    if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) return raw;
+    const parsed = new Date(raw);
+    if (Number.isNaN(parsed.getTime())) return null;
+    const year = parsed.getUTCFullYear();
+    const month = String(parsed.getUTCMonth() + 1).padStart(2, '0');
+    const day = String(parsed.getUTCDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+  const extractSlideshareDateFromThumbnail = (thumbnailUrl) => {
+    if (!thumbnailUrl) return null;
+    const match = String(thumbnailUrl).match(/-(\d{6})\d{6}-thumbnail/i);
+    if (!match) return null;
+    const yymmdd = match[1];
+    const yy = Number.parseInt(yymmdd.slice(0, 2), 10);
+    const mm = Number.parseInt(yymmdd.slice(2, 4), 10);
+    const dd = Number.parseInt(yymmdd.slice(4, 6), 10);
+    if (!Number.isFinite(yy) || !Number.isFinite(mm) || !Number.isFinite(dd)) return null;
+    if (mm < 1 || mm > 12 || dd < 1 || dd > 31) return null;
+    const year = yy >= 90 ? 1900 + yy : 2000 + yy;
+    return `${year}-${String(mm).padStart(2, '0')}-${String(dd).padStart(2, '0')}`;
+  };
+  const normalizeSlidesharePresentation = (item) => {
+    if (!isSlideshareItem(item)) return item;
+    let iso = toIsoDate(item?.date) || extractSlideshareDateFromThumbnail(item?.thumbnail);
+    if (!iso) return item;
+    if (iso > MAX_SLIDESHARE_DATE) iso = MAX_SLIDESHARE_DATE;
+    return { ...item, date: iso };
+  };
+  const cleanMobileLabel = (value) => String(value || '')
+    .replace(/Ei lajittelua/gi, '')
+    .replace(/Pienin ensin/gi, '')
+    .replace(/Suurin ensin/gi, '')
+    .replace(/Uusin ensin/gi, '')
+    .replace(/Vanhin ensin/gi, '')
+    .replace(/A-ÖÖ-A/gi, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  const syncMobileTableLabels = () => {
+    document.querySelectorAll('.pub-table').forEach((table) => {
+      const headers = Array.from(table.querySelectorAll('thead th')).map((th) =>
+        cleanMobileLabel(th.dataset.mobileLabel || th.textContent || '')
+      );
+      table.querySelectorAll('tbody tr').forEach((row) => {
+        Array.from(row.children).forEach((cell, idx) => {
+          if (cell.tagName !== 'TD') return;
+          if (cell.hasAttribute('colspan')) {
+            cell.setAttribute('data-label', '');
+            return;
+          }
+          cell.setAttribute('data-label', headers[idx] || '');
+        });
+      });
+    });
+  };
+
+  syncMobileTableLabels();
+  const mobileTableObserver = new MutationObserver(() => syncMobileTableLabels());
+  document.querySelectorAll('.pub-table tbody').forEach((tbody) => {
+    mobileTableObserver.observe(tbody, { childList: true, subtree: true });
+  });
+  const yearFromDate = (value) => {
+    if (value === null || value === undefined) return null;
+    if (typeof value === 'number' && value >= 1900 && value <= 2100) return value;
+    const str = String(value).trim();
+    if (!str) return null;
+    const yearMatch = str.match(/\b(19|20)\d{2}\b/);
+    if (yearMatch) return Number(yearMatch[0]);
+    const d = new Date(str);
+    return Number.isNaN(d.getTime()) ? null : d.getFullYear();
+  };
+
+  const mielipiteet = parseJson('mielipiteet-data');
+  const lausunnot = parseJson('lausunnot-data');
+  const kolumnit = parseJson('kolumnit-data');
+  const aloitteet = parseJson('aloitteet-data');
+  const puheet = parseJson('puheet-data');
+  const blogi = parseJson('blog-data');
+
+  const counts = {
+    mielipiteet: mielipiteet.length,
+    lausunnot: lausunnot.length,
+    kolumnit: kolumnit.length,
+    aloitteet: aloitteet.length,
+    puheet: puheet.length,
+    blogi: blogi.length
+  };
+
+  const setText = (id, value) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = String(value);
+  };
+  setText('kpi-mielipiteet', counts.mielipiteet);
+  setText('kpi-lausunnot', counts.lausunnot);
+  setText('kpi-kolumnit', counts.kolumnit);
+  setText('kpi-aloitteet', counts.aloitteet);
+  setText('kpi-puheet', counts.puheet);
+  setText('kpi-blogi', counts.blogi);
+
+  const yearly = {};
+  const addYear = (arr, key) => {
+    arr.forEach((item) => {
+      const y = key === 'year' ? Number(item.year) : yearFromDate(item.date);
+      if (!y || y < 1990 || y > 2100) return;
+      if (!yearly[y]) yearly[y] = { mielipiteet: 0, lausunnot: 0, kolumnit: 0, aloitteet: 0, puheet: 0, blogi: 0 };
+      yearly[y][key] += 1;
+    });
+  };
+
+  addYear(mielipiteet, 'mielipiteet');
+  addYear(lausunnot, 'lausunnot');
+  addYear(kolumnit, 'kolumnit');
+  addYear(aloitteet, 'aloitteet');
+  addYear(puheet, 'puheet');
+  addYear(blogi, 'blogi');
+
+  const years = Object.keys(yearly).map(Number).sort((a, b) => a - b);
+
+  const labels = ['Valtuustoaloitteet', 'Blogi', 'Kolumnit', 'Lausunnot', 'Mielipiteet', 'Puheet'];
+  const values = [
+    counts.aloitteet,
+    counts.blogi,
+    counts.kolumnit,
+    counts.lausunnot,
+    counts.mielipiteet,
+    counts.puheet
+  ];
+  const palette = ['#fd7e14', '#6610f2', '#20c997', '#495057', '#0d6efd', '#dc3545'];
+
+  function drawCharts() {
+    if (typeof Chart === 'undefined') return false;
+
+    const donutCanvas = document.getElementById('kynasta-summary-donut');
+    if (donutCanvas) {
+      window._kynastaDonutChart = new Chart(donutCanvas, {
+        type: 'doughnut',
+        data: {
+          labels,
+          datasets: [{ data: values, backgroundColor: palette, borderWidth: 1 }]
+        },
+        options: {
+          plugins: { legend: { position: 'bottom' } },
+          maintainAspectRatio: false
+        }
+      });
+    }
+
+    const trendCanvas = document.getElementById('kynasta-summary-trend');
+    if (trendCanvas && years.length > 0) {
+      const makeSeries = (name, color, field) => ({
+        label: name,
+        data: years.map((y) => yearly[y][field] || 0),
+        backgroundColor: color,
+        borderColor: color,
+        borderWidth: 1
+      });
+      window._kynastaTrendChart = new Chart(trendCanvas, {
+        type: 'bar',
+        data: {
+          labels: years,
+          datasets: [
+            makeSeries('Valtuustoaloitteet', palette[0], 'aloitteet'),
+            makeSeries('Blogi', palette[1], 'blogi'),
+            makeSeries('Kolumnit', palette[2], 'kolumnit'),
+            makeSeries('Lausunnot', palette[3], 'lausunnot'),
+            makeSeries('Mielipiteet', palette[4], 'mielipiteet'),
+            makeSeries('Puheet', palette[5], 'puheet')
+          ]
+        },
+        options: {
+          maintainAspectRatio: false,
+          responsive: true,
+          scales: {
+            x: { stacked: true },
+            y: { stacked: true, beginAtZero: true, ticks: { precision: 0 } }
+          },
+          plugins: {
+            legend: { position: 'bottom' },
+            tooltip: { mode: 'index', intersect: false }
+          }
+        }
+      });
+    }
+    return true;
+  }
+
+  if (!drawCharts()) {
+    let retries = 0;
+    const timer = setInterval(() => {
+      retries += 1;
+      if (drawCharts() || retries > 20) clearInterval(timer);
+    }, 150);
+  }
+
+  // Mobiili-accordion: resize kaaviot kun collapse aukeaa
+  const kynastaCollapseEl = document.getElementById('kynastaChartsDashboard');
+  if (kynastaCollapseEl) {
+    kynastaCollapseEl.addEventListener('shown.bs.collapse', () => {
+      [window._kynastaDonutChart, window._kynastaTrendChart].forEach(c => c && c.resize());
+    });
+    const kynastaToggleBtn = document.querySelector('[data-bs-target="#kynastaChartsDashboard"]');
+    if (kynastaToggleBtn) {
+      kynastaCollapseEl.addEventListener('show.bs.collapse', () => kynastaToggleBtn.setAttribute('aria-expanded', 'true'));
+      kynastaCollapseEl.addEventListener('hide.bs.collapse', () => kynastaToggleBtn.setAttribute('aria-expanded', 'false'));
+    }
+  }
+})();
+
+(function () {
+  const PAGE_SIZE = 5;
+  const dataEl = document.getElementById('pub-data');
+  if (!dataEl) return;
+  const rawData = JSON.parse(dataEl.textContent);
+
+  // Järjestetään oletuksena uusimmasta vanhimpaan (vuosi)
+  let data = [...rawData].sort((a, b) => (b.year || 0) - (a.year || 0));
+  let filteredData = [...data];
+  let currentPage = 1;
+  let sortCol = 'year';
+  let sortDir = -1; // -1 = desc, 1 = asc
+
+  const yearSel = document.getElementById('pub-year');
+  const searchInp = document.getElementById('pub-search');
+  const tbody = document.getElementById('pub-tbody');
+  const info = document.getElementById('pub-info');
+  const pagUl = document.getElementById('pub-pagination');
+
+  // --- Vuosisuodatin ---
+  const years = [...new Set(data.filter(d => d.year > 0).map(d => d.year))].sort((a, b) => b - a);
+  if (yearSel) {
+    years.forEach(y => {
+      const opt = document.createElement('option');
+      opt.value = y;
+      opt.textContent = y;
+      yearSel.appendChild(opt);
+    });
+  }
+
+  // --- Suodatus ---
+  function applyFilters() {
+    const q = searchInp ? searchInp.value.toLowerCase().trim() : '';
+    const yr = yearSel ? yearSel.value : '';
+    filteredData = data.filter(d => {
+      const matchQ = !q ||
+        (d.title || '').toLowerCase().includes(q) ||
+        (d.authors || '').toLowerCase().includes(q) ||
+        (d.journal || '').toLowerCase().includes(q);
+      const matchY = !yr || String(d.year) === yr;
+      return matchQ && matchY;
+    });
+    currentPage = 1;
+    render();
+  }
+
+  // --- Lajittelu ---
+  function sortData(col) {
+    if (sortCol === col) { sortDir *= -1; }
+    else { sortCol = col; sortDir = col === 'year' ? -1 : 1; }
+    filteredData.sort((a, b) => {
+      let av = a[col] ?? '';
+      let bv = b[col] ?? '';
+      if (typeof av === 'string') av = av.toLowerCase();
+      if (typeof bv === 'string') bv = bv.toLowerCase();
+      if (typeof av === 'number' && typeof bv === 'number') return (av - bv) * sortDir;
+      return av.toString().localeCompare(bv.toString(), 'fi') * sortDir;
+    });
+    currentPage = 1;
+    render();
+  }
+
+  function buildApaCitationHtml(d) {
+    const authors = escHtml(formatApaAuthors(d.authors));
+    const year = escHtml(String(d.year || '').trim() || 'n.d.');
+    const title = escHtml((d.title || '').trim() || 'Nimetön julkaisu');
+    const journal = escHtml((d.journal || '').trim());
+    const doi = escHtml((d.doi || '').trim());
+    const url = escHtml((d.url || '').trim());
+    const volume = escHtml((d.volume || '').trim());
+    const issue = escHtml((d.issue || '').trim());
+    const pages = escHtml((d.pages || '').trim());
+
+    let citation = `${authors} (${year}). ${title}.`;
+    if (journal) {
+      citation += ` <span class="apa-journal">${journal}</span>`;
+      if (volume) {
+        citation += `, <span class="apa-volume">${volume}</span>`;
+        if (issue) citation += `(${issue})`;
+      } else if (issue) {
+        citation += ` (${issue})`;
+      }
+      if (pages) citation += `, ${pages}`;
+      citation += '.';
+    }
+    if (doi) citation += ` <span class="apa-url">https://doi.org/${doi}</span>`;
+    else if (url) citation += ` <span class="apa-url">${url}</span>`;
+    return citation.trim();
+  }
+
+  function formatApaAuthors(value) {
+    const raw = String(value || '').trim();
+    if (!raw) return 'Tuntematon tekijä';
+
+    const authors = raw
+      .split(';')
+      .map((author) => author.trim())
+      .filter(Boolean)
+      .map((author) => {
+        if (!author.includes(',')) return author;
+        const [family, ...rest] = author.split(',');
+        const given = rest.join(',').trim();
+        if (!given) return family.trim();
+        const initials = given
+          .split(/\s+/)
+          .filter(Boolean)
+          .map((part) => part
+            .split('-')
+            .filter(Boolean)
+            .map((segment) => `${segment.charAt(0).toUpperCase()}.`)
+            .join('-'))
+          .join(' ');
+        return `${family.trim()}, ${initials}`.trim();
+      });
+
+    if (authors.length === 1) return authors[0];
+    if (authors.length <= 20) {
+      return `${authors.slice(0, -1).join(', ')}, & ${authors[authors.length - 1]}`;
+    }
+    return `${authors.slice(0, 19).join(', ')}, ... ${authors[authors.length - 1]}`;
+  }
+
+  // --- Renderöinti ---
+  function render() {
+    if (!tbody || !info) return;
+
+    const totalPages = Math.max(1, Math.ceil(filteredData.length / PAGE_SIZE));
+    const start = (currentPage - 1) * PAGE_SIZE;
+    const slice = filteredData.slice(start, start + PAGE_SIZE);
+
+    // Taulukko
+    if (slice.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-5">Ei tuloksia haulla</td></tr>';
+    } else {
+      tbody.innerHTML = slice.map((d, index) => {
+        const globalIndex = start + index;
+        const linkCell = d.url
+          ? `<a href="${escHtml(d.url)}" target="_blank" rel="noopener"
+               class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Avaa julkaisu">
+               <i class="bi bi-arrow-up-right"></i>
+             </a>`
+          : `<span class="text-muted small">—</span>`;
+
+        const bibButton = `<button class="btn btn-outline-secondary btn-sm rounded-pill px-2 ms-1 bib-btn" 
+                            data-index="${globalIndex}" title="Lataa BibTeX">
+                            <i class="bi bi-quote"></i>
+                          </button>`;
+
+        return `<tr>
+          <td class="col-authors small text-muted">${escHtml(d.authors || '—')}</td>
+          <td class="col-year text-center fw-semibold">${d.year || '—'}</td>
+          <td class="col-title">
+            <span class="pub-title-desktop">${escHtml(d.title || '—')}</span>
+            <div class="pub-apa-mobile">${buildApaCitationHtml(d)}</div>
+          </td>
+          <td class="col-pub">${escHtml(d.journal || '—')}</td>
+          <td class="col-action text-center">
+            <div class="d-flex justify-content-center">
+              ${linkCell}
+              ${bibButton}
+            </div>
+          </td>
+        </tr>`;
+      }).join('');
+
+      // Lisää kuuntelijat BibTeX-napeille
+      tbody.querySelectorAll('.bib-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const idx = parseInt(btn.dataset.index);
+          downloadBibTeX(filteredData[idx]);
+        });
+      });
+    }
+
+    // Info
+    const total = filteredData.length;
+    const from = total === 0 ? 0 : start + 1;
+    const to = Math.min(start + PAGE_SIZE, total);
+    info.textContent = `Näytetään ${from}–${to} / ${total}`;
+
+    // Sivutus
+    renderPagination(totalPages);
+
+    // Sarakekorostus
+    document.querySelectorAll('.pub-table th.sortable').forEach(th => {
+      th.classList.remove('sort-asc', 'sort-desc');
+      if (th.dataset.col === sortCol) {
+        th.classList.add(sortDir === 1 ? 'sort-asc' : 'sort-desc');
+      }
+    });
+  }
+
+  function renderPagination(total) {
+    renderPaginationShared(pagUl, total, currentPage, page => {
+      currentPage = page;
+      render();
+      document.getElementById('julkaisut')?.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  }
+
+  function escHtml(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // --- Tapahtumankäsittelijät ---
+  if (searchInp) searchInp.addEventListener('input', applyFilters);
+  if (yearSel) yearSel.addEventListener('change', applyFilters);
+  
+  const resetBtn = document.getElementById('pub-reset');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      if (searchInp) searchInp.value = '';
+      if (yearSel) yearSel.value = '';
+      applyFilters();
+    });
+  }
+
+  document.querySelectorAll('.pub-table th.sortable').forEach(th => {
+    th.addEventListener('click', () => sortData(th.dataset.col));
+  });
+
+  function downloadBibTeX(d) {
+    const typeMap = {
+      "A1": "article", "A2": "article", "B1": "article",
+      "A3": "incollection", "B2": "incollection",
+      "A4": "inproceedings", "B3": "inproceedings", "D3": "inproceedings",
+      "C1": "book", "E2": "book",
+      "C2": "proceedings",
+      "G4": "phdthesis", "G5": "phdthesis"
+    };
+
+    const bibType = typeMap[d.typeCode] || "misc";
+    const authors = d.authors || "Laru, Jari";
+    const firstAuthor = authors.split(/[,&]/)[0].trim().split(/\s+/).pop().toLowerCase();
+    const key = `${firstAuthor}${d.year || 'unknown'}${d.title.split(/\s+/)[0].replace(/[^a-z]/gi, '').toLowerCase()}`;
+
+    let bib = `@${bibType}{${key},\n`;
+    bib += `  title = {${d.title}},\n`;
+    bib += `  author = {${authors}},\n`;
+    if (d.year) bib += `  year = {${d.year}},\n`;
+    if (d.journal) {
+      if (bibType === "article") bib += `  journal = {${d.journal}},\n`;
+      else if (bibType === "inproceedings" || bibType === "incollection") bib += `  booktitle = {${d.journal}},\n`;
+      else bib += `  publisher = {${d.journal}},\n`;
+    }
+    if (d.url) bib += `  url = {${d.url}},\n`;
+    bib += `}`;
+
+    const blob = new Blob([bib], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.style.display = 'none';
+      if (blogSearchInp) blogSearchInp.value = '';
+      if (blogYearSel) blogYearSel.value = '';
+      activeEsityksetApplication = esityksetApplicationFilter.value || '';
+      applyEsityksetFilters();
+    });
+  }
+
+  document.querySelectorAll('.esitykset-table th.sortable').forEach(th => {
+    th.addEventListener('click', () => sortEsityksetData(th.dataset.col));
+  });
+
+  initEsityksetApplicationFilter();
+  renderEsitykset();
+})();
+
+// --- Puheet taulukon logiikka ---
+(function () {
+  const PUHEET_PAGE_SIZE = 5;
+  const puheetDataEl = document.getElementById('puheet-data');
+  if (!puheetDataEl) return;
+  const puheetData = JSON.parse(puheetDataEl.textContent);
+
+  let filteredPuheetData = [...puheetData].sort((a, b) => new Date(b.date) - new Date(a.date));
+  let puheetCurrentPage = 1;
+  let puheetSortCol = 'date';
+  let puheetSortDir = -1; // -1 = desc
+
+  const puheetSearchInp = document.getElementById('puheet-search');
+  const puheetYearSel = document.getElementById('puheet-year');
+  const puheetMeetingSel = document.getElementById('puheet-meeting');
+  const puheetTbody = document.getElementById('puheet-tbody');
+  const puheetInfo = document.getElementById('puheet-info');
+  const puheetPagUl = document.getElementById('puheet-pagination');
+
+  populateArchiveFilter(puheetYearSel, puheetData.map((item) => archiveYear(item.date)), 'Kaikki vuodet', (a, b) => Number(b) - Number(a));
+  populateArchiveFilter(puheetMeetingSel, puheetData.map((item) => item.meetingLabel), 'Kaikki kokoukset', compareCouncilMeetings);
+
+  function shortTitle(t) {
+    // Strip "Puheenvuoro[ni]" or "Valtuustopuheenvuoro" prefix
+    let s = t.replace(/^(?:Valtuustopuheenvuoro|Puheenvuoro(?:ni)?)\s+/i, '');
+    // If § reference present, take everything after it
+    let afterParagraph = s.replace(/^.*?§\s*\d+\s*[.:–\s]+/i, '');
+    if (afterParagraph !== s) return afterParagraph.trim();
+    // Otherwise strip up to first ": "
+    let afterColon = s.replace(/^[^:]+:\s*/, '');
+    if (afterColon !== s) return afterColon.trim();
+    return s.trim();
+  }
+
+  function secondsToClock(totalSeconds) {
+    const total = Number(totalSeconds || 0);
+    const hours = Math.floor(total / 3600);
+    const minutes = Math.floor((total % 3600) / 60);
+    const seconds = total % 60;
+    return [hours, minutes, seconds]
+      .map((part, index) => index === 0 ? String(part) : String(part).padStart(2, '0'))
+      .join(':');
+  }
+
+  function applyPuheetFilters() {
+    const q = puheetSearchInp ? puheetSearchInp.value.toLowerCase().trim() : '';
+    const year = puheetYearSel?.value || '';
+    const meetingNumber = puheetMeetingSel?.value || '';
+    filteredPuheetData = puheetData.filter(d => {
+      const matchQ = !q ||
+        (d.title || '').toLowerCase().includes(q) ||
+        (d.asiakohta || '').toLowerCase().includes(q) ||
+        (d.description || '').toLowerCase().includes(q) ||
+        (d.event || '').toLowerCase().includes(q) ||
+        (d.categories || []).some(c => c.toLowerCase().includes(q)) ||
+        (d.keywords || []).some(k => k.toLowerCase().includes(q));
+      return matchQ &&
+        (!year || archiveYear(d.date) === year) &&
+        (!meetingNumber || d.meetingLabel === meetingNumber);
+    }).sort((a, b) => new Date(b.date) - new Date(a.date));
+    puheetCurrentPage = 1;
+    renderPuheet();
+  }
+
+  function sortPuheetData(col) {
+    if (puheetSortCol === col) { puheetSortDir *= -1; }
+    else { puheetSortCol = col; puheetSortDir = col === 'date' ? -1 : 1; }
+    
+    filteredPuheetData.sort((a, b) => {
+      let av = a[col] ?? '';
+      let bv = b[col] ?? '';
+      if (typeof av === 'string') av = av.toLowerCase();
+      if (typeof bv === 'string') bv = bv.toLowerCase();
+      if (col === 'date') {
+        return (new Date(av) - new Date(bv)) * puheetSortDir;
+      }
+      return av.toString().localeCompare(bv.toString(), 'fi') * puheetSortDir;
+    });
+    puheetCurrentPage = 1;
+    renderPuheet();
+  }
+
+  function renderPuheet() {
+    if (!puheetTbody || !puheetInfo) return;
+
+    const totalPages = Math.max(1, Math.ceil(filteredPuheetData.length / PUHEET_PAGE_SIZE));
+    const start = (puheetCurrentPage - 1) * PUHEET_PAGE_SIZE;
+    const slice = filteredPuheetData.slice(start, start + PUHEET_PAGE_SIZE);
+
+    if (slice.length === 0) {
+      puheetTbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-5">Ei tuloksia haulla</td></tr>';
+    } else {
+      puheetTbody.innerHTML = slice.map(d => {
+        const catBadges = (d.categories || []).map(c => `<a href="/kategoriat/${slugify(c)}/" class="badge text-bg-secondary me-1 text-decoration-none">${c}</a>`).join('');
+        const keyBadges = (d.keywords || []).map(k => `<a href="/avainsanat/${slugify(k)}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">${k}</a>`).join('');
+
+        const targetAttr = d.isExternal ? 'target="_blank" rel="noopener"' : '';
+        const iconInfo = d.isExternal ? '<i class="bi bi-arrow-up-right"></i>' : '<i class="bi bi-arrow-right"></i>';
+        const eventInfo = d.event ? `<br><span class="badge text-bg-light border text-dark mt-1"><i class="bi bi-calendar-event me-1"></i>${escHtml(d.event)}</span>` : '';
+        const videoInfo = (d.councilVideos || []).length
+          ? `<br><a href="https://www.youtube.com/watch?v=${d.councilVideos[0].youtubeId}&t=${d.councilVideos[0].start}s" target="_blank" rel="noopener" class="badge text-bg-light border text-dark mt-1 text-decoration-none"><i class="bi bi-youtube me-1"></i>Video ${secondsToClock(d.councilVideos[0].start)}</a>`
+          : '';
+        const asiakohtaLabel = escHtml(d.asiakohta || (d.protocolUrl ? 'Kokouspöytäkirja' : ''));
+        const asiakohtaInfo = d.protocolUrl
+          ? `<a href="${d.protocolUrl}" target="_blank" rel="noopener" class="text-decoration-none">${asiakohtaLabel}</a>`
+          : asiakohtaLabel;
+
+        const meetingInfo = d.meetingLabel ? `<span class="d-block mt-1 font-monospace text-muted">${escHtml(d.meetingNumber ? `Kokous ${d.meetingLabel}` : d.meetingLabel)}</span>` : '';
+        return `<tr>
+          <td class="col-date text-center small text-muted font-monospace">${d.formattedDate}${meetingInfo}</td>
+          <td class="col-title fw-medium"><a href="${d.url}" ${targetAttr} class="text-decoration-none">${escHtml(shortTitle(d.title))}</a></td>
+          <td class="col-asiakohta small text-muted">${asiakohtaInfo}</td>
+          <td class="col-desc small text-muted"><span class="summary-text">${escHtml(d.description)}</span>${eventInfo}${videoInfo}</td>
+          <td class="col-taxonomy">
+            <div class="mb-1">${catBadges}</div>
+            <div>${keyBadges}</div>
+          </td>
+        </tr>`;
+      }).join('');
+    }
+
+    const total = filteredPuheetData.length;
+    const from = total === 0 ? 0 : start + 1;
+    const to = Math.min(start + PUHEET_PAGE_SIZE, total);
+    puheetInfo.textContent = `Näytetään ${from}–${to} / ${total}`;
+
+    renderPuheetPagination(totalPages);
+
+    document.querySelectorAll('.puheet-table th.sortable').forEach(th => {
+      th.classList.remove('sort-asc', 'sort-desc');
+      if (th.dataset.col === puheetSortCol) {
+        th.classList.add(puheetSortDir === 1 ? 'sort-asc' : 'sort-desc');
+      }
+    });
+  }
+
+  function renderPuheetPagination(total) {
+    renderPaginationShared(puheetPagUl, total, puheetCurrentPage, page => {
+      puheetCurrentPage = page;
+      renderPuheet();
+      document.getElementById('puheet')?.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  }
+
+  function escHtml(str) {
+    if (!str) return '';
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function slugify(str) {
+    if (!str) return "";
+    return str.toLowerCase().replace(/ä/g, "a").replace(/ö/g, "o").replace(/å/g, "a").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  }
+
+  if (puheetSearchInp) puheetSearchInp.addEventListener('input', applyPuheetFilters);
+  if (puheetYearSel) puheetYearSel.addEventListener('change', applyPuheetFilters);
+  if (puheetMeetingSel) puheetMeetingSel.addEventListener('change', applyPuheetFilters);
+  
+  const puheetResetBtn = document.getElementById('puheet-reset');
+  if (puheetResetBtn) {
+    puheetResetBtn.addEventListener('click', () => {
+      if (puheetSearchInp) puheetSearchInp.value = '';
+      if (puheetYearSel) puheetYearSel.value = '';
+      if (yearSel) yearSel.value = '';
+      if (eventSel) eventSel.value = '';
+      applyFilters();
+    });
+  }
+
+  document.querySelectorAll('.julkiset-puheet-table th.sortable').forEach(th => {
+    th.addEventListener('click', () => sortData(th.dataset.col));
+  });
+
+  renderTable();
+})();
+
+// --- Aloitteet taulukon logiikka ---
+(function () {
+  const ALOITTEET_PAGE_SIZE = 5;
+  const aloitteetDataEl = document.getElementById('aloitteet-data');
+  if (!aloitteetDataEl) return;
+  const aloitteetData = JSON.parse(aloitteetDataEl.textContent);
+
+  let filteredAloitteetData = [...aloitteetData].sort((a, b) => new Date(b.meetingDate || b.date) - new Date(a.meetingDate || a.date));
+  let aloitteetCurrentPage = 1;
+  let aloitteetSortCol = 'meetingDate';
+  let aloitteetSortDir = -1; // -1 = desc
+
+  const aloitteetSearchInp = document.getElementById('aloitteet-search');
+  const aloitteetYearSel = document.getElementById('aloitteet-year');
+  const aloitteetTbody = document.getElementById('aloitteet-tbody');
+  const aloitteetInfo = document.getElementById('aloitteet-info');
+  const aloitteetPagUl = document.getElementById('aloitteet-pagination');
+
+  populateArchiveFilter(aloitteetYearSel, aloitteetData.map((item) => archiveYear(item.meetingDate || item.date)), 'Kaikki vuodet', (a, b) => Number(b) - Number(a));
+
+  function applyAloitteetFilters() {
+    const q = aloitteetSearchInp ? aloitteetSearchInp.value.toLowerCase().trim() : '';
+    const year = aloitteetYearSel?.value || '';
+    filteredAloitteetData = aloitteetData.filter(d => {
+      const matchQ = !q ||
+        (d.title || '').toLowerCase().includes(q) ||
+        (d.description || '').toLowerCase().includes(q) ||
+        (d.meeting || '').toLowerCase().includes(q) ||
+        (d.formattedMeetingDate || '').toLowerCase().includes(q) ||
+        (d.initiative_type || '').toLowerCase().includes(q) ||
+        (d.categories || []).some(c => c.toLowerCase().includes(q)) ||
+        (d.keywords || []).some(k => k.toLowerCase().includes(q));
+      return matchQ && (!year || archiveYear(d.meetingDate || d.date) === year);
+    }).sort((a, b) => new Date(b.meetingDate || b.date) - new Date(a.meetingDate || a.date));
+    aloitteetCurrentPage = 1;
+    renderAloitteet();
+  }
+
+  function sortAloitteetData(col) {
+    if (aloitteetSortCol === col) { aloitteetSortDir *= -1; }
+    else { aloitteetSortCol = col; aloitteetSortDir = col === 'date' || col === 'meetingDate' ? -1 : 1; }
+    
+    filteredAloitteetData.sort((a, b) => {
+      let av = a[col] ?? '';
+      let bv = b[col] ?? '';
+      if (typeof av === 'string') av = av.toLowerCase();
+      if (typeof bv === 'string') bv = bv.toLowerCase();
+      if (col === 'date' || col === 'meetingDate') {
+        return (new Date(av) - new Date(bv)) * aloitteetSortDir;
+      }
+      return av.toString().localeCompare(bv.toString(), 'fi') * aloitteetSortDir;
+    });
+    aloitteetCurrentPage = 1;
+    renderAloitteet();
+  }
+
+  function renderAloitteet() {
+    if (!aloitteetTbody || !aloitteetInfo) return;
+
+    const totalPages = Math.max(1, Math.ceil(filteredAloitteetData.length / ALOITTEET_PAGE_SIZE));
+    const start = (aloitteetCurrentPage - 1) * ALOITTEET_PAGE_SIZE;
+    const slice = filteredAloitteetData.slice(start, start + ALOITTEET_PAGE_SIZE);
+
+    if (slice.length === 0) {
+      aloitteetTbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-5">Ei tuloksia haulla</td></tr>';
+    } else {
+      aloitteetTbody.innerHTML = slice.map(d => {
+        const catBadges = (d.categories || []).map(c => `<a href="/kategoriat/${slugify(c)}/" class="badge text-bg-secondary me-1 text-decoration-none">${c}</a>`).join('');
+        const keyBadges = (d.keywords || []).map(k => `<a href="/avainsanat/${slugify(k)}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">${k}</a>`).join('');
+
+        const targetAttr = d.isExternal ? 'target="_blank" rel="noopener"' : '';
+        const iconInfo = d.isExternal ? '<i class="bi bi-arrow-up-right"></i>' : '<i class="bi bi-arrow-right"></i>';
+        const typeInfo = d.initiative_type ? `<br><span class="badge text-bg-light border text-dark mt-1">${escHtml(d.initiative_type)}</span>` : '';
+        const meetingInfo = d.meeting ? `<br><span class="small text-muted">${escHtml(d.meeting)}</span>` : '';
+
+        return `<tr>
+          <td class="col-date text-center small text-muted font-monospace">${d.formattedMeetingDate || d.formattedDate}${meetingInfo}</td>
+          <td class="col-title fw-medium"><a href="${d.url}" ${targetAttr} class="text-decoration-none">${escHtml(d.title)}</a></td>
+          <td class="col-desc small text-muted"><span class="summary-text">${escHtml(d.description)}</span>${typeInfo}</td>
+          <td class="col-taxonomy">
+            <div class="mb-1">${catBadges}</div>
+            <div>${keyBadges}</div>
+          </td>
+          <td class="col-action text-center">
+            <a href="${d.url}" ${targetAttr} class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Avaa aloite">
+              ${iconInfo}
+            </a>
+          </td>
+        </tr>`;
+      }).join('');
+    }
+
+    const total = filteredAloitteetData.length;
+    const from = total === 0 ? 0 : start + 1;
+    const to = Math.min(start + ALOITTEET_PAGE_SIZE, total);
+    aloitteetInfo.textContent = `Näytetään ${from}–${to} / ${total}`;
+
+    renderAloitteetPagination(totalPages);
+
+    document.querySelectorAll('.aloitteet-table th.sortable').forEach(th => {
+      th.classList.remove('sort-asc', 'sort-desc');
+      if (th.dataset.col === aloitteetSortCol) {
+        th.classList.add(aloitteetSortDir === 1 ? 'sort-asc' : 'sort-desc');
+      }
+    });
+  }
+
+  function renderAloitteetPagination(total) {
+    renderPaginationShared(aloitteetPagUl, total, aloitteetCurrentPage, page => {
+      aloitteetCurrentPage = page;
+      renderAloitteet();
+      document.getElementById('aloitteet')?.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  }
+
+  function escHtml(str) {
+    if (!str) return '';
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function slugify(str) {
+    if (!str) return "";
+    return str.toLowerCase().replace(/ä/g, "a").replace(/ö/g, "o").replace(/å/g, "a").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  }
+
+  if (aloitteetSearchInp) aloitteetSearchInp.addEventListener('input', applyAloitteetFilters);
+  if (aloitteetYearSel) aloitteetYearSel.addEventListener('change', applyAloitteetFilters);
+  
+  const aloitteetResetBtn = document.getElementById('aloitteet-reset');
+  if (aloitteetResetBtn) {
+    aloitteetResetBtn.addEventListener('click', () => {
+      if (aloitteetSearchInp) aloitteetSearchInp.value = '';
+  const kolumnitResetBtn = document.getElementById('kolumnit-reset');
+  if (kolumnitResetBtn) {
+      if (lausunnotSearchInp) lausunnotSearchInp.value = '';
+
+}); // DOMContentLoaded
+</script>
+
+{# Staattinen arkistolista — takaa inlinkit kaikille julkaisuille hakukoneille #}
+<section class="py-3">
+  <div class="site-shell">
+    <details>
+      <summary class="text-muted small py-2">Kaikki kirjoitukset arkistona ({{ collections.publications | length }})</summary>
+      <ul class="list-unstyled row row-cols-1 row-cols-md-2 g-1 mt-2">
+        {% for pub in collections.publications | sort(attribute="data.date", reverse=true) %}
+        <li class="col"><a class="small text-decoration-none text-muted" href="{{ pub.url }}">{{ pub.data.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </details>
+  </div>
+</section>
