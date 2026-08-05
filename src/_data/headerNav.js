@@ -744,6 +744,7 @@ module.exports = {
       contentColumns: [
         {
           heading: "Kirjoitukset",
+          headingHref: "/kirjoitukset/",
           links: [
             { title: "Kirjoitukset (koontisivu)", href: "/kirjoitukset/", icon: "bi bi-pencil-square me-2", description: "Blogi, kolumnit ja mielipidekirjoitukset yhdessä näkymässä." },
             { title: "Blogi", href: "/blogi/", icon: "bi bi-pen me-2", countKey: "blog", description: "Ajankohtaiset kirjoitukset opetuksesta, teknologiasta ja yhteiskunnasta." },
@@ -753,6 +754,7 @@ module.exports = {
         },
         {
           heading: "Valtuustotyö",
+          headingHref: "/valtuustotyo/",
           links: [
             { title: "Valtuustotyö (koontisivu)", href: "/valtuustotyo/", icon: "bi bi-building me-2", description: "Puheenvuorot ja aloitteet kaupunginvaltuustossa." },
             { title: "Valtuustopuheenvuorot", href: "/valtuustotyo/#puheet", icon: "bi bi-mic me-2", countKey: "pub_puhe_valtuusto", description: "Kaupunginvaltuuston kokouksissa pidetyt puheenvuorot." },
@@ -761,6 +763,7 @@ module.exports = {
         },
         {
           heading: "Lausunnot ja julkiset puheet",
+          headingHref: "/lausunnot/",
           links: [
             { title: "Lausunnot ja julkiset puheet (koontisivu)", href: "/lausunnot/", icon: "bi bi-file-earmark-text me-2", description: "Asiantuntijalausunnot ja julkiset puheet yhdessä näkymässä." },
             { title: "Lausunnot", href: "/lausunnot/#lausunnot", icon: "bi bi-file-earmark-text me-2", countData: "publications_statements", description: "Lausuntopalvelussa ja muissa valmisteluprosesseissa annetut asiantuntijalausunnot." },

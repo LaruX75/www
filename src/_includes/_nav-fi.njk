@@ -238,7 +238,7 @@
                 {% for contentColumn in writingsMegaMenu.contentColumns %}
                   <section class="writings-main-col">
                     {% if contentColumn.heading %}
-                      <h5>{{ contentColumn.heading }}</h5>
+                      <h5>{% if contentColumn.headingHref %}<a class="mega-section-heading-link" href="{{ contentColumn.headingHref }}">{{ contentColumn.heading }}</a>{% else %}{{ contentColumn.heading }}{% endif %}</h5>
                     {% endif %}
                     {% for link in contentColumn.links %}
                       {% set linkCount = 0 %}
