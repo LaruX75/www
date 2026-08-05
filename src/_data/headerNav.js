@@ -812,13 +812,8 @@ module.exports = {
       sections: [
         {
           heading: "Yliopistotyö",
+          headingHref: "/tyoni-yliopistonlehtorina/",
           links: [
-            {
-              title: "Työni yliopistonlehtorina",
-              href: "/tyoni-yliopistonlehtorina/",
-              icon: "bi bi-briefcase me-2",
-              description: "Kokonaiskuva opetuksesta, tutkimuksesta ja yhteiskunnallisesta vuorovaikutuksesta."
-            },
             {
               title: "Esitykset",
               href: "/esitykset/",
@@ -847,13 +842,8 @@ module.exports = {
         },
         {
           heading: "Tutkimus",
+          headingHref: "/tutkimus/",
           links: [
-            {
-              title: "Tutkimus",
-              href: "/tutkimus/",
-              icon: "bi bi-search me-2",
-              description: "Tutkimushankkeet, tutkimusteemat ja pidempi tutkimuslinja omalla sivullaan."
-            },
             {
               title: "Väitöskirja",
               href: "/vaitoskirja/",
@@ -876,24 +866,13 @@ module.exports = {
         },
         {
           heading: "Yhteiskunnallinen vuorovaikutus",
+          headingHref: "/yhteiskunnallinen-vuorovaikutus/",
           links: [
-            {
-              title: "Yhteiskunnallinen vuorovaikutus",
-              href: "/yhteiskunnallinen-vuorovaikutus/",
-              icon: "bi bi-diagram-3 me-2",
-              description: "Kokonaiskuva siitä, miten tutkimus ja opetus jatkuvat materiaaleissa, lausunnoissa, mediassa ja päätöksenteossa."
-            },
             {
               title: "Lausunnot ja kannanotot",
               href: "/lausunnot/#lausunnot",
               icon: "bi bi-file-earmark-text me-2",
               description: "Tutkimustiedon ja asiantuntijuuden vieminen valmisteluun ja julkiseen keskusteluun."
-            },
-            {
-              title: "Esitykset ja avoimet materiaalit",
-              href: "/esitykset/",
-              icon: "bi bi-easel2 me-2",
-              description: "Opetusosaamista ja tutkimustietoa opettajille, kouluille ja verkostoille."
             },
             {
               title: "Mediassa",
@@ -904,14 +883,9 @@ module.exports = {
           ]
         },
         {
-          heading: "Kouluttaja & palaute",
+          heading: "Täydennyskoulutukset (Larux t:mi)",
+          headingHref: "/kouluttaja/",
           links: [
-            {
-              title: "Kouluttaja (Larux t:mi)",
-              href: "/kouluttaja/",
-              icon: "bi bi-building me-2",
-              description: "Koulutus- ja asiantuntijapalvelut Larux t:mi:n kautta."
-            },
             {
               title: "Koulutuspalaute",
               href: "/koulutuspalaute/",

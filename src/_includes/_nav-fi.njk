@@ -83,7 +83,7 @@
               <div class="mega-left four-cols">
                 {% for section in workMegaMenu.sections %}
                   <section>
-                    <h5>{{ section.heading }}</h5>
+                    <h5>{% if section.headingHref %}<a class="mega-section-heading-link" href="{{ section.headingHref }}">{{ section.heading }}</a>{% else %}{{ section.heading }}{% endif %}</h5>
                     {% for link in section.links %}
                       {% if link.inlineLinks %}
                         <div class="menu-link menu-link-inline-group">
