@@ -920,6 +920,18 @@ html[data-a11y-bg] .home-focus-strip-item {
   margin: 0 0 1.35rem;
 }
 
+@media (min-width: 768px) {
+  .home-role-subtitle {
+    min-height: 5.2em;
+  }
+  .home-role-focus-text {
+    min-height: 4.3em;
+  }
+  .home-role-latest-link {
+    min-height: 2.7em;
+  }
+}
+
 .home-role-facts {
   display: grid;
   grid-template-columns: 1fr 1fr;
