@@ -15,7 +15,6 @@ module.exports = {
     { from: "/koulutus/", to: "/kouluttaja/" },
     { from: "/kouluttaja-jari-laru/", to: "/kouluttaja/" },
     { from: "/media/", to: "/mediassa/" },
-    { from: "/kirjoitukset/", to: "/kynasta/" },
     { from: "/puheet/", to: "/kynasta/" },
     { from: "/mielipiteet/", to: "/kynasta/" },
     { from: "/lautakunta/", to: "/politiikka/sivistyslautakunta/" },
