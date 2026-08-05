@@ -1,6 +1,6 @@
 ---
 title: "Jari Laru, poliitikko"
-description: "Jari Larun poliittinen työ: sivistys, koko Oulun alueellinen yhdenvertaisuus, avoin päätöksenteko sekä linkit puheenvuoroihin, aloitteisiin, vaalikausiin ja sidonnaisuuksiin."
+description: "Jari Larun poliittinen työ Kansallisen Kokoomuksen luottamustehtävissä 2000-luvun alusta lähtien: sivistys, koko Oulun alueellinen yhdenvertaisuus, avoin päätöksenteko sekä linkit puheenvuoroihin, aloitteisiin, vaalikausiin ja sidonnaisuuksiin."
 permalink: /politiikka/
 layout: base.njk
 translationKey: politics_index
@@ -29,6 +29,9 @@ schemaAbout:
   - "@type": "Thing"
     name: "Avoin valmistelu ja tiedolla johtaminen"
 schemaMentions:
+  - "@type": "PoliticalParty"
+    name: "Kansallinen Kokoomus"
+    url: "https://www.kokoomus.fi/"
   - "@type": "GovernmentOrganization"
     name: "Oulun kaupunki"
     url: "https://www.ouka.fi/"
@@ -79,6 +82,10 @@ schemaMentions:
             <p class="pol-hero-side-kicker">Poliittinen työ</p>
             <p class="pol-hero-caption">Käytännöllistä kunnallispolitiikkaa sivistyksen, lähipalvelujen ja avoimuuden puolesta.</p>
             <dl class="pol-hero-facts mb-0">
+              <div>
+                <dt>Puolue</dt>
+                <dd>Kansallinen Kokoomus (2000-luvun alusta lähtien)</dd>
+              </div>
               <div>
                 <dt>Tapa toimia</dt>
                 <dd>Tietoon nojaten, pitkäjänteisesti, yhteistyökykyisesti</dd>
@@ -269,7 +276,7 @@ schemaMentions:
       <article class="pol-current-card pol-role-current-card">
         <div class="pol-current-head">
           <div>
-            <p class="pol-current-kicker mb-1">Vaalikausi 2025–2029</p>
+            <p class="pol-current-kicker mb-1">Vaalikausi 2025–2029 · Kansallisen Kokoomuksen valtuustoryhmässä</p>
             <h3 class="pol-current-title">Työ jatkuu sivistyksen, palvelujen ja avoimuuden teemoissa</h3>
             <p class="text-muted small mb-0">Nykyiset luottamustehtävät asettavat politiikan käytännön toimintaympäristön.</p>
           </div>
