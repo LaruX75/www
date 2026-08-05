@@ -893,8 +893,8 @@ html[data-a11y-bg] .home-focus-strip-item {
 }
 
 .home-role-card--university { --role-accent: #0d6efd; }
-.home-role-card--politics   { --role-accent: #d63384; }
-.home-role-card--training   { --role-accent: #198754; }
+.home-role-card--politics   { --role-accent: #147a7a; }
+.home-role-card--training   { --role-accent: #b45f06; }
 
 .home-role-kicker {
   color: var(--role-accent);
