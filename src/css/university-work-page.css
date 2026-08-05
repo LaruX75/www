@@ -78,6 +78,11 @@
   line-height: 1.72;
   color: rgba(19, 43, 70, 0.82);
 }
+.ylwork-hero-lead-link {
+  color: var(--bs-primary);
+  text-decoration: underline;
+  font-weight: 600;
+}
 .ylwork-route-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));

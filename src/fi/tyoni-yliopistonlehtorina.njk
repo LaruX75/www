@@ -65,7 +65,7 @@ schemaType: ProfilePage
 {% set latestWorkPublications = (researchfi or []).slice(0, 1) %}
 
 {% set workCopy = {
-  heroLead: "Tältä sivulta löydät kuvan Jari Larun yliopistotyöstä: opetuksesta, tutkimuksesta, ohjauksesta ja kehittämisestä. Jos etsit julkaisuja, esityksiä, opinnäytteitä tai opetusportfoliota, niihin pääsee suoraan tältä sivulta.",
+  heroLead: "Yleiskuva Jari Larun yliopistotyöstä: opetuksesta, tutkimuksesta, ohjauksesta ja yhteiskunnallisesta vuorovaikutuksesta. Tämä sivu antaa nopean kokonaiskuvan ja johdattaa oikeaan syventävään sisältöön — julkaisuihin, esityksiin ja opinnäytteisiin. Etsitkö pedagogisia perusteluja ja opetusansioiden arviointia varten koottua näyttöä? <a href=\"/portfolio/\" class=\"ylwork-hero-lead-link\">Siirry opetusportfolioon</a>.",
   heroBody: "Jari Laru opettaa luokanopettajakoulutuksessa digipedagogiikkaa, ohjelmoinnillista ajattelua ja tekoälylukutaitoa. Samaan työhön kuuluvat tutkimus, opinnäytteiden ohjaus ja opetuksen käytännön kehittäminen.",
   evidenceLead: "Julkaisut, ohjatut opinnäytteet, kehittämishankkeet, avoimet materiaalit ja asiantuntijatehtävät näyttävät, millaiseksi yliopistotyö on vuosien aikana rakentunut.",
   teachingBody: "Jari Laru opettaa teknologiatuettua oppimista, digipedagogiikkaa ja tekoälykasvatusta erityisesti luokanopettajakoulutuksessa. Tavoitteena on, että teoria muuttuu opetuksessa käytännöksi eikä jää pelkäksi käsitteeksi.",
@@ -105,7 +105,7 @@ schemaType: ProfilePage
         <p class="ylwork-eyebrow mb-2"><i class="bi bi-mortarboard-fill me-1"></i>Yliopistotyö</p>
         <h1 class="ylwork-hero-title mb-3">Yliopistotyö: opetus, tutkimus ja yhteiskunnallinen vuorovaikutus</h1>
         <p class="ylwork-hero-manifesto mb-3">Teknologia on opetuksessa väline, ei päämäärä. Tärkeintä on, mitä se saa aikaan oppimisessa ja opetuksessa.</p>
-        <p class="ylwork-hero-text mb-4">{{ workCopy.heroLead }}</p>
+        <p class="ylwork-hero-text mb-4">{{ workCopy.heroLead | safe }}</p>
         <div class="ylwork-hero-points mb-4">
           <div class="ylwork-hero-point">
             <span class="ylwork-hero-point-title">Opetus</span>

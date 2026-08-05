@@ -56,7 +56,7 @@ schemaMentions:
 
 {% set portfolioCopy = {
   heroTitle: "Opetan tulevia opettajia niin, että teknologia muuttuu ymmärrettäväksi osaksi opetuksen arkea.",
-  heroLead: "Opetusportfolioni kokoaa yhteen työn, jossa yhdistyvät yliopisto-opetus, opinnäytteiden ohjaus, oppimisympäristöjen kehittäminen ja avoimesti jaettu asiantuntijuus. Tavoitteena ei ole teknologia itsessään, vaan parempi oppiminen, selkeämpi opetus ja toimivammat käytännöt.",
+  heroLead: "Syventävä opetusportfolio, joka on suunnattu erityisesti opetusansioiden arvioijille (esim. tenuurihaku, dosentuurihakemus, palkitseminen). Kokonaisuus sisältää opetusajattelun, käytännön kokemuksen, arviot ja palautteet sekä osaamisen ylläpidon jäsenneltynä ja evidenssiin perustuen. Halutko yleiskuvan yliopistotyöstä? <a href=\"/tyoni-yliopistonlehtorina/\" class=\"portfolio-hero-lead-link\">Siirry Työni-sivulle</a>.",
   proofLead: "Portfolio näyttää sekä opetuksen periaatteet että konkreettiset näytöt: kurssit, ohjaukset, kehittämistyön, materiaalit ja tunnustukset.",
   philosophyLead: "Opetusajattelussani toistuu sama peruslinja riippumatta siitä, onko kyse luokanopettajaopiskelijoista, maisterivaiheen opinnoista, opinnäytteen ohjauksesta tai täydennyskoulutuksesta.",
   practiceLead: "Opetusosaaminen ei näy vain luentosalissa. Se näkyy myös ohjauksessa, oppimisympäristöissä, materiaaleissa ja tavoissa, joilla opetusta rakennetaan yhdessä muiden kanssa.",
@@ -71,7 +71,7 @@ schemaMentions:
       <div class="col-lg-7">
         <p class="portfolio-eyebrow mb-2"><i class="bi bi-mortarboard-fill me-1"></i>Opetusportfolio</p>
         <h1 class="portfolio-hero-title mb-3">{{ portfolioCopy.heroTitle }}</h1>
-        <p class="portfolio-hero-lead mb-4">{{ portfolioCopy.heroLead }}</p>
+        <p class="portfolio-hero-lead mb-4">{{ portfolioCopy.heroLead | safe }}</p>
         <div class="portfolio-hero-points mb-4">
           <div class="card border-0 shadow-sm portfolio-hero-point">
             <div class="card-body">
