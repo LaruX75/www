@@ -71,8 +71,6 @@ pageStyles:
 {% set heroStats = [
     { count: heroPresentationCount, label: "Esitystä tai oppimateriaalia", href: "/esitykset/" },
     { count: heroPublicationCount, label: "tieteellistä julkaisua", href: "/julkaisut/" },
-    { count: heroStatementCount, label: "asiantuntijalausuntoa", href: "/lausunnot/#lausunnot" },
-    { count: heroMediaCount, label: "mediaosumaa", href: "/mediassa/" },
     { count: heroSpeechCount, label: "puheenvuoroa", href: "/valtuustotyo/#puheet" },
     { count: theses.stats.total, label: "ohjattua opinnäytettä", href: "/opinnaytteet/" }
 ] %}
@@ -146,61 +144,6 @@ pageStyles:
 {% set topicProfileTitle = "Keskeiset asiantuntijateemat" %}
 {% set topicProfileLead = "Jos etsit tiettyä aihetta, näiltä sivuilta löydät samaan teemaan liittyvät kirjoitukset, lausunnot, esitykset, mediaosumat ja tutkimusnäytön." %}
 
-<section class="py-5 home-paths-section" id="aloita">
-    <div class="site-shell">
-        <div class="home-section-head">
-            <p class="home-section-kicker mb-1">{{ pageContent.etusivu.paths.sectionLabel }}</p>
-            <h2 class="home-section-title">{{ homeCopy.pathsTitle }}</h2>
-            <p class="home-section-lead mb-0">{{ homeCopy.pathsLead }}</p>
-        </div>
-        <div class="home-paths-grid">
-            {% for card in pageContent.etusivu.paths.cards %}
-            <a href="{{ card.href }}" class="home-path-card{% if loop.first %} home-path-card--primary{% endif %}">
-                <span class="home-path-card-icon"><i class="bi {{ card.icon }}"></i></span>
-                <p class="home-path-card-kicker">{{ card.title }}</p>
-                <p class="home-path-card-text">{{ card.desc }}</p>
-                <span class="home-path-card-cta">{{ card.cta }}</span>
-            </a>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-
-<section class="home-university-mission-section pb-5">
-    <div class="site-shell">
-        <div class="home-university-mission">
-            <div>
-                <p class="home-section-kicker mb-1">Yliopistotyö</p>
-                <h2 class="h3 mb-2">Tutkimus, opetus ja yhteiskunnallinen vuorovaikutus</h2>
-                <p class="home-impact-statement mb-2">Tutkimuksesta opetukseen, työkaluihin ja päätöksentekoon.</p>
-                <p class="mb-0 text-muted">Jari Laru tekee oppimisen, teknologian ja tekoälyn tutkimuksesta ymmärrettävää ja käyttökelpoista. Työ näkyy opettajankoulutuksessa, materiaaleissa, täydennyskoulutuksissa, lausunnoissa ja julkisessa keskustelussa.</p>
-                <div class="home-impact-grid" aria-label="Mitä työstä syntyy">
-                    <div>
-                        <span>Koulutus</span>
-                        <p>Opettajankoulutus ja täydennyskoulutukset vievät tutkimusta opettajien ja organisaatioiden arkeen.</p>
-                    </div>
-                    <div>
-                        <span>Osaaminen</span>
-                        <p>Tekoälylukutaito, digipedagogiikka ja teknologian ymmärtävä käyttö vahvistuvat käytännön kautta.</p>
-                    </div>
-                    <div>
-                        <span>Materiaalit ja työkalut</span>
-                        <p>Avoimet esitykset, oppimateriaalit ja kokeiluympäristöt tekevät ilmiöistä käsiteltäviä.</p>
-                    </div>
-                    <div>
-                        <span>Päätöksenteko ja julkinen keskustelu</span>
-                        <p>Lausunnot, media ja luottamustehtävät tuovat tutkimusperustaisia näkökulmia koulutuksen kehittämiseen ja päätöksentekoon.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="home-university-mission-links">
-                <a href="/tutkimus/">Tutkimus</a>
-                <a href="/portfolio/">Opetus</a>
-                <a href="/yhteiskunnallinen-vuorovaikutus/">Vuorovaikutus</a>
-            </div>
-        </div>
-    </div>
-</section>
 
 <section class="py-5 home-recent-section" id="ajankohtaista" data-home-mobile-priority="2">
     <div class="site-shell">
@@ -262,26 +205,28 @@ pageStyles:
                 {% endif %}
             </article>
 
-            <article class="home-recent-card">
-                <p class="home-recent-card-kicker">Mediassa</p>
-                {% if featuredRecentMedia %}
-                <h3 class="home-recent-card-title"><a href="{{ featuredRecentMedia.url }}">{{ featuredRecentMedia.data.title | truncate(76) }}</a></h3>
-                <p class="home-recent-card-meta">{{ featuredRecentMedia.date | dateFormat }}{% if featuredRecentMedia.data.mediaOutlet %} · {{ featuredRecentMedia.data.mediaOutlet }}{% endif %}</p>
-                {% if featuredRecentMedia.data.description %}
-                <p class="home-recent-card-text">{{ featuredRecentMedia.data.description | truncate(180) }}</p>
-                {% else %}
-                <p class="home-recent-card-text">Haastattelu, podcast tai muu mediaosuma, jossa Jari Laru on mukana asiantuntijana.</p>
-                {% endif %}
-                <a href="/mediassa/" class="home-recent-card-link">Kaikki mediaosumat</a>
-                {% endif %}
-            </article>
         </div>
             </div>
         </details>
     </div>
 </section>
 
-{% include "topic-profile-links.njk" %}
+<section class="home-university-mission-section py-5">
+    <div class="site-shell">
+        <div class="home-university-mission">
+            <div>
+                <p class="home-section-kicker mb-1">Yliopistotyö</p>
+                <h2 class="h3 mb-2">Tutkimus, opetus ja yhteiskunnallinen vuorovaikutus</h2>
+                <p class="mb-0 text-muted">Jari Laru tekee oppimisen, teknologian ja tekoälyn tutkimuksesta ymmärrettävää ja käyttökelpoista. Työ näkyy opettajankoulutuksessa, materiaaleissa, täydennyskoulutuksissa, lausunnoissa ja julkisessa keskustelussa.</p>
+            </div>
+            <div class="home-university-mission-links">
+                <a href="/tutkimus/">Tutkimus</a>
+                <a href="/portfolio/">Opetus</a>
+                <a href="/yhteiskunnallinen-vuorovaikutus/">Vuorovaikutus</a>
+            </div>
+        </div>
+    </div>
+</section>
 
 <section class="py-5 home-larux-section" id="koulutus">
     <div class="site-shell">
