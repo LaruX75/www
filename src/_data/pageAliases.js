@@ -17,7 +17,6 @@ module.exports = {
     { from: "/media/", to: "/mediassa/" },
     { from: "/kirjoitukset/", to: "/kynasta/" },
     { from: "/puheet/", to: "/kynasta/" },
-    { from: "/lausunnot/", to: "/kynasta/" },
     { from: "/mielipiteet/", to: "/kynasta/" },
     { from: "/lautakunta/", to: "/politiikka/sivistyslautakunta/" },
     { from: "/sivistyslautakunta/", to: "/politiikka/sivistyslautakunta/" },
