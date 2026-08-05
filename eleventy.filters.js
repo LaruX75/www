@@ -1041,6 +1041,62 @@ module.exports = function registerFilters(eleventyConfig) {
     return topicItemsFromCollections(collections, topic, limit);
   });
 
+  eleventyConfig.addFilter("homepageTimeline", function (collections, researchfi, canvaRows, years) {
+    const yearList = toArray(years).map(Number).filter(Boolean);
+    if (!yearList.length) return [];
+
+    const yearIndex = new Map(yearList.map((y) => [y, {
+      year: y,
+      publications: 0,
+      speeches: 0,
+      presentations: 0,
+      total: 0
+    }]));
+
+    const collectionItems = (collections && (collections.pub_puhe || [])) || [];
+    for (const item of collectionItems) {
+      const d = new Date(item?.date || item?.data?.date || 0);
+      if (!Number.isFinite(d.getTime())) continue;
+      const y = d.getFullYear();
+      if (yearIndex.has(y)) {
+        yearIndex.get(y).speeches += 1;
+      }
+    }
+
+    for (const pub of toArray(researchfi)) {
+      const yRaw = pub?.year;
+      const y = Number(yRaw);
+      if (yearIndex.has(y)) {
+        yearIndex.get(y).publications += 1;
+      }
+    }
+
+    for (const row of toArray(canvaRows)) {
+      const yearFieldRaw = row?.year || row?.date || "";
+      let y = Number(yearFieldRaw);
+      if (!y) {
+        const d = new Date(yearFieldRaw);
+        if (Number.isFinite(d.getTime())) y = d.getFullYear();
+      }
+      if (yearIndex.has(y)) {
+        yearIndex.get(y).presentations += 1;
+      }
+    }
+
+    const rows = yearList.map((y) => {
+      const row = yearIndex.get(y);
+      row.total = row.publications + row.speeches + row.presentations;
+      return row;
+    });
+    const max = Math.max(1, ...rows.map((r) => Math.max(r.publications, r.speeches, r.presentations)));
+    rows.forEach((r) => {
+      r.publicationsPct = Math.round((r.publications / max) * 100);
+      r.speechesPct = Math.round((r.speeches / max) * 100);
+      r.presentationsPct = Math.round((r.presentations / max) * 100);
+    });
+    return rows;
+  });
+
   eleventyConfig.addFilter("curatedResearchForTopic", function (items, researchThemes, limit = 3) {
     return curatedResearchForTopic(items, researchThemes, limit);
   });

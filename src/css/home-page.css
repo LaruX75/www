@@ -1122,3 +1122,109 @@ html[data-a11y-bg] .home-focus-strip-item {
   justify-content: center;
   margin-top: 2rem;
 }
+
+/* ============================================================
+   AIKAJANA (Viimeiset 5 vuotta)
+   ============================================================ */
+
+.home-timeline {
+  margin-top: 2rem;
+}
+
+.home-timeline-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 0;
+  margin: 0 0 1.75rem;
+  list-style: none;
+  font-size: 0.88rem;
+  color: var(--bs-secondary-color);
+}
+
+.home-timeline-legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.home-timeline-swatch {
+  display: inline-block;
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 0.2rem;
+  flex-shrink: 0;
+}
+
+.home-timeline-swatch--publications  { background: #0d6efd; }
+.home-timeline-swatch--speeches      { background: #147a7a; }
+.home-timeline-swatch--presentations { background: #b45f06; }
+
+.home-timeline-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.5rem 1.25rem;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 1rem;
+  background: var(--bs-body-bg);
+}
+
+.home-timeline-row {
+  display: grid;
+  grid-template-columns: 4rem 1fr;
+  gap: 1rem;
+  align-items: center;
+}
+
+@media (min-width: 576px) {
+  .home-timeline-row {
+    grid-template-columns: 5rem 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.home-timeline-year {
+  font-family: var(--bs-font-family-heading);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--bs-body-color);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.home-timeline-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.home-timeline-bar-line {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 1.5rem;
+}
+
+.home-timeline-bar {
+  display: inline-block;
+  height: 1rem;
+  min-width: 0.15rem;
+  border-radius: 0.15rem;
+  transition: opacity 0.15s ease;
+}
+
+.home-timeline-bar--publications  { background: #0d6efd; }
+.home-timeline-bar--speeches      { background: #147a7a; }
+.home-timeline-bar--presentations { background: #b45f06; }
+
+.home-timeline-bar-line:hover .home-timeline-bar {
+  opacity: 0.85;
+}
+
+.home-timeline-bar-count {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--bs-secondary-color);
+  min-width: 1.75rem;
+}

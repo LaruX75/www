@@ -248,6 +248,49 @@ pageStyles:
     </div>
 </section>
 
+{% set timelineYears = [2022, 2023, 2024, 2025, 2026] %}
+{% set timelineRows = collections | homepageTimeline(researchfi, (canva.fiRows or canva.tableRows or []), timelineYears) %}
+
+<section class="py-5 home-timeline-section" id="aikajana">
+    <div class="site-shell">
+        <div class="home-section-head">
+            <p class="home-section-kicker mb-1">Viimeiset viisi vuotta</p>
+            <h2 class="home-section-title">Työn jatkumo julkaisuina, puheenvuoroina ja esityksinä</h2>
+            <p class="home-section-lead mb-0">Aikajana näyttää vuosittain tieteelliset julkaisut, valtuustopuheenvuorot ja täydennyskoulutus-/asiantuntijaesitykset. Jokainen palkki on suhteessa suurimpaan vuoteen.</p>
+        </div>
+
+        <div class="home-timeline">
+            <ul class="home-timeline-legend" aria-label="Aikajanan sarjat">
+                <li><span class="home-timeline-swatch home-timeline-swatch--publications"></span> Tieteelliset julkaisut</li>
+                <li><span class="home-timeline-swatch home-timeline-swatch--speeches"></span> Puheenvuorot (valtuusto + muut)</li>
+                <li><span class="home-timeline-swatch home-timeline-swatch--presentations"></span> Esitykset ja koulutukset</li>
+            </ul>
+
+            <div class="home-timeline-rows" role="list">
+                {% for row in timelineRows %}
+                <div class="home-timeline-row" role="listitem">
+                    <div class="home-timeline-year">{{ row.year }}</div>
+                    <div class="home-timeline-bars">
+                        <div class="home-timeline-bar-line" title="Tieteelliset julkaisut: {{ row.publications }}">
+                            <span class="home-timeline-bar home-timeline-bar--publications" style="width: {{ row.publicationsPct }}%;"></span>
+                            <span class="home-timeline-bar-count">{{ row.publications }}</span>
+                        </div>
+                        <div class="home-timeline-bar-line" title="Puheenvuorot: {{ row.speeches }}">
+                            <span class="home-timeline-bar home-timeline-bar--speeches" style="width: {{ row.speechesPct }}%;"></span>
+                            <span class="home-timeline-bar-count">{{ row.speeches }}</span>
+                        </div>
+                        <div class="home-timeline-bar-line" title="Esitykset ja koulutukset: {{ row.presentations }}">
+                            <span class="home-timeline-bar home-timeline-bar--presentations" style="width: {{ row.presentationsPct }}%;"></span>
+                            <span class="home-timeline-bar-count">{{ row.presentations }}</span>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
 <section class="py-5 bg-body-tertiary home-topics-section" id="teemat">
     <div class="site-shell">
         <div class="home-section-head">
