@@ -118,112 +118,166 @@ pageStyles:
     </div>
 </section>
 
-{% set featuredPresentationRows = (canva.fiRows or canva.tableRows or []) | take(3) %}
-{% set recentAcademicPosts = (collections.blogAcademic or []) | take(2) %}
-{% set recentPoliticsItems = [] %}
-{% for post in collections.politicsAndOpinions %}
-    {% if post.fileSlug != "etusivu" and recentPoliticsItems.length < 2 %}
-        {% set _ = (recentPoliticsItems.push(post), null) %}
+{% set heroInitiativeCount = (collections.politics or []) | length %}
+{% set trainingMeta = (trainingFeedback and trainingFeedback.meta) or {} %}
+
+{% set roleLatestResearch = (researchfi or [])[0] %}
+{% set roleLatestPresentation = ((canva.fiRows or canva.tableRows or [])[0]) %}
+{% set roleLatestCouncilSpeech = false %}
+{% for item in (collections.pub_puhe or []) | sort(true, false, "date") %}
+    {% if not roleLatestCouncilSpeech %}
+        {% set speechCtx = item.data.speechContext or "" %}
+        {% set forums = item.data.forum or [] %}
+        {% set isCouncil = speechCtx == "valtuusto" or speechCtx == "kyselytunti" or item.data.event == "Oulun kaupunginvaltuusto" or forums.indexOf("Kaupunginvaltuusto") != -1 %}
+        {% if isCouncil %}
+            {% set roleLatestCouncilSpeech = item %}
+        {% endif %}
     {% endif %}
 {% endfor %}
-{% set featuredPublications = (researchfi or []).slice(0, 2) %}
-{% set featuredRecentWritingItems = [] %}
-{% for item in (collections.writing_expert or []) | sort(true, false, "date") %}
-    {% if item.data.type != "lausunto" and item.data.type != "puhe" and item.data.title %}
-        {% set _ = (featuredRecentWritingItems.push(item), null) %}
-    {% endif %}
-{% endfor %}
-{% set featuredRecentPost = featuredRecentWritingItems[0] or (collections.blog or [])[0] %}
-{% set featuredRecentPresentation = ((canva.fiRows or canva.tableRows or [])[0]) %}
-{% set featuredRecentStatement = heroStatementItems[0] %}
-{% set featuredRecentMedia = ((mediaArchive and mediaArchive.all) or [])[0] %}
+{% set roleLatestInitiative = ((collections.politics or []) | sort(true, false, "date"))[0] %}
+{% set roleLatestPresentationTitle = roleLatestPresentation.title or "" %}
 
-{% set topicProfileKeys = ["tekoalylukutaito", "opettajankoulutus", "julkinen-asiantuntijuus-mediassa"] %}
-{% set topicProfileTitleId = "home-topic-profiles-title" %}
-{% set topicProfileEyebrow = "Teemat" %}
-{% set topicProfileTitle = "Keskeiset asiantuntijateemat" %}
-{% set topicProfileLead = "Jos etsit tiettyä aihetta, näiltä sivuilta löydät samaan teemaan liittyvät kirjoitukset, lausunnot, esitykset, mediaosumat ja tutkimusnäytön." %}
+{% set homeRoleTopicSlugs = {
+    university: "opettajankoulutus",
+    politics: "oulun-palveluverkko-ja-kaupunkikehitys",
+    training: "tekoalylukutaito"
+} %}
+
+{% set homeTopicSlugs = ["tekoalylukutaito", "opettajankoulutus", "oulun-palveluverkko-ja-kaupunkikehitys", "koulutusteknologia-ja-oppimisymparistot", "julkinen-asiantuntijuus-mediassa", "lapinakyva-paatoksenteko-ja-tiedolla-johtaminen"] %}
 
 
-<section class="py-5 home-recent-section" id="ajankohtaista" data-home-mobile-priority="2">
+<section class="py-5 home-roles-section" id="roolit">
     <div class="site-shell">
-        <details class="home-mobile-disclosure" data-home-mobile-collapse open>
-            <summary class="home-mobile-disclosure-summary">
-                <span>{{ homeCopy.recentTitle }}</span>
-                <small>Kirjoitukset, esitykset, lausunnot ja mediaosumat</small>
-            </summary>
-            <div class="home-mobile-disclosure-body">
         <div class="home-section-head">
-            <p class="home-section-kicker mb-1">Kirjoitukset ja esiintymiset</p>
-            <h2 class="home-section-title">{{ homeCopy.recentTitle }}</h2>
-            <p class="home-section-lead mb-0">{{ homeCopy.recentLead }}</p>
+            <p class="home-section-kicker mb-1">Kolme roolia · yksi jatkumo</p>
+            <h2 class="home-section-title">Yliopistonlehtori · Kuntapäättäjä · Kouluttaja</h2>
+            <p class="home-section-lead mb-0">Sivuston sisältö rakentuu näiden kolmen roolin ympärille. Kussakin näet ajankohtaisen työn, taustaluvut ja pääsyn syvempään aineistoon.</p>
         </div>
-        <div class="home-recent-editorial">
-            <article class="home-recent-card">
-                {% set featuredRecentPostRoleFlags = [] %}
-                {% if featuredRecentPost and featuredRecentPost.data.opinionRoles %}
-                    {% for role in featuredRecentPost.data.opinionRoles %}
-                        {% set _ = (featuredRecentPostRoleFlags.push(role), null) %}
-                    {% endfor %}
-                {% elif featuredRecentPost and featuredRecentPost.data.writingRoles %}
-                    {% for role in featuredRecentPost.data.writingRoles %}
-                        {% set _ = (featuredRecentPostRoleFlags.push(role), null) %}
-                    {% endfor %}
+
+        <div class="home-roles-grid">
+            <article class="home-role-card home-role-card--university">
+                <p class="home-role-kicker">Yliopistotyö</p>
+                <h3 class="home-role-title">Yliopistonlehtori</h3>
+                <p class="home-role-subtitle">Teknologiatuetun oppimisen ja opetuksen yliopistonlehtori, KTK-tiedekunta, Oulun yliopisto.</p>
+                <dl class="home-role-facts">
+                    <div>
+                        <dt>tieteellistä julkaisua</dt>
+                        <dd>{{ heroPublicationCount }}</dd>
+                    </div>
+                    <div>
+                        <dt>ohjattua opinnäytettä</dt>
+                        <dd>{{ theses.stats.total }}</dd>
+                    </div>
+                </dl>
+                <div class="home-role-focus">
+                    <p class="home-role-focus-kicker">Ajankohtainen fokus</p>
+                    <p class="home-role-focus-text">Generation AI -ohjelma, tekoälylukutaito ja opettajankoulutuksen kehittäminen.</p>
+                </div>
+                {% if roleLatestResearch %}
+                <div class="home-role-latest">
+                    <p class="home-role-latest-kicker">Uusin julkaisu</p>
+                    <a href="{{ roleLatestResearch.url or '/julkaisut/' }}"{% if roleLatestResearch.url %} target="_blank" rel="noopener noreferrer"{% endif %} class="home-role-latest-link">{{ roleLatestResearch.title | truncate(90) }}</a>
+                    {% if roleLatestResearch.year %}<p class="home-role-latest-meta">{{ roleLatestResearch.year }}{% if roleLatestResearch.venue %} · {{ roleLatestResearch.venue | truncate(50) }}{% endif %}</p>{% endif %}
+                </div>
                 {% endif %}
-                <p class="home-recent-card-kicker">{% if featuredRecentPostRoleFlags.indexOf("political") != -1 and featuredRecentPostRoleFlags.indexOf("expert") != -1 %}Asiantuntija + politiikka{% else %}Asiantuntijakirjoitus{% endif %}</p>
-                {% if featuredRecentPost %}
-                <h3 class="home-recent-card-title"><a href="{{ featuredRecentPost.url }}">{{ featuredRecentPost.data.title | truncate(76) }}</a></h3>
-                <p class="home-recent-card-meta">{{ featuredRecentPost.date | dateFormat }}</p>
-                {% if featuredRecentPost.data.description %}
-                <p class="home-recent-card-text">{{ featuredRecentPost.data.description | truncate(180) }}</p>
-                {% endif %}
-                <a href="/blogi/" class="home-recent-card-link">Kaikki kirjoitukset</a>
-                {% endif %}
+                <a class="home-role-cta" href="/tyoni-yliopistonlehtorina/">Avaa yliopistotyö <i class="bi bi-arrow-right ms-1"></i></a>
             </article>
 
-            <article class="home-recent-card">
-                <p class="home-recent-card-kicker">Esitys</p>
-                {% if featuredRecentPresentation %}
-                <h3 class="home-recent-card-title"><a href="{{ featuredRecentPresentation.url }}" target="_blank" rel="noopener noreferrer">{{ featuredRecentPresentation.title | truncate(76) }}</a></h3>
-                <p class="home-recent-card-meta">{{ featuredRecentPresentation.date | dateFormat }}{% if featuredRecentPresentation.location %} · {{ featuredRecentPresentation.location }}{% endif %}</p>
-                <p class="home-recent-card-text">Nosto koulutuksesta tai puheenvuorosta, jossa käsitellään tekoälyä, oppimista tai koulun arkea.</p>
-                <a href="/esitykset/" class="home-recent-card-link">Kaikki esitykset</a>
+            <article class="home-role-card home-role-card--politics">
+                <p class="home-role-kicker">Politiikka</p>
+                <h3 class="home-role-title">Kuntapäättäjä</h3>
+                <p class="home-role-subtitle">Kansallinen Kokoomus · 2. varavaltuutettu, sivistyslautakunnan jäsen, Oulun kaupunki.</p>
+                <dl class="home-role-facts">
+                    <div>
+                        <dt>puheenvuoroa</dt>
+                        <dd>{{ heroSpeechCount }}</dd>
+                    </div>
+                    <div>
+                        <dt>valtuustoaloitetta</dt>
+                        <dd>{{ heroInitiativeCount }}</dd>
+                    </div>
+                </dl>
+                <div class="home-role-focus">
+                    <p class="home-role-focus-kicker">Ajankohtainen fokus</p>
+                    <p class="home-role-focus-text">Sivistys ja koulutus, palveluverkko sekä avoin ja tiedolla johdettu päätöksenteko.</p>
+                </div>
+                {% if roleLatestCouncilSpeech %}
+                <div class="home-role-latest">
+                    <p class="home-role-latest-kicker">Uusin valtuustopuheenvuoro</p>
+                    <a href="{{ roleLatestCouncilSpeech.url }}" class="home-role-latest-link">{{ roleLatestCouncilSpeech.data.title | truncate(90) }}</a>
+                    <p class="home-role-latest-meta">{{ roleLatestCouncilSpeech.date | dateFormat }}</p>
+                </div>
+                {% elif roleLatestInitiative %}
+                <div class="home-role-latest">
+                    <p class="home-role-latest-kicker">Uusin aloite</p>
+                    <a href="{{ roleLatestInitiative.url }}" class="home-role-latest-link">{{ roleLatestInitiative.data.title | truncate(90) }}</a>
+                    <p class="home-role-latest-meta">{{ roleLatestInitiative.date | dateFormat }}</p>
+                </div>
                 {% endif %}
+                <a class="home-role-cta" href="/politiikka/">Avaa politiikka <i class="bi bi-arrow-right ms-1"></i></a>
             </article>
 
-            <article class="home-recent-card">
-                <p class="home-recent-card-kicker">Lausunto</p>
-                {% if featuredRecentStatement %}
-                <h3 class="home-recent-card-title"><a href="{{ featuredRecentStatement.url }}">{{ featuredRecentStatement.data.title | truncate(76) }}</a></h3>
-                <p class="home-recent-card-meta">{{ featuredRecentStatement.date | dateFormat }}{% if featuredRecentStatement.data.subtitle %} · {{ featuredRecentStatement.data.subtitle }}{% endif %}</p>
-                {% if featuredRecentStatement.data.description %}
-                <p class="home-recent-card-text">{{ featuredRecentStatement.data.description | truncate(180) }}</p>
-                {% else %}
-                <p class="home-recent-card-text">Asiantuntijalausunto opetuksen, tekoälyn tai koulutuksen valmistelun tueksi.</p>
+            <article class="home-role-card home-role-card--training">
+                <p class="home-role-kicker">Larux t:mi</p>
+                <h3 class="home-role-title">Kouluttaja</h3>
+                <p class="home-role-subtitle">Sivutoimisesti täydennyskoulutuksia ja asiantuntijapuheenvuoroja tekoälystä, oppimisteknologiasta ja modernista pedagogiikasta.</p>
+                <dl class="home-role-facts">
+                    <div>
+                        <dt>vuoden koulutuskooste</dt>
+                        <dd>{{ trainingMeta.aikavali or "2017–" }}</dd>
+                    </div>
+                    <div>
+                        <dt>palautekeskiarvo</dt>
+                        <dd class="home-role-facts-small">{{ trainingMeta.kainutlaatuinenKeskiarvo or "—" }}</dd>
+                    </div>
+                </dl>
+                <div class="home-role-focus">
+                    <p class="home-role-focus-kicker">Ajankohtainen fokus</p>
+                    <p class="home-role-focus-text">Tekoäly opetuksessa: käytännön työkalut, kokeilut ja opettajayhteisöjen sparraus.</p>
+                </div>
+                {% if roleLatestPresentation and roleLatestPresentationTitle %}
+                <div class="home-role-latest">
+                    <p class="home-role-latest-kicker">Uusin esitys</p>
+                    <a href="{{ roleLatestPresentation.url }}" target="_blank" rel="noopener noreferrer" class="home-role-latest-link">{{ roleLatestPresentationTitle | truncate(90) }}</a>
+                    {% if roleLatestPresentation.date %}<p class="home-role-latest-meta">{{ roleLatestPresentation.date | dateFormat }}</p>{% endif %}
+                </div>
                 {% endif %}
-                <a href="/lausunnot/#lausunnot" class="home-recent-card-link">Kaikki lausunnot</a>
-                {% endif %}
+                <a class="home-role-cta" href="/kouluttaja/">Avaa kouluttajapalvelut <i class="bi bi-arrow-right ms-1"></i></a>
             </article>
-
         </div>
-            </div>
-        </details>
     </div>
 </section>
 
-<section class="home-university-mission-section py-5">
+<section class="py-5 bg-body-tertiary home-topics-section" id="teemat">
     <div class="site-shell">
-        <div class="home-university-mission">
-            <div>
-                <p class="home-section-kicker mb-1">Yliopistotyö</p>
-                <h2 class="h3 mb-2">Tutkimus, opetus ja yhteiskunnallinen vuorovaikutus</h2>
-                <p class="mb-0 text-muted">Jari Laru tekee oppimisen, teknologian ja tekoälyn tutkimuksesta ymmärrettävää ja käyttökelpoista. Työ näkyy opettajankoulutuksessa, materiaaleissa, täydennyskoulutuksissa, lausunnoissa ja julkisessa keskustelussa.</p>
-            </div>
-            <div class="home-university-mission-links">
-                <a href="/tutkimus/">Tutkimus</a>
-                <a href="/portfolio/">Opetus</a>
-                <a href="/yhteiskunnallinen-vuorovaikutus/">Vuorovaikutus</a>
-            </div>
+        <div class="home-section-head">
+            <p class="home-section-kicker mb-1">Teemat läpi roolien</p>
+            <h2 class="home-section-title">Samat aiheet jatkuvat tutkimuksesta opetukseen, kirjoituksiin ja päätöksentekoon</h2>
+            <p class="home-section-lead mb-0">Teemaprofiili kokoaa aiheeseen liittyvät julkaisut, esitykset, kirjoitukset, lausunnot ja mediaosumat samalle sivulle. Numero kertoo, kuinka monta sisältöä kustakin teemasta on koottu.</p>
+        </div>
+
+        <div class="home-topics-grid">
+            {% for slug in homeTopicSlugs %}
+                {% set topic = false %}
+                {% for t in seoTopics %}{% if t.slug == slug %}{% set topic = t %}{% endif %}{% endfor %}
+                {% if topic %}
+                    {% set topicItemList = collections | topicItems(topic, 200) %}
+                    {% set researchList = researchfi | curatedResearchForTopic(topic.researchThemes or [], 200) %}
+                    {% set topicTotal = topicItemList.totalCount + researchList.length %}
+                    {% if topicTotal > 0 %}
+                    <a href="/teemat/{{ topic.slug }}/" class="home-topic-pill">
+                        <p class="home-topic-pill-kicker">{{ topic.eyebrow }}</p>
+                        <p class="home-topic-pill-title">{{ topic.title }}</p>
+                        <p class="home-topic-pill-count">{{ topicTotal }} aiheeseen liittyvää sisältöä</p>
+                        <span class="home-topic-pill-cta">Avaa teemaprofiili <i class="bi bi-arrow-right ms-1"></i></span>
+                    </a>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <div class="home-topics-footer">
+            <a href="/teemat/" class="btn btn-outline-primary rounded-pill px-4">Kaikki teemaprofiilit <i class="bi bi-arrow-right ms-1"></i></a>
         </div>
     </div>
 </section>
