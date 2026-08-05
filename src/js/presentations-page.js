@@ -96,6 +96,202 @@
       sourceLabel: "Google Sites"
     },
   ];
+  const closedLearningEnvironmentItems = [
+    // 2020
+    {
+      title: "405028Y Teknologiatuettu oppiminen ja opintoihin orientoituminen (TVT-osuus)",
+      url: "",
+      description: "MS Teams -toteutus, Teams-koodi 3ga3n2a. Teams Assignments/Classwork ja SharePoint Home.aspx -sivusto käytössä.",
+      meta: "MS Teams · Class Team",
+      date: "2020",
+      _isoDate: "2020-01-01",
+      archiveType: "suljettu-oppimisymparisto",
+      archiveTypeLabel: "Suljettu oppimisympäristö",
+      sourceLabel: "MS Teams"
+    },
+    {
+      title: "Learning Environments and Technologies (10 op) — 2020",
+      url: "",
+      description: "SharePoint Home.aspx -sivusto. Omistajaryhmä olemassa.",
+      meta: "SharePoint",
+      date: "2020",
+      _isoDate: "2020-01-02",
+      archiveType: "suljettu-oppimisymparisto",
+      archiveTypeLabel: "Suljettu oppimisympäristö",
+      sourceLabel: "MS Teams / SharePoint"
+    },
+    // 2021
+    {
+      title: "405028Y Teknologiatuettu oppiminen (TVT-osuus) — 2021",
+      url: "",
+      description: "MS Teams -toteutus (Yleinen-kanava, SharePoint, Assignments/Classwork). M365 Group.",
+      meta: "MS Teams · Class Team",
+      date: "2021",
+      _isoDate: "2021-01-01",
+      archiveType: "suljettu-oppimisymparisto",
+      archiveTypeLabel: "Suljettu oppimisympäristö",
+      sourceLabel: "MS Teams"
+    },
+    {
+      title: "405028Y — Opettajainhuone (yksityinen)",
+      url: "",
+      description: "Erillinen yksityinen Teams/SharePoint-toteutus opettajille (Home.aspx-sivusto).",
+      meta: "MS Teams · Private",
+      date: "2021",
+      _isoDate: "2021-01-02",
+      archiveType: "suljettu-oppimisymparisto",
+      archiveTypeLabel: "Suljettu oppimisympäristö",
+      sourceLabel: "MS Teams"
+    },
+    {
+      title: "Kurssit Teams-ympäristössä 2021 (aggregoitu)",
+      url: "",
+      description: "MS Teams -toteutuksia vuonna 2021: Learning Environments & Technologies, Emergent Learning Technologies, Ohjelmointi perusopetuksessa, STEAM-sivuaineen opetus, Aineenopettajien vapaavalintainen TVT-kurssi.",
+      meta: "MS Teams · 5 kurssitoteutusta",
+      date: "2021",
+      _isoDate: "2021-01-03",
+      archiveType: "suljettu-oppimisymparisto",
+      archiveTypeLabel: "Suljettu oppimisympäristö",
+      sourceLabel: "MS Teams"
+    },
+    // 2022
+    {
+      title: "405028Y Teknologiatuettu oppiminen (KTK149-toteutus)",
+      url: "",
+      description: "MS Teams -toteutus, Teams-koodi 0xyudgq.",
+      meta: "MS Teams · Class Team",
+      date: "2022",
+      _isoDate: "2022-01-01",
+      archiveType: "suljettu-oppimisymparisto",
+      archiveTypeLabel: "Suljettu oppimisympäristö",
+      sourceLabel: "MS Teams"
+    },
+    {
+      title: "Johdatus STEAMiin",
+      url: "",
+      description: "O365 Teams -toteutus mainittu virallisessa OPS-kuvauksessa.",
+      meta: "MS Teams · O365",
+      date: "2022",
+      _isoDate: "2022-01-02",
+      archiveType: "suljettu-oppimisymparisto",
+      archiveTypeLabel: "Suljettu oppimisympäristö",
+      sourceLabel: "MS Teams"
+    },
+    // 2023
+    {
+      title: "418028P Learning Environments and Technologies (10 op) — 2023",
+      url: "",
+      description: "Teams/M365 Group, 26 jäsentä.",
+      meta: "MS Teams · Class Team",
+      date: "2023",
+      _isoDate: "2023-01-01",
+      archiveType: "suljettu-oppimisymparisto",
+      archiveTypeLabel: "Suljettu oppimisympäristö",
+      sourceLabel: "MS Teams"
+    },
+    {
+      title: "Technologies in Teaching and Learning",
+      url: "",
+      description: "MS Teams -toteutus, Classwork- ja Assignments-välilehdet käytössä.",
+      meta: "MS Teams · Class Team",
+      date: "2023",
+      _isoDate: "2023-01-02",
+      archiveType: "suljettu-oppimisymparisto",
+      archiveTypeLabel: "Suljettu oppimisympäristö",
+      sourceLabel: "MS Teams"
+    },
+    {
+      title: "Teknologiatuettu oppiminen ja työskentely — 2023",
+      url: "",
+      description: "MS Teams -toteutus, Teams-koodi if6dhyt.",
+      meta: "MS Teams · Class Team",
+      date: "2023",
+      _isoDate: "2023-01-03",
+      archiveType: "suljettu-oppimisymparisto",
+      archiveTypeLabel: "Suljettu oppimisympäristö",
+      sourceLabel: "MS Teams"
+    },
+    // 2024
+    {
+      title: "Learning Environments and Technologies — 2024",
+      url: "",
+      description: "MS Teams -toteutus (Yleinen-kanava).",
+      meta: "MS Teams · Class Team",
+      date: "2024",
+      _isoDate: "2024-01-01",
+      archiveType: "suljettu-oppimisymparisto",
+      archiveTypeLabel: "Suljettu oppimisympäristö",
+      sourceLabel: "MS Teams"
+    },
+    {
+      title: "Teknologiatuettu oppiminen ja työskentely — LUKO/ERKKA 2024",
+      url: "",
+      description: "MS Teams Class Team -toteutus.",
+      meta: "MS Teams · Class Team",
+      date: "2024",
+      _isoDate: "2024-01-02",
+      archiveType: "suljettu-oppimisymparisto",
+      archiveTypeLabel: "Suljettu oppimisympäristö",
+      sourceLabel: "MS Teams"
+    },
+    {
+      title: "Teknologiatuettu oppiminen ja työskentely — PSYKA-MUKA 24-25",
+      url: "",
+      description: "MS Teams Class Team -toteutus.",
+      meta: "MS Teams · Class Team",
+      date: "2024",
+      _isoDate: "2024-01-03",
+      archiveType: "suljettu-oppimisymparisto",
+      archiveTypeLabel: "Suljettu oppimisympäristö",
+      sourceLabel: "MS Teams"
+    },
+    // 2025
+    {
+      title: "Learning Environments & Technologies Course Workspace — 2025",
+      url: "",
+      description: "Howspace-ympäristö. Group 1 (LET + vaihto-opiskelijat) ja Group 2 (Learning Sciences).",
+      meta: "Howspace · 2 ryhmää",
+      date: "2025",
+      _isoDate: "2025-01-01",
+      archiveType: "suljettu-oppimisymparisto",
+      archiveTypeLabel: "Suljettu oppimisympäristö",
+      sourceLabel: "Howspace"
+    },
+    {
+      title: "Learning Environments and Technologies — 2025 (16 workshopin toteutus)",
+      url: "",
+      description: "Kansainvälisten ja suomalaisten opiskelijoiden yhteiskurssi, 16 workshopia.",
+      meta: "MS Teams · 16 workshopia",
+      date: "2025",
+      _isoDate: "2025-01-02",
+      archiveType: "suljettu-oppimisymparisto",
+      archiveTypeLabel: "Suljettu oppimisympäristö",
+      sourceLabel: "MS Teams"
+    },
+    // 2026 — pääosin M365 Group -hallintaa
+    {
+      title: "Teknologiatuettu oppiminen ja työskentely — LUKO/ERKKA 2026",
+      url: "",
+      description: "M365 Group aktiivinen, 128 jäsentä.",
+      meta: "MS Teams · M365 Group",
+      date: "2026",
+      _isoDate: "2026-01-01",
+      archiveType: "suljettu-oppimisymparisto",
+      archiveTypeLabel: "Suljettu oppimisympäristö",
+      sourceLabel: "MS Teams"
+    },
+    {
+      title: "M365 Group -hallinta 2026 (uusimiset ja vanhentumiset)",
+      url: "",
+      description: "Vuoden 2026 M365 Group -hallintaa: 418028P Learning Environments and Technologies (26 jäsentä, ryhmä vanheni) ja Learning environments and technologies 10 cr (8 jäsenen HiddenMembership, uusimisviesti).",
+      meta: "M365 · Ryhmähallinta",
+      date: "2026",
+      _isoDate: "2026-01-02",
+      archiveType: "suljettu-oppimisymparisto",
+      archiveTypeLabel: "Suljettu oppimisympäristö",
+      sourceLabel: "M365"
+    }
+  ];
   const courseFilterLabels = new Map();
   const refinerParentByFilter = {
     "category:konferenssi-keynote": "route:puheenvuorot",
@@ -107,7 +303,8 @@
     aoe: "route:materiaalit",
     video: "route:materiaalit",
     analysis: "route:materiaalit",
-    oppimisymparisto: "route:materiaalit"
+    oppimisymparisto: "route:materiaalit",
+    "suljettu-oppimisymparisto": "route:materiaalit"
   };
 
   // Liitetään Canva MD-sivujen sisäiset URLit canva.tableRows-dataan design-id:n perusteella
@@ -988,6 +1185,21 @@
       });
     });
 
+    closedLearningEnvironmentItems.forEach((item) => {
+      const matchedContexts = findContextsForItem(item);
+      const taxonomy = classifyPresentationItem(item, matchedContexts);
+      items.push({
+        ...item,
+        openLabel: "",
+        matchedContexts,
+        categoryTags: taxonomy.categoryTags,
+        profileTags: taxonomy.profileTags,
+        routeTags: taxonomy.routeTags,
+        routePrimary: "route:materiaalit",
+        kategoria: item.kategoria || taxonomy.primaryCategory
+      });
+    });
+
     const seen = new Set();
     return items
       .filter((item) => {
@@ -1016,7 +1228,7 @@
     if (filter === "route:materiaalit") {
       return item.routePrimary === filter;
     }
-    if (["own", "aoe", "video", "analysis", "oppimisymparisto"].includes(filter)) return item.archiveType === filter;
+    if (["own", "aoe", "video", "analysis", "oppimisymparisto", "suljettu-oppimisymparisto"].includes(filter)) return item.archiveType === filter;
     if (filter.startsWith("category:")) {
       return Array.isArray(item.categoryTags) && item.categoryTags.includes(filter.slice("category:".length));
     }
@@ -1086,7 +1298,8 @@
       aoe: { label: "Avoimet oppimateriaalit", note: "" },
       video: { label: "Videot", note: "" },
       analysis: { label: "Analyysit", note: "" },
-      oppimisymparisto: { label: "Oppimisympäristöt", note: "Kurssien ja hankkeiden avoimet verkkosivustot (Google Sites, Wikikirjat)." }
+      oppimisymparisto: { label: "Oppimisympäristöt", note: "Kurssien ja hankkeiden avoimet verkkosivustot (Google Sites, Wikikirjat)." },
+      "suljettu-oppimisymparisto": { label: "Suljetut oppimisympäristöt", note: "Kurssien MS Teams / M365 / Howspace -toteutukset. Ei julkisia URL:eja — vain kurssin osallistujille." }
     };
     if (labels[filter]) return labels[filter];
 
