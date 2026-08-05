@@ -780,3 +780,33 @@ html[data-a11y-bg] .kynasta-table-pager--top {
 background: var(--bs-body-bg) !important;
 border-color: var(--bs-border-color) !important;
 }
+
+/* Muualla sivustolla -crosslinks (jaettu /kirjoitukset/, /valtuustotyo/ -sivujen kanssa) */
+.kynasta-crosslinks {
+  padding: 1.15rem 1.35rem;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 0.85rem;
+  background: var(--bs-tertiary-bg);
+  max-width: 60rem;
+  margin: 0 auto;
+}
+.kynasta-crosslinks h2 {
+  font-family: var(--bs-font-family-heading);
+  font-size: 1rem;
+  margin: 0 0 0.75rem;
+}
+.kynasta-crosslinks ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--bs-body-color);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+.kynasta-crosslinks a {
+  color: var(--bs-primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+.kynasta-crosslinks a:hover {
+  text-decoration: underline;
+}
