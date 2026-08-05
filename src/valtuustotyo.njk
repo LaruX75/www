@@ -1149,23 +1149,22 @@ function syncArchiveSortButton(button, isActive, direction, columnLabel) {
   if (puheetSearchInp) puheetSearchInp.addEventListener('input', applyPuheetFilters);
   if (puheetYearSel) puheetYearSel.addEventListener('change', applyPuheetFilters);
   if (puheetMeetingSel) puheetMeetingSel.addEventListener('change', applyPuheetFilters);
-  
+
   const puheetResetBtn = document.getElementById('puheet-reset');
   if (puheetResetBtn) {
     puheetResetBtn.addEventListener('click', () => {
       if (puheetSearchInp) puheetSearchInp.value = '';
       if (puheetYearSel) puheetYearSel.value = '';
-      if (yearSel) yearSel.value = '';
-      if (eventSel) eventSel.value = '';
-      applyFilters();
+      if (puheetMeetingSel) puheetMeetingSel.value = '';
+      applyPuheetFilters();
     });
   }
 
-  document.querySelectorAll('.julkiset-puheet-table th.sortable').forEach(th => {
-    th.addEventListener('click', () => sortData(th.dataset.col));
+  document.querySelectorAll('.puheet-table th.sortable').forEach(th => {
+    th.addEventListener('click', () => sortPuheetData(th.dataset.col));
   });
 
-  renderTable();
+  renderPuheet();
 })();
 
 // --- Aloitteet taulukon logiikka ---
@@ -1295,14 +1294,22 @@ function syncArchiveSortButton(button, isActive, direction, columnLabel) {
 
   if (aloitteetSearchInp) aloitteetSearchInp.addEventListener('input', applyAloitteetFilters);
   if (aloitteetYearSel) aloitteetYearSel.addEventListener('change', applyAloitteetFilters);
-  
+
   const aloitteetResetBtn = document.getElementById('aloitteet-reset');
   if (aloitteetResetBtn) {
     aloitteetResetBtn.addEventListener('click', () => {
       if (aloitteetSearchInp) aloitteetSearchInp.value = '';
-  const kolumnitResetBtn = document.getElementById('kolumnit-reset');
-  if (kolumnitResetBtn) {
-      if (lausunnotSearchInp) lausunnotSearchInp.value = '';
+      if (aloitteetYearSel) aloitteetYearSel.value = '';
+      applyAloitteetFilters();
+    });
+  }
+
+  document.querySelectorAll('.aloitteet-table th.sortable').forEach(th => {
+    th.addEventListener('click', () => sortAloitteetData(th.dataset.col));
+  });
+
+  renderAloitteet();
+})();
 
 }); // DOMContentLoaded
 </script>

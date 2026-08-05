@@ -1287,20 +1287,16 @@ function syncArchiveSortButton(button, isActive, direction, columnLabel) {
     blogResetBtn.addEventListener('click', () => {
       if (blogSearchInp) blogSearchInp.value = '';
       if (blogYearSel) blogYearSel.value = '';
-      activeEsityksetApplication = esityksetApplicationFilter.value || '';
-      if (puheetYearSel) puheetYearSel.value = '';
-      if (yearSel) yearSel.value = '';
-      if (aloitteetSearchInp) aloitteetSearchInp.value = '';
-      if (aloitteetYearSel) aloitteetYearSel.value = '';
-      applyAloitteetFilters();
+      selectedBlogRole = 'all';
+      applyBlogFilters();
     });
   }
 
-  document.querySelectorAll('.aloitteet-table th.sortable').forEach(th => {
-    th.addEventListener('click', () => sortAloitteetData(th.dataset.col));
+  document.querySelectorAll('.blog-table th.sortable').forEach(th => {
+    th.addEventListener('click', () => sortBlogData(th.dataset.col));
   });
 
-  renderAloitteet();
+  applyBlogFilters();
 })();
 
 // --- Kolumnit taulukon logiikka ---
@@ -1467,17 +1463,16 @@ function syncArchiveSortButton(button, isActive, direction, columnLabel) {
   
   const kolumnitResetBtn = document.getElementById('kolumnit-reset');
   if (kolumnitResetBtn) {
-      if (lausunnotSearchInp) lausunnotSearchInp.value = '';
-      if (lausunnotYearSel) lausunnotYearSel.value = '';
-      applyLausunnotFilters();
+    kolumnitResetBtn.addEventListener('click', () => {
+      if (kolumnitSearchInp) kolumnitSearchInp.value = '';
+      if (kolumnitYearSel) kolumnitYearSel.value = '';
+      if (kolumnitPublicationSel) kolumnitPublicationSel.value = '';
+      selectedKolumnitRole = 'all';
+      applyKolumnitFilters();
     });
   }
 
-  document.querySelectorAll('.lausunnot-table th.sortable').forEach((th) => {
-    th.addEventListener('click', () => sortLausunnotData(th.dataset.col));
-  });
-
-  renderLausunnot();
+  applyKolumnitFilters();
 })();
 
 // --- Mielipiteet taulukon logiikka ---
