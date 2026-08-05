@@ -189,7 +189,7 @@
               <div class="mega-left three-cols">
                 {% for section in politicsMegaMenu.sections %}
                   <section>
-                    <h5>{{ section.heading }}</h5>
+                    <h5>{% if section.headingHref %}<a class="mega-section-heading-link" href="{{ section.headingHref }}">{{ section.heading }}</a>{% else %}{{ section.heading }}{% endif %}</h5>
                     {% for link in section.links %}
                       {% set linkCount = 0 %}
                       {% if link.countKey %}{% set linkCount = (collections[link.countKey] or []) | length %}{% endif %}

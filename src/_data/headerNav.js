@@ -556,14 +556,8 @@ module.exports = {
       sections: [
         {
           heading: "Politiikan pääreitit",
+          headingHref: "/politiikka/",
           links: [
-            {
-              title: "Politiikka",
-              href: "/politiikka/",
-              icon: "bi bi-person-badge me-2",
-              menuLink: true,
-              description: "Poliittinen profiili, painopisteet ja nykyinen työ."
-            },
             {
               title: "Kaupunginvaltuusto",
               href: "/politiikka/kaupunginvaltuusto/",
