@@ -248,11 +248,11 @@ schemaMentions:
         </a>
       </div>
       <div class="col-sm-6 col-lg-4">
-        <a href="https://www.oulu.fi/letlab" target="_blank" rel="noopener noreferrer" class="card border-0 shadow-sm text-decoration-none h-100">
+        <a href="https://www.researchgate.net/profile/Jari-Laru" target="_blank" rel="noopener noreferrer" class="card border-0 shadow-sm text-decoration-none h-100">
           <div class="card-body p-4 text-center">
-            <div class="fs-1 mb-2 text-danger"><i class="bi bi-flask-fill"></i></div>
-            <h3 class="h6 fw-bold">LETLab</h3>
-            <p class="small text-muted mb-0">Oppimisen ja koulutusteknologian tutkimusyksikkö</p>
+            <div class="fs-1 mb-2 text-success"><i class="bi bi-share-fill"></i></div>
+            <h3 class="h6 fw-bold">ResearchGate</h3>
+            <p class="small text-muted mb-0">Julkaisut ja yhteistyöverkosto</p>
           </div>
         </a>
       </div>
