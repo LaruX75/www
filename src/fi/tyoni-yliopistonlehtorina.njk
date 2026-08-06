@@ -11,12 +11,6 @@ pageStyles:
 schemaType: ProfilePage
 ---
 
-{% import "ui.njk" as ui %}
-
-{%- set peerReviewedCount = 0 -%}
-{%- for pub in researchfi -%}
-  {%- if pub.peerReviewed -%}{%- set peerReviewedCount = peerReviewedCount + 1 -%}{%- endif -%}
-{%- endfor -%}
 {% set expertOpinionItems = [] %}
 {% for item in (collections.pub_mielipide or []) %}
   {% set roles = item.data.opinionRoles or item.data.writingRoles or [] %}
@@ -65,9 +59,8 @@ schemaType: ProfilePage
 {% set latestWorkPublications = (researchfi or []).slice(0, 1) %}
 
 {% set workCopy = {
-  heroLead: "Yleiskuva Jari Larun yliopistotyöstä: opetuksesta, tutkimuksesta, ohjauksesta ja yhteiskunnallisesta vuorovaikutuksesta. Tämä sivu antaa nopean kokonaiskuvan ja johdattaa oikeaan syventävään sisältöön — julkaisuihin, esityksiin ja opinnäytteisiin. Etsitkö pedagogisia perusteluja ja opetusansioiden arviointia varten koottua näyttöä? <a href=\"/portfolio/\" class=\"ylwork-hero-lead-link\">Siirry opetusportfolioon</a>.",
+  heroLead: "Jari Larun yliopistotyö yhdistää opetuksen, tutkimuksen, ohjauksen ja yhteiskunnallisen vuorovaikutuksen. Tämä sivu kokoaa työn ydinalueet, ajankohtaisen fokuksen ja tunnustukset yhteen näkymään. Pedagogiset perustelut ja opetusansioiden arviointinäyttö löytyvät <a href=\"/portfolio/\" class=\"ylwork-hero-lead-link\">opetusportfoliosta</a>.",
   heroBody: "Jari Laru opettaa luokanopettajakoulutuksessa digipedagogiikkaa, ohjelmoinnillista ajattelua ja tekoälylukutaitoa. Samaan työhön kuuluvat tutkimus, opinnäytteiden ohjaus ja opetuksen käytännön kehittäminen.",
-  evidenceLead: "Julkaisut, ohjatut opinnäytteet, kehittämishankkeet, avoimet materiaalit ja asiantuntijatehtävät näyttävät, millaiseksi yliopistotyö on vuosien aikana rakentunut.",
   teachingBody: "Jari Laru opettaa teknologiatuettua oppimista, digipedagogiikkaa ja tekoälykasvatusta erityisesti luokanopettajakoulutuksessa. Tavoitteena on, että teoria muuttuu opetuksessa käytännöksi eikä jää pelkäksi käsitteeksi.",
   teachingPoints: [
     "luokanopettajakoulutus ja opettajankoulutuksen arki",
@@ -94,8 +87,7 @@ schemaType: ProfilePage
   ],
   trustLead: "Opetustyöstä kertovat kurssien ja ohjauksen lisäksi palkinnot ja opiskelijoiden palaute.",
   awardsBody: "Tunnustukset ovat kertyneet vuosien varrella, eivät yhdestä tempusta.",
-  feedbackBody: "Opiskelijapalautteessa toistuvat selkeys, kannustava ote ja se, että vaikeatkin asiat on jäsennetty käytännönläheisesti.",
-  archiveLead: "Tästä pääset suoraan tutkimukseen, julkaisuihin, ohjattuihin opinnäytteisiin, opetusportfolioon, ansioluetteloon sekä palkintoihin ja palautteeseen."
+  feedbackBody: "Opiskelijapalautteessa toistuvat selkeys, kannustava ote ja se, että vaikeatkin asiat on jäsennetty käytännönläheisesti."
 } %}
 
 <section class="ylwork-hero mb-0">
@@ -121,9 +113,7 @@ schemaType: ProfilePage
           </div>
         </div>
         <div class="d-flex flex-wrap gap-2">
-          <a href="#reitit" class="btn ylwork-hero-btn-primary">Valitse, mitä etsit</a>
-          <a href="#painopisteet" class="btn ylwork-hero-btn-outline">Työn ydinalueet</a>
-          <a href="#aineisto" class="btn ylwork-hero-btn-outline">Syvemmälle aineistoon</a>
+          <a href="/portfolio/" class="btn ylwork-hero-btn-primary">Avaa opetusportfolio</a>
         </div>
       </div>
       <div class="col-lg-5">
@@ -155,69 +145,6 @@ schemaType: ProfilePage
   </div>
 </section>
 <div class="ylwork-hero-divider"></div>
-
-<nav class="ylwork-mobile-path" aria-label="Yliopistotyön sivun tärkeimmät osiot">
-  <a href="#reitit">Aloita</a>
-  <a href="#painopisteet">Ydin</a>
-  <a href="#ajankohtaista-tyosta">Ajankohtaista</a>
-  <a href="#naytto">Näyttö</a>
-  <a href="#aineisto">Aineisto</a>
-</nav>
-
-<section class="ylwork-section ylwork-section--routes" id="reitit">
-  <div class="ylwork-shell">
-    <div class="ylwork-section-head">
-      <p class="ylwork-eyebrow ylwork-eyebrow--dark mb-1"><i class="bi bi-signpost-split-fill me-1"></i>Jatka tästä</p>
-      <h2 class="ylwork-section-title">Valitse suoraan se aineisto, jota tarvitset</h2>
-      <p class="ylwork-section-lead mb-0">Jos etsit tutkimusta, julkaisuja, esityksiä tai opinnäytteitä, pääset niihin tästä ilman että sinun tarvitsee selata koko sivua läpi.</p>
-    </div>
-    <div class="ylwork-route-grid">
-      <a href="/tutkimus/" class="ylwork-route-card">
-        <p class="ylwork-route-kicker">Tutkimus</p>
-        <h3>Tutkimusteemat ja tutkimuslinjat</h3>
-        <p>Kun haluat nähdä tutkimuksen suunnan, ohjelmat ja pidemmän akateemisen kaaren.</p>
-      </a>
-      <a href="/julkaisut/" class="ylwork-route-card">
-        <p class="ylwork-route-kicker">Julkaisut</p>
-        <h3>Tieteellinen tuotanto</h3>
-        <p>Kun tarvitset varsinaiset julkaisut, viitetiedot ja tuotannon koottuna yhdelle sivulle.</p>
-      </a>
-      <a href="/esitykset/" class="ylwork-route-card">
-        <p class="ylwork-route-kicker">Esitykset</p>
-        <h3>Koulutukset, puheenvuorot ja materiaalit</h3>
-        <p>Kun etsit kouluttaja- ja puhujatyön näkyvää käytännön jälkeä.</p>
-      </a>
-      <a href="/opinnaytteet/" class="ylwork-route-card">
-        <p class="ylwork-route-kicker">Opinnäytteet</p>
-        <h3>Ohjaus ja tutkimusaiheet</h3>
-        <p>Kun haluat tarkastella ohjattujen kandidaatintöiden ja gradujen kokonaisuutta.</p>
-      </a>
-    </div>
-  </div>
-</section>
-
-{% set topicProfileKeys = ["opettajankoulutus", "tekoalylukutaito", "avoin-tiede-ja-avoimet-oppimateriaalit"] %}
-{% set topicProfileTitleId = "ylwork-topic-profiles-title" %}
-{% set topicProfileEyebrow = "Aiheprofiilit" %}
-{% set topicProfileTitle = "Yliopistotyö aiheiden kautta" %}
-{% set topicProfileLead = "Teemaprofiilit näyttävät, miten yliopistotyön aiheet jatkuvat julkaisuissa, lausunnoissa, materiaaleissa, mediassa ja koulutuksissa." %}
-{% include "topic-profile-links.njk" %}
-
-<section class="ylwork-section ylwork-section--stats" id="naytto">
-  <div class="ylwork-shell">
-    <div class="ylwork-section-head">
-      <p class="ylwork-eyebrow ylwork-eyebrow--dark mb-1"><i class="bi bi-bar-chart-line-fill me-1"></i>Näyttö työstä</p>
-      <h2 class="ylwork-section-title">Tuloksia sekä määrässä että laadussa</h2>
-      <p class="ylwork-section-lead mb-0">{{ workCopy.evidenceLead }}</p>
-    </div>
-    <div class="ylwork-kpi-grid">
-      {{ ui.kpiCard("julkaisua", researchfi.length) }}
-      {{ ui.kpiCard("vertaisarvioitua julkaisua", peerReviewedCount) }}
-      {{ ui.kpiCard("ohjattua gradua", theses.stats.totalGradut) }}
-      {{ ui.kpiCard("ohjattua kandidaatintyötä", theses.stats.totalKandit) }}
-    </div>
-  </div>
-</section>
 
 <section class="ylwork-section bg-body-tertiary" id="painopisteet">
   <div class="ylwork-shell">
@@ -270,59 +197,36 @@ schemaType: ProfilePage
   </div>
 </section>
 
-<section class="ylwork-section" id="generation-ai" data-mobile-priority="2">
-  <div class="ylwork-shell">
-    <details class="ylwork-mobile-disclosure" data-mobile-collapse open>
-      <summary class="ylwork-mobile-disclosure-summary">
-        <span>Tekoälykasvatus ja Generation AI</span>
-        <small>Ajankohtainen työ tiiviisti</small>
-      </summary>
-      <div class="ylwork-mobile-disclosure-body">
-        <div class="ylwork-section-head">
-          <p class="ylwork-eyebrow ylwork-eyebrow--dark mb-1"><i class="bi bi-lightning-charge-fill me-1"></i>Ajankohtaista</p>
-          <h2 class="ylwork-section-title">Tekoälykasvatus on nyt työn keskiössä</h2>
-          <p class="ylwork-section-lead mb-0">Generation AI -hankkeessa tehdään yhtä aikaa tutkimusta, opettajankoulutusta ja käytännön kehittämistä.</p>
-        </div>
-        <div class="ylwork-project-layout">
-          <article class="ylwork-project-card ylwork-project-card--primary">
-            <span class="ylwork-project-badge">Generation AI</span>
-            <p class="ylwork-project-text">{{ workCopy.projectBody }}</p>
-            <ul class="ylwork-focus-list ylwork-focus-list--project">
-              {% for point in workCopy.projectPoints %}
-              <li>{{ point }}</li>
-              {% endfor %}
-            </ul>
-            <div class="d-flex flex-wrap gap-2 mt-3">
-              <a href="https://generation-ai-stn.fi/" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm">Hankkeen sivu <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a>
-              <a href="https://generation-ai-stn.fi/tutkijalle/" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm">Tutkijalle <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a>
-              <a href="https://generation-ai-stn.fi/opettajalle/" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm">Opettajalle <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a>
-              <a href="https://www.gen-ai.fi/fi" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm">Sovellukset <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a>
-            </div>
-          </article>
-          <div class="ylwork-project-side">
-            <article class="ylwork-project-card">
-              <span class="ylwork-project-badge ylwork-project-badge--muted">Opettajankoulutus</span>
-              <h3 class="ylwork-project-title">Tekoäly ei ole erillinen lisä vaan osa opettajan työtä</h3>
-              <p class="ylwork-project-text mb-0">Keskityn nyt siihen, miten tekoälylukutaidosta tulee osa opettajan ammattitaitoa ja arjen ratkaisuja.</p>
-            </article>
-            <article class="ylwork-project-card">
-              <span class="ylwork-project-badge ylwork-project-badge--muted">Käytännön kehittäminen</span>
-              <h3 class="ylwork-project-title">Mukana syntyy myös materiaaleja, verkkosisältöjä ja käytännön välineitä</h3>
-              <p class="ylwork-project-text mb-0">Tutkimuksen ja opetuksen lisäksi työssä rakennetaan verkkosivuja, materiaaleja ja välineitä, jotka on tarkoitettu oikeille käyttäjille.</p>
-            </article>
-          </div>
-        </div>
-      </div>
-    </details>
-  </div>
-</section>
-
-<section class="ylwork-section bg-body-tertiary" id="ajankohtaista-tyosta">
+<section class="ylwork-section" id="ajankohtainen-tyo" data-mobile-priority="2">
   <div class="ylwork-shell">
     <div class="ylwork-section-head">
-      <p class="ylwork-eyebrow ylwork-eyebrow--dark mb-1"><i class="bi bi-journal-richtext me-1"></i>Ajankohtaista</p>
-      <h2 class="ylwork-section-title">Lausunnot, opetusmateriaalit ja tutkimus rinnakkain</h2>
-      <p class="ylwork-section-lead mb-0">Tässä näkyvät tuoreimmat nostot niistä aineistoista, joissa yliopistotyö kääntyy valmistelun tueksi, opetuksen käytännöiksi ja tutkimusjulkaisuiksi.</p>
+      <p class="ylwork-eyebrow ylwork-eyebrow--dark mb-1"><i class="bi bi-lightning-charge-fill me-1"></i>Ajankohtainen työ</p>
+      <h2 class="ylwork-section-title">Generation AI -hanke ja tuoreimmat nostot</h2>
+      <p class="ylwork-section-lead mb-0">Työn ajankohtainen keskiö on tekoälykasvatuksessa. Generation AI -hankkeen rinnalla näkyvät tuoreimmat lausunnot, esitykset ja julkaisut.</p>
+    </div>
+
+    <div class="ylwork-project-layout mb-5">
+      <article class="ylwork-project-card ylwork-project-card--primary">
+        <span class="ylwork-project-badge">Generation AI (2022–)</span>
+        <p class="ylwork-project-text">{{ workCopy.projectBody }}</p>
+        <ul class="ylwork-focus-list ylwork-focus-list--project">
+          {% for point in workCopy.projectPoints %}
+          <li>{{ point }}</li>
+          {% endfor %}
+        </ul>
+        <div class="d-flex flex-wrap gap-2 mt-3">
+          <a href="https://generation-ai-stn.fi/" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm">Hankkeen sivu <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a>
+          <a href="https://generation-ai-stn.fi/tutkijalle/" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm">Tutkijalle <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a>
+          <a href="https://generation-ai-stn.fi/opettajalle/" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm">Opettajalle <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a>
+          <a href="https://www.gen-ai.fi/fi" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm">Sovellukset <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a>
+        </div>
+      </article>
+    </div>
+
+    <div class="ylwork-section-head">
+      <p class="ylwork-eyebrow ylwork-eyebrow--dark mb-1"><i class="bi bi-journal-richtext me-1"></i>Tuoreimmat nostot</p>
+      <h3 class="ylwork-section-title h4">Lausunnot, opetusmateriaalit ja tutkimus rinnakkain</h3>
+      <p class="ylwork-section-lead mb-0">Näissä osioissa yliopistotyö kääntyy valmistelun tueksi, opetuksen käytännöiksi ja tutkimusjulkaisuiksi.</p>
     </div>
     <div class="ylwork-live-stack">
       <div class="ylwork-live-layout">
@@ -491,61 +395,6 @@ schemaType: ProfilePage
       </div>
     </details>
   </div>
-</section>
-
-<section class="ylwork-section" id="aineisto" data-mobile-priority="4">
-  <div class="ylwork-shell">
-    <details class="ylwork-mobile-disclosure ylwork-mobile-disclosure--archive" data-mobile-collapse open>
-      <summary class="ylwork-mobile-disclosure-summary">
-        <span>Syvemmälle aineistoon</span>
-        <small>Tutkimus, julkaisut, opinnäytteet ja portfolio linkkeinä</small>
-      </summary>
-      <div class="ylwork-mobile-disclosure-body">
-        <div class="ylwork-archive-band">
-          <div class="ylwork-archive-copy">
-            <p class="ylwork-eyebrow ylwork-eyebrow--dark mb-1"><i class="bi bi-archive-fill me-1"></i>Syvemmälle aineistoon</p>
-            <h2 class="ylwork-section-title mb-2">Tutkimus, julkaisut ja opetusnäyttö omilla sivuillaan</h2>
-            <p class="mb-0">{{ workCopy.archiveLead }}</p>
-          </div>
-          <div class="ylwork-archive-links">
-            <a href="/tutkimus/" class="ylwork-archive-link">
-              <strong>Tutkimus</strong>
-              <span>Tutkimusteemat, hankkeet ja tutkimuksen suunta.</span>
-            </a>
-            <a href="/julkaisut/" class="ylwork-archive-link">
-              <strong>Julkaisut</strong>
-              <span>Julkaisuluettelo koottuna yhdelle sivulle OKM-luokituksen mukaisesti.</span>
-            </a>
-            <a href="/opinnaytteet/" class="ylwork-archive-link">
-              <strong>Ohjatut opinnäytteet</strong>
-              <span>Pro gradu -tutkielmat ja kandidaatintyöt OuluREPO-aineistosta.</span>
-            </a>
-            <a href="/portfolio/" class="ylwork-archive-link">
-              <strong>Opetusportfolio</strong>
-              <span>Tiivis kuvaus opetuksesta, ohjauksesta ja pedagogisista ratkaisuista.</span>
-            </a>
-            <a href="/cv/" class="ylwork-archive-link">
-              <strong>Ansioluettelo</strong>
-              <span>Ura, tehtävät ja meriitit.</span>
-            </a>
-            <a href="/palkinnot/" class="ylwork-archive-link">
-              <strong>Palkinnot ja palaute</strong>
-              <span>Tunnustukset sekä opiskelijoiden antama palaute omilla sivuillaan.</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </details>
-  </div>
-</section>
-
-<section class="site-shell py-0 pb-5">
-  {% set relatedSivuyhteys = "tyoni-yliopistonlehtorina" %}
-  {% set relatedTitle = "Yliopistopedagogiikkaan liittyviä esityksiä" %}
-  {% set relatedLimit = 3 %}
-  {% set relatedLinkHref = "/esitykset/" %}
-  {% set relatedLinkLabel = "Kaikki esitykset ja materiaalit →" %}
-  {% include "related-presentations.njk" %}
 </section>
 
 <section class="site-shell pb-5">
