@@ -1153,6 +1153,7 @@ html[data-a11y-bg] .home-focus-strip-item {
   flex-shrink: 0;
 }
 
+.home-milestone-swatch--tausta     { background: #6c757d; }
 .home-milestone-swatch--tutkimus   { background: #0d6efd; }
 .home-milestone-swatch--opetus     { background: #6f42c1; }
 .home-milestone-swatch--politiikka { background: #147a7a; }
@@ -1202,6 +1203,7 @@ html[data-a11y-bg] .home-focus-strip-item {
     padding: 0;
   }
 
+  .home-milestone--tausta     { --milestone-accent: #6c757d; }
   .home-milestone--tutkimus   { --milestone-accent: #0d6efd; }
   .home-milestone--opetus     { --milestone-accent: #6f42c1; }
   .home-milestone--politiikka { --milestone-accent: #147a7a; }
@@ -1358,6 +1360,7 @@ html[data-a11y-bg] .home-focus-strip-item {
     margin-bottom: 1.15rem;
   }
 
+  .home-milestone--tausta     { --milestone-accent: #6c757d; }
   .home-milestone--tutkimus   { --milestone-accent: #0d6efd; }
   .home-milestone--opetus     { --milestone-accent: #6f42c1; }
   .home-milestone--politiikka { --milestone-accent: #147a7a; }

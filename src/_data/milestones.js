@@ -1,8 +1,15 @@
 // Kuratoidut merkkitapahtumat etusivun aikajanaan.
-// Suuntaus: uran alusta 2000 nykyhetkeen — tutkimus, opetus, politiikka, palkinnot.
+// Suuntaus: uran alusta 1990-luvulta nykyhetkeen — tutkimus, opetus, politiikka, palkinnot, tausta.
 // Jokainen kohta klikattava, vie asianomaiselle sivulle.
 // Jarjestys: kronologinen (year). Aikajana renderoi vuorotellen yla/ala listan mukaan.
 module.exports = [
+  {
+    year: "1989",
+    category: "tausta",
+    title: "BBS-harrastus alkaa (Raahe)",
+    description: "Commodore 64, modeemi, Large's Security BBS:n SysOp, Fidonet-solmu, ANSI-taide ja HTML-koodaus. Teknologiapolun alkupiste ennen nykyistä verkkoa.",
+    href: "/1998/02/16/silloin-kun-sita-oltiin-larges-securityn-sysop-bbs-muisteluita/"
+  },
   {
     year: "2000",
     category: "politiikka",
@@ -14,14 +21,14 @@ module.exports = [
     year: "2002",
     category: "tutkimus",
     title: "Tutkimusavustaja EDTECH-yksikössä",
-    description: "Ensimmäinen työtehtävä Oulun yliopistossa opetusteknologian tutkimusyksikössä. Tutkimuksen alkupiste.",
+    description: "Ensimmäinen työtehtävä Oulun yliopistossa opetusteknologian tutkimusyksikössä (EDTECH). Tutkimusuran alkupiste.",
     href: "/cv/"
   },
   {
     year: "2003",
-    category: "tutkimus",
-    title: "Pro gradu -tutkielma valmis",
-    description: "\"Langattomat päätelaitteet hajautetun asiantuntijuuden ja yhteisöllisen tiedonrakentelun tukena\" (Goman & Laru, 2003). Varhaisvaiheen tutkimusta ennen älypuhelinaikaa.",
+    category: "opetus",
+    title: "KM ja pro gradu valmis",
+    description: "Kasvatustieteiden maisteri (14.5.2003), teknologiapainotteinen luokanopettajakoulutus, Oulun yliopisto. Pro gradu \"Langattomat päätelaitteet hajautetun asiantuntijuuden ja yhteisöllisen tiedonrakentelun tukena\" (Goman & Laru).",
     href: "/tutkimus/#varhaisvaihe"
   },
   {
@@ -39,31 +46,52 @@ module.exports = [
     href: "/politiikka/vaalikaudet/"
   },
   {
+    year: "2005",
+    category: "tutkimus",
+    title: "Kulttuurirahaston tutkimusapuraha (2005–2006)",
+    description: "Suomen Kulttuurirahaston Urpo ja Maijaliisa Harvan rahasto, 16 400 €. Tutkimussuunnitelman ja ensimmäisen artikkelikäsikirjoituksen laadinta EDTECH-yksikössä.",
+    href: "/tutkimus/"
+  },
+  {
     year: "2006",
     category: "tutkimus",
     title: "Tutkijakoulutettava (OPMON)",
-    description: "Väitöskirjatyö käynnistyi Oppimisympäristöjen monitieteisen tutkijakoulun (OPMON) puitteissa.",
+    description: "Väitöskirjatyö käynnistyi Oppimisympäristöjen monitieteisen tutkijakoulun (OPMON) puitteissa 2006–2010.",
     href: "/cv/"
   },
   {
     year: "2008",
     category: "politiikka",
     title: "Vaalikausi 2009–2012 (Kiiminki)",
-    description: "Ehdolla Kiimingin kuntavaaleissa 2008; sijoituin varavaltuutetuksi.",
+    description: "Ehdolla Kiimingin kuntavaaleissa 2008; sijoittui varavaltuutetuksi.",
     href: "/politiikka/vaalikaudet/"
+  },
+  {
+    year: "2010",
+    category: "opetus",
+    title: "Larux tmi käynnistyy (toukokuu 2010)",
+    description: "Sivutoiminen yrittäjyys alkaa: luennot, esitelmät, koulutukset sekä oppimisympäristöjen ja www-sivujen kehittäminen.",
+    href: "/kouluttaja/"
+  },
+  {
+    year: "2010",
+    category: "tutkimus",
+    title: "Kulttuurirahaston tutkimusapuraha (2010–2011)",
+    description: "Suomen Kulttuurirahaston Xerox Oy:n rahasto, 21 000 €. Apuraha väitöskirjan viimeistelyyn EDTECH-yksikössä.",
+    href: "/tutkimus/"
   },
   {
     year: "2011",
     category: "opetus",
     title: "Yliopisto-opettaja opetusteknologiassa",
-    description: "Ensimmäinen päätoiminen opetustehtävä Oulun yliopistossa: opetusteknologian yliopisto-opettaja.",
+    description: "Ensimmäinen päätoiminen opetustehtävä Oulun yliopistossa: opetusteknologian yliopisto-opettaja (syyskuu 2011 – heinäkuu 2013).",
     href: "/cv/"
   },
   {
     year: "2012",
     category: "tutkimus",
     title: "Väitöskirja: mobiili- ja yhteisöllinen oppiminen",
-    description: "Väitös 20.11.2012 Oulun yliopistossa. Aiheena teknologian tukema oppiminen ja CSCL.",
+    description: "Väitös 21.11.2012 Oulun yliopistossa: \"Opiskelun tukeminen mobiililaitteiden ja pedagogisen vaiheistuksen avulla\".",
     href: "/vaitoskirja/"
   },
   {
@@ -84,7 +112,7 @@ module.exports = [
     year: "2013",
     category: "opetus",
     title: "Yliopistonlehtori (nykyinen tehtävä)",
-    description: "Toistaiseksi voimassaoleva tehtävä: teknologiatuetun oppimisen ja opetuksen yliopistonlehtori, Kasvatustieteiden ja psykologian tiedekunta, Oulun yliopisto.",
+    description: "Toistaiseksi voimassaoleva tehtävä (elokuu 2013 alkaen): teknologiatuetun oppimisen ja opetuksen yliopistonlehtori, Kasvatustieteiden ja psykologian tiedekunta, Oulun yliopisto.",
     href: "/tyoni-yliopistonlehtorina/"
   },
   {
