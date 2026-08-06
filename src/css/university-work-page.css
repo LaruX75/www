@@ -326,10 +326,10 @@
   color: #0d4f94;
 }
 .ylwork-project-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-  gap: 1.25rem;
-  align-items: start;
+  display: block;
+  max-width: 62rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 .ylwork-project-card {
   padding: 1.4rem 1.35rem;
@@ -384,8 +384,8 @@
 .ylwork-live-side {
   grid-area: side;
   display: grid;
-  grid-template-rows: repeat(2, minmax(0, 1fr));
   gap: 1rem;
+  align-content: start;
 }
 .ylwork-live-card {
   display: grid;
@@ -399,13 +399,12 @@
 }
 .ylwork-live-card--primary {
   grid-area: primary;
-  min-height: clamp(27rem, 34vw, 36rem);
-  padding: clamp(1.55rem, 2vw, 2rem);
+  padding: 1.5rem 1.4rem;
   background:
-    radial-gradient(circle at top right, rgba(35, 94, 150, 0.12), transparent 36%),
+    radial-gradient(circle at top right, rgba(35, 94, 150, 0.1), transparent 40%),
     linear-gradient(180deg, rgba(255,255,255,0.99), rgba(232,242,255,0.98));
   border-color: rgba(35, 94, 150, 0.2);
-  box-shadow: 0 1.35rem 3rem rgba(19, 43, 70, 0.12);
+  box-shadow: 0 0.75rem 1.75rem rgba(19, 43, 70, 0.08);
 }
 .ylwork-live-card--compact {
   gap: 0.75rem;
@@ -417,10 +416,9 @@
 }
 .ylwork-live-card--support {
   grid-area: support;
-  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.35fr) auto;
-  align-items: center;
+  grid-template-columns: minmax(0, 1fr);
   gap: 1rem;
-  padding: 1rem 1.15rem;
+  padding: 1.2rem 1.25rem;
   background: linear-gradient(180deg, rgba(252,253,255,0.98), rgba(239,246,251,0.98));
   border-left: 4px solid rgba(35, 94, 150, 0.28);
 }
