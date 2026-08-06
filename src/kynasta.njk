@@ -110,27 +110,22 @@ schemaMentions:
             <p class="kynasta-entry-kicker">Kirjoitukset</p>
             <h2 class="h4 mb-2">Blogi, mielipiteet ja kolumnit</h2>
             <p class="small text-muted mb-3">Vapaamuotoiset omat tekstit yhdellä sivulla. Blogissa on syvempiä pohdintoja opetuksesta, teknologiasta ja avoimesta tieteestä. Mielipidekirjoitukset ja kolumnit ovat julkaistuja tekstejä lehdissä.</p>
-            <div class="d-flex flex-wrap gap-2 mb-3">
-              <span class="badge text-bg-light border">Blogi {{ blogCount }}</span>
-              <span class="badge text-bg-light border">Mielipiteet {{ opinionCount }}</span>
-              <span class="badge text-bg-light border">Kolumnit {{ columnCount }}</span>
-            </div>
             <div class="d-grid gap-3 mb-4">
               {% if latestBlog[0] %}
               <div>
-                <p class="small text-uppercase text-muted fw-semibold mb-1">Tuorein blogi</p>
+                <p class="small text-uppercase text-muted fw-semibold mb-1">Blogi <span class="text-muted fw-normal">({{ blogCount }})</span></p>
                 <a class="text-decoration-none fw-semibold" href="{{ latestBlog[0].url }}">{{ latestBlog[0].data.title }}</a>
               </div>
               {% endif %}
               {% if latestOpinion[0] %}
               <div>
-                <p class="small text-uppercase text-muted fw-semibold mb-1">Tuorein mielipide</p>
+                <p class="small text-uppercase text-muted fw-semibold mb-1">Mielipiteet <span class="text-muted fw-normal">({{ opinionCount }})</span></p>
                 <a class="text-decoration-none fw-semibold" href="{{ latestOpinion[0].data.url or latestOpinion[0].url }}">{{ latestOpinion[0].data.title }}</a>
               </div>
               {% endif %}
               {% if latestColumn[0] %}
               <div>
-                <p class="small text-uppercase text-muted fw-semibold mb-1">Tuorein kolumni</p>
+                <p class="small text-uppercase text-muted fw-semibold mb-1">Kolumnit <span class="text-muted fw-normal">({{ columnCount }})</span></p>
                 <a class="text-decoration-none fw-semibold" href="{{ latestColumn[0].data.url or latestColumn[0].url }}">{{ latestColumn[0].data.title }}</a>
               </div>
               {% endif %}
@@ -149,20 +144,16 @@ schemaMentions:
             <p class="kynasta-entry-kicker">Valtuustotyö</p>
             <h2 class="h4 mb-2">Puheenvuorot ja aloitteet</h2>
             <p class="small text-muted mb-3">Oulun kaupunginvaltuustossa pidetyt puheenvuorot ja kirjalliset aloitteet päätöksenteon valmisteluun. Politiikan kokonaiskuva näkyy myös Politiikka-sivulla.</p>
-            <div class="d-flex flex-wrap gap-2 mb-3">
-              <span class="badge text-bg-light border">Valtuustopuheet {{ councilSpeechCount }}</span>
-              <span class="badge text-bg-light border">Aloitteet {{ initiativeCount }}</span>
-            </div>
             <div class="d-grid gap-3 mb-4">
               {% if latestSpeech[0] %}
               <div>
-                <p class="small text-uppercase text-muted fw-semibold mb-1">Tuorein valtuustopuhe</p>
+                <p class="small text-uppercase text-muted fw-semibold mb-1">Valtuustopuheet <span class="text-muted fw-normal">({{ councilSpeechCount }})</span></p>
                 <a class="text-decoration-none fw-semibold" href="{{ latestSpeech[0].data.url or latestSpeech[0].url }}">{{ latestSpeech[0].data.title }}</a>
               </div>
               {% endif %}
               {% if latestInitiative[0] %}
               <div>
-                <p class="small text-uppercase text-muted fw-semibold mb-1">Tuorein aloite</p>
+                <p class="small text-uppercase text-muted fw-semibold mb-1">Aloitteet <span class="text-muted fw-normal">({{ initiativeCount }})</span></p>
                 <a class="text-decoration-none fw-semibold" href="{{ latestInitiative[0].data.url or latestInitiative[0].url }}">{{ latestInitiative[0].data.title }}</a>
               </div>
               {% endif %}
@@ -181,20 +172,16 @@ schemaMentions:
             <p class="kynasta-entry-kicker">Asiantuntijatyö</p>
             <h2 class="h4 mb-2">Lausunnot ja julkiset puheet</h2>
             <p class="small text-muted mb-3">Valmisteluprosesseihin annetut asiantuntijalausunnot sekä julkiset puheet (juhlapuheet, yliopistopuheet ja yleisötilaisuuksien puheenvuorot). Tutkimustieto ja opetusosaaminen viedään päätöksenteon valmisteluun tai julkiseen keskusteluun.</p>
-            <div class="d-flex flex-wrap gap-2 mb-3">
-              <span class="badge text-bg-light border">Lausunnot {{ statementCount }}</span>
-              <span class="badge text-bg-light border">Julkiset puheet {{ publicSpeechCount }}</span>
-            </div>
             <div class="d-grid gap-3 mb-4">
               {% if latestStatement[0] %}
               <div>
-                <p class="small text-uppercase text-muted fw-semibold mb-1">Tuorein lausunto</p>
+                <p class="small text-uppercase text-muted fw-semibold mb-1">Lausunnot <span class="text-muted fw-normal">({{ statementCount }})</span></p>
                 <a class="text-decoration-none fw-semibold" href="{{ latestStatement[0].url }}">{{ latestStatement[0].data.title }}</a>
               </div>
               {% endif %}
               {% if latestPublicSpeech[0] %}
               <div>
-                <p class="small text-uppercase text-muted fw-semibold mb-1">Tuorein julkinen puhe</p>
+                <p class="small text-uppercase text-muted fw-semibold mb-1">Julkiset puheet <span class="text-muted fw-normal">({{ publicSpeechCount }})</span></p>
                 <a class="text-decoration-none fw-semibold" href="{{ latestPublicSpeech[0].data.url or latestPublicSpeech[0].url }}">{{ latestPublicSpeech[0].data.title }}</a>
               </div>
               {% endif %}
