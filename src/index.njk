@@ -263,20 +263,24 @@ pageStyles:
             <li><span class="home-milestone-swatch home-milestone-swatch--palkinto"></span> Palkinto</li>
         </ul>
 
-        <ol class="home-milestones">
-            {% for milestone in milestones %}
-            <li class="home-milestone home-milestone--{{ milestone.category }}">
-                <a href="{{ milestone.href }}" class="home-milestone-link">
-                    <div class="home-milestone-year">{{ milestone.year }}</div>
-                    <div class="home-milestone-body">
+        <div class="home-milestones-scroll" role="region" aria-label="Aikajana, vieritä horisontaalisesti">
+            <ol class="home-milestones-track">
+                {% for milestone in milestones %}
+                <li class="home-milestone home-milestone--{{ milestone.category }}{% if loop.index0 % 2 == 0 %} home-milestone--above{% else %} home-milestone--below{% endif %}">
+                    <a href="{{ milestone.href }}" class="home-milestone-card">
                         <p class="home-milestone-category" data-year="{{ milestone.year }}">{{ milestone.category | capitalize }}</p>
                         <h3 class="home-milestone-title">{{ milestone.title }}</h3>
                         <p class="home-milestone-description">{{ milestone.description }}</p>
+                    </a>
+                    <div class="home-milestone-node">
+                        <span class="home-milestone-dot" aria-hidden="true"></span>
+                        <span class="home-milestone-year">{{ milestone.year }}</span>
                     </div>
-                </a>
-            </li>
-            {% endfor %}
-        </ol>
+                </li>
+                {% endfor %}
+            </ol>
+        </div>
+        <p class="home-milestones-hint text-muted small mb-0 mt-2">Vieritä sivusuuntaan nähdäksesi kaikki merkkitapahtumat →</p>
     </div>
 </section>
 
