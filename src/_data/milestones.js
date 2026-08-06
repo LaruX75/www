@@ -83,8 +83,8 @@ module.exports = [
   {
     year: "2011",
     category: "opetus",
-    title: "Yliopisto-opettaja opetusteknologiassa",
-    description: "Ensimmäinen päätoiminen opetustehtävä Oulun yliopistossa: opetusteknologian yliopisto-opettaja (syyskuu 2011 – heinäkuu 2013).",
+    title: "Yliopisto-opettaja, tieto- ja viestintäteknologian opetuskäyttö",
+    description: "Ensimmäinen päätoiminen opetustehtävä Oulun yliopistossa (syyskuu 2011 – heinäkuu 2013): tieto- ja viestintäteknologian opetuskäytön yliopisto-opettaja.",
     href: "/cv/"
   },
   {
