@@ -572,9 +572,9 @@ schemaMentions:
 
       <div class="tutkijahistoria-card card border-success shadow-sm flex-shrink-0" style="border-width: 2px !important;">
         <div class="card-body p-4">
-          <span class="badge bg-success mb-3">2024&ndash;</span>
+          <span class="badge bg-success mb-3">2022&ndash;</span>
           <h3 class="h5 fw-bold mb-1">Generation AI</h3>
-          <p class="text-muted small mb-3">Strategisen tutkimuksen neuvosto (STN) &mdash; Oulun yliopisto</p>
+          <p class="text-muted small mb-3">Suomen Akatemian Strategisen tutkimuksen neuvosto (STN) &mdash; Oulun yliopisto</p>
           <p class="small mb-0">Tekoälylukutaitojen ja tekoälykasvatuksen tutkimus esi- ja perusopetuksessa. Vuorovaikutusasiantuntijana tutkimustiedon välittäminen opettajille ja kouluille.</p>
         </div>
         <div class="card-footer bg-transparent border-0 px-4 pb-3 pt-0">

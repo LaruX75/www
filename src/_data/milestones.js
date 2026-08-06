@@ -34,9 +34,16 @@ module.exports = [
   {
     year: "2003",
     category: "tutkimus",
-    title: "TEKESin Rotuaari-hanke käynnistyy",
-    description: "Osallistuin tutkimusavustajana TEKESin rahoittamaan Rotuaari-hankkeeseen Oulun yliopistossa; mobiili- ja langaton oppimisteknologia kaupunkitilassa.",
+    title: "TEKESin Rotuaari-hanke (2003–2006)",
+    description: "Osallistuin tutkimusavustajana TEKESin rahoittamaan Rotuaari-hankkeeseen (6/2003–5/2006) Oulun yliopistossa; mobiili- ja langaton oppimisteknologia kaupunkitilassa.",
     href: "/tutkimus/#tutkijahistoria"
+  },
+  {
+    year: "2004",
+    category: "tutkimus",
+    title: "Mosil-hanke (2004–2006, EU Kaleidoscope NoE)",
+    description: "Mobile Support For Integrated Learning — eurooppalainen Kaleidoscope Network of Excellence -hanke mobiililaitteiden ja oppimisympäristöjen integraatiosta; oppimisen 'skriptit' formaalien ja epäformaalien tilojen välillä.",
+    href: "/tutkimus/"
   },
   {
     year: "2005",
@@ -123,6 +130,13 @@ module.exports = [
     href: "/politiikka/vaalikaudet/"
   },
   {
+    year: "2018",
+    category: "tutkimus",
+    title: "LEA-hanke (2018–2020, EU Horizon 2020)",
+    description: "Learning Technology Accelerator — EU Horizon 2020 -rahoitteinen hanke oppimisteknologia-alan innovatiivisen julkisen hankinnan (PPI) verkoston rakentamiseksi Eurooppaan.",
+    href: "/tutkimus/"
+  },
+  {
     year: "2020",
     category: "palkinto",
     title: "Kansallinen avoimen tieteen palkinto",
@@ -144,10 +158,10 @@ module.exports = [
     href: "/politiikka/vaalikaudet/"
   },
   {
-    year: "2024",
+    year: "2022",
     category: "tutkimus",
-    title: "Generation AI -tutkimusohjelma käynnistyy",
-    description: "Strategisen tutkimuksen neuvoston (STN) rahoittama tekoälykasvatuksen tutkimus. Vuorovaikutusasiantuntijana tutkimustiedon välittäjä.",
+    title: "Generation AI -tutkimusohjelma käynnistyy (2022–)",
+    description: "Suomen Akatemian Strategisen tutkimuksen neuvoston (STN) rahoittama tekoälykasvatuksen tutkimusohjelma (lokakuu 2022–). Vuorovaikutusasiantuntijana tutkimustiedon välittäjä opettajille ja kouluille.",
     href: "/tutkimus/"
   },
   {
