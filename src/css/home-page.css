@@ -1124,107 +1124,167 @@ html[data-a11y-bg] .home-focus-strip-item {
 }
 
 /* ============================================================
-   AIKAJANA (Viimeiset 5 vuotta)
+   MERKKITAPAHTUMA-AIKAJANA (Uran kaari 2003–2026)
    ============================================================ */
 
-.home-timeline {
-  margin-top: 2rem;
-}
-
-.home-timeline-legend {
+.home-milestones-legend {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem;
+  gap: 1.25rem;
   padding: 0;
   margin: 0 0 1.75rem;
   list-style: none;
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   color: var(--bs-secondary-color);
 }
 
-.home-timeline-legend li {
+.home-milestones-legend li {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.home-timeline-swatch {
+.home-milestone-swatch {
   display: inline-block;
-  width: 0.85rem;
-  height: 0.85rem;
-  border-radius: 0.2rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 999px;
   flex-shrink: 0;
 }
 
-.home-timeline-swatch--publications  { background: #0d6efd; }
-.home-timeline-swatch--speeches      { background: #147a7a; }
-.home-timeline-swatch--presentations { background: #b45f06; }
+.home-milestone-swatch--tutkimus   { background: #0d6efd; }
+.home-milestone-swatch--opetus     { background: #6f42c1; }
+.home-milestone-swatch--politiikka { background: #147a7a; }
+.home-milestone-swatch--palkinto   { background: #b45f06; }
 
-.home-timeline-rows {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  padding: 1.5rem 1.25rem;
-  border: 1px solid var(--bs-border-color);
-  border-radius: 1rem;
-  background: var(--bs-body-bg);
+.home-milestones {
+  --milestone-line: var(--bs-border-color);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
 }
 
-.home-timeline-row {
-  display: grid;
-  grid-template-columns: 4rem 1fr;
-  gap: 1rem;
-  align-items: center;
+.home-milestones::before {
+  content: "";
+  position: absolute;
+  left: 0.65rem;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 2px;
+  background: var(--milestone-line);
 }
 
-@media (min-width: 576px) {
-  .home-timeline-row {
-    grid-template-columns: 5rem 1fr;
-    gap: 1.5rem;
+@media (min-width: 768px) {
+  .home-milestones::before {
+    left: 5.35rem;
   }
 }
 
-.home-timeline-year {
-  font-family: var(--bs-font-family-heading);
-  font-size: 1.35rem;
-  font-weight: 800;
+.home-milestone {
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: 1.15rem;
+}
+
+@media (min-width: 768px) {
+  .home-milestone {
+    padding-left: 7rem;
+  }
+}
+
+.home-milestone-link {
+  --milestone-accent: var(--bs-primary);
+  display: block;
+  padding: 1rem 1.15rem;
+  border: 1px solid var(--bs-border-color);
+  border-left: 4px solid var(--milestone-accent);
+  border-radius: 0.65rem;
+  background: var(--bs-body-bg);
   color: var(--bs-body-color);
-  line-height: 1;
-  letter-spacing: -0.01em;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  position: relative;
 }
 
-.home-timeline-bars {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
+.home-milestone-link::before {
+  content: "";
+  position: absolute;
+  top: 1.35rem;
+  left: -1.7rem;
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 999px;
+  background: var(--milestone-accent);
+  border: 3px solid var(--bs-body-bg);
+  box-shadow: 0 0 0 1px var(--bs-border-color);
 }
 
-.home-timeline-bar-line {
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-  min-height: 1.5rem;
+@media (min-width: 768px) {
+  .home-milestone-link::before {
+    left: -6.35rem;
+  }
 }
 
-.home-timeline-bar {
-  display: inline-block;
-  height: 1rem;
-  min-width: 0.15rem;
-  border-radius: 0.15rem;
-  transition: opacity 0.15s ease;
+.home-milestone-link:hover,
+.home-milestone-link:focus-visible {
+  transform: translateX(2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+  color: var(--bs-body-color);
 }
 
-.home-timeline-bar--publications  { background: #0d6efd; }
-.home-timeline-bar--speeches      { background: #147a7a; }
-.home-timeline-bar--presentations { background: #b45f06; }
+.home-milestone--tutkimus   .home-milestone-link { --milestone-accent: #0d6efd; }
+.home-milestone--opetus     .home-milestone-link { --milestone-accent: #6f42c1; }
+.home-milestone--politiikka .home-milestone-link { --milestone-accent: #147a7a; }
+.home-milestone--palkinto   .home-milestone-link { --milestone-accent: #b45f06; }
 
-.home-timeline-bar-line:hover .home-timeline-bar {
-  opacity: 0.85;
+.home-milestone-year {
+  display: none;
 }
 
-.home-timeline-bar-count {
-  font-size: 0.82rem;
+@media (min-width: 768px) {
+  .home-milestone-year {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 1.05rem;
+    width: 4.5rem;
+    font-family: var(--bs-font-family-heading);
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--bs-body-color);
+    line-height: 1;
+    letter-spacing: -0.01em;
+    text-align: right;
+  }
+}
+
+.home-milestone-category {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--milestone-accent);
+  margin: 0 0 0.3rem;
+}
+
+@media (max-width: 767.98px) {
+  .home-milestone-category::before {
+    content: attr(data-year) " · ";
+  }
+}
+
+.home-milestone-title {
+  font-family: var(--bs-font-family-heading);
+  font-size: 1.05rem;
   font-weight: 700;
+  line-height: 1.3;
+  margin: 0 0 0.35rem;
+}
+
+.home-milestone-description {
+  font-size: 0.9rem;
+  line-height: 1.5;
   color: var(--bs-secondary-color);
-  min-width: 1.75rem;
+  margin: 0;
 }

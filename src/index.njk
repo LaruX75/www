@@ -248,46 +248,35 @@ pageStyles:
     </div>
 </section>
 
-{% set timelineYears = [2022, 2023, 2024, 2025, 2026] %}
-{% set timelineRows = collections | homepageTimeline(researchfi, (canva.fiRows or canva.tableRows or []), timelineYears) %}
-
-<section class="py-5 home-timeline-section" id="aikajana">
+<section class="py-5 home-milestones-section" id="aikajana">
     <div class="site-shell">
         <div class="home-section-head">
-            <p class="home-section-kicker mb-1">Viimeiset viisi vuotta</p>
-            <h2 class="home-section-title">Työn jatkumo julkaisuina, puheenvuoroina ja esityksinä</h2>
-            <p class="home-section-lead mb-0">Aikajana näyttää vuosittain tieteelliset julkaisut, valtuustopuheenvuorot ja täydennyskoulutus-/asiantuntijaesitykset. Jokainen palkki on suhteessa suurimpaan vuoteen.</p>
+            <p class="home-section-kicker mb-1">Uran kaari · 2003–2026</p>
+            <h2 class="home-section-title">Merkkitapahtumia tutkimuksen, opetuksen ja politiikan varrelta</h2>
+            <p class="home-section-lead mb-0">Kuratoitu aikajana kertoo, miten työ on rakentunut kolmen roolin ympärille yli 20 vuoden aikana. Klikkaa merkkitapahtumaa siirtyäksesi asianomaiselle sivulle.</p>
         </div>
 
-        <div class="home-timeline">
-            <ul class="home-timeline-legend" aria-label="Aikajanan sarjat">
-                <li><span class="home-timeline-swatch home-timeline-swatch--publications"></span> Tieteelliset julkaisut</li>
-                <li><span class="home-timeline-swatch home-timeline-swatch--speeches"></span> Puheenvuorot (valtuusto + muut)</li>
-                <li><span class="home-timeline-swatch home-timeline-swatch--presentations"></span> Esitykset ja koulutukset</li>
-            </ul>
+        <ul class="home-milestones-legend" aria-label="Merkkitapahtumien kategoriat">
+            <li><span class="home-milestone-swatch home-milestone-swatch--tutkimus"></span> Tutkimus</li>
+            <li><span class="home-milestone-swatch home-milestone-swatch--opetus"></span> Opetus ja koulutus</li>
+            <li><span class="home-milestone-swatch home-milestone-swatch--politiikka"></span> Politiikka</li>
+            <li><span class="home-milestone-swatch home-milestone-swatch--palkinto"></span> Palkinto</li>
+        </ul>
 
-            <div class="home-timeline-rows" role="list">
-                {% for row in timelineRows %}
-                <div class="home-timeline-row" role="listitem">
-                    <div class="home-timeline-year">{{ row.year }}</div>
-                    <div class="home-timeline-bars">
-                        <div class="home-timeline-bar-line" title="Tieteelliset julkaisut: {{ row.publications }}">
-                            <span class="home-timeline-bar home-timeline-bar--publications" style="width: {{ row.publicationsPct }}%;"></span>
-                            <span class="home-timeline-bar-count">{{ row.publications }}</span>
-                        </div>
-                        <div class="home-timeline-bar-line" title="Puheenvuorot: {{ row.speeches }}">
-                            <span class="home-timeline-bar home-timeline-bar--speeches" style="width: {{ row.speechesPct }}%;"></span>
-                            <span class="home-timeline-bar-count">{{ row.speeches }}</span>
-                        </div>
-                        <div class="home-timeline-bar-line" title="Esitykset ja koulutukset: {{ row.presentations }}">
-                            <span class="home-timeline-bar home-timeline-bar--presentations" style="width: {{ row.presentationsPct }}%;"></span>
-                            <span class="home-timeline-bar-count">{{ row.presentations }}</span>
-                        </div>
+        <ol class="home-milestones">
+            {% for milestone in milestones %}
+            <li class="home-milestone home-milestone--{{ milestone.category }}">
+                <a href="{{ milestone.href }}" class="home-milestone-link">
+                    <div class="home-milestone-year">{{ milestone.year }}</div>
+                    <div class="home-milestone-body">
+                        <p class="home-milestone-category" data-year="{{ milestone.year }}">{{ milestone.category | capitalize }}</p>
+                        <h3 class="home-milestone-title">{{ milestone.title }}</h3>
+                        <p class="home-milestone-description">{{ milestone.description }}</p>
                     </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
+                </a>
+            </li>
+            {% endfor %}
+        </ol>
     </div>
 </section>
 
