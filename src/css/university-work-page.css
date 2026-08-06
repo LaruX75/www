@@ -379,7 +379,7 @@
     "primary side"
     "support support";
   gap: 1rem;
-  align-items: stretch;
+  align-items: start;
 }
 .ylwork-live-side {
   grid-area: side;
