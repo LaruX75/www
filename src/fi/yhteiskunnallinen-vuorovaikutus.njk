@@ -29,9 +29,20 @@ schemaMentions:
   {% endif %}
 {% endfor %}
 {% set featuredStatement = statementItems[0] %}
-{% set expertMediaItems = (mediaArchive.expertAssignments or []) %}
-{% set featuredExpertMedia = expertMediaItems[0] or (mediaArchive.guest or [])[0] %}
-{% set featuredPresentation = (collections.presentations or [])[0] %}
+{% set featuredPresentation = ((canva.fiRows or canva.tableRows or [])[0]) %}
+{% set featuredPresentationTitle = featuredPresentation.title or "" %}
+{% set featuredCouncilSpeech = false %}
+{% for item in (collections.pub_puhe or []) | sort(true, false, "date") %}
+    {% if not featuredCouncilSpeech %}
+        {% set speechCtx = item.data.speechContext or "" %}
+        {% set forums = item.data.forum or [] %}
+        {% set isCouncil = speechCtx == "valtuusto" or speechCtx == "kyselytunti" or item.data.event == "Oulun kaupunginvaltuusto" or forums.indexOf("Kaupunginvaltuusto") != -1 %}
+        {% if isCouncil %}
+            {% set featuredCouncilSpeech = item %}
+        {% endif %}
+    {% endif %}
+{% endfor %}
+{% set featuredInitiative = ((collections.politics or []) | sort(true, false, "date"))[0] %}
 {% set engagementTopicSlugs = ["julkinen-asiantuntijuus-mediassa", "avoin-tiede-ja-avoimet-oppimateriaalit", "lapinakyva-paatoksenteko-ja-tiedolla-johtaminen", "tekoalylukutaito"] %}
 
 <section class="engagement-hero">
@@ -63,11 +74,11 @@ schemaMentions:
         <p class="engagement-area-kicker">Koulutus ja materiaalit</p>
         <h3>Tekoäly, digipedagogiikka ja oppimisteknologia opetuksen arkeen</h3>
         <p>Täydennyskoulutukset, avoimet materiaalit ja opettajankoulutuksen käytännöt vievät tutkimustietoa opettajille, kouluille ja organisaatioille. Sama sisältö palvelee yliopistoluentoja ja Larux t:mi:n tilauskoulutuksia.</p>
-        {% if featuredPresentation %}
+        {% if featuredPresentation and featuredPresentationTitle %}
         <div class="engagement-area-latest">
           <p class="engagement-area-latest-kicker">Tuorein esitys</p>
-          <a href="{{ featuredPresentation.data.url or featuredPresentation.url }}" class="engagement-area-latest-link">{{ featuredPresentation.data.title | truncate(100) }}</a>
-          <p class="engagement-area-latest-meta">{{ featuredPresentation.data.date | dateFormat }}{% if featuredPresentation.data.source %} · {{ featuredPresentation.data.source }}{% endif %}</p>
+          <a href="{{ featuredPresentation.url }}" target="_blank" rel="noopener noreferrer" class="engagement-area-latest-link">{{ featuredPresentationTitle | truncate(100) }}</a>
+          {% if featuredPresentation.date %}<p class="engagement-area-latest-meta">{{ featuredPresentation.date | dateFormat }}{% if featuredPresentation.location %} · {{ featuredPresentation.location }}{% endif %}</p>{% endif %}
         </div>
         {% endif %}
         <a href="/esitykset/" class="engagement-area-link">Kaikki esitykset ja materiaalit <span aria-hidden="true">→</span></a>
@@ -96,6 +107,19 @@ schemaMentions:
         <p class="engagement-area-kicker">Päätöksenteko</p>
         <h3>Asiantuntijuus kohtaa paikallisen politiikan arjen</h3>
         <p>Sivistyslautakunnan jäsenyys, valtuustotyö ja kaupunginvaltuuston puheenvuorot tuovat koulutusta, palveluja ja teknologiaa koskevat kysymykset valmisteluun ja päätöksentekoon. Tutkimuspohjainen näkökulma vaikuttaa käytännön politiikkaan.</p>
+        {% if featuredCouncilSpeech %}
+        <div class="engagement-area-latest">
+          <p class="engagement-area-latest-kicker">Tuorein valtuustopuheenvuoro</p>
+          <a href="{{ featuredCouncilSpeech.url }}" class="engagement-area-latest-link">{{ featuredCouncilSpeech.data.title | truncate(100) }}</a>
+          <p class="engagement-area-latest-meta">{{ featuredCouncilSpeech.date | dateFormat }}</p>
+        </div>
+        {% elif featuredInitiative %}
+        <div class="engagement-area-latest">
+          <p class="engagement-area-latest-kicker">Tuorein aloite</p>
+          <a href="{{ featuredInitiative.url }}" class="engagement-area-latest-link">{{ featuredInitiative.data.title | truncate(100) }}</a>
+          <p class="engagement-area-latest-meta">{{ featuredInitiative.date | dateFormat }}</p>
+        </div>
+        {% endif %}
         <a href="/politiikka/" class="engagement-area-link">Avaa politiikka <span aria-hidden="true">→</span></a>
       </article>
     </div>
