@@ -7,7 +7,7 @@ module.exports = [
     year: "2000",
     category: "politiikka",
     title: "Vaalikausi 2001–2004 (Raahe)",
-    description: "Ehdolla Raahen kuntavaaleissa 2000 Kansallisen Kokoomuksen listoilla. Poliittisen uran alkupiste.",
+    description: "Ehdolla Raahen kuntavaaleissa 2000 Kansallisen Kokoomuksen listoilla; sijoittui koululautakunnan jäseneksi. Poliittisen uran alkupiste.",
     href: "/politiikka/vaalikaudet/"
   },
   {
