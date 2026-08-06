@@ -11,15 +11,12 @@ schemaType: CollectionPage
 ---
 
 {% set mediaItems = mediaArchive.all or [] %}
-{% set mediaAbout = mediaArchive.about or [] %}
-{% set mediaAssignments = mediaArchive.expertAssignments or [] %}
 {% set mediaGuest = mediaArchive.guest or [] %}
 {% set mediaInterviewer = mediaArchive.interviewer or [] %}
 {% set mediaTotal = mediaItems | length %}
 {% set mediaArticles = [] %}
 {% set mediaPodcasts = [] %}
 {% set mediaVideos = [] %}
-{% set mediaAudio = [] %}
 {% for item in mediaItems %}
   {% if item.data.mediaType == "article" %}
     {% set _ = (mediaArticles.push(item), null) %}
@@ -27,17 +24,12 @@ schemaType: CollectionPage
     {% set _ = (mediaPodcasts.push(item), null) %}
   {% elif item.data.mediaType == "video" %}
     {% set _ = (mediaVideos.push(item), null) %}
-  {% elif item.data.mediaType == "radio" %}
-    {% set _ = (mediaAudio.push(item), null) %}
   {% endif %}
 {% endfor %}
 {% set mainHighlight = mediaItems[0] %}
 {% set podcastHighlight = mediaPodcasts[0] %}
 {% set videoHighlight = mediaVideos[0] %}
 {% set guestHighlight = mediaGuest[0] or mediaInterviewer[0] %}
-{% set aboutHighlight = mediaAbout[0] %}
-{% set assignmentHighlight = mediaAssignments[0] %}
-{% set interviewerHighlight = mediaInterviewer[0] %}
 {% set sideHighlights = [] %}
 {% if podcastHighlight %}{% set _ = (sideHighlights.push(podcastHighlight), null) %}{% endif %}
 {% if videoHighlight and videoHighlight.url != podcastHighlight.url %}{% set _ = (sideHighlights.push(videoHighlight), null) %}{% endif %}
@@ -47,8 +39,6 @@ schemaType: CollectionPage
     {% set _ = (sideHighlights.push(item), null) %}
   {% endif %}
 {% endfor %}
-{% set publicConversationCount = (mediaGuest | length) + (mediaInterviewer | length) %}
-{% set expertRouteCount = (mediaAssignments | length) + (mediaPodcasts | length) + (mediaVideos | length) %}
 
 {% macro mediaTypeLabel(type) %}
   {% if type == "podcast" %}Podcast
@@ -136,102 +126,6 @@ schemaType: CollectionPage
   </div>
 </section>
 
-<nav class="media-mobile-path" aria-label="Mediassa-sivun tärkeimmät osiot">
-  <a href="#media-reitit">Aloita</a>
-  <a href="#media-arkisto">Kaikki</a>
-  <a href="#media-nostot">Nostot</a>
-  <a href="#media-roolit">Roolit</a>
-  <a href="#media-lahteet">Lähteet</a>
-</nav>
-
-<section class="media-route-section py-5" id="media-reitit" aria-labelledby="media-reitit-heading">
-  <div class="site-shell">
-    <div class="media-section-head">
-      <p class="media-eyebrow mb-1">Aloita tästä</p>
-      <h2 id="media-reitit-heading" class="media-section-title">Kolme tapaa lukea mediaesiintymisiä</h2>
-      <p class="media-section-lead mb-0">Mediaosumia voi lähestyä sen mukaan, etsitkö Jari Larusta tehtyjä juttuja, virallisia asiantuntijarooleja vai keskusteluja, joissa hän on mukana vieraana tai haastattelijana.</p>
-    </div>
-
-    <div class="media-route-grid">
-      <article class="media-route-card">
-        <div class="media-route-card-body">
-          <p class="media-route-kicker">Näkyvyys</p>
-          <h3>Jari Larusta ja hänen työstään tehdyt mediaosumat</h3>
-          <p>Lehtijutut, podcastit ja videot, joissa työ, tutkimus tai julkinen rooli näkyy muiden toimijoiden tuottamana.</p>
-          <div class="media-source-stats">
-            <span><strong>{{ mediaAbout | length }}</strong> osumaa</span>
-            <span><strong>{{ mediaArticles | length }}</strong> lehtijuttua</span>
-            <span><strong>{{ mediaVideos | length }}</strong> videota</span>
-          </div>
-          {% if aboutHighlight %}
-          <div class="media-route-example">
-            <p class="media-route-example-label">Esimerkkiosuma</p>
-            <a href="{{ itemUrl(aboutHighlight) | trim }}" target="_blank" rel="noopener noreferrer">{{ aboutHighlight.data.title }}</a>
-          </div>
-          {% endif %}
-          <div class="media-card-actions">
-            <button class="btn btn-outline-primary btn-sm rounded-pill px-3" type="button" data-media-jump-filter="role:about">Rajaa nämä näkyviin</button>
-            <a href="#media-arkisto" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Selaa arkistossa</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="media-route-card">
-        <div class="media-route-card-body">
-          <p class="media-route-kicker">Asiantuntijuus</p>
-          <h3>Asiantuntijaroolit, työryhmät ja julkinen käyttö</h3>
-          <p>Täältä näet, missä asiantuntijuutta hyödynnetään valmistelussa, viitekehyksissä, työryhmissä ja opetuksen tai tekoälyn julkisessa keskustelussa.</p>
-          <div class="media-source-stats">
-            <span><strong>{{ mediaAssignments | length }}</strong> asiantuntijatehtävää</span>
-            <span><strong>{{ mediaPodcasts | length }}</strong> podcastia</span>
-            <span><strong>{{ expertRouteCount }}</strong> osumaa yhteensä</span>
-          </div>
-          {% if assignmentHighlight %}
-          <div class="media-route-example">
-            <p class="media-route-example-label">Esimerkkiosuma</p>
-            <a href="{{ itemUrl(assignmentHighlight) | trim }}" target="_blank" rel="noopener noreferrer">{{ assignmentHighlight.data.title }}</a>
-          </div>
-          {% endif %}
-          <div class="media-card-actions">
-            <button class="btn btn-outline-primary btn-sm rounded-pill px-3" type="button" data-media-jump-filter="role:expertAssignment">Rajaa nämä näkyviin</button>
-            <a href="/tutkimus/" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Tutkimukseen</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="media-route-card">
-        <div class="media-route-card-body">
-          <p class="media-route-kicker">Keskustelut</p>
-          <h3>Vieraana, keskustelijana ja haastattelijana</h3>
-          <p>Täällä painottuvat keskustelut, joissa Jari Laru on mukana kutsuttuna vieraana, juontavana osapuolena tai haastattelijana muiden aiheiden äärellä.</p>
-          <div class="media-source-stats">
-            <span><strong>{{ mediaGuest | length }}</strong> vieraana</span>
-            <span><strong>{{ mediaInterviewer | length }}</strong> haastattelijana</span>
-            <span><strong>{{ publicConversationCount }}</strong> keskusteluosumaa</span>
-          </div>
-          {% if guestHighlight or interviewerHighlight %}
-          {% set conversationHighlight = guestHighlight or interviewerHighlight %}
-          <div class="media-route-example">
-            <p class="media-route-example-label">Esimerkkiosuma</p>
-            <a href="{{ itemUrl(conversationHighlight) | trim }}" target="_blank" rel="noopener noreferrer">{{ conversationHighlight.data.title }}</a>
-          </div>
-          {% endif %}
-          <div class="media-card-actions">
-            <button class="btn btn-outline-primary btn-sm rounded-pill px-3" type="button" data-media-jump-filter="role:guest">Rajaa vierailut</button>
-            <button class="btn btn-outline-secondary btn-sm rounded-pill px-3" type="button" data-media-jump-filter="role:interviewer">Rajaa haastattelut</button>
-          </div>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-{% set topicProfileKeys = ["julkinen-asiantuntijuus-mediassa", "tekoalylukutaito", "opettajankoulutus"] %}
-{% set topicProfileTitleId = "media-topic-profiles-title" %}
-{% set topicProfileEyebrow = "Aiheittain" %}
-{% set topicProfileTitle = "Mediaosumat aiheittain" %}
-{% set topicProfileLead = "Teemaprofiilit näyttävät, mihin opetuksen, teknologian, tekoälyn, tutkimuksen tai päätöksenteon aiheisiin mediaosumat liittyvät." %}
-{% include "topic-profile-links.njk" %}
 
 <section class="media-feature-section py-5" id="media-nostot" aria-labelledby="media-nostot-heading">
   <div class="site-shell">
@@ -354,89 +248,36 @@ schemaType: CollectionPage
   </div>
 </section>
 
-<section class="media-role-section py-5" id="media-roolit" aria-labelledby="media-roolit-heading">
-  <div class="site-shell">
-    <div class="media-section-head">
-      <p class="media-eyebrow mb-1">Roolit</p>
-      <h2 id="media-roolit-heading" class="media-section-title">Neljä erilaista roolia mediassa</h2>
-      <p class="media-section-lead mb-0">Rooli auttaa tulkitsemaan osumaa: onko media tehnyt jutun Jari Larusta, onko hän mukana keskustelijana, haastatteleeko hän muita vai onko kyse virallisesta asiantuntijatehtävästä.</p>
-    </div>
-    <div class="media-role-grid">
-      <article class="media-role-card">
-        <span class="media-role-number">{{ mediaAbout | length }}</span>
-        <h3>Mediassa Jari Larusta</h3>
-        <p>Jutut, podcastit ja videot, joissa aiheena on Jari Larun työ, asiantuntijuus tai julkinen rooli.</p>
-        <button class="media-role-link" type="button" data-media-jump-filter="role:about">Rajaa nämä näkyviin</button>
-      </article>
-      <article class="media-role-card">
-        <span class="media-role-number">{{ mediaAssignments | length }}</span>
-        <h3>Asiantuntijaroolit</h3>
-        <p>Työryhmät, laatijaryhmät ja muut julkiset asiantuntijatehtävät, joissa Jari Laru on mukana yliopistotyön kautta.</p>
-        <button class="media-role-link" type="button" data-media-jump-filter="role:expertAssignment">Rajaa nämä näkyviin</button>
-      </article>
-      <article class="media-role-card">
-        <span class="media-role-number">{{ mediaGuest | length }}</span>
-        <h3>Vieraana ja keskustelijana</h3>
-        <p>Keskustelut ja podcastit, joissa Jari Laru on mukana kutsuttuna vieraana tai asiantuntijana.</p>
-        <button class="media-role-link" type="button" data-media-jump-filter="role:guest">Rajaa nämä näkyviin</button>
-      </article>
-      <article class="media-role-card">
-        <span class="media-role-number">{{ mediaInterviewer | length }}</span>
-        <h3>Haastattelijana</h3>
-        <p>Sisällöt, joissa Jari Larun rooli on kysyjä, keskustelun vetäjä tai juontava osapuoli.</p>
-        <button class="media-role-link" type="button" data-media-jump-filter="role:interviewer">Rajaa nämä näkyviin</button>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="media-source-section py-5 bg-body-tertiary border-top" id="media-lahteet" aria-labelledby="media-lahteet-heading">
-  <div class="site-shell">
-    <div class="media-source-band">
-      <div>
-        <p class="media-eyebrow mb-1">Lähteet ja muodot</p>
-        <h2 id="media-lahteet-heading" class="media-section-title mb-2">Mediaosumat painottuvat lehtijuttuihin, mutta mukana on myös videoita ja podcasteja</h2>
-        <p class="media-section-lead mb-0">Suurin yksittäinen lähde on Kaleva. Muut osumat ja asiantuntijatehtävät täydentävät kuvaa erityisesti opetuksen, tekoälylukutaidon, avoimen tieteen ja paikallisen päätöksenteon näkökulmista.</p>
-      </div>
-      <div class="media-source-stats">
-        <span><strong>{{ mediaArticles | length }}</strong> lehtijuttua</span>
-        <span><strong>{{ mediaVideos | length }}</strong> videota</span>
-        <span><strong>{{ mediaPodcasts | length }}</strong> podcastia</span>
-        <span><strong>{{ mediaAssignments | length }}</strong> asiantuntijatehtävää</span>
-        <span><strong>{{ mediaAudio | length }}</strong> radio-osuma</span>
-      </div>
-    </div>
-  </div>
+<section class="site-shell pb-5">
+  <aside class="media-crosslinks">
+    <h2>Muualla sivustolla</h2>
+    <ul>
+      <li>
+        <a href="/kynasta/">Kynästä</a> — Jari Larun omat kirjoitukset, puheet ja kannanotot
+        <ul>
+          <li><a href="/kirjoitukset/">Kirjoitukset</a> — blogi, mielipiteet, kolumnit</li>
+          <li><a href="/lausunnot/">Lausunnot ja julkiset puheet</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/esitykset/">Esitykset ja avoimet materiaalit</a> — puheenvuorot, koulutukset ja tallenteet
+      </li>
+      <li>
+        <a href="/yhteiskunnallinen-vuorovaikutus/">Yhteiskunnallinen vuorovaikutus</a> — kokonaiskuva tutkimuksen ja opetuksen jatkoista
+        <ul>
+          <li><a href="/tutkimus/">Tutkimus</a> — Generation AI ja tutkimuslinjat</li>
+          <li><a href="/politiikka/">Politiikka</a> — kunnallinen päätöksenteko</li>
+        </ul>
+      </li>
+      <li><a href="/teemat/">Teemaprofiilit</a> — aiheittain koottu media, tutkimus ja lausunnot</li>
+    </ul>
+  </aside>
 </section>
 
 
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const mobileArchiveMq = window.matchMedia('(max-width: 767.98px)');
-    const routeSection = document.getElementById('media-reitit');
-    const archiveSection = document.getElementById('media-arkisto');
-    const archiveOriginalMarker = document.createComment('media archive desktop position');
-
-    if (routeSection && archiveSection && archiveSection.parentNode) {
-      archiveSection.parentNode.insertBefore(archiveOriginalMarker, archiveSection);
-
-      const applyArchiveOrder = () => {
-        if (mobileArchiveMq.matches) {
-          routeSection.insertAdjacentElement('afterend', archiveSection);
-        } else if (archiveOriginalMarker.parentNode) {
-          archiveOriginalMarker.parentNode.insertBefore(archiveSection, archiveOriginalMarker.nextSibling);
-        }
-      };
-
-      applyArchiveOrder();
-      if (typeof mobileArchiveMq.addEventListener === 'function') {
-        mobileArchiveMq.addEventListener('change', applyArchiveOrder);
-      } else if (typeof mobileArchiveMq.addListener === 'function') {
-        mobileArchiveMq.addListener(applyArchiveOrder);
-      }
-    }
-
     const browser = document.querySelector('[data-media-browser]');
     if (!browser) return;
 
@@ -584,12 +425,3 @@ schemaType: CollectionPage
     setFilter(filterFromUrl(), window.location.search.length > 0);
   });
 </script>
-
-<section class="site-shell py-0 pb-5">
-  {% set relatedSivuyhteys = "mediassa" %}
-  {% set relatedTitle = "Mediassa esiintymisiin liittyviä esityksiä" %}
-  {% set relatedLimit = 3 %}
-  {% set relatedLinkHref = "/esitykset/" %}
-  {% set relatedLinkLabel = "Kaikki esitykset ja materiaalit →" %}
-  {% include "related-presentations.njk" %}
-</section>
