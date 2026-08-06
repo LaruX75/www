@@ -191,8 +191,56 @@ schemaMentions:
   </div>
 </section>
 
+<!-- HANKEHISTORIA -->
+<section class="py-5 bg-body-tertiary border-top border-bottom" id="hankkeet">
+  <div class="site-shell">
+    <div class="row g-4 align-items-end mb-3">
+      <div class="col-lg-8">
+        <p class="text-uppercase text-muted fw-semibold small mb-2">Hankehistoria</p>
+        <h2 class="h3 fw-bold mb-3">Tutkimushankkeet 2003–</h2>
+        <p class="text-muted mb-0">Rahoitetut tutkimushankkeet, joissa Jari Laru on ollut mukana. Aktiiviset hankkeet on merkitty.</p>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-hover align-middle research-projects-table">
+        <thead>
+          <tr>
+            <th scope="col" style="min-width: 7rem;">Vuodet</th>
+            <th scope="col">Hanke</th>
+            <th scope="col">Rahoittaja</th>
+            <th scope="col">Rooli</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for project in researchProjects %}
+          <tr>
+            <td>
+              <span class="fw-semibold">{{ project.period }}</span>
+              {% if project.active %}<span class="badge bg-success ms-1" title="Aktiivinen hanke">aktiivinen</span>{% endif %}
+            </td>
+            <td>
+              {% if project.url %}
+                <a href="{{ project.url }}" target="_blank" rel="noopener noreferrer" class="fw-semibold text-decoration-none">{{ project.name }} <i class="bi bi-box-arrow-up-right small ms-1"></i></a>
+              {% else %}
+                <span class="fw-semibold">{{ project.name }}</span>
+              {% endif %}
+              {% if project.fullName and project.fullName != project.name %}
+                <div class="small text-muted">{{ project.fullName }}</div>
+              {% endif %}
+            </td>
+            <td class="small">{{ project.funder }}</td>
+            <td class="small">{{ project.role }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
 <!-- TUTKIJAPROFIILIT -->
-<section class="py-5 bg-body-tertiary border-top" id="profiilit">
+<section class="py-5" id="profiilit">
   <div class="site-shell">
     <div class="row g-4 align-items-end mb-3">
       <div class="col-lg-8">
