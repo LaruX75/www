@@ -36,14 +36,14 @@ module.exports = [
     category: "tutkimus",
     title: "TEKESin Rotuaari-hanke (2003–2006)",
     description: "Osallistuin tutkimusavustajana TEKESin rahoittamaan Rotuaari-hankkeeseen (6/2003–5/2006) Oulun yliopistossa; mobiili- ja langaton oppimisteknologia kaupunkitilassa.",
-    href: "/tutkimus/#tutkijahistoria"
+    href: "/tutkimus/#hankkeet"
   },
   {
     year: "2004",
     category: "tutkimus",
     title: "Mosil-hanke (2004–2006, EU Kaleidoscope NoE)",
     description: "Mobile Support For Integrated Learning — eurooppalainen Kaleidoscope Network of Excellence -hanke mobiililaitteiden ja oppimisympäristöjen integraatiosta; oppimisen 'skriptit' formaalien ja epäformaalien tilojen välillä.",
-    href: "/tutkimus/"
+    href: "/tutkimus/#hankkeet"
   },
   {
     year: "2005",
@@ -134,7 +134,7 @@ module.exports = [
     category: "tutkimus",
     title: "LEA-hanke (2018–2020, EU Horizon 2020)",
     description: "Learning Technology Accelerator — EU Horizon 2020 -rahoitteinen hanke oppimisteknologia-alan innovatiivisen julkisen hankinnan (PPI) verkoston rakentamiseksi Eurooppaan.",
-    href: "/tutkimus/"
+    href: "/tutkimus/#hankkeet"
   },
   {
     year: "2020",
@@ -148,7 +148,7 @@ module.exports = [
     category: "tutkimus",
     title: "MakeCT-hanke käynnistyy (2020–2023)",
     description: "Assessing CT in Nordic Maker Education — Nordplus Horizontal -rahoitteinen pohjoismainen yhteistyöhanke laskennallisen ajattelun arvioinnista maker-kasvatuksessa.",
-    href: "/tutkimus/"
+    href: "/tutkimus/#hankkeet"
   },
   {
     year: "2021",
@@ -162,14 +162,14 @@ module.exports = [
     category: "tutkimus",
     title: "Generation AI -tutkimusohjelma käynnistyy (2022–)",
     description: "Suomen Akatemian Strategisen tutkimuksen neuvoston (STN) rahoittama tekoälykasvatuksen tutkimusohjelma (lokakuu 2022–). Vuorovaikutusasiantuntijana tutkimustiedon välittäjä opettajille ja kouluille.",
-    href: "/tutkimus/"
+    href: "/tutkimus/#hankkeet"
   },
   {
     year: "2023",
     category: "tutkimus",
     title: "TKAEDITE-hanke (2023–2026, Erasmus+)",
     description: "Transforming the Kosovo and Albanian Education System by introducing Digital Technology in Teacher Education — Erasmus+ -rahoitteinen kansainvälinen hanke opettajankoulutuksen digitalisoinnista.",
-    href: "/tutkimus/"
+    href: "/tutkimus/#hankkeet"
   },
   {
     year: "2025",
