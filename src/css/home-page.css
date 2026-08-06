@@ -1426,3 +1426,99 @@ html[data-a11y-bg] .home-focus-strip-item {
     margin: 0;
   }
 }
+
+/* Vaiheotsikot (phaseStart) aikajanan varrella */
+
+@media (min-width: 768px) {
+  .home-milestone-phase {
+    flex: 0 0 15.5rem;
+    display: grid;
+    grid-template-rows: 1fr auto 1fr;
+    padding: 0;
+    position: relative;
+    list-style: none;
+  }
+
+  /* Yläreunan sisältö (grid-row 1) */
+  .home-milestone-phase .home-milestone-phase-label,
+  .home-milestone-phase .home-milestone-phase-title,
+  .home-milestone-phase .home-milestone-phase-desc {
+    grid-row: 3;
+    max-width: 100%;
+  }
+
+  .home-milestone-phase::before {
+    /* Vaiheen erotinviiva keskelle */
+    content: "";
+    grid-row: 2;
+    justify-self: center;
+    width: 3px;
+    height: 3rem;
+    background: linear-gradient(to bottom, var(--bs-body-color), transparent);
+    opacity: 0.3;
+    margin-top: -1.5rem;
+    z-index: 1;
+  }
+
+  .home-milestone-phase-label {
+    margin: 0;
+    padding: 0.85rem 1rem 0.15rem;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--bs-secondary-color);
+  }
+
+  .home-milestone-phase-title {
+    margin: 0;
+    padding: 0 1rem 0.5rem;
+    font-family: var(--bs-font-family-heading);
+    font-size: 1.05rem;
+    font-weight: 800;
+    line-height: 1.25;
+    color: var(--bs-heading-color);
+    letter-spacing: -0.01em;
+  }
+
+  .home-milestone-phase-desc {
+    margin: 0;
+    padding: 0 1rem 0.85rem;
+    font-size: 0.82rem;
+    line-height: 1.4;
+    color: var(--bs-secondary-color);
+  }
+}
+
+@media (max-width: 767.98px) {
+  .home-milestone-phase {
+    list-style: none;
+    padding: 1.25rem 1rem 0.75rem 2rem;
+    margin: 0.5rem 0;
+    border-top: 2px solid var(--bs-border-color);
+  }
+
+  .home-milestone-phase-label {
+    margin: 0 0 0.25rem;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--bs-secondary-color);
+  }
+
+  .home-milestone-phase-title {
+    font-family: var(--bs-font-family-heading);
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.25;
+    margin: 0 0 0.4rem;
+  }
+
+  .home-milestone-phase-desc {
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: var(--bs-secondary-color);
+    margin: 0;
+  }
+}

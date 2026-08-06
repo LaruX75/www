@@ -2,11 +2,19 @@
 // Suuntaus: uran alusta 1990-luvulta nykyhetkeen — tutkimus, opetus, politiikka, palkinnot, tausta.
 // Jokainen kohta klikattava, vie asianomaiselle sivulle.
 // Jarjestys: kronologinen (year). Aikajana renderoi vuorotellen yla/ala listan mukaan.
+//
+// Vaiheotsikot (phaseStart: true) merkitsevat uuden aikakauden alkua ja
+// naytetaan aikajanalla omana vaihe-elementtina ennen kohdan korttia.
 module.exports = [
   {
     year: "1989",
     category: "tausta",
     title: "BBS-harrastus alkaa (Raahe)",
+    phaseStart: {
+      label: "1989–2001",
+      title: "Tausta ja ensimmäiset askeleet",
+      description: "Teknologiaharrastus ja ensimmäiset poliittiset avaukset."
+    },
     description: "Commodore 64, modeemi, Large's Security BBS:n SysOp, Fidonet-solmu, ANSI-taide ja HTML-koodaus. Teknologiapolun alkupiste ennen nykyistä verkkoa.",
     href: "/1998/02/16/silloin-kun-sita-oltiin-larges-securityn-sysop-bbs-muisteluita/"
   },
@@ -21,6 +29,11 @@ module.exports = [
     year: "2002",
     category: "tutkimus",
     title: "Tutkimusavustaja EDTECH-yksikössä",
+    phaseStart: {
+      label: "2002–2012",
+      title: "Väitöskirjatie: mobiilioppiminen ja CSCL",
+      description: "Tutkimus mobiililaitteista ja yhteisöllisestä oppimisesta — juuret nykyiselle tekoälykasvatustyölle."
+    },
     description: "Ensimmäinen työtehtävä Oulun yliopistossa opetusteknologian tutkimusyksikössä (EDTECH). Tutkimusuran alkupiste.",
     href: "/cv/"
   },
@@ -119,6 +132,11 @@ module.exports = [
     year: "2013",
     category: "opetus",
     title: "Yliopistonlehtori (nykyinen tehtävä)",
+    phaseStart: {
+      label: "2013–2021",
+      title: "Yliopistonlehtori ja avoin tiede",
+      description: "Vakiintunut opetustyö luokanopettajakoulutuksessa. Avoimen tieteen ja digipedagogiikan edistäminen — TSV:n avoimen tieteen palkinto 2020."
+    },
     description: "Toistaiseksi voimassaoleva tehtävä (elokuu 2013 alkaen): teknologiatuetun oppimisen ja opetuksen yliopistonlehtori, Kasvatustieteiden ja psykologian tiedekunta, Oulun yliopisto.",
     href: "/tyoni-yliopistonlehtorina/"
   },
@@ -161,6 +179,11 @@ module.exports = [
     year: "2022",
     category: "tutkimus",
     title: "Generation AI -tutkimusohjelma käynnistyy (2022–)",
+    phaseStart: {
+      label: "2022–",
+      title: "Tekoälylukutaito ja Generation AI",
+      description: "Aiempi tutkimus mobiilioppimisesta, yhteisöllisistä skripteistä ja opettajankoulutuksesta johtaa loogisesti tekoälykasvatukseen — sama kysymys teknologian roolista oppimisessa uudessa muodossa."
+    },
     description: "Suomen Akatemian Strategisen tutkimuksen neuvoston (STN) rahoittama tekoälykasvatuksen tutkimusohjelma (lokakuu 2022–). Vuorovaikutusasiantuntijana tutkimustiedon välittäjä opettajille ja kouluille.",
     href: "/tutkimus/#hankkeet"
   },

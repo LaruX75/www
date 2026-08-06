@@ -255,6 +255,13 @@ pageStyles:
         <div class="home-milestones-scroll" role="region" aria-label="Aikajana, vieritä horisontaalisesti">
             <ol class="home-milestones-track">
                 {% for milestone in milestones %}
+                {% if milestone.phaseStart %}
+                <li class="home-milestone-phase" aria-hidden="false">
+                    <p class="home-milestone-phase-label">{{ milestone.phaseStart.label }}</p>
+                    <h3 class="home-milestone-phase-title">{{ milestone.phaseStart.title }}</h3>
+                    <p class="home-milestone-phase-desc">{{ milestone.phaseStart.description }}</p>
+                </li>
+                {% endif %}
                 <li class="home-milestone home-milestone--{{ milestone.category }}{% if loop.index0 % 2 == 0 %} home-milestone--above{% else %} home-milestone--below{% endif %}">
                     <a href="{{ milestone.href }}" class="home-milestone-card">
                         <p class="home-milestone-category" data-year="{{ milestone.year }}">{{ milestone.category | capitalize }}</p>
