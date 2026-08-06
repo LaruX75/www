@@ -165,6 +165,13 @@ module.exports = [
     href: "/tutkimus/"
   },
   {
+    year: "2023",
+    category: "tutkimus",
+    title: "TKAEDITE-hanke (2023–2026, Erasmus+)",
+    description: "Transforming the Kosovo and Albanian Education System by introducing Digital Technology in Teacher Education — Erasmus+ -rahoitteinen kansainvälinen hanke opettajankoulutuksen digitalisoinnista.",
+    href: "/tutkimus/"
+  },
+  {
     year: "2025",
     category: "politiikka",
     title: "Vaalikausi 2025–2029 (Oulu)",

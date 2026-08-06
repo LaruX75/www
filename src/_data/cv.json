@@ -74,15 +74,21 @@
         "role": ""
       },
       {
-        "project": "Assessing CT in Nordic Maker Education",
-        "funder": "NordForsk",
-        "period": "8/2020–7/2022",
+        "project": "MakeCT — Assessing CT in Nordic Maker Education",
+        "funder": "Nordplus Horizontal",
+        "period": "2020–2023",
         "role": ""
       },
       {
         "project": "Learning Technology Accelerator (LEA)",
         "funder": "EU Horizon 2020",
-        "period": "2018–2020",
+        "period": "3/2018–6/2020",
+        "role": ""
+      },
+      {
+        "project": "Mosil — Mobile Support For Integrated Learning",
+        "funder": "EU Kaleidoscope Network of Excellence (FP6)",
+        "period": "2004–2006",
         "role": ""
       }
     ],
@@ -182,15 +188,21 @@
         "role": ""
       },
       {
-        "project": "Assessing CT in Nordic Maker Education",
-        "funder": "NordForsk",
-        "period": "Aug 2020–Jul 2022",
+        "project": "MakeCT — Assessing CT in Nordic Maker Education",
+        "funder": "Nordplus Horizontal",
+        "period": "2020–2023",
         "role": ""
       },
       {
         "project": "Learning Technology Accelerator (LEA)",
         "funder": "EU Horizon 2020",
-        "period": "2018–2020",
+        "period": "Mar 2018–Jun 2020",
+        "role": ""
+      },
+      {
+        "project": "Mosil — Mobile Support For Integrated Learning",
+        "funder": "EU Kaleidoscope Network of Excellence (FP6)",
+        "period": "2004–2006",
         "role": ""
       }
     ],

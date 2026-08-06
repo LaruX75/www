@@ -181,10 +181,12 @@ schemaMentions:
           <div class="card-body p-4">
             <h3 class="h5 fw-bold">Hankkeet</h3>
             <ul class="mb-0">
-              <li><em><a href="https://www.generation-ai-stn.fi">Generation AI</a></em>, STN, 1.10.2022–30.9.2025</li>
+              <li><em><a href="https://www.generation-ai-stn.fi">Generation AI</a></em>, Suomen Akatemian Strategisen tutkimuksen neuvosto (STN), 10/2022–</li>
               <li><em><a href="https://tkaedite.eu/">TKAEDITE</a></em>, Erasmus+, 6/2023–5/2026</li>
-              <li><em>Assessing CT in Nordic Maker Education</em>, NordForsk, 8/2020–7/2022</li>
-              <li><em>Learning Technology Accelerator (LEA)</em>, EU Horizon 2020, 2018–2020</li>
+              <li><em><a href="https://sites.google.com/edu.oulu.fi/makect/home">MakeCT — Assessing CT in Nordic Maker Education</a></em>, Nordplus Horizontal, 2020–2023</li>
+              <li><em>Learning Technology Accelerator (LEA)</em>, EU Horizon 2020, 3/2018–6/2020</li>
+              <li><em>Mosil — Mobile Support For Integrated Learning</em>, EU Kaleidoscope Network of Excellence (FP6), 2004–2006</li>
+              <li><em>Rotuaari</em>, TEKES, 6/2003–5/2006</li>
             </ul>
           </div>
         </article>

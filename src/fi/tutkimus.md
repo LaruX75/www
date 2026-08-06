@@ -491,10 +491,10 @@ schemaMentions:
 
       <div class="tutkijahistoria-card card border-0 shadow-sm flex-shrink-0">
         <div class="card-body p-4">
-          <span class="badge bg-secondary mb-3">2003&ndash;2004</span>
-          <h3 class="h5 fw-bold mb-1">TEKES Rotuuari</h3>
+          <span class="badge bg-secondary mb-3">2003&ndash;2006</span>
+          <h3 class="h5 fw-bold mb-1">Rotuaari</h3>
           <p class="text-muted small mb-3">Teknologian ja innovaatioiden kehittämiskeskus (TEKES) &mdash; Oulun yliopisto</p>
-          <p class="small mb-0">Mobiiliteknologian hyödyntäminen oppimisympäristöissä. Varhaisvaiheen tutkimus langattomista oppimisratkaisuista Suomessa &ndash; ennen älypuhelinaikaa.</p>
+          <p class="small mb-0">Mobiili- ja langaton oppimisteknologia kaupunkitilassa. Varhaisvaiheen tutkimus langattomista oppimisratkaisuista Suomessa &ndash; ennen älypuhelinaikaa. Osallistuin tutkimusavustajana.</p>
         </div>
       </div>
 
@@ -504,10 +504,10 @@ schemaMentions:
 
       <div class="tutkijahistoria-card card border-0 shadow-sm flex-shrink-0">
         <div class="card-body p-4">
-          <span class="badge bg-secondary mb-3">2004&ndash;2005</span>
-          <h3 class="h5 fw-bold mb-1">EU FP6 Kaleidoscope</h3>
-          <p class="text-muted small mb-3">Euroopan unioni, 6. puiteohjelma &mdash; Network of Excellence</p>
-          <p class="small mb-0">Kansainvälinen tutkimusverkosto teknologiatuetun oppimisen alalla. Yhteistyö eurooppalaisten yliopistojen kanssa CSCL-tutkimuksessa.</p>
+          <span class="badge bg-secondary mb-3">2004&ndash;2006</span>
+          <h3 class="h5 fw-bold mb-1">Mosil (EU Kaleidoscope NoE)</h3>
+          <p class="text-muted small mb-3">Mobile Support For Integrated Learning &mdash; EU:n 6. puiteohjelman Kaleidoscope Network of Excellence -verkosto</p>
+          <p class="small mb-0">Kansainvälinen tutkimushanke mobiililaitteiden ja oppimisympäristöjen integraatiosta. Oppimisen 'skriptit' formaalien ja epäformaalien tilojen välillä; yhteistyö eurooppalaisten yliopistojen kanssa CSCL-tutkimuksessa.</p>
         </div>
       </div>
 
@@ -517,9 +517,9 @@ schemaMentions:
 
       <div class="tutkijahistoria-card card border-0 shadow-sm flex-shrink-0">
         <div class="card-body p-4">
-          <span class="badge bg-secondary mb-3">2006&ndash;2009</span>
-          <h3 class="h5 fw-bold mb-1">Monitieteinen tutkijakoulu</h3>
-          <p class="text-muted small mb-3">Oulun yliopisto &mdash; Väitöskirjavaihe</p>
+          <span class="badge bg-secondary mb-3">2006&ndash;2010</span>
+          <h3 class="h5 fw-bold mb-1">Monitieteinen tutkijakoulu (OPMON)</h3>
+          <p class="text-muted small mb-3">Oppimisympäristöjen monitieteinen tutkijakoulu &mdash; Oulun yliopisto, EDTECH</p>
           <p class="small mb-0">Väitöskirjatyö yhteisöllisten skriptien ja mobiililaitteiden tutkimuksesta. Kasvatustieteen, teknologian ja kognitiotieteen rajapinnalla.</p>
         </div>
       </div>
@@ -530,10 +530,10 @@ schemaMentions:
 
       <div class="tutkijahistoria-card card border-0 shadow-sm flex-shrink-0">
         <div class="card-body p-4">
-          <span class="badge bg-secondary mb-3">2005&ndash;2010</span>
+          <span class="badge bg-secondary mb-3">2005&ndash;2011</span>
           <h3 class="h5 fw-bold mb-1">Kulttuurirahasto-apurahat</h3>
-          <p class="text-muted small mb-3">Suomen Kulttuurirahasto (2005&ndash;2006 ja 2009&ndash;2010)</p>
-          <p class="small mb-0">Yksivuotiset tutkimusapurahat väitöskirjatyöhön: Urpo ja Maija-Liisa Harvan rahasto (16&thinsp;400 €) ja Xerox Oy:n rahasto (21&thinsp;000 €).</p>
+          <p class="text-muted small mb-3">Suomen Kulttuurirahasto (2005&ndash;2006 ja 2010&ndash;2011)</p>
+          <p class="small mb-0">Tutkimusapurahat väitöskirjatyöhön: Urpo ja Maija-Liisa Harvan rahasto 2005&ndash;2006 (16&thinsp;400 €) ja Xerox Oy:n rahasto 2010&ndash;2011 (21&thinsp;000 €).</p>
         </div>
       </div>
 
@@ -547,6 +547,19 @@ schemaMentions:
           <h3 class="h5 fw-bold mb-1">KT-tutkinto &amp; Digipedagogiikka</h3>
           <p class="text-muted small mb-3">Oulun yliopisto &mdash; Kasvatustieteiden tiedekunta</p>
           <p class="small mb-0">Väitöskirja hyväksytty 20.11.2012. Yli vuosikymmenen opetustyö TVT-opetuksen, sosiaalisen median ja STEAM-sivuaineen parissa.</p>
+        </div>
+      </div>
+
+      <div class="tutkijahistoria-arrow align-self-center text-muted flex-shrink-0" aria-hidden="true">
+        <i class="bi bi-arrow-right fs-4"></i>
+      </div>
+
+      <div class="tutkijahistoria-card card border-0 shadow-sm flex-shrink-0">
+        <div class="card-body p-4">
+          <span class="badge bg-secondary mb-3">2018&ndash;2020</span>
+          <h3 class="h5 fw-bold mb-1">LEA (EU Horizon 2020)</h3>
+          <p class="text-muted small mb-3">Learning Technology Accelerator &mdash; EU Horizon 2020</p>
+          <p class="small mb-0">Rajat ylittävä eurooppalainen hanke oppimisteknologia-alan innovatiivisen julkisen hankinnan (PPI) verkoston rakentamiseksi ja EU-tason PPI-hankintakiertueen valmisteluun.</p>
         </div>
       </div>
 
@@ -579,6 +592,19 @@ schemaMentions:
         </div>
         <div class="card-footer bg-transparent border-0 px-4 pb-3 pt-0">
           <a href="https://www.generation-ai-stn.fi" class="btn btn-sm btn-success" target="_blank" rel="noopener noreferrer">Hankkeen sivusto</a>
+        </div>
+      </div>
+
+      <div class="tutkijahistoria-arrow align-self-center text-muted flex-shrink-0" aria-hidden="true">
+        <i class="bi bi-arrow-right fs-4"></i>
+      </div>
+
+      <div class="tutkijahistoria-card card border-0 shadow-sm flex-shrink-0">
+        <div class="card-body p-4">
+          <span class="badge bg-secondary mb-3">2023&ndash;2026</span>
+          <h3 class="h5 fw-bold mb-1">TKAEDITE (Erasmus+)</h3>
+          <p class="text-muted small mb-3">Transforming the Kosovo and Albanian Education System by introducing Digital Technology in Teacher Education &mdash; Erasmus+</p>
+          <p class="small mb-0">Kansainvälinen hanke Kosovon ja Albanian opettajankoulutuksen digitalisoinnista. Yhteistyö paikallisten korkeakoulujen kanssa opettajankoulutuksen kehittämisessä.</p>
         </div>
       </div>
 
