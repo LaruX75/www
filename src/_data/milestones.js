@@ -4,6 +4,13 @@
 // Sijoittelu: index 0=yla, 1=ala, 2=yla, ... (jarjestys vaikuttaa horisontaaliseen sommitteluun)
 module.exports = [
   {
+    year: "2000",
+    category: "politiikka",
+    title: "Ensimmäinen ehdokkuus kuntavaaleissa (Raahe)",
+    description: "Poliittisen uran alkupiste. Ehdolla Raahen kuntavaaleissa Kansallisen Kokoomuksen listoilla.",
+    href: "/politiikka/vaalikaudet/"
+  },
+  {
     year: "2002",
     category: "tutkimus",
     title: "Tutkimusavustaja EDTECH-yksikössä",
@@ -13,9 +20,23 @@ module.exports = [
   {
     year: "2003",
     category: "tutkimus",
+    title: "Pro gradu -tutkielma valmis",
+    description: "\"Langattomat päätelaitteet hajautetun asiantuntijuuden ja yhteisöllisen tiedonrakentelun tukena\" (Goman & Laru, 2003). Varhaisvaiheen tutkimusta ennen älypuhelinaikaa.",
+    href: "/tutkimus/#varhaisvaihe"
+  },
+  {
+    year: "2003",
+    category: "tutkimus",
     title: "TEKESin Rotuaari-hanke käynnistyy",
     description: "Osallistuin tutkimusavustajana TEKESin rahoittamaan Rotuaari-hankkeeseen Oulun yliopistossa; mobiili- ja langaton oppimisteknologia kaupunkitilassa.",
     href: "/tutkimus/#tutkijahistoria"
+  },
+  {
+    year: "2005",
+    category: "politiikka",
+    title: "Ensimmäinen ehdokkuus Oulussa",
+    description: "Muutto Ouluun toi mukanaan uudet vaalit; ensimmäinen ehdokkuus Oulun kunnallisvaaleissa Kansallisen Kokoomuksen listoilla.",
+    href: "/politiikka/vaalikaudet/"
   },
   {
     year: "2006",
