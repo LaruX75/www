@@ -1,20 +1,35 @@
 // Kuratoidut merkkitapahtumat etusivun aikajanaan.
-// Suuntaus: 2000-luvun alusta nykyhetkeen — tutkimus, opetus, politiikka, palkinnot.
+// Suuntaus: uran alusta 2002 nykyhetkeen — tutkimus, opetus, politiikka, palkinnot.
 // Jokainen kohta klikattava, vie asianomaiselle sivulle.
+// Sijoittelu: index 0=yla, 1=ala, 2=yla, ... (jarjestys vaikuttaa horisontaaliseen sommitteluun)
 module.exports = [
+  {
+    year: "2002",
+    category: "tutkimus",
+    title: "Tutkimusavustaja EDTECH-yksikössä",
+    description: "Ensimmäinen työtehtävä Oulun yliopistossa opetusteknologian tutkimusyksikössä. Tutkimuksen alkupiste.",
+    href: "/cv/"
+  },
   {
     year: "2003",
     category: "tutkimus",
-    title: "Ensimmäiset tutkimushankkeet Oulun yliopistossa",
-    description: "Pro gradu -tutkielma valmis. TEKES Rotuuari -hanke käynnistyy tutkimusassistenttina.",
+    title: "TEKESin Rotuaari-hanke käynnistyy",
+    description: "Osallistuin tutkimusavustajana TEKESin rahoittamaan Rotuaari-hankkeeseen Oulun yliopistossa; mobiili- ja langaton oppimisteknologia kaupunkitilassa.",
     href: "/tutkimus/#tutkijahistoria"
   },
   {
-    year: "2005",
-    category: "politiikka",
-    title: "Ensimmäinen ehdokkuus kunnallisvaaleissa",
-    description: "Poliittinen työ Oulussa alkaa Kansallisen Kokoomuksen listoilta.",
-    href: "/politiikka/vaalikaudet/"
+    year: "2006",
+    category: "tutkimus",
+    title: "Tutkijakoulutettava (OPMON)",
+    description: "Väitöskirjatyö käynnistyi Oppimisympäristöjen monitieteisen tutkijakoulun (OPMON) puitteissa.",
+    href: "/cv/"
+  },
+  {
+    year: "2011",
+    category: "opetus",
+    title: "Yliopisto-opettaja opetusteknologiassa",
+    description: "Ensimmäinen päätoiminen opetustehtävä Oulun yliopistossa: opetusteknologian yliopisto-opettaja.",
+    href: "/cv/"
   },
   {
     year: "2012",
@@ -32,16 +47,23 @@ module.exports = [
   },
   {
     year: "2013",
+    category: "opetus",
+    title: "Yliopistonlehtori (nykyinen tehtävä)",
+    description: "Toistaiseksi voimassaoleva tehtävä: teknologiatuetun oppimisen ja opetuksen yliopistonlehtori, Kasvatustieteiden ja psykologian tiedekunta, Oulun yliopisto.",
+    href: "/tyoni-yliopistonlehtorina/"
+  },
+  {
+    year: "2013",
     category: "politiikka",
     title: "Ensimmäinen valtuustokausi alkaa",
-    description: "Varavaltuutettu ja lähidemokratiatoimikunnan puheenjohtaja Oulun kaupunginvaltuustossa.",
+    description: "Varavaltuutettu ja lähidemokratiatoimikunnan puheenjohtaja Oulun kaupunginvaltuustossa Kansallisen Kokoomuksen ryhmässä.",
     href: "/politiikka/vaalikaudet/"
   },
   {
     year: "2017",
     category: "politiikka",
     title: "Ensimmäinen valinta kaupunginvaltuustoon",
-    description: "Kaupunginvaltuutettu + sivistys- ja kulttuurilautakunnan jäsen. Työ sivistys- ja palveluverkkokysymyksissä alkaa.",
+    description: "Kaupunginvaltuutettu ja sivistys- ja kulttuurilautakunnan jäsen. Työ sivistys- ja palveluverkkokysymyksissä syvenee.",
     href: "/politiikka/vaalikaudet/"
   },
   {
