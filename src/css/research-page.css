@@ -204,3 +204,44 @@ display: none;
 @media (max-width: 576px) {
   .tutkijahistoria-card { width: 240px; }
 }
+
+/* Muualla sivustolla -ristilinkkilaatikko */
+.research-crosslinks {
+  padding: 1.15rem 1.35rem;
+  margin-top: 1.5rem;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 0.85rem;
+  background: var(--bs-tertiary-bg);
+  max-width: 62rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+.research-crosslinks h2 {
+  font-family: var(--bs-font-family-heading);
+  font-size: 1rem;
+  margin: 0 0 0.75rem;
+}
+.research-crosslinks ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--bs-body-color);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+.research-crosslinks ul ul {
+  margin: 0.35rem 0 0.6rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--bs-border-color);
+  font-size: 0.88rem;
+}
+.research-crosslinks > ul > li {
+  margin-bottom: 0.35rem;
+}
+.research-crosslinks a {
+  color: var(--bs-primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+.research-crosslinks a:hover {
+  text-decoration: underline;
+}
