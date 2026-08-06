@@ -1,3 +1,5 @@
+/* Yhteiskunnallinen vuorovaikutus -sivu */
+
 .engagement-hero {
   border-bottom: 1px solid var(--bs-border-color-translucent);
   background:
@@ -5,485 +7,311 @@
     linear-gradient(145deg, color-mix(in srgb, var(--bs-body-bg) 90%, var(--bs-primary) 4%), var(--bs-body-bg));
 }
 
-.engagement-hero-layout,
-.engagement-loop {
-  display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(17rem, 0.65fr);
-  gap: clamp(1.5rem, 4vw, 4rem);
-  align-items: center;
+.engagement-hero-layout {
+  max-width: 60rem;
 }
 
 .engagement-eyebrow,
-.engagement-panel-kicker,
-.engagement-route-kicker,
-.engagement-evidence-kicker {
+.engagement-area-kicker,
+.engagement-area-latest-kicker,
+.engagement-topic-pill-kicker {
   color: var(--bs-primary);
   font-size: 0.76rem;
   font-weight: 800;
   letter-spacing: 0.09em;
   text-transform: uppercase;
+  margin: 0;
 }
 
 .engagement-hero-title,
-.engagement-section-head h2,
-.engagement-loop h2,
-.engagement-next-head h2 {
-  max-width: 18ch;
+.engagement-section-head h2 {
   font-weight: 800;
-  letter-spacing: -0.035em;
-  line-height: 1.05;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
 }
 
 .engagement-hero-title {
-  font-size: clamp(2.25rem, 5vw, 4.5rem);
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  max-width: 22ch;
 }
 
 .engagement-hero-lead {
   max-width: 45rem;
-  font-size: clamp(1.08rem, 2vw, 1.35rem);
-  line-height: 1.55;
-}
-
-.engagement-hero-text,
-.engagement-section-head > p,
-.engagement-loop-copy > p,
-.engagement-panel-note {
-  color: var(--bs-secondary-color);
-  line-height: 1.65;
-}
-
-.engagement-hero-panel {
-  padding: clamp(1.25rem, 3vw, 2rem);
-  border: 1px solid var(--site-accent-border, var(--bs-border-color));
-  border-radius: 1.35rem;
-  background: color-mix(in srgb, var(--site-surface-card, var(--bs-body-bg)) 88%, var(--bs-primary) 8%);
-  box-shadow: var(--site-shadow-card, 0 0.85rem 2rem rgba(0, 0, 0, 0.08));
-}
-
-.engagement-kpi-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.9rem;
-}
-
-.engagement-kpi-grid > div {
-  min-height: 6.8rem;
-  padding: 1rem;
-  border: 1px solid var(--bs-border-color-translucent);
-  border-radius: 1rem;
-  background: color-mix(in srgb, var(--bs-body-bg) 85%, transparent);
-}
-
-.engagement-kpi-grid dd {
-  margin: 0 0 0.18rem;
-  color: var(--bs-primary);
-  font-size: clamp(1.6rem, 3vw, 2.25rem);
-  font-weight: 800;
-  line-height: 1;
-}
-
-.engagement-kpi-grid dt {
-  color: var(--bs-secondary-color);
-  font-size: 0.8rem;
-  line-height: 1.3;
-}
-
-.engagement-panel-note {
-  margin-top: 1.2rem;
-  font-size: 0.88rem;
+  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+  line-height: 1.6;
+  color: var(--bs-body-color);
 }
 
 .engagement-section {
-  padding-block: clamp(3.75rem, 7vw, 6.5rem);
-}
-
-.engagement-section--evidence,
-.engagement-section--sources {
-  border-block: 1px solid var(--bs-border-color-translucent);
-  background: var(--site-surface-section, var(--bs-tertiary-bg));
+  padding-block: clamp(3rem, 6vw, 5rem);
 }
 
 .engagement-section-head {
-  max-width: 49rem;
+  max-width: 52rem;
   margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
 }
 
-.engagement-section-head h2,
-.engagement-loop h2,
-.engagement-next-head h2 {
-  margin-bottom: 0.85rem;
-  font-size: clamp(1.8rem, 3.5vw, 3rem);
+.engagement-section-head h2 {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  margin-bottom: 0.7rem;
 }
 
-.engagement-route-grid,
-.engagement-evidence-grid {
+.engagement-section-head > p {
+  color: var(--bs-secondary-color);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Kolmen alueen kortit */
+
+.engagement-area-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
+  gap: 1.5rem;
+  align-items: stretch;
 }
 
-.engagement-route-card,
-.engagement-evidence-card {
+@media (max-width: 1023.98px) {
+  .engagement-area-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 599.98px) {
+  .engagement-area-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.engagement-area-card {
+  --area-accent: var(--bs-primary);
   display: flex;
-  min-height: 100%;
   flex-direction: column;
-  padding: clamp(1.25rem, 2.6vw, 1.85rem);
+  gap: 0.85rem;
+  padding: 1.75rem 1.5rem;
   border: 1px solid var(--bs-border-color);
-  border-radius: 1.2rem;
-  background: var(--site-surface-card, var(--bs-body-bg));
-  box-shadow: var(--site-shadow-card, 0 0.85rem 2rem rgba(0, 0, 0, 0.06));
+  border-top: 4px solid var(--area-accent);
+  border-radius: 1rem;
+  background: var(--bs-body-bg);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  height: 100%;
 }
 
-.engagement-route-card--materials { border-top: 0.3rem solid #2d7a5e; }
-.engagement-route-card--statements { border-top: 0.3rem solid #bd6f28; }
-.engagement-route-card--politics { border-top: 0.3rem solid #596cae; }
+.engagement-area-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
 
-.engagement-route-icon {
-  display: grid;
+.engagement-area-card--materials { --area-accent: #0d6efd; }
+.engagement-area-card--media     { --area-accent: #147a7a; }
+.engagement-area-card--politics  { --area-accent: #6f42c1; }
+
+.engagement-area-icon {
   width: 2.75rem;
   height: 2.75rem;
-  margin-bottom: 1.35rem;
-  place-items: center;
-  border-radius: 0.85rem;
-  background: color-mix(in srgb, var(--bs-primary) 13%, transparent);
-  color: var(--bs-primary);
-  font-size: 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--area-accent) 12%, transparent);
+  color: var(--area-accent);
+  font-size: 1.2rem;
+  margin-bottom: 0.25rem;
 }
 
-.engagement-route-card h3,
-.engagement-evidence-card h3 {
-  font-size: 1.28rem;
-  font-weight: 800;
-  line-height: 1.22;
+.engagement-area-kicker {
+  color: var(--area-accent);
 }
 
-.engagement-route-card > p:not(.engagement-route-kicker),
-.engagement-evidence-card > p:not(.engagement-evidence-kicker):not(.engagement-evidence-meta) {
-  color: var(--bs-secondary-color);
-  line-height: 1.58;
-}
-
-.engagement-route-link,
-.engagement-card-link {
-  color: var(--bs-primary);
-  font-weight: 800;
-  text-decoration: none;
-}
-
-.engagement-route-link:hover,
-.engagement-route-link:focus-visible,
-.engagement-card-link:hover,
-.engagement-card-link:focus-visible {
-  color: var(--bs-link-hover-color);
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
-}
-
-.engagement-route-card > .engagement-route-link,
-.engagement-route-actions,
-.engagement-card-link {
-  margin-top: auto;
-}
-
-.engagement-route-actions {
-  display: grid;
-  gap: 0.55rem;
-}
-
-.engagement-evidence-card {
-  border-color: var(--site-border-soft, var(--bs-border-color));
-}
-
-.engagement-evidence-meta {
-  margin-bottom: 0.5rem;
-  color: var(--bs-secondary-color);
-  font-size: 0.85rem;
-}
-
-.engagement-evidence-card h4 {
-  margin-bottom: 0.8rem;
-  font-size: 1.05rem;
-  line-height: 1.35;
-}
-
-.engagement-evidence-card h4 a {
-  color: var(--bs-body-color);
-  text-decoration-color: color-mix(in srgb, var(--bs-primary) 55%, transparent);
-  text-underline-offset: 0.16em;
-}
-
-.engagement-evidence-card h4 a:hover,
-.engagement-evidence-card h4 a:focus-visible {
-  color: var(--bs-primary);
-}
-
-.engagement-loop {
-  align-items: start;
-}
-
-.engagement-loop-copy > p {
-  max-width: 43rem;
-}
-
-.engagement-loop-steps {
-  display: grid;
-  gap: 0.8rem;
-  padding: 0;
+.engagement-area-card h3 {
+  font-family: var(--bs-font-family-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.25;
   margin: 0;
-  list-style: none;
-  counter-reset: engagement-step;
+  color: var(--bs-body-color);
 }
 
-.engagement-loop-steps li {
-  position: relative;
-  min-height: 5.4rem;
-  padding: 1rem 1rem 1rem 4.5rem;
-  border: 1px solid var(--bs-border-color);
-  border-radius: 1rem;
-  background: var(--site-surface-card, var(--bs-body-bg));
-  counter-increment: engagement-step;
-}
-
-.engagement-loop-steps li::before {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  display: grid;
-  width: 2.45rem;
-  height: 2.45rem;
-  place-items: center;
-  border-radius: 50%;
-  background: var(--bs-primary);
-  color: var(--bs-body-bg);
-  content: counter(engagement-step);
-  font-weight: 900;
-}
-
-.engagement-loop-steps span,
-.engagement-loop-steps strong {
-  display: block;
-}
-
-.engagement-loop-steps span {
-  margin-bottom: 0.2rem;
-  color: var(--bs-primary);
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.engagement-loop-steps strong {
-  line-height: 1.4;
-}
-
-.engagement-next-head {
-  max-width: 50rem;
-  margin-bottom: clamp(1.35rem, 3vw, 2.2rem);
-}
-
-.engagement-next-head p:not(.engagement-eyebrow) {
+.engagement-area-card > p {
+  font-size: 0.92rem;
+  line-height: 1.55;
   color: var(--bs-secondary-color);
-  line-height: 1.65;
+  margin: 0;
 }
 
-.engagement-next-grid {
+.engagement-area-latest {
+  margin-top: 0.35rem;
+  padding: 0.85rem 1rem;
+  background: var(--bs-tertiary-bg);
+  border-radius: 0.6rem;
+}
+
+.engagement-area-latest-kicker {
+  font-size: 0.7rem;
+  color: var(--bs-secondary-color);
+  margin-bottom: 0.3rem;
+}
+
+.engagement-area-latest-link {
+  display: block;
+  color: var(--bs-body-color);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.92rem;
+  line-height: 1.35;
+  margin-bottom: 0.25rem;
+}
+
+.engagement-area-latest-link:hover {
+  color: var(--area-accent);
+  text-decoration: underline;
+}
+
+.engagement-area-latest-meta {
+  font-size: 0.76rem;
+  color: var(--bs-secondary-color);
+  margin: 0;
+}
+
+.engagement-area-link {
+  margin-top: auto;
+  color: var(--area-accent);
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 0.92rem;
+  padding-top: 0.4rem;
+}
+
+.engagement-area-link:hover {
+  color: var(--area-accent);
+  text-decoration: underline;
+}
+
+.engagement-area-actions {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding-top: 0.4rem;
+}
+
+.engagement-area-actions .engagement-area-link {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+/* Teemapastillit */
+
+.engagement-section--topics {
+  background: var(--bs-tertiary-bg);
+  border-block: 1px solid var(--bs-border-color-translucent);
+}
+
+.engagement-topic-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1rem;
 }
 
-.engagement-next-card {
-  position: relative;
-  display: flex;
-  min-height: 18rem;
-  flex-direction: column;
-  gap: 0.55rem;
-  overflow: hidden;
-  padding: clamp(1.15rem, 2.2vw, 1.45rem);
-  border: 1px solid var(--bs-border-color);
-  border-radius: 1.35rem;
-  background: color-mix(in srgb, var(--site-surface-card, var(--bs-body-bg)) 94%, var(--bs-primary) 3%);
-  box-shadow: var(--site-shadow-card, 0 1rem 2.3rem rgba(19, 43, 70, 0.08));
-  color: inherit;
-  text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-}
-
-.engagement-next-card::before {
-  position: absolute;
-  inset: 0 0 auto;
-  height: 0.35rem;
-  background: var(--engagement-next-accent, var(--bs-primary));
-  content: "";
-}
-
-.engagement-next-card--materials { --engagement-next-accent: #2d7a5e; }
-.engagement-next-card--writings { --engagement-next-accent: #bd6f28; }
-.engagement-next-card--media { --engagement-next-accent: #1f7894; }
-.engagement-next-card--politics { --engagement-next-accent: #596cae; }
-
-.engagement-next-card:hover,
-.engagement-next-card:focus-visible {
-  border-color: color-mix(in srgb, var(--engagement-next-accent, var(--bs-primary)) 45%, var(--bs-border-color));
-  box-shadow: 0 1.2rem 2.6rem rgba(19, 43, 70, 0.12);
-  color: inherit;
-  transform: translateY(-2px);
-}
-
-.engagement-next-icon {
-  display: grid;
-  width: 2.55rem;
-  height: 2.55rem;
-  margin-top: 0.45rem;
-  place-items: center;
-  border-radius: 0.85rem;
-  background: color-mix(in srgb, var(--engagement-next-accent, var(--bs-primary)) 14%, transparent);
-  color: var(--engagement-next-accent, var(--bs-primary));
-  font-size: 1.15rem;
-}
-
-.engagement-next-kicker {
-  margin-top: 0.3rem;
-  color: var(--bs-secondary-color);
-  font-size: 0.72rem;
-  font-weight: 850;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.engagement-next-card strong {
-  display: block;
-  font-size: 1.18rem;
-  line-height: 1.22;
-}
-
-.engagement-next-card > span:not(.engagement-next-icon):not(.engagement-next-kicker) {
-  color: var(--bs-secondary-color);
-  line-height: 1.55;
-}
-
-.engagement-next-card small {
-  margin-top: auto;
-  color: var(--bs-primary);
-  font-weight: 850;
-}
-
-.engagement-mobile-path a {
-  padding: 0.52rem 0.82rem;
-  border: 1px solid var(--bs-border-color);
-  border-radius: 999px;
-  color: var(--bs-body-color);
-  font-size: 0.9rem;
-  font-weight: 750;
-  text-decoration: none;
-}
-
-.engagement-mobile-path {
-  display: none;
-}
-
-@media (max-width: 991.98px) {
-  .engagement-hero-layout,
-  .engagement-loop {
-    grid-template-columns: 1fr;
-  }
-
-  .engagement-route-grid,
-  .engagement-evidence-grid,
-  .engagement-next-grid {
+@media (max-width: 1023.98px) {
+  .engagement-topic-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
 
-  .engagement-route-card,
-  .engagement-evidence-card {
-    min-height: auto;
+@media (max-width: 599.98px) {
+  .engagement-topic-grid {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
-@media (max-width: 767.98px) {
-  .engagement-hero .site-shell {
-    padding-top: 2rem !important;
-    padding-bottom: 1.25rem !important;
-  }
-
-  .engagement-hero-title {
-    max-width: 100%;
-    font-size: clamp(2.05rem, 10vw, 2.75rem);
-    line-height: 1;
-  }
-
-  .engagement-hero-lead {
-    margin-bottom: 0.85rem !important;
-    font-size: 1rem;
-    line-height: 1.45;
-  }
-
-  .engagement-hero-text {
-    display: -webkit-box;
-    margin-bottom: 1rem !important;
-    overflow: hidden;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-  }
-
-  .engagement-hero-panel {
-    display: none;
-  }
-
-  .engagement-section {
-    padding-block: 2.5rem;
-  }
-
-  .engagement-section-head {
-    margin-bottom: 1.2rem;
-  }
-
-  .engagement-section-head h2 {
-    font-size: clamp(1.55rem, 8vw, 2.1rem);
-  }
-
-  .engagement-mobile-path {
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    display: flex;
-    gap: 0.45rem;
-    overflow-x: auto;
-    padding: 0.65rem 0.75rem;
-    border-bottom: 1px solid var(--bs-border-color-translucent);
-    background: color-mix(in srgb, var(--bs-body-bg) 92%, transparent);
-    backdrop-filter: blur(10px);
-    scrollbar-width: none;
-  }
-
-  .engagement-mobile-path::-webkit-scrollbar { display: none; }
-  .engagement-mobile-path a { flex: 0 0 auto; }
-
-  .engagement-kpi-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .engagement-next-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .engagement-next-card {
-    min-height: auto;
-  }
+.engagement-topic-pill {
+  display: flex;
+  flex-direction: column;
+  padding: 1.15rem 1.25rem;
+  background: var(--bs-body-bg);
+  border: 1px solid var(--bs-border-color);
+  border-radius: 0.85rem;
+  color: var(--bs-body-color);
+  text-decoration: none;
+  transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-[data-bs-theme="dark"] .engagement-hero {
-  background:
-    radial-gradient(circle at 86% 12%, rgba(169, 212, 243, 0.12), transparent 27rem),
-    linear-gradient(145deg, var(--site-surface-section), var(--bs-body-bg));
+.engagement-topic-pill:hover {
+  border-color: var(--bs-primary);
+  transform: translateY(-2px);
+  color: var(--bs-body-color);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
 }
 
-[data-bs-theme="dark"] .engagement-route-card--materials { border-top-color: #72b89f; }
-[data-bs-theme="dark"] .engagement-route-card--statements { border-top-color: #e5a45d; }
-[data-bs-theme="dark"] .engagement-route-card--politics { border-top-color: #aab8ef; }
+.engagement-topic-pill-title {
+  font-family: var(--bs-font-family-heading);
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0.4rem 0 0.4rem;
+  color: var(--bs-body-color);
+}
 
-[data-bs-theme="dark"] .engagement-next-card--materials { --engagement-next-accent: #72b89f; }
-[data-bs-theme="dark"] .engagement-next-card--writings { --engagement-next-accent: #e5a45d; }
-[data-bs-theme="dark"] .engagement-next-card--media { --engagement-next-accent: #70c7df; }
-[data-bs-theme="dark"] .engagement-next-card--politics { --engagement-next-accent: #aab8ef; }
+.engagement-topic-pill-count {
+  font-size: 0.82rem;
+  color: var(--bs-primary);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.engagement-topic-pill-cta {
+  font-size: 0.78rem;
+  color: var(--bs-secondary-color);
+  font-weight: 600;
+  margin-top: auto;
+}
+
+/* Muualla sivustolla -ristilinkkilaatikko */
+
+.engagement-crosslinks {
+  padding: 1.15rem 1.35rem;
+  margin-top: 1.5rem;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 0.85rem;
+  background: var(--bs-tertiary-bg);
+  max-width: 62rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.engagement-crosslinks h2 {
+  font-family: var(--bs-font-family-heading);
+  font-size: 1rem;
+  margin: 0 0 0.75rem;
+}
+
+.engagement-crosslinks ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--bs-body-color);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.engagement-crosslinks ul ul {
+  margin: 0.35rem 0 0.6rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--bs-border-color);
+  font-size: 0.88rem;
+}
+
+.engagement-crosslinks > ul > li {
+  margin-bottom: 0.35rem;
+}
+
+.engagement-crosslinks a {
+  color: var(--bs-primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.engagement-crosslinks a:hover {
+  text-decoration: underline;
+}
