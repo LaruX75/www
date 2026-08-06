@@ -50,11 +50,7 @@ schemaType: CollectionPage
     {%- endif -%}
   {%- endif -%}
 {%- endfor -%}
-{%- set latestResearchHighlights = (researchfi or []).slice(0, 3) -%}
-{%- set latestPeerReviewedHighlights = (pubsA or []).slice(0, 2) -%}
-{%- set latestPublicHighlights = pubsE or [] -%}
 {%- set researchPublicationMeta = researchProgram.publicationMetaByAnchor or {} -%}
-{%- set researchArchiveFilters = researchProgram.archiveFilters or {} -%}
 
 <section class="publications-hero py-4 py-lg-5">
   <div class="site-shell">
@@ -95,93 +91,6 @@ schemaType: CollectionPage
       </div>
     </div>
     <p class="publication-kpi-note text-muted mb-0 mt-3">{{ openAccessCount }} julkaisua on merkitty avoimesti saataviksi, {{ articleCount }} kuuluu lehtiartikkeleihin ja {{ confCount }} konferenssiaineistoon.</p>
-  </div>
-</section>
-
-<nav class="publication-mobile-path" aria-label="Julkaisusivun tärkeimmät osiot">
-  <a href="#aloita-tasta">Reitit</a>
-  <a href="#card-pub-table-a">A-luokka</a>
-  <a href="#vaitoskirja">Väitös</a>
-  <a href="#analyticsPanel">Analytiikka</a>
-  <a href="#julkaisuluokat">Arkisto</a>
-</nav>
-
-<section id="aloita-tasta" class="py-4">
-  <div class="site-shell">
-    <div class="row g-4 align-items-stretch">
-      <div class="col-12">
-        <p class="text-uppercase small text-muted mb-1">Aloita tästä</p>
-        <h2 class="h3 mb-1">Nopeimmat reitit julkaisuarkistoon</h2>
-        <p class="text-muted mb-0">Sivun voi lukea joko tutkimusprofiilin esittelynä tai varsinaisena julkaisuarkistona. Nämä sisäänkäynnit vievät suoraan yleisimpiin näkymiin.</p>
-      </div>
-    </div>
-
-    <div class="row g-3 align-items-stretch publication-entry-grid mt-1">
-      <div class="col-md-6 col-xl-3">
-        <article class="card border-0 shadow-sm h-100 publication-entry-card">
-          <div class="card-body d-flex flex-column">
-            <p class="publication-entry-kicker">Uusimmat</p>
-            <h3 class="h5 mb-2">Viimeisimmät julkaisut</h3>
-            <ul class="publication-entry-list mb-3">
-              {% for pub in latestResearchHighlights %}
-              <li><a href="#julkaisuluokat">{{ pub.title }}</a> <span class="text-muted">({{ pub.year or "—" }})</span></li>
-              {% endfor %}
-            </ul>
-            <a href="#julkaisuluokat" class="btn btn-outline-secondary btn-sm rounded-pill px-3 mt-auto align-self-start">Siirry luokkiin</a>
-          </div>
-        </article>
-      </div>
-
-      <div class="col-md-6 col-xl-3">
-        <article class="card border-0 shadow-sm h-100 publication-entry-card">
-          <div class="card-body d-flex flex-column">
-            <p class="publication-entry-kicker">Vertaisarvioitu tutkimus</p>
-            <h3 class="h5 mb-2">Artikkelit ja konferenssit</h3>
-            <p class="small text-muted mb-3">{{ pubsA.length }} A-luokan julkaisua, joista {{ articleCount }} on lehtiartikkeleita.</p>
-            <ul class="publication-entry-list mb-3">
-              {% for pub in latestPeerReviewedHighlights %}
-              <li><a href="#card-pub-table-a">{{ pub.title }}</a></li>
-              {% endfor %}
-            </ul>
-            <a href="#card-pub-table-a" class="btn btn-outline-secondary btn-sm rounded-pill px-3 mt-auto align-self-start">Avaa A-luokka</a>
-          </div>
-        </article>
-      </div>
-
-      <div class="col-md-6 col-xl-3">
-        <article class="card border-0 shadow-sm h-100 publication-entry-card">
-          <div class="card-body d-flex flex-column">
-            <p class="publication-entry-kicker">Kirjat ja väitöskirja</p>
-            <h3 class="h5 mb-2">Monografiat ja koosteet</h3>
-            <p class="small text-muted mb-3">{{ pubsC.length + pubsG.length }} julkaisua kirjoina, toimitettuina teoksina tai opinnäytteinä.</p>
-            <div class="small text-muted mb-3">Mukana myös väitöskirja <em>Scaffolding learning activities with collaborative scripts and mobile devices</em>.</div>
-            <div class="d-flex flex-wrap gap-2 mt-auto">
-              <a href="/vaitoskirja/" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Väitöskirja</a>
-              <a href="#card-pub-table-c" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Kirjat</a>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <div class="col-md-6 col-xl-3">
-        <article class="card border-0 shadow-sm h-100 publication-entry-card">
-          <div class="card-body d-flex flex-column">
-            <p class="publication-entry-kicker">Laajempi vaikuttavuus</p>
-            <h3 class="h5 mb-2">Ammatilliset ja yleistajuiset tekstit</h3>
-            <p class="small text-muted mb-3">{{ pubsD.length + pubsE.length }} julkaisua ammattiyhteisöille ja suurelle yleisölle.</p>
-            <ul class="publication-entry-list mb-3">
-              {% for pub in latestPublicHighlights %}
-              <li><a href="#card-pub-table-e">{{ pub.title }}</a></li>
-              {% endfor %}
-            </ul>
-            <div class="d-flex flex-wrap gap-2 mt-auto">
-              <a href="#card-pub-table-d" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Ammatilliset</a>
-              <a href="#card-pub-table-e" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Yleistajuiset</a>
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -326,37 +235,6 @@ schemaType: CollectionPage
 </div>
 
 <!-- VÄITÖSKIRJA-NOSTO -->
-<section id="vaitoskirja" class="py-4">
-  <div class="site-shell">
-    <div class="card border-0 shadow-sm publication-spotlight-card">
-      <div class="card-body py-3 px-4">
-        <div class="row align-items-center g-3">
-          <div class="col-lg-9">
-            <div class="d-flex align-items-center gap-2 mb-1">
-              <span class="publication-group-code">G5</span>
-              <span class="badge publication-section-count">Väitöskirja</span>
-              <span class="text-muted small">2012</span>
-            </div>
-            <h3 class="h5 mb-1">Scaffolding learning activities with collaborative scripts and mobile devices</h3>
-            <p class="text-muted small mb-0 fst-italic">Acta Universitatis Ouluensis E : Scientiae rerum socialium &mdash; Oulun yliopisto</p>
-          </div>
-          <div class="col-lg-3 d-flex gap-2 justify-content-lg-end flex-wrap">
-            <a href="http://jultika.oulu.fi/Record/isbn978-951-42-9940-7"
-               target="_blank" rel="noopener noreferrer"
-               class="btn btn-sm btn-outline-secondary rounded-pill">
-              <i class="bi bi-box-arrow-up-right me-1"></i>Jultika
-            </a>
-            <a href="/vaitoskirja/"
-               class="btn btn-sm btn-outline-secondary rounded-pill">
-              <i class="bi bi-file-text me-1"></i>Kokonaisuus
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- JULKAISULISTA -->
 <section id="julkaisuluokat" class="py-5">
   <div class="site-shell">
@@ -375,51 +253,6 @@ schemaType: CollectionPage
         </div>
       </div>
     </div>
-
-    <section class="card border-0 shadow-sm publication-research-filter-card mb-4" aria-labelledby="research-filter-heading">
-      <div class="card-body">
-        <div class="d-flex flex-wrap justify-content-between align-items-start gap-2 mb-3">
-          <div>
-            <p class="text-uppercase small text-muted mb-1">Tutkimuksen näkökulma</p>
-            <h3 class="h5 mb-1" id="research-filter-heading">Rajaa kuratoituja julkaisuja</h3>
-            <p class="text-muted small mb-0">Valinnat käyttävät tutkimusohjelmaan lisättyä metatietoa. Ilman rajausta koko virallinen julkaisuarkisto näkyy ennallaan.</p>
-          </div>
-          <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill d-none" id="clear-research-filters">
-            <i class="bi bi-x-circle me-1"></i>Poista rajaukset
-          </button>
-        </div>
-        <div class="row g-2">
-          <div class="col-md-4">
-            <label class="form-label small text-muted mb-1" for="research-line-filter">Tutkimuslinja</label>
-            <select class="form-select form-select-sm" id="research-line-filter" data-research-filter="line">
-              <option value="">Kaikki tutkimuslinjat</option>
-              {% for option in researchArchiveFilters.lines or [] %}
-              <option value="{{ option.value }}">{{ option.label }}</option>
-              {% endfor %}
-            </select>
-          </div>
-          <div class="col-md-4">
-            <label class="form-label small text-muted mb-1" for="research-theme-filter">Teema</label>
-            <select class="form-select form-select-sm" id="research-theme-filter" data-research-filter="theme">
-              <option value="">Kaikki teemat</option>
-              {% for option in researchArchiveFilters.themes or [] %}
-              <option value="{{ option.value }}">{{ option.label }}</option>
-              {% endfor %}
-            </select>
-          </div>
-          <div class="col-md-4">
-            <label class="form-label small text-muted mb-1" for="research-audience-filter">Kohderyhmä</label>
-            <select class="form-select form-select-sm" id="research-audience-filter" data-research-filter="audience">
-              <option value="">Kaikki kohderyhmät</option>
-              {% for option in researchArchiveFilters.audiences or [] %}
-              <option value="{{ option.value }}">{{ option.label }}</option>
-              {% endfor %}
-            </select>
-          </div>
-        </div>
-        <p class="small text-muted mb-0 mt-3 d-none" id="research-filter-status" aria-live="polite"></p>
-      </div>
-    </section>
 
     {% if researchfi.length %}
 
