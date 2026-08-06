@@ -1,13 +1,13 @@
 // Kuratoidut merkkitapahtumat etusivun aikajanaan.
-// Suuntaus: uran alusta 2002 nykyhetkeen — tutkimus, opetus, politiikka, palkinnot.
+// Suuntaus: uran alusta 2000 nykyhetkeen — tutkimus, opetus, politiikka, palkinnot.
 // Jokainen kohta klikattava, vie asianomaiselle sivulle.
-// Sijoittelu: index 0=yla, 1=ala, 2=yla, ... (jarjestys vaikuttaa horisontaaliseen sommitteluun)
+// Jarjestys: kronologinen (year). Aikajana renderoi vuorotellen yla/ala listan mukaan.
 module.exports = [
   {
     year: "2000",
     category: "politiikka",
-    title: "Ensimmäinen ehdokkuus kuntavaaleissa (Raahe)",
-    description: "Poliittisen uran alkupiste. Ehdolla Raahen kuntavaaleissa Kansallisen Kokoomuksen listoilla.",
+    title: "Vaalikausi 2001–2004 (Raahe)",
+    description: "Ehdolla Raahen kuntavaaleissa 2000 Kansallisen Kokoomuksen listoilla. Poliittisen uran alkupiste.",
     href: "/politiikka/vaalikaudet/"
   },
   {
@@ -34,8 +34,8 @@ module.exports = [
   {
     year: "2005",
     category: "politiikka",
-    title: "Ensimmäinen ehdokkuus Oulussa",
-    description: "Muutto Ouluun toi mukanaan uudet vaalit; ensimmäinen ehdokkuus Oulun kunnallisvaaleissa Kansallisen Kokoomuksen listoilla.",
+    title: "Vaalikausi 2005–2008 (Oulu)",
+    description: "Muutto Ouluun toi mukanaan uudet vaalit; ehdolla Oulun kunnallisvaaleissa Kansallisen Kokoomuksen listoilla.",
     href: "/politiikka/vaalikaudet/"
   },
   {
@@ -44,6 +44,13 @@ module.exports = [
     title: "Tutkijakoulutettava (OPMON)",
     description: "Väitöskirjatyö käynnistyi Oppimisympäristöjen monitieteisen tutkijakoulun (OPMON) puitteissa.",
     href: "/cv/"
+  },
+  {
+    year: "2008",
+    category: "politiikka",
+    title: "Vaalikausi 2009–2012 (Kiiminki)",
+    description: "Ehdolla Kiimingin kuntavaaleissa 2008; sijoituin varavaltuutetuksi.",
+    href: "/politiikka/vaalikaudet/"
   },
   {
     year: "2011",
@@ -67,6 +74,13 @@ module.exports = [
     href: "/palkinnot/"
   },
   {
+    year: "2012",
+    category: "politiikka",
+    title: "Vaalikausi 2013–2016 (Oulu)",
+    description: "Ehdolla Oulun kunnallisvaaleissa 2012; varavaltuutettu ja lähidemokratiatoimikunnan puheenjohtaja.",
+    href: "/politiikka/vaalikaudet/"
+  },
+  {
     year: "2013",
     category: "opetus",
     title: "Yliopistonlehtori (nykyinen tehtävä)",
@@ -74,16 +88,9 @@ module.exports = [
     href: "/tyoni-yliopistonlehtorina/"
   },
   {
-    year: "2013",
-    category: "politiikka",
-    title: "Ensimmäinen valtuustokausi alkaa",
-    description: "Varavaltuutettu ja lähidemokratiatoimikunnan puheenjohtaja Oulun kaupunginvaltuustossa Kansallisen Kokoomuksen ryhmässä.",
-    href: "/politiikka/vaalikaudet/"
-  },
-  {
     year: "2017",
     category: "politiikka",
-    title: "Ensimmäinen valinta kaupunginvaltuustoon",
+    title: "Vaalikausi 2017–2021 (Oulu)",
     description: "Kaupunginvaltuutettu ja sivistys- ja kulttuurilautakunnan jäsen. Työ sivistys- ja palveluverkkokysymyksissä syvenee.",
     href: "/politiikka/vaalikaudet/"
   },
@@ -97,8 +104,8 @@ module.exports = [
   {
     year: "2021",
     category: "politiikka",
-    title: "Uudelleenvalinta kaupunginvaltuustoon",
-    description: "Työ jatkuu sivistys- ja kulttuurilautakunnassa; myös maakuntavaltuuston jäsen.",
+    title: "Vaalikausi 2021–2025 (Oulu)",
+    description: "Kaupunginvaltuutettu ja sivistys- ja kulttuurilautakunnan jäsen; myös maakuntavaltuuston jäsen.",
     href: "/politiikka/vaalikaudet/"
   },
   {
@@ -118,8 +125,8 @@ module.exports = [
   {
     year: "2025",
     category: "politiikka",
-    title: "Uusi vaalikausi: sivistyslautakunnan jäsen",
-    description: "2. varavaltuutettu ja sivistyslautakunnan jäsen Oulun kaupungissa. Aluevaltuuston varajäsen Pohjois-Pohjanmaan hyvinvointialueella.",
+    title: "Vaalikausi 2025–2029 (Oulu)",
+    description: "Varavaltuutettu ja sivistyslautakunnan jäsen Oulun kaupungissa; aluevaltuuston varajäsen Pohjois-Pohjanmaan hyvinvointialueella.",
     href: "/politiikka/vaalikaudet/"
   },
   {
