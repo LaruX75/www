@@ -213,38 +213,11 @@ schemaType: ProfilePage
 
     <div class="ylwork-section-head">
       <p class="ylwork-eyebrow ylwork-eyebrow--dark mb-1"><i class="bi bi-journal-richtext me-1"></i>Tuoreimmat nostot</p>
-      <h3 class="ylwork-section-title h4">Uusin lausunto, esitys ja tutkimusjulkaisu</h3>
-      <p class="ylwork-section-lead mb-0">Kolme nostoa antavat kuvan siitä, mihin yliopistotyö juuri nyt vaikuttaa: valmistelun tueksi annettu lausunto, opetuksen käytäntöihin viety esitys ja tutkimusnäytön päivittänyt julkaisu.</p>
+      <h3 class="ylwork-section-title h4">Uusin tutkimusjulkaisu, esitys ja lausunto</h3>
+      <p class="ylwork-section-lead mb-0">Kolme nostoa antavat kuvan siitä, mihin yliopistotyö juuri nyt vaikuttaa: tutkimusnäytön päivittänyt julkaisu, opetuksen käytäntöihin viety esitys ja valmistelun tueksi annettu lausunto.</p>
     </div>
 
     <div class="ylwork-live-grid">
-      {% if featuredStatement %}
-      <article class="ylwork-live-card">
-        <p class="ylwork-live-kicker">Lausunnot</p>
-        <div class="ylwork-live-meta">
-          <span class="ylwork-live-type">Tuorein lausunto</span>
-          <span class="ylwork-live-date">{{ featuredStatement.date | dateFormat }}</span>
-        </div>
-        <h4 class="ylwork-live-item-title"><a href="{{ featuredStatement.data.url or featuredStatement.url }}">{{ featuredStatement.data.title }}</a></h4>
-        <p class="ylwork-live-summary">{{ featuredStatement.data.description or (featuredStatement.templateContent | excerpt) | truncate(160) }}</p>
-        <a href="/lausunnot/#lausunnot" class="ylwork-card-link mt-auto">Kaikki lausunnot <span aria-hidden="true">→</span></a>
-      </article>
-      {% endif %}
-
-      {% set latestPresentation = latestWorkPresentations[0] %}
-      {% if latestPresentation %}
-      <article class="ylwork-live-card">
-        <p class="ylwork-live-kicker">Esitykset ja koulutukset</p>
-        <div class="ylwork-live-meta">
-          <span class="ylwork-live-type">{{ latestPresentation.typeLabel or "Tuorein esitys" }}</span>
-          <span class="ylwork-live-date">{{ latestPresentation.date | dateFormat }}</span>
-        </div>
-        <h4 class="ylwork-live-item-title"><a href="{{ latestPresentation.url }}"{% if latestPresentation.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ latestPresentation.title }}</a></h4>
-        <p class="ylwork-live-summary">{{ latestPresentation.description | truncate(160) }}</p>
-        <a href="/esitykset/" class="ylwork-card-link mt-auto">Kaikki esitykset <span aria-hidden="true">→</span></a>
-      </article>
-      {% endif %}
-
       {% set latestPub = latestWorkPublications[0] %}
       {% if latestPub %}
       <article class="ylwork-live-card">
@@ -262,6 +235,33 @@ schemaType: ProfilePage
         </h4>
         <p class="ylwork-live-summary">{% if latestPub.journal %}{{ latestPub.journal }}{% elseif latestPub.publisher %}{{ latestPub.publisher }}{% else %}Julkaisu tutkimusprofiilista.{% endif %}</p>
         <a href="/julkaisut/" class="ylwork-card-link mt-auto">Kaikki julkaisut <span aria-hidden="true">→</span></a>
+      </article>
+      {% endif %}
+
+      {% set latestPresentation = latestWorkPresentations[0] %}
+      {% if latestPresentation %}
+      <article class="ylwork-live-card">
+        <p class="ylwork-live-kicker">Esitykset ja koulutukset</p>
+        <div class="ylwork-live-meta">
+          <span class="ylwork-live-type">{{ latestPresentation.typeLabel or "Tuorein esitys" }}</span>
+          <span class="ylwork-live-date">{{ latestPresentation.date | dateFormat }}</span>
+        </div>
+        <h4 class="ylwork-live-item-title"><a href="{{ latestPresentation.url }}"{% if latestPresentation.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ latestPresentation.title }}</a></h4>
+        <p class="ylwork-live-summary">{{ latestPresentation.description | truncate(160) }}</p>
+        <a href="/esitykset/" class="ylwork-card-link mt-auto">Kaikki esitykset <span aria-hidden="true">→</span></a>
+      </article>
+      {% endif %}
+
+      {% if featuredStatement %}
+      <article class="ylwork-live-card">
+        <p class="ylwork-live-kicker">Lausunnot</p>
+        <div class="ylwork-live-meta">
+          <span class="ylwork-live-type">Tuorein lausunto</span>
+          <span class="ylwork-live-date">{{ featuredStatement.date | dateFormat }}</span>
+        </div>
+        <h4 class="ylwork-live-item-title"><a href="{{ featuredStatement.data.url or featuredStatement.url }}">{{ featuredStatement.data.title }}</a></h4>
+        <p class="ylwork-live-summary">{{ featuredStatement.data.description or (featuredStatement.templateContent | excerpt) | truncate(160) }}</p>
+        <a href="/lausunnot/#lausunnot" class="ylwork-card-link mt-auto">Kaikki lausunnot <span aria-hidden="true">→</span></a>
       </article>
       {% endif %}
     </div>
