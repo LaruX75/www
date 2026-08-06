@@ -52,11 +52,6 @@ pageStyles:
 {% endfor %}
 {% set heroStatementCount = heroStatementItems | length %}
 {% set heroMediaCount = ((mediaArchive and mediaArchive.all) or []) | length %}
-{% set heroRoles = [
-    { label: "Kouluttaja (Larux t:mi)", href: "/kouluttaja/" },
-    { label: "Kuntapäättäjä", href: "/politiikka/" },
-    { label: "Yliopistonlehtori", href: "/tyoni-yliopistonlehtorina/" }
-] %}
 {% set homeCopy = {
     heroTitle: "Kouluttaja, puhuja ja vaikuttaja koulutuksen tulevaisuuden puolesta.",
     heroLead: "Etsitkö koulutusta, puheenvuoroa tai taustaa tekoälylukutaidosta, oppimisesta ja teknologian järkevästä käytöstä? Tältä sivustolta löydät Jari Larun työn, kirjoitukset, mediaosumat ja päätöksentekoon liittyvät aineistot.",
@@ -83,15 +78,8 @@ pageStyles:
                     <p class="home-hero-eyebrow mb-2">{{ pageContent.etusivu.hero.eyebrow }}</p>
                     <h1 class="home-hero-title mb-3">{{ homeCopy.heroTitle }}</h1>
                     <p class="home-hero-lead mb-4">{{ homeCopy.heroLead }}</p>
-                    <div class="home-hero-roles mb-4">
-                        {% for role in heroRoles %}
-                        <a class="home-hero-role-item" href="{{ role.href }}">{{ role.label }}</a>
-                        {% endfor %}
-                    </div>
                     <div class="home-hero-actions">
                         <a class="btn btn-primary rounded-pill px-4" href="{{ pageContent.etusivu.intro.cta1.href }}">{{ pageContent.etusivu.intro.cta1.label }}</a>
-                        <a class="btn btn-outline-secondary rounded-pill px-4 home-hero-btn-secondary" href="/politiikka/">Politiikka</a>
-                        <a class="home-hero-link" href="{{ pageContent.etusivu.intro.cta2.href }}">{{ pageContent.etusivu.intro.cta2.label }}</a>
                     </div>
                 </div>
                 <div class="col-lg-5">
