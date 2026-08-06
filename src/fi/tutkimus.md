@@ -556,9 +556,9 @@ schemaMentions:
 
       <div class="tutkijahistoria-card card border-0 shadow-sm flex-shrink-0">
         <div class="card-body p-4">
-          <span class="badge bg-secondary mb-3">Pohjoismainen hanke</span>
-          <h3 class="h5 fw-bold mb-1">MAKECT</h3>
-          <p class="text-muted small mb-3">Assessing CT in Nordic Maker Education &mdash; pohjoismainen yhteistyö</p>
+          <span class="badge bg-secondary mb-3">2020&ndash;2023</span>
+          <h3 class="h5 fw-bold mb-1">MakeCT</h3>
+          <p class="text-muted small mb-3">Assessing CT in Nordic Maker Education &mdash; Nordplus Horizontal -rahoitteinen pohjoismainen yhteistyö</p>
           <p class="small mb-0">Tutkimushanke laskennallisen ajattelun (Computational Thinking) arvioinnista ja integroinnista maker-kasvatuksen kontekstissa peruskoulussa. Yhteistyö pohjoismaisten korkeakoulujen ja koulujen kanssa.</p>
         </div>
         <div class="card-footer bg-transparent border-0 px-4 pb-3 pt-0">

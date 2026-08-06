@@ -102,6 +102,13 @@ module.exports = [
     href: "/palkinnot/"
   },
   {
+    year: "2020",
+    category: "tutkimus",
+    title: "MakeCT-hanke käynnistyy (2020–2023)",
+    description: "Assessing CT in Nordic Maker Education — Nordplus Horizontal -rahoitteinen pohjoismainen yhteistyöhanke laskennallisen ajattelun arvioinnista maker-kasvatuksessa.",
+    href: "/tutkimus/"
+  },
+  {
     year: "2021",
     category: "politiikka",
     title: "Vaalikausi 2021–2025 (Oulu)",
@@ -113,13 +120,6 @@ module.exports = [
     category: "tutkimus",
     title: "Generation AI -tutkimusohjelma käynnistyy",
     description: "Strategisen tutkimuksen neuvoston (STN) rahoittama tekoälykasvatuksen tutkimus. Vuorovaikutusasiantuntijana tutkimustiedon välittäjä.",
-    href: "/tutkimus/"
-  },
-  {
-    year: "2025",
-    category: "tutkimus",
-    title: "MAKECT-hanke: laskennallisen ajattelun arviointi",
-    description: "Pohjoismainen yhteistyöhanke maker-kasvatuksesta ja CT:n arvioinnista peruskoulussa.",
     href: "/tutkimus/"
   },
   {
