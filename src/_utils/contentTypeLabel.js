@@ -36,6 +36,7 @@ function contentTypeLabel(data = {}, tags = [], lang = "fi") {
   if (data.mediaType === "podcast") return lang === "en" ? "Podcast" : "Podcast";
   if (data.mediaType === "radio") return lang === "en" ? "Radio" : "Radio";
   if (data.mediaType === "article") return lang === "en" ? "Media article" : "Lehtijuttu";
+  if (data.mediaType === "tv") return lang === "en" ? "TV" : "TV";
   if (type === "esitys" || tagSet.has("presentations")) return lang === "en" ? "Presentation" : "Esitys";
   if (type === "lausunto") return lang === "en" ? "Expert statement" : "Asiantuntijalausunto";
   if (data.agenda_title === "Valtuuston kyselytunti" || contexts.has("valtuuston kyselytunti") || keywords.has("valtuustokysely") || speechContext === "kyselytunti") return lang === "en" ? "Council question hour" : "Valtuuston kyselytunti";
@@ -50,6 +51,9 @@ function contentTypeLabel(data = {}, tags = [], lang = "fi") {
   if (type === "kolumni") return lang === "en" ? "Column" : "Kolumni";
   if (tagSet.has("politics")) return lang === "en" ? "Council initiative" : "Valtuustoaloite";
   if (tagSet.has("blog")) return lang === "en" ? "Blog post" : "Blogikirjoitus";
+  if (type === "blogikirjoitus") return lang === "en" ? "Blog post" : "Blogikirjoitus";
+  if (type === "tieteellinen" || data.contentType === "scientificPublication") return lang === "en" ? "Scientific publication" : "Tieteellinen julkaisu";
+  if (type === "artikkeli") return lang === "en" ? "Article" : "Artikkeli";
   return lang === "en" ? "Text" : "Kirjoitus";
 }
 
