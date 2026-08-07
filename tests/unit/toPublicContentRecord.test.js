@@ -286,6 +286,31 @@ describe("minimivaatimukset", () => {
 });
 
 // -----------------------------------------------------------------------------
+// publication-kentta (lehden nimi)
+// -----------------------------------------------------------------------------
+describe("publication-kentta", () => {
+  test("publication frontmatterista sailyy JSON:issa", () => {
+    const item = {
+      url: "/foo/",
+      date: new Date("2012-03-10"),
+      data: { title: "Foo", type: "mielipide", publication: "Kaleva" }
+    };
+    const rec = toPublicContentRecord(item);
+    assert.equal(rec.publication, "Kaleva");
+  });
+
+  test("publication puuttuu => ei mukana JSON:issa", () => {
+    const item = {
+      url: "/foo/",
+      date: new Date("2012-03-10"),
+      data: { title: "Foo", type: "mielipide" }
+    };
+    const rec = toPublicContentRecord(item);
+    assert.equal(rec.publication, undefined);
+  });
+});
+
+// -----------------------------------------------------------------------------
 // FI/EN
 // -----------------------------------------------------------------------------
 describe("FI/EN-labelit", () => {

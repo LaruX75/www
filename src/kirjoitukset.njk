@@ -93,26 +93,8 @@ schemaAbout:
 
 
 
-{# Kerätään kaikki mielipiteet JSON-muotoon JS:ää varten #}
-<script id="mielipiteet-data" type="application/json">
-[
-  {% for pub in collections.pub_mielipide %}
-  {
-    "title": {{ pub.data.title | jsonSafe | safe }},
-    "date": "{{ pub.date }}",
-    "formattedDate": "{{ pub.date | dateFormat }}",
-    "description": {{ (pub.data.description or "") | jsonSafe | safe }},
-    "publication": {{ (pub.data.publication or "") | jsonSafe | safe }},
-    "url": "{{ pub.data.url or pub.url }}",
-    "isExternal": {{ (pub.data.url != null) | jsonSafe | safe }},
-    "categories": {{ (pub.data.categories or []) | jsonSafe | safe }},
-    "keywords": {{ (pub.data.keywords or []) | jsonSafe | safe }},
-    "writingRoles": {{ (pub.data.writingRoles or []) | jsonSafe | safe }},
-    "opinionRoles": {{ (pub.data.opinionRoles or []) | jsonSafe | safe }}
-  }{% if not loop.last %},{% endif %}
-  {% endfor %}
-]
-</script>
+{# Aiemmin embed-JSON mielipiteille, kolumneille ja blogille (~107 KB).
+   Nyt data ladataan asynkronisesti /data/*.json -endpointeista JS:ssa. #}
 
 <span id="mielipidekirjoitukset-eri-sanomalehdissa"></span>
 <section id="mielipiteet" class="bg-body-tertiary">
@@ -235,25 +217,6 @@ schemaAbout:
 </section>
 
 {# Kerätään kaikki kolumnit JSON-muotoon JS:ää varten #}
-<script id="kolumnit-data" type="application/json">
-[
-  {% for pub in collections.pub_kolumni %}
-  {
-    "title": {{ pub.data.title | jsonSafe | safe }},
-    "date": "{{ pub.date }}",
-    "formattedDate": "{{ pub.date | dateFormat }}",
-    "description": {{ (pub.data.description or "") | jsonSafe | safe }},
-    "publication": {{ (pub.data.publication or "") | jsonSafe | safe }},
-    "url": "{{ pub.data.url or pub.url }}",
-    "isExternal": {{ (pub.data.url != null) | jsonSafe | safe }},
-    "categories": {{ (pub.data.categories or []) | jsonSafe | safe }},
-    "keywords": {{ (pub.data.keywords or []) | jsonSafe | safe }},
-    "writingRoles": {{ (pub.data.writingRoles or []) | jsonSafe | safe }}
-  }{% if not loop.last %},{% endif %}
-  {% endfor %}
-]
-</script>
-
 <span id="kolumnit-ja-blogivierailut"></span>
 <section id="kolumnit">
   <div class="site-shell">
@@ -340,23 +303,6 @@ schemaAbout:
 
 
 {# Kerätään kaikki blogipostaukset JSON-muotoon JS:ää varten #}
-<script id="blog-data" type="application/json">
-[
-  {% for post in collections.blog %}
-  {
-    "title": {{ post.data.title | jsonSafe | safe }},
-    "date": "{{ post.date }}",
-    "formattedDate": "{{ post.date | dateFormat }}",
-    "description": {{ (post.data.description or (post.content | excerpt)) | jsonSafe | safe }},
-    "url": "{{ post.url }}",
-    "categories": {{ (post.data.categories or []) | jsonSafe | safe }},
-    "keywords": {{ (post.data.keywords or []) | jsonSafe | safe }},
-    "writingRoles": {{ (post.data.writingRoles or []) | jsonSafe | safe }}
-  }{% if not loop.last %},{% endif %}
-  {% endfor %}
-]
-</script>
-
 <section id="blogi" class="bg-body-tertiary">
   <div class="site-shell">
     <div class="card shadow-sm">
@@ -1098,12 +1044,53 @@ function syncArchiveSortButton(button, isActive, direction, columnLabel) {
   render();
 })();
 
+// --- Public JSON data layer -loader ---
+// Lataa /data/*.json-endpointin ja palauttaa items-taulukon.
+async function loadPublicData(url) {
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    return Array.isArray(data.items) ? data.items : [];
+  } catch (e) {
+    console.error('kirjoitukset: fetch ' + url + ' failed:', e);
+    return [];
+  }
+}
+// Muuntaa /data/*.json -recordin taman sivun UI-formaattiin (lisaa
+// formattedDate ja isExternal). Sailyttaa yhteensopivuuden aiempaan
+// embed-JSON-formaattiin.
+const _kirjoituksetDateFormatter = new Intl.DateTimeFormat('fi-FI', {
+  day: 'numeric', month: 'long', year: 'numeric'
+});
+function toKirjoituksetRecord(item) {
+  const url = item.sourceUrl || item.url || '';
+  return {
+    title: item.title || '',
+    date: item.date || '',
+    formattedDate: item.date ? _kirjoituksetDateFormatter.format(new Date(item.date)) : '',
+    description: item.description || '',
+    publication: item.publication || '',
+    url: url,
+    isExternal: /^https?:/.test(url),
+    categories: item.categories || [],
+    keywords: item.keywords || [],
+    writingRoles: item.writingRoles || [],
+    opinionRoles: item.opinionRoles || []
+  };
+}
+// Yhteinen promise jotta useampi IIFE ei tuplaa fetch-kutsuja.
+const _publicationsPromise = loadPublicData('/data/publications.json');
+const _contentPromise = loadPublicData('/data/content.json');
+
 // --- Blogi taulukon logiikka ---
-(function () {
+(async function () {
   const BLOG_PAGE_SIZE = 5;
-  const blogDataEl = document.getElementById('blog-data');
-  if (!blogDataEl) return;
-  const blogData = JSON.parse(blogDataEl.textContent);
+  const _contentItems = await _contentPromise;
+  const blogData = _contentItems
+    .filter(i => i.contentType === 'blogPost')
+    .map(toKirjoituksetRecord);
+  if (!blogData.length) return;
 
   let filteredBlogData = [...blogData].sort((a, b) => new Date(b.date) - new Date(a.date));
   let blogCurrentPage = 1;
@@ -1251,11 +1238,13 @@ function syncArchiveSortButton(button, isActive, direction, columnLabel) {
 })();
 
 // --- Kolumnit taulukon logiikka ---
-(function () {
+(async function () {
   const KOLUMNIT_PAGE_SIZE = 5;
-  const kolumnitDataEl = document.getElementById('kolumnit-data');
-  if (!kolumnitDataEl) return;
-  const kolumnitData = JSON.parse(kolumnitDataEl.textContent);
+  const _pubItems = await _publicationsPromise;
+  const kolumnitData = _pubItems
+    .filter(i => i.contentType === 'column')
+    .map(toKirjoituksetRecord);
+  if (!kolumnitData.length) return;
   const kolumnitUrlParams = new URLSearchParams(window.location.search);
 
   let filteredKolumnitData = [...kolumnitData].sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -1427,11 +1416,13 @@ function syncArchiveSortButton(button, isActive, direction, columnLabel) {
 })();
 
 // --- Mielipiteet taulukon logiikka ---
-(function () {
+(async function () {
   const MIELIPITEET_PAGE_SIZE = 5;
-  const mielipiteetDataEl = document.getElementById('mielipiteet-data');
-  if (!mielipiteetDataEl) return;
-  const mielipiteetData = JSON.parse(mielipiteetDataEl.textContent);
+  const _pubItems2 = await _publicationsPromise;
+  const mielipiteetData = _pubItems2
+    .filter(i => i.contentType === 'opinion')
+    .map(toKirjoituksetRecord);
+  if (!mielipiteetData.length) return;
   const urlParams = new URLSearchParams(window.location.search);
   const initialOpinionRole = urlParams.get('opinions');
 
