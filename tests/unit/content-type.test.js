@@ -1,14 +1,15 @@
 /**
- * Characterization-testit sisaltotyypin paattelylle.
+ * Unit-testit sisaltotyypin paattelylle (contentTypeLabel,
+ * resolveSchemaType, getTaxonomyType).
  *
- * Tarkoitus: dokumentoida ja lukita nykyinen kayttaytyminen ENNEN kuin
- * `resolveContentMeta()`-resolver otetaan kayttoon. Nama testit eivat
- * kuvaa "tavoiteltua" kayttaytymista vaan sen, mika toteutus tuottaa
- * juuri nyt. Ristiriidat ja epaselvyydet on merkitty [ristiriita]-
- * kommentein testin sisalla, jotta ne loytyvat myohemman VAIHE 3 -
- * raportin aikana.
+ * Alkuperainen tarkoitus oli characterization: lukita nykyinen
+ * kayttaytyminen ennen resolveContentMeta-refaktoria. Osa testeista
+ * dokumentoi edelleen tarkoituksellisia kayttaytymisia (nakyy
+ * kommenteissa), ja jaljella olevat [ristiriita]-tagit merkitsevat
+ * getTaxonomyType-tason ristiriitoja (raportin #19-2, jaljella oleva
+ * arkkitehtuurinen paatos).
  *
- * Ajo: node --test tests/unit/content-type.test.js
+ * Ajo: npm run test:unit
  */
 
 const { test, describe } = require("node:test");
@@ -81,19 +82,37 @@ describe("contentTypeLabel", () => {
       assert.equal(contentTypeLabel({ type: "esitys" }, [], "en"), "Presentation");
     });
 
-    // [ristiriita] type=artikkeli, type=blogikirjoitus ja type=tieteellinen puuttuvat
-    // contentTypeLabel-branch:ista, joten fallback "Kirjoitus" / "Text" annetaan.
-    // resolveSchemaType tuottaa naille kylla oikean Schema.org-tyypin.
-    test("[ristiriita] type=artikkeli => 'Kirjoitus' (fallback)", () => {
-      assert.equal(contentTypeLabel({ type: "artikkeli" }, [], "fi"), "Kirjoitus");
+    test("type=artikkeli (ilman tags=blog) => 'Artikkeli' / 'Article'", () => {
+      assert.equal(contentTypeLabel({ type: "artikkeli" }, [], "fi"), "Artikkeli");
+      assert.equal(contentTypeLabel({ type: "artikkeli" }, [], "en"), "Article");
     });
 
-    test("[ristiriita] type=blogikirjoitus ilman tags => 'Kirjoitus' (fallback)", () => {
-      assert.equal(contentTypeLabel({ type: "blogikirjoitus" }, [], "fi"), "Kirjoitus");
+    test("type=artikkeli + tags=blog => 'Blogikirjoitus' (tags voittaa, sailyy)", () => {
+      // Blog/-hakemistossa 11 artikkelia joissa type=artikkeli mutta tags=blog
+      // saavat blog.11tydata.js:sta. Nama sailyvat "Blogikirjoitus"-labelina
+      // taaksepain yhteensopivuuden vuoksi.
+      assert.equal(contentTypeLabel({ type: "artikkeli" }, ["blog"], "fi"), "Blogikirjoitus");
     });
 
-    test("[ristiriita] type=tieteellinen => 'Kirjoitus' (fallback)", () => {
-      assert.equal(contentTypeLabel({ type: "tieteellinen" }, [], "fi"), "Kirjoitus");
+    test("type=blogikirjoitus ilman tags=blog => 'Blogikirjoitus'", () => {
+      assert.equal(contentTypeLabel({ type: "blogikirjoitus" }, [], "fi"), "Blogikirjoitus");
+      assert.equal(contentTypeLabel({ type: "blogikirjoitus" }, [], "en"), "Blog post");
+    });
+
+    test("type=tieteellinen => 'Tieteellinen julkaisu' / 'Scientific publication'", () => {
+      assert.equal(contentTypeLabel({ type: "tieteellinen" }, [], "fi"), "Tieteellinen julkaisu");
+      assert.equal(contentTypeLabel({ type: "tieteellinen" }, [], "en"), "Scientific publication");
+    });
+
+    test("contentType=scientificPublication (ilman type) => 'Tieteellinen julkaisu'", () => {
+      assert.equal(
+        contentTypeLabel({ contentType: "scientificPublication" }, [], "fi"),
+        "Tieteellinen julkaisu"
+      );
+      assert.equal(
+        contentTypeLabel({ contentType: "scientificPublication" }, [], "en"),
+        "Scientific publication"
+      );
     });
   });
 
@@ -116,10 +135,9 @@ describe("contentTypeLabel", () => {
       assert.equal(contentTypeLabel({ mediaType: "article" }, [], "en"), "Media article");
     });
 
-    // [ristiriita] mediaType=tv on contentSchema.js:n canonical-listassa muttei
-    // saa omaa label-mappausta. Fallback riippuu muista signaaleista.
-    test("[ristiriita] mediaType=tv ilman muita signaaleja => 'Kirjoitus'", () => {
-      assert.equal(contentTypeLabel({ mediaType: "tv" }, [], "fi"), "Kirjoitus");
+    test("mediaType=tv => 'TV'", () => {
+      assert.equal(contentTypeLabel({ mediaType: "tv" }, [], "fi"), "TV");
+      assert.equal(contentTypeLabel({ mediaType: "tv" }, [], "en"), "TV");
     });
   });
 
@@ -270,13 +288,11 @@ describe("resolveSchemaType", () => {
       assert.equal(resolveSchemaType({ mediaType: "video" }).resolvedSchemaType, "NewsArticle");
     });
 
-    test("contentType=scientificPublication ilman type => Article", () => {
-      // [ristiriita] resolveSchemaType ei osaa mappata scientificPublication ->
-      // ScholarlyArticle, vaikka type=tieteellinen antaa sen.
-      assert.equal(
-        resolveSchemaType({ contentType: "scientificPublication" }).resolvedSchemaType,
-        "Article"
-      );
+    test("contentType=scientificPublication ilman type => ScholarlyArticle", () => {
+      // Yhdenmukainen type=tieteellinen kanssa. Aiemmin antoi "Article".
+      const r = resolveSchemaType({ contentType: "scientificPublication" });
+      assert.equal(r.resolvedSchemaType, "ScholarlyArticle");
+      assert.equal(r.pageBlockType, "article");
     });
   });
 
@@ -472,9 +488,9 @@ describe("kolmen paattelijan yhdenmukaisuus samalle sisallolle", () => {
     const data = { type: "blogikirjoitus" };
     const item = { inputPath: "./src/blog/foo.md", data: { ...data, tags: ["blog"] } };
 
-    // [ristiriita] contentTypeLabel palauttaa "Blogikirjoitus" vain koska tags=blog;
-    // pelkka type=blogikirjoitus ilman tageja palauttaisi "Kirjoitus".
+    // Nyt type=blogikirjoitus antaa "Blogikirjoitus" myos ilman tags=blog:ia.
     assert.equal(contentTypeLabel({ ...data, tags: ["blog"] }, ["blog"], "fi"), "Blogikirjoitus");
+    assert.equal(contentTypeLabel(data, [], "fi"), "Blogikirjoitus");
     assert.equal(resolveSchemaType(data).resolvedSchemaType, "BlogPosting");
     assert.equal(getTaxonomyType(item).key, "blog");
   });
@@ -483,12 +499,9 @@ describe("kolmen paattelijan yhdenmukaisuus samalle sisallolle", () => {
     const data = { contentType: "scientificPublication", source: "researchfi" };
     const item = { inputPath: "./src/pages/foo.md", data };
 
-    // [ristiriita] contentTypeLabel palauttaa "Kirjoitus" scientificPublicationille
-    // — canonical mappaus puuttuu. resolveSchemaType antaa "Article" (ei
-    // ScholarlyArticle, koska type-kentta puuttuu). getTaxonomyType antaa
-    // oikein scientific-publications:n.
-    assert.equal(contentTypeLabel(data, [], "fi"), "Kirjoitus");
-    assert.equal(resolveSchemaType(data).resolvedSchemaType, "Article");
+    // Nyt kaikki kolme paattelijaa antavat yhdenmukaisen tuloksen.
+    assert.equal(contentTypeLabel(data, [], "fi"), "Tieteellinen julkaisu");
+    assert.equal(resolveSchemaType(data).resolvedSchemaType, "ScholarlyArticle");
     assert.equal(getTaxonomyType(item).key, "scientific-publications");
   });
 

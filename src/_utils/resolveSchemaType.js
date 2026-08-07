@@ -23,6 +23,7 @@ function resolveSchemaType(data) {
     else if (type === "kolumni") resolvedSchemaType = "NewsArticle";
     else if (type === "lausunto" || type === "puhe" || type === "artikkeli") resolvedSchemaType = "Article";
     else if (type === "blogikirjoitus") resolvedSchemaType = "BlogPosting";
+    else if (d.contentType === "scientificPublication") resolvedSchemaType = "ScholarlyArticle";
     else if (d.mediaType || d.contentType) resolvedSchemaType = d.mediaType ? "NewsArticle" : "Article";
     else if (tags.includes("blog")) resolvedSchemaType = "BlogPosting";
     else if (tags.includes("politics") || tags.includes("publications")) resolvedSchemaType = "Article";
