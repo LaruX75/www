@@ -15,6 +15,7 @@ const { getCanvaDesignId, normalizeCanvaUrl } = require("./src/_data/canvaUrl");
 const contentTypeLabel = require("./src/_utils/contentTypeLabel");
 const resolveSchemaType = require("./src/_utils/resolveSchemaType");
 const resolveContentMeta = require("./src/_utils/resolveContentMeta");
+const sidebarContext = require("./src/_utils/sidebarContext");
 
 function getLangFromUrl(url) {
   return String(url || "").startsWith("/en/") ? "en" : "fi";
@@ -1199,6 +1200,15 @@ module.exports = function registerFilters(eleventyConfig) {
    */
   eleventyConfig.addFilter("resolveContentMeta", function (data, lang) {
     return resolveContentMeta(data, "", lang || (data && data.lang) || "fi");
+  });
+
+  /**
+   * Nunjucks-filtteri: sidebarContext.
+   * Palauttaa content-context-sidebar.njk:n "Selaa samaa aineistoa"
+   * -linkin { typeLabel, archiveHref, archiveLabel }.
+   */
+  eleventyConfig.addFilter("sidebarContext", function (data, lang) {
+    return sidebarContext(data, lang || (data && data.lang) || "fi");
   });
 };
 
