@@ -126,7 +126,8 @@ function toPublicContentRecord(item) {
     thumbnail: pickString(data.thumbnail),
     doi: pickString(data.doi),
     authors: normalizeArray(data.authors),
-    publicationType: pickString(data.publicationType)
+    publicationType: pickString(data.publicationType),
+    publication: pickString(data.publication)
   });
 }
 
