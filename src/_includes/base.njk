@@ -2,70 +2,13 @@
 <html lang="{{ lang or (page.url | langFromUrl) }}">
 <head>
   {% set isHomePage = page.url == "/" or page.url == "/en/" %}
-  {% set currentUrl = page.url or "" %}
-  {% set breadcrumbKey = "" %}
-  {% set writingTypes = ["puhe", "mielipide", "kolumni", "lausunto", "blogikirjoitus", "artikkeli"] %}
-  {% if page.inputPath and "src/publications/" in page.inputPath %}
-    {% set breadcrumbKey = "writings" if type in writingTypes else "publications" %}
-  {% elif page.inputPath and "src/presentations/" in page.inputPath %}
-    {% set breadcrumbKey = "presentations" %}
-  {% elif page.inputPath and "src/media/" in page.inputPath %}
-    {% set breadcrumbKey = "media" %}
-  {% elif page.inputPath and "src/blog/" in page.inputPath %}
-    {% set breadcrumbKey = "blog" %}
-  {% elif page.inputPath and "src/politics/" in page.inputPath %}
-    {% set breadcrumbKey = "politics" %}
-  {% elif currentUrl == "/julkaisut/" or currentUrl == "/en/publications/" %}
-    {% set breadcrumbKey = "publications" %}
-  {% elif currentUrl == "/esitykset/" or currentUrl == "/en/presentations/" %}
-    {% set breadcrumbKey = "presentations" %}
-  {% elif currentUrl == "/opinnaytteet/" or currentUrl == "/en/theses/" %}
-    {% set breadcrumbKey = "theses" %}
-  {% elif currentUrl == "/blogi/" or currentUrl == "/en/blog/" %}
-    {% set breadcrumbKey = "blog" %}
-  {% elif currentUrl == "/mediassa/" or currentUrl == "/en/media/" %}
-    {% set breadcrumbKey = "media" %}
-  {% elif currentUrl == "/tietoa/" or currentUrl == "/autolomat/" or currentUrl == "/cv/" or currentUrl == "/portfolio/" or currentUrl == "/kouluttaja/" or currentUrl == "/puhuja/" or currentUrl == "/larux-tmi/" or currentUrl == "/yritys/" or currentUrl == "/en/about/" or currentUrl == "/en/cv/" or currentUrl == "/en/portfolio/" or currentUrl == "/en/company/" or currentUrl == "/en/road-trips/" %}
-    {% set breadcrumbKey = "me" %}
-  {% elif currentUrl == "/yhteiskunnallinen-vuorovaikutus/" or currentUrl == "/en/societal-engagement/" %}
-    {% set breadcrumbKey = "societal_interaction" %}
-  {% elif currentUrl == "/vaitoskirja/" or currentUrl == "/en/dissertation/" %}
-    {% set breadcrumbKey = "dissertation" %}
-  {% elif currentUrl == "/opetus/" or currentUrl == "/tutkimus/" or currentUrl == "/tyoni-yliopistonlehtorina/" or currentUrl == "/palkinnot/" or currentUrl == "/en/work/" or currentUrl == "/en/writings/" or currentUrl == "/en/research/" or currentUrl == "/en/awards/" %}
-    {% set breadcrumbKey = "work" %}
-  {% elif currentUrl == "/politiikka/" or currentUrl == "/politiiikka/" or currentUrl == "/poliittinen-avoimuus/" or currentUrl == "/en/politics/" or currentUrl == "/en/affiliations/" %}
-    {% set breadcrumbKey = "politics" %}
-  {% elif currentUrl == "/politiikka/kaupunginvaltuusto/" or currentUrl.startsWith("/politiikka/kaupunginvaltuusto/") or currentUrl == "/kaupunginvaltuusto/" or currentUrl.startsWith("/kaupunginvaltuusto/") or currentUrl == "/valtuusto/" or currentUrl.startsWith("/valtuusto/") %}
-    {% set breadcrumbKey = "council_meetings" %}
-  {% elif currentUrl == "/politiikka/sivistyslautakunta/" or currentUrl.startsWith("/politiikka/sivistyslautakunta/") %}
-    {% set breadcrumbKey = "education_committee" %}
-  {% elif currentUrl == "/politiikka/vaalikaudet/" or currentUrl == "/vaalikaudet/" or currentUrl == "/vaalihistoria/" or currentUrl == "/en/election-history/" or currentUrl == "/kuntavaalit-2021/" or currentUrl == "/jari-laru-aluevaltuustoon/" or currentUrl == "/kunnallisvaalit-2012/" %}
-    {% set breadcrumbKey = "election_history" %}
-  {% elif currentUrl == "/kunta-ja-aluevaalit-2025/" or currentUrl == "/en/municipal-and-wellbeing-elections-2025/" %}
-    {% set breadcrumbKey = "election_2025" %}
-  {% elif currentUrl == "/kynasta/" %}
-    {% set breadcrumbKey = "writings" %}
-  {% elif currentUrl == "/teemat/" or currentUrl.startsWith("/teemat/") %}
-    {% set breadcrumbKey = "topic_profiles" %}
-  {% elif currentUrl == "/yhteystiedot/" or currentUrl == "/en/contact/" %}
-    {% set breadcrumbKey = "contact" %}
-  {% endif %}
+  {#
+    breadcrumbKey, breadcrumbDetailTitle ja breadcrumbDetailUrl paatellaan
+    eleventyComputed-datassa (src/src.11tydata.js). Aiempi 63 rivin
+    Nunjucks-if/elif-ketju on siirretty datakerrokseen.
+  #}
   {% set _baseLang = lang or (page.url | langFromUrl) %}
   {% set _baseTitle = title or site.name %}
-  {% set _baseTags = tags or [] %}
-  {% set _baseKeywords = keywords or [] %}
-  {% set _baseContexts = contexts or [] %}
-  {% set isCouncilQuestionBreadcrumb = agenda_title == "Valtuuston kyselytunti" or ("Valtuuston kyselytunti" in _baseContexts) or ("valtuustokysely" in _baseKeywords) %}
-  {% set isCouncilInitiativeBreadcrumb = initiative_type or ("aloitteet" in _baseTags) or ("valtuustoaloite" in _baseKeywords) %}
-  {% set breadcrumbDetailTitle = "" %}
-  {% set breadcrumbDetailUrl = "" %}
-  {% if isCouncilQuestionBreadcrumb %}
-    {% set breadcrumbDetailTitle = "Council question hour" if _baseLang == "en" else "Valtuuston kyselytunti" %}
-    {% set breadcrumbDetailUrl = "/en/writings/#puheet" if _baseLang == "en" else "/valtuustotyo/#puheet" %}
-  {% elif isCouncilInitiativeBreadcrumb %}
-    {% set breadcrumbDetailTitle = "Council initiative" if _baseLang == "en" else "Valtuustoaloite" %}
-    {% set breadcrumbDetailUrl = "/en/writings/#aloitteet" if _baseLang == "en" else "/valtuustotyo/#aloitteet" %}
-  {% endif %}
   {% set _baseSection = ("Blog" if _baseLang == "en" else "Blogi") if ("blog" in (tags or [])) else (("Publications" if _baseLang == "en" else "Julkaisut") if ("publications" in (tags or [])) else (("Politics" if _baseLang == "en" else "Politiikka") if ("politics" in (tags or [])) else site.name)) %}
   {% setAsync "_ogRaw" %}{% ogImage "og-image.og.njk", { title: _baseTitle, section: _baseSection, siteName: site.name, domain: "jarilaru.fi", ogBgDataUrl: ogBgDataUrl } %}{% endsetAsync %}
   {% set ogImageOverrideValue = og_image or ogImageOverride %}
