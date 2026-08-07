@@ -3,10 +3,12 @@
   layout: "base.njk",
   eleventyComputed: {
     title: data => `Avainsana: ${data.keyword?.name || ""}`,
-    description: data => `Avainsana "${data.keyword?.name || ""}" kokoaa ${data.keyword?.count || 0} kirjoitusta, puheenvuoroa, esitystä tai mediaosumaa Jari Larun sivustolta.`,
-    robots: data => (data.keyword?.count || 0) < 3 ? "noindex, follow" : "index, follow",
-    sitemap: data => (data.keyword?.count || 0) < 3 ? { ignore: true } : undefined
+    description: data => `Avainsana "${data.keyword?.name || ""}" kokoaa ${data.keyword?.count || 0} kirjoitusta, puheenvuoroa, esitystä tai mediaosumaa Jari Larun sivustolta.`
   },
+  // Noindex-avainsanat (count < 3) suodatetaan pois collection-tasolla
+  // (eleventy.collections.js: keywordList). Aiemmin ne generoituivat
+  // noindex+sitemap:ignore -HTML:na, mutta niita ei generoida enaa lainkaan
+  // (~742 sivua vahemman). Data on saatavilla /data/content.json:issa.
   pagination: {
     data: "collections.keywordList",
     size: 1,

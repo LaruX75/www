@@ -159,10 +159,18 @@ layout: base.njk
                 </td>
                 <td>
                   {% for cat in (post.data.categories or []) %}
+                  {% if cat | taxonomyIndexed(collections.categoryList, 2) %}
                   <a href="{{ catBase }}{{ cat | slugify }}/" class="badge text-bg-secondary me-1 text-decoration-none">{{ cat | termLabel(currentLang, "category") }}</a>
+                  {% else %}
+                  <span class="badge text-bg-secondary me-1">{{ cat | termLabel(currentLang, "category") }}</span>
+                  {% endif %}
                   {% endfor %}
                   {% for kw in (post.data.keywords or []) %}
+                  {% if kw | taxonomyIndexed(collections.keywordList, 3) %}
                   <a href="{{ kwBase }}{{ kw | slugify }}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">{{ kw }}</a>
+                  {% else %}
+                  <span class="badge text-bg-light text-dark border me-1">{{ kw }}</span>
+                  {% endif %}
                   {% endfor %}
                 </td>
                 <td class="text-center">

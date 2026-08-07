@@ -8,6 +8,9 @@
     robots: () => "noindex, follow",
     sitemap: () => ({ ignore: true })
   },
+  // Aiemmin generoituivat kaikille kategorioille noindex+sitemap:ignore
+  // -HTML:na. Nyt suodatetaan collection-tasolla count >= 2 (kts.
+  // eleventy.collections.js).
   pagination: {
     data: "collections.categoryList",
     size: 1,

@@ -8,6 +8,10 @@
     robots: () => "noindex, follow",
     sitemap: () => ({ ignore: true })
   },
+  // Aiemmin generoituivat kaikille avainsanoille noindex+sitemap:ignore
+  // -HTML:na (~901 sivua). Nyt suodatetaan collection-tasolla count >= 3
+  // (kts. eleventy.collections.js). EN-sivuja ei kayta hakukone, mutta ne
+  // sailyvat jos avainsana on indexed (linkitys blog-post-featured:sta).
   pagination: {
     data: "collections.keywordList",
     size: 1,
