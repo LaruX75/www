@@ -1210,6 +1210,33 @@ module.exports = function registerFilters(eleventyConfig) {
   eleventyConfig.addFilter("sidebarContext", function (data, lang) {
     return sidebarContext(data, lang || (data && data.lang) || "fi");
   });
+
+  /**
+   * Nunjucks-filtteri: taxonomyIndexed.
+   * Kaytto: {% if term | taxonomyIndexed(collections.keywordList, 3) %}...{% endif %}
+   *
+   * Palauttaa true jos taxonomy-slug on riittavan iso saadakseen oman
+   * HTML-sivun (=indexed). Kynnysarvot:
+   * - avainsanat: count >= 3 (kts. src/avainsanat.njk)
+   * - kategoriat: count >= 2 (kts. src/kategoriat.njk)
+   *
+   * Aiemmin noindex-sivut generoitiin HTML:na mutta merkittiin
+   * noindex,follow + sitemap:ignore. Nyt niita ei generoida ollenkaan.
+   * Templaatit tarkistavat taman filtterin avulla renderoivatko linkin
+   * <a>:na vai <span>:na.
+   *
+   * @param {string} termName - Avainsanan/kategorian nimi (slugifioidaan)
+   * @param {Array} termList - collections.keywordList tai collections.categoryList
+   * @param {number} threshold - Minimimaara sisaltoja (avainsanoilla 3, kategorioilla 2)
+   * @returns {boolean}
+   */
+  eleventyConfig.addFilter("taxonomyIndexed", function (termName, termList, threshold) {
+    if (!termName || !Array.isArray(termList)) return false;
+    const slugify = eleventyConfig.getFilter("slugify");
+    const slug = slugify(String(termName));
+    const entry = termList.find(t => t.slug === slug);
+    return Boolean(entry && (entry.count || 0) >= (threshold || 2));
+  });
 };
 
 module.exports.buildCouncilMeetings = buildCouncilMeetings;

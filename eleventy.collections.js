@@ -339,12 +339,20 @@ module.exports = function registerCollections(eleventyConfig) {
 
   eleventyConfig.addCollection("categoryList", async function (collectionApi) {
     const items = await getTaxonomySourceItems(collectionApi);
-    return buildTermList(items, "categories");
+    // Sailytetaan vain kategoriat joissa on >= 2 sisaltoa. Yhden osuman
+    // kategoriat olivat aiemmin noindex+sitemap:ignore mutta silti generoitiin
+    // HTML:na. Nyt niita ei generoida ollenkaan (~34 sivua vahemman).
+    // Data on saatavilla /data/content.json:issa client-side-suodatukselle.
+    return buildTermList(items, "categories").filter(t => (t.count || 0) >= 2);
   });
 
   eleventyConfig.addCollection("keywordList", async function (collectionApi) {
     const items = await getTaxonomySourceItems(collectionApi);
-    return buildTermList(items, "keywords");
+    // Sailytetaan vain avainsanat joissa on >= 3 sisaltoa. Yhden tai kahden
+    // osuman avainsanat olivat aiemmin noindex+sitemap:ignore mutta silti
+    // generoitiin HTML:na. Nyt niita ei generoida ollenkaan (~704 sivua
+    // vahemman FI + ~740 sivua vahemman EN). Data on /data/content.json:issa.
+    return buildTermList(items, "keywords").filter(t => (t.count || 0) >= 3);
   });
 
   eleventyConfig.addCollection("keywordListByCount", async function (collectionApi) {

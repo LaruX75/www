@@ -233,7 +233,11 @@
     <summary class="content-context-details-summary">{{ txt.categories }}</summary>
     <div class="content-context-chiplist">
       {% for cat in categories %}
+      {% if cat | taxonomyIndexed(collections.categoryList, 2) %}
       <a class="content-context-chip content-context-chip--category" href="{{ '/en/categories/' if isEnglish else '/kategoriat/' }}{{ cat | slugify }}/">{{ cat | termLabel("en" if isEnglish else "fi", "category") }}</a>
+      {% else %}
+      <span class="content-context-chip content-context-chip--category">{{ cat | termLabel("en" if isEnglish else "fi", "category") }}</span>
+      {% endif %}
       {% endfor %}
     </div>
   </details>
@@ -244,9 +248,15 @@
     <summary class="content-context-details-summary">{{ txt.keywords }}</summary>
     <div class="content-context-cloud">
       {% for term in termCloud %}
+      {% if term.name | taxonomyIndexed(collections.keywordList, 3) %}
       <a class="content-context-term content-context-term--{{ term.weight }}" href="{{ '/en/keywords/' if isEnglish else '/avainsanat/' }}{{ term.name | slugify }}/">
         {{ term.name }}
       </a>
+      {% else %}
+      <span class="content-context-term content-context-term--{{ term.weight }}">
+        {{ term.name }}
+      </span>
+      {% endif %}
       {% endfor %}
     </div>
   </details>
@@ -262,7 +272,11 @@
         {% endfor %}
       {% endif %}
       {% for item in currentKeywords %}
+      {% if item | taxonomyIndexed(collections.keywordList, 3) %}
       <a class="content-context-chip content-context-chip--category" href="{{ '/en/keywords/' if isEnglish else '/avainsanat/' }}{{ item | slugify }}/">{{ item }}</a>
+      {% else %}
+      <span class="content-context-chip content-context-chip--category">{{ item }}</span>
+      {% endif %}
       {% endfor %}
       {% for item in currentPlaces %}
       <span class="content-context-chip content-context-chip--forum">{{ item }}</span>

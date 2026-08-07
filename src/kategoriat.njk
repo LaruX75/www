@@ -9,9 +9,11 @@
       const profile = data.taxonomyProfiles?.categories?.[data.category?.slug];
       return profile?.lead || `Kategoria "${categoryName}" kokoaa ${categoryCount} Jari Larun sivuston sisältöä samasta aihepiiristä: kirjoituksia, puheenvuoroja, esityksiä, mediaosumia ja julkaisuja.`;
     },
-    robots: data => (data.category?.count || 0) < 2 ? "noindex, follow" : "index, follow",
-    sitemap: data => (data.category?.count || 0) < 2 ? { ignore: true } : undefined
   },
+  // Noindex-kategoriat (count < 2) suodatetaan pois collection-tasolla
+  // (eleventy.collections.js: categoryList). Aiemmin ne generoituivat
+  // noindex+sitemap:ignore -HTML:na, mutta niita ei generoida enaa lainkaan
+  // (~53 sivua vahemman). Data on /data/content.json:issa.
   pagination: {
     data: "collections.categoryList",
     size: 1,

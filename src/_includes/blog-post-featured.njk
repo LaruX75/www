@@ -34,7 +34,11 @@ layout: base.njk
         <div class="mb-3">
           <p class="text-uppercase small text-muted mb-2">{{ txt.categories }}</p>
           {% for cat in categories %}
+          {% if cat | taxonomyIndexed(collections.categoryList, 2) %}
           <a class="badge text-bg-secondary me-1 text-decoration-none" href="{{ txt.catBase }}{{ cat | slugify }}/">{{ cat | termLabel(currentLang, "category") }}</a>
+          {% else %}
+          <span class="badge text-bg-secondary me-1">{{ cat | termLabel(currentLang, "category") }}</span>
+          {% endif %}
           {% endfor %}
         </div>
         {% endif %}
@@ -42,7 +46,11 @@ layout: base.njk
         <div class="mb-2">
           <p class="text-uppercase small text-muted mb-2">{{ txt.keywords }}</p>
           {% for key in keywords %}
+          {% if key | taxonomyIndexed(collections.keywordList, 3) %}
           <a class="badge text-bg-light text-dark border me-1 text-decoration-none" href="{{ txt.kwBase }}{{ key | slugify }}/">{{ key }}</a>
+          {% else %}
+          <span class="badge text-bg-light text-dark border me-1">{{ key }}</span>
+          {% endif %}
           {% endfor %}
         </div>
         {% endif %}

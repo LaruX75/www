@@ -322,14 +322,14 @@ writingRoles:
   <div class="py-3 border-top">
     <div class="d-flex flex-wrap gap-2 align-items-center">
       <span class="small text-muted">Kategoriat:</span>
-      <a class="badge text-bg-secondary text-decoration-none" href="/kategoriat/tietotekniikka/">tietotekniikka</a>
+      <span class="badge text-bg-secondary">tietotekniikka</span>
       <span class="small text-muted ms-2">Avainsanat:</span>
-      <a class="badge text-bg-light text-dark border text-decoration-none" href="/avainsanat/harrastukset/">harrastukset</a>
-      <a class="badge text-bg-light text-dark border text-decoration-none" href="/avainsanat/bbs/">bbs</a>
-      <a class="badge text-bg-light text-dark border text-decoration-none" href="/avainsanat/fidonet/">fidonet</a>
-      <a class="badge text-bg-light text-dark border text-decoration-none" href="/avainsanat/modeemi/">modeemi</a>
-      <a class="badge text-bg-light text-dark border text-decoration-none" href="/avainsanat/sysop/">sysop</a>
-      <a class="badge text-bg-light text-dark border text-decoration-none" href="/avainsanat/retro/">retro</a>
+      <span class="badge text-bg-light text-dark border">harrastukset</span>
+      <span class="badge text-bg-light text-dark border">bbs</span>
+      <span class="badge text-bg-light text-dark border">fidonet</span>
+      <span class="badge text-bg-light text-dark border">modeemi</span>
+      <span class="badge text-bg-light text-dark border">sysop</span>
+      <span class="badge text-bg-light text-dark border">retro</span>
     </div>
     <div class="mt-3">
       <a href="/blogi/" class="btn btn-outline-secondary btn-sm">&larr; Takaisin blogiin</a>
