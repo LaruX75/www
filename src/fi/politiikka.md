@@ -521,26 +521,42 @@ schemaMentions:
   </div>
 </section>
 
-<script id="political-speeches-data" type="application/json">
-[
-{% for speech in politicalSpeeches %}
-  {
-    "title": {{ (speech.data.title or "") | dump | safe }},
-    "url": {{ (speech.url or "") | dump | safe }},
-    "date": {{ (speech.date | dateToRfc3339) | dump | safe }},
-    "formattedDate": {{ (speech.date | dateFormat) | dump | safe }},
-    "event": {{ (speech.data.event or "") | dump | safe }},
-    "asiakohta": {{ (speech.data.asiakohta or "") | dump | safe }}
-  }{% if not loop.last %},{% endif %}
-{% endfor %}
-]
+{# Political speeches: filtteroidaan client-side /data/publications.json:sta
+   samojen event-nimien perusteella kuin buildissa (politicalSpeechEvents). #}
+<script id="political-speech-events" type="application/json">
+{{ politicalSpeechEvents | jsonSafe | safe }}
 </script>
 
-
 <script>
-  (() => {
-    const politicalSpeechesData = JSON.parse(document.getElementById('political-speeches-data')?.textContent || '[]')
-      .filter((item) => item && item.title && item.url)
+  (async () => {
+    // Data haetaan /data/publications.json:sta ja filtteroidaan event-nimien
+    // perusteella (aiemmin build-tason filtteri politicalSpeeches:issa).
+    async function _loadItems(url) {
+      try {
+        const res = await fetch(url);
+        if (!res.ok) return [];
+        const data = await res.json();
+        return Array.isArray(data.items) ? data.items : [];
+      } catch { return []; }
+    }
+    const politicalSpeechEvents = new Set(JSON.parse(
+      document.getElementById('political-speech-events')?.textContent || '[]'
+    ));
+    const _fiDateFormatter = new Intl.DateTimeFormat('fi-FI', {
+      day: 'numeric', month: 'long', year: 'numeric'
+    });
+    const _pubs = await _loadItems('/data/publications.json');
+    const politicalSpeechesData = _pubs
+      .filter(i => i.contentType === 'speech' && politicalSpeechEvents.has(i.event || ''))
+      .map(i => ({
+        title: i.title || '',
+        url: i.url || '',
+        date: i.date || '',
+        formattedDate: i.date ? _fiDateFormatter.format(new Date(i.date)) : '',
+        event: i.event || '',
+        asiakohta: i.asiakohta || ''
+      }))
+      .filter(item => item.title && item.url)
       .sort((a, b) => new Date(b.date) - new Date(a.date));
     const politicalSpeechesTableBody = document.getElementById('political-speeches-table-body');
     const politicalSpeechesInfo = document.getElementById('political-speeches-info');
