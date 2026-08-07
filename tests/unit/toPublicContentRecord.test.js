@@ -130,9 +130,42 @@ describe("valtuustopuhe", () => {
     assert.equal(rec.event, "Oulun kaupunginvaltuusto");
   });
 
-  test("asiakohta (frontmatter-lisakentta) EI saa vuotaa", () => {
+  test("asiakohta on julkinen kentta (valtuustopuhe: pykalan otsikko)", () => {
     const rec = toPublicContentRecord(item);
-    assert.equal(rec.asiakohta, undefined);
+    assert.equal(rec.asiakohta, "§ 8 – Kesäkuu 2021–heinäkuu 2022 kuntalaisaloitteet");
+  });
+});
+
+// -----------------------------------------------------------------------------
+// Politics-kentat: meetingDate, meeting, initiativeType
+// -----------------------------------------------------------------------------
+describe("politics-kentat (aloitteet)", () => {
+  test("meetingDate normalisoituu ISO 8601", () => {
+    const item = {
+      url: "/politiikka/valtuustoaloite/",
+      date: new Date("2024-03-15"),
+      inputPath: "./src/politics/valtuustoaloite.md",
+      data: {
+        title: "Valtuustoaloite",
+        meetingDate: new Date("2024-04-01T00:00:00Z"),
+        meeting: "Kokous 2024-04-01",
+        initiative_type: "valtuustoaloite"
+      }
+    };
+    const rec = toPublicContentRecord(item);
+    assert.equal(rec.meetingDate, "2024-04-01");
+    assert.equal(rec.meeting, "Kokous 2024-04-01");
+    assert.equal(rec.initiativeType, "valtuustoaloite");
+  });
+
+  test("initiativeType puuttuu => ei mukana", () => {
+    const item = {
+      url: "/politiikka/foo/",
+      date: new Date("2024-01-01"),
+      data: { title: "Foo" }
+    };
+    const rec = toPublicContentRecord(item);
+    assert.equal(rec.initiativeType, undefined);
   });
 });
 

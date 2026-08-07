@@ -119,6 +119,10 @@ function toPublicContentRecord(item) {
     politicalProfiles: normalizeArray(data.politicalProfiles),
     writingRoles: normalizeArray(data.writingRoles),
     opinionRoles: normalizeArray(data.opinionRoles),
+    asiakohta: pickString(data.asiakohta),
+    meetingDate: isoDate(data.meetingDate),
+    meeting: pickString(data.meeting),
+    initiativeType: pickString(data.initiative_type),
 
     // Ehdolliset (esitys / julkaisu)
     source: pickString(data.source),

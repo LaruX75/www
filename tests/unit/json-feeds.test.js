@@ -33,7 +33,8 @@ const feeds = {
   presentations: loadFeed("presentations.json"),
   media: loadFeed("media.json"),
   councilSpeeches: loadFeed("council-speeches.json"),
-  theses: loadFeed("theses.json")
+  theses: loadFeed("theses.json"),
+  initiatives: loadFeed("initiatives.json")
 };
 
 const ALL_EXIST = Object.values(feeds).every(Boolean);
@@ -183,6 +184,13 @@ describe("feed-spesifiset validoinnit", { skip: !ALL_EXIST && "aja build ensin" 
     for (const item of feeds.councilSpeeches.items) {
       assert.equal(item.contentType, "speech",
         `council-speeches.json:ssa vaara contentType: ${item.contentType} (${item.url})`);
+    }
+  });
+
+  test("initiatives.json sisaltaa vain initiative-contentType:n", () => {
+    for (const item of feeds.initiatives.items) {
+      assert.equal(item.contentType, "initiative",
+        `initiatives.json:ssa vaara contentType: ${item.contentType} (${item.url})`);
     }
   });
 

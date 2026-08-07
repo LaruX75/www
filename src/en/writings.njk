@@ -174,27 +174,7 @@ schemaType: CollectionPage
   </div>
 </section>
 
-{# Kerätään kaikki mielipiteet JSON-muotoon JS:ää varten #}
-<script id="mielipiteet-data" type="application/json">
-[
-  {% for pub in collections.pub_mielipide %}
-  {
-    "title": {{ pub.data.title | jsonSafe | safe }},
-    "date": "{{ pub.date }}",
-    "formattedDate": "{{ pub.date | dateFormat }}",
-    "description": {{ (pub.data.description or "") | jsonSafe | safe }},
-    "publication": {{ (pub.data.publication or "") | jsonSafe | safe }},
-    "url": "{{ pub.data.url or pub.url }}",
-    "isExternal": {{ (pub.data.url != null) | jsonSafe | safe }},
-    "categories": {{ (pub.data.categories or []) | jsonSafe | safe }},
-    "keywords": {{ (pub.data.keywords or []) | jsonSafe | safe }},
-    "writingRoles": {{ (pub.data.writingRoles or []) | jsonSafe | safe }},
-    "opinionRoles": {{ (pub.data.opinionRoles or []) | jsonSafe | safe }}
-  }{% if not loop.last %},{% endif %}
-  {% endfor %}
-]
-</script>
-
+{# Embedded JSON siirretty /data/*.json-endpointteihin. #}
 <span id="mielipidekirjoitukset-eri-sanomalehdissa"></span>
 <span id="opinions"></span>
 <section id="mielipiteet">
@@ -267,25 +247,7 @@ schemaType: CollectionPage
   </div>
 </section>
 
-{# Kerätään kaikki kolumnit JSON-muotoon JS:ää varten #}
-<script id="kolumnit-data" type="application/json">
-[
-  {% for pub in collections.pub_kolumni %}
-  {
-    "title": {{ pub.data.title | jsonSafe | safe }},
-    "date": "{{ pub.date }}",
-    "formattedDate": "{{ pub.date | dateFormat }}",
-    "description": {{ (pub.data.description or "") | jsonSafe | safe }},
-    "publication": {{ (pub.data.publication or "") | jsonSafe | safe }},
-    "url": "{{ pub.data.url or pub.url }}",
-    "isExternal": {{ (pub.data.url != null) | jsonSafe | safe }},
-    "categories": {{ (pub.data.categories or []) | jsonSafe | safe }},
-    "keywords": {{ (pub.data.keywords or []) | jsonSafe | safe }}
-  }{% if not loop.last %},{% endif %}
-  {% endfor %}
-]
-</script>
-
+{# Embedded JSON siirretty /data/*.json-endpointteihin. #}
 <span id="kolumnit-ja-blogivierailut"></span>
 <section id="kolumnit">
   <div class="site-shell">
@@ -343,29 +305,7 @@ schemaType: CollectionPage
   </div>
 </section>
 
-{# Kerätään kaikki aloitteet JSON-muotoon JS:ää varten #}
-<script id="aloitteet-data" type="application/json">
-[
-  {% for item in collections.politics %}
-  {% set itemMeetingDate = item.data.meetingDate or (item.date | isoDate) %}
-  {
-    "title": {{ item.data.title | jsonSafe | safe }},
-    "date": "{{ item.date }}",
-    "formattedDate": "{{ item.date | dateFormat }}",
-    "meetingDate": "{{ itemMeetingDate | isoDate }}",
-    "formattedMeetingDate": "{{ itemMeetingDate | dateFormat }}",
-    "meeting": {{ (item.data.meeting or "") | jsonSafe | safe }},
-    "description": {{ (item.data.description or "") | jsonSafe | safe }},
-    "initiative_type": {{ (item.data.initiative_type or "") | jsonSafe | safe }},
-    "url": "{{ item.data.url or item.url }}",
-    "isExternal": {{ (item.data.url != null) | jsonSafe | safe }},
-    "categories": {{ (item.data.categories or []) | jsonSafe | safe }},
-    "keywords": {{ (item.data.keywords or []) | jsonSafe | safe }}
-  }{% if not loop.last %},{% endif %}
-  {% endfor %}
-]
-</script>
-
+{# Embedded JSON siirretty /data/*.json-endpointteihin. #}
 <span id="motions"></span>
 <section id="aloitteet">
   <div class="site-shell">
@@ -423,25 +363,7 @@ schemaType: CollectionPage
   </div>
 </section>
 
-{# Kerätään kaikki puheet JSON-muotoon JS:ää varten #}
-<script id="puheet-data" type="application/json">
-[
-  {% for pub in collections.pub_puhe %}
-  {
-    "title": {{ pub.data.title | jsonSafe | safe }},
-    "date": "{{ pub.date }}",
-    "formattedDate": "{{ pub.date | dateFormat }}",
-    "description": {{ (pub.data.description or "") | jsonSafe | safe }},
-    "event": {{ (pub.data.event or "") | jsonSafe | safe }},
-    "url": "{{ pub.data.url or pub.url }}",
-    "isExternal": {{ (pub.data.url != null) | jsonSafe | safe }},
-    "categories": {{ (pub.data.categories or []) | jsonSafe | safe }},
-    "keywords": {{ (pub.data.keywords or []) | jsonSafe | safe }}
-  }{% if not loop.last %},{% endif %}
-  {% endfor %}
-]
-</script>
-
+{# Embedded JSON siirretty /data/*.json-endpointteihin. #}
 <span id="speeches"></span>
 <section id="puheet">
   <div class="site-shell">
@@ -555,24 +477,7 @@ schemaType: CollectionPage
   </div>
 </section>
 
-{# Kerätään kaikki blogipostaukset JSON-muotoon JS:ää varten #}
-<script id="blog-data" type="application/json">
-[
-  {% for post in collections.blog %}
-  {
-    "title": {{ post.data.title | jsonSafe | safe }},
-    "date": "{{ post.date }}",
-    "formattedDate": "{{ post.date | dateFormat }}",
-    "description": {{ (post.data.description or (post.content | excerpt)) | jsonSafe | safe }},
-    "url": "{{ post.url }}",
-    "originalLanguage": "{{ post.data.originalLanguage or post.data.lang or "" }}",
-    "categories": {{ (post.data.categories or []) | jsonSafe | safe }},
-    "keywords": {{ (post.data.keywords or []) | jsonSafe | safe }}
-  }{% if not loop.last %},{% endif %}
-  {% endfor %}
-]
-</script>
-
+{# Embedded JSON siirretty /data/*.json-endpointteihin. #}
 <section id="blogi">
   <div class="site-shell">
     <div class="card shadow-sm">
@@ -632,23 +537,7 @@ schemaType: CollectionPage
   </div>
 </section>
 
-{# Kerätään kaikki Research.fi julkaisut JSON-muotoon JS:ää varten #}
-<script id="pub-data" type="application/json">
-[
-  {% for pub in researchfi %}
-  {
-    "title": {{ pub.title | jsonSafe | safe }},
-    "year": {{ (pub.year or 0) | jsonSafe | safe }},
-    "authors": {{ (pub.authors or "") | jsonSafe | safe }},
-    "journal": {{ (pub.journal or "") | jsonSafe | safe }},
-    "url": {{ (pub.url or "") | jsonSafe | safe }},
-    "type": {{ (pub.typeFi or "") | jsonSafe | safe }},
-    "typeCode": {{ (pub.typeCode or "") | jsonSafe | safe }}
-  }{% if not loop.last %},{% endif %}
-  {% endfor %}
-]
-</script>
-
+{# Embedded JSON siirretty /data/*.json-endpointteihin. #}
 <span id="publications"></span>
 <section id="julkaisut">
   <div class="site-shell">
@@ -742,11 +631,63 @@ section[id] {
 </style>
 
 <script>
-(function () {
+// --- Public JSON data layer -loader ---
+async function _enLoadJsonItems(url) {
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    return Array.isArray(data.items) ? data.items : [];
+  } catch (e) {
+    console.error('en/writings: fetch ' + url + ' failed:', e);
+    return [];
+  }
+}
+const _enDateFormatter = new Intl.DateTimeFormat('en-GB', {
+  day: 'numeric', month: 'long', year: 'numeric'
+});
+function _enFmt(dateStr) {
+  return dateStr ? _enDateFormatter.format(new Date(dateStr)) : '';
+}
+// Yhteinen: kaikki IIFE:t voivat kayttaa samoja promise:ja fetch-kaksoiskutsujen valttamiseksi.
+const _enPublicationsPromise = _enLoadJsonItems('/data/publications.json');
+const _enInitiativesPromise = _enLoadJsonItems('/data/initiatives.json');
+const _enContentPromise = _enLoadJsonItems('/data/content.json');
+const _enResearchfiPromise = _enLoadJsonItems('/data/researchfi.json');
+// Kirjoitusten UI-formaatti (yhteensopivuus aiempaan embedded-JSON:iin).
+function _enToRecord(item) {
+  const url = item.sourceUrl || item.url || '';
+  return {
+    title: item.title || '',
+    date: item.date || '',
+    formattedDate: _enFmt(item.date),
+    description: item.description || '',
+    publication: item.publication || '',
+    event: item.event || '',
+    url: url,
+    isExternal: /^https?:/.test(url),
+    categories: item.categories || [],
+    keywords: item.keywords || [],
+    writingRoles: item.writingRoles || [],
+    opinionRoles: item.opinionRoles || []
+  };
+}
+
+// --- Scientific publications taulukon logiikka (researchfi) ---
+(async function () {
   const PAGE_SIZE = 5;
-  const dataEl = document.getElementById('pub-data');
-  if (!dataEl) return;
-  const rawData = JSON.parse(dataEl.textContent);
+  const rawItems = await _enResearchfiPromise;
+  if (!rawItems.length) return;
+  // researchfi-formaatti aiempien pub-data-lohkojen mukaan:
+  const rawData = rawItems.map(p => ({
+    title: p.title || '',
+    year: p.year || 0,
+    authors: p.authors || '',
+    journal: p.journal || '',
+    url: p.url || '',
+    type: p.type || '',
+    typeCode: p.typeCode || ''
+  }));
 
   // Järjestetään uusin ensin oletuksena
   let data = [...rawData].sort((a, b) => (b.year || 0) - (a.year || 0));
@@ -963,11 +904,13 @@ section[id] {
 })();
 
 // --- Blog taulukon logiikka ---
-(function () {
+(async function () {
   const BLOG_PAGE_SIZE = 5;
-  const blogDataEl = document.getElementById('blog-data');
-  if (!blogDataEl) return;
-  const blogData = JSON.parse(blogDataEl.textContent);
+  const _contentItems = await _enContentPromise;
+  const blogData = _contentItems
+    .filter(i => i.contentType === 'blogPost')
+    .map(_enToRecord);
+  if (!blogData.length) return;
 
   let filteredBlogData = [...blogData];
   let blogCurrentPage = 1;
@@ -1109,11 +1052,13 @@ section[id] {
 })();
 
 // --- Speeches taulukon logiikka ---
-(function () {
+(async function () {
   const PUHEET_PAGE_SIZE = 5;
-  const puheetDataEl = document.getElementById('puheet-data');
-  if (!puheetDataEl) return;
-  const puheetData = JSON.parse(puheetDataEl.textContent);
+  const _pubItems1 = await _enPublicationsPromise;
+  const puheetData = _pubItems1
+    .filter(i => i.contentType === 'speech')
+    .map(_enToRecord);
+  if (!puheetData.length) return;
 
   let filteredSpeechesData = [...puheetData];
   let puheetCurrentPage = 1;
@@ -1259,11 +1204,28 @@ section[id] {
 })();
 
 // --- Initiatives taulukon logiikka ---
-(function () {
+(async function () {
   const ALOITTEET_PAGE_SIZE = 5;
-  const aloitteetDataEl = document.getElementById('aloitteet-data');
-  if (!aloitteetDataEl) return;
-  const aloitteetData = JSON.parse(aloitteetDataEl.textContent);
+  const _rawInitiatives = await _enInitiativesPromise;
+  const aloitteetData = _rawInitiatives.map(i => {
+    const meetingDate = i.meetingDate || i.date || '';
+    const url = i.sourceUrl || i.url || '';
+    return {
+      title: i.title || '',
+      date: i.date || '',
+      formattedDate: _enFmt(i.date),
+      meetingDate: meetingDate,
+      formattedMeetingDate: _enFmt(meetingDate),
+      meeting: i.meeting || '',
+      description: i.description || '',
+      initiative_type: i.initiativeType || '',
+      url: url,
+      isExternal: /^https?:/.test(url),
+      categories: i.categories || [],
+      keywords: i.keywords || []
+    };
+  });
+  if (!aloitteetData.length) return;
 
   let filteredInitiativesData = [...aloitteetData].sort((a, b) => new Date(b.meetingDate || b.date) - new Date(a.meetingDate || a.date));
   let aloitteetCurrentPage = 1;
@@ -1412,11 +1374,13 @@ section[id] {
 })();
 
 // --- Columns taulukon logiikka ---
-(function () {
+(async function () {
   const KOLUMNIT_PAGE_SIZE = 5;
-  const kolumnitDataEl = document.getElementById('kolumnit-data');
-  if (!kolumnitDataEl) return;
-  const kolumnitData = JSON.parse(kolumnitDataEl.textContent);
+  const _pubItems2 = await _enPublicationsPromise;
+  const kolumnitData = _pubItems2
+    .filter(i => i.contentType === 'column')
+    .map(_enToRecord);
+  if (!kolumnitData.length) return;
 
   let filteredColumnsData = [...kolumnitData];
   let kolumnitCurrentPage = 1;
@@ -1562,11 +1526,13 @@ section[id] {
 })();
 
 // --- Opinions taulukon logiikka ---
-(function () {
+(async function () {
   const MIELIPITEET_PAGE_SIZE = 5;
-  const mielipiteetDataEl = document.getElementById('mielipiteet-data');
-  if (!mielipiteetDataEl) return;
-  const mielipiteetData = JSON.parse(mielipiteetDataEl.textContent);
+  const _pubItems3 = await _enPublicationsPromise;
+  const mielipiteetData = _pubItems3
+    .filter(i => i.contentType === 'opinion')
+    .map(_enToRecord);
+  if (!mielipiteetData.length) return;
   const urlParams = new URLSearchParams(window.location.search);
   const initialOpinionRole = urlParams.get('opinions');
 

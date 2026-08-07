@@ -100,28 +100,7 @@ schemaMentions:
 
 
 
-{# Kerätään kaikki aloitteet JSON-muotoon JS:ää varten #}
-<script id="aloitteet-data" type="application/json">
-[
-  {% for item in collections.politics %}
-  {% set itemMeetingDate = item.data.meetingDate or (item.date | isoDate) %}
-  {
-    "title": {{ item.data.title | jsonSafe | safe }},
-    "date": "{{ item.date }}",
-    "formattedDate": "{{ item.date | dateFormat }}",
-    "meetingDate": "{{ itemMeetingDate | isoDate }}",
-    "formattedMeetingDate": "{{ itemMeetingDate | dateFormat }}",
-    "meeting": {{ (item.data.meeting or "") | jsonSafe | safe }},
-    "description": {{ (item.data.description or "") | jsonSafe | safe }},
-    "initiative_type": {{ (item.data.initiative_type or "") | jsonSafe | safe }},
-    "url": "{{ item.data.url or item.url }}",
-    "isExternal": {{ (item.data.url != null) | jsonSafe | safe }},
-    "categories": {{ (item.data.categories or []) | jsonSafe | safe }},
-    "keywords": {{ (item.data.keywords or []) | jsonSafe | safe }}
-  }{% if not loop.last %},{% endif %}
-  {% endfor %}
-]
-</script>
+{# Aloitteet-data ladataan asynkronisesti /data/initiatives.json:sta. #}
 
 <section id="aloitteet">
   <div class="site-shell">
@@ -862,12 +841,48 @@ function syncArchiveSortButton(button, isActive, direction, columnLabel) {
   renderPuheet();
 })();
 
+// --- Public JSON data layer -loader (valtuustotyo aloitteet) ---
+async function _loadJsonItems(url) {
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    return Array.isArray(data.items) ? data.items : [];
+  } catch (e) {
+    console.error('valtuustotyo: fetch ' + url + ' failed:', e);
+    return [];
+  }
+}
+const _valtDateFormatter = new Intl.DateTimeFormat('fi-FI', {
+  day: 'numeric', month: 'long', year: 'numeric'
+});
+function _fmt(dateStr) {
+  return dateStr ? _valtDateFormatter.format(new Date(dateStr)) : '';
+}
+
 // --- Aloitteet taulukon logiikka ---
-(function () {
+(async function () {
   const ALOITTEET_PAGE_SIZE = 5;
-  const aloitteetDataEl = document.getElementById('aloitteet-data');
-  if (!aloitteetDataEl) return;
-  const aloitteetData = JSON.parse(aloitteetDataEl.textContent);
+  const _rawInitiatives = await _loadJsonItems('/data/initiatives.json');
+  const aloitteetData = _rawInitiatives.map(i => {
+    const meetingDate = i.meetingDate || i.date || '';
+    const url = i.sourceUrl || i.url || '';
+    return {
+      title: i.title || '',
+      date: i.date || '',
+      formattedDate: _fmt(i.date),
+      meetingDate: meetingDate,
+      formattedMeetingDate: _fmt(meetingDate),
+      meeting: i.meeting || '',
+      description: i.description || '',
+      initiative_type: i.initiativeType || '',
+      url: url,
+      isExternal: /^https?:/.test(url),
+      categories: i.categories || [],
+      keywords: i.keywords || []
+    };
+  });
+  if (!aloitteetData.length) return;
 
   let filteredAloitteetData = [...aloitteetData].sort((a, b) => new Date(b.meetingDate || b.date) - new Date(a.meetingDate || a.date));
   let aloitteetCurrentPage = 1;
