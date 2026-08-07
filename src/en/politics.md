@@ -231,77 +231,41 @@ schemaType: CollectionPage
   </div>
 </section>
 
-<script id="politics-blog-data" type="application/json">
-[
-{% for post in collections.blog %}
-  {
-    "title": {{ (post.data.title or "") | dump | safe }},
-    "url": {{ (post.url or "") | dump | safe }},
-    "date": {{ (post.date | dateToRfc3339) | dump | safe }},
-    "categories": {{ (post.data.categories or []) | dump | safe }},
-    "keywords": {{ (post.data.keywords or []) | dump | safe }}
-  }{% if not loop.last %},{% endif %}
-{% endfor %}
-]
-</script>
-
-<script id="politics-content-data" type="application/json">
-[
-{% set comma = joiner(",") %}
-{% for item in collections.politics %}{{ comma() }}
-  {
-    "title": {{ (item.data.title or "") | dump | safe }},
-    "url": {{ (item.url or "") | dump | safe }},
-    "date": {{ (item.date | dateToRfc3339) | dump | safe }},
-    "contentType": "Motion",
-    "categories": {{ (item.data.categories or []) | dump | safe }},
-    "keywords": {{ (item.data.keywords or []) | dump | safe }}
-  }
-{% endfor %}
-{% for item in collections.pub_kolumni %}{{ comma() }}
-  {
-    "title": {{ (item.data.title or "") | dump | safe }},
-    "url": {{ (item.url or "") | dump | safe }},
-    "date": {{ (item.date | dateToRfc3339) | dump | safe }},
-    "contentType": "Column",
-    "categories": {{ (item.data.categories or []) | dump | safe }},
-    "keywords": {{ (item.data.keywords or []) | dump | safe }}
-  }
-{% endfor %}
-{% for item in collections.pub_mielipide %}{{ comma() }}
-  {
-    "title": {{ (item.data.title or "") | dump | safe }},
-    "url": {{ (item.url or "") | dump | safe }},
-    "date": {{ (item.date | dateToRfc3339) | dump | safe }},
-    "contentType": "Opinion",
-    "categories": {{ (item.data.categories or []) | dump | safe }},
-    "keywords": {{ (item.data.keywords or []) | dump | safe }}
-  }
-{% endfor %}
-{% for item in collections.pub_puhe %}{{ comma() }}
-  {
-    "title": {{ (item.data.title or "") | dump | safe }},
-    "url": {{ (item.url or "") | dump | safe }},
-    "date": {{ (item.date | dateToRfc3339) | dump | safe }},
-    "contentType": "Speech",
-    "categories": {{ (item.data.categories or []) | dump | safe }},
-    "keywords": {{ (item.data.keywords or []) | dump | safe }}
-  }
-{% endfor %}
-]
-</script>
+{# politics-blog- ja politics-content-data ladataan async /data/*.json:sta. #}
 
 
 
 <script>
-  (() => {
+  (async () => {
     const politicsTerms = [
       'politiikka', 'kuntavaalit', 'aluevaalit', 'valtuusto', 'kaupunginvaltuusto',
       'kaupunginhallitus', 'lautakunta', 'aloite', 'sidonnaisuudet', 'vaalikone'
     ];
 
-    const blogRaw = JSON.parse(document.getElementById('politics-blog-data')?.textContent || '[]');
-    const politicsBlogData = blogRaw
+    // Data ladataan asynkronisesti /data/content.json:sta.
+    // Odotettu asetukset: contentType-jouseissa canonical-arvot
+    // (blogPost, initiative, column, opinion, speech).
+    async function _loadItems(url) {
+      try {
+        const res = await fetch(url);
+        if (!res.ok) return [];
+        const data = await res.json();
+        return Array.isArray(data.items) ? data.items : [];
+      } catch { return []; }
+    }
+
+    // Content-tyyppi-mappaus: canonical -> nayttonimi
+    const CONTENT_TYPE_LABELS = {
+      initiative: 'Motion',
+      column: 'Column',
+      opinion: 'Opinion',
+      speech: 'Speech'
+    };
+
+    const contentItems = await _loadItems('/data/content.json');
+
+    const politicsBlogData = contentItems
+      .filter((item) => item.contentType === 'blogPost')
       .filter((item) => {
         const bag = [
           item.title || '',
@@ -312,8 +276,16 @@ schemaType: CollectionPage
       })
       .sort((a, b) => new Date(b.date) - new Date(a.date));
 
-    const contentData = JSON.parse(document.getElementById('politics-content-data')?.textContent || '[]')
-      .filter((item) => item && item.title && item.url)
+    const contentData = contentItems
+      .filter((item) => item && item.title && item.url && CONTENT_TYPE_LABELS[item.contentType])
+      .map((item) => ({
+        title: item.title,
+        url: item.url,
+        date: item.date,
+        contentType: CONTENT_TYPE_LABELS[item.contentType],
+        categories: item.categories || [],
+        keywords: item.keywords || []
+      }))
       .sort((a, b) => new Date(b.date) - new Date(a.date));
 
     const themeGrid = document.getElementById('politics-theme-cta-grid');
