@@ -1,0 +1,62 @@
+/* Final high-contrast button layer.
+   Ladataan viimeisena base.njk:ssa jotta se dominoi mahdollisia
+   sivukohtaisia <style>-blokkeja. Aiemmin sama sisalto asui
+   inline-<style>-blokkina base.njk:n lopussa; erillinen tiedosto
+   tekee vastuunjaon selkeaksi mutta sailyttaa saman lataus-
+   jarjestyksen (linkki on samassa kohdassa base.njk:ta). */
+
+html.a11y-high-contrast[data-bs-theme] body a,
+html.a11y-high-contrast[data-bs-theme] body button,
+html.a11y-high-contrast[data-bs-theme] body input.btn,
+html.a11y-high-contrast[data-bs-theme] body .btn {
+  transition: none !important;
+}
+
+html.a11y-high-contrast[data-bs-theme] body a.btn:not(.btn-close),
+html.a11y-high-contrast[data-bs-theme] body button.btn:not(.btn-close),
+html.a11y-high-contrast[data-bs-theme] body input.btn,
+html.a11y-high-contrast[data-bs-theme] body .btn-read-more,
+html.a11y-high-contrast[data-bs-theme] body .page-link {
+  background: var(--a11y-hc-bg) !important;
+  background-color: var(--a11y-hc-bg) !important;
+  background-image: none !important;
+  border: 2px solid var(--a11y-hc-ink) !important;
+  color: var(--a11y-hc-link) !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+  text-decoration: underline !important;
+  text-decoration-color: currentColor !important;
+  text-decoration-thickness: 2px !important;
+  text-underline-offset: 0.18em !important;
+  text-shadow: none !important;
+  transition: none !important;
+  transform: none !important;
+}
+
+html.a11y-high-contrast[data-bs-theme] body a.btn:not(.btn-close):hover,
+html.a11y-high-contrast[data-bs-theme] body a.btn:not(.btn-close):focus-visible,
+html.a11y-high-contrast[data-bs-theme] body button.btn:not(.btn-close):hover,
+html.a11y-high-contrast[data-bs-theme] body button.btn:not(.btn-close):focus-visible,
+html.a11y-high-contrast[data-bs-theme] body input.btn:hover,
+html.a11y-high-contrast[data-bs-theme] body input.btn:focus-visible,
+html.a11y-high-contrast[data-bs-theme] body .btn-read-more:hover,
+html.a11y-high-contrast[data-bs-theme] body .btn-read-more:focus-visible,
+html.a11y-high-contrast[data-bs-theme] body .btn.active,
+html.a11y-high-contrast[data-bs-theme] body .btn.show,
+html.a11y-high-contrast[data-bs-theme] body .page-link:hover,
+html.a11y-high-contrast[data-bs-theme] body .page-link:focus-visible,
+html.a11y-high-contrast[data-bs-theme] body .page-item.active .page-link {
+  background: var(--a11y-hc-ink) !important;
+  background-color: var(--a11y-hc-ink) !important;
+  border-color: var(--a11y-hc-focus) !important;
+  color: var(--a11y-hc-bg) !important;
+}
+
+html.a11y-high-contrast[data-bs-theme] body a.btn:not(.btn-close) i,
+html.a11y-high-contrast[data-bs-theme] body button.btn:not(.btn-close) i,
+html.a11y-high-contrast[data-bs-theme] body a.btn:not(.btn-close) svg,
+html.a11y-high-contrast[data-bs-theme] body button.btn:not(.btn-close) svg {
+  color: currentColor !important;
+  fill: currentColor !important;
+  opacity: 1 !important;
+}
