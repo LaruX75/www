@@ -10,7 +10,9 @@
  *     contentType,         // canonical, koneellinen (contentSchema.js -sanasto)
  *     contentTypeLabel,    // FI/EN nayttoteksti
  *     section,             // laaja alue (media, writings, politics, blog, ...)
- *     schemaType           // Schema.org @type
+ *     schemaType,          // Schema.org @type
+ *     pageBlockType,       // Schema.org renderointihaara (_ldschema.njk kayttaa)
+ *     specialPageType      // Schema.org specialpage-tyyppi tai null
  *   }
  *
  * Tarkeaa:
@@ -28,7 +30,7 @@
  * @param {object} data - sivun data (frontmatter + eleventyComputed lopputulos)
  * @param {string} [inputPath] - Eleventy-inputPath (fallback-lahteena)
  * @param {("fi"|"en")} [lang="fi"] - kielen valinta labelille
- * @returns {{contentType: string, contentTypeLabel: string, section: string, schemaType: (string|null)}}
+ * @returns {{contentType: string, contentTypeLabel: string, section: string, schemaType: (string|null), pageBlockType: string, specialPageType: (string|null)}}
  */
 
 const contentTypeLabel = require("./contentTypeLabel");
@@ -143,7 +145,9 @@ function resolveContentMeta(data, inputPath, lang = "fi") {
     contentType,
     contentTypeLabel: label,
     section: resolveSection(contentType),
-    schemaType: schema.resolvedSchemaType
+    schemaType: schema.resolvedSchemaType,
+    pageBlockType: schema.pageBlockType,
+    specialPageType: schema.specialPageType
   };
 }
 

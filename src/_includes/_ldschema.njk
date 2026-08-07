@@ -33,20 +33,25 @@
   {% set langCode = "fi-FI" if currentLang == "fi" else "en-US" %}
 
   {#
-    Tyyppilogiikka on siirretty resolveSchemaType-filtteriin
-    (eleventy.filters.js). schemaType-frontmatter voittaa aina.
-    Palauttaa: { resolvedSchemaType, pageBlockType, specialPageType }.
+    Sisaltotyypin ja Schema.org-tyypin paattely tehdaan yhdella
+    resolveContentMeta-filtterilla (src/_utils/resolveContentMeta.js).
+    schemaType-frontmatter voittaa aina. Palauttaa:
+    { contentType, contentTypeLabel, section, schemaType,
+      pageBlockType, specialPageType }.
+    Tassa templaatissa kaytetaan vain schemaType/pageBlockType/
+    specialPageType-kenttia; muut ovat myohempaa kayttoa varten.
   #}
-  {% set _schemaResolved = ({
+  {% set _contentMeta = ({
     "schemaType": schemaType,
     "type": type,
     "tags": tags,
     "mediaType": mediaType,
-    "contentType": contentType
-  }) | resolveSchemaType %}
-  {% set resolvedSchemaType = _schemaResolved.resolvedSchemaType %}
-  {% set pageBlockType = _schemaResolved.pageBlockType %}
-  {% set specialPageType = _schemaResolved.specialPageType %}
+    "contentType": contentType,
+    "source": source
+  }) | resolveContentMeta %}
+  {% set resolvedSchemaType = _contentMeta.schemaType %}
+  {% set pageBlockType = _contentMeta.pageBlockType %}
+  {% set specialPageType = _contentMeta.specialPageType %}
 
   {# --- Breadcrumb-lista rakennetaan aina jos ei kotisivu --- #}
   {% set ldBcItems = [] %}

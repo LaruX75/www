@@ -46,13 +46,15 @@ describe("resolveContentMeta: yhdenmukaisuus contentTypeLabel + resolveSchemaTyp
   ];
 
   for (const c of cases) {
-    test(`${c.label}: contentTypeLabel + schemaType tasmalleen samat`, () => {
+    test(`${c.label}: contentTypeLabel + schemaType + pageBlockType + specialPageType tasmalleen samat`, () => {
       const meta = resolveContentMeta({ ...c.data, tags: c.tags }, "", c.lang);
       const expectedLabel = contentTypeLabel({ ...c.data, tags: c.tags }, c.tags, c.lang);
-      const expectedSchema = resolveSchemaType({ ...c.data, tags: c.tags }).resolvedSchemaType;
+      const expectedSchema = resolveSchemaType({ ...c.data, tags: c.tags });
 
       assert.equal(meta.contentTypeLabel, expectedLabel, `contentTypeLabel eroa: ${c.label}`);
-      assert.equal(meta.schemaType, expectedSchema, `schemaType eroa: ${c.label}`);
+      assert.equal(meta.schemaType, expectedSchema.resolvedSchemaType, `schemaType eroa: ${c.label}`);
+      assert.equal(meta.pageBlockType, expectedSchema.pageBlockType, `pageBlockType eroa: ${c.label}`);
+      assert.equal(meta.specialPageType, expectedSchema.specialPageType, `specialPageType eroa: ${c.label}`);
     });
   }
 });
@@ -220,5 +222,53 @@ describe("resolveContentMeta: JSON-serialisoitavuus", () => {
       const valid = value === null || typeof value === "string";
       assert.ok(valid, `kentta ${key} ei ole string tai null: ${typeof value}`);
     }
+  });
+});
+
+// -----------------------------------------------------------------------------
+// pageBlockType / specialPageType (Schema.org-renderointihaarat)
+// -----------------------------------------------------------------------------
+describe("resolveContentMeta: pageBlockType + specialPageType", () => {
+  test("type=esitys => pageBlockType=presentation", () => {
+    const meta = resolveContentMeta({ type: "esitys" });
+    assert.equal(meta.pageBlockType, "presentation");
+    assert.equal(meta.specialPageType, null);
+  });
+
+  test("type=puhe => pageBlockType=article", () => {
+    const meta = resolveContentMeta({ type: "puhe" });
+    assert.equal(meta.pageBlockType, "article");
+    assert.equal(meta.specialPageType, null);
+  });
+
+  test("schemaType=CollectionPage => pageBlockType=specialpage, specialPageType=CollectionPage", () => {
+    const meta = resolveContentMeta({ schemaType: "CollectionPage" });
+    assert.equal(meta.pageBlockType, "specialpage");
+    assert.equal(meta.specialPageType, "CollectionPage");
+  });
+
+  test("schemaType=AboutPage => pageBlockType=specialpage, specialPageType=AboutPage", () => {
+    const meta = resolveContentMeta({ schemaType: "AboutPage" });
+    assert.equal(meta.pageBlockType, "specialpage");
+    assert.equal(meta.specialPageType, "AboutPage");
+  });
+
+  test("schemaType=Organization => pageBlockType=business", () => {
+    const meta = resolveContentMeta({ schemaType: "Organization" });
+    assert.equal(meta.pageBlockType, "business");
+    assert.equal(meta.specialPageType, null);
+  });
+
+  test("schemaType=Thesis => pageBlockType=thesis", () => {
+    const meta = resolveContentMeta({ schemaType: "Thesis" });
+    assert.equal(meta.pageBlockType, "thesis");
+    assert.equal(meta.specialPageType, null);
+  });
+
+  test("tyhja data => pageBlockType=webpage, schemaType=null", () => {
+    const meta = resolveContentMeta({});
+    assert.equal(meta.pageBlockType, "webpage");
+    assert.equal(meta.schemaType, null);
+    assert.equal(meta.specialPageType, null);
   });
 });
