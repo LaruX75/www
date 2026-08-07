@@ -1189,6 +1189,17 @@ module.exports = function registerFilters(eleventyConfig) {
    *   - specialPageType: sama kuin resolvedSchemaType jos pageBlockType == "specialpage"
    */
   eleventyConfig.addFilter("resolveSchemaType", resolveSchemaType);
+
+  /**
+   * Nunjucks-filtteri: resolveContentMeta.
+   * Kaytto: {% set meta = ({schemaType, type, tags, mediaType, contentType,
+   * ...}) | resolveContentMeta %}
+   * Palauttaa: { contentType, contentTypeLabel, section, schemaType,
+   * pageBlockType, specialPageType }.
+   */
+  eleventyConfig.addFilter("resolveContentMeta", function (data, lang) {
+    return resolveContentMeta(data, "", lang || (data && data.lang) || "fi");
+  });
 };
 
 module.exports.buildCouncilMeetings = buildCouncilMeetings;
