@@ -32,44 +32,21 @@
   {% set uniId = "https://www.oulu.fi/#organization" %}
   {% set langCode = "fi-FI" if currentLang == "fi" else "en-US" %}
 
-  {# --- Tyyppilogiikka: schemaType-frontmatter voittaa aina --- #}
-  {% set resolvedSchemaType = schemaType %}
-  {% if not resolvedSchemaType %}
-    {% if type == "esitys" %}
-      {% set resolvedSchemaType = "PresentationDigitalDocument" %}
-    {% elif type == "tieteellinen" %}
-      {% set resolvedSchemaType = "ScholarlyArticle" %}
-    {% elif type == "mielipide" %}
-      {% set resolvedSchemaType = "OpinionNewsArticle" %}
-    {% elif type == "kolumni" %}
-      {% set resolvedSchemaType = "NewsArticle" %}
-    {% elif type == "lausunto" or type == "puhe" or type == "artikkeli" %}
-      {% set resolvedSchemaType = "Article" %}
-    {% elif type == "blogikirjoitus" %}
-      {% set resolvedSchemaType = "BlogPosting" %}
-    {% elif mediaType or contentType %}
-      {% set resolvedSchemaType = "NewsArticle" if mediaType else "Article" %}
-    {% elif ("blog" in (tags or [])) %}
-      {% set resolvedSchemaType = "BlogPosting" %}
-    {% elif ("politics" in (tags or [])) or ("publications" in (tags or [])) %}
-      {% set resolvedSchemaType = "Article" %}
-    {% endif %}
-  {% endif %}
-
-  {% set articleTypes = ["Article","BlogPosting","NewsArticle","OpinionNewsArticle","ScholarlyArticle"] %}
-  {% set pageBlockType = "webpage" %}
-  {% if resolvedSchemaType == "PresentationDigitalDocument" %}
-    {% set pageBlockType = "presentation" %}
-  {% elif resolvedSchemaType in articleTypes %}
-    {% set pageBlockType = "article" %}
-  {% elif resolvedSchemaType == "LocalBusiness" or resolvedSchemaType == "Organization" %}
-    {% set pageBlockType = "business" %}
-  {% elif resolvedSchemaType == "Thesis" %}
-    {% set pageBlockType = "thesis" %}
-  {% elif resolvedSchemaType == "AboutPage" or resolvedSchemaType == "ProfilePage" or resolvedSchemaType == "ContactPage" or resolvedSchemaType == "CollectionPage" or resolvedSchemaType == "FAQPage" %}
-    {% set pageBlockType = "specialpage" %}
-    {% set specialPageType = resolvedSchemaType %}
-  {% endif %}
+  {#
+    Tyyppilogiikka on siirretty resolveSchemaType-filtteriin
+    (eleventy.filters.js). schemaType-frontmatter voittaa aina.
+    Palauttaa: { resolvedSchemaType, pageBlockType, specialPageType }.
+  #}
+  {% set _schemaResolved = ({
+    "schemaType": schemaType,
+    "type": type,
+    "tags": tags,
+    "mediaType": mediaType,
+    "contentType": contentType
+  }) | resolveSchemaType %}
+  {% set resolvedSchemaType = _schemaResolved.resolvedSchemaType %}
+  {% set pageBlockType = _schemaResolved.pageBlockType %}
+  {% set specialPageType = _schemaResolved.specialPageType %}
 
   {# --- Breadcrumb-lista rakennetaan aina jos ei kotisivu --- #}
   {% set ldBcItems = [] %}

@@ -1190,6 +1190,65 @@ module.exports = function registerFilters(eleventyConfig) {
       return buildImgFallback(src, alt, className);
     }
   });
+
+  /**
+   * Paattelee sivun Schema.org-tyyppikoodit yhdesta datalahteesta.
+   *
+   * Aiemmin logiikka asui src/_includes/_ldschema.njk:n riveilla 35-72
+   * Nunjucks-if/elif-ketjuna. Sama tulos, JS-funktio joka on testattavampi
+   * ja irtaa Schema-templaten esitystoiminnasta.
+   *
+   * @param {object} data - Sivun data (schemaType, type, tags, mediaType, contentType)
+   * @returns {object} { resolvedSchemaType, pageBlockType, specialPageType }
+   *   - resolvedSchemaType: Schema.org-luokka joka menee @type-kenttaan
+   *   - pageBlockType: renderointihaara _ldschema.njk:ssa
+   *     ("presentation" | "article" | "business" | "thesis" | "specialpage" | "webpage")
+   *   - specialPageType: sama kuin resolvedSchemaType jos pageBlockType == "specialpage"
+   */
+  eleventyConfig.addFilter("resolveSchemaType", function (data) {
+    const d = data || {};
+    const type = d.type;
+    const tags = Array.isArray(d.tags) ? d.tags : [];
+
+    let resolvedSchemaType = d.schemaType || null;
+
+    if (!resolvedSchemaType) {
+      if (type === "esitys") resolvedSchemaType = "PresentationDigitalDocument";
+      else if (type === "tieteellinen") resolvedSchemaType = "ScholarlyArticle";
+      else if (type === "mielipide") resolvedSchemaType = "OpinionNewsArticle";
+      else if (type === "kolumni") resolvedSchemaType = "NewsArticle";
+      else if (type === "lausunto" || type === "puhe" || type === "artikkeli") resolvedSchemaType = "Article";
+      else if (type === "blogikirjoitus") resolvedSchemaType = "BlogPosting";
+      else if (d.mediaType || d.contentType) resolvedSchemaType = d.mediaType ? "NewsArticle" : "Article";
+      else if (tags.includes("blog")) resolvedSchemaType = "BlogPosting";
+      else if (tags.includes("politics") || tags.includes("publications")) resolvedSchemaType = "Article";
+    }
+
+    const articleTypes = new Set([
+      "Article", "BlogPosting", "NewsArticle", "OpinionNewsArticle", "ScholarlyArticle"
+    ]);
+    const specialTypes = new Set([
+      "AboutPage", "ProfilePage", "ContactPage", "CollectionPage", "FAQPage"
+    ]);
+
+    let pageBlockType = "webpage";
+    let specialPageType = null;
+
+    if (resolvedSchemaType === "PresentationDigitalDocument") {
+      pageBlockType = "presentation";
+    } else if (articleTypes.has(resolvedSchemaType)) {
+      pageBlockType = "article";
+    } else if (resolvedSchemaType === "LocalBusiness" || resolvedSchemaType === "Organization") {
+      pageBlockType = "business";
+    } else if (resolvedSchemaType === "Thesis") {
+      pageBlockType = "thesis";
+    } else if (specialTypes.has(resolvedSchemaType)) {
+      pageBlockType = "specialpage";
+      specialPageType = resolvedSchemaType;
+    }
+
+    return { resolvedSchemaType, pageBlockType, specialPageType };
+  });
 };
 
 module.exports.buildCouncilMeetings = buildCouncilMeetings;
