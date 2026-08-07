@@ -30,29 +30,7 @@ schemaType: CollectionPage
   {% endif %}
 {% endfor %}
 
-{% macro itemUrl(item) %}
-  {{ item.data.sourceUrl or item.url }}
-{% endmacro %}
-
-{% macro mediaTypeLabel(type) %}
-  {% if type == "podcast" %}Podcast
-  {% elif type == "assignment" %}Expert assignment
-  {% elif type == "article" %}Article
-  {% elif type == "tv" %}TV
-  {% elif type == "radio" %}Radio
-  {% elif type == "video" %}Video
-  {% else %}Media
-  {% endif %}
-{% endmacro %}
-
-{% macro roleLabel(role) %}
-  {% if role == "about" %}About my work
-  {% elif role == "expertAssignment" %}Expert role
-  {% elif role == "interviewer" %}As interviewer
-  {% elif role == "guest" %}As guest
-  {% else %}Media
-  {% endif %}
-{% endmacro %}
+{% import "_media-macros.njk" as media %}
 
 <section class="py-5 border-bottom bg-body-tertiary">
   <div class="site-shell">
@@ -151,22 +129,22 @@ schemaType: CollectionPage
       <div class="col-md-6 col-xl-4">
         <article class="card h-100 border-0 shadow-sm">
           {% if item.data.thumbnail %}
-          <a href="{{ itemUrl(item) | trim }}" target="_blank" rel="noopener noreferrer">
+          <a href="{{ media.itemUrl(item) | trim }}" target="_blank" rel="noopener noreferrer">
             <img src="{{ item.data.thumbnail }}" alt="" class="card-img-top" loading="lazy" decoding="async">
           </a>
           {% endif %}
           <div class="card-body d-flex flex-column">
             <p class="small text-muted mb-2">
-              {{ mediaTypeLabel(item.data.mediaType) }} · {{ roleLabel(item.data.mediaRole) }}
+              {{ media.mediaTypeLabel(item.data.mediaType, lang) }} · {{ media.mediaRoleLabel(item.data.mediaRole, lang) }}
               {% if item.data.mediaOutlet %} · {{ item.data.mediaOutlet }}{% endif %}
               {% if item.date %} · {{ item.date | dateFormat }}{% endif %}
             </p>
-            <h3 class="h6 fw-bold"><a href="{{ itemUrl(item) | trim }}" target="_blank" rel="noopener noreferrer">{{ item.data.title }}</a></h3>
+            <h3 class="h6 fw-bold"><a href="{{ media.itemUrl(item) | trim }}" target="_blank" rel="noopener noreferrer">{{ item.data.title }}</a></h3>
             {% if item.data.description %}
             <p class="small text-muted">{{ item.data.description | truncate(170) }}</p>
             {% endif %}
             <div class="d-flex flex-wrap gap-2 mt-auto">
-              <a href="{{ itemUrl(item) | trim }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-3">Open source</a>
+              <a href="{{ media.itemUrl(item) | trim }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-3">Open source</a>
               <a href="{{ item.url }}" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Details (FI)</a>
             </div>
           </div>

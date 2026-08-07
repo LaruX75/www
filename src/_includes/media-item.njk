@@ -1,29 +1,10 @@
 ---
 layout: base.njk
 ---
+{% import "_media-macros.njk" as media %}
 {% set currentLang = lang or (page.url | langFromUrl) %}
 {% set sourceHref = sourceUrl or externalUrl %}
 {% set isVideoPreview = mediaType == "video" or (sourceHref and ("youtube.com" in sourceHref or "youtu.be" in sourceHref)) %}
-
-{% macro mediaTypeLabel(type) %}
-  {% if type == "podcast" %}Podcast
-  {% elif type == "assignment" %}Asiantuntijatehtävä
-  {% elif type == "article" %}Lehtijuttu
-  {% elif type == "tv" %}TV
-  {% elif type == "radio" %}Radio
-  {% elif type == "video" %}Video
-  {% else %}Mediaosuma
-  {% endif %}
-{% endmacro %}
-
-{% macro mediaRoleLabel(role) %}
-  {% if role == "about" %}Minusta tehty
-  {% elif role == "expertAssignment" %}Asiantuntijarooli
-  {% elif role == "interviewer" %}Haastattelijana
-  {% elif role == "guest" %}Vieraana
-  {% else %}Mediassa
-  {% endif %}
-{% endmacro %}
 
 <section class="content-detail-hero content-detail-hero--media py-5 border-bottom">
   <div class="site-shell">
@@ -73,11 +54,11 @@ layout: base.njk
           <dl class="content-detail-definition-list mb-0">
             <div>
               <dt>Muoto</dt>
-              <dd>{{ mediaTypeLabel(mediaType) }}</dd>
+              <dd>{{ media.mediaTypeLabel(mediaType, currentLang) }}</dd>
             </div>
             <div>
               <dt>Rooli</dt>
-              <dd>{{ mediaRoleLabel(mediaRole) }}</dd>
+              <dd>{{ media.mediaRoleLabel(mediaRole, currentLang) }}</dd>
             </div>
             {% if roleTitle %}
             <div>

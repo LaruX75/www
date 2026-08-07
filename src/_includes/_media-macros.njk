@@ -1,0 +1,41 @@
+{#
+  Yhteiset media-macrot.
+
+  Aiemmin naista oli 2-3 kopiota kolmessa tiedostossa:
+  - src/_includes/media-item.njk  (yksittaisen mediaosuma-sivun layout)
+  - src/fi/mediassa.njk           (fi-arkistolistaus)
+  - src/en/media.njk              (en-arkistolistaus)
+
+  FI/EN-erot ovat pelkastaan label-strings, kaytto muuten identtinen.
+  Yhdistetty macroihin joilla (value, lang) -parametrit.
+
+  Kaytto:
+    {% import "_media-macros.njk" as media %}
+    {{ media.mediaTypeLabel(item.data.mediaType, currentLang) }}
+    {{ media.mediaRoleLabel(item.data.mediaRole, currentLang) }}
+    {{ media.itemUrl(item) }}
+#}
+
+{% macro mediaTypeLabel(type, lang="fi") %}
+  {%- if type == "podcast" -%}Podcast
+  {%- elif type == "assignment" -%}{% if lang == "en" %}Expert assignment{% else %}Asiantuntijatehtävä{% endif %}
+  {%- elif type == "article" -%}{% if lang == "en" %}Article{% else %}Lehtijuttu{% endif %}
+  {%- elif type == "tv" -%}TV
+  {%- elif type == "radio" -%}Radio
+  {%- elif type == "video" -%}Video
+  {%- else -%}Media
+  {%- endif -%}
+{% endmacro %}
+
+{% macro mediaRoleLabel(role, lang="fi") %}
+  {%- if role == "about" -%}{% if lang == "en" %}About my work{% else %}Minusta tehty{% endif %}
+  {%- elif role == "expertAssignment" -%}{% if lang == "en" %}Expert role{% else %}Asiantuntijarooli{% endif %}
+  {%- elif role == "interviewer" -%}{% if lang == "en" %}As interviewer{% else %}Haastattelijana{% endif %}
+  {%- elif role == "guest" -%}{% if lang == "en" %}As guest{% else %}Vieraana{% endif %}
+  {%- else -%}Media
+  {%- endif -%}
+{% endmacro %}
+
+{% macro itemUrl(item) %}
+  {{ item.data.sourceUrl or item.url }}
+{% endmacro %}

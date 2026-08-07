@@ -40,29 +40,7 @@ schemaType: CollectionPage
   {% endif %}
 {% endfor %}
 
-{% macro mediaTypeLabel(type) %}
-  {% if type == "podcast" %}Podcast
-  {% elif type == "assignment" %}Asiantuntijatehtävä
-  {% elif type == "article" %}Lehtijuttu
-  {% elif type == "tv" %}TV
-  {% elif type == "radio" %}Radio
-  {% elif type == "video" %}Video
-  {% else %}Media
-  {% endif %}
-{% endmacro %}
-
-{% macro roleLabel(role) %}
-  {% if role == "about" %}Minusta tehty
-  {% elif role == "expertAssignment" %}Asiantuntijarooli
-  {% elif role == "interviewer" %}Haastattelijana
-  {% elif role == "guest" %}Vieraana
-  {% else %}Media
-  {% endif %}
-{% endmacro %}
-
-{% macro itemUrl(item) %}
-  {{ item.data.sourceUrl or item.url }}
-{% endmacro %}
+{% import "_media-macros.njk" as media %}
 
 {% macro renderMediaThumb(item, modifier="") %}
   {% if item.data.thumbnail %}
@@ -78,8 +56,8 @@ schemaType: CollectionPage
 {% endmacro %}
 
 {% macro renderMeta(item) %}
-  <span>{{ mediaTypeLabel(item.data.mediaType) }}</span>
-  <span>{{ roleLabel(item.data.mediaRole) }}</span>
+  <span>{{ media.mediaTypeLabel(item.data.mediaType, lang) }}</span>
+  <span>{{ media.mediaRoleLabel(item.data.mediaRole, lang) }}</span>
   {% if item.data.mediaOutlet %}
     <span>{{ item.data.mediaOutlet }}</span>
   {% endif %}
@@ -138,17 +116,17 @@ schemaType: CollectionPage
     <div class="media-feature-grid">
       {% if mainHighlight %}
       <article class="media-feature-primary">
-        <a href="{{ itemUrl(mainHighlight) | trim }}" class="media-feature-primary-thumb" target="_blank" rel="noopener noreferrer">
+        <a href="{{ media.itemUrl(mainHighlight) | trim }}" class="media-feature-primary-thumb" target="_blank" rel="noopener noreferrer">
           {{ renderMediaThumb(mainHighlight, "media-thumb--primary") }}
         </a>
         <div class="media-feature-primary-body">
           <div class="media-meta-row">{{ renderMeta(mainHighlight) }}</div>
-          <h3><a href="{{ itemUrl(mainHighlight) | trim }}" target="_blank" rel="noopener noreferrer">{{ mainHighlight.data.title }}</a></h3>
+          <h3><a href="{{ media.itemUrl(mainHighlight) | trim }}" target="_blank" rel="noopener noreferrer">{{ mainHighlight.data.title }}</a></h3>
           {% if mainHighlight.data.description %}
           <p>{{ mainHighlight.data.description }}</p>
           {% endif %}
           <div class="media-card-actions">
-            <a href="{{ itemUrl(mainHighlight) | trim }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">Avaa lähde</a>
+            <a href="{{ media.itemUrl(mainHighlight) | trim }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">Avaa lähde</a>
             <a href="{{ mainHighlight.url }}" class="btn btn-outline-secondary rounded-pill px-4">Lisätiedot</a>
           </div>
         </div>
@@ -158,12 +136,12 @@ schemaType: CollectionPage
       <div class="media-feature-side">
         {% for item in sideHighlights %}
         <article class="media-feature-small">
-          <a href="{{ itemUrl(item) | trim }}" target="_blank" rel="noopener noreferrer" class="media-feature-small-thumb">
+          <a href="{{ media.itemUrl(item) | trim }}" target="_blank" rel="noopener noreferrer" class="media-feature-small-thumb">
             {{ renderMediaThumb(item, "media-thumb--small") }}
           </a>
           <div class="media-feature-small-body">
             <div class="media-meta-row media-meta-row--small">{{ renderMeta(item) }}</div>
-            <h3><a href="{{ itemUrl(item) | trim }}" target="_blank" rel="noopener noreferrer">{{ item.data.title }}</a></h3>
+            <h3><a href="{{ media.itemUrl(item) | trim }}" target="_blank" rel="noopener noreferrer">{{ item.data.title }}</a></h3>
             {% if item.data.description %}
             <p>{{ item.data.description }}</p>
             {% endif %}
@@ -215,12 +193,12 @@ schemaType: CollectionPage
             data-media-role="{{ item.data.mediaRole or '' }}"
             data-media-topics="{{ topicText | lower | escape }}"
           >
-            <a href="{{ itemUrl(item) | trim }}" target="_blank" rel="noopener noreferrer" class="media-archive-thumb-link">
+            <a href="{{ media.itemUrl(item) | trim }}" target="_blank" rel="noopener noreferrer" class="media-archive-thumb-link">
               {{ renderMediaThumb(item) }}
             </a>
             <div class="media-archive-card-body">
               <div class="media-meta-row media-meta-row--small">{{ renderMeta(item) }}</div>
-              <h3><a href="{{ itemUrl(item) | trim }}" target="_blank" rel="noopener noreferrer">{{ item.data.title }}</a></h3>
+              <h3><a href="{{ media.itemUrl(item) | trim }}" target="_blank" rel="noopener noreferrer">{{ item.data.title }}</a></h3>
               {% if item.data.description %}
               <p>{{ item.data.description }}</p>
               {% endif %}
@@ -232,7 +210,7 @@ schemaType: CollectionPage
               </div>
               {% endif %}
               <div class="media-card-actions">
-                <a href="{{ itemUrl(item) | trim }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-3">Avaa lähde</a>
+                <a href="{{ media.itemUrl(item) | trim }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-3">Avaa lähde</a>
                 <a href="{{ item.url }}" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Lisätiedot</a>
               </div>
             </div>
