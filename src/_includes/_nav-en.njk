@@ -1,22 +1,4 @@
-{% macro megaNavTrigger(url, title, icon, isActive, menuId, toggleId, openLabel) %}
-<div class="mega-nav-trigger">
-  <a class="nav-link mega-nav-link{% if isActive %} active{% endif %}" href="{{ url }}"{% if isActive %} aria-current="page"{% endif %}>
-    <i class="{{ icon }} me-1"></i>{{ title }}
-  </a>
-  <button
-    class="nav-link mega-nav-toggle dropdown-toggle"
-    type="button"
-    id="{{ toggleId }}"
-    data-bs-toggle="dropdown"
-    aria-expanded="false"
-    aria-haspopup="true"
-    aria-controls="{{ menuId }}"
-    aria-label="{{ openLabel }} {{ title }}"
-  >
-    <span class="visually-hidden">{{ openLabel }} {{ title }}</span>
-  </button>
-</div>
-{% endmacro %}
+{% import "_nav-macros.njk" as nav %}
 <nav id="siteNav" class="navbar navbar-expand-md site-navbar sticky-top" aria-label="Main Navigation" style="z-index:1030; transition: background-color .3s ease, box-shadow .3s ease;">
   <div class="container">
     <a class="navbar-brand fw-bold" href="/en/">Jari Laru</a>
@@ -33,7 +15,7 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          {{ megaNavTrigger(navMe.url or '/en/about/', navMe.title or 'Me', navMe.icon or 'bi bi-person-fill', page.url and ('/en/about/' in page.url or '/en/cv/' in page.url or '/en/portfolio/' in page.url or '/en/company/' in page.url or '/en/road-trips/' in page.url), 'megaMenuMeEn', 'megaToggleMeEn', openSubmenuLabel) }}
+          {{ nav.megaNavTrigger(navMe.url or '/en/about/', navMe.title or 'Me', navMe.icon or 'bi bi-person-fill', page.url and ('/en/about/' in page.url or '/en/cv/' in page.url or '/en/portfolio/' in page.url or '/en/company/' in page.url or '/en/road-trips/' in page.url), 'megaMenuMeEn', 'megaToggleMeEn', openSubmenuLabel) }}
           <div id="megaMenuMeEn" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleMeEn">
             <div class="mega-wrap grid-8-4">
               <div class="mega-left three-cols">
@@ -75,7 +57,7 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          {{ megaNavTrigger(navWork.url or '/en/work/', navWork.title or 'Work', navWork.icon or 'bi bi-briefcase-fill', page.url and ('/en/work/' in page.url or '/en/research/' in page.url or '/en/societal-engagement/' in page.url or '/en/dissertation/' in page.url or '/en/publications/' in page.url or '/en/theses/' in page.url or '/en/presentations/' in page.url), 'megaMenuWorkEn', 'megaToggleWorkEn', openSubmenuLabel) }}
+          {{ nav.megaNavTrigger(navWork.url or '/en/work/', navWork.title or 'Work', navWork.icon or 'bi bi-briefcase-fill', page.url and ('/en/work/' in page.url or '/en/research/' in page.url or '/en/societal-engagement/' in page.url or '/en/dissertation/' in page.url or '/en/publications/' in page.url or '/en/theses/' in page.url or '/en/presentations/' in page.url), 'megaMenuWorkEn', 'megaToggleWorkEn', openSubmenuLabel) }}
           <div id="megaMenuWorkEn" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleWorkEn">
             {% if workMegaMenu and workMegaMenu.sections %}
             {% if workMegaMenu.layout == "four-columns" %}
@@ -175,7 +157,7 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          {{ megaNavTrigger(navPolitics.url or '/en/politics/', navPolitics.title or 'Politics', navPolitics.icon or 'bi bi-bank2', page.url and ('/en/politics/' in page.url or '/en/affiliations/' in page.url or '/en/election-history/' in page.url or '/en/municipal-and-wellbeing-elections-2025/' in page.url), 'megaMenuPoliticsEn', 'megaTogglePoliticsEn', openSubmenuLabel) }}
+          {{ nav.megaNavTrigger(navPolitics.url or '/en/politics/', navPolitics.title or 'Politics', navPolitics.icon or 'bi bi-bank2', page.url and ('/en/politics/' in page.url or '/en/affiliations/' in page.url or '/en/election-history/' in page.url or '/en/municipal-and-wellbeing-elections-2025/' in page.url), 'megaMenuPoliticsEn', 'megaTogglePoliticsEn', openSubmenuLabel) }}
           <div id="megaMenuPoliticsEn" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaTogglePoliticsEn">
             <div class="mega-wrap{{ ' grid-8-4' if politicsMegaMenu.spotlight }}">
               <div class="mega-left three-cols">
@@ -219,7 +201,7 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          {{ megaNavTrigger(navWritings.url or '/en/writings/', navWritings.title or 'Writings', navWritings.icon or 'bi bi-pencil-fill', page.url and '/en/writings/' in page.url, 'megaMenuWritingsEn', 'megaToggleWritingsEn', openSubmenuLabel) }}
+          {{ nav.megaNavTrigger(navWritings.url or '/en/writings/', navWritings.title or 'Writings', navWritings.icon or 'bi bi-pencil-fill', page.url and '/en/writings/' in page.url, 'megaMenuWritingsEn', 'megaToggleWritingsEn', openSubmenuLabel) }}
           <div id="megaMenuWritingsEn" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleWritingsEn">
             <div class="mega-wrap writings-mega-layout">
               {% if writingsMegaMenu.contentColumns %}
@@ -334,7 +316,7 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          {{ megaNavTrigger(navMedia.url or '/en/media/', navMedia.title or 'Media', navMedia.icon or 'bi bi-camera-reels-fill', page.url and '/en/media/' in page.url, 'megaMenuMediaEn', 'megaToggleMediaEn', openSubmenuLabel) }}
+          {{ nav.megaNavTrigger(navMedia.url or '/en/media/', navMedia.title or 'Media', navMedia.icon or 'bi bi-camera-reels-fill', page.url and '/en/media/' in page.url, 'megaMenuMediaEn', 'megaToggleMediaEn', openSubmenuLabel) }}
           <div id="megaMenuMediaEn" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleMediaEn">
             <div class="mega-wrap">
               <section class="w-100 mb-3">
@@ -359,7 +341,7 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          {{ megaNavTrigger(navContact.url or '/en/contact/', navContact.title or 'Contact', navContact.icon or 'bi bi-envelope', page.url and '/en/contact/' in page.url, 'megaMenuContactEn', 'megaToggleContactEn', openSubmenuLabel) }}
+          {{ nav.megaNavTrigger(navContact.url or '/en/contact/', navContact.title or 'Contact', navContact.icon or 'bi bi-envelope', page.url and '/en/contact/' in page.url, 'megaMenuContactEn', 'megaToggleContactEn', openSubmenuLabel) }}
           <div id="megaMenuContactEn" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleContactEn">
             <div class="mega-wrap">
               <section class="w-100 mb-3">

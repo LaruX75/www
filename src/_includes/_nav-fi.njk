@@ -1,22 +1,4 @@
-{% macro megaNavTrigger(url, title, icon, isActive, menuId, toggleId, openLabel) %}
-<div class="mega-nav-trigger">
-  <a class="nav-link mega-nav-link{% if isActive %} active{% endif %}" href="{{ url }}"{% if isActive %} aria-current="page"{% endif %}>
-    <i class="{{ icon }} me-1"></i>{{ title }}
-  </a>
-  <button
-    class="nav-link mega-nav-toggle dropdown-toggle"
-    type="button"
-    id="{{ toggleId }}"
-    data-bs-toggle="dropdown"
-    aria-expanded="false"
-    aria-haspopup="true"
-    aria-controls="{{ menuId }}"
-    aria-label="{{ openLabel }} {{ title }}"
-  >
-    <span class="visually-hidden">{{ openLabel }} {{ title }}</span>
-  </button>
-</div>
-{% endmacro %}
+{% import "_nav-macros.njk" as nav %}
 <nav id="siteNav" class="navbar navbar-expand-md site-navbar sticky-top" aria-label="Päänavigaatio" style="z-index:1030; transition: background-color .3s ease, box-shadow .3s ease;">
   <div class="container">
     <a class="navbar-brand fw-bold" href="/">Jari Laru</a>
@@ -33,7 +15,7 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          {{ megaNavTrigger(navMe.url or '/tietoa/', navMe.title or 'Minä', navMe.icon or 'bi bi-person-fill', page.url and ('/tietoa/' in page.url or '/autolomat/' in page.url or '/cv/' in page.url or '/portfolio/' in page.url or '/kouluttaja/' in page.url or '/puhuja/' in page.url or '/larux-tmi/' in page.url or '/yritys/' in page.url), 'megaMenuMeFi', 'megaToggleMeFi', openSubmenuLabel) }}
+          {{ nav.megaNavTrigger(navMe.url or '/tietoa/', navMe.title or 'Minä', navMe.icon or 'bi bi-person-fill', page.url and ('/tietoa/' in page.url or '/autolomat/' in page.url or '/cv/' in page.url or '/portfolio/' in page.url or '/kouluttaja/' in page.url or '/puhuja/' in page.url or '/larux-tmi/' in page.url or '/yritys/' in page.url), 'megaMenuMeFi', 'megaToggleMeFi', openSubmenuLabel) }}
           <div id="megaMenuMeFi" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleMeFi">
             <div class="mega-wrap grid-8-4">
               <div class="mega-left three-cols">
@@ -75,7 +57,7 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          {{ megaNavTrigger(navWork.url or '/tyoni-yliopistonlehtorina/', navWork.title or 'Työ', navWork.icon or 'bi bi-briefcase-fill', page.url and ('/opetus/' in page.url or '/portfolio/' in page.url or '/tutkimus/' in page.url or '/yhteiskunnallinen-vuorovaikutus/' in page.url or '/vaitoskirja/' in page.url or '/v%C3%A4it%C3%B6skirja/' in page.url or '/väitöskirja/' in page.url or '/palkinnot/' in page.url), 'megaMenuWorkFi', 'megaToggleWorkFi', openSubmenuLabel) }}
+          {{ nav.megaNavTrigger(navWork.url or '/tyoni-yliopistonlehtorina/', navWork.title or 'Työ', navWork.icon or 'bi bi-briefcase-fill', page.url and ('/opetus/' in page.url or '/portfolio/' in page.url or '/tutkimus/' in page.url or '/yhteiskunnallinen-vuorovaikutus/' in page.url or '/vaitoskirja/' in page.url or '/v%C3%A4it%C3%B6skirja/' in page.url or '/väitöskirja/' in page.url or '/palkinnot/' in page.url), 'megaMenuWorkFi', 'megaToggleWorkFi', openSubmenuLabel) }}
           <div id="megaMenuWorkFi" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleWorkFi">
             {% if workMegaMenu and workMegaMenu.sections %}
             {% if workMegaMenu.layout == "four-columns" %}
@@ -183,7 +165,7 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          {{ megaNavTrigger(navPolitics.url or '/politiikka/', navPolitics.title or 'Politiikka', navPolitics.icon or 'bi bi-bank2', page.url and ('/politiikka/' in page.url or '/politiiikka/' in page.url or '/poliittinen-avoimuus/' in page.url or '/vaalikaudet/' in page.url or '/vaalihistoria/' in page.url or '/kunta-ja-aluevaalit-2025/' in page.url or '/kuntavaalit-2021/' in page.url or '/jari-laru-aluevaltuustoon/' in page.url or '/kunnallisvaalit-2012/' in page.url or '/jari-laru-kaupunginvaltuutettu/' in page.url), 'megaMenuPoliticsFi', 'megaTogglePoliticsFi', openSubmenuLabel) }}
+          {{ nav.megaNavTrigger(navPolitics.url or '/politiikka/', navPolitics.title or 'Politiikka', navPolitics.icon or 'bi bi-bank2', page.url and ('/politiikka/' in page.url or '/politiiikka/' in page.url or '/poliittinen-avoimuus/' in page.url or '/vaalikaudet/' in page.url or '/vaalihistoria/' in page.url or '/kunta-ja-aluevaalit-2025/' in page.url or '/kuntavaalit-2021/' in page.url or '/jari-laru-aluevaltuustoon/' in page.url or '/kunnallisvaalit-2012/' in page.url or '/jari-laru-kaupunginvaltuutettu/' in page.url), 'megaMenuPoliticsFi', 'megaTogglePoliticsFi', openSubmenuLabel) }}
           <div id="megaMenuPoliticsFi" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaTogglePoliticsFi">
             <div class="mega-wrap{{ ' grid-8-4' if politicsMegaMenu.spotlight }}">
               <div class="mega-left three-cols">
@@ -227,7 +209,7 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          {{ megaNavTrigger(navWritings.url or '/kynasta/', navWritings.title or 'Kynästä', navWritings.icon or 'bi bi-pencil-fill', page.url and ('/kynasta/' in page.url or '/blogi/' in page.url), 'megaMenuWritingsFi', 'megaToggleWritingsFi', openSubmenuLabel) }}
+          {{ nav.megaNavTrigger(navWritings.url or '/kynasta/', navWritings.title or 'Kynästä', navWritings.icon or 'bi bi-pencil-fill', page.url and ('/kynasta/' in page.url or '/blogi/' in page.url), 'megaMenuWritingsFi', 'megaToggleWritingsFi', openSubmenuLabel) }}
           <div id="megaMenuWritingsFi" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleWritingsFi">
             <div class="mega-wrap writings-mega-layout">
               {% if writingsMegaMenu.contentColumns %}
@@ -346,7 +328,7 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          {{ megaNavTrigger(navMedia.url or '/mediassa/', navMedia.title or 'Mediassa', navMedia.icon or 'bi bi-camera-reels-fill', page.url and '/mediassa/' in page.url, 'megaMenuMediaFi', 'megaToggleMediaFi', openSubmenuLabel) }}
+          {{ nav.megaNavTrigger(navMedia.url or '/mediassa/', navMedia.title or 'Mediassa', navMedia.icon or 'bi bi-camera-reels-fill', page.url and '/mediassa/' in page.url, 'megaMenuMediaFi', 'megaToggleMediaFi', openSubmenuLabel) }}
           <div id="megaMenuMediaFi" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleMediaFi">
             <div class="mega-wrap">
               <section class="w-100 mb-3">
@@ -371,7 +353,7 @@
         </li>
 
         <li class="nav-item dropdown mega-dropdown">
-          {{ megaNavTrigger(navContact.url or '/yhteystiedot/', navContact.title or 'Ota yhteyttä', navContact.icon or 'bi bi-envelope', page.url and '/yhteystiedot/' in page.url, 'megaMenuContactFi', 'megaToggleContactFi', openSubmenuLabel) }}
+          {{ nav.megaNavTrigger(navContact.url or '/yhteystiedot/', navContact.title or 'Ota yhteyttä', navContact.icon or 'bi bi-envelope', page.url and '/yhteystiedot/' in page.url, 'megaMenuContactFi', 'megaToggleContactFi', openSubmenuLabel) }}
           <div id="megaMenuContactFi" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleContactFi">
             <div class="mega-wrap">
               <section class="w-100 mb-3">
