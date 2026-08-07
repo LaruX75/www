@@ -13,6 +13,7 @@
     "dev:fast": "CACHE_ONLY=true DISABLE_OG_IMAGES=true npm run eleventy:serve",
     "build:a11y": "PLAYWRIGHT_A11Y_OFFLINE=true DISABLE_OG_IMAGES=true npm run build:no-og",
     "test:a11y": "npm run build:a11y && PLAYWRIGHT_USE_STATIC_SERVER=true PLAYWRIGHT_A11Y_OFFLINE=true DISABLE_OG_IMAGES=true npx playwright test tests/accessibility.spec.js tests/navigation.spec.js tests/contrast.spec.js",
+    "test:unit": "node --test tests/unit/*.test.js",
     "test:a11y:list": "PLAYWRIGHT_A11Y_OFFLINE=true DISABLE_OG_IMAGES=true npx playwright test tests/accessibility.spec.js tests/navigation.spec.js tests/contrast.spec.js --list",
     "sync:stubs": "node scripts/sync-curated-stubs.js",
     "prebuild": "node scripts/clean-output-dir.js && node scripts/sync-curated-stubs.js && node scripts/clean-og-images.js && (node scripts/fetch-thesis-keywords.js || true)",

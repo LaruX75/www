@@ -12,6 +12,9 @@ const oukaCouncilSpeechProtocols = require("./src/_data/oukaCouncilSpeechProtoco
 const councilMeetingYoutubeVideos = require("./src/_data/councilMeetingYoutubeVideos.json");
 const councilSpeechVideos = require("./src/_data/councilSpeechVideos.json");
 const { getCanvaDesignId, normalizeCanvaUrl } = require("./src/_data/canvaUrl");
+const contentTypeLabel = require("./src/_utils/contentTypeLabel");
+const resolveSchemaType = require("./src/_utils/resolveSchemaType");
+const resolveContentMeta = require("./src/_utils/resolveContentMeta");
 
 function getLangFromUrl(url) {
   return String(url || "").startsWith("/en/") ? "en" : "fi";
@@ -68,32 +71,7 @@ function intersectionCount(values, wanted) {
   ), 0);
 }
 
-function contentTypeLabel(data = {}, tags = [], lang = "fi") {
-  const tagSet = new Set(toArray(tags));
-  const contexts = normalizeTerms(data.contexts || []);
-  const keywords = normalizeTerms(data.keywords || []);
-  const type = data.type || "";
-  const speechContext = String(data.speechContext || "").trim();
-  if (data.mediaType === "video") return lang === "en" ? "Video" : "Video";
-  if (data.mediaType === "podcast") return lang === "en" ? "Podcast" : "Podcast";
-  if (data.mediaType === "radio") return lang === "en" ? "Radio" : "Radio";
-  if (data.mediaType === "article") return lang === "en" ? "Media article" : "Lehtijuttu";
-  if (type === "esitys" || tagSet.has("presentations")) return lang === "en" ? "Presentation" : "Esitys";
-  if (type === "lausunto") return lang === "en" ? "Expert statement" : "Asiantuntijalausunto";
-  if (data.agenda_title === "Valtuuston kyselytunti" || contexts.has("valtuuston kyselytunti") || keywords.has("valtuustokysely") || speechContext === "kyselytunti") return lang === "en" ? "Council question hour" : "Valtuuston kyselytunti";
-  if (type === "puhe") {
-    if (speechContext === "valtuusto") return lang === "en" ? "Council speech" : "Valtuustopuheenvuoro";
-    if (speechContext === "akateeminen-puhe") return lang === "en" ? "Academic speech" : "Akateeminen puhe";
-    if (speechContext === "juhlapuhe") return lang === "en" ? "Ceremonial speech" : "Juhlapuhe";
-    if (speechContext === "julkinen-tilaisuus") return lang === "en" ? "Public speech" : "Julkinen puhe";
-    return lang === "en" ? "Speech" : "Puhe";
-  }
-  if (type === "mielipide") return lang === "en" ? "Opinion" : "Mielipide";
-  if (type === "kolumni") return lang === "en" ? "Column" : "Kolumni";
-  if (tagSet.has("politics")) return lang === "en" ? "Council initiative" : "Valtuustoaloite";
-  if (tagSet.has("blog")) return lang === "en" ? "Blog post" : "Blogikirjoitus";
-  return lang === "en" ? "Text" : "Kirjoitus";
-}
+// contentTypeLabel(data, tags, lang) — src/_utils/contentTypeLabel.js
 
 function dateOnlyFromValue(value) {
   if (!value) return "";
@@ -189,7 +167,7 @@ function councilItemTypeLabel(data = {}, lang = "fi") {
   if (data.type === "puhe") return lang === "en" ? "Council speech" : "Valtuustopuheenvuoro";
   if (data.initiative_type || tags.includes("aloitteet") || keywords.includes("valtuustoaloite")) return lang === "en" ? "Council initiative" : "Valtuustoaloite";
   if (tags.includes("politics")) return lang === "en" ? "Council initiative" : "Valtuustoaloite";
-  return contentTypeLabel(data, data.tags, lang);
+  return resolveContentMeta(data, "", lang).contentTypeLabel;
 }
 
 function isQuestionHourItem(data = {}) {
@@ -638,7 +616,7 @@ function mapTopicItem(item, topic = {}) {
     date: item.date || data.date,
     data,
     topicScore: topicItemScore(item, topic),
-    typeLabel: contentTypeLabel(data, data.tags || [], data.lang || "fi")
+    typeLabel: resolveContentMeta(data, "", data.lang || "fi").contentTypeLabel
   };
 }
 
@@ -975,7 +953,7 @@ module.exports = function registerFilters(eleventyConfig) {
           title: data.title || "",
           description: data.description || "",
           date: item.date || data.date || null,
-          typeLabel: contentTypeLabel(data, data.tags, lang),
+          typeLabel: resolveContentMeta(data, "", lang).contentTypeLabel,
           score
         };
       })
@@ -1065,7 +1043,12 @@ module.exports = function registerFilters(eleventyConfig) {
   });
 
   eleventyConfig.addFilter("topicTypeLabel", function (item, lang = "fi") {
-    return contentTypeLabel(item?.data || item || {}, item?.data?.tags || item?.tags || [], lang);
+    const data = { ...(item?.data || item || {}) };
+    if (!Array.isArray(data.tags)) {
+      data.tags = item?.data?.tags || item?.tags || [];
+    }
+    const inputPath = item?.inputPath || item?.data?.page?.inputPath || "";
+    return resolveContentMeta(data, inputPath, lang).contentTypeLabel;
   });
 
   eleventyConfig.addFilter("filterByType", function (arr, type) {
@@ -1205,50 +1188,7 @@ module.exports = function registerFilters(eleventyConfig) {
    *     ("presentation" | "article" | "business" | "thesis" | "specialpage" | "webpage")
    *   - specialPageType: sama kuin resolvedSchemaType jos pageBlockType == "specialpage"
    */
-  eleventyConfig.addFilter("resolveSchemaType", function (data) {
-    const d = data || {};
-    const type = d.type;
-    const tags = Array.isArray(d.tags) ? d.tags : [];
-
-    let resolvedSchemaType = d.schemaType || null;
-
-    if (!resolvedSchemaType) {
-      if (type === "esitys") resolvedSchemaType = "PresentationDigitalDocument";
-      else if (type === "tieteellinen") resolvedSchemaType = "ScholarlyArticle";
-      else if (type === "mielipide") resolvedSchemaType = "OpinionNewsArticle";
-      else if (type === "kolumni") resolvedSchemaType = "NewsArticle";
-      else if (type === "lausunto" || type === "puhe" || type === "artikkeli") resolvedSchemaType = "Article";
-      else if (type === "blogikirjoitus") resolvedSchemaType = "BlogPosting";
-      else if (d.mediaType || d.contentType) resolvedSchemaType = d.mediaType ? "NewsArticle" : "Article";
-      else if (tags.includes("blog")) resolvedSchemaType = "BlogPosting";
-      else if (tags.includes("politics") || tags.includes("publications")) resolvedSchemaType = "Article";
-    }
-
-    const articleTypes = new Set([
-      "Article", "BlogPosting", "NewsArticle", "OpinionNewsArticle", "ScholarlyArticle"
-    ]);
-    const specialTypes = new Set([
-      "AboutPage", "ProfilePage", "ContactPage", "CollectionPage", "FAQPage"
-    ]);
-
-    let pageBlockType = "webpage";
-    let specialPageType = null;
-
-    if (resolvedSchemaType === "PresentationDigitalDocument") {
-      pageBlockType = "presentation";
-    } else if (articleTypes.has(resolvedSchemaType)) {
-      pageBlockType = "article";
-    } else if (resolvedSchemaType === "LocalBusiness" || resolvedSchemaType === "Organization") {
-      pageBlockType = "business";
-    } else if (resolvedSchemaType === "Thesis") {
-      pageBlockType = "thesis";
-    } else if (specialTypes.has(resolvedSchemaType)) {
-      pageBlockType = "specialpage";
-      specialPageType = resolvedSchemaType;
-    }
-
-    return { resolvedSchemaType, pageBlockType, specialPageType };
-  });
+  eleventyConfig.addFilter("resolveSchemaType", resolveSchemaType);
 };
 
 module.exports.buildCouncilMeetings = buildCouncilMeetings;
