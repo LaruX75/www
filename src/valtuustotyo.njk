@@ -157,42 +157,9 @@ schemaMentions:
   </div>
 </section>
 
-{# Kerätään kaikki puheet JSON-muotoon JS:ää varten #}
-<script id="puheet-data" type="application/json">
-[
-  {% for pub in councilSpeechItems %}
-  {% set resolvedUrl = pub.data.url or pub.url %}
-  {% set councilMeta = oukaCouncilSpeechProtocols.overrides[resolvedUrl] or {} %}
-  {% set resolvedEvent = councilMeta.event or pub.data.event or "" %}
-  {% set resolvedAsiakohta = councilMeta.asiakohta or pub.data.asiakohta or "" %}
-  {% set publicationDate = pub.date | isoDate %}
-  {% set declaredMeetingDate = (pub.data.meetingDate or councilMeta.meetingDate or pub.date) | isoDate %}
-  {% set publicationMeetingMeta = councilMeetingMeta.byDate[publicationDate] or {} %}
-  {% set meetingDate = publicationMeetingMeta.timelineTitle and publicationDate or declaredMeetingDate %}
-  {% set meetingMeta = councilMeetingMeta.byDate[meetingDate] or {} %}
-  {% set protocolUrl = councilMeta.protocolUrl or (resolvedEvent == "Oulun kaupunginvaltuusto" and oukaCouncilSpeechProtocols.protocolsByDate[meetingDate]) %}
-  {% set councilVideos = councilSpeechVideos.byUrl[resolvedUrl] or councilSpeechVideos.byUrl[pub.data.source_url] or [] %}
-  {
-    "title": {{ pub.data.title | jsonSafe | safe }},
-    "date": "{{ pub.date }}",
-    "formattedDate": "{{ pub.date | dateFormat }}",
-    "description": {{ (pub.data.description or "") | jsonSafe | safe }},
-    "event": {{ resolvedEvent | jsonSafe | safe }},
-    "meetingNumber": {{ (meetingMeta.meetingNumber or "") | jsonSafe | safe }},
-    "meetingLabel": {{ (meetingMeta.meetingNumber or meetingMeta.timelineTitle or "") | jsonSafe | safe }},
-    "asiakohta": {{ resolvedAsiakohta | jsonSafe | safe }},
-    "protocolUrl": {{ (protocolUrl or "") | jsonSafe | safe }},
-    "councilVideos": {{ councilVideos | jsonSafe | safe }},
-    "url": "{{ resolvedUrl }}",
-    "isExternal": {{ (pub.data.url != null) | jsonSafe | safe }},
-    "speechContext": {{ (pub.data.speechContext or "") | jsonSafe | safe }},
-    "categories": {{ (pub.data.categories or []) | jsonSafe | safe }},
-    "keywords": {{ (pub.data.keywords or []) | jsonSafe | safe }},
-    "tags": {{ (pub.data.tags or []) | jsonSafe | safe }}
-  }{% if not loop.last %},{% endif %}
-  {% endfor %}
-]
-</script>
+{# Puheet-data ladataan async /data/council-speeches.json:sta.
+   Serializer enrich:aa recordit computed council-metallä
+   (meetingLabel, meetingNumber, protocolUrl, councilVideos). #}
 
 <section id="puheet">
   <div class="site-shell">
@@ -390,7 +357,7 @@ function syncArchiveSortButton(button, isActive, direction, columnLabel) {
   if (icon) icon.className = `bi ${direction === 1 ? 'bi-arrow-up' : 'bi-arrow-down'}`;
 }
 
-(function () {
+(async function () {
   // Näytä arkistokokonaisuudet tarkoituksellisessa lukujärjestyksessä rikkomatta accordion-rakennetta.
   const sectionOrder = ['puheet', 'julkiset-puheet', 'aloitteet', 'blogi', 'mielipiteet', 'lausunnot', 'kolumnit'];
   const archiveWrappers = sectionOrder
@@ -442,6 +409,17 @@ function syncArchiveSortButton(button, isActive, direction, columnLabel) {
     });
   });
 
+  // Ladataan /data/*.json:it rinnakkain KPI:tä ja kaavioita varten.
+  // Aiemmin data tuli embedded <script id="*-data">-lohkoista jotka
+  // migroitiin async fetch:iin (PR #37-#40).
+  async function _valtLoadItems(url) {
+    try {
+      const res = await fetch(url);
+      if (!res.ok) return [];
+      const data = await res.json();
+      return Array.isArray(data.items) ? data.items : [];
+    } catch { return []; }
+  }
   const parseJson = (id) => {
     const el = document.getElementById(id);
     if (!el) return [];
@@ -529,12 +507,18 @@ function syncArchiveSortButton(button, isActive, direction, columnLabel) {
     return Number.isNaN(d.getTime()) ? null : d.getFullYear();
   };
 
-  const mielipiteet = parseJson('mielipiteet-data');
-  const lausunnot = parseJson('lausunnot-data');
-  const kolumnit = parseJson('kolumnit-data');
-  const aloitteet = parseJson('aloitteet-data');
-  const puheet = parseJson('puheet-data');
-  const blogi = parseJson('blog-data');
+  const [_pubItems, _initItems, _councilItems, _contentItems] = await Promise.all([
+    _valtLoadItems('/data/publications.json'),
+    _valtLoadItems('/data/initiatives.json'),
+    _valtLoadItems('/data/council-speeches.json'),
+    _valtLoadItems('/data/content.json')
+  ]);
+  const mielipiteet = _pubItems.filter(i => i.contentType === 'opinion');
+  const lausunnot = _pubItems.filter(i => i.contentType === 'statement');
+  const kolumnit = _pubItems.filter(i => i.contentType === 'column');
+  const aloitteet = _initItems;
+  const puheet = _councilItems;
+  const blogi = _contentItems.filter(i => i.contentType === 'blogPost');
 
   const counts = {
     mielipiteet: mielipiteet.length,
@@ -667,11 +651,30 @@ function syncArchiveSortButton(button, isActive, direction, columnLabel) {
 
 
 // --- Puheet taulukon logiikka ---
-(function () {
+(async function () {
   const PUHEET_PAGE_SIZE = 5;
-  const puheetDataEl = document.getElementById('puheet-data');
-  if (!puheetDataEl) return;
-  const puheetData = JSON.parse(puheetDataEl.textContent);
+  async function _loadItems(url) {
+    try {
+      const res = await fetch(url);
+      if (!res.ok) return [];
+      const data = await res.json();
+      return Array.isArray(data.items) ? data.items : [];
+    } catch { return []; }
+  }
+  const _puheetDateFormatter = new Intl.DateTimeFormat('fi-FI', {
+    day: 'numeric', month: 'long', year: 'numeric'
+  });
+  const _puheetRaw = await _loadItems('/data/council-speeches.json');
+  // council-speeches.json on jo enriched (meetingLabel, meetingNumber,
+  // protocolUrl, councilVideos). Muunnetaan alkuperaisen puheet-data:n
+  // muotoiseksi (formattedDate + isExternal).
+  const puheetData = _puheetRaw.map(i => ({
+    ...i,
+    formattedDate: i.date ? _puheetDateFormatter.format(new Date(i.date)) : '',
+    isExternal: /^https?:/.test(i.url || ''),
+    tags: i.tags || []
+  }));
+  if (!puheetData.length) return;
 
   let filteredPuheetData = [...puheetData].sort((a, b) => new Date(b.date) - new Date(a.date));
   let puheetCurrentPage = 1;

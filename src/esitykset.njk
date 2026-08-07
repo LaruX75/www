@@ -57,6 +57,4 @@ schemaMentions:
 {% include "presentations/archive.njk" %}
 {% include "presentations/background-and-sources.njk" %}
 
-<script id="presentation-raw-data" type="application/json">{{ pageModel.rawData | jsonSafe | safe }}</script>
-<script id="presentation-contexts-data" type="application/json">{{ presentationContextItems | jsonSafe | safe }}</script>
-<script id="presentation-canva-page-urls-data" type="application/json">{{ canvaPageUrls | jsonSafe | safe }}</script>
+{# Data ladataan async /data/presentations-page.json:sta. #}

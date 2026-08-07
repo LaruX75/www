@@ -1,20 +1,23 @@
-(() => {
+(async () => {
   const PAGE_SIZE = 6;
   const UNIFIED_PAGE_SIZE = 12;
-  function parseJsonScript(id, fallback) {
-    const node = document.getElementById(id);
-    if (!node) return fallback;
+  // Data ladataan async /data/presentations-page.json:sta. Aiemmin
+  // lataantui embedded <script id="presentation-*-data">-lohkoista
+  // (~172 KB HTML). Nyt selain voi cache:ttaa datan.
+  async function loadPresentationsPageData() {
     try {
-      return JSON.parse(node.textContent || "");
+      const res = await fetch('/data/presentations-page.json');
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return await res.json();
     } catch (error) {
-      console.warn(`Failed to parse ${id}`, error);
-      return fallback;
+      console.error('esitykset: fetch /data/presentations-page.json failed:', error);
+      return { rawData: {}, contexts: [], canvaPageUrls: [] };
     }
   }
-
-  const rawData = parseJsonScript("presentation-raw-data", {});
-  const presentationContexts = parseJsonScript("presentation-contexts-data", []);
-  const canvaPageUrls = parseJsonScript("presentation-canva-page-urls-data", []);
+  const _pageData = await loadPresentationsPageData();
+  const rawData = _pageData.rawData || {};
+  const presentationContexts = _pageData.contexts || [];
+  const canvaPageUrls = _pageData.canvaPageUrls || [];
   const analysisArchiveItems = [
     {
       title: "Canva-esitykset 2021-2026",
