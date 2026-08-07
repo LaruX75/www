@@ -92,6 +92,7 @@
     "contactText": "Haluatko ottaa yhteyttä suoraan?",
     "contactCta": { "label": "Ota yhteyttä", "href": "/yhteystiedot/" },
     "profiles": [
+      { "platform": "Wikipedia",     "desc": "Artikkeli suomenkielisessä Wikipediassa", "href": "https://fi.wikipedia.org/wiki/Jari_Laru" },
       { "platform": "LinkedIn",      "desc": "Ammatillinen profiili",         "href": "https://www.linkedin.com/in/jarilaru/" },
       { "platform": "Instagram",     "desc": "Ruokaa, remontteja, reissuja",  "href": "https://www.instagram.com/jarilaru/" },
       { "platform": "YouTube",       "desc": "Videot ja luennot",             "href": "https://www.youtube.com/jarilaru" },

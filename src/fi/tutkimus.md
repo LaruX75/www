@@ -304,6 +304,15 @@ schemaMentions:
           </div>
         </a>
       </div>
+      <div class="col-sm-6 col-lg-4">
+        <a href="https://fi.wikipedia.org/wiki/Jari_Laru" target="_blank" rel="noopener noreferrer" class="card border-0 shadow-sm text-decoration-none h-100">
+          <div class="card-body p-4 text-center">
+            <div class="fs-1 mb-2" style="color:#000"><i class="bi bi-wikipedia"></i></div>
+            <h3 class="h6 fw-bold">Wikipedia</h3>
+            <p class="small text-muted mb-0">Artikkeli suomenkielisessä Wikipediassa</p>
+          </div>
+        </a>
+      </div>
     </div>
   </div>
 </section>
