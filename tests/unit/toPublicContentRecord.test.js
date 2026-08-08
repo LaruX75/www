@@ -319,6 +319,41 @@ describe("minimivaatimukset", () => {
 });
 
 // -----------------------------------------------------------------------------
+// teachingUnit-kentta (opetuksellinen yksikko)
+// -----------------------------------------------------------------------------
+describe("teachingUnit-kentta", () => {
+  test("teachingUnit frontmatterista sailyy JSON:issa", () => {
+    const item = {
+      url: "/presentations/ss-tvt/",
+      date: new Date("2015-01-01"),
+      data: { title: "Foo", type: "esitys", teachingUnit: "opettajankoulutus" }
+    };
+    const rec = toPublicContentRecord(item);
+    assert.equal(rec.teachingUnit, "opettajankoulutus");
+  });
+
+  test("teachingUnit=let sailyy", () => {
+    const item = {
+      url: "/presentations/ss-tel/",
+      date: new Date("2018-01-01"),
+      data: { title: "TEL", type: "esitys", teachingUnit: "let" }
+    };
+    const rec = toPublicContentRecord(item);
+    assert.equal(rec.teachingUnit, "let");
+  });
+
+  test("teachingUnit puuttuu => ei mukana JSON:issa", () => {
+    const item = {
+      url: "/presentations/ss-konferenssi/",
+      date: new Date("2015-01-01"),
+      data: { title: "Konf", type: "esitys" }
+    };
+    const rec = toPublicContentRecord(item);
+    assert.equal(rec.teachingUnit, undefined);
+  });
+});
+
+// -----------------------------------------------------------------------------
 // publication-kentta (lehden nimi)
 // -----------------------------------------------------------------------------
 describe("publication-kentta", () => {

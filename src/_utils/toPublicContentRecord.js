@@ -131,7 +131,12 @@ function toPublicContentRecord(item) {
     doi: pickString(data.doi),
     authors: normalizeArray(data.authors),
     publicationType: pickString(data.publicationType),
-    publication: pickString(data.publication)
+    publication: pickString(data.publication),
+    // Yksikko: "opettajankoulutus" | "let". Presentations-collection
+    // asettaa taman eleventyComputed:issa src/_data/teachingUnits.js:n
+    // avulla. Julkinen luokittelu koska organisaatioyksikko on aidosti
+    // relevantti metadata (Jari opettaa sekä OK:ssa etta LET:issa).
+    teachingUnit: pickString(data.teachingUnit)
   });
 }
 
