@@ -77,8 +77,12 @@
             {% endif %}
           </div>
 
-          <div class="taxonomy-list" data-taxonomy-list>
-            {% for item in keyword.items %}
+          {# Progressive enhancement: SSR renderoi 15 uusinta itemia.
+             JS (alempana) fetch:aa /data/content.json:in ja korvaa listan
+             KAIKILLA taman avainsanan sisallolla ennen suodatuksen
+             aktivointia. #}
+          <div class="taxonomy-list" data-taxonomy-list data-keyword-slug="{{ keyword.slug }}" data-keyword-name="{{ keyword.name | escape }}">
+            {% for item in (keyword.items | take(15)) %}
               {% set itemText = item.data.description %}
               {% if item.taxonomyTypeKey == "scientific-publications" and item.data.citation %}
                 {% set itemText = item.data.citation %}
@@ -139,9 +143,67 @@
 </section>
 
 <script>
-(() => {
+/* Progressive enhancement — Vaihe D3 (2026-08-08)
+   SSR renderoi 15 uusinta itemia. JS fetch:aa /data/content.json:in ja
+   korvaa listan KAIKILLA taman avainsanan sisallolla ennen suodatuksen
+   aktivointia. Ilman JS:aa: 15 uusinta nakyvat + kaikki linkit toimivat. */
+(async () => {
   const root = document.querySelector('.taxonomy-archive--keyword');
   if (!root) return;
+
+  const list = root.querySelector('[data-taxonomy-list]');
+  const keywordName = list?.dataset.keywordName || '';
+
+  // Hydrate: fetch /data/content.json ja renderoi KAIKKI avainsanan itemit
+  if (list && keywordName) {
+    try {
+      const res = await fetch('/data/content.json');
+      if (res.ok) {
+        const data = await res.json();
+        const allItems = (data.items || [])
+          .filter(i => (i.keywords || []).includes(keywordName))
+          .sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+        if (allItems.length > 0) {
+          list.innerHTML = allItems.map(renderTaxonomyItem).join('');
+        }
+      }
+    } catch (e) {
+      console.error('Keyword hydration failed:', e);
+    }
+  }
+
+  function _escHtml(v) {
+    return String(v == null ? '' : v)
+      .replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;').replaceAll("'", '&#39;');
+  }
+  const _dateFmt = new Intl.DateTimeFormat('fi-FI', { day: 'numeric', month: 'long', year: 'numeric' });
+  function _slugify(s) {
+    return String(s || '').toLowerCase()
+      .normalize('NFD').replace(/[̀-ͯ]/g, '')
+      .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  }
+  function renderTaxonomyItem(item) {
+    const dateStr = item.date ? _dateFmt.format(new Date(item.date)) : '';
+    const typeKey = item.taxonomyTypeKey || '';
+    const typeLabel = item.taxonomyTypeLabel || '';
+    const desc = item.description || '';
+    const cats = (item.categories || []).slice(0, 3);
+    const catHtml = cats.length
+      ? `<div class="taxonomy-term-row" aria-label="Kategoriat">${cats.map(c => `<a href="/kategoriat/${_slugify(c)}/">${_escHtml(c)}</a>`).join('')}</div>`
+      : '';
+    return `<article class="taxonomy-list-item" data-taxonomy-item data-taxonomy-type="${_escHtml(typeKey)}">
+  <div class="taxonomy-list-date">
+    <time>${_escHtml(dateStr)}</time>
+    <strong>${_escHtml(typeLabel)}</strong>
+  </div>
+  <div class="taxonomy-list-body">
+    <h3><a href="${_escHtml(item.url)}">${_escHtml(item.title)}</a></h3>
+    ${desc ? `<p>${_escHtml(desc)}</p>` : ''}
+    ${catHtml}
+  </div>
+</article>`;
+  }
 
   const buttons = root.querySelectorAll('[data-taxonomy-filter]');
   const items = Array.from(root.querySelectorAll('[data-taxonomy-item]'));
