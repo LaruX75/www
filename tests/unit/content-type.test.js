@@ -411,10 +411,16 @@ describe("getTaxonomyType", () => {
       assert.equal(r.key, "scientific-publications");
     });
 
-    // [ristiriita] type=tieteellinen ei anna scientific-publications:ta ilman
-    // contentType/source-avainta. resolveSchemaType antaa sen ScholarlyArticle:na.
-    test("[ristiriita] type=tieteellinen ilman contentType/source => other", () => {
-      assert.equal(getTaxonomyType({ data: { type: "tieteellinen" } }).key, "other");
+    // Yhdenmukaistettu (fix/taxonomy-type-tieteellinen, 2026-08-08):
+    // type=tieteellinen tunnistetaan legacy-signaaliksi contentType-avaimen
+    // ohella. Aiemmin nama sivut menivat "Muut sisallot" -kategoriaan.
+    // Muutos siirtaa 5 vaitoskirjan aikaista publications/-sivua kategoriaan
+    // "Tieteelliset julkaisut" (yhdenmukainen resolveSchemaType:in kanssa).
+    test("type=tieteellinen ilman contentType/source => scientific-publications", () => {
+      assert.equal(
+        getTaxonomyType({ data: { type: "tieteellinen" } }).key,
+        "scientific-publications"
+      );
     });
   });
 
