@@ -7,6 +7,8 @@ lang: fi
 translationKey: media_index
 pageStyles:
   - /css/media-page.css
+pageScripts:
+  - /js/pe-list-render.js
 schemaType: CollectionPage
 ---
 
@@ -183,25 +185,48 @@ schemaType: CollectionPage
 
       <p class="media-browser-status text-muted mb-3" data-media-browser-status aria-live="polite"></p>
 
-      {# Mediakortit ladataan async /data/media.json:sta ja renderoidaan
-         client-side. Aiemmin SSR-renderöity 72 korttia (~160 KB HTML).
-         JS-koodi alempana korvaa placeholder:in kokonaisella listalla. #}
-      <div class="media-card-grid" data-media-card-grid aria-busy="true">
-        {% for _ in range(6) %}
-        <article class="media-archive-card media-archive-card--skeleton" aria-hidden="true">
-          <span class="media-thumb media-thumb--empty"></span>
+      {# Progressive enhancement:
+         SSR renderoi 18 uusinta mediakorttia (~6 per mediaType). Sivu toimii
+         ilman JavaScriptia (linkit, hakukoneet, saavutettavuus).
+         JavaScript (alempana) lataa /data/media.json:in, korvaa avausjoukon
+         kaikilla 72 kortilla ja tuo suodattimet + sivutuksen. #}
+      {% set ssrOpeningItems = [] %}
+      {% for item in mediaVideos.slice(0, 6) %}{% set _ = (ssrOpeningItems.push(item), null) %}{% endfor %}
+      {% for item in mediaPodcasts.slice(0, 6) %}{% set _ = (ssrOpeningItems.push(item), null) %}{% endfor %}
+      {% for item in mediaArticles.slice(0, 6) %}{% set _ = (ssrOpeningItems.push(item), null) %}{% endfor %}
+      <div class="media-card-grid" data-media-card-grid data-pe-opening-count="{{ ssrOpeningItems.length }}">
+        {% for item in ssrOpeningItems %}
+        <article class="media-archive-card"
+          data-media-type="{{ item.data.mediaType or '' }}"
+          data-media-role="{{ item.data.mediaRole or '' }}">
+          <a href="{{ media.itemUrl(item) | trim }}" target="_blank" rel="noopener noreferrer" class="media-archive-thumb-link">
+            {{ renderMediaThumb(item) }}
+          </a>
           <div class="media-archive-card-body">
-            <div class="media-meta-row media-meta-row--small">&nbsp;</div>
-            <h3>&nbsp;</h3>
-            <p>&nbsp;</p>
+            <div class="media-meta-row media-meta-row--small">{{ renderMeta(item) }}</div>
+            <h3><a href="{{ media.itemUrl(item) | trim }}" target="_blank" rel="noopener noreferrer">{{ item.data.title }}</a></h3>
+            {% if item.data.description %}<p>{{ item.data.description }}</p>{% endif %}
+            {% if item.data.categories %}
+            <div class="media-topic-row">
+              {% for category in item.data.categories.slice(0, 4) %}
+              <span>{{ category }}</span>
+              {% endfor %}
+            </div>
+            {% endif %}
+            <div class="media-card-actions">
+              <a href="{{ media.itemUrl(item) | trim }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-3">Avaa lähde</a>
+              <a href="{{ item.url }}" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Lisätiedot</a>
+            </div>
           </div>
         </article>
         {% endfor %}
       </div>
       <noscript>
-        <p class="text-muted small mt-3">
-          Käytössäsi ei ole JavaScriptiä. Selaa mediaosumia suoraan
-          <a href="/data/media.json">JSON-datana</a> tai etsi ne tarkemmilta yksittäissivuilta.
+        <p class="text-muted small mt-3 mb-0">
+          Yllä näet uusimmat mediaosumat mediatyypeittäin.
+          Kaikki {{ mediaTotal }} mediaosumaa löytyy myös
+          <a href="/data/media.json">JSON-datana</a> ja yksittäisiltä sivuilta.
+          Suodatustoiminnot vaativat JavaScriptiä.
         </p>
       </noscript>
 
