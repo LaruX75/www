@@ -6,6 +6,9 @@
    Optional:
    - showThesisActions: boolean, default true
    - showMobileItemsImmediately: boolean, default false
+   - ssrLimit: number, default null (renderoi kaikki). Jos annettu (esim.
+     15), renderoi vain N uusinta itemia. Progressive enhancement -tapauksessa
+     JS taydentaa loput /data/theses.json:sta.
 #}
 {% set isEN = (currentLang or lang) == "en" %}
 {% set hasThesisActions = true %}
@@ -13,6 +16,8 @@
 {% set mobileItemStyle = "" if showMobileItemsImmediately else "display:none" %}
 {% set thesisResearchLineLabels = researchProgram.thesisLineLabels or {} %}
 {% set thesisResearchThemeLabels = researchProgram.thesisThemeLabels or {} %}
+{% set effectiveItems = thesisItems %}
+{% if ssrLimit %}{% set effectiveItems = thesisItems | take(ssrLimit) %}{% endif %}
 
 {# ── Desktop: taulukko (piilotetaan mobiilissa) ── #}
 <div class="d-none d-md-block">
@@ -29,7 +34,7 @@
         </tr>
       </thead>
       <tbody>
-        {% for thesis in thesisItems %}
+        {% for thesis in effectiveItems %}
         <tr data-year="{{ thesis.year }}" data-type="{{ thesis.type or '' }}" data-research-line="{{ thesis.researchLine or '' }}" data-research-themes="{{ thesis.researchThemes | join(' ') }}" data-research-audience="{{ thesis.researchAudience | join(' ') }}">
           <td class="small">{{ thesis.authors | join("; ") }}</td>
           <td class="col-year text-center font-monospace small fw-bold text-info">
@@ -123,7 +128,7 @@
 
 {# ── Mobiilinäkymä: APA7-lähdeviitelista (piilotetaan desktopissa) ── #}
 <ul class="list-unstyled mb-0 d-md-none thesis-mobile-list" role="list">
-  {% for thesis in thesisItems %}
+  {% for thesis in effectiveItems %}
   {% if thesis.type == "masterThesis" %}
     {% set apaTypeLabel = "Master's thesis" if isEN else "Pro gradu -tutkielma" %}
   {% elif thesis.type == "bachelorThesis" %}

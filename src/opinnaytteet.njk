@@ -173,7 +173,9 @@ schemaMentions:
         {% if theses.gradut.length %}
           {% set thesisItems = theses.gradut %}
           {% set showType = false %}
+          {% set ssrLimit = 15 %}
           {% include "thesis-table.njk" %}
+          {% set ssrLimit = null %}
         {% else %}
           <div class="p-4 text-center text-muted">Ei tuloksia.</div>
         {% endif %}
@@ -209,7 +211,9 @@ schemaMentions:
         {% if theses.kandit.length %}
           {% set thesisItems = theses.kandit %}
           {% set showType = false %}
+          {% set ssrLimit = 15 %}
           {% include "thesis-table.njk" %}
+          {% set ssrLimit = null %}
         {% else %}
           <div class="p-4 text-center text-muted">Ei tuloksia.</div>
         {% endif %}
@@ -253,7 +257,9 @@ schemaMentions:
       <div id="reviewertabl">
         {% set thesisItems = theses.reviewerOnly %}
         {% set showType = true %}
+        {% set ssrLimit = 15 %}
         {% include "thesis-table.njk" %}
+        {% set ssrLimit = null %}
       </div>
     </div>
   </div>
@@ -341,7 +347,92 @@ schemaMentions:
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
+/* Progressive enhancement — Vaihe C (2026-08-08)
+   SSR renderoi 15 uusinta per tbody (gradut, kandit, reviewers) = 45 rivia.
+   JS lataa /data/theses.json:in + korvaa tbody:jen sisallon KAIKILLA 169
+   itemilla ennen kuin DOM-perustainen suodatus aktivoituu.
+   Ilman JS:aa: 45 uusinta nakyvat + kaikki linkit toimivat. */
+const THESIS_RESEARCH_LINE_LABELS = {{ (researchProgram.thesisLineLabels or {}) | dump | safe }};
+const THESIS_RESEARCH_THEME_LABELS = {{ (researchProgram.thesisThemeLabels or {}) | dump | safe }};
+
+async function hydrateTheses() {
+  try {
+    const res = await fetch('/data/theses.json');
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    const items = Array.isArray(data.items) ? data.items : [];
+    const advisedGradut = items.filter(i => i.thesisRole === 'advised' && i.thesisType === 'masterThesis');
+    const advisedKandit = items.filter(i => i.thesisRole === 'advised' && i.thesisType === 'bachelorThesis');
+    const reviewed = items.filter(i => i.thesisRole === 'reviewed');
+    fillTbody(document.querySelector('#gradutabl tbody'), advisedGradut, false);
+    fillTbody(document.querySelector('#kanditabl tbody'), advisedKandit, false);
+    fillTbody(document.querySelector('#reviewertabl tbody'), reviewed, true);
+  } catch (e) {
+    console.error('hydrateTheses failed:', e);
+    // SSR:n 15 rivia jaavat nakyviin — sivu toimii silti perustasolla.
+  }
+}
+
+function fillTbody(tbody, items, showType) {
+  if (!tbody) return;
+  tbody.innerHTML = items.map(t => renderThesisRow(t, showType)).join('');
+}
+
+function esc(v) {
+  return String(v == null ? '' : v)
+    .replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;').replaceAll("'", '&#39;');
+}
+
+function renderThesisRow(t, showType) {
+  const authors = (t.authors || []).join('; ');
+  const year = t.year || '';
+  const type = t.thesisType || '';
+  const themes = (t.researchThemes || []).join(' ');
+  const audience = (t.researchAudience || []).join(' ');
+  const typeCell = showType ? `<td>${type === 'masterThesis'
+      ? '<span class="badge bg-primary">Pro gradu</span>'
+      : type === 'bachelorThesis'
+        ? '<span class="badge bg-info">Kandidaatintyö</span>'
+        : `<span class="badge bg-dark">${esc(type)}</span>`}</td>` : '';
+  const link = t.url || t.id || '';
+  const title = t.title || '';
+  const abstract = t.description || '';
+  const keywords = t.keywords || [];
+  const researchLine = t.researchLine || '';
+  const lineLabel = THESIS_RESEARCH_LINE_LABELS[researchLine] || researchLine;
+  const themesBadges = (t.researchThemes || [])
+    .map(th => `<span class="badge text-bg-light border text-secondary ms-1">${esc(THESIS_RESEARCH_THEME_LABELS[th] || th)}</span>`).join('');
+  const researchLineDiv = researchLine
+    ? `<div class="mt-1"><span class="badge text-bg-light border text-dark">${esc(lineLabel)}</span>${themesBadges}</div>`
+    : '';
+  const titleCell = link
+    ? `<a href="${esc(link)}" target="_blank" class="fw-medium text-body text-decoration-none" rel="noopener noreferrer">${esc(title)}</a>
+       <a href="${esc(link)}" target="_blank" class="ms-2 text-decoration-none align-middle icon-only-link" rel="noopener noreferrer" aria-label="Avaa opinnäytetyö: ${esc(title)}"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i></a>
+       <button type="button" class="btn btn-outline-primary btn-sm rounded-pill px-2 ms-2 thesis-bib-btn" data-title="${esc(title)}" data-authors="${esc(authors)}" data-year="${esc(year)}" data-type="${esc(type)}" data-url="${esc(link)}" aria-label="Vie lähdeviite: ${esc(title)}"><i class="bi bi-quote me-1" aria-hidden="true"></i>Vie viite</button>
+       ${researchLineDiv}`
+    : `<span class="fw-medium">${esc(title)}</span>`;
+  const abstractCell = abstract
+    ? `<div class="small text-muted thesis-abstract-snippet">${esc(abstract)}</div>
+       <button type="button" class="btn btn-link btn-sm p-0 mt-1 thesis-abstract-trigger" data-thesis-title="${esc(title)}" data-thesis-abstract="${esc(abstract)}" data-thesis-url="${esc(link)}" data-thesis-authors="${esc(authors)}" data-thesis-year="${esc(year)}" data-thesis-type="${esc(type)}">Avaa tiivistelmä</button>`
+    : '<span class="text-muted small">—</span>';
+  const keywordsCell = keywords.length
+    ? `<div class="d-flex flex-wrap gap-1">${keywords.map(kw => `<button type="button" class="badge text-bg-light border thesis-keyword-link" data-keyword="${esc(kw)}">${esc(kw)}</button>`).join('')}</div>`
+    : '<span class="text-muted small fst-italic">ei saatavilla</span>';
+  return `<tr data-year="${esc(year)}" data-type="${esc(type)}" data-research-line="${esc(researchLine)}" data-research-themes="${esc(themes)}" data-research-audience="${esc(audience)}">
+    <td class="small">${esc(authors)}</td>
+    <td class="col-year text-center font-monospace small fw-bold text-info">${esc(year)}</td>
+    ${typeCell}
+    <td>${titleCell}</td>
+    <td class="col-abstract">${abstractCell}</td>
+    <td class="col-subjects">${keywordsCell}</td>
+  </tr>`;
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+  // PR-C2: taydenna tbody:jen sisalto ENNEN kuin suodattimet aktivoituvat.
+  await hydrateTheses();
+
   const ITEMS_PER_PAGE = 5;
   const urlState = new URL(window.location.href);
   const urlParams = urlState.searchParams;
