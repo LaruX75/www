@@ -6,6 +6,10 @@ permalink: /opinnaytteet/
 translationKey: theses_index
 pageStyles:
   - /css/theses-page.css
+pageScripts:
+  - /js/pe-list-render.js
+  - /js/content-presets.js
+  - /js/content-engine.js
 schemaType: CollectionPage
 schemaAbout:
   - "@type": "Thing"
@@ -356,17 +360,30 @@ const THESIS_RESEARCH_LINE_LABELS = {{ (researchProgram.thesisLineLabels or {}) 
 const THESIS_RESEARCH_THEME_LABELS = {{ (researchProgram.thesisThemeLabels or {}) | dump | safe }};
 
 async function hydrateTheses() {
+  if (!window.ContentEngine) {
+    console.error('opinnaytteet: window.ContentEngine puuttuu');
+    return;
+  }
   try {
-    const res = await fetch('/data/theses.json');
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    const data = await res.json();
-    const items = Array.isArray(data.items) ? data.items : [];
-    const advisedGradut = items.filter(i => i.thesisRole === 'advised' && i.thesisType === 'masterThesis');
-    const advisedKandit = items.filter(i => i.thesisRole === 'advised' && i.thesisType === 'bachelorThesis');
-    const reviewed = items.filter(i => i.thesisRole === 'reviewed');
-    fillTbody(document.querySelector('#gradutabl tbody'), advisedGradut, false);
-    fillTbody(document.querySelector('#kanditabl tbody'), advisedKandit, false);
-    fillTbody(document.querySelector('#reviewertabl tbody'), reviewed, true);
+    // Kolme kutsua, kaikki jakavat saman /data/theses.json-cachetuksen
+    // (ContentEngine cachettaa per-source, ei per-filter).
+    const [gradutResult, kanditResult, reviewedResult] = await Promise.all([
+      window.ContentEngine.query({
+        source: 'theses',
+        filters: { thesisRole: 'advised', thesisType: 'masterThesis' }
+      }),
+      window.ContentEngine.query({
+        source: 'theses',
+        filters: { thesisRole: 'advised', thesisType: 'bachelorThesis' }
+      }),
+      window.ContentEngine.query({
+        source: 'theses',
+        filters: { thesisRole: 'reviewed' }
+      })
+    ]);
+    fillTbody(document.querySelector('#gradutabl tbody'), gradutResult.items, false);
+    fillTbody(document.querySelector('#kanditabl tbody'), kanditResult.items, false);
+    fillTbody(document.querySelector('#reviewertabl tbody'), reviewedResult.items, true);
   } catch (e) {
     console.error('hydrateTheses failed:', e);
     // SSR:n 15 rivia jaavat nakyviin — sivu toimii silti perustasolla.

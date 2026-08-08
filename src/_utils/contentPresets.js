@@ -143,6 +143,35 @@ const FIELD_RULES = {
     kind: "eq",
     getFromRecord: (r) => r.initiativeType || null,
     getFromEleventy: (item) => (item.data && item.data.initiative_type) || null
+  },
+  // Thesis-kentat: kaytossa vain /data/theses.json-recordeille (async data,
+  // ei Eleventy-collection). getFromEleventy palauttaa null jotta Node-
+  // puolen SSR-preset-kutsu ei kaada — mutta thesis-preset olisi
+  // kaytannossa aina browser-puolella.
+  thesisRole: {
+    kind: "oneOf",
+    getFromRecord: (r) => r.thesisRole || null,
+    getFromEleventy: () => null
+  },
+  thesisType: {
+    kind: "oneOf",
+    getFromRecord: (r) => r.thesisType || null,
+    getFromEleventy: () => null
+  },
+  researchLine: {
+    kind: "oneOf",
+    getFromRecord: (r) => r.researchLine || null,
+    getFromEleventy: () => null
+  },
+  researchThemes: {
+    kind: "anyOf",
+    getFromRecord: (r) => normalizeStringArray(r.researchThemes),
+    getFromEleventy: () => []
+  },
+  researchAudience: {
+    kind: "anyOf",
+    getFromRecord: (r) => normalizeStringArray(r.researchAudience),
+    getFromEleventy: () => []
   }
 };
 

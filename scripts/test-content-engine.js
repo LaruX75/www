@@ -443,6 +443,54 @@ suite("queryPreset (browser)", function () {
 });
 
 // -----------------------------------------------------------------------------
+suite("Thesis-kentat (browser-only)", function () {
+  const mockTheses = [
+    { url: "/t1", title: "Gradu 1", year: 2025, contentType: "thesis",
+      thesisRole: "advised", thesisType: "masterThesis",
+      researchLine: "let", researchThemes: ["ai", "learning"] },
+    { url: "/t2", title: "Kandi 1", year: 2024, contentType: "thesis",
+      thesisRole: "advised", thesisType: "bachelorThesis",
+      researchLine: "opettajankoulutus", researchThemes: ["teacher-education"] },
+    { url: "/t3", title: "Reviewed 1", year: 2023, contentType: "thesis",
+      thesisRole: "reviewed", thesisType: "masterThesis" }
+  ];
+
+  test("thesisRole=advised filters correctly", function () {
+    const r = cp.queryPreset(mockTheses, {
+      source: "theses",
+      filters: { thesisRole: "advised" }
+    });
+    assert.strictEqual(r.items.length, 2);
+  });
+
+  test("thesisRole + thesisType kombinointi (AND)", function () {
+    const r = cp.queryPreset(mockTheses, {
+      source: "theses",
+      filters: { thesisRole: "advised", thesisType: "masterThesis" }
+    });
+    assert.strictEqual(r.items.length, 1);
+    assert.strictEqual(r.items[0].title, "Gradu 1");
+  });
+
+  test("researchLine=let matches one", function () {
+    const r = cp.queryPreset(mockTheses, {
+      source: "theses",
+      filters: { researchLine: "let" }
+    });
+    assert.strictEqual(r.items.length, 1);
+  });
+
+  test("researchThemes anyOf matches array-intersection", function () {
+    const r = cp.queryPreset(mockTheses, {
+      source: "theses",
+      filters: { researchThemes: ["ai"] }
+    });
+    assert.strictEqual(r.items.length, 1);
+    assert.strictEqual(r.items[0].title, "Gradu 1");
+  });
+});
+
+// -----------------------------------------------------------------------------
 suite("Isomorphic exports", function () {
   test("exports contain public API", function () {
     assert.ok(typeof cp.PRESETS === "object");

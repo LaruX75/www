@@ -5,6 +5,10 @@ description: "Master's theses and bachelor's theses supervised by Jari Laru from
 permalink: /en/theses/
 translationKey: theses_index
 lang: en
+pageScripts:
+  - /js/pe-list-render.js
+  - /js/content-presets.js
+  - /js/content-engine.js
 schemaType: CollectionPage
 ---
 
@@ -262,17 +266,28 @@ const THESIS_RESEARCH_LINE_LABELS = {{ (researchProgram.thesisLineLabels or {}) 
 const THESIS_RESEARCH_THEME_LABELS = {{ (researchProgram.thesisThemeLabels or {}) | dump | safe }};
 
 async function hydrateTheses() {
+  if (!window.ContentEngine) {
+    console.error('en/theses: window.ContentEngine missing');
+    return;
+  }
   try {
-    const res = await fetch('/data/theses.json');
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    const data = await res.json();
-    const items = Array.isArray(data.items) ? data.items : [];
-    const advisedGradut = items.filter(i => i.thesisRole === 'advised' && i.thesisType === 'masterThesis');
-    const advisedKandit = items.filter(i => i.thesisRole === 'advised' && i.thesisType === 'bachelorThesis');
-    const reviewed = items.filter(i => i.thesisRole === 'reviewed');
-    fillTbody(document.querySelector('#gradutabl tbody'), advisedGradut, false);
-    fillTbody(document.querySelector('#kanditabl tbody'), advisedKandit, false);
-    fillTbody(document.querySelector('#reviewertabl tbody'), reviewed, true);
+    const [gradutResult, kanditResult, reviewedResult] = await Promise.all([
+      window.ContentEngine.query({
+        source: 'theses',
+        filters: { thesisRole: 'advised', thesisType: 'masterThesis' }
+      }),
+      window.ContentEngine.query({
+        source: 'theses',
+        filters: { thesisRole: 'advised', thesisType: 'bachelorThesis' }
+      }),
+      window.ContentEngine.query({
+        source: 'theses',
+        filters: { thesisRole: 'reviewed' }
+      })
+    ]);
+    fillTbody(document.querySelector('#gradutabl tbody'), gradutResult.items, false);
+    fillTbody(document.querySelector('#kanditabl tbody'), kanditResult.items, false);
+    fillTbody(document.querySelector('#reviewertabl tbody'), reviewedResult.items, true);
   } catch (e) {
     console.error('hydrateTheses failed:', e);
   }
