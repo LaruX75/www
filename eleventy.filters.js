@@ -16,6 +16,7 @@ const contentTypeLabel = require("./src/_utils/contentTypeLabel");
 const resolveSchemaType = require("./src/_utils/resolveSchemaType");
 const resolveContentMeta = require("./src/_utils/resolveContentMeta");
 const sidebarContext = require("./src/_utils/sidebarContext");
+const contentPresets = require("./src/_utils/contentPresets");
 
 function getLangFromUrl(url) {
   return String(url || "").startsWith("/en/") ? "en" : "fi";
@@ -1236,6 +1237,19 @@ module.exports = function registerFilters(eleventyConfig) {
     const slug = slugify(String(termName));
     const entry = termList.find(t => t.slug === slug);
     return Boolean(entry && (entry.count || 0) >= (threshold || 2));
+  });
+
+  /**
+   * `preset` — headless content/filter engine Nunjucks-filtterinä.
+   * Ks. src/_utils/contentPresets.js. Selain-puolella sama moduli on
+   * ladattavissa /js/content-presets.js:ää (addPassthroughCopy).
+   *
+   * Kaytto:
+   *   {% for item in collections | preset("latestOpinions") %}...{% endfor %}
+   *   {% for item in collections | preset("latestOpinions", { limit: 5 }) %}...{% endfor %}
+   */
+  eleventyConfig.addFilter("preset", function (collections, presetNameOrSpec, overrides) {
+    return contentPresets.applyPresetToCollection(collections, presetNameOrSpec, overrides);
   });
 };
 
