@@ -232,7 +232,25 @@ schemaType: CollectionPage
               </tr>
             </thead>
             <tbody id="mielipiteet-tbody">
-              <tr><td colspan="5" class="text-center text-muted py-4">Loading opinion pieces...</td></tr>
+              {# Progressive enhancement: SSR renders 5 most recent opinion pieces.
+                 JS replaces this opening set with ALL opinion pieces + filters. #}
+              {% for pub in (collections.pub_mielipide | sort(true, false, "date") | take(5)) %}
+              {% set externalUrl = pub.data.url or pub.url %}
+              <tr>
+                <td class="text-center text-nowrap small">{{ pub.date | dateFormat }}</td>
+                <td>
+                  <a href="{{ externalUrl }}"{% if pub.data.url %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ pub.data.title }}</a>
+                </td>
+                <td class="small text-muted">
+                  {% if pub.data.description %}{{ pub.data.description | truncate(150) }}{% endif %}
+                  {% if pub.data.publication %}<div class="small fst-italic mt-1">{{ pub.data.publication }}</div>{% endif %}
+                </td>
+                <td class="small">
+                  {% for cat in (pub.data.categories or []) %}{% if loop.index0 < 3 %}<span class="badge text-bg-secondary me-1">{{ cat }}</span>{% endif %}{% endfor %}
+                </td>
+                <td class="text-center"><a href="{{ externalUrl }}"{% if pub.data.url %} target="_blank" rel="noopener noreferrer"{% endif %} class="btn btn-outline-primary btn-sm rounded-pill px-2" aria-label="{{ pub.data.title | escape }}"><i class="bi bi-arrow-right"></i></a></td>
+              </tr>
+              {% endfor %}
             </tbody>
           </table>
         </div>
@@ -290,7 +308,24 @@ schemaType: CollectionPage
               </tr>
             </thead>
             <tbody id="kolumnit-tbody">
-              <tr><td colspan="5" class="text-center text-muted py-4">Loading columns...</td></tr>
+              {# Progressive enhancement: SSR renders 5 most recent columns. #}
+              {% for pub in (collections.pub_kolumni | sort(true, false, "date") | take(5)) %}
+              {% set externalUrl = pub.data.url or pub.url %}
+              <tr>
+                <td class="text-center text-nowrap small">{{ pub.date | dateFormat }}</td>
+                <td>
+                  <a href="{{ externalUrl }}"{% if pub.data.url %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ pub.data.title }}</a>
+                </td>
+                <td class="small text-muted">
+                  {% if pub.data.description %}{{ pub.data.description | truncate(150) }}{% endif %}
+                  {% if pub.data.publication %}<div class="small fst-italic mt-1">{{ pub.data.publication }}</div>{% endif %}
+                </td>
+                <td class="small">
+                  {% for cat in (pub.data.categories or []) %}{% if loop.index0 < 3 %}<span class="badge text-bg-secondary me-1">{{ cat }}</span>{% endif %}{% endfor %}
+                </td>
+                <td class="text-center"><a href="{{ externalUrl }}"{% if pub.data.url %} target="_blank" rel="noopener noreferrer"{% endif %} class="btn btn-outline-primary btn-sm rounded-pill px-2" aria-label="{{ pub.data.title | escape }}"><i class="bi bi-arrow-right"></i></a></td>
+              </tr>
+              {% endfor %}
             </tbody>
           </table>
         </div>
@@ -348,7 +383,20 @@ schemaType: CollectionPage
               </tr>
             </thead>
             <tbody id="aloitteet-tbody">
-              <tr><td colspan="5" class="text-center text-muted py-4">Loading initiatives...</td></tr>
+              {# Progressive enhancement: SSR renders 5 most recent initiatives. #}
+              {% for item in (collections.politics | sort(true, false, "date") | take(5)) %}
+              <tr>
+                <td class="text-center text-nowrap small">{{ item.date | dateFormat }}</td>
+                <td>
+                  <a href="{{ item.url }}">{{ item.data.title }}</a>
+                </td>
+                <td class="small text-muted">{% if item.data.description %}{{ item.data.description | truncate(150) }}{% endif %}</td>
+                <td class="small">
+                  {% for cat in (item.data.categories or []) %}{% if loop.index0 < 3 %}<span class="badge text-bg-secondary me-1">{{ cat }}</span>{% endif %}{% endfor %}
+                </td>
+                <td class="text-center"><a href="{{ item.url }}" class="btn btn-outline-primary btn-sm rounded-pill px-2" aria-label="{{ item.data.title | escape }}"><i class="bi bi-arrow-right"></i></a></td>
+              </tr>
+              {% endfor %}
             </tbody>
           </table>
         </div>
@@ -409,7 +457,23 @@ schemaType: CollectionPage
               </tr>
             </thead>
             <tbody id="puheet-tbody">
-              <tr><td colspan="5" class="text-center text-muted py-4">Loading speeches...</td></tr>
+              {# Progressive enhancement: SSR renders 5 most recent speeches. #}
+              {% for pub in (collections.pub_puhe | sort(true, false, "date") | take(5)) %}
+              <tr>
+                <td class="text-center text-nowrap small">{{ pub.date | dateFormat }}</td>
+                <td>
+                  <a href="{{ pub.url }}">{{ pub.data.title }}</a>
+                </td>
+                <td class="small text-muted">
+                  {% if pub.data.description %}{{ pub.data.description | truncate(150) }}{% endif %}
+                  {% if pub.data.event %}<div class="small fst-italic mt-1">{{ pub.data.event }}</div>{% endif %}
+                </td>
+                <td class="small">
+                  {% for cat in (pub.data.categories or []) %}{% if loop.index0 < 3 %}<span class="badge text-bg-secondary me-1">{{ cat }}</span>{% endif %}{% endfor %}
+                </td>
+                <td class="text-center"><a href="{{ pub.url }}" class="btn btn-outline-primary btn-sm rounded-pill px-2" aria-label="{{ pub.data.title | escape }}"><i class="bi bi-arrow-right"></i></a></td>
+              </tr>
+              {% endfor %}
             </tbody>
           </table>
         </div>
@@ -519,7 +583,20 @@ schemaType: CollectionPage
               </tr>
             </thead>
             <tbody id="blog-tbody">
-              <tr><td colspan="5" class="text-center text-muted py-4">Loading posts...</td></tr>
+              {# Progressive enhancement: SSR renders 5 most recent blog posts. #}
+              {% for post in (collections.blog | sort(true, false, "date") | take(5)) %}
+              <tr>
+                <td class="text-center text-nowrap small">{{ post.date | dateFormat }}</td>
+                <td>
+                  <a href="{{ post.url }}">{{ post.data.title }}</a>
+                </td>
+                <td class="small text-muted">{% if post.data.description %}{{ post.data.description | truncate(150) }}{% endif %}</td>
+                <td class="small">
+                  {% for cat in (post.data.categories or []) %}{% if loop.index0 < 3 %}<span class="badge text-bg-secondary me-1">{{ cat }}</span>{% endif %}{% endfor %}
+                </td>
+                <td class="text-center"><a href="{{ post.url }}" class="btn btn-outline-primary btn-sm rounded-pill px-2" aria-label="{{ post.data.title | escape }}"><i class="bi bi-arrow-right"></i></a></td>
+              </tr>
+              {% endfor %}
             </tbody>
           </table>
         </div>
