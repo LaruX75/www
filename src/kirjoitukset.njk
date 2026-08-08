@@ -6,6 +6,10 @@ permalink: /kirjoitukset/
 translationKey: writings_texts
 pageStyles:
   - /css/kynasta-page.css
+pageScripts:
+  - /js/pe-list-render.js
+  - /js/content-presets.js
+  - /js/content-engine.js
 schemaType: CollectionPage
 schemaAbout:
   - "@type": "Thing"
@@ -1092,22 +1096,9 @@ function syncArchiveSortButton(button, isActive, direction, columnLabel) {
   render();
 })();
 
-// --- Public JSON data layer -loader ---
-// Lataa /data/*.json-endpointin ja palauttaa items-taulukon.
-async function loadPublicData(url) {
-  try {
-    const res = await fetch(url);
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    const data = await res.json();
-    return Array.isArray(data.items) ? data.items : [];
-  } catch (e) {
-    console.error('kirjoitukset: fetch ' + url + ' failed:', e);
-    return [];
-  }
-}
-// Muuntaa /data/*.json -recordin taman sivun UI-formaattiin (lisaa
-// formattedDate ja isExternal). Sailyttaa yhteensopivuuden aiempaan
-// embed-JSON-formaattiin.
+// --- Data-adapteri: normalisoi engine-record UI:n odottamaan formaattiin.
+// Engine (window.ContentEngine.query) hoitaa datafetchin ja perus-suodatuksen.
+// Tama funktio lisaa vain UI-tason kentat (formattedDate, isExternal).
 const _kirjoituksetDateFormatter = new Intl.DateTimeFormat('fi-FI', {
   day: 'numeric', month: 'long', year: 'numeric'
 });
@@ -1127,17 +1118,22 @@ function toKirjoituksetRecord(item) {
     opinionRoles: item.opinionRoles || []
   };
 }
-// Yhteinen promise jotta useampi IIFE ei tuplaa fetch-kutsuja.
-const _publicationsPromise = loadPublicData('/data/publications.json');
-const _contentPromise = loadPublicData('/data/content.json');
 
 // --- Blogi taulukon logiikka ---
+// Datafetch + contentType-suodatus: window.ContentEngine.query.
+// Search + sort + UI-tila: sivun oma logiikka (writingRoleMatchesQuery
+// on sivukohtainen hakukayttaytyminen, siksi ei siirretty enginee).
 (async function () {
   const BLOG_PAGE_SIZE = 5;
-  const _contentItems = await _contentPromise;
-  const blogData = _contentItems
-    .filter(i => i.contentType === 'blogPost')
-    .map(toKirjoituksetRecord);
+  if (!window.ContentEngine) {
+    console.error('kirjoitukset: window.ContentEngine puuttuu');
+    return;
+  }
+  const engineResult = await window.ContentEngine.query({
+    source: 'content',
+    filters: { contentType: 'blogPost' }
+  });
+  const blogData = engineResult.items.map(toKirjoituksetRecord);
   if (!blogData.length) return;
 
   let filteredBlogData = [...blogData].sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -1288,10 +1284,15 @@ const _contentPromise = loadPublicData('/data/content.json');
 // --- Kolumnit taulukon logiikka ---
 (async function () {
   const KOLUMNIT_PAGE_SIZE = 5;
-  const _pubItems = await _publicationsPromise;
-  const kolumnitData = _pubItems
-    .filter(i => i.contentType === 'column')
-    .map(toKirjoituksetRecord);
+  if (!window.ContentEngine) {
+    console.error('kirjoitukset: window.ContentEngine puuttuu');
+    return;
+  }
+  const engineResult = await window.ContentEngine.query({
+    source: 'publications',
+    filters: { contentType: 'column' }
+  });
+  const kolumnitData = engineResult.items.map(toKirjoituksetRecord);
   if (!kolumnitData.length) return;
   const kolumnitUrlParams = new URLSearchParams(window.location.search);
 
@@ -1466,10 +1467,15 @@ const _contentPromise = loadPublicData('/data/content.json');
 // --- Mielipiteet taulukon logiikka ---
 (async function () {
   const MIELIPITEET_PAGE_SIZE = 5;
-  const _pubItems2 = await _publicationsPromise;
-  const mielipiteetData = _pubItems2
-    .filter(i => i.contentType === 'opinion')
-    .map(toKirjoituksetRecord);
+  if (!window.ContentEngine) {
+    console.error('kirjoitukset: window.ContentEngine puuttuu');
+    return;
+  }
+  const engineResult = await window.ContentEngine.query({
+    source: 'publications',
+    filters: { contentType: 'opinion' }
+  });
+  const mielipiteetData = engineResult.items.map(toKirjoituksetRecord);
   if (!mielipiteetData.length) return;
   const urlParams = new URLSearchParams(window.location.search);
   const initialOpinionRole = urlParams.get('opinions');
