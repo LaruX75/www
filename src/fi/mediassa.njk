@@ -9,6 +9,8 @@ pageStyles:
   - /css/media-page.css
 pageScripts:
   - /js/pe-list-render.js
+  - /js/content-presets.js
+  - /js/content-engine.js
 schemaType: CollectionPage
 ---
 
@@ -307,15 +309,12 @@ schemaType: CollectionPage
     }
 
     async function loadData() {
-      try {
-        const res = await fetch('/data/media.json');
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        const data = await res.json();
-        return (Array.isArray(data.items) ? data.items : []).map(normalizeItem);
-      } catch (e) {
-        console.error('mediassa: fetch /data/media.json failed:', e);
+      if (!window.ContentEngine) {
+        console.error('mediassa: window.ContentEngine puuttuu (lataa content-engine.js)');
         return [];
       }
+      const { items } = await window.ContentEngine.query({ source: 'media' });
+      return items.map(normalizeItem);
     }
 
     const escHtml = (v) => String(v || '')
