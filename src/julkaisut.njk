@@ -7,6 +7,8 @@ permalink: /julkaisut/
 translationKey: publications_index
 pageStyles:
   - /css/publications-page.css
+pageScripts:
+  - /js/pe-list-render.js
 schemaType: CollectionPage
 ---
 {% import "ui.njk" as ui %}
@@ -257,8 +259,12 @@ schemaType: CollectionPage
     {% if researchfi.length %}
 
       {# Macros for reuse #}
-      {% macro drawTable(groupCode, title, items, tableId, subtypes) %}
-      {% if items.length %}
+      {% macro drawTable(groupCode, title, allItems, tableId, subtypes) %}
+      {# Progressive enhancement: SSR renderoi 15 uusinta per OKM-luokka.
+         JS (alempana) fetch:aa julkaisudatan ja korvaa tbody:jen sisallon
+         KAIKILLA julkaisuilla ennen suodatuksen aktivointia. #}
+      {% set items = allItems | take(15) %}
+      {% if allItems.length %}
       <div class="card shadow-sm mb-5 section-card" id="card-{{ tableId }}">
         <div class="card-header bg-transparent py-3 publication-section-header">
           <div class="d-flex align-items-start justify-content-between">
@@ -281,7 +287,7 @@ schemaType: CollectionPage
             </div>
             <div class="d-flex align-items-center gap-2 flex-shrink-0 ms-3 mt-1">
               <span class="publication-filter-indicator badge border border-info text-info d-none" data-filter-indicator="{{ tableId }}"></span>
-              <span class="badge publication-section-count">{{ items.length }}</span>
+              <span class="badge publication-section-count">{{ allItems.length }}</span>
             </div>
           </div>
         </div>
@@ -574,7 +580,156 @@ schemaType: CollectionPage
 
 <!-- Chart.js & Dashboard Scripts -->
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+// Progressive enhancement: hydratoi OKM-luokkien tbody + mobiili-lista
+// KAIKILLA researchfi-julkaisuilla ennen kuin suodattimet aktivoituvat.
+// SSR renderoi 15 uusinta per luokka (avausjoukko ilman JS:aa).
+window.publicationsHydration = (async () => {
+  if (!window.PE || typeof window.PE.loadJsonEndpoint !== 'function') return null;
+  const data = await window.PE.loadJsonEndpoint('/data/researchfi.json', { items: [] });
+  const items = Array.isArray(data.items) ? data.items : [];
+  if (!items.length) return items;
+
+  const esc = window.PE.escHtml;
+  const groups = { A: [], B: [], C: [], D: [], E: [], G: [] };
+  items.forEach((p) => {
+    const g = String(p.typeCode || '').charAt(0).toUpperCase();
+    if (groups[g]) groups[g].push(p);
+  });
+  Object.values(groups).forEach((arr) => arr.sort((a, b) => {
+    const ya = a.year || 0, yb = b.year || 0;
+    if (yb !== ya) return yb - ya;
+    return String(a.title).localeCompare(String(b.title));
+  }));
+
+  function jufoBadge(level) {
+    if (level == null) return '';
+    const s = String(level);
+    const cls = s === '3' ? '3' : s === '2' ? '2' : s === '1' ? '1' : '0';
+    const title = cls === '3' ? 'Julkaisufoorumi-taso 3 – johtava taso'
+      : cls === '2' ? 'Julkaisufoorumi-taso 2 – korkea taso'
+      : cls === '1' ? 'Julkaisufoorumi-taso 1 – perustaso'
+      : 'Julkaisufoorumi-taso 0 – ei luokiteltu';
+    return `<span class="badge rounded-pill publication-jufo publication-jufo--${cls}" title="${esc(title)}">JUFO ${cls}</span>`;
+  }
+  function citationBadge(count) {
+    const label = count === 1 ? 'viite' : 'viittausta';
+    return `<span class="badge publication-citation-badge rounded-pill" title="Viittaukset"><i class="bi bi-quote me-1"></i>${count} ${label}</span>`;
+  }
+  function exportBtn(pub) {
+    return `<button type="button" class="btn btn-sm btn-outline-secondary rounded-pill export-citation-btn"`
+      + ` data-title="${esc(pub.title)}" data-authors="${esc(pub.authors || '')}" data-year="${esc(pub.year || '')}"`
+      + ` data-journal="${esc(pub.journal || '')}" data-doi="${esc(pub.doi || '')}"`
+      + ` data-url="${esc(pub.url || pub.doiUrl || '')}" data-volume="${esc(pub.volume || '')}"`
+      + ` data-issue="${esc(pub.issue || '')}" data-pages="${esc(pub.pages || '')}"`
+      + ` data-publisher="${esc(pub.publisher || '')}" data-isbn="${esc(pub.isbn || '')}"`
+      + ` title="Vie lähdeviite"><i class="bi bi-download me-1"></i>Vie viite</button>`;
+  }
+  function meta(pub) {
+    if (pub.journal) {
+      let s = `<span class="text-muted small fst-italic">${esc(pub.journal)}</span>`;
+      if (pub.volume) {
+        s += `<span class="text-muted small">, <strong>${esc(pub.volume)}</strong>`;
+        if (pub.issue) s += `(${esc(pub.issue)})`;
+        s += `</span>`;
+      }
+      if (pub.pages) s += `<span class="text-muted small">, s.&nbsp;${esc(pub.pages)}</span>`;
+      if (pub.isbn) s += `<span class="text-muted small"> — ISBN ${esc(pub.isbn)}</span>`;
+      return s;
+    }
+    if (pub.publisher) {
+      let s = `<span class="text-muted small fst-italic">${esc(pub.publisher)}`;
+      if (pub.isbn) s += ` — ISBN ${esc(pub.isbn)}`;
+      return s + `</span>`;
+    }
+    return '';
+  }
+  function openLink(pub, mobile) {
+    const cls = mobile ? 'btn btn-sm btn-outline-primary rounded-pill' : 'btn btn-sm btn-outline-primary py-0 px-2 rounded-pill';
+    if (pub.url) {
+      return `<a href="${esc(pub.url)}" target="_blank" class="${cls}" rel="noopener noreferrer" title="Avaa julkaisu" aria-label="Avaa julkaisu uuteen välilehteen"><i class="bi bi-box-arrow-up-right${mobile ? ' me-1' : ''}"></i>${mobile ? 'Avaa' : ''}</a>`;
+    }
+    if (pub.doiUrl) {
+      return `<a href="${esc(pub.doiUrl)}" target="_blank" class="${cls}" rel="noopener noreferrer" title="Avaa DOI" aria-label="Avaa DOI uuteen välilehteen"><i class="bi bi-box-arrow-up-right${mobile ? ' me-1' : ''}"></i>${mobile ? 'Avaa' : ''}</a>`;
+    }
+    return '';
+  }
+  function titleLink(pub) {
+    if (pub.url) return `<a href="${esc(pub.url)}" target="_blank" rel="noopener noreferrer" class="text-body text-decoration-none">${esc(pub.title)}</a>`;
+    if (pub.doiUrl) return `<a href="${esc(pub.doiUrl)}" target="_blank" rel="noopener noreferrer" class="text-body text-decoration-none">${esc(pub.title)}</a>`;
+    return esc(pub.title);
+  }
+  function dataAttrs(pub, mobile) {
+    const themes = Array.isArray(pub.researchThemes) ? pub.researchThemes.join('|') : '';
+    const auds = Array.isArray(pub.researchAudience) ? pub.researchAudience.join('|') : '';
+    const idAttr = pub.anchorId ? ` id="${esc(pub.anchorId)}${mobile ? '-mobile' : ''}"` : '';
+    return idAttr
+      + ` data-authors="${esc(pub.authors || '')}"`
+      + ` data-publication-year="${esc(pub.year || '')}"`
+      + ` data-publication-type="${esc(pub.typeCode || '')}"`
+      + ` data-publication-type-label="${esc(pub.type || '')}"`
+      + ` data-research-line="${esc(pub.researchLine || '')}"`
+      + ` data-research-themes="${esc(themes)}"`
+      + ` data-research-audiences="${esc(auds)}"`;
+  }
+  function renderRow(pub) {
+    const cites = pub.citationCount || 0;
+    return `<tr${dataAttrs(pub, false)}>`
+      + `<td class="text-center font-monospace small fw-bold publication-year">${esc(pub.year || '—')}</td>`
+      + `<td><span class="badge bg-secondary" title="${esc(pub.type || '')}">${esc(pub.typeCode || '')}</span></td>`
+      + `<td><span class="fw-medium d-block mb-1">${esc(pub.title)}</span>${meta(pub)}`
+      + `<div class="d-flex flex-wrap align-items-center gap-2 mt-1">${jufoBadge(pub.jufoLevel)}${citationBadge(cites)}${exportBtn(pub)}</div></td>`
+      + `<td class="text-body-secondary small">${esc(pub.authors || '')}</td>`
+      + `<td class="text-center">${openLink(pub, false)}</td>`
+      + `</tr>`;
+  }
+  function metaMobile(pub) {
+    if (pub.journal) {
+      let s = esc(pub.journal);
+      if (pub.volume) {
+        s += `, <strong>${esc(pub.volume)}</strong>`;
+        if (pub.issue) s += `(${esc(pub.issue)})`;
+      }
+      if (pub.pages) s += `, s.&nbsp;${esc(pub.pages)}`;
+      if (pub.isbn) s += ` — ISBN ${esc(pub.isbn)}`;
+      return `<p class="small text-muted fst-italic mb-1">${s}</p>`;
+    }
+    if (pub.publisher) {
+      let s = esc(pub.publisher);
+      if (pub.isbn) s += ` — ISBN ${esc(pub.isbn)}`;
+      return `<p class="small text-muted fst-italic mb-1">${s}</p>`;
+    }
+    return '';
+  }
+  function renderMobile(pub) {
+    const cites = pub.citationCount || 0;
+    return `<li${dataAttrs(pub, true)} class="pub-mobile-item px-3 py-3 border-bottom" role="listitem">`
+      + `<div class="d-flex align-items-center gap-2 mb-1"><span class="font-monospace small fw-bold publication-year">${esc(pub.year || '—')}</span>`
+      + `<span class="badge bg-secondary" title="${esc(pub.type || '')}">${esc(pub.typeCode || '')}</span>${jufoBadge(pub.jufoLevel)}</div>`
+      + `<p class="fw-medium mb-1 lh-sm">${titleLink(pub)}</p>`
+      + `<p class="small text-body-secondary mb-1">${esc(pub.authors || '')}</p>`
+      + metaMobile(pub)
+      + `<div class="d-flex gap-2 flex-wrap align-items-center mt-1">${citationBadge(cites)}${exportBtn(pub)}${openLink(pub, true)}</div>`
+      + `</li>`;
+  }
+
+  const tableIds = { A: 'pub-table-a', B: 'pub-table-b', C: 'pub-table-c', D: 'pub-table-d', E: 'pub-table-e', G: 'pub-table-g' };
+  Object.entries(tableIds).forEach(([g, id]) => {
+    const arr = groups[g];
+    const tbody = document.querySelector(`#${id} tbody`);
+    if (tbody) tbody.innerHTML = arr.map(renderRow).join('');
+    const ul = document.querySelector(`#${id} .pub-mobile-list`);
+    if (ul) ul.innerHTML = arr.map(renderMobile).join('');
+    const badge = document.querySelector(`#card-${id} .publication-section-count`);
+    if (badge) badge.textContent = String(arr.length);
+  });
+  return items;
+})().catch((err) => { console.error('[julkaisut] hydration epaonnistui', err); return null; });
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', async function() {
+  // Odota progressive enhancement -hydration ennen suodattimien aktivointia
+  await (window.publicationsHydration || Promise.resolve(null));
   // Inline data from Eleventy
   const publications = [
     {% for pub in researchfi %}

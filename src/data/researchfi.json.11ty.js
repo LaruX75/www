@@ -32,18 +32,26 @@ function omitEmpty(obj) {
   return out;
 }
 
-function toResearchfiRecord(pub) {
+function toResearchfiRecord(pub, extras) {
   const title = pickString(pub?.title);
   if (!title) return null;
 
+  const anchorId = pickString(pub?.anchorId);
+  const doi = pickString(pub?.doi);
+  const meta = (anchorId && extras?.publicationMetaByAnchor?.[anchorId]) || {};
+  const citationCount = doi
+    ? (extras?.doiCitations?.[doi.toLowerCase()] || 0)
+    : 0;
+
   return omitEmpty({
-    id: pickString(pub?.anchorId) || pickString(pub?.url) || title,
+    id: anchorId || pickString(pub?.url) || title,
+    anchorId,
     title,
     year: pickNumber(pub?.year),
     authors: pickString(pub?.authors),
     journal: pickString(pub?.journal),
     url: pickString(pub?.url),
-    doi: pickString(pub?.doi),
+    doi,
     doiUrl: pickString(pub?.doiUrl),
     type: pickString(pub?.typeFi),
     typeCode: pickString(pub?.typeCode),
@@ -53,7 +61,12 @@ function toResearchfiRecord(pub) {
     issue: pickString(pub?.issue),
     pages: pickString(pub?.pages),
     publisher: pickString(pub?.publisher),
+    isbn: pickString(pub?.isbn),
     jufoLevel: pickNumber(pub?.jufoLevel),
+    citationCount,
+    researchLine: pickString(meta.researchLine),
+    researchThemes: Array.isArray(meta.researchThemes) ? meta.researchThemes : undefined,
+    researchAudience: Array.isArray(meta.researchAudience) ? meta.researchAudience : undefined,
     contentType: "scientificPublication",
     section: "publications"
   });
@@ -69,8 +82,12 @@ module.exports = class {
   }
 
   render(data) {
+    const extras = {
+      publicationMetaByAnchor: data.researchProgram?.publicationMetaByAnchor || {},
+      doiCitations: data.semanticscholar?.metrics?.doiCitations || {}
+    };
     const items = (data.researchfi || [])
-      .map(toResearchfiRecord)
+      .map((pub) => toResearchfiRecord(pub, extras))
       .filter(Boolean)
       .sort((a, b) => {
         const yearA = a.year || 0;
