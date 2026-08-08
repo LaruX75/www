@@ -135,17 +135,44 @@ layout: base.njk
                 <th style="width:80px" class="text-center">{{ txt.link }}</th>
               </tr>
             </thead>
-            <tbody id="blog-tbody" aria-busy="true">
-              {# Blog-rivit ladataan async /data/content.json:sta ja
-                 renderoidaan client-side. Aiemmin SSR renderoi 70 rivia
-                 (~180 KB HTML). #}
-              {% for _ in range(5) %}
-              <tr class="blog-row-skeleton" aria-hidden="true">
-                <td class="col-date text-center text-muted">…</td>
-                <td class="col-title text-muted">Ladataan blog-kirjoituksia…</td>
-                <td class="col-desc small text-muted">&nbsp;</td>
-                <td>&nbsp;</td>
-                <td class="text-center">&nbsp;</td>
+            <tbody id="blog-tbody">
+              {# Progressive enhancement:
+                 SSR renderoi 15 uusinta blog-postia (avausjoukko). Sivu toimii
+                 ilman JavaScriptia — kaikki linkit, hakukoneet, Ctrl+F ja
+                 ruudunlukija saavat sisallon.
+                 JavaScript (alempana) lataa /data/content.json + /data/taxonomy-index.json,
+                 korvaa avausjoukon KAIKILLA 70 blog-postilla ja tuo suodattimet
+                 + haun + lajittelun + sivutuksen. #}
+              {% set peBlogOpeningItems = collections.blog | sort(true, false, "date") | take(15) %}
+              {% for post in peBlogOpeningItems %}
+              {% set desc = post.data.description or (post.content | excerpt) %}
+              <tr>
+                <td class="col-date text-center">{{ post.date | dateFormat }}</td>
+                <td class="col-title">
+                  <a href="{{ post.url }}" class="text-decoration-none">{{ post.data.title }}</a>
+                </td>
+                <td class="col-desc small">{{ desc }}</td>
+                <td>
+                  {% for cat in (post.data.categories or []) %}
+                  {% if cat | taxonomyIndexed(collections.categoryList, 2) %}
+                  <a href="{{ catBase }}{{ cat | slugify }}/" class="badge text-bg-secondary me-1 text-decoration-none">{{ cat | termLabel(currentLang, "category") }}</a>
+                  {% else %}
+                  <span class="badge text-bg-secondary me-1">{{ cat | termLabel(currentLang, "category") }}</span>
+                  {% endif %}
+                  {% endfor %}
+                  {% for kw in (post.data.keywords or []) %}
+                  {% if kw | taxonomyIndexed(collections.keywordList, 3) %}
+                  <a href="{{ kwBase }}{{ kw | slugify }}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">{{ kw }}</a>
+                  {% else %}
+                  <span class="badge text-bg-light text-dark border me-1">{{ kw }}</span>
+                  {% endif %}
+                  {% endfor %}
+                </td>
+                <td class="text-center">
+                  <a href="{{ post.url }}" class="btn btn-outline-primary btn-sm rounded-pill px-2" aria-label="{{ post.data.title | escape }}">
+                    <i class="bi bi-arrow-right" aria-hidden="true"></i>
+                  </a>
+                </td>
               </tr>
               {% endfor %}
               <tr id="blog-no-results" hidden>
@@ -154,9 +181,17 @@ layout: base.njk
             </tbody>
             <caption class="visually-hidden">
               <noscript>
-                Käytössäsi ei ole JavaScriptiä. Selaa blog-kirjoituksia
-                suoraan <a href="/data/content.json">JSON-datana</a>
-                tai avainsanat/kategoriat-arkistoista.
+                {% if currentLang == "en" %}
+                Above you see the 15 most recent blog posts. All {{ collections.blog.length }} posts
+                are listed on individual pages and in the
+                <a href="/data/content.json">JSON data feed</a>.
+                Filtering, sorting and search require JavaScript.
+                {% else %}
+                Yllä näet 15 uusinta blog-kirjoitusta. Kaikki {{ collections.blog.length }}
+                kirjoitusta löytyy yksittäissivuilta ja
+                <a href="/data/content.json">JSON-datana</a>.
+                Suodatus, lajittelu ja haku vaativat JavaScriptiä.
+                {% endif %}
               </noscript>
             </caption>
           </table>
