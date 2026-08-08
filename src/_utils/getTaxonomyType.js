@@ -44,7 +44,11 @@ function getTaxonomyType(item) {
     return { key: "blog", label: "Blogikirjoitukset" };
   }
 
-  if (data.contentType === "scientificPublication" || data.source === "researchfi") {
+  if (
+    data.contentType === "scientificPublication"
+    || data.source === "researchfi"
+    || type === "tieteellinen"
+  ) {
     return { key: "scientific-publications", label: "Tieteelliset julkaisut" };
   }
 
