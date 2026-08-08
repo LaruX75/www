@@ -24,6 +24,10 @@
   {% set siteBase = site.url or "https://www.jarilaru.fi" %}
   {% set pageUrl = page.url | absoluteUrl(siteBase) %}
   {% set imageAbs = resolvedOgImage | absoluteUrl(siteBase) %}
+  {# Person-noodin @image on aina Jarin profiilikuva (Schema.org / Google
+     Knowledge Graph -yhteensopivuus). Sivukohtainen imageAbs (yleensa OG-
+     kuva) sailyy muissa noodeissa (Article, ImageObject jne.). #}
+  {% set personImageAbs = "/img/WIN_20210329_16_06_01_Pro.jpg" | absoluteUrl(siteBase) %}
   {% set personId = siteBase + "#person" %}
   {% set orgId = siteBase + "#laruxtmi" %}
   {% set websiteId = siteBase + "#website" %}
@@ -105,7 +109,7 @@
     "familyName": "Laru",
     "honorificPrefix": ("EdD" if currentLang == "en" else "KT"),
     "url": siteBase,
-    "image": imageAbs,
+    "image": personImageAbs,
     "jobTitle": ("University Lecturer" if currentLang == "en" else "Yliopistonlehtori"),
     "worksFor": { "@id": uniId },
     "affiliation": { "@id": uniId },
