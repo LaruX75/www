@@ -9,6 +9,8 @@ pageStyles:
   - /css/publications-page.css
 pageScripts:
   - /js/pe-list-render.js
+  - /js/content-presets.js
+  - /js/content-engine.js
 schemaType: CollectionPage
 ---
 {% import "ui.njk" as ui %}
@@ -584,9 +586,12 @@ schemaType: CollectionPage
 // KAIKILLA researchfi-julkaisuilla ennen kuin suodattimet aktivoituvat.
 // SSR renderoi 15 uusinta per luokka (avausjoukko ilman JS:aa).
 window.publicationsHydration = (async () => {
-  if (!window.PE || typeof window.PE.loadJsonEndpoint !== 'function') return null;
-  const data = await window.PE.loadJsonEndpoint('/data/researchfi.json', { items: [] });
-  const items = Array.isArray(data.items) ? data.items : [];
+  if (!window.ContentEngine || typeof window.ContentEngine.query !== 'function') {
+    console.error('julkaisut: window.ContentEngine puuttuu (lataa content-engine.js)');
+    return null;
+  }
+  if (!window.PE || typeof window.PE.escHtml !== 'function') return null;
+  const { items } = await window.ContentEngine.query({ source: 'researchfi' });
   if (!items.length) return items;
 
   const esc = window.PE.escHtml;
