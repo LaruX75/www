@@ -183,40 +183,27 @@ schemaType: CollectionPage
 
       <p class="media-browser-status text-muted mb-3" data-media-browser-status aria-live="polite"></p>
 
-      <div class="media-card-grid" data-media-card-grid>
-        {% for item in mediaItems %}
-          {% set topicText = ((item.data.categories or []) | join(" ")) ~ " " ~ ((item.data.keywords or []) | join(" ")) ~ " " ~ item.data.title ~ " " ~ (item.data.description or "") %}
-          <article
-            class="media-archive-card"
-            data-media-card
-            data-media-type="{{ item.data.mediaType or '' }}"
-            data-media-role="{{ item.data.mediaRole or '' }}"
-            data-media-topics="{{ topicText | lower | escape }}"
-          >
-            <a href="{{ media.itemUrl(item) | trim }}" target="_blank" rel="noopener noreferrer" class="media-archive-thumb-link">
-              {{ renderMediaThumb(item) }}
-            </a>
-            <div class="media-archive-card-body">
-              <div class="media-meta-row media-meta-row--small">{{ renderMeta(item) }}</div>
-              <h3><a href="{{ media.itemUrl(item) | trim }}" target="_blank" rel="noopener noreferrer">{{ item.data.title }}</a></h3>
-              {% if item.data.description %}
-              <p>{{ item.data.description }}</p>
-              {% endif %}
-              {% if item.data.categories %}
-              <div class="media-topic-row">
-                {% for category in item.data.categories.slice(0, 4) %}
-                <span>{{ category }}</span>
-                {% endfor %}
-              </div>
-              {% endif %}
-              <div class="media-card-actions">
-                <a href="{{ media.itemUrl(item) | trim }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-3">Avaa lähde</a>
-                <a href="{{ item.url }}" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Lisätiedot</a>
-              </div>
-            </div>
-          </article>
+      {# Mediakortit ladataan async /data/media.json:sta ja renderoidaan
+         client-side. Aiemmin SSR-renderöity 72 korttia (~160 KB HTML).
+         JS-koodi alempana korvaa placeholder:in kokonaisella listalla. #}
+      <div class="media-card-grid" data-media-card-grid aria-busy="true">
+        {% for _ in range(6) %}
+        <article class="media-archive-card media-archive-card--skeleton" aria-hidden="true">
+          <span class="media-thumb media-thumb--empty"></span>
+          <div class="media-archive-card-body">
+            <div class="media-meta-row media-meta-row--small">&nbsp;</div>
+            <h3>&nbsp;</h3>
+            <p>&nbsp;</p>
+          </div>
+        </article>
         {% endfor %}
       </div>
+      <noscript>
+        <p class="text-muted small mt-3">
+          Käytössäsi ei ole JavaScriptiä. Selaa mediaosumia suoraan
+          <a href="/data/media.json">JSON-datana</a> tai etsi ne tarkemmilta yksittäissivuilta.
+        </p>
+      </noscript>
 
       <div class="media-pagination d-flex flex-wrap align-items-center justify-content-between gap-3 pt-4">
         <p class="media-pagination__info text-muted mb-0" data-media-page-info aria-live="polite"></p>
@@ -255,11 +242,15 @@ schemaType: CollectionPage
 
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  // /mediassa/-selaus: dataa ladataan async /data/media.json:sta ja
+  // renderoidaan client-side. Ennen tata SSR-renderoi kaikki 72 korttia
+  // (~160 KB HTML) jonka JS suodatti DOM:ssa. Nyt kortit tulevat JSON:sta,
+  // sama suodatuslogiikka.
+  document.addEventListener('DOMContentLoaded', async () => {
     const browser = document.querySelector('[data-media-browser]');
     if (!browser) return;
 
-    const items = Array.from(browser.querySelectorAll('[data-media-card]'));
+    const cardGrid = browser.querySelector('[data-media-card-grid]');
     const controls = Array.from(browser.querySelectorAll('[data-media-filter]'));
     const jumpControls = Array.from(document.querySelectorAll('[data-media-jump-filter]'));
     const pagination = browser.querySelector('[data-media-page-controls]');
@@ -271,6 +262,7 @@ schemaType: CollectionPage
     const getPageSize = () => mobilePageSizeMq.matches ? mobilePageSize : desktopPageSize;
     let activeFilter = 'all';
     let currentPage = 1;
+    let allItems = [];
 
     const topicAliases = {
       politiikka: ['politiikka', 'kuntapolitiikka', 'valtuusto', 'vaalit', 'päätöksenteko', 'paatoksenteko', 'kampusratkaisu', 'palveluverkko'],
@@ -279,19 +271,104 @@ schemaType: CollectionPage
       paikallinen: ['oulu', 'jääli', 'jaali', 'kiiminki', 'rantapohja', 'munoulu', 'kaupunginosa', 'paikallisuus', 'asukas']
     };
 
+    // Rakennetaan indexoinnit haku- ja suodatusnopeutta varten
+    function normalizeItem(item) {
+      const categories = item.categories || [];
+      const keywords = item.keywords || [];
+      const topicText = [
+        ...categories, ...keywords, item.title || '', item.description || ''
+      ].join(' ').toLowerCase();
+      return { ...item, _topicText: topicText };
+    }
+
+    async function loadData() {
+      try {
+        const res = await fetch('/data/media.json');
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+        return (Array.isArray(data.items) ? data.items : []).map(normalizeItem);
+      } catch (e) {
+        console.error('mediassa: fetch /data/media.json failed:', e);
+        return [];
+      }
+    }
+
+    const escHtml = (v) => String(v || '')
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#39;');
+
+    const _fiDateFormatter = new Intl.DateTimeFormat('fi-FI', {
+      day: 'numeric', month: 'long', year: 'numeric'
+    });
+    const fmtDate = (iso) => iso ? _fiDateFormatter.format(new Date(iso)) : '';
+
+    const MEDIA_TYPE_LABELS = {
+      article: 'Lehtijuttu', podcast: 'Podcast', video: 'Video',
+      radio: 'Radio', tv: 'TV', assignment: 'Asiantuntijatehtävä'
+    };
+    const MEDIA_ROLE_LABELS = {
+      about: 'Minusta tehty', guest: 'Vieraana',
+      interviewer: 'Haastattelijana', expertAssignment: 'Asiantuntijarooli'
+    };
+
+    function renderMediaThumb(item) {
+      if (!item.thumbnail) {
+        return '<span class="media-thumb media-thumb--empty"><i class="bi bi-newspaper" aria-hidden="true"></i></span>';
+      }
+      const isVideo = item.mediaType === 'video'
+        || (item.sourceUrl && (item.sourceUrl.includes('youtube.com') || item.sourceUrl.includes('youtu.be')));
+      const cls = 'media-thumb' + (isVideo ? ' video-preview video-preview--sm' : '');
+      return `<span class="${cls}"><img src="${escHtml(item.thumbnail)}" alt="${escHtml(item.title)}" loading="lazy" decoding="async"></span>`;
+    }
+
+    function renderCard(item) {
+      const externalUrl = item.sourceUrl || item.url;
+      const meta = [
+        `<span>${escHtml(MEDIA_TYPE_LABELS[item.mediaType] || item.mediaType || '')}</span>`,
+        `<span>${escHtml(MEDIA_ROLE_LABELS[item.mediaRole] || item.mediaRole || '')}</span>`,
+        item.mediaOutlet ? `<span>${escHtml(item.mediaOutlet)}</span>` : '',
+        item.date ? `<span>${escHtml(fmtDate(item.date))}</span>` : ''
+      ].filter(Boolean).join('');
+      const categories = (item.categories || []).slice(0, 4)
+        .map(c => `<span>${escHtml(c)}</span>`).join('');
+      const description = item.description
+        ? `<p>${escHtml(item.description)}</p>` : '';
+      return `
+        <article class="media-archive-card"
+          data-media-card
+          data-media-type="${escHtml(item.mediaType || '')}"
+          data-media-role="${escHtml(item.mediaRole || '')}">
+          <a href="${escHtml(externalUrl)}" target="_blank" rel="noopener noreferrer" class="media-archive-thumb-link">
+            ${renderMediaThumb(item)}
+          </a>
+          <div class="media-archive-card-body">
+            <div class="media-meta-row media-meta-row--small">${meta}</div>
+            <h3><a href="${escHtml(externalUrl)}" target="_blank" rel="noopener noreferrer">${escHtml(item.title)}</a></h3>
+            ${description}
+            ${categories ? `<div class="media-topic-row">${categories}</div>` : ''}
+            <div class="media-card-actions">
+              <a href="${escHtml(externalUrl)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-3">Avaa lähde</a>
+              <a href="${escHtml(item.url)}" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Lisätiedot</a>
+            </div>
+          </div>
+        </article>`;
+    }
+
     const matchesFilter = (item) => {
       if (activeFilter === 'all') return true;
       const [kind, value] = activeFilter.split(':');
-      if (kind === 'type') return item.dataset.mediaType === value;
-      if (kind === 'role') return item.dataset.mediaRole === value;
+      if (kind === 'type') return item.mediaType === value;
+      if (kind === 'role') return item.mediaRole === value;
       if (kind === 'topic') {
-        const haystack = item.dataset.mediaTopics || '';
-        return (topicAliases[value] || [value]).some((needle) => haystack.includes(needle));
+        return (topicAliases[value] || [value]).some((needle) => item._topicText.includes(needle));
       }
       return true;
     };
 
-    const filteredItems = () => items.filter(matchesFilter);
+    const filteredItems = () => allItems.filter(matchesFilter);
 
     const updateControls = () => {
       controls.forEach((control) => {
@@ -327,11 +404,12 @@ schemaType: CollectionPage
       currentPage = Math.min(currentPage, pageCount);
       const start = (currentPage - 1) * pageSize;
       const end = start + pageSize;
-      const pageItems = new Set(visibleItems.slice(start, end));
+      const pageItems = visibleItems.slice(start, end);
 
-      items.forEach((item) => {
-        item.hidden = !pageItems.has(item);
-      });
+      if (cardGrid) {
+        cardGrid.innerHTML = pageItems.map(renderCard).join('');
+        cardGrid.removeAttribute('aria-busy');
+      }
 
       const shownStart = visibleItems.length ? start + 1 : 0;
       const shownEnd = Math.min(end, visibleItems.length);
@@ -400,6 +478,8 @@ schemaType: CollectionPage
       });
     }
 
+    // Aloitus: hae data ja renderoi
+    allItems = await loadData();
     setFilter(filterFromUrl(), window.location.search.length > 0);
   });
 </script>
