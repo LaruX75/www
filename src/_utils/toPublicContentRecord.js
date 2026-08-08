@@ -22,6 +22,7 @@
  */
 
 const resolveContentMeta = require("./resolveContentMeta");
+const getTaxonomyType = require("./getTaxonomyType");
 
 function toArray(value) {
   if (Array.isArray(value)) return value.filter(Boolean);
@@ -136,7 +137,17 @@ function toPublicContentRecord(item) {
     // asettaa taman eleventyComputed:issa src/_data/teachingUnits.js:n
     // avulla. Julkinen luokittelu koska organisaatioyksikko on aidosti
     // relevantti metadata (Jari opettaa sekä OK:ssa etta LET:issa).
-    teachingUnit: pickString(data.teachingUnit)
+    teachingUnit: pickString(data.teachingUnit),
+
+    // Taxonomy-tyyppi (kts. src/_utils/getTaxonomyType.js): key kuten
+    // "council-speeches", "opinions", "media", "blog". Kaytetaan
+    // taxonomy-arkistosivujen (/kategoriat/, /avainsanat/) client-side
+    // -renderoinnissa jotta jokainen item nayttaa oikean
+    // taxonomyTypeLabel:in ("Valtuustopuheenvuorot", "Mielipiteet" yms.).
+    ...(function () {
+      const tt = getTaxonomyType(item);
+      return tt ? { taxonomyTypeKey: tt.key, taxonomyTypeLabel: tt.label } : {};
+    })()
   });
 }
 
