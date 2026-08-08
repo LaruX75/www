@@ -120,8 +120,12 @@
             {% endif %}
           </div>
 
-          <div class="taxonomy-list" data-taxonomy-list>
-            {% for item in category.items %}
+          {# Progressive enhancement: SSR renderoi 15 uusinta itemia.
+             JS (alempana) fetch:aa /data/content.json:in ja korvaa
+             DOM-listan KAIKILLA kategorian sisallolla ennen kuin
+             suodatus/mobiili-limit aktivoituu. #}
+          <div class="taxonomy-list" data-taxonomy-list data-category-slug="{{ category.slug }}" data-category-name="{{ category.name | escape }}">
+            {% for item in (category.items | take(15)) %}
               {% set itemText = item.data.description %}
               {% if item.taxonomyTypeKey == "scientific-publications" and item.data.citation %}
                 {% set itemText = item.data.citation %}
@@ -183,9 +187,34 @@
 </section>
 
 <script>
-  (() => {
+  /* Progressive enhancement — Vaihe D2 (2026-08-08)
+     SSR renderoi 15 uusinta itemia. JS fetch:aa /data/content.json:in ja
+     korvaa listan KAIKILLA taman kategorian sisallolla ennen suodatuksen
+     aktivointia. Ilman JS:aa: 15 uusinta nakyvat + kaikki linkit toimivat. */
+  (async () => {
     const root = document.currentScript.previousElementSibling;
     if (!root) return;
+
+    const list = root.querySelector('[data-taxonomy-list]');
+    const categoryName = list?.dataset.categoryName || '';
+
+    // Hydrate: fetch /data/content.json ja renderoi KAIKKI kategorian itemit
+    if (list && categoryName) {
+      try {
+        const res = await fetch('/data/content.json');
+        if (res.ok) {
+          const data = await res.json();
+          const allItems = (data.items || [])
+            .filter(i => (i.categories || []).includes(categoryName))
+            .sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+          if (allItems.length > 0) {
+            list.innerHTML = allItems.map(renderTaxonomyItem).join('');
+          }
+        }
+      } catch (e) {
+        console.error('Category hydration failed:', e);
+      }
+    }
 
     const buttons = root.querySelectorAll('[data-taxonomy-filter]');
     const items = Array.from(root.querySelectorAll('[data-taxonomy-item]'));
@@ -195,6 +224,39 @@
     const mobileItemLimit = 8;
     let currentFilter = 'all';
     let listExpanded = false;
+
+    function _escHtml(v) {
+      return String(v == null ? '' : v)
+        .replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;').replaceAll("'", '&#39;');
+    }
+    const _dateFmt = new Intl.DateTimeFormat('fi-FI', { day: 'numeric', month: 'long', year: 'numeric' });
+    function _slugify(s) {
+      return String(s || '').toLowerCase()
+        .normalize('NFD').replace(/[̀-ͯ]/g, '')
+        .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    }
+    function renderTaxonomyItem(item) {
+      const dateStr = item.date ? _dateFmt.format(new Date(item.date)) : '';
+      const typeKey = item.taxonomyTypeKey || '';
+      const typeLabel = item.taxonomyTypeLabel || '';
+      const desc = item.description || '';
+      const keywords = (item.keywords || []).slice(0, 3);
+      const kwHtml = keywords.length
+        ? `<div class="taxonomy-term-row" aria-label="Avainsanat">${keywords.map(k => `<a href="/avainsanat/${_slugify(k)}/">${_escHtml(k)}</a>`).join('')}</div>`
+        : '';
+      return `<article class="taxonomy-list-item" data-taxonomy-item data-taxonomy-type="${_escHtml(typeKey)}">
+  <div class="taxonomy-list-date">
+    <span>${_escHtml(dateStr)}</span>
+    <strong>${_escHtml(typeLabel)}</strong>
+  </div>
+  <div class="taxonomy-list-body">
+    <h3><a href="${_escHtml(item.url)}">${_escHtml(item.title)}</a></h3>
+    ${desc ? `<p>${_escHtml(desc)}</p>` : ''}
+    ${kwHtml}
+  </div>
+</article>`;
+    }
 
     function applyFilter(type) {
       currentFilter = type;
