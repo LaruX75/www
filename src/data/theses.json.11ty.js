@@ -9,8 +9,14 @@
  * Serializer on kuitenkin muotoilullisesti yhdenmukainen: sama version/
  * generatedAt/count/items-kuori kuin muissa endpointeissa.
  *
- * Sisallyttaa: theses.gradut (masterThesis) + theses.kandit (bachelorThesis).
- * Ei sisallyta theses.reviewerOnly:ta (pelkat tarkastukset, ei ohjatut).
+ * Sisallyttaa: theses.gradut (masterThesis) + theses.kandit (bachelorThesis)
+ * + theses.reviewerOnly (tarkastukset, PR-C1:sta alkaen).
+ *
+ * Tutkimuslinja-metatiedot (researchLine, researchThemes, researchAudience,
+ * researchPriority) lisatty PR-C1:ssa 2026-08-08 valmistelemaan
+ * /opinnaytteet/ + /en/theses/ progressive enhancement -migraatiota
+ * (Vaihe C). Ne tulevat src/_data/theses.js:n withCitation:sta joka
+ * lookuppaa CURATED_THESIS_META:sta.
  */
 
 const { JSON_SCHEMA_VERSION } = require("./_shared");
@@ -38,7 +44,7 @@ function omitEmpty(obj) {
   return out;
 }
 
-function toThesisRecord(t, lang) {
+function toThesisRecord(t, lang, source) {
   const link = pickString(t?.link);
   const title = pickString(t?.title);
   if (!link || !title) return null;
@@ -47,6 +53,8 @@ function toThesisRecord(t, lang) {
   const contentTypeLabel = t?.type === "masterThesis"
     ? (lang === "en" ? "Master's thesis" : "Pro gradu")
     : (lang === "en" ? "Bachelor's thesis" : "Kandidaatintutkielma");
+
+  const priority = Number.isFinite(t?.researchPriority) ? t.researchPriority : null;
 
   return omitEmpty({
     id: link,
@@ -60,7 +68,21 @@ function toThesisRecord(t, lang) {
     section: "publications",
     thesisType: pickString(t?.type),
     authors: normalizeArray(t?.authors),
-    keywords: normalizeArray(t?.keywords)
+    keywords: normalizeArray(t?.keywords),
+
+    // Rooli: "advised" (gradu tai kandi jonka Jari on ohjannut) tai
+    // "reviewed" (Jari on tarkastaja mutta ei ohjaaja)
+    thesisRole: pickString(source),
+
+    // Tutkimuslinja-metatiedot CURATED_THESIS_META:sta
+    // (kts. src/curated/research-thesis-meta.json). Omitempty poistaa
+    // nollat/tyhjat, joten kaikki opinnaytteet eivat saa naita kenttia.
+    researchLine: pickString(t?.researchLine),
+    researchThemes: normalizeArray(t?.researchThemes),
+    researchAudience: normalizeArray(t?.researchAudience),
+    researchPriority: priority,
+    researchSummary: pickString(t?.researchSummary),
+    citationApa: pickString(t?.citationApa)
   });
 }
 
@@ -75,16 +97,24 @@ module.exports = class {
 
   render(data) {
     const theses = data.theses || {};
-    const items = [
-      ...(theses.gradut || []),
-      ...(theses.kandit || [])
-    ];
+    // PR-C1: sisallyta myös reviewerOnly (tarkastajana toimineet). Merkataan
+    // thesisRole:"advised" gradut+kandit, "reviewed" tarkastukset — /opinnaytteet/
+    // ja /en/theses/ osaavat suodattaa naiden mukaan.
+    const advisedItems = [...(theses.gradut || []), ...(theses.kandit || [])];
+    const reviewedItems = [...(theses.reviewerOnly || [])];
 
     const lang = "fi";
     const seen = new Set();
     const records = [];
-    for (const t of items) {
-      const record = toThesisRecord(t, lang);
+    for (const t of advisedItems) {
+      const record = toThesisRecord(t, lang, "advised");
+      if (!record) continue;
+      if (seen.has(record.url)) continue;
+      seen.add(record.url);
+      records.push(record);
+    }
+    for (const t of reviewedItems) {
+      const record = toThesisRecord(t, lang, "reviewed");
       if (!record) continue;
       if (seen.has(record.url)) continue;
       seen.add(record.url);
