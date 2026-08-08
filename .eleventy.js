@@ -352,6 +352,11 @@ module.exports = async function (eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy("src/css");
   eleventyConfig.addPassthroughCopy("src/js");
+  // Isomorfinen contentPresets.js: sama tiedosto jonka eleventy.filters.js
+  // requireaa Node-puolella. Kopioidaan selaimen kaytettavaksi.
+  eleventyConfig.addPassthroughCopy({
+    "src/_utils/contentPresets.js": "js/content-presets.js"
+  });
   eleventyConfig.addPassthroughCopy("src/img");
   eleventyConfig.addPassthroughCopy("src/images");
   eleventyConfig.addPassthroughCopy("src/assets");
