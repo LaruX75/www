@@ -177,7 +177,7 @@ schemaMentions:
         {% if theses.gradut.length %}
           {% set thesisItems = theses.gradut %}
           {% set showType = false %}
-          {% set ssrLimit = 15 %}
+          {% set ssrLimit = 5 %}
           {% include "thesis-table.njk" %}
           {% set ssrLimit = null %}
         {% else %}
@@ -215,7 +215,7 @@ schemaMentions:
         {% if theses.kandit.length %}
           {% set thesisItems = theses.kandit %}
           {% set showType = false %}
-          {% set ssrLimit = 15 %}
+          {% set ssrLimit = 5 %}
           {% include "thesis-table.njk" %}
           {% set ssrLimit = null %}
         {% else %}
@@ -261,7 +261,7 @@ schemaMentions:
       <div id="reviewertabl">
         {% set thesisItems = theses.reviewerOnly %}
         {% set showType = true %}
-        {% set ssrLimit = 15 %}
+        {% set ssrLimit = 5 %}
         {% include "thesis-table.njk" %}
         {% set ssrLimit = null %}
       </div>
