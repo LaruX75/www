@@ -109,6 +109,7 @@ const contentSchema = {
       "assignment",
       "article",
       "podcast",
+      "pressRelease",
       "radio",
       "tv",
       "video"

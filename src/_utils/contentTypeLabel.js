@@ -36,6 +36,7 @@ function contentTypeLabel(data = {}, tags = [], lang = "fi") {
   if (data.mediaType === "podcast") return lang === "en" ? "Podcast" : "Podcast";
   if (data.mediaType === "radio") return lang === "en" ? "Radio" : "Radio";
   if (data.mediaType === "article") return lang === "en" ? "Media article" : "Lehtijuttu";
+  if (data.mediaType === "pressRelease") return lang === "en" ? "Press release" : "Tiedote";
   if (data.mediaType === "tv") return lang === "en" ? "TV" : "TV";
   if (type === "esitys" || tagSet.has("presentations")) return lang === "en" ? "Presentation" : "Esitys";
   if (type === "lausunto") return lang === "en" ? "Expert statement" : "Asiantuntijalausunto";

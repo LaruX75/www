@@ -3,7 +3,7 @@ title: "Tekoäly rantautuu kouluihin — oululaiset opettajat pohtivat Digikarne
 description: "MuOulu-artikkeli 13.10.2023. Jari Laru asiantuntijana Oulun Digikarnevaaleilla: tekoälyn haasteet informaatio- ja medialukutaidolle sekä Generation AI -hankkeen pedagogiset ratkaisut."
 date: 2023-10-13
 mediaRole: about
-mediaType: article
+mediaType: pressRelease
 mediaOutlet: "MuOulu"
 mediaOrder: 133
 sourceUrl: "https://www.munoulu.fi/uutiset/tekoaly-rantautuu-kouluihin-oululaiset-opettajat-pohtivat-digikarnevaaleilla-opetuksen-tulevaisuutta/"

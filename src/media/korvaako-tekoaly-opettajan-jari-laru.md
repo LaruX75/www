@@ -3,7 +3,7 @@ title: "Korvaako tekoäly opettajan, Jari Laru?"
 description: "DigiErkon julkaisema haastattelu opetusteknologiasta, tekoälystä, oppimisesta ja opettajan työn muutoksesta."
 date: 2024-10-14
 mediaRole: about
-mediaType: article
+mediaType: pressRelease
 mediaOutlet: "Valtakunnallinen DigiErko-verkosto"
 mediaOrder: 96
 sourceUrl: "https://digierko.fi/2024/10/14/korvaako-tekoaly-opettajan-jari-laru/"

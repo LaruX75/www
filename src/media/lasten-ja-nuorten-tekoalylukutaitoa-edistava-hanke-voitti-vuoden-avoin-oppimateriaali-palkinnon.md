@@ -3,7 +3,7 @@ title: "Lasten ja nuorten tekoälylukutaitoa edistävä hanke voitti Vuoden avoi
 description: "Oulun yliopiston uutinen Generation AI -hankkeen vuoden 2025 Vuoden avoin oppimateriaali -palkinnosta. Jari Laru mainitaan hankkeen Oulun yliopiston tiimissä."
 date: 2025-05-27
 mediaRole: about
-mediaType: article
+mediaType: pressRelease
 mediaOutlet: "Oulun yliopisto"
 mediaOrder: 92
 sourceUrl: "https://www.oulu.fi/fi/uutiset/lasten-ja-nuorten-tekoalylukutaitoa-edistava-hanke-voitti-vuoden-avoin-oppimateriaali-palkinnon"

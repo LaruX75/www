@@ -3,7 +3,7 @@ title: "Paikalliset poliitikot vakuuttuivat oululaisen musiikkikoulutuksen tasos
 description: "MuOulu-artikkeli 14.2.2024. Jari Laru oli yksi viidestä oululaispoliitikosta, jotka vierailivat Oulun konservatoriossa Luovuus politiikkaan -kampanjan puitteissa."
 date: 2024-02-14
 mediaRole: about
-mediaType: article
+mediaType: pressRelease
 mediaOutlet: "MuOulu"
 mediaOrder: 135
 sourceUrl: "https://www.munoulu.fi/kulttuuri/paikalliset-poliitikot-vakuuttuivat-oululaisen-musiikkikoulutuksen-tasosta-ja-tarkeydesta/"

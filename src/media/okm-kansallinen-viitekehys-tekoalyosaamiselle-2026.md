@@ -4,7 +4,7 @@ description: "Opetus- ja kulttuuriministeriö julkaisi kansallisen viitekehyksen
 date: 2026-05-11
 contentType: expertAssignment
 mediaRole: expertAssignment
-mediaType: article
+mediaType: pressRelease
 expertRoleType: frameworkAuthor
 roleTitle: "Viitekehyksen laatijaryhmän jäsen"
 mediaOutlet: "Opetus- ja kulttuuriministeriö"
