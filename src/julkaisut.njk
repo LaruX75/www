@@ -262,10 +262,12 @@ schemaType: CollectionPage
 
       {# Macros for reuse #}
       {% macro drawTable(groupCode, title, allItems, tableId, subtypes) %}
-      {# Progressive enhancement: SSR renderoi 15 uusinta per OKM-luokka.
+      {# v4.3 PR-3 SSR-optimointi: 15 → 5 uusinta per OKM-luokka.
          JS (alempana) fetch:aa julkaisudatan ja korvaa tbody:jen sisallon
-         KAIKILLA julkaisuilla ennen suodatuksen aktivointia. #}
-      {% set items = allItems | take(15) %}
+         KAIKILLA julkaisuilla ennen suodatuksen aktivointia. Desktop-taulukko
+         + mobiili-lista renderoitiin aiemmin tuplasti; 5 riittaa
+         JS-OFF-kayttokelpoisuuteen ja pudottaa sivun painoa merkittavasti. #}
+      {% set items = allItems | take(5) %}
       {% if allItems.length %}
       <div class="card shadow-sm mb-5 section-card" id="card-{{ tableId }}">
         <div class="card-header bg-transparent py-3 publication-section-header">
