@@ -1,6 +1,7 @@
 ---
 title: "How Can Higher Education Institutions Facilitate Open Science and Citizen Science Practices?"
 description: "INOS-projektin asiantuntijahaastattelu, jossa Jari Larua haastatellaan siitä, miten korkeakoulut voivat edistää avoimen tieteen ja kansalaistieteen käytäntöjä. INOS on Erasmus+-rahoitteinen hanke, jossa Oulun yliopisto on mukana."
+lang: en
 mediaRole: about
 mediaType: video
 mediaOutlet: "INOS Project / YouTube"
