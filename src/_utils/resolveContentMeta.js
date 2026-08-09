@@ -54,6 +54,7 @@ const MEDIA_TYPE_TO_CONTENT_TYPE = {
   podcast: "mediaItem",
   radio: "mediaItem",
   article: "mediaItem",
+  pressRelease: "mediaItem",
   tv: "mediaItem",
   assignment: "expertAssignment"
 };

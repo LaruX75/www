@@ -3,7 +3,7 @@ title: "Vuotuiset Avoimen tieteen palkinnot 2020 jaettu"
 description: "TSV:n tiedote avoimen tieteen syyspäivien palkinnoista 7.12.2020. Jari Laru sai kansallisen avoimen tieteen palkinnon pitkästä historiasta avoimuuden puolestapuhujana ja avointen oppimateriaalien jakajana."
 date: 2020-12-07
 mediaRole: about
-mediaType: article
+mediaType: pressRelease
 mediaOutlet: "Avoin tiede"
 mediaOrder: 108
 sourceUrl: "https://avointiede.fi/fi/ajankohtaista/vuotuiset-avoimen-tieteen-palkinnot-2020-jaettu"
