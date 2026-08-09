@@ -645,7 +645,7 @@ const CONTENT_TYPE_GROUP_ORDER = [
   { key: "presentation", labelFi: "Esitykset", labelEn: "Presentations" },
   { key: "mediaItem", labelFi: "Mediassa", labelEn: "In the media",
     aliases: ["video", "expertAssignment"] },
-  { key: "thesis", labelFi: "Opinnaytetyot", labelEn: "Theses" },
+  { key: "thesis", labelFi: "Opinnäytetyöt", labelEn: "Theses" },
   { key: "article", labelFi: "Muut julkaisut", labelEn: "Other publications",
     aliases: ["scientificPublication"] }
 ];
