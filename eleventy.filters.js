@@ -52,7 +52,11 @@ function uniqueContentItems(collections) {
     ...(collections?.publications || []),
     ...(collections?.politics || []),
     ...(collections?.media || []),
-    ...(collections?.presentations || [])
+    ...(collections?.presentations || []),
+    // v4.3 PR-1: theses mukaan discovery-piiriin. Virtuaali-collection
+    // (src/_utils/toThesesCollectionItems.js, PR-0). Sallii opinnaytteiden
+    // osumat teemasivuilla + relatedContent-nostoissa.
+    ...(collections?.theses || [])
   ];
   const seen = new Set();
   return sources.filter((item) => {
@@ -567,8 +571,11 @@ function topicItemScore(item, topic = {}) {
   if (!item || !item.url || !item.data?.title) return 0;
   const inputPath = item.inputPath || "";
   const tagSet = new Set(toArray(item.data?.tags).map(normalizeTopicTerm));
+  // v4.3 PR-1: "theses" lisatty. Opinnaytteet ovat virtuaali-collection
+  // (inputPath /virtual/theses/) — tunnistus kaytannossa tagSet:in kautta
+  // (data.tags: ["theses"], asetettu toThesesCollectionItems:issa).
   const supportedByPath = /src\/(blog|publications|politics|media|presentations)\//.test(inputPath);
-  const supportedByTags = ["blog", "publications", "politics", "media", "presentations"].some((tag) => tagSet.has(tag));
+  const supportedByTags = ["blog", "publications", "politics", "media", "presentations", "theses"].some((tag) => tagSet.has(tag));
   const supportedByUrl = /^\/(blogi|kynasta|mediassa|esitykset|20\d{2})\//.test(item.url);
   if (!supportedByPath && !supportedByTags && !supportedByUrl) return 0;
 
