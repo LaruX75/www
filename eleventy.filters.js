@@ -631,6 +631,65 @@ function mapTopicItem(item, topic = {}) {
 
 const TOPIC_MIN_SCORE = 5;
 
+// v4.3 PR-2: sisaltotyyppikohtainen ryhmittely teemasivuille.
+// Ryhmien jarjestys ja labelit. Ryhmaan voi kuulua useita canonical
+// contentType-arvoja (aliases-taulukko). Ryhmatasolla FI-labelit
+// monikossa.
+const CONTENT_TYPE_GROUP_ORDER = [
+  { key: "blogPost", labelFi: "Blogikirjoitukset", labelEn: "Blog posts" },
+  { key: "opinion", labelFi: "Mielipidekirjoitukset", labelEn: "Opinion pieces" },
+  { key: "column", labelFi: "Kolumnit", labelEn: "Columns" },
+  { key: "statement", labelFi: "Lausunnot", labelEn: "Statements" },
+  { key: "speech", labelFi: "Puheenvuorot", labelEn: "Speeches" },
+  { key: "initiative", labelFi: "Aloitteet", labelEn: "Initiatives" },
+  { key: "presentation", labelFi: "Esitykset", labelEn: "Presentations" },
+  { key: "mediaItem", labelFi: "Mediassa", labelEn: "In the media",
+    aliases: ["video", "expertAssignment"] },
+  { key: "thesis", labelFi: "Opinnäytetyöt", labelEn: "Theses" },
+  { key: "article", labelFi: "Muut julkaisut", labelEn: "Other publications",
+    aliases: ["scientificPublication"] }
+];
+
+function resolveGroupKey(item) {
+  const data = item?.data || {};
+  const inputPath = item?.inputPath || "";
+  const lang = data.lang || "fi";
+  return resolveContentMeta(data, inputPath, lang).contentType || null;
+}
+
+function groupItemsByContentType(items, options = {}) {
+  const perGroupLimit = Number(options.perGroupLimit) || 5;
+  const lang = options.lang === "en" ? "en" : "fi";
+  const groups = new Map();
+
+  toArray(items).forEach((item) => {
+    const contentType = resolveGroupKey(item);
+    if (!contentType) return;
+    const groupDef = CONTENT_TYPE_GROUP_ORDER.find((g) =>
+      g.key === contentType || (g.aliases || []).includes(contentType)
+    );
+    if (!groupDef) return;
+    if (!groups.has(groupDef.key)) {
+      groups.set(groupDef.key, {
+        key: groupDef.key,
+        label: lang === "en" ? groupDef.labelEn : groupDef.labelFi,
+        items: []
+      });
+    }
+    groups.get(groupDef.key).items.push(item);
+  });
+
+  return CONTENT_TYPE_GROUP_ORDER
+    .map((g) => groups.get(g.key))
+    .filter((g) => g && g.items.length > 0)
+    .map((g) => ({
+      key: g.key,
+      label: g.label,
+      items: g.items.slice(0, perGroupLimit),
+      totalCount: g.items.length
+    }));
+}
+
 function topicItemsFromCollections(collections, topic = {}, limit = 12) {
   const maxItems = Number(limit) || 12;
   const minScore = Number(topic.minScore) || TOPIC_MIN_SCORE;
@@ -1026,6 +1085,14 @@ module.exports = function registerFilters(eleventyConfig) {
 
   eleventyConfig.addFilter("topicItems", function (collections, topic, limit = 12) {
     return topicItemsFromCollections(collections, topic, limit);
+  });
+
+  // v4.3 PR-2: ryhmittelee topicItems-tulokset sisaltotyypeittain
+  // (esim. Blogi / Mielipiteet / Esitykset / Opinnaytetyot / Mediassa).
+  // Kts. CONTENT_TYPE_GROUP_ORDER, ryhmatasolla monikkolabelit.
+  // Options: { perGroupLimit: 5, lang: "fi" | "en" }
+  eleventyConfig.addFilter("groupByContentType", function (items, options = {}) {
+    return groupItemsByContentType(items, options);
   });
 
   eleventyConfig.addFilter("curatedResearchForTopic", function (items, researchThemes, limit = 3) {
