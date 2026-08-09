@@ -3,6 +3,8 @@ const {
   normalizeKeywordList
 } = require("./src/_data/metadata-normalization");
 const loadResearchfiContent = require("./src/_data/researchfiContent");
+const loadTheses = require("./src/_data/theses");
+const toThesesCollectionItems = require("./src/_utils/toThesesCollectionItems");
 const {
   CONTEXT_ORDER,
   getContextMeta,
@@ -300,6 +302,17 @@ module.exports = function registerCollections(eleventyConfig) {
   eleventyConfig.addCollection("researchfiPublications", async function () {
     const items = await loadResearchfiContent();
     return loadResearchfiContent.toCollectionItems(items);
+  });
+
+  // v4.3 PR-0: theses-collection. Virtuaali-collection (item-objektit rakennettu
+  // src/_data/theses.js:n async-datasta). Sallii opinnaytteiden osallistumisen
+  // build-time discovery/scoring-logiikkaan (topicItemsFromCollections yms.)
+  // samassa uniqueContentItems-joukossa kuin blog/publications/politics/media/
+  // presentations. UI-migraatioita ei tehda tassa PR:ssa — /opinnaytteet/ ja
+  // /en/theses/ jatkavat src/_data/theses.js-async-datan kayttoa.
+  eleventyConfig.addCollection("theses", async function () {
+    const thesesData = await loadTheses();
+    return toThesesCollectionItems(thesesData);
   });
 
   eleventyConfig.addCollection("media", function (collectionApi) {
