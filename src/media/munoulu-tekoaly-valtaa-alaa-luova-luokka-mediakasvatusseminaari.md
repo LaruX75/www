@@ -3,7 +3,7 @@ title: "Tekoäly valtaa alaa – Luova luokka -mediakasvatusseminaari antaa työ
 description: "MuOulu-artikkeli 13.11.2023. Jari Laru kertoo Generation AI -hankkeesta Luova luokka -mediakasvatusseminaarissa Oulussa 15.11.2023."
 date: 2023-11-13
 mediaRole: about
-mediaType: pressRelease
+mediaType: article
 mediaOutlet: "MuOulu"
 mediaOrder: 136
 sourceUrl: "https://www.munoulu.fi/koulutus/tekoaly-valtaa-alaa-luova-luokka-mediakasvatusseminaari-antaa-tyokaluja-alan-ammattilaisille-oulussa/"

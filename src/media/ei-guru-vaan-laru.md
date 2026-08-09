@@ -3,7 +3,7 @@ title: "Ei guru, vaan Laru"
 description: "Avoin tiede -sivuston profiiliartikkeli kansallisen avoimen tieteen palkinnon voittaneesta Jari Larusta. Teknologiatuetun oppimisen yliopistonlehtori on edistänyt avointa oppimista jo pitkään."
 date: 2021-01-13
 mediaRole: about
-mediaType: pressRelease
+mediaType: article
 mediaOutlet: "Avoin tiede"
 mediaOrder: 109
 sourceUrl: "https://avointiede.fi/fi/ajankohtaista/ei-guru-vaan-laru"

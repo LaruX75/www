@@ -3,7 +3,7 @@ title: "Tutki, kokeile, erehdy, keksi!"
 description: "MuOulu-artikkeli 20.11.2020. Jari Laru kertoo Oulun yliopiston STEAM-sivuainekokonaisuudesta, joka jatkaa teknologiapainotteisen opettajankoulutuksen perinnettä 1990-luvulta."
 date: 2020-11-20
 mediaRole: about
-mediaType: pressRelease
+mediaType: article
 mediaOutlet: "MuOulu"
 mediaOrder: 134
 sourceUrl: "https://www.munoulu.fi/uutiset/tutki-kokeile-erehdy-keksi/"

@@ -3,7 +3,7 @@ title: "Yliopistopäivillä puhututti koulutuksen digitaalisuus ja tekoälyn uha
 description: "OAJ:n uutinen Yliopistopäivistä 2023. Jari Laru piti esitelmän tekoälyn uhista ja mahdollisuuksista opetustyön arjessa ja korosti datan ja tekoälyn lukutaidon tärkeyttä."
 date: 2023-11-20
 mediaRole: about
-mediaType: pressRelease
+mediaType: article
 mediaOutlet: "OAJ"
 mediaOrder: 92
 sourceUrl: "https://www.oaj.fi/ajankohtaista/uutiset-ja-tiedotteet/2023/yliopistopaivat-2023/"
