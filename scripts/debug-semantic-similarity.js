@@ -130,12 +130,29 @@ function ollamaEmbed(model, text) {
 }
 
 // -----------------------------------------------------------------------------
-// Embedding-input: title + "\n" + description
+// Embedding-input
+//   - Muut sisältötyypit: title + description (roadmap §4, "puhdas" testi)
+//   - Thesis: title + description + subjects + keywords (v4.4 PR-B)
+//     Perustelu: 42/169 opinnäytettä on ilman abstract:ia (tekijä
+//     täysin rajoittanut + PDF vain login-taakse), joten subjects+keywords
+//     on ainoa saatavilla oleva pidempi signaali. Muille 128 abstract:ille
+//     rikkaampi input voi silti auttaa cross-content-mätsäystä.
 // -----------------------------------------------------------------------------
 
 function embeddingInput(item) {
   const title = String(item.title || "").trim();
   const desc = String(item.description || "").trim();
+
+  if (item.contentType === "thesis") {
+    const parts = [title];
+    if (desc) parts.push(desc);
+    const subjects = (item.subjects || []).map((s) => String(s).trim()).filter(Boolean);
+    const keywords = (item.keywords || []).map((k) => String(k).trim()).filter(Boolean);
+    if (subjects.length) parts.push("Oppiaine: " + subjects.join(", "));
+    if (keywords.length) parts.push("Avainsanat: " + keywords.join(", "));
+    return parts.join("\n");
+  }
+
   return desc ? `${title}\n${desc}` : title;
 }
 
