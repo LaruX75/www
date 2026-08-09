@@ -67,6 +67,9 @@ test.describe('Navigation and Focus Audits', () => {
             });
         });
         await installPagefindStub(page);
+        // #searchToggleBtn on d-flex d-xl-none (nakyy vain <1200px). Desktopilla
+        // haku toimii inline-formin kautta. Testataan mobiili-modaalia mobile-viewportissa.
+        await page.setViewportSize({ width: 800, height: 800 });
         await gotoAndAssertSite(page, '/');
 
         const trigger = page.locator('#searchToggleBtn');
@@ -134,6 +137,8 @@ test.describe('Navigation and Focus Audits', () => {
     });
 
     test('Search dialog returns Pagefind results for a known Finnish term', async ({ page }) => {
+        // #searchToggleBtn on d-flex d-xl-none — nakyy vain mobile/tablet-viewportissa.
+        await page.setViewportSize({ width: 800, height: 800 });
         await gotoAndAssertSite(page, '/');
 
         await page.locator('#searchToggleBtn').click();
