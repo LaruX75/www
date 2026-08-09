@@ -42,7 +42,16 @@ const ROOT = path.resolve(__dirname, "..");
 const argModel = (process.argv.find((a) => a.startsWith("--model=")) || "").split("=")[1];
 const MODEL = argModel || "bge-m3";
 const DRY_RUN = process.argv.includes("--dry-run");
-const CACHE_FILE = path.join(ROOT, ".cache", "api-fallback", `embeddings-${MODEL}-v1.json`);
+
+// Cache-formaatti (Float32 binary + JSON metadata, käyttäjän hyväksyntä 2026-08-10):
+//   <base>.meta.json → header + per-item metadata + offset
+//   <base>.f32       → Float32 binary, itemien vektorit peräkkäin, dimensions = 1024
+const CACHE_BASE = path.join(ROOT, ".cache", "api-fallback", `embeddings-${MODEL}-v1`);
+const CACHE_META = `${CACHE_BASE}.meta.json`;
+const CACHE_F32 = `${CACHE_BASE}.f32`;
+// Legacy: aiempi yhdistetty JSON-cache (v1 alkuperäinen, ~19 MB).
+// Poistetaan jos olemassa, jotta uusi Float32-cache korvaa sen.
+const LEGACY_JSON = `${CACHE_BASE}.json`;
 
 // -----------------------------------------------------------------------------
 // Load candidate pool
@@ -121,7 +130,7 @@ function loadMarkdownBodyMap() {
 
       // Eksplisiittinen permalink (esim. politics)
       const permalinkMatch = frontmatter.match(/^permalink:\s*['"]?([^'"\n]+)/m);
-      const dateMatch = frontmatter.match(/^date:\s*(\d{4})-(\d{2})-(\d{2})/m);
+      const dateMatch = frontmatter.match(/^date:\s*['"]?(\d{4})-(\d{2})-(\d{2})/m);
       const slug = fn.replace(/\.md$/, "");
 
       let url = null;
@@ -180,35 +189,122 @@ function ollamaEmbed(text) {
 }
 
 // -----------------------------------------------------------------------------
-// Load existing cache (yhdenmukainen _apiCache.js:n kanssa)
+// Cache: Float32 binary + JSON metadata
 // -----------------------------------------------------------------------------
+//
+// Rakenne:
+//   .meta.json:
+//     {
+//       model, dimensions, strategyVersion, truncationVersion, maxChars,
+//       savedAt, totalItems, inputStats,
+//       items: [{ url, contentType, inputHash, inputSources, inputChars, inputTruncated, offset }]
+//     }
+//   .f32:
+//     Float32 binary, items.length × dimensions × 4 tavua peräkkäin.
+//     items[i].offset = i (redundantti, mutta helppo lukea).
 
-function loadCache() {
-  if (!fs.existsSync(CACHE_FILE)) return null;
+/**
+ * writeF32Cache — kirjoita metadata + binary.
+ * items on Map<url, { contentType, inputHash, inputSources, inputChars, inputTruncated, vector }>.
+ */
+function writeF32Cache({ model, dimensions, strategyVersion, truncationVersion, maxChars, inputStats, items }) {
+  fs.mkdirSync(path.dirname(CACHE_META), { recursive: true });
+
+  const urls = Array.from(items.keys()).sort(); // deterministinen järjestys
+  const buf = Buffer.alloc(urls.length * dimensions * 4);
+  const metaItems = urls.map((url, i) => {
+    const item = items.get(url);
+    for (let j = 0; j < dimensions; j++) {
+      buf.writeFloatLE(item.vector[j], (i * dimensions + j) * 4);
+    }
+    return {
+      url,
+      contentType: item.contentType,
+      inputHash: item.inputHash,
+      inputSources: item.inputSources,
+      inputChars: item.inputChars,
+      inputTruncated: item.inputTruncated,
+      offset: i
+    };
+  });
+
+  const meta = {
+    model,
+    dimensions,
+    strategyVersion,
+    truncationVersion,
+    maxChars,
+    savedAt: new Date().toISOString(),
+    totalItems: urls.length,
+    inputStats,
+    items: metaItems
+  };
+
+  fs.writeFileSync(CACHE_META, JSON.stringify(meta, null, 2), "utf8");
+  fs.writeFileSync(CACHE_F32, buf);
+}
+
+/**
+ * readF32Cache — lue metadata + binary. Palauttaa null jos cache ei löydy.
+ * Header-tarkistus (model, dimensions, strategyVersion, maxChars) tehdään
+ * kutsujassa (main).
+ */
+function readF32Cache() {
+  if (!fs.existsSync(CACHE_META) || !fs.existsSync(CACHE_F32)) return null;
   try {
-    const raw = fs.readFileSync(CACHE_FILE, "utf8");
-    const parsed = JSON.parse(raw);
-    if (!parsed || !parsed.data) return null;
-    return parsed.data;
+    const meta = JSON.parse(fs.readFileSync(CACHE_META, "utf8"));
+    const buf = fs.readFileSync(CACHE_F32);
+    const dimensions = meta.dimensions;
+    // Rakennetaan Map<url, { ..., vector: Float32Array }>
+    const items = new Map();
+    (meta.items || []).forEach((it) => {
+      const start = it.offset * dimensions * 4;
+      const vec = new Float32Array(dimensions);
+      for (let j = 0; j < dimensions; j++) {
+        vec[j] = buf.readFloatLE(start + j * 4);
+      }
+      items.set(it.url, {
+        contentType: it.contentType,
+        inputHash: it.inputHash,
+        inputSources: it.inputSources,
+        inputChars: it.inputChars,
+        inputTruncated: it.inputTruncated,
+        vector: vec
+      });
+    });
+    return { meta, items };
   } catch (e) {
     console.warn(`[build-embeddings] Cache-lukuvirhe: ${e.message}. Aloitetaan tyhjältä.`);
     return null;
   }
 }
 
-function saveCache(data) {
-  fs.mkdirSync(path.dirname(CACHE_FILE), { recursive: true });
-  const payload = { savedAt: new Date().toISOString(), data };
-  fs.writeFileSync(CACHE_FILE, JSON.stringify(payload, null, 2), "utf8");
+/**
+ * Poista legacy 19 MB JSON-cache jos on olemassa.
+ * Yksi kertaluonteinen migraatio.
+ */
+function removeLegacyCache() {
+  if (fs.existsSync(LEGACY_JSON)) {
+    fs.unlinkSync(LEGACY_JSON);
+    console.log(`  ⚠ poistettu legacy: ${path.relative(ROOT, LEGACY_JSON)}`);
+  }
 }
 
 // -----------------------------------------------------------------------------
 // Main
 // -----------------------------------------------------------------------------
 
+// Truncation-strategian versio. Nostetaan jos truncation-logiikka muuttuu
+// tavalla joka vaikuttaa jo laskettuihin embeddingeihin.
+const TRUNCATION_VERSION = "head-v1";
+const MAX_CHARS = 6000;
+const DIMENSIONS = 1024; // BGE-M3
+
 (async () => {
   console.log(`[build-embeddings] malli=${MODEL} strategy-version=${INPUT_STRATEGY_VERSION}${DRY_RUN ? " (DRY-RUN)" : ""}`);
-  console.log(`  cache-tiedosto: ${path.relative(ROOT, CACHE_FILE)}`);
+  console.log(`  cache: ${path.relative(ROOT, CACHE_META)} + ${path.relative(ROOT, CACHE_F32)}`);
+
+  removeLegacyCache();
 
   const richSources = {
     transcriptByUrl: loadSlideshareTranscriptMap(),
@@ -217,16 +313,28 @@ function saveCache(data) {
   console.log(`  rich sources: ${richSources.transcriptByUrl.size} transcript, ${richSources.markdownBodyByUrl.size} markdown-body`);
   console.log(`  candidate pool: ${pool.length} itemiä (${content.items.length} content + ${theses.items.length} theses)`);
 
-  const existing = loadCache() || { model: MODEL, strategyVersion: INPUT_STRATEGY_VERSION, embeddings: {} };
-
-  // Malli-vaihto → aloitetaan tyhjältä (uusi cache-tiedosto joka tapauksessa)
-  if (existing.model && existing.model !== MODEL) {
-    console.log(`  ⚠ malli vaihtui (${existing.model} → ${MODEL}), aloitetaan tyhjältä`);
-    existing.embeddings = {};
-    existing.model = MODEL;
+  // Lue nykyinen cache. Header-tarkistus invalidoi koko cachen jos malli,
+  // strategyVersion, truncationVersion tai maxChars eivät täsmää.
+  let existingItems = new Map();
+  const existing = readF32Cache();
+  if (existing) {
+    const h = existing.meta;
+    const invalidReason =
+      h.model !== MODEL ? `model (${h.model} → ${MODEL})`
+      : h.strategyVersion !== INPUT_STRATEGY_VERSION ? `strategyVersion (${h.strategyVersion} → ${INPUT_STRATEGY_VERSION})`
+      : h.truncationVersion !== TRUNCATION_VERSION ? `truncationVersion (${h.truncationVersion} → ${TRUNCATION_VERSION})`
+      : h.maxChars !== MAX_CHARS ? `maxChars (${h.maxChars} → ${MAX_CHARS})`
+      : h.dimensions !== DIMENSIONS ? `dimensions (${h.dimensions} → ${DIMENSIONS})`
+      : null;
+    if (invalidReason) {
+      console.log(`  ⚠ header-invalidation: ${invalidReason}, aloitetaan tyhjältä`);
+    } else {
+      existingItems = existing.items;
+      console.log(`  loaded: ${existingItems.size} embedding:iä cache:sta`);
+    }
   }
 
-  const cacheEmbeddings = { ...existing.embeddings };
+  const items = new Map(); // url → { contentType, inputHash, inputSources, inputChars, inputTruncated, vector }
   const stats = { hits: 0, computed: 0, skipped: 0, failed: 0, sourceCounts: {} };
   const t0 = Date.now();
 
@@ -234,20 +342,29 @@ function saveCache(data) {
     const item = pool[i];
     if (!item.url) { stats.skipped++; continue; }
 
-    const input = buildEmbeddingInput(item, richSources);
+    const input = buildEmbeddingInput(item, richSources, { maxChars: MAX_CHARS });
     if (!input.text || input.text.length < 20) {
       stats.skipped++;
       continue;
     }
 
-    // Track source-jakauma
+    // Track source-jakauma (viimeinen source per item = rikkain saatavilla oleva)
     const sourceKey = input.sources.slice(-1)[0] || "none";
     stats.sourceCounts[sourceKey] = (stats.sourceCounts[sourceKey] || 0) + 1;
 
     const fp = fingerprint(input);
-    const cached = cacheEmbeddings[item.url];
+    const cached = existingItems.get(item.url);
 
-    if (cached && cached.inputHash === fp && cached.model === MODEL) {
+    if (cached && cached.inputHash === fp) {
+      // Cache hit — käytetään olemassa oleva vektori.
+      items.set(item.url, {
+        contentType: input.contentType,
+        inputHash: fp,
+        inputSources: input.sources,
+        inputChars: input.chars,
+        inputTruncated: input.truncated,
+        vector: cached.vector
+      });
       stats.hits++;
       continue;
     }
@@ -259,17 +376,14 @@ function saveCache(data) {
 
     try {
       const vector = await ollamaEmbed(input.text);
-      cacheEmbeddings[item.url] = {
-        url: item.url,
+      items.set(item.url, {
         contentType: input.contentType,
-        model: MODEL,
-        strategyVersion: input.version,
         inputHash: fp,
         inputSources: input.sources,
         inputChars: input.chars,
         inputTruncated: input.truncated,
         vector
-      };
+      });
       stats.computed++;
     } catch (e) {
       console.warn(`  ✗ ${item.url}: ${e.message}`);
@@ -282,35 +396,32 @@ function saveCache(data) {
     }
   }
 
-  // Poista cachesta itemit joita ei enää ole poolissa (obsolete cleanup)
-  const poolUrls = new Set(pool.map((i) => i.url));
-  let removed = 0;
-  Object.keys(cacheEmbeddings).forEach((url) => {
-    if (!poolUrls.has(url)) { delete cacheEmbeddings[url]; removed++; }
-  });
-  if (removed) console.log(`  cleanup: poistettu ${removed} vanhentunutta embedding:iä cachesta`);
-
   console.log("\n[build-embeddings] valmis:");
   console.log(`  cache hits:  ${stats.hits}`);
   console.log(`  computed:    ${stats.computed}`);
   console.log(`  skipped:     ${stats.skipped}`);
   console.log(`  failed:      ${stats.failed}`);
-  console.log(`  yhteensä:    ${Object.keys(cacheEmbeddings).length} embedding:iä`);
+  console.log(`  yhteensä:    ${items.size} embedding:iä`);
   console.log(`  aika:        ${((Date.now() - t0) / 1000).toFixed(1)}s`);
   console.log(`  input source -jakauma (viimeinen source per item):`);
   Object.entries(stats.sourceCounts).sort((a, b) => b[1] - a[1]).forEach(([s, c]) => console.log(`    ${s.padEnd(22)} ${c}`));
 
   if (!DRY_RUN) {
-    saveCache({
+    writeF32Cache({
       model: MODEL,
+      dimensions: DIMENSIONS,
       strategyVersion: INPUT_STRATEGY_VERSION,
-      generatedAt: new Date().toISOString(),
-      totalItems: Object.keys(cacheEmbeddings).length,
+      truncationVersion: TRUNCATION_VERSION,
+      maxChars: MAX_CHARS,
       inputStats: stats.sourceCounts,
-      embeddings: cacheEmbeddings
+      items
     });
-    const bytes = fs.statSync(CACHE_FILE).size;
-    console.log(`\n  tallennettu: ${path.relative(ROOT, CACHE_FILE)} (${(bytes / 1024 / 1024).toFixed(1)} MB)`);
+    const metaBytes = fs.statSync(CACHE_META).size;
+    const f32Bytes = fs.statSync(CACHE_F32).size;
+    console.log(`\n  tallennettu:`);
+    console.log(`    ${path.relative(ROOT, CACHE_META)}  (${(metaBytes / 1024 / 1024).toFixed(2)} MB)`);
+    console.log(`    ${path.relative(ROOT, CACHE_F32)}   (${(f32Bytes / 1024 / 1024).toFixed(2)} MB)`);
+    console.log(`    yhteensä ${((metaBytes + f32Bytes) / 1024 / 1024).toFixed(2)} MB`);
   } else {
     console.log("\n  DRY-RUN: cache ei tallennettu.");
   }

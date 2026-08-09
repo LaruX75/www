@@ -32,8 +32,10 @@ const { truncate } = require("./embeddingTruncation");
 // Nosta versiota kun buildEmbeddingInput:in logiikka muuttuu tavalla joka
 // muuttaa jo lasketun embedding:in inputia (esim. lisätään uusia sourceja,
 // muutetaan järjestystä, otetaan mukaan metadatasignaali).
-// Sama arvo tallennetaan cachen inputHash-fingerprintiin.
-const INPUT_STRATEGY_VERSION = "v1-2026-08-09";
+// v1-2026-08-10: label-tarkennus (thesisAbstract, publicationAbstract).
+//                Ei muuta embedding-tekstiä, mutta muuttaa inputSources-metadataa
+//                → fingerprint ei muutu (label ei ole fingerprintin osa).
+const INPUT_STRATEGY_VERSION = "v1-2026-08-10";
 
 const DEFAULT_MAX_CHARS = 6000;
 const DEFAULT_TRUNCATION = "head";
@@ -114,6 +116,23 @@ function pickString(v) {
   return s || null;
 }
 
+/**
+ * Palauttaa tarkennetun label:in description-source:lle sisältötyypin mukaan.
+ * Ei muuta embedding-tekstiä — vain debug/audit-metadatan luettavuutta.
+ *
+ * - thesis: `description` on käytännössä OuluREPO-abstract (asetettu
+ *   toThesisRecord:issa src/data/theses.json.11ty.js). Label: thesisAbstract.
+ * - scientificPublication: `description` on Research.fi:n abstract
+ *   (asetettu mapPublication:issa src/_data/researchfiContent.js).
+ *   Label: publicationAbstract.
+ * - muut: description-labelin arvo on suoraan sivun frontmatterista.
+ */
+function describeDescriptionSource(contentType) {
+  if (contentType === "thesis") return "thesisAbstract";
+  if (contentType === "scientificPublication") return "publicationAbstract";
+  return "description";
+}
+
 function buildEmbeddingInput(item, richSources, options = {}) {
   const contentType = item?.contentType || "unknown";
   const title = pickString(item?.title);
@@ -123,7 +142,10 @@ function buildEmbeddingInput(item, richSources, options = {}) {
   const sources = [];
 
   if (title) { parts.push(title); sources.push("title"); }
-  if (description) { parts.push(description); sources.push("description"); }
+  if (description) {
+    parts.push(description);
+    sources.push(describeDescriptionSource(contentType));
+  }
 
   const rich = getRichSource(item, richSources);
   if (rich) {
@@ -147,6 +169,7 @@ function buildEmbeddingInput(item, richSources, options = {}) {
     originalChars: trunc.originalChars,
     contentType,
     truncationStrategy: strategy,
+    maxChars,
     version: INPUT_STRATEGY_VERSION
   };
 }
@@ -156,12 +179,21 @@ function buildEmbeddingInput(item, richSources, options = {}) {
 // -----------------------------------------------------------------------------
 
 /**
- * SHA1 embedding-inputille + versiolle. Käytetään cachen inputHash-kenttänä.
- * Jos input-teksti tai INPUT_STRATEGY_VERSION muuttuu → hash muuttuu →
- * embedding lasketaan uudelleen.
+ * SHA1 embedding-inputille. Cachen inputHash-kenttä.
  *
- * HUOM: model-avain tallennetaan cachen top-level:iin erikseen. Fingerprint
- * kattaa vain input + strategy version — malli-vaihto invalidoi koko cachen.
+ * Fingerprint sisältää KAIKKI muuttujat jotka vaikuttavat malliin syötettävään
+ * tekstiin:
+ *   - INPUT_STRATEGY_VERSION       (build-logiikan versio)
+ *   - truncationStrategy + version (miten teksti leikataan)
+ *   - maxChars                      (missä leikkaus tapahtuu)
+ *   - text                          (varsinainen input-teksti)
+ *
+ * HUOM: model-avain tallennetaan cachen top-level:iin erikseen. Malli-vaihto
+ * invalidoi koko cachen `loadCache()`-tarkistuksessa (yksinkertaisin toteutus).
+ * Fingerprint EI sisällä:
+ *   - modelia (koska model-vaihto = uusi cache-tiedosto)
+ *   - inputSources-labeleita (debug-metadata, ei vaikuta malliin)
+ *   - contentType-metadataa (koska teksti on jo lopullinen)
  */
 function fingerprint(embeddingInput) {
   const h = crypto.createHash("sha1");
@@ -169,7 +201,7 @@ function fingerprint(embeddingInput) {
   h.update("\0");
   h.update(embeddingInput.truncationStrategy);
   h.update("\0");
-  h.update(String(embeddingInput.chars));
+  h.update(String(embeddingInput.maxChars));
   h.update("\0");
   h.update(embeddingInput.text);
   return "sha1-" + h.digest("hex");
