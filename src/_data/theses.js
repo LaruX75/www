@@ -16,20 +16,11 @@ const CURATED_THESIS_META = {
     ...((curatedProgram && curatedProgram.thesisMeta) || {}),
 };
 
-// Lisenssit, joiden tiivistelmä saa näkyä (ei NC-ehtoa).
-const ALLOWED_LICENSE_PREFIXES = [
-    'https://creativecommons.org/licenses/by/4.0',
-    'https://creativecommons.org/licenses/by-sa/4.0',
-    'https://creativecommons.org/licenses/by-nd/4.0',
-    'https://creativecommons.org/publicdomain/zero/',
-    'https://creativecommons.org/publicdomain/mark/',
-];
-
-function isAllowedLicense(uri) {
-    if (!uri) return false;
-    const lower = uri.toLowerCase();
-    return ALLOWED_LICENSE_PREFIXES.some(p => lower.startsWith(p.toLowerCase()));
-}
+// HUOM: aiemmin oli ALLOWED_LICENSE_PREFIXES + isAllowedLicense() joka suodatti
+// abstract-tekstin pois InC-lisensoiduilta opinnaytteilta (~120/170). Filtteri
+// poistettiin 2026-08-09 koska abstract on opinnaytteen bibliografista
+// metadataa, joka on julkaistavissa lisensista riippumatta (yliopiston
+// julkaisuarkiston vakiokaytanto). OuluREPO nayttaa itse abstract:in kaikille.
 
 function normalizeText(value) {
     return String(value || '').replace(/\s+/g, ' ').trim();
@@ -246,7 +237,7 @@ function parseKK(xmlStr) {
             okmType: getMeta('type', 'okm'),
             link: getMeta('identifier', 'uri') || (block.match(/<url>([^<]*)<\/url>/) || [])[1] || '',
             licenseUri,
-            abstract: isAllowedLicense(licenseUri) ? getMeta('description', 'abstract') : '',
+            abstract: getMeta('description', 'abstract') || '',
             language: getMeta('language', 'iso'),
             subjects: getMetaAll('subject', 'discipline'),
             keywords: [], // täytetään cachesta alla
