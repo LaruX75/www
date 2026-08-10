@@ -15,6 +15,7 @@
  */
 
 const { JSON_SCHEMA_VERSION } = require("./_shared");
+const { buildPresentationsPageModel } = require("../_data/presentationsPage");
 
 module.exports = class {
   data() {
@@ -26,7 +27,13 @@ module.exports = class {
   }
 
   render(data) {
-    const pageModel = data.presentationsPage || {};
+    // buildPresentationsPageModel ajetaan tässä eksplisiittisesti, koska
+    // src/esitykset.11tydata.js määrittelee `presentationsPage`-globaalin
+    // vain /esitykset/-sivulle. Tämä .11ty.js on eri sivu (permalink
+    // /data/presentations-page.json), joten data.presentationsPage ei
+    // ole täällä populated → aiemmin tuotti tyhjän rawDatan → esitys-
+    // näkymän Canva-rivit jäivät renderöimättä client-side JS:ssä.
+    const pageModel = buildPresentationsPageModel(data);
     return JSON.stringify({
       version: JSON_SCHEMA_VERSION,
       generatedAt: new Date().toISOString(),
