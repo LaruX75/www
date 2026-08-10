@@ -1,0 +1,231 @@
+{
+  "designId": "DAHEjnS-qfw",
+  "sourceUpdatedAt": 1785014476,
+  "extractedAt": "2026-08-10T10:05:27.114Z",
+  "pageCount": 43,
+  "slides": [
+    {
+      "page": 1,
+      "text": "Riko, rakenna\n            Riko, rakenna ja\n                           ja ymmärrä\n                              ymmärrä\n             Generation AI\n             Generation AI työkaluilla\n                            työkaluilla\nGeneration AI -työkalut (pieni kielikone): Turvallinen ja ikätasoinen työkalu transformer-mallien luomiseen perusopetuksen ja toisen asteen\n                                            kontekstissa. IT Kouluttajat ry Tallinnan laivaseminaari\n            Jari Laru, KT, yliopistonlehtori, teknologiatuettu oppiminen ja opetus. Oulun yliopisto kasvatustieteiden ja psykologian tiedekunta. Larux",
+      "ocrUsed": false
+    },
+    {
+      "page": 2,
+      "text": "BB\nTekoäly oppimisen\nTekoäly oppimisen\n    kohteena\n    kohteena\n\n\n         Tekoälylukutaito?\n\n\nA                   Tekoäly työkaluna\n                    Tekoäly työkaluna",
+      "ocrUsed": false
+    },
+    {
+      "page": 3,
+      "text": "Tekoälylukutaitovaatimus astui\nvoimaan 2.2.2025 (EU tekoälyasetus)\n   Tätä asetusta olisi sovellettava 2 päivästä elokuuta 2026. Kun kuitenkin otetaan huomioon tietyt tekoälyn käyttötavat, joita ei\n   voida hyväksyä, kieltoja ja tämän asetuksen yleisiä säännöksiä olisi sovellettava jo 2 päivästä helmikuuta 2025.\n\n\n\n\n    Maamme                                       AI LIT                                      DigComp\ntekoälysuositukset                            Framework                                   3.0 viitekehys\n                                              (PISA 2029)",
+      "ocrUsed": false
+    },
+    {
+      "page": 4,
+      "text": "DigComp                                        Kansalaistaito?\n     3.0\nDigComp 3.0 on Euroopan komission päivitetty\nkansalaisten digitaalisen osaamisen\nviitekehys, joka kuvaa viiden osa-alueen\nkautta (tiedonhallinta, viestintä,\nsisällöntuotanto, turvallisuus ja\nongelmanratkaisu) ne taidot ja tiedot, joita\ntarvitaan aktiiviseen ja vastuulliseen\nosallistumiseen digitaalisessa yhteiskunnassa.",
+      "ocrUsed": false
+    },
+    {
+      "page": 5,
+      "text": "Lukemistoa",
+      "ocrUsed": false
+    },
+    {
+      "page": 6,
+      "text": "myös vuoden 2029 PISA innovative domain!",
+      "ocrUsed": false
+    },
+    {
+      "page": 7,
+      "text": "Tekoälylukutaito?\n     PISA 2029",
+      "ocrUsed": false
+    },
+    {
+      "page": 8,
+      "text": "BB\nTekoäly oppimisen\nTekoäly oppimisen\n    kohteena\n    kohteena\n\n\n         Tekoälylukutaito\n\n\nA                   Tekoäly työkaluna\n                    Tekoäly työkaluna",
+      "ocrUsed": false
+    },
+    {
+      "page": 9,
+      "text": "\"Tekoälyn käytön turvallisuus riippuu siitä, kuka sitä käyttää ja\nmihin tarkoitukseen. Riskit ovat suurimmillaan silloin, kun\npuutteellisilla pohjatiedoilla varustettu käyttäjä (noviisi) yrittää\noppia syvällisesti uutta asiaa tekoälyn avulla\" (Greene)\n\nA.Tekoäly oppimisen kohteena\nGeneration AI -sovellukset tarjoavat \"noviiseille\" turvallisen\ntavan tutustua tekoälyyn (simulaatiot ja lasilaatikot) ennen kuin\nheitä kannustetaan käyttämään generatiivisia malleja syvälliseen\noppimiseen. Tämä vähentää virheellisen tiedon omaksumisen\nriskiä ja muita haitallisia vaikutuksia\n\nB.Tekoäly työkaluna\nAloittelijalle valmis sovellus on usein turvallisempi. Jos noviisi\nyrittää oppia uutta asiaa pelkällä promptauksella\n(Novice/Learning), riski virheellisen tiedon omaksumiseen on\nsuuri, koska hän ei osaa arvioida tulosta",
+      "ocrUsed": false
+    },
+    {
+      "page": 10,
+      "text": "A   Tekoäly oppimisen\n        kohteena",
+      "ocrUsed": false
+    },
+    {
+      "page": 11,
+      "text": "Mitä me tiedämme tekoälystä?\nUseimmat meistä eivät tiedä juurikaan siitä kuinka tekoälytyökalut toimivat ja kuinka ne vaikuttavat arjessamme. Ne ovat\n                                              eräänlaisia mustia laatikoita.",
+      "ocrUsed": false
+    },
+    {
+      "page": 12,
+      "text": "",
+      "ocrUsed": false
+    },
+    {
+      "page": 13,
+      "text": "Kielimallit\nja muu\ngeneratiivinen                                                    Generatiivisen tekoälyn\ntekoäly                                                              musta laatikko\n\n\n\n\n                                                           Käyttäjälle näkyvä osa:\n                                                           esim. ChatBot\n      Kuvassa pienen kielikoneen kehitysversio\n(“prototyypin prototyyppi”), joka ei vastaa lm.gen-ai.fi\n                      sovellusta.",
+      "ocrUsed": false
+    },
+    {
+      "page": 14,
+      "text": "Koneoppiminen, kaikkialla läsnäoleva, jokapaikan tekoäly\n                                                            Käyttäjälle näkyvä osa:\n                                                            esim. sovellus tai laite\n\n\n\n\nKoneoppimisen (tässä tapauksessa konenäön) musta laatikko",
+      "ocrUsed": false
+    },
+    {
+      "page": 15,
+      "text": "Suositteleva ja koukuttava somepalveluiden tekoäly\n                                        Sosiaalisen median\n                                        musta laatikko\n\n\n\n\n                                                             Käyttäjälle näkyvä\n                                                             sosiaalinen media",
+      "ocrUsed": false
+    },
+    {
+      "page": 16,
+      "text": "Autamme sinua.\nAutamme sinua.",
+      "ocrUsed": false
+    },
+    {
+      "page": 17,
+      "text": "Generation AI\n                                                                                Generation AI sovellukset\n                                                                                esi- ja perusopetukseen\n                                                                              Sovelluksia on kehitetty 500+ oppilaan kanssa\n\n  https://www.generation-ai-stn.fi                           Kuinka “ChatGPT” toimii?                     Miten some toimii?\n\n\nKasvatustiede            Kehitämme pedagogisia\n                         puitteita tekoäly- ja\n                         turvallisuuskasvatukselle            Kouluta oma pieni kielimalli selaimessa   Miten some suosittelee?\n\n\nOikeustiede\n                                                              omilla aineistoillasi!                    Somesimulaattori luokkahuoneita varten.\n\n                         Kehitämme uusia esi- ja\n                                                        Kuinka konenäkö toimii? Voiko tekoälyä huijata?\n                         perusopetukseen soveltuvia\n                         tekoälyn opetusvälineiden ja -\nTietojenkäsittelytiede   menetelmien sekä\n                         oppimiskokonaisuuksien\n                                                              Tee omia appeja koneoppimisen avulla.     Kilpaile luokkakavereiden kanssa siitä\n\n                         yhdistelmiä                          Käytä omaa opetusaineistoa!               kuka onnistuu huijaamaan tekoälyä!\n\n\n\nMuut osapuolet           Edistämme lasten oikeuksien          Materiaalit ja sovellukset:\n                         toteutumista tekoälyyn                       www.gen-ai.fi\n                         perustuvissa järjestelmissä",
+      "ocrUsed": false
+    },
+    {
+      "page": 18,
+      "text": "Sovelluksemme ovat turvallisia\nTutkimme myös tekoälyn säätelyä ja lasten digitaalisia oikeuksia. Tämä takaa sen, että sovelluksemme ovat erittäin\n                 turvallisia ja ottavat huomioon EU:n tekoälyä koskevat asetukset ja säätelyn.",
+      "ocrUsed": false
+    },
+    {
+      "page": 19,
+      "text": "Sovellukset                                 Sovellukset edustavat selitttävää tekoälyä (XAI)\n                                            *XAI = Selittävä tekoäly on ekoälyjärjestelmä, jonka päättelyä ihminen\n                                            pystyy seuraamaan. Käytännössä selittävän tekoälyn käyttäjä voi\n                                            ymmärtää, miten tekoäly on päätynyt tulokseensa. Generation AI                 XAI\nPieni kielikone\n                                            työkalut ovat XAI sovelluksia.\n\n\n                                            Sovellukset ovat saavutettavia ja helppokäyttöisiä\n                                             Generation AI sovellukset täyttävät digitaalisten palvelujen\n                                             tarjoamisesta säädetyn lain vaatimukset täyttäen saavutettavuutta\n                                             koskevan WCAG ohjeistuksen tasolla 2.1 AA. Sovellukset on\n                                             suunniteltu käytettävyys ja helppokäyttöisyys edellä.\n\n\n                                            Etusijalla käyttäjän yksityisyys ja tietosuoja\n                                            Generation AI sovellukset asettavat etusijalle käyttäjien yksityisyyden ja\n                                            tietosuojan. Sovellukset eivät seuraa käyttäjiä tai kerää henkilötietoja. Ne\n                                            ovat GDPR-yhteensopiviaa ja varmistavat luokkahuoneen turvallisuuden,\n                                            joten ne sopivat kaikkiin koulutusympäristöihin.\n\n\n                                            Sovellukset ovat ilmaisia ja avoimesti julkaistuja\n                                            Generation Ai sovellukset ovat ilmaisia ja lähdekoodi (ohjelmisto) on\n                                            jaettu avoimella MIT ohjelmistolisenssillä. Se antaa käyttäjälle oikeudet\n\n\nMuut sovellukset\n                                            vapaasti muokata, kopioida ja käyttää teosta omassa projektissa sillä\n                                            ehdolla, että lisenssin teksti säilyy lähdekoodissa.\n\n\n                                            Sovellukset toimivat www-selaimessa\n                                             Sovellukset ovat selainpohjaisia ja tarvitsevat toimiakseen tuen\n                                             WebRTC datakanaville ja Javascript E11:lle (Chrome 56+,\n                                             Firefox 44+, Safari 15.4+ ja Edge 79+). Sovelluksia on käytetty\n\nOpetettava kone   Somekone   Hajoava kone\n                                             ja testattu Chromebook, Linux, MAC ja Windows koneissa sekä\n                                             Android ja IOS tableteissa ja puhelimissa",
+      "ocrUsed": false
+    },
+    {
+      "page": 20,
+      "text": "www.generation-\n          ai-stn.fi\n Tieteellinen tutkimus ym. projektidata\n\n\n\n\n A                                        www.gen-ai.fi\n                                          Sovellukset ja materiaalit\n                                                                       B",
+      "ocrUsed": false
+    },
+    {
+      "page": 21,
+      "text": "Kehitämme AI-pedagogiikkaa\n Kehitämme erilaisia pedagogisia malleja ja menetelmiä tekoäly-ja turvallisuuskasvatuksen perustaksi",
+      "ocrUsed": false
+    },
+    {
+      "page": 22,
+      "text": "Ymmärrä, riko ja\n   C                                                                                                                               rakenna!\n                                                                                                                                CEDE-malli rakentaa\n\n   E                                                                                                                            tekoälyosaamista neljässä\n                                                                                                                                vaiheessa:\n                                                                                                                                1) Oppiminen ankkuroidaan\n\n   D                                                                                                                            arkikokemuksiin. 2) Sitä syvennetään\n                                                                                                                                tutkimalla ja 3) rakentamalla omia\n                                                                                                                                sovelluksia\n\n\n    E\n                                                                                                                                sekä 4) laajennetaan eettiseen\n                                                                                                                                yhteiskunnalliseen pohdintaan\nVartiainen, H., & Tedre, M. (2025). The CEDE Model: A Learning-Sciences Based Approach for Critical and Transformative K–12 AI Education.\nProceedings of the 25th Koli Calling International Conference on Computing Education Research.",
+      "ocrUsed": false
+    },
+    {
+      "page": 23,
+      "text": "Vaihe                     Oppimisen painopiste                 Keskeiset pedagogiset työtavat\n\n\n                                                                      Aseta korkean tason oppimistavoitteita ja tehtäviä, jotka sijoittuvat todellisen maailman konteksteihin ja\n    1. Kontekstualisointi                                             haastavat oppilaat työskentelemään tekoälytietojensa ja -taitojensa rajoilla.\n\nC\n                              Tekoälyn yhdistäminen\n    & Tutustuminen                                                    Tuo esiin oppilaiden ennakkokäsitykset tekoälystä ja linkitä ne uusiin käsitteisiin sitoutumisen ja\n                              oppijoiden arkielämään ja\n    (Contextualization &                                              oppilaiden arkikokemuksiin liittyvän merkityksellisyyden rakentamiseksi.\n                              aiempiin käsityksiin tekoälystä\n    Familiarization)                                                  Osallista oppilaat jakamaan ja vertailemaan ennakkokäsityksiään. Auta heitä tunnistamaan suhde ja aukot\n                                                                      nykyisen ymmärryksensä ja uusien opittavien tietojen ja taitojen välillä.\n\n\n                                                                      Tarjoa aktiviteetteja ja työkaluja, jotka saavat oppilaat tutkimaan ilmiötä ja saatavilla olevia\n                              Tekoälyn mekanismien,                   tekoälytyökaluja, jotta he voivat muotoilla omia tutkimuskysymyksiään tai suunnitteluideoitaan.\n\n\nE\n                                                                      Tue oppilaita testaamaan ennakkokäsityksiään yhteisöllisesti kokeilujen kautta. Ohjaa heitä käyttämään\n    2. Tutkiminen             käyttäytymisen ja affordanssien\n                                                                      systemaattista todistusaineistoa argumenttiensa, väitteidensä ja uskomustensa arviointiin.\n    (Exploration)             (tarjoumien) yhteisöllinen\n                                                                      Osallista oppilaat soveltamaan kehittyvää ymmärrystään tutkimussuunnitelmien tekemiseen tai uusien ja\n                              tutkiminen\n                                                                      varteenotettavien suunnitteluideoiden luomiseen. Kannusta oppilaita jakamaan suunnitelmansa ja auta\n                                                                      heitä analysoimaan, jalostamaan ja tarkentamaan omia ideoitaan yhteisöllisesti.\n\n\n                                                                      Vahvista datalähtöistä ajattelua jäsentämällä projektityöskentely datalähtöisen suunnitteluprosessin\n                              Tekoälypohjaisten ratkaisujen           keskeisten vaiheiden ympärille. Tarjoa mahdollisuuksia kokeilla, analysoida ja kehittää ideoita ja\n    3. Suunnittelu &\n\nD\n                              käytännönläheinen                       artefakteja yhteisöllisesti käyttäen alakohtaisia käsitteitä ja strategioita.\n    Tutkiva työskentely       yhteissuunnittelu käyttäen              Tue oppilaita ulkoistamaan ajatteluaan luomalla käsitteellisiä, digitaalisia tai materiaalisia artefakteja ja\n    (Design & Inquiry)        henkilökohtaista tai paikallista        dokumentoimaan kehittyvää oppimisprosessiaan.\n                              dataa                                   Ohjaa reflektiivistä jakamista, yhdessä testaamista ja rakentavan vertaispalautteen antamista läpi\n                                                                      suunnitteluprosessin.\n\n                                                                      Käytä oppilaiden omia projekteja alustana yhteiskunnalliselle ja eettiselle reflektiolle, heidän\n                                                                      suunnitteluvalintojensa kriittiselle analyysille sekä luokkakeskusteluille tekoälyn ja datalähtöisen\n    4. Eettinen &                                                     teknologian eettisistä, sosiaalisista, yksityisyyteen ja vinoumiin liittyvistä näkökohdista.\n\nE\n                              Tekoälyn yhteiskunnallisten,\n    Yhteiskunnallinen                                                 Ankkuroi eettiset ja moraaliset keskustelut tositilanteisiin, alakohtaisiin käytäntöihin ja konkreettisiin\n                              eettisten ja poliittisten\n    reflektointi (Ethical &                                           päätöksentekoprosesseihin. Tue oppilaita soveltamaan datalähtöistä ajatteluaan todistusaineistoon\n                              ulottuvuuksien kriittinen analyysi\n    Societal Reflection)                                              pohjautuvaan argumentaatioon.\n                                                                      Fasilitoi olemassa olevien tekoälykäytäntöjen yhteisöllistä kyseenalaistamista ja käytä useita näkökulmia\n                                                                      visioidaksesi vaihtoehtoisia, osallistavampia ja vastuullisempia ratkaisuja sekä yhteisiä toimia niitä kohti.",
+      "ocrUsed": false
+    },
+    {
+      "page": 24,
+      "text": "Tehdään yhdessä!\n       Ymmärrä, riko ja rakenna!\nGeneration AI sovellukset auttavat sinua ja oppilaitasi ymmärtämään kuinka tekoäly toimii ja kuinka se vaikuttaa\n                                                   arjessamme.",
+      "ocrUsed": false
+    },
+    {
+      "page": 25,
+      "text": "Ymmärrä, riko ja rakenna!\n1. Somekone: Herättää kiinnostuksen ja kytkee aiheen opettajan omaan\n   mediaympäristöön (Arkikokemukset ja algoritmien näkymätön valta).\n2. Hajotettava kone: Murtaa myytin tekoälyn ylivertaisuudesta ja\n   opettaa kyseenalaistamista (Kriittinen testaus ja tekoälyn\n   erehtyväisyys).\n3. Opetettava kone: Antaa välineet ymmärtää, miten järjestelmiä\n   rakennetaan ja hallitaan (Sovelluksen rakentaminen ja ihmisen\n   valinnat).\n4. Pieni kielikone: Syventää ymmärrystä nykyhetken puhutuimmasta\n   teknologiasta (Generatiivisen tekoälyn demystifiointi).",
+      "ocrUsed": false
+    },
+    {
+      "page": 26,
+      "text": "Somekone\n                                                                      Somekone on selainpohjainen sosiaalisen median\n                                                                      simulaattori, jonka avulla voi tutkia ja ymmärtää, miten\n                                                                      sosiaalisen median palvelut keräävät dataa, muodostavat\n                                                                      käyttäjäprofiileja ja suosittelevat sisältöä. Se muistuttaa\n                                                                      ulkoasultaan tuttua sosiaalisen median kuvavirtaa, mutta\n                                                                      tekee näkyväksi sen, mikä tavallisesti jää piiloon.\n\n\n\n\nN. Pope, J. Kahila, J. Laru, H. Vartiainen, T. Roos and M. Tedre, \"An Educational Tool for Learning about Social Media Tracking, Profiling, and Recommendation,\" 2024\nIEEE International Conference on Advanced Learning Technologies (ICALT), Nicosia, North Cyprus, Cyprus, 2024, pp. 110-112, doi: 10.1109/ICALT61570.2024.00038.",
+      "ocrUsed": false
+    },
+    {
+      "page": 27,
+      "text": "Somekone    CEDE-esimerkki: Kontekstualisointi. CEDE-mallin\n           mukaan oppiminen on ankkuroitava oppijoiden omiin\n           kokemuksiin ja arkeen. Sosiaalinen media on tutuin\n           konteksti, mutta sen toimintalogiikka on usein piilossa.\n           Somekone toimii \"lasilaatikkona\", joka visualisoi\n           reaaliajassa, kuinka käyttäjän toiminta (datajäljet)\n           muuttaa profiilia ja suosittelualgoritmien tarjoamaa\n           sisältöä.\n           Kriittinen lukutaito: Somekone herättää\n           datatoimijuuden ymmärtämällä, että syöte ei ole\n           neutraali ikkuna maailmaan, vaan käyttäjän ja algoritmin\n           vuorovaikutuksen tulos.\n           OECD AI Literacy -yhteys:\n                 Engaging with AI: Tekoälyn roolin ja vaikutuksen\n                 tunnistaminen arjessa.\n                 Managing AI: Datan ja yksityisyyden hallinta.",
+      "ocrUsed": false
+    },
+    {
+      "page": 28,
+      "text": "Somekone\nTietoa sovelluksesta:\nhttps://www.gen-ai.fi/fi/tools/somekone\nSovellus:\nSovellus: https://somekone.gen-ai.fi\nLähdekoodi: https://github.com/knicos/genai-somekone\nOpetusmateriaalit:\nhttps://www.gen-ai.fi/fi/materials/somekone-unit",
+      "ocrUsed": false
+    },
+    {
+      "page": 29,
+      "text": "Hajoava kone\n                                                                             Hajoava kone on selainpohjainen oppimispeli koko luokalle,\n                                                                             jossa tekoälyä ei opeteta—vaan sitä opetellaan rikkomaan.\n                                                                             Työkalulla kokeillaan, miten konenäköön perustuvaa\n                                                                             tekoälyjärjestelmää voidaan johtaa harhaan pienillä\n                                                                             muutoksilla ympäristössä, ulkonäössä tai kuvakulmassa.\n\n\n\nO. Hilke, N. Pope, J. Kahila, H. Vartiainen, T. Roos, T. Parkki and M. Tedre. 2025. Breakable Machine: A K-12 Classroom Game for Transformative AI Literacy Through\nSpoofing and eXplainable AI (XAI) (preprint) https://arxiv.org/abs/2508.14201\n\nO. Hilke, N. Pope, J. Kahila, H. Vartiainen, T. Roos, T. Parkki, and M. Tedre. 2025. Failure as a Learning Opportunity in AI Literacy. In Proceedings of the 25th Koli Calling\nInternational Conference on Computing Education Research (Koli Calling '25). Association for Computing Machinery, New York, NY, USA, Article 53, 1–3.\nhttps://doi.org/10.1145/3769994.3770062",
+      "ocrUsed": false
+    },
+    {
+      "page": 30,
+      "text": "Hajoava kone   CEDE-esimerkki:Tutkiminen. Ennen kuin rakennetaan omia\n               malleja, heidän on hyödyllistä tutkia valmiiden järjestelmien\n               rajoitteita. Hajoavassa koneessa hyödynnetään \"odotusten\n               ristiriitaa\" (expectation mismatch) oppimisen lähtökohtana.\n               Pelimäisessä sovelluksessa yritetään aktiivisesti huijata\n               (spoofing) kuvanluokittelijaa, mikä paljastaa järjestelmän\n               haurauden ja riippuvuuden opetusdatasta.\n               Kriittinen lukutaito: Tämä työkalu on keskeinen kriittiselle\n               lukutaidolle, sillä se osoittaa konkreettisesti, että tekoälyn\n               \"varmuus\" (confidence score) ei ole sama kuin totuus. XAI-\n               lämpökartat paljastavat, että tekoäly saattaa päätellä\n               \"astronautin\" pelkän taustan tai pyöreän esineen perusteella.\n               OECD AI Literacy -yhteys:\n                      Engaging with AI: Tekoälyn tuotosten kriittinen arviointi\n                     (hyväksy, muokkaa vai hylkää?).\n                     Designing AI: Ymmärrys siitä, kuinka data ja\n                     suunnitteluvalinnat vaikuttavat mallin toimintaan.",
+      "ocrUsed": false
+    },
+    {
+      "page": 31,
+      "text": "Voiko tekoäly luulla vesilasia astronautiksi?\n\n\n\n\n         =                     =    ?",
+      "ocrUsed": false
+    },
+    {
+      "page": 32,
+      "text": "Hajoava kone\nTietoa sovelluksesta:\nhttps://www.gen-ai.fi/fi/tools/bm\nSovellus:\nSovellus: https://spoof.gen-ai.fi/\nLähdekoodi: https://github.com/OH-BugHit/BM\nOpetusmateriaalit:\nEi vielä saatavilla.\n\n\n\n               Ei vielä opetusmateriaaleja",
+      "ocrUsed": false
+    },
+    {
+      "page": 33,
+      "text": "Opetettava kone\n                 Opetettava kone on selainpohjainen työkalu, jolla voi opettaa\n                 koneen tunnistamaan asioita ja rakentaa niiden pohjalta omia\n                 tekoälysovelluksia — ilman ohjelmointia. Oppijat kouluttavat\n                 luokittelijan omalla datallaan (esimerkiksi itse ottamillaan kuvilla tai\n                 verkosta valituilla kuvilla) ja määrittelevät, mitä sovellus tekee eri\n                 tunnistustilanteissa. Valmiin sovelluksen voi jakaa muille oppilaille.\n\n\n\n\nN. Pope, J. Kahila, H. Vartiainen and M. Tedre, \"Children's AI Design Platform for Making and Deploying ML-Driven Apps:\n    Design, Testing, and Development,\" in IEEE Transactions on Learning Technologies, doi: 10.1109/TLT.2025.3529994.",
+      "ocrUsed": false
+    },
+    {
+      "page": 34,
+      "text": "Opetettava kone   CEDE-esimerkki: Suunnittelu ja tutkimus: Opetettava kone\n                  korostaa \"ethics-by-design\" -ajattelua: opettajat keräävät itse\n                  datan, kouluttavat mallin ja määrittelevät sovelluksen\n                  toiminnot ilman koodaamista.\n                  Kriittinen lukutaito: Opetettava kone konkretisoi, että\n                  tekoäly on ihmisen rakentama ja sen toiminta riippuu täysin\n                  ihmisen tekemistä valinnoista (datan kuratointi). Se siirtää\n                  fokuksen \"taikuudesta\" insinööritaitoon ja eettisiin\n                  valintoihin.\n                  OECD AI Literacy -yhteys:\n                        Designing AI: Datan keruu, kuratointi ja mallin\n                        kouluttaminen.\n                        Creating with AI: Ideoiden visualisointi ja prototyyppien\n                        rakentaminen tekoälyn avulla.",
+      "ocrUsed": false
+    },
+    {
+      "page": 35,
+      "text": "Ne\n  w!                           Opetettava kone 2.0\n     Ne                          Valmiit datasetit\n       w!\n          Ne\n            w!\n               N\n        XAI (selitettävä AI)             Web-serial tuki\n\n                                                     Uu\n                                                       tta\n                                                          !U\n                                                            ut\n                                                              ta!\n                                                                  Uu\n                                                                    tta\n                                                                       !",
+      "ocrUsed": false
+    },
+    {
+      "page": 36,
+      "text": "Opetettava kone\nTietoa sovelluksesta:\nhttps://www.gen-ai.fi/fi/tools/tm\nSovellus:\nSovellus: https://tm.gen-ai.fi\nLähdekoodi: https://github.com/knicos/genai-tm\nOpetusmateriaalit:\nhttps://www.gen-ai.fi/fi/materials/classifier-unit",
+      "ocrUsed": false
+    },
+    {
+      "page": 37,
+      "text": "Pieni kielikone\n                     Pieni kielikone on selainpohjainen oppimisympäristö, jossa voi\n                     kouluttaa ja kokeilla pientä kielimallia itse. Sen avulla tekoälyn\n                     toiminta ei jää mustaksi laatikoksi, vaan oppijat näkevät\n                     konkreettisesti, miten kielimallit syntyvät datasta,\n                     koneoppimisesta ja ihmisten tekemistä valinnoista.\n\n\n\n\nPope, N., & Tedre, M. (2025, November). A Teachable Machine for Transformers. In Proceedings of the 25th Koli Calling\n                                               International Conference on Computing Education Research (pp. 1-3).",
+      "ocrUsed": false
+    },
+    {
+      "page": 38,
+      "text": "Pieni kielikone\n                  CEDE-esimerkki: Suunnittelu ja tutkimus (Design &\n                  Inquiry (Suunnittelu ja tutkimus). Kielikone muuttaa\n                  generatiivisen tekoälyn käyttäjän kehittäjäksi\n                  mahdollistamalla kielimallin kouluttamisen selaimessa\n                  käyttäjän omalla aineistolla. kielimalli selaimessa. Tämä\n                  avaa \"mustan laatikon\" ja näyttää konkreettisesti,\n                  kuinka generatiivinen tekoäly toimii ja mitkä ovat sen\n                  rajoitteet.\n                  Kriittinen lukutaito: Tämä on monilukutaidon ytimessä.\n                  Työkalu näyttää, kuinka malli oppii tilastollisia yhteyksiä\n                  (seuraavan merkin ennustaminen) ilman aitoa\n                  ymmärrystä tai intentiota. Tämä auttaa ymmärtämään\n                  hallusinaatioiden mekanismin ja tekstin generoinnin\n                  rajat.\n                  OECD AI Literacy -yhteys:\n                        Designing AI: Tekoälyn toimintaperiaatteiden\n                        (kuten todennäköisyyslaskennan) ymmärtäminen.\n                        Managing AI: Kehotteiden (prompts) antaminen ja\n                        tulosten ohjaaminen",
+      "ocrUsed": false
+    },
+    {
+      "page": 39,
+      "text": "Ne\n                        w!\n                           Ne\n                             w!\n                                Ne\n                                  w!\n                                     N\n   Generation AI\n\n\n\n\nUu\n  tta\n     !U\n       ut\n         ta!\n             Uu\n               tta\n                  !",
+      "ocrUsed": false
+    },
+    {
+      "page": 40,
+      "text": "Pieni kielikone\nTietoa sovelluksesta:\nhttps://www.gen-ai.fi/fi/tools/lm\nSovellus:\nSovellus: https://lm.gen-ai.fi/\nLähdekoodi: https://github.com/knicos/genai-lm\nOpetusmateriaalit:\nEi vielä saatavilla.\n\n\n\n               Ei vielä opetusmateriaaleja",
+      "ocrUsed": false
+    },
+    {
+      "page": 41,
+      "text": "BB\nTekoäly oppimisen\nTekoäly oppimisen\n    kohteena\n    kohteena\n\n\n         Tekoälylukutaito\n\n\nA                   Tekoäly työkaluna\n                    Tekoäly työkaluna",
+      "ocrUsed": false
+    },
+    {
+      "page": 42,
+      "text": "B   Tekoäly työkaluna\n    Tätä ei käsitellä tänään..",
+      "ocrUsed": false
+    },
+    {
+      "page": 43,
+      "text": "Kiinnostuitko?\nTulen mielellään\npitämään luennon tai pajan\ndigi/tekoäly/.. aiheista\nwww.jarilaru.fi",
+      "ocrUsed": false
+    }
+  ],
+  "emptyPages": [
+    12
+  ],
+  "extractError": null,
+  "_diagnostic": {
+    "pdfBytes": 21122978,
+    "elapsedMs": 15398
+  }
+}

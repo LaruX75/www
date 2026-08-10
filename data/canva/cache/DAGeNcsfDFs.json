@@ -1,0 +1,134 @@
+{
+  "designId": "DAGeNcsfDFs",
+  "sourceUpdatedAt": 1786341452,
+  "extractedAt": "2026-08-10T10:14:08.423Z",
+  "pageCount": 24,
+  "slides": [
+    {
+      "page": 1,
+      "text": "Dr. Jari Laru, University of Oulu\n\n\nGenerative AI as a professional tool - agent, coach or friend?\nResearch-based insights into the context of early adoption, regulation and AI literacy",
+      "ocrUsed": false
+    },
+    {
+      "page": 2,
+      "text": "AI?",
+      "ocrUsed": false
+    },
+    {
+      "page": 3,
+      "text": "3 Article: Definitions\n                                       What is AI system?\n’‘AI system’ means a machine-based system that is\ndesigned to operate with varying levels of autonomy and\nthat may exhibit adaptiveness after deployment..\n\n..and that, for explicit or implicit objectives, infers, from the\ninput it receives, how to generate outputs such as\npredictions, content, recommendations, or decisions that\ncan influence physical or virtual environments;",
+      "ocrUsed": false
+    },
+    {
+      "page": 4,
+      "text": "ML\n            Machine learning.\nUbiquitous and pervasive AI. Even in Labs.",
+      "ocrUsed": false
+    },
+    {
+      "page": 5,
+      "text": "AI is already\n                             everywhere\n                                     Ubiquitous and pervasive\n                                       artificial intelligence\n\n\n\nArtificial intelligence is deeply integrated into e.g. social media services",
+      "ocrUsed": false
+    },
+    {
+      "page": 6,
+      "text": "Artificial intelligence in the\n clinical laboratory (NOW)\n\n\n\n\n                                                                  Timeline of key artificial intelligence models applied to the clinical laboratory (2024)\n\n\n                                                                                                                                     Supervised ML\n\n                                                                                                                                     Unsupervised ML\n\n\nHou, H., Zhang, R., & Li, J. (2024). Artificial intelligence in                                                                     Reinforcement ML\nthe clinical laboratory. Clinica Chimica Acta, 559, 119724.\nhttps://doi.org/10.1016/j.cca.2024.119724",
+      "ocrUsed": false
+    },
+    {
+      "page": 7,
+      "text": "LLM-HA\nLarge Language Model-based Health Applications",
+      "ocrUsed": false
+    },
+    {
+      "page": 8,
+      "text": "Technology is disruptive by nature\n  The slide rule, used for 400 years, became obsolete in the 1970s with pocket calculators\nGenerative AI (LLM) is the modern-day calculator that replaces previous\npractices\n\n\n\n\n                                           Giannakos, M., Azevedo, R., Brusilovsky, P., Cukurova, M., Dimitriadis, Y., Hernandez-Leo, D., ... & Rienties, B. (2024).\n                                           The promise and challenges of generative AI in education. Behaviour & Information Technology, 1-27.",
+      "ocrUsed": false
+    },
+    {
+      "page": 9,
+      "text": "“Generative AI has been one of the\nfastest-adopted technologies in the\n              world”\n\n\n                Giannakos, M., Azevedo, R., Brusilovsky, P., Cukurova, M., Dimitriadis, Y., Hernandez-Leo, D., ... & Rienties, B. (2024).\n                The promise and challenges of generative AI in education. Behaviour & Information Technology, 1-27.",
+      "ocrUsed": false
+    },
+    {
+      "page": 10,
+      "text": "Freyer, O., Wiest, I. C., & Gilbert, S. (2025). Policing the Boundary Between Responsible and Irresponsible Placing on the Market of LLM Health\nApplications. Mayo Clinic Proceedings: Digital Health, 100196. https://doi.org/10.1016/j.mcpdig.2025.100196",
+      "ocrUsed": false
+    },
+    {
+      "page": 11,
+      "text": "LLM-HA-Lab\nLarge Language Model-based Health Applications in lab",
+      "ocrUsed": false
+    },
+    {
+      "page": 12,
+      "text": "Clinical Chemistry and Laboratory Medicine (CCLM) Journal (JUFO3)\n\n                                    2024                                                                                                            2025                                                                                                          2025\n\n\n\n\nMeyer, Annika, Soleman, Ari, Riese, Janik and Streichert, Thomas. \"Comparison of ChatGPT, Gemini, and Le   Pighi, Laura, Negrini, Davide and Lippi, Giuseppe. \"Generative artificial intelligence (AI) for reporting the   John, George K., Favaloro, Emmanuel J., Austin, Samantha, Islam, Md Zahidul and Santhakumar, Abishek B..\nChat with physician interpretations of medical laboratory questions from an online health forum\"           performance of laboratory biomarkers: not ready for prime time\" Clinical Chemistry and Laboratory               \"From errors to excellence: the pre-analytical journey to improved quality in diagnostics. A scoping\nClinical Chemistry and Laboratory Medicine (CCLM), vol. 62, no. 12, 2024, pp. 2425-2434.                   Medicine (CCLM), vol. 63, no. 2, 2025, pp. e33-e35. https://doi.org/10.1515/cclm-2024-0857                      review\" Clinical Chemistry and Laboratory Medicine (CCLM), 2025. https://doi.org/10.1515/cclm-2024-1277",
+      "ocrUsed": false
+    },
+    {
+      "page": 13,
+      "text": "Clinical Chemistry and Laboratory Medicine (CCLM) Journal (JUFO3)\n\n                      May 2024                                                                                                 July 2024                                                                                                            JAN 2025\n\n\n                                                                                                                       We specifically asked 5 AI tools to provide                                                                    This scoping review focuses on the evolution of\n                                                                                                                       numerical data on diagnostic sensitivity and                                                                   pre-analytical errors (PAEs) in medical\n          100 patient inquiries from online forum.                                                                     specificity of the three biomarkers(i.e., cardiac                                                              laboratories, a critical area with significant\n          Complete blood count interpretation                                                                          troponins, D-dimer, and procalcitonin)                                                                         implications for patient care, healthcare costs,\n          Three AI bots (GPT, Gemini, Le Chat) and                                                                     Those biomarkers have been extensively                                                                         hospital length of stay, and operational\n          certified physician                                                                                          validated for the diagnosis of the three common                                                                efficiency.\n                                                                                                                       diseases (myocardial infarction, pulmonary                                                                     The review also discusses the use and\n          Chatbot’s interpretation of lab results\n                                                                                                                       embolism,and sepsis).                                                                                          advancements of artificial intelligence (AI) and\n          were inferior to those from online medical\n          professionals                                                                                                 AI tools tend to provide heterogeneous                                                                        machine learning in reducing PAEs\n                                                                                                                       information on the diagnostic performance of                                                                   The review suggests that comprehensive studies\n                                                                                                                       three of the most commonly used laboratory                                                                     on the effectiveness of AI and software\n                                                                                                                       biomarkers,                                                                                                    platforms in real-world settings and their\n                                                                                                                       This makes the use of generative AI still                                                                      implementation in healthcare are lacking\n                                                                                                                       questionable for laboratory experts, clinicians                                                                This presents opportunities for further research\n                                                                                                                       and even patients seeking information on                                                                       to advance patient care and improve the\n                                                                                                                       accuracy of laboratory tests                                                                                   management of PAEs.\nMeyer, Annika, Soleman, Ari, Riese, Janik and Streichert, Thomas. \"Comparison of ChatGPT, Gemini, and Le   Pighi, Laura, Negrini, Davide and Lippi, Giuseppe. \"Generative artificial intelligence (AI) for reporting the   John, George K., Favaloro, Emmanuel J., Austin, Samantha, Islam, Md Zahidul and Santhakumar, Abishek B..\nChat with physician interpretations of medical laboratory questions from an online health forum\"           performance of laboratory biomarkers: not ready for prime time\" Clinical Chemistry and Laboratory               \"From errors to excellence: the pre-analytical journey to improved quality in diagnostics. A scoping\nClinical Chemistry and Laboratory Medicine (CCLM), vol. 62, no. 12, 2024, pp. 2425-2434.                   Medicine (CCLM), vol. 63, no. 2, 2025, pp. e33-e35. https://doi.org/10.1515/cclm-2024-0857                      review\" Clinical Chemistry and Laboratory Medicine (CCLM), 2025. https://doi.org/10.1515/cclm-2024-1277",
+      "ocrUsed": false
+    },
+    {
+      "page": 14,
+      "text": "EU AI ACT\nThe AI Act is the first-ever legal framework on AI, which addresses the risks of AI and positions\n                                Europe to play a leading role globally.",
+      "ocrUsed": false
+    },
+    {
+      "page": 15,
+      "text": "prof. dr. Ronald Leenes\n\n\n\n\nhttps://www.sectorplandls.nl/wordpress/archive/a-visual-guide-to-the-ai-act-by-ronald-leenes/",
+      "ocrUsed": false
+    },
+    {
+      "page": 16,
+      "text": "EU AI ACT 1/2                                                 Unacceptable risk is prohibited (e.g. social scoring systems and\n                                                                 manipulative AI).\n\n                                                                    The definition of high-risk AI (in Annex III of the Act) applies to\n    The AI Act is the first-                                        any digital healthcare AI system used in relation to diagnosis\n                                                                    or therapy, even if these are supportive/informational\n    ever legal framework                                            suggestions of options to consider.\n\n            on AI                                                   This definition would include many AI approaches that would\n                                                                    in the reality of their use, be highly subject to human revision,\n                                                                    adaption and improvement.\n\n                                                                 All GPAI model providers must provide technical documentation,\n                                                                 instructions for use, comply with the Copyright Directive, and\n                                                                 publish a summary about the content used for training.\n                                                                 Free and open licence GPAI model providers only need to comply\n                                                                 with copyright and publish the training data summary, unless they\n                                                                 present a systemic risk.\n                                                                 All providers of GPAI models that present a systemic risk – open\n                                                                 or closed – must also conduct model evaluations, adversarial\n                                                                 testing, track and report serious incidents and ensure\n                                                                 cybersecurity protections.\n\n                                                                Minimal risk is unregulated (such as AI enabled video games and\nGilbert, S. The EU passes the AI Act and its implications for\ndigital medicine are unclear. npj Digit. Med. 7, 135 (2024).    spam filters\nhttps://doi.org/10.1038/s41746-024-01116-6",
+      "ocrUsed": false
+    },
+    {
+      "page": 17,
+      "text": "We propose a set of principles and recommendations as a starting\n                                                                   point to define a pragmatic middle ground for the approval of LLM-\n                                                                   HAs.\n                                                                   This middle ground should be developed in a ‘cautiously fast’\n                                                                   manner by adapting regulations where appropriate\n                                                                   At the same time, current regulations must be enforced to remove\n                                                                   clearly unsafe tools from the market, an essential step for building\n                                                                   trust in this new technology.\n\nGilbert, S. The EU passes the AI Act and its implications for   Freyer, O., Wiest, I. C., & Gilbert, S. (2025). Policing the Boundary Between Responsible\ndigital medicine are unclear. npj Digit. Med. 7, 135 (2024).    and Irresponsible Placing on the Market of LLM Health Applications. Mayo Clinic\nhttps://doi.org/10.1038/s41746-024-01116-6                      Proceedings: Digital Health, 100196. https://doi.org/10.1016/j.mcpdig.2025.100196",
+      "ocrUsed": false
+    },
+    {
+      "page": 18,
+      "text": "EU AI ACT 1/2: AI literacy requirement\n\n\n               Providers and deployers of AI systems shall take measures to ensure,\n               to their best extent, a sufficient level of AI literacy of their staff and\n               other persons dealing with the operation and use of AI systems on\n               their behalf,\n               taking into account their technical knowledge, experience, education\n               and training and the context the AI systems are to be used in, and\n               considering the persons or groups of persons on whom the AI systems\n               are to be used.\n\n\n                                                        Tämä astuu voimaan jo helmikuussa 2025",
+      "ocrUsed": false
+    },
+    {
+      "page": 19,
+      "text": "AI Literacy\n    The AI literacy requirements outlined in the EU AI Act do not\ndifferentiate between high-risk AI systems and those deemed low-\n                           or medium-risk.",
+      "ocrUsed": false
+    },
+    {
+      "page": 20,
+      "text": "“In the realm of life sciences, these literacy\nobligations are pivotal in ensuring that\npersonnel, such as in-house medtech or pharma\nstaff, possess the requisite skills to perform\ntheir AI-related duties both effectively and\nsafely.\n\nThe EU AI Act extends these obligations to\nencompass other individuals, referred to as\n\"affected persons\". This group could encompass\npatients and end users of AI-driven technologies   https://www.osborneclarke.com/insights/ai-literacy-becomes-\n                                                   mandatory-life-sciences-across-eu\n\n\nwithin the life sciences sector.",
+      "ocrUsed": false
+    },
+    {
+      "page": 21,
+      "text": "Education stands as a pivotal factor in ensuring\nthat staff and other individuals involved in the\noperation and use of AI systems attain a\nsufficient level of AI literacy.\n\nto ensure that individuals tasked with\nimplementing instructions for use and human\noversight possess the necessary competence,\nparticularly an adequate level of AI literacy,\ntraining and authority to execute these tasks\nproperly.                                          https://www.osborneclarke.com/insights/ai-literacy-becomes-\n                                                   mandatory-life-sciences-across-eu",
+      "ocrUsed": false
+    },
+    {
+      "page": 22,
+      "text": "AI education\n for clinicians\n “To produce clinically sound and effective tools, clinicians\n     must be actively engaged in the development and\nimplementation of AI solutions. Training for the use of AI is\n   also a key facilitator for the acceptance of new tools”\n\n\n  “Thus, there is a pressing need to consider how to equip\n future clinicians with the skills necessary to capture the\n value of AI for improving healthcare delivery and patient\n                         outcomes.”",
+      "ocrUsed": false
+    },
+    {
+      "page": 23,
+      "text": "Schubert, T., Oosterlinck, T., Stevens, R.\nD., Maxwell, P. H., & van der Schaar, M.\n(2025). AI education for clinicians.\neClinicalMedicine, 79, 102968.\nhttps://doi.org/10.1016/j.eclinm.2024.10\n2968",
+      "ocrUsed": false
+    },
+    {
+      "page": 24,
+      "text": "Thank you!\nIts your turn\n Achieving AI literacy demands a comprehensive strategy – and the life sciences sector is no exception.",
+      "ocrUsed": false
+    }
+  ],
+  "emptyPages": [],
+  "extractError": null,
+  "_diagnostic": {
+    "pdfBytes": 12833913,
+    "elapsedMs": 8449
+  }
+}

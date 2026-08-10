@@ -1,0 +1,159 @@
+{
+  "designId": "DAG-_sTjJGw",
+  "sourceUpdatedAt": 1784883525,
+  "extractedAt": "2026-08-10T10:21:56.005Z",
+  "pageCount": 29,
+  "slides": [
+    {
+      "page": 1,
+      "text": "KONENÄKÖ+VIBE+ROBOTIIKKA?\nRiihimäki 2026. Jari Laru, KT, yliopistonlehtori,\nteknologiatuettu oppiminen ja opetus",
+      "ocrUsed": false
+    },
+    {
+      "page": 2,
+      "text": "Esitys löytyy täältä:\n\n\n\n\nbit.ly/robokampus26",
+      "ocrUsed": false
+    },
+    {
+      "page": 3,
+      "text": "Lapsuus            Ylä-aste ja lukio                Opettajaopinnot                   Jatko-opinnot Opettaminen Tutkimus\n     Pelaaminen          Tietoliikenneharrastus          Teknologiapainotteinen sv             Mobiilioppiminen        Tekn. tuettu oppiminen        Tekoäly\n   Kotimikro              PC + Modeemi                      PC + Internet                  Mobiililaitteet                 Digiluokka              Sovellukset\n\n Kasetti   Levyke   Modeemi Tulostin Ohjelmointi Lego robot Videoneuvottelu Älypuhelin                Some        Videot   Robotit Leikkurit ML/AI GenAI/AI\n\n  Tietokonelehdet          ATK          Historia        Teknologiakasvatus        Gradu                           Itsenäisen työskentelyn aika\n\n                                                                                                   Minä jatko-\n                                                                                                                           Minä opettajana            Minä tutkijan\n                                                                                                   opiskelijana\n                     Timo Nauha         Heikki Riekki   Matti Lindh\n\n1975                                                    Tieto- ja viestintä-\n                                                                                                                       Väitös\n                                                                                                                                     Ohjelmoinnillinen\n                                                                                                                                                       2025\n                                                                               Koulutusteknologia,    OPMON\n                                                        tekniikka                   CSCL, SRL      tutkijakoulu                      ajattelu          Tekoäly\n\n\n\n\n                                                        Kari Kumpulainen       Sanna Järvelä      Erno Lehtinen                      Matti Tedre      Teemu Roos\n                                   SYSOP\n\n                                                                        Y2K\n\n\n      0-14v                                        15-29v                                            30-39v                                  40+",
+      "ocrUsed": false
+    },
+    {
+      "page": 4,
+      "text": "Tekoäly ei ole\n                       tulevaisuutta\n                                  Kaikkialla läsnä oleva ja\n                                    kaikkialle levinnyt\n                                          tekoäly\n\nTekoäly on integroitu syvästi sosiaalisen median palveluihin",
+      "ocrUsed": false
+    },
+    {
+      "page": 5,
+      "text": "OSA A: Millainen työkalu tekoäly on?   Horvitz, E., & Mitchell, T. M. (2024). Scientific Progress in Artificial Intelligence: History, Status, and Futures. in Kathleen Hall Jamieson, Anne-Marie Mazza, and\n                                       William Kearney (Eds.) (2024) Realizing the Promise and Minimizing the Perils of AI for Science and the Scientific Community. University of Pennsylvania Press",
+      "ocrUsed": false
+    },
+    {
+      "page": 6,
+      "text": "Asiantuntijajärjestelmät\nAsiantuntijajärjestelmät                                                                                         Käytännön esimerkkejä\n                                                                                                                 symbolisesta tekoälystä\n                                                 Masuunissa rautamalmi pelkistyy raudaksi\n                                               monimutkaisen kemiallisen pelkistysprosessin\n                                                                               seurauksena\n\n\n\n\n                                                                                                                “Asiantuntijajärjestelmät, jotka olivat merkittäviä 1970- ja Chatbotit\n                                                                                                                                                                             Chatbotit (ei\n                                                                                                                                                                                       (ei LLM)\n                                                                                                                                                                                           LLM)\n                                                                                                                1980-luvuilla, pyrkivät tallentamaan asiantuntijoiden\n                                                                                                                tietoa tiiviinä loogisina sääntöinä, usein \"jos-niin\" (if-\n                                                                                                                then) -muodossa, ja suorittamaan päättelyä näiden\n                                                                                                                sääntöjen perusteella”\n\n                                                                                                                Henkilökohtaiset apurit\n                                                                                                                Henkilökohtaiset apurit\nMasuuni 1:n valvomo Raahen terästehtaalla 1980-luvulla\n\n\n\n\n Esimerkki masuunien asiantuntijajärjestelmiä koskevasta tutkimuksesta: S. Amano, T. Takarabe, T.\n Nakamori, et al., “Expert system for blast furnace operation at Kimitsu Works,” ISIJ Int.,30, No. 2, 105–110\n (1990).\n\n\nOSA A: Millainen työkalu tekoäly on?",
+      "ocrUsed": false
+    },
+    {
+      "page": 7,
+      "text": "Syväoppiminen (neuroverkot) on\n mullistanut tietojenkäsittelyn.",
+      "ocrUsed": false
+    },
+    {
+      "page": 8,
+      "text": "2000-luvun auto on esimerkki syväoppimisesta\n  ADAS\nTekoäly (AI) ja syväoppimisalgoritmit ovat kriittisiä\nADAS-anturien antamien tietojen tulkinnassa.\nSovelluksia:\n   Mukautuva vakionopeudensäädin (ACC)\n   Kaistavahti- kaistallapitovahti (pakollinen)\n   Kuolleen kulman tunnistus\n   Törmäyksen välttäminen\n   Hätäjarrutus (pakollinen)\n   Liikennemerkkien tunnistus, Älykäs nopeusavustin (pakollinen)\n   Kuljettajan vireystilan valvonta\n                                                     Fujiyoshi, Hironobu & Hirakawa, Tsubasa & Yamashita, Takayoshi.\n                                                     (2019). Deep learning-based image recognition for autonomous\n                                                     driving. IATSS Research. 43. 10.1016/j.iatssr.2019.11.008.",
+      "ocrUsed": false
+    },
+    {
+      "page": 9,
+      "text": "Myös opetettava kone perustuu syväoppimiselle",
+      "ocrUsed": false
+    },
+    {
+      "page": 10,
+      "text": "“Generatiivinen tekoäly on ollut yksi\n       maailman nopeimmin\n käyttöönotetuista teknologioista”\n\n\n                 Giannakos, M., Azevedo, R., Brusilovsky, P., Cukurova, M., Dimitriadis, Y., Hernandez-Leo, D., ... & Rienties, B. (2024).\n                 The promise and challenges of generative AI in education. Behaviour & Information Technology, 1-27.",
+      "ocrUsed": false
+    },
+    {
+      "page": 11,
+      "text": "Multimodaaliset mallit\nKielimalli                 Musiikkimalli                    Kuvamalli                               Videomalli\n     GPT-5\n     GPT-5 (LLM)\n           (LLM)                            Suno-5\n                                            Suno-5                            NanoBanana\n                                                                              NanoBanana                         Sora-2\n                                                                                                                 Sora-2\nMultimodal\nMultimodal transformer\n           transformer            Bark ja\n                                  Bark ja Chirp\n                                          Chirp models\n                                                models   Multimodal Diffusion\n                                                         Multimodal Diffusion Transformer\n                                                                              Transformer (MMDiT)\n                                                                                          (MMDiT)     Diffusion transfomer\n                                                                                                      Diffusion transfomer\n\n\n\n\n            ..on mahdollistanut generatiivisella tekoälyllä luotujen\n            (synteettisten) sisältöjen räjähdysmäisen kasvun.",
+      "ocrUsed": false
+    },
+    {
+      "page": 12,
+      "text": "Synteettisten sisältöjen luominen on\n              helppoa\n\n\n\n  Outrun video, tehty Google Flow työkalulla.          Tosipankki -video, tehty Google Flow työkalulla.\nHarjoittelin itseni sijoittamista (ingredient) videoon. Testasin kuinka helppoa on tehdä huijausvideo.",
+      "ocrUsed": false
+    },
+    {
+      "page": 13,
+      "text": "50%\n AI",
+      "ocrUsed": false
+    },
+    {
+      "page": 14,
+      "text": "“Mitä sitten, jos ChatGPT kirjoitti sen?”\nTähän artikkeliin on koottu 43 näkemystä, jotka ovat peräisin\nmuun muassa tietojenkäsittelytieteen, markkinoinnin,\ntietojärjestelmien, koulutuksen, politiikan, majoituksen ja\nmatkailun, johtamisen, kustannustoiminnan ja hoitotyön\nalojen asiantuntijoilta ja jotka tarjoavat monitieteistä\nnäkemystä joistakin näistä ongelmista.\n\n\n  “Entä jos tekstin kirjoittamisessa,\narvioinnissa ja lukemisessa käytetään\n              tekoälyä?”\nDwivedi, Y. K., Kshetri, N., Hughes, L., Slade, E. L., Jeyaraj, A., Kar, A. K., ... & Wright, R. (2023). Opinion Paper:“So what if ChatGPT\nwrote it?” Multidisciplinary perspectives on opportunities, challenges and implications of generative conversational AI for research,\npractice and policy. International journal of information management, 71, 102642.",
+      "ocrUsed": false
+    },
+    {
+      "page": 15,
+      "text": "A.Tekoälylukutaito",
+      "ocrUsed": false
+    },
+    {
+      "page": 16,
+      "text": "Tekoälylukutaitovaatimus astui\nvoimaan 2.2.2025 (EU tekoälyasetus)\n   Tätä asetusta olisi sovellettava 2 päivästä elokuuta 2026. Kun kuitenkin otetaan huomioon tietyt tekoälyn käyttötavat, joita ei\n   voida hyväksyä, kieltoja ja tämän asetuksen yleisiä säännöksiä olisi sovellettava jo 2 päivästä helmikuuta 2025.\n\n\n\n\n    Maamme                                       AI LIT                                      DigComp\ntekoälysuositukset                            Framework                                   3.0 viitekehys\n                                              (PISA 2029)",
+      "ocrUsed": false
+    },
+    {
+      "page": 17,
+      "text": "myös vuoden 2029 PISA innovative domain!",
+      "ocrUsed": false
+    },
+    {
+      "page": 18,
+      "text": "Työkalu Kohde",
+      "ocrUsed": false
+    },
+    {
+      "page": 19,
+      "text": "Mitä tänään?\nKonenäkö   Synteettinen koodi   Robotti",
+      "ocrUsed": false
+    },
+    {
+      "page": 20,
+      "text": "Nyt on hyvä aika avata diat itsellesi\n\n\n\n\nbit.ly/robokampus26",
+      "ocrUsed": false
+    },
+    {
+      "page": 21,
+      "text": "Generation AI\n                                                                                Generation AI sovellukset\n                                                                                esi- ja perusopetukseen\n                                                                              Sovelluksia on kehitetty 500+ oppilaan kanssa\n\n  https://www.generation-ai-stn.fi                           Kuinka “ChatGPT” toimii?                     Miten some toimii?\n\n\nKasvatustiede            Kehitämme pedagogisia\n                         puitteita tekoäly- ja\n                         turvallisuuskasvatukselle            Kouluta oma pieni kielimalli selaimessa   Miten some suosittelee?\n\n\nOikeustiede\n                                                              omilla aineistoillasi!                    Somesimulaattori luokkahuoneita varten.\n\n                         Kehitämme uusia esi- ja\n                                                        Kuinka konenäkö toimii? Voiko tekoälyä huijata?\n                         perusopetukseen soveltuvia\n                         tekoälyn opetusvälineiden ja -\nTietojenkäsittelytiede   menetelmien sekä\n                         oppimiskokonaisuuksien\n                                                              Tee omia appeja koneoppimisen avulla.     Kilpaile luokkakavereiden kanssa siitä\n\n                         yhdistelmiä                          Käytä omaa opetusaineistoa!               kuka onnistuu huijaamaan tekoälyä!\n\n\n\nMuut osapuolet           Edistämme lasten oikeuksien          Materiaalit ja sovellukset:\n                         toteutumista tekoälyyn                       www.gen-ai.fi\n                         perustuvissa järjestelmissä",
+      "ocrUsed": false
+    },
+    {
+      "page": 22,
+      "text": "Tapaus A. Opetettava kone\n                      Opetusmateriaali\n                         Hugging Facen\n                         roskakuvia sisältävä\n                         kirjasto\n                      Toimintakortit:\n                         Kuvat: Microsoft\n                         Create\n                         Äänet:\n                         https://speechgen.io/\n                         fi/tts-finnish/\n\n\n                       REMIXAA!\n                          E1nXfz0s",
+      "ocrUsed": false
+    },
+    {
+      "page": 23,
+      "text": "Generation AI TM   Scratch fork with ML blocks   Scratch Link    Lego EV3\n\n                                                                 Microbit V2 +\n                                                                 Makecode\n                                                                 Microbit V2 +\n                              P5.JS app          Web Bluetooth   Makecode\n\n                                                                 Arduino + C++ (and\n                                                                 others)\n                                                                 Lego + Pybricks\n\n\n                              P5.JS app           Web Serial\n                                                                 Microbit V1 +\n                                                                 Makecode\n\n                                                                 Arduino + C++ (and\n                                                                 others)\n\n                                                                 VEX Robotics",
+      "ocrUsed": false
+    },
+    {
+      "page": 24,
+      "text": "Tapaus B. Lego Spike      Jaettu koneoppimismalli       Web Bluetooth lähettää\n                                                           luokan numeron (esim. 1)\n\n\n\n\nOpetettava kone        P5.js välisovellus, joka yhdistää        Lego Spike (Pybricks\n(opetettu, sama kuin   opetettavan koneen ja Spiken             firmware) [vibekoodattu\ntapauksessa A)         [vibekoodattu javascript logiikka        python logiikka]",
+      "ocrUsed": false
+    },
+    {
+      "page": 25,
+      "text": "Remix-tehtävä:\nOpetettava kone\n    Avaa kopio opetettavasta koneesta ja muuta sitä harkintasi\n    mukaan. Käytä koodia E1nXfz0s (opettajan koneen tulee olla päällä)\nLego spike\n    Jos käytettävissäsi on Lego Spike, asenna siihen pybricks firmware\n    (helppoa ja turvallista)\n    Avaa Pybricks sovelluksessa Spiken koodi ja lataa se Spikeen.\n    Lisää toimintoja Spikeen, esim. moottori voi reagoida muutoinkin\n    kuin saatuaan numeron 3 (kolmas luokka)\nP5.js\n    Avaa P5.js välisovellus, joka yhdistää opetettavan koneen ja pybricksin\n    (spiken) välille yhteyden\n    Testaa yhteys! Käytä!",
+      "ocrUsed": false
+    },
+    {
+      "page": 26,
+      "text": "Tapaus C. Microbit                                                 Microbit radio\n\n                                            Web Serial (USB)\n\n\n\n\n                               Microbit, joka ottaa USB väylää     Kitronik Move Motor,\nP5.js sovellus, joka           pitkin komennon (numero 1...5)      jota ohjaa Microbit\nhyödyntää Mediapipe            vastaan ja lähettää sen             toisen Microbitin\nkirjastoa (tunnistaa sormet)   radiotietä toiselle microbitille.   lähetystä kuunnellen.\n(koodi vibekoodattu)           (koodi vibekoodattu)                (koodi vibekoodattu)",
+      "ocrUsed": false
+    },
+    {
+      "page": 27,
+      "text": "Remix-tehtävä:\nP5.js\n    Sormien tunnistus: Avaa Mediapipe hands sormimallia käyttävä\n    P5.js sovellus\n    Opetettava kone: tämä kytkee koneen ja usb serialin yhteen P5.js\n    sovellus\nMicrobit 1 (web serial + microbit radio lähetin)\n    Asenna tämä koodi lähettävään Microbitiin\n    Ota P5.js ohjelmalla Web serial USB yhteys Microbitiin.\nMicrobit 2 (Microbit radio vastaanotin ja Kitronik Move Motor\nohjain\n    Asenna tämä koodi tähän Microbitiin\n    Laita Microbit Kitronik Move Motoriin tai johonkin muuhun\n    soveltuvan laitteeseen\n    Muokkaa toimintoja! Nyt vain yksi toiminto koodissa!",
+      "ocrUsed": false
+    },
+    {
+      "page": 28,
+      "text": "Tapaus D. Tee jotain omaa!\nKäytä joko P5.JS editoria ja\njotain generatiivisen tekoälyn\ntyökalua\n\nTAI\n\nKäytä P5js.ai editoria ja\npromptaa suoraan mitä haluat.\n\nEHTO: Käytä oppivan koneen\njakolinkkiä (koneoppimismallia)",
+      "ocrUsed": false
+    },
+    {
+      "page": 29,
+      "text": "Mitä teimme tänään?\nKonenäkö   Synteettinen koodi   Robotti",
+      "ocrUsed": false
+    }
+  ],
+  "emptyPages": [],
+  "extractError": null,
+  "_diagnostic": {
+    "pdfBytes": 19365415,
+    "elapsedMs": 31231
+  }
+}

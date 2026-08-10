@@ -1,0 +1,26 @@
+{
+  "designId": "DAHIr3b7Q78",
+  "sourceUpdatedAt": 1784882468,
+  "extractedAt": "2026-08-10T10:03:53.186Z",
+  "pageCount": 2,
+  "slides": [
+    {
+      "page": 1,
+      "text": "Sivistyslautakunnan “pöydällä”\n Paikallisia:                          https://urly.fi/47yN\n   Palveluverkko (kevät)\n   Varhaiskasvatuksen palvelusetelin sääntökirja (kesä)\n   Tekoäly (lautakunnallekin on kesän alussa “superkokous”) (EU AI\n   ACT tekoälylukutaito 2.2.2025)\n Valtakunnallisia:\n   Lisäsäästöt kuntataloudesta (vaikutus heti sivistykseen)\n   Opetussuunnitelmatyö alkaa hiljalleen. Tavoitteena (näyttää\n   olevan) suunnitelman selkeyttäminen, joka on opettajien toiveiden\n   mukaista.\n   Digiosaava opettaja (sis. AI) ja digikompassi (sis. AI)",
+      "ocrUsed": false
+    },
+    {
+      "page": 2,
+      "text": "",
+      "ocrUsed": false
+    }
+  ],
+  "emptyPages": [
+    2
+  ],
+  "extractError": null,
+  "_diagnostic": {
+    "pdfBytes": 144382,
+    "elapsedMs": 3438
+  }
+}

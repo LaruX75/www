@@ -1,0 +1,64 @@
+{
+  "designId": "DAG2ZlpNaIA",
+  "sourceUpdatedAt": 1784883539,
+  "extractedAt": "2026-08-10T10:24:39.187Z",
+  "pageCount": 10,
+  "slides": [
+    {
+      "page": 1,
+      "text": "Kuinka generatiivinen\ntekoäly toimii?\nPieni kielikone -demo\nITK Webinaari 21.10.2025\n\n\n                           Generation AI\n                                  www.generation-ai-stn.fi",
+      "ocrUsed": false
+    },
+    {
+      "page": 2,
+      "text": "Projektin esittely:\n\n\n\n\nhttps://bit.ly/GenerationAI05",
+      "ocrUsed": false
+    },
+    {
+      "page": 3,
+      "text": "Erilaisia (Gen AI) tekoälymalleja\nKielimalli               Musiikkimalli                       Kuvamalli                               Videomalli\n     GPT-5 (LLM)\n     GPT-5 (LLM)                             Suno-5\n                                             Suno-5                            NanoBanana\n                                                                               NanoBanana                         Sora-2\n                                                                                                                  Sora-2\nMultimodal\nMultimodal transformer\n           transformer             Bark\n                                   Bark ja\n                                        ja Chirp\n                                           Chirp models\n                                                 models   Multimodal Diffusion\n                                                          Multimodal Diffusion Transformer\n                                                                               Transformer (MMDiT)\n                                                                                           (MMDiT)     Diffusion\n                                                                                                       Diffusion transfomer\n                                                                                                                 transfomer\n\n\n\n\n                           Pieni kielikone on täysin toimiva kielimalli (transformer)",
+      "ocrUsed": false
+    },
+    {
+      "page": 4,
+      "text": "Kuinka Generatiivinen                                       Tekoäly on loppukäyttäjille (myös\n\ntekoäly toimii?                                                 koulussa) musta laatikko\n\n\n\n\n                 https://cartography-of-generative-ai.net",
+      "ocrUsed": false
+    },
+    {
+      "page": 5,
+      "text": "Pelkkä AI:n käyttäminen ei                                                          Tekoäly on loppukäyttäjille (myös\n                                                                                          koulussa) musta laatikko\n  kehitä tekoälylukutaitoa\n\n\n\n\n                                                                     EI riitä yksin\n\n\nOECD (2025). Empowering learners for the age of AI: An AI literacy\nframework for primary and secondary education (Review draft).\nOECD. Paris. https://ailiteracyframework.org",
+      "ocrUsed": false
+    },
+    {
+      "page": 6,
+      "text": "Pieni kielikone avaa Generatiivisen tekoälyn\ntoimintaperiaatteet.\nKyseessä on selaimessa toimiva transformer malli (NanoGPT), jonka voi myös itse opettaa!\n\n\n\n\n                                                                                                         ?\n\n 1. Opetusaineiston valinta   2. Mallin valinta   3. Mallin opettaminen ja tekstin esikatselu       4. Tulossa!!\n    tai syöttäminen                                                                             Generation AI",
+      "ocrUsed": false
+    },
+    {
+      "page": 7,
+      "text": "Kielikoneessa on valmiina opetusaineistoja\nja erilaisia kielimallikokoonpanoja\nPienenkin kielimallin opettaminen vaatii miljoonia näytteitä.      Malli \"oppii\" tai tallentaa painoihin ja parametreihin opetusdatan\nValmiina on www-sivuja, wikipediapaketteja, elokuvatekstityksiä,   rakenteen, säännöt ja yhteydet (esim. sanajärjestykset tai kieliopin)\ntarinoita..                                                        Malli soveltaa oppimiaan sääntöjä ja rakenteita uuteen, ennen\n                                                                   näkemättömään syötteeseen (esim. tuottaa järkeviä lauseita, joita ei\n                                                                   ollut opetusdatassa).\n\n\n\n\n                                                                                                to n                       ttu\n                                                                                              a                        t e\n                                                                                          t am                      ulu\n                                                                                         t                        Ko\n                                                                                     oulu\n                                                                                    K\n\n\n\n\n                                                                                                                        Generation AI",
+      "ocrUsed": false
+    },
+    {
+      "page": 8,
+      "text": "Käytetään kielikonetta: esiopetettu malli\nHttps://lm.gen-ai.fi\nEsiopetetun mallin avulla saamme selville, että millaista jälkeä kone pystyy tuottamaaan.\n\n\n\n\n   1. Avaa mallivalitsin   2. Vaihda kieleksi englanti ja valitse 2000 sanakkeen   3. Paina “luo sisältöä” jolloin malli\n                           children’s stories materiaalilla opetettu malli         aloittaa tekstin luomisen",
+      "ocrUsed": false
+    },
+    {
+      "page": 9,
+      "text": "Käytetään kielikonetta: tyhjä malli\nHttps://lm.gen-ai.fi\nPienen kielikoneen avulla voimme lähteä liikkeelle hetkestä 0, vastaavasti “ChatGPT” on\npitänyt opettaa.\n\n\n\n\n                                                                                                                                                ?\n\n                                     2. Voit kokeilla erilaisia malleja.   3. Käynnistä mallin   4. Havannoi mallin esikatselu-\n1.Tutki opetusaineistoja ja niiden                                                                                                         4. Tulossa!!\n  sisältöjä. Valitse sopiva          Suositus: medium BPE 4m               opettaminen           ikkunasta ja laatumittarista mallin\n                                                                                                 toimintaa                             Generation AI",
+      "ocrUsed": false
+    },
+    {
+      "page": 10,
+      "text": "Haluatko\n                              olla mukana\n                           kehittämässä tätä\n                             sovellusta ja\n                                  QR koodi\n\n\n                             materiaaleja?\n\nwww.generation-ai-stn.fi\n                           Tervetuloa!",
+      "ocrUsed": false
+    }
+  ],
+  "emptyPages": [],
+  "extractError": null,
+  "_diagnostic": {
+    "pdfBytes": 8286968,
+    "elapsedMs": 30215
+  }
+}

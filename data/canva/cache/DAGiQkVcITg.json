@@ -1,0 +1,432 @@
+{
+  "designId": "DAGiQkVcITg",
+  "sourceUpdatedAt": 1784882965,
+  "extractedAt": "2026-08-10T10:12:14.022Z",
+  "pageCount": 83,
+  "slides": [
+    {
+      "page": 1,
+      "text": "Robotiikkaa ja selitettävää\n tekoälyä! Someanalytiikkaa\n     somekoneen avulla!\nOpetettavan koneen ja somekoneen uudet ominaisuudet ja\n    mahdollisuudet. IT Kouluttajat ry seminaari 2025\n\n\n\n\n                     Jari Laru, Oulun yliopisto, KT, yliopistolehtori, teknologiatuettu oppiminen ja opettaminen",
+      "ocrUsed": false
+    },
+    {
+      "page": 2,
+      "text": "https://bit.ly/itko2025tallinna",
+      "ocrUsed": false
+    },
+    {
+      "page": 3,
+      "text": "Hankkeemme on osa Shield ohjelmaa, jossa keskitytään\nturvallisuuteen ja luottamukseen informaatioteknologioiden ja\n            hybridivaikuttamisen maailmanajassa.\n\n\n\n                                           Olet tässä.\n\n\n\n\n   Demokratian episteeminen    Algoritmisten systeemien murtumat Luotettavien ja syrjimättömien\n    toimintakyky algoritmien          ja uudet alut (REPAIR)      digitaalisten julkispalvelujen\n      aikakaudella (DECA)                                        suunnittelu maahanmuuttajille\n                                                                             (Trust-M)",
+      "ocrUsed": false
+    },
+    {
+      "page": 4,
+      "text": "Kehitämme pedagogisia puitteita   Kasvatustiede\ntekoäly- ja\nturvallisuuskasvatukselle\nKehitämme uusia esi- ja           Oikeustiede\nperusopetukseen soveltuvia\ntekoälyn opetusvälineiden ja -\nmenetelmien sekä                  Tietojenkäsittelytiede\noppimiskokonaisuuksien\nyhdistelmiä\nEdistämme lasten oikeuksien       Muut osapuolet\ntoteutumista tekoälyyn\nperustuvissa järjestelmissä",
+      "ocrUsed": false
+    },
+    {
+      "page": 5,
+      "text": "Tekoälyn                                                                                        Tekoälyn\n       käyttäminen Tekoäly (meta)kognitiviisena työkaluna\n                                                                                                       ymmärtäminen\n                                                                                                        Tekoälylukutaito, data- ja tekoälytoimijuus\n\n\n\n\nNäkymä\nlähelle            A       Tekoälyä hyödynnetään opetuksen ja\n                           oppimisen suunnittelussa                                                                     Mitä tavallinen oppilas tai\n\n\n\n                   B\n                                                                                                                       opettaja tietää tekoälystä?\n                           Tekoäly toimii oppimisen itsesäätelyn\n                           tukena ja osapuolena\n\n9 asiantuntijaa\n8 johtavaa\noppimistieteiden\n                   C       Tekoäly mahdollistaa automatisoidut\n                           sisällöt\n\n\n                   D\ntutkimusyksikköä\n5 mannerta                 Tekoälyn myötä syntyy uusia taitoja ja\n                           pätevyyksiä\nGiannakos, M., Azevedo, R., Brusilovsky, P., Cukurova, M., Dimitriadis, Y., Hernandez-Leo, D., ... &\nRienties, B. (2024). The promise and challenges of generative AI in education. Behaviour &\nInformation Technology, 1-27.",
+      "ocrUsed": false
+    },
+    {
+      "page": 6,
+      "text": "Tekoälyn                                            Tekoälyn\n    käyttäminenTekoäly (meta)kognitiviisena työkaluna\n                                                        ymmärtäminen        Tekoälylukutaito, data- ja tekoälytoimijuus\n\n         Tekoälyä säännellään EU:ssa                    EU AI ACT edellyttää tekoälylukutaitoa\n                                                                                                                                        Mitä on tekoäly?\n                                                                                                                                        Mihin sitä käytetään?\nPerinteinen AIED                                                                                                                        Keskusteleva tekoäly\n                                                                                             käsitteet\nÄlykkäät tutorit ja chatbotit\n                                 Kielletty\nÄlykkäät oppimisympäristöt\nAutomaattinen arviointi                                                                                                                 Opi ja opeta tekoälyn avulla\nAI-tuetut näkymät                                                                                                                       Tutki ja kokeile tekoälyn avulla\n                                Arvioitu ja\nOpiskelijavalinta...\n\nGPAI-mallit (LLM)\n                                säännelty                                                    pedagogiikka                               Opiskele tekoälyn avulla\n\nChatGPT, Gemini, Claude,.                                                                                                               Suunnittele tekoälyn avulla\n\n                                                                                             Luovuus\nCopilot..                                                                                                                               Luo tekoälyn avulla\nMidjourney, Dall-E\n                                                                                                                                        Tekoälykritiikki\n...\nmuu                                                                                                                                     Tekoälyn rajoitukset\nRoskapostisu\nodattimet\n                                                                                             Etiikka                                    Turvallinen ja vastuullinen tekoäly\n                                                                                                                                        Tekoäly yhteiskunnassa\njne.\nTietokonepel\nit tekoälyllä...                                                                             Työelämä                                   Työskentele tekoälyn kanssa\n                                                                                                                                        Hoida tekoälyn avulla\n                                                                                                                                        Kukoista tekoälyn kanssa\n                                                        Prof. Emeritus Mike Sharplesin ehdotus LinkedIN palvelussa (3 viikkoa sitten)",
+      "ocrUsed": false
+    },
+    {
+      "page": 7,
+      "text": "Lasten ja nuorten sekä “aloittelijoiden” AI lukutaito tarpeet\n        eivät ole samat kuin opettajilla ja hallinnolla\n\n                                             Opettaja\n                   Tietohallinto\n\n\n\n                                                        Kansalainen\n                                   Oppilas\nAmatöörien sekä\nlasten ja nuorten AI\nlukutaito vaatii\nerikoishuomiota",
+      "ocrUsed": false
+    },
+    {
+      "page": 8,
+      "text": "Lasten ja nuorten Tekoälyn perusymmärrys ja yhteiskunnalliset vaikutukset: Oppilaiden tulee\n                  ymmärtää, miten tekoäly toimii ja miten se vaikuttaa yhteiskuntaan. Tämä\ntekoälylukutaito? sisältää teknologian perusteet, sovellukset ja eettiset kysymykset, kuten\n                                                                                     yksityisyys ja oikeudenmukaisuus.\n\n                                                                                     Käytännönläheinen ja oppilaskeskeinen oppiminen: Tekoälyä tulisi opettaa\n                                                                                     projektipohjaisin ja ongelmalähtöisin menetelmin, jotka mahdollistavat\n                                                                                     oppilaiden aktiivisen osallistumisen ja oppimisen soveltamisen todellisissa\n                                                                                     tilanteissa.\n\n                                                                                     Eettiset näkökulmat ja riskit: Opetuksessa tulee painottaa tekoälyn eettisiä\n                                                                                     periaatteita, kuten läpinäkyvyyttä, vastuullisuutta ja yhteiskunnallisia riskejä,\n                                                                                     jotta oppilaat ymmärtävät tekoälyn vaikutukset ja osaavat käyttää sitä\n                                                                                     vastuullisesti.\n\n                                                                                     Itsearviointi ja elinikäinen oppiminen: Oppilaiden tulee kehittää kykyä arvioida\n Chiu, T. K., Ahmad, Z., Ismailov, M., & Sanusi, I. T. (2024). What are artificial   omaa tekoälyosaamistaan ja päivittää tietojaan jatkuvasti kehittyvässä\n  intelligence literacy and competency? A comprehensive framework to\n           support them. Computers and Education Open, 6, 100171.\n                                                                                     tekoälymaailmassa, mikä tukee elinikäistä oppimista.",
+      "ocrUsed": false
+    },
+    {
+      "page": 9,
+      "text": "MIKSI?",
+      "ocrUsed": false
+    },
+    {
+      "page": 10,
+      "text": "Mitä yhteistä\nnäillä kuvilla on?",
+      "ocrUsed": false
+    },
+    {
+      "page": 11,
+      "text": "Musta laatikko\nSuurin osa kohtaamistamme\ntekoälypalveluista on\nvertauskuvallisesti mustia\nlaatikoita, eli niiden\ntoimintaperiaatteet ovat salaisia.\n\nToisin sanoen ne eivät ole\nläpinäkyviä, emmekä siksi tiedä,\nmiten ne tarkalleen ottaen\ntoimivat.",
+      "ocrUsed": false
+    },
+    {
+      "page": 12,
+      "text": "Läpinäkyvyys on mustan laatikon\nvastakohta: voimme tarkastella, mitä\n     laatikon sisällä tapahtuu.\n\nJotta tekoäly olisi täysin läpinäkyvää,\n     tulisi tietää sen lähdekoodi,\n koulutusdata ja miten algoritmia on\n     säädetty kehitysvaiheessa.",
+      "ocrUsed": false
+    },
+    {
+      "page": 13,
+      "text": "Tutkijat kertoivat käyttäneensä ”selitettävää\nsyväoppimismallia”.\n\nSe tarkoittaa edistynyttä itseoppivaa\ntekoälyjärjestelmää, jonka toimintalogiikka on\ntutkijoiden tiedossa.\n\nTällainen läpinäkyvyys mahdollistaa tarkan tiedon\nsaamisen, mikä taas vahvistaa tutkimuksen\nluotettavuutta ja toistettavuutta.\n\n\n\n                Wong, F., Zheng, E.J., Valeri, J.A. et al. Discovery of a structural class of antibiotics with explainable\n                deep learning. Nature 626, 177–185 (2024). https://doi.org/10.1038/s41586-023-06887-8",
+      "ocrUsed": false
+    },
+    {
+      "page": 14,
+      "text": "”Selitettävän tekoälyn käyttäjä voi\nymmärtää, miten tekoäly on päätynyt\n tulokseensa. Näin ollen käyttäjä voi\n      helposti arvioida tekoälyn\n          luotettavuutta.”",
+      "ocrUsed": false
+    },
+    {
+      "page": 15,
+      "text": "XAI\nGeneration AI työkalut edustavat\n     selitettävää tekoälyä\n\n\n\n\n                                            Ali, S., Abuhmed, T., El-Sappagh, S., Muhammad,\n\n\n\nExplainable Artificial Intelligence (XAI)\n                                            K., Alonso-Moral, J. M., Confalonieri, R., ... &\n                                            Herrera, F. (2023). Explainable Artificial\n                                            Intelligence (XAI): What we know and what is\n                                            left to attain Trustworthy Artificial\n                                            Intelligence. Information fusion, 99, 101805.",
+      "ocrUsed": false
+    },
+    {
+      "page": 16,
+      "text": "Selitettävä\n tekoäly ja\ntieteellinen\n tutkimus",
+      "ocrUsed": false
+    },
+    {
+      "page": 17,
+      "text": "MITEN?",
+      "ocrUsed": false
+    },
+    {
+      "page": 18,
+      "text": "XAI CASE I:\nKäyttäjä opettaa tekoälyä itse",
+      "ocrUsed": false
+    },
+    {
+      "page": 19,
+      "text": "Työkalu 1. Opetettava kone\n                       Data: oppilaat\n                       opettavat itse\n                       Koodi: MIT lisenssi\n                       AI algoritmi:\n                            syväoppiminen\n                            mobilenet\n                            Posenet\n                       XAI Selitys:\n                       lämpökartta",
+      "ocrUsed": false
+    },
+    {
+      "page": 20,
+      "text": "Lähdekoodi / Opetettava kone\n\n\n\n\nGeneration Ai sovellukset ovat\nilmaisia ja lähdekoodi (ohjelmisto) on\njaettu avoimella MIT\nohjelmistolisenssillä. Se antaa\nkäyttäjälle oikeudet vapaasti\nmuokata, kopioida ja käyttää teosta\nomassa projektissa sillä ehdolla, että\nlisenssin teksti säilyy lähdekoodissa.",
+      "ocrUsed": false
+    },
+    {
+      "page": 21,
+      "text": "Algoritmi / Opetettava kone\n\n                              Käyttäjä opettaa\n                              tekoälymallin itse\n                              Tekoälymalli on esiopetettu ja\n                              hyödyntää siirto-oppimista",
+      "ocrUsed": false
+    },
+    {
+      "page": 22,
+      "text": "Algoritmi / Opetettava kone\n\n      Kyse on\n  syväoppimisesta\n\n\n\n\n     Opetettava kone visualisoi\n    syväoppimismallin päättelyä",
+      "ocrUsed": false
+    },
+    {
+      "page": 23,
+      "text": "Algoritmi / Opetettava kone\n\n\n\nMobilenet\nMobileNet-mallia on sovellettu\nmenestyksekkäästi erilaisiin\ntietokonenäkötehtäviin, mukaan lukien\nkuvan luokittelu, objektien havaitseminen ja\nsemanttinen segmentointi.\n\nSen tehokkuus ja tarkkuus tekevät siitä\nerityisen sopivan laitteisiin, joissa\nreaaliaikainen käsittely ja alhainen\nvirrankulutus ovat tärkeitä.",
+      "ocrUsed": false
+    },
+    {
+      "page": 24,
+      "text": "Algoritmi / Opetettava kone\n\n\n\n Posenet\n Posenet on syväoppiva\nTensorFlow-malli, jonka avulla\nsovellus päättelee ihmisen\nasennon havaitsemalla kehon\nosia, kuten kyynärpäät, lonkat,\nranteet, polvet ja nilkat, ja\nmuodostaa asennon\nluurankorakenteen\nyhdistämällä nämä pisteet.\n\n\n\n\n https://blog.tensorflow.or\n g/2018/05/real-time-\n human-pose-estimation-\n in.html",
+      "ocrUsed": false
+    },
+    {
+      "page": 25,
+      "text": "XAI tekoäly opetettavassa koneessa -\n             lämpökartta\n\n\n\n\n  Generation AI TM",
+      "ocrUsed": false
+    },
+    {
+      "page": 26,
+      "text": "XAI tekoäly opetettavassa koneessa -\n  konvoluutiomalli ja lämpökartta\n\n\n\n\n Vittascience TM",
+      "ocrUsed": false
+    },
+    {
+      "page": 27,
+      "text": "Käytännössä.",
+      "ocrUsed": false
+    },
+    {
+      "page": 28,
+      "text": "Opetettavat koneet\n                                          Google Teachable\n                                          Machine (osa ML\n                                          työnkulusta)\n                                          VittaScience TM (osa ML\n                                          työnkulusta)\n                                          ...\n                                          Generation AI TM (koko\n                                          ML työnkulku (!)\n\nhttps://course.elementsofai.com/fi/4   OIKEA SYVÄOPPIMISMALLI",
+      "ocrUsed": false
+    },
+    {
+      "page": 29,
+      "text": "I.\n  Yksinkertaisen\ntekoälysovelluksen\n    tekeminen",
+      "ocrUsed": false
+    },
+    {
+      "page": 30,
+      "text": "Iso ilmiö hankkeen taustalla\n“Siirtymä ohjelmoiduista\ntyökaluista opetettaviin\n       työkaluihin”\nMatti Tedre, julkaisun ensimmäinen kirjoittaja, on hankkeemme johtaja\n\n\n\n\nMatti Tedre, Peter Denning, and Tapani Toivonen.\n   2021. CT 2.0. In 21st Koli Calling International\n  Conference on Computing Education Research\n(Koli Calling '21), November 18–21, 2021, Joensuu,\n    Finland. ACM, New York, NY, USA 8 Pages.\n    https://doi.org/10.1145/3488042.3488053",
+      "ocrUsed": false
+    },
+    {
+      "page": 31,
+      "text": "Tehtävä: Lapset tekevät mobiilisovelluksen, joka\nperustuu lasten opettamaan luokittelija-tekoälyyn.\nSovellus voi näyttää kuvan, tekstiä, toistaa ääntä tai\nmusiikkia sekä näyttää esim. videon.\n\nTavoite: Ei tarvetta ohjelmoinnille.\n\n\n\n\nLähtökohta",
+      "ocrUsed": false
+    },
+    {
+      "page": 32,
+      "text": "Generation AI Opetettava kone\nData-driven design workflow\n                         Curate, filter     Train model       Evaluate the\n             Collect                                                               Define actions that\n Problem                and clean data.   from available     model with (new)                                     Test app       Deploy app to other devices\n              data                                                                results trigger in app\n                           Label it             data              data\n\nUser interface\n\n\n\n\nKey ML concepts\n Data collection & curation    Training the model          Evaluating the model       Defining actions       Testing the app     Deploying the app\n\n    Training data                 Training                    Input                   Trigger              Previewing the      Sharing the ready app within the\n    Example                       Classifier                  Classification          Action (image,       app                 classroom or elsewhere\n    (sample)                                                  result                  link, sound, text)   Output\n    Class                                                     Confidence                                   Brittleness\n    Name (label)                                                                                           Debugging and\n                                                                                                           improving",
+      "ocrUsed": false
+    },
+    {
+      "page": 33,
+      "text": "Suomi\nPelkkä Generation AI opetettava kone riittää\n    Kattaa koko koneoppimisen työnkulun\n    XAI: lämpökartta\n    Yksi sovellus\n    Ei tarvetta ohjelmointitaidoille",
+      "ocrUsed": false
+    },
+    {
+      "page": 34,
+      "text": "GOOGLE TM 2.0 + Scratch (ML)\nData-driven design workflow\n                          Curate, filter     Train model       Evaluate the\n              Collect                                                               Define actions that\n Problem                 and clean data.   from available     model with (new)                                     Test app       Deploy app to other devices\n               data                                                                results trigger in app\n                            Label it             data              data\n\n User interface\n                                                                                                 Scratch (ML\n                                                                                                  version)\n\n\n\n\nKey ML concepts\n  Data collection & curation    Training the model          Evaluating the model       Defining actions       Testing the app     Deploying the app\n\n     Training data                 Training                    Input                   Trigger              Previewing the      Sharing the ready app within the\n     Example                       Classifier                  Classification          Action (image,       app                 classroom or elsewhere\n     (sample)                                                  result                  link, sound, text)   Output\n     Class                                                     Confidence                                   Brittleness\n     Name (label)                                                                                           Debugging and\n                                                                                                            improving",
+      "ocrUsed": false
+    },
+    {
+      "page": 35,
+      "text": "GOOGLE TM 2.0 + APP INVENTOR + TMIC\nData-driven design workflow\n                          Curate, filter     Train model       Evaluate the\n              Collect                                                               Define actions that\n Problem                 and clean data.   from available     model with (new)                                     Test app       Deploy app to other devices\n               data                                                                results trigger in app\n                            Label it             data              data\n\n\n\n                                                                                               MIT APP\n User interface\n\n\n\n\n                                                                                           Inventor + TMIC\n                                                                                             extension\n\n\n\n\nKey ML concepts\n  Data collection & curation    Training the model          Evaluating the model       Defining actions       Testing the app     Deploying the app\n\n     Training data                 Training                    Input                   Trigger              Previewing the      Sharing the ready app within the\n     Example                       Classifier                  Classification          Action (image,       app                 classroom or elsewhere\n     (sample)                                                  result                  link, sound, text)   Output\n     Class                                                     Confidence                                   Brittleness\n     Name (label)                                                                                           Debugging and\n                                                                                                            improving",
+      "ocrUsed": false
+    },
+    {
+      "page": 36,
+      "text": "USA\nGoogle TM + Scratch fork tai Google TM +\nAppinventor\n    Ei kata koko koneoppimisen työnkulua\n    (ohjelmointivaade)\n    XAI puuttuu\n    Monta sovellusta tarvitaan",
+      "ocrUsed": false
+    },
+    {
+      "page": 37,
+      "text": "Vittasciene (TM + Adacraft)\n     Data-driven design workflow\n                              Curate, filter     Train model       Evaluate the\n                  Collect                                                               Define actions that\n      Problem                and clean data.   from available     model with (new)                                     Test app       Deploy app to other devices\n                   data                                                                results trigger in app\n                                Label it             data              data\n\n     User interface\n\n\nVittascience TM + XAI\n                                                                                                       Adacraft\n\n\n\n\n     Key ML concepts\n      Data collection & curation    Training the model          Evaluating the model       Defining actions       Testing the app     Deploying the app\n\n         Training data                 Training                    Input                   Trigger              Previewing the      Sharing the ready app within the\n         Example                       Classifier                  Classification          Action (image,       app                 classroom or elsewhere\n         (sample)                                                  result                  link, sound, text)   Output\n         Class                                                     Confidence                                   Brittleness\n         Name (label)                                                                                           Debugging and\n                                                                                                                improving",
+      "ocrUsed": false
+    },
+    {
+      "page": 38,
+      "text": "Ranska\nVittascience\n    Ei kata koko koneoppimisen\n    työnkulua (ohjelmointivaade)\n    Erinomainen XAI\n    Monimutkainen, vaikka integroitu",
+      "ocrUsed": false
+    },
+    {
+      "page": 39,
+      "text": "II.\n    Yksinkertaisen\n  tekoälysovelluksen\ntekeminen: robotiikka /\n      automaatio",
+      "ocrUsed": false
+    },
+    {
+      "page": 40,
+      "text": "Lapset opettavat luokittelijatekoälyn tunnistamaan\nroskia tai erottamaan roskan ei roskasta. He rakentavat\nmyös robotin.\n\nEi tarvetta ohjelmoinnille.\n\n\n\n\nLähtökohta",
+      "ocrUsed": false
+    },
+    {
+      "page": 41,
+      "text": "Robotiikkaversio Generation AI opetettavasta\n   koneesta! Opeta robotiikkaa ja konenäköä\n   ilman tarvetta ohjelmoinnille!\n\n\n                                                                                                                       Uutuus!\n\n\n\n\nAnssi Lin, Anssi Salonen, Nicolas Pope, Henriikka Vartiainen and Matti Tedre (2025). A Versatile Low-Cost Kit for Teaching Novice Learners AI Using Robotics Components And a No-Code Development Playground.EAAI-25: The 15th\nSymposium on Educational Advances in Artificial Intelligence. Philadelphia PA, USA",
+      "ocrUsed": false
+    },
+    {
+      "page": 42,
+      "text": "Muut ratkaisut",
+      "ocrUsed": false
+    },
+    {
+      "page": 43,
+      "text": "Normaali tapa\n    A. Koulutetaan ja testataan luokittelija\n    (tekoäly). Jaetaan syntynyt koneoppimismalli\n    B. Kytketään jaettu koneoppimismalli\nA   ohjelmoituun logiikkaan\n    C. Rakennetaan ja viimeistellään robotti\n\n\n\n\nB                C",
+      "ocrUsed": false
+    },
+    {
+      "page": 44,
+      "text": "XAI CASE II:\nTekoäly oppii käyttäjän\n     toiminnasta",
+      "ocrUsed": false
+    },
+    {
+      "page": 45,
+      "text": "",
+      "ocrUsed": false
+    },
+    {
+      "page": 46,
+      "text": "Työkalu 2. Somekone   Data: somekäyttö\n                      tuottaa dataa\n                      Koodi: opensource\n                      AI algoritmi\n                      (simuloitu):\n                           Datan keruu\n                           Profilointi\n                           Sitoutuminen\n                           Suosittelu\n                      XAI Selitys:\n                           reaaliaikainen\n                           visualisointi ym",
+      "ocrUsed": false
+    },
+    {
+      "page": 47,
+      "text": "Lähdekoodi / Somekone\n\n\n\n\nGeneration Ai sovellukset ovat\nilmaisia ja lähdekoodi (ohjelmisto) on\njaettu avoimella MIT\nohjelmistolisenssillä. Se antaa\nkäyttäjälle oikeudet vapaasti\nmuokata, kopioida ja käyttää teosta\nomassa projektissa sillä ehdolla, että\nlisenssin teksti säilyy lähdekoodissa.",
+      "ocrUsed": false
+    },
+    {
+      "page": 48,
+      "text": "Koulutusdata / Opetettava kone\n\n\n\n\n    Tekoäly oppii käyttäjien datasta\n          “matkan varrella”",
+      "ocrUsed": false
+    },
+    {
+      "page": 49,
+      "text": "Algoritmi / Somekone\n\n\n\n\n                       Ei ole oikea AI\n\n\n  Sitoutuminen         Profilointi   Ryhmittely   Suosittelu",
+      "ocrUsed": false
+    },
+    {
+      "page": 50,
+      "text": "UUTTA!",
+      "ocrUsed": false
+    },
+    {
+      "page": 51,
+      "text": "TULOSSA:\nSosiaalisen median vaikutukset\nTAVOITE:\n    Ymmärtää kuinka sosiaalinen media vaikuttaa\n    maailmankuvaamme\n    Miten sosiaalisen median kautta meihin voidaan\n    vaikuttaa\nUUDET KÄSITTEET\n    Suosittelukartta\n    Vaikuttaminen",
+      "ocrUsed": false
+    },
+    {
+      "page": 52,
+      "text": "Sosiaalisen median vaikutukset I\nUusi somekoneen käyttöliittymä",
+      "ocrUsed": false
+    },
+    {
+      "page": 53,
+      "text": "Sosiaalisen median vaikutukset II\nMindshifter peli\n\n\n\n\n                          Tästä on hyvin\n                         varhainen versio\n                          testikäytössä",
+      "ocrUsed": false
+    },
+    {
+      "page": 54,
+      "text": "TULOSSA:\n   Koneoppiminen ja robotiikka\nTAVOITE:\n    Tarjota edullinen ja helppo tapa tutustua tekoälyyn ja\n    robotiikkaan\n    Ei tarvetta ohjelmoinnille\nTILANNE\n    Ensimmäinen versio valmis ja julkaistu EAAI konferenssissa!\n    Perustuu opetettavalle koneelle ja Raspberry Pi alustalle\n    Vaatii vielä jatkokehittelyä (voi olla ihan oma hankkeensa)",
+      "ocrUsed": false
+    },
+    {
+      "page": 55,
+      "text": "Työpaja",
+      "ocrUsed": false
+    },
+    {
+      "page": 56,
+      "text": "Sovelluksemme ovat turvallisia ja helppoja\n Generation AI opetettava kone                                                                                                            Generation AI työkalut edustavat selitttävää tekoälyä (XAI)\n\n Helppo ja turvallinen                                                                                                                    *XAI = Selittävä tekoäly on ekoälyjärjestelmä, jonka päättelyä ihminen pystyy\n                                                                                                                                          seuraamaan. Käytännössä selittävän tekoälyn käyttäjä voi ymmärtää, miten tekoäly on\n                                                                                                                                          päätynyt tulokseensa. Generation AI työkalut ovat XAI sovelluksia.                           XAI\n                                                                                                                                          Työkalut ovat saavutettavia ja helppokäyttöisiä\n                                                                                                                                          Generation AI sovellukset täyttävät digitaalisten palvelujen tarjoamisesta säädetyn lain\n                                                                                                                                          vaatimukset täyttäen saavutettavuutta koskevan WCAG ohjeistuksen tasolla 2.1 AA.\n                                                                                                                                          Sovellukset on suunniteltu käytettävyys ja helppokäyttöisyys edellä.\n\n\n                                                                                                                                           Etusijalla käyttäjän yksityisyys ja tietosuoja\n                                                                                                                                          Generation AI sovellukset asettavat etusijalle käyttäjien yksityisyyden ja tietosuojan.\n                                                                                                                                          Sovellukset eivät seuraa käyttäjiä tai kerää henkilötietoja. Ne ovat GDPR-yhteensopiviaa ja\n                                                                                                                                          varmistavat luokkahuoneen turvallisuuden, joten ne sopivat kaikkiin koulutusympäristöihin.\n\n\n    “GenAI-opetettava kone asettaa etusijalle käyttäjien yksityisyyden                                                                     Sovelluksemme ovat ilmaisia ja julkaistu MIT ohjelmistolisenssillä\n    ja tietosuojan. Sovellus ei seuraa käyttäjiä tai kerää henkilötietoja,                                                                Generation Ai sovellukset ovat ilmaisia ja lähdekoodi (ohjelmisto) on jaettu avoimella MIT\n                                                                                                                                          ohjelmistolisenssillä. Se antaa käyttäjälle oikeudet vapaasti muokata, kopioida ja käyttää\n    se on GDPR-yhteensopiva ja varmistaa luokkahuoneen\n                                                                                                                                          teosta omassa projektissa sillä ehdolla, että lisenssin teksti säilyy lähdekoodissa.\n    turvallisuuden, joten se sopii kaikkiin koulutusympäristöihin.”\n    Pope, Nicolas; Kahila, Juho; Vartiainen, Henriikka; Tedre, Matti (2023). Children’s AI Design Platform for Making and Deploying ML-\n    DrivenApps. TechRxiv. Preprint. https://doi.org/10.36227/techrxiv.24320794.v1\n                                                                                                                                           Sovellukset toimivat www-selaimessa\n                                                                                                                                          Sovellukset ovat selainpohjaisia ja tarvitsevat toimiakseen tuen WebRTC\n                                                                                                                                          datakanaville ja Javascript E11:lle (Chrome 56+, Firefox 44+, Safari 15.4+\n                                                                                                                                          ja Edge 79+). Sovelluksia on käytetty ja testattu Chromebook, Linux,\n                                                                                                                                          MAC ja Windows koneissa sekä Android ja IOS tableteissa ja puhelimissa\ntm.generation-ai-stn.fi",
+      "ocrUsed": false
+    },
+    {
+      "page": 57,
+      "text": "Oppitunnin sisältö\n1.Miten tekoäly toimii -\n  opetettava kone\n2. Miten somen algoritmit\n   toimivat? somekone 2.0\n3. Sosiaalisen median\n   vaikutukset - somekone 3.0",
+      "ocrUsed": false
+    },
+    {
+      "page": 58,
+      "text": "1.Oppitunnin tavoite\nOppia tekoälystä, sen sovelluksista ja sen vaikutuksista\njokapäiväiseen elämään konkreettisten,\nkontekstualisoitujen esimerkkien avulla.\nTutustua esim. koneoppimisen peruskäsitteisiin ja\ntyönkulkuun perusopetukseen tarkoitetun sovelluksen\navulla.\nSitouttaa sinut tutkiman tekoälyn toimintaperiaatteita\nkäytännönläheisten sovellusten ja harjoitteiden avulla",
+      "ocrUsed": false
+    },
+    {
+      "page": 59,
+      "text": "OSA I\n  Miten\n tekoäly\n toimii?\nAihe: koneoppiminen.\nTeemme luokittelija-\n     sovelluksia",
+      "ocrUsed": false
+    },
+    {
+      "page": 60,
+      "text": "",
+      "ocrUsed": false
+    },
+    {
+      "page": 61,
+      "text": "ML/AI\nML = Koneoppiminen\n\nKone osaa tunnistaa esineitä\nKone osaa tunnistaa puhetta\nKone osaa lukea\nKone osaa kääntää kieltä\nKone osaa tuottaa puhetta\nKone ymmärtää eri kieliä\nKone osaa yhdistää\nmultimodaalisia sisältöjä\n(esim. kuva ja kieli)",
+      "ocrUsed": false
+    },
+    {
+      "page": 62,
+      "text": "Lähtökohtia..",
+      "ocrUsed": false
+    },
+    {
+      "page": 63,
+      "text": "Sovellus: Opetettava kone\n                               AI ilmiöt:\n                                    Data\n                                    Koneoppiminen\n                                    Luokittelu\n                                    Vinouma (bias)\n                                    Hauraus\n\n                               Materiaalit:\n                               www.generation-ai-stn.fi/\n                               materiaalit\n\n                               Sovellus:\n                               tm.generation-ai-stn.fi\n\n                      C. Tekoäly oppimisen kohteena/sisältönä",
+      "ocrUsed": false
+    },
+    {
+      "page": 64,
+      "text": "Demo",
+      "ocrUsed": false
+    },
+    {
+      "page": 65,
+      "text": "Generation AI opetettava kone: luokittelija\n         (konenäköluokittelija)",
+      "ocrUsed": false
+    },
+    {
+      "page": 66,
+      "text": "Generation AI opetettava kone:\n       toimintakortit",
+      "ocrUsed": false
+    },
+    {
+      "page": 67,
+      "text": "Generation AI opetettava kone: valmis tekoälysovellus\n voidaan a) esittää muille ja b) jakaa heidän laitteisiin!",
+      "ocrUsed": false
+    },
+    {
+      "page": 68,
+      "text": "Tehtävä! 2 heng\nryhmät\nVAIHTOEHDOT:\n  1. Remixaa demokonetta (koodi xxx)\n  2. Tee uusi kone, joka ratkaisee esim.\n     kierrätykseen liittyvän haasteen",
+      "ocrUsed": false
+    },
+    {
+      "page": 69,
+      "text": "Eriyttävä:                                Toteuta eleohjaus posenet\n\neleohjattu\n                                          koneoppimis-mallilla.\n                                          Jaa mallin linkki (pidä\n\nmato(peli) https://tm.gen-ai.fi           selain käynnissä)\n\n                                          Toteuta mato ja sen\n                                          ohjauslogiikka Stretchissä\n             https://stretch3.github.io   Valitse TM2Pose lisälohkot\n                                          Kytke jaettu linkki\n\n                                          Ota mallia MIT:n Dancing\n                                          with AI matopelistä.\n             https://playground.raise.mit.edu",
+      "ocrUsed": false
+    },
+    {
+      "page": 70,
+      "text": "OSA II\nMiten somen\n algoritmit\n   toimivat\nAihe: sosiaalinen media ja\n         tekoäly.\n  Käytämme profiilipeliä ja\nsomekone-somesimulaattoria",
+      "ocrUsed": false
+    },
+    {
+      "page": 71,
+      "text": "Varhaisten omaksujien materiaali - EI LOPULLINEN!\n\n\n\nAiheena some\nMiksi somepalvelut osaavat\nsuositella minulle hyviä videoita,\nmusiikkia, kuvia?\nMiksi ne tuntuvat tuntevan minut\nniin hyvin?\n\n   Lähdetään yhdessä\n     selvittämään!\n                   Varhaisten omaksujien materiaali - EI LOPULLINEN!",
+      "ocrUsed": false
+    },
+    {
+      "page": 72,
+      "text": "Varhaisten omaksujien materiaali - EI LOPULLINEN!\n\n\n\n                    Käsite 1. Data\n                    Tavoitteena on ymmärtää:\n                          Millaista tietoa somepalvelut\n                          keräävät minusta kun käytän\n                          niitä?\n                          Miksi ne keräävät minusta\n                          tietoa koko ajan?\n\n\n\nVarhaisten omaksujien materiaali - EI LOPULLINEN!",
+      "ocrUsed": false
+    },
+    {
+      "page": 73,
+      "text": "Varhaisten omaksujien materiaali - EI LOPULLINEN!\n\n\n\nKäsite 2. Profiili\nTavoitteena on ymmärtää:\n      Miten minusta kerätystä datasta\n      tehdään profiili, eli kuvaus\n      minusta?\n      Millä tavoilla minun profiilini on\n      erilainen tai samanlainen kuin\n      muiden profiilit?\n      Mitä profiiliani / muiden profiileja\n      käyttäen voidaan päätellä\n      minusta?\n                      Varhaisten omaksujien materiaali - EI LOPULLINEN!",
+      "ocrUsed": false
+    },
+    {
+      "page": 74,
+      "text": "Varhaisten omaksujien materiaali - EI LOPULLINEN!\n\n\n\nKäsite 3. Suosittelija\nNäillä oppitunneilla opitaan:\n       Miten minusta kerätyn datan ja\n       profiilini perusteella minulle osataan\n       suositella kuvia, videoita, ja muuta\n       sisältöä?\n       Miksi ja miten suosittelijat pyrkivät\n       lisäämään aikaa, jonka käytämme\n       jossain tietyssä somessa?\n       (aktiivisuuden lisääminen)\n                      Varhaisten omaksujien materiaali - EI LOPULLINEN!",
+      "ocrUsed": false
+    },
+    {
+      "page": 75,
+      "text": "Varhaisten omaksujien materiaali - EI LOPULLINEN!\n\nKäsite 2. Profiili\n\n\n\n\n                                   Hei nyt pelataan!\n\n\n      PROFILOINTIPELI\n        Mysteeripersoona\n               Arvaa kenelle digitaalinen sormenjälki kuuluu\n\n\n\n                        Varhaisten omaksujien materiaali - EI LOPULLINEN!",
+      "ocrUsed": false
+    },
+    {
+      "page": 76,
+      "text": "Varhaisten omaksujien materiaali - EI LOPULLINEN!\n\n\n\n\nSomekone\nProfilointia voi tehdä\nautomaattisesti\nSomekone on Instagram-\nsimulaattori, jolla voi kokeilla\nmitä dataa some kerää ja miten\nse toimii\nSe kerää dataa, profiloi ja antaa\nsuosituksia kuten oikeat some-\nalustat\n                   Varhaisten omaksujien materiaali - EI LOPULLINEN!",
+      "ocrUsed": false
+    },
+    {
+      "page": 77,
+      "text": "Työkalu 2. Somekone\n                      Data: somekäyttö\n                      tuottaa dataa\n                      Koodi: MIT lisenssi\n                      Simoioitu AI algoritmi:\n                          Sitoutuminen\n                          Profilointi\n                          Ryhmittely\n                          Suosittelu\n                      XAI Selitys:\n                          reaaliaikainen\n                          visualisointi ym",
+      "ocrUsed": false
+    },
+    {
+      "page": 78,
+      "text": "https://www.generation-ai-stn.fi/materiaalit/somekone/",
+      "ocrUsed": false
+    },
+    {
+      "page": 79,
+      "text": "OSA III\n Tekoälyn\nvaikutukset\n  Aihe: sosiaalinen media ja\n           tekoäly.\nKäytämme uutta somekoneen\n       käyttöliittymää",
+      "ocrUsed": false
+    },
+    {
+      "page": 80,
+      "text": "TULOSSA:\nSosiaalisen median vaikutukset\nTAVOITE:\n    Ymmärtää kuinka sosiaalinen media vaikuttaa\n    maailmankuvaamme\n    Miten sosiaalisen median kautta meihin voidaan\n    vaikuttaa\nUUDET KÄSITTEET\n    Suosittelukartta\n    Vaikuttaminen",
+      "ocrUsed": false
+    },
+    {
+      "page": 81,
+      "text": "Sosiaalisen median vaikutukset I\nUusi somekoneen käyttöliittymä",
+      "ocrUsed": false
+    },
+    {
+      "page": 82,
+      "text": "Extra\n Mindshifter\n     peli\n  Aihe: sosiaalinen media ja\n           tekoäly.\n   Käytämme varhaisessa\nkehitysvaiheessa olevaa peliä",
+      "ocrUsed": false
+    },
+    {
+      "page": 83,
+      "text": "Mindshifter peli\nMindshifter peli\n\n\n\n\n                     Tästä on hyvin\n                    varhainen versio\n                     testikäytössä\n\n                   https://mindshifter.\n                      gen-ai.fi/level1",
+      "ocrUsed": false
+    }
+  ],
+  "emptyPages": [
+    45,
+    60
+  ],
+  "extractError": null,
+  "_diagnostic": {
+    "pdfBytes": 30705637,
+    "elapsedMs": 48964
+  }
+}

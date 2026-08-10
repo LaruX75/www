@@ -1,0 +1,111 @@
+{
+  "designId": "DAGcZHWR8DA",
+  "sourceUpdatedAt": 1784883554,
+  "extractedAt": "2026-08-10T10:35:53.881Z",
+  "pageCount": 19,
+  "slides": [
+    {
+      "page": 1,
+      "text": "Verryttely:\n     Miten\n   tekoäly\n    toimii?\nhttps://bit.ly/kieli2025verryttely",
+      "ocrUsed": false
+    },
+    {
+      "page": 2,
+      "text": "Neljä provokaatiota\n                        1. Tekoälyteknologioiden myötä arjessa ja työelämässä\n                           tarvittavat taidot muuttuvat.\n                        2. Opetus ja koulutus saavat vaikutteita tekoälystä. Se\nProf. Michail Giannakos\n  Trondheim, Norway\n                           edellyttää muutoksia, jotta pysyisimme   ajan tasalla.\n                        3. Tekoäly haastaa nykyiset materiaalit ja\n                           oppimisympäristöt. Uusien ominaisuuksien\n                           hyödyntäminen on ratkaisevan tärkeää, jotta välineet ja\n                           materiaalit pysyvät merkityksellisinä.\n                        4. Meidän on oltava varautuneita siihen, että tekoälyä\n                           voidaan käyttää väärin\n                                        Giannakos, M., Azevedo, R., Brusilovsky, P., Cukurova, M., Dimitriadis, Y., Hernandez-Leo, D., ... & Rienties, B. (2024).\n                                        The promise and challenges of generative AI in education. Behaviour & Information Technology, 1-27.",
+      "ocrUsed": false
+    },
+    {
+      "page": 3,
+      "text": "Mitä yhteistä\nnäillä kuvilla on?",
+      "ocrUsed": false
+    },
+    {
+      "page": 4,
+      "text": "Musta laatikko\nSuurin osa kohtaamistamme\ntekoälypalveluista on\nvertauskuvallisesti mustia\nlaatikoita, eli niiden\ntoimintaperiaatteet ovat salaisia.\n\nToisin sanoen ne eivät ole\nläpinäkyviä, emmekä siksi tiedä,\nmiten ne tarkalleen ottaen\ntoimivat.",
+      "ocrUsed": false
+    },
+    {
+      "page": 5,
+      "text": "Läpinäkyvyys on mustan laatikon\nvastakohta: voimme tarkastella, mitä\n     laatikon sisällä tapahtuu.\n\nJotta tekoäly olisi täysin läpinäkyvää,\n     tulisi tietää sen lähdekoodi,\n koulutusdata ja miten algoritmia on\n     säädetty kehitysvaiheessa.",
+      "ocrUsed": false
+    },
+    {
+      "page": 6,
+      "text": "OSA I\n  Miten\n tekoäly\n toimii?\nAihe: koneoppiminen.\n  Opetettava kone",
+      "ocrUsed": false
+    },
+    {
+      "page": 7,
+      "text": "ML/AI\nML = Koneoppiminen\n\nKone osaa tunnistaa esineitä\nKone osaa tunnistaa puhetta\nKone osaa lukea\nKone osaa kääntää kieltä\nKone osaa tuottaa puhetta\nKone ymmärtää eri kieliä\nKone osaa yhdistää\nmultimodaalisia sisältöjä\n(esim. kuva ja kieli)",
+      "ocrUsed": false
+    },
+    {
+      "page": 8,
+      "text": "Sovellus 1. Opetettava kone (data ja koneoppiminen)\n                                             AI ilmiöt:\n                                                  Data\n                                                  Koneoppiminen\n                                                  Luokittelu\n                                                  Vinouma (bias)\n                                                  Hauraus\n\n                                             Materiaalit:\n                                             www.generation-ai-stn.fi/\n                                             materiaalit\n\n                                             Sovellus:\n                                             tm.generation-ai-stn.fi\n\n                                    C. Tekoäly oppimisen kohteena/sisältönä",
+      "ocrUsed": false
+    },
+    {
+      "page": 9,
+      "text": "Esimerkkikoneita",
+      "ocrUsed": false
+    },
+    {
+      "page": 10,
+      "text": "Testataan kuinka kone oppii!\n                                                                                                             a t a a n\n                                                                                                       Te st\nOpetettava kone saa\npian\nXAI-toiminnon*, joka\npaljastaa kuinka\nsyväoppimisalgoritmi\n(tekoäly) luokittelee\nkuvan.                                                    Tulossa uutta\n\n*XAI = Selittävä tekoäly. Tekoälyjärjestelmä, jonka päättelyä ihminen pystyy seuraamaan   https://tm.generation-ai-stn.fi",
+      "ocrUsed": false
+    },
+    {
+      "page": 11,
+      "text": "Suomenkieliset opetusmateriaalit\nhttps://www.generation-ai-stn.fi/materiaalit",
+      "ocrUsed": false
+    },
+    {
+      "page": 12,
+      "text": "OSA II\nAlgoritmien\nvaikutukset\n  Aihe: sosiaalinen media ja\n           tekoäly.\n  Käytämme profiilipeliä ja\nsomekone-somesimulaattoria",
+      "ocrUsed": false
+    },
+    {
+      "page": 13,
+      "text": "",
+      "ocrUsed": false
+    },
+    {
+      "page": 14,
+      "text": "SOME, NUORET JA TEKOÄLY\n    “Yksi konkreettisimmista ja\n    välittömimmistä vuorovaikutussuhteista,\n    joita nuorilla on tekoälyn ja datapohjaisen\n    teknologian kanssa, on sosiaalinen media.”\n    (arvioitavana)\n\n\n                                   GenerationAI",
+      "ocrUsed": false
+    },
+    {
+      "page": 15,
+      "text": "kouluilla on ratkaiseva rooli\n “pelkkä sosiaalisen median alustojen käyttäminen\n    ei kehitä tarkkaa ymmärrystä siitä, miten ne\n  todellisuudessa toimivat” (Mertala, Fagerlund ja\n  Calderon 2022; Vartiainen ym. 2022; arvioitavana,\n                        2024).\n\n\n                                           GenerationAI",
+      "ocrUsed": false
+    },
+    {
+      "page": 16,
+      "text": "Varhaisten omaksujien materiaali - EI LOPULLINEN!\n\n\n\nAiheena some\nMiksi somepalvelut osaavat\nsuositella minulle hyviä videoita,\nmusiikkia, kuvia?\nMiksi ne tuntuvat tuntevan minut\nniin hyvin?\n\n   Lähdetään yhdessä\n     selvittämään!\n                   Varhaisten omaksujien materiaali - EI LOPULLINEN!",
+      "ocrUsed": false
+    },
+    {
+      "page": 17,
+      "text": "Ilmainen sovellus, joka on valmis käyttöön! Oppimateriaalit julkaistu 1/2025\n\n  Somekone: Miten sosiaalinen media toimii?\n                                 Miten se tuntee minut niin hyvin? Kuinka sisältöjä suositellaan?\n    Datan keruu käyttäjän        Miksi some koukuttaa?                                      Tarkoitettu\n            toimista                                                                        perusopetuksen\n                                            tää ä!\n                                          yn   ss                                           opiskelijoille\n                                       öd nö\n                                     hy tän                                                 Paljastaa kuinka\n                                   e\n  käyttäjästä luodaan profiili om kä     y\n                               S lyä                                                        sosiaalisen median\n                                 oä\n                              tek                                                           taustalla olevat\n                                                                                            prosessit toimivat\n     Profiilit ryhmitellään\n                                                                                            Aineistona oppilaiden\n                                                                                            oma aktiivisuus\n    Käyttäjille suositellaan                                                                sovelluksessa\n                  sisältöjä\n\nPope, N., Kahila, J., Laru, J., Vartiainen, H., Roos, T., & Tedre, M. (2024). An Educational Tool for Learning about Social Media Tracking, Profiling, and\nRecommendation. 2024 IEEE International Conference on Advanced Learning Technologies (ICALT), 110–112. https://doi.org/10.1109/ICALT61570.2024.00038",
+      "ocrUsed": false
+    },
+    {
+      "page": 18,
+      "text": "Suomenkieliset opetusmateriaalit\nhttps://www.generation-ai-stn.fi/materiaalit",
+      "ocrUsed": false
+    },
+    {
+      "page": 19,
+      "text": "Tarvikkeet:\nOpettaja               Oppilas             Opettajan materiaalit\nTietokone tai tablet   Tietokone, tablet   Somekone 2/2 esitysmateriaali\n                       tai puhelin         (tämä)\n\n                                           Oppilaan materiaalit\n\n\n                                                 a n\n                                              Tehtävälomake 1\n\n\n\n\n                                             t a\n                                              Tehtävälomake 2\n\n\n\n\n                             st            a\n                                              Tehtävälomake 3\n\n\n\n\n                         T e\n                                              Tehtävälomake 4",
+      "ocrUsed": false
+    }
+  ],
+  "emptyPages": [
+    13
+  ],
+  "extractError": null,
+  "_diagnostic": {
+    "pdfBytes": 14752106,
+    "elapsedMs": 46029
+  }
+}

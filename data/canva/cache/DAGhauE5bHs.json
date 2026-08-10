@@ -1,0 +1,134 @@
+{
+  "designId": "DAGhauE5bHs",
+  "sourceUpdatedAt": 1784883478,
+  "extractedAt": "2026-08-10T10:12:47.837Z",
+  "pageCount": 24,
+  "slides": [
+    {
+      "page": 1,
+      "text": "Selitettävä\ntekoäly, mitä se on\n   ja miksi se on\n      tärkeätä\n     huomioida\n  opetuksessa?\n        ITK05 Webinaari\n Jari Laru, KT, yliopistonlehtori\n teknologiatuettu oppiminen ja\n    opetus, Oulun yliopisto.",
+      "ocrUsed": false
+    },
+    {
+      "page": 2,
+      "text": "Mitä yhteistä\nnäillä kuvilla on?",
+      "ocrUsed": false
+    },
+    {
+      "page": 3,
+      "text": "Musta laatikko\nSuurin osa kohtaamistamme\ntekoälypalveluista on\nvertauskuvallisesti mustia\nlaatikoita, eli niiden\ntoimintaperiaatteet ovat salaisia.\n\nToisin sanoen ne eivät ole\nläpinäkyviä, emmekä siksi tiedä,\nmiten ne tarkalleen ottaen\ntoimivat.",
+      "ocrUsed": false
+    },
+    {
+      "page": 4,
+      "text": "Läpinäkyvyys on mustan laatikon\nvastakohta: voimme tarkastella, mitä\n     laatikon sisällä tapahtuu.\n\nJotta tekoäly olisi täysin läpinäkyvää,\n     tulisi tietää sen lähdekoodi,\n koulutusdata ja miten algoritmia on\n     säädetty kehitysvaiheessa.",
+      "ocrUsed": false
+    },
+    {
+      "page": 5,
+      "text": "Tutkijat kertoivat käyttäneensä ”selitettävää\nsyväoppimismallia”.\n\nSe tarkoittaa edistynyttä itseoppivaa\ntekoälyjärjestelmää, jonka toimintalogiikka on\ntutkijoiden tiedossa.\n\nTällainen läpinäkyvyys mahdollistaa tarkan tiedon\nsaamisen, mikä taas vahvistaa tutkimuksen\nluotettavuutta ja toistettavuutta.\n\n\n\n                Wong, F., Zheng, E.J., Valeri, J.A. et al. Discovery of a structural class of antibiotics with explainable\n                deep learning. Nature 626, 177–185 (2024). https://doi.org/10.1038/s41586-023-06887-8",
+      "ocrUsed": false
+    },
+    {
+      "page": 6,
+      "text": "”Selitettävän tekoälyn käyttäjä voi\nymmärtää, miten tekoäly on päätynyt\n tulokseensa. Näin ollen käyttäjä voi\n      helposti arvioida tekoälyn\n          luotettavuutta.”",
+      "ocrUsed": false
+    },
+    {
+      "page": 7,
+      "text": "XAI\nGeneration AI työkalut edustavat\n     selitettävää tekoälyä\n\n\n\n\n                                            Ali, S., Abuhmed, T., El-Sappagh, S., Muhammad,\n\n\n\nExplainable Artificial Intelligence (XAI)\n                                            K., Alonso-Moral, J. M., Confalonieri, R., ... &\n                                            Herrera, F. (2023). Explainable Artificial\n                                            Intelligence (XAI): What we know and what is\n                                            left to attain Trustworthy Artificial\n                                            Intelligence. Information fusion, 99, 101805.",
+      "ocrUsed": false
+    },
+    {
+      "page": 8,
+      "text": "MIKSI?",
+      "ocrUsed": false
+    },
+    {
+      "page": 9,
+      "text": "Tekoälyn                                                                                        Tekoälyn\n       käyttäminen Tekoäly (meta)kognitiviisena työkaluna\n                                                                                                       ymmärtäminen\n                                                                                                        Tekoälylukutaito, data- ja tekoälytoimijuus\n\n\n\n\nNäkymä\nlähelle            A       Tekoälyä hyödynnetään opetuksen ja\n                           oppimisen suunnittelussa                                                                     Mitä tavallinen oppilas tai\n\n\n\n                   B\n                                                                                                                       opettaja tietää tekoälystä?\n                           Tekoäly toimii oppimisen itsesäätelyn\n                           tukena ja osapuolena\n\n9 asiantuntijaa\n8 johtavaa\noppimistieteiden\n                   C       Tekoäly mahdollistaa automatisoidut\n                           sisällöt\n\n\n                   D\ntutkimusyksikköä\n5 mannerta                 Tekoälyn myötä syntyy uusia taitoja ja\n                           pätevyyksiä\nGiannakos, M., Azevedo, R., Brusilovsky, P., Cukurova, M., Dimitriadis, Y., Hernandez-Leo, D., ... &\nRienties, B. (2024). The promise and challenges of generative AI in education. Behaviour &\nInformation Technology, 1-27.",
+      "ocrUsed": false
+    },
+    {
+      "page": 10,
+      "text": "Tekoälyn                                            Tekoälyn\n    käyttäminenTekoäly (meta)kognitiviisena työkaluna\n                                                        ymmärtäminen        Tekoälylukutaito, data- ja tekoälytoimijuus\n\n         Tekoälyä säännellään EU:ssa                    EU AI ACT edellyttää tekoälylukutaitoa\n                                                                                                                                        Mitä on tekoäly?\n                                                                                                                                        Mihin sitä käytetään?\nPerinteinen AIED                                                                                                                        Keskusteleva tekoäly\n                                                                                             käsitteet\nÄlykkäät tutorit ja chatbotit\n                                 Kielletty\nÄlykkäät oppimisympäristöt\nAutomaattinen arviointi                                                                                                                 Opi ja opeta tekoälyn avulla\nAI-tuetut näkymät                                                                                                                       Tutki ja kokeile tekoälyn avulla\n                                Arvioitu ja\nOpiskelijavalinta...\n\nGPAI-mallit (LLM)\n                                säännelty                                                    pedagogiikka                               Opiskele tekoälyn avulla\n\nChatGPT, Gemini, Claude,.                                                                                                               Suunnittele tekoälyn avulla\n\n                                                                                             Luovuus\nCopilot..                                                                                                                               Luo tekoälyn avulla\nMidjourney, Dall-E\n                                                                                                                                        Tekoälykritiikki\n...\nmuu                                                                                                                                     Tekoälyn rajoitukset\nRoskapostisu\nodattimet\n                                                                                             Etiikka                                    Turvallinen ja vastuullinen tekoäly\n                                                                                                                                        Tekoäly yhteiskunnassa\njne.\nTietokonepel\nit tekoälyllä...                                                                             Työelämä                                   Työskentele tekoälyn kanssa\n                                                                                                                                        Hoida tekoälyn avulla\n                                                                                                                                        Kukoista tekoälyn kanssa\n                                                        Prof. Emeritus Mike Sharplesin ehdotus LinkedIN palvelussa (3 viikkoa sitten)",
+      "ocrUsed": false
+    },
+    {
+      "page": 11,
+      "text": "Lasten ja nuorten sekä “aloittelijoiden” AI lukutaito tarpeet\n        eivät ole samat kuin opettajilla ja hallinnolla\n\n                                             Opettaja\n                   Tietohallinto\n\n\n\n                                                        Kansalainen\n                                   Oppilas\nAmatöörien sekä\nlasten ja nuorten AI\nlukutaito vaatii\nerikoishuomiota",
+      "ocrUsed": false
+    },
+    {
+      "page": 12,
+      "text": "Lasten ja nuorten Tekoälyn perusymmärrys ja yhteiskunnalliset vaikutukset: Oppilaiden tulee\n                  ymmärtää, miten tekoäly toimii ja miten se vaikuttaa yhteiskuntaan. Tämä\ntekoälylukutaito? sisältää teknologian perusteet, sovellukset ja eettiset kysymykset, kuten\n                                                                                     yksityisyys ja oikeudenmukaisuus.\n\n                                                                                     Käytännönläheinen ja oppilaskeskeinen oppiminen: Tekoälyä tulisi opettaa\n                                                                                     projektipohjaisin ja ongelmalähtöisin menetelmin, jotka mahdollistavat\n                                                                                     oppilaiden aktiivisen osallistumisen ja oppimisen soveltamisen todellisissa\n                                                                                     tilanteissa.\n\n                                                                                     Eettiset näkökulmat ja riskit: Opetuksessa tulee painottaa tekoälyn eettisiä\n                                                                                     periaatteita, kuten läpinäkyvyyttä, vastuullisuutta ja yhteiskunnallisia riskejä,\n                                                                                     jotta oppilaat ymmärtävät tekoälyn vaikutukset ja osaavat käyttää sitä\n                                                                                     vastuullisesti.\n\n                                                                                     Itsearviointi ja elinikäinen oppiminen: Oppilaiden tulee kehittää kykyä arvioida\n Chiu, T. K., Ahmad, Z., Ismailov, M., & Sanusi, I. T. (2024). What are artificial   omaa tekoälyosaamistaan ja päivittää tietojaan jatkuvasti kehittyvässä\n  intelligence literacy and competency? A comprehensive framework to\n           support them. Computers and Education Open, 6, 100171.\n                                                                                     tekoälymaailmassa, mikä tukee elinikäistä oppimista.",
+      "ocrUsed": false
+    },
+    {
+      "page": 13,
+      "text": "MITEN?",
+      "ocrUsed": false
+    },
+    {
+      "page": 14,
+      "text": "Työkalu 1. Opetettava kone\n                       Data: oppilaat\n                       opettavat itse\n                       Koodi: opensource\n                       AI algoritmi:\n                            syväoppiminen\n                            Mobilenenet\n                            Posenet\n                       XAI Selitys:\n                       lämpökartta",
+      "ocrUsed": false
+    },
+    {
+      "page": 15,
+      "text": "Lähdekoodi / Opetettava kone\n\n\n\n\nGeneration Ai sovellukset ovat\nilmaisia ja lähdekoodi (ohjelmisto) on\njaettu avoimella MIT\nohjelmistolisenssillä. Se antaa\nkäyttäjälle oikeudet vapaasti\nmuokata, kopioida ja käyttää teosta\nomassa projektissa sillä ehdolla, että\nlisenssin teksti säilyy lähdekoodissa.",
+      "ocrUsed": false
+    },
+    {
+      "page": 16,
+      "text": "Algoritmi / Opetettava kone\n\n      Kyse on\n  syväoppimisesta\n\n\n\n\n     Opetettava kone visualisoi\n    syväoppimismallin päättelyä",
+      "ocrUsed": false
+    },
+    {
+      "page": 17,
+      "text": "Koulutusdata / Opetettava kone\n\n                                 Käyttäjä opettaa\n                                 tekoälymallin itse\n                                 Tekoälymalli on esiopetettu ja\n                                 hyödyntää siirto-oppimista",
+      "ocrUsed": false
+    },
+    {
+      "page": 18,
+      "text": "Algoritmi / Opetettava kone\n\n\n\nMobilenet\nMobileNet-mallia on sovellettu\nmenestyksekkäästi erilaisiin\ntietokonenäkötehtäviin, mukaan lukien\nkuvan luokittelu, objektien havaitseminen ja\nsemanttinen segmentointi.\n\nSen tehokkuus ja tarkkuus tekevät siitä\nerityisen sopivan laitteisiin, joissa\nreaaliaikainen käsittely ja alhainen\nvirrankulutus ovat tärkeitä.",
+      "ocrUsed": false
+    },
+    {
+      "page": 19,
+      "text": "Algoritmi / Opetettava kone\n\n\n\n Posenet\n Posenet on syväoppiva\nTensorFlow-malli, jonka avulla\nsovellus päättelee ihmisen\nasennon havaitsemalla kehon\nosia, kuten kyynärpäät, lonkat,\nranteet, polvet ja nilkat, ja\nmuodostaa asennon\nluurankorakenteen\nyhdistämällä nämä pisteet.\n\n\n\n\n https://blog.tensorflow.or\n g/2018/05/real-time-\n human-pose-estimation-\n in.html",
+      "ocrUsed": false
+    },
+    {
+      "page": 20,
+      "text": "Työkalu 2. Somekone   Data: AI (simulaatio)\n                      oppii käyttäjän\n                      toiminnasta\n                      Koodi: opensource\n                      AI algoritmi:\n                           Sitoutuminen\n                           Profilointi\n                           Klusterointi\n                           Suosittelu\n                      XAI Selitys:\n                           reaaliaikainen\n                           visualisointi ym",
+      "ocrUsed": false
+    },
+    {
+      "page": 21,
+      "text": "Lähdekoodi / Somekone\n\n\n\n\nGeneration Ai sovellukset ovat\nilmaisia ja lähdekoodi (ohjelmisto) on\njaettu avoimella MIT\nohjelmistolisenssillä. Se antaa\nkäyttäjälle oikeudet vapaasti\nmuokata, kopioida ja käyttää teosta\nomassa projektissa sillä ehdolla, että\nlisenssin teksti säilyy lähdekoodissa.",
+      "ocrUsed": false
+    },
+    {
+      "page": 22,
+      "text": "Koulutusdata / somekone\n\n\n\n\n    Tekoäly oppii käyttäjien datasta\n          “matkan varrella”",
+      "ocrUsed": false
+    },
+    {
+      "page": 23,
+      "text": "Algoritmi / Somekone\n\n\n\n\n  Sitoutuminen         Profilointi   Ryhmittely   Suosittelu",
+      "ocrUsed": false
+    },
+    {
+      "page": 24,
+      "text": "Kiitos.\nKeskustellaan.",
+      "ocrUsed": false
+    }
+  ],
+  "emptyPages": [],
+  "extractError": null,
+  "_diagnostic": {
+    "pdfBytes": 8124449,
+    "elapsedMs": 20408
+  }
+}

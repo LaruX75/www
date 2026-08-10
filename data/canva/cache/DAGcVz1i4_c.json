@@ -1,0 +1,64 @@
+{
+  "designId": "DAGcVz1i4_c",
+  "sourceUpdatedAt": 1784883476,
+  "extractedAt": "2026-08-10T10:06:13.977Z",
+  "pageCount": 10,
+  "slides": [
+    {
+      "page": 1,
+      "text": "Muutama sananen\n  selitettävästä\n tekoälystä (XAI)\n https://bit.ly/innokas25oulu\n\n   Innokas päivät. Oulu 16.1.25\n Jari Laru, KT, yliopistonlehtori\n teknologiatuettu oppiminen ja\n     opetus, Oulun yliopisto.",
+      "ocrUsed": false
+    },
+    {
+      "page": 2,
+      "text": "Mitä yhteistä\nnäillä kuvilla on?",
+      "ocrUsed": false
+    },
+    {
+      "page": 3,
+      "text": "Musta laatikko\nSuurin osa kohtaamistamme\ntekoälypalveluista on\nvertauskuvallisesti mustia\nlaatikoita, eli niiden\ntoimintaperiaatteet ovat salaisia.\n\nToisin sanoen ne eivät ole\nläpinäkyviä, emmekä siksi tiedä,\nmiten ne tarkalleen ottaen\ntoimivat.",
+      "ocrUsed": false
+    },
+    {
+      "page": 4,
+      "text": "Läpinäkyvyys on mustan laatikon\nvastakohta: voimme tarkastella, mitä\n     laatikon sisällä tapahtuu.\n\nJotta tekoäly olisi täysin läpinäkyvää,\n     tulisi tietää sen lähdekoodi,\n koulutusdata ja miten algoritmia on\n     säädetty kehitysvaiheessa.",
+      "ocrUsed": false
+    },
+    {
+      "page": 5,
+      "text": "Tutkijat kertoivat käyttäneensä ”selitettävää\nsyväoppimismallia”.\n\nSe tarkoittaa edistynyttä itseoppivaa\ntekoälyjärjestelmää, jonka toimintalogiikka on\ntutkijoiden tiedossa.\n\nTällainen läpinäkyvyys mahdollistaa tarkan tiedon\nsaamisen, mikä taas vahvistaa tutkimuksen\nluotettavuutta ja toistettavuutta.\n\n\n\n                Wong, F., Zheng, E.J., Valeri, J.A. et al. Discovery of a structural class of antibiotics with explainable\n                deep learning. Nature 626, 177–185 (2024). https://doi.org/10.1038/s41586-023-06887-8",
+      "ocrUsed": false
+    },
+    {
+      "page": 6,
+      "text": "”Selitettävän tekoälyn käyttäjä voi\nymmärtää, miten tekoäly on päätynyt\n tulokseensa. Näin ollen käyttäjä voi\n      helposti arvioida tekoälyn\n          luotettavuutta.”",
+      "ocrUsed": false
+    },
+    {
+      "page": 7,
+      "text": "XAI\nGeneration AI työkalut edustavat\n     selitettävää tekoälyä\n\n\n\n\n                                            Ali, S., Abuhmed, T., El-Sappagh, S., Muhammad,\n\n\n\nExplainable Artificial Intelligence (XAI)\n                                            K., Alonso-Moral, J. M., Confalonieri, R., ... &\n                                            Herrera, F. (2023). Explainable Artificial\n                                            Intelligence (XAI): What we know and what is\n                                            left to attain Trustworthy Artificial\n                                            Intelligence. Information fusion, 99, 101805.",
+      "ocrUsed": false
+    },
+    {
+      "page": 8,
+      "text": "Työkalu 1. Opetettava kone\n                       Data: oppilaat\n                       opettavat itse\n                       Koodi: opensource\n                       AI algoritmi:\n                            syväoppiminen\n                            Imagenet\n                            Posenet\n                       XAI Selitys:\n                       lämpökartta",
+      "ocrUsed": false
+    },
+    {
+      "page": 9,
+      "text": "Työkalu 2. Somekone\n                      Data: somekäyttö\n                      tuottaa dataa\n                      Koodi: opensource\n                      AI algoritmi:\n                           Datan keruu\n                           Profilointi\n                           Sitoutuminen\n                           Suosittelu\n                      XAI Selitys:\n                           reaaliaikainen\n                           visualisointi ym",
+      "ocrUsed": false
+    },
+    {
+      "page": 10,
+      "text": "Kiitos.\nKeskustellaan.",
+      "ocrUsed": false
+    }
+  ],
+  "emptyPages": [],
+  "extractError": null,
+  "_diagnostic": {
+    "pdfBytes": 4227577,
+    "elapsedMs": 19284
+  }
+}

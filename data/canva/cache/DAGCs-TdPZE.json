@@ -1,0 +1,376 @@
+{
+  "designId": "DAGCs-TdPZE",
+  "sourceUpdatedAt": 1784895897,
+  "extractedAt": "2026-08-10T10:46:05.519Z",
+  "pageCount": 72,
+  "slides": [
+    {
+      "page": 1,
+      "text": "“Tekoäly oppimisen\n                                       kohteena”\n\n\n\n                                   FCLAB\n                                   Verkoston tapaaminen 7-8.5. Jyväskylä\n\n\n\n\n                                   A future classroom learning lab with smart technology,\n                                   interactive touchscreens, virtual reality stations, and\n                                   collaborative workspaces. Bright and spacious, with\n                                   comfortable seating options and modular furniture\n                                   arrangements. Students of diverse backgrounds working\n                                   together in small groups, using digital tools and screens to\n                                   enhance their learning experience. Engaging and conducive\nJari Laru, KT, yliopistonlehtori   to learning. Exclude robots and science fiction elements.",
+      "ocrUsed": false
+    },
+    {
+      "page": 2,
+      "text": "bit.ly/fclab2024jkl\n\n\n\n\nGenerationAI",
+      "ocrUsed": false
+    },
+    {
+      "page": 3,
+      "text": "Osa I\n                 Johdanto\n\n\n\n\nGenerationAI",
+      "ocrUsed": false
+    },
+    {
+      "page": 4,
+      "text": "Neljä eri tapaa tarkastella\n   tekoälyä opetuksessa\n    Tekoäly työkaluna\n     oppilaan väline        Tekoäly oppimisen\n     opettajan väline           sisältönä\n     instituution väline\n\n\n\n\n       Tekoäly &           Tekoälyn vaikutusten\n   oppimisanalytiikka         ymmärtäminen\n                                                  Holmes, W., Persson, J., Chounta, I. A., Wasson, B., & Dimitrova, V. (2022).\n                                                  Artificial intelligence and education: A critical view through the lens of\n                                                  human rights, democracy and the rule of law. Council of Europe.\n\n\n\n\nGenerationAI                                                                                        bit.ly/itk2024",
+      "ocrUsed": false
+    },
+    {
+      "page": 5,
+      "text": "MIKÄ IHMEEN                                                                                                        Hippunen tekoälyä\n TEKOÄLY?                                                  Supertekoäly (ASI)\n                                                                                                                     löytyy kaikkialta.\n                                               Yleinen tekoäly (AGI)\n                                                                                                                          “tekoälyä on\n                                                                                        Globaalien\n\n                                 Perinteinen tekoäly (AI)\n                                                                   Kehittyneet\n                                                                   virtuaaliapulaiset\n                                                   Kasvojentunnistus\n                                                                                        haasteiden\n                                                                                        ratkaiseminen                       jokaisessa\n                                                                             LääketieteellisetTerveydenhuollon\n\n                                                                                                                       sovelluksessa”\n                                                    (facial detection)\n                                                                               diagnoosit ja    vallankumous\n                                                         Kuvantunnistus\n                                                                                   hoidot\n                             Generatiivinen            (image recognition)\n                             tekoäly (GenAI)                Puheentunnistus     Ilmastonmuuto Avaruustutkimus\n                                                          (speech recognition) ksen ratkaisut\n                              Sisällöntuotanto              Teksti puheeksi\n                                                                                   Tieteellisen  Ympäristöhaastee\n                             (teksti, kuva, ääni,           (text to speech)\n                                  musiikki)                                       tutkimuksen\n                                                         Luonnollisen kielen\n                                                                                nopeuttaminen Tekoäly, joka\n                                                         käsittely (natural\n                                                         language processing)                   ymmärtää\n                                                                              Yksilöllinen\n                                                  Hahmon tunnistus                              ihmisten tunteet\n                                                                              opetus\n                                                  (pattern recognition)\n                                       Tiedonlouhinta (data\n                                       mining)\n\n           Tekee rajattuja\n           tehtäviä\n                                                                                                         Fiksumpi kuin ihminen (hypoteettinen)\n           (perinteisen\n           tekoälyn osa)                                                                       Toimii “kuin” ihminen (ei ole saavutettu, vielä)\n           Tekee rajattuja tehtäviä\n\nGenerationAI",
+      "ocrUsed": false
+    },
+    {
+      "page": 6,
+      "text": "Tekoäly vs. Ihminen\nIhmisellä ylivertaisia                    Supertekoäly (ASI)\n\n\nominaisuuksia, esim.             Yleinen tekoäly (AGI)\n\n   Optimoitu\n                                                                        Globaalien\n                                                 Kehittyneet            haasteiden\n                                                 virtuaaliapulaiset     ratkaiseminen\n   neurosysteemi                                         LääketieteellisetTerveydenhuollon\n                                                           diagnoosit ja\n   Intuitio                                                   hoidot\n                                                                            vallankumous\n\n\n\n   Altruismi                                                Ilmastonmuuto Avaruustutkimus\n                                                             ksen ratkaisut\n\n\n   Jatkuva, reaaliaikainen                                   Tieteellisen\n                                                            tutkimuksen\n                                                                          Ympäristöhaastee\n\n\n                                                           nopeuttaminen Tekoäly, joka\n   oppiminen                                             Yksilöllinen\n                                                                            ymmärtää\n                                                                            ihmisten tunteet\n                                                         opetus\n\n\n\nTekoäly on vain työkalu.\nKatsotaan tulevaisuuden                                                                 Fiksumpi kuin ihminen (hypoteettinen)\n\nominaisuudet SCIFI                                                            Toimii “kuin” ihminen (ei ole saavutettu, vielä)\n\nelokuvista ja kirjallisuudesta",
+      "ocrUsed": false
+    },
+    {
+      "page": 7,
+      "text": "Digitaaliset\n                                         (informaatio)\nTekoäly sulautuu osaksi arkisia            lukutaidot\nsovelluksia. On tehnyt sitä jo pitkään      eivät riitä\n                                         Uusia lukutaitoja\n                                         tarvitaan:\n                                             tekoälylukutaito\n                                             datalukutaito\n                                             datatoimijuus",
+      "ocrUsed": false
+    },
+    {
+      "page": 8,
+      "text": "Tekoälyteknologiat ovat\n    läsnä kaikkialla\n    ”Törmäämme tekoälyyn kaikkialla.\n    Verkkokaupat, suoratoistopalvelut,\n   vaalikoneet, hakukoneet, sosiaalinen\n   media ja deittisovellukset käyttävät\n     sitä. Ja vaikka et itse avaisikaan\n  elämääsi algoritmeille, tietojasi kerää\n  ja käsittelee vähintään julkishallinnon\n                  tekoäly.”",
+      "ocrUsed": false
+    },
+    {
+      "page": 9,
+      "text": "Jokaisessa “siistissä”\n                                       sovelluksessa on\n  Paikka- ja aikatieto\n                                           tekoälyä.\n                                     Selaushistoria                         Ottamasi kuvat, videot                      Millainen elämänrytmisi on\n  Missä olet koskaan käynyt (laite   Millä sivuilla olet koskaan            Ketä niissä on (esim.                       (rajatusti)\n  päällä)                            käynyt                                 perheenjäsenet)                             Kalenterimerkinnät\n  Mihin aikaan olit siellä, kuinka   Mitä tietoa olet koskaan                                                           Terveystietoa (Google Fit,\n  kauan                              hakenut                                Melkein kaikki mitä olet                    Oura, jne.)\n  Ketä muita siellä on ollut         Katsomasi videot, elokuvat,            kirjoittanut                                = Hengästytkö helposti\n  Millä olet liikkunut, kuinka       sarjat                                 Google docs                                 Aktiivisuus eri aikoina ja\n  kauan kesti                        = Kiinnostuksesi & mitä                Yksityiset + julkiset viestit               harrastuksissa\n                                     suunnittelet                           (osa)                                       Hotellivaraukset,\n  Käytön lokitiedot (osa)                                                   Sähköpostit (osa)                           matkustusvaraukset\n  Mitä olet laitteilla tehnyt,       Ostoshistoria                          “Anonyymit” viestit\n  milloin?                           Mitä olet ostanut                      foorumeilla (joskus)                        Lempimusiikkisi, elokuvasi,\n  Myös “private mode”ssa?            Mitkä mainokset kiinnostavat           Tiedostojesi sisällöt                       …\n  Myös “delete my history”:n         sinua                                  pilvipalveluissa                            Musiikkimaku (kaikki\n  jälkeen?                           Mikä johti ostokseen                                                               kuunnellut biisit)\n  = Mistä olet kiinnostunut                                                 Kaikki reaktiosi                            Elokuvamaku\n  = Mitä elämässäsi on tapahtunut    Appit laitteillasi                     Tykkäykset, kirjanmerkit,                   Taidemaku\n                                     Pluginit                               mouse hover over\n  Kasvontunnistus                    Appit\n  Missä kuvissa näyt, kenen kanssa   Ohjelmat\n  Myös ne joista et itse tiedä\n\nGenerationAI                                          Prof. Matti Tedre luentodiat: tekoälyä ja tietotyön automatisointia. Koneoppimisen murroskohtia 2000-luvulla",
+      "ocrUsed": false
+    },
+    {
+      "page": 10,
+      "text": "“Tekoälyä voidaan\ntarkastella merkittävänä\n infrastruktuurina, ihan\n  kuten sähköverkkoa.\n\n  Se on enemmän kuin\n yksittäinen sovellus”.\n (Koh & Doroudi, 2023)",
+      "ocrUsed": false
+    },
+    {
+      "page": 11,
+      "text": "A. BIG                    Radikaalit\n                          murtumat ja\n\nFUTURE\n Vai B. Little future -\n                             uudet\n                          aikakaudet\n    uusia tapoja arkipäiväisten, jokapäiväisten\n    asioiden hoitamiseen",
+      "ocrUsed": false
+    },
+    {
+      "page": 12,
+      "text": "UHKA?",
+      "ocrUsed": false
+    },
+    {
+      "page": 13,
+      "text": "Kielletään\n               puhelimet\n               kouluissa.\n               Puhelin ei kuitenkaan ole\n               syypää ongelmiin. Syyllinen\n               on tekoäly.\nGenerationAI",
+      "ocrUsed": false
+    },
+    {
+      "page": 14,
+      "text": "Jokaisessa “siistissä”\n                                       sovelluksessa on\n  Paikka- ja aikatieto\n                                           tekoälyä.\n                                     Selaushistoria                         Ottamasi kuvat, videot                      Millainen elämänrytmisi on\n  Missä olet koskaan käynyt (laite   Millä sivuilla olet koskaan            Ketä niissä on (esim.                       (rajatusti)\n  päällä)                            käynyt                                 perheenjäsenet)                             Kalenterimerkinnät\n  Mihin aikaan olit siellä, kuinka   Mitä tietoa olet koskaan                                                           Terveystietoa (Google Fit,\n  kauan                              hakenut                                Melkein kaikki mitä olet                    Oura, jne.)\n  Ketä muita siellä on ollut         Katsomasi videot, elokuvat,            kirjoittanut                                = Hengästytkö helposti\n  Millä olet liikkunut, kuinka       sarjat                                 Google docs                                 Aktiivisuus eri aikoina ja\n  kauan kesti                        = Kiinnostuksesi & mitä                Yksityiset + julkiset viestit               harrastuksissa\n                                     suunnittelet                           (osa)                                       Hotellivaraukset,\n  Käytön lokitiedot (osa)                                                   Sähköpostit (osa)                           matkustusvaraukset\n  Mitä olet laitteilla tehnyt,       Ostoshistoria                          “Anonyymit” viestit\n  milloin?                           Mitä olet ostanut                      foorumeilla (joskus)                        Lempimusiikkisi, elokuvasi,\n  Myös “private mode”ssa?            Mitkä mainokset kiinnostavat           Tiedostojesi sisällöt                       …\n  Myös “delete my history”:n         sinua                                  pilvipalveluissa                            Musiikkimaku (kaikki\n  jälkeen?                           Mikä johti ostokseen                                                               kuunnellut biisit)\n  = Mistä olet kiinnostunut                                                 Kaikki reaktiosi                            Elokuvamaku\n  = Mitä elämässäsi on tapahtunut    Appit laitteillasi                     Tykkäykset, kirjanmerkit,                   Taidemaku\n                                     Pluginit                               mouse hover over\n  Kasvontunnistus                    Appit\n  Missä kuvissa näyt, kenen kanssa   Ohjelmat\n  Myös ne joista et itse tiedä\n\nGenerationAI                                          Prof. Matti Tedre luentodiat: tekoälyä ja tietotyön automatisointia. Koneoppimisen murroskohtia 2000-luvulla",
+      "ocrUsed": false
+    },
+    {
+      "page": 15,
+      "text": "Mitä tavallinen oppilas tai\nopettaja tietää tekoälystä?\n\n\n\n\n                           C. Tekoäly oppimisen kohteena/sisältönä",
+      "ocrUsed": false
+    },
+    {
+      "page": 16,
+      "text": "“13 vuotiaan lapsen\n                 digijalanjälki on\n                 keskimäärin 70\n                    miljoonaa\n                  datapistettä”\n\nGenerationAI",
+      "ocrUsed": false
+    },
+    {
+      "page": 17,
+      "text": "Katso millainen\n on digijälkesi\n\n\n\n                  Gomez Ortega, A., Milias, V., Broadhead, J., van der Valk, C, and Bourgeois, J.\n                   (2023). Dataslip: How far does your personal data go? In INTERACT 2023.\n\n\n                     C. Tekoäly oppimisen kohteena/sisältönä",
+      "ocrUsed": false
+    },
+    {
+      "page": 18,
+      "text": "DATA\n  Data on tekoälyn oppimateriaalia\n\n\n\n\nGenerationAI",
+      "ocrUsed": false
+    },
+    {
+      "page": 19,
+      "text": "Data on koko ajan otsikoissa. 11.11.2023 YLE\n Oletko huomannut?\n 15.4.2024 Helsingin Sanomat\n\n\n\n\n          3.4.2024 SITRA\n\n\n\n\nGenerationAI",
+      "ocrUsed": false
+    },
+    {
+      "page": 20,
+      "text": "Kaikki kiinnostavat\n                                     sovellukset ja laitteet\n                                      perustuvat datalle..\n  Paikka- ja aikatieto               Selaushistoria                         Ottamasi kuvat, videot                      Millainen elämänrytmisi on\n  Missä olet koskaan käynyt (laite   Millä sivuilla olet koskaan            Ketä niissä on (esim.                       (rajatusti)\n  päällä)                            käynyt                                 perheenjäsenet)                             Kalenterimerkinnät\n  Mihin aikaan olit siellä, kuinka   Mitä tietoa olet koskaan                                                           Terveystietoa (Google Fit,\n  kauan                              hakenut                                Melkein kaikki mitä olet                    Oura, jne.)\n  Ketä muita siellä on ollut         Katsomasi videot, elokuvat,            kirjoittanut                                = Hengästytkö helposti\n  Millä olet liikkunut, kuinka       sarjat                                 Google docs                                 Aktiivisuus eri aikoina ja\n  kauan kesti                        = Kiinnostuksesi & mitä                Yksityiset + julkiset viestit               harrastuksissa\n                                     suunnittelet                           (osa)                                       Hotellivaraukset,\n  Käytön lokitiedot (osa)                                                   Sähköpostit (osa)                           matkustusvaraukset\n  Mitä olet laitteilla tehnyt,       Ostoshistoria                          “Anonyymit” viestit\n  milloin?                           Mitä olet ostanut                      foorumeilla (joskus)                        Lempimusiikkisi, elokuvasi,\n  Myös “private mode”ssa?            Mitkä mainokset kiinnostavat           Tiedostojesi sisällöt                       …\n  Myös “delete my history”:n         sinua                                  pilvipalveluissa                            Musiikkimaku (kaikki\n  jälkeen?                           Mikä johti ostokseen                                                               kuunnellut biisit)\n  = Mistä olet kiinnostunut                                                 Kaikki reaktiosi                            Elokuvamaku\n  = Mitä elämässäsi on tapahtunut    Appit laitteillasi                     Tykkäykset, kirjanmerkit,                   Taidemaku\n                                     Pluginit                               mouse hover over\n  Kasvontunnistus                    Appit\n  Missä kuvissa näyt, kenen kanssa   Ohjelmat\n  Myös ne joista et itse tiedä\n\nGenerationAI                                                                                                                   bit.ly/itk2024\n                                                      Prof. Matti Tedre luentodiat: tekoälyä ja tietotyön automatisointia. Koneoppimisen murroskohtia 2000-luvulla",
+      "ocrUsed": false
+    },
+    {
+      "page": 21,
+      "text": "Generation AI hankkeen johtaja prof. Matti Tedre\n\n                                                                                                                                    “CT 2.0 -\n                                                                                                                            Siirtymä ohjelmoiduista\n                                                                                                                            työkaluista opetettaviin\n                                                                                                                                  työkaluihin”\n\n\n\nMatti Tedre, Peter Denning, and Tapani Toivonen. 2021. CT 2.0. In 21st Koli Calling International Conference on Computing\n\n\nGenerationAI\nEducation Research (Koli Calling '21), November 18–21, 2021, Joensuu, Finland. ACM, New York, NY, USA 8 Pages.\nhttps://doi.org/10.1145/3488042.3488053",
+      "ocrUsed": false
+    },
+    {
+      "page": 22,
+      "text": "org\n           dr.\n        tos\n     ://\n  tps\nht\n\n\n\n\n                    bit.ly/itk2024",
+      "ocrUsed": false
+    },
+    {
+      "page": 23,
+      "text": "Datapohjainen seuranta      Käyttäytymisenohjaustekniikat\n\n\n\n                                Tekoälyäpohjaiset\n                                   teknologiat\n                                   vaikuttavat\n    Mallinnus ja ennustaminen       arkeemme                     Profilointi ja klusterointi\n\n\n\n\n    Huomionhallintatekniikat    Tunnereaktioiden hyödyntäminen   Anonymiteettiharha\nGenerationAI",
+      "ocrUsed": false
+    },
+    {
+      "page": 24,
+      "text": "Riippuvuus on tavoite ja\n AI-algoritmi on työkalu\n\n\n\n\nGenerationAI\n https://www.honest-broker.com/p/the-state-of-the-culture-2024",
+      "ocrUsed": false
+    },
+    {
+      "page": 25,
+      "text": "",
+      "ocrUsed": false
+    },
+    {
+      "page": 26,
+      "text": "Mitä tavallinen oppilas tai\n               opettaja tietää tekoälystä?\n\n\n\n\nGenerationAI",
+      "ocrUsed": false
+    },
+    {
+      "page": 27,
+      "text": "“Lasten ja nuorten\n                                                                                             oivalluttaminen teknologiasta,\n                                                                                             josta tulevaisuuden yhteiskunta\n                                                                                             on enenevässä määrin\n                                                                                             riippuvainen, on yksi 2000-luvun\n                                                                                             merkittävimmistä haasteista.”\n                                                                                             Generation AI hankkeen tilannekuvaraportti\n\n\n\n\nGenerationAI\nhttps://www.aka.fi/strateginen-tutkimus/strateginen-tutkimus/strateginen-tutkimus-pahkinankuoressa/ohjelmat-ja-hankkeet/shield/generation-ai/",
+      "ocrUsed": false
+    },
+    {
+      "page": 28,
+      "text": "menti.com: 63675301\n\nMeitä on muitakin..",
+      "ocrUsed": false
+    },
+    {
+      "page": 29,
+      "text": "ME\n                      Kasvatustieteet\n\n                      Oikeustieteet\n\n                      Tietojenkäsittelytieteet\n      Oivalluttajat\n                      Muut\n\nGenerationAI",
+      "ocrUsed": false
+    },
+    {
+      "page": 30,
+      "text": "Hanke on “kuusivuotinen”\n\n\n\n\n               3+3\nGenerationAI",
+      "ocrUsed": false
+    },
+    {
+      "page": 31,
+      "text": "Olemme osa shield-ohjelmaa\n          Shield-ohjelma keskittyy turvallisuuteen ja\n         luottamukseen informaatioteknologioiden ja\n            hybridivaikuttamisen maailmanajassa.\n                             Muut Shield ohjelman hankkeet:\n\n\n               Demokratian episteeminen    Algoritmisten systeemien murtumat ja   Luotettavien ja syrjimättömien\n                toimintakyky algoritmien            uudet alut (REPAIR)            digitaalisten julkispalvelujen\n                   aikakaudella (DECA)                                            suunnittelu maahanmuuttajille\nGenerationAI                                                                                  (Trust-M)",
+      "ocrUsed": false
+    },
+    {
+      "page": 32,
+      "text": "Neljä eri tapaa tarkastella\n   tekoälyä opetuksessa\n    Tekoäly työkaluna\n     oppilaan väline        Tekoäly oppimisen\n     opettajan väline           sisältönä\n     instituution väline\n\n\n\n\n       Tekoäly &           Tekoälyn vaikutusten\n   oppimisanalytiikka         ymmärtäminen\n                                                  Holmes, W., Persson, J., Chounta, I. A., Wasson, B., & Dimitrova, V. (2022).\n                                                  Artificial intelligence and education: A critical view through the lens of\n                                                  human rights, democracy and the rule of law. Council of Europe.\n\n\n\n\nGenerationAI                                                                                        bit.ly/itk2024",
+      "ocrUsed": false
+    },
+    {
+      "page": 33,
+      "text": "1. Kehitämme pedagogisia puitteita tekoäly- ja\n                  turvallisuuskasvatukselle\n               2. Kehitämme uusia esi- ja perusopetukseen\n                  soveltuvia tekoälyn opetusvälineiden ja -\n                  menetelmien sekä oppimiskokonaisuuksien\n                  yhdistelmiä\n               3. Edistämme lasten oikeuksien toteutumista\n                  tekoälyyn perustuvissa järjestelmissä\n\nGenerationAI                                        bit.ly/itk2024",
+      "ocrUsed": false
+    },
+    {
+      "page": 34,
+      "text": "1.\n         Kehitämme pedagogisia\n         puitteita tekoäly- ja\n      turvallisuuskasvatukselle\n\nGenerationAI",
+      "ocrUsed": false
+    },
+    {
+      "page": 35,
+      "text": "Uusia lukutaitoja..\n\n\n\n\nGenerationAI              bit.ly/itk2024",
+      "ocrUsed": false
+    },
+    {
+      "page": 36,
+      "text": "Lapsista ja nuorista tulee kasvattaa\n     datatoimijoita\n\n                     Tavoitteena on nostaa esille datatoimijuuden\n                     käsite ja näin vahvistaa oppilaiden toimijuutta\n                        tilanteissa, joissa personoidut, älykkäät\n                          teknologiat ovat tulleet osaksi heidän\n                     arkipäiväänsä. Datatoimijuuden korostamisen\n                      tavoitteena on tukea oppilaiden valmiuksia\n                       aktiiviseen toimijuuteen siten, että oppilaat\n                  tiedostavat ja tunnistavat käyttäjätietoa keräävien\n                       palveluiden roolin ja vaikutuksen arjessaan\n\n\n\nGenerationAI                                                                                                                                                        bit.ly/itk2024\nValtonen, T., Vartiainen, H., Tedre, M., Toivonen, T., Kokko, A., Kahila, J., Jormanainen, I. & Piispa-Hakala, S. (2021). Oppilaat digitalisoituneen yhteiskunnan\ntoimijoina. Kasvatus 52(1), 108–113. https://doi.org/10.33348/kvt.107970",
+      "ocrUsed": false
+    },
+    {
+      "page": 37,
+      "text": "Kehitämme tekoälyopetusta yhdessä\n            Konteksti                       Tutkimus                           Tieto\n        Käytäntöön ja materiaaleihin                                     Parhaat käytänteet ja\n           liittyvät suositukset          Ohjelmistokehitys            menetelmälliset suositukset\n\n            Luokkahuone-                  Käytettävyystutkimus           Pedagogiikka\n            interventiot (4-6lk           Yhteiskehittäminen             Ohjeet ja yleiset\n            ja 7-9lk)                     Kokeilut                       käytänteet\n            Opettajat                                                    Opetussuunnitelmat\n            Lapset ja nuoretRelevanssi-        Design-           Tieteen (ml. AI ja ML)\n            Yksityisyyteen      sykli           sykli             sykli Samanlaiset\n            liittyvät huolet                                             sovellukset\n            Taitotaso                                                    Menetelmät\n            Käytettävissä                                                Aiemmat suositukset\n            olevat teknologiat               Sovellukset ja              ja tutkimukset\n            Oppimistavoitteet               oppimateriaalit\n\n\nGenerationAI",
+      "ocrUsed": false
+    },
+    {
+      "page": 38,
+      "text": "Yli 500 oppilasta osallistuu yhteiskehittämiseen vuosittain\n\n\n\n\n  500+\n                                     YLE 23.2.2024\n\n\n\n\n                                     https://yle.fi/a/74-20008814/64-3-212057\n\n\n\n\nGenerationAI                                             bit.ly/itk2024",
+      "ocrUsed": false
+    },
+    {
+      "page": 39,
+      "text": "Suomalaiset oppilaat ja opettajat\n saavat materiaaleja ja välineitä\n\n\n\n\n Teknologia                                                                                               Pedagogiikka                                                                                            Materiaalit\nGenerationAI\n Pope, N., Kahila, J., Vartiainen, H., & Tedre, M. (2023). Children’s AI Design Platform for Making and    Kahila, J., Vartiainen, H., Tedre, M., Arkko, E., Lin, A., Pope, N., Jormanainen, I., & Valtonen, T.\n Deploying ML-Driven Apps. TechRxiv. https://doi.org/10.36227/techrxiv.24320794.v1                        (2024). Pedagogical framework for cultivating children’s data agency and creative abilities in\n                                                                                                          the age of AI. Informatics in Education. https://doi.org/10.15388/infedu.2024.15",
+      "ocrUsed": false
+    },
+    {
+      "page": 40,
+      "text": "Ensimmäinen materiaalipaketti on valmis",
+      "ocrUsed": false
+    },
+    {
+      "page": 41,
+      "text": "Yhteisö on käynnistymässä. Tilanne 5.5.",
+      "ocrUsed": false
+    },
+    {
+      "page": 42,
+      "text": "Somekoneen materiaaleja\nkehitetään par’aikaa\n\n                                                                                                                                                                  2 5\n                                                                                                                                                                20\n                                                                                                                                                          C   A\n                                                                                                                                                       EDU\n                                                                                                                                                 lit :\n                                                                                                                                          ia   a\n                                                                                                            Tutkimus käynnissä\n\n                                                                                                                                     te r\n                                                                                                                                  Ma\n\n\n\n Teknologia                                                                                              Pedagogiikka            Materiaalit\nGenerationAI\n Pope, N., Kahila, J., Laru, J., Vartiainen, H., Roos, T., & Tedre, M. (2024). An Educational Tool for\n Learning about Social Media Tracking, Profiling, and Recommendation (arXiv:2402.01813). arXiv.\n http://arxiv.org/abs/2402.01813",
+      "ocrUsed": false
+    },
+    {
+      "page": 43,
+      "text": "2.\n       Kehitämme uusia esi- ja\nperusopetukseen soveltuvia tekoälyn\nopetusvälineiden ja -menetelmien sekä\n oppimiskokonaisuuksien yhdistelmiä\n\nGenerationAI",
+      "ocrUsed": false
+    },
+    {
+      "page": 44,
+      "text": "menti.com: 2878 6455\n\n                Sovelluksemme\n               ovat turvallisia ja\n                   helppoja!\n               Sovelluksemme ovat GDPR\n                   yhteensopivia ja\n                  saavutettavia sekä\n                     skaalautuvia.\n\n               Emme kerää tai jaa tietoja.\nGenerationAI",
+      "ocrUsed": false
+    },
+    {
+      "page": 45,
+      "text": "menti.com: 2878 6455\n  Sovellus 1. Opetettava kone (data ja koneoppiminen)\n                                           AI ilmiöt:\n                                               Data\n                                               Koneoppiminen\n                                               Luokittelu\n                                               Vinouma (bias)\n                                               Hauraus\n\n                                           Materiaalit:\n                                           www.generation-ai-stn.fi/\n                                           materiaalit\n\n                                           Sovellus:\n                                           tm.generation-ai-stn.fi\n\nGenerationAI",
+      "ocrUsed": false
+    },
+    {
+      "page": 46,
+      "text": "menti.com: 2878 6455\n  Sovellus 2. Somekone\n                                           AI-ilmiöt, joita\n                                           käsitellään\n                                           sovelluksen\n                                           avulla\n                                                Data\n                                                Profilointi\n                                                Suosittelu\n https://somekone.generation-ai-stn.fi\nGenerationAI",
+      "ocrUsed": false
+    },
+    {
+      "page": 47,
+      "text": "Somekoneen materiaaleja\nkehitetään par’aikaa\n\n                                                                                                                                                                  2 5\n                                                                                                                                                                20\n                                                                                                                                                          C   A\n                                                                                                                                                       EDU\n                                                                                                                                                 lit :\n                                                                                                                                          ia   a\n                                                                                                            Tutkimus käynnissä\n\n                                                                                                                                     te r\n                                                                                                                                  Ma\n\n\n\n Teknologia                                                                                              Pedagogiikka            Materiaalit\nGenerationAI\n Pope, N., Kahila, J., Laru, J., Vartiainen, H., Roos, T., & Tedre, M. (2024). An Educational Tool for\n Learning about Social Media Tracking, Profiling, and Recommendation (arXiv:2402.01813). arXiv.\n http://arxiv.org/abs/2402.01813",
+      "ocrUsed": false
+    },
+    {
+      "page": 48,
+      "text": "Hands-on: testataan käytännössä\nsomekonetta\n                                    Mitä teemme?\n                                  Tutustumme kevyesti\n                                  somekoneen toimintaan\n                                   1. Liity laitteellasi\n                                      (puhelin /\n                                      tietokone /\n                                      tablet)\n                                      somekoneeseen\n                                   2. Toimi saamiesi\n                                      ohjeiden\n                                      mukaisesti",
+      "ocrUsed": false
+    },
+    {
+      "page": 49,
+      "text": "3.\n    Edistämme lasten oikeuksien\n       toteutumista tekoälyyn\n     perustuvissa järjestelmissä\n\nGenerationAI                bit.ly/itk2024",
+      "ocrUsed": false
+    },
+    {
+      "page": 50,
+      "text": "Annamme lausuntoja ja laadimme oppaita\n                       Opas\n\n\n\n\n                     https://www.generation-ai-stn.fi/henkilotietojen-kasittely-alakoulussa/\n\nGenerationAI                                                         bit.ly/itk2024",
+      "ocrUsed": false
+    },
+    {
+      "page": 51,
+      "text": "Osallistumme lasten oikeuksia, tekoälyn etiikkaa,\n tietosuojaa ym. käsittelevään keskusteluun ja\n lainsäädäntötyöhön\n\n\n\n\nGenerationAI                                         bit.ly/itk2024\n                                      C. Tekoäly oppimisen kohteena/sisältönä",
+      "ocrUsed": false
+    },
+    {
+      "page": 52,
+      "text": "Osa II\n                 FCLAB Verkosto\n\n\n\n\nGenerationAI",
+      "ocrUsed": false
+    },
+    {
+      "page": 53,
+      "text": "Generation AI\nMahdollisia FCLAB polkuja                                                                  FCLAB verkosto\n                                              yhteiskehittely\nGeneration AI hankkeen                                                     Materiaalit\n                                 Sovellus\nkontekstissa:                                                                                   Materiaalien ja\n                                                         Materiaalien ja\n   Harjoittelupolku:                  Proto:                                                     sovelluksen         Kaikk\n   sovellukset ja materiaalit                             sovelluksen              EDUCA\n                                  Opetettava kone                                               testaaminen ja       koulu\n   harjoittelussa                                        kehittäminen\n                                                                                                  integrointi\n   Kehityspolku: materiaalien\n   ja sovellusten kehittäminen\n   palautteen perusteella\n                                     Värillinen osa: GenerationAI\n   Tutkimuspolku:                                                                                  Materiaalien ja\n                                     hankkeen sisäistä toimintaa.                Proto:                               EDU\n   Tutkimuksen tekeminen                                                                            sovelluksen\n   opetustilanteissa\n                                     Joka vuosi yksi toteutus.                 Somekone                              julka\n                                     Katkoviivalaatikot: Sovellusten                               kehittäminen\n   Varhaisen omaksujan polku:\n   sovellusten ja materiaalien       ja materiaalien pedagoginen\n   varhaisten versioiden             kehittäminen ja integrointi\n   kokeilu                           osana FCLAB toimintaa\n\n\n GenerationAI & normaalikoulut                                                                                       Proto\n                                                                                                                       ??",
+      "ocrUsed": false
+    },
+    {
+      "page": 54,
+      "text": "Suomalaiset oppilaat ja opettajat\n saavat materiaaleja ja välineitä\n\n\n\n\n Teknologia                                                                                               Pedagogiikka                                                                                            Materiaalit\nGenerationAI\n Pope, N., Kahila, J., Vartiainen, H., & Tedre, M. (2023). Children’s AI Design Platform for Making and    Kahila, J., Vartiainen, H., Tedre, M., Arkko, E., Lin, A., Pope, N., Jormanainen, I., & Valtonen, T.\n Deploying ML-Driven Apps. TechRxiv. https://doi.org/10.36227/techrxiv.24320794.v1                        (2024). Pedagogical framework for cultivating children’s data agency and creative abilities in\n                                                                                                          the age of AI. Informatics in Education. https://doi.org/10.15388/infedu.2024.15",
+      "ocrUsed": false
+    },
+    {
+      "page": 55,
+      "text": "35 sivua.\n                                                 Voi käyttää\n                                                  suoraan\n                                                opetuksessa.\n\n                                                Erityisen hyvä\n                                                    tausta-\n                                                materiaalina.\nhttps://www.generation-ai-stn.fi/materiaalit/",
+      "ocrUsed": false
+    },
+    {
+      "page": 56,
+      "text": "Ensimmäinen materiaalipaketti on valmis",
+      "ocrUsed": false
+    },
+    {
+      "page": 57,
+      "text": "HAASTE: Materiaalit yhteiskehittelyn tulosta, jossa tutkija ollut\npaikalla opetustilanteessa.",
+      "ocrUsed": false
+    },
+    {
+      "page": 58,
+      "text": "Tarve saada tietoa kuinka\n        materiaalit ja sovellukset\n         toimivat “normaalissa”\n            opetustilanteessa\n\nGenerationAI",
+      "ocrUsed": false
+    },
+    {
+      "page": 59,
+      "text": "Puuttuvaa tietoa esim.:\n   oppiaineisiin integrointi\n   hyvät esimerkit\n   materiaalin toimivuus",
+      "ocrUsed": false
+    },
+    {
+      "page": 60,
+      "text": "www.generation-ai-stn.fi/materiaalit\n\n\n\n\nHands-on Katsotaan miten käytettävissä oleva\n                 materiaali toimii.",
+      "ocrUsed": false
+    },
+    {
+      "page": 61,
+      "text": "Suomalaiset oppilaat ja opettajat\n saavat materiaaleja ja välineitä\n\n\n\n\n Teknologia                                                                                               Pedagogiikka                                                                                            Materiaalit\nGenerationAI\n Pope, N., Kahila, J., Vartiainen, H., & Tedre, M. (2023). Children’s AI Design Platform for Making and    Kahila, J., Vartiainen, H., Tedre, M., Arkko, E., Lin, A., Pope, N., Jormanainen, I., & Valtonen, T.\n Deploying ML-Driven Apps. TechRxiv. https://doi.org/10.36227/techrxiv.24320794.v1                        (2024). Pedagogical framework for cultivating children’s data agency and creative abilities in\n                                                                                                          the age of AI. Informatics in Education. https://doi.org/10.15388/infedu.2024.15",
+      "ocrUsed": false
+    },
+    {
+      "page": 62,
+      "text": "Millainen on sinun\n  TPACK, epäilemättä\n          hyvä?\n\n\n\n\n         AC K\n        P\nGenerationAI",
+      "ocrUsed": false
+    },
+    {
+      "page": 63,
+      "text": "GenerationAI",
+      "ocrUsed": false
+    },
+    {
+      "page": 64,
+      "text": "Suomalaiset oppilaat ja opettajat\n saavat materiaaleja ja välineitä\n\n\n\n\n Teknologia                                                                                               Pedagogiikka                                                                                            Materiaalit\nGenerationAI\n Pope, N., Kahila, J., Vartiainen, H., & Tedre, M. (2023). Children’s AI Design Platform for Making and    Kahila, J., Vartiainen, H., Tedre, M., Arkko, E., Lin, A., Pope, N., Jormanainen, I., & Valtonen, T.\n Deploying ML-Driven Apps. TechRxiv. https://doi.org/10.36227/techrxiv.24320794.v1                        (2024). Pedagogical framework for cultivating children’s data agency and creative abilities in\n                                                                                                          the age of AI. Informatics in Education. https://doi.org/10.15388/infedu.2024.15",
+      "ocrUsed": false
+    },
+    {
+      "page": 65,
+      "text": "GenerationAI",
+      "ocrUsed": false
+    },
+    {
+      "page": 66,
+      "text": "FClab ja norssit\n                                                                                                           Generation AI yhteisö\n                                                                                                              tukifoorumina\n\n\n\n\n     2024: opetettava kone                                                2025: Somekone\n                                         Paikallinen FCLab                                            Paikallinen FCLab edustaja\n educa\n   ?     Sovellus     Materiaalit     edustaja ottaa\n                                                  ggggvälineet ja   educa\n                                                                      ?   Sovellus    Materiaalit               gggg ja materiaalit\n                                                                                                      ottaa välineet\n                                        materiaalit haltuun                                                      haltuun\n\n\n\n\n                                              Tavoitteena                                                 Tavoitteena tukea\n                                          tukea muita opettajia                                            muita opettajia\n\n\n\n\n                                    AI-TPACK                                                        AI-TPACK\n                    Varhaiset omaksujat normaalikoululla                             Varhaiset omaksujat normaalikoululla\n                       + muut opettajat + harjoittelijat                                + muut opettajat + harjoittelijat\nGenerationAI",
+      "ocrUsed": false
+    },
+    {
+      "page": 67,
+      "text": "Generation AI\n                                                                                                                   yhteisö\n                             AI TPACK, AI LITERCY etc\n         2024\n\n                             Aiheet materiaalissa:       FCLab lähettiläsopettaja “ottaa\n        Opetettava kone                                      haltuun” materiaalit ja           Päiväkirja\n                             Koneoppimisen perusteet\n                                                                  sovellukset\n PRE                         ja käsitteet\n                                                                                                                 POST\n                             Datalähtöinen suunnittelu      FCLab lähettiläsopettaja\n                                                                                               Haastattelu\n        Materiaalit (beta)                                  käyttää materiaaleja ym.\n                             Tekoälyn etiikka ja                                           (stimulated recall)\n                                                             omassa opetuksessaan\n                             vaikutukset\n\n\n                                                                    Tavoite:\n                                                                    opettaja\n                                                                      tukee\n\n   FCLab Ambassador                                                  koulun\n                                                                     muita\n\n   opettajat per                                                    opettajia\n\n\n   paikkakunta\n\n\n\n\nGenerationAI\n                                                                       Tutkimus 1/2",
+      "ocrUsed": false
+    },
+    {
+      "page": 68,
+      "text": "Tutkimus 2/2\n                                                                                                        Generation AI\n                                                                                                          yhteisö\n\n\n\n\n                             Oppimateriaalin aiheet:\n        Opetettava kone\n                             Koneoppimisen perusteet\n                             ja käsitteet\n\n                             Datalähtöinen suunnittelu\n        Materiaalit (beta)\n                             Tekoälyn vaikutukset ja\n                             etiikka\n\n\n                                                          AI TPACK, AI LITERCY etc\n\n\n\n\n    2024                                Aim is to teach\n                                          colleaques                                 Ryhmähaastattelu\n                                                          Käyttää sovelluksia ja\n                                                          materiaaleja\n                                                                 gggg omassa\n                                                             opetuksessaan\n  PRE                                                                                   Päiväkirja      POST\n\n                             AI-TPACK\n                Varhaiset omaksujat normaalikoululla\n                   + muut opettajat + harjoittelijat\nGenerationAI",
+      "ocrUsed": false
+    },
+    {
+      "page": 69,
+      "text": "Suomalaiset oppilaat ja opettajat\n saavat materiaaleja ja välineitä\n\n\n\n\n Teknologia                                                                                               Pedagogiikka                                                                                            Materiaalit\nGenerationAI\n Pope, N., Kahila, J., Vartiainen, H., & Tedre, M. (2023). Children’s AI Design Platform for Making and    Kahila, J., Vartiainen, H., Tedre, M., Arkko, E., Lin, A., Pope, N., Jormanainen, I., & Valtonen, T.\n Deploying ML-Driven Apps. TechRxiv. https://doi.org/10.36227/techrxiv.24320794.v1                        (2024). Pedagogical framework for cultivating children’s data agency and creative abilities in\n                                                                                                          the age of AI. Informatics in Education. https://doi.org/10.15388/infedu.2024.15",
+      "ocrUsed": false
+    },
+    {
+      "page": 70,
+      "text": "kuusi sovellusta. Kuusi materiaalipakettia.\n\n\n\n\n                 3+3\n             Keskeinen rooli maamme tekoäly- ja\n         turvallisuuskasvatuksen kehittämistyössä.\n\nGenerationAI",
+      "ocrUsed": false
+    },
+    {
+      "page": 71,
+      "text": "Yhdessä?      Normaalikoulujen verkostolla on keskeinen\n                rooli kenttäkelpoisuuden kehittämisessä.\n\nGenerationAI",
+      "ocrUsed": false
+    },
+    {
+      "page": 72,
+      "text": "www.generation-ai-stn.fi\n\n\n\n\n               Kiitos.\nGenerationAI",
+      "ocrUsed": false
+    }
+  ],
+  "emptyPages": [
+    25
+  ],
+  "extractError": null,
+  "_diagnostic": {
+    "pdfBytes": 29035711,
+    "elapsedMs": 102565
+  }
+}

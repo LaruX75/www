@@ -1,0 +1,171 @@
+{
+  "designId": "DAGRsuUgwt0",
+  "sourceUpdatedAt": 1784895881,
+  "extractedAt": "2026-08-10T10:42:31.904Z",
+  "pageCount": 31,
+  "slides": [
+    {
+      "page": 1,
+      "text": "Tekoälytyökalut opettajan työssä – mitä tulevaisuus tuo tullessaan?\n                                       Jari Laru, KT, yliopistonlehtori, Oulun yliopisto, KTPK",
+      "ocrUsed": false
+    },
+    {
+      "page": 2,
+      "text": "TÄSSÄ on hyvä editorial siitä miten AI muuttuu\n      Advancing theory in the age of artificialintelligence",
+      "ocrUsed": false
+    },
+    {
+      "page": 3,
+      "text": "The promise and challenges of generative AI in education\n           xxx paljon tunnettuja kirjoittajia",
+      "ocrUsed": false
+    },
+    {
+      "page": 4,
+      "text": "3 artikla: Määritelmät\n                                  mikä on AI-järjestelmä?\n’AI-järjestelmä’ tarkoittaa konepohjaista järjestelmää, joka\non suunniteltu toimimaan vaihtelevalla autonomian tasolla\nja joka saattaa olla mukautuva käyttöönoton jälkeen.\n\n...että eksplisiittisiä tai implisiittisiä tavoitteita varten\npäättelee saamastaan ​syötteestä, kuinka tuottaa tuloksia,\nkuten ennusteita, sisältöä, suosituksia tai päätöksiä, jotka\nvoivat vaikuttaa fyysiseen tai virtuaaliseen ympäristöön;",
+      "ocrUsed": false
+    },
+    {
+      "page": 5,
+      "text": "AI on jo\n                              kaikkialla\n                                  Kaikkialla läsnä oleva ja\n                                    kaikkialle levinnyt\n                                          tekoäly\n\nTekoäly on integroitu syvästi sosiaalisen median palveluihin",
+      "ocrUsed": false
+    },
+    {
+      "page": 6,
+      "text": "Kaikki mielenkiintoiset\n                                    sovellukset ja laitteet\n                               perustuvat dataan ja tekoälyyn\n  Paikka- ja aikatiedot                Selaushistoria                   Otettuja kuvia, videoita                          Millainen on elämäsi rytmi\n  Missä olet koskaan ollut (laite      Millä sivuilla olet koskaan      Kuka niissä on (esim.                             (rajoitettu)\n  päällä)                              käynyt?                          perheenjäsenet)                                   Kalenterimerkinnät\n  Mihin aikaan olit siellä, kuinka     Mitä tietoja olet koskaan etsinyt                                                  Terveystiedot (Google Fit,\n  kauan                                Katsomasi videot, elokuvat ja Melkein kaikki mitä olet                             Oura jne.)\n  Kuka muu siellä on ollut             sarjat                           kirjoittanut                                      = Hengitätkö helposti?\n  Mitä käytit, kuinka kauan kesti      = Kiinnostuksen kohteesi ja mitä Google Docs                                       Toimintaa eri aikoina ja\n                                       suunnittelet                     Yksityiset + julkiset viestit                     harrastuksia\n  Käyttölokitiedot (osa)                                                (osa)                                             Hotellivaraukset,\n  Mitä olet tehnyt laitteille,       Ostoshistoria                      Sähköpostit (osa)                                 matkavaraukset\n  milloin?                             Mitä olet ostanut                \"Anonyymit\" viestit\n  Myös \"yksityisessä tilassa\"?         Mitkä mainokset kiinnostavat foorumeilla (joskus)                                  Lempimusiikkisi, elokuvasi,…\n  Myös \"poista historiani\"             sinua                            Tiedostojesi sisältö                              Musiikkimaku (kaikki\n  jälkeen?                             Mikä johti ostoon                pilvipalveluissa                                  kappaleet kuunneltu)\n  = Mistä olet kiinnostunut?                                                                                              Elokuvan maku\n  = Mitä elämässäsi on tapahtunut      Sovellukset laitteillasi               Kaikki reaktiosi                            Taiteen maku\n                                       PlugiNS                                Tykkäät, kirjanmerkit, vie\n  Kasvojen tunnistus                                                          hiiri päälle\n  Missä kuvissa esiintyy, kenen        Ohjelmat\n  kanssa\n  Jopa ne, joista et tiedä\n\nGenerationAI                                            Prof. Matti Tedre luentokalvot: tekoäly ja tietotyön automatisointi. Koneoppimisen käännekohdat 2000-luvulla",
+      "ocrUsed": false
+    },
+    {
+      "page": 7,
+      "text": "Tekoälyyn perustuvat\n                                                                    teknologiat vaikuttavat\n                                                                        jokapäiväiseen\n                                                                          elämäämme\nData-based monitoring             Behavior control techniques\n\n\n\n\n Modeling and predicting                                            Profiling and clustering\n\n\n\n\nAttention management techniques     Utilizing emotional reactions     Anonymity bias",
+      "ocrUsed": false
+    },
+    {
+      "page": 8,
+      "text": "",
+      "ocrUsed": false
+    },
+    {
+      "page": 9,
+      "text": "Neljä (viisi) eri tapaa tarkastella\n     tekoälyä opetuksessa\n                 AI työkaluna\n             oppilaan väline                                           Tekoäly oppimisen\n             opettajan väline                                              sisältönä\n             instituution väline\n\n              Hybridiälykkyys\n\n                AI &                                               Tekoälyn vaikutusten\n         oppimisanalytiikka                                           ymmärtäminen\n\nHolmes, W., Persson, J., Chounta, I. A., Wasson, B., & Dimitrova, V. (2022). Artificial intelligence and education: A\ncritical view through the lens of human rights, democracy and the rule of law. Council of Europe.",
+      "ocrUsed": false
+    },
+    {
+      "page": 10,
+      "text": "Tekoäly työkaluna\noppilaan väline\nopettajan väline\ninstituution väline\n\n\n\n\n      Perinteinen tekoäly (AI)                        Oppimista tukevat tekoälyyökalut.\n                        Kasvojentunnistus                     Case Microsoft\n                         (facial detection)\n                              Kuvantunnistus\n  Generatiivinen            (image recognition)\n  tekoäly (GenAI)                Puheentunnistus\n                               (speech recognition)\n   Sisällöntuotanto              Teksti puheeksi\n  (teksti, kuva, ääni,           (text to speech)\n       musiikki)              Luonnollisen kielen\n                              käsittely (natural\n                              language processing)\n                       Hahmon tunnistus\n                       (pattern recognition)\n            Tiedonlouhinta (data\n            mining)",
+      "ocrUsed": false
+    },
+    {
+      "page": 11,
+      "text": "AIED    -2022\n                                  Ai-työkaluja\n                                               AIED       2022-\n                                               LLM (ChatGPT) \"vallankumous\"\n                                     opetuksen tueksi\n\n\n                                                                                       \"Olemme kouluttaneet mallin nimeltä\n                                                                                       ChatGPT, joka on vuorovaikutuksessa\n                                                                                               keskustelun kautta.\n\n\n\n\nHolmes, W., &Tuomi, I. (2022). Tekoälyn nykytaso ja käytäntö koulutuksessa. European\nJournal of Education, 57, 542-570. https://doi.org/10.1111/ejed.12533                  https://openai.com/index/chatgpt/",
+      "ocrUsed": false
+    },
+    {
+      "page": 12,
+      "text": "Keskusteleva AI on monelle “se” AI\n                          Kuvassa on hieman tuotteistettu\n                          chatbot kokonaisuus, joka on\n                          LessonLab nimisen yrityksen\n                          tuote. Taustalla on OpenAI:n GPT\n                          kielimalli.",
+      "ocrUsed": false
+    },
+    {
+      "page": 13,
+      "text": "Generatiivisen tekoälyn mahdollisia rooleja oppimisprosessissa\n\n\n\n\n  Sharples, M. (2023). Towards social generative AI for education: theory, practices and ethics. Learning: Research and Practice, 9:2, 159-167 https://doi.org/10.1080/23735082.2023.2261131",
+      "ocrUsed": false
+    },
+    {
+      "page": 14,
+      "text": "Oppimisen arviointi ja tekoäly\nMiten oppimisen arvioinnissa tulisi huomioida tekoälyn vaikutukset\n\n\n\n\n Lodge, J.M., Howard, S. & Broadbent, J. (2023). Assessment redesign for generative AI: A taxonomy of options and their viability. [Blog post]. https://www.linkedin.com/pulse/assessment-\n                                                                redesign-generative-ai-taxonomy-options-viability-lodge",
+      "ocrUsed": false
+    },
+    {
+      "page": 15,
+      "text": "Emeritusprofessori Mike\n                 Sharplesin neuvo:\n                   Käännä ajattelu\n                       TÄSTÄ\n      Miten tekoäly vaikuttaa koulutukseen?\n                       TÄHÄN\n  Mitä uusia ja tehokkaita tapoja opettaa ja oppia\nsaadaan tekoälyn avulla? (opeta ja opi tekoälystä*)",
+      "ocrUsed": false
+    },
+    {
+      "page": 16,
+      "text": "Millaisia ominaisuuksia\ntulevaisuuden älykkäässä\noppimisympäristössä voisi\nolla?\nOppilaita tukevia toimintoja\n•Oppimisprosesseja tukevia visualisointeja\n•Mukautettuja toimintoja ja oppimateriaaleja\n• Palautejärjestelmiä\n•Suositusjärjestelmiä, jotka tarjoavat oppimista tukevia\n   toimintoja, jotka vastaavat oppilaiden kiinnostuksia ja\nintressejä\nOpettajia tukevia toimintoja:\n•Reaaliaikaista luokan ohjausta tukeva työkalut\n•Oppimispolkujen suunnittelua tukevat työkalut\n•Pelillistämistäja ryhmäyttämistätukevat työkalut\nD. Hernández-Leo, P. J. Muñoz-Merino, M. L. Bote-Lorenzo, D. Gašević and S. Järvelä, \"Editorial Technologies for\nData-Driven Interventions in Smart Learning Environments,\" inIEEE Transactions on Learning Technologies, vol. 16,\nno. 3, pp. 378-381, 1 June 2023, doi: 10.1109/TLT.2023.3275728.",
+      "ocrUsed": false
+    },
+    {
+      "page": 17,
+      "text": "Analytiikka “2.0\" on kulman takan",
+      "ocrUsed": false
+    },
+    {
+      "page": 18,
+      "text": "AI ACT\nTekoälylaki on ensimmäinen tekoälyä koskeva oikeudellinen kehys, joka käsittelee\n  tekoälyn riskejä ja asettaa Euroopan johtavaan asemaan maailmanlaajuisesti.",
+      "ocrUsed": false
+    },
+    {
+      "page": 19,
+      "text": "Perinteinen AIED\nÄlykkäät tutorit ja chatbotit\n                                               Kielletty\nÄlykkäät oppimisympäristöt\nAutomaattinen arviointi\nAI-tuetut näkymät\nOpiskelijavalinta...                        Arvioitu ja                               koulutus\n                                            säännelty\nGPAI-mallit (LLM)\nChatGPT, Gemini, Claude,.\nCopilot..\nMidjourney, Dall-E\n...\nmuu                  on noudatettava avoimuusvaatimuksia\nRoskapostisu\n                           ja EU:n tekijänoikeuslakia\n                       Pitää osoittaa, että sisältö on tekoälyn luoma\nodattimet              Tekoälymalli tulee suunnitella siten, että se estää luomasta\njne.                   laitonta sisältöä\n                       Pitää julkaista yhteenvetoja tekijänoikeuksien alaisesta\nTietokonepel\n                       opetusdatasta\nit tekoälyllä...",
+      "ocrUsed": false
+    },
+    {
+      "page": 20,
+      "text": "AI-lukutaitoa vaaditaan\n\n\n            Tekoälykehittäjien ja -käyttäjien on varmistettava, että heidän\n            henkilöstöllään ja yhteistyökumppaneilla on riittävä tekoälylukutaito\n            ottaen huomioon järjestelmän tarkoituksen ja kohdekäyttäjät.\n            Koulutus on ratkaisevan tärkeää sen varmistamiseksi, että kaikki\n            osapuolet ymmärtävät tekoälyn toiminnallisuuden ja vaikutuksen.",
+      "ocrUsed": false
+    },
+    {
+      "page": 21,
+      "text": "Tarvitaan uusia lukutaitoja\n                              Alla olevista kuvista puuttuu vielä datatoimijuus!\n\n\n\n\nLong, D., & Magerko, B. (2020, April). What is AI literacy? Competencies and design considerations.   Kreinsen, M., & Schulz, S. (2023). Towards the Triad of Digital Literacy, Data Literacy and AI Literacy in\nInProceedings of the 2020 CHI conference on human factors in computing systems(pp. 1-16).             Teacher Education–A Discussion in Light of the Accessibility of Novel Generative AI.",
+      "ocrUsed": false
+    },
+    {
+      "page": 22,
+      "text": "Tekoälylukutaito (Long & Magerko)\n\n\n\n\nLong, D., & Magerko, B. (2020, April). What is AI literacy? Competencies and design considerations. In Proceedings of the 2020 CHI conference on\n                                                    human factors in computing systems (pp. 1-16).",
+      "ocrUsed": false
+    },
+    {
+      "page": 23,
+      "text": "Datalukutaito\n   Katsauksemme 83 empiiriseen tutkimukseen, jotka on julkaistu vuosina\n   1990–2021, tuotti 95 tarkkaa indikaattoria opettajien datalukutaidosta.\n   Indikaattorit luokiteltiin viiteen ulottuvuuteen:\n\n   (a) tieto datasta,\n   (b) taidot datan käyttämisessä,\n   (c) asenteet datan käyttöä kohtaan,\n   (d) datan soveltaminen eri tarkoituksiin ja\n   (e) dataan liittyvä käyttäytyminen.\n\n   Tuloksemme viittaavat siihen, että opettajien datalukutaito kattaa\n   enemmän kuin pelkän tiedon ja taitojen hallinnan; se sisältää myös laajan\n   kirjon asenteita ja käyttäytymistä. Lisäksi opettajien datalukutaito\n   ulottuu oppimistulosten arviointia ja vastuullisuusvaatimusten\n   täyttämistä pidemmälle, ja siihen sisältyy myös opettajien reflektio ja\n   osallistuminen ammatilliseen kehitykseen.\n\n\nLee, J., Alonzo, D., Beswick, K., Abril, J. M. V., Chew, A. W., & Oo, C. Z. (2024). Dimensions of teachers’ data literacy: A systematic review of literature from 1990 to 2021. Educational\nAssessment, Evaluation and Accountability, 1-56.",
+      "ocrUsed": false
+    },
+    {
+      "page": 24,
+      "text": "EU AI ACT velvoittaa varmistamaan AI\njärjestelmien käyttäjien tekoälylukutaidon\n “Tekoälyjärjestelmien tarjoajien ja käyttöönottajien on parhaansa mukaan\n toteutettava toimenpiteitä, joilla ne varmistavat henkilöstönsä ja muiden\n  niiden puolesta tekoälyjärjestelmien toiminnasta ja käytöstä vastaavien\n     henkilöiden riittävän tekoälylukutaidon, minkä yhteydessä otetaan\n huomioon heidän tekninen tietämyksensä, kokemuksensa, koulutuksensa\n   ja tekoälyjärjestelmien käyttöyhteys sekä henkilöt tai henkilöryhmät,\n                joihin tekoälyjärjestelmiä on määrä käyttää.”\n\n                                                       Tämä astuu voimaan jo helmikuussa 2025",
+      "ocrUsed": false
+    },
+    {
+      "page": 25,
+      "text": "Eri toimijoilla on myös eri tarpeet lukutaidolle\n\n\n\n                                      Opettaja\n       Tietohallinto\n\n\n\n                                                 Kansalainen\n                            Oppilas",
+      "ocrUsed": false
+    },
+    {
+      "page": 26,
+      "text": "ChatGPT lukutaito ei riitä..\n                                                es o ve llu sten\n         Kaikkialle levinn                 Som\n                          yt ja                   sta av  ien A I\n                                            ja va\n            joka paikassa\n                                                algoritmit\n             läsnäoleva\n          digiteknologia ja                         ikTok\n                                             Esim. T\n               tekoäly\n                                                                           GPAI eli\n       Esim. robotti-im                AIED eli                          is  kä ytt ö is et\n                       uri                                            yle\n                                   opetuskäyttöö                               o v ell uk  set\n                                                n                   tekoä  ly s\n                                     suunnattu\n                                      tekoäly\n                                                                     Esim. ChatGPT\n                                  Esim. analytiikk\n                                                  a",
+      "ocrUsed": false
+    },
+    {
+      "page": 27,
+      "text": "Luomme tekoäly- ja turvallisuus-\n    kasvatuksen perustaa maahamme\n\n\n\n\nN. Pope, J. Kahila, J. Laru, H. Vartiainen, T. Roos and M. Tedre, \"An Educational Tool for   N. Pope, H. Vartiainen, J. Kahila, J. Laru and M. Tedre, \"A No-Code AI Education Tool for\nLearning about Social Media Tracking, Profiling, and Recommendation,\" 2024 IEEE              Learning AI in K-12 by Making Machine Learning-Driven Apps,\" 2024 IEEE International\nInternational Conference on Advanced Learning Technologies (ICALT), Nicosia, North           Conference on Advanced Learning Technologies (ICALT), Nicosia, North Cyprus, Cyprus,\nCyprus, Cyprus, 2024, pp. 110-112, doi: 10.1109/ICALT61570.2024.00038.                       2024, pp. 105-109, doi: 10.1109/ICALT61570.2024.00037.",
+      "ocrUsed": false
+    },
+    {
+      "page": 28,
+      "text": "Mitä ovat tekoälyn\n   lukutaito ja osaaminen?\n   Kattava viitekehys\n   opettajan tueksi.\n\n\n\n\nChiu, T. K., Ahmad, Z., Ismailov, M., & Sanusi, I. T. (2024). What are artificial\nintelligence literacy and competency? A comprehensive framework to\nsupport them. Computers and Education Open, 6, 100171.",
+      "ocrUsed": false
+    },
+    {
+      "page": 29,
+      "text": "Intelligent TPACK                                                                                          INTELLIGENT TPACK OSIO\n\n                                                                                                                Oman alani opetuksessa tiedän kuinka käyttää erilaisia\n                                                                                                                tekoälyyn perustuvia työkaluja mukautuvan palautteen\n                                                                                                                antamiseen\n                                                                                                                Oman alani opetuksessa tiedän kuinka käyttää erilaisia\n                                                                                                                tekoälyyn perustuvia työkaluja henkilökohtaisen\n                                                                                                                oppimisen tukena\n                                                                                                                Oman alani opetuksessa tiedän kuinka käyttää erilaisia\n                                                                                                                tekoälyyn perustuvia työkaluja reaaliaikaisen palautteen\n                                                                                                                antamiseen\n                                                                                                                Voin opettaa hyödyntäen tekoälyyn perustuvia työkaluja ja\n                                                                                                                monipuolisia opetusstrategioita.\n                                                                                                                Voin pitää oppitunteja, joissa opetuksen sisältöjä,\n                                                                                                                tekoälyyn perustuvia työkaluja ja opetusmenetelmiä\n                                                                                                                yhdistellään sopivasti.\n                                                                                                                Voin ottaa kollegoideni keskuudessa johtavan roolin\n                                                                                                                tekoälyyn perustuvien työkalujen integroimisessa\n                                                                                                                opetukseen\n                                                                                                                Voin valita erilaisia tekoälyyn perustuvia työkaluja\n                                                                                                                oppilaiden oppimisen seurantaan oppitunneillani\nCelik, I. (2023). Towards Intelligent-TPACK: An empirical study on teachers’ professional knowledge to ethically integrate artificial intelligence (AI)-based tools into education.\nComputers in Human Behavior, 138, 107468.",
+      "ocrUsed": false
+    },
+    {
+      "page": 30,
+      "text": "UNESCO AI kompetenssit",
+      "ocrUsed": false
+    },
+    {
+      "page": 31,
+      "text": "Tulossa.\nKirja käsittelee tekoälylukutaitoja\nkorkeakoulukontekstissa",
+      "ocrUsed": false
+    }
+  ],
+  "emptyPages": [
+    8
+  ],
+  "extractError": null,
+  "_diagnostic": {
+    "pdfBytes": 12542858,
+    "elapsedMs": 46587
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "designId": "DAG4_JfGI6o",
+  "sourceUpdatedAt": 1784883528,
+  "extractedAt": "2026-08-10T10:22:46.167Z",
+  "pageCount": 26,
+  "slides": [
+    {
+      "page": 1,
+      "text": "Tekoäly opettajan\n   työkaluna?\nTekoälyagentit\nopettajankoulutuksessa -koulutus\n18.11.2025\n\n\n\n\n Jari Laru, KT, yliopistonlehtori, teknologiatuettu oppiminen ja opetus. Oulun yliopisto",
+      "ocrUsed": false
+    },
+    {
+      "page": 2,
+      "text": "A.Tekoälylukutaito",
+      "ocrUsed": false
+    },
+    {
+      "page": 3,
+      "text": "Tekoäly ei ole\n                       tulevaisuutta\n                                  Kaikkialla läsnä oleva ja\n                                    kaikkialle levinnyt\n                                          tekoäly\n\nTekoäly on integroitu syvästi sosiaalisen median palveluihin",
+      "ocrUsed": false
+    },
+    {
+      "page": 4,
+      "text": "“Generatiivinen tekoäly on ollut yksi\n       maailman nopeimmin\n käyttöönotetuista teknologioista”\n\n\n                 Giannakos, M., Azevedo, R., Brusilovsky, P., Cukurova, M., Dimitriadis, Y., Hernandez-Leo, D., ... & Rienties, B. (2024).\n                 The promise and challenges of generative AI in education. Behaviour & Information Technology, 1-27.",
+      "ocrUsed": false
+    },
+    {
+      "page": 5,
+      "text": "Multimodaalinen tekoäly..\nKielimalli               Musiikkimalli                      Kuvamalli                               Videomalli\n     GPT-5\n     GPT-5 (LLM)\n           (LLM)                            Suno-5\n                                            Suno-5                            NanoBanana\n                                                                              NanoBanana                         Sora-2\n                                                                                                                 Sora-2\nMultimodal\nMultimodal transformer\n           transformer            Bark ja\n                                  Bark ja Chirp\n                                          Chirp models\n                                                models   Multimodal Diffusion\n                                                         Multimodal Diffusion Transformer\n                                                                              Transformer (MMDiT)\n                                                                                          (MMDiT)     Diffusion transfomer\n                                                                                                      Diffusion transfomer\n\n\n\n\n            ..on mahdollistanut generatiivisella tekoälyllä luotujen\n            (synteettisten) sisältöjen räjähdysmäisen kasvun.",
+      "ocrUsed": false
+    },
+    {
+      "page": 6,
+      "text": "50%\n AI",
+      "ocrUsed": false
+    },
+    {
+      "page": 7,
+      "text": "“Mitä sitten, jos ChatGPT kirjoitti sen?”\nTähän artikkeliin on koottu 43 näkemystä, jotka ovat peräisin\nmuun muassa tietojenkäsittelytieteen, markkinoinnin,\ntietojärjestelmien, koulutuksen, politiikan, majoituksen ja\nmatkailun, johtamisen, kustannustoiminnan ja hoitotyön\nalojen asiantuntijoilta ja jotka tarjoavat monitieteistä\nnäkemystä joistakin näistä ongelmista.\n\n\n  “Entä jos tekstin kirjoittamisessa,\narvioinnissa ja lukemisessa käytetään\n              tekoälyä?”\nDwivedi, Y. K., Kshetri, N., Hughes, L., Slade, E. L., Jeyaraj, A., Kar, A. K., ... & Wright, R. (2023). Opinion Paper:“So what if ChatGPT\nwrote it?” Multidisciplinary perspectives on opportunities, challenges and implications of generative conversational AI for research,\npractice and policy. International journal of information management, 71, 102642.",
+      "ocrUsed": false
+    },
+    {
+      "page": 8,
+      "text": "AIED    -2022\n                                  Ai-työkaluja\n                                               AIED     2022-\n                                                 LLM (ChatGPT) \"generatiivisen\n                                     opetuksen tueksi                                      tekoälyn vallankumous\"\n\n\n\n\nHolmes, W., &Tuomi, I. (2022). Tekoälyn nykytaso ja käytäntö koulutuksessa. European\nJournal of Education, 57, 542-570. https://doi.org/10.1111/ejed.12533                  https://openai.com/index/chatgpt/",
+      "ocrUsed": false
+    },
+    {
+      "page": 9,
+      "text": "+/-",
+      "ocrUsed": false
+    },
+    {
+      "page": 10,
+      "text": "A\n Lupaukset\n\n\n\n\n   Haasteet\n           B\n\n\n     Tarpeet\n            C\nYan, L., Greiff, S., Teuber, Z. et al. Promises and challenges of generative artificial\nintelligence for human learning. Nat Hum Behav 8, 1839–1850 (2024).\nhttps://doi.org/10.1038/s41562-024-02004-5                                                Figure 1. Overview of the impacts of generative artificial intelligence on human learning.",
+      "ocrUsed": false
+    },
+    {
+      "page": 11,
+      "text": "2 kirjallisuuskatsausta, joissa väitettiin että “tekoäly” tukee\noppimista. Nämä herättivät paljon keskustelua..\nChatGPT antaa nopeaa apua. Se tarjoaa välitöntä\ntukea tehtävissä. Se auttaa ongelmanratkaisussa.\nSe tukee monia oppimismenetelmiä. Erityisen\nhyvin se sopii ongelmapohjaiseen oppimiseen. Se\ntukee myös yksilöllistettyä oppimista.\nSe auttaa kehittämään taitoja ja osaamista. Se\ntukee korkeamman tason ajattelua. Se auttaa\nkielenoppimisessa. Se voi tukea itsesäädeltyä\noppimista.\nOpettajan rooli on täydentävä. Opettajat ovat\nkeskeisiä.\nChatGPT voi auttaa opettajia työssä. Se tukee                                                 “Rushed research”\noppituntien suunnittelua. Se voi antaa palautetta                                                                        CRITIQUE:\n\n                                                                                                           While still early, these findings already\nopiskelijoille.                                                                                            paint the picture that, as with all other\n                                                                                                          tools (or media, per Clark), the concrete\n\n\nOpettajat vastaavat työkalun integroinnista.\n                                                                                                         instantiation of how learners can interact\n                                                                                                           with, rely on, and derive insights from\n                                                                                                                ChatGPT varies dramatically.\n\n\nHeidän tehtävänsä on suunnitella opetusta. He\n                                                                                                         Given this, it is surprising that Deng et al.\n                                                                                                            (2025), based on 18 primary studies\n                                                                                                             evaluating academic performance,\n\nvarmistavat asianmukaisen käytön.\n                                                                                                             concluded that ChatGPT improves\n                                                                                                                            learning.\n\n\n\n\n                                                                                                                                                         Wang, J., & Fan, W. (2025). The effect of ChatGPT on\n                                                    Deng, R., Jiang, M., Yu, X., Lu, Y., & Liu, S. (2024). Does                                          students’ learning performance, learning perception, and\n                                                    ChatGPT enhance student learning? A systematic review                                                higher-order thinking: insights from a meta-analysis.\n                                                    and meta-analysis of experimental studies. Computers &                                               Humanities and Social Sciences Communications, 12(1), 1-\n                                                    Education, 105224.                                                                                   21.",
+      "ocrUsed": false
+    },
+    {
+      "page": 12,
+      "text": "“Oppimisen tukemiseksi ChatGPT tai\nmikä tahansa tekoälyjärjestelmä on\nintegroitava ja yhdistettävä\nopetusmenetelmään,\npedagogiikkaan.”\nWeidlich, J., D. Gašević, H. Drachsler, and P. Kirschner. 2025. “ ChatGPT in Education: An\nEffect in Search of a Cause.” Journal of Computer Assisted Learning 41, no. 5: e70105.\nhttps://doi.org/10.1111/jcal.70105.",
+      "ocrUsed": false
+    },
+    {
+      "page": 13,
+      "text": "NO?",
+      "ocrUsed": false
+    },
+    {
+      "page": 14,
+      "text": "B.Tekoälylukutaito\n Sinun vastuulla.",
+      "ocrUsed": false
+    },
+    {
+      "page": 15,
+      "text": "📊 Mitä data on?\n                                           1. Data on tietoa\n                                           2. Osaan käyttää Exceliä, joten olen datalukutaitoinen\n                                           3. Data on uusi öljy\n                                           4. Data on pilvessä\n                                           5. Organisaatioilla on paljon valmista käyttökelpoista dataa\n                                           6. Raakadata on neutraalia ja puhdasta\n                                           7. Datan käsittely ei vaikuta siitä tehtyihin johtopäätöksiin\n                                           8. Minua koskeva data on minun\n                                           9. Voin määrätä siitä, minkälaista dataa minusta kerätään\n                                           10. Jos en esiinny omalla nimelläni, minua ei voi tunnistaa\n                                           11. Tietosuoja-asetus takaa suojan henkilötiedoille\n\n                                           🤖 Mikä tekoäly?\n                                           12. Tekoäly on yksi, yhtenäinen teknologia\n                                           13. Tekoäly on tulevaisuutta\n                                           14. Tekoälyn kehitystä voi ennustaa\n                                           15. Tekoäly ei voi olla luova\n                                           16. Tekoäly toimii ilman ihmistä\n                                           17. Tekoälyn ymmärtäminen vaatii matematiikan ja ohjelmoinnin ymmärrystä\n                                           18. Tekoäly on sähkönsininen\n                                           19. Kvanttilaskenta mullistaa tekoälyn\n                                           20. Tekoäly osaa, hallusinoi ja ajattelee kuin ihminen\n                                           21. Tekoäly korvaa ihmisen asiantuntemuksen ja arvostelukyvyn\n                                           22. Kukaan ei tiedä, miten tekoäly toimii\nAvaa kirjan ilmainen versio\nhttps://doi.org/10.58181/VP9789523972513                            Generation AI",
+      "ocrUsed": false
+    },
+    {
+      "page": 16,
+      "text": "Digitaalinen lukutaito ja digitaalinen\ninformaatiolukutaito ovat kansalaistaitoja.\nNe tarvitaan tekoälylukutaidon pohjaksi!",
+      "ocrUsed": false
+    },
+    {
+      "page": 17,
+      "text": "Tekoälylukutaitovaatimus astui\nvoimaan 2.2.2025 (EU tekoälyasetus)\n   Tätä asetusta olisi sovellettava 2 päivästä elokuuta 2026. Kun kuitenkin otetaan huomioon tietyt tekoälyn käyttötavat, joita ei\n   voida hyväksyä, kieltoja ja tämän asetuksen yleisiä säännöksiä olisi sovellettava jo 2 päivästä helmikuuta 2025.\n\n\n\n\n    Maamme                                       AI LIT                                      DigComp\ntekoälysuositukset                            Framework                                   3.0 viitekehys\n                                              (PISA 2029)",
+      "ocrUsed": false
+    },
+    {
+      "page": 18,
+      "text": "Lukemistoa",
+      "ocrUsed": false
+    },
+    {
+      "page": 19,
+      "text": "Pelkkä AI:n käyttäminen ei                                                          Tekoäly on loppukäyttäjille (myös\n                                                                                          koulussa) musta laatikko\n  kehitä tekoälylukutaitoa\n\n\n\n\n                                                                     EI riitä yksin\n\n\nOECD (2025). Empowering learners for the age of AI: An AI literacy\nframework for primary and secondary education (Review draft).\nOECD. Paris. https://ailiteracyframework.org",
+      "ocrUsed": false
+    },
+    {
+      "page": 20,
+      "text": "myös vuoden 2029 PISA innovative domain!\n\n\n\n\n                                              OECD (2025). Empowering learners for the age of AI: An AI literacy\n                                           framework for primary and secondary education (Review draft). OECD.\n                                                           Paris. https://ailiteracyframework.org",
+      "ocrUsed": false
+    },
+    {
+      "page": 21,
+      "text": "myös vuoden 2029 PISA innovative domain!\n\n\n\n\n                                              OECD (2025). Empowering learners for the age of AI: An AI literacy\n                                           framework for primary and secondary education (Review draft). OECD.\n                                                           Paris. https://ailiteracyframework.org",
+      "ocrUsed": false
+    },
+    {
+      "page": 22,
+      "text": "Teema 1. Tutustu tekoälyyn\n\n    Oppilaiden tulee tunnistaa tekoälyn “läsnäolo”\n    Heidän tulee kyetä arvioimaan AI:n tuottamien\n    sisältöjen tarkkuutta ja relevanssia\n    Heidän tulee ymmärtää AI:n teknologiset perusteet\n                                                 OECD (2025). Empowering learners for the age of AI: An AI literacy\n                                              framework for primary and secondary education (Review draft). OECD.\n                                                              Paris. https://ailiteracyframework.org",
+      "ocrUsed": false
+    },
+    {
+      "page": 23,
+      "text": "Teema 2. Sisältöjen luominen\n\n\n\n                     OECD (2025). Empowering learners for the age of AI: An AI literacy\n                  framework for primary and secondary education (Review draft). OECD.\n                                  Paris. https://ailiteracyframework.org",
+      "ocrUsed": false
+    },
+    {
+      "page": 24,
+      "text": "Task 3. Tekoälyn hallinta\n\n\n\n                    OECD (2025). Empowering learners for the age of AI: An AI literacy\n                 framework for primary and secondary education (Review draft). OECD.\n                                 Paris. https://ailiteracyframework.org",
+      "ocrUsed": false
+    },
+    {
+      "page": 25,
+      "text": "Tehtävä 4. Tekoäly &\nsuunnittelu\n\n\n                    OECD (2025). Empowering learners for the age of AI: An AI literacy\n                 framework for primary and secondary education (Review draft). OECD.\n                                 Paris. https://ailiteracyframework.org",
+      "ocrUsed": false
+    },
+    {
+      "page": 26,
+      "text": "",
+      "ocrUsed": false
+    }
+  ],
+  "emptyPages": [
+    26
+  ],
+  "extractError": null,
+  "_diagnostic": {
+    "pdfBytes": 15294750,
+    "elapsedMs": 46779
+  }
+}

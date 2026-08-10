@@ -1,0 +1,199 @@
+{
+  "designId": "DAF_OY_0VEQ",
+  "sourceUpdatedAt": 1784895908,
+  "extractedAt": "2026-08-10T10:48:48.691Z",
+  "pageCount": 37,
+  "slides": [
+    {
+      "page": 1,
+      "text": "Tekoäly – hallinnon, opettajan\ntai oppilaan työkalu vai\noppimisen sisältö..\nEsi- ja perusopetuksen verkostojen verkoston\ntapaaminen. Kuntatalo 12.3.2024\n\n\n\n\nJari Laru, KT, yliopistonlehtori, teknologiatuettu\n                                                     tee kuva aiheesta: \"Tekoäly – hallinnon, opettajan\noppiminen ja opetus. Oulun yliopisto. Generation     tai oppilaan työkalu vai opettamisen kohde?\"\nAI hankkeen vuorovaikutusvastaava",
+      "ocrUsed": false
+    },
+    {
+      "page": 2,
+      "text": "Esitys on verkossa\n\n\n\n\nhttps://bit.ly/kuntaliitto24",
+      "ocrUsed": false
+    },
+    {
+      "page": 3,
+      "text": "Neljä eri tapaa tarkastella\n      tekoälyä opetuksessa\n                 AI työkaluna\n             oppilaan väline                                           Tekoäly oppimisen\n             opettajan väline                                              sisältönä\n             instituution väline\n\n\n\n\n                AI &                                               Tekoälyn vaikutusten\n         oppimisanalytiikka                                           ymmärtäminen\n\nHolmes, W., Persson, J., Chounta, I. A., Wasson, B., & Dimitrova, V. (2022). Artificial intelligence and education: A\ncritical view through the lens of human rights, democracy and the rule of law. Council of Europe.",
+      "ocrUsed": false
+    },
+    {
+      "page": 4,
+      "text": "MIKÄ                                                                                                         Hox!\n                                                                                                             Itse käyttäisin\nIHMEEN                                              Supertekoäly (ASI)\n                                                                                                             termiä\n                                                                                                             tekoälyteknologiat\nTEKOÄLY?                                Yleinen tekoäly (AGI)\n                                                                                 Globaalien\n                                                            Kehittyneet          haasteiden\n                          Perinteinen tekoäly (AI)          virtuaaliapulaiset   ratkaiseminen\n                                            Kasvojentunnistus\n                                                                      LääketieteellisetTerveydenhuollon\n                                             (facial detection)\n                                                                        diagnoosit ja    vallankumous\n                                                  Kuvantunnistus\n                                                                            hoidot\n                      Generatiivinen            (image recognition)\n                      tekoäly (GenAI)                Puheentunnistus     Ilmastonmuuto Avaruustutkimus\n                                                   (speech recognition) ksen ratkaisut\n                       Sisällöntuotanto              Teksti puheeksi\n                                                                            Tieteellisen  Ympäristöhaastee\n                      (teksti, kuva, ääni,           (text to speech)\n                           musiikki)                                       tutkimuksen\n                                                  Luonnollisen kielen\n                                                                         nopeuttaminen Tekoäly, joka\n                                                  käsittely (natural\n                                                  language processing)                   ymmärtää\n                                                                       Yksilöllinen\n                                           Hahmon tunnistus                              ihmisten tunteet\n                                                                       opetus\n                                           (pattern recognition)\n                                Tiedonlouhinta (data\n                                mining)\n\n    Tekee rajattuja\n    tehtäviä\n                                                                                                  Fiksumpi kuin ihminen (hypoteettinen)\n    (perinteisen\n    tekoälyn osa)                                                                       Toimii “kuin” ihminen (ei ole saavutettu, vielä)\n    Tekee rajattuja tehtäviä",
+      "ocrUsed": false
+    },
+    {
+      "page": 5,
+      "text": "Keskitymme kapeaan tekoälyyn\neli nykypäivän tarjontaan.                              Supertekoäly (ASI)\n\n\n\n\n                            Perinteinen tekoäly (AI)\n                                              Kasvojentunnistus\n                                               (facial detection)\n                                                    Kuvantunnistus\n                        Generatiivinen            (image recognition)                  Perinteinen\n                                                                                                     Arkemme on\n                        tekoäly (GenAI)                Puheentunnistus                  tekoäly on\n  ChatGPT                                            (speech recognition)                              monella\n                                                                                        kaikkialla\n tunnetuin               Sisällöntuotanto              Teksti puheeksi                               tapaa tästä\n                        (teksti, kuva, ääni,           (text to speech)                läsnäoleva\n esimerkki                   musiikki)\n                                                                                                      tekoälystä\n                                                    Luonnollisen kielen                ja arkeemme\n                                                    käsittely (natural                               riippuvaista\n                                                                                       sulautunut\n                                                    language processing)\n                                             Hahmon tunnistus\n       Azure Open AI                         (pattern recognition)\n                                  Tiedonlouhinta (data\n                                  mining)                                   Azure AI\n       CoPilot                                                                    Se tekoäly,\n       CoPilot M365 (pro)                                                         jota et ole\n       CoPilot Windows                                                            tullut ehkä\n       Github Copilot                                                            ajatelleeksi!",
+      "ocrUsed": false
+    },
+    {
+      "page": 6,
+      "text": "Tekoäly työkaluna\noppilaan väline\nopettajan väline\ninstituution väline\n\n\n\n\n      Perinteinen tekoäly (AI)                        Oppimista tukevat tekoälyyökalut.\n                        Kasvojentunnistus                     Case Microsoft\n                         (facial detection)\n                              Kuvantunnistus\n  Generatiivinen            (image recognition)\n  tekoäly (GenAI)                Puheentunnistus\n                               (speech recognition)\n   Sisällöntuotanto              Teksti puheeksi\n  (teksti, kuva, ääni,           (text to speech)\n       musiikki)              Luonnollisen kielen\n                              käsittely (natural\n                              language processing)\n                       Hahmon tunnistus\n                       (pattern recognition)\n            Tiedonlouhinta (data\n            mining)",
+      "ocrUsed": false
+    },
+    {
+      "page": 7,
+      "text": "Nämä ovat jo olemassa, eli eivät tule\nenää ”laboratorioissa” .. Toki ratkaisut\nparanevat jatkuvasti…\n\n\n\n                                                          * Spekulatiivinen\n                                                          ** Tutkittu\n                                                          *** Kaupallisesti saatavilla\n\n\n                                                     LM/NLP/ML/AI ratkaisuja.\n Holmes, W., &Tuomi, I.(2022).State of the art and\n practice in AI in education.European Journal of\n Education, 57, 542-570.\n                                                     LLM/AI tuli laajaan\n https://doi.org/10.1111/ejed.12533\n                                                     käyttöön ChatGPT:n myötä\n                                                     30.11.2022",
+      "ocrUsed": false
+    },
+    {
+      "page": 8,
+      "text": "Tällä hetkellä Perusmallit tuntuvat\nolevan kiinnostavin työkalu.\n\n\n\n\n https://www.moreusefulthings.com/prompts   https://pitch.com/v/DALL-E-prompt-book-v1-tmd33y",
+      "ocrUsed": false
+    },
+    {
+      "page": 9,
+      "text": "\"Entä sitten, jos\nChatGPT kirjoitti sen?\nmonitieteisiä\nnäkökulmia\ngeneratiivisen\ntekoälyyn..\"\n\n\n\n\nDwivedi, Y. K., Kshetri, N., Hughes, L., Slade, E. L.,\n Jeyaraj, A., Kar, A. K., ... & Wright, R. (2023). “So\n  what if ChatGPT wrote it?” Multidisciplinary\n perspectives on opportunities, challenges and\nimplications of generative conversational AI for\n  research, practice and policy. International\nJournal of Information Management, 71, 102642.\nhttps://doi.org/10.1016/j.ijinfomgt.2023.102642",
+      "ocrUsed": false
+    },
+    {
+      "page": 10,
+      "text": "Millaisia työkaluja on tulossa? Muutamien\n        review-artikkeleiden “satoa”\n\nALS (Adaptive learning                                                                    Muita AI pohjaisia\nsystem)                                                                                   työkaluja\nMukautuvat oppimisjärjestelmät                                                               Koneoppimisen mallintaminen\novat henkilökohtaisia ​                                                                      Älykkäät avustajat (ITS,\noppimisalustoja, jotka mukautuvat                                                            intelligent tutoring systems)\nopiskelijoiden oppimisstrategioihin,                                                         Chatbotit\ntehtävien järjestykseen ja                                                                   Opetuspelit\nvaikeuteen, palautteen ajankohtaan                                                           AI robotiikka\nja opiskelijoiden mieltymyksiin.                                                             Virtuaalitodellisuus\nKabudi, T., Pappas, I., & Olsen, D. H. (2021). AI-enabled adaptive learning systems: A     Martin, F., Zhuang, M., & Schaefer, D. (2023). Systematic review of research on\nsystematic mapping of the literature. Computers and Education: Artificial Intelligence,    artificial intelligence in K-12 education (2017–2022). Computers and Education:\n2, 100017.                                                                                 Artificial Intelligence, 100195.",
+      "ocrUsed": false
+    },
+    {
+      "page": 11,
+      "text": "Millaisia ominaisuuksia\ntulevaisuuden älykkäässä\noppimisympäristössä voisi\nolla?\nOppilaita tukevia toimintoja\n•Oppimisprosesseja tukevia visualisointeja\n•Mukautettuja toimintoja ja oppimateriaaleja\n• Palautejärjestelmiä\n•Suositusjärjestelmiä, jotka tarjoavat oppimista tukevia\n   toimintoja, jotka vastaavat oppilaiden kiinnostuksia ja\nintressejä\nOpettajia tukevia toimintoja:\n•Reaaliaikaista luokan ohjausta tukeva työkalut\n•Oppimispolkujen suunnittelua tukevat työkalut\n•Pelillistämistäja ryhmäyttämistätukevat työkalut\nD. Hernández-Leo, P. J. Muñoz-Merino, M. L. Bote-Lorenzo, D. Gašević and S. Järvelä, \"Editorial Technologies for\nData-Driven Interventions in Smart Learning Environments,\" inIEEE Transactions on Learning Technologies, vol. 16,\nno. 3, pp. 378-381, 1 June 2023, doi: 10.1109/TLT.2023.3275728.",
+      "ocrUsed": false
+    },
+    {
+      "page": 12,
+      "text": "Laajempi katsaus Työkaluteemaan",
+      "ocrUsed": false
+    },
+    {
+      "page": 13,
+      "text": "Neljä eri tapaa tarkastella\n      tekoälyä opetuksessa\n                 AI työkaluna\n             oppilaan väline                                           Tekoäly oppimisen\n             opettajan väline                                              sisältönä\n             instituution väline\n\n\n\n\n                AI &                                               Tekoälyn vaikutusten\n         oppimisanalytiikka                                           ymmärtäminen\n\nHolmes, W., Persson, J., Chounta, I. A., Wasson, B., & Dimitrova, V. (2022). Artificial intelligence and education: A\ncritical view through the lens of human rights, democracy and the rule of law. Council of Europe.",
+      "ocrUsed": false
+    },
+    {
+      "page": 14,
+      "text": "Tekoäly &\noppimisanalytiikka\n\n\n\n      Perinteinen tekoäly (AI)\n                        Kasvojentunnistus\n                         (facial detection)\n                              Kuvantunnistus\n  Generatiivinen            (image recognition)\n  tekoäly (GenAI)                Puheentunnistus\n                               (speech recognition)\n   Sisällöntuotanto              Teksti puheeksi\n  (teksti, kuva, ääni,           (text to speech)\n       musiikki)              Luonnollisen kielen\n                              käsittely (natural\n                              language processing)\n                       Hahmon tunnistus\n                       (pattern recognition)\n            Tiedonlouhinta (data\n            mining)",
+      "ocrUsed": false
+    },
+    {
+      "page": 15,
+      "text": "Laajempi katsaus analytiikka teemaan",
+      "ocrUsed": false
+    },
+    {
+      "page": 16,
+      "text": "Neljä eri tapaa tarkastella\n      tekoälyä opetuksessa\n                 AI työkaluna\n             oppilaan väline                                           Tekoäly oppimisen\n             opettajan väline                                              sisältönä\n             instituution väline\n\n\n\n\n                AI &                                               Tekoälyn vaikutusten\n         oppimisanalytiikka                                           ymmärtäminen\n\nHolmes, W., Persson, J., Chounta, I. A., Wasson, B., & Dimitrova, V. (2022). Artificial intelligence and education: A\ncritical view through the lens of human rights, democracy and the rule of law. Council of Europe.",
+      "ocrUsed": false
+    },
+    {
+      "page": 17,
+      "text": "Sijoita sana “oppilas” sanan sinun paikalle.\n\n\n Sinun data\n         Tekoäly tarvitsee dataa.\n             Sinä tuotat sitä.\n\n\n                                    C. Tekoäly oppimisen kohteena/sisältönä",
+      "ocrUsed": false
+    },
+    {
+      "page": 18,
+      "text": "13 vuotiaan lapsen\n    digijalanjälki on\nkeskimäärin 70 miljoonaa\n      datapistettä\n(Generation AI hankkeen diasetti, varsinainen lähde tuntematon)",
+      "ocrUsed": false
+    },
+    {
+      "page": 19,
+      "text": "Sinä ja sinun data -\n                                    5 Big Tech yritystä\n                                       keräävät mm.\nPaikka- ja aikatieto               Selaushistoria                         Ottamasi kuvat, videot                      Millainen elämänrytmisi on\nMissä olet koskaan käynyt (laite   Millä sivuilla olet koskaan            Ketä niissä on (esim.                       (rajatusti)\npäällä)                            käynyt                                 perheenjäsenet)                             Kalenterimerkinnät\nMihin aikaan olit siellä, kuinka   Mitä tietoa olet koskaan                                                           Terveystietoa (Google Fit,\nkauan                              hakenut                                Melkein kaikki mitä olet                    Oura, jne.)\nKetä muita siellä on ollut         Katsomasi videot, elokuvat,            kirjoittanut                                = Hengästytkö helposti\nMillä olet liikkunut, kuinka       sarjat                                 Google docs                                 Aktiivisuus eri aikoina ja\nkauan kesti                        = Kiinnostuksesi & mitä                Yksityiset + julkiset viestit               harrastuksissa\n                                   suunnittelet                           (osa)                                       Hotellivaraukset,\nKäytön lokitiedot (osa)                                                   Sähköpostit (osa)                           matkustusvaraukset\nMitä olet laitteilla tehnyt,       Ostoshistoria                          “Anonyymit” viestit\nmilloin?                           Mitä olet ostanut                      foorumeilla (joskus)                        Lempimusiikkisi, elokuvasi,\nMyös “private mode”ssa?            Mitkä mainokset kiinnostavat           Tiedostojesi sisällöt                       …\nMyös “delete my history”:n         sinua                                  pilvipalveluissa                            Musiikkimaku (kaikki\njälkeen?                           Mikä johti ostokseen                                                               kuunnellut biisit)\n= Mistä olet kiinnostunut                                                 Kaikki reaktiosi                            Elokuvamaku\n= Mitä elämässäsi on tapahtunut    Appit laitteillasi                     Tykkäykset, kirjanmerkit,                   Taidemaku\n                                   Pluginit                               mouse hover over\nKasvontunnistus                    Appit\nMissä kuvissa näyt, kenen kanssa   Ohjelmat\nMyös ne joista et itse tiedä\n\n                                                    Prof. Matti Tedre luentodiat: tekoälyä ja tietotyön automatisointia. Koneoppimisen murroskohtia 2000-luvulla",
+      "ocrUsed": false
+    },
+    {
+      "page": 20,
+      "text": "https://eshap.substack.com/p/hurt-so-good",
+      "ocrUsed": false
+    },
+    {
+      "page": 21,
+      "text": "org\n           dr.\n        tos\n     ://\n  tps\nht\n\n\n\n\n                    C. Tekoäly oppimisen kohteena/sisältönä",
+      "ocrUsed": false
+    },
+    {
+      "page": 22,
+      "text": "Sijoita sana “oppilas” sanan sinun paikalle.\n\n\nAI ja sinun data\n     Tekoälyteknologiat oppivat datasta.\n            Hyvässä ja pahassa.\n\n\n                                    C. Tekoäly oppimisen kohteena/sisältönä",
+      "ocrUsed": false
+    },
+    {
+      "page": 23,
+      "text": "Datapohjainen seuranta      Käyttäytymisenohjaustekniikat\n\n\n\n                            Tekoälyäpohjaiset\n                               teknologiat\n                               vaikuttavat\nMallinnus ja ennustaminen       arkeemme                     Profilointi ja klusterointi\n\n\n\n\nHuomionhallintatekniikat    Tunnereaktioiden hyödyntäminen   Anonymiteettiharha\n                                                               C. Tekoäly oppimisen kohteena/sisältönä",
+      "ocrUsed": false
+    },
+    {
+      "page": 24,
+      "text": "Yhteiskuntamme on\nmuuttunut pysyvästi\n\n\n\n\n         Mieti hetki omaa arkeasi\n                                C. Tekoäly oppimisen kohteena/sisältönä",
+      "ocrUsed": false
+    },
+    {
+      "page": 25,
+      "text": "C. Tekoäly oppimisen kohteena/sisältönä",
+      "ocrUsed": false
+    },
+    {
+      "page": 26,
+      "text": "“Riippuvuus on tavoite”\n\n\n\n\nhttps://www.honest-broker.com/p/the-state-of-the-culture-2024   C. Tekoäly oppimisen kohteena/sisältönä",
+      "ocrUsed": false
+    },
+    {
+      "page": 27,
+      "text": "Jopa Unesco ehdottaa\nraportissaan\nälypuhelinten\nkieltämistä kouluissa.\n\nPuhelin ei kuitenkaan\nole syypää ongelmiin.\n\nSyyllinen on tekoäly ja\nsitä hyödyntävät\nsomesovellukset ja pelit.",
+      "ocrUsed": false
+    },
+    {
+      "page": 28,
+      "text": "Mitä tavallinen oppilas tai\nopettaja tietää tekoälystä?\n\n\n\n\n                           C. Tekoäly oppimisen kohteena/sisältönä",
+      "ocrUsed": false
+    },
+    {
+      "page": 29,
+      "text": "Tarvitaan uusia lukutaitoja\n                 Alla olevista kuvista puuttuu vielä datatoimijuus!\n\n\n\n\nLong, D., & Magerko, B. (2020, April). What is AI literacy? Competencies and design considerations.   Kreinsen, M., & Schulz, S. (2023). Towards the Triad of Digital Literacy, Data Literacy and AI Literacy in\nInProceedings of the 2020 CHI conference on human factors in computing systems(pp. 1-16).             Teacher Education–A Discussion in Light of the Accessibility of Novel Generative AI.",
+      "ocrUsed": false
+    },
+    {
+      "page": 30,
+      "text": "Tekoäly muuttaa maailmaa\n\n\nSuomi? Koulu?\n   Kuinka Generation AI hanke\n      vastaa haasteeseen?\n\n\n                           C. Tekoäly oppimisen kohteena/sisältönä",
+      "ocrUsed": false
+    },
+    {
+      "page": 31,
+      "text": "Kehitämme pedagogisia puitteita\ntekoäly- ja\nturvallisuuskasvatukselle\nKehitämme uusia esi- ja\nperusopetukseen soveltuvia\ntekoälyn opetusvälineiden ja -\nmenetelmien sekä\noppimiskokonaisuuksien\nyhdistelmiä\nEdistämme lasten oikeuksien\ntoteutumista tekoälyyn\nperustuvissa järjestelmissä\n                                  C. Tekoäly oppimisen kohteena/sisältönä",
+      "ocrUsed": false
+    },
+    {
+      "page": 32,
+      "text": "Tekoälyä tulee säädellä ja käyttäjiä suojata\n                                                                           mme\n                                                                       kkee\n                                                                    Han\n\n\n\n\n https://ec.europa.eu/commission/presscorner/detail/en/ip_23_6473     https://www.generation-ai-stn.fi/henkilotietojen-kasittely-alakoulussa/\n\n                                                                                                 C. Tekoäly oppimisen kohteena/sisältönä",
+      "ocrUsed": false
+    },
+    {
+      "page": 33,
+      "text": "Sovellus 1. Opetettava kone (data ja koneoppiminen)\n\n\n\n                                             Materiaalit:\n                                             www.generation-ai-stn.fi/\n                                             materiaalit\n\n                                             Sovellus:\n                                             tm.generation-ai-stn.fi\n\n\n\n\n                                    C. Tekoäly oppimisen kohteena/sisältönä",
+      "ocrUsed": false
+    },
+    {
+      "page": 34,
+      "text": "Sovellus 2. Somekone (profilointi ja suosittelu)\n\n\n\n\n       https://somekone.generation-ai-stn.fi\n                                      C. Tekoäly oppimisen kohteena/sisältönä",
+      "ocrUsed": false
+    },
+    {
+      "page": 35,
+      "text": "Neljä eri tapaa tarkastella\n      tekoälyä opetuksessa\n                 AI työkaluna\n             oppilaan väline                                           Tekoäly oppimisen\n             opettajan väline                                              sisältönä\n             instituution väline\n\n\n\n\n                AI &                                               Tekoälyn vaikutusten\n         oppimisanalytiikka                                           ymmärtäminen\n\nHolmes, W., Persson, J., Chounta, I. A., Wasson, B., & Dimitrova, V. (2022). Artificial intelligence and education: A\ncritical view through the lens of human rights, democracy and the rule of law. Council of Europe.",
+      "ocrUsed": false
+    },
+    {
+      "page": 36,
+      "text": "Tekoälyhuumassakin tulee\nmuistaa, että teknologian\n     tulee olla renki",
+      "ocrUsed": false
+    },
+    {
+      "page": 37,
+      "text": "KIITOS\n Ota Generation AI hanke seurantaan (FB,\n       Instagram, LinkedIN, X...) ja\nhttp://www.generation-ai-stn.fi/uutiskirje",
+      "ocrUsed": false
+    }
+  ],
+  "emptyPages": [],
+  "extractError": null,
+  "_diagnostic": {
+    "pdfBytes": 13705071,
+    "elapsedMs": 31823
+  }
+}

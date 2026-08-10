@@ -1,0 +1,131 @@
+{
+  "designId": "DAGeJDZdvrc",
+  "sourceUpdatedAt": 1784883525,
+  "extractedAt": "2026-08-10T10:33:24.992Z",
+  "pageCount": 23,
+  "slides": [
+    {
+      "page": 1,
+      "text": "AI     opettajan työn ja arvioinnin muutos\nKuvat: Linda Saukko-Rauta (CC-by-ND)\n                                               Jari Laru, KT, yliopistonlehtori, teknologiatuettu oppiminen ja opetus",
+      "ocrUsed": false
+    },
+    {
+      "page": 2,
+      "text": "3 artikla: Määritelmät\n                                  mikä on AI-järjestelmä?\n’AI-järjestelmä’ tarkoittaa konepohjaista järjestelmää, joka\non suunniteltu toimimaan vaihtelevalla autonomian tasolla\nja joka saattaa olla mukautuva käyttöönoton jälkeen.\n\n...että eksplisiittisiä tai implisiittisiä tavoitteita varten\npäättelee saamastaan ​syötteestä, kuinka tuottaa tuloksia,\nkuten ennusteita, sisältöä, suosituksia tai päätöksiä, jotka\nvoivat vaikuttaa fyysiseen tai virtuaaliseen ympäristöön;",
+      "ocrUsed": false
+    },
+    {
+      "page": 3,
+      "text": "AI on jo\n                              kaikkialla\n                                  Kaikkialla läsnä oleva ja\n                                    kaikkialle levinnyt\n                                          tekoäly\n\nTekoäly on integroitu syvästi sosiaalisen median palveluihin",
+      "ocrUsed": false
+    },
+    {
+      "page": 4,
+      "text": "AIED    -2022\n                                  Ai-työkaluja\n                                               AIED       2022-\n                                               LLM (ChatGPT) \"vallankumous\"\n                                     opetuksen tueksi\n\n\n                                                                                       \"Olemme kouluttaneet mallin nimeltä\n                                                                                       ChatGPT, joka on vuorovaikutuksessa\n                                                                                               keskustelun kautta.\n\n\n\n\nHolmes, W., &Tuomi, I. (2022). Tekoälyn nykytaso ja käytäntö koulutuksessa. European\nJournal of Education, 57, 542-570. https://doi.org/10.1111/ejed.12533                  https://openai.com/index/chatgpt/",
+      "ocrUsed": false
+    },
+    {
+      "page": 5,
+      "text": "Teknologia on luonteeltaan disruptoivaa\n400 vuotta käytetty laskutikku vanhentui 1970-luvulla taskulaskinten myötä\nGeneratiivinen tekoäly on tämän ajan taskulaskin, joka korvaa aiempia\nkäytäntöjä\n\n\n\n\n                                    Giannakos, M., Azevedo, R., Brusilovsky, P., Cukurova, M., Dimitriadis, Y., Hernandez-Leo, D., ... & Rienties, B. (2024).\n                                    The promise and challenges of generative AI in education. Behaviour & Information Technology, 1-27.",
+      "ocrUsed": false
+    },
+    {
+      "page": 6,
+      "text": "“Generatiivinen tekoäly on ollut yksi\n       maailman nopeimmin\n käyttöönotetuista teknologioista”\n\n\n                 Giannakos, M., Azevedo, R., Brusilovsky, P., Cukurova, M., Dimitriadis, Y., Hernandez-Leo, D., ... & Rienties, B. (2024).\n                 The promise and challenges of generative AI in education. Behaviour & Information Technology, 1-27.",
+      "ocrUsed": false
+    },
+    {
+      "page": 7,
+      "text": "Kehote: Tee minulle 1000 sanan esitelmä\n           aiheesta hirvi pohjois-suomessa. Tee\n           tekstistä 12-vuotiaan kirjoittama.\n\n\n           Hirvi on tosi iso eläin ja se asuu erityisesti pohjos-\n           Suomessa, missä on paljon metsää ja tilaa sille\n           juosta ympäriinsä. Hirvet on tosi isoja, ne voi\n           painaa yli 500 kiloa ja olla melkein 2 metriä\n           korkee. Uroksilla on ne isot sarvet, jotka kasvaa\n           joka vuosi uudestaan ja niillä ne tappelee toisten\n           uroksien kanssa siitä, kuka saa naarashirvet.\n           Hirvet elää metsissä, missä ne syö puiden lehtiä ja\n           oksia. Kesällä ne syö paljon ruohoo ja vesikasveja,\n           mut sit talvella ku on paljon lunta, niin niiden\n           pitää syödä pelkkii puun oksii ku muuta ei löydy.\n           Pohjos-Suomen metsät on hirville hyviä, koska\n           siellä on paljon tilaa ja ruokaa, vaikka talvella\n           elämä on vähän rankempaa lumien takii.\n           Hirvet liikkuu paljon, ja ne saattaa kävellä pitkiä\n           matkoja, ku ne ettii ruokaa. Erityisesti talvella ne\n\n\n\n\nOpiskelu\n           liikkuu enemmän porukassa, koska sillon ruoan\n           löytäminen on vaikeempaa. Hirvet on tärkeitä\n           eläimii Suomessa ja niitä metsästetää joka syksy,\n           koska niidenMä   tein pitää\n                         määrä   sen ChatGPT:llä..\n                                        olla hallinnassa.",
+      "ocrUsed": false
+    },
+    {
+      "page": 8,
+      "text": "Miksi joku lukisi jotain filosofien tekstejä?   Kehote: Tarvitsen tiivistelmän koulutehtävää varten\n                                                platonin pidot teoksesta.\n\n                                                Vastaus: Platonin Pidot (Symposium) on dialogimuotoinen teos, jossa joukko Ateenan\n                                                merkittäviä miehiä kokoontuu juhla-aterialle keskustelemaan rakkaudesta. Teoksessa\n                                                jokainen osallistuja pitää puheen rakkaudesta, ja näiden puheiden kautta esitetään\n                                                erilaisia näkemyksiä ja filosofisia pohdintoja rakkauden luonteesta.\n                                                Keskeiset henkilöt ovat muun muassa:\n                                                    Phaidros, joka näkee rakkauden jumalaisena voimana, joka inspiroi suuria tekoja.\n                                                    Pausanias, joka erottelee fyysisen ja henkisen rakkauden toisistaan.\n                                                    Eryksimakhos, joka tarkastelee rakkautta lääketieteen näkökulmasta ja näkee sen\n                                                    harmoniana.\n                                                    Aristofanes, joka esittää myytin alkuperäisestä ihmiskunnasta, jossa ihmiset olivat\n                                                    alun perin kaksijakoisia olentoja, ja rakkaus on kaipuuta kadotetun puoliskon\n                                                    löytämiseksi.\n                                                    Agathon, jonka puhe korostaa rakkauden nuoruutta ja kauneutta.\n                                                    Sokrates, joka kertoo Diotiman opettaman opin. Hän esittää, että rakkaus ei ole jumala\n                                                    vaan pyrkimys kohti kauneutta ja tietoa, ja rakkauden korkein muoto on filosofinen\n                                                    rakkaus eli pyrkimys viisauteen ja totuuteen.\n                                                Teoksen ytimessä on käsitys rakkaudesta ei vain fyysisenä vetovoimana, vaan myös\n                                                henkisenä voimana, joka vie ihmisen kohti korkeampia totuuksia ja ikuista kauneutta.\n                                                Pidot päättyvät, kun Alkibiades saapuu paikalle ja antaa impulsiivisen ja henkilökohtaisen\n                                                kuvauksen omasta suhteestaan Sokratekseen.\n\n\n\n\nLukeminen\n                                                Pidot käsittelee monipuolisesti rakkauden eri puolia ja sitä, miten se voi johdattaa\n                                                ihmisen kohti korkeampaa ymmärrystä ja moraalista hyvyyttä.",
+      "ocrUsed": false
+    },
+    {
+      "page": 9,
+      "text": "Oppimisen arviointi ja tekoäly\nMiten oppimisen arvioinnissa tulisi huomioida tekoälyn vaikutukset\n\n\n\n\n Lodge, J.M., Howard, S. & Broadbent, J. (2023). Assessment redesign for generative AI: A taxonomy of options and their viability. [Blog post]. https://www.linkedin.com/pulse/assessment-\n                                                                redesign-generative-ai-taxonomy-options-viability-lodge",
+      "ocrUsed": false
+    },
+    {
+      "page": 10,
+      "text": "Generatiivisen tekoälyn mahdollisia rooleja oppimisprosessissa\n\n\n\n\n  Sharples, M. (2023). Towards social generative AI for education: theory, practices and ethics. Learning: Research and Practice, 9:2, 159-167 https://doi.org/10.1080/23735082.2023.2261131",
+      "ocrUsed": false
+    },
+    {
+      "page": 11,
+      "text": "Ideoija\nEsimerkki: Tekoäly voi auttaa opinto-\n                                                  Kehote: Olen lukion opinto-ohjaaja. Tehtävänäni on opettaa\n                                                  työnhakutaitoja. Tee oheisen kuvauksen pohjalta minulle\n                                                  tehtäväideoita, joita voisin käyttää opetuksessan\nohjaajaa ideoimaan uusia tehtäviä, jotka\nauttavat opiskelijoita urasuunnittelussa.         “Työhakemuksessa osoitat, että sinulla on työpaikkailmoituksessa vaaditut\n                                                  ominaisuudet tai halua kehittää itseäsi. Sinun kannattaa korostaa omia\nTehtävä: Käytä tekoälytyökalua, kuten GPT-4,      vahvuuksiasi, jotka tekevät sinusta soveltuvan tehtävään. Nuorelta työnhakijalta\nideoidaksesi erilaisia tehtäviä, jotka auttavat   puuttuvan laajan työkokemuksen voi korvata monissa tehtävissä oikeanlaisella\nopiskelijoita tutkimaan eri uravaihtoehtoja.      asenteella ja innolla uuden oppimiseen.\nTekoäly voi ehdottaa tehtäviä, kuten\nuratutkimusprojekteja, haastattelujen             Työhakemus on kirjoitettava kuhunkin paikkaan erikseen, jolloin voit korostaa juuri\n                                                  niitä asioita, joita kyseisessä paikassa tarvitaan. Samaa hakemusta ei kannata\ntekemistä ammattilaisille tai urasuunnitelmien\n                                                  lähettää sellaisenaan moneen paikkaan.\nlaatimista.\n                                                  Hakemuksessa on perusteltava, miksi haluat tulla valituksi kyseiseen tehtävään.\n                                                  Kerro hakemuksessa työ- ja koulutushistoriastasi, millaisissa tehtävissä viihdyt ja\n                                                  millainen työntekijä olet. Ellei sinulla ole aiempaa työkokemusta, voit\n                                                  hakemuksessa kertoa harrastuksista, luottamustehtävistä ja muista vastuullisista\n                                                  tehtävistä.\n\n                                                  Työhakemuksessa ei saa olla turhan vaatimaton, mutta on pysyttävä totuudessa.\n                                                  Hakemuksen suosituspituus on yksi sivu (A4).”",
+      "ocrUsed": false
+    },
+    {
+      "page": 12,
+      "text": "Suunnitteluapuri\n  Esimerkki: Tekoäly voi auttaa opettajaa\n  luomaan simulaatioita ja harjoituksia, jotka\n  valmistavat opiskelijoita työelämään.\n\n  Tehtävä: Käytä tekoälytyökalua luomaan\n  realistisia työhaastattelusimulaatioita,\n  urasuunnitteluharjoituksia ja muita\n  aktiviteetteja, jotka auttavat opiskelijoita\n  kehittämään tarvittavia taitoja. Tekoäly voi\n  tarjota palautetta ja ehdotuksia parannuksista.\n\n\nKehote\nHei! Sinä olet K-kaupan kauppias ja tehtävänäsi on haastatella minua\nkesätöihin. Haet töihin tunnollista, vuorotyöhön halukasta ja\nkaupallisesta alasta kiinnostunutta nuorta. Aiempaa kokemusta ei\ntarvita. Olen 16 vuotias lukiolainen, jolla ei ole aiempaa kaupallista\nkokemusta. Pidän ruoanlaitosta ja olen ahkera tekemään kotitöitä.\nAloitat kahdella kysymyksellä, joiden perusteella sinun tulee päättää\njatkatko minun työhaastattelua. Jos koet, että sovin tarjolla olevaan\ntehtävään, voit jatkaa haastattelua. Pidä tauko jokaisen kysymyksen\njälkeen ja odota minun vastausta. Anna minulle myös kannustavaa\npalautetta, joka auttaa kehittämään osaamistani.",
+      "ocrUsed": false
+    },
+    {
+      "page": 13,
+      "text": "Oppimisen arviointi ja tekoäly\nMiten oppimisen arvioinnissa tulisi huomioida tekoälyn vaikutukset\n\n\n\n\n Lodge, J.M., Howard, S. & Broadbent, J. (2023). Assessment redesign for generative AI: A taxonomy of options and their viability. [Blog post]. https://www.linkedin.com/pulse/assessment-\n                                                                redesign-generative-ai-taxonomy-options-viability-lodge",
+      "ocrUsed": false
+    },
+    {
+      "page": 14,
+      "text": "menti.com: 63675301\n Olemme tällä hetkellä “CHATGPT” (LLM/GenAI) hypen huippu-\n kohdassa. GPT nähdään ratkaisuna “kaikkeen”\n\n\n\n\nGenerationAI                                       bit.ly/itk2024",
+      "ocrUsed": false
+    },
+    {
+      "page": 15,
+      "text": "Neljä provokaatiota\n                        1. Tekoälyteknologioiden myötä arjessa ja työelämässä\n                           tarvittavat taidot muuttuvat.\n                        2. Opetus ja koulutus saavat vaikutteita tekoälystä. Se\nProf. Michail Giannakos\n  Trondheim, Norway\n                           edellyttää muutoksia, jotta pysyisimme   ajan tasalla.\n                        3. Tekoäly haastaa nykyiset materiaalit ja\n                           oppimisympäristöt. Uusien ominaisuuksien\n                           hyödyntäminen on ratkaisevan tärkeää, jotta välineet ja\n                           materiaalit pysyvät merkityksellisinä.\n                        4. Meidän on oltava varautuneita siihen, että tekoälyä\n                           voidaan käyttää väärin\n                                        Giannakos, M., Azevedo, R., Brusilovsky, P., Cukurova, M., Dimitriadis, Y., Hernandez-Leo, D., ... & Rienties, B. (2024).\n                                        The promise and challenges of generative AI in education. Behaviour & Information Technology, 1-27.",
+      "ocrUsed": false
+    },
+    {
+      "page": 16,
+      "text": "Näkymä\n  lähelle                                   A                    Tekoälyä hyödynnetään opetuksen ja\n                                                                 oppimisen suunnittelussa\n\n\n                                            B                    Tekoäly toimii oppimisen itsesäätelyn\n                                                                 tukena ja osapuolena\n\n   9 asiantuntijaa\n   8 johtavaa\n   oppimistieteiden\n                                            C                    Tekoäly mahdollistaa automatisoidut\n                                                                 sisällöt\n\n\n                                            D\n   tutkimusyksikköä\n   5 mannerta                                                    Tekoälyn myötä syntyy uusia taitoja ja\n                                                                 pätevyyksiä\nGiannakos, M., Azevedo, R., Brusilovsky, P., Cukurova, M., Dimitriadis, Y., Hernandez-Leo, D., ... & Rienties, B. (2024). The promise and challenges of generative AI in education. Behaviour & Information Technology, 1-27.",
+      "ocrUsed": false
+    },
+    {
+      "page": 17,
+      "text": "Yan, L., Greiff, S., Teuber, Z. et al. Promises and\nchallenges of generative artificial intelligence for\nhuman learning. Nat Hum Behav 8, 1839–1850 (2024).\nhttps://doi.org/10.1038/s41562-024-02004-5\n                                                       Figure 2. Examples of human-AI interactions in human learning.",
+      "ocrUsed": false
+    },
+    {
+      "page": 18,
+      "text": "Emeritusprofessori Mike\n                 Sharplesin neuvo:\n                   Käännä ajattelu\n                       TÄSTÄ\n      Miten tekoäly vaikuttaa koulutukseen?\n                       TÄHÄN\n  Mitä uusia ja tehokkaita tapoja opettaa ja oppia\nsaadaan tekoälyn avulla? (opeta ja opi tekoälystä*)",
+      "ocrUsed": false
+    },
+    {
+      "page": 19,
+      "text": "A\n Lupaukset\n\n\n\n\n   Haasteet\n           B\n\n\n     Tarpeet\n            C\nYan, L., Greiff, S., Teuber, Z. et al. Promises and challenges of generative artificial\nintelligence for human learning. Nat Hum Behav 8, 1839–1850 (2024).\nhttps://doi.org/10.1038/s41562-024-02004-5                                                Figure 1. Overview of the impacts of generative artificial intelligence on human learning.",
+      "ocrUsed": false
+    },
+    {
+      "page": 20,
+      "text": "AI ACT\nTekoälylaki on ensimmäinen tekoälyä koskeva oikeudellinen kehys, joka käsittelee\n  tekoälyn riskejä ja asettaa Euroopan johtavaan asemaan maailmanlaajuisesti.",
+      "ocrUsed": false
+    },
+    {
+      "page": 21,
+      "text": "Perinteinen AIED\nÄlykkäät tutorit ja chatbotit\n                                               Kielletty\nÄlykkäät oppimisympäristöt\nAutomaattinen arviointi\nAI-tuetut näkymät\nOpiskelijavalinta...                        Arvioitu ja                               koulutus\n                                            säännelty\nGPAI-mallit (LLM)\nChatGPT, Gemini, Claude,.\nCopilot..\nMidjourney, Dall-E\n...\nmuu                  on noudatettava avoimuusvaatimuksia\nRoskapostisu\n                           ja EU:n tekijänoikeuslakia\n                       Pitää osoittaa, että sisältö on tekoälyn luoma\nodattimet              Tekoälymalli tulee suunnitella siten, että se estää luomasta\njne.                   laitonta sisältöä\n                       Pitää julkaista yhteenvetoja tekijänoikeuksien alaisesta\nTietokonepel\n                       opetusdatasta\nit tekoälyllä...",
+      "ocrUsed": false
+    },
+    {
+      "page": 22,
+      "text": "AI-lukutaitoa vaaditaan\n\n\n      “Tekoälyjärjestelmien tarjoajien ja käyttöönottajien on parhaansa mukaan\n      toteutettava toimenpiteitä, joilla ne varmistavat henkilöstönsä ja muiden niiden\n      puolesta tekoälyjärjestelmien toiminnasta ja käytöstä vastaavien henkilöiden\n      riittävän tekoälylukutaidon, minkä yhteydessä otetaan huomioon heidän tekninen\n      tietämyksensä, kokemuksensa, koulutuksensa ja tekoälyjärjestelmien käyttöyhteys\n      sekä henkilöt tai henkilöryhmät, joihin tekoälyjärjestelmiä on määrä käyttää.”\n\n\n\n                                                          Tämä astuu voimaan jo helmikuussa 2025",
+      "ocrUsed": false
+    },
+    {
+      "page": 23,
+      "text": "",
+      "ocrUsed": false
+    }
+  ],
+  "emptyPages": [
+    23
+  ],
+  "extractError": null,
+  "_diagnostic": {
+    "pdfBytes": 9240720,
+    "elapsedMs": 69388
+  }
+}

@@ -1,0 +1,427 @@
+{
+  "designId": "DAGgF7MPYxw",
+  "sourceUpdatedAt": 1784883478,
+  "extractedAt": "2026-08-10T10:13:59.971Z",
+  "pageCount": 82,
+  "slides": [
+    {
+      "page": 1,
+      "text": "Generative AI\nas a tool to adapt teaching to learner's needs\nJari Laru, Dr, Senior Lecturer, Faculty of Education and Psychology, University of Oulu, Finland",
+      "ocrUsed": false
+    },
+    {
+      "page": 2,
+      "text": "WHO\nJari Laru, KT, university lecturer,\ntechnology-supported teaching and learning\n Geek from -1982 (commodore 64); SysOp 90s\n Classroom teacher, technology-focused teacher training 2003\n Doctor of Education (Dissertation: Scaffolding Learning Activities with\n Mobile Devices and Collaborative Scripts) [OPMON]\n Teacher trainer, Faculty of Education and Psychology, University of\n Oulu [digital courses in their various forms, STEAM minor]\n NOW: Generation AI project interaction manager\n\n\n\n\n                                                                           ICT Teacher of the Year 2015\n                                                                             Open Science Award 2020",
+      "ocrUsed": false
+    },
+    {
+      "page": 3,
+      "text": "Generation AI is a part of the shield program\n\n\n  The Shield program focuses on security and trust in the\n  world of information technologies and hybrid influence.\n\n         Other Shield program (AI research) projects:\n\n\n          Democracy's Epistemic        Fractures and new beginnings of      Designing reliable and non-\n         Functionality in the Age of     algorithmic systems (REPAIR)       discriminatory digital public\n             Algorithms (DECA)                                           services for immigrants (Trust-M)",
+      "ocrUsed": false
+    },
+    {
+      "page": 4,
+      "text": "We\n                 Educational Science\n\n                 Law Science\n\n                 Computer Science\nOur consortium\n                 Others",
+      "ocrUsed": false
+    },
+    {
+      "page": 5,
+      "text": "We are not alone..",
+      "ocrUsed": false
+    },
+    {
+      "page": 6,
+      "text": "AI?",
+      "ocrUsed": false
+    },
+    {
+      "page": 7,
+      "text": "AI isisalready\n                     ML/AI     already\n                       everywhere\n                                            Ubiquitous\n                                             Ubiquitousand\n                                                         and\n                                          ubiquitous\n                                           ubiquitousartificial\n                                                       artificial\n                                              intelligence\n                                               intelligence\n\nArtificial\n Artificialintelligence\n            intelligenceisisdeeply integrated\n                             also deeply      into social\n                                         integrated       mediamedia\n                                                    into social services\n services",
+      "ocrUsed": false
+    },
+    {
+      "page": 8,
+      "text": "Why AI is everywhere?\n              machines recognise objects,\n              i.e. they can see\n              Machines recognise speech\n              Machines understand text\n              Machines understand written\n              text\n              Machines understand\n              languages\n              Machines can speak\n              Machines can understand and\n              produce multimodal content\n              Machines can..",
+      "ocrUsed": false
+    },
+    {
+      "page": 9,
+      "text": "\"Generative artificial intelligence\nhas been one of the world's fastest-\n      adopted technologies\"\n\n\n                Giannakos, M., Azevedo, R., Brusilovsky, P., Cukurova, M., Dimitriadis, Y., Hernandez-Leo, D., ... & Rienties, B. (2024).\n                The promise and challenges of generative AI in education. Behaviour & Information Technology, 1-27.",
+      "ocrUsed": false
+    },
+    {
+      "page": 10,
+      "text": "Technology is disruptive by nature\nThe 400-year-old slide rule became obsolete in the 1970s with pocket calculators\n(Generative) artificial intelligence is today's pocket calculator that replaces\nprevious practices\n\n\n\n\n                                       Giannakos, M., Azevedo, R., Brusilovsky, P., Cukurova, M., Dimitriadis, Y., Hernandez-Leo, D., ... & Rienties, B. (2024).\n                                       The promise and challenges of generative AI in education. Behaviour & Information Technology, 1-27.",
+      "ocrUsed": false
+    },
+    {
+      "page": 11,
+      "text": "ML/AI AIED GPAI\nMachine learning AI              Educational AI apps       General purpose (LLM) AI\n\nOur digital lifestyle is based    Smart learning            Generative AI, like chatGPT,\non ML/AI                          materials                 copilot, Gemini, Claude etc.\nIt’s ubiquitous and               Pedagogical agents        Ability to interact in a\npervasive. It’s everywhere        Coaches and inclusive     natural, human-like and\nYou can’t avoid ML/AI             AI apps                   multimodal way\n                                  Learning analytics        Many people think this is\n                                  ...                       synonymous with AI\n                                  This is often embedded\n                                  in learning\n                                  environments and\n                                  materials",
+      "ocrUsed": false
+    },
+    {
+      "page": 12,
+      "text": "How does generative\n artificial intelligence\n affect learning?\n\nLearning support\n    Personalised and\n    adaptived support\n    Learn within zone of\n    proximal\n    development\n\n\nYan, L., Greiff, S., Teuber, Z. et al. Promises and\nchallenges of generative artificial intelligence for\nhuman learning. Nat Hum Behav 8, 1839–1850 (2024).\nhttps://doi.org/10.1038/s41562-024-02004-5",
+      "ocrUsed": false
+    },
+    {
+      "page": 13,
+      "text": "The zone of proximal\ndevelopment (ZPD) is a\nconcept from\npsychologist Lev\nVygotsky, referring to\nthe range of tasks a\nlearner can perform with\nguidance but not yet\nindependently.\n\nIt’s the \"sweet spot\" for\nlearning, where\nchallenges are within\nreach with support,\nencouraging growth and\nskill development.",
+      "ocrUsed": false
+    },
+    {
+      "page": 14,
+      "text": "What kind of features could\nthe smart learning\nenvironment of the future\nhave?\nActivities that support students\n•Visualizations that support learning processes\n• Customized activities and learning materials\n• Feedback systems\n•Recommendation systems that provide support for learning\nactivities that match students' interests and\ninterests\nActivities that support teachers:\n•Tools that support real-time class control •Tools\nthat support the planning of learning paths •Tools\nthat support gamification and grouping\nD. Hernández-Leo, P. J. Muñoz-Merino, M. L. Bote-Lorenzo, D. Gašević and S. Järvelä, \"Editorial Technologies for\nData-Driven Interventions in Smart Learning Environments,\" inIEEE Transactions on Learning Technologies, vol. 16,\nno. 3, pp. 378-381, 1 June 2023, doi: 10.1109/TLT.2023.3275728.",
+      "ocrUsed": false
+    },
+    {
+      "page": 15,
+      "text": "Four (five) different ways to look at\n artificial intelligence in education\n                AI as a tool\n          student's instrument                                       Artificial intelligence\n             a teacher's tool                                         as the content of\n            instrument of the                                               learning\n                institution\n                       Hybrid\n                    intelligence\n                                                                        Understanding the\n                 AI & learning\n                                                                        impact of artificial\n                   analytics\n                                                                           intelligence\n\nHolmes, W., Persson, J., Chounta, I. A., Wasson, B., & Dimitrova, V. (2022). Artificial intelligence and education: A\ncritical view through the lens of human rights, democracy and the rule of law. Council of Europe.",
+      "ocrUsed": false
+    },
+    {
+      "page": 16,
+      "text": "AIED      -2022\n                                Ai tools to support\n                                                    AIED      2022-\n                                                     LLM (ChatGPT) \"revolution\"\n                                                teaching\n\n\n                                                                                         \"We have trained a model called\n                                                                                        ChatGPT, which interacts through\n                                                                                                conversation.”\n\n\n\n\nHolmes, W., &Tuomi, I. (2022). Tekoälyn nykytaso ja käytäntö koulutuksessa. European\nJournal of Education, 57, 542-570. https://doi.org/10.1111/ejed.12533                  https://openai.com/index/chatgpt/",
+      "ocrUsed": false
+    },
+    {
+      "page": 17,
+      "text": "synonym for artificial intelligence\n\nGenerative AI & prompting",
+      "ocrUsed": false
+    },
+    {
+      "page": 18,
+      "text": "Possible roles of generative artificial intelligence in\n               the learning activities\n\n\n\n\n  Sharples, M. (2023). Towards social generative AI for education: theory, practices and ethics. Learning: Research and Practice, 9:2, 159-167 https://doi.org/10.1080/23735082.2023.2261131",
+      "ocrUsed": false
+    },
+    {
+      "page": 19,
+      "text": "Prompt: give me a 1000-word\n                      presentation on the moose in northern\n                      Finland. Make the text written by a 12-\n                      year-old.                ChatGPT\n\n                        Moose are very big animals and they live especially in\n                      northern Finland, where there is a lot of forest and space\n                        for them to run around. Moose are really big, they can\n                           weigh over 500 kilos and be almost 2 metres high.\n                       Moose have those big antlers that grow back every year\n                       and they use them to fight with other males to see who\n                                          gets the female moose.\n                           Deer live in forests where they eat tree leaves and\n                       branches. In summer they eat lots of grass and aquatic\n                          plants, but in winter when there's lots of snow, they\n                      have to eat only tree branches if they can't find anything\n                       else. The forests of northern Finland are good for deer\n                       because there is plenty of space and food, although in\n                            winter life is a bit harsher because of the snow.\n                           Moose move around a lot, and they may walk long\n                         distances to get food. Especially in winter, they move\n                         more in packs because it is harder to find food then.\n                       Moose are important animals in Finland and are hunted\n                           every autumn because their numbers need to be\n                                                 controlled.\n\n\n\nStudying in the past and now",
+      "ocrUsed": false
+    },
+    {
+      "page": 20,
+      "text": "Prompt: I need a summary for a school assignment on\n          Plato's Treatise on the Feasts.\n\n          A: Plato's Symposium is a work of dialogue in which a group of prominent men from\n          Athens gather at a banquet to discuss love.In the work, each participant makes a speech\n          about love, and through these speeches, various views and philosophical reflections on\n          the nature of love are presented.The central characters include: Phaidros, who sees love\n          as a divine force that inspires great deeds. Pausanias, who distinguishes between\n          physical and spiritual love.Eryksimakhos, who looks at love from a medical point of view\n          and sees it as a harmony.Aristophanes, who presents the myth of the original humanity,\n          in which humans were originally dual beings, and love is a longing to find the lost half.\n          Agathon, whose speech emphasises the youth and beauty of love.Socrates, who explains\n          the doctrine taught by Diotima.He argues that love is not a god but a striving towards\n          beauty and knowledge, and the highest form of love is philosophical love, the striving\n          towards wisdom and truth. At the heart of the work is the notion of love not only as a\n          physical attraction, but also as a spiritual force that drives man towards higher truths\n          and eternal beauty. The feast ends when Alcibiades arrives and gives an impulsive and\n          personal account of his own relationship with Socrates. The Pidot is a multifaceted\n          exploration of the different facets of love and how it can lead man towards higher\n          understanding and moral goodness.\n\n\n\n\nReading      Why would anyone read some philosophers' texts?",
+      "ocrUsed": false
+    },
+    {
+      "page": 21,
+      "text": "Learning assessment and artificial intelligence\nHow should the effects of artificial intelligence be taken into account in the assessment of learning\n\n\n\n\n   Lodge, J.M., Howard, S. & Broadbent, J. (2023). Assessment redesign for generative AI: A taxonomy of options and their viability. [Blog post]. https://www.linkedin.com/pulse/assessment-\n                                                                  redesign-generative-ai-taxonomy-options-viability-lodge",
+      "ocrUsed": false
+    },
+    {
+      "page": 22,
+      "text": "Advice from Professor Emeritus\n                   Mike Sharples:\n               Turn your thinking\n\n      from How will AI affect education?\n\nto What new and effective ways of teaching and\nlearning will AI bring? (Teach and learn with AI*)",
+      "ocrUsed": false
+    },
+    {
+      "page": 23,
+      "text": "90's\n\n\n20's",
+      "ocrUsed": false
+    },
+    {
+      "page": 24,
+      "text": "SOON!\n                                              A                    Artificial intelligence is used in the planning of\n                                                                   teaching and learning\n\n\n\n                                              B                    Artificial intelligence works as a support and\n                                                                   partner in self-regulation of learning\n\n\n   9 experts\n   8 leading learning\n   science research\n                                              C                    Artificial intelligence enables automated\n                                                                   content\n\n\n\n                                              D\n   units\n5 mannerta                                                         With artificial intelligence, new skills and\n                                                                   qualifications are created\n  Giannakos, M., Azevedo, R., Brusilovsky, P., Cukurova, M., Dimitriadis, Y., Hernandez-Leo, D., ... & Rienties, B. (2024). The promise and challenges of generative AI in education. Behaviour & Information Technology, 1-27.",
+      "ocrUsed": false
+    },
+    {
+      "page": 25,
+      "text": "Artificial intelligence as a tool\n   student's instrument\n   a teacher's tool\n   instrument of the\n   institution\n\n\n          Traditional Artificial Intelligence (AI)\n\n\n                                Facial detection\n\n                                    Image recognition\n    Generative Artificial\n     Intelligence (GenAI)             Speech recognition\n\n      Content production                Text to speech\n      (text, image, sound,              (text to speech)\n              music)\n                                     Natural language\n                                     processing\n\n                             Character recognition\n                             (pattern recognition)\n                Data mining",
+      "ocrUsed": false
+    },
+    {
+      "page": 26,
+      "text": "These are the ones\n  we have NOW",
+      "ocrUsed": false
+    },
+    {
+      "page": 27,
+      "text": "make a one-page summary\n\n\n\n\n     These are the ones\n       we have NOW",
+      "ocrUsed": false
+    },
+    {
+      "page": 28,
+      "text": "These are the ones\n  we have NOW\n\n                 Prompt: do maths word\n            problems suitable for my 5th\n                          grade student\n\n\n\n\n     kkaa\n  kli",
+      "ocrUsed": false
+    },
+    {
+      "page": 29,
+      "text": "These are the ones\n  we have NOW\n\n\n   kkaa\nkli",
+      "ocrUsed": false
+    },
+    {
+      "page": 30,
+      "text": "Teacher's and\n                      student's assistant,\n                     artificial intelligence!\n                                    Eduaide\n\n\n\n\nMagic School\nThese are the ones\n  we have NOW",
+      "ocrUsed": false
+    },
+    {
+      "page": 31,
+      "text": "AI ACT\n ...but advanced AIED solutions face regulation\n\n\n\n\nThe AI Act is the first-ever legal framework on AI, which addresses the\n    risks of AI and positions Europe to play a leading role globally.",
+      "ocrUsed": false
+    },
+    {
+      "page": 32,
+      "text": "EU AI Act: A Massive Package\n“After an extensive and thorough legislative process, the EU's\nArtificial Intelligence Act has been finalized. The lengthy text,\ncomprising 113 articles, reflects the complexity of regulating this\nrapidly evolving technology.\n\nEach article typically extends beyond a single A4 page, with Article 2\nalone dedicating 12 points, several of which include sub-points, to\ndefining the scope of application. The introductory section further\nexpands on the act's objectives with 180 recitals. Additionally, the\nact includes 13 annexes.”\n\nhttps://www.generation-ai-stn.fi/ajankohtaista/susanna-lindroos-hovinheimo-minkalainen-tekoalyasetuksesta-tuli-perustuslakiblogi/",
+      "ocrUsed": false
+    },
+    {
+      "page": 33,
+      "text": "prof. dr. Ronald Leenes\n\n\n\n\nhttps://www.sectorplandls.nl/wordpress/archive/a-visual-guide-to-the-ai-act-by-ronald-leenes/",
+      "ocrUsed": false
+    },
+    {
+      "page": 34,
+      "text": "prof. dr. Ronald Leenes\n\n\n\n\nhttps://www.sectorplandls.nl/wordpress/archive/a-visual-guide-to-the-ai-act-by-ronald-leenes/",
+      "ocrUsed": false
+    },
+    {
+      "page": 35,
+      "text": "Article 3: Definitions\n                                  what is AI system?\n‘AI system’ means a machine-based system that is\ndesigned to operate with varying levels of autonomy and\nthat may exhibit adaptiveness after deployment, and..\n\n...that, for explicit or implicit objectives, infers, from the\ninput it receives, how to generate outputs such as\npredictions, content, recommendations, or decisions\nthat can influence physical or virtual environments;",
+      "ocrUsed": false
+    },
+    {
+      "page": 36,
+      "text": "Traditional AIED\n Intelligent tutors & chatbots\n Smart Learning Environments\n                                              Banned\n Automated assesment\n AI-Enchanced dashboards\n Student selection...                      Assessed                                       Education\n                                          & regulated\nGPAI models (LLM)\n ChatGPT, Gemini, Claude,.\n Copilot..\n Midjourney, Dall-E\n ...\nOther                 will have to comply with transparency\n Spamfilters\n                       requirements and EU copyright law\n                      Disclosing that the content was generated by AI\n etc..                Designing the model to prevent it from generating illegal content\n Computer             Publishing summaries of copyrighted data used for training\n games with\n AI...",
+      "ocrUsed": false
+    },
+    {
+      "page": 37,
+      "text": "Why AIED tools are high-risk AI systems?\n\n        for evaluating learning outcomes of persons, for assessing the\n        appropriate level of education for an individual and materially influencing\n        the level of education and training that individuals will receive or will be\n        able to access or for monitoring and detecting prohibited behaviour of\n        students during tests should be classified as high-risk AI systems",
+      "ocrUsed": false
+    },
+    {
+      "page": 38,
+      "text": "Impact on K-12 Education\nThe EU AI Act is a significant regulatory framework that will\nhave far-reaching implications for K-12 education\n\n           Increased Transparency and Accountability: Schools will need to be more\n           transparent about their AI systems and ensure that they are explainable and fair.\n           Enhanced Data Protection: Schools will need to strengthen their data protection\n           measures to ensure the security and integrity of student data used in AI systems.\n           Risk Assessment and Mitigation: Schools will need to conduct thorough risk\n           assessments and implement mitigation measures to ensure the safe and ethical\n           use of AI systems in education.\n           Human Oversight and Intervention: Schools will need to ensure that AI systems are\n           designed with human oversight and intervention to prevent bias and ensure\n           fairness.\n\nhttps://www.linkedin.com/pulse/white-paper-eu-ai-act-its-impact-k-12-education-clara-lin-hawking-xsfpf/",
+      "ocrUsed": false
+    },
+    {
+      "page": 39,
+      "text": "Good K-12 Education Knowledge: The CAIO should have a strong\n    Qualifications                           understanding of K-12 education and its challenges.\n                                             AI Technical Skills: The CAIO should have expertise in AI technology and its\n    for a CAIO* in                           applications in education.\n     an Education                            AI Ethics and Compliance: The CAIO should have knowledge of AI ethics and\n                                             compliance regulations, including GDPR and the EU AI Act.\n    Organization                             Good Leadership and Communication Skills: The CAIO should have strong\n                                             leadership and communication skills to effectively manage the AI initiatives\n   *CAIO= Chief AI\n                                             and communicate with stakeholders.\n   Officer                                   Data Protection and Security Knowledge: The CAIO should have knowledge\n                                             of data protection and security measures to ensure the integrity of AI\n                                             systems.\n                                             Risk Assessment and Mitigation Skills: The CAIO should have skills in\n                                             conducting risk assessments and implementing mitigation measures to\n                                             ensure the safe and ethical use of AI systems.\n                                             Transparency and Explainability Knowledge: The CAIO should have\n                                             knowledge of transparency and explainability protocols to ensure that AI\n                                             systems are transparent and explainable.\n                                             Human Oversight and Intervention Skills: The CAIO should have skills in\nhttps://www.linkedin.com/pulse/white-\n                                             designing AI systems with human oversight and intervention to prevent bias\npaper-eu-ai-act-its-impact-k-12-education-\nclara-lin-hawking-xsfpf/                     and ensure fairness.",
+      "ocrUsed": false
+    },
+    {
+      "page": 40,
+      "text": "came into force this month\nAI literacy is required\n\n\n                 AI developers and deployers must ensure their staff and\n                 collaborators have sufficient AI literacy considering the system's\n                 purpose and target users.\n                 Training programs are crucial to ensure all parties understand AI's\n                 functionality and impact.",
+      "ocrUsed": false
+    },
+    {
+      "page": 41,
+      "text": "AI\nLITERACY\n   xxx",
+      "ocrUsed": false
+    },
+    {
+      "page": 42,
+      "text": "\"What do we know about artificial\nintelligence? What do teachers and students\n                  know?\"",
+      "ocrUsed": false
+    },
+    {
+      "page": 43,
+      "text": "Four (five) different ways to look at\n artificial intelligence in education\n                AI as a tool\n          student's instrument                                       Artificial intelligence\n             a teacher's tool                                         as the content of\n            instrument of the                                               learning\n                institution\n                       Hybrid\n                    intelligence\n                                                                        Understanding the\n                 AI & learning\n                                                                        impact of artificial\n                   analytics\n                                                                           intelligence\n\nHolmes, W., Persson, J., Chounta, I. A., Wasson, B., & Dimitrova, V. (2022). Artificial intelligence and education: A\ncritical view through the lens of human rights, democracy and the rule of law. Council of Europe.",
+      "ocrUsed": false
+    },
+    {
+      "page": 44,
+      "text": "Why?\n What?",
+      "ocrUsed": false
+    },
+    {
+      "page": 45,
+      "text": "AI is already\n                           everywhere\n                                   Ubiquitous & pervasive AI\n\n\n\n\nAI is deeply integrated into social media services",
+      "ocrUsed": false
+    },
+    {
+      "page": 46,
+      "text": "\"The digital\n footprint of a 13-\nyear-old child is an\n   average of 70\nmillion data points\"",
+      "ocrUsed": false
+    },
+    {
+      "page": 47,
+      "text": "DATA\nData is learning material for artificial intelligence",
+      "ocrUsed": false
+    },
+    {
+      "page": 48,
+      "text": "All interesting applications\n                                   and devices are based on\n                                             data..\n  Location and time information       Browsing history                Pictures, videos you take                            What is your rhythm of life\n  Where have you ever been (device    What pages have you ever        Who is in them (e.g. family                          like (limited)\n  on)                                 visited?                        members)                                             Calendar entries\n  What time were you there, how       What information have you ever                                                       Health information (Google\n  long                                searched for                    Almost everything you have                           Fit, Oura, etc.)\n  Who else has been there             The videos, movies, series you  written                                              = Do you breathe easily?\n  What did you use, how long did it   watch                           Google docs                                          Activity at different times\n  take                                = Your interests & what you are Private + public messages                            and hobbies\n                                      planning                        (part)                                               Hotel reservations, travel\n  Usage log information (part)                                        Emails (part)                                        reservations\n  What have you done with the         Shopping history                \"Anonymous\" messages on\n  devices, when?                      What have you bought            forums (sometimes)                                   Your favorite music,\n  Also in \"private mode\"?             Which ads interest you          The contents of your files                           movies, …\n  Also after \"delete my history\"?     Which led to the purchase       in cloud services                                    Music taste (all songs\n  = What are you interested in?                                                                                            listened to)\n  = What has happened in your life    Apps on your devices                   All your reactions                            Movie taste\n                                      PlugiNS                                Likes, bookmarks, mouse                       Art taste\n  Face recognition                                                           hover over\n  In which pictures you appear,       Programs\n  with whom\n  Even the ones you don't know\n\nGenerationAI\n  about\n                                                                                                                                   bit.ly/itk2024\n                                                       Prof. Matti Tedre lecture slides: artificial intelligence and automation of information work. Turning points in",
+      "ocrUsed": false
+    },
+    {
+      "page": 49,
+      "text": "Artificial\n                                                                    intelligence-based\n                                                                    technologies affect\nData-based monitoring             Behavior control techniques        our everyday life\n\n\n\n\n Modeling and predicting                                            Profiling and clustering\n\n\n\n\nAttention management techniques     Utilizing emotional reactions     Anonymity bias",
+      "ocrUsed": false
+    },
+    {
+      "page": 50,
+      "text": "",
+      "ocrUsed": false
+    },
+    {
+      "page": 51,
+      "text": "Let's ban\nphones in\nschools.\nHowever, the phone is not\nthe cause of the problems.\nThe culprit is artificial\nintelligence.",
+      "ocrUsed": false
+    },
+    {
+      "page": 52,
+      "text": "How?\n What?",
+      "ocrUsed": false
+    },
+    {
+      "page": 53,
+      "text": "AI is huge challenge for us. All\n             of us\n \"Making children and young people aware of\n    technology, on which future society is\n  increasingly dependent, is one of the most\n  significant challenges of the 21st century.\"",
+      "ocrUsed": false
+    },
+    {
+      "page": 54,
+      "text": "New literacies are required..",
+      "ocrUsed": false
+    },
+    {
+      "page": 55,
+      "text": "What is artificial intelligence?\n                                                                       What is it used for?\n                                                                       Conversational AI\n\n                                     concepts                          Learn and teach with artificial intelligence\n                                                                       Explore and experiment with artificial\n                                                                       intelligence\n                                    pedagogy                           Study with artificial intelligence\n\n                                                                       Design with AI\n                                     Creativity                        Create with AI\n                                                                       AI criticism\n\n                                                                       Limitations of artificial intelligence\n                                      Ethics                           Safe and responsible artificial intelligence\n                                                                       Artificial intelligence in society\n\n\n                                    Working life                       Work with artificial intelligence\n                                                                       Manage with artificial intelligence\n                                                                       Flourish with AI\nProf. Suggestion by Emeritus Mike Sharples on LinkedIn (3 weeks ago)",
+      "ocrUsed": false
+    },
+    {
+      "page": 56,
+      "text": "Artificial intelligence                                                          Basic understanding of artificial intelligence and social effects: Students must\n literacy for children and                                                          understand how artificial intelligence works and how it affects society. This\n      young people?                                                                 includes the technology's fundamentals, applications, and ethical issues such as\n                                                                                    privacy and fairness.\n\n                                                                                    Practical and student-centered learning: Artificial intelligence should be taught\n                                                                                    with project-based and problem-oriented methods that enable students to\n                                                                                    actively participate and apply learning in real situations.\n\n                                                                                    Ethical perspectives and risks: Teaching should emphasize the ethical principles of\n                                                                                    artificial intelligence, such as transparency, responsibility and social risks, so that\n                                                                                    students understand the effects of artificial intelligence and know how to use it\n                                                                                    responsibly.\n\n                                                                                    Self-evaluation and lifelong learning: Students should develop the ability to\n                                                                                    evaluate their own artificial intelligence skills and update their knowledge in the\nChiu, T. K., Ahmad, Z., Ismailov, M., & Sanusi, I. T. (2024). What are artificial   constantly developing artificial intelligence world, which supports lifelong\n intelligence literacy and competency? A comprehensive framework to\n          support them. Computers and Education Open, 6, 100171.\n                                                                                    learning.",
+      "ocrUsed": false
+    },
+    {
+      "page": 57,
+      "text": "Technology education for\n    the Generation AI\n         From AI Literacy to AI Agency\n\n\n\n\n Prof. Teemu Roos 17.10.2024 EDEN Workshop, Timisoara\n\n\n\n\nGeneration AI",
+      "ocrUsed": false
+    },
+    {
+      "page": 58,
+      "text": "How?\n What?",
+      "ocrUsed": false
+    },
+    {
+      "page": 59,
+      "text": "App 1.\nTeachable machine",
+      "ocrUsed": false
+    },
+    {
+      "page": 60,
+      "text": "App 1. GenAI Teachable Machine (data & machine learning)\n                                        AI phenomenas:\n                                            Data\n                                            Machine learning\n                                            Classification\n                                            Bias\n                                            Fragility\n\n                                        Materials:\n                                        www.generation-ai-stn.fi/\n                                        materials\n\n                                        Application:\n                                        tm.generation-ai-stn.fi",
+      "ocrUsed": false
+    },
+    {
+      "page": 61,
+      "text": "Generation AI a teachable machine\n                     Easy and safe                                                                                                        Our apps are safe\n                                                                                                                                              and easy!\n\n                                                                                                                                          Our applications are free,\n                                                                                                                                            GDPR compliant and\n    \"The GenAI teachable machine prioritizes users' privacy and data\n    protection. The application does not track users or collect personal\n                                                                                                                                          accessible and scalable.\n    data, it is GDPR compliant and ensures classroom safety, so it is\n    suitable for all educational environments.”\n    Pope, Nicolas; Kahila, Juho; Vartiainen, Henriikka; Tedre, Matti (2023). Children's AI Design Platform for Making and Deploying ML-\n    DrivenApps. TechRxiv. Preprint. https://doi.org/10.36227/techrxiv.24320794.v1\n                                                                                                                                          We do not collect or share\n                                                                                                                                                information.\ntm.generation-ai-stn.fi",
+      "ocrUsed": false
+    },
+    {
+      "page": 62,
+      "text": "1.1. Tool: Teachable machine is safe & free\n                 GDPR compliant: “in terms of children’s rights, the tool supports the use of\n                 personal data while ensuring privacy and compliance with GDPR”\n                 WCAG 2.1AA: “the UX design is workflow-based, with minimal in-built\n                 instructional scaffolds, addressing accessibility and usability standards”\n                 HTML5: “The tool design aims at resilience and adaptability to various hardware\n                 and network/offline environments”\n                 MIT License: “permissive software lisence” (free to use and modify)\n                 Multilingual: EN, FI, SE, DE, RU, UA, BR, TR (easy to localise)\n\n\n\n\nN. Pope, H. Vartiainen, J. Kahila, J. Laru and M. Tedre, \"A No-Code AI Education Tool for Learning AI in K-12 by Making Machine Learning-Driven Apps,\" 2024 IEEE International Conference on\nAdvanced Learning Technologies (ICALT), Nicosia, North Cyprus, Cyprus, 2024, pp. 105-109",
+      "ocrUsed": false
+    },
+    {
+      "page": 63,
+      "text": "What? A No-Code AI Education Tool for Learning AI in K-12 by\n  Making Machine Learning-Driven Apps\n\n\n\n\n  Data collection & curation            Training the model            Evaluating the model               Defining actions       Testing the app         Deploying the app\n\n      Training data                         Training                      Input                          Trigger              Previewing the      Sharing the ready app within the\n      Example                               Classifier                    Classification                 Action (image,       app                 classroom\n      (sample)                                                            result                         link, sound, text)   Output\n      Class                                                               Confidence                                          Brittleness\n      Name (label)                                                                                                            Debugging and\n                                                                                                                              improving\n  Figure. The tool interface for an app that tells pines from birches (left), the same app deployed to smartphones (right) and the app development workflow with key\n                                                                               concepts (bottom)\nPope, Nicolas; Kahila, Juho; Vartiainen, Henriikka; Tedre, Matti (2023). Children's AI Design Platform for Making and\nDeploying ML-DrivenApps. TechRxiv. Preprint. https://doi.org/10.36227/techrxiv.24320794.v1",
+      "ocrUsed": false
+    },
+    {
+      "page": 64,
+      "text": "Information from the University of Eastern Finland (UEF):\n\n Pupils' understanding of\n artificial intelligence improved.. Kahila, J., Vartiainen, H., Tedre, M., Arkko, E., Lin,\n                                                             A., Pope, N., Jormanainen, I., & Valtonen, T. (2024).\n    \"the research results emphasize the\n   importance of properly implemented                        Pedagogical framework for cultivating children’s\nartificial intelligence teaching in schools.\"                data agency and creative abilities in the age of AI.\n                                                             Informatics in Education.\n                                                             https://doi.org/10.15388/infedu.2024.15\n\n                                                             Vartiainen, H., Kahila, J., Tedre, M., López-Pernas,\n                                                             S., & Pope, N. (2024). Enhancing children’s\n                                                             understanding of algorithmic biases in and with\n                                                             text-to-image generative AI. New Media & Society.\n                                                             https://doi.org/10.1177/14614448241252820\n\n               GenerationAI",
+      "ocrUsed": false
+    },
+    {
+      "page": 65,
+      "text": "Materials and\nguidebooks",
+      "ocrUsed": false
+    },
+    {
+      "page": 66,
+      "text": "From science to instructional\nmaterials..\n\n\n\n\ntechnology\nPope, N., Kahila, J., Vartiainen, H., & Tedre, M. (2023). Children’s AI Design Platform for Making and\n                                                                                                                   Pedagogy\n                                                                                                          Kahila, J., Vartiainen, H., Tedre, M., Arkko, E., Lin, A., Pope, N., Jormanainen, I., & Valtonen, T.\n                                                                                                                                                                                                                 Materials\nDeploying ML-Driven Apps. TechRxiv. https://doi.org/10.36227/techrxiv.24320794.v1                        (2024). Pedagogical framework for cultivating children’s data agency and creative abilities in\n                                                                                                         the age of AI. Informatics in Education. https://doi.org/10.15388/infedu.2024.15",
+      "ocrUsed": false
+    },
+    {
+      "page": 67,
+      "text": "We are international!\n Tools:\n     Teachable Machine: finnish, english, finnish, germany,\n     portuguese, russian, swedish, ukraine\n     Somekone (social media simulator): finnish and english\n Materials\n     All materials are written in Finnish AND machine-translated to\n     english (this will be changed to semiautomated localization)\n Website:\n     Website is Finnish and is machine translated to other languages\n     (this will be changed to semiautomated localization)",
+      "ocrUsed": false
+    },
+    {
+      "page": 68,
+      "text": "",
+      "ocrUsed": false
+    },
+    {
+      "page": 69,
+      "text": "Hands-on:   Let’s create together\n            Cat, Dog, human\n            classifier app\n            Let’s start with\n            training data\n            (pictures of cats and\n            dogs)\n            Then let’s test\n            machine\n            Then let’s create\n            action cards and\n            deploy the app!",
+      "ocrUsed": false
+    },
+    {
+      "page": 70,
+      "text": "Create your own classifier (1-3 persons per computer)\n\n\ntm.generation-ai-stn.fi",
+      "ocrUsed": false
+    },
+    {
+      "page": 71,
+      "text": "Design\n         form a group of 2-3 people\n         Open      tool    on     your    computer:\n\n\n\nyour\n         https://tm.generation-ai-stn.fi\n         Think about what kind of classifier you\n         would make.\n\n\nown AI\n         Collect training data from the web / your\n         phone\n\n\n\napp\n         Train AI classifier\n         Test it with external data (new photos)\n         Create activities for each class\n         Deploy it to other groups",
+      "ocrUsed": false
+    },
+    {
+      "page": 72,
+      "text": "Integration with programming tools is also possible (differentiating extra task)\n\n\n   AI & Robotics\n                                                                                       The winning project of the 7th grade students of Yli-i school\n\n                                                                                       The recycling machine was\n                                                                                       awarded in the toolcamp\n                                                                                       competition\n\n\n\n\n (export ML model)                                                                       Recognize\n                                                                                         A teachable machine\n\n\n\n\n                                                                                                       GenerationAI\n                                                                                                                   Guide\n\n                                                                                                                   Scratch\n                                                                                                                                 Implement\n\n                                                                                                                                 Lego EV3 recycling machine\n\n\n\n\n      Classifier                        Lego EV3 programming                       Recycling machine\n                                             with scratch",
+      "ocrUsed": false
+    },
+    {
+      "page": 73,
+      "text": "App 2.\n   Somekone\nsosial media emulator",
+      "ocrUsed": false
+    },
+    {
+      "page": 74,
+      "text": "App2. Somekone. Social media emulator\n                                                        AI phenomenas:\n                                                           Data\n                                                           Profiling\n                                                           Clustering\n                                                           Recommendation\n\n\n\n                                                        Materials:\n                                                           2025 january\n\n\n All users: https://somekone.generation-ai-stn.fi\n Educators: https://somekone.generation-ai-stn.fi/guided/default",
+      "ocrUsed": false
+    },
+    {
+      "page": 75,
+      "text": "Early Adopter Material - NOT FINAL!\n\n                                      Concept\n\n                                      DATA\n                                         1:\n\n\n                                      What kind of\n                                      information do\n                                      social media\n                                      services collect\n                 T                    about me when I use\n                 i                    them?\n                 t\n                 l\n                 e\nEarly Adopter Material - NOT FINAL!",
+      "ocrUsed": false
+    },
+    {
+      "page": 76,
+      "text": "Early Adopter Material - NOT FINAL!\n\n                                      Concept\n\n                                      Profile\n                                         2:\n\n                                      How do social media\n                                      services turn the data\n                                      collected from me into a\n                                      profile?\n\n\n\n                                       Age: approx. 15 years\n                                       Place of residence: Tampere\n                                       Interests: Playing, skating, ice hocke\n                                       Other: Go skateboarding three times a\n                                       week, and walk the dog on weekends\n\n\n\n\nEarly Adopter Material - NOT FINAL!",
+      "ocrUsed": false
+    },
+    {
+      "page": 77,
+      "text": "Early Adopter Material - NOT FINAL!\n\n                                       Concept 3:\n\n                                      Recommendations\n                                      How do social media\n                                      services know how to\n                                      recommend images,\n                                      videos, and other content?\n                                      It uses collected data and a profile made\n                                      based on it\n\n\n\n\nEarly Adopter Material - NOT FINAL!",
+      "ocrUsed": false
+    },
+    {
+      "page": 78,
+      "text": "Early Adopter Material - NOT FINAL!\n\n\n\n\nSomekone\nProfiling can be done\nautomatically\nSomekone is an Instagram\nsimulator that you can use to try\nout what data social media\ncollects and how it works\nIt collects data, profiles and\ngives recommendations like real\nsocial media platforms\n                        Early Adopter Material - NOT FINAL!",
+      "ocrUsed": false
+    },
+    {
+      "page": 79,
+      "text": "Supplies:\nTeacher              Pupil                 Teacher's materials\nComputer or tablet   Computer, tablet or   Somekone 2/2 presentation\n                     phone                 material (this)\n\n\n                                           Student materials\n                                              Assignment form 1\n                                              Assignment form 2\n                                              Assignment form 3\n                                              Assignment form 4",
+      "ocrUsed": false
+    },
+    {
+      "page": 80,
+      "text": "Early Adopter Material - NOT FINAL!\n\n\n\n\nThe information collected by Somekone is only\nprocessed in this class (on the teacher's computer)\nCome up with such usernames that you cannot be\nrecognized!\nOther students in the class can see which pictures\nyou have liked, commented on, shared, etc.\n                Early Adopter Material - NOT FINAL!",
+      "ocrUsed": false
+    },
+    {
+      "page": 81,
+      "text": "Demo: Social media machine   Settings\n                               Run with demodata\n                               Run in guided mode\n\n                             Test by\n                             yourself\n                               Normal:\n                               https://somekone.ge\n                               neration-ai-stn.fi\n                               Education version:\n                               https://somekone.ge\n                               neration-ai-\n                               stn.fi/guided/default",
+      "ocrUsed": false
+    },
+    {
+      "page": 82,
+      "text": "Thank you!\n https://www.generation-ai-stn.fi",
+      "ocrUsed": false
+    }
+  ],
+  "emptyPages": [
+    50,
+    68
+  ],
+  "extractError": null,
+  "_diagnostic": {
+    "pdfBytes": 29304233,
+    "elapsedMs": 72131
+  }
+}
