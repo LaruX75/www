@@ -430,12 +430,10 @@
       "richSummary": "Esitys vastaa kysymykseen: mitä tekoäly on, miten se toimii ja miten se vaikuttaa koulumaailmaan – erityisesti Simon kunnan opetushenkilöstön VESO-koulutuspäivänä 31.8.2024. Luennoitsijana toimii KT Jari Laru Oulun yliopistosta.\n\nEsitys lähtee liikkeelle tekoälyn läsnäolosta arjessa: tekoäly on integroitu syvästi sosiaalisen median palveluihin, ja 13-vuotiaan lapsen digitaalinen jalanjälki koostuu keskimäärin 70 miljoonasta datapisteestä. Data on tekoälyn oppimateriaalia, ja dioissa käydään läpi laajasti, minkälaista tietoa sovellukset ja laitteet keräävät – paikkatiedoista ja selaushistoriasta kasvojen tunnistukseen ja terveystietoihin. Tekoälypohjaiset teknologiat vaikuttavat jokapäiväiseen elämään muun muassa käyttäytymisen ohjauksella, huomion hallinnalla ja profiloinnilla.\n\nSääntelynäkökulmasta esitys käsittelee EU:n tekoälylakia (AI Act): sen 113 artiklaa, riskipohjaista lähestymistapaa ja sitä, mitkä koulutusalan tekoälysovellukset luokitellaan korkean riskin järjestelmiksi – esimerkiksi oppimistulosten arviointi, opiskelijoiden valinta ja tenttivalvonta. Koulujen velvoitteiksi nousevat läpinäkyvyys, tietosuoja, riskinarviointi ja ihmisen valvonta. Laki edellyttää myös riittävää tekoälylukutaitoa kaikilta tekoälyn kehittäjiltä ja käyttäjiltä. Esitys mainitsee koulutusorganisaation CAIO-roolin (Chief AI Officer) pätevyysvaatimuksineen.\n\nPedagogisesta näkökulmasta esitys hyödyntää Holmesin ym. (2022) viitekehystä, jossa tekoäly jäsennetään neljän roolin kautta: tekoäly työkaluna (oppilaan, opettajan ja instituution väline), tekoäly oppimisanalytiikassa, tekoäly oppimisen sisältönä sekä tekoälyn yhteiskunnallisten vaikutusten ymmärtäminen. Esitys erottelee perinteisen AIED:n ja LLM-pohjaisen generatiivisen tekoälyn (ChatGPT, Gemini, Copilot, Midjourney, DALL-E) ja käy läpi Microsoftin Copilot-lisensiointia kouluille. Mainittuja konkreettisia tekoälytyyppejä ovat kasvojen tunnistus, puheentunnistus, tekstistä puheeksi ja luonnollisen kielen käsittely.",
       "themes": [
         "tekoalylukutaito",
-        "generatiivinen-tekoaly",
-        "tekoalyn-saantely",
         "taydennyskoulutus",
-        "digipedagogiikka",
+        "generatiivinen-tekoaly",
         "data-yksityisyys",
-        "oppimisanalytiikka"
+        "digipedagogiikka"
       ],
       "unknownThemesProposed": [
         "CAIO-rooli koulutusorganisaatiossa",
@@ -504,12 +502,10 @@
       "lang": "fi",
       "richSummary": "Esitys vastaa kysymykseen: mitä tekoäly oikeastaan on arjessa nyt, ja miten opettajien ja oppilaiden tulisi suhtautua siihen? Luennoitsijana toimii KT Jari Laru.\n\nEsitys alkaa toteamalla, että tekoäly on jo kaikkialla – erityisesti sosiaalisessa mediassa. Lähtökohtana on datan keskeinen rooli: data on tekoälyn oppimateriaalia, ja 13-vuotiaan lapsen digitaalinen jalanjälki käsittää keskimäärin 70 miljoonaa datapistettä. Dioissa luetellaan laajasti, millaista dataa kerätään: paikkatiedot, selaushistoria, kuvat, ostoshistoria, terveystiedot, tunnereaktiot ja paljon muuta. Tekoälypohjaiset teknologiat vaikuttavat arkeen datan kautta mm. käyttäytymisen ohjauksella, profiloinnilla, huomionhallinnalla ja anonymiteettiharhalla.\n\nEsitys käsittelee EU:n tekoälylakia (AI Act) ja sen määritelmää tekoälyjärjestelmästä. Koulutuskontekstissa esitellään neljä tapaa tarkastella tekoälyä opetuksessa: tekoäly työkaluna (oppilaan, opettajan tai instituution väline), oppimisanalytiikka, tekoäly oppimisen sisältönä sekä tekoälyn vaikutusten ymmärtäminen. Viitekehys pohjautuu Holmesin ym. (2022) Euroopan neuvoston julkaisuun.\n\nGeneratiivinen tekoäly (ChatGPT, Gemini, Copilot, Claude, Midjourney, Poro) saa erityishuomion. Esitys selittää, miten suuret kielimallit toimivat todennäköisyyspohjaisesti – ei älykkyyteen vaan tilastolliseen arvaukseen perustuen. Esiin nostetaan hallusinaatiot ja bias-ongelmat. Kolme vaihtoehtoa kouluille käsitellään: kielletään, sallitaan tai pakotetaan käyttöön – kullakin hyvät ja huonot puolensa. Shadow AI -ilmiö nostetaan esiin: vaikka tekoäly kiellettäisiin, oppilaat käyttävät sitä silti. Emeritusprofessori Mike Sharplesin neuvoa lainataan: ajattelu tulisi kääntää kysymyksestä 'miten tekoäly vaikuttaa koulutukseen' kysymykseen 'mitä uusia tapoja opettaa ja oppia tekoäly mahdollistaa'. Esitys sivuaa myös oppimisen arviointia ja tekoälyä.",
       "themes": [
-        "generatiivinen-tekoaly",
         "tekoalylukutaito",
-        "tekoalyn-saantely",
-        "shadow-ai",
-        "oppimisanalytiikka",
+        "generatiivinen-tekoaly",
         "data-yksityisyys",
+        "shadow-ai",
         "arviointi"
       ],
       "unknownThemesProposed": [
@@ -533,9 +529,7 @@
         "tekoalylukutaito",
         "generatiivinen-tekoaly",
         "oppimisanalytiikka",
-        "tekoalyn-saantely",
         "alykas-oppimisymparisto",
-        "datalukutaito",
         "datatoimijuus"
       ],
       "confidence": "high",
@@ -699,8 +693,6 @@
         "generatiivinen-tekoaly",
         "datalukutaito",
         "datatoimijuus",
-        "alykas-oppimisymparisto",
-        "lasten-digitaaliset-oikeudet",
         "oppimisanalytiikka"
       ],
       "unknownThemesProposed": [
@@ -836,12 +828,10 @@
       "lang": "fi",
       "richSummary": "Esitys vastaa kysymykseen, miten tekoälyosaaminen tulisi jäsentää kieltenopetuksessa ja miksi opettajien on suhtauduttava tekoälyyn vakavasti – myös silloin, kun sen käyttö on kielletty. Keskeinen lähtöpiste on niin sanottu Shadow AI -ilmiö: vaikka tekoäly kiellettäisiin oppimisympäristöissä, oppijat ja opettajat käyttävät sitä silti piilossa.\n\nEsitys rakentuu viitekehykselle, joka jakaa tekoälyosaamisen kahteen ulottuvuuteen: tekoälyn käyttämiseen (tekoäly metakognitiivisena työkaluna) ja tekoälyn ymmärtämiseen (tekoälylukutaito, data- ja tekoälytoimijuus). Näiden väliin asettuvat oppimisen sisältö, hybridiälykkyys ja analytiikka. Hybridiälykkyydellä tarkoitetaan ihmisen ja tekoälyn yhteistyöhön perustuvaa älykkyyden laajentamista.\n\nGeneratiivinen tekoäly rinnastetaan taskulaskimeen: aivan kuten 400 vuotta käytetty laskutikku vanhentui 1970-luvulla, generatiivinen tekoäly korvaa nyt aiempia käytäntöjä. Tekoäly on jo kaikkialla – syvällisesti integroituneena sosiaalisen median palveluihin – ja se on yksi maailman nopeimmin käyttöönotetuista teknologioista.\n\nDatalukutaidon osalta esitys havainnollistaa laajasti, millaista dataa sovellukset ja laitteet keräävät: paikka- ja aikatiedot, selaushistoria, kuvat ja videot, ostoshistoria, kasvojen tunnistus, terveystiedot ja paljon muuta. Data esitetään tekoälyn oppimismateriaalina, mikä tekee datan ymmärtämisestä keskeisen kansalaistaidon.\n\nEsitys on suunnattu kieltenopettajille täydennyskoulutuksen kontekstissa, ja sen on laatinut Jari Laru (KT, yliopistonlehtori, Oulun yliopisto). Kuvat: Linda Saukko-Rauta (CC-by-ND).",
       "themes": [
+        "kieltenopetus",
         "shadow-ai",
         "tekoalylukutaito",
-        "generatiivinen-tekoaly",
         "hybridialykkyys",
-        "datatoimijuus",
-        "kieltenopetus",
         "taydennyskoulutus"
       ],
       "confidence": "high",
@@ -1144,11 +1134,9 @@
       "lang": "fi",
       "richSummary": "Esitys vastaa kysymykseen: mitä tekoäly oikeasti tarkoittaa tänä päivänä arjessa ja opetuksessa – ja mitä siitä pitäisi tehdä kouluissa? Yliopistonlehtori Jari Laru lähtee liikkeelle siitä, että tekoäly on jo kaikkialla: se on integroitu syvästi sosiaalisen median palveluihin, ja esimerkiksi 13-vuotiaan lapsen digitaalinen jalanjälki käsittää keskimäärin 70 miljoonaa datapistettä. Data on tekoälyn oppimateriaalia, ja esitys listaa yksityiskohtaisesti, millaista dataa kerätään: paikka- ja aikatiedot, selaushistoria, kuvat, viestit, ostoshistoria, kasvojentunnistus ja paljon muuta.\n\nTekoälypohjaiset teknologiat vaikuttavat arkeen datapohjaisen seurannan, käyttäytymisen ohjauksen, profiloinnin, huomionhallinnan ja anonymiteettiharhan kautta. Esitys huomauttaa, että puhelinkielto kouluissa ei ratkaise ongelmaa – syyllinen on tekoäly, ei laite itsessään.\n\nEU:n tekoälylaki (AI Act) esitellään ensimmäisenä oikeudellisena kehyksenä, joka luokittelee tekoälyjärjestelmiä riskitason mukaan. Opetuksen kontekstissa käydään läpi sekä perinteinen AIED (älykkäät tutorit, automaattinen arviointi, opiskelijavalinta) että GPAI-mallit kuten ChatGPT, Gemini, Claude ja Copilot. Viitekehyksenä käytetään Holmesin ym. (2022) nelijakoa: tekoäly työkaluna, oppimisanalytiikka, tekoäly oppimisen sisältönä ja tekoälyn vaikutusten ymmärtäminen.\n\nGeneratiivisen tekoälyn toimintaperiaate avataan vertauksella \"superarvaajaan\": kyse on todennäköisyydestä, ei älykkyydestä. Esiin nostetaan myös hallusinointi ja bias vakavina ongelmina. Koulujen valinnoiksi esitetään kolme vaihtoehtoa – kieltäminen, salliminen tai pakottaminen – kukin omine hyötyineen ja haittoineen. Shadow AI:n ongelma on, että vaikka tekoäly kiellettäisiin, sitä käytetään silti. Emeritusprofessori Mike Sharplesin neuvo kehystää keskeisen ajatuksen: kysymys ei ole siitä, miten tekoäly vaikuttaa koulutukseen, vaan mitä uusia ja tehokkaita tapoja opettaa ja oppia tekoälyn avulla saadaan.",
       "themes": [
-        "generatiivinen-tekoaly",
         "tekoalylukutaito",
-        "tekoalyn-saantely",
+        "generatiivinen-tekoaly",
         "shadow-ai",
-        "oppimisanalytiikka",
         "data-yksityisyys",
         "arviointi"
       ],
@@ -1196,10 +1184,9 @@
       "themes": [
         "mediakasvatus",
         "datatoimijuus",
-        "data-yksityisyys",
         "tekoaly-turvallisuuskasvatus",
-        "hanke-esittely",
-        "lasten-digitaaliset-oikeudet"
+        "lasten-digitaaliset-oikeudet",
+        "hanke-esittely"
       ],
       "unknownThemesProposed": [
         "some-lukutaito",

@@ -4,15 +4,16 @@
   "strategyVersion": "v1-2026-08-10",
   "truncationVersion": "head-v1",
   "maxChars": 6000,
-  "savedAt": "2026-08-09T19:34:09.744Z",
+  "savedAt": "2026-08-10T16:06:00.700Z",
   "totalItems": 634,
   "inputStats": {
-    "description": 75,
+    "description": 66,
     "markdownBody": 286,
+    "canvaRich": 9,
     "slideshareTranscript": 98,
     "publicationAbstract": 6,
-    "thesisAbstract": 127,
-    "title": 42
+    "thesisAbstract": 49,
+    "title": 120
   },
   "items": [
     {
@@ -4240,12 +4241,12 @@
     {
       "url": "/presentations/digierko2024-risteilyesitys/",
       "contentType": "presentation",
-      "inputHash": "sha1-b73a3f81b573432d6e9e5ba8dab0e223139b7388",
+      "inputHash": "sha1-4ca375eed3e113730ced774b78d7541064a3f74e",
       "inputSources": [
         "title",
-        "description"
+        "canvaRich"
       ],
-      "inputChars": 130,
+      "inputChars": 2078,
       "inputTruncated": false,
       "offset": 328
     },
@@ -4276,60 +4277,60 @@
     {
       "url": "/presentations/international-conference-on-the-advancement-of-steam-2024/",
       "contentType": "presentation",
-      "inputHash": "sha1-87dcdf589516ba1f5acf89a2b784d7e646abc0d2",
+      "inputHash": "sha1-85ddf34a7eaa6b46a3817eb1775465df78186a1c",
       "inputSources": [
         "title",
-        "description"
+        "canvaRich"
       ],
-      "inputChars": 172,
+      "inputChars": 2362,
       "inputTruncated": false,
       "offset": 331
     },
     {
       "url": "/presentations/kempele-veso-2026/",
       "contentType": "presentation",
-      "inputHash": "sha1-2844b46648bd2f974d9cbb2d7bb8760e2b3afb8a",
+      "inputHash": "sha1-a7d886d0417984914e6e2f16e5bec8291952cef5",
       "inputSources": [
         "title",
-        "description"
+        "canvaRich"
       ],
-      "inputChars": 114,
+      "inputChars": 2058,
       "inputTruncated": false,
       "offset": 332
     },
     {
       "url": "/presentations/kohti-kriittist-teko-lylukutaitoa-2026-finnoschool/",
       "contentType": "presentation",
-      "inputHash": "sha1-703678f725767a25f856fe073c68616fa3246506",
+      "inputHash": "sha1-7c8b9836f4ce26e06a13dce3da333fd239b1158f",
       "inputSources": [
         "title",
-        "description"
+        "canvaRich"
       ],
-      "inputChars": 194,
+      "inputChars": 1712,
       "inputTruncated": false,
       "offset": 333
     },
     {
       "url": "/presentations/kokkola-2025-teko-ly-opettajan-yst-v-vai-viho/",
       "contentType": "presentation",
-      "inputHash": "sha1-5e0a93293b6f0cfd8783374ec92d04eace175682",
+      "inputHash": "sha1-4fdde81fea57abfe7504bf4ad9d9d59d5532d987",
       "inputSources": [
         "title",
-        "description"
+        "canvaRich"
       ],
-      "inputChars": 163,
+      "inputChars": 2079,
       "inputTruncated": false,
       "offset": 334
     },
     {
       "url": "/presentations/konen-k-vibe-robotiikka-riihim-ki-robokampus-2026/",
       "contentType": "presentation",
-      "inputHash": "sha1-510c4daec602a33f382dae92203b8078cd41886c",
+      "inputHash": "sha1-f635de9fca1991807f2e999ffaf24b85617afa28",
       "inputSources": [
         "title",
-        "description"
+        "canvaRich"
       ],
-      "inputChars": 175,
+      "inputChars": 2279,
       "inputTruncated": false,
       "offset": 335
     },
@@ -4396,12 +4397,12 @@
     {
       "url": "/presentations/opettaja-teko-lyn-ja-lytt-myyden-turbulenssissa-tampere-2025/",
       "contentType": "presentation",
-      "inputHash": "sha1-d66d66057903ed5e2f79d834a14dcd0e73388205",
+      "inputHash": "sha1-4d4f714477cec6a53ddd686d8362afd78e6346ef",
       "inputSources": [
         "title",
-        "description"
+        "canvaRich"
       ],
-      "inputChars": 185,
+      "inputChars": 1797,
       "inputTruncated": false,
       "offset": 341
     },
@@ -4432,24 +4433,24 @@
     {
       "url": "/presentations/riihim-ki-veso-2026/",
       "contentType": "presentation",
-      "inputHash": "sha1-3d76fb70e2291b91fa1b310c42bde11b07e84705",
+      "inputHash": "sha1-03abf18774e7f3cef15ff92e925aa2104bc01392",
       "inputSources": [
         "title",
-        "description"
+        "canvaRich"
       ],
-      "inputChars": 137,
+      "inputChars": 2099,
       "inputTruncated": false,
       "offset": 344
     },
     {
       "url": "/presentations/simo-veso-2024/",
       "contentType": "presentation",
-      "inputHash": "sha1-5acb1a77ef70fa634ca6331717f86b8d089e3cbb",
+      "inputHash": "sha1-52456b577b05745c2403b309e91b739b05178022",
       "inputSources": [
         "title",
-        "description"
+        "canvaRich"
       ],
-      "inputChars": 130,
+      "inputChars": 2109,
       "inputTruncated": false,
       "offset": 345
     },
@@ -5982,12 +5983,11 @@
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/10129",
       "contentType": "thesis",
-      "inputHash": "sha1-340d66fb1cc81c79b672bef9a3c639a4e491a409",
+      "inputHash": "sha1-d6d953c95aec9bc2f79fa6ee3010a5ca50e07134",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 1982,
+      "inputChars": 91,
       "inputTruncated": false,
       "offset": 465
     },
@@ -6005,24 +6005,22 @@
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/10642",
       "contentType": "thesis",
-      "inputHash": "sha1-9482a3da43b42bbab93a361dbe0f08444c8daf42",
+      "inputHash": "sha1-fd216a3cc6c0e2bec59ed6cefa06393006c3844a",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2853,
+      "inputChars": 112,
       "inputTruncated": false,
       "offset": 467
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/10735",
       "contentType": "thesis",
-      "inputHash": "sha1-22f1d9778cb8719cc448eec8625ffc1c9557db3c",
+      "inputHash": "sha1-75c3fa82adfa1454e64eada93c27b5a57ef32b2e",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2675,
+      "inputChars": 90,
       "inputTruncated": false,
       "offset": 468
     },
@@ -6051,48 +6049,44 @@
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/11520",
       "contentType": "thesis",
-      "inputHash": "sha1-7938b85af19f2d22e36b3295931bab2b56a36865",
+      "inputHash": "sha1-426d3d4b8720d50c4cbe96108c958ed32fab1f78",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 1335,
+      "inputChars": 116,
       "inputTruncated": false,
       "offset": 471
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/11553",
       "contentType": "thesis",
-      "inputHash": "sha1-cd53b83dfdf29b02151c553ce99017f5c260e46b",
+      "inputHash": "sha1-be86202925ac4799962075f9f158c90ed7938188",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 3201,
+      "inputChars": 118,
       "inputTruncated": false,
       "offset": 472
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/11738",
       "contentType": "thesis",
-      "inputHash": "sha1-b59ffb7809c91494818f5b1335c867192768d421",
+      "inputHash": "sha1-724fc3dd980708634366e641bdd58188f31b35d0",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2689,
+      "inputChars": 109,
       "inputTruncated": false,
       "offset": 473
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/11809",
       "contentType": "thesis",
-      "inputHash": "sha1-ed70873785cc8a3a140e83b83ee59f42167e9e3f",
+      "inputHash": "sha1-84418e83249d5ad66bcd9d5c7cfab884574bdf9c",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2128,
+      "inputChars": 63,
       "inputTruncated": false,
       "offset": 474
     },
@@ -6110,48 +6104,44 @@
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/13035",
       "contentType": "thesis",
-      "inputHash": "sha1-2c069825392379c20838a914e982438a399e81fc",
+      "inputHash": "sha1-bf1898ca8599afbe184a7672d2b1b62e7a189778",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2632,
+      "inputChars": 111,
       "inputTruncated": false,
       "offset": 476
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/13219",
       "contentType": "thesis",
-      "inputHash": "sha1-ec3d108977ba8c1328084956c455e9ff0f8476de",
+      "inputHash": "sha1-b341371050494f06370a04974f71596048652358",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 3070,
+      "inputChars": 140,
       "inputTruncated": false,
       "offset": 477
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/13232",
       "contentType": "thesis",
-      "inputHash": "sha1-c20aa2018d1656890f4f06cda5c52d11c90cd057",
+      "inputHash": "sha1-0ac92834b9afa3033a308a31f5c2bd14f691ced0",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2638,
+      "inputChars": 94,
       "inputTruncated": false,
       "offset": 478
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/13246",
       "contentType": "thesis",
-      "inputHash": "sha1-3e02388ee85dc4f94d2ec83ee3a61af2edc0df04",
+      "inputHash": "sha1-49312f5041a5e883bbd61f99f9687fc623c41167",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2807,
+      "inputChars": 128,
       "inputTruncated": false,
       "offset": 479
     },
@@ -6169,12 +6159,11 @@
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/14304",
       "contentType": "thesis",
-      "inputHash": "sha1-0d923ba84a2a035bae1d145cd12166788d0299e7",
+      "inputHash": "sha1-f3217bb92ec0f8a680f912dbb41e6f1a9e0f7f52",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 1951,
+      "inputChars": 76,
       "inputTruncated": false,
       "offset": 481
     },
@@ -6192,24 +6181,22 @@
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/14374",
       "contentType": "thesis",
-      "inputHash": "sha1-8fbfb09d71ae58f0d482750d49f0d3cc3b788064",
+      "inputHash": "sha1-e33993be32aad297c9cbd9dc580e53dc68369c44",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2106,
+      "inputChars": 116,
       "inputTruncated": false,
       "offset": 483
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/14530",
       "contentType": "thesis",
-      "inputHash": "sha1-133fbb20dc6feee40182510969ae05b7b22a3f26",
+      "inputHash": "sha1-45f80fddb8d94fd5eb04d78869ec3fb22cbc54fa",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2606,
+      "inputChars": 90,
       "inputTruncated": false,
       "offset": 484
     },
@@ -6238,12 +6225,11 @@
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/14991",
       "contentType": "thesis",
-      "inputHash": "sha1-a3d06b830f779bef78849accbb7af6b6e11552dd",
+      "inputHash": "sha1-ef9b102a121d2fe76b2d5670cfd8e0c628670900",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 1852,
+      "inputChars": 65,
       "inputTruncated": false,
       "offset": 487
     },
@@ -6261,24 +6247,22 @@
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/15460",
       "contentType": "thesis",
-      "inputHash": "sha1-e13585a39dc52d3ea993b59259c67a7355215f16",
+      "inputHash": "sha1-3196d18985cf87cff219643c5496d1f41118bbda",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2086,
+      "inputChars": 74,
       "inputTruncated": false,
       "offset": 489
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/15819",
       "contentType": "thesis",
-      "inputHash": "sha1-7d40da981b8f657aabea8b0894cc0f88fb602a73",
+      "inputHash": "sha1-ea434a09a7946d6c14a9fa4a1bbaac304bbd271f",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 3043,
+      "inputChars": 88,
       "inputTruncated": false,
       "offset": 490
     },
@@ -6318,12 +6302,11 @@
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/17056",
       "contentType": "thesis",
-      "inputHash": "sha1-db9397a0fe3df980e244233292e7b85a2970b853",
+      "inputHash": "sha1-8d6b9c2000d9f8bbe7b32f7bd88201a496d8739f",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 3074,
+      "inputChars": 70,
       "inputTruncated": false,
       "offset": 494
     },
@@ -6341,72 +6324,66 @@
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/17533",
       "contentType": "thesis",
-      "inputHash": "sha1-b648643f1f4be10867a2aa9893f8ad1b012c30ec",
+      "inputHash": "sha1-f96b9c337d4be546d12c520a64126167f883dc57",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2366,
+      "inputChars": 113,
       "inputTruncated": false,
       "offset": 496
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/17534",
       "contentType": "thesis",
-      "inputHash": "sha1-3013378b39df580dec7049ab7823ed1ad637e6e9",
+      "inputHash": "sha1-391be08fde03eee712111a44f85af789599b22a9",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2768,
+      "inputChars": 91,
       "inputTruncated": false,
       "offset": 497
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/17694",
       "contentType": "thesis",
-      "inputHash": "sha1-6eb998efe85dfd4386bcc7fd0a2c1df19ea05ad1",
+      "inputHash": "sha1-8912fe1f7c840082ef54fd2a9b9fb5024adc17a0",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2531,
+      "inputChars": 127,
       "inputTruncated": false,
       "offset": 498
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/17738",
       "contentType": "thesis",
-      "inputHash": "sha1-58d6f1a9fe83e75c30e95190a94ab857b63502fc",
+      "inputHash": "sha1-0806cfd45c65adf6b7d7b6272e7e94137e4c8b72",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2352,
+      "inputChars": 109,
       "inputTruncated": false,
       "offset": 499
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/18096",
       "contentType": "thesis",
-      "inputHash": "sha1-63b5d52aa17a7bfb7a9e321be8b16c3a0b3c7a3c",
+      "inputHash": "sha1-2d7ce91ded24645967d41bc12ad087645beb394d",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2673,
+      "inputChars": 123,
       "inputTruncated": false,
       "offset": 500
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/18286",
       "contentType": "thesis",
-      "inputHash": "sha1-c98d8d304d3fc4945c9fe11fa6d8d6aea1684d40",
+      "inputHash": "sha1-4d98cf590a9d67ba866dc3d4aaaf47fd6c937932",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2509,
+      "inputChars": 110,
       "inputTruncated": false,
       "offset": 501
     },
@@ -6446,12 +6423,11 @@
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/19306",
       "contentType": "thesis",
-      "inputHash": "sha1-0776e2c19dbfa889b4ff45292caf25edd2efaca1",
+      "inputHash": "sha1-fe562d8ccd3507100e7eee24acefd271f5c39090",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2266,
+      "inputChars": 245,
       "inputTruncated": false,
       "offset": 505
     },
@@ -6481,36 +6457,33 @@
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/19901",
       "contentType": "thesis",
-      "inputHash": "sha1-8a0a2125e18723704902ad046737938647d87e39",
+      "inputHash": "sha1-9e3bb02e85c67986a47bc09d63ea491719602922",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2928,
+      "inputChars": 46,
       "inputTruncated": false,
       "offset": 508
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/20174",
       "contentType": "thesis",
-      "inputHash": "sha1-6cbbe5a8c9bd6c93ffb9e226a5262a28efae9d91",
+      "inputHash": "sha1-cda035fa97d506ccc983381621fd3f0f654ad3d5",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2131,
+      "inputChars": 108,
       "inputTruncated": false,
       "offset": 509
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/20215",
       "contentType": "thesis",
-      "inputHash": "sha1-c0b62b3f8422083b943785333e9f40325514e38b",
+      "inputHash": "sha1-791dc4b577957792117f419bf77df4a4cf9d8f40",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 3144,
+      "inputChars": 125,
       "inputTruncated": false,
       "offset": 510
     },
@@ -6529,12 +6502,11 @@
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/20268",
       "contentType": "thesis",
-      "inputHash": "sha1-2234bdd6535cc154a513aa8ca3451981fcd316d1",
+      "inputHash": "sha1-c421a819bc890080bdab252326c0e27cba466b52",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2153,
+      "inputChars": 84,
       "inputTruncated": false,
       "offset": 512
     },
@@ -6564,12 +6536,11 @@
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/21188",
       "contentType": "thesis",
-      "inputHash": "sha1-093d9150bc756ddd30b15b69d317c45ed4fb61ae",
+      "inputHash": "sha1-ab7a6e3bb342efbd2b6821e096de086c2e1de81f",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2116,
+      "inputChars": 137,
       "inputTruncated": false,
       "offset": 515
     },
@@ -6587,12 +6558,11 @@
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/21326",
       "contentType": "thesis",
-      "inputHash": "sha1-0a47d91223cdd5e0ee907dd463d5a78a562e2ec2",
+      "inputHash": "sha1-240685a3f9c708afe477721394afccdb946d727d",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2170,
+      "inputChars": 62,
       "inputTruncated": false,
       "offset": 517
     },
@@ -6610,192 +6580,176 @@
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/38572",
       "contentType": "thesis",
-      "inputHash": "sha1-82ab0392829f70d5dbd7bfe84040c05e02f1459e",
+      "inputHash": "sha1-9a384906c2466d6ce88bd24101b4a00a70c76f36",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 4644,
+      "inputChars": 140,
       "inputTruncated": false,
       "offset": 519
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/39052",
       "contentType": "thesis",
-      "inputHash": "sha1-b42583d8b76e682d29971e38e302afd6fc0e4d1a",
+      "inputHash": "sha1-bb79e5f028b548a5b2c978334be99cfd72c4dceb",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2002,
+      "inputChars": 109,
       "inputTruncated": false,
       "offset": 520
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/39172",
       "contentType": "thesis",
-      "inputHash": "sha1-84e2b2bfe4361e3e41d5ba428a170747f51281a1",
+      "inputHash": "sha1-bc7d76feece204fc9bbb123706c019dfd74d523e",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 3768,
+      "inputChars": 160,
       "inputTruncated": false,
       "offset": 521
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/39629",
       "contentType": "thesis",
-      "inputHash": "sha1-97289e66ddfc69569f168cf18b55cd370f96ff13",
+      "inputHash": "sha1-6e83ef3018257799d5c38f52fcb38a34de248d6b",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2601,
+      "inputChars": 90,
       "inputTruncated": false,
       "offset": 522
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/39727",
       "contentType": "thesis",
-      "inputHash": "sha1-431b1477879ae87d177f9fe52242e8008704381f",
+      "inputHash": "sha1-08cc6e522e1fa40d0d1c1527189da52f2852815f",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2701,
+      "inputChars": 66,
       "inputTruncated": false,
       "offset": 523
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/39728",
       "contentType": "thesis",
-      "inputHash": "sha1-537b7431496f2d2fe41005705b8d48a3c9f9eab3",
+      "inputHash": "sha1-0e73da89995a3eaada694354431a55f07a713453",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 1968,
+      "inputChars": 140,
       "inputTruncated": false,
       "offset": 524
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/39854",
       "contentType": "thesis",
-      "inputHash": "sha1-731e3136bf4300511b110a9a09a3770c449c0cfc",
+      "inputHash": "sha1-a906da99864d9776c383123182a870283e213c4d",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 4148,
+      "inputChars": 69,
       "inputTruncated": false,
       "offset": 525
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/40110",
       "contentType": "thesis",
-      "inputHash": "sha1-6b86ca8f77d0bea415a8f6ba9621dcaa7d9e3cbc",
+      "inputHash": "sha1-373b5ddbe4e3f782d3e05cf9e950dfaeabaf8c89",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2558,
+      "inputChars": 72,
       "inputTruncated": false,
       "offset": 526
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/40116",
       "contentType": "thesis",
-      "inputHash": "sha1-2c026aba7c04fc6c404fc7e9648fe7b2488b7997",
+      "inputHash": "sha1-dd9794447aa480168c9488b293160754126697d0",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 3759,
+      "inputChars": 39,
       "inputTruncated": false,
       "offset": 527
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/40480",
       "contentType": "thesis",
-      "inputHash": "sha1-fd5087ff34bed1f81f8fe160b25876d25e5b4948",
+      "inputHash": "sha1-7e89691ca25021b93973b3e55df34ff583286f6e",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 3250,
+      "inputChars": 63,
       "inputTruncated": false,
       "offset": 528
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/40510",
       "contentType": "thesis",
-      "inputHash": "sha1-3a6ae8b15a68970ce590d47d0a1da43bb18fa005",
+      "inputHash": "sha1-bf16dd8d7562c5d1a420397e908cca9f83ff5339",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2612,
+      "inputChars": 58,
       "inputTruncated": false,
       "offset": 529
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/40656",
       "contentType": "thesis",
-      "inputHash": "sha1-d9fe721366d72d087042dfa9dd784fd829d226ba",
+      "inputHash": "sha1-b9fb9eb2531a2329ce834f8e08d29a2ca089d12c",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 3035,
+      "inputChars": 175,
       "inputTruncated": false,
       "offset": 530
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/40776",
       "contentType": "thesis",
-      "inputHash": "sha1-e77ca6c6f135bcfaf6e4bed02c9e2f3f2b609ae8",
+      "inputHash": "sha1-2d6d7568fb3b060e331dd77f89312d785df8f871",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 1950,
+      "inputChars": 102,
       "inputTruncated": false,
       "offset": 531
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/40854",
       "contentType": "thesis",
-      "inputHash": "sha1-894d5bcde2d31571178a466ebf54a2614cdb7b7c",
+      "inputHash": "sha1-705d0f3c4ba7d3fbc527853f78d41c50b25ea4cd",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2674,
+      "inputChars": 99,
       "inputTruncated": false,
       "offset": 532
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/41044",
       "contentType": "thesis",
-      "inputHash": "sha1-ab16599b42f1520254698a3cfaf91c150a464419",
+      "inputHash": "sha1-eba6a7754bd5463b2105af0aaca2d6a806c5a2cf",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 3283,
+      "inputChars": 134,
       "inputTruncated": false,
       "offset": 533
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/41124",
       "contentType": "thesis",
-      "inputHash": "sha1-130dc576e40d3115c25098cdea4e35a990839bc4",
+      "inputHash": "sha1-b545df3042b7ca2e6bc15f6c954ffb0d7b0d33ba",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2434,
+      "inputChars": 101,
       "inputTruncated": false,
       "offset": 534
     },
@@ -6873,12 +6827,11 @@
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/41924",
       "contentType": "thesis",
-      "inputHash": "sha1-7fda678425d06fe3a7c8f6675d78894d7c4be8c8",
+      "inputHash": "sha1-a23e28e497c8a211bc9f195d7d4686dd70dffc9c",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 1906,
+      "inputChars": 38,
       "inputTruncated": false,
       "offset": 541
     },
@@ -6921,12 +6874,11 @@
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/42244",
       "contentType": "thesis",
-      "inputHash": "sha1-32b570111eb4be920e8cf8b5a127cd209663d73d",
+      "inputHash": "sha1-df05ef85c4608d4b9ca11abefbafc06b756c10f9",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2282,
+      "inputChars": 135,
       "inputTruncated": false,
       "offset": 545
     },
@@ -6944,24 +6896,22 @@
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/42420",
       "contentType": "thesis",
-      "inputHash": "sha1-5d9e14e654488d4dff26445d6afbd9797fee3932",
+      "inputHash": "sha1-45a001517efadd27de89bf8802b46a1723d520a6",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2364,
+      "inputChars": 77,
       "inputTruncated": false,
       "offset": 547
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/42430",
       "contentType": "thesis",
-      "inputHash": "sha1-d02f96892b960a5889b544fa9d212bbccc559e2d",
+      "inputHash": "sha1-86453a2e65cd3c4a7ff33c9d89760f46003b0c0b",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2107,
+      "inputChars": 153,
       "inputTruncated": false,
       "offset": 548
     },
@@ -7026,12 +6976,11 @@
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/43023",
       "contentType": "thesis",
-      "inputHash": "sha1-831f761dd9d4fdc2952138aaa13775a4af08c977",
+      "inputHash": "sha1-56b7811acd0d24e67a39c67b5c0db50640736067",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 1861,
+      "inputChars": 116,
       "inputTruncated": false,
       "offset": 554
     },
@@ -7119,12 +7068,11 @@
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/48019",
       "contentType": "thesis",
-      "inputHash": "sha1-4444246c72e52051a8d15c1ec22c850a098570d7",
+      "inputHash": "sha1-e96ca818a662ac0784ad10333ced4709f1bc674f",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2444,
+      "inputChars": 147,
       "inputTruncated": false,
       "offset": 562
     },
@@ -7143,12 +7091,11 @@
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/48497",
       "contentType": "thesis",
-      "inputHash": "sha1-2676679910067ba8cf1abde5624af376900673db",
+      "inputHash": "sha1-96a07f057cd27657737f0038195e204f7df21479",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 1974,
+      "inputChars": 67,
       "inputTruncated": false,
       "offset": 564
     },
@@ -7190,12 +7137,11 @@
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/49413",
       "contentType": "thesis",
-      "inputHash": "sha1-e7d278965f9218501a5231c9a12c7c2cf56ab91e",
+      "inputHash": "sha1-802cf99dfa828eedf89cf5de4bf32a878a065c0e",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2417,
+      "inputChars": 101,
       "inputTruncated": false,
       "offset": 568
     },
@@ -7273,12 +7219,11 @@
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/51005",
       "contentType": "thesis",
-      "inputHash": "sha1-ceb646d1bb23e1bd8501c75f69a80ca33263c336",
+      "inputHash": "sha1-7041f36ad676522e2a7bde430529924730a20a39",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 1927,
+      "inputChars": 99,
       "inputTruncated": false,
       "offset": 575
     },
@@ -7309,12 +7254,11 @@
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/52714",
       "contentType": "thesis",
-      "inputHash": "sha1-0ed3c0545ee14a3353d872b1125e9eb54a17eccf",
+      "inputHash": "sha1-0fbfb0d6932657bc4c1305dd5e339d252051a9af",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2147,
+      "inputChars": 143,
       "inputTruncated": false,
       "offset": 578
     },
@@ -7369,12 +7313,11 @@
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/54662",
       "contentType": "thesis",
-      "inputHash": "sha1-907cc11ec282f974333e2263a24f63e9cf5d0f24",
+      "inputHash": "sha1-357176e5353dffa659de662f6ff79303d6c452b1",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2116,
+      "inputChars": 135,
       "inputTruncated": false,
       "offset": 583
     },
@@ -7487,24 +7430,22 @@
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/57226",
       "contentType": "thesis",
-      "inputHash": "sha1-dbf9d14789d5791b4bf5cf92309daae15d3ef95f",
+      "inputHash": "sha1-9beb1ca0481cbf89fcacf9a05a8995ee31c2b37b",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2689,
+      "inputChars": 129,
       "inputTruncated": false,
       "offset": 593
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/57233",
       "contentType": "thesis",
-      "inputHash": "sha1-020f6ee4db50d592d6071debf8461f8e87918c24",
+      "inputHash": "sha1-7aa4cfd35da20f70340cbc00483a0d46a18e5b5a",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 1850,
+      "inputChars": 146,
       "inputTruncated": false,
       "offset": 594
     },
@@ -7522,24 +7463,22 @@
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/5854",
       "contentType": "thesis",
-      "inputHash": "sha1-236e3c71b3de1e53f8358240e152ee54a6411ea2",
+      "inputHash": "sha1-d459b42fe1caa53dd2ff6d8085aabb9dc28425aa",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2991,
+      "inputChars": 164,
       "inputTruncated": false,
       "offset": 596
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/5890",
       "contentType": "thesis",
-      "inputHash": "sha1-e7deaadc230ed4a5c7c828aefb0f4c80e1dc9e94",
+      "inputHash": "sha1-8a005e794d9cfaccab53216b8587edff2459f3b1",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 3228,
+      "inputChars": 122,
       "inputTruncated": false,
       "offset": 597
     },
@@ -7569,12 +7508,11 @@
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/61633",
       "contentType": "thesis",
-      "inputHash": "sha1-81ced0361e1c9370729e4ab7944618bf462b56ff",
+      "inputHash": "sha1-8edc5cc260e1e5057278b7acbbf7a14f90de1614",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2298,
+      "inputChars": 68,
       "inputTruncated": false,
       "offset": 600
     },
@@ -7640,12 +7578,11 @@
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/62776",
       "contentType": "thesis",
-      "inputHash": "sha1-e5efced5f4cc3293504827d249aaf485b218a9ba",
+      "inputHash": "sha1-489e68f3b56413b8477e291062bef2196ce06494",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2242,
+      "inputChars": 126,
       "inputTruncated": false,
       "offset": 606
     },
@@ -7664,12 +7601,11 @@
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/62912",
       "contentType": "thesis",
-      "inputHash": "sha1-b38a58c567c0b841caa5d5f24f4fa34a91fd4569",
+      "inputHash": "sha1-97be7c8a7c86eea7e89c3ff81c3b716c4c22009e",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 1921,
+      "inputChars": 56,
       "inputTruncated": false,
       "offset": 608
     },
@@ -7756,12 +7692,11 @@
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/64129",
       "contentType": "thesis",
-      "inputHash": "sha1-24dc73818fa4ad9509fb67611521e9af0b1ef3bf",
+      "inputHash": "sha1-2fcb10e4b46f448398d338628145730d4c5522ed",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 3443,
+      "inputChars": 63,
       "inputTruncated": false,
       "offset": 616
     },
@@ -7780,72 +7715,66 @@
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/6518",
       "contentType": "thesis",
-      "inputHash": "sha1-c3db486d040e2afc54c8c8bf9b4e1e5ea3dae331",
+      "inputHash": "sha1-2c82d298e018c5ea2b622b636d1999dcd9a7fa6c",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 1557,
+      "inputChars": 56,
       "inputTruncated": false,
       "offset": 618
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/6576",
       "contentType": "thesis",
-      "inputHash": "sha1-612cc6f0525b4b41f28a21d3f9e223e7314a430a",
+      "inputHash": "sha1-f39c5142a44a8d4a290b982321689299e028b082",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2102,
+      "inputChars": 133,
       "inputTruncated": false,
       "offset": 619
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/6612",
       "contentType": "thesis",
-      "inputHash": "sha1-a6207cb6a629fc9df1969f233e6aaf1844a79434",
+      "inputHash": "sha1-5379dba91675046c83fa4da119bf02a51a2da535",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2102,
+      "inputChars": 102,
       "inputTruncated": false,
       "offset": 620
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/6759",
       "contentType": "thesis",
-      "inputHash": "sha1-09767b8623530aeac2f40247a9df012ad1e1ef5f",
+      "inputHash": "sha1-c4b4dff64e798c51f5fc5553836a725b053d4fab",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 1949,
+      "inputChars": 130,
       "inputTruncated": false,
       "offset": 621
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/6895",
       "contentType": "thesis",
-      "inputHash": "sha1-75ce2ab81c943c01f0b001a0826778442f8e286e",
+      "inputHash": "sha1-64faa647ccea7d7f0ccfc8a4cb8e955224bf25bd",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 1959,
+      "inputChars": 93,
       "inputTruncated": false,
       "offset": 622
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/7327",
       "contentType": "thesis",
-      "inputHash": "sha1-e675f36bc477972422efc0a7099faf7fbd44e079",
+      "inputHash": "sha1-c5d67131ea3ab65831483b6cc9480ef4d1e25610",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 2658,
+      "inputChars": 68,
       "inputTruncated": false,
       "offset": 623
     },
@@ -7863,48 +7792,44 @@
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/7821",
       "contentType": "thesis",
-      "inputHash": "sha1-0091883b9f7f46a683fff8534e60a67bad983bd6",
+      "inputHash": "sha1-242f20571058c54c93b4ec9875b2223621e327ae",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 3198,
+      "inputChars": 90,
       "inputTruncated": false,
       "offset": 625
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/7879",
       "contentType": "thesis",
-      "inputHash": "sha1-800a23a83976e6a3d5fdba9303c500f00822524f",
+      "inputHash": "sha1-b6698af13876dac54043008b97bdd88cae9861b7",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 4309,
+      "inputChars": 82,
       "inputTruncated": false,
       "offset": 626
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/8016",
       "contentType": "thesis",
-      "inputHash": "sha1-563756b9a575754b4d5c2031906613ea31a94356",
+      "inputHash": "sha1-009258365aefbc30d0cdb03c398ed811347cfe29",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 3529,
+      "inputChars": 104,
       "inputTruncated": false,
       "offset": 627
     },
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/8221",
       "contentType": "thesis",
-      "inputHash": "sha1-9b510ca07d2a32080b8a24b35c7d6c5e4dad7365",
+      "inputHash": "sha1-668d0a38b23cf3d282ee67c63d73805779d5dbaa",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 3074,
+      "inputChars": 125,
       "inputTruncated": false,
       "offset": 628
     },
@@ -7933,12 +7858,11 @@
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/9282",
       "contentType": "thesis",
-      "inputHash": "sha1-807b6e979a8bd8a10b1cfd5ab772d503afbfc287",
+      "inputHash": "sha1-c15e9c4bdd82ceb3914a2d1a982f0ceb27f2b266",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 4349,
+      "inputChars": 159,
       "inputTruncated": false,
       "offset": 631
     },
@@ -7956,12 +7880,11 @@
     {
       "url": "https://oulurepo.oulu.fi/handle/10024/9546",
       "contentType": "thesis",
-      "inputHash": "sha1-ec80bf8f02a782ad2a73178899304155f03a9047",
+      "inputHash": "sha1-4ca571b8fddc9bad79831489091dbe997233c699",
       "inputSources": [
-        "title",
-        "thesisAbstract"
+        "title"
       ],
-      "inputChars": 1965,
+      "inputChars": 110,
       "inputTruncated": false,
       "offset": 633
     }
