@@ -1,0 +1,373 @@
+{
+  "designId": "DAG_I53Vtag",
+  "sourceUpdatedAt": 1784883512,
+  "extractedAt": "2026-08-10T10:21:02.543Z",
+  "pageCount": 70,
+  "slides": [
+    {
+      "page": 1,
+      "text": "Ihmeitä tekevä\nIhmeitä  tekevä\ntekoäly\nteko äly vai\n         vai\ntavallinen\ntavallinen\ntyökalu?\ntyökalu?\n Askeleita kohti tekoäly(luku)taitoa\n\n\n\n\nRiihimäki 1/2026.\nKT Jari Laru, yliopistonlehtori, teknologiatuettu oppiminen ja opetus. Kasvatustieteiden ja psykologian tiedekunta, Oulun yliopisto. Larux tmi.",
+      "ocrUsed": false
+    },
+    {
+      "page": 2,
+      "text": "Lapsuus            Ylä-aste ja lukio                Opettajaopinnot                   Jatko-opinnot Opettaminen Tutkimus\n     Pelaaminen          Tietoliikenneharrastus          Teknologiapainotteinen sv             Mobiilioppiminen        Tekn. tuettu oppiminen        Tekoäly\n   Kotimikro              PC + Modeemi                      PC + Internet                  Mobiililaitteet                 Digiluokka              Sovellukset\n\n Kasetti   Levyke   Modeemi Tulostin Ohjelmointi Lego robot Videoneuvottelu Älypuhelin                Some        Videot   Robotit Leikkurit ML/AI GenAI/AI\n\n  Tietokonelehdet          ATK          Historia        Teknologiakasvatus        Gradu                           Itsenäisen työskentelyn aika\n\n                                                                                                   Minä jatko-\n                                                                                                                           Minä opettajana            Minä tutkijan\n                                                                                                   opiskelijana\n                     Timo Nauha         Heikki Riekki   Matti Lindh\n\n1975                                                    Tieto- ja viestintä-\n                                                                                                                       Väitös\n                                                                                                                                     Ohjelmoinnillinen\n                                                                                                                                                       2025\n                                                                               Koulutusteknologia,    OPMON\n                                                        tekniikka                   CSCL, SRL      tutkijakoulu                      ajattelu          Tekoäly\n\n\n\n\n                                                        Kari Kumpulainen       Sanna Järvelä      Erno Lehtinen                      Matti Tedre      Teemu Roos\n                                   SYSOP\n\n                                                                        Y2K\n\n\n      0-14v                                        15-29v                                            30-39v                                  40+",
+      "ocrUsed": false
+    },
+    {
+      "page": 3,
+      "text": "A.Tekoälylukutaito",
+      "ocrUsed": false
+    },
+    {
+      "page": 4,
+      "text": "Tekoäly ei ole\n                       tulevaisuutta\n                                  Kaikkialla läsnä oleva ja\n                                    kaikkialle levinnyt\n                                          tekoäly\n\nTekoäly on integroitu syvästi sosiaalisen median palveluihin",
+      "ocrUsed": false
+    },
+    {
+      "page": 5,
+      "text": "OSA A: Millainen työkalu tekoäly on?   Horvitz, E., & Mitchell, T. M. (2024). Scientific Progress in Artificial Intelligence: History, Status, and Futures. in Kathleen Hall Jamieson, Anne-Marie Mazza, and\n                                       William Kearney (Eds.) (2024) Realizing the Promise and Minimizing the Perils of AI for Science and the Scientific Community. University of Pennsylvania Press",
+      "ocrUsed": false
+    },
+    {
+      "page": 6,
+      "text": "Asiantuntijajärjestelmät\nAsiantuntijajärjestelmät                                                                                         Käytännön esimerkkejä\n                                                                                                                 symbolisesta tekoälystä\n                                                 Masuunissa rautamalmi pelkistyy raudaksi\n                                               monimutkaisen kemiallisen pelkistysprosessin\n                                                                               seurauksena\n\n\n\n\n                                                                                                                “Asiantuntijajärjestelmät, jotka olivat merkittäviä 1970- ja Chatbotit\n                                                                                                                                                                             Chatbotit (ei\n                                                                                                                                                                                       (ei LLM)\n                                                                                                                                                                                           LLM)\n                                                                                                                1980-luvuilla, pyrkivät tallentamaan asiantuntijoiden\n                                                                                                                tietoa tiiviinä loogisina sääntöinä, usein \"jos-niin\" (if-\n                                                                                                                then) -muodossa, ja suorittamaan päättelyä näiden\n                                                                                                                sääntöjen perusteella”\n\n                                                                                                                Henkilökohtaiset apurit\n                                                                                                                Henkilökohtaiset apurit\nMasuuni 1:n valvomo Raahen terästehtaalla 1980-luvulla\n\n\n\n\n Esimerkki masuunien asiantuntijajärjestelmiä koskevasta tutkimuksesta: S. Amano, T. Takarabe, T.\n Nakamori, et al., “Expert system for blast furnace operation at Kimitsu Works,” ISIJ Int.,30, No. 2, 105–110\n (1990).\n\n\nOSA A: Millainen työkalu tekoäly on?",
+      "ocrUsed": false
+    },
+    {
+      "page": 7,
+      "text": "Syväoppiminen (neuroverkot) on\n mullistanut tietojenkäsittelyn.",
+      "ocrUsed": false
+    },
+    {
+      "page": 8,
+      "text": "2000-luvun auto on esimerkki syväoppimisesta\n  ADAS\nTekoäly (AI) ja syväoppimisalgoritmit ovat kriittisiä\nADAS-anturien antamien tietojen tulkinnassa.\nSovelluksia:\n   Mukautuva vakionopeudensäädin (ACC)\n   Kaistavahti- kaistallapitovahti (pakollinen)\n   Kuolleen kulman tunnistus\n   Törmäyksen välttäminen\n   Hätäjarrutus (pakollinen)\n   Liikennemerkkien tunnistus, Älykäs nopeusavustin (pakollinen)\n   Kuljettajan vireystilan valvonta\n                                                     Fujiyoshi, Hironobu & Hirakawa, Tsubasa & Yamashita, Takayoshi.\n                                                     (2019). Deep learning-based image recognition for autonomous\n                                                     driving. IATSS Research. 43. 10.1016/j.iatssr.2019.11.008.",
+      "ocrUsed": false
+    },
+    {
+      "page": 9,
+      "text": "Myös opetettava kone perustuu syväoppimiselle",
+      "ocrUsed": false
+    },
+    {
+      "page": 10,
+      "text": "“Generatiivinen tekoäly on ollut yksi\n       maailman nopeimmin\n käyttöönotetuista teknologioista”\n\n\n                 Giannakos, M., Azevedo, R., Brusilovsky, P., Cukurova, M., Dimitriadis, Y., Hernandez-Leo, D., ... & Rienties, B. (2024).\n                 The promise and challenges of generative AI in education. Behaviour & Information Technology, 1-27.",
+      "ocrUsed": false
+    },
+    {
+      "page": 11,
+      "text": "Multimodaaliset mallit\nKielimalli                 Musiikkimalli                    Kuvamalli                               Videomalli\n     GPT-5\n     GPT-5 (LLM)\n           (LLM)                            Suno-5\n                                            Suno-5                            NanoBanana\n                                                                              NanoBanana                         Sora-2\n                                                                                                                 Sora-2\nMultimodal\nMultimodal transformer\n           transformer            Bark ja\n                                  Bark ja Chirp\n                                          Chirp models\n                                                models   Multimodal Diffusion\n                                                         Multimodal Diffusion Transformer\n                                                                              Transformer (MMDiT)\n                                                                                          (MMDiT)     Diffusion transfomer\n                                                                                                      Diffusion transfomer\n\n\n\n\n            ..on mahdollistanut generatiivisella tekoälyllä luotujen\n            (synteettisten) sisältöjen räjähdysmäisen kasvun.",
+      "ocrUsed": false
+    },
+    {
+      "page": 12,
+      "text": "Synteettisten sisältöjen luominen on\n              helppoa\n\n\n\n  Outrun video, tehty Google Flow työkalulla.          Tosipankki -video, tehty Google Flow työkalulla.\nHarjoittelin itseni sijoittamista (ingredient) videoon. Testasin kuinka helppoa on tehdä huijausvideo.",
+      "ocrUsed": false
+    },
+    {
+      "page": 13,
+      "text": "50%\n AI",
+      "ocrUsed": false
+    },
+    {
+      "page": 14,
+      "text": "“Mitä sitten, jos ChatGPT kirjoitti sen?”\nTähän artikkeliin on koottu 43 näkemystä, jotka ovat peräisin\nmuun muassa tietojenkäsittelytieteen, markkinoinnin,\ntietojärjestelmien, koulutuksen, politiikan, majoituksen ja\nmatkailun, johtamisen, kustannustoiminnan ja hoitotyön\nalojen asiantuntijoilta ja jotka tarjoavat monitieteistä\nnäkemystä joistakin näistä ongelmista.\n\n\n  “Entä jos tekstin kirjoittamisessa,\narvioinnissa ja lukemisessa käytetään\n              tekoälyä?”\nDwivedi, Y. K., Kshetri, N., Hughes, L., Slade, E. L., Jeyaraj, A., Kar, A. K., ... & Wright, R. (2023). Opinion Paper:“So what if ChatGPT\nwrote it?” Multidisciplinary perspectives on opportunities, challenges and implications of generative conversational AI for research,\npractice and policy. International journal of information management, 71, 102642.",
+      "ocrUsed": false
+    },
+    {
+      "page": 15,
+      "text": "+/-\n  Mitä mieltä itse olet?",
+      "ocrUsed": false
+    },
+    {
+      "page": 16,
+      "text": "A\n Lupaukset\n\n\n\n\n   Haasteet\n           B\n\n\n     Tarpeet\n            C\nYan, L., Greiff, S., Teuber, Z. et al. Promises and challenges of generative artificial\nintelligence for human learning. Nat Hum Behav 8, 1839–1850 (2024).\nhttps://doi.org/10.1038/s41562-024-02004-5                                                Figure 1. Overview of the impacts of generative artificial intelligence on human learning.",
+      "ocrUsed": false
+    },
+    {
+      "page": 17,
+      "text": "Neljä (viisi) eri tapaa tarkastella\n     tekoälyä opetuksessa\n                 AI työkaluna\n             oppilaan väline                                           Tekoäly oppimisen\n             opettajan väline                                              sisältönä\n             instituution väline\n\n              Hybridiälykkyys\n\n                AI &                                               Tekoälyn vaikutusten\n         oppimisanalytiikka                                           ymmärtäminen\n\nHolmes, W., Persson, J., Chounta, I. A., Wasson, B., & Dimitrova, V. (2022). Artificial intelligence and education: A\ncritical view through the lens of human rights, democracy and the rule of law. Council of Europe.",
+      "ocrUsed": false
+    },
+    {
+      "page": 18,
+      "text": "AI ja oppilas\n Oppimisen tuki, oppimateriaalit- ja\n        tehtävät, työkalut\n\n\n\n\nAI ja opettaja\nSuunnittelu, opetus, tehtävät/kokeet,\n   formatiivinen/summatiivinen\n       arviointi (EU AI ACT)",
+      "ocrUsed": false
+    },
+    {
+      "page": 19,
+      "text": "",
+      "ocrUsed": false
+    },
+    {
+      "page": 20,
+      "text": "",
+      "ocrUsed": false
+    },
+    {
+      "page": 21,
+      "text": "2 kirjallisuuskatsausta, joissa väitettiin että “tekoäly” tukee\noppimista. Nämä herättivät paljon keskustelua..\nChatGPT antaa nopeaa apua. Se tarjoaa välitöntä\ntukea tehtävissä. Se auttaa ongelmanratkaisussa.\nSe tukee monia oppimismenetelmiä. Erityisen\nhyvin se sopii ongelmapohjaiseen oppimiseen. Se\ntukee myös yksilöllistettyä oppimista.\nSe auttaa kehittämään taitoja ja osaamista. Se\ntukee korkeamman tason ajattelua. Se auttaa\nkielenoppimisessa. Se voi tukea itsesäädeltyä\noppimista.\nOpettajan rooli on täydentävä. Opettajat ovat\nkeskeisiä.\nChatGPT voi auttaa opettajia työssä. Se tukee                                                 “Rushed research”\noppituntien suunnittelua. Se voi antaa palautetta                                                                        CRITIQUE:\n\n                                                                                                           While still early, these findings already\nopiskelijoille.                                                                                            paint the picture that, as with all other\n                                                                                                          tools (or media, per Clark), the concrete\n\n\nOpettajat vastaavat työkalun integroinnista.\n                                                                                                         instantiation of how learners can interact\n                                                                                                           with, rely on, and derive insights from\n                                                                                                                ChatGPT varies dramatically.\n\n\nHeidän tehtävänsä on suunnitella opetusta. He\n                                                                                                         Given this, it is surprising that Deng et al.\n                                                                                                            (2025), based on 18 primary studies\n                                                                                                             evaluating academic performance,\n\nvarmistavat asianmukaisen käytön.\n                                                                                                             concluded that ChatGPT improves\n                                                                                                                            learning.\n\n\n\n\n                                                                                                                                                         Wang, J., & Fan, W. (2025). The effect of ChatGPT on\n                                                    Deng, R., Jiang, M., Yu, X., Lu, Y., & Liu, S. (2024). Does                                          students’ learning performance, learning perception, and\n                                                    ChatGPT enhance student learning? A systematic review                                                higher-order thinking: insights from a meta-analysis.\n                                                    and meta-analysis of experimental studies. Computers &                                               Humanities and Social Sciences Communications, 12(1), 1-\n                                                    Education, 105224.                                                                                   21.",
+      "ocrUsed": false
+    },
+    {
+      "page": 22,
+      "text": "?",
+      "ocrUsed": false
+    },
+    {
+      "page": 23,
+      "text": "?",
+      "ocrUsed": false
+    },
+    {
+      "page": 24,
+      "text": "“ChatGPT, kuten muutkin\nyleiskäyttöiset\ntekoälyjärjestelmät, on\ntyökalu eikä oppimisen tai\nopetuksen menetelmä.”\nWeidlich, J., D. Gašević, H. Drachsler, and P. Kirschner. 2025. “ ChatGPT in Education: An\nEffect in Search of a Cause.” Journal of Computer Assisted Learning 41, no. 5: e70105.\nhttps://doi.org/10.1111/jcal.70105.",
+      "ocrUsed": false
+    },
+    {
+      "page": 25,
+      "text": "“Oppimisen tukemiseksi ChatGPT tai\nmikä tahansa tekoälyjärjestelmä on\nintegroitava ja yhdistettävä\nopetusmenetelmään,\npedagogiikkaan.”\nWeidlich, J., D. Gašević, H. Drachsler, and P. Kirschner. 2025. “ ChatGPT in Education: An\nEffect in Search of a Cause.” Journal of Computer Assisted Learning 41, no. 5: e70105.\nhttps://doi.org/10.1111/jcal.70105.",
+      "ocrUsed": false
+    },
+    {
+      "page": 26,
+      "text": "B.Tekoälylukutaito\n Sinun vastuulla.",
+      "ocrUsed": false
+    },
+    {
+      "page": 27,
+      "text": "Tekoälylukutaitovaatimus astui\nvoimaan 2.2.2025 (EU tekoälyasetus)\n   Tätä asetusta olisi sovellettava 2 päivästä elokuuta 2026. Kun kuitenkin otetaan huomioon tietyt tekoälyn käyttötavat, joita ei\n   voida hyväksyä, kieltoja ja tämän asetuksen yleisiä säännöksiä olisi sovellettava jo 2 päivästä helmikuuta 2025.\n\n\n\n\n    Maamme                                       AI LIT                                      DigComp\ntekoälysuositukset                            Framework                                   3.0 viitekehys\n                                              (PISA 2029)",
+      "ocrUsed": false
+    },
+    {
+      "page": 28,
+      "text": "myös vuoden 2029 PISA innovative domain!",
+      "ocrUsed": false
+    },
+    {
+      "page": 29,
+      "text": "Työkalu Kohde",
+      "ocrUsed": false
+    },
+    {
+      "page": 30,
+      "text": "",
+      "ocrUsed": false
+    },
+    {
+      "page": 31,
+      "text": "Microsoft syventävä lukuohjelma\n                        SanomaPro on yksi\n                        lukuisista toimijoista,\n                        jotka ovat integroineet\n                        syventävän lukuohjelman\n                        osaksi tuotettaan.\n                        Syventävän lukuohjelman\n                        avulla oppilas voi\n                        huomaamattomasti\n                        eriyttää omaa\n                        lukukokemustaan.\n                        Sopii jokaiselle, ei\n                        pelkästään tukea\n                        tarvitseville.",
+      "ocrUsed": false
+    },
+    {
+      "page": 32,
+      "text": "",
+      "ocrUsed": false
+    },
+    {
+      "page": 33,
+      "text": "Teams &\n oppimisen\napuohjelmat",
+      "ocrUsed": false
+    },
+    {
+      "page": 34,
+      "text": "Tehtävä:   Mene teamsiin\n           Valitse “ei\n           tärkeä teams”\n           Luo tehtävä\n           Käytä\n           oppimisen\n           apuohjelmia",
+      "ocrUsed": false
+    },
+    {
+      "page": 35,
+      "text": "",
+      "ocrUsed": false
+    },
+    {
+      "page": 36,
+      "text": "",
+      "ocrUsed": false
+    },
+    {
+      "page": 37,
+      "text": "Joko olet testannut\nCopilotin teach työkalua?\nKohta olet!",
+      "ocrUsed": false
+    },
+    {
+      "page": 38,
+      "text": "Tehtävä\n               Mene Copilot sivulle\n               Valitse “teach”\n               Luo\n               opetusmateriaalia tai\n               tuntisuunnitelma\n               HUOM! Suomalainen\n               OPS tulee vasta\n\nMateriaalit    helmikuussa!",
+      "ocrUsed": false
+    },
+    {
+      "page": 39,
+      "text": "Tehtävä\n              Mene Copilot sivulle\n              Valitse “Create”\n              Luo opetusta\n              tukevaa kuva- ja\n              infografiikkamateria\n              alia\n              Analysoi saitko\n\nKuvat ym..    kuranttia tavaraa,\n              muuta tarvittaessa.",
+      "ocrUsed": false
+    },
+    {
+      "page": 40,
+      "text": "Tehtävä\n           Mene Copilot sivulle\n           Valitse “New agent”\n           Luo opetusta tai\n           oppimista tukeva\n           agentti “describe”\n           toiminnolla\n           Analysoi saitko\n\nAGENTIT    kuranttia tavaraa,\n           muuta tarvittaessa.",
+      "ocrUsed": false
+    },
+    {
+      "page": 41,
+      "text": "",
+      "ocrUsed": false
+    },
+    {
+      "page": 42,
+      "text": "",
+      "ocrUsed": false
+    },
+    {
+      "page": 43,
+      "text": "Tekoälylukutaito?\n  tekoälyosaaminen",
+      "ocrUsed": false
+    },
+    {
+      "page": 44,
+      "text": "Työkalu Kohde",
+      "ocrUsed": false
+    },
+    {
+      "page": 45,
+      "text": "Tekoälylukutaitovaatimus astui\nvoimaan 2.2.2025 (EU tekoälyasetus)\n   Tätä asetusta olisi sovellettava 2 päivästä elokuuta 2026. Kun kuitenkin otetaan huomioon tietyt tekoälyn käyttötavat, joita ei\n   voida hyväksyä, kieltoja ja tämän asetuksen yleisiä säännöksiä olisi sovellettava jo 2 päivästä helmikuuta 2025.\n\n\n\n\n    Maamme                                       AI LIT                                      DigComp\ntekoälysuositukset                            Framework                                   3.0 viitekehys\n                                              (PISA 2029)",
+      "ocrUsed": false
+    },
+    {
+      "page": 46,
+      "text": "Lukemistoa",
+      "ocrUsed": false
+    },
+    {
+      "page": 47,
+      "text": "myös vuoden 2029 PISA innovative domain!",
+      "ocrUsed": false
+    },
+    {
+      "page": 48,
+      "text": "myös vuoden 2029 PISA innovative domain!",
+      "ocrUsed": false
+    },
+    {
+      "page": 49,
+      "text": "Generation AI\n                                                                                Generation AI sovellukset\n                                                                                esi- ja perusopetukseen\n                                                                              Sovelluksia on kehitetty 500+ oppilaan kanssa\n\n  https://www.generation-ai-stn.fi                           Kuinka “ChatGPT” toimii?                     Miten some toimii?\n\n\nKasvatustiede            Kehitämme pedagogisia\n                         puitteita tekoäly- ja\n                         turvallisuuskasvatukselle            Kouluta oma pieni kielimalli selaimessa   Miten some suosittelee?\n\n\nOikeustiede\n                                                              omilla aineistoillasi!                    Somesimulaattori luokkahuoneita varten.\n\n                         Kehitämme uusia esi- ja\n                                                        Kuinka konenäkö toimii? Voiko tekoälyä huijata?\n                         perusopetukseen soveltuvia\n                         tekoälyn opetusvälineiden ja -\nTietojenkäsittelytiede   menetelmien sekä\n                         oppimiskokonaisuuksien\n                                                              Tee omia appeja koneoppimisen avulla.     Kilpaile luokkakavereiden kanssa siitä\n\n                         yhdistelmiä                          Käytä omaa opetusaineistoa!               kuka onnistuu huijaamaan tekoälyä!\n\n\n\nMuut osapuolet           Edistämme lasten oikeuksien          Materiaalit ja sovellukset:\n                         toteutumista tekoälyyn                       www.gen-ai.fi\n                         perustuvissa järjestelmissä",
+      "ocrUsed": false
+    },
+    {
+      "page": 50,
+      "text": "Teema 1. Tutustu tekoälyyn\n\n    Oppilaiden tulee tunnistaa tekoälyn “läsnäolo”\n    Heidän tulee kyetä arvioimaan AI:n tuottamien\n    sisältöjen tarkkuutta ja relevanssia\n    Heidän tulee ymmärtää AI:n teknologiset perusteet",
+      "ocrUsed": false
+    },
+    {
+      "page": 51,
+      "text": "1. Oppilaiden tulee tunnistaa\ntekoälyn “läsnäolo”\n                                 Koneoppiminen\n                                 (konenäkö)\n\n\n\n\n                                Profilointi,\n                                suosittelu",
+      "ocrUsed": false
+    },
+    {
+      "page": 52,
+      "text": "1. Oppilaiden tulee tunnistaa\ntekoälyn “läsnäolo”\n\n\n\n\n         Perinteinen tekoäly (AI)                        Oppimista tukevat tekoälyyökalut.\n                           Kasvojentunnistus                     Case Microsoft\n                            (facial detection)\n                                 Kuvantunnistus\n     Generatiivinen            (image recognition)\n     tekoäly (GenAI)                Puheentunnistus\n                                  (speech recognition)\n      Sisällöntuotanto              Teksti puheeksi\n     (teksti, kuva, ääni,           (text to speech)\n          musiikki)              Luonnollisen kielen\n                                 käsittely (natural\n                                 language processing)\n                          Hahmon tunnistus\n                          (pattern recognition)\n               Tiedonlouhinta (data\n               mining)",
+      "ocrUsed": false
+    },
+    {
+      "page": 53,
+      "text": "2. Oppilaiden tulee kyetä arvioimaan AI:n tuottamien sisältöjen tarkkuutta ja\nrelevanssia\n                                          1. Kehote: Tee kuva, jossa selitetään vaihe vaiheelta\n                                          miten fotosynteesi toimii. Aloita auringonvalon\n                                          imeytymisestä, sitten klorofyllin roolista, sen jälkeen\n                                          glukoosin muodostumisesta ja lopuksi hapen\n                                          vapautumisesta.\n\n\n\n\n                                          2. Vertaa ja arvioi\n                                          3. Tarkenna kehotetta",
+      "ocrUsed": false
+    },
+    {
+      "page": 54,
+      "text": "2. Oppilaiden tulee kyetä arvioimaan AI:n                            Generation AI sovellukset\n                                                                     esi- ja perusopetukseen\ntuottamien sisältöjen tarkkuutta ja relevanssia                    Sovelluksia on kehitetty 500+ oppilaan kanssa\n\n                                                  Kuinka “ChatGPT” toimii?                      Miten some toimii?\n\n\n\n\n                                                   Kouluta oma pieni kielimalli selaimessa    Miten some suosittelee?\n                                                   omilla aineistoillasi!                     Somesimulaattori luokkahuoneita varten.\n\n\n\n                                                  Kuinka konenäkö toimii?                    Voiko tekoälyä huijata?\n\n\n\n\n                                                   Tee omia appeja koneoppimisen avulla.      Kilpaile luokkakavereiden kanssa siitä\n                                                   Käytä omaa opetusaineistoa!                kuka onnistuu huijaamaan tekoälyä!\n\n\n\n                                                            Materiaalit ja sovellukset:\n                                                                 www.gen-ai.fi",
+      "ocrUsed": false
+    },
+    {
+      "page": 55,
+      "text": "3. Oppilaiden tulee ymmärtää AI:n teknologiset periaatteet\n\n\n\n\n                                     Materiaalit ja sovellukset:\n                                          www.gen-ai.fi",
+      "ocrUsed": false
+    },
+    {
+      "page": 56,
+      "text": "Teema 2. Sisältöjen luominen",
+      "ocrUsed": false
+    },
+    {
+      "page": 57,
+      "text": "1.Tekoälyn vastuullinen käyttäminen. Varmista,\n että:\n\n\n\n\nSyötteen joukossa ei ole   Tekijänoikeuksien suojaamia          opettajat ovat\n     henkilötietoja          materiaaleja ei käytetä   tekoälylukutaitoisia > oppilaat\n                           syötteenä + tekijänoikeudet    ovat tekoälylukutaitoisia\n                                     yleensä",
+      "ocrUsed": false
+    },
+    {
+      "page": 58,
+      "text": "2.Tekoälytyökalun käyttäminen promptaamalla\n                            Hyvän promptin elementtejä\n               “Toimi apulaisena, joka purkaa yhdistystoiminnan hankalatkin asiat selkeisiin selityksiin. Haluan,\n              että autat Oulun tietokoneharrastajat ry:n hallitusta yhdistyksen toiminnassa. Meillä ei ole aiempaa\n                     kokemusta yhdistystoiminnasta, joten tarvitsemme tukea kokoustekniikassa ja muussa\n              yhdistystoiminnassa. Vastauksiesi tulee olla enintään 300 sanaa. Lisää jokaiseen kehotteeseen pääsy\n              valikkoon, josta voin valita tarvittaessa yksittäisen asian jatkokeskustelun pohjaksi. Odota, että teen\n                                          jonkin valinnan, älä ala suoraan vastaamaan.”\n                         Persoona: Pyydä                                 Tavoite: Mitä                                                                          Rajoitteet: Miten\n                                                                                                               Yleisö: Määrittele      Konteksti: Mitä\n                        tekoälyä ottamaan                               tekoälyn tulee                                                                           tekoäylyn tulee\n                                                                                                                kuka on kohde       tekoälyn tulee tietää\n                               rooli                                        tehdä?                                                                                   toimia\n\n                  Anna selkeitä ohjeita                                                                 Tarjoa konteksti                                    Kokeile ja kehitä\n    Käytä verbejä kuten selitä, käännä, tiivistä tai                               Lisää taustatietoa, kuten kohdeyleisö,                    Promptin laatiminen on iteratiivinen prosessi.\n    vertaa ohjaamaan tekoälyä suoraan haluttuun                                    käyttötarkoitus tai projektin tyyppi (esim.               Jos ensimmäinen versio ei tuota toivottua tulosta,\n    toimintaan. Selkeä komento auttaa mallia                                       raportti, tarina, luettelo). Tämä auttaa tekoälyä         kokeile eri lähestymistapoja, muotoiluja tai\n    ymmärtämään, mitä sen odotetaan tuottavan.                                     tuottamaan sisältöä, joka sopii tilanteeseen ja           tarkennuksia. Hyvä lopputulos voi vaatia useita\n                                                                                   vastaa odotuksia.                                         kierroksia.\nhttps://www.microsoft.com/en-us/education/blog/2024/06/five-quick-prompting-tips-to-get-more-from-your-ai-assistant/",
+      "ocrUsed": false
+    },
+    {
+      "page": 59,
+      "text": "2.Tekoälytyökalun käyttäminen promptaamalla.\nEsimerkkejä kunnollisista prompteista",
+      "ocrUsed": false
+    },
+    {
+      "page": 60,
+      "text": "Task 3. Tekoälyn hallinta",
+      "ocrUsed": false
+    },
+    {
+      "page": 61,
+      "text": "1. Tekoäly voi simuloida erilaisia rooleja\nRooli                              Kuvaus                                             Esimerkki\n\n\n                                   Tekoäly voi auttaa ideoinnissa tai omien           Pohdittuaan asiaa ensin itse, henkilö voi esimerkiksi pyytää tekoälyä\nIdeoinnin apuri\n                                   ideoiden uudelleensanoittamisessa                  luomaan erilaisia vastausmalleja tai ideoita erilaisiin tehtäviin.\n\n\n                                   Tekoäly voi auttaa argumentoinnin                  Käyttäjä voi pohtia erilaisia näkökulmia ilmiöihin keskustelemalla\nKeskustelukumppani\n                                   hiomisessa                                         niistä ensin tekoälyn kanssa.\n\n                                   Tekoäly voi auttaa jaetussa\n                                                                                      Tekoäly voi tukea yhteistyötä, antaa palautetta jaetusta tuotoksesta\nTuki yhteistyön tekemiseen         ongelmanratkaisussa tai antaa vinkkejä\n                                                                                      tai esimerkiksi auttaa projektinhallinnassa.\n                                   yhteistyön sujuvoittamiseen\n\n\n                                   Tekoäly voi auttaa erilaisissa                     Esimerkiksi toiminnan aikatauluttaminen tai tavoitteenasettelu,\nSuunnittelun apuväline\n                                   suunnittelutehtävissä                              tuntisuunnitelman tekeminen\n\n\nAnalyysityökalu tai                Tekoälyn hyödyntäminen                             Aineiston analyysi, visualisointi, järjestäminen, analyysin suunnittelu\ntutkimuksen apuri                  aineistoanalyysissä, kirjallisuuskatsauksissa      tai valitseminen.\n\n\n                                   Tekoäly voi tuottaa tarinoita jotka korostavat Käyttäjä voi pyytävät tekoälyä jatkamaan tarinaa ja ohjata tekoälyä\nTarinankertoja\n                                   erilaisia näkökulmia                           sisällyttämään erilaisia hahmoja.\n\n  Sharples, M. (2023). Towards social generative AI for education: theory, practices and ethics. Learning: Research and Practice, 9:2, 159-167\n  https://doi.org/10.1080/23735082.2023.2261131",
+      "ocrUsed": false
+    },
+    {
+      "page": 62,
+      "text": "Prompti: Haluan ideoida kanssasi toimintaa Oulun\n             tietokoneharrastajat ry:n syyskaudelle.\n             Haluaisimme aktivoida jäsenistöä, mutta emme\n             oikein keksi miten?\n                                                         .\n\n\n\nEsimerkki:\n             GPT-5 mini\n             Hyvä — tässä 6 konkreettista, helposti toteutettavaa ideaa syyskaudelle Oulun\n             tietokoneharrastajat ry:lle.\n               1.Aloittelijoiden koodaus- ja laiteilta (kuukausittain) Lyhyt 2–3 tunnin ilta:\n                 perus-Python/HTML tai Raspberry Pi -projekti. Vastuuhenkilö laatii 1-sivun\n                 ohjeen ja materiaalilistan — jäsenet tuovat kannettimet.\n\n\n\n Ideoinnin\n               2.Mini-hackathon (päivä >6 h)Teema: \"Oulu-sovellus\" tai \"kotiautomaatio\":\n                 tiimit 3–4 hlöä, palkinnot (kirjakaupan lahjakortit). Tarjoa kevyt aamupala\n                 ja käytä tilaa yliopistolta/kirjastosta.\n               3.Kuukausittainen esitelmäilta + QA Jäsenet tai paikalliset asiantuntijat\n\n\n\n   apuri\n                 pitävät 30–45 min esityksen + 15 min keskustelu (esim. kyberturva, tekoäly,\n                 open source). Nauhoita ja jaa lyhyt kooste jäsenille.\n               4.Korjaus- ja neuvontapaja (Drop-in)isätään lapsille sopivia vaihtoehtoja.\n                 Tässä 6 konkreettista, helposti toteutettavaa syyskauden ideaa, joissa on\n                 lapsille suunnattua toimintaa...\n             Prompti2: Unohdin kertoa että toimintaa pitää olla\n             lapsille\n             Hyvä — lisätään lapsille sopivia vaihtoehtoja. Tässä 6 konkreettista, helposti\n             toteutettavaa syyskauden ideaa, joissa on lapsille suunnattua toimintaa:\n               1.Perhe-Piiri: Koodaus & robotiikka (2 h) Lyhyt työpaja, jossa lapsi + aikuinen\n                 tekevät helpon Scratch- tai micro:bit-projektin. Materiaalit: micro:bitit tai\n                 tabletit, ohjeet, vapaaehtoiset ohjaajat. Rajaa ikäryhmät (6–9, 10–14).",
+      "ocrUsed": false
+    },
+    {
+      "page": 63,
+      "text": "2. Käyttäjä voi delegoida tehtäviä monipuolisesti\n\n\n\n Copilot: sanoitus                     Suno:musiikki\n\n\n\n\nCopilot: prompti kuvageneraattorille    Google Gemini NanoBanana",
+      "ocrUsed": false
+    },
+    {
+      "page": 64,
+      "text": "2. Käyttäjä voi delegoida tehtäviä monipuolisesti\n“Ei voi olla totta, että EV3 olisi ainoa vaihtoehto integroida koneoppiminen robotiikkaan.\n                                   Tee minulle selvitys asiasta”\n\nKonenäkö                    Synteettinen koodi                              Robotti",
+      "ocrUsed": false
+    },
+    {
+      "page": 65,
+      "text": "2. Käyttäjä voi delegoida tehtäviä monipuolisesti\n                                                                      Microbit radio\n\n                                            Web Serial (USB)\n\n\n\n\n                               Microbit, joka ottaa USB väylää     Kitronik Move Motor,\nP5.js sovellus, joka           pitkin komennon (numero 1...5)      jota ohjaa Microbit\nhyödyntää Mediapipe            vastaan ja lähettää sen             toisen Microbitin\nkirjastoa (tunnistaa sormet)   radiotietä toiselle microbitille.   lähetystä kuunnellen.\n(koodi vibekoodattu)           (koodi vibekoodattu)                (koodi vibekoodattu)",
+      "ocrUsed": false
+    },
+    {
+      "page": 66,
+      "text": "3. Opettajat ja oppilaat voivat tehdä apureita, agentteja\n                    Kehote:\n                    You are a knowledgeable and unbiased educational assistant for the AILit\n                    Framework. You support educators by providing clear, direct, and evidence-\n                    based answers strictly drawn from the framework. You also assist with lesson\n                    planning, assessment design, curriculum integration, and professional\n                    development.\n\n                    Mandatory Framework Upload & Greeting\n\n                    Hello! Iʼm here to help answer any questions you might have about the AILit\n                    Framework. Before we begin, please upload the complete AILit Framework\n                    document. Once the document is uploaded and confirmed, we can proceed.\n                    I can also assist with:\n\n                    Lesson Planning\n                    Q&A\n                    Assessment Design\n                    Curriculum Integration\n                    Professional Development\n\n                    What would you like to work on today?\n\n\n                    Response Guidelines\n\n\n                    Content Adherence:Your responses must be based solely on the AILit\n                    Framework. Reference the framework using exact quotes (enclosed in quotation\n                    marks) followed by the citation marker [CITATION]. Do not paraphrase, infer, or\n                    add any information beyond what is explicitly stated.\n                    Streamlined Stop-Break Process:Do not proceed until the user confirms the\n                    upload. For any multi-step process, end each message with “Step X completed –\n                    awaiting confirmation.”\n                    Handling Out-of-Scope Questions:If a question goes beyond the frameworkʼs\n                    scope, reply:“Thatʼs a great question! However, this information is not contained\n                    in the AILit Framework.”\n                    Referencing Long Frameworks:If the document is too long to quote in full,\n                    retrieve and quote only the relevant sections.",
+      "ocrUsed": false
+    },
+    {
+      "page": 67,
+      "text": "Tehtävä 4. Tekoäly &\nsuunnittelu",
+      "ocrUsed": false
+    },
+    {
+      "page": 68,
+      "text": "Rakenna oma konenäkösovellus\n                           AI ilmiöt:\n                               Data\n                               Koneoppiminen\n                               Luokittelu\n                               Vinouma (bias)\n                               Hauraus\n\n                           Materiaalit:\n                           www.generation-ai-stn.fi/\n                           materiaalit\n\n                           Sovellus:\n                           tm.generation-ai-stn.fi",
+      "ocrUsed": false
+    },
+    {
+      "page": 69,
+      "text": "Rakenna oma GPT malli!\n\n\n\n                 Materiaalit ja sovellukset:\n                      www.gen-ai.fi",
+      "ocrUsed": false
+    },
+    {
+      "page": 70,
+      "text": "Työkalu Kohde",
+      "ocrUsed": false
+    }
+  ],
+  "emptyPages": [
+    19,
+    20,
+    30,
+    32,
+    35,
+    36,
+    41,
+    42
+  ],
+  "extractError": null,
+  "_diagnostic": {
+    "pdfBytes": 37879231,
+    "elapsedMs": 72431
+  }
+}

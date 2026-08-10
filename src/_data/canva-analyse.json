@@ -1,0 +1,1449 @@
+{
+  "generatedAt": "2026-08-10T14:53:55.367Z",
+  "coverage": {
+    "siteRecords": 75,
+    "confirmed": 75,
+    "extracted": 70,
+    "enriched": 73,
+    "noYear": 1
+  },
+  "stats": {
+    "totalSlides": 3030,
+    "slideCountMin": 1,
+    "slideCountMax": 111,
+    "slideCountAvg": 42,
+    "slideCountMedian": 36,
+    "years": {
+      "first": "2023",
+      "last": "2026",
+      "span": 4
+    }
+  },
+  "vuosistat": [
+    {
+      "year": "2023",
+      "count": 1,
+      "langs": {
+        "fi": 1,
+        "en": 0,
+        "fi-en": 0,
+        "unknown": 0
+      }
+    },
+    {
+      "year": "2024",
+      "count": 26,
+      "langs": {
+        "fi": 14,
+        "en": 7,
+        "fi-en": 3,
+        "unknown": 2
+      }
+    },
+    {
+      "year": "2025",
+      "count": 37,
+      "langs": {
+        "fi": 26,
+        "en": 8,
+        "fi-en": 3,
+        "unknown": 0
+      }
+    },
+    {
+      "year": "2026",
+      "count": 10,
+      "langs": {
+        "fi": 9,
+        "en": 0,
+        "fi-en": 1,
+        "unknown": 0
+      }
+    }
+  ],
+  "kaudet": [
+    {
+      "name": "Herätysvaiheen aika – Tekoäly ilmiönä kouluun",
+      "years": "2023-2023",
+      "count": 1,
+      "summary": "Yksittäinen mutta merkittävä avausesitys, joka asemoi tekoälyn kognitiivisena työkaluna ja oppimisen välineenä. Älypuhelin toimii konkreettisena sillanrakentajana arkiteknologian ja tekoälypohjaisten oppimisympäristöjen välillä. Kausi ennakoi tulevan laajan tekoälykoulutusaallon.",
+      "keyThemes": [
+        "tekoalylukutaito",
+        "kognitiiviset-tyokalut",
+        "alykas-oppimisymparisto",
+        "oppimisanalytiikka"
+      ]
+    },
+    {
+      "name": "Läpimurron ja perustan rakentamisen aika – Generatiivinen tekoäly koululuokkaan",
+      "years": "2024-2024",
+      "count": 26,
+      "summary": "Tuotteliain ja monipuolisin kausi suhteessa aiheiden leveysasteeseen: generatiivinen tekoäly, EU AI Act, datalukutaito, oppimisanalytiikka ja lasten digitaaliset oikeudet kietoutuvat yhteen. Generation AI -hanke nousee rakenteelliseksi kehykseksi lähes kaikille esityksille, ja opettajien täydennyskoulutus (VESO-päivät, AVI, digitutorit) muodostaa pääasiallisen levityskanavan. Holmesin ym. (2022) nelikenttä vakiintuu kauden teoreettiseksi selkärangaksi.",
+      "keyThemes": [
+        "tekoalylukutaito",
+        "generatiivinen-tekoaly",
+        "digipedagogiikka",
+        "datalukutaito",
+        "tekoalyn-saantely",
+        "datatoimijuus",
+        "lasten-digitaaliset-oikeudet",
+        "oppimisanalytiikka"
+      ]
+    },
+    {
+      "name": "Skaalauksen ja syventymisen aika – Tekoälylukutaito pääteemaksi",
+      "years": "2025-2025",
+      "count": 37,
+      "summary": "Volyymin huippuvuosi, jossa tekoälylukutaito kristallisoituu selväksi ydinkäsitteeksi. Selitettävä tekoäly (XAI) ja syvä­oppiminen nousevat uusina teknistä ymmärrystä syventävinä alateemoina, ja koneoppimisen opettaminen lapsille konkretisoituu Teachable Machine- ja Somekone-työkalujen kautta. Shadow AI -ilmiö tunnistetaan kieltopolitiikan kritiikkinä, ja hybridisäly sekä tekoälyagentit avaavat seuraavan kehitysaskeleen.",
+      "keyThemes": [
+        "tekoalylukutaito",
+        "selitettava-tekoaly",
+        "koneoppiminen",
+        "syvaoppiminen",
+        "generatiivinen-tekoaly",
+        "lasten-digitaaliset-oikeudet",
+        "taydennyskoulutus",
+        "shadow-ai"
+      ]
+    },
+    {
+      "name": "Vakiintumisen ja laajenemisen aika – Profiilit, politiikka ja kriittisyys",
+      "years": "2026-2026",
+      "count": 10,
+      "summary": "Kausi merkitsee siirtymää yksittäisistä koulutuksista rakenteellisempaan vaikuttamiseen: valtakunnallinen opettajakysely (OPH), ITK-keynote ja sivistyslautakuntayhteistyö osoittavat, että Laru toimii jo koulutuspoliittisella tasolla. Kriittinen tekoälylukutaito ('riko, rakenna ja ymmärrä') korvaa pelkän käyttöönotto-orientaation, ja tekoälyaikakauden opettajaprofiilit tuovat tutkimusdatan mukaan diskurssiin.",
+      "keyThemes": [
+        "tekoalylukutaito",
+        "tekoalyn-saantely",
+        "digipedagogiikka",
+        "taydennyskoulutus",
+        "koulutuspolitiikka",
+        "selitettava-tekoaly",
+        "tpack"
+      ]
+    }
+  ],
+  "punaisetLangat": [
+    {
+      "name": "Teknologia kognitiivisena työkaluna – ei itseisarvona",
+      "description": "Jokaisella kaudella teknologia esitetään ajattelun laajentajana, ei pedagogiikan korvikkeena. SlideSharessa tämä näkyi scaffolding- ja jaetun kognition teoriana; Canva-kaudella sama ajatus toistuu tekoälylukutaidon vaatimuksena ymmärtää, mitä mustan laatikon sisällä tapahtuu.",
+      "spanning": "2009-2026"
+    },
+    {
+      "name": "Tekoälylukutaito progressiivisena kompetenssina",
+      "description": "Tekoälylukutaito (58 esitystä) ei tarkoita pelkkää käyttötaitoa vaan asteittain syvenevää ymmärrystä: arjen tekoäly → koneoppimisen periaatteet → selitettävä tekoäly → kriittinen arviointi. Tämä progressio rakentuu systemaattisesti vuodesta 2023 alkaen.",
+      "spanning": "2023-2026"
+    },
+    {
+      "name": "Henkilökohtainen narratiivi asiantuntijuuden ankkurina",
+      "description": "80-luvun kotimikroista ja harrastajateknologiasta nykyiseen Generation AI -hankkeen vuorovaikutusvastaavan rooliin kulkeva urapolku toistetaan lähes jokaisessa esityksessä. Se rakentaa uskottavuutta sekä teknisesti että pedagogisesti – puhuja ei ole vain teoreetikko vaan käytännön toimija.",
+      "spanning": "2009-2026"
+    },
+    {
+      "name": "Lasten ja nuorten digitaaliset oikeudet ja turvallisuus",
+      "description": "Lasten digitaaliset oikeudet (16 esitystä) ja tekoälyturvallisuuskasvatus (7 esitystä) kytkeytyvät Generation AI -hankkeen kautta juridiseen ja kasvatukselliseen viitekehykseen. Tämä ei ollut näkyvä teema SlideShare-kaudella, mutta Canva-kaudella se on rakenteellinen osa lähes kaikkia perusopetukseen suunnattuja esityksiä.",
+      "spanning": "2024-2026"
+    },
+    {
+      "name": "Avoin tiedeviestintä ja käytäntöyhteisöihin osallistuminen",
+      "description": "Esitysten jakaminen avoimilla alustoilla, hankkeiden julkinen esittely eri kohderyhmille (opettajat, päättäjät, kansainväliset konferenssit) ja käytännön työkalujen (Teachable Machine, Somekone) ilmainen tarjoaminen heijastavat SlideShare-kauden avoimuusperiaatteen jatkumoa.",
+      "spanning": "2009-2026"
+    }
+  ],
+  "sisallollinenKehitys": [
+    {
+      "phase": "Tekoäly oppimisympäristöjen osana",
+      "years": "2023-2023",
+      "description": "Tekoäly sijoittuu aiemman älykkäiden oppimisympäristöjen ja oppimisanalytiikan perinteen jatkeeksi. ChatGPT-murros tunnistetaan, mutta diskurssi on vielä integroivaa eikä itsenäistä."
+    },
+    {
+      "phase": "Generatiivinen tekoäly opetuksen käytännöllisenä haasteena",
+      "years": "2024-2024",
+      "description": "Painopiste siirtyy selittämisestä toimintamallien tarjoamiseen: opettajille annetaan viitekehyksiä (Holmes ym. 2022), esimerkkejä (Annie Advisor, Teachable Machine) ja lainsäädännöllinen konteksti (EU AI Act). Datalukutaito ja datatoimijuus vakiintuvat rinnakkaisteemoiksi."
+    },
+    {
+      "phase": "Teknisen ymmärryksen syventäminen ja turvallisuusnäkökulma",
+      "years": "2025-2025",
+      "description": "Selitettävä tekoäly (XAI), syvä­oppiminen ja koneoppimisen mekaniikka nousevat oppisisällöiksi pelkän käytön sijaan. Shadow AI -kritiikki haastaa kieltopolitiikan, ja lasten turvallisuuskasvatus saa konkreettisia pedagogisia välineitä."
+    },
+    {
+      "phase": "Kriittinen tekoälylukutaito ja koulutuspoliittinen vaikuttaminen",
+      "years": "2026-2026",
+      "description": "Diskurssi kypsyy: pelkän ymmärtämisen sijaan tavoitellaan kriittistä toimijuutta ('riko, rakenna, ymmärrä'). Tutkimusdata (opettajakysely) ja institutionaaliset yhteistyöt (OPH, sivistyslautakunta) tekevät Larusta koulutuspoliittisen toimijan, ei vain kouluttajan."
+    }
+  ],
+  "aihepiirit": [
+    {
+      "theme": "tekoalylukutaito",
+      "count": 58,
+      "years": {
+        "2023": 1,
+        "2024": 22,
+        "2025": 27,
+        "2026": 8
+      },
+      "examples": [
+        {
+          "title": "AI Friend or Foe? – Tekoäly: ystävä vai vihollinen?",
+          "year": 2026,
+          "designId": "DAHI6X6dR_g"
+        },
+        {
+          "title": "Sivistysverkosto 4.5.",
+          "year": 2026,
+          "designId": "DAHIr3b7Q78"
+        },
+        {
+          "title": "ITK Keynote 2026",
+          "year": 2026,
+          "designId": "DAHHfbdBBkk"
+        }
+      ],
+      "tulkinta": "Korpuksen ydinteema, joka tarkoittaa asteittain syvenevää ymmärrystä tekoälystä: arjen tunnistamisesta koneoppimisen periaatteisiin, selitettävään tekoälyyn ja kriittiseen arviointiin – ei pelkkää työkalujen käyttötaitoa."
+    },
+    {
+      "theme": "generatiivinen-tekoaly",
+      "count": 40,
+      "years": {
+        "2024": 15,
+        "2025": 19,
+        "2026": 6
+      },
+      "examples": [
+        {
+          "title": "AI Friend or Foe? – Tekoäly: ystävä vai vihollinen?",
+          "year": 2026,
+          "designId": "DAHI6X6dR_g"
+        },
+        {
+          "title": "ITK Keynote 2026",
+          "year": 2026,
+          "designId": "DAHHfbdBBkk"
+        },
+        {
+          "title": "IT Kouluttajat meriseminaari – Generation AI -työkalut",
+          "year": 2026,
+          "designId": "DAHEjnS-qfw"
+        }
+      ],
+      "tulkinta": "ChatGPT-murroksen jälkeinen ilmiö, jota käsitellään sekä mahdollisuutena (yksilöllistäminen, opettajan työkalu) että riskinä (akateeminen epärehellisyys, kriittisen ajattelun ohittaminen)."
+    },
+    {
+      "theme": "digipedagogiikka",
+      "count": 34,
+      "years": {
+        "2024": 12,
+        "2025": 15,
+        "2026": 7
+      },
+      "examples": [
+        {
+          "title": "Sivistysverkosto 4.5.",
+          "year": 2026,
+          "designId": "DAHIr3b7Q78"
+        },
+        {
+          "title": "ITK2026 millaisia ovat tekoälyaikakauden opettajaprofiilit",
+          "year": 2026,
+          "designId": "DAHHpQmXT90"
+        },
+        {
+          "title": "IT Kouluttajat meriseminaari – Generation AI -työkalut",
+          "year": 2026,
+          "designId": "DAHEjnS-qfw"
+        }
+      ],
+      "tulkinta": "Tekoälyn pedagogisesti perusteltu integrointi opetukseen – vastakohta teknologiakeskeisyydelle; kysymys on aina siitä, mitä oppimista tapahtuu."
+    },
+    {
+      "theme": "tekoalyn-saantely",
+      "count": 23,
+      "years": {
+        "2024": 8,
+        "2025": 7,
+        "2026": 7,
+        "unknown": 1
+      },
+      "examples": [
+        {
+          "title": "AI Friend or Foe? – Tekoäly: ystävä vai vihollinen?",
+          "year": 2026,
+          "designId": "DAHI6X6dR_g"
+        },
+        {
+          "title": "Sivistysverkosto 4.5.",
+          "year": 2026,
+          "designId": "DAHIr3b7Q78"
+        },
+        {
+          "title": "ITK2026 millaisia ovat tekoälyaikakauden opettajaprofiilit",
+          "year": 2026,
+          "designId": "DAHHpQmXT90"
+        }
+      ],
+      "tulkinta": "EU AI Act ja kansalliset ohjeet koulutuksen käytännön toimintaympäristön muokkaajina – ei abstraktia juridiikkaa vaan konkreettisia velvoitteita opettajille ja kouluille."
+    },
+    {
+      "theme": "taydennyskoulutus",
+      "count": 20,
+      "years": {
+        "2024": 4,
+        "2025": 11,
+        "2026": 5
+      },
+      "examples": [
+        {
+          "title": "Sivistysverkosto 4.5.",
+          "year": 2026,
+          "designId": "DAHIr3b7Q78"
+        },
+        {
+          "title": "ITK2026 millaisia ovat tekoälyaikakauden opettajaprofiilit",
+          "year": 2026,
+          "designId": "DAHHpQmXT90"
+        },
+        {
+          "title": "OPH esitys 18.3.",
+          "year": 2026,
+          "designId": "DAHEMMBGQqc"
+        }
+      ],
+      "tulkinta": "Opettajien in-service-koulutus pääasiallisena muutoskanavana; VESO-päivät, AVI-koulutukset ja webinaarit toistuvat formaatteina."
+    },
+    {
+      "theme": "oppimisanalytiikka",
+      "count": 16,
+      "years": {
+        "2023": 1,
+        "2024": 11,
+        "2025": 3,
+        "unknown": 1
+      },
+      "examples": [
+        {
+          "title": "Tekoäly arjessa – Helsinki Education HUB",
+          "year": 2025,
+          "designId": "DAGkHuQiAJw"
+        },
+        {
+          "title": "Generative AI as a Tool to Adapt Teaching to Learner's Needs",
+          "year": 2025,
+          "designId": "DAGgF7MPYxw"
+        },
+        {
+          "title": "Annie Advisor – Generative AI as a Tool to Adapt Teaching",
+          "year": 2024,
+          "designId": "DAGVpa-x_s4"
+        }
+      ],
+      "tulkinta": "Datapohjainen oppilaiden oppimisen seuranta ja yksilöllistäminen, joka kytkeytyy sekä älykkäisiin oppimisympäristöihin että tekoälypohjaisiin arviointityökaluihin."
+    },
+    {
+      "theme": "datatoimijuus",
+      "count": 16,
+      "years": {
+        "2024": 8,
+        "2025": 7,
+        "unknown": 1
+      },
+      "examples": [
+        {
+          "title": "Miksi some koukuttaa? Somekoneen uusi työkalu",
+          "year": 2025,
+          "designId": "DAGnfqo2Kb8"
+        },
+        {
+          "title": "Miksi some koukuttaa? Miten tekoäly toimii? – ITK2025 Foorum",
+          "year": 2025,
+          "designId": "DAGlZEpfUq8"
+        },
+        {
+          "title": "Tekoälyosaamista kieltenopetukseen",
+          "year": 2025,
+          "designId": "DAGbzVm43CQ"
+        }
+      ],
+      "tulkinta": "Oppilaiden ja opettajien kyky ymmärtää, hallita ja kyseenalaistaa omaa digitaalista jalanjälkeään – vastapaino passiiviselle datan tuottamiselle."
+    },
+    {
+      "theme": "lasten-digitaaliset-oikeudet",
+      "count": 16,
+      "years": {
+        "2024": 6,
+        "2025": 9,
+        "unknown": 1
+      },
+      "examples": [
+        {
+          "title": "Teachable Machine and Somekone – Demo Session EARLI 2025",
+          "year": 2025,
+          "designId": "DAGxAYPpp7E"
+        },
+        {
+          "title": "How to Teach AI Literacy to Primary School Children",
+          "year": 2025,
+          "designId": "DAGwBhlUC1M"
+        },
+        {
+          "title": "Miksi some koukuttaa? Somekoneen uusi työkalu",
+          "year": 2025,
+          "designId": "DAGnfqo2Kb8"
+        }
+      ],
+      "tulkinta": "Juridinen ja eettinen kehys, joka suojelee lapsia tekoälypohjaisten järjestelmien haitoilta ja varmistaa ikätasoisen tietoisuuden omista oikeuksista."
+    },
+    {
+      "theme": "koneoppiminen",
+      "count": 15,
+      "years": {
+        "2024": 3,
+        "2025": 12
+      },
+      "examples": [
+        {
+          "title": "Innokas 2025 – Muutama sananen selitettävästä tekoälystä",
+          "year": 2025,
+          "designId": "DAGcVz1i4_c"
+        },
+        {
+          "title": "Teachable Machine and Somekone – Demo Session EARLI 2025",
+          "year": 2025,
+          "designId": "DAGxAYPpp7E"
+        },
+        {
+          "title": "How to Teach AI Literacy to Primary School Children",
+          "year": 2025,
+          "designId": "DAGwBhlUC1M"
+        }
+      ],
+      "tulkinta": "Tekoälyn tekninen perustaso, jota opetetaan lapsille ja opettajille konkreettisten työkalujen (Teachable Machine) avulla – 'musta laatikko' avataan ymmärrettäväksi."
+    },
+    {
+      "theme": "data-yksityisyys",
+      "count": 14,
+      "years": {
+        "2024": 7,
+        "2025": 6,
+        "unknown": 1
+      },
+      "examples": [
+        {
+          "title": "How to Teach AI Literacy to Primary School Children",
+          "year": 2025,
+          "designId": "DAGwBhlUC1M"
+        },
+        {
+          "title": "Miksi some koukuttaa? Somekoneen uusi työkalu",
+          "year": 2025,
+          "designId": "DAGnfqo2Kb8"
+        },
+        {
+          "title": "Miksi some koukuttaa? Miten tekoäly toimii? – ITK2025 Foorum",
+          "year": 2025,
+          "designId": "DAGlZEpfUq8"
+        }
+      ],
+      "tulkinta": "Henkilötietojen suoja tekoälypalveluissa, erityisesti lasten kohdalla; kytkeytyy vahvasti GDPR:ään ja EU AI Actiin."
+    },
+    {
+      "theme": "selitettava-tekoaly",
+      "count": 11,
+      "years": {
+        "2025": 9,
+        "2026": 2
+      },
+      "examples": [
+        {
+          "title": "IT Kouluttajat meriseminaari – Generation AI -työkalut",
+          "year": 2026,
+          "designId": "DAHEjnS-qfw"
+        },
+        {
+          "title": "Innokas 2025 – Muutama sananen selitettävästä tekoälystä",
+          "year": 2025,
+          "designId": "DAGcVz1i4_c"
+        },
+        {
+          "title": "Teachable Machine and Somekone – Demo Session EARLI 2025",
+          "year": 2025,
+          "designId": "DAGxAYPpp7E"
+        }
+      ],
+      "tulkinta": "XAI-käsite opetussisältönä: miksi läpinäkyvyys tekoälypäätöksissä on tärkeää ja miten sitä voidaan havainnollistaa luokkahuoneessa."
+    },
+    {
+      "theme": "datalukutaito",
+      "count": 11,
+      "years": {
+        "2024": 10,
+        "2025": 1
+      },
+      "examples": [
+        {
+          "title": "Generation AI – Esittely japanilaiselle vieraalle",
+          "year": 2025,
+          "designId": "DAGiEOZxE1k"
+        },
+        {
+          "title": "Generation AI Workshop",
+          "year": 2024,
+          "designId": "DAGVo9SZlYE"
+        },
+        {
+          "title": "International Conference on the Advancement of STEAM 2024",
+          "year": 2024,
+          "designId": "DAGU1vBgqVI"
+        }
+      ],
+      "tulkinta": "Kyky lukea, tulkita ja kyseenalaistaa dataa – tekoälylukutaidon välttämätön edellytys; painottui erityisesti 2024."
+    },
+    {
+      "theme": "hanke-esittely",
+      "count": 9,
+      "years": {
+        "2024": 2,
+        "2025": 6,
+        "2026": 1
+      },
+      "examples": [
+        {
+          "title": "AI Friend or Foe? – Tekoäly: ystävä vai vihollinen?",
+          "year": 2026,
+          "designId": "DAHI6X6dR_g"
+        },
+        {
+          "title": "How to Teach AI Literacy to Primary School Children",
+          "year": 2025,
+          "designId": "DAGwBhlUC1M"
+        },
+        {
+          "title": "Miksi some koukuttaa? Miten tekoäly toimii? – ITK2025 Foorum",
+          "year": 2025,
+          "designId": "DAGlZEpfUq8"
+        }
+      ],
+      "tulkinta": "Generation AI -hankkeen ja sen Shield-ohjelmakontekstin esittely eri kohderyhmille – tutkimuksellisen legitimaation rakentaminen."
+    },
+    {
+      "theme": "syvaoppiminen",
+      "count": 9,
+      "years": {
+        "2025": 7,
+        "2026": 2
+      },
+      "examples": [
+        {
+          "title": "Innokas 2025 – Muutama sananen selitettävästä tekoälystä",
+          "year": 2025,
+          "designId": "DAGcVz1i4_c"
+        },
+        {
+          "title": "Robotiikkaa ja selitettävää tekoälyä – Opetettavan koneen ja Somekoneen uudet ominaisuudet",
+          "year": 2025,
+          "designId": "DAGiQkVcITg"
+        },
+        {
+          "title": "Selitettävä tekoäly opetuksessa – ITK-webinaari",
+          "year": 2025,
+          "designId": "DAGhauE5bHs"
+        }
+      ],
+      "tulkinta": "Neuroverkkoihin perustuva tekoälyn alakategoria, jota käsitellään teknisen ymmärryksen syventämisenä erityisesti 2025 alkaen."
+    },
+    {
+      "theme": "opettajankoulutus",
+      "count": 8,
+      "years": {
+        "2024": 2,
+        "2025": 5,
+        "2026": 1
+      },
+      "examples": [
+        {
+          "title": "ITK2026 millaisia ovat tekoälyaikakauden opettajaprofiilit",
+          "year": 2026,
+          "designId": "DAHHpQmXT90"
+        },
+        {
+          "title": "TkaEdite – Kosovo Finland & Teacher's Professional Development",
+          "year": 2025,
+          "designId": "DAGzvFgFCS8"
+        },
+        {
+          "title": "Finnish Teacher Education & Professional Development",
+          "year": 2025,
+          "designId": "DAGzvFgFCS8"
+        }
+      ],
+      "tulkinta": "Perus- ja täydennyskoulutuksen kehittäminen tekoälyaikaan; kytkeytyy TPACK-malliin ja opettajan digitaaliseen kompetenssiin."
+    },
+    {
+      "theme": "alykas-oppimisymparisto",
+      "count": 8,
+      "years": {
+        "2023": 1,
+        "2024": 5,
+        "2025": 2
+      },
+      "examples": [
+        {
+          "title": "Generative AI as a Tool to Adapt Teaching to Learner's Needs",
+          "year": 2025,
+          "designId": "DAGgF7MPYxw"
+        },
+        {
+          "title": "Annie Advisor – Generative AI as a Tool to Adapt Teaching",
+          "year": 2024,
+          "designId": "DAGVpa-x_s4"
+        },
+        {
+          "title": "Miten tekoälyn kehitys on muuttanut korkeakoulujen toimintaa?",
+          "year": 2025,
+          "designId": "DAGkn90momg"
+        }
+      ],
+      "tulkinta": "SlideShare-kauden oppimisanalytiikka- ja AIED-perinteen jatke, joka konkretisoituu Annie Advisor -tyyppisissä yksilöllistämissovelluksissa."
+    },
+    {
+      "theme": "mediakasvatus",
+      "count": 7,
+      "years": {
+        "2024": 2,
+        "2025": 4,
+        "2026": 1
+      },
+      "examples": [
+        {
+          "title": "ITK Keynote 2026",
+          "year": 2026,
+          "designId": "DAHHfbdBBkk"
+        },
+        {
+          "title": "Miksi some koukuttaa? Somekoneen uusi työkalu",
+          "year": 2025,
+          "designId": "DAGnfqo2Kb8"
+        },
+        {
+          "title": "Miksi some koukuttaa? Miten tekoäly toimii? – ITK2025 Foorum",
+          "year": 2025,
+          "designId": "DAGlZEpfUq8"
+        }
+      ],
+      "tulkinta": "Kriittinen medialukutaito tekoälypohjaisten sisältöjen aikakaudella – synteettiset kuvat, deepfaket ja algoritminen vaikuttaminen kasvatushaasteina."
+    },
+    {
+      "theme": "tekoaly-turvallisuuskasvatus",
+      "count": 7,
+      "years": {
+        "2024": 2,
+        "2025": 3,
+        "2026": 2
+      },
+      "examples": [
+        {
+          "title": "IT Kouluttajat meriseminaari – Generation AI -työkalut",
+          "year": 2026,
+          "designId": "DAHEjnS-qfw"
+        },
+        {
+          "title": "ITK2025 Areena",
+          "year": 2025,
+          "designId": "DAGljuv0cEs"
+        },
+        {
+          "title": "Miksi some koukuttaa? Miten tekoäly toimii? – ITK2025 Foorum",
+          "year": 2025,
+          "designId": "DAGlZEpfUq8"
+        }
+      ],
+      "tulkinta": "Tekoälyn turvallisuusnäkökulma lapsille suunnatussa kasvatuksessa: miten suojautua manipulaatiolta, vaikuttamiselta ja yksityisyyden loukkaukselta."
+    },
+    {
+      "theme": "koulutuspolitiikka",
+      "count": 6,
+      "years": {
+        "2024": 2,
+        "2025": 2,
+        "2026": 2
+      },
+      "examples": [
+        {
+          "title": "Sivistysverkosto 4.5.",
+          "year": 2026,
+          "designId": "DAHIr3b7Q78"
+        },
+        {
+          "title": "OPH esitys 18.3.",
+          "year": 2026,
+          "designId": "DAHEMMBGQqc"
+        },
+        {
+          "title": "TkaEdite – Kosovo Finland & Teacher's Professional Development",
+          "year": 2025,
+          "designId": "DAGzvFgFCS8"
+        }
+      ],
+      "tulkinta": "Kansallinen ja kunnallinen päätöksenteko tekoälyn integroinnista koulutukseen – Laru siirtyy kouluttajasta vaikuttajaksi."
+    },
+    {
+      "theme": "shadow-ai",
+      "count": 6,
+      "years": {
+        "2024": 3,
+        "2025": 3
+      },
+      "examples": [
+        {
+          "title": "Fedutalk – Generative AI in Education (Kosovo)",
+          "year": 2024,
+          "designId": "DAGJOYKh9Xs"
+        },
+        {
+          "title": "Tekoäly arjessa – Helsinki Education HUB",
+          "year": 2025,
+          "designId": "DAGkHuQiAJw"
+        },
+        {
+          "title": "Tekoälyosaamista kieltenopetukseen",
+          "year": 2025,
+          "designId": "DAGbzVm43CQ"
+        }
+      ],
+      "tulkinta": "Ilmiö, jossa tekoälyä käytetään piilossa kielloista huolimatta; toimii perusteluna kieltolähtöisen politiikan kritiikille ja lukutaitopainotteisen lähestymistavan puolesta."
+    },
+    {
+      "theme": "promptaus",
+      "count": 6,
+      "years": {
+        "2025": 6
+      },
+      "examples": [
+        {
+          "title": "Generative AI as a Tool to Adapt Teaching to Learner's Needs",
+          "year": 2025,
+          "designId": "DAGgF7MPYxw"
+        },
+        {
+          "title": "Tekoälylukutaitoinen digiosaaja – Millaisia taitoja opettajalla tulisi olla?",
+          "year": 2025,
+          "designId": "DAG1Ile1f0A"
+        },
+        {
+          "title": "Tekoäly yhdistystoiminnassa",
+          "year": 2025,
+          "designId": "DAGymytxOFg"
+        }
+      ],
+      "tulkinta": null
+    },
+    {
+      "theme": "arviointi",
+      "count": 5,
+      "years": {
+        "2024": 2,
+        "2025": 3
+      },
+      "examples": [
+        {
+          "title": "Tekoäly arjessa – Helsinki Education HUB",
+          "year": 2025,
+          "designId": "DAGkHuQiAJw"
+        },
+        {
+          "title": "Digivoo kommenttipuheenvuoro",
+          "year": 2024,
+          "designId": "DAGPoJGk0WQ"
+        },
+        {
+          "title": "Tekoäly, opettajan työ ja arvioinnin muutos",
+          "year": 2025,
+          "designId": "DAGeJDZdvrc"
+        }
+      ],
+      "tulkinta": null
+    },
+    {
+      "theme": "kriittinen-medialukutaito",
+      "count": 5,
+      "years": {
+        "2024": 2,
+        "2025": 3
+      },
+      "examples": [
+        {
+          "title": "Fedutalk – Generative AI in Education (Kosovo)",
+          "year": 2024,
+          "designId": "DAGJOYKh9Xs"
+        },
+        {
+          "title": "Miksi some koukuttaa? Somekoneen uusi työkalu",
+          "year": 2025,
+          "designId": "DAGnfqo2Kb8"
+        },
+        {
+          "title": "Fedutalk – Generative AI in Education",
+          "year": 2024,
+          "designId": "DAGJOYKh9Xs"
+        }
+      ],
+      "tulkinta": null
+    },
+    {
+      "theme": "kognitiiviset-tyokalut",
+      "count": 4,
+      "years": {
+        "2023": 1,
+        "2025": 2,
+        "2026": 1
+      },
+      "examples": [
+        {
+          "title": "ITK Keynote 2026",
+          "year": 2026,
+          "designId": "DAHHfbdBBkk"
+        },
+        {
+          "title": "Älyä! Teko! Tekoälyajan kognitiiviset työkalut ja ydintaidot",
+          "year": 2025,
+          "designId": "DAGmmceq_uk"
+        },
+        {
+          "title": "Tekoäly osana arkisia sovelluksia",
+          "year": 2025,
+          "designId": "DAGcZaFsb2w"
+        }
+      ],
+      "tulkinta": null
+    },
+    {
+      "theme": "tpack",
+      "count": 4,
+      "years": {
+        "2025": 2,
+        "2026": 2
+      },
+      "examples": [
+        {
+          "title": "ITK2026 millaisia ovat tekoälyaikakauden opettajaprofiilit",
+          "year": 2026,
+          "designId": "DAHHpQmXT90"
+        },
+        {
+          "title": "OPH esitys 18.3.",
+          "year": 2026,
+          "designId": "DAHEMMBGQqc"
+        },
+        {
+          "title": "Digipedailtapäivä – Tekoäly opetuksessa",
+          "year": 2025,
+          "designId": "DAG3KnNdkgw"
+        }
+      ],
+      "tulkinta": null
+    },
+    {
+      "theme": "kansainvalinen-yhteistyo",
+      "count": 3,
+      "years": {
+        "2025": 3
+      },
+      "examples": [
+        {
+          "title": "TkaEdite – Kosovo Finland & Teacher's Professional Development",
+          "year": 2025,
+          "designId": "DAGzvFgFCS8"
+        },
+        {
+          "title": "Finnish Teacher Education & Professional Development",
+          "year": 2025,
+          "designId": "DAGzvFgFCS8"
+        },
+        {
+          "title": "Tekoäly osana arkisia sovelluksia",
+          "year": 2025,
+          "designId": "DAGcZaFsb2w"
+        }
+      ],
+      "tulkinta": null
+    },
+    {
+      "theme": "hybridialykkyys",
+      "count": 3,
+      "years": {
+        "2025": 3
+      },
+      "examples": [
+        {
+          "title": "Tekoälyosaamista kieltenopetukseen",
+          "year": 2025,
+          "designId": "DAGbzVm43CQ"
+        },
+        {
+          "title": "Miten tekoälyn kehitys on muuttanut korkeakoulujen toimintaa?",
+          "year": 2025,
+          "designId": "DAGkn90momg"
+        },
+        {
+          "title": "Tekoälyn ajankohtaiskatsaus – OTAVIA 2025",
+          "year": 2025,
+          "designId": "DAGbCKRvev0"
+        }
+      ],
+      "tulkinta": null
+    },
+    {
+      "theme": "konenako",
+      "count": 3,
+      "years": {
+        "2025": 2,
+        "2026": 1
+      },
+      "examples": [
+        {
+          "title": "Innokas 2025 – Muutama sananen selitettävästä tekoälystä",
+          "year": 2025,
+          "designId": "DAGcVz1i4_c"
+        },
+        {
+          "title": "Selitettävä tekoäly opetuksessa – ITK-webinaari",
+          "year": 2025,
+          "designId": "DAGhauE5bHs"
+        },
+        {
+          "title": "Konenäkö, vibe coding ja robotiikka – Robokampus 2026",
+          "year": 2026,
+          "designId": "DAG-_sTjJGw"
+        }
+      ],
+      "tulkinta": null
+    },
+    {
+      "theme": "pedagogiset-agentit",
+      "count": 3,
+      "years": {
+        "2023": 1,
+        "2024": 1,
+        "2025": 1
+      },
+      "examples": [
+        {
+          "title": "Annie Advisor – Generative AI as a Tool to Adapt Teaching",
+          "year": 2024,
+          "designId": "DAGVpa-x_s4"
+        },
+        {
+          "title": "Tekoälyagentit",
+          "year": 2025,
+          "designId": "DAG5Dgx2Pnw"
+        },
+        {
+          "title": "OPH-webinaari – Tekoäly opetuksessa 2023",
+          "year": 2023,
+          "designId": "DAF0u4DtYTg"
+        }
+      ],
+      "tulkinta": null
+    },
+    {
+      "theme": "yliopistopedagogiikka",
+      "count": 2,
+      "years": {
+        "2025": 1,
+        "2026": 1
+      },
+      "examples": [
+        {
+          "title": "AI Friend or Foe? – Tekoäly: ystävä vai vihollinen?",
+          "year": 2026,
+          "designId": "DAHI6X6dR_g"
+        },
+        {
+          "title": "Tekoälyn vaikutuksia korkeakoulupedagogiikkaan",
+          "year": 2025,
+          "designId": "DAGnKjUyP6c"
+        }
+      ],
+      "tulkinta": null
+    },
+    {
+      "theme": "kieltenopetus",
+      "count": 2,
+      "years": {
+        "2025": 2
+      },
+      "examples": [
+        {
+          "title": "Tekoälyosaamista kieltenopetukseen",
+          "year": 2025,
+          "designId": "DAGbzVm43CQ"
+        },
+        {
+          "title": "Tekoäly osana arkisia sovelluksia",
+          "year": 2025,
+          "designId": "DAGcZaFsb2w"
+        }
+      ],
+      "tulkinta": null
+    },
+    {
+      "theme": "tekoalyagentit",
+      "count": 2,
+      "years": {
+        "2025": 2
+      },
+      "examples": [
+        {
+          "title": "Tekoälyagentit",
+          "year": 2025,
+          "designId": "DAG5Dgx2Pnw"
+        },
+        {
+          "title": "Tekoäly, ystävä vai vihollinen? (FIN)",
+          "year": 2025,
+          "designId": "DAGwaOYI47c"
+        }
+      ],
+      "tulkinta": null
+    },
+    {
+      "theme": "robotiikka",
+      "count": 1,
+      "years": {
+        "2026": 1
+      },
+      "examples": [
+        {
+          "title": "Konenäkö, vibe coding ja robotiikka – Robokampus 2026",
+          "year": 2026,
+          "designId": "DAG-_sTjJGw"
+        }
+      ],
+      "tulkinta": null
+    },
+    {
+      "theme": "ohjaus-ja-opinto-ohjaus",
+      "count": 1,
+      "years": {
+        "2024": 1
+      },
+      "examples": [
+        {
+          "title": "Opopassi-koulutus – Tekoäly ohjauksessa",
+          "year": 2024,
+          "designId": "DAGShP9ekz0"
+        }
+      ],
+      "tulkinta": null
+    }
+  ],
+  "unusedThemes": [
+    "steam-pedagogiikka",
+    "tietoturvakasvatus",
+    "hybridivaikuttaminen"
+  ],
+  "laajimmat": [
+    {
+      "title": "Opopassi-koulutus – Tekoäly ohjauksessa",
+      "designId": "DAGShP9ekz0",
+      "slideCount": 111,
+      "year": 2024,
+      "themes": [
+        "tekoalylukutaito",
+        "generatiivinen-tekoaly",
+        "alykas-oppimisymparisto",
+        "ohjaus-ja-opinto-ohjaus",
+        "tekoalyn-saantely"
+      ],
+      "lang": "fi"
+    },
+    {
+      "title": "AVI-koulutus – Tekoäly opetuksessa",
+      "designId": "DAGSURxXpeI",
+      "slideCount": 100,
+      "year": 2024,
+      "themes": [
+        "tekoalylukutaito",
+        "generatiivinen-tekoaly",
+        "oppimisanalytiikka",
+        "digipedagogiikka",
+        "datalukutaito"
+      ],
+      "lang": "fi"
+    },
+    {
+      "title": "Tekoälyluento ja työpaja (EN)",
+      "designId": "DAGvMN_3jps",
+      "slideCount": 89,
+      "year": 2025,
+      "themes": [
+        "generatiivinen-tekoaly",
+        "koneoppiminen",
+        "syvaoppiminen",
+        "tekoalylukutaito",
+        "digipedagogiikka"
+      ],
+      "lang": "fi-en"
+    },
+    {
+      "title": "Robotiikkaa ja selitettävää tekoälyä – Opetettavan koneen ja Somekoneen uudet ominaisuudet",
+      "designId": "DAGiQkVcITg",
+      "slideCount": 83,
+      "year": 2025,
+      "themes": [
+        "selitettava-tekoaly",
+        "tekoalylukutaito",
+        "syvaoppiminen",
+        "koneoppiminen",
+        "lasten-digitaaliset-oikeudet"
+      ],
+      "lang": "fi"
+    },
+    {
+      "title": "Generative AI as a Tool to Adapt Teaching to Learner's Needs",
+      "designId": "DAGgF7MPYxw",
+      "slideCount": 82,
+      "year": 2025,
+      "themes": [
+        "generatiivinen-tekoaly",
+        "alykas-oppimisymparisto",
+        "oppimisanalytiikka",
+        "promptaus",
+        "hanke-esittely"
+      ],
+      "lang": "en"
+    },
+    {
+      "title": "Tekoälyluento ja työpaja (FIN)",
+      "designId": "DAGvHlFClCY",
+      "slideCount": 73,
+      "year": 2025,
+      "themes": [
+        "generatiivinen-tekoaly",
+        "koneoppiminen",
+        "syvaoppiminen",
+        "digipedagogiikka",
+        "tekoalylukutaito"
+      ],
+      "lang": "fi-en"
+    },
+    {
+      "title": "FCLAB ja norssit – Generation AI",
+      "designId": "DAGCs-TdPZE",
+      "slideCount": 72,
+      "year": 2024,
+      "themes": [
+        "tekoalylukutaito",
+        "datalukutaito",
+        "datatoimijuus",
+        "generatiivinen-tekoaly",
+        "digipedagogiikka"
+      ],
+      "lang": "fi"
+    },
+    {
+      "title": "VESO 2024 – Tekoäly opetuksessa",
+      "designId": "DAGPXRorTeg",
+      "slideCount": 71,
+      "year": 2024,
+      "themes": [
+        "tekoalylukutaito",
+        "generatiivinen-tekoaly",
+        "tekoalyn-saantely",
+        "taydennyskoulutus",
+        "digipedagogiikka",
+        "data-yksityisyys",
+        "oppimisanalytiikka"
+      ],
+      "lang": "fi-en"
+    },
+    {
+      "title": "VESO elokuu 2024 – Tekoäly koulussa",
+      "designId": "DAGPXRorTeg",
+      "slideCount": 71,
+      "year": 2024,
+      "themes": [
+        "tekoalylukutaito",
+        "generatiivinen-tekoaly",
+        "tekoalyn-saantely",
+        "taydennyskoulutus",
+        "digipedagogiikka",
+        "data-yksityisyys",
+        "oppimisanalytiikka"
+      ],
+      "lang": "fi-en"
+    },
+    {
+      "title": "Ihmeitä tekevä tekoäly vai tavallinen työkalu? – VESO 2026",
+      "designId": "DAG_I53Vtag",
+      "slideCount": 70,
+      "year": 2026,
+      "themes": [
+        "tekoalylukutaito",
+        "generatiivinen-tekoaly",
+        "syvaoppiminen",
+        "digipedagogiikka",
+        "taydennyskoulutus"
+      ],
+      "lang": "fi"
+    }
+  ],
+  "kielet": {
+    "total": {
+      "fi": 51,
+      "en": 15,
+      "fi-en": 7,
+      "unknown": 2
+    },
+    "byYear": {
+      "2023": {
+        "fi": 1,
+        "en": 0,
+        "fi-en": 0,
+        "unknown": 0
+      },
+      "2024": {
+        "fi": 14,
+        "en": 7,
+        "fi-en": 3,
+        "unknown": 2
+      },
+      "2025": {
+        "fi": 26,
+        "en": 8,
+        "fi-en": 3,
+        "unknown": 0
+      },
+      "2026": {
+        "fi": 9,
+        "en": 0,
+        "fi-en": 1,
+        "unknown": 0
+      }
+    }
+  },
+  "kontekstit": {
+    "byKategoria": [
+      {
+        "label": "täydennyskoulutus",
+        "count": 39
+      },
+      {
+        "label": "konferenssi-keynote",
+        "count": 17
+      },
+      {
+        "label": "kansainvälinen-konferenssi",
+        "count": 10
+      },
+      {
+        "label": "webinaari",
+        "count": 5
+      },
+      {
+        "label": "hanke-esittely",
+        "count": 3
+      },
+      {
+        "label": "muu",
+        "count": 1
+      }
+    ],
+    "byFolder": [
+      {
+        "label": "Täydennyskoulutus",
+        "count": 45
+      },
+      {
+        "label": "Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit",
+        "count": 29
+      },
+      {
+        "label": "Koulutukset, kurssimateriaalit ja opetuksen kehitystyö",
+        "count": 1
+      }
+    ],
+    "byJarjestaja": [
+      {
+        "label": "ITK 2026 (Tampere)",
+        "count": 2
+      },
+      {
+        "label": "KTPK 2025 (Kasvatustieteen päivät)",
+        "count": 2
+      },
+      {
+        "label": "Kulosaaren yhteiskoulu (KYK)",
+        "count": 2
+      },
+      {
+        "label": "OPH-hanke kieltenopettajille (Kieli 2025)",
+        "count": 2
+      },
+      {
+        "label": "Oulun yliopisto / OPE-keskus",
+        "count": 1
+      },
+      {
+        "label": "Kokoomus / Oulun paikallisyhdistysten sivistysverkosto",
+        "count": 1
+      },
+      {
+        "label": "IT Kouluttajat ry",
+        "count": 1
+      },
+      {
+        "label": "Opetushallitus (OPH) / Verkostojen verkosto",
+        "count": 1
+      },
+      {
+        "label": "TkaEdite (Kosovon-Suomen opettajankoulutushanke)",
+        "count": 1
+      },
+      {
+        "label": "Innokas-verkosto",
+        "count": 1
+      },
+      {
+        "label": "Fedutalk / Kosovo",
+        "count": 1
+      },
+      {
+        "label": "TkaEdite (Kosovon-Suomen yhteishanke)",
+        "count": 1
+      },
+      {
+        "label": "EARLI (European Association for Research on Learning and Instruction)",
+        "count": 1
+      },
+      {
+        "label": "Viron opettajankoulutustapahtuma",
+        "count": 1
+      },
+      {
+        "label": "Digipedan verkostojen verkosto",
+        "count": 1
+      },
+      {
+        "label": "ITK-konferenssi",
+        "count": 1
+      },
+      {
+        "label": "ITK2025 (Foorumi-osio)",
+        "count": 1
+      },
+      {
+        "label": "Helsinki Education HUB (Helsingin kaupunki)",
+        "count": 1
+      },
+      {
+        "label": "Innokas-verkosto (Innokas päivät)",
+        "count": 1
+      },
+      {
+        "label": "Oulun yliopisto / Generation AI -hanke (japanilaisvierailu)",
+        "count": 1
+      },
+      {
+        "label": "ITK / Interaktiivinen Tekniikka Koulutuksessa (webinaari)",
+        "count": 1
+      },
+      {
+        "label": "Lithuania AI accelerator -tapahtuma",
+        "count": 1
+      },
+      {
+        "label": "Labquality Days 2025",
+        "count": 1
+      },
+      {
+        "label": "Kielten opettajien täydennyskoulutus (OPH-hanke)",
+        "count": 1
+      },
+      {
+        "label": "Emerald Publishing – virtuaalinen kirjajulkistus",
+        "count": 1
+      }
+    ]
+  },
+  "kayttokontekstit": [
+    {
+      "name": "Opettajien täydennyskoulutuspäivät (VESO, AVI, digitutorit)",
+      "description": "Kuntien ja aluehallintoviraston järjestämät koulutuspäivät opetushenkilöstölle; yleisönä luokan- ja aineenopettajat, rehtori mukaan lukien",
+      "count": 12,
+      "examples": [
+        "VESO 2024 – Tekoäly opetuksessa",
+        "AVI-koulutus – Tekoäly opetuksessa",
+        "Digitutorit 2024 – Tekoäly opetuksessa",
+        "VESO 2026 – Tekoäly opetuksessa"
+      ]
+    },
+    {
+      "name": "Kansainväliset konferenssit ja webinaarit",
+      "description": "Akateemiset ja ammattilaiskonferenssit kuten ITK, EARLI ja STEAM-konferenssi; yleisönä tutkijat, opettajankouluttajat ja kansainväliset asiantuntijat",
+      "count": 10,
+      "examples": [
+        "International Conference on the Advancement of STEAM 2024",
+        "Teachable Machine and Somekone – Demo Session EARLI 2025",
+        "ITK Keynote 2026",
+        "Fedutalk – Generative AI in Education (Kosovo)"
+      ]
+    },
+    {
+      "name": "Generation AI -hankkeen esittelyt ja sidosryhmätapaamiset",
+      "description": "Hankkeen tulosten ja työkalujen esittely yhteistyökumppaneille, rahoittajille ja verkostoille; yleisönä tutkijat, koulutoimijat ja kansainväliset vieraat",
+      "count": 9,
+      "examples": [
+        "Generation AI – Esittely japanilaiselle vieraalle",
+        "ITK2025 Areena",
+        "FCLAB ja norssit – Generation AI",
+        "How to Teach AI Literacy to Primary School Children"
+      ]
+    },
+    {
+      "name": "Yliopisto-opetus ja opettajankoulutus",
+      "description": "Oulun yliopiston opettajankoulutuksen ja korkeakoulujen kurssit ja luennot; yleisönä opettajaopiskelijat ja yliopistoyhteisö",
+      "count": 7,
+      "examples": [
+        "Learning AI Literacy in Collaborative Projects with an AI Education Tool",
+        "Tekoälyn vaikutuksia korkeakouluopetukseen",
+        "Tekoälylukutaitoinen digiosaaja – Millaisia taitoja opettajalla tulisi olla?"
+      ]
+    },
+    {
+      "name": "Koulutuspoliittiset ja hallinnolliset tilaisuudet",
+      "description": "OPH-webinaarit, kuntaliittoverkostot, sivistyslautakunnat ja vastaavat; yleisönä päättäjät, virkamiehet ja koulutuksen johtajat",
+      "count": 6,
+      "examples": [
+        "From EU AI Act to National AI Guidelines",
+        "Kuntaliitto digiverkosto – Tekoäly koulutuksessa",
+        "Sivistysverkosto 4.5.",
+        "OPH esitys 18.3."
+      ]
+    }
+  ],
+  "vertailuSlideShare": {
+    "jatkuvuudet": [
+      "Teknologia kognitiivisena työkaluna -kehys (scaffolding → tekoälylukutaito)",
+      "Henkilökohtainen urapolku-narratiivi asiantuntijuuden perustana",
+      "Avoimuus ja materiaalien jakaminen käytäntönä",
+      "Opettajien täydennyskoulutus keskeisimpänä vaikuttamiskanavana",
+      "Teknologiapessimismin ja -optimismin tasapainoilu – kriittinen mutta ei torjuva asenne"
+    ],
+    "uudet": [
+      "Generatiivinen tekoäly ja suuret kielimallit itsenäisenä ilmiönä",
+      "Selitettävä tekoäly (XAI) opetussisältönä",
+      "Lasten digitaaliset oikeudet ja tekoälyturvallisuuskasvatus juridisena kehyksenä",
+      "EU AI Act ja kansallinen tekoälysääntely koulutuksen kontekstissa",
+      "Shadow AI -ilmiön tunnistaminen ja kieltopolitiikan kritiikki"
+    ],
+    "vaimenevat": [
+      "Mobiilioppiminen ja BYOD erillisinä tutkimusteemoina",
+      "CSCL (Computer-Supported Collaborative Learning) teoreettisena pääviitekehyksenä",
+      "Fab Lab ja digitaalinen valmistus erillisenä tutkimushaarana"
+    ],
+    "ero": "Merkittävin muutos on siirtymä teknologioiden pedagogisesta integroinnista teknologian yhteiskunnalliseen kriittiseen ymmärtämiseen: SlideShare-kaudella kysyttiin 'miten käyttää', Canva-kaudella kysytään 'mitä tämä tekee meille, lapsille ja oikeuksillemme'. Toinen suuri ero on institutionaalinen paino – Generation AI -hanke antaa Canva-kaudelle tutkimuksellisen selkärangan, jollaista SlideShare-kauden yksittäisillä esityksillä ei ollut."
+  },
+  "hypoteesiKehitys": {
+    "supports": true,
+    "reasoning": "Aineisto tukee hypoteesia selvästi, joskin ei lineaarisesti: SlideShare-kauden digitaaliset oppimisympäristöt, mobiilioppiminen ja CSCL (2009–2016) sekä ohjelmointi/STEAM-viittaukset (Fab Lab 2017–2020) rakentavat perustan, jonka päälle Canva-kausi rakentaa data- ja koneoppimisteemat (2024 datalukutaito, datatoimijuus, oppimisanalytiikka), tekoälylukutaidon (2023–2026 kauttaaltaan), generatiivisen tekoälyn (2024–2026) ja lopulta tekoälyagentit, datatoimijuuden ja lasten oikeudet sekä turvallisuuden (2025–2026). Kehitys ei ole hyppy-harppaus vaan asteittainen syventyminen, jossa aiempi kerrostuma ei katoa vaan saa uuden teknologisen päällysteen."
+  }
+}

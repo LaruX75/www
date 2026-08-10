@@ -1,0 +1,159 @@
+{
+  "designId": "DAF8CtmIsSk",
+  "sourceUpdatedAt": 1784895909,
+  "extractedAt": "2026-08-10T10:49:19.215Z",
+  "pageCount": 29,
+  "slides": [
+    {
+      "page": 1,
+      "text": "Opettajan uudet\n työkalut, nuo\n kiehtovat tekoälyt –\n muutamia havaintoja\n tutkimuksen kentältä\n\n\n\n\nJari Laru, KT, yliopistonlehtori, teknologiatuettu\noppiminen ja opetus",
+      "ocrUsed": false
+    },
+    {
+      "page": 2,
+      "text": "2018\n\nMitä sanoin tekoälystä\n    6 vuotta sitten",
+      "ocrUsed": false
+    },
+    {
+      "page": 3,
+      "text": "Neljä eri tapaa tarkastella\n      tekoälyä opetuksessa\n                 AI työkaluna\n             oppilaan väline                                           Tekoäly oppimisen\n             opettajan väline                                              sisältönä\n             instituution väline\n\n\n\n\n                AI &                                               Tekoälyn vaikutusten\n         oppimisanalytiikka                                           ymmärtäminen\n\nHolmes, W., Persson, J., Chounta, I. A., Wasson, B., & Dimitrova, V. (2022). Artificial intelligence and education: A\ncritical view through the lens of human rights, democracy and the rule of law. Council of Europe.",
+      "ocrUsed": false
+    },
+    {
+      "page": 4,
+      "text": "A. Analytiikkaa ei ole\nilman dataa. Sinä olet\n         data",
+      "ocrUsed": false
+    },
+    {
+      "page": 5,
+      "text": "Voit katsoa\n  millainen\non digijälkesi\n\n\n\n                 Gomez Ortega, A., Milias, V., Broadhead, J., van der Valk, C, and Bourgeois, J.\n                  (2023). Dataslip: How far does your personal data go? In INTERACT 2023.",
+      "ocrUsed": false
+    },
+    {
+      "page": 6,
+      "text": "org\n           dr.\n        tos\n     ://\n  tps\nht",
+      "ocrUsed": false
+    },
+    {
+      "page": 7,
+      "text": "13 vuotiaasta\nlapsesta on kerätty\n  keskimäärin 70\n     miljoonaa\n   datapistettä*\n       *vapaa-ajalla kerätty data\n       (Generation AI hankkeen diasetti, varsinainen lähde tuntematon)",
+      "ocrUsed": false
+    },
+    {
+      "page": 8,
+      "text": "Sinä ja sinun data -\n                                    5 Big Tech yritystä\n                                       keräävät mm.\nPaikka- ja aikatieto               Selaushistoria                         Ottamasi kuvat, videot                      Millainen elämänrytmisi on\nMissä olet koskaan käynyt (laite   Millä sivuilla olet koskaan            Ketä niissä on (esim.                       (rajatusti)\npäällä)                            käynyt                                 perheenjäsenet)                             Kalenterimerkinnät\nMihin aikaan olit siellä, kuinka   Mitä tietoa olet koskaan                                                           Terveystietoa (Google Fit,\nkauan                              hakenut                                Melkein kaikki mitä olet                    Oura, jne.)\nKetä muita siellä on ollut         Katsomasi videot, elokuvat,            kirjoittanut                                = Hengästytkö helposti\nMillä olet liikkunut, kuinka       sarjat                                 Google docs                                 Aktiivisuus eri aikoina ja\nkauan kesti                        = Kiinnostuksesi & mitä                Yksityiset + julkiset viestit               harrastuksissa\n                                   suunnittelet                           (osa)                                       Hotellivaraukset,\nKäytön lokitiedot (osa)                                                   Sähköpostit (osa)                           matkustusvaraukset\nMitä olet laitteilla tehnyt,       Ostoshistoria                          “Anonyymit” viestit\nmilloin?                           Mitä olet ostanut                      foorumeilla (joskus)                        Lempimusiikkisi, elokuvasi,\nMyös “private mode”ssa?            Mitkä mainokset kiinnostavat           Tiedostojesi sisällöt                       …\nMyös “delete my history”:n         sinua                                  pilvipalveluissa                            Musiikkimaku (kaikki\njälkeen?                           Mikä johti ostokseen                                                               kuunnellut biisit)\n= Mistä olet kiinnostunut                                                 Kaikki reaktiosi                            Elokuvamaku\n= Mitä elämässäsi on tapahtunut    Appit laitteillasi                     Tykkäykset, kirjanmerkit,                   Taidemaku\n                                   Pluginit                               mouse hover over\nKasvontunnistus                    Appit\nMissä kuvissa näyt, kenen kanssa   Ohjelmat\nMyös ne joista et itse tiedä\n\n                                                    Prof. Matti Tedre luentodiat: tekoälyä ja tietotyön automatisointia. Koneoppimisen murroskohtia 2000-luvulla",
+      "ocrUsed": false
+    },
+    {
+      "page": 9,
+      "text": "Datapohjainen seuranta      Käyttäytymisenohjaustekniikat\n\n\n                              Data on\n                             tekoälyn\nMallinnus ja ennustaminen\n                             “ruokaa”                        Profilointi ja klusterointi\n\n\n\n\nHuomionhallintatekniikat    Tunnereaktioiden hyödyntäminen   Anonymiteettiharha",
+      "ocrUsed": false
+    },
+    {
+      "page": 10,
+      "text": "B. Hei! Kyllä\noppimisanalytiikkaa on\n           jo..",
+      "ocrUsed": false
+    },
+    {
+      "page": 11,
+      "text": "Nämä ovat jo olemassa, eli eivät tule\nenää ”laboratorioissa” .. Toki ratkaisut\nparanevat jatkuvasti…\n\n\n\n                                                          * Spekulatiivinen\n                                                          ** Tutkittu\n                                                          *** Kaupallisesti saatavilla\n\n\n                                                     LM/NLP/ML/AI ratkaisuja.\n Holmes, W., &Tuomi, I.(2022).State of the art and\n practice in AI in education.European Journal of\n Education, 57, 542-570.\n                                                     LLM/AI tuli laajaan\n https://doi.org/10.1111/ejed.12533\n                                                     käyttöön ChatGPT:n myötä\n                                                     30.11.2022",
+      "ocrUsed": false
+    },
+    {
+      "page": 12,
+      "text": "C. Tavoite päästä\n  analysoimaan itse\noppimista. Prosesseja.",
+      "ocrUsed": false
+    },
+    {
+      "page": 13,
+      "text": "“Alku”",
+      "ocrUsed": false
+    },
+    {
+      "page": 14,
+      "text": "Kuinka analytiikka ja oppija\ntoimivat yhdessä\n\n\n\n\n                                                               Järvelä, S. , Nguyen, A. , & Hadwin, A. (2023). Human and artificial intelligence collaboration for socially shared\n     Human-AI shared regulation in learning (HASRL) model.   regulation in learning. British Journal of Educational Technology, 54, 1057–1076. https://doi.org/10.1111/bjet.13325",
+      "ocrUsed": false
+    },
+    {
+      "page": 15,
+      "text": "Kuinka analytiikka ja Tutkija toimivat\nyhdessä\n\n\n\n\n                                           Järvelä, S. , Nguyen, A. , & Hadwin, A. (2023). Human and artificial intelligence collaboration for socially shared\n                                         regulation in learning. British Journal of Educational Technology, 54, 1057–1076. https://doi.org/10.1111/bjet.13325",
+      "ocrUsed": false
+    },
+    {
+      "page": 16,
+      "text": "Millaista oppimis-\nanalytiikan tulisi olla?",
+      "ocrUsed": false
+    },
+    {
+      "page": 17,
+      "text": "Oppilaan tai opettajan näkymä\n\n\n\n\nEsim. Moodle\nja teams tarjoavat JO\ntällaista..",
+      "ocrUsed": false
+    },
+    {
+      "page": 18,
+      "text": "Käyttöliittymänä voi toimia myös pedagoginen\n          agentti tai itse oppimateriaali\n\n\n\n\n                                                                                                                    Example of the MetaTutor Interface. (1) timer; (2) table of contents; (3) overall learning goal; (4) list of subgoals\nDever, Daryn & Sonnenfeld, Nathan & Wiedbusch, Megan & Schmorrow, Grace & Amon, Mary Jean & Azevedo,                and progress towards the subgoals (indicated by red bar); (5)instructional text; (6) instructional diagram; (7)\nRoger. (2023). A complex systems approach to analyzing pedagogical agents’ scaffolding of self-regulated learning   pedagogical agent; (8) SRL palette\nwithin an intelligent tutoring system. Metacognition and Learning. 1-33. 10.1007/s11409-023-09346-x.",
+      "ocrUsed": false
+    },
+    {
+      "page": 19,
+      "text": "Analytiikka-AGENTTI voi\n                                                                                       olla myös DIGIoSALLISTUJA\n                                                                                            nyt\n\n\n  Monet tutkimukset viimeisten 40 vuoden aikana ovat\n  osoittaneet yhteistoiminnallisen ja sosiaalisen oppimisen\n  arvon (Johnson & Johnson, 2009) , jossa opiskelijat\n  työskentelevät yhdessä tehtävässä, jolla on yhteiset\n  tavoitteet ja keskustelu yhteisymmärryksen saavuttamiseksi.\n                                                                                         Tulevaisuudessa\n  Generatiivisella tekoälyllä on potentiaalia osallistua tähän\n  sosiaaliseen oppimisprosessiin, jossa asetetaan yhteisiä\n  tavoitteita, suoritetaan tehtäviä yhdessä, tutkitaan\n  mahdollisuuksia ja keskustellaan sopimuksiin pääsemiseksi\n\n\n\n\nMikeSharples(2023)Towards social generative AI for education: theory, practices and\nethics,Learning: Research and Practice,9:2,159-167,DOI:10.1080/23735082.2023.2261131",
+      "ocrUsed": false
+    },
+    {
+      "page": 20,
+      "text": "D. Käytännön realismi\nhidastaa yleistymistä",
+      "ocrUsed": false
+    },
+    {
+      "page": 21,
+      "text": "Tekoälyä tulee käyttää eettisesti ja\n          vastuullisesti",
+      "ocrUsed": false
+    },
+    {
+      "page": 22,
+      "text": "Tekoälyä tulee säädellä ja käyttäjiä\n                      suojata\n\n\n\n\nEsim. arviointi on AI\nACT issa arvioitu\nkorkean riskin\nalueeksi\n\n\n\n\n    https://ec.europa.eu/commission/presscorner/detail/en/ip_23_6473   https://www.generation-ai-stn.fi/henkilotietojen-kasittely-alakoulussa/",
+      "ocrUsed": false
+    },
+    {
+      "page": 23,
+      "text": "E. Mitä lopulta\n koulutusteknologialla\ntavoitellaan. Katsotaan\n      vuoteen 1994",
+      "ocrUsed": false
+    },
+    {
+      "page": 24,
+      "text": "1994",
+      "ocrUsed": false
+    },
+    {
+      "page": 25,
+      "text": "F. Lisäosio: mitä\noppilaiden tulisi tietää\ndatasta ja tekoälystä.",
+      "ocrUsed": false
+    },
+    {
+      "page": 26,
+      "text": "Neljä eri tapaa tarkastella\n      tekoälyä opetuksessa\n                 AI työkaluna\n             oppilaan väline                                           Tekoäly oppimisen\n             opettajan väline                                              sisältönä\n             instituution väline\n\n\n\n\n                AI &                                               Tekoälyn vaikutusten\n         oppimisanalytiikka                                           ymmärtäminen\n\nHolmes, W., Persson, J., Chounta, I. A., Wasson, B., & Dimitrova, V. (2022). Artificial intelligence and education: A\ncritical view through the lens of human rights, democracy and the rule of law. Council of Europe.",
+      "ocrUsed": false
+    },
+    {
+      "page": 27,
+      "text": "Kehitämme pedagogisia puitteita\ntekoäly- ja\nturvallisuuskasvatukselle\nKehitämme uusia esi- ja\nperusopetukseen soveltuvia\ntekoälyn opetusvälineiden ja -\nmenetelmien sekä\noppimiskokonaisuuksien\nyhdistelmiä\nEdistämme lasten oikeuksien\ntoteutumista tekoälyyn\nperustuvissa järjestelmissä",
+      "ocrUsed": false
+    },
+    {
+      "page": 28,
+      "text": "https://tm.generation-ai-stn.fi",
+      "ocrUsed": false
+    },
+    {
+      "page": 29,
+      "text": "https://somekone.generation-ai-stn.fi",
+      "ocrUsed": false
+    }
+  ],
+  "emptyPages": [],
+  "extractError": null,
+  "_diagnostic": {
+    "pdfBytes": 10938617,
+    "elapsedMs": 30523
+  }
+}

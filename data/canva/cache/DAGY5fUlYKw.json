@@ -1,0 +1,134 @@
+{
+  "designId": "DAGY5fUlYKw",
+  "sourceUpdatedAt": 1784883482,
+  "extractedAt": "2026-08-10T10:15:25.768Z",
+  "pageCount": 24,
+  "slides": [
+    {
+      "page": 1,
+      "text": "Virtual Book Promotion Event: Effective Practices in AI literacy Education: Case Studies and Reflections. 12 December 2024 09:30 to 16:30\n\n\n\n\n       Learning AI literacy in collaborative\n       projects with an AI Education Tool by\n       Making Machine Learning-Driven Apps:\n       A case study from Finnish pre-service teacher\n       education\n\n                                                                                                                                                                                          Jari Laru\n                                                                                                                                                                                        Ismail Celik\n                                                                                                                                                                                        Iiris Kivioja\n                                                                                                                                                                                       Kati Mäkitalo\n                                                                                                                                                                                 Faculty of Education and\n                                                                                                                                                                                        Psychology\n                                                                                                                                                                                    University of Oulu\n                                                                                                                                                                                           Finland\n\n\nChapter: Laru, J., Celik, I., Kivioja, I. and Mäkitalo, K. (2024), \"Learning AI Literacy in Collaborative Projects with an AI Education Tool by Making Machine-Learning-Driven Apps: A Case Study from Finnish Pre-service Teacher\nEducation\", O’Dea, X. and Ng, D.T.K. (Ed.) Effective Practices in AI Literacy Education: Case Studies and Reflections, Emerald Publishing Limited, Leeds, pp. 141-149. https://doi.org/10.1108/978-1-83608-852-320241015",
+      "ocrUsed": false
+    },
+    {
+      "page": 2,
+      "text": "1. Background\n\nhttps://bit.ly/chapter14teachers",
+      "ocrUsed": false
+    },
+    {
+      "page": 3,
+      "text": "1. Background 1/3\nAI literacy is crucial for future teachers\n For future teachers, AI literacy is crucial as it equips them with the skills and knowledge\n needed to prepare students for a world where AI is increasingly integral (Farazouli et al.,\n 2024).\n Teachers with a strong understanding of AI can better integrate these technologies into\n their curricula, enhancing learning experiences and fostering critical thinking skills in\n students (Du et al., 2024).\n AI-literate teachers can cultivate a more informed and technologically adept generation,\n capable of thriving in an AI-driven landscape.\n Therefore, it is essential to prepare future teachers with sufficient knowledge and skills\n associated with AI literacy (Zhao et al., 2022).",
+      "ocrUsed": false
+    },
+    {
+      "page": 4,
+      "text": "1. Background 2/3\nEffective teaching strategies for AI literacy are vital in\nteacher education programs.\nThese strategies should encompass hands-on learning, interdisciplinary approaches,\nand real-world applications of AI concepts (Han et al., 2024).\nBy incorporating practical experiences educators can demystify AI and make it more\naccessible (Ding et al., 2024; Romero et al., 2024).\nIntegrating ethical discussions and societal implications of AI into the curriculum helps\nfuture teachers understand the broader context of AI technologies (Celik et al., 2022).\nSuch comprehensive teaching strategies ensure that teachers are not only\nknowledgeable about AI, but also able to communicate this knowledge to their students\nin a meaningful and engaging way (Celik, 2023).",
+      "ocrUsed": false
+    },
+    {
+      "page": 5,
+      "text": "1. Background 3/3\nWe have to develop strategies to educate the next\ngeneration of teachers in AI-enriched environment\n Despite the growing recognition of the importance of AI literacy, less is known about\n the most effective methods to foster this competence among teachers. Current\n educational programs often lack a standardized approach to integrating AI literacy,\n leading to inconsistencies in knowledge and preparedness among educators (Zhang &\n Zhang, 2024).\n Additionally, more research is needed regarding the best practices for teaching AI\n concepts, particularly in a way that is both accessible and impactful for teachers with\n diverse backgrounds (Celik, 2023)",
+      "ocrUsed": false
+    },
+    {
+      "page": 6,
+      "text": "1.1. Tool\n\nhttps://bit.ly/chapter14teachers",
+      "ocrUsed": false
+    },
+    {
+      "page": 7,
+      "text": "1.1. Tool: GenAI Teachable Machine\n it is essential to understand the basic concepts of machine\nlearning (ML) to foster AI literacy.\n  ML is a core component of AI literacy because it is one of the most widely applied\n techniques in AI (Du et al., 2024)\n To promote AI literacy among pre-service teachers, we used GenAI Teachable Machine, an\n interactive tool for K-12 learners that enables the complete supervised ML application\n workflow without coding (Pope et al., 2024).\n This tool provides a hands-on learning experience, allowing pre-service teachers to\n experiment with AI models and understand the underlying mechanisms between\n algorithms and data.\n This experiential learning process helps to understand complex AI concepts and makes\n them more tangible (Zhan & Zhang, 2024).",
+      "ocrUsed": false
+    },
+    {
+      "page": 8,
+      "text": "1.1. Tool: GenAI Teachable Machine\n    https://tm.generation-ai-stn.fi\n\n\n\n\n Data collection & curation       Training the model       Evaluating the model          Defining actions             Testing the app                          Deploying the app\n\n     Training data                   Training                  Input                     Trigger                     Previewing the                      Sharing the ready app within the\n     Example                         Classifier                Classification            Action (image,              app                                 classroom\n     (sample)                                                  result                    link, sound, text)          Output\n     Class                                                     Confidence                                            Brittleness\n     Name (label)                                                                                                    Debugging and\n                                                                                                                     improving\n     Figure 1. The tool interface for an app that tells pines from birches (left), the same app deployed to smartphones (right) and the app development workflow with key concepts (bottom).\n\nN. Pope, H. Vartiainen, J. Kahila, J. Laru and M. Tedre, \"A No-Code AI Education Tool for Learning AI in K-12 by Making Machine Learning-Driven Apps,\" 2024 IEEE International Conference on\nAdvanced Learning Technologies (ICALT), Nicosia, North Cyprus, Cyprus, 2024, pp. 105-109",
+      "ocrUsed": false
+    },
+    {
+      "page": 9,
+      "text": "1.1. Tool: Teachable machine is safe & free\n                 GDPR compliant: “in terms of children’s rights, the tool supports the use of\n                 personal data while ensuring privacy and compliance with GDPR”\n                 WCAG 2.1AA: “the UX design is workflow-based, with minimal in-built\n                 instructional scaffolds, addressing accessibility and usability standards”\n                 HTML5: “The tool design aims at resilience and adaptability to various hardware\n                 and network/offline environments”\n                 MIT License: “permissive software lisence” (free to use and modify)\n                 Multilingual: EN, FI, SE, DE, RU, UA, BR, TR (easy to localise)\n\n\n\n\nN. Pope, H. Vartiainen, J. Kahila, J. Laru and M. Tedre, \"A No-Code AI Education Tool for Learning AI in K-12 by Making Machine Learning-Driven Apps,\" 2024 IEEE International Conference on\nAdvanced Learning Technologies (ICALT), Nicosia, North Cyprus, Cyprus, 2024, pp. 105-109",
+      "ocrUsed": false
+    },
+    {
+      "page": 10,
+      "text": "Methods",
+      "ocrUsed": false
+    },
+    {
+      "page": 11,
+      "text": "Technology Enhanced Learning Course\n 128 pre-service teachers participated in a mandatory “technology-enhanced\n learning” course in the fall 2023\n The participants were in the first phase of their five year MA degree\n 5 Lectures (5x2h) and 5 Workshops (5x4h) (see table below)\n 7 groups, each group had 7-8 dyads/triads\n\nWorkshop 1         Workshop 2       AI workshop 3    Workshop 4          Workshop 5\n\nIntroduction to                     Generation AI:     Remote and\n  Technology      STEAM and Maker     Teachable      hybrid working          Digital\n   enhanced          education         Machine        skills and five   Environments in a\n Learning and                       Workshop (this    freely chosen      Teacher's Work\n    Working                         presentation)        Themes",
+      "ocrUsed": false
+    },
+    {
+      "page": 12,
+      "text": "Ai Workshop design\nThe instruction carried out in the AI workshop was based on the learning\nmaterials developed in the Generation AI project for Finnish elementary\nschool students and teachers (Kahila et. al, 2024).\n\nFirst half of the workshop: Basic concepts and mechanisms of AI\n   The first half of the workshop focused on the basic concepts of AI, its applications, and its\n   impacts on everyday life.\nSecond half of the workshop: Data driven design\n   The focus of the second half of the workshop was on co-designing and creating applications\n   based on the idea selected in groups.\nMachine-learning driven apps done by students: Outcome of the\nworkshop\n   As part of the workshop, the participants of this study created 57 different apps. Examples\n   included identifying recycled materials, recognizing mushrooms, classifying farm animals,\n                                                                                                   Kahila, J., Vartiainen, H., Tedre, M., Arkko, E., Lin, A.,\n   recommending clothing based on the weather and react in different ways.                         Pope, N., ... & Valtonen, T. (2024). Pedagogical\n                                                                                                   framework for cultivating children's data agency\n                                                                                                   and creative abilities in the age of AI. Informatics in\n                                                                                                   Education.",
+      "ocrUsed": false
+    },
+    {
+      "page": 13,
+      "text": "1.3. AI workshop\n      design\n   https://bit.ly/chapter14teachers",
+      "ocrUsed": false
+    },
+    {
+      "page": 14,
+      "text": "2. Methods\n\nhttps://bit.ly/chapter14teachers",
+      "ocrUsed": false
+    },
+    {
+      "page": 15,
+      "text": "2. Methods\n We collected reflections from pre-service teachers through mandatory portfolios. In\n total, 106 portfolios have been submitted to date with relevant reflections .\n\n Participants’ portfolio reflections covered three AI related themes:\n 1) the description of him/her as AI user,\n 2) the use of GenAI TM in the teacher’s work,\n 3) general views on the AI workshop.\n\n We carried out a basic qualitative analysis of the portfolio reflections using Word and\n Excel, categorising the responses into themes with sub-categories (e.g. positive and\n negative views of the workshop). Then we calculated percentages and extracted\n representative quotes.",
+      "ocrUsed": false
+    },
+    {
+      "page": 16,
+      "text": "3. Results\n\nhttps://bit.ly/chapter14teachers",
+      "ocrUsed": false
+    },
+    {
+      "page": 17,
+      "text": "3. Results\nTheme 1. Participants’ own view as an AI user\n   Only 27% of the students had prior experience using AI tools, like ChatGPT before the course.\n   After the workshop 56% of the students reported a deeper understanding of AI\nTheme 2. Use of GenAI TM in the teacher’s work\n   About 42% of the students' expressed the idea on how the teaching machine could be integrated with the content\n   of subjects taught at school. The topics of the students' application ideas included biology (21), environmental\n   studies in general (8), mathematics (6), geography (2), language teaching (3), music (2), handicrafts (1), and\n   media education (1).\n   Yet, 40% of the ideas dealt with teaching AI-related topics (23) or remained at the level of pedagogical planning\n   without a specific idea for the application's topic (19).\n   The rest of the students had no intention to use GenAI TM as a teacher or has not answered this question\nTheme 3. General views on the AI workshop\n   69% of the students (73) considered the AI workshop a positive learning experience and found the GenAI TM\n   application easy to use.\n   24% of the students didn’t respond to this theme and only 7% students provided negative opinions",
+      "ocrUsed": false
+    },
+    {
+      "page": 18,
+      "text": "3. Results\n       Student 4: \"I was surprised at how easy it was to\n      create a classifier application. For example, using\n     GenAI TM did not require any prior knowledge of the\n       concepts; I learned the concepts as I went along.\n      Since the GenAI interface was also simple, I think I\n             could use it with younger students.”",
+      "ocrUsed": false
+    },
+    {
+      "page": 19,
+      "text": "4. Recommendations\n\n    https://bit.ly/chapter14teachers",
+      "ocrUsed": false
+    },
+    {
+      "page": 20,
+      "text": "4. Recommendations: course instructor\n  \"An AI workshop equipped students to learn by doing. The GenAI\n    TM integrates with different curriculum subjects, providing\n students with both AI principles and practical experience. This not\n  only benefits their teaching training practice, but also prepares\n them for future careers, as evidenced by students applying these\n                       skills in other courses.\"",
+      "ocrUsed": false
+    },
+    {
+      "page": 21,
+      "text": "4. Recommendations: workshop design\n                                                           Discussing the impact of AI   Flexibility allows\nAuthentic experience with     The structure of our AI      on everyday life and its      participants to take\ntools such as the GenAl TM    workshop, which involved     various applications helps    ownership of their learning\nhighlights their potential    collaborative group work,    bridge the gap between        and tailor projects to their\nand limitations.              proved highly effective.     theoretical knowledge and     interests, increasing\n                                                           practical implementation.     motivation and engagement.\n\n\n                              A variety of learning\nPre-service teachers should\n                              materials, such as videos,   Assessment and feedback       Peer reflection and sharing of\nget familiar not only the\n                              written instructions,        about their projects and      experiences deepens\ntools, materials, but also\n                              demonstrations, and          learning are key to           understanding and foster a\npedagogical approach ,\n                              practical exercises, can     successful AI literacy        sense of accomplishment\nwhich they can apply into\n                              enhance learning about AI    workshops.                    among pre-service teachers.\ntheir own practice\n                              related concepts.",
+      "ocrUsed": false
+    },
+    {
+      "page": 22,
+      "text": "5. Next step(s)\n\n  https://bit.ly/chapter14teachers",
+      "ocrUsed": false
+    },
+    {
+      "page": 23,
+      "text": "AI Workshop 24\n1.How AI works - teachable machine\n2.Effects of algorithms  - somekone\n  new\n  social media emulator\n3.Generative  ai as a teachers’ tool -\n  new\n  CoPilot\n  Last workshop was on monday. Stay tuned!",
+      "ocrUsed": false
+    },
+    {
+      "page": 24,
+      "text": "Thank You!\n  Generation AI www\n         https://www.generation-ai-stn.fi (machine translation)\n  Tools\n         Teachable Machine: https://tm.generation-ai-stn.fi (multilingual)\n         Somekone (social media emulator): https://somekone.generation-ai-stn.fi (EN, FI)\n  Materials\n         https://www.generation-ai-stn.fi/materiaalit (machine translation)\n  Code\n         Github: https://github.com/knicos/\nChapter: Laru, J., Celik, I., Kivioja, I. and Mäkitalo, K. (2024), \"Learning AI Literacy in Collaborative Projects with an AI Education Tool by Making Machine-\nLearning-Driven Apps: A Case Study from Finnish Pre-service Teacher Education\", O’Dea, X. and Ng, D.T.K. (Ed.) Effective Practices in AI Literacy\nEducation: Case Studies and Reflections, Emerald Publishing Limited, Leeds, pp. 141-149. https://doi.org/10.1108/978-1-83608-852-320241015",
+      "ocrUsed": false
+    }
+  ],
+  "emptyPages": [],
+  "extractError": null,
+  "_diagnostic": {
+    "pdfBytes": 2324941,
+    "elapsedMs": 7609
+  }
+}

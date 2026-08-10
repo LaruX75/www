@@ -1,0 +1,323 @@
+{
+  "designId": "DAF_YJ9Gt0s",
+  "sourceUpdatedAt": 1784895905,
+  "extractedAt": "2026-08-10T10:48:16.866Z",
+  "pageCount": 61,
+  "slides": [
+    {
+      "page": 1,
+      "text": "LUTK-Tekoälyinspis:\nTekoäly opettajan\ntyökaluna\nTiesitkö, että sinulla on jo\nkäytössä monia\ntekoälytyökaluja? Tiedätkö,\nmitä ne ovat ja osaatko jo\nhyödyntää niitä työssäsi?\n\n\n                                        tee kuva aiheesta Mitä tekoäly on? Miten se toimii ja mitä sillä voi tehdä\n\nJari Laru, KT, yliopistonlehtori,       Haluan kuvan aiheesta. En tietoa.\nteknologiatuettu oppiminen ja opetus.   Muuta kuva siten, että se kertoo asiasta 50-luvun teknologioilla\nOulun yliopisto.",
+      "ocrUsed": false
+    },
+    {
+      "page": 2,
+      "text": "Esitys on netissä:\n\n\n\n\nLinkki: https://bit.ly/tekoälyinspis24laru",
+      "ocrUsed": false
+    },
+    {
+      "page": 3,
+      "text": "Johdanto",
+      "ocrUsed": false
+    },
+    {
+      "page": 4,
+      "text": "Neljä eri tapaa tarkastella\n      tekoälyä opetuksessa\n                 AI työkaluna\n             oppilaan väline                                           Tekoäly oppimisen\n             opettajan väline                                              sisältönä\n             instituution väline\n\n\n\n\n                AI &                                               Tekoälyn vaikutusten\n         oppimisanalytiikka                                           ymmärtäminen\n\nHolmes, W., Persson, J., Chounta, I. A., Wasson, B., & Dimitrova, V. (2022). Artificial intelligence and education: A\ncritical view through the lens of human rights, democracy and the rule of law. Council of Europe.",
+      "ocrUsed": false
+    },
+    {
+      "page": 5,
+      "text": "MIKÄ\nIHMEEN                                              Supertekoäly (ASI)\n\n\nTEKOÄLY?                                Yleinen tekoäly (AGI)\n                                                                                 Globaalien\n                                                            Kehittyneet          haasteiden\n                          Perinteinen tekoäly (AI)          virtuaaliapulaiset   ratkaiseminen\n                                            Kasvojentunnistus\n                                                                      LääketieteellisetTerveydenhuollon\n                                             (facial detection)\n                                                                        diagnoosit ja    vallankumous\n                                                  Kuvantunnistus\n                                                                            hoidot\n                      Generatiivinen            (image recognition)\n                      tekoäly (GenAI)                Puheentunnistus     Ilmastonmuuto Avaruustutkimus\n                                                   (speech recognition) ksen ratkaisut\n                       Sisällöntuotanto              Teksti puheeksi\n                                                                            Tieteellisen  Ympäristöhaastee\n                      (teksti, kuva, ääni,           (text to speech)\n                           musiikki)                                       tutkimuksen\n                                                  Luonnollisen kielen\n                                                                         nopeuttaminen Tekoäly, joka\n                                                  käsittely (natural\n                                                  language processing)                   ymmärtää\n                                                                       Yksilöllinen\n                                           Hahmon tunnistus                              ihmisten tunteet\n                                                                       opetus\n                                           (pattern recognition)\n                                Tiedonlouhinta (data\n                                mining)\n\n    Tekee rajattuja\n    tehtäviä\n                                                                                                  Fiksumpi kuin ihminen (hypoteettinen)\n    (perinteisen\n    tekoälyn osa)                                                                       Toimii “kuin” ihminen (ei ole saavutettu, vielä)\n    Tekee rajattuja tehtäviä",
+      "ocrUsed": false
+    },
+    {
+      "page": 6,
+      "text": "Keskitymme kapeaan tekoälyyn\neli nykypäivän tarjontaan.                              Supertekoäly (ASI)\n\n\n\n\n                            Perinteinen tekoäly (AI)\n                                              Kasvojentunnistus\n                                               (facial detection)\n                                                    Kuvantunnistus\n                        Generatiivinen            (image recognition)                  Perinteinen\n                                                                                                     Arkemme on\n                        tekoäly (GenAI)                Puheentunnistus                  tekoäly on\n  ChatGPT                                            (speech recognition)                              monella\n                                                                                        kaikkialla\n tunnetuin               Sisällöntuotanto              Teksti puheeksi                               tapaa tästä\n                        (teksti, kuva, ääni,           (text to speech)                läsnäoleva\n esimerkki                   musiikki)\n                                                                                                      tekoälystä\n                                                    Luonnollisen kielen                ja arkeemme\n                                                    käsittely (natural                               riippuvaista\n                                                                                       sulautunut\n                                                    language processing)\n                                             Hahmon tunnistus\n       Azure Open AI                         (pattern recognition)\n                                  Tiedonlouhinta (data\n                                  mining)                                   Azure AI\n       CoPilot                                                                    Se tekoäly,\n       CoPilot M365 (pro)                                                         jota et ole\n       CoPilot Windows                                                            tullut ehkä\n       Github Copilot                                                            ajatelleeksi!",
+      "ocrUsed": false
+    },
+    {
+      "page": 7,
+      "text": "Alla oleva kuva visualisoi hieman MS:n\n  nykynäkemystä tekoälypalveluista\n                           Täällä lymyää koko\n                           joukko meille tuttuja\n                           tekoälysovelluksia\n                           (perinteistä AI:ta, Azure\n                           AI) Tämän esityksen\n                           OSA A.\n\n                           Siellä on myös GPT\n                           pohjainen Azure Open\n                           AI, jonka myötä on tullut\n                           koko joukko uusia\n                           sovelluksia. Tämän\n                           esityksen OSA B.",
+      "ocrUsed": false
+    },
+    {
+      "page": 8,
+      "text": "Tekoäly on läsnä\n       kaikkialla\n  ”Törmäämme tekoälyyn kaikkialla.\n  Verkkokaupat, suoratoistopalvelut,\n vaalikoneet, hakukoneet, sosiaalinen\n media ja deittisovellukset käyttävät\n   sitä. Ja vaikka et itse avaisikaan\nelämääsi algoritmeille, tietojasi kerää\nja käsittelee vähintään julkishallinnon\n                tekoäly.”",
+      "ocrUsed": false
+    },
+    {
+      "page": 9,
+      "text": "“Tekoälyä voidaan\ntarkastella merkittävänä\n infrastruktuurina, ihan\n  kuten sähköverkkoa.\n\n  Se on enemmän kuin\n yksittäinen sovellus”.\n (Koh & Doroudi, 2023)",
+      "ocrUsed": false
+    },
+    {
+      "page": 10,
+      "text": "A. BIG                    Radikaalit\n                          murtumat ja\n\nFUTURE\n Vai B. Little future -\n                             uudet\n                          aikakaudet\n    uusia tapoja arkipäiväisten, jokapäiväisten\n    asioiden hoitamiseen",
+      "ocrUsed": false
+    },
+    {
+      "page": 11,
+      "text": "Onko tekoäly elefantti luokkahuoneessa?     Vai onko kyse sittenkin\n                                          työkalusta, josta on jo tullut\n                                                osa arkeamme..\n                                            Puhelin on erinomainen esimerkki arkeemme\n                                             sulautuneesta ja kaikkialla läsnäolevasta\n                                                            tekoälystä.\n\n                                          Tällä hetkellä LLM/GPT perusmallit “tunkeutuvat”\n                                                        toimisto-ohjelmiimme.",
+      "ocrUsed": false
+    },
+    {
+      "page": 12,
+      "text": "Digitaaliset\n                                         (informaatio)\nTekoäly sulautuu osaksi arkisia            lukutaidot\nsovelluksia. On tehnyt sitä jo pitkään      eivät riitä\n                                         Uusia lukutaitoja\n                                         tarvitaan:\n                                             tekoälylukutaito\n                                             datalukutaito\n                                             datatoimijuus",
+      "ocrUsed": false
+    },
+    {
+      "page": 13,
+      "text": "Tätä aineistoa tukeva\nluentomateriaali:\n\n\n\n\n                                                                         Jari Laru, KT\n                                                                    yliopistonlehtori\nhttps://www.linkedin.com/feed/update/urn:li:activity:7128364984874508289/",
+      "ocrUsed": false
+    },
+    {
+      "page": 14,
+      "text": "MENTI.COM\n7892 5949",
+      "ocrUsed": false
+    },
+    {
+      "page": 15,
+      "text": "Perinteinen tekoäly (AI)\n                  Kasvojentunnistus\n                                                OSA A.\n                                                Perinteinen\n                   (facial detection)\n                        Kuvantunnistus\n                      (image recognition)\n                           Puheentunnistus\n                         (speech recognition)\n                           Teksti puheeksi\n\n\n\n\n                                                tekoäly ja tutut\n                           (text to speech)\n                        Luonnollisen kielen\n                        käsittely (natural\n                        language processing)\n                 Hahmon tunnistus\n                 (pattern recognition)\n         Tiedonlouhinta (data\n\n\n\n\n                                                sovellukset\n         mining)\n\n\n\n\n     “Mitä kaikkea tekoälyn tukemaa voit tehdä jo\n   nykyisillä työkaluilla, mutta ehkä et vain tiedä..”\n\nAzure AI",
+      "ocrUsed": false
+    },
+    {
+      "page": 16,
+      "text": "Microsoftin tekoäly A. joka edustaa perinteistä tekoälyä. Tämä on\n                  ollut olemassa jo pitkään.\n\n\n\n\n      Cognitive services\n                +\n        Azure Applied AI\n                =\n Azure AI (heinäkuu 2023 alkaen)\n            Seuraavaksi näet koko joukon esimerkkejä tästä!",
+      "ocrUsed": false
+    },
+    {
+      "page": 17,
+      "text": "",
+      "ocrUsed": false
+    },
+    {
+      "page": 18,
+      "text": "",
+      "ocrUsed": false
+    },
+    {
+      "page": 19,
+      "text": "Puhelimen Microsoft Lens\n  mahdollistaa “arjen”\n      tallentamisen",
+      "ocrUsed": false
+    },
+    {
+      "page": 20,
+      "text": "Tallenna tietoja puhelimella\n         Microsoft Lens (aiemmin \"Office Lens\") on\n         erinomainen tapa tallentaa tietoja asiakirjoista,\n         luonnoslehtiöistä, käyntikorteista, kuiteista,\n         valikoista, merkeistä, käsinkirjoitetusta muistiosta\n         tai mistä tahansa muusta tekstistä, jonka haluat\n         tuoda, mutta jota et halua kirjoittaa manuaalisesti\n         itse.\n\n         kun Microsoft Lens on käytössäsi, sinun ei\n         tarvitse kirjoittaa muistiinpanoja käsin, luottaa\n         epätarkoihin matkapuhelimen kuviin tai murehtia\n         minkään hukkaamisesta.",
+      "ocrUsed": false
+    },
+    {
+      "page": 21,
+      "text": "Tehtäviä :\nAsenna Microsoft Lens puhelimeesi\n   VE1: ota joku käyntikortti tai kuitti ja kuvaa se\n   puhelimellasi. Huomaat kuinka tekoäly osaa rajata\n   kortin\n   VE2: Kokeile “luonnoslehtiö” toimintaa muistikirjaasi\n   tai valkotauluun\n   VE3: kokeile kuvata taulukko jostain asiakirjasta ja\n   siirrä se exceliin (sovelluksessa: toiminnot/taulukko)",
+      "ocrUsed": false
+    },
+    {
+      "page": 22,
+      "text": "Käännä puhe, kuvat, esitykset,\n  word dokumentit. Kaikki.",
+      "ocrUsed": false
+    },
+    {
+      "page": 23,
+      "text": "Käännä mitä tahansa missä tahansa\n         Microsoft Translator on\n         ilmainen, henkilökohtainen\n         käännössovellus yli 70\n         kielelle, jolla voidaan\n         kääntää tekstiä, ääntä,\n         keskusteluja,\n         kameravalokuvia ja\n         kuvakaappauksia.\n\n\n\n                  https://translator.microsoft.com",
+      "ocrUsed": false
+    },
+    {
+      "page": 24,
+      "text": "Voit kääntää powerpointin “lennossa”\n                      Teams kokouksessa esiintyjä\n                      voi kääntää esityksensä\n                      toiselle kielelle",
+      "ocrUsed": false
+    },
+    {
+      "page": 25,
+      "text": "Tai voit kääntää word dokumentin",
+      "ocrUsed": false
+    },
+    {
+      "page": 26,
+      "text": "Tehtäviä :\nVE1: Asenna Microsoft Translator sovellus puhelimeesi\nja aloita keskustelu. Pyydä muita liittymään mukaan\njoko esim. kannettavan tietokoneen selaimella tai\nomalla puhelimellaan. Kokeile myös kääntää kuvia\nVE2: Mene teams tiimiin ja jaa siellä esitys. Katso\nesittäjän työkaluja siten, että löydät sieltä kohdan\n“käännä” - kokeile eri kieliä\nVE3: Kokeile käynnistää Powerpoint Live (powerpoint\nonlinessä eli selaimessa) ja pyydä muita liittymään\nesitykseesi",
+      "ocrUsed": false
+    },
+    {
+      "page": 27,
+      "text": "Teksti puheeksi\nja puhe tekstiksi",
+      "ocrUsed": false
+    },
+    {
+      "page": 28,
+      "text": "Asiakirjojen sanelu ja litterointi\nPuhe tekstiksi\n\n                             Litterointitoiminto muuntaa\n                             puheen tekstitallenteeksi, jossa\n                             kukin puhuja on erotettu\n                             erikseen.\n\n                             Keskustelun, haastattelun tai\n                             kokouksen jälkeen voit palata\n                             tallenteen osiin toistamalla\n                             aikaleimatun äänen ja\n                             muokkaamalla litterointia\n                             korjausten tekemiseksi.\n\n                             Voit tallentaa koko\n                             tekstitallenteen Word-asiakirjana\n                             tai lisätä siitä katkelmia aiemmin\n                             luotuihin asiakirjoihin.",
+      "ocrUsed": false
+    },
+    {
+      "page": 29,
+      "text": "Kone ääneenlukijana\nTeksti puheeksi\n                           Lue on Word-, Outlook-,\n                           PowerPoint- ja OneNote-\n                           ohjelmien sisäinen\n                           ominaisuus. Lue-\n                           ominaisuuden avulla voi\n                           kuulla tekstin ääneen\n                           luettuna Office-versiosi\n                           kielellä.\n\n                           Samaa teknologiaa\n                           käytetään myös muissa\n                           sovelluksissa, vasemmalla\n                           Clipchamp videoeditori\n\n  Clipchamp videoeditori                               Word",
+      "ocrUsed": false
+    },
+    {
+      "page": 30,
+      "text": "Tehtävä :\nVE1: Mene Word Online työkaluun ja etsi transcribe\ntoiminto. Käytä mikrofonia tai valmista tiedostoa ja\nmuuta se tekstiksi\nVE2: Kokeile sanelua matkapuhelimen word tai\npowerpoint ohjelmassa\nVE3: Kuuntele joku word asiakirjasi “lue ääneen”\ntoiminnolla (tarkasta valikossa)",
+      "ocrUsed": false
+    },
+    {
+      "page": 31,
+      "text": "Oppimista tukevat\n tekoälytyökalut",
+      "ocrUsed": false
+    },
+    {
+      "page": 32,
+      "text": "Inklusiivinen opetus ja oppiminen\nNäitä työkaluja voi käyttää kuka vain “huomaamatta”",
+      "ocrUsed": false
+    },
+    {
+      "page": 33,
+      "text": "Immersive reader tukee ja kääntää!\nTämä työkalu on kehitetty kompensoimaan dyslexiaa\n                              Syventävä lukuohjelma on maksuton\n                              työkalu, joka käyttää hyviksi todettuja,\n                              kaikenikäisten ja -kykyisten oppijoiden\n                              lukemista parantavia tekniikoita. Ohjelman\n                              avulla voi myös kääntää materiaalin usealle\n                              eri kielelle kieliopin ym. kera\n\n                              Ohjelmisto on dyslexian asiantuntijoiden\n                              kehittämä väline, jota oppilas voi käyttää\n                              huomaamattomasti osana eri sovelluksia\n\n                              https://www.onenote.com/learningtools?\n                              omkt=fi-fi",
+      "ocrUsed": false
+    },
+    {
+      "page": 34,
+      "text": "Reading progress lukemisen tukena",
+      "ocrUsed": false
+    },
+    {
+      "page": 35,
+      "text": "Math solver matematiikan opiskeluun\n       Kirjoita näytölle matemaattinen yhtälö kuten kirjoittaisit paperille.\n       Skannaa tulostettu tai käsinkirjoitettu matemaattinen valokuva\n       Kirjoita ja muokkaa edistyneen tieteellisen matematiikan laskimen\n       avulla\n       Hanki interaktiivisia selityksiä ja graafinen laskin.\n       Tuo kuvia, joissa on matemaattisia yhtälöitä galleriasta\n       Skannaa ja ratkaise matematiikkalaskentataulukoita erilaisilla\n       tietokilpailutehtävillä\n       Hae verkosta apua ja katsele videoluentoja.\n       Kokeile matemaattisia tehtäviä\n       Skannaa ja piirrä xy-tietotaulukot lineaarisia/epälineaarisia\n       funktioita varten\n       Opi matematiikkaa omalla kielelläsi – kiina, ranska, saksa, hindi,\n       italia, japani, portugali, venäjä, espanja ja monia muita kieliä\n       tuetaan.",
+      "ocrUsed": false
+    },
+    {
+      "page": 36,
+      "text": "Search coach hakutaitojen harjoitteluun",
+      "ocrUsed": false
+    },
+    {
+      "page": 37,
+      "text": "Presentation coach esiintymisen\nharjoitteluun\nTämä toiminto tukee\ntoistaiseksi vain englantia",
+      "ocrUsed": false
+    },
+    {
+      "page": 38,
+      "text": "Teams kursseista saa analytiikkaa eri\nnäkökulmista",
+      "ocrUsed": false
+    },
+    {
+      "page": 39,
+      "text": "Tehtävä :\nVE1: Etsi kaikista mahdollisista M365 ohjelmista\nImmersive reader (suomeksi syventävä lukuohjelma.\nTutki kuinka se toimii\nVE2: Mene johonkin teams tiimiisi ja perehdy\ntehtävätyökalusta löytyviin search coach ja reading\nprogress työkaluihin\nVE3: Tutki oman teams kurssisi analytiikkaa (insights)\nVE4: Avaa powerpoint ja etsi sieltä presentation coach.\nTestaa sitä! (tukee vain englantia)\nVE5: Kokeile Math Solver työkalua",
+      "ocrUsed": false
+    },
+    {
+      "page": 40,
+      "text": "Videoefektit ja virtuaalitaustat",
+      "ocrUsed": false
+    },
+    {
+      "page": 41,
+      "text": "Tekoäly voi mm.\npoistaa taustan\nTeams kokouksessa\nvoit korvata taustan\nkuvalla tai\nvalita esittäjän tilan, jossa\nnäyt materiaalin kanssa",
+      "ocrUsed": false
+    },
+    {
+      "page": 42,
+      "text": "Tekoäly pohjaiset\nefektit ja taustat\n   videoissa\n   Flip\n   ryhmävideosovelluksessa\n   oppilaat voivat elävöittää\n   videovastauksiaan\n   erilaisilla efekteillä ja\n   taustoilla\n   Myös aiheita voi kehitellä\n   tekoälytuetusti, mutta se\n   on generativivista\n   tekoälyä (co-pilot)",
+      "ocrUsed": false
+    },
+    {
+      "page": 43,
+      "text": "Powerpointien, videoiden ja teams\n kokousten tekstitys / litterointi",
+      "ocrUsed": false
+    },
+    {
+      "page": 44,
+      "text": "Automaattiset tekstitykset videoon\n               ! E i\n        itu  s            Clipchamp on\n     ro             DU\n  Va       ke  a E\n                         Microsoftin uusi\n   lä  tu\nvie         ill e !       videoeditori.\n       tile\n                           Voit tekstittää\n                           videon\n                           automaattisesti\n                           Voit tehdä videoihin\n                           selostuksen helposti\n                           text-to-speech\n                           toiminnolla\n                           Voit antaa ohjelman\n                           leikata videosi\n                           tekoälyn avulla",
+      "ocrUsed": false
+    },
+    {
+      "page": 45,
+      "text": "Voit tekstittää esityksesi!\n                              Voit esimerkiksi\n                              puhua suomeksi ja\n                              tekstittää esityksen\n                              englanniksi\n\n                              Tätä on käytetty\n                              monikielisissä\n                              kokouksissa\n                              menestyksellä\n                                 Vain powerpoint online",
+      "ocrUsed": false
+    },
+    {
+      "page": 46,
+      "text": "Tai käytä sallistujakohtaista tekstitystä\nOsallistujat voivat liittyä esitykseesi puhelimillaan\n                                                   M365 Powerpoint\n                                                 Onlinen livetilassa voit:\n                                                   Näyttää\n                                                   esityskoneella\n                                                   tekstityksen\n                                                   valitsemallasi\n                                                   kielelellä (näkyy\n                                                   esim. tykillä)\n                                                   Osallistujat voivat\n                                                   valita omalla\n                                                   puhelimellaan\n                                                   tekstityksen omalla\n                                                   kielellään\n                                                  Vain powerpoint online",
+      "ocrUsed": false
+    },
+    {
+      "page": 47,
+      "text": "Automaattiset tekstitykset videoon\n                         Stream on M365\n                           videopalvelu\n                           Voit tekstittää\n                           videon helposti\n                           saat myös\n                           halutessasi\n                           litteraatin, jota voi\n                           hyödyntää esim.\n                           tutkimuksessa tai\n                           vaikkapa\n                           työhaastattelussa",
+      "ocrUsed": false
+    },
+    {
+      "page": 48,
+      "text": "Tehtävä :\nVE1: Kokeile M365 stream palvelun videotekstitystä\nVE2: Jos sinulla on oma Microsoft tili voit kokeilla\nluoda automaattisesti tekstitetyn videon Clipchamp\nvideoeditorilla (ei toimi vielä EDU tunnuksilla)",
+      "ocrUsed": false
+    },
+    {
+      "page": 49,
+      "text": "Perinteinen tekoäly (AI)\n                          Kasvojentunnistus\n                                                        OSA B.\n                                                        Generatiivinen\n                           (facial detection)\n                                Kuvantunnistus\n    Generatiivinen            (image recognition)\n    tekoäly (GenAI)                Puheentunnistus\n                                 (speech recognition)\n     Sisällöntuotanto              Teksti puheeksi\n    (teksti, kuva, ääni,\n\n\n\n\n                                                        tekoäly MS\n                                   (text to speech)\n         musiikki)              Luonnollisen kielen\n                                käsittely (natural\n                                language processing)\n                         Hahmon tunnistus\n                         (pattern recognition)\n              Tiedonlouhinta (data\n\n\n\n\n                                                        kontekstissa\n              mining)\n\n\n\n\n     “käytännössä samaa teknologiaa kuin ChatGPT”\n\n\nAZURE OPEN AI",
+      "ocrUsed": false
+    },
+    {
+      "page": 50,
+      "text": "Microsoftin tekoäly B. “Sama” kuin ChatGPT.\n\n\nOpen Azure AI = GPT3 ja GPT4\n                GPT-pohjaiset chatbotit\n                jne\n                Sisällön luominen GPT\n                teknologialla\n                Oman sisällön käsittely\n                GPT malleilla",
+      "ocrUsed": false
+    },
+    {
+      "page": 51,
+      "text": "Tämä on Microsoftin\n      loppukäyttäjille\n          tarjoama GPT\nkäyttöliittymä. Siitä on\n  lukuisia variaatioita",
+      "ocrUsed": false
+    },
+    {
+      "page": 52,
+      "text": "Yksityisille\n   Copilot Bing hakukoneessa\n   Copilot Edge (selaimen copilot)\n   Copilot Windows (windows)\n   Copilot Pro (officen copilot)\nYrityksille:\n   Copilot Edge for business\n   Copilot Microsoft 365\n   Copilot github\n   Copilot Studio (ie. GPT+)\n   Copilot Azurelle\n   Copilot Sales\n   Copilot Service\n   Copilot Security",
+      "ocrUsed": false
+    },
+    {
+      "page": 53,
+      "text": "Copilot Bing haku   Copilot Edge",
+      "ocrUsed": false
+    },
+    {
+      "page": 54,
+      "text": "Copilot edge enterprise\nEI saatavilla EDU lisensseissä alle\n18 vuotiaille",
+      "ocrUsed": false
+    },
+    {
+      "page": 55,
+      "text": "Mikä on Copilot Edge?\n Selaimeen integroitu copilot\n käyttöliittymää\n GPT3 tai GPT4 kielimalli valittavissa\n (sama teknologia kuin ChatGPT)\n Dall-E kuvageneraattori integroitu\n Kuluttajaversio tukee laajennuksia,\n business versio ei vielä\n Business version tiedot eivät “karkaa”\n organisaation ulkopuolelle",
+      "ocrUsed": false
+    },
+    {
+      "page": 56,
+      "text": "Copilot Edge sisältää myös Dall-E\n      kuvageneraattorin\n                        Dall-e kuvageneraattorin\n                        3. versio tuottaa jo\n                        varsin hyviä kuvia\n                        Ohessa on esimerkki-\n                        kuva, jonka tein OAJ:n\n                        tekoälysaunatapahtuma\n                        an\n                        Dall-e on integroitu Co-\n                        pilotiin. Perinteisesti se\n                        on ollut erillinen\n                        OpenAI:n palvelu.",
+      "ocrUsed": false
+    },
+    {
+      "page": 57,
+      "text": "Tällä hetkellä maksullinen\n                      Copilot M365 on\n                      saatavilla nyt myös\n                      EDU lisensseihin (ei\n                      alle k-18)",
+      "ocrUsed": false
+    },
+    {
+      "page": 58,
+      "text": "",
+      "ocrUsed": false
+    },
+    {
+      "page": 59,
+      "text": "Kukapa ei tekisi chatbottiaan itse..\n                         Microsoftin\n                         tekoälyteknologioita on\n                         mahdollista räätälöidä\n                         rajattomasti omien\n                         tutkimus- ja opetustarpeiden\n                         käyttöön.\n\n                         Esim. paljon julkisuudessa\n                         olleiden GPT chatbottien\n                         rakentaminen on\n                         periaatteessa mahdollista.\n                         Vaatii TUKEA!!\n\n                         Tässä minun tyhjä\n                         lähtökohta bottini\n                         rakentamiseen. Aloittelen\n                         juuri.",
+      "ocrUsed": false
+    },
+    {
+      "page": 60,
+      "text": "MS tarjoaa tekoälysovellustensa\ntueksi materiaaleja",
+      "ocrUsed": false
+    },
+    {
+      "page": 61,
+      "text": "Tätä aineistoa tukeva\nluentomateriaali:\n\n\n\n\n                                                                         Jari Laru, KT\n                                                                    yliopistonlehtori\nhttps://www.linkedin.com/feed/update/urn:li:activity:7128364984874508289/",
+      "ocrUsed": false
+    }
+  ],
+  "emptyPages": [
+    17,
+    18,
+    58
+  ],
+  "extractError": null,
+  "_diagnostic": {
+    "pdfBytes": 18981881,
+    "elapsedMs": 131344
+  }
+}

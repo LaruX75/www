@@ -75,6 +75,37 @@ const pool = [...content.items, ...theses.items];
  * SlideShare transcript: slideshare-content.json + frontmatter-URL:n
  * numerotunniste (esim. /slideshow/xxx/135625316).
  */
+/**
+ * Canva rich data: yhdistä content.url (/presentations/{slug}/) →
+ * { richSummary, themes, lang } canva-presentations-rich.json:sta.
+ *
+ * Mapping-lähde: data/canva/content-slug-to-designid.json (11/15 Canva-
+ * linkitettyä sivustopresentation-recordia mätsätty Claude-avusteisesti,
+ * scripts/canva/05-map-content-slugs.mjs). Loput 4 saavat fallback:in.
+ */
+function loadCanvaRichMap() {
+  const map = new Map();
+  const slugMapPath = path.join(ROOT, "data", "canva", "content-slug-to-designid.json");
+  const richPath = path.join(ROOT, "src", "_data", "canva-presentations-rich.json");
+  if (!fs.existsSync(slugMapPath) || !fs.existsSync(richPath)) return map;
+
+  const slugMap = JSON.parse(fs.readFileSync(slugMapPath, "utf8"));
+  const rich = JSON.parse(fs.readFileSync(richPath, "utf8"));
+  const richByDesignId = new Map(rich.items.map((r) => [r.designId, r]));
+
+  for (const [contentUrl, entry] of Object.entries(slugMap)) {
+    if (!entry || !entry.designId) continue;
+    const r = richByDesignId.get(entry.designId);
+    if (!r || r.confidence === "low") continue;
+    map.set(contentUrl, {
+      richSummary: r.richSummary || "",
+      themes: Array.isArray(r.themes) ? r.themes : [],
+      lang: r.lang || null
+    });
+  }
+  return map;
+}
+
 function loadSlideshareTranscriptMap() {
   const map = new Map();
   const ssPath = path.join(ROOT, "slideshare-content.json");
@@ -308,9 +339,10 @@ const DIMENSIONS = 1024; // BGE-M3
 
   const richSources = {
     transcriptByUrl: loadSlideshareTranscriptMap(),
-    markdownBodyByUrl: loadMarkdownBodyMap()
+    markdownBodyByUrl: loadMarkdownBodyMap(),
+    canvaRichByUrl: loadCanvaRichMap()
   };
-  console.log(`  rich sources: ${richSources.transcriptByUrl.size} transcript, ${richSources.markdownBodyByUrl.size} markdown-body`);
+  console.log(`  rich sources: ${richSources.transcriptByUrl.size} transcript, ${richSources.markdownBodyByUrl.size} markdown-body, ${richSources.canvaRichByUrl.size} canva-rich`);
   console.log(`  candidate pool: ${pool.length} itemiä (${content.items.length} content + ${theses.items.length} theses)`);
 
   // Lue nykyinen cache. Header-tarkistus invalidoi koko cachen jos malli,

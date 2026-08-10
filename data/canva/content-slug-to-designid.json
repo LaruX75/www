@@ -1,0 +1,72 @@
+{
+  "/presentations/digierko2024-risteilyesitys/": {
+    "designId": "DAGX14zirfw",
+    "confidence": "high",
+    "siteTitle": "DIGIERKO 2024 – Risteilyesitys",
+    "reason": "Tietue 57 'DIGIERKO 2024 – Risteilyesitys' vastaa täydellisesti: sama päivämäärä (29.11.2024), sama järjestäjä (DIGIERKO-koulutusristeily) ja sama aihe (digitaalinen erityisosaaminen)."
+  },
+  "/presentations/generation-ai-yleisesitys-sovellukset-2026/": null,
+  "/presentations/international-conference-on-the-advancement-of-steam-2024/": {
+    "designId": "DAGU1vBgqVI",
+    "confidence": "high",
+    "siteTitle": "International Conference on the Advancement of STEAM 2024",
+    "reason": "Täsmälleen sama title 'International Conference on the Advancement of STEAM 2024' ja sama päivämäärä (27.–28.10.2024) sekä sama tapahtuma ICAS 2024."
+  },
+  "/presentations/kempele-veso-2026/": {
+    "designId": "DAG_CuXyWfE",
+    "confidence": "high",
+    "siteTitle": "VESO 2026 – Tekoäly opetuksessa",
+    "reason": "Tietue 32 'VESO 2026 – Tekoäly opetuksessa' vastaa täydellisesti: sama päivä (2026-01-21), sama järjestäjä (Kempeleen kunta, VESO-koulutus) ja sama aihe (tekoäly opetuksessa Kempeleen kouluille)."
+  },
+  "/presentations/kohti-kriittist-teko-lylukutaitoa-2026-finnoschool/": {
+    "designId": "DAHBgwoGRSw",
+    "confidence": "high",
+    "siteTitle": "Riko, rakenna ja ymmärrä – Kohti kriittistä tekoälylukutaitoa",
+    "reason": "Sama päivämäärä (2026-02-16), sama järjestäjä (Finnoschool) ja sama aihe (kriittinen tekoälylukutaito), vaikka title on eri."
+  },
+  "/presentations/kokkola-2025-teko-ly-opettajan-yst-v-vai-viho/": {
+    "designId": "DAG0eFqiEm4",
+    "confidence": "high",
+    "siteTitle": "Tekoäly: opettajan ystävä vai vihollinen? Matkalla kohti tekoälylukutaitoa",
+    "reason": "Tietue 40 'Tekoäly: opettajan ystävä vai vihollinen? Matkalla kohti tekoälylukutaitoa' vastaa päivämäärältä (2025-09-30), järjestäjältä (Kokkolan kaupunki) ja aiheelta täysin jarilaru.fi-esitystä."
+  },
+  "/presentations/konen-k-vibe-robotiikka-riihim-ki-robokampus-2026/": {
+    "designId": "DAG-_sTjJGw",
+    "confidence": "high",
+    "siteTitle": "Konenäkö, vibe coding ja robotiikka – Robokampus 2026",
+    "reason": "Sama päivämäärä (2026-01-20), sama järjestäjä (Riihimäen Robokampus) ja sama aihe (konenäkö, vibe coding ja robotiikka) – title on käytännössä identtinen eri kirjoitusasulla."
+  },
+  "/presentations/luento-1-johdanto/": null,
+  "/presentations/luento-4-ohjelmointiosaaminen/": null,
+  "/presentations/monilukutaito-on-opettajan-supervoima-teko-lylukutaito-luento/": {
+    "designId": "DAGR4viWmXg",
+    "confidence": "high",
+    "siteTitle": "Monilukutaito on opettajan supervoima – Tekoälylukutaito",
+    "reason": "Tietueen 62 title 'Monilukutaito on opettajan supervoima – Tekoälylukutaito' vastaa jarilaru.fi-esityksen titteliä ja päivämäärä 2024-09-26 on käytännössä sama kuin esityksen 27.9.2024."
+  },
+  "/presentations/opettaja-teko-lyn-ja-lytt-myyden-turbulenssissa-tampere-2025/": {
+    "designId": "DAG3RTYSb4w",
+    "confidence": "high",
+    "siteTitle": "Opettaja tekoälyn ja -älyttömyyden turbulenssissa",
+    "reason": "Täsmälleen sama title 'Opettaja tekoälyn ja -älyttömyyden turbulenssissa', sama päivämäärä 2025-10-30 ja sama paikkakunta Tampere."
+  },
+  "/presentations/pori-kerava-millaisia-teko-lytaitoja-peruskoulussa-tulisi-opettaa-2020-luvulla/": {
+    "designId": "DAGXGJ5q-90",
+    "confidence": "high",
+    "siteTitle": "Millaisia tekoälytaitoja peruskoulussa tulisi opettaa 2020-luvulla?",
+    "reason": "Täsmälleen sama title 'Millaisia tekoälytaitoja peruskoulussa tulisi opettaa 2020-luvulla?', sama päivämäärä 2024-11-21 ja sama järjestäjä Pori / Kerava."
+  },
+  "/presentations/riihim-ki-veso-2026/": {
+    "designId": "DAG_I53Vtag",
+    "confidence": "high",
+    "siteTitle": "Ihmeitä tekevä tekoäly vai tavallinen työkalu? – VESO 2026",
+    "reason": "Tietue 31 'Ihmeitä tekevä tekoäly vai tavallinen työkalu? – VESO 2026' vastaa päivämäärältä (2026-01-22), järjestäjältä (Riihimäen kaupunki, VESO-koulutus) ja aiheeltaan täysin jarilaru.fi-esitystä, vaikka title on eri."
+  },
+  "/presentations/simo-veso-2024/": {
+    "designId": "DAGPXRorTeg",
+    "confidence": "high",
+    "siteTitle": "VESO 2024 – Tekoäly opetuksessa",
+    "reason": "Tietue 66 'VESO 2024 – Tekoäly opetuksessa' vastaa täydellisesti: sama päivämäärä (2024-08-30), sama järjestäjä (Simon kunta) ja sama aihe (tekoäly opetuksessa VESO-päivänä)."
+  },
+  "/presentations/syntyvyys-ja-kouluik-luokat-oulussa-2026/": null
+}

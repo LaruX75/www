@@ -1,0 +1,596 @@
+{
+  "generatedAt": "2026-08-10T16:13:21.285Z",
+  "anchors": 8,
+  "meanOverlap": 0.75,
+  "meanNovel": 4.25,
+  "crossContent": {
+    "A": {
+      "presentation": 28,
+      "mediaItem": 1,
+      "thesis": 11
+    },
+    "B": {
+      "presentation": 36,
+      "article": 1,
+      "blogPost": 3
+    }
+  },
+  "results": [
+    {
+      "title": "DIGIERKO2024 risteilyesitys",
+      "url": "/presentations/digierko2024-risteilyesitys/",
+      "inputAChars": 130,
+      "inputBChars": 2078,
+      "overlap": 0,
+      "novel": 5,
+      "topA": [
+        {
+          "url": "/presentations/tekoaly-opetuskaytto-avi-webinaari-2024/",
+          "sim": 0.6192771761192785,
+          "contentType": "presentation",
+          "title": "Tekoäly on ympärillämme, mutta emme tunnista sitä – neljä näkökulmaa tekoälyn opetuskäyttöön"
+        },
+        {
+          "url": "/presentations/eduxr-2020-suunnanmuutos-digiopettajasta-etaopettajaksi/",
+          "sim": 0.60881129207532,
+          "contentType": "presentation",
+          "title": "Suunnanmuutos 360° digiopettajasta etäopettajaksi"
+        },
+        {
+          "url": "/mediassa/2024/10/14/korvaako-tekoaly-opettajan-jari-laru/",
+          "sim": 0.5950800549920274,
+          "contentType": "mediaItem",
+          "title": "Korvaako tekoäly opettajan, Jari Laru?"
+        },
+        {
+          "url": "/presentations/pori-kerava-millaisia-teko-lytaitoja-peruskoulussa-tulisi-opettaa-2020-luvulla/",
+          "sim": 0.5883571670741844,
+          "contentType": "presentation",
+          "title": "Pori / Kerava: Millaisia tekoälytaitoja peruskoulussa tulisi opettaa 2020-luvulla?"
+        },
+        {
+          "url": "/presentations/luento-4-ohjelmointiosaaminen/",
+          "sim": 0.5879866787025689,
+          "contentType": "presentation",
+          "title": "Luento 4: Ohjelmointiosaaminen"
+        }
+      ],
+      "topB": [
+        {
+          "url": "/presentations/riihim-ki-veso-2026/",
+          "sim": 0.7981327477283336,
+          "contentType": "presentation",
+          "title": "Riihimäki VESO 2026"
+        },
+        {
+          "url": "/presentations/kempele-veso-2026/",
+          "sim": 0.7895542797260202,
+          "contentType": "presentation",
+          "title": "Kempele VESO 2026"
+        },
+        {
+          "url": "/presentations/simo-veso-2024/",
+          "sim": 0.7893624534721712,
+          "contentType": "presentation",
+          "title": "SIMO VESO 2024"
+        },
+        {
+          "url": "/presentations/kokkola-2025-teko-ly-opettajan-yst-v-vai-viho/",
+          "sim": 0.7738630052012653,
+          "contentType": "presentation",
+          "title": "Kokkola 2025: tekoäly, opettajan ystävä vai viho"
+        },
+        {
+          "url": "/presentations/opettaja-teko-lyn-ja-lytt-myyden-turbulenssissa-tampere-2025/",
+          "sim": 0.769053950670627,
+          "contentType": "presentation",
+          "title": "Opettaja tekoälyn ja -älyttömyyden turbulenssissa. Tampere 2025"
+        }
+      ]
+    },
+    {
+      "title": "International Conference on the Advancement of STEAM 2024",
+      "url": "/presentations/international-conference-on-the-advancement-of-steam-2024/",
+      "inputAChars": 172,
+      "inputBChars": 2362,
+      "overlap": 1,
+      "novel": 4,
+      "topA": [
+        {
+          "url": "/presentations/generation-ai-yleisesitys-sovellukset-2026/",
+          "sim": 0.6540413361179176,
+          "contentType": "presentation",
+          "title": "Generation AI yleisesitys / Sovellukset / 2026"
+        },
+        {
+          "url": "/presentations/monilukutaito-on-opettajan-supervoima-teko-lylukutaito-luento/",
+          "sim": 0.6352908523436958,
+          "contentType": "presentation",
+          "title": "Monilukutaito on opettajan supervoima: tekoälylukutaito-luento"
+        },
+        {
+          "url": "/presentations/kempele-veso-2026/",
+          "sim": 0.6314644706217001,
+          "contentType": "presentation",
+          "title": "Kempele VESO 2026"
+        },
+        {
+          "url": "/presentations/tekoaly-opetuskaytto-avi-webinaari-2024/",
+          "sim": 0.623785391179473,
+          "contentType": "presentation",
+          "title": "Tekoäly on ympärillämme, mutta emme tunnista sitä – neljä näkökulmaa tekoälyn opetuskäyttöön"
+        },
+        {
+          "url": "https://oulurepo.oulu.fi/handle/10024/49928",
+          "sim": 0.6181194181533489,
+          "contentType": "thesis",
+          "title": "Tulevaisuuden osaamista STEAM-pedagogiikan keinoin"
+        }
+      ],
+      "topB": [
+        {
+          "url": "/presentations/ss-digital-enabled-learning-arctic-frontiers-speech-2020/",
+          "sim": 0.7362598816588186,
+          "contentType": "presentation",
+          "title": "\"Digital enabled learning\" (Arctic frontiers speech 2020)"
+        },
+        {
+          "url": "/presentations/kohti-kriittist-teko-lylukutaitoa-2026-finnoschool/",
+          "sim": 0.7280245509846843,
+          "contentType": "presentation",
+          "title": "Kohti kriittistä tekoälylukutaitoa 2026 - Finnoschool"
+        },
+        {
+          "url": "/2025/02/05/faktabaari-generation-ai-projekti/",
+          "sim": 0.7249351059394805,
+          "contentType": "article",
+          "title": "Generation AI -projekti"
+        },
+        {
+          "url": "/presentations/kempele-veso-2026/",
+          "sim": 0.7232785966242459,
+          "contentType": "presentation",
+          "title": "Kempele VESO 2026"
+        },
+        {
+          "url": "/presentations/digierko2024-risteilyesitys/",
+          "sim": 0.7160785121624883,
+          "contentType": "presentation",
+          "title": "DIGIERKO2024 risteilyesitys"
+        }
+      ]
+    },
+    {
+      "title": "Kohti kriittistä tekoälylukutaitoa 2026 - Finnoschool",
+      "url": "/presentations/kohti-kriittist-teko-lylukutaitoa-2026-finnoschool/",
+      "inputAChars": 194,
+      "inputBChars": 1712,
+      "overlap": 2,
+      "novel": 3,
+      "topA": [
+        {
+          "url": "/presentations/monilukutaito-on-opettajan-supervoima-teko-lylukutaito-luento/",
+          "sim": 0.6937298111394183,
+          "contentType": "presentation",
+          "title": "Monilukutaito on opettajan supervoima: tekoälylukutaito-luento"
+        },
+        {
+          "url": "https://oulurepo.oulu.fi/handle/10024/62907",
+          "sim": 0.6722519545817196,
+          "contentType": "thesis",
+          "title": "Kuinka opettajaopiskelijoiden tekoälytaidot näkyvät heidän tekemissään luokittelijasovelluksissa"
+        },
+        {
+          "url": "/presentations/kempele-veso-2026/",
+          "sim": 0.6392311991691115,
+          "contentType": "presentation",
+          "title": "Kempele VESO 2026"
+        },
+        {
+          "url": "https://oulurepo.oulu.fi/handle/10024/61153",
+          "sim": 0.630762887190615,
+          "contentType": "thesis",
+          "title": "Tekoälylukutaito monilukutaidon opetuksessa"
+        },
+        {
+          "url": "/presentations/opettaja-teko-lyn-ja-lytt-myyden-turbulenssissa-tampere-2025/",
+          "sim": 0.6188033255741433,
+          "contentType": "presentation",
+          "title": "Opettaja tekoälyn ja -älyttömyyden turbulenssissa. Tampere 2025"
+        }
+      ],
+      "topB": [
+        {
+          "url": "/presentations/kempele-veso-2026/",
+          "sim": 0.8415754572188581,
+          "contentType": "presentation",
+          "title": "Kempele VESO 2026"
+        },
+        {
+          "url": "/presentations/opettaja-teko-lyn-ja-lytt-myyden-turbulenssissa-tampere-2025/",
+          "sim": 0.8050493398713159,
+          "contentType": "presentation",
+          "title": "Opettaja tekoälyn ja -älyttömyyden turbulenssissa. Tampere 2025"
+        },
+        {
+          "url": "/2024/10/21/sivista-blogi-tekoaly-on-tyokaverini/",
+          "sim": 0.7955670506814498,
+          "contentType": "blogPost",
+          "title": "Jari Laru: Tekoäly on työkaverini! – Havaintoja teknologiasta innostuvan yliopistonlehtorin arjesta"
+        },
+        {
+          "url": "/presentations/kokkola-2025-teko-ly-opettajan-yst-v-vai-viho/",
+          "sim": 0.7930220679216095,
+          "contentType": "presentation",
+          "title": "Kokkola 2025: tekoäly, opettajan ystävä vai viho"
+        },
+        {
+          "url": "/presentations/riihim-ki-veso-2026/",
+          "sim": 0.7897306065053048,
+          "contentType": "presentation",
+          "title": "Riihimäki VESO 2026"
+        }
+      ]
+    },
+    {
+      "title": "Koneäkö + vibe + robotiikka – Riihimäki Robokampus 2026",
+      "url": "/presentations/konen-k-vibe-robotiikka-riihim-ki-robokampus-2026/",
+      "inputAChars": 175,
+      "inputBChars": 2279,
+      "overlap": 1,
+      "novel": 4,
+      "topA": [
+        {
+          "url": "/presentations/generation-ai-yleisesitys-sovellukset-2026/",
+          "sim": 0.5471228185703707,
+          "contentType": "presentation",
+          "title": "Generation AI yleisesitys / Sovellukset / 2026"
+        },
+        {
+          "url": "/presentations/pori-kerava-millaisia-teko-lytaitoja-peruskoulussa-tulisi-opettaa-2020-luvulla/",
+          "sim": 0.5401679727641545,
+          "contentType": "presentation",
+          "title": "Pori / Kerava: Millaisia tekoälytaitoja peruskoulussa tulisi opettaa 2020-luvulla?"
+        },
+        {
+          "url": "https://oulurepo.oulu.fi/handle/10024/62907",
+          "sim": 0.5377254545306894,
+          "contentType": "thesis",
+          "title": "Kuinka opettajaopiskelijoiden tekoälytaidot näkyvät heidän tekemissään luokittelijasovelluksissa"
+        },
+        {
+          "url": "/presentations/riihim-ki-veso-2026/",
+          "sim": 0.5372553659562459,
+          "contentType": "presentation",
+          "title": "Riihimäki VESO 2026"
+        },
+        {
+          "url": "/presentations/tekoaly-opetuskaytto-avi-webinaari-2024/",
+          "sim": 0.5343718968584321,
+          "contentType": "presentation",
+          "title": "Tekoäly on ympärillämme, mutta emme tunnista sitä – neljä näkökulmaa tekoälyn opetuskäyttöön"
+        }
+      ],
+      "topB": [
+        {
+          "url": "/presentations/riihim-ki-veso-2026/",
+          "sim": 0.7991585315281824,
+          "contentType": "presentation",
+          "title": "Riihimäki VESO 2026"
+        },
+        {
+          "url": "/presentations/kempele-veso-2026/",
+          "sim": 0.7871237947885702,
+          "contentType": "presentation",
+          "title": "Kempele VESO 2026"
+        },
+        {
+          "url": "/presentations/kohti-kriittist-teko-lylukutaitoa-2026-finnoschool/",
+          "sim": 0.768622479147567,
+          "contentType": "presentation",
+          "title": "Kohti kriittistä tekoälylukutaitoa 2026 - Finnoschool"
+        },
+        {
+          "url": "/presentations/opettaja-teko-lyn-ja-lytt-myyden-turbulenssissa-tampere-2025/",
+          "sim": 0.7606609994668293,
+          "contentType": "presentation",
+          "title": "Opettaja tekoälyn ja -älyttömyyden turbulenssissa. Tampere 2025"
+        },
+        {
+          "url": "/presentations/kokkola-2025-teko-ly-opettajan-yst-v-vai-viho/",
+          "sim": 0.7575870905645002,
+          "contentType": "presentation",
+          "title": "Kokkola 2025: tekoäly, opettajan ystävä vai viho"
+        }
+      ]
+    },
+    {
+      "title": "SIMO VESO 2024",
+      "url": "/presentations/simo-veso-2024/",
+      "inputAChars": 130,
+      "inputBChars": 2109,
+      "overlap": 1,
+      "novel": 4,
+      "topA": [
+        {
+          "url": "/presentations/tekoaly-opetuskaytto-avi-webinaari-2024/",
+          "sim": 0.6319726921866506,
+          "contentType": "presentation",
+          "title": "Tekoäly on ympärillämme, mutta emme tunnista sitä – neljä näkökulmaa tekoälyn opetuskäyttöön"
+        },
+        {
+          "url": "https://oulurepo.oulu.fi/handle/10024/61633",
+          "sim": 0.6159228527417616,
+          "contentType": "thesis",
+          "title": "Luokanopettajien tulevaisuudenkuvia tekoälystä osana opettajan työtä"
+        },
+        {
+          "url": "/presentations/tsl-tekoaly-demokratian-ja-sivistyksen-tukena-paneelikeskustelu-2024/",
+          "sim": 0.6122523943812241,
+          "contentType": "presentation",
+          "title": "Paneelikeskustelu: Tekoäly demokratian ja sivistyksen tukena (TSL 2024)"
+        },
+        {
+          "url": "/presentations/kempele-veso-2026/",
+          "sim": 0.6121699752225161,
+          "contentType": "presentation",
+          "title": "Kempele VESO 2026"
+        },
+        {
+          "url": "/presentations/pori-kerava-millaisia-teko-lytaitoja-peruskoulussa-tulisi-opettaa-2020-luvulla/",
+          "sim": 0.6095556078834985,
+          "contentType": "presentation",
+          "title": "Pori / Kerava: Millaisia tekoälytaitoja peruskoulussa tulisi opettaa 2020-luvulla?"
+        }
+      ],
+      "topB": [
+        {
+          "url": "/presentations/riihim-ki-veso-2026/",
+          "sim": 0.7959428356600133,
+          "contentType": "presentation",
+          "title": "Riihimäki VESO 2026"
+        },
+        {
+          "url": "/presentations/digierko2024-risteilyesitys/",
+          "sim": 0.7893624527661782,
+          "contentType": "presentation",
+          "title": "DIGIERKO2024 risteilyesitys"
+        },
+        {
+          "url": "/presentations/kempele-veso-2026/",
+          "sim": 0.7871647212701228,
+          "contentType": "presentation",
+          "title": "Kempele VESO 2026"
+        },
+        {
+          "url": "/presentations/kokkola-2025-teko-ly-opettajan-yst-v-vai-viho/",
+          "sim": 0.7481052098942865,
+          "contentType": "presentation",
+          "title": "Kokkola 2025: tekoäly, opettajan ystävä vai viho"
+        },
+        {
+          "url": "/presentations/kohti-kriittist-teko-lylukutaitoa-2026-finnoschool/",
+          "sim": 0.7258138773999311,
+          "contentType": "presentation",
+          "title": "Kohti kriittistä tekoälylukutaitoa 2026 - Finnoschool"
+        }
+      ]
+    },
+    {
+      "title": "Kempele VESO 2026",
+      "url": "/presentations/kempele-veso-2026/",
+      "inputAChars": 114,
+      "inputBChars": 2058,
+      "overlap": 0,
+      "novel": 5,
+      "topA": [
+        {
+          "url": "/presentations/opi-oulu-2026-tekoalyaiheinen-paneelikeskustelu/",
+          "sim": 0.7102738745508652,
+          "contentType": "presentation",
+          "title": "OPI Oulu 2026: Tekoälyaiheinen paneelikeskustelu"
+        },
+        {
+          "url": "/presentations/tekoaly-opetuskaytto-avi-webinaari-2024/",
+          "sim": 0.6498337760760587,
+          "contentType": "presentation",
+          "title": "Tekoäly on ympärillämme, mutta emme tunnista sitä – neljä näkökulmaa tekoälyn opetuskäyttöön"
+        },
+        {
+          "url": "https://oulurepo.oulu.fi/handle/10024/62912",
+          "sim": 0.6152578394590001,
+          "contentType": "thesis",
+          "title": "Opettajien tulevaisuusorientaatiot tekoälyn kontekstissa"
+        },
+        {
+          "url": "/presentations/tsl-tekoaly-demokratian-ja-sivistyksen-tukena-paneelikeskustelu-2024/",
+          "sim": 0.6134617645503514,
+          "contentType": "presentation",
+          "title": "Paneelikeskustelu: Tekoäly demokratian ja sivistyksen tukena (TSL 2024)"
+        },
+        {
+          "url": "/presentations/monilukutaito-on-opettajan-supervoima-teko-lylukutaito-luento/",
+          "sim": 0.6111233057667036,
+          "contentType": "presentation",
+          "title": "Monilukutaito on opettajan supervoima: tekoälylukutaito-luento"
+        }
+      ],
+      "topB": [
+        {
+          "url": "/presentations/kokkola-2025-teko-ly-opettajan-yst-v-vai-viho/",
+          "sim": 0.8716081923745349,
+          "contentType": "presentation",
+          "title": "Kokkola 2025: tekoäly, opettajan ystävä vai viho"
+        },
+        {
+          "url": "/presentations/riihim-ki-veso-2026/",
+          "sim": 0.8641362653952029,
+          "contentType": "presentation",
+          "title": "Riihimäki VESO 2026"
+        },
+        {
+          "url": "/presentations/kohti-kriittist-teko-lylukutaitoa-2026-finnoschool/",
+          "sim": 0.8415754579148269,
+          "contentType": "presentation",
+          "title": "Kohti kriittistä tekoälylukutaitoa 2026 - Finnoschool"
+        },
+        {
+          "url": "/2024/10/21/sivista-blogi-tekoaly-on-tyokaverini/",
+          "sim": 0.7998803132311404,
+          "contentType": "blogPost",
+          "title": "Jari Laru: Tekoäly on työkaverini! – Havaintoja teknologiasta innostuvan yliopistonlehtorin arjesta"
+        },
+        {
+          "url": "/presentations/digierko2024-risteilyesitys/",
+          "sim": 0.7895542799534243,
+          "contentType": "presentation",
+          "title": "DIGIERKO2024 risteilyesitys"
+        }
+      ]
+    },
+    {
+      "title": "Kokkola 2025: tekoäly, opettajan ystävä vai viho",
+      "url": "/presentations/kokkola-2025-teko-ly-opettajan-yst-v-vai-viho/",
+      "inputAChars": 163,
+      "inputBChars": 2079,
+      "overlap": 0,
+      "novel": 5,
+      "topA": [
+        {
+          "url": "/presentations/tekoaly-opetuskaytto-avi-webinaari-2024/",
+          "sim": 0.6973744572460473,
+          "contentType": "presentation",
+          "title": "Tekoäly on ympärillämme, mutta emme tunnista sitä – neljä näkökulmaa tekoälyn opetuskäyttöön"
+        },
+        {
+          "url": "https://oulurepo.oulu.fi/handle/10024/53198",
+          "sim": 0.6835175008956133,
+          "contentType": "thesis",
+          "title": "Opettajaopiskelijoiden käsityksiä tekoälystä ja sen käytöstä opettajan työssä"
+        },
+        {
+          "url": "/presentations/opi-oulu-2026-tekoalyaiheinen-paneelikeskustelu/",
+          "sim": 0.6798087799665291,
+          "contentType": "presentation",
+          "title": "OPI Oulu 2026: Tekoälyaiheinen paneelikeskustelu"
+        },
+        {
+          "url": "/presentations/pori-kerava-millaisia-teko-lytaitoja-peruskoulussa-tulisi-opettaa-2020-luvulla/",
+          "sim": 0.6607143212610237,
+          "contentType": "presentation",
+          "title": "Pori / Kerava: Millaisia tekoälytaitoja peruskoulussa tulisi opettaa 2020-luvulla?"
+        },
+        {
+          "url": "https://oulurepo.oulu.fi/handle/10024/63041",
+          "sim": 0.6601286153268774,
+          "contentType": "thesis",
+          "title": "Opettajaopiskelijoiden ajatuksia tekoälystä"
+        }
+      ],
+      "topB": [
+        {
+          "url": "/presentations/kempele-veso-2026/",
+          "sim": 0.8716081925829623,
+          "contentType": "presentation",
+          "title": "Kempele VESO 2026"
+        },
+        {
+          "url": "/presentations/riihim-ki-veso-2026/",
+          "sim": 0.8411080829731631,
+          "contentType": "presentation",
+          "title": "Riihimäki VESO 2026"
+        },
+        {
+          "url": "/presentations/kohti-kriittist-teko-lylukutaitoa-2026-finnoschool/",
+          "sim": 0.793022067043713,
+          "contentType": "presentation",
+          "title": "Kohti kriittistä tekoälylukutaitoa 2026 - Finnoschool"
+        },
+        {
+          "url": "/2024/10/21/sivista-blogi-tekoaly-on-tyokaverini/",
+          "sim": 0.7797157457951306,
+          "contentType": "blogPost",
+          "title": "Jari Laru: Tekoäly on työkaverini! – Havaintoja teknologiasta innostuvan yliopistonlehtorin arjesta"
+        },
+        {
+          "url": "/presentations/digierko2024-risteilyesitys/",
+          "sim": 0.7738630050147715,
+          "contentType": "presentation",
+          "title": "DIGIERKO2024 risteilyesitys"
+        }
+      ]
+    },
+    {
+      "title": "Opettaja tekoälyn ja -älyttömyyden turbulenssissa. Tampere 2025",
+      "url": "/presentations/opettaja-teko-lyn-ja-lytt-myyden-turbulenssissa-tampere-2025/",
+      "inputAChars": 185,
+      "inputBChars": 1797,
+      "overlap": 1,
+      "novel": 4,
+      "topA": [
+        {
+          "url": "https://oulurepo.oulu.fi/handle/10024/62912",
+          "sim": 0.7232737983162011,
+          "contentType": "thesis",
+          "title": "Opettajien tulevaisuusorientaatiot tekoälyn kontekstissa"
+        },
+        {
+          "url": "https://oulurepo.oulu.fi/handle/10024/53198",
+          "sim": 0.7160495117599316,
+          "contentType": "thesis",
+          "title": "Opettajaopiskelijoiden käsityksiä tekoälystä ja sen käytöstä opettajan työssä"
+        },
+        {
+          "url": "/presentations/tekoaly-opetuskaytto-avi-webinaari-2024/",
+          "sim": 0.6969059565558325,
+          "contentType": "presentation",
+          "title": "Tekoäly on ympärillämme, mutta emme tunnista sitä – neljä näkökulmaa tekoälyn opetuskäyttöön"
+        },
+        {
+          "url": "https://oulurepo.oulu.fi/handle/10024/63041",
+          "sim": 0.6861327885455265,
+          "contentType": "thesis",
+          "title": "Opettajaopiskelijoiden ajatuksia tekoälystä"
+        },
+        {
+          "url": "/presentations/kokkola-2025-teko-ly-opettajan-yst-v-vai-viho/",
+          "sim": 0.6761600317503546,
+          "contentType": "presentation",
+          "title": "Kokkola 2025: tekoäly, opettajan ystävä vai viho"
+        }
+      ],
+      "topB": [
+        {
+          "url": "/presentations/kohti-kriittist-teko-lylukutaitoa-2026-finnoschool/",
+          "sim": 0.8050493384605137,
+          "contentType": "presentation",
+          "title": "Kohti kriittistä tekoälylukutaitoa 2026 - Finnoschool"
+        },
+        {
+          "url": "/presentations/riihim-ki-veso-2026/",
+          "sim": 0.801029727781738,
+          "contentType": "presentation",
+          "title": "Riihimäki VESO 2026"
+        },
+        {
+          "url": "/presentations/kempele-veso-2026/",
+          "sim": 0.7756457992260731,
+          "contentType": "presentation",
+          "title": "Kempele VESO 2026"
+        },
+        {
+          "url": "/presentations/kokkola-2025-teko-ly-opettajan-yst-v-vai-viho/",
+          "sim": 0.7717265817881429,
+          "contentType": "presentation",
+          "title": "Kokkola 2025: tekoäly, opettajan ystävä vai viho"
+        },
+        {
+          "url": "/presentations/digierko2024-risteilyesitys/",
+          "sim": 0.7690539501787123,
+          "contentType": "presentation",
+          "title": "DIGIERKO2024 risteilyesitys"
+        }
+      ]
+    }
+  ]
+}

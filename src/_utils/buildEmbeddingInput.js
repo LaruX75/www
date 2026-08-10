@@ -35,6 +35,10 @@ const { truncate } = require("./embeddingTruncation");
 // v1-2026-08-10: label-tarkennus (thesisAbstract, publicationAbstract).
 //                Ei muuta embedding-tekstiä, mutta muuttaa inputSources-metadataa
 //                → fingerprint ei muutu (label ei ole fingerprintin osa).
+// HUOM: canvaRich-source lisätty 2026-08-11, mutta versio pidetty v1:ssä
+// koska muutos vaikuttaa VAIN Canva-presentaatioihin joilla on rich-data.
+// Muille sisältötyypeille teksti on identtinen v1:n kanssa → fingerprint
+// säilyy → cache-hit. Vain 11 Canva-embeddingiä regeneroidaan.
 const INPUT_STRATEGY_VERSION = "v1-2026-08-10";
 
 const DEFAULT_MAX_CHARS = 6000;
@@ -49,8 +53,9 @@ const DEFAULT_TRUNCATION = "head";
  * Palauttaa null jos ei ole rich sourcea.
  *
  * richSources: {
- *   markdownBodyByUrl: Map<url, string>,  // src/blog, src/publications, src/politics, src/media
- *   transcriptByUrl: Map<url, { transcript, description? }>  // slideshare-content.json
+ *   markdownBodyByUrl: Map<url, string>,       // src/blog, src/publications, src/politics, src/media
+ *   transcriptByUrl: Map<url, { transcript, description? }>,  // slideshare-content.json
+ *   canvaRichByUrl: Map<url, { richSummary, themes, lang, keywords }>  // canva-presentations-rich.json
  * }
  */
 function getRichSource(item, richSources = {}) {
@@ -58,12 +63,24 @@ function getRichSource(item, richSources = {}) {
   const contentType = item?.contentType || "";
   const markdownBodyByUrl = richSources.markdownBodyByUrl || new Map();
   const transcriptByUrl = richSources.transcriptByUrl || new Map();
+  const canvaRichByUrl = richSources.canvaRichByUrl || new Map();
 
-  // SlideShare-presentation → transcript ensisijainen
+  // Presentaatio → SlideShare-transcript ensisijainen, sitten Canva-rich
   if (contentType === "presentation") {
     const ss = transcriptByUrl.get(url);
     if (ss && ss.transcript && ss.transcript.length > 200) {
       return { source: "slideshareTranscript", text: ss.transcript };
+    }
+    // Canva-rich: richSummary (600-2600 mk) + themes selkeästi erotettuna
+    const canva = canvaRichByUrl.get(url);
+    if (canva && canva.richSummary && canva.richSummary.length > 100) {
+      const parts = [canva.richSummary.trim()];
+      if (Array.isArray(canva.themes) && canva.themes.length) {
+        parts.push(`Teemat: ${canva.themes.join(", ")}`);
+      }
+      // ÄLÄ lisää canva.keywords tähän — ne tulevat myöhemmin item.keywords-kentästä
+      // buildEmbeddingInput():issa (jos frontmatter-keywords on olemassa).
+      return { source: "canvaRich", text: parts.join("\n\n") };
     }
   }
 
@@ -142,17 +159,32 @@ function buildEmbeddingInput(item, richSources, options = {}) {
   const sources = [];
 
   if (title) { parts.push(title); sources.push("title"); }
-  if (description) {
+
+  const rich = getRichSource(item, richSources);
+
+  // Canva-rich: skippaa description (yleensä "Canva-esitys" tai niukka melua)
+  // ja lisää canvaRich + keywords selkeästi erotettuina semanttisina vihjeinä.
+  const isCanvaRich = rich?.source === "canvaRich";
+
+  if (description && !isCanvaRich) {
     parts.push(description);
     sources.push(describeDescriptionSource(contentType));
   }
 
-  const rich = getRichSource(item, richSources);
   if (rich) {
     const cleaned = rich.source === "markdownBody" ? stripMarkdown(rich.text) : String(rich.text || "").trim();
     if (cleaned.length > 100) {
       parts.push(cleaned);
       sources.push(rich.source);
+    }
+  }
+
+  // Canva-rich: lisää keywords selkeästi merkittynä
+  if (isCanvaRich) {
+    const kw = Array.isArray(item?.keywords) ? item.keywords.filter(Boolean) : [];
+    if (kw.length) {
+      parts.push(`Avainsanat: ${kw.join(", ")}`);
+      sources.push("keywords");
     }
   }
 

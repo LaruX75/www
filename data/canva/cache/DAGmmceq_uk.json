@@ -1,0 +1,309 @@
+{
+  "designId": "DAGmmceq_uk",
+  "sourceUpdatedAt": 1784883522,
+  "extractedAt": "2026-08-10T10:30:50.418Z",
+  "pageCount": 59,
+  "slides": [
+    {
+      "page": 1,
+      "text": "Älyä!\nTeko!\nÄlyä! Teko! Millaisia ovat tekoälyajan ihmisen kognitiiviset työkalut\nja elämässä tarvittavat ydintaidot?\nJari Laru, KT, yliopistonlehtori, teknologiatuettu oppiminen ja opetus. Oulun yliopisto,\nKasvatustieteiden ja Psykologian tiedekunta. Larux tmi.",
+      "ocrUsed": false
+    },
+    {
+      "page": 2,
+      "text": "https://bit.ly/tho2025tekoaly\n\n\n\n\n  Huom! NotebookLM linkitykset toimivat www-versiossa.",
+      "ocrUsed": false
+    },
+    {
+      "page": 3,
+      "text": "Tekoäly ei ole\n                       tulevaisuutta\n                                  Kaikkialla läsnä oleva ja\n                                    kaikkialle levinnyt\n                                          tekoäly\n\nTekoäly on integroitu syvästi sosiaalisen median palveluihin",
+      "ocrUsed": false
+    },
+    {
+      "page": 4,
+      "text": "OSA A.\nMillainen työkalu tekoäly on.\nSe on paljon muutakin kuin\n          “chatGPT”",
+      "ocrUsed": false
+    },
+    {
+      "page": 5,
+      "text": "OSA A: Millainen työkalu tekoäly on?   Horvitz, E., & Mitchell, T. M. (2024). Scientific Progress in Artificial Intelligence: History, Status, and Futures. in Kathleen Hall Jamieson, Anne-Marie Mazza, and\n                                       William Kearney (Eds.) (2024) Realizing the Promise and Minimizing the Perils of AI for Science and the Scientific Community. University of Pennsylvania Press",
+      "ocrUsed": false
+    },
+    {
+      "page": 6,
+      "text": "Rakenne\nSääntöpohjainen (symbolinen)\ntekoäly\nKoneoppiminen / syväoppiminen\nGeneratiivinen tekoäly",
+      "ocrUsed": false
+    },
+    {
+      "page": 7,
+      "text": "1                            Sääntöpohjainen\n                                  (symbolinen) tekoäly\n\nOSA A: Millainen työkalu tekoäly on?",
+      "ocrUsed": false
+    },
+    {
+      "page": 8,
+      "text": "Symbolinen AI = GOFAI = Good Old-fashioned AI\n\n\n             1969\n             1969                      “machines will be capable of doing\n                                           any work a man can do.”\n                                       “Herbert Simonin uraauurtava työ\n                                       tekoälyn ja ongelmanratkaisun parissa\n                                       loi perustan monille nykyaikaisille\n                                       tekoälysovelluksille, jotka mallintavat\n                                       ja tehostavat ihmisen kognitiota\n                                       digitaalisessa ympäristössä\n\n                                       Simons käsittelee teoksessaan\n                                       “keinotekoisia” järjestelmiä, joiden\n                                       kanssa ihminen on vuorovaikutuksessa\n                                       (nykyaikaiset sovellukset ml. tekoäly)”\n\nOSA A: Millainen työkalu tekoäly on?",
+      "ocrUsed": false
+    },
+    {
+      "page": 9,
+      "text": "Asiantuntijajärjestelmät\nAsiantuntijajärjestelmät                                                                                         Käytännön esimerkkejä\n                                                                                                                 symbolisesta tekoälystä\n                                                 Masuunissa rautamalmi pelkistyy raudaksi\n                                               monimutkaisen kemiallisen pelkistysprosessin\n                                                                               seurauksena\n\n\n\n\n                                                                                                                “Asiantuntijajärjestelmät, jotka olivat merkittäviä 1970- ja Chatbotit\n                                                                                                                                                                             Chatbotit (ei\n                                                                                                                                                                                       (ei LLM)\n                                                                                                                                                                                           LLM)\n                                                                                                                1980-luvuilla, pyrkivät tallentamaan asiantuntijoiden\n                                                                                                                tietoa tiiviinä loogisina sääntöinä, usein \"jos-niin\" (if-\n                                                                                                                then) -muodossa, ja suorittamaan päättelyä näiden\n                                                                                                                sääntöjen perusteella”\n\n                                                                                                                Henkilökohtaiset apurit\n                                                                                                                Henkilökohtaiset apurit\nMasuuni 1:n valvomo Raahen terästehtaalla 1980-luvulla\n\n\n\n\n Esimerkki masuunien asiantuntijajärjestelmiä koskevasta tutkimuksesta: S. Amano, T. Takarabe, T.\n Nakamori, et al., “Expert system for blast furnace operation at Kimitsu Works,” ISIJ Int.,30, No. 2, 105–110\n (1990).\n\n\nOSA A: Millainen työkalu tekoäly on?",
+      "ocrUsed": false
+    },
+    {
+      "page": 10,
+      "text": "Symbolinen AI = GOFAI = Good Old-fashioned AI\n\n\n                    1986\n                    1986\n       Asiantuntijajärjestelmä\n               -hype.\n\n          Kirja on normaali\n       ekonomeille tarkoitettu\n            ammattiteos.\n\n   Mäkelin, M. & Hannus, J. (1986) yhdentyvä tietotekniikka yrityksen\n   menestystekijänä. Ekonomia. Weilin Göös.\n\nOSA A: Millainen työkalu tekoäly on?",
+      "ocrUsed": false
+    },
+    {
+      "page": 11,
+      "text": "2\nOSA A: Millainen työkalu tekoäly on?\n                                       Koneoppiminen /\n                                        syväoppiminen",
+      "ocrUsed": false
+    },
+    {
+      "page": 12,
+      "text": "Kuka muistaa 2000-\n                                            luvun taitteen?\n                                       Vuosituhannen vaihteen tienoilla,\n                                       erityisesti 1990-luvun lopulla,\n                                       koneoppimisen tutkimus kiihtyi\n                                       merkittävästi. Se näkyy NYT.\n\n\nOSA A: Millainen työkalu tekoäly on?",
+      "ocrUsed": false
+    },
+    {
+      "page": 13,
+      "text": "1996\n Broadcast\n televisio tavoitti\n vielä nuorison.\n Internet\n yleistyi.\n Opiskelin\n opettajaksi.\nOSA A: Millainen työkalu tekoäly on?",
+      "ocrUsed": false
+    },
+    {
+      "page": 14,
+      "text": "*ennusteet perustuivat perustutkimukseen\n\n\n                                                   30v sitten ennustettua*\n             1996\n             1996                                       Fyysiset mediat digitalisoituvat (sisällöt ovat digitaalisia)\n                                                        ..Ihmiset alkavat ostamaan kirjoja ja sanomalehtiä suoraan\n                                                        Internetin kautta (verkkokauppa)\n                                                        Videovuokraamot menevät konkurssiin (suoratoisto)\n                                                        Tietokoneet, julkaisutoiminta, televisio ym. konvergoituvat\n                                                        (nykyaikainen media)\n                                                        Pienet, kirkkaat, ohuet ja korkearesoluutioiset näytöt yleistyvät.\n                                                        (älypuhelimet ja tabletit)                AI kehitys on mahdollistanut\n                                                        “Daily me” konsepti (nykyaikaiset kohdennetut sisällöt ja\n                                                        suosittelualgoritmit, esim. some)\n                                                        Digitaalisten agenttien konsepti ja älykkäät käyttöliittymät.\n                                                        Tietokoneiden tulisi tuntea käyttäjänsä ja ymmärtää käyttäjän\n                                                        ilmaisua (älykkäät agentit, puheohjaus ym..)\nOSA A: Millainen työkalu tekoäly on?   Negroponte, N., & Bergius, P. (1996). Digitaalinen todellisuus. Otava.",
+      "ocrUsed": false
+    },
+    {
+      "page": 15,
+      "text": "Syväoppiminen (neuroverkot) on\n               mullistanut tietojenkäsittelyn.\n\n\n\n\nOSA A: Millainen työkalu tekoäly on?",
+      "ocrUsed": false
+    },
+    {
+      "page": 16,
+      "text": "3 artikla: Määritelmät\n                                  mikä on AI-järjestelmä?\n’AI-järjestelmä’ tarkoittaa konepohjaista järjestelmää, joka\non suunniteltu toimimaan vaihtelevalla autonomian tasolla\nja joka saattaa olla mukautuva käyttöönoton jälkeen.\n\n...että eksplisiittisiä tai implisiittisiä tavoitteita varten\npäättelee saamastaan ​syötteestä, kuinka tuottaa tuloksia,\nkuten ennusteita, sisältöä, suosituksia tai päätöksiä, jotka\nvoivat vaikuttaa fyysiseen tai virtuaaliseen ympäristöön;",
+      "ocrUsed": false
+    },
+    {
+      "page": 17,
+      "text": "2000-luvun auto on esimerkki syväoppimisesta\n  ADAS\nTekoäly (AI) ja syväoppimisalgoritmit ovat kriittisiä\nADAS-anturien antamien tietojen tulkinnassa.\nSovelluksia:\n    Mukautuva vakionopeudensäädin (ACC)\n    Kaistavahti- kaistallapitovahti (pakollinen)\n    Kuolleen kulman tunnistus\n    Törmäyksen välttäminen\n    Hätäjarrutus (pakollinen)\n    Liikennemerkkien tunnistus, Älykäs nopeusavustin (pakollinen)\n    Kuljettajan vireystilan valvonta\n                                                                    Fujiyoshi, Hironobu & Hirakawa, Tsubasa & Yamashita, Takayoshi.\n                                                                    (2019). Deep learning-based image recognition for autonomous\nOSA A: Millainen työkalu tekoäly on?                                driving. IATSS Research. 43. 10.1016/j.iatssr.2019.11.008.",
+      "ocrUsed": false
+    },
+    {
+      "page": 18,
+      "text": "Itse asiassa kaikki mielenkiintoiset\n                              sovellukset ja laitteet perustuvat\n                                     dataan ja tekoälyyn\n   Paikka- ja aikatiedot                Selaushistoria                   Otettuja kuvia, videoita                          Millainen on elämäsi rytmi\n   Missä olet koskaan ollut (laite      Millä sivuilla olet koskaan      Kuka niissä on (esim.                             (rajoitettu)\n   päällä)                              käynyt?                          perheenjäsenet)                                   Kalenterimerkinnät\n   Mihin aikaan olit siellä, kuinka     Mitä tietoja olet koskaan etsinyt                                                  Terveystiedot (Google Fit,\n   kauan                                Katsomasi videot, elokuvat ja Melkein kaikki mitä olet                             Oura jne.)\n   Kuka muu siellä on ollut             sarjat                           kirjoittanut                                      = Hengitätkö helposti?\n   Mitä käytit, kuinka kauan kesti      = Kiinnostuksen kohteesi ja mitä Google Docs                                       Toimintaa eri aikoina ja\n                                        suunnittelet                     Yksityiset + julkiset viestit                     harrastuksia\n   Käyttölokitiedot (osa)                                                (osa)                                             Hotellivaraukset,\n   Mitä olet tehnyt laitteille,       Ostoshistoria                      Sähköpostit (osa)                                 matkavaraukset\n   milloin?                             Mitä olet ostanut                \"Anonyymit\" viestit\n   Myös \"yksityisessä tilassa\"?         Mitkä mainokset kiinnostavat foorumeilla (joskus)                                  Lempimusiikkisi, elokuvasi,…\n   Myös \"poista historiani\"             sinua                            Tiedostojesi sisältö                              Musiikkimaku (kaikki\n   jälkeen?                             Mikä johti ostoon                pilvipalveluissa                                  kappaleet kuunneltu)\n   = Mistä olet kiinnostunut?                                                                                              Elokuvan maku\n   = Mitä elämässäsi on tapahtunut      Sovellukset laitteillasi               Kaikki reaktiosi                            Taiteen maku\n                                        PlugiNS                                Tykkäät, kirjanmerkit, vie\n   Kasvojen tunnistus                                                          hiiri päälle\n   Missä kuvissa esiintyy, kenen        Ohjelmat\n   kanssa\n   Jopa ne, joista et tiedä\n\nGenerationAI\nOSA A: Millainen työkalu tekoäly on?                     Prof. Matti Tedre luentokalvot: tekoäly ja tietotyön automatisointi. Koneoppimisen käännekohdat 2000-luvulla",
+      "ocrUsed": false
+    },
+    {
+      "page": 19,
+      "text": "..Myös sosiaalinen\n..Myös sosiaalinen media\n                   media",
+      "ocrUsed": false
+    },
+    {
+      "page": 20,
+      "text": "AIED    -2022\n                                  Ai-työkaluja\n                                               AIED       2022-\n                                               LLM (ChatGPT) \"vallankumous\"\n                                     opetuksen tueksi                                  \"Olemme kouluttaneet mallin nimeltä\n                                                                                       ChatGPT, joka on vuorovaikutuksessa\n                                                                                               keskustelun kautta.\n\n                                                                                        Dialogimuoto mahdollistaa sen, että\n                                                                                       ChatGPT voi vastata jatkokysymyksiin,\n                                                                                            myöntää virheensä, haastaa\n                                                                                             virheelliset tilat ja hylätä\n                                                                                        sopimattomia pyyntöjä. 30.10.2022\n\n\nHolmes, W., &Tuomi, I. (2022). Tekoälyn nykytaso ja käytäntö koulutuksessa. European\nJournal of Education, 57, 542-570. https://doi.org/10.1111/ejed.12533                  https://openai.com/index/chatgpt/",
+      "ocrUsed": false
+    },
+    {
+      "page": 21,
+      "text": "3                              Suuret kielimallit /\n                                generatiivinen tekoäly\n\nOSA A: Millainen työkalu tekoäly on?",
+      "ocrUsed": false
+    },
+    {
+      "page": 22,
+      "text": "Tästä on vasta 3\n vuotta. KOL-ME.\nTuntuuko sinusta siltä, että\ngeneratiivinen tekoäly olisi ollut\naina keskuudessamme? Et ole\nyksin.",
+      "ocrUsed": false
+    },
+    {
+      "page": 23,
+      "text": "“Mitä sitten, jos ChatGPT kirjoitti sen?”\nTähän artikkeliin on koottu 43 näkemystä, jotka ovat peräisin\nmuun muassa tietojenkäsittelytieteen, markkinoinnin,\ntietojärjestelmien, koulutuksen, politiikan, majoituksen ja\nmatkailun, johtamisen, kustannustoiminnan ja hoitotyön\nalojen asiantuntijoilta ja jotka tarjoavat monitieteistä\nnäkemystä joistakin näistä ongelmista.\n\n\n  “Entä jos tekstin kirjoittamisessa,\narvioinnissa ja lukemisessa käytetään\n              tekoälyä?”\nDwivedi, Y. K., Kshetri, N., Hughes, L., Slade, E. L., Jeyaraj, A., Kar, A. K., ... & Wright, R. (2023). Opinion Paper:“So what if ChatGPT\nwrote it?” Multidisciplinary perspectives on opportunities, challenges and implications of generative conversational AI for research,\npractice and policy. International journal of information management, 71, 102642.",
+      "ocrUsed": false
+    },
+    {
+      "page": 24,
+      "text": "Kuinka generatiivinen tekoäly (LLM AI) tukee oppimista? Kaksi\nCHATGPT metareview tutkimusta..\nChatGPT antaa nopeaa apua. Se tarjoaa välitöntä\ntukea tehtävissä. Se auttaa ongelmanratkaisussa.\nSe tukee monia oppimismenetelmiä. Erityisen\nhyvin se sopii ongelmapohjaiseen oppimiseen. Se\ntukee myös yksilöllistettyä oppimista.\nSe auttaa kehittämään taitoja ja osaamista. Se\ntukee korkeamman tason ajattelua. Se auttaa\nkielenoppimisessa. Se voi tukea itsesäädeltyä\noppimista.\nOpettajan rooli on täydentävä. Opettajat ovat\nkeskeisiä.\nChatGPT voi auttaa opettajia työssä. Se tukee\noppituntien suunnittelua. Se voi antaa palautetta\nopiskelijoille.\nOpettajat vastaavat työkalun integroinnista.\nHeidän tehtävänsä on suunnitella opetusta. He\nvarmistavat asianmukaisen käytön.\n\n                                                                                                                  Wang, J., & Fan, W. (2025). The effect of ChatGPT on\n                                                    Deng, R., Jiang, M., Yu, X., Lu, Y., & Liu, S. (2024). Does   students’ learning performance, learning perception, and\n                                                    ChatGPT enhance student learning? A systematic review         higher-order thinking: insights from a meta-analysis.\n                                                    and meta-analysis of experimental studies. Computers &        Humanities and Social Sciences Communications, 12(1), 1-\n                                                    Education, 105224.                                            21.",
+      "ocrUsed": false
+    },
+    {
+      "page": 25,
+      "text": "Linturin luettelo tähän",
+      "ocrUsed": false
+    },
+    {
+      "page": 26,
+      "text": "Nyt on multimodaalisten suurten\n             kielimallien (LMFM) aika\n                   LMM tai LMFM-mallit (Large Multimodal Foundation\n                   Models) ovat tekoälyjärjestelmiä, jotka voivat käsitellä ja\n                   yhdistää eri tietomuotoja, kuten tekstiä, kuvia ja ääntä.\n\nOSA A: Millainen työkalu tekoäly on?",
+      "ocrUsed": false
+    },
+    {
+      "page": 27,
+      "text": "LMFM\n                                   LMM tai LMFM-mallit (Large Multimodal Foundation\n                                   Models) ovat tekoälyjärjestelmiä, jotka voivat käsitellä ja\n                                   yhdistää eri tietomuotoja, kuten tekstiä, kuvia ja ääntä.\n\n\n\n                                                                            Demovideo on\n                                                                            vuoden takaa.\n                                                                            Nyt tämä on jo\n                                                                               “arkea”\n\nOSA A: Millainen työkalu tekoäly on?",
+      "ocrUsed": false
+    },
+    {
+      "page": 28,
+      "text": "Multimodaaliset mallit opetuksessa: mahdollisuudet\n                                                                                      1.Multimediaefekti.\n                                                                                     2.Esteetön vuorovaikutus.\n                                                                                     3.Reaaliaikainen oppimisen tuki oppijan piirtäessä\n                                                                                     4.Oppimisen tuki esim. matematiikan ja fysiikan kontekstissa.\n                                                                                     5.Oppimateriaalin tulkinnan reaaliaikainen apu\n                                                                                     6.Ilmiön animointi\n                                                                                      7.Kokeellisen työskentelyn oppilaskohtainen tuki\n                                                                                     8.Ohjelmoinnin harjoittelun tuki\n                                                                                     9.Oppilaiden itsensä luomat oppimistyökalut\n                                                                                    10.Käyttäytymis- ja fysiologisen datan tulkinta\n                                                                                     11.Yhteisöllisen oppimisen tuki\n Küchemann, S., Avila, K. E., Dinc, Y., Hortmann, C., Revenga, N., Ruf, V., ... &\n                                                                                    12.Käyttöliittymien parantaminen\n                                                                                    13.Kehittyvien maiden opetuksen tukeminen..\n Kuhn, J. (2025). On opportunities and challenges of large multimodal\n foundation models in education. npj Science of Learning, 10(1), 11.\n\n\nOSA A: Millainen työkalu tekoäly on?",
+      "ocrUsed": false
+    },
+    {
+      "page": 29,
+      "text": "Haastattelut: mutlu cukurova, sanna järvelä etc.",
+      "ocrUsed": false
+    },
+    {
+      "page": 30,
+      "text": "Microsoft hyödyntää multimodaalisia malleja laajasti\n\n\n\n\nOSA A: Millainen työkalu tekoäly on?",
+      "ocrUsed": false
+    },
+    {
+      "page": 31,
+      "text": "Analytiikka-AGENTTI voi\n                                                               olla myös DIGIoSALLISTUJA\n                                                                                nyt\n\n\nMonet tutkimukset viimeisten 40 vuoden aikana ovat\nosoittaneet yhteistoiminnallisen ja sosiaalisen oppimisen\narvon (Johnson & Johnson, 2009) , jossa opiskelijat\ntyöskentelevät yhdessä tehtävässä, jolla on yhteiset\ntavoitteet ja keskustelu yhteisymmärryksen saavuttamiseksi.\n                                                                          Tulevaisuudessa\nGeneratiivisella tekoälyllä on potentiaalia osallistua tähän\nsosiaaliseen oppimisprosessiin, jossa asetetaan yhteisiä\ntavoitteita, suoritetaan tehtäviä yhdessä, tutkitaan\nmahdollisuuksia ja keskustellaan sopimuksiin pääsemiseksi\n\n\n\n\nOSA A: Millainen työkalu tekoäly on?            MikeSharples(2023)Towards social generative AI for education: theory, practices and\n                                                ethics,Learning: Research and Practice,9:2,159-167,DOI:10.1080/23735082.2023.2261131",
+      "ocrUsed": false
+    },
+    {
+      "page": 32,
+      "text": "Multimodaaliset mallit tutkimuksessa: hybridiälykkyys!\n\n\n\n\n        Hybridiälykkyys\n        Hybridiälykkyys\n                                       Edwards, J., Nguyen, A., Lämsä, J., Sobocinski, M.,\n                                       Whitehead, R., Dang, B., ... & Järvelä, S. (2025).\n                                       Human‐AI collaboration: Designing artificial agents\n                                       to facilitate socially shared regulation among\n                                       learners. British Journal of Educational Technology,\n                                       56(2), 712-733.\n                                       Järvelä, S., Zhao, G., Nguyen, A., & Chen, H.\n                                       Hybrid intelligence: Human–AI coevolution and\n                                       learning. British Journal of Educational\nOSA A: Millainen työkalu tekoäly on?   Technology.\n                                                                                              https://yle.fi/a/74-20130127",
+      "ocrUsed": false
+    },
+    {
+      "page": 33,
+      "text": "Näkymä\n lähelle            A   Tekoälyä hyödynnetään opetuksen ja\n                        oppimisen suunnittelussa\n\n\n                    B   Tekoäly toimii oppimisen itsesäätelyn\n                        tukena ja osapuolena\n\n 9 asiantuntijaa\n 8 johtavaa         C   Tekoäly mahdollistaa automatisoidut\n                        sisällöt\n\n                    D\n oppimistieteiden\n tutkimusyksikköä\n 5 mannerta                       Tekoälyn myötä syntyy uusia taitoja ja\n                                  pätevyyksiä\nOSA A: Millainen työkalu tekoäly on?\n                            Giannakos, M., Azevedo, R., Brusilovsky, P., Cukurova, M., Dimitriadis, Y., Hernandez-Leo, D., ... & Rienties, B. (2024). The promise and challenges of generative AI in education. Behaviour & Information Technology, 1-27.",
+      "ocrUsed": false
+    },
+    {
+      "page": 34,
+      "text": "2055",
+      "ocrUsed": false
+    },
+    {
+      "page": 35,
+      "text": "OSA B.\nMillaisia taitoja tarvitaan\n     tekoälyajassa?",
+      "ocrUsed": false
+    },
+    {
+      "page": 36,
+      "text": "Rakenne\n                   Ydintaidot\n                   Tekoälylukutaidot\n                   Kompetenssit\n\nOSA B: Millaisia taitoja tarvitaan tekoälyajassa",
+      "ocrUsed": false
+    },
+    {
+      "page": 37,
+      "text": "1\n                            Monet taidot eivät ole\n                            riippuvaisia\n                            teknologiasta\nOSA B: Millaisia taitoja tarvitaan tekoälyajassa",
+      "ocrUsed": false
+    },
+    {
+      "page": 38,
+      "text": "PPT DIA\n                                                   vuodelta\n                                                     2020\n\n\n\n\nOSA B: Millaisia taitoja tarvitaan tekoälyajassa",
+      "ocrUsed": false
+    },
+    {
+      "page": 39,
+      "text": "Nämä ovat\n                                                   keskeisiä\n                                                   kompetensseja\n                                                   digitalisoituneessa\n                                                   yhteiskunnasa\n\n\n\n\n                                                                         Aggarwal, A. (2021) Global\n                                                                         framework on core skills for\n                                                                         life and work in the 21st\n                                                                         century.\n\n                                                                         https://www.ilo.org/skills/pubs/WCMS_8\n                                                                         13222/lang--en/index.htm\nOSA B: Millaisia taitoja tarvitaan tekoälyajassa\n                                                                                                         Oulun yliopisto",
+      "ocrUsed": false
+    },
+    {
+      "page": 40,
+      "text": "ILO - Ydintaitojen ydintaidot\n                                 Sosiaaliset- ja tunnetaidot                            “Vihreät taidot”\n                                     Vuorovaikutus                                          Ympäristötietoisuus\n                                     Yhteisöllinen oppiminen ja ryhmätyöskentely            Jätteiden\n                                     Konfliktien ratkominen ja neuvotteleminen              vähentäminen ja\n                                     Tunneäly                                               kierrätys\n                                         me                                                 Energia- ja\n                                  d  um\n                               a u\n                      i s uh  t\n                                      een  Kognitiiviset  ja metakognitiiviset       taidot vesitehokkuus\n               v  ast          a m is\n          a k a          o s a               Perustaidot (esim. lukeminen ja laskeminen)\n     ka  v          e n\n  in            is e            ?\nKu        -a la          is sa               Analyyttinen ja kriittinen ajattelu\n    laaja\n                k o ul  u                                                                    Perusdigitaidot:\n                                             Luova ja innovatiivinen ajattelu\n                                                                                               Välineet\n                                             Strateginen ajattelu\n                                                                                               Sovellukset\n                                             Ongelmanratkaisu ja päätösten tekeminen\n                                                                                               Turvallinen toiminta\n                                             Omien ajatusten reflektointi ja oppimaan\n                                                                                               digiympäristöissä\n                                             oppiminen\n                                                                                               (sovelletaan muissa\n                                             Informaation keruu, organisointi ja analysointi\n                                                                                               taidoissa\n                                             Suunnittelu ja organisointi\n                                                                                               alakohtaisesti)\n                                             Urasuunnittelu\nOSA B: Millaisia taitoja tarvitaan tekoälyajassa",
+      "ocrUsed": false
+    },
+    {
+      "page": 41,
+      "text": "2\n                            Tekoälylukutaito on\n                            tämän ajan\n                            kansalaistaito\nOSA B: Millaisia taitoja tarvitaan tekoälyajassa",
+      "ocrUsed": false
+    },
+    {
+      "page": 42,
+      "text": "2.2.2025 astui voimaan velvoite tekoälylukutaidosta,\n                 joka koskee myös sinua.\n\n\n\n                  EU AI ACT\nEU AI ACTon ensimmäinen tekoälyä koskeva oikeudellinen kehys, joka puuttuu tekoälyn riskeihin\n                  ja asettaa Euroopan maailmanlaajuisesti johtavaan rooliin.\n\n\n\n\n OSA B: Millaisia taitoja tarvitaan tekoälyajassa",
+      "ocrUsed": false
+    },
+    {
+      "page": 43,
+      "text": "Tekoälylukutaito on uusi osa-alue\n\n\n\n\nLong, D., & Magerko, B. (2020, April). What is AI literacy? Competencies and design considerations.   Kreinsen, M., & Schulz, S. (2023). Towards the Triad of Digital Literacy, Data Literacy and AI Literacy in\n   OSA B: Millaisia taitoja tarvitaan tekoälyajassa\nInProceedings of the 2020 CHI conference on human factors in computing systems(pp. 1-16).             Teacher Education–A Discussion in Light of the Accessibility of Novel Generative AI.",
+      "ocrUsed": false
+    },
+    {
+      "page": 44,
+      "text": "Lukutaito DIGI/AI kontekstissa\n                                      Lukutaito on suoraan sidoksissa taitoihin, ja siinä on kyse\n                                      enemmänkin osaamisesta. Tämän lisäksi osaaminen on kykyä\n                                      suorittaa tehtävä tehokkaasti ja menestyksekkäästi .\n\n                                       Laajasti ottaen lukutaito on enemmänkin tietämistä, ja\n                                      osaaminen on enemmänkin tiedon soveltamista tehokkaasti\n                                      ja hyödyllisesti. Se liittyy itseluottamukseen ja asenteeseen,\n                                      ja siinä keskitytään siihen, miten hyvin tekoälyn käyttäjä\n                                      pärjää.\n                                                    Chiu, T. K., Ahmad, Z., Ismailov, M., & Sanusi, I. T. (2024). What are artificial\n                                                    intelligence literacy and competency? A comprehensive framework to support\nOSA B: Millaisia taitoja tarvitaan tekoälyajassa    them. Computers and Education Open, 6, 100171.",
+      "ocrUsed": false
+    },
+    {
+      "page": 45,
+      "text": "Tekoälylukutaito (Long & Magerko)\n\n\n\n                                         insinöörinäkökulma, ei riitä opetuksen näkökulmasta\n\n\n\n\nLong, D., & Magerko, B. (2020, April). What is AI literacy? Competencies and design considerations. In Proceedings of the 2020 CHI conference on\n OSA B: Millaisia taitoja tarvitaan tekoälyajassa   human factors in computing systems (pp. 1-16).",
+      "ocrUsed": false
+    },
+    {
+      "page": 46,
+      "text": "ChatGPT lukutaito ei riitä..\n                                                                 es o ve llu sten\n                         Kaikkialle levinn                  Som\n                                          yt ja                    sta av  ien A I\n                                                             ja va\n                            joka paikassa\n                                                                 algoritmit\n                             läsnäoleva\n                          digiteknologia ja                          ikTok\n                                                              Esim. T\n                               tekoäly\n                                                                                            GPAI eli\n                      Esim. robotti-im                  AIED eli                          is  kä ytt ö is et\n                                      uri                                              yle\n                                                    opetuskäyttöö                               o v ell uk  set\n                                                                 n                   tekoä  ly s\n                                                      suunnattu\n                                                       tekoäly\n                                                                                      Esim. ChatGPT\n                                                   Esim. analytiikk\n                                                                   a\n\n\nOSA B: Millaisia taitoja tarvitaan tekoälyajassa",
+      "ocrUsed": false
+    },
+    {
+      "page": 47,
+      "text": "Eri toimijoilla on eri tarpeet\n      tekoälylukutaidolle ja osaamiselle\n\n\n                          Tietohallinto            Opettaja\n\n\n\n\nOSA B: Millaisia taitoja tarvitaan tekoälyajassa",
+      "ocrUsed": false
+    },
+    {
+      "page": 48,
+      "text": "Lasten ja nuorten sekä “aloittelijoiden” AI lukutaito tarpeet\n           eivät ole samat kuin opettajilla ja hallinnolla\n\n                                                             Opettaja\n                         Tietohallinto\n\n\n\n                                                                        Kansalainen\n    Amatöörien sekä                                Oppilas\n    lasten ja nuorten AI\n    lukutaito vaatii\n    erikoishuomiota\n\nOSA B: Millaisia taitoja tarvitaan tekoälyajassa",
+      "ocrUsed": false
+    },
+    {
+      "page": 49,
+      "text": "Lasten ja nuorten Tekoälyn perusymmärrys ja yhteiskunnalliset vaikutukset: Oppilaiden tulee\n                  ymmärtää, miten tekoäly toimii ja miten se vaikuttaa yhteiskuntaan. Tämä\ntekoälylukutaito? sisältää teknologian perusteet, sovellukset ja eettiset kysymykset, kuten\n                                                                                     yksityisyys ja oikeudenmukaisuus.\n\n                                                                                     Käytännönläheinen ja oppilaskeskeinen oppiminen: Tekoälyä tulisi opettaa\n                                                                                     projektipohjaisin ja ongelmalähtöisin menetelmin, jotka mahdollistavat\n                                                                                     oppilaiden aktiivisen osallistumisen ja oppimisen soveltamisen todellisissa\n                                                                                     tilanteissa.\n\n                                                                                     Eettiset näkökulmat ja riskit: Opetuksessa tulee painottaa tekoälyn eettisiä\n                                                                                     periaatteita, kuten läpinäkyvyyttä, vastuullisuutta ja yhteiskunnallisia riskejä,\n                                                                                     jotta oppilaat ymmärtävät tekoälyn vaikutukset ja osaavat käyttää sitä\n                                                                                     vastuullisesti.\n\n                                   Itsearviointi ja elinikäinen oppiminen: Oppilaiden tulee kehittää kykyä arvioida\n                                   omaa tekoälyosaamistaan ja päivittää tietojaan jatkuvasti kehittyvässä\n Chiu, T. K., Ahmad, Z., Ismailov, M., & Sanusi, I. T. (2024). What are artificial\n  intelligence literacy and competency? A comprehensive framework to\n\n OSA B: Millaisia taitoja tarvitaantekoälymaailmassa,\n                                    tekoälyajassa         mikä tukee elinikäistä oppimista.\n           support them. Computers and Education Open, 6, 100171.",
+      "ocrUsed": false
+    },
+    {
+      "page": 50,
+      "text": "Mitä on tekoäly?\n                                                                                Mihin sitä käytetään?\n                                                                                Keskusteleva tekoäly\n                                     käsitteet                                  Opi ja opeta tekoälyn avulla\n                                                                                Tutki ja kokeile tekoälyn avulla\n\n                                     pedagogiikka                               Opiskele tekoälyn avulla\n\n                                                                                Suunnittele tekoälyn avulla\n\n                                     Luovuus\n                                                                                Luo tekoälyn avulla\n                                                                                Tekoälykritiikki\n\n                                                                                Tekoälyn rajoitukset\n                                     Etiikka                                    Turvallinen ja vastuullinen tekoäly\n                                                                                Tekoäly yhteiskunnassa\n\n\n                                     Työelämä                                   Työskentele tekoälyn kanssa\n                                                                                Hoida tekoälyn avulla\n OSA B: Millaisia taitoja tarvitaan tekoälyajassa                               Kukoista tekoälyn kanssa\nProf. Emeritus Mike Sharplesin ehdotus LinkedIN palvelussa (3 viikkoa sitten)",
+      "ocrUsed": false
+    },
+    {
+      "page": 51,
+      "text": "Generation AI\n   https://www.generation-ai-stn.fi\n Kasvatustiede                     Kehitämme pedagogisia\n                                   puitteita tekoäly- ja\n                                   turvallisuuskasvatukselle\nOikeustiede                        Kehitämme uusia esi- ja\n                                   perusopetukseen soveltuvia\n                                   tekoälyn opetusvälineiden ja -\nTietojenkäsittelytiede             menetelmien sekä\n                                   oppimiskokonaisuuksien\n                                   yhdistelmiä\nMuut osapuolet                     Edistämme lasten oikeuksien\n                                   toteutumista tekoälyyn\n                                   perustuvissa järjestelmissä\nOSA B: Millaisia taitoja tarvitaan tekoälyajassa",
+      "ocrUsed": false
+    },
+    {
+      "page": 52,
+      "text": "3\n                            Opettajan kompetenssit\n                            opettaa\n                            tekoälylukutaitoa ja olla\n                            tekoälylukutaitoinen?\nOSA B: Millaisia taitoja tarvitaan tekoälyajassa",
+      "ocrUsed": false
+    },
+    {
+      "page": 53,
+      "text": "Intelligent TPACK\n                                                                                                                 Esimerkkejä tämän viitekehyksen mittareista:\n\n\n                                                                                                                 INTELLIGENT TPACK OSIO\n\n                                                                                                                      Oman alani opetuksessa tiedän kuinka käyttää erilaisia\n                                                                                                                      tekoälyyn perustuvia työkaluja mukautuvan palautteen\n                                                                                                                      antamiseen\n                                                                                                                      Oman alani opetuksessa tiedän kuinka käyttää erilaisia\n                                                                                                                      tekoälyyn perustuvia työkaluja henkilökohtaisen\n                                                                                                                      oppimisen tukena\n                                                                                                                      Oman alani opetuksessa tiedän kuinka käyttää erilaisia\n                                                                                                                      tekoälyyn perustuvia työkaluja reaaliaikaisen palautteen\n                                                                                                                      antamiseen\n                                                                                                                      Voin opettaa hyödyntäen tekoälyyn perustuvia työkaluja ja\n                                                                                                                      monipuolisia opetusstrategioita.\n                                                                                                                      Voin pitää oppitunteja, joissa opetuksen sisältöjä,\n                                                                                                                      tekoälyyn perustuvia työkaluja ja opetusmenetelmiä\n                                                                                                                      yhdistellään sopivasti.\n                                                                                                                      Voin ottaa kollegoideni keskuudessa johtavan roolin\n                                                                                                                      tekoälyyn perustuvien työkalujen integroimisessa\n                                                                                                                      opetukseen\n                                                                                                                      Voin valita erilaisia tekoälyyn perustuvia työkaluja\n                                                                                                                      oppilaiden oppimisen seurantaan oppitunneillani\n\nCelik, I. (2023). Towards Intelligent-TPACK: An empirical study on teachers’ professional knowledge to ethically integrate artificial intelligence (AI)-based tools into education.\nOSA B: Millaisia taitoja tarvitaan tekoälyajassa\nComputers in Human Behavior, 138, 107468.",
+      "ocrUsed": false
+    },
+    {
+      "page": 54,
+      "text": "UNESCO AI kompetenssit\n\n\n\n\nOSA B: Millaisia taitoja tarvitaan tekoälyajassa",
+      "ocrUsed": false
+    },
+    {
+      "page": 55,
+      "text": "Kompetensseja ja osaamista pohditaan myös\n           EU:ssa ja Suomessa\n\n\n\n\nOSA B: Millaisia taitoja tarvitaan tekoälyajassa",
+      "ocrUsed": false
+    },
+    {
+      "page": 56,
+      "text": "LUONNOS\nOSA B: Millaisia taitoja tarvitaan tekoälyajassa",
+      "ocrUsed": false
+    },
+    {
+      "page": 57,
+      "text": "OKM/OPH\nTekoälyä koskevat\n  velvoitteet ja\n   suositukset",
+      "ocrUsed": false
+    },
+    {
+      "page": 58,
+      "text": "ILO - Ydintaitojen ydintaidot\n                                 Sosiaaliset- ja tunnetaidot                            “Vihreät taidot”\n                                     Vuorovaikutus                                          Ympäristötietoisuus\n                                     Yhteisöllinen oppiminen ja ryhmätyöskentely            Jätteiden\n                                     Konfliktien ratkominen ja neuvotteleminen              vähentäminen ja\n                                     Tunneäly                                               kierrätys\n                                         me                                                 Energia- ja\n                                  d  um\n                               a u\n                      i s uh  t\n                                      een  Kognitiiviset  ja metakognitiiviset       taidot vesitehokkuus\n               v  ast          a m is\n          a k a          o s a               Perustaidot (esim. lukeminen ja laskeminen)\n     ka  v          e n\n  in            is e            ?\nKu        -a la          is sa               Analyyttinen ja kriittinen ajattelu\n    laaja\n                k o ul  u                                                                    Perusdigitaidot:\n                                             Luova ja innovatiivinen ajattelu\n                                                                                               Välineet\n                                             Strateginen ajattelu\n                                                                                               Sovellukset\n                                             Ongelmanratkaisu ja päätösten tekeminen\n                                                                                               Turvallinen toiminta\n                                             Omien ajatusten reflektointi ja oppimaan\n                                                                                               digiympäristöissä\n                                             oppiminen\n                                                                                               (sovelletaan muissa\n                                             Informaation keruu, organisointi ja analysointi\n                                                                                               taidoissa\n                                             Suunnittelu ja organisointi\n                                                                                               alakohtaisesti)\n                                             Urasuunnittelu\nOSA B: Millaisia taitoja tarvitaan tekoälyajassa",
+      "ocrUsed": false
+    },
+    {
+      "page": 59,
+      "text": "KIITOS.\nKiinnostuitko? Tilaa minut puhujaksi tai\n     kouluttajaksi tilaisuuteenne.",
+      "ocrUsed": false
+    }
+  ],
+  "emptyPages": [],
+  "extractError": null,
+  "_diagnostic": {
+    "pdfBytes": 20627640,
+    "elapsedMs": 21823
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "designId": "DAGljuv0cEs",
+  "sourceUpdatedAt": 1784882941,
+  "extractedAt": "2026-08-10T10:00:08.580Z",
+  "pageCount": 16,
+  "slides": [
+    {
+      "page": 1,
+      "text": "Generation AI\n                                                             ITK2025\n\n\n\n\nGeneration AI 3v: Millainen on tekoäly- ja turvallisuus-\n      kasvatuksen perusta? Mitä seuraavaksi?\n Käytännössä testattu ja tutkimukseen perustuva tapa opettaa tekoälyteemoja lapsille ja nuorille",
+      "ocrUsed": false
+    },
+    {
+      "page": 2,
+      "text": "Kaksi esitystä:\n12:00-12:30\n\n       Forum:\n                                  12:15-13:00\n    Miksi some koukuttaa? Miten\n           tekoäly toimii?\n                                  Olet tässä:\n                                    Generation AI 3v: Millainen on\n                                      tekoäly- ja turvallisuus-\n                                     kasvatuksen perusta? Mitä\n                                           seuraavaksi?",
+      "ocrUsed": false
+    },
+    {
+      "page": 3,
+      "text": "Esitys on verkossa:\n               https://bit.ly/itk2025areena\n\n\n\n\nGenerationAI",
+      "ocrUsed": false
+    },
+    {
+      "page": 4,
+      "text": "Esityksen rakenne\nJohdanto Tutkimusta Kalamalja\n                               Jussi Koivisto/Codeschool\n                               Jussi Koivisto/Codeschool\n\n                              Kari Kivinen/Faktabaari\n                              Kari Kivinen/Faktabaari\n\n                                 Lauri Nurmivuori/\n                                 Lauri Nurmivuori/\n                                 Oululainen opettaja\n                                 Oululainen opettaja\n\n                                 Henriikka ja\n                                 Henriikka ja Teemu\n                                              Teemu\n\n\n\n         Teemu   Henriikka\n          Roos   Vartiainen       Kenties sinä?",
+      "ocrUsed": false
+    },
+    {
+      "page": 5,
+      "text": "Olemme osa shield-ohjelmaa\n           Shield-ohjelma keskittyy turvallisuuteen ja\n          luottamukseen informaatioteknologioiden ja\n             hybridivaikuttamisen maailmanajassa.\n\n                             Muut Shield ohjelman hankkeet:\n\n\n               Demokratian episteeminen    Algoritmisten systeemien murtumat ja   Luotettavien ja syrjimättömien\n                toimintakyky algoritmien            uudet alut (REPAIR)            digitaalisten julkispalvelujen\n                   aikakaudella (DECA)                                            suunnittelu maahanmuuttajille\nGenerationAI                                                                                  (Trust-M)",
+      "ocrUsed": false
+    },
+    {
+      "page": 6,
+      "text": "“Lasten ja nuorten\n                                                                                             oivalluttaminen teknologiasta,\n                                                                                             josta tulevaisuuden yhteiskunta\n                                                                                             on enenevässä määrin\n                                                                                             riippuvainen, on yksi 2000-luvun\n                                                                                             merkittävimmistä haasteista.”\n                                                                                             Generation AI hankkeen tilannekuvaraportti\n\n\n\n\nGenerationAI\nhttps://www.aka.fi/strateginen-tutkimus/strateginen-tutkimus/strateginen-tutkimus-pahkinankuoressa/ohjelmat-ja-hankkeet/shield/generation-ai/   bit.ly/itk2024",
+      "ocrUsed": false
+    },
+    {
+      "page": 7,
+      "text": "Neljä eri tapaa tarkastella\n   tekoälyä opetuksessa\n    Tekoäly työkaluna\n     oppilaan väline        Tekoäly oppimisen\n     opettajan väline           sisältönä\n     instituution väline\n\n\n\n\n       Tekoäly &           Tekoälyn vaikutusten\n   oppimisanalytiikka         ymmärtäminen\n                                                  Holmes, W., Persson, J., Chounta, I. A., Wasson, B., & Dimitrova, V. (2022).\n                                                  Artificial intelligence and education: A critical view through the lens of\n                                                  human rights, democracy and the rule of law. Council of Europe.\n\n\n\n\nGenerationAI                                                                                        bit.ly/itk2024",
+      "ocrUsed": false
+    },
+    {
+      "page": 8,
+      "text": "Generation AI\n  https://www.generation-ai-stn.fi\nKasvatustiede            Kehitämme pedagogisia\n                         puitteita tekoäly- ja\n                         turvallisuuskasvatukselle\nOikeustiede              Kehitämme uusia esi- ja\n                         perusopetukseen soveltuvia\n                         tekoälyn opetusvälineiden ja -\nTietojenkäsittelytiede   menetelmien sekä\n                         oppimiskokonaisuuksien\n                         yhdistelmiä\nMuut osapuolet           Edistämme lasten oikeuksien\n                         toteutumista tekoälyyn\n                         perustuvissa järjestelmissä",
+      "ocrUsed": false
+    },
+    {
+      "page": 9,
+      "text": "Sovelluksemme ovat turvallisia ja helppoja\n  Opetettava kone on                                                                                                                      Generation AI työkalut edustavat selitttävää tekoälyä (XAI)\n\n Helppo ja turvallinen                                                                                                                    *XAI = Selittävä tekoäly on ekoälyjärjestelmä, jonka päättelyä ihminen pystyy\n                                                                                                                                          seuraamaan. Käytännössä selittävän tekoälyn käyttäjä voi ymmärtää, miten tekoäly on\n                                                                                                                                          päätynyt tulokseensa. Generation AI työkalut ovat XAI sovelluksia.                           XAI\n                                                                                                                                          Työkalut ovat saavutettavia ja helppokäyttöisiä\n                                                                                                                                          Generation AI sovellukset täyttävät digitaalisten palvelujen tarjoamisesta säädetyn lain\n                                                                                                                                          vaatimukset täyttäen saavutettavuutta koskevan WCAG ohjeistuksen tasolla 2.1 AA.\n                                                                                                                                          Sovellukset on suunniteltu käytettävyys ja helppokäyttöisyys edellä.\n\n\n                                                                                                                                           Etusijalla käyttäjän yksityisyys ja tietosuoja\n                                                                                                                                          Generation AI sovellukset asettavat etusijalle käyttäjien yksityisyyden ja tietosuojan.\n                                                                                                                                          Sovellukset eivät seuraa käyttäjiä tai kerää henkilötietoja. Ne ovat GDPR-yhteensopiviaa ja\n                                                                                                                                          varmistavat luokkahuoneen turvallisuuden, joten ne sopivat kaikkiin koulutusympäristöihin.\n\n\n    “GenAI-opetettava kone asettaa etusijalle käyttäjien yksityisyyden                                                                     Sovelluksemme ovat ilmaisia ja julkaistu MIT ohjelmistolisenssillä\n    ja tietosuojan. Sovellus ei seuraa käyttäjiä tai kerää henkilötietoja,                                                                Generation Ai sovellukset ovat ilmaisia ja lähdekoodi (ohjelmisto) on jaettu avoimella MIT\n                                                                                                                                          ohjelmistolisenssillä. Se antaa käyttäjälle oikeudet vapaasti muokata, kopioida ja käyttää\n    se on GDPR-yhteensopiva ja varmistaa luokkahuoneen\n                                                                                                                                          teosta omassa projektissa sillä ehdolla, että lisenssin teksti säilyy lähdekoodissa.\n    turvallisuuden, joten se sopii kaikkiin koulutusympäristöihin.”\n    Pope, Nicolas; Kahila, Juho; Vartiainen, Henriikka; Tedre, Matti (2023). Children’s AI Design Platform for Making and Deploying ML-\n    DrivenApps. TechRxiv. Preprint. https://doi.org/10.36227/techrxiv.24320794.v1\n                                                                                                                                           Sovellukset toimivat www-selaimessa\n                                                                                                                                          Sovellukset ovat selainpohjaisia ja tarvitsevat toimiakseen tuen WebRTC\n                                                                                                                                          datakanaville ja Javascript E11:lle (Chrome 56+, Firefox 44+, Safari 15.4+\n                                                                                                                                          ja Edge 79+). Sovelluksia on käytetty ja testattu Chromebook, Linux,\n                                                                                                                                          MAC ja Windows koneissa sekä Android ja IOS tableteissa ja puhelimissa\ntm.generation-ai-stn.fi",
+      "ocrUsed": false
+    },
+    {
+      "page": 10,
+      "text": "Sovellusten tueksi on materiaaleja",
+      "ocrUsed": false
+    },
+    {
+      "page": 11,
+      "text": "EU AIAct (tekoälysäädös)\njuridiikan ja koulutuksen\n      näkökulmasta\n professori Susanna Lindroos-\n Hovinheimo, Helsingin yliopisto,\n Generation AI -hanke\n yliopistonlehtori, dosentti Anna-\n Mari Wallenberg, Helsingin yliopisto\n\n\n  Digioppimisen areena\n        2.12.2024 oikeuksien toteutumista tekoälyyn\n                  “Generation AI edistää lasten\n\n                  perustuvissa järjestelmissä”\nGeneration AI",
+      "ocrUsed": false
+    },
+    {
+      "page": 12,
+      "text": "Tasapainoilua henkilötietojen\nsuojan ja digitalisoituneeseen\nyhteiskuntaan osallistumisen\nvälillä\n\n\n\n\nGDPR, EU AI ACT,\nDSA jne. + populistinen /   Digitalisoitunut\nmustavalkoinen digipuhe         yhteiskunta",
+      "ocrUsed": false
+    },
+    {
+      "page": 13,
+      "text": "1. Kehitämme pedagogisia puitteita tekoäly- ja\n                  turvallisuuskasvatukselle\n               2. Kehitämme uusia esi- ja perusopetukseen\n                  soveltuvia tekoälyn opetusvälineiden ja -\n                  menetelmien sekä oppimiskokonaisuuksien\n                  yhdistelmiä\n               3. Edistämme lasten oikeuksien toteutumista\n                  tekoälyyn perustuvissa järjestelmissä\n\nGenerationAI",
+      "ocrUsed": false
+    },
+    {
+      "page": 14,
+      "text": "",
+      "ocrUsed": false
+    },
+    {
+      "page": 15,
+      "text": "",
+      "ocrUsed": false
+    },
+    {
+      "page": 16,
+      "text": "Kalamalja\n                                  Jussi Koivisto/Codeschool\n                                  Jussi Koivisto/Codeschool\nMitä tekoälytaitoja tulisi\nopettaa lapsille? Opettajille?   Kari Kivinen/Faktabaari\n                                 Kari Kivinen/Faktabaari\n\nMillainen on/olisi lapsi- ja        Lauri\n                                    Lauri Nurmivuori/\n                                          Nurmivuori/\nteiniturvallinen AI? Some?          Oululainen opettaja\n                                    Oululainen opettaja\n\nMillaista tukimateriaalia           Henriikka ja\n                                    Henriikka ja Teemu\n                                                 Teemu\nopettajat tarvitsevat?\n                                          Sinä?",
+      "ocrUsed": false
+    }
+  ],
+  "emptyPages": [
+    14,
+    15
+  ],
+  "extractError": null,
+  "_diagnostic": {
+    "pdfBytes": 6185066,
+    "elapsedMs": 32241
+  }
+}
