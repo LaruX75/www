@@ -62,3 +62,8 @@ scripts/__pycache__/
 docs/researchfi-eleventy-prompt.md
 scripts/thesis-pdfs/
 ONBOARDING.md
+
+# Canva content pipeline: transient PDF-exports (poistetaan onnistuneen
+# tekstinpoiminnan jälkeen; ei julkaista sivustolla, ei committoida)
+data/canva/tmp/
+data/canva/pdf/
