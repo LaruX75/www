@@ -79,7 +79,7 @@
     "eleventy-plugin-og-image": "^4.3.0",
     "eleventy-plugin-toc": "^1.1.5",
     "markdown-it": "^14.1.1",
-    "markdown-it-anchor": "^9.2.0",
+    "markdown-it-anchor": "^9.2.1",
     "node-fetch": "^3.3.2",
     "pdf-parse": "^2.4.5"
   },
