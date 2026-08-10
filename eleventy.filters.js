@@ -46,6 +46,87 @@ function normalizeTerms(values) {
   return new Set(toArray(values).map(normalizeTerm).filter(Boolean));
 }
 
+// v4.4 hybrid recommendation vakiot.
+//
+// SEM_MIN 0.6
+//   → evaluationissa tätä heikommat semantic-yhteydet eivät olleet
+//     riittävän luotettavia (satunnaisuuden luokkaa).
+// SEM_WEIGHT 5
+//   → vahva semantic-osuma vastaa suunnilleen yhden category-osuman painoa.
+//     Semantic täydentää metadataa, ei normaalisti dominoi sitä.
+const SEM_MIN = 0.6;
+const SEM_WEIGHT = 5;
+
+// Build-time semantic-related. Lazy-cached — luetaan kerran per Node-prosessi.
+// Fallback {} jos JSON puuttuu (scripts/build-semantic-related.js ei ole ajettu).
+// Tässä tapauksessa relatedContent toimii identtisesti aiemman metadata-only-
+// toteutuksen kanssa (semanticBoost aina 0).
+let semanticRelatedCache = null;
+function getSemanticRelated() {
+  if (semanticRelatedCache !== null) return semanticRelatedCache;
+  const p = path.join(__dirname, "src", "_data", "semanticRelated.json");
+  try {
+    semanticRelatedCache = fs.existsSync(p) ? JSON.parse(fs.readFileSync(p, "utf8")) : {};
+  } catch (e) {
+    console.warn(`[relatedContent] semanticRelated.json luku epäonnistui: ${e.message} — fallback {}`);
+    semanticRelatedCache = {};
+  }
+  return semanticRelatedCache;
+}
+// Testeille: sallii cachen ohituksen ja injektoinnin.
+function __setSemanticRelatedCacheForTest(data) {
+  semanticRelatedCache = data;
+}
+
+// Puhdas testattava recommendation-logiikka. Filtteri wrappaa tämän ja
+// injektoi semanticRelated:in getSemanticRelated()-loaderilta.
+//
+// H0-kaava: score = metadataScore + (sim >= SEM_MIN ? sim * SEM_WEIGHT : 0)
+// Inclusion: metadataScore > 0 TAI semanticBoost > 0.
+function computeRelatedContent(collections, pageUrl, categories, keywords, tags, type, contextsOrLimit, maybeLimit, semanticRelated) {
+  const wantedCategories = normalizeTerms(categories);
+  const wantedKeywords = normalizeTerms(keywords);
+  const wantedTags = normalizeTerms(tags);
+  const wantedType = String(type || "");
+  const wantedContexts = typeof contextsOrLimit === "number" ? new Set() : normalizeTerms(contextsOrLimit);
+  const limit = typeof contextsOrLimit === "number" ? contextsOrLimit : maybeLimit;
+  const lang = getLangFromUrl(pageUrl);
+
+  if (!wantedCategories.size && !wantedKeywords.size && !wantedTags.size && !wantedContexts.size && !wantedType) return [];
+
+  const semList = (semanticRelated || {})[pageUrl] || [];
+  const semByUrl = new Map(semList.map((s) => [s.url, s.sim]));
+
+  return uniqueContentItems(collections)
+    .filter((item) => item.url !== pageUrl)
+    .map((item) => {
+      const data = item.data || {};
+      const categoryScore = intersectionCount(data.categories, wantedCategories) * 5;
+      const keywordScore = intersectionCount(data.keywords, wantedKeywords) * 3;
+      const tagScore = intersectionCount(data.tags, wantedTags) * 2;
+      const contextScore = intersectionCount(data.contexts, wantedContexts) * 4;
+      const typeScore = wantedType && data.type === wantedType ? 2 : 0;
+      const metadataScore = categoryScore + keywordScore + tagScore + contextScore + typeScore;
+      const semSim = semByUrl.get(item.url) || 0;
+      const semanticBoost = semSim >= SEM_MIN ? semSim * SEM_WEIGHT : 0;
+      const score = metadataScore + semanticBoost;
+      return {
+        url: item.url,
+        title: data.title || "",
+        description: data.description || "",
+        date: item.date || data.date || null,
+        typeLabel: resolveContentMeta(data, "", lang).contentTypeLabel,
+        score
+      };
+    })
+    .filter((item) => item.score > 0)
+    .sort((a, b) => {
+      if (b.score !== a.score) return b.score - a.score;
+      return new Date(b.date || 0) - new Date(a.date || 0);
+    })
+    .slice(0, Number(limit) || 4);
+}
+
 function uniqueContentItems(collections) {
   const sources = [
     ...(collections?.blog || []),
@@ -996,41 +1077,10 @@ module.exports = function registerFilters(eleventyConfig) {
   });
 
   eleventyConfig.addFilter("relatedContent", function (collections, pageUrl, categories, keywords, tags, type, contextsOrLimit = [], maybeLimit = 4) {
-    const wantedCategories = normalizeTerms(categories);
-    const wantedKeywords = normalizeTerms(keywords);
-    const wantedTags = normalizeTerms(tags);
-    const wantedType = String(type || "");
-    const wantedContexts = typeof contextsOrLimit === "number" ? new Set() : normalizeTerms(contextsOrLimit);
-    const limit = typeof contextsOrLimit === "number" ? contextsOrLimit : maybeLimit;
-    const lang = getLangFromUrl(pageUrl);
-
-    if (!wantedCategories.size && !wantedKeywords.size && !wantedTags.size && !wantedContexts.size && !wantedType) return [];
-
-    return uniqueContentItems(collections)
-      .filter((item) => item.url !== pageUrl)
-      .map((item) => {
-        const data = item.data || {};
-        const categoryScore = intersectionCount(data.categories, wantedCategories) * 5;
-        const keywordScore = intersectionCount(data.keywords, wantedKeywords) * 3;
-        const tagScore = intersectionCount(data.tags, wantedTags) * 2;
-        const contextScore = intersectionCount(data.contexts, wantedContexts) * 4;
-        const typeScore = wantedType && data.type === wantedType ? 2 : 0;
-        const score = categoryScore + keywordScore + tagScore + contextScore + typeScore;
-        return {
-          url: item.url,
-          title: data.title || "",
-          description: data.description || "",
-          date: item.date || data.date || null,
-          typeLabel: resolveContentMeta(data, "", lang).contentTypeLabel,
-          score
-        };
-      })
-      .filter((item) => item.score > 0)
-      .sort((a, b) => {
-        if (b.score !== a.score) return b.score - a.score;
-        return new Date(b.date || 0) - new Date(a.date || 0);
-      })
-      .slice(0, Number(limit) || 4);
+    return computeRelatedContent(
+      collections, pageUrl, categories, keywords, tags, type, contextsOrLimit, maybeLimit,
+      getSemanticRelated()
+    );
   });
 
   eleventyConfig.addFilter("sameCouncilMeetingGroup", function (collections, pageUrl, limit = 6, lang = "fi") {
@@ -1329,3 +1379,9 @@ module.exports = function registerFilters(eleventyConfig) {
 
 module.exports.buildCouncilMeetings = buildCouncilMeetings;
 module.exports.buildCouncilMeetingTimeline = buildCouncilMeetingTimeline;
+// v4.4: exportit testejä varten (tests/unit/related-content-hybrid.test.js).
+module.exports.computeRelatedContent = computeRelatedContent;
+module.exports.__setSemanticRelatedCacheForTest = __setSemanticRelatedCacheForTest;
+module.exports.__getSemanticRelatedForTest = getSemanticRelated;
+module.exports.SEM_MIN = SEM_MIN;
+module.exports.SEM_WEIGHT = SEM_WEIGHT;

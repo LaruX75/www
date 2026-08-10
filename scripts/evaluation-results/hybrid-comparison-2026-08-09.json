@@ -1,0 +1,782 @@
+{
+  "metrics": {
+    "BASELINE": {
+      "changed": 0,
+      "overlapSum": 116,
+      "novelInTop4": 0,
+      "relevantNovel": 0,
+      "strongMetaDrops": 0,
+      "n": 29
+    },
+    "H0": {
+      "changed": 17,
+      "overlapSum": 79,
+      "novelInTop4": 37,
+      "relevantNovel": 28,
+      "strongMetaDrops": 15,
+      "n": 29
+    },
+    "H1": {
+      "changed": 21,
+      "overlapSum": 72,
+      "novelInTop4": 44,
+      "relevantNovel": 31,
+      "strongMetaDrops": 22,
+      "n": 29
+    },
+    "H2": {
+      "changed": 26,
+      "overlapSum": 45,
+      "novelInTop4": 71,
+      "relevantNovel": 41,
+      "strongMetaDrops": 46,
+      "n": 29
+    },
+    "H3": {
+      "changed": 25,
+      "overlapSum": 48,
+      "novelInTop4": 68,
+      "relevantNovel": 38,
+      "strongMetaDrops": 43,
+      "n": 29
+    }
+  },
+  "examples": {
+    "Yliopiston kiinteistöstrategian \"valkea savu\"": {
+      "anchor": {
+        "url": "/2025/06/11/yliopiston-kiinteistostrategian-valkea-savu/",
+        "title": "Yliopiston kiinteistöstrategian \"valkea savu\"",
+        "contentType": "blogPost",
+        "description": "Oulun yliopiston kiinteistöstrategian jatkovalmistelu palautti kampuskeskustelun realistisempiin vaihtoehtoihin: Kontinkangas, Linnanmaa ja niiden suhde koko kaupungin kehitykseen.",
+        "year": 2025,
+        "lang": "fi",
+        "richSource": "markdownBody",
+        "richness": "rich"
+      },
+      "rankings": {
+        "BASELINE": [
+          {
+            "url": "/2025/03/25/normaalikoulun-tilapaatos-palautti-kampuskeskustelun-raiteilleen/",
+            "title": "Normaalikoulun tilapäätös palautti kampuskeskustelun raiteilleen",
+            "contentType": "blogPost",
+            "meta": 37,
+            "sim": 0,
+            "score": 37
+          },
+          {
+            "url": "/2022/02/28/opiskelijoiden-kysely-kertoi-miksi-keskustakampus-heratti-vastustusta/",
+            "title": "Opiskelijoiden kysely kertoi, miksi keskustakampus herätti vastustusta",
+            "contentType": "blogPost",
+            "meta": 37,
+            "sim": 0,
+            "score": 37
+          },
+          {
+            "url": "/2022/01/30/raksilasta-ja-kampuksesta-2019-2022/",
+            "title": "Raksilasta ja kampuksesta 2019-2022",
+            "contentType": "blogPost",
+            "meta": 37,
+            "sim": 0,
+            "score": 37
+          },
+          {
+            "url": "/2023/09/21/normaalikoulun-tilaratkaisu-alkoi-vihdoin-edeta/",
+            "title": "Normaalikoulun tilaratkaisu alkoi vihdoin edetä",
+            "contentType": "blogPost",
+            "meta": 34,
+            "sim": 0,
+            "score": 34
+          }
+        ],
+        "H0": [
+          {
+            "url": "/2025/03/25/normaalikoulun-tilapaatos-palautti-kampuskeskustelun-raiteilleen/",
+            "title": "Normaalikoulun tilapäätös palautti kampuskeskustelun raiteilleen",
+            "contentType": "blogPost",
+            "meta": 37,
+            "sim": 0.7145,
+            "score": 40.572
+          },
+          {
+            "url": "/2022/01/30/raksilasta-ja-kampuksesta-2019-2022/",
+            "title": "Raksilasta ja kampuksesta 2019-2022",
+            "contentType": "blogPost",
+            "meta": 37,
+            "sim": 0.7029,
+            "score": 40.514
+          },
+          {
+            "url": "/2022/02/28/opiskelijoiden-kysely-kertoi-miksi-keskustakampus-heratti-vastustusta/",
+            "title": "Opiskelijoiden kysely kertoi, miksi keskustakampus herätti vastustusta",
+            "contentType": "blogPost",
+            "meta": 37,
+            "sim": 0,
+            "score": 37
+          },
+          {
+            "url": "/2023/09/21/normaalikoulun-tilaratkaisu-alkoi-vihdoin-edeta/",
+            "title": "Normaalikoulun tilaratkaisu alkoi vihdoin edetä",
+            "contentType": "blogPost",
+            "meta": 34,
+            "sim": 0,
+            "score": 34
+          }
+        ],
+        "H1": [
+          {
+            "url": "/2025/03/25/normaalikoulun-tilapaatos-palautti-kampuskeskustelun-raiteilleen/",
+            "title": "Normaalikoulun tilapäätös palautti kampuskeskustelun raiteilleen",
+            "contentType": "blogPost",
+            "meta": 37,
+            "sim": 0.7145,
+            "score": 42.716
+          },
+          {
+            "url": "/2022/01/30/raksilasta-ja-kampuksesta-2019-2022/",
+            "title": "Raksilasta ja kampuksesta 2019-2022",
+            "contentType": "blogPost",
+            "meta": 37,
+            "sim": 0.7029,
+            "score": 42.623
+          },
+          {
+            "url": "/2022/02/28/opiskelijoiden-kysely-kertoi-miksi-keskustakampus-heratti-vastustusta/",
+            "title": "Opiskelijoiden kysely kertoi, miksi keskustakampus herätti vastustusta",
+            "contentType": "blogPost",
+            "meta": 37,
+            "sim": 0,
+            "score": 37
+          },
+          {
+            "url": "/2019/12/09/oulun-yliopistokampus-toimiva-nykyisellaan-mika-on-se-malli-johon-visio-yliopistosta-keskustassa-perustuu/",
+            "title": "Oulun yli­opis­to­kam­pus toimiva nykyisellään – mikä on se malli, johon visio yliopistosta keskustassa perustuu?",
+            "contentType": "opinion",
+            "meta": 29,
+            "sim": 0.7026,
+            "score": 34.621
+          }
+        ],
+        "H2": [
+          {
+            "url": "/2025/03/25/normaalikoulun-tilapaatos-palautti-kampuskeskustelun-raiteilleen/",
+            "title": "Normaalikoulun tilapäätös palautti kampuskeskustelun raiteilleen",
+            "contentType": "blogPost",
+            "meta": 37,
+            "sim": 0.7145,
+            "score": 0.961
+          },
+          {
+            "url": "/2022/01/30/raksilasta-ja-kampuksesta-2019-2022/",
+            "title": "Raksilasta ja kampuksesta 2019-2022",
+            "contentType": "blogPost",
+            "meta": 37,
+            "sim": 0.7029,
+            "score": 0.953
+          },
+          {
+            "url": "/2019/12/09/oulun-yliopistokampus-toimiva-nykyisellaan-mika-on-se-malli-johon-visio-yliopistosta-keskustassa-perustuu/",
+            "title": "Oulun yli­opis­to­kam­pus toimiva nykyisellään – mikä on se malli, johon visio yliopistosta keskustassa perustuu?",
+            "contentType": "opinion",
+            "meta": 29,
+            "sim": 0.7026,
+            "score": 0.839
+          },
+          {
+            "url": "/2020/11/09/puheenvuoro-valtuustossa-kampusratkaisun-vaikutuksista-tarvitaan-yhteinen-tiekartta/",
+            "title": "Puheenvuoro valtuustossa § 8: Kampusratkaisun vaikutuksista tarvitaan yhteinen tiekartta",
+            "contentType": "speech",
+            "meta": 26,
+            "sim": 0.734,
+            "score": 0.816
+          }
+        ],
+        "H3": [
+          {
+            "url": "/2025/03/25/normaalikoulun-tilapaatos-palautti-kampuskeskustelun-raiteilleen/",
+            "title": "Normaalikoulun tilapäätös palautti kampuskeskustelun raiteilleen",
+            "contentType": "blogPost",
+            "meta": 37,
+            "sim": 0.7145,
+            "score": 0.969
+          },
+          {
+            "url": "/2022/01/30/raksilasta-ja-kampuksesta-2019-2022/",
+            "title": "Raksilasta ja kampuksesta 2019-2022",
+            "contentType": "blogPost",
+            "meta": 37,
+            "sim": 0.7029,
+            "score": 0.963
+          },
+          {
+            "url": "/2019/12/09/oulun-yliopistokampus-toimiva-nykyisellaan-mika-on-se-malli-johon-visio-yliopistosta-keskustassa-perustuu/",
+            "title": "Oulun yli­opis­to­kam­pus toimiva nykyisellään – mikä on se malli, johon visio yliopistosta keskustassa perustuu?",
+            "contentType": "opinion",
+            "meta": 29,
+            "sim": 0.7026,
+            "score": 0.825
+          },
+          {
+            "url": "/2022/02/26/puhe-kaikkien-kampus-mielenosoitus-2022/",
+            "title": "Puhe: Kaikkien kampus",
+            "contentType": "speech",
+            "meta": 27,
+            "sim": 0.7044,
+            "score": 0.792
+          }
+        ]
+      }
+    },
+    "Scaffolding collaborative learning with cognitive tools base": {
+      "anchor": {
+        "url": "/presentations/ss-scaffolding-collaborative-learning-with-cognitive-tools-based-on-mobile-computer/",
+        "title": "Scaffolding collaborative learning with cognitive tools based on mobile computers (2011)",
+        "contentType": "presentation",
+        "description": "SlideShare-esitys",
+        "year": 2011,
+        "lang": "fi",
+        "richSource": "description",
+        "richness": "medium"
+      },
+      "rankings": {
+        "BASELINE": [
+          {
+            "url": "/presentations/larun-pikkuvinkit/",
+            "title": "Larun pikkuvinkit",
+            "contentType": "presentation",
+            "meta": 6,
+            "sim": 0,
+            "score": 6
+          },
+          {
+            "url": "/presentations/arjen-tekoalyhaaste/",
+            "title": "Arjen tekoälyhaaste",
+            "contentType": "presentation",
+            "meta": 6,
+            "sim": 0,
+            "score": 6
+          },
+          {
+            "url": "/presentations/generation-ai-yleisesitys-sovellukset-2026/",
+            "title": "Generation AI yleisesitys / Sovellukset / 2026",
+            "contentType": "presentation",
+            "meta": 6,
+            "sim": 0,
+            "score": 6
+          },
+          {
+            "url": "/presentations/kohti-kriittist-teko-lylukutaitoa-2026-finnoschool/",
+            "title": "Kohti kriittistä tekoälylukutaitoa 2026 - Finnoschool",
+            "contentType": "presentation",
+            "meta": 6,
+            "sim": 0,
+            "score": 6
+          }
+        ],
+        "H0": [
+          {
+            "url": "/presentations/ss-scaffolding-learning-activities-in-real-life-contexts-with-collaborative-scripts/",
+            "title": "Scaffolding learning activities in real life contexts with collaborative scripts and mobile computers",
+            "contentType": "presentation",
+            "meta": 6,
+            "sim": 0.7059,
+            "score": 9.529
+          },
+          {
+            "url": "/presentations/ss-yhteisollisen-oppimisen-tukeminen-mobiililaitteiden-avulla-kolme-tapaustutkimust/",
+            "title": "Yhteisöllisen oppimisen tukeminen mobiililaitteiden avulla: Kolme tapaustutkimusta kolmessa eri kontekstissa",
+            "contentType": "presentation",
+            "meta": 6,
+            "sim": 0.6958,
+            "score": 9.479
+          },
+          {
+            "url": "/presentations/ss-erilaisten-oppimisyhteisojen-tukeminen-mobiiliteknologian-ja-sosiaalisen-median-/",
+            "title": "Erilaisten oppimisyhteisöjen tukeminen mobiiliteknologian ja sosiaalisen median sovellusten avulla",
+            "contentType": "presentation",
+            "meta": 6,
+            "sim": 0.6923,
+            "score": 9.462
+          },
+          {
+            "url": "/presentations/ss-teoria-suunnittelu-a-otvt/",
+            "title": "Teoria suunnittelu a_otvt",
+            "contentType": "presentation",
+            "meta": 6,
+            "sim": 0.6827,
+            "score": 9.413
+          }
+        ],
+        "H1": [
+          {
+            "url": "/presentations/ss-scaffolding-learning-activities-in-real-life-contexts-with-collaborative-scripts/",
+            "title": "Scaffolding learning activities in real life contexts with collaborative scripts and mobile computers",
+            "contentType": "presentation",
+            "meta": 6,
+            "sim": 0.7059,
+            "score": 11.647
+          },
+          {
+            "url": "/presentations/ss-yhteisollisen-oppimisen-tukeminen-mobiililaitteiden-avulla-kolme-tapaustutkimust/",
+            "title": "Yhteisöllisen oppimisen tukeminen mobiililaitteiden avulla: Kolme tapaustutkimusta kolmessa eri kontekstissa",
+            "contentType": "presentation",
+            "meta": 6,
+            "sim": 0.6958,
+            "score": 11.566
+          },
+          {
+            "url": "/presentations/ss-erilaisten-oppimisyhteisojen-tukeminen-mobiiliteknologian-ja-sosiaalisen-median-/",
+            "title": "Erilaisten oppimisyhteisöjen tukeminen mobiiliteknologian ja sosiaalisen median sovellusten avulla",
+            "contentType": "presentation",
+            "meta": 6,
+            "sim": 0.6923,
+            "score": 11.538
+          },
+          {
+            "url": "/presentations/ss-teoria-suunnittelu-a-otvt/",
+            "title": "Teoria suunnittelu a_otvt",
+            "contentType": "presentation",
+            "meta": 6,
+            "sim": 0.6827,
+            "score": 11.462
+          }
+        ],
+        "H2": [
+          {
+            "url": "/presentations/ss-scaffolding-learning-activities-in-real-life-contexts-with-collaborative-scripts/",
+            "title": "Scaffolding learning activities in real life contexts with collaborative scripts and mobile computers",
+            "contentType": "presentation",
+            "meta": 6,
+            "sim": 0.7059,
+            "score": 0.969
+          },
+          {
+            "url": "/presentations/ss-yhteisollisen-oppimisen-tukeminen-mobiililaitteiden-avulla-kolme-tapaustutkimust/",
+            "title": "Yhteisöllisen oppimisen tukeminen mobiililaitteiden avulla: Kolme tapaustutkimusta kolmessa eri kontekstissa",
+            "contentType": "presentation",
+            "meta": 6,
+            "sim": 0.6958,
+            "score": 0.962
+          },
+          {
+            "url": "/presentations/ss-erilaisten-oppimisyhteisojen-tukeminen-mobiiliteknologian-ja-sosiaalisen-median-/",
+            "title": "Erilaisten oppimisyhteisöjen tukeminen mobiiliteknologian ja sosiaalisen median sovellusten avulla",
+            "contentType": "presentation",
+            "meta": 6,
+            "sim": 0.6923,
+            "score": 0.96
+          },
+          {
+            "url": "/presentations/ss-teoria-suunnittelu-a-otvt/",
+            "title": "Teoria suunnittelu a_otvt",
+            "contentType": "presentation",
+            "meta": 6,
+            "sim": 0.6827,
+            "score": 0.954
+          }
+        ],
+        "H3": [
+          {
+            "url": "/presentations/ss-scaffolding-learning-activities-in-real-life-contexts-with-collaborative-scripts/",
+            "title": "Scaffolding learning activities in real life contexts with collaborative scripts and mobile computers",
+            "contentType": "presentation",
+            "meta": 6,
+            "sim": 0.7059,
+            "score": 0.975
+          },
+          {
+            "url": "/presentations/ss-yhteisollisen-oppimisen-tukeminen-mobiililaitteiden-avulla-kolme-tapaustutkimust/",
+            "title": "Yhteisöllisen oppimisen tukeminen mobiililaitteiden avulla: Kolme tapaustutkimusta kolmessa eri kontekstissa",
+            "contentType": "presentation",
+            "meta": 6,
+            "sim": 0.6958,
+            "score": 0.97
+          },
+          {
+            "url": "/presentations/ss-erilaisten-oppimisyhteisojen-tukeminen-mobiiliteknologian-ja-sosiaalisen-median-/",
+            "title": "Erilaisten oppimisyhteisöjen tukeminen mobiiliteknologian ja sosiaalisen median sovellusten avulla",
+            "contentType": "presentation",
+            "meta": 6,
+            "sim": 0.6923,
+            "score": 0.968
+          },
+          {
+            "url": "/presentations/ss-teoria-suunnittelu-a-otvt/",
+            "title": "Teoria suunnittelu a_otvt",
+            "contentType": "presentation",
+            "meta": 6,
+            "sim": 0.6827,
+            "score": 0.963
+          }
+        ]
+      }
+    },
+    "Kuinka opettajaopiskelijoiden tekoälytaidot näkyvät heidän t": {
+      "anchor": {
+        "url": "https://oulurepo.oulu.fi/handle/10024/62907",
+        "title": "Kuinka opettajaopiskelijoiden tekoälytaidot näkyvät heidän tekemissään luokittelijasovelluksissa",
+        "contentType": "thesis",
+        "description": "Tekoäly on viime vuosina ujuttautunut osaksi kaikkia elämän osa-alueita työelämästä kouluihin ja vapaa-aikaan. Kehitys on ollut niin nopeaa, että hallinnoilla ja koulutusjärjestelmillä on ollut täysi työ siihen vastaamisessa. Keskustelua etenkin koulumaailmassa herättävät tekoälyyn liittyvät ongelma",
+        "year": 2026,
+        "lang": "fi",
+        "richSource": "thesisAbstract",
+        "richness": "rich"
+      },
+      "rankings": {
+        "BASELINE": [
+          {
+            "url": "https://oulurepo.oulu.fi/handle/10024/54662",
+            "title": "Tekoäly peruskoulussa : opettajien näkemyksiä siitä, kuinka opettaa tekoälyä oppilaille ja  millaista oppimateriaalia siihen tarvitaan?",
+            "contentType": "thesis",
+            "meta": 14,
+            "sim": 0,
+            "score": 14
+          },
+          {
+            "url": "https://oulurepo.oulu.fi/handle/10024/63041",
+            "title": "Opettajaopiskelijoiden ajatuksia tekoälystä",
+            "contentType": "thesis",
+            "meta": 11,
+            "sim": 0,
+            "score": 11
+          },
+          {
+            "url": "https://oulurepo.oulu.fi/handle/10024/53198",
+            "title": "Opettajaopiskelijoiden käsityksiä tekoälystä ja sen käytöstä opettajan työssä",
+            "contentType": "thesis",
+            "meta": 11,
+            "sim": 0,
+            "score": 11
+          },
+          {
+            "url": "/mediassa/2025/12/24/24-myyttia-tekoalysta-ja-datasta-joulukalenteri/",
+            "title": "24 myyttiä tekoälystä ja datasta -joulukalenteri",
+            "contentType": "video",
+            "meta": 9,
+            "sim": 0,
+            "score": 9
+          }
+        ],
+        "H0": [
+          {
+            "url": "https://oulurepo.oulu.fi/handle/10024/54662",
+            "title": "Tekoäly peruskoulussa : opettajien näkemyksiä siitä, kuinka opettaa tekoälyä oppilaille ja  millaista oppimateriaalia siihen tarvitaan?",
+            "contentType": "thesis",
+            "meta": 14,
+            "sim": 0.7637,
+            "score": 17.819
+          },
+          {
+            "url": "https://oulurepo.oulu.fi/handle/10024/63041",
+            "title": "Opettajaopiskelijoiden ajatuksia tekoälystä",
+            "contentType": "thesis",
+            "meta": 11,
+            "sim": 0.7721,
+            "score": 14.861
+          },
+          {
+            "url": "https://oulurepo.oulu.fi/handle/10024/53198",
+            "title": "Opettajaopiskelijoiden käsityksiä tekoälystä ja sen käytöstä opettajan työssä",
+            "contentType": "thesis",
+            "meta": 11,
+            "sim": 0.7715,
+            "score": 14.857
+          },
+          {
+            "url": "https://oulurepo.oulu.fi/handle/10024/64139",
+            "title": "Tekoälylukutaidon ilmeneminen luokanopettajaopiskelijoiden portfolioissa",
+            "contentType": "thesis",
+            "meta": 8,
+            "sim": 0.795,
+            "score": 11.975
+          }
+        ],
+        "H1": [
+          {
+            "url": "https://oulurepo.oulu.fi/handle/10024/54662",
+            "title": "Tekoäly peruskoulussa : opettajien näkemyksiä siitä, kuinka opettaa tekoälyä oppilaille ja  millaista oppimateriaalia siihen tarvitaan?",
+            "contentType": "thesis",
+            "meta": 14,
+            "sim": 0.7637,
+            "score": 20.11
+          },
+          {
+            "url": "https://oulurepo.oulu.fi/handle/10024/63041",
+            "title": "Opettajaopiskelijoiden ajatuksia tekoälystä",
+            "contentType": "thesis",
+            "meta": 11,
+            "sim": 0.7721,
+            "score": 17.177
+          },
+          {
+            "url": "https://oulurepo.oulu.fi/handle/10024/53198",
+            "title": "Opettajaopiskelijoiden käsityksiä tekoälystä ja sen käytöstä opettajan työssä",
+            "contentType": "thesis",
+            "meta": 11,
+            "sim": 0.7715,
+            "score": 17.172
+          },
+          {
+            "url": "https://oulurepo.oulu.fi/handle/10024/64139",
+            "title": "Tekoälylukutaidon ilmeneminen luokanopettajaopiskelijoiden portfolioissa",
+            "contentType": "thesis",
+            "meta": 8,
+            "sim": 0.795,
+            "score": 14.36
+          }
+        ],
+        "H2": [
+          {
+            "url": "https://oulurepo.oulu.fi/handle/10024/54662",
+            "title": "Tekoäly peruskoulussa : opettajien näkemyksiä siitä, kuinka opettaa tekoälyä oppilaille ja  millaista oppimateriaalia siihen tarvitaan?",
+            "contentType": "thesis",
+            "meta": 14,
+            "sim": 0.7637,
+            "score": 0.98
+          },
+          {
+            "url": "https://oulurepo.oulu.fi/handle/10024/63041",
+            "title": "Opettajaopiskelijoiden ajatuksia tekoälystä",
+            "contentType": "thesis",
+            "meta": 11,
+            "sim": 0.7721,
+            "score": 0.861
+          },
+          {
+            "url": "https://oulurepo.oulu.fi/handle/10024/53198",
+            "title": "Opettajaopiskelijoiden käsityksiä tekoälystä ja sen käytöstä opettajan työssä",
+            "contentType": "thesis",
+            "meta": 11,
+            "sim": 0.7715,
+            "score": 0.86
+          },
+          {
+            "url": "https://oulurepo.oulu.fi/handle/10024/64139",
+            "title": "Tekoälylukutaidon ilmeneminen luokanopettajaopiskelijoiden portfolioissa",
+            "contentType": "thesis",
+            "meta": 8,
+            "sim": 0.795,
+            "score": 0.75
+          }
+        ],
+        "H3": [
+          {
+            "url": "https://oulurepo.oulu.fi/handle/10024/54662",
+            "title": "Tekoäly peruskoulussa : opettajien näkemyksiä siitä, kuinka opettaa tekoälyä oppilaille ja  millaista oppimateriaalia siihen tarvitaan?",
+            "contentType": "thesis",
+            "meta": 14,
+            "sim": 0.7637,
+            "score": 0.984
+          },
+          {
+            "url": "https://oulurepo.oulu.fi/handle/10024/63041",
+            "title": "Opettajaopiskelijoiden ajatuksia tekoälystä",
+            "contentType": "thesis",
+            "meta": 11,
+            "sim": 0.7721,
+            "score": 0.838
+          },
+          {
+            "url": "https://oulurepo.oulu.fi/handle/10024/53198",
+            "title": "Opettajaopiskelijoiden käsityksiä tekoälystä ja sen käytöstä opettajan työssä",
+            "contentType": "thesis",
+            "meta": 11,
+            "sim": 0.7715,
+            "score": 0.838
+          },
+          {
+            "url": "https://oulurepo.oulu.fi/handle/10024/64139",
+            "title": "Tekoälylukutaidon ilmeneminen luokanopettajaopiskelijoiden portfolioissa",
+            "contentType": "thesis",
+            "meta": 8,
+            "sim": 0.795,
+            "score": 0.7
+          }
+        ]
+      }
+    },
+    "Sivistyslautakunnan uusi alku näkyi jo vuoden 2022 viimeisis": {
+      "anchor": {
+        "url": "/2022/12/19/sivistyslautakunnan-uusi-alku-nakyi-jo-vuoden-2022-viimeisissa-kokouksissa/",
+        "title": "Sivistyslautakunnan uusi alku näkyi jo vuoden 2022 viimeisissä kokouksissa",
+        "contentType": "article",
+        "description": "Vuoden 2022 lopussa Oulun sivistys- ja kulttuurilautakunta oli jakautumassa sivistyslautakunnaksi sekä hyvinvointi-, kulttuuri- ja liikuntalautakunnaksi. Muutos kertoo siitä, miten sivistys, hyvinvointi ja arjen palvelut asettuivat uuteen työnjakoon.",
+        "year": 2022,
+        "lang": "fi",
+        "richSource": "markdownBody",
+        "richness": "rich"
+      },
+      "rankings": {
+        "BASELINE": [
+          {
+            "url": "/2022/10/10/puheenvuoro-valtuustossa-hyvinvointi-kuuluu-koko-kunnalle/",
+            "title": "Puheenvuoro valtuustossa § 2: Hyvinvointi kuuluu koko kunnalle",
+            "contentType": "speech",
+            "meta": 32,
+            "sim": 0,
+            "score": 32
+          },
+          {
+            "url": "/2021/10/08/lautakuntamatka-naytti-miten-tilat-kantavat-sivistysta-ja-kulttuuria/",
+            "title": "Lautakuntamatka näytti, miten tilat kantavat sivistystä ja kulttuuria",
+            "contentType": "article",
+            "meta": 28,
+            "sim": 0,
+            "score": 28
+          },
+          {
+            "url": "/2021/06/01/kirjasto-on-lahipalvelu-ja-sivistyksen-infrastruktuuri/",
+            "title": "Kirjasto on lähipalvelu ja sivistyksen infrastruktuuri",
+            "contentType": "article",
+            "meta": 28,
+            "sim": 0,
+            "score": 28
+          },
+          {
+            "url": "/2022/11/28/puheenvuoro-valtuustossa-yksityinen-varhaiskasvatus-palvelujen-saatavuus/",
+            "title": "Puheenvuoro valtuustossa § 12: Yksityinen varhaiskasvatus ja palvelujen saatavuus",
+            "contentType": "speech",
+            "meta": 26,
+            "sim": 0,
+            "score": 26
+          }
+        ],
+        "H0": [
+          {
+            "url": "/2022/10/10/puheenvuoro-valtuustossa-hyvinvointi-kuuluu-koko-kunnalle/",
+            "title": "Puheenvuoro valtuustossa § 2: Hyvinvointi kuuluu koko kunnalle",
+            "contentType": "speech",
+            "meta": 32,
+            "sim": 0.8207,
+            "score": 36.103
+          },
+          {
+            "url": "/2021/10/08/lautakuntamatka-naytti-miten-tilat-kantavat-sivistysta-ja-kulttuuria/",
+            "title": "Lautakuntamatka näytti, miten tilat kantavat sivistystä ja kulttuuria",
+            "contentType": "article",
+            "meta": 28,
+            "sim": 0.6837,
+            "score": 31.419
+          },
+          {
+            "url": "/2021/11/16/esiopetuksen-malli-ja-lukioiden-arki-olivat-samalla-lautakuntalistalla/",
+            "title": "Esiopetuksen malli ja lukioiden arki olivat samalla lautakuntalistalla",
+            "contentType": "article",
+            "meta": 26,
+            "sim": 0.7422,
+            "score": 29.711
+          },
+          {
+            "url": "/2017/10/27/sivistys-ja-kulttuurilautakunta-kokoontui-ouluhallissa-laajennus-ja-remontti-on-luvassa-tulevaisuudessa/",
+            "title": "Sivistys- ja kulttuurilautakunta kokoontui Ouluhallissa. Laajennus ja remontti on luvassa tulevaisuudessa.",
+            "contentType": "blogPost",
+            "meta": 26,
+            "sim": 0.6939,
+            "score": 29.47
+          }
+        ],
+        "H1": [
+          {
+            "url": "/2022/10/10/puheenvuoro-valtuustossa-hyvinvointi-kuuluu-koko-kunnalle/",
+            "title": "Puheenvuoro valtuustossa § 2: Hyvinvointi kuuluu koko kunnalle",
+            "contentType": "speech",
+            "meta": 32,
+            "sim": 0.8207,
+            "score": 38.566
+          },
+          {
+            "url": "/2021/10/08/lautakuntamatka-naytti-miten-tilat-kantavat-sivistysta-ja-kulttuuria/",
+            "title": "Lautakuntamatka näytti, miten tilat kantavat sivistystä ja kulttuuria",
+            "contentType": "article",
+            "meta": 28,
+            "sim": 0.6837,
+            "score": 33.47
+          },
+          {
+            "url": "/2021/11/16/esiopetuksen-malli-ja-lukioiden-arki-olivat-samalla-lautakuntalistalla/",
+            "title": "Esiopetuksen malli ja lukioiden arki olivat samalla lautakuntalistalla",
+            "contentType": "article",
+            "meta": 26,
+            "sim": 0.7422,
+            "score": 31.938
+          },
+          {
+            "url": "/2017/10/27/sivistys-ja-kulttuurilautakunta-kokoontui-ouluhallissa-laajennus-ja-remontti-on-luvassa-tulevaisuudessa/",
+            "title": "Sivistys- ja kulttuurilautakunta kokoontui Ouluhallissa. Laajennus ja remontti on luvassa tulevaisuudessa.",
+            "contentType": "blogPost",
+            "meta": 26,
+            "sim": 0.6939,
+            "score": 31.551
+          }
+        ],
+        "H2": [
+          {
+            "url": "/2022/10/10/puheenvuoro-valtuustossa-hyvinvointi-kuuluu-koko-kunnalle/",
+            "title": "Puheenvuoro valtuustossa § 2: Hyvinvointi kuuluu koko kunnalle",
+            "contentType": "speech",
+            "meta": 32,
+            "sim": 0.8207,
+            "score": 1
+          },
+          {
+            "url": "/2021/11/16/esiopetuksen-malli-ja-lukioiden-arki-olivat-samalla-lautakuntalistalla/",
+            "title": "Esiopetuksen malli ja lukioiden arki olivat samalla lautakuntalistalla",
+            "contentType": "article",
+            "meta": 26,
+            "sim": 0.7422,
+            "score": 0.852
+          },
+          {
+            "url": "/2021/10/08/lautakuntamatka-naytti-miten-tilat-kantavat-sivistysta-ja-kulttuuria/",
+            "title": "Lautakuntamatka näytti, miten tilat kantavat sivistystä ja kulttuuria",
+            "contentType": "article",
+            "meta": 28,
+            "sim": 0.6837,
+            "score": 0.85
+          },
+          {
+            "url": "/2017/10/27/sivistys-ja-kulttuurilautakunta-kokoontui-ouluhallissa-laajennus-ja-remontti-on-luvassa-tulevaisuudessa/",
+            "title": "Sivistys- ja kulttuurilautakunta kokoontui Ouluhallissa. Laajennus ja remontti on luvassa tulevaisuudessa.",
+            "contentType": "blogPost",
+            "meta": 26,
+            "sim": 0.6939,
+            "score": 0.823
+          }
+        ],
+        "H3": [
+          {
+            "url": "/2022/10/10/puheenvuoro-valtuustossa-hyvinvointi-kuuluu-koko-kunnalle/",
+            "title": "Puheenvuoro valtuustossa § 2: Hyvinvointi kuuluu koko kunnalle",
+            "contentType": "speech",
+            "meta": 32,
+            "sim": 0.8207,
+            "score": 1
+          },
+          {
+            "url": "/2021/10/08/lautakuntamatka-naytti-miten-tilat-kantavat-sivistysta-ja-kulttuuria/",
+            "title": "Lautakuntamatka näytti, miten tilat kantavat sivistystä ja kulttuuria",
+            "contentType": "article",
+            "meta": 28,
+            "sim": 0.6837,
+            "score": 0.853
+          },
+          {
+            "url": "/2021/11/16/esiopetuksen-malli-ja-lukioiden-arki-olivat-samalla-lautakuntalistalla/",
+            "title": "Esiopetuksen malli ja lukioiden arki olivat samalla lautakuntalistalla",
+            "contentType": "article",
+            "meta": 26,
+            "sim": 0.7422,
+            "score": 0.842
+          },
+          {
+            "url": "/2017/10/27/sivistys-ja-kulttuurilautakunta-kokoontui-ouluhallissa-laajennus-ja-remontti-on-luvassa-tulevaisuudessa/",
+            "title": "Sivistys- ja kulttuurilautakunta kokoontui Ouluhallissa. Laajennus ja remontti on luvassa tulevaisuudessa.",
+            "contentType": "blogPost",
+            "meta": 26,
+            "sim": 0.6939,
+            "score": 0.818
+          }
+        ]
+      }
+    }
+  }
+}
