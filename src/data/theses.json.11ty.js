@@ -20,6 +20,7 @@
  */
 
 const { JSON_SCHEMA_VERSION } = require("./_shared");
+const { deriveThesisMetadata } = require("../_utils/thesisDerivedMetadata");
 
 function normalizeArray(value) {
   if (!Array.isArray(value)) return null;
@@ -50,6 +51,7 @@ function toThesisRecord(t, lang, source) {
   if (!link || !title) return null;
 
   const year = t?.year && /^\d{4}$/.test(String(t.year)) ? parseInt(t.year, 10) : null;
+  const { categories, contexts } = deriveThesisMetadata(t);
   const contentTypeLabel = t?.type === "masterThesis"
     ? (lang === "en" ? "Master's thesis" : "Pro gradu")
     : (lang === "en" ? "Bachelor's thesis" : "Kandidaatintutkielma");
@@ -69,6 +71,8 @@ function toThesisRecord(t, lang, source) {
     thesisType: pickString(t?.type),
     authors: normalizeArray(t?.authors),
     keywords: normalizeArray(t?.keywords),
+    categories: normalizeArray(categories),
+    contexts: normalizeArray(contexts),
 
     // Rooli: "advised" (gradu tai kandi jonka Jari on ohjannut) tai
     // "reviewed" (Jari on tarkastaja mutta ei ohjaaja)

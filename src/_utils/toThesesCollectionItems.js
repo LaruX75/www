@@ -17,6 +17,8 @@
  * joukkoon.
  */
 
+const { deriveThesisMetadata } = require("./thesisDerivedMetadata");
+
 function thesisSlug(link) {
   const numeric = String(link || "").match(/\/(\d+)\/?$/);
   if (numeric) return `oulurepo-${numeric[1]}`;
@@ -49,6 +51,7 @@ function toCollectionItem(thesis, thesisRole) {
 
   const year = parseYear(thesis.year);
   const slug = thesisSlug(link);
+  const { categories, contexts } = deriveThesisMetadata(thesis);
 
   return {
     url: link,
@@ -63,8 +66,8 @@ function toCollectionItem(thesis, thesisRole) {
       lang: (thesis.language === "en" || thesis.language === "eng") ? "en" : "fi",
       authors: normalizeArray(thesis.authors),
       keywords: normalizeArray(thesis.keywords),
-      categories: [],  // OuluREPO-opinnaytteilla ei ole categories-kenttaa
-      contexts: [],
+      categories,
+      contexts,
       tags: ["theses"],  // topicItemScore tunnistaa collection-jasenyyden
       type: "thesis",
       contentType: "thesis",
