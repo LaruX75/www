@@ -1,0 +1,219 @@
+---
+title: "Sivuston tietograafi"
+permalink: /tutkimus/tietograafi/
+layout: base.njk
+lang: fi
+description: "Analyysinäkymä jarilaru.fi-sivuston knowledge graph -datalle: solmut, suhteet ja esimerkkikytkennät."
+templateEngineOverride: njk
+pageScopeClass: knowledge-graph-page
+pageScripts:
+  - /js/knowledge-graph-page.js
+---
+
+<section class="py-5 bg-body-tertiary border-bottom knowledge-graph-hero">
+  <div class="site-shell">
+    <p class="text-uppercase text-muted fw-semibold small mb-2">Tutkimus &rsaquo; Tietograafi</p>
+    <h1 class="display-6 fw-bold mb-3">Sivuston tietograafi</h1>
+    <p class="lead mb-3">Build-time näkymä siihen, miten henkilöt, tutkimuslinjat, julkaisut, opinnäytteet, esitykset, opintojaksot ja kontekstit liittyvät toisiinsa.</p>
+    <div class="d-flex flex-wrap gap-2">
+      <span class="badge bg-secondary-subtle text-secondary-emphasis border border-secondary-subtle" data-kg-summary="nodes">Ladataan solmuja…</span>
+      <span class="badge bg-secondary-subtle text-secondary-emphasis border border-secondary-subtle" data-kg-summary="edges">Ladataan suhteita…</span>
+      <span class="badge bg-secondary-subtle text-secondary-emphasis border border-secondary-subtle" data-kg-summary="generated">Ladataan aikaleimaa…</span>
+      <a href="/data/knowledge-graph.json" class="badge bg-primary-subtle text-primary-emphasis border border-primary-subtle text-decoration-none">Avaa JSON <i class="bi bi-arrow-up-right ms-1"></i></a>
+    </div>
+  </div>
+</section>
+
+<nav class="presentation-analysis-mobile-path" aria-label="Tietograafin tärkeimmät kohdat">
+  <div class="site-shell">
+    <a href="#yhteenveto">Yhteenveto</a>
+    <a href="#solmut">Solmutyypit</a>
+    <a href="#suhteet">Suhdetyypit</a>
+    <a href="#selain">Selain</a>
+  </div>
+</nav>
+
+<section class="py-5 border-bottom" id="yhteenveto">
+  <div class="site-shell">
+    <div class="row g-3">
+      <div class="col-6 col-md-3">
+        <div class="card h-100 border-0 shadow-sm text-center p-3 analysis-card">
+          <div class="display-6 fw-bold text-primary mb-1" data-kg-kpi="nodes">-</div>
+          <div class="text-muted small">solmua</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card h-100 border-0 shadow-sm text-center p-3 analysis-card">
+          <div class="display-6 fw-bold text-primary mb-1" data-kg-kpi="edges">-</div>
+          <div class="text-muted small">suhdetta</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card h-100 border-0 shadow-sm text-center p-3 analysis-card">
+          <div class="display-6 fw-bold text-primary mb-1" data-kg-kpi="kinds">-</div>
+          <div class="text-muted small">solmutyyppiä</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card h-100 border-0 shadow-sm text-center p-3 analysis-card">
+          <div class="display-6 fw-bold text-primary mb-1" data-kg-kpi="edgeTypes">-</div>
+          <div class="text-muted small">suhdetyyppiä</div>
+        </div>
+      </div>
+    </div>
+    <div class="card border-0 shadow-sm mt-4">
+      <div class="card-body p-4">
+        <h2 class="h5 fw-bold mb-3">Mitä tässä ensimmäisessä versiossa on mukana?</h2>
+        <p class="text-muted mb-3">Tietograafi on tarkoituksella konservatiivinen ensimmäinen viipale. Se näyttää olemassa olevasta kuratoidusta datasta rakennetut suhteet ilman, että semanttisia tai heuristisia uusia linkityksiä vielä työnnetään tuotantokäyttöön.</p>
+        <div class="d-flex flex-wrap gap-2" data-kg-coverage></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 border-bottom bg-body-tertiary" id="solmut">
+  <div class="site-shell">
+    <h2 class="h3 fw-bold mb-4">Solmutyypit</h2>
+    <div class="row g-3" data-kg-node-kinds></div>
+  </div>
+</section>
+
+<section class="py-5 border-bottom" id="suhteet">
+  <div class="site-shell">
+    <h2 class="h3 fw-bold mb-4">Suhdetyypit</h2>
+    <div class="row g-3" data-kg-edge-types></div>
+  </div>
+</section>
+
+<section class="py-5 border-bottom bg-body-tertiary" id="selain">
+  <div class="site-shell">
+    <div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4">
+      <div>
+        <h2 class="h3 fw-bold mb-2">Tietograafin selain</h2>
+        <p class="text-muted mb-0">Suodata solmuja ja suhteita, jotta näet miltä ensimmäiset graph-kytkennät näyttävät käytännössä.</p>
+      </div>
+      <div class="small text-muted" data-kg-status>Ladataan dataa…</div>
+    </div>
+
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-body p-4">
+        <div class="row g-3">
+          <div class="col-md-4">
+            <label class="form-label fw-semibold" for="kg-node-kind-filter">Solmutyyppi</label>
+            <select class="form-select" id="kg-node-kind-filter">
+              <option value="all">Kaikki solmutyypit</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label fw-semibold" for="kg-edge-type-filter">Suhdetyyppi</label>
+            <select class="form-select" id="kg-edge-type-filter">
+              <option value="all">Kaikki suhteet</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label fw-semibold" for="kg-search-filter">Hae nimellä</label>
+            <input class="form-control" id="kg-search-filter" type="search" placeholder="esim. tekoäly, Generation AI, opettajankoulutus">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-center gap-3 mb-3">
+              <h3 class="h5 fw-bold mb-0">Kytkeytyneimmät solmut</h3>
+              <span class="text-muted small" data-kg-node-count></span>
+            </div>
+            <div class="knowledge-graph-list" data-kg-node-list></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-center gap-3 mb-3">
+              <h3 class="h5 fw-bold mb-0">Esimerkkisuhteet</h3>
+              <span class="text-muted small" data-kg-edge-count></span>
+            </div>
+            <div class="knowledge-graph-list" data-kg-edge-list></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card border-0 shadow-sm mt-4">
+      <div class="card-body p-4">
+        <h3 class="h5 fw-bold mb-3">Tämän version rajaukset</h3>
+        <ul class="text-muted small mb-0 ps-3">
+          <li>Projekti–julkaisu- ja projekti–esityslinkit eivät vielä ole täysi kuratoitu verkosto.</li>
+          <li>Semanttisia embedding-linkityksiä ei vielä ole tuotu tähän näkymään.</li>
+          <li>Näkymä on analyysia ja jatkokehitystä varten, ei vielä loppukäyttäjän navigaatiokomponentti.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.analysis-card {
+  border-radius: 1rem;
+}
+
+.knowledge-graph-kind-card,
+.knowledge-graph-edge-card,
+.knowledge-graph-item {
+  border-radius: 1rem;
+}
+
+.knowledge-graph-list {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.knowledge-graph-item {
+  padding: 1rem 1rem 0.9rem;
+  background: rgba(248, 249, 250, 0.9);
+  border: 1px solid rgba(33, 37, 41, 0.08);
+}
+
+.knowledge-graph-item-title {
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.knowledge-graph-item-meta {
+  color: var(--bs-secondary-color);
+  font-size: 0.9rem;
+  margin-bottom: 0.35rem;
+}
+
+.knowledge-graph-item-desc {
+  color: var(--bs-body-color);
+  font-size: 0.95rem;
+  margin-bottom: 0;
+}
+
+.knowledge-graph-coverage-badge {
+  background: var(--bs-secondary-bg);
+  border: 1px solid var(--bs-border-color);
+  border-radius: 999px;
+  color: var(--bs-secondary-color);
+  display: inline-flex;
+  gap: 0.45rem;
+  padding: 0.45rem 0.8rem;
+}
+
+.knowledge-graph-relation-arrow {
+  color: var(--bs-primary);
+  font-weight: 700;
+  margin: 0 0.2rem;
+}
+
+@media (max-width: 767.98px) {
+  .knowledge-graph-hero .lead {
+    font-size: 1.05rem;
+  }
+}
+</style>
