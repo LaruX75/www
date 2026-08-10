@@ -75,7 +75,7 @@ const authParams = new URLSearchParams({
   scope: SCOPES.join(" "),
   state,
   code_challenge: pkce.challenge,
-  code_challenge_method: "S256"
+  code_challenge_method: "s256"
 });
 const authorizationUrl = `${AUTH_URL}?${authParams.toString()}`;
 
