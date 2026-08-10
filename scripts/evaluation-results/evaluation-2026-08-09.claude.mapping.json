@@ -1,0 +1,241 @@
+{
+  "metadata": {
+    "generatedAt": "2026-08-09T19:52:19.868Z",
+    "anchorSeed": 20260810,
+    "note": "SINETÖITY: X→A/B/C mapping per anchor. Älä avaa ennen arviointia. A=metadata, B=title+desc embedding, C=rich embedding."
+  },
+  "mappings": [
+    {
+      "url": "/2025/06/11/yliopiston-kiinteistostrategian-valkea-savu/",
+      "mapping": {
+        "X": "A",
+        "Y": "C",
+        "Z": "B"
+      }
+    },
+    {
+      "url": "/2024/10/29/tiedolla-johtaminen-tarvitsee-yhteiset-nakymat/",
+      "mapping": {
+        "X": "C",
+        "Y": "A",
+        "Z": "B"
+      }
+    },
+    {
+      "url": "/2023/09/21/normaalikoulun-tilaratkaisu-alkoi-vihdoin-edeta/",
+      "mapping": {
+        "X": "B",
+        "Y": "A",
+        "Z": "C"
+      }
+    },
+    {
+      "url": "/2025/12/01/kampuspohdintaa-kontinkankaan-kampusvalinta-joulukuu-2025/",
+      "mapping": {
+        "X": "B",
+        "Y": "C",
+        "Z": "A"
+      }
+    },
+    {
+      "url": "/2025/11/22/toistuvia-rakenteita-valmisteluprosessin-ongelmat-kunnallishallinnossa-marraskuu-2025/",
+      "mapping": {
+        "X": "A",
+        "Y": "C",
+        "Z": "B"
+      }
+    },
+    {
+      "url": "/2022/07/12/kaleva-mielipide-jaalissa-polkuluvat-ovat-kunnossa/",
+      "mapping": {
+        "X": "A",
+        "Y": "C",
+        "Z": "B"
+      }
+    },
+    {
+      "url": "/presentations/ss-digital-enabled-learning-arctic-frontiers-speech-2020/",
+      "mapping": {
+        "X": "A",
+        "Y": "C",
+        "Z": "B"
+      }
+    },
+    {
+      "url": "/presentations/ss-scaffolding-collaborative-learning-with-cognitive-tools-based-on-mobile-computer/",
+      "mapping": {
+        "X": "A",
+        "Y": "C",
+        "Z": "B"
+      }
+    },
+    {
+      "url": "/presentations/arjen-tekoalyhaaste/",
+      "mapping": {
+        "X": "C",
+        "Y": "A",
+        "Z": "B"
+      }
+    },
+    {
+      "url": "/presentations/generation-ai-yleisesitys-sovellukset-2026/",
+      "mapping": {
+        "X": "A",
+        "Y": "B",
+        "Z": "C"
+      }
+    },
+    {
+      "url": "https://oulurepo.oulu.fi/handle/10024/62699",
+      "mapping": {
+        "X": "B",
+        "Y": "C",
+        "Z": "A"
+      }
+    },
+    {
+      "url": "https://oulurepo.oulu.fi/handle/10024/62907",
+      "mapping": {
+        "X": "C",
+        "Y": "B",
+        "Z": "A"
+      }
+    },
+    {
+      "url": "https://oulurepo.oulu.fi/handle/10024/62935",
+      "mapping": {
+        "X": "C",
+        "Y": "B",
+        "Z": "A"
+      }
+    },
+    {
+      "url": "https://oulurepo.oulu.fi/handle/10024/62325",
+      "mapping": {
+        "X": "A",
+        "Y": "B",
+        "Z": "C"
+      }
+    },
+    {
+      "url": "/2026/04/27/puheenvuoro-valtuustossa-haukiputaan-jokiranta-asemakaava-politiikan-hitaus/",
+      "mapping": {
+        "X": "A",
+        "Y": "C",
+        "Z": "B"
+      }
+    },
+    {
+      "url": "/2023/02/27/jaalla-kavelevat-turistit/",
+      "mapping": {
+        "X": "C",
+        "Y": "B",
+        "Z": "A"
+      }
+    },
+    {
+      "url": "/2011/05/11/puheeni-uuden-oulun-kuulemistilaisuudessa/",
+      "mapping": {
+        "X": "C",
+        "Y": "B",
+        "Z": "A"
+      }
+    },
+    {
+      "url": "/mediassa/ep-115-dr-jari-laru/",
+      "mapping": {
+        "X": "B",
+        "Y": "C",
+        "Z": "A"
+      }
+    },
+    {
+      "url": "/mediassa/2024/10/14/korvaako-tekoaly-opettajan-jari-laru/",
+      "mapping": {
+        "X": "C",
+        "Y": "B",
+        "Z": "A"
+      }
+    },
+    {
+      "url": "/mediassa/2023/11/13/munoulu-tekoaly-valtaa-alaa-luova-luokka-mediakasvatusseminaari/",
+      "mapping": {
+        "X": "C",
+        "Y": "A",
+        "Z": "B"
+      }
+    },
+    {
+      "url": "/2025/06/24/lakimuutokset-nakyvat-koulun-arjessa-paikallisina-ratkaisuina/",
+      "mapping": {
+        "X": "B",
+        "Y": "A",
+        "Z": "C"
+      }
+    },
+    {
+      "url": "/2022/12/19/sivistyslautakunnan-uusi-alku-nakyi-jo-vuoden-2022-viimeisissa-kokouksissa/",
+      "mapping": {
+        "X": "C",
+        "Y": "B",
+        "Z": "A"
+      }
+    },
+    {
+      "url": "/2012/10/18/lectio-precursoria-opiskelun-tukeminen-mobiililaitteiden-ja-pedagogisen-vaiheistuksen-avulla/",
+      "mapping": {
+        "X": "B",
+        "Y": "A",
+        "Z": "C"
+      }
+    },
+    {
+      "url": "/2012/10/03/paper-3-supporting-small-group-learning-using-multiple-web-2-0-tools-a-case-study-inthe-higher-education-context/",
+      "mapping": {
+        "X": "C",
+        "Y": "B",
+        "Z": "A"
+      }
+    },
+    {
+      "url": "/2026/03/30/oulun-kaupungin-tulee-käynnistää-etäopetuksen-pilottihanke-yhteistyössä-oulun-yliopiston-kanssa/",
+      "mapping": {
+        "X": "C",
+        "Y": "B",
+        "Z": "A"
+      }
+    },
+    {
+      "url": "/2023/10/09/valtuustoaloite-sahkopyorien-turvallinen-pysakointi-ja-lataaminen-mahdollistettava-keskustassa/",
+      "mapping": {
+        "X": "A",
+        "Y": "C",
+        "Z": "B"
+      }
+    },
+    {
+      "url": "/2022/02/03/paattajalta-keskustakampuksen-lammikossa-uiva-musta-joutsen-uhkaa-alueemme-ict-sektoria/",
+      "mapping": {
+        "X": "C",
+        "Y": "B",
+        "Z": "A"
+      }
+    },
+    {
+      "url": "/2026/04/28/lausunto-uutta-suuntaa-suomen-digitaaliseen-kompassiin/",
+      "mapping": {
+        "X": "C",
+        "Y": "B",
+        "Z": "A"
+      }
+    },
+    {
+      "url": "/mediassa/inos-project-interview-heis-open-science/",
+      "mapping": {
+        "X": "B",
+        "Y": "A",
+        "Z": "C"
+      }
+    }
+  ]
+}
