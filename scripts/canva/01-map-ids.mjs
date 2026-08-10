@@ -22,7 +22,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { loadEnv, ROOT_DIR } from "./_lib/env.mjs";
-import { listAllOwnedDesigns } from "./_lib/canva-api.mjs";
+import { listAllOwnedDesigns, listFolderItems } from "./_lib/canva-api.mjs";
 import {
   bestTitleSimilarity,
   dateProximityScore,
@@ -39,15 +39,22 @@ const __dirname = path.dirname(__filename);
 const DATA_DIR = path.join(ROOT_DIR, "data", "canva");
 const RAW_CACHE = path.join(DATA_DIR, "canva-designs-raw.json");
 const MAP_FILE = path.join(DATA_DIR, "id-map.json");
-const REVIEW_FILE = path.join(DATA_DIR, "id-map-review.md");
 const SITE_FILE = path.join(ROOT_DIR, "src", "_data", "canva-presentations.json");
 
 const argv = process.argv.slice(2);
 const isDryRun = argv.includes("--dry-run");
 const forceRefresh = argv.includes("--refresh");
+// Tuki --folder-id=X (yksi kansio) TAI --folder-ids=X,Y,Z (monta kansiota)
+const folderIdArg = argv.find((a) => a.startsWith("--folder-id="));
+const folderIdsArg = argv.find((a) => a.startsWith("--folder-ids="));
+const FOLDER_IDS = folderIdsArg
+  ? folderIdsArg.slice("--folder-ids=".length).split(",").map((s) => s.trim()).filter(Boolean)
+  : (folderIdArg ? [folderIdArg.slice("--folder-id=".length)] : []);
+const FOLDER_ID_CACHE_KEY = FOLDER_IDS.join(",") || null;
 
 const CONFIRM_THRESHOLD = 0.85;  // yli tämän: ei review-listaan
 const REVIEW_THRESHOLD = 0.5;    // alle: unmatched
+const CANDIDATE_TOP_K = 8;       // tallennetaan top-K candidatet per anchor (Claude + user review)
 
 async function loadSiteRecords() {
   const raw = fs.readFileSync(SITE_FILE, "utf8");
@@ -55,26 +62,65 @@ async function loadSiteRecords() {
 }
 
 async function loadOrFetchDesigns() {
+  // Käytetään cachea vain jos folder-ID:t vastaavat aiempaa hakua
   if (!forceRefresh && fs.existsSync(RAW_CACHE)) {
     const cached = JSON.parse(fs.readFileSync(RAW_CACHE, "utf8"));
-    console.log(`[cache] ${cached.designs.length} designia (fetched ${cached.fetchedAt})`);
-    return cached.designs;
+    const cachedKey = cached.folderIdCacheKey || cached.folderId || null;
+    if (cachedKey === FOLDER_ID_CACHE_KEY) {
+      console.log(`[cache] ${cached.designs.length} designia (fetched ${cached.fetchedAt}, folders=${cachedKey || "(kaikki)"})`);
+      return cached.designs;
+    }
+    console.log(`[cache] Cache on eri folder-joukosta (${cachedKey || "kaikki"} vs. pyydetty ${FOLDER_ID_CACHE_KEY || "kaikki"}) — haetaan uudelleen`);
   }
   if (isDryRun) {
     console.error("Ei välimuistia ja --dry-run — ei API-kutsuja. Aja ilman --dry-run:ta ensin.");
     process.exit(1);
   }
-  console.log("[api] Haetaan Canva Connect: GET /v1/designs (paginoi)...");
-  const designs = await listAllOwnedDesigns({
-    onProgress: ({ fetched, hasMore }) => {
-      process.stdout.write(`  ${fetched} designia${hasMore ? " (jatkuu)" : ""}\r`);
+
+  let designs = [];
+  const seenIds = new Set();
+
+  if (FOLDER_IDS.length > 0) {
+    for (const folderId of FOLDER_IDS) {
+      console.log(`[api] Haetaan folder ${folderId}:in items (paginoi)...`);
+      const items = await listFolderItems(folderId, {
+        onProgress: ({ fetched, hasMore }) => {
+          process.stdout.write(`  ${folderId}: ${fetched} items${hasMore ? " (jatkuu)" : ""}\r`);
+        }
+      });
+      process.stdout.write("\n");
+      const subfolders = items.filter((it) => it._subfolder);
+      const folderDesigns = items.filter((it) => !it._subfolder);
+      let added = 0;
+      for (const d of folderDesigns) {
+        if (seenIds.has(d.id)) continue;
+        seenIds.add(d.id);
+        designs.push({ ...d, _sourceFolderId: folderId });
+        added++;
+      }
+      console.log(`  → ${folderDesigns.length} designia (${added} uutta) + ${subfolders.length} alifolderia`);
+      if (subfolders.length) {
+        subfolders.forEach((sf) => console.log(`     alifolderi: ${sf.id}  ${sf.name}`));
+      }
     }
-  });
-  process.stdout.write("\n");
-  console.log(`[api] Yhteensä ${designs.length} designia haettu.`);
+    console.log(`[api] Yhteensä ${designs.length} uniikkia designia ${FOLDER_IDS.length} kansiosta.`);
+  } else {
+    console.log("[api] Haetaan Canva Connect: GET /v1/designs (paginoi)...");
+    console.log("  [VAROITUS] Ei --folder-ids — haetaan KAIKKI tilin designit (voi olla 1000+).");
+    designs = await listAllOwnedDesigns({
+      onProgress: ({ fetched, hasMore }) => {
+        process.stdout.write(`  ${fetched} designia${hasMore ? " (jatkuu)" : ""}\r`);
+      }
+    });
+    process.stdout.write("\n");
+    console.log(`[api] Yhteensä ${designs.length} designia haettu.`);
+  }
+
   fs.mkdirSync(DATA_DIR, { recursive: true });
   fs.writeFileSync(RAW_CACHE, JSON.stringify({
     fetchedAt: new Date().toISOString(),
+    folderIdCacheKey: FOLDER_ID_CACHE_KEY,
+    folderIds: FOLDER_IDS,
     designs
   }, null, 2));
   return designs;
@@ -106,208 +152,105 @@ function scoreDesign(siteItem, design) {
   };
 }
 
+function buildCandidate(design, siteItem, { isDirect = false } = {}) {
+  const scored = scoreDesign(siteItem, design);
+  return {
+    designId: design.id,
+    canvaTitle: design.title,
+    pageCount: design.page_count,
+    createdAt: design.created_at,
+    updatedAt: design.updated_at,
+    viewUrl: design.view_url || null,
+    editUrl: design.edit_url || null,
+    thumbnailUrl: design.thumbnail_url || null,
+    sourceFolderId: design._sourceFolderId || null,
+    heuristicScore: isDirect ? 1.0 : scored.matchScore,
+    matchBasis: isDirect ? ["direct-design-id"] : scored.matchBasis,
+    signals: scored._debug,
+    isDirectDesignId: isDirect
+  };
+}
+
 function buildMappings(siteRecords, designs) {
-  const designsByShortcut = new Map();  // designId → design (nopea lookup)
+  const designsByShortcut = new Map();
   designs.forEach((d) => designsByShortcut.set(d.id, d));
 
-  const mappings = [];
-  const usedDesignIds = new Map();  // designId → siteIndex (jotta havaitaan duplikaatit)
-
-  siteRecords.forEach((site, siteIndex) => {
-    // 1. Yritä ensin poimia design-ID suoraan sivuston link/publicUrl-kentästä
+  const items = siteRecords.map((site, siteIndex) => {
+    // 1. Direct design-ID linkistä (jos on)
     const directId = extractDesignIdFromLink(site.link) || extractDesignIdFromLink(site.publicUrl);
+    let candidates = [];
+
     if (directId && designsByShortcut.has(directId)) {
-      const design = designsByShortcut.get(directId);
-      mappings.push({
-        siteIndex,
-        link: site.link,
-        siteTitle: site.title,
-        siteDate: site.date,
-        designId: directId,
-        canvaTitle: design.title,
-        pageCount: design.page_count,
-        createdAt: design.created_at,
-        updatedAt: design.updated_at,
-        matchScore: 1.0,
-        matchBasis: ["direct-design-id"],
-        status: "proposed",
-        _candidates: []
-      });
-      return;
+      candidates.push(buildCandidate(designsByShortcut.get(directId), site, { isDirect: true }));
     }
 
-    // 2. Sumea matching kaikkia designeja vastaan
-    const scored = designs
-      .map((d) => scoreDesign(site, d))
-      .sort((a, b) => b.matchScore - a.matchScore);
+    // 2. Top-K heuristic candidates (poista direct duplicate)
+    const heuristic = designs
+      .filter((d) => d.id !== directId)
+      .map((d) => ({ design: d, scored: scoreDesign(site, d) }))
+      .sort((a, b) => b.scored.matchScore - a.scored.matchScore)
+      .slice(0, CANDIDATE_TOP_K)
+      .map(({ design }) => buildCandidate(design, site));
 
-    const top = scored[0];
-    const top3 = scored.slice(0, 3);
+    candidates = [...candidates, ...heuristic];
 
-    if (!top || top.matchScore < REVIEW_THRESHOLD) {
-      mappings.push({
-        siteIndex,
-        link: site.link,
-        siteTitle: site.title,
-        siteDate: site.date,
-        designId: null,
-        canvaTitle: null,
-        pageCount: null,
-        createdAt: null,
-        updatedAt: null,
-        matchScore: top ? top.matchScore : 0,
-        matchBasis: [],
-        status: "unmatched",
-        _candidates: top3
-      });
-      return;
+    // Auto-status (ennen Claude-arviointia + user-reviewiä)
+    let status = "proposed";
+    if (candidates.length === 0 || (candidates[0].heuristicScore < REVIEW_THRESHOLD)) {
+      status = "unmatched";
     }
 
-    mappings.push({
+    return {
       siteIndex,
-      link: site.link,
-      siteTitle: site.title,
-      siteDate: site.date,
-      designId: top.designId,
-      canvaTitle: top.canvaTitle,
-      pageCount: top.pageCount,
-      createdAt: top.createdAt,
-      updatedAt: top.updatedAt,
-      matchScore: top.matchScore,
-      matchBasis: top.matchBasis,
-      status: "proposed",
-      _candidates: top3
-    });
+      site: {
+        title: site.title,
+        date: site.date,
+        summary: site.summary,
+        keywords: site.keywords || [],
+        location: site.location,
+        jarjestaja: site.jarjestaja,
+        kategoria: site.kategoria,
+        folder: site.folder,
+        link: site.link,
+        publicUrl: site.publicUrl,
+        thumbnail: site.thumbnail
+      },
+      candidates,
+      claude: null,      // Täytetään scripts/canva/02-claude-review.mjs:llä
+      user: null,        // Täytetään review-UI:ssa
+      status
+    };
   });
 
-  // Tunnista duplikaatit (sama designId ehdotetaan useaan siteIndex:iin)
+  // Duplikaatit: sama top-1 designId monella sivustotietueella
   const dupGroups = new Map();
-  mappings.forEach((m) => {
-    if (!m.designId) return;
-    if (!dupGroups.has(m.designId)) dupGroups.set(m.designId, []);
-    dupGroups.get(m.designId).push(m);
+  items.forEach((m) => {
+    const top = m.candidates[0];
+    if (!top) return;
+    if (!dupGroups.has(top.designId)) dupGroups.set(top.designId, []);
+    dupGroups.get(top.designId).push(m);
   });
   const duplicates = [...dupGroups.entries()].filter(([, arr]) => arr.length > 1);
 
-  return { mappings, duplicates };
+  return { items, duplicates };
 }
 
-function writeMapFile(mappings) {
-  // Yksinkertaisempi output-muoto: piilotetaan _debug ja _candidates (nämä ovat vain review-tiedostossa)
-  const clean = mappings.map((m) => ({
-    link: m.link,
-    designId: m.designId,
-    canvaTitle: m.canvaTitle,
-    pageCount: m.pageCount,
-    matchScore: m.matchScore,
-    matchBasis: m.matchBasis,
-    status: m.status
-  }));
-  fs.writeFileSync(MAP_FILE, JSON.stringify(clean, null, 2) + "\n");
+function writeMapFile(items, designs, duplicates) {
+  // Rikas muoto review-UI:lle. Sisältää top-K candidatet + kaikki metadata.
+  // Käyttäjän lopulliset päätökset tulevat kentän `user` alle.
+  const payload = {
+    generatedAt: new Date().toISOString(),
+    folderIds: FOLDER_IDS,
+    designCount: designs.length,
+    itemCount: items.length,
+    duplicateDesignIds: duplicates.map(([designId, arr]) => ({
+      designId,
+      siteIndices: arr.map((m) => m.siteIndex)
+    })),
+    items
+  };
+  fs.writeFileSync(MAP_FILE, JSON.stringify(payload, null, 2) + "\n");
   console.log(`[write] ${path.relative(ROOT_DIR, MAP_FILE)}`);
-}
-
-function shortDate(unix) {
-  if (!unix) return "?";
-  return new Date(unix * 1000).toISOString().slice(0, 10);
-}
-
-function writeReviewFile(mappings, duplicates, designs) {
-  const confirmed = mappings.filter((m) => m.status === "proposed" && m.matchScore >= CONFIRM_THRESHOLD && duplicates.every(([, arr]) => !arr.includes(m)));
-  const needsReview = mappings.filter((m) => m.status === "proposed" && (m.matchScore < CONFIRM_THRESHOLD || duplicates.some(([, arr]) => arr.includes(m))));
-  const unmatched = mappings.filter((m) => m.status === "unmatched");
-  const unusedDesigns = designs.filter((d) => !mappings.some((m) => m.designId === d.id));
-
-  const lines = [];
-  lines.push("# Canva id-map: review\n");
-  lines.push(`Generoitu: ${new Date().toISOString()}\n`);
-  lines.push("");
-  lines.push("Tämä tiedosto listaa täsmäytykset jotka vaativat ihmisen tarkistuksen.");
-  lines.push("Kun olet käynyt läpi:");
-  lines.push("");
-  lines.push("- vahvista OK-tapaukset muuttamalla `data/canva/id-map.json`:in `status: \"proposed\"` → `\"confirmed\"`");
-  lines.push("- korjaa väärät `designId`-arvot manuaalisesti");
-  lines.push("- jätä epävarmat `\"unmatched\"`-tilaan tai poista rivi jos sivustolla ei ole Canva-vastinetta");
-  lines.push("");
-  lines.push("## Yhteenveto\n");
-  lines.push(`- Sivustolla: ${mappings.length}`);
-  lines.push(`- Canva-tilillä: ${designs.length}`);
-  lines.push(`- Automaattisesti korkealla varmuudella (>=${CONFIRM_THRESHOLD}): ${confirmed.length}`);
-  lines.push(`- Vaatii tarkistuksen: ${needsReview.length}`);
-  lines.push(`- Unmatched (ei ehdokasta): ${unmatched.length}`);
-  lines.push(`- Duplikaatteja (sama designId ehdotetaan useaan tietueeseen): ${duplicates.length}`);
-  lines.push(`- Canva-tilillä designeja jotka eivät mätsänneet mihinkään: ${unusedDesigns.length}`);
-  lines.push("");
-
-  if (duplicates.length) {
-    lines.push("## Duplikaatit (sama designId → monta sivustotietuetta)\n");
-    duplicates.forEach(([designId, arr]) => {
-      const design = designs.find((d) => d.id === designId);
-      lines.push(`### ${designId}${design ? ` — "${design.title}"` : ""}`);
-      arr.forEach((m) => {
-        lines.push(`- [${m.siteIndex}] **${m.siteTitle}** (site date: ${m.siteDate}, score: ${m.matchScore})`);
-        lines.push(`  - link: ${m.link}`);
-      });
-      lines.push("");
-    });
-  }
-
-  if (needsReview.length) {
-    lines.push("## Vaatii tarkistuksen (matchScore < " + CONFIRM_THRESHOLD + ")\n");
-    needsReview.forEach((m) => {
-      lines.push(`### [${m.siteIndex}] ${m.siteTitle}`);
-      lines.push(`- Site date: ${m.siteDate}, link: ${m.link}`);
-      lines.push(`- **Ehdotettu**: \`${m.designId}\` — "${m.canvaTitle}"`);
-      lines.push(`  - pageCount: ${m.pageCount}, created: ${shortDate(m.createdAt)}, updated: ${shortDate(m.updatedAt)}`);
-      lines.push(`  - matchScore: **${m.matchScore}**, basis: [${m.matchBasis.join(", ")}]`);
-      if (m._debug) {
-        lines.push(`  - _debug: title=${m._debug.titleSim}, date=${m._debug.dateScore ?? "n/a"}, keywords=${m._debug.keywordScore} (${m._debug.matchedKeywords.join(", ") || "—"})`);
-      }
-      if (m._candidates && m._candidates.length > 1) {
-        lines.push(`- **Muut ehdokkaat**:`);
-        m._candidates.slice(1).forEach((c) => {
-          lines.push(`  - \`${c.designId}\` "${c.canvaTitle}" (score ${c.matchScore}, ${shortDate(c.createdAt)})`);
-        });
-      }
-      lines.push("");
-    });
-  }
-
-  if (unmatched.length) {
-    lines.push("## Unmatched (ei riittävän hyvää ehdokasta)\n");
-    unmatched.forEach((m) => {
-      lines.push(`### [${m.siteIndex}] ${m.siteTitle}`);
-      lines.push(`- Site date: ${m.siteDate}, link: ${m.link}`);
-      if (m._candidates && m._candidates.length) {
-        lines.push(`- Parhaat ehdokkaat (kaikki alle ${REVIEW_THRESHOLD}):`);
-        m._candidates.forEach((c) => {
-          lines.push(`  - \`${c.designId}\` "${c.canvaTitle}" (score ${c.matchScore}, ${shortDate(c.createdAt)})`);
-        });
-      } else {
-        lines.push(`- Ei ehdokkaita`);
-      }
-      lines.push("");
-    });
-  }
-
-  if (unusedDesigns.length) {
-    lines.push("## Canva-tilillä olevat designit joita ei liitetty mihinkään sivustotietueeseen\n");
-    lines.push(`Yhteensä: ${unusedDesigns.length}. Nämä ovat todennäköisesti esityksiä, joita ei ole julkaistu jarilaru.fi:ssä.`);
-    lines.push("");
-    unusedDesigns
-      .sort((a, b) => (b.updated_at || 0) - (a.updated_at || 0))
-      .slice(0, 50)
-      .forEach((d) => {
-        lines.push(`- \`${d.id}\` "${d.title}" (${d.page_count} diaa, updated ${shortDate(d.updated_at)})`);
-      });
-    if (unusedDesigns.length > 50) {
-      lines.push(`- … ja ${unusedDesigns.length - 50} muuta.`);
-    }
-    lines.push("");
-  }
-
-  fs.writeFileSync(REVIEW_FILE, lines.join("\n"));
-  console.log(`[write] ${path.relative(ROOT_DIR, REVIEW_FILE)}`);
 }
 
 async function main() {
@@ -318,30 +261,30 @@ async function main() {
 
   const designs = await loadOrFetchDesigns();
 
-  console.log(`\n[match] Rakennetaan ehdotukset...`);
-  const { mappings, duplicates } = buildMappings(siteRecords, designs);
+  console.log(`\n[match] Rakennetaan candidatet (top-${CANDIDATE_TOP_K}) per sivustotietue...`);
+  const { items, duplicates } = buildMappings(siteRecords, designs);
 
   const stats = {
-    total: mappings.length,
-    highConfidence: mappings.filter((m) => m.status === "proposed" && m.matchScore >= CONFIRM_THRESHOLD).length,
-    needsReview: mappings.filter((m) => m.status === "proposed" && m.matchScore < CONFIRM_THRESHOLD).length,
-    unmatched: mappings.filter((m) => m.status === "unmatched").length,
+    total: items.length,
+    highConfidence: items.filter((m) => m.candidates[0] && m.candidates[0].heuristicScore >= CONFIRM_THRESHOLD).length,
+    needsReview: items.filter((m) => m.candidates[0] && m.candidates[0].heuristicScore < CONFIRM_THRESHOLD && m.status === "proposed").length,
+    unmatched: items.filter((m) => m.status === "unmatched").length,
     duplicates: duplicates.length
   };
 
   console.log(`  Sivustotietueita: ${stats.total}`);
-  console.log(`  Korkea varmuus (>=${CONFIRM_THRESHOLD}): ${stats.highConfidence}`);
-  console.log(`  Vaatii tarkistuksen: ${stats.needsReview}`);
-  console.log(`  Unmatched: ${stats.unmatched}`);
+  console.log(`  Heuristic top-1 korkea varmuus (>=${CONFIRM_THRESHOLD}): ${stats.highConfidence}`);
+  console.log(`  Heuristic vaatii tarkistuksen: ${stats.needsReview}`);
+  console.log(`  Ei riittävää heuristic-osumaa (unmatched): ${stats.unmatched}`);
   console.log(`  Duplikaatteja: ${stats.duplicates}\n`);
 
-  writeMapFile(mappings);
-  writeReviewFile(mappings, duplicates, designs);
+  writeMapFile(items, designs, duplicates);
 
   console.log("\nSeuraava askel:");
-  console.log(`  1. Avaa ${path.relative(ROOT_DIR, REVIEW_FILE)} ja käy epävarmat läpi`);
-  console.log(`  2. Vahvista OK-tapaukset muuttamalla ${path.relative(ROOT_DIR, MAP_FILE)}:in status "proposed" → "confirmed"`);
-  console.log(`  3. Aja sitten Vaihe 2 (02-extract.mjs) confirmed-riveille`);
+  console.log(`  1. Aja Claude-arvio: node scripts/canva/02-claude-review.mjs`);
+  console.log(`  2. Avaa review-UI: node scripts/canva/review-server.mjs → http://localhost:5174/`);
+  console.log(`  3. Käy 75 tietuetta läpi UI:ssa (hyväksy / valitse toinen / ei vastinetta)`);
+  console.log(`  4. Vasta sitten aja Vaihe 2 (02-extract.mjs) confirmed-riveille`);
 }
 
 main().catch((err) => {

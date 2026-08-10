@@ -38,7 +38,8 @@ const TOKEN_URL = "https://api.canva.com/rest/v1/oauth/token";
 const DEFAULT_SCOPES = [
   "design:meta:read",
   "design:content:read",
-  "asset:read"
+  "asset:read",
+  "folder:read"
 ];
 
 // Argumentit

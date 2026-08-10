@@ -67,3 +67,6 @@ ONBOARDING.md
 # tekstinpoiminnan jälkeen; ei julkaista sivustolla, ei committoida)
 data/canva/tmp/
 data/canva/pdf/
+
+# Canva Connect: persistoitu rotating refresh token (uusiutuu joka API-ajolla)
+.canva-tokens.json
