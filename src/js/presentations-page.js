@@ -431,6 +431,11 @@
       : (item?.url ? (linkLabelByKey[itemSourceKey(item, sourceKeyOverride)] || "Avaa") : "Avaa esityssivu");
   }
 
+  function presentationThumbLabel(item, sourceKeyOverride = "") {
+    const title = String(item?.title || "").trim() || "Esitys";
+    return `${primaryActionLabel(item, sourceKeyOverride)}: ${title}`;
+  }
+
   function normalizeContextUrl(value) {
     return String(value || "").trim().replace(/\/$/, "");
   }
@@ -1668,10 +1673,10 @@
     const secondary = items.slice(1, 5);
     const labelFor = (item) => item.kategoria ? (kategoriaLabels[item.kategoria] || item.kategoria) : "Päänosto";
     const thumbFor = (item, href, className = "presentation-feature-primary-media", emptyIcon = "bi-file-earmark-slides") => item.thumbnail
-      ? `<a href="${escHtml(href)}"${linkAttrs(href)} class="${className}">
+      ? `<a href="${escHtml(href)}"${linkAttrs(href)} class="${className}" aria-label="${escHtml(presentationThumbLabel(item, "canva"))}">
           <img src="${escHtml(item.thumbnail)}" alt="${escHtml(item.title)}" loading="lazy" decoding="async" onerror="this.style.display='none';">
         </a>`
-      : `<a href="${escHtml(href)}"${linkAttrs(href)} class="${className}">
+      : `<a href="${escHtml(href)}"${linkAttrs(href)} class="${className}" aria-label="${escHtml(presentationThumbLabel(item, "canva"))}">
           <span class="presentation-feature-placeholder"><i class="bi ${escHtml(emptyIcon)}"></i></span>
         </a>`;
     const featuredHref = primaryUrl(featured, "canva") || featured.url;
@@ -1720,7 +1725,7 @@
             return `
             <article class="presentation-feature-small">
               ${item.thumbnail
-                ? `<a href="${escHtml(href)}"${linkAttrs(href)} class="presentation-feature-small-thumb"><img src="${escHtml(item.thumbnail)}" alt="" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none';"></a>`
+                ? `<a href="${escHtml(href)}"${linkAttrs(href)} class="presentation-feature-small-thumb" aria-label="${escHtml(presentationThumbLabel(item, "canva"))}"><img src="${escHtml(item.thumbnail)}" alt="" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none';"></a>`
                 : thumbFor(item, href, "presentation-feature-small-thumb presentation-feature-small-thumb--empty", "bi-easel2")}
               <div class="presentation-feature-small-body">
                 <div class="presentation-feature-small-top">
