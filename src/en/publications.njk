@@ -10,12 +10,13 @@ schemaType: CollectionPage
 ---
 
 
+{%- set canonicalPublications = publicationsPage.items or [] -%}
 {%- set articleCount = 0 -%}
 {%- set confCount = 0 -%}
 {%- set bookCount = 0 -%}
 {%- set peerReviewedCount = 0 -%}
 {%- set openAccessCount = 0 -%}
-{%- for pub in researchfi -%}
+{%- for pub in canonicalPublications -%}
   {%- if pub.typeCode == "A1" or pub.typeCode == "A2" -%}{%- set articleCount = articleCount + 1 -%}{%- endif -%}
   {%- if pub.typeCode == "A3" or pub.typeCode == "A4" or pub.typeCode == "B3" -%}{%- set confCount = confCount + 1 -%}{%- endif -%}
   {%- if pub.typeCode == "C1" or pub.typeCode == "C2" or pub.typeCode == "G4" or pub.typeCode == "G5" -%}{%- set bookCount = bookCount + 1 -%}{%- endif -%}
@@ -31,7 +32,7 @@ schemaType: CollectionPage
       </div>
       <div class="col-lg-4">
         <div class="d-flex flex-wrap gap-2 justify-content-lg-end" id="headerMetrics">
-          <span class="badge text-bg-primary text-dark fs-6">{{ researchfi.length }} publications</span>
+          <span class="badge text-bg-primary text-dark fs-6">{{ canonicalPublications.length }} publications</span>
           <span class="badge text-bg-info fs-6">{{ articleCount }} articles</span>
           <span class="badge text-bg-secondary fs-6">{{ confCount }} conference papers</span>
           <span class="badge text-bg-warning fs-6 d-none" id="dynamicTotalCitations" title="Source: {{ semanticscholar.metrics.sources }}">... citations</span>
@@ -113,7 +114,7 @@ schemaType: CollectionPage
       <h3 class="mb-0">All publications</h3>
     </div>
 
-    {% if researchfi.length %}
+    {% if canonicalPublications.length %}
 
       {# Jaa julkaisut tyyleittäin Dataan perustuen #}
       {% set pubsA = [] %}
@@ -123,8 +124,8 @@ schemaType: CollectionPage
       {% set pubsE = [] %}
       {% set pubsG = [] %}
       
-      {% for pub in researchfi %}
-        {% set typeChar = pub.typeCode | first %}
+      {% for pub in canonicalPublications %}
+        {% set typeChar = pub.publicationGroup or ((pub.typeCode or '') | first) %}
         {% if typeChar == 'A' %}{% set pubsA = (pubsA.push(pub), pubsA) %}
         {% elif typeChar == 'B' %}{% set pubsB = (pubsB.push(pub), pubsB) %}
         {% elif typeChar == 'C' %}{% set pubsC = (pubsC.push(pub), pubsC) %}
@@ -184,12 +185,12 @@ schemaType: CollectionPage
                     {% for pub in items %}
                     <tr{% if pub.anchorId %} id="{{ pub.anchorId }}"{% endif %} data-authors="{{ pub.authors | escape }}">
                       <td class="text-center font-monospace small fw-bold text-info">{{ pub.year or '—' }}</td>
-                      <td><span class="badge bg-secondary" title="Type {{ pub.typeCode }}">{{ pub.typeShort }}</span></td>
+                      <td><span class="badge bg-secondary" title="{{ pub.type }}">{{ pub.typeCode }}</span></td>
                       <td>
                         <span class="fw-medium d-block mb-1">{{ pub.title }}</span>
                         {% if pub.journal %}<span class="text-muted small d-block fst-italic">{{ pub.journal }}</span>{% endif %}
-                        {% if pub.doi and semanticscholar.metrics.doiCitations[pub.doi | lower] %}
-                          <span class="badge text-bg-warning rounded-pill mt-1" title="Citations"><i class="bi bi-quote me-1"></i>{{ semanticscholar.metrics.doiCitations[pub.doi | lower] }}</span>
+                        {% if pub.citationCount %}
+                          <span class="badge text-bg-warning rounded-pill mt-1" title="Citations"><i class="bi bi-quote me-1"></i>{{ pub.citationCount }}</span>
                         {% endif %}
                       </td>
                       <td class="text-body-secondary small">{{ pub.authors }}</td>
@@ -213,9 +214,9 @@ schemaType: CollectionPage
               <li{% if pub.anchorId %} id="{{ pub.anchorId }}-mobile"{% endif %} class="pub-mobile-item px-3 py-3 border-bottom" data-authors="{{ pub.authors | escape }}" role="listitem">
                 <div class="d-flex align-items-center gap-2 mb-1">
                   <span class="font-monospace small fw-bold text-info">{{ pub.year or '—' }}</span>
-                  <span class="badge bg-secondary" title="Type {{ pub.typeCode }}">{{ pub.typeShort }}</span>
-                  {% if pub.doi and semanticscholar.metrics.doiCitations[pub.doi | lower] %}
-                    <span class="badge text-bg-warning rounded-pill" title="Citations"><i class="bi bi-quote me-1"></i>{{ semanticscholar.metrics.doiCitations[pub.doi | lower] }}</span>
+                  <span class="badge bg-secondary" title="{{ pub.type }}">{{ pub.typeCode }}</span>
+                  {% if pub.citationCount %}
+                    <span class="badge text-bg-warning rounded-pill" title="Citations"><i class="bi bi-quote me-1"></i>{{ pub.citationCount }}</span>
                   {% endif %}
                 </div>
                 <p class="fw-medium mb-1 lh-sm">
@@ -298,8 +299,8 @@ schemaType: CollectionPage
 document.addEventListener('DOMContentLoaded', function() {
   // Inline data from Eleventy
   const publications = [
-    {% for pub in researchfi %}
-    { year: {{ pub.year or 0 }}, type: "{{ pub.typeCode }}", authors: "{{ pub.authors | replace('"', '\\"') }}", title: "{{ pub.title | replace('"', '\\"') }}", peerReviewed: {{ "true" if pub.peerReviewed else "false" }}, openAccess: {{ pub.openAccess or 0 }}, doi: "{{ pub.doi or '' }}" },
+    {% for pub in canonicalPublications %}
+    { year: {{ pub.year or 0 }}, type: "{{ pub.typeCode or '' }}", authors: "{{ (pub.authors or '') | replace('"', '\\"') }}", title: "{{ pub.title | replace('"', '\\"') }}", peerReviewed: {{ "true" if pub.peerReviewed else "false" }}, openAccess: {{ pub.openAccess or 0 }}, doi: "{{ pub.doi or '' }}" },
     {% endfor %}
   ];
 
@@ -532,7 +533,7 @@ document.addEventListener('DOMContentLoaded', function() {
     'A3':'Book section (A3)', 'A4':'Conference paper (A4)',
     'B1':'Scientific writing (B1)', 'B3':'Conference paper, non-peer-reviewed (B3)',
     'C1':'Scientific monograph (C1)', 'C2':'Edited scientific volume (C2)',
-    'D1':'Professional article (D1)', 'D2':'Professional edited volume (D2)',
+    'D1':'Professional article (D1)', 'D2':'Professional edited volume (D2)', 'D5':'Professional guide or handbook (D5)',
     'E1':'General audience publication (E1)', 'G4':'Doctoral dissertation (G4)', 'G5':'Doctoral dissertation (G5)'
   };
   publications.forEach(p => { typeCounts[p.type] = (typeCounts[p.type]||0)+1; });

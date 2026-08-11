@@ -15,6 +15,7 @@ schemaType: CollectionPage
 ---
 {% import "ui.njk" as ui %}
 
+{%- set canonicalPublications = publicationsPage.items or [] -%}
 {%- set articleCount = 0 -%}
 {%- set confCount = 0 -%}
 {%- set bookCount = 0 -%}
@@ -26,8 +27,8 @@ schemaType: CollectionPage
 {%- set pubsD = [] -%}
 {%- set pubsE = [] -%}
 {%- set pubsG = [] -%}
-{%- for pub in researchfi -%}
-  {%- set typeChar = pub.typeCode | first -%}
+{%- for pub in canonicalPublications -%}
+  {%- set typeChar = pub.publicationGroup or ((pub.typeCode or '') | first) -%}
   {%- if typeChar == "A" -%}{%- set pubsA = (pubsA.push(pub), pubsA) -%}
   {%- elif typeChar == "B" -%}{%- set pubsB = (pubsB.push(pub), pubsB) -%}
   {%- elif typeChar == "C" -%}{%- set pubsC = (pubsC.push(pub), pubsC) -%}
@@ -41,20 +42,6 @@ schemaType: CollectionPage
   {%- if pub.peerReviewed -%}{%- set peerReviewedCount = peerReviewedCount + 1 -%}{%- endif -%}
   {%- if pub.openAccess -%}{%- set openAccessCount = openAccessCount + 1 -%}{%- endif -%}
 {%- endfor -%}
-{%- for item in collections.publications -%}
-  {%- if item.data.publicationType -%}
-    {%- set typeChar = item.data.publicationType | first -%}
-    {%- set manualPub = [item] | toManualPub -%}
-    {%- if typeChar == "A" -%}{%- set pubsA = (pubsA.push(manualPub), pubsA) -%}
-    {%- elif typeChar == "B" -%}{%- set pubsB = (pubsB.push(manualPub), pubsB) -%}
-    {%- elif typeChar == "C" -%}{%- set pubsC = (pubsC.push(manualPub), pubsC) -%}
-    {%- elif typeChar == "D" -%}{%- set pubsD = (pubsD.push(manualPub), pubsD) -%}
-    {%- elif typeChar == "E" -%}{%- set pubsE = (pubsE.push(manualPub), pubsE) -%}
-    {%- elif typeChar == "G" -%}{%- set pubsG = (pubsG.push(manualPub), pubsG) -%}
-    {%- endif -%}
-  {%- endif -%}
-{%- endfor -%}
-{%- set researchPublicationMeta = researchProgram.publicationMetaByAnchor or {} -%}
 
 <section class="publications-hero py-4 py-lg-5">
   <div class="site-shell">
@@ -82,7 +69,7 @@ schemaType: CollectionPage
   <div class="site-shell">
     <div class="row g-3">
       <div class="col-6 col-xl-3">
-        {{ ui.kpiCard("julkaisua", researchfi.length, { tone: "julkaisut", extraClass: "publication-kpi-card" }) }}
+        {{ ui.kpiCard("julkaisua", canonicalPublications.length, { tone: "julkaisut", extraClass: "publication-kpi-card" }) }}
       </div>
       <div class="col-6 col-xl-3">
         {{ ui.kpiCard("vertaisarvioitua julkaisua", peerReviewedCount, { tone: "julkaisut", extraClass: "publication-kpi-card" }) }}
@@ -258,7 +245,7 @@ schemaType: CollectionPage
       </div>
     </div>
 
-    {% if researchfi.length %}
+    {% if canonicalPublications.length %}
 
       {# Macros for reuse #}
       {% macro drawTable(groupCode, title, allItems, tableId, subtypes) %}
@@ -363,10 +350,9 @@ schemaType: CollectionPage
                   </thead>
                   <tbody>
                     {% for pub in items %}
-                    {% set researchMeta = researchPublicationMeta[pub.anchorId] or {} %}
-                    <tr{% if pub.anchorId %} id="{{ pub.anchorId }}"{% endif %} data-authors="{{ pub.authors | escape }}" data-publication-year="{{ pub.year or '' }}" data-publication-type="{{ pub.typeCode or '' }}" data-publication-type-label="{{ pub.typeFi | escape }}" data-research-line="{{ researchMeta.researchLine or '' }}" data-research-themes="{{ (researchMeta.researchThemes or []) | join('|') }}" data-research-audiences="{{ (researchMeta.researchAudience or []) | join('|') }}">
+                    <tr{% if pub.anchorId %} id="{{ pub.anchorId }}"{% endif %} data-authors="{{ pub.authors | escape }}" data-publication-year="{{ pub.year or '' }}" data-publication-type="{{ pub.typeCode or '' }}" data-publication-type-label="{{ pub.type | escape }}" data-research-line="{{ pub.researchLine or '' }}" data-research-themes="{{ (pub.researchThemes or []) | join('|') }}" data-research-audiences="{{ (pub.researchAudience or []) | join('|') }}">
                       <td class="text-center font-monospace small fw-bold publication-year">{{ pub.year or '—' }}</td>
-                      <td><span class="badge bg-secondary" title="{{ pub.typeFi }}">{{ pub.typeShort }}</span></td>
+                      <td><span class="badge bg-secondary" title="{{ pub.type }}">{{ pub.typeCode }}</span></td>
                       <td>
                         <span class="fw-medium d-block mb-1">{{ pub.title }}</span>
                         {% if pub.journal %}
@@ -374,7 +360,7 @@ schemaType: CollectionPage
                         {% elif pub.publisher %}
                           <span class="text-muted small fst-italic">{{ pub.publisher }}{% if pub.isbn %} — ISBN {{ pub.isbn }}{% endif %}</span>
                         {% endif %}
-                        {% set citationCount = (semanticscholar.metrics.doiCitations[pub.doi | lower] if pub.doi and semanticscholar.metrics.doiCitations[pub.doi | lower] else 0) %}
+                        {% set citationCount = pub.citationCount or 0 %}
                         <div class="d-flex flex-wrap align-items-center gap-2 mt-1">
                           {% if pub.jufoLevel != null and pub.jufoLevel != undefined %}
                             {% if pub.jufoLevel == "3" %}
@@ -428,12 +414,11 @@ schemaType: CollectionPage
             {# ── Mobiilinäkymä: kompakti korttilista (piilotetaan desktopissa) ── #}
             <ul class="list-unstyled mb-0 d-md-none pub-mobile-list" role="list">
               {% for pub in items %}
-              {% set researchMeta = researchPublicationMeta[pub.anchorId] or {} %}
-              {% set citationCount = (semanticscholar.metrics.doiCitations[pub.doi | lower] if pub.doi and semanticscholar.metrics.doiCitations[pub.doi | lower] else 0) %}
-              <li{% if pub.anchorId %} id="{{ pub.anchorId }}-mobile"{% endif %} class="pub-mobile-item px-3 py-3 border-bottom" data-authors="{{ pub.authors | escape }}" data-publication-year="{{ pub.year or '' }}" data-publication-type="{{ pub.typeCode or '' }}" data-publication-type-label="{{ pub.typeFi | escape }}" data-research-line="{{ researchMeta.researchLine or '' }}" data-research-themes="{{ (researchMeta.researchThemes or []) | join('|') }}" data-research-audiences="{{ (researchMeta.researchAudience or []) | join('|') }}" role="listitem">
+              {% set citationCount = pub.citationCount or 0 %}
+              <li{% if pub.anchorId %} id="{{ pub.anchorId }}-mobile"{% endif %} class="pub-mobile-item px-3 py-3 border-bottom" data-authors="{{ pub.authors | escape }}" data-publication-year="{{ pub.year or '' }}" data-publication-type="{{ pub.typeCode or '' }}" data-publication-type-label="{{ pub.type | escape }}" data-research-line="{{ pub.researchLine or '' }}" data-research-themes="{{ (pub.researchThemes or []) | join('|') }}" data-research-audiences="{{ (pub.researchAudience or []) | join('|') }}" role="listitem">
                 <div class="d-flex align-items-center gap-2 mb-1">
                   <span class="font-monospace small fw-bold publication-year">{{ pub.year or '—' }}</span>
-                  <span class="badge bg-secondary" title="{{ pub.typeFi }}">{{ pub.typeShort }}</span>
+                  <span class="badge bg-secondary" title="{{ pub.type }}">{{ pub.typeCode }}</span>
                   {% if pub.jufoLevel != null and pub.jufoLevel != undefined %}
                     {% if pub.jufoLevel == "3" %}
                       <span class="badge rounded-pill publication-jufo publication-jufo--3">JUFO 3</span>
@@ -585,15 +570,16 @@ schemaType: CollectionPage
 <!-- Chart.js & Dashboard Scripts -->
 <script>
 // Progressive enhancement: hydratoi OKM-luokkien tbody + mobiili-lista
-// KAIKILLA researchfi-julkaisuilla ennen kuin suodattimet aktivoituvat.
-// SSR renderoi 15 uusinta per luokka (avausjoukko ilman JS:aa).
+// KAIKILLA canonical publicationsPage-julkaisuilla ennen kuin suodattimet aktivoituvat.
+// SSR renderoi 5 uusinta per luokka (avausjoukko ilman JS:aa).
 window.publicationsHydration = (async () => {
-  if (!window.ContentEngine || typeof window.ContentEngine.query !== 'function') {
-    console.error('julkaisut: window.ContentEngine puuttuu (lataa content-engine.js)');
+  if (!window.PE || typeof window.PE.loadJsonEndpoint !== 'function') {
+    console.error('julkaisut: window.PE.loadJsonEndpoint puuttuu (lataa pe-list-render.js)');
     return null;
   }
   if (!window.PE || typeof window.PE.escHtml !== 'function') return null;
-  const { items } = await window.ContentEngine.query({ source: 'researchfi' });
+  const data = await window.PE.loadJsonEndpoint('/data/publications-page.json', { items: [] });
+  const items = Array.isArray(data?.items) ? data.items : [];
   if (!items.length) return items;
 
   const esc = window.PE.escHtml;
@@ -739,8 +725,8 @@ document.addEventListener('DOMContentLoaded', async function() {
   await (window.publicationsHydration || Promise.resolve(null));
   // Inline data from Eleventy
   const publications = [
-    {% for pub in researchfi %}
-    { year: {{ pub.year or 0 }}, type: "{{ pub.typeCode }}", authors: "{{ pub.authors | replace('"', '\\"') }}", title: "{{ pub.title | replace('"', '\\"') }}", peerReviewed: {{ "true" if pub.peerReviewed else "false" }}, openAccess: {{ pub.openAccess or 0 }}, doi: "{{ pub.doi or '' }}" },
+    {% for pub in canonicalPublications %}
+    { year: {{ pub.year or 0 }}, type: "{{ pub.typeCode or '' }}", authors: "{{ (pub.authors or '') | replace('"', '\\"') }}", title: "{{ pub.title | replace('"', '\\"') }}", peerReviewed: {{ "true" if pub.peerReviewed else "false" }}, openAccess: {{ pub.openAccess or 0 }}, doi: "{{ pub.doi or '' }}" },
     {% endfor %}
   ];
 
