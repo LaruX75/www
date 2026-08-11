@@ -11,13 +11,12 @@
       return await res.json();
     } catch (error) {
       console.error('esitykset: fetch /data/presentations-page.json failed:', error);
-      return { rawData: {}, contexts: [], canvaPageUrls: [] };
+      return { items: [], contexts: [], canvaPageUrls: [] };
     }
   }
   const _pageData = await loadPresentationsPageData();
-  const rawData = _pageData.rawData || {};
+  const canonicalItems = Array.isArray(_pageData.items) ? _pageData.items : [];
   const presentationContexts = _pageData.contexts || [];
-  const canvaPageUrls = _pageData.canvaPageUrls || [];
   const analysisArchiveItems = [
     {
       title: "Canva-esitykset 2021-2026",
@@ -310,16 +309,6 @@
     "suljettu-oppimisymparisto": "route:materiaalit"
   };
 
-  // Liitetään Canva MD-sivujen sisäiset URLit canva.tableRows-dataan design-id:n perusteella
-  const canvaPageUrlMap = {};
-  canvaPageUrls.forEach((item) => {
-    canvaPageUrlMap[item.id] = item.pageUrl;
-  });
-  if (!Array.isArray(rawData.canva)) rawData.canva = [];
-  rawData.canva.forEach((item) => {
-    item.pageUrl = canvaPageUrlMap[item.id] || null;
-  });
-
   const iconByKey = {
     aoe: "bi-book",
     canva: "bi-file-earmark-slides",
@@ -410,8 +399,36 @@
     return isExternalUrl(url) ? ' target="_blank" rel="noopener noreferrer"' : "";
   }
 
-  function primaryUrl(item) {
+  function itemSourceKey(item, sourceKeyOverride = "") {
+    return String(sourceKeyOverride || item?.sourceKey || "").trim();
+  }
+
+  function prefersLocalPresentationPage(item, sourceKeyOverride = "") {
+    const sourceKey = itemSourceKey(item, sourceKeyOverride);
+    return Boolean(item?.pageUrl) && (sourceKey === "slideshare" || sourceKey === "canva");
+  }
+
+  function primaryUrl(item, sourceKeyOverride = "") {
+    if (prefersLocalPresentationPage(item, sourceKeyOverride)) {
+      return item.pageUrl || item.url || item.externalUrl || "";
+    }
     return item.url || item.pageUrl || item.externalUrl || "";
+  }
+
+  function externalSourceUrl(item, sourceKeyOverride = "") {
+    if (prefersLocalPresentationPage(item, sourceKeyOverride)) {
+      return item.url || item.externalUrl || "";
+    }
+    if (item?.externalUrl && item.externalUrl !== primaryUrl(item, sourceKeyOverride)) {
+      return item.externalUrl;
+    }
+    return "";
+  }
+
+  function primaryActionLabel(item, sourceKeyOverride = "") {
+    return prefersLocalPresentationPage(item, sourceKeyOverride)
+      ? "Avaa esityssivu"
+      : (item?.url ? (linkLabelByKey[itemSourceKey(item, sourceKeyOverride)] || "Avaa") : "Avaa esityssivu");
   }
 
   function normalizeContextUrl(value) {
@@ -700,11 +717,41 @@
   }
 
   function renderContextBadges(item) {
-    const matches = (Array.isArray(item.matchedContexts) ? item.matchedContexts : findContextsForItem(item)).slice(0, 2);
+    const matches = (Array.isArray(item.matchedContexts) ? item.matchedContexts : findContextsForItem(item)).slice(0, 1);
     if (!matches.length) return "";
     return `<div class="presentation-context-chip-row">${matches.map((context) => `
       <span class="presentation-context-chip">${escHtml(context.typeLabel || "Konteksti")}: ${escHtml(context.title || "")}</span>
     `).join("")}</div>`;
+  }
+
+  const COURSE_EVIDENCE_PRIORITY = {
+    strong: 4,
+    contextual: 2
+  };
+
+  const COURSE_LINK_TYPE_PRIORITY = {
+    explicit_course_code: 4,
+    explicit_course_name: 3,
+    probable_legacy_course_material: 2,
+    possible_reuse_of_course_material: 1,
+    contextual_topic_or_pathway: 0
+  };
+
+  function primaryCourseContext(item) {
+    const courses = itemCourseContexts(item);
+    if (!courses.length) return null;
+
+    return [...courses].sort((a, b) => {
+      const evidenceDiff =
+        (COURSE_EVIDENCE_PRIORITY[b?.evidenceLevel] || 0) - (COURSE_EVIDENCE_PRIORITY[a?.evidenceLevel] || 0);
+      if (evidenceDiff !== 0) return evidenceDiff;
+
+      const typeDiff =
+        (COURSE_LINK_TYPE_PRIORITY[b?.linkType] || 0) - (COURSE_LINK_TYPE_PRIORITY[a?.linkType] || 0);
+      if (typeDiff !== 0) return typeDiff;
+
+      return String(a?.courseName || "").localeCompare(String(b?.courseName || ""));
+    })[0];
   }
 
   function courseBadgeText(course) {
@@ -716,16 +763,62 @@
   }
 
   function renderCourseBadges(item) {
-    const courses = itemCourseContexts(item).slice(0, 3);
-    if (!courses.length) return "";
-    return `<div class="presentation-course-chip-row" aria-label="Opintojaksokontekstit">${courses.map((course) => {
-      const filter = courseFilterValue(course);
-      const label = courseFilterLabel(course);
-      const text = courseBadgeText(course);
-      return filter
-        ? `<button type="button" class="presentation-course-chip" data-presentation-filter="${escHtml(filter)}" title="${escHtml(label)}"><i class="bi bi-mortarboard" aria-hidden="true"></i>${escHtml(text)}</button>`
-        : `<span class="presentation-course-chip" title="${escHtml(label)}"><i class="bi bi-mortarboard" aria-hidden="true"></i>${escHtml(text)}</span>`;
-    }).join("")}</div>`;
+    const course = primaryCourseContext(item);
+    if (!course) return "";
+    const filter = courseFilterValue(course);
+    const label = courseFilterLabel(course);
+    const text = courseBadgeText(course);
+    const chip = filter
+      ? `<button type="button" class="presentation-course-chip" data-presentation-filter="${escHtml(filter)}" title="${escHtml(label)}"><i class="bi bi-mortarboard" aria-hidden="true"></i>${escHtml(text)}</button>`
+      : `<span class="presentation-course-chip" title="${escHtml(label)}"><i class="bi bi-mortarboard" aria-hidden="true"></i>${escHtml(text)}</span>`;
+    return `<div class="presentation-course-chip-row" aria-label="Opintojaksokonteksti">${chip}</div>`;
+  }
+
+  function presentationLanguageLabel(value) {
+    const normalized = String(value || "").trim().toLowerCase();
+    if (!normalized) return "";
+    if (normalized === "fi") return "FI";
+    if (normalized === "en") return "EN";
+    if (normalized === "fi-en" || normalized === "en-fi") return "FI/EN";
+    return String(value || "").trim().toUpperCase();
+  }
+
+  function presentationSlideCountLabel(value) {
+    const count = Number(value);
+    if (!Number.isFinite(count) || count <= 0) return "";
+    return `${count} diaa`;
+  }
+
+  function pushPresentationBadge(badges, badge) {
+    const text = String(badge?.text || "").trim();
+    if (!text) return;
+    if (badges.some((item) => item.text === text)) return;
+    badges.push({ icon: badge.icon || "bi-tag", text });
+  }
+
+  function buildPresentationMetaBadges(item, sourceKeyOverride = "") {
+    const sourceKey = sourceKeyOverride || item.sourceKey || "";
+    const badges = [];
+    const language = presentationLanguageLabel(item.sourceLanguage || item.lang);
+    const slideCountText = presentationSlideCountLabel(item.slideCount);
+    const isPresentationLike = ["canva", "slideshare", "google"].includes(sourceKey) || item.archiveType === "own";
+
+    if (isPresentationLike) {
+      if (language) {
+        pushPresentationBadge(badges, { icon: "bi-translate", text: language });
+      }
+      if (slideCountText) {
+        pushPresentationBadge(badges, { icon: "bi-layers", text: slideCountText });
+      }
+    }
+
+    if (!badges.length) return "";
+
+    return `<div class="presentation-archive-card-meta presentation-archive-card-meta--details" aria-label="Esityksen metatiedot">${badges.slice(0, 3).map((badge) => `
+      <span class="presentation-archive-card-detail">
+        <i class="bi ${escHtml(badge.icon)} me-1" aria-hidden="true"></i>${escHtml(badge.text)}
+      </span>
+    `).join("")}</div>`;
   }
 
   function toDisplayDate(value) {
@@ -771,130 +864,194 @@
     return extractSlideshareDateFromThumbnail(thumbnailUrl) || toIsoDate(value) || "";
   }
 
-  function normalizeRows(key, rows) {
-    if (!Array.isArray(rows)) return [];
+  function createEmptySectionRowsByKey() {
+    return {
+      aoe: [],
+      canva: [],
+      customMaterials: [],
+      curatedVideos: [],
+      videoSeries: [],
+      youtubeVideos: [],
+      youtube: [],
+      slideshare: []
+    };
+  }
 
-    if (key === "aoe") {
-      return rows.map((r) => ({
-        title: r.title || "Nimetön oppimateriaali",
-        url: r.url || "",
-        thumbnail: r.image || "",
-        description: r.summary || "",
+  function normalizeCanonicalItem(item) {
+    const sourceKey = itemSourceKey(item);
+    if (!sourceKey) return null;
+
+    if (sourceKey === "aoe") {
+      const year = String(item.year || item.date || "").trim();
+      return {
+        sourceKey,
+        sourceLabel: item.sourceLabel || "AOE / Finna",
+        title: item.title || "Nimetön oppimateriaali",
+        url: item.url || "",
+        thumbnail: item.thumbnail || "",
+        description: item.description || "",
         meta: "AOE / Oppimateriaali",
-        date: r.year || "",
-        _isoDate: r.year ? `${r.year}-12-31` : ""
-      }));
+        date: year,
+        _isoDate: year ? `${year}-12-31` : ""
+      };
     }
 
-    if (key === "canva") {
-      return rows.map((r) => {
-        const iso = toIsoDate(r.date || r.publishedAt || r.createdAt || r.updatedAt || "") || "";
-        return {
-          id: r.id || "",
-          title: r.title || "Nimetön esitys",
-          url: r.url || "",
-          pageUrl: r.pageUrl || "",
-          thumbnail: r.thumbnail || "",
-          description: r.description || "",
-          keywords: Array.isArray(r.categories) ? r.categories.filter(Boolean) : [],
-          meta: "Canva",
-          date: toDisplayDate(iso),
-          _isoDate: iso,
-          jarjestaja: r.jarjestaja || "",
-          kategoria: r.kategoria || "",
-          paakortti: r.paakortti === true,
-          paareitti: r.paareitti || "",
-          asiantuntijaprofiili: Array.isArray(r.asiantuntijaprofiili) ? r.asiantuntijaprofiili : [],
-          sivuyhteys: Array.isArray(r.sivuyhteys) ? r.sivuyhteys : [],
-          courseContexts: Array.isArray(r.courseContexts) ? r.courseContexts : [],
-        };
-      });
+    if (sourceKey === "canva") {
+      const iso = toIsoDate(item.date || "") || "";
+      return {
+        id: item.id || "",
+        sourceKey,
+        sourceLabel: item.sourceLabel || "Canva",
+        title: item.title || "Nimetön esitys",
+        url: item.url || "",
+        pageUrl: item.pageUrl || "",
+        thumbnail: item.thumbnail || "",
+        description: item.description || "",
+        keywords: Array.isArray(item.categories) ? item.categories.filter(Boolean) : [],
+        lang: item.lang || "fi",
+        sourceLanguage: item.sourceLanguage || item.lang || "fi",
+        slideCount: Number.isFinite(item.slideCount) ? item.slideCount : null,
+        meta: "Canva",
+        date: toDisplayDate(iso),
+        _isoDate: iso,
+        jarjestaja: item.jarjestaja || "",
+        kategoria: item.kategoria || "",
+        paakortti: item.paakortti === true,
+        paareitti: item.paareitti || "",
+        asiantuntijaprofiili: Array.isArray(item.asiantuntijaprofiili) ? item.asiantuntijaprofiili : [],
+        sivuyhteys: Array.isArray(item.sivuyhteys) ? item.sivuyhteys : [],
+        courseContexts: Array.isArray(item.courseContexts) ? item.courseContexts : []
+      };
     }
 
-    if (key === "youtubeVideos") {
-      return rows.map((r) => ({
-        title: r.title || "Nimetön video",
-        url: r.url || "",
-        thumbnail: r.thumbnail || "",
-        description: r.description || "",
+    if (sourceKey === "youtubeVideos") {
+      const iso = toIsoDate(item.date || "") || "";
+      return {
+        sourceKey,
+        sourceLabel: item.sourceLabel || "YouTube",
+        title: item.title || "Nimetön video",
+        url: item.url || "",
+        thumbnail: item.thumbnail || "",
+        description: item.description || "",
         meta: "YouTube-video",
-        date: toDisplayDate(r.publishedAt || ""),
-        _isoDate: toIsoDate(r.publishedAt || "") || ""
-      }));
+        date: toDisplayDate(iso),
+        _isoDate: iso
+      };
     }
 
-    if (key === "curatedVideos") {
-      return rows.map((r) => ({
-        title: r.title || "Nimetön video",
-        url: r.url || r.externalUrl || "",
-        pageUrl: r.pageUrl || "",
-        externalUrl: r.externalUrl || "",
-        thumbnail: r.thumbnail || "",
-        description: r.description || "",
-        meta: r.badgeText || "Video / tallenne",
-        date: toDisplayDate(r.date || ""),
-        _isoDate: toIsoDate(r.date || "") || ""
-      }));
+    if (sourceKey === "curatedVideos") {
+      const iso = toIsoDate(item.date || "") || "";
+      return {
+        sourceKey,
+        sourceLabel: item.sourceLabel || "YouTube / oma puheenvuoro",
+        title: item.title || "Nimetön video",
+        url: item.url || item.externalUrl || "",
+        pageUrl: item.pageUrl || "",
+        externalUrl: item.externalUrl || "",
+        thumbnail: item.thumbnail || "",
+        description: item.description || "",
+        meta: item.badgeText || "Video / tallenne",
+        date: toDisplayDate(iso),
+        _isoDate: iso
+      };
     }
 
-    if (key === "videoSeries") {
-      return rows.map((r) => ({
-        title: r.title || "Nimetön videosarja",
-        url: r.url || r.externalUrl || "",
-        pageUrl: r.pageUrl || "",
-        externalUrl: r.externalUrl || "",
-        thumbnail: r.thumbnail || "",
-        description: r.description || "",
-        meta: r.badgeText || (r.itemCount ? `${r.itemCount} videota` : "Videosarja"),
-        date: toDisplayDate(r.date || ""),
-        _isoDate: toIsoDate(r.date || "") || ""
-      }));
+    if (sourceKey === "videoSeries") {
+      const iso = toIsoDate(item.date || "") || "";
+      return {
+        sourceKey,
+        sourceLabel: item.sourceLabel || "YouTube / oma sarja",
+        title: item.title || "Nimetön videosarja",
+        url: item.url || item.externalUrl || "",
+        pageUrl: item.pageUrl || "",
+        externalUrl: item.externalUrl || "",
+        thumbnail: item.thumbnail || "",
+        description: item.description || "",
+        meta: item.badgeText || (item.itemCount ? `${item.itemCount} videota` : "Videosarja"),
+        date: toDisplayDate(iso),
+        _isoDate: iso
+      };
     }
 
-    if (key === "youtube") {
-      return rows.map((r) => ({
-        title: r.title || "Nimetön soittolista",
-        url: r.url || "",
-        thumbnail: r.thumbnail || "",
-        description: r.description || "",
-        meta: `${r.itemCount || 0} videota`,
-        date: toDisplayDate(r.publishedAt || ""),
-        _isoDate: toIsoDate(r.publishedAt || "") || ""
-      }));
+    if (sourceKey === "youtube") {
+      const iso = toIsoDate(item.date || "") || "";
+      return {
+        sourceKey,
+        sourceLabel: item.sourceLabel || "YouTube",
+        title: item.title || "Nimetön soittolista",
+        url: item.url || "",
+        thumbnail: item.thumbnail || "",
+        description: item.description || "",
+        meta: `${item.itemCount || 0} videota`,
+        date: toDisplayDate(iso),
+        _isoDate: iso
+      };
     }
 
-    if (key === "google") {
-      return rows.map((r) => ({
-        title: r.title || "Nimetön esitys",
-        url: r.url || "",
-        thumbnail: r.thumbnail || "",
-        description: "Google Slides -esitys",
-        meta: "Google Slides",
-        date: r.date || "",
-        _isoDate: toIsoDate(r.date || "") || ""
-      }));
+    if (sourceKey === "slideshare") {
+      const iso = normalizeSlideshareIsoDate(item.date || "", item.thumbnail || "");
+      return {
+        sourceKey,
+        sourceLabel: item.sourceLabel || "SlideShare",
+        date: toDisplayDate(iso),
+        title: item.title || "Nimetön esitys",
+        url: item.url || "",
+        pageUrl: item.pageUrl || "",
+        thumbnail: item.thumbnail || "",
+        description: item.description || "",
+        keywords: [
+          ...(Array.isArray(item.categories) ? item.categories : []),
+          ...(Array.isArray(item.keywords) ? item.keywords : [])
+        ].map((value) => String(value || "").trim()).filter(Boolean),
+        courseContexts: Array.isArray(item.courseContexts) ? item.courseContexts : [],
+        sourceLanguage: item.sourceLanguage || "",
+        slideCount: Number.isFinite(item.slideCount) ? item.slideCount : null,
+        _isoDate: iso
+      };
     }
 
-    if (key === "slideshare") {
-      return rows.map((r) => {
-        const iso = normalizeSlideshareIsoDate(r.date || "", r.thumbnail || "");
-        return {
-          date: toDisplayDate(iso),
-          title: r.title || "Nimetön esitys",
-          url: r.url || "",
-          thumbnail: r.thumbnail || "",
-          description: r.description || "",
-          keywords: [
-            ...(Array.isArray(r.categories) ? r.categories : []),
-            ...(Array.isArray(r.keywords) ? r.keywords : [])
-          ].map((value) => String(value || "").trim()).filter(Boolean),
-          courseContexts: Array.isArray(r.courseContexts) ? r.courseContexts : [],
-          _isoDate: iso
-        };
-      });
+    if (sourceKey === "customMaterials") {
+      const iso = toIsoDate(item.date || "") || "";
+      return {
+        sourceKey,
+        sourceLabel: item.sourceLabel || "Oulun kaupunki",
+        title: item.title || "Nimetön materiaali",
+        url: item.url || item.externalUrl || "",
+        pageUrl: item.pageUrl || "",
+        externalUrl: item.externalUrl || "",
+        thumbnail: item.thumbnail || "",
+        description: item.description || "",
+        meta: item.badgeText || "Verkkomateriaali",
+        date: toDisplayDate(iso),
+        _isoDate: iso
+      };
     }
 
-    return [];
+    return null;
+  }
+
+  function sortSectionRows(rows) {
+    return [...rows].sort((a, b) => (b._isoDate || "").localeCompare(a._isoDate || ""));
+  }
+
+  function buildSectionRowsFromItems(items) {
+    const buckets = createEmptySectionRowsByKey();
+    items.forEach((item) => {
+      const normalized = normalizeCanonicalItem(item);
+      const sourceKey = itemSourceKey(normalized);
+      if (!normalized || !sourceKey || !Array.isArray(buckets[sourceKey])) return;
+      buckets[sourceKey].push(normalized);
+    });
+
+    Object.keys(buckets).forEach((key) => {
+      buckets[key] = sortSectionRows(buckets[key]);
+    });
+
+    return buckets;
+  }
+
+  function buildSectionRowsByKey() {
+    return buildSectionRowsFromItems(canonicalItems);
   }
 
   function renderFeatured(key, rows) {
@@ -906,10 +1063,11 @@
     const thumb = item.thumbnail
       ? `<img src="${escHtml(item.thumbnail)}" alt="${escHtml(item.title)}" class="featured-thumb" style="object-fit:cover;" loading="lazy" decoding="async" onerror="this.style.display='none';">`
       : `<div class="featured-thumb" style="background:var(--bs-secondary-bg);display:flex;align-items:center;justify-content:center;color:var(--bs-secondary-color);font-size:1.5rem;"><i class="bi ${icon}"></i></div>`;
-    const label = escHtml(linkLabelByKey[key] || "Avaa");
     const desc = escHtml(truncate(item.description || item.meta || "", 130));
-    const href = primaryUrl(item);
-    const buttonLabel = item.url ? label : "Avaa esityssivu";
+    const href = primaryUrl(item, key);
+    const buttonLabel = primaryActionLabel(item, key);
+    const sourceHref = externalSourceUrl(item, key);
+    const sourceLabel = escHtml(linkLabelByKey[key] || "Avaa lähde");
     host.innerHTML = `
       <div class="card border-0 shadow-sm mb-4 overflow-hidden">
         <div class="d-flex align-items-stretch">
@@ -921,7 +1079,10 @@
             </p>
             <h3 class="h6 fw-bold mb-1 lh-sm">${escHtml(item.title)}</h3>
             ${desc ? `<p class="text-muted small mb-2">${desc}</p>` : ""}
-            ${href ? `<a href="${escHtml(href)}"${linkAttrs(href)} class="btn btn-primary btn-sm rounded-pill px-3 align-self-start">${buttonLabel} <i class="bi bi-arrow-up-right"></i></a>` : ""}
+            <div class="d-flex gap-2 flex-wrap">
+              ${href ? `<a href="${escHtml(href)}"${linkAttrs(href)} class="btn btn-primary btn-sm rounded-pill px-3 align-self-start">${escHtml(buttonLabel)} ${isExternalUrl(href) ? '<i class="bi bi-arrow-up-right"></i>' : '<i class="bi bi-arrow-right"></i>'}</a>` : ""}
+              ${sourceHref ? `<a href="${escHtml(sourceHref)}"${linkAttrs(sourceHref)} class="btn btn-outline-secondary btn-sm rounded-pill px-3 align-self-start">${sourceLabel} <i class="bi bi-arrow-up-right"></i></a>` : ""}
+            </div>
           </div>
         </div>
       </div>`;
@@ -958,12 +1119,14 @@
              <div class="scroller-placeholder" style="display:none;"><i class="bi ${escHtml(iconByKey[key] || "bi-file-earmark")}"></i></div>
            </div>`
         : `<div class="scroller-placeholder"><i class="bi ${escHtml(iconByKey[key] || "bi-file-earmark")}"></i></div>`;
-      const href = primaryUrl(item);
+      const href = primaryUrl(item, key);
+      const buttonLabel = primaryActionLabel(item, key);
+      const sourceHref = externalSourceUrl(item, key);
       const link = href
-        ? `<a href="${escHtml(href)}"${linkAttrs(href)} class="btn btn-primary btn-sm rounded-pill px-3">${escHtml(item.url ? (linkLabelByKey[key] || "Avaa") : "Avaa esityssivu")} <i class="bi bi-arrow-up-right"></i></a>`
+        ? `<a href="${escHtml(href)}"${linkAttrs(href)} class="btn btn-primary btn-sm rounded-pill px-3">${escHtml(buttonLabel)} ${isExternalUrl(href) ? '<i class="bi bi-arrow-up-right"></i>' : '<i class="bi bi-arrow-right"></i>'}</a>`
         : `<span class="text-muted small"><i class="bi bi-link-45deg"></i> Ei linkkiä</span>`;
-      const pageLink = item.url && item.pageUrl
-        ? `<a href="${escHtml(item.pageUrl)}" class="btn btn-outline-secondary btn-sm rounded-pill px-2 ms-1" title="Esityksen sivu"><i class="bi bi-file-earmark-text"></i></a>`
+      const pageLink = sourceHref
+        ? `<a href="${escHtml(sourceHref)}"${linkAttrs(sourceHref)} class="btn btn-outline-secondary btn-sm rounded-pill px-2 ms-1" title="Avaa alkuperäinen lähde"><i class="bi bi-arrow-up-right"></i></a>`
         : "";
       return `
         <article class="card border-0 shadow-sm presentation-scroller-card">
@@ -1044,6 +1207,9 @@
           ? `<img src="${escHtml(item.thumbnail)}" alt="${escHtml(item.title)}" class="img-fluid border" style="max-height:72px;object-fit:cover;" loading="lazy" decoding="async" onerror="this.outerHTML='<span class=&quot;text-muted small&quot;>Ei saatavilla</span>';">`
           : '<span class="text-muted small">Ei saatavilla</span>';
         const summary = item.description ? escHtml(truncate(item.description, 220)) : '<span class="text-muted small">Ei saatavilla</span>';
+        const href = primaryUrl(item, key);
+        const sourceHref = externalSourceUrl(item, key);
+        const primaryTitle = prefersLocalPresentationPage(item, key) ? "Avaa esityssivu" : "Avaa esitys";
         return `
           <tr>
             <td class="text-center small text-muted font-monospace" data-label="Päivämäärä">${escHtml(item.date || "Ei saatavilla")}</td>
@@ -1053,11 +1219,11 @@
             <td data-label="Avainsanat">${keywordHtml}</td>
             <td class="text-center" data-label="Avaa">
               <div class="d-flex gap-1 justify-content-center flex-wrap">
-              ${primaryUrl(item)
-                ? `<a href="${escHtml(primaryUrl(item))}"${linkAttrs(primaryUrl(item))} class="btn btn-outline-primary btn-sm rounded-pill px-2" title="${item.url ? "Avaa esitys" : "Avaa esityssivu"}"><i class="bi bi-arrow-up-right"></i></a>`
+              ${href
+                ? `<a href="${escHtml(href)}"${linkAttrs(href)} class="btn btn-outline-primary btn-sm rounded-pill px-2" title="${escHtml(primaryTitle)}"><i class="bi ${isExternalUrl(href) ? "bi-arrow-up-right" : "bi-file-earmark-text"}"></i></a>`
                 : `<span class="text-muted small">Ei linkkiä</span>`}
-              ${item.url && item.pageUrl
-                ? `<a href="${escHtml(item.pageUrl)}" class="btn btn-outline-secondary btn-sm rounded-pill px-2" title="Esityksen sivu"><i class="bi bi-file-earmark-text"></i></a>`
+              ${sourceHref
+                ? `<a href="${escHtml(sourceHref)}"${linkAttrs(sourceHref)} class="btn btn-outline-secondary btn-sm rounded-pill px-2" title="Avaa alkuperäinen lähde"><i class="bi bi-arrow-up-right"></i></a>`
                 : ""}
               </div>
             </td>
@@ -1093,18 +1259,21 @@
 
     host.innerHTML = pageRows.map((item) => {
       const keywords = Array.isArray(item.keywords) ? item.keywords : [];
-      const keywordHtml = keywords.length
+      const keywordHtml = (key !== "canva" && key !== "slideshare" && keywords.length)
         ? `<div class="d-flex flex-wrap gap-1 mb-2">${keywords.map((k) => `<span class="badge text-bg-light text-dark border">${escHtml(k)}</span>`).join("")}</div>`
         : "";
+      const metaBadgeHtml = buildPresentationMetaBadges(item, key);
       const isVideoThumb = key === "youtubeVideos" || key === "videoSeries";
       const thumbHtml = item.thumbnail
         ? `<span class="${isVideoThumb ? "video-preview video-preview--xs " : ""}rounded flex-shrink-0 me-3" style="width:72px;height:52px;"><img src="${escHtml(item.thumbnail)}" alt="" class="rounded" style="width:72px;height:52px;object-fit:cover;" loading="lazy" decoding="async" onerror="this.closest('span').style.display='none';"></span>`
         : "";
-      const openBtn = item.url
-        ? `<a href="${escHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-3">${escHtml(linkLabelByKey[key] || "Avaa")} <i class="bi bi-arrow-up-right"></i></a>`
+      const href = primaryUrl(item, key);
+      const sourceHref = externalSourceUrl(item, key);
+      const openBtn = href
+        ? `<a href="${escHtml(href)}"${linkAttrs(href)} class="btn btn-outline-primary btn-sm rounded-pill px-3">${escHtml(primaryActionLabel(item, key))} ${isExternalUrl(href) ? '<i class="bi bi-arrow-up-right"></i>' : '<i class="bi bi-arrow-right"></i>'}</a>`
         : "";
-      const pageBtn = item.pageUrl
-        ? `<a href="${escHtml(item.pageUrl)}" class="btn btn-outline-secondary btn-sm rounded-pill px-2 ms-1" title="Esityksen sivu"><i class="bi bi-file-earmark-text"></i></a>`
+      const pageBtn = sourceHref
+        ? `<a href="${escHtml(sourceHref)}"${linkAttrs(sourceHref)} class="btn btn-outline-secondary btn-sm rounded-pill px-2 ms-1" title="Avaa alkuperäinen lähde"><i class="bi bi-arrow-up-right"></i></a>`
         : "";
       const descText = truncate(item.description, 140);
       return `
@@ -1116,6 +1285,7 @@
               ${item.date ? `<p class="text-muted small mb-1"><i class="bi bi-calendar3 me-1"></i>${escHtml(item.date)}</p>` : ""}
               ${item.meta ? `<p class="text-muted small mb-1">${escHtml(item.meta)}</p>` : ""}
               ${descText ? `<p class="text-muted small mb-2">${escHtml(descText)}</p>` : ""}
+              ${metaBadgeHtml}
               ${keywordHtml}
               <div class="d-flex gap-1 flex-wrap">${openBtn}${pageBtn}</div>
             </div>
@@ -1124,12 +1294,12 @@
     }).join("");
   }
 
-  function buildUnifiedArchiveItems() {
+  function buildUnifiedArchiveItems(sectionRowsByKey) {
     const items = [];
-    Object.entries(rawData).forEach(([key, rows]) => {
+    Object.entries(sectionRowsByKey).forEach(([key, rows]) => {
       const meta = archiveMetaByKey[key];
       if (!meta) return;
-      normalizeRows(key, rows).forEach((item) => {
+      rows.forEach((item) => {
         const matchedContexts = findContextsForItem(item);
         const taxonomy = classifyPresentationItem(
           {
@@ -1369,24 +1539,26 @@
     }
 
     grid.innerHTML = pageItems.map((item) => {
-      const primaryUrl = item.pageUrl || item.url || "";
+      const href = primaryUrl(item, item.sourceKey);
+      const sourceHref = externalSourceUrl(item, item.sourceKey);
       const contextBadges = renderContextBadges(item);
       const courseBadges = renderCourseBadges(item);
+      const metaBadges = buildPresentationMetaBadges(item);
       const isVideoThumb = item.sourceKey === "youtubeVideos" || item.sourceKey === "videoSeries";
       const thumb = item.thumbnail
         ? `<span class="presentation-archive-card-thumb-placeholder"><i class="bi ${escHtml(iconByKey[item.sourceKey] || "bi-easel2")}"></i></span><img src="${escHtml(item.thumbnail)}" alt="" class="presentation-archive-card-thumb-image" loading="lazy" decoding="async" onerror="this.style.display='none';">`
         : `<span class="presentation-archive-card-thumb-placeholder"><i class="bi ${escHtml(iconByKey[item.sourceKey] || "bi-easel2")}"></i></span>`;
-      const externalButton = item.url
-        ? `<a href="${escHtml(item.url)}"${linkAttrs(item.url)} class="btn btn-outline-primary btn-sm rounded-pill px-3">${escHtml(item.openLabel || "Avaa")}</a>`
+      const primaryButton = href
+        ? `<a href="${escHtml(href)}"${linkAttrs(href)} class="btn btn-outline-primary btn-sm rounded-pill px-3">${escHtml(primaryActionLabel(item, item.sourceKey))}</a>`
+        : "";
+      const externalButton = sourceHref
+        ? `<a href="${escHtml(sourceHref)}"${linkAttrs(sourceHref)} class="btn btn-outline-secondary btn-sm rounded-pill px-3">${escHtml(item.openLabel || "Avaa lähde")}</a>`
         : "";
       const sourceButton = item.externalUrl && item.externalUrl !== item.url
         ? `<a href="${escHtml(item.externalUrl)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary btn-sm rounded-pill px-3">YouTube</a>`
         : "";
-      const pageButton = item.pageUrl
-        ? `<a href="${escHtml(item.pageUrl)}" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Lisätiedot</a>`
-        : "";
-      const titleLink = primaryUrl
-        ? `<a href="${escHtml(primaryUrl)}"${linkAttrs(primaryUrl)}>${escHtml(item.title)}</a>`
+      const titleLink = href
+        ? `<a href="${escHtml(href)}"${linkAttrs(href)}>${escHtml(item.title)}</a>`
         : escHtml(item.title);
       const kategoriaLabels = {
         "konferenssi-keynote": "Keynote",
@@ -1422,6 +1594,9 @@
           .map((route) => `<button type="button" class="presentation-archive-card-route-secondary" data-presentation-filter="${escHtml(route)}">${escHtml(secondaryRouteLabels[route])}</button>`)
           .join("")
         : "";
+      const sourceMetaLabel = [item.archiveTypeLabel || "Sisältö", item.sourceLabel || item.meta || ""]
+        .filter(Boolean)
+        .join(" · ");
       const jarjestajaLine = (item.sourceKey === "canva" && item.jarjestaja)
         ? `<p class="presentation-archive-card-date">${escHtml(item.jarjestaja)}${item.date ? ` · ${escHtml(item.date)}` : ""}</p>`
         : `<p class="presentation-archive-card-date">${escHtml(item.date || item.meta || "")}</p>`;
@@ -1429,16 +1604,26 @@
         <article class="presentation-archive-card">
           <div class="presentation-archive-card-thumb ${isVideoThumb ? "video-preview video-preview--sm" : ""}">${thumb}</div>
           <div class="presentation-archive-card-body">
-            <div class="presentation-archive-card-meta">
-              ${routeBadge}${routeSecondaryBadges}${kategoriaBadge}<span>${escHtml(item.archiveTypeLabel || "Sisältö")}</span>
-              <span>${escHtml(item.sourceLabel || item.meta || "")}</span>
+            <div class="presentation-archive-card-header">
+              <div class="presentation-archive-card-meta presentation-archive-card-meta--primary">
+                ${routeBadge}${kategoriaBadge}
+              </div>
+              ${sourceMetaLabel
+                ? `<p class="presentation-archive-card-overline">${escHtml(sourceMetaLabel)}</p>`
+                : ""}
+              <h3 class="presentation-archive-card-title">${titleLink}</h3>
+              ${jarjestajaLine}
             </div>
-            <h3 class="presentation-archive-card-title">${titleLink}</h3>
-            ${jarjestajaLine}
-            ${courseBadges}
-            ${contextBadges}
+            <div class="presentation-archive-card-support">
+              ${routeSecondaryBadges
+                ? `<div class="presentation-archive-card-meta presentation-archive-card-meta--secondary">${routeSecondaryBadges}</div>`
+                : ""}
+              ${metaBadges}
+              ${courseBadges}
+              ${contextBadges}
+            </div>
             <p class="presentation-archive-card-desc">${escHtml(truncate(item.description || item.meta || "", 150))}</p>
-            <div class="presentation-archive-card-actions">${externalButton}${sourceButton}${pageButton}</div>
+            <div class="presentation-archive-card-actions">${primaryButton}${externalButton}${sourceButton}</div>
           </div>
         </article>
       `;
@@ -1471,7 +1656,7 @@
       "tdk-luento": "Yliopistoopetus",
       "muu": ""
     };
-    const items = normalizeRows("canva", rawData.canva)
+    const items = (sectionRowsByKey.canva || [])
       .filter((r) => r.paakortti)
       .sort((a, b) => (b._isoDate || "").localeCompare(a._isoDate || ""));
     if (!items.length) {
@@ -1482,46 +1667,80 @@
     const featured = items[0];
     const secondary = items.slice(1, 5);
     const labelFor = (item) => item.kategoria ? (kategoriaLabels[item.kategoria] || item.kategoria) : "Päänosto";
-    const thumbFor = (item, className = "presentation-feature-primary-media") => item.thumbnail
-      ? `<a href="${escHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="${className}">
+    const thumbFor = (item, href, className = "presentation-feature-primary-media", emptyIcon = "bi-file-earmark-slides") => item.thumbnail
+      ? `<a href="${escHtml(href)}"${linkAttrs(href)} class="${className}">
           <img src="${escHtml(item.thumbnail)}" alt="${escHtml(item.title)}" loading="lazy" decoding="async" onerror="this.style.display='none';">
         </a>`
-      : `<a href="${escHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="${className}">
-          <span class="presentation-feature-placeholder"><i class="bi bi-file-earmark-slides"></i></span>
+      : `<a href="${escHtml(href)}"${linkAttrs(href)} class="${className}">
+          <span class="presentation-feature-placeholder"><i class="bi ${escHtml(emptyIcon)}"></i></span>
         </a>`;
+    const featuredHref = primaryUrl(featured, "canva") || featured.url;
+    const featuredSourceHref = externalSourceUrl(featured, "canva");
+    const featuredMetaBadges = buildPresentationMetaBadges(featured, "canva");
+    const featuredOverline = [featured.archiveTypeLabel || "Canva-esitys", featured.sourceLabel || "Canva"]
+      .filter(Boolean)
+      .join(" · ");
+    const featuredContextLine = [featured.jarjestaja, featured.date]
+      .filter(Boolean)
+      .join(" · ");
 
     host.innerHTML = `
       <div class="presentation-feature-layout">
         <article class="presentation-feature-primary">
-          ${thumbFor(featured)}
           <div class="presentation-feature-primary-body">
+            ${featuredOverline ? `<p class="presentation-feature-overline">${escHtml(featuredOverline)}</p>` : ""}
             <div class="presentation-feature-meta">
               <span>${escHtml(labelFor(featured))}</span>
-              ${featured.jarjestaja ? `<span>${escHtml(featured.jarjestaja)}</span>` : ""}
               ${featured.date ? `<span>${escHtml(featured.date)}</span>` : ""}
             </div>
-            <h3><a href="${escHtml(featured.url)}" target="_blank" rel="noopener noreferrer">${escHtml(featured.title)}</a></h3>
-            <p>${escHtml(featured.description || "Esitys kuuluu sivun keskeisiin nostoihin.")}</p>
+            <h3><a href="${escHtml(featuredHref)}"${linkAttrs(featuredHref)}>${escHtml(featured.title)}</a></h3>
+            ${featuredContextLine ? `<p class="presentation-feature-context">${escHtml(featuredContextLine)}</p>` : ""}
+            <div class="presentation-feature-primary-visual">
+              ${thumbFor(featured, featuredHref)}
+            </div>
+            ${featuredMetaBadges}
+            <p class="presentation-feature-primary-desc">${escHtml(truncate(featured.description || "Esitys kuuluu sivun keskeisiin nostoihin.", 320))}</p>
             <div class="presentation-feature-actions">
-              <a href="${escHtml(featured.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">Avaa esitys <i class="bi bi-arrow-up-right"></i></a>
+              <a href="${escHtml(featuredHref)}"${linkAttrs(featuredHref)} class="btn btn-primary rounded-pill px-4">${escHtml(primaryActionLabel(featured, "canva"))} <i class="bi bi-arrow-up-right"></i></a>
+              ${featuredSourceHref && featuredSourceHref !== featuredHref
+                ? `<a href="${escHtml(featuredSourceHref)}"${linkAttrs(featuredSourceHref)} class="btn btn-outline-secondary rounded-pill px-4">Canva</a>`
+                : ""}
               <a href="#kaikki-esitykset" class="btn btn-outline-secondary rounded-pill px-4" data-presentation-filter="category:${escHtml(featured.kategoria || "konferenssi-keynote")}">Näytä sama ryhmä</a>
             </div>
           </div>
         </article>
         <div class="presentation-feature-secondary">
-          ${secondary.map((item) => `
-            <a href="${escHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="presentation-feature-small">
+          ${secondary.map((item) => {
+            const href = primaryUrl(item, "canva") || item.url;
+            const sourceHref = externalSourceUrl(item, "canva");
+            const metaBadges = buildPresentationMetaBadges(item, "canva");
+            const smallMeta = [item.jarjestaja || item.sourceLabel || "Canva", item.date]
+              .filter(Boolean)
+              .join(" · ");
+            return `
+            <article class="presentation-feature-small">
               ${item.thumbnail
-                ? `<div class="presentation-feature-small-thumb"><img src="${escHtml(item.thumbnail)}" alt="" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none';"></div>`
-                : `<div class="presentation-feature-small-thumb presentation-feature-small-thumb--empty"><i class="bi bi-easel2"></i></div>`}
+                ? `<a href="${escHtml(href)}"${linkAttrs(href)} class="presentation-feature-small-thumb"><img src="${escHtml(item.thumbnail)}" alt="" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none';"></a>`
+                : thumbFor(item, href, "presentation-feature-small-thumb presentation-feature-small-thumb--empty", "bi-easel2")}
               <div class="presentation-feature-small-body">
-                <span class="presentation-feature-small-label">${escHtml(labelFor(item))}</span>
-                <strong>${escHtml(item.title)}</strong>
-                ${item.description ? `<p class="presentation-feature-small-desc">${escHtml(item.description)}</p>` : ""}
-                ${(item.jarjestaja || item.date) ? `<span class="presentation-feature-small-meta">${escHtml(item.jarjestaja ? `${item.jarjestaja}${item.date ? ` · ${item.date}` : ""}` : (item.date || ""))}</span>` : ""}
+                <div class="presentation-feature-small-top">
+                  <span class="presentation-feature-small-label">${escHtml(labelFor(item))}</span>
+                  ${item.date ? `<span class="presentation-feature-small-date">${escHtml(item.date)}</span>` : ""}
+                </div>
+                <strong class="presentation-feature-small-title"><a href="${escHtml(href)}"${linkAttrs(href)}>${escHtml(item.title)}</a></strong>
+                ${smallMeta ? `<p class="presentation-feature-small-meta">${escHtml(smallMeta)}</p>` : ""}
+                ${item.description ? `<p class="presentation-feature-small-desc">${escHtml(truncate(item.description, 140))}</p>` : ""}
+                ${metaBadges ? `<div class="presentation-feature-small-badges">${metaBadges}</div>` : ""}
+                <div class="presentation-feature-small-actions">
+                  <a href="${escHtml(href)}"${linkAttrs(href)} class="presentation-feature-small-link">${escHtml(primaryActionLabel(item, "canva"))}</a>
+                  ${sourceHref && sourceHref !== href
+                    ? `<a href="${escHtml(sourceHref)}"${linkAttrs(sourceHref)} class="presentation-feature-small-link presentation-feature-small-link--muted">Canva</a>`
+                    : ""}
+                </div>
               </div>
-            </a>
-          `).join("")}
+            </article>
+          `;
+          }).join("")}
         </div>
       </div>
     `;
@@ -1530,7 +1749,7 @@
   function renderLegacyFeaturedCards() {
     const grid = document.getElementById("paakortti-grid");
     if (!grid) return;
-    const items = normalizeRows("canva", rawData.canva).filter((r) => r.paakortti);
+    const items = (sectionRowsByKey.canva || []).filter((r) => r.paakortti);
     if (!items.length) {
       grid.closest("section")?.style && (grid.closest("section").style.display = "none");
       return;
@@ -1539,6 +1758,7 @@
       const thumb = item.thumbnail
         ? `<span class="presentation-archive-card-thumb-placeholder"><i class="bi bi-file-earmark-slides"></i></span><img src="${escHtml(item.thumbnail)}" alt="" class="presentation-archive-card-thumb-image" loading="lazy" decoding="async" onerror="this.style.display='none';">`
         : `<span class="presentation-archive-card-thumb-placeholder"><i class="bi bi-file-earmark-slides"></i></span>`;
+      const metaBadges = buildPresentationMetaBadges(item, "canva");
       return `
         <article class="presentation-archive-card presentation-archive-card--featured">
           <div class="presentation-archive-card-thumb">${thumb}</div>
@@ -1548,6 +1768,7 @@
               <a href="${escHtml(item.url)}" target="_blank" rel="noopener noreferrer">${escHtml(item.title)}</a>
             </h3>
             ${item.date ? `<p class="presentation-archive-card-date">${escHtml(item.date)}</p>` : ""}
+            ${metaBadges}
             <p class="presentation-archive-card-desc">${escHtml(truncate(item.description || "", 150))}</p>
             <div class="presentation-archive-card-actions">
               <a href="${escHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-3">Avaa <i class="bi bi-arrow-up-right"></i></a>
@@ -1558,8 +1779,10 @@
     }).join("");
   }
 
+  const sectionRowsByKey = buildSectionRowsByKey();
+
   function initUnifiedArchive() {
-    const archiveItems = buildUnifiedArchiveItems();
+    const archiveItems = buildUnifiedArchiveItems(sectionRowsByKey);
     const filterControls = [...document.querySelectorAll("[data-presentation-filter]")];
     const courseFilterSelect = document.getElementById("presentation-course-filter");
     const refinerHost = document.querySelector("[data-presentation-refiners]");
@@ -1652,10 +1875,8 @@
     applyFilter(readFilterFromUrl(), false);
   }
 
-  Object.entries(rawData).forEach(([key, rows]) => {
-    const normalized = normalizeRows(key, rows);
+  Object.entries(sectionRowsByKey).forEach(([key, normalized]) => {
     if (!normalized.length) return;
-    normalized.sort((a, b) => (b._isoDate || "").localeCompare(a._isoDate || ""));
     const hasFeatured = !!document.getElementById(`featured-${key}`);
     if (hasFeatured) renderFeatured(key, normalized);
     const rest = hasFeatured ? normalized.slice(1) : normalized;
