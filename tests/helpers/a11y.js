@@ -6,6 +6,7 @@ export const AXE_AUDIT_PAGES = [
     { name: 'Publications', path: '/julkaisut/' },
     { name: 'Theses', path: '/opinnaytteet/' },
     { name: 'Presentations', path: '/esitykset/' },
+    { name: 'Presentations (EN)', path: '/en/presentations/' },
     { name: 'CV', path: '/cv/' },
     { name: 'Contact', path: '/yhteystiedot/' },
     { name: 'Accessibility Statement', path: '/saavutettavuus/' },

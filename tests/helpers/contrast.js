@@ -3,6 +3,7 @@ export const BUTTON_AUDIT_PAGES = [
     { name: 'Publications', path: '/julkaisut/' },
     { name: 'Theses', path: '/opinnaytteet/' },
     { name: 'Presentations', path: '/esitykset/', scopeSelector: 'main' },
+    { name: 'Presentations (EN)', path: '/en/presentations/', scopeSelector: 'main' },
     { name: 'CV', path: '/cv/' },
     { name: 'Contact', path: '/yhteystiedot/' },
     { name: 'Accessibility Statement', path: '/saavutettavuus/' },

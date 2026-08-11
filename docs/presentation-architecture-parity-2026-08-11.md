@@ -13,24 +13,17 @@ Tämä dokumentti kokoaa yhteen presentation-pilotin arkkitehtuuriparityn neljä
 3. detail parity
 4. full build ja UX-regressio
 
-Lisäksi dokumentti kirjaa jäljellä olevat presentation-spesifit legacy-haarat, jotta pilottia ei merkitä liian aikaisin täysin valmiiksi.
+Lisäksi dokumentti kirjaa checkpoint 5:n lopputilan: sekä FI- että EN-esitysnäkymä ovat nyt canonical presentation -kerroksen piirissä.
 
 ## Yhteenveto
 
-Arkkitehtuurin kannalta pilotin ydin on nyt toteutunut:
+Arkkitehtuurin kannalta pilotin ydin on nyt toteutunut ja parity-portti on vihreä:
 
 - `/data/presentations-page.json` on canonical public projection
 - `/esitykset/` käyttää canonical `items`-rakenetta
 - yksittäiset presentation-detail-sivut käyttävät samaan canonical-kerrokseen nojaavaa lookupia
-
-Täysi parity ei kuitenkaan ole vielä täysin vihreä kahdesta syystä:
-
-- [src/en/presentations.njk](/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/src/en/presentations.njk) on edelleen erillinen legacy-haara, joka käyttää omaa `rawData`-malliaan
-
-Checkpoint 5a on kuitenkin nyt vihreä:
-
-- `/esitykset/`-sivun thumbnail-linkkien `link-name`-regressio on korjattu
-- nykyinen Playwright UX/a11y-suite menee läpi kokonaan
+- [src/en/presentations.njk](/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/src/en/presentations.njk) käyttää nyt samaa canonical `items` -mallia eikä kokoa source-kohtaisia `rawData`-rivejä itse
+- nykyinen Playwright UX/a11y-suite menee läpi sekä FI- että EN-esityssivun kanssa
 
 ## 1. Public Projection Parity
 
@@ -130,12 +123,12 @@ Huomiot:
 Pääajo:
 
 ```bash
-PLAYWRIGHT_PORT=4182 PLAYWRIGHT_USE_STATIC_SERVER=true PLAYWRIGHT_A11Y_OFFLINE=true DISABLE_OG_IMAGES=true npx playwright test tests/accessibility.spec.js tests/navigation.spec.js tests/contrast.spec.js
+PLAYWRIGHT_PORT=4183 PLAYWRIGHT_USE_STATIC_SERVER=true PLAYWRIGHT_A11Y_OFFLINE=true DISABLE_OG_IMAGES=true npx playwright test tests/accessibility.spec.js tests/navigation.spec.js tests/contrast.spec.js
 ```
 
 Tulos:
 
-- `23 passed (52.9s)`
+- `25 passed (1.0m)`
 
 Korjattu regressio:
 
@@ -152,7 +145,8 @@ Testiajon suorituskykykorjaus:
 Johtopäätös:
 
 - UX-portti on nyt vihreä
-- presentation-pilotin ainoa jäljellä oleva selkeä poikkeus on EN-sivun legacy-haara
+- EN-esityssivu on mukana a11y- ja kontrastisuitessa
+- presentation-pilotissa ei enää ole näkyvää presentation-spesifiä legacy-haaraa
 
 ## 6. Repo-Wide Legacy Audit
 
@@ -162,35 +156,37 @@ Erityinen auditointikohde:
 
 Tulos:
 
-- tiedosto käyttää edelleen omaa inline-`rawData`-mallia
-- tiedostossa on edelleen eksplisiittiset `rawData`-kohdat riveillä `338`, `349` ja `709`
-- sivu ei käytä canonical `/data/presentations-page.json` → `items` -polkua
+- EN-sivun legacy-haara auditoitiin ensin erikseen: [en-presentations-audit-2026-08-11.md](/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/docs/en-presentations-audit-2026-08-11.md)
+- sivulle lisättiin oma [presentations.11tydata.js](/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/src/en/presentations.11tydata.js), joka käyttää samaa `buildPresentationsPageModel`-polkua kuin FI-sivu
+- inline-JS säilytettiin, mutta `rawData`-malli poistui
+- EN-sivu käyttää nyt canonical `items`-dataa, josta se rajaa oman nykyisen näkymänsä osiot:
+  - `aoe`
+  - `canva` (`lang === "en"`)
+  - `slideshare`
+  - `youtubeVideos`
+  - `youtube`
 
 Tulkinta:
 
-- tämä on tällä hetkellä viimeinen selvästi näkyvä presentation-spesifi legacy-haara
-- sitä ei pidä muuttaa automaattisesti saman parity-portin yhteydessä
-- seuraava oikea kysymys on, onko kyse tarkoituksellisesta englanninkielisestä poikkeuksesta vai vain vanhasta toteutuksesta, jota ei ole vielä siirretty canonical-kerrokseen
+- EN-sivu ei ollut tarkoituksellinen arkkitehtuuripoikkeus vaan vanha rinnakkainen datakokoamistapa
+- migraatio voitiin tehdä ilman UI-muutosta
+- cache/fetch-status-merkintää ei lisätty public projectioniin vain EN-legacy-tekstin säilyttämiseksi
 
 ## Päätelmä
 
-Presentation-pilotin arkkitehtuurinen ydin voidaan pitää käytännössä onnistuneena:
+Presentation-pilotti voidaan nyt merkitä arkkitehtuurisesti valmiiksi:
 
 - listaus käyttää canonical projectionia
 - detail-sivut käyttävät samaan canonical kerrokseen nojaavaa lookupia
+- EN-listaus käyttää samaa canonical `items` -kerrosta rajatulla osioinnilla
 - public projection-, client- ja detail-parityt ovat vihreitä
 - täysi Eleventy-build valmistuu onnistuneesti
-
-Sitä ei kuitenkaan vielä pidä merkitä täysin valmiiksi ilman varausta, koska yksi asia on vielä jäljellä:
-
-1. [src/en/presentations.njk](/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/src/en/presentations.njk)-haaran erillinen päätös: pidetäänkö se tarkoituksellisena poikkeuksena vai siirretäänkö se myöhemmin canonical-malliin
+- Playwright UX/a11y/contrast-suite menee läpi sekä FI- että EN-esityssivun kanssa
 
 ## Suositeltu seuraava askel
 
-Seuraava turvallinen jatko ei ole uusi iso presentations-refaktori vaan pieni cleanup-vaihe:
+Seuraava turvallinen jatko ei enää ole presentation-arkkitehtuurin sisäinen cleanup, vaan siirtyminen seuraavaan auditissa tunnistettuun sisältötyyppiin tai metadataongelmaan:
 
-1. korjaa `/esitykset/`-sivun thumbnail-linkkien a11y-labelit
-2. aja nykyinen Playwright-suite uudelleen puhtaasti loppuun
-3. tee erillinen päätös EN-sivun legacy-haarasta ennen kuin sitä kosketaan
-
-Tämä vaihe on nyt tehty kohtien 1-2 osalta. Seuraava rajattu checkpoint on EN-sivun legacy-audit ja päätös siitä, siirtyykö se canonical-polulle vai dokumentoidaanko se tarkoituksellisena poikkeuksena.
+1. presentation-sisältöjen metadata-auditin seuraavat kohteet
+2. yksittäiset review targetiksi nousevat thesis-itemit
+3. embeddingeistä puuttuvat yksittäiset itemit
