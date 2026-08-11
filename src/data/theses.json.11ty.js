@@ -47,6 +47,11 @@ function omitEmpty(obj) {
   return out;
 }
 
+function normalizeThesisLangCode(value) {
+  const normalized = pickString(value)?.toLowerCase();
+  return normalized === "en" || normalized === "eng" ? "en" : "fi";
+}
+
 function toThesisRecord(t, lang, source) {
   const link = pickString(t?.link);
   const title = pickString(t?.title);
@@ -111,10 +116,10 @@ module.exports = class {
     const advisedItems = [...(theses.gradut || []), ...(theses.kandit || [])];
     const reviewedItems = [...(theses.reviewerOnly || [])];
 
-    const lang = "fi";
     const seen = new Set();
     const records = [];
     for (const t of advisedItems) {
+      const lang = normalizeThesisLangCode(t?.language);
       const record = toThesisRecord(t, lang, "advised");
       if (!record) continue;
       if (seen.has(record.url)) continue;
@@ -122,6 +127,7 @@ module.exports = class {
       records.push(record);
     }
     for (const t of reviewedItems) {
+      const lang = normalizeThesisLangCode(t?.language);
       const record = toThesisRecord(t, lang, "reviewed");
       if (!record) continue;
       if (seen.has(record.url)) continue;
@@ -143,3 +149,6 @@ module.exports = class {
     }, null, 2);
   }
 };
+
+module.exports.normalizeThesisLangCode = normalizeThesisLangCode;
+module.exports.toThesisRecord = toThesisRecord;
