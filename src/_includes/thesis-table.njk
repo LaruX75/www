@@ -52,11 +52,14 @@
           </td>
           {% endif %}
           <td>
-            {% if thesis.link %}
-              <a href="{{ thesis.link }}" target="_blank" class="fw-medium text-body text-decoration-none" rel="noopener noreferrer">{{ thesis.title }}</a>
-              <a href="{{ thesis.link }}" target="_blank" class="ms-2 text-decoration-none align-middle icon-only-link" rel="noopener noreferrer" aria-label="{{ ('Open thesis: ' if isEN else 'Avaa opinnäytetyö: ') + thesis.title }}">
+            {% set thesisDetailHref = thesis.pageUrl or thesis.link %}
+            {% if thesisDetailHref %}
+              <a href="{{ thesisDetailHref }}" class="fw-medium text-body text-decoration-none">{{ thesis.title }}</a>
+              {% if thesis.link %}
+              <a href="{{ thesis.link }}" target="_blank" class="ms-2 text-decoration-none align-middle icon-only-link" rel="noopener noreferrer" aria-label="{{ ('Open original thesis in OuluREPO: ' if isEN else 'Avaa alkuperäinen opinnäyte OuluREPOssa: ') + thesis.title }}">
                 <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
               </a>
+              {% endif %}
               {% if hasThesisActions %}
               <button
                 type="button"
@@ -140,7 +143,7 @@
     <p class="small mb-2 lh-base">
       <span class="text-muted">{{ thesis.authors | join("; ") }} ({{ thesis.year or "n.d." }}).</span>
       {% if thesis.link %}
-        <a href="{{ thesis.link }}" target="_blank" rel="noopener noreferrer" class="fw-medium text-body text-decoration-none ms-1">{{ thesis.title }}</a>
+        <a href="{{ thesis.pageUrl or thesis.link }}" class="fw-medium text-body text-decoration-none ms-1">{{ thesis.title }}</a>
       {% else %}
         <span class="fw-medium ms-1">{{ thesis.title }}</span>
       {% endif %}

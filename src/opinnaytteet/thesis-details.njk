@@ -1,0 +1,34 @@
+---js
+{
+  layout: "base.njk",
+  pagination: {
+    data: "thesisDetails.items",
+    size: 1,
+    alias: "thesisDetail"
+  },
+  permalink: data => data.thesisDetail?.pageUrl || false,
+  eleventyComputed: {
+    title: data => data.thesisDetail?.title || "Thesis",
+    metaTitle: data => data.thesisDetail?.title || "Thesis",
+    description: data => data.thesisDetail?.abstract || "",
+    datePublished: data => data.thesisDetail?.datePublished || null,
+    modified: data => data.thesisDetail?.datePublished || null,
+    breadcrumbKey: () => "theses",
+    lang: data => data.thesisDetail?.lang || "fi",
+    type: () => "artikkeli",
+    contentType: () => "thesis",
+    schemaType: () => "Thesis",
+    source: () => "theses",
+    sourceLabel: () => "OuluREPO",
+    categories: data => data.thesisDetail?.categories || [],
+    keywords: data => data.thesisDetail?.keywords || [],
+    contexts: data => data.thesisDetail?.contexts || [],
+    thesisSchemaAuthors: data => data.thesisDetail?.schemaAuthors || [],
+    thesisSchemaSameAs: data => data.thesisDetail?.sourceUrl || "",
+    thesisSchemaKeywords: data => data.thesisDetail?.keywords || [],
+    thesisSchemaCitation: data => data.thesisDetail?.citationApa || "",
+    tags: () => ["publications", "thesis-detail"]
+  }
+}
+---
+{% include "thesis-detail-body.njk" %}

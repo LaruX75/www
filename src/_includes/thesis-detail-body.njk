@@ -1,0 +1,131 @@
+{% set currentLang = lang or "fi" %}
+{% set isEn = currentLang == "en" %}
+{% set lineLabels = researchProgram.thesisLineLabels or {} %}
+{% set themeLabels = researchProgram.thesisThemeLabels or {} %}
+
+<section class="py-4">
+  <div class="site-shell">
+    <article class="page-content">
+      <div class="card shadow-sm mb-4">
+        <div class="card-body p-4 p-lg-5">
+          <p class="text-uppercase small text-muted mb-2">{{ "Thesis" if isEn else "Opinnäyte" }}</p>
+          <h1 class="display-6 fw-bold mb-3">{{ thesisDetail.title }}</h1>
+          {% if thesisDetail.authorLine %}
+          <p class="lead text-muted mb-3">{{ thesisDetail.authorLine }}</p>
+          {% endif %}
+          <div class="d-flex flex-wrap gap-2">
+            <span class="badge text-bg-primary">{{ thesisDetail.thesisTypeLabel }}</span>
+            {% if thesisDetail.year %}
+            <span class="badge text-bg-light border text-dark">{{ thesisDetail.year }}</span>
+            {% endif %}
+            {% if thesisDetail.researchLine %}
+            <span class="badge text-bg-light border text-dark">{{ lineLabels[thesisDetail.researchLine] or thesisDetail.researchLine }}</span>
+            {% endif %}
+            {% for theme in thesisDetail.researchThemes %}
+            <span class="badge text-bg-light border text-secondary">{{ themeLabels[theme] or theme }}</span>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-8">
+          {% if thesisDetail.abstractParagraphs.length %}
+          <div class="card shadow-sm mb-4">
+            <div class="card-body p-4">
+              <h2 class="h4 mb-3">{{ "Abstract" if isEn else "Tiivistelmä" }}</h2>
+              <div class="content-prose">
+                {% for paragraph in thesisDetail.abstractParagraphs %}
+                <p>{{ paragraph }}</p>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          {% endif %}
+
+          {% if thesisDetail.citationApa %}
+          <div class="card shadow-sm mb-4">
+            <div class="card-body p-4">
+              <h2 class="h5 mb-3">{{ "Citation" if isEn else "Lähdeviite" }}</h2>
+              <p class="small font-monospace mb-0">{{ thesisDetail.citationApa }}</p>
+            </div>
+          </div>
+          {% endif %}
+
+          <div class="card shadow-sm">
+            <div class="card-body p-4">
+              <h2 class="h5 mb-3">{{ "Original source" if isEn else "Alkuperäinen lähde" }}</h2>
+              <p class="mb-3">
+                {{ "This local detail page works as a metadata, abstract, and discovery landing page. The original thesis remains in OuluREPO." if isEn else "Sivuston detail-sivu toimii opinnäytteen metadata-, tiivistelmä- ja hakulaskeutumissivuna. Varsinainen julkaisu sijaitsee OuluREPOssa." }}
+              </p>
+              <a
+                class="btn btn-primary rounded-pill px-4"
+                href="{{ thesisDetail.sourceUrl }}"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {{ "Open original thesis in OuluREPO" if isEn else "Avaa alkuperäinen opinnäyte OuluREPOssa" }}
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <aside class="col-lg-4">
+          <div class="card shadow-sm mb-4">
+            <div class="card-body p-4">
+              <h2 class="h5 mb-3">{{ "Details" if isEn else "Perustiedot" }}</h2>
+              <dl class="row small mb-0">
+                {% if thesisDetail.authorLine %}
+                <dt class="col-sm-4">{{ "Author" if isEn else "Tekijä" }}</dt>
+                <dd class="col-sm-8">{{ thesisDetail.authorLine }}</dd>
+                {% endif %}
+                {% if thesisDetail.year %}
+                <dt class="col-sm-4">{{ "Year" if isEn else "Vuosi" }}</dt>
+                <dd class="col-sm-8">{{ thesisDetail.year }}</dd>
+                {% endif %}
+                {% if thesisDetail.thesisTypeLabel %}
+                <dt class="col-sm-4">{{ "Type" if isEn else "Tyyppi" }}</dt>
+                <dd class="col-sm-8">{{ thesisDetail.thesisTypeLabel }}</dd>
+                {% endif %}
+                {% if thesisDetail.languageLabel %}
+                <dt class="col-sm-4">{{ "Language" if isEn else "Kieli" }}</dt>
+                <dd class="col-sm-8">{{ thesisDetail.languageLabel }}</dd>
+                {% endif %}
+                {% if thesisDetail.researchLine %}
+                <dt class="col-sm-4">{{ "Research line" if isEn else "Tutkimuslinja" }}</dt>
+                <dd class="col-sm-8">{{ lineLabels[thesisDetail.researchLine] or thesisDetail.researchLine }}</dd>
+                {% endif %}
+              </dl>
+            </div>
+          </div>
+
+          {% if thesisDetail.keywords.length %}
+          <div class="card shadow-sm mb-4">
+            <div class="card-body p-4">
+              <h2 class="h5 mb-3">{{ "Keywords" if isEn else "Avainsanat" }}</h2>
+              <div class="d-flex flex-wrap gap-2">
+                {% for keyword in thesisDetail.keywords %}
+                <span class="badge text-bg-light border text-dark">{{ keyword }}</span>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          {% endif %}
+
+          {% if thesisDetail.researchThemes.length %}
+          <div class="card shadow-sm">
+            <div class="card-body p-4">
+              <h2 class="h5 mb-3">{{ "Research themes" if isEn else "Tutkimusteemat" }}</h2>
+              <div class="d-flex flex-wrap gap-2">
+                {% for theme in thesisDetail.researchThemes %}
+                <span class="badge text-bg-light border text-secondary">{{ themeLabels[theme] or theme }}</span>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          {% endif %}
+        </aside>
+      </div>
+    </article>
+  </div>
+</section>

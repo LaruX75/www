@@ -200,6 +200,10 @@ describe("feed-spesifiset validoinnit", { skip: !ALL_EXIST && "aja build ensin" 
         `theses.json:ssa vaara contentType: ${item.contentType} (${item.url})`);
       assert.ok(item.thesisType === "masterThesis" || item.thesisType === "bachelorThesis",
         `theses.json:ssa vaara thesisType: ${item.thesisType} (${item.url})`);
+      assert.ok(typeof item.pageUrl === "string" && item.pageUrl.startsWith("/opinnaytteet/"),
+        `theses.json:ssa puuttuu tai on virheellinen pageUrl: ${item.pageUrl} (${item.url})`);
+      assert.equal(item.sourceUrl, item.url,
+        `theses.json:ssa sourceUrl/url mismatch: ${item.sourceUrl} vs ${item.url}`);
     }
   });
 

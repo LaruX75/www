@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { isOfflineFetchMode, readCache, readCacheIfFresh, writeCache } = require('./_apiCache');
 const { loadHiddenIds } = require('./_curatedStubs');
+const { thesisPageUrl } = require('../_utils/thesisIdentity');
 const curatedProgram = require('../curated/research-program.json');
 const curatedThesisMeta = require('../curated/research-thesis-meta.json');
 
@@ -83,12 +84,13 @@ function buildApaCitation(thesis) {
 }
 
 function withCitation(thesis) {
-    const meta = CURATED_THESIS_META[thesis.link] || {};
-    return {
-        ...thesis,
-        citationApa: buildApaCitation(thesis),
-        citationStyle: 'APA 7',
-        researchLine: meta.researchLine || null,
+  const meta = CURATED_THESIS_META[thesis.link] || {};
+  return {
+    ...thesis,
+    pageUrl: thesisPageUrl(thesis.link),
+    citationApa: buildApaCitation(thesis),
+    citationStyle: 'APA 7',
+    researchLine: meta.researchLine || null,
         researchExcluded: meta.excludeFromResearchProgram === true,
         researchThemes: Array.isArray(meta.themes) ? meta.themes.filter(Boolean) : [],
         researchAudience: Array.isArray(meta.audience) ? meta.audience.filter(Boolean) : [],

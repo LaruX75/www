@@ -4,7 +4,9 @@
  * HUOM: Toisin kuin muut JSON-endpointit, theses ei kayta
  * `toPublicContentRecord`:ia. Syy: opinnaytteet eivat ole Eleventy-
  * collection-itemeja vaan async dataa src/_data/theses.js:sta. Jokaisella
- * on ulkoinen `link` (OuluREPO-URL), ei sisaista sivustou URL:ia.
+ * on ulkoinen OuluREPO-lahde. Archive-UI kayttaa T3:sta alkaen local
+ * `pageUrl`:ia ensisijaisena detail-linkkina, mutta `url` pidetaan edelleen
+ * OuluREPO-osoitteena yhteensopivuuden vuoksi.
  *
  * Serializer on kuitenkin muotoilullisesti yhdenmukainen: sama version/
  * generatedAt/count/items-kuori kuin muissa endpointeissa.
@@ -61,6 +63,8 @@ function toThesisRecord(t, lang, source) {
   return omitEmpty({
     id: link,
     url: link,
+    pageUrl: pickString(t?.pageUrl),
+    sourceUrl: link,
     title,
     description: pickString(t?.abstract),
     year,
