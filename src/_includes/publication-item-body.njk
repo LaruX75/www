@@ -1,0 +1,124 @@
+{% set detail = publicationDetail or {} %}
+{% set isEnglish = (lang or "fi") == "en" %}
+{% set externalHref = detail.externalUrl or detail.doiUrl or "" %}
+{% set openAccessValue = detail.openAccess or 0 %}
+{% set citationCount = detail.citationCount or 0 %}
+
+<section class="content-detail-hero content-detail-hero--writing py-5 border-bottom">
+  <div class="site-shell">
+    <div class="content-detail-hero-grid content-detail-hero-grid--single">
+      <div class="content-detail-copy">
+        <p class="content-detail-eyebrow mb-2">{{ "Scientific publication" if isEnglish else "Tieteellinen julkaisu" }}</p>
+        <h1 class="content-detail-title mb-3">{{ title }}</h1>
+        {% if detail.journal or detail.type %}
+          <p class="content-detail-lead mb-3">
+            {{ detail.journal or detail.publisher or "" }}
+            {% if detail.journal and detail.type %} · {% endif %}
+            {{ detail.type or "" }}
+          </p>
+        {% endif %}
+        <div class="content-detail-meta" aria-label="{{ 'Publication metadata' if isEnglish else 'Julkaisun metatiedot' }}">
+          {% if detail.year %}<span class="badge text-bg-light text-dark border">{{ detail.year }}</span>{% endif %}
+          {% if detail.typeCode %}<span class="badge text-bg-secondary">{{ detail.typeCode }}</span>{% endif %}
+          {% if detail.peerReviewed %}<span class="badge text-bg-primary">{{ "Peer-reviewed" if isEnglish else "Vertaisarvioitu" }}</span>{% endif %}
+          {% if openAccessValue %}<span class="badge text-bg-success">{{ "Open access" if isEnglish else "Avoin saatavuus" }}</span>{% endif %}
+          {% if citationCount %}<span class="badge text-bg-warning text-dark">{{ citationCount }} {{ "citations" if isEnglish else "viittausta" }}</span>{% endif %}
+        </div>
+        <div class="content-detail-actions mt-3">
+          <a href="{{ detail.archiveUrl or '/julkaisut/' }}" class="btn btn-outline-primary rounded-pill px-4">
+            {{ "Back to publications" if isEnglish else "Takaisin julkaisuihin" }}
+          </a>
+          {% if externalHref %}
+          <a href="{{ externalHref }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">
+            {{ "Open source" if isEnglish else "Avaa lähde" }}
+            <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i>
+          </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content-detail-body-section py-5">
+  <div class="site-shell">
+    <div class="row g-4">
+      <article class="col-lg-8">
+        <div class="content-detail-card">
+          <p class="content-detail-card-kicker">{{ "Abstract / summary" if isEnglish else "Tiivistelmä / kuvaus" }}</p>
+          {% if detail.description %}
+            <div class="content-prose">
+              <p>{{ detail.description }}</p>
+            </div>
+          {% else %}
+            <p class="text-muted mb-0">{{ "No abstract available." if isEnglish else "Tiivistelmää ei ole saatavilla." }}</p>
+          {% endif %}
+        </div>
+
+        {% if detail.citation %}
+        <div class="content-detail-card mt-4">
+          <p class="content-detail-card-kicker">{{ "Citation" if isEnglish else "Lähdeviite" }}</p>
+          <p class="mb-2"><span class="badge text-bg-light text-dark border">{{ detail.citationStyle or "APA 7" }}</span></p>
+          <p class="mb-0">{{ detail.citation }}</p>
+        </div>
+        {% endif %}
+      </article>
+
+      <aside class="col-lg-4">
+        <div class="content-detail-side-card content-detail-meta-card mb-4">
+          <p class="content-detail-card-kicker">{{ "Publication details" if isEnglish else "Julkaisun tiedot" }}</p>
+          <dl class="content-detail-definition-list mb-0">
+            {% if detail.authors %}
+            <div>
+              <dt>{{ "Authors" if isEnglish else "Tekijät" }}</dt>
+              <dd>{{ detail.authors }}</dd>
+            </div>
+            {% endif %}
+            {% if detail.journal %}
+            <div>
+              <dt>{{ "Venue" if isEnglish else "Julkaisukanava" }}</dt>
+              <dd>{{ detail.journal }}</dd>
+            </div>
+            {% endif %}
+            {% if detail.type %}
+            <div>
+              <dt>{{ "Type" if isEnglish else "Tyyppi" }}</dt>
+              <dd>{{ detail.type }}{% if detail.typeCode %} ({{ detail.typeCode }}){% endif %}</dd>
+            </div>
+            {% endif %}
+            {% if detail.doi %}
+            <div>
+              <dt>DOI</dt>
+              <dd><a href="{{ detail.doiUrl or externalHref }}" target="_blank" rel="noopener noreferrer">{{ detail.doi }}</a></dd>
+            </div>
+            {% endif %}
+            {% if detail.volume or detail.issue or detail.pages %}
+            <div>
+              <dt>{{ "Publication info" if isEnglish else "Julkaisutiedot" }}</dt>
+              <dd>
+                {% if detail.volume %}{{ "Vol." if isEnglish else "Vuosikerta" }} {{ detail.volume }}{% endif %}
+                {% if detail.issue %}{% if detail.volume %}, {% endif %}{{ "No." if isEnglish else "Numero" }} {{ detail.issue }}{% endif %}
+                {% if detail.pages %}{% if detail.volume or detail.issue %}, {% endif %}{{ detail.pages }}{% endif %}
+              </dd>
+            </div>
+            {% endif %}
+            {% if detail.jufoLevel %}
+            <div>
+              <dt>JUFO</dt>
+              <dd>{{ detail.jufoLevel }}</dd>
+            </div>
+            {% endif %}
+            {% if detail.researchLine %}
+            <div>
+              <dt>{{ "Research line" if isEnglish else "Tutkimuslinja" }}</dt>
+              <dd>{{ detail.researchLine }}</dd>
+            </div>
+            {% endif %}
+          </dl>
+        </div>
+
+        {% include "content-context-sidebar.njk" %}
+      </aside>
+    </div>
+  </div>
+</section>

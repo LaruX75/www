@@ -3,6 +3,12 @@ const opinionRoles = require("../_data/opinionRoles");
 const writingRoles = require("../_data/writingRoles");
 const { resolveContexts } = require("../_data/contentContext");
 
+function resolveCanonicalRedirect(data) {
+  const redirectsByUrl = data?.publicationDetailPages?.manualRedirectsByFromUrl || {};
+  const pageUrl = data?.page?.url || "";
+  return redirectsByUrl[pageUrl] || null;
+}
+
 function toArray(value) {
   if (Array.isArray(value)) {
     return value.filter(Boolean);
@@ -163,9 +169,16 @@ module.exports = {
   lang: "fi",
   eleventyComputed: {
     layout: (data) => {
+      const canonicalRedirect = resolveCanonicalRedirect(data);
+      if (canonicalRedirect) {
+        return "redirect-page.njk";
+      }
       const writingTypes = new Set(["puhe", "mielipide", "kolumni", "lausunto", "blogikirjoitus"]);
       return writingTypes.has(data.type) ? "writing-post.njk" : "page.njk";
     },
+    eleventyExcludeFromCollections: (data) => Boolean(resolveCanonicalRedirect(data)),
+    canonicalRedirect: (data) => resolveCanonicalRedirect(data),
+    robots: (data) => (resolveCanonicalRedirect(data) ? "noindex, follow" : data.robots),
     forum: (data) => resolveForum(data),
     speechContext: (data) => resolveSpeechContext(data),
     opinionRoles: (data) => resolveOpinionRoles(data),
