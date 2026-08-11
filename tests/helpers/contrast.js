@@ -1,7 +1,10 @@
 export const BUTTON_AUDIT_PAGES = [
     { name: 'Homepage', path: '/' },
     { name: 'Publications', path: '/julkaisut/' },
+    { name: 'Publications (EN)', path: '/en/publications/' },
     { name: 'Theses', path: '/opinnaytteet/' },
+    { name: 'Writings', path: '/kirjoitukset/' },
+    { name: 'Writings (EN)', path: '/en/writings/' },
     { name: 'Presentations', path: '/esitykset/', scopeSelector: 'main' },
     { name: 'Presentations (EN)', path: '/en/presentations/', scopeSelector: 'main' },
     { name: 'CV', path: '/cv/' },

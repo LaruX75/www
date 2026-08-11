@@ -23,57 +23,13 @@ schemaAbout:
     description: "Kolumnimuotoiset tekstit ja vierailut ulkoisissa blogeissa."
 ---
 {% import "ui.njk" as ui %}
-{% set statementItems = [] %}
-{% for item in (collections.publications or []) %}
-  {% if item.data.type == "lausunto" %}
-    {% set _ = (statementItems.push(item), null) %}
-  {% endif %}
-{% endfor %}
-{% set councilSpeechItems = [] %}
-{% set publicSpeechItems = [] %}
-{% for item in (collections.pub_puhe or []) %}
-  {% set speechContext = item.data.speechContext or "" %}
-  {% set forums = item.data.forum or [] %}
-  {% if speechContext %}
-    {% set isCouncilSpeech = speechContext == "valtuusto" or speechContext == "kyselytunti" %}
-  {% else %}
-    {% set isCouncilSpeech = item.data.event == "Oulun kaupunginvaltuusto" or forums.indexOf("Kaupunginvaltuusto") != -1 %}
-  {% endif %}
-  {% if isCouncilSpeech %}
-    {% set _ = (councilSpeechItems.push(item), null) %}
-  {% else %}
-    {% set _ = (publicSpeechItems.push(item), null) %}
-  {% endif %}
-{% endfor %}
-{% set latestSpeechHighlights = (councilSpeechItems or []).slice(0, 3) %}
-{% set latestPublicSpeechHighlights = (publicSpeechItems or []).slice(0, 3) %}
-{% set latestInitiativeHighlights = (collections.politics or []).slice(0, 3) %}
-{% set latestBlogHighlights = (collections.blog or []).slice(0, 3) %}
-{% set latestStatementHighlights = statementItems.slice(0, 3) %}
-{% set latestOpinionHighlights = (collections.pub_mielipide or []).slice(0, 3) %}
-{% set latestColumnHighlights = (collections.pub_kolumni or []).slice(0, 3) %}
-{% set latestExpertOpinionHighlights = ((collections.pub_mielipide_expert or []) or []).slice(0, 3) %}
-{% set speechCount = (collections.pub_puhe or []) | length %}
-{% set councilSpeechCount = councilSpeechItems | length %}
-{% set publicSpeechCount = publicSpeechItems | length %}
-{% set initiativeCount = (collections.politics or []) | length %}
-{% set statementCount = statementItems | length %}
-{% set blogCount = (collections.blog or []) | length %}
-{% set opinionCount = (collections.pub_mielipide or []) | length %}
-{% set columnCount = (collections.pub_kolumni or []) | length %}
-{% set politicalOpinionCount = (collections.pub_mielipide_political or []) | length %}
-{% set expertOpinionCount = (collections.pub_mielipide_expert or []) | length %}
-{% set hybridOpinionItems = [] %}
-{% for item in (collections.pub_mielipide or []) %}
-  {% set roles = item.data.opinionRoles or item.data.writingRoles or [] %}
-  {% if roles.indexOf("political") != -1 and roles.indexOf("expert") != -1 %}
-    {% set _ = (hybridOpinionItems.push(item), null) %}
-  {% endif %}
-{% endfor %}
-{% set hybridOpinionCount = hybridOpinionItems | length %}
-{% set decisionRouteCount = councilSpeechCount + initiativeCount + statementCount %}
-{% set commentaryRouteCount = opinionCount + columnCount + blogCount %}
-{% set expertRouteCount = statementCount + expertOpinionCount + publicSpeechCount %}
+{% set pageModel = finnishWritingsPage %}
+{% set blogCount = pageModel.blogCount %}
+{% set opinionCount = pageModel.opinionCount %}
+{% set columnCount = pageModel.columnCount %}
+{% set politicalOpinionCount = pageModel.politicalOpinionCount %}
+{% set expertOpinionCount = pageModel.expertOpinionCount %}
+{% set hybridOpinionCount = pageModel.hybridOpinionCount %}
 
 <section class="kynasta-hero py-3 py-lg-4">
   <div class="site-shell">
@@ -106,7 +62,7 @@ schemaAbout:
     <div class="card shadow-sm">
       <div class="card-header bg-transparent d-flex align-items-center justify-content-between kynasta-section-header">
         <h2 class="h4 mb-0"><i class="bi bi-chat-square-quote-fill me-2"></i>Mielipidekirjoitukset</h2>
-        <span class="badge kynasta-section-count">{{ collections.pub_mielipide.length }}</span>
+        <span class="badge kynasta-section-count">{{ opinionCount }}</span>
       </div>
       <div class="card-body p-0">
         <div class="px-3 pt-3 pb-0">
@@ -211,29 +167,29 @@ schemaAbout:
             </thead>
             <tbody id="mielipiteet-tbody">
               {# Progressive enhancement: SSR renderoi 5 uusinta mielipidekirjoitusta.
-                 JS korvaa avausjoukon KAIKILLA {{ collections.pub_mielipide.length }} kirjoituksella suodattimin. #}
-              {% for pub in (collections.pub_mielipide | sort(true, false, "date") | take(5)) %}
-              {% set externalUrl = pub.data.url or pub.url %}
+                 JS korvaa avausjoukon KAIKILLA {{ opinionCount }} kirjoituksella canonical writings -datasetistä. #}
+              {% for pub in pageModel.openingOpinionItems %}
+              {% set externalUrl = pub.url %}
               <tr>
                 <td class="text-center text-nowrap small">{{ pub.date | dateFormat }}</td>
                 <td>
-                  <a href="{{ externalUrl }}"{% if pub.data.url %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ pub.data.title }}</a>
+                  <a href="{{ externalUrl }}"{% if pub.isExternal %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ pub.title }}</a>
                 </td>
                 <td class="small text-muted">
-                  {% if pub.data.description %}{{ pub.data.description | truncate(150) }}{% endif %}
-                  {% if pub.data.publication %}<div class="small fst-italic mt-1">{{ pub.data.publication }}</div>{% endif %}
+                  {% if pub.description %}{{ pub.description | truncate(150) }}{% endif %}
+                  {% if pub.publication %}<div class="small fst-italic mt-1">{{ pub.publication }}</div>{% endif %}
                 </td>
                 <td class="small">
-                  {% for cat in (pub.data.categories or []) %}{% if loop.index0 < 3 %}<span class="badge text-bg-secondary me-1">{{ cat }}</span>{% endif %}{% endfor %}
+                  {% for cat in (pub.categories or []) %}{% if loop.index0 < 3 %}<span class="badge text-bg-secondary me-1">{{ cat }}</span>{% endif %}{% endfor %}
                 </td>
-                <td class="text-center"><a href="{{ externalUrl }}"{% if pub.data.url %} target="_blank" rel="noopener noreferrer"{% endif %} class="btn btn-outline-primary btn-sm rounded-pill px-2" aria-label="{{ pub.data.title | escape }}"><i class="bi bi-arrow-right"></i></a></td>
+                <td class="text-center"><a href="{{ externalUrl }}"{% if pub.isExternal %} target="_blank" rel="noopener noreferrer"{% endif %} class="btn btn-outline-primary btn-sm rounded-pill px-2" aria-label="{{ pub.title | escape }}"><i class="bi bi-arrow-right"></i></a></td>
               </tr>
               {% endfor %}
             </tbody>
           </table>
         </div>
       </div>
-      {{ ui.paginationBar("mielipiteet-info", "mielipiteet-pagination", { extraClass: "card-footer bg-transparent kynasta-table-pager" }) }}
+      {{ ui.paginationBar("mielipiteet-info", "mielipiteet-pagination", { label: "Mielipidekirjoitusten sivutus", extraClass: "card-footer bg-transparent kynasta-table-pager" }) }}
     </div>
   </div>
 </section>
@@ -245,7 +201,7 @@ schemaAbout:
     <div class="card shadow-sm">
       <div class="card-header bg-transparent d-flex align-items-center justify-content-between kynasta-section-header">
         <h2 class="h4 mb-0"><i class="bi bi-pen-fill me-2"></i>Kolumnit ja blogivierailut</h2>
-        <span class="badge kynasta-section-count">{{ collections.pub_kolumni.length }}</span>
+        <span class="badge kynasta-section-count">{{ columnCount }}</span>
       </div>
       <div class="card-body p-0">
         {# ---- Suodatuspalkki ---- #}
@@ -307,28 +263,28 @@ schemaAbout:
             </thead>
             <tbody id="kolumnit-tbody">
               {# Progressive enhancement: SSR renderoi 5 uusinta kolumnia. #}
-              {% for pub in (collections.pub_kolumni | sort(true, false, "date") | take(5)) %}
-              {% set externalUrl = pub.data.url or pub.url %}
+              {% for pub in pageModel.openingColumnItems %}
+              {% set externalUrl = pub.url %}
               <tr>
                 <td class="text-center text-nowrap small">{{ pub.date | dateFormat }}</td>
                 <td>
-                  <a href="{{ externalUrl }}"{% if pub.data.url %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ pub.data.title }}</a>
+                  <a href="{{ externalUrl }}"{% if pub.isExternal %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ pub.title }}</a>
                 </td>
                 <td class="small text-muted">
-                  {% if pub.data.description %}{{ pub.data.description | truncate(150) }}{% endif %}
-                  {% if pub.data.publication %}<div class="small fst-italic mt-1">{{ pub.data.publication }}</div>{% endif %}
+                  {% if pub.description %}{{ pub.description | truncate(150) }}{% endif %}
+                  {% if pub.publication %}<div class="small fst-italic mt-1">{{ pub.publication }}</div>{% endif %}
                 </td>
                 <td class="small">
-                  {% for cat in (pub.data.categories or []) %}{% if loop.index0 < 3 %}<span class="badge text-bg-secondary me-1">{{ cat }}</span>{% endif %}{% endfor %}
+                  {% for cat in (pub.categories or []) %}{% if loop.index0 < 3 %}<span class="badge text-bg-secondary me-1">{{ cat }}</span>{% endif %}{% endfor %}
                 </td>
-                <td class="text-center"><a href="{{ externalUrl }}"{% if pub.data.url %} target="_blank" rel="noopener noreferrer"{% endif %} class="btn btn-outline-primary btn-sm rounded-pill px-2" aria-label="{{ pub.data.title | escape }}"><i class="bi bi-arrow-right"></i></a></td>
+                <td class="text-center"><a href="{{ externalUrl }}"{% if pub.isExternal %} target="_blank" rel="noopener noreferrer"{% endif %} class="btn btn-outline-primary btn-sm rounded-pill px-2" aria-label="{{ pub.title | escape }}"><i class="bi bi-arrow-right"></i></a></td>
               </tr>
               {% endfor %}
             </tbody>
           </table>
         </div>
       </div>
-      {{ ui.paginationBar("kolumnit-info", "kolumnit-pagination", { extraClass: "card-footer bg-transparent kynasta-table-pager" }) }}
+      {{ ui.paginationBar("kolumnit-info", "kolumnit-pagination", { label: "Kolumnien sivutus", extraClass: "card-footer bg-transparent kynasta-table-pager" }) }}
     </div>
   </div>
 </section>
@@ -347,7 +303,7 @@ schemaAbout:
     <div class="card shadow-sm">
       <div class="card-header bg-transparent d-flex align-items-center justify-content-between kynasta-section-header">
         <h2 class="h4 mb-0"><i class="bi bi-journal-richtext me-2"></i>Blogi</h2>
-        <span class="badge kynasta-section-count">{{ collections.blog.length }}</span>
+        <span class="badge kynasta-section-count">{{ blogCount }}</span>
       </div>
       <div class="card-body p-0">
         {# ---- Suodatuspalkki ---- #}
@@ -398,17 +354,17 @@ schemaAbout:
             </thead>
             <tbody id="blog-tbody">
               {# Progressive enhancement: SSR renderoi 5 uusinta blog-kirjoitusta. #}
-              {% for post in (collections.blog | sort(true, false, "date") | take(5)) %}
+              {% for post in pageModel.openingBlogItems %}
               <tr>
                 <td class="text-center text-nowrap small">{{ post.date | dateFormat }}</td>
                 <td>
-                  <a href="{{ post.url }}">{{ post.data.title }}</a>
+                  <a href="{{ post.pageUrl or post.url }}">{{ post.title }}</a>
                 </td>
-                <td class="small text-muted">{% if post.data.description %}{{ post.data.description | truncate(150) }}{% endif %}</td>
+                <td class="small text-muted">{% if post.description %}{{ post.description | truncate(150) }}{% endif %}</td>
                 <td class="small">
-                  {% for cat in (post.data.categories or []) %}{% if loop.index0 < 3 %}<span class="badge text-bg-secondary me-1">{{ cat }}</span>{% endif %}{% endfor %}
+                  {% for cat in (post.categories or []) %}{% if loop.index0 < 3 %}<span class="badge text-bg-secondary me-1">{{ cat }}</span>{% endif %}{% endfor %}
                 </td>
-                <td class="text-center"><a href="{{ post.url }}" class="btn btn-outline-primary btn-sm rounded-pill px-2" aria-label="{{ post.data.title | escape }}"><i class="bi bi-arrow-right"></i></a></td>
+                <td class="text-center"><a href="{{ post.pageUrl or post.url }}" class="btn btn-outline-primary btn-sm rounded-pill px-2" aria-label="{{ post.title | escape }}"><i class="bi bi-arrow-right"></i></a></td>
               </tr>
               {% endfor %}
             </tbody>
@@ -418,7 +374,7 @@ schemaAbout:
       <div class="card-footer bg-transparent site-pagination-bar site-pagination-bar--bottom kynasta-table-pager">
         <small id="blog-info" class="site-pagination-info text-muted"></small>
         <div class="d-flex align-items-center gap-3">
-          <nav aria-label="Sivutus">
+          <nav aria-label="Blogin sivutus">
             <ul id="blog-pagination" class="pagination pagination-sm mb-0 flex-wrap site-pag"></ul>
           </nav>
           <a href="/blogi/" class="btn btn-outline-primary btn-sm rounded-pill">Kaikki blogipostaukset</a>
@@ -430,8 +386,8 @@ schemaAbout:
 
 <section class="py-4">
   <div class="site-shell">
-    <aside class="kynasta-crosslinks">
-      <h2>Muualla sivustolla</h2>
+    <nav class="kynasta-crosslinks" aria-labelledby="kynasta-crosslinks-heading">
+      <h2 id="kynasta-crosslinks-heading">Muualla sivustolla</h2>
       <ul>
         <li>
           <a href="/kynasta/">Kynästä-hub</a> — kaikki kirjoitukset, puheet ja kannanotot yhdessä paikassa
@@ -442,7 +398,7 @@ schemaAbout:
         </li>
         <li><a href="/teemat/">Teemaprofiilit</a> — kokoaa saman aiheen (esim. tekoäly, palveluverkko) kaikki tekstit ja puheet yhteen</li>
       </ul>
-    </aside>
+    </nav>
   </div>
 </section>
 
@@ -532,15 +488,6 @@ function restoreArchiveFilterFromUrl(select, value) {
   }
 }
 
-function compareCouncilMeetings(a, b) {
-  const [aNumber, aYear] = String(a).split('/').map(Number);
-  const [bNumber, bYear] = String(b).split('/').map(Number);
-  if (Number.isFinite(aNumber) && Number.isFinite(aYear) && Number.isFinite(bNumber) && Number.isFinite(bYear)) {
-    return (bYear - aYear) || (bNumber - aNumber);
-  }
-  return String(a).localeCompare(String(b), 'fi');
-}
-
 function syncArchiveSortButton(button, isActive, direction, columnLabel) {
   if (!button) return;
   const directionLabel = columnLabel === 'Päivämäärä'
@@ -605,50 +552,6 @@ function syncArchiveSortButton(button, isActive, direction, columnLabel) {
       focusArchiveAccordionTitle(wrapper);
     });
   });
-
-  const parseJson = (id) => {
-    const el = document.getElementById(id);
-    if (!el) return [];
-    try { return JSON.parse(el.textContent || '[]'); } catch (_) { return []; }
-  };
-  const MAX_SLIDESHARE_DATE = '2020-12-31';
-  const isSlideshareItem = (item) => {
-    const src = String(item?.source || '').toLowerCase();
-    const type = String(item?.type || '').toLowerCase();
-    const url = String(item?.url || '').toLowerCase();
-    return src === 'slideshare' || type.includes('slideshare') || url.includes('slideshare.net');
-  };
-  const toIsoDate = (value) => {
-    if (value === null || value === undefined) return null;
-    const raw = String(value).trim();
-    if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) return raw;
-    const parsed = new Date(raw);
-    if (Number.isNaN(parsed.getTime())) return null;
-    const year = parsed.getUTCFullYear();
-    const month = String(parsed.getUTCMonth() + 1).padStart(2, '0');
-    const day = String(parsed.getUTCDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
-  };
-  const extractSlideshareDateFromThumbnail = (thumbnailUrl) => {
-    if (!thumbnailUrl) return null;
-    const match = String(thumbnailUrl).match(/-(\d{6})\d{6}-thumbnail/i);
-    if (!match) return null;
-    const yymmdd = match[1];
-    const yy = Number.parseInt(yymmdd.slice(0, 2), 10);
-    const mm = Number.parseInt(yymmdd.slice(2, 4), 10);
-    const dd = Number.parseInt(yymmdd.slice(4, 6), 10);
-    if (!Number.isFinite(yy) || !Number.isFinite(mm) || !Number.isFinite(dd)) return null;
-    if (mm < 1 || mm > 12 || dd < 1 || dd > 31) return null;
-    const year = yy >= 90 ? 1900 + yy : 2000 + yy;
-    return `${year}-${String(mm).padStart(2, '0')}-${String(dd).padStart(2, '0')}`;
-  };
-  const normalizeSlidesharePresentation = (item) => {
-    if (!isSlideshareItem(item)) return item;
-    let iso = toIsoDate(item?.date) || extractSlideshareDateFromThumbnail(item?.thumbnail);
-    if (!iso) return item;
-    if (iso > MAX_SLIDESHARE_DATE) iso = MAX_SLIDESHARE_DATE;
-    return { ...item, date: iso };
-  };
   const cleanMobileLabel = (value) => String(value || '')
     .replace(/Ei lajittelua/gi, '')
     .replace(/Pienin ensin/gi, '')
@@ -682,418 +585,6 @@ function syncArchiveSortButton(button, isActive, direction, columnLabel) {
   document.querySelectorAll('.pub-table tbody').forEach((tbody) => {
     mobileTableObserver.observe(tbody, { childList: true, subtree: true });
   });
-  const yearFromDate = (value) => {
-    if (value === null || value === undefined) return null;
-    if (typeof value === 'number' && value >= 1900 && value <= 2100) return value;
-    const str = String(value).trim();
-    if (!str) return null;
-    const yearMatch = str.match(/\b(19|20)\d{2}\b/);
-    if (yearMatch) return Number(yearMatch[0]);
-    const d = new Date(str);
-    return Number.isNaN(d.getTime()) ? null : d.getFullYear();
-  };
-
-  const mielipiteet = parseJson('mielipiteet-data');
-  const lausunnot = parseJson('lausunnot-data');
-  const kolumnit = parseJson('kolumnit-data');
-  const aloitteet = parseJson('aloitteet-data');
-  const puheet = parseJson('puheet-data');
-  const blogi = parseJson('blog-data');
-
-  const counts = {
-    mielipiteet: mielipiteet.length,
-    lausunnot: lausunnot.length,
-    kolumnit: kolumnit.length,
-    aloitteet: aloitteet.length,
-    puheet: puheet.length,
-    blogi: blogi.length
-  };
-
-  const setText = (id, value) => {
-    const el = document.getElementById(id);
-    if (el) el.textContent = String(value);
-  };
-  setText('kpi-mielipiteet', counts.mielipiteet);
-  setText('kpi-lausunnot', counts.lausunnot);
-  setText('kpi-kolumnit', counts.kolumnit);
-  setText('kpi-aloitteet', counts.aloitteet);
-  setText('kpi-puheet', counts.puheet);
-  setText('kpi-blogi', counts.blogi);
-
-  const yearly = {};
-  const addYear = (arr, key) => {
-    arr.forEach((item) => {
-      const y = key === 'year' ? Number(item.year) : yearFromDate(item.date);
-      if (!y || y < 1990 || y > 2100) return;
-      if (!yearly[y]) yearly[y] = { mielipiteet: 0, lausunnot: 0, kolumnit: 0, aloitteet: 0, puheet: 0, blogi: 0 };
-      yearly[y][key] += 1;
-    });
-  };
-
-  addYear(mielipiteet, 'mielipiteet');
-  addYear(lausunnot, 'lausunnot');
-  addYear(kolumnit, 'kolumnit');
-  addYear(aloitteet, 'aloitteet');
-  addYear(puheet, 'puheet');
-  addYear(blogi, 'blogi');
-
-  const years = Object.keys(yearly).map(Number).sort((a, b) => a - b);
-
-  const labels = ['Valtuustoaloitteet', 'Blogi', 'Kolumnit', 'Lausunnot', 'Mielipiteet', 'Puheet'];
-  const values = [
-    counts.aloitteet,
-    counts.blogi,
-    counts.kolumnit,
-    counts.lausunnot,
-    counts.mielipiteet,
-    counts.puheet
-  ];
-  const palette = ['#fd7e14', '#6610f2', '#20c997', '#495057', '#0d6efd', '#dc3545'];
-
-  function drawCharts() {
-    if (typeof Chart === 'undefined') return false;
-
-    const donutCanvas = document.getElementById('kynasta-summary-donut');
-    if (donutCanvas) {
-      window._kynastaDonutChart = new Chart(donutCanvas, {
-        type: 'doughnut',
-        data: {
-          labels,
-          datasets: [{ data: values, backgroundColor: palette, borderWidth: 1 }]
-        },
-        options: {
-          plugins: { legend: { position: 'bottom' } },
-          maintainAspectRatio: false
-        }
-      });
-    }
-
-    const trendCanvas = document.getElementById('kynasta-summary-trend');
-    if (trendCanvas && years.length > 0) {
-      const makeSeries = (name, color, field) => ({
-        label: name,
-        data: years.map((y) => yearly[y][field] || 0),
-        backgroundColor: color,
-        borderColor: color,
-        borderWidth: 1
-      });
-      window._kynastaTrendChart = new Chart(trendCanvas, {
-        type: 'bar',
-        data: {
-          labels: years,
-          datasets: [
-            makeSeries('Valtuustoaloitteet', palette[0], 'aloitteet'),
-            makeSeries('Blogi', palette[1], 'blogi'),
-            makeSeries('Kolumnit', palette[2], 'kolumnit'),
-            makeSeries('Lausunnot', palette[3], 'lausunnot'),
-            makeSeries('Mielipiteet', palette[4], 'mielipiteet'),
-            makeSeries('Puheet', palette[5], 'puheet')
-          ]
-        },
-        options: {
-          maintainAspectRatio: false,
-          responsive: true,
-          scales: {
-            x: { stacked: true },
-            y: { stacked: true, beginAtZero: true, ticks: { precision: 0 } }
-          },
-          plugins: {
-            legend: { position: 'bottom' },
-            tooltip: { mode: 'index', intersect: false }
-          }
-        }
-      });
-    }
-    return true;
-  }
-
-  if (!drawCharts()) {
-    let retries = 0;
-    const timer = setInterval(() => {
-      retries += 1;
-      if (drawCharts() || retries > 20) clearInterval(timer);
-    }, 150);
-  }
-
-  // Mobiili-accordion: resize kaaviot kun collapse aukeaa
-  const kynastaCollapseEl = document.getElementById('kynastaChartsDashboard');
-  if (kynastaCollapseEl) {
-    kynastaCollapseEl.addEventListener('shown.bs.collapse', () => {
-      [window._kynastaDonutChart, window._kynastaTrendChart].forEach(c => c && c.resize());
-    });
-    const kynastaToggleBtn = document.querySelector('[data-bs-target="#kynastaChartsDashboard"]');
-    if (kynastaToggleBtn) {
-      kynastaCollapseEl.addEventListener('show.bs.collapse', () => kynastaToggleBtn.setAttribute('aria-expanded', 'true'));
-      kynastaCollapseEl.addEventListener('hide.bs.collapse', () => kynastaToggleBtn.setAttribute('aria-expanded', 'false'));
-    }
-  }
-})();
-
-(function () {
-  const PAGE_SIZE = 5;
-  const dataEl = document.getElementById('pub-data');
-  if (!dataEl) return;
-  const rawData = JSON.parse(dataEl.textContent);
-
-  // Järjestetään oletuksena uusimmasta vanhimpaan (vuosi)
-  let data = [...rawData].sort((a, b) => (b.year || 0) - (a.year || 0));
-  let filteredData = [...data];
-  let currentPage = 1;
-  let sortCol = 'year';
-  let sortDir = -1; // -1 = desc, 1 = asc
-
-  const yearSel = document.getElementById('pub-year');
-  const searchInp = document.getElementById('pub-search');
-  const tbody = document.getElementById('pub-tbody');
-  const info = document.getElementById('pub-info');
-  const pagUl = document.getElementById('pub-pagination');
-
-  // --- Vuosisuodatin ---
-  const years = [...new Set(data.filter(d => d.year > 0).map(d => d.year))].sort((a, b) => b - a);
-  if (yearSel) {
-    years.forEach(y => {
-      const opt = document.createElement('option');
-      opt.value = y;
-      opt.textContent = y;
-      yearSel.appendChild(opt);
-    });
-  }
-
-  // --- Suodatus ---
-  function applyFilters() {
-    const q = searchInp ? searchInp.value.toLowerCase().trim() : '';
-    const yr = yearSel ? yearSel.value : '';
-    filteredData = data.filter(d => {
-      const matchQ = !q ||
-        (d.title || '').toLowerCase().includes(q) ||
-        (d.authors || '').toLowerCase().includes(q) ||
-        (d.journal || '').toLowerCase().includes(q);
-      const matchY = !yr || String(d.year) === yr;
-      return matchQ && matchY;
-    });
-    currentPage = 1;
-    render();
-  }
-
-  // --- Lajittelu ---
-  function sortData(col) {
-    if (sortCol === col) { sortDir *= -1; }
-    else { sortCol = col; sortDir = col === 'year' ? -1 : 1; }
-    filteredData.sort((a, b) => {
-      let av = a[col] ?? '';
-      let bv = b[col] ?? '';
-      if (typeof av === 'string') av = av.toLowerCase();
-      if (typeof bv === 'string') bv = bv.toLowerCase();
-      if (typeof av === 'number' && typeof bv === 'number') return (av - bv) * sortDir;
-      return av.toString().localeCompare(bv.toString(), 'fi') * sortDir;
-    });
-    currentPage = 1;
-    render();
-  }
-
-  function buildApaCitationHtml(d) {
-    const authors = escHtml(formatApaAuthors(d.authors));
-    const year = escHtml(String(d.year || '').trim() || 'n.d.');
-    const title = escHtml((d.title || '').trim() || 'Nimetön julkaisu');
-    const journal = escHtml((d.journal || '').trim());
-    const doi = escHtml((d.doi || '').trim());
-    const url = escHtml((d.url || '').trim());
-    const volume = escHtml((d.volume || '').trim());
-    const issue = escHtml((d.issue || '').trim());
-    const pages = escHtml((d.pages || '').trim());
-
-    let citation = `${authors} (${year}). ${title}.`;
-    if (journal) {
-      citation += ` <span class="apa-journal">${journal}</span>`;
-      if (volume) {
-        citation += `, <span class="apa-volume">${volume}</span>`;
-        if (issue) citation += `(${issue})`;
-      } else if (issue) {
-        citation += ` (${issue})`;
-      }
-      if (pages) citation += `, ${pages}`;
-      citation += '.';
-    }
-    if (doi) citation += ` <span class="apa-url">https://doi.org/${doi}</span>`;
-    else if (url) citation += ` <span class="apa-url">${url}</span>`;
-    return citation.trim();
-  }
-
-  function formatApaAuthors(value) {
-    const raw = String(value || '').trim();
-    if (!raw) return 'Tuntematon tekijä';
-
-    const authors = raw
-      .split(';')
-      .map((author) => author.trim())
-      .filter(Boolean)
-      .map((author) => {
-        if (!author.includes(',')) return author;
-        const [family, ...rest] = author.split(',');
-        const given = rest.join(',').trim();
-        if (!given) return family.trim();
-        const initials = given
-          .split(/\s+/)
-          .filter(Boolean)
-          .map((part) => part
-            .split('-')
-            .filter(Boolean)
-            .map((segment) => `${segment.charAt(0).toUpperCase()}.`)
-            .join('-'))
-          .join(' ');
-        return `${family.trim()}, ${initials}`.trim();
-      });
-
-    if (authors.length === 1) return authors[0];
-    if (authors.length <= 20) {
-      return `${authors.slice(0, -1).join(', ')}, & ${authors[authors.length - 1]}`;
-    }
-    return `${authors.slice(0, 19).join(', ')}, ... ${authors[authors.length - 1]}`;
-  }
-
-  // --- Renderöinti ---
-  function render() {
-    if (!tbody || !info) return;
-
-    const totalPages = Math.max(1, Math.ceil(filteredData.length / PAGE_SIZE));
-    const start = (currentPage - 1) * PAGE_SIZE;
-    const slice = filteredData.slice(start, start + PAGE_SIZE);
-
-    // Taulukko
-    if (slice.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-5">Ei tuloksia haulla</td></tr>';
-    } else {
-      tbody.innerHTML = slice.map((d, index) => {
-        const globalIndex = start + index;
-        const linkCell = d.url
-          ? `<a href="${escHtml(d.url)}" target="_blank" rel="noopener"
-               class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Avaa julkaisu">
-               <i class="bi bi-arrow-up-right"></i>
-             </a>`
-          : `<span class="text-muted small">—</span>`;
-
-        const bibButton = `<button class="btn btn-outline-secondary btn-sm rounded-pill px-2 ms-1 bib-btn" 
-                            data-index="${globalIndex}" title="Lataa BibTeX">
-                            <i class="bi bi-quote"></i>
-                          </button>`;
-
-        return `<tr>
-          <td class="col-authors small text-muted">${escHtml(d.authors || '—')}</td>
-          <td class="col-year text-center fw-semibold">${d.year || '—'}</td>
-          <td class="col-title">
-            <span class="pub-title-desktop">${escHtml(d.title || '—')}</span>
-            <div class="pub-apa-mobile">${buildApaCitationHtml(d)}</div>
-          </td>
-          <td class="col-pub">${escHtml(d.journal || '—')}</td>
-          <td class="col-action text-center">
-            <div class="d-flex justify-content-center">
-              ${linkCell}
-              ${bibButton}
-            </div>
-          </td>
-        </tr>`;
-      }).join('');
-
-      // Lisää kuuntelijat BibTeX-napeille
-      tbody.querySelectorAll('.bib-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const idx = parseInt(btn.dataset.index);
-          downloadBibTeX(filteredData[idx]);
-        });
-      });
-    }
-
-    // Info
-    const total = filteredData.length;
-    const from = total === 0 ? 0 : start + 1;
-    const to = Math.min(start + PAGE_SIZE, total);
-    info.textContent = `Näytetään ${from}–${to} / ${total}`;
-
-    // Sivutus
-    renderPagination(totalPages);
-
-    // Sarakekorostus
-    document.querySelectorAll('.pub-table th.sortable').forEach(th => {
-      th.classList.remove('sort-asc', 'sort-desc');
-      if (th.dataset.col === sortCol) {
-        th.classList.add(sortDir === 1 ? 'sort-asc' : 'sort-desc');
-      }
-    });
-  }
-
-  function renderPagination(total) {
-    renderPaginationShared(pagUl, total, currentPage, page => {
-      currentPage = page;
-      render();
-      document.getElementById('julkaisut')?.scrollIntoView({behavior:'smooth', block:'start'});
-    });
-  }
-
-  function escHtml(str) {
-    if (!str) return '';
-    return String(str)
-      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
-      .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
-
-  // --- Tapahtumankäsittelijät ---
-  if (searchInp) searchInp.addEventListener('input', applyFilters);
-  if (yearSel) yearSel.addEventListener('change', applyFilters);
-  
-  const resetBtn = document.getElementById('pub-reset');
-  if (resetBtn) {
-    resetBtn.addEventListener('click', () => {
-      if (searchInp) searchInp.value = '';
-      if (yearSel) yearSel.value = '';
-      applyFilters();
-    });
-  }
-
-  document.querySelectorAll('.pub-table th.sortable').forEach(th => {
-    th.addEventListener('click', () => sortData(th.dataset.col));
-  });
-
-  function downloadBibTeX(d) {
-    const typeMap = {
-      "A1": "article", "A2": "article", "B1": "article",
-      "A3": "incollection", "B2": "incollection",
-      "A4": "inproceedings", "B3": "inproceedings", "D3": "inproceedings",
-      "C1": "book", "E2": "book",
-      "C2": "proceedings",
-      "G4": "phdthesis", "G5": "phdthesis"
-    };
-
-    const bibType = typeMap[d.typeCode] || "misc";
-    const authors = d.authors || "Laru, Jari";
-    const firstAuthor = authors.split(/[,&]/)[0].trim().split(/\s+/).pop().toLowerCase();
-    const key = `${firstAuthor}${d.year || 'unknown'}${d.title.split(/\s+/)[0].replace(/[^a-z]/gi, '').toLowerCase()}`;
-
-    let bib = `@${bibType}{${key},\n`;
-    bib += `  title = {${d.title}},\n`;
-    bib += `  author = {${authors}},\n`;
-    if (d.year) bib += `  year = {${d.year}},\n`;
-    if (d.journal) {
-      if (bibType === "article") bib += `  journal = {${d.journal}},\n`;
-      else if (bibType === "inproceedings" || bibType === "incollection") bib += `  booktitle = {${d.journal}},\n`;
-      else bib += `  publisher = {${d.journal}},\n`;
-    }
-    if (d.url) bib += `  url = {${d.url}},\n`;
-    bib += `}`;
-
-    const blob = new Blob([bib], { type: 'text/plain' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.style.display = 'none';
-    a.href = url;
-    a.download = `${key}.bib`;
-    document.body.appendChild(a);
-    a.click();
-    window.URL.revokeObjectURL(url);
-    document.body.removeChild(a);
-  }
-
-  // Käynnistys
-  render();
 })();
 
 // --- Data-adapteri: normalisoi engine-record UI:n odottamaan formaattiin.
@@ -1103,7 +594,7 @@ const _kirjoituksetDateFormatter = new Intl.DateTimeFormat('fi-FI', {
   day: 'numeric', month: 'long', year: 'numeric'
 });
 function toKirjoituksetRecord(item) {
-  const url = item.sourceUrl || item.url || '';
+  const url = item.pageUrl || item.url || item.sourceUrl || '';
   return {
     title: item.title || '',
     date: item.date || '',
@@ -1111,7 +602,7 @@ function toKirjoituksetRecord(item) {
     description: item.description || '',
     publication: item.publication || '',
     url: url,
-    isExternal: /^https?:/.test(url),
+    isExternal: Boolean(item.isExternal) || /^https?:/.test(url),
     categories: item.categories || [],
     keywords: item.keywords || [],
     writingRoles: item.writingRoles || [],
@@ -1130,7 +621,7 @@ function toKirjoituksetRecord(item) {
     return;
   }
   const engineResult = await window.ContentEngine.query({
-    source: 'content',
+    source: 'writings',
     filters: { contentType: 'blogPost' }
   });
   const blogData = engineResult.items.map(toKirjoituksetRecord);
@@ -1289,7 +780,7 @@ function toKirjoituksetRecord(item) {
     return;
   }
   const engineResult = await window.ContentEngine.query({
-    source: 'publications',
+    source: 'writings',
     filters: { contentType: 'column' }
   });
   const kolumnitData = engineResult.items.map(toKirjoituksetRecord);
@@ -1472,7 +963,7 @@ function toKirjoituksetRecord(item) {
     return;
   }
   const engineResult = await window.ContentEngine.query({
-    source: 'publications',
+    source: 'writings',
     filters: { contentType: 'opinion' }
   });
   const mielipiteetData = engineResult.items.map(toKirjoituksetRecord);

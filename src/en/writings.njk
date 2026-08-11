@@ -5,27 +5,13 @@ description: "Jari Laru's writings, council speeches, political motions, blog po
 permalink: /en/writings/
 translationKey: writings_index
 lang: en
+pageScripts:
+  - /js/pe-list-render.js
+  - /js/content-presets.js
+  - /js/content-engine.js
 schemaType: CollectionPage
 ---
-{% set statementItems = [] %}
-{% for item in (collections.publications or []) %}
-  {% if item.data.type == "lausunto" %}
-    {% set _ = (statementItems.push(item), null) %}
-  {% endif %}
-{% endfor %}
-{% set publicSpeechItems = [] %}
-{% for item in (collections.pub_puhe or []) %}
-  {% set speechContext = item.data.speechContext or "" %}
-  {% set forums = item.data.forum or [] %}
-  {% if speechContext %}
-    {% set isCouncilSpeech = speechContext == "valtuusto" or speechContext == "kyselytunti" %}
-  {% else %}
-    {% set isCouncilSpeech = item.data.event == "Oulun kaupunginvaltuusto" or forums.indexOf("Kaupunginvaltuusto") != -1 %}
-  {% endif %}
-  {% if not isCouncilSpeech %}
-    {% set _ = (publicSpeechItems.push(item), null) %}
-  {% endif %}
-{% endfor %}
+{% set pageModel = englishWritingsPage %}
 {% set uniqueMaterialKeys = [] %}
 {% for row in (canva.tableRows or []) %}
   {% set key = (row.sourceUrl or row.url or row.pageUrl or row.title or ('canva-' ~ loop.index)) %}
@@ -46,11 +32,11 @@ schemaType: CollectionPage
   {% endif %}
 {% endfor %}
 {% set totalMaterialsCount = uniqueMaterialKeys | length %}
-{% set politicalOpinionCount = (collections.pub_mielipide_political or []) | length %}
-{% set expertOpinionCount = (collections.pub_mielipide_expert or []) | length %}
-{% set hybridOpinionCount = (collections.pub_mielipide_hybrid or []) | length %}
-{% set statementCount = statementItems | length %}
-{% set publicSpeechCount = publicSpeechItems | length %}
+{% set politicalOpinionCount = pageModel.politicalOpinionCount %}
+{% set expertOpinionCount = pageModel.expertOpinionCount %}
+{% set hybridOpinionCount = pageModel.hybridOpinionCount %}
+{% set statementCount = pageModel.statementCount %}
+{% set publicSpeechCount = pageModel.publicSpeechCount %}
 
 <section class="kynasta-hero py-4">
   <div class="site-shell">
@@ -62,18 +48,18 @@ schemaType: CollectionPage
         <p class="small text-muted mb-0">This English view provides structure, summaries and metadata. Most full texts are original Finnish-language sources and are marked accordingly.</p>
       </div>
       <div class="col-lg-4">
-        <nav class="nav nav-pills flex-wrap gap-2 justify-content-lg-end">
+        <nav class="nav nav-pills flex-wrap gap-2 justify-content-lg-end" aria-label="Writings section navigation">
           <a class="nav-link" href="#opinions">
-            Opinions <span class="nav-count">{{ collections.pub_mielipide.length }}</span>
+            Opinions <span class="nav-count">{{ pageModel.opinionCount }}</span>
           </a>
           <a class="nav-link" href="#kolumnit">
-            Columns <span class="nav-count">{{ collections.pub_kolumni.length }}</span>
+            Columns <span class="nav-count">{{ pageModel.columnCount }}</span>
           </a>
           <a class="nav-link" href="#aloitteet">
-            Initiatives <span class="nav-count">{{ collections.politics.length }}</span>
+            Initiatives <span class="nav-count">{{ pageModel.initiativeCount }}</span>
           </a>
           <a class="nav-link" href="#puheet">
-            Speeches <span class="nav-count">{{ collections.pub_puhe.length }}</span>
+            Speeches <span class="nav-count">{{ pageModel.speechCount }}</span>
           </a>
           <a class="nav-link" href="#lausunnot">
             Statements <span class="nav-count">{{ statementCount }}</span>
@@ -82,13 +68,13 @@ schemaType: CollectionPage
             Public speeches <span class="nav-count">{{ publicSpeechCount }}</span>
           </a>
           <a class="nav-link" href="#blogi">
-            Blog <span class="nav-count">{{ collections.blog.length }}</span>
+            Blog <span class="nav-count">{{ pageModel.blogCount }}</span>
           </a>
           <a class="nav-link" href="#materials">
             Materials <span class="nav-count">{{ totalMaterialsCount }}</span>
           </a>
           <a class="nav-link" href="#publications">
-            Publications <span class="nav-count">{{ researchfi.length }}</span>
+            Publications <span class="nav-count">{{ pageModel.publicationCount }}</span>
           </a>
         </nav>
       </div>
@@ -140,26 +126,23 @@ schemaType: CollectionPage
                 <th style="width:90px" class="text-center">Read</th>
               </tr>
             </thead>
-            <tbody>
-              {% for pub in statementItems %}
-                {% set href = pub.data.url or pub.url %}
+            <tbody id="statements-tbody">
+              {% for pub in pageModel.statementItems %}
+                {% set href = pub.url %}
                 <tr>
                   <td class="col-date text-center small text-muted font-monospace">{{ pub.date | dateFormat }}</td>
                   <td class="col-title fw-medium">
-                    <a href="{{ href }}" class="text-decoration-none"{% if pub.data.url %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ pub.data.title }}</a>
+                    <a href="{{ href }}" class="text-decoration-none"{% if pub.isExternal %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ pub.title }}</a>
                   </td>
                   <td class="small text-muted">
-                    {{ pub.data.description or "Expert statement." }}
-                    {% if pub.data.statementAuthority %}
-                      <br><span class="badge text-bg-light border text-dark mt-1">{{ pub.data.statementAuthority }}</span>
-                    {% endif %}
+                    {{ pub.description or "Expert statement." }}
                   </td>
                   <td class="small text-muted">
-                    {{ pub.data.publication or pub.data.diaryNumber or "Public consultation" }}
+                    {{ pub.publication or "Public consultation" }}
                   </td>
                   <td class="text-center">
-                    <a href="{{ href }}" class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Open original statement"{% if pub.data.url %} target="_blank" rel="noopener noreferrer"{% endif %}>
-                      <i class="bi bi-arrow-{% if pub.data.url %}up-right{% else %}right{% endif %}"></i>
+                    <a href="{{ href }}" class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Open original statement"{% if pub.isExternal %} target="_blank" rel="noopener noreferrer"{% endif %}>
+                      <i class="bi bi-arrow-{% if pub.isExternal %}up-right{% else %}right{% endif %}"></i>
                     </a>
                   </td>
                 </tr>
@@ -182,7 +165,7 @@ schemaType: CollectionPage
     <div class="card shadow-sm">
       <div class="card-header bg-transparent d-flex align-items-center justify-content-between">
         <h2 class="h4 mb-0">Opinion pieces</h2>
-        <span class="badge text-bg-secondary">{{ collections.pub_mielipide.length }}</span>
+        <span class="badge text-bg-secondary">{{ pageModel.opinionCount }}</span>
       </div>
       <div class="card-body p-0">
         <div class="px-3 pt-3 pb-0">
@@ -234,21 +217,21 @@ schemaType: CollectionPage
             <tbody id="mielipiteet-tbody">
               {# Progressive enhancement: SSR renders 5 most recent opinion pieces.
                  JS replaces this opening set with ALL opinion pieces + filters. #}
-              {% for pub in (collections.pub_mielipide | sort(true, false, "date") | take(5)) %}
-              {% set externalUrl = pub.data.url or pub.url %}
+              {% for pub in pageModel.openingOpinionItems %}
+              {% set externalUrl = pub.url %}
               <tr>
                 <td class="text-center text-nowrap small">{{ pub.date | dateFormat }}</td>
                 <td>
-                  <a href="{{ externalUrl }}"{% if pub.data.url %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ pub.data.title }}</a>
+                  <a href="{{ externalUrl }}"{% if pub.isExternal %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ pub.title }}</a>
                 </td>
                 <td class="small text-muted">
-                  {% if pub.data.description %}{{ pub.data.description | truncate(150) }}{% endif %}
-                  {% if pub.data.publication %}<div class="small fst-italic mt-1">{{ pub.data.publication }}</div>{% endif %}
+                  {% if pub.description %}{{ pub.description | truncate(150) }}{% endif %}
+                  {% if pub.publication %}<div class="small fst-italic mt-1">{{ pub.publication }}</div>{% endif %}
                 </td>
                 <td class="small">
-                  {% for cat in (pub.data.categories or []) %}{% if loop.index0 < 3 %}<span class="badge text-bg-secondary me-1">{{ cat }}</span>{% endif %}{% endfor %}
+                  {% for cat in (pub.categories or []) %}{% if loop.index0 < 3 %}<span class="badge text-bg-secondary me-1">{{ cat }}</span>{% endif %}{% endfor %}
                 </td>
-                <td class="text-center"><a href="{{ externalUrl }}"{% if pub.data.url %} target="_blank" rel="noopener noreferrer"{% endif %} class="btn btn-outline-primary btn-sm rounded-pill px-2" aria-label="{{ pub.data.title | escape }}"><i class="bi bi-arrow-right"></i></a></td>
+                <td class="text-center"><a href="{{ externalUrl }}"{% if pub.isExternal %} target="_blank" rel="noopener noreferrer"{% endif %} class="btn btn-outline-primary btn-sm rounded-pill px-2" aria-label="{{ pub.title | escape }}"><i class="bi bi-arrow-right"></i></a></td>
               </tr>
               {% endfor %}
             </tbody>
@@ -257,7 +240,7 @@ schemaType: CollectionPage
       </div>
       <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top">
         <small id="mielipiteet-info" class="text-muted"></small>
-        <nav aria-label="Pagination">
+        <nav aria-label="Opinion pieces pagination">
           <ul id="mielipiteet-pagination" class="pagination pagination-sm mb-0 flex-wrap"></ul>
         </nav>
       </div>
@@ -272,7 +255,7 @@ schemaType: CollectionPage
     <div class="card shadow-sm">
       <div class="card-header bg-transparent d-flex align-items-center justify-content-between">
         <h2 class="h4 mb-0">Columns and guest blog posts</h2>
-        <span class="badge text-bg-secondary">{{ collections.pub_kolumni.length }}</span>
+        <span class="badge text-bg-secondary">{{ pageModel.columnCount }}</span>
       </div>
       <div class="card-body p-0">
         {# ---- Suodatuspalkki ---- #}
@@ -309,21 +292,21 @@ schemaType: CollectionPage
             </thead>
             <tbody id="kolumnit-tbody">
               {# Progressive enhancement: SSR renders 5 most recent columns. #}
-              {% for pub in (collections.pub_kolumni | sort(true, false, "date") | take(5)) %}
-              {% set externalUrl = pub.data.url or pub.url %}
+              {% for pub in pageModel.openingColumnItems %}
+              {% set externalUrl = pub.url %}
               <tr>
                 <td class="text-center text-nowrap small">{{ pub.date | dateFormat }}</td>
                 <td>
-                  <a href="{{ externalUrl }}"{% if pub.data.url %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ pub.data.title }}</a>
+                  <a href="{{ externalUrl }}"{% if pub.isExternal %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ pub.title }}</a>
                 </td>
                 <td class="small text-muted">
-                  {% if pub.data.description %}{{ pub.data.description | truncate(150) }}{% endif %}
-                  {% if pub.data.publication %}<div class="small fst-italic mt-1">{{ pub.data.publication }}</div>{% endif %}
+                  {% if pub.description %}{{ pub.description | truncate(150) }}{% endif %}
+                  {% if pub.publication %}<div class="small fst-italic mt-1">{{ pub.publication }}</div>{% endif %}
                 </td>
                 <td class="small">
-                  {% for cat in (pub.data.categories or []) %}{% if loop.index0 < 3 %}<span class="badge text-bg-secondary me-1">{{ cat }}</span>{% endif %}{% endfor %}
+                  {% for cat in (pub.categories or []) %}{% if loop.index0 < 3 %}<span class="badge text-bg-secondary me-1">{{ cat }}</span>{% endif %}{% endfor %}
                 </td>
-                <td class="text-center"><a href="{{ externalUrl }}"{% if pub.data.url %} target="_blank" rel="noopener noreferrer"{% endif %} class="btn btn-outline-primary btn-sm rounded-pill px-2" aria-label="{{ pub.data.title | escape }}"><i class="bi bi-arrow-right"></i></a></td>
+                <td class="text-center"><a href="{{ externalUrl }}"{% if pub.isExternal %} target="_blank" rel="noopener noreferrer"{% endif %} class="btn btn-outline-primary btn-sm rounded-pill px-2" aria-label="{{ pub.title | escape }}"><i class="bi bi-arrow-right"></i></a></td>
               </tr>
               {% endfor %}
             </tbody>
@@ -332,7 +315,7 @@ schemaType: CollectionPage
       </div>
       <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top">
         <small id="kolumnit-info" class="text-muted"></small>
-        <nav aria-label="Pagination">
+        <nav aria-label="Columns pagination">
           <ul id="kolumnit-pagination" class="pagination pagination-sm mb-0 flex-wrap"></ul>
         </nav>
       </div>
@@ -347,7 +330,7 @@ schemaType: CollectionPage
     <div class="card shadow-sm">
       <div class="card-header bg-transparent d-flex align-items-center justify-content-between">
         <h2 class="h4 mb-0">Initiatives and petitions</h2>
-        <span class="badge text-bg-secondary">{{ collections.politics.length }}</span>
+        <span class="badge text-bg-secondary">{{ pageModel.initiativeCount }}</span>
       </div>
       <div class="card-body p-0">
         {# ---- Suodatuspalkki ---- #}
@@ -384,17 +367,17 @@ schemaType: CollectionPage
             </thead>
             <tbody id="aloitteet-tbody">
               {# Progressive enhancement: SSR renders 5 most recent initiatives. #}
-              {% for item in (collections.politics | sort(true, false, "date") | take(5)) %}
+              {% for item in pageModel.openingInitiativeItems %}
               <tr>
                 <td class="text-center text-nowrap small">{{ item.date | dateFormat }}</td>
                 <td>
-                  <a href="{{ item.url }}">{{ item.data.title }}</a>
+                  <a href="{{ item.url }}">{{ item.title }}</a>
                 </td>
-                <td class="small text-muted">{% if item.data.description %}{{ item.data.description | truncate(150) }}{% endif %}</td>
+                <td class="small text-muted">{% if item.description %}{{ item.description | truncate(150) }}{% endif %}</td>
                 <td class="small">
-                  {% for cat in (item.data.categories or []) %}{% if loop.index0 < 3 %}<span class="badge text-bg-secondary me-1">{{ cat }}</span>{% endif %}{% endfor %}
+                  {% for cat in (item.categories or []) %}{% if loop.index0 < 3 %}<span class="badge text-bg-secondary me-1">{{ cat }}</span>{% endif %}{% endfor %}
                 </td>
-                <td class="text-center"><a href="{{ item.url }}" class="btn btn-outline-primary btn-sm rounded-pill px-2" aria-label="{{ item.data.title | escape }}"><i class="bi bi-arrow-right"></i></a></td>
+                <td class="text-center"><a href="{{ item.url }}" class="btn btn-outline-primary btn-sm rounded-pill px-2" aria-label="{{ item.title | escape }}"><i class="bi bi-arrow-right"></i></a></td>
               </tr>
               {% endfor %}
             </tbody>
@@ -403,7 +386,7 @@ schemaType: CollectionPage
       </div>
       <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top">
         <small id="aloitteet-info" class="text-muted"></small>
-        <nav aria-label="Pagination">
+        <nav aria-label="Initiatives pagination">
           <ul id="aloitteet-pagination" class="pagination pagination-sm mb-0 flex-wrap"></ul>
         </nav>
       </div>
@@ -418,7 +401,7 @@ schemaType: CollectionPage
     <div class="card shadow-sm">
       <div class="card-header bg-transparent d-flex align-items-center justify-content-between">
         <h2 class="h4 mb-0">Speeches</h2>
-        <span class="badge text-bg-secondary">{{ collections.pub_puhe.length }}</span>
+        <span class="badge text-bg-secondary">{{ pageModel.speechCount }}</span>
       </div>
       <div class="card-body p-0">
         <div class="px-3 pt-3 pb-0">
@@ -458,20 +441,20 @@ schemaType: CollectionPage
             </thead>
             <tbody id="puheet-tbody">
               {# Progressive enhancement: SSR renders 5 most recent speeches. #}
-              {% for pub in (collections.pub_puhe | sort(true, false, "date") | take(5)) %}
+              {% for pub in pageModel.openingSpeechItems %}
               <tr>
                 <td class="text-center text-nowrap small">{{ pub.date | dateFormat }}</td>
                 <td>
-                  <a href="{{ pub.url }}">{{ pub.data.title }}</a>
+                  <a href="{{ pub.url }}">{{ pub.title }}</a>
                 </td>
                 <td class="small text-muted">
-                  {% if pub.data.description %}{{ pub.data.description | truncate(150) }}{% endif %}
-                  {% if pub.data.event %}<div class="small fst-italic mt-1">{{ pub.data.event }}</div>{% endif %}
+                  {% if pub.description %}{{ pub.description | truncate(150) }}{% endif %}
+                  {% if pub.event %}<div class="small fst-italic mt-1">{{ pub.event }}</div>{% endif %}
                 </td>
                 <td class="small">
-                  {% for cat in (pub.data.categories or []) %}{% if loop.index0 < 3 %}<span class="badge text-bg-secondary me-1">{{ cat }}</span>{% endif %}{% endfor %}
+                  {% for cat in (pub.categories or []) %}{% if loop.index0 < 3 %}<span class="badge text-bg-secondary me-1">{{ cat }}</span>{% endif %}{% endfor %}
                 </td>
-                <td class="text-center"><a href="{{ pub.url }}" class="btn btn-outline-primary btn-sm rounded-pill px-2" aria-label="{{ pub.data.title | escape }}"><i class="bi bi-arrow-right"></i></a></td>
+                <td class="text-center"><a href="{{ pub.url }}" class="btn btn-outline-primary btn-sm rounded-pill px-2" aria-label="{{ pub.title | escape }}"><i class="bi bi-arrow-right"></i></a></td>
               </tr>
               {% endfor %}
             </tbody>
@@ -480,7 +463,7 @@ schemaType: CollectionPage
       </div>
       <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top">
         <small id="puheet-info" class="text-muted"></small>
-        <nav aria-label="Pagination">
+        <nav aria-label="Speeches pagination">
           <ul id="puheet-pagination" class="pagination pagination-sm mb-0 flex-wrap"></ul>
         </nav>
       </div>
@@ -514,19 +497,19 @@ schemaType: CollectionPage
                 <th style="width:90px" class="text-center">Read</th>
               </tr>
             </thead>
-            <tbody>
-              {% for pub in publicSpeechItems %}
-                {% set href = pub.data.url or pub.url %}
+            <tbody id="public-speeches-tbody">
+              {% for pub in pageModel.publicSpeechItems %}
+                {% set href = pub.url %}
                 <tr>
                   <td class="col-date text-center small text-muted font-monospace">{{ pub.date | dateFormat }}</td>
                   <td class="col-title fw-medium">
-                    <a href="{{ href }}" class="text-decoration-none"{% if pub.data.url %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ pub.data.title }}</a>
+                    <a href="{{ href }}" class="text-decoration-none"{% if pub.isExternal %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ pub.title }}</a>
                   </td>
-                  <td class="small text-muted">{{ pub.data.event or pub.data.speechContext or "Public speech" }}</td>
-                  <td class="small text-muted">{{ pub.data.description or "Public speech in Finnish." }}</td>
+                  <td class="small text-muted">{{ pub.event or pub.speechContext or "Public speech" }}</td>
+                  <td class="small text-muted">{{ pub.description or "Public speech in Finnish." }}</td>
                   <td class="text-center">
-                    <a href="{{ href }}" class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Open original Finnish speech"{% if pub.data.url %} target="_blank" rel="noopener noreferrer"{% endif %}>
-                      <i class="bi bi-arrow-{% if pub.data.url %}up-right{% else %}right{% endif %}"></i>
+                    <a href="{{ href }}" class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Open original Finnish speech"{% if pub.isExternal %} target="_blank" rel="noopener noreferrer"{% endif %}>
+                      <i class="bi bi-arrow-{% if pub.isExternal %}up-right{% else %}right{% endif %}"></i>
                     </a>
                   </td>
                 </tr>
@@ -547,7 +530,7 @@ schemaType: CollectionPage
     <div class="card shadow-sm">
       <div class="card-header bg-transparent d-flex align-items-center justify-content-between">
         <h2 class="h4 mb-0">Blog</h2>
-        <span class="badge text-bg-secondary">{{ collections.blog.length }}</span>
+        <span class="badge text-bg-secondary">{{ pageModel.blogCount }}</span>
       </div>
       <div class="card-body p-0">
         {# ---- Suodatuspalkki ---- #}
@@ -584,17 +567,17 @@ schemaType: CollectionPage
             </thead>
             <tbody id="blog-tbody">
               {# Progressive enhancement: SSR renders 5 most recent blog posts. #}
-              {% for post in (collections.blog | sort(true, false, "date") | take(5)) %}
+              {% for post in pageModel.openingBlogItems %}
               <tr>
                 <td class="text-center text-nowrap small">{{ post.date | dateFormat }}</td>
                 <td>
-                  <a href="{{ post.url }}">{{ post.data.title }}</a>
+                  <a href="{{ post.url }}">{{ post.title }}</a>
                 </td>
-                <td class="small text-muted">{% if post.data.description %}{{ post.data.description | truncate(150) }}{% endif %}</td>
+                <td class="small text-muted">{% if post.description %}{{ post.description | truncate(150) }}{% endif %}</td>
                 <td class="small">
-                  {% for cat in (post.data.categories or []) %}{% if loop.index0 < 3 %}<span class="badge text-bg-secondary me-1">{{ cat }}</span>{% endif %}{% endfor %}
+                  {% for cat in (post.categories or []) %}{% if loop.index0 < 3 %}<span class="badge text-bg-secondary me-1">{{ cat }}</span>{% endif %}{% endfor %}
                 </td>
-                <td class="text-center"><a href="{{ post.url }}" class="btn btn-outline-primary btn-sm rounded-pill px-2" aria-label="{{ post.data.title | escape }}"><i class="bi bi-arrow-right"></i></a></td>
+                <td class="text-center"><a href="{{ post.url }}" class="btn btn-outline-primary btn-sm rounded-pill px-2" aria-label="{{ post.title | escape }}"><i class="bi bi-arrow-right"></i></a></td>
               </tr>
               {% endfor %}
             </tbody>
@@ -604,7 +587,7 @@ schemaType: CollectionPage
       <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top">
         <small id="blog-info" class="text-muted"></small>
         <div class="d-flex align-items-center gap-3">
-          <nav aria-label="Pagination">
+          <nav aria-label="Blog pagination">
             <ul id="blog-pagination" class="pagination pagination-sm mb-0 flex-wrap"></ul>
           </nav>
           <a href="/en/blog/" class="btn btn-outline-primary btn-sm rounded-pill">All blog posts</a>
@@ -621,7 +604,7 @@ schemaType: CollectionPage
     <div class="card shadow-sm">
       <div class="card-header bg-transparent d-flex align-items-center justify-content-between">
         <h2 class="h4 mb-0">Scientific publications</h2>
-        <span class="badge text-bg-secondary">{{ researchfi.length }}</span>
+        <span class="badge text-bg-secondary">{{ pageModel.publicationCount }}</span>
       </div>
       <div class="card-body p-0">
         {# ---- Suodatuspalkki ---- #}
@@ -674,7 +657,7 @@ schemaType: CollectionPage
       </div>
       <div class="card-footer bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 border-top">
         <small id="pub-info" class="text-muted"></small>
-        <nav aria-label="Pagination">
+        <nav aria-label="Scientific publications pagination">
           <ul id="pub-pagination" class="pagination pagination-sm mb-0 flex-wrap"></ul>
         </nav>
       </div>
@@ -708,63 +691,156 @@ section[id] {
 </style>
 
 <script>
-// --- Public JSON data layer -loader ---
-async function _enLoadJsonItems(url) {
-  try {
-    const res = await fetch(url);
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    const data = await res.json();
-    return Array.isArray(data.items) ? data.items : [];
-  } catch (e) {
-    console.error('en/writings: fetch ' + url + ' failed:', e);
-    return [];
-  }
-}
 const _enDateFormatter = new Intl.DateTimeFormat('en-GB', {
   day: 'numeric', month: 'long', year: 'numeric'
 });
 function _enFmt(dateStr) {
   return dateStr ? _enDateFormatter.format(new Date(dateStr)) : '';
 }
-// Yhteinen: kaikki IIFE:t voivat kayttaa samoja promise:ja fetch-kaksoiskutsujen valttamiseksi.
-const _enPublicationsPromise = _enLoadJsonItems('/data/publications.json');
-const _enInitiativesPromise = _enLoadJsonItems('/data/initiatives.json');
-const _enContentPromise = _enLoadJsonItems('/data/content.json');
-const _enResearchfiPromise = _enLoadJsonItems('/data/researchfi.json');
-// Kirjoitusten UI-formaatti (yhteensopivuus aiempaan embedded-JSON:iin).
-function _enToRecord(item) {
-  const url = item.sourceUrl || item.url || '';
+
+function _enVisibleUrl(item = {}) {
+  return item.sourceUrl || item.url || item.pageUrl || '';
+}
+
+function _enMapCanonicalWritingsRecord(item) {
+  const url = _enVisibleUrl(item);
+  const authors = item.authorsText
+    || (Array.isArray(item.authors) ? item.authors.join('; ') : (item.authors || ''));
   return {
     title: item.title || '',
     date: item.date || '',
     formattedDate: _enFmt(item.date),
+    year: item.year || 0,
+    authors: authors,
+    journal: item.journal || item.publication || item.publisher || '',
     description: item.description || '',
     publication: item.publication || '',
     event: item.event || '',
+    meeting: item.meeting || '',
+    meetingDate: item.meetingDate || item.date || '',
+    formattedMeetingDate: _enFmt(item.meetingDate || item.date),
+    initiativeType: item.initiativeType || '',
+    type: item.type || '',
+    typeCode: item.typeCode || '',
     url: url,
     isExternal: /^https?:/.test(url),
     categories: item.categories || [],
     keywords: item.keywords || [],
     writingRoles: item.writingRoles || [],
-    opinionRoles: item.opinionRoles || []
+    opinionRoles: item.opinionRoles || [],
+    originalLanguage: item.lang || 'fi'
   };
 }
 
-// --- Scientific publications taulukon logiikka (researchfi) ---
+function _enMapCanonicalPublicationRecord(item) {
+  const authors = item.authorsText
+    || (Array.isArray(item.authors) ? item.authors.join('; ') : (item.authors || ''));
+  const url = item.sourceUrl || item.doiUrl || '';
+  return {
+    title: item.title || '',
+    year: item.year || 0,
+    authors: authors,
+    journal: item.journal || item.publication || item.publisher || '',
+    url: url,
+    type: item.type || '',
+    typeCode: item.typeCode || ''
+  };
+}
+
+async function _enQueryWritings(contentType, mapper = _enMapCanonicalWritingsRecord) {
+  if (!window.ContentEngine) {
+    console.error('en/writings: window.ContentEngine puuttuu');
+    return [];
+  }
+  const result = await window.ContentEngine.query({
+    source: 'writings',
+    filters: { contentType: contentType }
+  });
+  return (result.items || []).map(mapper);
+}
+
+function escHtml(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;');
+}
+
+function slugify(str) {
+  if (!str) return "";
+  return str.toLowerCase().replace(/ä/g, "a").replace(/ö/g, "o").replace(/å/g, "a").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+}
+
+function normalizeRoles(roles) {
+  return [...new Set((Array.isArray(roles) ? roles : []).filter(Boolean))];
+}
+
+function renderRoleBadges(roles) {
+  const normalized = normalizeRoles(roles);
+  if (normalized.includes('political') && normalized.includes('expert')) {
+    return '<span class="badge text-bg-light border text-dark mt-1 me-1">Political + expert</span>';
+  }
+  return normalized.map((role) => {
+    const label = role === 'political' ? 'Political' : role === 'personal' ? 'Personal' : 'Expert';
+    return `<span class="badge text-bg-light border text-dark mt-1 me-1">${label}</span>`;
+  }).join('');
+}
+
+function finnishOnlyBadge(item = {}) {
+  if (item.originalLanguage === 'en') return '';
+  return '<br><span class="badge bg-body-tertiary border text-body mt-1 me-1"><i class="bi bi-translate me-1"></i>Full text available in Finnish only</span>';
+}
+
+function roleMatchesQuery(roles, query) {
+  const normalized = normalizeRoles(roles);
+  const terms = normalized.flatMap((role) => {
+    if (role === 'political') return ['political', 'politics'];
+    if (role === 'expert') return ['expert', 'expertise'];
+    if (role === 'personal') return ['personal'];
+    return [role];
+  });
+  if (normalized.includes('political') && normalized.includes('expert')) {
+    terms.push('hybrid', 'boundary', 'political expert', 'political + expert');
+  }
+  return terms.some((term) => term.toLowerCase().includes(query));
+}
+
+function sortByDateDesc(items = []) {
+  return [...items].sort((a, b) => {
+    const diff = String(b.date || '').localeCompare(String(a.date || ''));
+    if (diff !== 0) return diff;
+    return String(a.url || a.title || '').localeCompare(String(b.url || b.title || ''), 'en');
+  });
+}
+
+function renderSimplePagination(container, totalPages, currentPage, onSelect) {
+  if (!container) return;
+  container.innerHTML = '';
+  if (totalPages <= 1) return;
+
+  for (let i = 1; i <= totalPages; i += 1) {
+    const li = document.createElement('li');
+    li.className = `page-item${i === currentPage ? ' active' : ''}`;
+    const a = document.createElement('a');
+    a.className = 'page-link';
+    a.href = '#';
+    a.textContent = i;
+    a.addEventListener('click', (event) => {
+      event.preventDefault();
+      onSelect(i);
+    });
+    li.appendChild(a);
+    container.appendChild(li);
+  }
+}
+
+// --- Scientific publications taulukon logiikka (canonical writings) ---
 (async function () {
   const PAGE_SIZE = 5;
-  const rawItems = await _enResearchfiPromise;
-  if (!rawItems.length) return;
-  // researchfi-formaatti aiempien pub-data-lohkojen mukaan:
-  const rawData = rawItems.map(p => ({
-    title: p.title || '',
-    year: p.year || 0,
-    authors: p.authors || '',
-    journal: p.journal || '',
-    url: p.url || '',
-    type: p.type || '',
-    typeCode: p.typeCode || ''
-  }));
+  const rawData = await _enQueryWritings('scientificPublication', _enMapCanonicalPublicationRecord);
+  if (!rawData.length) return;
 
   // Järjestetään uusin ensin oletuksena
   let data = [...rawData].sort((a, b) => (b.year || 0) - (a.year || 0));
@@ -890,34 +966,11 @@ function _enToRecord(item) {
   }
 
   function renderPagination(total) {
-    if (!pagUl) return;
-    pagUl.innerHTML = '';
-    
-    // Yksinkertainen sivutus (1, 2, 3...)
-    for (let i = 1; i <= total; i++) {
-      const li = document.createElement('li');
-      li.className = `page-item${i === currentPage ? ' active' : ''}`;
-      const a = document.createElement('a');
-      a.className = 'page-link';
-      a.href = '#';
-      a.textContent = i;
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        currentPage = i;
-        render();
-        // Skrollaus kortin alkuun
-        document.getElementById('julkaisut')?.scrollIntoView({behavior:'smooth', block:'start'});
-      });
-      li.appendChild(a);
-      pagUl.appendChild(li);
-    }
-  }
-
-  function escHtml(str) {
-    if (!str) return '';
-    return String(str)
-      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
-      .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    renderSimplePagination(pagUl, total, currentPage, (page) => {
+      currentPage = page;
+      render();
+      document.getElementById('julkaisut')?.scrollIntoView({behavior:'smooth', block:'start'});
+    });
   }
 
   // --- Tapahtumankäsittelijät ---
@@ -983,13 +1036,10 @@ function _enToRecord(item) {
 // --- Blog taulukon logiikka ---
 (async function () {
   const BLOG_PAGE_SIZE = 5;
-  const _contentItems = await _enContentPromise;
-  const blogData = _contentItems
-    .filter(i => i.contentType === 'blogPost')
-    .map(_enToRecord);
+  const blogData = await _enQueryWritings('blogPost');
   if (!blogData.length) return;
 
-  let filteredBlogData = [...blogData];
+  let filteredBlogData = sortByDateDesc(blogData);
   let blogCurrentPage = 1;
   let blogSortCol = 'date';
   let blogSortDir = -1; // -1 = desc
@@ -1079,36 +1129,11 @@ function _enToRecord(item) {
   }
 
   function renderBlogPagination(total) {
-    if (!blogPagUl) return;
-    blogPagUl.innerHTML = '';
-    if (total <= 1) return;
-    
-    for (let i = 1; i <= total; i++) {
-      const li = document.createElement('li');
-      li.className = `page-item${i === blogCurrentPage ? ' active' : ''}`;
-      const a = document.createElement('a');
-      a.className = 'page-link';
-      a.href = '#';
-      a.textContent = i;
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        blogCurrentPage = i;
-        renderBlog();
-        document.getElementById('blogi')?.scrollIntoView({behavior:'smooth', block:'start'});
-      });
-      li.appendChild(a);
-      blogPagUl.appendChild(li);
-    }
-  }
-
-  function escHtml(str) {
-    if (!str) return '';
-    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
-
-  function slugify(str) {
-    if (!str) return "";
-    return str.toLowerCase().replace(/ä/g, "a").replace(/ö/g, "o").replace(/å/g, "a").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+    renderSimplePagination(blogPagUl, total, blogCurrentPage, (page) => {
+      blogCurrentPage = page;
+      renderBlog();
+      document.getElementById('blogi')?.scrollIntoView({behavior:'smooth', block:'start'});
+    });
   }
 
   if (blogSearchInp) blogSearchInp.addEventListener('input', applyBlogFilters);
@@ -1131,13 +1156,10 @@ function _enToRecord(item) {
 // --- Speeches taulukon logiikka ---
 (async function () {
   const PUHEET_PAGE_SIZE = 5;
-  const _pubItems1 = await _enPublicationsPromise;
-  const puheetData = _pubItems1
-    .filter(i => i.contentType === 'speech')
-    .map(_enToRecord);
+  const puheetData = await _enQueryWritings('speech');
   if (!puheetData.length) return;
 
-  let filteredSpeechesData = [...puheetData];
+  let filteredSpeechesData = sortByDateDesc(puheetData);
   let puheetCurrentPage = 1;
   let puheetSortCol = 'date';
   let puheetSortDir = -1; // -1 = desc
@@ -1231,36 +1253,11 @@ function _enToRecord(item) {
   }
 
   function renderSpeechesPagination(total) {
-    if (!puheetPagUl) return;
-    puheetPagUl.innerHTML = '';
-    if (total <= 1) return;
-    
-    for (let i = 1; i <= total; i++) {
-      const li = document.createElement('li');
-      li.className = `page-item${i === puheetCurrentPage ? ' active' : ''}`;
-      const a = document.createElement('a');
-      a.className = 'page-link';
-      a.href = '#';
-      a.textContent = i;
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        puheetCurrentPage = i;
-        renderSpeeches();
-        document.getElementById('puheet')?.scrollIntoView({behavior:'smooth', block:'start'});
-      });
-      li.appendChild(a);
-      puheetPagUl.appendChild(li);
-    }
-  }
-
-  function escHtml(str) {
-    if (!str) return '';
-    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
-
-  function slugify(str) {
-    if (!str) return "";
-    return str.toLowerCase().replace(/ä/g, "a").replace(/ö/g, "o").replace(/å/g, "a").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+    renderSimplePagination(puheetPagUl, total, puheetCurrentPage, (page) => {
+      puheetCurrentPage = page;
+      renderSpeeches();
+      document.getElementById('puheet')?.scrollIntoView({behavior:'smooth', block:'start'});
+    });
   }
 
   if (puheetSearchInp) puheetSearchInp.addEventListener('input', applySpeechesFilters);
@@ -1283,25 +1280,7 @@ function _enToRecord(item) {
 // --- Initiatives taulukon logiikka ---
 (async function () {
   const ALOITTEET_PAGE_SIZE = 5;
-  const _rawInitiatives = await _enInitiativesPromise;
-  const aloitteetData = _rawInitiatives.map(i => {
-    const meetingDate = i.meetingDate || i.date || '';
-    const url = i.sourceUrl || i.url || '';
-    return {
-      title: i.title || '',
-      date: i.date || '',
-      formattedDate: _enFmt(i.date),
-      meetingDate: meetingDate,
-      formattedMeetingDate: _enFmt(meetingDate),
-      meeting: i.meeting || '',
-      description: i.description || '',
-      initiative_type: i.initiativeType || '',
-      url: url,
-      isExternal: /^https?:/.test(url),
-      categories: i.categories || [],
-      keywords: i.keywords || []
-    };
-  });
+  const aloitteetData = await _enQueryWritings('initiative');
   if (!aloitteetData.length) return;
 
   let filteredInitiativesData = [...aloitteetData].sort((a, b) => new Date(b.meetingDate || b.date) - new Date(a.meetingDate || a.date));
@@ -1322,7 +1301,7 @@ function _enToRecord(item) {
         (d.description || '').toLowerCase().includes(q) ||
         (d.meeting || '').toLowerCase().includes(q) ||
         (d.formattedMeetingDate || '').toLowerCase().includes(q) ||
-        (d.initiative_type || '').toLowerCase().includes(q) ||
+        (d.initiativeType || '').toLowerCase().includes(q) ||
         (d.categories || []).some(c => c.toLowerCase().includes(q)) ||
         (d.keywords || []).some(k => k.toLowerCase().includes(q));
       return matchQ;
@@ -1365,7 +1344,7 @@ function _enToRecord(item) {
 
         const targetAttr = d.isExternal ? 'target="_blank" rel="noopener noreferrer"' : '';
         const iconInfo = d.isExternal ? '<i class="bi bi-arrow-up-right"></i>' : '<i class="bi bi-arrow-right"></i>';
-        const typeInfo = d.initiative_type ? `<br><span class="badge text-bg-light border text-dark mt-1">${escHtml(d.initiative_type)}</span>` : '';
+        const typeInfo = d.initiativeType ? `<br><span class="badge text-bg-light border text-dark mt-1">${escHtml(d.initiativeType)}</span>` : '';
         const meetingInfo = d.meeting ? `<br><span class="small text-muted">${escHtml(d.meeting)}</span>` : '';
 
         return `<tr>
@@ -1401,36 +1380,11 @@ function _enToRecord(item) {
   }
 
   function renderInitiativesPagination(total) {
-    if (!aloitteetPagUl) return;
-    aloitteetPagUl.innerHTML = '';
-    if (total <= 1) return;
-    
-    for (let i = 1; i <= total; i++) {
-      const li = document.createElement('li');
-      li.className = `page-item${i === aloitteetCurrentPage ? ' active' : ''}`;
-      const a = document.createElement('a');
-      a.className = 'page-link';
-      a.href = '#';
-      a.textContent = i;
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        aloitteetCurrentPage = i;
-        renderInitiatives();
-        document.getElementById('aloitteet')?.scrollIntoView({behavior:'smooth', block:'start'});
-      });
-      li.appendChild(a);
-      aloitteetPagUl.appendChild(li);
-    }
-  }
-
-  function escHtml(str) {
-    if (!str) return '';
-    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
-
-  function slugify(str) {
-    if (!str) return "";
-    return str.toLowerCase().replace(/ä/g, "a").replace(/ö/g, "o").replace(/å/g, "a").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+    renderSimplePagination(aloitteetPagUl, total, aloitteetCurrentPage, (page) => {
+      aloitteetCurrentPage = page;
+      renderInitiatives();
+      document.getElementById('aloitteet')?.scrollIntoView({behavior:'smooth', block:'start'});
+    });
   }
 
   if (aloitteetSearchInp) aloitteetSearchInp.addEventListener('input', applyInitiativesFilters);
@@ -1453,13 +1407,10 @@ function _enToRecord(item) {
 // --- Columns taulukon logiikka ---
 (async function () {
   const KOLUMNIT_PAGE_SIZE = 5;
-  const _pubItems2 = await _enPublicationsPromise;
-  const kolumnitData = _pubItems2
-    .filter(i => i.contentType === 'column')
-    .map(_enToRecord);
+  const kolumnitData = await _enQueryWritings('column');
   if (!kolumnitData.length) return;
 
-  let filteredColumnsData = [...kolumnitData];
+  let filteredColumnsData = sortByDateDesc(kolumnitData);
   let kolumnitCurrentPage = 1;
   let kolumnitSortCol = 'date';
   let kolumnitSortDir = -1; // -1 = desc
@@ -1553,36 +1504,11 @@ function _enToRecord(item) {
   }
 
   function renderColumnsPagination(total) {
-    if (!kolumnitPagUl) return;
-    kolumnitPagUl.innerHTML = '';
-    if (total <= 1) return;
-    
-    for (let i = 1; i <= total; i++) {
-      const li = document.createElement('li');
-      li.className = `page-item${i === kolumnitCurrentPage ? ' active' : ''}`;
-      const a = document.createElement('a');
-      a.className = 'page-link';
-      a.href = '#';
-      a.textContent = i;
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        kolumnitCurrentPage = i;
-        renderColumns();
-        document.getElementById('kolumnit')?.scrollIntoView({behavior:'smooth', block:'start'});
-      });
-      li.appendChild(a);
-      kolumnitPagUl.appendChild(li);
-    }
-  }
-
-  function escHtml(str) {
-    if (!str) return '';
-    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
-
-  function slugify(str) {
-    if (!str) return "";
-    return str.toLowerCase().replace(/ä/g, "a").replace(/ö/g, "o").replace(/å/g, "a").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+    renderSimplePagination(kolumnitPagUl, total, kolumnitCurrentPage, (page) => {
+      kolumnitCurrentPage = page;
+      renderColumns();
+      document.getElementById('kolumnit')?.scrollIntoView({behavior:'smooth', block:'start'});
+    });
   }
 
   if (kolumnitSearchInp) kolumnitSearchInp.addEventListener('input', applyColumnsFilters);
@@ -1605,10 +1531,7 @@ function _enToRecord(item) {
 // --- Opinions taulukon logiikka ---
 (async function () {
   const MIELIPITEET_PAGE_SIZE = 5;
-  const _pubItems3 = await _enPublicationsPromise;
-  const mielipiteetData = _pubItems3
-    .filter(i => i.contentType === 'opinion')
-    .map(_enToRecord);
+  const mielipiteetData = await _enQueryWritings('opinion');
   if (!mielipiteetData.length) return;
   const urlParams = new URLSearchParams(window.location.search);
   const initialOpinionRole = urlParams.get('opinions');
@@ -1759,50 +1682,6 @@ function _enToRecord(item) {
       li.appendChild(a);
       mielipiteetPagUl.appendChild(li);
     }
-  }
-
-  function escHtml(str) {
-    if (!str) return '';
-    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
-
-  function slugify(str) {
-    if (!str) return "";
-    return str.toLowerCase().replace(/ä/g, "a").replace(/ö/g, "o").replace(/å/g, "a").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-  }
-
-  function normalizeRoles(roles) {
-    return [...new Set((Array.isArray(roles) ? roles : []).filter(Boolean))];
-  }
-
-  function renderRoleBadges(roles) {
-    const normalized = normalizeRoles(roles);
-    if (normalized.includes('political') && normalized.includes('expert')) {
-      return '<span class="badge text-bg-light border text-dark mt-1 me-1">Political + expert</span>';
-    }
-    return normalized.map((role) => {
-      const label = role === 'political' ? 'Political' : role === 'personal' ? 'Personal' : 'Expert';
-      return `<span class="badge text-bg-light border text-dark mt-1 me-1">${label}</span>`;
-    }).join('');
-  }
-
-  function finnishOnlyBadge(item = {}) {
-    if (item.originalLanguage === 'en') return '';
-    return '<br><span class="badge bg-body-tertiary border text-body mt-1 me-1"><i class="bi bi-translate me-1"></i>Full text available in Finnish only</span>';
-  }
-
-  function roleMatchesQuery(roles, query) {
-    const normalized = normalizeRoles(roles);
-    const terms = normalized.flatMap((role) => {
-      if (role === 'political') return ['political', 'politics'];
-      if (role === 'expert') return ['expert', 'expertise'];
-      if (role === 'personal') return ['personal'];
-      return [role];
-    });
-    if (normalized.includes('political') && normalized.includes('expert')) {
-      terms.push('hybrid', 'boundary', 'political expert', 'political + expert');
-    }
-    return terms.some((term) => term.toLowerCase().includes(query));
   }
 
   if (mielipiteetSearchInp) mielipiteetSearchInp.addEventListener('input', applyOpinionsFilters);

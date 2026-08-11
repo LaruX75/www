@@ -4,7 +4,10 @@ import { injectAxe, checkA11y } from 'axe-playwright';
 export const AXE_AUDIT_PAGES = [
     { name: 'Homepage', path: '/' },
     { name: 'Publications', path: '/julkaisut/' },
+    { name: 'Publications (EN)', path: '/en/publications/' },
     { name: 'Theses', path: '/opinnaytteet/' },
+    { name: 'Writings', path: '/kirjoitukset/' },
+    { name: 'Writings (EN)', path: '/en/writings/' },
     { name: 'Presentations', path: '/esitykset/' },
     { name: 'Presentations (EN)', path: '/en/presentations/' },
     { name: 'CV', path: '/cv/' },
