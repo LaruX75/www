@@ -65,16 +65,45 @@
     return filters;
   }
 
-  async function createSearch() {
-    const pagefind = await import("/pagefind/pagefind.js");
-    if (typeof pagefind.init === "function") {
-      await pagefind.init();
-    }
-    return pagefind;
+  const searchCache = new Map();
+
+  function normalizeSearchLanguage(language) {
+    return String(language || "fi").slice(0, 2).toLowerCase() || "fi";
   }
 
-  function initMount(mount, pagefindPromise) {
+  async function createSearch(language) {
+    const searchLanguage = normalizeSearchLanguage(language);
+    if (searchCache.has(searchLanguage)) return searchCache.get(searchLanguage);
+
+    const promise = (async () => {
+      const root = document.documentElement;
+      const previousLang = root.getAttribute("lang");
+      root.setAttribute("lang", searchLanguage);
+
+      try {
+        const pagefind = await import("/pagefind/pagefind.js");
+        if (typeof pagefind.init === "function") {
+          await pagefind.init();
+        }
+        return pagefind;
+      } finally {
+        if (previousLang) root.setAttribute("lang", previousLang);
+        else root.removeAttribute("lang");
+      }
+    })();
+
+    searchCache.set(searchLanguage, promise);
+    try {
+      return await promise;
+    } catch (error) {
+      searchCache.delete(searchLanguage);
+      throw error;
+    }
+  }
+
+  function initMount(mount) {
     const lang = (mount.dataset.findExploreLang || document.documentElement.lang || "fi").slice(0, 2);
+    const pagefindPromise = createSearch(mount.dataset.findExploreSearchLanguage || lang);
     const labels = text[lang] || text.fi;
     const queryInput = mount.querySelector("[data-find-explore-query]");
     const typeSelect = mount.querySelector("[data-find-explore-type]");
@@ -194,6 +223,5 @@
     runSearch();
   }
 
-  const pagefindPromise = createSearch();
-  mounts.forEach((mount) => initMount(mount, pagefindPromise));
+  mounts.forEach((mount) => initMount(mount));
 })();
