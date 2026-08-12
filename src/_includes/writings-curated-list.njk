@@ -1,0 +1,30 @@
+<div class="row g-3">
+  {% for item in items %}
+  {% set href = item.pageUrl or item.url %}
+  <div class="col-md-6 col-xl-4">
+    <article class="card h-100 border-0 shadow-sm">
+      <div class="card-body">
+        {% if item.date or item.year %}
+        <p class="small text-muted mb-2">{{ item.date | dateFormat if item.date else item.year }}</p>
+        {% endif %}
+        <h3 class="h6 mb-2">
+          <a href="{{ href }}" class="stretched-link text-decoration-none"{% if item.isExternal %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ item.title }}</a>
+        </h3>
+        {% if item.description %}
+        <p class="small text-muted mb-2">{{ item.description | truncate(135) }}</p>
+        {% endif %}
+        <div class="d-flex flex-wrap gap-1 position-relative">
+          {% for cat in (item.categories or []) %}
+            {% if loop.index0 < 2 %}<span class="badge text-bg-light border text-dark">{{ cat }}</span>{% endif %}
+          {% endfor %}
+          {% if item.publication %}<span class="badge text-bg-secondary">{{ item.publication | truncate(32) }}</span>{% endif %}
+        </div>
+      </div>
+    </article>
+  </div>
+  {% else %}
+  <div class="col-12">
+    <p class="text-muted mb-0">{{ emptyLabel }}</p>
+  </div>
+  {% endfor %}
+</div>

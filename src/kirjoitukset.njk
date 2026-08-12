@@ -6,10 +6,10 @@ permalink: /kirjoitukset/
 translationKey: writings_texts
 pageStyles:
   - /css/kynasta-page.css
+  - /css/find-explore.css
 pageScripts:
-  - /js/pe-list-render.js
-  - /js/content-presets.js
-  - /js/content-engine.js
+  - /js/find-explore.js
+suppressTableFilters: true
 schemaType: CollectionPage
 schemaAbout:
   - "@type": "Thing"
@@ -22,14 +22,38 @@ schemaAbout:
     name: "Kolumnit ja blogivierailut"
     description: "Kolumnimuotoiset tekstit ja vierailut ulkoisissa blogeissa."
 ---
-{% import "ui.njk" as ui %}
 {% set pageModel = finnishWritingsPage %}
 {% set blogCount = pageModel.blogCount %}
 {% set opinionCount = pageModel.opinionCount %}
 {% set columnCount = pageModel.columnCount %}
-{% set politicalOpinionCount = pageModel.politicalOpinionCount %}
-{% set expertOpinionCount = pageModel.expertOpinionCount %}
-{% set hybridOpinionCount = pageModel.hybridOpinionCount %}
+{% set findExploreScope = "fi" %}
+{% set findExploreLang = "fi" %}
+{% set findExploreSearchLanguage = "fi" %}
+{% set findExploreLanguageFilter = "Suomi" %}
+{% set findExploreEyebrow = "Find & Explore" %}
+{% set findExploreTitle = "Tutki kirjoituksia" %}
+{% set findExploreDescription = "Hae blogikirjoituksia, mielipiteitä ja kolumneja yhdestä Pagefind-pohjaisesta näkymästä. Alla olevat nostot toimivat myös ilman JavaScriptiä." %}
+{% set findExploreSearchLabel = "Hae aiheella, otsikolla tai julkaisulla" %}
+{% set findExplorePlaceholder = "Esim. tekoäly, kampus, lähijuna, kouluverkko..." %}
+{% set findExploreTypeLabel = "Sisältölaji" %}
+{% set findExploreAllTypesLabel = "Kaikki kirjoitukset" %}
+{% set findExploreYearLabel = "Vuosi" %}
+{% set findExploreAllYearsLabel = "Kaikki vuodet" %}
+{% set findExploreResetLabel = "Tyhjennä" %}
+{% set findExploreMoreLabel = "Näytä lisää" %}
+{% set findExploreInitialStatus = "Kirjoita hakusana tai rajaa tuloksia. Avausosiot toimivat myös ilman hakua." %}
+{% set findExploreNoScript = "Interaktiivinen haku vaatii JavaScriptin. Tällä sivulla näkyvät silti uusimmat nostot ja normaalit linkit kirjoituksiin." %}
+{% set findExploreTypeOptions = [
+  { value: "opinion", label: "Mielipiteet", count: opinionCount },
+  { value: "column", label: "Kolumnit", count: columnCount },
+  { value: "blogPost", label: "Blogi", count: blogCount }
+] %}
+{% set findExploreYears = [] %}
+{% for item in pageModel.items %}
+  {% if item.year and (item.year not in findExploreYears) %}
+    {% set findExploreYears = findExploreYears.concat([item.year]) %}
+  {% endif %}
+{% endfor %}
 
 <section class="kynasta-hero py-3 py-lg-4">
   <div class="site-shell">
@@ -37,11 +61,11 @@ schemaAbout:
       <div class="col-lg-8">
         <p class="text-uppercase small text-muted mb-2">Kirjoitukset</p>
         <h1 class="display-6 fw-bold mb-2">Blogi, mielipidekirjoitukset ja kolumnit</h1>
-        <p class="text-muted mb-3">Vapaamuotoiset omat tekstit yhdellä sivulla: {{ blogCount }} blogikirjoitusta, {{ opinionCount }} mielipidekirjoitusta ja {{ columnCount }} kolumnia. Voit hakea, suodattaa ja lajitella niitä alla.</p>
+        <p class="text-muted mb-3">Vapaamuotoiset omat tekstit yhdellä sivulla: {{ blogCount }} blogikirjoitusta, {{ opinionCount }} mielipidekirjoitusta ja {{ columnCount }} kolumnia.</p>
         <div class="d-flex flex-wrap gap-2">
-          <a class="nav-link" href="#blogi">Blogi <span class="nav-count">{{ blogCount }}</span></a>
           <a class="nav-link" href="#mielipiteet">Mielipiteet <span class="nav-count">{{ opinionCount }}</span></a>
           <a class="nav-link" href="#kolumnit">Kolumnit <span class="nav-count">{{ columnCount }}</span></a>
+          <a class="nav-link" href="#blogi">Blogi <span class="nav-count">{{ blogCount }}</span></a>
         </div>
         <p class="small text-muted mt-3 mb-0">
           Etsitkö puheenvuoroja, valtuustoaloitteita tai lausuntoja? <a href="/kynasta/">Palaa Kynästä-hubiin</a> — löydät sieltä kaikki sisältölajit.
@@ -51,1130 +75,84 @@ schemaAbout:
   </div>
 </section>
 
+{% include "find-explore-writings.njk" %}
 
-
-{# Aiemmin embed-JSON mielipiteille, kolumneille ja blogille (~107 KB).
-   Nyt data ladataan asynkronisesti /data/*.json -endpointeista JS:ssa. #}
-
-<span id="mielipidekirjoitukset-eri-sanomalehdissa"></span>
-<section id="mielipiteet" class="bg-body-tertiary">
+<section id="mielipiteet" class="bg-body-tertiary py-4">
   <div class="site-shell">
-    <div class="card shadow-sm">
-      <div class="card-header bg-transparent d-flex align-items-center justify-content-between kynasta-section-header">
-        <h2 class="h4 mb-0"><i class="bi bi-chat-square-quote-fill me-2"></i>Mielipidekirjoitukset</h2>
-        <span class="badge kynasta-section-count">{{ opinionCount }}</span>
-      </div>
-      <div class="card-body p-0">
-        <div class="px-3 pt-3 pb-0">
-          <div class="row g-3 mb-3">
-            <div class="col-md-4">
-              <button type="button"
-                      class="opinion-role-card w-100 text-start"
-                      data-opinion-role-card="political"
-                      aria-pressed="false">
-                <div class="d-flex align-items-start justify-content-between gap-3">
-                  <div>
-                    <p class="opinion-role-kicker mb-1">Päätöksenteko</p>
-                    <h3 class="h6 mb-1">Kannanotot politiikasta ja palveluista</h3>
-                    <p class="small text-muted mb-0">Kirjoitukset, joissa näkökulma liittyy vaaleihin, päätöksentekoon, palveluihin tai kunnalliseen vaikuttamiseen.</p>
-                  </div>
-                  <span class="opinion-role-count">{{ politicalOpinionCount }}</span>
-                </div>
-              </button>
-            </div>
-            <div class="col-md-4">
-              <button type="button"
-                      class="opinion-role-card w-100 text-start"
-                      data-opinion-role-card="expert"
-                      aria-pressed="false">
-                <div class="d-flex align-items-start justify-content-between gap-3">
-                  <div>
-                    <p class="opinion-role-kicker mb-1">Asiantuntijatausta</p>
-                    <h3 class="h6 mb-1">Opetus, tutkimus ja teknologia</h3>
-                    <p class="small text-muted mb-0">Kirjoitukset, joissa painopiste on tutkimuksessa, opetuksessa, koulutuksessa tai teknologiassa.</p>
-                  </div>
-                  <span class="opinion-role-count">{{ expertOpinionCount }}</span>
-                </div>
-              </button>
-            </div>
-            <div class="col-md-4">
-              <button type="button"
-                      class="opinion-role-card w-100 text-start"
-                      data-opinion-role-card="hybrid"
-                      aria-pressed="false">
-                <div class="d-flex align-items-start justify-content-between gap-3">
-                  <div>
-                    <p class="opinion-role-kicker mb-1">Asiantuntijuus mukana</p>
-                    <h3 class="h6 mb-1">Kun työtausta liittyy päätöksiin</h3>
-                    <p class="small text-muted mb-0">Kirjoitukset, joissa opetus, tutkimus tai teknologia auttaa avaamaan päätöksenteon kysymyksiä.</p>
-                  </div>
-                  <span class="opinion-role-count">{{ hybridOpinionCount }}</span>
-                </div>
-              </button>
+    <div class="card shadow-sm border-0">
+      <div class="card-body">
+        <div class="d-flex flex-wrap align-items-start justify-content-between gap-3 mb-3">
+          <div>
+            <h2 class="h4 mb-1"><i class="bi bi-chat-square-quote-fill me-2"></i>Mielipidekirjoitukset</h2>
+            <p class="text-muted mb-0">Uusimmat kannanotot politiikasta, palveluista, opetuksesta ja teknologiasta.</p>
+          </div>
+          <span class="badge kynasta-section-count">{{ opinionCount }}</span>
+        </div>
+        <div class="row g-3 mb-4">
+          <div class="col-md-4">
+            <div class="opinion-role-card h-100">
+              <p class="opinion-role-kicker mb-1">Päätöksenteko</p>
+              <h3 class="h6 mb-1">Politiikka ja palvelut</h3>
+              <p class="small text-muted mb-0">{{ pageModel.politicalOpinionCount }} kirjoitusta.</p>
             </div>
           </div>
-          <p class="small text-muted mb-3">
-            Valinnat auttavat erottamaan päätöksentekoon liittyvät kannanotot, asiantuntijataustaiset kirjoitukset ja tekstit, joissa nämä kaksi näkökulmaa kulkevat yhdessä.
-          </p>
-        </div>
-        {# ---- Suodatuspalkki ---- #}
-        <div class="p-3 bg-body-tertiary border-bottom">
-          <div class="row g-2 align-items-end">
-            <div class="col-lg-5">
-              <label for="mielipiteet-search" class="form-label small text-muted mb-1">Hae mielipidekirjoituksia</label>
-              <input type="search" id="mielipiteet-search" class="form-control form-control-sm"
-                     placeholder="Hae otsikosta, julkaisusta, aiheesta tai näkökulmasta, esim. asiantuntijatausta..." autocomplete="off">
+          <div class="col-md-4">
+            <div class="opinion-role-card h-100">
+              <p class="opinion-role-kicker mb-1">Asiantuntijatausta</p>
+              <h3 class="h6 mb-1">Opetus, tutkimus ja teknologia</h3>
+              <p class="small text-muted mb-0">{{ pageModel.expertOpinionCount }} kirjoitusta.</p>
             </div>
-            <div class="col-sm-3 col-lg-2">
-              <label for="mielipiteet-year" class="form-label small text-muted mb-1">Vuosi</label>
-              <select id="mielipiteet-year" class="form-select form-select-sm" aria-label="Rajaa mielipidekirjoitukset vuoden mukaan"><option value="" selected>Kaikki vuodet</option></select>
-            </div>
-            <div class="col-sm-5 col-lg-3">
-              <label for="mielipiteet-publication" class="form-label small text-muted mb-1">Julkaisu</label>
-              <select id="mielipiteet-publication" class="form-select form-select-sm" aria-label="Rajaa mielipidekirjoitukset julkaisun mukaan"><option value="" selected>Kaikki julkaisut</option></select>
-            </div>
-            <div class="col-sm-4 col-lg-2 d-flex justify-content-md-end gap-2">
-              <button id="mielipiteet-reset" class="btn btn-outline-secondary btn-sm w-100">
-                <i class="bi bi-x-circle me-1"></i>Tyhjennä
-              </button>
+          </div>
+          <div class="col-md-4">
+            <div class="opinion-role-card h-100">
+              <p class="opinion-role-kicker mb-1">Näkökulmat yhdessä</p>
+              <h3 class="h6 mb-1">Kun työtausta liittyy päätöksiin</h3>
+              <p class="small text-muted mb-0">{{ pageModel.hybridOpinionCount }} kirjoitusta.</p>
             </div>
           </div>
         </div>
-
-        {# ---- Taulukko ---- #}
-        <div class="table-responsive">
-          <table class="table table-hover align-middle mb-0 pub-table mielipiteet-table" data-no-header-filters>
-            <thead>
-              <tr>
-                <th class="text-center" data-mobile-label="Päivämäärä" style="width:170px">
-                  <div class="table-header-filter-controls">
-                    <span class="table-header-filter-label">Päivämäärä</span>
-                    <button id="mielipiteet-sort-date" type="button" class="table-header-sort-button" aria-pressed="true" aria-label="Päivämäärä: uusin ensin" title="Päivämäärä: uusin ensin"><i class="bi bi-arrow-down"></i></button>
-                  </div>
-                </th>
-                <th data-mobile-label="Otsikko" style="min-width:200px">
-                  <div class="table-header-filter-controls">
-                    <span class="table-header-filter-label">Otsikko</span>
-                    <button id="mielipiteet-sort-title" type="button" class="table-header-sort-button" aria-pressed="false" aria-label="Lajittele: Otsikko" title="Lajittele: Otsikko"><i class="bi bi-arrow-down"></i></button>
-                  </div>
-                </th>
-                <th data-mobile-label="Tiivistelmä ja julkaisu" style="min-width:200px">
-                  Tiivistelmä & Julkaisu
-                </th>
-                <th>Kategoriat & Avainsanat</th>
-                <th style="width:80px" class="text-center">Lue</th>
-              </tr>
-            </thead>
-            <tbody id="mielipiteet-tbody">
-              {# Progressive enhancement: SSR renderoi 5 uusinta mielipidekirjoitusta.
-                 JS korvaa avausjoukon KAIKILLA {{ opinionCount }} kirjoituksella canonical writings -datasetistä. #}
-              {% for pub in pageModel.openingOpinionItems %}
-              {% set externalUrl = pub.url %}
-              <tr>
-                <td class="text-center text-nowrap small">{{ pub.date | dateFormat }}</td>
-                <td>
-                  <a href="{{ externalUrl }}"{% if pub.isExternal %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ pub.title }}</a>
-                </td>
-                <td class="small text-muted">
-                  {% if pub.description %}{{ pub.description | truncate(150) }}{% endif %}
-                  {% if pub.publication %}<div class="small fst-italic mt-1">{{ pub.publication }}</div>{% endif %}
-                </td>
-                <td class="small">
-                  {% for cat in (pub.categories or []) %}{% if loop.index0 < 3 %}<span class="badge text-bg-secondary me-1">{{ cat }}</span>{% endif %}{% endfor %}
-                </td>
-                <td class="text-center"><a href="{{ externalUrl }}"{% if pub.isExternal %} target="_blank" rel="noopener noreferrer"{% endif %} class="btn btn-outline-primary btn-sm rounded-pill px-2" aria-label="{{ pub.title | escape }}"><i class="bi bi-arrow-right"></i></a></td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
-      </div>
-      {{ ui.paginationBar("mielipiteet-info", "mielipiteet-pagination", { label: "Mielipidekirjoitusten sivutus", extraClass: "card-footer bg-transparent kynasta-table-pager" }) }}
-    </div>
-  </div>
-</section>
-
-{# Kerätään kaikki kolumnit JSON-muotoon JS:ää varten #}
-<span id="kolumnit-ja-blogivierailut"></span>
-<section id="kolumnit">
-  <div class="site-shell">
-    <div class="card shadow-sm">
-      <div class="card-header bg-transparent d-flex align-items-center justify-content-between kynasta-section-header">
-        <h2 class="h4 mb-0"><i class="bi bi-pen-fill me-2"></i>Kolumnit ja blogivierailut</h2>
-        <span class="badge kynasta-section-count">{{ columnCount }}</span>
-      </div>
-      <div class="card-body p-0">
-        {# ---- Suodatuspalkki ---- #}
-        <div class="p-3 bg-body-tertiary border-bottom">
-          <div class="row g-2 align-items-end">
-            <div class="col-lg-5">
-              <label for="kolumnit-search" class="form-label small text-muted mb-1">Hae kolumneja</label>
-              <input type="search" id="kolumnit-search" class="form-control form-control-sm"
-                     placeholder="Hae otsikosta, julkaisusta, aiheesta tai roolista..." autocomplete="off">
-            </div>
-            <div class="col-lg-4">
-              <label class="form-label small text-muted mb-1">Rajaa näkökulman mukaan</label>
-              <div class="role-filter-group" role="group" aria-label="Rajaa kolumnit näkökulman mukaan">
-                <button type="button" class="btn btn-outline-secondary btn-sm active" data-kolumnit-role="all">Kaikki</button>
-                <button type="button" class="btn btn-outline-secondary btn-sm" data-kolumnit-role="political">Päätöksenteko</button>
-                <button type="button" class="btn btn-outline-secondary btn-sm" data-kolumnit-role="expert">Asiantuntijatausta</button>
-                <button type="button" class="btn btn-outline-secondary btn-sm" data-kolumnit-role="hybrid">Asiantuntijuus mukana</button>
-              </div>
-            </div>
-            <div class="col-lg-3 d-flex justify-content-lg-end gap-2">
-              <button id="kolumnit-reset" class="btn btn-outline-secondary btn-sm w-100">
-                <i class="bi bi-x-circle me-1"></i>Tyhjennä
-              </button>
-            </div>
-            <div class="col-sm-4 col-lg-2">
-              <label for="kolumnit-year" class="form-label small text-muted mb-1">Vuosi</label>
-              <select id="kolumnit-year" class="form-select form-select-sm" aria-label="Rajaa kolumnit vuoden mukaan"><option value="" selected>Kaikki vuodet</option></select>
-            </div>
-            <div class="col-sm-8 col-lg-4">
-              <label for="kolumnit-publication" class="form-label small text-muted mb-1">Julkaisu</label>
-              <select id="kolumnit-publication" class="form-select form-select-sm" aria-label="Rajaa kolumnit julkaisun mukaan"><option value="" selected>Kaikki julkaisut</option></select>
-            </div>
-          </div>
-        </div>
-
-        {# ---- Taulukko ---- #}
-        <div class="table-responsive">
-          <table class="table table-hover align-middle mb-0 pub-table kolumnit-table" data-no-header-filters>
-            <thead>
-              <tr>
-                <th class="text-center" data-mobile-label="Päivämäärä" style="width:170px">
-                  <div class="table-header-filter-controls">
-                    <span class="table-header-filter-label">Päivämäärä</span>
-                    <button id="kolumnit-sort-date" type="button" class="table-header-sort-button" aria-pressed="true" aria-label="Päivämäärä: uusin ensin" title="Päivämäärä: uusin ensin"><i class="bi bi-arrow-down"></i></button>
-                  </div>
-                </th>
-                <th data-mobile-label="Otsikko" style="min-width:200px">
-                  <div class="table-header-filter-controls">
-                    <span class="table-header-filter-label">Otsikko</span>
-                    <button id="kolumnit-sort-title" type="button" class="table-header-sort-button" aria-pressed="false" aria-label="Lajittele: Otsikko" title="Lajittele: Otsikko"><i class="bi bi-arrow-down"></i></button>
-                  </div>
-                </th>
-                <th data-mobile-label="Tiivistelmä ja julkaisu" style="min-width:200px">
-                  Tiivistelmä & Julkaisu
-                </th>
-                <th>Kategoriat & Avainsanat</th>
-                <th style="width:80px" class="text-center">Lue</th>
-              </tr>
-            </thead>
-            <tbody id="kolumnit-tbody">
-              {# Progressive enhancement: SSR renderoi 5 uusinta kolumnia. #}
-              {% for pub in pageModel.openingColumnItems %}
-              {% set externalUrl = pub.url %}
-              <tr>
-                <td class="text-center text-nowrap small">{{ pub.date | dateFormat }}</td>
-                <td>
-                  <a href="{{ externalUrl }}"{% if pub.isExternal %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ pub.title }}</a>
-                </td>
-                <td class="small text-muted">
-                  {% if pub.description %}{{ pub.description | truncate(150) }}{% endif %}
-                  {% if pub.publication %}<div class="small fst-italic mt-1">{{ pub.publication }}</div>{% endif %}
-                </td>
-                <td class="small">
-                  {% for cat in (pub.categories or []) %}{% if loop.index0 < 3 %}<span class="badge text-bg-secondary me-1">{{ cat }}</span>{% endif %}{% endfor %}
-                </td>
-                <td class="text-center"><a href="{{ externalUrl }}"{% if pub.isExternal %} target="_blank" rel="noopener noreferrer"{% endif %} class="btn btn-outline-primary btn-sm rounded-pill px-2" aria-label="{{ pub.title | escape }}"><i class="bi bi-arrow-right"></i></a></td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
-      </div>
-      {{ ui.paginationBar("kolumnit-info", "kolumnit-pagination", { label: "Kolumnien sivutus", extraClass: "card-footer bg-transparent kynasta-table-pager" }) }}
-    </div>
-  </div>
-</section>
-
-{# Kerätään kaikki aloitteet JSON-muotoon JS:ää varten #}
-
-
-{# Kerätään kaikki puheet JSON-muotoon JS:ää varten #}
-
-
-
-
-{# Kerätään kaikki blogipostaukset JSON-muotoon JS:ää varten #}
-<section id="blogi" class="bg-body-tertiary">
-  <div class="site-shell">
-    <div class="card shadow-sm">
-      <div class="card-header bg-transparent d-flex align-items-center justify-content-between kynasta-section-header">
-        <h2 class="h4 mb-0"><i class="bi bi-journal-richtext me-2"></i>Blogi</h2>
-        <span class="badge kynasta-section-count">{{ blogCount }}</span>
-      </div>
-      <div class="card-body p-0">
-        {# ---- Suodatuspalkki ---- #}
-        <div class="p-3 bg-body-tertiary border-bottom">
-          <div class="kynasta-blog-filter-row">
-            <div class="kynasta-blog-filter-search">
-              <label for="blog-search" class="form-label small text-muted mb-1">Hae kirjoituksia</label>
-              <input type="search" id="blog-search" class="form-control form-control-sm"
-                     placeholder="Hae otsikosta, aiheesta tai näkökulmasta..." autocomplete="off">
-            </div>
-            <div class="kynasta-blog-filter-role">
-              <label class="form-label small text-muted mb-1">Rajaa näkökulman mukaan</label>
-              <div class="role-filter-group role-filter-group--compact" role="group" aria-label="Rajaa blogikirjoitukset näkökulman mukaan">
-                <button type="button" class="btn btn-outline-secondary btn-sm active" data-blog-role="all">Kaikki</button>
-                <button type="button" class="btn btn-outline-secondary btn-sm" data-blog-role="political">Päätöksenteko</button>
-                <button type="button" class="btn btn-outline-secondary btn-sm" data-blog-role="expert">Asiantuntijatausta</button>
-                <button type="button" class="btn btn-outline-secondary btn-sm" data-blog-role="hybrid">Asiantuntijuus mukana</button>
-                <button type="button" class="btn btn-outline-secondary btn-sm" data-blog-role="personal">Henkilökohtainen</button>
-              </div>
-            </div>
-            <div class="kynasta-blog-filter-year">
-              <label for="blog-year" class="form-label small text-muted mb-1">Vuosi</label>
-              <select id="blog-year" class="form-select form-select-sm" aria-label="Rajaa blogikirjoitukset vuoden mukaan"><option value="" selected>Kaikki vuodet</option></select>
-            </div>
-            <div class="kynasta-blog-filter-reset">
-              <button id="blog-reset" class="btn btn-outline-secondary btn-sm w-100">
-                <i class="bi bi-x-circle me-1"></i>Tyhjennä
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {# ---- Taulukko ---- #}
-        <div class="table-responsive">
-          <table class="table table-hover align-middle mb-0 pub-table blog-table" data-no-header-filters>
-            <thead>
-              <tr>
-                <th class="sortable text-center" data-col="date" style="width:140px">
-                  Päivämäärä <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
-                </th>
-                <th class="sortable" data-col="title" style="min-width:200px">
-                  Otsikko <i class="bi bi-arrow-down-up sort-icon small opacity-50"></i>
-                </th>
-                <th style="min-width:250px">Tiivistelmä</th>
-                <th>Kategoriat & Avainsanat</th>
-                <th style="width:80px" class="text-center">Lue</th>
-              </tr>
-            </thead>
-            <tbody id="blog-tbody">
-              {# Progressive enhancement: SSR renderoi 5 uusinta blog-kirjoitusta. #}
-              {% for post in pageModel.openingBlogItems %}
-              <tr>
-                <td class="text-center text-nowrap small">{{ post.date | dateFormat }}</td>
-                <td>
-                  <a href="{{ post.pageUrl or post.url }}">{{ post.title }}</a>
-                </td>
-                <td class="small text-muted">{% if post.description %}{{ post.description | truncate(150) }}{% endif %}</td>
-                <td class="small">
-                  {% for cat in (post.categories or []) %}{% if loop.index0 < 3 %}<span class="badge text-bg-secondary me-1">{{ cat }}</span>{% endif %}{% endfor %}
-                </td>
-                <td class="text-center"><a href="{{ post.pageUrl or post.url }}" class="btn btn-outline-primary btn-sm rounded-pill px-2" aria-label="{{ post.title | escape }}"><i class="bi bi-arrow-right"></i></a></td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="card-footer bg-transparent site-pagination-bar site-pagination-bar--bottom kynasta-table-pager">
-        <small id="blog-info" class="site-pagination-info text-muted"></small>
-        <div class="d-flex align-items-center gap-3">
-          <nav aria-label="Blogin sivutus">
-            <ul id="blog-pagination" class="pagination pagination-sm mb-0 flex-wrap site-pag"></ul>
-          </nav>
-          <a href="/blogi/" class="btn btn-outline-primary btn-sm rounded-pill">Kaikki blogipostaukset</a>
-        </div>
+        {% set items = pageModel.openingOpinionItems %}
+        {% set emptyLabel = "Mielipidekirjoituksia ei löytynyt." %}
+        {% include "writings-curated-list.njk" %}
       </div>
     </div>
   </div>
 </section>
 
-<section class="py-4">
+<section id="kolumnit" class="py-4">
   <div class="site-shell">
-    <nav class="kynasta-crosslinks" aria-labelledby="kynasta-crosslinks-heading">
-      <h2 id="kynasta-crosslinks-heading">Muualla sivustolla</h2>
-      <ul>
-        <li>
-          <a href="/kynasta/">Kynästä-hub</a> — kaikki kirjoitukset, puheet ja kannanotot yhdessä paikassa
-          <ul>
-            <li><a href="/valtuustotyo/">Valtuustotyö</a> — valtuustopuheenvuorot ja aloitteet (sisarsivu)</li>
-            <li><a href="/lausunnot/">Lausunnot ja julkiset puheet</a> — asiantuntijalausunnot valmisteluun (sisarsivu)</li>
-          </ul>
-        </li>
-        <li><a href="/teemat/">Teemaprofiilit</a> — kokoaa saman aiheen (esim. tekoäly, palveluverkko) kaikki tekstit ja puheet yhteen</li>
-      </ul>
-    </nav>
+    <div class="card shadow-sm border-0">
+      <div class="card-body">
+        <div class="d-flex flex-wrap align-items-start justify-content-between gap-3 mb-3">
+          <div>
+            <h2 class="h4 mb-1"><i class="bi bi-pen-fill me-2"></i>Kolumnit ja blogivierailut</h2>
+            <p class="text-muted mb-0">Kolumnimuotoiset tekstit ja vierailut ulkoisissa blogeissa.</p>
+          </div>
+          <span class="badge kynasta-section-count">{{ columnCount }}</span>
+        </div>
+        {% set items = pageModel.openingColumnItems %}
+        {% set emptyLabel = "Kolumneja ei löytynyt." %}
+        {% include "writings-curated-list.njk" %}
+      </div>
+    </div>
   </div>
 </section>
 
-
-
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-function normalizeWritingRoles(roles) {
-  return [...new Set((Array.isArray(roles) ? roles : []).filter(Boolean))];
-}
-
-function renderWritingRoleBadges(roles, options = {}) {
-  const normalizedRoles = normalizeWritingRoles(roles);
-  if (!normalizedRoles.length) return '';
-
-  const className = options.button
-    ? 'badge writing-role-badge mt-1 me-1 opinion-role-inline-filter'
-    : 'badge writing-role-badge mt-1 me-1';
-  const tagName = options.button ? 'button' : 'span';
-  const buttonAttrs = options.button ? ' type="button"' : '';
-  const dataAttr = options.button ? 'data-opinion-role-inline' : 'data-writing-role';
-
-  if (normalizedRoles.includes('political') && normalizedRoles.includes('expert')) {
-    return `<${tagName}${buttonAttrs} class="${className} writing-role-badge--hybrid" ${dataAttr}="hybrid" aria-label="Näkökulma: asiantuntijuus mukana päätöksenteossa">Asiantuntijuus mukana</${tagName}>`;
-  }
-
-  return normalizedRoles.map((role) => {
-    const label = role === 'political' ? 'Päätöksenteko' : role === 'personal' ? 'Henkilökohtainen' : 'Asiantuntijatausta';
-    const modifier = ['political', 'expert', 'personal'].includes(role) ? role : 'expert';
-    return `<${tagName}${buttonAttrs} class="${className} writing-role-badge--${modifier}" ${dataAttr}="${role}" aria-label="Näkökulma: ${label}">${label}</${tagName}>`;
-  }).join('');
-}
-
-function writingRoleMatchesQuery(roles, query) {
-  const terms = normalizeWritingRoles(roles).flatMap((role) => {
-    if (role === 'political') return ['political', 'poliittinen', 'politiikka', 'päätöksenteko', 'kannanotto'];
-    if (role === 'expert') return ['expert', 'asiantuntija', 'asiantuntijuus', 'asiantuntijatausta'];
-    if (role === 'personal') return ['personal', 'henkilökohtainen'];
-    return [role];
-  });
-  if (terms.includes('political') && terms.includes('expert')) {
-    terms.push('hybrid', 'raja', 'asiantuntijuus mukana', 'päätöksenteko asiantuntijuus', 'poliittinen asiantuntija', 'poliittinen + asiantuntija');
-  }
-  return terms.some((term) => term.toLowerCase().includes(query));
-}
-
-function writingRoleMatchesFilter(roles, selectedRole) {
-  if (!selectedRole || selectedRole === 'all') return true;
-  const normalizedRoles = normalizeWritingRoles(roles);
-  if (selectedRole === 'hybrid') {
-    return normalizedRoles.includes('political') && normalizedRoles.includes('expert');
-  }
-  return normalizedRoles.includes(selectedRole);
-}
-
-function syncWritingRoleFilterButtons(buttons, selectedRole) {
-  buttons.forEach((btn) => {
-    const role = btn.dataset.blogRole || btn.dataset.kolumnitRole || 'all';
-    const isActive = role === selectedRole;
-    btn.classList.toggle('active', isActive);
-    btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-  });
-}
-
-function archiveYear(value) {
-  const match = String(value || '').match(/\b(19|20)\d{2}\b/);
-  return match ? match[0] : '';
-}
-
-function populateArchiveFilter(select, values, emptyLabel, compare) {
-  if (!select) return;
-  const uniqueValues = [...new Set(values.map((value) => String(value || '').trim()).filter(Boolean))]
-    .sort(compare || ((a, b) => a.localeCompare(b, 'fi')));
-  const emptyOption = document.createElement('option');
-  emptyOption.value = '';
-  emptyOption.textContent = emptyLabel;
-  emptyOption.defaultSelected = true;
-  emptyOption.selected = true;
-  select.replaceChildren(emptyOption, ...uniqueValues.map((value) => new Option(value, value)));
-}
-
-function restoreArchiveFilterFromUrl(select, value) {
-  const selectedValue = String(value || '').trim();
-  if (!select || !selectedValue) return;
-  if (Array.from(select.options).some((option) => option.value === selectedValue)) {
-    select.value = selectedValue;
-  }
-}
-
-function syncArchiveSortButton(button, isActive, direction, columnLabel) {
-  if (!button) return;
-  const directionLabel = columnLabel === 'Päivämäärä'
-    ? (direction === 1 ? 'vanhin ensin' : 'uusin ensin')
-    : (direction === 1 ? 'A-Ö' : 'Ö-A');
-  button.classList.toggle('active', isActive);
-  button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-  button.setAttribute('aria-label', isActive ? `${columnLabel}: ${directionLabel}` : `Lajittele: ${columnLabel}`);
-  button.title = isActive ? `${columnLabel}: ${directionLabel}` : `Lajittele: ${columnLabel}`;
-  const icon = button.querySelector('i');
-  if (icon) icon.className = `bi ${direction === 1 ? 'bi-arrow-up' : 'bi-arrow-down'}`;
-}
-
-(function () {
-  // Näytä arkistokokonaisuudet tarkoituksellisessa lukujärjestyksessä rikkomatta accordion-rakennetta.
-  const sectionOrder = ['puheet', 'julkiset-puheet', 'aloitteet', 'blogi', 'mielipiteet', 'lausunnot', 'kolumnit'];
-  const archiveWrappers = sectionOrder
-    .map(id => document.getElementById(id)?.closest('.kynasta-archive-disclosure'))
-    .filter(Boolean);
-  const uniqueArchiveWrappers = [...new Set(archiveWrappers)];
-  if (uniqueArchiveWrappers.length > 1) {
-    const parent = uniqueArchiveWrappers[0].parentElement;
-    const anchor = document.createComment('kynasta-sections-order-anchor');
-    parent.insertBefore(anchor, uniqueArchiveWrappers[0]);
-    const fragment = document.createDocumentFragment();
-    uniqueArchiveWrappers.forEach(wrapper => fragment.appendChild(wrapper));
-    parent.insertBefore(fragment, anchor);
-    anchor.remove();
-  }
-
-  const closeOtherArchiveAccordions = (activeWrapper) => {
-    uniqueArchiveWrappers.forEach((wrapper) => {
-      if (wrapper !== activeWrapper) wrapper.open = false;
-    });
-  };
-
-  const focusArchiveAccordionTitle = (wrapper) => {
-    const summary = wrapper.querySelector(':scope > .kynasta-mobile-disclosure-summary');
-    if (!summary) return;
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    window.requestAnimationFrame(() => {
-      window.requestAnimationFrame(() => {
-        summary.focus({ preventScroll: true });
-        summary.scrollIntoView({
-          block: 'start',
-          inline: 'nearest',
-          behavior: prefersReducedMotion ? 'auto' : 'smooth'
-        });
-      });
-    });
-  };
-
-  const initiallyOpenArchiveWrappers = uniqueArchiveWrappers.filter((wrapper) => wrapper.open);
-  initiallyOpenArchiveWrappers.slice(1).forEach((wrapper) => {
-    wrapper.open = false;
-  });
-
-  uniqueArchiveWrappers.forEach((wrapper) => {
-    wrapper.addEventListener('toggle', () => {
-      if (!wrapper.open) return;
-      closeOtherArchiveAccordions(wrapper);
-      focusArchiveAccordionTitle(wrapper);
-    });
-  });
-  const cleanMobileLabel = (value) => String(value || '')
-    .replace(/Ei lajittelua/gi, '')
-    .replace(/Pienin ensin/gi, '')
-    .replace(/Suurin ensin/gi, '')
-    .replace(/Uusin ensin/gi, '')
-    .replace(/Vanhin ensin/gi, '')
-    .replace(/A-ÖÖ-A/gi, '')
-    .replace(/\s+/g, ' ')
-    .trim();
-
-  const syncMobileTableLabels = () => {
-    document.querySelectorAll('.pub-table').forEach((table) => {
-      const headers = Array.from(table.querySelectorAll('thead th')).map((th) =>
-        cleanMobileLabel(th.dataset.mobileLabel || th.textContent || '')
-      );
-      table.querySelectorAll('tbody tr').forEach((row) => {
-        Array.from(row.children).forEach((cell, idx) => {
-          if (cell.tagName !== 'TD') return;
-          if (cell.hasAttribute('colspan')) {
-            cell.setAttribute('data-label', '');
-            return;
-          }
-          cell.setAttribute('data-label', headers[idx] || '');
-        });
-      });
-    });
-  };
-
-  syncMobileTableLabels();
-  const mobileTableObserver = new MutationObserver(() => syncMobileTableLabels());
-  document.querySelectorAll('.pub-table tbody').forEach((tbody) => {
-    mobileTableObserver.observe(tbody, { childList: true, subtree: true });
-  });
-})();
-
-// --- Data-adapteri: normalisoi engine-record UI:n odottamaan formaattiin.
-// Engine (window.ContentEngine.query) hoitaa datafetchin ja perus-suodatuksen.
-// Tama funktio lisaa vain UI-tason kentat (formattedDate, isExternal).
-const _kirjoituksetDateFormatter = new Intl.DateTimeFormat('fi-FI', {
-  day: 'numeric', month: 'long', year: 'numeric'
-});
-function toKirjoituksetRecord(item) {
-  const url = item.pageUrl || item.url || item.sourceUrl || '';
-  return {
-    title: item.title || '',
-    date: item.date || '',
-    formattedDate: item.date ? _kirjoituksetDateFormatter.format(new Date(item.date)) : '',
-    description: item.description || '',
-    publication: item.publication || '',
-    url: url,
-    isExternal: Boolean(item.isExternal) || /^https?:/.test(url),
-    categories: item.categories || [],
-    keywords: item.keywords || [],
-    writingRoles: item.writingRoles || [],
-    opinionRoles: item.opinionRoles || []
-  };
-}
-
-// --- Blogi taulukon logiikka ---
-// Datafetch + contentType-suodatus: window.ContentEngine.query.
-// Search + sort + UI-tila: sivun oma logiikka (writingRoleMatchesQuery
-// on sivukohtainen hakukayttaytyminen, siksi ei siirretty enginee).
-(async function () {
-  const BLOG_PAGE_SIZE = 5;
-  if (!window.ContentEngine) {
-    console.error('kirjoitukset: window.ContentEngine puuttuu');
-    return;
-  }
-  const engineResult = await window.ContentEngine.query({
-    source: 'writings',
-    filters: { contentType: 'blogPost' }
-  });
-  const blogData = engineResult.items.map(toKirjoituksetRecord);
-  if (!blogData.length) return;
-
-  let filteredBlogData = [...blogData].sort((a, b) => new Date(b.date) - new Date(a.date));
-  let blogCurrentPage = 1;
-  let blogSortCol = 'date';
-  let blogSortDir = -1; // -1 = desc
-  let selectedBlogRole = 'all';
-
-  const blogSearchInp = document.getElementById('blog-search');
-  const blogYearSel = document.getElementById('blog-year');
-  const blogTbody = document.getElementById('blog-tbody');
-  const blogInfo = document.getElementById('blog-info');
-  const blogPagUl = document.getElementById('blog-pagination');
-  const blogRoleButtons = Array.from(document.querySelectorAll('[data-blog-role]'));
-
-  populateArchiveFilter(blogYearSel, blogData.map((item) => archiveYear(item.date)), 'Kaikki vuodet', (a, b) => Number(b) - Number(a));
-
-  function applyBlogFilters() {
-    const q = blogSearchInp ? blogSearchInp.value.toLowerCase().trim() : '';
-    const year = blogYearSel?.value || '';
-    filteredBlogData = blogData.filter(d => {
-      const roles = d.writingRoles || [];
-      const matchQ = !q ||
-        (d.title || '').toLowerCase().includes(q) ||
-        (d.description || '').toLowerCase().includes(q) ||
-        writingRoleMatchesQuery(roles, q) ||
-        (d.categories || []).some(c => c.toLowerCase().includes(q)) ||
-        (d.keywords || []).some(k => k.toLowerCase().includes(q));
-      return matchQ &&
-        (!year || archiveYear(d.date) === year) &&
-        writingRoleMatchesFilter(roles, selectedBlogRole);
-    }).sort((a, b) => new Date(b.date) - new Date(a.date));
-    blogCurrentPage = 1;
-    syncWritingRoleFilterButtons(blogRoleButtons, selectedBlogRole);
-    renderBlog();
-  }
-
-  function sortBlogData(col) {
-    if (blogSortCol === col) { blogSortDir *= -1; }
-    else { blogSortCol = col; blogSortDir = col === 'date' ? -1 : 1; }
-    
-    filteredBlogData.sort((a, b) => {
-      let av = a[col] ?? '';
-      let bv = b[col] ?? '';
-      if (typeof av === 'string') av = av.toLowerCase();
-      if (typeof bv === 'string') bv = bv.toLowerCase();
-      if (col === 'date') {
-        return (new Date(av) - new Date(bv)) * blogSortDir;
-      }
-      return av.toString().localeCompare(bv.toString(), 'fi') * blogSortDir;
-    });
-    blogCurrentPage = 1;
-    renderBlog();
-  }
-
-  function renderBlog() {
-    if (!blogTbody || !blogInfo) return;
-
-    const totalPages = Math.max(1, Math.ceil(filteredBlogData.length / BLOG_PAGE_SIZE));
-    const start = (blogCurrentPage - 1) * BLOG_PAGE_SIZE;
-    const slice = filteredBlogData.slice(start, start + BLOG_PAGE_SIZE);
-
-    if (slice.length === 0) {
-      blogTbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-5">Ei tuloksia haulla</td></tr>';
-    } else {
-      blogTbody.innerHTML = slice.map(d => {
-        const catBadges = (d.categories || []).map(c => `<a href="/kategoriat/${slugify(c)}/" class="badge text-bg-secondary me-1 text-decoration-none">${c}</a>`).join('');
-        const keyBadges = (d.keywords || []).map(k => `<a href="/avainsanat/${slugify(k)}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">${k}</a>`).join('');
-        const roleBadges = renderWritingRoleBadges(d.writingRoles || []);
-
-        return `<tr>
-          <td class="col-date text-center small text-muted font-monospace">${d.formattedDate}</td>
-          <td class="col-title fw-medium"><a href="${d.url}" class="text-decoration-none">${escHtml(d.title)}</a></td>
-          <td class="col-desc small text-muted"><span class="summary-text">${escHtml(d.description)}</span>${roleBadges}</td>
-          <td class="col-taxonomy">
-            <div class="mb-1">${catBadges}</div>
-            <div>${keyBadges}</div>
-          </td>
-          <td class="col-action text-center">
-            <a href="${d.url}" class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Lue blogipostaus">
-              <i class="bi bi-arrow-right"></i>
-            </a>
-          </td>
-        </tr>`;
-      }).join('');
-    }
-
-    const total = filteredBlogData.length;
-    const from = total === 0 ? 0 : start + 1;
-    const to = Math.min(start + BLOG_PAGE_SIZE, total);
-    blogInfo.textContent = `Näytetään ${from}–${to} / ${total}`;
-
-    renderBlogPagination(totalPages);
-
-    document.querySelectorAll('.blog-table th.sortable').forEach(th => {
-      th.classList.remove('sort-asc', 'sort-desc');
-      if (th.dataset.col === blogSortCol) {
-        th.classList.add(blogSortDir === 1 ? 'sort-asc' : 'sort-desc');
-      }
-    });
-  }
-
-  function renderBlogPagination(total) {
-    renderPaginationShared(blogPagUl, total, blogCurrentPage, page => {
-      blogCurrentPage = page;
-      renderBlog();
-      document.getElementById('blogi')?.scrollIntoView({behavior:'smooth', block:'start'});
-    });
-  }
-
-  function escHtml(str) {
-    if (!str) return '';
-    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
-
-  function slugify(str) {
-    if (!str) return "";
-    return str.toLowerCase().replace(/ä/g, "a").replace(/ö/g, "o").replace(/å/g, "a").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-  }
-
-  if (blogSearchInp) blogSearchInp.addEventListener('input', applyBlogFilters);
-  if (blogYearSel) blogYearSel.addEventListener('change', applyBlogFilters);
-
-  blogRoleButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      selectedBlogRole = btn.dataset.blogRole || 'all';
-      applyBlogFilters();
-    });
-  });
-  
-  const blogResetBtn = document.getElementById('blog-reset');
-  if (blogResetBtn) {
-    blogResetBtn.addEventListener('click', () => {
-      if (blogSearchInp) blogSearchInp.value = '';
-      if (blogYearSel) blogYearSel.value = '';
-      selectedBlogRole = 'all';
-      applyBlogFilters();
-    });
-  }
-
-  document.querySelectorAll('.blog-table th.sortable').forEach(th => {
-    th.addEventListener('click', () => sortBlogData(th.dataset.col));
-  });
-
-  applyBlogFilters();
-})();
-
-// --- Kolumnit taulukon logiikka ---
-(async function () {
-  const KOLUMNIT_PAGE_SIZE = 5;
-  if (!window.ContentEngine) {
-    console.error('kirjoitukset: window.ContentEngine puuttuu');
-    return;
-  }
-  const engineResult = await window.ContentEngine.query({
-    source: 'writings',
-    filters: { contentType: 'column' }
-  });
-  const kolumnitData = engineResult.items.map(toKirjoituksetRecord);
-  if (!kolumnitData.length) return;
-  const kolumnitUrlParams = new URLSearchParams(window.location.search);
-
-  let filteredKolumnitData = [...kolumnitData].sort((a, b) => new Date(b.date) - new Date(a.date));
-  let kolumnitCurrentPage = 1;
-  let kolumnitSortCol = 'date';
-  let kolumnitSortDir = -1; // -1 = desc
-  let selectedKolumnitRole = ['political', 'expert', 'hybrid'].includes(kolumnitUrlParams.get('columnsRole'))
-    ? kolumnitUrlParams.get('columnsRole')
-    : 'all';
-
-  const kolumnitSearchInp = document.getElementById('kolumnit-search');
-  const kolumnitYearSel = document.getElementById('kolumnit-year');
-  const kolumnitPublicationSel = document.getElementById('kolumnit-publication');
-  const kolumnitDateSortBtn = document.getElementById('kolumnit-sort-date');
-  const kolumnitTitleSortBtn = document.getElementById('kolumnit-sort-title');
-  const kolumnitTbody = document.getElementById('kolumnit-tbody');
-  const kolumnitInfo = document.getElementById('kolumnit-info');
-  const kolumnitPagUl = document.getElementById('kolumnit-pagination');
-  const kolumnitRoleButtons = Array.from(document.querySelectorAll('[data-kolumnit-role]'));
-
-  populateArchiveFilter(kolumnitYearSel, kolumnitData.map((item) => archiveYear(item.date)), 'Kaikki vuodet', (a, b) => Number(b) - Number(a));
-  populateArchiveFilter(kolumnitPublicationSel, kolumnitData.map((item) => item.publication), 'Kaikki julkaisut');
-  restoreArchiveFilterFromUrl(kolumnitYearSel, kolumnitUrlParams.get('columnsYear'));
-  restoreArchiveFilterFromUrl(kolumnitPublicationSel, kolumnitUrlParams.get('columnsPublication'));
-
-  function syncKolumnitUrl() {
-    const nextUrl = new URL(window.location.href);
-    const filters = [
-      ['columnsRole', selectedKolumnitRole === 'all' ? '' : selectedKolumnitRole],
-      ['columnsYear', kolumnitYearSel?.value || ''],
-      ['columnsPublication', kolumnitPublicationSel?.value || '']
-    ];
-    filters.forEach(([key, value]) => value ? nextUrl.searchParams.set(key, value) : nextUrl.searchParams.delete(key));
-    history.replaceState({}, '', `${nextUrl.pathname}${nextUrl.search}${window.location.hash}`);
-  }
-
-  function applyKolumnitFilters() {
-    const q = kolumnitSearchInp ? kolumnitSearchInp.value.toLowerCase().trim() : '';
-    const year = kolumnitYearSel?.value || '';
-    const publication = kolumnitPublicationSel?.value || '';
-    filteredKolumnitData = kolumnitData.filter(d => {
-      const roles = d.writingRoles || [];
-      const matchQ = !q ||
-        (d.title || '').toLowerCase().includes(q) ||
-        (d.description || '').toLowerCase().includes(q) ||
-        (d.publication || '').toLowerCase().includes(q) ||
-        writingRoleMatchesQuery(roles, q) ||
-        (d.categories || []).some(c => c.toLowerCase().includes(q)) ||
-        (d.keywords || []).some(k => k.toLowerCase().includes(q));
-      return matchQ &&
-        (!year || archiveYear(d.date) === year) &&
-        (!publication || d.publication === publication) &&
-        writingRoleMatchesFilter(roles, selectedKolumnitRole);
-    }).sort((a, b) => new Date(b.date) - new Date(a.date));
-    kolumnitCurrentPage = 1;
-    syncWritingRoleFilterButtons(kolumnitRoleButtons, selectedKolumnitRole);
-    syncKolumnitUrl();
-    renderKolumnit();
-  }
-
-  function sortKolumnitData(col) {
-    if (kolumnitSortCol === col) { kolumnitSortDir *= -1; }
-    else { kolumnitSortCol = col; kolumnitSortDir = col === 'date' ? -1 : 1; }
-    
-    filteredKolumnitData.sort((a, b) => {
-      let av = a[col] ?? '';
-      let bv = b[col] ?? '';
-      if (typeof av === 'string') av = av.toLowerCase();
-      if (typeof bv === 'string') bv = bv.toLowerCase();
-      if (col === 'date') {
-        return (new Date(av) - new Date(bv)) * kolumnitSortDir;
-      }
-      return av.toString().localeCompare(bv.toString(), 'fi') * kolumnitSortDir;
-    });
-    kolumnitCurrentPage = 1;
-    renderKolumnit();
-  }
-
-  function renderKolumnit() {
-    if (!kolumnitTbody || !kolumnitInfo) return;
-
-    const totalPages = Math.max(1, Math.ceil(filteredKolumnitData.length / KOLUMNIT_PAGE_SIZE));
-    const start = (kolumnitCurrentPage - 1) * KOLUMNIT_PAGE_SIZE;
-    const slice = filteredKolumnitData.slice(start, start + KOLUMNIT_PAGE_SIZE);
-
-    if (slice.length === 0) {
-      kolumnitTbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-5">Ei tuloksia haulla</td></tr>';
-    } else {
-      kolumnitTbody.innerHTML = slice.map(d => {
-        const catBadges = (d.categories || []).map(c => `<a href="/kategoriat/${slugify(c)}/" class="badge text-bg-secondary me-1 text-decoration-none">${c}</a>`).join('');
-        const keyBadges = (d.keywords || []).map(k => `<a href="/avainsanat/${slugify(k)}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">${k}</a>`).join('');
-        const roleBadges = renderWritingRoleBadges(d.writingRoles || []);
-
-        const targetAttr = d.isExternal ? 'target="_blank" rel="noopener"' : '';
-        const iconInfo = d.isExternal ? '<i class="bi bi-arrow-up-right"></i>' : '<i class="bi bi-arrow-right"></i>';
-        const publicationTitle = d.publication ? `<strong class="d-block text-body mb-1">${escHtml(d.publication)}</strong>` : '';
-
-        return `<tr>
-          <td class="col-date text-center small text-muted font-monospace">${d.formattedDate}</td>
-          <td class="col-title fw-medium"><a href="${d.url}" ${targetAttr} class="text-decoration-none">${escHtml(d.title)}</a></td>
-          <td class="col-desc small text-muted">${publicationTitle}<span class="summary-text">${escHtml(d.description)}</span>${roleBadges}</td>
-          <td class="col-taxonomy">
-            <div class="mb-1">${catBadges}</div>
-            <div>${keyBadges}</div>
-          </td>
-          <td class="col-action text-center">
-            <a href="${d.url}" ${targetAttr} class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Avaa kolumni">
-              ${iconInfo}
-            </a>
-          </td>
-        </tr>`;
-      }).join('');
-    }
-
-    const total = filteredKolumnitData.length;
-    const from = total === 0 ? 0 : start + 1;
-    const to = Math.min(start + KOLUMNIT_PAGE_SIZE, total);
-    kolumnitInfo.textContent = `Näytetään ${from}–${to} / ${total}`;
-
-    renderKolumnitPagination(totalPages);
-
-    syncArchiveSortButton(kolumnitDateSortBtn, kolumnitSortCol === 'date', kolumnitSortDir, 'Päivämäärä');
-    syncArchiveSortButton(kolumnitTitleSortBtn, kolumnitSortCol === 'title', kolumnitSortDir, 'Otsikko');
-  }
-
-  function renderKolumnitPagination(total) {
-    renderPaginationShared(kolumnitPagUl, total, kolumnitCurrentPage, page => {
-      kolumnitCurrentPage = page;
-      renderKolumnit();
-      document.getElementById('kolumnit')?.scrollIntoView({behavior:'smooth', block:'start'});
-    });
-  }
-
-  function escHtml(str) {
-    if (!str) return '';
-    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
-
-  function slugify(str) {
-    if (!str) return "";
-    return str.toLowerCase().replace(/ä/g, "a").replace(/ö/g, "o").replace(/å/g, "a").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-  }
-
-  if (kolumnitSearchInp) kolumnitSearchInp.addEventListener('input', applyKolumnitFilters);
-  if (kolumnitYearSel) kolumnitYearSel.addEventListener('change', applyKolumnitFilters);
-  if (kolumnitPublicationSel) kolumnitPublicationSel.addEventListener('change', applyKolumnitFilters);
-  if (kolumnitDateSortBtn) kolumnitDateSortBtn.addEventListener('click', () => sortKolumnitData('date'));
-  if (kolumnitTitleSortBtn) kolumnitTitleSortBtn.addEventListener('click', () => sortKolumnitData('title'));
-
-  kolumnitRoleButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      selectedKolumnitRole = btn.dataset.kolumnitRole || 'all';
-      applyKolumnitFilters();
-    });
-  });
-  
-  const kolumnitResetBtn = document.getElementById('kolumnit-reset');
-  if (kolumnitResetBtn) {
-    kolumnitResetBtn.addEventListener('click', () => {
-      if (kolumnitSearchInp) kolumnitSearchInp.value = '';
-      if (kolumnitYearSel) kolumnitYearSel.value = '';
-      if (kolumnitPublicationSel) kolumnitPublicationSel.value = '';
-      selectedKolumnitRole = 'all';
-      applyKolumnitFilters();
-    });
-  }
-
-  applyKolumnitFilters();
-})();
-
-// --- Mielipiteet taulukon logiikka ---
-(async function () {
-  const MIELIPITEET_PAGE_SIZE = 5;
-  if (!window.ContentEngine) {
-    console.error('kirjoitukset: window.ContentEngine puuttuu');
-    return;
-  }
-  const engineResult = await window.ContentEngine.query({
-    source: 'writings',
-    filters: { contentType: 'opinion' }
-  });
-  const mielipiteetData = engineResult.items.map(toKirjoituksetRecord);
-  if (!mielipiteetData.length) return;
-  const urlParams = new URLSearchParams(window.location.search);
-  const initialOpinionRole = urlParams.get('opinions');
-
-  let filteredMielipiteetData = [];
-  let mielipiteetCurrentPage = 1;
-  let mielipiteetSortCol = 'date';
-  let mielipiteetSortDir = -1; // -1 = desc
-  let selectedOpinionRole = ['political', 'expert', 'hybrid'].includes(initialOpinionRole) ? initialOpinionRole : 'all';
-
-  const mielipiteetSearchInp = document.getElementById('mielipiteet-search');
-  const mielipiteetYearSel = document.getElementById('mielipiteet-year');
-  const mielipiteetPublicationSel = document.getElementById('mielipiteet-publication');
-  const mielipiteetDateSortBtn = document.getElementById('mielipiteet-sort-date');
-  const mielipiteetTitleSortBtn = document.getElementById('mielipiteet-sort-title');
-  const mielipiteetTbody = document.getElementById('mielipiteet-tbody');
-  const mielipiteetInfo = document.getElementById('mielipiteet-info');
-  const mielipiteetPagUl = document.getElementById('mielipiteet-pagination');
-  const opinionRoleButtons = Array.from(document.querySelectorAll('[data-opinion-role]'));
-  const opinionRoleCards = Array.from(document.querySelectorAll('[data-opinion-role-card]'));
-
-  populateArchiveFilter(mielipiteetYearSel, mielipiteetData.map((item) => archiveYear(item.date)), 'Kaikki vuodet', (a, b) => Number(b) - Number(a));
-  populateArchiveFilter(mielipiteetPublicationSel, mielipiteetData.map((item) => item.publication), 'Kaikki julkaisut');
-  restoreArchiveFilterFromUrl(mielipiteetYearSel, urlParams.get('opinionsYear'));
-  restoreArchiveFilterFromUrl(mielipiteetPublicationSel, urlParams.get('opinionsPublication'));
-
-  function sortMielipiteetArray(data) {
-    return [...data].sort((a, b) => {
-      let av = a[mielipiteetSortCol] ?? '';
-      let bv = b[mielipiteetSortCol] ?? '';
-      if (typeof av === 'string') av = av.toLowerCase();
-      if (typeof bv === 'string') bv = bv.toLowerCase();
-      if (mielipiteetSortCol === 'date') {
-        return (new Date(av) - new Date(bv)) * mielipiteetSortDir;
-      }
-      return av.toString().localeCompare(bv.toString(), 'fi') * mielipiteetSortDir;
-    });
-  }
-
-  function syncOpinionRoleButtons() {
-    opinionRoleButtons.forEach((btn) => {
-      const isActive = btn.dataset.opinionRole === selectedOpinionRole;
-      btn.classList.toggle('active', isActive);
-      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-    });
-    opinionRoleCards.forEach((card) => {
-      const isActive = card.dataset.opinionRoleCard === selectedOpinionRole;
-      card.classList.toggle('is-active', isActive);
-      card.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-    });
-  }
-
-  function syncOpinionFiltersUrl() {
-    const nextUrl = new URL(window.location.href);
-    const filters = [
-      ['opinions', selectedOpinionRole === 'all' ? '' : selectedOpinionRole],
-      ['opinionsYear', mielipiteetYearSel?.value || ''],
-      ['opinionsPublication', mielipiteetPublicationSel?.value || '']
-    ];
-    filters.forEach(([key, value]) => value ? nextUrl.searchParams.set(key, value) : nextUrl.searchParams.delete(key));
-    history.replaceState({}, '', `${nextUrl.pathname}${nextUrl.search}${window.location.hash}`);
-  }
-
-  function applyMielipiteetFilters() {
-    const q = mielipiteetSearchInp ? mielipiteetSearchInp.value.toLowerCase().trim() : '';
-    const year = mielipiteetYearSel?.value || '';
-    const publication = mielipiteetPublicationSel?.value || '';
-    filteredMielipiteetData = sortMielipiteetArray(mielipiteetData.filter(d => {
-      const roles = Array.isArray(d.opinionRoles) ? d.opinionRoles : [];
-      const matchQ = !q ||
-        (d.title || '').toLowerCase().includes(q) ||
-        (d.description || '').toLowerCase().includes(q) ||
-        (d.publication || '').toLowerCase().includes(q) ||
-        writingRoleMatchesQuery(d.opinionRoles || d.writingRoles || [], q) ||
-        (d.categories || []).some(c => c.toLowerCase().includes(q)) ||
-        (d.keywords || []).some(k => k.toLowerCase().includes(q));
-      const matchRole =
-        selectedOpinionRole === 'all' ||
-        roles.includes(selectedOpinionRole) ||
-        (selectedOpinionRole === 'hybrid' && roles.includes('political') && roles.includes('expert'));
-      return matchQ &&
-        (!year || archiveYear(d.date) === year) &&
-        (!publication || d.publication === publication) &&
-        matchRole;
-    }));
-    mielipiteetCurrentPage = 1;
-    syncOpinionRoleButtons();
-    syncOpinionFiltersUrl();
-    renderMielipiteet();
-  }
-
-  function sortMielipiteetData(col) {
-    if (mielipiteetSortCol === col) { mielipiteetSortDir *= -1; }
-    else { mielipiteetSortCol = col; mielipiteetSortDir = col === 'date' ? -1 : 1; }
-    filteredMielipiteetData = sortMielipiteetArray(filteredMielipiteetData);
-    mielipiteetCurrentPage = 1;
-    renderMielipiteet();
-  }
-
-  function renderMielipiteet() {
-    if (!mielipiteetTbody || !mielipiteetInfo) return;
-
-    const totalPages = Math.max(1, Math.ceil(filteredMielipiteetData.length / MIELIPITEET_PAGE_SIZE));
-    const start = (mielipiteetCurrentPage - 1) * MIELIPITEET_PAGE_SIZE;
-    const slice = filteredMielipiteetData.slice(start, start + MIELIPITEET_PAGE_SIZE);
-
-    if (slice.length === 0) {
-      mielipiteetTbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-5">Ei tuloksia haulla</td></tr>';
-    } else {
-      mielipiteetTbody.innerHTML = slice.map(d => {
-        const roleBadges = renderWritingRoleBadges(d.opinionRoles || d.writingRoles || [], { button: true });
-        const catBadges = (d.categories || []).map(c => `<a href="/kategoriat/${slugify(c)}/" class="badge text-bg-secondary me-1 text-decoration-none">${c}</a>`).join('');
-        const keyBadges = (d.keywords || []).map(k => `<a href="/avainsanat/${slugify(k)}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">${k}</a>`).join('');
-
-        const targetAttr = d.isExternal ? 'target="_blank" rel="noopener"' : '';
-        const iconInfo = d.isExternal ? '<i class="bi bi-arrow-up-right"></i>' : '<i class="bi bi-arrow-right"></i>';
-        const publicationTitle = d.publication ? `<strong class="d-block text-body mb-1">${escHtml(d.publication)}</strong>` : '';
-
-        return `<tr>
-          <td class="col-date text-center small text-muted font-monospace">${d.formattedDate}</td>
-          <td class="col-title fw-medium"><a href="${d.url}" ${targetAttr} class="text-decoration-none">${escHtml(d.title)}</a></td>
-          <td class="col-desc small text-muted">${publicationTitle}<span class="summary-text">${escHtml(d.description)}</span>${roleBadges}</td>
-          <td class="col-taxonomy">
-            <div class="mb-1">${catBadges}</div>
-            <div>${keyBadges}</div>
-          </td>
-          <td class="col-action text-center">
-            <a href="${d.url}" ${targetAttr} class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Avaa mielipidekirjoitus">
-              ${iconInfo}
-            </a>
-          </td>
-        </tr>`;
-      }).join('');
-    }
-
-    const total = filteredMielipiteetData.length;
-    const from = total === 0 ? 0 : start + 1;
-    const to = Math.min(start + MIELIPITEET_PAGE_SIZE, total);
-    mielipiteetInfo.textContent = `Näytetään ${from}–${to} / ${total}`;
-
-    renderMielipiteetPagination(totalPages);
-
-    syncArchiveSortButton(mielipiteetDateSortBtn, mielipiteetSortCol === 'date', mielipiteetSortDir, 'Päivämäärä');
-    syncArchiveSortButton(mielipiteetTitleSortBtn, mielipiteetSortCol === 'title', mielipiteetSortDir, 'Otsikko');
-  }
-
-  function renderMielipiteetPagination(total) {
-    renderPaginationShared(mielipiteetPagUl, total, mielipiteetCurrentPage, page => {
-      mielipiteetCurrentPage = page;
-      renderMielipiteet();
-      document.getElementById('mielipiteet')?.scrollIntoView({behavior:'smooth', block:'start'});
-    });
-  }
-
-  function escHtml(str) {
-    if (!str) return '';
-    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
-
-  function slugify(str) {
-    if (!str) return "";
-    return str.toLowerCase().replace(/ä/g, "a").replace(/ö/g, "o").replace(/å/g, "a").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-  }
-
-  if (mielipiteetSearchInp) mielipiteetSearchInp.addEventListener('input', applyMielipiteetFilters);
-  if (mielipiteetYearSel) mielipiteetYearSel.addEventListener('change', applyMielipiteetFilters);
-  if (mielipiteetPublicationSel) mielipiteetPublicationSel.addEventListener('change', applyMielipiteetFilters);
-  if (mielipiteetDateSortBtn) mielipiteetDateSortBtn.addEventListener('click', () => sortMielipiteetData('date'));
-  if (mielipiteetTitleSortBtn) mielipiteetTitleSortBtn.addEventListener('click', () => sortMielipiteetData('title'));
-
-  if (mielipiteetTbody) {
-    mielipiteetTbody.addEventListener('click', (event) => {
-      const roleBtn = event.target.closest('[data-opinion-role-inline]');
-      if (!roleBtn) return;
-      event.preventDefault();
-      selectedOpinionRole = roleBtn.dataset.opinionRoleInline || 'all';
-      applyMielipiteetFilters();
-      document.getElementById('mielipiteet')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-  }
-
-  opinionRoleButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      selectedOpinionRole = btn.dataset.opinionRole || 'all';
-      applyMielipiteetFilters();
-    });
-  });
-
-  opinionRoleCards.forEach((card) => {
-    card.addEventListener('click', () => {
-      selectedOpinionRole = card.dataset.opinionRoleCard || 'all';
-      applyMielipiteetFilters();
-    });
-  });
-  
-  const mielipiteetResetBtn = document.getElementById('mielipiteet-reset');
-  if (mielipiteetResetBtn) {
-    mielipiteetResetBtn.addEventListener('click', () => {
-      if (mielipiteetSearchInp) mielipiteetSearchInp.value = '';
-      if (mielipiteetYearSel) mielipiteetYearSel.value = '';
-      if (mielipiteetPublicationSel) mielipiteetPublicationSel.value = '';
-      selectedOpinionRole = 'all';
-      applyMielipiteetFilters();
-    });
-  }
-
-  applyMielipiteetFilters();
-})();
-
-}); // DOMContentLoaded
-</script>
+<section id="blogi" class="bg-body-tertiary py-4">
+  <div class="site-shell">
+    <div class="card shadow-sm border-0">
+      <div class="card-body">
+        <div class="d-flex flex-wrap align-items-start justify-content-between gap-3 mb-3">
+          <div>
+            <h2 class="h4 mb-1"><i class="bi bi-journal-text me-2"></i>Blogi</h2>
+            <p class="text-muted mb-0">Uusimmat blogikirjoitukset opetuksesta, teknologiasta, yliopistoarjesta ja yhteiskunnasta.</p>
+          </div>
+          <span class="badge kynasta-section-count">{{ blogCount }}</span>
+        </div>
+        {% set items = pageModel.openingBlogItems %}
+        {% set emptyLabel = "Blogikirjoituksia ei löytynyt." %}
+        {% include "writings-curated-list.njk" %}
+      </div>
+    </div>
+  </div>
+</section>

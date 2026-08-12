@@ -1,0 +1,214 @@
+{
+  "generatedAt": "2026-08-12",
+  "baseline": {
+    "worktree": "/private/tmp/www-main-canonical-v1",
+    "branch": "codex/find-explore-f1-audit",
+    "commit": "9aee5cc850eeeb1d7a067fd87e2fee814e9ca97c",
+    "describe": "canonical-content-v1-1-g9aee5cc8",
+    "buildCommand": "npm run build:no-og",
+    "buildStatus": "green-cache-only"
+  },
+  "pagefind": {
+    "version": "1.5.2",
+    "indexedPages": 1434,
+    "indexedWords": 43068,
+    "filters": 2,
+    "sorts": 0,
+    "totalBytes": 7071239,
+    "fragments": 1434,
+    "languages": {
+      "fi": 1102,
+      "en": 332
+    },
+    "warning": "No data-pagefind-body found, so Pagefind indexes all body elements."
+  },
+  "publicJson": {
+    "/data/publications-page.json": {
+      "bytes": 101074,
+      "items": 56
+    },
+    "/data/presentations-page.json": {
+      "bytes": 278568,
+      "items": 210
+    },
+    "/data/theses.json": {
+      "bytes": 344334,
+      "items": 169
+    },
+    "/data/writings-page.json": {
+      "bytes": 427482,
+      "items": 290
+    },
+    "/data/publications.json": {
+      "bytes": 221354,
+      "items": 164
+    },
+    "/data/researchfi.json": {
+      "bytes": 56936,
+      "items": 56
+    }
+  },
+  "archivePages": {
+    "/esitykset/": {
+      "htmlBytes": 305186,
+      "elements": 2520,
+      "links": 493,
+      "searchInputs": 2,
+      "selects": 1,
+      "buttons": 52,
+      "tables": 3,
+      "cardsOrArticles": 103,
+      "localScriptBytes": 340233
+    },
+    "/en/presentations/": {
+      "htmlBytes": 440565,
+      "elements": 1440,
+      "links": 280,
+      "searchInputs": 2,
+      "selects": 0,
+      "buttons": 33,
+      "tables": 3,
+      "cardsOrArticles": 59,
+      "localScriptBytes": 259307
+    },
+    "/julkaisut/": {
+      "htmlBytes": 350576,
+      "elements": 2079,
+      "links": 209,
+      "searchInputs": 8,
+      "selects": 19,
+      "buttons": 107,
+      "tables": 7,
+      "tableRows": 22,
+      "cardsOrArticles": 88,
+      "localScriptBytes": 289116
+    },
+    "/en/publications/": {
+      "htmlBytes": 282726,
+      "elements": 2155,
+      "links": 238,
+      "searchInputs": 8,
+      "selects": 0,
+      "buttons": 33,
+      "tables": 7,
+      "tableRows": 50,
+      "cardsOrArticles": 79,
+      "localScriptBytes": 259307
+    },
+    "/opinnaytteet/": {
+      "htmlBytes": 280329,
+      "elements": 1631,
+      "links": 213,
+      "searchInputs": 5,
+      "selects": 9,
+      "buttons": 180,
+      "tables": 3,
+      "tableRows": 15,
+      "cardsOrArticles": 71,
+      "localScriptBytes": 289116
+    },
+    "/en/theses/": {
+      "htmlBytes": 260836,
+      "elements": 1488,
+      "links": 191,
+      "searchInputs": 5,
+      "selects": 1,
+      "buttons": 165,
+      "tables": 3,
+      "tableRows": 15,
+      "cardsOrArticles": 71,
+      "localScriptBytes": 289116
+    },
+    "/kirjoitukset/": {
+      "htmlBytes": 165441,
+      "elements": 1247,
+      "links": 201,
+      "searchInputs": 5,
+      "selects": 5,
+      "buttons": 52,
+      "tables": 3,
+      "tableRows": 15,
+      "cardsOrArticles": 67,
+      "localScriptBytes": 289116
+    },
+    "/en/writings/": {
+      "htmlBytes": 207412,
+      "elements": 1575,
+      "links": 244,
+      "searchInputs": 8,
+      "selects": 1,
+      "buttons": 43,
+      "tables": 8,
+      "tableRows": 45,
+      "cardsOrArticles": 84,
+      "localScriptBytes": 289116
+    }
+  },
+  "mainPages": {
+    "/": {
+      "htmlBytes": 146377,
+      "elements": 1303,
+      "links": 211,
+      "cardsOrArticles": 81
+    },
+    "/tutkimus/": {
+      "htmlBytes": 120273,
+      "elements": 1151,
+      "links": 197,
+      "tables": 1,
+      "cardsOrArticles": 82
+    },
+    "/politiikka/": {
+      "htmlBytes": 127895,
+      "elements": 1136,
+      "links": 202,
+      "cardsOrArticles": 76
+    },
+    "/kynasta/": {
+      "htmlBytes": 109316,
+      "elements": 969,
+      "links": 173,
+      "cardsOrArticles": 58
+    },
+    "/tyo/": {
+      "htmlBytes": 425,
+      "elements": 10,
+      "links": 1,
+      "note": "Path appears as a thin redirect or compatibility shell in the built output."
+    }
+  },
+  "sourceTemplateBytes": {
+    "src/kirjoitukset.njk": 57540,
+    "src/en/writings.njk": 74482,
+    "src/julkaisut.njk": 86292,
+    "src/en/publications.njk": 29222,
+    "src/opinnaytteet.njk": 60667,
+    "src/en/theses.njk": 43795,
+    "src/esitykset.njk": 2728,
+    "src/en/presentations.njk": 27743,
+    "src/js/presentations-page.js": 80926,
+    "src/js/site-search-page.js": 5190,
+    "src/js/content-engine.js": 3497,
+    "src/js/pe-list-render.js": 7984
+  },
+  "pagefindQualitySamples": {
+    "publicationsPlainTitle": {
+      "sampleSize": 8,
+      "detailFound": 8,
+      "detailTop1": 8,
+      "aggregateAheadOfDetail": 0
+    },
+    "publicationsExactPhrase": {
+      "sampleSize": 8,
+      "detailFound": 6,
+      "detailTop1": 1,
+      "aggregateAheadOfDetail": 7
+    },
+    "thesesPlainTitle": {
+      "sampleSize": 8,
+      "detailFound": 8,
+      "detailTop1": 8,
+      "aggregateAheadOfDetail": 0
+    }
+  }
+}

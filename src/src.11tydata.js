@@ -23,6 +23,68 @@
 const WRITING_TYPES = new Set([
   "puhe", "mielipide", "kolumni", "lausunto", "blogikirjoitus", "artikkeli"
 ]);
+const {
+  buildWritingsPageModel,
+  FI_COMPATIBILITY_CONTENT_TYPES
+} = require("./_data/writingsPage");
+
+const writingsLookupCache = new WeakMap();
+
+function normalizeFilterValues(values, limit = 8) {
+  const array = Array.isArray(values) ? values : values ? [values] : [];
+  return [...new Set(array.map((value) => String(value || "").trim()).filter(Boolean))].slice(0, limit);
+}
+
+function getWritingsLookup(data) {
+  if (!data || !data.collections) return null;
+  if (writingsLookupCache.has(data.collections)) {
+    return writingsLookupCache.get(data.collections);
+  }
+
+  const lookup = new Map();
+  try {
+    const model = buildWritingsPageModel(data);
+    (model.items || []).forEach((item) => {
+      if (item?.pageUrl) lookup.set(item.pageUrl, item);
+    });
+  } catch (error) {
+    // Some Eleventy phases do not have the full collection graph yet.
+  }
+  writingsLookupCache.set(data.collections, lookup);
+  return lookup;
+}
+
+function resolvePagefindWritings(data) {
+  const url = data?.page?.url || "";
+  const lookup = getWritingsLookup(data);
+  const item = lookup?.get(url);
+  if (!item) return null;
+
+  const filters = [
+    { name: "FindExplore", value: "writings" },
+    { name: "Writings scope", value: "en" },
+    { name: "Writings content type", value: item.contentType },
+  ];
+
+  if (FI_COMPATIBILITY_CONTENT_TYPES.includes(item.contentType)) {
+    filters.push({ name: "Writings scope", value: "fi" });
+  }
+  if (item.year) {
+    filters.push({ name: "Writings year", value: String(item.year) });
+  }
+  normalizeFilterValues([...(item.writingRoles || []), ...(item.opinionRoles || [])], 4)
+    .forEach((role) => filters.push({ name: "Writings role", value: role }));
+  normalizeFilterValues(item.categories, 6)
+    .forEach((category) => filters.push({ name: "Writings topic", value: category }));
+
+  return {
+    id: item.id,
+    pageUrl: item.pageUrl,
+    contentType: item.contentType,
+    year: item.year || null,
+    filters
+  };
+}
 
 // URL -> breadcrumbKey (tarkat vertailut)
 const URL_TO_KEY = {
@@ -169,6 +231,7 @@ module.exports = {
   eleventyComputed: {
     breadcrumbKey: (data) => resolveBreadcrumbKey(data),
     breadcrumbDetailTitle: (data) => resolveBreadcrumbDetail(data).title,
-    breadcrumbDetailUrl: (data) => resolveBreadcrumbDetail(data).url
+    breadcrumbDetailUrl: (data) => resolveBreadcrumbDetail(data).url,
+    pagefindWritings: (data) => resolvePagefindWritings(data)
   }
 };
