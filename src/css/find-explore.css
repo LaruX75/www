@@ -1,0 +1,70 @@
+.find-explore {
+  margin: 1.5rem 0 2rem;
+}
+
+.find-explore-card {
+  background:
+    radial-gradient(circle at 12% 10%, rgba(39, 119, 153, 0.12), transparent 34%),
+    linear-gradient(135deg, var(--bs-body-bg), var(--bs-tertiary-bg));
+}
+
+.find-explore-status {
+  min-height: 1.5rem;
+  color: var(--bs-secondary-color);
+  font-size: 0.95rem;
+}
+
+.find-explore-results {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.find-explore-result {
+  border: 1px solid var(--bs-border-color);
+  border-radius: 1rem;
+  background: var(--bs-body-bg);
+  padding: 1rem;
+}
+
+.find-explore-result:focus-within {
+  outline: 3px solid rgba(var(--bs-primary-rgb), 0.22);
+  outline-offset: 2px;
+}
+
+.find-explore-result-title {
+  font-weight: 700;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
+.find-explore-result-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.4rem 0;
+}
+
+.find-explore-result-meta span {
+  border: 1px solid var(--bs-border-color);
+  border-radius: 999px;
+  color: var(--bs-secondary-color);
+  font-size: 0.78rem;
+  padding: 0.1rem 0.5rem;
+}
+
+.find-explore-result-excerpt {
+  color: var(--bs-secondary-color);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .find-explore-result {
+    transition: border-color 160ms ease, transform 160ms ease;
+  }
+
+  .find-explore-result:hover {
+    border-color: rgba(var(--bs-primary-rgb), 0.45);
+    transform: translateY(-1px);
+  }
+}

@@ -1,0 +1,54 @@
+<section class="find-explore find-explore--writings" aria-labelledby="find-explore-heading" data-find-explore data-find-explore-scope="{{ findExploreScope }}" data-find-explore-lang="{{ findExploreLang }}" data-find-explore-language-filter="{{ findExploreLanguageFilter }}">
+  <div class="site-shell">
+    <div class="find-explore-card card border-0 shadow-sm">
+      <div class="card-body p-4">
+        <div class="row g-4 align-items-start">
+          <div class="col-lg-4">
+            <p class="text-uppercase small text-muted mb-2">{{ findExploreEyebrow }}</p>
+            <h2 id="find-explore-heading" class="h3 mb-2">{{ findExploreTitle }}</h2>
+            <p class="text-muted mb-0">{{ findExploreDescription }}</p>
+          </div>
+          <div class="col-lg-8">
+            <form class="find-explore-controls" role="search" data-find-explore-form>
+              <div class="row g-3">
+                <div class="col-12">
+                  <label class="form-label small text-muted mb-1" for="findExploreQuery">{{ findExploreSearchLabel }}</label>
+                  <input id="findExploreQuery" class="form-control form-control-lg" type="search" name="q" autocomplete="off" placeholder="{{ findExplorePlaceholder }}" data-find-explore-query>
+                </div>
+                <div class="col-md-5">
+                  <label class="form-label small text-muted mb-1" for="findExploreType">{{ findExploreTypeLabel }}</label>
+                  <select id="findExploreType" class="form-select" name="type" data-find-explore-type>
+                    <option value="">{{ findExploreAllTypesLabel }}</option>
+                    {% for option in findExploreTypeOptions %}
+                    <option value="{{ option.value }}">{{ option.label }}{% if option.count %} ({{ option.count }}){% endif %}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label small text-muted mb-1" for="findExploreYear">{{ findExploreYearLabel }}</label>
+                  <select id="findExploreYear" class="form-select" name="year" data-find-explore-year>
+                    <option value="">{{ findExploreAllYearsLabel }}</option>
+                    {% for year in findExploreYears %}
+                    <option value="{{ year }}">{{ year }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="col-md-3 d-flex align-items-end">
+                  <button class="btn btn-outline-secondary w-100" type="button" data-find-explore-reset>{{ findExploreResetLabel }}</button>
+                </div>
+              </div>
+            </form>
+            <div class="find-explore-status mt-3" role="status" aria-live="polite" aria-atomic="true" data-find-explore-status>
+              {{ findExploreInitialStatus }}
+            </div>
+            <ol class="find-explore-results list-unstyled mt-3 mb-0" data-find-explore-results></ol>
+            <button class="btn btn-outline-primary btn-sm mt-3 d-none" type="button" data-find-explore-more>{{ findExploreMoreLabel }}</button>
+            <noscript>
+              <p class="alert alert-info mt-3 mb-0">{{ findExploreNoScript }}</p>
+            </noscript>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
