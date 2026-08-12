@@ -4,7 +4,9 @@
  * HUOM: Toisin kuin muut JSON-endpointit, theses ei kayta
  * `toPublicContentRecord`:ia. Syy: opinnaytteet eivat ole Eleventy-
  * collection-itemeja vaan async dataa src/_data/theses.js:sta. Jokaisella
- * on ulkoinen `link` (OuluREPO-URL), ei sisaista sivustou URL:ia.
+ * on ulkoinen OuluREPO-lahde. Archive-UI kayttaa T3:sta alkaen local
+ * `pageUrl`:ia ensisijaisena detail-linkkina, mutta `url` pidetaan edelleen
+ * OuluREPO-osoitteena yhteensopivuuden vuoksi.
  *
  * Serializer on kuitenkin muotoilullisesti yhdenmukainen: sama version/
  * generatedAt/count/items-kuori kuin muissa endpointeissa.
@@ -20,6 +22,7 @@
  */
 
 const { JSON_SCHEMA_VERSION } = require("./_shared");
+const { deriveThesisMetadata } = require("../_utils/thesisDerivedMetadata");
 
 function normalizeArray(value) {
   if (!Array.isArray(value)) return null;
@@ -44,12 +47,18 @@ function omitEmpty(obj) {
   return out;
 }
 
+function normalizeThesisLangCode(value) {
+  const normalized = pickString(value)?.toLowerCase();
+  return normalized === "en" || normalized === "eng" ? "en" : "fi";
+}
+
 function toThesisRecord(t, lang, source) {
   const link = pickString(t?.link);
   const title = pickString(t?.title);
   if (!link || !title) return null;
 
   const year = t?.year && /^\d{4}$/.test(String(t.year)) ? parseInt(t.year, 10) : null;
+  const { categories, contexts } = deriveThesisMetadata(t);
   const contentTypeLabel = t?.type === "masterThesis"
     ? (lang === "en" ? "Master's thesis" : "Pro gradu")
     : (lang === "en" ? "Bachelor's thesis" : "Kandidaatintutkielma");
@@ -59,6 +68,8 @@ function toThesisRecord(t, lang, source) {
   return omitEmpty({
     id: link,
     url: link,
+    pageUrl: pickString(t?.pageUrl),
+    sourceUrl: link,
     title,
     description: pickString(t?.abstract),
     year,
@@ -69,6 +80,8 @@ function toThesisRecord(t, lang, source) {
     thesisType: pickString(t?.type),
     authors: normalizeArray(t?.authors),
     keywords: normalizeArray(t?.keywords),
+    categories: normalizeArray(categories),
+    contexts: normalizeArray(contexts),
 
     // Rooli: "advised" (gradu tai kandi jonka Jari on ohjannut) tai
     // "reviewed" (Jari on tarkastaja mutta ei ohjaaja)
@@ -103,10 +116,10 @@ module.exports = class {
     const advisedItems = [...(theses.gradut || []), ...(theses.kandit || [])];
     const reviewedItems = [...(theses.reviewerOnly || [])];
 
-    const lang = "fi";
     const seen = new Set();
     const records = [];
     for (const t of advisedItems) {
+      const lang = normalizeThesisLangCode(t?.language);
       const record = toThesisRecord(t, lang, "advised");
       if (!record) continue;
       if (seen.has(record.url)) continue;
@@ -114,6 +127,7 @@ module.exports = class {
       records.push(record);
     }
     for (const t of reviewedItems) {
+      const lang = normalizeThesisLangCode(t?.language);
       const record = toThesisRecord(t, lang, "reviewed");
       if (!record) continue;
       if (seen.has(record.url)) continue;
@@ -135,3 +149,6 @@ module.exports = class {
     }, null, 2);
   }
 };
+
+module.exports.normalizeThesisLangCode = normalizeThesisLangCode;
+module.exports.toThesisRecord = toThesisRecord;

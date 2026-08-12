@@ -719,6 +719,7 @@ window.renderPaginationShared = function renderPaginationShared(ul, total, curre
   const isMobile = window.matchMedia('(max-width: 767.98px)').matches;
   const WINDOW_SIZE = 10;
   const footer = ul.closest('.card-footer');
+  const footerNavLabel = footer?.querySelector('nav')?.getAttribute('aria-label') || 'Sivutus';
   const cardBody = footer?.previousElementSibling;
   const footerInfo = footer?.querySelector('small');
   const paginationId = ul.id || `pagination-${Math.random().toString(36).slice(2)}`;
@@ -740,7 +741,7 @@ window.renderPaginationShared = function renderPaginationShared(ul, total, curre
       dock.setAttribute('data-pagination-top-for', paginationId);
       dock.innerHTML = `
         <small class="site-pagination-info text-muted" data-pagination-top-info></small>
-        <nav aria-label="Sivutus taulukon yläreunassa">
+        <nav aria-label="${footerNavLabel} taulukon yläreunassa">
           <ul class="pagination pagination-sm mb-0 flex-wrap site-pag"></ul>
         </nav>
       `;

@@ -2,6 +2,7 @@ const loadResearchfi = require("./researchfi");
 const { readCache } = require("./_apiCache");
 const { normalizeCategoryList, normalizeKeywordList } = require("./metadata-normalization");
 const { resolveContexts } = require("./contentContext");
+const { canonicalPublicationDetailUrl } = require("./publicationsPage");
 const curatedProgram = require("../curated/research-program.json");
 
 const ENRICHMENT_CACHE_KEYS = [
@@ -360,7 +361,8 @@ function mapPublication(publication, enrichmentMap) {
     doiUrl: publication.doiUrl || "",
     referenceLabel: buildReferenceLabel(publication),
     referenceUrl: publication.url || publication.doiUrl || "",
-    url: `/julkaisut/#${publication.anchorId}`
+    url: canonicalPublicationDetailUrl(publication.publicationId, publication.anchorId)
+      || `/julkaisut/#${publication.anchorId}`
   };
 
   if (enrichment?.primaryTopic) {

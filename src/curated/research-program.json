@@ -96,6 +96,13 @@
       "priority": 100,
       "summary": "Tarkastelee, miten laskennallinen ajattelu näkyy yhteisöllisessä ohjelmointikeskustelussa opettajankoulutuksen kontekstissa."
     },
+    "rf-a1-10-1016-j-caeo-2026-100396": {
+      "researchLine": "teacher-education",
+      "themes": ["opettajankoulutus", "digipedagogiikka"],
+      "audience": ["opettajankoulutus", "korkeakoulutus", "opettajat"],
+      "priority": 92,
+      "summary": "Arvioi Kosovon K1-12-opettajien digitaalista kompetenssia DigCompEdu- ja TPACK-kehysten kautta ja kytkee tulokset opettajankoulutuksen sekä ammatillisen kehittymisen tarpeisiin."
+    },
     "rf-a4-0695153322": {
       "researchLine": "teacher-education",
       "themes": ["opettajankoulutus", "ohjelmointi"],

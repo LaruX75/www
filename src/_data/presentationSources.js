@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const yaml = require("js-yaml");
 const { getCanvaDesignId, normalizeCanvaUrl } = require("./canvaUrl");
+const { derivePresentationMetadata } = require("../_utils/presentationDerivedMetadata");
 
 const PRESENTATIONS_DIR = path.join(__dirname, "..", "presentations");
 
@@ -36,7 +37,7 @@ function parsePresentationFile(filePath) {
   const sourceUrl = frontMatter.sourceUrl || frontMatter.url || "";
   const publicUrl = normalizeCanvaUrl(frontMatter.publicUrl || frontMatter.url || "");
 
-  return {
+  const baseRecord = {
     title: frontMatter.title || "",
     url: frontMatter.url || "",
     sourceUrl,
@@ -49,6 +50,11 @@ function parsePresentationFile(filePath) {
     courseContexts: Array.isArray(frontMatter.courseContexts) ? frontMatter.courseContexts : [],
     source: frontMatter.source || "",
     pageUrl: `/presentations/${fileSlug}/`
+  };
+
+  return {
+    ...baseRecord,
+    ...derivePresentationMetadata(baseRecord)
   };
 }
 

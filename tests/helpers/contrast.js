@@ -1,8 +1,12 @@
 export const BUTTON_AUDIT_PAGES = [
     { name: 'Homepage', path: '/' },
     { name: 'Publications', path: '/julkaisut/' },
+    { name: 'Publications (EN)', path: '/en/publications/' },
     { name: 'Theses', path: '/opinnaytteet/' },
-    { name: 'Presentations', path: '/esitykset/' },
+    { name: 'Writings', path: '/kirjoitukset/' },
+    { name: 'Writings (EN)', path: '/en/writings/' },
+    { name: 'Presentations', path: '/esitykset/', scopeSelector: 'main' },
+    { name: 'Presentations (EN)', path: '/en/presentations/', scopeSelector: 'main' },
     { name: 'CV', path: '/cv/' },
     { name: 'Contact', path: '/yhteystiedot/' },
     { name: 'Accessibility Statement', path: '/saavutettavuus/' },
@@ -22,6 +26,9 @@ const BUTTON_SELECTOR = [
 const MIN_TEXT_CONTRAST = 4.5;
 const MIN_LARGE_TEXT_CONTRAST = 3;
 const MIN_COMPONENT_CONTRAST = 3;
+const HOVER_SETTLE_MS = 25;
+const SCROLL_TIMEOUT_MS = 250;
+const HOVER_TIMEOUT_MS = 400;
 
 function formatRatio(value) {
     return Number.isFinite(value) ? value.toFixed(2) : 'n/a';
@@ -252,17 +259,35 @@ async function measureButtonState(locator) {
     });
 }
 
+async function disableMotionForContrastAudit(page) {
+    await page.addStyleTag({
+        content: `
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition-delay: 0s !important;
+                transition-duration: 0s !important;
+                scroll-behavior: auto !important;
+            }
+        `,
+    });
+}
+
 export async function auditButtonContrastOnPage(page, auditPage) {
-    const buttons = page.locator(BUTTON_SELECTOR);
+    await disableMotionForContrastAudit(page);
+    const scopeSelector = String(auditPage?.scopeSelector || 'body');
+    const buttons = page.locator(scopeSelector).first().locator(BUTTON_SELECTOR);
 
     // Batch visibility check: one roundtrip instead of N
-    const visibleIndices = await page.evaluate((selector) => {
-        const elements = Array.from(document.querySelectorAll(selector));
+    const visibleIndices = await page.evaluate(({ rootSelector, selector }) => {
+        const root = document.querySelector(rootSelector) || document.body;
+        const elements = Array.from(root.querySelectorAll(selector));
         return elements
             .map((el, i) => ({ i, visible: el.offsetParent !== null && getComputedStyle(el).visibility !== 'hidden' }))
             .filter(({ visible }) => visible)
             .map(({ i }) => i);
-    }, BUTTON_SELECTOR);
+    }, { rootSelector: scopeSelector, selector: BUTTON_SELECTOR });
 
     const issues = [];
 
@@ -270,7 +295,7 @@ export async function auditButtonContrastOnPage(page, auditPage) {
         const locator = buttons.nth(index);
 
         try {
-            await locator.scrollIntoViewIfNeeded({ timeout: 1000 });
+            await locator.scrollIntoViewIfNeeded({ timeout: SCROLL_TIMEOUT_MS });
         } catch {
             continue;
         }
@@ -283,8 +308,8 @@ export async function auditButtonContrastOnPage(page, auditPage) {
         const states = [{ name: 'default', data: defaultState }];
 
         try {
-            await locator.hover({ timeout: 2000 });
-            await page.waitForTimeout(300);
+            await locator.hover({ timeout: HOVER_TIMEOUT_MS });
+            await page.waitForTimeout(HOVER_SETTLE_MS);
             states.push({ name: 'hover', data: await measureButtonState(locator) });
             await page.mouse.move(0, 0);
         } catch (error) {

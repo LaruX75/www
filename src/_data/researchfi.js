@@ -1,6 +1,7 @@
 require('dotenv').config();
 const { readCache, readCacheIfFresh, writeCache, fetchWithTimeout } = require("./_apiCache");
 const { loadHiddenIds } = require("./_curatedStubs");
+const curatedManualResearchfi = require("./curated/researchfi-manual.json");
 
 const CACHE_TTL_HOURS = 6;
 const CROSSREF_CACHE_KEY = "crossref-enrichments-v1";
@@ -87,6 +88,18 @@ function ensureUniqueAnchorIds(publications) {
         usedAnchorIds.add(anchorId);
         return { ...publication, anchorId, sourceAnchorId: baseAnchorId };
     });
+}
+
+function mergeNormalizedPublications(publications, manualPublications = []) {
+    const merged = new Map();
+
+    [...publications, ...manualPublications].forEach((publication) => {
+        const key = publication.sourceKey || publication.anchorId;
+        const previous = merged.get(key);
+        merged.set(key, previous ? { ...previous, ...publication } : publication);
+    });
+
+    return Array.from(merged.values());
 }
 
 async function runConcurrent(items, concurrency, asyncFn) {
@@ -467,14 +480,27 @@ function normalizePublication(pub) {
         openAccess: normalizeOpenAccess(pub.openAccess, pub.selfArchivedCode),
         publicationId: pub.publicationId || null,
         sourceKey: buildSourceKey(pub),
-        keywords: extractKeywords(pub)
+        keywords: extractKeywords(pub),
+        volume: pub.volume || null,
+        issue: pub.issue || null,
+        pages: pub.pages || null,
+        articleNumber: pub.articleNumber || null,
+        publisher: pub.publisher || null,
+        isbn: pub.isbn || null,
+        issn: pub.issn || null
     };
 }
 
 module.exports = async function () {
     const hidden = loadHiddenIds('researchfi');
+    const manualPublications = Array.isArray(curatedManualResearchfi?.manual)
+        ? curatedManualResearchfi.manual.map(normalizePublication)
+        : [];
     const preparePublications = (pubs) => ensureUniqueAnchorIds(
-        pubs.filter((p) => !hidden.has(String(p.publicationId)))
+        mergeNormalizedPublications(
+            pubs.filter((p) => !hidden.has(String(p.publicationId))),
+            manualPublications.filter((p) => !hidden.has(String(p.publicationId)))
+        )
     );
 
     const orcidId = process.env.ORCID_ID || "0000-0003-0347-0182";

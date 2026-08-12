@@ -20,7 +20,8 @@
   {% elif descriptionMissing and title and title.startsWith("Keyword: ") %}
     {% set pageDescription = 'Keyword "' ~ (title | replace("Keyword: ", "")) ~ '" brings together writings, speeches, and publications from the Jari Laru site.' %}
   {% endif %}
-  {% set pageDescription = pageDescription | seoDescription({ title: pageTitle, source: source, type: type, date: page.date, pageUrl: page.url, tags: tags, categories: categories, currentLang: currentLang }) %}
+  {% set effectivePublished = datePublished or page.date %}
+  {% set pageDescription = pageDescription | seoDescription({ title: pageTitle, source: source, type: type, date: effectivePublished, pageUrl: page.url, tags: tags, categories: categories, currentLang: currentLang }) %}
   {% set siteBase = site.url or "https://www.jarilaru.fi" %}
   {% set pageUrl = page.url | absoluteUrl(siteBase) %}
   {% set imageAbs = resolvedOgImage | absoluteUrl(siteBase) %}
@@ -140,7 +141,7 @@
       "name": pageTitle,
       "description": pageDescription,
       "url": pageUrl,
-      "datePublished": (page.date | dateToRfc3339),
+      "datePublished": (effectivePublished | dateToRfc3339),
       "inLanguage": langCode,
       "author": { "@id": personId },
       "publisher": { "@id": personId }
@@ -162,7 +163,7 @@
       "url": pageUrl,
       "mainEntityOfPage": { "@type": "WebPage", "@id": pageUrl },
       "image": { "@type": "ImageObject", "url": imageAbs },
-      "datePublished": (page.date | dateToRfc3339),
+      "datePublished": (effectivePublished | dateToRfc3339),
       "inLanguage": langCode,
       "author": { "@id": personId },
       "publisher": { "@id": personId },
@@ -226,12 +227,15 @@
       "url": pageUrl,
       "image": { "@type": "ImageObject", "url": imageAbs },
       "inLanguage": langCode,
-      "datePublished": (datePublished or (page.date | dateToRfc3339)),
+      "datePublished": (datePublished or (effectivePublished | dateToRfc3339)),
       "author": { "@id": personId },
       "publisher": { "@id": uniId },
-      "inSupportOf": "PhD",
       "isPartOf": { "@id": websiteId }
     } %}
+    {% if thesisSchemaAuthors and thesisSchemaAuthors.length %}{% set thesisNode = (thesisNode | merge({ "author": thesisSchemaAuthors })) %}{% endif %}
+    {% if thesisSchemaSameAs %}{% set thesisNode = (thesisNode | merge({ "sameAs": thesisSchemaSameAs })) %}{% endif %}
+    {% if thesisSchemaKeywords and thesisSchemaKeywords.length %}{% set thesisNode = (thesisNode | merge({ "keywords": thesisSchemaKeywords })) %}{% endif %}
+    {% if thesisSchemaCitation %}{% set thesisNode = (thesisNode | merge({ "citation": thesisSchemaCitation })) %}{% endif %}
     {% if not isHomePage and ldBcItems.length %}{% set thesisNode = (thesisNode | merge({ "breadcrumb": { "@id": breadcrumbId } })) %}{% endif %}
     {% set _ = (graph.push(thesisNode), null) %}
 

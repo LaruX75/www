@@ -1,0 +1,34 @@
+---js
+{
+  layout: "base.njk",
+  pagination: {
+    data: "publicationDetailPages.researchfiItems",
+    size: 1,
+    alias: "publicationDetail"
+  },
+  permalink: data => data.publicationDetail?.pageUrl || false,
+  eleventyComputed: {
+    title: data => data.publicationDetail?.title || "Research.fi publication",
+    description: data => data.publicationDetail?.description || "",
+    date: data => data.publicationDetail?.date ? new Date(data.publicationDetail.date) : null,
+    datePublished: data => data.publicationDetail?.date ? new Date(data.publicationDetail.date) : null,
+    modified: data => data.publicationDetail?.date ? new Date(data.publicationDetail.date) : null,
+    breadcrumbKey: () => "publications",
+    lang: () => "fi",
+    type: () => "tieteellinen",
+    contentType: () => "scientificPublication",
+    schemaType: () => "ScholarlyArticle",
+    source: () => "researchfi",
+    sourceLabel: () => "Research.fi",
+    categories: data => data.publicationDetail?.categories || [],
+    keywords: data => data.publicationDetail?.keywords || [],
+    contexts: data => data.publicationDetail?.contexts || [],
+    entities: data => data.publicationDetail?.entities || [],
+    researchLine: data => data.publicationDetail?.researchLine || "",
+    researchThemes: data => data.publicationDetail?.researchThemes || [],
+    researchAudience: data => data.publicationDetail?.researchAudience || [],
+    tags: () => ["publications", "scientific-publication-detail"]
+  }
+}
+---
+{% include "publication-item-body.njk" %}

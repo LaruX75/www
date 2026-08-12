@@ -89,6 +89,24 @@ layout: base.njk
               <dd>{{ date | dateFormat }}</dd>
             </div>
             {% endif %}
+            {% if sourceLanguage %}
+            <div>
+              <dt>Kieli</dt>
+              <dd>{{ "English" if sourceLanguage == "en" else ("Suomi" if sourceLanguage == "fi" else sourceLanguage) }}</dd>
+            </div>
+            {% endif %}
+            {% if slideCount %}
+            <div>
+              <dt>Dioja</dt>
+              <dd>{{ slideCount }}</dd>
+            </div>
+            {% endif %}
+            {% if viewCount %}
+            <div>
+              <dt>SlideShare-katselut</dt>
+              <dd>{{ viewCount }}</dd>
+            </div>
+            {% endif %}
           </dl>
         </div>
 

@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="{{ lang or 'fi' }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex, follow">
+    <meta http-equiv="refresh" content="0; url={{ canonicalRedirect.to }}">
+    <link rel="canonical" href="{{ canonicalRedirect.to }}">
+    <title>{{ title or "Siirry sivulle" }}</title>
+  </head>
+  <body>
+    <p>
+      {% if (lang or "fi") == "en" %}
+        This page has moved. <a href="{{ canonicalRedirect.to }}">Continue here</a>.
+      {% else %}
+        Tämä sivu on siirtynyt. <a href="{{ canonicalRedirect.to }}">Siirry tästä</a>.
+      {% endif %}
+    </p>
+  </body>
+</html>

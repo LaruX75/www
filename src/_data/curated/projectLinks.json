@@ -1,0 +1,182 @@
+{
+  "generation-ai": {
+    "publications": [
+      {
+        "anchorId": "rf-rf-0675293923",
+        "evidence": "Otsikossa mainitaan Generation AI suoraan hankenimenä ja kuvataan osallistavia koneoppimisprojekteja K-9-oppilaiden kanssa."
+      },
+      {
+        "anchorId": "rf-b3-0701014225",
+        "evidence": "Julkaisu käsittelee Generation AI Teachable Machine -työkalua, joka on hankkeen keskeinen opetussovellus."
+      },
+      {
+        "anchorId": "rf-a3-0693115624",
+        "evidence": "Tapaustutkimus kuvaa tekoälylukutaidon oppimista collaborative project -asetelmassa juuri hankkeen AI education tool -ympäristöllä."
+      },
+      {
+        "anchorId": "rf-a1-02254916yj",
+        "evidence": "GenAI-tuntisuunnitelmia ja prompt engineering -strategioita käsittelevä artikkeli jatkaa hankkeen opettajankoulutushaaraa."
+      }
+    ],
+    "theses": [
+      {
+        "link": "https://oulurepo.oulu.fi/handle/10024/64139",
+        "evidence": "Opinnäyte tarkastelee tekoälylukutaitoa luokanopettajaopiskelijoiden portfolioissa, mikä on Generation AI -teeman ydinkysymys."
+      },
+      {
+        "link": "https://oulurepo.oulu.fi/handle/10024/62907",
+        "evidence": "Työ analysoi opettajaopiskelijoiden tekemiä luokittelijasovelluksia, jotka linkittyvät hankkeen opetettavan koneen ideaan."
+      },
+      {
+        "link": "https://oulurepo.oulu.fi/handle/10024/52013",
+        "evidence": "TikTokin ja tekoälyn suhdetta käsittelevä opinnäyte osuu hankkeen some-, profilointi- ja algoritmikasvatuksen alueelle."
+      }
+    ],
+    "presentations": [
+      {
+        "url": "/presentations/generation-ai-yleisesitys-sovellukset-2026/",
+        "evidence": "Esityksen kuvaus määrittelee materiaalin suoraan Generation AI -hankkeen yleisesitykseksi."
+      },
+      {
+        "url": "/presentations/tekoaly-opetuskaytto-avi-webinaari-2024/",
+        "evidence": "Esitysteksti kertoo neljän näkökulman tekoälyn opetuskäyttöön johtavan konkreettisesti Generation AI -hankkeen työkaluihin."
+      },
+      {
+        "url": "/presentations/kohti-kriittist-teko-lylukutaitoa-2026-finnoschool/",
+        "evidence": "Kriittistä tekoälylukutaitoa käsittelevä koulutusesitys jatkaa samaa opettajankoulutus- ja AI literacy -linjaa kuin hanke."
+      },
+      {
+        "url": "/presentations/arjen-tekoalyhaaste/",
+        "evidence": "Sivun leipäteksti kertoo materiaalin toteutetun yhteistyössä Oulun yliopiston Generation AI -hankkeen kanssa."
+      }
+    ],
+    "presentationContexts": [
+      {
+        "id": "avi-tekoaly-webinaari-2024",
+        "evidence": "Kuratoitu AVI-webinaarikonteksti kokoaa Generation AI -teemoihin liittyvän täydennyskoulutusesityksen oikeaan tapahtumayhteyteen."
+      }
+    ]
+  },
+  "tkaedite": {
+    "publications": [
+      {
+        "anchorId": "rf-a1-10-1016-j-caeo-2026-100396",
+        "evidence": "TKAEDITEn oma uutinen kuvaa artikkelia hankeyhteistyön suoraksi tieteelliseksi tulokseksi, ja artikkeli käsittelee Kosovon opettajien digitaalista kompetenssia."
+      }
+    ],
+    "presentations": [
+      {
+        "sourceUrl": "https://www.canva.com/d/ELi8lObr4rmLy89",
+        "evidence": "Esityksen otsikossa lukee TkaEdite ja yhteenvedossa kuvataan suoraan Finnish-Kosovo teacher education collaboration."
+      },
+      {
+        "sourceUrl": "https://www.canva.com/d/Hlih1iAZAFJZTxM",
+        "evidence": "Esityksen järjestäjä on TkaEdite ja yhteenvedossa mainitaan Kosovo sekä teacher education and professional development."
+      }
+    ]
+  },
+  "makect": {
+    "publications": [
+      {
+        "anchorId": "rf-a1-0369656620",
+        "evidence": "Maker education ja computational thinking vastaavat suoraan MakeCT-hankkeen tavoitetta arvioida CT:tä pohjoismaisessa maker-kasvatuksessa."
+      },
+      {
+        "anchorId": "rf-a1-0370691220",
+        "evidence": "STEAM in Oulu -artikkeli kuvaa paikallista yhteisöä, jossa digital fabrication ja maker-pedagogiikka skaalautuvat kouluihin."
+      },
+      {
+        "anchorId": "rf-a4-0377746820",
+        "evidence": "CTPACK-kehykseen ankkuroitu digital fabrication -julkaisu on vahva MakeCT:n käsitteellinen osuma."
+      },
+      {
+        "anchorId": "rf-a4-0341600219",
+        "evidence": "Fab Lab -ohjaajien pedagogisia käytäntöjä käsittelevä julkaisu avaa maker-oppimisen toteutusta, johon MakeCT kytkeytyy."
+      }
+    ],
+    "theses": [
+      {
+        "link": "https://oulurepo.oulu.fi/handle/10024/42244",
+        "evidence": "Maker education project -maininta otsikossa tekee tästä suoran opinnäyteyhteyden hankkeen teemaan."
+      },
+      {
+        "link": "https://oulurepo.oulu.fi/handle/10024/18286",
+        "evidence": "Työ tarkastelee maker-kasvatuksen valmiuksia, asenteita ja haasteita opettajien näkökulmasta."
+      }
+    ],
+    "presentations": [
+      {
+        "url": "/presentations/ss-developing-computational-thinking-practises-through-digital-fabrication-activiti/",
+        "evidence": "Esityksen otsikko yhdistää computational thinkingin ja digital fabricationin täsmälleen MakeCT-hankkeen ytimeen."
+      },
+      {
+        "url": "/presentations/ss-supporting-fab-lab-facilitators-to-develop-pedagogical-practices-to-improve-lear/",
+        "evidence": "Fab Lab -ohjaajien pedagogisten käytäntöjen kehittäminen on maker education -kokonaisuuden suora sovellus."
+      }
+    ]
+  },
+  "lea": {
+    "presentations": [
+      {
+        "url": "/presentations/lea-hanke-visioita-sahkoisista-oppimisymparistoista/",
+        "evidence": "Esityksen kuvauksessa LEA-hanke mainitaan nimeltä ja koko materiaali rakentuu sen työpajakontekstiin."
+      }
+    ]
+  },
+  "mosil": {
+    "publications": [
+      {
+        "anchorId": "rf-a1-0670374012",
+        "evidence": "Mobile peer-to-peer tools for learning -artikkeli osuu suoraan mobiilioppimisen tutkimusjuureen, jota Mosil edusti."
+      },
+      {
+        "anchorId": "rf-g5-0672764912",
+        "evidence": "Collaborative scripts and mobile devices yhdistävä julkaisu heijastaa Mosilin integroitua mobiilioppimisen asetelmaa."
+      },
+      {
+        "anchorId": "rf-b2-0670672706",
+        "evidence": "Luontopolulla tapahtuva inquiry learning mobile tools -tuella konkretisoi hankkeen kenttäoppimisen puolta."
+      },
+      {
+        "anchorId": "rf-b3-0670962504",
+        "evidence": "Kolmea arjen kontekstia vertaileva mobiilityökaluartikkeli kuvaa Mosilin tutkimusasetelman laajaa käyttöä."
+      }
+    ],
+    "presentations": [
+      {
+        "url": "/presentations/ss-mobiilioppimisesta-about-mobile-learning/",
+        "evidence": "Esityksen aihe on suoraan mobiilioppiminen ja toimii luontevana julkisena ikkuna Mosil-vaiheen tutkimukseen."
+      },
+      {
+        "url": "/presentations/ss-scaffolding-collaborative-learning-with-cognitive-tools-based-on-mobile-computer/",
+        "evidence": "Mobiilit tietokoneet ja yhteisöllisen oppimisen scaffoldaus vastaavat Mosilin tutkimuslinjaa lähes sellaisenaan."
+      },
+      {
+        "url": "/presentations/ss-scaffolding-learning-activities-in-real-life-contexts-with-collaborative-scripts/",
+        "evidence": "Real life contexts, collaborative scripts ja mobile computers tekevät tästä vahvan Mosil-linkin."
+      }
+    ]
+  },
+  "rotuaari": {
+    "publications": [
+      {
+        "anchorId": "rf-b3-0670962504",
+        "evidence": "Kolmen arkikontekstin mobiilityökaluja käsittelevä julkaisu sopii Rotuaarin kaupunkitilassa tapahtuvan oppimisen asetelmaan."
+      },
+      {
+        "anchorId": "rf-b3-0670082308",
+        "evidence": "Ympäristössä tapahtuva collaborative inquiry ja distributed mobile scaffolds osuvat lähelle Rotuaarin kaupunkitila-ajattelua."
+      },
+      {
+        "anchorId": "rf-a4-0669832409",
+        "evidence": "Mobiili- ja ubiikkioppimista vertaileva tapaustutkimus kokoaa Rotuaari-vaiheen keskeistä tutkimuslogiikkaa."
+      }
+    ],
+    "presentations": [
+      {
+        "url": "/presentations/ss-scaffolding-learning-activities-in-real-life-contexts-with-collaborative-scripts/",
+        "evidence": "Esitys painottaa arkisia ja reaalimaailman oppimiskonteksteja, jotka sopivat Rotuaarin kaupunkitilalliseen painotukseen."
+      }
+    ]
+  }
+}

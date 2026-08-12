@@ -106,7 +106,8 @@
   {% elif descriptionMissing and title and title.startsWith("Keyword: ") %}
     {% set pageDescription = 'Keyword "' ~ (title | replace("Keyword: ", "")) ~ '" brings together writings, speeches, and publications from the Jari Laru site.' %}
   {% endif %}
-  {% set pageDescription = pageDescription | seoDescription({ title: pageTitle, source: source, type: type, date: page.date, pageUrl: page.url, tags: tags, categories: categories, currentLang: currentLang }) %}
+  {% set effectivePublished = datePublished or page.date %}
+  {% set pageDescription = pageDescription | seoDescription({ title: pageTitle, source: source, type: type, date: effectivePublished, pageUrl: page.url, tags: tags, categories: categories, currentLang: currentLang }) %}
   {% set pageUrl = page.url | absoluteUrl(site.url or "https://www.jarilaru.fi") %}
   {% set fiAltPath = collections.all | findTranslationUrl(translationKey, "fi") %}
   {% set enAltPath = collections.all | findTranslationUrl(translationKey, "en") %}
@@ -151,8 +152,8 @@
   <meta property="og:image:height" content="630">
   {% if pageType == "article" %}
   <meta property="article:author" content="{{ site.url or "https://www.jarilaru.fi" }}">
-  <meta property="article:published_time" content="{{ page.date | dateToRfc3339 }}">
-  <meta property="article:modified_time" content="{{ (modified or page.date) | dateToRfc3339 }}">
+  <meta property="article:published_time" content="{{ effectivePublished | dateToRfc3339 }}">
+  <meta property="article:modified_time" content="{{ (modified or effectivePublished) | dateToRfc3339 }}">
   {% endif %}
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{ pageMetaTitle }}">

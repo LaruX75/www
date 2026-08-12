@@ -310,12 +310,14 @@ function renderThesisRow(t, showType) {
   const type = t.thesisType || '';
   const themes = (t.researchThemes || []).join(' ');
   const audience = (t.researchAudience || []).join(' ');
+  const detailLink = t.pageUrl || '';
+  const sourceLink = t.sourceUrl || t.url || t.id || '';
+  const primaryLink = detailLink || sourceLink;
   const typeCell = showType ? `<td>${type === 'masterThesis'
       ? "<span class=\"badge bg-primary\">Master's thesis</span>"
       : type === 'bachelorThesis'
         ? "<span class=\"badge bg-info\">Bachelor's thesis</span>"
         : `<span class="badge bg-dark">${esc(type)}</span>`}</td>` : '';
-  const link = t.url || t.id || '';
   const title = t.title || '';
   const abstract = t.description || '';
   const keywords = t.keywords || [];
@@ -326,15 +328,17 @@ function renderThesisRow(t, showType) {
   const researchLineDiv = researchLine
     ? `<div class="mt-1"><span class="badge text-bg-light border text-dark">${esc(lineLabel)}</span>${themesBadges}</div>`
     : '';
-  const titleCell = link
-    ? `<a href="${esc(link)}" target="_blank" class="fw-medium text-body text-decoration-none" rel="noopener noreferrer">${esc(title)}</a>
-       <a href="${esc(link)}" target="_blank" class="ms-2 text-decoration-none align-middle icon-only-link" rel="noopener noreferrer" aria-label="Open thesis: ${esc(title)}"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i></a>
-       <button type="button" class="btn btn-outline-primary btn-sm rounded-pill px-2 ms-2 thesis-bib-btn" data-title="${esc(title)}" data-authors="${esc(authors)}" data-year="${esc(year)}" data-type="${esc(type)}" data-url="${esc(link)}" aria-label="Export citation: ${esc(title)}"><i class="bi bi-quote me-1" aria-hidden="true"></i>Export citation</button>
+  const externalLink = sourceLink && sourceLink !== primaryLink
+    ? ` <a href="${esc(sourceLink)}" target="_blank" class="ms-2 text-decoration-none align-middle icon-only-link" rel="noopener noreferrer" aria-label="Open original thesis in OuluREPO: ${esc(title)}"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i></a>`
+    : '';
+  const titleCell = primaryLink
+    ? `<a href="${esc(primaryLink)}" class="fw-medium text-body text-decoration-none">${esc(title)}</a>${externalLink}
+       <button type="button" class="btn btn-outline-primary btn-sm rounded-pill px-2 ms-2 thesis-bib-btn" data-title="${esc(title)}" data-authors="${esc(authors)}" data-year="${esc(year)}" data-type="${esc(type)}" data-url="${esc(sourceLink)}" aria-label="Export citation: ${esc(title)}"><i class="bi bi-quote me-1" aria-hidden="true"></i>Export citation</button>
        ${researchLineDiv}`
     : `<span class="fw-medium">${esc(title)}</span>`;
   const abstractCell = abstract
     ? `<div class="small text-muted thesis-abstract-snippet">${esc(abstract)}</div>
-       <button type="button" class="btn btn-link btn-sm p-0 mt-1 thesis-abstract-trigger" data-thesis-title="${esc(title)}" data-thesis-abstract="${esc(abstract)}" data-thesis-url="${esc(link)}" data-thesis-authors="${esc(authors)}" data-thesis-year="${esc(year)}" data-thesis-type="${esc(type)}">Open summary</button>`
+       <button type="button" class="btn btn-link btn-sm p-0 mt-1 thesis-abstract-trigger" data-thesis-title="${esc(title)}" data-thesis-abstract="${esc(abstract)}" data-thesis-url="${esc(sourceLink)}" data-thesis-authors="${esc(authors)}" data-thesis-year="${esc(year)}" data-thesis-type="${esc(type)}">Open summary</button>`
     : '<span class="text-muted small">—</span>';
   const keywordsCell = keywords.length
     ? `<div class="d-flex flex-wrap gap-1">${keywords.map(kw => `<button type="button" class="badge text-bg-light border thesis-keyword-link" data-keyword="${esc(kw)}">${esc(kw)}</button>`).join('')}</div>`
