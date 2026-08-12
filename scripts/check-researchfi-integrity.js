@@ -3,6 +3,7 @@
 
 const loadResearchfi = require("../src/_data/researchfi");
 const loadResearchfiContent = require("../src/_data/researchfiContent");
+const { canonicalPublicationDetailUrl } = require("../src/_data/publicationsPage");
 const rules = require("../src/curated/researchfi-integrity.json");
 
 function duplicateValues(values) {
@@ -57,8 +58,10 @@ async function main() {
     if (item.source !== "researchfi") {
       failures.push(`Metatietoindeksin lähde ei ole Research.fi: ${item.anchorId}`);
     }
-    if (item.url !== `/julkaisut/#${item.anchorId}`) {
-      failures.push(`Metatietolinkki ei osoita julkaisuarkistoon: ${item.anchorId}`);
+    const expectedDetailUrl = canonicalPublicationDetailUrl(item.publicationId, item.anchorId)
+      || `/julkaisut/#${item.anchorId}`;
+    if (item.url !== expectedDetailUrl) {
+      failures.push(`Metatietolinkki ei osoita canonical julkaisusivulle: ${item.anchorId}`);
     }
   });
 
