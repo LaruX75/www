@@ -755,6 +755,21 @@ function compareLists(a = [], b = [], signatureFn = (value) => value) {
   };
 }
 
+function classifyParityDifferences(parity = {}, intentionalCanonicalOnly = new Set()) {
+  const expectedCanonicalOnly = parity.onlyInLeft.filter((item) => intentionalCanonicalOnly.has(item));
+  const unexplainedCanonicalOnly = parity.onlyInLeft.filter((item) => !intentionalCanonicalOnly.has(item));
+  const unexplainedLegacyOnly = parity.onlyInRight.slice();
+
+  return {
+    ok: unexplainedCanonicalOnly.length === 0 && unexplainedLegacyOnly.length === 0,
+    leftCount: parity.leftCount,
+    rightCount: parity.rightCount,
+    intentionalCanonicalOnly: expectedCanonicalOnly,
+    unexplainedCanonicalOnly,
+    unexplainedLegacyOnly
+  };
+}
+
 async function loadBuildData() {
   return {
     canva: await canva(),
@@ -770,33 +785,47 @@ async function main() {
   const model = buildPresentationsPageModel(data);
   const presentationContexts = model.presentationContextItems || [];
   const legacySourceBuckets = buildLegacyPresentationSourceBuckets(sourceData);
+  const distinctLocalCanonicalItems = (model.items || []).filter(
+    (item) => item?.curationStatus === "human-approved-distinct-local-presentation"
+  );
 
   const itemsBuckets = buildSectionRowsFromItems(model.items || []);
   const legacyBuckets = buildSectionRowsFromRawData(legacySourceBuckets);
+  const intentionalBuckets = buildSectionRowsFromItems(distinctLocalCanonicalItems);
   const bucketParity = {};
   let ok = true;
 
   Object.keys(itemsBuckets).forEach((key) => {
-    bucketParity[key] = compareLists(itemsBuckets[key], legacyBuckets[key], signatureForSectionItem);
+    const parity = compareLists(itemsBuckets[key], legacyBuckets[key], signatureForSectionItem);
+    const intentionalCanonicalOnly = new Set(
+      intentionalBuckets[key].map((item) => stableJson(signatureForSectionItem(item)))
+    );
+    bucketParity[key] = classifyParityDifferences(parity, intentionalCanonicalOnly);
     if (!bucketParity[key].ok) ok = false;
   });
 
   const itemsArchive = buildUnifiedArchiveItems(itemsBuckets, presentationContexts);
   const legacyArchive = buildUnifiedArchiveItems(legacyBuckets, presentationContexts);
-  const archiveParity = compareLists(itemsArchive, legacyArchive, signatureForArchiveItem);
+  const intentionalArchiveItems = buildUnifiedArchiveItems(intentionalBuckets, presentationContexts);
+  const archiveParity = classifyParityDifferences(
+    compareLists(itemsArchive, legacyArchive, signatureForArchiveItem),
+    new Set(intentionalArchiveItems.map((item) => stableJson(signatureForArchiveItem(item))))
+  );
   if (!archiveParity.ok) ok = false;
 
   const report = {
     generatedAt: new Date().toISOString(),
     ok,
     canonicalItemsCount: Array.isArray(model.items) ? model.items.length : 0,
+    acceptedDistinctLocalPresentationCount: distinctLocalCanonicalItems.length,
     bucketParity,
     archiveParity: {
       ok: archiveParity.ok,
       leftCount: archiveParity.leftCount,
       rightCount: archiveParity.rightCount,
-      onlyInLeft: archiveParity.onlyInLeft.slice(0, 10),
-      onlyInRight: archiveParity.onlyInRight.slice(0, 10)
+      intentionalCanonicalOnly: archiveParity.intentionalCanonicalOnly.slice(0, 10),
+      unexplainedCanonicalOnly: archiveParity.unexplainedCanonicalOnly.slice(0, 10),
+      unexplainedLegacyOnly: archiveParity.unexplainedLegacyOnly.slice(0, 10)
     }
   };
 

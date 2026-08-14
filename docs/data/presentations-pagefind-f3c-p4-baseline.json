@@ -1,0 +1,207 @@
+{
+  "generatedAt": "2026-08-14T19:33:13.337Z",
+  "canonicalTotal": 218,
+  "builtLocalDetailTotal": 139,
+  "localDetailReconciliation": "139/139",
+  "localLandingTotal": 138,
+  "externalLandingTotal": 80,
+  "representationTotal": 231,
+  "CanvaTotal": 79,
+  "CanvaWithDesignId": 79,
+  "CanvaWithPageUrl": 16,
+  "CanvaWithExistingLocalHtml": 18,
+  "existingHtmlClassification": {
+    "LOCAL_PREFERRED_WITH_LOCAL_HTML": 138,
+    "EXTERNAL_PREFERRED_WITH_USABLE_LOCAL_HTML": 3,
+    "EXTERNAL_PREFERRED_WITH_NO_SUITABLE_LOCAL_HTML": 77,
+    "NO_VALID_INDEX_CANDIDATE": 0
+  },
+  "discoveryIdentityCount": 218,
+  "duplicateDiscoveryIdentityCount": 0,
+  "titleResults": {
+    "sampleSize": 20,
+    "foundCount": 20,
+    "top1Count": 19,
+    "top3Count": 20,
+    "correctLandingCount": 20
+  },
+  "topicResults": [
+    {
+      "value": "Koulutusteknologia",
+      "expected": 96,
+      "found": 87,
+      "missing": 9,
+      "unexpected": 0
+    },
+    {
+      "value": "koulutusteknologia",
+      "expected": 56,
+      "found": 48,
+      "missing": 8,
+      "unexpected": 0
+    },
+    {
+      "value": "Opettajankoulutus",
+      "expected": 41,
+      "found": 39,
+      "missing": 2,
+      "unexpected": 0
+    },
+    {
+      "value": "Generation AI",
+      "expected": 27,
+      "found": 20,
+      "missing": 7,
+      "unexpected": 0
+    },
+    {
+      "value": "TVT",
+      "expected": 27,
+      "found": 27,
+      "missing": 0,
+      "unexpected": 0
+    },
+    {
+      "value": "tekoälylukutaito",
+      "expected": 25,
+      "found": 21,
+      "missing": 4,
+      "unexpected": 0
+    }
+  ],
+  "eventResults": [
+    {
+      "value": "ITK 2026 (Tampere)",
+      "expected": 2,
+      "found": 2,
+      "missing": 0,
+      "unexpected": 0
+    },
+    {
+      "value": "KTPK 2025 (Kasvatustieteen päivät)",
+      "expected": 2,
+      "found": 1,
+      "missing": 1,
+      "unexpected": 0
+    },
+    {
+      "value": "Kulosaaren yhteiskoulu (KYK)",
+      "expected": 2,
+      "found": 1,
+      "missing": 1,
+      "unexpected": 0
+    },
+    {
+      "value": "OPH-hanke kieltenopettajille (Kieli 2025)",
+      "expected": 2,
+      "found": 2,
+      "missing": 0,
+      "unexpected": 0
+    }
+  ],
+  "yearResults": [
+    {
+      "value": "2025",
+      "expected": 41,
+      "found": 33,
+      "missing": 8,
+      "unexpected": 0
+    },
+    {
+      "value": "2024",
+      "expected": 27,
+      "found": 19,
+      "missing": 8,
+      "unexpected": 0
+    },
+    {
+      "value": "2014",
+      "expected": 21,
+      "found": 19,
+      "missing": 2,
+      "unexpected": 0
+    },
+    {
+      "value": "2013",
+      "expected": 18,
+      "found": 14,
+      "missing": 4,
+      "unexpected": 0
+    }
+  ],
+  "preferredLandingResults": {
+    "sampleSize": 20,
+    "correctLandingCount": 20
+  },
+  "aggregateCompetition": {
+    "aggregateHitsInTitleSample": 0,
+    "aggregateAheadOfExpectedInTitleSample": 0
+  },
+  "readinessMatrix": [
+    {
+      "aspect": "Title",
+      "status": "READY",
+      "evidence": "20/20 found, 19 top1"
+    },
+    {
+      "aspect": "Year",
+      "status": "PARTIAL",
+      "evidence": "2025:33/41, 2024:19/27, 2014:19/21, 2013:14/18"
+    },
+    {
+      "aspect": "Topic",
+      "status": "PARTIAL",
+      "evidence": "Koulutusteknologia:87/96, koulutusteknologia:48/56, Opettajankoulutus:39/41, Generation AI:20/27, TVT:27/27, tekoälylukutaito:21/25"
+    },
+    {
+      "aspect": "Event",
+      "status": "PARTIAL",
+      "evidence": "ITK 2026 (Tampere):2/2, KTPK 2025 (Kasvatustieteen päivät):1/2, Kulosaaren yhteiskoulu (KYK):1/2, OPH-hanke kieltenopettajille (Kieli 2025):2/2"
+    },
+    {
+      "aspect": "Type",
+      "status": "PARTIAL",
+      "evidence": "218/218 carry presentationType"
+    },
+    {
+      "aspect": "Role",
+      "status": "PARTIAL",
+      "evidence": "75/218 carry role"
+    },
+    {
+      "aspect": "Language",
+      "status": "PARTIAL",
+      "evidence": "190/218 carry language metadata"
+    },
+    {
+      "aspect": "MediaType",
+      "status": "READY",
+      "evidence": "5-value controlled vocabulary"
+    },
+    {
+      "aspect": "SourceType",
+      "status": "READY",
+      "evidence": "5-value controlled vocabulary"
+    },
+    {
+      "aspect": "PreferredLanding",
+      "status": "READY",
+      "evidence": "20/20 title-sample destinations correct"
+    },
+    {
+      "aspect": "CanonicalDeduplication",
+      "status": "READY",
+      "evidence": "218 identities, 0 duplicates"
+    },
+    {
+      "aspect": "ExistingHtmlReuse",
+      "status": "READY",
+      "evidence": "139 reused local HTML documents, 0 new public pages"
+    },
+    {
+      "aspect": "ExternalFirstIndexing",
+      "status": "PARTIAL",
+      "evidence": "3 reuse local HTML, 77 use custom records"
+    }
+  ]
+}
