@@ -3,7 +3,7 @@
 Date: 2026-08-12
 Synchronized: 2026-08-14
 
-This roadmap is the shared source of truth after Canonical Content v1, Find & Explore Writings v1, Find & Explore Theses v1, and Find & Explore Publications v1.
+This roadmap is the shared source of truth after Canonical Content v1, Find & Explore Writings v1, Find & Explore Theses v1, Find & Explore Publications v1, and F4 Research contextual Find & Explore v1.
 
 ## 1. Current State
 
@@ -55,6 +55,21 @@ unit tests: 389/389
 combined writings + theses + publications browser smoke: 7 passed
 accessibility/navigation/contrast: 38 passed
 closure report: docs/find-explore-publications-v1-closure-2026-08-14.md
+
+F4 Research contextual Find & Explore
+status: CLOSED / GREEN
+scope: PARTIAL contextual MVP
+tag: f4-research-find-explore-v1
+PR: #87
+PR title: Research contextual Find & Explore
+head commit: bd580fa75ae8cb4e10e4d3886ada405a01f1b6a2
+merge commit: be16a7f352eeb4b817a96ed229b9817a63d57834
+merge timestamp: 2026-08-14T13:07:52Z
+tag target: be16a7f352eeb4b817a96ed229b9817a63d57834
+unit tests: 389/389
+combined writings + theses + publications + research browser smoke: 9 passed
+accessibility/navigation/contrast: 31 passed as split serial suites
+closure report: docs/find-explore-research-f4-closure-2026-08-14.md
 ```
 
 Repository evidence confirms that F3A and F3B have been formally merged and tagged. There is no disagreement between the repository and this synchronized roadmap.
@@ -127,7 +142,7 @@ F3B Publications Find & Explore: closed green as a PARTIAL migration.
 
 ## 4. Active Gate
 
-F3B Publications is closed green as a PARTIAL Find & Explore migration.
+F4 Research contextual Find & Explore is closed green as a PARTIAL contextual MVP.
 
 F3C Presentations remains future and evidence-gated. Before any migration, resolve:
 
@@ -145,7 +160,7 @@ Do not assume the writings/theses model can simply be copied. Only migrate prese
 
 F3D Media / Mediassa is future and needs a suitability audit before implementation. Treat media appearances as their own content/discovery domain. Audit canonical media model, local-detail coverage, external-first items, outlet, date, format, role, topic, source URL, podcast/video/article semantics, existing archive/runtime complexity, and potential deletion benefit. Do not automatically merge Media into Writings or Presentations.
 
-F4 Main-page Find & Explore is future and high value. It does not have to wait until every archive type has migrated. Writings plus theses are sufficient architectural evidence once both are formally closed; F3C Presentations and F3D Media remain explicit workstreams, but they do not have to block F4 if main-page discovery provides greater user value.
+F4 Main-page Find & Explore has closed its Research contextual partial MVP. F3C Presentations and F3D Media remain explicit workstreams, but they did not block F4 and remain separate future gates.
 
 ## 5. Find & Explore Roadmap
 
@@ -156,6 +171,7 @@ Find & Explore
 ├── Writings       CLOSED / GREEN
 ├── Theses         CLOSED / GREEN
 ├── Publications   CLOSED / GREEN, PARTIAL
+├── Research        CLOSED / GREEN, PARTIAL
 ├── Presentations  EVIDENCE-GATED
 └── Media          SUITABILITY AUDIT NEEDED
 ```
@@ -163,9 +179,6 @@ Find & Explore
 Recommended order:
 
 ```text
-F4 Main-page Find & Explore
-  │
-  ▼
 O1 Orientation
   │
   ▼
@@ -175,6 +188,8 @@ T1 Timeline 2.0
 F3C Presentations and F3D Media remain explicit workstreams. They can be scheduled when evidence supports them, but neither needs to block F4.
 
 ## 6. F4 Main-Page Discovery
+
+F4 Research contextual Find & Explore is closed green as a partial MVP. The homepage remains orientation-first and links to the Research contextual discovery route without mounting Find & Explore itself.
 
 Candidate pages:
 
