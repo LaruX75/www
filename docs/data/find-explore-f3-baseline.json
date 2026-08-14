@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-12T19:14:57.551Z",
+  "generatedAt": "2026-08-12T20:05:46.104Z",
   "writingsReference": {
     "fi": {
       "htmlBytes": 120447,
@@ -25,118 +25,90 @@
   "pages": {
     "thesesFi": {
       "label": "/opinnaytteet/",
-      "htmlBytes": 280338,
-      "elementCount": 1631,
-      "searchInputs": 5,
-      "selects": 9,
-      "buttons": 180,
-      "tables": 3,
-      "rows": 18,
-      "cards": 8,
-      "links": 213,
+      "htmlBytes": 171215,
+      "elementCount": 1312,
+      "searchInputs": 3,
+      "selects": 4,
+      "buttons": 66,
+      "tables": 0,
+      "rows": 0,
+      "cards": 24,
+      "links": 206,
       "localScripts": [
         "/js/bootstrap.min.js",
         "/js/external-media-consent.js",
         "/js/site-ui.js?v=20260801-search-submit-2",
-        "/js/table-filters.js",
         "/js/a11y.js",
-        "/js/pe-list-render.js",
-        "/js/content-presets.js",
-        "/js/content-engine.js"
+        "/js/find-explore.js",
+        "/js/thesis-hub-actions.js"
       ],
-      "localScriptCount": 8,
-      "inlineScriptBytes": 49692,
-      "jsonRequests": [
-        "/data/theses.json",
-        "/data/taxonomy-index.json",
-        "/data/content.json",
-        "/data/publications.json",
-        "/data/presentations.json",
-        "/data/media.json",
-        "/data/initiatives.json",
-        "/data/council-speeches.json",
-        "/data/researchfi.json"
-      ],
-      "jsonRequestCount": 9,
+      "localScriptCount": 6,
+      "inlineScriptBytes": 5965,
+      "jsonRequests": [],
+      "jsonRequestCount": 0,
       "scriptEvidence": {
         "/js/bootstrap.min.js": "present",
         "/js/external-media-consent.js": "present",
         "/js/site-ui.js?v=20260801-search-submit-2": "missing",
-        "/js/table-filters.js": "present",
         "/js/a11y.js": "present",
-        "/js/pe-list-render.js": "present",
-        "/js/content-presets.js": "present",
-        "/js/content-engine.js": "present"
+        "/js/find-explore.js": "present",
+        "/js/thesis-hub-actions.js": "present"
       },
       "htmlSignals": {
-        "hasFindExploreMount": false,
-        "hasTableFiltersScript": true,
-        "hasContentEngineScript": true,
+        "hasFindExploreMount": true,
+        "hasTableFiltersScript": false,
+        "hasContentEngineScript": false,
         "hasPresentationsPageScript": false,
         "hasCitationModal": true,
-        "hasKeywordCloud": true,
+        "hasKeywordCloud": false,
         "hasYearBar": true
       }
     },
     "thesesEn": {
       "label": "/en/theses/",
-      "htmlBytes": 260845,
-      "elementCount": 1488,
-      "searchInputs": 5,
-      "selects": 1,
-      "buttons": 165,
-      "tables": 3,
-      "rows": 18,
-      "cards": 8,
-      "links": 191,
+      "htmlBytes": 163185,
+      "elementCount": 1251,
+      "searchInputs": 3,
+      "selects": 4,
+      "buttons": 66,
+      "tables": 0,
+      "rows": 0,
+      "cards": 24,
+      "links": 187,
       "localScripts": [
         "/js/bootstrap.min.js",
         "/js/external-media-consent.js",
         "/js/site-ui.js?v=20260801-search-submit-2",
-        "/js/table-filters.js",
         "/js/a11y.js",
-        "/js/pe-list-render.js",
-        "/js/content-presets.js",
-        "/js/content-engine.js"
+        "/js/find-explore.js",
+        "/js/thesis-hub-actions.js"
       ],
-      "localScriptCount": 8,
-      "inlineScriptBytes": 43639,
-      "jsonRequests": [
-        "/data/theses.json",
-        "/data/taxonomy-index.json",
-        "/data/content.json",
-        "/data/publications.json",
-        "/data/presentations.json",
-        "/data/media.json",
-        "/data/initiatives.json",
-        "/data/council-speeches.json",
-        "/data/researchfi.json"
-      ],
-      "jsonRequestCount": 9,
+      "localScriptCount": 6,
+      "inlineScriptBytes": 5373,
+      "jsonRequests": [],
+      "jsonRequestCount": 0,
       "scriptEvidence": {
         "/js/bootstrap.min.js": "present",
         "/js/external-media-consent.js": "present",
         "/js/site-ui.js?v=20260801-search-submit-2": "missing",
-        "/js/table-filters.js": "present",
         "/js/a11y.js": "present",
-        "/js/pe-list-render.js": "present",
-        "/js/content-presets.js": "present",
-        "/js/content-engine.js": "present"
+        "/js/find-explore.js": "present",
+        "/js/thesis-hub-actions.js": "present"
       },
       "htmlSignals": {
-        "hasFindExploreMount": false,
-        "hasTableFiltersScript": true,
-        "hasContentEngineScript": true,
+        "hasFindExploreMount": true,
+        "hasTableFiltersScript": false,
+        "hasContentEngineScript": false,
         "hasPresentationsPageScript": false,
         "hasCitationModal": true,
-        "hasKeywordCloud": true,
+        "hasKeywordCloud": false,
         "hasYearBar": true
       }
     },
     "publicationsFi": {
       "label": "/julkaisut/",
-      "htmlBytes": 350585,
-      "elementCount": 2079,
+      "htmlBytes": 351370,
+      "elementCount": 2087,
       "searchInputs": 8,
       "selects": 19,
       "buttons": 107,
@@ -155,7 +127,7 @@
         "/js/content-engine.js"
       ],
       "localScriptCount": 8,
-      "inlineScriptBytes": 74561,
+      "inlineScriptBytes": 74532,
       "jsonRequests": [
         "/data/publications-page.json",
         "/data/taxonomy-index.json",
@@ -191,15 +163,15 @@
     },
     "publicationsEn": {
       "label": "/en/publications/",
-      "htmlBytes": 282735,
-      "elementCount": 2155,
+      "htmlBytes": 285640,
+      "elementCount": 2177,
       "searchInputs": 8,
       "selects": 0,
       "buttons": 33,
       "tables": 7,
-      "rows": 57,
+      "rows": 58,
       "cards": 11,
-      "links": 238,
+      "links": 241,
       "localScripts": [
         "/js/bootstrap.min.js",
         "/js/external-media-consent.js",
@@ -208,7 +180,7 @@
         "/js/a11y.js"
       ],
       "localScriptCount": 5,
-      "inlineScriptBytes": 36755,
+      "inlineScriptBytes": 36726,
       "jsonRequests": [],
       "jsonRequestCount": 0,
       "scriptEvidence": {
@@ -322,15 +294,15 @@
         "Emotionaalisen älykkyyden ja koulukiusaamisen väliset yhteydet alakoulussa"
       ],
       "withPageUrl": 169,
-      "withDescription": 49,
+      "withDescription": 127,
       "withLang": 169
     },
     "publications": {
       "count": 56,
       "sampleTitles": [
-        "Computational thinking in collaborative programming discourse: an epistemic network analysis",
         "Assessing Digital Competence of K1-12 Teachers in Kosovo: A Study through the Lens of DigCompEdu and TPACK",
         "Co-constructing adaptive lesson plans with GenAI: Pre-service teachers' Intelligent-TPACK and prompt engineering strategies",
+        "Computational thinking in collaborative programming discourse: an epistemic network analysis",
         "Ohjelmoinnista ohjelmoinnilliseen ajatteluun ja tekoälytaitojen edistämiseen",
         "Generation AI -projekti"
       ],
@@ -381,11 +353,15 @@
           "found": true,
           "rank": 1,
           "returnedUrl": "/opinnaytteet/62157/",
-          "totalResults": 1,
+          "totalResults": 2,
           "top": [
             {
               "url": "/opinnaytteet/62157/",
               "title": "ADHD-oireisten kokemuksia kuormituksesta koulussa"
+            },
+            {
+              "url": "/opinnaytteet/",
+              "title": "Ohjatut opinnäytetyöt"
             }
           ]
         },
@@ -415,19 +391,11 @@
           "found": true,
           "rank": 1,
           "returnedUrl": "/opinnaytteet/62776/",
-          "totalResults": 5,
+          "totalResults": 3,
           "top": [
             {
               "url": "/opinnaytteet/62776/",
               "title": "Digitaaliset oppimisympäristöt esi- ja alkuopetuksessa : vaikutukset lapsen oppimiseen ja opettajien pedagogisiin ratkaisuihin"
-            },
-            {
-              "url": "/julkaisut/rf-rf-does-social-software-fit-for-all-examining-student-s-profiles-and-activities-in-collaborative-learning-mediated-by-social-software/",
-              "title": "Does social software fit for all? Examining student's profiles and activities in collaborative learning mediated by social software"
-            },
-            {
-              "url": "/julkaisut/0669836109/",
-              "title": "Does social software fit for all? Examining students profiles and activities in collaborative learning mediated by social software"
             },
             {
               "url": "/opinnaytteet/",
@@ -467,11 +435,15 @@
           "found": true,
           "rank": 1,
           "returnedUrl": "/opinnaytteet/62157/",
-          "totalResults": 1,
+          "totalResults": 2,
           "top": [
             {
               "url": "/opinnaytteet/62157/",
               "title": "ADHD-oireisten kokemuksia kuormituksesta koulussa"
+            },
+            {
+              "url": "/opinnaytteet/",
+              "title": "Ohjatut opinnäytetyöt"
             }
           ]
         }
@@ -483,12 +455,12 @@
           "totalResults": 295,
           "top": [
             {
-              "url": "/mediassa/2026/05/06/tekoalylukutaito-on-uusi-kansalaistaito-arjen-tekoalyhaaste/",
-              "title": "Tekoälylukutaito on uusi kansalaistaito - Arjen tekoälyhaaste nyt verkossa"
-            },
-            {
               "url": "/opinnaytteet/63335/",
               "title": "Pieni kielikone tekoäly-ymmärryksen rakentajana : tutkimus luokanopettajaopiskelijoiden käsitysten kehittymisestä"
+            },
+            {
+              "url": "/mediassa/2026/05/06/tekoalylukutaito-on-uusi-kansalaistaito-arjen-tekoalyhaaste/",
+              "title": "Tekoälylukutaito on uusi kansalaistaito - Arjen tekoälyhaaste nyt verkossa"
             },
             {
               "url": "/presentations/monilukutaito-on-opettajan-supervoima-teko-lylukutaito-luento/",
@@ -507,7 +479,7 @@
         {
           "query": "opettajankoulutus",
           "found": true,
-          "totalResults": 330,
+          "totalResults": 331,
           "top": [
             {
               "url": "/kategoriat/opettajankoulutus/",
@@ -541,37 +513,6 @@
     },
     "publications": {
       "titleAudits": [
-        {
-          "title": "Computational thinking in collaborative programming discourse: an epistemic network analysis",
-          "query": "Computational thinking in collaborative programming discourse: an epistemic network analysis",
-          "expectedUrl": "/julkaisut/rf-rf-10-1080-08993408-2026-2665188/",
-          "found": true,
-          "rank": 1,
-          "returnedUrl": "/julkaisut/rf-rf-10-1080-08993408-2026-2665188/",
-          "totalResults": 10,
-          "top": [
-            {
-              "url": "/julkaisut/rf-rf-10-1080-08993408-2026-2665188/",
-              "title": "Computational thinking in collaborative programming discourse: an epistemic network analysis"
-            },
-            {
-              "url": "/avainsanat/innovative-teaching-and-learning-methods/",
-              "title": "Innovative Teaching and Learning Methods"
-            },
-            {
-              "url": "/avainsanat/ohjelmointi/",
-              "title": "ohjelmointi"
-            },
-            {
-              "url": "/avainsanat/laskennallinen-ajattelu/",
-              "title": "laskennallinen ajattelu"
-            },
-            {
-              "url": "/kategoriat/yliopisto-ja-korkeakoulut/",
-              "title": "Yliopisto ja korkeakoulut"
-            }
-          ]
-        },
         {
           "title": "Assessing Digital Competence of K1-12 Teachers in Kosovo: A Study through the Lens of DigCompEdu and TPACK",
           "query": "Assessing Digital Competence of K1-12 Teachers in Kosovo: A Study through the Lens of DigCompEdu and TPACK",
@@ -635,6 +576,37 @@
           ]
         },
         {
+          "title": "Computational thinking in collaborative programming discourse: an epistemic network analysis",
+          "query": "Computational thinking in collaborative programming discourse: an epistemic network analysis",
+          "expectedUrl": "/julkaisut/0707476326/",
+          "found": true,
+          "rank": 1,
+          "returnedUrl": "/julkaisut/0707476326/",
+          "totalResults": 8,
+          "top": [
+            {
+              "url": "/julkaisut/0707476326/",
+              "title": "Computational thinking in collaborative programming discourse: an epistemic network analysis"
+            },
+            {
+              "url": "/avainsanat/innovative-teaching-and-learning-methods/",
+              "title": "Innovative Teaching and Learning Methods"
+            },
+            {
+              "url": "/avainsanat/ohjelmointi/",
+              "title": "ohjelmointi"
+            },
+            {
+              "url": "/avainsanat/laskennallinen-ajattelu/",
+              "title": "laskennallinen ajattelu"
+            },
+            {
+              "url": "/kategoriat/yliopisto-ja-korkeakoulut/",
+              "title": "Yliopisto ja korkeakoulut"
+            }
+          ]
+        },
+        {
           "title": "Ohjelmoinnista ohjelmoinnilliseen ajatteluun ja tekoälytaitojen edistämiseen",
           "query": "Ohjelmoinnista ohjelmoinnilliseen ajatteluun ja tekoälytaitojen edistämiseen",
           "expectedUrl": "/julkaisut/0704947326/",
@@ -668,37 +640,6 @@
       ],
       "authorAudits": [
         {
-          "author": "Iwata, Megumi",
-          "query": "Iwata Megumi",
-          "expectedUrl": "/julkaisut/rf-rf-10-1080-08993408-2026-2665188/",
-          "found": false,
-          "rank": null,
-          "returnedUrl": "/julkaisut/",
-          "totalResults": 17,
-          "top": [
-            {
-              "url": "/julkaisut/",
-              "title": "Julkaisuluettelo"
-            },
-            {
-              "url": "/julkaisut/0370602819/",
-              "title": "Developing computational thinking practices through digital fabrication activities"
-            },
-            {
-              "url": "/julkaisut/02249625YJ/",
-              "title": "Tekoäly ja data ihmisten arjessa"
-            },
-            {
-              "url": "/julkaisut/02249626YJ/",
-              "title": "Mitä tekoälyllä ja datalla tehdään?"
-            },
-            {
-              "url": "/julkaisut/02249624YJ/",
-              "title": "Mikä tekoäly?"
-            }
-          ]
-        },
-        {
           "author": "Krenare Pireva Nuci",
           "query": "Krenare Pireva Nuci",
           "expectedUrl": "/julkaisut/rf-a1-10-1016-j-caeo-2026-100396/",
@@ -720,6 +661,37 @@
               "title": "Julkaisuluettelo"
             }
           ]
+        },
+        {
+          "author": "Celik, Ismail",
+          "query": "Celik Ismail",
+          "expectedUrl": "/julkaisut/02254916YJ/",
+          "found": true,
+          "rank": 2,
+          "returnedUrl": "/julkaisut/02254916YJ/",
+          "totalResults": 6,
+          "top": [
+            {
+              "url": "/julkaisut/",
+              "title": "Julkaisuluettelo"
+            },
+            {
+              "url": "/julkaisut/02254916YJ/",
+              "title": "Co-constructing adaptive lesson plans with GenAI: Pre-service teachers' Intelligent-TPACK and prompt engineering strategies"
+            },
+            {
+              "url": "/julkaisut/rf-a1-10-1016-j-caeo-2026-100396/",
+              "title": "Assessing Digital Competence of K1-12 Teachers in Kosovo: A Study through the Lens of DigCompEdu and TPACK"
+            },
+            {
+              "url": "/julkaisut/0699440925/",
+              "title": "The antecedents of pre-service teachers' AI literacy: perceptions about own AI driven applications, attitude towards AI and knowledge in machine learning"
+            },
+            {
+              "url": "/julkaisut/0693115624/",
+              "title": "Learning AI literacy in collaborative projects with an AI education tool by making machine-learning-driven apps: A case study from Finnish pre-service teacher education"
+            }
+          ]
         }
       ],
       "topicAudits": [
@@ -729,12 +701,12 @@
           "totalResults": 295,
           "top": [
             {
-              "url": "/mediassa/2026/05/06/tekoalylukutaito-on-uusi-kansalaistaito-arjen-tekoalyhaaste/",
-              "title": "Tekoälylukutaito on uusi kansalaistaito - Arjen tekoälyhaaste nyt verkossa"
-            },
-            {
               "url": "/opinnaytteet/63335/",
               "title": "Pieni kielikone tekoäly-ymmärryksen rakentajana : tutkimus luokanopettajaopiskelijoiden käsitysten kehittymisestä"
+            },
+            {
+              "url": "/mediassa/2026/05/06/tekoalylukutaito-on-uusi-kansalaistaito-arjen-tekoalyhaaste/",
+              "title": "Tekoälylukutaito on uusi kansalaistaito - Arjen tekoälyhaaste nyt verkossa"
             },
             {
               "url": "/presentations/monilukutaito-on-opettajan-supervoima-teko-lylukutaito-luento/",
@@ -756,12 +728,12 @@
           "totalResults": 31,
           "top": [
             {
-              "url": "/presentations/ss-luento-3-tpack-taidot-teknologiatuettu-oppiminen-ja-opetus/",
-              "title": "LUENTO 3: TPACK-taidot – teknologiatuettu oppiminen ja opetus"
-            },
-            {
               "url": "/opinnaytteet/40854/",
               "title": "Lastentarhanopettajien TPACK-taidot : tapaustutkimus matematiikan opetuksesta esiopetuskontekstissa"
+            },
+            {
+              "url": "/presentations/ss-luento-3-tpack-taidot-teknologiatuettu-oppiminen-ja-opetus/",
+              "title": "LUENTO 3: TPACK-taidot – teknologiatuettu oppiminen ja opetus"
             },
             {
               "url": "/avainsanat/tpack/",
@@ -781,7 +753,7 @@
       "summary": {
         "titleFound": 4,
         "titleTop1": 4,
-        "authorFound": 1,
+        "authorFound": 2,
         "topicFound": 2
       }
     },
@@ -912,12 +884,12 @@
           "totalResults": 295,
           "top": [
             {
-              "url": "/mediassa/2026/05/06/tekoalylukutaito-on-uusi-kansalaistaito-arjen-tekoalyhaaste/",
-              "title": "Tekoälylukutaito on uusi kansalaistaito - Arjen tekoälyhaaste nyt verkossa"
-            },
-            {
               "url": "/opinnaytteet/63335/",
               "title": "Pieni kielikone tekoäly-ymmärryksen rakentajana : tutkimus luokanopettajaopiskelijoiden käsitysten kehittymisestä"
+            },
+            {
+              "url": "/mediassa/2026/05/06/tekoalylukutaito-on-uusi-kansalaistaito-arjen-tekoalyhaaste/",
+              "title": "Tekoälylukutaito on uusi kansalaistaito - Arjen tekoälyhaaste nyt verkossa"
             },
             {
               "url": "/presentations/monilukutaito-on-opettajan-supervoima-teko-lylukutaito-luento/",

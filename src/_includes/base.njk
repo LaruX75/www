@@ -22,13 +22,17 @@
 <body>
   {% set currentLang = lang or (page.url | langFromUrl) %}
   <span hidden data-pagefind-filter="Kieli:{{ 'English' if currentLang == 'en' else 'Suomi' }}"></span>
-  {% if pagefindWritings and pagefindWritings.filters %}
-    {% for filter in pagefindWritings.filters %}
+  {% if pagefindDocument and pagefindDocument.filters %}
+    {% for filter in pagefindDocument.filters %}
   <span hidden data-pagefind-filter="{{ filter.name }}:{{ filter.value }}"></span>
     {% endfor %}
-  <span hidden data-pagefind-meta="writingsContentType:{{ pagefindWritings.contentType }}"></span>
-    {% if pagefindWritings.year %}
-  <span hidden data-pagefind-meta="writingsYear:{{ pagefindWritings.year }}"></span>
+    {% for metaName, metaValue in (pagefindDocument.meta or {}) %}
+      {% if metaValue %}
+  <span hidden data-pagefind-meta="{{ metaName }}:{{ metaValue }}"></span>
+      {% endif %}
+    {% endfor %}
+    {% if pagefindDocument.seedText %}
+  <span hidden>{{ pagefindDocument.seedText }}</span>
     {% endif %}
   {% endif %}
   <a class="visually-hidden-focusable skip-link btn btn-primary m-2 position-absolute" style="z-index: 9999; top: 0; left: 0;" href="#main-content">{{ "Skip to main content" if currentLang == "en" else "Hyppää pääsisältöön" }}</a>

@@ -50,13 +50,21 @@ function abstractParagraphs(abstract) {
     .filter(Boolean);
 }
 
+function abstractSnippet(abstract, maxLength = 280) {
+  const paragraphs = abstractParagraphs(abstract);
+  const first = pickString(paragraphs[0] || "");
+  if (!first) return "";
+  if (first.length <= maxLength) return first;
+  return `${first.slice(0, maxLength - 1).trimEnd()}…`;
+}
+
 function collectCanonicalTheses(thesesData) {
   const seen = new Set();
   const ordered = [];
   const sources = [
-    ...(toArray(thesesData?.gradut)),
-    ...(toArray(thesesData?.kandit)),
-    ...(toArray(thesesData?.reviewerOnly))
+    ...toArray(thesesData?.gradut).map((thesis) => ({ ...thesis, thesisRole: "advised" })),
+    ...toArray(thesesData?.kandit).map((thesis) => ({ ...thesis, thesisRole: "advised" })),
+    ...toArray(thesesData?.reviewerOnly).map((thesis) => ({ ...thesis, thesisRole: "reviewed" }))
   ];
 
   for (const thesis of sources) {
@@ -100,8 +108,10 @@ function buildThesisDetailModel(thesis) {
     thesisTypeLabel: thesisTypeLabel(thesis.type, lang),
     thesisTypeLabelFi: thesisTypeLabel(thesis.type, "fi"),
     thesisTypeLabelEn: thesisTypeLabel(thesis.type, "en"),
+    thesisRole: pickString(thesis.thesisRole),
     abstract: pickString(thesis.abstract),
     abstractParagraphs: abstractParagraphs(thesis.abstract),
+    abstractSnippet: abstractSnippet(thesis.abstract),
     keywords: toArray(thesis.keywords).map((item) => String(item).trim()).filter(Boolean),
     researchLine: pickString(thesis.researchLine),
     researchThemes: toArray(thesis.researchThemes).map((item) => String(item).trim()).filter(Boolean),

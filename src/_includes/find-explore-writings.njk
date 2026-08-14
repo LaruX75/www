@@ -1,4 +1,4 @@
-<section class="find-explore find-explore--writings" aria-labelledby="find-explore-heading" data-find-explore data-find-explore-scope="{{ findExploreScope }}" data-find-explore-lang="{{ findExploreLang }}" data-find-explore-search-language="{{ findExploreSearchLanguage | default(findExploreLang) }}" data-find-explore-language-filter="{{ findExploreLanguageFilter }}">
+<section class="find-explore find-explore--{{ findExploreKind or 'writings' }}" aria-labelledby="find-explore-heading" data-find-explore data-find-explore-kind="{{ findExploreKind or 'writings' }}" data-find-explore-scope="{{ findExploreScope }}" data-find-explore-lang="{{ findExploreLang }}" {% if findExploreSearchLanguage %}data-find-explore-search-language="{{ findExploreSearchLanguage }}"{% endif %} {% if findExploreLanguageFilter %}data-find-explore-language-filter="{{ findExploreLanguageFilter }}"{% endif %} {% if findExploreSeedQuery %}data-find-explore-seed-query="{{ findExploreSeedQuery }}"{% endif %}>
   <div class="site-shell">
     <div class="find-explore-card card border-0 shadow-sm">
       <div class="card-body p-4">
@@ -33,7 +33,20 @@
                     {% endfor %}
                   </select>
                 </div>
+                {% if findExploreTopicOptions and (findExploreTopicOptions | length) %}
+                <div class="col-md-4">
+                  <label class="form-label small text-muted mb-1" for="findExploreTopic">{{ findExploreTopicLabel }}</label>
+                  <select id="findExploreTopic" class="form-select" name="topic" data-find-explore-topic>
+                    <option value="">{{ findExploreAllTopicsLabel }}</option>
+                    {% for option in findExploreTopicOptions %}
+                    <option value="{{ option.value }}">{{ option.label }}{% if option.count %} ({{ option.count }}){% endif %}</option>
+                    {% endfor %}
+                  </select>
+                </div>
                 <div class="col-md-3 d-flex align-items-end">
+                {% else %}
+                <div class="col-md-3 d-flex align-items-end">
+                {% endif %}
                   <button class="btn btn-outline-secondary w-100" type="button" data-find-explore-reset>{{ findExploreResetLabel }}</button>
                 </div>
               </div>
