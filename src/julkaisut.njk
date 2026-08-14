@@ -5,12 +5,12 @@ metaTitle: Julkaisuluettelo
 description: "Jari Larun tieteellisten ja ammatillisten julkaisujen kokonaisluettelo Research.fi-profiilista. Ryhmiteltynä OKM:n julkaisutyyppiluokituksen (A–G) mukaisesti."
 permalink: /julkaisut/
 translationKey: publications_index
+suppressTableFilters: true
 pageStyles:
   - /css/publications-page.css
+  - /css/find-explore.css
 pageScripts:
-  - /js/pe-list-render.js
-  - /js/content-presets.js
-  - /js/content-engine.js
+  - /js/find-explore.js
 schemaType: CollectionPage
 ---
 {% import "ui.njk" as ui %}
@@ -214,312 +214,66 @@ schemaType: CollectionPage
   </div>
 </section>
 
-<!-- AVAINSANASUODATTIMEN STATUSBANNERI -->
-<div id="keyword-filter-bar" class="site-shell pb-0 pt-2 d-none">
-  <div class="alert alert-info py-2 d-flex align-items-center gap-2 mb-0">
-    <i class="bi bi-tag-fill me-1"></i>
-    Avainsanasuodatin: <strong id="active-keyword-label"></strong>
-    <button type="button" class="btn btn-sm btn-outline-secondary ms-auto py-0 px-2" id="clear-keyword-filter">
-      <i class="bi bi-x-circle me-1"></i>Poista suodatin
-    </button>
-  </div>
-</div>
+{% set publicationExplore = publicationsFindExplorePage %}
+{% set findExploreKind = "publications" %}
+{% set findExploreScope = "fi" %}
+{% set findExploreLang = "fi" %}
+{% set findExploreSearchLanguage = "fi,en" %}
+{% set findExploreSeedQuery = "__find_explore_publications__" %}
+{% set findExploreEyebrow = "Find & Explore" %}
+{% set findExploreTitle = "Etsi ja rajaa julkaisuja" %}
+{% set findExploreDescription = "Yksi publication-scoped hakukerros korvaa vanhat erilliset taulukkosuodattimet. Tulokset johtavat paikallisille julkaisusivuille, ja DOI/lähde sekä viitteen vienti säilyvät julkaisukortissa." %}
+{% set findExploreSearchLabel = "Hae otsikosta, tekijästä, aiheesta tai julkaisukanavasta" %}
+{% set findExplorePlaceholder = "Kokeile esimerkiksi TPACK, Kosovo, ohjelmoinnillinen ajattelu, Iwata..." %}
+{% set findExploreTypeLabel = "Julkaisuryhmä" %}
+{% set findExploreAllTypesLabel = "Kaikki ryhmät" %}
+{% set findExploreYearLabel = "Vuosi" %}
+{% set findExploreAllYearsLabel = "Kaikki vuodet" %}
+{% set findExploreTopicLabel = "Aihe" %}
+{% set findExploreAllTopicsLabel = "Kaikki aiheet" %}
+{% set findExploreQualityLabel = "Laatu" %}
+{% set findExploreAllQualityLabel = "Kaikki" %}
+{% set findExploreResetLabel = "Tyhjennä" %}
+{% set findExploreMoreLabel = "Näytä lisää" %}
+{% set findExploreInitialStatus = "Voit hakea sanalla tai rajata tuloksia. Alla oleva avauslista toimii myös ilman JavaScriptiä." %}
+{% set findExploreNoScript = "Interaktiivinen Find & Explore edellyttää JavaScriptiä. Alla oleva avauslista ja paikalliset julkaisulinkit toimivat silti." %}
+{% set findExploreTypeOptions = [] %}
+{% for option in publicationExplore.groupOptions %}
+  {% set findExploreTypeOptions = (findExploreTypeOptions.push({ value: option.value, label: option.labelFi, count: option.count }), findExploreTypeOptions) %}
+{% endfor %}
+{% set findExploreYears = publicationExplore.years %}
+{% set findExploreTopicOptions = publicationExplore.topicOptions %}
+{% set findExploreQualityOptions = [
+  { value: "peer-reviewed", label: "Vertaisarvioitu", count: publicationExplore.qualityCounts.peerReviewed },
+  { value: "open-access", label: "Open access", count: publicationExplore.qualityCounts.openAccess }
+] %}
 
-<!-- VÄITÖSKIRJA-NOSTO -->
-<!-- JULKAISULISTA -->
+<script type="application/json" id="publicationFindExploreRecords">{{ publicationExplore.records | jsonSafe | safe }}</script>
+<section data-find-explore-records-id="publicationFindExploreRecords">
+  {% include "find-explore-writings.njk" %}
+</section>
+
 <section id="julkaisuluokat" class="py-5">
   <div class="site-shell">
     <div class="card border-0 shadow-sm publication-nav-card mb-4">
       <div class="card-body">
-        <p class="text-uppercase small text-muted mb-1">Julkaisuluokat</p>
-        <h2 class="h3 mb-1">Selaa koko julkaisuarkistoa ryhmittäin</h2>
-        <p class="text-muted mb-3">Alla julkaisut on jaettu tutkimusjulkaisuihin, ammatillisiin teksteihin, suurelle yleisölle suunnattuihin kirjoituksiin sekä opinnäytteisiin. Jokaisessa osiossa on oma suodatus.</p>
+        <p class="text-uppercase small text-muted mb-1">Avauslista</p>
+        <h2 class="h3 mb-1">Uusimmat julkaisut</h2>
+        <p class="text-muted mb-3">Tämä SSR-lista toimii ilman JavaScriptiä. Find & Explore kattaa koko {{ canonicalPublications.length }} julkaisun canonical-joukon.</p>
         <div class="d-flex flex-wrap gap-2">
-          <a href="#card-pub-table-a" class="btn btn-outline-secondary btn-sm rounded-pill">A-luokka <span class="ms-1 text-muted">{{ pubsA.length }}</span></a>
-          <a href="#card-pub-table-b" class="btn btn-outline-secondary btn-sm rounded-pill">B-luokka <span class="ms-1 text-muted">{{ pubsB.length }}</span></a>
-          <a href="#card-pub-table-c" class="btn btn-outline-secondary btn-sm rounded-pill">C-luokka <span class="ms-1 text-muted">{{ pubsC.length }}</span></a>
-          <a href="#card-pub-table-d" class="btn btn-outline-secondary btn-sm rounded-pill">D-luokka <span class="ms-1 text-muted">{{ pubsD.length }}</span></a>
-          <a href="#card-pub-table-e" class="btn btn-outline-secondary btn-sm rounded-pill">E-luokka <span class="ms-1 text-muted">{{ pubsE.length }}</span></a>
-          <a href="#card-pub-table-g" class="btn btn-outline-secondary btn-sm rounded-pill">G-luokka <span class="ms-1 text-muted">{{ pubsG.length }}</span></a>
+          {% for option in publicationExplore.groupOptions %}
+          <span class="badge text-bg-light text-dark border">{{ option.labelFi }} <span class="text-muted">{{ option.count }}</span></span>
+          {% endfor %}
         </div>
       </div>
     </div>
-
-    {% if canonicalPublications.length %}
-
-      {# Macros for reuse #}
-      {% macro drawTable(groupCode, title, allItems, tableId, subtypes) %}
-      {# v4.3 PR-3 SSR-optimointi: 15 → 5 uusinta per OKM-luokka.
-         JS (alempana) fetch:aa julkaisudatan ja korvaa tbody:jen sisallon
-         KAIKILLA julkaisuilla ennen suodatuksen aktivointia. Desktop-taulukko
-         + mobiili-lista renderoitiin aiemmin tuplasti; 5 riittaa
-         JS-OFF-kayttokelpoisuuteen ja pudottaa sivun painoa merkittavasti. #}
-      {% set items = allItems | take(5) %}
-      {% if allItems.length %}
-      <div class="card shadow-sm mb-5 section-card" id="card-{{ tableId }}">
-        <div class="card-header bg-transparent py-3 publication-section-header">
-          <div class="d-flex align-items-start justify-content-between">
-            <div>
-              <div class="d-flex flex-wrap align-items-center gap-2 mb-1">
-                <span class="publication-group-code">{{ groupCode }}</span>
-                <h3 class="h5 mb-0">{{ title }}</h3>
-              </div>
-              {% if subtypes and subtypes.length %}
-              <div class="mt-1 d-flex flex-wrap">
-                {% for st in subtypes %}
-                  {% if (items | selectattr("typeCode", "equalto", st.code) | list).length %}
-                  <span class="me-3 mt-1" style="font-size:0.78rem; color: var(--bs-secondary-color);">
-                    <strong style="font-size:0.76rem;">{{ st.code }}</strong>&nbsp;{{ st.desc }}
-                  </span>
-                  {% endif %}
-                {% endfor %}
-              </div>
-              {% endif %}
-            </div>
-            <div class="d-flex align-items-center gap-2 flex-shrink-0 ms-3 mt-1">
-              <span class="publication-filter-indicator badge border border-info text-info d-none" data-filter-indicator="{{ tableId }}"></span>
-              <span class="badge publication-section-count">{{ allItems.length }}</span>
-            </div>
-          </div>
-        </div>
-        <div class="card-body p-0">
-          <div class="p-3 border-bottom publication-filter-bar">
-            <div class="row g-2 align-items-end">
-              <div class="col-md-9">
-                <label for="search-{{ tableId }}" class="form-label small text-muted mb-1">Suodata</label>
-                <input type="search" id="search-{{ tableId }}" class="form-control form-control-sm" placeholder="Hae otsikosta, tekijästä tai julkaisusta..." autocomplete="off" data-pub-search="{{ tableId }}">
-              </div>
-            </div>
-          </div>
-          <div id="{{ tableId }}">
-            {# ── Desktop: taulukko (piilotetaan mobiilissa) ── #}
-            <div class="d-none d-md-block">
-              <div class="table-responsive">
-                <table class="table table-sm table-hover align-middle mb-0 pub-table">
-                  <thead>
-                    <tr>
-                      <th class="text-center" style="width:125px" data-filter-skip="true">
-                        <div class="table-header-filter-wrap">
-                          <div class="table-header-filter-label">Vuosi</div>
-                          <div class="table-header-filter-controls">
-                            <label class="visually-hidden" for="publication-year-select-{{ tableId }}">Rajaa julkaisuvuodella</label>
-                            <select class="form-select form-select-sm table-header-sort-select" id="publication-year-select-{{ tableId }}" data-publication-year-select>
-                              <option value="">Kaikki vuodet</option>
-                            </select>
-                            <button type="button" class="table-header-sort-button" data-publication-sort="year" title="Lajittele julkaisuvuoden mukaan" aria-label="Lajittele julkaisuvuoden mukaan">
-                              <i class="bi bi-arrow-down-up" aria-hidden="true"></i>
-                            </button>
-                          </div>
-                        </div>
-                      </th>
-                      <th style="width:150px" data-filter-skip="true">
-                        <div class="table-header-filter-wrap">
-                          <div class="table-header-filter-label">Luokka</div>
-                          <div class="table-header-filter-controls">
-                            <label class="visually-hidden" for="publication-type-select-{{ tableId }}">Rajaa julkaisuluokalla</label>
-                            <select class="form-select form-select-sm table-header-sort-select" id="publication-type-select-{{ tableId }}" data-publication-type-select>
-                              <option value="">Kaikki julkaisuluokat</option>
-                            </select>
-                            <button type="button" class="table-header-sort-button" data-publication-sort="type" title="Lajittele julkaisuluokan mukaan" aria-label="Lajittele julkaisuluokan mukaan">
-                              <i class="bi bi-arrow-down-up" aria-hidden="true"></i>
-                            </button>
-                          </div>
-                        </div>
-                      </th>
-                      <th>Otsikko & Julkaisu</th>
-                      <th style="width:200px" data-filter-skip="true">
-                        <div class="table-header-filter-wrap">
-                          <div class="table-header-filter-label">Tekijä(t)</div>
-                          <div class="table-header-filter-controls">
-                            <label class="visually-hidden" for="coauthor-select-{{ tableId }}">Rajaa kanssakirjoittajalla</label>
-                            <select class="form-select form-select-sm table-header-sort-select" id="coauthor-select-{{ tableId }}" data-coauthor-select>
-                              <option value="">Kaikki kanssakirjoittajat</option>
-                            </select>
-                            <button type="button" class="table-header-sort-button" data-publication-sort="authors" title="Lajittele tekijän mukaan" aria-label="Lajittele tekijän mukaan">
-                              <i class="bi bi-arrow-down-up" aria-hidden="true"></i>
-                            </button>
-                          </div>
-                        </div>
-                      </th>
-                      <th style="width:100px" class="text-center" data-filter-skip="true">
-                        <div class="table-header-filter-wrap">
-                          <div class="table-header-filter-label">Avaa</div>
-                        </div>
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {% for pub in items %}
-                    <tr{% if pub.anchorId %} id="{{ pub.anchorId }}"{% endif %} data-authors="{{ pub.authors | escape }}" data-publication-year="{{ pub.year or '' }}" data-publication-type="{{ pub.typeCode or '' }}" data-publication-type-label="{{ pub.type | escape }}" data-research-line="{{ pub.researchLine or '' }}" data-research-themes="{{ (pub.researchThemes or []) | join('|') }}" data-research-audiences="{{ (pub.researchAudience or []) | join('|') }}">
-                      <td class="text-center font-monospace small fw-bold publication-year">{{ pub.year or '—' }}</td>
-                      <td><span class="badge bg-secondary" title="{{ pub.type }}">{{ pub.typeCode }}</span></td>
-                      <td>
-                        <span class="fw-medium d-block mb-1">{{ pub.title }}</span>
-                        {% if pub.journal %}
-                          <span class="text-muted small fst-italic">{{ pub.journal }}</span>{% if pub.volume %}<span class="text-muted small">, <strong>{{ pub.volume }}</strong>{% if pub.issue %}({{ pub.issue }}){% endif %}</span>{% endif %}{% if pub.pages %}<span class="text-muted small">, s.&nbsp;{{ pub.pages }}</span>{% endif %}{% if pub.isbn %}<span class="text-muted small"> — ISBN {{ pub.isbn }}</span>{% endif %}
-                        {% elif pub.publisher %}
-                          <span class="text-muted small fst-italic">{{ pub.publisher }}{% if pub.isbn %} — ISBN {{ pub.isbn }}{% endif %}</span>
-                        {% endif %}
-                        {% set citationCount = pub.citationCount or 0 %}
-                        <div class="d-flex flex-wrap align-items-center gap-2 mt-1">
-                          {% if pub.jufoLevel != null and pub.jufoLevel != undefined %}
-                            {% if pub.jufoLevel == "3" %}
-                              <span class="badge rounded-pill publication-jufo publication-jufo--3" title="Julkaisufoorumi-taso 3 – johtava taso">JUFO 3</span>
-                            {% elif pub.jufoLevel == "2" %}
-                              <span class="badge rounded-pill publication-jufo publication-jufo--2" title="Julkaisufoorumi-taso 2 – korkea taso">JUFO 2</span>
-                            {% elif pub.jufoLevel == "1" %}
-                              <span class="badge rounded-pill publication-jufo publication-jufo--1" title="Julkaisufoorumi-taso 1 – perustaso">JUFO 1</span>
-                            {% else %}
-                              <span class="badge rounded-pill publication-jufo publication-jufo--0" title="Julkaisufoorumi-taso 0 – ei luokiteltu">JUFO 0</span>
-                            {% endif %}
-                          {% endif %}
-                          <span class="badge publication-citation-badge rounded-pill" title="Viittaukset">
-                            <i class="bi bi-quote me-1"></i>{{ citationCount }} {{ "viite" if citationCount == 1 else "viittausta" }}
-                          </span>
-                          <button
-                            type="button"
-                            class="btn btn-sm btn-outline-secondary rounded-pill export-citation-btn"
-                            data-title="{{ pub.title | escape }}"
-                            data-authors="{{ pub.authors | escape }}"
-                            data-year="{{ pub.year or '' }}"
-                            data-journal="{{ pub.journal | escape }}"
-                            data-doi="{{ pub.doi or '' }}"
-                            data-url="{{ pub.url or pub.doiUrl or '' }}"
-                            data-volume="{{ pub.volume or '' }}"
-                            data-issue="{{ pub.issue or '' }}"
-                            data-pages="{{ pub.pages or '' }}"
-                            data-publisher="{{ pub.publisher or '' }}"
-                            data-isbn="{{ pub.isbn or '' }}"
-                            title="Vie lähdeviite"
-                          >
-                            <i class="bi bi-download me-1"></i>Vie viite
-                          </button>
-                        </div>
-                      </td>
-                      <td class="text-body-secondary small">{{ pub.authors }}</td>
-                      <td class="text-center">
-                        {% if pub.url %}
-                          <a href="{{ pub.url }}" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Avaa julkaisu" aria-label="Avaa julkaisu uuteen välilehteen"><i class="bi bi-box-arrow-up-right"></i></a>
-                        {% elif pub.doiUrl %}
-                          <a href="{{ pub.doiUrl }}" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Avaa DOI" aria-label="Avaa DOI uuteen välilehteen"><i class="bi bi-box-arrow-up-right"></i></a>
-                        {% endif %}
-                      </td>
-                    </tr>
-                    {% endfor %}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            {# ── Mobiilinäkymä: kompakti korttilista (piilotetaan desktopissa) ── #}
-            <ul class="list-unstyled mb-0 d-md-none pub-mobile-list" role="list">
-              {% for pub in items %}
-              {% set citationCount = pub.citationCount or 0 %}
-              <li{% if pub.anchorId %} id="{{ pub.anchorId }}-mobile"{% endif %} class="pub-mobile-item px-3 py-3 border-bottom" data-authors="{{ pub.authors | escape }}" data-publication-year="{{ pub.year or '' }}" data-publication-type="{{ pub.typeCode or '' }}" data-publication-type-label="{{ pub.type | escape }}" data-research-line="{{ pub.researchLine or '' }}" data-research-themes="{{ (pub.researchThemes or []) | join('|') }}" data-research-audiences="{{ (pub.researchAudience or []) | join('|') }}" role="listitem">
-                <div class="d-flex align-items-center gap-2 mb-1">
-                  <span class="font-monospace small fw-bold publication-year">{{ pub.year or '—' }}</span>
-                  <span class="badge bg-secondary" title="{{ pub.type }}">{{ pub.typeCode }}</span>
-                  {% if pub.jufoLevel != null and pub.jufoLevel != undefined %}
-                    {% if pub.jufoLevel == "3" %}
-                      <span class="badge rounded-pill publication-jufo publication-jufo--3">JUFO 3</span>
-                    {% elif pub.jufoLevel == "2" %}
-                      <span class="badge rounded-pill publication-jufo publication-jufo--2">JUFO 2</span>
-                    {% elif pub.jufoLevel == "1" %}
-                      <span class="badge rounded-pill publication-jufo publication-jufo--1">JUFO 1</span>
-                    {% else %}
-                      <span class="badge rounded-pill publication-jufo publication-jufo--0">JUFO 0</span>
-                    {% endif %}
-                  {% endif %}
-                </div>
-                <p class="fw-medium mb-1 lh-sm">
-                  {% if pub.url %}
-                    <a href="{{ pub.url }}" target="_blank" rel="noopener noreferrer" class="text-body text-decoration-none">{{ pub.title }}</a>
-                  {% elif pub.doiUrl %}
-                    <a href="{{ pub.doiUrl }}" target="_blank" rel="noopener noreferrer" class="text-body text-decoration-none">{{ pub.title }}</a>
-                  {% else %}
-                    {{ pub.title }}
-                  {% endif %}
-                </p>
-                <p class="small text-body-secondary mb-1">{{ pub.authors }}</p>
-                {% if pub.journal %}
-                  <p class="small text-muted fst-italic mb-1">{{ pub.journal }}{% if pub.volume %}, <strong>{{ pub.volume }}</strong>{% if pub.issue %}({{ pub.issue }}){% endif %}{% endif %}{% if pub.pages %}, s.&nbsp;{{ pub.pages }}{% endif %}{% if pub.isbn %} — ISBN {{ pub.isbn }}{% endif %}</p>
-                {% elif pub.publisher %}
-                  <p class="small text-muted fst-italic mb-1">{{ pub.publisher }}{% if pub.isbn %} — ISBN {{ pub.isbn }}{% endif %}</p>
-                {% endif %}
-                <div class="d-flex gap-2 flex-wrap align-items-center mt-1">
-                  <span class="badge publication-citation-badge rounded-pill" title="Viittaukset">
-                    <i class="bi bi-quote me-1"></i>{{ citationCount }} {{ "viite" if citationCount == 1 else "viittausta" }}
-                  </span>
-                  <button
-                    type="button"
-                    class="btn btn-sm btn-outline-secondary rounded-pill export-citation-btn"
-                    data-title="{{ pub.title | escape }}"
-                    data-authors="{{ pub.authors | escape }}"
-                    data-year="{{ pub.year or '' }}"
-                    data-journal="{{ pub.journal | escape }}"
-                    data-doi="{{ pub.doi or '' }}"
-                    data-url="{{ pub.url or pub.doiUrl or '' }}"
-                    data-volume="{{ pub.volume or '' }}"
-                    data-issue="{{ pub.issue or '' }}"
-                    data-pages="{{ pub.pages or '' }}"
-                    data-publisher="{{ pub.publisher or '' }}"
-                    data-isbn="{{ pub.isbn or '' }}"
-                    title="Vie lähdeviite"
-                  ><i class="bi bi-download me-1"></i>Vie viite</button>
-                  {% if pub.url %}
-                    <a href="{{ pub.url }}" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill" rel="noopener noreferrer" aria-label="Avaa julkaisu uuteen välilehteen"><i class="bi bi-box-arrow-up-right me-1"></i>Avaa</a>
-                  {% elif pub.doiUrl %}
-                    <a href="{{ pub.doiUrl }}" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill" rel="noopener noreferrer" aria-label="Avaa DOI uuteen välilehteen"><i class="bi bi-box-arrow-up-right me-1"></i>Avaa</a>
-                  {% endif %}
-                </div>
-              </li>
-              {% endfor %}
-            </ul>
-          </div>
-        </div>
+    <div class="card shadow-sm border-0">
+      <div class="card-body">
+        {% set publicationItems = publicationExplore.openingItems %}
+        {% set publicationLang = "fi" %}
+        {% include "publications-opening-list.njk" %}
       </div>
-      {% endif %}
-      {% endmacro %}
-
-      {% set subtypesA = [
-        {code: 'A1', desc: 'Alkuperäisartikkeli tieteellisessä aikakauslehdessä'},
-        {code: 'A2', desc: 'Katsausartikkeli tieteellisessä aikakauslehdessä'},
-        {code: 'A3', desc: 'Kirjan tai muun kokoomateoksen osa'},
-        {code: 'A4', desc: 'Artikkeli konferenssijulkaisussa'}
-      ] %}
-      {% set subtypesB = [
-        {code: 'B1', desc: 'Kirjoitus tieteellisessä aikakauslehdessä'},
-        {code: 'B2', desc: 'Kirjan tai muun kokoomateoksen osa'},
-        {code: 'B3', desc: 'Vertaisarvioimaton artikkeli konferenssijulkaisussa'}
-      ] %}
-      {% set subtypesC = [
-        {code: 'C1', desc: 'Kustannettu tieteellinen erillisteos'},
-        {code: 'C2', desc: 'Toimitettu kirja, kokoomateos, konferenssijulkaisu tai lehden erikoisnumero'}
-      ] %}
-      {% set subtypesD = [
-        {code: 'D1', desc: 'Artikkeli ammattilehdessä'},
-        {code: 'D2', desc: 'Artikkeli ammatillisessa kokoomateoksessa'},
-        {code: 'D3', desc: 'Artikkeli ammatillisessa konferenssijulkaisussa'}
-      ] %}
-      {% set subtypesE = [
-        {code: 'E1', desc: 'Yleistajuinen artikkeli, sanomalehtiartikkeli'},
-        {code: 'E2', desc: 'Yleistajuinen monografia'}
-      ] %}
-      {% set subtypesG = [
-        {code: 'G4', desc: 'Väitöskirja (artikkeli)'},
-        {code: 'G5', desc: 'Väitöskirja (monografia)'}
-      ] %}
-
-      {{ drawTable('A', 'Vertaisarvioidut tieteelliset artikkelit', pubsA, 'pub-table-a', subtypesA) }}
-      {{ drawTable('B', 'Vertaisarvioimattomat tieteelliset kirjoitukset', pubsB, 'pub-table-b', subtypesB) }}
-      {{ drawTable('C', 'Tieteelliset kirjat', pubsC, 'pub-table-c', subtypesC) }}
-      {{ drawTable('D', 'Ammattiyhteisölle suunnatut julkaisut', pubsD, 'pub-table-d', subtypesD) }}
-      {{ drawTable('E', 'Suurelle yleisölle suunnatut julkaisut', pubsE, 'pub-table-e', subtypesE) }}
-      {{ drawTable('G', 'Opinnäytteet', pubsG, 'pub-table-g', subtypesG) }}
-      
-    {% else %}
-      <div class="alert alert-warning">Ei julkaisuja saatavilla.</div>
-    {% endif %}
+    </div>
   </div>
 </section>
 
@@ -567,162 +321,8 @@ schemaType: CollectionPage
   </div>
 </div>
 
-<!-- Chart.js & Dashboard Scripts -->
 <script>
-// Progressive enhancement: hydratoi OKM-luokkien tbody + mobiili-lista
-// KAIKILLA canonical publicationsPage-julkaisuilla ennen kuin suodattimet aktivoituvat.
-// SSR renderoi 5 uusinta per luokka (avausjoukko ilman JS:aa).
-window.publicationsHydration = (async () => {
-  if (!window.PE || typeof window.PE.loadJsonEndpoint !== 'function') {
-    console.error('julkaisut: window.PE.loadJsonEndpoint puuttuu (lataa pe-list-render.js)');
-    return null;
-  }
-  if (!window.PE || typeof window.PE.escHtml !== 'function') return null;
-  const data = await window.PE.loadJsonEndpoint('/data/publications-page.json', { items: [] });
-  const items = Array.isArray(data?.items) ? data.items : [];
-  if (!items.length) return items;
-
-  const esc = window.PE.escHtml;
-  const groups = { A: [], B: [], C: [], D: [], E: [], G: [] };
-  items.forEach((p) => {
-    const g = String(p.typeCode || '').charAt(0).toUpperCase();
-    if (groups[g]) groups[g].push(p);
-  });
-  Object.values(groups).forEach((arr) => arr.sort((a, b) => {
-    const ya = a.year || 0, yb = b.year || 0;
-    if (yb !== ya) return yb - ya;
-    return String(a.title).localeCompare(String(b.title));
-  }));
-
-  function jufoBadge(level) {
-    if (level == null) return '';
-    const s = String(level);
-    const cls = s === '3' ? '3' : s === '2' ? '2' : s === '1' ? '1' : '0';
-    const title = cls === '3' ? 'Julkaisufoorumi-taso 3 – johtava taso'
-      : cls === '2' ? 'Julkaisufoorumi-taso 2 – korkea taso'
-      : cls === '1' ? 'Julkaisufoorumi-taso 1 – perustaso'
-      : 'Julkaisufoorumi-taso 0 – ei luokiteltu';
-    return `<span class="badge rounded-pill publication-jufo publication-jufo--${cls}" title="${esc(title)}">JUFO ${cls}</span>`;
-  }
-  function citationBadge(count) {
-    const label = count === 1 ? 'viite' : 'viittausta';
-    return `<span class="badge publication-citation-badge rounded-pill" title="Viittaukset"><i class="bi bi-quote me-1"></i>${count} ${label}</span>`;
-  }
-  function exportBtn(pub) {
-    return `<button type="button" class="btn btn-sm btn-outline-secondary rounded-pill export-citation-btn"`
-      + ` data-title="${esc(pub.title)}" data-authors="${esc(pub.authors || '')}" data-year="${esc(pub.year || '')}"`
-      + ` data-journal="${esc(pub.journal || '')}" data-doi="${esc(pub.doi || '')}"`
-      + ` data-url="${esc(pub.url || pub.doiUrl || '')}" data-volume="${esc(pub.volume || '')}"`
-      + ` data-issue="${esc(pub.issue || '')}" data-pages="${esc(pub.pages || '')}"`
-      + ` data-publisher="${esc(pub.publisher || '')}" data-isbn="${esc(pub.isbn || '')}"`
-      + ` title="Vie lähdeviite"><i class="bi bi-download me-1"></i>Vie viite</button>`;
-  }
-  function meta(pub) {
-    if (pub.journal) {
-      let s = `<span class="text-muted small fst-italic">${esc(pub.journal)}</span>`;
-      if (pub.volume) {
-        s += `<span class="text-muted small">, <strong>${esc(pub.volume)}</strong>`;
-        if (pub.issue) s += `(${esc(pub.issue)})`;
-        s += `</span>`;
-      }
-      if (pub.pages) s += `<span class="text-muted small">, s.&nbsp;${esc(pub.pages)}</span>`;
-      if (pub.isbn) s += `<span class="text-muted small"> — ISBN ${esc(pub.isbn)}</span>`;
-      return s;
-    }
-    if (pub.publisher) {
-      let s = `<span class="text-muted small fst-italic">${esc(pub.publisher)}`;
-      if (pub.isbn) s += ` — ISBN ${esc(pub.isbn)}`;
-      return s + `</span>`;
-    }
-    return '';
-  }
-  function openLink(pub, mobile) {
-    const cls = mobile ? 'btn btn-sm btn-outline-primary rounded-pill' : 'btn btn-sm btn-outline-primary py-0 px-2 rounded-pill';
-    if (pub.url) {
-      return `<a href="${esc(pub.url)}" target="_blank" class="${cls}" rel="noopener noreferrer" title="Avaa julkaisu" aria-label="Avaa julkaisu uuteen välilehteen"><i class="bi bi-box-arrow-up-right${mobile ? ' me-1' : ''}"></i>${mobile ? 'Avaa' : ''}</a>`;
-    }
-    if (pub.doiUrl) {
-      return `<a href="${esc(pub.doiUrl)}" target="_blank" class="${cls}" rel="noopener noreferrer" title="Avaa DOI" aria-label="Avaa DOI uuteen välilehteen"><i class="bi bi-box-arrow-up-right${mobile ? ' me-1' : ''}"></i>${mobile ? 'Avaa' : ''}</a>`;
-    }
-    return '';
-  }
-  function titleLink(pub) {
-    if (pub.url) return `<a href="${esc(pub.url)}" target="_blank" rel="noopener noreferrer" class="text-body text-decoration-none">${esc(pub.title)}</a>`;
-    if (pub.doiUrl) return `<a href="${esc(pub.doiUrl)}" target="_blank" rel="noopener noreferrer" class="text-body text-decoration-none">${esc(pub.title)}</a>`;
-    return esc(pub.title);
-  }
-  function dataAttrs(pub, mobile) {
-    const themes = Array.isArray(pub.researchThemes) ? pub.researchThemes.join('|') : '';
-    const auds = Array.isArray(pub.researchAudience) ? pub.researchAudience.join('|') : '';
-    const idAttr = pub.anchorId ? ` id="${esc(pub.anchorId)}${mobile ? '-mobile' : ''}"` : '';
-    return idAttr
-      + ` data-authors="${esc(pub.authors || '')}"`
-      + ` data-publication-year="${esc(pub.year || '')}"`
-      + ` data-publication-type="${esc(pub.typeCode || '')}"`
-      + ` data-publication-type-label="${esc(pub.type || '')}"`
-      + ` data-research-line="${esc(pub.researchLine || '')}"`
-      + ` data-research-themes="${esc(themes)}"`
-      + ` data-research-audiences="${esc(auds)}"`;
-  }
-  function renderRow(pub) {
-    const cites = pub.citationCount || 0;
-    return `<tr${dataAttrs(pub, false)}>`
-      + `<td class="text-center font-monospace small fw-bold publication-year">${esc(pub.year || '—')}</td>`
-      + `<td><span class="badge bg-secondary" title="${esc(pub.type || '')}">${esc(pub.typeCode || '')}</span></td>`
-      + `<td><span class="fw-medium d-block mb-1">${esc(pub.title)}</span>${meta(pub)}`
-      + `<div class="d-flex flex-wrap align-items-center gap-2 mt-1">${jufoBadge(pub.jufoLevel)}${citationBadge(cites)}${exportBtn(pub)}</div></td>`
-      + `<td class="text-body-secondary small">${esc(pub.authors || '')}</td>`
-      + `<td class="text-center">${openLink(pub, false)}</td>`
-      + `</tr>`;
-  }
-  function metaMobile(pub) {
-    if (pub.journal) {
-      let s = esc(pub.journal);
-      if (pub.volume) {
-        s += `, <strong>${esc(pub.volume)}</strong>`;
-        if (pub.issue) s += `(${esc(pub.issue)})`;
-      }
-      if (pub.pages) s += `, s.&nbsp;${esc(pub.pages)}`;
-      if (pub.isbn) s += ` — ISBN ${esc(pub.isbn)}`;
-      return `<p class="small text-muted fst-italic mb-1">${s}</p>`;
-    }
-    if (pub.publisher) {
-      let s = esc(pub.publisher);
-      if (pub.isbn) s += ` — ISBN ${esc(pub.isbn)}`;
-      return `<p class="small text-muted fst-italic mb-1">${s}</p>`;
-    }
-    return '';
-  }
-  function renderMobile(pub) {
-    const cites = pub.citationCount || 0;
-    return `<li${dataAttrs(pub, true)} class="pub-mobile-item px-3 py-3 border-bottom" role="listitem">`
-      + `<div class="d-flex align-items-center gap-2 mb-1"><span class="font-monospace small fw-bold publication-year">${esc(pub.year || '—')}</span>`
-      + `<span class="badge bg-secondary" title="${esc(pub.type || '')}">${esc(pub.typeCode || '')}</span>${jufoBadge(pub.jufoLevel)}</div>`
-      + `<p class="fw-medium mb-1 lh-sm">${titleLink(pub)}</p>`
-      + `<p class="small text-body-secondary mb-1">${esc(pub.authors || '')}</p>`
-      + metaMobile(pub)
-      + `<div class="d-flex gap-2 flex-wrap align-items-center mt-1">${citationBadge(cites)}${exportBtn(pub)}${openLink(pub, true)}</div>`
-      + `</li>`;
-  }
-
-  const tableIds = { A: 'pub-table-a', B: 'pub-table-b', C: 'pub-table-c', D: 'pub-table-d', E: 'pub-table-e', G: 'pub-table-g' };
-  Object.entries(tableIds).forEach(([g, id]) => {
-    const arr = groups[g];
-    const tbody = document.querySelector(`#${id} tbody`);
-    if (tbody) tbody.innerHTML = arr.map(renderRow).join('');
-    const ul = document.querySelector(`#${id} .pub-mobile-list`);
-    if (ul) ul.innerHTML = arr.map(renderMobile).join('');
-    const badge = document.querySelector(`#card-${id} .publication-section-count`);
-    if (badge) badge.textContent = String(arr.length);
-  });
-  return items;
-})().catch((err) => { console.error('[julkaisut] hydration epaonnistui', err); return null; });
-</script>
-
-<script>
-document.addEventListener('DOMContentLoaded', async function() {
-  // Odota progressive enhancement -hydration ennen suodattimien aktivointia
-  await (window.publicationsHydration || Promise.resolve(null));
+document.addEventListener('DOMContentLoaded', function() {
   // Inline data from Eleventy
   const publications = [
     {% for pub in canonicalPublications %}
@@ -776,123 +376,6 @@ document.addEventListener('DOMContentLoaded', async function() {
 
   Chart.defaults.color = textColor;
   Chart.defaults.borderColor = gridColor;
-
-  // Pagination for pub tables. Mobile publication cards are text-heavy, so use
-  // a tighter page size there without changing the desktop archive rhythm.
-  const DESKTOP_ITEMS_PER_PAGE = 10;
-  const MOBILE_ITEMS_PER_PAGE = 5;
-  const publicationPageSizeMq = window.matchMedia('(max-width: 767.98px)');
-  const getPublicationPageSize = () => publicationPageSizeMq.matches ? MOBILE_ITEMS_PER_PAGE : DESKTOP_ITEMS_PER_PAGE;
-  const urlState = new URL(window.location.href);
-  const urlParams = urlState.searchParams;
-  const initialCoauthor = (urlParams.get('coauthor') || '').trim();
-  const initialKeyword = (urlParams.get('pk') || '').trim();
-  const initialPublicationType = (urlParams.get('ptype') || '').trim();
-  const initialPublicationYear = (urlParams.get('pyear') || '').trim();
-  const [initialSortKey, initialSortDirection] = (urlParams.get('psort') || '').split(':');
-  let activeCoauthor = '';
-  let activeKeyword = '';
-  let activePublicationType = '';
-  let activePublicationYear = '';
-  let activePublicationSort = ['year', 'type', 'authors'].includes(initialSortKey)
-    && ['asc', 'desc'].includes(initialSortDirection)
-    ? { key: initialSortKey, direction: initialSortDirection }
-    : null;
-  const tableFilterRefreshers = [];
-  const researchFilterInputs = Array.from(document.querySelectorAll('[data-research-filter]'));
-  const publicationYearSelects = Array.from(document.querySelectorAll('[data-publication-year-select]'));
-  const publicationTypeSelects = Array.from(document.querySelectorAll('[data-publication-type-select]'));
-  const publicationSortButtons = Array.from(document.querySelectorAll('[data-publication-sort]'));
-  const researchFilterParams = { line: 'prl', theme: 'prt', audience: 'pra' };
-
-  const getPubSearchKey = (tableId) => `pq_${tableId}`;
-  const setFilterParam = (key, value) => {
-    if (!value) {
-      urlParams.delete(key);
-      return;
-    }
-    urlParams.set(key, String(value).trim());
-  };
-  const updateFilterUrl = () => {
-    const qs = urlParams.toString();
-    const next = qs ? `${window.location.pathname}?${qs}${window.location.hash}` : `${window.location.pathname}${window.location.hash}`;
-    window.history.replaceState({}, '', next);
-  };
-  const syncPublicationFiltersToUrl = () => {
-    document.querySelectorAll('[data-pub-search]').forEach((input) => {
-      setFilterParam(getPubSearchKey(input.dataset.pubSearch), input.value || '');
-    });
-    researchFilterInputs.forEach((input) => {
-      setFilterParam(researchFilterParams[input.dataset.researchFilter], input.value || '');
-    });
-    setFilterParam('pyear', activePublicationYear);
-    setFilterParam('ptype', activePublicationType);
-    setFilterParam('psort', activePublicationSort ? `${activePublicationSort.key}:${activePublicationSort.direction}` : '');
-    setFilterParam('coauthor', activeCoauthor);
-    setFilterParam('pk', activeKeyword);
-    updateFilterUrl();
-  };
-  const applyPublicationFiltersFromUrl = () => {
-    document.querySelectorAll('[data-pub-search]').forEach((input) => {
-      const key = getPubSearchKey(input.dataset.pubSearch);
-      const val = urlParams.get(key);
-      if (val) input.value = val;
-    });
-    researchFilterInputs.forEach((input) => {
-      const val = urlParams.get(researchFilterParams[input.dataset.researchFilter]);
-      if (val) input.value = val;
-    });
-  };
-  applyPublicationFiltersFromUrl();
-
-  function activeResearchFilterValues() {
-    return Object.fromEntries(researchFilterInputs.map((input) => [
-      input.dataset.researchFilter,
-      input.value
-    ]));
-  }
-
-  function activeResearchFilterLabels() {
-    return researchFilterInputs
-      .filter((input) => input.value)
-      .map((input) => input.options[input.selectedIndex]?.text || input.value);
-  }
-
-  function updateResearchFilterStatus() {
-    const labels = activeResearchFilterLabels();
-    const status = document.getElementById('research-filter-status');
-    const clearButton = document.getElementById('clear-research-filters');
-    if (status) {
-      status.textContent = labels.length
-        ? `Rajaus näyttää vain julkaisut, joille on annettu: ${labels.join(', ')}.`
-        : '';
-      status.classList.toggle('d-none', !labels.length);
-    }
-    if (clearButton) clearButton.classList.toggle('d-none', !labels.length);
-  }
-
-  function matchesResearchFilters(element) {
-    const filters = activeResearchFilterValues();
-    const hasValue = (attribute, value) => (
-      String(element.dataset[attribute] || '').split('|').includes(value)
-    );
-    return (!filters.line || element.dataset.researchLine === filters.line)
-      && (!filters.theme || hasValue('researchThemes', filters.theme))
-      && (!filters.audience || hasValue('researchAudiences', filters.audience));
-  }
-
-  function refreshResearchFilters() {
-    updateResearchFilterStatus();
-    tableFilterRefreshers.forEach((refresh) => refresh());
-    syncPublicationFiltersToUrl();
-  }
-
-  researchFilterInputs.forEach((input) => input.addEventListener('change', refreshResearchFilters));
-  document.getElementById('clear-research-filters')?.addEventListener('click', () => {
-    researchFilterInputs.forEach((input) => { input.value = ''; });
-    refreshResearchFilters();
-  });
-  updateResearchFilterStatus();
 
   function sanitizeFilenamePart(value) {
     return String(value || '')
@@ -1069,27 +552,27 @@ document.addEventListener('DOMContentLoaded', async function() {
     citationOutput.value = getCitationByFormat(currentCitationPayload, format);
   }
 
-  document.querySelectorAll('.export-citation-btn').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      currentCitationPayload = {
-        title: btn.dataset.title || '',
-        authors: btn.dataset.authors || '',
-        year: btn.dataset.year || '',
-        journal: btn.dataset.journal || '',
-        doi: btn.dataset.doi || '',
-        url: btn.dataset.url || '',
-        volume: btn.dataset.volume || '',
-        issue: btn.dataset.issue || '',
-        pages: btn.dataset.pages || '',
-        publisher: btn.dataset.publisher || '',
-        isbn: btn.dataset.isbn || ''
-      };
-      if (citationFormatSelect) citationFormatSelect.value = 'apa';
-      renderCitationPreview();
-      if (window.bootstrap && window.bootstrap.Modal && citationModalEl) {
-        window.bootstrap.Modal.getOrCreateInstance(citationModalEl).show();
-      }
-    });
+  document.addEventListener('click', (event) => {
+    const btn = event.target.closest('.export-citation-btn');
+    if (!btn) return;
+    currentCitationPayload = {
+      title: btn.dataset.title || '',
+      authors: btn.dataset.authors || '',
+      year: btn.dataset.year || '',
+      journal: btn.dataset.journal || '',
+      doi: btn.dataset.doi || '',
+      url: btn.dataset.url || '',
+      volume: btn.dataset.volume || '',
+      issue: btn.dataset.issue || '',
+      pages: btn.dataset.pages || '',
+      publisher: btn.dataset.publisher || '',
+      isbn: btn.dataset.isbn || ''
+    };
+    if (citationFormatSelect) citationFormatSelect.value = 'apa';
+    renderCitationPreview();
+    if (window.bootstrap && window.bootstrap.Modal && citationModalEl) {
+      window.bootstrap.Modal.getOrCreateInstance(citationModalEl).show();
+    }
   });
 
   if (citationFormatSelect) {
@@ -1138,252 +621,6 @@ document.addEventListener('DOMContentLoaded', async function() {
       downloadTextFile(`${base}-mendeley.ris`, buildRisEntry(currentCitationPayload) + '\n');
     });
   }
-
-  function setCoauthorFilter(authorName, options = {}) {
-    const { toggle = false } = options;
-    const nextAuthor = String(authorName || '').trim();
-    activeCoauthor = toggle && activeCoauthor === nextAuthor ? '' : nextAuthor;
-    tableFilterRefreshers.forEach((refresh) => refresh());
-
-    document.querySelectorAll('[data-coauthor-select]').forEach((select) => {
-      select.value = activeCoauthor;
-    });
-
-    const statusEl = document.getElementById('coauthorFilterStatus');
-    if (!statusEl) return;
-    if (activeCoauthor) {
-      statusEl.className = 'small mb-2 text-info';
-      statusEl.innerHTML = `Rajaus aktiivinen: <strong>${activeCoauthor}</strong> <button type="button" id="clearCoauthorFilter" class="btn btn-sm btn-outline-secondary rounded-pill ms-2 py-0 px-2">Poista rajaus</button>`;
-      const clearBtn = document.getElementById('clearCoauthorFilter');
-      if (clearBtn) clearBtn.addEventListener('click', () => setCoauthorFilter(''));
-    } else {
-      statusEl.className = 'small mb-2 visually-hidden';
-      statusEl.textContent = 'Rajaus poistettu.';
-    }
-    syncPublicationFiltersToUrl();
-  }
-
-  function publicationTypeLabel() {
-    const selected = publicationTypeSelects.find((select) => select.value === activePublicationType);
-    return selected?.options[selected.selectedIndex]?.text || activePublicationType;
-  }
-
-  function setPublicationTypeFilter(typeCode) {
-    activePublicationType = String(typeCode || '').trim();
-    publicationTypeSelects.forEach((select) => {
-      select.value = activePublicationType;
-    });
-    tableFilterRefreshers.forEach((refresh) => refresh());
-    syncPublicationFiltersToUrl();
-  }
-
-  function setPublicationYearFilter(year) {
-    activePublicationYear = String(year || '').trim();
-    publicationYearSelects.forEach((select) => {
-      select.value = activePublicationYear;
-    });
-    tableFilterRefreshers.forEach((refresh) => refresh());
-    syncPublicationFiltersToUrl();
-  }
-
-  function updatePublicationSortButtons() {
-    publicationSortButtons.forEach((button) => {
-      const key = button.dataset.publicationSort;
-      const isActive = activePublicationSort?.key === key;
-      const direction = isActive ? activePublicationSort.direction : null;
-      const icon = button.querySelector('i');
-      if (icon) icon.className = `bi ${direction === 'asc' ? 'bi-arrow-up' : direction === 'desc' ? 'bi-arrow-down' : 'bi-arrow-down-up'}`;
-      button.classList.toggle('active', isActive);
-      const label = key === 'year' ? 'julkaisuvuoden' : key === 'type' ? 'julkaisuluokan' : 'tekijän';
-      button.title = direction === 'asc' ? `Lajittelu: ${label} mukaan nousevasti` : direction === 'desc' ? `Lajittelu: ${label} mukaan laskevasti` : `Lajittele ${label} mukaan`;
-      button.setAttribute('aria-label', button.title);
-    });
-  }
-
-  function togglePublicationSort(key) {
-    const defaultDirection = key === 'year' ? 'desc' : 'asc';
-    activePublicationSort = activePublicationSort?.key === key
-      ? { key, direction: activePublicationSort.direction === 'asc' ? 'desc' : 'asc' }
-      : { key, direction: defaultDirection };
-    updatePublicationSortButtons();
-    tableFilterRefreshers.forEach((refresh) => refresh());
-    syncPublicationFiltersToUrl();
-  }
-
-  function sortPublicationEntries(entries) {
-    if (!activePublicationSort) return entries;
-    const { key, direction } = activePublicationSort;
-    const multiplier = direction === 'asc' ? 1 : -1;
-    const collator = new Intl.Collator('fi', { numeric: true, sensitivity: 'base' });
-    return [...entries].sort((a, b) => {
-      if (key === 'year') {
-        const aYear = Number(a.dataset.publicationYear || 0);
-        const bYear = Number(b.dataset.publicationYear || 0);
-        return multiplier * (aYear - bYear);
-      }
-      const attribute = key === 'type' ? 'publicationType' : 'authors';
-      return multiplier * collator.compare(a.dataset[attribute] || '', b.dataset[attribute] || '');
-    });
-  }
-
-  publicationSortButtons.forEach((button) => {
-    button.addEventListener('click', () => togglePublicationSort(button.dataset.publicationSort));
-  });
-  updatePublicationSortButtons();
-
-  function initPubPagination(tableId) {
-    const tableContainer = document.getElementById(tableId);
-    if (!tableContainer) return;
-
-    const table = tableContainer.querySelector('table');
-    if (!table) return;
-
-    const tbody = table.querySelector('tbody');
-    let rows = Array.from(tbody.querySelectorAll('tr'));
-    let mobileItems = Array.from(tableContainer.querySelectorAll('.pub-mobile-item'));
-
-      // 5. Build Pagination UI
-    let paginationNav = tableContainer.querySelector('.pub-pagination');
-    if (!paginationNav) {
-      paginationNav = document.createElement('div');
-      const containerId = tableContainer.id || Math.random().toString(36).substring(7);
-      paginationNav.className = 'pub-pagination site-pagination-bar site-pagination-bar--bottom mt-3';
-      paginationNav.innerHTML = `
-        <small class="site-pagination-info text-muted"></small>
-        <nav aria-label="Taulukon sivutus ${containerId}">
-          <ul class="pagination pagination-sm mb-0 flex-wrap site-pag"></ul>
-        </nav>
-      `;
-      tableContainer.appendChild(paginationNav);
-    }
-
-    const ul = paginationNav.querySelector('ul');
-    const paginationInfo = paginationNav.querySelector('.site-pagination-info');
-    const filterIndicator = document.querySelector(`[data-filter-indicator="${tableId}"]`);
-    let currentPage = 1;
-    let filteredRows = [...rows];
-    let filteredMobileItems = [...mobileItems];
-
-    const searchInput = document.querySelector(`[data-pub-search="${tableId}"]`);
-
-    function renderPage(page) {
-      currentPage = page;
-      const itemsPerPage = getPublicationPageSize();
-      const totalPages = Math.ceil(filteredRows.length / itemsPerPage);
-      if (currentPage < 1) currentPage = 1;
-      if (currentPage > totalPages && totalPages > 0) currentPage = totalPages;
-
-      rows.forEach(r => r.style.display = 'none');
-      mobileItems.forEach(r => r.style.display = 'none');
-
-      const start = (currentPage - 1) * itemsPerPage;
-      const end = start + itemsPerPage;
-      filteredRows.slice(start, end).forEach(r => r.style.display = '');
-      filteredMobileItems.slice(start, end).forEach(r => r.style.display = '');
-      if (paginationInfo) {
-        paginationInfo.textContent = filteredRows.length > 0
-          ? `${start + 1}-${Math.min(end, filteredRows.length)} / ${filteredRows.length} julkaisua`
-          : 'Ei julkaisuja';
-      }
-
-      renderPaginationControls(totalPages);
-
-      if (filterIndicator) {
-        const filters = activeResearchFilterLabels();
-        if (activePublicationYear) filters.push(`vuosi ${activePublicationYear}`);
-        if (activePublicationType) filters.push(`luokka ${publicationTypeLabel()}`);
-        if (activeCoauthor) {
-          const noun = filteredRows.length === 1 ? 'julkaisuun' : 'julkaisuihin';
-          filters.push(`yhteistyö ${activeCoauthor} (${noun})`);
-        }
-        if (filters.length) {
-          filterIndicator.textContent = `Rajattu: ${filters.join(', ')}`;
-          filterIndicator.classList.remove('d-none');
-        } else {
-          filterIndicator.textContent = '';
-          filterIndicator.classList.add('d-none');
-        }
-      }
-    }
-
-    function renderPaginationControls(totalPages) {
-      ul.innerHTML = '';
-      if (totalPages <= 1) return;
-
-      const prevLi = document.createElement('li');
-      prevLi.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
-      prevLi.innerHTML = `<button type="button" class="page-link" aria-label="Edellinen sivu">&laquo;</button>`;
-      prevLi.addEventListener('click', (e) => { e.preventDefault(); if(currentPage > 1) renderPage(currentPage - 1); });
-      ul.appendChild(prevLi);
-
-      for (let i = 1; i <= totalPages; i++) {
-        const li = document.createElement('li');
-        li.className = `page-item ${i === currentPage ? 'active' : ''}`;
-        li.innerHTML = `<button type="button" class="page-link" aria-label="Sivu ${i}">${i}</button>`;
-        li.addEventListener('click', (e) => { e.preventDefault(); renderPage(i); });
-        ul.appendChild(li);
-      }
-
-      const nextLi = document.createElement('li');
-      nextLi.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
-      nextLi.innerHTML = `<button type="button" class="page-link" aria-label="Seuraava sivu">&raquo;</button>`;
-      nextLi.addEventListener('click', (e) => { e.preventDefault(); if(currentPage < totalPages) renderPage(currentPage + 1); });
-      ul.appendChild(nextLi);
-    }
-
-    function reorderEntries(parent, preferredOrder, allEntries) {
-      if (!activePublicationSort) return;
-      const preferredSet = new Set(preferredOrder);
-      const targetOrder = [
-        ...preferredOrder,
-        ...allEntries.filter((entry) => !preferredSet.has(entry))
-      ];
-      const currentOrder = Array.from(parent.children).filter((entry) => allEntries.includes(entry));
-      const alreadyOrdered = targetOrder.length === currentOrder.length
-        && targetOrder.every((entry, index) => entry === currentOrder[index]);
-      if (!alreadyOrdered) targetOrder.forEach((entry) => parent.appendChild(entry));
-    }
-
-    function applyFilters() {
-      rows = Array.from(tbody.querySelectorAll('tr'));
-      mobileItems = Array.from(tableContainer.querySelectorAll('.pub-mobile-item'));
-      const q = (searchInput?.value || '').toLowerCase();
-      const coauthorNeedle = activeCoauthor.toLowerCase();
-      const matchFn = el => {
-        const text = el.textContent.toLowerCase();
-        const matchesSearch = !q || text.includes(q);
-        const authors = (el.dataset.authors || '').toLowerCase();
-        const matchesCoauthor = !coauthorNeedle || authors.includes(coauthorNeedle);
-        const matchesPublicationYear = !activePublicationYear || el.dataset.publicationYear === activePublicationYear;
-        const matchesPublicationType = !activePublicationType || el.dataset.publicationType === activePublicationType;
-        return matchesSearch && matchesCoauthor && matchesPublicationYear && matchesPublicationType && matchesResearchFilters(el);
-      };
-      filteredRows = sortPublicationEntries(rows.filter(matchFn));
-      filteredMobileItems = sortPublicationEntries(mobileItems.filter(matchFn));
-      reorderEntries(tbody, filteredRows, rows);
-      reorderEntries(tableContainer.querySelector('.pub-mobile-list'), filteredMobileItems, mobileItems);
-      syncPublicationFiltersToUrl();
-      renderPage(1);
-    }
-
-    if (searchInput) searchInput.addEventListener('input', applyFilters);
-    tableFilterRefreshers.push(applyFilters);
-    applyFilters();
-
-    if (typeof publicationPageSizeMq.addEventListener === 'function') {
-      publicationPageSizeMq.addEventListener('change', () => renderPage(1));
-    } else if (typeof publicationPageSizeMq.addListener === 'function') {
-      publicationPageSizeMq.addListener(() => renderPage(1));
-    }
-
-    // Kun table-filters.js lajittelee DOM-rivit uudelleen, kutsutaan applyFilters,
-    // joka lukee rivit aina tuoreena DOM:sta (rows päivitetään applyFilters-alussa).
-    new MutationObserver(() => {
-      applyFilters();
-    }).observe(tbody, { childList: true });
-  }
-
-  ['pub-table-a', 'pub-table-b', 'pub-table-c', 'pub-table-d', 'pub-table-e', 'pub-table-g'].forEach(initPubPagination);
 
   // 1. VUOSIKAAVIO
   const yearCounts = {};
@@ -1564,40 +801,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     if (canvas) canvas.style.cursor = 'zoom-in';
   });
 
-  // 4. JULKAISULUOKAT
-  const publicationYears = [...new Set(
-    [...document.querySelectorAll('[data-publication-year]')]
-      .map((item) => String(item.dataset.publicationYear || '').trim())
-      .filter(Boolean)
-  )].sort((a, b) => Number(b) - Number(a));
-  publicationYearSelects.forEach((select) => {
-    publicationYears.forEach((year) => select.add(new Option(year, year)));
-    select.addEventListener('change', () => setPublicationYearFilter(select.value));
-  });
-  if (initialPublicationYear && publicationYears.includes(initialPublicationYear)) {
-    setPublicationYearFilter(initialPublicationYear);
-  }
-
-  const publicationTypeLabels = new Map();
-  document.querySelectorAll('[data-publication-type]').forEach((item) => {
-    const code = String(item.dataset.publicationType || '').trim();
-    const label = String(item.dataset.publicationTypeLabel || '').trim();
-    if (code && !publicationTypeLabels.has(code)) publicationTypeLabels.set(code, label);
-  });
-  const publicationTypeOptions = [...publicationTypeLabels.entries()].sort((a, b) => (
-    new Intl.Collator('fi', { numeric: true }).compare(a[0], b[0])
-  ));
-  publicationTypeSelects.forEach((select) => {
-    publicationTypeOptions.forEach(([code, label]) => {
-      select.add(new Option(label ? `${code} - ${label}` : code, code));
-    });
-    select.addEventListener('change', () => setPublicationTypeFilter(select.value));
-  });
-  if (initialPublicationType && publicationTypeLabels.has(initialPublicationType)) {
-    setPublicationTypeFilter(initialPublicationType);
-  }
-
-  // 5. KANSSAKIRJOITTAJAT
+  // 4. KANSSAKIRJOITTAJAT
   const coauthors = {};
   publications.forEach(p => {
     const authors = p.authors.split(';').map(a => a.trim()).filter(a => a.length > 0);
@@ -1612,34 +816,15 @@ document.addEventListener('DOMContentLoaded', async function() {
     return countDiff || new Intl.Collator('fi').compare(a[0], b[0]);
   });
   const topCoauthors = allCoauthors.slice(0, 10);
-  const coauthorSelects = document.querySelectorAll('[data-coauthor-select]');
-  coauthorSelects.forEach((select) => {
-    allCoauthors.forEach(([name, count]) => {
-      select.add(new Option(`${name} (${count})`, name));
-    });
-    select.addEventListener('change', () => setCoauthorFilter(select.value));
-  });
   const tbody = document.querySelector('#coauthorTable tbody');
-  topCoauthors.forEach(([name, count]) => {
-    const tr = document.createElement('tr');
-    const isDarkTheme = document.documentElement.getAttribute('data-bs-theme') === 'dark';
-    const badgeStyle = isDarkTheme ? 'background-color: rgba(56,189,248,0.3); color: #e2e6ec;' : 'background-color: rgba(13,110,253,0.15); color: #0d6efd;';
-    tr.innerHTML = `
-      <td>
-        <button type="button" class="btn btn-link p-0 text-start coauthor-filter-btn" data-coauthor="${name}" title="Rajaa julkaisut tekijällä ${name}">
-          ${name}
-        </button>
-      </td>
-      <td class="text-end"><span class="badge rounded-pill" style="${badgeStyle}">${count}</span></td>
-    `;
-    tbody.appendChild(tr);
-  });
-
-  document.querySelectorAll('.coauthor-filter-btn').forEach((btn) => {
-    btn.addEventListener('click', () => setCoauthorFilter(btn.dataset.coauthor || '', { toggle: true }));
-  });
-  if (initialCoauthor) {
-    setCoauthorFilter(initialCoauthor);
+  if (tbody) {
+    topCoauthors.forEach(([name, count]) => {
+      const tr = document.createElement('tr');
+      const isDarkTheme = document.documentElement.getAttribute('data-bs-theme') === 'dark';
+      const badgeStyle = isDarkTheme ? 'background-color: rgba(56,189,248,0.3); color: #e2e6ec;' : 'background-color: rgba(13,110,253,0.15); color: #0d6efd;';
+      tr.innerHTML = `<td>${name}</td><td class="text-end"><span class="badge rounded-pill" style="${badgeStyle}">${count}</span></td>`;
+      tbody.appendChild(tr);
+    });
   }
 
   // Kanssatutkijat-kortti: häivytys + expand
@@ -1666,66 +851,17 @@ document.addEventListener('DOMContentLoaded', async function() {
   });
   const topWords = Object.entries(wordCounts).sort((a,b)=>b[1]-a[1]).slice(0,25);
   const cloudEl = document.getElementById('wordCloud');
-  const keywordFilterBar = document.getElementById('keyword-filter-bar');
-  const activeKeywordLabel = document.getElementById('active-keyword-label');
-  const clearKeywordBtn = document.getElementById('clear-keyword-filter');
-
-  function applyKeywordFilter(word, options = {}) {
-    const { skipScroll = false } = options;
-    activeKeyword = (activeKeyword === word) ? '' : word;
-
-    document.querySelectorAll('[data-pub-search]').forEach(input => {
-      input.value = activeKeyword;
-      input.dispatchEvent(new Event('input', { bubbles: true }));
-    });
-
-    if (keywordFilterBar) {
-      if (activeKeyword) {
-        if (activeKeywordLabel) activeKeywordLabel.textContent = activeKeyword;
-        keywordFilterBar.classList.remove('d-none');
-      } else {
-        keywordFilterBar.classList.add('d-none');
-      }
-    }
-
-    cloudEl.querySelectorAll('.keyword-badge').forEach(btn => {
-      const isActive = btn.dataset.word === activeKeyword;
-      btn.style.outline = isActive ? '2px solid currentColor' : '';
-      btn.style.opacity = isActive ? '1' : btn.dataset.opacity;
-    });
-
-    if (activeKeyword && !skipScroll) {
-      document.getElementById('julkaisuluokat')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-    syncPublicationFiltersToUrl();
-  }
-
-  if (clearKeywordBtn) {
-    clearKeywordBtn.addEventListener('click', () => applyKeywordFilter(''));
-  }
-
   if (topWords.length > 0) {
     const maxCount = topWords[0]?.[1] || 1;
     topWords.forEach(([word, count]) => {
       const size = 0.7 + (count / maxCount) * 1.0;
       const opacity = 0.5 + (count / maxCount) * 0.5;
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'badge rounded-pill border-0 keyword-badge';
-      btn.dataset.word = word;
-      btn.dataset.opacity = opacity;
-      btn.style.cssText = `font-size:${size}rem; opacity:${opacity}; background-color: ${isDark ? 'rgba(56,189,248,0.3)' : 'rgba(13,110,253,0.15)'}; color: ${isDark ? '#e2e6ec' : '#004192'}; font-weight: 500; cursor: pointer; transition: outline 0.1s;`;
-      btn.title = `Suodata julkaisut avainsanalla "${word}"`;
-      btn.textContent = `${word} (${count})`;
-      btn.addEventListener('click', () => applyKeywordFilter(word));
-      cloudEl.appendChild(btn);
+      const span = document.createElement('span');
+      span.className = 'badge rounded-pill';
+      span.style.cssText = `font-size:${size}rem; opacity:${opacity}; background-color: ${isDark ? 'rgba(56,189,248,0.3)' : 'rgba(13,110,253,0.15)'}; color: ${isDark ? '#e2e6ec' : '#004192'}; font-weight: 500;`;
+      span.textContent = `${word} (${count})`;
+      cloudEl.appendChild(span);
     });
-    if (initialKeyword) {
-      const keywordExists = topWords.some(([word]) => word === initialKeyword);
-      if (keywordExists) {
-        applyKeywordFilter(initialKeyword, { skipScroll: true });
-      }
-    }
   } else {
     cloudEl.innerHTML = '<span class="text-muted small">Ei avainsanoja saatavilla</span>';
   }

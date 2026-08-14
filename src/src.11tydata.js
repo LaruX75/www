@@ -27,9 +27,12 @@ const {
   buildWritingsPageModel,
   FI_COMPATIBILITY_CONTENT_TYPES
 } = require("./_data/writingsPage");
+const { buildPublicationsPageModel } = require("./_data/publicationsPage");
 const { buildThesisFindExploreDocument } = require("./_utils/thesesFindExplore");
+const { buildPublicationFindExploreDocument } = require("./_utils/publicationsFindExplore");
 
 const writingsLookupCache = new WeakMap();
+const publicationsLookupCache = new WeakMap();
 
 function normalizeFilterValues(values, limit = 8) {
   const array = Array.isArray(values) ? values : values ? [values] : [];
@@ -52,6 +55,25 @@ function getWritingsLookup(data) {
     // Some Eleventy phases do not have the full collection graph yet.
   }
   writingsLookupCache.set(data.collections, lookup);
+  return lookup;
+}
+
+function getPublicationsLookup(data) {
+  if (!data || !data.collections) return null;
+  if (publicationsLookupCache.has(data.collections)) {
+    return publicationsLookupCache.get(data.collections);
+  }
+
+  const lookup = new Map();
+  try {
+    const model = buildPublicationsPageModel(data);
+    (model.items || []).forEach((item) => {
+      if (item?.pageUrl) lookup.set(item.pageUrl, item);
+    });
+  } catch (error) {
+    // Some Eleventy phases do not have the full publication graph yet.
+  }
+  publicationsLookupCache.set(data.collections, lookup);
   return lookup;
 }
 
@@ -87,12 +109,20 @@ function resolvePagefindWritings(data) {
   };
 }
 
+function resolvePagefindPublications(data) {
+  const url = data?.page?.url || "";
+  const lookup = getPublicationsLookup(data);
+  const item = lookup?.get(url);
+  if (!item) return null;
+  return buildPublicationFindExploreDocument(item);
+}
+
 function resolvePagefindDocument(data) {
   if (data?.thesisDetail) {
     return buildThesisFindExploreDocument(data.thesisDetail);
   }
 
-  return resolvePagefindWritings(data);
+  return resolvePagefindPublications(data) || resolvePagefindWritings(data);
 }
 
 // URL -> breadcrumbKey (tarkat vertailut)

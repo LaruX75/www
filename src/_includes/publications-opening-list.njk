@@ -1,0 +1,65 @@
+{% set publicationItems = publicationItems or [] %}
+{% set publicationLang = publicationLang or "fi" %}
+{% set isEnglish = publicationLang == "en" %}
+{% set showCitationExport = publicationShowCitationExport if publicationShowCitationExport is defined else not isEnglish %}
+{% set emptyLabel = publicationEmptyLabel or ("No publications available." if isEnglish else "Ei julkaisuja saatavilla.") %}
+
+{% if publicationItems.length %}
+<ol class="list-unstyled mb-0 publication-opening-list">
+  {% for pub in publicationItems %}
+  {% set sourceHref = pub.url or pub.doiUrl or "" %}
+  {% set citationCount = pub.citationCount or 0 %}
+  <li class="publication-opening-item py-3{% if not loop.last %} border-bottom{% endif %}">
+    <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+      {% if pub.year %}<span class="badge text-bg-light text-dark border">{{ pub.year }}</span>{% endif %}
+      {% if pub.typeCode %}<span class="badge text-bg-secondary" title="{{ pub.type or pub.typeCode }}">{{ pub.typeCode }}</span>{% endif %}
+      {% if pub.peerReviewed %}<span class="badge text-bg-primary">{{ "Peer-reviewed" if isEnglish else "Vertaisarvioitu" }}</span>{% endif %}
+      {% if pub.openAccess %}<span class="badge text-bg-success">Open access</span>{% endif %}
+      {% if pub.jufoLevel != null and pub.jufoLevel != undefined %}<span class="badge text-bg-light text-dark border">JUFO {{ pub.jufoLevel }}</span>{% endif %}
+      {% if citationCount %}<span class="badge text-bg-warning text-dark">{{ citationCount }} {{ "citations" if isEnglish else "viittausta" }}</span>{% endif %}
+    </div>
+    <h3 class="h6 mb-1">
+      <a href="{{ pub.pageUrl }}" class="text-body text-decoration-none">{{ pub.title }}</a>
+    </h3>
+    {% if pub.authors %}<p class="small text-body-secondary mb-1">{{ pub.authors }}</p>{% endif %}
+    {% if pub.journal or pub.publisher %}
+    <p class="small text-muted fst-italic mb-2">
+      {{ pub.journal or pub.publisher }}
+      {% if pub.volume %}, <strong>{{ pub.volume }}</strong>{% if pub.issue %}({{ pub.issue }}){% endif %}{% endif %}
+      {% if pub.pages %}, {{ pub.pages }}{% endif %}
+    </p>
+    {% endif %}
+    <div class="d-flex flex-wrap gap-2">
+      <a class="btn btn-sm btn-primary rounded-pill" href="{{ pub.pageUrl }}">{{ "Open local detail" if isEnglish else "Avaa paikallinen sivu" }}</a>
+      {% if sourceHref %}
+      <a class="btn btn-sm btn-outline-primary rounded-pill" href="{{ sourceHref }}" target="_blank" rel="noopener noreferrer">
+        {{ "Source" if isEnglish else "Lähde" }} <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i>
+      </a>
+      {% endif %}
+      {% if showCitationExport %}
+      <button
+        type="button"
+        class="btn btn-sm btn-outline-secondary rounded-pill export-citation-btn"
+        data-title="{{ pub.title | escape }}"
+        data-authors="{{ pub.authors | escape }}"
+        data-year="{{ pub.year or '' }}"
+        data-journal="{{ pub.journal | escape }}"
+        data-doi="{{ pub.doi or '' }}"
+        data-url="{{ sourceHref }}"
+        data-volume="{{ pub.volume or '' }}"
+        data-issue="{{ pub.issue or '' }}"
+        data-pages="{{ pub.pages or '' }}"
+        data-publisher="{{ pub.publisher or '' }}"
+        data-isbn="{{ pub.isbn or '' }}"
+        title="{{ 'Export citation' if isEnglish else 'Vie lähdeviite' }}"
+      >
+        <i class="bi bi-download me-1" aria-hidden="true"></i>{{ "Export citation" if isEnglish else "Vie viite" }}
+      </button>
+      {% endif %}
+    </div>
+  </li>
+  {% endfor %}
+</ol>
+{% else %}
+<p class="text-muted mb-0">{{ emptyLabel }}</p>
+{% endif %}

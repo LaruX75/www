@@ -43,6 +43,19 @@
                     {% endfor %}
                   </select>
                 </div>
+                {% endif %}
+                {% if findExploreQualityOptions and (findExploreQualityOptions | length) %}
+                <div class="col-md-3">
+                  <label class="form-label small text-muted mb-1" for="findExploreQuality">{{ findExploreQualityLabel }}</label>
+                  <select id="findExploreQuality" class="form-select" name="quality" data-find-explore-quality>
+                    <option value="">{{ findExploreAllQualityLabel }}</option>
+                    {% for option in findExploreQualityOptions %}
+                    <option value="{{ option.value }}">{{ option.label }}{% if option.count %} ({{ option.count }}){% endif %}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                {% endif %}
+                {% if findExploreTopicOptions and (findExploreTopicOptions | length) %}
                 <div class="col-md-3 d-flex align-items-end">
                 {% else %}
                 <div class="col-md-3 d-flex align-items-end">
