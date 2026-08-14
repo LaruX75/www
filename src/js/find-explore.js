@@ -17,7 +17,12 @@
       exportCitation: "Vie viite",
       peerReviewed: "Vertaisarvioitu",
       openAccess: "Open access",
-      citations: (count) => `${count} viittausta`
+      citations: (count) => `${count} viittausta`,
+      kindLabels: {
+        writings: "Kirjoitus",
+        theses: "Opinnäyte",
+        publications: "Julkaisu"
+      }
     },
     en: {
       idle: "Type a search term or narrow the result set. The curated opening sections work without search.",
@@ -30,7 +35,12 @@
       exportCitation: "Export citation",
       peerReviewed: "Peer-reviewed",
       openAccess: "Open access",
-      citations: (count) => `${count} citations`
+      citations: (count) => `${count} citations`,
+      kindLabels: {
+        writings: "Writing",
+        theses: "Thesis",
+        publications: "Publication"
+      }
     }
   };
 
@@ -141,8 +151,28 @@
         return record?.description || data?.meta?.publicationDescription || data?.excerpt || "";
       },
       requiresQueryForSearch: false
+    },
+    researchContext: {
+      filterPrefix: "Research",
+      resultMeta(entry) {
+        return [entry.kindLabel, ...entry.meta].filter(Boolean);
+      },
+      excerpt(data, record) {
+        if (record?.description) return record.description;
+        return data?.meta?.publicationDescription || data?.meta?.thesesDescription || data?.excerpt || "";
+      },
+      requiresQueryForSearch: false,
+      contextual: true
     }
   };
+
+  function parseList(value, fallback = []) {
+    const items = String(value || "")
+      .split(",")
+      .map((item) => item.trim())
+      .filter(Boolean);
+    return items.length ? items : fallback;
+  }
 
   function filtersFor(mount, state) {
     const kind = mount.dataset.findExploreKind || "writings";
@@ -162,6 +192,25 @@
     if (state.year) filters[`${prefix} year`] = state.year;
     if (state.topic) filters[`${prefix} topic`] = state.topic;
     if (state.quality) filters[`${prefix} quality`] = state.quality;
+    return filters;
+  }
+
+  function filtersForKind(mount, state, kind) {
+    const config = kindConfig[kind] || kindConfig.writings;
+    const prefix = config.filterPrefix || "FindExplore";
+    const filters = {
+      FindExplore: kind
+    };
+
+    const scope = mount.dataset.findExploreScope;
+    if (scope) filters[`${prefix} scope`] = scope;
+
+    const languageFilter = mount.dataset.findExploreLanguageFilter;
+    if (languageFilter) filters.Kieli = languageFilter;
+
+    if (state.year) filters[`${prefix} year`] = state.year;
+    if (state.topic) filters[`${prefix} topic`] = state.topic;
+    if (state.quality && kind === "publications") filters[`${prefix} quality`] = state.quality;
     return filters;
   }
 
@@ -203,7 +252,7 @@
     }
   }
 
-  function createResultEntry(kind, data, state, recordsByUrl) {
+  function createResultEntry(kind, data, state, recordsByUrl, labels) {
     const title = resultTitle(data);
     const normalizedUrl = normalizeUrl(data?.url);
     const record = recordsByUrl.get(normalizedUrl) || null;
@@ -227,9 +276,11 @@
     };
     const resolvedTypeLabel = publicationMeta.typeLabel || typeLabel;
     const resolvedYear = publicationMeta.year || year;
-    const meta = kindConfig[kind].resultMeta({
+    const effectiveConfig = kindConfig[kind] || kindConfig.writings;
+    const meta = effectiveConfig.resultMeta({
       authorLine,
       ...publicationMeta,
+      kindLabel: labels?.kindLabels?.[kind] || kind,
       typeLabel: resolvedTypeLabel,
       year: resolvedYear
     }, {
@@ -239,9 +290,10 @@
     });
 
     return {
+      kind,
       url: normalizedUrl,
       title: record?.title || title,
-      excerpt: kindConfig[kind].excerpt(data, record),
+      excerpt: effectiveConfig.excerpt(data, record),
       meta,
       record
     };
@@ -250,6 +302,8 @@
   function initMount(mount) {
     const kind = mount.dataset.findExploreKind || "writings";
     const config = kindConfig[kind] || kindConfig.writings;
+    const contextualKinds = parseList(mount.dataset.findExploreKinds, ["publications", "theses", "writings"])
+      .filter((value) => kindConfig[value]);
     const lang = (mount.dataset.findExploreLang || document.documentElement.lang || "fi").slice(0, 2);
     const labels = text[lang] || text.fi;
     const searchLanguages = normalizeSearchLanguages(mount.dataset.findExploreSearchLanguage, lang);
@@ -343,7 +397,7 @@
     function renderResults() {
       const slice = latestResults.slice(0, visibleCount);
       resultsList.innerHTML = slice.map((entry) => {
-        if (kind === "publications") return renderPublicationResult(entry);
+        if (entry.kind === "publications" && entry.record) return renderPublicationResult(entry);
         const title = escapeHtml(entry.title);
         const url = escapeHtml(entry.url);
         const excerpt = entry.excerpt ? escapeHtml(entry.excerpt) : "";
@@ -384,30 +438,40 @@
       status.textContent = labels.loading;
 
       try {
-        const filterSet = filtersFor(mount, state);
         const searchResults = [];
-        for (const language of searchLanguages) {
-          const pagefind = await createSearch(language);
-          searchResults.push(await pagefind.search(effectiveQuery, {
-            filters: filterSet
-          }));
+        const searchKinds = config.contextual
+          ? (state.type ? [state.type] : contextualKinds)
+          : [kind];
+        for (const searchKind of searchKinds) {
+          const filterSet = config.contextual
+            ? filtersForKind(mount, state, searchKind)
+            : filtersFor(mount, state);
+          for (const language of searchLanguages) {
+            const pagefind = await createSearch(language);
+            const result = await pagefind.search(effectiveQuery, {
+              filters: filterSet
+            });
+            searchResults.push({ kind: searchKind, result });
+          }
         }
 
         const typeLabel = typeSelect?.selectedOptions?.[0]?.textContent?.replace(/\s+\(\d+\)$/, "") || "";
         const merged = [];
         for (const searchResult of searchResults) {
-          merged.push(...searchResult.results.slice(0, 50));
+          searchResult.result.results.slice(0, 50).forEach((result) => {
+            merged.push({ kind: searchResult.kind, result });
+          });
         }
-        merged.sort((left, right) => (right.score || 0) - (left.score || 0));
+        merged.sort((left, right) => (right.result.score || 0) - (left.result.score || 0));
 
         const seen = new Set();
         const entries = [];
-        for (const result of merged) {
-          const data = await result.data();
-          const entry = createResultEntry(kind, data, {
+        for (const item of merged) {
+          const data = await item.result.data();
+          const entry = createResultEntry(item.kind, data, {
             ...state,
             typeLabel
-          }, recordsByUrl);
+          }, recordsByUrl, labels);
           if (!entry.url || seen.has(entry.url)) continue;
           seen.add(entry.url);
           entries.push(entry);
