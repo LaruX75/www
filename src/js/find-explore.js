@@ -12,7 +12,12 @@
       noResults: "Tuloksia ei löytynyt.",
       count: (count) => `${count} ${count === 1 ? "tulos" : "tulosta"}`,
       error: "Hakemisto ei ole käytettävissä tässä buildissä.",
-      open: "Avaa"
+      open: "Avaa",
+      source: "Lähde",
+      exportCitation: "Vie viite",
+      peerReviewed: "Vertaisarvioitu",
+      openAccess: "Open access",
+      citations: (count) => `${count} viittausta`
     },
     en: {
       idle: "Type a search term or narrow the result set. The curated opening sections work without search.",
@@ -20,7 +25,12 @@
       noResults: "No results found.",
       count: (count) => `${count} ${count === 1 ? "result" : "results"}`,
       error: "The search index is not available in this build.",
-      open: "Open"
+      open: "Open",
+      source: "Source",
+      exportCitation: "Export citation",
+      peerReviewed: "Peer-reviewed",
+      openAccess: "Open access",
+      citations: (count) => `${count} citations`
     }
   };
 
@@ -120,6 +130,17 @@
         return data?.meta?.thesesDescription || data?.excerpt || "";
       },
       requiresQueryForSearch: false
+    },
+    publications: {
+      filterPrefix: "Publications",
+      typeFilterKey: "Publications group",
+      resultMeta(entry, state) {
+        return [entry.authors, entry.typeLabel, entry.year, entry.venue].filter(Boolean);
+      },
+      excerpt(data, record) {
+        return record?.description || data?.meta?.publicationDescription || data?.excerpt || "";
+      },
+      requiresQueryForSearch: false
     }
   };
 
@@ -140,6 +161,7 @@
     if (state.type) filters[config.typeFilterKey || `${prefix} type`] = state.type;
     if (state.year) filters[`${prefix} year`] = state.year;
     if (state.topic) filters[`${prefix} topic`] = state.topic;
+    if (state.quality) filters[`${prefix} quality`] = state.quality;
     return filters;
   }
 
@@ -149,7 +171,8 @@
       q: params.get("q") || "",
       type: params.get("type") || "",
       year: params.get("year") || "",
-      topic: params.get("topic") || ""
+      topic: params.get("topic") || "",
+      quality: params.get("quality") || ""
     };
   }
 
@@ -163,27 +186,64 @@
     window.history.replaceState({}, "", `${window.location.pathname}${query ? `?${query}` : ""}${window.location.hash}`);
   }
 
-  function createResultEntry(kind, data, state) {
+  function readRecords(mount) {
+    const holder = mount.dataset.findExploreRecordsId
+      ? mount
+      : mount.closest("[data-find-explore-records-id]");
+    const id = holder?.dataset.findExploreRecordsId;
+    if (!id) return new Map();
+    const source = document.getElementById(id);
+    if (!source) return new Map();
+    try {
+      const records = JSON.parse(source.textContent || "[]");
+      return new Map(records.map((record) => [normalizeUrl(record.pageUrl), record]));
+    } catch (error) {
+      console.warn("FindExplore record data parse failed", error);
+      return new Map();
+    }
+  }
+
+  function createResultEntry(kind, data, state, recordsByUrl) {
     const title = resultTitle(data);
     const normalizedUrl = normalizeUrl(data?.url);
+    const record = recordsByUrl.get(normalizedUrl) || null;
     const typeLabel = state.typeLabel || data?.meta?.thesesType || "";
     const year = state.year || data?.meta?.writingsYear || data?.meta?.thesesYear || "";
     const authorLine = data?.meta?.thesesAuthorLine || "";
+    const publicationMeta = record ? {
+      authors: record.authors || "",
+      typeLabel: record.typeCode || record.group || "",
+      year: record.year || "",
+      venue: record.venue || "",
+      citationCount: record.citationCount || 0,
+      jufoLevel: record.jufoLevel || "",
+      peerReviewed: record.peerReviewed,
+      openAccess: record.openAccess
+    } : {
+      authors: data?.meta?.publicationAuthors || "",
+      typeLabel: data?.meta?.publicationType || data?.meta?.publicationGroup || "",
+      year: data?.meta?.publicationYear || "",
+      venue: data?.meta?.publicationVenue || ""
+    };
+    const resolvedTypeLabel = publicationMeta.typeLabel || typeLabel;
+    const resolvedYear = publicationMeta.year || year;
     const meta = kindConfig[kind].resultMeta({
       authorLine,
-      typeLabel,
-      year
+      ...publicationMeta,
+      typeLabel: resolvedTypeLabel,
+      year: resolvedYear
     }, {
       ...state,
-      typeLabel,
-      year
+      typeLabel: resolvedTypeLabel,
+      year: resolvedYear
     });
 
     return {
       url: normalizedUrl,
-      title,
-      excerpt: kindConfig[kind].excerpt(data),
-      meta
+      title: record?.title || title,
+      excerpt: kindConfig[kind].excerpt(data, record),
+      meta,
+      record
     };
   }
 
@@ -193,16 +253,17 @@
     const lang = (mount.dataset.findExploreLang || document.documentElement.lang || "fi").slice(0, 2);
     const labels = text[lang] || text.fi;
     const searchLanguages = normalizeSearchLanguages(mount.dataset.findExploreSearchLanguage, lang);
-    const pagefindPromises = searchLanguages.map((language) => createSearch(language));
     const queryInput = mount.querySelector("[data-find-explore-query]");
     const typeSelect = mount.querySelector("[data-find-explore-type]");
     const yearSelect = mount.querySelector("[data-find-explore-year]");
     const topicSelect = mount.querySelector("[data-find-explore-topic]");
+    const qualitySelect = mount.querySelector("[data-find-explore-quality]");
     const resetButton = mount.querySelector("[data-find-explore-reset]");
     const status = mount.querySelector("[data-find-explore-status]");
     const resultsList = mount.querySelector("[data-find-explore-results]");
     const moreButton = mount.querySelector("[data-find-explore-more]");
     const seedQuery = mount.dataset.findExploreSeedQuery || "";
+    const recordsByUrl = readRecords(mount);
 
     mount.dataset.findExploreReady = "false";
 
@@ -214,7 +275,8 @@
         q: queryInput?.value.trim() || "",
         type: typeSelect?.value || "",
         year: yearSelect?.value || "",
-        topic: topicSelect?.value || ""
+        topic: topicSelect?.value || "",
+        quality: qualitySelect?.value || ""
       };
     }
 
@@ -223,13 +285,65 @@
       if (typeSelect) typeSelect.value = state.type || "";
       if (yearSelect) yearSelect.value = state.year || "";
       if (topicSelect) topicSelect.value = state.topic || "";
+      if (qualitySelect) qualitySelect.value = state.quality || "";
     }
 
     writeState(readInitialState(mount));
 
+    function citationButton(record) {
+      if (!record) return "";
+      if (!document.getElementById("citationExportModal")) return "";
+      return `<button type="button" class="btn btn-sm btn-outline-secondary rounded-pill export-citation-btn"`
+        + ` data-title="${escapeHtml(record.title || "")}" data-authors="${escapeHtml(record.authors || "")}"`
+        + ` data-year="${escapeHtml(record.year || "")}" data-journal="${escapeHtml(record.journal || "")}"`
+        + ` data-doi="${escapeHtml(record.doi || "")}" data-url="${escapeHtml(record.sourceUrl || record.doiUrl || "")}"`
+        + ` data-volume="${escapeHtml(record.volume || "")}" data-issue="${escapeHtml(record.issue || "")}"`
+        + ` data-pages="${escapeHtml(record.pages || "")}" data-publisher="${escapeHtml(record.publisher || "")}"`
+        + ` data-isbn="${escapeHtml(record.isbn || "")}" title="${escapeHtml(labels.exportCitation)}">`
+        + `<i class="bi bi-download me-1" aria-hidden="true"></i>${escapeHtml(labels.exportCitation)}</button>`;
+    }
+
+    function publicationBadges(record) {
+      if (!record) return "";
+      const badges = [];
+      if (record.peerReviewed) badges.push(`<span class="badge text-bg-primary">${escapeHtml(labels.peerReviewed)}</span>`);
+      if (record.openAccess) badges.push(`<span class="badge text-bg-success">${escapeHtml(labels.openAccess)}</span>`);
+      if (record.jufoLevel !== "" && record.jufoLevel != null) badges.push(`<span class="badge text-bg-light text-dark border">JUFO ${escapeHtml(record.jufoLevel)}</span>`);
+      if (record.citationCount) badges.push(`<span class="badge text-bg-warning text-dark">${escapeHtml(labels.citations(record.citationCount))}</span>`);
+      return badges.join("");
+    }
+
+    function sourceLink(record) {
+      const href = record?.sourceUrl || record?.doiUrl || "";
+      if (!href) return "";
+      return `<a class="btn btn-sm btn-outline-primary rounded-pill" href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(labels.source)} <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a>`;
+    }
+
+    function renderPublicationResult(entry) {
+      const record = entry.record;
+      const title = escapeHtml(entry.title);
+      const url = escapeHtml(entry.url);
+      const excerpt = entry.excerpt ? escapeHtml(entry.excerpt) : "";
+      const meta = entry.meta.length
+        ? `<div class="find-explore-result-meta">${entry.meta.map((item) => `<span>${escapeHtml(item)}</span>`).join("")}</div>`
+        : "";
+      return `<li class="find-explore-result find-explore-result--publication">
+        <a class="find-explore-result-title" href="${url}">${title}</a>
+        ${meta}
+        ${publicationBadges(record) ? `<div class="d-flex flex-wrap gap-2 mt-2">${publicationBadges(record)}</div>` : ""}
+        ${excerpt ? `<p class="find-explore-result-excerpt">${excerpt}</p>` : ""}
+        <div class="d-flex flex-wrap gap-2 mt-2">
+          <a class="btn btn-sm btn-primary rounded-pill" href="${url}">${escapeHtml(labels.open)}</a>
+          ${sourceLink(record)}
+          ${citationButton(record)}
+        </div>
+      </li>`;
+    }
+
     function renderResults() {
       const slice = latestResults.slice(0, visibleCount);
       resultsList.innerHTML = slice.map((entry) => {
+        if (kind === "publications") return renderPublicationResult(entry);
         const title = escapeHtml(entry.title);
         const url = escapeHtml(entry.url);
         const excerpt = entry.excerpt ? escapeHtml(entry.excerpt) : "";
@@ -245,7 +359,7 @@
     async function runSearch() {
       const state = readState();
       const hasQuery = Boolean(state.q);
-      const hasFilters = Boolean(state.type || state.year || state.topic);
+      const hasFilters = Boolean(state.type || state.year || state.topic || state.quality);
       const effectiveQuery = hasQuery ? state.q : ((hasFilters && seedQuery) ? seedQuery : "");
 
       updateUrl(state);
@@ -271,12 +385,13 @@
 
       try {
         const filterSet = filtersFor(mount, state);
-        const searchResults = await Promise.all(pagefindPromises.map(async (pagefindPromise) => {
-          const pagefind = await pagefindPromise;
-          return pagefind.search(effectiveQuery, {
+        const searchResults = [];
+        for (const language of searchLanguages) {
+          const pagefind = await createSearch(language);
+          searchResults.push(await pagefind.search(effectiveQuery, {
             filters: filterSet
-          });
-        }));
+          }));
+        }
 
         const typeLabel = typeSelect?.selectedOptions?.[0]?.textContent?.replace(/\s+\(\d+\)$/, "") || "";
         const merged = [];
@@ -292,7 +407,7 @@
           const entry = createResultEntry(kind, data, {
             ...state,
             typeLabel
-          });
+          }, recordsByUrl);
           if (!entry.url || seen.has(entry.url)) continue;
           seen.add(entry.url);
           entries.push(entry);
@@ -317,8 +432,9 @@
     typeSelect?.addEventListener("change", runSearch);
     yearSelect?.addEventListener("change", runSearch);
     topicSelect?.addEventListener("change", runSearch);
+    qualitySelect?.addEventListener("change", runSearch);
     resetButton?.addEventListener("click", () => {
-      writeState({ q: "", type: "", year: "", topic: "" });
+      writeState({ q: "", type: "", year: "", topic: "", quality: "" });
       queryInput?.focus();
       runSearch();
     });

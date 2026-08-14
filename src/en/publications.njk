@@ -6,6 +6,12 @@ description: "Jari Laru's scientific publications and analytics from Research.fi
 permalink: /en/publications/
 translationKey: publications_index
 lang: en
+suppressTableFilters: true
+pageStyles:
+  - /css/publications-page.css
+  - /css/find-explore.css
+pageScripts:
+  - /js/find-explore.js
 schemaType: CollectionPage
 ---
 
@@ -107,190 +113,66 @@ schemaType: CollectionPage
   </div>
 </section>
 
-<!-- JULKAISULISTA -->
+{% set publicationExplore = publicationsFindExplorePage %}
+{% set findExploreKind = "publications" %}
+{% set findExploreScope = "en" %}
+{% set findExploreLang = "en" %}
+{% set findExploreSearchLanguage = "fi,en" %}
+{% set findExploreSeedQuery = "__find_explore_publications__" %}
+{% set findExploreEyebrow = "Find & Explore" %}
+{% set findExploreTitle = "Find and filter publications" %}
+{% set findExploreDescription = "A publication-scoped search layer replaces the previous table-specific browsing runtime. Results point to local publication detail pages while DOI and source links remain visible in each result." %}
+{% set findExploreSearchLabel = "Search by title, author, topic, or venue" %}
+{% set findExplorePlaceholder = "Try TPACK, Kosovo, computational thinking, Iwata..." %}
+{% set findExploreTypeLabel = "Publication group" %}
+{% set findExploreAllTypesLabel = "All groups" %}
+{% set findExploreYearLabel = "Year" %}
+{% set findExploreAllYearsLabel = "All years" %}
+{% set findExploreTopicLabel = "Topic" %}
+{% set findExploreAllTopicsLabel = "All topics" %}
+{% set findExploreQualityLabel = "Quality" %}
+{% set findExploreAllQualityLabel = "All" %}
+{% set findExploreResetLabel = "Clear" %}
+{% set findExploreMoreLabel = "Show more" %}
+{% set findExploreInitialStatus = "Search with a keyword or narrow the result set. The opening list below also works without JavaScript." %}
+{% set findExploreNoScript = "Interactive Find & Explore requires JavaScript. The opening list and local publication links below still work." %}
+{% set findExploreTypeOptions = [] %}
+{% for option in publicationExplore.groupOptions %}
+  {% set findExploreTypeOptions = (findExploreTypeOptions.push({ value: option.value, label: option.labelEn, count: option.count }), findExploreTypeOptions) %}
+{% endfor %}
+{% set findExploreYears = publicationExplore.years %}
+{% set findExploreTopicOptions = publicationExplore.topicOptions %}
+{% set findExploreQualityOptions = [
+  { value: "peer-reviewed", label: "Peer-reviewed", count: publicationExplore.qualityCounts.peerReviewed },
+  { value: "open-access", label: "Open access", count: publicationExplore.qualityCounts.openAccess }
+] %}
+
+<script type="application/json" id="publicationFindExploreRecords">{{ publicationExplore.records | jsonSafe | safe }}</script>
+<section data-find-explore-records-id="publicationFindExploreRecords">
+  {% include "find-explore-writings.njk" %}
+</section>
+
 <section id="researchfi-julkaisut" class="py-5">
   <div class="site-shell">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-      <h3 class="mb-0">All publications</h3>
-    </div>
-
-    {% if canonicalPublications.length %}
-
-      {# Jaa julkaisut tyyleittäin Dataan perustuen #}
-      {% set pubsA = [] %}
-      {% set pubsB = [] %}
-      {% set pubsC = [] %}
-      {% set pubsD = [] %}
-      {% set pubsE = [] %}
-      {% set pubsG = [] %}
-      
-      {% for pub in canonicalPublications %}
-        {% set typeChar = pub.publicationGroup or ((pub.typeCode or '') | first) %}
-        {% if typeChar == 'A' %}{% set pubsA = (pubsA.push(pub), pubsA) %}
-        {% elif typeChar == 'B' %}{% set pubsB = (pubsB.push(pub), pubsB) %}
-        {% elif typeChar == 'C' %}{% set pubsC = (pubsC.push(pub), pubsC) %}
-        {% elif typeChar == 'D' %}{% set pubsD = (pubsD.push(pub), pubsD) %}
-        {% elif typeChar == 'E' %}{% set pubsE = (pubsE.push(pub), pubsE) %}
-        {% elif typeChar == 'G' %}{% set pubsG = (pubsG.push(pub), pubsG) %}
-        {% endif %}
-      {% endfor %}
-
-      {# Macros for reuse #}
-      {% macro drawTable(title, badge, items, tableId, subtypes) %}
-      {% if items.length %}
-      <div class="card shadow-sm mb-5 section-card" id="card-{{ tableId }}">
-        <div class="card-header bg-transparent py-3">
-          <div class="d-flex align-items-start justify-content-between">
-            <div>
-              <h4 class="h5 mb-0"><i class="bi bi-journal-text me-2 text-primary"></i>{{ title }}</h4>
-              {% if subtypes and subtypes.length %}
-              <div class="mt-1 d-flex flex-wrap">
-                {% for st in subtypes %}
-                  {% if (items | selectattr("typeCode", "equalto", st.code) | list).length %}
-                  <span class="me-3 mt-1" style="font-size:0.78rem; color: var(--bs-secondary-color);">
-                    <strong style="font-size:0.76rem;">{{ st.code }}</strong>&nbsp;{{ st.desc }}
-                  </span>
-                  {% endif %}
-                {% endfor %}
-              </div>
-              {% endif %}
-            </div>
-            <span class="badge {{ badge }}">{{ items.length }}</span>
-          </div>
-        </div>
-        <div class="card-body p-0">
-          <div class="p-3 border-bottom publication-filter-bar">
-            <div class="row g-2 align-items-end">
-              <div class="col-md-9">
-                <label for="search-{{ tableId }}" class="form-label small text-muted mb-1">Filter</label>
-                <input type="search" id="search-{{ tableId }}" class="form-control form-control-sm" placeholder="Search title, author, or venue..." autocomplete="off" data-pub-search="{{ tableId }}">
-              </div>
-            </div>
-          </div>
-          <div id="{{ tableId }}">
-            {# ── Desktop: table (hidden on mobile) ── #}
-            <div class="d-none d-md-block">
-              <div class="table-responsive">
-                <table class="table table-sm table-hover align-middle mb-0 pub-table">
-                  <thead>
-                    <tr>
-                      <th class="text-center" style="width:70px">Year</th>
-                      <th style="width:80px">Class</th>
-                      <th>Title & Venue</th>
-                      <th style="width:200px">Author(s)</th>
-                      <th style="width:100px" class="text-center">Links</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {% for pub in items %}
-                    <tr{% if pub.anchorId %} id="{{ pub.anchorId }}"{% endif %} data-authors="{{ pub.authors | escape }}">
-                      <td class="text-center font-monospace small fw-bold text-info">{{ pub.year or '—' }}</td>
-                      <td><span class="badge bg-secondary" title="{{ pub.type }}">{{ pub.typeCode }}</span></td>
-                      <td>
-                        <span class="fw-medium d-block mb-1">{{ pub.title }}</span>
-                        {% if pub.journal %}<span class="text-muted small d-block fst-italic">{{ pub.journal }}</span>{% endif %}
-                        {% if pub.citationCount %}
-                          <span class="badge text-bg-warning rounded-pill mt-1" title="Citations"><i class="bi bi-quote me-1"></i>{{ pub.citationCount }}</span>
-                        {% endif %}
-                      </td>
-                      <td class="text-body-secondary small">{{ pub.authors }}</td>
-                      <td class="text-center">
-                        {% if pub.url %}
-                          <a href="{{ pub.url }}" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Open publication" aria-label="Open publication in a new tab"><i class="bi bi-box-arrow-up-right"></i></a>
-                        {% elif pub.doiUrl %}
-                          <a href="{{ pub.doiUrl }}" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Open DOI" aria-label="Open DOI in a new tab"><i class="bi bi-box-arrow-up-right"></i></a>
-                        {% endif %}
-                      </td>
-                    </tr>
-                    {% endfor %}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            {# ── Mobile view: compact card list (hidden on desktop) ── #}
-            <ul class="list-unstyled mb-0 d-md-none pub-mobile-list" role="list">
-              {% for pub in items %}
-              <li{% if pub.anchorId %} id="{{ pub.anchorId }}-mobile"{% endif %} class="pub-mobile-item px-3 py-3 border-bottom" data-authors="{{ pub.authors | escape }}" role="listitem">
-                <div class="d-flex align-items-center gap-2 mb-1">
-                  <span class="font-monospace small fw-bold text-info">{{ pub.year or '—' }}</span>
-                  <span class="badge bg-secondary" title="{{ pub.type }}">{{ pub.typeCode }}</span>
-                  {% if pub.citationCount %}
-                    <span class="badge text-bg-warning rounded-pill" title="Citations"><i class="bi bi-quote me-1"></i>{{ pub.citationCount }}</span>
-                  {% endif %}
-                </div>
-                <p class="fw-medium mb-1 lh-sm">
-                  {% if pub.url %}
-                    <a href="{{ pub.url }}" target="_blank" rel="noopener noreferrer" class="text-body text-decoration-none">{{ pub.title }}</a>
-                  {% elif pub.doiUrl %}
-                    <a href="{{ pub.doiUrl }}" target="_blank" rel="noopener noreferrer" class="text-body text-decoration-none">{{ pub.title }}</a>
-                  {% else %}
-                    {{ pub.title }}
-                  {% endif %}
-                </p>
-                <p class="small text-body-secondary mb-1">{{ pub.authors }}</p>
-                {% if pub.journal %}
-                  <p class="small text-muted fst-italic mb-1">{{ pub.journal }}</p>
-                {% elif pub.publisher %}
-                  <p class="small text-muted fst-italic mb-1">{{ pub.publisher }}</p>
-                {% endif %}
-                {% if pub.url or pub.doiUrl %}
-                <div class="mt-1">
-                  {% if pub.url %}
-                    <a href="{{ pub.url }}" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill" rel="noopener noreferrer" aria-label="Open publication in a new tab"><i class="bi bi-box-arrow-up-right me-1"></i>Open</a>
-                  {% elif pub.doiUrl %}
-                    <a href="{{ pub.doiUrl }}" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill" rel="noopener noreferrer" aria-label="Open DOI in a new tab"><i class="bi bi-box-arrow-up-right me-1"></i>Open</a>
-                  {% endif %}
-                </div>
-                {% endif %}
-              </li>
-              {% endfor %}
-            </ul>
-          </div>
+    <div class="card border-0 shadow-sm publication-nav-card mb-4">
+      <div class="card-body">
+        <p class="text-uppercase small text-muted mb-1">Opening list</p>
+        <h2 class="h3 mb-1">Latest publications</h2>
+        <p class="text-muted mb-3">This SSR list works without JavaScript. Find & Explore covers the full canonical set of {{ canonicalPublications.length }} publications.</p>
+        <div class="d-flex flex-wrap gap-2">
+          {% for option in publicationExplore.groupOptions %}
+          <span class="badge text-bg-light text-dark border">{{ option.labelEn }} <span class="text-muted">{{ option.count }}</span></span>
+          {% endfor %}
         </div>
       </div>
-      {% endif %}
-      {% endmacro %}
-
-      {% set subtypesA = [
-        {code: 'A1', desc: 'Original article in a scientific journal'},
-        {code: 'A2', desc: 'Review article in a scientific journal'},
-        {code: 'A3', desc: 'Chapter in an edited scientific volume'},
-        {code: 'A4', desc: 'Article in conference proceedings'}
-      ] %}
-      {% set subtypesB = [
-        {code: 'B1', desc: 'Writing in a scientific journal'},
-        {code: 'B2', desc: 'Chapter in an edited volume'},
-        {code: 'B3', desc: 'Non-peer-reviewed conference article'}
-      ] %}
-      {% set subtypesC = [
-        {code: 'C1', desc: 'Published scientific monograph'},
-        {code: 'C2', desc: 'Edited book, proceedings, or special issue'}
-      ] %}
-      {% set subtypesD = [
-        {code: 'D1', desc: 'Article in a professional magazine'},
-        {code: 'D2', desc: 'Article in a professional edited volume'},
-        {code: 'D3', desc: 'Article in a professional conference publication'}
-      ] %}
-      {% set subtypesE = [
-        {code: 'E1', desc: 'Popular article or newspaper article'},
-        {code: 'E2', desc: 'Popular monograph'}
-      ] %}
-      {% set subtypesG = [
-        {code: 'G4', desc: 'Doctoral dissertation (article-based)'},
-        {code: 'G5', desc: 'Doctoral dissertation (monograph)'}
-      ] %}
-
-      {{ drawTable('A - Peer-reviewed scientific articles', 'text-bg-primary', pubsA, 'pub-table-a', subtypesA) }}
-      {{ drawTable('B - Non-peer-reviewed scientific writings', 'text-bg-info', pubsB, 'pub-table-b', subtypesB) }}
-      {{ drawTable('C - Scientific books', 'text-bg-warning', pubsC, 'pub-table-c', subtypesC) }}
-      {{ drawTable('D - Publications for professional communities', 'text-bg-secondary', pubsD, 'pub-table-d', subtypesD) }}
-      {{ drawTable('E - Publications for general audiences', 'bg-dark', pubsE, 'pub-table-e', subtypesE) }}
-      {{ drawTable('G - Theses', 'text-bg-success', pubsG, 'pub-table-g', subtypesG) }}
-      
-    {% else %}
-      <div class="alert alert-warning">No publications available.</div>
-    {% endif %}
+    </div>
+    <div class="card shadow-sm border-0">
+      <div class="card-body">
+        {% set publicationItems = publicationExplore.openingItems %}
+        {% set publicationLang = "en" %}
+        {% include "publications-opening-list.njk" %}
+      </div>
+    </div>
   </div>
 </section>
 
@@ -347,136 +229,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   Chart.defaults.color = textColor;
   Chart.defaults.borderColor = gridColor;
-
-  // Pagination for pub tables
-  const ITEMS_PER_PAGE = 10;
-  const urlState = new URL(window.location.href);
-  const urlParams = urlState.searchParams;
-  const getPubSearchKey = (tableId) => `pq_${tableId}`;
-  const setFilterParam = (key, value) => {
-    if (!value) {
-      urlParams.delete(key);
-      return;
-    }
-    urlParams.set(key, String(value).trim());
-  };
-  const updateFilterUrl = () => {
-    const qs = urlParams.toString();
-    const next = qs ? `${window.location.pathname}?${qs}${window.location.hash}` : `${window.location.pathname}${window.location.hash}`;
-    window.history.replaceState({}, '', next);
-  };
-  const syncPublicationFiltersToUrl = () => {
-    document.querySelectorAll('[data-pub-search]').forEach((input) => {
-      setFilterParam(getPubSearchKey(input.dataset.pubSearch), input.value || '');
-    });
-    updateFilterUrl();
-  };
-  const applyPublicationFiltersFromUrl = () => {
-    document.querySelectorAll('[data-pub-search]').forEach((input) => {
-      const val = urlParams.get(getPubSearchKey(input.dataset.pubSearch));
-      if (val) input.value = val;
-    });
-  };
-  applyPublicationFiltersFromUrl();
-
-  function initPubPagination(tableId) {
-    const tableContainer = document.getElementById(tableId);
-    if (!tableContainer) return;
-
-    const table = tableContainer.querySelector('table');
-    if (!table) return;
-
-    const tbody = table.querySelector('tbody');
-    let rows = Array.from(tbody.querySelectorAll('tr'));
-    let mobileItems = Array.from(tableContainer.querySelectorAll('.pub-mobile-item'));
-
-      // 5. Build Pagination UI
-      let paginationNav = tableContainer.querySelector('.pub-pagination');
-      if (!paginationNav) {
-        paginationNav = document.createElement('div');
-        const containerId = tableContainer.id || Math.random().toString(36).substring(7);
-        paginationNav.className = 'pub-pagination site-pagination-bar site-pagination-bar--bottom mt-3';
-        paginationNav.innerHTML = `
-          <small class="site-pagination-info text-muted"></small>
-          <nav aria-label="Table pagination ${containerId}">
-            <ul class="pagination pagination-sm mb-0 flex-wrap site-pag"></ul>
-          </nav>
-        `;
-        tableContainer.appendChild(paginationNav);
-      }
-
-    const ul = paginationNav.querySelector('ul');
-    const paginationInfo = paginationNav.querySelector('.site-pagination-info');
-    let currentPage = 1;
-    let filteredRows = [...rows];
-    let filteredMobileItems = [...mobileItems];
-
-    const searchInput = document.querySelector(`[data-pub-search="${tableId}"]`);
-
-    function renderPage(page) {
-      currentPage = page;
-      const totalPages = Math.ceil(filteredRows.length / ITEMS_PER_PAGE);
-      if (currentPage < 1) currentPage = 1;
-      if (currentPage > totalPages && totalPages > 0) currentPage = totalPages;
-
-      rows.forEach(r => r.style.display = 'none');
-      mobileItems.forEach(r => r.style.display = 'none');
-
-      const start = (currentPage - 1) * ITEMS_PER_PAGE;
-      const end = start + ITEMS_PER_PAGE;
-      filteredRows.slice(start, end).forEach(r => r.style.display = '');
-      filteredMobileItems.slice(start, end).forEach(r => r.style.display = '');
-
-      if (paginationInfo) {
-        paginationInfo.textContent = filteredRows.length > 0
-          ? `${start + 1}-${Math.min(end, filteredRows.length)} / ${filteredRows.length} publications`
-          : 'No publications';
-      }
-
-      renderPaginationControls(totalPages);
-    }
-
-    function renderPaginationControls(totalPages) {
-      ul.innerHTML = '';
-      if (totalPages <= 1) return;
-
-      const prevLi = document.createElement('li');
-      prevLi.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
-      prevLi.innerHTML = `<button type="button" class="page-link" aria-label="Previous page">&laquo;</button>`;
-      prevLi.addEventListener('click', (e) => { e.preventDefault(); if(currentPage > 1) renderPage(currentPage - 1); });
-      ul.appendChild(prevLi);
-
-      for (let i = 1; i <= totalPages; i++) {
-        const li = document.createElement('li');
-        li.className = `page-item ${i === currentPage ? 'active' : ''}`;
-        li.innerHTML = `<button type="button" class="page-link" aria-label="Page ${i}">${i}</button>`;
-        li.addEventListener('click', (e) => { e.preventDefault(); renderPage(i); });
-        ul.appendChild(li);
-      }
-
-      const nextLi = document.createElement('li');
-      nextLi.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
-      nextLi.innerHTML = `<button type="button" class="page-link" aria-label="Next page">&raquo;</button>`;
-      nextLi.addEventListener('click', (e) => { e.preventDefault(); if(currentPage < totalPages) renderPage(currentPage + 1); });
-      ul.appendChild(nextLi);
-    }
-
-    function applyFilters() {
-      rows = Array.from(tbody.querySelectorAll('tr'));
-      mobileItems = Array.from(tableContainer.querySelectorAll('.pub-mobile-item'));
-      const q = (searchInput?.value || '').toLowerCase();
-      const matchFn = el => !q || el.textContent.toLowerCase().includes(q);
-      filteredRows = rows.filter(matchFn);
-      filteredMobileItems = mobileItems.filter(matchFn);
-      syncPublicationFiltersToUrl();
-      renderPage(1);
-    }
-
-    if (searchInput) searchInput.addEventListener('input', applyFilters);
-    applyFilters();
-  }
-
-  ['pub-table-a', 'pub-table-b', 'pub-table-c', 'pub-table-d', 'pub-table-e', 'pub-table-g'].forEach(initPubPagination);
 
   // 1. VUOSIKAAVIO
   const yearCounts = {};

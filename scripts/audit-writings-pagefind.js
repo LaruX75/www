@@ -8,7 +8,7 @@ const WRITINGS_PAGE_JSON = path.join(SITE_ROOT, "data", "writings-page.json");
 const RESULT_LIMIT = Number.parseInt(process.env.WRITINGS_PAGEFIND_AUDIT_RESULT_LIMIT || "10", 10);
 
 const FI_TYPES = ["opinion", "column", "blogPost"];
-const EN_TYPES = ["statement", "opinion", "column", "initiative", "speech", "blogPost", "scientificPublication"];
+const EN_TYPES = ["statement", "opinion", "column", "initiative", "speech", "blogPost"];
 
 async function loadWritingsItems() {
   const raw = await fs.readFile(WRITINGS_PAGE_JSON, "utf8");
