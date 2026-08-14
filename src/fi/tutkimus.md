@@ -8,6 +8,9 @@ description: "Jari Larun tutkimus: nykyinen Generation AI -ohjelma, kolme keskei
 templateEngineOverride: njk
 pageStyles:
   - /css/research-page.css
+  - /css/find-explore.css
+pageScripts:
+  - /js/find-explore.js
 schemaType: CollectionPage
 schemaAbout:
   - "@type": "Thing"
@@ -149,6 +152,47 @@ schemaMentions:
       {% endfor %}
     </div>
   </div>
+</section>
+
+{% set findExploreId = "researchEvidenceExplore" %}
+{% set findExploreKind = "researchContext" %}
+{% set findExploreKinds = "publications,theses,writings" %}
+{% set findExploreScope = "" %}
+{% set findExploreLang = "fi" %}
+{% set findExploreSearchLanguage = "fi,en" %}
+{% set findExploreSeedQuery = "__find_explore_publications__ __find_explore_theses__" %}
+{% set findExploreEyebrow = "Find & Explore" %}
+{% set findExploreTitle = "Tutki näyttöä aiheen mukaan" %}
+{% set findExploreDescription = "Kontekstihaku kokoaa samaan näkymään tutkimukseen liittyviä julkaisuja, opinnäytteitä ja kirjoituksia. Esitykset ja media jäävät vielä pois, kunnes niiden Find & Explore -valmius on auditoitu erikseen." %}
+{% set findExploreSearchLabel = "Hae tutkimusaihetta tai käsitettä" %}
+{% set findExplorePlaceholder = "Kokeile esimerkiksi tekoälylukutaito, TPACK, collaborative learning, ohjelmoinnillinen ajattelu..." %}
+{% set findExploreTypeLabel = "Aineistotyyppi" %}
+{% set findExploreAllTypesLabel = "Julkaisut, opinnäytteet ja kirjoitukset" %}
+{% set findExploreYearLabel = "Vuosi" %}
+{% set findExploreAllYearsLabel = "Kaikki vuodet" %}
+{% set findExploreTopicLabel = "Tutkimusteema" %}
+{% set findExploreAllTopicsLabel = "Kaikki teemat" %}
+{% set findExploreResetLabel = "Tyhjennä" %}
+{% set findExploreMoreLabel = "Näytä lisää" %}
+{% set findExploreInitialStatus = "Kirjoita hakusana tai valitse tutkimusteema. Sivun kuratoidut tutkimuslinjat toimivat myös ilman JavaScriptiä." %}
+{% set findExploreNoScript = "Interaktiivinen Find & Explore edellyttää JavaScriptiä. Tutkimuslinjat, julkaisunostot ja linkit arkistoihin toimivat silti." %}
+{% set findExploreTypeOptions = [
+  { value: "publications", label: "Julkaisut" },
+  { value: "theses", label: "Opinnäytteet" },
+  { value: "writings", label: "Kirjoitukset" }
+] %}
+{% set findExploreYears = ["2026", "2025", "2024", "2023", "2022", "2021", "2020"] %}
+{% set findExploreTopicOptions = [
+  { value: "tekoäly", label: "Tekoäly ja tekoälylukutaito" },
+  { value: "opettajankoulutus", label: "Opettajankoulutus" },
+  { value: "koulutusteknologia", label: "Koulutusteknologia" },
+  { value: "yhteisöllinen oppiminen", label: "Yhteisöllinen oppiminen" },
+  { value: "ohjelmoinnillinen ajattelu", label: "Ohjelmoinnillinen ajattelu" },
+  { value: "TPACK", label: "TPACK" }
+] %}
+{% set findExploreQualityOptions = [] %}
+<section id="tutkimusnaytto">
+  {% include "find-explore-writings.njk" %}
 </section>
 
 <!-- OMA VÄITÖSKIRJA JA PRO GRADU -->

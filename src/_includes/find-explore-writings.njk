@@ -1,23 +1,24 @@
-<section class="find-explore find-explore--{{ findExploreKind or 'writings' }}" aria-labelledby="find-explore-heading" data-find-explore data-find-explore-kind="{{ findExploreKind or 'writings' }}" data-find-explore-scope="{{ findExploreScope }}" data-find-explore-lang="{{ findExploreLang }}" {% if findExploreSearchLanguage %}data-find-explore-search-language="{{ findExploreSearchLanguage }}"{% endif %} {% if findExploreLanguageFilter %}data-find-explore-language-filter="{{ findExploreLanguageFilter }}"{% endif %} {% if findExploreSeedQuery %}data-find-explore-seed-query="{{ findExploreSeedQuery }}"{% endif %}>
+{% set findExploreMountId = findExploreId or "findExplore" %}
+<section class="find-explore find-explore--{{ findExploreKind or 'writings' }}" aria-labelledby="{{ findExploreMountId }}Heading" data-find-explore data-find-explore-kind="{{ findExploreKind or 'writings' }}" {% if findExploreKinds %}data-find-explore-kinds="{{ findExploreKinds }}"{% endif %} data-find-explore-scope="{{ findExploreScope }}" data-find-explore-lang="{{ findExploreLang }}" {% if findExploreSearchLanguage %}data-find-explore-search-language="{{ findExploreSearchLanguage }}"{% endif %} {% if findExploreLanguageFilter %}data-find-explore-language-filter="{{ findExploreLanguageFilter }}"{% endif %} {% if findExploreSeedQuery %}data-find-explore-seed-query="{{ findExploreSeedQuery }}"{% endif %}>
   <div class="site-shell">
     <div class="find-explore-card card border-0 shadow-sm">
       <div class="card-body p-4">
         <div class="row g-4 align-items-start">
           <div class="col-lg-4">
             <p class="text-uppercase small text-muted mb-2">{{ findExploreEyebrow }}</p>
-            <h2 id="find-explore-heading" class="h3 mb-2">{{ findExploreTitle }}</h2>
+            <h2 id="{{ findExploreMountId }}Heading" class="h3 mb-2">{{ findExploreTitle }}</h2>
             <p class="text-muted mb-0">{{ findExploreDescription }}</p>
           </div>
           <div class="col-lg-8">
             <form class="find-explore-controls" role="search" data-find-explore-form>
               <div class="row g-3">
                 <div class="col-12">
-                  <label class="form-label small text-muted mb-1" for="findExploreQuery">{{ findExploreSearchLabel }}</label>
-                  <input id="findExploreQuery" class="form-control form-control-lg" type="search" name="q" autocomplete="off" placeholder="{{ findExplorePlaceholder }}" data-find-explore-query>
+                  <label class="form-label small text-muted mb-1" for="{{ findExploreMountId }}Query">{{ findExploreSearchLabel }}</label>
+                  <input id="{{ findExploreMountId }}Query" class="form-control form-control-lg" type="search" name="q" autocomplete="off" placeholder="{{ findExplorePlaceholder }}" data-find-explore-query>
                 </div>
                 <div class="col-md-5">
-                  <label class="form-label small text-muted mb-1" for="findExploreType">{{ findExploreTypeLabel }}</label>
-                  <select id="findExploreType" class="form-select" name="type" data-find-explore-type>
+                  <label class="form-label small text-muted mb-1" for="{{ findExploreMountId }}Type">{{ findExploreTypeLabel }}</label>
+                  <select id="{{ findExploreMountId }}Type" class="form-select" name="type" data-find-explore-type>
                     <option value="">{{ findExploreAllTypesLabel }}</option>
                     {% for option in findExploreTypeOptions %}
                     <option value="{{ option.value }}">{{ option.label }}{% if option.count %} ({{ option.count }}){% endif %}</option>
@@ -25,8 +26,8 @@
                   </select>
                 </div>
                 <div class="col-md-4">
-                  <label class="form-label small text-muted mb-1" for="findExploreYear">{{ findExploreYearLabel }}</label>
-                  <select id="findExploreYear" class="form-select" name="year" data-find-explore-year>
+                  <label class="form-label small text-muted mb-1" for="{{ findExploreMountId }}Year">{{ findExploreYearLabel }}</label>
+                  <select id="{{ findExploreMountId }}Year" class="form-select" name="year" data-find-explore-year>
                     <option value="">{{ findExploreAllYearsLabel }}</option>
                     {% for year in findExploreYears %}
                     <option value="{{ year }}">{{ year }}</option>
@@ -35,8 +36,8 @@
                 </div>
                 {% if findExploreTopicOptions and (findExploreTopicOptions | length) %}
                 <div class="col-md-4">
-                  <label class="form-label small text-muted mb-1" for="findExploreTopic">{{ findExploreTopicLabel }}</label>
-                  <select id="findExploreTopic" class="form-select" name="topic" data-find-explore-topic>
+                  <label class="form-label small text-muted mb-1" for="{{ findExploreMountId }}Topic">{{ findExploreTopicLabel }}</label>
+                  <select id="{{ findExploreMountId }}Topic" class="form-select" name="topic" data-find-explore-topic>
                     <option value="">{{ findExploreAllTopicsLabel }}</option>
                     {% for option in findExploreTopicOptions %}
                     <option value="{{ option.value }}">{{ option.label }}{% if option.count %} ({{ option.count }}){% endif %}</option>
@@ -46,8 +47,8 @@
                 {% endif %}
                 {% if findExploreQualityOptions and (findExploreQualityOptions | length) %}
                 <div class="col-md-3">
-                  <label class="form-label small text-muted mb-1" for="findExploreQuality">{{ findExploreQualityLabel }}</label>
-                  <select id="findExploreQuality" class="form-select" name="quality" data-find-explore-quality>
+                  <label class="form-label small text-muted mb-1" for="{{ findExploreMountId }}Quality">{{ findExploreQualityLabel }}</label>
+                  <select id="{{ findExploreMountId }}Quality" class="form-select" name="quality" data-find-explore-quality>
                     <option value="">{{ findExploreAllQualityLabel }}</option>
                     {% for option in findExploreQualityOptions %}
                     <option value="{{ option.value }}">{{ option.label }}{% if option.count %} ({{ option.count }}){% endif %}</option>
