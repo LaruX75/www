@@ -1,0 +1,78 @@
+{% set thesisHubIsEn = (lang or "fi") == "en" %}
+<div class="modal fade" id="thesisAbstractModal" tabindex="-1" aria-labelledby="thesisAbstractModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title fs-6" id="thesisAbstractModalLabel">{{ "Summary" if thesisHubIsEn else "Tiivistelmä" }}</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ 'Close' if thesisHubIsEn else 'Sulje' }}"></button>
+      </div>
+      <div class="modal-body">
+        <div class="border rounded p-2 mb-3 bg-body-secondary">
+          <p class="text-uppercase mb-1" style="font-size:0.65rem;letter-spacing:.08em;color:var(--bs-secondary-color);">APA 7</p>
+          <p class="mb-0 small font-monospace lh-sm" id="thesisModalApaText"></p>
+        </div>
+        <h3 class="h6 mb-2" id="thesisAbstractModalTitle"></h3>
+        <p class="small mb-0 text-body" id="thesisAbstractModalText"></p>
+      </div>
+      <div class="modal-footer gap-2">
+        <button type="button" class="btn btn-outline-secondary btn-sm" id="thesisAbstractExportBtn">
+          <i class="bi bi-quote me-1"></i>{{ "Export citation" if thesisHubIsEn else "Vie viite" }}
+        </button>
+        <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" id="thesisAbstractModalOpen">
+          <i class="bi bi-box-arrow-up-right me-1"></i>{{ "Open original thesis in OuluREPO" if thesisHubIsEn else "Avaa alkuperäinen opinnäyte OuluREPOssa" }}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade citation-export-modal" id="thesisCitationModal" tabindex="-1" aria-labelledby="thesisCitationModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title fs-5" id="thesisCitationModalLabel">{{ "Export citation" if thesisHubIsEn else "Vie lähdeviite" }}</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ 'Close' if thesisHubIsEn else 'Sulje' }}"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-3 align-items-end">
+          <div class="col-12 col-lg-5">
+            <label for="thesisCitationFormatSelect" class="form-label small text-muted">{{ "Citation format" if thesisHubIsEn else "Viittausmuoto" }}</label>
+            <select id="thesisCitationFormatSelect" class="form-select form-select-sm">
+              {% if thesisHubIsEn %}
+              <option value="bibtex">BibTeX (.bib)</option>
+              <option value="apa">APA 7</option>
+              <option value="mla">MLA</option>
+              <option value="chicago">Chicago</option>
+              {% else %}
+              <option value="apa">APA 7</option>
+              <option value="bibtex">BibTeX (.bib)</option>
+              <option value="mla">MLA</option>
+              <option value="chicago">Chicago</option>
+              {% endif %}
+            </select>
+          </div>
+          <div class="col-12 col-lg-7">
+            <div class="citation-export-actions">
+              <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill" id="thesisCitationCopyBtn">
+                <i class="bi bi-clipboard me-1"></i>{{ "Copy" if thesisHubIsEn else "Kopioi" }}
+              </button>
+              <button type="button" class="btn btn-primary btn-sm rounded-pill" id="thesisCitationDownloadBtn">
+                <i class="bi bi-download me-1"></i>{{ "Download" if thesisHubIsEn else "Lataa" }}
+              </button>
+              <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill" id="thesisCitationZoteroBtn" title="{{ 'Download RIS for Zotero import' if thesisHubIsEn else 'Lataa RIS Zotero-tuontiin' }}">
+                <img src="https://cdn.simpleicons.org/zotero/cc2936" alt="" width="14" height="14" class="me-1 align-text-bottom">Zotero
+              </button>
+              <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill" id="thesisCitationMendeleyBtn" title="{{ 'Download RIS for Mendeley import' if thesisHubIsEn else 'Lataa RIS Mendeley-tuontiin' }}">
+                <img src="https://cdn.simpleicons.org/mendeley/9d1620" alt="" width="14" height="14" class="me-1 align-text-bottom">Mendeley
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="mt-3">
+          <label for="thesisCitationOutput" class="form-label small text-muted mb-1">{{ "Preview" if thesisHubIsEn else "Esikatselu" }}</label>
+          <textarea id="thesisCitationOutput" class="form-control form-control-sm font-monospace" rows="12" readonly></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -5,1033 +5,194 @@ description: "Master's theses and bachelor's theses supervised by Jari Laru from
 permalink: /en/theses/
 translationKey: theses_index
 lang: en
+suppressTableFilters: true
+pageStyles:
+  - /css/theses-page.css
+  - /css/find-explore.css
 pageScripts:
-  - /js/pe-list-render.js
-  - /js/content-presets.js
-  - /js/content-engine.js
+  - /js/find-explore.js
+  - /js/thesis-hub-actions.js
 schemaType: CollectionPage
 ---
-
+{% set pageModel = thesesFindExplorePage %}
+{% set findExploreKind = "theses" %}
+{% set findExploreScope = "en" %}
+{% set findExploreLang = "en" %}
+{% set findExploreSearchLanguage = "fi,en" %}
+{% set findExploreSeedQuery = "__find_explore_theses__" %}
+{% set findExploreEyebrow = "Find & Explore" %}
+{% set findExploreTitle = "Explore theses" %}
+{% set findExploreDescription = "Search supervised theses by title, author or topic, or browse by year and thesis type. Results always lead to the local canonical thesis detail page." %}
+{% set findExploreSearchLabel = "Search by title, author or topic" %}
+{% set findExplorePlaceholder = "Try AI, teacher education, mathematics, Riikonen..." %}
+{% set findExploreTypeLabel = "Type" %}
+{% set findExploreAllTypesLabel = "All theses" %}
+{% set findExploreYearLabel = "Year" %}
+{% set findExploreAllYearsLabel = "All years" %}
+{% set findExploreTopicLabel = "Topic" %}
+{% set findExploreAllTopicsLabel = "All topics" %}
+{% set findExploreResetLabel = "Clear" %}
+{% set findExploreMoreLabel = "Show more" %}
+{% set findExploreInitialStatus = "You can type a query or browse with filters only. The curated opening sections below remain useful without JavaScript." %}
+{% set findExploreNoScript = "Interactive Find & Explore requires JavaScript. The introductory sections and normal thesis detail links remain available." %}
+{% set findExploreTypeOptions = [
+  { value: "masterThesis", label: "Master's theses", count: pageModel.typeCounts.masterThesis },
+  { value: "bachelorThesis", label: "Bachelor's theses", count: pageModel.typeCounts.bachelorThesis }
+] %}
+{% set findExploreYears = pageModel.years %}
+{% set findExploreTopicOptions = pageModel.topicOptions %}
 
 <section class="kynasta-hero py-4">
   <div class="site-shell">
-    <div class="row align-items-center g-3">
+    <div class="row align-items-center g-4">
       <div class="col-lg-8">
         <p class="text-uppercase small text-muted mb-1">Supervision</p>
-        <h1 class="display-6 fw-bold mb-1">Supervised theses</h1>
-        <p class="text-muted mb-0">Search and filter master's theses and bachelor's theses supervised by Jari Laru from the OuluREPO archive.</p>
+        <h1 class="display-6 fw-bold mb-2">Supervised theses</h1>
+        <p class="text-muted mb-0">A local thesis hub for OuluREPO-based supervision work. Search results point first to the site's own thesis detail page, and the original OuluREPO record remains one clear click away there.</p>
+      </div>
+      <div class="col-lg-4">
+        <div class="d-flex flex-wrap gap-2 justify-content-lg-end">
+          <a class="nav-link" href="#masters">Master's <span class="nav-count">{{ theses.stats.totalGradut }}</span></a>
+          <a class="nav-link" href="#bachelors">Bachelor's <span class="nav-count">{{ theses.stats.totalKandit }}</span></a>
+          {% if pageModel.reviewedItems.length %}
+          <a class="nav-link" href="#reviewed">Reviewed <span class="nav-count">{{ theses.stats.totalReviewer }}</span></a>
+          {% endif %}
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="site-shell py-4">
-  <p class="lead text-muted">
-    Supervised theses fetched from the OuluREPO publication archive
-    {% if theses.stats.firstYear %}({{ theses.stats.firstYear }}–{{ theses.stats.lastYear }}){% endif %}.
-  </p>
-  {% if keywordCategories %}
-  <script type="application/json" id="thesis-keyword-categories">{{ keywordCategories | jsonSafe | safe }}</script>
-  {% endif %}
-
-  {# Laskurit #}
-  <div class="row g-2 g-md-3 my-4 thesis-stats-row">
-    <div class="col-6 col-md-3">
-      <div class="card text-center border-primary h-100 thesis-stat-card">
-        <div class="card-body d-flex flex-column justify-content-center">
-          <div class="display-4 fw-bold text-primary">{{ theses.stats.totalGradut }}</div>
-          <div class="text-muted">Master's thesis</div>
-        </div>
-      </div>
-    </div>
-    <div class="col-6 col-md-3">
-      <div class="card text-center border-info h-100 thesis-stat-card">
-        <div class="card-body d-flex flex-column justify-content-center">
-          <div class="display-4 fw-bold text-info">{{ theses.stats.totalKandit }}</div>
-          <div class="text-muted">Bachelor's thesis</div>
-        </div>
-      </div>
-    </div>
-    <div class="col-6 col-md-3">
-      <div class="card text-center h-100 thesis-stat-card">
-        <div class="card-body d-flex flex-column justify-content-center">
-          <div class="display-4 fw-bold">{{ theses.stats.total }}</div>
-          <div class="text-muted">Total</div>
-        </div>
-      </div>
-    </div>
-    <div class="col-6 col-md-3">
-      <div class="card text-center border-secondary h-100 thesis-stat-card">
-        <div class="card-body d-flex flex-column justify-content-center">
-          <div class="display-4 fw-bold text-secondary">{{ theses.stats.totalReviewer }}</div>
-          <div class="text-muted">Reviewed</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  {# Vuosittainen palkki (valinnainen) #}
-  {% if theses.stats.byYear %}
-  <div class="d-flex gap-1 flex-wrap mb-4">
-    {% for item in theses.stats.byYear %}
-      <span class="badge bg-dark">{{ item[0] }}: {{ item[1] }}</span>
-    {% endfor %}
-  </div>
-  {% endif %}
-
-  {# ---- Keyword cloud ---- #}
-  <div class="card shadow-sm mb-5" id="thesis-subject-cloud">
-    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
-      <span class="small fw-semibold"><i class="bi bi-tags-fill me-2 text-primary"></i>Keywords</span>
-      <button type="button" class="btn btn-link btn-sm p-0 text-muted" id="thesis-cloud-clear" style="display:none!important">
-        <i class="bi bi-x-circle me-1"></i>Clear filter
-      </button>
-    </div>
-    <div class="card-body py-2 d-flex flex-wrap gap-1" id="thesis-cloud-container">
-      <span class="text-muted small">Loading...</span>
-    </div>
-  </div>
-
-  {# ---- Pro Gradut Card ---- #}
-  <div class="card shadow-sm mb-5 section-card" id="card-master">
-    <div class="card-header bg-transparent d-flex align-items-center justify-content-between py-3">
-      <h2 class="h5 mb-0"><i class="bi bi-mortarboard-fill me-2 text-primary"></i>Master's theses</h2>
-      <span class="badge text-bg-primary">{{ theses.stats.totalGradut }}</span>
-    </div>
-    <div class="card-body p-0">
-      <div class="p-3 bg-light-subtle border-bottom">
-        <div class="row g-2 align-items-end">
-          <div class="col-md-9">
-            <label for="gradu-search" class="form-label small text-muted mb-1">Filter master's theses</label>
-            <input type="search" id="gradu-search" class="form-control form-control-sm" placeholder="Search title or author..." autocomplete="off" data-thesis-search="gradutabl">
+<section class="py-4">
+  <div class="site-shell">
+    <div class="row g-3 thesis-stats-row">
+      <div class="col-6 col-md-3">
+        <div class="card text-center border-primary h-100 thesis-stat-card">
+          <div class="card-body d-flex flex-column justify-content-center">
+            <div class="display-4 fw-bold text-primary">{{ theses.stats.totalGradut }}</div>
+            <div class="text-muted">Master's theses</div>
           </div>
         </div>
       </div>
-      <div id="gradutabl">
-        {% if theses.gradut.length %}
-          {% set thesisItems = theses.gradut %}
-          {% set showType = false %}
-          {% set ssrLimit = 5 %}
-          {% include "thesis-table.njk" %}
-          {% set ssrLimit = null %}
-        {% else %}
-          <div class="p-4 text-center text-muted">No results.</div>
-        {% endif %}
-      </div>
-    </div>
-  </div>
-
-  {# ---- Kandidaatintyöt Card ---- #}
-  <div class="card shadow-sm mb-5 section-card" id="card-bachelor">
-    <div class="card-header bg-transparent d-flex align-items-center justify-content-between py-3">
-      <h2 class="h5 mb-0"><i class="bi bi-book-half me-2 text-info"></i>Bachelor's theses</h2>
-      <span class="badge text-bg-info">{{ theses.stats.totalKandit }}</span>
-    </div>
-    <div class="card-body p-0">
-      <div class="p-3 bg-light-subtle border-bottom">
-        <div class="row g-2 align-items-end">
-          <div class="col-md-9">
-            <label for="kandi-search" class="form-label small text-muted mb-1">Filter bachelor's theses</label>
-            <input type="search" id="kandi-search" class="form-control form-control-sm" placeholder="Search title or author..." autocomplete="off" data-thesis-search="kanditabl">
+      <div class="col-6 col-md-3">
+        <div class="card text-center border-info h-100 thesis-stat-card">
+          <div class="card-body d-flex flex-column justify-content-center">
+            <div class="display-4 fw-bold text-info">{{ theses.stats.totalKandit }}</div>
+            <div class="text-muted">Bachelor's theses</div>
           </div>
         </div>
       </div>
-      <div id="kanditabl">
-        {% if theses.kandit.length %}
-          {% set thesisItems = theses.kandit %}
-          {% set showType = false %}
-          {% set ssrLimit = 5 %}
-          {% include "thesis-table.njk" %}
-          {% set ssrLimit = null %}
-        {% else %}
-          <div class="p-4 text-center text-muted">No results.</div>
-        {% endif %}
-      </div>
-    </div>
-  </div>
-
-  {# ═══ TARKASTANUT (valinnainen lohko) ═══ #}
-  {% if theses.reviewerOnly.length %}
-  <div class="card shadow-sm mb-5 section-card" id="card-reviewer">
-    <div class="card-header bg-transparent d-flex align-items-center justify-content-between py-3">
-      <h2 class="h5 mb-0"><i class="bi bi-eye-fill me-2 text-secondary"></i>Acted as reviewer</h2>
-      <span class="badge text-bg-secondary">{{ theses.stats.totalReviewer }}</span>
-    </div>
-    <div class="card-body p-0">
-      <div class="p-3 bg-light-subtle border-bottom">
-        <div class="row g-2 align-items-end">
-          <div class="col-md-9">
-            <label for="reviewer-search" class="form-label small text-muted mb-1">Filter reviewed theses</label>
-            <input type="search" id="reviewer-search" class="form-control form-control-sm" placeholder="Search title or author..." autocomplete="off" data-thesis-search="reviewertabl">
+      <div class="col-6 col-md-3">
+        <div class="card text-center h-100 thesis-stat-card">
+          <div class="card-body d-flex flex-column justify-content-center">
+            <div class="display-4 fw-bold">{{ pageModel.count }}</div>
+            <div class="text-muted">theses in total</div>
           </div>
         </div>
       </div>
-      <div id="reviewertabl">
-        {% set thesisItems = theses.reviewerOnly %}
-        {% set showType = true %}
-        {% set ssrLimit = 5 %}
-        {% include "thesis-table.njk" %}
-        {% set ssrLimit = null %}
-      </div>
-    </div>
-  </div>
-  {% endif %}
-
-  <div class="text-muted small py-3">
-    Source: <a href="https://oulurepo.oulu.fi" target="_blank" rel="noopener noreferrer" class="text-decoration-underline">OuluREPO</a>,
-    University of Oulu publication archive.
-    Data fetched automatically via the OpenSearch API: {{ theses.fetchedAt | default("N/A") }}.
-  </div>
-
-</div>
-
-<div class="modal fade" id="thesisAbstractModal" tabindex="-1" aria-labelledby="thesisAbstractModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title fs-6" id="thesisAbstractModalLabel">Summary</h2>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="border rounded p-2 mb-3 bg-body-secondary">
-          <p class="text-uppercase mb-1" style="font-size:0.65rem;letter-spacing:.08em;color:var(--bs-secondary-color);">APA 7</p>
-          <p class="mb-0 small font-monospace lh-sm" id="thesisModalApaText"></p>
-        </div>
-        <h3 class="h6 mb-2" id="thesisAbstractModalTitle"></h3>
-        <div class="d-none d-md-block" style="max-height:260px;overflow-y:auto;padding-right:4px;">
-          <p class="small mb-0 text-body" id="thesisAbstractModalTextDesktop"></p>
-        </div>
-        <p class="d-md-none small mb-0 text-body thesis-abstract-snippet" id="thesisAbstractModalTextMobile"></p>
-      </div>
-      <div class="modal-footer gap-2">
-        <button type="button" class="btn btn-outline-secondary btn-sm" id="thesisAbstractExportBtn">
-          <i class="bi bi-quote me-1"></i>Export citation
-        </button>
-        <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" id="thesisAbstractModalOpen">
-          <i class="bi bi-box-arrow-up-right me-1"></i>Open full thesis
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="thesisCitationModal" tabindex="-1" aria-labelledby="thesisCitationModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title fs-5" id="thesisCitationModalLabel">Export citation</h2>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row g-3">
-          <div class="col-md-5">
-            <label for="thesisCitationFormatSelect" class="form-label small text-muted">Citation format</label>
-            <select id="thesisCitationFormatSelect" class="form-select form-select-sm">
-              <option value="bibtex">BibTeX (.bib)</option>
-              <option value="apa">APA 7</option>
-              <option value="mla">MLA</option>
-              <option value="chicago">Chicago</option>
-            </select>
-          </div>
-          <div class="col-md-7 d-flex align-items-end justify-content-md-end gap-2">
-            <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill" id="thesisCitationCopyBtn">
-              <i class="bi bi-clipboard me-1"></i>Copy
-            </button>
-            <button type="button" class="btn btn-primary btn-sm rounded-pill" id="thesisCitationDownloadBtn">
-              <i class="bi bi-download me-1"></i>Download
-            </button>
-            <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill" id="thesisCitationZoteroBtn" title="Download RIS for Zotero import">
-              <img src="https://cdn.simpleicons.org/zotero/cc2936" alt="" width="14" height="14" class="me-1 align-text-bottom">Zotero
-            </button>
-            <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill" id="thesisCitationMendeleyBtn" title="Download RIS for Mendeley import">
-              <img src="https://cdn.simpleicons.org/mendeley/9d1620" alt="" width="14" height="14" class="me-1 align-text-bottom">Mendeley
-            </button>
+      <div class="col-6 col-md-3">
+        <div class="card text-center border-secondary h-100 thesis-stat-card">
+          <div class="card-body d-flex flex-column justify-content-center">
+            <div class="display-4 fw-bold text-secondary">{{ theses.stats.totalReviewer }}</div>
+            <div class="text-muted">reviewed theses</div>
           </div>
         </div>
-        <div class="mt-3">
-          <label for="thesisCitationOutput" class="form-label small text-muted mb-1">Preview</label>
-          <textarea id="thesisCitationOutput" class="form-control form-control-sm font-monospace" rows="12" readonly></textarea>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pb-4">
+  <div class="site-shell">
+    <div class="card shadow-sm border-0">
+      <div class="card-body">
+        <div class="d-flex flex-wrap align-items-start justify-content-between gap-3">
+          <div>
+            <p class="text-uppercase small text-muted mb-1">Opening routes</p>
+            <h2 class="h4 mb-1">Topic entry points and recent work</h2>
+            <p class="text-muted mb-0">The interactive search layer is an enhancement. These links remain ordinary SSR HTML and work as navigable opening routes even without JavaScript.</p>
+          </div>
+          <span class="badge text-bg-light border text-dark">{{ theses.stats.firstYear }}–{{ theses.stats.lastYear }}</span>
+        </div>
+        <div class="d-flex flex-wrap gap-2 mt-3">
+          {% for option in pageModel.topicHighlights %}
+          <a href="/en/categories/{{ option.value | slugify }}/" class="btn btn-outline-secondary btn-sm rounded-pill">{{ option.label }} <span class="text-muted">({{ option.count }})</span></a>
+          {% endfor %}
         </div>
       </div>
     </div>
   </div>
-</div>
-
-<script>
-/* Progressive enhancement — Vaihe C3 (2026-08-08) - EN version.
-   Same pattern as /opinnaytteet/ (PR-C2). SSR renders 15 most recent per
-   tbody = 45 rows. JS fetches /data/theses.json and fills the rest before
-   DOM-based filtering activates. Works without JS at basic level. */
-const THESIS_RESEARCH_LINE_LABELS = {{ (researchProgram.thesisLineLabels or {}) | dump | safe }};
-const THESIS_RESEARCH_THEME_LABELS = {{ (researchProgram.thesisThemeLabels or {}) | dump | safe }};
-
-async function hydrateTheses() {
-  if (!window.ContentEngine) {
-    console.error('en/theses: window.ContentEngine missing');
-    return;
-  }
-  try {
-    const [gradutResult, kanditResult, reviewedResult] = await Promise.all([
-      window.ContentEngine.query({
-        source: 'theses',
-        filters: { thesisRole: 'advised', thesisType: 'masterThesis' }
-      }),
-      window.ContentEngine.query({
-        source: 'theses',
-        filters: { thesisRole: 'advised', thesisType: 'bachelorThesis' }
-      }),
-      window.ContentEngine.query({
-        source: 'theses',
-        filters: { thesisRole: 'reviewed' }
-      })
-    ]);
-    fillTbody(document.querySelector('#gradutabl tbody'), gradutResult.items, false);
-    fillTbody(document.querySelector('#kanditabl tbody'), kanditResult.items, false);
-    fillTbody(document.querySelector('#reviewertabl tbody'), reviewedResult.items, true);
-  } catch (e) {
-    console.error('hydrateTheses failed:', e);
-  }
-}
-
-function fillTbody(tbody, items, showType) {
-  if (!tbody) return;
-  tbody.innerHTML = items.map(t => renderThesisRow(t, showType)).join('');
-}
-
-function esc(v) {
-  return String(v == null ? '' : v)
-    .replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;').replaceAll("'", '&#39;');
-}
-
-function renderThesisRow(t, showType) {
-  const authors = (t.authors || []).join('; ');
-  const year = t.year || '';
-  const type = t.thesisType || '';
-  const themes = (t.researchThemes || []).join(' ');
-  const audience = (t.researchAudience || []).join(' ');
-  const detailLink = t.pageUrl || '';
-  const sourceLink = t.sourceUrl || t.url || t.id || '';
-  const primaryLink = detailLink || sourceLink;
-  const typeCell = showType ? `<td>${type === 'masterThesis'
-      ? "<span class=\"badge bg-primary\">Master's thesis</span>"
-      : type === 'bachelorThesis'
-        ? "<span class=\"badge bg-info\">Bachelor's thesis</span>"
-        : `<span class="badge bg-dark">${esc(type)}</span>`}</td>` : '';
-  const title = t.title || '';
-  const abstract = t.description || '';
-  const keywords = t.keywords || [];
-  const researchLine = t.researchLine || '';
-  const lineLabel = THESIS_RESEARCH_LINE_LABELS[researchLine] || researchLine;
-  const themesBadges = (t.researchThemes || [])
-    .map(th => `<span class="badge text-bg-light border text-secondary ms-1">${esc(THESIS_RESEARCH_THEME_LABELS[th] || th)}</span>`).join('');
-  const researchLineDiv = researchLine
-    ? `<div class="mt-1"><span class="badge text-bg-light border text-dark">${esc(lineLabel)}</span>${themesBadges}</div>`
-    : '';
-  const externalLink = sourceLink && sourceLink !== primaryLink
-    ? ` <a href="${esc(sourceLink)}" target="_blank" class="ms-2 text-decoration-none align-middle icon-only-link" rel="noopener noreferrer" aria-label="Open original thesis in OuluREPO: ${esc(title)}"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i></a>`
-    : '';
-  const titleCell = primaryLink
-    ? `<a href="${esc(primaryLink)}" class="fw-medium text-body text-decoration-none">${esc(title)}</a>${externalLink}
-       <button type="button" class="btn btn-outline-primary btn-sm rounded-pill px-2 ms-2 thesis-bib-btn" data-title="${esc(title)}" data-authors="${esc(authors)}" data-year="${esc(year)}" data-type="${esc(type)}" data-url="${esc(sourceLink)}" aria-label="Export citation: ${esc(title)}"><i class="bi bi-quote me-1" aria-hidden="true"></i>Export citation</button>
-       ${researchLineDiv}`
-    : `<span class="fw-medium">${esc(title)}</span>`;
-  const abstractCell = abstract
-    ? `<div class="small text-muted thesis-abstract-snippet">${esc(abstract)}</div>
-       <button type="button" class="btn btn-link btn-sm p-0 mt-1 thesis-abstract-trigger" data-thesis-title="${esc(title)}" data-thesis-abstract="${esc(abstract)}" data-thesis-url="${esc(sourceLink)}" data-thesis-authors="${esc(authors)}" data-thesis-year="${esc(year)}" data-thesis-type="${esc(type)}">Open summary</button>`
-    : '<span class="text-muted small">—</span>';
-  const keywordsCell = keywords.length
-    ? `<div class="d-flex flex-wrap gap-1">${keywords.map(kw => `<button type="button" class="badge text-bg-light border thesis-keyword-link" data-keyword="${esc(kw)}">${esc(kw)}</button>`).join('')}</div>`
-    : '<span class="text-muted small fst-italic">Not available</span>';
-  return `<tr data-year="${esc(year)}" data-type="${esc(type)}" data-research-line="${esc(researchLine)}" data-research-themes="${esc(themes)}" data-research-audience="${esc(audience)}">
-    <td class="small">${esc(authors)}</td>
-    <td class="col-year text-center font-monospace small fw-bold text-info">${esc(year)}</td>
-    ${typeCell}
-    <td>${titleCell}</td>
-    <td class="col-abstract">${abstractCell}</td>
-    <td class="col-subjects">${keywordsCell}</td>
-  </tr>`;
-}
-
-document.addEventListener('DOMContentLoaded', async () => {
-  // PR-C3: Fill tbody contents BEFORE filters activate.
-  await hydrateTheses();
-
-  const ITEMS_PER_PAGE = 5;
-  const urlState = new URL(window.location.href);
-  const urlParams = urlState.searchParams;
-  const defaultPageTitle = document.title;
-  const ogTitleMeta = document.querySelector('meta[property="og:title"]');
-  const twitterTitleMeta = document.querySelector('meta[name="twitter:title"]');
-  const defaultOgTitle = ogTitleMeta?.getAttribute('content') || '';
-  const defaultTwitterTitle = twitterTitleMeta?.getAttribute('content') || '';
-  const filterKey = (tableId) => `th_${tableId}_q`;
-  const setFilterParam = (key, value) => {
-    if (!value) {
-      urlParams.delete(key);
-      return;
-    }
-    urlParams.set(key, String(value).trim());
-  };
-  const updateFilterUrl = () => {
-    const qs = urlParams.toString();
-    const next = qs ? `${window.location.pathname}?${qs}${window.location.hash}` : `${window.location.pathname}${window.location.hash}`;
-    window.history.replaceState({}, '', next);
-    applyKeywordToPageShareMeta(getKeywordFromUrlContext());
-  };
-
-  function buildThesisBibTeX(payload) {
-    const title = (payload.title || '').trim();
-    const authors = (payload.authors || 'Laru, Jari').trim();
-    const year = String(payload.year || '').trim();
-    const thesisType = (payload.type || '').trim();
-    const url = (payload.url || '').trim();
-    const firstAuthor = authors.split(';')[0].trim();
-    const lastName = (firstAuthor.split(',')[0].trim().split(/\s+/).pop() || 'author')
-      .toLowerCase()
-      .replace(/[^a-z0-9]/g, '');
-    const firstWord = ((title.match(/[A-Za-zÅÄÖåäö0-9]+/) || ['thesis'])[0])
-      .toLowerCase()
-      .replace(/[^a-z0-9]/g, '');
-    const key = `${lastName}${year || 'nd'}${firstWord}`;
-    const bibType = thesisType === 'masterThesis' ? 'mastersthesis' : 'misc';
-    const safeTitle = title.replace(/[{}]/g, '');
-    const safeAuthors = authors.replace(/[{}]/g, '');
-
-    let bib = `@${bibType}{${key},\n`;
-    bib += `  title = {${safeTitle}},\n`;
-    bib += `  author = {${safeAuthors}},\n`;
-    if (year) bib += `  year = {${year}},\n`;
-    bib += `  school = {University of Oulu},\n`;
-    if (thesisType === 'bachelorThesis') bib += `  note = {Bachelor's thesis},\n`;
-    if (url) bib += `  url = {${url}},\n`;
-    bib += `}`;
-    return { key, bib };
-  }
-
-  function sanitizeFilenamePart(value) {
-    return String(value || '')
-      .toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/(^-|-$)/g, '')
-      .slice(0, 60) || 'citation';
-  }
-
-  function downloadTextFile(fileName, content) {
-    const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = fileName;
-    document.body.appendChild(link);
-    link.click();
-    URL.revokeObjectURL(link.href);
-    document.body.removeChild(link);
-  }
-
-  function escapeHtml(value) {
-    return String(value || '')
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#39;');
-  }
-
-  function getThesisLevelLabel(payload) {
-    if (payload.type === 'masterThesis') return "Master's thesis";
-    if (payload.type === 'bachelorThesis') return "Bachelor's thesis";
-    return 'Thesis';
-  }
-
-  function buildThesisApa(payload) {
-    const title = (payload.title || '').trim();
-    const authors = (payload.authors || '').trim();
-    const year = String(payload.year || '').trim() || 'n.d.';
-    const url = (payload.url || '').trim();
-    const level = getThesisLevelLabel(payload);
-    let citation = `${authors} (${year}). ${title} [${level}, University of Oulu].`;
-    if (url) citation += ` ${url}`;
-    return citation.trim();
-  }
-
-  function buildThesisMla(payload) {
-    const title = (payload.title || '').trim();
-    const authors = (payload.authors || '').trim();
-    const year = String(payload.year || '').trim();
-    const url = (payload.url || '').trim();
-    const level = getThesisLevelLabel(payload);
-    let citation = `${authors}. "${title}." ${level}, University of Oulu`;
-    if (year) citation += `, ${year}`;
-    citation += '.';
-    if (url) citation += ` ${url}`;
-    return citation.trim();
-  }
-
-  function buildThesisChicago(payload) {
-    const title = (payload.title || '').trim();
-    const authors = (payload.authors || '').trim();
-    const year = String(payload.year || '').trim() || 'n.d.';
-    const url = (payload.url || '').trim();
-    const level = getThesisLevelLabel(payload);
-    let citation = `${authors}. ${year}. "${title}." ${level}, University of Oulu.`;
-    if (url) citation += ` ${url}`;
-    return citation.trim();
-  }
-
-  function getThesisCitationByFormat(payload, format) {
-    if (format === 'apa') return buildThesisApa(payload);
-    if (format === 'mla') return buildThesisMla(payload);
-    if (format === 'chicago') return buildThesisChicago(payload);
-    const { bib } = buildThesisBibTeX(payload);
-    return bib;
-  }
-
-  function buildThesisRis(payload) {
-    const title = (payload.title || '').trim();
-    const authors = String(payload.authors || '')
-      .split(';')
-      .map((a) => a.trim())
-      .filter(Boolean);
-    const year = String(payload.year || '').trim();
-    const url = (payload.url || '').trim();
-    const level = getThesisLevelLabel(payload);
-    const lines = ['TY  - THES'];
-    authors.forEach((author) => lines.push(`AU  - ${author}`));
-    if (year) lines.push(`PY  - ${year}`);
-    if (title) lines.push(`TI  - ${title}`);
-    lines.push(`PB  - University of Oulu`);
-    lines.push(`M3  - ${level}`);
-    if (url) lines.push(`UR  - ${url}`);
-    lines.push('ER  -');
-    return lines.join('\n');
-  }
-
-  function initTablePagination(tableContainer) {
-    const table = tableContainer.querySelector('table');
-    if (!table) return;
-
-    const tbody = table.querySelector('tbody');
-    const rows = Array.from(tbody.querySelectorAll('tr'));
-    
-    // Create pagination container if it doesn't exist
-    let paginationNav = tableContainer.querySelector('.thesis-pagination');
-    if (!paginationNav) {
-      paginationNav = document.createElement('div');
-      const containerId = tableContainer.id || Math.random().toString(36).substring(7);
-      paginationNav.className = 'thesis-pagination site-pagination-bar site-pagination-bar--bottom mt-3';
-      paginationNav.innerHTML = `
-        <small class="site-pagination-info text-muted"></small>
-        <nav aria-label="Table pagination ${containerId}">
-          <ul class="pagination pagination-sm mb-0 flex-wrap site-pag"></ul>
-        </nav>
-      `;
-      tableContainer.appendChild(paginationNav);
-    }
-    
-    const ul = paginationNav.querySelector('ul');
-    const paginationInfo = paginationNav.querySelector('.site-pagination-info');
-    
-    let currentPage = 1;
-    let filteredRows = [...rows];
-
-    const searchInput = document.querySelector(`[data-thesis-search="${tableContainer.id}"]`);
-    const searchParamKey = filterKey(tableContainer.id);
-    if (searchInput) {
-      searchInput.value = urlParams.get(searchParamKey) || '';
-    }
-
-    function syncFiltersToUrl() {
-      setFilterParam(searchParamKey, searchInput?.value || '');
-      updateFilterUrl();
-    }
-
-    function renderPage(page) {
-      currentPage = page;
-      const totalPages = Math.ceil(filteredRows.length / ITEMS_PER_PAGE);
-      if (currentPage < 1) currentPage = 1;
-      if (currentPage > totalPages && totalPages > 0) currentPage = totalPages;
-
-      // Hide all rows
-      rows.forEach(r => r.style.display = 'none');
-
-      // Show rows for current page
-      const start = (currentPage - 1) * ITEMS_PER_PAGE;
-      const end = start + ITEMS_PER_PAGE;
-      filteredRows.slice(start, end).forEach(r => r.style.display = '');
-
-      if (paginationInfo) {
-        paginationInfo.textContent = filteredRows.length > 0
-          ? `${start + 1}-${Math.min(end, filteredRows.length)} / ${filteredRows.length} theses`
-          : 'No theses';
-      }
-
-      renderPaginationControls(totalPages);
-    }
-
-    function renderPaginationControls(totalPages) {
-      ul.innerHTML = '';
-      if (totalPages <= 1) return;
-
-      // Previous button
-      const prevLi = document.createElement('li');
-      prevLi.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
-      prevLi.innerHTML = `<button type="button" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></button>`;
-      prevLi.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (currentPage > 1) renderPage(currentPage - 1);
-      });
-      ul.appendChild(prevLi);
-
-      // Page numbers
-      for (let i = 1; i <= totalPages; i++) {
-        const li = document.createElement('li');
-        li.className = `page-item ${i === currentPage ? 'active' : ''}`;
-        li.innerHTML = `<button type="button" class="page-link" aria-label="Page ${i}">${i}</button>`;
-        li.addEventListener('click', (e) => {
-          e.preventDefault();
-          renderPage(i);
-        });
-        ul.appendChild(li);
-      }
-
-      // Next button
-      const nextLi = document.createElement('li');
-      nextLi.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
-      nextLi.innerHTML = `<button type="button" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></button>`;
-      nextLi.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (currentPage < totalPages) renderPage(currentPage + 1);
-      });
-      ul.appendChild(nextLi);
-    }
-
-    // Handle search filtering
-    if (searchInput) {
-      searchInput.addEventListener('input', () => {
-        const q = searchInput.value.toLowerCase();
-        filteredRows = rows.filter(row => row.textContent.toLowerCase().includes(q));
-        syncFiltersToUrl();
-        renderPage(1);
-      });
-    }
-
-    // Initial render
-    if (searchInput && searchInput.value) {
-      const q = searchInput.value.toLowerCase();
-      filteredRows = rows.filter(row => row.textContent.toLowerCase().includes(q));
-      syncFiltersToUrl();
-    }
-    renderPage(1);
-  }
-
-  // Initialize pagination for each table container
-  ['gradutabl', 'kanditabl', 'reviewertabl'].forEach(id => {
-    const container = document.getElementById(id);
-    if (container) {
-      initTablePagination(container);
-    }
-  });
-
-  let currentCitationPayload = null;
-  const thesisCitationModalEl = document.getElementById('thesisCitationModal');
-  const thesisCitationFormatSelect = document.getElementById('thesisCitationFormatSelect');
-  const thesisCitationOutput = document.getElementById('thesisCitationOutput');
-  const thesisCitationDownloadBtn = document.getElementById('thesisCitationDownloadBtn');
-  const thesisCitationCopyBtn = document.getElementById('thesisCitationCopyBtn');
-  const thesisCitationZoteroBtn = document.getElementById('thesisCitationZoteroBtn');
-  const thesisCitationMendeleyBtn = document.getElementById('thesisCitationMendeleyBtn');
-
-  function renderThesisCitationPreview() {
-    if (!currentCitationPayload || !thesisCitationOutput) return;
-    const format = thesisCitationFormatSelect?.value || 'bibtex';
-    thesisCitationOutput.value = getThesisCitationByFormat(currentCitationPayload, format);
-  }
-
-  document.querySelectorAll('.thesis-bib-btn').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      currentCitationPayload = {
-        title: btn.dataset.title || '',
-        authors: btn.dataset.authors || '',
-        year: btn.dataset.year || '',
-        type: btn.dataset.type || '',
-        url: btn.dataset.url || ''
-      };
-      if (thesisCitationFormatSelect) thesisCitationFormatSelect.value = 'bibtex';
-      renderThesisCitationPreview();
-      if (window.bootstrap && window.bootstrap.Modal && thesisCitationModalEl) {
-        window.bootstrap.Modal.getOrCreateInstance(thesisCitationModalEl).show();
-      }
-    });
-  });
-
-  if (thesisCitationFormatSelect) {
-    thesisCitationFormatSelect.addEventListener('change', renderThesisCitationPreview);
-  }
-
-  if (thesisCitationDownloadBtn) {
-    thesisCitationDownloadBtn.addEventListener('click', () => {
-      if (!currentCitationPayload) return;
-      const format = thesisCitationFormatSelect?.value || 'bibtex';
-      const citation = getThesisCitationByFormat(currentCitationPayload, format);
-      const base = sanitizeFilenamePart(currentCitationPayload.title || currentCitationPayload.authors || 'citation');
-      const ext = format === 'bibtex' ? 'bib' : 'txt';
-      downloadTextFile(`${base}.${ext}`, citation + '\n');
-    });
-  }
-
-  if (thesisCitationCopyBtn) {
-    thesisCitationCopyBtn.addEventListener('click', async () => {
-      if (!thesisCitationOutput?.value) return;
-      try {
-        await navigator.clipboard.writeText(thesisCitationOutput.value);
-        thesisCitationCopyBtn.innerHTML = '<i class="bi bi-check2 me-1"></i>Copied';
-        setTimeout(() => {
-          thesisCitationCopyBtn.innerHTML = '<i class="bi bi-clipboard me-1"></i>Copy';
-        }, 1200);
-      } catch (_) {
-        thesisCitationOutput.select();
-        document.execCommand('copy');
-      }
-    });
-  }
-
-  if (thesisCitationZoteroBtn) {
-    thesisCitationZoteroBtn.addEventListener('click', () => {
-      if (!currentCitationPayload) return;
-      const base = sanitizeFilenamePart(currentCitationPayload.title || currentCitationPayload.authors || 'citation');
-      downloadTextFile(`${base}-zotero.ris`, buildThesisRis(currentCitationPayload) + '\n');
-    });
-  }
-
-  if (thesisCitationMendeleyBtn) {
-    thesisCitationMendeleyBtn.addEventListener('click', () => {
-      if (!currentCitationPayload) return;
-      const base = sanitizeFilenamePart(currentCitationPayload.title || currentCitationPayload.authors || 'citation');
-      downloadTextFile(`${base}-mendeley.ris`, buildThesisRis(currentCitationPayload) + '\n');
-    });
-  }
-
-  const abstractModalEl = document.getElementById('thesisAbstractModal');
-  const abstractModalTitle = document.getElementById('thesisAbstractModalTitle');
-  const abstractModalTextDesktop = document.getElementById('thesisAbstractModalTextDesktop');
-  const abstractModalTextMobile = document.getElementById('thesisAbstractModalTextMobile');
-  const abstractModalOpen = document.getElementById('thesisAbstractModalOpen');
-  const thesisModalApaText = document.getElementById('thesisModalApaText');
-  const thesisAbstractExportBtn = document.getElementById('thesisAbstractExportBtn');
-
-  document.addEventListener('click', (event) => {
-    const trigger = event.target.closest('.thesis-abstract-trigger');
-    if (!trigger) return;
-    event.preventDefault();
-    const title = trigger.getAttribute('data-thesis-title') || 'Thesis';
-    const summary = trigger.getAttribute('data-thesis-abstract') || 'No summary available.';
-    const url = trigger.getAttribute('data-thesis-url') || '#';
-    const authors = trigger.getAttribute('data-thesis-authors') || '';
-    const year = trigger.getAttribute('data-thesis-year') || '';
-    const type = trigger.getAttribute('data-thesis-type') || '';
-    currentCitationPayload = { title, authors, year, type, url };
-    if (abstractModalTitle) abstractModalTitle.textContent = title;
-    const escaped = escapeHtml(summary).replace(/\n/g, '<br>');
-    if (abstractModalTextDesktop) abstractModalTextDesktop.innerHTML = escaped;
-    if (abstractModalTextMobile) abstractModalTextMobile.innerHTML = escaped;
-    if (abstractModalOpen) abstractModalOpen.href = url;
-    if (thesisModalApaText) thesisModalApaText.textContent = buildThesisApa(currentCitationPayload);
-    if (window.bootstrap && window.bootstrap.Modal && abstractModalEl) {
-      window.bootstrap.Modal.getOrCreateInstance(abstractModalEl).show();
-    }
-  });
-
-  if (thesisAbstractExportBtn) {
-    thesisAbstractExportBtn.addEventListener('click', () => {
-      if (!currentCitationPayload) return;
-      if (thesisCitationFormatSelect) thesisCitationFormatSelect.value = 'apa';
-      renderThesisCitationPreview();
-      if (window.bootstrap && window.bootstrap.Modal && thesisCitationModalEl) {
-        window.bootstrap.Modal.getOrCreateInstance(thesisCitationModalEl).show();
-      }
-    });
-  }
-
-  // ---- Keyword cloud by categories ----
-  function buildKeywordCloud() {
-    const cloudContainer = document.getElementById('thesis-cloud-container');
-    const clearBtn = document.getElementById('thesis-cloud-clear');
-    if (!cloudContainer) return;
-
-    const freq = new Map();
-    document.querySelectorAll('.thesis-keyword-link[data-keyword]').forEach(btn => {
-      const kw = (btn.dataset.keyword || '').trim().toLowerCase();
-      if (!kw) return;
-      freq.set(kw, (freq.get(kw) || 0) + 1);
-    });
-    const allCounts = Array.from(freq.values());
-    const minCount = allCounts.length ? Math.min(...allCounts) : 1;
-    const maxCount = allCounts.length ? Math.max(...allCounts) : 1;
-    const normalize = (count) => {
-      if (maxCount === minCount) return 0.5;
-      return (count - minCount) / (maxCount - minCount);
-    };
-
-    let categories = null;
-    const catScript = document.getElementById('thesis-keyword-categories');
-    if (catScript) {
-      try { categories = JSON.parse(catScript.textContent); } catch (_) {}
-    }
-    cloudContainer.innerHTML = '';
-
-    if (!categories || Object.keys(categories).length === 0) {
-      const subjects = Array.from(freq.keys()).sort((a, b) => a.localeCompare(b, 'en'));
-      if (subjects.length === 0) {
-        cloudContainer.innerHTML = '<span class="text-muted small p-3 d-block">No keywords available.</span>';
-        return;
-      }
-      const wrapper = document.createElement('div');
-      wrapper.className = 'd-flex flex-wrap gap-1 p-3';
-      subjects.forEach((kw) => {
-        wrapper.appendChild(makeKwBadge(kw, freq.get(kw) || 1, normalize));
-      });
-      cloudContainer.appendChild(wrapper);
-      setupClearBtn(clearBtn, cloudContainer);
-      return;
-    }
-
-    const accordion = document.createElement('div');
-    accordion.className = 'accordion accordion-flush';
-    accordion.id = 'thesis-cat-accordion';
-
-    const catEntries = Object.entries(categories);
-    catEntries.forEach(([catName, keywords], idx) => {
-      if (!Array.isArray(keywords) || keywords.length === 0) return;
-      const item = document.createElement('div');
-      item.className = 'accordion-item';
-
-      const headerId = `thesis-cat-h${idx}`;
-      const collapseId = `thesis-cat-c${idx}`;
-      const isFirst = idx === 0;
-
-      item.innerHTML = `
-        <h3 class="accordion-header" id="${headerId}">
-          <button class="accordion-button${isFirst ? '' : ' collapsed'} py-2 small fw-semibold" type="button"
-            data-bs-toggle="collapse" data-bs-target="#${collapseId}"
-            aria-expanded="${isFirst}" aria-controls="${collapseId}">
-            <i class="bi bi-tag-fill me-2 text-primary opacity-75"></i>${catName}
-            <span class="badge text-bg-secondary ms-2 fw-normal">${keywords.length}</span>
-          </button>
-        </h3>
-        <div id="${collapseId}" class="accordion-collapse collapse${isFirst ? ' show' : ''}"
-          aria-labelledby="${headerId}" data-bs-parent="#thesis-cat-accordion">
-          <div class="accordion-body py-2 d-flex flex-wrap gap-1" id="thesis-cat-body-${idx}"></div>
-        </div>`;
-
-      accordion.appendChild(item);
-
-      const body = item.querySelector(`#thesis-cat-body-${idx}`);
-      const sorted = [...keywords].sort((a, b) => {
-        const countDiff = (freq.get(b.toLowerCase()) || 0) - (freq.get(a.toLowerCase()) || 0);
-        return countDiff !== 0 ? countDiff : a.localeCompare(b, 'en');
-      });
-      sorted.forEach((kw) => {
-        const count = freq.get(kw.toLowerCase()) || 0;
-        body.appendChild(makeKwBadge(kw, count, normalize));
-      });
-    });
-
-    cloudContainer.appendChild(accordion);
-    setupClearBtn(clearBtn, cloudContainer);
-  }
-
-  function makeKwBadge(kw, count, normalize) {
-    const scale = normalize(count);
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'badge text-bg-light border thesis-keyword-link';
-    btn.dataset.keyword = kw;
-    btn.textContent = kw;
-    btn.setAttribute('aria-pressed', 'false');
-    btn.style.setProperty('--thesis-keyword-size', `${(0.78 + (scale * 0.52)).toFixed(2)}rem`);
-    btn.style.setProperty('--thesis-keyword-weight', String(Math.round(450 + (scale * 250))));
-    if (count > 0) btn.title = `${kw} (${count} theses)`;
-    return btn;
-  }
-
-  function setupClearBtn(clearBtn, cloudContainer) {
-    if (!clearBtn) return;
-    clearBtn.addEventListener('click', () => {
-      document.querySelectorAll('[data-thesis-search]').forEach(input => {
-        input.value = '';
-        input.dispatchEvent(new Event('input', { bubbles: true }));
-      });
-      cloudContainer.querySelectorAll('.thesis-keyword-link').forEach(b => {
-        b.classList.remove('text-bg-primary', 'active');
-        b.classList.add('text-bg-light');
-        b.setAttribute('aria-pressed', 'false');
-      });
-      clearBtn.style.setProperty('display', 'none', 'important');
-    });
-  }
-
-  function findCloudKeywordButton(cloudContainer, keyword) {
-    if (!cloudContainer || !keyword) return null;
-    const normalized = String(keyword).trim().toLowerCase();
-    if (!normalized) return null;
-    return Array.from(cloudContainer.querySelectorAll('.thesis-keyword-link[data-keyword]'))
-      .find((btn) => (btn.dataset.keyword || '').trim().toLowerCase() === normalized) || null;
-  }
-
-  function activateKeywordContext(keyword) {
-    const clearBtn = document.getElementById('thesis-cloud-clear');
-    const cloudContainer = document.getElementById('thesis-cloud-container');
-    if (!cloudContainer || !keyword) return false;
-
-    cloudContainer.querySelectorAll('.thesis-keyword-link').forEach((b) => {
-      b.classList.remove('text-bg-primary', 'active');
-      b.classList.add('text-bg-light');
-      b.setAttribute('aria-pressed', 'false');
-    });
-
-    const cloudBtn = findCloudKeywordButton(cloudContainer, keyword);
-    if (!cloudBtn) return false;
-
-    cloudBtn.classList.remove('text-bg-light');
-    cloudBtn.classList.add('text-bg-primary', 'active');
-    cloudBtn.setAttribute('aria-pressed', 'true');
-    if (clearBtn) clearBtn.style.removeProperty('display');
-
-    const collapse = cloudBtn.closest('.accordion-collapse');
-    if (collapse && !collapse.classList.contains('show') && window.bootstrap?.Collapse) {
-      window.bootstrap.Collapse.getOrCreateInstance(collapse).show();
-    }
-    return true;
-  }
-
-  function getKeywordFromUrlContext() {
-    const direct = (urlParams.get('keyword') || urlParams.get('avainsana') || '').trim();
-    if (direct) return direct;
-    const searchKeys = Array.from(urlParams.keys()).filter((key) => /^th_.+_q$/.test(key));
-    for (const key of searchKeys) {
-      const value = (urlParams.get(key) || '').trim();
-      if (value) return value;
-    }
-    return '';
-  }
-
-  function applyKeywordToPageShareMeta(keyword) {
-    const term = String(keyword || '').trim();
-    if (!term) {
-      document.title = defaultPageTitle;
-      if (ogTitleMeta && defaultOgTitle) ogTitleMeta.setAttribute('content', defaultOgTitle);
-      if (twitterTitleMeta && defaultTwitterTitle) twitterTitleMeta.setAttribute('content', defaultTwitterTitle);
-      return;
-    }
-    const dynamicTitle = `${defaultPageTitle} | Keyword: ${term}`;
-    document.title = dynamicTitle;
-    if (ogTitleMeta) ogTitleMeta.setAttribute('content', dynamicTitle);
-    if (twitterTitleMeta) twitterTitleMeta.setAttribute('content', dynamicTitle);
-  }
-
-  // Delegated click for all keyword buttons (cloud + table rows)
-  document.addEventListener('click', (event) => {
-    const kwBtn = event.target.closest('.thesis-keyword-link');
-    if (!kwBtn) return;
-    const kw = kwBtn.dataset.keyword || '';
-    activateKeywordContext(kw);
-
-    // Set keyword in all search inputs and trigger filtering
-    document.querySelectorAll('[data-thesis-search]').forEach(input => {
-      input.value = kw;
-      input.dispatchEvent(new Event('input', { bubbles: true }));
-    });
-
-    // Scroll to first table card
-    const firstCard = document.getElementById('card-master');
-    if (firstCard) firstCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-
-  buildKeywordCloud();
-  const initialKeyword = getKeywordFromUrlContext();
-  if (initialKeyword) activateKeywordContext(initialKeyword);
-  applyKeywordToPageShareMeta(initialKeyword);
-
-});
-</script>
-
-<style>
-.pub-table th {
-  white-space: nowrap;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  background-color: var(--bs-secondary-bg);
-}
-
-html[data-bs-theme="dark"]:not([data-a11y-bg]) .bg-light-subtle { background-color: #1e2a3a !important; }
-[data-bs-theme="dark"] .card { border-color: rgba(255,255,255,0.08) !important; }
-
-.thesis-stat-card .display-4 {
-  font-size: clamp(2.4rem, 4vw, 3.5rem);
-}
-
-.thesis-abstract-snippet {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-#thesis-cloud-container .thesis-keyword-link {
-  font-size: var(--thesis-keyword-size, 0.9rem);
-  font-weight: var(--thesis-keyword-weight, 550);
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-#thesis-subject-cloud .accordion-button {
-  background: transparent;
-  box-shadow: none;
-}
-
-#thesis-subject-cloud .accordion-button:not(.collapsed) {
-  background: rgba(13, 110, 253, 0.08);
-  color: var(--bs-body-color);
-}
-
-#thesis-subject-cloud .accordion-item {
-  border: 0;
-  border-bottom: 1px solid var(--bs-border-color-translucent);
-}
-
-#thesis-subject-cloud .accordion-item:first-child {
-  border-top: 1px solid var(--bs-border-color-translucent);
-}
-
-[data-bs-theme="dark"] #thesis-subject-cloud .accordion-button:not(.collapsed) {
-  background: rgba(125, 184, 240, 0.15);
-}
-
-[data-bs-theme="dark"] #thesis-subject-cloud .accordion-item {
-  border-bottom-color: rgba(255, 255, 255, 0.12);
-}
-
-@media (max-width: 767.98px) {
-  .thesis-stats-row {
-    margin-top: 1rem !important;
-    margin-bottom: 1rem !important;
-  }
-
-  .thesis-stat-card .card-body {
-    min-height: 6.6rem;
-    padding: 0.8rem 0.55rem;
-  }
-
-  .thesis-stat-card .display-4 {
-    font-size: clamp(2rem, 11vw, 2.7rem);
-    line-height: 0.95;
-  }
-
-  .thesis-stat-card .text-muted {
-    font-size: 0.82rem;
-    line-height: 1.15;
-  }
-}
-</style>
+</section>
+
+{% include "find-explore-writings.njk" %}
+
+<section id="masters" class="bg-body-tertiary py-4">
+  <div class="site-shell">
+    <div class="card shadow-sm border-0">
+      <div class="card-body">
+        <div class="d-flex flex-wrap align-items-start justify-content-between gap-3 mb-3">
+          <div>
+            <h2 class="h4 mb-1"><i class="bi bi-mortarboard-fill me-2 text-primary"></i>Supervised master's theses</h2>
+            <p class="text-muted mb-0">A curated SSR opening to the most recent supervised master's theses. Find & Explore covers the full canonical set.</p>
+          </div>
+          <span class="badge text-bg-primary">{{ theses.stats.totalGradut }}</span>
+        </div>
+        {% set thesisItems = pageModel.opening.advisedMasterItems %}
+        {% set thesisLang = "en" %}
+        {% set thesisEmptyLabel = "No master's theses available." %}
+        {% include "thesis-curated-list.njk" %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="bachelors" class="py-4">
+  <div class="site-shell">
+    <div class="card shadow-sm border-0">
+      <div class="card-body">
+        <div class="d-flex flex-wrap align-items-start justify-content-between gap-3 mb-3">
+          <div>
+            <h2 class="h4 mb-1"><i class="bi bi-book-half me-2 text-info"></i>Supervised bachelor's theses</h2>
+            <p class="text-muted mb-0">Recent bachelor's theses with the same local-detail-first routing model as the Finnish archive view.</p>
+          </div>
+          <span class="badge text-bg-info">{{ theses.stats.totalKandit }}</span>
+        </div>
+        {% set thesisItems = pageModel.opening.advisedBachelorItems %}
+        {% set thesisLang = "en" %}
+        {% set thesisEmptyLabel = "No bachelor's theses available." %}
+        {% include "thesis-curated-list.njk" %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% if pageModel.reviewedItems.length %}
+<section id="reviewed" class="bg-body-tertiary py-4">
+  <div class="site-shell">
+    <div class="card shadow-sm border-0">
+      <div class="card-body">
+        <div class="d-flex flex-wrap align-items-start justify-content-between gap-3 mb-3">
+          <div>
+            <h2 class="h4 mb-1"><i class="bi bi-eye-fill me-2 text-secondary"></i>Reviewed theses</h2>
+            <p class="text-muted mb-0">A separate opening series for theses where Jari Laru acted as reviewer rather than primary supervisor.</p>
+          </div>
+          <span class="badge text-bg-secondary">{{ theses.stats.totalReviewer }}</span>
+        </div>
+        {% set thesisItems = pageModel.opening.reviewedItems %}
+        {% set thesisLang = "en" %}
+        {% set thesisEmptyLabel = "No reviewed theses available." %}
+        {% include "thesis-curated-list.njk" %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section class="pb-5">
+  <div class="site-shell">
+    <p class="text-muted small mb-0">
+      Source: <a href="https://oulurepo.oulu.fi" target="_blank" rel="noopener noreferrer" class="text-decoration-underline">OuluREPO</a>, University of Oulu publication archive. Canonical metadata, abstract provenance and source semantics remain on the thesis detail layer.
+    </p>
+  </div>
+ </section>
+{% include "thesis-hub-modals.njk" %}

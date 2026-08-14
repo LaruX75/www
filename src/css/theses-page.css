@@ -85,6 +85,15 @@ display: -webkit-box;
 overflow: hidden;
 }
 
+.thesis-curated-card .card-body {
+position: relative;
+}
+
+.thesis-curated-actions {
+position: relative;
+z-index: 2;
+}
+
 #thesis-subject-cloud .accordion-button {
 background-color: transparent;
 border-color: #6c757d; /* 4.23:1 against white card bg (WCAG 1.4.11) */

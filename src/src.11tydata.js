@@ -27,6 +27,7 @@ const {
   buildWritingsPageModel,
   FI_COMPATIBILITY_CONTENT_TYPES
 } = require("./_data/writingsPage");
+const { buildThesisFindExploreDocument } = require("./_utils/thesesFindExplore");
 
 const writingsLookupCache = new WeakMap();
 
@@ -78,12 +79,20 @@ function resolvePagefindWritings(data) {
     .forEach((category) => filters.push({ name: "Writings topic", value: category }));
 
   return {
-    id: item.id,
-    pageUrl: item.pageUrl,
-    contentType: item.contentType,
-    year: item.year || null,
-    filters
+    filters,
+    meta: {
+      writingsContentType: item.contentType,
+      writingsYear: item.year || ""
+    }
   };
+}
+
+function resolvePagefindDocument(data) {
+  if (data?.thesisDetail) {
+    return buildThesisFindExploreDocument(data.thesisDetail);
+  }
+
+  return resolvePagefindWritings(data);
 }
 
 // URL -> breadcrumbKey (tarkat vertailut)
@@ -232,6 +241,6 @@ module.exports = {
     breadcrumbKey: (data) => resolveBreadcrumbKey(data),
     breadcrumbDetailTitle: (data) => resolveBreadcrumbDetail(data).title,
     breadcrumbDetailUrl: (data) => resolveBreadcrumbDetail(data).url,
-    pagefindWritings: (data) => resolvePagefindWritings(data)
+    pagefindDocument: (data) => resolvePagefindDocument(data)
   }
 };

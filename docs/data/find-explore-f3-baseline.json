@@ -1,0 +1,944 @@
+{
+  "generatedAt": "2026-08-12T20:05:46.104Z",
+  "writingsReference": {
+    "fi": {
+      "htmlBytes": 120447,
+      "elementCount": 1136,
+      "searchInputs": 3,
+      "selects": 2,
+      "buttons": 35,
+      "tables": 0,
+      "runtimeJsonFetchedByPage": 0,
+      "independentDiscoveryRuntimes": 0
+    },
+    "en": {
+      "htmlBytes": 145537,
+      "elementCount": 1397,
+      "searchInputs": 3,
+      "selects": 2,
+      "buttons": 35,
+      "tables": 0,
+      "runtimeJsonFetchedByPage": 0,
+      "independentDiscoveryRuntimes": 0
+    }
+  },
+  "pages": {
+    "thesesFi": {
+      "label": "/opinnaytteet/",
+      "htmlBytes": 171215,
+      "elementCount": 1312,
+      "searchInputs": 3,
+      "selects": 4,
+      "buttons": 66,
+      "tables": 0,
+      "rows": 0,
+      "cards": 24,
+      "links": 206,
+      "localScripts": [
+        "/js/bootstrap.min.js",
+        "/js/external-media-consent.js",
+        "/js/site-ui.js?v=20260801-search-submit-2",
+        "/js/a11y.js",
+        "/js/find-explore.js",
+        "/js/thesis-hub-actions.js"
+      ],
+      "localScriptCount": 6,
+      "inlineScriptBytes": 5965,
+      "jsonRequests": [],
+      "jsonRequestCount": 0,
+      "scriptEvidence": {
+        "/js/bootstrap.min.js": "present",
+        "/js/external-media-consent.js": "present",
+        "/js/site-ui.js?v=20260801-search-submit-2": "missing",
+        "/js/a11y.js": "present",
+        "/js/find-explore.js": "present",
+        "/js/thesis-hub-actions.js": "present"
+      },
+      "htmlSignals": {
+        "hasFindExploreMount": true,
+        "hasTableFiltersScript": false,
+        "hasContentEngineScript": false,
+        "hasPresentationsPageScript": false,
+        "hasCitationModal": true,
+        "hasKeywordCloud": false,
+        "hasYearBar": true
+      }
+    },
+    "thesesEn": {
+      "label": "/en/theses/",
+      "htmlBytes": 163185,
+      "elementCount": 1251,
+      "searchInputs": 3,
+      "selects": 4,
+      "buttons": 66,
+      "tables": 0,
+      "rows": 0,
+      "cards": 24,
+      "links": 187,
+      "localScripts": [
+        "/js/bootstrap.min.js",
+        "/js/external-media-consent.js",
+        "/js/site-ui.js?v=20260801-search-submit-2",
+        "/js/a11y.js",
+        "/js/find-explore.js",
+        "/js/thesis-hub-actions.js"
+      ],
+      "localScriptCount": 6,
+      "inlineScriptBytes": 5373,
+      "jsonRequests": [],
+      "jsonRequestCount": 0,
+      "scriptEvidence": {
+        "/js/bootstrap.min.js": "present",
+        "/js/external-media-consent.js": "present",
+        "/js/site-ui.js?v=20260801-search-submit-2": "missing",
+        "/js/a11y.js": "present",
+        "/js/find-explore.js": "present",
+        "/js/thesis-hub-actions.js": "present"
+      },
+      "htmlSignals": {
+        "hasFindExploreMount": true,
+        "hasTableFiltersScript": false,
+        "hasContentEngineScript": false,
+        "hasPresentationsPageScript": false,
+        "hasCitationModal": true,
+        "hasKeywordCloud": false,
+        "hasYearBar": true
+      }
+    },
+    "publicationsFi": {
+      "label": "/julkaisut/",
+      "htmlBytes": 351370,
+      "elementCount": 2087,
+      "searchInputs": 8,
+      "selects": 19,
+      "buttons": 107,
+      "tables": 7,
+      "rows": 29,
+      "cards": 13,
+      "links": 209,
+      "localScripts": [
+        "/js/bootstrap.min.js",
+        "/js/external-media-consent.js",
+        "/js/site-ui.js?v=20260801-search-submit-2",
+        "/js/table-filters.js",
+        "/js/a11y.js",
+        "/js/pe-list-render.js",
+        "/js/content-presets.js",
+        "/js/content-engine.js"
+      ],
+      "localScriptCount": 8,
+      "inlineScriptBytes": 74532,
+      "jsonRequests": [
+        "/data/publications-page.json",
+        "/data/taxonomy-index.json",
+        "/data/content.json",
+        "/data/publications.json",
+        "/data/presentations.json",
+        "/data/media.json",
+        "/data/theses.json",
+        "/data/initiatives.json",
+        "/data/council-speeches.json",
+        "/data/researchfi.json"
+      ],
+      "jsonRequestCount": 10,
+      "scriptEvidence": {
+        "/js/bootstrap.min.js": "present",
+        "/js/external-media-consent.js": "present",
+        "/js/site-ui.js?v=20260801-search-submit-2": "missing",
+        "/js/table-filters.js": "present",
+        "/js/a11y.js": "present",
+        "/js/pe-list-render.js": "present",
+        "/js/content-presets.js": "present",
+        "/js/content-engine.js": "present"
+      },
+      "htmlSignals": {
+        "hasFindExploreMount": false,
+        "hasTableFiltersScript": true,
+        "hasContentEngineScript": true,
+        "hasPresentationsPageScript": false,
+        "hasCitationModal": true,
+        "hasKeywordCloud": false,
+        "hasYearBar": true
+      }
+    },
+    "publicationsEn": {
+      "label": "/en/publications/",
+      "htmlBytes": 285640,
+      "elementCount": 2177,
+      "searchInputs": 8,
+      "selects": 0,
+      "buttons": 33,
+      "tables": 7,
+      "rows": 58,
+      "cards": 11,
+      "links": 241,
+      "localScripts": [
+        "/js/bootstrap.min.js",
+        "/js/external-media-consent.js",
+        "/js/site-ui.js?v=20260801-search-submit-2",
+        "/js/table-filters.js",
+        "/js/a11y.js"
+      ],
+      "localScriptCount": 5,
+      "inlineScriptBytes": 36726,
+      "jsonRequests": [],
+      "jsonRequestCount": 0,
+      "scriptEvidence": {
+        "/js/bootstrap.min.js": "present",
+        "/js/external-media-consent.js": "present",
+        "/js/site-ui.js?v=20260801-search-submit-2": "missing",
+        "/js/table-filters.js": "present",
+        "/js/a11y.js": "present"
+      },
+      "htmlSignals": {
+        "hasFindExploreMount": false,
+        "hasTableFiltersScript": true,
+        "hasContentEngineScript": false,
+        "hasPresentationsPageScript": false,
+        "hasCitationModal": true,
+        "hasKeywordCloud": false,
+        "hasYearBar": true
+      }
+    },
+    "presentationsFi": {
+      "label": "/esitykset/",
+      "htmlBytes": 305195,
+      "elementCount": 2520,
+      "searchInputs": 2,
+      "selects": 1,
+      "buttons": 52,
+      "tables": 3,
+      "rows": 3,
+      "cards": 8,
+      "links": 493,
+      "localScripts": [
+        "/js/bootstrap.min.js",
+        "/js/external-media-consent.js",
+        "/js/site-ui.js?v=20260801-search-submit-2",
+        "/js/table-filters.js",
+        "/js/a11y.js",
+        "/js/presentations-page.js"
+      ],
+      "localScriptCount": 6,
+      "inlineScriptBytes": 6181,
+      "jsonRequests": [
+        "/data/presentations-page.json"
+      ],
+      "jsonRequestCount": 1,
+      "scriptEvidence": {
+        "/js/bootstrap.min.js": "present",
+        "/js/external-media-consent.js": "present",
+        "/js/site-ui.js?v=20260801-search-submit-2": "missing",
+        "/js/table-filters.js": "present",
+        "/js/a11y.js": "present",
+        "/js/presentations-page.js": "present"
+      },
+      "htmlSignals": {
+        "hasFindExploreMount": false,
+        "hasTableFiltersScript": true,
+        "hasContentEngineScript": false,
+        "hasPresentationsPageScript": true,
+        "hasCitationModal": true,
+        "hasKeywordCloud": false,
+        "hasYearBar": true
+      }
+    },
+    "presentationsEn": {
+      "label": "/en/presentations/",
+      "htmlBytes": 440574,
+      "elementCount": 1440,
+      "searchInputs": 2,
+      "selects": 0,
+      "buttons": 33,
+      "tables": 3,
+      "rows": 3,
+      "cards": 4,
+      "links": 280,
+      "localScripts": [
+        "/js/bootstrap.min.js",
+        "/js/external-media-consent.js",
+        "/js/site-ui.js?v=20260801-search-submit-2",
+        "/js/table-filters.js",
+        "/js/a11y.js"
+      ],
+      "localScriptCount": 5,
+      "inlineScriptBytes": 237729,
+      "jsonRequests": [],
+      "jsonRequestCount": 0,
+      "scriptEvidence": {
+        "/js/bootstrap.min.js": "present",
+        "/js/external-media-consent.js": "present",
+        "/js/site-ui.js?v=20260801-search-submit-2": "missing",
+        "/js/table-filters.js": "present",
+        "/js/a11y.js": "present"
+      },
+      "htmlSignals": {
+        "hasFindExploreMount": false,
+        "hasTableFiltersScript": true,
+        "hasContentEngineScript": false,
+        "hasPresentationsPageScript": false,
+        "hasCitationModal": true,
+        "hasKeywordCloud": false,
+        "hasYearBar": true
+      }
+    }
+  },
+  "datasets": {
+    "theses": {
+      "count": 169,
+      "sampleTitles": [
+        "6-luokkalaisten kokemuksia matematiikka-ahdistuksesta",
+        "ADHD-oireisten kokemuksia kuormituksesta koulussa",
+        "Digitaalinen peli Simply Piano musiikinteorian oppimisen tukena musiikkiluokalla yläkoulussa",
+        "Digitaaliset oppimisympäristöt esi- ja alkuopetuksessa : vaikutukset lapsen oppimiseen ja opettajien pedagogisiin ratkaisuihin",
+        "Emotionaalisen älykkyyden ja koulukiusaamisen väliset yhteydet alakoulussa"
+      ],
+      "withPageUrl": 169,
+      "withDescription": 127,
+      "withLang": 169
+    },
+    "publications": {
+      "count": 56,
+      "sampleTitles": [
+        "Assessing Digital Competence of K1-12 Teachers in Kosovo: A Study through the Lens of DigCompEdu and TPACK",
+        "Co-constructing adaptive lesson plans with GenAI: Pre-service teachers' Intelligent-TPACK and prompt engineering strategies",
+        "Computational thinking in collaborative programming discourse: an epistemic network analysis",
+        "Ohjelmoinnista ohjelmoinnilliseen ajatteluun ja tekoälytaitojen edistämiseen",
+        "Generation AI -projekti"
+      ],
+      "withPageUrl": 56,
+      "withDescription": 56,
+      "withLang": 56
+    },
+    "presentations": {
+      "count": 210,
+      "sampleTitles": [
+        "3. luento tieto- ja viestintätekniikan pedagogiset perusteet: tietokoneavusteinen yhteisöllinen oppiminen (CSCL)",
+        "Teknologiatuettu oppiminen ja opetus 4op - johdantoluento + digitalisaatio",
+        "Luento 3. Suunnittelu ja pedagogiset mallit (410014Y) Tieto- ja viestintätekniikka pedagogisena välineenä",
+        "410014Y Luento 4: Sopimukset ja tekijänoikeudet",
+        "Teknologian Kehitys Ja Mahdollisuudet Oppimisen Tukena"
+      ],
+      "withPageUrl": 118,
+      "withDescription": 210,
+      "withLang": 75
+    }
+  },
+  "pagefind": {
+    "theses": {
+      "titleAudits": [
+        {
+          "title": "6-luokkalaisten kokemuksia matematiikka-ahdistuksesta",
+          "query": "6-luokkalaisten kokemuksia matematiikka-ahdistuksesta",
+          "expectedUrl": "/opinnaytteet/62699/",
+          "found": true,
+          "rank": 1,
+          "returnedUrl": "/opinnaytteet/62699/",
+          "totalResults": 2,
+          "top": [
+            {
+              "url": "/opinnaytteet/62699/",
+              "title": "6-luokkalaisten kokemuksia matematiikka-ahdistuksesta"
+            },
+            {
+              "url": "/opinnaytteet/",
+              "title": "Ohjatut opinnäytetyöt"
+            }
+          ]
+        },
+        {
+          "title": "ADHD-oireisten kokemuksia kuormituksesta koulussa",
+          "query": "ADHD-oireisten kokemuksia kuormituksesta koulussa",
+          "expectedUrl": "/opinnaytteet/62157/",
+          "found": true,
+          "rank": 1,
+          "returnedUrl": "/opinnaytteet/62157/",
+          "totalResults": 2,
+          "top": [
+            {
+              "url": "/opinnaytteet/62157/",
+              "title": "ADHD-oireisten kokemuksia kuormituksesta koulussa"
+            },
+            {
+              "url": "/opinnaytteet/",
+              "title": "Ohjatut opinnäytetyöt"
+            }
+          ]
+        },
+        {
+          "title": "Digitaalinen peli Simply Piano musiikinteorian oppimisen tukena musiikkiluokalla yläkoulussa",
+          "query": "Digitaalinen peli Simply Piano musiikinteorian oppimisen tukena musiikkiluokalla yläkoulussa",
+          "expectedUrl": "/opinnaytteet/62500/",
+          "found": true,
+          "rank": 1,
+          "returnedUrl": "/opinnaytteet/62500/",
+          "totalResults": 2,
+          "top": [
+            {
+              "url": "/opinnaytteet/62500/",
+              "title": "Digitaalinen peli Simply Piano musiikinteorian oppimisen tukena musiikkiluokalla yläkoulussa"
+            },
+            {
+              "url": "/opinnaytteet/",
+              "title": "Ohjatut opinnäytetyöt"
+            }
+          ]
+        },
+        {
+          "title": "Digitaaliset oppimisympäristöt esi- ja alkuopetuksessa : vaikutukset lapsen oppimiseen ja opettajien pedagogisiin ratkaisuihin",
+          "query": "Digitaaliset oppimisympäristöt esi- ja alkuopetuksessa : vaikutukset lapsen oppimiseen ja opettajien pedagogisiin ratkaisuihin",
+          "expectedUrl": "/opinnaytteet/62776/",
+          "found": true,
+          "rank": 1,
+          "returnedUrl": "/opinnaytteet/62776/",
+          "totalResults": 3,
+          "top": [
+            {
+              "url": "/opinnaytteet/62776/",
+              "title": "Digitaaliset oppimisympäristöt esi- ja alkuopetuksessa : vaikutukset lapsen oppimiseen ja opettajien pedagogisiin ratkaisuihin"
+            },
+            {
+              "url": "/opinnaytteet/",
+              "title": "Ohjatut opinnäytetyöt"
+            },
+            {
+              "url": "/2018/04/16/puheenvuoro-valtuustossa-vuosiluokkien-0-2-lahikoulu-on-perusteltu-pedagoginen-ratkaisu/",
+              "title": "Puheenvuoro valtuustossa § 30: Vuosiluokkien 0–2 lähikoulu on perusteltu pedagoginen ratkaisu"
+            }
+          ]
+        }
+      ],
+      "authorAudits": [
+        {
+          "author": "Riikonen, Hanni",
+          "query": "Riikonen Hanni",
+          "expectedUrl": "/opinnaytteet/62699/",
+          "found": true,
+          "rank": 1,
+          "returnedUrl": "/opinnaytteet/62699/",
+          "totalResults": 2,
+          "top": [
+            {
+              "url": "/opinnaytteet/62699/",
+              "title": "6-luokkalaisten kokemuksia matematiikka-ahdistuksesta"
+            },
+            {
+              "url": "/opinnaytteet/",
+              "title": "Ohjatut opinnäytetyöt"
+            }
+          ]
+        },
+        {
+          "author": "Pentikäinen, Suvi",
+          "query": "Pentikäinen Suvi",
+          "expectedUrl": "/opinnaytteet/62157/",
+          "found": true,
+          "rank": 1,
+          "returnedUrl": "/opinnaytteet/62157/",
+          "totalResults": 2,
+          "top": [
+            {
+              "url": "/opinnaytteet/62157/",
+              "title": "ADHD-oireisten kokemuksia kuormituksesta koulussa"
+            },
+            {
+              "url": "/opinnaytteet/",
+              "title": "Ohjatut opinnäytetyöt"
+            }
+          ]
+        }
+      ],
+      "topicAudits": [
+        {
+          "query": "tekoäly",
+          "found": true,
+          "totalResults": 295,
+          "top": [
+            {
+              "url": "/opinnaytteet/63335/",
+              "title": "Pieni kielikone tekoäly-ymmärryksen rakentajana : tutkimus luokanopettajaopiskelijoiden käsitysten kehittymisestä"
+            },
+            {
+              "url": "/mediassa/2026/05/06/tekoalylukutaito-on-uusi-kansalaistaito-arjen-tekoalyhaaste/",
+              "title": "Tekoälylukutaito on uusi kansalaistaito - Arjen tekoälyhaaste nyt verkossa"
+            },
+            {
+              "url": "/presentations/monilukutaito-on-opettajan-supervoima-teko-lylukutaito-luento/",
+              "title": "Monilukutaito on opettajan supervoima: tekoälylukutaito-luento"
+            },
+            {
+              "url": "/teemat/tekoalylukutaito/",
+              "title": "Tekoälylukutaito"
+            },
+            {
+              "url": "/kategoriat/tekoaly/",
+              "title": "Tekoäly"
+            }
+          ]
+        },
+        {
+          "query": "opettajankoulutus",
+          "found": true,
+          "totalResults": 331,
+          "top": [
+            {
+              "url": "/kategoriat/opettajankoulutus/",
+              "title": "Opettajankoulutus"
+            },
+            {
+              "url": "/avainsanat/opettajankoulutus/",
+              "title": "opettajankoulutus"
+            },
+            {
+              "url": "/presentations/ss-ei-pelkkaa-valineiden-opettelua-case-opettajankoulutus/",
+              "title": "Ei pelkkää välineiden opettelua: Case opettajankoulutus"
+            },
+            {
+              "url": "/teemat/opettajankoulutus/",
+              "title": "Opettajankoulutus ja opetuksen kehittäminen"
+            },
+            {
+              "url": "/avainsanat/digitaalinen-media/",
+              "title": "digitaalinen media"
+            }
+          ]
+        }
+      ],
+      "summary": {
+        "titleFound": 4,
+        "titleTop1": 4,
+        "authorFound": 2,
+        "topicFound": 2
+      }
+    },
+    "publications": {
+      "titleAudits": [
+        {
+          "title": "Assessing Digital Competence of K1-12 Teachers in Kosovo: A Study through the Lens of DigCompEdu and TPACK",
+          "query": "Assessing Digital Competence of K1-12 Teachers in Kosovo: A Study through the Lens of DigCompEdu and TPACK",
+          "expectedUrl": "/julkaisut/rf-a1-10-1016-j-caeo-2026-100396/",
+          "found": true,
+          "rank": 1,
+          "returnedUrl": "/julkaisut/rf-a1-10-1016-j-caeo-2026-100396/",
+          "totalResults": 8,
+          "top": [
+            {
+              "url": "/julkaisut/rf-a1-10-1016-j-caeo-2026-100396/",
+              "title": "Assessing Digital Competence of K1-12 Teachers in Kosovo: A Study through the Lens of DigCompEdu and TPACK"
+            },
+            {
+              "url": "/avainsanat/tpack/",
+              "title": "TPACK"
+            },
+            {
+              "url": "/avainsanat/opettajankoulutus/",
+              "title": "opettajankoulutus"
+            },
+            {
+              "url": "/avainsanat/digipedagogiikka/",
+              "title": "digipedagogiikka"
+            },
+            {
+              "url": "/kategoriat/yliopisto-ja-korkeakoulut/",
+              "title": "Yliopisto ja korkeakoulut"
+            }
+          ]
+        },
+        {
+          "title": "Co-constructing adaptive lesson plans with GenAI: Pre-service teachers' Intelligent-TPACK and prompt engineering strategies",
+          "query": "Co-constructing adaptive lesson plans with GenAI: Pre-service teachers Intelligent-TPACK and prompt engineering strategies",
+          "expectedUrl": "/julkaisut/02254916YJ/",
+          "found": true,
+          "rank": 1,
+          "returnedUrl": "/julkaisut/02254916YJ/",
+          "totalResults": 14,
+          "top": [
+            {
+              "url": "/julkaisut/02254916YJ/",
+              "title": "Co-constructing adaptive lesson plans with GenAI: Pre-service teachers' Intelligent-TPACK and prompt engineering strategies"
+            },
+            {
+              "url": "/avainsanat/online-learning-and-analytics/",
+              "title": "Online Learning and Analytics"
+            },
+            {
+              "url": "/avainsanat/innovative-teaching-and-learning-methods/",
+              "title": "Innovative Teaching and Learning Methods"
+            },
+            {
+              "url": "/avainsanat/generatiivinen-tekoaly/",
+              "title": "generatiivinen tekoäly"
+            },
+            {
+              "url": "/avainsanat/opettajankoulutus/",
+              "title": "opettajankoulutus"
+            }
+          ]
+        },
+        {
+          "title": "Computational thinking in collaborative programming discourse: an epistemic network analysis",
+          "query": "Computational thinking in collaborative programming discourse: an epistemic network analysis",
+          "expectedUrl": "/julkaisut/0707476326/",
+          "found": true,
+          "rank": 1,
+          "returnedUrl": "/julkaisut/0707476326/",
+          "totalResults": 8,
+          "top": [
+            {
+              "url": "/julkaisut/0707476326/",
+              "title": "Computational thinking in collaborative programming discourse: an epistemic network analysis"
+            },
+            {
+              "url": "/avainsanat/innovative-teaching-and-learning-methods/",
+              "title": "Innovative Teaching and Learning Methods"
+            },
+            {
+              "url": "/avainsanat/ohjelmointi/",
+              "title": "ohjelmointi"
+            },
+            {
+              "url": "/avainsanat/laskennallinen-ajattelu/",
+              "title": "laskennallinen ajattelu"
+            },
+            {
+              "url": "/kategoriat/yliopisto-ja-korkeakoulut/",
+              "title": "Yliopisto ja korkeakoulut"
+            }
+          ]
+        },
+        {
+          "title": "Ohjelmoinnista ohjelmoinnilliseen ajatteluun ja tekoälytaitojen edistämiseen",
+          "query": "Ohjelmoinnista ohjelmoinnilliseen ajatteluun ja tekoälytaitojen edistämiseen",
+          "expectedUrl": "/julkaisut/0704947326/",
+          "found": true,
+          "rank": 1,
+          "returnedUrl": "/julkaisut/0704947326/",
+          "totalResults": 7,
+          "top": [
+            {
+              "url": "/julkaisut/0704947326/",
+              "title": "Ohjelmoinnista ohjelmoinnilliseen ajatteluun ja tekoälytaitojen edistämiseen"
+            },
+            {
+              "url": "/avainsanat/laskennallinen-ajattelu/",
+              "title": "laskennallinen ajattelu"
+            },
+            {
+              "url": "/avainsanat/tekoalylukutaito/",
+              "title": "tekoälylukutaito"
+            },
+            {
+              "url": "/kategoriat/koulutusteknologia/",
+              "title": "Koulutusteknologia"
+            },
+            {
+              "url": "/kategoriat/yliopisto-ja-korkeakoulut/",
+              "title": "Yliopisto ja korkeakoulut"
+            }
+          ]
+        }
+      ],
+      "authorAudits": [
+        {
+          "author": "Krenare Pireva Nuci",
+          "query": "Krenare Pireva Nuci",
+          "expectedUrl": "/julkaisut/rf-a1-10-1016-j-caeo-2026-100396/",
+          "found": true,
+          "rank": 1,
+          "returnedUrl": "/julkaisut/rf-a1-10-1016-j-caeo-2026-100396/",
+          "totalResults": 3,
+          "top": [
+            {
+              "url": "/julkaisut/rf-a1-10-1016-j-caeo-2026-100396/",
+              "title": "Assessing Digital Competence of K1-12 Teachers in Kosovo: A Study through the Lens of DigCompEdu and TPACK"
+            },
+            {
+              "url": "/mediassa/2026/07/20/tkaedite-kosovon-opettajien-digiosaamista-kasitteleva-artikkeli-julkaistiin/",
+              "title": "TKAEDITE: Kosovon opettajien digiosaamista käsittelevä artikkeli julkaistiin"
+            },
+            {
+              "url": "/julkaisut/",
+              "title": "Julkaisuluettelo"
+            }
+          ]
+        },
+        {
+          "author": "Celik, Ismail",
+          "query": "Celik Ismail",
+          "expectedUrl": "/julkaisut/02254916YJ/",
+          "found": true,
+          "rank": 2,
+          "returnedUrl": "/julkaisut/02254916YJ/",
+          "totalResults": 6,
+          "top": [
+            {
+              "url": "/julkaisut/",
+              "title": "Julkaisuluettelo"
+            },
+            {
+              "url": "/julkaisut/02254916YJ/",
+              "title": "Co-constructing adaptive lesson plans with GenAI: Pre-service teachers' Intelligent-TPACK and prompt engineering strategies"
+            },
+            {
+              "url": "/julkaisut/rf-a1-10-1016-j-caeo-2026-100396/",
+              "title": "Assessing Digital Competence of K1-12 Teachers in Kosovo: A Study through the Lens of DigCompEdu and TPACK"
+            },
+            {
+              "url": "/julkaisut/0699440925/",
+              "title": "The antecedents of pre-service teachers' AI literacy: perceptions about own AI driven applications, attitude towards AI and knowledge in machine learning"
+            },
+            {
+              "url": "/julkaisut/0693115624/",
+              "title": "Learning AI literacy in collaborative projects with an AI education tool by making machine-learning-driven apps: A case study from Finnish pre-service teacher education"
+            }
+          ]
+        }
+      ],
+      "topicAudits": [
+        {
+          "query": "tekoäly",
+          "found": true,
+          "totalResults": 295,
+          "top": [
+            {
+              "url": "/opinnaytteet/63335/",
+              "title": "Pieni kielikone tekoäly-ymmärryksen rakentajana : tutkimus luokanopettajaopiskelijoiden käsitysten kehittymisestä"
+            },
+            {
+              "url": "/mediassa/2026/05/06/tekoalylukutaito-on-uusi-kansalaistaito-arjen-tekoalyhaaste/",
+              "title": "Tekoälylukutaito on uusi kansalaistaito - Arjen tekoälyhaaste nyt verkossa"
+            },
+            {
+              "url": "/presentations/monilukutaito-on-opettajan-supervoima-teko-lylukutaito-luento/",
+              "title": "Monilukutaito on opettajan supervoima: tekoälylukutaito-luento"
+            },
+            {
+              "url": "/teemat/tekoalylukutaito/",
+              "title": "Tekoälylukutaito"
+            },
+            {
+              "url": "/kategoriat/tekoaly/",
+              "title": "Tekoäly"
+            }
+          ]
+        },
+        {
+          "query": "TPACK",
+          "found": true,
+          "totalResults": 31,
+          "top": [
+            {
+              "url": "/opinnaytteet/40854/",
+              "title": "Lastentarhanopettajien TPACK-taidot : tapaustutkimus matematiikan opetuksesta esiopetuskontekstissa"
+            },
+            {
+              "url": "/presentations/ss-luento-3-tpack-taidot-teknologiatuettu-oppiminen-ja-opetus/",
+              "title": "LUENTO 3: TPACK-taidot – teknologiatuettu oppiminen ja opetus"
+            },
+            {
+              "url": "/avainsanat/tpack/",
+              "title": "TPACK"
+            },
+            {
+              "url": "/julkaisut/rf-a1-10-1016-j-caeo-2026-100396/",
+              "title": "Assessing Digital Competence of K1-12 Teachers in Kosovo: A Study through the Lens of DigCompEdu and TPACK"
+            },
+            {
+              "url": "/julkaisut/02254916YJ/",
+              "title": "Co-constructing adaptive lesson plans with GenAI: Pre-service teachers' Intelligent-TPACK and prompt engineering strategies"
+            }
+          ]
+        }
+      ],
+      "summary": {
+        "titleFound": 4,
+        "titleTop1": 4,
+        "authorFound": 2,
+        "topicFound": 2
+      }
+    },
+    "presentations": {
+      "titleAudits": [
+        {
+          "title": "3. luento tieto- ja viestintätekniikan pedagogiset perusteet: tietokoneavusteinen yhteisöllinen oppiminen (CSCL)",
+          "query": "3 luento tieto- ja viestintätekniikan pedagogiset perusteet: tietokoneavusteinen yhteisöllinen oppiminen CSCL",
+          "expectedUrl": "/presentations/ss-3-luento-tieto-ja-viestintatekniikan-pedagogiset-perusteet-tietokoneavusteinen-y/",
+          "found": true,
+          "rank": 1,
+          "returnedUrl": "/presentations/ss-3-luento-tieto-ja-viestintatekniikan-pedagogiset-perusteet-tietokoneavusteinen-y/",
+          "totalResults": 8,
+          "top": [
+            {
+              "url": "/presentations/ss-3-luento-tieto-ja-viestintatekniikan-pedagogiset-perusteet-tietokoneavusteinen-y/",
+              "title": "3. luento tieto- ja viestintätekniikan pedagogiset perusteet: tietokoneavusteinen yhteisöllinen oppiminen (CSCL)"
+            },
+            {
+              "url": "/avainsanat/cscl/",
+              "title": "CSCL"
+            },
+            {
+              "url": "/presentations/ss-4-luento-tieto-ja-viestintatekniikan-pedagogiset-perusteet-nykyajan-medialukutat/",
+              "title": "4. luento: tieto ja viestintätekniikan pedagogiset perusteet: nykyajan medialukutataito"
+            },
+            {
+              "url": "/presentations/ss-2-luento-tieto-ja-viestintatekniikan-pedagogiset-perusteet-kurssilla-tvt-ja-yhte/",
+              "title": "2. luento tieto- ja viestintätekniikan pedagogiset perusteet kurssilla. TVT ja yhteiskunta"
+            },
+            {
+              "url": "/presentations/ss-1-luento-tieto-ja-viestintatekniikan-perusteet-opintojaksolla-tvt-opetuskayton-h/",
+              "title": "1. luento tieto- ja viestintätekniikan perusteet opintojaksolla: TVT opetuskäytön historia"
+            }
+          ]
+        },
+        {
+          "title": "Teknologiatuettu oppiminen ja opetus 4op - johdantoluento + digitalisaatio",
+          "query": "Teknologiatuettu oppiminen ja opetus 4op - johdantoluento digitalisaatio",
+          "expectedUrl": "/presentations/ss-teknologiatuettu-oppiminen-ja-opetus-4op-johdantoluento-digitalisaatio/",
+          "found": true,
+          "rank": 1,
+          "returnedUrl": "/presentations/ss-teknologiatuettu-oppiminen-ja-opetus-4op-johdantoluento-digitalisaatio/",
+          "totalResults": 3,
+          "top": [
+            {
+              "url": "/presentations/ss-teknologiatuettu-oppiminen-ja-opetus-4op-johdantoluento-digitalisaatio/",
+              "title": "Teknologiatuettu oppiminen ja opetus 4op - johdantoluento + digitalisaatio"
+            },
+            {
+              "url": "/presentations/ss-wrap-up-luento-dime-2015/",
+              "title": "Wrap up luento (dime 2015)"
+            },
+            {
+              "url": "/esitykset/",
+              "title": "Tekoälyä, oppimista ja teknologiaa käsittelevät esitykset ja materiaalit"
+            }
+          ]
+        },
+        {
+          "title": "Luento 3. Suunnittelu ja pedagogiset mallit (410014Y) Tieto- ja viestintätekniikka pedagogisena välineenä",
+          "query": "Luento 3 Suunnittelu ja pedagogiset mallit 410014Y Tieto- ja viestintätekniikka pedagogisena välineenä",
+          "expectedUrl": "/presentations/ss-luento-3-suunnittelu-ja-pedagogiset-mallit-410014y-tieto-ja-viestintatekniikka-p/",
+          "found": true,
+          "rank": 1,
+          "returnedUrl": "/presentations/ss-luento-3-suunnittelu-ja-pedagogiset-mallit-410014y-tieto-ja-viestintatekniikka-p/",
+          "totalResults": 13,
+          "top": [
+            {
+              "url": "/presentations/ss-luento-3-suunnittelu-ja-pedagogiset-mallit-410014y-tieto-ja-viestintatekniikka-p/",
+              "title": "Luento 3. Suunnittelu ja pedagogiset mallit (410014Y) Tieto- ja viestintätekniikka pedagogisena välineenä"
+            },
+            {
+              "url": "/presentations/ss-luento5-suunnittelu-ja-pedagogiset-mallit/",
+              "title": "Luento5 suunnittelu ja pedagogiset mallit"
+            },
+            {
+              "url": "/avainsanat/tvt/",
+              "title": "TVT"
+            },
+            {
+              "url": "/presentations/ss-410014y-johdantoluento-tieto-ja-viestintatekniikka-pedagogisena-tyovalineena-201/",
+              "title": "410014Y Johdantoluento. Tieto- ja viestintätekniikka pedagogisena työvälineenä 2014"
+            },
+            {
+              "url": "/presentations/ss-3-luento-tieto-ja-viestintatekniikan-pedagogiset-perusteet-tietokoneavusteinen-y/",
+              "title": "3. luento tieto- ja viestintätekniikan pedagogiset perusteet: tietokoneavusteinen yhteisöllinen oppiminen (CSCL)"
+            }
+          ]
+        },
+        {
+          "title": "410014Y Luento 4: Sopimukset ja tekijänoikeudet",
+          "query": "410014Y Luento 4: Sopimukset ja tekijänoikeudet",
+          "expectedUrl": "/presentations/ss-410014y-luento-4-sopimukset-ja-tekijanoikeudet/",
+          "found": true,
+          "rank": 1,
+          "returnedUrl": "/presentations/ss-410014y-luento-4-sopimukset-ja-tekijanoikeudet/",
+          "totalResults": 6,
+          "top": [
+            {
+              "url": "/presentations/ss-410014y-luento-4-sopimukset-ja-tekijanoikeudet/",
+              "title": "410014Y Luento 4: Sopimukset ja tekijänoikeudet"
+            },
+            {
+              "url": "/avainsanat/tvt/",
+              "title": "TVT"
+            },
+            {
+              "url": "/presentations/ss-luento-2-tieto-ja-viestintatekniikan-opetuskaytto-ja-yhteiskunta-diat-ja-aani-ei/",
+              "title": "Luento 2: Tieto- ja viestintätekniikan opetuskäyttö ja yhteiskunta (diat ja ääni eivät ole synkassa, kiittäkäämme siitä slidesharea)"
+            },
+            {
+              "url": "/presentations/ss-luento-2-teoria-410014y-tieto-ja-viestintatekniikka-pedagogisena-valineena/",
+              "title": "Luento 2. Teoria (410014Y) Tieto- ja viestintätekniikka pedagogisena välineenä"
+            },
+            {
+              "url": "/presentations/ss-osaava-veso-tieto-ja-viestintatekniikka-pedagogisena-tyovalineena-raahe-2015/",
+              "title": "OSAAVA VESO: Tieto- ja viestintätekniikka pedagogisena työvälineenä. Raahe 2015"
+            }
+          ]
+        }
+      ],
+      "authorAudits": [],
+      "topicAudits": [
+        {
+          "query": "tekoäly",
+          "found": true,
+          "totalResults": 295,
+          "top": [
+            {
+              "url": "/opinnaytteet/63335/",
+              "title": "Pieni kielikone tekoäly-ymmärryksen rakentajana : tutkimus luokanopettajaopiskelijoiden käsitysten kehittymisestä"
+            },
+            {
+              "url": "/mediassa/2026/05/06/tekoalylukutaito-on-uusi-kansalaistaito-arjen-tekoalyhaaste/",
+              "title": "Tekoälylukutaito on uusi kansalaistaito - Arjen tekoälyhaaste nyt verkossa"
+            },
+            {
+              "url": "/presentations/monilukutaito-on-opettajan-supervoima-teko-lylukutaito-luento/",
+              "title": "Monilukutaito on opettajan supervoima: tekoälylukutaito-luento"
+            },
+            {
+              "url": "/teemat/tekoalylukutaito/",
+              "title": "Tekoälylukutaito"
+            },
+            {
+              "url": "/kategoriat/tekoaly/",
+              "title": "Tekoäly"
+            }
+          ]
+        },
+        {
+          "query": "webinaari",
+          "found": true,
+          "totalResults": 45,
+          "top": [
+            {
+              "url": "/avainsanat/webinaari/",
+              "title": "webinaari"
+            },
+            {
+              "url": "/mediassa/2024/04/02/itk-webinaari-miten-opetan-tekoalya-oppilaille-generation-ai/",
+              "title": "ITK-webinaari: Miten opetan tekoälyä oppilaille? Generation AI"
+            },
+            {
+              "url": "/mediassa/2023/03/28/itk-webinaari-generation-ai-kyberturvallinen-ajattelutapa/",
+              "title": "ITK-webinaari: Generation AI – kyberturvallisen ajattelutavan opettaminen tekoälysukupolvelle"
+            },
+            {
+              "url": "/avainsanat/youtube/",
+              "title": "youtube"
+            },
+            {
+              "url": "/avainsanat/perusopetus/",
+              "title": "perusopetus"
+            }
+          ]
+        }
+      ],
+      "summary": {
+        "titleFound": 4,
+        "titleTop1": 4,
+        "authorFound": 0,
+        "topicFound": 2
+      }
+    }
+  }
+}
