@@ -64,12 +64,21 @@ Date: 2026-08-14
 
 ## 5. Topic coverage
 
-- presentations: 168 / 218 (77.1%)
+- canonical presentations: 218
+- with canonical topics: 198 / 218 (90.8%)
+- topicless: 20 / 218 (9.2%)
+- with safe Research mapping: 168 / 218 (77.1%)
+- with canonical topics but no safe Research mapping: 30 / 218 (13.8%)
 - topic assignments: 352 / 1034 (34.0%)
 - mapped local-first: 121
 - mapped external-first: 47
 - presets with presentation coverage: 3
 - presets without presentation coverage: 0
+
+### Count invariants
+
+- with canonical topics + topicless = 198 + 20 = 218 (PASS)
+- with safe Research mapping + topic-present-but-Research-unmapped + topicless = 168 + 30 + 20 = 218 (PASS)
 
 ## 6. Research preset inventory
 
@@ -113,7 +122,11 @@ Date: 2026-08-14
 
 ## 13. Research mapping coverage
 
-- presentations: 168 / 218 (77.1%)
+- canonical presentations: 218
+- with canonical topics: 198 / 218 (90.8%)
+- topicless: 20 / 218 (9.2%)
+- with safe Research mapping: 168 / 218 (77.1%)
+- with canonical topics but no safe Research mapping: 30 / 218 (13.8%)
 - topic assignments: 352 / 1034 (34.0%)
 - mapped local-first: 121
 - mapped external-first: 47
@@ -164,7 +177,7 @@ Date: 2026-08-14
 ## 20. Presentation archive topic readiness
 
 - classification: PARTIAL
-- reasoning: archive-side topics are rich enough to expose, but the vocabulary is still fragmented (406 raw labels, 11 topicless presentations, and a large long tail).
+- reasoning: archive-side topics are rich enough to expose, but the vocabulary is still fragmented (406 raw labels, 20 topicless presentations, and a large long tail).
 
 ## 21. Research fourth-scope readiness
 
@@ -199,7 +212,7 @@ Date: 2026-08-14
 
 ## 25. Remaining limitations
 
-- 11 canonical presentations still have no topic metadata.
+- 20 canonical presentations still have no topic metadata.
 - 406 raw topic labels include many one-off strings and mixed Finnish/English variants.
 - P5 intentionally does not collapse the archive vocabulary or redesign topic taxonomy.
 
@@ -211,3 +224,72 @@ Date: 2026-08-14
 - report artifact: [presentations-topic-mapping-f3c-p5-report-2026-08-14.md](/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/docs/presentations-topic-mapping-f3c-p5-report-2026-08-14.md)
 - csv artifact: [presentation-research-topic-mapping-f3c-p5.csv](/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/docs/data/presentation-research-topic-mapping-f3c-p5.csv)
 - mapping artifact: [presentation-research-topic-mapping.json](/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/src/curated/presentation-research-topic-mapping.json)
+- diagnostics artifact: [presentation-topic-coverage-diagnostics-f3c-p5.json](/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/docs/data/presentation-topic-coverage-diagnostics-f3c-p5.json)
+
+## 27. Closure note
+
+- contradictory values observed before closure: `20` and `11` topicless presentations.
+- authoritative current canonical value: `20` topicless presentations from `_site/data/presentations-page.json` canonical items.
+- exact reason for the discrepancy: stale hardcoded prose in this audit generator's sections 20 and 25 still said `11`, while the canonical inventory section already computed `20`.
+- corrected source: `scripts/audit-presentation-topic-mapping.js`.
+- canonical topic semantics and safe Research mapping semantics were unchanged by this closure fix.
+
+## 28. Diagnostic list: topicless canonical presentations
+
+| Canonical ID | Title | Topics | Landing |
+| --- | --- | --- | --- |
+| customMaterials\|https://www.ouka.fi/lukevinkaupunni/arjen-tekoalyhaaste\|Arjen tekoälyhaaste | Arjen tekoälyhaaste | — | localDetail |
+| curatedVideos\|https://www.youtube.com/watch?v=0cJ0Ed3Scs4&t=5s\|ITK-avauksen tallenne: Työkalu? Taikakalu? | ITK-avauksen tallenne: Työkalu? Taikakalu? | — | externalSource |
+| curatedVideos\|https://www.youtube.com/watch?v=7EXB54VvlsU&t=2s\|Oululaisia lapsia ja nuoria koskevien tilastotietojen tarkastelua | Oululaisia lapsia ja nuoria koskevien tilastotietojen tarkastelua | — | externalSource |
+| aoe\|https://www.finna.fi/Record/aoe.5456\|Ai ai, kieliä ja AI -koulutuspaketti | Ai ai, kieliä ja AI -koulutuspaketti | — | externalSource |
+| curatedVideos\|https://www.youtube.com/watch?v=RyItZto47t8\|Kuinka Generatiivinen tekoäly toimii? Pieni kielikone on vastaus tähän kysymykseen! | Kuinka Generatiivinen tekoäly toimii? Pieni kielikone on vastaus tähän kysymykseen! | — | externalSource |
+| curatedVideos\|https://www.youtube.com/watch?v=q2K04VmN3sQ\|Generation AI: Selitettävä tekoäly, mitä se on ja miksi se on tärkeä huomioida opetuksessa? | Generation AI: Selitettävä tekoäly, mitä se on ja miksi se on tärkeä huomioida opetuksessa? | — | externalSource |
+| curatedVideos\|https://www.youtube.com/watch?v=U4iFFFY3rhM\|ITK-webinaari: Miten opetan tekoälyä oppilaille? Generation AI | ITK-webinaari: Miten opetan tekoälyä oppilaille? Generation AI | — | externalSource |
+| curatedVideos\|https://www.youtube.com/watch?v=fcDjAZZZs4U\|ITK-webinaari: Generation AI - kyberturvallisen ajattelutavan opettaminen tekoälysukupolvelle | ITK-webinaari: Generation AI - kyberturvallisen ajattelutavan opettaminen tekoälysukupolvelle | — | externalSource |
+| aoe\|https://www.finna.fi/Record/aoe.2047\|Esitykseni STEAM (k)Oulussa –etäseminaarissa 21.4.2022 | Esitykseni STEAM (k)Oulussa –etäseminaarissa 21.4.2022 | — | externalSource |
+| aoe\|https://www.finna.fi/Record/aoe.2409\|ITK2022: | ITK2022: | — | externalSource |
+| aoe\|https://www.finna.fi/Record/aoe.2370\|Teknologiatuettu oppiminen ja työskentely luentodiat syksy 2022 | Teknologiatuettu oppiminen ja työskentely luentodiat syksy 2022 | — | externalSource |
+| aoe\|https://www.finna.fi/Record/aoe.1501\|Etäopetuksen hyvät käytännöt - mitä ovat opetus ja oppiminen digitaalisuuden puristuksessa? | Etäopetuksen hyvät käytännöt - mitä ovat opetus ja oppiminen digitaalisuuden puristuksessa? | — | externalSource |
+| aoe\|https://www.finna.fi/Record/aoe.1518\|History of Technology Enhanced Learning | History of Technology Enhanced Learning | — | externalSource |
+| aoe\|https://www.finna.fi/Record/aoe.1813\|Hybridiopetus on täällä, oletko valmis? Näkemysten ja kokemusten jakamista kokeilevalla otteella! | Hybridiopetus on täällä, oletko valmis? Näkemysten ja kokemusten jakamista kokeilevalla otteella! | — | externalSource |
+| aoe\|https://www.finna.fi/Record/aoe.1698\|Joko vihdoin tästä tulee valtavirtaa - Teknologiatuettu oppiminen ja opetus post-korona maailmassa. | Joko vihdoin tästä tulee valtavirtaa - Teknologiatuettu oppiminen ja opetus post-korona maailmassa. | — | externalSource |
+| aoe\|https://www.finna.fi/Record/aoe.1789\|Ohjelmointi perusopetuksessa kurssin projektityön lopputuotos 2021 | Ohjelmointi perusopetuksessa kurssin projektityön lopputuotos 2021 | — | externalSource |
+| videoSeries\|https://www.youtube.com/playlist?list=PLDG0jxUrk8z19_ThqBiynpYG4g-mjwgpt\|Jari Larun verkkolive | Jari Larun verkkolive | — | externalSource |
+| videoSeries\|https://www.youtube.com/watch?v=hCZ9lgODkes&list=PLDG0jxUrk8z3VEOjIFb_q0vdJW6-2oOgY\|Larun pikkuvinkit | Larun pikkuvinkit | — | localDetail |
+| curatedVideos\|https://www.youtube.com/watch?v=SoeW6zexrWQ\|Teknologia, oppiminen ja osaaminen yhteiskunnassa - videotallenne | Teknologia, oppiminen ja osaaminen yhteiskunnassa - videotallenne | — | localDetail |
+| videoSeries\|https://www.youtube.com/playlist?list=PLDG0jxUrk8z2E7S2ggyzt0bIBXiDEgXob\|Larun laitenurkka: opetusteknologia läpivalaisussa | Larun laitenurkka: opetusteknologia läpivalaisussa | — | externalSource |
+
+## 29. Diagnostic list: canonical topics present but no safe Research mapping
+
+| Canonical ID | Title | Topics | Landing |
+| --- | --- | --- | --- |
+| slideshare\|https://www.slideshare.net/slideshow/my-life-9-months-before-the-defence/13140146\|My life 9 months before the defence | My life 9 months before the defence | Yliopisto ja korkeakoulut, väitöskirja | localDetail |
+| /presentations/teknologia-opetuksen-tukena-video-1-keskustelemme-suhteestamme/ | Keskustelemme suhteestamme teknologian hyödyntämisestä opetuksen ja oppimisen tukena | Teknologia, Opetus, Oppiminen | localDetail |
+| /presentations/eduxr-2020-suunnanmuutos-digiopettajasta-etaopettajaksi/ | Suunnanmuutos 360° digiopettajasta etäopettajaksi | Etäopetus, Digiopetus, XR, Konferenssi | localDetail |
+| /presentations/avoin-tiede-2021-avoimeen-oppimiseen-ja-opetukseen/ | Avoimeen oppimiseen ja opetukseen | Avoin tiede, Avoin oppiminen, Palkinto | localDetail |
+| slideshare\|https://www.slideshare.net/slideshow/tekn-sovellukset-javalineetao/21158606\|Tekn sovellukset ja_valineet_ao | Tekn sovellukset ja_valineet_ao | TVT | localDetail |
+| slideshare\|https://www.slideshare.net/slideshow/lhidemokratiatoimikunta-oulun-kaupungissa/41789438\|Lähidemokratiatoimikunnan toiminta Oulussa | Lähidemokratiatoimikunnan toiminta Oulussa | Demokratia ja sivistys, lähidemokratia, demokratia | localDetail |
+| /presentations/syntyvyys-ja-kouluik-luokat-oulussa-2026/ | Syntyvyys ja kouluikäluokat Oulussa 2026 | Koulutuspolitiikka, Oulu, Väestötieto, koulutuspolitiikka, väestöennuste | localDetail |
+| slideshare\|https://www.slideshare.net/slideshow/405514y-multimedia-as-a-learning-project-3-c/6958208\|405514Y Multimedia as a Learning Project, 3 c | 405514Y Multimedia as a Learning Project, 3 c | multimedia, digitarinankerronta | localDetail |
+| slideshare\|https://www.slideshare.net/slideshow/lito2018-workshop-arviointi-suurilla-verkkokursseilla/99171640\|Lito2018 workshop arviointi suurilla verkkokursseilla | Lito2018 workshop arviointi suurilla verkkokursseilla | verkkokurssit, arviointi | localDetail |
+| slideshare\|https://www.slideshare.net/slideshow/quali-lecture-1-17116725/17116725\|Quali lecture 1: Understanding the research process | Quali lecture 1: Understanding the research process | Yliopisto ja korkeakoulut, laadullinen tutkimus, mixed methods, tutkimusprosessi | localDetail |
+| slideshare\|https://www.slideshare.net/slideshow/alustus-digitaalisuus-koulutuksessa/51713522\|Alustus: Digitaalisuus koulutuksessa | Alustus: Digitaalisuus koulutuksessa | digitalisaatio | localDetail |
+| slideshare\|https://www.slideshare.net/slideshow/mummo-nkkulma-sukupuun-juurelta-tai-ainakin-melkein-sukujuhla-2014/37584942\|MUMMO Näkökulma sukupuun juurelta.. Tai ainakin melkein.. Sukujuhla 2014 | MUMMO Näkökulma sukupuun juurelta.. Tai ainakin melkein.. Sukujuhla 2014 | sukujuhla | localDetail |
+| kJtKo_ZUxCFEOTn | Sivistysverkosto 4.5. | koulutus, kuntatalous, opetussuunnitelma, palveluverkko, sivistyslautakunta, sivistysverkosto, tekoäly | externalSource |
+| 2d_GA4aAEX9qmRs | ITK2026 millaisia ovat tekoälyaikakauden opettajaprofiilit | ITK, iTPACK, opettajaprofiili, opettajaprofiilit, opettajuus, opetusalan tekoäly, tekoäly, tekoälyaika, tekoälykysely, toimijuus | externalSource |
+| 2PrBoY6M2CTg60F | OPH esitys 18.3. | OPH, Opetushallitus, iTPACK, opettajaprofiilit, opetus, tekoäly, tekoälykysely, verkostojen verkosto | externalSource |
+| 9vbIlfCJtVMnz0L | Konenäkö, vibe coding ja robotiikka – Robokampus 2026 | Robokampus, konenäkö, robotiikka, tekoäly, vibe coding | localDetail |
+| EAMOOLnvrmnE_0g | Tekoälyagentit | OKF, agenttipohjaisuus, koulutus, tekoälyagentit, tulevaisuus | externalSource |
+| NwJZ8FVrbTIF80L | Tekoäly opettajan työkaluna | käytännön vinkit, opettajan työkalu, opetuskäyttö, tekoäly | externalSource |
+| 7IyyLkfG4NvVNFy | Kuinka tekoäly toimii? – Webinaari | opettajat, tekoälyn perusteet, toimintaperiaatteet, webinaari | externalSource |
+| IMm6-JD8PRTBK2F | Tekoäly yhdistystoiminnassa | OK Opintokeskus, järjestöt, tekoälytyökalut, yhdistystoiminta | externalSource |
+| aDY3w1A8bLJm0kr | Tekoäly, opettajan työ ja arvioinnin muutos | ChatGPT, arviointi, generatiivinen tekoäly, muutos, opettajan työ, promptaus | externalSource |
+| I-r13uz6Wiip2cC | Generatiivinen tekoäly – Tekoäly työkaluna III | HeyGen, NotebookLM, generatiivinen tekoäly, kieltenopetus, koulutussarja, kriittinen lukutaito, opettajat, promptaus | externalSource |
+| 4zq6qy9B3GX9FQK | Tekoäly osana arkisia sovelluksia | Microsoft Translator, S2-opetus, arkiset sovellukset, integraatio, konekääntäminen, saavutettavuus, tekoäly arjessa, tekstittäminen, tietoisuus | externalSource |
+| uZIb__sx1r4EAqT | Tekoälyosaamista kieltenopetukseen | GDPR, generatiivinen tekoäly, hybridiälykkyys, kieltenopetus, luento, opetus, shadow AI, tekoälyosaaminen | externalSource |
+| y4oM9QaEQrxs2Lq | Annie Advisor – Generative AI as a Tool to Adapt Teaching | AIED, Annie Advisor, MagicSchool, adaptive teaching, differentiation, eriyttäminen, generatiivinen tekoäly, generative AI, learning support, ohjaus, oppimisen tuki | externalSource |
+| H13QgkxVZpEyel5 | Tekoälyluento – OSYK | EU AI Act, OSYK, opetushenkilöstö, oppimisen arviointi, perusteet, sosiaalinen media, tekoäly, tekoälyluento | externalSource |
+| H8tSyhG_9jcwRpr | VESO elokuu 2024 – Tekoäly koulussa | DALL-E promptit, PowerPoint-tekstitys, Simo, VESO, dyslexia-tuki, elokuu, lukituki, lukuvuoden alku, syventävä lukuohjelma, tekoäly koulussa, tekoälytyökalut | localDetail |
+| tjjrZpkP2brKCKh | Fedutalk – Generative AI in Education | Fedutalk, Finland, Kosovo, education, generatiivinen tekoäly, generative AI, kansainvälisyys, koulutus | externalSource |
+| S9UhE1RwcwtuNMz | Tekoäly opettajan työkaluna – Inspiraatiosessio | Azure AI, LUTK, Microsoft AI, inspiraatio, motivointi, opettajan työkalut, sanelu, tdk-luento, tekoäly arjessa, tekoälyinspis, tekstitys, tietoisuus | externalSource |
+| ULcBKqsIIMap4cc | Oppiva verkosto – Analytiikkaesitys | ChatGPT, Oppiva verkosto, analytiikka, data, dataslip, digijalki, hybridi-intelligenssi, kehittäminen, oppimisanalytiikka, tutkimus | externalSource |

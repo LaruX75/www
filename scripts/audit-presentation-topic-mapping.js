@@ -27,6 +27,12 @@ const CSV_PATH = path.join(
   "data",
   "presentation-research-topic-mapping-f3c-p5.csv"
 );
+const DIAGNOSTICS_PATH = path.join(
+  process.cwd(),
+  "docs",
+  "data",
+  "presentation-topic-coverage-diagnostics-f3c-p5.json"
+);
 
 const STATUS = {
   presentationTitleRegression: process.env.P5_PRESENTATION_TITLE_REGRESSION || "Verified separately in checkpoint run",
@@ -61,15 +67,6 @@ function escapeMd(value = "") {
 function percent(part, whole) {
   if (!whole) return "0.0%";
   return `${((part / whole) * 100).toFixed(1)}%`;
-}
-
-function toCountMap(items = [], keyFn) {
-  return items.reduce((acc, item) => {
-    const key = keyFn(item);
-    if (!key) return acc;
-    acc[key] = (acc[key] || 0) + 1;
-    return acc;
-  }, {});
 }
 
 async function readBuiltPresentationData() {
@@ -204,12 +201,67 @@ function buildCsvRows(topicInventory = []) {
   });
 }
 
-function buildCoverage(items = [], records = [], csvRows = []) {
-  const presentationsWithTopics = items.filter((item) => uniqueStrings(item.topics || []).length > 0).length;
+function buildCanonicalTopicDiagnostics(items = []) {
+  const rows = items.map((item) => {
+    const topics = uniqueStrings(item.topics || []);
+    const researchPresetIds = getPresentationResearchPresets(topics);
+
+    return {
+      canonicalId: canonicalPresentationId(item),
+      title: String(item.title || ""),
+      topics,
+      landingType: String(item.landingType || ""),
+      hasCanonicalTopic: topics.length > 0,
+      hasSafeResearchMapping: researchPresetIds.length > 0,
+      researchPresetIds
+    };
+  });
+
+  const topicless = rows.filter((row) => !row.hasCanonicalTopic);
+  const topicPresentButResearchUnmapped = rows.filter(
+    (row) => row.hasCanonicalTopic && !row.hasSafeResearchMapping
+  );
+  const researchMapped = rows.filter((row) => row.hasSafeResearchMapping);
+  const withCanonicalTopics = rows.filter((row) => row.hasCanonicalTopic);
+  const invariantA = withCanonicalTopics.length + topicless.length === rows.length;
+  const invariantB =
+    researchMapped.length + topicPresentButResearchUnmapped.length + topicless.length === rows.length;
+
+  if (!invariantA || !invariantB) {
+    throw new Error(
+      [
+        "Presentation topic coverage invariants failed.",
+        `withCanonicalTopics=${withCanonicalTopics.length}`,
+        `topicless=${topicless.length}`,
+        `researchMapped=${researchMapped.length}`,
+        `topicPresentButResearchUnmapped=${topicPresentButResearchUnmapped.length}`,
+        `canonicalTotal=${rows.length}`
+      ].join(" ")
+    );
+  }
+
+  return {
+    canonicalTotal: rows.length,
+    withCanonicalTopicsCount: withCanonicalTopics.length,
+    topiclessCount: topicless.length,
+    researchMappedCount: researchMapped.length,
+    topicPresentButResearchUnmappedCount: topicPresentButResearchUnmapped.length,
+    invariantA,
+    invariantB,
+    topicless,
+    topicPresentButResearchUnmapped
+  };
+}
+
+function buildCoverage(items = [], records = [], csvRows = [], diagnostics) {
   const multiTopicPresentations = items.filter((item) => uniqueStrings(item.topics || []).length > 1).length;
   const safeRows = csvRows.filter((row) => row.safeForResearchContext);
-  const localMapped = items.filter((item) => item.landingType === "localDetail" && getPresentationResearchPresets(item.topics || []).length > 0).length;
-  const externalMapped = items.filter((item) => item.landingType === "externalSource" && getPresentationResearchPresets(item.topics || []).length > 0).length;
+  const localMapped = items.filter(
+    (item) => item.landingType === "localDetail" && getPresentationResearchPresets(item.topics || []).length > 0
+  ).length;
+  const externalMapped = items.filter(
+    (item) => item.landingType === "externalSource" && getPresentationResearchPresets(item.topics || []).length > 0
+  ).length;
 
   const presetCoverage = RESEARCH_PRESETS.map((preset) => {
     const expectedIds = records
@@ -240,14 +292,17 @@ function buildCoverage(items = [], records = [], csvRows = []) {
   });
 
   return {
-    presentationsWithTopics,
-    presentationsWithoutTopics: items.length - presentationsWithTopics,
+    canonicalTotal: diagnostics.canonicalTotal,
+    presentationsWithTopics: diagnostics.withCanonicalTopicsCount,
+    presentationsWithoutTopics: diagnostics.topiclessCount,
+    researchMappedPresentationCount: diagnostics.researchMappedCount,
+    topicPresentButResearchUnmappedCount: diagnostics.topicPresentButResearchUnmappedCount,
     multiTopicPresentations,
     uniqueTopicCount: csvRows.length,
     longTailTopicCount: csvRows.filter((row) => row.presentationCount === 1).length,
     safeMappedTopicCount: safeRows.length,
     intentionallyUnmappedTopicCount: csvRows.length - safeRows.length,
-    mappedPresentationCount: items.filter((item) => getPresentationResearchPresets(item.topics || []).length > 0).length,
+    mappedPresentationCount: diagnostics.researchMappedCount,
     mappedAssignmentCount: items.reduce(
       (sum, item) => sum + uniqueStrings(item.topics || []).filter((topic) => classifyPresentationTopic(topic).safeForResearchContext).length,
       0
@@ -255,6 +310,7 @@ function buildCoverage(items = [], records = [], csvRows = []) {
     totalAssignmentCount: items.reduce((sum, item) => sum + uniqueStrings(item.topics || []).length, 0),
     localMapped,
     externalMapped,
+    diagnostics,
     presetCoverage,
     presetsWithCoverage: presetCoverage.filter((row) => row.expectedIds.length > 0).length,
     presetsWithoutCoverage: presetCoverage.filter((row) => row.expectedIds.length === 0).length
@@ -364,6 +420,43 @@ async function writeCsv(csvRows = []) {
   await fs.writeFile(CSV_PATH, `${lines.join("\n")}\n`, "utf8");
 }
 
+async function writeDiagnosticsArtifact(coverage) {
+  const payload = {
+    generatedAt: new Date().toISOString(),
+    counts: {
+      canonicalTotal: coverage.canonicalTotal,
+      withAtLeastOneCanonicalTopic: coverage.presentationsWithTopics,
+      withNoCanonicalTopic: coverage.presentationsWithoutTopics,
+      withAtLeastOneSafeResearchMapping: coverage.researchMappedPresentationCount,
+      withCanonicalTopicsButNoSafeResearchMapping: coverage.topicPresentButResearchUnmappedCount,
+      uniqueRawTopics: coverage.uniqueTopicCount,
+      totalTopicAssignments: coverage.totalAssignmentCount,
+      safelyMappedTopicAssignments: coverage.mappedAssignmentCount
+    },
+    invariants: {
+      withTopicPlusTopiclessEqualsCanonicalTotal: coverage.diagnostics.invariantA,
+      researchMappedPlusTopicPresentButResearchUnmappedPlusTopiclessEqualsCanonicalTotal:
+        coverage.diagnostics.invariantB
+    },
+    exactCause:
+      "The discrepancy came from stale hardcoded report prose in sections 20 and 25 of scripts/audit-presentation-topic-mapping.js. Canonical inventory logic already computed 20 topicless presentations from current presentations-page canonical data; no alternate projection, normalization filter, or mapping rule produced 11.",
+    topiclessPresentations: coverage.diagnostics.topicless.map((row) => ({
+      canonicalId: row.canonicalId,
+      title: row.title,
+      topics: row.topics,
+      landingType: row.landingType
+    })),
+    topicPresentButResearchUnmapped: coverage.diagnostics.topicPresentButResearchUnmapped.map((row) => ({
+      canonicalId: row.canonicalId,
+      title: row.title,
+      topics: row.topics,
+      landingType: row.landingType
+    }))
+  };
+
+  await fs.writeFile(DIAGNOSTICS_PATH, `${JSON.stringify(payload, null, 2)}\n`, "utf8");
+}
+
 function buildPresetInventoryMarkdown() {
   return RESEARCH_PRESETS.map((preset) => {
     const themeList = preset.sharedResearchThemeLabels.map((row) => `${row.label} \`${row.value}\``).join(", ");
@@ -390,12 +483,28 @@ function buildTopTopicTable(csvRows = [], limit = 15) {
 
 function buildCoverageTable(coverage) {
   return [
-    `- presentations: ${coverage.mappedPresentationCount} / 218 (${percent(coverage.mappedPresentationCount, 218)})`,
+    `- canonical presentations: ${coverage.canonicalTotal}`,
+    `- with canonical topics: ${coverage.presentationsWithTopics} / ${coverage.canonicalTotal} (${percent(coverage.presentationsWithTopics, coverage.canonicalTotal)})`,
+    `- topicless: ${coverage.presentationsWithoutTopics} / ${coverage.canonicalTotal} (${percent(coverage.presentationsWithoutTopics, coverage.canonicalTotal)})`,
+    `- with safe Research mapping: ${coverage.researchMappedPresentationCount} / ${coverage.canonicalTotal} (${percent(coverage.researchMappedPresentationCount, coverage.canonicalTotal)})`,
+    `- with canonical topics but no safe Research mapping: ${coverage.topicPresentButResearchUnmappedCount} / ${coverage.canonicalTotal} (${percent(coverage.topicPresentButResearchUnmappedCount, coverage.canonicalTotal)})`,
     `- topic assignments: ${coverage.mappedAssignmentCount} / ${coverage.totalAssignmentCount} (${percent(coverage.mappedAssignmentCount, coverage.totalAssignmentCount)})`,
     `- mapped local-first: ${coverage.localMapped}`,
     `- mapped external-first: ${coverage.externalMapped}`,
     `- presets with presentation coverage: ${coverage.presetsWithCoverage}`,
     `- presets without presentation coverage: ${coverage.presetsWithoutCoverage}`
+  ].join("\n");
+}
+
+function buildDiagnosticTable(rows = []) {
+  if (!rows.length) return "| Canonical ID | Title | Topics | Landing |\\n| --- | --- | --- | --- |";
+  return [
+    "| Canonical ID | Title | Topics | Landing |",
+    "| --- | --- | --- | --- |",
+    ...rows.map((row) => {
+      const topics = row.topics.length ? row.topics.join(", ") : "—";
+      return `| ${escapeMd(row.canonicalId)} | ${escapeMd(row.title)} | ${escapeMd(topics)} | ${escapeMd(row.landingType || "—")} |`;
+    })
   ].join("\n");
 }
 
@@ -465,6 +574,11 @@ ${buildTopTopicTable(csvRows)}
 ## 5. Topic coverage
 
 ${buildCoverageTable(coverage)}
+
+### Count invariants
+
+- with canonical topics + topicless = ${coverage.presentationsWithTopics} + ${coverage.presentationsWithoutTopics} = ${coverage.canonicalTotal} (${coverage.diagnostics.invariantA ? "PASS" : "FAIL"})
+- with safe Research mapping + topic-present-but-Research-unmapped + topicless = ${coverage.researchMappedPresentationCount} + ${coverage.topicPresentButResearchUnmappedCount} + ${coverage.presentationsWithoutTopics} = ${coverage.canonicalTotal} (${coverage.diagnostics.invariantB ? "PASS" : "FAIL"})
 
 ## 6. Research preset inventory
 
@@ -548,7 +662,7 @@ ${buildRepresentativeQueryTable(representativeQueries)}
 ## 20. Presentation archive topic readiness
 
 - classification: ${archiveReadiness}
-- reasoning: archive-side topics are rich enough to expose, but the vocabulary is still fragmented (406 raw labels, 11 topicless presentations, and a large long tail).
+- reasoning: archive-side topics are rich enough to expose, but the vocabulary is still fragmented (${coverage.uniqueTopicCount} raw labels, ${coverage.presentationsWithoutTopics} topicless presentations, and a large long tail).
 
 ## 21. Research fourth-scope readiness
 
@@ -573,8 +687,8 @@ ${buildFilterRecommendationTable()}
 
 ## 25. Remaining limitations
 
-- 11 canonical presentations still have no topic metadata.
-- 406 raw topic labels include many one-off strings and mixed Finnish/English variants.
+- ${coverage.presentationsWithoutTopics} canonical presentations still have no topic metadata.
+- ${coverage.uniqueTopicCount} raw topic labels include many one-off strings and mixed Finnish/English variants.
 - P5 intentionally does not collapse the archive vocabulary or redesign topic taxonomy.
 
 ## 26. Closure readiness
@@ -585,6 +699,23 @@ ${buildFilterRecommendationTable()}
 - report artifact: [${path.basename(REPORT_PATH)}](${REPORT_PATH})
 - csv artifact: [${path.basename(CSV_PATH)}](${CSV_PATH})
 - mapping artifact: [presentation-research-topic-mapping.json](${path.join(process.cwd(), "src", "curated", "presentation-research-topic-mapping.json")})
+- diagnostics artifact: [${path.basename(DIAGNOSTICS_PATH)}](${DIAGNOSTICS_PATH})
+
+## 27. Closure note
+
+- contradictory values observed before closure: \`20\` and \`11\` topicless presentations.
+- authoritative current canonical value: \`${coverage.presentationsWithoutTopics}\` topicless presentations from \`_site/data/presentations-page.json\` canonical items.
+- exact reason for the discrepancy: stale hardcoded prose in this audit generator's sections 20 and 25 still said \`11\`, while the canonical inventory section already computed \`${coverage.presentationsWithoutTopics}\`.
+- corrected source: \`scripts/audit-presentation-topic-mapping.js\`.
+- canonical topic semantics and safe Research mapping semantics were unchanged by this closure fix.
+
+## 28. Diagnostic list: topicless canonical presentations
+
+${buildDiagnosticTable(coverage.diagnostics.topicless)}
+
+## 29. Diagnostic list: canonical topics present but no safe Research mapping
+
+${buildDiagnosticTable(coverage.diagnostics.topicPresentButResearchUnmapped)}
 `;
 }
 
@@ -597,7 +728,8 @@ async function main() {
   const items = Array.isArray(pageData.items) ? pageData.items : [];
   const topicInventory = buildTopicInventory(items);
   const csvRows = buildCsvRows(topicInventory);
-  const coverage = buildCoverage(items, htmlAudit.records || [], csvRows);
+  const diagnostics = buildCanonicalTopicDiagnostics(items);
+  const coverage = buildCoverage(items, htmlAudit.records || [], csvRows, diagnostics);
   const instances = await createPagefindInstances();
 
   try {
@@ -607,6 +739,7 @@ async function main() {
     const f3cDecision = determineF3cDecision();
 
     await writeCsv(csvRows);
+    await writeDiagnosticsArtifact(coverage);
     const report = buildReport({
       csvRows,
       coverage,
@@ -620,6 +753,8 @@ async function main() {
     console.log(JSON.stringify({
       presentationCount: items.length,
       presentationsWithTopics: coverage.presentationsWithTopics,
+      presentationsWithoutTopics: coverage.presentationsWithoutTopics,
+      topicPresentButResearchUnmapped: coverage.topicPresentButResearchUnmappedCount,
       uniquePresentationTopics: coverage.uniqueTopicCount,
       safelyMappedTopicCount: coverage.safeMappedTopicCount,
       intentionallyUnmappedTopicCount: coverage.intentionallyUnmappedTopicCount,
@@ -629,7 +764,8 @@ async function main() {
       researchPresetsWithCoverage: coverage.presetsWithCoverage,
       structuredFilterQuality: coverage.presetCoverage.every((row) => row.ok) ? "PASS" : "FAIL",
       reportPath: REPORT_PATH,
-      csvPath: CSV_PATH
+      csvPath: CSV_PATH,
+      diagnosticsPath: DIAGNOSTICS_PATH
     }, null, 2));
   } finally {
     await instances.destroy();
