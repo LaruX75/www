@@ -1,67 +1,134 @@
 # Canonical Content v1 -> Find & Explore Roadmap
 
 Date: 2026-08-12
+Synchronized: 2026-08-14
 
-## Status
+This roadmap is the shared source of truth after Canonical Content v1, Find & Explore Writings v1, and Find & Explore Theses v1.
 
-Canonical content architecture v1 on nyt rakennettu neljalle sisältöalueelle:
+## 1. Current State
 
-- presentations / esitykset
-- publications / julkaisut
-- theses / opinnäytteet
-- writings / kirjoitukset
-
-Yhteinen periaate:
+Canonical Content v1 is closed and tagged.
 
 ```text
-authoritative source(s)
-        ↓
-canonical internal content
-        ↓
-purpose-specific projections
-        ├── HTML
-        ├── public JSON
-        ├── JSON-LD / metadata
-        ├── Pagefind
-        └── internal semantic projections
+canonical-content-v1
+status: CLOSED / GREEN
+PR: #82
+merge commit: db2432d1239e3c1553939958be468923fb19c4b7
+closure report: docs/canonical-content-v1-closure-2026-08-12.md
 ```
 
-C1-C3-auditit ja C2-contract ovat tehneet mallista dokumentoidun ja validoitavan.
-
-Keskeinen päätös:
+Find & Explore has two proven independent consumers.
 
 ```text
-pageUrl
-= local canonical HTML page
+F2 Writings Find & Explore
+status: CLOSED / GREEN
+tag: find-explore-writings-v1
+PR: #83
+merge commit: 0b7524636ab99c5debb8a9833aaead9517db699b
+closure report: docs/find-explore-writings-v1-closure-2026-08-12.md
 
-sourceUrl
-= authoritative/original source
-
-url
-= compatibility field
-```
-
-Saanto:
-
-> Älä jatka `url`-kentän site-wide refaktorointia tässä roadmapissa.
-
-Seuraava tavoite ei ole uusi arkkitehtuurikerros, vaan näkyvä UX-, performance-, SEO- ja ylläpitohyöty jo rakennetusta canonical-mallista.
-
-## Find & Explore v1 status
-
-F2 Writings Find & Explore on suljettu aiemmin vihreänä.
-
-F3A Theses Find & Explore on suljettu vihreänä:
-
-```text
-F3A Theses Find & Explore = CLOSED / GREEN
+F3A Theses Find & Explore
+status: CLOSED / GREEN
 tag: find-explore-theses-v1
-PR: https://github.com/LaruX75/www/pull/84
+PR: #84
 merge commit: a18011f596f139395e48536f3292b66dd900c072
 closure report: docs/find-explore-theses-v1-closure-2026-08-14.md
 ```
 
-Nykyinen Find & Explore -todistustila:
+Repository evidence confirms that F3A has been formally merged and tagged. There is no disagreement between the repository and this synchronized roadmap.
+
+## 2. Architectural Invariants
+
+Canonical data is authoritative. Canonical objects and projections feed server-rendered HTML, public JSON, JSON-LD, Pagefind metadata, knowledge graph, feeds, exports, and future integrations.
+
+Pagefind is discovery infrastructure. It is not canonical storage, not an identity source, and not the archive generator.
+
+Eleventy remains server-rendered first. Pages should provide useful HTML at build time and remain useful without JavaScript where practical. JavaScript and Pagefind enhance discovery.
+
+The intended Find & Explore model is:
+
+```text
+canonical content
+      ↓
+SSR useful opening/context
+      ↓
+Pagefind metadata
+      ↓
+Find & Explore
+      ↓
+detail pages
+```
+
+Deletion is part of success. Find & Explore should replace redundant archive/runtime complexity, not merely add another interface layer. For each migration ask: what can now be deleted?
+
+Measure where useful:
+
+- HTML bytes
+- DOM elements
+- controls
+- local JS
+- runtime JSON
+- duplicated templates/runtime
+
+Shared architecture does not mean identical UX. Preserve domain semantics:
+
+- publications are bibliographic objects
+- presentations have local/external/media source semantics
+- theses have author/supervision semantics
+- writings have editorial/content-type semantics
+
+## 3. Completed Checkpoints
+
+C1-C3 Canonical Content v1: closed green.
+
+F1 Find & Explore Architecture + Deletion Audit: completed.
+
+```text
+report: docs/find-explore-architecture-audit-2026-08-12.md
+baseline: docs/data/find-explore-f1-baseline.json
+recommendation: HYBRID RECOMMENDED
+```
+
+F2 Writings Find & Explore: closed green.
+
+F3 Expansion Suitability Analysis: completed.
+
+```text
+report: docs/find-explore-f3-suitability-audit-2026-08-12.md
+baseline: docs/data/find-explore-f3-baseline.json
+decision: theses selected before publications/presentations
+```
+
+F3A Theses Find & Explore: closed green.
+
+## 4. Active Gate
+
+The active gate is F3B Publications decision gate.
+
+F3B is future and decision-gated. Do not assume publications must migrate merely for architectural symmetry.
+
+Start with a suitability/deletion-benefit decision:
+
+- Can Pagefind discovery replace meaningful duplicated runtime?
+- Can bibliographic functions remain intact?
+- Can citation, type, coauthor, source, DOI, open-access, Research.fi, and JSON-LD semantics remain canonical-data responsibilities?
+- Is there enough deletion, UX, SEO, or maintenance benefit to justify a migration?
+
+If yes, implement F3B as a focused checkpoint. If no, explicitly skip or defer; retaining the existing publication implementation is acceptable.
+
+F3C Presentations remains future and evidence-gated. Before any migration, resolve:
+
+- canonical presentation count
+- local detail coverage
+- external-source semantics
+- media semantics
+- whether Find & Explore provides meaningful deletion benefit
+
+F4 Main-page Find & Explore is future and high value. It does not have to wait until every archive type has migrated. Writings plus theses are sufficient architectural evidence once both are formally closed.
+
+## 5. Find & Explore Roadmap
+
+Current proof:
 
 ```text
 writings
@@ -71,27 +138,165 @@ theses
   -> independent canonical consumer
 ```
 
-Seuraava laajennusjärjestys:
+Recommended order:
 
 ```text
-F3B publications
-  -> suitability-aware decision before implementation
-
-F3C presentations
-  -> evidence-gated; only if Pagefind metadata/detail coverage supports it
-
-main-page Find & Explore
-  -> may proceed after the F3B decision
+CURRENT
+  │
+  ▼
+F3B Publications decision gate
+  │
+  ├─ implement if deletion/user benefit is demonstrated
+  └─ skip/defer if not
+  │
+  ▼
+F4 Main-page Find & Explore
+  │
+  ▼
+O1 Orientation
+  │
+  ▼
+T1 Timeline 2.0
 ```
 
-## Future Enrichment Boundaries
+F3C Presentations can be scheduled when source/detail/media semantics are understood. It does not need to block F4.
 
-Ulkoiset rikastukset ovat tulevaisuuden mahdollisuuksia, eivät Find & Explore v1:n riippuvuuksia.
+## 6. F4 Main-Page Discovery
 
-Mahdollisia lähteitä myöhempään arviointiin:
+Candidate pages:
 
-- OpenAlex
-- Finto / YSO
+- home
+- research
+- work
+- politics
+- writings / editorial surfaces
+
+Main pages should explain, interpret, curate, and provide discovery entry points. They should not become miniature archive implementations.
+
+Examples:
+
+```text
+home
+  -> browse routes
+  -> Find & Explore when the user knows the topic
+
+research
+  -> evidence about a topic
+  -> publications + theses + presentations + writings
+
+politics
+  -> what have I done about this issue?
+  -> speeches + initiatives + opinions + statements + writings
+
+work
+  -> role/topic evidence links
+
+writings/editorial surfaces
+  -> combined writings/speeches/opinions discovery
+```
+
+## 7. O1 Orientation
+
+Goal: users should understand where they are, how they arrived there, what is adjacent, and how to return to discovery.
+
+Potential components:
+
+- canonical breadcrumbs
+- discovery-context return
+- result position
+- previous/next
+- related content
+- desktop orientation rail
+- compact mobile equivalent
+- bottom orientation for continuation
+
+Conceptual model:
+
+```text
+breadcrumb
+  -> where this content belongs
+
+discovery context
+  -> where the user came from
+
+previous / next
+  -> adjacent result or curated sequence
+
+related content
+  -> continue by theme/context
+```
+
+Do not implement O1 inside F3B. Treat it as its own UX/accessibility checkpoint.
+
+## 8. T1 Timeline 2.0
+
+Timeline should evolve from a chronological list into another projection of canonical content.
+
+Conceptually:
+
+```text
+year
+  ↓
+theme
+  ↓
+content types
+  ↓
+Find & Explore
+```
+
+Potential future content:
+
+- research
+- writings
+- presentations
+- theses
+- political activity
+- projects
+- travel
+- media/social material
+
+Timeline must not become an independent data silo.
+
+## 9. E1 External Enrichment
+
+External enrichment is future work. It is not a dependency for Find & Explore v1.
+
+General API rule:
+
+> Add an external API only when it provides new user-visible information, a new relation, verification, normalization, historical recovery, or meaningful automation.
+
+E1A OpenAlex:
+
+- citation counts
+- cited/citing works where useful
+- related works
+- topics/concepts
+- authors
+- institutions
+- collaboration relationships
+
+OpenAlex is enrichment. It is not the authoritative canonical publication source and must not replace Research.fi/canonical publication logic.
+
+E1B Finto / YSO:
+
+```text
+localTheme
+    ↓ relatedConcept
+YSO URI
+```
+
+Possible benefits:
+
+- concept normalization
+- FI/EN/SV terminology
+- semantic linking
+- knowledge graph enrichment
+- improved discovery
+
+YSO does not replace the site's own taxonomy.
+
+Lower-priority enrichment/verification candidates:
+
 - Crossref
 - Unpaywall
 - ORCID
@@ -100,91 +305,194 @@ Mahdollisia lähteitä myöhempään arviointiin:
 - OpenAIRE
 - DBLP
 
-Sääntö:
+## 10. POL1 Politics Context
 
-> Lisää ulkoinen API vain, jos se tuo uuden relaation, uuden sisältötyypin, verifikaatiota tai käyttäjälle näkyvän hyödyn.
+Oulu municipal / KTWeb / council material is already represented on the site. Do not create a roadmap task whose purpose is simply to ingest the same Oulu council material again.
 
-## Politics Context Future
+Future value should come from contextual enrichment.
 
-Oulu / KTWeb -aineistoa on jo ingestoitu. Seuraavat politiikkakontekstin lähteet ovat vain tulevia kandidaatteja:
-
-- Finlex
-- eduskunnan avoin data
-- POHTIVA
-- vanhat vaalikonevastaukset
-
-Mahdollinen tuleva relaatiomalli:
+POL1A Finlex:
 
 ```text
-political activity
-  -> legislation
-  -> national process
-  -> party programmes
-  -> historical own positions
+local political issue
+  <-> legislation
+  <-> government proposal
+  <-> legal change
 ```
 
-## Spatial Layer Future
+POL1B Parliament open data:
 
-Paikkataso on tulevaisuuden tutkimus- ja UX-mahdollisuus, ei nykyisen roadmapin toteutuskohta.
+```text
+local issue
+  <-> national parliamentary process
+```
 
-Oulu WFS/WMS -kandidaatteja:
+POL1C POHTIVA:
+
+```text
+site theme / political issue
+  <-> party programmes
+```
+
+POL1D historical election-machine answers:
+
+Candidate sources may include Yle, MTV, Kaleva / Alma, other election machines, Wayback, and old personal web archives.
+
+Potential future canonical object:
+
+```text
+electionAnswer
+  - election
+  - year
+  - provider
+  - question
+  - answer
+  - explanation
+  - source URL/archive evidence
+```
+
+Do not invent data or assume API availability. Recovery feasibility must be investigated separately.
+
+## 11. GEO1 Spatial Layer
+
+Oulu provides potentially useful authoritative geospatial sources, including WMS/WFS-type services.
+
+Possible uses:
 
 - districts
 - service network
-- schools
-- services
+- schools/services
 - planning
 - voting districts
-- election results
-- geolinked political content
+- election-result geography
+- geographically linked political content
 
-## Trips Future
+Principles:
 
-Matkat ovat mahdollinen myöhempi canonical content type, mutta `Trip`-entiteettiä ei toteuteta tässä roadmapissa.
+- For Oulu-specific geography, prefer authoritative Oulu geospatial data when appropriate.
+- Do not make Google Maps the canonical geographic authority for local Oulu administrative geography.
+- Maps are projections.
+- Place/location relationships belong in canonical data.
 
-Mahdollisia evidence-lähteitä:
+Do not implement GEO1 now.
 
-- Garmin / GPX
-- Photos
-- Instagram
+## 12. TR1 Trips
+
+Trips are a future canonical-content candidate. Do not create the schema yet.
+
+Core principle:
+
+```text
+Trip is the entity.
+External services and devices are evidence for the trip.
+```
+
+Conceptually:
+
+```text
+Trip
+  - dates
+  - places
+  - route/tracks
+  - purpose
+  - events
+  - related content
+  - evidence
+```
+
+Potential evidence sources:
+
+- Garmin DriveAssist 51, GPX, Trip Log, GPX archives, dashcam location/time evidence
+- Apple Photos, Google Photos, EXIF, GPS, timestamps, Takeout/export data
+- Instagram posts, Bluesky posts, Facebook historical posts where available
+- calendar, email, reservations, presentations, conferences/events, phone GPX, historical web pages
+
+Garmin, Instagram, Google, and social services do not define the trip. They provide observations/evidence.
+
+Potential future UI: `/trips/` or `/matkat/` with map, timeline, year, country/place, purpose, route, photos, social reports, and related presentations/events.
+
+TR1 requires a separate audit/design phase.
+
+## 13. D1 Distribution And Social
+
+Keep a strict distinction:
+
+```text
+INGEST
+  external -> canonical/evidence
+
+DISTRIBUTION
+  canonical -> external
+```
+
+Channels may include:
+
+- RSS
+- JSON Feed
+- Web Share
+- Cite / citation export
+- Facebook
 - Bluesky
-- calendar
-- email
-- presentations
-- historical web
 
-## Distribution And Social Future
+Bluesky is interesting because of open AT Protocol/API:
 
-Jakelu rakennetaan vasta canonical archive -mallin päälle:
+```text
+canonical content -> Bluesky publishing
+Bluesky -> social archive / evidence
+```
+
+Selective historical publishing to Bluesky may be technically possible using historical `createdAt` values, but the order remains:
 
 ```text
 canonical archive first
-  -> distribution second
+  -> selective distribution second
 ```
 
-Mahdollisia myöhempiä suuntia:
+Instagram Professional API ingest may be useful for travel evidence, photos/media, and short reports. Do not assume Instagram should be mirrored wholesale.
 
-- Bluesky canonical publishing / ingest
-- Instagram Professional API ingest
-- Facebook controlled distribution
-
-Facebook, Instagram tai Bluesky eivät ole authoritative source nykyiselle canonical-sisällölle.
-
-## Historical Recovery Future
-
-Historiallinen palautus on erillinen inventaariotyö, ei normaali production build -putki.
-
-Mahdollinen malli:
+Facebook should remain controlled or semi-automatic distribution:
 
 ```text
-Wayback CDX
-  -> Cheerio extraction
-  -> old personal pages
-  -> election-machine content
-  -> social archives
+canonical item
+  -> generated share text
+  -> preview/edit
+  -> publish
 ```
 
-Inventaarion tilat:
+Avoid making Facebook authoritative.
+
+## 14. HR1 Historical Recovery
+
+Historical recovery is separate from normal production build/runtime.
+
+Candidate sources:
+
+- Internet Archive / Wayback
+- CDX
+- old `cc.oulu.fi` pages
+- previous personal websites
+- old blogs
+- old SlideShare material
+- historical election-machine material
+- historical social content
+
+Cheerio may be useful for parsing server-rendered historical HTML.
+
+Conceptual pipeline:
+
+```text
+source/archive
+      ↓
+recovery crawler
+      ↓
+inventory
+      ↓
+compare with canonical
+      ↓
+classification
+```
+
+Inventory states:
 
 ```text
 EXISTS
@@ -193,661 +501,147 @@ DUPLICATE
 ARCHIVE ONLY
 ```
 
-## Release Gate
+Only after review should material enter canonical content. Do not make a Wayback crawler part of normal Eleventy builds.
 
-Ennen mitään Find & Explore- tai C4-työtä noudatetaan tätä porttia:
+## 15. S1 SEO Closure
 
-```text
-commit
-→ PR
-→ CI
-→ merge
-→ tag canonical-content-v1
-→ vasta sitten seuraava vaihe
-```
-
-Tämä on pakollinen rollback- ja historiapiste.
-
-## R0 - Freeze and publish canonical-content-v1
-
-Ennen uutta Find & Explore -runtimea:
-
-1. tarkista nykyinen työpuu
-2. ryhmittele canonical-arkkitehtuuriin kuuluvat muutokset
-3. varmista ettei mukaan tule unrelated work
-4. aja keskeiset unit/parity/build-portit
-5. tee architecture consolidation PR
-6. merge vasta vihreän CI:n jälkeen
-7. tagaa merge nimella `canonical-content-v1`
-
-Ehdotettu PR-otsikko:
-
-```text
-Canonical content architecture v1: presentations, publications, theses and writings
-```
-
-Saanto:
-
-> Älä aloita F1/F2/C4-jatkokehitystä ennen kuin R0 on suljettu.
-
-## F1 - Find & Explore Architecture + Deletion Audit
-
-F1 on audit-only.
-
-Sen pitää vastata kahteen yhtä tärkeään kysymykseen:
-
-### A. Mitä Pagefind voi ottaa vastuulleen?
-
-Auditoi vähintään:
-
-- global search
-- presentations
-- publications
-- theses
-- writings
-- etusivu
-- Tutkimus
-- Työ
-- Politiikka
-- Kynästä
-
-Tunnista ainakin:
-
-- tekstihaku
-- content-type filter
-- vuosi
-- kieli
-- theme
-- keyword
-- publication type
-- thesis type
-- role
-- source
-- grouping
-- sorting
-- show more
-- pagination
-- section filtering
-
-Luokittelu:
-
-```text
-PAGEFIND
-CANONICAL_DATA
-KEEP_CLIENT
-HYBRID
-REDUNDANT
-NEEDS_INVESTIGATION
-```
-
-### B. Mitä nykyisestä UI:sta voidaan poistaa?
-
-Tämä on F1:n pakollinen deletion audit.
-
-Etsi erityisesti:
-
-- päällekkäiset hakukentät
-- sisältötyyppikohtaiset minihakukoneet
-- päällekkäiset filtterit
-- valtavat archive-taulukot
-- listat, joiden kaikki itemit renderöidään DOMiin vain client-filteriä varten
-- miniarkistot pääsivuilla
-- saman datan toistuvat yhteenvedot
-- redundantit "kaikki sisällöt" -listat
-- päällekkäinen navigaatio
-- päällekkäiset taxonomy entry points
-- client-side JSON -> normalize -> filter -> render -putket, joita Pagefind voisi korvata
-
-Jokaisesta poistoehdotuksesta raportoi:
-
-```text
-current UI/runtime
-replacement
-UX impact
-SEO impact
-JS-off impact
-accessibility impact
-performance impact
-risk
-```
-
-Tavoite ei ole poistaa sisältöä.
-
-Tavoite on:
-
-> vähentää käyttöliittymää sisällön päältä.
-
-## F1 - DOM / payload baseline
-
-Mittaa ennen muutoksia ainakin:
-
-- `/julkaisut/`
-- `/esitykset/`
-- `/opinnaytteet/`
-- `/kirjoitukset/`
-- EN-vastineet mahdollisuuksien mukaan
-
-Kerää:
-
-- HTML size
-- rendered item/card/row count
-- DOM size tai luotettava proxy
-- relevant JS size
-- relevant JSON payload
-- initially visible records
-- records present only for filtering
-- Pagefind index size
-
-Tämä toimii baseline-mittauksena myöhempää F2/P1-vertailua varten.
-
-## F1 - Pagefind metadata readiness
-
-Tarkista mitä Pagefindille oikeasti päätyy HTML:stä.
-
-Vähintään:
-
-- contentType
-- lang
-- year
-- date
-- themes
-- categories
-- keywords
-- publication type
-- thesis type
-- writing role
-- source
-- title
-- description
-
-Tee matrix:
-
-| Field | Canonical | HTML | Pagefind | UX needs |
-| --- | --- | --- | --- | --- |
-
-Älä lisää puuttuvia metadata-kenttiä vielä F1:ssä.
-
-## F1 - Main-page discovery
-
-Arvioi Pagefindia myös pääsivujen UX-kerroksena.
-
-### Etusivu
-
-Kaksi sisäänkäyntiä:
-
-```text
-Valitse reitti
-= browse/navigation
-
-Find & Explore
-= tiedän aiheen jota etsin
-```
-
-Arvioi lisäksi nykyisen aikajanan rikastaminen:
-
-```text
-year
-→ themes
-→ content types
-→ Pagefind results
-```
-
-### Tutkimus
-
-Mahdollinen Evidence UI:
-
-```text
-Mistä aiheesta haluat nähdä näyttöä?
-
-[ tekoälylukutaito ]
-```
-
-Tulokset voivat yhdistää:
-
-- publications
-- theses
-- presentations
-- writings
-
-Tutkimussivun ei tarvitse sisältää omia miniarkistoja, jos Find & Explore tarjoaa evidenssin.
-
-### Politiikka
-
-Mahdollinen käyttöliittymä:
-
-```text
-Mitä olen tehnyt tästä asiasta?
-
-[ palveluverkko ]
-```
-
-Tulokset esimerkiksi:
-
-- speeches
-- initiatives
-- opinions
-- statements
-- writings
-
-### Työ
-
-Arvioi Evidence-linkkejä:
-
-```text
-Opettajankoulutus
-→ Tutki tähän liittyviä sisältöjä
-```
-
-Ei massiivista archivea pääsivulle.
-
-### Kynästä
-
-Arvioi, voiko nykyisten useiden haku-/listausrakenteiden tilalle tulla yksi:
-
-```text
-Hae kirjoituksista ja puheista
-```
-
-Facetit:
-
-- contentType
-- role
-- year
-- theme
-
-Kynästä on erityisen tärkeä deletion-audit-kohde.
-
-## F1 - Orientation
-
-Sisällytä auditissa tulevan Orientation-järjestelmän feasibility.
-
-### Top Orientation
-
-Sivun alussa:
-
-```text
-canonical breadcrumb
-
-+
-discovery context:
-← Takaisin: tekoälylukutaito · 8 tulosta
-```
-
-Breadcrumb vastaa:
-
-```text
-Missä tämä sisältö kuuluu?
-```
-
-Discovery context vastaa:
-
-```text
-Mistä käyttäjä tuli?
-```
-
-### Desktop orientation rail
-
-Testattava konsepti pitkille detail-sivuille.
-
-Mahdolliset elementit:
-
-```text
-↑
-reading progress
-3 / 8
-← →
-back to results
-↓
-```
-
-Rail on contextual:
-
-- normaali lukeminen
-- Find & Explore
-- myöhemmin Listen / Radio
-
-Älä lukitse railia vielä arkkitehtuuriksi. Arvioi UX-hyöty ja saavutettavuus.
-
-### Mobile orientation
-
-Desktop railin sijaan kompakti bottom bar:
-
-```text
-←     3 / 8     →     ⌕     ↑
-```
-
-Arvioi:
-
-- peittääkö sisältöä
-- focus behavior
-- keyboard / screen reader
-- safe-area
-- scroll behavior
-
-### Bottom Orientation
-
-Sivun lopussa:
-
-```text
-← Previous       3 / 8       Next →
-
-Explore also:
-[theme] [theme] [theme]
-
-↑ Back to top
-```
-
-Alhaalla tehtävä on jatkaminen, ei sijainnin ilmoittaminen.
-
-## F1 - Listen / Radio discovery
-
-Auditoi, voiko Pagefind-result set toimia myöhemmin radiojonon pohjana.
-
-Kolme mahdollista toimintoa:
-
-```text
-Kuuntele tämä
-Kuuntele nämä
-Jatka tästä
-```
-
-Periaate:
-
-```text
-Pagefind
-= what to listen to
-
-canonical/detail content
-= what is read
-
-TTS
-= voice
-
-player
-= playback
-```
-
-Auditoi eri sisältötyyppien kuunneltavuus:
-
-```text
-FULL_TEXT_READABLE
-ABSTRACT_READABLE
-SUMMARY_READABLE
-METADATA_ONLY
-NOT_SUITABLE
-```
-
-Tarkista ainakin:
-
-- publication
-- thesis
-- presentation
-- blog
-- speech
-- opinion
-- column
-- initiative
-- statement
-
-Pagefind ei saa muuttua audio-content sourceksi.
-
-## F1 - Contextual radio
-
-Arvioi voiko mikä tahansa discovery state muuttua kuuntelujonoksi.
-
-Esimerkkejä:
-
-```text
-2025
-→ Kuuntele vuosi 2025
-
-tekoälylukutaito + presentations
-→ Kuuntele nämä
-
-politiikka + koulutus
-→ Kuuntele aihe
-```
-
-Tavoite on välttää erillisen radio-discovery-järjestelmän rakentaminen.
-
-## F1 - SEO parallel audit
-
-SEO ei ole erillinen "SEO text" -projekti.
-
-Auditoi Find & Explore -muutoksen rinnalla tavoitemalli:
+SEO is not generic filler text. Validate the canonical discovery model:
 
 ```text
 hub
-→ explains and organizes
+  -> explains and organizes
 
 topic
-→ aggregates subject authority
+  -> aggregates subject authority
 
 detail
-→ canonical document
+  -> canonical document
 
 Pagefind
-→ discovery
+  -> discovery
 ```
 
-Tarkista ainakin:
+Audit:
 
 - title
 - description
-- canonical
-- OG
+- canonical URL
 - JSON-LD
+- OG
 - sitemap
-- internal linking
 - hreflang
-- robots / noindex
+- internal links
 - indexability
 
-Kiinnitä erityistä huomiota suuriin archive-sivuihin.
+Pay special attention to large archive pages. Ask whether the hub still contains large quantities of detail content unnecessarily now that canonical detail pages exist.
 
-Kysy:
+## 16. P1 Performance Closure
 
-> sisältääkö hub edelleen suuria määriä detail-sisältöä turhaan, vaikka canonical detail -sivut ovat olemassa?
+Compare final states against F1/F3 baselines.
 
-Älä lisää geneeristä SEO-fill textiä.
+Measure:
 
-## F1 - Distribution opportunities
+- HTML
+- DOM
+- JS
+- runtime JSON
+- Pagefind index
+- controls
+- network behavior
+- build characteristics
 
-Dokumentoi, mutta älä vielä toteuta:
+Deletion and simplification should remain visible in measured output, not just in implementation style.
 
-- RSS
-- JSON Feed
-- ICS
-- Web Share
-- Copy Link
-- Citation export
-- Facebook Page distribution
+## 17. L1 Listen / Radio
 
-Erityinen jatkopilotti:
-
-```text
-canonical item
-→ share projection
-→ suggested Facebook text
-→ canonical URL + OG preview
-→ user edits
-→ publish to Facebook Page
-```
-
-Tavoite on puoliautomaattinen julkaiseminen ennen full automationia.
-
-Facebook ei ole authoritative source tälle sisällölle.
-
-## F1 - FindExplore shared component feasibility
-
-Arvioi yhden shared componentin mahdollisuus.
-
-Konseptuaalinen API:
+Architectural principle:
 
 ```text
-scope
-language
-allowedContentTypes
-facets
-defaultSort
-resultTemplate
-placeholder
+Pagefind determines:
+  what content belongs in a result set
+
+Canonical content provides:
+  readable source content
+
+TTS provides:
+  audio
 ```
 
-Mahdolliset scopet:
+Possible future actions:
+
+- Listen to this
+- Listen to these results
+- Continue listening
+
+Do not implement until discovery architecture is stable.
+
+## 18. AI1 Semantic / LLM
+
+This remains deliberately late.
+
+First evaluate:
+
+- canonical metadata
+- Pagefind
+- knowledge graph
+- Finto / YSO
+- OpenAlex enrichment
+- related-content relationships
+
+Only introduce embeddings if a demonstrated discovery problem remains. Only introduce an LLM / "Ask this site" layer when it solves a clear user task that structured discovery cannot.
+
+Do not add AI merely because the architecture could support it.
+
+## 19. Explicit Non-Goals
+
+Do not use this roadmap synchronization task to:
+
+- modify production runtime
+- change canonical schemas
+- install dependencies
+- implement F3B
+- implement F4
+- add OpenAlex
+- add Finto
+- add Finlex
+- add Parliament APIs
+- scrape election machines
+- add Oulu maps
+- create Trip objects
+- access personal email/calendar/photos
+- add Instagram
+- add Bluesky
+- add Facebook publishing
+- create Wayback crawlers
+- add embeddings
+- add an LLM
+
+## 20. Gate Rules
+
+Project-wide checkpoint rule:
 
 ```text
-all
-publications
-presentations
-theses
-writings
-theme:<theme>
-research
-politics
+implementation
+  -> local verification
+  -> focused commit
+  -> PR
+  -> available CI/checks
+  -> merge
+  -> annotated version/checkpoint tag
+  -> closure report
+  -> next phase
 ```
 
-Älä rakenna komponenttia vielä.
+Do not start the next implementation phase inside the previous phase's branch.
 
-## F1 - Recommended pilot
+Do not force every archive into identical architecture before improving main user experience. Once writings and theses are closed, the project can move from proving architecture toward visible user value:
 
-Valitse lopuksi ensimmäinen F2-pilotti.
+- discovery
+- orientation
+- connections between content
+- temporal context
+- geographic context
+- research context
+- political context
 
-Vertaa vähintään:
-
-- `/julkaisut/`
-- `/opinnaytteet/`
-- `/esitykset/`
-- `/kirjoitukset/`
-
-Valintakriteerit:
-
-- current UX complexity
-- redundant client logic
-- canonical maturity
-- local detail coverage
-- Pagefind quality
-- metadata readiness
-- DOM reduction potential
-- SEO benefit
-- accessibility risk
-- architecture simplification potential
-
-Valitse pilotti, jolla voidaan todistaa samanaikaisesti:
-
-```text
-better UX
-+
-less UI
-+
-less runtime complexity
-+
-lighter archive
-```
-
-## F1 final report
-
-Luo auditin lopuksi:
-
-```text
-docs/find-explore-architecture-audit-2026-08-12.md
-```
-
-Raportoi vähintään:
-
-1. nykyiset discovery-toiminnot
-2. Pagefindille sopivat toiminnot
-3. canonical datalle jäävät toiminnot
-4. clientille jäävät toiminnot
-5. poistettavat / redundantit UI-rakenteet
-6. nykyinen DOM / payload baseline
-7. Pagefind metadata readiness
-8. pääsivujen Find / Explore / Evidence -mahdollisuudet
-9. timeline-mahdollisuus
-10. Orientation feasibility
-11. Listen / Radio readiness
-12. SEO-vaikutukset
-13. distribution opportunities
-14. FindExplore-component feasibility
-15. potentiaalinen poistuva JS / template / runtime
-16. suositeltu F2-pilotti
-17. F2:n tarkka hyväksymiskriteeri
-
-Anna lopuksi yksi pääsuositus:
-
-```text
-PAGEFIND-FIRST RECOMMENDED
-```
-
-tai
-
-```text
-HYBRID RECOMMENDED
-```
-
-tai
-
-```text
-CURRENT MODEL SHOULD REMAIN
-```
-
-## Architecture boundaries
-
-Älä F1:ssä:
-
-- muuta runtimea
-- muuta UI:ta
-- poista nykyisiä toimintoja
-- muuta canonical contractia
-- muuta Pagefind-rankingia
-- lisää embeddingejä
-- lisää LLM:ää
-- rakenna radioa
-- rakenna Facebook-automaatiota
-- rakenna uutta universal discovery frameworkia
-
-Tämä on auditointi.
-
-## Roadmap after F1
-
-Jos F1 tukee Pagefind-first- tai hybrid-mallia:
-
-```text
-F2
-→ yksi Find & Explore UX -pilotti
-
-F3
-→ shared Find & Explore arkistoihin
-
-F4
-→ pääsivujen Search / Explore / Evidence
-
-O1
-→ Orientation system
-
-T1
-→ interactive timeline
-
-S1
-→ SEO closure
-
-P1
-→ performance closure
-
-D1
-→ RSS / Share / Cite / Facebook Publish
-
-L1
-→ Listen / Radio
-
-AI1
-→ embeddings / LLM vain jos todellinen tarve on osoitettu
-```
-
-Pidä koko roadmapin ajan tämä sääntö:
-
-> Uutta arkkitehtuurikerrosta ei rakenneta ilman osoitettavaa käyttäjä-, suorituskyky- tai ylläpitohyötyä.
-
-Ja toinen yhtä tärkeä sääntö:
-
-> Find & Explore -uudistuksen onnistumista mitataan myös sillä, kuinka paljon tarpeetonta UI:ta ja client-runtimea voidaan poistaa turvallisesti.
+while continuing to reduce unnecessary implementation complexity.
