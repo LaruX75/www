@@ -47,6 +47,152 @@ Saanto:
 
 Seuraava tavoite ei ole uusi arkkitehtuurikerros, vaan näkyvä UX-, performance-, SEO- ja ylläpitohyöty jo rakennetusta canonical-mallista.
 
+## Find & Explore v1 status
+
+F2 Writings Find & Explore on suljettu aiemmin vihreänä.
+
+F3A Theses Find & Explore on suljettu vihreänä:
+
+```text
+F3A Theses Find & Explore = CLOSED / GREEN
+tag: find-explore-theses-v1
+PR: https://github.com/LaruX75/www/pull/84
+merge commit: a18011f596f139395e48536f3292b66dd900c072
+closure report: docs/find-explore-theses-v1-closure-2026-08-14.md
+```
+
+Nykyinen Find & Explore -todistustila:
+
+```text
+writings
+  -> independent canonical consumer
+
+theses
+  -> independent canonical consumer
+```
+
+Seuraava laajennusjärjestys:
+
+```text
+F3B publications
+  -> suitability-aware decision before implementation
+
+F3C presentations
+  -> evidence-gated; only if Pagefind metadata/detail coverage supports it
+
+main-page Find & Explore
+  -> may proceed after the F3B decision
+```
+
+## Future Enrichment Boundaries
+
+Ulkoiset rikastukset ovat tulevaisuuden mahdollisuuksia, eivät Find & Explore v1:n riippuvuuksia.
+
+Mahdollisia lähteitä myöhempään arviointiin:
+
+- OpenAlex
+- Finto / YSO
+- Crossref
+- Unpaywall
+- ORCID
+- ROR
+- DataCite
+- OpenAIRE
+- DBLP
+
+Sääntö:
+
+> Lisää ulkoinen API vain, jos se tuo uuden relaation, uuden sisältötyypin, verifikaatiota tai käyttäjälle näkyvän hyödyn.
+
+## Politics Context Future
+
+Oulu / KTWeb -aineistoa on jo ingestoitu. Seuraavat politiikkakontekstin lähteet ovat vain tulevia kandidaatteja:
+
+- Finlex
+- eduskunnan avoin data
+- POHTIVA
+- vanhat vaalikonevastaukset
+
+Mahdollinen tuleva relaatiomalli:
+
+```text
+political activity
+  -> legislation
+  -> national process
+  -> party programmes
+  -> historical own positions
+```
+
+## Spatial Layer Future
+
+Paikkataso on tulevaisuuden tutkimus- ja UX-mahdollisuus, ei nykyisen roadmapin toteutuskohta.
+
+Oulu WFS/WMS -kandidaatteja:
+
+- districts
+- service network
+- schools
+- services
+- planning
+- voting districts
+- election results
+- geolinked political content
+
+## Trips Future
+
+Matkat ovat mahdollinen myöhempi canonical content type, mutta `Trip`-entiteettiä ei toteuteta tässä roadmapissa.
+
+Mahdollisia evidence-lähteitä:
+
+- Garmin / GPX
+- Photos
+- Instagram
+- Bluesky
+- calendar
+- email
+- presentations
+- historical web
+
+## Distribution And Social Future
+
+Jakelu rakennetaan vasta canonical archive -mallin päälle:
+
+```text
+canonical archive first
+  -> distribution second
+```
+
+Mahdollisia myöhempiä suuntia:
+
+- Bluesky canonical publishing / ingest
+- Instagram Professional API ingest
+- Facebook controlled distribution
+
+Facebook, Instagram tai Bluesky eivät ole authoritative source nykyiselle canonical-sisällölle.
+
+## Historical Recovery Future
+
+Historiallinen palautus on erillinen inventaariotyö, ei normaali production build -putki.
+
+Mahdollinen malli:
+
+```text
+Wayback CDX
+  -> Cheerio extraction
+  -> old personal pages
+  -> election-machine content
+  -> social archives
+```
+
+Inventaarion tilat:
+
+```text
+EXISTS
+MISSING
+DUPLICATE
+ARCHIVE ONLY
+```
+
 ## Release Gate
 
 Ennen mitään Find & Explore- tai C4-työtä noudatetaan tätä porttia:
