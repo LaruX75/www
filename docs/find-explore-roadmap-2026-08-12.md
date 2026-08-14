@@ -31,7 +31,14 @@ F3A Theses Find & Explore
 status: CLOSED / GREEN
 tag: find-explore-theses-v1
 PR: #84
+PR title: Theses Find & Explore v1
+head commit: face314c8b518aa5286527969722d56511e08e6b
 merge commit: a18011f596f139395e48536f3292b66dd900c072
+merge timestamp: 2026-08-14T09:06:54Z
+tag target: a18011f596f139395e48536f3292b66dd900c072
+unit tests: 389/389
+combined writings + theses browser smoke: 5 passed
+accessibility/navigation/contrast: 31 passed
 closure report: docs/find-explore-theses-v1-closure-2026-08-14.md
 ```
 
@@ -118,24 +125,33 @@ If yes, implement F3B as a focused checkpoint. If no, explicitly skip or defer; 
 
 F3C Presentations remains future and evidence-gated. Before any migration, resolve:
 
-- canonical presentation count
-- local detail coverage
+- canonical presentation count: 210
+- local detail coverage: 118
+- local vs external presentation semantics
+- source/media relationships
+- Pagefind document coverage
+- current archive runtime
 - external-source semantics
 - media semantics
 - whether Find & Explore provides meaningful deletion benefit
 
-F4 Main-page Find & Explore is future and high value. It does not have to wait until every archive type has migrated. Writings plus theses are sufficient architectural evidence once both are formally closed.
+Do not assume the writings/theses model can simply be copied. Only migrate presentations if the evidence supports it.
+
+F3D Media / Mediassa is future and needs a suitability audit before implementation. Treat media appearances as their own content/discovery domain. Audit canonical media model, local-detail coverage, external-first items, outlet, date, format, role, topic, source URL, podcast/video/article semantics, existing archive/runtime complexity, and potential deletion benefit. Do not automatically merge Media into Writings or Presentations.
+
+F4 Main-page Find & Explore is future and high value. It does not have to wait until every archive type has migrated. Writings plus theses are sufficient architectural evidence once both are formally closed; F3C Presentations and F3D Media remain explicit workstreams, but they do not have to block F4 if main-page discovery provides greater user value.
 
 ## 5. Find & Explore Roadmap
 
 Current proof:
 
 ```text
-writings
-  -> independent canonical consumer
-
-theses
-  -> independent canonical consumer
+Find & Explore
+├── Writings       CLOSED / GREEN
+├── Theses         CLOSED / GREEN
+├── Publications   DECISION-GATED
+├── Presentations  EVIDENCE-GATED
+└── Media          SUITABILITY AUDIT NEEDED
 ```
 
 Recommended order:
@@ -159,7 +175,7 @@ O1 Orientation
 T1 Timeline 2.0
 ```
 
-F3C Presentations can be scheduled when source/detail/media semantics are understood. It does not need to block F4.
+F3C Presentations and F3D Media remain explicit workstreams. They can be scheduled when evidence supports them, but neither needs to block F4.
 
 ## 6. F4 Main-Page Discovery
 
