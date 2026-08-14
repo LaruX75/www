@@ -10,6 +10,8 @@ layout: base.njk
 {% set sourceText = "Esitys" %}
 {% if source == "slideshare" %}
   {% set sourceText = "SlideShare" %}
+{% elif source == "canva" %}
+  {% set sourceText = "Canva" %}
 {% elif source == "aoe" %}
   {% set sourceText = "AOE" %}
 {% elif source == "ouka" %}
@@ -20,10 +22,11 @@ layout: base.njk
   {% set sourceText = "YouTube" %}
 {% endif %}
 {% set isVideoPreview = publicSourceHref and ("youtube.com" in publicSourceHref or "youtu.be" in publicSourceHref) %}
+{% set hasPresentationContext = event or audience or presentationContextSummary or teachingUnitLabel %}
 
 <section class="content-detail-hero content-detail-hero--presentation py-5 border-bottom">
   <div class="site-shell">
-    <div class="content-detail-hero-grid">
+    <div class="content-detail-hero-grid content-detail-hero-grid--single">
       <div class="content-detail-copy">
         <p class="content-detail-eyebrow mb-2">Esitys tai opetusmateriaali</p>
         <h1 class="content-detail-title mb-3">{{ title }}</h1>
@@ -32,6 +35,12 @@ layout: base.njk
         {% elif description %}
           <p class="content-detail-lead mb-3">{{ description }}</p>
         {% endif %}
+        <div class="content-detail-meta" aria-label="Esityksen perustiedot">
+          <span>{{ sourceText }}</span>
+          {% if date %}<span>{{ date | dateFormat }}</span>{% endif %}
+          {% if sourceLanguage %}<span>{{ "English" if sourceLanguage == "en" else ("Suomi" if sourceLanguage == "fi" else sourceLanguage) }}</span>{% endif %}
+          {% if slideCount %}<span>{{ slideCount }} diaa</span>{% endif %}
+        </div>
         <div class="content-detail-actions">
           {% if publicSourceHref %}
             <a href="{{ publicSourceHref }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">{% if isVideoPreview %}Katso tallenne{% else %}Avaa materiaali{% endif %}</a>
@@ -39,38 +48,30 @@ layout: base.njk
           <a href="/esitykset/" class="btn btn-outline-secondary rounded-pill px-4">Kaikki esitykset</a>
         </div>
       </div>
-
-      <aside class="content-detail-visual" aria-label="Esityksen esikatselu">
-        {% if thumbnail %}
-          <a href="{{ publicSourceHref or page.url }}" {% if publicSourceHref %}target="_blank" rel="noopener noreferrer"{% endif %} class="content-detail-thumb{% if isVideoPreview %} video-preview{% endif %}">
-            <img src="{{ thumbnail }}" alt="" loading="lazy" decoding="async">
-          </a>
-        {% else %}
-          <div class="content-detail-thumb content-detail-thumb--empty">
-            <i class="bi bi-easel2" aria-hidden="true"></i>
-          </div>
-        {% endif %}
-      </aside>
     </div>
   </div>
 </section>
 
-<section class="content-detail-body-section py-5">
+<section class="content-detail-body-section content-detail-body-section--presentation py-5">
   <div class="site-shell">
-    <article class="content-detail-main">
-      <div class="content-detail-card">
-        <p class="content-detail-card-kicker">Sisällön kuvaus</p>
+    <article class="content-detail-main content-detail-main--presentation">
+      <div class="content-detail-card content-detail-card--presentation">
+        <p class="content-detail-card-kicker">Esitys</p>
+        {% if thumbnail %}
+          <div class="content-detail-inline-visual" aria-label="Esityksen esikatselu">
+            <a href="{{ publicSourceHref or page.url }}" {% if publicSourceHref %}target="_blank" rel="noopener noreferrer"{% endif %} class="content-detail-thumb{% if isVideoPreview %} video-preview{% endif %}">
+              <img src="{{ thumbnail }}" alt="" loading="lazy" decoding="async">
+            </a>
+          </div>
+        {% endif %}
         <div class="content-prose">{{ content | safe }}</div>
       </div>
 
-      <aside class="content-detail-sidebar">
-        <div class="content-detail-side-card content-detail-meta-card">
-          <p class="content-detail-card-kicker">Materiaali ja käyttöyhteys</p>
-          <dl class="content-detail-definition-list mb-0">
-            <div>
-              <dt>Lähde</dt>
-              <dd>{{ sourceText }}</dd>
-            </div>
+      <div class="presentation-detail-support">
+        {% if hasPresentationContext %}
+        <div class="content-detail-side-card content-detail-support-card">
+          <p class="content-detail-card-kicker">Käyttöyhteys</p>
+          <dl class="content-detail-definition-list content-detail-definition-list--context mb-0">
             {% if event %}
             <div>
               <dt>Tilaisuus</dt>
@@ -83,75 +84,26 @@ layout: base.njk
               <dd>{{ audience }}</dd>
             </div>
             {% endif %}
-            {% if date %}
+            {% if presentationContextSummary %}
             <div>
-              <dt>Päiväys</dt>
-              <dd>{{ date | dateFormat }}</dd>
+              <dt>Opetuskonteksti</dt>
+              <dd>{{ presentationContextSummary }}</dd>
             </div>
             {% endif %}
-            {% if sourceLanguage %}
+            {% if teachingUnitLabel %}
             <div>
-              <dt>Kieli</dt>
-              <dd>{{ "English" if sourceLanguage == "en" else ("Suomi" if sourceLanguage == "fi" else sourceLanguage) }}</dd>
-            </div>
-            {% endif %}
-            {% if slideCount %}
-            <div>
-              <dt>Dioja</dt>
-              <dd>{{ slideCount }}</dd>
-            </div>
-            {% endif %}
-            {% if viewCount %}
-            <div>
-              <dt>SlideShare-katselut</dt>
-              <dd>{{ viewCount }}</dd>
+              <dt>Opetusyhteys</dt>
+              <dd>{{ teachingUnitLabel }}</dd>
             </div>
             {% endif %}
           </dl>
         </div>
-
-        {% if courseContexts and courseContexts.length %}
-        <div class="content-detail-side-card content-detail-course-card">
-          <p class="content-detail-card-kicker">Opintojaksokonteksti</p>
-          <div class="content-detail-course-list">
-            {% for course in courseContexts %}
-              <div class="content-detail-course-item">
-                <p class="content-detail-course-title mb-1">
-                  {% if course.courseId %}<span>{{ course.courseId }}</span>{% endif %}
-                  {{ course.courseName }}
-                </p>
-                <p class="content-detail-course-meta mb-1">
-                  {% if course.linkType == "explicit_course_code" %}
-                    Kurssikoodi löytyi materiaalista.
-                  {% elif course.linkType == "explicit_course_name" %}
-                    Kurssinimi löytyi materiaalista.
-                  {% elif course.linkType == "probable_legacy_course_material" %}
-                    Todennäköinen vanha kurssimateriaali.
-                  {% elif course.linkType == "possible_reuse_of_course_material" %}
-                    Mahdollinen uudelleenkäyttö muussa koulutuksessa.
-                  {% elif course.linkType == "contextual_topic_or_pathway" %}
-                    Kurssipolun tai teeman konteksti.
-                  {% else %}
-                    Kurssikonteksti.
-                  {% endif %}
-                </p>
-                {% if course.matchedTerms and course.matchedTerms.length %}
-                  <div class="content-detail-course-tags">
-                    {% for term in course.matchedTerms %}
-                      {% if loop.index <= 3 %}<span>{{ term }}</span>{% endif %}
-                    {% endfor %}
-                  </div>
-                {% endif %}
-              </div>
-            {% endfor %}
-          </div>
-        </div>
         {% endif %}
+      </div>
 
-        <div class="content-detail-related">
+      <div class="content-detail-related content-detail-related--presentation">
           {% include "content-context-sidebar.njk" %}
-        </div>
-      </aside>
+      </div>
     </article>
   </div>
 </section>
