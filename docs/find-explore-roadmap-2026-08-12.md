@@ -3,7 +3,7 @@
 Date: 2026-08-12
 Synchronized: 2026-08-14
 
-This roadmap is the shared source of truth after Canonical Content v1, Find & Explore Writings v1, and Find & Explore Theses v1.
+This roadmap is the shared source of truth after Canonical Content v1, Find & Explore Writings v1, Find & Explore Theses v1, and Find & Explore Publications v1.
 
 ## 1. Current State
 
@@ -40,9 +40,24 @@ unit tests: 389/389
 combined writings + theses browser smoke: 5 passed
 accessibility/navigation/contrast: 31 passed
 closure report: docs/find-explore-theses-v1-closure-2026-08-14.md
+
+F3B Publications Find & Explore
+status: CLOSED / GREEN
+scope: PARTIAL Find & Explore migration
+tag: find-explore-publications-v1
+PR: #85
+PR title: Publications partial Find & Explore
+head commit: 7d36d81bbefbe94be426c38cb959a4271854f8a9
+merge commit: 00b6e370cf745b946b4f7b962ec56cfe3d2c9955
+merge timestamp: 2026-08-14T11:20:57Z
+tag target: 00b6e370cf745b946b4f7b962ec56cfe3d2c9955
+unit tests: 389/389
+combined writings + theses + publications browser smoke: 7 passed
+accessibility/navigation/contrast: 38 passed
+closure report: docs/find-explore-publications-v1-closure-2026-08-14.md
 ```
 
-Repository evidence confirms that F3A has been formally merged and tagged. There is no disagreement between the repository and this synchronized roadmap.
+Repository evidence confirms that F3A and F3B have been formally merged and tagged. There is no disagreement between the repository and this synchronized roadmap.
 
 ## 2. Architectural Invariants
 
@@ -108,20 +123,11 @@ decision: theses selected before publications/presentations
 
 F3A Theses Find & Explore: closed green.
 
+F3B Publications Find & Explore: closed green as a PARTIAL migration.
+
 ## 4. Active Gate
 
-The active gate is F3B Publications decision gate.
-
-F3B is future and decision-gated. Do not assume publications must migrate merely for architectural symmetry.
-
-Start with a suitability/deletion-benefit decision:
-
-- Can Pagefind discovery replace meaningful duplicated runtime?
-- Can bibliographic functions remain intact?
-- Can citation, type, coauthor, source, DOI, open-access, Research.fi, and JSON-LD semantics remain canonical-data responsibilities?
-- Is there enough deletion, UX, SEO, or maintenance benefit to justify a migration?
-
-If yes, implement F3B as a focused checkpoint. If no, explicitly skip or defer; retaining the existing publication implementation is acceptable.
+F3B Publications is closed green as a PARTIAL Find & Explore migration.
 
 F3C Presentations remains future and evidence-gated. Before any migration, resolve:
 
@@ -149,7 +155,7 @@ Current proof:
 Find & Explore
 ├── Writings       CLOSED / GREEN
 ├── Theses         CLOSED / GREEN
-├── Publications   DECISION-GATED
+├── Publications   CLOSED / GREEN, PARTIAL
 ├── Presentations  EVIDENCE-GATED
 └── Media          SUITABILITY AUDIT NEEDED
 ```
@@ -157,15 +163,6 @@ Find & Explore
 Recommended order:
 
 ```text
-CURRENT
-  │
-  ▼
-F3B Publications decision gate
-  │
-  ├─ implement if deletion/user benefit is demonstrated
-  └─ skip/defer if not
-  │
-  ▼
 F4 Main-page Find & Explore
   │
   ▼
