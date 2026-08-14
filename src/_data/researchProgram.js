@@ -126,7 +126,7 @@ function logEmptyResearchLines(lines) {
   return emptyLines;
 }
 
-module.exports = async function loadResearchProgram() {
+async function loadResearchProgram() {
   const [publications, thesesData] = await Promise.all([
     loadResearchfiContent(),
     loadTheses()
@@ -206,4 +206,9 @@ module.exports = async function loadResearchProgram() {
     thesesMissingResearchLine,
     emptyResearchLines
   };
-};
+}
+
+loadResearchProgram.RESEARCH_THEME_LABELS = RESEARCH_THEME_LABELS;
+loadResearchProgram.RESEARCH_AUDIENCE_LABELS = RESEARCH_AUDIENCE_LABELS;
+
+module.exports = loadResearchProgram;

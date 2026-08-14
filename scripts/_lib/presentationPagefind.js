@@ -2,6 +2,10 @@ const fs = require("fs/promises");
 const path = require("path");
 const cheerio = require("cheerio");
 const { getCanvaDesignId } = require("../../src/_data/canvaUrl");
+const {
+  getPresentationResearchPresetLabels,
+  getPresentationResearchPresets
+} = require("../../src/_data/presentationResearchTopics");
 
 const SITE_ROOT = path.join(process.cwd(), "_site");
 const PRESENTATIONS_PAGE_JSON = path.join(SITE_ROOT, "data", "presentations-page.json");
@@ -332,6 +336,8 @@ function buildPresentationExistingHtmlRecord(item = {}, htmlRouteMap = new Map()
     sourceUrl: item.sourceUrl || "",
     representationCount: toArray(item.representations).length,
     representationUrls: collectRepresentationUrls(item),
+    presentationResearchPresets: getPresentationResearchPresets(item.topics || []),
+    presentationResearchPresetLabels: getPresentationResearchPresetLabels(item.topics || []),
     localHtmlDocuments,
     indexCandidateDocument: indexCandidate ? indexCandidate.url : "",
     indexCandidateReason: buildIndexCandidateReason(item, indexCandidate),
@@ -419,6 +425,7 @@ function buildPresentationPagefindFilters(record = {}) {
     PresentationSourceType: hasValue(record.sourceType) ? [String(record.sourceType)] : [],
     PresentationYear: hasValue(record.presentationYear) ? [String(record.presentationYear)] : [],
     PresentationTopic: toArray(record.presentationTopics).map((value) => String(value)).filter(Boolean),
+    PresentationResearchPreset: toArray(record.presentationResearchPresets).map((value) => String(value)).filter(Boolean),
     PresentationEvent: hasValue(record.presentationEvent) ? [String(record.presentationEvent)] : []
   };
 
@@ -436,6 +443,8 @@ function buildPresentationPagefindMeta(record = {}) {
     PresentationType: record.presentationType || "",
     PresentationRole: record.presentationRole || "",
     PresentationLanguage: record.presentationLanguage || "",
+    PresentationResearchPreset: toArray(record.presentationResearchPresets).join("|"),
+    PresentationResearchPresetLabel: toArray(record.presentationResearchPresetLabels).join(" | "),
     PresentationMediaType: record.mediaType || "",
     PresentationSourceType: record.sourceType || "",
     PresentationLandingType: record.landingType || "",
@@ -472,6 +481,8 @@ function buildPresentationPagefindInjection(record = {}) {
     buildPlainIndexText(record.canonicalTitle),
     record.presentationEvent,
     record.presentationYear,
+    ...toArray(record.presentationResearchPresetLabels),
+    ...toArray(record.presentationResearchPresets),
     ...toArray(record.presentationTopics)
   ].filter(Boolean).join(" ");
 
@@ -510,6 +521,8 @@ function buildPresentationCustomRecord(record = {}, content = "") {
     record.presentationType,
     record.presentationRole,
     record.presentationYear,
+    ...toArray(record.presentationResearchPresetLabels),
+    ...toArray(record.presentationResearchPresets),
     ...toArray(record.presentationTopics)
   ].filter(Boolean);
 
