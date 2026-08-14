@@ -36,6 +36,12 @@ function parsePresentationFile(filePath) {
   const body = String(match[2] || "").trim();
   const sourceUrl = frontMatter.sourceUrl || frontMatter.url || "";
   const publicUrl = normalizeCanvaUrl(frontMatter.publicUrl || frontMatter.url || "");
+  const source = normalizePresentationSource({
+    source: frontMatter.source,
+    sourceUrl,
+    publicUrl,
+    url: frontMatter.url || ""
+  });
 
   const baseRecord = {
     title: frontMatter.title || "",
@@ -48,7 +54,7 @@ function parsePresentationFile(filePath) {
     categories: frontMatter.categories || [],
     keywords: frontMatter.keywords || [],
     courseContexts: Array.isArray(frontMatter.courseContexts) ? frontMatter.courseContexts : [],
-    source: frontMatter.source || "",
+    source,
     pageUrl: `/presentations/${fileSlug}/`
   };
 
@@ -56,6 +62,48 @@ function parsePresentationFile(filePath) {
     ...baseRecord,
     ...derivePresentationMetadata(baseRecord)
   };
+}
+
+function classifyPresentationUrl(url = "") {
+  const value = String(url || "").trim();
+  if (!value) return "";
+
+  try {
+    const { hostname } = new URL(value);
+    const host = String(hostname || "").toLowerCase().replace(/^www\./, "");
+
+    if (host.endsWith("slideshare.net")) return "slideshare";
+    if (host === "youtu.be" || host.endsWith("youtube.com")) return "youtube";
+    if (host.endsWith("canva.com") || host === "canva.link") return "canva";
+    if (host.endsWith("ouka.fi")) return "ouka";
+
+    return "web";
+  } catch (_) {
+    return "";
+  }
+}
+
+function normalizePresentationSource({
+  source = "",
+  sourceUrl = "",
+  publicUrl = "",
+  url = ""
+} = {}) {
+  const normalizedSource = String(source || "").trim().toLowerCase();
+  if (normalizedSource && normalizedSource !== "json") {
+    return normalizedSource;
+  }
+
+  for (const candidate of [sourceUrl, publicUrl, url]) {
+    const inferred = classifyPresentationUrl(candidate);
+    if (inferred) return inferred;
+  }
+
+  if (normalizedSource === "json") {
+    return "canva";
+  }
+
+  return "";
 }
 
 function readLocalPresentationSources() {
@@ -71,7 +119,7 @@ function createCanvaPresentationLookup(presentations = []) {
   presentations
     .filter((item) => {
       const candidateUrl = item?.sourceUrl || item?.publicUrl || item?.url || "";
-      return String(candidateUrl).includes("canva.com");
+      return classifyPresentationUrl(candidateUrl) === "canva";
     })
     .forEach((item) => {
       const candidateUrl = item.sourceUrl || item.publicUrl || item.url || "";

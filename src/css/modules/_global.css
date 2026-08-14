@@ -66,6 +66,10 @@
   align-items: center;
 }
 
+.content-detail-hero-grid--single {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .content-detail-copy {
   max-width: 58rem;
 }
@@ -162,14 +166,40 @@
   padding: clamp(1.25rem, 3vw, 2rem);
 }
 
+.content-detail-inline-visual {
+  margin: 0 0 1.35rem;
+}
+
 .content-detail-main {
   display: grid;
   gap: 1rem;
   align-items: start;
 }
 
+.content-detail-main--presentation {
+  grid-template-columns: 1fr;
+}
+
+.content-detail-card--presentation {
+  max-width: 72rem;
+}
+
+.presentation-detail-support {
+  display: grid;
+  gap: 1rem;
+}
+
+.content-detail-related--presentation {
+  display: grid;
+  gap: 1rem;
+}
+
 .content-detail-meta-card {
   margin-top: 0;
+}
+
+.content-detail-support-card .content-detail-definition-list--context {
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
 }
 
 .content-detail-sidebar {
@@ -343,6 +373,25 @@
   .content-detail-related .content-context-archive-link {
     grid-column: auto;
   }
+
+  .content-detail-main--presentation {
+    grid-template-columns: 1fr;
+  }
+
+  .presentation-detail-support {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  .content-detail-related--presentation .content-context-sidebar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  .content-detail-related--presentation .content-context-card--primary,
+  .content-detail-related--presentation .content-context-archive-link {
+    grid-column: 1 / -1;
+  }
 }
 
 @media (max-width: 991.98px) {
@@ -355,6 +404,10 @@
   .content-detail-definition-list,
   .content-detail-related .content-context-sidebar {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .presentation-detail-support {
+    grid-template-columns: 1fr;
   }
 }
 
