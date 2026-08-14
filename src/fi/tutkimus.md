@@ -191,8 +191,7 @@ schemaMentions:
   { value: "TPACK", label: "TPACK" }
 ] %}
 {% set findExploreQualityOptions = [] %}
-<script type="application/json" id="researchPublicationFindExploreRecords">{{ researchFindExplorePage.publicationRecords | jsonSafe | safe }}</script>
-<section id="tutkimusnaytto" data-find-explore-records-id="researchPublicationFindExploreRecords">
+<section id="tutkimusnaytto">
   {% include "find-explore-writings.njk" %}
 </section>
 
