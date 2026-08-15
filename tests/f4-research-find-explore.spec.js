@@ -32,3 +32,27 @@ test("Research contextual Find & Explore searches publications, theses and writi
   await mount.locator("[data-find-explore-query]").fill("Kampuspohdintaa Oulun yliopiston hallitus valitsi Kontinkankaan jatkokehitettäväksi kampusvaihtoehdoksi");
   await expect(mount.locator("[data-find-explore-results] a").first()).toHaveAttribute("href", /^\/20/, { timeout: 15000 });
 });
+
+test("Research contextual writings search keeps existing blog eligibility and multi-context items", async ({ page }) => {
+  await page.goto("/tutkimus/");
+  const mount = page.locator("[data-find-explore][data-find-explore-kind='researchContext']");
+
+  await expect(mount).toHaveAttribute("data-find-explore-ready", "true", { timeout: 15000 });
+
+  await mount.locator("[data-find-explore-type]").selectOption("writings");
+  await mount.locator("[data-find-explore-query]").fill("Punaisenladonkankaan kompostialue vs. tutkimus jonka mukaan mädätys on kompostointia ympäristöystävällisempää");
+  await expect(mount.locator("[data-find-explore-results] a").first()).toHaveAttribute(
+    "href",
+    "/2008/10/08/punaisenladonkankaan-kompostialue-vs-tutkimus-jonka-mukaan-madatys-on-kompostointia-ymparistoystavallisempaa/",
+    { timeout: 15000 }
+  );
+
+  await mount.locator("[data-find-explore-reset]").click();
+  await mount.locator("[data-find-explore-type]").selectOption("publications");
+  await mount.locator("[data-find-explore-query]").fill("Co-constructing adaptive lesson plans with GenAI");
+  await expect(mount.locator("[data-find-explore-results] a").first()).toHaveAttribute(
+    "href",
+    "/julkaisut/02254916YJ/",
+    { timeout: 15000 }
+  );
+});

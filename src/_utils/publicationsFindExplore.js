@@ -58,6 +58,10 @@ function publicationQualityFilters(item = {}) {
   return filters;
 }
 
+function includesContext(item = {}, context) {
+  return toArray(item.contexts).includes(context);
+}
+
 function publicationSearchText(item = {}) {
   return [
     "__find_explore_publications__",
@@ -164,6 +168,9 @@ function buildPublicationFindExploreDocument(item = {}) {
   }
   if (item.year) {
     filters.push({ name: "Publications year", value: String(item.year) });
+  }
+  if (includesContext(item, "research")) {
+    filters.push({ name: "Research context", value: "research" });
   }
   publicationQualityFilters(item).forEach((quality) => {
     filters.push({ name: "Publications quality", value: quality });

@@ -208,6 +208,10 @@
     const languageFilter = mount.dataset.findExploreLanguageFilter;
     if (languageFilter) filters.Kieli = languageFilter;
 
+    if ((mount.dataset.findExploreKind || "") === "researchContext") {
+      filters["Research context"] = "research";
+    }
+
     if (state.year) filters[`${prefix} year`] = state.year;
     if (state.topic) filters[`${prefix} topic`] = state.topic;
     if (state.quality && kind === "publications") filters[`${prefix} quality`] = state.quality;
