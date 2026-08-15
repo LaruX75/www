@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-14T19:33:13.337Z",
+  "generatedAt": "2026-08-15T08:18:02.409Z",
   "summary": {
     "canonicalTotal": 218,
     "builtLocalDetailTotal": 139,
@@ -54,10 +54,18 @@
         "https://www.slideshare.net/slideshow/3-luento-tieto-ja-viestinttekniikan-pedagogiset-perusteet-tietokoneavusteinen-yhteisllinen-oppiminen-cscl/9167433",
         "/presentations/ss-3-luento-tieto-ja-viestintatekniikan-pedagogiset-perusteet-tietokoneavusteinen-y/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education",
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos",
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-3-luento-tieto-ja-viestintatekniikan-pedagogiset-perusteet-tietokoneavusteinen-y/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-3-luento-tieto-ja-viestintatekniikan-pedagogiset-perusteet-tietokoneavusteinen-y/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-3-luento-tieto-ja-viestintatekniikan-pedagogiset-perusteet-tietokoneavusteinen-y/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -93,10 +101,16 @@
         "https://www.slideshare.net/slideshow/teknologiatuettu-oppiminen-ja-opetus-4op-johdantoluento-digitalisaatio/79479675",
         "/presentations/ss-teknologiatuettu-oppiminen-ja-opetus-4op-johdantoluento-digitalisaatio/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-teknologiatuettu-oppiminen-ja-opetus-4op-johdantoluento-digitalisaatio/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-teknologiatuettu-oppiminen-ja-opetus-4op-johdantoluento-digitalisaatio/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-teknologiatuettu-oppiminen-ja-opetus-4op-johdantoluento-digitalisaatio/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -134,10 +148,18 @@
         "https://www.slideshare.net/slideshow/luento-2-teoria-410014y-tieto-ja-viestinttekniikka-pedagogisena-vlineen-144-views-presentations63-luento-2-teoria-410014y-tieto-ja-viestinttekniikka-pedagogisena-vlineen-luento1-johdanto-410014y-tvt-pedagogiset-perusteet-using-gartners-hype-curve-as-a-bas/25871563",
         "/presentations/ss-luento-3-suunnittelu-ja-pedagogiset-mallit-410014y-tieto-ja-viestintatekniikka-p/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education",
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos",
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-luento-3-suunnittelu-ja-pedagogiset-mallit-410014y-tieto-ja-viestintatekniikka-p/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-luento-3-suunnittelu-ja-pedagogiset-mallit-410014y-tieto-ja-viestintatekniikka-p/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-luento-3-suunnittelu-ja-pedagogiset-mallit-410014y-tieto-ja-viestintatekniikka-p/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -175,10 +197,18 @@
         "https://www.slideshare.net/slideshow/410014y-luento-4-sopimukset-ja-tekijnoikeudet/38636228",
         "/presentations/ss-410014y-luento-4-sopimukset-ja-tekijanoikeudet/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education",
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos",
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-410014y-luento-4-sopimukset-ja-tekijanoikeudet/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-410014y-luento-4-sopimukset-ja-tekijanoikeudet/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-410014y-luento-4-sopimukset-ja-tekijanoikeudet/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -214,10 +244,16 @@
         "https://www.slideshare.net/slideshow/teknologian-kehitys-ja-mahdollisuudet-oppimisen-tukena/2217477",
         "/presentations/ss-teknologian-kehitys-ja-mahdollisuudet-oppimisen-tukena/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-teknologian-kehitys-ja-mahdollisuudet-oppimisen-tukena/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-teknologian-kehitys-ja-mahdollisuudet-oppimisen-tukena/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-teknologian-kehitys-ja-mahdollisuudet-oppimisen-tukena/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -255,10 +291,18 @@
         "https://www.slideshare.net/slideshow/edtech-info-english07/183740",
         "/presentations/ss-edtech-info-english07/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education",
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos",
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-edtech-info-english07/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-edtech-info-english07/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-edtech-info-english07/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -295,10 +339,16 @@
         "https://www.slideshare.net/slideshow/soutelua-tendiallokossa-web-20-onko-sit-edes-olemassa-ajatuksia-ja-kokemuksia-sosiaalisen-webin-hydyntmisest-opetuksessa/202129",
         "/presentations/ss-soutelua-tendiallokossa-web-2-0-onko-sita-edes-olemassa-ajatuksia-ja-kokemuksia-/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-soutelua-tendiallokossa-web-2-0-onko-sita-edes-olemassa-ajatuksia-ja-kokemuksia-/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-soutelua-tendiallokossa-web-2-0-onko-sita-edes-olemassa-ajatuksia-ja-kokemuksia-/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-soutelua-tendiallokossa-web-2-0-onko-sita-edes-olemassa-ajatuksia-ja-kokemuksia-/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -338,10 +388,18 @@
         "https://www.slideshare.net/slideshow/scaffolding-collaborative-learning-with-cognitive-tools-based-on-mobile-computers-10188888/10188888",
         "/presentations/ss-scaffolding-collaborative-learning-with-cognitive-tools-based-on-mobile-computer/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education",
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos",
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-scaffolding-collaborative-learning-with-cognitive-tools-based-on-mobile-computer/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-scaffolding-collaborative-learning-with-cognitive-tools-based-on-mobile-computer/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-scaffolding-collaborative-learning-with-cognitive-tools-based-on-mobile-computer/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -379,10 +437,16 @@
         "https://www.slideshare.net/slideshow/tvtopetuskytn-historiaa-visionreist-web20n-aikakauteen-presentation/744528",
         "/presentations/ss-tvt-opetuskayton-historiaa-visionaareista-web2-0-n-aikakauteen/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-tvt-opetuskayton-historiaa-visionaareista-web2-0-n-aikakauteen/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-tvt-opetuskayton-historiaa-visionaareista-web2-0-n-aikakauteen/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-tvt-opetuskayton-historiaa-visionaareista-web2-0-n-aikakauteen/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -418,10 +482,16 @@
         "https://www.slideshare.net/slideshow/teknologiatuettu-oppiminen-luksia/27954193",
         "/presentations/ss-teknologiatuettu-oppiminen-luksia/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-teknologiatuettu-oppiminen-luksia/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-teknologiatuettu-oppiminen-luksia/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-teknologiatuettu-oppiminen-luksia/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -457,10 +527,12 @@
         "https://www.slideshare.net/slideshow/my-life-9-months-before-the-defence/13140146",
         "/presentations/ss-my-life-9-months-before-the-defence/"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-my-life-9-months-before-the-defence/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-my-life-9-months-before-the-defence/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-my-life-9-months-before-the-defence/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -500,10 +572,16 @@
         "https://www.slideshare.net/slideshow/supporting-fab-lab-facilitators-to-develop-pedagogical-practices-to-improve-learning-in-digital-fabrication-activities/148128991",
         "/presentations/ss-supporting-fab-lab-facilitators-to-develop-pedagogical-practices-to-improve-lear/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-supporting-fab-lab-facilitators-to-develop-pedagogical-practices-to-improve-lear/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-supporting-fab-lab-facilitators-to-develop-pedagogical-practices-to-improve-lear/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-supporting-fab-lab-facilitators-to-develop-pedagogical-practices-to-improve-lear/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -542,10 +620,16 @@
         "https://www.slideshare.net/slideshow/professional-use-of-social-media-web20/34945863",
         "/presentations/ss-professional-use-of-social-media-web2-0/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-professional-use-of-social-media-web2-0/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-professional-use-of-social-media-web2-0/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-professional-use-of-social-media-web2-0/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -583,10 +667,16 @@
         "https://www.slideshare.net/slideshow/koulu-tieto-yhtkuntatel2/17179684",
         "/presentations/ss-koulu-tieto-yhteiskunnassa-tel2/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-koulu-tieto-yhteiskunnassa-tel2/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-koulu-tieto-yhteiskunnassa-tel2/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-koulu-tieto-yhteiskunnassa-tel2/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -623,10 +713,16 @@
         "https://www.slideshare.net/slideshow/technology-choices-tel1/17178124",
         "/presentations/ss-technology-choices-tel1/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-technology-choices-tel1/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-technology-choices-tel1/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-technology-choices-tel1/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -662,10 +758,16 @@
         "https://www.slideshare.net/slideshow/voot-luento1/32214653",
         "/presentations/ss-taman-vuosituhannen-taidot-ja-koulun-muutospaineet/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-taman-vuosituhannen-taidot-ja-koulun-muutospaineet/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-taman-vuosituhannen-taidot-ja-koulun-muutospaineet/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-taman-vuosituhannen-taidot-ja-koulun-muutospaineet/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -703,10 +805,16 @@
         "https://www.slideshare.net/slideshow/cscl-laru-presentationbfinc-23201943/23201943",
         "/presentations/ss-using-gartner-s-hype-curve-as-a-basis-to-analyze-research-on-the-educational-use/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-using-gartner-s-hype-curve-as-a-basis-to-analyze-research-on-the-educational-use/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-using-gartner-s-hype-curve-as-a-basis-to-analyze-research-on-the-educational-use/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-using-gartner-s-hype-curve-as-a-basis-to-analyze-research-on-the-educational-use/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -744,10 +852,18 @@
         "https://www.slideshare.net/slideshow/luento-5-opetussuunnitelmasta-digitarinaan/11248661",
         "/presentations/ss-multimedia-v-opetussuunnitelmasta-digitarinaan/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education",
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos",
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-multimedia-v-opetussuunnitelmasta-digitarinaan/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-multimedia-v-opetussuunnitelmasta-digitarinaan/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-multimedia-v-opetussuunnitelmasta-digitarinaan/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -786,10 +902,18 @@
         "https://www.slideshare.net/slideshow/multimedia-iv-valmiiden-tuotosten-kyttminen-ja-omien-jakaminen-tekijnoikeuden-valossa/11127436",
         "/presentations/ss-multimedia-iv-valmiiden-tuotosten-kayttaminen-ja-omien-jakaminen-tekijanoikeuden/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education",
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos",
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-multimedia-iv-valmiiden-tuotosten-kayttaminen-ja-omien-jakaminen-tekijanoikeuden/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-multimedia-iv-valmiiden-tuotosten-kayttaminen-ja-omien-jakaminen-tekijanoikeuden/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-multimedia-iv-valmiiden-tuotosten-kayttaminen-ja-omien-jakaminen-tekijanoikeuden/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -827,10 +951,18 @@
         "https://www.slideshare.net/slideshow/multimedia-ii-multimedian-peruselementit-ni-kuva-video-teksti/10957217",
         "/presentations/ss-multimedia-ii-multimedian-peruselementit-aani-kuva-video-teksti/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education",
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos",
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-multimedia-ii-multimedian-peruselementit-aani-kuva-video-teksti/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-multimedia-ii-multimedian-peruselementit-aani-kuva-video-teksti/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-multimedia-ii-multimedian-peruselementit-aani-kuva-video-teksti/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -867,10 +999,12 @@
         "https://www.youtube.com/watch?v=p1K6zoXdMs8",
         "/presentations/teknologia-opetuksen-tukena-video-1-keskustelemme-suhteestamme/"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [
         {
           "url": "/presentations/teknologia-opetuksen-tukena-video-1-keskustelemme-suhteestamme/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/teknologia-opetuksen-tukena-video-1-keskustelemme-suhteestamme/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/teknologia-opetuksen-tukena-video-1-keskustelemme-suhteestamme/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -908,10 +1042,12 @@
         "https://www.youtube.com/watch?v=t1ZWC3JiTdE",
         "/presentations/eduxr-2020-suunnanmuutos-digiopettajasta-etaopettajaksi/"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [
         {
           "url": "/presentations/eduxr-2020-suunnanmuutos-digiopettajasta-etaopettajaksi/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/eduxr-2020-suunnanmuutos-digiopettajasta-etaopettajaksi/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/eduxr-2020-suunnanmuutos-digiopettajasta-etaopettajaksi/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -949,10 +1085,16 @@
         "https://www.slideshare.net/slideshow/kuullun-ja-nahdyn-kommentontia-tarua-vai-totta-tekoly-lohkoketjuja-sek-yritysyhteistyt-seminaari/87972554",
         "/presentations/ss-kuullun-ja-na-hdyn-kommentontia-tarua-vai-totta-tekoalya-lohkoketjuja-seka-yrity/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-kuullun-ja-na-hdyn-kommentontia-tarua-vai-totta-tekoalya-lohkoketjuja-seka-yrity/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-kuullun-ja-na-hdyn-kommentontia-tarua-vai-totta-tekoalya-lohkoketjuja-seka-yrity/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-kuullun-ja-na-hdyn-kommentontia-tarua-vai-totta-tekoalya-lohkoketjuja-seka-yrity/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -989,10 +1131,16 @@
         "https://www.slideshare.net/slideshow/mobiilioppiminen-mit-se-teknologia-tahtoo/16502363",
         "/presentations/ss-mobiilioppiminen-mita-se-teknologia-tahtoo/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-mobiilioppiminen-mita-se-teknologia-tahtoo/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-mobiilioppiminen-mita-se-teknologia-tahtoo/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-mobiilioppiminen-mita-se-teknologia-tahtoo/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -1031,10 +1179,18 @@
         "https://www.slideshare.net/slideshow/1-luento-tieto-ja-viestinttekniikan-perusteet-opintojaksolla-tvt-opetuskytn-historia/9088829",
         "/presentations/ss-1-luento-tieto-ja-viestintatekniikan-perusteet-opintojaksolla-tvt-opetuskayton-h/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education",
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos",
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-1-luento-tieto-ja-viestintatekniikan-perusteet-opintojaksolla-tvt-opetuskayton-h/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-1-luento-tieto-ja-viestintatekniikan-perusteet-opintojaksolla-tvt-opetuskayton-h/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-1-luento-tieto-ja-viestintatekniikan-perusteet-opintojaksolla-tvt-opetuskayton-h/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -1071,10 +1227,16 @@
         "https://www.slideshare.net/slideshow/blogseducation/9087908",
         "/presentations/ss-blogs-education/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-blogs-education/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-blogs-education/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-blogs-education/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -1111,10 +1273,16 @@
         "https://www.slideshare.net/slideshow/johdantoluento-tieto-ja-viestinttekniikan-perusteet-opintojaksolle/9088693",
         "/presentations/ss-johdantoluento-tieto-ja-viestintatekniikan-perusteet-opintojaksolle/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-johdantoluento-tieto-ja-viestintatekniikan-perusteet-opintojaksolle/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-johdantoluento-tieto-ja-viestintatekniikan-perusteet-opintojaksolle/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-johdantoluento-tieto-ja-viestintatekniikan-perusteet-opintojaksolle/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -1150,10 +1318,16 @@
         "https://www.slideshare.net/slideshow/tuulta-purjeisiin-ja-tytt-vauhtia-kohti-tuulimyllyj/52076297",
         "/presentations/ss-tuulta-purjeisiin-ja-taytta-vauhtia-kohti-tuulimyllyja/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-tuulta-purjeisiin-ja-taytta-vauhtia-kohti-tuulimyllyja/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-tuulta-purjeisiin-ja-taytta-vauhtia-kohti-tuulimyllyja/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-tuulta-purjeisiin-ja-taytta-vauhtia-kohti-tuulimyllyja/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -1190,10 +1364,16 @@
         "https://www.slideshare.net/slideshow/laru-thesisintro2012/12684734",
         "/presentations/ss-scaffolding-learning-activities-in-real-life-contexts-with-collaborative-scripts/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-scaffolding-learning-activities-in-real-life-contexts-with-collaborative-scripts/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-scaffolding-learning-activities-in-real-life-contexts-with-collaborative-scripts/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-scaffolding-learning-activities-in-real-life-contexts-with-collaborative-scripts/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -1229,10 +1409,16 @@
         "https://www.slideshare.net/slideshow/mobiililaitteiden-mahdollisuudet-oppimisen-tukena/18987329",
         "/presentations/ss-mobiililaitteiden-mahdollisuudet-oppimisen-tukena/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-mobiililaitteiden-mahdollisuudet-oppimisen-tukena/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-mobiililaitteiden-mahdollisuudet-oppimisen-tukena/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-mobiililaitteiden-mahdollisuudet-oppimisen-tukena/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -1269,10 +1455,12 @@
         "https://www.youtube.com/watch?v=nqHkzaIvYq8",
         "/presentations/avoin-tiede-2021-avoimeen-oppimiseen-ja-opetukseen/"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [
         {
           "url": "/presentations/avoin-tiede-2021-avoimeen-oppimiseen-ja-opetukseen/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/avoin-tiede-2021-avoimeen-oppimiseen-ja-opetukseen/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/avoin-tiede-2021-avoimeen-oppimiseen-ja-opetukseen/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -1309,10 +1497,16 @@
         "https://www.slideshare.net/slideshow/luento-4-oppimisen-uudet-mallit-ja-teoriat/14244953",
         "/presentations/ss-luento-4-oppimisen-uudet-mallit-ja-teoriat-diat-ja-aani-eivat-ole-synkassa-kiito/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-luento-4-oppimisen-uudet-mallit-ja-teoriat-diat-ja-aani-eivat-ole-synkassa-kiito/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-luento-4-oppimisen-uudet-mallit-ja-teoriat-diat-ja-aani-eivat-ole-synkassa-kiito/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-luento-4-oppimisen-uudet-mallit-ja-teoriat-diat-ja-aani-eivat-ole-synkassa-kiito/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -1348,10 +1542,16 @@
         "https://www.slideshare.net/slideshow/luento-5-haasteet-ja-koulun-todellisuus-410014y/26060987",
         "/presentations/ss-luento-5-haasteet-ja-koulun-todellisuus-410014y/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-luento-5-haasteet-ja-koulun-todellisuus-410014y/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-luento-5-haasteet-ja-koulun-todellisuus-410014y/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-luento-5-haasteet-ja-koulun-todellisuus-410014y/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -1388,10 +1588,18 @@
         "https://www.slideshare.net/slideshow/ktk-tvt-luento2yhteiskunta/14161524",
         "/presentations/ss-luento-2-tieto-ja-viestintatekniikan-opetuskaytto-ja-yhteiskunta-diat-ja-aani-ei/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education",
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos",
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-luento-2-tieto-ja-viestintatekniikan-opetuskaytto-ja-yhteiskunta-diat-ja-aani-ei/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-luento-2-tieto-ja-viestintatekniikan-opetuskaytto-ja-yhteiskunta-diat-ja-aani-ei/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-luento-2-tieto-ja-viestintatekniikan-opetuskaytto-ja-yhteiskunta-diat-ja-aani-ei/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -1427,10 +1635,16 @@
         "https://www.slideshare.net/slideshow/opetuksen-uudet-ympristt-ja-teknologiat/14169484",
         "/presentations/ss-luento-3-opetuksen-uudet-ymparistot-ja-teknologiat-aanet-eivat-ole-synkassa-dioj/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-luento-3-opetuksen-uudet-ymparistot-ja-teknologiat-aanet-eivat-ole-synkassa-dioj/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-luento-3-opetuksen-uudet-ymparistot-ja-teknologiat-aanet-eivat-ole-synkassa-dioj/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-luento-3-opetuksen-uudet-ymparistot-ja-teknologiat-aanet-eivat-ole-synkassa-dioj/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -1468,10 +1682,16 @@
         "https://www.slideshare.net/slideshow/luento-3-tpacktaidot-teknologiatuettu-oppiminen-ja-opetus/38595557",
         "/presentations/ss-luento-3-tpack-taidot-teknologiatuettu-oppiminen-ja-opetus/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-luento-3-tpack-taidot-teknologiatuettu-oppiminen-ja-opetus/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-luento-3-tpack-taidot-teknologiatuettu-oppiminen-ja-opetus/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-luento-3-tpack-taidot-teknologiatuettu-oppiminen-ja-opetus/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -1509,10 +1729,16 @@
         "https://www.slideshare.net/slideshow/mobiililaitteet-ja-koulu-hype-ja-arkirealismia/14657236",
         "/presentations/ss-mobiililaitteet-ja-koulu-hypea-ja-arkirealismia/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-mobiililaitteet-ja-koulu-hypea-ja-arkirealismia/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-mobiililaitteet-ja-koulu-hypea-ja-arkirealismia/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-mobiililaitteet-ja-koulu-hypea-ja-arkirealismia/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -1549,10 +1775,18 @@
         "https://www.slideshare.net/slideshow/tvt-oppimisen-tukena/14647647",
         "/presentations/ss-tvt-oppimisen-tukena-aani-ei-ole-synkassa-diojen-kanssa-kiitos-slidesharen/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education",
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos",
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-tvt-oppimisen-tukena-aani-ei-ole-synkassa-diojen-kanssa-kiitos-slidesharen/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-tvt-oppimisen-tukena-aani-ei-ole-synkassa-diojen-kanssa-kiitos-slidesharen/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-tvt-oppimisen-tukena-aani-ei-ole-synkassa-diojen-kanssa-kiitos-slidesharen/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -1589,10 +1823,16 @@
         "https://www.slideshare.net/slideshow/tvt-opetuskytn-historiaa-finnish/5361471",
         "/presentations/ss-tvt-opetuskayton-historiaa-finnish/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-tvt-opetuskayton-historiaa-finnish/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-tvt-opetuskayton-historiaa-finnish/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-tvt-opetuskayton-historiaa-finnish/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -1627,10 +1867,12 @@
         "https://www.slideshare.net/slideshow/tekn-sovellukset-javalineetao/21158606",
         "/presentations/ss-tekn-sovellukset-ja-valineet-ao/"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-tekn-sovellukset-ja-valineet-ao/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-tekn-sovellukset-ja-valineet-ao/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-tekn-sovellukset-ja-valineet-ao/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -1669,10 +1911,18 @@
         "https://www.slideshare.net/slideshow/teoria-suunnittelu-aotvt/21178375",
         "/presentations/ss-teoria-suunnittelu-a-otvt/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education",
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos",
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-teoria-suunnittelu-a-otvt/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-teoria-suunnittelu-a-otvt/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-teoria-suunnittelu-a-otvt/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -1709,10 +1959,16 @@
         "https://www.slideshare.net/slideshow/wrap-up-luento-dime-2015/47760384",
         "/presentations/ss-wrap-up-luento-dime-2015/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-wrap-up-luento-dime-2015/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-wrap-up-luento-dime-2015/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-wrap-up-luento-dime-2015/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -1748,10 +2004,16 @@
         "https://www.slideshare.net/slideshow/sosiaalinen-media-ja-sen-sovellutukset-koulutusteknologin-nkkulma-medialasien-lpi-katsottuna/1386778",
         "/presentations/ss-sosiaalinen-media-ja-sen-sovellutukset-koulutusteknologin-nakokulma-medialasien-/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-sosiaalinen-media-ja-sen-sovellutukset-koulutusteknologin-nakokulma-medialasien-/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-sosiaalinen-media-ja-sen-sovellutukset-koulutusteknologin-nakokulma-medialasien-/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-sosiaalinen-media-ja-sen-sovellutukset-koulutusteknologin-nakokulma-medialasien-/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -1790,10 +2052,16 @@
         "https://www.canva.com/d/_K98Sie1DPAYz2E",
         "/presentations/luento-4-ohjelmointiosaaminen/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/luento-4-ohjelmointiosaaminen/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/luento-4-ohjelmointiosaaminen/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/luento-4-ohjelmointiosaaminen/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -1831,10 +2099,16 @@
         "https://www.canva.com/d/UCdIcmm6TWkilwc",
         "/presentations/luento-1-johdanto/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/luento-1-johdanto/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/luento-1-johdanto/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/luento-1-johdanto/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -1876,10 +2150,18 @@
         "https://www.slideshare.net/slideshow/digital-enabled-learning-arctic-frontiers-speech-2020/228552429",
         "/presentations/ss-digital-enabled-learning-arctic-frontiers-speech-2020/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning",
+        "teacher-education"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu",
+        "Opettajankoulutus ja pedagoginen muutos"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-digital-enabled-learning-arctic-frontiers-speech-2020/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-digital-enabled-learning-arctic-frontiers-speech-2020/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-digital-enabled-learning-arctic-frontiers-speech-2020/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -1915,10 +2197,16 @@
         "https://www.slideshare.net/slideshow/mit-teknologiatuetun-oppimisen-rintamalla-tapahtuu-minne-ollaan-menossa/30820903",
         "/presentations/ss-mita-teknologiatuetun-oppimisen-rintamalla-tapahtuu-minne-ollaan-menossa/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-mita-teknologiatuetun-oppimisen-rintamalla-tapahtuu-minne-ollaan-menossa/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-mita-teknologiatuetun-oppimisen-rintamalla-tapahtuu-minne-ollaan-menossa/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-mita-teknologiatuetun-oppimisen-rintamalla-tapahtuu-minne-ollaan-menossa/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -1954,10 +2242,16 @@
         "https://www.slideshare.net/slideshow/yhteisllisen-oppimisen-tukeminen-mobiililaitteiden-avulla-kolme-tapaustutkimusta-kolmessa-eri-kontekstissa/10488594",
         "/presentations/ss-yhteisollisen-oppimisen-tukeminen-mobiililaitteiden-avulla-kolme-tapaustutkimust/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-yhteisollisen-oppimisen-tukeminen-mobiililaitteiden-avulla-kolme-tapaustutkimust/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-yhteisollisen-oppimisen-tukeminen-mobiililaitteiden-avulla-kolme-tapaustutkimust/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-yhteisollisen-oppimisen-tukeminen-mobiililaitteiden-avulla-kolme-tapaustutkimust/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -1996,10 +2290,18 @@
         "https://www.slideshare.net/slideshow/luento1-johdanto-410014y-tvt-pedagogiset-perusteet/25638735",
         "/presentations/ss-luento1-johdanto-410014y-tvt-pedagogiset-perusteet/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education",
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos",
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-luento1-johdanto-410014y-tvt-pedagogiset-perusteet/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-luento1-johdanto-410014y-tvt-pedagogiset-perusteet/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-luento1-johdanto-410014y-tvt-pedagogiset-perusteet/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -2036,10 +2338,16 @@
         "https://www.slideshare.net/slideshow/erilaisten-oppimisyhteisjen-tukeminen-mobiiliteknologian-ja-sosiaalisen-median-sovellusten-avulla/1356113",
         "/presentations/ss-erilaisten-oppimisyhteisojen-tukeminen-mobiiliteknologian-ja-sosiaalisen-median-/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-erilaisten-oppimisyhteisojen-tukeminen-mobiiliteknologian-ja-sosiaalisen-median-/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-erilaisten-oppimisyhteisojen-tukeminen-mobiiliteknologian-ja-sosiaalisen-median-/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-erilaisten-oppimisyhteisojen-tukeminen-mobiiliteknologian-ja-sosiaalisen-median-/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -2081,10 +2389,16 @@
         "https://www.slideshare.net/slideshow/davidin-ja-goljatin-taistelu-kesyttk-opettajateknologian-vai-jyrk-teknologia-opettajan-teknologiatuetun-oppimisen-ja-opettamisen-nykyhetken-ja-tulevaisuuden-tarkastelua-eri-nkkulmista/140995534",
         "/presentations/ss-davidin-ja-goljatin-taistelu-kesyttaako-opettaja-teknologian-vai-jyraako-teknolo/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-davidin-ja-goljatin-taistelu-kesyttaako-opettaja-teknologian-vai-jyraako-teknolo/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-davidin-ja-goljatin-taistelu-kesyttaako-opettaja-teknologian-vai-jyraako-teknolo/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-davidin-ja-goljatin-taistelu-kesyttaako-opettaja-teknologian-vai-jyraako-teknolo/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -2120,10 +2434,16 @@
         "https://www.slideshare.net/slideshow/se-on-vain-vline/33290750",
         "/presentations/ss-se-on-vain-valine/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-se-on-vain-valine/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-se-on-vain-valine/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-se-on-vain-valine/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -2160,10 +2480,16 @@
         "https://www.slideshare.net/slideshow/affordances-short-introductionlarulet2011/9467539",
         "/presentations/ss-affordances-short-introduction-laru-let-2011/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-affordances-short-introduction-laru-let-2011/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-affordances-short-introduction-laru-let-2011/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-affordances-short-introduction-laru-let-2011/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -2198,10 +2524,16 @@
         "https://www.slideshare.net/slideshow/luento-5-tietotekniiikan-opetuskytn-suunnittelu/14847181",
         "/presentations/ss-luento-5-tietotekniiikan-opetuskayton-suunnittelu-aani-ei-ole-synkassa-diojen-ka/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-luento-5-tietotekniiikan-opetuskayton-suunnittelu-aani-ei-ole-synkassa-diojen-ka/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-luento-5-tietotekniiikan-opetuskayton-suunnittelu-aani-ei-ole-synkassa-diojen-ka/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-luento-5-tietotekniiikan-opetuskayton-suunnittelu-aani-ei-ole-synkassa-diojen-ka/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -2239,10 +2571,16 @@
         "https://www.slideshare.net/slideshow/dokumenttien-jakaminen-ja-upottaminen-case-slideshare-wordpress/9264090",
         "/presentations/ss-harjoitus-dokumenttien-jakaminen-ja-upottaminen-case-slideshare-wordpress/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-harjoitus-dokumenttien-jakaminen-ja-upottaminen-case-slideshare-wordpress/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-harjoitus-dokumenttien-jakaminen-ja-upottaminen-case-slideshare-wordpress/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-harjoitus-dokumenttien-jakaminen-ja-upottaminen-case-slideshare-wordpress/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -2278,10 +2616,16 @@
         "https://www.slideshare.net/slideshow/miten-opettajien-uusi-sukupolvi-mullistaa-opetuksen-vai-mullistaako-sittenkn/114255330",
         "/presentations/ss-miten-opettajien-uusi-sukupolvi-mullistaa-opetuksen-vai-mullistaako-sittenkaan/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-miten-opettajien-uusi-sukupolvi-mullistaa-opetuksen-vai-mullistaako-sittenkaan/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-miten-opettajien-uusi-sukupolvi-mullistaa-opetuksen-vai-mullistaako-sittenkaan/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-miten-opettajien-uusi-sukupolvi-mullistaa-opetuksen-vai-mullistaako-sittenkaan/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -2318,10 +2662,16 @@
         "https://www.slideshare.net/slideshow/luento5-suunnittelu-ja-pedagogiset-mallit/38677440",
         "/presentations/ss-luento5-suunnittelu-ja-pedagogiset-mallit/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-luento5-suunnittelu-ja-pedagogiset-mallit/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-luento5-suunnittelu-ja-pedagogiset-mallit/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-luento5-suunnittelu-ja-pedagogiset-mallit/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -2358,10 +2708,16 @@
         "https://www.slideshare.net/slideshow/2-luento-tieto-ja-viestinttekniikan-pedagogiset-perusteet-kurssilla-tvt-ja-yhteiskunta/9101048",
         "/presentations/ss-2-luento-tieto-ja-viestintatekniikan-pedagogiset-perusteet-kurssilla-tvt-ja-yhte/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-2-luento-tieto-ja-viestintatekniikan-pedagogiset-perusteet-kurssilla-tvt-ja-yhte/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-2-luento-tieto-ja-viestintatekniikan-pedagogiset-perusteet-kurssilla-tvt-ja-yhte/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-2-luento-tieto-ja-viestintatekniikan-pedagogiset-perusteet-kurssilla-tvt-ja-yhte/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -2398,10 +2754,16 @@
         "https://www.slideshare.net/slideshow/what-they-did-really-do-with-the-social-software-and-mobile-devices-a-temporal-analysis-of-longterm-technology-mediated-collaboration/2228659",
         "/presentations/ss-what-they-did-really-do-with-the-social-software-and-mobile-devices-a-temporal-a/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-what-they-did-really-do-with-the-social-software-and-mobile-devices-a-temporal-a/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-what-they-did-really-do-with-the-social-software-and-mobile-devices-a-temporal-a/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-what-they-did-really-do-with-the-social-software-and-mobile-devices-a-temporal-a/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -2439,10 +2801,16 @@
         "https://www.slideshare.net/slideshow/mobiilioppimisesta-about-mobile-learning/9581844",
         "/presentations/ss-mobiilioppimisesta-about-mobile-learning/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-mobiilioppimisesta-about-mobile-learning/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-mobiilioppimisesta-about-mobile-learning/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-mobiilioppimisesta-about-mobile-learning/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -2481,10 +2849,16 @@
         "https://www.slideshare.net/slideshow/designing-and-supporting-use-of-emergent-technology-in-teacher-education-case-ict-workshops-for-teacher-education-students/28707610",
         "/presentations/ss-designing-and-supporting-use-of-emergent-technology-in-teacher-education-case-ic/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-designing-and-supporting-use-of-emergent-technology-in-teacher-education-case-ic/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-designing-and-supporting-use-of-emergent-technology-in-teacher-education-case-ic/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-designing-and-supporting-use-of-emergent-technology-in-teacher-education-case-ic/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -2522,10 +2896,18 @@
         "https://www.slideshare.net/slideshow/kt-paivat-2013/28483217",
         "/presentations/ss-opettajien-orientoivia-tvt-opintoja-kehittamassa-case-oulun-yliopisto/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education",
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos",
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-opettajien-orientoivia-tvt-opintoja-kehittamassa-case-oulun-yliopisto/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-opettajien-orientoivia-tvt-opintoja-kehittamassa-case-oulun-yliopisto/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-opettajien-orientoivia-tvt-opintoja-kehittamassa-case-oulun-yliopisto/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -2565,16 +2947,18 @@
         "https://www.tsl.fi/ajankohtaista/tyovaenkirjallisuuden-paiva-aly.html",
         "/presentations/tsl-tekoaly-demokratian-ja-sivistyksen-tukena-paneelikeskustelu-2024/"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-lahidemokratiatoimikunnan-toiminta-oulussa/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-lahidemokratiatoimikunnan-toiminta-oulussa/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-lahidemokratiatoimikunnan-toiminta-oulussa/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         },
         {
           "url": "/presentations/tsl-tekoaly-demokratian-ja-sivistyksen-tukena-paneelikeskustelu-2024/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/tsl-tekoaly-demokratian-ja-sivistyksen-tukena-paneelikeskustelu-2024/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/tsl-tekoaly-demokratian-ja-sivistyksen-tukena-paneelikeskustelu-2024/index.html",
           "reason": "representationLocalPage",
           "relationship": "alternateRepresentation"
         }
@@ -2610,10 +2994,16 @@
         "https://www.slideshare.net/slideshow/luova-ja-kriittinen-ajattelu/2537552",
         "/presentations/ss-luova-ja-kriittinen-ajattelu/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-luova-ja-kriittinen-ajattelu/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-luova-ja-kriittinen-ajattelu/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-luova-ja-kriittinen-ajattelu/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -2649,10 +3039,16 @@
         "https://www.slideshare.net/slideshow/oppiminen-ja-vuorovaikutus/2537550",
         "/presentations/ss-oppiminen-ja-vuorovaikutus/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-oppiminen-ja-vuorovaikutus/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-oppiminen-ja-vuorovaikutus/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-oppiminen-ja-vuorovaikutus/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -2688,10 +3084,16 @@
         "https://www.slideshare.net/slideshow/osallistuminen-sitoutumisen-sytyttjn/2537573",
         "/presentations/ss-osallistuminen-sitoutumisen-sytyttajana/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-osallistuminen-sitoutumisen-sytyttajana/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-osallistuminen-sitoutumisen-sytyttajana/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-osallistuminen-sitoutumisen-sytyttajana/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -2729,10 +3131,16 @@
         "https://www.slideshare.net/slideshow/sosiaalinen-media-opetuskytss/2537603",
         "/presentations/ss-sosiaalinen-media-opetuskaytossa/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-sosiaalinen-media-opetuskaytossa/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-sosiaalinen-media-opetuskaytossa/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-sosiaalinen-media-opetuskaytossa/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -2769,10 +3177,16 @@
         "https://www.slideshare.net/slideshow/webinari-esitysrapo/46310032",
         "/presentations/ss-mobiililaitteilla-tuettu-oppiminen-byod-miten-suunnitella-taman-vuosisadan-ydint/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-mobiililaitteilla-tuettu-oppiminen-byod-miten-suunnitella-taman-vuosisadan-ydint/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-mobiililaitteilla-tuettu-oppiminen-byod-miten-suunnitella-taman-vuosisadan-ydint/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-mobiililaitteilla-tuettu-oppiminen-byod-miten-suunnitella-taman-vuosisadan-ydint/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -2813,10 +3227,18 @@
         "https://www.slideshare.net/slideshow/developing-computational-thinking-practises-through-digital-fabrication-activities/149380656",
         "/presentations/ss-developing-computational-thinking-practises-through-digital-fabrication-activiti/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education",
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos",
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-developing-computational-thinking-practises-through-digital-fabrication-activiti/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-developing-computational-thinking-practises-through-digital-fabrication-activiti/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-developing-computational-thinking-practises-through-digital-fabrication-activiti/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -2853,10 +3275,16 @@
         "https://www.slideshare.net/slideshow/social-media-as-a-tool-for-researchers/104399008",
         "/presentations/ss-social-media-as-a-tool-for-researchers/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-social-media-as-a-tool-for-researchers/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-social-media-as-a-tool-for-researchers/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-social-media-as-a-tool-for-researchers/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -2895,10 +3323,12 @@
         "https://www.canva.com/d/GpIIHf7kK1Qksnv",
         "/presentations/syntyvyys-ja-kouluik-luokat-oulussa-2026/"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [
         {
           "url": "/presentations/syntyvyys-ja-kouluik-luokat-oulussa-2026/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/syntyvyys-ja-kouluik-luokat-oulussa-2026/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/syntyvyys-ja-kouluik-luokat-oulussa-2026/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -2938,10 +3368,18 @@
         "https://www.slideshare.net/slideshow/luento-1-mediakasvatuksesta-kohti-monilukutaitoa-digitaalinen-media-oppimisprojektina-2014/29836950",
         "/presentations/ss-luento-1-mediakasvatuksesta-kohti-monilukutaitoa-digitaalinen-media-oppimisproje/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education",
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos",
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-luento-1-mediakasvatuksesta-kohti-monilukutaitoa-digitaalinen-media-oppimisproje/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-luento-1-mediakasvatuksesta-kohti-monilukutaitoa-digitaalinen-media-oppimisproje/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-luento-1-mediakasvatuksesta-kohti-monilukutaitoa-digitaalinen-media-oppimisproje/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -2986,10 +3424,18 @@
         "https://www.slideshare.net/slideshow/teknologia-oppiminen-ja-osaaminen-yhteiskunnassa-uudet-teknologiat-isnnn-vai-rengin-roolissa/16672046",
         "/presentations/ss-teknologia-oppiminen-ja-osaaminen-yhteiskunnassa-uudet-teknologiat-isannan-vai-r/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning",
+        "teacher-education"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu",
+        "Opettajankoulutus ja pedagoginen muutos"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-teknologia-oppiminen-ja-osaaminen-yhteiskunnassa-uudet-teknologiat-isannan-vai-r/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-teknologia-oppiminen-ja-osaaminen-yhteiskunnassa-uudet-teknologiat-isannan-vai-r/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-teknologia-oppiminen-ja-osaaminen-yhteiskunnassa-uudet-teknologiat-isannan-vai-r/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -3029,10 +3475,18 @@
         "https://www.canva.com/d/ATg2bgB0a6REj0D",
         "/presentations/generation-ai-yleisesitys-sovellukset-2026/"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy",
+        "teacher-education"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus",
+        "Opettajankoulutus ja pedagoginen muutos"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/generation-ai-yleisesitys-sovellukset-2026/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/generation-ai-yleisesitys-sovellukset-2026/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/generation-ai-yleisesitys-sovellukset-2026/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -3068,10 +3522,12 @@
         "https://www.slideshare.net/slideshow/405514y-multimedia-as-a-learning-project-3-c/6958208",
         "/presentations/ss-405514y-multimedia-as-a-learning-project-3-c/"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-405514y-multimedia-as-a-learning-project-3-c/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-405514y-multimedia-as-a-learning-project-3-c/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-405514y-multimedia-as-a-learning-project-3-c/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -3107,10 +3563,16 @@
         "https://www.slideshare.net/slideshow/cscl-tietokoneavusteinen-yhteisllinen-oppiminen-kotu2011a/10410251",
         "/presentations/ss-cscl-tietokoneavusteinen-yhteisollinen-oppiminen-kotu2011a/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-cscl-tietokoneavusteinen-yhteisollinen-oppiminen-kotu2011a/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-cscl-tietokoneavusteinen-yhteisollinen-oppiminen-kotu2011a/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-cscl-tietokoneavusteinen-yhteisollinen-oppiminen-kotu2011a/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -3147,10 +3609,16 @@
         "https://www.slideshare.net/slideshow/cscl-luento-b-esimerkkej-todellisesta-elmst-ja-laboratorion-perukoilta/10410352",
         "/presentations/ss-cscl-luento-b-esimerkkeja-todellisesta-elamasta-ja-laboratorion-perukoilta/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-cscl-luento-b-esimerkkeja-todellisesta-elamasta-ja-laboratorion-perukoilta/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-cscl-luento-b-esimerkkeja-todellisesta-elamasta-ja-laboratorion-perukoilta/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-cscl-luento-b-esimerkkeja-todellisesta-elamasta-ja-laboratorion-perukoilta/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -3186,10 +3654,16 @@
         "https://www.slideshare.net/slideshow/tieto-ja-viestinttekniikan/14116017",
         "/presentations/ss-luento-1-tieto-ja-viestintatekniikka-pedagogisena-tyovalineena-aani-ja-diat-eiva/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-luento-1-tieto-ja-viestintatekniikka-pedagogisena-tyovalineena-aani-ja-diat-eiva/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-luento-1-tieto-ja-viestintatekniikka-pedagogisena-tyovalineena-aani-ja-diat-eiva/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-luento-1-tieto-ja-viestintatekniikka-pedagogisena-tyovalineena-aani-ja-diat-eiva/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -3227,10 +3701,18 @@
         "https://www.slideshare.net/slideshow/luento-2-teoria-410014y-tieto-ja-viestinttekniikka-pedagogisena-vlineen/25706607",
         "/presentations/ss-luento-2-teoria-410014y-tieto-ja-viestintatekniikka-pedagogisena-valineena/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education",
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos",
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-luento-2-teoria-410014y-tieto-ja-viestintatekniikka-pedagogisena-valineena/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-luento-2-teoria-410014y-tieto-ja-viestintatekniikka-pedagogisena-valineena/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-luento-2-teoria-410014y-tieto-ja-viestintatekniikka-pedagogisena-valineena/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -3266,10 +3748,16 @@
         "https://www.slideshare.net/slideshow/designing-learning-activities-for-socially-shared-regulation-in-seamless-learning-contexts/42192519",
         "/presentations/ss-designing-learning-activities-for-socially-shared-regulation-in-seamless-learnin/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-designing-learning-activities-for-socially-shared-regulation-in-seamless-learnin/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-designing-learning-activities-for-socially-shared-regulation-in-seamless-learnin/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-designing-learning-activities-for-socially-shared-regulation-in-seamless-learnin/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -3305,10 +3793,16 @@
         "https://www.slideshare.net/slideshow/luentosali-ii-2000luvun-taidot-luento-mahdollista-kyll/42187867",
         "/presentations/ss-luentosali-ii-2000-luvun-taidot-luento-mahdollista-kylla/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-luentosali-ii-2000-luvun-taidot-luento-mahdollista-kylla/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-luentosali-ii-2000-luvun-taidot-luento-mahdollista-kylla/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-luentosali-ii-2000-luvun-taidot-luento-mahdollista-kylla/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -3344,10 +3838,16 @@
         "https://www.slideshare.net/slideshow/2000luvun-taidot-ja-opettajan-roolin-muutos-38305877/38305877",
         "/presentations/ss-2000-luvun-taidot-ja-opettajan-roolin-muutos/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-2000-luvun-taidot-ja-opettajan-roolin-muutos/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-2000-luvun-taidot-ja-opettajan-roolin-muutos/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-2000-luvun-taidot-ja-opettajan-roolin-muutos/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -3385,10 +3885,18 @@
         "https://www.slideshare.net/slideshow/tieto-ja-viestinttekniikka-pedagogisena-tyvlineen-raahe-2015/53761850",
         "/presentations/ss-osaava-veso-tieto-ja-viestintatekniikka-pedagogisena-tyovalineena-raahe-2015/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education",
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos",
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-osaava-veso-tieto-ja-viestintatekniikka-pedagogisena-tyovalineena-raahe-2015/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-osaava-veso-tieto-ja-viestintatekniikka-pedagogisena-tyovalineena-raahe-2015/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-osaava-veso-tieto-ja-viestintatekniikka-pedagogisena-tyovalineena-raahe-2015/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -3425,10 +3933,16 @@
         "https://www.slideshare.net/slideshow/sukol2015seinajoki-44375884/44375884",
         "/presentations/ss-teknologia-ja-monilukutaito-merkittava-osa-taman-vuosisadan-ydintaitoja/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-teknologia-ja-monilukutaito-merkittava-osa-taman-vuosisadan-ydintaitoja/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-teknologia-ja-monilukutaito-merkittava-osa-taman-vuosisadan-ydintaitoja/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-teknologia-ja-monilukutaito-merkittava-osa-taman-vuosisadan-ydintaitoja/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -3465,10 +3979,16 @@
         "https://www.slideshare.net/slideshow/paljonko-sulla-on-pisteit-kokemuksia-pelillistetyst-opetuksesta/47137891",
         "/presentations/ss-paljonko-sulla-on-pisteita-kokemuksia-pelillistetysta-opetuksesta/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-paljonko-sulla-on-pisteita-kokemuksia-pelillistetysta-opetuksesta/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-paljonko-sulla-on-pisteita-kokemuksia-pelillistetysta-opetuksesta/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-paljonko-sulla-on-pisteita-kokemuksia-pelillistetysta-opetuksesta/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -3504,10 +4024,16 @@
         "https://www.slideshare.net/slideshow/luento5tutkimus-final/9318465",
         "/presentations/ss-5-luento-tieto-ja-viestintatekniikan-pedagogiset-perusteet-tulevaisuus-syntyy-tu/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-5-luento-tieto-ja-viestintatekniikan-pedagogiset-perusteet-tulevaisuus-syntyy-tu/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-5-luento-tieto-ja-viestintatekniikan-pedagogiset-perusteet-tulevaisuus-syntyy-tu/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-5-luento-tieto-ja-viestintatekniikan-pedagogiset-perusteet-tulevaisuus-syntyy-tu/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -3544,10 +4070,16 @@
         "https://www.youtube.com/watch?v=tuYyBHPJybg",
         "/presentations/lea-hanke-visioita-sahkoisista-oppimisymparistoista/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/lea-hanke-visioita-sahkoisista-oppimisymparistoista/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/lea-hanke-visioita-sahkoisista-oppimisymparistoista/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/lea-hanke-visioita-sahkoisista-oppimisymparistoista/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -3583,10 +4115,12 @@
         "https://www.slideshare.net/slideshow/lito2018-workshop-arviointi-suurilla-verkkokursseilla/99171640",
         "/presentations/ss-lito2018-workshop-arviointi-suurilla-verkkokursseilla/"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-lito2018-workshop-arviointi-suurilla-verkkokursseilla/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-lito2018-workshop-arviointi-suurilla-verkkokursseilla/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-lito2018-workshop-arviointi-suurilla-verkkokursseilla/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -3622,10 +4156,16 @@
         "https://www.slideshare.net/slideshow/mulla-olis-ny-yksi-hopea-ja-kuusi-pronssia-osaamismerkit-opetuksessa-99170565/99170565",
         "/presentations/ss-mulla-olis-ny-yksi-hopea-ja-kuusi-pronssia-osaamismerkit-opetuksessa/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-mulla-olis-ny-yksi-hopea-ja-kuusi-pronssia-osaamismerkit-opetuksessa/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-mulla-olis-ny-yksi-hopea-ja-kuusi-pronssia-osaamismerkit-opetuksessa/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-mulla-olis-ny-yksi-hopea-ja-kuusi-pronssia-osaamismerkit-opetuksessa/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -3663,10 +4203,16 @@
         "https://www.slideshare.net/slideshow/digitaalinen-tulevaisuus-2030-kuinka-tukily-tukee-ihmisten-arkea-oppimista-ja-tyt-jo-lhitulevaisuudessa/146730753",
         "/presentations/ss-digitaalinen-tulevaisuus-2030-kuinka-tukialy-tukee-ihmisten-arkea-oppimista-ja-t/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-digitaalinen-tulevaisuus-2030-kuinka-tukialy-tukee-ihmisten-arkea-oppimista-ja-t/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-digitaalinen-tulevaisuus-2030-kuinka-tukialy-tukee-ihmisten-arkea-oppimista-ja-t/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-digitaalinen-tulevaisuus-2030-kuinka-tukialy-tukee-ihmisten-arkea-oppimista-ja-t/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -3704,10 +4250,18 @@
         "https://www.slideshare.net/slideshow/yhteiskunnallisia-haasteita-johdanto-aiheeseen050091a-tieto-ja-viestinttekniikka-opetuksessa-ja-opiskelussa/20643075",
         "/presentations/ss-yhteiskunnallisia-haasteita-johdanto-aiheeseen-050091a-tieto-ja-viestintatekniik/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education",
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos",
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-yhteiskunnallisia-haasteita-johdanto-aiheeseen-050091a-tieto-ja-viestintatekniik/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-yhteiskunnallisia-haasteita-johdanto-aiheeseen-050091a-tieto-ja-viestintatekniik/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-yhteiskunnallisia-haasteita-johdanto-aiheeseen-050091a-tieto-ja-viestintatekniik/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -3743,10 +4297,16 @@
         "https://www.slideshare.net/slideshow/voot-luento2/32397040",
         "/presentations/ss-luento-ii-yhteisollinen-ongelmalahtoinen-oppiminen/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-luento-ii-yhteisollinen-ongelmalahtoinen-oppiminen/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-luento-ii-yhteisollinen-ongelmalahtoinen-oppiminen/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-luento-ii-yhteisollinen-ongelmalahtoinen-oppiminen/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -3784,10 +4344,18 @@
         "https://www.slideshare.net/slideshow/digitaalinen-media-oppimisessa-ja-opettamisessa-2015/45880729",
         "/presentations/ss-digitaalinen-media-oppimisessa-ja-opettamisessa-2015/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education",
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos",
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-digitaalinen-media-oppimisessa-ja-opettamisessa-2015/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-digitaalinen-media-oppimisessa-ja-opettamisessa-2015/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-digitaalinen-media-oppimisessa-ja-opettamisessa-2015/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -3828,10 +4396,16 @@
         "https://www.slideshare.net/slideshow/are-we-currently-moving-from-the-age-of-mobilism-to-age-of-artificial-intelligence-learning-analytics-and-robotics-yes-we-arehow-to-couple-emergent-technology-with-learning-and-teaching/135625316",
         "/presentations/ss-are-we-currently-moving-from-the-age-of-mobolism-to-age-of-artificail-intelligen/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-are-we-currently-moving-from-the-age-of-mobolism-to-age-of-artificail-intelligen/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-are-we-currently-moving-from-the-age-of-mobolism-to-age-of-artificail-intelligen/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-are-we-currently-moving-from-the-age-of-mobolism-to-age-of-artificail-intelligen/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -3869,10 +4443,12 @@
         "https://www.slideshare.net/slideshow/quali-lecture-1-17116725/17116725",
         "/presentations/ss-quali-lecture-1-understanding-the-research-process/"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-quali-lecture-1-understanding-the-research-process/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-quali-lecture-1-understanding-the-research-process/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-quali-lecture-1-understanding-the-research-process/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -3908,10 +4484,16 @@
         "https://www.slideshare.net/slideshow/puheenvuoro-raklin-vierailulla-teknologiatuettu-oppiminen-ja-oppimisen-uudet-ympristt/102588039",
         "/presentations/ss-puheenvuoro-rakli-n-vierailulla-teknologiatuettu-oppiminen-ja-oppimisen-uudet-ym/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-puheenvuoro-rakli-n-vierailulla-teknologiatuettu-oppiminen-ja-oppimisen-uudet-ym/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-puheenvuoro-rakli-n-vierailulla-teknologiatuettu-oppiminen-ja-oppimisen-uudet-ym/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-puheenvuoro-rakli-n-vierailulla-teknologiatuettu-oppiminen-ja-oppimisen-uudet-ym/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -3949,10 +4531,18 @@
         "https://www.slideshare.net/slideshow/multimedia-iii-itse-tuotettu-multimedia/11072883",
         "/presentations/ss-multimedia-iii-itse-tuotettu-multimedia/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education",
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos",
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-multimedia-iii-itse-tuotettu-multimedia/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-multimedia-iii-itse-tuotettu-multimedia/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-multimedia-iii-itse-tuotettu-multimedia/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -3988,10 +4578,16 @@
         "https://www.slideshare.net/slideshow/luento-1-ilmist/56928812",
         "/presentations/ss-luento-1-ilmiosta/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-luento-1-ilmiosta/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-luento-1-ilmiosta/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-luento-1-ilmiosta/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -4029,10 +4625,18 @@
         "https://www.slideshare.net/slideshow/multimedia-i-perinteinen-tuotettu-multimedia-murroksessa/10904451",
         "/presentations/ss-multimedia-i-perinteinen-tuotettu-multimedia-murroksessa/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education",
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos",
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-multimedia-i-perinteinen-tuotettu-multimedia-murroksessa/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-multimedia-i-perinteinen-tuotettu-multimedia-murroksessa/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-multimedia-i-perinteinen-tuotettu-multimedia-murroksessa/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -4070,10 +4674,16 @@
         "https://www.slideshare.net/slideshow/teknologiatuettu-oppiminen-ja-opetus-luento-asiantuntijafoorumissa/71802225",
         "/presentations/ss-teknologiatuettu-oppiminen-ja-opetus-luento-asiantuntijafoorumissa/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-teknologiatuettu-oppiminen-ja-opetus-luento-asiantuntijafoorumissa/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-teknologiatuettu-oppiminen-ja-opetus-luento-asiantuntijafoorumissa/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-teknologiatuettu-oppiminen-ja-opetus-luento-asiantuntijafoorumissa/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -4111,10 +4721,16 @@
         "https://www.slideshare.net/slideshow/powerpoint-harjoitus/10557979",
         "/presentations/ss-luento-powerpoint-harjoitus/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-luento-powerpoint-harjoitus/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-luento-powerpoint-harjoitus/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-luento-powerpoint-harjoitus/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -4150,10 +4766,16 @@
         "https://www.slideshare.net/slideshow/tieto-ja-viestintatekniikka-pedagogisena-tyovalineena-luento-1/52268646",
         "/presentations/ss-tieto-ja-viestinta-tekniikka-pedagogisena-tyo-va-lineena-luento-1/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-tieto-ja-viestinta-tekniikka-pedagogisena-tyo-va-lineena-luento-1/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-tieto-ja-viestinta-tekniikka-pedagogisena-tyo-va-lineena-luento-1/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-tieto-ja-viestinta-tekniikka-pedagogisena-tyo-va-lineena-luento-1/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -4188,10 +4810,12 @@
         "https://www.slideshare.net/slideshow/alustus-digitaalisuus-koulutuksessa/51713522",
         "/presentations/ss-alustus-digitaalisuus-koulutuksessa/"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-alustus-digitaalisuus-koulutuksessa/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-alustus-digitaalisuus-koulutuksessa/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-alustus-digitaalisuus-koulutuksessa/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -4227,10 +4851,16 @@
         "https://www.slideshare.net/slideshow/stadin-ammattiopiston-lukuvuoden-aloitus-teknologiatuettua-oppimista-ja-opetusta-uudistamassa/78629473",
         "/presentations/ss-stadin-ammattiopiston-lukuvuoden-aloitus-teknologiatuettua-oppimista-ja-opetusta/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-stadin-ammattiopiston-lukuvuoden-aloitus-teknologiatuettua-oppimista-ja-opetusta/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-stadin-ammattiopiston-lukuvuoden-aloitus-teknologiatuettua-oppimista-ja-opetusta/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-stadin-ammattiopiston-lukuvuoden-aloitus-teknologiatuettua-oppimista-ja-opetusta/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -4267,10 +4897,18 @@
         "https://www.slideshare.net/slideshow/4-luento-tieto-ja-viestinttekniikan-pedagogiset-perusteet-nykyajan-medialukutataito/9195772",
         "/presentations/ss-4-luento-tieto-ja-viestintatekniikan-pedagogiset-perusteet-nykyajan-medialukutat/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education",
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos",
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-4-luento-tieto-ja-viestintatekniikan-pedagogiset-perusteet-nykyajan-medialukutat/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-4-luento-tieto-ja-viestintatekniikan-pedagogiset-perusteet-nykyajan-medialukutat/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-4-luento-tieto-ja-viestintatekniikan-pedagogiset-perusteet-nykyajan-medialukutat/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -4310,10 +4948,16 @@
         "https://www.slideshare.net/slideshow/the-role-and-importance-of-social-media-in-science/40101721",
         "/presentations/ss-the-role-and-importance-of-social-media-in-science/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-the-role-and-importance-of-social-media-in-science/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-the-role-and-importance-of-social-media-in-science/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-the-role-and-importance-of-social-media-in-science/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -4350,10 +4994,16 @@
         "https://www.slideshare.net/slideshow/tutkija-ja-sosiaalinen-media/41848237",
         "/presentations/ss-tutkija-ja-sosiaalinen-media/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-tutkija-ja-sosiaalinen-media/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-tutkija-ja-sosiaalinen-media/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-tutkija-ja-sosiaalinen-media/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -4389,10 +5039,16 @@
         "https://www.slideshare.net/slideshow/koe-oppimisymparistona-osa-i/2542679",
         "/presentations/ss-koe-oppimisymparistona-osa-i/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-koe-oppimisymparistona-osa-i/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-koe-oppimisymparistona-osa-i/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-koe-oppimisymparistona-osa-i/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -4427,10 +5083,16 @@
         "https://www.slideshare.net/slideshow/koe-oppimisympristn-osa-ii/2542680",
         "/presentations/ss-koe-oppimisymparistona-osa-ii/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-koe-oppimisymparistona-osa-ii/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-koe-oppimisymparistona-osa-ii/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-koe-oppimisymparistona-osa-ii/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -4469,10 +5131,18 @@
         "https://www.slideshare.net/slideshow/mobiilioppiminen-15204317/15204317",
         "/presentations/ss-mobiilioppiminen/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education",
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos",
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-mobiilioppiminen/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-mobiilioppiminen/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-mobiilioppiminen/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -4508,10 +5178,16 @@
         "https://www.slideshare.net/slideshow/digitaalisen-oppimisen-vlineit-yhdess-kehittmss-varhainen-omaksuja-uhka-vai-mahdollisuus-tietohallinnolle-137649224/137649224",
         "/presentations/ss-digitaalisen-oppimisen-valineita-yhdessa-kehittamassa-varhainen-omaksuja-uhka-va/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-digitaalisen-oppimisen-valineita-yhdessa-kehittamassa-varhainen-omaksuja-uhka-va/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-digitaalisen-oppimisen-valineita-yhdessa-kehittamassa-varhainen-omaksuja-uhka-va/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-digitaalisen-oppimisen-valineita-yhdessa-kehittamassa-varhainen-omaksuja-uhka-va/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -4550,10 +5226,18 @@
         "https://www.slideshare.net/slideshow/digitaaliset-vlineet-opetuksessa-ja-oppimisessa-opettajankoulutuksen-kontekstissa-tasapainoilua-tulevaisuuden-mahdollisuuksien-ja-teknologian-opetuskytn-arkirealismin-vlill/137666039",
         "/presentations/ss-digitaaliset-valineet-opetuksessa-ja-oppimisessa-opettajankoulutuksen-kontekstis/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education",
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos",
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-digitaaliset-valineet-opetuksessa-ja-oppimisessa-opettajankoulutuksen-kontekstis/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-digitaaliset-valineet-opetuksessa-ja-oppimisessa-opettajankoulutuksen-kontekstis/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-digitaaliset-valineet-opetuksessa-ja-oppimisessa-opettajankoulutuksen-kontekstis/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -4589,10 +5273,16 @@
         "https://www.slideshare.net/slideshow/miten-uudistuvan-ylioppilastutkinnon-tai-taman-vuosituhannen-taitojen-tulisi-nakya-luokassa-30692066/30692066",
         "/presentations/ss-miten-uudistuvan-ylioppilastutkinnon-tai-ta-ma-n-vuosituhannen-taitojen-tulisi-n/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-miten-uudistuvan-ylioppilastutkinnon-tai-ta-ma-n-vuosituhannen-taitojen-tulisi-n/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-miten-uudistuvan-ylioppilastutkinnon-tai-ta-ma-n-vuosituhannen-taitojen-tulisi-n/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-miten-uudistuvan-ylioppilastutkinnon-tai-ta-ma-n-vuosituhannen-taitojen-tulisi-n/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -4630,10 +5320,18 @@
         "https://www.slideshare.net/slideshow/luentodiat-digitaalinen-media-oppimisessa-ja-opettamisessa-410017y-2015/44064982",
         "/presentations/ss-luentodiat-digitaalinen-media-oppimisessa-ja-opettamisessa-410017y-2015/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education",
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos",
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-luentodiat-digitaalinen-media-oppimisessa-ja-opettamisessa-410017y-2015/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-luentodiat-digitaalinen-media-oppimisessa-ja-opettamisessa-410017y-2015/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-luentodiat-digitaalinen-media-oppimisessa-ja-opettamisessa-410017y-2015/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -4673,10 +5371,16 @@
         "https://www.slideshare.net/slideshow/predicting-future-of-edtech-2030-v2/129224523",
         "/presentations/ss-predicting-future-of-edtech-2030-v2/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-predicting-future-of-edtech-2030-v2/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-predicting-future-of-edtech-2030-v2/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-predicting-future-of-edtech-2030-v2/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -4711,10 +5415,16 @@
         "https://www.slideshare.net/slideshow/tietotyon-p-haasteita/6568725",
         "/presentations/ss-tietotyon-pedagogisia-haasteita/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-tietotyon-pedagogisia-haasteita/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-tietotyon-pedagogisia-haasteita/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-tietotyon-pedagogisia-haasteita/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -4750,10 +5460,16 @@
         "https://www.slideshare.net/slideshow/evoluutiota-vai-revoluutiota-koulu-ja-oppilaat-mediamaailman-muutoksien-myllerryksess/3078856",
         "/presentations/ss-evoluutiota-vai-revoluutiota-koulu-ja-oppilaat-mediamaailman-muutoksien-myllerry/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-evoluutiota-vai-revoluutiota-koulu-ja-oppilaat-mediamaailman-muutoksien-myllerry/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-evoluutiota-vai-revoluutiota-koulu-ja-oppilaat-mediamaailman-muutoksien-myllerry/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-evoluutiota-vai-revoluutiota-koulu-ja-oppilaat-mediamaailman-muutoksien-myllerry/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -4790,10 +5506,16 @@
         "https://www.slideshare.net/slideshow/median-jakaminen-on-helppoa-mutta-poistaminen-vaikeata/3078857",
         "/presentations/ss-median-jakaminen-on-helppoa-mutta-poistaminen-vaikeata/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-median-jakaminen-on-helppoa-mutta-poistaminen-vaikeata/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-median-jakaminen-on-helppoa-mutta-poistaminen-vaikeata/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-median-jakaminen-on-helppoa-mutta-poistaminen-vaikeata/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -4831,10 +5553,18 @@
         "https://www.slideshare.net/slideshow/410014y-johdantoluento-tieto-ja-viestinttekniikka-pedagogisena-tyvlineen-2014/38480588",
         "/presentations/ss-410014y-johdantoluento-tieto-ja-viestintatekniikka-pedagogisena-tyovalineena-201/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education",
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos",
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-410014y-johdantoluento-tieto-ja-viestintatekniikka-pedagogisena-tyovalineena-201/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-410014y-johdantoluento-tieto-ja-viestintatekniikka-pedagogisena-tyovalineena-201/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-410014y-johdantoluento-tieto-ja-viestintatekniikka-pedagogisena-tyovalineena-201/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -4872,10 +5602,18 @@
         "https://www.slideshare.net/slideshow/410014y-luento-2-tmn-vuosisadan-ydintaidot-21th-skills-ja-koulun-muutospaineet/38481523",
         "/presentations/ss-410014y-luento-2-taman-vuosisadan-ydintaidot-21th-skills-ja-koulun-muutospaineet/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education",
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos",
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-410014y-luento-2-taman-vuosisadan-ydintaidot-21th-skills-ja-koulun-muutospaineet/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-410014y-luento-2-taman-vuosisadan-ydintaidot-21th-skills-ja-koulun-muutospaineet/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-410014y-luento-2-taman-vuosisadan-ydintaidot-21th-skills-ja-koulun-muutospaineet/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -4910,10 +5648,12 @@
         "https://www.slideshare.net/slideshow/mummo-nkkulma-sukupuun-juurelta-tai-ainakin-melkein-sukujuhla-2014/37584942",
         "/presentations/ss-mummo-nakokulma-sukupuun-juurelta-tai-ainakin-melkein-sukujuhla-2014/"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-mummo-nakokulma-sukupuun-juurelta-tai-ainakin-melkein-sukujuhla-2014/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-mummo-nakokulma-sukupuun-juurelta-tai-ainakin-melkein-sukujuhla-2014/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-mummo-nakokulma-sukupuun-juurelta-tai-ainakin-melkein-sukujuhla-2014/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -4949,10 +5689,16 @@
         "https://www.slideshare.net/slideshow/ei-pelkk-vlineiden-opettelua-case-opettajankoulutus/33410525",
         "/presentations/ss-ei-pelkkaa-valineiden-opettelua-case-opettajankoulutus/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-ei-pelkkaa-valineiden-opettelua-case-opettajankoulutus/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-ei-pelkkaa-valineiden-opettelua-case-opettajankoulutus/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-ei-pelkkaa-valineiden-opettelua-case-opettajankoulutus/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -4988,10 +5734,16 @@
         "https://www.slideshare.net/slideshow/tmn-vuosituhannen-ydintaidot-ja-teknologian-opetus-ja-oppimiskytt/33125143",
         "/presentations/ss-taman-vuosituhannen-ydintaidot-ja-teknologian-opetus-ja-oppimiskaytto/"
       ],
+      "presentationResearchPresets": [
+        "long-term-learning"
+      ],
+      "presentationResearchPresetLabels": [
+        "Mobiilioppiminen ja yhteisöllinen tiedonrakentelu"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-taman-vuosituhannen-ydintaidot-ja-teknologian-opetus-ja-oppimiskaytto/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-taman-vuosituhannen-ydintaidot-ja-teknologian-opetus-ja-oppimiskaytto/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-taman-vuosituhannen-ydintaidot-ja-teknologian-opetus-ja-oppimiskaytto/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -5040,6 +5792,12 @@
       "representationUrls": [
         "https://www.canva.com/design/DAHI6X6dR_g/_Jy-hfDeDZU5UA6DVkWjrQ/view"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
+      ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -5069,10 +5827,12 @@
         "https://www.ouka.fi/lukevinkaupunni/arjen-tekoalyhaaste",
         "/presentations/arjen-tekoalyhaaste/"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [
         {
           "url": "/presentations/arjen-tekoalyhaaste/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/arjen-tekoalyhaaste/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/arjen-tekoalyhaaste/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -5112,6 +5872,8 @@
       "representationUrls": [
         "https://canva.link/vqtdccorb3yxb9h"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -5140,6 +5902,8 @@
       "representationUrls": [
         "https://www.youtube.com/watch?v=0cJ0Ed3Scs4&t=5s"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -5179,6 +5943,8 @@
       "representationUrls": [
         "https://canva.link/0esdy3ncxld18eo"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -5217,6 +5983,12 @@
       "representationUrls": [
         "https://canva.link/3jrd9fl161kwo7z"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
+      ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -5253,6 +6025,12 @@
       "representationCount": 1,
       "representationUrls": [
         "https://canva.link/vk311eej0al4lxw"
+      ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
       ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
@@ -5291,6 +6069,8 @@
       "representationUrls": [
         "https://canva.link/epspgvg60zgkj4s"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -5326,10 +6106,16 @@
         "/presentations/kohti-kriittist-teko-lylukutaitoa-2026-finnoschool/",
         "https://www.canva.com/d/Q-_JKVR5uFrh3wI"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/kohti-kriittist-teko-lylukutaitoa-2026-finnoschool/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/kohti-kriittist-teko-lylukutaitoa-2026-finnoschool/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/kohti-kriittist-teko-lylukutaitoa-2026-finnoschool/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -5369,10 +6155,16 @@
         "/presentations/riihim-ki-veso-2026/",
         "https://www.canva.com/d/ScsvKi3eW0eKoYS"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/riihim-ki-veso-2026/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/riihim-ki-veso-2026/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/riihim-ki-veso-2026/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -5412,10 +6204,18 @@
         "/presentations/kempele-veso-2026/",
         "https://www.canva.com/d/cbYXXNXQtLqaOC"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy",
+        "teacher-education"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus",
+        "Opettajankoulutus ja pedagoginen muutos"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/kempele-veso-2026/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/kempele-veso-2026/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/kempele-veso-2026/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -5455,10 +6255,12 @@
         "/presentations/konen-k-vibe-robotiikka-riihim-ki-robokampus-2026/",
         "https://www.canva.com/d/OjGJZTiP0dZu6rh"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [
         {
           "url": "/presentations/konen-k-vibe-robotiikka-riihim-ki-robokampus-2026/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/konen-k-vibe-robotiikka-riihim-ki-robokampus-2026/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/konen-k-vibe-robotiikka-riihim-ki-robokampus-2026/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -5490,6 +6292,8 @@
       "representationUrls": [
         "https://www.youtube.com/watch?v=7EXB54VvlsU&t=2s"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -5518,6 +6322,8 @@
       "representationUrls": [
         "https://www.finna.fi/Record/aoe.5456"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -5552,6 +6358,8 @@
       "representationUrls": [
         "https://www.canva.com/d/EAMOOLnvrmnE_0g"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -5585,6 +6393,8 @@
       "representationUrls": [
         "https://www.canva.com/d/NwJZ8FVrbTIF80L"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -5620,10 +6430,16 @@
         "/presentations/opettaja-teko-lyn-ja-lytt-myyden-turbulenssissa-tampere-2025/",
         "https://www.canva.com/d/lRZpuZC9RLomY4L"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/opettaja-teko-lyn-ja-lytt-myyden-turbulenssissa-tampere-2025/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/opettaja-teko-lyn-ja-lytt-myyden-turbulenssissa-tampere-2025/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/opettaja-teko-lyn-ja-lytt-myyden-turbulenssissa-tampere-2025/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -5661,6 +6477,12 @@
       "representationUrls": [
         "https://www.canva.com/d/fMchhKOJuh9LPSe"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
+      ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -5694,6 +6516,8 @@
       "representationUrls": [
         "https://www.canva.com/d/7IyyLkfG4NvVNFy"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -5722,6 +6546,8 @@
       "representationUrls": [
         "https://www.youtube.com/watch?v=RyItZto47t8"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -5755,6 +6581,12 @@
       "representationCount": 1,
       "representationUrls": [
         "https://www.canva.com/d/RIjexbw0vJhknqR"
+      ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
       ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
@@ -5791,10 +6623,16 @@
         "/presentations/kokkola-2025-teko-ly-opettajan-yst-v-vai-viho/",
         "https://www.canva.com/d/fRVY_8QVfYju6_Z"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/kokkola-2025-teko-ly-opettajan-yst-v-vai-viho/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/kokkola-2025-teko-ly-opettajan-yst-v-vai-viho/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/kokkola-2025-teko-ly-opettajan-yst-v-vai-viho/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -5838,6 +6676,12 @@
       "representationUrls": [
         "https://canva.link/vqtdccorb3yxb9h"
       ],
+      "presentationResearchPresets": [
+        "teacher-education"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos"
+      ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -5876,6 +6720,12 @@
       "representationUrls": [
         "https://canva.link/vqtdccorb3yxb9h"
       ],
+      "presentationResearchPresets": [
+        "teacher-education"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos"
+      ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -5909,6 +6759,8 @@
       "representationUrls": [
         "https://www.canva.com/d/IMm6-JD8PRTBK2F"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -5944,6 +6796,12 @@
       "representationCount": 1,
       "representationUrls": [
         "https://canva.link/d6kheuhj8xk6m3h"
+      ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
       ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
@@ -5981,6 +6839,12 @@
       "representationCount": 1,
       "representationUrls": [
         "https://www.canva.com/d/Cms-4m8mJZ9yK4e"
+      ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
       ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
@@ -6021,10 +6885,18 @@
         "https://www.opioulu.fi/luennoitsijat/laru-jari-tekoalyaiheinen-paneelikeskustelu/",
         "/presentations/opi-oulu-2026-tekoalyaiheinen-paneelikeskustelu/"
       ],
+      "presentationResearchPresets": [
+        "teacher-education",
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos",
+        "Tekoälylukutaito ja tekoälykasvatus"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/opi-oulu-2026-tekoalyaiheinen-paneelikeskustelu/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/opi-oulu-2026-tekoalyaiheinen-paneelikeskustelu/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/opi-oulu-2026-tekoalyaiheinen-paneelikeskustelu/index.html",
           "reason": "representationLocalPage",
           "relationship": "alternateRepresentation"
         }
@@ -6068,6 +6940,12 @@
       "representationUrls": [
         "https://canva.link/njzgya3gi1x98h7"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
+      ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -6109,6 +6987,12 @@
       "representationUrls": [
         "https://www.canva.com/d/Th9VKpjA84-sgKY"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
+      ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -6147,6 +7031,12 @@
       "representationUrls": [
         "https://www.canva.com/d/jT1t-KBLsuVoxiG"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
+      ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -6183,6 +7073,12 @@
       "representationUrls": [
         "https://canva.link/zbw32teldfkpf43"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
+      ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -6218,6 +7114,12 @@
       "representationCount": 1,
       "representationUrls": [
         "https://www.canva.com/d/qxV96znMIpZ5Q2a"
+      ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
       ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
@@ -6256,6 +7158,12 @@
       "representationUrls": [
         "https://www.canva.com/d/nJE4skdc9hohwL0"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
+      ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -6292,6 +7200,12 @@
       "representationCount": 1,
       "representationUrls": [
         "https://canva.link/0wntulrm8xeayqa"
+      ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
       ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
@@ -6330,6 +7244,12 @@
       "representationUrls": [
         "https://www.canva.com/d/BHFIfQOhEw4ABCA"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
+      ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -6367,6 +7287,12 @@
       "representationCount": 1,
       "representationUrls": [
         "https://www.canva.com/d/gkvZ4JJwmVa0Knk"
+      ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
       ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
@@ -6407,6 +7333,12 @@
       "representationUrls": [
         "https://www.canva.com/d/Un4WxPZdZD5qG6a"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
+      ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -6445,6 +7377,12 @@
       "representationUrls": [
         "https://www.canva.com/d/oE3MYYL33hpYgAf"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
+      ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -6481,6 +7419,12 @@
       "representationCount": 1,
       "representationUrls": [
         "https://www.canva.com/d/CRypZKJybJhhwBd"
+      ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
       ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
@@ -6519,6 +7463,12 @@
       "representationUrls": [
         "https://www.canva.com/d/qx9PoFlOBrBceoH"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
+      ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -6556,6 +7506,12 @@
       "representationUrls": [
         "https://www.canva.com/d/jkh6GGDWw4nOc3_"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
+      ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -6584,6 +7540,8 @@
       "representationUrls": [
         "https://www.youtube.com/watch?v=q2K04VmN3sQ"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -6624,6 +7582,12 @@
       "representationCount": 1,
       "representationUrls": [
         "https://www.canva.com/d/qX_3Ld__WgjScWJ"
+      ],
+      "presentationResearchPresets": [
+        "teacher-education"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos"
       ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
@@ -6667,6 +7631,12 @@
       "representationUrls": [
         "https://www.canva.com/d/z50JNAQrXmpHanN"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
+      ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -6702,6 +7672,8 @@
       "representationUrls": [
         "https://www.canva.com/d/aDY3w1A8bLJm0kr"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -6740,6 +7712,12 @@
       "representationUrls": [
         "https://www.canva.com/d/OhD7wKtj_XV-VGg"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
+      ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -6777,6 +7755,8 @@
       "representationUrls": [
         "https://www.canva.com/d/I-r13uz6Wiip2cC"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -6812,6 +7792,12 @@
       "representationCount": 1,
       "representationUrls": [
         "https://canva.link/nteaui2pa0a3zom"
+      ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
       ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
@@ -6849,6 +7835,12 @@
       "representationCount": 1,
       "representationUrls": [
         "https://www.canva.com/d/Mh-ALQxZX1-EQaB"
+      ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
       ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
@@ -6888,6 +7880,8 @@
       "representationUrls": [
         "https://www.canva.com/d/4zq6qy9B3GX9FQK"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -6925,6 +7919,8 @@
       "representationUrls": [
         "https://www.canva.com/d/uZIb__sx1r4EAqT"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -6962,6 +7958,12 @@
       "representationUrls": [
         "https://www.canva.com/d/I1SYHLZ9wRiCanl"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
+      ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -6997,6 +7999,12 @@
       "representationCount": 1,
       "representationUrls": [
         "https://www.canva.com/d/BwG8adUhENZ7jrX"
+      ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
       ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
@@ -7039,6 +8047,14 @@
       "representationUrls": [
         "https://www.canva.com/d/UigBOzdI_YhoZZG"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy",
+        "teacher-education"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus",
+        "Opettajankoulutus ja pedagoginen muutos"
+      ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -7077,10 +8093,18 @@
         "/presentations/digierko2024-risteilyesitys/",
         "https://www.canva.com/d/uv4hHNfJp4wmMG9"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy",
+        "teacher-education"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus",
+        "Opettajankoulutus ja pedagoginen muutos"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/digierko2024-risteilyesitys/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/digierko2024-risteilyesitys/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/digierko2024-risteilyesitys/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -7122,10 +8146,16 @@
         "/presentations/pori-kerava-millaisia-teko-lytaitoja-peruskoulussa-tulisi-opettaa-2020-luvulla/",
         "https://www.canva.com/d/j0l9JbP2ry5Osgr"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/pori-kerava-millaisia-teko-lytaitoja-peruskoulussa-tulisi-opettaa-2020-luvulla/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/pori-kerava-millaisia-teko-lytaitoja-peruskoulussa-tulisi-opettaa-2020-luvulla/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/pori-kerava-millaisia-teko-lytaitoja-peruskoulussa-tulisi-opettaa-2020-luvulla/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -7169,6 +8199,8 @@
       "representationUrls": [
         "https://www.canva.com/d/y4oM9QaEQrxs2Lq"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -7210,6 +8242,12 @@
       "representationUrls": [
         "https://www.canva.com/d/-eSwZknSARYMaO9"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
+      ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -7250,10 +8288,16 @@
         "https://www.canva.com/d/CYteD0Z-U5Z6TzJ",
         "/presentations/international-conference-on-the-advancement-of-steam-2024/"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/international-conference-on-the-advancement-of-steam-2024/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/international-conference-on-the-advancement-of-steam-2024/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/international-conference-on-the-advancement-of-steam-2024/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -7294,6 +8338,8 @@
       "representationUrls": [
         "https://www.canva.com/d/H13QgkxVZpEyel5"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -7330,6 +8376,12 @@
       "representationCount": 1,
       "representationUrls": [
         "https://www.canva.com/d/hmeIKU2KmombmX2"
+      ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
       ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
@@ -7373,10 +8425,16 @@
         "https://eventilla.avi.fi/event/OlXJz",
         "/presentations/tekoaly-opetuskaytto-avi-webinaari-2024/"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/tekoaly-opetuskaytto-avi-webinaari-2024/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/tekoaly-opetuskaytto-avi-webinaari-2024/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/tekoaly-opetuskaytto-avi-webinaari-2024/index.html",
           "reason": "representationLocalPage",
           "relationship": "alternateRepresentation"
         }
@@ -7420,10 +8478,16 @@
         "/presentations/monilukutaito-on-opettajan-supervoima-teko-lylukutaito-luento/",
         "https://www.canva.com/d/9xs_MhQ6mC6Rcdy"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/monilukutaito-on-opettajan-supervoima-teko-lylukutaito-luento/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/monilukutaito-on-opettajan-supervoima-teko-lylukutaito-luento/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/monilukutaito-on-opettajan-supervoima-teko-lylukutaito-luento/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -7466,6 +8530,12 @@
       "representationUrls": [
         "https://www.canva.com/d/F5-Wd95VzJy0JoP"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
+      ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -7503,6 +8573,12 @@
       "representationCount": 1,
       "representationUrls": [
         "https://www.canva.com/d/m5VefIslzj_iYuG"
+      ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
       ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
@@ -7542,6 +8618,12 @@
       "representationUrls": [
         "https://www.canva.com/d/WNfJmky8Se8aUa6"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
+      ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -7577,6 +8659,12 @@
       "representationCount": 1,
       "representationUrls": [
         "https://www.canva.com/d/WrqBItfiBYxVHlM"
+      ],
+      "presentationResearchPresets": [
+        "teacher-education"
+      ],
+      "presentationResearchPresetLabels": [
+        "Opettajankoulutus ja pedagoginen muutos"
       ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
@@ -7616,10 +8704,16 @@
         "https://www.canva.com/d/i5qAHZkGYqjOGZV",
         "/presentations/simo-veso-2024/"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
+      ],
       "localHtmlDocuments": [
         {
           "url": "/presentations/simo-veso-2024/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/simo-veso-2024/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/simo-veso-2024/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -7666,10 +8760,12 @@
         "/presentations/simo-veso-2024/",
         "https://www.canva.com/d/ajW6DkEv4UPmYOY"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [
         {
           "url": "/presentations/simo-veso-2024/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/simo-veso-2024/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/simo-veso-2024/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -7710,6 +8806,12 @@
       "representationUrls": [
         "https://www.canva.com/d/SiQ1lIJLHO9eT0t"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
+      ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -7749,6 +8851,12 @@
       "representationUrls": [
         "https://www.canva.com/d/c8WhYSwnqMjsYUZ"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
+      ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -7786,6 +8894,8 @@
       "representationUrls": [
         "https://www.canva.com/d/tjjrZpkP2brKCKh"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -7823,6 +8933,12 @@
       "representationCount": 1,
       "representationUrls": [
         "https://canva.link/gkabrxufe8dhnjp"
+      ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
       ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
@@ -7863,6 +8979,12 @@
       "representationUrls": [
         "https://www.canva.com/d/yBTK1xtETo0tuLp"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
+      ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -7896,6 +9018,12 @@
       "representationUrls": [
         "https://www.canva.com/d/1U8nu6YXdIOguXc"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
+      ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -7924,6 +9052,8 @@
       "representationUrls": [
         "https://www.youtube.com/watch?v=U4iFFFY3rhM"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -7965,6 +9095,8 @@
       "representationUrls": [
         "https://www.canva.com/d/S9UhE1RwcwtuNMz"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -8003,6 +9135,12 @@
       "representationUrls": [
         "https://www.canva.com/d/rcjGtO0E3RNGeXW"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
+      ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -8040,6 +9178,12 @@
       "representationCount": 1,
       "representationUrls": [
         "https://www.canva.com/d/tjqmy-4Lc_5j41O"
+      ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
       ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
@@ -8080,6 +9224,12 @@
       "representationUrls": [
         "https://www.canva.com/d/d6ho42WobmfnVvc"
       ],
+      "presentationResearchPresets": [
+        "ai-literacy"
+      ],
+      "presentationResearchPresetLabels": [
+        "Tekoälylukutaito ja tekoälykasvatus"
+      ],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -8108,6 +9258,8 @@
       "representationUrls": [
         "https://www.youtube.com/watch?v=fcDjAZZZs4U"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -8136,6 +9288,8 @@
       "representationUrls": [
         "https://www.finna.fi/Record/aoe.2047"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -8164,6 +9318,8 @@
       "representationUrls": [
         "https://www.finna.fi/Record/aoe.2409"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -8192,6 +9348,8 @@
       "representationUrls": [
         "https://www.finna.fi/Record/aoe.2370"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -8220,6 +9378,8 @@
       "representationUrls": [
         "https://www.finna.fi/Record/aoe.1501"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -8248,6 +9408,8 @@
       "representationUrls": [
         "https://www.finna.fi/Record/aoe.1518"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -8276,6 +9438,8 @@
       "representationUrls": [
         "https://www.finna.fi/Record/aoe.1813"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -8304,6 +9468,8 @@
       "representationUrls": [
         "https://www.finna.fi/Record/aoe.1698"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -8332,6 +9498,8 @@
       "representationUrls": [
         "https://www.finna.fi/Record/aoe.1789"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -8361,10 +9529,12 @@
         "/2020/03/12/jari-larun-verkkolive/",
         "https://www.youtube.com/playlist?list=PLDG0jxUrk8z19_ThqBiynpYG4g-mjwgpt"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [
         {
           "url": "/2020/03/12/jari-larun-verkkolive/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/2020/03/12/jari-larun-verkkolive/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/2020/03/12/jari-larun-verkkolive/index.html",
           "reason": "representationLocalPage",
           "relationship": "primary"
         }
@@ -8397,10 +9567,12 @@
         "https://www.youtube.com/watch?v=hCZ9lgODkes&list=PLDG0jxUrk8z3VEOjIFb_q0vdJW6-2oOgY",
         "/presentations/larun-pikkuvinkit/"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [
         {
           "url": "/presentations/larun-pikkuvinkit/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/larun-pikkuvinkit/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/larun-pikkuvinkit/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -8433,10 +9605,12 @@
         "https://www.youtube.com/watch?v=SoeW6zexrWQ",
         "/presentations/ss-teknologia-oppiminen-ja-osaaminen-yhteiskunnassa-uudet-teknologiat-isannan-vai-r/"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [
         {
           "url": "/presentations/ss-teknologia-oppiminen-ja-osaaminen-yhteiskunnassa-uudet-teknologiat-isannan-vai-r/",
-          "filePath": "/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/_site/presentations/ss-teknologia-oppiminen-ja-osaaminen-yhteiskunnassa-uudet-teknologiat-isannan-vai-r/index.html",
+          "filePath": "/private/tmp/www-presentations-main-reconciliation/_site/presentations/ss-teknologia-oppiminen-ja-osaaminen-yhteiskunnassa-uudet-teknologiat-isannan-vai-r/index.html",
           "reason": "canonicalLocalPage",
           "relationship": "canonicalLocalDetail"
         }
@@ -8479,6 +9653,8 @@
       "representationUrls": [
         "https://www.canva.com/d/ULcBKqsIIMap4cc"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",
@@ -8507,6 +9683,8 @@
       "representationUrls": [
         "https://www.youtube.com/playlist?list=PLDG0jxUrk8z2E7S2ggyzt0bIBXiDEgXob"
       ],
+      "presentationResearchPresets": [],
+      "presentationResearchPresetLabels": [],
       "localHtmlDocuments": [],
       "indexCandidateDocument": "",
       "indexCandidateReason": "customRecordRequired",

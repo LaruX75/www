@@ -1,79 +1,103 @@
+{% set archiveItems = presentationArchiveItems or ((presentationsPage and presentationsPage.items) or []) %}
+{% set archiveLocale = presentationArchiveLocale or (lang or "fi") %}
+
+{% if archiveLocale == "en" %}
+  {% set presentationArchiveSectionSummary = "Browse presentations" %}
+  {% set presentationArchiveSectionDetail = "Search by free text, year or topic" %}
+  {% set presentationArchiveKicker = "Canonical archive" %}
+  {% set presentationArchiveTitle = "Find presentations and learning materials" %}
+  {% set presentationArchiveLead = "The shared archive lists canonical presentations only once per presentation. Search by free text, year or topic, and each result follows the approved preferred landing." %}
+  {% set presentationArchiveSearchLabel = "Search" %}
+  {% set presentationArchiveSearchPlaceholder = "Search titles, topics or events" %}
+  {% set presentationArchiveYearLabel = "Year" %}
+  {% set presentationArchiveAllYearsLabel = "All years" %}
+  {% set presentationArchiveTopicLabel = "Topic" %}
+  {% set presentationArchiveTopicPlaceholder = "Choose or type a topic" %}
+  {% set presentationArchiveTopicHint = "All results also include topicless presentations unless you choose a specific topic." %}
+  {% set presentationArchiveResetLabel = "Reset" %}
+  {% set presentationArchiveOpenLabel = "Open" %}
+  {% set presentationArchiveExternalBadgeLabel = "External" %}
+  {% set presentationArchiveLocalBadgeLabel = "Local page" %}
+  {% set presentationArchiveMetaAriaLabel = "Presentation metadata" %}
+  {% set presentationArchivePaginationLabel = "Presentations pagination" %}
+{% else %}
+  {% set presentationArchiveSectionSummary = "Kaikki esitykset" %}
+  {% set presentationArchiveSectionDetail = "Hae vapaasti tai rajaa vuodella ja aiheella" %}
+  {% set presentationArchiveKicker = "Kanoninen arkisto" %}
+  {% set presentationArchiveTitle = "Selaa esityksiä ja opetusmateriaaleja" %}
+  {% set presentationArchiveLead = "Jaettu Find & Explore -arkisto näyttää yhden kanonisen tuloksen per esitys. Rajaa vapaasanalla, vuodella tai aiheella, ja avaus noudattaa hyväksyttyä ensisijaista laskeutumista." %}
+  {% set presentationArchiveSearchLabel = "Haku" %}
+  {% set presentationArchiveSearchPlaceholder = "Hae otsikoita, aiheita tai tapahtumia" %}
+  {% set presentationArchiveYearLabel = "Vuosi" %}
+  {% set presentationArchiveAllYearsLabel = "Kaikki vuodet" %}
+  {% set presentationArchiveTopicLabel = "Aihe" %}
+  {% set presentationArchiveTopicPlaceholder = "Valitse tai kirjoita aihe" %}
+  {% set presentationArchiveTopicHint = "Kaikki-tulosjoukko sisältää myös esitykset, joille ei ole merkitty aihetta." %}
+  {% set presentationArchiveResetLabel = "Tyhjennä" %}
+  {% set presentationArchiveOpenLabel = "Avaa" %}
+  {% set presentationArchiveExternalBadgeLabel = "Ulkoinen" %}
+  {% set presentationArchiveLocalBadgeLabel = "Paikallinen sivu" %}
+  {% set presentationArchiveMetaAriaLabel = "Esityksen metatiedot" %}
+  {% set presentationArchivePaginationLabel = "Esitysten sivutus" %}
+{% endif %}
+
 <section class="py-5 bg-body-tertiary border-top border-bottom" id="kaikki-esitykset" aria-labelledby="kaikki-esitykset-heading" data-presentation-mobile-priority="2">
   <div class="site-shell">
     <details class="presentation-mobile-disclosure" data-presentation-mobile-collapse open>
       <summary class="presentation-mobile-disclosure-summary">
-        <span>Kaikki esitykset ja materiaalit</span>
-        <small>Selaa ja rajaa sisältöjä</small>
+        <span>{{ presentationArchiveSectionSummary }}</span>
+        <small>{{ presentationArchiveSectionDetail }}</small>
       </summary>
       <div class="presentation-mobile-disclosure-body">
         <div class="presentation-section-head">
-          <p class="presentation-section-kicker mb-1">Kaikki esitykset ja materiaalit</p>
-          <h2 id="kaikki-esitykset-heading" class="presentation-section-title">Selaa esityksiä ja opetusmateriaaleja</h2>
-          <p class="presentation-section-lead mb-0">Valitse ensin käyttötarkoitus. Opintojakso- ja muut tarkemmat rajaukset tulevat mukaan vasta, kun niistä on hyötyä.</p>
+          <p class="presentation-section-kicker mb-1">{{ presentationArchiveKicker }}</p>
+          <h2 id="kaikki-esitykset-heading" class="presentation-section-title">{{ presentationArchiveTitle }}</h2>
+          <p class="presentation-section-lead mb-0">{{ presentationArchiveLead }}</p>
         </div>
 
-        <div class="presentation-archive-toolbar" aria-label="Suodata esityksiä käyttötarkoituksen ja tarkennusten mukaan">
-          <div class="presentation-archive-filter-group presentation-archive-filter-group--primary">
-            <span class="presentation-archive-filter-label">Mitä etsit?</span>
-            <button class="presentation-archive-filter is-active" type="button" data-presentation-filter="all">Kaikki</button>
-            <button class="presentation-archive-filter" type="button" data-presentation-filter="route:puheenvuorot">Puheenvuorot</button>
-            <button class="presentation-archive-filter" type="button" data-presentation-filter="route:opintojaksot">Opintojaksot</button>
-            <button class="presentation-archive-filter" type="button" data-presentation-filter="route:koulutukset">Koulutukset ja työpajat</button>
-            <button class="presentation-archive-filter" type="button" data-presentation-filter="route:materiaalit">Videot ja materiaalit</button>
-          </div>
+        <div class="presentation-archive-root" data-presentation-find-explore data-locale="{{ archiveLocale }}">
+          <form class="presentation-archive-controls" data-presentation-controls>
+            <div class="presentation-archive-controls-grid">
+              <div class="presentation-archive-control">
+                <label class="presentation-archive-filter-label" for="presentation-archive-search">{{ presentationArchiveSearchLabel }}</label>
+                <input id="presentation-archive-search" class="presentation-archive-input" type="search" placeholder="{{ presentationArchiveSearchPlaceholder }}" data-presentation-control="search">
+              </div>
 
-          <div class="presentation-archive-refiners" data-presentation-refiners hidden>
-            <div class="presentation-archive-refiner" data-presentation-refiner="route:puheenvuorot" hidden>
-              <span class="presentation-archive-filter-label">Tarkenna puheenvuoroja</span>
-              <button class="presentation-archive-filter" type="button" data-presentation-filter="category:konferenssi-keynote">Keynotet</button>
-              <button class="presentation-archive-filter" type="button" data-presentation-filter="category:kansainvälinen-konferenssi">Konferenssit</button>
-            </div>
-
-            <div class="presentation-archive-refiner" data-presentation-refiner="route:opintojaksot" hidden>
-              <div class="presentation-archive-filter-group presentation-archive-filter-group--select">
-                <label class="presentation-archive-filter-label" for="presentation-course-filter">Tarkenna opintojaksoa</label>
-                <select class="presentation-archive-select" id="presentation-course-filter" aria-label="Rajaa opintojaksokontekstin mukaan">
-                  <option value="all">Kaikki opintojaksot</option>
+              <div class="presentation-archive-control">
+                <label class="presentation-archive-filter-label" for="presentation-archive-year">{{ presentationArchiveYearLabel }}</label>
+                <select id="presentation-archive-year" class="presentation-archive-select" data-presentation-control="year">
+                  <option value="">{{ presentationArchiveAllYearsLabel }}</option>
                 </select>
               </div>
-              <button class="presentation-archive-filter" type="button" data-presentation-filter="category:tdk-luento">Yliopistoluennot</button>
-            </div>
 
-            <div class="presentation-archive-refiner" data-presentation-refiner="route:koulutukset" hidden>
-              <span class="presentation-archive-filter-label">Tarkenna koulutuksia</span>
-              <button class="presentation-archive-filter" type="button" data-presentation-filter="category:täydennyskoulutus">Täydennyskoulutukset</button>
-              <button class="presentation-archive-filter" type="button" data-presentation-filter="category:webinaari">Webinaarit</button>
-              <button class="presentation-archive-filter" type="button" data-presentation-filter="category:hanke-esittely">Hanke-esittelyt</button>
-            </div>
+              <div class="presentation-archive-control">
+                <label class="presentation-archive-filter-label" for="presentation-archive-topic">{{ presentationArchiveTopicLabel }}</label>
+                <input id="presentation-archive-topic" class="presentation-archive-input" type="search" list="presentation-archive-topic-list" placeholder="{{ presentationArchiveTopicPlaceholder }}" data-presentation-control="topic">
+                <datalist id="presentation-archive-topic-list"></datalist>
+              </div>
 
-            <div class="presentation-archive-refiner" data-presentation-refiner="route:materiaalit" hidden>
-              <span class="presentation-archive-filter-label">Tarkenna materiaaleja</span>
-              <button class="presentation-archive-filter" type="button" data-presentation-filter="aoe">Avoimet oppimateriaalit</button>
-              <button class="presentation-archive-filter" type="button" data-presentation-filter="video">Videot</button>
-              <button class="presentation-archive-filter" type="button" data-presentation-filter="analysis">Analyysit</button>
-              <button class="presentation-archive-filter" type="button" data-presentation-filter="oppimisymparisto">Oppimisympäristöt</button>
-              <button class="presentation-archive-filter" type="button" data-presentation-filter="suljettu-oppimisymparisto">Suljetut oppimisympäristöt</button>
-            </div>
-          </div>
-
-          <details class="presentation-archive-advanced">
-            <summary>Tarkenna hakua</summary>
-            <div class="presentation-archive-advanced-body">
-              <div class="presentation-archive-filter-group">
-                <span class="presentation-archive-filter-label">Rooli</span>
-                <button class="presentation-archive-filter" type="button" data-presentation-filter="profile:kouluttaja">Kouluttaja</button>
-                <button class="presentation-archive-filter" type="button" data-presentation-filter="profile:tutkija">Tutkija</button>
-                <button class="presentation-archive-filter" type="button" data-presentation-filter="profile:asiantuntija">Asiantuntija</button>
+              <div class="presentation-archive-control presentation-archive-control--action">
+                <button type="reset" class="btn btn-outline-secondary rounded-pill px-4" data-presentation-reset>{{ presentationArchiveResetLabel }}</button>
               </div>
             </div>
-          </details>
-        </div>
 
-        <div class="presentation-archive-status" id="presentation-unified-status" aria-live="polite"></div>
-        <div class="presentation-archive-grid" id="presentation-unified-archive"></div>
-        <nav class="mt-4" aria-label="Kaikki esitykset ja materiaalit -sivutus">
-          <ul class="pagination pagination-sm mb-0 justify-content-center" id="presentation-unified-pagination"></ul>
-        </nav>
+            <p class="presentation-archive-hint mb-0">{{ presentationArchiveTopicHint }}</p>
+          </form>
+
+          <div class="presentation-archive-status" data-presentation-status aria-live="polite"></div>
+
+          <div class="presentation-archive-grid" data-presentation-results>
+            {% for item in archiveItems | sort(attribute="date", reverse=true) %}
+              {% if loop.index <= 12 %}
+                {% include "presentations/result-card.njk" %}
+              {% endif %}
+            {% endfor %}
+          </div>
+
+          <nav class="mt-4" aria-label="{{ presentationArchivePaginationLabel }}" data-presentation-pagination-nav hidden>
+            <ul class="pagination pagination-sm mb-0 justify-content-center" data-presentation-pagination></ul>
+          </nav>
+        </div>
       </div>
     </details>
   </div>

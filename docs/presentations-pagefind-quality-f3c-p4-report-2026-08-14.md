@@ -71,7 +71,7 @@ This report covers the canonical `FindExplore:presentations` Pagefind scope only
 ## 10. FindExplore:presentations implementation
 
 - Scope filter: `FindExplore:presentations`
-- Filter keys present in Pagefind: FindExplore, Kieli, PresentationEvent, PresentationLandingType, PresentationMediaType, PresentationSourceType, PresentationTopic, PresentationYear
+- Filter keys present in Pagefind: FindExplore, Kieli, PresentationEvent, PresentationLandingType, PresentationMediaType, PresentationResearchPreset, PresentationSourceType, PresentationTopic, PresentationYear, Publications group, Publications quality, Publications research line, Publications scope, Publications topic, Publications type, Publications year, Theses author, Theses language, Theses scope, Theses topic, Theses type, Theses year, Writings content type, Writings role, Writings scope, Writings topic, Writings year
 - Local HTML candidates carry injected Pagefind metadata at indexing time only.
 - Missing external-first identities are supplied as Pagefind custom records without creating public HTML pages.
 

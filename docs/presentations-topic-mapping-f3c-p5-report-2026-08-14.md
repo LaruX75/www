@@ -155,18 +155,18 @@ Date: 2026-08-14
 
 ## 16. Presentation Pagefind regression
 
-- PASS (20/20 found, 19/20 top1, 20/20 top3, 20/20 landing)
+- Verified separately in checkpoint run
 
 ## 17. Existing scope regressions
 
-- writings: PASS
-- theses: PASS
-- publications: PASS
-- research smoke: PASS (Playwright smoke 1/1)
+- writings: Verified separately in checkpoint run
+- theses: Verified separately in checkpoint run
+- publications: Verified separately in checkpoint run
+- research smoke: Verified separately in checkpoint run
 
 ## 18. Presentation canonical regressions
 
-- PASS (218 canonical, 139/139 local details, 0 duplicate ids, landing green)
+- Verified separately in checkpoint run
 
 ## 19. "Tutkimusteema" vs "Aihe" terminology assessment
 
@@ -218,13 +218,13 @@ Date: 2026-08-14
 
 ## 26. Closure readiness
 
-- build: PASS (npm run build:no-og)
-- unit tests: PASS (400/400)
+- build: Verified separately in checkpoint run
+- unit tests: Verified separately in checkpoint run
 - structured mapping quality: PASS
-- report artifact: [presentations-topic-mapping-f3c-p5-report-2026-08-14.md](/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/docs/presentations-topic-mapping-f3c-p5-report-2026-08-14.md)
-- csv artifact: [presentation-research-topic-mapping-f3c-p5.csv](/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/docs/data/presentation-research-topic-mapping-f3c-p5.csv)
-- mapping artifact: [presentation-research-topic-mapping.json](/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/src/curated/presentation-research-topic-mapping.json)
-- diagnostics artifact: [presentation-topic-coverage-diagnostics-f3c-p5.json](/Users/jlaru/Documents/www/jarilaru-eleventy-final-v2/docs/data/presentation-topic-coverage-diagnostics-f3c-p5.json)
+- report artifact: [presentations-topic-mapping-f3c-p5-report-2026-08-14.md](/private/tmp/www-presentations-main-reconciliation/docs/presentations-topic-mapping-f3c-p5-report-2026-08-14.md)
+- csv artifact: [presentation-research-topic-mapping-f3c-p5.csv](/private/tmp/www-presentations-main-reconciliation/docs/data/presentation-research-topic-mapping-f3c-p5.csv)
+- mapping artifact: [presentation-research-topic-mapping.json](/private/tmp/www-presentations-main-reconciliation/src/curated/presentation-research-topic-mapping.json)
+- diagnostics artifact: [presentation-topic-coverage-diagnostics-f3c-p5.json](/private/tmp/www-presentations-main-reconciliation/docs/data/presentation-topic-coverage-diagnostics-f3c-p5.json)
 
 ## 27. Closure note
 

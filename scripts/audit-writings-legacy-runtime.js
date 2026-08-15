@@ -44,7 +44,8 @@ function main() {
   const enForbidden = forbiddenMatches(enTemplate, forbidden);
 
   const runtime = {
-    findExploreUsesPagefind: /import\("\/pagefind\/pagefind\.js"\)/.test(findExplore),
+    findExploreUsesPagefind: /import\(`\/pagefind\/pagefind\.js(?:\?[^`]*)?`\)/.test(findExplore)
+      || /import\("\/pagefind\/pagefind\.js(?:\?[^"]*)?"\)/.test(findExplore),
     findExploreDoesNotFetchWritingsJson: !/fetch\(["']\/data\/writings-page\.json/.test(findExplore),
     fiSuppressesTableFilters: fiTemplate.includes("suppressTableFilters: true"),
     enSuppressesTableFilters: enTemplate.includes("suppressTableFilters: true"),
