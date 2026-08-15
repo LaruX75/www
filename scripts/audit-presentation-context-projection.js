@@ -145,8 +145,7 @@ async function main() {
     noContextsForUnmatchedCanonicals: unmatchedCanonicalWithContexts.length === 0,
     exactContextProjectionFromMatchedLocalDetails: mismatchedContextProjection.length === 0,
     pagefindMatchesCanonicalResearch: pagefindResearch.length === canonicalResearch.length,
-    researchMountScopeUnchanged: researchHtml.includes('data-find-explore-kinds="publications,theses,writings"')
-      && !researchHtml.includes('data-find-explore-kinds="presentations'),
+    researchMountScopeIncludesPresentations: researchHtml.includes('data-find-explore-kinds="publications,theses,writings,presentations"'),
     safeTopicMappingCount: safeMappedButNotResearch.length + researchEligibleWithSafeMapping.length === 168
   };
 

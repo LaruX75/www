@@ -84,6 +84,7 @@ describe("presentationResearchTopics", () => {
     });
 
     assert.deepEqual(filters.PresentationContext, ["education", "research", "teaching"]);
+    assert.deepEqual(filters["Research context"], ["research"]);
     assert.deepEqual(filters.PresentationResearchPreset, ["ai-literacy", "long-term-learning"]);
   });
 

@@ -21,7 +21,8 @@
       kindLabels: {
         writings: "Kirjoitus",
         theses: "Opinnäyte",
-        publications: "Julkaisu"
+        publications: "Julkaisu",
+        presentations: "Esitys"
       }
     },
     en: {
@@ -39,7 +40,8 @@
       kindLabels: {
         writings: "Writing",
         theses: "Thesis",
-        publications: "Publication"
+        publications: "Publication",
+        presentations: "Presentation"
       }
     }
   };
@@ -144,11 +146,32 @@
     publications: {
       filterPrefix: "Publications",
       typeFilterKey: "Publications group",
+      yearFilterKey: "Publications year",
+      topicFilterKey: "Publications topic",
+      qualityFilterKey: "Publications quality",
       resultMeta(entry, state) {
         return [entry.authors, entry.typeLabel, entry.year, entry.venue].filter(Boolean);
       },
       excerpt(data, record) {
         return record?.description || data?.meta?.publicationDescription || data?.excerpt || "";
+      },
+      requiresQueryForSearch: false
+    },
+    presentations: {
+      yearFilterKey: "PresentationYear",
+      topicFilterKey: "PresentationTopic",
+      researchTopicPresetMap: {
+        "tekoäly": "ai-literacy",
+        "opettajankoulutus": "teacher-education",
+        "koulutusteknologia": "long-term-learning",
+        "yhteisöllinen oppiminen": "long-term-learning",
+        "ohjelmoinnillinen ajattelu": "teacher-education"
+      },
+      resultMeta(entry) {
+        return [entry.year].filter(Boolean);
+      },
+      excerpt(data, record) {
+        return record?.description || data?.excerpt || "";
       },
       requiresQueryForSearch: false
     },
@@ -189,9 +212,16 @@
     if (languageFilter) filters.Kieli = languageFilter;
 
     if (state.type) filters[config.typeFilterKey || `${prefix} type`] = state.type;
-    if (state.year) filters[`${prefix} year`] = state.year;
-    if (state.topic) filters[`${prefix} topic`] = state.topic;
-    if (state.quality) filters[`${prefix} quality`] = state.quality;
+    if (state.year) filters[config.yearFilterKey || `${prefix} year`] = state.year;
+    if (state.topic) {
+      const topicPreset = config.researchTopicPresetMap?.[state.topic];
+      if ((mount.dataset.findExploreKind || "") === "researchContext" && topicPreset) {
+        filters.PresentationResearchPreset = topicPreset;
+      } else {
+        filters[config.topicFilterKey || `${prefix} topic`] = state.topic;
+      }
+    }
+    if (state.quality) filters[config.qualityFilterKey || `${prefix} quality`] = state.quality;
     return filters;
   }
 
@@ -212,9 +242,11 @@
       filters["Research context"] = "research";
     }
 
-    if (state.year) filters[`${prefix} year`] = state.year;
-    if (state.topic) filters[`${prefix} topic`] = state.topic;
-    if (state.quality && kind === "publications") filters[`${prefix} quality`] = state.quality;
+    if (state.year) filters[config.yearFilterKey || `${prefix} year`] = state.year;
+    if (state.topic) filters[config.topicFilterKey || `${prefix} topic`] = state.topic;
+    if (state.quality && kind === "publications") {
+      filters[config.qualityFilterKey || `${prefix} quality`] = state.quality;
+    }
     return filters;
   }
 
@@ -261,7 +293,7 @@
     const normalizedUrl = normalizeUrl(data?.url);
     const record = recordsByUrl.get(normalizedUrl) || null;
     const typeLabel = state.typeLabel || data?.meta?.thesesType || "";
-    const year = state.year || data?.meta?.writingsYear || data?.meta?.thesesYear || "";
+    const year = state.year || data?.meta?.writingsYear || data?.meta?.thesesYear || data?.meta?.PresentationYear || "";
     const authorLine = data?.meta?.thesesAuthorLine || "";
     const publicationMeta = record ? {
       authors: record.authors || "",

@@ -1,9 +1,19 @@
 const fs = require("fs");
 const path = require("path");
+const { pathToFileURL, fileURLToPath } = require("url");
 const { getPresentationResearchPresets } = require("../src/_data/presentationResearchTopics");
 
 const ROOT = process.cwd();
 const BASELINE_ROOT = process.env.F4_BASELINE_SITE || "";
+const PAGEFIND_DIR = path.join(ROOT, "_site", "pagefind");
+const RESEARCH_SCOPE_TYPES = ["publications", "theses", "writings", "presentations"];
+const PRESENTATION_RESEARCH_TOPIC_PRESETS = Object.freeze({
+  "tekoäly": "ai-literacy",
+  "opettajankoulutus": "teacher-education",
+  "koulutusteknologia": "long-term-learning",
+  "yhteisöllinen oppiminen": "long-term-learning",
+  "ohjelmoinnillinen ajattelu": "teacher-education"
+});
 
 function readTextFrom(root, relativePath) {
   return fs.readFileSync(path.join(root, relativePath), "utf8");
@@ -85,11 +95,7 @@ function metrics(html, root = ROOT) {
 
 function withDelta(current, baseline) {
   if (!baseline) return null;
-  return {
-    current,
-    baseline,
-    delta: current - baseline
-  };
+  return { current, baseline, delta: current - baseline };
 }
 
 function buildDelta(current, baseline) {
@@ -115,7 +121,196 @@ function getBaselineMetrics(relativePath) {
   return metrics(readTextFrom(BASELINE_ROOT, path.join("_site", relativePath)), BASELINE_ROOT);
 }
 
-function main() {
+function normalizeResultUrl(url = "") {
+  const value = String(url || "").trim();
+  if (!value) return "";
+  if (/^https?:\/\//i.test(value)) return value;
+  const ensuredLeadingSlash = value.startsWith("/") ? value : `/${value}`;
+  return ensuredLeadingSlash === "/" || ensuredLeadingSlash.endsWith("/") ? ensuredLeadingSlash : `${ensuredLeadingSlash}/`;
+}
+
+function normalizeSearchQuery(value = "") {
+  return String(value || "")
+    .replace(/[^\p{L}\p{N}\s]+/gu, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function presentationTopicPreset(topic = "") {
+  return PRESENTATION_RESEARCH_TOPIC_PRESETS[String(topic || "").trim()] || "";
+}
+
+function buildResearchFilters(kind = "", state = {}) {
+  const filters = {
+    FindExplore: kind,
+    "Research context": "research"
+  };
+
+  if (state.year) {
+    if (kind === "publications") filters["Publications year"] = state.year;
+    if (kind === "theses") filters["Theses year"] = state.year;
+    if (kind === "writings") filters["Research year"] = state.year;
+    if (kind === "presentations") filters.PresentationYear = state.year;
+  }
+
+  if (state.topic) {
+    if (kind === "publications") filters["Publications topic"] = state.topic;
+    if (kind === "theses") filters["Theses topic"] = state.topic;
+    if (kind === "writings") filters["Research topic"] = state.topic;
+    if (kind === "presentations") {
+      const preset = presentationTopicPreset(state.topic);
+      if (preset) filters.PresentationResearchPreset = preset;
+      else filters.PresentationTopic = state.topic;
+    }
+  }
+
+  if (state.quality && kind === "publications") {
+    filters["Publications quality"] = state.quality;
+  }
+
+  return filters;
+}
+
+async function createPagefindInstances() {
+  const originalFetch = global.fetch;
+  const originalDocument = global.document;
+  const originalLocation = global.location;
+
+  global.fetch = async (input, init) => {
+    const url = typeof input === "string" ? input : input?.url;
+    if (url && url.startsWith("file://")) {
+      const body = await fs.promises.readFile(fileURLToPath(url));
+      return new Response(body, { status: 200 });
+    }
+    if (typeof originalFetch === "function") return originalFetch(input, init);
+    throw new Error(`Unsupported fetch URL: ${url}`);
+  };
+
+  const basePath = `${pathToFileURL(PAGEFIND_DIR).href}/`.replace(/\/+$/, "/");
+  global.location = {
+    href: "https://example.com/tutkimus/",
+    origin: "https://example.com"
+  };
+
+  const restoreGlobals = () => {
+    global.fetch = originalFetch;
+    if (typeof originalDocument === "undefined") delete global.document;
+    else global.document = originalDocument;
+    if (typeof originalLocation === "undefined") delete global.location;
+    else global.location = originalLocation;
+  };
+
+  const setDocumentLanguage = (language) => {
+    global.document = {
+      currentScript: null,
+      querySelector(selector) {
+        if (selector !== "html") return null;
+        return {
+          getAttribute(name) {
+            return name === "lang" ? language : null;
+          }
+        };
+      }
+    };
+  };
+
+  const loadSearchModuleForLanguage = async (language) => {
+    setDocumentLanguage(language);
+    const cacheBust = `${language}-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    const moduleUrl = `${pathToFileURL(path.join(PAGEFIND_DIR, "pagefind.js")).href}?audit-lang=${cacheBust}`;
+    const pagefind = await import(moduleUrl);
+    await pagefind.options({ basePath, baseUrl: "/", noWorker: true });
+    await pagefind.init();
+    return pagefind;
+  };
+
+  const fi = await loadSearchModuleForLanguage("fi");
+  const en = await loadSearchModuleForLanguage("en");
+
+  return {
+    byLanguage: { fi, en },
+    async destroy() {
+      await Promise.all([fi.destroy(), en.destroy()]);
+      restoreGlobals();
+    }
+  };
+}
+
+async function resolveSearchRows(result, kind) {
+  const rows = [];
+  for (const entry of result.results) {
+    const data = await entry.data();
+    rows.push({
+      kind,
+      score: entry.score || 0,
+      url: normalizeResultUrl(data?.url || ""),
+      title: String(data?.meta?.title || data?.title || data?.url || ""),
+      meta: data?.meta || {}
+    });
+  }
+  return rows;
+}
+
+async function searchResearch(instances, query, state = {}) {
+  const kinds = state.type ? [state.type] : RESEARCH_SCOPE_TYPES;
+  const languages = ["fi", "en"];
+  const merged = [];
+
+  for (const kind of kinds) {
+    for (const language of languages) {
+      const result = await instances.byLanguage[language].search(query, {
+        filters: buildResearchFilters(kind, state)
+      });
+      merged.push(...await resolveSearchRows(result, kind));
+    }
+  }
+
+  merged.sort((left, right) => (right.score || 0) - (left.score || 0));
+
+  const deduped = [];
+  const seen = new Set();
+  for (const row of merged) {
+    if (!row.url || seen.has(row.url)) continue;
+    seen.add(row.url);
+    deduped.push(row);
+  }
+
+  return deduped;
+}
+
+async function searchTitleWithFallback(instances, title = "", state = {}) {
+  const rawTitle = String(title || "").trim();
+  if (!rawTitle) return [];
+
+  const exact = await searchResearch(instances, rawTitle, state);
+  const normalized = normalizeSearchQuery(rawTitle);
+  if (!normalized || normalized === rawTitle) return exact;
+
+  const normalizedRows = await searchResearch(instances, normalized, state);
+  if (exact.length === 0) return normalizedRows;
+
+  const merged = [...exact];
+  const seen = new Set(exact.map((row) => row.url));
+  for (const row of normalizedRows) {
+    if (!row.url || seen.has(row.url)) continue;
+    seen.add(row.url);
+    merged.push(row);
+  }
+  return merged;
+}
+
+function sampleRecord(item = {}) {
+  return {
+    title: item.title || "",
+    url: normalizeResultUrl(item.localPageUrl || item.pageUrl || item.url || ""),
+    year: item.year || "",
+    contexts: toArray(item.contexts),
+    topics: toArray(item.topics),
+    presets: getPresentationResearchPresets(toArray(item.topics))
+  };
+}
+
+async function main() {
   const researchHtml = readText("_site/tutkimus/index.html");
   const homeHtml = readText("_site/index.html");
   const publicationsPage = readJson("_site/data/publications-page.json");
@@ -151,6 +346,18 @@ function main() {
     (item) => !hasContext(item, "research")
   );
 
+  const eligiblePresentationMapped = eligiblePresentations.find(
+    (item) => getPresentationResearchPresets(toArray(item.topics)).length > 0
+  );
+  const eligiblePresentationUnmapped = eligiblePresentations.find(
+    (item) => getPresentationResearchPresets(toArray(item.topics)).length === 0
+  );
+  const safeMappedNonResearchPresentation = safeTopicMappedButNotResearch[0] || null;
+  const eligibleWritingSample = eligibleWritings.find((item) => item.contentType === "blogPost") || eligibleWritings[0] || null;
+  const excludedWritingSample = writingItems.find(
+    (item) => item.contentType === "blogPost" && !hasContext(item, "research")
+  ) || null;
+
   const researchChecks = {
     fileExists: true,
     ssrNarrativeRemains: researchHtml.includes("Tutkimuksen tarkasteluteemat")
@@ -160,8 +367,7 @@ function main() {
     curatedResearchRemains: researchHtml.includes("Tuore tutkimusnäyttö tästä linjasta"),
     externalProfilesRemain: researchHtml.includes("ORCID") && researchHtml.includes("Research.fi"),
     contextualMountExists: researchHtml.includes('data-find-explore-kind="researchContext"'),
-    intendedScopesOnly: researchHtml.includes('data-find-explore-kinds="publications,theses,writings"')
-      && !researchHtml.includes('data-find-explore-kinds="presentations')
+    intendedScopesOnly: researchHtml.includes('data-find-explore-kinds="publications,theses,writings,presentations"')
       && !researchHtml.includes('data-find-explore-kinds="media'),
     hasFindExploreRuntime: researchHtml.includes("/js/find-explore.js"),
     noNewMasterJsonDataset: !researchHtml.includes("/data/research-find-explore")
@@ -171,7 +377,8 @@ function main() {
     noEmbeddedPublicationRecords: !researchHtml.includes("researchPublicationFindExploreRecords")
       && !researchHtml.includes("data-find-explore-records-id"),
     contextualFilterUsesExistingResearchContext: researchHtml.includes('data-find-explore-kind="researchContext"')
-      && researchHtml.includes('data-find-explore-kinds="publications,theses,writings"'),
+      && researchHtml.includes('data-find-explore-kinds="publications,theses,writings,presentations"'),
+    typeSelectorIncludesPresentations: researchHtml.includes('<option value="presentations">Esitykset</option>'),
     topicPresetsExist: [
       "Tekoäly ja tekoälylukutaito",
       "Opettajankoulutus",
@@ -190,12 +397,136 @@ function main() {
       && !homeHtml.includes("data-find-explore-type")
   };
 
+  const pagefindAudit = {
+    allResearchPresentationDiscoverable: false,
+    noSafeMappedNonResearchPresentationLeakage: false,
+    genericEligibleUnmappedPresentationAppears: false,
+    topicPresetPresentationBehavior: false,
+    publicationStillDiscoverable: false,
+    thesisStillDiscoverable: false,
+    eligibleWritingStillDiscoverable: false,
+    excludedWritingRemainsExcluded: false,
+    preferredLandingCorrect: false,
+    duplicatePresentationResults: false
+  };
+
+  const pagefindEvidence = {};
+  const pagefind = await createPagefindInstances();
+  try {
+    const discoverabilityRows = [];
+    for (const item of eligiblePresentations) {
+      const rows = await searchTitleWithFallback(pagefind, item.title || "", { type: "presentations" });
+      const expectedUrl = normalizeResultUrl(item.localPageUrl || item.pageUrl || item.url || "");
+      discoverabilityRows.push({
+        title: item.title || "",
+        expectedUrl,
+        rows,
+        evidence: rows.slice(0, 5)
+      });
+    }
+
+    const discoveredPresentationUrls = discoverabilityRows
+      .map((audit) => audit.rows.find((row) => row.url === audit.expectedUrl)?.url || "")
+      .filter(Boolean);
+    const eligiblePresentationUrls = eligiblePresentations
+      .map((item) => normalizeResultUrl(item.localPageUrl || item.pageUrl || item.url || ""))
+      .filter(Boolean)
+      .sort();
+
+    pagefindAudit.allResearchPresentationDiscoverable =
+      discoveredPresentationUrls.length === eligiblePresentations.length
+      && discoveredPresentationUrls.slice().sort().every((url, index) => url === eligiblePresentationUrls[index]);
+    pagefindAudit.duplicatePresentationResults =
+      discoverabilityRows.every((audit) => audit.rows.filter((row) => row.url === audit.expectedUrl).length <= 1);
+
+    const publicationSearch = await searchResearch(
+      pagefind,
+      "Assessing Digital Competence of K1 12 Teachers in Kosovo",
+      { type: "publications" }
+    );
+    pagefindAudit.publicationStillDiscoverable =
+      publicationSearch[0]?.url === "/julkaisut/rf-a1-10-1016-j-caeo-2026-100396/";
+
+    const thesisSearch = await searchResearch(pagefind, "Riikonen", { type: "theses" });
+    pagefindAudit.thesisStillDiscoverable = thesisSearch[0]?.url === "/opinnaytteet/62699/";
+
+    const eligibleWritingQuery = normalizeSearchQuery(eligibleWritingSample?.title || "");
+    const eligibleWritingSearch = eligibleWritingQuery
+      ? await searchResearch(pagefind, eligibleWritingQuery, { type: "writings" })
+      : [];
+    pagefindAudit.eligibleWritingStillDiscoverable =
+      Boolean(eligibleWritingSample)
+      && eligibleWritingSearch.some((row) => row.url === normalizeResultUrl(eligibleWritingSample.url));
+
+    const excludedWritingQuery = normalizeSearchQuery(excludedWritingSample?.title || "");
+    const excludedWritingSearch = excludedWritingQuery
+      ? await searchResearch(pagefind, excludedWritingQuery, { type: "writings" })
+      : [];
+    pagefindAudit.excludedWritingRemainsExcluded =
+      Boolean(excludedWritingSample)
+      && !excludedWritingSearch.some((row) => row.url === normalizeResultUrl(excludedWritingSample.url));
+
+    const preferredLandingQuery = normalizeSearchQuery(eligiblePresentationMapped?.title || "");
+    const preferredLandingSearch = preferredLandingQuery
+      ? await searchTitleWithFallback(pagefind, eligiblePresentationMapped?.title || "", { type: "presentations" })
+      : [];
+    pagefindAudit.preferredLandingCorrect =
+      Boolean(eligiblePresentationMapped)
+      && preferredLandingSearch[0]?.url === normalizeResultUrl(eligiblePresentationMapped.localPageUrl || eligiblePresentationMapped.pageUrl || eligiblePresentationMapped.url || "");
+
+    const genericUnmappedQuery = normalizeSearchQuery(eligiblePresentationUnmapped?.title || "");
+    const genericUnmappedSearch = genericUnmappedQuery
+      ? await searchTitleWithFallback(pagefind, eligiblePresentationUnmapped?.title || "", {})
+      : [];
+    pagefindAudit.genericEligibleUnmappedPresentationAppears =
+      Boolean(eligiblePresentationUnmapped)
+      && genericUnmappedSearch.some((row) => row.url === normalizeResultUrl(eligiblePresentationUnmapped.localPageUrl || eligiblePresentationUnmapped.pageUrl || eligiblePresentationUnmapped.url || ""));
+
+    const safeMappedNonResearchQuery = normalizeSearchQuery(safeMappedNonResearchPresentation?.title || "");
+    const safeMappedNonResearchSearch = safeMappedNonResearchQuery
+      ? await searchTitleWithFallback(pagefind, safeMappedNonResearchPresentation?.title || "", { type: "presentations" })
+      : [];
+    pagefindAudit.noSafeMappedNonResearchPresentationLeakage =
+      Boolean(safeMappedNonResearchPresentation)
+      && !safeMappedNonResearchSearch.some((row) => row.url === normalizeResultUrl(safeMappedNonResearchPresentation.localPageUrl || safeMappedNonResearchPresentation.pageUrl || safeMappedNonResearchPresentation.url || ""));
+
+    const topicPresetSearch = await searchTitleWithFallback(
+      pagefind,
+      eligiblePresentationMapped?.title || "",
+      { type: "presentations", topic: "koulutusteknologia" }
+    );
+    const topicPresetUrls = topicPresetSearch.map((row) => row.url);
+    pagefindAudit.topicPresetPresentationBehavior =
+      topicPresetSearch.length > 0
+      && Boolean(eligiblePresentationMapped)
+      && topicPresetUrls.includes(normalizeResultUrl(eligiblePresentationMapped.localPageUrl || eligiblePresentationMapped.pageUrl || eligiblePresentationMapped.url || ""))
+      && Boolean(eligiblePresentationUnmapped)
+      && !topicPresetUrls.includes(normalizeResultUrl(eligiblePresentationUnmapped.localPageUrl || eligiblePresentationUnmapped.pageUrl || eligiblePresentationUnmapped.url || ""))
+      && Boolean(safeMappedNonResearchPresentation)
+      && !topicPresetUrls.includes(normalizeResultUrl(safeMappedNonResearchPresentation.localPageUrl || safeMappedNonResearchPresentation.pageUrl || safeMappedNonResearchPresentation.url || ""));
+
+    pagefindEvidence.allResearchPresentations = {
+      count: discoveredPresentationUrls.length,
+      missing: discoverabilityRows
+        .filter((audit) => !audit.rows.some((row) => row.url === audit.expectedUrl))
+        .map((audit) => ({ title: audit.title, expectedUrl: audit.expectedUrl, rows: audit.evidence })),
+      firstFiveUrls: discoveredPresentationUrls.slice(0, 5)
+    };
+    pagefindEvidence.preferredLandingSearch = preferredLandingSearch.slice(0, 5);
+    pagefindEvidence.genericUnmappedSearch = genericUnmappedSearch.slice(0, 5);
+    pagefindEvidence.safeMappedNonResearchSearch = safeMappedNonResearchSearch.slice(0, 5);
+    pagefindEvidence.topicPresetSearch = topicPresetSearch.slice(0, 10);
+  } finally {
+    await pagefind.destroy();
+  }
+
   const eligibilityChecks = {
     membershipRuleUsesExistingContextOnly: true,
     publicationsEligibleCount: eligiblePublications.length === 53,
     thesesEligibleCount: eligibleTheses.length === 169,
     writingsEligibleCount: eligibleWritings.length === 62,
-    totalEligibleCount: eligiblePublications.length + eligibleTheses.length + eligibleWritings.length === 284,
+    presentationsEligibleCount: eligiblePresentations.length === 33,
+    totalEligibleCount: eligiblePublications.length + eligibleTheses.length + eligibleWritings.length + eligiblePresentations.length === 317,
     writingsEligibleByType: JSON.stringify(writingsEligibleByType) === JSON.stringify({
       blogPost: 1,
       opinion: 3,
@@ -208,9 +539,8 @@ function main() {
     teachingSemanticsRemainVisible: eligibleWritings.filter((item) => hasContext(item, "teaching")).length === 43,
     societalInteractionOverlapRemainsVisible: eligibleWritings.filter((item) => hasContext(item, "politics")).length === 8,
     businessOverlapRemainsVisible: eligibleWritings.filter((item) => hasContext(item, "business")).length === 1,
-    presentationsContextProjectionRemainsEvidenceOnly: presentationItems.length === 218 && eligiblePresentations.length === 33,
-    presentationsRemainExcludedFromResearchMount: researchChecks.intendedScopesOnly,
-    presentationsSafeTopicMappingRemainsEvidenceOnly: presentationsSafeResearchTopicMapping.length === 168
+    presentationScopeUsesAuthoritativeContextOnly: safeTopicMappedButNotResearch.length === 136,
+    presentationPagefindDiscoverability: Object.values(pagefindAudit).every(Boolean)
   };
 
   const report = {
@@ -219,8 +549,8 @@ function main() {
       && Object.values(homeChecks).every(Boolean)
       && Object.values(eligibilityChecks).every(Boolean),
     membershipRule: "Existing Research membership only: include a record when its existing contexts array contains \"research\".",
-    allowedScopes: ["publications", "theses", "writings"],
-    excludedScopes: ["presentations", "media", "politics", "projects"],
+    allowedScopes: ["publications", "theses", "writings", "presentations"],
+    excludedScopes: ["media", "politics", "projects"],
     findExploreJsBytes,
     research: {
       metrics: researchMetrics,
@@ -240,7 +570,8 @@ function main() {
         publicationsEligible: eligiblePublications.length,
         thesesEligible: eligibleTheses.length,
         writingsEligible: eligibleWritings.length,
-        totalResearchPopulation: eligiblePublications.length + eligibleTheses.length + eligibleWritings.length
+        presentationsEligible: eligiblePresentations.length,
+        totalResearchPopulation: eligiblePublications.length + eligibleTheses.length + eligibleWritings.length + eligiblePresentations.length
       },
       writings: {
         totalByContentType: writingsTotalByType,
@@ -256,12 +587,23 @@ function main() {
         eligibleWithPolitics: eligibleWritings.filter((item) => hasContext(item, "politics")).length,
         eligibleWithBusiness: eligibleWritings.filter((item) => hasContext(item, "business")).length
       },
-      presentationsEvidenceOnly: {
+      presentations: {
         canonicalTotal: presentationItems.length,
-        researchEligibleUnderExistingContextRule: eligiblePresentations.length,
+        researchEligible: eligiblePresentations.length,
+        researchEligibleLocalFirst: eligiblePresentations.filter((item) => item.landingType === "localDetail").length,
+        researchEligibleExternalFirst: eligiblePresentations.filter((item) => item.landingType === "externalSource").length,
+        researchEligibleWithSafeResearchMapping: eligiblePresentations.filter((item) => getPresentationResearchPresets(toArray(item.topics)).length > 0).length,
+        researchEligibleWithoutSafeResearchMapping: eligiblePresentations.filter((item) => getPresentationResearchPresets(toArray(item.topics)).length === 0).length,
         safeResearchTopicMappingCount: presentationsSafeResearchTopicMapping.length,
-        safeTopicMappedButNotResearchCount: safeTopicMappedButNotResearch.length
+        safeTopicMappedButNotResearchCount: safeTopicMappedButNotResearch.length,
+        sampleEligibleMapped: sampleRecord(eligiblePresentationMapped || {}),
+        sampleEligibleUnmapped: sampleRecord(eligiblePresentationUnmapped || {}),
+        sampleSafeMappedButNotResearch: sampleRecord(safeMappedNonResearchPresentation || {})
       }
+    },
+    pagefindAudit: {
+      checks: pagefindAudit,
+      evidence: pagefindEvidence
     }
   };
 
@@ -269,4 +611,7 @@ function main() {
   if (!report.ok) process.exitCode = 1;
 }
 
-main();
+main().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});

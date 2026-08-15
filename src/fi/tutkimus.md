@@ -156,18 +156,18 @@ schemaMentions:
 
 {% set findExploreId = "researchEvidenceExplore" %}
 {% set findExploreKind = "researchContext" %}
-{% set findExploreKinds = "publications,theses,writings" %}
+{% set findExploreKinds = "publications,theses,writings,presentations" %}
 {% set findExploreScope = "" %}
 {% set findExploreLang = "fi" %}
 {% set findExploreSearchLanguage = "fi,en" %}
-{% set findExploreSeedQuery = "__find_explore_publications__ __find_explore_theses__" %}
+{% set findExploreSeedQuery = "__find_explore_publications__ __find_explore_theses__ __find_explore_presentations__" %}
 {% set findExploreEyebrow = "Find & Explore" %}
 {% set findExploreTitle = "Tutki näyttöä aiheen mukaan" %}
-{% set findExploreDescription = "Kontekstihaku kokoaa samaan näkymään tutkimukseen liittyviä julkaisuja, opinnäytteitä ja kirjoituksia. Esitykset ja media jäävät vielä pois, kunnes niiden Find & Explore -valmius on auditoitu erikseen." %}
+{% set findExploreDescription = "Kontekstihaku kokoaa samaan näkymään tutkimukseen liittyviä julkaisuja, opinnäytteitä, kirjoituksia ja tutkimuskontekstin esityksiä. Media jää edelleen pois tästä näkymästä." %}
 {% set findExploreSearchLabel = "Hae tutkimusaihetta tai käsitettä" %}
 {% set findExplorePlaceholder = "Kokeile esimerkiksi tekoälylukutaito, TPACK, collaborative learning, ohjelmoinnillinen ajattelu..." %}
 {% set findExploreTypeLabel = "Aineistotyyppi" %}
-{% set findExploreAllTypesLabel = "Julkaisut, opinnäytteet ja kirjoitukset" %}
+{% set findExploreAllTypesLabel = "Julkaisut, opinnäytteet, kirjoitukset ja esitykset" %}
 {% set findExploreYearLabel = "Vuosi" %}
 {% set findExploreAllYearsLabel = "Kaikki vuodet" %}
 {% set findExploreTopicLabel = "Tutkimusteema" %}
@@ -179,7 +179,8 @@ schemaMentions:
 {% set findExploreTypeOptions = [
   { value: "publications", label: "Julkaisut" },
   { value: "theses", label: "Opinnäytteet" },
-  { value: "writings", label: "Kirjoitukset" }
+  { value: "writings", label: "Kirjoitukset" },
+  { value: "presentations", label: "Esitykset" }
 ] %}
 {% set findExploreYears = ["2026", "2025", "2024", "2023", "2022", "2021", "2020"] %}
 {% set findExploreTopicOptions = [
