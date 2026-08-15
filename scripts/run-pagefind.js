@@ -7,7 +7,8 @@ const {
   buildHtmlRouteMap,
   buildPresentationExistingHtmlAudit,
   injectPresentationPagefindMetadata,
-  buildPresentationCustomRecord
+  buildPresentationCustomRecord,
+  extractTextFromHtml
 } = require("./_lib/presentationPagefind");
 
 const nonContentDirs = [
@@ -69,7 +70,26 @@ async function addHtmlFiles(index, htmlRouteMap, presentationScopeByUrl) {
   return { indexedCount, errors };
 }
 
-async function addPresentationCustomRecords(index, records = []) {
+async function resolveCustomRecordContent(record, htmlRouteMap) {
+  const candidateUrls = [
+    record.indexCandidateDocument,
+    record.localPageUrl,
+    ...(record.localHtmlDocuments || []).map((document) => document.url)
+  ].filter(Boolean);
+
+  for (const url of candidateUrls) {
+    const filePath = htmlRouteMap.get(url);
+    if (!filePath) continue;
+
+    const html = await fsp.readFile(filePath, "utf8");
+    const text = extractTextFromHtml(html);
+    if (text) return text;
+  }
+
+  return "";
+}
+
+async function addPresentationCustomRecords(index, records = [], htmlRouteMap = new Map()) {
   const errors = [];
   let indexedCount = 0;
 
@@ -79,7 +99,8 @@ async function addPresentationCustomRecords(index, records = []) {
       continue;
     }
 
-    const result = await index.addCustomRecord(buildPresentationCustomRecord(record));
+    const content = await resolveCustomRecordContent(record, htmlRouteMap);
+    const result = await index.addCustomRecord(buildPresentationCustomRecord(record, content));
     if (result.errors.length) {
       errors.push(
         ...result.errors.map((message) => `[${record.canonicalPresentationId}] ${message}`)
@@ -98,10 +119,7 @@ async function main() {
   const presentationAudit = await buildPresentationExistingHtmlAudit(SITE_ROOT);
   const htmlRouteMap = await buildHtmlRouteMap(SITE_ROOT);
   const localScopeRecords = uniqueIndexCandidates(presentationAudit.records);
-  const customScopeRecords = [
-    ...presentationAudit.records.filter((record) => !record.indexCandidateDocument),
-    ...presentationAudit.records.filter((record) => record.indexCandidateDocument && record.pagefindLanguage === "en")
-  ];
+  const customScopeRecords = presentationAudit.records.filter((record) => !record.indexCandidateDocument);
 
   const service = await pagefind.createIndex();
   if (service.errors.length) {
@@ -110,7 +128,7 @@ async function main() {
 
   try {
     const htmlResult = await addHtmlFiles(service.index, htmlRouteMap, localScopeRecords);
-    const customResult = await addPresentationCustomRecords(service.index, customScopeRecords);
+    const customResult = await addPresentationCustomRecords(service.index, customScopeRecords, htmlRouteMap);
     const writeResult = await service.index.writeFiles({
       outputPath: path.join(SITE_ROOT, "pagefind")
     });

@@ -7,6 +7,7 @@ const {
   getPresentationResearchPresets
 } = require("../../src/_data/presentationResearchTopics");
 
+const PRESENTATION_FIND_EXPLORE_SEED = "__find_explore_presentations__";
 const SITE_ROOT = path.join(process.cwd(), "_site");
 const PRESENTATIONS_PAGE_JSON = path.join(SITE_ROOT, "data", "presentations-page.json");
 const PRESENTATIONS_JSON = path.join(SITE_ROOT, "data", "presentations.json");
@@ -324,7 +325,9 @@ function buildPresentationExistingHtmlRecord(item = {}, htmlRouteMap = new Map()
     sourceType: item.sourceType || "",
     mediaType: item.mediaType || "",
     presentationYear: String(item.year || "").trim(),
+    presentationDescription: String(item.description || "").trim(),
     presentationTopics: uniqueStrings(item.topics || []),
+    presentationContexts: uniqueStrings(item.contexts || []),
     presentationEvent: String(item.event || "").trim(),
     presentationType: String(item.presentationType || "").trim(),
     presentationRole: String(item.role || "").trim(),
@@ -417,6 +420,7 @@ async function buildPresentationExistingHtmlAudit(siteRoot = SITE_ROOT) {
 
 function buildPresentationPagefindFilters(record = {}) {
   const pageLanguageLabel = record.pagefindLanguage === "en" ? "English" : "Suomi";
+  const presentationContexts = toArray(record.presentationContexts).map((value) => String(value)).filter(Boolean);
   const filters = {
     FindExplore: ["presentations"],
     Kieli: [pageLanguageLabel],
@@ -425,6 +429,8 @@ function buildPresentationPagefindFilters(record = {}) {
     PresentationSourceType: hasValue(record.sourceType) ? [String(record.sourceType)] : [],
     PresentationYear: hasValue(record.presentationYear) ? [String(record.presentationYear)] : [],
     PresentationTopic: toArray(record.presentationTopics).map((value) => String(value)).filter(Boolean),
+    PresentationContext: presentationContexts,
+    "Research context": presentationContexts.includes("research") ? ["research"] : [],
     PresentationResearchPreset: toArray(record.presentationResearchPresets).map((value) => String(value)).filter(Boolean),
     PresentationEvent: hasValue(record.presentationEvent) ? [String(record.presentationEvent)] : []
   };
@@ -438,6 +444,8 @@ function buildPresentationPagefindMeta(record = {}) {
   return {
     title: record.canonicalTitle || "",
     PresentationId: record.canonicalPresentationId || "",
+    PresentationContext: toArray(record.presentationContexts).join("|"),
+    ResearchContext: toArray(record.presentationContexts).includes("research") ? "research" : "",
     PresentationYear: record.presentationYear || "",
     PresentationEvent: record.presentationEvent || "",
     PresentationType: record.presentationType || "",
@@ -476,17 +484,28 @@ function buildPresentationPagefindInjection(record = {}) {
     .map(([key, value]) => `<span hidden data-pagefind-meta="${escapeAttribute(key)}">${escapeHtml(value)}</span>`)
     .join("");
 
+  const weightedTitleMarkup = [
+    record.canonicalTitle,
+    buildPlainIndexText(record.canonicalTitle)
+  ]
+    .filter(Boolean)
+    .map((value) => `<span data-pagefind-weight="10">${escapeHtml(value)}</span>`)
+    .join("");
+
   const scopeText = [
+    PRESENTATION_FIND_EXPLORE_SEED,
     record.canonicalTitle,
     buildPlainIndexText(record.canonicalTitle),
+    record.presentationDescription,
     record.presentationEvent,
     record.presentationYear,
+    ...toArray(record.presentationContexts),
     ...toArray(record.presentationResearchPresetLabels),
     ...toArray(record.presentationResearchPresets),
     ...toArray(record.presentationTopics)
   ].filter(Boolean).join(" ");
 
-  return `<div hidden data-presentation-pagefind-scope="presentations">${filterMarkup}${metaMarkup}<span>${escapeHtml(scopeText)}</span></div>`;
+  return `<div hidden data-presentation-pagefind-scope="presentations">${filterMarkup}${metaMarkup}${weightedTitleMarkup}<span>${escapeHtml(scopeText)}</span></div>`;
 }
 
 function injectPresentationPagefindMetadata(html = "", record = {}) {
@@ -514,13 +533,17 @@ function extractTextFromHtml(html = "") {
 
 function buildPresentationCustomRecord(record = {}, content = "") {
   const pieces = [
+    PRESENTATION_FIND_EXPLORE_SEED,
     record.canonicalTitle,
     buildPlainIndexText(record.canonicalTitle),
+    record.canonicalTitle,
+    record.presentationDescription,
     content,
     record.presentationEvent,
     record.presentationType,
     record.presentationRole,
     record.presentationYear,
+    ...toArray(record.presentationContexts),
     ...toArray(record.presentationResearchPresetLabels),
     ...toArray(record.presentationResearchPresets),
     ...toArray(record.presentationTopics)

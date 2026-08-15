@@ -99,6 +99,12 @@ function resolvePagefindWritings(data) {
     .forEach((role) => filters.push({ name: "Writings role", value: role }));
   normalizeFilterValues(item.categories, 6)
     .forEach((category) => filters.push({ name: "Writings topic", value: category }));
+  normalizeFilterValues(item.contexts, 8)
+    .forEach((context) => {
+      if (context === "research") {
+        filters.push({ name: "Research context", value: "research" });
+      }
+    });
 
   return {
     filters,

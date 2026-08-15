@@ -77,11 +77,14 @@ describe("presentationResearchTopics", () => {
       mediaType: "slides",
       sourceType: "canva",
       presentationYear: "2026",
+      presentationContexts: ["education", "research", "teaching"],
       presentationTopics: ["Generation AI", "mobiilioppiminen"],
       presentationResearchPresets: ["ai-literacy", "long-term-learning"],
       presentationEvent: "ITK"
     });
 
+    assert.deepEqual(filters.PresentationContext, ["education", "research", "teaching"]);
+    assert.deepEqual(filters["Research context"], ["research"]);
     assert.deepEqual(filters.PresentationResearchPreset, ["ai-literacy", "long-term-learning"]);
   });
 

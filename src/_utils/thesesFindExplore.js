@@ -34,6 +34,10 @@ function sortTopics(entries) {
   });
 }
 
+function includesContext(item = {}, context) {
+  return toArray(item.contexts).includes(context);
+}
+
 function thesisRoleLabel(role, lang = "fi") {
   if (role === "reviewed") return lang === "en" ? "Reviewed thesis" : "Tarkastettu opinnäyte";
   return lang === "en" ? "Supervised thesis" : "Ohjattu opinnäyte";
@@ -86,6 +90,9 @@ function buildThesisFindExploreDocument(thesisDetail) {
 
   if (thesisDetail.year) {
     filters.push({ name: "Theses year", value: String(thesisDetail.year) });
+  }
+  if (includesContext(thesisDetail, "research")) {
+    filters.push({ name: "Research context", value: "research" });
   }
   filters.push({ name: "Theses language", value: thesisDetail.lang || "fi" });
 

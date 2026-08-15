@@ -22,7 +22,8 @@ const PARITY_FIELDS = [
   "sourceLanguage",
   "slideCount",
   "viewCount",
-  "courseContexts"
+  "courseContexts",
+  "contexts"
 ];
 
 function stableValue(value) {
