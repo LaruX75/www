@@ -157,7 +157,7 @@ schemaType: CollectionPage
   </div>
 </section>
 
-<section class="media-browser-section py-5 bg-body-tertiary border-top border-bottom" id="media-arkisto" aria-labelledby="media-arkisto-heading">
+<section class="media-browser-section py-5 bg-body-tertiary border-top border-bottom" id="media-arkisto" aria-labelledby="media-arkisto-heading" data-pagefind-ignore>
   <div class="site-shell">
     <div class="media-section-head">
       <p class="media-eyebrow mb-1">Selaa mediaosumia</p>
@@ -313,7 +313,7 @@ schemaType: CollectionPage
         console.error('mediassa: window.ContentEngine puuttuu (lataa content-engine.js)');
         return [];
       }
-      const { items } = await window.ContentEngine.query({ source: 'media' });
+      const { items } = await window.ContentEngine.query('FindExplore:media');
       return items.map(normalizeItem);
     }
 
