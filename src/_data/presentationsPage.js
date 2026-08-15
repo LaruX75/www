@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const { createCanvaPresentationLookup, readLocalPresentationSources } = require("./presentationSources");
 const { getCanvaDesignId } = require("./canvaUrl");
+const { CONTEXT_ORDER, resolveContexts } = require("./contentContext");
 const slideshareContent = require("../../slideshare-content.json");
 
 const ROOT = path.join(__dirname, "..", "..");
@@ -75,6 +76,7 @@ const PUBLIC_PRESENTATION_FIELDS = Object.freeze([
   "asiantuntijaprofiili",
   "sivuyhteys",
   "courseContexts",
+  "contexts",
   "representations",
   "curationStatus"
 ]);
@@ -495,6 +497,70 @@ function uniqueStrings(values = []) {
       .map((value) => String(value || "").trim())
       .filter(Boolean)
   )];
+}
+
+function normalizePresentationPageUrl(url = "") {
+  const value = String(url || "").trim();
+  if (!value || /^https?:\/\//i.test(value)) return "";
+  const ensuredLeadingSlash = value.startsWith("/") ? value : `/${value}`;
+  if (ensuredLeadingSlash === "/") return "/";
+  return ensuredLeadingSlash.endsWith("/") ? ensuredLeadingSlash : `${ensuredLeadingSlash}/`;
+}
+
+function normalizeContexts(values = []) {
+  const wanted = new Set(uniqueStrings(values));
+  return CONTEXT_ORDER.filter((context) => wanted.has(context));
+}
+
+function inputPathForPresentationDetail(detail = {}) {
+  const pageUrl = normalizePresentationPageUrl(detail.pageUrl || "");
+  const slug = pageUrl.split("/").filter(Boolean).pop();
+  return slug ? path.join(ROOT, "src", "presentations", `${slug}.md`) : "";
+}
+
+function enrichLocalPresentationDetailContexts(details = []) {
+  return toArray(details).map((detail) => ({
+    ...detail,
+    contexts: normalizeContexts(resolveContexts(detail, inputPathForPresentationDetail(detail)))
+  }));
+}
+
+function matchedLocalPresentationUrls(item = {}) {
+  const urls = new Set();
+  const add = (value) => {
+    const normalized = normalizePresentationPageUrl(value);
+    if (normalized) urls.add(normalized);
+  };
+
+  add(item.localPageUrl || item.pageUrl || "");
+
+  toArray(item.representations).forEach((representation) => {
+    add(representation.localPageUrl || "");
+    add(representation.url || "");
+  });
+
+  return [...urls];
+}
+
+function projectLocalDetailContextsToCanonicalItems(items = [], localDetails = []) {
+  const localDetailsByPageUrl = new Map(
+    toArray(localDetails)
+      .filter((detail) => detail.pageUrl)
+      .map((detail) => [normalizePresentationPageUrl(detail.pageUrl), detail])
+  );
+
+  return toArray(items).map((item) => {
+    const contexts = normalizeContexts([
+      ...toArray(item.contexts),
+      ...matchedLocalPresentationUrls(item).flatMap((pageUrl) => {
+        const detail = localDetailsByPageUrl.get(pageUrl);
+        return Array.isArray(detail?.contexts) ? detail.contexts : [];
+      })
+    ]);
+
+    if (!contexts.length) return item;
+    return { ...item, contexts };
+  });
 }
 
 function deriveYear(value = "") {
@@ -982,9 +1048,11 @@ function buildCanonicalPresentationItems(sourceData = {}) {
     ...createCanonicalSlideshareItems(sourceData.slideshareItems)
   ]);
 
-  return sourceData.applyAcceptedCuration
+  const curatedItems = sourceData.applyAcceptedCuration
     ? applyAcceptedPresentationCuration(items, sourceData)
     : items;
+
+  return projectLocalDetailContextsToCanonicalItems(curatedItems, sourceData.presentations);
 }
 
 function buildCanonicalPresentationPageRecords(sourceData = {}) {
@@ -1001,6 +1069,8 @@ function buildCanonicalPresentationPageRecords(sourceData = {}) {
         ? canonicalItem.courseContexts
         : [];
       const localCourseContexts = Array.isArray(item?.courseContexts) ? item.courseContexts : [];
+      const canonicalContexts = Array.isArray(canonicalItem?.contexts) ? canonicalItem.contexts : [];
+      const localContexts = Array.isArray(item?.contexts) ? item.contexts : [];
 
       return {
         pageUrl: item?.pageUrl || "",
@@ -1028,7 +1098,8 @@ function buildCanonicalPresentationPageRecords(sourceData = {}) {
         viewCount: Number.isFinite(item?.viewCount)
           ? item.viewCount
           : undefined,
-        courseContexts: localCourseContexts.length ? localCourseContexts : canonicalCourseContexts
+        courseContexts: localCourseContexts.length ? localCourseContexts : canonicalCourseContexts,
+        contexts: localContexts.length ? localContexts : canonicalContexts
       };
     })
     .filter((item) => item.pageUrl);
@@ -1250,7 +1321,7 @@ function readFallbackCanvaRows() {
 }
 
 function buildPresentationsPageSourceData(data = {}) {
-  const presentations = readLocalPresentationSources();
+  const presentations = enrichLocalPresentationDetailContexts(readLocalPresentationSources());
   const canvaRows = mergeCanvaRows(data.canva?.tableRows, readFallbackCanvaRows());
   const canvaLookup = buildCanvaMaterialLookup({ canvaRows, presentations });
 

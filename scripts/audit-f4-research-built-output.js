@@ -147,6 +147,9 @@ function main() {
   const presentationsSafeResearchTopicMapping = presentationItems.filter(
     (item) => getPresentationResearchPresets(toArray(item.topics)).length > 0
   );
+  const safeTopicMappedButNotResearch = presentationsSafeResearchTopicMapping.filter(
+    (item) => !hasContext(item, "research")
+  );
 
   const researchChecks = {
     fileExists: true,
@@ -205,14 +208,16 @@ function main() {
     teachingSemanticsRemainVisible: eligibleWritings.filter((item) => hasContext(item, "teaching")).length === 43,
     societalInteractionOverlapRemainsVisible: eligibleWritings.filter((item) => hasContext(item, "politics")).length === 8,
     businessOverlapRemainsVisible: eligibleWritings.filter((item) => hasContext(item, "business")).length === 1,
-    presentationsStayOutOfResearchMembership: eligiblePresentations.length === 0 && presentationItems.length === 218,
+    presentationsContextProjectionRemainsEvidenceOnly: presentationItems.length === 218 && eligiblePresentations.length === 33,
+    presentationsRemainExcludedFromResearchMount: researchChecks.intendedScopesOnly,
     presentationsSafeTopicMappingRemainsEvidenceOnly: presentationsSafeResearchTopicMapping.length === 168
   };
 
   const report = {
     generatedAt: new Date().toISOString(),
     ok: Object.values(researchChecks).every(Boolean)
-      && Object.values(homeChecks).every(Boolean),
+      && Object.values(homeChecks).every(Boolean)
+      && Object.values(eligibilityChecks).every(Boolean),
     membershipRule: "Existing Research membership only: include a record when its existing contexts array contains \"research\".",
     allowedScopes: ["publications", "theses", "writings"],
     excludedScopes: ["presentations", "media", "politics", "projects"],
@@ -254,7 +259,8 @@ function main() {
       presentationsEvidenceOnly: {
         canonicalTotal: presentationItems.length,
         researchEligibleUnderExistingContextRule: eligiblePresentations.length,
-        safeResearchTopicMappingCount: presentationsSafeResearchTopicMapping.length
+        safeResearchTopicMappingCount: presentationsSafeResearchTopicMapping.length,
+        safeTopicMappedButNotResearchCount: safeTopicMappedButNotResearch.length
       }
     }
   };

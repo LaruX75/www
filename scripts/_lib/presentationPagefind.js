@@ -325,6 +325,7 @@ function buildPresentationExistingHtmlRecord(item = {}, htmlRouteMap = new Map()
     mediaType: item.mediaType || "",
     presentationYear: String(item.year || "").trim(),
     presentationTopics: uniqueStrings(item.topics || []),
+    presentationContexts: uniqueStrings(item.contexts || []),
     presentationEvent: String(item.event || "").trim(),
     presentationType: String(item.presentationType || "").trim(),
     presentationRole: String(item.role || "").trim(),
@@ -425,6 +426,7 @@ function buildPresentationPagefindFilters(record = {}) {
     PresentationSourceType: hasValue(record.sourceType) ? [String(record.sourceType)] : [],
     PresentationYear: hasValue(record.presentationYear) ? [String(record.presentationYear)] : [],
     PresentationTopic: toArray(record.presentationTopics).map((value) => String(value)).filter(Boolean),
+    PresentationContext: toArray(record.presentationContexts).map((value) => String(value)).filter(Boolean),
     PresentationResearchPreset: toArray(record.presentationResearchPresets).map((value) => String(value)).filter(Boolean),
     PresentationEvent: hasValue(record.presentationEvent) ? [String(record.presentationEvent)] : []
   };
@@ -438,6 +440,7 @@ function buildPresentationPagefindMeta(record = {}) {
   return {
     title: record.canonicalTitle || "",
     PresentationId: record.canonicalPresentationId || "",
+    PresentationContext: toArray(record.presentationContexts).join("|"),
     PresentationYear: record.presentationYear || "",
     PresentationEvent: record.presentationEvent || "",
     PresentationType: record.presentationType || "",
@@ -481,6 +484,7 @@ function buildPresentationPagefindInjection(record = {}) {
     buildPlainIndexText(record.canonicalTitle),
     record.presentationEvent,
     record.presentationYear,
+    ...toArray(record.presentationContexts),
     ...toArray(record.presentationResearchPresetLabels),
     ...toArray(record.presentationResearchPresets),
     ...toArray(record.presentationTopics)
@@ -521,6 +525,7 @@ function buildPresentationCustomRecord(record = {}, content = "") {
     record.presentationType,
     record.presentationRole,
     record.presentationYear,
+    ...toArray(record.presentationContexts),
     ...toArray(record.presentationResearchPresetLabels),
     ...toArray(record.presentationResearchPresets),
     ...toArray(record.presentationTopics)

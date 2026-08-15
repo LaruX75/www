@@ -2,6 +2,7 @@ const { test, describe } = require("node:test");
 const assert = require("node:assert/strict");
 
 const {
+  buildCanonicalPresentationItems,
   buildCanonicalPresentationPageRecords
 } = require("../../src/_data/presentationsPage");
 
@@ -15,6 +16,7 @@ describe("buildCanonicalPresentationPageRecords", () => {
           description: "Local description",
           categories: ["Paikallinen"],
           keywords: ["local-keyword"],
+          contexts: ["education", "research", "teaching"],
           source: "slideshare",
           url: "https://legacy.example/foo",
           sourceUrl: "https://slides.example/foo",
@@ -63,7 +65,8 @@ describe("buildCanonicalPresentationPageRecords", () => {
       sourceLanguage: "fi",
       slideCount: 12,
       viewCount: 321,
-      courseContexts: [{ courseId: "LOCAL-1" }]
+      courseContexts: [{ courseId: "LOCAL-1" }],
+      contexts: ["education", "research", "teaching"]
     });
   });
 
@@ -108,7 +111,53 @@ describe("buildCanonicalPresentationPageRecords", () => {
       sourceLanguage: "fi",
       slideCount: 15,
       viewCount: 10,
-      courseContexts: [{ courseId: "BAR-1" }]
+      courseContexts: [{ courseId: "BAR-1" }],
+      contexts: []
     });
+  });
+});
+
+describe("buildCanonicalPresentationItems", () => {
+  test("projects matched local-detail contexts onto canonical items without recomputing unmatched canonicals", () => {
+    const items = buildCanonicalPresentationItems({
+      presentations: [
+        {
+          pageUrl: "/presentations/foo/",
+          title: "Local Foo",
+          contexts: ["education", "research", "teaching"]
+        },
+        {
+          pageUrl: "/presentations/alt/",
+          title: "Alternate local detail",
+          contexts: ["business", "teaching"]
+        }
+      ],
+      customMaterials: [
+        {
+          title: "Canonical with direct match",
+          url: "https://example.com/foo",
+          pageUrl: "/presentations/foo/",
+          date: "2025-01-01"
+        },
+        {
+          title: "Canonical with alternate representation match only",
+          url: "https://example.com/alt-canonical",
+          date: "2025-01-02"
+        },
+        {
+          title: "Unmatched external canonical",
+          url: "https://example.com/unmatched",
+          description: "research keyword in canonical copy should not be reused here",
+          date: "2025-01-03"
+        }
+      ],
+      applyAcceptedCuration: false
+    });
+
+    const directMatch = items.find((item) => item.pageUrl === "/presentations/foo/");
+    const unmatched = items.find((item) => item.title === "Unmatched external canonical");
+
+    assert.deepEqual(directMatch?.contexts, ["education", "research", "teaching"]);
+    assert.equal(unmatched?.contexts, undefined);
   });
 });
