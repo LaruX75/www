@@ -8,6 +8,9 @@ schemaType: CollectionPage
 pageStyles:
   - /css/presentations-page.css
 pageScripts:
+  - /js/pe-list-render.js
+  - /js/content-presets.js
+  - /js/content-engine.js
   - /js/presentations-page.js
 schemaAbout:
   - "@type": "Thing"
@@ -32,6 +35,7 @@ schemaMentions:
 ---
 
 {% set pageModel = presentationsPage %}
+{% set canonicalItems = (pageModel and pageModel.items) or [] %}
 {% set ssDataItems = pageModel.ssDataItems %}
 {% set canvaPageUrls = pageModel.canvaPageUrls %}
 {% set curatedVideoItems = pageModel.curatedVideoItems %}
@@ -54,6 +58,8 @@ schemaMentions:
 {% set topicProfileLead = "Esitykset liittyvät tutkimukseen, lausuntoihin, mediaan ja kirjoituksiin, joissa samoja aiheita käsitellään toisesta näkökulmasta." %}
 {% include "topic-profile-links.njk" %}
 
+{% set presentationArchiveItems = canonicalItems %}
+{% set presentationArchiveLocale = "fi" %}
 {% include "presentations/archive.njk" %}
 {% include "presentations/background-and-sources.njk" %}
 

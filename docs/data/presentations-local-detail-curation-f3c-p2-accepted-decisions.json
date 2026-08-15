@@ -1,0 +1,128 @@
+{
+  "P2-01": {
+    "detailUrl": "/presentations/generation-ai-yleisesitys-sovellukset-2026/",
+    "humanDecision": "IS_DISTINCT_LOCAL_PRESENTATION",
+    "humanCanonicalId": "",
+    "humanNotes": "Accepted Codex proposal 2026-08-14: distinct local presentation; candidate only shares broad Generation AI themes."
+  },
+  "P2-02": {
+    "detailUrl": "/presentations/kohti-kriittist-teko-lylukutaitoa-2026-finnoschool/",
+    "humanDecision": "ALTERNATE_REPRESENTATION",
+    "humanCanonicalId": "Qj3UMnjU3RwRv7P",
+    "humanNotes": "Accepted Codex proposal 2026-08-14: same date/context, but Canva ID differs; treat as related representation, not identity match."
+  },
+  "P2-03": {
+    "detailUrl": "/presentations/opi-oulu-2026-tekoalyaiheinen-paneelikeskustelu/",
+    "humanDecision": "ALTERNATE_REPRESENTATION",
+    "humanCanonicalId": "sdrdv3W33qRpdA8",
+    "humanNotes": "Accepted Codex proposal 2026-08-14: panel discussion is related to the topic but not the same Canva deck."
+  },
+  "P2-04": {
+    "detailUrl": "/presentations/riihim-ki-veso-2026/",
+    "humanDecision": "ALTERNATE_REPRESENTATION",
+    "humanCanonicalId": "aTM5lGaNw5NYCtj",
+    "humanNotes": "Accepted Codex proposal 2026-08-14: same VESO context/date, but Canva ID differs; treat as local/related representation."
+  },
+  "P2-05": {
+    "detailUrl": "/presentations/kempele-veso-2026/",
+    "humanDecision": "ALTERNATE_REPRESENTATION",
+    "humanCanonicalId": "DCBR_muSwblqYUG",
+    "humanNotes": "Accepted Codex proposal 2026-08-14: Kempele/VESO context matches, but source identity does not."
+  },
+  "P2-06": {
+    "detailUrl": "/presentations/konen-k-vibe-robotiikka-riihim-ki-robokampus-2026/",
+    "humanDecision": "ALTERNATE_REPRESENTATION",
+    "humanCanonicalId": "9vbIlfCJtVMnz0L",
+    "humanNotes": "Accepted Codex proposal 2026-08-14: strong Robokampus/topic overlap, but different Canva ID prevents identity match."
+  },
+  "P2-07": {
+    "detailUrl": "/presentations/syntyvyys-ja-kouluik-luokat-oulussa-2026/",
+    "humanDecision": "IS_DISTINCT_LOCAL_PRESENTATION",
+    "humanCanonicalId": "",
+    "humanNotes": "Accepted Codex proposal 2026-08-14: topic differs from candidate; broad education-policy overlap is insufficient."
+  },
+  "P2-08": {
+    "detailUrl": "/presentations/opettaja-teko-lyn-ja-lytt-myyden-turbulenssissa-tampere-2025/",
+    "humanDecision": "ALTERNATE_REPRESENTATION",
+    "humanCanonicalId": "A3EfkY3y1avAegc",
+    "humanNotes": "Accepted Codex proposal 2026-08-14: same date/title family, but Tampere/local detail and different Canva ID suggest related representation."
+  },
+  "P2-09": {
+    "detailUrl": "/presentations/kokkola-2025-teko-ly-opettajan-yst-v-vai-viho/",
+    "humanDecision": "ALTERNATE_REPRESENTATION",
+    "humanCanonicalId": "HkRvziyrg2IqL5S",
+    "humanNotes": "Accepted Codex proposal 2026-08-14: same training theme/date, but Kokkola/local context and different Canva ID prevent identity match."
+  },
+  "P2-10": {
+    "detailUrl": "/presentations/luento-4-ohjelmointiosaaminen/",
+    "humanDecision": "IS_DISTINCT_LOCAL_PRESENTATION",
+    "humanCanonicalId": "",
+    "humanNotes": "Accepted Codex proposal 2026-08-14: individual lecture, not the same object as broad teacher-education overview."
+  },
+  "P2-11": {
+    "detailUrl": "/presentations/luento-1-johdanto/",
+    "humanDecision": "IS_DISTINCT_LOCAL_PRESENTATION",
+    "humanCanonicalId": "",
+    "humanNotes": "Accepted Codex proposal 2026-08-14: individual introductory lecture, not the same object as broad teacher-education overview."
+  },
+  "P2-12": {
+    "detailUrl": "/presentations/digierko2024-risteilyesitys/",
+    "humanDecision": "ALTERNATE_REPRESENTATION",
+    "humanCanonicalId": "LxK-UqOjO0Ti57w",
+    "humanNotes": "Accepted Codex proposal 2026-08-14: same DIGIERKO/risteily context, but different Canva ID; keep as related representation."
+  },
+  "P2-13": {
+    "detailUrl": "/presentations/pori-kerava-millaisia-teko-lytaitoja-peruskoulussa-tulisi-opettaa-2020-luvulla/",
+    "humanDecision": "MATCHES_EXISTING_CANONICAL",
+    "humanCanonicalId": "ufZPce1w_asMPp_",
+    "humanNotes": "Accepted Codex proposal 2026-08-14: same Pori/Kerava presentation identity approved by user."
+  },
+  "P2-14": {
+    "detailUrl": "/presentations/tsl-tekoaly-demokratian-ja-sivistyksen-tukena-paneelikeskustelu-2024/",
+    "humanDecision": "ALTERNATE_REPRESENTATION",
+    "humanCanonicalId": "/presentations/ss-lahidemokratiatoimikunnan-toiminta-oulussa/",
+    "humanNotes": "Accepted Codex proposal 2026-08-14: YouTube panel is not an identity match; keep as related/alternate representation."
+  },
+  "P2-15": {
+    "detailUrl": "/presentations/tekoaly-opetuskaytto-avi-webinaari-2024/",
+    "humanDecision": "ALTERNATE_REPRESENTATION",
+    "humanCanonicalId": "o2KsaiK39PKEN2g",
+    "humanNotes": "Accepted Codex proposal 2026-08-14: web/event item relates to AVI training but is not the same Canva deck."
+  },
+  "P2-16": {
+    "detailUrl": "/presentations/monilukutaito-on-opettajan-supervoima-teko-lylukutaito-luento/",
+    "humanDecision": "ALTERNATE_REPRESENTATION",
+    "humanCanonicalId": "DUFz3anJzfZmV8G",
+    "humanNotes": "Accepted Codex proposal 2026-08-14: title/topic family matches, but different Canva ID; treat as related representation."
+  },
+  "P2-17": {
+    "detailUrl": "/presentations/simo-veso-2024/",
+    "humanDecision": "ALTERNATE_REPRESENTATION",
+    "humanCanonicalId": "H8tSyhG_9jcwRpr",
+    "humanNotes": "Accepted Codex proposal 2026-08-14: Simo/VESO context matches, but different Canva ID; treat as related representation."
+  },
+  "P2-18": {
+    "detailUrl": "/presentations/avoin-tiede-2021-avoimeen-oppimiseen-ja-opetukseen/",
+    "humanDecision": "IS_DISTINCT_LOCAL_PRESENTATION",
+    "humanCanonicalId": "",
+    "humanNotes": "Accepted Codex proposal 2026-08-14: distinct YouTube video/open science context; not ITK opening recording."
+  },
+  "P2-19": {
+    "detailUrl": "/presentations/eduxr-2020-suunnanmuutos-digiopettajasta-etaopettajaksi/",
+    "humanDecision": "IS_DISTINCT_LOCAL_PRESENTATION",
+    "humanCanonicalId": "",
+    "humanNotes": "Accepted Codex proposal 2026-08-14: distinct YouTube video/EDUXR context; Larun pikkuvinkit appears series-level."
+  },
+  "P2-20": {
+    "detailUrl": "/presentations/teknologia-opetuksen-tukena-video-1-keskustelemme-suhteestamme/",
+    "humanDecision": "IS_DISTINCT_LOCAL_PRESENTATION",
+    "humanCanonicalId": "",
+    "humanNotes": "Accepted Codex proposal 2026-08-14: distinct YouTube video episode; not same identity as series-level candidate."
+  },
+  "P2-21": {
+    "detailUrl": "/presentations/lea-hanke-visioita-sahkoisista-oppimisymparistoista/",
+    "humanDecision": "IS_DISTINCT_LOCAL_PRESENTATION",
+    "humanCanonicalId": "",
+    "humanNotes": "Accepted Codex proposal 2026-08-14: distinct YouTube video/LEA context; not ITK opening recording."
+  }
+}

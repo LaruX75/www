@@ -47,6 +47,7 @@ const ENDPOINTS = {
   content: "/data/content.json",
   publications: "/data/publications.json",
   presentations: "/data/presentations.json",
+  presentationsPage: "/data/presentations-page.json",
   media: "/data/media.json",
   theses: "/data/theses.json",
   initiatives: "/data/initiatives.json",
@@ -92,7 +93,13 @@ const FIELD_RULES = {
   },
   year: {
     kind: "yearRange",
-    getFromRecord: (r) => (typeof r.year === "number" ? r.year : null),
+    getFromRecord: (r) => {
+      if (typeof r.year === "number") return r.year;
+      if (typeof r.year === "string" && /^\d{4}$/.test(r.year.trim())) {
+        return Number(r.year.trim());
+      }
+      return null;
+    },
     getFromEleventy: (item) => {
       const src = item.date || (item.data && item.data.date);
       if (!src) return null;
@@ -115,6 +122,11 @@ const FIELD_RULES = {
     kind: "anyOf",
     getFromRecord: (r) => normalizeStringArray(r.keywords),
     getFromEleventy: (item) => normalizeStringArray(item.data && item.data.keywords)
+  },
+  topics: {
+    kind: "anyOf",
+    getFromRecord: (r) => normalizeStringArray(r.topics),
+    getFromEleventy: () => []
   },
   contexts: {
     kind: "anyOf",
@@ -143,6 +155,21 @@ const FIELD_RULES = {
     kind: "eq",
     getFromRecord: (r) => r.initiativeType || null,
     getFromEleventy: (item) => (item.data && item.data.initiative_type) || null
+  },
+  presentationType: {
+    kind: "oneOf",
+    getFromRecord: (r) => r.presentationType || null,
+    getFromEleventy: () => null
+  },
+  mediaType: {
+    kind: "oneOf",
+    getFromRecord: (r) => r.mediaType || null,
+    getFromEleventy: () => null
+  },
+  event: {
+    kind: "eq",
+    getFromRecord: (r) => r.event || null,
+    getFromEleventy: () => null
   },
   // Thesis-kentat: kaytossa vain /data/theses.json-recordeille (async data,
   // ei Eleventy-collection). getFromEleventy palauttaa null jotta Node-
@@ -245,20 +272,10 @@ const SORT_FUNCTIONS = {
 // myöhemmin.
 // -----------------------------------------------------------------------------
 const PRESETS = {
-  // Esimerkkejä (aktivoidaan käyttöönoton myötä):
-  //
-  // latestOpinions: {
-  //   source: "publications",
-  //   filters: { contentType: "opinion" },
-  //   sort: "date-desc",
-  //   limit: 10
-  // },
-  // latestBlogPosts: {
-  //   source: "content",
-  //   filters: { contentType: "blogPost" },
-  //   sort: "date-desc",
-  //   limit: 10
-  // }
+  "FindExplore:presentations": {
+    source: "presentationsPage",
+    sort: "date-desc"
+  }
 };
 
 // -----------------------------------------------------------------------------
@@ -335,11 +352,17 @@ function tokenizeSearch(query) {
 function itemMatchesSearch(record, tokens) {
   if (tokens.length === 0) return true;
   const parts = [
-    record.title, record.description, record.publication
+    record.title,
+    record.description,
+    record.publication,
+    record.event,
+    record.presentationType,
+    record.mediaType
   ];
   const cats = Array.isArray(record.categories) ? record.categories : [];
   const kws = Array.isArray(record.keywords) ? record.keywords : [];
-  const hay = parts.concat(cats, kws)
+  const topics = Array.isArray(record.topics) ? record.topics : [];
+  const hay = parts.concat(cats, kws, topics)
     .filter(Boolean)
     .join(" ")
     .toLowerCase()

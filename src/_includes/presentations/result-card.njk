@@ -1,0 +1,74 @@
+{% set cardUrl = item.landingUrl or item.localPageUrl or item.pageUrl or item.url or item.externalUrl or item.sourceUrl or "" %}
+{% set cardIsExternal = item.externalFirst or (cardUrl and cardUrl.startsWith("http")) %}
+{% set cardTopics = item.topics or [] %}
+{% set cardDate = item.date or "" %}
+{% set cardYear = item.year or "" %}
+{% if item.sourceKey == "aoe" %}
+  {% set cardIcon = "bi-book" %}
+{% elif item.sourceKey == "canva" %}
+  {% set cardIcon = "bi-file-earmark-slides" %}
+{% elif item.sourceKey == "slideshare" %}
+  {% set cardIcon = "bi-collection-play" %}
+{% elif item.sourceKey == "youtubeVideos" or item.sourceKey == "youtube" %}
+  {% set cardIcon = "bi-youtube" %}
+{% else %}
+  {% set cardIcon = "bi-easel2" %}
+{% endif %}
+
+<article class="presentation-archive-card">
+  <div class="presentation-archive-card-thumb">
+    {% if item.thumbnail %}
+    <span class="presentation-archive-card-thumb-placeholder"><i class="bi {{ cardIcon }}"></i></span>
+    <img src="{{ item.thumbnail }}" alt="" class="presentation-archive-card-thumb-image" loading="lazy" decoding="async">
+    {% else %}
+    <span class="presentation-archive-card-thumb-placeholder"><i class="bi {{ cardIcon }}"></i></span>
+    {% endif %}
+  </div>
+  <div class="presentation-archive-card-body">
+    <div class="presentation-archive-card-header">
+      <div class="presentation-archive-card-meta presentation-archive-card-meta--primary">
+        {% if item.sourceLabel %}
+        <span>{{ item.sourceLabel }}</span>
+        {% endif %}
+        <span>{% if cardIsExternal %}{{ presentationArchiveExternalBadgeLabel }}{% else %}{{ presentationArchiveLocalBadgeLabel }}{% endif %}</span>
+      </div>
+      <h3 class="presentation-archive-card-title">
+        <a href="{{ cardUrl }}"{% if cardIsExternal %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ item.title }}</a>
+      </h3>
+      {% if item.description %}
+      <p class="presentation-archive-card-desc">{{ item.description }}</p>
+      {% endif %}
+    </div>
+
+    <div class="presentation-archive-card-meta presentation-archive-card-meta--details" aria-label="{{ presentationArchiveMetaAriaLabel }}">
+      {% if cardDate %}
+      <span class="presentation-archive-card-detail"><i class="bi bi-calendar3"></i>{{ cardDate | dateFormat }}</span>
+      {% elif cardYear %}
+      <span class="presentation-archive-card-detail"><i class="bi bi-calendar3"></i>{{ cardYear }}</span>
+      {% endif %}
+      {% if item.presentationType %}
+      <span class="presentation-archive-card-detail"><i class="bi bi-tag"></i>{{ item.presentationType }}</span>
+      {% endif %}
+      {% if item.event %}
+      <span class="presentation-archive-card-detail"><i class="bi bi-geo-alt"></i>{{ item.event }}</span>
+      {% endif %}
+    </div>
+
+    {% if cardTopics.length %}
+    <div class="presentation-archive-card-meta presentation-archive-card-meta--secondary">
+      {% for topic in cardTopics %}
+        {% if loop.index <= 3 %}
+        <span>{{ topic }}</span>
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="presentation-archive-card-actions">
+      <a href="{{ cardUrl }}"{% if cardIsExternal %} target="_blank" rel="noopener noreferrer"{% endif %} class="btn btn-primary btn-sm rounded-pill px-3">
+        {{ presentationArchiveOpenLabel }}
+        <i class="bi {% if cardIsExternal %}bi-arrow-up-right{% else %}bi-arrow-right{% endif %} ms-1"></i>
+      </a>
+    </div>
+  </div>
+</article>

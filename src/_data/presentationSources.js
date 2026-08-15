@@ -5,6 +5,7 @@ const { getCanvaDesignId, normalizeCanvaUrl } = require("./canvaUrl");
 const { derivePresentationMetadata } = require("../_utils/presentationDerivedMetadata");
 
 const PRESENTATIONS_DIR = path.join(__dirname, "..", "presentations");
+const CONTENT_SLUG_MAP_FILE = path.join(__dirname, "..", "..", "data", "canva", "content-slug-to-designid.json");
 
 function walkPresentationFiles(dir, results = []) {
   if (!fs.existsSync(dir)) return results;
@@ -113,8 +114,24 @@ function readLocalPresentationSources() {
     .sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")));
 }
 
+function readContentSlugMap() {
+  if (!fs.existsSync(CONTENT_SLUG_MAP_FILE)) return new Map();
+
+  try {
+    const raw = JSON.parse(fs.readFileSync(CONTENT_SLUG_MAP_FILE, "utf8"));
+    return new Map(
+      Object.entries(raw)
+        .filter(([, entry]) => entry && typeof entry.designId === "string" && entry.designId.trim())
+        .map(([contentUrl, entry]) => [contentUrl, entry.designId.trim()])
+    );
+  } catch (_) {
+    return new Map();
+  }
+}
+
 function createCanvaPresentationLookup(presentations = []) {
   const lookup = new Map();
+  const contentSlugMap = readContentSlugMap();
 
   presentations
     .filter((item) => {
@@ -123,13 +140,20 @@ function createCanvaPresentationLookup(presentations = []) {
     })
     .forEach((item) => {
       const candidateUrl = item.sourceUrl || item.publicUrl || item.url || "";
-      const id = getCanvaDesignId(candidateUrl);
-      if (!id) return;
+      const ids = new Set();
+      const urlId = getCanvaDesignId(candidateUrl);
+      const mappedDesignId = item.pageUrl ? contentSlugMap.get(item.pageUrl) : "";
 
-      lookup.set(id, {
-        pageUrl: item.pageUrl || "",
-        publicUrl: item.publicUrl || "",
-        sourceUrl: item.sourceUrl || item.url || ""
+      if (urlId) ids.add(urlId);
+      if (mappedDesignId) ids.add(mappedDesignId);
+      if (ids.size === 0) return;
+
+      ids.forEach((id) => {
+        lookup.set(id, {
+          pageUrl: item.pageUrl || "",
+          publicUrl: item.publicUrl || "",
+          sourceUrl: item.sourceUrl || item.url || ""
+        });
       });
     });
 

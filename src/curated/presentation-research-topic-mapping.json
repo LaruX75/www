@@ -1,0 +1,205 @@
+{
+  "version": "f3c-p5",
+  "rules": [
+    {
+      "id": "ai-literacy-exact-tekoalylukutaito",
+      "researchPresetId": "ai-literacy",
+      "mappingType": "exact",
+      "matchValues": ["tekoalylukutaito", "tekoälylukutaito"],
+      "reason": "Matches the current AI literacy preset topic profile and the shared research theme label.",
+      "evidenceSource": "src/_data/seoTopics.js: tekoalylukutaito; src/curated/research-program.json: themes [tekoalylukutaito, selitettava-tekoaly, koneoppiminen]"
+    },
+    {
+      "id": "ai-literacy-alias-generation-ai",
+      "researchPresetId": "ai-literacy",
+      "mappingType": "alias",
+      "matchValues": ["generation ai", "generation-ai"],
+      "reason": "Explicit keyword already used in the AI literacy topic profile and current research page context.",
+      "evidenceSource": "src/_data/seoTopics.js: tekoalylukutaito keywords include generation-ai; src/fi/tutkimus.md: Generation AI current focus"
+    },
+    {
+      "id": "ai-literacy-alias-ai-literacy",
+      "researchPresetId": "ai-literacy",
+      "mappingType": "alias",
+      "matchValues": ["ai literacy"],
+      "reason": "Direct English alias of the current AI literacy research preset used in current research copy and curated publications.",
+      "evidenceSource": "src/en/research.md: AI literacy; src/curated/researchfi/0699440925.md; src/curated/researchfi/0693115624.md"
+    },
+    {
+      "id": "ai-literacy-narrower-tekoaly-opetuksessa",
+      "researchPresetId": "ai-literacy",
+      "mappingType": "narrower",
+      "matchValues": ["tekoaly opetuksessa", "tekoäly opetuksessa"],
+      "reason": "Exact current research theme label that rolls up to the AI literacy preset.",
+      "evidenceSource": "src/_data/researchProgram.js: RESEARCH_THEME_LABELS; src/_data/seoTopics.js: tekoalylukutaito researchThemes"
+    },
+    {
+      "id": "ai-literacy-narrower-selitettava-tekoaly",
+      "researchPresetId": "ai-literacy",
+      "mappingType": "narrower",
+      "matchValues": ["selitettava tekoaly", "selitettävä tekoäly"],
+      "reason": "Exact current research theme label under the AI literacy preset.",
+      "evidenceSource": "src/_data/researchProgram.js: RESEARCH_THEME_LABELS; src/_data/seoTopics.js: tekoalylukutaito researchThemes"
+    },
+    {
+      "id": "ai-literacy-narrower-koneoppiminen",
+      "researchPresetId": "ai-literacy",
+      "mappingType": "narrower",
+      "matchValues": ["koneoppiminen"],
+      "reason": "Exact current research theme label under the AI literacy preset.",
+      "evidenceSource": "src/_data/researchProgram.js: RESEARCH_THEME_LABELS; src/_data/seoTopics.js: tekoalylukutaito researchThemes"
+    },
+    {
+      "id": "ai-literacy-narrower-somekone",
+      "researchPresetId": "ai-literacy",
+      "mappingType": "narrower",
+      "matchValues": ["somekone"],
+      "reason": "Curated research program already treats Somekone as an AI-literacy teaching tool under the current research themes.",
+      "evidenceSource": "src/curated/research-program.json: summary mentions Somekone under tekoalylukutaito/digipedagogiikka; src/curated/researchfi/02241881YJ.md"
+    },
+    {
+      "id": "ai-literacy-narrower-opetettava-kone",
+      "researchPresetId": "ai-literacy",
+      "mappingType": "narrower",
+      "matchValues": ["opetettava kone"],
+      "reason": "Curated research program already treats Opetettava kone as a machine-learning teaching tool under the current AI literacy work.",
+      "evidenceSource": "src/curated/research-program.json: no-code tool summary under tekoalylukutaito + koneoppiminen; src/curated/canva/CRypZKJybJhhwBd.md"
+    },
+    {
+      "id": "ai-literacy-narrower-teachable-machine",
+      "researchPresetId": "ai-literacy",
+      "mappingType": "narrower",
+      "matchValues": ["teachable machine"],
+      "reason": "Explicit curated English tool alias already present in the current research evidence set.",
+      "evidenceSource": "src/curated/researchfi/0701014225.md; src/curated/canva/g5EqinrmAUi2FB8.md"
+    },
+    {
+      "id": "ai-literacy-narrower-xai",
+      "researchPresetId": "ai-literacy",
+      "mappingType": "narrower",
+      "matchValues": ["xai"],
+      "reason": "Explicit acronym already used in curated research evidence for explainable AI under the AI literacy preset.",
+      "evidenceSource": "src/curated/researchfi/02241881YJ.md; src/curated/canva/k2U-B9pZNbblMHV.md"
+    },
+    {
+      "id": "teacher-education-exact-opettajankoulutus",
+      "researchPresetId": "teacher-education",
+      "mappingType": "exact",
+      "matchValues": ["opettajankoulutus"],
+      "reason": "Matches the current teacher education preset and shared research theme label directly.",
+      "evidenceSource": "src/_data/seoTopics.js: opettajankoulutus; src/curated/research-program.json: teacher-education line"
+    },
+    {
+      "id": "teacher-education-alias-teacher-education",
+      "researchPresetId": "teacher-education",
+      "mappingType": "alias",
+      "matchValues": ["teacher education"],
+      "reason": "Direct English alias already used in current presentation and research material.",
+      "evidenceSource": "src/presentations/ss-designing-and-supporting-use-of-emergent-technology-in-teacher-education-case-ic.md; src/en/research.md"
+    },
+    {
+      "id": "teacher-education-alias-taydennyskoulutus",
+      "researchPresetId": "teacher-education",
+      "mappingType": "alias",
+      "matchValues": ["taydennyskoulutus", "täydennyskoulutus"],
+      "reason": "Explicit keyword already used by the teacher education topic profile for cross-scope discovery.",
+      "evidenceSource": "src/_data/seoTopics.js: opettajankoulutus keywords include täydennyskoulutus"
+    },
+    {
+      "id": "teacher-education-narrower-digipedagogiikka",
+      "researchPresetId": "teacher-education",
+      "mappingType": "narrower",
+      "matchValues": ["digipedagogiikka"],
+      "reason": "Exact current research theme label under the teacher education preset.",
+      "evidenceSource": "src/_data/researchProgram.js: RESEARCH_THEME_LABELS; src/_data/seoTopics.js: opettajankoulutus researchThemes"
+    },
+    {
+      "id": "teacher-education-narrower-ohjelmoinnillinen-ajattelu",
+      "researchPresetId": "teacher-education",
+      "mappingType": "narrower",
+      "matchValues": ["ohjelmoinnillinen ajattelu"],
+      "reason": "Exact current research theme label under the teacher education preset.",
+      "evidenceSource": "src/_data/researchProgram.js: RESEARCH_THEME_LABELS; src/_data/seoTopics.js: opettajankoulutus researchThemes"
+    },
+    {
+      "id": "teacher-education-narrower-ohjelmointi",
+      "researchPresetId": "teacher-education",
+      "mappingType": "narrower",
+      "matchValues": ["ohjelmointi"],
+      "reason": "Current curated research program already places programming-oriented teacher education work under this preset.",
+      "evidenceSource": "src/curated/research-program.json: teacher-education publicationMeta themes include ohjelmointi; src/_data/seoTopics.js: opettajankoulutus context"
+    },
+    {
+      "id": "teacher-education-narrower-teknologiakasvatus",
+      "researchPresetId": "teacher-education",
+      "mappingType": "narrower",
+      "matchValues": ["teknologiakasvatus"],
+      "reason": "Exact current research theme label under the teacher education preset.",
+      "evidenceSource": "src/_data/researchProgram.js: RESEARCH_THEME_LABELS; src/_data/seoTopics.js: opettajankoulutus researchThemes"
+    },
+    {
+      "id": "long-term-learning-alias-koulutusteknologia",
+      "researchPresetId": "long-term-learning",
+      "mappingType": "alias",
+      "matchValues": ["koulutusteknologia"],
+      "reason": "Explicit keyword and visible topic-profile title already used for the long-term learning preset's cross-scope topic profile.",
+      "evidenceSource": "src/_data/seoTopics.js: koulutusteknologia-ja-oppimisymparistot title + keywords"
+    },
+    {
+      "id": "long-term-learning-alias-oppimisymparisto",
+      "researchPresetId": "long-term-learning",
+      "mappingType": "alias",
+      "matchValues": ["oppimisymparisto", "oppimisympäristö"],
+      "reason": "Explicit keyword already used in the current long-term learning topic profile.",
+      "evidenceSource": "src/_data/seoTopics.js: koulutusteknologia-ja-oppimisymparistot keywords include oppimisympäristö"
+    },
+    {
+      "id": "long-term-learning-alias-cscl",
+      "researchPresetId": "long-term-learning",
+      "mappingType": "alias",
+      "matchValues": ["cscl"],
+      "reason": "Explicit keyword and exact research theme already used in the current long-term learning preset.",
+      "evidenceSource": "src/_data/seoTopics.js: koulutusteknologia-ja-oppimisymparistot keywords include cscl; researchThemes include cscl"
+    },
+    {
+      "id": "long-term-learning-alias-digiluokka",
+      "researchPresetId": "long-term-learning",
+      "mappingType": "alias",
+      "matchValues": ["digiluokka"],
+      "reason": "Explicit keyword already used in the current long-term learning topic profile.",
+      "evidenceSource": "src/_data/seoTopics.js: koulutusteknologia-ja-oppimisymparistot keywords include digiluokka"
+    },
+    {
+      "id": "long-term-learning-alias-scaffolding",
+      "researchPresetId": "long-term-learning",
+      "mappingType": "alias",
+      "matchValues": ["scaffolding"],
+      "reason": "Explicit keyword already used in the current long-term learning topic profile and recurring curated research titles.",
+      "evidenceSource": "src/_data/seoTopics.js: koulutusteknologia-ja-oppimisymparistot keywords include scaffolding; src/curated/researchfi/0370897320.md"
+    },
+    {
+      "id": "long-term-learning-narrower-mobiilioppiminen",
+      "researchPresetId": "long-term-learning",
+      "mappingType": "narrower",
+      "matchValues": ["mobiilioppiminen"],
+      "reason": "Exact current research theme label under the long-term learning preset.",
+      "evidenceSource": "src/_data/researchProgram.js: RESEARCH_THEME_LABELS; src/_data/seoTopics.js: koulutusteknologia-ja-oppimisymparistot researchThemes"
+    },
+    {
+      "id": "long-term-learning-narrower-yhteisollinen-oppiminen",
+      "researchPresetId": "long-term-learning",
+      "mappingType": "narrower",
+      "matchValues": ["yhteisollinen oppiminen", "yhteisöllinen oppiminen"],
+      "reason": "Exact current research theme label under the long-term learning preset.",
+      "evidenceSource": "src/_data/researchProgram.js: RESEARCH_THEME_LABELS; src/_data/seoTopics.js: koulutusteknologia-ja-oppimisymparistot researchThemes"
+    },
+    {
+      "id": "long-term-learning-narrower-oppimisymparistot",
+      "researchPresetId": "long-term-learning",
+      "mappingType": "narrower",
+      "matchValues": ["oppimisymparistot", "oppimisympäristöt"],
+      "reason": "Exact current research theme label under the long-term learning preset.",
+      "evidenceSource": "src/_data/researchProgram.js: RESEARCH_THEME_LABELS; src/_data/seoTopics.js: koulutusteknologia-ja-oppimisymparistot researchThemes"
+    }
+  ]
+}

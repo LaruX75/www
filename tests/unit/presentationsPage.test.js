@@ -58,7 +58,7 @@ describe("buildCanonicalPresentationPageRecords", () => {
       publicUrl: "https://public.example/foo",
       thumbnail: "/img/local.jpg",
       date: "2025-01-01",
-      year: null,
+      year: "2025",
       lang: "fi",
       sourceLanguage: "fi",
       slideCount: 12,

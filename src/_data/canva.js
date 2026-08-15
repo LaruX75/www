@@ -10,15 +10,24 @@ const {
 module.exports = function () {
   const hidden = loadHiddenIds('canva');
   const canvaLookup = createCanvaPresentationLookup(readLocalPresentationSources());
-  const richById = new Map(
-    buildCanvaMerged().items.map((item) => [item.designId, item.rich || null])
+  const mergedByLink = new Map(
+    buildCanvaMerged().items.map((item) => [item.link || "", item])
   );
   const rows = presentations.map((item) => {
     const sourceUrl = String(item.link || "").trim();
     const publicUrl = normalizeCanvaUrl(item.publicUrl || sourceUrl);
-    const id = getCanvaDesignId(sourceUrl || publicUrl);
-    const localMatch = canvaLookup.get(id) || {};
-    const rich = richById.get(id) || null;
+    const merged = mergedByLink.get(sourceUrl) || null;
+    const directId = getCanvaDesignId(sourceUrl || publicUrl);
+    const mergedId = merged?.designId || null;
+    // Prefer the concrete /d/ or public Canva ID from the row itself.
+    // The merged dataset can map shortlinks to a richer design id, but using it
+    // as the primary id collapses distinct decks that happen to share a link map.
+    const id = directId || mergedId;
+    const localMatch =
+      canvaLookup.get(id) ||
+      (mergedId && mergedId !== id ? canvaLookup.get(mergedId) : null) ||
+      {};
+    const rich = merged?.rich || null;
     const shortDescription = item.summary || "";
     const richSummary = rich?.richSummary || "";
     const resolvedPublicUrl = publicUrl || localMatch.publicUrl || null;

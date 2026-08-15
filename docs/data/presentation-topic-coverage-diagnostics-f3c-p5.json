@@ -1,0 +1,521 @@
+{
+  "generatedAt": "2026-08-15T08:17:54.382Z",
+  "counts": {
+    "canonicalTotal": 218,
+    "withAtLeastOneCanonicalTopic": 198,
+    "withNoCanonicalTopic": 20,
+    "withAtLeastOneSafeResearchMapping": 168,
+    "withCanonicalTopicsButNoSafeResearchMapping": 30,
+    "uniqueRawTopics": 406,
+    "totalTopicAssignments": 1034,
+    "safelyMappedTopicAssignments": 352
+  },
+  "invariants": {
+    "withTopicPlusTopiclessEqualsCanonicalTotal": true,
+    "researchMappedPlusTopicPresentButResearchUnmappedPlusTopiclessEqualsCanonicalTotal": true
+  },
+  "exactCause": "The discrepancy came from stale hardcoded report prose in sections 20 and 25 of scripts/audit-presentation-topic-mapping.js. Canonical inventory logic already computed 20 topicless presentations from current presentations-page canonical data; no alternate projection, normalization filter, or mapping rule produced 11.",
+  "topiclessPresentations": [
+    {
+      "canonicalId": "customMaterials|https://www.ouka.fi/lukevinkaupunni/arjen-tekoalyhaaste|Arjen tekoälyhaaste",
+      "title": "Arjen tekoälyhaaste",
+      "topics": [],
+      "landingType": "localDetail"
+    },
+    {
+      "canonicalId": "curatedVideos|https://www.youtube.com/watch?v=0cJ0Ed3Scs4&t=5s|ITK-avauksen tallenne: Työkalu? Taikakalu?",
+      "title": "ITK-avauksen tallenne: Työkalu? Taikakalu?",
+      "topics": [],
+      "landingType": "externalSource"
+    },
+    {
+      "canonicalId": "curatedVideos|https://www.youtube.com/watch?v=7EXB54VvlsU&t=2s|Oululaisia lapsia ja nuoria koskevien tilastotietojen tarkastelua",
+      "title": "Oululaisia lapsia ja nuoria koskevien tilastotietojen tarkastelua",
+      "topics": [],
+      "landingType": "externalSource"
+    },
+    {
+      "canonicalId": "aoe|https://www.finna.fi/Record/aoe.5456|Ai ai, kieliä ja AI -koulutuspaketti",
+      "title": "Ai ai, kieliä ja AI -koulutuspaketti",
+      "topics": [],
+      "landingType": "externalSource"
+    },
+    {
+      "canonicalId": "curatedVideos|https://www.youtube.com/watch?v=RyItZto47t8|Kuinka Generatiivinen tekoäly toimii? Pieni kielikone on vastaus tähän kysymykseen!",
+      "title": "Kuinka Generatiivinen tekoäly toimii? Pieni kielikone on vastaus tähän kysymykseen!",
+      "topics": [],
+      "landingType": "externalSource"
+    },
+    {
+      "canonicalId": "curatedVideos|https://www.youtube.com/watch?v=q2K04VmN3sQ|Generation AI: Selitettävä tekoäly, mitä se on ja miksi se on tärkeä huomioida opetuksessa?",
+      "title": "Generation AI: Selitettävä tekoäly, mitä se on ja miksi se on tärkeä huomioida opetuksessa?",
+      "topics": [],
+      "landingType": "externalSource"
+    },
+    {
+      "canonicalId": "curatedVideos|https://www.youtube.com/watch?v=U4iFFFY3rhM|ITK-webinaari: Miten opetan tekoälyä oppilaille? Generation AI",
+      "title": "ITK-webinaari: Miten opetan tekoälyä oppilaille? Generation AI",
+      "topics": [],
+      "landingType": "externalSource"
+    },
+    {
+      "canonicalId": "curatedVideos|https://www.youtube.com/watch?v=fcDjAZZZs4U|ITK-webinaari: Generation AI - kyberturvallisen ajattelutavan opettaminen tekoälysukupolvelle",
+      "title": "ITK-webinaari: Generation AI - kyberturvallisen ajattelutavan opettaminen tekoälysukupolvelle",
+      "topics": [],
+      "landingType": "externalSource"
+    },
+    {
+      "canonicalId": "aoe|https://www.finna.fi/Record/aoe.2047|Esitykseni STEAM (k)Oulussa –etäseminaarissa 21.4.2022",
+      "title": "Esitykseni STEAM (k)Oulussa –etäseminaarissa 21.4.2022",
+      "topics": [],
+      "landingType": "externalSource"
+    },
+    {
+      "canonicalId": "aoe|https://www.finna.fi/Record/aoe.2409|ITK2022:",
+      "title": "ITK2022:",
+      "topics": [],
+      "landingType": "externalSource"
+    },
+    {
+      "canonicalId": "aoe|https://www.finna.fi/Record/aoe.2370|Teknologiatuettu oppiminen ja työskentely luentodiat syksy 2022",
+      "title": "Teknologiatuettu oppiminen ja työskentely luentodiat syksy 2022",
+      "topics": [],
+      "landingType": "externalSource"
+    },
+    {
+      "canonicalId": "aoe|https://www.finna.fi/Record/aoe.1501|Etäopetuksen hyvät käytännöt - mitä ovat opetus ja oppiminen digitaalisuuden puristuksessa?",
+      "title": "Etäopetuksen hyvät käytännöt - mitä ovat opetus ja oppiminen digitaalisuuden puristuksessa?",
+      "topics": [],
+      "landingType": "externalSource"
+    },
+    {
+      "canonicalId": "aoe|https://www.finna.fi/Record/aoe.1518|History of Technology Enhanced Learning",
+      "title": "History of Technology Enhanced Learning",
+      "topics": [],
+      "landingType": "externalSource"
+    },
+    {
+      "canonicalId": "aoe|https://www.finna.fi/Record/aoe.1813|Hybridiopetus on täällä, oletko valmis? Näkemysten ja kokemusten jakamista kokeilevalla otteella!",
+      "title": "Hybridiopetus on täällä, oletko valmis? Näkemysten ja kokemusten jakamista kokeilevalla otteella!",
+      "topics": [],
+      "landingType": "externalSource"
+    },
+    {
+      "canonicalId": "aoe|https://www.finna.fi/Record/aoe.1698|Joko vihdoin tästä tulee valtavirtaa - Teknologiatuettu oppiminen ja opetus post-korona maailmassa.",
+      "title": "Joko vihdoin tästä tulee valtavirtaa - Teknologiatuettu oppiminen ja opetus post-korona maailmassa.",
+      "topics": [],
+      "landingType": "externalSource"
+    },
+    {
+      "canonicalId": "aoe|https://www.finna.fi/Record/aoe.1789|Ohjelmointi perusopetuksessa kurssin projektityön lopputuotos 2021",
+      "title": "Ohjelmointi perusopetuksessa kurssin projektityön lopputuotos 2021",
+      "topics": [],
+      "landingType": "externalSource"
+    },
+    {
+      "canonicalId": "videoSeries|https://www.youtube.com/playlist?list=PLDG0jxUrk8z19_ThqBiynpYG4g-mjwgpt|Jari Larun verkkolive",
+      "title": "Jari Larun verkkolive",
+      "topics": [],
+      "landingType": "externalSource"
+    },
+    {
+      "canonicalId": "videoSeries|https://www.youtube.com/watch?v=hCZ9lgODkes&list=PLDG0jxUrk8z3VEOjIFb_q0vdJW6-2oOgY|Larun pikkuvinkit",
+      "title": "Larun pikkuvinkit",
+      "topics": [],
+      "landingType": "localDetail"
+    },
+    {
+      "canonicalId": "curatedVideos|https://www.youtube.com/watch?v=SoeW6zexrWQ|Teknologia, oppiminen ja osaaminen yhteiskunnassa - videotallenne",
+      "title": "Teknologia, oppiminen ja osaaminen yhteiskunnassa - videotallenne",
+      "topics": [],
+      "landingType": "localDetail"
+    },
+    {
+      "canonicalId": "videoSeries|https://www.youtube.com/playlist?list=PLDG0jxUrk8z2E7S2ggyzt0bIBXiDEgXob|Larun laitenurkka: opetusteknologia läpivalaisussa",
+      "title": "Larun laitenurkka: opetusteknologia läpivalaisussa",
+      "topics": [],
+      "landingType": "externalSource"
+    }
+  ],
+  "topicPresentButResearchUnmapped": [
+    {
+      "canonicalId": "slideshare|https://www.slideshare.net/slideshow/my-life-9-months-before-the-defence/13140146|My life 9 months before the defence",
+      "title": "My life 9 months before the defence",
+      "topics": [
+        "Yliopisto ja korkeakoulut",
+        "väitöskirja"
+      ],
+      "landingType": "localDetail"
+    },
+    {
+      "canonicalId": "/presentations/teknologia-opetuksen-tukena-video-1-keskustelemme-suhteestamme/",
+      "title": "Keskustelemme suhteestamme teknologian hyödyntämisestä opetuksen ja oppimisen tukena",
+      "topics": [
+        "Teknologia",
+        "Opetus",
+        "Oppiminen"
+      ],
+      "landingType": "localDetail"
+    },
+    {
+      "canonicalId": "/presentations/eduxr-2020-suunnanmuutos-digiopettajasta-etaopettajaksi/",
+      "title": "Suunnanmuutos 360° digiopettajasta etäopettajaksi",
+      "topics": [
+        "Etäopetus",
+        "Digiopetus",
+        "XR",
+        "Konferenssi"
+      ],
+      "landingType": "localDetail"
+    },
+    {
+      "canonicalId": "/presentations/avoin-tiede-2021-avoimeen-oppimiseen-ja-opetukseen/",
+      "title": "Avoimeen oppimiseen ja opetukseen",
+      "topics": [
+        "Avoin tiede",
+        "Avoin oppiminen",
+        "Palkinto"
+      ],
+      "landingType": "localDetail"
+    },
+    {
+      "canonicalId": "slideshare|https://www.slideshare.net/slideshow/tekn-sovellukset-javalineetao/21158606|Tekn sovellukset ja_valineet_ao",
+      "title": "Tekn sovellukset ja_valineet_ao",
+      "topics": [
+        "TVT"
+      ],
+      "landingType": "localDetail"
+    },
+    {
+      "canonicalId": "slideshare|https://www.slideshare.net/slideshow/lhidemokratiatoimikunta-oulun-kaupungissa/41789438|Lähidemokratiatoimikunnan toiminta Oulussa",
+      "title": "Lähidemokratiatoimikunnan toiminta Oulussa",
+      "topics": [
+        "Demokratia ja sivistys",
+        "lähidemokratia",
+        "demokratia"
+      ],
+      "landingType": "localDetail"
+    },
+    {
+      "canonicalId": "/presentations/syntyvyys-ja-kouluik-luokat-oulussa-2026/",
+      "title": "Syntyvyys ja kouluikäluokat Oulussa 2026",
+      "topics": [
+        "Koulutuspolitiikka",
+        "Oulu",
+        "Väestötieto",
+        "koulutuspolitiikka",
+        "väestöennuste"
+      ],
+      "landingType": "localDetail"
+    },
+    {
+      "canonicalId": "slideshare|https://www.slideshare.net/slideshow/405514y-multimedia-as-a-learning-project-3-c/6958208|405514Y Multimedia as a Learning Project, 3 c",
+      "title": "405514Y Multimedia as a Learning Project, 3 c",
+      "topics": [
+        "multimedia",
+        "digitarinankerronta"
+      ],
+      "landingType": "localDetail"
+    },
+    {
+      "canonicalId": "slideshare|https://www.slideshare.net/slideshow/lito2018-workshop-arviointi-suurilla-verkkokursseilla/99171640|Lito2018 workshop arviointi suurilla verkkokursseilla",
+      "title": "Lito2018 workshop arviointi suurilla verkkokursseilla",
+      "topics": [
+        "verkkokurssit",
+        "arviointi"
+      ],
+      "landingType": "localDetail"
+    },
+    {
+      "canonicalId": "slideshare|https://www.slideshare.net/slideshow/quali-lecture-1-17116725/17116725|Quali lecture 1: Understanding the research process",
+      "title": "Quali lecture 1: Understanding the research process",
+      "topics": [
+        "Yliopisto ja korkeakoulut",
+        "laadullinen tutkimus",
+        "mixed methods",
+        "tutkimusprosessi"
+      ],
+      "landingType": "localDetail"
+    },
+    {
+      "canonicalId": "slideshare|https://www.slideshare.net/slideshow/alustus-digitaalisuus-koulutuksessa/51713522|Alustus: Digitaalisuus koulutuksessa",
+      "title": "Alustus: Digitaalisuus koulutuksessa",
+      "topics": [
+        "digitalisaatio"
+      ],
+      "landingType": "localDetail"
+    },
+    {
+      "canonicalId": "slideshare|https://www.slideshare.net/slideshow/mummo-nkkulma-sukupuun-juurelta-tai-ainakin-melkein-sukujuhla-2014/37584942|MUMMO Näkökulma sukupuun juurelta.. Tai ainakin melkein.. Sukujuhla 2014",
+      "title": "MUMMO Näkökulma sukupuun juurelta.. Tai ainakin melkein.. Sukujuhla 2014",
+      "topics": [
+        "sukujuhla"
+      ],
+      "landingType": "localDetail"
+    },
+    {
+      "canonicalId": "kJtKo_ZUxCFEOTn",
+      "title": "Sivistysverkosto 4.5.",
+      "topics": [
+        "koulutus",
+        "kuntatalous",
+        "opetussuunnitelma",
+        "palveluverkko",
+        "sivistyslautakunta",
+        "sivistysverkosto",
+        "tekoäly"
+      ],
+      "landingType": "externalSource"
+    },
+    {
+      "canonicalId": "2d_GA4aAEX9qmRs",
+      "title": "ITK2026 millaisia ovat tekoälyaikakauden opettajaprofiilit",
+      "topics": [
+        "ITK",
+        "iTPACK",
+        "opettajaprofiili",
+        "opettajaprofiilit",
+        "opettajuus",
+        "opetusalan tekoäly",
+        "tekoäly",
+        "tekoälyaika",
+        "tekoälykysely",
+        "toimijuus"
+      ],
+      "landingType": "externalSource"
+    },
+    {
+      "canonicalId": "2PrBoY6M2CTg60F",
+      "title": "OPH esitys 18.3.",
+      "topics": [
+        "OPH",
+        "Opetushallitus",
+        "iTPACK",
+        "opettajaprofiilit",
+        "opetus",
+        "tekoäly",
+        "tekoälykysely",
+        "verkostojen verkosto"
+      ],
+      "landingType": "externalSource"
+    },
+    {
+      "canonicalId": "9vbIlfCJtVMnz0L",
+      "title": "Konenäkö, vibe coding ja robotiikka – Robokampus 2026",
+      "topics": [
+        "Robokampus",
+        "konenäkö",
+        "robotiikka",
+        "tekoäly",
+        "vibe coding"
+      ],
+      "landingType": "localDetail"
+    },
+    {
+      "canonicalId": "EAMOOLnvrmnE_0g",
+      "title": "Tekoälyagentit",
+      "topics": [
+        "OKF",
+        "agenttipohjaisuus",
+        "koulutus",
+        "tekoälyagentit",
+        "tulevaisuus"
+      ],
+      "landingType": "externalSource"
+    },
+    {
+      "canonicalId": "NwJZ8FVrbTIF80L",
+      "title": "Tekoäly opettajan työkaluna",
+      "topics": [
+        "käytännön vinkit",
+        "opettajan työkalu",
+        "opetuskäyttö",
+        "tekoäly"
+      ],
+      "landingType": "externalSource"
+    },
+    {
+      "canonicalId": "7IyyLkfG4NvVNFy",
+      "title": "Kuinka tekoäly toimii? – Webinaari",
+      "topics": [
+        "opettajat",
+        "tekoälyn perusteet",
+        "toimintaperiaatteet",
+        "webinaari"
+      ],
+      "landingType": "externalSource"
+    },
+    {
+      "canonicalId": "IMm6-JD8PRTBK2F",
+      "title": "Tekoäly yhdistystoiminnassa",
+      "topics": [
+        "OK Opintokeskus",
+        "järjestöt",
+        "tekoälytyökalut",
+        "yhdistystoiminta"
+      ],
+      "landingType": "externalSource"
+    },
+    {
+      "canonicalId": "aDY3w1A8bLJm0kr",
+      "title": "Tekoäly, opettajan työ ja arvioinnin muutos",
+      "topics": [
+        "ChatGPT",
+        "arviointi",
+        "generatiivinen tekoäly",
+        "muutos",
+        "opettajan työ",
+        "promptaus"
+      ],
+      "landingType": "externalSource"
+    },
+    {
+      "canonicalId": "I-r13uz6Wiip2cC",
+      "title": "Generatiivinen tekoäly – Tekoäly työkaluna III",
+      "topics": [
+        "HeyGen",
+        "NotebookLM",
+        "generatiivinen tekoäly",
+        "kieltenopetus",
+        "koulutussarja",
+        "kriittinen lukutaito",
+        "opettajat",
+        "promptaus"
+      ],
+      "landingType": "externalSource"
+    },
+    {
+      "canonicalId": "4zq6qy9B3GX9FQK",
+      "title": "Tekoäly osana arkisia sovelluksia",
+      "topics": [
+        "Microsoft Translator",
+        "S2-opetus",
+        "arkiset sovellukset",
+        "integraatio",
+        "konekääntäminen",
+        "saavutettavuus",
+        "tekoäly arjessa",
+        "tekstittäminen",
+        "tietoisuus"
+      ],
+      "landingType": "externalSource"
+    },
+    {
+      "canonicalId": "uZIb__sx1r4EAqT",
+      "title": "Tekoälyosaamista kieltenopetukseen",
+      "topics": [
+        "GDPR",
+        "generatiivinen tekoäly",
+        "hybridiälykkyys",
+        "kieltenopetus",
+        "luento",
+        "opetus",
+        "shadow AI",
+        "tekoälyosaaminen"
+      ],
+      "landingType": "externalSource"
+    },
+    {
+      "canonicalId": "y4oM9QaEQrxs2Lq",
+      "title": "Annie Advisor – Generative AI as a Tool to Adapt Teaching",
+      "topics": [
+        "AIED",
+        "Annie Advisor",
+        "MagicSchool",
+        "adaptive teaching",
+        "differentiation",
+        "eriyttäminen",
+        "generatiivinen tekoäly",
+        "generative AI",
+        "learning support",
+        "ohjaus",
+        "oppimisen tuki"
+      ],
+      "landingType": "externalSource"
+    },
+    {
+      "canonicalId": "H13QgkxVZpEyel5",
+      "title": "Tekoälyluento – OSYK",
+      "topics": [
+        "EU AI Act",
+        "OSYK",
+        "opetushenkilöstö",
+        "oppimisen arviointi",
+        "perusteet",
+        "sosiaalinen media",
+        "tekoäly",
+        "tekoälyluento"
+      ],
+      "landingType": "externalSource"
+    },
+    {
+      "canonicalId": "H8tSyhG_9jcwRpr",
+      "title": "VESO elokuu 2024 – Tekoäly koulussa",
+      "topics": [
+        "DALL-E promptit",
+        "PowerPoint-tekstitys",
+        "Simo",
+        "VESO",
+        "dyslexia-tuki",
+        "elokuu",
+        "lukituki",
+        "lukuvuoden alku",
+        "syventävä lukuohjelma",
+        "tekoäly koulussa",
+        "tekoälytyökalut"
+      ],
+      "landingType": "localDetail"
+    },
+    {
+      "canonicalId": "tjjrZpkP2brKCKh",
+      "title": "Fedutalk – Generative AI in Education",
+      "topics": [
+        "Fedutalk",
+        "Finland",
+        "Kosovo",
+        "education",
+        "generatiivinen tekoäly",
+        "generative AI",
+        "kansainvälisyys",
+        "koulutus"
+      ],
+      "landingType": "externalSource"
+    },
+    {
+      "canonicalId": "S9UhE1RwcwtuNMz",
+      "title": "Tekoäly opettajan työkaluna – Inspiraatiosessio",
+      "topics": [
+        "Azure AI",
+        "LUTK",
+        "Microsoft AI",
+        "inspiraatio",
+        "motivointi",
+        "opettajan työkalut",
+        "sanelu",
+        "tdk-luento",
+        "tekoäly arjessa",
+        "tekoälyinspis",
+        "tekstitys",
+        "tietoisuus"
+      ],
+      "landingType": "externalSource"
+    },
+    {
+      "canonicalId": "ULcBKqsIIMap4cc",
+      "title": "Oppiva verkosto – Analytiikkaesitys",
+      "topics": [
+        "ChatGPT",
+        "Oppiva verkosto",
+        "analytiikka",
+        "data",
+        "dataslip",
+        "digijalki",
+        "hybridi-intelligenssi",
+        "kehittäminen",
+        "oppimisanalytiikka",
+        "tutkimus"
+      ],
+      "landingType": "externalSource"
+    }
+  ]
+}

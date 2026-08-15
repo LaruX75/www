@@ -797,6 +797,39 @@
   margin-bottom: 1.15rem;
 }
 
+.presentation-archive-controls {
+  display: grid;
+  gap: 0.85rem;
+  margin-bottom: 1.15rem;
+}
+
+.presentation-archive-controls-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) repeat(2, minmax(0, 1fr)) auto;
+  gap: 0.85rem;
+  align-items: end;
+}
+
+.presentation-archive-control {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.presentation-archive-control--action {
+  align-self: end;
+}
+
+.presentation-archive-input,
+.presentation-archive-select {
+  width: 100%;
+  border: 1px solid color-mix(in srgb, var(--bs-primary) 68%, var(--bs-border-color));
+  border-radius: 999px;
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  font-weight: 700;
+  padding: 0.65rem 1rem;
+}
+
 .presentation-archive-filter-group {
   display: flex;
   flex-wrap: wrap;
@@ -878,19 +911,21 @@
 }
 
 .presentation-archive-select {
-  width: min(100%, 24rem);
-  border: 1px solid color-mix(in srgb, var(--bs-primary) 68%, var(--bs-border-color));
-  border-radius: 999px;
-  background-color: var(--bs-body-bg);
-  color: var(--bs-body-color);
-  font-weight: 700;
-  padding: 0.65rem 2.35rem 0.65rem 1rem;
+  width: 100%;
+  padding-right: 2.35rem;
 }
 
+.presentation-archive-input:focus,
 .presentation-archive-select:focus {
   border-color: var(--bs-primary);
   box-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--bs-primary) 18%, transparent);
   outline: 0;
+}
+
+.presentation-archive-hint {
+  color: var(--bs-secondary-color);
+  font-size: 0.88rem;
+  line-height: 1.5;
 }
 
 .presentation-archive-filter:hover,
@@ -1266,6 +1301,10 @@ button.presentation-course-chip {
 }
 
 @media (max-width: 991.98px) {
+  .presentation-archive-controls-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .presentation-feature-layout,
   .presentation-route-grid,
   .presentation-route-support,
@@ -1546,6 +1585,10 @@ button.presentation-course-chip {
   .presentation-context-card-head {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .presentation-archive-controls-grid {
+    grid-template-columns: 1fr;
   }
 
   .presentation-scroller-card {

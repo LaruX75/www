@@ -1,6 +1,16 @@
+const fs = require("fs");
+const path = require("path");
 const { createCanvaPresentationLookup, readLocalPresentationSources } = require("./presentationSources");
 const { getCanvaDesignId } = require("./canvaUrl");
 const slideshareContent = require("../../slideshare-content.json");
+
+const ROOT = path.join(__dirname, "..", "..");
+const ACCEPTED_PRESENTATION_CURATION_DECISIONS_PATH = path.join(
+  ROOT,
+  "docs",
+  "data",
+  "presentations-local-detail-curation-f3c-p2-accepted-decisions.json"
+);
 
 const PRESENTATION_SOURCE_ORDER = [
   "aoe",
@@ -27,17 +37,31 @@ const PRESENTATION_SOURCE_LABELS = {
 const PUBLIC_PRESENTATION_FIELDS = Object.freeze([
   "id",
   "sourceKey",
+  "sourceType",
   "sourceLabel",
   "title",
   "url",
   "pageUrl",
+  "localPageUrl",
+  "hasLocalDetail",
+  "externalFirst",
+  "landingType",
+  "landingUrl",
   "externalUrl",
+  "sourceUrl",
+  "mediaType",
   "thumbnail",
   "description",
   "date",
   "year",
   "lang",
   "sourceLanguage",
+  "topics",
+  "presentationType",
+  "role",
+  "event",
+  "eventType",
+  "location",
   "slideCount",
   "itemCount",
   "badgeText",
@@ -50,7 +74,9 @@ const PUBLIC_PRESENTATION_FIELDS = Object.freeze([
   "paareitti",
   "asiantuntijaprofiili",
   "sivuyhteys",
-  "courseContexts"
+  "courseContexts",
+  "representations",
+  "curationStatus"
 ]);
 
 const PUBLIC_PRESENTATION_LEGACY_FIELDS = Object.freeze({
@@ -269,6 +295,40 @@ function normalizeSlideshareUrl(url = "") {
     .replace(/\/+$/, "");
 }
 
+function readAcceptedPresentationCurationDecisions() {
+  if (!fs.existsSync(ACCEPTED_PRESENTATION_CURATION_DECISIONS_PATH)) return {};
+  return JSON.parse(fs.readFileSync(ACCEPTED_PRESENTATION_CURATION_DECISIONS_PATH, "utf8"));
+}
+
+function getYouTubeId(url = "") {
+  const value = String(url || "").trim();
+  if (!value) return "";
+
+  try {
+    const parsed = new URL(value);
+    const host = parsed.hostname.toLowerCase().replace(/^www\./, "");
+    if (host === "youtu.be") return parsed.pathname.split("/").filter(Boolean)[0] || "";
+    if (host.endsWith("youtube.com")) return parsed.searchParams.get("v") || "";
+  } catch (_) {
+    return "";
+  }
+
+  return "";
+}
+
+function sourceIdentifierForUrl(url = "") {
+  const canvaId = getCanvaDesignId(url);
+  if (canvaId) return `canva:${canvaId}`;
+
+  const youtubeId = getYouTubeId(url);
+  if (youtubeId) return `youtube:${youtubeId}`;
+
+  const slideshareUrl = normalizeSlideshareUrl(url);
+  if (/slideshare\.net/i.test(slideshareUrl)) return `slideshare:${slideshareUrl}`;
+
+  return "";
+}
+
 function isGenericSlideshareDescription(text = "") {
   const normalized = String(text || "").trim().toLowerCase();
   return !normalized || normalized === "slideshare-esitys" || normalized === "slideshare presentation";
@@ -429,8 +489,355 @@ function toPublicPresentationRecord(record = {}) {
   return pickFields(record, PUBLIC_PRESENTATION_FIELDS);
 }
 
+function uniqueStrings(values = []) {
+  return [...new Set(
+    toArray(values)
+      .map((value) => String(value || "").trim())
+      .filter(Boolean)
+  )];
+}
+
+function deriveYear(value = "") {
+  const match = String(value || "").match(/\b(19|20)\d{2}\b/);
+  return match ? match[0] : "";
+}
+
+function normalizeSourceType(sourceKey = "") {
+  switch (sourceKey) {
+    case "aoe":
+      return "aoe";
+    case "canva":
+      return "canva";
+    case "slideshare":
+      return "slideshare";
+    case "customMaterials":
+      return "ouka";
+    case "curatedVideos":
+    case "videoSeries":
+    case "youtubeVideos":
+    case "youtube":
+      return "youtube";
+    default:
+      return "other";
+  }
+}
+
+function normalizeMediaType(sourceKey = "") {
+  switch (sourceKey) {
+    case "canva":
+    case "slideshare":
+      return "slides";
+    case "curatedVideos":
+    case "youtubeVideos":
+      return "video";
+    case "videoSeries":
+    case "youtube":
+      return "videoSeries";
+    case "aoe":
+      return "document";
+    case "customMaterials":
+      return "webMaterial";
+    default:
+      return "unknown";
+  }
+}
+
+function normalizePresentationType(record = {}, sourceKey = "") {
+  const explicit = String(record.kategoria || record.badgeText || "").trim();
+  if (explicit) return explicit;
+  if (sourceKey === "aoe") return "learningMaterial";
+  if (sourceKey === "customMaterials") return "webMaterial";
+  if (sourceKey === "curatedVideos") return "recording";
+  if (sourceKey === "videoSeries" || sourceKey === "youtube") return "series";
+  return "presentation";
+}
+
+function sourceKeyForLocalDetail(record = {}) {
+  const source = String(record.source || "").trim().toLowerCase();
+  if (source === "canva") return "canva";
+  if (source === "slideshare") return "slideshare";
+  if (source === "youtube") return "curatedVideos";
+  if (source === "ouka" || source === "web") return "customMaterials";
+  return "customMaterials";
+}
+
+function sourceLabelForLocalDetail(record = {}) {
+  const sourceKey = sourceKeyForLocalDetail(record);
+  if (sourceKey === "curatedVideos") return "YouTube / paikallinen esityssivu";
+  if (sourceKey === "customMaterials") return "Paikallinen esityssivu";
+  return PRESENTATION_SOURCE_LABELS[sourceKey] || "Paikallinen esityssivu";
+}
+
+function normalizePresentationRole(record = {}) {
+  const route = String(record.paareitti || "").trim();
+  if (route) return route.replace(/^route:/, "");
+  const profiles = Array.isArray(record.asiantuntijaprofiili) ? record.asiantuntijaprofiili : [];
+  return profiles.length ? profiles[0] : "";
+}
+
+function normalizeEvent(record = {}) {
+  return String(record.jarjestaja || "").trim();
+}
+
+function normalizeEventType(record = {}, sourceKey = "") {
+  const explicit = String(record.kategoria || "").trim();
+  if (explicit) return explicit;
+  if (sourceKey === "aoe") return "learning-material";
+  if (sourceKey === "curatedVideos") return "recording";
+  if (sourceKey === "videoSeries" || sourceKey === "youtube") return "series";
+  return "";
+}
+
+function inferLocation(record = {}) {
+  const text = `${record.title || ""} ${record.description || ""} ${record.jarjestaja || ""}`.toLowerCase();
+  const known = [
+    ["riihim", "Riihimaki"],
+    ["kempele", "Kempele"],
+    ["kokkola", "Kokkola"],
+    ["tampere", "Tampere"],
+    ["pori", "Pori"],
+    ["kerava", "Kerava"],
+    ["simo", "Simo"],
+    ["oulu", "Oulu"]
+  ];
+  const match = known.find(([needle]) => text.includes(needle));
+  return match ? match[1] : "";
+}
+
+function withPresentationSemantics(record = {}, sourceKey = "") {
+  const localPageUrl = String(record.localPageUrl || record.pageUrl || "").trim();
+  const externalSourceUrl = String(record.sourceUrl || record.externalUrl || record.url || "").trim();
+  const hasLocalDetail = Boolean(localPageUrl);
+  const landingUrl = hasLocalDetail ? localPageUrl : externalSourceUrl;
+  const topics = uniqueStrings([
+    ...toArray(record.topics),
+    ...toArray(record.categories),
+    ...toArray(record.keywords)
+  ]);
+
+  return {
+    ...record,
+    sourceType: record.sourceType || normalizeSourceType(sourceKey),
+    sourceUrl: externalSourceUrl,
+    mediaType: record.mediaType || normalizeMediaType(sourceKey),
+    localPageUrl,
+    hasLocalDetail,
+    externalFirst: !hasLocalDetail,
+    landingType: hasLocalDetail ? "localDetail" : "externalSource",
+    landingUrl,
+    topics,
+    presentationType: record.presentationType || normalizePresentationType(record, sourceKey),
+    role: record.role || normalizePresentationRole(record),
+    event: record.event || normalizeEvent(record),
+    eventType: record.eventType || normalizeEventType(record, sourceKey),
+    location: record.location || inferLocation(record),
+    year: record.year || deriveYear(record.date)
+  };
+}
+
+function createPresentationRepresentation(record = {}, {
+  relationship = "primary",
+  provenance = "canonical-source",
+  label = ""
+} = {}) {
+  const sourceKey = record.sourceKey || sourceKeyForLocalDetail(record);
+  const sourceType = record.sourceType || normalizeSourceType(sourceKey);
+  const mediaType = record.mediaType || normalizeMediaType(sourceKey);
+  const localPageUrl = String(record.localPageUrl || record.pageUrl || "").trim();
+  const externalUrl = String(record.externalUrl || record.sourceUrl || record.publicUrl || record.url || "").trim();
+  const url = String(record.url || record.publicUrl || record.sourceUrl || record.externalUrl || localPageUrl || "").trim();
+  const sourceIdentifier = sourceIdentifierForUrl(externalUrl || url);
+
+  return pickFields({
+    relationship,
+    type: relationship,
+    sourceKey,
+    sourceType,
+    mediaType,
+    title: record.title || "",
+    label: label || record.badgeText || record.sourceLabel || "",
+    url,
+    sourceUrl: externalUrl,
+    externalUrl,
+    localPageUrl,
+    sourceIdentifier,
+    provenance
+  }, [
+    "relationship",
+    "type",
+    "sourceKey",
+    "sourceType",
+    "mediaType",
+    "title",
+    "label",
+    "url",
+    "sourceUrl",
+    "externalUrl",
+    "localPageUrl",
+    "sourceIdentifier",
+    "provenance"
+  ]);
+}
+
+function mergeRepresentations(...groups) {
+  const seen = new Set();
+  const merged = [];
+
+  groups.flat().filter(Boolean).forEach((representation) => {
+    const key = [
+      representation.relationship || "",
+      representation.sourceIdentifier || "",
+      representation.localPageUrl || "",
+      representation.externalUrl || representation.sourceUrl || representation.url || "",
+      representation.title || ""
+    ].join("|");
+    if (seen.has(key)) return;
+    seen.add(key);
+    merged.push(representation);
+  });
+
+  return merged;
+}
+
+function addRepresentation(item = {}, representation = {}) {
+  return {
+    ...item,
+    representations: mergeRepresentations(item.representations || [], representation)
+  };
+}
+
+function findCanonicalPresentationByDecisionId(items = [], id = "") {
+  const value = String(id || "").trim();
+  if (!value) return null;
+  return items.find((item) =>
+    item.id === value ||
+    getCanvaDesignId(item.url || item.sourceUrl || item.externalUrl || "") === value ||
+    item.localPageUrl === value ||
+    item.pageUrl === value ||
+    item.landingUrl === value ||
+    item.url === value ||
+    item.externalUrl === value ||
+    item.sourceUrl === value
+  ) || null;
+}
+
+function createCanonicalDistinctLocalPresentation(detail = {}) {
+  const sourceKey = sourceKeyForLocalDetail(detail);
+  return toPublicPresentationRecord(withPresentationSemantics({
+    id: detail.pageUrl || detail.url || "",
+    sourceKey,
+    sourceLabel: sourceLabelForLocalDetail(detail),
+    title: detail.title || "Nimeton esitys",
+    url: detail.url || detail.publicUrl || detail.sourceUrl || detail.pageUrl || "",
+    pageUrl: "",
+    localPageUrl: detail.pageUrl || "",
+    externalUrl: detail.publicUrl || detail.sourceUrl || detail.url || "",
+    sourceUrl: detail.sourceUrl || detail.url || detail.publicUrl || "",
+    thumbnail: detail.thumbnail || "",
+    description: detail.description || "",
+    date: detail.date || "",
+    categories: Array.isArray(detail.categories) ? detail.categories.filter(Boolean) : [],
+    keywords: Array.isArray(detail.keywords) ? detail.keywords.filter(Boolean) : [],
+    courseContexts: Array.isArray(detail.courseContexts) ? detail.courseContexts : [],
+    sourceLanguage: detail.sourceLanguage || "",
+    slideCount: Number.isFinite(detail.slideCount) ? detail.slideCount : null,
+    badgeText: detail.badgeText || "",
+    curationStatus: "human-approved-distinct-local-presentation"
+  }, sourceKey));
+}
+
+function applyAcceptedPresentationCuration(items = [], sourceData = {}) {
+  const decisions = readAcceptedPresentationCurationDecisions();
+  const decisionEntries = Object.entries(decisions);
+  if (!decisionEntries.length) return items;
+
+  const detailsByPageUrl = new Map(
+    toArray(sourceData.presentations)
+      .filter((detail) => detail.pageUrl)
+      .map((detail) => [detail.pageUrl, detail])
+  );
+  const nextItems = items.filter(Boolean).map((item) => ({
+    ...item,
+    representations: mergeRepresentations(
+      item.representations || [],
+      createPresentationRepresentation(item)
+    )
+  }));
+  const itemIndexByKey = () => new Map(nextItems.filter(Boolean).map((item, index) => [item, index]));
+
+  decisionEntries.forEach(([caseId, decision]) => {
+    const detailUrl = String(decision.detailUrl || "").trim();
+    if (!detailUrl) {
+      throw new Error(`Accepted presentation curation decision ${caseId} is missing detailUrl.`);
+    }
+
+    const detail = detailsByPageUrl.get(detailUrl);
+    if (!detail) {
+      throw new Error(`Accepted presentation curation decision ${caseId} does not resolve to a local detail record: ${detailUrl}`);
+    }
+
+    if (decision.humanDecision === "MATCHES_EXISTING_CANONICAL") {
+      const match = findCanonicalPresentationByDecisionId(nextItems, decision.humanCanonicalId);
+      if (!match) {
+        throw new Error(`Accepted match ${caseId} target not found: ${decision.humanCanonicalId}`);
+      }
+      const index = itemIndexByKey().get(match);
+      nextItems[index] = addRepresentation({
+        ...match,
+        localPageUrl: detail.pageUrl,
+        hasLocalDetail: true,
+        externalFirst: false,
+        landingType: "localDetail",
+        landingUrl: detail.pageUrl,
+        curationStatus: "human-approved-local-detail-match"
+      }, createPresentationRepresentation(detail, {
+        relationship: "canonicalLocalDetail",
+        provenance: `F3C-P2:${caseId}`,
+        label: "Hyvaksytty paikallinen esityssivu"
+      }));
+      return;
+    }
+
+    if (decision.humanDecision === "ALTERNATE_REPRESENTATION") {
+      const match = findCanonicalPresentationByDecisionId(nextItems, decision.humanCanonicalId);
+      if (!match) {
+        throw new Error(`Accepted alternate representation ${caseId} target not found: ${decision.humanCanonicalId}`);
+      }
+      const index = itemIndexByKey().get(match);
+      nextItems[index] = addRepresentation({
+        ...match,
+        curationStatus: match.curationStatus || "human-approved-alternate-representation"
+      }, createPresentationRepresentation(detail, {
+        relationship: "alternateRepresentation",
+        provenance: `F3C-P2:${caseId}`,
+        label: "Hyvaksytty vaihtoehtoinen representaatio"
+      }));
+      return;
+    }
+
+    if (decision.humanDecision === "IS_DISTINCT_LOCAL_PRESENTATION") {
+      const distinctItem = addRepresentation(
+        createCanonicalDistinctLocalPresentation(detail),
+        createPresentationRepresentation(detail, {
+          relationship: "canonicalLocalDetail",
+          provenance: `F3C-P2:${caseId}`,
+          label: "Hyvaksytty erillinen paikallinen esitys"
+        })
+      );
+
+      if (nextItems.some((item) => (item.id || item.landingUrl || item.url) === (distinctItem.id || distinctItem.landingUrl || distinctItem.url))) {
+        throw new Error(`Accepted distinct presentation ${caseId} would create duplicate canonical id: ${distinctItem.id}`);
+      }
+
+      nextItems.push(distinctItem);
+    }
+  });
+
+  return sortCanonicalItems(nextItems);
+}
+
 function createCanonicalAoeItems(rows = []) {
-  return toArray(rows).map((item) => toPublicPresentationRecord({
+  return toArray(rows).map((item) => toPublicPresentationRecord(withPresentationSemantics({
     sourceKey: "aoe",
     sourceLabel: PRESENTATION_SOURCE_LABELS.aoe,
     title: item?.title || "Nimetön oppimateriaali",
@@ -439,36 +846,43 @@ function createCanonicalAoeItems(rows = []) {
     description: item?.summary || "",
     date: String(item?.year || "").trim(),
     year: String(item?.year || "").trim()
-  }));
+  }, "aoe")));
 }
 
-function createCanonicalCanvaItems(rows = []) {
+function createCanonicalCanvaItems(rows = [], canvaLookup = { byId: new Map(), byTitle: new Map() }) {
   return toArray(rows).map((item) => toPublicPresentationRecord({
-    id: item?.id || "",
-    sourceKey: "canva",
-    sourceLabel: PRESENTATION_SOURCE_LABELS.canva,
-    title: item?.title || "Nimetön esitys",
-    url: item?.url || "",
-    pageUrl: item?.pageUrl ?? null,
-    thumbnail: item?.thumbnail || "",
-    description: item?.description || "",
-    date: item?.date ?? null,
-    categories: Array.isArray(item?.categories) ? item.categories.filter(Boolean) : [],
-    lang: item?.lang || "fi",
-    sourceLanguage: item?.sourceLanguage || "",
-    slideCount: Number.isFinite(item?.slideCount) ? item.slideCount : null,
-    jarjestaja: item?.jarjestaja || "",
-    kategoria: item?.kategoria || "",
-    paakortti: item?.paakortti === true,
-    paareitti: item?.paareitti,
-    asiantuntijaprofiili: Array.isArray(item?.asiantuntijaprofiili) ? item.asiantuntijaprofiili : [],
-    sivuyhteys: Array.isArray(item?.sivuyhteys) ? item.sivuyhteys : [],
-    courseContexts: Array.isArray(item?.courseContexts) ? item.courseContexts : []
+    ...withPresentationSemantics({
+      id: item?.id || getCanvaDesignId(item?.sourceUrl || item?.publicUrl || item?.url || item?.link || "") || "",
+      sourceKey: "canva",
+      sourceLabel: PRESENTATION_SOURCE_LABELS.canva,
+      title: item?.title || "Nimetön esitys",
+      url: item?.url || item?.publicUrl || item?.link || "",
+      pageUrl: item?.pageUrl ?? null,
+      localPageUrl:
+        item?.pageUrl ||
+        canvaLookup.byId.get(item?.id || "")?.pageUrl ||
+        canvaLookup.byTitle.get(String(item?.title || "").trim().toLowerCase())?.pageUrl ||
+        "",
+      thumbnail: item?.thumbnail || "",
+      description: item?.description || "",
+      date: item?.date ?? null,
+      categories: Array.isArray(item?.categories) ? item.categories.filter(Boolean) : [],
+      lang: item?.lang || "fi",
+      sourceLanguage: item?.sourceLanguage || "",
+      slideCount: Number.isFinite(item?.slideCount) ? item.slideCount : null,
+      jarjestaja: item?.jarjestaja || "",
+      kategoria: item?.kategoria || "",
+      paakortti: item?.paakortti === true,
+      paareitti: item?.paareitti,
+      asiantuntijaprofiili: Array.isArray(item?.asiantuntijaprofiili) ? item.asiantuntijaprofiili : [],
+      sivuyhteys: Array.isArray(item?.sivuyhteys) ? item.sivuyhteys : [],
+      courseContexts: Array.isArray(item?.courseContexts) ? item.courseContexts : []
+    }, "canva")
   }));
 }
 
 function createCanonicalCustomMaterialItems(rows = []) {
-  return toArray(rows).map((item) => toPublicPresentationRecord({
+  return toArray(rows).map((item) => toPublicPresentationRecord(withPresentationSemantics({
     sourceKey: "customMaterials",
     sourceLabel: PRESENTATION_SOURCE_LABELS.customMaterials,
     title: item?.title || "Nimetön materiaali",
@@ -479,11 +893,11 @@ function createCanonicalCustomMaterialItems(rows = []) {
     description: item?.description || "",
     date: item?.date || "",
     badgeText: item?.badgeText || "Verkkomateriaali"
-  }));
+  }, "customMaterials")));
 }
 
 function createCanonicalCuratedVideoItems(rows = []) {
-  return toArray(rows).map((item) => toPublicPresentationRecord({
+  return toArray(rows).map((item) => toPublicPresentationRecord(withPresentationSemantics({
     sourceKey: "curatedVideos",
     sourceLabel: item?.sourceLabel || PRESENTATION_SOURCE_LABELS.curatedVideos,
     title: item?.title || "Nimetön video",
@@ -494,11 +908,11 @@ function createCanonicalCuratedVideoItems(rows = []) {
     description: item?.description || "",
     date: item?.date || "",
     badgeText: item?.badgeText || "Video / tallenne"
-  }));
+  }, "curatedVideos")));
 }
 
 function createCanonicalVideoSeriesItems(rows = []) {
-  return toArray(rows).map((item) => toPublicPresentationRecord({
+  return toArray(rows).map((item) => toPublicPresentationRecord(withPresentationSemantics({
     sourceKey: "videoSeries",
     sourceLabel: item?.sourceLabel || PRESENTATION_SOURCE_LABELS.videoSeries,
     title: item?.title || "Nimetön videosarja",
@@ -510,11 +924,11 @@ function createCanonicalVideoSeriesItems(rows = []) {
     date: item?.date || "",
     itemCount: Number.isFinite(item?.itemCount) ? item.itemCount : undefined,
     badgeText: item?.badgeText || "Videosarja"
-  }));
+  }, "videoSeries")));
 }
 
 function createCanonicalYoutubeVideoItems(rows = []) {
-  return toArray(rows).map((item) => toPublicPresentationRecord({
+  return toArray(rows).map((item) => toPublicPresentationRecord(withPresentationSemantics({
     sourceKey: "youtubeVideos",
     sourceLabel: PRESENTATION_SOURCE_LABELS.youtubeVideos,
     title: item?.title || "Nimetön video",
@@ -522,11 +936,11 @@ function createCanonicalYoutubeVideoItems(rows = []) {
     thumbnail: item?.thumbnail || "",
     description: item?.description || "",
     date: item?.publishedAt || ""
-  }));
+  }, "youtubeVideos")));
 }
 
 function createCanonicalYoutubePlaylistItems(rows = []) {
-  return toArray(rows).map((item) => toPublicPresentationRecord({
+  return toArray(rows).map((item) => toPublicPresentationRecord(withPresentationSemantics({
     sourceKey: "youtube",
     sourceLabel: PRESENTATION_SOURCE_LABELS.youtube,
     title: item?.title || "Nimetön soittolista",
@@ -535,11 +949,11 @@ function createCanonicalYoutubePlaylistItems(rows = []) {
     description: item?.description || "",
     date: item?.publishedAt || "",
     itemCount: Number.isFinite(item?.itemCount) ? item.itemCount : 0
-  }));
+  }, "youtube")));
 }
 
 function createCanonicalSlideshareItems(rows = []) {
-  return toArray(rows).map((item) => toPublicPresentationRecord({
+  return toArray(rows).map((item) => toPublicPresentationRecord(withPresentationSemantics({
     sourceKey: "slideshare",
     sourceLabel: PRESENTATION_SOURCE_LABELS.slideshare,
     title: item?.title || "Nimetön esitys",
@@ -553,13 +967,13 @@ function createCanonicalSlideshareItems(rows = []) {
     courseContexts: Array.isArray(item?.courseContexts) ? item.courseContexts : [],
     sourceLanguage: item?.sourceLanguage || "",
     slideCount: Number.isFinite(item?.slideCount) ? item.slideCount : null
-  }));
+  }, "slideshare")));
 }
 
 function buildCanonicalPresentationItems(sourceData = {}) {
-  return sortCanonicalItems([
+  const items = sortCanonicalItems([
     ...createCanonicalAoeItems(sourceData.aoeRows),
-    ...createCanonicalCanvaItems(sourceData.canvaRows),
+    ...createCanonicalCanvaItems(sourceData.canvaRows, sourceData.canvaLookup),
     ...createCanonicalCustomMaterialItems(sourceData.customMaterials),
     ...createCanonicalCuratedVideoItems(sourceData.curatedVideos),
     ...createCanonicalVideoSeriesItems(sourceData.videoSeries),
@@ -567,14 +981,18 @@ function buildCanonicalPresentationItems(sourceData = {}) {
     ...createCanonicalYoutubePlaylistItems(sourceData.youtubeRows),
     ...createCanonicalSlideshareItems(sourceData.slideshareItems)
   ]);
+
+  return sourceData.applyAcceptedCuration
+    ? applyAcceptedPresentationCuration(items, sourceData)
+    : items;
 }
 
 function buildCanonicalPresentationPageRecords(sourceData = {}) {
-  const canonicalItemsByPageUrl = new Map(
-    buildCanonicalPresentationItems(sourceData)
-      .filter((item) => item?.pageUrl)
-      .map((item) => [item.pageUrl, item])
-  );
+  const canonicalItemsByPageUrl = new Map();
+  buildCanonicalPresentationItems(sourceData).forEach((item) => {
+    if (item?.pageUrl) canonicalItemsByPageUrl.set(item.pageUrl, item);
+    if (item?.localPageUrl) canonicalItemsByPageUrl.set(item.localPageUrl, item);
+  });
 
   return toArray(sourceData.presentations)
     .map((item) => {
@@ -603,7 +1021,7 @@ function buildCanonicalPresentationPageRecords(sourceData = {}) {
         date: item?.date ?? canonicalItem?.date ?? "",
         year: canonicalItem?.year || null,
         lang: canonicalItem?.lang || "fi",
-        sourceLanguage: item?.sourceLanguage ?? canonicalItem?.sourceLanguage,
+        sourceLanguage: item?.sourceLanguage ?? (canonicalItem?.sourceLanguage || undefined),
         slideCount: Number.isFinite(item?.slideCount)
           ? item.slideCount
           : (Number.isFinite(canonicalItem?.slideCount) ? canonicalItem.slideCount : undefined),
@@ -624,6 +1042,10 @@ function buildCanonicalPresentationPageLookup(data = {}) {
 }
 
 function toLegacyPublicRow(item = {}) {
+  if (item.curationStatus === "human-approved-distinct-local-presentation") {
+    return null;
+  }
+
   switch (item.sourceKey) {
     case "aoe":
       return pickFields({
@@ -801,9 +1223,35 @@ function countFeedbackRefs(items = []) {
   return ids.size;
 }
 
+function canvaRowKey(item = {}) {
+  return item.id || getCanvaDesignId(item.sourceUrl || item.publicUrl || item.url || item.link || "") || "";
+}
+
+function mergeCanvaRows(primaryRows = [], fallbackRows = []) {
+  const rows = [];
+  const seen = new Set();
+
+  [...toArray(primaryRows), ...toArray(fallbackRows)].forEach((item) => {
+    const key = canvaRowKey(item) || `${item?.title || ""}|${item?.url || item?.link || ""}`;
+    if (!key || seen.has(key)) return;
+    seen.add(key);
+    rows.push(item);
+  });
+
+  return rows;
+}
+
+function readFallbackCanvaRows() {
+  try {
+    return toArray(require("./canva")()?.tableRows);
+  } catch (_) {
+    return [];
+  }
+}
+
 function buildPresentationsPageSourceData(data = {}) {
   const presentations = readLocalPresentationSources();
-  const canvaRows = toArray(data.canva?.tableRows);
+  const canvaRows = mergeCanvaRows(data.canva?.tableRows, readFallbackCanvaRows());
   const canvaLookup = buildCanvaMaterialLookup({ canvaRows, presentations });
 
   return {
@@ -816,7 +1264,9 @@ function buildPresentationsPageSourceData(data = {}) {
     videoSeries: VIDEO_SERIES_ITEMS.map((item) => ({ ...item })),
     customMaterials: CUSTOM_MATERIAL_ITEMS.map((item) => ({ ...item })),
     slideshareItems: createSlideshareItems(presentations),
+    canvaLookup,
     canvaPageUrls: createCanvaPageUrls(presentations),
+    applyAcceptedCuration: true,
     contextItems: sortByDateDesc(
       enrichPresentationContexts(data.presentationContexts?.items || [], canvaLookup),
       "date"
