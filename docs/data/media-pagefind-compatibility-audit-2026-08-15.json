@@ -1,0 +1,597 @@
+{
+  "generatedAt": "2026-08-15T19:42:12.017Z",
+  "scope": "M1 media Pagefind compatibility audit (read-only)",
+  "source": {
+    "dir": "src/media",
+    "fileCount": 73,
+    "analysis": {
+      "total": 73,
+      "byMediaType": {
+        "video": 9,
+        "article": 55,
+        "podcast": 4,
+        "pressRelease": 2,
+        "assignment": 2,
+        "radio": 1
+      },
+      "byMediaRole": {
+        "interviewer": 3,
+        "about": 65,
+        "guest": 2,
+        "expertAssignment": 3
+      },
+      "byLang": {},
+      "mediaOutletDistinct": 28,
+      "withDate": 70,
+      "withoutDate": 3,
+      "withSourceUrl": 73,
+      "withoutSourceUrl": 0,
+      "withThumbnail": 67,
+      "withoutThumbnail": 6,
+      "withDescription": 73,
+      "withCategories": 73,
+      "withKeywords": 73,
+      "withExplicitContexts": 2,
+      "contentLengthZero": 0,
+      "contentLengthAvg": 535,
+      "mediaOutlets": [
+        "Acatiimi",
+        "Avoin tiede",
+        "Generation AI",
+        "Generation AI / YouTube",
+        "INOS Project / YouTube",
+        "ITK / YouTube",
+        "Kaleva",
+        "Kirjastot.fi",
+        "MTV Uutiset",
+        "MuOulu",
+        "OAJ",
+        "Opetus- ja kulttuuriministeriö",
+        "Opetushallitus",
+        "Osallistu Oulu / YouTube",
+        "Oulun Kokoomus / YouTube",
+        "Oulun teatteri",
+        "Oulun yliopisto",
+        "Oulun ylioppilaslehti",
+        "Radio Kaleva",
+        "Rantapohja",
+        "Sivistyksen Supervoimia",
+        "SoundCloud / Jari Laru",
+        "TKAEDITE",
+        "TechnocratNJ / YouTube",
+        "Think Open Digest / Tiederadio",
+        "Valtakunnallinen DigiErko-verkosto",
+        "YouTube",
+        "YouTube / Jari Laru"
+      ]
+    }
+  },
+  "projection": {
+    "path": "_site/data/media.json",
+    "exists": true,
+    "analysis": {
+      "schemaVersion": 1,
+      "generatedAt": "2026-08-15T11:25:48.158Z",
+      "count": 73,
+      "languages": {
+        "fi": 72,
+        "en": 1
+      },
+      "permalinkShape": {
+        "dated": 70,
+        "flatSlug": 3,
+        "flatItems": [
+          {
+            "url": "/mediassa/inos-project-interview-heis-open-science/",
+            "title": "How Can Higher Education Institutions Facilitate Open Science and Citizen Scienc"
+          },
+          {
+            "url": "/mediassa/ep-115-dr-jari-laru/",
+            "title": "Ep 115: Dr. Jari Laru"
+          },
+          {
+            "url": "/mediassa/kuinka-koulutus-vastaa-aikamme-haasteisiin-ja-mita-nuoret-toivovat/",
+            "title": "Kuinka koulutus vastaa aikamme haasteisiin – ja mitä nuoret toivovat?"
+          }
+        ]
+      },
+      "contextDistribution": {
+        "education": 39,
+        "media": 73,
+        "open-science": 6,
+        "teaching": 30,
+        "research": 2,
+        "business": 4,
+        "politics": 3,
+        "personal": 1
+      },
+      "contextEligibleForResearch": 2,
+      "sampleFields": [
+        "id",
+        "url",
+        "title",
+        "description",
+        "date",
+        "year",
+        "lang",
+        "contentType",
+        "contentTypeLabel",
+        "section",
+        "categories",
+        "keywords",
+        "contexts",
+        "mediaType",
+        "mediaRole",
+        "mediaOutlet",
+        "sourceUrl",
+        "thumbnail",
+        "taxonomyTypeKey",
+        "taxonomyTypeLabel"
+      ]
+    }
+  },
+  "pagefind": {
+    "builtHtmlScan": {
+      "htmlFiles": 76,
+      "globalAttrCounts": {
+        "data-pagefind-filter": 75,
+        "data-pagefind-ui": 75,
+        "data-pagefind-lang": 75,
+        "data-pagefind-placeholder": 75
+      },
+      "samplePerFile": {
+        "_site/mediassa/1999/07/31/anna-liisa-vatjus-anttila-muistelee/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2002/07/11/taide-yllattaa-asematunnelissa/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2005/02/27/kulttuurirahasto-jakoi-167-miljoonaa-euroa/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2009/06/12/oulun-yliopiston-tukisaatio-jakoi-apurahoja/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2012/12/05/reservin-aliupseeriston-ja-miehiston-ylennykset/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2013/02/01/lahes-sata-kuulijaa-kiimingissa/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2013/10/31/osallistu-oulu-lahidemokratia-ja-asukastoiminta/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2014/06/27/jaalin-kangasmetsan-monet-polut/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2015/03/10/oulun-yliopiston-opettaja-palkittiin-teknologiaopetuksesta/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2017/05/04/yksivuotissynttareita-viettanyt-ritaharjun-asukasyhdistys/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2018/01/28/pateniemessa-ja-haukiputaalla-aanestyspaikkojen-ovet-kavivat-tiuhaan/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2018/02/02/kiimingin-jokirannan-koulun-sisailmaongelmien-hitaasta-hoidosta-kantelu/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2018/02/27/palveluverkkoa-koskeva-toimivaltakiista-joutui-pattitilanteeseen/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2018/05/14/oulunsaloon-saatiin-kouluratkaisu/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2019/08/07/oululaispoliitikkojen-mielesta-yhdenvertaisuutta-voidaan-edistaa/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2019/08/23/oulun-kaupunginvaltuutetut-liikuttavan-yksimielisia-linnanmaan-uimahalli/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2020/03/12/jari-larun-verkkolive/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2020/04/16/linnanmaa-vei-voiton/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2020/06/10/huomisen-oulu-jari-laru/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2020/06/18/koronan-anti-suomalaiselle-pedagogiikalle/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2020/09/03/keskustakampus-halutaan-valtuuston-kasittelyyn/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2020/09/18/kaupunginjohtaja-laajala-torjuu-oulun-yliopiston-muuttoasian/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2020/09/29/kalevan-kysely-kunnallisveron-nosto-sopii-oulun-valtuutetuille/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2020/10/07/nimi-nimelta-nain-valtuutetut-aanestivat-oulun-kohu-ulkoistuksesta/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2020/10/12/omatoimiset-jaalilaiset-ovat-kunnostaneet-jarvea/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2020/11/20/munoulu-tutki-kokeile-erehdy-keksi-steam/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2020/12/07/vuotuiset-avoimen-tieteen-palkinnot-2020-jaettu/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2021/01/13/ei-guru-vaan-laru/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2021/04/26/yliopiston-kampusratkaisu-puhutti-taas-oulun-valtuustoa/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2021/08/12/juha-hannista-esitetaan-jalleen-oulun-kaupunginvaltuuston-johtoon/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2021/10/04/pohjois-pohjanmaan-maakuntavaltuuston-nimettiin-75/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2021/11/01/kalevan-kysely-oulun-kaupunginvaltuuston-enemmisto/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2021/11/04/oulun-yliopiston-hallintoelimiin-valittiin-paattajia/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2021/11/08/oulun-kaupunginvaltuusto-aanesti-11-kertaa-kotouttamisohjelmasta/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2021/11/30/kolmeatoista-valtuutettua-ihmetyttaa-paapoliisiaseman-sijoitus/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2022/02/28/yliopiston-keskustakampuksen-osalta-halutaan-viheltyy/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2022/03/09/avoimesti-tieteesta-jari-laru-kuoppaista-tieta/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2022/07/09/mita-ovat-mystiset-polkukeijut/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2023/03/04/oulun-yliopisto-mukana-generation-ai-hankkeessa/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2023/03/28/itk-webinaari-generation-ai-kyberturvallinen-ajattelutapa/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2023/05/22/oulun-infra-liikelaitoksen-ulkoistaminen-voitti/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2023/09/11/valtuusto-pui-pitkaan-oulun-kaupungintalon-rahantarvetta/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2023/10/13/munoulu-tekoaly-rantautuu-kouluihin-digikarnevaalit/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2023/11/13/munoulu-tekoaly-valtaa-alaa-luova-luokka-mediakasvatusseminaari/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2023/11/20/oaj-yliopistopaivat-2023/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2023/12/11/oph-digioppimisen-areena-2023/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2024/02/14/munoulu-poliitikot-vakuuttuivat-musiikkikoulutuksesta/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2024/02/26/valtuutetut-saivat-uutta-tietoa-kulttuuripaakaupu/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2024/03/14/nain-ylakoululaiset-jo-kayttavat-chatgpt-ta/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2024/03/22/oulun-kaupunki-aloittaa-selvityksen-kaupunkisoutuveneista/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2024/03/26/tyo-on-tehty-jaalin-asukasyhdistyksen-puheenjohtajana/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2024/04/02/itk-webinaari-miten-opetan-tekoalya-oppilaille-generation-ai/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2024/04/12/acatiimi-tekoaly-valloittaa-yliopistot/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2024/05/20/voitollinen-tilinpaatos-sai-osakseen-riemunkiljahd/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2024/10/01/rehtorinvaihdoksen-piti-olla-uuden-alku-yliopistolla/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2024/10/14/korvaako-tekoaly-opettajan-jari-laru/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2024/11/01/jaalin-ostoskeskuksen-yrittajilta-puretaan-rakennus/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2024/11/28/oulunteatteri-pikitalk-politiikkojen-empaattisuus-2024/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2025/03/11/generation-ai-selitettava-tekoaly-opetuksessa/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2025/05/19/oulun-kaupunginvaltuusto-kokoontui-viimeista-kertaa/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2025/05/27/lasten-ja-nuorten-tekoalylukutaitoa-edistava-hanke-voitti-vuoden-avoin-oppimateriaali-palkinnon/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2025/09/06/talta-tuntuu-kun-esikoinen-muuttaa-kotoa/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2025/10/01/okm-osaava-digiope-tyoryhma-2025/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2025/10/01/okm-osaava-digipe-tyoryhma-2025/index.html": [],
+        "_site/mediassa/2025/10/21/kuinka-generatiivinen-tekoaly-toimii-pieni-kielikone/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2025/12/24/24-myyttia-tekoalysta-ja-datasta-joulukalenteri/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2026/03/29/tekoaly-tekee-petoksen-koulutehtavissa-helpoksi/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2026/05/06/tekoalylukutaito-on-uusi-kansalaistaito-arjen-tekoalyhaaste/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2026/05/11/okm-kansallinen-viitekehys-tekoalyosaamiselle-2026/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2026/07/04/oulun-yliopiston-tutkijoita-mukana-palkitussa-tekoalylukutaidon-oppimisratkaisussa/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/2026/07/20/tkaedite-kosovon-opettajien-digiosaamista-kasitteleva-artikkeli-julkaistiin/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/ep-115-dr-jari-laru/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/inos-project-interview-heis-open-science/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/mediassa/kuinka-koulutus-vastaa-aikamme-haasteisiin-ja-mita-nuoret-toivovat/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ],
+        "_site/en/media/index.html": [
+          "data-pagefind-filter",
+          "data-pagefind-lang",
+          "data-pagefind-placeholder",
+          "data-pagefind-ui"
+        ]
+      }
+    }
+  }
+}

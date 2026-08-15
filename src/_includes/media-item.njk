@@ -5,6 +5,31 @@ layout: base.njk
 {% set currentLang = lang or (page.url | langFromUrl) %}
 {% set sourceHref = sourceUrl or externalUrl %}
 {% set isVideoPreview = mediaType == "video" or (sourceHref and ("youtube.com" in sourceHref or "youtu.be" in sourceHref)) %}
+{% set mediaTypeLabelValue = media.mediaTypeLabel(mediaType, currentLang) | trim %}
+{% set mediaRoleLabelValue = media.mediaRoleLabel(mediaRole, currentLang) | trim %}
+{% set mediaIsoDate = date | isoDate %}
+{% set mediaYear = (date | dateYear) if date else "" %}
+
+<span hidden data-pagefind-filter="Sisältö:Mediassa"></span>
+{% if mediaType %}
+<span hidden data-pagefind-filter="Mediatyyppi:{{ mediaTypeLabelValue }}"></span>
+<span hidden data-pagefind-meta="mediaType:{{ mediaType }}"></span>
+{% endif %}
+{% if mediaRole %}
+<span hidden data-pagefind-filter="Rooli:{{ mediaRoleLabelValue }}"></span>
+<span hidden data-pagefind-meta="mediaRole:{{ mediaRole }}"></span>
+{% endif %}
+{% if mediaOutlet %}
+<span hidden data-pagefind-meta="mediaOutlet:{{ mediaOutlet }}"></span>
+{% endif %}
+{% if mediaYear %}
+<span hidden data-pagefind-filter="Vuosi:{{ mediaYear }}"></span>
+<span hidden data-pagefind-meta="year:{{ mediaYear }}"></span>
+{% endif %}
+{% if mediaIsoDate %}
+<span hidden data-pagefind-meta="date:{{ mediaIsoDate }}"></span>
+<span hidden data-pagefind-sort="date:{{ mediaIsoDate }}"></span>
+{% endif %}
 
 <section class="content-detail-hero content-detail-hero--media py-5 border-bottom">
   <div class="site-shell">

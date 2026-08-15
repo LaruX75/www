@@ -275,6 +275,10 @@ const PRESETS = {
   "FindExplore:presentations": {
     source: "presentationsPage",
     sort: "date-desc"
+  },
+  "FindExplore:media": {
+    source: "media",
+    sort: "date-desc"
   }
 };
 

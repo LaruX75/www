@@ -1,0 +1,119 @@
+{
+  "generatedAt": "2026-08-15T20:59:54.438Z",
+  "scope": "M2 verification: media Pagefind metadata + FindExplore:media preset",
+  "counts": {
+    "totalMediaHtmlFiles": 76,
+    "detailPages": 73,
+    "aliasRedirects": 1,
+    "landingPages": 2,
+    "projectionCount": 73,
+    "langCounts": {
+      "fi": 72,
+      "en": 1
+    },
+    "typeCounts": {
+      "podcast": 4,
+      "video": 9,
+      "article": 55,
+      "pressRelease": 2,
+      "assignment": 2,
+      "radio": 1
+    },
+    "roleCounts": {
+      "about": 65,
+      "guest": 2,
+      "expertAssignment": 3,
+      "interviewer": 3
+    }
+  },
+  "detailAudit": {
+    "missing": {
+      "sisalto": [],
+      "mediaType": [],
+      "mediaRole": [],
+      "mediaOutlet": [],
+      "year": [
+        "mediassa/ep-115-dr-jari-laru/index.html",
+        "mediassa/inos-project-interview-heis-open-science/index.html",
+        "mediassa/kuinka-koulutus-vastaa-aikamme-haasteisiin-ja-mita-nuoret-toivovat/index.html"
+      ],
+      "date": [
+        "mediassa/ep-115-dr-jari-laru/index.html",
+        "mediassa/inos-project-interview-heis-open-science/index.html",
+        "mediassa/kuinka-koulutus-vastaa-aikamme-haasteisiin-ja-mita-nuoret-toivovat/index.html"
+      ],
+      "pagefindBodyPresent": []
+    },
+    "coverage": {
+      "pagefindBodyPresent": 0,
+      "sisalto": 73,
+      "mediaType": 73,
+      "mediaRole": 73,
+      "mediaOutlet": 73,
+      "year": 70,
+      "date": 70
+    }
+  },
+  "landingsAudit": {
+    "fi": {
+      "hasIgnore": true,
+      "hasKieliFilter": true
+    },
+    "en": {
+      "hasIgnore": true,
+      "hasKieliFilter": true
+    }
+  },
+  "presetAudit": {
+    "hasFindExploreMedia": true,
+    "hasFindExplorePresentations": true
+  },
+  "pagefindEntry": {
+    "exists": true,
+    "entry": {
+      "version": "1.5.2",
+      "languages": {
+        "fi": {
+          "hash": "fi_41c5923373",
+          "wasm": "fi",
+          "page_count": 1163
+        },
+        "en": {
+          "hash": "en_b33df32385",
+          "wasm": "en",
+          "page_count": 346
+        }
+      },
+      "include_characters": [
+        "_",
+        "‿",
+        "⁀",
+        "⁔",
+        "︳",
+        "︴",
+        "﹍",
+        "﹎",
+        "﹏",
+        "＿"
+      ]
+    }
+  },
+  "gates": {
+    "detailCountMatchesProjection": true,
+    "noDetailUsesPagefindBody": true,
+    "allDetailHaveSisalto": true,
+    "allDetailHaveMediaTypeMeta": true,
+    "allDetailHaveMediaRoleMeta": true,
+    "allDetailHaveMediaOutletMeta": true,
+    "fiLandingIgnoresGrid": true,
+    "enLandingIgnoresGrid": true,
+    "fiKieliFilter": true,
+    "enKieliFilter": true,
+    "presetRegistered": true,
+    "presentationsPresetPreserved": true,
+    "pagefindEntryPresent": true,
+    "yearMetaCoverageMatchesDatedItems": true,
+    "dateMetaCoverageMatchesDatedItems": true
+  },
+  "gateFailures": []
+}
