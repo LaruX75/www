@@ -32,6 +32,10 @@
 }
 
 .find-explore-result-family {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   margin: 0 0 0.35rem;
 }
 
@@ -48,25 +52,38 @@
   text-transform: uppercase;
 }
 
+/* PF4 — year suffix that sits beside the family badge on line 1. */
+.find-explore-result-year {
+  color: var(--bs-secondary-color);
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
 .find-explore-result-title {
   font-weight: 700;
   text-decoration-thickness: 0.08em;
   text-underline-offset: 0.18em;
 }
 
-.find-explore-result-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin: 0.4rem 0;
+/* PF4 — single primary metadata sentence under the title. Replaces the
+   previous chip strip so every family renders the same visual rhythm. */
+.find-explore-result-primary-meta {
+  color: var(--bs-secondary-color);
+  font-size: 0.9rem;
+  line-height: 1.35;
+  margin: 0.2rem 0 0.35rem;
 }
 
-.find-explore-result-meta span {
-  border: 1px solid var(--bs-border-color);
-  border-radius: 999px;
+/* PF4 — subdued micro-copy line for publication quality signals
+   (peer-reviewed / open access / JUFO / citations). Same data as the
+   pre-PF4 colored badges, lower visual weight. */
+.find-explore-result-publication-quality {
   color: var(--bs-secondary-color);
-  font-size: 0.78rem;
-  padding: 0.1rem 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  margin: 0.2rem 0 0.35rem;
+  text-transform: uppercase;
 }
 
 .find-explore-result-excerpt {
