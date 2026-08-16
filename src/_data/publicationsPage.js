@@ -1,6 +1,7 @@
 const path = require("path");
 
 const { isoDate } = require("../_utils/toPublicContentRecord");
+const { buildCslItem } = require("../_utils/publicationCsl");
 
 const PUBLICATION_GROUP_ORDER = ["A", "B", "C", "D", "E", "G"];
 
@@ -39,7 +40,8 @@ const PUBLIC_PUBLICATIONS_PAGE_FIELDS = Object.freeze([
   "recordOrigin",
   "researchLine",
   "researchThemes",
-  "researchAudience"
+  "researchAudience",
+  "csl"
 ]);
 
 const PUBLICATION_TYPE_LABELS = Object.freeze({
@@ -344,7 +346,7 @@ function createResearchfiPageItems(data = {}) {
       || pickString(contentItem?.url)
       || (anchorId ? `/julkaisut/#${anchorId}` : null);
 
-    return toPublicPublicationPageRecord(omitEmpty({
+    const rawRecord = omitEmpty({
       id: anchorId || pickString(publication?.publicationId) || pickString(publication?.doi) || pickString(publication?.title),
       anchorId,
       pageUrl,
@@ -380,7 +382,10 @@ function createResearchfiPageItems(data = {}) {
       researchLine: pickString(contentItem?.researchLine),
       researchThemes: normalizeStringArray(contentItem?.researchThemes),
       researchAudience: normalizeStringArray(contentItem?.researchAudience)
-    }));
+    });
+    const csl = buildCslItem(rawRecord);
+    if (csl) rawRecord.csl = csl;
+    return toPublicPublicationPageRecord(rawRecord);
   }).filter((item) => item.id && item.title);
 }
 
@@ -410,7 +415,7 @@ function createManualPageItems(evaluations = []) {
       const externalUrl = pickString(data.source_url) || pageUrl;
       const date = isoDate(data.date || item?.date);
 
-      return toPublicPublicationPageRecord(omitEmpty({
+      const rawRecord = omitEmpty({
         id: `manual:${evaluation.slug}`,
         anchorId: `manual-${evaluation.slug}`,
         pageUrl,
@@ -434,7 +439,10 @@ function createManualPageItems(evaluations = []) {
         sourceKey: "manual",
         sourceLabel: publication || "Curated publication",
         recordOrigin: "manual"
-      }));
+      });
+      const csl = buildCslItem(rawRecord);
+      if (csl) rawRecord.csl = csl;
+      return toPublicPublicationPageRecord(rawRecord);
     })
     .filter((record) => record.id && record.title);
 }

@@ -109,7 +109,8 @@ function buildPublicationFindExploreRecord(item = {}) {
     doiUrl: item.doiUrl || "",
     sourceUrl: item.url || item.doiUrl || "",
     jufoLevel: item.jufoLevel ?? "",
-    citationCount: item.citationCount ?? 0
+    citationCount: item.citationCount ?? 0,
+    csl: item.csl || null
   };
 }
 

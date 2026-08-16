@@ -164,7 +164,7 @@ function main() {
         ? "READY (APA server-side only, no CSL yet)"
         : "BLOCKED",
     cslProjection: findings.cslProjection.buildCslItemPresent
-      ? "PRESENT (already implemented?)"
+      ? "READY (PUB-CITE1 Phase 1 landed)"
       : "ABSENT — must be built as PUB-CITE1 Phase 1"
   };
 
@@ -196,7 +196,8 @@ function main() {
     researchfiEndpointPresent: findings.publicJson.researchfiEndpointPresent,
     publicationsCollectionEndpointPresent: findings.publicJson.publicationsCollectionEndpointPresent,
     legacyFiRowsHelperStillPresent: findings.legacyCandidates.buildLegacyFiPublicationRowsPresent,
-    cslProjectionNotYetImplemented: !findings.cslProjection.buildCslItemPresent
+    cslProjectionImplemented: findings.cslProjection.buildCslItemPresent
+      && findings.cslProjection.cslFieldInAnyBuilder
   };
 
   const gateFailures = Object.entries(gates)

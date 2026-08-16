@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-16T19:00:50.885Z",
+  "generatedAt": "2026-08-16T19:18:22.126Z",
   "scope": "PUB-CITE1 static audit — publication + citation pipeline + CSL readiness",
   "findings": {
     "sources": {
@@ -50,8 +50,8 @@
       "buildLegacyFiPublicationRowsExported": true
     },
     "cslProjection": {
-      "buildCslItemPresent": false,
-      "cslFieldInAnyBuilder": false
+      "buildCslItemPresent": true,
+      "cslFieldInAnyBuilder": true
     }
   },
   "readiness": {
@@ -60,7 +60,7 @@
     "editorialRecordsForPromotion": "PARTIAL",
     "canonicalModel": "READY",
     "citationStringToday": "READY (APA server-side only, no CSL yet)",
-    "cslProjection": "ABSENT — must be built as PUB-CITE1 Phase 1"
+    "cslProjection": "READY (PUB-CITE1 Phase 1 landed)"
   },
   "gates": {
     "researchfiLoaderPresent": true,
@@ -87,7 +87,7 @@
     "researchfiEndpointPresent": true,
     "publicationsCollectionEndpointPresent": true,
     "legacyFiRowsHelperStillPresent": true,
-    "cslProjectionNotYetImplemented": true
+    "cslProjectionImplemented": true
   },
   "gateFailures": [],
   "counts": {

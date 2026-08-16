@@ -3,6 +3,7 @@ const { readCache } = require("./_apiCache");
 const { normalizeCategoryList, normalizeKeywordList } = require("./metadata-normalization");
 const { resolveContexts } = require("./contentContext");
 const { canonicalPublicationDetailUrl } = require("./publicationsPage");
+const { buildCslItem } = require("../_utils/publicationCsl");
 const curatedProgram = require("../curated/research-program.json");
 
 const ENRICHMENT_CACHE_KEYS = [
@@ -328,6 +329,24 @@ function mapPublication(publication, enrichmentMap) {
     description: buildDescription(publication, enrichment),
     citation: buildApaCitation(publication),
     citationStyle: "APA 7",
+    csl: buildCslItem({
+      anchorId: publication.anchorId,
+      publicationId: publication.publicationId,
+      title: publication.title,
+      typeCode: publication.typeCode,
+      authors: publication.authors,
+      journal: publication.journal,
+      publisher: publication.publisher,
+      volume: publication.volume,
+      issue: publication.issue,
+      pages: publication.pages || publication.articleNumber,
+      isbn: publication.isbn,
+      doi: publication.doi,
+      doiUrl: publication.doiUrl,
+      url: publication.url,
+      year: publication.year,
+      lang: "fi"
+    }),
     date: publication.year ? `${publication.year}-01-01` : null,
     year: publication.year || null,
     type: "tieteellinen",
