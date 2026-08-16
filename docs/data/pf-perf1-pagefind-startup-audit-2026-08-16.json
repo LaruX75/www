@@ -1,0 +1,194 @@
+{
+  "generatedAt": "2026-08-16T13:36:16.664Z",
+  "scope": "PF-PERF1 static Pagefind startup audit",
+  "baseline": {
+    "fi": 1163,
+    "en": 346
+  },
+  "pagefindEntry": {
+    "fi": 1163,
+    "en": 346,
+    "version": "1.5.2"
+  },
+  "pagefindWasmSizes": {
+    "fi": 71098,
+    "en": 72740
+  },
+  "sharedAssetSizes": {
+    "js/find-explore.js": 23901,
+    "js/starter-chips.js": 3633,
+    "js/presentations-page.js": 25207,
+    "js/site-search-page.js": 5190,
+    "js/content-engine.js": 3497,
+    "js/content-presets.js": 18979,
+    "js/pe-list-render.js": 7984,
+    "pagefind/pagefind.js": 45555,
+    "pagefind/pagefind-ui.js": 119987
+  },
+  "discoveryPages": [
+    {
+      "name": "Homepage",
+      "path": "/",
+      "scriptCount": 7,
+      "scripts": [
+        "/pagefind/pagefind-ui.js",
+        "https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js",
+        "/js/bootstrap.min.js",
+        "/js/external-media-consent.js",
+        "/js/site-ui.js?v=20260801-search-submit-2",
+        "/js/table-filters.js",
+        "/js/a11y.js"
+      ],
+      "findExploreMounts": 0,
+      "starterChipGroups": 0,
+      "hasPagefindBody": false
+    },
+    {
+      "name": "Tutkimus",
+      "path": "/tutkimus/",
+      "scriptCount": 9,
+      "scripts": [
+        "/pagefind/pagefind-ui.js",
+        "https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js",
+        "/js/bootstrap.min.js",
+        "/js/external-media-consent.js",
+        "/js/site-ui.js?v=20260801-search-submit-2",
+        "/js/table-filters.js",
+        "/js/a11y.js",
+        "/js/find-explore.js",
+        "/js/starter-chips.js"
+      ],
+      "findExploreMounts": 16,
+      "starterChipGroups": 1,
+      "hasPagefindBody": false
+    },
+    {
+      "name": "Kirjoitukset",
+      "path": "/kirjoitukset/",
+      "scriptCount": 7,
+      "scripts": [
+        "/pagefind/pagefind-ui.js",
+        "https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js",
+        "/js/bootstrap.min.js",
+        "/js/external-media-consent.js",
+        "/js/site-ui.js?v=20260801-search-submit-2",
+        "/js/a11y.js",
+        "/js/find-explore.js"
+      ],
+      "findExploreMounts": 14,
+      "starterChipGroups": 0,
+      "hasPagefindBody": false
+    },
+    {
+      "name": "Opinnäytteet",
+      "path": "/opinnaytteet/",
+      "scriptCount": 8,
+      "scripts": [
+        "/pagefind/pagefind-ui.js",
+        "https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js",
+        "/js/bootstrap.min.js",
+        "/js/external-media-consent.js",
+        "/js/site-ui.js?v=20260801-search-submit-2",
+        "/js/a11y.js",
+        "/js/find-explore.js",
+        "/js/thesis-hub-actions.js"
+      ],
+      "findExploreMounts": 15,
+      "starterChipGroups": 0,
+      "hasPagefindBody": false
+    },
+    {
+      "name": "Julkaisut",
+      "path": "/julkaisut/",
+      "scriptCount": 8,
+      "scripts": [
+        "/pagefind/pagefind-ui.js",
+        "https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js",
+        "https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js",
+        "/js/bootstrap.min.js",
+        "/js/external-media-consent.js",
+        "/js/site-ui.js?v=20260801-search-submit-2",
+        "/js/a11y.js",
+        "/js/find-explore.js"
+      ],
+      "findExploreMounts": 17,
+      "starterChipGroups": 0,
+      "hasPagefindBody": false
+    },
+    {
+      "name": "Esitykset",
+      "path": "/esitykset/",
+      "scriptCount": 12,
+      "scripts": [
+        "/pagefind/pagefind-ui.js",
+        "https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js",
+        "/js/bootstrap.min.js",
+        "/js/external-media-consent.js",
+        "/js/site-ui.js?v=20260801-search-submit-2",
+        "/js/table-filters.js",
+        "/js/a11y.js",
+        "/js/pe-list-render.js",
+        "/js/content-presets.js",
+        "/js/content-engine.js",
+        "/js/presentations-page.js",
+        "/js/starter-chips.js"
+      ],
+      "findExploreMounts": 0,
+      "starterChipGroups": 1,
+      "hasPagefindBody": false
+    },
+    {
+      "name": "Mediassa",
+      "path": "/mediassa/",
+      "scriptCount": 11,
+      "scripts": [
+        "/pagefind/pagefind-ui.js",
+        "https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js",
+        "/js/bootstrap.min.js",
+        "/js/external-media-consent.js",
+        "/js/site-ui.js?v=20260801-search-submit-2",
+        "/js/table-filters.js",
+        "/js/a11y.js",
+        "/js/pe-list-render.js",
+        "/js/content-presets.js",
+        "/js/content-engine.js",
+        "/js/starter-chips.js"
+      ],
+      "findExploreMounts": 0,
+      "starterChipGroups": 1,
+      "hasPagefindBody": false
+    },
+    {
+      "name": "Haku",
+      "path": "/haku/",
+      "scriptCount": 8,
+      "scripts": [
+        "/pagefind/pagefind-ui.js",
+        "https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js",
+        "/js/bootstrap.min.js",
+        "/js/external-media-consent.js",
+        "/js/site-ui.js?v=20260801-search-submit-2",
+        "/js/table-filters.js",
+        "/js/a11y.js",
+        "/js/site-search-page.js"
+      ],
+      "findExploreMounts": 0,
+      "starterChipGroups": 0,
+      "hasPagefindBody": false
+    }
+  ],
+  "starterChipsAutoSearchLeaks": [],
+  "discoveryPagesWithPagefindBody": [],
+  "presentationsPagePresent": true,
+  "gates": {
+    "pagefindEntryPresent": true,
+    "pagefindFiCountAtBaseline": true,
+    "pagefindEnCountAtBaseline": true,
+    "findExploreLazyLoadsPagefind": true,
+    "findExploreCreateSearchDefined": true,
+    "findExploreEarlyReturnsWhenIdle": true,
+    "starterChipsRuntimeDoesNotAutoSearch": true,
+    "noDiscoveryPageCarriesPagefindBody": true
+  },
+  "gateFailures": []
+}
