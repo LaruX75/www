@@ -86,28 +86,31 @@
   {% set needsCharts = page.url == "/julkaisut/" or page.url == "/en/publications/" or page.url == "/kynasta/" %}
   {% set pageTitle = title or site.name %}
   {% set pageMetaTitle = (metaTitle or pageTitle) | seoTitle(53) %}
+  {% set pageSocialTitle = (socialTitle or ogTitle or metaTitle or pageTitle) | socialTitle(80) %}
   {% set siteDescription = site.descriptionEn if currentLang == "en" else site.description %}
   {% set descriptionMissing = (not description) or description == site.description or description == site.descriptionEn %}
-  {% set pageDescription = description or siteDescription %}
+  {% set pageDescriptionSource = description or siteDescription %}
   {% if descriptionMissing and keyword %}
     {% if currentLang == "en" %}
-      {% set pageDescription = 'Keyword "' ~ keyword.name ~ '" brings together ' ~ keyword.count ~ ' writings, speeches, or publications from the Jari Laru site.' %}
+      {% set pageDescriptionSource = 'Keyword "' ~ keyword.name ~ '" brings together ' ~ keyword.count ~ ' writings, speeches, or publications from the Jari Laru site.' %}
     {% else %}
-      {% set pageDescription = 'Avainsana "' ~ keyword.name ~ '" kokoaa ' ~ keyword.count ~ ' kirjoitusta, puhetta tai julkaisua Jari Larun sivustolta.' %}
+      {% set pageDescriptionSource = 'Avainsana "' ~ keyword.name ~ '" kokoaa ' ~ keyword.count ~ ' kirjoitusta, puhetta tai julkaisua Jari Larun sivustolta.' %}
     {% endif %}
   {% elif descriptionMissing and category %}
     {% if currentLang == "en" %}
-      {% set pageDescription = 'Category "' ~ category.name ~ '" gathers ' ~ category.count ~ ' related items from the Jari Laru site, including writings, speeches, and publications.' %}
+      {% set pageDescriptionSource = 'Category "' ~ category.name ~ '" gathers ' ~ category.count ~ ' related items from the Jari Laru site, including writings, speeches, and publications.' %}
     {% else %}
-      {% set pageDescription = 'Kategoria "' ~ category.name ~ '" kokoaa ' ~ category.count ~ ' sisältöä Jari Larun sivustolta: kirjoituksia, puheita ja julkaisuja samasta aihepiiristä.' %}
+      {% set pageDescriptionSource = 'Kategoria "' ~ category.name ~ '" kokoaa ' ~ category.count ~ ' sisältöä Jari Larun sivustolta: kirjoituksia, puheita ja julkaisuja samasta aihepiiristä.' %}
     {% endif %}
   {% elif descriptionMissing and title and title.startsWith("Avainsana: ") %}
-    {% set pageDescription = 'Avainsana "' ~ (title | replace("Avainsana: ", "")) ~ '" kokoaa kirjoituksia, puheita ja julkaisuja Jari Larun sivustolta.' %}
+    {% set pageDescriptionSource = 'Avainsana "' ~ (title | replace("Avainsana: ", "")) ~ '" kokoaa kirjoituksia, puheita ja julkaisuja Jari Larun sivustolta.' %}
   {% elif descriptionMissing and title and title.startsWith("Keyword: ") %}
-    {% set pageDescription = 'Keyword "' ~ (title | replace("Keyword: ", "")) ~ '" brings together writings, speeches, and publications from the Jari Laru site.' %}
+    {% set pageDescriptionSource = 'Keyword "' ~ (title | replace("Keyword: ", "")) ~ '" brings together writings, speeches, and publications from the Jari Laru site.' %}
   {% endif %}
   {% set effectivePublished = datePublished or page.date %}
-  {% set pageDescription = pageDescription | seoDescription({ title: pageTitle, source: source, type: type, date: effectivePublished, pageUrl: page.url, tags: tags, categories: categories, currentLang: currentLang }) %}
+  {% set pageDescription = pageDescriptionSource | seoDescription({ title: pageTitle, source: source, type: type, date: effectivePublished, pageUrl: page.url, tags: tags, categories: categories, currentLang: currentLang }) %}
+  {% set pageSocialDescriptionSource = socialDescription or researchSummary or richSummary or abstract or pageDescriptionSource %}
+  {% set pageSocialDescription = pageSocialDescriptionSource | socialDescription({ title: pageTitle, source: source, type: type, date: effectivePublished, pageUrl: page.url, tags: tags, categories: categories, currentLang: currentLang }) %}
   {% set pageUrl = page.url | absoluteUrl(site.url or "https://www.jarilaru.fi") %}
   {% set fiAltPath = collections.all | findTranslationUrl(translationKey, "fi") %}
   {% set enAltPath = collections.all | findTranslationUrl(translationKey, "en") %}
@@ -143,11 +146,11 @@
   <meta property="og:site_name" content="{{ site.name }}">
   <meta property="og:locale" content="{{ currentLang | localeForLang }}">
   <meta property="og:type" content="{{ pageType }}">
-  <meta property="og:title" content="{{ pageMetaTitle }}">
-  <meta property="og:description" content="{{ pageDescription }}">
+  <meta property="og:title" content="{{ pageSocialTitle }}">
+  <meta property="og:description" content="{{ pageSocialDescription }}">
   <meta property="og:url" content="{{ pageUrl }}">
   <meta property="og:image" content="{{ resolvedOgImage | absoluteUrl(site.url or "https://www.jarilaru.fi") }}">
-  <meta property="og:image:alt" content="Jari Laru">
+  <meta property="og:image:alt" content="{{ resolvedOgImageAlt }}">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   {% if pageType == "article" %}
@@ -156,10 +159,10 @@
   <meta property="article:modified_time" content="{{ (modified or effectivePublished) | dateToRfc3339 }}">
   {% endif %}
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{ pageMetaTitle }}">
-  <meta name="twitter:description" content="{{ pageDescription }}">
+  <meta name="twitter:title" content="{{ pageSocialTitle }}">
+  <meta name="twitter:description" content="{{ pageSocialDescription }}">
   <meta name="twitter:image" content="{{ resolvedOgImage | absoluteUrl(site.url or "https://www.jarilaru.fi") }}">
-  <meta name="twitter:image:alt" content="Jari Laru">
+  <meta name="twitter:image:alt" content="{{ resolvedOgImageAlt }}">
   {% if isHomePage %}
   <link rel="preload" as="image" href="/img/WIN_20210329_16_06_01_Pro.jpg" fetchpriority="high">
   {% endif %}

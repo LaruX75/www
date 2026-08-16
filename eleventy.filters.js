@@ -873,6 +873,28 @@ function truncateSeoTitle(value, maxLength = 53) {
   return `${cut.slice(0, end).trim()}...`;
 }
 
+function truncateSocialTitle(value, maxLength = 80) {
+  const text = cleanSeoTitle(value);
+  const limit = Number(maxLength) || 80;
+  if (text.length <= limit) return text;
+
+  const cut = text.slice(0, limit + 1);
+  const punctuationEnd = Math.max(
+    cut.lastIndexOf(": "),
+    cut.lastIndexOf(" - "),
+    cut.lastIndexOf(" – "),
+    cut.lastIndexOf(" — "),
+    cut.lastIndexOf(". ")
+  );
+  if (punctuationEnd >= 30) {
+    return cut.slice(0, punctuationEnd).trim();
+  }
+
+  const wordEnd = cut.slice(0, Math.max(limit - 3, 0)).lastIndexOf(" ");
+  const end = wordEnd >= 45 ? wordEnd : limit - 3;
+  return `${cut.slice(0, end).trim()}...`;
+}
+
 function yearFromDate(value) {
   if (!value) return "";
   const date = new Date(value);
@@ -891,6 +913,16 @@ function truncateSeoDescription(value, maxLength = 165) {
   if (sentenceEnd >= 90) return cut.slice(0, sentenceEnd + 1).trim();
   const wordEnd = cut.lastIndexOf(" ");
   return `${cut.slice(0, wordEnd > 90 ? wordEnd : maxLength).trim()}...`;
+}
+
+function truncateSocialDescription(value, maxLength = 200) {
+  const text = String(value || "").replace(/\s+/g, " ").trim();
+  if (text.length <= maxLength) return text;
+  const cut = text.slice(0, maxLength + 1);
+  const sentenceEnd = Math.max(cut.lastIndexOf(". "), cut.lastIndexOf("? "), cut.lastIndexOf("! "));
+  if (sentenceEnd >= 110) return cut.slice(0, sentenceEnd + 1).trim();
+  const wordEnd = cut.lastIndexOf(" ");
+  return `${cut.slice(0, wordEnd > 120 ? wordEnd : maxLength).trim()}...`;
 }
 
 function contentKindLabel(options = {}) {
@@ -953,6 +985,33 @@ function shouldReplaceSeoDescription(description, options = {}) {
   if (/(^|\s)äkökulm/i.test(text)) return true;
   if ((options.type === "esitys" || String(options.source || "").toLowerCase() === "slideshare") && text.length < 70) return true;
   return false;
+}
+
+function buildSocialImageAlt(options = {}) {
+  const explicit = String(
+    options.imageAlt
+    || options.ogImageAlt
+    || options.og_image_alt
+    || options.socialImageAlt
+    || ""
+  ).replace(/\s+/g, " ").trim();
+  if (explicit) {
+    return explicit.length > 140 ? `${explicit.slice(0, 137).trim()}...` : explicit;
+  }
+
+  const title = cleanSeoTitle(options.title);
+  const currentLang = options.currentLang === "en" ? "en" : "fi";
+  const pageSpecific = Boolean(options.isPageSpecificImage);
+
+  if (pageSpecific && title) {
+    return currentLang === "en"
+      ? `${title} - social sharing image`
+      : `${title} - sivun jakokuva`;
+  }
+
+  return currentLang === "en"
+    ? "Jari Laru - social sharing image"
+    : "Jari Laru - sivun jakokuva";
 }
 
 module.exports = function registerFilters(eleventyConfig) {
@@ -1053,6 +1112,20 @@ module.exports = function registerFilters(eleventyConfig) {
 
   eleventyConfig.addFilter("seoTitle", function (title, maxLength = 53) {
     return truncateSeoTitle(title, maxLength);
+  });
+
+  eleventyConfig.addFilter("socialDescription", function (description, options = {}) {
+    const fallback = buildSeoFallback(options);
+    const raw = shouldReplaceSeoDescription(description, options) ? fallback : description;
+    return truncateSocialDescription(raw);
+  });
+
+  eleventyConfig.addFilter("socialTitle", function (title, maxLength = 80) {
+    return truncateSocialTitle(title, maxLength);
+  });
+
+  eleventyConfig.addFilter("socialImageAlt", function (options = {}) {
+    return buildSocialImageAlt(options);
   });
 
   eleventyConfig.addFilter("slugify", function (str) {

@@ -10,9 +10,37 @@
   {% set _baseLang = lang or (page.url | langFromUrl) %}
   {% set _baseTitle = title or site.name %}
   {% set _baseSection = ("Blog" if _baseLang == "en" else "Blogi") if ("blog" in (tags or [])) else (("Publications" if _baseLang == "en" else "Julkaisut") if ("publications" in (tags or [])) else (("Politics" if _baseLang == "en" else "Politiikka") if ("politics" in (tags or [])) else site.name)) %}
+  {% set _baseContentMeta = ({
+    "schemaType": schemaType,
+    "type": type,
+    "tags": tags,
+    "mediaType": mediaType,
+    "contentType": contentType,
+    "source": source,
+    "lang": _baseLang
+  }) | resolveContentMeta(_baseLang) %}
   {% setAsync "_ogRaw" %}{% ogImage "og-image.og.njk", { title: _baseTitle, section: _baseSection, siteName: site.name, domain: "jarilaru.fi", ogBgDataUrl: ogBgDataUrl } %}{% endsetAsync %}
-  {% set ogImageOverrideValue = og_image or ogImageOverride %}
-  {% set resolvedOgImage = ogImageOverrideValue if ogImageOverrideValue else (_ogRaw if _ogRaw and _ogRaw != "null" else "/img/WIN_20210329_16_06_01_Pro.jpg") %}
+  {% set ogImageOverrideValue = og_image or ogImage or ogImageOverride %}
+  {% set generatedOgImage = _ogRaw if _ogRaw and _ogRaw != "null" else "/img/WIN_20210329_16_06_01_Pro.jpg" %}
+  {% set trustedThumbnailEligible = thumbnail and (
+    _baseContentMeta.pageBlockType == "presentation"
+    or mediaType
+    or _baseContentMeta.contentType == "blogPost"
+    or _baseContentMeta.contentType == "opinion"
+    or _baseContentMeta.contentType == "column"
+    or _baseContentMeta.contentType == "speech"
+    or _baseContentMeta.contentType == "statement"
+    or _baseContentMeta.contentType == "initiative"
+  ) %}
+  {% set trustedThumbnailValue = thumbnail if trustedThumbnailEligible else "" %}
+  {% set resolvedOgImage = ogImageOverrideValue if ogImageOverrideValue else (trustedThumbnailValue if trustedThumbnailValue else generatedOgImage) %}
+  {% set resolvedOgImageIsPageSpecific = true if ogImageOverrideValue or trustedThumbnailValue else false %}
+  {% set resolvedOgImageAlt = ({
+    "title": _baseTitle,
+    "currentLang": _baseLang,
+    "isPageSpecificImage": resolvedOgImageIsPageSpecific,
+    "imageAlt": ogImageAlt or og_image_alt or socialImageAlt or imageAlt
+  }) | socialImageAlt %}
   {% include "_meta.njk" %}
   {% include "_ldschema.njk" %}
   {% for stylesheet in (pageStyles or []) %}
