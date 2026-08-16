@@ -1,0 +1,28 @@
+{
+  "generatedAt": "2026-08-16T07:45:33.610Z",
+  "scope": "PF3 verification: shared Find & Explore renderer exposes content-family label",
+  "expectedLabels": [
+    "Julkaisut",
+    "Opinnäytteet",
+    "Kirjoitukset ja puheenvuorot",
+    "Esitykset",
+    "Mediassa"
+  ],
+  "findings": {
+    "rendererPath": "_site/js/find-explore.js",
+    "rendererCssPath": "_site/css/find-explore.css",
+    "forbiddenTokensFound": []
+  },
+  "gates": {
+    "allSisaltoLabelsPresent": true,
+    "renderFamilyHeaderDefined": true,
+    "familyLabelMapDeclared": true,
+    "familyDatasetAttrEmitted": true,
+    "cssBadgeClassPresent": true,
+    "cssHeaderClassPresent": true,
+    "noForbiddenVisibleTokens": true,
+    "presentationsArchiveUntouched": true,
+    "mediaArchiveUntouched": true
+  },
+  "gateFailures": []
+}

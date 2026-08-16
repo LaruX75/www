@@ -76,6 +76,31 @@
     return data?.meta?.title || data?.title || data?.url || "";
   }
 
+  // PF3 — user-facing content-family labels aligned with the PF2 Pagefind
+  // `Sisältö:*` vocabulary. Deliberately Finnish across FI and EN mounts
+  // so the visible label matches the actual Pagefind filter value.
+  const SISALTO_LABELS = {
+    publications: "Julkaisut",
+    theses: "Opinnäytteet",
+    writings: "Kirjoitukset ja puheenvuorot",
+    presentations: "Esitykset",
+    media: "Mediassa"
+  };
+
+  function contentFamilyLabelFromData(kind, data) {
+    const fromFilter = Array.isArray(data?.filters?.["Sisältö"])
+      ? data.filters["Sisältö"].find(Boolean)
+      : "";
+    if (fromFilter) return fromFilter;
+    return SISALTO_LABELS[kind] || "";
+  }
+
+  function renderFamilyHeader(entry) {
+    const label = entry?.contentFamilyLabel;
+    if (!label) return "";
+    return `<div class="find-explore-result-family"><span class="find-explore-result-family-badge" data-find-explore-family="${escapeHtml(entry.kind || "")}">${escapeHtml(label)}</span></div>`;
+  }
+
   function normalizeSearchLanguage(language) {
     return String(language || "fi").slice(0, 2).toLowerCase() || "fi";
   }
@@ -331,7 +356,8 @@
       title: record?.title || title,
       excerpt: effectiveConfig.excerpt(data, record),
       meta,
-      record
+      record,
+      contentFamilyLabel: contentFamilyLabelFromData(kind, data)
     };
   }
 
@@ -418,6 +444,7 @@
         ? `<div class="find-explore-result-meta">${entry.meta.map((item) => `<span>${escapeHtml(item)}</span>`).join("")}</div>`
         : "";
       return `<li class="find-explore-result find-explore-result--publication">
+        ${renderFamilyHeader(entry)}
         <a class="find-explore-result-title" href="${url}">${title}</a>
         ${meta}
         ${publicationBadges(record) ? `<div class="d-flex flex-wrap gap-2 mt-2">${publicationBadges(record)}</div>` : ""}
@@ -438,6 +465,7 @@
         const url = escapeHtml(entry.url);
         const excerpt = entry.excerpt ? escapeHtml(entry.excerpt) : "";
         return `<li class="find-explore-result">
+          ${renderFamilyHeader(entry)}
           <a class="find-explore-result-title" href="${url}">${title}</a>
           ${entry.meta.length ? `<div class="find-explore-result-meta">${entry.meta.map((item) => `<span>${escapeHtml(item)}</span>`).join("")}</div>` : ""}
           ${excerpt ? `<p class="find-explore-result-excerpt">${excerpt}</p>` : ""}
