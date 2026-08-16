@@ -1,0 +1,76 @@
+{
+  "generatedAt": "2026-08-16T18:47:11.681Z",
+  "scope": "PF5 native result-card variants + APA7 readiness (static audit)",
+  "findings": {
+    "apaFormatterInJulkaisut": true,
+    "mlaFormatterInJulkaisut": true,
+    "chicagoFormatterInJulkaisut": true,
+    "bibtexFormatterInJulkaisut": true,
+    "thesisCitationApaExposedOnData": true,
+    "thesisHubActionsHasApaComposer": true,
+    "publicationFieldsOnRecord": {
+      "authors": true,
+      "year": true,
+      "journal": true,
+      "publisher": true,
+      "doi": true,
+      "volume": true,
+      "issue": true,
+      "pages": true,
+      "isbn": true,
+      "sourceUrl": true
+    },
+    "thesisFieldsOnPagefindMeta": {
+      "thesesType": true,
+      "thesesYear": true,
+      "thesesAuthorLine": true,
+      "thesesLang": true,
+      "thesesRole": true,
+      "thesesDescription": true
+    },
+    "presentationFieldsOnPagefindMeta": {
+      "PresentationType": true,
+      "PresentationYear": true,
+      "PresentationEvent": true,
+      "PresentationLandingType": true,
+      "PresentationSourceType": true,
+      "presentationThumbnail": false
+    },
+    "findExploreKinds": {
+      "publicationsKind": true,
+      "thesesKind": true,
+      "writingsKind": true,
+      "presentationsKind": true,
+      "researchContextKind": true,
+      "mediaKind": false
+    },
+    "invariants": {
+      "noSisaltoTutkimusInFindExplore": true,
+      "pagefindBodyGuardStillActive": true,
+      "pf3FamilyBadgePresent": true,
+      "pf4HierarchyHooksPresent": true,
+      "pfPerf2WarmupPresent": true,
+      "pfPerf2EnterHandlerPresent": true
+    }
+  },
+  "gates": {
+    "apaFormatterExists": true,
+    "thesisApaFieldsAvailable": true,
+    "publicationFieldsComplete": true,
+    "presentationFieldsForHorizontalVariant": true,
+    "findExploreHasAllExpectedKinds": true,
+    "noSisaltoTutkimusInRenderer": true,
+    "noPagefindBodyGuardBypass": true,
+    "pf3FamilyBadgeIntact": true,
+    "pf4HierarchyIntact": true,
+    "pfPerf2WarmupIntact": true,
+    "pfPerf2EnterHandlerIntact": true
+  },
+  "gateFailures": [],
+  "readinessSummary": {
+    "publicationsApa": "READY",
+    "thesesApa": "READY",
+    "presentationsHorizontal": "READY",
+    "mediaHorizontal": "PARTIAL — media is not a shared Find & Explore kind"
+  }
+}
