@@ -98,7 +98,21 @@
   function renderFamilyHeader(entry) {
     const label = entry?.contentFamilyLabel;
     if (!label) return "";
-    return `<div class="find-explore-result-family"><span class="find-explore-result-family-badge" data-find-explore-family="${escapeHtml(entry.kind || "")}">${escapeHtml(label)}</span></div>`;
+    const year = entry?.year || "";
+    const yearMarkup = year
+      ? `<span class="find-explore-result-year" data-find-explore-card-year>${escapeHtml(String(year))}</span>`
+      : "";
+    return `<div class="find-explore-result-family" data-find-explore-card-line="family"><span class="find-explore-result-family-badge" data-find-explore-family="${escapeHtml(entry.kind || "")}">${escapeHtml(label)}</span>${yearMarkup}</div>`;
+  }
+
+  // PF4 — render the single primary metadata sentence line under the
+  // title. Each family's `resultMeta` now returns an already-composed
+  // list of strings; PF4 joins them with a middot separator and emits
+  // them as a text line rather than the old chip strip.
+  function renderPrimaryMetaLine(entry) {
+    const parts = Array.isArray(entry?.meta) ? entry.meta.filter(Boolean) : [];
+    if (parts.length === 0) return "";
+    return `<p class="find-explore-result-primary-meta" data-find-explore-card-line="primary-meta">${parts.map((p) => escapeHtml(String(p))).join(" · ")}</p>`;
   }
 
   function normalizeSearchLanguage(language) {
@@ -149,8 +163,10 @@
     writings: {
       filterPrefix: "Writings",
       typeFilterKey: "Writings content type",
+      // PF4: single primary metadata line — writing type only. Year
+      // moved to the family-header row via renderFamilyHeader.
       resultMeta(entry, state) {
-        return [state.typeLabel, state.year].filter(Boolean);
+        return [state.typeLabel].filter(Boolean);
       },
       excerpt(data) {
         return data?.excerpt || "";
@@ -160,8 +176,10 @@
     theses: {
       filterPrefix: "Theses",
       typeFilterKey: "Theses type",
-      resultMeta(entry, state) {
-        return [entry.authorLine, entry.typeLabel, entry.year].filter(Boolean);
+      // PF4: single primary metadata line — author line + thesis type,
+      // joined by the shared renderer. Year moved to family header.
+      resultMeta(entry) {
+        return [entry.authorLine, entry.typeLabel].filter(Boolean);
       },
       excerpt(data) {
         return data?.meta?.thesesDescription || data?.excerpt || "";
@@ -174,8 +192,10 @@
       yearFilterKey: "Publications year",
       topicFilterKey: "Publications topic",
       qualityFilterKey: "Publications quality",
-      resultMeta(entry, state) {
-        return [entry.authors, entry.typeLabel, entry.year, entry.venue].filter(Boolean);
+      // PF4: authors · type · venue. Year moved to family header;
+      // colored quality badges demoted to a single micro-copy line.
+      resultMeta(entry) {
+        return [entry.authors, entry.typeLabel, entry.venue].filter(Boolean);
       },
       excerpt(data, record) {
         return record?.description || data?.meta?.publicationDescription || data?.excerpt || "";
@@ -192,8 +212,10 @@
         "yhteisöllinen oppiminen": "long-term-learning",
         "ohjelmoinnillinen ajattelu": "teacher-education"
       },
+      // PF4: presentation type + event/venue, whichever is safely
+      // available from Pagefind meta. Year moved to family header.
       resultMeta(entry) {
-        return [entry.year].filter(Boolean);
+        return [entry.presentationType, entry.presentationEvent].filter(Boolean);
       },
       excerpt(data, record) {
         return record?.description || data?.excerpt || "";
@@ -357,6 +379,13 @@
       excerpt: effectiveConfig.excerpt(data, record),
       meta,
       record,
+      // PF4: year lives on line 1 (family header) rather than the
+      // primary-meta line. Presentation type/event surface directly
+      // on the entry so the presentations resultMeta can compose a
+      // single sentence without another indirection.
+      year: resolvedYear,
+      presentationType: data?.meta?.PresentationType || "",
+      presentationEvent: data?.meta?.PresentationEvent || "",
       contentFamilyLabel: contentFamilyLabelFromData(kind, data)
     };
   }
@@ -419,14 +448,19 @@
         + `<i class="bi bi-download me-1" aria-hidden="true"></i>${escapeHtml(labels.exportCitation)}</button>`;
     }
 
-    function publicationBadges(record) {
+    // PF4: replace the four colored publication quality badges with a
+    // single subdued micro-copy line. Same data (peer-reviewed / open
+    // access / JUFO / citations), lower visual weight — CSS applies
+    // uppercase + secondary text color via .find-explore-result-publication-quality.
+    function publicationQualityLine(record) {
       if (!record) return "";
-      const badges = [];
-      if (record.peerReviewed) badges.push(`<span class="badge text-bg-primary">${escapeHtml(labels.peerReviewed)}</span>`);
-      if (record.openAccess) badges.push(`<span class="badge text-bg-success">${escapeHtml(labels.openAccess)}</span>`);
-      if (record.jufoLevel !== "" && record.jufoLevel != null) badges.push(`<span class="badge text-bg-light text-dark border">JUFO ${escapeHtml(record.jufoLevel)}</span>`);
-      if (record.citationCount) badges.push(`<span class="badge text-bg-warning text-dark">${escapeHtml(labels.citations(record.citationCount))}</span>`);
-      return badges.join("");
+      const parts = [];
+      if (record.peerReviewed) parts.push(labels.peerReviewed);
+      if (record.openAccess) parts.push(labels.openAccess);
+      if (record.jufoLevel !== "" && record.jufoLevel != null) parts.push(`JUFO ${record.jufoLevel}`);
+      if (record.citationCount) parts.push(labels.citations(record.citationCount));
+      if (parts.length === 0) return "";
+      return `<p class="find-explore-result-publication-quality" data-find-explore-card-line="quality">${parts.map((p) => escapeHtml(String(p))).join(" · ")}</p>`;
     }
 
     function sourceLink(record) {
@@ -439,17 +473,16 @@
       const record = entry.record;
       const title = escapeHtml(entry.title);
       const url = escapeHtml(entry.url);
-      const excerpt = entry.excerpt ? escapeHtml(entry.excerpt) : "";
-      const meta = entry.meta.length
-        ? `<div class="find-explore-result-meta">${entry.meta.map((item) => `<span>${escapeHtml(item)}</span>`).join("")}</div>`
+      const excerpt = entry.excerpt
+        ? `<p class="find-explore-result-excerpt" data-find-explore-card-line="excerpt">${escapeHtml(entry.excerpt)}</p>`
         : "";
       return `<li class="find-explore-result find-explore-result--publication">
         ${renderFamilyHeader(entry)}
         <a class="find-explore-result-title" href="${url}">${title}</a>
-        ${meta}
-        ${publicationBadges(record) ? `<div class="d-flex flex-wrap gap-2 mt-2">${publicationBadges(record)}</div>` : ""}
-        ${excerpt ? `<p class="find-explore-result-excerpt">${excerpt}</p>` : ""}
-        <div class="d-flex flex-wrap gap-2 mt-2">
+        ${renderPrimaryMetaLine(entry)}
+        ${publicationQualityLine(record)}
+        ${excerpt}
+        <div class="d-flex flex-wrap gap-2 mt-2" data-find-explore-card-line="actions">
           <a class="btn btn-sm btn-primary rounded-pill" href="${url}">${escapeHtml(labels.open)}</a>
           ${sourceLink(record)}
           ${citationButton(record)}
@@ -463,12 +496,14 @@
         if (entry.kind === "publications" && entry.record) return renderPublicationResult(entry);
         const title = escapeHtml(entry.title);
         const url = escapeHtml(entry.url);
-        const excerpt = entry.excerpt ? escapeHtml(entry.excerpt) : "";
+        const excerpt = entry.excerpt
+          ? `<p class="find-explore-result-excerpt" data-find-explore-card-line="excerpt">${escapeHtml(entry.excerpt)}</p>`
+          : "";
         return `<li class="find-explore-result">
           ${renderFamilyHeader(entry)}
           <a class="find-explore-result-title" href="${url}">${title}</a>
-          ${entry.meta.length ? `<div class="find-explore-result-meta">${entry.meta.map((item) => `<span>${escapeHtml(item)}</span>`).join("")}</div>` : ""}
-          ${excerpt ? `<p class="find-explore-result-excerpt">${excerpt}</p>` : ""}
+          ${renderPrimaryMetaLine(entry)}
+          ${excerpt}
         </li>`;
       }).join("");
       moreButton?.classList.toggle("d-none", visibleCount >= latestResults.length);

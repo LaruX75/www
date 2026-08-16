@@ -1,0 +1,38 @@
+{
+  "generatedAt": "2026-08-16T10:17:42.933Z",
+  "scope": "PF4 verification: Find & Explore result-card hierarchy trim",
+  "expectedCardLines": [
+    "family",
+    "primary-meta",
+    "quality",
+    "excerpt",
+    "actions"
+  ],
+  "findings": {
+    "rendererPath": "_site/js/find-explore.js",
+    "rendererCssPath": "_site/css/find-explore.css",
+    "forbiddenTokensInFamilyBlock": []
+  },
+  "gates": {
+    "allCardLineHooksPresent": true,
+    "renderPrimaryMetaLineDefined": true,
+    "publicationQualityLineDefined": true,
+    "yearSuffixInFamilyHeader": true,
+    "legacyPublicationBadgesHelperRemoved": true,
+    "legacyPublicationBadgesCallRemoved": true,
+    "publicationOpenActionPreserved": true,
+    "publicationSourceActionPreserved": true,
+    "publicationCitationActionPreserved": true,
+    "familyBadgePreserved": true,
+    "noForbiddenTokenInFamilyBlock": true,
+    "noDataPagefindBodyInRenderer": true,
+    "cssPrimaryMetaRulePresent": true,
+    "cssPublicationQualityRulePresent": true,
+    "cssYearSuffixRulePresent": true,
+    "starterChipRuntimeUntouched": true,
+    "starterChipCssUntouched": true,
+    "presentationArchiveCardUntouched": true,
+    "mediaArchiveCardUntouched": true
+  },
+  "gateFailures": []
+}
