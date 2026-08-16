@@ -7,10 +7,12 @@ lang: fi
 translationKey: media_index
 pageStyles:
   - /css/media-page.css
+  - /css/starter-chips.css
 pageScripts:
   - /js/pe-list-render.js
   - /js/content-presets.js
   - /js/content-engine.js
+  - /js/starter-chips.js
 schemaType: CollectionPage
 ---
 
@@ -166,6 +168,16 @@ schemaType: CollectionPage
     </div>
 
     <div class="media-browser" data-media-browser data-page-size="9" data-mobile-page-size="4">
+      <div class="starter-chips" data-starter-chips aria-label="Aloita tästä: mediaosumien pikavalinnat">
+        <p class="starter-chips-eyebrow">Aloita tästä</p>
+        <ul class="starter-chips-list">
+          <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-click="[data-media-filter='type:article']">Lehtijutut</button></li>
+          <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-click="[data-media-filter='type:video']">Videot</button></li>
+          <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-click="[data-media-filter='type:podcast']">Podcastit</button></li>
+          <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-click="[data-media-filter='topic:tekoaly']">Tekoäly ja koulutus</button></li>
+          <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-click="[data-media-filter='topic:avoin']">Avoin tiede</button></li>
+        </ul>
+      </div>
       <div class="media-filter-group" aria-label="Suodata mediaosumia sisällön muodon mukaan">
         <button class="media-filter is-active" type="button" data-media-filter="all">Kaikki</button>
         <button class="media-filter" type="button" data-media-filter="type:article">Lehtijutut</button>

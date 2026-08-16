@@ -1,0 +1,149 @@
+{
+  "generatedAt": "2026-08-16T08:44:22.034Z",
+  "scope": "PF-STARTER-CHIPS: user-triggered discovery shortcuts audit",
+  "perPage": {
+    "/tutkimus/": {
+      "chipCount": 4,
+      "descriptors": [
+        {
+          "target": "#researchEvidenceExploreTopic",
+          "value": "tekoäly",
+          "click": null,
+          "event": null,
+          "ariaPressed": null
+        },
+        {
+          "target": "#researchEvidenceExploreTopic",
+          "value": "opettajankoulutus",
+          "click": null,
+          "event": null,
+          "ariaPressed": null
+        },
+        {
+          "target": "#researchEvidenceExploreTopic",
+          "value": "koulutusteknologia",
+          "click": null,
+          "event": null,
+          "ariaPressed": null
+        },
+        {
+          "target": "#researchEvidenceExploreTopic",
+          "value": "yhteisöllinen oppiminen",
+          "click": null,
+          "event": null,
+          "ariaPressed": null
+        }
+      ]
+    },
+    "/esitykset/": {
+      "chipCount": 5,
+      "descriptors": [
+        {
+          "target": "#presentation-archive-topic",
+          "value": "AI literacy",
+          "click": null,
+          "event": "change",
+          "ariaPressed": null
+        },
+        {
+          "target": "#presentation-archive-topic",
+          "value": "Tekoäly",
+          "click": null,
+          "event": "change",
+          "ariaPressed": null
+        },
+        {
+          "target": "#presentation-archive-topic",
+          "value": "Koulutusteknologia",
+          "click": null,
+          "event": "change",
+          "ariaPressed": null
+        },
+        {
+          "target": "#presentation-archive-topic",
+          "value": "Opettajankoulutus",
+          "click": null,
+          "event": "change",
+          "ariaPressed": null
+        },
+        {
+          "target": "#presentation-archive-topic",
+          "value": "Mobiilioppiminen",
+          "click": null,
+          "event": "change",
+          "ariaPressed": null
+        }
+      ]
+    },
+    "/mediassa/": {
+      "chipCount": 5,
+      "descriptors": [
+        {
+          "target": null,
+          "value": null,
+          "click": "[data-media-filter='type:article']",
+          "event": null,
+          "ariaPressed": null
+        },
+        {
+          "target": null,
+          "value": null,
+          "click": "[data-media-filter='type:video']",
+          "event": null,
+          "ariaPressed": null
+        },
+        {
+          "target": null,
+          "value": null,
+          "click": "[data-media-filter='type:podcast']",
+          "event": null,
+          "ariaPressed": null
+        },
+        {
+          "target": null,
+          "value": null,
+          "click": "[data-media-filter='topic:tekoaly']",
+          "event": null,
+          "ariaPressed": null
+        },
+        {
+          "target": null,
+          "value": null,
+          "click": "[data-media-filter='topic:avoin']",
+          "event": null,
+          "ariaPressed": null
+        }
+      ]
+    }
+  },
+  "forbiddenPagesChecked": [
+    "/en/research/",
+    "/en/presentations/",
+    "/en/media/"
+  ],
+  "rogueForbidden": [],
+  "findings": {
+    "missingIntended": [],
+    "chipsWithoutMechanism": [],
+    "chipsPrePressed": [],
+    "chipsWithNewPagefindFacet": [],
+    "chipsUsingMediaOutlet": [],
+    "chipsUsingSisaltoTutkimus": [],
+    "chipsUsingDataPagefindBody": [],
+    "runtimeAutoSearchLeaks": []
+  },
+  "gates": {
+    "allIntendedPagesHaveChips": true,
+    "noRogueForbiddenPage": true,
+    "everyChipHasAMechanism": true,
+    "noChipPrePressed": true,
+    "noChipEmitsNewPagefindFacet": true,
+    "noChipEmitsMediaOutletFacet": true,
+    "noChipEmitsSisaltoTutkimus": true,
+    "noChipEmitsDataPagefindBody": true,
+    "starterChipsRuntimeShipped": true,
+    "starterChipsCssShipped": true,
+    "runtimeDoesNotAutoSearch": true
+  },
+  "gateFailures": []
+}

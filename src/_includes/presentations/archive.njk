@@ -56,6 +56,18 @@
         </div>
 
         <div class="presentation-archive-root" data-presentation-find-explore data-locale="{{ archiveLocale }}">
+          {% if archiveLocale == "fi" %}
+          <div class="starter-chips" data-starter-chips aria-label="Aloita tästä: valmiit esitysteemat">
+            <p class="starter-chips-eyebrow">Aloita tästä</p>
+            <ul class="starter-chips-list">
+              <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-target="#presentation-archive-topic" data-starter-chip-value="AI literacy" data-starter-chip-event="change">AI literacy</button></li>
+              <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-target="#presentation-archive-topic" data-starter-chip-value="Tekoäly" data-starter-chip-event="change">Tekoäly</button></li>
+              <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-target="#presentation-archive-topic" data-starter-chip-value="Koulutusteknologia" data-starter-chip-event="change">Koulutusteknologia</button></li>
+              <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-target="#presentation-archive-topic" data-starter-chip-value="Opettajankoulutus" data-starter-chip-event="change">Opettajankoulutus</button></li>
+              <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-target="#presentation-archive-topic" data-starter-chip-value="Mobiilioppiminen" data-starter-chip-event="change">Mobiilioppiminen</button></li>
+            </ul>
+          </div>
+          {% endif %}
           <form class="presentation-archive-controls" data-presentation-controls>
             <div class="presentation-archive-controls-grid">
               <div class="presentation-archive-control">
