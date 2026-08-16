@@ -557,6 +557,13 @@
             const languageFilter = mount.dataset.pagefindLang || (isEn ? 'English' : 'Suomi');
             const placeholder = mount.dataset.pagefindPlaceholder || (isEn ? 'Write a search term...' : 'Kirjoita hakusana...');
 
+            // PF-UI-L10N1 — full PagefindUI translation bundle. Before
+            // this fix the nav-bar overlay used a partial bundle,
+            // which meant PagefindUI's left-side filters panel fell
+            // back to English defaults ("Filters", alt-search
+            // messages, suggestion header) on Finnish pages. Matches
+            // the /haku/ init in src/js/site-search-page.js verbatim
+            // for the strings PagefindUI ships.
             pagefindUi = new window.PagefindUI({
               element: mount,
               bundlePath: '/pagefind/',
@@ -566,16 +573,33 @@
               showSubResults: true,
               excerptLength: 24,
               autofocus: true,
-              translations: {
-                placeholder,
-                search_label: isEn ? 'Search this site' : 'Hae sivustolta',
-                zero_results: isEn ? 'No results for [SEARCH_TERM]' : 'Ei tuloksia haulle [SEARCH_TERM]',
-                many_results: isEn ? '[COUNT] results for [SEARCH_TERM]' : '[COUNT] tulosta haulle [SEARCH_TERM]',
-                one_result: isEn ? '[COUNT] result for [SEARCH_TERM]' : '[COUNT] tulos haulle [SEARCH_TERM]',
-                load_more: isEn ? 'Show more results' : 'Näytä lisää tuloksia',
-                clear_search: isEn ? 'Clear search' : 'Tyhjennä haku',
-                searching: isEn ? 'Searching [SEARCH_TERM]...' : 'Haetaan [SEARCH_TERM]...'
-              }
+              translations: isEn
+                ? {
+                    placeholder,
+                    clear_search: 'Clear search',
+                    load_more: 'Show more results',
+                    search_label: 'Search this site',
+                    filters_label: 'Filters',
+                    zero_results: 'No results for [SEARCH_TERM]',
+                    many_results: '[COUNT] results for [SEARCH_TERM]',
+                    one_result: '[COUNT] result for [SEARCH_TERM]',
+                    alt_search: 'No results for [SEARCH_TERM]. Showing results for [DIFFERENT_TERM] instead.',
+                    search_suggestion: 'No results for [SEARCH_TERM]. Try one of the following searches:',
+                    searching: 'Searching [SEARCH_TERM]...'
+                  }
+                : {
+                    placeholder,
+                    clear_search: 'Tyhjennä haku',
+                    load_more: 'Näytä lisää tuloksia',
+                    search_label: 'Hae sivustolta',
+                    filters_label: 'Suodattimet',
+                    zero_results: 'Ei tuloksia haulle [SEARCH_TERM]',
+                    many_results: '[COUNT] tulosta haulle [SEARCH_TERM]',
+                    one_result: '[COUNT] tulos haulle [SEARCH_TERM]',
+                    alt_search: 'Ei tuloksia haulle [SEARCH_TERM]. Näytetään tulokset haulla [DIFFERENT_TERM].',
+                    search_suggestion: 'Ei tuloksia haulle [SEARCH_TERM]. Kokeile jotain seuraavista:',
+                    searching: 'Haetaan [SEARCH_TERM]...'
+                  }
             });
             pagefindUi.triggerFilters({ Kieli: languageFilter });
             resolve(pagefindUi);

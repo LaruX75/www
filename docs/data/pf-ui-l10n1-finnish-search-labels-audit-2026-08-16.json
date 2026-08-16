@@ -1,0 +1,22 @@
+{
+  "generatedAt": "2026-08-16T14:48:55.283Z",
+  "scope": "PF-UI-L10N1 Finnish search UI label localization audit",
+  "findings": {
+    "missingFiStringsInNavBar": [],
+    "missingEnStringsInNavBar": [],
+    "missingFiStringsInHaku": []
+  },
+  "gates": {
+    "navBarHasAllFinnishTranslations": true,
+    "navBarKeepsEnglishTranslations": true,
+    "hakuKeepsFinnishTranslations": true,
+    "noSisaltoTutkimusToken": true,
+    "findExploreWarmupIntact": true,
+    "findExploreEnterHandlerIntact": true,
+    "noDataPagefindBodyInSiteUi": true,
+    "noDataPagefindBodyInFindExplore": true,
+    "noDataPagefindBodyInHaku": true,
+    "enSearchTemplatePresent": true
+  },
+  "gateFailures": []
+}
