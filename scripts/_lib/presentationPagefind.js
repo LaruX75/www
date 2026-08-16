@@ -422,6 +422,7 @@ function buildPresentationPagefindFilters(record = {}) {
   const pageLanguageLabel = record.pagefindLanguage === "en" ? "English" : "Suomi";
   const presentationContexts = toArray(record.presentationContexts).map((value) => String(value)).filter(Boolean);
   const filters = {
+    "Sisältö": ["Esitykset"],
     FindExplore: ["presentations"],
     Kieli: [pageLanguageLabel],
     PresentationLandingType: hasValue(record.landingType) ? [String(record.landingType)] : [],

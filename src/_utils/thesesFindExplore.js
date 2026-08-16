@@ -82,6 +82,7 @@ function buildThesisFindExploreDocument(thesisDetail) {
   if (!thesisDetail?.pageUrl || !thesisDetail?.title) return null;
 
   const filters = [
+    { name: "Sisältö", value: "Opinnäytteet" },
     { name: "FindExplore", value: "theses" },
     { name: "Theses scope", value: "fi" },
     { name: "Theses scope", value: "en" },

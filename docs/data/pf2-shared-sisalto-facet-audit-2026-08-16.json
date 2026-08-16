@@ -1,0 +1,92 @@
+{
+  "generatedAt": "2026-08-16T07:08:01.924Z",
+  "scope": "PF2 verification: shared Sisältö facet across Pagefind detail pages",
+  "expected": {
+    "publications": "Sisältö:Julkaisut",
+    "theses": "Sisältö:Opinnäytteet",
+    "writings": "Sisältö:Kirjoitukset ja puheenvuorot",
+    "presentations": "Sisältö:Esitykset",
+    "media": "Sisältö:Mediassa"
+  },
+  "families": {
+    "publications": {
+      "expected": "Sisältö:Julkaisut",
+      "checked": 56,
+      "missing": [],
+      "wrongValue": [],
+      "duplicate": [],
+      "pagefindBodyPages": []
+    },
+    "writings": {
+      "expected": "Sisältö:Kirjoitukset ja puheenvuorot",
+      "checked": 234,
+      "missing": [],
+      "wrongValue": [],
+      "duplicate": [],
+      "pagefindBodyPages": []
+    },
+    "theses": {
+      "expected": "Sisältö:Opinnäytteet",
+      "checked": 169,
+      "missing": [],
+      "wrongValue": [],
+      "duplicate": [],
+      "pagefindBodyPages": []
+    },
+    "media": {
+      "expected": "Sisältö:Mediassa",
+      "checked": 73,
+      "missing": [],
+      "wrongValue": [],
+      "duplicate": [],
+      "pagefindBodyPages": []
+    },
+    "presentations": {
+      "expected": "Sisältö:Esitykset",
+      "checked": 218,
+      "missing": [],
+      "wrongValue": [],
+      "pagefindBodyPages": [],
+      "canonicalTotal": 218
+    }
+  },
+  "pagefindEntry": {
+    "version": "1.5.2",
+    "languages": {
+      "fi": {
+        "hash": "fi_9b88c789dd",
+        "wasm": "fi",
+        "page_count": 1163
+      },
+      "en": {
+        "hash": "en_ef76379bad",
+        "wasm": "en",
+        "page_count": 346
+      }
+    },
+    "include_characters": [
+      "_",
+      "‿",
+      "⁀",
+      "⁔",
+      "︳",
+      "︴",
+      "﹍",
+      "﹎",
+      "﹏",
+      "＿"
+    ]
+  },
+  "gates": {
+    "publicationsAllHaveSisalto": true,
+    "writingsAllHaveSisalto": true,
+    "thesesAllHaveSisalto": true,
+    "mediaAllHaveSisalto": true,
+    "presentationsAllHaveSisalto": true,
+    "noHtmlDetailUsesPagefindBody": true,
+    "noDuplicateSisaltoPerDetailPage": true,
+    "pagefindIndexPresent": true,
+    "pagefindIndexHasBothLanguages": true
+  },
+  "gateFailures": []
+}

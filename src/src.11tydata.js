@@ -84,6 +84,7 @@ function resolvePagefindWritings(data) {
   if (!item) return null;
 
   const filters = [
+    { name: "Sisältö", value: "Kirjoitukset ja puheenvuorot" },
     { name: "FindExplore", value: "writings" },
     { name: "Writings scope", value: "en" },
     { name: "Writings content type", value: item.contentType },

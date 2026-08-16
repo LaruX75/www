@@ -155,6 +155,7 @@ function buildPublicationFindExploreDocument(item = {}) {
   if (!item?.pageUrl || !item?.title) return null;
 
   const filters = [
+    { name: "Sisältö", value: "Julkaisut" },
     { name: "FindExplore", value: "publications" },
     { name: "Publications scope", value: "fi" },
     { name: "Publications scope", value: "en" }
