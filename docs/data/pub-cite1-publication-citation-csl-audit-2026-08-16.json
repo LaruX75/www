@@ -1,0 +1,98 @@
+{
+  "generatedAt": "2026-08-16T19:00:50.885Z",
+  "scope": "PUB-CITE1 static audit — publication + citation pipeline + CSL readiness",
+  "findings": {
+    "sources": {
+      "researchfiLoaderPresent": true,
+      "researchfiContentMapperPresent": true,
+      "curatedManualJsonPresent": true,
+      "curatedManualEntryCount": 1,
+      "editorialMarkdownCount": 164,
+      "editorialMarkdownDir": "src/publications/"
+    },
+    "canonical": {
+      "builderPresent": true,
+      "dedupPresent": true,
+      "matchFunctionPresent": true,
+      "sourcePriorityDeclaration": true,
+      "manualRulesConst": true,
+      "manualRulesEntries": 3,
+      "publicFieldsListPresent": true
+    },
+    "citationPipeline": {
+      "serverApaComposerPresent": true,
+      "serverCitationOnContentItem": true,
+      "serverCitationStyleOnContentItem": true,
+      "detailModelForwardsCitation": true,
+      "detailModelForwardsCitationStyle": true,
+      "inlineClientApaInJulkaisut": true,
+      "inlineClientMlaInJulkaisut": true,
+      "inlineClientChicagoInJulkaisut": true,
+      "inlineClientBibtexInJulkaisut": true,
+      "inlineClientRisInJulkaisut": true,
+      "thesisServerApaPresent": true,
+      "thesisClientCitationBuildersPresent": true
+    },
+    "findExploreIntegration": {
+      "publicationRecordBuilderPresent": true,
+      "publicationRecordExposesCitation": false,
+      "findExplorePublicationBranch": true,
+      "findExploreRendersCitationString": false
+    },
+    "publicJson": {
+      "publicationsPageEndpointPresent": true,
+      "publicationsPageEndpointHasCitationField": false,
+      "researchfiEndpointPresent": true,
+      "publicationsCollectionEndpointPresent": true
+    },
+    "legacyCandidates": {
+      "buildLegacyFiPublicationRowsPresent": true,
+      "buildLegacyFiPublicationRowsExported": true
+    },
+    "cslProjection": {
+      "buildCslItemPresent": false,
+      "cslFieldInAnyBuilder": false
+    }
+  },
+  "readiness": {
+    "researchfiSource": "READY",
+    "curatedManualSource": "READY",
+    "editorialRecordsForPromotion": "PARTIAL",
+    "canonicalModel": "READY",
+    "citationStringToday": "READY (APA server-side only, no CSL yet)",
+    "cslProjection": "ABSENT — must be built as PUB-CITE1 Phase 1"
+  },
+  "gates": {
+    "researchfiLoaderPresent": true,
+    "researchfiContentMapperPresent": true,
+    "curatedManualJsonPresent": true,
+    "editorialRecordsExist": true,
+    "canonicalBuilderPresent": true,
+    "canonicalDedupPresent": true,
+    "manualRulesConstPresent": true,
+    "manualRulesHasThreePromotions": true,
+    "publicFieldsListDeclared": true,
+    "serverApaComposerPresent": true,
+    "detailForwardsCitation": true,
+    "detailForwardsCitationStyle": true,
+    "inlineClientApaExists": true,
+    "inlineClientMlaExists": true,
+    "inlineClientChicagoExists": true,
+    "inlineClientBibtexExists": true,
+    "inlineClientRisExists": true,
+    "thesisServerApaPresent": true,
+    "publicationFindExploreBuilderPresent": true,
+    "findExplorePublicationBranchPresent": true,
+    "publicationsPageEndpointPresent": true,
+    "researchfiEndpointPresent": true,
+    "publicationsCollectionEndpointPresent": true,
+    "legacyFiRowsHelperStillPresent": true,
+    "cslProjectionNotYetImplemented": true
+  },
+  "gateFailures": [],
+  "counts": {
+    "editorialMarkdownRecords": 164,
+    "curatedManualEntries": 1,
+    "manualRulesPromotedSlugs": 3
+  }
+}
