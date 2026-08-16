@@ -121,6 +121,35 @@
 
   const searchCache = new Map();
 
+  // PF-PERF2 — schedule a fire-and-forget callback during the browser's
+  // next idle window so the Pagefind wasm import can start before the
+  // user's first search. Falls back to a short setTimeout for
+  // browsers without requestIdleCallback.
+  function scheduleIdle(fn) {
+    if (typeof window === "undefined") return;
+    if (typeof window.requestIdleCallback === "function") {
+      window.requestIdleCallback(fn, { timeout: 2500 });
+    } else {
+      window.setTimeout(fn, 1200);
+    }
+  }
+
+  // PF-PERF2 — warm the per-language Pagefind cache without running a
+  // search. `createSearch(language)` already imports the Pagefind
+  // module and calls pagefind.init(), and caches the resolved
+  // promise. Calling it during idle / on focus / on pointerenter
+  // means the module is ready by the time the user submits their
+  // first query, so the query→result path skips the import cost.
+  // NEVER calls pagefind.search — no automatic results.
+  function warmSearchLanguages(languages) {
+    if (!Array.isArray(languages) || languages.length === 0) return;
+    languages.forEach((language) => {
+      Promise.resolve()
+        .then(() => createSearch(language))
+        .catch(() => { /* silent: warmup failures fall back to the on-demand path */ });
+    });
+  }
+
   async function createSearch(language) {
     const searchLanguage = normalizeSearchLanguage(language);
     if (searchCache.has(searchLanguage)) return searchCache.get(searchLanguage);
@@ -534,7 +563,11 @@
         return;
       }
 
+      // PF-PERF2 — mark the results list busy during the search so
+      // assistive tech announces the loading state. The status text
+      // ("Haetaan tuloksia...") is already user-visible.
       status.textContent = labels.loading;
+      resultsList?.setAttribute("aria-busy", "true");
 
       try {
         const searchResults = [];
@@ -587,6 +620,8 @@
         moreButton?.classList.add("d-none");
         status.textContent = labels.error;
         console.warn("FindExplore search failed", error);
+      } finally {
+        resultsList?.removeAttribute("aria-busy");
       }
     }
 
@@ -609,6 +644,19 @@
       writeState(readInitialState(mount));
       runSearch();
     });
+
+    // PF-PERF2 — warm Pagefind before the user's first explicit
+    // search. Three orthogonal triggers, all idempotent because
+    // createSearch caches per language:
+    //   1. Idle window after mount init (requestIdleCallback → setTimeout).
+    //   2. Search input focus (one-shot).
+    //   3. Pointerenter on the mount (one-shot).
+    // None of these calls pagefind.search — no auto-search on load.
+    const warmup = () => warmSearchLanguages(searchLanguages);
+    scheduleIdle(warmup);
+    queryInput?.addEventListener("focus", warmup, { once: true });
+    mount.addEventListener("pointerenter", warmup, { once: true });
+    mount.dataset.findExplorePagefindWarmed = "scheduled";
 
     mount.dataset.findExploreReady = "true";
     runSearch();
