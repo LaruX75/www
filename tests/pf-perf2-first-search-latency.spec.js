@@ -100,4 +100,40 @@ test.describe("PF-PERF2 Pagefind warmup", () => {
     const bodyHits = await page.locator("[data-pagefind-body]").count();
     expect(bodyHits, "PF-PERF2 must never add data-pagefind-body").toBe(0);
   });
+
+  test("Pressing Enter in the search input runs a search without jumping to the top", async ({ page }) => {
+    await page.goto("/tutkimus/");
+    // Scroll so the Find & Explore mount is below the fold and there is
+    // real vertical distance for the bug to manifest.
+    await page.locator("[data-find-explore][data-find-explore-kind='researchContext']")
+      .scrollIntoViewIfNeeded();
+    await page.waitForTimeout(150);
+    const scrollBeforeEnter = await page.evaluate(() => window.scrollY);
+    expect(scrollBeforeEnter, "test setup: scroll must not already be at the top").toBeGreaterThan(50);
+
+    const mount = page.locator("[data-find-explore][data-find-explore-kind='researchContext']");
+    const queryInput = mount.locator("[data-find-explore-query]");
+    await queryInput.focus();
+    await queryInput.fill("Assessing Digital Competence of K1-12 Teachers in Kosovo");
+    await queryInput.press("Enter");
+
+    // Wait for the runtime to react (status text changes from idle).
+    await expect(mount.locator("[data-find-explore-status]"))
+      .toContainText(/tulos|tulosta|löytynyt/i, { timeout: 15000 });
+
+    // Viewport must not have jumped to the top. Allow a small tolerance
+    // for any incidental reflow (e.g. new results changing layout height
+    // above the scroll position).
+    const scrollAfterEnter = await page.evaluate(() => window.scrollY);
+    expect(scrollAfterEnter, `Enter must not scroll the page to the top (was ${scrollBeforeEnter}, now ${scrollAfterEnter})`)
+      .toBeGreaterThan(50);
+
+    // Focus must remain inside the Find & Explore mount (typically still
+    // on the query input).
+    const focusInsideMount = await page.evaluate(() => {
+      const mountEl = document.querySelector("[data-find-explore][data-find-explore-kind='researchContext']");
+      return mountEl?.contains(document.activeElement) === true;
+    });
+    expect(focusInsideMount, "focus must remain inside the Find & Explore mount after Enter").toBe(true);
+  });
 });

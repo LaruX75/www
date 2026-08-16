@@ -436,6 +436,7 @@
     const status = mount.querySelector("[data-find-explore-status]");
     const resultsList = mount.querySelector("[data-find-explore-results]");
     const moreButton = mount.querySelector("[data-find-explore-more]");
+    const controlsForm = mount.querySelector("[data-find-explore-form]");
     const seedQuery = mount.dataset.findExploreSeedQuery || "";
     const recordsByUrl = readRecords(mount);
 
@@ -627,6 +628,18 @@
 
     const debouncedSearch = debounce(runSearch);
     queryInput?.addEventListener("input", debouncedSearch);
+    // PF-PERF2 fix — the search input lives inside
+    // <form data-find-explore-form ...> and its inputs carry `name`
+    // attributes. Without an explicit submit handler, pressing Enter
+    // triggers native GET form submission, which reloads the current
+    // URL with the form values as a query string. The reload drops
+    // the user to the top of the page and out of the results region.
+    // Intercept submit → prevent default → run the same debounced
+    // search path so Enter behaves like every other filter change.
+    controlsForm?.addEventListener("submit", (event) => {
+      event.preventDefault();
+      runSearch();
+    });
     typeSelect?.addEventListener("change", runSearch);
     yearSelect?.addEventListener("change", runSearch);
     topicSelect?.addEventListener("change", runSearch);

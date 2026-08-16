@@ -221,3 +221,82 @@ true after the fill).
 
 Rollback is one-file, mechanical, and does not touch Pagefind
 metadata, Research semantics, or any archive card.
+
+## 11. Enter-key focus/scroll bugfix
+
+Reported after PR #95 landed on `main` (merge commit
+`5de5b5ea79dbcca049a00681d163277af8e408b2`):
+
+- **User-observed bug** — Search felt faster after PF-PERF2, but
+  pressing Enter in the Find & Explore search input caused the
+  viewport to jump to the top of the page and focus to leave
+  the results region. The user then had to scroll back down.
+
+- **Root cause** — The Find & Explore controls live inside
+  `<form class="find-explore-controls" role="search"
+  data-find-explore-form>` (see
+  `src/_includes/find-explore-writings.njk` line 13), and the
+  form's inputs all carry `name` attributes (`q`, `type`, `year`,
+  `topic`, `quality`). PF-PERF2 wired listeners for `input`,
+  `change`, `click`, and `popstate`, but there was no `submit`
+  handler. Pressing Enter inside an input inside a `<form>` with
+  no submit handler triggers native GET form submission →
+  browser reloads the current URL with the form values as a
+  query string → the reload lands with `scrollY = 0` and focus
+  lost. Pre-PF-PERF2 code had the same latent bug; the perceived
+  speed-up from warmup made the jump more noticeable because the
+  user's finger was still on Enter when the page reloaded.
+
+- **Fix** — In `src/js/find-explore.js`, capture the form once
+  during `initMount`:
+  ```js
+  const controlsForm = mount.querySelector("[data-find-explore-form]");
+  ```
+  and wire a `submit` listener that intercepts native submission
+  and routes Enter into the same runtime path every other
+  filter change uses:
+  ```js
+  controlsForm?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    runSearch();
+  });
+  ```
+  No template change. No CSS change. No new attribute or aria
+  role. Pre-existing debounced `input` handler continues to run
+  as the user types.
+
+- **Test coverage** — Added a fifth Playwright case to
+  `tests/pf-perf2-first-search-latency.spec.js`:
+  1. Load `/tutkimus/`.
+  2. `scrollIntoViewIfNeeded()` the Research contextual mount
+     so the viewport is verifiably below the fold (asserts
+     `scrollY > 50` at test setup).
+  3. Focus the search input, fill an existing publication
+     title, press `Enter`.
+  4. Wait for the status text to change from idle.
+  5. Assert `scrollY > 50` after Enter (i.e. viewport did NOT
+     jump to `0`).
+  6. Assert `document.activeElement` is still inside the
+     Find & Explore mount.
+
+- **Verification** — Same gate set as the original PF-PERF2
+  report §8:
+  - `npm run build:no-og` — green.
+  - `npm run test:unit` — 401 / 401 pass.
+  - `tests/pf-perf2-first-search-latency.spec.js` — **5 / 5 pass**
+    (four original cases + new Enter-scroll case).
+  - PF-PERF1 (8 gates), PF4 (19 gates), PF-STARTER (11 gates),
+    PF3 (9 gates), PF2 (9 gates, 750 detail records),
+    M2 media (all gates including reverse
+    `noDetailUsesPagefindBody`), F4 Research
+    (`totalResearchPopulation: 317`, media not enumerated),
+    presentation Pagefind (`ok: true`) — all green.
+  - Pagefind index unchanged: `fi:1163 / en:346`.
+  - Built `_site/js/find-explore.js` grew from 26 209 B (PF-PERF2
+    baseline) to 26 938 B (+729 B / +2.8 %) for the new form
+    handler.
+
+- **PR path** — PR #95 was already merged when the bug was
+  reported, so this fix ships as a separate hotfix branch
+  (`codex/pf-perf2-enter-scroll-fix`) and a new PR into `main`
+  rather than being amended into #95.
