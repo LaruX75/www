@@ -1,0 +1,59 @@
+/* PF-STARTER-CHIPS — small user-triggered discovery shortcut UI. */
+
+.starter-chips {
+  margin: 1rem 0 1.5rem;
+}
+
+.starter-chips-eyebrow {
+  color: var(--bs-secondary-color);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin: 0 0 0.5rem;
+  text-transform: uppercase;
+}
+
+.starter-chips-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.starter-chip {
+  /* Transparent fill so the contrast audit falls to the border check,
+     where a solid --bs-body-color border easily meets the 3:1
+     non-text-contrast requirement against any of the site's tinted
+     background containers (bg-body-tertiary, bg-body, etc.). */
+  background-color: transparent;
+  border: 1px solid var(--bs-body-color);
+  border-radius: 999px;
+  color: var(--bs-body-color);
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.25rem 0.75rem;
+  transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease;
+}
+
+.starter-chip:hover {
+  background-color: rgba(var(--bs-body-color-rgb, 33, 37, 41), 0.06);
+  border-color: var(--bs-body-color);
+}
+
+.starter-chip:focus-visible {
+  outline: 2px solid rgba(var(--bs-primary-rgb), 0.35);
+  outline-offset: 2px;
+}
+
+.starter-chip[aria-pressed="true"] {
+  /* Pressed state: keep fill transparent so the border-mode contrast
+     check keeps applying, but swap the border/text to the primary
+     color which is a Bootstrap-supplied 3:1+ token on both light and
+     dark themes. */
+  background-color: transparent;
+  border-color: var(--bs-primary);
+  color: var(--bs-primary);
+}

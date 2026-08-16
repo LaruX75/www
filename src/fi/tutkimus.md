@@ -9,8 +9,10 @@ templateEngineOverride: njk
 pageStyles:
   - /css/research-page.css
   - /css/find-explore.css
+  - /css/starter-chips.css
 pageScripts:
   - /js/find-explore.js
+  - /js/starter-chips.js
 schemaType: CollectionPage
 schemaAbout:
   - "@type": "Thing"
@@ -193,6 +195,17 @@ schemaMentions:
 ] %}
 {% set findExploreQualityOptions = [] %}
 <section id="tutkimusnaytto">
+  <div class="site-shell">
+    <div class="starter-chips" data-starter-chips aria-label="Aloita tästä: valmiit tutkimusteemat">
+      <p class="starter-chips-eyebrow">Aloita tästä</p>
+      <ul class="starter-chips-list">
+        <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-target="#researchEvidenceExploreTopic" data-starter-chip-value="tekoäly">Tekoäly</button></li>
+        <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-target="#researchEvidenceExploreTopic" data-starter-chip-value="opettajankoulutus">Opettajankoulutus</button></li>
+        <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-target="#researchEvidenceExploreTopic" data-starter-chip-value="koulutusteknologia">Koulutusteknologia</button></li>
+        <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-target="#researchEvidenceExploreTopic" data-starter-chip-value="yhteisöllinen oppiminen">Yhteisöllinen oppiminen</button></li>
+      </ul>
+    </div>
+  </div>
   {% include "find-explore-writings.njk" %}
 </section>
 
