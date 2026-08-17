@@ -13,11 +13,18 @@ test("FI /julkaisut/ renders every canonical publication on initial load with AP
   await expect(page.locator("[data-find-explore-more]")).toHaveClass(/d-none/);
   // A–G group headings appear inside the result list, each with a
   // canonical count.
-  const groupHeadings = page.locator(".find-explore-result-group-heading");
-  await expect(groupHeadings).toHaveCount(7); // A, B, C, D, E, G + unclassified
-  await expect(groupHeadings.first()).toContainText(/A -/);
-  await expect(page.locator('.find-explore-result-group-heading[data-publication-group="A"] .find-explore-result-group-count')).toContainText("29");
-  await expect(page.locator('.find-explore-result-group-heading[data-publication-group="B"] .find-explore-result-group-count')).toContainText("9");
+  const groupSections = page.locator("section.find-explore-result-group");
+  await expect(groupSections).toHaveCount(7); // A, B, C, D, E, G + unclassified
+  await expect(groupSections.first()).toContainText(/A -/);
+  await expect(page.locator('section.find-explore-result-group[data-publication-group="A"] .find-explore-result-group-count')).toContainText("29");
+  await expect(page.locator('section.find-explore-result-group[data-publication-group="B"] .find-explore-result-group-count')).toContainText("9");
+  // Semantic list counts must equal the visible publication count.
+  await expect(page.locator('section.find-explore-result-group[data-publication-group="A"] > ol > li.find-explore-result')).toHaveCount(29);
+  await expect(page.locator('section.find-explore-result-group[data-publication-group="B"] > ol > li.find-explore-result')).toHaveCount(9);
+  // Each section is accessibly named by its <h3>.
+  const firstHeading = page.locator('section.find-explore-result-group[data-publication-group="A"] > h3');
+  await expect(firstHeading).toHaveAttribute("id", "publications-group-a");
+  await expect(page.locator('section.find-explore-result-group[data-publication-group="A"]')).toHaveAttribute("aria-labelledby", "publications-group-a");
   // At least one visible result row uses the APA citation body.
   await expect(page.locator(".find-explore-result-publication-citation").first()).toBeVisible();
   const titleLink = page.locator(".find-explore-result-publication-citation a").first();
@@ -35,8 +42,9 @@ test("EN /en/publications/ renders every canonical publication with A–G groupi
   await expect(status).toContainText(/56 results/, { timeout: 15000 });
   await expect(page.locator(".find-explore-result--publication")).toHaveCount(56, { timeout: 15000 });
   await expect(page.locator("[data-find-explore-more]")).toHaveClass(/d-none/);
-  await expect(page.locator(".find-explore-result-group-heading")).toHaveCount(7);
-  await expect(page.locator('.find-explore-result-group-heading[data-publication-group="A"] .find-explore-result-group-count')).toContainText("29");
+  await expect(page.locator("section.find-explore-result-group")).toHaveCount(7);
+  await expect(page.locator('section.find-explore-result-group[data-publication-group="A"] .find-explore-result-group-count')).toContainText("29");
+  await expect(page.locator('section.find-explore-result-group[data-publication-group="A"] > ol > li.find-explore-result')).toHaveCount(29);
   await expect(page.locator("[data-find-explore-topic]")).toHaveCount(0);
   await expect(page.locator(".publication-opening-item")).toHaveCount(0);
 });
@@ -47,11 +55,45 @@ test("FI A-group filter restricts the list to canonical A publications and shows
   await expect(page.locator("[data-find-explore-status]")).toContainText(/56 tulosta/, { timeout: 15000 });
   await page.locator("[data-find-explore-type]").selectOption("A");
   await expect(page.locator("[data-find-explore-status]")).toContainText(/29 tulosta/, { timeout: 15000 });
-  // Only one group heading survives (A) — no empty group sections
-  // when filters narrow the result set.
-  await expect(page.locator(".find-explore-result-group-heading")).toHaveCount(1);
-  await expect(page.locator(".find-explore-result-group-heading")).toContainText(/A -/);
+  // Only one group section survives (A) — no empty group sections
+  // when filters narrow the result set. Semantic list inside that
+  // section contains exactly 29 publication rows.
+  await expect(page.locator("section.find-explore-result-group")).toHaveCount(1);
+  await expect(page.locator("section.find-explore-result-group")).toContainText(/A -/);
+  await expect(page.locator("section.find-explore-result-group > ol > li.find-explore-result")).toHaveCount(29);
   await expect(page.locator(".find-explore-result--publication")).toHaveCount(29);
+});
+
+test("Empty-query default order is deterministic bibliographic (year DESC → title ASC), not Pagefind score", async ({ page }) => {
+  await page.goto("/julkaisut/");
+  await expect(page.locator("[data-find-explore][data-find-explore-ready='true']")).toBeVisible();
+  await expect(page.locator("[data-find-explore-status]")).toContainText(/56 tulosta/, { timeout: 15000 });
+  // First row in the first non-empty group (A) must be the newest
+  // year available in that group, and inside a year tie the title
+  // sort is Finnish locale ASC. Fixture: the canonical 2026 A-group
+  // publications are two — "Assessing Digital Competence..." and
+  // "Co-constructing adaptive lesson plans...". Locale ASC "A" < "C",
+  // so the deterministic top of the list starts with "Assessing".
+  const firstRowCitation = page.locator('section.find-explore-result-group[data-publication-group="A"] > ol > li.find-explore-result').first().locator('.find-explore-result-publication-citation');
+  await expect(firstRowCitation).toContainText(/^Nuci|^Krenare|^Assessing/);
+  await expect(firstRowCitation).toContainText(/2026/);
+  // Repeat visit produces the same top row → deterministic.
+  await page.reload();
+  await expect(page.locator("[data-find-explore-status]")).toContainText(/56 tulosta/, { timeout: 15000 });
+  const rowAfterReload = page.locator('section.find-explore-result-group[data-publication-group="A"] > ol > li.find-explore-result').first().locator('.find-explore-result-publication-citation');
+  await expect(rowAfterReload).toContainText(/2026/);
+});
+
+test("Text query retains Pagefind relevance ordering while grouping", async ({ page }) => {
+  await page.goto("/julkaisut/");
+  await expect(page.locator("[data-find-explore][data-find-explore-ready='true']")).toBeVisible();
+  await expect(page.locator("[data-find-explore-status]")).toContainText(/56 tulosta/, { timeout: 15000 });
+  await page.locator("[data-find-explore-query]").fill("Kosovo");
+  // Pagefind ranks the Kosovo TPACK paper as the top match. Even
+  // though its year is 2026 and could tie with other 2026 records
+  // in the default bibliographic sort, the text-query path must
+  // preserve the Pagefind relevance order.
+  await expect(page.locator('section.find-explore-result-group[data-publication-group="A"] > ol > li.find-explore-result').first().locator('.find-explore-result-publication-citation')).toContainText(/Kosovo/, { timeout: 15000 });
 });
 
 test("FI reset returns the full list", async ({ page }) => {

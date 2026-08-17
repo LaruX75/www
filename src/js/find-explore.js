@@ -605,6 +605,21 @@
       return orderedKeys.map((key) => ({ key, entries: buckets.get(key) }));
     }
 
+    // Publications FULL closure: deterministic bibliographic order
+    // for the default view (no free-text query). Sort key matches
+    // src/_data/publicationsPage.js#sortCanonicalItems:
+    //   year DESC → title ASC (fi locale).
+    // publicationGroup is not folded into the sort — grouping runs
+    // separately below.
+    function sortResultsForBibliographicOrder(entries) {
+      return [...entries].sort((left, right) => {
+        const leftYear = Number(left?.record?.year) || 0;
+        const rightYear = Number(right?.record?.year) || 0;
+        if (leftYear !== rightYear) return rightYear - leftYear;
+        return String(left?.title || "").localeCompare(String(right?.title || ""), "fi");
+      });
+    }
+
     function renderResultEntry(entry) {
       if (entry.kind === "publications" && entry.record) return renderPublicationResult(entry);
       const title = escapeHtml(entry.title);
@@ -620,23 +635,45 @@
       </li>`;
     }
 
+    // Publications FULL closure: emit semantic nested markup so
+    // assistive tech announces the group headings as headings and
+    // the inner list length as the actual publication count. Each
+    // group becomes <section aria-labelledby> wrapping an <h3 id>
+    // and an <ol> of publication rows.
+    function renderGroupedResults(grouped) {
+      return grouped.map(({ key, entries }, index) => {
+        const label = escapeHtml(publicationGroupLabel(key));
+        const count = entries.length;
+        const headingId = `${kind}-group-${escapeHtml(String(key).toLowerCase().replace(/^_+|_+$/g, ""))}`;
+        const rows = entries.map(renderResultEntry).join("");
+        return `<section class="find-explore-result-group" data-publication-group="${escapeHtml(key)}" aria-labelledby="${headingId}">`
+          + `<h3 id="${headingId}" class="find-explore-result-group-title h5">`
+          + `<span class="find-explore-result-group-label">${label}</span>`
+          + ` <span class="find-explore-result-group-count text-body-secondary">(${count})</span>`
+          + `</h3>`
+          + `<ol class="find-explore-result-group-list list-unstyled">${rows}</ol>`
+          + `</section>`;
+      }).join("");
+    }
+
     function renderResults() {
       const renderAll = Boolean(config.renderAllResults);
-      const slice = renderAll ? latestResults : latestResults.slice(0, visibleCount);
+      const activeQuery = queryInput?.value.trim() || "";
+      // Deterministic bibliographic order when the user has not
+      // entered a free-text query. Any structured facet state still
+      // uses bibliographic order — filters narrow the set, but
+      // relevance ranking only kicks in for actual text queries.
+      const orderedResults = (config.groupByPublicationGroup && !activeQuery)
+        ? sortResultsForBibliographicOrder(latestResults)
+        : latestResults;
+      const slice = renderAll ? orderedResults : orderedResults.slice(0, visibleCount);
       if (config.groupByPublicationGroup && slice.length) {
         const grouped = groupPublicationEntries(slice);
-        resultsList.innerHTML = grouped.map(({ key, entries }) => {
-          const label = escapeHtml(publicationGroupLabel(key));
-          const count = entries.length;
-          const heading = `<li class="find-explore-result-group-heading" data-publication-group="${escapeHtml(key)}">`
-            + `<h3 class="find-explore-result-group-title h5 mb-0">`
-            + `<span class="find-explore-result-group-label">${label}</span>`
-            + ` <span class="find-explore-result-group-count text-body-secondary">(${count})</span>`
-            + `</h3></li>`;
-          return heading + entries.map(renderResultEntry).join("");
-        }).join("");
+        resultsList.innerHTML = renderGroupedResults(grouped);
+      } else if (slice.length) {
+        resultsList.innerHTML = `<ol class="find-explore-result-list list-unstyled mb-0">${slice.map(renderResultEntry).join("")}</ol>`;
       } else {
-        resultsList.innerHTML = slice.map(renderResultEntry).join("");
+        resultsList.innerHTML = "";
       }
       if (renderAll) {
         moreButton?.classList.add("d-none");
