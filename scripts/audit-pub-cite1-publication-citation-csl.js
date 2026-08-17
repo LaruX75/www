@@ -191,10 +191,13 @@ function main() {
     serverApaComposerPresent: findings.citationPipeline.serverApaComposerPresent,
     detailForwardsCitation: findings.citationPipeline.detailModelForwardsCitation,
     detailForwardsCitationStyle: findings.citationPipeline.detailModelForwardsCitationStyle,
-    inlineClientApaExists: findings.citationPipeline.inlineClientApaInJulkaisut,
-    inlineClientMlaExists: findings.citationPipeline.inlineClientMlaInJulkaisut,
-    inlineClientChicagoExists: findings.citationPipeline.inlineClientChicagoInJulkaisut,
-    inlineClientBibtexExists: findings.citationPipeline.inlineClientBibtexInJulkaisut,
+    // PUB-CITE1 Phase 4b: the four inline browser formatters were
+    // deleted from src/julkaisut.njk. The citation modal is now
+    // shared-renderer-only with a controlled unavailable state.
+    inlineClientApaRemoved: !findings.citationPipeline.inlineClientApaInJulkaisut,
+    inlineClientMlaRemoved: !findings.citationPipeline.inlineClientMlaInJulkaisut,
+    inlineClientChicagoRemoved: !findings.citationPipeline.inlineClientChicagoInJulkaisut,
+    inlineClientBibtexRemoved: !findings.citationPipeline.inlineClientBibtexInJulkaisut,
     inlineClientRisRemoved: !findings.citationPipeline.inlineClientRisInJulkaisut,
     zoteroUsesSharedRenderer: findings.citationPipeline.zoteroUsesSharedRenderer,
     mendeleyUsesSharedRenderer: findings.citationPipeline.mendeleyUsesSharedRenderer,

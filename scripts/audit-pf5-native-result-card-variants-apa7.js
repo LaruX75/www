@@ -42,11 +42,19 @@ function main() {
   const thesisHubActionsSource = readOrEmpty("src/js/thesis-hub-actions.js");
   const presentationPagefindSource = readOrEmpty("scripts/_lib/presentationPagefind.js");
 
+  const publicationCitationSource = readOrEmpty("src/js/publication-citation.js");
+
   const findings = {
-    apaFormatterInJulkaisut: /function\s+buildApaCitation\s*\(/.test(julkaisutSource),
-    mlaFormatterInJulkaisut: /function\s+buildMlaCitation\s*\(/.test(julkaisutSource),
-    chicagoFormatterInJulkaisut: /function\s+buildChicagoCitation\s*\(/.test(julkaisutSource),
-    bibtexFormatterInJulkaisut: /function\s+buildBibtexEntry\s*\(/.test(julkaisutSource),
+    // PUB-CITE1 Phase 4a + 4b deleted the inline modal composers in
+    // src/julkaisut.njk. The APA formatter now lives in the shared
+    // isomorphic renderer at src/js/publication-citation.js, which
+    // both the SSR filter and the browser modal + Find & Explore
+    // rows consume. These findings reflect the current reality.
+    apaFormatterInPublicationCitation: /function\s+apa\s*\(/.test(publicationCitationSource),
+    mlaFormatterInPublicationCitation: /function\s+mla\s*\(/.test(publicationCitationSource),
+    chicagoFormatterInPublicationCitation: /function\s+chicago\s*\(/.test(publicationCitationSource),
+    bibtexFormatterInPublicationCitation: /function\s+bibtex\s*\(/.test(publicationCitationSource),
+    julkaisutLoadsSharedRenderer: /\/js\/publication-citation\.js/.test(julkaisutSource),
     thesisCitationApaExposedOnData: /citationApa\s*:\s*pickString\(thesis\.citationApa\)/.test(thesisDetailsSource),
     thesisHubActionsHasApaComposer: /\$\{authors\}\s*\(\$\{year\}\)/.test(thesisHubActionsSource),
 
@@ -103,7 +111,8 @@ function main() {
   // Hard gates — these must all be true to prove PF5 can proceed
   // without new Pagefind metadata (option A / C).
   const gates = {
-    apaFormatterExists: findings.apaFormatterInJulkaisut,
+    apaFormatterExists: findings.apaFormatterInPublicationCitation
+      && findings.julkaisutLoadsSharedRenderer,
     thesisApaFieldsAvailable:
       findings.thesisFieldsOnPagefindMeta.thesesAuthorLine
       && findings.thesisFieldsOnPagefindMeta.thesesType
@@ -140,7 +149,8 @@ function main() {
     gates,
     gateFailures,
     readinessSummary: {
-      publicationsApa: findings.apaFormatterInJulkaisut
+      publicationsApa: findings.apaFormatterInPublicationCitation
+        && findings.julkaisutLoadsSharedRenderer
         && findings.publicationFieldsOnRecord.authors
         && findings.publicationFieldsOnRecord.doi
         ? "READY"

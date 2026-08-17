@@ -132,14 +132,15 @@ function main() {
     modal: {
       julkaisutLoadsSharedRenderer: /\/js\/publication-citation\.js/.test(julkaisutNjkSrc),
       modalPrefersSharedRenderer: /window\.publicationCitation\s*\)\s*{[\s\S]*?buildCitation/.test(julkaisutNjkSrc),
-      // PUB-CITE1 Phase 4a removed the RIS inline composer. The
-      // remaining four (APA / MLA / Chicago / BibTeX) still exist as
-      // modal fallback for the case where csl or the shared renderer
-      // is unavailable.
-      modalKeepsLegacyFallback: /function\s+buildApaCitation\s*\(payload\)/.test(julkaisutNjkSrc)
-        && /function\s+buildBibtexEntry\s*\(payload\)/.test(julkaisutNjkSrc)
-        && /function\s+buildMlaCitation\s*\(payload\)/.test(julkaisutNjkSrc)
-        && /function\s+buildChicagoCitation\s*\(payload\)/.test(julkaisutNjkSrc),
+      // PUB-CITE1 Phase 4b removed the four remaining inline modal
+      // formatters. The citation modal is now shared-renderer-only;
+      // the "fallback" is a controlled unavailable state rather than
+      // a hand-rolled composer.
+      modalNoLongerKeepsLegacyFallback: !/function\s+buildApaCitation\s*\(payload\)/.test(julkaisutNjkSrc)
+        && !/function\s+buildBibtexEntry\s*\(payload\)/.test(julkaisutNjkSrc)
+        && !/function\s+buildMlaCitation\s*\(payload\)/.test(julkaisutNjkSrc)
+        && !/function\s+buildChicagoCitation\s*\(payload\)/.test(julkaisutNjkSrc),
+      modalShowsUnavailableMessage: /Viite ei ole saatavilla/.test(julkaisutNjkSrc),
       modalParsesCslDataAttr: /btn\.dataset\.csl/.test(julkaisutNjkSrc) && /JSON\.parse\(btn\.dataset\.csl\)/.test(julkaisutNjkSrc)
     },
     reverseGates: {
@@ -283,7 +284,8 @@ function main() {
     detailFallsBackToLegacyCitation: findings.detail.detailFallsBackToLegacyCitation,
     julkaisutLoadsSharedRenderer: findings.modal.julkaisutLoadsSharedRenderer,
     modalPrefersSharedRenderer: findings.modal.modalPrefersSharedRenderer,
-    modalKeepsLegacyFallback: findings.modal.modalKeepsLegacyFallback,
+    modalNoLongerKeepsLegacyFallback: findings.modal.modalNoLongerKeepsLegacyFallback,
+    modalShowsUnavailableMessage: findings.modal.modalShowsUnavailableMessage,
     modalParsesCslDataAttr: findings.modal.modalParsesCslDataAttr,
     findExploreRendererReadsCsl: findings.reverseGates.findExploreRendererReadsCsl,
     enPublicationsLoadsSharedRenderer: findings.reverseGates.enPublicationsLoadsSharedRenderer,

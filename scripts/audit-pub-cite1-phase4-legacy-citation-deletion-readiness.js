@@ -51,7 +51,8 @@ function countMatches(text, regex) {
 
 function classify(item) {
   const { hasReplacement, replacementParityProven, fallbackReachable,
-    consumersOutsidePublications, blocksOnMigration } = item;
+    consumersOutsidePublications, blocksOnMigration, alreadyRemoved } = item;
+  if (alreadyRemoved) return "COMPLETED";
   if (!hasReplacement) return "KEEP PERMANENTLY";
   if (consumersOutsidePublications) return "KEEP TEMPORARILY";
   if (blocksOnMigration && blocksOnMigration.length > 0) return "KEEP TEMPORARILY";
@@ -88,7 +89,10 @@ function main() {
   // renderer when payload.csl && window.publicationCitation are both
   // present. Fallback fires only when csl is missing OR the shared
   // renderer script did not load.
-  const fallbackGuard = /if\s*\(\s*payload\.csl\s*&&\s*window\.publicationCitation\s*\)/.test(julkaisutNjkSrc);
+  // PUB-CITE1 Phase 4b: the modal is shared-renderer-only via
+  // the sharedCitation(payload, format) helper. There is no
+  // per-format legacy fallback branch to guard any more.
+  const modalUsesSharedRendererOnly = /function\s+sharedCitation\s*\(payload,\s*format\)/.test(julkaisutNjkSrc);
   const legacyStillCalledDirectly = {
     apa: /return\s+buildApaCitation\(payload\)/.test(julkaisutNjkSrc),
     mla: /return\s+buildMlaCitation\(payload\)/.test(julkaisutNjkSrc),
@@ -200,17 +204,21 @@ function main() {
   // ---------- 11. Deletion classification ----------
   const deletionMatrix = [
     {
-      item: "src/julkaisut.njk inline buildApaCitation/buildMlaCitation/buildChicagoCitation/buildBibtexEntry (buildRisEntry removed in Phase 4a)",
+      item: "src/julkaisut.njk inline modal formatters (Phase 4a removed buildRisEntry; Phase 4b removed APA/MLA/Chicago/BibTeX)",
       hasReplacement: true,
       replacementParityProven: true,
-      fallbackReachable: !fallbackGuard,
+      fallbackReachable: Object.values(inlineFormatters).some(Boolean),
       consumersOutsidePublications: false,
+      alreadyRemoved: !Object.values(inlineFormatters).some(Boolean) && !zoteroCallsLegacyRis && !mendeleyCallsLegacyRis,
       blocksOnMigration: [
         zoteroCallsLegacyRis ? "Zotero download button still calls buildRisEntry — Phase 4a regression!" : null,
         mendeleyCallsLegacyRis ? "Mendeley download button still calls buildRisEntry — Phase 4a regression!" : null,
-        "getCitationByFormat still calls the four remaining inline formatters when window.publicationCitation is unavailable."
+        inlineFormatters.buildApaCitation ? "Legacy APA composer still present — Phase 4b regression!" : null,
+        inlineFormatters.buildMlaCitation ? "Legacy MLA composer still present — Phase 4b regression!" : null,
+        inlineFormatters.buildChicagoCitation ? "Legacy Chicago composer still present — Phase 4b regression!" : null,
+        inlineFormatters.buildBibtexEntry ? "Legacy BibTeX composer still present — Phase 4b regression!" : null
       ].filter(Boolean),
-      notes: "Phase 4a landed: Zotero + Mendeley now use the shared renderer, buildRisEntry deleted. Four inline formatters (APA/MLA/Chicago/BibTeX) remain as modal fallback for the case where csl or the shared renderer is unavailable."
+      notes: "All five inline browser formatters have been deleted. The citation modal is now shared-renderer-only with a controlled unavailable state; if csl or window.publicationCitation is missing, the preview shows 'Viite ei ole saatavilla tälle julkaisulle.' and the action buttons disable."
     },
     {
       item: "src/_data/researchfiContent.js buildApaCitation()",
@@ -273,7 +281,7 @@ function main() {
     enHubLoadsSharedRenderer: hubs.enLoadsSharedRenderer,
     findExploreEmitsDataCsl: hubs.findExploreEmitsDataCsl,
     findExploreConsumesCsl: hubs.findExploreConsumesCsl,
-    modalFallbackIsGuarded: fallbackGuard,
+    modalUsesSharedRendererOnly,
     detailPrefersShared,
     detailFallsBackToCitation, // informational, not blocking
     serverApaStillPresentForFallback: serverApa.functionPresent, // informational
@@ -285,7 +293,14 @@ function main() {
     zoteroUsesSharedRenderer,
     mendeleyUsesSharedRenderer,
     zoteroNoLongerCallsLegacyRis: !zoteroCallsLegacyRis,
-    mendeleyNoLongerCallsLegacyRis: !mendeleyCallsLegacyRis
+    mendeleyNoLongerCallsLegacyRis: !mendeleyCallsLegacyRis,
+    // Phase 4b invariants
+    inlineApaComposerRemoved: !inlineFormatters.buildApaCitation,
+    inlineMlaComposerRemoved: !inlineFormatters.buildMlaCitation,
+    inlineChicagoComposerRemoved: !inlineFormatters.buildChicagoCitation,
+    inlineBibtexComposerRemoved: !inlineFormatters.buildBibtexEntry,
+    modalHasControlledUnavailableState: /Viite ei ole saatavilla/.test(julkaisutNjkSrc)
+      && /setCitationButtonsEnabled\(false\)/.test(julkaisutNjkSrc)
   };
   // Hard-blocking gates that MUST be true for closure. Fallback and
   // still-present flags are informational.
@@ -294,9 +309,14 @@ function main() {
     "sharedRendererShimPresent", "nunjucksFilterRegistered",
     "fiHubLoadsSharedRenderer", "enHubLoadsSharedRenderer",
     "findExploreEmitsDataCsl", "findExploreConsumesCsl",
-    "modalFallbackIsGuarded", "detailPrefersShared", "thesisDomainIndependent",
+    "modalUsesSharedRendererOnly", "detailPrefersShared", "thesisDomainIndependent",
     "buildRisEntryRemoved", "zoteroUsesSharedRenderer", "mendeleyUsesSharedRenderer",
-    "zoteroNoLongerCallsLegacyRis", "mendeleyNoLongerCallsLegacyRis"
+    "zoteroNoLongerCallsLegacyRis", "mendeleyNoLongerCallsLegacyRis",
+    // PUB-CITE1 Phase 4b invariants: the four modal composers are
+    // deleted and the modal has a controlled unavailable state.
+    "inlineApaComposerRemoved", "inlineMlaComposerRemoved",
+    "inlineChicagoComposerRemoved", "inlineBibtexComposerRemoved",
+    "modalHasControlledUnavailableState"
   ];
   const hardFailures = hardBlockingGates.filter((k) => gates[k] !== true);
 

@@ -60,10 +60,13 @@ function main() {
       findExploreRecordForwardsCsl: /csl:\s*item\.csl/.test(publicationsFindExploreSrc)
     },
     preservation: {
-      inlineApaStillInJulkaisut: /function\s+buildApaCitation\s*\(payload\)/.test(julkaisutNjkSrc),
-      inlineMlaStillInJulkaisut: /function\s+buildMlaCitation\s*\(payload\)/.test(julkaisutNjkSrc),
-      inlineChicagoStillInJulkaisut: /function\s+buildChicagoCitation\s*\(payload\)/.test(julkaisutNjkSrc),
-      inlineBibtexStillInJulkaisut: /function\s+buildBibtexEntry\s*\(payload\)/.test(julkaisutNjkSrc),
+      // PUB-CITE1 Phase 4b removed all four inline modal formatters.
+      // The Phase 1 preservation intent is inverted: they must no
+      // longer exist as fallback consumers.
+      inlineApaRemovedFromJulkaisut: !/function\s+buildApaCitation\s*\(payload\)/.test(julkaisutNjkSrc),
+      inlineMlaRemovedFromJulkaisut: !/function\s+buildMlaCitation\s*\(payload\)/.test(julkaisutNjkSrc),
+      inlineChicagoRemovedFromJulkaisut: !/function\s+buildChicagoCitation\s*\(payload\)/.test(julkaisutNjkSrc),
+      inlineBibtexRemovedFromJulkaisut: !/function\s+buildBibtexEntry\s*\(payload\)/.test(julkaisutNjkSrc),
       // PUB-CITE1 Phase 4a removed the inline RIS composer; Zotero
       // + Mendeley consume the shared renderer via /js/publication-
       // citation.js. This invariant is now the reverse.
@@ -128,10 +131,10 @@ function main() {
     researchfiContentExposesCsl: findings.wiring.researchfiContentExposesCsl,
     findExploreRecordForwardsCsl: findings.wiring.findExploreRecordForwardsCsl,
     // Preservation of pre-existing citation pipeline
-    inlineApaStillInJulkaisut: findings.preservation.inlineApaStillInJulkaisut,
-    inlineMlaStillInJulkaisut: findings.preservation.inlineMlaStillInJulkaisut,
-    inlineChicagoStillInJulkaisut: findings.preservation.inlineChicagoStillInJulkaisut,
-    inlineBibtexStillInJulkaisut: findings.preservation.inlineBibtexStillInJulkaisut,
+    inlineApaRemovedFromJulkaisut: findings.preservation.inlineApaRemovedFromJulkaisut,
+    inlineMlaRemovedFromJulkaisut: findings.preservation.inlineMlaRemovedFromJulkaisut,
+    inlineChicagoRemovedFromJulkaisut: findings.preservation.inlineChicagoRemovedFromJulkaisut,
+    inlineBibtexRemovedFromJulkaisut: findings.preservation.inlineBibtexRemovedFromJulkaisut,
     inlineRisRemovedFromJulkaisut: findings.preservation.inlineRisRemovedFromJulkaisut,
     serverApaStillOnContent: findings.preservation.serverApaStillOnContent,
     detailStillForwardsCitationString: findings.preservation.detailStillForwardsCitationString,
