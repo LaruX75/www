@@ -1,4 +1,19 @@
 // Generates /api/export-data.json — used by admin/export page for PDF export
+const publicationCitation = require("../_utils/publicationCitation");
+
+// PUB-CITE1 Phase 4d: publication citations in the export JSON are
+// rendered from the canonical CSL projection via the shared
+// publicationCitation module. citationStyle is a constant "APA 7"
+// contract value — the shared renderer produces APA 7 output for
+// every valid csl. Failure path (no csl, empty renderer output) is a
+// controlled empty string rather than a hidden legacy fallback.
+function sharedApaFromCsl(csl) {
+  if (!csl) return "";
+  const rendered = publicationCitation.buildCitation({ csl, style: "apa" });
+  if (!rendered || rendered.empty || !rendered.text) return "";
+  return rendered.text;
+}
+
 module.exports = class {
   data() {
     return {
@@ -52,8 +67,8 @@ module.exports = class {
       anchorId: item.anchorId || "",
       title: item.title || "",
       description: item.description || "",
-      citation: item.citation || "",
-      citationStyle: item.citationStyle || "",
+      citation: sharedApaFromCsl(item.csl),
+      citationStyle: "APA 7",
       date: item.date || "",
       type: item.type || "",
       contentType: item.contentType || "",
