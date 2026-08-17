@@ -169,10 +169,15 @@ describe("buildCitation — APA thesis", () => {
   });
 });
 
-describe("buildCitation — literal authors preserved", () => {
-  test("free-text (literal) authors render safely, order preserved", () => {
+describe("buildCitation — 'Given [Middle] Family' authors", () => {
+  test("Phase 4c: raw 'Given Family' pattern is normalised to 'Family, G.' per APA", () => {
+    // Phase 1's parser used to fall through to {literal} for this
+    // pattern. Phase 4c extended parseAuthorPart to detect the
+    // "Given [Middle] Family" case so the APA renderer produces
+    // the expected initials-based citation for every taxonomy
+    // publication row.
     const out = buildCitation({ csl: cslLiteralAuthors(), style: "apa" }).text;
-    assert.match(out, /Krenare Pireva Nuci, & Jari Laru/);
+    assert.match(out, /Nuci, K\. P\., & Laru, J\./);
     assert.match(out, /\(2026\)/);
     assert.match(out, /Journal X/);
   });

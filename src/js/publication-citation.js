@@ -256,6 +256,7 @@
       if (publisher) sentence += " " + publisher + ".";
     } else if (csl.type === "book") {
       if (publisher) sentence += " " + publisher + ".";
+      else if (containerTitle) sentence += " " + containerTitle + ".";
     } else {
       if (containerTitle) {
         sentence += " " + containerTitle;

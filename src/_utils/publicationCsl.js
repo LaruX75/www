@@ -110,6 +110,43 @@ function parseAuthorPart(raw) {
     if (family && given) return { family, given };
     if (family) return { family };
   }
+  // No comma — Research.fi sometimes delivers each author in one
+  // of two whitespace-separated shapes:
+  //   a) "Given [Middle...] Family"      → given-first
+  //   b) "Family Initials [Initials...]"  → family-first (e.g. "Laru J.")
+  // The distinguishing signal is whether the last token is an
+  // initial (single uppercase letter followed by dots, optionally
+  // hyphen-chained: "J.", "J.-P.", "A.A."). Institutional or
+  // collective names that begin with a common article are
+  // preserved as {literal}.
+  const NON_PERSONAL_HEAD = new Set(["The", "A", "An", "Of", "And", "For", "On"]);
+  const INITIALS_TOKEN = /^([A-ZÅÄÖ]\.)+(-[A-ZÅÄÖ]\.)*$/;
+  const tokens = s.split(/\s+/).filter(Boolean);
+  if (
+    tokens.length >= 2
+    && tokens.every((token) => /^[A-ZÅÄÖ]/.test(token))
+    && !NON_PERSONAL_HEAD.has(tokens[0])
+  ) {
+    const lastIsInitials = INITIALS_TOKEN.test(tokens[tokens.length - 1]);
+    if (lastIsInitials) {
+      // Family-first shape: "Laru J." → family="Laru", given="J."
+      const initialTokens = [];
+      let cursor = tokens.length - 1;
+      while (cursor >= 0 && INITIALS_TOKEN.test(tokens[cursor])) {
+        initialTokens.unshift(tokens[cursor]);
+        cursor--;
+      }
+      const familyTokens = tokens.slice(0, cursor + 1);
+      if (familyTokens.length >= 1 && initialTokens.length >= 1) {
+        return { family: familyTokens.join(" "), given: initialTokens.join(" ") };
+      }
+    }
+    // Given-first shape: "Given [Middle...] Family"
+    return {
+      family: tokens[tokens.length - 1],
+      given: tokens.slice(0, tokens.length - 1).join(" ")
+    };
+  }
   return { literal: s };
 }
 

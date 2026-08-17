@@ -220,6 +220,25 @@ describe("buildCslItem — free-text author parsing", () => {
   test("single 'Family, Given' remains a structured pair", () => {
     assert.deepEqual(parseAuthors("Laru, Jari"), [{ family: "Laru", given: "Jari" }]);
   });
+
+  test("Phase 4c: 'Given [Middle] Family' pattern (no comma) splits into structured pair", () => {
+    // Research.fi ships some records as semicolon-separated
+    // "Given Family" pairs, e.g. "Krenare Pireva Nuci; Fisnik
+    // Dalipi". Phase 4c parses each token as {family: last-word,
+    // given: leading-words} so the APA renderer can emit
+    // "Nuci, K. P." instead of a raw literal.
+    assert.deepEqual(parseAuthors("Krenare Pireva Nuci; Fisnik Dalipi"), [
+      { family: "Nuci", given: "Krenare Pireva" },
+      { family: "Dalipi", given: "Fisnik" }
+    ]);
+  });
+
+  test("collective / institutional names starting with an English article remain literal", () => {
+    assert.deepEqual(parseAuthors("Laru, J.; The Collective"), [
+      { family: "Laru", given: "J." },
+      { literal: "The Collective" }
+    ]);
+  });
 });
 
 describe("buildCslItem — missing / partial fields", () => {
