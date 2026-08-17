@@ -10,22 +10,54 @@ Base main: `135f849e` (`Merge pull request #100 from LaruX75/docs/publications-f
 - **TH-CITE1**: AUDIT COMPLETE
 - **TH-CITE1 implementation**: NOT STARTED
 
-## 1. Architectural target (per user directive)
+## 1. Architectural target (per user directive, 2026-08-17 corrections)
 
 ```
-canonical thesis / publication
-  → existing CSL projection
-  → shared citation renderer
-    ├── Eleventy / Nunjucks SSR (initial thesis list, detail page, JSON-LD)
-    └── Pagefind display metadata
-          → dumb display in JS
+canonical thesis
+  → thesis CSL projection            (new — thesis-side adapter)
+  → existing shared citation renderer  (src/js/publication-citation.js —
+                                        already thesis-capable)
+    ├── Eleventy / Nunjucks SSR initial list
+    │     (/opinnaytteet/, /en/theses/, curated archive rows)
+    ├── detail / JSON-LD / /data/theses.json
+    ├── citation / export consumers (modal + Copy + Download + Zotero + Mendeley)
+    └── ready display projection in Pagefind metadata
+          → SHARED Pagefind result presentation across every surface
+              (domain F&E, Research F&E, navbar search, /haku/,
+               /en/search/, and any future Pagefind surface)
+          → browser JS never composes citations
 ```
+
+Three explicit architectural rules from the 2026-08-17 corrections:
+
+**(a) Precise CSL status.** The shared CSL infrastructure exists and is
+already thesis-capable at the renderer layer (`src/js/publication-citation.js`
+handles `type: "thesis"` in every style branch). What is missing is a
+thesis-side **CSL adapter** that projects the canonical OuluREPO thesis object
+into a CSL item. Phase 1 adds ONLY that adapter (`buildThesisCslItem`) —
+reusing existing helpers (`parseAuthors` is already exported from
+`publicationCsl.js`). The publications CSL builder `buildCslItem` stays
+publication-only and is NOT extended.
+
+**(b) SSR-first.** The initial `/opinnaytteet/` and `/en/theses/` archive
+must be rendered by Eleventy / Nunjucks at build time from
+`canonical thesis → CSL → shared renderer`. Pagefind must not generate the
+initial visible thesis archive. Pagefind takes over only when the user
+interacts — query, filter, ranking.
+
+**(c) PF5 GLOBAL RESULT PARITY.** The `thesesCitationApa` display projection
+and the thesis-domain result presentation must be inherited by **every**
+Pagefind surface: domain F&E on `/opinnaytteet/` + `/en/theses/`, Research
+F&E on `/tutkimus/`, navbar search overlay, `/haku/`, `/en/search/`, and
+any future Pagefind surface. New search surfaces must not invent their own
+result-card renderer. Context may only change density — never citation
+semantics, never composition.
 
 - **CSL is the bibliographic source** and remains the sole citation truth.
-- **Shared citation renderer** (`src/js/publication-citation.js`) is the sole citation composer.
+- **Shared citation renderer** is the sole citation composer.
 - **Nunjucks + Node shim** consume the shared renderer at build time.
-- **Pagefind** carries a ready-made display string as meta so browser JS can
-  display without composing.
+- **Pagefind** carries the ready-made display string as meta so browser JS
+  can display without composing.
 - **Browser JS**: no citation composition. Query + filter + interaction only.
 
 ## 2. Current thesis pipeline (evidence from branch state)
@@ -240,24 +272,39 @@ Current state diverges (§3). Options:
 - No other public thesis JSON/API surface exposes citation strings.
 - No knowledge-graph consumer identified.
 
-## 9. Pagefind integration target
+## 9. Pagefind integration target (PF5 GLOBAL RESULT PARITY)
 
 Preferred flow (matches user directive):
 
 ```
 canonical thesis
-  → buildThesisCslItem(thesis)             (new Phase 1)
+  → buildThesisCslItem(thesis)             (new Phase 1 adapter)
   → thesisDetail.csl                       (attached to thesis detail model)
-  → SSR: {{ thesisDetail.csl | publicationCitation("apa") }} in Nunjucks templates
-  → also (build-time): computed shared-renderer APA string
+  → SSR (Nunjucks + Node shim):
+    ├── /opinnaytteet/ + /en/theses/ initial thesis archive rows
+    ├── thesis detail card + JSON-LD
+    └── /data/theses.json citationApa field
+  → build-time shared-renderer APA string
     → src/_utils/thesesFindExplore.js#buildThesisFindExploreDocument
-       adds thesesCitationApa meta field alongside existing thesis meta
+       adds thesesCitationApa meta alongside existing thesis meta
   → Pagefind indexes the string as searchable + carries it in meta
-  → src/js/find-explore.js result row reads data.meta.thesesCitationApa
-    and DISPLAYS it (no composition)
+  → EVERY Pagefind surface reads data.meta.thesesCitationApa and
+    DISPLAYS it — same result-card presentation across:
+      · src/js/find-explore.js result rows on /opinnaytteet/, /en/theses/, /tutkimus/
+      · nav-bar Pagefind overlay (site-ui.js PagefindUI)
+      · /haku/ + /en/search/ full-page PagefindUI
+      · any future Pagefind surface added later
+    (Density may vary per surface — density is layout, not semantics.
+     Citation composition NEVER happens on any surface.)
 ```
 
-**Critical invariant**: `find-explore.js` never composes a thesis citation. It reads what Pagefind carries. Pagefind carries the shared-renderer output. The shared renderer reads CSL. CSL is the sole bibliographic truth.
+**Critical invariants** (all surfaces):
+- No surface composes a thesis citation in JavaScript.
+- No surface has its own thesis-specific composer.
+- Every surface reads the shared build-time output from Pagefind meta
+  and displays it verbatim.
+- CSL is the sole bibliographic truth. Shared renderer is the sole
+  composer. Nunjucks is the sole SSR renderer.
 
 ## 10. Deletion opportunities after TH-CITE1 lands
 
@@ -297,11 +344,16 @@ The audit defines the required parity target for TH-CITE1 phased implementation:
 Do NOT implement in this task. Phase plan for a future authorization:
 
 ### TH-CITE1 Phase 1 — thesis CSL projection (Node-side, build-time)
-- Add `buildThesisCslItem(thesis)` to a new `src/_utils/thesisCsl.js` (or extend `publicationCsl.js` if it stays type-agnostic).
+- Add `buildThesisCslItem(thesis)` to a new `src/_utils/thesisCsl.js`.
+  This is a **thin thesis-side adapter** that projects the canonical
+  OuluREPO thesis object into a CSL item. It reuses `parseAuthors` from
+  `publicationCsl.js` (already exported). The publications CSL builder
+  `buildCslItem` is not extended — thesis and publication remain
+  separate adapters that both feed the same shared renderer.
 - Wire into `src/_data/thesisDetails.js` so every `thesisDetail` object gets `thesisDetail.csl`.
 - Wire into `src/_utils/toThesesCollectionItems.js` so collection items carry csl too.
 - Unit tests + a parity audit comparing shared renderer output against current `citationApa`.
-- Additive; no deletion. `citationApa` field stays.
+- Additive; no deletion. `citationApa` field stays. No display change on any surface.
 
 ### TH-CITE1 Phase 2 — shared renderer thesis APA compliance
 - Update `src/js/publication-citation.js` thesis APA branch to emit APA 7 `[Genre, Publisher].` bracket format.
@@ -309,9 +361,16 @@ Do NOT implement in this task. Phase plan for a future authorization:
 - Publications regression: the ONE thesis-typed publication in the current inventory (`rf-g5-*` doctoral dissertation article-based) gets bracket-format APA — categorized as EXPECTED IMPROVEMENT.
 - Unit tests updated; Phase 2 shared renderer parity audit re-run.
 
-### TH-CITE1 Phase 3 — migrate detail page + JSON-LD to shared renderer
+### TH-CITE1 Phase 3 — migrate SSR-first display path to shared renderer
 - Change `thesis-detail-body.njk` from `{{ thesisDetail.citationApa }}` to `{{ thesisDetail.csl | publicationCitation("apa") }}`.
 - Change `thesis-details.njk:29` JSON-LD citation similarly.
+- **Migrate the initial /opinnaytteet/ and /en/theses/ thesis archive**
+  (currently curated cards via `thesis-curated-list.njk` + Find & Explore
+  paging) so the visible rows are rendered at build time by Nunjucks
+  from `thesisDetail.csl | publicationCitation("apa")`. Pagefind is not
+  the initial-render source. This step follows Publications FULL Pagefind's
+  precedent: SSR provides useful initial HTML; Pagefind is for query /
+  filter / ranking interaction only.
 - Preserve `citationApa` field emission as defence-in-depth for one release cycle.
 
 ### TH-CITE1 Phase 4 — migrate curated archive + citation modal
@@ -319,10 +378,27 @@ Do NOT implement in this task. Phase plan for a future authorization:
 - `thesis-hub-actions.js`: parse `data-csl`, call the shared renderer (like publications Phase 4a-b). Retain legacy browser formatters as fallback while wiring converges.
 - New browser smoke tests mirror the Publications `pf-cite-modal-failure-path` shape.
 
-### TH-CITE1 Phase 5 — Pagefind meta + PF5 thesis result variant
-- Extend `buildThesisFindExploreDocument` with a `thesesCitationApa` meta field, populated at build time from the shared renderer.
-- Extend `find-explore.js` publications-like dispatch: on `entry.kind === "theses"`, display `entry.meta.thesesCitationApa` as the primary meta line. **Zero composition in JS.**
-- Extend `pf5-result-card-variants.spec.js` with thesis assertions mirroring the presentation smokes.
+### TH-CITE1 Phase 5 — PF5 GLOBAL RESULT PARITY
+- Extend `buildThesisFindExploreDocument` with a `thesesCitationApa`
+  meta field, populated at build time from the shared renderer.
+- Every Pagefind surface must inherit the same thesis result-card
+  presentation:
+  - `src/js/find-explore.js` result rows on `/opinnaytteet/`,
+    `/en/theses/`, `/tutkimus/` — dispatch on `entry.kind === "theses"`,
+    display `entry.meta.thesesCitationApa`. **Zero composition.**
+  - nav-bar Pagefind overlay (`src/js/site-ui.js` PagefindUI
+    `processResult` callback or template config) — render the same
+    thesis citation string from meta.
+  - `/haku/` + `/en/search/` full-page PagefindUI — same `processResult`
+    contract.
+  - Any future Pagefind surface added later — reuse the same shared
+    thesis-result renderer helper. New surfaces must not invent their
+    own thesis result-card renderer.
+- Context may only vary density (list-item vs card, compact vs
+  expanded). Citation semantics and composition are shared.
+- Extend `pf5-result-card-variants.spec.js` with thesis assertions
+  mirroring the presentation smokes. Add browser smoke coverage for
+  the nav-bar overlay and `/haku/` thesis result rendering.
 
 ### TH-CITE1 Phase 6 — delete legacy formatters after parity proof
 - Once phases 1–5 land, all consumers read the shared renderer output.
@@ -332,15 +408,31 @@ Do NOT implement in this task. Phase plan for a future authorization:
 
 ## 13. Recommended next single-concern implementation step
 
-**TH-CITE1 Phase 1 — thesis CSL projection.**
+**TH-CITE1 Phase 1 — thesis CSL projection (thin adapter, reuses
+existing infrastructure).**
 
-- New `src/_utils/thesisCsl.js` with `buildThesisCslItem(thesis)`, reusing `parseAuthors` from `publicationCsl.js` (either shared or duplicated with an explicit reason).
-- Wire into `src/_data/thesisDetails.js`.
-- Unit tests covering: master, bachelor, doctoral, licentiate, missing-author, missing-year, and one reviewer-only record.
-- New Node-side parity script comparing shared renderer output vs current `citationApa` on the full thesis inventory; classify each row IDENTICAL / EXPECTED IMPROVEMENT / UNEXPLAINED REGRESSION.
-- No template change. No deletion. No display change on any surface. Additive `thesisDetail.csl` field only.
+- New `src/_utils/thesisCsl.js` with `buildThesisCslItem(thesis)`.
+  Reuses `parseAuthors` from `publicationCsl.js` (already exported).
+  Does NOT extend the publications `buildCslItem`; thesis and
+  publication remain separate adapters feeding the same shared
+  renderer.
+- Wire into `src/_data/thesisDetails.js` so every `thesisDetail` gets
+  `thesisDetail.csl`.
+- Wire into `src/_utils/toThesesCollectionItems.js`.
+- Unit tests covering: master, bachelor, doctoral, licentiate,
+  missing-author, missing-year, reviewer-only, FI + EN language,
+  missing url, deterministic + input immutability.
+- Node-side parity script comparing shared renderer output vs
+  current `citationApa` on all 170 theses; classify each row
+  IDENTICAL / EXPECTED IMPROVEMENT / UNEXPLAINED REGRESSION.
+- **Additive only.** No template change. No deletion. No display
+  change on any surface. `thesisDetail.csl` field added; every
+  existing field preserved byte-identically.
 
-This mirrors PUB-CITE1 Phase 1's shape: introduce the CSL projection, prove parity via audit, ship, then let subsequent phases migrate consumers one at a time.
+This mirrors PUB-CITE1 Phase 1's shape: introduce the CSL projection,
+prove parity via audit, ship, then let subsequent phases migrate
+consumers one at a time — Phase 3 for SSR-first display, Phase 5 for
+PF5 GLOBAL RESULT PARITY across every Pagefind surface.
 
 ## 14. Public-contract statement
 
