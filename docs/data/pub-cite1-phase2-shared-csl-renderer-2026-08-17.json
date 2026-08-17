@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-17T04:41:45.804Z",
+  "generatedAt": "2026-08-17T05:16:46.032Z",
   "scope": "PUB-CITE1 Phase 2 — shared CSL renderer + publications list v2 audit",
   "findings": {
     "module": {
@@ -17,10 +17,9 @@
       "filterCallsBuildCitation": true
     },
     "ssrList": {
-      "openingListUsesSharedFilter": true,
-      "openingListStillLinksToDetail": true,
-      "openingListStillEmitsExportButton": true,
-      "openingListEmitsCslDataAttribute": true
+      "openingListPartialDeleted": true,
+      "findExploreRendererUsesSharedRenderer": true,
+      "findExploreCitationButtonEmitsCsl": true
     },
     "detail": {
       "detailUsesSharedFilter": true,
@@ -34,8 +33,8 @@
       "modalParsesCslDataAttr": true
     },
     "reverseGates": {
-      "findExploreRendererStillDoesNotUseCsl": true,
-      "enPublicationsUsesSharedList": true,
+      "findExploreRendererReadsCsl": true,
+      "enPublicationsLoadsSharedRenderer": true,
       "enPublicationsHasNoOwnCitationFormatters": true
     }
   },
@@ -114,18 +113,17 @@
     "nodeShimReexports": true,
     "nunjucksFilterRegistered": true,
     "filterCallsBuildCitation": true,
-    "openingListUsesSharedFilter": true,
-    "openingListStillLinksToDetail": true,
-    "openingListStillEmitsExportButton": true,
-    "openingListEmitsCslDataAttribute": true,
+    "openingListPartialDeleted": true,
+    "findExploreRendererUsesSharedRenderer": true,
+    "findExploreCitationButtonEmitsCsl": true,
     "detailUsesSharedFilter": true,
     "detailFallsBackToLegacyCitation": true,
     "julkaisutLoadsSharedRenderer": true,
     "modalPrefersSharedRenderer": true,
     "modalKeepsLegacyFallback": true,
     "modalParsesCslDataAttr": true,
-    "findExploreRendererStillDoesNotUseCsl": true,
-    "enPublicationsUsesSharedList": true,
+    "findExploreRendererReadsCsl": true,
+    "enPublicationsLoadsSharedRenderer": true,
     "enPublicationsHasNoOwnCitationFormatters": true,
     "runtimeSampleOk": true,
     "parityHasNoUnexplainedRegressions": true

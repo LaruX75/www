@@ -113,11 +113,16 @@ function main() {
       nunjucksFilterRegistered: /addFilter\("publicationCitation"/.test(eleventyFiltersSrc),
       filterCallsBuildCitation: /publicationCitation\.buildCitation\(\{\s*csl,\s*style\s*\}\)/.test(eleventyFiltersSrc)
     },
+    // Phase 2 originally shipped the SSR opening-list partial as the
+    // bibliographic surface. PF5-IMPL-APA (2026-08-17) moved the full
+    // publications list into Pagefind and deleted the partial, so
+    // these gates now assert (a) the partial is gone and (b) the
+    // Find & Explore renderer is the shared-CSL consumer for the
+    // list surface.
     ssrList: {
-      openingListUsesSharedFilter: /publicationCitation\("apa"\)/.test(publicationsOpeningListSrc),
-      openingListStillLinksToDetail: /pub\.pageUrl/.test(publicationsOpeningListSrc),
-      openingListStillEmitsExportButton: /export-citation-btn/.test(publicationsOpeningListSrc),
-      openingListEmitsCslDataAttribute: /data-csl=/.test(publicationsOpeningListSrc)
+      openingListPartialDeleted: !fs.existsSync(path.join(REPO_ROOT, "src/_includes/publications-opening-list.njk")),
+      findExploreRendererUsesSharedRenderer: /window\.publicationCitation\b[\s\S]{0,120}renderer\.buildCitation/.test(readOrEmpty("src/js/find-explore.js")),
+      findExploreCitationButtonEmitsCsl: /data-csl=/.test(readOrEmpty("src/js/find-explore.js"))
     },
     detail: {
       detailUsesSharedFilter: /publicationCitation\("apa"\)/.test(publicationItemBodySrc),
@@ -135,8 +140,11 @@ function main() {
       modalParsesCslDataAttr: /btn\.dataset\.csl/.test(julkaisutNjkSrc) && /JSON\.parse\(btn\.dataset\.csl\)/.test(julkaisutNjkSrc)
     },
     reverseGates: {
-      findExploreRendererStillDoesNotUseCsl: !/entry\.record\.csl/.test(findExploreJsSrc),
-      enPublicationsUsesSharedList: /publications-opening-list\.njk/.test(enPublicationsNjkSrc),
+      // PF5-IMPL-APA now DOES read entry.record.csl inside
+      // publicationCitationBody; the old reverse gate is inverted.
+      findExploreRendererReadsCsl: /record\.csl/.test(findExploreJsSrc)
+        && /renderer\.buildCitation/.test(findExploreJsSrc),
+      enPublicationsLoadsSharedRenderer: /\/js\/publication-citation\.js/.test(enPublicationsNjkSrc),
       enPublicationsHasNoOwnCitationFormatters: !/function\s+buildApaCitation/.test(enPublicationsNjkSrc)
     }
   };
@@ -265,18 +273,17 @@ function main() {
     nodeShimReexports: findings.module.nodeShimReexports,
     nunjucksFilterRegistered: findings.filter.nunjucksFilterRegistered,
     filterCallsBuildCitation: findings.filter.filterCallsBuildCitation,
-    openingListUsesSharedFilter: findings.ssrList.openingListUsesSharedFilter,
-    openingListStillLinksToDetail: findings.ssrList.openingListStillLinksToDetail,
-    openingListStillEmitsExportButton: findings.ssrList.openingListStillEmitsExportButton,
-    openingListEmitsCslDataAttribute: findings.ssrList.openingListEmitsCslDataAttribute,
+    openingListPartialDeleted: findings.ssrList.openingListPartialDeleted,
+    findExploreRendererUsesSharedRenderer: findings.ssrList.findExploreRendererUsesSharedRenderer,
+    findExploreCitationButtonEmitsCsl: findings.ssrList.findExploreCitationButtonEmitsCsl,
     detailUsesSharedFilter: findings.detail.detailUsesSharedFilter,
     detailFallsBackToLegacyCitation: findings.detail.detailFallsBackToLegacyCitation,
     julkaisutLoadsSharedRenderer: findings.modal.julkaisutLoadsSharedRenderer,
     modalPrefersSharedRenderer: findings.modal.modalPrefersSharedRenderer,
     modalKeepsLegacyFallback: findings.modal.modalKeepsLegacyFallback,
     modalParsesCslDataAttr: findings.modal.modalParsesCslDataAttr,
-    findExploreRendererStillDoesNotUseCsl: findings.reverseGates.findExploreRendererStillDoesNotUseCsl,
-    enPublicationsUsesSharedList: findings.reverseGates.enPublicationsUsesSharedList,
+    findExploreRendererReadsCsl: findings.reverseGates.findExploreRendererReadsCsl,
+    enPublicationsLoadsSharedRenderer: findings.reverseGates.enPublicationsLoadsSharedRenderer,
     enPublicationsHasNoOwnCitationFormatters: findings.reverseGates.enPublicationsHasNoOwnCitationFormatters,
     runtimeSampleOk: runtimeSample.ok,
     parityHasNoUnexplainedRegressions: parity.regressions.length === 0

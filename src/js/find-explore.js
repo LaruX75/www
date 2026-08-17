@@ -221,15 +221,25 @@
       yearFilterKey: "Publications year",
       topicFilterKey: "Publications topic",
       qualityFilterKey: "Publications quality",
-      // PF4: authors · type · venue. Year moved to family header;
-      // colored quality badges demoted to a single micro-copy line.
-      resultMeta(entry) {
-        return [entry.authors, entry.typeLabel, entry.venue].filter(Boolean);
-      },
+      // PF5-IMPL-APA: publication rows lead with a shared-renderer APA
+      // sentence (see renderPublicationResult below). Keeping meta
+      // returns empty so PF4's primary-meta line does not duplicate
+      // the APA sentence.
+      resultMeta() { return []; },
       excerpt(data, record) {
         return record?.description || data?.meta?.publicationDescription || data?.excerpt || "";
       },
-      requiresQueryForSearch: false
+      requiresQueryForSearch: false,
+      // PF5-IMPL-APA: the publications archive shows the full canonical
+      // list on initial load. When the user has entered no query and
+      // no filters, the seed query is used as the effective query so
+      // Pagefind returns every publication.
+      showAllByDefault: true,
+      // Per-search result ceiling for the publications kind — high
+      // enough that the canonical 56 publications (and comfortable
+      // growth headroom) never get truncated. Other kinds keep the
+      // classic 50-result cap.
+      maxResults: 200
     },
     presentations: {
       yearFilterKey: "PresentationYear",
@@ -468,14 +478,40 @@
     function citationButton(record) {
       if (!record) return "";
       if (!document.getElementById("citationExportModal")) return "";
+      const cslAttr = record.csl
+        ? ` data-csl="${escapeHtml(JSON.stringify(record.csl))}"`
+        : "";
       return `<button type="button" class="btn btn-sm btn-outline-secondary rounded-pill export-citation-btn"`
         + ` data-title="${escapeHtml(record.title || "")}" data-authors="${escapeHtml(record.authors || "")}"`
         + ` data-year="${escapeHtml(record.year || "")}" data-journal="${escapeHtml(record.journal || "")}"`
         + ` data-doi="${escapeHtml(record.doi || "")}" data-url="${escapeHtml(record.sourceUrl || record.doiUrl || "")}"`
         + ` data-volume="${escapeHtml(record.volume || "")}" data-issue="${escapeHtml(record.issue || "")}"`
         + ` data-pages="${escapeHtml(record.pages || "")}" data-publisher="${escapeHtml(record.publisher || "")}"`
-        + ` data-isbn="${escapeHtml(record.isbn || "")}" title="${escapeHtml(labels.exportCitation)}">`
+        + ` data-isbn="${escapeHtml(record.isbn || "")}"${cslAttr} title="${escapeHtml(labels.exportCitation)}">`
         + `<i class="bi bi-download me-1" aria-hidden="true"></i>${escapeHtml(labels.exportCitation)}</button>`;
+    }
+
+    // PF5-IMPL-APA: reach for the shared CSL renderer (loaded via
+    // /js/publication-citation.js on publication hub pages). When the
+    // renderer is unavailable, fall back to the record's plain
+    // title/authors so no publication row degrades to an unlabeled tile.
+    function publicationCitationBody(entry) {
+      const record = entry?.record;
+      if (!record) return `<a class="find-explore-result-title" href="${escapeHtml(entry.url)}">${escapeHtml(entry.title)}</a>`;
+      const renderer = typeof window !== "undefined" ? window.publicationCitation : null;
+      if (record.csl && renderer && typeof renderer.buildCitation === "function") {
+        const rendered = renderer.buildCitation({ csl: record.csl, style: "apa" });
+        if (rendered && rendered.text) {
+          return `<p class="find-explore-result-publication-citation" data-find-explore-card-line="primary-meta">`
+            + `<a class="find-explore-result-title find-explore-result-publication-citation-link" href="${escapeHtml(entry.url)}">`
+            + escapeHtml(rendered.text)
+            + `</a></p>`;
+        }
+      }
+      const authorLine = record.authors
+        ? `<p class="find-explore-result-publication-fallback-authors" data-find-explore-card-line="primary-meta">${escapeHtml(record.authors)}${record.year ? ` (${escapeHtml(String(record.year))})` : ""}</p>`
+        : "";
+      return `<a class="find-explore-result-title" href="${escapeHtml(entry.url)}">${escapeHtml(entry.title)}</a>${authorLine}`;
     }
 
     // PF4: replace the four colored publication quality badges with a
@@ -501,15 +537,13 @@
 
     function renderPublicationResult(entry) {
       const record = entry.record;
-      const title = escapeHtml(entry.title);
       const url = escapeHtml(entry.url);
       const excerpt = entry.excerpt
         ? `<p class="find-explore-result-excerpt" data-find-explore-card-line="excerpt">${escapeHtml(entry.excerpt)}</p>`
         : "";
       return `<li class="find-explore-result find-explore-result--publication">
         ${renderFamilyHeader(entry)}
-        <a class="find-explore-result-title" href="${url}">${title}</a>
-        ${renderPrimaryMetaLine(entry)}
+        ${publicationCitationBody(entry)}
         ${publicationQualityLine(record)}
         ${excerpt}
         <div class="d-flex flex-wrap gap-2 mt-2" data-find-explore-card-line="actions">
@@ -543,7 +577,13 @@
       const state = readState();
       const hasQuery = Boolean(state.q);
       const hasFilters = Boolean(state.type || state.year || state.topic || state.quality);
-      const effectiveQuery = hasQuery ? state.q : ((hasFilters && seedQuery) ? seedQuery : "");
+      // PF5-IMPL-APA: publications archive keeps the full canonical
+      // list visible on initial load — fall back to the seed query
+      // even without filters when the kind opted in.
+      const useSeedForEmpty = config.showAllByDefault && seedQuery;
+      const effectiveQuery = hasQuery
+        ? state.q
+        : ((hasFilters || useSeedForEmpty) && seedQuery ? seedQuery : "");
 
       updateUrl(state);
       visibleCount = PAGE_SIZE;
@@ -589,9 +629,14 @@
         }
 
         const typeLabel = typeSelect?.selectedOptions?.[0]?.textContent?.replace(/\s+\(\d+\)$/, "") || "";
+        // PF5-IMPL-APA: kinds that show the full canonical list on
+        // initial load (e.g. publications) need a higher per-search
+        // ceiling than the classic 50-result cap so nothing is
+        // silently truncated.
+        const resultCap = config.maxResults || 50;
         const merged = [];
         for (const searchResult of searchResults) {
-          searchResult.result.results.slice(0, 50).forEach((result) => {
+          searchResult.result.results.slice(0, resultCap).forEach((result) => {
             merged.push({ kind: searchResult.kind, result });
           });
         }
@@ -608,7 +653,7 @@
           if (!entry.url || seen.has(entry.url)) continue;
           seen.add(entry.url);
           entries.push(entry);
-          if (entries.length >= 50) break;
+          if (entries.length >= resultCap) break;
         }
 
         latestResults = entries;

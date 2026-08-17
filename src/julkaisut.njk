@@ -236,8 +236,8 @@ schemaType: CollectionPage
 {% set findExploreAllQualityLabel = "Kaikki" %}
 {% set findExploreResetLabel = "Tyhjennä" %}
 {% set findExploreMoreLabel = "Näytä lisää" %}
-{% set findExploreInitialStatus = "Voit hakea sanalla tai rajata tuloksia. Alla oleva avauslista toimii myös ilman JavaScriptiä." %}
-{% set findExploreNoScript = "Interaktiivinen Find & Explore edellyttää JavaScriptiä. Alla oleva avauslista ja paikalliset julkaisulinkit toimivat silti." %}
+{% set findExploreInitialStatus = "Ladataan julkaisuluetteloa..." %}
+{% set findExploreNoScript = "Interaktiivinen julkaisuluettelo edellyttää JavaScriptiä. Yksittäiset julkaisusivut löytyvät palvelinpuolelta ja ovat indeksoituja: käytä sivuston hakua (yläpalkki), sitemapia tai hakukoneita." %}
 {% set findExploreTypeOptions = [] %}
 {% for option in publicationExplore.groupOptions %}
   {% set findExploreTypeOptions = (findExploreTypeOptions.push({ value: option.value, label: option.labelFi, count: option.count }), findExploreTypeOptions) %}
@@ -254,25 +254,18 @@ schemaType: CollectionPage
   {% include "find-explore-writings.njk" %}
 </section>
 
-<section id="julkaisuluokat" class="py-5">
+<section id="julkaisuluokat" class="py-4">
   <div class="site-shell">
-    <div class="card border-0 shadow-sm publication-nav-card mb-4">
+    <div class="card border-0 shadow-sm publication-nav-card">
       <div class="card-body">
-        <p class="text-uppercase small text-muted mb-1">Avauslista</p>
-        <h2 class="h3 mb-1">Uusimmat julkaisut</h2>
-        <p class="text-muted mb-3">Tämä SSR-lista toimii ilman JavaScriptiä. Find & Explore kattaa koko {{ canonicalPublications.length }} julkaisun canonical-joukon.</p>
+        <p class="text-uppercase small text-muted mb-1">Julkaisuluokitus</p>
+        <h2 class="h3 mb-1">A–G kuvaa julkaisun tyypin</h2>
+        <p class="text-muted mb-3">Find & Explore -haku yllä listaa canonical-joukon kaikki {{ canonicalPublications.length }} julkaisua ja rajaa niitä OKM:n julkaisutyyppiluokituksen mukaan. Yksittäisten julkaisujen sivut ovat edelleen palvelinpuolella renderöityjä ja indeksoituja.</p>
         <div class="d-flex flex-wrap gap-2">
           {% for option in publicationExplore.groupOptions %}
           <span class="badge text-bg-light text-dark border">{{ option.labelFi }} <span class="text-muted">{{ option.count }}</span></span>
           {% endfor %}
         </div>
-      </div>
-    </div>
-    <div class="card shadow-sm border-0">
-      <div class="card-body">
-        {% set publicationItems = publicationExplore.openingItems %}
-        {% set publicationLang = "fi" %}
-        {% include "publications-opening-list.njk" %}
       </div>
     </div>
   </div>
