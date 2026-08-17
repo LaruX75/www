@@ -2,8 +2,9 @@
 
 Date: 2026-08-12
 Synchronized: 2026-08-14
+Publications FULL update: 2026-08-17
 
-This roadmap is the shared source of truth after Canonical Content v1, Find & Explore Writings v1, Find & Explore Theses v1, Find & Explore Publications v1, and F4 Research contextual Find & Explore v1.
+This roadmap is the shared source of truth after Canonical Content v1, Find & Explore Writings v1, Find & Explore Theses v1, Find & Explore Publications v1, F4 Research contextual Find & Explore v1, and the 2026-08-17 Publications FULL Pagefind + PUB-CITE1 closure.
 
 ## 1. Current State
 
@@ -55,6 +56,27 @@ unit tests: 389/389
 combined writings + theses + publications browser smoke: 7 passed
 accessibility/navigation/contrast: 38 passed
 closure report: docs/find-explore-publications-v1-closure-2026-08-14.md
+
+Publications FULL Pagefind + PUB-CITE1
+status: CLOSED / GREEN / MAIN
+scope: FULL Pagefind list + canonical CSL citation architecture (supersedes F3B PARTIAL scope, not F3B history)
+PR: #99
+PR title: Publications FULL Pagefind and citation architecture closure
+head commit: 7efcca8ccdc904f456c805b11c9abd8ec489921d
+merge commit: 2f752a42f6625dcbfe7761a8d99d4c9e611c37da
+merge timestamp: 2026-08-17T10:44:32Z
+unit tests: 460/460
+default visible publications: 56/56 (FI + EN)
+canonical / Pagefind / FI hub / EN hub parity: 56 each; missing=0 extra=0 dup=0
+grouping: A / B / C / D / E / G + unclassified (semantic section > h3 > ol)
+default ordering: deterministic bibliographic (year DESC → title ASC)
+text-query ordering: Pagefind relevance within canonical groups
+publication browser smoke: 13/13
+regression audit sweep: 14/14
+post-merge CI on main 2f752a42: Build and Deploy pass, Accessibility and navigation tests pass, Generate OG Images pass
+citation architecture: canonical CSL is the sole publication citation source across list rows, detail card, taxonomy pages, citation modal, Zotero + Mendeley RIS downloads, /api/export-data.json
+keyword audit: CLOSED — no implementation (Research.fi own 0/56, OpenAlex enrichment 30/56 not surfaced as author/source keywords)
+closure report: docs/publications-full-pagefind-pub-cite1-closure-2026-08-17.md
 
 F4 Research contextual Find & Explore
 status: CLOSED / GREEN
