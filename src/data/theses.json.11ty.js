@@ -23,7 +23,6 @@
 
 const { JSON_SCHEMA_VERSION } = require("./_shared");
 const { deriveThesisMetadata } = require("../_utils/thesisDerivedMetadata");
-const { buildThesisCslItem } = require("../_utils/thesisCsl");
 
 function normalizeArray(value) {
   if (!Array.isArray(value)) return null;
@@ -96,21 +95,15 @@ function toThesisRecord(t, lang, source) {
     researchAudience: normalizeArray(t?.researchAudience),
     researchPriority: priority,
     researchSummary: pickString(t?.researchSummary),
-    citationApa: pickString(t?.citationApa),
-    // TH-CITE1 Phase 1: additive canonical CSL projection alongside
-    // the existing citationApa field. Field name is new; existing
-    // fields preserved byte-identically. Phase 3+ consumers can
-    // read csl to compose citations via the shared renderer without
-    // regenerating the pre-composed citationApa string.
-    csl: buildThesisCslItem({
-      pageUrl: pickString(t?.pageUrl),
-      sourceUrl: link,
-      title,
-      authors: Array.isArray(t?.authors) ? t.authors : [],
-      year: t?.year,
-      thesisType: pickString(t?.type),
-      language: pickString(t?.language)
-    })
+    citationApa: pickString(t?.citationApa)
+    // TH-CITE1 Phase 1 review outcome: canonical CSL stays an
+    // internal build model (thesisDetail.csl + collection item
+    // data.csl). It is intentionally NOT exposed on this public
+    // JSON allowlist projection because no external consumer needs
+    // it. citationApa remains the sole public thesis citation
+    // field; later phases populate it from the shared renderer
+    // (canonical CSL → shared renderer) without changing the field
+    // name or shape.
   });
 }
 
