@@ -1,0 +1,123 @@
+{
+  "generatedAt": "2026-08-17T19:25:57.283Z",
+  "scope": "TH-CITE1 thesis citation CSL readiness — coverage snapshot",
+  "thesisInventory": {
+    "total": 170,
+    "hasCitationApa": 170,
+    "missingYear": 0,
+    "missingAuthors": 0,
+    "byType": {
+      "masterThesis": 141,
+      "bachelorThesis": 29
+    },
+    "byRole": {
+      "advised": 117,
+      "reviewed": 53
+    },
+    "byLang": {
+      "fin": 139,
+      "eng": 31
+    }
+  },
+  "parallelFormatters": [
+    {
+      "location": "src/_data/theses.js#buildApaCitation",
+      "runtime": "node/build",
+      "styles": [
+        "APA"
+      ],
+      "institutionLabel": "Oulun yliopisto (FI only)",
+      "genreLabel": "Finnish only"
+    },
+    {
+      "location": "src/js/thesis-hub-actions.js#buildThesisApa/Mla/Chicago/BibTeX/Ris",
+      "runtime": "browser",
+      "styles": [
+        "APA",
+        "MLA",
+        "Chicago",
+        "BibTeX",
+        "RIS"
+      ],
+      "institutionLabel": "University of Oulu (EN only)",
+      "genreLabel": "English only"
+    },
+    {
+      "location": "src/js/publication-citation.js (shared renderer, target)",
+      "runtime": "isomorphic",
+      "styles": [
+        "APA",
+        "MLA",
+        "Chicago",
+        "BibTeX",
+        "RIS"
+      ],
+      "institutionLabel": "csl.publisher (source-faithful)",
+      "genreLabel": "csl.genre (source-faithful)"
+    }
+  ],
+  "consumers": {
+    "detailPage": "src/_includes/thesis-detail-body.njk (thesisDetail.citationApa)",
+    "detailPageJsonLd": "src/opinnaytteet/thesis-details.njk (thesisSchemaCitation)",
+    "publicJsonApi": "src/data/theses.json.11ty.js (citationApa field)",
+    "curatedArchive": "src/_includes/thesis-curated-list.njk (via data-thesis-* attrs)",
+    "citationModal": "src/js/thesis-hub-actions.js (browser)",
+    "zotero": "src/js/thesis-hub-actions.js (browser)",
+    "mendeley": "src/js/thesis-hub-actions.js (browser)",
+    "pagefindResultRow": "src/js/find-explore.js generic default (no citation today)"
+  },
+  "cslMapping": {
+    "idField": "pageUrl || link",
+    "type": "thesis",
+    "title": "thesis.title",
+    "author": "parseAuthors(thesis.authors || thesis.authorLine)",
+    "issued": "issued.date-parts[[year]]",
+    "genre": {
+      "masterThesis": "Pro gradu -tutkielma (FI canonical, EN display map: Master s thesis)",
+      "bachelorThesis": "Kandidaatintutkielma (EN display map: Bachelor s thesis)",
+      "doctoralThesis": "Väitöskirja (EN display map: Doctoral dissertation)",
+      "licentiateThesis": "Lisensiaatintutkielma (EN display map: Licentiate thesis)",
+      "default": "Opinnäyte (EN display map: Thesis)"
+    },
+    "publisher": "Oulun yliopisto (FI canonical, EN display map: University of Oulu)",
+    "URL": "thesis.sourceUrl || thesis.link",
+    "language": "thesis.language || thesis.lang"
+  },
+  "fiEnDivergence": {
+    "current": "Server APA (detail card, JSON-LD, JSON) uses Finnish institution + Finnish genre. Browser APA (modal, exports) uses English institution + English genre for the same theses.",
+    "resolution": "Option C — canonical Finnish in CSL, EN display map at render time on /en/ surfaces"
+  },
+  "publicContractPreservation": {
+    "/data/theses.json.citationApa": "field name + shape preserved, source changes to shared renderer",
+    "detail page JSON-LD citation": "field name + shape preserved",
+    "other": "no other public field references"
+  },
+  "proposedPhases": [
+    {
+      "phase": "TH-CITE1 Phase 1",
+      "scope": "thesis CSL projection (additive, no display change)"
+    },
+    {
+      "phase": "TH-CITE1 Phase 2",
+      "scope": "shared renderer thesis APA bracket compliance + lang display map"
+    },
+    {
+      "phase": "TH-CITE1 Phase 3",
+      "scope": "migrate detail page + JSON-LD to shared renderer"
+    },
+    {
+      "phase": "TH-CITE1 Phase 4",
+      "scope": "migrate curated archive + citation modal + Zotero + Mendeley"
+    },
+    {
+      "phase": "TH-CITE1 Phase 5",
+      "scope": "Pagefind meta + PF5 thesis result variant (dumb-display in JS)"
+    },
+    {
+      "phase": "TH-CITE1 Phase 6",
+      "scope": "delete legacy thesis formatters after parity proof"
+    }
+  ],
+  "architecturalInvariant": "browser JS must not compose thesis citations. shared renderer is the sole citation composer. CSL is the sole bibliographic truth.",
+  "productionChangePolicy": "AUDIT ONLY — no production source, no data-layer change, no Canonical Content v1 change."
+}
