@@ -436,6 +436,14 @@
       year: resolvedYear,
       presentationType: data?.meta?.PresentationType || "",
       presentationEvent: data?.meta?.PresentationEvent || "",
+      // PF5 — payload for the presentation horizontal renderer.
+      // Only populated for the presentations kind so other kinds
+      // see it as null.
+      _presentationMeta: kind === "presentations" ? {
+        sourceType: data?.meta?.PresentationSourceType || "",
+        landingType: data?.meta?.PresentationLandingType || "",
+        role: data?.meta?.PresentationRole || ""
+      } : null,
       contentFamilyLabel: contentFamilyLabelFromData(kind, data)
     };
   }
@@ -546,6 +554,43 @@
       return `<a class="btn btn-sm btn-outline-primary rounded-pill" href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(labels.source)} <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a>`;
     }
 
+    // PF5 — Presentation horizontal variant. Source-key icon on the
+    // left, four-line body on the right (family badge · year on top,
+    // title link, primary meta = presentation type + event, excerpt).
+    // Icon-only fallback per PF5 audit §13a — no new Pagefind
+    // metadata required. Bootstrap Icons picked to mirror the
+    // existing src/_includes/presentations/result-card.njk mapping.
+    const PRESENTATION_SOURCE_ICON = {
+      canva: "bi-file-earmark-slides",
+      slideshare: "bi-collection-play",
+      youtube: "bi-youtube",
+      youtubeVideos: "bi-youtube",
+      aoe: "bi-book"
+    };
+    function presentationSourceIcon(sourceType) {
+      const key = String(sourceType || "").trim();
+      return PRESENTATION_SOURCE_ICON[key] || "bi-easel2";
+    }
+
+    function renderPresentationResult(entry) {
+      const url = escapeHtml(entry.url);
+      const sourceIcon = presentationSourceIcon(entry?._presentationMeta?.sourceType);
+      const isExternal = String(entry?._presentationMeta?.landingType || "").toLowerCase().indexOf("external") === 0;
+      const targetAttrs = isExternal ? ` target="_blank" rel="noopener noreferrer"` : "";
+      const excerpt = entry.excerpt
+        ? `<p class="find-explore-result-excerpt" data-find-explore-card-line="excerpt">${escapeHtml(entry.excerpt)}</p>`
+        : "";
+      return `<li class="find-explore-result find-explore-result--presentation">
+        <span class="find-explore-result-presentation-thumb" aria-hidden="true"><i class="bi ${sourceIcon}"></i></span>
+        <div class="find-explore-result-presentation-body">
+          ${renderFamilyHeader(entry)}
+          <a class="find-explore-result-title" href="${url}"${targetAttrs}>${escapeHtml(entry.title)}</a>
+          ${renderPrimaryMetaLine(entry)}
+          ${excerpt}
+        </div>
+      </li>`;
+    }
+
     function renderPublicationResult(entry) {
       const record = entry.record;
       const url = escapeHtml(entry.url);
@@ -622,6 +667,7 @@
 
     function renderResultEntry(entry) {
       if (entry.kind === "publications" && entry.record) return renderPublicationResult(entry);
+      if (entry.kind === "presentations") return renderPresentationResult(entry);
       const title = escapeHtml(entry.title);
       const url = escapeHtml(entry.url);
       const excerpt = entry.excerpt

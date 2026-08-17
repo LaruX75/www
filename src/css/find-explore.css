@@ -130,6 +130,44 @@
   margin: 0;
 }
 
+/* PF5 — Presentation horizontal variant. Left-column source-key
+   icon (~64px) + right-column body. Wraps to a stacked layout on
+   narrow viewports. */
+.find-explore-result--presentation {
+  display: grid;
+  grid-template-columns: 4rem 1fr;
+  align-items: start;
+  gap: 1rem;
+}
+.find-explore-result-presentation-thumb {
+  align-items: center;
+  aspect-ratio: 1 / 1;
+  background:
+    linear-gradient(135deg, rgba(13, 110, 253, 0.08), rgba(13, 110, 253, 0.16)),
+    var(--bs-tertiary-bg);
+  border-radius: 0.75rem;
+  color: var(--bs-secondary-color);
+  display: flex;
+  font-size: 1.6rem;
+  justify-content: center;
+  width: 100%;
+}
+.find-explore-result-presentation-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+}
+@media (max-width: 480px) {
+  .find-explore-result--presentation {
+    grid-template-columns: 1fr;
+  }
+  .find-explore-result-presentation-thumb {
+    aspect-ratio: 16 / 9;
+    max-width: 8rem;
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .find-explore-result {
     transition: border-color 160ms ease, transform 160ms ease;
