@@ -142,7 +142,11 @@ schemaType: CollectionPage
   {% set findExploreTypeOptions = (findExploreTypeOptions.push({ value: option.value, label: option.labelEn, count: option.count }), findExploreTypeOptions) %}
 {% endfor %}
 {% set findExploreYears = publicationExplore.years %}
-{% set findExploreTopicOptions = publicationExplore.topicOptions %}
+{# Publications FULL parity: canonical topics remain valid site-wide
+   metadata but the professional publication list intentionally does
+   not expose a topic facet. Bibliographically relevant filters are
+   OKM group, year, peer-reviewed, and open access. #}
+{% set findExploreTopicOptions = [] %}
 {% set findExploreQualityOptions = [
   { value: "peer-reviewed", label: "Peer-reviewed", count: publicationExplore.qualityCounts.peerReviewed },
   { value: "open-access", label: "Open access", count: publicationExplore.qualityCounts.openAccess }

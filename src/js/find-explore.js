@@ -239,7 +239,18 @@
       // enough that the canonical 56 publications (and comfortable
       // growth headroom) never get truncated. Other kinds keep the
       // classic 50-result cap.
-      maxResults: 200
+      maxResults: 200,
+      // Publications FULL parity: professional publication list is
+      // small enough to render every result at once — no
+      // "Näytä lisää" paging.
+      renderAllResults: true,
+      // Group publication result rows by canonical OKM
+      // publicationGroup (A–G + unclassified). Data flow:
+      //   canonical publicationGroup
+      //     → publicationsFindExplore record.group + groupLabelFi/En
+      //     → this renderer emits <li class="find-explore-result-group-heading">
+      //       between rows sharing the same group.
+      groupByPublicationGroup: true
     },
     presentations: {
       yearFilterKey: "PresentationYear",
@@ -435,7 +446,7 @@
     const contextualKinds = parseList(mount.dataset.findExploreKinds, ["publications", "theses", "writings"])
       .filter((value) => kindConfig[value]);
     const lang = (mount.dataset.findExploreLang || document.documentElement.lang || "fi").slice(0, 2);
-    const labels = text[lang] || text.fi;
+    const labels = Object.assign({ langKey: lang }, text[lang] || text.fi);
     const searchLanguages = normalizeSearchLanguages(mount.dataset.findExploreSearchLanguage, lang);
     const queryInput = mount.querySelector("[data-find-explore-query]");
     const typeSelect = mount.querySelector("[data-find-explore-type]");
@@ -554,23 +565,84 @@
       </li>`;
     }
 
+    // Publications FULL parity: canonical OKM publication group
+    // ordering. Unclassified records fall to the tail under an
+    // explicit "other" heading so the group set is never silently
+    // reordered.
+    const PUBLICATION_GROUP_ORDER = ["A", "B", "C", "D", "E", "F", "G"];
+    const UNCLASSIFIED_KEY = "__unclassified__";
+    const UNCLASSIFIED_LABEL = {
+      fi: "Muut julkaisut (luokittelematon)",
+      en: "Other publications (unclassified)"
+    };
+
+    function publicationGroupKey(entry) {
+      const raw = String(entry?.record?.group || "").trim().toUpperCase();
+      return PUBLICATION_GROUP_ORDER.indexOf(raw) >= 0 ? raw : UNCLASSIFIED_KEY;
+    }
+
+    function publicationGroupLabel(key) {
+      if (key === UNCLASSIFIED_KEY) {
+        return UNCLASSIFIED_LABEL[labels.langKey] || UNCLASSIFIED_LABEL.fi;
+      }
+      // Prefer the localized label projected on the record; fall
+      // back to the bare group letter.
+      const sample = latestResults.find((entry) => publicationGroupKey(entry) === key);
+      if (labels.langKey === "en" && sample?.record?.groupLabelEn) return sample.record.groupLabelEn;
+      if (sample?.record?.groupLabelFi) return sample.record.groupLabelFi;
+      return key;
+    }
+
+    function groupPublicationEntries(entries) {
+      const buckets = new Map();
+      for (const entry of entries) {
+        const key = publicationGroupKey(entry);
+        if (!buckets.has(key)) buckets.set(key, []);
+        buckets.get(key).push(entry);
+      }
+      const orderedKeys = PUBLICATION_GROUP_ORDER.filter((k) => buckets.has(k));
+      if (buckets.has(UNCLASSIFIED_KEY)) orderedKeys.push(UNCLASSIFIED_KEY);
+      return orderedKeys.map((key) => ({ key, entries: buckets.get(key) }));
+    }
+
+    function renderResultEntry(entry) {
+      if (entry.kind === "publications" && entry.record) return renderPublicationResult(entry);
+      const title = escapeHtml(entry.title);
+      const url = escapeHtml(entry.url);
+      const excerpt = entry.excerpt
+        ? `<p class="find-explore-result-excerpt" data-find-explore-card-line="excerpt">${escapeHtml(entry.excerpt)}</p>`
+        : "";
+      return `<li class="find-explore-result">
+        ${renderFamilyHeader(entry)}
+        <a class="find-explore-result-title" href="${url}">${title}</a>
+        ${renderPrimaryMetaLine(entry)}
+        ${excerpt}
+      </li>`;
+    }
+
     function renderResults() {
-      const slice = latestResults.slice(0, visibleCount);
-      resultsList.innerHTML = slice.map((entry) => {
-        if (entry.kind === "publications" && entry.record) return renderPublicationResult(entry);
-        const title = escapeHtml(entry.title);
-        const url = escapeHtml(entry.url);
-        const excerpt = entry.excerpt
-          ? `<p class="find-explore-result-excerpt" data-find-explore-card-line="excerpt">${escapeHtml(entry.excerpt)}</p>`
-          : "";
-        return `<li class="find-explore-result">
-          ${renderFamilyHeader(entry)}
-          <a class="find-explore-result-title" href="${url}">${title}</a>
-          ${renderPrimaryMetaLine(entry)}
-          ${excerpt}
-        </li>`;
-      }).join("");
-      moreButton?.classList.toggle("d-none", visibleCount >= latestResults.length);
+      const renderAll = Boolean(config.renderAllResults);
+      const slice = renderAll ? latestResults : latestResults.slice(0, visibleCount);
+      if (config.groupByPublicationGroup && slice.length) {
+        const grouped = groupPublicationEntries(slice);
+        resultsList.innerHTML = grouped.map(({ key, entries }) => {
+          const label = escapeHtml(publicationGroupLabel(key));
+          const count = entries.length;
+          const heading = `<li class="find-explore-result-group-heading" data-publication-group="${escapeHtml(key)}">`
+            + `<h3 class="find-explore-result-group-title h5 mb-0">`
+            + `<span class="find-explore-result-group-label">${label}</span>`
+            + ` <span class="find-explore-result-group-count text-body-secondary">(${count})</span>`
+            + `</h3></li>`;
+          return heading + entries.map(renderResultEntry).join("");
+        }).join("");
+      } else {
+        resultsList.innerHTML = slice.map(renderResultEntry).join("");
+      }
+      if (renderAll) {
+        moreButton?.classList.add("d-none");
+      } else {
+        moreButton?.classList.toggle("d-none", visibleCount >= latestResults.length);
+      }
     }
 
     async function runSearch() {

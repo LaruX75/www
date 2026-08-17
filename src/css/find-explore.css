@@ -31,6 +31,36 @@
   outline-offset: 2px;
 }
 
+/* Publications FULL parity — A–G group headings inside the
+   Pagefind result list. Bordered/padded card styles are suppressed
+   so the heading reads as structural grouping, not another row. */
+.find-explore-result-group-heading {
+  background: transparent;
+  border: none;
+  padding: 1.25rem 0 0.25rem;
+  margin: 0.5rem 0 0;
+}
+.find-explore-result-group-heading:first-child {
+  padding-top: 0.25rem;
+}
+.find-explore-result-group-heading:focus-within {
+  outline: none;
+}
+.find-explore-result-group-title {
+  border-bottom: 2px solid var(--bs-border-color);
+  padding-bottom: 0.35rem;
+}
+
+/* Publications FULL parity — professional publication list widens
+   past the shared 8/12 controls column so the citation rows use
+   the whole card width. The eyebrow + heading column stacks above
+   the controls on lg+ (as it already does on smaller viewports). */
+.find-explore--publications .find-explore-card .row > .col-lg-4,
+.find-explore--publications .find-explore-card .row > .col-lg-8 {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
 .find-explore-result-family {
   align-items: baseline;
   display: flex;

@@ -2,40 +2,56 @@ const { test, expect } = require("@playwright/test");
 
 test.describe.configure({ mode: "serial" });
 
-test("FI /julkaisut/ renders the full 56-item Pagefind list on initial load with APA rows", async ({ page }) => {
+test("FI /julkaisut/ renders every canonical publication on initial load with APA rows and A–G grouping", async ({ page }) => {
   await page.goto("/julkaisut/");
   await expect(page.locator("[data-find-explore][data-find-explore-ready='true']")).toBeVisible();
-  // Full-list default: no user query, no filters, but the status count
-  // should announce 56 canonical publications once Pagefind returns.
   const status = page.locator("[data-find-explore-status]");
   await expect(status).toContainText(/56 tulosta/, { timeout: 15000 });
+  // Publications FULL parity: every canonical publication row is
+  // present without paging. Show-more control must be hidden.
+  await expect(page.locator(".find-explore-result--publication")).toHaveCount(56, { timeout: 15000 });
+  await expect(page.locator("[data-find-explore-more]")).toHaveClass(/d-none/);
+  // A–G group headings appear inside the result list, each with a
+  // canonical count.
+  const groupHeadings = page.locator(".find-explore-result-group-heading");
+  await expect(groupHeadings).toHaveCount(7); // A, B, C, D, E, G + unclassified
+  await expect(groupHeadings.first()).toContainText(/A -/);
+  await expect(page.locator('.find-explore-result-group-heading[data-publication-group="A"] .find-explore-result-group-count')).toContainText("29");
+  await expect(page.locator('.find-explore-result-group-heading[data-publication-group="B"] .find-explore-result-group-count')).toContainText("9");
   // At least one visible result row uses the APA citation body.
-  const apaBody = page.locator(".find-explore-result-publication-citation").first();
-  await expect(apaBody).toBeVisible();
-  // The primary title link inside the APA row points at the local
-  // canonical landing page (either /julkaisut/... or one of the three
-  // promoted editorial paths approved via MANUAL_PUBLICATION_RULES).
+  await expect(page.locator(".find-explore-result-publication-citation").first()).toBeVisible();
   const titleLink = page.locator(".find-explore-result-publication-citation a").first();
   await expect(titleLink).toHaveAttribute("href", /^\/(julkaisut\/|20\d{2}\/)/);
+  // Local topic facet is removed from Publications hub controls.
+  await expect(page.locator("[data-find-explore-topic]")).toHaveCount(0);
   // The old duplicate SSR opening list is gone.
   await expect(page.locator(".publication-opening-item")).toHaveCount(0);
 });
 
-test("EN /en/publications/ renders the full list with APA rows on initial load", async ({ page }) => {
+test("EN /en/publications/ renders every canonical publication with A–G grouping", async ({ page }) => {
   await page.goto("/en/publications/");
   await expect(page.locator("[data-find-explore][data-find-explore-ready='true']")).toBeVisible();
   const status = page.locator("[data-find-explore-status]");
   await expect(status).toContainText(/56 results/, { timeout: 15000 });
-  await expect(page.locator(".find-explore-result-publication-citation").first()).toBeVisible();
+  await expect(page.locator(".find-explore-result--publication")).toHaveCount(56, { timeout: 15000 });
+  await expect(page.locator("[data-find-explore-more]")).toHaveClass(/d-none/);
+  await expect(page.locator(".find-explore-result-group-heading")).toHaveCount(7);
+  await expect(page.locator('.find-explore-result-group-heading[data-publication-group="A"] .find-explore-result-group-count')).toContainText("29");
+  await expect(page.locator("[data-find-explore-topic]")).toHaveCount(0);
   await expect(page.locator(".publication-opening-item")).toHaveCount(0);
 });
 
-test("FI A-group filter restricts the list to canonical A publications", async ({ page }) => {
+test("FI A-group filter restricts the list to canonical A publications and shows a single A heading", async ({ page }) => {
   await page.goto("/julkaisut/");
   await expect(page.locator("[data-find-explore][data-find-explore-ready='true']")).toBeVisible();
   await expect(page.locator("[data-find-explore-status]")).toContainText(/56 tulosta/, { timeout: 15000 });
   await page.locator("[data-find-explore-type]").selectOption("A");
   await expect(page.locator("[data-find-explore-status]")).toContainText(/29 tulosta/, { timeout: 15000 });
+  // Only one group heading survives (A) — no empty group sections
+  // when filters narrow the result set.
+  await expect(page.locator(".find-explore-result-group-heading")).toHaveCount(1);
+  await expect(page.locator(".find-explore-result-group-heading")).toContainText(/A -/);
+  await expect(page.locator(".find-explore-result--publication")).toHaveCount(29);
 });
 
 test("FI reset returns the full list", async ({ page }) => {
