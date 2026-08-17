@@ -85,7 +85,7 @@
             {% for item in (keyword.items | take(15)) %}
               {% set itemText = item.data.description %}
               {% if item.taxonomyTypeKey == "scientific-publications" %}
-                {% set itemText = (item.data.csl | publicationCitation("apa")) or item.data.citation %}
+                {% set itemText = item.data.csl | publicationCitation("apa") %}
               {% endif %}
               <article class="taxonomy-list-item" data-taxonomy-item data-taxonomy-type="{{ item.taxonomyTypeKey }}">
                 <div class="taxonomy-list-date">

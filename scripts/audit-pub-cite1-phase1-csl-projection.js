@@ -56,7 +56,12 @@ function main() {
       publicationsPageImportsBuilder: /require\("\.\.\/_utils\/publicationCsl"\)/.test(publicationsPageSrc),
       publicationsPageAttachesCsl: /rawRecord\.csl\s*=\s*csl/.test(publicationsPageSrc),
       publicationDetailsExposesCsl: /\bcsl,?/.test(publicationDetailsSrc) && /buildCslItem\(/.test(publicationDetailsSrc),
-      researchfiContentExposesCsl: /csl:\s*buildCslItem\(/.test(researchfiContentSrc),
+      // Phase 4e refactored the emission to pre-compute csl once
+      // outside the item object literal. Accept either shape:
+      //   csl: buildCslItem({...})     (Phase 1 style)
+      //   const csl = buildCslItem({...}); { ..., csl, ... }  (Phase 4e style)
+      researchfiContentExposesCsl: /csl:\s*buildCslItem\(/.test(researchfiContentSrc)
+        || /const\s+csl\s*=\s*buildCslItem\(/.test(researchfiContentSrc),
       findExploreRecordForwardsCsl: /csl:\s*item\.csl/.test(publicationsFindExploreSrc)
     },
     preservation: {
@@ -71,8 +76,11 @@ function main() {
       // + Mendeley consume the shared renderer via /js/publication-
       // citation.js. This invariant is now the reverse.
       inlineRisRemovedFromJulkaisut: !/function\s+buildRisEntry\s*\(payload\)/.test(julkaisutNjkSrc),
-      serverApaStillOnContent: /citation:\s*buildApaCitation\(publication\)/.test(researchfiContentSrc),
-      detailStillForwardsCitationString: /citation:\s*pickString\(contentItem\?\.citation\)/.test(publicationDetailsSrc),
+      // PUB-CITE1 Phase 4e removed both the server-side APA field
+      // emission and the detail model forwarding. These invariants
+      // are now the reverse.
+      serverApaRemovedFromContent: !/citation:\s*buildApaCitation\(publication\)/.test(researchfiContentSrc),
+      detailNoLongerForwardsCitationString: !/citation:\s*pickString\(contentItem\?\.citation\)/.test(publicationDetailsSrc),
       findExploreRendererUnchanged: !/entry\.record\.csl/.test(findExploreJsSrc)
     }
   };
@@ -136,8 +144,8 @@ function main() {
     inlineChicagoRemovedFromJulkaisut: findings.preservation.inlineChicagoRemovedFromJulkaisut,
     inlineBibtexRemovedFromJulkaisut: findings.preservation.inlineBibtexRemovedFromJulkaisut,
     inlineRisRemovedFromJulkaisut: findings.preservation.inlineRisRemovedFromJulkaisut,
-    serverApaStillOnContent: findings.preservation.serverApaStillOnContent,
-    detailStillForwardsCitationString: findings.preservation.detailStillForwardsCitationString,
+    serverApaRemovedFromContent: findings.preservation.serverApaRemovedFromContent,
+    detailNoLongerForwardsCitationString: findings.preservation.detailNoLongerForwardsCitationString,
     // Reverse gate — CSL is NOT rendered by the shared Find & Explore
     // renderer yet. Phase 1 is projection-only.
     findExploreRendererDoesNotUseCsl: findings.preservation.findExploreRendererUnchanged,

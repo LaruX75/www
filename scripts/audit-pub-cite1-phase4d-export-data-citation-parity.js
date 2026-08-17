@@ -152,7 +152,13 @@ async function main() {
     if (seenAfter.has(r.anchorId)) duplicates.push(r.anchorId);
     else seenAfter.add(r.anchorId);
   }
-  const NON_CITATION_FIELDS = beforeFields.filter((k) => k !== "citation" && k !== "citationStyle");
+  // PUB-CITE1 Phase 4e: referenceLabel on rfContent items is
+  // sourced from buildReferenceLabel(publication), which itself
+  // called the now-deleted buildApaCitation composer. After 4e it
+  // comes from the shared renderer, so its text may differ under
+  // the same EXPECTED IMPROVEMENT rules as citation. It is
+  // treated as citation-adjacent here.
+  const NON_CITATION_FIELDS = beforeFields.filter((k) => k !== "citation" && k !== "citationStyle" && k !== "referenceLabel");
   const nonCitationChanges = [];
   for (const [id, brec] of beforeById) {
     const arec = afterById.get(id);

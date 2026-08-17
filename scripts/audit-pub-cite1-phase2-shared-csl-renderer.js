@@ -161,14 +161,15 @@ function main() {
     const researchfiRaw = JSON.parse(readOrEmpty("_site/data/researchfi.json") || "{}");
     const researchfiJson = Array.isArray(researchfiRaw) ? researchfiRaw : (researchfiRaw.items || []);
     const publicationCitation = requireFresh("src/_utils/publicationCitation.js");
-    // Build legacy APA strings by loading researchfiContent's mapper via
-    // the actual module: it reads Research.fi cache internally, but we
-    // want the deterministic function output for each publication. The
-    // simplest reliable approach: use the same inline pattern as
-    // researchfiContent.buildApaCitation. Since that function is not
-    // exported, we replicate it here — the parity audit is intentionally
-    // read-only and this replica is regression-audited via the unit tests
-    // covering the shared renderer.
+    // Build legacy APA baseline strings. As of PUB-CITE1 Phase 4e the
+    // production researchfiContent.buildApaCitation composer has been
+    // deleted, but this audit's parity check still needs to compare the
+    // shared renderer against the Phase 1 baseline formula. This
+    // function is the frozen historical composer preserved solely as
+    // an audit fixture — do not edit it to match future APA changes;
+    // any legitimate improvement should surface as an "EXPECTED
+    // IMPROVEMENT" classification in the parity result, not by
+    // updating this replica.
     const legacyApaByAnchor = new Map();
     function legacyBuildApaCitation(publication) {
       const authors = (publication.authors || "").trim() || "Tuntematon tekijä";

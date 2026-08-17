@@ -106,8 +106,6 @@ function buildResearchfiDetail(publication, contentItem, data = {}) {
     archiveUrl: anchorId ? `/julkaisut/#${anchorId}` : "/julkaisut/",
     title: pickString(publication?.title) || pickString(contentItem?.title),
     description: pickString(contentItem?.description),
-    citation: pickString(contentItem?.citation),
-    citationStyle: pickString(contentItem?.citationStyle) || "APA 7",
     csl,
     date: pickString(contentItem?.date) || (publication?.year ? `${publication.year}-01-01` : null),
     year: pickNumber(publication?.year) || pickNumber(contentItem?.year),

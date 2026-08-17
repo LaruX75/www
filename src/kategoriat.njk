@@ -26,7 +26,7 @@
 {% set featuredItem = category.items[0] %}
 {% set featuredText = featuredItem.data.description if featuredItem else "" %}
 {% if featuredItem and featuredItem.taxonomyTypeKey == "scientific-publications" %}
-  {% set featuredText = (featuredItem.data.csl | publicationCitation("apa")) or featuredItem.data.citation %}
+  {% set featuredText = featuredItem.data.csl | publicationCitation("apa") %}
 {% endif %}
 {% set firstTypes = category.typeSummaries | take(6) %}
 {% set relatedTerms = category.relatedTerms | take(14) %}
@@ -128,7 +128,7 @@
             {% for item in (category.items | take(15)) %}
               {% set itemText = item.data.description %}
               {% if item.taxonomyTypeKey == "scientific-publications" %}
-                {% set itemText = (item.data.csl | publicationCitation("apa")) or item.data.citation %}
+                {% set itemText = item.data.csl | publicationCitation("apa") %}
               {% endif %}
               <article class="taxonomy-list-item" data-taxonomy-item data-taxonomy-type="{{ item.taxonomyTypeKey }}">
                 <div class="taxonomy-list-date">

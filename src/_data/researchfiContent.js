@@ -4,6 +4,7 @@ const { normalizeCategoryList, normalizeKeywordList } = require("./metadata-norm
 const { resolveContexts } = require("./contentContext");
 const { canonicalPublicationDetailUrl } = require("./publicationsPage");
 const { buildCslItem } = require("../_utils/publicationCsl");
+const publicationCitation = require("../_utils/publicationCitation");
 const curatedProgram = require("../curated/research-program.json");
 
 const ENRICHMENT_CACHE_KEYS = [
@@ -183,101 +184,10 @@ function buildDescription(publication, enrichment) {
   return `${parts.join(" · ")}.`;
 }
 
-function formatAuthorInitials(value) {
-  return normalizeText(value)
-    .split(/\s+/)
-    .filter(Boolean)
-    .map((part) => part
-      .split("-")
-      .filter(Boolean)
-      .map((name) => `${name.charAt(0).toUpperCase()}.`)
-      .join("-"))
-    .join(" ");
-}
-
-function formatAuthorApa(author) {
-  const normalized = normalizeText(author);
-  if (!normalized) return "";
-
-  if (normalized.includes(",")) {
-    const [lastName, ...rest] = normalized.split(",");
-    const initials = formatAuthorInitials(rest.join(" "));
-    return initials ? `${normalizeText(lastName)}, ${initials}` : normalizeText(lastName);
-  }
-
-  const parts = normalized.split(/\s+/).filter(Boolean);
-  if (parts.length === 1) return parts[0];
-
-  // Research.fi commonly provides names as "Surname A." instead of "Surname, A.".
-  // Pull trailing initials out before applying the usual given-name/surname fallback.
-  const trailingInitials = [];
-  while (parts.length > 1 && /^[A-ZÅÄÖ](?:\.)?(?:-[A-ZÅÄÖ](?:\.)?)*$/iu.test(parts.at(-1))) {
-    trailingInitials.unshift(parts.pop());
-  }
-  if (trailingInitials.length) {
-    return `${parts.join(" ")}, ${formatAuthorInitials(trailingInitials.join(" "))}`;
-  }
-
-  const lastName = parts.pop();
-  const initials = formatAuthorInitials(parts.join(" "));
-  return initials ? `${lastName}, ${initials}` : lastName;
-}
-
-function formatAuthorsApa(authors) {
-  const formatted = normalizeText(authors)
-    .split(/\s*;\s*/)
-    .map(formatAuthorApa)
-    .filter(Boolean);
-
-  if (!formatted.length) return "";
-  if (formatted.length === 1) return formatted[0];
-  if (formatted.length === 2) return `${formatted[0]}, & ${formatted[1]}`;
-  return `${formatted.slice(0, -1).join(", ")}, & ${formatted[formatted.length - 1]}`;
-}
-
-function buildApaCitation(publication) {
-  const authors = formatAuthorsApa(publication.authors);
-  const year = publication.year || "n.d.";
-  const title = normalizeText(publication.title);
-  const journal = normalizeText(publication.journal);
-  const volume = normalizeText(publication.volume);
-  const issue = normalizeText(publication.issue);
-  const pages = normalizeText(publication.pages || publication.articleNumber);
-  const publisher = normalizeText(publication.publisher);
-  const link = normalizeText(publication.doiUrl || publication.url);
-
-  let citation = "";
-  if (authors) {
-    citation += `${authors} (${year}). `;
-  } else {
-    citation += `(${year}). `;
-  }
-
-  citation += `${title}.`;
-
-  if (journal) {
-    citation += ` ${journal}`;
-    if (volume) {
-      citation += `, ${volume}`;
-      if (issue) citation += `(${issue})`;
-    } else if (issue) {
-      citation += ` (${issue})`;
-    }
-    if (pages) citation += `, ${pages}`;
-    citation += ".";
-  } else if (publisher) {
-    citation += ` ${publisher}.`;
-  }
-
-  if (link) {
-    citation += ` ${link}`;
-  }
-
-  return citation.trim();
-}
-
-function buildReferenceLabel(publication) {
-  return buildApaCitation(publication);
+function sharedApaFromCsl(csl) {
+  if (!csl) return "";
+  const rendered = publicationCitation.buildCitation({ csl, style: "apa" });
+  return rendered && !rendered.empty && rendered.text ? rendered.text : "";
 }
 
 function buildEntities(publication, enrichment) {
@@ -323,30 +233,30 @@ function mapPublication(publication, enrichmentMap) {
   const keywords = inferKeywords(publication, enrichment);
   const categories = inferCategories(publication, enrichment);
 
+  const csl = buildCslItem({
+    anchorId: publication.anchorId,
+    publicationId: publication.publicationId,
+    title: publication.title,
+    typeCode: publication.typeCode,
+    authors: publication.authors,
+    journal: publication.journal,
+    publisher: publication.publisher,
+    volume: publication.volume,
+    issue: publication.issue,
+    pages: publication.pages || publication.articleNumber,
+    isbn: publication.isbn,
+    doi: publication.doi,
+    doiUrl: publication.doiUrl,
+    url: publication.url,
+    year: publication.year,
+    lang: "fi"
+  });
+
   const item = {
     anchorId: publication.anchorId,
     title: publication.title,
     description: buildDescription(publication, enrichment),
-    citation: buildApaCitation(publication),
-    citationStyle: "APA 7",
-    csl: buildCslItem({
-      anchorId: publication.anchorId,
-      publicationId: publication.publicationId,
-      title: publication.title,
-      typeCode: publication.typeCode,
-      authors: publication.authors,
-      journal: publication.journal,
-      publisher: publication.publisher,
-      volume: publication.volume,
-      issue: publication.issue,
-      pages: publication.pages || publication.articleNumber,
-      isbn: publication.isbn,
-      doi: publication.doi,
-      doiUrl: publication.doiUrl,
-      url: publication.url,
-      year: publication.year,
-      lang: "fi"
-    }),
+    csl,
     date: publication.year ? `${publication.year}-01-01` : null,
     year: publication.year || null,
     type: "tieteellinen",
@@ -378,7 +288,7 @@ function mapPublication(publication, enrichmentMap) {
     authors: publication.authors || "",
     doi: publication.doi || "",
     doiUrl: publication.doiUrl || "",
-    referenceLabel: buildReferenceLabel(publication),
+    referenceLabel: sharedApaFromCsl(csl),
     referenceUrl: publication.url || publication.doiUrl || "",
     url: canonicalPublicationDetailUrl(publication.publicationId, publication.anchorId)
       || `/julkaisut/#${publication.anchorId}`

@@ -119,20 +119,31 @@ function main() {
   const publicationDetailsSrc = readOrEmpty("src/_data/publicationDetails.js");
   const detailForwardsCitation = /citation:\s*pickString\(contentItem\?\.citation\)/.test(publicationDetailsSrc);
   const detailForwardsCitationStyle = /citationStyle:\s*pickString\(contentItem\?\.citationStyle\)\s*\|\|\s*"APA 7"/.test(publicationDetailsSrc);
-  // Detail template prefers the shared renderer.
+  // Detail template consumes the shared renderer only. PUB-CITE1
+  // Phase 4e removed the `or detail.citation` defence-in-depth
+  // fallback; the template now emits `detail.csl | publicationCitation("apa")`
+  // directly with a controlled empty state when csl is missing.
   const publicationItemBodySrc = readOrEmpty("src/_includes/publication-item-body.njk");
-  const detailPrefersShared = /sharedApaCitation\s*=\s*detail\.csl\s*\|\s*publicationCitation\("apa"\)/.test(publicationItemBodySrc);
+  const detailUsesSharedRendererOnly = /citationText\s*=\s*detail\.csl\s*\|\s*publicationCitation\("apa"\)/.test(publicationItemBodySrc);
   const detailFallsBackToCitation = /sharedApaCitation\s+or\s+detail\.citation/.test(publicationItemBodySrc);
 
   // ---------- 5. Taxonomy consumers of contentItem.citation ----------
   const teematSrc = readOrEmpty("src/teemat.njk");
   const kategoriatSrc = readOrEmpty("src/kategoriat.njk");
   const avainsanatSrc = readOrEmpty("src/avainsanat.njk");
+  // PUB-CITE1 Phase 4e removed the `or item.data.citation` /
+  // `or publication.citation` fallback branches from all three
+  // taxonomy templates. The invariant is now inverted — no
+  // taxonomy template should reference the legacy citation field.
   const taxonomyReadsCitation = {
     teemat: /publication\.citation/.test(teematSrc),
     kategoriat: /featuredItem\.data\.citation|item\.data\.citation/.test(kategoriatSrc),
     avainsanat: /item\.data\.citation/.test(avainsanatSrc)
   };
+  const taxonomyDoesNotReadLegacyCitation =
+    !taxonomyReadsCitation.teemat
+    && !taxonomyReadsCitation.kategoriat
+    && !taxonomyReadsCitation.avainsanat;
 
   // ---------- 6. buildLegacyFiPublicationRows consumers ----------
   const publicationsPageSrc = readOrEmpty("src/_data/publicationsPage.js");
@@ -221,23 +232,22 @@ function main() {
       notes: "All five inline browser formatters have been deleted. The citation modal is now shared-renderer-only with a controlled unavailable state; if csl or window.publicationCitation is missing, the preview shows 'Viite ei ole saatavilla tälle julkaisulle.' and the action buttons disable."
     },
     {
-      item: "src/_data/researchfiContent.js buildApaCitation()",
+      item: "src/_data/researchfiContent.js buildApaCitation() (Phase 4e removed the composer + content.citation / content.citationStyle fields)",
       hasReplacement: true,
       replacementParityProven: true,
-      fallbackReachable: detailFallsBackToCitation
-        || taxonomyReadsCitation.teemat
-        || taxonomyReadsCitation.kategoriat
-        || taxonomyReadsCitation.avainsanat
-        || publicJson.exportDataExposesCitation,
-      consumersOutsidePublications: true,
+      fallbackReachable: false,
+      consumersOutsidePublications: false,
+      alreadyRemoved: !serverApa.functionPresent
+        && !serverApa.contentItemHasCitationField
+        && !detailFallsBackToCitation
+        && taxonomyDoesNotReadLegacyCitation,
       blocksOnMigration: [
-        detailFallsBackToCitation ? "publication-item-body.njk still falls back to detail.citation when csl is missing." : null,
-        taxonomyReadsCitation.teemat ? "src/teemat.njk renders publication.citation directly." : null,
-        taxonomyReadsCitation.kategoriat ? "src/kategoriat.njk renders featuredItem/item .data.citation directly." : null,
-        taxonomyReadsCitation.avainsanat ? "src/avainsanat.njk renders item.data.citation directly." : null,
-        publicJson.exportDataExposesCitation ? "/api/export-data.json exposes citation and citationStyle as public contract fields." : null
+        detailFallsBackToCitation ? "publication-item-body.njk still falls back to detail.citation when csl is missing — Phase 4e regression!" : null,
+        taxonomyReadsCitation.teemat ? "src/teemat.njk renders publication.citation directly — Phase 4e regression!" : null,
+        taxonomyReadsCitation.kategoriat ? "src/kategoriat.njk renders featuredItem/item .data.citation directly — Phase 4e regression!" : null,
+        taxonomyReadsCitation.avainsanat ? "src/avainsanat.njk renders item.data.citation directly — Phase 4e regression!" : null
       ].filter(Boolean),
-      notes: "This is the origin of the citation/citationStyle fields that propagate through publicationDetails, taxonomy pages, and the export-data JSON contract."
+      notes: "Phase 4e landed: server APA composer + content.citation / content.citationStyle + detail.citation forwarding + all taxonomy fallback branches are removed. All publication citation surfaces (list, detail, taxonomy, modal, export API) now consume the shared CSL renderer exclusively."
     },
     {
       item: "src/_data/publicationsPage.js buildLegacyFiPublicationRows()",
@@ -282,10 +292,18 @@ function main() {
     findExploreEmitsDataCsl: hubs.findExploreEmitsDataCsl,
     findExploreConsumesCsl: hubs.findExploreConsumesCsl,
     modalUsesSharedRendererOnly,
-    detailPrefersShared,
-    detailFallsBackToCitation, // informational, not blocking
-    serverApaStillPresentForFallback: serverApa.functionPresent, // informational
+    detailUsesSharedRendererOnly,
     thesisDomainIndependent: thesis.thesisDoesNotDependOnPublicationRenderer,
+    // Phase 4e invariants: server APA composer deleted +
+    // content.citation/citationStyle fields gone + detail forwarding
+    // gone + all taxonomy fallback branches removed.
+    serverApaComposerRemoved: !serverApa.functionPresent,
+    serverContentCitationFieldRemoved: !serverApa.contentItemHasCitationField,
+    serverContentCitationStyleRemoved: !serverApa.contentItemHasCitationStyle,
+    detailDoesNotFallBackToLegacyCitation: !detailFallsBackToCitation,
+    detailModelDoesNotForwardCitation: !detailForwardsCitation,
+    detailModelDoesNotForwardCitationStyle: !detailForwardsCitationStyle,
+    taxonomyDoesNotReadLegacyCitation,
     // PUB-CITE1 Phase 4a invariants: buildRisEntry deleted, Zotero +
     // Mendeley consume the shared renderer. Regressions here would
     // block a future Phase 4b.
@@ -309,14 +327,21 @@ function main() {
     "sharedRendererShimPresent", "nunjucksFilterRegistered",
     "fiHubLoadsSharedRenderer", "enHubLoadsSharedRenderer",
     "findExploreEmitsDataCsl", "findExploreConsumesCsl",
-    "modalUsesSharedRendererOnly", "detailPrefersShared", "thesisDomainIndependent",
+    "modalUsesSharedRendererOnly", "detailUsesSharedRendererOnly",
+    "thesisDomainIndependent",
     "buildRisEntryRemoved", "zoteroUsesSharedRenderer", "mendeleyUsesSharedRenderer",
     "zoteroNoLongerCallsLegacyRis", "mendeleyNoLongerCallsLegacyRis",
     // PUB-CITE1 Phase 4b invariants: the four modal composers are
     // deleted and the modal has a controlled unavailable state.
     "inlineApaComposerRemoved", "inlineMlaComposerRemoved",
     "inlineChicagoComposerRemoved", "inlineBibtexComposerRemoved",
-    "modalHasControlledUnavailableState"
+    "modalHasControlledUnavailableState",
+    // PUB-CITE1 Phase 4e invariants: server composer + field
+    // emission + detail forwarding + taxonomy fallback all removed.
+    "serverApaComposerRemoved", "serverContentCitationFieldRemoved",
+    "serverContentCitationStyleRemoved", "detailDoesNotFallBackToLegacyCitation",
+    "detailModelDoesNotForwardCitation", "detailModelDoesNotForwardCitationStyle",
+    "taxonomyDoesNotReadLegacyCitation"
   ];
   const hardFailures = hardBlockingGates.filter((k) => gates[k] !== true);
 
@@ -356,8 +381,8 @@ function main() {
       detailModel: {
         forwardsCitation: detailForwardsCitation,
         forwardsCitationStyle: detailForwardsCitationStyle,
-        prefersSharedRenderer: detailPrefersShared,
-        fallsBackToCitationField: detailFallsBackToCitation
+        usesSharedRendererOnly: detailUsesSharedRendererOnly,
+        legacyFallbackRemoved: !detailFallsBackToCitation
       },
       taxonomyPages: taxonomyReadsCitation,
       legacyRows,

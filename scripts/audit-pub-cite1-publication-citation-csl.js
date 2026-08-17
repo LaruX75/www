@@ -88,11 +88,14 @@ function main() {
     },
 
     citationPipeline: {
-      serverApaComposerPresent: /function\s+buildApaCitation\s*\(/.test(researchfiContent),
-      serverCitationOnContentItem: /citation:\s*buildApaCitation\(publication\)/.test(researchfiContent),
-      serverCitationStyleOnContentItem: /citationStyle:\s*"APA 7"/.test(researchfiContent),
-      detailModelForwardsCitation: /citation:\s*pickString\(contentItem\?\.citation\)/.test(publicationDetails),
-      detailModelForwardsCitationStyle: /citationStyle:\s*pickString\(contentItem\?\.citationStyle\)\s*\|\|\s*"APA 7"/.test(publicationDetails),
+      // PUB-CITE1 Phase 4e removed the server-side APA composer + the
+      // detail model's contentItem.citation / .citationStyle fallback.
+      // These invariants are now the reverse.
+      serverApaComposerRemoved: !/function\s+buildApaCitation\s*\(publication\)/.test(researchfiContent),
+      serverCitationRemovedFromContentItem: !/citation:\s*buildApaCitation\(publication\)/.test(researchfiContent),
+      serverCitationStyleRemovedFromContentItem: !/citationStyle:\s*"APA 7"/.test(researchfiContent),
+      detailModelDoesNotForwardCitation: !/citation:\s*pickString\(contentItem\?\.citation\)/.test(publicationDetails),
+      detailModelDoesNotForwardCitationStyle: !/citationStyle:\s*pickString\(contentItem\?\.citationStyle\)/.test(publicationDetails),
       inlineClientApaInJulkaisut: /function\s+buildApaCitation\s*\(payload\)/.test(julkaisutNjk),
       inlineClientMlaInJulkaisut: /function\s+buildMlaCitation\s*\(payload\)/.test(julkaisutNjk),
       inlineClientChicagoInJulkaisut: /function\s+buildChicagoCitation\s*\(payload\)/.test(julkaisutNjk),
@@ -166,10 +169,11 @@ function main() {
         ? "READY"
         : "BLOCKED",
     citationStringToday:
-      findings.citationPipeline.serverApaComposerPresent
-        && findings.citationPipeline.detailModelForwardsCitation
-        ? "READY (APA server-side only, no CSL yet)"
-        : "BLOCKED",
+      findings.citationPipeline.serverApaComposerRemoved
+      && findings.citationPipeline.detailModelDoesNotForwardCitation
+      && findings.cslProjection.buildCslItemPresent
+        ? "READY (shared CSL renderer is the sole publication citation source)"
+        : "PARTIAL",
     cslProjection: findings.cslProjection.buildCslItemPresent
       ? "READY (PUB-CITE1 Phase 1 landed)"
       : "ABSENT — must be built as PUB-CITE1 Phase 1"
@@ -188,9 +192,11 @@ function main() {
     manualRulesConstPresent: findings.canonical.manualRulesConst,
     manualRulesHasThreePromotions: findings.canonical.manualRulesEntries === 3,
     publicFieldsListDeclared: findings.canonical.publicFieldsListPresent,
-    serverApaComposerPresent: findings.citationPipeline.serverApaComposerPresent,
-    detailForwardsCitation: findings.citationPipeline.detailModelForwardsCitation,
-    detailForwardsCitationStyle: findings.citationPipeline.detailModelForwardsCitationStyle,
+    serverApaComposerRemoved: findings.citationPipeline.serverApaComposerRemoved,
+    serverCitationRemovedFromContentItem: findings.citationPipeline.serverCitationRemovedFromContentItem,
+    serverCitationStyleRemovedFromContentItem: findings.citationPipeline.serverCitationStyleRemovedFromContentItem,
+    detailModelDoesNotForwardCitation: findings.citationPipeline.detailModelDoesNotForwardCitation,
+    detailModelDoesNotForwardCitationStyle: findings.citationPipeline.detailModelDoesNotForwardCitationStyle,
     // PUB-CITE1 Phase 4b: the four inline browser formatters were
     // deleted from src/julkaisut.njk. The citation modal is now
     // shared-renderer-only with a controlled unavailable state.
