@@ -1446,8 +1446,8 @@ module.exports = function registerFilters(eleventyConfig) {
    *   {% for item in collections | preset("latestOpinions") %}...{% endfor %}
    *   {% for item in collections | preset("latestOpinions", { limit: 5 }) %}...{% endfor %}
    */
-  eleventyConfig.addFilter("publicationCitation", function (csl, style) {
-    return publicationCitation.buildCitation({ csl, style }).text;
+  eleventyConfig.addFilter("publicationCitation", function (csl, style, lang) {
+    return publicationCitation.buildCitation({ csl, style, lang }).text;
   });
 
   eleventyConfig.addFilter("preset", function (collections, presetNameOrSpec, overrides) {
