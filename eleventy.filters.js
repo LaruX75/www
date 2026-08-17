@@ -17,6 +17,7 @@ const resolveSchemaType = require("./src/_utils/resolveSchemaType");
 const resolveContentMeta = require("./src/_utils/resolveContentMeta");
 const sidebarContext = require("./src/_utils/sidebarContext");
 const contentPresets = require("./src/_utils/contentPresets");
+const publicationCitation = require("./src/_utils/publicationCitation");
 
 function getLangFromUrl(url) {
   return String(url || "").startsWith("/en/") ? "en" : "fi";
@@ -1445,6 +1446,10 @@ module.exports = function registerFilters(eleventyConfig) {
    *   {% for item in collections | preset("latestOpinions") %}...{% endfor %}
    *   {% for item in collections | preset("latestOpinions", { limit: 5 }) %}...{% endfor %}
    */
+  eleventyConfig.addFilter("publicationCitation", function (csl, style) {
+    return publicationCitation.buildCitation({ csl, style }).text;
+  });
+
   eleventyConfig.addFilter("preset", function (collections, presetNameOrSpec, overrides) {
     return contentPresets.applyPresetToCollection(collections, presetNameOrSpec, overrides);
   });

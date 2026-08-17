@@ -113,13 +113,50 @@ function parseAuthorPart(raw) {
   return { literal: s };
 }
 
+function splitApaCommaAuthors(raw) {
+  // Handles Research.fi records that arrive as an APA-formatted
+  // string like "Laru, J., Näykki, P., & Järvelä, S." — a single
+  // author encoded as "Family, Given" separated from other authors
+  // by ", " (with an optional Oxford "& " before the last).
+  const trimmed = raw.replace(/\s*&\s+/g, ", ");
+  const tokens = trimmed.split(/\s*,\s*/).filter(Boolean);
+  const pairs = [];
+  for (let i = 0; i < tokens.length; i += 2) {
+    const family = tokens[i];
+    const given = tokens[i + 1];
+    if (family && given) {
+      pairs.push({ family, given });
+    } else if (family) {
+      pairs.push({ literal: family });
+    }
+  }
+  return pairs;
+}
+
+function looksLikeApaCommaList(raw) {
+  // "Family, Given, Family, Given, ..." patterns typically contain
+  // an even count of comma tokens with an "& " before the final
+  // family. We accept either "..., & " or a comma-count > 2 combined
+  // with initials-only given segments.
+  if (/,\s*&\s+/.test(raw)) return true;
+  const commaCount = (raw.match(/,/g) || []).length;
+  if (commaCount < 3) return false;
+  const initialsPattern = /,\s+([A-ZÅÄÖ]\.\s*){1,4}/;
+  return initialsPattern.test(raw);
+}
+
 function parseAuthors(value) {
   const raw = pickString(value);
   if (!raw) return [];
-  const parts = raw.split(/\s*[;\n]\s*/).map((p) => p.trim()).filter(Boolean);
-  if (parts.length === 0) return [];
-  const parsed = parts.map(parseAuthorPart).filter(Boolean);
-  return parsed;
+  if (raw.indexOf(";") >= 0 || raw.indexOf("\n") >= 0) {
+    const parts = raw.split(/\s*[;\n]\s*/).map((p) => p.trim()).filter(Boolean);
+    return parts.map(parseAuthorPart).filter(Boolean);
+  }
+  if (looksLikeApaCommaList(raw)) {
+    return splitApaCommaAuthors(raw);
+  }
+  const single = parseAuthorPart(raw);
+  return single ? [single] : [];
 }
 
 function issuedFromYear(year) {

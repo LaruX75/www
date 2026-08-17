@@ -55,11 +55,13 @@
           {% endif %}
         </div>
 
-        {% if detail.citation %}
+        {% set sharedApaCitation = detail.csl | publicationCitation("apa") %}
+        {% set citationText = sharedApaCitation or detail.citation %}
+        {% if citationText %}
         <div class="content-detail-card mt-4">
           <p class="content-detail-card-kicker">{{ "Citation" if isEnglish else "Lähdeviite" }}</p>
           <p class="mb-2"><span class="badge text-bg-light text-dark border">{{ detail.citationStyle or "APA 7" }}</span></p>
-          <p class="mb-0">{{ detail.citation }}</p>
+          <p class="mb-0">{{ citationText }}</p>
         </div>
         {% endif %}
       </article>

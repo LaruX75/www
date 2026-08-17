@@ -199,6 +199,27 @@ describe("buildCslItem — free-text author parsing", () => {
   test("empty string yields empty array", () => {
     assert.deepEqual(parseAuthors(""), []);
   });
+
+  test("splits APA comma-separated author list with Oxford ampersand", () => {
+    assert.deepEqual(parseAuthors("Laru, J., Näykki, P., & Järvelä, S."), [
+      { family: "Laru", given: "J." },
+      { family: "Näykki", given: "P." },
+      { family: "Järvelä", given: "S." }
+    ]);
+  });
+
+  test("splits APA comma list with multiple initials per author", () => {
+    assert.deepEqual(parseAuthors("Celik, I., Kontkanen, S., Laru, J., & Dalyanci, A. A."), [
+      { family: "Celik", given: "I." },
+      { family: "Kontkanen", given: "S." },
+      { family: "Laru", given: "J." },
+      { family: "Dalyanci", given: "A. A." }
+    ]);
+  });
+
+  test("single 'Family, Given' remains a structured pair", () => {
+    assert.deepEqual(parseAuthors("Laru, Jari"), [{ family: "Laru", given: "Jari" }]);
+  });
 });
 
 describe("buildCslItem — missing / partial fields", () => {

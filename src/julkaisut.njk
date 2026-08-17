@@ -11,6 +11,7 @@ pageStyles:
   - /css/find-explore.css
 pageScripts:
   - /js/find-explore.js
+  - /js/publication-citation.js
 schemaType: CollectionPage
 ---
 {% import "ui.njk" as ui %}
@@ -540,9 +541,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function getCitationByFormat(payload, format) {
     if (!payload) return '';
+    if (payload.csl && window.publicationCitation) {
+      const styleMap = { bibtex: 'bibtex', ris: 'ris', mla: 'mla', chicago: 'chicago', apa: 'apa' };
+      const style = styleMap[format] || 'apa';
+      const shared = window.publicationCitation.buildCitation({ csl: payload.csl, style });
+      if (shared && !shared.empty) return shared.text;
+    }
     if (format === 'apa') return buildApaCitation(payload);
     if (format === 'mla') return buildMlaCitation(payload);
     if (format === 'chicago') return buildChicagoCitation(payload);
+    if (format === 'ris') return buildRisEntry(payload);
     return buildBibtexEntry(payload);
   }
 
@@ -555,6 +563,10 @@ document.addEventListener('DOMContentLoaded', function() {
   document.addEventListener('click', (event) => {
     const btn = event.target.closest('.export-citation-btn');
     if (!btn) return;
+    let csl = null;
+    if (btn.dataset.csl) {
+      try { csl = JSON.parse(btn.dataset.csl); } catch (_) { csl = null; }
+    }
     currentCitationPayload = {
       title: btn.dataset.title || '',
       authors: btn.dataset.authors || '',
@@ -566,7 +578,8 @@ document.addEventListener('DOMContentLoaded', function() {
       issue: btn.dataset.issue || '',
       pages: btn.dataset.pages || '',
       publisher: btn.dataset.publisher || '',
-      isbn: btn.dataset.isbn || ''
+      isbn: btn.dataset.isbn || '',
+      csl: csl
     };
     if (citationFormatSelect) citationFormatSelect.value = 'apa';
     renderCitationPreview();
