@@ -1,0 +1,1397 @@
+{
+  "generatedAt": "2026-08-17T19:40:38.008Z",
+  "scope": "TH-CITE1 Phase 1 — thesis CSL parity audit vs current legacy citationApa",
+  "counts": {
+    "total": 170,
+    "identical": 0,
+    "improvements": 170,
+    "metadataLimited": 0,
+    "regressions": 0,
+    "cslNull": 0,
+    "sharedRendererEmpty": 0,
+    "byType": {
+      "masterThesis": 141,
+      "bachelorThesis": 29
+    },
+    "byRole": {
+      "advised": 117,
+      "reviewed": 53
+    },
+    "byLang": {
+      "fin": 139,
+      "eng": 31
+    },
+    "regressionExamples": [],
+    "cslNullExamples": []
+  },
+  "perThesisRows": [
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/64139",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/64129",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/63433",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/63335",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/63041",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/62907",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/62912",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/62157",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/61940",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/61633",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/61153",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/57233",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/57134",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/57121",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/57123",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/56297",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/54662",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/53198",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/52013",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/51343",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/51005",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "eng",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/49416",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/49413",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/48915",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/46894",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/46896",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/46895",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/42430",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/42361",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "eng",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/42439",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "eng",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/42436",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/42244",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "eng",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/41417",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/20268",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/20174",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/20738",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/18391",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "eng",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/18286",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "eng",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/19306",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/18096",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "eng",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/17534",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/19329",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/17505",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/16307",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/16302",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/16211",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/14991",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/15076",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/14792",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/14530",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "eng",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/14325",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/13246",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "eng",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/14608",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "eng",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/13035",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/11553",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "eng",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/11520",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "eng",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/10642",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/11738",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "eng",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/12265",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/10583",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/9314",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "eng",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/8401",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/9546",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/10129",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/8221",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "eng",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/9282",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "eng",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/6759",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/6612",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/7821",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/6518",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/7879",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "eng",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/7879",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "eng",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/5854",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/6895",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "eng",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/6576",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "eng",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/8016",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/40116",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/40480",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/40656",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/41044",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "eng",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/40854",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/40510",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/41124",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/40776",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/39052",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/39727",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/39172",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/38572",
+      "type": "masterThesis",
+      "role": "advised",
+      "bucket": "master",
+      "lang": "eng",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/62935",
+      "type": "bachelorThesis",
+      "role": "advised",
+      "bucket": "bachelor",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/62934",
+      "type": "bachelorThesis",
+      "role": "advised",
+      "bucket": "bachelor",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/62325",
+      "type": "bachelorThesis",
+      "role": "advised",
+      "bucket": "bachelor",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/60043",
+      "type": "bachelorThesis",
+      "role": "advised",
+      "bucket": "bachelor",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/57286",
+      "type": "bachelorThesis",
+      "role": "advised",
+      "bucket": "bachelor",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/57209",
+      "type": "bachelorThesis",
+      "role": "advised",
+      "bucket": "bachelor",
+      "lang": "eng",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/56195",
+      "type": "bachelorThesis",
+      "role": "advised",
+      "bucket": "bachelor",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/54334",
+      "type": "bachelorThesis",
+      "role": "advised",
+      "bucket": "bachelor",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/54333",
+      "type": "bachelorThesis",
+      "role": "advised",
+      "bucket": "bachelor",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/54006",
+      "type": "bachelorThesis",
+      "role": "advised",
+      "bucket": "bachelor",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/50893",
+      "type": "bachelorThesis",
+      "role": "advised",
+      "bucket": "bachelor",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/49928",
+      "type": "bachelorThesis",
+      "role": "advised",
+      "bucket": "bachelor",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/49727",
+      "type": "bachelorThesis",
+      "role": "advised",
+      "bucket": "bachelor",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/49726",
+      "type": "bachelorThesis",
+      "role": "advised",
+      "bucket": "bachelor",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/48601",
+      "type": "bachelorThesis",
+      "role": "advised",
+      "bucket": "bachelor",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/48497",
+      "type": "bachelorThesis",
+      "role": "advised",
+      "bucket": "bachelor",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/46597",
+      "type": "bachelorThesis",
+      "role": "advised",
+      "bucket": "bachelor",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/42420",
+      "type": "bachelorThesis",
+      "role": "advised",
+      "bucket": "bachelor",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/42159",
+      "type": "bachelorThesis",
+      "role": "advised",
+      "bucket": "bachelor",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/41989",
+      "type": "bachelorThesis",
+      "role": "advised",
+      "bucket": "bachelor",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/42713",
+      "type": "bachelorThesis",
+      "role": "advised",
+      "bucket": "bachelor",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/41924",
+      "type": "bachelorThesis",
+      "role": "advised",
+      "bucket": "bachelor",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/41910",
+      "type": "bachelorThesis",
+      "role": "advised",
+      "bucket": "bachelor",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/41448",
+      "type": "bachelorThesis",
+      "role": "advised",
+      "bucket": "bachelor",
+      "lang": "eng",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/41543",
+      "type": "bachelorThesis",
+      "role": "advised",
+      "bucket": "bachelor",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/21188",
+      "type": "bachelorThesis",
+      "role": "advised",
+      "bucket": "bachelor",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/21330",
+      "type": "bachelorThesis",
+      "role": "advised",
+      "bucket": "bachelor",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/21326",
+      "type": "bachelorThesis",
+      "role": "advised",
+      "bucket": "bachelor",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/19901",
+      "type": "bachelorThesis",
+      "role": "advised",
+      "bucket": "bachelor",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/63709",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/63039",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/62776",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/62699",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/62500",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/57226",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/57155",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/56503",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/56304",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/52714",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/50233",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/48759",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/48076",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/48019",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/47136",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "eng",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/46904",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/46888",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/43015",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/43023",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/42576",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/41982",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/41436",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/41730",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/21234",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/19835",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "eng",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/20215",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/20262",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "eng",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/20860",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/18294",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/19284",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/17738",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/17694",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/17533",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/15460",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/15819",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/17056",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/14374",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/14304",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "eng",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/13232",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/13219",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/13697",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "eng",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/10735",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/10741",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "eng",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/10748",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/11809",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/9025",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/5890",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "eng",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/7327",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/7431",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/40110",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/39854",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/39728",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    },
+    {
+      "link": "https://oulurepo.oulu.fi/handle/10024/39629",
+      "type": "masterThesis",
+      "role": "reviewed",
+      "bucket": "master",
+      "lang": "fin",
+      "classification": "EXPECTED IMPROVEMENT"
+    }
+  ],
+  "gates": {
+    "inventoryLoaded": true,
+    "everyThesisHasCsl": true,
+    "everyThesisRendersCitation": true,
+    "noUnexplainedRegression": true
+  },
+  "gateFailures": [],
+  "productionChangePolicy": "AUDIT ONLY. No production source or contract change."
+}
