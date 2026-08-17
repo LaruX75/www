@@ -109,7 +109,8 @@ function buildPublicationFindExploreRecord(item = {}) {
     doiUrl: item.doiUrl || "",
     sourceUrl: item.url || item.doiUrl || "",
     jufoLevel: item.jufoLevel ?? "",
-    citationCount: item.citationCount ?? 0
+    citationCount: item.citationCount ?? 0,
+    csl: item.csl || null
   };
 }
 
@@ -132,8 +133,6 @@ function buildPublicationsFindExplorePageModel(publicationsPage = {}) {
   ]))
     .slice(0, 40)
     .map(([value, count]) => ({ value, label: value, count }));
-  const openingItems = items.slice(0, 8);
-
   return {
     count: items.length,
     records,
@@ -141,7 +140,6 @@ function buildPublicationsFindExplorePageModel(publicationsPage = {}) {
     groupOptions,
     topicOptions,
     topicHighlights: topicOptions.slice(0, 8),
-    openingItems,
     sourceCounts: publicationsPage.sourceCounts || {},
     groupCounts: Object.fromEntries(countValues(items, (item) => [item.publicationGroup])),
     qualityCounts: {

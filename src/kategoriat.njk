@@ -25,8 +25,8 @@
 {% set profile = taxonomyProfiles.categories[category.slug] or taxonomyProfiles.defaultCategory %}
 {% set featuredItem = category.items[0] %}
 {% set featuredText = featuredItem.data.description if featuredItem else "" %}
-{% if featuredItem and featuredItem.taxonomyTypeKey == "scientific-publications" and featuredItem.data.citation %}
-  {% set featuredText = featuredItem.data.citation %}
+{% if featuredItem and featuredItem.taxonomyTypeKey == "scientific-publications" %}
+  {% set featuredText = featuredItem.data.csl | publicationCitation("apa") %}
 {% endif %}
 {% set firstTypes = category.typeSummaries | take(6) %}
 {% set relatedTerms = category.relatedTerms | take(14) %}
@@ -89,9 +89,9 @@
               <span>{{ featuredItem.date | dateFormat }}</span>
             </p>
             {% if featuredText %}
-              <p{% if featuredItem.taxonomyTypeKey == "scientific-publications" and featuredItem.data.citation %} class="taxonomy-publication-citation"{% endif %}>
-                {% if featuredItem.taxonomyTypeKey == "scientific-publications" and featuredItem.data.citation %}
-                  <span class="taxonomy-citation-label">{{ featuredItem.data.citationStyle or "APA 7" }}</span>
+              <p{% if featuredItem.taxonomyTypeKey == "scientific-publications" %} class="taxonomy-publication-citation"{% endif %}>
+                {% if featuredItem.taxonomyTypeKey == "scientific-publications" %}
+                  <span class="taxonomy-citation-label">APA 7</span>
                 {% endif %}
                 {{ featuredText }}
               </p>
@@ -127,8 +127,8 @@
           <div class="taxonomy-list" data-taxonomy-list data-category-slug="{{ category.slug }}" data-category-name="{{ category.name | escape }}">
             {% for item in (category.items | take(15)) %}
               {% set itemText = item.data.description %}
-              {% if item.taxonomyTypeKey == "scientific-publications" and item.data.citation %}
-                {% set itemText = item.data.citation %}
+              {% if item.taxonomyTypeKey == "scientific-publications" %}
+                {% set itemText = item.data.csl | publicationCitation("apa") %}
               {% endif %}
               <article class="taxonomy-list-item" data-taxonomy-item data-taxonomy-type="{{ item.taxonomyTypeKey }}">
                 <div class="taxonomy-list-date">
@@ -138,9 +138,9 @@
                 <div class="taxonomy-list-body">
                   <h3><a href="{{ item.url }}">{{ item.data.title }}</a></h3>
                   {% if itemText %}
-                    <p{% if item.taxonomyTypeKey == "scientific-publications" and item.data.citation %} class="taxonomy-publication-citation"{% endif %}>
-                      {% if item.taxonomyTypeKey == "scientific-publications" and item.data.citation %}
-                        <span class="taxonomy-citation-label">{{ item.data.citationStyle or "APA 7" }}</span>
+                    <p{% if item.taxonomyTypeKey == "scientific-publications" %} class="taxonomy-publication-citation"{% endif %}>
+                      {% if item.taxonomyTypeKey == "scientific-publications" %}
+                        <span class="taxonomy-citation-label">APA 7</span>
                       {% endif %}
                       {{ itemText }}
                     </p>

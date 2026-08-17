@@ -3,6 +3,7 @@ const {
   canonicalPublicationDetailUrl,
   matchPublicationCandidates
 } = require("./publicationsPage");
+const { buildCslItem } = require("../_utils/publicationCsl");
 
 let memoizedModel = null;
 let memoizedRefs = null;
@@ -78,6 +79,24 @@ function buildResearchfiDetail(publication, contentItem, data = {}) {
   if (!canonicalId || !contentItem) return null;
 
   const doi = pickString(publication?.doi) || pickString(contentItem?.doi);
+  const csl = buildCslItem({
+    anchorId,
+    publicationId,
+    title: pickString(publication?.title) || pickString(contentItem?.title),
+    typeCode: pickString(publication?.typeCode) || pickString(contentItem?.publicationTypeCode),
+    authors: pickString(publication?.authors) || pickString(contentItem?.authors),
+    journal: pickString(publication?.journal) || pickString(contentItem?.publicationVenue),
+    publisher: pickString(publication?.publisher),
+    volume: pickString(publication?.volume),
+    issue: pickString(publication?.issue),
+    pages: pickString(publication?.pages) || pickString(publication?.articleNumber),
+    isbn: pickString(publication?.isbn),
+    doi,
+    doiUrl: pickString(publication?.doiUrl) || pickString(contentItem?.doiUrl),
+    url: pickString(publication?.url),
+    year: pickNumber(publication?.year) || pickNumber(contentItem?.year),
+    lang: "fi"
+  });
   return {
     id: canonicalId,
     sourceId: canonicalId,
@@ -87,8 +106,7 @@ function buildResearchfiDetail(publication, contentItem, data = {}) {
     archiveUrl: anchorId ? `/julkaisut/#${anchorId}` : "/julkaisut/",
     title: pickString(publication?.title) || pickString(contentItem?.title),
     description: pickString(contentItem?.description),
-    citation: pickString(contentItem?.citation),
-    citationStyle: pickString(contentItem?.citationStyle) || "APA 7",
+    csl,
     date: pickString(contentItem?.date) || (publication?.year ? `${publication.year}-01-01` : null),
     year: pickNumber(publication?.year) || pickNumber(contentItem?.year),
     authors: pickString(publication?.authors) || pickString(contentItem?.authors),

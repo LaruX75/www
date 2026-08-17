@@ -1,0 +1,63 @@
+{
+  "generatedAt": "2026-08-17T05:14:52.571Z",
+  "scope": "PF5-IMPL-APA — canonical ↔ Pagefind ↔ hub records parity",
+  "counts": {
+    "canonical": 56,
+    "fiHubRecords": 56,
+    "enHubRecords": 56,
+    "pagefindPublicationFragments": 56
+  },
+  "parity": {
+    "fi": {
+      "missing": [],
+      "extra": [],
+      "duplicates": []
+    },
+    "en": {
+      "missing": [],
+      "extra": [],
+      "duplicates": []
+    },
+    "pagefind": {
+      "missing": [],
+      "extra": [],
+      "duplicates": []
+    }
+  },
+  "csl": {
+    "canonicalMissing": [],
+    "fiRecordsMissing": [],
+    "enRecordsMissing": []
+  },
+  "groupCounts": {
+    "canonical": {
+      "A": 29,
+      "D": 6,
+      "E": 5,
+      "B": 9,
+      "(none)": 5,
+      "C": 1,
+      "G": 1
+    },
+    "pagefind": {
+      "B": 9,
+      "D": 6,
+      "E": 5,
+      "(none)": 5,
+      "A": 29,
+      "G": 1,
+      "C": 1
+    }
+  },
+  "gates": {
+    "canonicalNonEmpty": true,
+    "fiRecordsMatchCanonical": true,
+    "enRecordsMatchCanonical": true,
+    "pagefindMatchesCanonical": true,
+    "fiRecordsAllHaveCsl": true,
+    "enRecordsAllHaveCsl": true,
+    "canonicalAllHaveCsl": true,
+    "groupCountsAgree": true
+  },
+  "gateFailures": []
+}

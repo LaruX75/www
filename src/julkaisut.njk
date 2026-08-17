@@ -11,6 +11,7 @@ pageStyles:
   - /css/find-explore.css
 pageScripts:
   - /js/find-explore.js
+  - /js/publication-citation.js
 schemaType: CollectionPage
 ---
 {% import "ui.njk" as ui %}
@@ -235,14 +236,18 @@ schemaType: CollectionPage
 {% set findExploreAllQualityLabel = "Kaikki" %}
 {% set findExploreResetLabel = "Tyhjennä" %}
 {% set findExploreMoreLabel = "Näytä lisää" %}
-{% set findExploreInitialStatus = "Voit hakea sanalla tai rajata tuloksia. Alla oleva avauslista toimii myös ilman JavaScriptiä." %}
-{% set findExploreNoScript = "Interaktiivinen Find & Explore edellyttää JavaScriptiä. Alla oleva avauslista ja paikalliset julkaisulinkit toimivat silti." %}
+{% set findExploreInitialStatus = "Ladataan julkaisuluetteloa..." %}
+{% set findExploreNoScript = "Interaktiivinen julkaisuluettelo edellyttää JavaScriptiä. Yksittäiset julkaisusivut löytyvät palvelinpuolelta ja ovat indeksoituja: käytä sivuston hakua (yläpalkki), sitemapia tai hakukoneita." %}
 {% set findExploreTypeOptions = [] %}
 {% for option in publicationExplore.groupOptions %}
   {% set findExploreTypeOptions = (findExploreTypeOptions.push({ value: option.value, label: option.labelFi, count: option.count }), findExploreTypeOptions) %}
 {% endfor %}
 {% set findExploreYears = publicationExplore.years %}
-{% set findExploreTopicOptions = publicationExplore.topicOptions %}
+{# Publications FULL parity: canonical topics remain valid site-wide
+   metadata but the professional publication list intentionally does
+   not expose a topic facet. Bibliographically relevant filters are
+   OKM group, year, peer-reviewed, and open access. #}
+{% set findExploreTopicOptions = [] %}
 {% set findExploreQualityOptions = [
   { value: "peer-reviewed", label: "Vertaisarvioitu", count: publicationExplore.qualityCounts.peerReviewed },
   { value: "open-access", label: "Open access", count: publicationExplore.qualityCounts.openAccess }
@@ -253,25 +258,18 @@ schemaType: CollectionPage
   {% include "find-explore-writings.njk" %}
 </section>
 
-<section id="julkaisuluokat" class="py-5">
+<section id="julkaisuluokat" class="py-4">
   <div class="site-shell">
-    <div class="card border-0 shadow-sm publication-nav-card mb-4">
+    <div class="card border-0 shadow-sm publication-nav-card">
       <div class="card-body">
-        <p class="text-uppercase small text-muted mb-1">Avauslista</p>
-        <h2 class="h3 mb-1">Uusimmat julkaisut</h2>
-        <p class="text-muted mb-3">Tämä SSR-lista toimii ilman JavaScriptiä. Find & Explore kattaa koko {{ canonicalPublications.length }} julkaisun canonical-joukon.</p>
+        <p class="text-uppercase small text-muted mb-1">Julkaisuluokitus</p>
+        <h2 class="h3 mb-1">A–G kuvaa julkaisun tyypin</h2>
+        <p class="text-muted mb-3">Find & Explore -haku yllä listaa canonical-joukon kaikki {{ canonicalPublications.length }} julkaisua ja rajaa niitä OKM:n julkaisutyyppiluokituksen mukaan. Yksittäisten julkaisujen sivut ovat edelleen palvelinpuolella renderöityjä ja indeksoituja.</p>
         <div class="d-flex flex-wrap gap-2">
           {% for option in publicationExplore.groupOptions %}
           <span class="badge text-bg-light text-dark border">{{ option.labelFi }} <span class="text-muted">{{ option.count }}</span></span>
           {% endfor %}
         </div>
-      </div>
-    </div>
-    <div class="card shadow-sm border-0">
-      <div class="card-body">
-        {% set publicationItems = publicationExplore.openingItems %}
-        {% set publicationLang = "fi" %}
-        {% include "publications-opening-list.njk" %}
       </div>
     </div>
   </div>
@@ -385,138 +383,6 @@ document.addEventListener('DOMContentLoaded', function() {
       .slice(0, 60) || 'viite';
   }
 
-  function toBibtexAuthors(authors) {
-    return String(authors || '')
-      .split(';')
-      .map((a) => a.trim())
-      .filter(Boolean)
-      .join(' and ');
-  }
-
-  function buildBibtexEntry(payload) {
-    const rawAuthors = String(payload.authors || '').trim();
-    const authors = toBibtexAuthors(rawAuthors || 'Tuntematon Tekija');
-    const year = String(payload.year || '').trim() || 'n.d.';
-    const title = String(payload.title || '').trim() || 'Nimeton julkaisu';
-    const journal = String(payload.journal || '').trim();
-    const doi = String(payload.doi || '').trim();
-    const url = String(payload.url || '').trim();
-    const volume = String(payload.volume || '').trim();
-    const issue = String(payload.issue || '').trim();
-    const pages = String(payload.pages || '').trim();
-    const publisher = String(payload.publisher || '').trim();
-    const isbn = String(payload.isbn || '').trim();
-    const firstAuthorToken = (rawAuthors.split(';')[0] || 'tekijä')
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '');
-    const keyBase = sanitizeFilenamePart(title.split(/\s+/).slice(0, 6).join('-')).replace(/-/g, '');
-    const bibKey = `${firstAuthorToken || 'tekijä'}${year}${keyBase || 'julkaisu'}`;
-
-    const lines = [
-      `@article{${bibKey},`,
-      `  author = {${authors}},`,
-      `  title = {${title}},`,
-      `  year = {${year}},`
-    ];
-    if (journal) lines.push(`  journal = {${journal}},`);
-    if (volume) lines.push(`  volume = {${volume}},`);
-    if (issue) lines.push(`  number = {${issue}},`);
-    if (pages) lines.push(`  pages = {${pages}},`);
-    if (publisher) lines.push(`  publisher = {${publisher}},`);
-    if (isbn) lines.push(`  isbn = {${isbn}},`);
-    if (doi) lines.push(`  doi = {${doi}},`);
-    if (url) lines.push(`  url = {${url}},`);
-    lines.push('}');
-    return lines.join('\n');
-  }
-
-  function buildApaCitation(payload) {
-    const authors = String(payload.authors || '').trim() || 'Tuntematon tekijä';
-    const year = String(payload.year || '').trim() || 'n.d.';
-    const title = String(payload.title || '').trim() || 'Nimetön julkaisu';
-    const journal = String(payload.journal || '').trim();
-    const doi = String(payload.doi || '').trim();
-    const url = String(payload.url || '').trim();
-    const volume = String(payload.volume || '').trim();
-    const issue = String(payload.issue || '').trim();
-    const pages = String(payload.pages || '').trim();
-    let citation = `${authors} (${year}). ${title}.`;
-    if (journal) {
-      citation += ` ${journal}`;
-      if (volume) citation += `, ${volume}${issue ? `(${issue})` : ''}`;
-      if (pages) citation += `, ${pages}`;
-      citation += '.';
-    }
-    if (doi) citation += ` https://doi.org/${doi}`;
-    else if (url) citation += ` ${url}`;
-    return citation.trim();
-  }
-
-  function buildMlaCitation(payload) {
-    const authors = String(payload.authors || '').trim() || 'Tuntematon tekijä';
-    const year = String(payload.year || '').trim() || 'n.d.';
-    const title = String(payload.title || '').trim() || 'Nimetön julkaisu';
-    const journal = String(payload.journal || '').trim();
-    const doi = String(payload.doi || '').trim();
-    const url = String(payload.url || '').trim();
-    const volume = String(payload.volume || '').trim();
-    const issue = String(payload.issue || '').trim();
-    const pages = String(payload.pages || '').trim();
-    let citation = `${authors}. "${title}."`;
-    if (journal) citation += ` ${journal}`;
-    if (volume) citation += `, vol. ${volume}`;
-    if (issue) citation += `, no. ${issue}`;
-    citation += `, ${year}`;
-    if (pages) citation += `, pp. ${pages}`;
-    citation += '.';
-    if (doi) citation += ` doi:${doi}.`;
-    else if (url) citation += ` ${url}.`;
-    return citation.trim();
-  }
-
-  function buildChicagoCitation(payload) {
-    const authors = String(payload.authors || '').trim() || 'Tuntematon tekijä';
-    const year = String(payload.year || '').trim() || 'n.d.';
-    const title = String(payload.title || '').trim() || 'Nimetön julkaisu';
-    const journal = String(payload.journal || '').trim();
-    const doi = String(payload.doi || '').trim();
-    const url = String(payload.url || '').trim();
-    const volume = String(payload.volume || '').trim();
-    const issue = String(payload.issue || '').trim();
-    const pages = String(payload.pages || '').trim();
-    let citation = `${authors}. "${title}."`;
-    if (journal) citation += ` ${journal}`;
-    if (volume) citation += ` ${volume}`;
-    if (issue) citation += `, no. ${issue}`;
-    citation += ` (${year})`;
-    if (pages) citation += `: ${pages}`;
-    citation += '.';
-    if (doi) citation += ` https://doi.org/${doi}.`;
-    else if (url) citation += ` ${url}.`;
-    return citation.trim();
-  }
-
-  function buildRisEntry(payload) {
-    const authors = String(payload.authors || '')
-      .split(';')
-      .map((a) => a.trim())
-      .filter(Boolean);
-    const year = String(payload.year || '').trim();
-    const title = String(payload.title || '').trim();
-    const journal = String(payload.journal || '').trim();
-    const doi = String(payload.doi || '').trim();
-    const url = String(payload.url || '').trim();
-    const lines = ['TY  - JOUR'];
-    authors.forEach((author) => lines.push(`AU  - ${author}`));
-    if (year) lines.push(`PY  - ${year}`);
-    if (title) lines.push(`TI  - ${title}`);
-    if (journal) lines.push(`JO  - ${journal}`);
-    if (doi) lines.push(`DO  - ${doi}`);
-    if (url) lines.push(`UR  - ${url}`);
-    lines.push('ER  -');
-    return lines.join('\n');
-  }
-
   function downloadTextFile(filename, text) {
     const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
     const url = URL.createObjectURL(blob);
@@ -538,23 +404,80 @@ document.addEventListener('DOMContentLoaded', function() {
   const citationModalEl = document.getElementById('citationExportModal');
   let currentCitationPayload = null;
 
-  function getCitationByFormat(payload, format) {
-    if (!payload) return '';
-    if (format === 'apa') return buildApaCitation(payload);
-    if (format === 'mla') return buildMlaCitation(payload);
-    if (format === 'chicago') return buildChicagoCitation(payload);
-    return buildBibtexEntry(payload);
+  // PUB-CITE1 Phase 4b: the citation modal is shared-renderer-only.
+  // When csl is missing, the shared renderer failed to load, or the
+  // renderer returns an empty result, sharedCitation() returns an
+  // empty payload. Callers show a controlled "not available" state
+  // rather than silently synthesising a hand-rolled citation.
+  const UNAVAILABLE_MESSAGE = 'Viite ei ole saatavilla tälle julkaisulle.';
+  const STYLE_ALIASES = { bibtex: 'bibtex', ris: 'ris', mla: 'mla', chicago: 'chicago', apa: 'apa' };
+
+  function sharedCitation(payload, format) {
+    if (!payload || !payload.csl || !window.publicationCitation) {
+      return { text: '', empty: true };
+    }
+    const style = STYLE_ALIASES[format] || 'apa';
+    let rendered;
+    try {
+      rendered = window.publicationCitation.buildCitation({ csl: payload.csl, style });
+    } catch (_) {
+      return { text: '', empty: true };
+    }
+    if (!rendered || rendered.empty || !rendered.text) {
+      return { text: '', empty: true };
+    }
+    return { text: rendered.text, empty: false };
+  }
+
+  function flashUnavailable(button, defaultLabel) {
+    if (!button) return;
+    const previous = button.innerHTML;
+    button.disabled = true;
+    button.innerHTML = defaultLabel;
+    setTimeout(() => {
+      button.innerHTML = previous;
+      button.disabled = false;
+    }, 1600);
+  }
+
+  function setCitationButtonsEnabled(enabled) {
+    [citationCopyBtn, citationDownloadBtn, citationZoteroBtn, citationMendeleyBtn].forEach((btn) => {
+      if (btn) btn.disabled = !enabled;
+    });
+  }
+
+  function downloadRisFor(payload, filenameSuffix, button) {
+    const rendered = sharedCitation(payload, 'ris');
+    if (rendered.empty) {
+      if (citationOutput) citationOutput.value = UNAVAILABLE_MESSAGE;
+      setCitationButtonsEnabled(false);
+      flashUnavailable(button, '<i class="bi bi-exclamation-triangle me-1"></i>Ei saatavilla');
+      return;
+    }
+    const base = sanitizeFilenamePart(payload.title || payload.authors || 'viite');
+    downloadTextFile(`${base}-${filenameSuffix}.ris`, rendered.text + '\n');
   }
 
   function renderCitationPreview() {
     if (!citationOutput) return;
     const format = citationFormatSelect?.value || 'apa';
-    citationOutput.value = getCitationByFormat(currentCitationPayload, format);
+    const rendered = sharedCitation(currentCitationPayload, format);
+    if (rendered.empty) {
+      citationOutput.value = UNAVAILABLE_MESSAGE;
+      setCitationButtonsEnabled(false);
+      return;
+    }
+    citationOutput.value = rendered.text;
+    setCitationButtonsEnabled(true);
   }
 
   document.addEventListener('click', (event) => {
     const btn = event.target.closest('.export-citation-btn');
     if (!btn) return;
+    let csl = null;
+    if (btn.dataset.csl) {
+      try { csl = JSON.parse(btn.dataset.csl); } catch (_) { csl = null; }
+    }
     currentCitationPayload = {
       title: btn.dataset.title || '',
       authors: btn.dataset.authors || '',
@@ -566,7 +489,8 @@ document.addEventListener('DOMContentLoaded', function() {
       issue: btn.dataset.issue || '',
       pages: btn.dataset.pages || '',
       publisher: btn.dataset.publisher || '',
-      isbn: btn.dataset.isbn || ''
+      isbn: btn.dataset.isbn || '',
+      csl: csl
     };
     if (citationFormatSelect) citationFormatSelect.value = 'apa';
     renderCitationPreview();
@@ -583,16 +507,22 @@ document.addEventListener('DOMContentLoaded', function() {
     citationDownloadBtn.addEventListener('click', () => {
       if (!currentCitationPayload) return;
       const format = citationFormatSelect?.value || 'apa';
-      const citation = getCitationByFormat(currentCitationPayload, format);
+      const rendered = sharedCitation(currentCitationPayload, format);
+      if (rendered.empty) {
+        if (citationOutput) citationOutput.value = UNAVAILABLE_MESSAGE;
+        setCitationButtonsEnabled(false);
+        flashUnavailable(citationDownloadBtn, '<i class="bi bi-exclamation-triangle me-1"></i>Ei saatavilla');
+        return;
+      }
       const base = sanitizeFilenamePart(currentCitationPayload.title || currentCitationPayload.authors || 'viite');
       const ext = format === 'bibtex' ? 'bib' : 'txt';
-      downloadTextFile(`${base}.${ext}`, citation + '\n');
+      downloadTextFile(`${base}.${ext}`, rendered.text + '\n');
     });
   }
 
   if (citationCopyBtn) {
     citationCopyBtn.addEventListener('click', async () => {
-      if (!citationOutput?.value) return;
+      if (!citationOutput?.value || citationOutput.value === UNAVAILABLE_MESSAGE) return;
       try {
         await navigator.clipboard.writeText(citationOutput.value);
         citationCopyBtn.innerHTML = '<i class="bi bi-check2 me-1"></i>Kopioitu';
@@ -609,16 +539,14 @@ document.addEventListener('DOMContentLoaded', function() {
   if (citationZoteroBtn) {
     citationZoteroBtn.addEventListener('click', () => {
       if (!currentCitationPayload) return;
-      const base = sanitizeFilenamePart(currentCitationPayload.title || currentCitationPayload.authors || 'viite');
-      downloadTextFile(`${base}-zotero.ris`, buildRisEntry(currentCitationPayload) + '\n');
+      downloadRisFor(currentCitationPayload, 'zotero', citationZoteroBtn);
     });
   }
 
   if (citationMendeleyBtn) {
     citationMendeleyBtn.addEventListener('click', () => {
       if (!currentCitationPayload) return;
-      const base = sanitizeFilenamePart(currentCitationPayload.title || currentCitationPayload.authors || 'viite');
-      downloadTextFile(`${base}-mendeley.ris`, buildRisEntry(currentCitationPayload) + '\n');
+      downloadRisFor(currentCitationPayload, 'mendeley', citationMendeleyBtn);
     });
   }
 

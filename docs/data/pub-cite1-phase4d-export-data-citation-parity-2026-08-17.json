@@ -1,0 +1,113 @@
+{
+  "generatedAt": "2026-08-17T09:43:38.127Z",
+  "scope": "PUB-CITE1 Phase 4d — /api/export-data.json contract + citation parity",
+  "schema": {
+    "topLevelBefore": [
+      "cv",
+      "generated",
+      "localPublications",
+      "researchfiContentItems",
+      "researchfiPublications"
+    ],
+    "topLevelAfter": [
+      "cv",
+      "generated",
+      "localPublications",
+      "researchfiContentItems",
+      "researchfiPublications"
+    ],
+    "topLevelIdentical": true
+  },
+  "counts": {
+    "localPublications": {
+      "before": 164,
+      "after": 164
+    },
+    "researchfiPublications": {
+      "before": 56,
+      "after": 56
+    },
+    "researchfiContentItems": {
+      "before": 56,
+      "after": 56
+    }
+  },
+  "idParity": {
+    "missing": [],
+    "extra": [],
+    "duplicates": []
+  },
+  "fieldParity": {
+    "before": [
+      "anchorId",
+      "categories",
+      "citation",
+      "citationStyle",
+      "contentType",
+      "contexts",
+      "date",
+      "description",
+      "entities",
+      "keywords",
+      "referenceLabel",
+      "referenceUrl",
+      "source",
+      "title",
+      "type",
+      "url"
+    ],
+    "after": [
+      "anchorId",
+      "categories",
+      "citation",
+      "citationStyle",
+      "contentType",
+      "contexts",
+      "date",
+      "description",
+      "entities",
+      "keywords",
+      "referenceLabel",
+      "referenceUrl",
+      "source",
+      "title",
+      "type",
+      "url"
+    ],
+    "identical": true,
+    "nonCitationChanges": []
+  },
+  "cslCoverage": {
+    "total": 56,
+    "withCsl": 56,
+    "missingCsl": 0
+  },
+  "citationParity": {
+    "total": 56,
+    "identical": 35,
+    "improvements": 21,
+    "metadataLimited": 0,
+    "regressions": 0,
+    "citationStyleAllApa7": true,
+    "emptyCitationAfter": 0,
+    "emptyCitationBefore": 0,
+    "regressionExamples": []
+  },
+  "gates": {
+    "topLevelSchemaUnchanged": true,
+    "localPublicationsCountUnchanged": true,
+    "researchfiPublicationsCountUnchanged": true,
+    "researchfiContentItemsCountUnchanged": true,
+    "researchfiContentFieldSetUnchanged": true,
+    "noMissingRecords": true,
+    "noExtraRecords": true,
+    "noDuplicateRecords": true,
+    "noNonCitationFieldChanges": true,
+    "everyPublicationHasCsl": true,
+    "citationStyleAllApa7": true,
+    "noUnexplainedCitationRegressions": true,
+    "noEmptyCitationForPublicationWithCsl": true
+  },
+  "gateFailures": [],
+  "productionChangePolicy": "Field names / shape / non-citation values preserved. citationStyle constant 'APA 7'."
+}

@@ -31,6 +31,44 @@
   outline-offset: 2px;
 }
 
+/* Publications FULL closure — semantic A–G groups. Each group is a
+   <section aria-labelledby> containing <h3 id> + <ol> of rows so
+   assistive tech announces the group heading as a heading and the
+   inner list length as the true publication count (no fake
+   list-item headings). Structural styling only. */
+.find-explore-result-group {
+  margin: 0.5rem 0 1.25rem;
+}
+.find-explore-result-group:first-child {
+  margin-top: 0;
+}
+.find-explore-result-group-title {
+  border-bottom: 2px solid var(--bs-border-color);
+  padding-bottom: 0.35rem;
+  margin-bottom: 0.75rem;
+}
+.find-explore-result-group-list {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding-left: 0;
+}
+.find-explore-result-list {
+  display: grid;
+  gap: 0.75rem;
+  padding-left: 0;
+}
+
+/* Publications FULL parity — professional publication list widens
+   past the shared 8/12 controls column so the citation rows use
+   the whole card width. The eyebrow + heading column stacks above
+   the controls on lg+ (as it already does on smaller viewports). */
+.find-explore--publications .find-explore-card .row > .col-lg-4,
+.find-explore--publications .find-explore-card .row > .col-lg-8 {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
 .find-explore-result-family {
   align-items: baseline;
   display: flex;

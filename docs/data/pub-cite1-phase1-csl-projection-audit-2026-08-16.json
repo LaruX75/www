@@ -1,0 +1,65 @@
+{
+  "generatedAt": "2026-08-16T19:18:22.078Z",
+  "scope": "PUB-CITE1 Phase 1 — CSL projection landing audit",
+  "findings": {
+    "module": {
+      "publicationCslExists": true,
+      "exportsBuildCslItem": true,
+      "hasOkmToCslTypeTable": true,
+      "hasFreeTextAuthorParser": true,
+      "hasDoiNormalizer": true
+    },
+    "wiring": {
+      "publicFieldsAllowsCsl": true,
+      "publicationsPageImportsBuilder": true,
+      "publicationsPageAttachesCsl": true,
+      "publicationDetailsExposesCsl": true,
+      "researchfiContentExposesCsl": true,
+      "findExploreRecordForwardsCsl": true
+    },
+    "preservation": {
+      "inlineApaStillInJulkaisut": true,
+      "inlineMlaStillInJulkaisut": true,
+      "inlineChicagoStillInJulkaisut": true,
+      "inlineBibtexStillInJulkaisut": true,
+      "inlineRisStillInJulkaisut": true,
+      "serverApaStillOnContent": true,
+      "detailStillForwardsCitationString": true,
+      "findExploreRendererUnchanged": true
+    }
+  },
+  "runtimeCheck": {
+    "ok": true,
+    "cslIsObject": true,
+    "cslId": "audit-anchor",
+    "cslType": "article-journal",
+    "cslDoiIsBare": true,
+    "cslIssuedShape": true,
+    "nullForEmpty": true,
+    "nullForNonObject": true,
+    "parseAuthorsWorks": true,
+    "normalizeDoiStripsPrefix": true
+  },
+  "gates": {
+    "publicationCslModuleExists": true,
+    "exportsBuildCslItem": true,
+    "hasOkmToCslTypeTable": true,
+    "hasFreeTextAuthorParser": true,
+    "publicFieldsAllowsCsl": true,
+    "publicationsPageImportsBuilder": true,
+    "publicationsPageAttachesCsl": true,
+    "publicationDetailsExposesCsl": true,
+    "researchfiContentExposesCsl": true,
+    "findExploreRecordForwardsCsl": true,
+    "inlineApaStillInJulkaisut": true,
+    "inlineMlaStillInJulkaisut": true,
+    "inlineChicagoStillInJulkaisut": true,
+    "inlineBibtexStillInJulkaisut": true,
+    "inlineRisStillInJulkaisut": true,
+    "serverApaStillOnContent": true,
+    "detailStillForwardsCitationString": true,
+    "findExploreRendererDoesNotUseCsl": true,
+    "runtimeCheckPassed": true
+  },
+  "gateFailures": []
+}

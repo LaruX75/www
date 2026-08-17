@@ -12,6 +12,7 @@ pageStyles:
   - /css/find-explore.css
 pageScripts:
   - /js/find-explore.js
+  - /js/publication-citation.js
 schemaType: CollectionPage
 ---
 
@@ -134,14 +135,18 @@ schemaType: CollectionPage
 {% set findExploreAllQualityLabel = "All" %}
 {% set findExploreResetLabel = "Clear" %}
 {% set findExploreMoreLabel = "Show more" %}
-{% set findExploreInitialStatus = "Search with a keyword or narrow the result set. The opening list below also works without JavaScript." %}
-{% set findExploreNoScript = "Interactive Find & Explore requires JavaScript. The opening list and local publication links below still work." %}
+{% set findExploreInitialStatus = "Loading publications list..." %}
+{% set findExploreNoScript = "The interactive publications list requires JavaScript. Individual publication pages are server-rendered and indexable — use the site search (top bar), sitemap, or a web search engine to reach them." %}
 {% set findExploreTypeOptions = [] %}
 {% for option in publicationExplore.groupOptions %}
   {% set findExploreTypeOptions = (findExploreTypeOptions.push({ value: option.value, label: option.labelEn, count: option.count }), findExploreTypeOptions) %}
 {% endfor %}
 {% set findExploreYears = publicationExplore.years %}
-{% set findExploreTopicOptions = publicationExplore.topicOptions %}
+{# Publications FULL parity: canonical topics remain valid site-wide
+   metadata but the professional publication list intentionally does
+   not expose a topic facet. Bibliographically relevant filters are
+   OKM group, year, peer-reviewed, and open access. #}
+{% set findExploreTopicOptions = [] %}
 {% set findExploreQualityOptions = [
   { value: "peer-reviewed", label: "Peer-reviewed", count: publicationExplore.qualityCounts.peerReviewed },
   { value: "open-access", label: "Open access", count: publicationExplore.qualityCounts.openAccess }
@@ -152,25 +157,18 @@ schemaType: CollectionPage
   {% include "find-explore-writings.njk" %}
 </section>
 
-<section id="researchfi-julkaisut" class="py-5">
+<section id="researchfi-julkaisut" class="py-4">
   <div class="site-shell">
-    <div class="card border-0 shadow-sm publication-nav-card mb-4">
+    <div class="card border-0 shadow-sm publication-nav-card">
       <div class="card-body">
-        <p class="text-uppercase small text-muted mb-1">Opening list</p>
-        <h2 class="h3 mb-1">Latest publications</h2>
-        <p class="text-muted mb-3">This SSR list works without JavaScript. Find & Explore covers the full canonical set of {{ canonicalPublications.length }} publications.</p>
+        <p class="text-uppercase small text-muted mb-1">Publication classification</p>
+        <h2 class="h3 mb-1">A–G describes the publication type</h2>
+        <p class="text-muted mb-3">The Find & Explore layer above lists all {{ canonicalPublications.length }} canonical publications and lets you filter by the Finnish Ministry of Education (OKM) publication type. Individual publication pages remain server-rendered and indexable.</p>
         <div class="d-flex flex-wrap gap-2">
           {% for option in publicationExplore.groupOptions %}
           <span class="badge text-bg-light text-dark border">{{ option.labelEn }} <span class="text-muted">{{ option.count }}</span></span>
           {% endfor %}
         </div>
-      </div>
-    </div>
-    <div class="card shadow-sm border-0">
-      <div class="card-body">
-        {% set publicationItems = publicationExplore.openingItems %}
-        {% set publicationLang = "en" %}
-        {% include "publications-opening-list.njk" %}
       </div>
     </div>
   </div>

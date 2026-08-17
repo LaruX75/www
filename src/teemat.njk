@@ -84,7 +84,7 @@
           {% if publication.researchSummary %}
           <p class="topic-research-summary">{{ publication.researchSummary }}</p>
           {% endif %}
-          <p class="topic-research-citation">{{ publication.citation }}</p>
+          <p class="topic-research-citation">{{ publication.csl | publicationCitation("apa") }}</p>
           <a class="topic-research-link" href="{{ publication.url }}">Avaa lähdeviite julkaisuarkistossa</a>
         </article>
         {% endfor %}

@@ -1,0 +1,179 @@
+{
+  "generatedAt": "2026-08-17T05:37:21.278Z",
+  "scope": "PUB-CITE1 Phase 4 — legacy citation deletion readiness audit (read-only)",
+  "branch": "",
+  "counts": {
+    "canonicalPublications": 56,
+    "cslCoverage": "56/56",
+    "missingCsl": [],
+    "legacyInlineFormattersInJulkaisutNjk": 5,
+    "legacyLocEstimateJulkaisutNjk": 132,
+    "taxonomyTemplatesReadingCitation": 3,
+    "buildLegacyFiPublicationRowsConsumers": [
+      "scripts/audit-pub-cite1-publication-citation-csl.js",
+      "scripts/audit-publications-page-client-parity.js",
+      "scripts/audit-publications-page-projection.js"
+    ]
+  },
+  "architecture": {
+    "sharedRenderer": {
+      "umdModule": "src/js/publication-citation.js",
+      "nodeShim": "src/_utils/publicationCitation.js",
+      "nunjucksFilter": "publicationCitation(csl, style)",
+      "hubs": {
+        "fi": true,
+        "en": true
+      }
+    }
+  },
+  "legacyInventory": {
+    "inlineBrowserFormatters": {
+      "buildApaCitation": true,
+      "buildMlaCitation": true,
+      "buildChicagoCitation": true,
+      "buildBibtexEntry": true,
+      "buildRisEntry": true
+    },
+    "inlineFormattersStillCalledDirectly": {
+      "apa": true,
+      "mla": true,
+      "chicago": true,
+      "bibtex": true,
+      "ris": true
+    },
+    "zoteroCallsLegacyRis": false,
+    "mendeleyCallsLegacyRis": false,
+    "serverApaComposer": {
+      "functionPresent": true,
+      "contentItemHasCitationField": true,
+      "contentItemHasCitationStyle": true
+    },
+    "detailModel": {
+      "forwardsCitation": true,
+      "forwardsCitationStyle": true,
+      "prefersSharedRenderer": true,
+      "fallsBackToCitationField": true
+    },
+    "taxonomyPages": {
+      "teemat": true,
+      "kategoriat": true,
+      "avainsanat": true
+    },
+    "legacyRows": {
+      "functionPresent": true,
+      "exported": true,
+      "productionConsumers": [],
+      "testAuditConsumers": [
+        "scripts/audit-pub-cite1-publication-citation-csl.js",
+        "scripts/audit-publications-page-client-parity.js",
+        "scripts/audit-publications-page-projection.js"
+      ]
+    },
+    "thesis": {
+      "thesisHubHasOwnBuildApa": true,
+      "thesisServerBuildApa": true,
+      "thesisCitationApaField": true,
+      "thesisDoesNotDependOnPublicationRenderer": true
+    }
+  },
+  "publicJson": {
+    "publicationsPageEndpointExposesCitation": false,
+    "publicationsPageEndpointExposesCsl": true,
+    "exportDataExposesCitation": true,
+    "exportDataExposesCitationStyle": true,
+    "exportDataFileGenerated": true
+  },
+  "fiEnParity": {
+    "fiHubLoadsSharedRenderer": true,
+    "enHubLoadsSharedRenderer": true,
+    "fiOnlySurfaces": [
+      "citation export modal (#citationExportModal is defined only in src/julkaisut.njk)"
+    ]
+  },
+  "deletionMatrix": [
+    {
+      "item": "src/julkaisut.njk inline buildApaCitation/buildMlaCitation/buildChicagoCitation/buildBibtexEntry/buildRisEntry",
+      "hasReplacement": true,
+      "replacementParityProven": true,
+      "fallbackReachable": false,
+      "consumersOutsidePublications": false,
+      "blocksOnMigration": [
+        "getCitationByFormat still calls legacy formatters when window.publicationCitation is unavailable."
+      ],
+      "notes": "Fallback is reachable if the shared renderer script fails to load; also both Zotero + Mendeley buttons currently skip the shared branch entirely.",
+      "classification": "KEEP TEMPORARILY"
+    },
+    {
+      "item": "src/_data/researchfiContent.js buildApaCitation()",
+      "hasReplacement": true,
+      "replacementParityProven": true,
+      "fallbackReachable": true,
+      "consumersOutsidePublications": true,
+      "blocksOnMigration": [
+        "publication-item-body.njk still falls back to detail.citation when csl is missing.",
+        "src/teemat.njk renders publication.citation directly.",
+        "src/kategoriat.njk renders featuredItem/item .data.citation directly.",
+        "src/avainsanat.njk renders item.data.citation directly.",
+        "/api/export-data.json exposes citation and citationStyle as public contract fields."
+      ],
+      "notes": "This is the origin of the citation/citationStyle fields that propagate through publicationDetails, taxonomy pages, and the export-data JSON contract.",
+      "classification": "KEEP TEMPORARILY"
+    },
+    {
+      "item": "src/_data/publicationsPage.js buildLegacyFiPublicationRows()",
+      "hasReplacement": true,
+      "replacementParityProven": true,
+      "fallbackReachable": false,
+      "consumersOutsidePublications": false,
+      "blocksOnMigration": [
+        "scripts/audit-pub-cite1-publication-citation-csl.js still calls buildLegacyFiPublicationRows for parity checks",
+        "scripts/audit-publications-page-client-parity.js still calls buildLegacyFiPublicationRows for parity checks",
+        "scripts/audit-publications-page-projection.js still calls buildLegacyFiPublicationRows for parity checks"
+      ],
+      "notes": "No production consumer. Two publications audits + one PUB-CITE1 pre-audit still call this helper to reconstruct the pre-canonical row shape for parity checks. Delete only after those audits migrate to the canonical rows or are retired.",
+      "classification": "KEEP TEMPORARILY"
+    },
+    {
+      "item": "src/js/thesis-hub-actions.js buildThesisApa / buildThesisMla / etc.",
+      "hasReplacement": false,
+      "replacementParityProven": false,
+      "fallbackReachable": true,
+      "consumersOutsidePublications": true,
+      "blocksOnMigration": [
+        "Thesis domain — publications CSL architecture explicitly not forced onto theses (PF5-IMPL-APA closure §22)."
+      ],
+      "notes": "Thesis citation lives in the theses domain; not a publications-legacy duplicate.",
+      "classification": "KEEP PERMANENTLY"
+    },
+    {
+      "item": "src/_data/theses.js buildApaCitation(thesis) → citationApa",
+      "hasReplacement": false,
+      "replacementParityProven": false,
+      "fallbackReachable": true,
+      "consumersOutsidePublications": true,
+      "blocksOnMigration": [
+        "Thesis domain — SSR thesis citation surface, separate from publications."
+      ],
+      "notes": "Keep — thesis-specific server-side APA composer feeding thesis-detail-body.njk.",
+      "classification": "KEEP PERMANENTLY"
+    }
+  ],
+  "gates": {
+    "canonicalNonEmpty": true,
+    "canonicalAllHaveCsl": true,
+    "sharedRendererPresent": true,
+    "sharedRendererShimPresent": true,
+    "nunjucksFilterRegistered": true,
+    "fiHubLoadsSharedRenderer": true,
+    "enHubLoadsSharedRenderer": true,
+    "findExploreEmitsDataCsl": true,
+    "findExploreConsumesCsl": true,
+    "modalFallbackIsGuarded": true,
+    "detailPrefersShared": true,
+    "detailFallsBackToCitation": true,
+    "serverApaStillPresentForFallback": true,
+    "thesisDomainIndependent": true
+  },
+  "hardFailures": [],
+  "productionChangePolicy": "NO PRODUCTION CODE CHANGE IN THIS AUDIT."
+}

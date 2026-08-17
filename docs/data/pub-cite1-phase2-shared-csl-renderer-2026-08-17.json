@@ -1,0 +1,132 @@
+{
+  "generatedAt": "2026-08-17T05:16:46.032Z",
+  "scope": "PUB-CITE1 Phase 2 — shared CSL renderer + publications list v2 audit",
+  "findings": {
+    "module": {
+      "isomorphicRendererExists": true,
+      "isomorphicUmdShape": true,
+      "hasApaFn": true,
+      "hasMlaFn": true,
+      "hasChicagoFn": true,
+      "hasBibtexFn": true,
+      "hasRisFn": true,
+      "nodeShimReexports": true
+    },
+    "filter": {
+      "nunjucksFilterRegistered": true,
+      "filterCallsBuildCitation": true
+    },
+    "ssrList": {
+      "openingListPartialDeleted": true,
+      "findExploreRendererUsesSharedRenderer": true,
+      "findExploreCitationButtonEmitsCsl": true
+    },
+    "detail": {
+      "detailUsesSharedFilter": true,
+      "detailFallsBackToLegacyCitation": true,
+      "detailStillShowsStyleBadge": true
+    },
+    "modal": {
+      "julkaisutLoadsSharedRenderer": true,
+      "modalPrefersSharedRenderer": true,
+      "modalKeepsLegacyFallback": true,
+      "modalParsesCslDataAttr": true
+    },
+    "reverseGates": {
+      "findExploreRendererReadsCsl": true,
+      "enPublicationsLoadsSharedRenderer": true,
+      "enPublicationsHasNoOwnCitationFormatters": true
+    }
+  },
+  "runtimeSample": {
+    "ok": true,
+    "apaSample": "Laru, J., & Näykki, P. (2026). Phase 2 audit sample. Journal of Audits, 1(2), 3-4. https://doi.org/10.1234/audit.p2",
+    "bibtexKey": "laru2026phase2auditsample",
+    "risFirstLine": "TY  - JOUR"
+  },
+  "parity": {
+    "total": 53,
+    "identical": 4,
+    "improvements": 49,
+    "metadataLimited": 0,
+    "differs": 0,
+    "examples": [
+      {
+        "anchorId": "rf-a1-10-1016-j-caeo-2026-100396",
+        "typeCode": "A1",
+        "class": "EXPECTED IMPROVEMENT",
+        "explanation": "APA style improvements (Oxford ampersand / volume formatting)",
+        "legacy": "Krenare Pireva Nuci; Fisnik Dalipi; Italo Masiello; Ismail Celik; Jari Laru; Blerim Saqipi; Arsim Susuri; Ali Shariq Imran (2026). Assessing Digital Competence of K1-12 Teachers in Kosovo: A Study through the Lens of DigCompEdu and TPACK. Computers and Education Open, 11, 100396. https://doi.org/10.",
+        "shared": "Krenare Pireva Nuci, Fisnik Dalipi, Italo Masiello, Ismail Celik, Jari Laru, Blerim Saqipi, Arsim Susuri, & Ali Shariq Imran (2026). Assessing Digital Competence of K1-12 Teachers in Kosovo: A Study through the Lens of DigCompEdu and TPACK. Computers and Education Open, 11, 100396. https://doi.org/1"
+      },
+      {
+        "anchorId": "rf-a1-02254916yj",
+        "typeCode": "A1",
+        "class": "EXPECTED IMPROVEMENT",
+        "explanation": "Author names shortened to initials per APA 7",
+        "legacy": "Celik, Ismail; Kontkanen, Sini; Laru, Jari; Dalyanci, Alanur Ahsen (2026). Co-constructing adaptive lesson plans with GenAI: Pre-service teachers' Intelligent-TPACK and prompt engineering strategies. Computers and education, 241, 105485. https://doi.org/10.1016/j.compedu.2025.105485",
+        "shared": "Celik, I., Kontkanen, S., Laru, J., & Dalyanci, A. A. (2026). Co-constructing adaptive lesson plans with GenAI: Pre-service teachers' Intelligent-TPACK and prompt engineering strategies. Computers and education, 241, 105485. https://doi.org/10.1016/j.compedu.2025.105485"
+      },
+      {
+        "anchorId": "rf-a1-0707476326",
+        "typeCode": "A1",
+        "class": "EXPECTED IMPROVEMENT",
+        "explanation": "Author names shortened to initials per APA 7",
+        "legacy": "Iwata, Megumi; Zabolotna, Kateryna; Kaveri, Anceli; Laru, Jari; Mäkitalo, Kati (2026). Computational thinking in collaborative programming discourse: an epistemic network analysis. Computer science education, 1-26. https://doi.org/10.1080/08993408.2026.2665188",
+        "shared": "Iwata, M., Zabolotna, K., Kaveri, A., Laru, J., & Mäkitalo, K. (2026). Computational thinking in collaborative programming discourse: an epistemic network analysis. Computer science education, 1-26. https://doi.org/10.1080/08993408.2026.2665188"
+      },
+      {
+        "anchorId": "rf-d2-0704947326",
+        "typeCode": "D2",
+        "class": "EXPECTED IMPROVEMENT",
+        "explanation": "Author names shortened to initials per APA 7",
+        "legacy": "Laru, Jari; Mäkitalo, Kati; Tedre, Matti; Valtonen, Teemu; Vartiainen, Henriikka (2026). Ohjelmoinnista ohjelmoinnilliseen ajatteluun ja tekoälytaitojen edistämiseen. Esi- ja alkuopetuksen käsikirja.",
+        "shared": "Laru, J., Mäkitalo, K., Tedre, M., Valtonen, T., & Vartiainen, H. (2026). Ohjelmoinnista ohjelmoinnilliseen ajatteluun ja tekoälytaitojen edistämiseen. Esi- ja alkuopetuksen käsikirja."
+      },
+      {
+        "anchorId": "rf-a4-02241881yj",
+        "typeCode": "A4",
+        "class": "EXPECTED IMPROVEMENT",
+        "explanation": "Author names shortened to initials per APA 7",
+        "legacy": "Pope, Nicolas; Kahila, Juho; Vartiainen, Henriikka; Saqr, Mohammed; López-Pernas, Sonsoles; Roos, Teemu; Laru, Jari; Tedre, Matti (2025). An XAI Social Media Platform for Teaching K-12 Students AI-Driven Profiling, Clustering, and Engagement-Based Recommending. Proceedings of the AAAI conference on ",
+        "shared": "Pope, N., Kahila, J., Vartiainen, H., Saqr, M., López-Pernas, S., Roos, T., Laru, J., & Tedre, M. (2025). An XAI Social Media Platform for Teaching K-12 Students AI-Driven Profiling, Clustering, and Engagement-Based Recommending. Proceedings of the AAAI conference on artificial intelligence, 39(28),"
+      },
+      {
+        "anchorId": "rf-a1-0699440925",
+        "typeCode": "A1",
+        "class": "EXPECTED IMPROVEMENT",
+        "explanation": "Author names shortened to initials per APA 7",
+        "legacy": "Laru, Jari; Celik, Ismail; Jokela, Iiris; Makitalo, Kati (2025). The antecedents of pre-service teachers' AI literacy: perceptions about own AI driven applications, attitude towards AI and knowledge in machine learning. European journal of teacher education, 48(5), 964-986. https://doi.org/10.1080/0",
+        "shared": "Laru, J., Celik, I., Jokela, I., & Makitalo, K. (2025). The antecedents of pre-service teachers' AI literacy: perceptions about own AI driven applications, attitude towards AI and knowledge in machine learning. European journal of teacher education, 48(5), 964-986. https://doi.org/10.1080/02619768.2"
+      }
+    ],
+    "regressions": []
+  },
+  "gates": {
+    "isomorphicRendererExists": true,
+    "isomorphicUmdShape": true,
+    "hasApaFn": true,
+    "hasMlaFn": true,
+    "hasChicagoFn": true,
+    "hasBibtexFn": true,
+    "hasRisFn": true,
+    "nodeShimReexports": true,
+    "nunjucksFilterRegistered": true,
+    "filterCallsBuildCitation": true,
+    "openingListPartialDeleted": true,
+    "findExploreRendererUsesSharedRenderer": true,
+    "findExploreCitationButtonEmitsCsl": true,
+    "detailUsesSharedFilter": true,
+    "detailFallsBackToLegacyCitation": true,
+    "julkaisutLoadsSharedRenderer": true,
+    "modalPrefersSharedRenderer": true,
+    "modalKeepsLegacyFallback": true,
+    "modalParsesCslDataAttr": true,
+    "findExploreRendererReadsCsl": true,
+    "enPublicationsLoadsSharedRenderer": true,
+    "enPublicationsHasNoOwnCitationFormatters": true,
+    "runtimeSampleOk": true,
+    "parityHasNoUnexplainedRegressions": true
+  },
+  "gateFailures": []
+}
