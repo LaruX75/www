@@ -41,6 +41,10 @@ test("FI A-group filter restricts the list to canonical A publications", async (
 test("FI reset returns the full list", async ({ page }) => {
   await page.goto("/julkaisut/");
   await expect(page.locator("[data-find-explore][data-find-explore-ready='true']")).toBeVisible();
+  // Wait for the initial full-list search to actually complete before
+  // introducing a filter change — otherwise selectOption may fire
+  // while Pagefind is still processing the seed-query search.
+  await expect(page.locator("[data-find-explore-status]")).toContainText(/56 tulosta/, { timeout: 15000 });
   await page.locator("[data-find-explore-type]").selectOption("A");
   await expect(page.locator("[data-find-explore-status]")).toContainText(/29 tulosta/, { timeout: 15000 });
   await page.locator("[data-find-explore-reset]").click();
@@ -57,4 +61,49 @@ test("FI citation modal opens from a Pagefind result and uses the shared rendere
   await citationBtn.click();
   await expect(page.locator("#citationExportModal")).toHaveClass(/show/, { timeout: 10000 });
   await expect(page.locator("#citationOutput")).not.toHaveValue("");
+});
+
+test("Zotero download emits a valid RIS payload from the shared renderer", async ({ page }) => {
+  await page.goto("/julkaisut/");
+  await expect(page.locator("[data-find-explore][data-find-explore-ready='true']")).toBeVisible();
+  await expect(page.locator("[data-find-explore-status]")).toContainText(/56 tulosta/, { timeout: 15000 });
+  const citationBtn = page.locator("[data-find-explore-results] .export-citation-btn").first();
+  await citationBtn.click();
+  await expect(page.locator("#citationExportModal")).toHaveClass(/show/, { timeout: 10000 });
+
+  const downloadPromise = page.waitForEvent("download");
+  await page.locator("#citationZoteroBtn").click();
+  const download = await downloadPromise;
+
+  const suggested = download.suggestedFilename();
+  expect(suggested).toMatch(/-zotero\.ris$/);
+
+  const buffer = await download.createReadStream();
+  const chunks = [];
+  for await (const chunk of buffer) chunks.push(chunk);
+  const text = Buffer.concat(chunks).toString("utf8");
+
+  // TY tag is derived from CSL type by the shared renderer; accept
+  // any valid RIS reference type. AU/TI/PY/ER are required by the
+  // RIS spec and must appear.
+  expect(text).toMatch(/^TY\s+-\s+(JOUR|MGZN|NEWS|CPAPER|CHAP|BOOK|THES|GEN)\b/);
+  expect(text).toMatch(/\nAU\s+-\s+\S/);
+  expect(text).toMatch(/\nTI\s+-\s+\S/);
+  expect(text).toMatch(/\nPY\s+-\s+\d{4}/);
+  expect(text).toMatch(/ER\s+-/);
+});
+
+test("Mendeley download emits a valid RIS payload from the shared renderer", async ({ page }) => {
+  await page.goto("/julkaisut/");
+  await expect(page.locator("[data-find-explore][data-find-explore-ready='true']")).toBeVisible();
+  await expect(page.locator("[data-find-explore-status]")).toContainText(/56 tulosta/, { timeout: 15000 });
+  const citationBtn = page.locator("[data-find-explore-results] .export-citation-btn").first();
+  await citationBtn.click();
+  await expect(page.locator("#citationExportModal")).toHaveClass(/show/, { timeout: 10000 });
+
+  const downloadPromise = page.waitForEvent("download");
+  await page.locator("#citationMendeleyBtn").click();
+  const download = await downloadPromise;
+
+  expect(download.suggestedFilename()).toMatch(/-mendeley\.ris$/);
 });

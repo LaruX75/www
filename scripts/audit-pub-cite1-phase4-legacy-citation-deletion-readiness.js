@@ -81,6 +81,7 @@ function main() {
     buildMlaCitation: /function\s+buildMlaCitation\s*\(payload\)/.test(julkaisutNjkSrc),
     buildChicagoCitation: /function\s+buildChicagoCitation\s*\(payload\)/.test(julkaisutNjkSrc),
     buildBibtexEntry: /function\s+buildBibtexEntry\s*\(payload\)/.test(julkaisutNjkSrc),
+    // PUB-CITE1 Phase 4a removed buildRisEntry.
     buildRisEntry: /function\s+buildRisEntry\s*\(payload\)/.test(julkaisutNjkSrc)
   };
   // Fallback reachability: getCitationByFormat prefers the shared
@@ -92,13 +93,16 @@ function main() {
     apa: /return\s+buildApaCitation\(payload\)/.test(julkaisutNjkSrc),
     mla: /return\s+buildMlaCitation\(payload\)/.test(julkaisutNjkSrc),
     chicago: /return\s+buildChicagoCitation\(payload\)/.test(julkaisutNjkSrc),
-    bibtex: /return\s+buildBibtexEntry\(payload\)/.test(julkaisutNjkSrc),
-    ris: /return\s+buildRisEntry\(payload\)/.test(julkaisutNjkSrc)
+    bibtex: /return\s+buildBibtexEntry\(payload\)/.test(julkaisutNjkSrc)
   };
-  // Zotero/Mendeley download bypasses the shared renderer today —
-  // they call `buildRisEntry(currentCitationPayload)` directly.
+  // PUB-CITE1 Phase 4a: Zotero + Mendeley now delegate to the shared
+  // renderer via downloadRisFor() → sharedRis() → window.publicationCitation.
+  // These booleans document the current state; they are FALSE after
+  // Phase 4a lands. A truthy value would indicate a regression.
   const zoteroCallsLegacyRis = /Zotero[\s\S]{0,120}buildRisEntry\(currentCitationPayload\)/.test(julkaisutNjkSrc);
   const mendeleyCallsLegacyRis = /Mendeley[\s\S]{0,120}buildRisEntry\(currentCitationPayload\)/.test(julkaisutNjkSrc);
+  const zoteroUsesSharedRenderer = /citationZoteroBtn[\s\S]{0,500}downloadRisFor\(currentCitationPayload/.test(julkaisutNjkSrc);
+  const mendeleyUsesSharedRenderer = /citationMendeleyBtn[\s\S]{0,500}downloadRisFor\(currentCitationPayload/.test(julkaisutNjkSrc);
 
   // ---------- 4. Server-side APA on researchfiContent ----------
   const researchfiContentSrc = readOrEmpty("src/_data/researchfiContent.js");
@@ -196,17 +200,17 @@ function main() {
   // ---------- 11. Deletion classification ----------
   const deletionMatrix = [
     {
-      item: "src/julkaisut.njk inline buildApaCitation/buildMlaCitation/buildChicagoCitation/buildBibtexEntry/buildRisEntry",
+      item: "src/julkaisut.njk inline buildApaCitation/buildMlaCitation/buildChicagoCitation/buildBibtexEntry (buildRisEntry removed in Phase 4a)",
       hasReplacement: true,
       replacementParityProven: true,
-      fallbackReachable: !fallbackGuard || (zoteroCallsLegacyRis || mendeleyCallsLegacyRis),
+      fallbackReachable: !fallbackGuard,
       consumersOutsidePublications: false,
       blocksOnMigration: [
-        zoteroCallsLegacyRis ? "Zotero download button calls buildRisEntry directly, bypassing the shared-renderer branch." : null,
-        mendeleyCallsLegacyRis ? "Mendeley download button calls buildRisEntry directly, bypassing the shared-renderer branch." : null,
-        "getCitationByFormat still calls legacy formatters when window.publicationCitation is unavailable."
+        zoteroCallsLegacyRis ? "Zotero download button still calls buildRisEntry — Phase 4a regression!" : null,
+        mendeleyCallsLegacyRis ? "Mendeley download button still calls buildRisEntry — Phase 4a regression!" : null,
+        "getCitationByFormat still calls the four remaining inline formatters when window.publicationCitation is unavailable."
       ].filter(Boolean),
-      notes: "Fallback is reachable if the shared renderer script fails to load; also both Zotero + Mendeley buttons currently skip the shared branch entirely."
+      notes: "Phase 4a landed: Zotero + Mendeley now use the shared renderer, buildRisEntry deleted. Four inline formatters (APA/MLA/Chicago/BibTeX) remain as modal fallback for the case where csl or the shared renderer is unavailable."
     },
     {
       item: "src/_data/researchfiContent.js buildApaCitation()",
@@ -273,7 +277,15 @@ function main() {
     detailPrefersShared,
     detailFallsBackToCitation, // informational, not blocking
     serverApaStillPresentForFallback: serverApa.functionPresent, // informational
-    thesisDomainIndependent: thesis.thesisDoesNotDependOnPublicationRenderer
+    thesisDomainIndependent: thesis.thesisDoesNotDependOnPublicationRenderer,
+    // PUB-CITE1 Phase 4a invariants: buildRisEntry deleted, Zotero +
+    // Mendeley consume the shared renderer. Regressions here would
+    // block a future Phase 4b.
+    buildRisEntryRemoved: !inlineFormatters.buildRisEntry,
+    zoteroUsesSharedRenderer,
+    mendeleyUsesSharedRenderer,
+    zoteroNoLongerCallsLegacyRis: !zoteroCallsLegacyRis,
+    mendeleyNoLongerCallsLegacyRis: !mendeleyCallsLegacyRis
   };
   // Hard-blocking gates that MUST be true for closure. Fallback and
   // still-present flags are informational.
@@ -282,7 +294,9 @@ function main() {
     "sharedRendererShimPresent", "nunjucksFilterRegistered",
     "fiHubLoadsSharedRenderer", "enHubLoadsSharedRenderer",
     "findExploreEmitsDataCsl", "findExploreConsumesCsl",
-    "modalFallbackIsGuarded", "detailPrefersShared", "thesisDomainIndependent"
+    "modalFallbackIsGuarded", "detailPrefersShared", "thesisDomainIndependent",
+    "buildRisEntryRemoved", "zoteroUsesSharedRenderer", "mendeleyUsesSharedRenderer",
+    "zoteroNoLongerCallsLegacyRis", "mendeleyNoLongerCallsLegacyRis"
   ];
   const hardFailures = hardBlockingGates.filter((k) => gates[k] !== true);
 

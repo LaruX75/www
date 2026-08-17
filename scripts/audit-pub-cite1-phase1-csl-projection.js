@@ -64,7 +64,10 @@ function main() {
       inlineMlaStillInJulkaisut: /function\s+buildMlaCitation\s*\(payload\)/.test(julkaisutNjkSrc),
       inlineChicagoStillInJulkaisut: /function\s+buildChicagoCitation\s*\(payload\)/.test(julkaisutNjkSrc),
       inlineBibtexStillInJulkaisut: /function\s+buildBibtexEntry\s*\(payload\)/.test(julkaisutNjkSrc),
-      inlineRisStillInJulkaisut: /function\s+buildRisEntry\s*\(payload\)/.test(julkaisutNjkSrc),
+      // PUB-CITE1 Phase 4a removed the inline RIS composer; Zotero
+      // + Mendeley consume the shared renderer via /js/publication-
+      // citation.js. This invariant is now the reverse.
+      inlineRisRemovedFromJulkaisut: !/function\s+buildRisEntry\s*\(payload\)/.test(julkaisutNjkSrc),
       serverApaStillOnContent: /citation:\s*buildApaCitation\(publication\)/.test(researchfiContentSrc),
       detailStillForwardsCitationString: /citation:\s*pickString\(contentItem\?\.citation\)/.test(publicationDetailsSrc),
       findExploreRendererUnchanged: !/entry\.record\.csl/.test(findExploreJsSrc)
@@ -129,7 +132,7 @@ function main() {
     inlineMlaStillInJulkaisut: findings.preservation.inlineMlaStillInJulkaisut,
     inlineChicagoStillInJulkaisut: findings.preservation.inlineChicagoStillInJulkaisut,
     inlineBibtexStillInJulkaisut: findings.preservation.inlineBibtexStillInJulkaisut,
-    inlineRisStillInJulkaisut: findings.preservation.inlineRisStillInJulkaisut,
+    inlineRisRemovedFromJulkaisut: findings.preservation.inlineRisRemovedFromJulkaisut,
     serverApaStillOnContent: findings.preservation.serverApaStillOnContent,
     detailStillForwardsCitationString: findings.preservation.detailStillForwardsCitationString,
     // Reverse gate — CSL is NOT rendered by the shared Find & Explore

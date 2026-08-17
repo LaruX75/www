@@ -490,27 +490,6 @@ document.addEventListener('DOMContentLoaded', function() {
     return citation.trim();
   }
 
-  function buildRisEntry(payload) {
-    const authors = String(payload.authors || '')
-      .split(';')
-      .map((a) => a.trim())
-      .filter(Boolean);
-    const year = String(payload.year || '').trim();
-    const title = String(payload.title || '').trim();
-    const journal = String(payload.journal || '').trim();
-    const doi = String(payload.doi || '').trim();
-    const url = String(payload.url || '').trim();
-    const lines = ['TY  - JOUR'];
-    authors.forEach((author) => lines.push(`AU  - ${author}`));
-    if (year) lines.push(`PY  - ${year}`);
-    if (title) lines.push(`TI  - ${title}`);
-    if (journal) lines.push(`JO  - ${journal}`);
-    if (doi) lines.push(`DO  - ${doi}`);
-    if (url) lines.push(`UR  - ${url}`);
-    lines.push('ER  -');
-    return lines.join('\n');
-  }
-
   function downloadTextFile(filename, text) {
     const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
     const url = URL.createObjectURL(blob);
@@ -543,8 +522,40 @@ document.addEventListener('DOMContentLoaded', function() {
     if (format === 'apa') return buildApaCitation(payload);
     if (format === 'mla') return buildMlaCitation(payload);
     if (format === 'chicago') return buildChicagoCitation(payload);
-    if (format === 'ris') return buildRisEntry(payload);
     return buildBibtexEntry(payload);
+  }
+
+  // PUB-CITE1 Phase 4a: Zotero + Mendeley downloads consume the
+  // shared CSL renderer directly. When csl or the renderer is
+  // unavailable, degrade visibly rather than fall back to a
+  // hand-rolled RIS composer — the fallback is intentionally
+  // absent so failures are diagnosable, not silently mangled.
+  function sharedRis(payload) {
+    if (!payload?.csl || !window.publicationCitation) return '';
+    const rendered = window.publicationCitation.buildCitation({ csl: payload.csl, style: 'ris' });
+    return (rendered && !rendered.empty && rendered.text) ? rendered.text : '';
+  }
+
+  function flashUnavailable(button, defaultLabel) {
+    if (!button) return;
+    const previous = button.innerHTML;
+    button.disabled = true;
+    button.innerHTML = defaultLabel;
+    setTimeout(() => {
+      button.innerHTML = previous;
+      button.disabled = false;
+    }, 1600);
+  }
+
+  function downloadRisFor(payload, filenameSuffix, button) {
+    const ris = sharedRis(payload);
+    if (!ris) {
+      if (citationOutput) citationOutput.value = 'RIS ei ole saatavilla tälle julkaisulle.';
+      flashUnavailable(button, '<i class="bi bi-exclamation-triangle me-1"></i>Ei saatavilla');
+      return;
+    }
+    const base = sanitizeFilenamePart(payload.title || payload.authors || 'viite');
+    downloadTextFile(`${base}-${filenameSuffix}.ris`, ris + '\n');
   }
 
   function renderCitationPreview() {
@@ -615,16 +626,14 @@ document.addEventListener('DOMContentLoaded', function() {
   if (citationZoteroBtn) {
     citationZoteroBtn.addEventListener('click', () => {
       if (!currentCitationPayload) return;
-      const base = sanitizeFilenamePart(currentCitationPayload.title || currentCitationPayload.authors || 'viite');
-      downloadTextFile(`${base}-zotero.ris`, buildRisEntry(currentCitationPayload) + '\n');
+      downloadRisFor(currentCitationPayload, 'zotero', citationZoteroBtn);
     });
   }
 
   if (citationMendeleyBtn) {
     citationMendeleyBtn.addEventListener('click', () => {
       if (!currentCitationPayload) return;
-      const base = sanitizeFilenamePart(currentCitationPayload.title || currentCitationPayload.authors || 'viite');
-      downloadTextFile(`${base}-mendeley.ris`, buildRisEntry(currentCitationPayload) + '\n');
+      downloadRisFor(currentCitationPayload, 'mendeley', citationMendeleyBtn);
     });
   }
 

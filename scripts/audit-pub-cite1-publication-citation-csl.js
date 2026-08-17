@@ -97,7 +97,14 @@ function main() {
       inlineClientMlaInJulkaisut: /function\s+buildMlaCitation\s*\(payload\)/.test(julkaisutNjk),
       inlineClientChicagoInJulkaisut: /function\s+buildChicagoCitation\s*\(payload\)/.test(julkaisutNjk),
       inlineClientBibtexInJulkaisut: /function\s+buildBibtexEntry\s*\(payload\)/.test(julkaisutNjk),
+      // PUB-CITE1 Phase 4a: the inline RIS composer was removed;
+      // Zotero + Mendeley downloads now consume the shared CSL
+      // renderer. This finding is kept for historical diffing.
       inlineClientRisInJulkaisut: /function\s+buildRisEntry\s*\(payload\)/.test(julkaisutNjk),
+      zoteroUsesSharedRenderer: /citationZoteroBtn[\s\S]{0,500}downloadRisFor\(currentCitationPayload/.test(julkaisutNjk)
+        || /citationZoteroBtn[\s\S]{0,500}publicationCitation/.test(julkaisutNjk),
+      mendeleyUsesSharedRenderer: /citationMendeleyBtn[\s\S]{0,500}downloadRisFor\(currentCitationPayload/.test(julkaisutNjk)
+        || /citationMendeleyBtn[\s\S]{0,500}publicationCitation/.test(julkaisutNjk),
       thesisServerApaPresent: /function\s+buildApaCitation\s*\(thesis\)/.test(thesesJs),
       thesisClientCitationBuildersPresent: /citationApa\s*=\s*/.test(thesisHubActions) || /\$\{authors\}\s*\(\$\{year\}\)/.test(thesisHubActions)
     },
@@ -188,7 +195,9 @@ function main() {
     inlineClientMlaExists: findings.citationPipeline.inlineClientMlaInJulkaisut,
     inlineClientChicagoExists: findings.citationPipeline.inlineClientChicagoInJulkaisut,
     inlineClientBibtexExists: findings.citationPipeline.inlineClientBibtexInJulkaisut,
-    inlineClientRisExists: findings.citationPipeline.inlineClientRisInJulkaisut,
+    inlineClientRisRemoved: !findings.citationPipeline.inlineClientRisInJulkaisut,
+    zoteroUsesSharedRenderer: findings.citationPipeline.zoteroUsesSharedRenderer,
+    mendeleyUsesSharedRenderer: findings.citationPipeline.mendeleyUsesSharedRenderer,
     thesisServerApaPresent: findings.citationPipeline.thesisServerApaPresent,
     publicationFindExploreBuilderPresent: findings.findExploreIntegration.publicationRecordBuilderPresent,
     findExplorePublicationBranchPresent: findings.findExploreIntegration.findExplorePublicationBranch,
