@@ -218,9 +218,15 @@ async function main() {
     publicJsonHasCitationApa: !!thesesJsonObj && Array.isArray(thesesJsonObj.items) && thesesJsonObj.items.every((i) => !("citationApa" in i) || typeof i.citationApa === "string"),
     publicJsonHasAnyCitationApa: !!thesesJsonObj && Array.isArray(thesesJsonObj.items) && thesesJsonObj.items.some((i) => typeof i.citationApa === "string" && i.citationApa.length > 0),
     publicJsonDoesNotExposeCsl: !!thesesJsonObj && Array.isArray(thesesJsonObj.items) && thesesJsonObj.items.every((i) => !("csl" in i)),
-    serverBuildApaCitationRetained: /\bfunction\s+buildApaCitation\b/.test(readSrc("src/_data/theses.js") || ""),
+    // TH-CITE1 Phase 6 (2026-08-18) deleted these legacy server-side
+    // composers. The Phase 4D audit was written before Phase 6; the
+    // three gates below now assert the CURRENT architecture:
+    //   - buildApaCitation and getThesisLevelLabel are DELETED
+    //   - withCitation is RETAINED (research-program metadata
+    //     enrichment + shared-renderer-based citationApa derivation)
+    serverBuildApaCitationDeleted: !/\bfunction\s+buildApaCitation\b/.test(readSrc("src/_data/theses.js") || ""),
+    serverGetThesisLevelLabelDeleted: !/\bfunction\s+getThesisLevelLabel\b/.test(readSrc("src/_data/theses.js") || ""),
     serverWithCitationRetained: /\bfunction\s+withCitation\b/.test(readSrc("src/_data/theses.js") || ""),
-    serverGetThesisLevelLabelRetained: /\bfunction\s+getThesisLevelLabel\b/.test(readSrc("src/_data/theses.js") || ""),
     detailJsonLdCitationRetained: /thesisSchemaCitation/.test(readSrc("src/opinnaytteet/thesis-details.njk") || "")
   };
   // Sample: pick a canonical detail page and confirm the JSON-LD
