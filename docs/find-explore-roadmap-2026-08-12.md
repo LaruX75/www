@@ -4,8 +4,9 @@ Date: 2026-08-12
 Synchronized: 2026-08-14
 Publications FULL update: 2026-08-17
 TH-CITE1 Phase 1–3 update: 2026-08-18
+TH-CITE1 Phase 4 update: 2026-08-18
 
-This roadmap is the shared source of truth after Canonical Content v1, Find & Explore Writings v1, Find & Explore Theses v1, Find & Explore Publications v1, F4 Research contextual Find & Explore v1, the 2026-08-17 Publications FULL Pagefind + PUB-CITE1 closure, and the 2026-08-18 TH-CITE1 Phase 1–3 thesis CSL + SSR-first archive closure.
+This roadmap is the shared source of truth after Canonical Content v1, Find & Explore Writings v1, Find & Explore Theses v1, Find & Explore Publications v1, F4 Research contextual Find & Explore v1, the 2026-08-17 Publications FULL Pagefind + PUB-CITE1 closure, the 2026-08-18 TH-CITE1 Phase 1–3 thesis CSL + SSR-first archive closure, and the 2026-08-18 TH-CITE1 Phase 4 A–D modal/export migration closure.
 
 ## 1. Current State
 
@@ -75,6 +76,38 @@ deletions in Phase 3 scope: src/_includes/thesis-curated-list.njk (removed), pag
 retained for later phases: Phase 4 modal/export migration (src/js/thesis-hub-actions.js still composes browser-side citations), Phase 5 PF5 GLOBAL RESULT PARITY, Phase 6 legacy formatter deletion (src/_data/theses.js#buildApaCitation still populates the public citationApa contract)
 Canonical Content v1: unchanged
 closure report: docs/th-cite1-phase3-ssr-archive-closure-2026-08-18.md
+
+TH-CITE1 Phase 4 A–D — shared thesis renderer + detail-page modal + browser deletion + closure parity
+status: CLOSED / GREEN / MAIN
+scope: shared publicationCitation renderer extended with thesis-specific MLA/Chicago/BibTeX/RIS branches (APA preserved from Phase 2); citation/export UI restored on canonical thesis detail pages via CSL-only trigger + lean modal; all browser raw-field thesis citation composers deleted; browser JS is interaction-only. Supersedes the pre-Phase-4 browser bibliographic model without touching Phase 5 Pagefind result presenters or Phase 6 public/build contracts.
+PR: #103
+PR title: TH-CITE1 Phase 4: shared thesis exports and detail-page citation UI
+head commit: 659bcdeb7f3767f392139e7c0ff8e18de6179238
+merge commit: 3d437b3d282830458c0c890ea19155f94d338aee
+merge timestamp: 2026-08-18T13:09:09Z
+citation architecture: canonical thesis → buildThesisCslItem() → CSL → shared publicationCitation renderer (APA / MLA / Chicago / BibTeX / RIS with thesis-specific FI/EN display map, @mastersthesis / @phdthesis / @misc BibTeX entry types + school = / howpublished = conventions, RIS M3 - thesis-level line)
+citation UI: thesis detail page carries a "Vie viite" / "Export citation" trigger with data-thesis-csl + data-thesis-lang → #thesisCitationModal → sharedCitation(payload, format) → APA / MLA / Chicago / BibTeX preview / copy / download; Zotero + Mendeley emit identical RIS with distinct filename suffixes
+archive stays SSR-first and modal-free: archive templates ship no citation triggers, no citation modal, no abstract modal, no /js/thesis-hub-actions.js; the compact SSR three-section table remains the archive contract
+browser JS interaction-only: modal state / format selection / preview / copy / download / Zotero / Mendeley / unavailable state / focus return / accessibility. Browser no longer composes bibliographic truth.
+raw-field fallback: removed; missing / malformed / empty CSL surfaces as a controlled unavailable state (never fabricates from title / authors / year / type / URL)
+deletions in Phase 4 scope: 5 raw-field browser composers (buildThesisApa / Mla / Chicago / BibTeX / Ris) + getCitationByFormat + browser getThesisLevelLabel + abstract-modal DOM wiring + openAbstractModal + [data-thesis-abstract-trigger] branch; src/_includes/thesis-hub-modals.njk template (superseded); src/_includes/thesis-table.njk template (orphaned since F3A + Phase 3); .pub-table .thesis-bib-btn dead CSS; scripts/audit-theses-built-output.js orphaned audit
+trigger payload: reduced from 7 data attributes → 2 (data-thesis-csl + data-thesis-lang)
+JS byte reduction: src/js/thesis-hub-actions.js 15,139 → 9,421 bytes (−37.8%) on every detail-page load; archive JS unchanged (already stripped in 4B)
+per-format MIME on downloads: text/plain;charset=utf-8 (APA/MLA/Chicago); application/x-bibtex;charset=utf-8 (BibTeX); application/x-research-info-systems;charset=utf-8 (RIS)
+unit tests: 527/527 (+39 Phase 4A thesis-branch tests on top of Phase 3 baseline)
+Phase 4 end-to-end parity audit: 52/52 gates (shared renderer thesis coverage × detail UI × archive boundary × browser deletion × public contract preservation × corpus parity)
+Phase 4C static deletion audit: 37/37 gates
+Phase 4B modal/export browser tests: 11/11
+Phase 4C no-raw-field-fallback browser tests: 7/7 (synthetic triggers with missing/malformed CSL + populated raw fields all resolve to unavailable state — proves the parallel content model is gone)
+F3A theses Find & Explore browser: 3/3, 0 skips (Phase 4D retired the last skip inherited from the pre-Phase-3 archive-card UX)
+F3B publications Find & Explore: 2/2 (documented Pagefind cold-start flake retried)
+accessibility/contrast/navigation Playwright: green
+post-merge CI on main 3d437b3d: Build and Deploy pass, Accessibility and navigation tests pass, Generate OG Images pass
+corpus parity: canonical unique 169 = FI SSR union 169 = EN SSR union 169 = Pagefind thesis-tagged fragments 169
+public contracts preserved: /data/theses.json.citationApa byte-identical (still emits citationApa, no csl); JSON-LD citation property on all 169 detail pages via thesisSchemaCitation computed field; src/_data/theses.js#buildApaCitation / withCitation / getThesisLevelLabel retained (Phase 6 boundary)
+retained for later phases: Phase 5 PF5 GLOBAL RESULT PARITY (navbar Pagefind, /haku/, /en/search/, thesis Pagefind card layout); Phase 6 legacy formatter deletion (repoint citationApa to shared renderer, delete server-side buildApaCitation)
+Canonical Content v1: unchanged
+closure report: docs/th-cite1-phase4-modal-export-closure-2026-08-18.md
 
 F3B Publications Find & Explore
 status: CLOSED / GREEN
@@ -195,6 +228,8 @@ decision: theses selected before publications/presentations
 F3A Theses Find & Explore: closed green.
 
 TH-CITE1 Phase 1–3 (thesis CSL + SSR-first archive): closed green, on `main`. Supersedes the F3A archive implementation scope while preserving F3A history; retained Phase 4–6 workstreams remain separate.
+
+TH-CITE1 Phase 4 A–D (shared thesis exports + detail-page citation UI + browser composer deletion): closed green, on `main`. Removes the pre-Phase-4 browser bibliographic content model; browser JS is interaction-only; Phase 5 and Phase 6 remain NOT STARTED.
 
 F3B Publications Find & Explore: closed green as a PARTIAL migration.
 
