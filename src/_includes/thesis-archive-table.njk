@@ -1,0 +1,105 @@
+{#
+  thesis-archive-table.njk — one section: top pager + compact SSR table
+  + bottom pager. This is the atomic swap unit for the progressive-
+  enhancement JS: fetching a section URL and replacing the entire
+  matching `[data-thesis-section]` fragment guarantees top and bottom
+  paginator stay synchronised and prevents any DOM-hide/show pattern.
+
+  Required context:
+    thesisSectionKey        — "advisedMasters" | "advisedBachelors" | "reviewed"
+    thesisSectionSlug       — locale-specific URL slug
+    thesisSectionPermalinkBase — locale-specific permalink base
+    thesisSectionLandingUrl — locale landing URL (target for page 1)
+    thesisSectionAnchor     — HTML id anchor for the section
+    thesisSectionTitle      — visible <h2> text
+    thesisSectionIcon       — Bootstrap icon class
+    thesisSectionAccent     — badge tone class (primary/info/secondary)
+    thesisSectionDescription — short lead paragraph
+    thesisSectionItems      — full canonical items for this section (unsliced)
+    thesisSectionCurrentPage — active page number for this render
+    thesisSectionTotalPages — total pages for this section
+    thesisSectionLang       — "fi" or "en"
+    thesisSectionPageSize   — max rows per page (e.g. 10)
+#}
+{% set thesisSectionIsEn = thesisSectionLang == "en" %}
+{% set thesisSectionSliceStart = (thesisSectionCurrentPage - 1) * thesisSectionPageSize %}
+{% set thesisSectionSliceEnd = thesisSectionSliceStart + thesisSectionPageSize %}
+{% set thesisSectionVisibleItems = thesisSectionItems.slice(thesisSectionSliceStart, thesisSectionSliceEnd) %}
+
+<section id="{{ thesisSectionAnchor }}"
+         class="thesis-archive-section py-4{% if thesisSectionKey == 'advisedMasters' or thesisSectionKey == 'reviewed' %} bg-body-tertiary{% endif %}"
+         data-thesis-section="{{ thesisSectionKey }}"
+         data-thesis-section-slug="{{ thesisSectionSlug }}"
+         data-thesis-section-permalink-base="{{ thesisSectionPermalinkBase }}"
+         data-thesis-section-landing-url="{{ thesisSectionLandingUrl }}"
+         data-thesis-section-current-page="{{ thesisSectionCurrentPage }}"
+         data-thesis-section-total-pages="{{ thesisSectionTotalPages }}">
+  <div class="site-shell">
+    <div class="card shadow-sm border-0">
+      <div class="card-body">
+        <div class="d-flex flex-wrap align-items-start justify-content-between gap-3 mb-3">
+          <div>
+            <h2 class="h4 mb-1"><i class="bi bi-{{ thesisSectionIcon }} me-2 text-{{ thesisSectionAccent }}"></i>{{ thesisSectionTitle }}</h2>
+            <p class="text-muted mb-0">{{ thesisSectionDescription }}</p>
+          </div>
+          <span class="badge text-bg-{{ thesisSectionAccent }}">{{ thesisSectionItems.length }}</span>
+        </div>
+
+        {% set thesisPagerSectionKey = thesisSectionKey %}
+        {% set thesisPagerSectionSlug = thesisSectionSlug %}
+        {% set thesisPagerPermalinkBase = thesisSectionPermalinkBase %}
+        {% set thesisPagerCurrentPage = thesisSectionCurrentPage %}
+        {% set thesisPagerTotalPages = thesisSectionTotalPages %}
+        {% set thesisPagerLandingUrl = thesisSectionLandingUrl %}
+        {% set thesisPagerIsEn = thesisSectionIsEn %}
+        {% set thesisPagerPosition = "top" %}
+        {% include "thesis-archive-pager.njk" %}
+
+        <div class="table-responsive mt-2">
+          <table class="table table-sm thesis-archive-table align-top mb-0">
+            <caption class="visually-hidden">
+              {{ thesisSectionTitle }} — {{ (thesisSectionIsEn and 'page') or 'sivu' }} {{ thesisSectionCurrentPage }} / {{ thesisSectionTotalPages }}
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col" class="thesis-archive-col-year">{{ (thesisSectionIsEn and 'Year') or 'Vuosi' }}</th>
+                <th scope="col" class="thesis-archive-col-citation">{{ (thesisSectionIsEn and 'Citation (APA 7)') or 'Lähdeviite (APA 7)' }}</th>
+                <th scope="col" class="thesis-archive-col-action text-end">{{ (thesisSectionIsEn and 'Open') or 'Avaa' }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% if thesisSectionVisibleItems.length %}
+                {% for thesis in thesisSectionVisibleItems %}
+                <tr>
+                  <td class="thesis-archive-col-year small text-muted"><span class="d-inline-block">{{ thesis.year }}</span></td>
+                  <td class="thesis-archive-col-citation">
+                    <a class="thesis-archive-title-link fw-semibold text-decoration-none d-block mb-1" href="{{ thesis.pageUrl }}">{{ thesis.title }}</a>
+                    <p class="small font-monospace mb-0 thesis-archive-citation">{{ thesis.csl | publicationCitation("apa", thesisSectionLang) }}</p>
+                  </td>
+                  <td class="thesis-archive-col-action text-end">
+                    <a class="btn btn-sm btn-outline-secondary"
+                       href="{{ thesis.sourceUrl }}"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       aria-label="{{ (thesisSectionIsEn and 'Open in OuluREPO: ') or 'Avaa OuluREPOssa: ' }}{{ thesis.title }}">
+                      <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+                      <span class="visually-hidden">OuluREPO</span>
+                    </a>
+                  </td>
+                </tr>
+                {% endfor %}
+              {% else %}
+                <tr>
+                  <td colspan="3" class="text-muted small">{{ (thesisSectionIsEn and 'No theses on this page.') or 'Tällä sivulla ei ole opinnäytteitä.' }}</td>
+                </tr>
+              {% endif %}
+            </tbody>
+          </table>
+        </div>
+
+        {% set thesisPagerPosition = "bottom" %}
+        {% include "thesis-archive-pager.njk" %}
+      </div>
+    </div>
+  </div>
+</section>

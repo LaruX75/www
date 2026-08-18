@@ -161,11 +161,119 @@ describe("buildCitation — APA book", () => {
   });
 });
 
-describe("buildCitation — APA thesis", () => {
-  test("APA thesis includes genre + institution", () => {
+describe("buildCitation — APA thesis (Phase 2 bracket format)", () => {
+  test("APA thesis renders APA 7 bracket notation with no period between title and bracket", () => {
     const out = buildCitation({ csl: cslThesis(), style: "apa" }).text;
-    assert.match(out, /Laru, J\. \(2012\)\. Scaffolding learning activities\./);
-    assert.match(out, /Doctoral dissertation \(article-based\), University of Oulu\./);
+    // Authors (Year). Title [Genre, Publisher].
+    // Title has NO trailing period before the bracket per APA 7 §10.6.
+    assert.match(out, /Laru, J\. \(2012\)\. Scaffolding learning activities \[Doctoral dissertation \(article-based\), University of Oulu\]\./);
+    // Belt-and-suspenders: assert no `Title. [` sequence sneaked in.
+    assert.doesNotMatch(out, /activities\. \[/);
+  });
+
+  test("APA thesis (OuluREPO Finnish genre) — bracket keeps FI strings by default", () => {
+    const csl = {
+      id: "https://oulurepo.oulu.fi/handle/18096",
+      type: "thesis",
+      title: "Kouluikäisten teknologiataitojen kehitys",
+      author: [{ family: "Mattila", given: "Teemu" }],
+      issued: { "date-parts": [[2021]] },
+      genre: "Pro gradu -tutkielma",
+      publisher: "Oulun yliopisto"
+    };
+    const out = buildCitation({ csl, style: "apa" }).text;
+    assert.match(out, /Mattila, T\. \(2021\)\. Kouluikäisten teknologiataitojen kehitys \[Pro gradu -tutkielma, Oulun yliopisto\]\./);
+  });
+
+  test("APA thesis lang='en' translates Finnish genre + publisher via display map", () => {
+    const csl = {
+      id: "https://oulurepo.oulu.fi/handle/18096",
+      type: "thesis",
+      title: "School-age technology skills development",
+      author: [{ family: "Mattila", given: "Teemu" }],
+      issued: { "date-parts": [[2021]] },
+      genre: "Pro gradu -tutkielma",
+      publisher: "Oulun yliopisto"
+    };
+    const out = buildCitation({ csl, style: "apa", lang: "en" }).text;
+    assert.match(out, /\[Master's thesis, University of Oulu\]\./);
+  });
+
+  test("APA thesis lang='en' translates all four canonical FI genres", () => {
+    const base = {
+      id: "x", type: "thesis", title: "T",
+      author: [{ family: "F", given: "G" }],
+      issued: { "date-parts": [[2020]] },
+      publisher: "Oulun yliopisto"
+    };
+    const master = buildCitation({ csl: { ...base, genre: "Pro gradu -tutkielma" }, style: "apa", lang: "en" }).text;
+    const bachelor = buildCitation({ csl: { ...base, genre: "Kandidaatintutkielma" }, style: "apa", lang: "en" }).text;
+    const doctoral = buildCitation({ csl: { ...base, genre: "Väitöskirja" }, style: "apa", lang: "en" }).text;
+    const licentiate = buildCitation({ csl: { ...base, genre: "Lisensiaatintutkielma" }, style: "apa", lang: "en" }).text;
+    const fallback = buildCitation({ csl: { ...base, genre: "Opinnäyte" }, style: "apa", lang: "en" }).text;
+    assert.match(master, /\[Master's thesis, University of Oulu\]/);
+    assert.match(bachelor, /\[Bachelor's thesis, University of Oulu\]/);
+    assert.match(doctoral, /\[Doctoral dissertation, University of Oulu\]/);
+    assert.match(licentiate, /\[Licentiate thesis, University of Oulu\]/);
+    assert.match(fallback, /\[Thesis, University of Oulu\]/);
+  });
+
+  test("APA thesis lang='en' passes unknown genre through unchanged", () => {
+    const csl = {
+      id: "x", type: "thesis", title: "T",
+      author: [{ family: "F", given: "G" }],
+      issued: { "date-parts": [[2020]] },
+      genre: "Doctoral dissertation (article-based)",
+      publisher: "University of Oulu"
+    };
+    const out = buildCitation({ csl, style: "apa", lang: "en" }).text;
+    // Unknown genre and English publisher both pass through verbatim.
+    assert.match(out, /\[Doctoral dissertation \(article-based\), University of Oulu\]\./);
+  });
+
+  test("APA thesis without publisher renders bracket with genre only", () => {
+    const csl = {
+      id: "x", type: "thesis", title: "T",
+      author: [{ family: "F", given: "G" }],
+      issued: { "date-parts": [[2020]] },
+      genre: "Pro gradu -tutkielma"
+    };
+    const out = buildCitation({ csl, style: "apa" }).text;
+    assert.match(out, /\[Pro gradu -tutkielma\]\./);
+    assert.doesNotMatch(out, /,\s*\]/);
+  });
+
+  test("APA thesis without genre falls back to language-appropriate default", () => {
+    const base = {
+      id: "x", type: "thesis", title: "T",
+      author: [{ family: "F", given: "G" }],
+      issued: { "date-parts": [[2020]] },
+      publisher: "Oulun yliopisto"
+    };
+    const fi = buildCitation({ csl: base, style: "apa" }).text;
+    const en = buildCitation({ csl: base, style: "apa", lang: "en" }).text;
+    assert.match(fi, /\[Opinnäyte, Oulun yliopisto\]/);
+    assert.match(en, /\[Thesis, University of Oulu\]/);
+  });
+
+  test("APA thesis lang param defaults to 'fi' for unknown values", () => {
+    const csl = {
+      id: "x", type: "thesis", title: "T",
+      author: [{ family: "F", given: "G" }],
+      issued: { "date-parts": [[2020]] },
+      genre: "Pro gradu -tutkielma",
+      publisher: "Oulun yliopisto"
+    };
+    const bogus = buildCitation({ csl, style: "apa", lang: "de" }).text;
+    const fi = buildCitation({ csl, style: "apa", lang: "fi" }).text;
+    assert.equal(bogus, fi);
+  });
+
+  test("APA thesis lang param does not affect non-thesis types", () => {
+    const csl = cslBook();
+    const noLang = buildCitation({ csl, style: "apa" }).text;
+    const enLang = buildCitation({ csl, style: "apa", lang: "en" }).text;
+    assert.equal(noLang, enLang);
   });
 });
 

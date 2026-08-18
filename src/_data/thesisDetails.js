@@ -4,6 +4,7 @@ const {
   extractStableThesisId,
   thesisPageUrl
 } = require("../_utils/thesisIdentity");
+const { buildThesisCslItem } = require("../_utils/thesisCsl");
 
 function toArray(value) {
   return Array.isArray(value) ? value.filter(Boolean) : [];
@@ -95,7 +96,7 @@ function buildThesisDetailModel(thesis) {
   const lang = normalizeThesisLang(thesis.language);
   const { categories, contexts } = deriveThesisMetadata(thesis);
 
-  return {
+  const detail = {
     id,
     pageUrl: thesisPageUrl(thesis.link),
     sourceUrl,
@@ -130,6 +131,14 @@ function buildThesisDetailModel(thesis) {
     })).filter((item) => item.name),
     contentType: "thesis"
   };
+
+  // TH-CITE1 Phase 1: additive canonical CSL projection. The
+  // existing citationApa field is preserved byte-identically; a new
+  // detail.csl field is added so Phase 3 templates and the Phase 5
+  // Pagefind result meta can compose their APA string from the same
+  // shared renderer publications already use.
+  detail.csl = buildThesisCslItem(detail);
+  return detail;
 }
 
 function sortThesisDetails(items) {

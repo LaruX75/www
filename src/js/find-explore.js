@@ -697,6 +697,21 @@
       updateUrl(state);
       visibleCount = PAGE_SIZE;
 
+      // TH-CITE1 Phase 3 — one visible result surface for the theses
+      // archive. When Find & Explore has no active query/filter the
+      // canonical SSR archive is the visible baseline. When a query
+      // or filter is active the SSR archive is hidden and Pagefind
+      // results occupy the same visible location. Reset returns to
+      // archive state. This coordination applies only to `theses`
+      // mounts; other kinds keep their existing behaviour.
+      if (kind === "theses" && document.body) {
+        if (effectiveQuery) {
+          document.body.classList.add("find-explore-active");
+        } else {
+          document.body.classList.remove("find-explore-active");
+        }
+      }
+
       if (!effectiveQuery && config.requiresQueryForSearch) {
         latestResults = [];
         resultsList.innerHTML = "";

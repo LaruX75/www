@@ -43,11 +43,12 @@
           </div>
           {% endif %}
 
-          {% if thesisDetail.citationApa %}
+          {% set thesisCitationText = thesisDetail.csl | publicationCitation("apa", currentLang) %}
+          {% if thesisCitationText %}
           <div class="card shadow-sm mb-4">
             <div class="card-body p-4">
               <h2 class="h5 mb-3">{{ "Citation" if isEn else "Lähdeviite" }}</h2>
-              <p class="small font-monospace mb-0">{{ thesisDetail.citationApa }}</p>
+              <p class="small font-monospace mb-0">{{ thesisCitationText }}</p>
             </div>
           </div>
           {% endif %}

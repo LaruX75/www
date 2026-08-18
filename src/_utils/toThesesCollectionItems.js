@@ -18,6 +18,7 @@
  */
 
 const { deriveThesisMetadata } = require("./thesisDerivedMetadata");
+const { buildThesisCslItem } = require("./thesisCsl");
 
 function thesisSlug(link) {
   const numeric = String(link || "").match(/\/(\d+)\/?$/);
@@ -89,7 +90,22 @@ function toCollectionItem(thesis, thesisRole) {
       licenseUri: thesis.licenseUri || null,
       okmType: thesis.okmType || null,
       citationApa: thesis.citationApa || null,
-      citationStyle: thesis.citationStyle || null
+      citationStyle: thesis.citationStyle || null,
+
+      // TH-CITE1 Phase 1: additive canonical CSL projection so
+      // downstream consumers (SSR renderers, Pagefind meta builders,
+      // export handlers) can reach the same CSL truth publications
+      // already use. Additive only — every existing field above is
+      // preserved byte-identically. Phase 3+ will migrate consumers.
+      csl: buildThesisCslItem({
+        pageUrl: `/opinnaytteet/${thesisSlug(link).replace(/^oulurepo-/, "")}/`,
+        sourceUrl: link,
+        title,
+        authors: normalizeArray(thesis.authors),
+        year: thesis.year,
+        thesisType: thesis.type,
+        language: thesis.language
+      })
     }
   };
 }

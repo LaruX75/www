@@ -96,6 +96,14 @@ function toThesisRecord(t, lang, source) {
     researchPriority: priority,
     researchSummary: pickString(t?.researchSummary),
     citationApa: pickString(t?.citationApa)
+    // TH-CITE1 Phase 1 review outcome: canonical CSL stays an
+    // internal build model (thesisDetail.csl + collection item
+    // data.csl). It is intentionally NOT exposed on this public
+    // JSON allowlist projection because no external consumer needs
+    // it. citationApa remains the sole public thesis citation
+    // field; later phases populate it from the shared renderer
+    // (canonical CSL → shared renderer) without changing the field
+    // name or shape.
   });
 }
 

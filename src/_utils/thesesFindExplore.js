@@ -69,12 +69,14 @@ function buildThesesFindExplorePageModel(thesisDetailsModel = {}) {
     topicHighlights: topicOptions.slice(0, 8),
     langCounts: Object.fromEntries(countValues(items, (item) => [item.lang])),
     roleCounts: Object.fromEntries(countValues(items, (item) => [item.thesisRole])),
-    typeCounts: Object.fromEntries(countValues(items, (item) => [item.thesisType])),
-    opening: {
-      advisedMasterItems: advisedMasterItems.slice(0, 5),
-      advisedBachelorItems: advisedBachelorItems.slice(0, 5),
-      reviewedItems: reviewedItems.slice(0, 5)
-    }
+    typeCounts: Object.fromEntries(countValues(items, (item) => [item.thesisType]))
+    // TH-CITE1 Phase 3: `opening` (sliced 5-item curated
+    // sub-collections) was consumed only by the previous
+    // /opinnaytteet/ and /en/theses/ curated sections. Those
+    // sections have been replaced by the full canonical SSR archive
+    // built from `thesesArchivePages{Fi,En}` + `thesis-archive-*.njk`
+    // includes. No consumer of `.opening` remains, so the field is
+    // no longer produced.
   };
 }
 

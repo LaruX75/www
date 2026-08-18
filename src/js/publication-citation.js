@@ -30,6 +30,39 @@
   var DEFAULT_STYLE = "apa";
   var SUPPORTED_STYLES = ["apa", "mla", "chicago", "bibtex", "ris"];
 
+  // TH-CITE1 Phase 2: FI → EN display map for thesis genre + publisher.
+  // Only applied when style="apa" and csl.type="thesis" and lang="en".
+  // Kept small and additive: unknown genres pass through unchanged so
+  // legacy G5 records (typeCode "Doctoral dissertation (article-based)")
+  // and any future custom genre string continue to render verbatim.
+  var THESIS_GENRE_FI_TO_EN = {
+    "Pro gradu -tutkielma": "Master's thesis",
+    "Kandidaatintutkielma": "Bachelor's thesis",
+    "Väitöskirja": "Doctoral dissertation",
+    "Lisensiaatintutkielma": "Licentiate thesis",
+    "Opinnäyte": "Thesis"
+  };
+  var THESIS_PUBLISHER_FI_TO_EN = {
+    "Oulun yliopisto": "University of Oulu"
+  };
+
+  function normalizeLang(value) {
+    var s = trimString(value).toLowerCase();
+    return s === "en" ? "en" : "fi";
+  }
+
+  function displayThesisGenre(genre, lang) {
+    if (!genre) return "";
+    if (lang !== "en") return genre;
+    return THESIS_GENRE_FI_TO_EN[genre] || genre;
+  }
+
+  function displayThesisPublisher(publisher, lang) {
+    if (!publisher) return "";
+    if (lang !== "en") return publisher;
+    return THESIS_PUBLISHER_FI_TO_EN[publisher] || publisher;
+  }
+
   function isString(value) {
     return typeof value === "string";
   }
@@ -232,7 +265,7 @@
     return out;
   }
 
-  function apa(csl) {
+  function apa(csl, lang) {
     var authors = toArraySafe(csl.author);
     var authorText = apaAuthorList(authors) || "Tuntematon tekijä";
     var year = extractYear(csl.issued) || "n.d.";
@@ -241,23 +274,35 @@
     var publisher = trimString(csl.publisher);
     var genre = trimString(csl.genre);
     var url = urlSuffix(csl);
+    var normalizedLang = normalizeLang(lang);
 
-    var sentence = authorText + " (" + year + "). " + stripTrailingPunctuation(title) + ".";
+    var titleStripped = stripTrailingPunctuation(title);
+    var sentence;
 
+    // TH-CITE1 Phase 2: theses render with APA 7 bracket notation:
+    //   Authors (Year). Title [Genre, Publisher].
+    // (no period between title and bracket per APA 7 §10.6). When
+    // lang="en" the FI genre + publisher strings are translated via
+    // the display map; unknown genres pass through unchanged.
     if (csl.type === "thesis") {
-      var host = genre || "Thesis";
-      var suffix = publisher ? host + ", " + publisher : host;
-      sentence += " " + suffix + ".";
+      var genreDisplay = displayThesisGenre(genre, normalizedLang);
+      var publisherDisplay = displayThesisPublisher(publisher, normalizedLang);
+      var host = genreDisplay || (normalizedLang === "en" ? "Thesis" : "Opinnäyte");
+      var bracketBody = publisherDisplay ? host + ", " + publisherDisplay : host;
+      sentence = authorText + " (" + year + "). " + titleStripped + " [" + bracketBody + "].";
     } else if (csl.type === "chapter") {
+      sentence = authorText + " (" + year + "). " + titleStripped + ".";
       if (containerTitle) sentence += " Teoksessa " + stripTrailingPunctuation(containerTitle);
       var vip = volumeIssuePagesApa(csl);
       if (vip) sentence += " (" + vip + ")";
       sentence += ".";
       if (publisher) sentence += " " + publisher + ".";
     } else if (csl.type === "book") {
+      sentence = authorText + " (" + year + "). " + titleStripped + ".";
       if (publisher) sentence += " " + publisher + ".";
       else if (containerTitle) sentence += " " + containerTitle + ".";
     } else {
+      sentence = authorText + " (" + year + "). " + titleStripped + ".";
       if (containerTitle) {
         sentence += " " + containerTitle;
         var vip2 = volumeIssuePagesApa(csl);
@@ -411,6 +456,7 @@
     var opts = options || {};
     var csl = opts.csl || null;
     var style = normalizeStyle(opts.style);
+    var lang = normalizeLang(opts.lang);
     if (!csl || typeof csl !== "object" || !csl.id || !csl.title) {
       return { text: "", style: style, empty: true };
     }
@@ -421,7 +467,7 @@
       case "bibtex": text = bibtex(csl); break;
       case "ris": text = ris(csl); break;
       case "apa":
-      default: text = apa(csl); break;
+      default: text = apa(csl, lang); break;
     }
     return { text: text, style: style, empty: false };
   }
