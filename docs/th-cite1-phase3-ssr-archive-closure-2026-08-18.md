@@ -2,13 +2,41 @@
 
 Date: 2026-08-18
 
-Status: **CLOSED / GREEN / BRANCH**
+Status: **CLOSED / GREEN / MAIN**
 
 Branch: `feat/th-cite1-phase1-thesis-csl`
 
-Implementation HEAD reported and pushed: `54c518792...`
+Implementation HEAD (branch tip at PR time): `1d461d873d237c0de00ea3d09483cdef6516e29f`
 
-PR / merge status: **not opened / not merged** at closure time.
+PR: [#101 — TH-CITE1 Phase 1–3: thesis CSL, shared APA renderer and SSR-first archive](https://github.com/LaruX75/www/pull/101)
+
+Merge SHA: `0068b49bf7f6cd4c759aa317f1c0db8d558e6cbc`
+
+Merge timestamp: `2026-08-18T07:52:28Z`
+
+Post-merge CI on `main` (`0068b49b`):
+
+```text
+Build and Deploy                       success
+Accessibility and navigation tests     success
+Generate OG Images                     success
+```
+
+Post-merge local verification on `main` (`0068b49b`):
+
+```text
+unit tests                             488 / 488
+Phase 1 canonical citation parity      169 / 169 IDENTICAL
+Phase 3 SSR archive audit              10 / 10 gates
+sitemap landings present               true
+sitemap paginated-URL hits             0
+FI SSR archive union                   169 / 169
+EN SSR archive union                   169 / 169
+Pagefind thesis-tagged fragments       169
+Phase 3 pagination browser tests       8 / 8
+F3A theses Find & Explore              2 / 2 + 1 skip (deferred to Phase 4)
+Playwright a11y + contrast + nav       41 / 41 + 1 skip
+```
 
 This document closes TH-CITE1 Phase 3 only. Phase 4, Phase 5 and Phase 6 remain separate later workstreams.
 
@@ -400,10 +428,14 @@ No public full-CSL exposure.
 ```text
 TH-CITE1 Phase 1 — thesis CSL projection             DONE
 TH-CITE1 Phase 2 — shared APA thesis renderer        DONE
-TH-CITE1 Phase 3 — SSR-first thesis archive          CLOSED / GREEN / BRANCH
+TH-CITE1 Phase 3 — SSR-first thesis archive          CLOSED / GREEN / MAIN
 TH-CITE1 Phase 4 — modal/export migration            NOT STARTED
 TH-CITE1 Phase 5 — PF5 GLOBAL RESULT PARITY          NOT STARTED
 TH-CITE1 Phase 6 — legacy formatter deletion         NOT STARTED
 ```
 
-Do not mark Phase 3 as `MAIN` until the feature branch has been reviewed and merged.
+Phase 3 landed on `main` at `0068b49b` via PR #101 with all three CI workflows
+(Build and Deploy, Accessibility and navigation tests, Generate OG Images) green
+and local main verification confirming 169/169 canonical parity, 169/169 SSR
+archive union in both locales, 169 Pagefind thesis-tagged fragments and a clean
+sitemap. Phase 4, Phase 5 and Phase 6 remain separate later workstreams.

@@ -3,8 +3,9 @@
 Date: 2026-08-12
 Synchronized: 2026-08-14
 Publications FULL update: 2026-08-17
+TH-CITE1 Phase 1–3 update: 2026-08-18
 
-This roadmap is the shared source of truth after Canonical Content v1, Find & Explore Writings v1, Find & Explore Theses v1, Find & Explore Publications v1, F4 Research contextual Find & Explore v1, and the 2026-08-17 Publications FULL Pagefind + PUB-CITE1 closure.
+This roadmap is the shared source of truth after Canonical Content v1, Find & Explore Writings v1, Find & Explore Theses v1, Find & Explore Publications v1, F4 Research contextual Find & Explore v1, the 2026-08-17 Publications FULL Pagefind + PUB-CITE1 closure, and the 2026-08-18 TH-CITE1 Phase 1–3 thesis CSL + SSR-first archive closure.
 
 ## 1. Current State
 
@@ -41,6 +42,39 @@ unit tests: 389/389
 combined writings + theses browser smoke: 5 passed
 accessibility/navigation/contrast: 31 passed
 closure report: docs/find-explore-theses-v1-closure-2026-08-14.md
+
+TH-CITE1 Phase 1–3 — thesis CSL + SSR-first archive
+status: CLOSED / GREEN / MAIN
+scope: thesis CSL projection + shared APA 7 renderer + SSR-first archive with bounded per-section pagination (supersedes the F3A archive implementation scope, does not rewrite F3A history)
+PR: #101
+PR title: TH-CITE1 Phase 1–3: thesis CSL, shared APA renderer and SSR-first archive
+head commit: 1d461d873d237c0de00ea3d09483cdef6516e29f
+merge commit: 0068b49bf7f6cd4c759aa317f1c0db8d558e6cbc
+merge timestamp: 2026-08-18T07:52:28Z
+raw source records: 170 (one duplicate URL in data.gradut, handle/10024/7879)
+canonical unique theses: 169
+citation architecture: canonical thesis → buildThesisCslItem → CSL → shared publicationCitation renderer → Eleventy/Nunjucks (APA 7 bracket notation, FI/EN display map)
+citation parity vs legacy formatter (canonical unique): 169/169 IDENTICAL
+SSR-first archive: /opinnaytteet/ and /en/theses/ render a compact three-section table (Year | Citation (APA 7) | Open) from canonical thesis data at build time; Pagefind is no longer required to make the initial archive visible
+Eleventy pagination: bounded 16 SSR permalinks per locale (1 landing + 8 masters + 2 bachelors + 5 reviewed) — not cartesian
+SSR archive union per locale: 169/169 FI, 169/169 EN
+max rows any single SSR URL: 30 (10 per section × 3 sections)
+section pagination: independent between tables, synchronised within each table (top + bottom paginator); JS enabled uses fragment swap to preserve other sections; JS disabled uses real anchor navigation and accepts other-section reset to page 1
+Pagefind boundary: Pagefind indexes 169 thesis-tagged fragments and handles active search/filter state only; empty-query archive generation not used
+one visible result surface: body.find-explore-active toggles between archive state and Pagefind search state; reset returns to archive state
+sitemap: /opinnaytteet/ and /en/theses/ present; 0 paginated URLs across all six per-section route families (three-layer exclusion: eleventyExcludeFromCollections + sitemap.ignore + robots noindex)
+detail template: thesisDetail.citationApa surface migrated to thesisDetail.csl | publicationCitation("apa", lang)
+public JSON contract: /data/theses.json.citationApa preserved byte-identically; no full internal CSL exposed publicly
+JS/no-JS behaviour: SSR archive fully browsable without JavaScript through real pagination anchors; enhanced-state fragment swap does not push misleading single-section URLs
+unit tests: 488/488
+Phase 3 pagination browser tests: 8/8 (independent state, top+bottom sync, JS-off nav, no full-page reload, no misleading pushState)
+F3A theses Find & Explore browser regression: 2/2 + 1 skip (abstract/citation modal triggers deferred to Phase 4)
+accessibility/contrast/navigation Playwright bundle: 41/41 + 1 skip
+post-merge CI on main 0068b49b: Build and Deploy pass, Accessibility and navigation tests pass, Generate OG Images pass
+deletions in Phase 3 scope: src/_includes/thesis-curated-list.njk (removed), pageModel.opening thesis archive slices (removed), obsolete archive filter hooks (not carried forward)
+retained for later phases: Phase 4 modal/export migration (src/js/thesis-hub-actions.js still composes browser-side citations), Phase 5 PF5 GLOBAL RESULT PARITY, Phase 6 legacy formatter deletion (src/_data/theses.js#buildApaCitation still populates the public citationApa contract)
+Canonical Content v1: unchanged
+closure report: docs/th-cite1-phase3-ssr-archive-closure-2026-08-18.md
 
 F3B Publications Find & Explore
 status: CLOSED / GREEN
@@ -159,6 +193,8 @@ decision: theses selected before publications/presentations
 ```
 
 F3A Theses Find & Explore: closed green.
+
+TH-CITE1 Phase 1–3 (thesis CSL + SSR-first archive): closed green, on `main`. Supersedes the F3A archive implementation scope while preserving F3A history; retained Phase 4–6 workstreams remain separate.
 
 F3B Publications Find & Explore: closed green as a PARTIAL migration.
 
