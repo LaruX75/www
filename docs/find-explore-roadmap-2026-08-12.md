@@ -109,6 +109,38 @@ retained for later phases: Phase 5 PF5 GLOBAL RESULT PARITY (navbar Pagefind, /h
 Canonical Content v1: unchanged
 closure report: docs/th-cite1-phase4-modal-export-closure-2026-08-18.md
 
+TH-CITE1 Phase 6 — legacy server citation deletion
+status: CLOSED / GREEN / BRANCH
+scope: delete src/_data/theses.js#buildApaCitation + getThesisLevelLabel + orphan APA author-list formatters; repoint withCitation to derive citationApa from buildThesisCslItem + shared publicationCitation renderer at lang="fi". Preserves /data/theses.json.citationApa + JSON-LD `citation` byte-identically. Result: shared renderer is the sole bibliographic composer in the site.
+branch: feat/th-cite1-phase6-legacy-server-citation-deletion
+base main SHA: 946f553270e3bebeb81edc470b79ca12ca732c83
+architecture before: raw thesis fields → buildApaCitation → citationApa
+architecture after: raw thesis fields → withCitation → buildThesisCslItem → shared publicationCitation renderer (style=apa, lang=fi) → citationApa
+language rule: citationApa persisted always in FI regardless of thesis source language or page UI locale (public contract preservation). Template-level visible citation on detail page remains csl | publicationCitation("apa", currentLang) — Phase 3/4 contract untouched.
+withCitation disposition: KEEP + REPOINT. Still attaches curated research-program metadata (researchLine, researchThemes, featuredOn, researchPriority, researchSummary, researchExcluded, researchAudience) alongside the shared-renderer-derived citationApa.
+deletions in Phase 6 scope: src/_data/theses.js#buildApaCitation, getThesisLevelLabel, formatAuthorsApa, formatAuthorApa, formatAuthorInitials (5 functions, ~51 production LOC removed net); scripts/audit-th-cite1-phase1-thesis-csl-parity.js (223 LOC, tautological after Phase 6 — historical output snapshot retained in docs/data/ as period evidence)
+new: scripts/audit-th-cite1-phase6-legacy-server-citation-deletion.js (18 hard gates), tests/unit/thesesWithCitation.test.js (8 assertions), docs/data/th-cite1-phase6-citationApa-baseline-2026-08-18.json (169-item baseline snapshot for post-deletion parity gate)
+updated audits: Phase 4C browser-citation-deletion (3 server-side gates flipped meaning: expect legacy DELETED, withCitation retained, uses shared renderer); Phase 4D modal-export-parity (3 server-side gates flipped meaning)
+citationApa parity vs pre-Phase-6 baseline: 169/169 IDENTICAL
+JSON-LD citation parity: 169/169 IDENTICAL (byte-identical to public JSON citationApa on every detail page)
+public /data/theses.json: 169 items, citationApa non-empty on all, csl NOT exposed publicly
+corpus parity: canonical unique 169 = public JSON 169 = FI SSR union 169 = EN SSR union 169 = Pagefind thesis fragments 169
+unit tests: 535/535 (+8 Phase 6 assertions on withCitation shared-renderer derivation, language rule, missing authors → controlled fallback, deterministic behaviour, no legacy composer symbol leaks)
+Phase 3 SSR archive audit: 10/10 gates
+Phase 3 pagination Playwright: 8/8
+Phase 4B modal/export Playwright: 11/11
+Phase 4C no-raw-field-fallback Playwright: 7/7
+Phase 4C browser-citation-deletion audit: 38/38 gates
+Phase 4D end-to-end parity audit: 52/52 gates
+Phase 6 legacy-server-citation-deletion audit: 18/18 gates
+F3A theses Find & Explore browser: 3/3, 0 skips
+F3B publications Find & Explore browser: 2/2 (documented Pagefind cold-start flake retried)
+accessibility/contrast/navigation Playwright: green
+retained: /data/theses.json.citationApa (PUBLIC contract), JSON-LD `citation` (PUBLIC schema), thesisDetail.citationApa (INTERNAL), collection data.citationApa (INTERNAL), withCitation function (research-program metadata enricher)
+retained for later phases: Phase 5 PF5 GLOBAL RESULT PARITY (navbar Pagefind, /haku/, /en/search/, thesis Pagefind card layout) — NOT STARTED
+Canonical Content v1: unchanged
+closure report: docs/th-cite1-phase6-legacy-server-citation-closure-2026-08-18.md
+
 F3B Publications Find & Explore
 status: CLOSED / GREEN
 scope: PARTIAL Find & Explore migration
@@ -229,7 +261,9 @@ F3A Theses Find & Explore: closed green.
 
 TH-CITE1 Phase 1–3 (thesis CSL + SSR-first archive): closed green, on `main`. Supersedes the F3A archive implementation scope while preserving F3A history; retained Phase 4–6 workstreams remain separate.
 
-TH-CITE1 Phase 4 A–D (shared thesis exports + detail-page citation UI + browser composer deletion): closed green, on `main`. Removes the pre-Phase-4 browser bibliographic content model; browser JS is interaction-only; Phase 5 and Phase 6 remain NOT STARTED.
+TH-CITE1 Phase 4 A–D (shared thesis exports + detail-page citation UI + browser composer deletion): closed green, on `main`. Removes the pre-Phase-4 browser bibliographic content model; browser JS is interaction-only.
+
+TH-CITE1 Phase 6 (legacy server citation deletion): closed green **on the feature branch** (not yet on `main`). Repoints `withCitation` to the shared renderer + deletes `buildApaCitation` and `getThesisLevelLabel`. Public `/data/theses.json.citationApa` + JSON-LD `citation` preserved byte-identically (169/169 parity). Phase 5 remains NOT STARTED.
 
 F3B Publications Find & Explore: closed green as a PARTIAL migration.
 

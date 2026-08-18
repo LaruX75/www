@@ -182,12 +182,19 @@ function main() {
     && builtArchiveEnChecks.hasNoAbstractModal
     && builtArchiveEnChecks.doesNotLoadThesisHubActions;
 
-  // 10. Phase 6 server-side path retained (informational; NOT
-  //     deleted in Phase 4C). Missing = failure.
+  // 10. Server-side citation architecture. Post-Phase-6 (2026-08-18):
+  //     the legacy server-side APA composer and its FI/EN level helper
+  //     are DELETED. withCitation() is retained but now derives
+  //     citationApa from the shared renderer via buildThesisCslItem.
+  //     Missing withCitation, or resurrected legacy composers, are
+  //     Phase-6-regression failures.
   const serverThesesData = readIfExists("src/_data/theses.js");
-  gates.serverBuildApaCitationRetained = !!serverThesesData && /\bfunction\s+buildApaCitation\b/.test(serverThesesData);
+  gates.serverBuildApaCitationDeleted = !!serverThesesData && !/\bfunction\s+buildApaCitation\b/.test(serverThesesData);
+  gates.serverGetThesisLevelLabelDeleted = !!serverThesesData && !/\bfunction\s+getThesisLevelLabel\b/.test(serverThesesData);
   gates.serverWithCitationRetained = !!serverThesesData && /\bfunction\s+withCitation\b/.test(serverThesesData);
-  gates.serverGetThesisLevelLabelRetained = !!serverThesesData && /\bfunction\s+getThesisLevelLabel\b/.test(serverThesesData);
+  gates.serverWithCitationUsesSharedRenderer = !!serverThesesData
+    && /require\(['"]\.\.\/_utils\/publicationCitation['"]\)/.test(serverThesesData)
+    && /require\(['"]\.\.\/_utils\/thesisCsl['"]\)/.test(serverThesesData);
 
   const gateFailures = Object.entries(gates).filter(function (e) { return !e[1]; }).map(function (e) { return e[0]; });
 

@@ -3,8 +3,27 @@ const path = require('path');
 const { isOfflineFetchMode, readCache, readCacheIfFresh, writeCache } = require('./_apiCache');
 const { loadHiddenIds } = require('./_curatedStubs');
 const { thesisPageUrl } = require('../_utils/thesisIdentity');
+// TH-CITE1 Phase 6: withCitation now derives citationApa from the
+// canonical thesis CSL projection + shared publicationCitation
+// renderer (server-safe UMD via the Node accessor). This deletes
+// the last parallel server-side APA composer while preserving the
+// public /data/theses.json.citationApa and JSON-LD citation
+// contracts byte-identically (Phase 6 baseline: 169/169 IDENTICAL).
+const { buildThesisCslItem } = require('../_utils/thesisCsl');
+const publicationCitation = require('../_utils/publicationCitation');
 const curatedProgram = require('../curated/research-program.json');
 const curatedThesisMeta = require('../curated/research-thesis-meta.json');
+
+// TH-CITE1 Phase 6 language contract: citationApa is a persisted
+// public/build field. Its historical value is always FI regardless
+// of thesis source language or page UI locale. Phase 2 shared-
+// renderer output with lang="fi" is byte-identical to the pre-4A
+// legacy composer for all 169 canonical unique theses, so this
+// constant preserves the current public contract. Template-level
+// visible citations remain independent (they call
+// csl | publicationCitation("apa", currentLang) — see
+// src/_includes/thesis-detail-body.njk + thesis-archive-table.njk).
+const CITATION_APA_LANG = 'fi';
 
 const CACHE_KEY = 'theses-oulurepo-v2';
 const CACHE_TTL_HOURS = 6;
@@ -27,70 +46,38 @@ function normalizeText(value) {
     return String(value || '').replace(/\s+/g, ' ').trim();
 }
 
-function formatAuthorInitials(value) {
-    return normalizeText(value)
-        .split(/[\s-]+/)
-        .filter(Boolean)
-        .map((part) => `${part.charAt(0).toUpperCase()}.`)
-        .join(' ');
-}
-
-function formatAuthorApa(author) {
-    const normalized = normalizeText(author);
-    if (!normalized) return '';
-
-    if (normalized.includes(',')) {
-        const [lastName, ...rest] = normalized.split(',');
-        const initials = formatAuthorInitials(rest.join(' '));
-        return initials ? `${normalizeText(lastName)}, ${initials}` : normalizeText(lastName);
-    }
-
-    const parts = normalized.split(/\s+/).filter(Boolean);
-    if (parts.length === 1) return parts[0];
-
-    const lastName = parts.pop();
-    const initials = formatAuthorInitials(parts.join(' '));
-    return initials ? `${lastName}, ${initials}` : lastName;
-}
-
-function formatAuthorsApa(authors = []) {
-    const formatted = (Array.isArray(authors) ? authors : [])
-        .map(formatAuthorApa)
-        .filter(Boolean);
-
-    if (!formatted.length) return '';
-    if (formatted.length === 1) return formatted[0];
-    if (formatted.length === 2) return `${formatted[0]}, & ${formatted[1]}`;
-    return `${formatted.slice(0, -1).join(', ')}, & ${formatted[formatted.length - 1]}`;
-}
-
-function getThesisLevelLabel(type) {
-    if (type === 'masterThesis') return 'Pro gradu -tutkielma';
-    if (type === 'bachelorThesis') return 'Kandidaatintutkielma';
-    return 'Opinnäytetyö';
-}
-
-function buildApaCitation(thesis) {
-    const authors = formatAuthorsApa(thesis.authors || []);
-    const year = normalizeText(thesis.year) || 'n.d.';
-    const title = normalizeText(thesis.title);
-    const level = getThesisLevelLabel(thesis.type);
-    const url = normalizeText(thesis.link);
-
-    let citation = authors ? `${authors} (${year}). ${title}` : `(${year}). ${title}`;
-    citation += ` [${level}, Oulun yliopisto].`;
-    if (url) citation += ` ${url}`;
-    return citation.trim();
+// TH-CITE1 Phase 6: derive citationApa from canonical CSL + shared
+// renderer. `buildThesisCslItem` accepts the raw thesis shape
+// (link / title / authors / year / type / language) — see
+// src/_utils/thesisCsl.js. Publications use the same renderer via
+// src/_data/researchfiContent.js; there is one bibliographic
+// implementation for the whole site.
+//
+// The previous server-side APA composer (`buildApaCitation`) and
+// its FI/EN thesis-level helper (`getThesisLevelLabel`) plus the
+// APA author-list formatters (`formatAuthorsApa`, `formatAuthorApa`,
+// `formatAuthorInitials`) were deleted in Phase 6 after 169/169
+// byte-identical parity was proven on the entire canonical corpus
+// against the shared renderer at lang="fi".
+function citationApaFromCsl(thesis) {
+    const csl = buildThesisCslItem(thesis);
+    if (!csl) return '';
+    const rendered = publicationCitation.buildCitation({
+        csl,
+        style: 'apa',
+        lang: CITATION_APA_LANG
+    });
+    return (rendered && rendered.text) ? rendered.text : '';
 }
 
 function withCitation(thesis) {
-  const meta = CURATED_THESIS_META[thesis.link] || {};
-  return {
-    ...thesis,
-    pageUrl: thesisPageUrl(thesis.link),
-    citationApa: buildApaCitation(thesis),
-    citationStyle: 'APA 7',
-    researchLine: meta.researchLine || null,
+    const meta = CURATED_THESIS_META[thesis.link] || {};
+    return {
+        ...thesis,
+        pageUrl: thesisPageUrl(thesis.link),
+        citationApa: citationApaFromCsl(thesis),
+        citationStyle: 'APA 7',
+        researchLine: meta.researchLine || null,
         researchExcluded: meta.excludeFromResearchProgram === true,
         researchThemes: Array.isArray(meta.themes) ? meta.themes.filter(Boolean) : [],
         researchAudience: Array.isArray(meta.audience) ? meta.audience.filter(Boolean) : [],
