@@ -409,3 +409,228 @@ describe("buildCitation — missing optional metadata", () => {
     assert.match(out, /year = \{n\.d\.\}/);
   });
 });
+
+// ---------------------------------------------------------------------------
+// TH-CITE1 Phase 4A — thesis-branch coverage across MLA / Chicago / BibTeX /
+// RIS. Uses raw thesis CSL shapes (as produced by src/_utils/thesisCsl.js)
+// instead of the publications buildCslItem so the genre + publisher strings
+// exactly reflect the canonical thesis pipeline.
+// ---------------------------------------------------------------------------
+
+function thesisCsl(overrides) {
+  return Object.assign({
+    id: "/opinnaytteet/18096/",
+    type: "thesis",
+    title: "Professional development of technology integration into teaching",
+    author: [{ family: "Mattila", given: "Teemu" }],
+    issued: { "date-parts": [[2021]] },
+    genre: "Pro gradu -tutkielma",
+    publisher: "Oulun yliopisto",
+    URL: "https://oulurepo.oulu.fi/handle/10024/18096"
+  }, overrides || {});
+}
+
+describe("Phase 4A — APA thesis regression (Phase 2 output preserved)", () => {
+  test("FI master thesis APA is byte-identical to Phase 2 target", () => {
+    const out = buildCitation({ csl: thesisCsl(), style: "apa", lang: "fi" }).text;
+    assert.equal(out, "Mattila, T. (2021). Professional development of technology integration into teaching [Pro gradu -tutkielma, Oulun yliopisto]. https://oulurepo.oulu.fi/handle/10024/18096");
+  });
+  test("EN master thesis APA translates genre + publisher via display map", () => {
+    const out = buildCitation({ csl: thesisCsl(), style: "apa", lang: "en" }).text;
+    assert.equal(out, "Mattila, T. (2021). Professional development of technology integration into teaching [Master's thesis, University of Oulu]. https://oulurepo.oulu.fi/handle/10024/18096");
+  });
+});
+
+describe("Phase 4A — MLA thesis branch", () => {
+  test("FI master: Authors. \"Title.\" Genre, Publisher, Year. URL.", () => {
+    const out = buildCitation({ csl: thesisCsl(), style: "mla", lang: "fi" }).text;
+    assert.equal(out, 'Mattila, Teemu. "Professional development of technology integration into teaching." Pro gradu -tutkielma, Oulun yliopisto, 2021. https://oulurepo.oulu.fi/handle/10024/18096.');
+  });
+  test("EN master: genre + publisher translated via shared display map", () => {
+    const out = buildCitation({ csl: thesisCsl(), style: "mla", lang: "en" }).text;
+    assert.equal(out, 'Mattila, Teemu. "Professional development of technology integration into teaching." Master\'s thesis, University of Oulu, 2021. https://oulurepo.oulu.fi/handle/10024/18096.');
+  });
+  test("FI bachelor emits Kandidaatintutkielma", () => {
+    const out = buildCitation({ csl: thesisCsl({ genre: "Kandidaatintutkielma", title: "Emotionaalisen älykkyyden yhteydet", author: [{ family: "Latvala", given: "L." }], issued: { "date-parts": [[2026]] } }), style: "mla", lang: "fi" }).text;
+    assert.match(out, /Kandidaatintutkielma, Oulun yliopisto, 2026\./);
+  });
+  test("EN bachelor emits Bachelor's thesis", () => {
+    const out = buildCitation({ csl: thesisCsl({ genre: "Kandidaatintutkielma", author: [{ family: "Latvala", given: "L." }] }), style: "mla", lang: "en" }).text;
+    assert.match(out, /Bachelor's thesis, University of Oulu/);
+  });
+  test("FI doctoral emits Väitöskirja, EN doctoral emits Doctoral dissertation", () => {
+    const fi = buildCitation({ csl: thesisCsl({ genre: "Väitöskirja" }), style: "mla", lang: "fi" }).text;
+    const en = buildCitation({ csl: thesisCsl({ genre: "Väitöskirja" }), style: "mla", lang: "en" }).text;
+    assert.match(fi, /Väitöskirja, Oulun yliopisto/);
+    assert.match(en, /Doctoral dissertation, University of Oulu/);
+  });
+  test("thesis MLA never fabricates authors when csl.author is missing", () => {
+    const out = buildCitation({ csl: thesisCsl({ author: undefined }), style: "mla", lang: "fi" }).text;
+    assert.match(out, /^Tuntematon tekijä\. /);
+    assert.doesNotMatch(out, /Laru, Jari/);
+  });
+  test("thesis MLA omits publisher clause when publisher missing", () => {
+    const out = buildCitation({ csl: thesisCsl({ publisher: "" }), style: "mla", lang: "fi" }).text;
+    assert.match(out, /Pro gradu -tutkielma, 2021\./);
+    assert.doesNotMatch(out, /, ,/);
+  });
+  test("thesis MLA omits URL clause when URL missing", () => {
+    const out = buildCitation({ csl: thesisCsl({ URL: "" }), style: "mla", lang: "fi" }).text;
+    assert.equal(out.endsWith("2021."), true);
+  });
+});
+
+describe("Phase 4A — Chicago thesis branch", () => {
+  test("FI master: Authors. Year. \"Title.\" Genre, Publisher. URL.", () => {
+    const out = buildCitation({ csl: thesisCsl(), style: "chicago", lang: "fi" }).text;
+    assert.equal(out, 'Mattila, Teemu. 2021. "Professional development of technology integration into teaching." Pro gradu -tutkielma, Oulun yliopisto. https://oulurepo.oulu.fi/handle/10024/18096.');
+  });
+  test("EN master: genre + publisher translated", () => {
+    const out = buildCitation({ csl: thesisCsl(), style: "chicago", lang: "en" }).text;
+    assert.equal(out, 'Mattila, Teemu. 2021. "Professional development of technology integration into teaching." Master\'s thesis, University of Oulu. https://oulurepo.oulu.fi/handle/10024/18096.');
+  });
+  test("FI bachelor emits Kandidaatintutkielma", () => {
+    const out = buildCitation({ csl: thesisCsl({ genre: "Kandidaatintutkielma" }), style: "chicago", lang: "fi" }).text;
+    assert.match(out, /Kandidaatintutkielma, Oulun yliopisto\./);
+  });
+  test("thesis Chicago never fabricates authors when csl.author is missing", () => {
+    const out = buildCitation({ csl: thesisCsl({ author: undefined }), style: "chicago", lang: "fi" }).text;
+    assert.match(out, /^Tuntematon tekijä\. /);
+  });
+});
+
+describe("Phase 4A — BibTeX thesis entry-type mapping", () => {
+  test("master → @mastersthesis with school = {Oulun yliopisto} (FI)", () => {
+    const out = buildCitation({ csl: thesisCsl(), style: "bibtex", lang: "fi" }).text;
+    assert.match(out, /^@mastersthesis\{/);
+    assert.match(out, /school = \{Oulun yliopisto\}/);
+    assert.doesNotMatch(out, /publisher = /);
+    assert.doesNotMatch(out, /howpublished = /);
+  });
+  test("master → @mastersthesis with school = {University of Oulu} (EN)", () => {
+    const out = buildCitation({ csl: thesisCsl(), style: "bibtex", lang: "en" }).text;
+    assert.match(out, /^@mastersthesis\{/);
+    assert.match(out, /school = \{University of Oulu\}/);
+  });
+  test("bachelor → @misc with howpublished carrying level + institution (FI)", () => {
+    const out = buildCitation({ csl: thesisCsl({ genre: "Kandidaatintutkielma", author: [{ family: "Latvala", given: "L." }] }), style: "bibtex", lang: "fi" }).text;
+    assert.match(out, /^@misc\{/);
+    assert.match(out, /howpublished = \{Kandidaatintutkielma, Oulun yliopisto\}/);
+    assert.doesNotMatch(out, /school = /);
+  });
+  test("bachelor → @misc with howpublished translated (EN)", () => {
+    const out = buildCitation({ csl: thesisCsl({ genre: "Kandidaatintutkielma", author: [{ family: "Latvala", given: "L." }] }), style: "bibtex", lang: "en" }).text;
+    assert.match(out, /howpublished = \{Bachelor's thesis, University of Oulu\}/);
+  });
+  test("doctoral → @phdthesis", () => {
+    const out = buildCitation({ csl: thesisCsl({ genre: "Väitöskirja" }), style: "bibtex", lang: "fi" }).text;
+    assert.match(out, /^@phdthesis\{/);
+    assert.match(out, /school = \{Oulun yliopisto\}/);
+  });
+  test("licentiate → @phdthesis (closest BibTeX equivalent)", () => {
+    const out = buildCitation({ csl: thesisCsl({ genre: "Lisensiaatintutkielma" }), style: "bibtex", lang: "fi" }).text;
+    assert.match(out, /^@phdthesis\{/);
+    assert.match(out, /school = \{Oulun yliopisto\}/);
+  });
+  test("unknown thesis genre → @phdthesis fallback", () => {
+    const out = buildCitation({ csl: thesisCsl({ genre: "Doctoral dissertation (article-based)" }), style: "bibtex", lang: "fi" }).text;
+    assert.match(out, /^@phdthesis\{/);
+  });
+  test("thesis BibTeX key is human-readable: family+year+firstTitleWord, ASCII-lowercase", () => {
+    const out = buildCitation({ csl: thesisCsl(), style: "bibtex", lang: "fi" }).text;
+    assert.match(out, /^@mastersthesis\{mattila2021professional,/);
+  });
+  test("thesis BibTeX key handles diacritics and non-ASCII title words", () => {
+    const out = buildCitation({ csl: thesisCsl({ author: [{ family: "Öysti", given: "S." }], title: "Ääniä tarhassa" }), style: "bibtex", lang: "fi" }).text;
+    assert.match(out, /^@mastersthesis\{oysti2021aania,/);
+  });
+  test("thesis BibTeX key is stable for repeated calls", () => {
+    const a = buildCitation({ csl: thesisCsl(), style: "bibtex", lang: "fi" }).text;
+    const b = buildCitation({ csl: thesisCsl(), style: "bibtex", lang: "fi" }).text;
+    assert.equal(a, b);
+  });
+  test("thesis BibTeX never fabricates authors when csl.author is missing", () => {
+    const out = buildCitation({ csl: thesisCsl({ author: undefined }), style: "bibtex", lang: "fi" }).text;
+    assert.match(out, /author = \{Tuntematon Tekija\}/);
+    assert.doesNotMatch(out, /Laru, Jari/);
+  });
+  test("thesis BibTeX preserves URL", () => {
+    const out = buildCitation({ csl: thesisCsl(), style: "bibtex", lang: "fi" }).text;
+    assert.match(out, /url = \{https:\/\/oulurepo\.oulu\.fi\/handle\/10024\/18096\}/);
+  });
+});
+
+describe("Phase 4A — RIS thesis M3 line + display map", () => {
+  test("FI master emits TY - THES, AU, PY, TI, PB - Oulun yliopisto, M3 - Pro gradu -tutkielma, UR, ER", () => {
+    const out = buildCitation({ csl: thesisCsl(), style: "ris", lang: "fi" }).text;
+    assert.match(out, /^TY  - THES\n/);
+    assert.match(out, /AU  - Mattila, Teemu/);
+    assert.match(out, /PY  - 2021/);
+    assert.match(out, /TI  - Professional development/);
+    assert.match(out, /PB  - Oulun yliopisto/);
+    assert.match(out, /M3  - Pro gradu -tutkielma/);
+    assert.match(out, /UR  - https:\/\/oulurepo\.oulu\.fi\/handle\/10024\/18096/);
+    assert.match(out, /ER  - $/);
+  });
+  test("EN master translates PB + M3 via display map", () => {
+    const out = buildCitation({ csl: thesisCsl(), style: "ris", lang: "en" }).text;
+    assert.match(out, /PB  - University of Oulu/);
+    assert.match(out, /M3  - Master's thesis/);
+  });
+  test("FI bachelor emits M3 - Kandidaatintutkielma", () => {
+    const out = buildCitation({ csl: thesisCsl({ genre: "Kandidaatintutkielma" }), style: "ris", lang: "fi" }).text;
+    assert.match(out, /M3  - Kandidaatintutkielma/);
+  });
+  test("EN bachelor emits M3 - Bachelor's thesis", () => {
+    const out = buildCitation({ csl: thesisCsl({ genre: "Kandidaatintutkielma" }), style: "ris", lang: "en" }).text;
+    assert.match(out, /M3  - Bachelor's thesis/);
+  });
+  test("FI doctoral emits M3 - Väitöskirja", () => {
+    const out = buildCitation({ csl: thesisCsl({ genre: "Väitöskirja" }), style: "ris", lang: "fi" }).text;
+    assert.match(out, /M3  - Väitöskirja/);
+  });
+  test("thesis RIS omits M3 when genre missing but keeps TY - THES", () => {
+    const out = buildCitation({ csl: thesisCsl({ genre: "" }), style: "ris", lang: "fi" }).text;
+    assert.match(out, /^TY  - THES\n/);
+    assert.doesNotMatch(out, /^M3  - /m);
+  });
+});
+
+describe("Phase 4A — non-thesis regression: publication paths unchanged", () => {
+  test("cslJournal APA unchanged", () => {
+    const out = buildCitation({ csl: cslJournal(), style: "apa" }).text;
+    assert.match(out, /Laru, J\., & Näykki, P\./);
+    assert.match(out, /Computers & Education, 42\(3\), 101-115/);
+  });
+  test("cslBook BibTeX still @book with publisher =", () => {
+    const out = buildCitation({ csl: cslBook(), style: "bibtex" }).text;
+    assert.match(out, /^@book\{/);
+    assert.match(out, /publisher = \{Some Publisher\}/);
+    assert.doesNotMatch(out, /school = /);
+    assert.doesNotMatch(out, /howpublished = /);
+  });
+  test("cslChapter BibTeX still @inbook", () => {
+    const out = buildCitation({ csl: cslChapter(), style: "bibtex" }).text;
+    assert.match(out, /^@inbook\{/);
+    assert.match(out, /booktitle = \{Handbook of Mobile Learning\}/);
+  });
+  test("cslJournal RIS omits thesis-only M3 line", () => {
+    const out = buildCitation({ csl: cslJournal(), style: "ris" }).text;
+    assert.doesNotMatch(out, /^M3  - /m);
+    assert.match(out, /^TY  - JOUR\n/);
+  });
+  test("cslBook RIS PB unchanged (not routed through thesis display map)", () => {
+    const out = buildCitation({ csl: cslBook(), style: "ris" }).text;
+    assert.match(out, /PB  - Some Publisher/);
+    assert.doesNotMatch(out, /^M3  - /m);
+  });
+  test("cslJournal MLA unchanged", () => {
+    const out = buildCitation({ csl: cslJournal(), style: "mla" }).text;
+    assert.match(out, /Laru, Jari, and Piia Näykki/);
+    assert.match(out, /Computers & Education, vol\. 42, no\. 3/);
+  });
+  test("cslJournal Chicago unchanged", () => {
+    const out = buildCitation({ csl: cslJournal(), style: "chicago" }).text;
+    assert.match(out, /Computers & Education 42, no\. 3 \(2020\)/);
+  });
+});
