@@ -2,24 +2,67 @@
 
 Date: 2026-08-18
 
-Status: **CLOSED / GREEN / BRANCH**
+Status: **CLOSED / GREEN / MAIN**
 
 Repository: `LaruX75/www`
 
 Branch: `feat/th-cite1-phase4a-shared-thesis-renderer` (Phase 4A + 4B + 4C + 4D all on one branch)
 
-Ancestry:
+Ancestry (branch tip):
 
 ```text
 cf26df27  Phase 4A  shared thesis MLA/Chicago/BibTeX/RIS branches
 338b5154  Phase 4B  restore detail-page citation/export modal
 a388aec4  Phase 4C  delete legacy browser citation composition
-(this commit) Phase 4D  parity, skipped-test retirement, closure
+659bcdeb  Phase 4D  parity, skipped-test retirement, closure
 ```
 
 Base main HEAD at Phase 4A start: `e26bc8a1f3f00b5c3b2fda3b18386f5098c17f92`.
 
-Phase 4 is not yet on `main`. This document closes the workstream **on the feature branch**. Roadmap will move to `CLOSED / GREEN / MAIN` after PR + merge + post-merge verification.
+**Merge to main:**
+
+- Implementation PR: [#103 — TH-CITE1 Phase 4: shared thesis exports and detail-page citation UI](https://github.com/LaruX75/www/pull/103)
+- Feature HEAD at PR time: `659bcdeb7f3767f392139e7c0ff8e18de6179238`
+- Merge SHA: `3d437b3d282830458c0c890ea19155f94d338aee`
+- Merge timestamp: `2026-08-18T13:09:09Z`
+- Post-merge main HEAD: `3d437b3d282830458c0c890ea19155f94d338aee`
+
+**Post-merge CI on `main` (`3d437b3d`):**
+
+```text
+Build and Deploy                       success
+Accessibility and navigation tests     success
+Generate OG Images                     success
+```
+
+**Post-merge local verification on `main` (`3d437b3d`):**
+
+```text
+unit tests                             527 / 527
+npm run build:no-og                    clean, 1472 pages
+Phase 1 canonical citation parity      169 / 169 IDENTICAL
+Phase 3 SSR archive audit              10 / 10 gates
+Phase 4C static deletion audit         37 / 37 gates
+Phase 4D end-to-end parity audit       52 / 52 gates
+FI SSR archive union                   169 / 169
+EN SSR archive union                   169 / 169
+Pagefind thesis-tagged fragments       169
+sitemap landings present               true
+sitemap paginated-URL hits             0
+
+Playwright bundle:
+  Phase 3 pagination                    8 / 8
+  Phase 4B modal/export                11 / 11
+  Phase 4C no-fallback                  7 / 7
+  F3A theses Find & Explore             3 / 3   (0 skips)
+  F3B publications F&E                  2 / 2   (Pagefind cold-start
+                                                 flake handled by --retries=1)
+  pf-cite-modal-failure-path            2 / 2
+  accessibility + contrast + navigation green
+    (+1 pre-existing unrelated flaky test in navigation.spec.js
+     "Search dialog focus trap" — passes on retry)
+  Total: 63 pass, 0 skips in Phase 4 scope
+```
 
 ---
 
@@ -268,21 +311,16 @@ Canonical Content v1 unchanged.
 
 ---
 
-## 8. Post-closure actions (not part of Phase 4)
+## 8. Post-closure actions — completed
 
-Recommended sequence after this commit is pushed:
+Executed after the branch closure:
 
-1. Open PR `feat/th-cite1-phase4a-shared-thesis-renderer` → `main`.
-2. Wait for CI (Build and Deploy, Accessibility and navigation tests, Generate OG Images).
-3. Merge after all three checks green.
-4. Fast-forward `main` locally; run the Phase 4D parity audit on `main`.
-5. Update roadmap `docs/find-explore-roadmap-2026-08-12.md` with a new status block:
-   ```
-   TH-CITE1 Phase 4 A–D — shared thesis renderer + detail-page
-                          modal + browser deletion + closure parity
-   status: CLOSED / GREEN / MAIN
-   ```
-6. Flip this closure doc from `CLOSED / GREEN / BRANCH` to `CLOSED / GREEN / MAIN` in a separate docs PR mirroring the pattern used for Phase 3.
-7. Phase 5 and Phase 6 remain **NOT STARTED**.
+1. Opened PR [#103](https://github.com/LaruX75/www/pull/103) `feat/th-cite1-phase4a-shared-thesis-renderer` → `main`. **DONE**.
+2. Waited for CI (Build and Deploy, Accessibility and navigation tests, Generate OG Images) — all green. **DONE**.
+3. Merged to `main` at `3d437b3d282830458c0c890ea19155f94d338aee` on `2026-08-18T13:09:09Z`. **DONE**.
+4. Post-merge verification on `main` — 527 unit tests, all Phase 1/3/4C/4D audits green, Playwright bundle 63 pass. **DONE**.
+5. Roadmap `docs/find-explore-roadmap-2026-08-12.md` updated with the new TH-CITE1 Phase 4 A–D status block. **DONE**.
+6. This closure doc flipped from `CLOSED / GREEN / BRANCH` to `CLOSED / GREEN / MAIN` via a separate docs-only PR (mirrors the Phase 3 pattern). **DONE**.
+7. **Phase 5 and Phase 6 remain NOT STARTED.**
 
 END OF PHASE 4 CLOSURE.
