@@ -19,7 +19,9 @@ pagination:
   alias: thesesArchive
 permalink: "{{ thesesArchive.permalink }}"
 eleventyComputed:
-  eleventyExcludeFromCollections: "{{ true if thesesArchive.pageKind != 'landing' else false }}"
+  eleventyExcludeFromCollections: "{{ 'true' if thesesArchive.pageKind != 'landing' else '' }}"
+  sitemap:
+    ignore: "{{ 'true' if thesesArchive.pageKind != 'landing' else '' }}"
   robots: "{{ 'noindex, follow' if thesesArchive.pageKind != 'landing' else 'index, follow' }}"
 ---
 {% set pageModel = thesesFindExplorePage %}

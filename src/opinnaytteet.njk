@@ -35,7 +35,17 @@ pagination:
   alias: thesesArchive
 permalink: "{{ thesesArchive.permalink }}"
 eleventyComputed:
-  eleventyExcludeFromCollections: "{{ true if thesesArchive.pageKind != 'landing' else false }}"
+  # TH-CITE1 Phase 3 SEO discipline: only the landing archive URL
+  # goes into the sitemap and stays indexable. The 15 per-section
+  # paginated permalinks are excluded from `collections.all`
+  # (`eleventyExcludeFromCollections`), from the sitemap projection
+  # explicitly (`sitemap.ignore`, which src/sitemap.njk honours as a
+  # primary skip condition), and marked `noindex, follow` for search
+  # engines that discover them via internal links. Three independent
+  # layers keep the pagination URLs off the sitemap.
+  eleventyExcludeFromCollections: "{{ 'true' if thesesArchive.pageKind != 'landing' else '' }}"
+  sitemap:
+    ignore: "{{ 'true' if thesesArchive.pageKind != 'landing' else '' }}"
   robots: "{{ 'noindex, follow' if thesesArchive.pageKind != 'landing' else 'index, follow' }}"
 ---
 {% set pageModel = thesesFindExplorePage %}

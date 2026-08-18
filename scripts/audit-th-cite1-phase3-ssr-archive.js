@@ -203,6 +203,29 @@ async function main() {
   const fi = auditScope("fi", FI_URLS, items);
   const en = auditScope("en", EN_URLS, items);
 
+  // Sitemap projection gate. The 15 per-locale paginated permalinks
+  // MUST NOT appear in sitemap.xml. Only the landing archive URLs
+  // (/opinnaytteet/ and /en/theses/) belong there. This gate reads
+  // the actual built sitemap rather than trusting metadata alone.
+  const sitemapPath = path.join(SITE_ROOT, "sitemap.xml");
+  const sitemapXml = fs.readFileSync(sitemapPath, "utf8");
+  const paginatedRoutePatterns = [
+    /\/opinnaytteet\/ohjatut-gradut\/page\//,
+    /\/opinnaytteet\/kandityot\/page\//,
+    /\/opinnaytteet\/tarkastetut\/page\//,
+    /\/en\/theses\/masters\/page\//,
+    /\/en\/theses\/bachelors\/page\//,
+    /\/en\/theses\/reviewed\/page\//
+  ];
+  const sitemapPaginationHits = paginatedRoutePatterns.map((pattern) => {
+    const matches = sitemapXml.match(new RegExp("<loc>[^<]*" + pattern.source.replace(/^\//, "").replace(/\\\//g, "/") + "[^<]*</loc>", "g")) || [];
+    return { pattern: pattern.source, count: matches.length, examples: matches.slice(0, 3) };
+  });
+  const sitemapClean = sitemapPaginationHits.every((hit) => hit.count === 0);
+  const sitemapLandingsPresent =
+    /<loc>[^<]*\/opinnaytteet\/<\/loc>/.test(sitemapXml)
+    && /<loc>[^<]*\/en\/theses\/<\/loc>/.test(sitemapXml);
+
   const gates = {
     fiBoundedPermalinks: fi.perUrl.every((r) => r.exists),
     enBoundedPermalinks: en.perUrl.every((r) => r.exists),
@@ -211,7 +234,9 @@ async function main() {
     fiNoOversizedPage: !fi.exceededPageBudget,
     enNoOversizedPage: !en.exceededPageBudget,
     fiAllSsrCitationsBracketFormat: fi.perUrl.every((r) => !r.exists || r.citations === r.bracketFormattedCitations),
-    enAllSsrCitationsBracketFormat: en.perUrl.every((r) => !r.exists || r.citations === r.bracketFormattedCitations)
+    enAllSsrCitationsBracketFormat: en.perUrl.every((r) => !r.exists || r.citations === r.bracketFormattedCitations),
+    sitemapExcludesPaginatedUrls: sitemapClean,
+    sitemapIncludesBothLandingArchives: sitemapLandingsPresent
   };
   const gateFailures = Object.entries(gates).filter(([, ok]) => !ok).map(([n]) => n);
 
@@ -224,6 +249,10 @@ async function main() {
     },
     fi,
     en,
+    sitemap: {
+      landingsPresent: sitemapLandingsPresent,
+      paginatedRoutesFound: sitemapPaginationHits
+    },
     gates,
     gateFailures,
     productionChangePolicy: "AUDIT ONLY. Verifies built _site output; no source or contract change."
@@ -239,6 +268,8 @@ async function main() {
   console.log(`EN bracket-format citations across all URLs: ${en.bracketCitationTotal}`);
   console.log(`FI max rows any single URL: ${fi.maxRowsAnyUrl} (page budget 60)`);
   console.log(`EN max rows any single URL: ${en.maxRowsAnyUrl} (page budget 60)`);
+  console.log(`sitemap landings /opinnaytteet/ + /en/theses/ present: ${sitemapLandingsPresent}`);
+  console.log(`sitemap paginated-URL hits: ${sitemapPaginationHits.reduce((sum, h) => sum + h.count, 0)}`);
   console.log("gate failures:", gateFailures.length === 0 ? "(none)" : gateFailures.join(", "));
   if (gateFailures.length > 0) process.exit(1);
 }
