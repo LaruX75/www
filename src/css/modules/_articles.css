@@ -2611,9 +2611,6 @@ html:not([data-bs-theme="dark"]) .pub-table th {
     white-space: normal;
   }
   .pub-table th.col-year { font-size: 0.72rem; }
-
-  /* Piilotetaan "Vie viite" -nappi — tilaa otsikkosolun tekstille */
-  .pub-table .thesis-bib-btn { display: none !important; }
 }
 
 @media (max-width: 575.98px) {

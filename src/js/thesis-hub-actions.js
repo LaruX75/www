@@ -1,17 +1,32 @@
+/**
+ * thesis-hub-actions — TH-CITE1 Phase 4C.
+ *
+ * Pure interaction layer for the thesis detail-page citation/export
+ * modal. This module owns:
+ *   - modal open/close + focus return
+ *   - format selection
+ *   - preview update through the shared renderer
+ *   - clipboard copy
+ *   - download (Copy / .txt / .bib / .ris)
+ *   - Zotero / Mendeley RIS download
+ *   - controlled unavailable-state messaging
+ *   - filename sanitisation
+ *
+ * All bibliographic composition happens in
+ *   src/js/publication-citation.js
+ * via `window.publicationCitation.buildCitation({csl, style, lang})`.
+ * This file no longer contains any citation/export composer. Missing
+ * or malformed CSL surfaces as a controlled unavailable state — the
+ * browser never rebuilds bibliographic truth from raw thesis fields.
+ */
 (function () {
   "use strict";
 
   if (typeof document === "undefined") return;
 
-  const abstractModalEl = document.getElementById("thesisAbstractModal");
   const citationModalEl = document.getElementById("thesisCitationModal");
-  if (!abstractModalEl || !citationModalEl) return;
+  if (!citationModalEl) return;
 
-  const abstractTitleEl = document.getElementById("thesisAbstractModalTitle");
-  const abstractTextEl = document.getElementById("thesisAbstractModalText");
-  const abstractApaEl = document.getElementById("thesisModalApaText");
-  const abstractOpenEl = document.getElementById("thesisAbstractModalOpen");
-  const abstractExportBtn = document.getElementById("thesisAbstractExportBtn");
   const citationFormatSelect = document.getElementById("thesisCitationFormatSelect");
   const citationOutput = document.getElementById("thesisCitationOutput");
   const citationDownloadBtn = document.getElementById("thesisCitationDownloadBtn");
@@ -19,24 +34,106 @@
   const citationZoteroBtn = document.getElementById("thesisCitationZoteroBtn");
   const citationMendeleyBtn = document.getElementById("thesisCitationMendeleyBtn");
 
-  let currentPayload = null;
+  const UNAVAILABLE_FI = "Lähdeviite ei saatavilla";
+  const UNAVAILABLE_EN = "Citation unavailable";
 
-  function pickString(value) {
-    return String(value || "").trim();
+  // TH-CITE1 Phase 4C: MIME types per download format. Human-readable
+  // citation styles keep text/plain; machine-export formats use their
+  // registered MIME so downstream reference managers receive the
+  // expected content-type on the download.
+  const MIME_TEXT = "text/plain;charset=utf-8";
+  const MIME_BIBTEX = "application/x-bibtex;charset=utf-8";
+  const MIME_RIS = "application/x-research-info-systems;charset=utf-8";
+
+  let currentPayload = null;
+  let lastTriggerEl = null;
+
+  function isEn(payload) {
+    return !!(payload && payload.lang === "en");
+  }
+
+  function unavailableMessage(payload) {
+    return isEn(payload) ? UNAVAILABLE_EN : UNAVAILABLE_FI;
+  }
+
+  function setCitationButtonsEnabled(enabled) {
+    [citationCopyBtn, citationDownloadBtn, citationZoteroBtn, citationMendeleyBtn].forEach(function (btn) {
+      if (btn) btn.disabled = !enabled;
+    });
+  }
+
+  function flashUnavailable(button, label) {
+    if (!button) return;
+    const previous = button.innerHTML;
+    button.disabled = true;
+    button.innerHTML = label;
+    window.setTimeout(function () {
+      button.innerHTML = previous;
+    }, 1400);
+  }
+
+  // Shared-renderer call. Returns {text, empty}. Never fabricates.
+  function sharedCitation(payload, format) {
+    if (!payload || !payload.csl || typeof window === "undefined" || !window.publicationCitation) {
+      return { text: "", empty: true };
+    }
+    const style = format === "bibtex" ? "bibtex"
+      : format === "ris" ? "ris"
+      : format === "mla" ? "mla"
+      : format === "chicago" ? "chicago"
+      : "apa";
+    try {
+      const rendered = window.publicationCitation.buildCitation({
+        csl: payload.csl,
+        style: style,
+        lang: payload.lang || "fi"
+      });
+      if (!rendered || rendered.empty || !rendered.text) return { text: "", empty: true };
+      return { text: rendered.text, empty: false };
+    } catch (_) {
+      return { text: "", empty: true };
+    }
   }
 
   function sanitizeFilenamePart(value) {
     return String(value || "")
       .toLowerCase()
       .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
+      .replace(new RegExp("[\\u0300-\\u036f]", "g"), "")
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/(^-|-$)/g, "")
       .slice(0, 60) || "citation";
   }
 
-  function downloadTextFile(fileName, content) {
-    const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+  // Filename base derives from CSL truth: title first, then first
+  // structured author family, then a stable fallback. No raw-field
+  // parallel model.
+  function filenameBase(payload) {
+    if (!payload || !payload.csl) return "citation";
+    const csl = payload.csl;
+    if (csl.title) return sanitizeFilenamePart(csl.title);
+    if (Array.isArray(csl.author) && csl.author.length) {
+      const first = csl.author[0] || {};
+      const name = first.family || first.literal || "";
+      if (name) return sanitizeFilenamePart(name);
+    }
+    return "citation";
+  }
+
+  function extensionFor(format) {
+    if (format === "bibtex") return "bib";
+    if (format === "ris") return "ris";
+    return "txt";
+  }
+
+  function mimeFor(format) {
+    if (format === "bibtex") return MIME_BIBTEX;
+    if (format === "ris") return MIME_RIS;
+    return MIME_TEXT;
+  }
+
+  function downloadTextFile(fileName, content, mime) {
+    const blob = new Blob([content], { type: mime || MIME_TEXT });
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
     link.download = fileName;
@@ -46,194 +143,126 @@
     document.body.removeChild(link);
   }
 
-  function getThesisLevelLabel(payload) {
-    if (payload.type === "masterThesis") return "Master's thesis";
-    if (payload.type === "bachelorThesis") return "Bachelor's thesis";
-    return "Thesis";
+  function unavailableButtonLabel(payload) {
+    return '<i class="bi bi-exclamation-triangle me-1"></i>' + (isEn(payload) ? "Unavailable" : "Ei saatavilla");
   }
 
-  function buildThesisApa(payload) {
-    const title = pickString(payload.title);
-    const authors = pickString(payload.authors);
-    const year = pickString(payload.year) || "n.d.";
-    const url = pickString(payload.url);
-    const level = getThesisLevelLabel(payload);
-    let citation = `${authors} (${year}). ${title} [${level}, University of Oulu].`;
-    if (url) citation += ` ${url}`;
-    return citation.trim();
-  }
-
-  function buildThesisMla(payload) {
-    const title = pickString(payload.title);
-    const authors = pickString(payload.authors);
-    const year = pickString(payload.year);
-    const url = pickString(payload.url);
-    const level = getThesisLevelLabel(payload);
-    let citation = `${authors}. "${title}." ${level}, University of Oulu`;
-    if (year) citation += `, ${year}`;
-    citation += ".";
-    if (url) citation += ` ${url}`;
-    return citation.trim();
-  }
-
-  function buildThesisChicago(payload) {
-    const title = pickString(payload.title);
-    const authors = pickString(payload.authors);
-    const year = pickString(payload.year) || "n.d.";
-    const url = pickString(payload.url);
-    const level = getThesisLevelLabel(payload);
-    let citation = `${authors}. ${year}. "${title}." ${level}, University of Oulu.`;
-    if (url) citation += ` ${url}`;
-    return citation.trim();
-  }
-
-  function buildThesisBibTeX(payload) {
-    const title = pickString(payload.title);
-    const authors = pickString(payload.authors || "Laru, Jari");
-    const year = pickString(payload.year);
-    const thesisType = pickString(payload.type);
-    const url = pickString(payload.url);
-    const firstAuthor = authors.split(";")[0].trim();
-    const lastName = (firstAuthor.split(",")[0].trim().split(/\s+/).pop() || "author")
-      .toLowerCase()
-      .replace(/[^a-z0-9]/g, "");
-    const firstWord = ((title.match(/[A-Za-zÅÄÖåäö0-9]+/) || ["thesis"])[0])
-      .toLowerCase()
-      .replace(/[^a-z0-9]/g, "");
-    const key = `${lastName}${year || "nd"}${firstWord}`;
-    const bibType = thesisType === "masterThesis" ? "mastersthesis" : "misc";
-    const safeTitle = title.replace(/[{}]/g, "");
-    const safeAuthors = authors.replace(/[{}]/g, "");
-
-    let bib = `@${bibType}{${key},\n`;
-    bib += `  title = {${safeTitle}},\n`;
-    bib += `  author = {${safeAuthors}},\n`;
-    if (year) bib += `  year = {${year}},\n`;
-    bib += "  school = {University of Oulu},\n";
-    if (thesisType === "bachelorThesis") bib += "  note = {Bachelor's thesis},\n";
-    if (url) bib += `  url = {${url}},\n`;
-    bib += "}";
-    return { bib, key };
-  }
-
-  function buildThesisRis(payload) {
-    const title = pickString(payload.title);
-    const authors = pickString(payload.authors)
-      .split(";")
-      .map((author) => author.trim())
-      .filter(Boolean);
-    const year = pickString(payload.year);
-    const url = pickString(payload.url);
-    const level = getThesisLevelLabel(payload);
-    const lines = ["TY  - THES"];
-    authors.forEach((author) => lines.push(`AU  - ${author}`));
-    if (year) lines.push(`PY  - ${year}`);
-    if (title) lines.push(`TI  - ${title}`);
-    lines.push("PB  - University of Oulu");
-    lines.push(`M3  - ${level}`);
-    if (url) lines.push(`UR  - ${url}`);
-    lines.push("ER  -");
-    return lines.join("\n");
-  }
-
-  function getCitationByFormat(payload, format) {
-    if (format === "apa") return buildThesisApa(payload);
-    if (format === "mla") return buildThesisMla(payload);
-    if (format === "chicago") return buildThesisChicago(payload);
-    return buildThesisBibTeX(payload).bib;
+  function copyLabel(payload, done) {
+    if (done) return isEn(payload)
+      ? '<i class="bi bi-check2 me-1"></i>Copied'
+      : '<i class="bi bi-check2 me-1"></i>Kopioitu';
+    return isEn(payload)
+      ? '<i class="bi bi-clipboard me-1"></i>Copy'
+      : '<i class="bi bi-clipboard me-1"></i>Kopioi';
   }
 
   function renderCitationPreview() {
     if (!currentPayload || !citationOutput) return;
-    citationOutput.value = getCitationByFormat(currentPayload, citationFormatSelect?.value || "apa");
+    const format = (citationFormatSelect && citationFormatSelect.value) || "apa";
+    const rendered = sharedCitation(currentPayload, format);
+    if (rendered.empty) {
+      citationOutput.value = unavailableMessage(currentPayload);
+      setCitationButtonsEnabled(false);
+      return;
+    }
+    citationOutput.value = rendered.text;
+    setCitationButtonsEnabled(true);
   }
 
-  function openCitationModal(payload) {
+  function openCitationModal(payload, triggerEl) {
     currentPayload = payload;
+    lastTriggerEl = triggerEl || null;
+    if (citationFormatSelect) citationFormatSelect.value = "apa";
     renderCitationPreview();
-    if (window.bootstrap?.Modal) {
+    if (window.bootstrap && window.bootstrap.Modal) {
       window.bootstrap.Modal.getOrCreateInstance(citationModalEl).show();
     }
   }
 
-  function openAbstractModal(payload) {
-    currentPayload = payload;
-    if (abstractTitleEl) abstractTitleEl.textContent = payload.title || "";
-    if (abstractTextEl) abstractTextEl.textContent = payload.abstract || "";
-    if (abstractApaEl) abstractApaEl.textContent = buildThesisApa(payload);
-    if (abstractOpenEl) abstractOpenEl.href = payload.url || "#";
-    if (window.bootstrap?.Modal) {
-      window.bootstrap.Modal.getOrCreateInstance(abstractModalEl).show();
+  citationModalEl.addEventListener("hidden.bs.modal", function () {
+    if (lastTriggerEl && typeof lastTriggerEl.focus === "function") {
+      lastTriggerEl.focus();
     }
+  });
+
+  function readCitationTriggerPayload(triggerEl) {
+    let csl = null;
+    if (triggerEl.dataset.thesisCsl) {
+      try { csl = JSON.parse(triggerEl.dataset.thesisCsl); } catch (_) { csl = null; }
+    }
+    return {
+      csl: csl,
+      lang: triggerEl.dataset.thesisLang || "fi"
+    };
   }
 
-  document.addEventListener("click", (event) => {
-    const abstractTrigger = event.target.closest("[data-thesis-abstract-trigger]");
-    if (abstractTrigger) {
-      event.preventDefault();
-      openAbstractModal({
-        title: abstractTrigger.dataset.thesisTitle || "",
-        abstract: abstractTrigger.dataset.thesisAbstract || "",
-        url: abstractTrigger.dataset.thesisUrl || "",
-        authors: abstractTrigger.dataset.thesisAuthors || "",
-        year: abstractTrigger.dataset.thesisYear || "",
-        type: abstractTrigger.dataset.thesisType || ""
-      });
+  document.addEventListener("click", function (event) {
+    const trigger = event.target.closest("[data-thesis-citation-trigger]");
+    if (!trigger) return;
+    event.preventDefault();
+    openCitationModal(readCitationTriggerPayload(trigger), trigger);
+  });
+
+  if (citationFormatSelect) {
+    citationFormatSelect.addEventListener("change", renderCitationPreview);
+  }
+
+  if (citationDownloadBtn) {
+    citationDownloadBtn.addEventListener("click", function () {
+      if (!currentPayload) return;
+      const format = (citationFormatSelect && citationFormatSelect.value) || "apa";
+      const rendered = sharedCitation(currentPayload, format);
+      if (rendered.empty) {
+        if (citationOutput) citationOutput.value = unavailableMessage(currentPayload);
+        setCitationButtonsEnabled(false);
+        flashUnavailable(citationDownloadBtn, unavailableButtonLabel(currentPayload));
+        return;
+      }
+      const base = filenameBase(currentPayload);
+      downloadTextFile(base + "." + extensionFor(format), rendered.text + "\n", mimeFor(format));
+    });
+  }
+
+  if (citationCopyBtn) {
+    citationCopyBtn.addEventListener("click", async function () {
+      if (!citationOutput || !citationOutput.value) return;
+      if (citationOutput.value === unavailableMessage(currentPayload)) return;
+      try {
+        await navigator.clipboard.writeText(citationOutput.value);
+        citationCopyBtn.innerHTML = copyLabel(currentPayload, true);
+        window.setTimeout(function () {
+          citationCopyBtn.innerHTML = copyLabel(currentPayload, false);
+        }, 1400);
+      } catch (_) {
+        citationOutput.select();
+        document.execCommand("copy");
+      }
+    });
+  }
+
+  function downloadRisFor(payload, filenameSuffix, button) {
+    const rendered = sharedCitation(payload, "ris");
+    if (rendered.empty) {
+      if (citationOutput) citationOutput.value = unavailableMessage(payload);
+      setCitationButtonsEnabled(false);
+      flashUnavailable(button, unavailableButtonLabel(payload));
       return;
     }
+    const base = filenameBase(payload);
+    downloadTextFile(base + "-" + filenameSuffix + ".ris", rendered.text + "\n", MIME_RIS);
+  }
 
-    const citationTrigger = event.target.closest("[data-thesis-citation-trigger]");
-    if (citationTrigger) {
-      event.preventDefault();
-      openCitationModal({
-        title: citationTrigger.dataset.thesisTitle || "",
-        authors: citationTrigger.dataset.thesisAuthors || "",
-        year: citationTrigger.dataset.thesisYear || "",
-        type: citationTrigger.dataset.thesisType || "",
-        url: citationTrigger.dataset.thesisUrl || ""
-      });
-    }
-  });
+  if (citationZoteroBtn) {
+    citationZoteroBtn.addEventListener("click", function () {
+      if (!currentPayload) return;
+      downloadRisFor(currentPayload, "zotero", citationZoteroBtn);
+    });
+  }
 
-  abstractExportBtn?.addEventListener("click", () => {
-    if (!currentPayload) return;
-    openCitationModal(currentPayload);
-  });
-
-  citationFormatSelect?.addEventListener("change", renderCitationPreview);
-
-  citationDownloadBtn?.addEventListener("click", () => {
-    if (!currentPayload) return;
-    const format = citationFormatSelect?.value || "apa";
-    const content = getCitationByFormat(currentPayload, format);
-    const ext = format === "bibtex" ? "bib" : "txt";
-    const base = sanitizeFilenamePart(currentPayload.title || currentPayload.authors || "citation");
-    downloadTextFile(`${base}.${ext}`, `${content}\n`);
-  });
-
-  citationCopyBtn?.addEventListener("click", async () => {
-    if (!citationOutput?.value) return;
-    try {
-      await navigator.clipboard.writeText(citationOutput.value);
-      citationCopyBtn.innerHTML = '<i class="bi bi-check2 me-1"></i>Copied';
-      window.setTimeout(() => {
-        citationCopyBtn.innerHTML = '<i class="bi bi-clipboard me-1"></i>Copy';
-      }, 1200);
-    } catch {
-      citationOutput.select();
-      document.execCommand("copy");
-    }
-  });
-
-  citationZoteroBtn?.addEventListener("click", () => {
-    if (!currentPayload) return;
-    const base = sanitizeFilenamePart(currentPayload.title || currentPayload.authors || "citation");
-    downloadTextFile(`${base}.ris`, `${buildThesisRis(currentPayload)}\n`);
-  });
-
-  citationMendeleyBtn?.addEventListener("click", () => {
-    if (!currentPayload) return;
-    const base = sanitizeFilenamePart(currentPayload.title || currentPayload.authors || "citation");
-    downloadTextFile(`${base}.ris`, `${buildThesisRis(currentPayload)}\n`);
-  });
-})();
+  if (citationMendeleyBtn) {
+    citationMendeleyBtn.addEventListener("click", function () {
+      if (!currentPayload) return;
+      downloadRisFor(currentPayload, "mendeley", citationMendeleyBtn);
+    });
+  }
+}());

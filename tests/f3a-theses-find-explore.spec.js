@@ -23,13 +23,36 @@ test("FI theses Find & Explore supports title, author, filter-only and reset", a
   await expect(page.locator("[data-find-explore-results] a").first()).toHaveAttribute("href", /^\/opinnaytteet\/[0-9]+\//);
 });
 
-test.skip("FI theses curated cards preserve abstract and citation actions", async ({ page }) => {
-  // TH-CITE1 Phase 3: the archive migrated from a rich curated card
-  // grid to a compact SSR table (Year | Citation | Open). The
-  // abstract + citation-export modal triggers live on the thesis
-  // detail page in the Phase 3 layout, and browser-side citation
-  // composition is a Phase 4 target for shared-renderer migration.
-  // Re-enable this test after Phase 4 migrates the modal actions.
+// TH-CITE1 Phase 4D: the pre-Phase-3 test "FI theses curated cards
+// preserve abstract and citation actions" is retired. That test
+// asserted archive-card abstract/citation modal triggers that no
+// longer exist. Phase 3 replaced the rich card grid with a compact
+// SSR table (Year | Citation | Open), Phase 4B moved citation/
+// export to canonical thesis detail pages, and Phase 4C deleted
+// all browser-side raw-field composition. Detail-page modal
+// behaviour is covered by tests/th-cite1-phase4b-thesis-detail-modal
+// .spec.js (11 tests) and no-raw-field-fallback behaviour by
+// tests/th-cite1-phase4c-no-raw-field-fallback.spec.js (7 tests) —
+// duplicating either suite inside F3A would just add noise.
+//
+// F3A's own contract is the archive Find & Explore + local-canonical-
+// detail-link semantics tested above. What F3A can add on top is a
+// small guarantee that the archive itself does NOT accidentally
+// regain the pre-Phase-3 archive-card modal triggers.
+test("FI archive does not carry pre-Phase-3 archive modal triggers", async ({ page }) => {
+  const response = await page.request.get("/opinnaytteet/");
+  expect(response.ok()).toBeTruthy();
+  const html = await response.text();
+  // Archive rows must remain compact SSR — no abstract-modal or
+  // citation-export triggers.
+  expect(html).not.toMatch(/data-thesis-abstract-trigger/);
+  expect(html).not.toMatch(/data-thesis-citation-trigger/);
+  expect(html).not.toMatch(/id="thesisAbstractModal"/);
+  expect(html).not.toMatch(/id="thesisCitationModal"/);
+  // Row-count budget preserved: max 30 SSR thesis citations
+  // on any archive URL (10 per section × 3 sections).
+  const rows = html.match(/thesis-archive-citation/g) || [];
+  expect(rows.length).toBeLessThanOrEqual(30);
 });
 
 test("EN theses Find & Explore resolves local canonical detail links", async ({ page }) => {

@@ -63,6 +63,69 @@
     return THESIS_PUBLISHER_FI_TO_EN[publisher] || publisher;
   }
 
+  // TH-CITE1 Phase 4A: normalise thesis genre (FI or EN string) to a
+  // small stable enum. Consumed by BibTeX entry-type mapping and by
+  // format helpers that need to distinguish master's / bachelor's /
+  // doctoral / licentiate independent of the display language.
+  //   "master"     — Pro gradu -tutkielma / Master's thesis
+  //   "bachelor"   — Kandidaatintutkielma / Bachelor's thesis
+  //   "doctoral"   — Väitöskirja / Doctoral dissertation
+  //   "licentiate" — Lisensiaatintutkielma / Licentiate thesis
+  //   "other"      — unrecognised / missing genre
+  function normalizedThesisGenre(genre) {
+    var g = trimString(genre);
+    if (!g) return "other";
+    if (g === "Pro gradu -tutkielma" || g === "Master's thesis") return "master";
+    if (g === "Kandidaatintutkielma" || g === "Bachelor's thesis") return "bachelor";
+    if (g === "Väitöskirja" || g === "Doctoral dissertation") return "doctoral";
+    if (g === "Lisensiaatintutkielma" || g === "Licentiate thesis") return "licentiate";
+    return "other";
+  }
+
+  // TH-CITE1 Phase 4A: deterministic, human-readable, ASCII-safe
+  // citation key for BibTeX thesis entries. Shape:
+  //     firstAuthorFamily + year + firstTitleWord
+  // Matches the legacy browser convention documented in the Phase 4
+  // readiness audit while staying deterministic per CSL object.
+  // Publications keep their existing `bibtexKey` behaviour — this
+  // function only fires when `csl.type === "thesis"`.
+  function bibtexThesisKey(csl) {
+    var authors = toArraySafe(csl.author);
+    var family = "";
+    if (authors.length) {
+      family = trimString(authors[0].family) || trimString(authors[0].literal) || "";
+    }
+    var year = extractYear(csl.issued) || "nd";
+    var title = trimString(csl.title);
+    // First non-whitespace/non-punctuation token; normalisation below
+    // strips combining marks so the final key is ASCII-lowercase.
+    var firstWordMatch = title.match(/[^\s.,:;()\[\]"'!?]+/);
+    var firstWord = firstWordMatch ? firstWordMatch[0] : "thesis";
+    return String(family + year + firstWord)
+      .normalize("NFD")
+      .replace(new RegExp("[\\u0300-\\u036f]", "g"), "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "") || ("thesis" + year);
+  }
+
+  // TH-CITE1 Phase 4A: BibTeX entry type for a thesis CSL, selected
+  // from the normalised genre rather than a blanket `@phdthesis`.
+  //   master     → @mastersthesis
+  //   doctoral   → @phdthesis
+  //   licentiate → @phdthesis (closest valid BibTeX representation)
+  //   bachelor   → @misc      (BibTeX has no @bachelorsthesis;
+  //                            level is preserved via `howpublished`)
+  //   other      → @phdthesis (safe fallback)
+  function bibtexThesisEntryType(csl) {
+    switch (normalizedThesisGenre(csl.genre)) {
+      case "master": return "mastersthesis";
+      case "bachelor": return "misc";
+      case "doctoral": return "phdthesis";
+      case "licentiate": return "phdthesis";
+      default: return "phdthesis";
+    }
+  }
+
   function isString(value) {
     return typeof value === "string";
   }
@@ -317,7 +380,7 @@
     return sentence.replace(/\s+/g, " ").trim();
   }
 
-  function mla(csl) {
+  function mla(csl, lang) {
     var authors = toArraySafe(csl.author);
     var authorText = mlaAuthorList(authors) || "Tuntematon tekijä";
     var year = extractYear(csl.issued) || "n.d.";
@@ -329,6 +392,23 @@
     var page = trimString(csl.page);
     var doi = trimString(csl.DOI);
     var url = trimString(csl.URL);
+
+    // TH-CITE1 Phase 4A: MLA thesis branch. Emits
+    //   Authors. "Title." Genre, Publisher, Year. URL.
+    // using the same FI/EN display map as the Phase 2 APA branch.
+    // No new translation map; reuses displayThesisGenre / Publisher.
+    if (csl.type === "thesis") {
+      var normalizedLangMla = normalizeLang(lang);
+      var genre = trimString(csl.genre);
+      var genreDisplayMla = displayThesisGenre(genre, normalizedLangMla)
+        || (normalizedLangMla === "en" ? "Thesis" : "Opinnäyte");
+      var publisherDisplayMla = displayThesisPublisher(publisher, normalizedLangMla);
+      var outThesis = stripTrailingPunctuation(authorText) + ". \"" + stripTrailingPunctuation(title) + ".\" " + genreDisplayMla;
+      if (publisherDisplayMla) outThesis += ", " + publisherDisplayMla;
+      outThesis += ", " + year + ".";
+      if (url) outThesis += " " + url + ".";
+      return outThesis.replace(/\s+/g, " ").trim();
+    }
 
     var out = stripTrailingPunctuation(authorText) + ". \"" + stripTrailingPunctuation(title) + ".\"";
     if (containerTitle) out += " " + containerTitle;
@@ -343,7 +423,7 @@
     return out.replace(/\s+/g, " ").trim();
   }
 
-  function chicago(csl) {
+  function chicago(csl, lang) {
     var authors = toArraySafe(csl.author);
     var authorText = chicagoAuthorList(authors) || "Tuntematon tekijä";
     var year = extractYear(csl.issued) || "n.d.";
@@ -355,6 +435,23 @@
     var page = trimString(csl.page);
     var doi = trimString(csl.DOI);
     var url = trimString(csl.URL);
+
+    // TH-CITE1 Phase 4A: Chicago author-date thesis branch. Emits
+    //   Authors. Year. "Title." Genre, Publisher. URL.
+    // Reuses displayThesisGenre / displayThesisPublisher so FI and
+    // EN follow the same Phase 2 mapping used in APA + MLA.
+    if (csl.type === "thesis") {
+      var normalizedLangCh = normalizeLang(lang);
+      var genreCh = trimString(csl.genre);
+      var genreDisplayCh = displayThesisGenre(genreCh, normalizedLangCh)
+        || (normalizedLangCh === "en" ? "Thesis" : "Opinnäyte");
+      var publisherDisplayCh = displayThesisPublisher(publisher, normalizedLangCh);
+      var outThesisCh = stripTrailingPunctuation(authorText) + ". " + year + ". \"" + stripTrailingPunctuation(title) + ".\" " + genreDisplayCh;
+      if (publisherDisplayCh) outThesisCh += ", " + publisherDisplayCh;
+      outThesisCh += ".";
+      if (url) outThesisCh += " " + url + ".";
+      return outThesisCh.replace(/\s+/g, " ").trim();
+    }
 
     var out = stripTrailingPunctuation(authorText) + ". \"" + stripTrailingPunctuation(title) + ".\"";
     if (containerTitle) out += " " + containerTitle;
@@ -369,7 +466,7 @@
     return out.replace(/\s+/g, " ").trim();
   }
 
-  function bibtex(csl) {
+  function bibtex(csl, lang) {
     var authors = toArraySafe(csl.author);
     var authorText = authors.length
       ? authors.map(nameBibtex).filter(Boolean).join(" and ")
@@ -384,6 +481,43 @@
     var doi = trimString(csl.DOI);
     var url = trimString(csl.URL);
     var isbn = trimString(csl.ISBN);
+
+    // TH-CITE1 Phase 4A: BibTeX thesis branch. Entry type is derived
+    // from the normalised thesis genre — @mastersthesis /
+    // @phdthesis / @misc — and the school/publisher field convention
+    // follows the chosen entry type (school for master/phd; misc uses
+    // howpublished so the level is self-contained). Citation key
+    // uses bibtexThesisKey (family+year+firstTitleWord). Publications
+    // keep their existing bibtexEntryType + bibtexKey path unchanged.
+    if (csl.type === "thesis") {
+      var normalizedLangBt = normalizeLang(lang);
+      var genreBt = trimString(csl.genre);
+      var genreDisplayBt = displayThesisGenre(genreBt, normalizedLangBt)
+        || (normalizedLangBt === "en" ? "Thesis" : "Opinnäyte");
+      var publisherDisplayBt = displayThesisPublisher(publisher, normalizedLangBt);
+      var thesisEntryType = bibtexThesisEntryType(csl);
+      var thesisKey = bibtexThesisKey(csl);
+      var thesisLines = ["@" + thesisEntryType + "{" + thesisKey + ","];
+      thesisLines.push("  author = {" + authorText + "},");
+      thesisLines.push("  title = {" + title + "},");
+      thesisLines.push("  year = {" + year + "},");
+      if (thesisEntryType === "mastersthesis" || thesisEntryType === "phdthesis") {
+        if (publisherDisplayBt) thesisLines.push("  school = {" + publisherDisplayBt + "},");
+      } else {
+        // @misc: preserve level + institution via howpublished so the
+        // record remains self-descriptive even without a school field.
+        var howpublishedParts = [];
+        if (genreDisplayBt) howpublishedParts.push(genreDisplayBt);
+        if (publisherDisplayBt) howpublishedParts.push(publisherDisplayBt);
+        if (howpublishedParts.length) {
+          thesisLines.push("  howpublished = {" + howpublishedParts.join(", ") + "},");
+        }
+      }
+      if (url) thesisLines.push("  url = {" + url + "},");
+      thesisLines.push("}");
+      return thesisLines.join("\n");
+    }
+
     var entryType = bibtexEntryType(csl);
     var key = bibtexKey(csl);
     var lines = ["@" + entryType + "{" + key + ","];
@@ -405,7 +539,7 @@
     return lines.join("\n");
   }
 
-  function ris(csl) {
+  function ris(csl, lang) {
     var lines = ["TY  - " + risEntryType(csl)];
     var authors = toArraySafe(csl.author);
     for (var i = 0; i < authors.length; i++) {
@@ -436,7 +570,23 @@
       }
     }
     var publisher = trimString(csl.publisher);
-    if (publisher) lines.push("PB  - " + publisher);
+    // TH-CITE1 Phase 4A: for a thesis RIS record, publisher is
+    // emitted through the shared thesis display map so FI/EN mirror
+    // the human-readable citation styles. Non-thesis records keep
+    // the raw publisher string.
+    if (csl.type === "thesis") {
+      var publisherDisplayRis = displayThesisPublisher(publisher, normalizeLang(lang));
+      if (publisherDisplayRis) lines.push("PB  - " + publisherDisplayRis);
+    } else if (publisher) {
+      lines.push("PB  - " + publisher);
+    }
+    // TH-CITE1 Phase 4A: thesis-level M3 line so Zotero + Mendeley
+    // (and any other RIS consumer) capture the thesis genre. Same
+    // FI/EN display map as APA/MLA/Chicago.
+    if (csl.type === "thesis") {
+      var genreDisplayRis = displayThesisGenre(trimString(csl.genre), normalizeLang(lang));
+      if (genreDisplayRis) lines.push("M3  - " + genreDisplayRis);
+    }
     var isbn = trimString(csl.ISBN);
     if (isbn) lines.push("SN  - " + isbn);
     var doi = trimString(csl.DOI);
@@ -462,10 +612,13 @@
     }
     var text;
     switch (style) {
-      case "mla": text = mla(csl); break;
-      case "chicago": text = chicago(csl); break;
-      case "bibtex": text = bibtex(csl); break;
-      case "ris": text = ris(csl); break;
+      // TH-CITE1 Phase 4A: lang threaded through every style. The
+      // shared FI/EN thesis display map only fires when
+      // csl.type === "thesis"; publication output is unaffected.
+      case "mla": text = mla(csl, lang); break;
+      case "chicago": text = chicago(csl, lang); break;
+      case "bibtex": text = bibtex(csl, lang); break;
+      case "ris": text = ris(csl, lang); break;
       case "apa":
       default: text = apa(csl, lang); break;
     }
