@@ -2,7 +2,6 @@
 layout: base.njk
 title: Ohjatut opinnäytetyöt
 description: "Jari Larun ohjaamat pro gradu -tutkielmat ja kandidaatintyöt OuluREPO-arkistosta aiheittain, vuosittain ja hakutoiminnoilla."
-permalink: /opinnaytteet/
 translationKey: theses_index
 suppressTableFilters: true
 pageStyles:
@@ -10,6 +9,7 @@ pageStyles:
   - /css/find-explore.css
 pageScripts:
   - /js/find-explore.js
+  - /js/thesis-archive-pagination.js
   - /js/thesis-hub-actions.js
 schemaType: CollectionPage
 schemaAbout:
@@ -29,6 +29,14 @@ schemaMentions:
   - "@type": "Organization"
     name: "OuluREPO"
     url: "https://oulurepo.oulu.fi/"
+pagination:
+  data: thesesArchivePagesFi.pages
+  size: 1
+  alias: thesesArchive
+permalink: "{{ thesesArchive.permalink }}"
+eleventyComputed:
+  eleventyExcludeFromCollections: "{{ true if thesesArchive.pageKind != 'landing' else false }}"
+  robots: "{{ 'noindex, follow' if thesesArchive.pageKind != 'landing' else 'index, follow' }}"
 ---
 {% set pageModel = thesesFindExplorePage %}
 {% set findExploreKind = "theses" %}
@@ -38,7 +46,7 @@ schemaMentions:
 {% set findExploreSeedQuery = "__find_explore_theses__" %}
 {% set findExploreEyebrow = "Find & Explore" %}
 {% set findExploreTitle = "Tutki opinnäytteitä" %}
-{% set findExploreDescription = "Hae opinnäytteitä otsikolla, tekijällä tai aiheella. Voit myös selailla vuoden, tyypin ja aihepiirin mukaan ilman erillistä JSON-hydraatiota." %}
+{% set findExploreDescription = "Kirjoita hakusana tai käytä suodattimia. Hakuaika käyttää samaa canonical-joukkoa kuin arkistotaulukot." %}
 {% set findExploreSearchLabel = "Hae otsikolla, tekijällä tai aiheella" %}
 {% set findExplorePlaceholder = "Esim. tekoäly, opettajankoulutus, matematiikka, Riikonen..." %}
 {% set findExploreTypeLabel = "Tyyppi" %}
@@ -49,8 +57,8 @@ schemaMentions:
 {% set findExploreAllTopicsLabel = "Kaikki aiheet" %}
 {% set findExploreResetLabel = "Tyhjennä" %}
 {% set findExploreMoreLabel = "Näytä lisää" %}
-{% set findExploreInitialStatus = "Voit kirjoittaa hakusanan tai selata opinnäytteitä suodattimilla. Alla olevat nostot ja tavalliset detail-linkit toimivat myös ilman JavaScriptiä." %}
-{% set findExploreNoScript = "Interaktiivinen Find & Explore vaatii JavaScriptin. Tällä sivulla näkyvät silti johdanto, nostot ja tavalliset detail-linkit opinnäytteisiin." %}
+{% set findExploreInitialStatus = "Alla oleva arkisto näkyy suoraan. Hakusana tai suodatin korvaa arkistolistan hakutuloksilla samassa paikassa; Tyhjennä palauttaa arkistonäkymän." %}
+{% set findExploreNoScript = "Interaktiivinen haku vaatii JavaScriptin. Arkistotaulukot ja niiden sivutus toimivat silti ilman JavaScriptiä." %}
 {% set findExploreTypeOptions = [
   { value: "masterThesis", label: "Pro gradu -tutkielmat", count: pageModel.typeCounts.masterThesis },
   { value: "bachelorThesis", label: "Kandidaatintyöt", count: pageModel.typeCounts.bachelorThesis }
@@ -64,14 +72,14 @@ schemaMentions:
       <div class="col-lg-8">
         <p class="text-uppercase small text-muted mb-1">Ohjaustyö</p>
         <h1 class="display-6 fw-bold mb-2">Ohjatut opinnäytetyöt</h1>
-        <p class="text-muted mb-0">OuluREPOsta koottu näkymä Jari Larun ohjaamiin ja tarkastamiin opinnäytteisiin. Jokainen hakutulos johtaa sivuston omaan detail-sivuun, jolta alkuperäinen OuluREPO-julkaisu avautuu yhdellä linkillä.</p>
+        <p class="text-muted mb-0">OuluREPOsta koottu näkymä Jari Larun ohjaamiin ja tarkastamiin opinnäytteisiin. Jokainen rivi vie sivuston omaan detail-sivuun, ja alkuperäinen OuluREPO-julkaisu avautuu yhdellä linkillä.</p>
       </div>
       <div class="col-lg-4">
         <div class="d-flex flex-wrap gap-2 justify-content-lg-end">
-          <a class="nav-link" href="#ohjatut-gradut">Gradut <span class="nav-count">{{ theses.stats.totalGradut }}</span></a>
-          <a class="nav-link" href="#kandityot">Kandit <span class="nav-count">{{ theses.stats.totalKandit }}</span></a>
-          {% if pageModel.reviewedItems.length %}
-          <a class="nav-link" href="#tarkastetut">Tarkastetut <span class="nav-count">{{ theses.stats.totalReviewer }}</span></a>
+          <a class="nav-link" href="#ohjatut-gradut">Gradut <span class="nav-count">{{ thesesArchive.grouped.advisedMasters.length }}</span></a>
+          <a class="nav-link" href="#kandityot">Kandit <span class="nav-count">{{ thesesArchive.grouped.advisedBachelors.length }}</span></a>
+          {% if thesesArchive.grouped.reviewed.length %}
+          <a class="nav-link" href="#tarkastetut">Tarkastetut <span class="nav-count">{{ thesesArchive.grouped.reviewed.length }}</span></a>
           {% endif %}
         </div>
       </div>
@@ -85,7 +93,7 @@ schemaMentions:
       <div class="col-6 col-md-3">
         <div class="card text-center border-primary h-100 thesis-stat-card">
           <div class="card-body d-flex flex-column justify-content-center">
-            <div class="display-4 fw-bold text-primary">{{ theses.stats.totalGradut }}</div>
+            <div class="display-4 fw-bold text-primary">{{ thesesArchive.grouped.advisedMasters.length }}</div>
             <div class="text-muted">ohjattua gradua</div>
           </div>
         </div>
@@ -93,7 +101,7 @@ schemaMentions:
       <div class="col-6 col-md-3">
         <div class="card text-center border-info h-100 thesis-stat-card">
           <div class="card-body d-flex flex-column justify-content-center">
-            <div class="display-4 fw-bold text-info">{{ theses.stats.totalKandit }}</div>
+            <div class="display-4 fw-bold text-info">{{ thesesArchive.grouped.advisedBachelors.length }}</div>
             <div class="text-muted">ohjattua kandia</div>
           </div>
         </div>
@@ -109,7 +117,7 @@ schemaMentions:
       <div class="col-6 col-md-3">
         <div class="card text-center border-secondary h-100 thesis-stat-card">
           <div class="card-body d-flex flex-column justify-content-center">
-            <div class="display-4 fw-bold text-secondary">{{ theses.stats.totalReviewer }}</div>
+            <div class="display-4 fw-bold text-secondary">{{ thesesArchive.grouped.reviewed.length }}</div>
             <div class="text-muted">tarkastettua työtä</div>
           </div>
         </div>
@@ -125,8 +133,8 @@ schemaMentions:
         <div class="d-flex flex-wrap align-items-start justify-content-between gap-3">
           <div>
             <p class="text-uppercase small text-muted mb-1">Avausreitit</p>
-            <h2 class="h4 mb-1">Aiheprofiilit ja viimeisimmät työt</h2>
-            <p class="text-muted mb-0">Find & Explore täydentää tätä sivua hakupintana, mutta alla olevat nostot ovat tavallista HTML:ää ja toimivat myös ilman JavaScriptiä.</p>
+            <h2 class="h4 mb-1">Aiheprofiilit</h2>
+            <p class="text-muted mb-0">Nostot vievät kategoriakohtaiselle hakusivulle. Alla oleva arkisto toimii täydentävänä selailunäkymänä.</p>
           </div>
           <span class="badge text-bg-light border text-dark">{{ theses.stats.firstYear }}–{{ theses.stats.lastYear }}</span>
         </div>
@@ -142,67 +150,29 @@ schemaMentions:
 
 {% include "find-explore-writings.njk" %}
 
-<section id="ohjatut-gradut" class="bg-body-tertiary py-4">
-  <div class="site-shell">
-    <div class="card shadow-sm border-0">
-      <div class="card-body">
-        <div class="d-flex flex-wrap align-items-start justify-content-between gap-3 mb-3">
-          <div>
-            <h2 class="h4 mb-1"><i class="bi bi-mortarboard-fill me-2 text-primary"></i>Ohjatut pro gradu -tutkielmat</h2>
-            <p class="text-muted mb-0">Viimeisimpiä ohjattuja graduja. Find & Explore näyttää koko 169 tietueen canonical-joukon.</p>
-          </div>
-          <span class="badge text-bg-primary">{{ theses.stats.totalGradut }}</span>
-        </div>
-        {% set thesisItems = pageModel.opening.advisedMasterItems %}
-        {% set thesisLang = "fi" %}
-        {% set thesisEmptyLabel = "Ohjattuja graduja ei löytynyt." %}
-        {% include "thesis-curated-list.njk" %}
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="kandityot" class="py-4">
-  <div class="site-shell">
-    <div class="card shadow-sm border-0">
-      <div class="card-body">
-        <div class="d-flex flex-wrap align-items-start justify-content-between gap-3 mb-3">
-          <div>
-            <h2 class="h4 mb-1"><i class="bi bi-book-half me-2 text-info"></i>Ohjatut kandidaatintyöt</h2>
-            <p class="text-muted mb-0">Kandidaatintöiden puolella painottuvat viime vuosien opettajankoulutuksen, kasvatustieteen ja koulutusteknologian aiheet.</p>
-          </div>
-          <span class="badge text-bg-info">{{ theses.stats.totalKandit }}</span>
-        </div>
-        {% set thesisItems = pageModel.opening.advisedBachelorItems %}
-        {% set thesisLang = "fi" %}
-        {% set thesisEmptyLabel = "Ohjattuja kandidaatintöitä ei löytynyt." %}
-        {% include "thesis-curated-list.njk" %}
-      </div>
-    </div>
-  </div>
-</section>
-
-{% if pageModel.reviewedItems.length %}
-<section id="tarkastetut" class="bg-body-tertiary py-4">
-  <div class="site-shell">
-    <div class="card shadow-sm border-0">
-      <div class="card-body">
-        <div class="d-flex flex-wrap align-items-start justify-content-between gap-3 mb-3">
-          <div>
-            <h2 class="h4 mb-1"><i class="bi bi-eye-fill me-2 text-secondary"></i>Tarkastetut opinnäytteet</h2>
-            <p class="text-muted mb-0">Erillinen avaussarja töistä, joissa Jari Laru on toiminut tarkastajana eikä pääohjaajana.</p>
-          </div>
-          <span class="badge text-bg-secondary">{{ theses.stats.totalReviewer }}</span>
-        </div>
-        {% set thesisItems = pageModel.opening.reviewedItems %}
-        {% set thesisLang = "fi" %}
-        {% set thesisEmptyLabel = "Tarkastettuja opinnäytteitä ei löytynyt." %}
-        {% include "thesis-curated-list.njk" %}
-      </div>
-    </div>
-  </div>
-</section>
-{% endif %}
+{% set thesesArchiveLang = "fi" %}
+{% set thesesArchiveLanding = "/opinnaytteet/" %}
+{% set thesesArchiveLabels = {
+  advisedMasters: {
+    title: "Ohjatut pro gradu -tutkielmat",
+    description: "Kaikki ohjaamani pro gradu -tutkielmat vuosi- ja otsikkojärjestyksessä.",
+    icon: "mortarboard-fill",
+    accent: "primary"
+  },
+  advisedBachelors: {
+    title: "Ohjatut kandidaatintyöt",
+    description: "Kaikki ohjaamani kandidaatintyöt vuosi- ja otsikkojärjestyksessä.",
+    icon: "book-half",
+    accent: "info"
+  },
+  reviewed: {
+    title: "Tarkastetut opinnäytteet",
+    description: "Opinnäytteet, joissa olen toiminut tarkastajana pääohjaajan sijaan.",
+    icon: "eye-fill",
+    accent: "secondary"
+  }
+} %}
+{% include "thesis-archive-sections.njk" %}
 
 <section class="pb-5">
   <div class="site-shell">

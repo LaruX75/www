@@ -95,13 +95,36 @@ async function main() {
   const { buildThesisCslItem } = requireFresh("src/_utils/thesisCsl.js");
 
   const data = await loadTheses();
-  const inventory = [
+  // TH-CITE1 Phase 3: canonical unique count vs raw source count.
+  // The raw OuluREPO source contains one duplicate URL
+  // (`handle/10024/7879` — "Videogames as a platform for learning"),
+  // so raw = 170 while canonical unique = 169. The public JSON, the
+  // virtual collection and thesisDetails all already dedupe by URL.
+  // The parity audit reports BOTH counts and prefers the canonical
+  // deduplicated view for closure evidence.
+  const rawInventory = [
     ...(data.gradut || []).map((t) => ({ thesis: t, role: "advised", bucket: "master" })),
     ...(data.kandit || []).map((t) => ({ thesis: t, role: "advised", bucket: "bachelor" })),
     ...(data.reviewerOnly || []).map((t) => ({ thesis: t, role: "reviewed", bucket: t.type === "bachelorThesis" ? "bachelor" : "master" }))
   ];
+  const seenUrl = new Set();
+  const inventory = [];
+  const duplicateUrls = [];
+  for (const entry of rawInventory) {
+    const url = entry.thesis && entry.thesis.link;
+    if (!url) continue;
+    if (seenUrl.has(url)) {
+      duplicateUrls.push(url);
+      continue;
+    }
+    seenUrl.add(url);
+    inventory.push(entry);
+  }
 
   const stats = {
+    rawCount: rawInventory.length,
+    canonicalUniqueCount: inventory.length,
+    duplicateRawUrls: duplicateUrls,
     total: inventory.length,
     identical: 0,
     improvements: 0,
@@ -183,8 +206,12 @@ async function main() {
   fs.mkdirSync(path.dirname(OUT), { recursive: true });
   fs.writeFileSync(OUT, JSON.stringify(report, null, 2));
   console.log("wrote", path.relative(REPO_ROOT, OUT));
-  console.log(`inventory: ${stats.total} theses`);
-  console.log(`parity: identical=${stats.identical} improvements=${stats.improvements} metadata-limited=${stats.metadataLimited} regressions=${stats.regressions}`);
+  console.log(`raw source records: ${stats.rawCount} (raw source before dedup)`);
+  console.log(`canonical unique theses: ${stats.canonicalUniqueCount} (deduplicated by URL)`);
+  if (stats.duplicateRawUrls.length) {
+    console.log(`raw duplicate URLs dropped by canonical dedup: ${stats.duplicateRawUrls.length}`);
+  }
+  console.log(`parity (canonical unique): identical=${stats.identical} improvements=${stats.improvements} metadata-limited=${stats.metadataLimited} regressions=${stats.regressions}`);
   console.log(`byType: ${JSON.stringify(stats.byType)}  byRole: ${JSON.stringify(stats.byRole)}  byLang: ${JSON.stringify(stats.byLang)}`);
   console.log("gate failures:", gateFailures.length === 0 ? "(none)" : gateFailures.join(", "));
   if (gateFailures.length > 0) process.exit(1);
