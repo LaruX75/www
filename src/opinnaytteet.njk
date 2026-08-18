@@ -8,9 +8,11 @@ pageStyles:
   - /css/theses-page.css
   - /css/find-explore.css
 pageScripts:
+  # TH-CITE1 Phase 4B: thesis-hub-actions.js moved to the thesis
+  # detail template. The archive has no citation triggers after
+  # Phase 3 and does not ship the modal interaction JS anymore.
   - /js/find-explore.js
   - /js/thesis-archive-pagination.js
-  - /js/thesis-hub-actions.js
 schemaType: CollectionPage
 schemaAbout:
   - "@type": "Thing"
@@ -191,4 +193,6 @@ eleventyComputed:
     </p>
   </div>
  </section>
-{% include "thesis-hub-modals.njk" %}
+{# TH-CITE1 Phase 4B: modals no longer live on the archive page.
+   The citation/export modal is now scoped to the thesis detail
+   template where the trigger exists. #}

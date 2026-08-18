@@ -28,7 +28,12 @@
     thesisSchemaKeywords: data => data.thesisDetail?.keywords || [],
     thesisSchemaCitation: data => data.thesisDetail?.citationApa || "",
     tags: () => ["publications", "thesis-detail"]
-  }
+  },
+  // TH-CITE1 Phase 4B: load the citation/export modal interaction on
+  // thesis detail pages only. Archive templates no longer include
+  // this — Phase 3's compact SSR table has no citation trigger, and
+  // the readiness audit confirmed no other consumer of these hooks.
+  pageScripts: ["/js/publication-citation.js", "/js/thesis-hub-actions.js"]
 }
 ---
 {% include "thesis-detail-body.njk" %}

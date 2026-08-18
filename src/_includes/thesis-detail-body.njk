@@ -47,7 +47,26 @@
           {% if thesisCitationText %}
           <div class="card shadow-sm mb-4">
             <div class="card-body p-4">
-              <h2 class="h5 mb-3">{{ "Citation" if isEn else "Lähdeviite" }}</h2>
+              <div class="d-flex flex-wrap gap-3 align-items-start justify-content-between mb-3">
+                <h2 class="h5 mb-0">{{ "Citation" if isEn else "Lähdeviite" }}</h2>
+                {% if thesisDetail.csl %}
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary btn-sm rounded-pill"
+                  data-thesis-citation-trigger
+                  data-thesis-csl="{{ thesisDetail.csl | dump | escape }}"
+                  data-thesis-title="{{ thesisDetail.title | escape }}"
+                  data-thesis-authors="{{ thesisDetail.authorLine | escape }}"
+                  data-thesis-year="{{ thesisDetail.year | escape }}"
+                  data-thesis-type="{{ thesisDetail.thesisType | escape }}"
+                  data-thesis-url="{{ thesisDetail.sourceUrl | escape }}"
+                  data-thesis-lang="{{ currentLang }}"
+                  aria-haspopup="dialog"
+                  aria-controls="thesisCitationModal">
+                  <i class="bi bi-quote me-1" aria-hidden="true"></i>{{ "Export citation" if isEn else "Vie viite" }}
+                </button>
+                {% endif %}
+              </div>
               <p class="small font-monospace mb-0">{{ thesisCitationText }}</p>
             </div>
           </div>
@@ -130,3 +149,6 @@
     </article>
   </div>
 </section>
+
+{# TH-CITE1 Phase 4B: citation/export modal for this detail page. #}
+{% include "thesis-citation-modal.njk" %}
