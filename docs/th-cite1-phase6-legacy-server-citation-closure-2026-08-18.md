@@ -2,15 +2,46 @@
 
 Date: 2026-08-18
 
-Status: **CLOSED / GREEN / BRANCH**
+Status: **CLOSED / GREEN / MAIN**
 
 Repository: `LaruX75/www`
 
 Branch: `feat/th-cite1-phase6-legacy-server-citation-deletion`
 
-Base main SHA: `946f553270e3bebeb81edc470b79ca12ca732c83`
+Base main SHA (before merge): `946f553270e3bebeb81edc470b79ca12ca732c83`
 
-Phase 6 is not yet on `main`. This document closes the workstream **on the feature branch**. Roadmap will move to `CLOSED / GREEN / MAIN` after PR + merge + post-merge verification.
+**Merge to main:**
+
+- Implementation PR: [#105 — TH-CITE1 Phase 6: delete legacy server thesis citation formatter](https://github.com/LaruX75/www/pull/105)
+- Feature HEAD at PR time: `0180f02f1599daba09d693c83a2008072deec39d`
+- Merge SHA: `236074ba0b35c12250d1793381a72351199402ce`
+- Merge timestamp: `2026-08-18T23:02:10Z`
+- Post-merge main HEAD: `236074ba0b35c12250d1793381a72351199402ce`
+
+**Post-merge CI on `main` (`236074ba`):**
+
+```text
+Build and Deploy                       success
+Accessibility and navigation tests     success
+Generate OG Images                     success
+```
+
+**Post-merge local verification on `main` (`236074ba`):**
+
+```text
+unit tests                            535 / 535 pass
+npm run build:no-og                   clean, 1472 pages
+Phase 3 SSR archive audit              10 / 10 gates
+Phase 4C browser-citation-deletion    38 / 38 gates
+Phase 4D modal-export-parity          52 / 52 gates
+Phase 6 legacy-server-citation-deletion  18 / 18 gates
+citationApa parity vs baseline       169 / 169 identical
+JSON-LD citation parity              169 / 169 match public JSON
+Pagefind thesis-tagged fragments     169
+Playwright thesis bundle (Phase 3 + 4B + 4C + F3A + F3B):  31 / 31 pass
+```
+
+TH-CITE1 citation migration is now **CLOSED / GREEN / MAIN**. Legacy server APA composer is gone; the shared renderer (`src/js/publication-citation.js`) is the sole bibliographic composer in the site. Phase 5 (PF5 GLOBAL RESULT PARITY) remains **NOT STARTED**.
 
 ---
 
@@ -236,19 +267,15 @@ Phase 3 archive HTML unchanged; Phase 4B modal HTML unchanged; Phase 4C interact
 
 ---
 
-## 13. Post-closure sequence (not part of Phase 6)
+## 13. Post-closure actions — completed
 
-Recommended (mirrors Phase 3 / Phase 4 pattern):
+Executed after the branch closure:
 
-1. Open PR `feat/th-cite1-phase6-legacy-server-citation-deletion` → `main`.
-2. Wait for CI (Build and Deploy, Accessibility and navigation tests, Generate OG Images).
-3. Merge after all three green.
-4. Fast-forward `main`; rerun Phase 6 audit + full regression on main HEAD.
-5. Update roadmap `docs/find-explore-roadmap-2026-08-12.md` with a new status block:
-   ```
-   TH-CITE1 Phase 6 — legacy server citation deletion
-   status: CLOSED / GREEN / MAIN
-   ```
-6. Flip this closure doc from `CLOSED / GREEN / BRANCH` → `CLOSED / GREEN / MAIN` in a separate docs PR.
+1. Opened PR [#105](https://github.com/LaruX75/www/pull/105) → `main`. **DONE**.
+2. Waited for CI (Build and Deploy, Accessibility and navigation tests, Generate OG Images) — all green. **DONE**.
+3. Merged to `main` at `236074ba0b35c12250d1793381a72351199402ce` on `2026-08-18T23:02:10Z`. **DONE**.
+4. Post-merge local verification — 535/535 unit, 10/10 + 38/38 + 52/52 + 18/18 audits, 31/31 Playwright thesis bundle. **DONE**.
+5. Roadmap `docs/find-explore-roadmap-2026-08-12.md` updated to reflect Phase 6 CLOSED / GREEN / MAIN. **DONE** (this docs PR).
+6. Phase 5 PF5 GLOBAL RESULT PARITY remains **NOT STARTED**.
 
 END OF PHASE 6 CLOSURE.
