@@ -1,0 +1,112 @@
+{
+  "generatedAt": "2026-08-19T10:00:00Z",
+  "scope": "Theses archive convergence readiness audit — pre-implementation baseline",
+  "repoBaseMainSha": "c78bbfa6c82fe8aad5683aed1f4b15e25c699d24",
+  "auditBranch": "audit/theses-archive-convergence",
+  "canonicalCorpus": {
+    "rawSourceRecords": 170,
+    "duplicateUrl": "https://oulurepo.oulu.fi/handle/10024/7879",
+    "canonicalUniqueTheses": 169,
+    "roleTypeMatrix": {
+      "advised/masterThesis": 87,
+      "advised/bachelorThesis": 29,
+      "reviewed/masterThesis": 53,
+      "reviewed/bachelorThesis": 0
+    },
+    "multiRoleOverlap": 0
+  },
+  "ssrBaseline": {
+    "fiLandingBytes": 167137,
+    "enLandingBytes": 158812,
+    "fiLandingDomTagCount": 1718,
+    "enLandingDomTagCount": 1658,
+    "rowsOnLanding": 30,
+    "sectionContainersOnLanding": 3,
+    "pagerElementsOnLanding": 120,
+    "boundedArchivePermalinksPerLocale": 16,
+    "totalSsrThesisArchiveFiles": 201
+  },
+  "jsBaseline": {
+    "thesisArchivePaginationJsBytes": 3767,
+    "findExploreJsBytes": 35686
+  },
+  "pagefindThesisCoverage": {
+    "thesisTaggedFragments": 169,
+    "metaKeysPerFragment": [
+      "title",
+      "thesesAuthorLine",
+      "thesesType",
+      "thesesRole",
+      "thesesYear",
+      "thesesLang",
+      "thesesDescription",
+      "image",
+      "image_alt"
+    ],
+    "filterKeysPerFragment": [
+      "FindExplore",
+      "Sisältö",
+      "Theses scope",
+      "Theses type",
+      "Theses year",
+      "Theses language",
+      "Theses topic",
+      "Theses author",
+      "Research context",
+      "Kieli"
+    ],
+    "sufficientForCompactRowRender": true,
+    "missingForCompactRowRender": []
+  },
+  "currentArchitecture": {
+    "ssrSections": ["advisedMasters", "advisedBachelors", "reviewed"],
+    "sectionPagerModel": "3 independent per-section pagination states",
+    "pagersPerSection": 2,
+    "pagerTotal": "6 pagers per landing (3 sections × top+bottom)",
+    "boundedPermalinksPerLocale": 16,
+    "archiveColumns": ["Year", "Citation (APA 7)", "Open"],
+    "citationSource": "thesis.csl | publicationCitation(apa, thesisSectionLang)",
+    "fragmentSwapContract": "data-thesis-section + data-thesis-pager-link",
+    "findExploreResultSurface": "separate data-find-explore-results div rendered by find-explore.js"
+  },
+  "hideRuleForActiveSearch": {
+    "cssSelector": "body.find-explore-active .thesis-archive-sections { display: none; }",
+    "cssFile": "src/css/theses-page.css",
+    "jsClassToggle": "src/js/find-explore.js line ~707: document.body.classList.add|remove(\"find-explore-active\")",
+    "triggerCondition": "kind === \"theses\" && effectiveQuery non-empty"
+  },
+  "consumers": {
+    "production": [
+      "src/opinnaytteet.njk",
+      "src/en/theses.njk",
+      "src/_includes/thesis-archive-sections.njk",
+      "src/_includes/thesis-archive-table.njk",
+      "src/_includes/thesis-archive-pager.njk",
+      "src/_utils/thesesFindExplore.js",
+      "src/_data/thesesArchivePagesFi.js",
+      "src/_data/thesesArchivePagesEn.js",
+      "src/js/thesis-archive-pagination.js",
+      "src/css/theses-page.css",
+      "src/js/find-explore.js (theses branch)"
+    ],
+    "tests": [
+      "tests/f3a-theses-find-explore.spec.js",
+      "tests/th-cite1-phase3-thesis-pagination.spec.js",
+      "tests/th-cite1-phase4b-thesis-detail-modal.spec.js"
+    ],
+    "audits": [
+      "scripts/audit-th-cite1-phase3-ssr-archive.js",
+      "scripts/audit-th-cite1-phase4-modal-export-parity.js",
+      "scripts/audit-th-cite1-phase4c-browser-citation-deletion.js",
+      "scripts/audit-th-cite1-phase6-legacy-server-citation-deletion.js"
+    ],
+    "publicContracts": [
+      "/data/theses.json",
+      "JSON-LD citation on thesis detail pages",
+      "/opinnaytteet/{numeric-id}/ canonical detail permalinks",
+      "/en/theses/ landing (canonical)",
+      "/opinnaytteet/ landing (canonical)"
+    ]
+  },
+  "decision": "READY WITH CONDITIONS"
+}
