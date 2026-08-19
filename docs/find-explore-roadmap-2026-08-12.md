@@ -5,8 +5,9 @@ Synchronized: 2026-08-14
 Publications FULL update: 2026-08-17
 TH-CITE1 Phase 1–3 update: 2026-08-18
 TH-CITE1 Phase 4 update: 2026-08-18
+TH-CITE1 Phase 6 update: 2026-08-18
 
-This roadmap is the shared source of truth after Canonical Content v1, Find & Explore Writings v1, Find & Explore Theses v1, Find & Explore Publications v1, F4 Research contextual Find & Explore v1, the 2026-08-17 Publications FULL Pagefind + PUB-CITE1 closure, the 2026-08-18 TH-CITE1 Phase 1–3 thesis CSL + SSR-first archive closure, and the 2026-08-18 TH-CITE1 Phase 4 A–D modal/export migration closure.
+This roadmap is the shared source of truth after Canonical Content v1, Find & Explore Writings v1, Find & Explore Theses v1, Find & Explore Publications v1, F4 Research contextual Find & Explore v1, the 2026-08-17 Publications FULL Pagefind + PUB-CITE1 closure, the 2026-08-18 TH-CITE1 Phase 1–3 thesis CSL + SSR-first archive closure, the 2026-08-18 TH-CITE1 Phase 4 A–D modal/export migration closure, and the 2026-08-18 TH-CITE1 Phase 6 legacy server citation deletion closure. TH-CITE1 citation migration is fully closed on `main`; PF5 GLOBAL RESULT PARITY (Phase 5) remains NOT STARTED as a separate future workstream.
 
 ## 1. Current State
 
@@ -110,8 +111,15 @@ Canonical Content v1: unchanged
 closure report: docs/th-cite1-phase4-modal-export-closure-2026-08-18.md
 
 TH-CITE1 Phase 6 — legacy server citation deletion
-status: CLOSED / GREEN / BRANCH
+status: CLOSED / GREEN / MAIN
 scope: delete src/_data/theses.js#buildApaCitation + getThesisLevelLabel + orphan APA author-list formatters; repoint withCitation to derive citationApa from buildThesisCslItem + shared publicationCitation renderer at lang="fi". Preserves /data/theses.json.citationApa + JSON-LD `citation` byte-identically. Result: shared renderer is the sole bibliographic composer in the site.
+PR: #105
+PR title: TH-CITE1 Phase 6: delete legacy server thesis citation formatter
+head commit: 0180f02f1599daba09d693c83a2008072deec39d
+merge commit: 236074ba0b35c12250d1793381a72351199402ce
+merge timestamp: 2026-08-18T23:02:10Z
+post-merge CI on main 236074ba: Build and Deploy pass, Accessibility and navigation tests pass, Generate OG Images pass
+final architecture: canonical thesis → buildThesisCslItem() → CSL → shared publicationCitation renderer → controlled citationApa projection → /data/theses.json + thesisDetail + collection data + JSON-LD citation
 branch: feat/th-cite1-phase6-legacy-server-citation-deletion
 base main SHA: 946f553270e3bebeb81edc470b79ca12ca732c83
 architecture before: raw thesis fields → buildApaCitation → citationApa
@@ -263,7 +271,9 @@ TH-CITE1 Phase 1–3 (thesis CSL + SSR-first archive): closed green, on `main`. 
 
 TH-CITE1 Phase 4 A–D (shared thesis exports + detail-page citation UI + browser composer deletion): closed green, on `main`. Removes the pre-Phase-4 browser bibliographic content model; browser JS is interaction-only.
 
-TH-CITE1 Phase 6 (legacy server citation deletion): closed green **on the feature branch** (not yet on `main`). Repoints `withCitation` to the shared renderer + deletes `buildApaCitation` and `getThesisLevelLabel`. Public `/data/theses.json.citationApa` + JSON-LD `citation` preserved byte-identically (169/169 parity). Phase 5 remains NOT STARTED.
+TH-CITE1 Phase 6 (legacy server citation deletion): closed green, on `main`. Repoints `withCitation` to the shared renderer + deletes `buildApaCitation` and `getThesisLevelLabel`. Public `/data/theses.json.citationApa` + JSON-LD `citation` preserved byte-identically (169/169 parity).
+
+**TH-CITE1 citation migration is now fully closed on `main`.** No parallel browser thesis citation composer remains (Phase 4C). No parallel server thesis APA composer remains (Phase 6). The shared renderer at `src/js/publication-citation.js` is the sole bibliographic composer in the site. Phase 5 PF5 GLOBAL RESULT PARITY remains NOT STARTED as a separate future workstream — Phase 5 is not about thesis citation architecture but about the shared Pagefind result presenter across surfaces.
 
 F3B Publications Find & Explore: closed green as a PARTIAL migration.
 
