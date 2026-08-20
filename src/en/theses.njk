@@ -13,7 +13,6 @@ pageScripts:
   # detail template. The archive has no citation triggers after
   # Phase 3 and does not ship the modal interaction JS anymore.
   - /js/find-explore.js
-  - /js/thesis-archive-pagination.js
 schemaType: CollectionPage
 pagination:
   data: thesesArchivePagesEn.pages
@@ -39,20 +38,27 @@ eleventyComputed:
 {% set findExplorePlaceholder = "Try AI, teacher education, mathematics, Riikonen..." %}
 {% set findExploreTypeLabel = "Type" %}
 {% set findExploreAllTypesLabel = "All theses" %}
+{% set findExploreRoleLabel = "Role" %}
+{% set findExploreAllRolesLabel = "All roles" %}
 {% set findExploreYearLabel = "Year" %}
 {% set findExploreAllYearsLabel = "All years" %}
 {% set findExploreTopicLabel = "Topic" %}
 {% set findExploreAllTopicsLabel = "All topics" %}
 {% set findExploreResetLabel = "Clear" %}
 {% set findExploreMoreLabel = "Show more" %}
-{% set findExploreInitialStatus = "The canonical archive is visible below. A query or filter replaces the archive with search results in the same location; Clear returns to the archive view." %}
+{% set findExploreInitialStatus = "The canonical archive table is visible below. A query or filter replaces the same table rows with Pagefind matches; Clear restores the server-rendered rows already on this page." %}
 {% set findExploreNoScript = "Interactive search requires JavaScript. The archive tables and their pagination remain available without JavaScript." %}
 {% set findExploreTypeOptions = [
   { value: "masterThesis", label: "Master's theses", count: pageModel.typeCounts.masterThesis },
   { value: "bachelorThesis", label: "Bachelor's theses", count: pageModel.typeCounts.bachelorThesis }
 ] %}
+{% set findExploreRoleOptions = [
+  { value: "advised", label: "Supervised", count: pageModel.roleCounts.advised },
+  { value: "reviewed", label: "Reviewed", count: pageModel.roleCounts.reviewed }
+] %}
 {% set findExploreYears = pageModel.years %}
 {% set findExploreTopicOptions = pageModel.topicOptions %}
+{% set findExploreExternalResultsId = "thesesArchiveTbodyEn" %}
 
 <section class="kynasta-hero py-4">
   <div class="site-shell">
@@ -60,16 +66,7 @@ eleventyComputed:
       <div class="col-lg-8">
         <p class="text-uppercase small text-muted mb-1">Supervision</p>
         <h1 class="display-6 fw-bold mb-2">Supervised theses</h1>
-        <p class="text-muted mb-0">A local thesis hub for OuluREPO-based supervision work. Every row links to the site's own detail page, and the original OuluREPO record remains one click away.</p>
-      </div>
-      <div class="col-lg-4">
-        <div class="d-flex flex-wrap gap-2 justify-content-lg-end">
-          <a class="nav-link" href="#masters">Master's <span class="nav-count">{{ thesesArchive.grouped.advisedMasters.length }}</span></a>
-          <a class="nav-link" href="#bachelors">Bachelor's <span class="nav-count">{{ thesesArchive.grouped.advisedBachelors.length }}</span></a>
-          {% if thesesArchive.grouped.reviewed.length %}
-          <a class="nav-link" href="#reviewed">Reviewed <span class="nav-count">{{ thesesArchive.grouped.reviewed.length }}</span></a>
-          {% endif %}
-        </div>
+        <p class="text-muted mb-0">A single local archive table for OuluREPO-based supervision work. The thesis title opens the site's canonical detail page, while the original OuluREPO source stays available as a separate external action.</p>
       </div>
     </div>
   </div>
@@ -81,7 +78,7 @@ eleventyComputed:
       <div class="col-6 col-md-3">
         <div class="card text-center border-primary h-100 thesis-stat-card">
           <div class="card-body d-flex flex-column justify-content-center">
-            <div class="display-4 fw-bold text-primary">{{ thesesArchive.grouped.advisedMasters.length }}</div>
+            <div class="display-4 fw-bold text-primary">{{ pageModel.advisedMasterItems.length }}</div>
             <div class="text-muted">Master's theses</div>
           </div>
         </div>
@@ -89,7 +86,7 @@ eleventyComputed:
       <div class="col-6 col-md-3">
         <div class="card text-center border-info h-100 thesis-stat-card">
           <div class="card-body d-flex flex-column justify-content-center">
-            <div class="display-4 fw-bold text-info">{{ thesesArchive.grouped.advisedBachelors.length }}</div>
+            <div class="display-4 fw-bold text-info">{{ pageModel.advisedBachelorItems.length }}</div>
             <div class="text-muted">Bachelor's theses</div>
           </div>
         </div>
@@ -105,7 +102,7 @@ eleventyComputed:
       <div class="col-6 col-md-3">
         <div class="card text-center border-secondary h-100 thesis-stat-card">
           <div class="card-body d-flex flex-column justify-content-center">
-            <div class="display-4 fw-bold text-secondary">{{ thesesArchive.grouped.reviewed.length }}</div>
+            <div class="display-4 fw-bold text-secondary">{{ pageModel.reviewedItems.length }}</div>
             <div class="text-muted">reviewed theses</div>
           </div>
         </div>
@@ -138,29 +135,14 @@ eleventyComputed:
 
 {% include "find-explore-writings.njk" %}
 
-{% set thesesArchiveLang = "en" %}
-{% set thesesArchiveLanding = "/en/theses/" %}
-{% set thesesArchiveLabels = {
-  advisedMasters: {
-    title: "Supervised master's theses",
-    description: "All master's theses I have supervised, ordered by year and title.",
-    icon: "mortarboard-fill",
-    accent: "primary"
-  },
-  advisedBachelors: {
-    title: "Supervised bachelor's theses",
-    description: "All bachelor's theses I have supervised, ordered by year and title.",
-    icon: "book-half",
-    accent: "info"
-  },
-  reviewed: {
-    title: "Reviewed theses",
-    description: "Theses where I acted as reviewer rather than primary supervisor.",
-    icon: "eye-fill",
-    accent: "secondary"
-  }
-} %}
-{% include "thesis-archive-sections.njk" %}
+{% set thesisArchiveTableId = "thesesArchiveTableEn" %}
+{% set thesisArchiveTbodyId = "thesesArchiveTbodyEn" %}
+{% set thesisArchiveHeading = "Thesis archive" %}
+{% set thesisArchiveDescription = "One server-rendered archive table shows the same canonical thesis set that Find & Explore uses during active search." %}
+{% set thesisArchiveLang = "en" %}
+{% set thesisArchiveLandingUrl = "/en/theses/" %}
+{% set thesisArchivePageBase = "/en/theses/page/" %}
+{% include "thesis-archive-table.njk" %}
 
 <section class="pb-5">
   <div class="site-shell">

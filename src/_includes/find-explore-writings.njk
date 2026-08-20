@@ -1,5 +1,5 @@
 {% set findExploreMountId = findExploreId or "findExplore" %}
-<section class="find-explore find-explore--{{ findExploreKind or 'writings' }}" aria-labelledby="{{ findExploreMountId }}Heading" data-find-explore data-find-explore-kind="{{ findExploreKind or 'writings' }}" {% if findExploreKinds %}data-find-explore-kinds="{{ findExploreKinds }}"{% endif %} data-find-explore-scope="{{ findExploreScope }}" data-find-explore-lang="{{ findExploreLang }}" {% if findExploreSearchLanguage %}data-find-explore-search-language="{{ findExploreSearchLanguage }}"{% endif %} {% if findExploreLanguageFilter %}data-find-explore-language-filter="{{ findExploreLanguageFilter }}"{% endif %} {% if findExploreSeedQuery %}data-find-explore-seed-query="{{ findExploreSeedQuery }}"{% endif %}>
+<section class="find-explore find-explore--{{ findExploreKind or 'writings' }}" aria-labelledby="{{ findExploreMountId }}Heading" data-find-explore data-find-explore-kind="{{ findExploreKind or 'writings' }}" {% if findExploreKinds %}data-find-explore-kinds="{{ findExploreKinds }}"{% endif %} data-find-explore-scope="{{ findExploreScope }}" data-find-explore-lang="{{ findExploreLang }}" {% if findExploreSearchLanguage %}data-find-explore-search-language="{{ findExploreSearchLanguage }}"{% endif %} {% if findExploreLanguageFilter %}data-find-explore-language-filter="{{ findExploreLanguageFilter }}"{% endif %} {% if findExploreSeedQuery %}data-find-explore-seed-query="{{ findExploreSeedQuery }}"{% endif %}{% if findExploreExternalResultsId %} data-find-explore-results-id="{{ findExploreExternalResultsId }}"{% endif %}>
   <div class="site-shell">
     <div class="find-explore-card card border-0 shadow-sm">
       <div class="card-body p-4">
@@ -25,6 +25,17 @@
                     {% endfor %}
                   </select>
                 </div>
+                {% if findExploreRoleOptions and (findExploreRoleOptions | length) %}
+                <div class="col-md-4">
+                  <label class="form-label small text-muted mb-1" for="{{ findExploreMountId }}Role">{{ findExploreRoleLabel }}</label>
+                  <select id="{{ findExploreMountId }}Role" class="form-select" name="role" data-find-explore-role>
+                    <option value="">{{ findExploreAllRolesLabel }}</option>
+                    {% for option in findExploreRoleOptions %}
+                    <option value="{{ option.value }}">{{ option.label }}{% if option.count %} ({{ option.count }}){% endif %}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                {% endif %}
                 <div class="col-md-4">
                   <label class="form-label small text-muted mb-1" for="{{ findExploreMountId }}Year">{{ findExploreYearLabel }}</label>
                   <select id="{{ findExploreMountId }}Year" class="form-select" name="year" data-find-explore-year>
@@ -68,7 +79,9 @@
             <div class="find-explore-status mt-3" role="status" aria-live="polite" aria-atomic="true" data-find-explore-status>
               {{ findExploreInitialStatus }}
             </div>
+            {% if not findExploreExternalResultsId %}
             <div class="find-explore-results mt-3" data-find-explore-results></div>
+            {% endif %}
             <button class="btn btn-outline-primary btn-sm mt-3 d-none" type="button" data-find-explore-more>{{ findExploreMoreLabel }}</button>
             <noscript>
               <p class="alert alert-info mt-3 mb-0">{{ findExploreNoScript }}</p>

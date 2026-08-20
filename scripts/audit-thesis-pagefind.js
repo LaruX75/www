@@ -117,7 +117,6 @@ function pickFilterSample(items) {
 
 function buildPlainTitleQuery(title) {
   return String(title || "")
-    .replace(/[^\p{L}\p{N}\s]+/gu, " ")
     .replace(/\s+/g, " ")
     .trim();
 }
@@ -180,6 +179,29 @@ async function runQueryAudit(instances, languages, query, expectedDetailUrl, fil
   return resolveSearchResults(result, expectedDetailUrl);
 }
 
+async function runTitleAudit(instances, languages, title, expectedDetailUrl) {
+  const exactTitleQuery = String(title || "").replace(/\s+/g, " ").trim();
+  const normalizedTitleQuery = buildPlainTitleQuery(title);
+  const exactAudit = await runQueryAudit(instances, languages, exactTitleQuery, expectedDetailUrl);
+
+  if (exactAudit.detailFound || normalizedTitleQuery === exactTitleQuery) {
+    return {
+      queryUsed: exactTitleQuery,
+      fallbackQuery: normalizedTitleQuery !== exactTitleQuery ? normalizedTitleQuery : "",
+      fallbackUsed: false,
+      ...exactAudit
+    };
+  }
+
+  const fallbackAudit = await runQueryAudit(instances, languages, normalizedTitleQuery, expectedDetailUrl);
+  return {
+    queryUsed: exactTitleQuery,
+    fallbackQuery: normalizedTitleQuery,
+    fallbackUsed: true,
+    ...fallbackAudit
+  };
+}
+
 function buildModeSummary(audits) {
   return {
     sampleSize: audits.length,
@@ -212,11 +234,9 @@ async function main() {
     const filterAudits = [];
 
     for (const thesis of titleSample) {
-      const plainTitleQuery = buildPlainTitleQuery(thesis.title);
       titleAudits.push({
         ...thesis,
-        plainTitleQuery,
-        audit: await runQueryAudit(instances, auditLanguages(thesis), plainTitleQuery, thesis.expectedDetailUrl)
+        audit: await runTitleAudit(instances, auditLanguages(thesis), thesis.title, thesis.expectedDetailUrl)
       });
     }
 

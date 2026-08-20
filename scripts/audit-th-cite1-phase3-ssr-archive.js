@@ -1,29 +1,20 @@
 #!/usr/bin/env node
 /**
- * TH-CITE1 Phase 3 — SSR-first archive verification.
+ * TH-CITE1 Phase 3 — converged SSR archive verification.
  *
- * Verifies the corrected Phase 3 architecture on the built `_site/`
- * output:
+ * Verifies the built `_site/` thesis archive after the single-table
+ * convergence:
  *
- *   1. All 16 bounded FI + 16 bounded EN permalinks exist as real
- *      SSR files (landing + per-section paginated pages).
- *   2. The union of thesis rows across the 8 FI landing/section
- *      pages covers all 169 canonical unique theses exactly once.
- *      Same for EN.
- *   3. Each SSR page renders `data-thesis-section` fragments for all
- *      three sections (masters, bachelors, reviewed) so the
- *      progressive-enhancement JS can swap any one fragment
- *      independently.
- *   4. Every SSR-rendered thesis citation comes from the shared
- *      renderer (contains APA 7 bracket `[Genre, Publisher]`), and
- *      no Phase 3 template surface still emits the legacy
- *      `citationApa` field directly.
- *   5. No SSR page contains a 169-row DOM (`< 60` archive citations
- *      per page — 30 visible + safety margin, versus the earlier
- *      "render full list" pattern where a page could have 169).
- *
- * Read-only. Writes docs/data/th-cite1-phase3-ssr-archive-<date>.json
- * with the per-URL row counts and closure summary.
+ *   1. All 9 FI + 9 EN flat pagination URLs exist as real SSR files.
+ *   2. The union of title links across each locale's 9 pages covers
+ *      all 169 canonical theses exactly once.
+ *   3. Every SSR page renders exactly one thesis archive table, one
+ *      shared results tbody, and top+bottom pagers.
+ *   4. No SSR page contains the legacy section fragments or citation
+ *      cells/classes.
+ *   5. No SSR page renders more than 20 thesis rows.
+ *   6. Sitemap still includes only the landing archive URLs and
+ *      excludes the paginated archive URLs.
  */
 
 const fs = require("fs");
@@ -33,42 +24,16 @@ const REPO_ROOT = path.resolve(__dirname, "..");
 const SITE_ROOT = path.join(REPO_ROOT, "_site");
 const OUT = path.join(REPO_ROOT, "docs", "data", "th-cite1-phase3-ssr-archive-2026-08-18.json");
 
-const FI_URLS = [
-  "/opinnaytteet/",
-  "/opinnaytteet/ohjatut-gradut/page/2/",
-  "/opinnaytteet/ohjatut-gradut/page/3/",
-  "/opinnaytteet/ohjatut-gradut/page/4/",
-  "/opinnaytteet/ohjatut-gradut/page/5/",
-  "/opinnaytteet/ohjatut-gradut/page/6/",
-  "/opinnaytteet/ohjatut-gradut/page/7/",
-  "/opinnaytteet/ohjatut-gradut/page/8/",
-  "/opinnaytteet/ohjatut-gradut/page/9/",
-  "/opinnaytteet/kandityot/page/2/",
-  "/opinnaytteet/kandityot/page/3/",
-  "/opinnaytteet/tarkastetut/page/2/",
-  "/opinnaytteet/tarkastetut/page/3/",
-  "/opinnaytteet/tarkastetut/page/4/",
-  "/opinnaytteet/tarkastetut/page/5/",
-  "/opinnaytteet/tarkastetut/page/6/"
-];
-const EN_URLS = [
-  "/en/theses/",
-  "/en/theses/masters/page/2/",
-  "/en/theses/masters/page/3/",
-  "/en/theses/masters/page/4/",
-  "/en/theses/masters/page/5/",
-  "/en/theses/masters/page/6/",
-  "/en/theses/masters/page/7/",
-  "/en/theses/masters/page/8/",
-  "/en/theses/masters/page/9/",
-  "/en/theses/bachelors/page/2/",
-  "/en/theses/bachelors/page/3/",
-  "/en/theses/reviewed/page/2/",
-  "/en/theses/reviewed/page/3/",
-  "/en/theses/reviewed/page/4/",
-  "/en/theses/reviewed/page/5/",
-  "/en/theses/reviewed/page/6/"
-];
+const PAGE_COUNT = 9;
+
+function buildArchiveUrls(landingUrl, pageBase) {
+  return Array.from({ length: PAGE_COUNT }, (_, index) => (
+    index === 0 ? landingUrl : `${pageBase}${index + 1}/`
+  ));
+}
+
+const FI_URLS = buildArchiveUrls("/opinnaytteet/", "/opinnaytteet/sivu/");
+const EN_URLS = buildArchiveUrls("/en/theses/", "/en/theses/page/");
 
 function requireFresh(rel) {
   const full = path.join(REPO_ROOT, rel);
@@ -76,115 +41,79 @@ function requireFresh(rel) {
   return require(full);
 }
 
+function htmlPathFor(pageUrl) {
+  const trimmed = pageUrl.replace(/^\/+/, "").replace(/\/$/, "");
+  return path.join(SITE_ROOT, trimmed, "index.html");
+}
+
 function loadHtml(pageUrl) {
-  const file = path.join(SITE_ROOT, pageUrl.replace(/\/$/, ""), "index.html");
-  return fs.readFileSync(file, "utf8");
+  return fs.readFileSync(htmlPathFor(pageUrl), "utf8");
 }
 
-function extractLandingSectionRows(html) {
-  // For the LANDING url only, all three sections show their page-1
-  // slice (10 items each). Collect unique thesis pageUrls from each
-  // section fragment.
-  const sectionRegex = /<section[^>]+data-thesis-section="([^"]+)"[\s\S]*?<\/section>/g;
-  const rows = { advisedMasters: [], advisedBachelors: [], reviewed: [] };
-  let match;
-  while ((match = sectionRegex.exec(html)) !== null) {
-    const sectionKey = match[1];
-    const body = match[0];
-    const linkRegex = /class="thesis-archive-title-link[^"]*"\s+href="([^"]+)"/g;
-    let linkMatch;
-    while ((linkMatch = linkRegex.exec(body)) !== null) {
-      if (!rows[sectionKey]) continue;
-      rows[sectionKey].push(linkMatch[1]);
-    }
-  }
-  return rows;
+function extractTitleLinks(html) {
+  const matches = html.match(/class="thesis-archive-title-link[^"]*"\s+href="([^"]+)"/g) || [];
+  return matches
+    .map((match) => {
+      const urlMatch = match.match(/href="([^"]+)"/);
+      return urlMatch ? urlMatch[1] : "";
+    })
+    .filter(Boolean);
 }
 
-function extractActiveSectionRows(html, activeSectionKey) {
-  // For a paginated per-section URL, we only credit the ACTIVE
-  // section's page-N rows toward the union (the other two sections
-  // are always at page 1 for those URLs — those rows are already
-  // credited from the landing URL).
-  const sectionRegex = new RegExp(
-    '<section[^>]+data-thesis-section="' + activeSectionKey + '"[\\s\\S]*?</section>'
-  );
-  const match = sectionRegex.exec(html);
-  if (!match) return [];
-  const body = match[0];
-  const linkRegex = /class="thesis-archive-title-link[^"]*"\s+href="([^"]+)"/g;
-  const rows = [];
-  let linkMatch;
-  while ((linkMatch = linkRegex.exec(body)) !== null) {
-    rows.push(linkMatch[1]);
-  }
-  return rows;
-}
-
-function activeSectionForUrl(pageUrl) {
-  if (/\/ohjatut-gradut\/|\/masters\//.test(pageUrl)) return "advisedMasters";
-  if (/\/kandityot\/|\/bachelors\//.test(pageUrl)) return "advisedBachelors";
-  if (/\/tarkastetut\/|\/reviewed\//.test(pageUrl)) return "reviewed";
-  return null;
-}
-
-function auditScope(scopeLabel, urls, canonicalItems) {
-  const canonicalByGroup = {
-    advisedMasters: canonicalItems.filter((i) => i.thesisRole !== "reviewed" && i.thesisType === "masterThesis"),
-    advisedBachelors: canonicalItems.filter((i) => i.thesisRole !== "reviewed" && i.thesisType === "bachelorThesis"),
-    reviewed: canonicalItems.filter((i) => i.thesisRole === "reviewed")
-  };
-  const expectedCount = canonicalItems.length;
-  const seenPageUrls = new Set();
-  const perUrl = [];
-  let bracketCitationTotal = 0;
-  let maxRowsAnyUrl = 0;
-  for (const pageUrl of urls) {
-    let html;
-    try {
-      html = loadHtml(pageUrl);
-    } catch (err) {
-      perUrl.push({ pageUrl, exists: false, note: String(err && err.message) });
-      continue;
-    }
-    const sectionFragmentCount = (html.match(/data-thesis-section="/g) || []).length;
-    const citationCount = (html.match(/class="[^"]*thesis-archive-citation[^"]*"/g) || []).length;
-    const bracketCount = (html.match(/thesis-archive-citation[^>]*>[^<]*\[[^<\]]+\]\./g) || []).length;
-    bracketCitationTotal += bracketCount;
-    if (citationCount > maxRowsAnyUrl) maxRowsAnyUrl = citationCount;
-    const active = activeSectionForUrl(pageUrl);
-    const rowsAddedByThisUrl = active
-      ? extractActiveSectionRows(html, active)
-      : [
-          ...extractLandingSectionRows(html).advisedMasters,
-          ...extractLandingSectionRows(html).advisedBachelors,
-          ...extractLandingSectionRows(html).reviewed
-        ];
-    for (const url of rowsAddedByThisUrl) seenPageUrls.add(url);
-    perUrl.push({
+function pageAudit(pageUrl) {
+  let html;
+  try {
+    html = loadHtml(pageUrl);
+  } catch (error) {
+    return {
       pageUrl,
-      exists: true,
-      sectionFragments: sectionFragmentCount,
-      citations: citationCount,
-      bracketFormattedCitations: bracketCount,
-      activeSection: active,
-      rowsCreditedToUnion: rowsAddedByThisUrl.length
-    });
+      exists: false,
+      note: String(error && error.message)
+    };
   }
+
+  const rows = extractTitleLinks(html);
+  const archiveCurrentPageMatch = html.match(/data-thesis-archive-current-page="(\d+)"/);
+
   return {
-    scope: scopeLabel,
+    pageUrl,
+    exists: true,
+    currentPage: archiveCurrentPageMatch ? Number.parseInt(archiveCurrentPageMatch[1], 10) : null,
+    tableCount: (html.match(/<table[^>]+thesis-archive-table/g) || []).length,
+    tbodyCount: (html.match(/<tbody[^>]+data-find-explore-results/g) || []).length,
+    topPagerCount: (html.match(/data-thesis-archive-pager-position="top"/g) || []).length,
+    bottomPagerCount: (html.match(/data-thesis-archive-pager-position="bottom"/g) || []).length,
+    rowCount: rows.length,
+    titleLinks: rows,
+    hasLegacySectionFragments: /data-thesis-section=/.test(html),
+    hasLegacyCitationCells: /thesis-archive-citation/.test(html)
+  };
+}
+
+function auditScope(scope, urls, canonicalItems) {
+  const expectedRows = canonicalItems
+    .filter((item) => item?.pageUrl && item?.title)
+    .map((item) => item.pageUrl);
+  const expectedSet = new Set(expectedRows);
+  const perUrl = urls.map(pageAudit);
+  const seenRows = new Set();
+
+  perUrl.forEach((entry) => {
+    (entry.titleLinks || []).forEach((href) => seenRows.add(href));
+  });
+
+  const unexpectedRows = [...seenRows].filter((href) => !expectedSet.has(href));
+  const missingRows = [...expectedSet].filter((href) => !seenRows.has(href));
+
+  return {
+    scope,
     urlsChecked: urls.length,
-    expectedCanonicalUnique: expectedCount,
-    unionOfSsrRows: seenPageUrls.size,
-    unionMatchesCanonical: seenPageUrls.size === expectedCount,
-    bracketCitationTotal,
-    maxRowsAnyUrl,
-    exceededPageBudget: maxRowsAnyUrl > 60,
-    perSectionCanonicalCounts: {
-      advisedMasters: canonicalByGroup.advisedMasters.length,
-      advisedBachelors: canonicalByGroup.advisedBachelors.length,
-      reviewed: canonicalByGroup.reviewed.length
-    },
+    expectedCanonicalUnique: expectedSet.size,
+    unionOfSsrRows: seenRows.size,
+    unionMatchesCanonical: seenRows.size === expectedSet.size && unexpectedRows.length === 0 && missingRows.length === 0,
+    unexpectedRows,
+    missingRows,
+    maxRowsAnyUrl: perUrl.reduce((max, entry) => Math.max(max, entry.rowCount || 0), 0),
     perUrl
   };
 }
@@ -203,22 +132,13 @@ async function main() {
   const fi = auditScope("fi", FI_URLS, items);
   const en = auditScope("en", EN_URLS, items);
 
-  // Sitemap projection gate. The 15 per-locale paginated permalinks
-  // MUST NOT appear in sitemap.xml. Only the landing archive URLs
-  // (/opinnaytteet/ and /en/theses/) belong there. This gate reads
-  // the actual built sitemap rather than trusting metadata alone.
-  const sitemapPath = path.join(SITE_ROOT, "sitemap.xml");
-  const sitemapXml = fs.readFileSync(sitemapPath, "utf8");
+  const sitemapXml = fs.readFileSync(path.join(SITE_ROOT, "sitemap.xml"), "utf8");
   const paginatedRoutePatterns = [
-    /\/opinnaytteet\/ohjatut-gradut\/page\//,
-    /\/opinnaytteet\/kandityot\/page\//,
-    /\/opinnaytteet\/tarkastetut\/page\//,
-    /\/en\/theses\/masters\/page\//,
-    /\/en\/theses\/bachelors\/page\//,
-    /\/en\/theses\/reviewed\/page\//
+    /\/opinnaytteet\/sivu\//,
+    /\/en\/theses\/page\//
   ];
   const sitemapPaginationHits = paginatedRoutePatterns.map((pattern) => {
-    const matches = sitemapXml.match(new RegExp("<loc>[^<]*" + pattern.source.replace(/^\//, "").replace(/\\\//g, "/") + "[^<]*</loc>", "g")) || [];
+    const matches = sitemapXml.match(new RegExp(`<loc>[^<]*${pattern.source.replace(/^\//, "").replace(/\\\//g, "/")}[^<]*</loc>`, "g")) || [];
     return { pattern: pattern.source, count: matches.length, examples: matches.slice(0, 3) };
   });
   const sitemapClean = sitemapPaginationHits.every((hit) => hit.count === 0);
@@ -226,26 +146,46 @@ async function main() {
     /<loc>[^<]*\/opinnaytteet\/<\/loc>/.test(sitemapXml)
     && /<loc>[^<]*\/en\/theses\/<\/loc>/.test(sitemapXml);
 
+  const fiPageGates = fi.perUrl.every((entry) => (
+    entry.exists
+    && entry.tableCount === 1
+    && entry.tbodyCount === 1
+    && entry.topPagerCount === 1
+    && entry.bottomPagerCount === 1
+    && entry.rowCount <= 20
+    && !entry.hasLegacySectionFragments
+    && !entry.hasLegacyCitationCells
+  ));
+  const enPageGates = en.perUrl.every((entry) => (
+    entry.exists
+    && entry.tableCount === 1
+    && entry.tbodyCount === 1
+    && entry.topPagerCount === 1
+    && entry.bottomPagerCount === 1
+    && entry.rowCount <= 20
+    && !entry.hasLegacySectionFragments
+    && !entry.hasLegacyCitationCells
+  ));
+
   const gates = {
-    fiBoundedPermalinks: fi.perUrl.every((r) => r.exists),
-    enBoundedPermalinks: en.perUrl.every((r) => r.exists),
+    fiAllPagesExistAndMatchContract: fiPageGates,
+    enAllPagesExistAndMatchContract: enPageGates,
     fiUnionEqualsCanonical: fi.unionMatchesCanonical,
     enUnionEqualsCanonical: en.unionMatchesCanonical,
-    fiNoOversizedPage: !fi.exceededPageBudget,
-    enNoOversizedPage: !en.exceededPageBudget,
-    fiAllSsrCitationsBracketFormat: fi.perUrl.every((r) => !r.exists || r.citations === r.bracketFormattedCitations),
-    enAllSsrCitationsBracketFormat: en.perUrl.every((r) => !r.exists || r.citations === r.bracketFormattedCitations),
+    fiNoOversizedPage: fi.maxRowsAnyUrl <= 20,
+    enNoOversizedPage: en.maxRowsAnyUrl <= 20,
     sitemapExcludesPaginatedUrls: sitemapClean,
     sitemapIncludesBothLandingArchives: sitemapLandingsPresent
   };
-  const gateFailures = Object.entries(gates).filter(([, ok]) => !ok).map(([n]) => n);
+  const gateFailures = Object.entries(gates).filter(([, ok]) => !ok).map(([name]) => name);
 
   const report = {
     generatedAt: new Date().toISOString(),
-    scope: "TH-CITE1 Phase 3 — SSR-first archive verification",
+    scope: "TH-CITE1 Phase 3 — converged SSR archive verification",
     canonical: {
-      canonicalUniqueTheses: items.length,
-      rawSourceCount: "170 (see phase1 parity audit — one duplicate URL in gradut)"
+      canonicalUniqueTheses: items.filter((item) => item?.pageUrl && item?.title).length,
+      pageSize: 20,
+      pageCount: PAGE_COUNT
     },
     fi,
     en,
@@ -260,21 +200,21 @@ async function main() {
 
   fs.mkdirSync(path.dirname(OUT), { recursive: true });
   fs.writeFileSync(OUT, JSON.stringify(report, null, 2));
+
   console.log("wrote", path.relative(REPO_ROOT, OUT));
-  console.log("canonical unique theses:", items.length);
+  console.log("canonical unique theses:", report.canonical.canonicalUniqueTheses);
   console.log(`FI: ${fi.urlsChecked} SSR URLs — union of thesis rows = ${fi.unionOfSsrRows}/${fi.expectedCanonicalUnique}`);
   console.log(`EN: ${en.urlsChecked} SSR URLs — union of thesis rows = ${en.unionOfSsrRows}/${en.expectedCanonicalUnique}`);
-  console.log(`FI bracket-format citations across all URLs: ${fi.bracketCitationTotal}`);
-  console.log(`EN bracket-format citations across all URLs: ${en.bracketCitationTotal}`);
-  console.log(`FI max rows any single URL: ${fi.maxRowsAnyUrl} (page budget 60)`);
-  console.log(`EN max rows any single URL: ${en.maxRowsAnyUrl} (page budget 60)`);
+  console.log(`FI max rows any single URL: ${fi.maxRowsAnyUrl} (page budget 20)`);
+  console.log(`EN max rows any single URL: ${en.maxRowsAnyUrl} (page budget 20)`);
   console.log(`sitemap landings /opinnaytteet/ + /en/theses/ present: ${sitemapLandingsPresent}`);
-  console.log(`sitemap paginated-URL hits: ${sitemapPaginationHits.reduce((sum, h) => sum + h.count, 0)}`);
+  console.log(`sitemap paginated-URL hits: ${sitemapPaginationHits.reduce((sum, hit) => sum + hit.count, 0)}`);
   console.log("gate failures:", gateFailures.length === 0 ? "(none)" : gateFailures.join(", "));
+
   if (gateFailures.length > 0) process.exit(1);
 }
 
-main().catch((err) => {
-  console.error(err.stack || err);
+main().catch((error) => {
+  console.error(error.stack || error);
   process.exit(1);
 });
