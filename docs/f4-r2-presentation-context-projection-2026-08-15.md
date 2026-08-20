@@ -1,7 +1,7 @@
 # F4-R2 Presentation Context Projection Audit
 
 Date: 2026-08-15
-Worktree: `/private/tmp/www-f4-r1-research-eligibility`
+Worktree: `temporary clean worktree snapshot`
 Branch: `codex/f4-r1-research-eligibility`
 
 ## 1. Scope
@@ -53,7 +53,7 @@ Existing flow before fix:
 
 ## 7. Exact Context-Loss Point
 
-The loss happened in the canonical presentation projection path in [`src/_data/presentationsPage.js`](/private/tmp/www-f4-r1-research-eligibility/src/_data/presentationsPage.js), where matched local-detail context values were not copied onto the canonical/public records later used by Pagefind.
+The loss happened in the canonical presentation projection path in [`src/_data/presentationsPage.js`](../src/_data/presentationsPage.js), where matched local-detail context values were not copied onto the canonical/public records later used by Pagefind.
 
 ## 8. Diagnosis
 
@@ -67,13 +67,13 @@ Diagnosis: **B**
 
 Changed files:
 
-- [`src/_data/presentationsPage.js`](/private/tmp/www-f4-r1-research-eligibility/src/_data/presentationsPage.js)
-- [`scripts/_lib/presentationPagefind.js`](/private/tmp/www-f4-r1-research-eligibility/scripts/_lib/presentationPagefind.js)
-- [`scripts/audit-presentation-detail-parity.js`](/private/tmp/www-f4-r1-research-eligibility/scripts/audit-presentation-detail-parity.js)
-- [`scripts/audit-f4-research-built-output.js`](/private/tmp/www-f4-r1-research-eligibility/scripts/audit-f4-research-built-output.js)
-- [`scripts/audit-presentation-context-projection.js`](/private/tmp/www-f4-r1-research-eligibility/scripts/audit-presentation-context-projection.js)
-- [`tests/unit/presentationsPage.test.js`](/private/tmp/www-f4-r1-research-eligibility/tests/unit/presentationsPage.test.js)
-- [`tests/unit/presentationResearchTopics.test.js`](/private/tmp/www-f4-r1-research-eligibility/tests/unit/presentationResearchTopics.test.js)
+- [`src/_data/presentationsPage.js`](../src/_data/presentationsPage.js)
+- [`scripts/_lib/presentationPagefind.js`](../scripts/_lib/presentationPagefind.js)
+- [`scripts/audit-presentation-detail-parity.js`](../scripts/audit-presentation-detail-parity.js)
+- [`scripts/audit-f4-research-built-output.js`](../scripts/audit-f4-research-built-output.js)
+- [`scripts/audit-presentation-context-projection.js`](../scripts/audit-presentation-context-projection.js)
+- [`tests/unit/presentationsPage.test.js`](../tests/unit/presentationsPage.test.js)
+- [`tests/unit/presentationResearchTopics.test.js`](../tests/unit/presentationResearchTopics.test.js)
 
 Implementation details:
 
@@ -157,8 +157,8 @@ Passed:
 - `node scripts/audit-presentations-page-client-parity.js`
 - `node scripts/audit-presentations-f3c-p3-integration.js`
 - `node scripts/audit-presentations-f3c-p6-built-output.js`
-- `node /private/tmp/www-f4-r1-research-eligibility/scripts/audit-presentation-pagefind.js` from isolated temp cwd
-- `node /private/tmp/www-f4-r1-research-eligibility/scripts/audit-presentation-topic-mapping.js` from isolated temp cwd
+- `node scripts/audit-presentation-pagefind.js` from isolated temp cwd
+- `node scripts/audit-presentation-topic-mapping.js` from isolated temp cwd
 - `PLAYWRIGHT_USE_STATIC_SERVER=true PLAYWRIGHT_A11Y_OFFLINE=true DISABLE_OG_IMAGES=true npx playwright test --workers=1 tests/presentations-research-smoke.spec.js tests/presentations-archive.spec.js`
 
 ## 18. F4 Regressions

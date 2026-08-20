@@ -71,15 +71,15 @@ No presentation is admitted to Research through topic mapping alone.
 
 Current R3 implementation changes in the worktree:
 
-- [src/fi/tutkimus.md](/private/tmp/www-f4-r1-research-eligibility/src/fi/tutkimus.md) adds presentations to the Research Find & Explore scope and content-type selector
-- [src/js/find-explore.js](/private/tmp/www-f4-r1-research-eligibility/src/js/find-explore.js) adds presentation labels, filters, year handling, and Research presentation topic-preset routing
-- [scripts/_lib/presentationPagefind.js](/private/tmp/www-f4-r1-research-eligibility/scripts/_lib/presentationPagefind.js) exposes existing presentation `research` context to Pagefind and includes presentation metadata in injected/custom records
-- [scripts/run-pagefind.js](/private/tmp/www-f4-r1-research-eligibility/scripts/run-pagefind.js) reuses built local HTML text for presentation custom records
-- [scripts/audit-f4-research-built-output.js](/private/tmp/www-f4-r1-research-eligibility/scripts/audit-f4-research-built-output.js) extends the F4 audit to presentations and Research-specific presentation checks
-- [scripts/audit-presentation-context-projection.js](/private/tmp/www-f4-r1-research-eligibility/scripts/audit-presentation-context-projection.js) now asserts the Research mount includes presentations
-- [tests/f4-research-find-explore.spec.js](/private/tmp/www-f4-r1-research-eligibility/tests/f4-research-find-explore.spec.js) extends Research smoke coverage to authoritative presentations
-- [tests/unit/presentationResearchTopics.test.js](/private/tmp/www-f4-r1-research-eligibility/tests/unit/presentationResearchTopics.test.js) asserts the shared `Research context` Pagefind filter
-- [src/_includes/presentation-item.njk](/private/tmp/www-f4-r1-research-eligibility/src/_includes/presentation-item.njk) adds Pagefind weight hints to the visible presentation title/lead
+- [src/fi/tutkimus.md](../src/fi/tutkimus.md) adds presentations to the Research Find & Explore scope and content-type selector
+- [src/js/find-explore.js](../src/js/find-explore.js) adds presentation labels, filters, year handling, and Research presentation topic-preset routing
+- [scripts/_lib/presentationPagefind.js](../scripts/_lib/presentationPagefind.js) exposes existing presentation `research` context to Pagefind and includes presentation metadata in injected/custom records
+- [scripts/run-pagefind.js](../scripts/run-pagefind.js) reuses built local HTML text for presentation custom records
+- [scripts/audit-f4-research-built-output.js](../scripts/audit-f4-research-built-output.js) extends the F4 audit to presentations and Research-specific presentation checks
+- [scripts/audit-presentation-context-projection.js](../scripts/audit-presentation-context-projection.js) now asserts the Research mount includes presentations
+- [tests/f4-research-find-explore.spec.js](../tests/f4-research-find-explore.spec.js) extends Research smoke coverage to authoritative presentations
+- [tests/unit/presentationResearchTopics.test.js](../tests/unit/presentationResearchTopics.test.js) asserts the shared `Research context` Pagefind filter
+- [src/_includes/presentation-item.njk](../src/_includes/presentation-item.njk) adds Pagefind weight hints to the visible presentation title/lead
 
 ## 8. Research scope before/after
 

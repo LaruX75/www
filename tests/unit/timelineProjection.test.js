@@ -26,7 +26,7 @@ function canonicalRecord(overrides = {}) {
 
 describe("timelineProjection", () => {
   test("preserves canonical id, pageUrl, contentType, and contexts without leaking source object", () => {
-    const projected = projectCanonicalTimelineItem(canonicalRecord(), { sourceDomain: "blog" });
+    const projected = projectCanonicalTimelineItem(canonicalRecord(), { sourceCollection: "blog" });
     assert.equal(projected.ok, true);
     assert.deepEqual(projected.item, {
       id: "/blog/example/",
@@ -35,12 +35,13 @@ describe("timelineProjection", () => {
       date: "2026-08-20",
       year: 2026,
       contentType: "blogPost",
-      contexts: ["research", "teaching"],
-      sourceDomain: "blog"
+      contexts: ["research", "teaching"]
     });
     assert.deepEqual(Object.keys(projected.item).sort(), [...INTERNAL_TIMELINE_FIELDS].sort());
     assert.equal("categories" in projected.item, false);
     assert.equal("keywords" in projected.item, false);
+    assert.equal("sourceDomain" in projected.item, false);
+    assert.equal("sourceCollection" in projected.item, false);
   });
 
   test("normalizes authoritative Date objects deterministically", () => {
@@ -56,7 +57,7 @@ describe("timelineProjection", () => {
   test("normalizes ISO-like date strings and derives year", () => {
     const projected = projectCanonicalTimelineItem(
       canonicalRecord({ date: "2025-01-02T10:11:12.000Z" }),
-      { sourceDomain: "politics" }
+      { sourceCollection: "politics" }
     );
     assert.equal(projected.ok, true);
     assert.equal(projected.item.date, "2025-01-02");
@@ -65,9 +66,9 @@ describe("timelineProjection", () => {
 
   test("sorts newest-first and uses pageUrl as deterministic tie-break", () => {
     const items = sortTimelineItems([
-      projectCanonicalTimelineItem(canonicalRecord({ id: "b", pageUrl: "/b/", date: "2025-05-05" }), { sourceDomain: "blog" }).item,
-      projectCanonicalTimelineItem(canonicalRecord({ id: "a", pageUrl: "/a/", date: "2026-05-05" }), { sourceDomain: "blog" }).item,
-      projectCanonicalTimelineItem(canonicalRecord({ id: "c", pageUrl: "/c/", date: "2026-05-05" }), { sourceDomain: "blog" }).item
+      projectCanonicalTimelineItem(canonicalRecord({ id: "b", pageUrl: "/b/", date: "2025-05-05" }), { sourceCollection: "blog" }).item,
+      projectCanonicalTimelineItem(canonicalRecord({ id: "a", pageUrl: "/a/", date: "2026-05-05" }), { sourceCollection: "blog" }).item,
+      projectCanonicalTimelineItem(canonicalRecord({ id: "c", pageUrl: "/c/", date: "2026-05-05" }), { sourceCollection: "blog" }).item
     ]);
 
     assert.deepEqual(items.map((item) => item.pageUrl), ["/a/", "/c/", "/b/"]);
@@ -75,9 +76,9 @@ describe("timelineProjection", () => {
 
   test("groups projected items by year after deterministic sorting", () => {
     const groups = groupTimelineItemsByYear([
-      projectCanonicalTimelineItem(canonicalRecord({ id: "b", pageUrl: "/b/", date: "2025-05-05" }), { sourceDomain: "blog" }).item,
-      projectCanonicalTimelineItem(canonicalRecord({ id: "a", pageUrl: "/a/", date: "2026-05-05" }), { sourceDomain: "blog" }).item,
-      projectCanonicalTimelineItem(canonicalRecord({ id: "c", pageUrl: "/c/", date: "2026-01-01" }), { sourceDomain: "blog" }).item
+      projectCanonicalTimelineItem(canonicalRecord({ id: "b", pageUrl: "/b/", date: "2025-05-05" }), { sourceCollection: "blog" }).item,
+      projectCanonicalTimelineItem(canonicalRecord({ id: "a", pageUrl: "/a/", date: "2026-05-05" }), { sourceCollection: "blog" }).item,
+      projectCanonicalTimelineItem(canonicalRecord({ id: "c", pageUrl: "/c/", date: "2026-01-01" }), { sourceCollection: "blog" }).item
     ]);
 
     assert.deepEqual(groups.map((group) => group.year), [2026, 2025]);
@@ -87,11 +88,11 @@ describe("timelineProjection", () => {
   test("missing dates are excluded with explicit reason", () => {
     const projected = projectCanonicalTimelineItem(
       canonicalRecord({ date: "" }),
-      { sourceDomain: "publications" }
+      { sourceCollection: "publications" }
     );
     assert.deepEqual(projected, {
       ok: false,
-      sourceDomain: "publications",
+      sourceCollection: "publications",
       reason: "missing-date",
       input: {
         id: "/blog/example/",
@@ -104,7 +105,7 @@ describe("timelineProjection", () => {
   test("invalid or approximate dates are excluded with explicit reason", () => {
     const projected = projectCanonicalTimelineItem(
       canonicalRecord({ date: "2026" }),
-      { sourceDomain: "publications" }
+      { sourceCollection: "publications" }
     );
     assert.equal(projected.ok, false);
     assert.equal(projected.reason, "invalid-date");
@@ -113,7 +114,7 @@ describe("timelineProjection", () => {
   test("duplicate projected identities are rejected", () => {
     assert.throws(() => buildTimelineProjection([
       {
-        sourceDomain: "blog",
+        sourceCollection: "blog",
         items: [
           canonicalRecord({ id: "/same/", pageUrl: "/a/" }),
           canonicalRecord({ id: "/same/", pageUrl: "/b/" })
@@ -127,7 +128,7 @@ describe("timelineProjection", () => {
   test("duplicate canonical pageUrls are rejected", () => {
     assert.throws(() => buildTimelineProjection([
       {
-        sourceDomain: "blog",
+        sourceCollection: "blog",
         items: [
           canonicalRecord({ id: "/a/", pageUrl: "/same/" }),
           canonicalRecord({ id: "/b/", pageUrl: "/same/" })
@@ -141,7 +142,7 @@ describe("timelineProjection", () => {
   test("buildTimelineProjection preserves contexts without topic to research inference", () => {
     const projection = buildTimelineProjection([
       {
-        sourceDomain: "blog",
+        sourceCollection: "blog",
         items: [
           canonicalRecord({
             id: "/blog/no-research/",
@@ -159,17 +160,17 @@ describe("timelineProjection", () => {
     assert.deepEqual(projection.contextCounts, { teaching: 1 });
   });
 
-  test("buildTimelineProjection reports counts, exclusions, year range, and source domains", () => {
+  test("buildTimelineProjection reports counts, exclusions, year range, and source collections", () => {
     const projection = buildTimelineProjection([
       {
-        sourceDomain: "blog",
+        sourceCollection: "blog",
         items: [
           canonicalRecord({ id: "/blog/a/", pageUrl: "/blog/a/", date: "2026-01-02", contexts: ["research"] }),
           canonicalRecord({ id: "/blog/b/", pageUrl: "/blog/b/", date: "" })
         ]
       },
       {
-        sourceDomain: "politics",
+        sourceCollection: "politics",
         items: [
           canonicalRecord({ id: "/politics/c/", pageUrl: "/politics/c/", date: "2024-05-06", contexts: ["societal-interaction"] })
         ]
@@ -182,7 +183,7 @@ describe("timelineProjection", () => {
     assert.deepEqual(projection.excludedReasons, { "missing-date": 1 });
     assert.equal(projection.latestYear, 2026);
     assert.equal(projection.earliestYear, 2024);
-    assert.deepEqual(projection.sourceDomainCounts, { blog: 1, politics: 1 });
+    assert.deepEqual(projection.sourceCollectionCounts, { blog: 1, politics: 1 });
     assert.deepEqual(projection.itemsPerYear, { "2024": 1, "2026": 1 });
     assert.deepEqual(projection.ordering, {
       primary: "date DESC",

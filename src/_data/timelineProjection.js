@@ -2,7 +2,7 @@ const { readCouncilMeetingCollections } = require("./councilMeetings");
 const toPublicContentRecord = require("../_utils/toPublicContentRecord");
 const { buildTimelineProjection } = require("../_utils/timelineProjection");
 
-const TIMELINE_SOURCE_DOMAINS = Object.freeze([
+const TIMELINE_SOURCE_COLLECTIONS = Object.freeze([
   "blog",
   "politics",
   "publications"
@@ -20,12 +20,12 @@ function buildTimelineSourceItems(items = []) {
 
 module.exports = function timelineProjectionData() {
   const collections = readCouncilMeetingCollections();
-  const sources = TIMELINE_SOURCE_DOMAINS.map((sourceDomain) => ({
-    sourceDomain,
-    items: buildTimelineSourceItems(collections[sourceDomain] || [])
+  const sources = TIMELINE_SOURCE_COLLECTIONS.map((sourceCollection) => ({
+    sourceCollection,
+    items: buildTimelineSourceItems(collections[sourceCollection] || [])
   }));
 
   return buildTimelineProjection(sources);
 };
 
-module.exports.TIMELINE_SOURCE_DOMAINS = TIMELINE_SOURCE_DOMAINS;
+module.exports.TIMELINE_SOURCE_COLLECTIONS = TIMELINE_SOURCE_COLLECTIONS;

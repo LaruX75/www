@@ -31,7 +31,7 @@ Out of scope:
 
 Authoritative snapshot used for the audit:
 
-- repo root: `/private/tmp/www-pf1-audit-main`
+- repo root: `temporary clean worktree snapshot`
 - branch for this report commit: `codex/pf1-user-facing-discovery-model-audit`
 - audited `main` snapshot HEAD: `d87bf58669018befac040623e1a2c9f1c54c7d16`
 - `origin/main` HEAD at audit time: `d87bf58669018befac040623e1a2c9f1c54c7d16`

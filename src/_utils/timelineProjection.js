@@ -5,8 +5,7 @@ const INTERNAL_TIMELINE_FIELDS = Object.freeze([
   "date",
   "year",
   "contentType",
-  "contexts",
-  "sourceDomain"
+  "contexts"
 ]);
 
 function toArray(value) {
@@ -97,7 +96,7 @@ function normalizeAuthoritativeDate(value) {
 }
 
 function projectCanonicalTimelineItem(record = {}, options = {}) {
-  const sourceDomain = pickString(options.sourceDomain);
+  const sourceCollection = pickString(options.sourceCollection);
   const id = pickString(record.id);
   const pageUrl = pickString(record.pageUrl || record.url);
   const title = pickString(record.title);
@@ -105,12 +104,8 @@ function projectCanonicalTimelineItem(record = {}, options = {}) {
   const contexts = uniqueStrings(record.contexts);
   const normalizedDate = normalizeAuthoritativeDate(record.date);
 
-  if (!sourceDomain) {
-    throw new Error("timeline projection requires sourceDomain");
-  }
-
   if (!id) {
-    throw new Error(`timeline projection requires canonical id for sourceDomain=${sourceDomain}`);
+    throw new Error("timeline projection requires canonical id");
   }
 
   if (!pageUrl || !pageUrl.startsWith("/")) {
@@ -128,7 +123,7 @@ function projectCanonicalTimelineItem(record = {}, options = {}) {
   if (!normalizedDate.ok) {
     return {
       ok: false,
-      sourceDomain,
+      sourceCollection,
       reason: normalizedDate.reason,
       input: {
         id,
@@ -147,8 +142,7 @@ function projectCanonicalTimelineItem(record = {}, options = {}) {
       date: normalizedDate.date,
       year: normalizedDate.year,
       contentType,
-      contexts,
-      sourceDomain
+      contexts
     }
   };
 }
@@ -230,23 +224,28 @@ function createDuplicateError(kind, values) {
 function buildTimelineProjection(sources = []) {
   const projectedItems = [];
   const excluded = [];
-  const sourceDomains = [];
+  const sourceCollections = [];
+  const sourceCollectionCounts = new Map();
   let inputCount = 0;
 
   toArray(sources).forEach((source) => {
-    const sourceDomain = pickString(source?.sourceDomain);
+    const sourceCollection = pickString(source?.sourceCollection);
     const items = toArray(source?.items);
-    if (!sourceDomain) {
-      throw new Error("timeline projection source requires sourceDomain");
+    if (!sourceCollection) {
+      throw new Error("timeline projection source requires sourceCollection");
     }
 
-    sourceDomains.push(sourceDomain);
+    sourceCollections.push(sourceCollection);
     inputCount += items.length;
 
     items.forEach((record) => {
-      const projected = projectCanonicalTimelineItem(record, { sourceDomain });
+      const projected = projectCanonicalTimelineItem(record, { sourceCollection });
       if (projected.ok) {
         projectedItems.push(projected.item);
+        sourceCollectionCounts.set(
+          sourceCollection,
+          (sourceCollectionCounts.get(sourceCollection) || 0) + 1
+        );
         return;
       }
       excluded.push(projected);
@@ -268,7 +267,7 @@ function buildTimelineProjection(sources = []) {
   const years = yearGroups.map((group) => group.year);
 
   return {
-    sourceDomains: [...new Set(sourceDomains)],
+    sourceCollections: [...new Set(sourceCollections)],
     inputCount,
     projectedCount: items.length,
     excludedCount: excluded.length,
@@ -282,7 +281,13 @@ function buildTimelineProjection(sources = []) {
     latestYear: years.length ? years[0] : null,
     itemsPerYear: Object.fromEntries(yearGroups.map((group) => [String(group.year), group.items.length])),
     contextCounts: countTimelineField(items, "contexts"),
-    sourceDomainCounts: countTimelineField(items, "sourceDomain"),
+    sourceCollectionCounts: Object.fromEntries(
+      [...sourceCollectionCounts.entries()].sort((left, right) => {
+        const countDiff = right[1] - left[1];
+        if (countDiff !== 0) return countDiff;
+        return left[0].localeCompare(right[0], "fi");
+      })
+    ),
     ordering: {
       primary: "date DESC",
       tieBreaker: "pageUrl ASC"

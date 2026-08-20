@@ -49,13 +49,13 @@ T1B1 starts from the merged T1A audit evidence on `main`:
 
 Relevant source docs:
 
-- [t1-timeline-2-audit-2026-08-20.md](/private/tmp/www-t1b1-main/docs/t1-timeline-2-audit-2026-08-20.md)
-- [find-explore-roadmap-2026-08-12.md](/private/tmp/www-t1b1-main/docs/find-explore-roadmap-2026-08-12.md)
-- [ci-closure-1-2026-08-20.md](/private/tmp/www-t1b1-main/docs/ci-closure-1-2026-08-20.md)
+- [t1-timeline-2-audit-2026-08-20.md](./t1-timeline-2-audit-2026-08-20.md)
+- [find-explore-roadmap-2026-08-12.md](./find-explore-roadmap-2026-08-12.md)
+- [ci-closure-1-2026-08-20.md](./ci-closure-1-2026-08-20.md)
 
 ## 3. Authoritative Input Sources Chosen
 
-Chosen representative canonical source domains:
+Chosen representative canonical source collections:
 
 - `blog`
 - `politics`
@@ -63,11 +63,11 @@ Chosen representative canonical source domains:
 
 Current canonical loader reused:
 
-- `readCouncilMeetingCollections()` from [councilMeetings.js](/private/tmp/www-t1b1-main/src/_data/councilMeetings.js)
+- `readCouncilMeetingCollections()` from [councilMeetings.js](../src/_data/councilMeetings.js)
 
 Current canonical serializer reused:
 
-- `toPublicContentRecord()` from [toPublicContentRecord.js](/private/tmp/www-t1b1-main/src/_utils/toPublicContentRecord.js)
+- `toPublicContentRecord()` from [toPublicContentRecord.js](../src/_utils/toPublicContentRecord.js)
 
 Why these sources were chosen:
 
@@ -85,6 +85,14 @@ Why theses and Research.fi-driven publication detail records were not chosen in 
 
 That boundary is documented now rather than hidden by coercion.
 
+Important semantic boundary:
+
+```text
+filesystem directory != canonical content domain
+```
+
+In T1B1 the collection names above are implementation provenance only. They are not projected into the generic `TimelineItem`, and they are not treated as authoritative content-domain semantics.
+
 ## 4. Projection Contract
 
 Internal projected item shape:
@@ -97,8 +105,7 @@ Internal projected item shape:
   "date": "2026-08-20",
   "year": 2026,
   "contentType": "blogPost",
-  "contexts": ["research", "teaching"],
-  "sourceDomain": "blog"
+  "contexts": ["research", "teaching"]
 }
 ```
 
@@ -108,14 +115,16 @@ Rules:
 - canonical local `pageUrl` preserved
 - canonical `contentType` preserved
 - `contexts` copied only from authoritative existing semantics
+- canonical `contentType` is the semantic content classification
 - no whole-source-object passthrough
 - no timeline-specific canonical fields added
 - no labels localized into the projection
+- no filesystem collection/directory value exposed as semantic domain metadata
 
 Files:
 
-- [timelineProjection.js](/private/tmp/www-t1b1-main/src/_utils/timelineProjection.js)
-- [timelineProjection.js](/private/tmp/www-t1b1-main/src/_data/timelineProjection.js)
+- [timelineProjection.js](../src/_utils/timelineProjection.js)
+- [timelineProjection.js](../src/_data/timelineProjection.js)
 
 ## 5. Identity Rule
 
@@ -236,11 +245,11 @@ Important non-change:
 
 Audit script:
 
-- [audit-t1b1-timeline-projection.js](/private/tmp/www-t1b1-main/scripts/audit-t1b1-timeline-projection.js)
+- [audit-t1b1-timeline-projection.js](../scripts/audit-t1b1-timeline-projection.js)
 
 Representative corpus result:
 
-- source domains: `blog`, `politics`, `publications`
+- source collections: `blog`, `politics`, `publications`
 - input count: `254`
 - projected count: `254`
 - excluded count: `0`
@@ -250,11 +259,17 @@ Representative corpus result:
 - invalid dates: `0`
 - year range: `1998` -> `2026`
 
-Projected source-domain distribution:
+Projected source-collection distribution:
 
 - `publications`: `164`
 - `blog`: `80`
 - `politics`: `10`
+
+Those counts are audit provenance only:
+
+- they describe which existing source collection fed the representative T1B1 corpus
+- they do not claim canonical Publications-domain / Blog-domain / Politics-domain membership
+- semantic classification remains in canonical `contentType`
 
 Projected contexts present:
 

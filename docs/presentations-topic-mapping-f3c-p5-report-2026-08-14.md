@@ -221,10 +221,10 @@ Date: 2026-08-14
 - build: Verified separately in checkpoint run
 - unit tests: Verified separately in checkpoint run
 - structured mapping quality: PASS
-- report artifact: [presentations-topic-mapping-f3c-p5-report-2026-08-14.md](/private/tmp/www-presentations-main-reconciliation/docs/presentations-topic-mapping-f3c-p5-report-2026-08-14.md)
-- csv artifact: [presentation-research-topic-mapping-f3c-p5.csv](/private/tmp/www-presentations-main-reconciliation/docs/data/presentation-research-topic-mapping-f3c-p5.csv)
-- mapping artifact: [presentation-research-topic-mapping.json](/private/tmp/www-presentations-main-reconciliation/src/curated/presentation-research-topic-mapping.json)
-- diagnostics artifact: [presentation-topic-coverage-diagnostics-f3c-p5.json](/private/tmp/www-presentations-main-reconciliation/docs/data/presentation-topic-coverage-diagnostics-f3c-p5.json)
+- report artifact: [presentations-topic-mapping-f3c-p5-report-2026-08-14.md](./presentations-topic-mapping-f3c-p5-report-2026-08-14.md)
+- csv artifact: [presentation-research-topic-mapping-f3c-p5.csv](./data/presentation-research-topic-mapping-f3c-p5.csv)
+- mapping artifact: [presentation-research-topic-mapping.json](../src/curated/presentation-research-topic-mapping.json)
+- diagnostics artifact: [presentation-topic-coverage-diagnostics-f3c-p5.json](./data/presentation-topic-coverage-diagnostics-f3c-p5.json)
 
 ## 27. Closure note
 

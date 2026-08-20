@@ -22,7 +22,7 @@ Final recommendation: `HYBRID RECOMMENDED`
 
 F1 started from a clean temporary main worktree because the primary workspace contained unrelated dirty work.
 
-- Worktree: `/private/tmp/www-main-canonical-v1`
+- Worktree: `temporary clean worktree snapshot`
 - Branch: `codex/find-explore-f1-audit`
 - Baseline commit: `9aee5cc850eeeb1d7a067fd87e2fee814e9ca97c`
 - `git describe`: `canonical-content-v1-1-g9aee5cc8`

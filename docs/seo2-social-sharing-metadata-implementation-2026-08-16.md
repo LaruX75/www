@@ -6,7 +6,7 @@ SEO2 was implemented as a focused metadata-layer improvement for social sharing 
 
 # 2. Repository state
 
-Worktree: `/private/tmp/www-seo2-social-sharing-metadata`
+Worktree: `temporary clean worktree snapshot`
 
 Branch: `codex/seo2-social-sharing-metadata`
 

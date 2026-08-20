@@ -46,13 +46,13 @@ c0df2950 fix: align writings find explore search index
 
 Primary evidence read:
 
-- [docs/find-explore-roadmap-2026-08-12.md](/private/tmp/www-f3-audit/docs/find-explore-roadmap-2026-08-12.md)
-- [docs/find-explore-architecture-audit-2026-08-12.md](/private/tmp/www-f3-audit/docs/find-explore-architecture-audit-2026-08-12.md)
-- [docs/find-explore-writings-f2-report-2026-08-12.md](/private/tmp/www-f3-audit/docs/find-explore-writings-f2-report-2026-08-12.md)
-- [docs/find-explore-writings-v1-closure-2026-08-12.md](/private/tmp/www-f3-audit/docs/find-explore-writings-v1-closure-2026-08-12.md)
-- [docs/theses-architecture-audit-2026-08-11.md](/private/tmp/www-f3-audit/docs/theses-architecture-audit-2026-08-11.md)
-- [docs/publications-architecture-audit-2026-08-11.md](/private/tmp/www-f3-audit/docs/publications-architecture-audit-2026-08-11.md)
-- [docs/presentations-architecture-alignment-2026-08-11.md](/private/tmp/www-f3-audit/docs/presentations-architecture-alignment-2026-08-11.md)
+- [docs/find-explore-roadmap-2026-08-12.md](./find-explore-roadmap-2026-08-12.md)
+- [docs/find-explore-architecture-audit-2026-08-12.md](./find-explore-architecture-audit-2026-08-12.md)
+- [docs/find-explore-writings-f2-report-2026-08-12.md](./find-explore-writings-f2-report-2026-08-12.md)
+- [docs/find-explore-writings-v1-closure-2026-08-12.md](./find-explore-writings-v1-closure-2026-08-12.md)
+- [docs/theses-architecture-audit-2026-08-11.md](./theses-architecture-audit-2026-08-11.md)
+- [docs/publications-architecture-audit-2026-08-11.md](./publications-architecture-audit-2026-08-11.md)
+- [docs/presentations-architecture-alignment-2026-08-11.md](./presentations-architecture-alignment-2026-08-11.md)
 
 ## 3. Writings v1 reference architecture
 
@@ -100,7 +100,7 @@ This is the bar for a worthwhile expansion candidate: meaningful discovery/runti
 
 ## 5. Candidate baseline measurements
 
-Freshly built `_site` measurements were captured into [docs/data/find-explore-f3-baseline.json](/private/tmp/www-f3-audit/docs/data/find-explore-f3-baseline.json) with [scripts/audit-find-explore-f3.js](/private/tmp/www-f3-audit/scripts/audit-find-explore-f3.js).
+Freshly built `_site` measurements were captured into [docs/data/find-explore-f3-baseline.json](./data/find-explore-f3-baseline.json) with [scripts/audit-find-explore-f3.js](../scripts/audit-find-explore-f3.js).
 
 | Page | HTML bytes | Elements | Search inputs | Selects | Buttons | Tables | Rows | Cards | Local scripts | Inline JS bytes | Runtime JSON fetched by page-local archive logic |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
@@ -168,7 +168,7 @@ Current evidence:
 - authoritative source: `src/_data/theses.js`
 - public projection: `/data/theses.json`
 - detail projection: `/opinnaytteet/<id>/`
-- archive pages: [src/opinnaytteet.njk](/private/tmp/www-f3-audit/src/opinnaytteet.njk), [src/en/theses.njk](/private/tmp/www-f3-audit/src/en/theses.njk)
+- archive pages: [src/opinnaytteet.njk](../src/opinnaytteet.njk), [src/en/theses.njk](../src/en/theses.njk)
 
 Current flow:
 
@@ -237,7 +237,7 @@ Current evidence:
 - authoritative source: `researchfiContent.js` + manual fallbacks
 - page projection: `/data/publications-page.json`
 - detail projection: `/julkaisut/<canonical-id>/`
-- archive pages: [src/julkaisut.njk](/private/tmp/www-f3-audit/src/julkaisut.njk), [src/en/publications.njk](/private/tmp/www-f3-audit/src/en/publications.njk)
+- archive pages: [src/julkaisut.njk](../src/julkaisut.njk), [src/en/publications.njk](../src/en/publications.njk)
 
 Current flow:
 
@@ -303,8 +303,8 @@ Current evidence:
 - authoritative source layer: presentation source merge in `presentationsPage` pipeline
 - public projection: `/data/presentations-page.json`
 - local details: partial, source-dependent
-- archive pages: [src/esitykset.njk](/private/tmp/www-f3-audit/src/esitykset.njk), [src/en/presentations.njk](/private/tmp/www-f3-audit/src/en/presentations.njk)
-- FI runtime: [src/js/presentations-page.js](/private/tmp/www-f3-audit/src/js/presentations-page.js)
+- archive pages: [src/esitykset.njk](../src/esitykset.njk), [src/en/presentations.njk](../src/en/presentations.njk)
+- FI runtime: [src/js/presentations-page.js](../src/js/presentations-page.js)
 
 Current flow:
 
@@ -391,7 +391,7 @@ Interpretation:
 
 ## 16. Pagefind quality
 
-Sample audit summary from [docs/data/find-explore-f3-baseline.json](/private/tmp/www-f3-audit/docs/data/find-explore-f3-baseline.json):
+Sample audit summary from [docs/data/find-explore-f3-baseline.json](./data/find-explore-f3-baseline.json):
 
 | Candidate | Title queries found | Title queries top1 | Person queries found | Topic queries found |
 | --- | ---: | ---: | ---: | ---: |
@@ -662,6 +662,6 @@ Rationale:
 
 Audit outputs created:
 
-- [docs/find-explore-f3-suitability-audit-2026-08-12.md](/private/tmp/www-f3-audit/docs/find-explore-f3-suitability-audit-2026-08-12.md)
-- [docs/data/find-explore-f3-baseline.json](/private/tmp/www-f3-audit/docs/data/find-explore-f3-baseline.json)
-- [scripts/audit-find-explore-f3.js](/private/tmp/www-f3-audit/scripts/audit-find-explore-f3.js)
+- [docs/find-explore-f3-suitability-audit-2026-08-12.md](./find-explore-f3-suitability-audit-2026-08-12.md)
+- [docs/data/find-explore-f3-baseline.json](./data/find-explore-f3-baseline.json)
+- [scripts/audit-find-explore-f3.js](../scripts/audit-find-explore-f3.js)

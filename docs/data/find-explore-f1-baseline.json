@@ -1,8 +1,7 @@
 {
   "generatedAt": "2026-08-12",
   "baseline": {
-    "worktree": "/private/tmp/www-main-canonical-v1",
-    "branch": "codex/find-explore-f1-audit",
+    "worktree": "find-explore-f1-audit",
     "commit": "9aee5cc850eeeb1d7a067fd87e2fee814e9ca97c",
     "describe": "canonical-content-v1-1-g9aee5cc8",
     "buildCommand": "npm run build:no-og",

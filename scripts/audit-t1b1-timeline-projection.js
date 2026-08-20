@@ -26,7 +26,7 @@ function main() {
     const report = {
       generatedAt: new Date().toISOString(),
       ok: true,
-      sourceDomains: projection.sourceDomains,
+      sourceCollections: projection.sourceCollections,
       inputCount: projection.inputCount,
       projectedCount: projection.projectedCount,
       excludedCount: projection.excludedCount,
@@ -39,7 +39,7 @@ function main() {
       latestYear: projection.latestYear,
       itemsPerYear: projection.itemsPerYear,
       contextCounts: projection.contextCounts,
-      sourceDomainCounts: projection.sourceDomainCounts,
+      sourceCollectionCounts: projection.sourceCollectionCounts,
       ordering: projection.ordering
     };
 
