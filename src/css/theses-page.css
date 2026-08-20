@@ -220,8 +220,8 @@ display: none; /* ei snippettiä mobiilissa, vain painike */
 }
 }
 
-/* TH-CITE1 Phase 3 — SSR three-table thesis archive. */
-.thesis-archive-sections {
+/* Thesis archive convergence — one SSR table + one pager pair. */
+.thesis-archive-list {
   scroll-margin-top: 6rem;
 }
 .thesis-archive-table th,
@@ -234,8 +234,17 @@ display: none; /* ei snippettiä mobiilissa, vain painike */
   width: 4.5rem;
   white-space: nowrap;
 }
-.thesis-archive-col-action {
-  width: 3.5rem;
+.thesis-archive-col-author {
+  min-width: 11rem;
+}
+.thesis-archive-col-title {
+  min-width: 18rem;
+}
+.thesis-archive-col-type {
+  width: 10rem;
+}
+.thesis-archive-col-source {
+  width: 8rem;
   white-space: nowrap;
 }
 .thesis-archive-title-link {
@@ -244,10 +253,6 @@ display: none; /* ei snippettiä mobiilissa, vain painike */
 .thesis-archive-title-link:hover,
 .thesis-archive-title-link:focus {
   text-decoration: underline;
-}
-.thesis-archive-citation {
-  color: var(--bs-secondary-color, #6c757d);
-  word-break: break-word;
 }
 .thesis-archive-pager {
   --bs-pagination-padding-x: 0.5rem;
@@ -260,23 +265,20 @@ display: none; /* ei snippettiä mobiilissa, vain painike */
 .thesis-archive-pager--bottom {
   margin-top: 0.75rem;
 }
-.thesis-archive-section[aria-busy="true"] {
-  opacity: 0.65;
-  transition: opacity 120ms linear;
-}
 @media (max-width: 575.98px) {
   .thesis-archive-col-year {
     width: 3.5rem;
   }
-  .thesis-archive-citation {
-    font-size: 0.75rem;
+  .thesis-archive-col-author,
+  .thesis-archive-col-title,
+  .thesis-archive-col-type,
+  .thesis-archive-col-source {
+    min-width: 9rem;
   }
 }
 
-/* Result-surface coordination: hide the SSR archive while Find &
-   Explore is showing an active search/filter result set. When the
-   user resets or clears the search, JS removes this class and the
-   canonical SSR archive returns. */
-body.find-explore-active .thesis-archive-sections {
+/* Result-surface coordination: the archive table stays visible, but
+   SSR pagination hides while Find & Explore owns the active tbody. */
+body.find-explore-active .thesis-archive-pager {
   display: none;
 }

@@ -188,6 +188,40 @@
     return [...new Set(parts)];
   }
 
+  function thesisTypeRoleLabel(type, role, langKey) {
+    const lang = String(langKey || "fi").toLowerCase() === "en" ? "en" : "fi";
+    const labels = {
+      fi: {
+        masterThesis: { advised: "Gradu · ohjattu", reviewed: "Gradu · tarkastettu" },
+        bachelorThesis: { advised: "Kandi · ohjattu", reviewed: "Kandi · tarkastettu" },
+        doctoralThesis: "Väitöskirja",
+        licentiateThesis: "Lisensiaatintutkielma",
+        generic: "Opinnäyte",
+        advised: "ohjattu",
+        reviewed: "tarkastettu"
+      },
+      en: {
+        masterThesis: { advised: "Master's · advised", reviewed: "Master's · reviewed" },
+        bachelorThesis: { advised: "Bachelor's · advised", reviewed: "Bachelor's · reviewed" },
+        doctoralThesis: "Doctoral dissertation",
+        licentiateThesis: "Licentiate thesis",
+        generic: "Thesis",
+        advised: "advised",
+        reviewed: "reviewed"
+      }
+    }[lang];
+    const typeKey = String(type || "").trim();
+    const roleKey = String(role || "").trim();
+    const exact = labels[typeKey];
+    if (exact && typeof exact === "object" && exact[roleKey]) return exact[roleKey];
+    const typeOnly = typeof exact === "string" ? exact : "";
+    const roleOnly = labels[roleKey] || "";
+    if (typeOnly && roleOnly) return `${typeOnly} · ${roleOnly}`;
+    if (typeOnly) return typeOnly;
+    if (roleOnly) return `${labels.generic} · ${roleOnly}`;
+    return labels.generic;
+  }
+
   const kindConfig = {
     writings: {
       filterPrefix: "Writings",
@@ -205,6 +239,7 @@
     theses: {
       filterPrefix: "Theses",
       typeFilterKey: "Theses type",
+      roleFilterKey: "Theses role",
       // PF4: single primary metadata line — author line + thesis type,
       // joined by the shared renderer. Year moved to family header.
       resultMeta(entry) {
@@ -309,6 +344,7 @@
     if (languageFilter) filters.Kieli = languageFilter;
 
     if (state.type) filters[config.typeFilterKey || `${prefix} type`] = state.type;
+    if (state.role) filters[config.roleFilterKey || `${prefix} role`] = state.role;
     if (state.year) filters[config.yearFilterKey || `${prefix} year`] = state.year;
     if (state.topic) {
       const topicPreset = config.researchTopicPresetMap?.[state.topic];
@@ -339,6 +375,9 @@
       filters["Research context"] = "research";
     }
 
+    if (state.role && kind === "theses") {
+      filters[config.roleFilterKey || `${prefix} role`] = state.role;
+    }
     if (state.year) filters[config.yearFilterKey || `${prefix} year`] = state.year;
     if (state.topic) filters[config.topicFilterKey || `${prefix} topic`] = state.topic;
     if (state.quality && kind === "publications") {
@@ -352,6 +391,7 @@
     return {
       q: params.get("q") || "",
       type: params.get("type") || "",
+      role: params.get("role") || "",
       year: params.get("year") || "",
       topic: params.get("topic") || "",
       quality: params.get("quality") || ""
@@ -389,7 +429,11 @@
     const title = resultTitle(data);
     const normalizedUrl = normalizeUrl(data?.url);
     const record = recordsByUrl.get(normalizedUrl) || null;
-    const typeLabel = state.typeLabel || data?.meta?.thesesType || "";
+    const rawThesisType = data?.meta?.thesesType || "";
+    const rawThesisRole = data?.meta?.thesesRole || "";
+    const typeLabel = kind === "theses"
+      ? thesisTypeRoleLabel(rawThesisType, rawThesisRole, labels.langKey)
+      : (state.typeLabel || rawThesisType || "");
     const year = state.year || data?.meta?.writingsYear || data?.meta?.thesesYear || data?.meta?.PresentationYear || "";
     const authorLine = data?.meta?.thesesAuthorLine || "";
     const publicationMeta = record ? {
@@ -436,7 +480,10 @@
       year: resolvedYear,
       presentationType: data?.meta?.PresentationType || "",
       presentationEvent: data?.meta?.PresentationEvent || "",
-      contentFamilyLabel: contentFamilyLabelFromData(kind, data)
+      contentFamilyLabel: contentFamilyLabelFromData(kind, data),
+      authorLine,
+      thesisTypeRoleLabel: thesisTypeRoleLabel(rawThesisType, rawThesisRole, labels.langKey),
+      thesisSourceUrl: data?.meta?.thesesSourceUrl || ""
     };
   }
 
@@ -455,21 +502,26 @@
     const qualitySelect = mount.querySelector("[data-find-explore-quality]");
     const resetButton = mount.querySelector("[data-find-explore-reset]");
     const status = mount.querySelector("[data-find-explore-status]");
-    const resultsList = mount.querySelector("[data-find-explore-results]");
+    const resultsList = mount.querySelector("[data-find-explore-results]")
+      || (mount.dataset.findExploreResultsId ? document.getElementById(mount.dataset.findExploreResultsId) : null);
     const moreButton = mount.querySelector("[data-find-explore-more]");
     const controlsForm = mount.querySelector("[data-find-explore-form]");
     const seedQuery = mount.dataset.findExploreSeedQuery || "";
     const recordsByUrl = readRecords(mount);
+    const roleSelect = mount.querySelector("[data-find-explore-role]");
+    const initialResultsHtml = resultsList?.innerHTML || "";
 
     mount.dataset.findExploreReady = "false";
 
     let latestResults = [];
     let visibleCount = PAGE_SIZE;
+    let activeSearchRunId = 0;
 
     function readState() {
       return {
         q: queryInput?.value.trim() || "",
         type: typeSelect?.value || "",
+        role: roleSelect?.value || "",
         year: yearSelect?.value || "",
         topic: topicSelect?.value || "",
         quality: qualitySelect?.value || ""
@@ -479,6 +531,7 @@
     function writeState(state) {
       if (queryInput) queryInput.value = state.q || "";
       if (typeSelect) typeSelect.value = state.type || "";
+      if (roleSelect) roleSelect.value = state.role || "";
       if (yearSelect) yearSelect.value = state.year || "";
       if (topicSelect) topicSelect.value = state.topic || "";
       if (qualitySelect) qualitySelect.value = state.quality || "";
@@ -622,6 +675,24 @@
 
     function renderResultEntry(entry) {
       if (entry.kind === "publications" && entry.record) return renderPublicationResult(entry);
+      if (entry.kind === "theses") {
+        const title = escapeHtml(entry.title);
+        const url = escapeHtml(entry.url);
+        const authorLine = entry.authorLine ? escapeHtml(entry.authorLine) : "";
+        const sourceUrl = entry.thesisSourceUrl ? escapeHtml(entry.thesisSourceUrl) : "";
+        const typeRoleLabel = escapeHtml(entry.thesisTypeRoleLabel || "");
+        const year = escapeHtml(entry.year || "");
+        const sourceLink = sourceUrl
+          ? `<a class="btn btn-sm btn-outline-secondary" href="${sourceUrl}" target="_blank" rel="noopener noreferrer"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i><span class="ms-1">OuluREPO</span></a>`
+          : "";
+        return `<tr class="thesis-archive-row thesis-archive-row--search">
+          <td class="thesis-archive-col-year small text-muted">${year}</td>
+          <td class="thesis-archive-col-author small text-muted">${authorLine}</td>
+          <th scope="row" class="thesis-archive-col-title"><a class="thesis-archive-title-link fw-semibold text-decoration-none d-block" href="${url}">${title}</a></th>
+          <td class="thesis-archive-col-type small">${typeRoleLabel}</td>
+          <td class="thesis-archive-col-source text-end">${sourceLink}</td>
+        </tr>`;
+      }
       const title = escapeHtml(entry.title);
       const url = escapeHtml(entry.url);
       const excerpt = entry.excerpt
@@ -670,6 +741,10 @@
       if (config.groupByPublicationGroup && slice.length) {
         const grouped = groupPublicationEntries(slice);
         resultsList.innerHTML = renderGroupedResults(grouped);
+      } else if (kind === "theses") {
+        resultsList.innerHTML = slice.length
+          ? slice.map(renderResultEntry).join("")
+          : `<tr class="thesis-archive-row thesis-archive-row--empty"><td colspan="5" class="text-muted small">${escapeHtml(labels.noResults)}</td></tr>`;
       } else if (slice.length) {
         resultsList.innerHTML = `<ol class="find-explore-result-list list-unstyled mb-0">${slice.map(renderResultEntry).join("")}</ol>`;
       } else {
@@ -683,9 +758,10 @@
     }
 
     async function runSearch() {
+      const runId = ++activeSearchRunId;
       const state = readState();
       const hasQuery = Boolean(state.q);
-      const hasFilters = Boolean(state.type || state.year || state.topic || state.quality);
+      const hasFilters = Boolean(state.type || state.role || state.year || state.topic || state.quality);
       // PF5-IMPL-APA: publications archive keeps the full canonical
       // list visible on initial load — fall back to the seed query
       // even without filters when the kind opted in.
@@ -714,7 +790,8 @@
 
       if (!effectiveQuery && config.requiresQueryForSearch) {
         latestResults = [];
-        resultsList.innerHTML = "";
+        if (kind === "theses" && resultsList) resultsList.innerHTML = initialResultsHtml;
+        else resultsList.innerHTML = "";
         moreButton?.classList.add("d-none");
         status.textContent = labels.idle;
         return;
@@ -722,7 +799,8 @@
 
       if (!effectiveQuery) {
         latestResults = [];
-        resultsList.innerHTML = "";
+        if (kind === "theses" && resultsList) resultsList.innerHTML = initialResultsHtml;
+        else resultsList.innerHTML = "";
         moreButton?.classList.add("d-none");
         status.textContent = labels.idle;
         return;
@@ -745,9 +823,11 @@
             : filtersFor(mount, state);
           for (const language of searchLanguages) {
             const pagefind = await createSearch(language);
+            if (runId !== activeSearchRunId) return;
             const result = await pagefind.search(effectiveQuery, {
               filters: filterSet
             });
+            if (runId !== activeSearchRunId) return;
             searchResults.push({ kind: searchKind, result });
           }
         }
@@ -770,6 +850,7 @@
         const entries = [];
         for (const item of merged) {
           const data = await item.result.data();
+          if (runId !== activeSearchRunId) return;
           const entry = createResultEntry(item.kind, data, {
             ...state,
             typeLabel
@@ -782,16 +863,20 @@
 
         latestResults = entries;
 
+        if (runId !== activeSearchRunId) return;
         status.textContent = latestResults.length ? labels.count(latestResults.length) : labels.noResults;
         renderResults();
       } catch (error) {
+        if (runId !== activeSearchRunId) return;
         latestResults = [];
         resultsList.innerHTML = "";
         moreButton?.classList.add("d-none");
         status.textContent = labels.error;
         console.warn("FindExplore search failed", error);
       } finally {
-        resultsList?.removeAttribute("aria-busy");
+        if (runId === activeSearchRunId) {
+          resultsList?.removeAttribute("aria-busy");
+        }
       }
     }
 
@@ -810,11 +895,12 @@
       runSearch();
     });
     typeSelect?.addEventListener("change", runSearch);
+    roleSelect?.addEventListener("change", runSearch);
     yearSelect?.addEventListener("change", runSearch);
     topicSelect?.addEventListener("change", runSearch);
     qualitySelect?.addEventListener("change", runSearch);
     resetButton?.addEventListener("click", () => {
-      writeState({ q: "", type: "", year: "", topic: "", quality: "" });
+      writeState({ q: "", type: "", role: "", year: "", topic: "", quality: "" });
       queryInput?.focus();
       runSearch();
     });

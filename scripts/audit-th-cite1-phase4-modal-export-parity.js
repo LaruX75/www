@@ -16,7 +16,8 @@
  *      lean citation modal include present + used, publication-
  *      citation.js loads before thesis-hub-actions.js).
  *   C. Archive boundary preserved (no citation modal, no abstract
- *      modal, no thesis-hub-actions.js, ≤ 30 SSR thesis rows).
+ *      modal, no thesis-hub-actions.js, no legacy citation cells,
+ *      and ≤ 20 SSR thesis rows on the converged landing table).
  *   D. Browser deletion evidence (no composers, no getCitationBy
  *      Format, no browser getThesisLevelLabel, no abstract-modal
  *      wiring in thesis-hub-actions.js).
@@ -77,42 +78,16 @@ function countPagefindThesisFragments() {
   return { total, opinnaytteetLinked, thesisTagged };
 }
 
+function archivePageFiles(scope) {
+  const landing = scope === "fi" ? "opinnaytteet/index.html" : "en/theses/index.html";
+  const pageBase = scope === "fi" ? "opinnaytteet/sivu" : "en/theses/page";
+  return Array.from({ length: 9 }, (_, index) => (
+    index === 0 ? landing : `${pageBase}/${index + 1}/index.html`
+  ));
+}
+
 function unionSsrThesisRows(scope) {
-  const roots = scope === "fi" ? [
-    "opinnaytteet/index.html",
-    "opinnaytteet/ohjatut-gradut/page/2/index.html",
-    "opinnaytteet/ohjatut-gradut/page/3/index.html",
-    "opinnaytteet/ohjatut-gradut/page/4/index.html",
-    "opinnaytteet/ohjatut-gradut/page/5/index.html",
-    "opinnaytteet/ohjatut-gradut/page/6/index.html",
-    "opinnaytteet/ohjatut-gradut/page/7/index.html",
-    "opinnaytteet/ohjatut-gradut/page/8/index.html",
-    "opinnaytteet/ohjatut-gradut/page/9/index.html",
-    "opinnaytteet/kandityot/page/2/index.html",
-    "opinnaytteet/kandityot/page/3/index.html",
-    "opinnaytteet/tarkastetut/page/2/index.html",
-    "opinnaytteet/tarkastetut/page/3/index.html",
-    "opinnaytteet/tarkastetut/page/4/index.html",
-    "opinnaytteet/tarkastetut/page/5/index.html",
-    "opinnaytteet/tarkastetut/page/6/index.html"
-  ] : [
-    "en/theses/index.html",
-    "en/theses/masters/page/2/index.html",
-    "en/theses/masters/page/3/index.html",
-    "en/theses/masters/page/4/index.html",
-    "en/theses/masters/page/5/index.html",
-    "en/theses/masters/page/6/index.html",
-    "en/theses/masters/page/7/index.html",
-    "en/theses/masters/page/8/index.html",
-    "en/theses/masters/page/9/index.html",
-    "en/theses/bachelors/page/2/index.html",
-    "en/theses/bachelors/page/3/index.html",
-    "en/theses/reviewed/page/2/index.html",
-    "en/theses/reviewed/page/3/index.html",
-    "en/theses/reviewed/page/4/index.html",
-    "en/theses/reviewed/page/5/index.html",
-    "en/theses/reviewed/page/6/index.html"
-  ];
+  const roots = archivePageFiles(scope);
   const seen = new Set();
   for (const rel of roots) {
     const html = readSite(rel);
@@ -187,12 +162,14 @@ async function main() {
     fiNoCitationModal: !/id="thesisCitationModal"/.test(archiveFi),
     fiNoAbstractModal: !/id="thesisAbstractModal"/.test(archiveFi),
     fiNoThesisHubJs: !archiveFi.includes("/js/thesis-hub-actions.js"),
+    fiNoLegacyCitationCells: !/thesis-archive-citation/.test(archiveFi),
     enNoCitationTrigger: !/data-thesis-citation-trigger/.test(archiveEn),
     enNoCitationModal: !/id="thesisCitationModal"/.test(archiveEn),
     enNoAbstractModal: !/id="thesisAbstractModal"/.test(archiveEn),
     enNoThesisHubJs: !archiveEn.includes("/js/thesis-hub-actions.js"),
-    fiNoOversizedRows: (archiveFi.match(/thesis-archive-citation/g) || []).length <= 30,
-    enNoOversizedRows: (archiveEn.match(/thesis-archive-citation/g) || []).length <= 30
+    enNoLegacyCitationCells: !/thesis-archive-citation/.test(archiveEn),
+    fiNoOversizedRows: (archiveFi.match(/class="thesis-archive-title-link/g) || []).length <= 20,
+    enNoOversizedRows: (archiveEn.match(/class="thesis-archive-title-link/g) || []).length <= 20
   };
 
   // ---- D. Browser deletion ----

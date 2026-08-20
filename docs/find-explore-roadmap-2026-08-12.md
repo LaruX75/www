@@ -6,6 +6,7 @@ Publications FULL update: 2026-08-17
 TH-CITE1 Phase 1–3 update: 2026-08-18
 TH-CITE1 Phase 4 update: 2026-08-18
 TH-CITE1 Phase 6 update: 2026-08-18
+Thesis archive convergence update: 2026-08-20
 
 This roadmap is the shared source of truth after Canonical Content v1, Find & Explore Writings v1, Find & Explore Theses v1, Find & Explore Publications v1, F4 Research contextual Find & Explore v1, the 2026-08-17 Publications FULL Pagefind + PUB-CITE1 closure, the 2026-08-18 TH-CITE1 Phase 1–3 thesis CSL + SSR-first archive closure, the 2026-08-18 TH-CITE1 Phase 4 A–D modal/export migration closure, and the 2026-08-18 TH-CITE1 Phase 6 legacy server citation deletion closure. TH-CITE1 citation migration is fully closed on `main`; PF5 GLOBAL RESULT PARITY (Phase 5) remains NOT STARTED as a separate future workstream.
 
@@ -148,6 +149,33 @@ retained: /data/theses.json.citationApa (PUBLIC contract), JSON-LD `citation` (P
 retained for later phases: Phase 5 PF5 GLOBAL RESULT PARITY (navbar Pagefind, /haku/, /en/search/, thesis Pagefind card layout) — NOT STARTED
 Canonical Content v1: unchanged
 closure report: docs/th-cite1-phase6-legacy-server-citation-closure-2026-08-18.md
+
+Thesis archive convergence
+status: CLOSED / GREEN / BRANCH
+scope: converge the thesis archive from the Phase 3 three-section SSR archive into one flat SSR table + one shared tbody for active Pagefind search/filter state. Preserve canonical thesis semantics, preserve explicit pageUrl/sourceUrl separation, and keep PF5 GLOBAL RESULT PARITY out of scope.
+branch: feat/theses-archive-convergence
+base main SHA: c78bbfa6c82fe8aad5683aed1f4b15e25c699d24
+feature commits in place: c5f7a6c3 (archive row projection helper), 7fd6314a (Pagefind thesis role + sourceUrl projection)
+current branch architecture:
+  canonical theses
+    → buildArchiveRow()
+    → buildThesesArchivePages()
+    → /opinnaytteet/ + /en/theses/ one SSR table (Year | Author | Title | Type / role | Source)
+  active query / filter
+    → Pagefind
+    → same shared tbody
+archive pagination on branch: 9 SSR URLs / locale (landing + pages 2..9), max 20 rows / page
+corpus parity on branch: canonical unique 169 = FI SSR union 169 = EN SSR union 169 = Pagefind thesis fragments 169
+deletions on branch: src/_includes/thesis-archive-sections.njk, src/js/thesis-archive-pagination.js
+preserved boundaries on branch: Canonical Content v1 unchanged; thesisType and thesisRole remain separate canonical fields; no sourceUrl derivation from pageUrl; no Pagefind.search(\"\") archive reconstruction; no hidden 169-row DOM; PF5 not started
+verification on branch:
+  npm run build:no-og                       pass
+  npm run test:unit                        565 / 565
+  audit-thesis-pagefind                    pass
+  audit-th-cite1-phase3-ssr-archive        pass
+  audit-th-cite1-phase4-modal-export-parity pass
+  focused Playwright bundle                22 / 22
+branch report: docs/theses-archive-convergence-implementation-2026-08-20.md
 
 F3B Publications Find & Explore
 status: CLOSED / GREEN

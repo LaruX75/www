@@ -138,9 +138,10 @@ test("Phase 3 archive regression: /en/theses/ has no citation trigger and no the
   expect(html).not.toMatch(/\/js\/thesis-hub-actions\.js/);
 });
 
-test("Phase 3 archive regression: still exactly 30 thesis rows on landing", async ({ page }) => {
+test("Phase 3 archive regression: landing keeps the converged 20-row table without citation cells", async ({ page }) => {
   const response = await page.request.get("/opinnaytteet/");
   const html = await response.text();
-  const matches = html.match(/thesis-archive-citation/g) || [];
-  expect(matches.length).toBe(30);
+  expect(html).not.toMatch(/thesis-archive-citation/);
+  const matches = html.match(/class="thesis-archive-title-link/g) || [];
+  expect(matches.length).toBe(20);
 });

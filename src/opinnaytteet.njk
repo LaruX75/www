@@ -12,7 +12,6 @@ pageScripts:
   # detail template. The archive has no citation triggers after
   # Phase 3 and does not ship the modal interaction JS anymore.
   - /js/find-explore.js
-  - /js/thesis-archive-pagination.js
 schemaType: CollectionPage
 schemaAbout:
   - "@type": "Thing"
@@ -63,20 +62,27 @@ eleventyComputed:
 {% set findExplorePlaceholder = "Esim. tekoäly, opettajankoulutus, matematiikka, Riikonen..." %}
 {% set findExploreTypeLabel = "Tyyppi" %}
 {% set findExploreAllTypesLabel = "Kaikki opinnäytteet" %}
+{% set findExploreRoleLabel = "Rooli" %}
+{% set findExploreAllRolesLabel = "Kaikki roolit" %}
 {% set findExploreYearLabel = "Vuosi" %}
 {% set findExploreAllYearsLabel = "Kaikki vuodet" %}
 {% set findExploreTopicLabel = "Aihe" %}
 {% set findExploreAllTopicsLabel = "Kaikki aiheet" %}
 {% set findExploreResetLabel = "Tyhjennä" %}
 {% set findExploreMoreLabel = "Näytä lisää" %}
-{% set findExploreInitialStatus = "Alla oleva arkisto näkyy suoraan. Hakusana tai suodatin korvaa arkistolistan hakutuloksilla samassa paikassa; Tyhjennä palauttaa arkistonäkymän." %}
+{% set findExploreInitialStatus = "Alla oleva arkistotaulukko näkyy suoraan. Hakusana tai suodatin korvaa saman taulukon rivit Pagefind-tuloksilla; Tyhjennä palauttaa sivulle valmiiksi renderöidyt rivit." %}
 {% set findExploreNoScript = "Interaktiivinen haku vaatii JavaScriptin. Arkistotaulukot ja niiden sivutus toimivat silti ilman JavaScriptiä." %}
 {% set findExploreTypeOptions = [
   { value: "masterThesis", label: "Pro gradu -tutkielmat", count: pageModel.typeCounts.masterThesis },
   { value: "bachelorThesis", label: "Kandidaatintyöt", count: pageModel.typeCounts.bachelorThesis }
 ] %}
+{% set findExploreRoleOptions = [
+  { value: "advised", label: "Ohjatut", count: pageModel.roleCounts.advised },
+  { value: "reviewed", label: "Tarkastetut", count: pageModel.roleCounts.reviewed }
+] %}
 {% set findExploreYears = pageModel.years %}
 {% set findExploreTopicOptions = pageModel.topicOptions %}
+{% set findExploreExternalResultsId = "thesesArchiveTbodyFi" %}
 
 <section class="kynasta-hero py-4">
   <div class="site-shell">
@@ -84,16 +90,7 @@ eleventyComputed:
       <div class="col-lg-8">
         <p class="text-uppercase small text-muted mb-1">Ohjaustyö</p>
         <h1 class="display-6 fw-bold mb-2">Ohjatut opinnäytetyöt</h1>
-        <p class="text-muted mb-0">OuluREPOsta koottu näkymä Jari Larun ohjaamiin ja tarkastamiin opinnäytteisiin. Jokainen rivi vie sivuston omaan detail-sivuun, ja alkuperäinen OuluREPO-julkaisu avautuu yhdellä linkillä.</p>
-      </div>
-      <div class="col-lg-4">
-        <div class="d-flex flex-wrap gap-2 justify-content-lg-end">
-          <a class="nav-link" href="#ohjatut-gradut">Gradut <span class="nav-count">{{ thesesArchive.grouped.advisedMasters.length }}</span></a>
-          <a class="nav-link" href="#kandityot">Kandit <span class="nav-count">{{ thesesArchive.grouped.advisedBachelors.length }}</span></a>
-          {% if thesesArchive.grouped.reviewed.length %}
-          <a class="nav-link" href="#tarkastetut">Tarkastetut <span class="nav-count">{{ thesesArchive.grouped.reviewed.length }}</span></a>
-          {% endif %}
-        </div>
+        <p class="text-muted mb-0">OuluREPOsta koottu yksi arkistotaulukko Jari Larun ohjaamiin ja tarkastamiin opinnäytteisiin. Otsikko vie sivuston omaan detail-sivuun, ja alkuperäinen OuluREPO-julkaisu avautuu erillisestä lähdelinkistä.</p>
       </div>
     </div>
   </div>
@@ -105,7 +102,7 @@ eleventyComputed:
       <div class="col-6 col-md-3">
         <div class="card text-center border-primary h-100 thesis-stat-card">
           <div class="card-body d-flex flex-column justify-content-center">
-            <div class="display-4 fw-bold text-primary">{{ thesesArchive.grouped.advisedMasters.length }}</div>
+            <div class="display-4 fw-bold text-primary">{{ pageModel.advisedMasterItems.length }}</div>
             <div class="text-muted">ohjattua gradua</div>
           </div>
         </div>
@@ -113,7 +110,7 @@ eleventyComputed:
       <div class="col-6 col-md-3">
         <div class="card text-center border-info h-100 thesis-stat-card">
           <div class="card-body d-flex flex-column justify-content-center">
-            <div class="display-4 fw-bold text-info">{{ thesesArchive.grouped.advisedBachelors.length }}</div>
+            <div class="display-4 fw-bold text-info">{{ pageModel.advisedBachelorItems.length }}</div>
             <div class="text-muted">ohjattua kandia</div>
           </div>
         </div>
@@ -129,7 +126,7 @@ eleventyComputed:
       <div class="col-6 col-md-3">
         <div class="card text-center border-secondary h-100 thesis-stat-card">
           <div class="card-body d-flex flex-column justify-content-center">
-            <div class="display-4 fw-bold text-secondary">{{ thesesArchive.grouped.reviewed.length }}</div>
+            <div class="display-4 fw-bold text-secondary">{{ pageModel.reviewedItems.length }}</div>
             <div class="text-muted">tarkastettua työtä</div>
           </div>
         </div>
@@ -162,29 +159,14 @@ eleventyComputed:
 
 {% include "find-explore-writings.njk" %}
 
-{% set thesesArchiveLang = "fi" %}
-{% set thesesArchiveLanding = "/opinnaytteet/" %}
-{% set thesesArchiveLabels = {
-  advisedMasters: {
-    title: "Ohjatut pro gradu -tutkielmat",
-    description: "Kaikki ohjaamani pro gradu -tutkielmat vuosi- ja otsikkojärjestyksessä.",
-    icon: "mortarboard-fill",
-    accent: "primary"
-  },
-  advisedBachelors: {
-    title: "Ohjatut kandidaatintyöt",
-    description: "Kaikki ohjaamani kandidaatintyöt vuosi- ja otsikkojärjestyksessä.",
-    icon: "book-half",
-    accent: "info"
-  },
-  reviewed: {
-    title: "Tarkastetut opinnäytteet",
-    description: "Opinnäytteet, joissa olen toiminut tarkastajana pääohjaajan sijaan.",
-    icon: "eye-fill",
-    accent: "secondary"
-  }
-} %}
-{% include "thesis-archive-sections.njk" %}
+{% set thesisArchiveTableId = "thesesArchiveTableFi" %}
+{% set thesisArchiveTbodyId = "thesesArchiveTbodyFi" %}
+{% set thesisArchiveHeading = "Opinnäytearkisto" %}
+{% set thesisArchiveDescription = "Yksi server-renderöity arkistotaulukko näyttää saman canonical thesis -joukon, jota Find & Explore käyttää aktiivisessa haussa." %}
+{% set thesisArchiveLang = "fi" %}
+{% set thesisArchiveLandingUrl = "/opinnaytteet/" %}
+{% set thesisArchivePageBase = "/opinnaytteet/sivu/" %}
+{% include "thesis-archive-table.njk" %}
 
 <section class="pb-5">
   <div class="site-shell">
