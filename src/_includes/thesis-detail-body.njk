@@ -25,6 +25,13 @@
             <span class="badge text-bg-light border text-secondary">{{ themeLabels[theme] or theme }}</span>
             {% endfor %}
           </div>
+          <div class="content-detail-actions mt-4">
+            {% set orientationLang = currentLang %}
+            {% set orientationHubHref = '/en/theses/' if isEn else '/opinnaytteet/' %}
+            {% set orientationHubLabel = "Back to theses" if isEn else "Takaisin opinnäytteisiin" %}
+            {% set orientationReturnPrefixes = ["/opinnaytteet/", "/en/theses/"] %}
+            {% include "detail-orientation.njk" %}
+          </div>
         </div>
       </div>
 
