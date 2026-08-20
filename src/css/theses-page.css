@@ -230,18 +230,29 @@ display: none; /* ei snippettiä mobiilissa, vain painike */
   padding-top: 0.6rem;
   padding-bottom: 0.6rem;
 }
+.thesis-archive-header-control {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.thesis-archive-header-label {
+  display: inline-block;
+}
+.thesis-archive-header-select {
+  min-width: 100%;
+  font-weight: 500;
+}
 .thesis-archive-col-year {
-  width: 4.5rem;
-  white-space: nowrap;
+  width: 8.5rem;
 }
 .thesis-archive-col-author {
-  min-width: 11rem;
+  min-width: 12rem;
 }
 .thesis-archive-col-title {
   min-width: 18rem;
 }
 .thesis-archive-col-type {
-  width: 10rem;
+  width: 12rem;
 }
 .thesis-archive-col-source {
   width: 8rem;
@@ -267,13 +278,16 @@ display: none; /* ei snippettiä mobiilissa, vain painike */
 }
 @media (max-width: 575.98px) {
   .thesis-archive-col-year {
-    width: 3.5rem;
+    width: 7.25rem;
   }
   .thesis-archive-col-author,
   .thesis-archive-col-title,
   .thesis-archive-col-type,
   .thesis-archive-col-source {
     min-width: 9rem;
+  }
+  .thesis-archive-header-select {
+    min-width: 8.5rem;
   }
 }
 

@@ -43,6 +43,23 @@ function thesisRoleLabel(role, lang = "fi") {
   return lang === "en" ? "Supervised thesis" : "Ohjattu opinnäyte";
 }
 
+function thesisTypeRoleFilterOptions(lang = "fi") {
+  const locale = String(lang || "fi").toLowerCase() === "en" ? "en" : "fi";
+  if (locale === "en") {
+    return [
+      { value: "masterThesis::advised", thesisType: "masterThesis", thesisRole: "advised", label: "Master's · advised" },
+      { value: "masterThesis::reviewed", thesisType: "masterThesis", thesisRole: "reviewed", label: "Master's · reviewed" },
+      { value: "bachelorThesis::advised", thesisType: "bachelorThesis", thesisRole: "advised", label: "Bachelor's · advised" }
+    ];
+  }
+
+  return [
+    { value: "masterThesis::advised", thesisType: "masterThesis", thesisRole: "advised", label: "Gradu · ohjattu" },
+    { value: "masterThesis::reviewed", thesisType: "masterThesis", thesisRole: "reviewed", label: "Gradu · tarkastettu" },
+    { value: "bachelorThesis::advised", thesisType: "bachelorThesis", thesisRole: "advised", label: "Kandi · ohjattu" }
+  ];
+}
+
 function buildThesesFindExplorePageModel(thesisDetailsModel = {}) {
   const items = toArray(thesisDetailsModel.items);
   const advisedItems = items.filter((item) => item.thesisRole !== "reviewed");
@@ -67,6 +84,8 @@ function buildThesesFindExplorePageModel(thesisDetailsModel = {}) {
     years,
     topicOptions,
     topicHighlights: topicOptions.slice(0, 8),
+    typeRoleOptionsFi: thesisTypeRoleFilterOptions("fi"),
+    typeRoleOptionsEn: thesisTypeRoleFilterOptions("en"),
     langCounts: Object.fromEntries(countValues(items, (item) => [item.lang])),
     roleCounts: Object.fromEntries(countValues(items, (item) => [item.thesisRole])),
     typeCounts: Object.fromEntries(countValues(items, (item) => [item.thesisType]))
@@ -126,6 +145,7 @@ function buildThesisFindExploreDocument(thesisDetail) {
 
 module.exports = {
   thesisRoleLabel,
+  thesisTypeRoleFilterOptions,
   buildThesesFindExplorePageModel,
   buildThesisFindExploreDocument
 };

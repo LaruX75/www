@@ -72,6 +72,12 @@ eleventyComputed:
 {% set findExploreMoreLabel = "Näytä lisää" %}
 {% set findExploreInitialStatus = "Alla oleva arkistotaulukko näkyy suoraan. Hakusana tai suodatin korvaa saman taulukon rivit Pagefind-tuloksilla; Tyhjennä palauttaa sivulle valmiiksi renderöidyt rivit." %}
 {% set findExploreNoScript = "Interaktiivinen haku vaatii JavaScriptin. Arkistotaulukot ja niiden sivutus toimivat silti ilman JavaScriptiä." %}
+{% set findExploreHideTypeControl = true %}
+{% set findExploreHideRoleControl = true %}
+{% set findExploreHideYearControl = true %}
+{% set findExploreExternalYearOrderId = "thesesArchiveYearOrderFi" %}
+{% set findExploreExternalAuthorSortId = "thesesArchiveAuthorSortFi" %}
+{% set findExploreExternalTypeRoleId = "thesesArchiveTypeRoleFi" %}
 {% set findExploreTypeOptions = [
   { value: "masterThesis", label: "Pro gradu -tutkielmat", count: pageModel.typeCounts.masterThesis },
   { value: "bachelorThesis", label: "Kandidaatintyöt", count: pageModel.typeCounts.bachelorThesis }
@@ -166,6 +172,10 @@ eleventyComputed:
 {% set thesisArchiveLang = "fi" %}
 {% set thesisArchiveLandingUrl = "/opinnaytteet/" %}
 {% set thesisArchivePageBase = "/opinnaytteet/sivu/" %}
+{% set thesisArchiveYearOrderId = "thesesArchiveYearOrderFi" %}
+{% set thesisArchiveAuthorSortId = "thesesArchiveAuthorSortFi" %}
+{% set thesisArchiveTypeRoleId = "thesesArchiveTypeRoleFi" %}
+{% set thesisArchiveTypeRoleOptions = pageModel.typeRoleOptionsFi %}
 {% include "thesis-archive-table.njk" %}
 
 <section class="pb-5">
