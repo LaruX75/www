@@ -4,6 +4,8 @@ test.describe.configure({ mode: "serial" });
 
 test("FI publications discovery state keeps canonical hub return and explicit results return", async ({ page }) => {
   await page.goto("/julkaisut/");
+  const initialHref = await page.locator(".publication-archive-row .publication-archive-title-link").first().getAttribute("href");
+  expect(initialHref).not.toContain("returnTo=");
   await page.locator("[data-find-explore-query]").fill("Assessing Digital Competence of K1-12 Teachers in Kosovo");
   await expect(page.locator("[data-find-explore-status]")).toContainText(/tulos|tulosta/, { timeout: 15000 });
   await expect(page.locator("body")).toHaveClass(/find-explore-active/);
@@ -22,6 +24,8 @@ test("FI publications discovery state keeps canonical hub return and explicit re
 
 test("EN thesis detail preserves English hub return and explicit results return", async ({ page }) => {
   await page.goto("/en/theses/");
+  const initialHref = await page.locator("[data-find-explore-results] .thesis-archive-title-link").first().getAttribute("href");
+  expect(initialHref).not.toContain("returnTo=");
   await page.locator("[data-find-explore-query]").fill("Gill");
   await expect(page.locator("[data-find-explore-status]")).toContainText(/result|results/, { timeout: 15000 });
 

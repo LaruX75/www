@@ -11,6 +11,8 @@ test("FI thesis header controls expose only valid domain options and combine wit
 
   await expect(page.locator("[data-find-explore-year-order]")).toHaveValue("year-desc");
   await expect(page.locator("[data-find-explore-author-sort]")).toHaveValue("use-year");
+  const initialHref = await page.locator("[data-find-explore-results] .thesis-archive-title-link").first().getAttribute("href");
+  expect(initialHref).not.toContain("returnTo=");
 
   const typeRoleOptions = normalizeTexts(await page.locator("[data-find-explore-type-role] option").allTextContents());
   expect(typeRoleOptions).toEqual([
@@ -40,6 +42,7 @@ test("FI thesis header controls expose only valid domain options and combine wit
   await expect(firstTitle).toHaveAttribute("href", /\/opinnaytteet\/\d+\/\?returnTo=/);
   await expect(firstSource).toHaveAttribute("href", /^https:\/\/oulurepo\.oulu\.fi\/handle\/10024\//);
   await expect(firstSource).toHaveAttribute("target", "_blank");
+  expect(await firstSource.getAttribute("href")).not.toContain("returnTo=");
 
   await page.locator("[data-find-explore-reset]").click();
   await expect(page.locator("[data-find-explore-query]")).toBeFocused();
@@ -47,6 +50,7 @@ test("FI thesis header controls expose only valid domain options and combine wit
   await expect(page.locator("[data-find-explore-author-sort]")).toHaveValue("use-year");
   await expect(page.locator("[data-find-explore-type-role]")).toHaveValue("");
   await expect(page.locator("[data-find-explore-results] tr")).toHaveCount(20);
+  await expect(page.locator("[data-find-explore-results] .thesis-archive-title-link").first()).toHaveAttribute("href", initialHref);
 });
 
 test("FI theses year ordering switches to oldest-first via Pagefind and returns cleanly to SSR default", async ({ page }) => {

@@ -668,8 +668,8 @@
       }
     }
 
-    function decorateResultLinks() {
-      if (!resultsList) return;
+    function decorateResultLinks(activeDiscoveryState = false) {
+      if (!resultsList || !activeDiscoveryState) return;
       const selectors = [
         ".publication-archive-title-link",
         ".thesis-archive-title-link",
@@ -1034,7 +1034,7 @@
       } else {
         moreButton?.classList.toggle("d-none", visibleCount >= latestResults.length);
       }
-      decorateResultLinks();
+      decorateResultLinks(true);
     }
 
     async function runSearch() {
@@ -1050,6 +1050,7 @@
       const effectiveQuery = hasQuery
         ? state.q
         : ((hasFilters || hasThesisSortInteraction || hasPublicationSortInteraction) && seedQuery ? seedQuery : "");
+      const activeDiscoveryState = Boolean(effectiveQuery);
 
       updateUrl(state, kind);
       visibleCount = PAGE_SIZE;
@@ -1075,7 +1076,7 @@
         else resultsList.innerHTML = "";
         moreButton?.classList.add("d-none");
         status.textContent = labels.idle;
-        decorateResultLinks();
+        decorateResultLinks(activeDiscoveryState);
         return;
       }
 
@@ -1085,7 +1086,7 @@
         else resultsList.innerHTML = "";
         moreButton?.classList.add("d-none");
         status.textContent = labels.idle;
-        decorateResultLinks();
+        decorateResultLinks(activeDiscoveryState);
         return;
       }
 
@@ -1157,7 +1158,7 @@
         moreButton?.classList.add("d-none");
         status.textContent = labels.error;
         console.warn("FindExplore search failed", error);
-        decorateResultLinks();
+        decorateResultLinks(activeDiscoveryState);
       } finally {
         if (runId === activeSearchRunId) {
           resultsList?.removeAttribute("aria-busy");
