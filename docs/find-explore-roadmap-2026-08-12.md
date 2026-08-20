@@ -1,5 +1,11 @@
 # Canonical Content v1 -> Find & Explore Roadmap
 
+> Historical roadmap / closure evidence.
+>
+> This document remains the detailed evidence trail for Canonical Content v1 and the primary Find & Explore migrations. The active site-wide planning document is now [docs/site-architecture-closure-roadmap-2026-08-20.md](./site-architecture-closure-roadmap-2026-08-20.md).
+>
+> Treat the sections below as period-specific implementation and closure history. For current active sequencing, closure priorities, and handoff status, follow the Architecture Closure roadmap.
+
 Date: 2026-08-12
 Synchronized: 2026-08-14
 Publications FULL update: 2026-08-17
