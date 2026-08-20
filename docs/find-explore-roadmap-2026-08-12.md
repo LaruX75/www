@@ -468,7 +468,8 @@ Current status:
 
 - T1A = CLOSED / GREEN / MAIN
 - T1B1 = CLOSED / GREEN / MAIN
-- T1B2A = CLOSED / GREEN / BRANCH
+- T1B2A = CLOSED / GREEN / MAIN
+- T1B2B = CLOSED / GREEN / BRANCH
 - T1B2 = NOT STARTED
 - T1B3 = NOT STARTED
 - PF5 GLOBAL RESULT PARITY = NOT STARTED
@@ -490,7 +491,7 @@ canonical content + legitimate manual companion facts
   -> optional Pagefind enhancement for active discovery only
 ```
 
-T1 implementation remains NOT STARTED.
+T1 implementation remains staged and incomplete at the umbrella level.
 
 Conceptually:
 

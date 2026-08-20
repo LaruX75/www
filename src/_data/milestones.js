@@ -1,211 +1,318 @@
-// Kuratoidut merkkitapahtumat etusivun aikajanaan.
-// Suuntaus: uran alusta 1990-luvulta nykyhetkeen — tutkimus, opetus, politiikka, palkinnot, tausta.
-// Jokainen kohta klikattava, vie asianomaiselle sivulle.
-// Jarjestys: kronologinen (year). Aikajana renderoi vuorotellen yla/ala listan mukaan.
-//
-// Vaiheotsikot (phaseStart: true) merkitsevat uuden aikakauden alkua ja
-// naytetaan aikajanalla omana vaihe-elementtina ennen kohdan korttia.
-module.exports = [
+const cvData = require("./cv.json");
+const researchProjects = require("./researchProjects");
+const loadElectionHistory = require("./electionHistory");
+const { buildHomeMilestones } = require("../_utils/homeMilestones");
+
+const MILESTONE_DEFINITIONS = Object.freeze([
   {
-    year: "1989",
+    id: "bbs-1989",
+    year: 1989,
     category: "tausta",
     title: "BBS-harrastus alkaa (Raahe)",
+    description: "Commodore 64, modeemi, Large's Security BBS:n SysOp, Fidonet-solmu, ANSI-taide ja HTML-koodaus. Teknologiapolun alkupiste ennen nykyistä verkkoa.",
+    href: "/1998/02/16/silloin-kun-sita-oltiin-larges-securityn-sysop-bbs-muisteluita/",
     phaseStart: {
       label: "1989–2001",
       title: "Tausta ja ensimmäiset askeleet",
       description: "Teknologiaharrastus ja ensimmäiset poliittiset avaukset."
     },
-    description: "Commodore 64, modeemi, Large's Security BBS:n SysOp, Fidonet-solmu, ANSI-taide ja HTML-koodaus. Teknologiapolun alkupiste ennen nykyistä verkkoa.",
-    href: "/1998/02/16/silloin-kun-sita-oltiin-larges-securityn-sysop-bbs-muisteluita/"
+    companionFields: ["year", "title", "href", "description", "category", "phaseStart"],
+    classification: "C",
+    targetLabel: "BBS-muistelusivu",
+    currentSourceState: "Legitimate homepage companion fact with related local memoir page."
   },
   {
-    year: "2000",
+    id: "politics-2000-raahe",
+    year: 2000,
     category: "politiikka",
     title: "Vaalikausi 2001–2004 (Raahe)",
     description: "Ehdolla Raahen kuntavaaleissa 2000 Kansallisen Kokoomuksen listoilla; sijoittui koululautakunnan jäseneksi. Poliittisen uran alkupiste.",
-    href: "/politiikka/vaalikaudet/"
+    href: "/politiikka/vaalikaudet/",
+    companionFields: ["year", "title", "href", "description", "category"],
+    classification: "C",
+    targetLabel: "Vaalikaudet",
+    currentSourceState: "Pre-2013 political milestone remains a companion fact."
   },
   {
-    year: "2002",
+    id: "research-assistant-2002",
+    sourceKey: "cv-prev-research-assistant",
     category: "tutkimus",
-    title: "Tutkimusavustaja EDTECH-yksikössä",
+    description: "Ensimmäinen työtehtävä Oulun yliopistossa opetusteknologian tutkimusyksikössä (EDTECH). Tutkimusuran alkupiste.",
     phaseStart: {
       label: "2002–2012",
       title: "Väitöskirjatie: mobiilioppiminen ja CSCL",
       description: "Tutkimus mobiililaitteista ja yhteisöllisestä oppimisesta — juuret nykyiselle tekoälykasvatustyölle."
     },
-    description: "Ensimmäinen työtehtävä Oulun yliopistossa opetusteknologian tutkimusyksikössä (EDTECH). Tutkimusuran alkupiste.",
-    href: "/cv/"
+    companionFields: ["description", "category", "phaseStart"],
+    classification: "B/D",
+    targetLabel: "CV",
+    currentSourceState: "Year/title/route now reused from cv.json."
   },
   {
-    year: "2003",
+    id: "km-2003",
+    sourceKey: "cv-education-km",
     category: "opetus",
     title: "KM ja pro gradu valmis",
     description: "Kasvatustieteiden maisteri (14.5.2003), teknologiapainotteinen luokanopettajakoulutus, Oulun yliopisto. Pro gradu \"Langattomat päätelaitteet hajautetun asiantuntijuuden ja yhteisöllisen tiedonrakentelun tukena\" (Goman & Laru).",
-    href: "/tutkimus/#varhaisvaihe"
+    href: "/tutkimus/#varhaisvaihe",
+    companionFields: ["title", "description", "href", "category"],
+    classification: "B/D",
+    targetLabel: "Tutkimus / varhaisvaihe",
+    currentSourceState: "Year reused from cv.json; editorial title and anchor stay companion-owned."
   },
   {
-    year: "2003",
+    id: "rotuaari-2003",
+    sourceKey: "research-project-rotuaari",
     category: "tutkimus",
-    title: "TEKESin Rotuaari-hanke (2003–2006)",
     description: "Osallistuin tutkimusavustajana TEKESin rahoittamaan Rotuaari-hankkeeseen (6/2003–5/2006) Oulun yliopistossa; mobiili- ja langaton oppimisteknologia kaupunkitilassa.",
-    href: "/tutkimus/#hankkeet"
+    companionFields: ["description", "category"],
+    classification: "B/D",
+    targetLabel: "Tutkimus / hankkeet",
+    currentSourceState: "Project identity now reused from researchProjects.js."
   },
   {
-    year: "2004",
+    id: "mosil-2004",
+    sourceKey: "research-project-mosil",
     category: "tutkimus",
-    title: "Mosil-hanke (2004–2006, EU Kaleidoscope NoE)",
     description: "Mobile Support For Integrated Learning — eurooppalainen Kaleidoscope Network of Excellence -hanke mobiililaitteiden ja oppimisympäristöjen integraatiosta; oppimisen 'skriptit' formaalien ja epäformaalien tilojen välillä.",
-    href: "/tutkimus/#hankkeet"
+    companionFields: ["description", "category"],
+    classification: "B/D",
+    targetLabel: "Tutkimus / hankkeet",
+    currentSourceState: "Project identity now reused from researchProjects.js."
   },
   {
-    year: "2005",
+    id: "politics-2005-oulu",
+    year: 2005,
     category: "politiikka",
     title: "Vaalikausi 2005–2008 (Oulu)",
     description: "Muutto Ouluun toi mukanaan uudet vaalit; ehdolla Oulun kunnallisvaaleissa Kansallisen Kokoomuksen listoilla.",
-    href: "/politiikka/vaalikaudet/"
+    href: "/politiikka/vaalikaudet/",
+    companionFields: ["year", "title", "href", "description", "category"],
+    classification: "C",
+    targetLabel: "Vaalikaudet",
+    currentSourceState: "Pre-2013 political milestone remains a companion fact."
   },
   {
-    year: "2005",
+    id: "grant-2005",
+    sourceKey: "cv-grant-2005",
     category: "tutkimus",
-    title: "Kulttuurirahaston tutkimusapuraha (2005–2006)",
     description: "Suomen Kulttuurirahaston Urpo ja Maijaliisa Harvan rahasto, 16 400 €. Tutkimussuunnitelman ja ensimmäisen artikkelikäsikirjoituksen laadinta EDTECH-yksikössä.",
-    href: "/tutkimus/"
+    companionFields: ["description", "category"],
+    classification: "B/D",
+    targetLabel: "Tutkimus",
+    currentSourceState: "Grant year/title/route now reused from cv.json."
   },
   {
-    year: "2006",
+    id: "doctoral-student-2006",
+    sourceKey: "cv-prev-doctoral-student",
     category: "tutkimus",
-    title: "Tutkijakoulutettava (OPMON)",
     description: "Väitöskirjatyö käynnistyi Oppimisympäristöjen monitieteisen tutkijakoulun (OPMON) puitteissa 2006–2010.",
-    href: "/cv/"
+    companionFields: ["description", "category"],
+    classification: "B/D",
+    targetLabel: "CV",
+    currentSourceState: "Year/title/route now reused from cv.json."
   },
   {
-    year: "2008",
+    id: "politics-2008-kiiminki",
+    year: 2008,
     category: "politiikka",
     title: "Vaalikausi 2009–2012 (Kiiminki)",
     description: "Ehdolla Kiimingin kuntavaaleissa 2008; sijoittui varavaltuutetuksi.",
-    href: "/politiikka/vaalikaudet/"
+    href: "/politiikka/vaalikaudet/",
+    companionFields: ["year", "title", "href", "description", "category"],
+    classification: "C",
+    targetLabel: "Vaalikaudet",
+    currentSourceState: "Pre-2013 political milestone remains a companion fact."
   },
   {
-    year: "2010",
+    id: "larux-2010",
+    sourceKey: "cv-current-entrepreneurship",
     category: "opetus",
-    title: "Larux tmi käynnistyy (toukokuu 2010)",
     description: "Sivutoiminen yrittäjyys alkaa: luennot, esitelmät, koulutukset sekä oppimisympäristöjen ja www-sivujen kehittäminen.",
-    href: "/kouluttaja/"
+    companionFields: ["description", "category"],
+    classification: "B/D",
+    targetLabel: "Kouluttaja",
+    currentSourceState: "Entrepreneurship year/title/route now reused from cv.json."
   },
   {
-    year: "2010",
+    id: "grant-2010",
+    sourceKey: "cv-grant-2010",
     category: "tutkimus",
-    title: "Kulttuurirahaston tutkimusapuraha (2010–2011)",
     description: "Suomen Kulttuurirahaston Xerox Oy:n rahasto, 21 000 €. Apuraha väitöskirjan viimeistelyyn EDTECH-yksikössä.",
-    href: "/tutkimus/"
+    companionFields: ["description", "category"],
+    classification: "B/D",
+    targetLabel: "Tutkimus",
+    currentSourceState: "Grant year/title/route now reused from cv.json."
   },
   {
-    year: "2011",
+    id: "university-teacher-2011",
+    sourceKey: "cv-prev-university-teacher",
     category: "opetus",
-    title: "Yliopisto-opettaja, tieto- ja viestintäteknologian opetuskäyttö",
     description: "Ensimmäinen päätoiminen opetustehtävä Oulun yliopistossa (syyskuu 2011 – heinäkuu 2013): tieto- ja viestintäteknologian opetuskäytön yliopisto-opettaja.",
-    href: "/cv/"
+    companionFields: ["description", "category"],
+    classification: "B/D",
+    targetLabel: "CV",
+    currentSourceState: "Year/title/route now reused from cv.json."
   },
   {
-    year: "2012",
+    id: "dissertation-2012",
+    sourceKey: "cv-education-dissertation",
     category: "tutkimus",
     title: "Väitöskirja: mobiili- ja yhteisöllinen oppiminen",
     description: "Väitös 21.11.2012 Oulun yliopistossa: \"Opiskelun tukeminen mobiililaitteiden ja pedagogisen vaiheistuksen avulla\".",
-    href: "/vaitoskirja/"
+    companionFields: ["title", "description", "category"],
+    classification: "B/D",
+    targetLabel: "Väitöskirja",
+    currentSourceState: "Year/route reused from cv.json; homepage title remains editorial."
   },
   {
-    year: "2012",
+    id: "teaching-award-2012",
+    year: 2012,
     category: "opetus",
     title: "Opiskelijoiden tunnustus: Omena hyvälle opettajalle",
     description: "OYY:n LO11-B-ryhmä palkitsi opetuksesta luokanopettajakoulutuksessa.",
-    href: "/palkinnot/"
+    href: "/palkinnot/",
+    companionFields: ["year", "title", "href", "description", "category"],
+    classification: "C",
+    targetLabel: "Palkinnot",
+    currentSourceState: "Award detail exists on the awards page, but there is no shared structured source yet."
   },
   {
-    year: "2012",
+    id: "election-term-2013-2017",
+    sourceKey: "election-term-2013-2017",
     category: "politiikka",
-    title: "Vaalikausi 2013–2016 (Oulu)",
     description: "Ehdolla Oulun kunnallisvaaleissa 2012; varavaltuutettu ja lähidemokratiatoimikunnan puheenjohtaja.",
-    href: "/politiikka/vaalikaudet/"
+    companionFields: ["description", "category"],
+    classification: "B/D",
+    targetLabel: "Vaalikaudet",
+    currentSourceState: "Term period/year/route now reused from electionHistory."
   },
   {
-    year: "2013",
+    id: "university-lecturer-2013",
+    sourceKey: "cv-current-university-lecturer",
     category: "opetus",
-    title: "Yliopistonlehtori (nykyinen tehtävä)",
+    description: "Toistaiseksi voimassaoleva tehtävä (elokuu 2013 alkaen): teknologiatuetun oppimisen ja opetuksen yliopistonlehtori, Kasvatustieteiden ja psykologian tiedekunta, Oulun yliopisto.",
     phaseStart: {
       label: "2013–2021",
       title: "Yliopistonlehtori ja avoin tiede",
       description: "Vakiintunut opetustyö luokanopettajakoulutuksessa. Avoimen tieteen ja digipedagogiikan edistäminen — TSV:n avoimen tieteen palkinto 2020."
     },
-    description: "Toistaiseksi voimassaoleva tehtävä (elokuu 2013 alkaen): teknologiatuetun oppimisen ja opetuksen yliopistonlehtori, Kasvatustieteiden ja psykologian tiedekunta, Oulun yliopisto.",
-    href: "/tyoni-yliopistonlehtorina/"
+    companionFields: ["description", "category", "phaseStart"],
+    classification: "B/D",
+    targetLabel: "Työni yliopistonlehtorina",
+    currentSourceState: "Year/title/route now reused from cv.json."
   },
   {
-    year: "2017",
+    id: "election-term-2017-2021",
+    sourceKey: "election-term-2017-2021",
     category: "politiikka",
-    title: "Vaalikausi 2017–2021 (Oulu)",
     description: "Kaupunginvaltuutettu ja sivistys- ja kulttuurilautakunnan jäsen. Työ sivistys- ja palveluverkkokysymyksissä syvenee.",
-    href: "/politiikka/vaalikaudet/"
+    companionFields: ["description", "category"],
+    classification: "B/D",
+    targetLabel: "Vaalikaudet",
+    currentSourceState: "Term period/year/route now reused from electionHistory."
   },
   {
-    year: "2018",
+    id: "lea-2018",
+    sourceKey: "research-project-lea",
     category: "tutkimus",
-    title: "LEA-hanke (2018–2020, EU Horizon 2020)",
     description: "Learning Technology Accelerator — EU Horizon 2020 -rahoitteinen hanke oppimisteknologia-alan innovatiivisen julkisen hankinnan (PPI) verkoston rakentamiseksi Eurooppaan.",
-    href: "/tutkimus/#hankkeet"
+    companionFields: ["description", "category"],
+    classification: "B/D",
+    targetLabel: "Tutkimus / hankkeet",
+    currentSourceState: "Project identity now reused from researchProjects.js."
   },
   {
-    year: "2020",
+    id: "open-science-award-2020",
+    year: 2020,
     category: "palkinto",
     title: "Kansallinen avoimen tieteen palkinto",
     description: "Tieteellisten seurain valtuuskunnan (TSV) tunnustus pitkäaikaisesta avoimuuden edistämisestä ja etäopetuksen tuesta koronapandemian aikana.",
-    href: "/palkinnot/"
+    href: "/palkinnot/",
+    companionFields: ["year", "title", "href", "description", "category"],
+    classification: "C",
+    targetLabel: "Palkinnot",
+    currentSourceState: "Award detail exists on the awards page, but there is no shared structured source yet."
   },
   {
-    year: "2020",
+    id: "makect-2020",
+    sourceKey: "research-project-makect",
     category: "tutkimus",
-    title: "MakeCT-hanke käynnistyy (2020–2023)",
     description: "Assessing CT in Nordic Maker Education — Nordplus Horizontal -rahoitteinen pohjoismainen yhteistyöhanke laskennallisen ajattelun arvioinnista maker-kasvatuksessa.",
-    href: "/tutkimus/#hankkeet"
+    companionFields: ["description", "category"],
+    classification: "B/D",
+    targetLabel: "Tutkimus / hankkeet",
+    currentSourceState: "Project identity now reused from researchProjects.js."
   },
   {
-    year: "2021",
+    id: "election-term-2021-2025",
+    sourceKey: "election-term-2021-2025",
     category: "politiikka",
-    title: "Vaalikausi 2021–2025 (Oulu)",
     description: "Kaupunginvaltuutettu ja sivistys- ja kulttuurilautakunnan jäsen; myös maakuntavaltuuston jäsen.",
-    href: "/politiikka/vaalikaudet/"
+    companionFields: ["description", "category"],
+    classification: "B/D",
+    targetLabel: "Vaalikaudet",
+    currentSourceState: "Term period/year/route now reused from electionHistory."
   },
   {
-    year: "2022",
+    id: "generation-ai-2022",
+    sourceKey: "research-project-generation ai",
     category: "tutkimus",
-    title: "Generation AI -tutkimusohjelma käynnistyy (2022–)",
+    description: "Suomen Akatemian Strategisen tutkimuksen neuvoston (STN) rahoittama tekoälykasvatuksen tutkimusohjelma (lokakuu 2022–). Vuorovaikutusasiantuntijana tutkimustiedon välittäjä opettajille ja kouluille.",
     phaseStart: {
       label: "2022–",
       title: "Tekoälylukutaito ja Generation AI",
       description: "Aiempi tutkimus mobiilioppimisesta, yhteisöllisistä skripteistä ja opettajankoulutuksesta johtaa loogisesti tekoälykasvatukseen — sama kysymys teknologian roolista oppimisessa uudessa muodossa."
     },
-    description: "Suomen Akatemian Strategisen tutkimuksen neuvoston (STN) rahoittama tekoälykasvatuksen tutkimusohjelma (lokakuu 2022–). Vuorovaikutusasiantuntijana tutkimustiedon välittäjä opettajille ja kouluille.",
-    href: "/tutkimus/#hankkeet"
+    companionFields: ["description", "category", "phaseStart"],
+    classification: "B/D",
+    targetLabel: "Tutkimus / hankkeet",
+    currentSourceState: "Project identity now reused from researchProjects.js."
   },
   {
-    year: "2023",
+    id: "tkaedite-2023",
+    sourceKey: "research-project-tkaedite",
     category: "tutkimus",
-    title: "TKAEDITE-hanke (2023–2026, Erasmus+)",
     description: "Transforming the Kosovo and Albanian Education System by introducing Digital Technology in Teacher Education — Erasmus+ -rahoitteinen kansainvälinen hanke opettajankoulutuksen digitalisoinnista.",
-    href: "/tutkimus/#hankkeet"
+    companionFields: ["description", "category"],
+    classification: "B/D",
+    targetLabel: "Tutkimus / hankkeet",
+    currentSourceState: "Project identity now reused from researchProjects.js."
   },
   {
-    year: "2025",
+    id: "election-term-2025-2029",
+    sourceKey: "election-term-2025-2029",
     category: "politiikka",
-    title: "Vaalikausi 2025–2029 (Oulu)",
     description: "Varavaltuutettu ja sivistyslautakunnan jäsen Oulun kaupungissa; aluevaltuuston varajäsen Pohjois-Pohjanmaan hyvinvointialueella.",
-    href: "/politiikka/vaalikaudet/"
+    companionFields: ["description", "category"],
+    classification: "B/D",
+    targetLabel: "Vaalikaudet",
+    currentSourceState: "Term period/year/route now reused from electionHistory."
   },
   {
-    year: "2026",
+    id: "ai-literacy-2026",
+    year: 2026,
     category: "opetus",
     title: "Tekoälylukutaito opettajankoulutuksen keskiössä",
     description: "Generation AI -tutkimus ja täydennyskoulutukset siirtävät tekoälylukutaidon opettajankoulutuksen ja opettajayhteisöjen arkeen.",
-    href: "/teemat/tekoalylukutaito/"
+    href: "/teemat/tekoalylukutaito/",
+    companionFields: ["year", "title", "href", "description", "category"],
+    classification: "C",
+    targetLabel: "Tekoälylukutaito-teema",
+    currentSourceState: "Homepage-only editorial synthesis of the current AI literacy phase."
   }
-];
+]);
+
+module.exports = function milestonesData() {
+  const electionHistory = loadElectionHistory();
+  const projection = buildHomeMilestones({
+    definitions: MILESTONE_DEFINITIONS,
+    cvData,
+    researchProjects,
+    electionHistory
+  });
+
+  return projection.milestones;
+};
+
+module.exports.MILESTONE_DEFINITIONS = MILESTONE_DEFINITIONS;
