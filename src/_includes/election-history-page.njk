@@ -1,0 +1,233 @@
+{% set currentLang = pageLang or (lang or (page.url | langFromUrl)) %}
+{% set view = electionHistory.views[currentLang] %}
+{% set families = electionHistory.familyDefinitions %}
+
+{% macro renderContentList(items, emptyText, listId, currentLang, pagination) %}
+  {% if items.length %}
+  <div
+    class="term-content-stack"
+    data-term-pagination
+    data-page-size="{{ pagination.pageSize }}"
+    data-list-id="{{ listId }}"
+    data-page-info-template="{{ view.pageInfoTemplate }}"
+    data-page-button-label="{{ view.pageButtonLabel }}"
+  >
+    <ul class="term-content-list">
+      {% for item in items %}
+      <li class="term-content-item" data-page-item>
+        <a href="{{ item.pageUrl }}" class="term-content-link">{{ item.title }}</a>
+        <div class="term-content-meta">
+          <span>{{ item.date | dateFormat }}</span>
+          {% for segment in (item.metaSegments[currentLang] or []) %}
+          <span>{{ segment }}</span>
+          {% endfor %}
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    {% if pagination.enabled and items.length > pagination.pageSize %}
+    <div class="term-content-pagination">
+      <p class="term-content-pagination__info mb-0" data-page-info aria-live="polite"></p>
+      <ul class="pagination pagination-sm mb-0 flex-wrap" data-page-controls aria-label="{{ view.pageButtonLabel }} {{ listId }}"></ul>
+    </div>
+    {% endif %}
+  </div>
+  {% else %}
+  <p class="term-empty mb-0">{{ emptyText }}</p>
+  {% endif %}
+{% endmacro %}
+
+<section class="term-archive-page term-archive-page--hero py-5 bg-body-tertiary border-bottom">
+  <div class="site-shell">
+    <div class="term-hero">
+      <div>
+        <p class="term-eyebrow mb-2">{{ view.eyebrow }}</p>
+        <h1 class="term-hero-title mb-3">{{ view.title }}</h1>
+        <p class="term-hero-lead mb-4">{{ view.lead }}</p>
+      </div>
+      <aside class="term-hero-card">
+        <p class="term-hero-card__kicker">{{ view.heroCardTitle }}</p>
+        <ul class="term-hero-card__list">
+          {% for item in view.heroList %}
+          <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+      </aside>
+    </div>
+
+    <div class="term-jump-grid" aria-label="{{ view.jumpAriaLabel }}">
+      {% for term in electionHistory.terms %}
+      <a class="term-jump-card" href="#{{ term.id }}">
+        <span class="term-jump-period">{{ term.localized[currentLang].period }}</span>
+        <strong>{{ term.localized[currentLang].title }}</strong>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="term-archive-page py-5">
+  <div class="site-shell">
+    {% for term in electionHistory.terms %}
+    {% set localizedTerm = term.localized[currentLang] %}
+    <article id="{{ term.id }}" class="term-card mb-5">
+      <div class="term-card__header">
+        <div>
+          <h2 class="term-card__title">{{ localizedTerm.period }}</h2>
+          {% if term.current %}
+          <p class="term-current-badge">{{ view.currentBadge }}</p>
+          {% endif %}
+          <p class="term-card__role">{{ localizedTerm.title }}</p>
+        </div>
+        <p class="term-card__summary mb-0">{{ localizedTerm.summary }}</p>
+      </div>
+
+      <details class="term-mobile-disclosure" data-term-mobile-collapse data-term-current="{{ term.current }}" open>
+        <summary class="term-mobile-disclosure-summary">{{ view.metaDisclosureTitle }}</summary>
+        <div class="term-meta-grid">
+          <section class="term-meta-card">
+            <h3 class="term-meta-card__title">{{ view.metaTitles.results }}</h3>
+            <div class="term-result-grid">
+              {% for result in localizedTerm.results %}
+              <div class="term-result-card">
+                <p class="term-result-card__label">{{ result.label }}</p>
+                <p class="term-result-card__detail">{{ result.detail }}</p>
+                <p class="term-result-card__outcome mb-0">{{ result.result }}</p>
+              </div>
+              {% endfor %}
+            </div>
+          </section>
+
+          <section class="term-meta-card">
+            <h3 class="term-meta-card__title">{{ view.metaTitles.roles }}</h3>
+            <ul class="term-role-list mb-0">
+              {% for role in localizedTerm.roles %}
+              <li>{{ role }}</li>
+              {% endfor %}
+            </ul>
+          </section>
+
+          <section class="term-meta-card">
+            <h3 class="term-meta-card__title">{{ view.metaTitles.archives }}</h3>
+            <div class="term-archive-links">
+              {% for link in localizedTerm.archives %}
+              <a href="{{ link.href }}" class="term-inline-link">{{ link.label }}</a>
+              {% endfor %}
+            </div>
+          </section>
+
+          <section class="term-meta-card">
+            <h3 class="term-meta-card__title">{{ view.metaTitles.council }}</h3>
+            {% if term.councilMeetings.length %}
+            <p class="term-meta-card__text">{{ term.councilMeetings.length }} {{ view.councilText.countPrefix }}</p>
+            <a href="/politiikka/kaupunginvaltuusto/" class="term-inline-link">{{ "Avaa kokoukset" if currentLang == "fi" else "Open meetings (Finnish)" }}</a>
+            {% else %}
+            <p class="term-meta-card__text mb-0">{{ view.councilText.empty }}</p>
+            {% endif %}
+          </section>
+        </div>
+      </details>
+
+      <details class="term-mobile-disclosure" data-term-mobile-collapse data-term-current="{{ term.current }}" open>
+        <summary class="term-mobile-disclosure-summary">{{ view.contentDisclosureTitle }}</summary>
+        <div class="term-content-grid">
+          {% for family in families %}
+          {% set items = term.canonicalFamilies[family.key] or [] %}
+          <section class="term-content-card">
+            <div class="term-content-card__head">
+              <h3 class="term-content-card__title">{{ family.title[currentLang] }}</h3>
+              <span class="term-content-card__count">{{ items.length }}</span>
+            </div>
+            {{ renderContentList(items, family.emptyText[currentLang], term.id ~ "-" ~ family.key, currentLang, electionHistory.pagination) }}
+          </section>
+          {% endfor %}
+        </div>
+      </details>
+    </article>
+    {% endfor %}
+
+    {% if view.showOtherCivicRoles %}
+    <section class="term-card mb-5">
+      <div class="term-card__header">
+        <div>
+          <h2 class="term-card__title">{{ view.otherCivicRolesTitle }}</h2>
+        </div>
+      </div>
+      <div class="term-meta-grid">
+        <section class="term-meta-card">
+          <ul class="term-role-list mb-0">
+            {% for role in electionHistory.otherCivicRoles[currentLang] %}
+            <li>{{ role }}</li>
+            {% endfor %}
+          </ul>
+        </section>
+      </div>
+    </section>
+    {% endif %}
+
+    <div class="term-footer-links">
+      {% for link in view.footerLinks %}
+      <a class="btn btn-{{ link.variant }}" href="{{ link.href }}">{{ link.label }}</a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<script>
+  (() => {
+    const paginatedGroups = document.querySelectorAll("[data-term-pagination]");
+    if (!paginatedGroups.length) return;
+
+    paginatedGroups.forEach((group) => {
+      const items = Array.from(group.querySelectorAll("[data-page-item]"));
+      const info = group.querySelector("[data-page-info]");
+      const controls = group.querySelector("[data-page-controls]");
+      const pageSize = Number(group.getAttribute("data-page-size")) || 3;
+      const infoTemplate = group.getAttribute("data-page-info-template") || "";
+      const pageButtonLabel = group.getAttribute("data-page-button-label") || "Page";
+
+      if (items.length <= pageSize || !info || !controls) return;
+
+      const total = items.length;
+      const totalPages = Math.ceil(total / pageSize);
+
+      const renderPage = (page) => {
+        const safePage = Math.min(Math.max(page, 1), totalPages);
+        const start = (safePage - 1) * pageSize;
+        const end = start + pageSize;
+
+        items.forEach((item, index) => {
+          item.hidden = index < start || index >= end;
+        });
+
+        const firstVisible = start + 1;
+        const lastVisible = Math.min(end, total);
+        info.textContent = infoTemplate
+          .replace("%FIRST%", String(firstVisible))
+          .replace("%LAST%", String(lastVisible))
+          .replace("%TOTAL%", String(total));
+
+        controls.innerHTML = Array.from({ length: totalPages }, (_, index) => {
+          const pageNumber = index + 1;
+          return `
+            <li class="page-item ${pageNumber === safePage ? "active" : ""}">
+              <button type="button" class="page-link" data-page-number="${pageNumber}" aria-label="${pageButtonLabel} ${pageNumber}">
+                ${pageNumber}
+              </button>
+            </li>
+          `;
+        }).join("");
+      };
+
+      controls.addEventListener("click", (event) => {
+        const button = event.target.closest("[data-page-number]");
+        if (!button) return;
+        const page = Number(button.getAttribute("data-page-number"));
+        if (!Number.isFinite(page)) return;
+        renderPage(page);
+      });
+
+      renderPage(1);
+    });
+  })();
+</script>
