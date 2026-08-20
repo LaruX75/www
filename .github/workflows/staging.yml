@@ -3,8 +3,12 @@ name: Staging checks
 on:
   push:
     branches: [staging]
+    paths-ignore:
+      - "docs/**"
   pull_request:
     branches: [main]
+    paths-ignore:
+      - "docs/**"
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
@@ -92,10 +96,6 @@ jobs:
 
       - name: EN pages have English skip-link
         run: grep -q 'Skip to main content' _site/en/about/index.html
-
-
-      - name: Build Pagefind search index
-        run: npm run search:index
 
       - name: Upload build artifact for review
         uses: actions/upload-artifact@v7
