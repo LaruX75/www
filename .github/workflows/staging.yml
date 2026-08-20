@@ -35,8 +35,8 @@ jobs:
           restore-keys: |
             api-fallback-${{ runner.os }}-
 
-      - name: Build site
-        run: npm run build
+      - name: Build site without generated OG assets
+        run: npm run build:no-og
         env:
           ELEVENTY_PATH_PREFIX: /www-staging/
 
