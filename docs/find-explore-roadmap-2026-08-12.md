@@ -462,6 +462,18 @@ Do not implement O1 inside F3B. Treat it as its own UX/accessibility checkpoint.
 
 Timeline should evolve from a chronological list into another projection of canonical content.
 
+T1A audit completed on 2026-08-20 against `main` at `9e881b7735148458fdbdba86fa1ee0cd9cf474c4`.
+
+Recommended target:
+
+```text
+canonical content + legitimate manual companion facts
+  -> Eleventy/Nunjucks SSR chronological projection
+  -> optional Pagefind enhancement for active discovery only
+```
+
+T1 implementation remains NOT STARTED.
+
 Conceptually:
 
 ```text
