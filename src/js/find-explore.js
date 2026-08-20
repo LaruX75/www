@@ -222,6 +222,53 @@
     return labels.generic;
   }
 
+  function composeThesisTypeRoleValue(type, role) {
+    const normalizedType = String(type || "").trim();
+    const normalizedRole = String(role || "").trim();
+    if (!normalizedType || !normalizedRole) return "";
+    return `${normalizedType}::${normalizedRole}`;
+  }
+
+  function parseThesisTypeRoleValue(value) {
+    const [thesisType = "", thesisRole = ""] = String(value || "").split("::");
+    return {
+      thesisType: thesisType.trim(),
+      thesisRole: thesisRole.trim()
+    };
+  }
+
+  function isDefaultThesisSortState(state) {
+    return (state?.yearOrder || "year-desc") === "year-desc"
+      && (state?.authorSort || "use-year") === "use-year";
+  }
+
+  function compareStrings(left, right, locale) {
+    return String(left || "").localeCompare(String(right || ""), locale);
+  }
+
+  function compareThesisYear(left, right, direction, locale) {
+    const leftYear = Number.parseInt(left?.year || "0", 10) || 0;
+    const rightYear = Number.parseInt(right?.year || "0", 10) || 0;
+    if (leftYear !== rightYear) {
+      return direction === "asc" ? leftYear - rightYear : rightYear - leftYear;
+    }
+    return compareStrings(left?.title, right?.title, locale);
+  }
+
+  function sortThesisEntries(entries, state, locale) {
+    const authorSort = state?.authorSort || "use-year";
+    const yearOrder = state?.yearOrder || "year-desc";
+    const normalizedLocale = String(locale || "fi").toLowerCase() === "en" ? "en" : "fi";
+    return [...entries].sort((left, right) => {
+      if (authorSort === "author-asc" || authorSort === "author-desc") {
+        const authorDiff = compareStrings(left?.authorLine, right?.authorLine, normalizedLocale);
+        if (authorDiff !== 0) return authorSort === "author-asc" ? authorDiff : -authorDiff;
+        return compareThesisYear(left, right, "desc", normalizedLocale);
+      }
+      return compareThesisYear(left, right, yearOrder === "year-asc" ? "asc" : "desc", normalizedLocale);
+    });
+  }
+
   const kindConfig = {
     writings: {
       filterPrefix: "Writings",
@@ -248,7 +295,8 @@
       excerpt(data) {
         return data?.meta?.thesesDescription || data?.excerpt || "";
       },
-      requiresQueryForSearch: false
+      requiresQueryForSearch: false,
+      maxResults: 250
     },
     publications: {
       filterPrefix: "Publications",
@@ -388,22 +436,48 @@
 
   function readInitialState(mount) {
     const params = new URLSearchParams(window.location.search);
+    const legacyType = params.get("type") || "";
+    const legacyRole = params.get("role") || "";
     return {
       q: params.get("q") || "",
-      type: params.get("type") || "",
-      role: params.get("role") || "",
+      type: legacyType,
+      role: legacyRole,
       year: params.get("year") || "",
       topic: params.get("topic") || "",
-      quality: params.get("quality") || ""
+      quality: params.get("quality") || "",
+      typeRole: params.get("typeRole") || composeThesisTypeRoleValue(legacyType, legacyRole),
+      yearOrder: params.get("yearOrder") || "year-desc",
+      authorSort: params.get("authorSort") || "use-year"
     };
   }
 
-  function updateUrl(state) {
+  function updateUrl(state, kind) {
     const next = new URLSearchParams(window.location.search);
-    Object.entries(state).forEach(([key, value]) => {
+    const nextState = { ...state };
+    if (kind === "theses") {
+      delete nextState.type;
+      delete nextState.role;
+      delete nextState.year;
+    } else {
+      delete nextState.typeRole;
+      delete nextState.yearOrder;
+      delete nextState.authorSort;
+    }
+    Object.entries(nextState).forEach(([key, value]) => {
       if (value) next.set(key, value);
       else next.delete(key);
     });
+    if (kind === "theses") {
+      if ((state.yearOrder || "year-desc") === "year-desc") next.delete("yearOrder");
+      if ((state.authorSort || "use-year") === "use-year") next.delete("authorSort");
+      next.delete("type");
+      next.delete("role");
+      next.delete("year");
+    } else {
+      next.delete("typeRole");
+      next.delete("yearOrder");
+      next.delete("authorSort");
+    }
     const query = next.toString();
     window.history.replaceState({}, "", `${window.location.pathname}${query ? `?${query}` : ""}${window.location.hash}`);
   }
@@ -509,6 +583,12 @@
     const seedQuery = mount.dataset.findExploreSeedQuery || "";
     const recordsByUrl = readRecords(mount);
     const roleSelect = mount.querySelector("[data-find-explore-role]");
+    const yearOrderSelect = mount.querySelector("[data-find-explore-year-order]")
+      || (mount.dataset.findExploreYearOrderId ? document.getElementById(mount.dataset.findExploreYearOrderId) : null);
+    const authorSortSelect = mount.querySelector("[data-find-explore-author-sort]")
+      || (mount.dataset.findExploreAuthorSortId ? document.getElementById(mount.dataset.findExploreAuthorSortId) : null);
+    const typeRoleSelect = mount.querySelector("[data-find-explore-type-role]")
+      || (mount.dataset.findExploreTypeRoleId ? document.getElementById(mount.dataset.findExploreTypeRoleId) : null);
     const initialResultsHtml = resultsList?.innerHTML || "";
 
     mount.dataset.findExploreReady = "false";
@@ -518,13 +598,20 @@
     let activeSearchRunId = 0;
 
     function readState() {
+      const combinedTypeRole = typeRoleSelect?.value || "";
+      const parsedTypeRole = kind === "theses"
+        ? parseThesisTypeRoleValue(combinedTypeRole)
+        : { thesisType: "", thesisRole: "" };
       return {
         q: queryInput?.value.trim() || "",
-        type: typeSelect?.value || "",
-        role: roleSelect?.value || "",
+        type: parsedTypeRole.thesisType || typeSelect?.value || "",
+        role: parsedTypeRole.thesisRole || roleSelect?.value || "",
         year: yearSelect?.value || "",
         topic: topicSelect?.value || "",
-        quality: qualitySelect?.value || ""
+        quality: qualitySelect?.value || "",
+        typeRole: combinedTypeRole,
+        yearOrder: yearOrderSelect?.value || "year-desc",
+        authorSort: authorSortSelect?.value || "use-year"
       };
     }
 
@@ -535,6 +622,9 @@
       if (yearSelect) yearSelect.value = state.year || "";
       if (topicSelect) topicSelect.value = state.topic || "";
       if (qualitySelect) qualitySelect.value = state.quality || "";
+      if (typeRoleSelect) typeRoleSelect.value = state.typeRole || composeThesisTypeRoleValue(state.type, state.role);
+      if (yearOrderSelect) yearOrderSelect.value = state.yearOrder || "year-desc";
+      if (authorSortSelect) authorSortSelect.value = state.authorSort || "use-year";
     }
 
     writeState(readInitialState(mount));
@@ -728,15 +818,19 @@
     }
 
     function renderResults() {
+      const state = readState();
       const renderAll = Boolean(config.renderAllResults);
       const activeQuery = queryInput?.value.trim() || "";
       // Deterministic bibliographic order when the user has not
       // entered a free-text query. Any structured facet state still
       // uses bibliographic order — filters narrow the set, but
       // relevance ranking only kicks in for actual text queries.
-      const orderedResults = (config.groupByPublicationGroup && !activeQuery)
-        ? sortResultsForBibliographicOrder(latestResults)
-        : latestResults;
+      let orderedResults = latestResults;
+      if (kind === "theses") {
+        orderedResults = sortThesisEntries(latestResults, state, labels.langKey);
+      } else if (config.groupByPublicationGroup && !activeQuery) {
+        orderedResults = sortResultsForBibliographicOrder(latestResults);
+      }
       const slice = renderAll ? orderedResults : orderedResults.slice(0, visibleCount);
       if (config.groupByPublicationGroup && slice.length) {
         const grouped = groupPublicationEntries(slice);
@@ -762,15 +856,16 @@
       const state = readState();
       const hasQuery = Boolean(state.q);
       const hasFilters = Boolean(state.type || state.role || state.year || state.topic || state.quality);
+      const hasThesisSortInteraction = kind === "theses" && !isDefaultThesisSortState(state);
       // PF5-IMPL-APA: publications archive keeps the full canonical
       // list visible on initial load — fall back to the seed query
       // even without filters when the kind opted in.
       const useSeedForEmpty = config.showAllByDefault && seedQuery;
       const effectiveQuery = hasQuery
         ? state.q
-        : ((hasFilters || useSeedForEmpty) && seedQuery ? seedQuery : "");
+        : ((hasFilters || hasThesisSortInteraction || useSeedForEmpty) && seedQuery ? seedQuery : "");
 
-      updateUrl(state);
+      updateUrl(state, kind);
       visibleCount = PAGE_SIZE;
 
       // TH-CITE1 Phase 3 — one visible result surface for the theses
@@ -897,10 +992,23 @@
     typeSelect?.addEventListener("change", runSearch);
     roleSelect?.addEventListener("change", runSearch);
     yearSelect?.addEventListener("change", runSearch);
+    yearOrderSelect?.addEventListener("change", runSearch);
+    authorSortSelect?.addEventListener("change", runSearch);
+    typeRoleSelect?.addEventListener("change", runSearch);
     topicSelect?.addEventListener("change", runSearch);
     qualitySelect?.addEventListener("change", runSearch);
     resetButton?.addEventListener("click", () => {
-      writeState({ q: "", type: "", role: "", year: "", topic: "", quality: "" });
+      writeState({
+        q: "",
+        type: "",
+        role: "",
+        year: "",
+        topic: "",
+        quality: "",
+        typeRole: "",
+        yearOrder: "year-desc",
+        authorSort: "use-year"
+      });
       queryInput?.focus();
       runSearch();
     });

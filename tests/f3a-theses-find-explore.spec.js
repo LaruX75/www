@@ -2,24 +2,76 @@ const { test, expect } = require("@playwright/test");
 
 test.describe.configure({ mode: "serial" });
 
-test("FI theses Find & Explore supports author search, filter-only search, and reset on the shared tbody", async ({ page }) => {
+function normalizeTexts(values) {
+  return values.map((value) => value.trim()).filter(Boolean);
+}
+
+test("FI thesis header controls expose only valid domain options and combine with author sorting on the shared tbody", async ({ page }) => {
+  await page.goto("/opinnaytteet/");
+
+  await expect(page.locator("[data-find-explore-year-order]")).toHaveValue("year-desc");
+  await expect(page.locator("[data-find-explore-author-sort]")).toHaveValue("use-year");
+
+  const typeRoleOptions = normalizeTexts(await page.locator("[data-find-explore-type-role] option").allTextContents());
+  expect(typeRoleOptions).toEqual([
+    "Kaikki",
+    "Gradu · ohjattu",
+    "Gradu · tarkastettu",
+    "Kandi · ohjattu"
+  ]);
+  expect(typeRoleOptions).not.toContain("Kandi · tarkastettu");
+
+  await page.locator("[data-find-explore-type-role]").selectOption("masterThesis::reviewed");
+  await page.locator("[data-find-explore-author-sort]").selectOption("author-asc");
+  await expect(page.locator("[data-find-explore-status]")).toContainText(/tulos|tulosta/, { timeout: 15000 });
+  await expect(page.locator("body")).toHaveClass(/find-explore-active/);
+  await expect(page.locator("li.find-explore-result")).toHaveCount(0);
+
+  const typeCells = normalizeTexts(await page.locator("[data-find-explore-results] .thesis-archive-col-type").allTextContents());
+  expect(typeCells.length).toBeGreaterThan(0);
+  expect(typeCells.every((value) => value === "Gradu · tarkastettu")).toBeTruthy();
+
+  const authors = normalizeTexts(await page.locator("[data-find-explore-results] .thesis-archive-col-author").allTextContents());
+  const authorsAsc = [...authors].sort((left, right) => left.localeCompare(right, "fi"));
+  expect(authors).toEqual(authorsAsc);
+
+  const firstTitle = page.locator("[data-find-explore-results] .thesis-archive-title-link").first();
+  const firstSource = page.locator("[data-find-explore-results] .thesis-archive-col-source a").first();
+  await expect(firstTitle).toHaveAttribute("href", /\/opinnaytteet\/\d+\/$/);
+  await expect(firstSource).toHaveAttribute("href", /^https:\/\/oulurepo\.oulu\.fi\/handle\/10024\//);
+  await expect(firstSource).toHaveAttribute("target", "_blank");
+
+  await page.locator("[data-find-explore-reset]").click();
+  await expect(page.locator("[data-find-explore-query]")).toBeFocused();
+  await expect(page.locator("[data-find-explore-year-order]")).toHaveValue("year-desc");
+  await expect(page.locator("[data-find-explore-author-sort]")).toHaveValue("use-year");
+  await expect(page.locator("[data-find-explore-type-role]")).toHaveValue("");
+  await expect(page.locator("[data-find-explore-results] tr")).toHaveCount(20);
+});
+
+test("FI theses year ordering switches to oldest-first via Pagefind and returns cleanly to SSR default", async ({ page }) => {
+  await page.goto("/opinnaytteet/");
+
+  const initialHref = await page.locator("[data-find-explore-results] .thesis-archive-title-link").first().getAttribute("href");
+
+  await page.locator("[data-find-explore-year-order]").selectOption("year-asc");
+  await expect(page.locator("[data-find-explore-status]")).toContainText(/tulos|tulosta/, { timeout: 15000 });
+  await expect(page.locator("body")).toHaveClass(/find-explore-active/);
+  await expect(page.locator("[data-find-explore-results] .thesis-archive-title-link").first()).toHaveAttribute("href", "/opinnaytteet/38572/");
+
+  await page.locator("[data-find-explore-year-order]").selectOption("year-desc");
+  await expect(page.locator("body")).not.toHaveClass(/find-explore-active/);
+  await expect(page.locator("[data-find-explore-results] .thesis-archive-title-link").first()).toHaveAttribute("href", initialHref);
+  await expect(page.locator('[data-thesis-archive-pager-position="top"]')).toBeVisible();
+  await expect(page.locator('[data-thesis-archive-pager-position="bottom"]')).toBeVisible();
+});
+
+test("FI theses Find & Explore still supports text search on the shared tbody", async ({ page }) => {
   await page.goto("/opinnaytteet/");
 
   await page.locator("[data-find-explore-query]").fill("Riikonen");
   await expect(page.locator("[data-find-explore-status]")).toContainText(/tulos|tulosta/, { timeout: 15000 });
   await expect(page.locator("[data-find-explore-results] a").first()).toHaveAttribute("href", "/opinnaytteet/62699/", { timeout: 15000 });
-
-  await page.locator("[data-find-explore-reset]").click();
-  await expect(page.locator("[data-find-explore-query]")).toBeFocused();
-  await page.locator("[data-find-explore-type]").selectOption("masterThesis");
-  await page.locator("[data-find-explore-role]").selectOption("reviewed");
-  await page.locator("[data-find-explore-year]").selectOption("2026");
-  await expect(page.locator("[data-find-explore-status]")).toContainText(/tulos|tulosta/, { timeout: 15000 });
-  const typeCells = await page.locator("[data-find-explore-results] .thesis-archive-col-type").allTextContents();
-  expect(typeCells.every((value) => value.includes("Gradu") && value.includes("tarkastettu"))).toBeTruthy();
-
-  await page.locator("[data-find-explore-reset]").click();
-  await expect(page.locator("[data-find-explore-results] tr")).toHaveCount(20);
 });
 
 // TH-CITE1 Phase 4D: the pre-Phase-3 test "FI theses curated cards
@@ -55,6 +107,15 @@ test("FI archive does not carry pre-Phase-3 archive modal triggers", async ({ pa
 
 test("EN theses Find & Explore resolves local canonical detail links", async ({ page }) => {
   await page.goto("/en/theses/");
+
+  const typeRoleOptions = normalizeTexts(await page.locator("[data-find-explore-type-role] option").allTextContents());
+  expect(typeRoleOptions).toEqual([
+    "All",
+    "Master's · advised",
+    "Master's · reviewed",
+    "Bachelor's · advised"
+  ]);
+  expect(typeRoleOptions).not.toContain("Bachelor's · reviewed");
 
   await page.locator("[data-find-explore-query]").fill("Gill");
   await expect(page.locator("[data-find-explore-status]")).toContainText(/result|results/, { timeout: 15000 });

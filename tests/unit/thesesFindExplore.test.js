@@ -3,6 +3,7 @@ const assert = require("node:assert/strict");
 
 const {
   thesisRoleLabel,
+  thesisTypeRoleFilterOptions,
   buildThesisFindExploreDocument
 } = require("../../src/_utils/thesesFindExplore");
 
@@ -30,6 +31,30 @@ describe("thesisRoleLabel", () => {
     assert.equal(thesisRoleLabel("reviewed", "fi"), "Tarkastettu opinnäyte");
     assert.equal(thesisRoleLabel("advised", "en"), "Supervised thesis");
     assert.equal(thesisRoleLabel("reviewed", "en"), "Reviewed thesis");
+  });
+});
+
+describe("thesisTypeRoleFilterOptions", () => {
+  test("returns only valid FI domain options", () => {
+    assert.deepEqual(
+      thesisTypeRoleFilterOptions("fi").map((option) => option.label),
+      ["Gradu · ohjattu", "Gradu · tarkastettu", "Kandi · ohjattu"]
+    );
+  });
+
+  test("returns only valid EN domain options", () => {
+    assert.deepEqual(
+      thesisTypeRoleFilterOptions("en").map((option) => option.label),
+      ["Master's · advised", "Master's · reviewed", "Bachelor's · advised"]
+    );
+  });
+
+  test("never exposes impossible bachelor's reviewed option", () => {
+    const values = [
+      ...thesisTypeRoleFilterOptions("fi").map((option) => option.value),
+      ...thesisTypeRoleFilterOptions("en").map((option) => option.value)
+    ];
+    assert.ok(!values.includes("bachelorThesis::reviewed"));
   });
 });
 

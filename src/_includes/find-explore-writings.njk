@@ -1,5 +1,5 @@
 {% set findExploreMountId = findExploreId or "findExplore" %}
-<section class="find-explore find-explore--{{ findExploreKind or 'writings' }}" aria-labelledby="{{ findExploreMountId }}Heading" data-find-explore data-find-explore-kind="{{ findExploreKind or 'writings' }}" {% if findExploreKinds %}data-find-explore-kinds="{{ findExploreKinds }}"{% endif %} data-find-explore-scope="{{ findExploreScope }}" data-find-explore-lang="{{ findExploreLang }}" {% if findExploreSearchLanguage %}data-find-explore-search-language="{{ findExploreSearchLanguage }}"{% endif %} {% if findExploreLanguageFilter %}data-find-explore-language-filter="{{ findExploreLanguageFilter }}"{% endif %} {% if findExploreSeedQuery %}data-find-explore-seed-query="{{ findExploreSeedQuery }}"{% endif %}{% if findExploreExternalResultsId %} data-find-explore-results-id="{{ findExploreExternalResultsId }}"{% endif %}>
+<section class="find-explore find-explore--{{ findExploreKind or 'writings' }}" aria-labelledby="{{ findExploreMountId }}Heading" data-find-explore data-find-explore-kind="{{ findExploreKind or 'writings' }}" {% if findExploreKinds %}data-find-explore-kinds="{{ findExploreKinds }}"{% endif %} data-find-explore-scope="{{ findExploreScope }}" data-find-explore-lang="{{ findExploreLang }}" {% if findExploreSearchLanguage %}data-find-explore-search-language="{{ findExploreSearchLanguage }}"{% endif %} {% if findExploreLanguageFilter %}data-find-explore-language-filter="{{ findExploreLanguageFilter }}"{% endif %} {% if findExploreSeedQuery %}data-find-explore-seed-query="{{ findExploreSeedQuery }}"{% endif %}{% if findExploreExternalResultsId %} data-find-explore-results-id="{{ findExploreExternalResultsId }}"{% endif %}{% if findExploreExternalYearOrderId %} data-find-explore-year-order-id="{{ findExploreExternalYearOrderId }}"{% endif %}{% if findExploreExternalAuthorSortId %} data-find-explore-author-sort-id="{{ findExploreExternalAuthorSortId }}"{% endif %}{% if findExploreExternalTypeRoleId %} data-find-explore-type-role-id="{{ findExploreExternalTypeRoleId }}"{% endif %}>
   <div class="site-shell">
     <div class="find-explore-card card border-0 shadow-sm">
       <div class="card-body p-4">
@@ -16,6 +16,7 @@
                   <label class="form-label small text-muted mb-1" for="{{ findExploreMountId }}Query">{{ findExploreSearchLabel }}</label>
                   <input id="{{ findExploreMountId }}Query" class="form-control form-control-lg" type="search" name="q" autocomplete="off" placeholder="{{ findExplorePlaceholder }}" data-find-explore-query>
                 </div>
+                {% if not findExploreHideTypeControl %}
                 <div class="col-md-5">
                   <label class="form-label small text-muted mb-1" for="{{ findExploreMountId }}Type">{{ findExploreTypeLabel }}</label>
                   <select id="{{ findExploreMountId }}Type" class="form-select" name="type" data-find-explore-type>
@@ -25,7 +26,8 @@
                     {% endfor %}
                   </select>
                 </div>
-                {% if findExploreRoleOptions and (findExploreRoleOptions | length) %}
+                {% endif %}
+                {% if not findExploreHideRoleControl and findExploreRoleOptions and (findExploreRoleOptions | length) %}
                 <div class="col-md-4">
                   <label class="form-label small text-muted mb-1" for="{{ findExploreMountId }}Role">{{ findExploreRoleLabel }}</label>
                   <select id="{{ findExploreMountId }}Role" class="form-select" name="role" data-find-explore-role>
@@ -36,6 +38,7 @@
                   </select>
                 </div>
                 {% endif %}
+                {% if not findExploreHideYearControl %}
                 <div class="col-md-4">
                   <label class="form-label small text-muted mb-1" for="{{ findExploreMountId }}Year">{{ findExploreYearLabel }}</label>
                   <select id="{{ findExploreMountId }}Year" class="form-select" name="year" data-find-explore-year>
@@ -45,6 +48,7 @@
                     {% endfor %}
                   </select>
                 </div>
+                {% endif %}
                 {% if findExploreTopicOptions and (findExploreTopicOptions | length) %}
                 <div class="col-md-4">
                   <label class="form-label small text-muted mb-1" for="{{ findExploreMountId }}Topic">{{ findExploreTopicLabel }}</label>

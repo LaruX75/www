@@ -48,6 +48,12 @@ eleventyComputed:
 {% set findExploreMoreLabel = "Show more" %}
 {% set findExploreInitialStatus = "The canonical archive table is visible below. A query or filter replaces the same table rows with Pagefind matches; Clear restores the server-rendered rows already on this page." %}
 {% set findExploreNoScript = "Interactive search requires JavaScript. The archive tables and their pagination remain available without JavaScript." %}
+{% set findExploreHideTypeControl = true %}
+{% set findExploreHideRoleControl = true %}
+{% set findExploreHideYearControl = true %}
+{% set findExploreExternalYearOrderId = "thesesArchiveYearOrderEn" %}
+{% set findExploreExternalAuthorSortId = "thesesArchiveAuthorSortEn" %}
+{% set findExploreExternalTypeRoleId = "thesesArchiveTypeRoleEn" %}
 {% set findExploreTypeOptions = [
   { value: "masterThesis", label: "Master's theses", count: pageModel.typeCounts.masterThesis },
   { value: "bachelorThesis", label: "Bachelor's theses", count: pageModel.typeCounts.bachelorThesis }
@@ -142,6 +148,10 @@ eleventyComputed:
 {% set thesisArchiveLang = "en" %}
 {% set thesisArchiveLandingUrl = "/en/theses/" %}
 {% set thesisArchivePageBase = "/en/theses/page/" %}
+{% set thesisArchiveYearOrderId = "thesesArchiveYearOrderEn" %}
+{% set thesisArchiveAuthorSortId = "thesesArchiveAuthorSortEn" %}
+{% set thesisArchiveTypeRoleId = "thesesArchiveTypeRoleEn" %}
+{% set thesisArchiveTypeRoleOptions = pageModel.typeRoleOptionsEn %}
 {% include "thesis-archive-table.njk" %}
 
 <section class="pb-5">

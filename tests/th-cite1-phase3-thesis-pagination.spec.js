@@ -50,6 +50,10 @@ async function firstResultHref(page) {
   return resultsLocator(page).locator(".thesis-archive-title-link").first().getAttribute("href");
 }
 
+function numericYears(values) {
+  return values.map((value) => Number.parseInt(String(value).trim(), 10)).filter(Number.isFinite);
+}
+
 test("flat thesis archive SSR pages exist as real documents with one table and one shared tbody", async ({ page }) => {
   for (const url of [...FI_URLS, ...EN_URLS]) {
     const response = await page.request.get(url);
@@ -64,7 +68,19 @@ test("flat thesis archive SSR pages exist as real documents with one table and o
     expect((html.match(/class="thesis-archive-title-link/g) || []).length, `${url} should show at most 20 rows`).toBeLessThanOrEqual(20);
     expect(html).not.toMatch(/data-thesis-section=/);
     expect(html).not.toMatch(/thesis-archive-citation/);
+    expect(html).toMatch(/data-find-explore-year-order/);
+    expect(html).toMatch(/data-find-explore-author-sort/);
+    expect(html).toMatch(/data-find-explore-type-role/);
   }
+});
+
+test("landing SSR thesis archive remains year-descending before any active Pagefind interaction", async ({ page }) => {
+  await page.goto("/opinnaytteet/");
+  const years = numericYears(await resultsLocator(page).locator(".thesis-archive-col-year").allTextContents());
+  expect(years.length).toBeGreaterThan(0);
+  expect([...years]).toEqual([...years].sort((left, right) => right - left));
+  await expect(page.locator("[data-find-explore-year-order]")).toHaveValue("year-desc");
+  await expect(page.locator("body")).not.toHaveClass(/find-explore-active/);
 });
 
 test("flat thesis archive keeps top and bottom pagers in sync on SSR page documents", async ({ page }) => {
@@ -128,23 +144,25 @@ test("active thesis search replaces the same tbody and reset restores SSR rows a
   await expect(pagerLocator(page, "bottom")).toBeVisible();
 });
 
-test("filter-only thesis search renders constrained rows into the shared tbody", async ({ page }) => {
+test("type-role filter and author sort render constrained rows into the shared tbody", async ({ page }) => {
   await page.goto("/opinnaytteet/");
 
-  await page.locator("[data-find-explore-type]").selectOption("masterThesis");
-  await page.locator("[data-find-explore-role]").selectOption("reviewed");
-  await page.locator("[data-find-explore-year]").selectOption("2026");
+  await page.locator("[data-find-explore-type-role]").selectOption("masterThesis::advised");
+  await page.locator("[data-find-explore-author-sort]").selectOption("author-desc");
 
   await expect(page.locator("[data-find-explore-status]")).toContainText(/tulos|tulosta/, { timeout: 15000 });
   await expect(page.locator("body")).toHaveClass(/find-explore-active/);
+  await expect(page.locator("li.find-explore-result")).toHaveCount(0);
 
   const rowCount = await resultsLocator(page).locator("tr").count();
   expect(rowCount).toBeGreaterThan(0);
-  expect(rowCount).toBeLessThanOrEqual(20);
+  expect(rowCount).toBeLessThanOrEqual(10);
 
   const typeCells = await resultsLocator(page).locator(".thesis-archive-col-type").allTextContents();
-  expect(typeCells.every((value) => value.includes("Gradu") && value.includes("tarkastettu"))).toBeTruthy();
+  expect(typeCells.every((value) => value.includes("Gradu") && value.includes("ohjattu"))).toBeTruthy();
 
-  const yearCells = await resultsLocator(page).locator(".thesis-archive-col-year").allTextContents();
-  expect(yearCells.every((value) => value.trim() === "2026")).toBeTruthy();
+  const authorCells = await resultsLocator(page).locator(".thesis-archive-col-author").allTextContents();
+  const normalizedAuthors = authorCells.map((value) => value.trim()).filter(Boolean);
+  const descAuthors = [...normalizedAuthors].sort((left, right) => right.localeCompare(left, "fi"));
+  expect(normalizedAuthors).toEqual(descAuthors);
 });

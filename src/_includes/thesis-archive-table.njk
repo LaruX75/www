@@ -12,6 +12,9 @@
     thesisArchivePageBase    — locale pagination base
 #}
 {% set thesisArchiveIsEn = thesisArchiveLang == "en" %}
+{% set thesisArchiveYearOrderId = thesisArchiveYearOrderId or (thesisArchiveTableId + "YearOrder") %}
+{% set thesisArchiveAuthorSortId = thesisArchiveAuthorSortId or (thesisArchiveTableId + "AuthorSort") %}
+{% set thesisArchiveTypeRoleId = thesisArchiveTypeRoleId or (thesisArchiveTableId + "TypeRole") %}
 <section class="thesis-archive-list py-4"
          data-thesis-archive
          data-thesis-archive-scope="{{ thesesArchive.scope }}"
@@ -43,10 +46,40 @@
             </caption>
             <thead>
               <tr>
-                <th scope="col" class="thesis-archive-col-year">{{ (thesisArchiveIsEn and 'Year') or 'Vuosi' }}</th>
-                <th scope="col" class="thesis-archive-col-author">{{ (thesisArchiveIsEn and 'Author') or 'Tekijä' }}</th>
+                <th scope="col" class="thesis-archive-col-year">
+                  <div class="thesis-archive-header-control">
+                    <span class="thesis-archive-header-label">{{ (thesisArchiveIsEn and 'Year') or 'Vuosi' }}</span>
+                    <label class="visually-hidden" for="{{ thesisArchiveYearOrderId }}">{{ (thesisArchiveIsEn and 'Archive year ordering') or 'Arkiston vuosijärjestys' }}</label>
+                    <select id="{{ thesisArchiveYearOrderId }}" class="form-select form-select-sm thesis-archive-header-select" data-find-explore-year-order aria-label="{{ (thesisArchiveIsEn and 'Archive year ordering') or 'Arkiston vuosijärjestys' }}">
+                      <option value="year-desc">{{ (thesisArchiveIsEn and 'Newest first') or 'Uusin ensin' }}</option>
+                      <option value="year-asc">{{ (thesisArchiveIsEn and 'Oldest first') or 'Vanhin ensin' }}</option>
+                    </select>
+                  </div>
+                </th>
+                <th scope="col" class="thesis-archive-col-author">
+                  <div class="thesis-archive-header-control">
+                    <span class="thesis-archive-header-label">{{ (thesisArchiveIsEn and 'Author') or 'Tekijä' }}</span>
+                    <label class="visually-hidden" for="{{ thesisArchiveAuthorSortId }}">{{ (thesisArchiveIsEn and 'Archive author ordering') or 'Arkiston tekijäjärjestys' }}</label>
+                    <select id="{{ thesisArchiveAuthorSortId }}" class="form-select form-select-sm thesis-archive-header-select" data-find-explore-author-sort aria-label="{{ (thesisArchiveIsEn and 'Archive author ordering') or 'Arkiston tekijäjärjestys' }}">
+                      <option value="use-year">{{ (thesisArchiveIsEn and 'By year') or 'Vuoden mukaan' }}</option>
+                      <option value="author-asc">{{ (thesisArchiveIsEn and 'Author A-Z') or 'Tekijä A-Ö' }}</option>
+                      <option value="author-desc">{{ (thesisArchiveIsEn and 'Author Z-A') or 'Tekijä Ö-A' }}</option>
+                    </select>
+                  </div>
+                </th>
                 <th scope="col" class="thesis-archive-col-title">{{ (thesisArchiveIsEn and 'Title') or 'Otsikko' }}</th>
-                <th scope="col" class="thesis-archive-col-type">{{ (thesisArchiveIsEn and 'Type / role') or 'Tyyppi / rooli' }}</th>
+                <th scope="col" class="thesis-archive-col-type">
+                  <div class="thesis-archive-header-control">
+                    <span class="thesis-archive-header-label">{{ (thesisArchiveIsEn and 'Type / role') or 'Tyyppi / rooli' }}</span>
+                    <label class="visually-hidden" for="{{ thesisArchiveTypeRoleId }}">{{ (thesisArchiveIsEn and 'Archive type and role filter') or 'Arkiston tyyppi- ja roolisuodatin' }}</label>
+                    <select id="{{ thesisArchiveTypeRoleId }}" class="form-select form-select-sm thesis-archive-header-select" data-find-explore-type-role aria-label="{{ (thesisArchiveIsEn and 'Archive type and role filter') or 'Arkiston tyyppi- ja roolisuodatin' }}">
+                      <option value="">{{ (thesisArchiveIsEn and 'All') or 'Kaikki' }}</option>
+                      {% for option in thesisArchiveTypeRoleOptions %}
+                      <option value="{{ option.value }}">{{ option.label }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </th>
                 <th scope="col" class="thesis-archive-col-source text-end">{{ (thesisArchiveIsEn and 'Source') or 'Lähde' }}</th>
               </tr>
             </thead>
