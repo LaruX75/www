@@ -188,10 +188,28 @@ function buildPublicationFindExploreDocument(item = {}) {
     meta: {
       publicationYear: item.year || "",
       publicationType: item.typeCode || "",
+      publicationTypeCode: item.typeCode || "",
+      publicationTypeLabel: item.type || "",
       publicationGroup: item.publicationGroup || "",
       publicationAuthors: item.authors || "",
       publicationVenue: item.journal || item.publisher || "",
-      publicationDescription: snippet(item.description, 260)
+      publicationDescription: snippet(item.description, 260),
+      publicationDate: item.date || "",
+      publicationJournal: item.journal || "",
+      publicationPublisher: item.publisher || "",
+      publicationVolume: item.volume || "",
+      publicationIssue: item.issue || "",
+      publicationPages: item.pages || "",
+      publicationIsbn: item.isbn || "",
+      publicationDoi: item.doi || "",
+      publicationDoiUrl: item.doiUrl || "",
+      publicationSourceUrl: item.url || "",
+      publicationSourceLabel: item.sourceLabel || "",
+      publicationCitationCount: item.citationCount ?? 0,
+      publicationJufoLevel: item.jufoLevel ?? "",
+      publicationPeerReviewed: item.peerReviewed ? "true" : "",
+      publicationOpenAccess: item.openAccess ? "true" : "",
+      publicationCsl: item.csl ? JSON.stringify(item.csl) : ""
     },
     seedText: publicationSearchText(item)
   };

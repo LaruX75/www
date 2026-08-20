@@ -23,9 +23,8 @@ test("Citation modal shows a controlled unavailable state when the shared render
 
   await page.goto("/julkaisut/");
   await expect(page.locator("[data-find-explore][data-find-explore-ready='true']")).toBeVisible();
-  await expect(page.locator("[data-find-explore-status]")).toContainText(/56 tulosta/, { timeout: 15000 });
 
-  const citationBtn = page.locator("[data-find-explore-results] .export-citation-btn").first();
+  const citationBtn = page.locator(".publication-archive-row .export-citation-btn").first();
   await citationBtn.click();
   await expect(page.locator("#citationExportModal")).toHaveClass(/show/, { timeout: 10000 });
 
@@ -65,9 +64,8 @@ test("Citation modal shows a controlled unavailable state when the shared render
 test("Normal path: all four modal formats render via the shared renderer", async ({ page }) => {
   await page.goto("/julkaisut/");
   await expect(page.locator("[data-find-explore][data-find-explore-ready='true']")).toBeVisible();
-  await expect(page.locator("[data-find-explore-status]")).toContainText(/56 tulosta/, { timeout: 15000 });
 
-  const citationBtn = page.locator("[data-find-explore-results] .export-citation-btn").first();
+  const citationBtn = page.locator(".publication-archive-row .export-citation-btn").first();
   await citationBtn.click();
   await expect(page.locator("#citationExportModal")).toHaveClass(/show/, { timeout: 10000 });
 

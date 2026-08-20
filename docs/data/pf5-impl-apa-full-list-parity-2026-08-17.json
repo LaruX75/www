@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-08-17T05:14:52.571Z",
-  "scope": "PF5-IMPL-APA — canonical ↔ Pagefind ↔ hub records parity",
+  "generatedAt": "2026-08-20T11:37:51.839Z",
+  "scope": "Publications archive convergence parity",
   "counts": {
     "canonical": 56,
-    "fiHubRecords": 56,
-    "enHubRecords": 56,
+    "fiArchiveRows": 56,
+    "enArchiveRows": 56,
     "pagefindPublicationFragments": 56
   },
   "parity": {
@@ -24,40 +24,60 @@
       "duplicates": []
     }
   },
-  "csl": {
-    "canonicalMissing": [],
-    "fiRecordsMissing": [],
-    "enRecordsMissing": []
-  },
   "groupCounts": {
     "canonical": {
-      "A": 29,
+      "__unclassified__": 6,
+      "A": 28,
       "D": 6,
       "E": 5,
       "B": 9,
-      "(none)": 5,
       "C": 1,
       "G": 1
     },
-    "pagefind": {
+    "fiArchive": {
+      "A": 28,
       "B": 9,
+      "C": 1,
       "D": 6,
       "E": 5,
-      "(none)": 5,
-      "A": 29,
       "G": 1,
-      "C": 1
+      "__unclassified__": 6
+    },
+    "enArchive": {
+      "A": 28,
+      "B": 9,
+      "C": 1,
+      "D": 6,
+      "E": 5,
+      "G": 1,
+      "__unclassified__": 6
+    },
+    "pagefind": {
+      "__unclassified__": 6,
+      "B": 9,
+      "A": 28,
+      "D": 6,
+      "E": 5,
+      "C": 1,
+      "G": 1
     }
+  },
+  "archiveSurface": {
+    "fiCitationButtons": 56,
+    "enCitationButtons": 0,
+    "embeddedHubRecordsPresent": false
   },
   "gates": {
     "canonicalNonEmpty": true,
-    "fiRecordsMatchCanonical": true,
-    "enRecordsMatchCanonical": true,
+    "fiArchiveMatchesCanonical": true,
+    "enArchiveMatchesCanonical": true,
     "pagefindMatchesCanonical": true,
-    "fiRecordsAllHaveCsl": true,
-    "enRecordsAllHaveCsl": true,
-    "canonicalAllHaveCsl": true,
-    "groupCountsAgree": true
+    "fiGroupCountsAgree": true,
+    "enGroupCountsAgree": true,
+    "pagefindGroupCountsAgree": true,
+    "noEmbeddedHubRecords": true,
+    "fiCitationButtonsMatchRows": true,
+    "enArchiveOmitsCitationButtons": true
   },
   "gateFailures": []
 }

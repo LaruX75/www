@@ -223,26 +223,26 @@ schemaType: CollectionPage
 {% set findExploreSeedQuery = "__find_explore_publications__" %}
 {% set findExploreEyebrow = "Find & Explore" %}
 {% set findExploreTitle = "Etsi ja rajaa julkaisuja" %}
-{% set findExploreDescription = "Yksi publication-scoped hakukerros korvaa vanhat erilliset taulukkosuodattimet. Tulokset johtavat paikallisille julkaisusivuille, ja DOI/lähde sekä viitteen vienti säilyvät julkaisukortissa." %}
+{% set findExploreDescription = "Alla oleva luokiteltu julkaisuarkisto näkyy suoraan palvelinpuolelta. Hakusana, rajaus tai järjestyksen muutos korvaa saman arkistopinnan Pagefind-tuloksilla ryhmittäin." %}
 {% set findExploreSearchLabel = "Hae otsikosta, tekijästä, aiheesta tai julkaisukanavasta" %}
 {% set findExplorePlaceholder = "Kokeile esimerkiksi TPACK, Kosovo, ohjelmoinnillinen ajattelu, Iwata..." %}
 {% set findExploreTypeLabel = "Julkaisuryhmä" %}
 {% set findExploreAllTypesLabel = "Kaikki ryhmät" %}
-{% set findExploreYearLabel = "Vuosi" %}
-{% set findExploreAllYearsLabel = "Kaikki vuodet" %}
+{% set findExploreYearOrderLabel = "Vuosi" %}
+{% set findExploreAuthorSortLabel = "Tekijät" %}
 {% set findExploreTopicLabel = "Aihe" %}
 {% set findExploreAllTopicsLabel = "Kaikki aiheet" %}
 {% set findExploreQualityLabel = "Laatu" %}
 {% set findExploreAllQualityLabel = "Kaikki" %}
 {% set findExploreResetLabel = "Tyhjennä" %}
 {% set findExploreMoreLabel = "Näytä lisää" %}
-{% set findExploreInitialStatus = "Ladataan julkaisuluetteloa..." %}
-{% set findExploreNoScript = "Interaktiivinen julkaisuluettelo edellyttää JavaScriptiä. Yksittäiset julkaisusivut löytyvät palvelinpuolelta ja ovat indeksoituja: käytä sivuston hakua (yläpalkki), sitemapia tai hakukoneita." %}
+{% set findExploreInitialStatus = "Alla oleva luokiteltu julkaisuarkisto näkyy ilman JavaScriptiä. Haku, suodatus ja järjestyksen muutos päivittävät saman näkymän Pagefindin kautta." %}
+{% set findExploreNoScript = "Interaktiivinen haku vaatii JavaScriptin, mutta luokiteltu julkaisuarkisto näkyy ja toimii ilman sitä." %}
 {% set findExploreTypeOptions = [] %}
 {% for option in publicationExplore.groupOptions %}
   {% set findExploreTypeOptions = (findExploreTypeOptions.push({ value: option.value, label: option.labelFi, count: option.count }), findExploreTypeOptions) %}
 {% endfor %}
-{% set findExploreYears = publicationExplore.years %}
+{% set findExploreHideYearControl = true %}
 {# Publications FULL parity: canonical topics remain valid site-wide
    metadata but the professional publication list intentionally does
    not expose a topic facet. Bibliographically relevant filters are
@@ -252,11 +252,24 @@ schemaType: CollectionPage
   { value: "peer-reviewed", label: "Vertaisarvioitu", count: publicationExplore.qualityCounts.peerReviewed },
   { value: "open-access", label: "Open access", count: publicationExplore.qualityCounts.openAccess }
 ] %}
+{% set findExploreYearOrderOptions = [
+  { value: "year-desc", label: "Uusin ensin" },
+  { value: "year-asc", label: "Vanhin ensin" }
+] %}
+{% set findExploreAuthorSortOptions = [
+  { value: "use-year", label: "Vuoden mukaan" },
+  { value: "author-asc", label: "Tekijät A–Ö" },
+  { value: "author-desc", label: "Tekijät Ö–A" }
+] %}
+{% set findExploreExternalResultsId = "publicationArchiveResultsFi" %}
+{% include "find-explore-writings.njk" %}
 
-<script type="application/json" id="publicationFindExploreRecords">{{ publicationExplore.records | jsonSafe | safe }}</script>
-<section data-find-explore-records-id="publicationFindExploreRecords">
-  {% include "find-explore-writings.njk" %}
-</section>
+{% set publicationArchive = publicationsArchive %}
+{% set publicationArchiveId = "publicationArchiveResultsFi" %}
+{% set publicationArchiveHeading = "Luokiteltu julkaisuarkisto" %}
+{% set publicationArchiveDescription = "Julkaisut on jaettu olemassa oleviin OKM-ryhmiin. Otsikko vie paikalliselle julkaisusivulle, ja ulkoinen lähde avautuu erillisestä painikkeesta." %}
+{% set publicationArchiveShowCitation = true %}
+{% include "publication-archive-groups.njk" %}
 
 <section id="julkaisuluokat" class="py-4">
   <div class="site-shell">
@@ -264,7 +277,7 @@ schemaType: CollectionPage
       <div class="card-body">
         <p class="text-uppercase small text-muted mb-1">Julkaisuluokitus</p>
         <h2 class="h3 mb-1">A–G kuvaa julkaisun tyypin</h2>
-        <p class="text-muted mb-3">Find & Explore -haku yllä listaa canonical-joukon kaikki {{ canonicalPublications.length }} julkaisua ja rajaa niitä OKM:n julkaisutyyppiluokituksen mukaan. Yksittäisten julkaisujen sivut ovat edelleen palvelinpuolella renderöityjä ja indeksoituja.</p>
+        <p class="text-muted mb-3">Alla oleva SSR-arkisto näyttää canonical-joukon kaikki {{ canonicalPublications.length }} julkaisua ryhmittäin. Find & Explore rajaa ja järjestää saman aineiston menettämättä paikallisia detail-sivuja tai ulkoisia lähdelinkkejä.</p>
         <div class="d-flex flex-wrap gap-2">
           {% for option in publicationExplore.groupOptions %}
           <span class="badge text-bg-light text-dark border">{{ option.labelFi }} <span class="text-muted">{{ option.count }}</span></span>
