@@ -1,10 +1,10 @@
 name: Accessibility and navigation tests
 
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
+    paths-ignore:
+      - "docs/**"
   workflow_dispatch:
 
 env:
