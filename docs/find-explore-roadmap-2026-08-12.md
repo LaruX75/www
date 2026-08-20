@@ -464,6 +464,23 @@ Timeline should evolve from a chronological list into another projection of cano
 
 T1A audit completed on 2026-08-20 against `main` at `9e881b7735148458fdbdba86fa1ee0cd9cf474c4`.
 
+Current status:
+
+- T1A = CLOSED / GREEN / MAIN
+- T1B1 = CLOSED / GREEN / BRANCH
+- T1B2 = NOT STARTED
+- T1B3 = NOT STARTED
+- PF5 GLOBAL RESULT PARITY = NOT STARTED
+
+T1B1 branch:
+
+- `feat/t1b1-timeline-projection`
+- base main SHA: `6eae9971176cb8cd1f717c0ab49aa312297cacb1`
+- scope: internal build-time projection foundation only
+- public UI: unchanged
+- Pagefind: unchanged
+- public JSON: unchanged
+
 Recommended target:
 
 ```text
