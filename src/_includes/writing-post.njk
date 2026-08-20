@@ -5,6 +5,16 @@ layout: base.njk
 {% set currentTags = tags or [] %}
 {% set isEnglish = currentLang == "en" %}
 {% set externalSourceHref = "" %}
+{% set orientationCtx = ({
+  "tags": currentTags,
+  "contexts": contexts or [],
+  "opinionRoles": opinionRoles,
+  "type": type,
+  "speechContext": speechContext,
+  "mediaType": mediaType,
+  "mediaRole": mediaRole,
+  "agenda_title": agenda_title
+}) | sidebarContext(currentLang) %}
 
 {% if original_url %}
   {% set externalSourceHref = original_url %}
@@ -23,56 +33,40 @@ layout: base.njk
 {% endif %}
 
 {% set sectionLabel = "Kirjoitus" %}
-{% set backHref = "/kynasta/" %}
-{% set backLabel = "Takaisin edelliselle sivulle" %}
 {% set isQuestionHour = agenda_title == "Valtuuston kyselytunti" or ("Valtuuston kyselytunti" in (contexts or [])) %}
 
 {% if isEnglish %}
   {% set sectionLabel = "Text" %}
-  {% set backHref = "/en/writings/" %}
-  {% set backLabel = "Back to previous page" %}
 {% endif %}
 
 {% if isQuestionHour %}
   {% set sectionLabel = "Council question hour" if isEnglish else "Valtuuston kyselytunti" %}
-  {% set backHref = "/en/writings/#puheet" if isEnglish else "/valtuustotyo/#puheet" %}
 {% elif type == "puhe" %}
   {% if speechContext == "valtuusto" %}
     {% set sectionLabel = "Council speech" if isEnglish else "Valtuustopuheenvuoro" %}
-    {% set backHref = "/en/writings/#puheet" if isEnglish else "/valtuustotyo/#puheet" %}
   {% elif speechContext == "akateeminen-puhe" %}
     {% set sectionLabel = "Academic speech" if isEnglish else "Akateeminen puhe" %}
-    {% set backHref = "/en/writings/#puheet" if isEnglish else "/lausunnot/#julkiset-puheet" %}
   {% elif speechContext == "juhlapuhe" %}
     {% set sectionLabel = "Ceremonial speech" if isEnglish else "Juhlapuhe" %}
-    {% set backHref = "/en/writings/#puheet" if isEnglish else "/lausunnot/#julkiset-puheet" %}
   {% else %}
     {% set sectionLabel = "Public speech" if isEnglish else "Julkinen puhe" %}
-    {% set backHref = "/en/writings/#puheet" if isEnglish else "/lausunnot/#julkiset-puheet" %}
   {% endif %}
 {% elif type == "lausunto" %}
   {% set sectionLabel = "Expert statement" if isEnglish else "Asiantuntijalausunto" %}
-  {% set backHref = "/en/writings/#lausunnot" if isEnglish else "/lausunnot/#lausunnot" %}
 {% elif type == "mielipide" %}
   {% if opinionRoles and ("political" in opinionRoles) and ("expert" in opinionRoles) %}
     {% set sectionLabel = "Political + expert opinion" if isEnglish else "Poliittinen ja asiantuntijamielipide" %}
-    {% set backHref = "/en/writings/?opinions=hybrid#mielipiteet" if isEnglish else "/kirjoitukset/?opinions=hybrid#mielipiteet" %}
   {% elif opinionRoles and ("political" in opinionRoles) %}
     {% set sectionLabel = "Political opinion" if isEnglish else "Poliittinen mielipide" %}
-    {% set backHref = "/en/writings/?opinions=political#mielipiteet" if isEnglish else "/kirjoitukset/?opinions=political#mielipiteet" %}
   {% elif opinionRoles and ("expert" in opinionRoles) %}
     {% set sectionLabel = "Expert opinion" if isEnglish else "Asiantuntijamielipide" %}
-    {% set backHref = "/en/writings/?opinions=expert#mielipiteet" if isEnglish else "/kirjoitukset/?opinions=expert#mielipiteet" %}
   {% else %}
     {% set sectionLabel = "Opinion" if isEnglish else "Mielipide" %}
-    {% set backHref = "/en/writings/#mielipiteet" if isEnglish else "/kirjoitukset/#mielipiteet" %}
   {% endif %}
 {% elif type == "kolumni" %}
   {% set sectionLabel = "Column" if isEnglish else "Kolumni" %}
-  {% set backHref = "/en/writings/#kolumnit" if isEnglish else "/kirjoitukset/#kolumnit" %}
 {% elif initiative_type or ("politics" in currentTags) %}
   {% set sectionLabel = "Council initiative" if isEnglish else "Valtuustoaloite" %}
-  {% set backHref = "/en/writings/#aloitteet" if isEnglish else "/valtuustotyo/#aloitteet" %}
 {% endif %}
 
 {% macro heroCopy(wrapperClass) %}
@@ -82,14 +76,19 @@ layout: base.njk
     {% if subtitle %}
       <p class="content-detail-lead mb-2">{{ subtitle }}</p>
     {% endif %}
-    {% if externalSourceHref %}
-      <div class="content-detail-actions">
+    <div class="content-detail-actions">
+      {% set orientationLang = currentLang %}
+      {% set orientationHubHref = orientationCtx.archiveHref %}
+      {% set orientationHubLabel = orientationCtx.archiveLabel %}
+      {% set orientationReturnPrefixes = ["/kirjoitukset/", "/en/writings/"] %}
+      {% include "detail-orientation.njk" %}
+      {% if externalSourceHref %}
         <a href="{{ externalSourceHref }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">
           {{ "Open source" if isEnglish else "Avaa lähde" }}
           <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i>
         </a>
-      </div>
-    {% endif %}
+      {% endif %}
+    </div>
   </div>
 {% endmacro %}
 
@@ -200,9 +199,6 @@ layout: base.njk
             {% endif %}
           </div>
           {% endif %}
-        </div>
-        <div class="card-footer bg-transparent">
-          <a href="{{ backHref }}" class="btn btn-outline-primary" data-history-back>&larr; {{ backLabel }}</a>
         </div>
       </div>
     </article>

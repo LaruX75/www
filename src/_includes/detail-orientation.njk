@@ -1,0 +1,23 @@
+{% set currentLang = orientationLang or lang or (page.url | langFromUrl) %}
+{% set isEnglish = currentLang == "en" %}
+{% set hubHref = orientationHubHref or "/" %}
+{% set hubLabel = orientationHubLabel or ("Back" if isEnglish else "Takaisin") %}
+{% set returnLabel = orientationReturnLabel or ("Back to results" if isEnglish else "Takaisin hakutuloksiin") %}
+{% set returnPrefixes = orientationReturnPrefixes or [] %}
+
+<nav class="d-inline-flex flex-wrap gap-2 align-items-center" aria-label="{{ 'Detail page orientation' if isEnglish else 'Detaljisivun orientaatio' }}">
+  <a
+    class="btn btn-outline-primary rounded-pill px-4"
+    href="{{ hubHref }}"
+    data-detail-hub-link>
+    {{ hubLabel }}
+  </a>
+  <a
+    class="btn btn-link fw-semibold px-0 d-none"
+    href="{{ hubHref }}"
+    data-detail-return-link
+    data-detail-return-fallback="{{ hubHref }}"
+    data-detail-return-prefixes="{{ returnPrefixes | join(',') }}">
+    {{ returnLabel }}
+  </a>
+</nav>

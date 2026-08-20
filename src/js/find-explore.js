@@ -651,6 +651,38 @@
     let visibleCount = PAGE_SIZE;
     let activeSearchRunId = 0;
 
+    function currentReturnTo() {
+      if (typeof window === "undefined" || !window.location) return "";
+      return `${window.location.pathname}${window.location.search}${window.location.hash}`;
+    }
+
+    function withReturnTo(href) {
+      if (typeof window === "undefined" || !href) return href;
+      try {
+        const targetUrl = new URL(href, window.location.origin);
+        if (targetUrl.origin !== window.location.origin) return href;
+        targetUrl.searchParams.set("returnTo", currentReturnTo());
+        return `${targetUrl.pathname}${targetUrl.search}${targetUrl.hash}`;
+      } catch (_) {
+        return href;
+      }
+    }
+
+    function decorateResultLinks() {
+      if (!resultsList) return;
+      const selectors = [
+        ".publication-archive-title-link",
+        ".thesis-archive-title-link",
+        ".find-explore-result-title",
+        ".find-explore-result .btn.btn-sm.btn-primary"
+      ];
+      resultsList.querySelectorAll(selectors.join(",")).forEach((link) => {
+        const href = link.getAttribute("href") || "";
+        if (!href || href.startsWith("#")) return;
+        link.setAttribute("href", withReturnTo(href));
+      });
+    }
+
     function readState() {
       const combinedTypeRole = typeRoleSelect?.value || "";
       const parsedTypeRole = kind === "theses"
@@ -1002,6 +1034,7 @@
       } else {
         moreButton?.classList.toggle("d-none", visibleCount >= latestResults.length);
       }
+      decorateResultLinks();
     }
 
     async function runSearch() {
@@ -1042,6 +1075,7 @@
         else resultsList.innerHTML = "";
         moreButton?.classList.add("d-none");
         status.textContent = labels.idle;
+        decorateResultLinks();
         return;
       }
 
@@ -1051,6 +1085,7 @@
         else resultsList.innerHTML = "";
         moreButton?.classList.add("d-none");
         status.textContent = labels.idle;
+        decorateResultLinks();
         return;
       }
 
@@ -1122,6 +1157,7 @@
         moreButton?.classList.add("d-none");
         status.textContent = labels.error;
         console.warn("FindExplore search failed", error);
+        decorateResultLinks();
       } finally {
         if (runId === activeSearchRunId) {
           resultsList?.removeAttribute("aria-busy");

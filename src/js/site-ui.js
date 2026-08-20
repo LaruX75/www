@@ -71,12 +71,52 @@
         navbar.classList.add('navbar-hero-solid');
       }
 
-      document.querySelectorAll('[data-history-back]').forEach((link) => {
-        link.addEventListener('click', (event) => {
-          if (window.history.length <= 1) return;
-          event.preventDefault();
-          window.history.back();
-        });
+      const normalizeLocalUrl = (value) => {
+        if (!value) return null;
+        try {
+          const candidate = new URL(value, window.location.origin);
+          if (candidate.origin !== window.location.origin) return null;
+          return candidate;
+        } catch (_) {
+          return null;
+        }
+      };
+
+      const sameTarget = (left, right) => (
+        !!left
+        && !!right
+        && left.pathname === right.pathname
+        && left.search === right.search
+        && left.hash === right.hash
+      );
+
+      document.querySelectorAll('[data-detail-return-link]').forEach((link) => {
+        const pageUrl = new URL(window.location.href);
+        const fallbackUrl = normalizeLocalUrl(link.getAttribute('data-detail-return-fallback') || link.getAttribute('href') || '/');
+        const allowedPrefixes = String(link.getAttribute('data-detail-return-prefixes') || '')
+          .split(',')
+          .map((value) => value.trim())
+          .filter(Boolean);
+        const returnUrl = normalizeLocalUrl(pageUrl.searchParams.get('returnTo'));
+        const prefixMatch = returnUrl && allowedPrefixes.some((prefix) => returnUrl.pathname.startsWith(prefix));
+        const sameDetailTarget = returnUrl
+          && returnUrl.pathname === pageUrl.pathname
+          && returnUrl.hash === pageUrl.hash;
+        const useReturnLink = Boolean(
+          returnUrl
+          && prefixMatch
+          && !sameTarget(returnUrl, fallbackUrl)
+          && !sameDetailTarget
+        );
+
+        if (!useReturnLink) {
+          link.classList.add('d-none');
+          if (fallbackUrl) link.setAttribute('href', `${fallbackUrl.pathname}${fallbackUrl.search}${fallbackUrl.hash}`);
+          return;
+        }
+
+        link.classList.remove('d-none');
+        link.setAttribute('href', `${returnUrl.pathname}${returnUrl.search}${returnUrl.hash}`);
       });
 
       // Shared reveal motion for main content. CSS remains harmless without JS:

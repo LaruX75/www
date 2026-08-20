@@ -417,6 +417,16 @@ writings/editorial surfaces
 
 ## 7. O1 Orientation
 
+status: CLOSED / GREEN / BRANCH
+
+Branch checkpoint (2026-08-20):
+
+- publications, theses, and writings detail pages now share an SSR canonical orientation primitive
+- active Find & Explore states can return through explicit `returnTo` URLs only
+- canonical hub return works without JavaScript on changed mature detail pages
+- prev/next and new related-content heuristics remain deferred
+- presentations and media remain separate workstreams
+
 Goal: users should understand where they are, how they arrived there, what is adjacent, and how to return to discovery.
 
 Potential components:

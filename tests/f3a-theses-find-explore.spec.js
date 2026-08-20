@@ -37,7 +37,7 @@ test("FI thesis header controls expose only valid domain options and combine wit
 
   const firstTitle = page.locator("[data-find-explore-results] .thesis-archive-title-link").first();
   const firstSource = page.locator("[data-find-explore-results] .thesis-archive-col-source a").first();
-  await expect(firstTitle).toHaveAttribute("href", /\/opinnaytteet\/\d+\/$/);
+  await expect(firstTitle).toHaveAttribute("href", /\/opinnaytteet\/\d+\/\?returnTo=/);
   await expect(firstSource).toHaveAttribute("href", /^https:\/\/oulurepo\.oulu\.fi\/handle\/10024\//);
   await expect(firstSource).toHaveAttribute("target", "_blank");
 
@@ -57,7 +57,7 @@ test("FI theses year ordering switches to oldest-first via Pagefind and returns 
   await page.locator("[data-find-explore-year-order]").selectOption("year-asc");
   await expect(page.locator("[data-find-explore-status]")).toContainText(/tulos|tulosta/, { timeout: 15000 });
   await expect(page.locator("body")).toHaveClass(/find-explore-active/);
-  await expect(page.locator("[data-find-explore-results] .thesis-archive-title-link").first()).toHaveAttribute("href", "/opinnaytteet/38572/");
+  await expect(page.locator("[data-find-explore-results] .thesis-archive-title-link").first()).toHaveAttribute("href", /^\/opinnaytteet\/38572\/\?returnTo=/);
 
   await page.locator("[data-find-explore-year-order]").selectOption("year-desc");
   await expect(page.locator("body")).not.toHaveClass(/find-explore-active/);
@@ -71,7 +71,7 @@ test("FI theses Find & Explore still supports text search on the shared tbody", 
 
   await page.locator("[data-find-explore-query]").fill("Riikonen");
   await expect(page.locator("[data-find-explore-status]")).toContainText(/tulos|tulosta/, { timeout: 15000 });
-  await expect(page.locator("[data-find-explore-results] a").first()).toHaveAttribute("href", "/opinnaytteet/62699/", { timeout: 15000 });
+  await expect(page.locator("[data-find-explore-results] a").first()).toHaveAttribute("href", /^\/opinnaytteet\/62699\/\?returnTo=/, { timeout: 15000 });
 });
 
 // TH-CITE1 Phase 4D: the pre-Phase-3 test "FI theses curated cards
@@ -119,5 +119,5 @@ test("EN theses Find & Explore resolves local canonical detail links", async ({ 
 
   await page.locator("[data-find-explore-query]").fill("Gill");
   await expect(page.locator("[data-find-explore-status]")).toContainText(/result|results/, { timeout: 15000 });
-  await expect(page.locator("[data-find-explore-results] a").first()).toHaveAttribute("href", "/opinnaytteet/51005/", { timeout: 15000 });
+  await expect(page.locator("[data-find-explore-results] a").first()).toHaveAttribute("href", /^\/opinnaytteet\/51005\/\?returnTo=/, { timeout: 15000 });
 });
