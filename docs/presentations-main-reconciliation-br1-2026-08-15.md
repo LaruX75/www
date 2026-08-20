@@ -74,7 +74,7 @@ Reason: this preserved F4/mainline as the base of truth, avoided rewriting the d
 Created:
 
 - Branch: `codex/presentations-main-reconciliation`
-- Worktree: `temporary clean worktree snapshot`
+- Worktree: `/private/tmp/www-presentations-main-reconciliation`
 - Base: `origin/main` at `8d7594bb`
 
 Cherry-picked:

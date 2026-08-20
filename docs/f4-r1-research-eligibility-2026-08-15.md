@@ -2,7 +2,7 @@
 
 Date: 2026-08-15
 Branch: `codex/f4-r1-research-eligibility`
-Worktree: `temporary clean worktree snapshot`
+Worktree: `/private/tmp/www-f4-r1-research-eligibility`
 Status: verified
 
 ## 1. Scope
