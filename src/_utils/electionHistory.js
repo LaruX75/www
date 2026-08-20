@@ -77,6 +77,8 @@ const EVENT_LABELS = Object.freeze({
 });
 
 const TYPE_LABELS = Object.freeze({
+  article: { fi: "Artikkeli", en: "Article" },
+  blogPost: { fi: "Blogikirjoitus", en: "Blog post" },
   puhe: { fi: "Puhe", en: "Speech" },
   mielipide: { fi: "Mielipidekirjoitus", en: "Opinion piece" },
   kolumni: { fi: "Kolumni", en: "Column" },
@@ -309,10 +311,6 @@ const TERM_DEFINITIONS = Object.freeze([
         {
           fi: "Maakuntavaltuuston varavaltuutettu, Pohjois-Pohjanmaan liitto",
           en: "Deputy member, Regional Council of North Ostrobothnia"
-        },
-        {
-          fi: "Lähidemokratiatoimikunnan puheenjohtaja",
-          en: "Chair, Local Democracy Committee"
         }
       ],
       archives: [
@@ -437,7 +435,7 @@ function familyMetaSegments(item, familyKey) {
       };
     case "otherPoliticalItems":
     default: {
-      const labelKey = item.sourceType || (item.sourceCollection === "blog" ? "blog" : "publication");
+      const labelKey = item.sourceType || item.contentType || "publication";
       return {
         fi: [localizedText(TYPE_LABELS[labelKey], "fi") || item.sourceType || ""].filter(Boolean),
         en: [localizedText(TYPE_LABELS[labelKey], "en") || item.sourceType || ""].filter(Boolean)
@@ -586,25 +584,23 @@ function assertNoDuplicateFamilyItems(items = [], termId = "", familyKey = "") {
 }
 
 function isSpeechItem(item) {
-  return item.sourceCollection === "publications"
-    && item.sourceType === "puhe"
+  return item.contentType === "speech"
     && POLITICAL_SPEECH_EVENTS.includes(item.event);
 }
 
 function isInitiativeItem(item) {
-  return item.sourceCollection === "politics";
+  return item.contentType === "initiative";
 }
 
 function isOpinionItem(item) {
-  return item.sourceCollection === "publications"
-    && ["mielipide", "kolumni"].includes(item.sourceType);
+  return item.contentType === "opinion"
+    || item.contentType === "column";
 }
 
 function isOtherPoliticalItem(item) {
   if (!item.politicalProfiles.length) return false;
-  if (item.sourceCollection === "blog") return true;
-  return item.sourceCollection === "publications"
-    && !["puhe", "mielipide", "kolumni"].includes(item.sourceType);
+  return item.contentType === "article"
+    || item.contentType === "blogPost";
 }
 
 function buildRenderableItems(items = [], familyKey = "") {

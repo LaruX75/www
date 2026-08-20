@@ -121,12 +121,22 @@ Counts by term:
 | 2017-2021 | 40 | 3 | 26 | 7 | 25 | 1 | 4 | 1 |
 | 2013-2017 | 1 | 0 | 10 | 0 | 0 | 1 | 2 | 1 |
 
-Companion fact totals preserved:
+Companion fact totals after final semantic cleanup:
 
 - election-result facts: `6`
-- role facts: `13`
+- role facts: `12`
 - archive links: `5`
 - other civic roles: `3`
+
+Role-count reconciliation:
+
+- T1A audited the FI election-history surface at `12` trust-role bullets.
+- The first T1B2A draft temporarily rose to `13` because `Lähidemokratiatoimikunnan puheenjohtaja` / `Chair, Local Democracy Committee` was carried into the shared `2017–2021` companion roles in addition to its already existing `2013–2017` placement.
+- Repo evidence supports the authoritative placement in `2013–2017`, not both terms:
+  - `src/fi/politiikka.md`
+  - `src/_data/milestones.js`
+  - older texts describing the role as belonging to the previous council term
+- The duplicate `2017–2021` role was removed in final cleanup, restoring the authoritative count to `12`.
 
 ## Pagination Disposition
 
@@ -161,6 +171,19 @@ Intentionally retained:
 - deterministic browser pagination behavior
 - route, breadcrumb, hreflang, sitemap, and canonical URL semantics
 
+Semantic classifier cleanup:
+
+- Before:
+  - `sourceCollection` acted as the primary family classifier for speeches, initiatives, opinions, and other political items.
+- After:
+  - `sourceCollection` remains provenance/debug metadata only.
+  - family selection uses authoritative existing semantics:
+    - speeches: canonical `contentType = speech` + preserved political speech event whitelist
+    - initiatives: canonical `contentType = initiative`
+    - opinions: canonical `contentType = opinion | column`
+    - other political items: canonical `contentType = article | blogPost` + explicit `politicalProfiles`
+- No new taxonomy or Canonical Content v1 rule was introduced.
+
 ## Validation
 
 - `npm ci`
@@ -178,9 +201,11 @@ Focused audit result:
 - term count: `4`
 - FI term count: `4`
 - EN term count: `4`
+- companion role count: `12`
 - duplicate canonical IDs/pageUrls: none
 - unresolved/orphan fields: none
 - baseline family totals: all matched
+- audit exits non-zero if route parity, term order, localized term coverage, baseline totals, duplicate canonical identities, or localized companion fields break
 
 ## Explicitly Out Of Scope
 

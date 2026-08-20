@@ -42,7 +42,7 @@ test("buildElectionHistoryProjection assigns canonical items to deterministic te
       canonicalItem({
         id: "/2025-speech/",
         date: "2025-04-14",
-        sourceCollection: "publications",
+        sourceCollection: "blog",
         sourceType: "puhe",
         contentType: "speech",
         event: "Oulun kaupunginvaltuusto"
@@ -50,14 +50,14 @@ test("buildElectionHistoryProjection assigns canonical items to deterministic te
       canonicalItem({
         id: "/2021-initiative/",
         date: "2021-06-14",
-        sourceCollection: "politics",
+        sourceCollection: "publications",
         initiativeType: "valtuustoaloite",
-        contentType: "councilInitiative"
+        contentType: "initiative"
       }),
       canonicalItem({
         id: "/2021-opinion/",
         date: "2021-06-13",
-        sourceCollection: "publications",
+        sourceCollection: "blog",
         sourceType: "mielipide",
         contentType: "opinion"
       }),
@@ -97,6 +97,40 @@ test("buildElectionHistoryProjection assigns canonical items to deterministic te
   assert.equal(fourthTerm.counts.councilMeetings, 1);
 });
 
+test("projection uses canonical semantics instead of sourceCollection provenance", () => {
+  const projection = buildElectionHistoryProjection({
+    canonicalItems: [
+      canonicalItem({
+        id: "/semantic-speech/",
+        date: "2025-04-14",
+        sourceCollection: "blog",
+        sourceType: "puhe",
+        contentType: "speech",
+        event: "Oulun kaupunginvaltuusto"
+      }),
+      canonicalItem({
+        id: "/not-an-initiative/",
+        date: "2025-04-14",
+        sourceCollection: "politics",
+        contentType: "article",
+        politicalProfiles: []
+      }),
+      canonicalItem({
+        id: "/semantic-initiative/",
+        date: "2025-04-14",
+        sourceCollection: "publications",
+        contentType: "initiative",
+        initiativeType: "valtuustoaloite"
+      })
+    ],
+    councilMeetings: []
+  });
+
+  const currentTerm = projection.terms[0];
+  assert.equal(currentTerm.counts.speeches, 1);
+  assert.equal(currentTerm.counts.initiatives, 1);
+});
+
 test("projection does not infer political membership from categories, keywords or contexts alone", () => {
   const projection = buildElectionHistoryProjection({
     canonicalItems: [
@@ -125,7 +159,7 @@ test("projection rejects duplicate canonical items inside the same family", () =
         date: "2025-05-01",
         sourceCollection: "politics",
         initiativeType: "valtuustoaloite",
-        contentType: "councilInitiative"
+        contentType: "initiative"
       }),
       canonicalItem({
         id: "/dup/",
@@ -133,7 +167,7 @@ test("projection rejects duplicate canonical items inside the same family", () =
         date: "2025-05-02",
         sourceCollection: "politics",
         initiativeType: "valtuustoaloite",
-        contentType: "councilInitiative"
+        contentType: "initiative"
       })
     ],
     councilMeetings: []

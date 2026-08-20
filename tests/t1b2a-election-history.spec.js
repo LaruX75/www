@@ -21,7 +21,7 @@ test("EN election history preserves shared term facts and authoritative archive 
   await expect(page.locator('article.term-card[id="2025-2029"]')).toContainText("2nd Deputy City Councillor");
   await expect(page.locator('article.term-card[id="2025-2029"]')).toContainText("289 votes");
   await expect(page.locator('article.term-card[id="2021-2025"]')).toContainText("Campaign archive 2021 (Finnish)");
-  await expect(page.locator('article.term-card[id="2017-2021"]')).toContainText("Chair, Local Democracy Committee");
+  await expect(page.locator('article.term-card[id="2013-2017"]')).toContainText("Chair, Local Democracy Committee");
   await expect(page.locator('article.term-card[id="2013-2017"]')).toContainText("Campaign archive 2012 (Finnish)");
   await expect(page.getByRole("heading", { name: "Other Civic Roles" })).toBeVisible();
 });
