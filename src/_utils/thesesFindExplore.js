@@ -88,7 +88,8 @@ function buildThesisFindExploreDocument(thesisDetail) {
     { name: "FindExplore", value: "theses" },
     { name: "Theses scope", value: "fi" },
     { name: "Theses scope", value: "en" },
-    { name: "Theses type", value: thesisDetail.thesisType || "unknown" }
+    { name: "Theses type", value: thesisDetail.thesisType || "unknown" },
+    { name: "Theses role", value: thesisDetail.thesisRole || "advised" }
   ];
 
   if (thesisDetail.year) {
@@ -112,6 +113,7 @@ function buildThesisFindExploreDocument(thesisDetail) {
     thesesLang: thesisDetail.lang || "fi",
     thesesAuthorLine: thesisDetail.authorLine || "",
     thesesRole: thesisDetail.thesisRole || "advised",
+    thesesSourceUrl: thesisDetail.sourceUrl || "",
     thesesDescription: snippet(thesisDetail.abstract || "", 260)
   };
 
