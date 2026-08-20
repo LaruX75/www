@@ -151,31 +151,52 @@ Canonical Content v1: unchanged
 closure report: docs/th-cite1-phase6-legacy-server-citation-closure-2026-08-18.md
 
 Thesis archive convergence
-status: CLOSED / GREEN / BRANCH
+status: CLOSED / GREEN / MAIN
 scope: converge the thesis archive from the Phase 3 three-section SSR archive into one flat SSR table + one shared tbody for active Pagefind search/filter state. Preserve canonical thesis semantics, preserve explicit pageUrl/sourceUrl separation, and keep PF5 GLOBAL RESULT PARITY out of scope.
 branch: feat/theses-archive-convergence
 base main SHA: c78bbfa6c82fe8aad5683aed1f4b15e25c699d24
 feature commits in place: c5f7a6c3 (archive row projection helper), 7fd6314a (Pagefind thesis role + sourceUrl projection)
-current branch architecture:
+PR: #107
+PR title: feat(theses): converge thesis archive and shared search tbody
+feature HEAD: b0f50f335329bdd4490bd5f87a427288840e88c2
+merge commit: 50df0cfcfad1b3f6c4f63e81b6934273778b6ca2
+merge timestamp: 2026-08-20T08:20:47Z
+post-merge GitHub CI on main 50df0cfc: Build and Deploy pass, Accessibility and navigation tests pass, Generate OG Images pass
+final main architecture:
   canonical theses
-    → buildArchiveRow()
-    → buildThesesArchivePages()
-    → /opinnaytteet/ + /en/theses/ one SSR table (Year | Author | Title | Type / role | Source)
+    → Eleventy/Nunjucks
+    → one flat SSR thesis archive table
+    → one visible tbody
   active query / filter
     → Pagefind
-    → same shared tbody
-archive pagination on branch: 9 SSR URLs / locale (landing + pages 2..9), max 20 rows / page
-corpus parity on branch: canonical unique 169 = FI SSR union 169 = EN SSR union 169 = Pagefind thesis fragments 169
-deletions on branch: src/_includes/thesis-archive-sections.njk, src/js/thesis-archive-pagination.js
-preserved boundaries on branch: Canonical Content v1 unchanged; thesisType and thesisRole remain separate canonical fields; no sourceUrl derivation from pageUrl; no Pagefind.search(\"\") archive reconstruction; no hidden 169-row DOM; PF5 not started
-verification on branch:
+    → same tbody result set + order
+    → JS updates same tbody
+    → canonical thesis detail page
+link semantics:
+  title → local canonical pageUrl
+  OuluREPO → explicit canonical sourceUrl
+archive pagination on main: 9 SSR URLs / locale (landing + pages 2..9), max 20 rows / page
+corpus parity on main: canonical unique 169 = public JSON 169 = FI SSR union 169 = EN SSR union 169 = Pagefind thesis fragments 169
+deletions on main: src/_includes/thesis-archive-sections.njk, src/js/thesis-archive-pagination.js, old APA archive-row citation cell, separate thesis Pagefind result list
+retained on main: canonical type and role semantics separate; detail citation/export; citationApa public contract; JSON-LD citation; canonical detail URLs; OuluREPO source semantics
+preserved boundaries on main: Canonical Content v1 unchanged; thesisType and thesisRole remain separate canonical fields; no sourceUrl derivation from pageUrl; no Pagefind.search(\"\") archive reconstruction; no runtime /data/theses.json archive fallback; no hidden 169-row DOM
+verification on main:
   npm run build:no-og                       pass
   npm run test:unit                        565 / 565
   audit-thesis-pagefind                    pass
   audit-th-cite1-phase3-ssr-archive        pass
+  audit-th-cite1-phase4c-browser-citation-deletion pass
   audit-th-cite1-phase4-modal-export-parity pass
-  focused Playwright bundle                22 / 22
+  audit-th-cite1-phase6-legacy-server-citation-deletion pass
+  post-merge Playwright regressions        26 / 26
+  thesis archive semantic smoke            2 / 2
+  title → local pageUrl                    verified
+  OuluREPO → sourceUrl                     verified
+  citationApa parity                       169 / 169
+  JSON-LD parity                           169 / 169
+  public CSL                               0
 branch report: docs/theses-archive-convergence-implementation-2026-08-20.md
+PF5 GLOBAL RESULT PARITY — NOT STARTED
 
 F3B Publications Find & Explore
 status: CLOSED / GREEN
