@@ -7,6 +7,7 @@ TH-CITE1 Phase 1–3 update: 2026-08-18
 TH-CITE1 Phase 4 update: 2026-08-18
 TH-CITE1 Phase 6 update: 2026-08-18
 Thesis archive convergence update: 2026-08-20
+Publications archive convergence update: 2026-08-20
 
 This roadmap is the shared source of truth after Canonical Content v1, Find & Explore Writings v1, Find & Explore Theses v1, Find & Explore Publications v1, F4 Research contextual Find & Explore v1, the 2026-08-17 Publications FULL Pagefind + PUB-CITE1 closure, the 2026-08-18 TH-CITE1 Phase 1–3 thesis CSL + SSR-first archive closure, the 2026-08-18 TH-CITE1 Phase 4 A–D modal/export migration closure, and the 2026-08-18 TH-CITE1 Phase 6 legacy server citation deletion closure. TH-CITE1 citation migration is fully closed on `main`; PF5 GLOBAL RESULT PARITY (Phase 5) remains NOT STARTED as a separate future workstream.
 
@@ -212,6 +213,32 @@ post-merge CI on main 2f752a42: Build and Deploy pass, Accessibility and navigat
 citation architecture: canonical CSL is the sole publication citation source across list rows, detail card, taxonomy pages, citation modal, Zotero + Mendeley RIS downloads, /api/export-data.json
 keyword audit: CLOSED — no implementation (Research.fi own 0/56, OpenAlex enrichment 30/56 not surfaced as author/source keywords)
 closure report: docs/publications-full-pagefind-pub-cite1-closure-2026-08-17.md
+
+Publications archive convergence
+status: CLOSED / GREEN / BRANCH
+scope: converge the FI/EN publications archive from the FULL Pagefind list surface into a grouped SSR-first archive that keeps the existing OKM classification headings, then let active search/filter/order repopulate that same visible archive surface through Pagefind. Preserve Canonical Content v1, PUB-CITE1, local `pageUrl` vs external `sourceUrl` / DOI semantics, and keep PF5 GLOBAL RESULT PARITY out of scope.
+branch: feat/publications-archive-convergence
+base main SHA: daa6d7e624044f1e8201fe7b20653cfe532598f2
+feature architecture on branch:
+  canonical publications
+    → buildArchiveRow()
+    → buildPublicationsArchiveGroups()
+    → grouped SSR archive tables with category heading before each table
+  active query / filter / order
+    → Pagefind
+    → same shared results container
+    → grouped archive rows (no publication-card surface on the archive page)
+archive pagination on branch: none (explicit follow-up requirement; all 56 canonical publications remain visible in grouped SSR form on one page per locale)
+corpus parity on branch: canonical 56 = FI SSR archive rows 56 = EN SSR archive rows 56 = Pagefind publication fragments 56
+deletions on branch: embedded `publicationFindExploreRecords` archive hydration blob removed from FI/EN publication hubs; legacy archive-specific card/list surface no longer used on `/julkaisut/` or `/en/publications/`
+preserved boundaries on branch: Canonical Content v1 unchanged; PUB-CITE1 unchanged; topic facet still intentionally absent on the publications archive; analytics retained; local detail title links remain separate from external source actions; no `Pagefind.search("")` archive reconstruction; no hidden full-DOM filtering model; PF5 not started
+verification on branch:
+  npm run build:no-og                                pass
+  npm run test:unit                                 574 / 574
+  node scripts/audit-publications-f3b-built-output.js pass
+  node scripts/audit-pf5-impl-apa-full-list-parity.js pass
+  focused Playwright bundle                         pass
+branch report: docs/publications-archive-convergence-implementation-2026-08-20.md
 
 F4 Research contextual Find & Explore
 status: CLOSED / GREEN

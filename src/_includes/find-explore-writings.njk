@@ -49,6 +49,26 @@
                   </select>
                 </div>
                 {% endif %}
+                {% if findExploreYearOrderOptions and (findExploreYearOrderOptions | length) %}
+                <div class="col-md-3">
+                  <label class="form-label small text-muted mb-1" for="{{ findExploreMountId }}YearOrder">{{ findExploreYearOrderLabel }}</label>
+                  <select id="{{ findExploreMountId }}YearOrder" class="form-select" name="yearOrder" data-find-explore-year-order>
+                    {% for option in findExploreYearOrderOptions %}
+                    <option value="{{ option.value }}">{{ option.label }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                {% endif %}
+                {% if findExploreAuthorSortOptions and (findExploreAuthorSortOptions | length) %}
+                <div class="col-md-3">
+                  <label class="form-label small text-muted mb-1" for="{{ findExploreMountId }}AuthorSort">{{ findExploreAuthorSortLabel }}</label>
+                  <select id="{{ findExploreMountId }}AuthorSort" class="form-select" name="authorSort" data-find-explore-author-sort>
+                    {% for option in findExploreAuthorSortOptions %}
+                    <option value="{{ option.value }}">{{ option.label }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                {% endif %}
                 {% if findExploreTopicOptions and (findExploreTopicOptions | length) %}
                 <div class="col-md-4">
                   <label class="form-label small text-muted mb-1" for="{{ findExploreMountId }}Topic">{{ findExploreTopicLabel }}</label>

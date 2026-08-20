@@ -1,0 +1,94 @@
+{#
+  publication-archive-groups.njk — SSR grouped publications archive.
+
+  Required context:
+    publicationArchive              — { count, groupCount, groups[] }
+    publicationArchiveId            — container id
+    publicationArchiveHeading       — section heading
+    publicationArchiveDescription   — short description
+    publicationArchiveShowCitation  — true on FI archive page
+#}
+{% set publicationArchiveIsEn = (lang or "fi") == "en" %}
+<section class="publication-archive-list py-4" aria-labelledby="{{ publicationArchiveId }}Heading">
+  <div class="site-shell">
+    <div class="card shadow-sm border-0">
+      <div class="card-body">
+        <div class="d-flex flex-wrap align-items-start justify-content-between gap-3 mb-3">
+          <div>
+            <h2 class="h4 mb-1" id="{{ publicationArchiveId }}Heading">{{ publicationArchiveHeading }}</h2>
+            <p class="text-muted mb-0">{{ publicationArchiveDescription }}</p>
+          </div>
+          <span class="badge text-bg-light border text-dark">{{ publicationArchive.count }}</span>
+        </div>
+
+        <div id="{{ publicationArchiveId }}" data-find-explore-results>
+          {% for group in publicationArchive.groups %}
+          <section class="publication-archive-group" data-publication-group="{{ group.key }}" aria-labelledby="{{ publicationArchiveId }}-{{ group.key }}">
+            <div class="publication-archive-group-header d-flex flex-wrap align-items-start justify-content-between gap-2">
+              <h3 id="{{ publicationArchiveId }}-{{ group.key }}" class="publication-archive-group-title h5 mb-0">{{ group.label }}</h3>
+              <span class="badge text-bg-light border text-dark">{{ group.count }}</span>
+            </div>
+            <div class="table-responsive mt-3">
+              <table class="table table-sm publication-archive-table align-top mb-0" aria-describedby="{{ publicationArchiveId }}-{{ group.key }}">
+                <thead>
+                  <tr>
+                    <th scope="col" class="publication-archive-col-year">{{ "Year" if publicationArchiveIsEn else "Vuosi" }}</th>
+                    <th scope="col" class="publication-archive-col-authors">{{ "Authors" if publicationArchiveIsEn else "Tekijät" }}</th>
+                    <th scope="col" class="publication-archive-col-title">{{ "Title" if publicationArchiveIsEn else "Otsikko" }}</th>
+                    <th scope="col" class="publication-archive-col-type">{{ "Type" if publicationArchiveIsEn else "Tyyppi" }}</th>
+                    <th scope="col" class="publication-archive-col-source text-end">{{ "Source" if publicationArchiveIsEn else "Lähde" }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for row in group.rows %}
+                  <tr class="publication-archive-row">
+                    <td class="publication-archive-col-year small text-muted">{{ row.year }}</td>
+                    <td class="publication-archive-col-authors small text-muted">{{ row.authors }}</td>
+                    <th scope="row" class="publication-archive-col-title">
+                      <a class="publication-archive-title-link fw-semibold text-decoration-none d-block" href="{{ row.pageUrl }}">{{ row.title }}</a>
+                    </th>
+                    <td class="publication-archive-col-type small"{% if row.typeTitle %} title="{{ row.typeTitle }}"{% endif %}>{{ row.typeDisplay }}</td>
+                    <td class="publication-archive-col-source text-end">
+                      <div class="publication-archive-source-actions">
+                        {% if row.sourceUrl %}
+                        <a class="btn btn-sm btn-outline-primary rounded-pill"
+                           href="{{ row.sourceUrl }}"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           aria-label="{{ row.sourceLabel }}: {{ row.title }}">
+                          {{ row.sourceLabel }}
+                          <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i>
+                        </a>
+                        {% endif %}
+                        {% if publicationArchiveShowCitation %}
+                        <button type="button"
+                                class="btn btn-sm btn-outline-secondary rounded-pill export-citation-btn"
+                                data-title="{{ row.title }}"
+                                data-authors="{{ row.authors }}"
+                                data-year="{{ row.year }}"
+                                data-journal="{{ row.journal }}"
+                                data-doi="{{ row.doi }}"
+                                data-url="{{ row.sourceUrl }}"
+                                data-volume="{{ row.volume }}"
+                                data-issue="{{ row.issue }}"
+                                data-pages="{{ row.pages }}"
+                                data-publisher="{{ row.publisher }}"
+                                data-isbn="{{ row.isbn }}"
+                                {% if row.csl %}data-csl="{{ row.csl | jsonSafe | escape }}"{% endif %}>
+                          <i class="bi bi-download me-1" aria-hidden="true"></i>{{ "Export citation" if publicationArchiveIsEn else "Vie viite" }}
+                        </button>
+                        {% endif %}
+                      </div>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </section>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

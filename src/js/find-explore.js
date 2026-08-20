@@ -242,6 +242,11 @@
       && (state?.authorSort || "use-year") === "use-year";
   }
 
+  function isDefaultPublicationSortState(state) {
+    return (state?.yearOrder || "year-desc") === "year-desc"
+      && (state?.authorSort || "use-year") === "use-year";
+  }
+
   function compareStrings(left, right, locale) {
     return String(left || "").localeCompare(String(right || ""), locale);
   }
@@ -267,6 +272,64 @@
       }
       return compareThesisYear(left, right, yearOrder === "year-asc" ? "asc" : "desc", normalizedLocale);
     });
+  }
+
+  function parseBooleanMeta(value) {
+    return value === true || value === "true" || value === 1 || value === "1";
+  }
+
+  function parseCslMeta(value) {
+    if (!value) return null;
+    if (typeof value === "object") return value;
+    try {
+      return JSON.parse(String(value));
+    } catch {
+      return null;
+    }
+  }
+
+  function publicationRecordFromMeta(data) {
+    const meta = data?.meta || {};
+    const group = meta.publicationGroup || "";
+    return {
+      title: resultTitle(data),
+      year: meta.publicationYear || "",
+      date: meta.publicationDate || "",
+      authors: meta.publicationAuthors || "",
+      journal: meta.publicationJournal || "",
+      publisher: meta.publicationPublisher || "",
+      volume: meta.publicationVolume || "",
+      issue: meta.publicationIssue || "",
+      pages: meta.publicationPages || "",
+      isbn: meta.publicationIsbn || "",
+      doi: meta.publicationDoi || "",
+      doiUrl: meta.publicationDoiUrl || "",
+      sourceUrl: meta.publicationSourceUrl || "",
+      sourceLabel: meta.publicationSourceLabel || "",
+      type: meta.publicationTypeLabel || meta.publicationType || "",
+      typeCode: meta.publicationTypeCode || meta.publicationType || "",
+      group,
+      groupLabelFi: group ? publicationGroupLabel(group, "fi") : "",
+      groupLabelEn: group ? publicationGroupLabel(group, "en") : "",
+      peerReviewed: parseBooleanMeta(meta.publicationPeerReviewed),
+      openAccess: parseBooleanMeta(meta.publicationOpenAccess),
+      citationCount: Number.parseInt(meta.publicationCitationCount || "0", 10) || 0,
+      jufoLevel: meta.publicationJufoLevel || "",
+      csl: parseCslMeta(meta.publicationCsl)
+    };
+  }
+
+  const PUBLICATION_GROUP_LABELS = {
+    A: { fi: "A - Vertaisarvioidut tieteelliset artikkelit", en: "A - Peer-reviewed scientific articles" },
+    B: { fi: "B - Vertaisarvioimattomat tieteelliset kirjoitukset", en: "B - Non-peer-reviewed scientific writings" },
+    C: { fi: "C - Tieteelliset kirjat", en: "C - Scientific books" },
+    D: { fi: "D - Ammattiyhteisölle suunnatut julkaisut", en: "D - Professional publications" },
+    E: { fi: "E - Suurelle yleisölle suunnatut julkaisut", en: "E - General audience publications" },
+    G: { fi: "G - Opinnäytteet", en: "G - Theses" }
+  };
+
+  function publicationGroupLabel(group, lang) {
+    return PUBLICATION_GROUP_LABELS[group]?.[lang === "en" ? "en" : "fi"] || group || "";
   }
 
   const kindConfig = {
@@ -301,7 +364,6 @@
     publications: {
       filterPrefix: "Publications",
       typeFilterKey: "Publications group",
-      yearFilterKey: "Publications year",
       topicFilterKey: "Publications topic",
       qualityFilterKey: "Publications quality",
       // PF5-IMPL-APA: publication rows lead with a shared-renderer APA
@@ -313,27 +375,15 @@
         return record?.description || data?.meta?.publicationDescription || data?.excerpt || "";
       },
       requiresQueryForSearch: false,
-      // PF5-IMPL-APA: the publications archive shows the full canonical
-      // list on initial load. When the user has entered no query and
-      // no filters, the seed query is used as the effective query so
-      // Pagefind returns every publication.
-      showAllByDefault: true,
       // Per-search result ceiling for the publications kind — high
       // enough that the canonical 56 publications (and comfortable
       // growth headroom) never get truncated. Other kinds keep the
       // classic 50-result cap.
       maxResults: 200,
-      // Publications FULL parity: professional publication list is
-      // small enough to render every result at once — no
-      // "Näytä lisää" paging.
+      // Publications archive convergence: active interaction still
+      // renders the whole matching grouped corpus at once.
       renderAllResults: true,
-      // Group publication result rows by canonical OKM
-      // publicationGroup (A–G + unclassified). Data flow:
-      //   canonical publicationGroup
-      //     → publicationsFindExplore record.group + groupLabelFi/En
-      //     → this renderer emits <li class="find-explore-result-group-heading">
-      //       between rows sharing the same group.
-      groupByPublicationGroup: true
+      groupedArchiveTables: true
     },
     presentations: {
       yearFilterKey: "PresentationYear",
@@ -458,7 +508,7 @@
       delete nextState.type;
       delete nextState.role;
       delete nextState.year;
-    } else {
+    } else if (kind !== "publications") {
       delete nextState.typeRole;
       delete nextState.yearOrder;
       delete nextState.authorSort;
@@ -473,7 +523,7 @@
       next.delete("type");
       next.delete("role");
       next.delete("year");
-    } else {
+    } else if (kind !== "publications") {
       next.delete("typeRole");
       next.delete("yearOrder");
       next.delete("authorSort");
@@ -510,15 +560,19 @@
       : (state.typeLabel || rawThesisType || "");
     const year = state.year || data?.meta?.writingsYear || data?.meta?.thesesYear || data?.meta?.PresentationYear || "";
     const authorLine = data?.meta?.thesesAuthorLine || "";
-    const publicationMeta = record ? {
-      authors: record.authors || "",
-      typeLabel: record.typeCode || record.group || "",
-      year: record.year || "",
-      venue: record.venue || "",
-      citationCount: record.citationCount || 0,
-      jufoLevel: record.jufoLevel || "",
-      peerReviewed: record.peerReviewed,
-      openAccess: record.openAccess
+    const publicationRecord = kind === "publications"
+      ? Object.assign({}, publicationRecordFromMeta(data), record || {})
+      : record;
+    const publicationMeta = publicationRecord ? {
+      authors: publicationRecord.authors || "",
+      typeLabel: publicationRecord.typeCode || publicationRecord.group || "",
+      year: publicationRecord.year || "",
+      date: publicationRecord.date || "",
+      venue: publicationRecord.venue || publicationRecord.journal || publicationRecord.publisher || "",
+      citationCount: publicationRecord.citationCount || 0,
+      jufoLevel: publicationRecord.jufoLevel || "",
+      peerReviewed: publicationRecord.peerReviewed,
+      openAccess: publicationRecord.openAccess
     } : {
       authors: data?.meta?.publicationAuthors || "",
       typeLabel: data?.meta?.publicationType || data?.meta?.publicationGroup || "",
@@ -546,7 +600,7 @@
       title: record?.title || title,
       excerpt: effectiveConfig.excerpt(data, record),
       meta,
-      record,
+      record: publicationRecord,
       // PF4: year lives on line 1 (family header) rather than the
       // primary-meta line. Presentation type/event surface directly
       // on the entry so the presentations resultMeta can compose a
@@ -689,7 +743,7 @@
       return `<a class="btn btn-sm btn-outline-primary rounded-pill" href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(labels.source)} <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a>`;
     }
 
-    function renderPublicationResult(entry) {
+    function renderPublicationCardResult(entry) {
       const record = entry.record;
       const url = escapeHtml(entry.url);
       const excerpt = entry.excerpt
@@ -706,6 +760,38 @@
           ${citationButton(record)}
         </div>
       </li>`;
+    }
+
+    function publicationSourceCell(record, title) {
+      const href = record?.doiUrl || record?.sourceUrl || "";
+      const sameAsLocal = href && href === (record?.pageUrl || "");
+      const externalHref = sameAsLocal ? "" : href;
+      const sourceLabel = record?.doiUrl
+        ? "DOI"
+        : (record?.sourceLabel === "Research.fi" ? "Research.fi" : labels.source);
+      const sourceButton = externalHref
+        ? `<a class="btn btn-sm btn-outline-primary rounded-pill" href="${escapeHtml(externalHref)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(sourceLabel)}: ${escapeHtml(title)}">${escapeHtml(sourceLabel)} <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a>`
+        : "";
+      const citation = citationButton(record);
+      return [sourceButton, citation].filter(Boolean).join("");
+    }
+
+    function renderPublicationArchiveRow(entry) {
+      const record = entry.record || {};
+      const title = escapeHtml(entry.title);
+      const url = escapeHtml(entry.url);
+      const authors = escapeHtml(record.authors || "");
+      const year = escapeHtml(record.year || "");
+      const typeDisplay = escapeHtml(record.typeCode || record.group || record.type || "");
+      const typeTitle = escapeHtml(record.type || record.typeCode || record.group || "");
+      const sourceActions = publicationSourceCell({ ...record, pageUrl: entry.url }, entry.title);
+      return `<tr class="publication-archive-row publication-archive-row--search">
+        <td class="publication-archive-col-year small text-muted">${year}</td>
+        <td class="publication-archive-col-authors small text-muted">${authors}</td>
+        <th scope="row" class="publication-archive-col-title"><a class="publication-archive-title-link fw-semibold text-decoration-none d-block" href="${url}">${title}</a></th>
+        <td class="publication-archive-col-type small"${typeTitle ? ` title="${typeTitle}"` : ""}>${typeDisplay}</td>
+        <td class="publication-archive-col-source text-end"><div class="publication-archive-source-actions">${sourceActions}</div></td>
+      </tr>`;
     }
 
     // Publications FULL parity: canonical OKM publication group
@@ -759,12 +845,49 @@
         const leftYear = Number(left?.record?.year) || 0;
         const rightYear = Number(right?.record?.year) || 0;
         if (leftYear !== rightYear) return rightYear - leftYear;
+        const leftDate = String(left?.record?.date || "");
+        const rightDate = String(right?.record?.date || "");
+        const dateDiff = rightDate.localeCompare(leftDate);
+        if (dateDiff !== 0) return dateDiff;
+        const leftGroupIndex = PUBLICATION_GROUP_ORDER.indexOf(String(left?.record?.group || "").trim().toUpperCase());
+        const rightGroupIndex = PUBLICATION_GROUP_ORDER.indexOf(String(right?.record?.group || "").trim().toUpperCase());
+        if (leftGroupIndex !== rightGroupIndex) return leftGroupIndex - rightGroupIndex;
         return String(left?.title || "").localeCompare(String(right?.title || ""), "fi");
       });
     }
 
+    function sortPublicationEntries(entries, state, locale) {
+      const authorSort = state?.authorSort || "use-year";
+      const yearOrder = state?.yearOrder || "year-desc";
+      const normalizedLocale = String(locale || "fi").toLowerCase() === "en" ? "en" : "fi";
+      const byCanonical = sortResultsForBibliographicOrder(entries);
+      const canonicalIndex = new Map(byCanonical.map((entry, index) => [entry.url, index]));
+      return [...entries].sort((left, right) => {
+        if (authorSort === "author-asc" || authorSort === "author-desc") {
+          const leftAuthors = String(left?.record?.authors || "");
+          const rightAuthors = String(right?.record?.authors || "");
+          const authorDiff = leftAuthors.localeCompare(rightAuthors, normalizedLocale);
+          if (authorDiff !== 0) return authorSort === "author-asc" ? authorDiff : -authorDiff;
+        } else {
+          const leftYear = Number(left?.record?.year) || 0;
+          const rightYear = Number(right?.record?.year) || 0;
+          if (leftYear !== rightYear) {
+            return yearOrder === "year-asc" ? leftYear - rightYear : rightYear - leftYear;
+          }
+          const leftDate = String(left?.record?.date || "");
+          const rightDate = String(right?.record?.date || "");
+          const dateDiff = yearOrder === "year-asc"
+            ? leftDate.localeCompare(rightDate)
+            : rightDate.localeCompare(leftDate);
+          if (dateDiff !== 0) return dateDiff;
+        }
+        return (canonicalIndex.get(left.url) || 0) - (canonicalIndex.get(right.url) || 0);
+      });
+    }
+
     function renderResultEntry(entry) {
-      if (entry.kind === "publications" && entry.record) return renderPublicationResult(entry);
+      if (kind === "publications" && entry.kind === "publications" && entry.record) return renderPublicationArchiveRow(entry);
+      if (entry.kind === "publications" && entry.record) return renderPublicationCardResult(entry);
       if (entry.kind === "theses") {
         const title = escapeHtml(entry.title);
         const url = escapeHtml(entry.url);
@@ -817,6 +940,31 @@
       }).join("");
     }
 
+    function renderPublicationArchiveGroups(grouped) {
+      return grouped.map(({ key, entries }) => {
+        const label = escapeHtml(publicationGroupLabel(key));
+        const count = entries.length;
+        const headingId = `${kind}-table-${escapeHtml(String(key).toLowerCase().replace(/^_+|_+$/g, ""))}`;
+        const rows = entries.map(renderPublicationArchiveRow).join("");
+        return `<section class="publication-archive-group" data-publication-group="${escapeHtml(key)}" aria-labelledby="${headingId}">`
+          + `<div class="publication-archive-group-header d-flex flex-wrap align-items-start justify-content-between gap-2">`
+          + `<h3 id="${headingId}" class="publication-archive-group-title h5 mb-0">${label}</h3>`
+          + `<span class="badge text-bg-light border text-dark">${count}</span>`
+          + `</div>`
+          + `<div class="table-responsive mt-3">`
+          + `<table class="table table-sm publication-archive-table align-top mb-0">`
+          + `<thead><tr>`
+          + `<th scope="col" class="publication-archive-col-year">${escapeHtml(labels.langKey === "en" ? "Year" : "Vuosi")}</th>`
+          + `<th scope="col" class="publication-archive-col-authors">${escapeHtml(labels.langKey === "en" ? "Authors" : "Tekijät")}</th>`
+          + `<th scope="col" class="publication-archive-col-title">${escapeHtml(labels.langKey === "en" ? "Title" : "Otsikko")}</th>`
+          + `<th scope="col" class="publication-archive-col-type">${escapeHtml(labels.langKey === "en" ? "Type" : "Tyyppi")}</th>`
+          + `<th scope="col" class="publication-archive-col-source text-end">${escapeHtml(labels.langKey === "en" ? "Source" : "Lähde")}</th>`
+          + `</tr></thead>`
+          + `<tbody>${rows}</tbody>`
+          + `</table></div></section>`;
+      }).join("");
+    }
+
     function renderResults() {
       const state = readState();
       const renderAll = Boolean(config.renderAllResults);
@@ -828,11 +976,16 @@
       let orderedResults = latestResults;
       if (kind === "theses") {
         orderedResults = sortThesisEntries(latestResults, state, labels.langKey);
+      } else if (kind === "publications") {
+        orderedResults = sortPublicationEntries(latestResults, state, labels.langKey);
       } else if (config.groupByPublicationGroup && !activeQuery) {
         orderedResults = sortResultsForBibliographicOrder(latestResults);
       }
       const slice = renderAll ? orderedResults : orderedResults.slice(0, visibleCount);
-      if (config.groupByPublicationGroup && slice.length) {
+      if (kind === "publications" && slice.length) {
+        const grouped = groupPublicationEntries(slice);
+        resultsList.innerHTML = renderPublicationArchiveGroups(grouped);
+      } else if (config.groupByPublicationGroup && slice.length) {
         const grouped = groupPublicationEntries(slice);
         resultsList.innerHTML = renderGroupedResults(grouped);
       } else if (kind === "theses") {
@@ -857,13 +1010,13 @@
       const hasQuery = Boolean(state.q);
       const hasFilters = Boolean(state.type || state.role || state.year || state.topic || state.quality);
       const hasThesisSortInteraction = kind === "theses" && !isDefaultThesisSortState(state);
+      const hasPublicationSortInteraction = kind === "publications" && !isDefaultPublicationSortState(state);
       // PF5-IMPL-APA: publications archive keeps the full canonical
-      // list visible on initial load — fall back to the seed query
-      // even without filters when the kind opted in.
-      const useSeedForEmpty = config.showAllByDefault && seedQuery;
+      // list visible only through SSR. Pagefind activates once the
+      // user enters a query, applies a filter, or changes sorting.
       const effectiveQuery = hasQuery
         ? state.q
-        : ((hasFilters || hasThesisSortInteraction || useSeedForEmpty) && seedQuery ? seedQuery : "");
+        : ((hasFilters || hasThesisSortInteraction || hasPublicationSortInteraction) && seedQuery ? seedQuery : "");
 
       updateUrl(state, kind);
       visibleCount = PAGE_SIZE;
@@ -875,7 +1028,7 @@
       // results occupy the same visible location. Reset returns to
       // archive state. This coordination applies only to `theses`
       // mounts; other kinds keep their existing behaviour.
-      if (kind === "theses" && document.body) {
+      if ((kind === "theses" || kind === "publications") && document.body) {
         if (effectiveQuery) {
           document.body.classList.add("find-explore-active");
         } else {
@@ -885,7 +1038,7 @@
 
       if (!effectiveQuery && config.requiresQueryForSearch) {
         latestResults = [];
-        if (kind === "theses" && resultsList) resultsList.innerHTML = initialResultsHtml;
+        if ((kind === "theses" || kind === "publications") && resultsList) resultsList.innerHTML = initialResultsHtml;
         else resultsList.innerHTML = "";
         moreButton?.classList.add("d-none");
         status.textContent = labels.idle;
@@ -894,7 +1047,7 @@
 
       if (!effectiveQuery) {
         latestResults = [];
-        if (kind === "theses" && resultsList) resultsList.innerHTML = initialResultsHtml;
+        if ((kind === "theses" || kind === "publications") && resultsList) resultsList.innerHTML = initialResultsHtml;
         else resultsList.innerHTML = "";
         moreButton?.classList.add("d-none");
         status.textContent = labels.idle;
@@ -964,7 +1117,8 @@
       } catch (error) {
         if (runId !== activeSearchRunId) return;
         latestResults = [];
-        resultsList.innerHTML = "";
+        if ((kind === "theses" || kind === "publications") && resultsList) resultsList.innerHTML = initialResultsHtml;
+        else resultsList.innerHTML = "";
         moreButton?.classList.add("d-none");
         status.textContent = labels.error;
         console.warn("FindExplore search failed", error);

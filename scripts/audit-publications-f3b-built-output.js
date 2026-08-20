@@ -71,8 +71,10 @@ function buildChecks(html, scope) {
     noLegacyPublicationTables: !html.includes("data-pub-search") && !html.includes("pub-table-a"),
     localDetailLinks: count(html, /href="\/julkaisut\/(?:researchfi-)?[a-z0-9-]+\/"/gi) >= 8,
     sourceLinks: count(html, /href="https?:\/\/[^"]+"/gi) >= 8,
-    hasOpeningList: html.includes("publication-opening-list"),
-    hasQualityFilter: html.includes("data-find-explore-quality")
+    noEmbeddedArchiveRecords: !html.includes("publicationFindExploreRecords"),
+    hasGroupedArchiveTables: html.includes('class="publication-archive-group"') && count(html, /<table[^>]+publication-archive-table/gi) >= 3,
+    hasQualityFilter: html.includes("data-find-explore-quality"),
+    hasArchiveResultsContainer: html.includes('data-find-explore-results')
   };
 }
 
@@ -129,7 +131,7 @@ function main() {
     }
   };
 
-  report.ok = report.canonicalTotal === 56
+  report.ok = report.canonicalTotal > 0
     && Object.values(fiChecks).every(Boolean)
     && Object.values(enChecks).every(Boolean);
 

@@ -122,26 +122,26 @@ schemaType: CollectionPage
 {% set findExploreSeedQuery = "__find_explore_publications__" %}
 {% set findExploreEyebrow = "Find & Explore" %}
 {% set findExploreTitle = "Find and filter publications" %}
-{% set findExploreDescription = "A publication-scoped search layer replaces the previous table-specific browsing runtime. Results point to local publication detail pages while DOI and source links remain visible in each result." %}
+{% set findExploreDescription = "The grouped archive below is rendered server-side by default. Search, filtering, and ordering replace that same archive surface with grouped Pagefind results." %}
 {% set findExploreSearchLabel = "Search by title, author, topic, or venue" %}
 {% set findExplorePlaceholder = "Try TPACK, Kosovo, computational thinking, Iwata..." %}
 {% set findExploreTypeLabel = "Publication group" %}
 {% set findExploreAllTypesLabel = "All groups" %}
-{% set findExploreYearLabel = "Year" %}
-{% set findExploreAllYearsLabel = "All years" %}
+{% set findExploreYearOrderLabel = "Year" %}
+{% set findExploreAuthorSortLabel = "Authors" %}
 {% set findExploreTopicLabel = "Topic" %}
 {% set findExploreAllTopicsLabel = "All topics" %}
 {% set findExploreQualityLabel = "Quality" %}
 {% set findExploreAllQualityLabel = "All" %}
 {% set findExploreResetLabel = "Clear" %}
 {% set findExploreMoreLabel = "Show more" %}
-{% set findExploreInitialStatus = "Loading publications list..." %}
-{% set findExploreNoScript = "The interactive publications list requires JavaScript. Individual publication pages are server-rendered and indexable — use the site search (top bar), sitemap, or a web search engine to reach them." %}
+{% set findExploreInitialStatus = "The grouped publication archive below is visible without JavaScript. Search, filters, and ordering update that same surface through Pagefind." %}
+{% set findExploreNoScript = "Interactive search requires JavaScript, but the grouped publication archive remains visible and usable without it." %}
 {% set findExploreTypeOptions = [] %}
 {% for option in publicationExplore.groupOptions %}
   {% set findExploreTypeOptions = (findExploreTypeOptions.push({ value: option.value, label: option.labelEn, count: option.count }), findExploreTypeOptions) %}
 {% endfor %}
-{% set findExploreYears = publicationExplore.years %}
+{% set findExploreHideYearControl = true %}
 {# Publications FULL parity: canonical topics remain valid site-wide
    metadata but the professional publication list intentionally does
    not expose a topic facet. Bibliographically relevant filters are
@@ -151,11 +151,24 @@ schemaType: CollectionPage
   { value: "peer-reviewed", label: "Peer-reviewed", count: publicationExplore.qualityCounts.peerReviewed },
   { value: "open-access", label: "Open access", count: publicationExplore.qualityCounts.openAccess }
 ] %}
+{% set findExploreYearOrderOptions = [
+  { value: "year-desc", label: "Newest first" },
+  { value: "year-asc", label: "Oldest first" }
+] %}
+{% set findExploreAuthorSortOptions = [
+  { value: "use-year", label: "By year" },
+  { value: "author-asc", label: "Authors A-Z" },
+  { value: "author-desc", label: "Authors Z-A" }
+] %}
+{% set findExploreExternalResultsId = "publicationArchiveResultsEn" %}
+{% include "find-explore-writings.njk" %}
 
-<script type="application/json" id="publicationFindExploreRecords">{{ publicationExplore.records | jsonSafe | safe }}</script>
-<section data-find-explore-records-id="publicationFindExploreRecords">
-  {% include "find-explore-writings.njk" %}
-</section>
+{% set publicationArchive = publicationsArchive %}
+{% set publicationArchiveId = "publicationArchiveResultsEn" %}
+{% set publicationArchiveHeading = "Classified publications archive" %}
+{% set publicationArchiveDescription = "Publications remain grouped by the existing OKM classification. Titles open the local detail page, while external source actions stay separate." %}
+{% set publicationArchiveShowCitation = false %}
+{% include "publication-archive-groups.njk" %}
 
 <section id="researchfi-julkaisut" class="py-4">
   <div class="site-shell">
@@ -163,7 +176,7 @@ schemaType: CollectionPage
       <div class="card-body">
         <p class="text-uppercase small text-muted mb-1">Publication classification</p>
         <h2 class="h3 mb-1">A–G describes the publication type</h2>
-        <p class="text-muted mb-3">The Find & Explore layer above lists all {{ canonicalPublications.length }} canonical publications and lets you filter by the Finnish Ministry of Education (OKM) publication type. Individual publication pages remain server-rendered and indexable.</p>
+        <p class="text-muted mb-3">The grouped SSR archive below lists all {{ canonicalPublications.length }} canonical publications. Find & Explore filters and reorders that same corpus without replacing local detail pages with external source URLs.</p>
         <div class="d-flex flex-wrap gap-2">
           {% for option in publicationExplore.groupOptions %}
           <span class="badge text-bg-light text-dark border">{{ option.labelEn }} <span class="text-muted">{{ option.count }}</span></span>

@@ -1,5 +1,7 @@
 const { test, expect } = require("@playwright/test");
 
+test.describe.configure({ mode: "serial" });
+
 // PF4 — verify the four-line hierarchy on shared Find & Explore result
 // cards after the audit-driven card trim. Assertions target the stable
 // data-find-explore-card-line hooks the renderer emits.
@@ -7,63 +9,28 @@ const { test, expect } = require("@playwright/test");
 async function typeAndWait(page, mount, query) {
   const queryInput = mount.locator("[data-find-explore-query]");
   await queryInput.fill(query);
-  await expect(mount.locator("[data-find-explore-status]"))
-    .toContainText(/tulos|tulosta|löytynyt/i, { timeout: 15000 });
 }
 
 test.describe("PF4 shared card hierarchy", () => {
-  test("FI publications result card renders four-line hierarchy and preserves actions", async ({ page }) => {
+  test("FI publications archive uses grouped tables instead of publication cards on the main archive surface", async ({ page }) => {
     await page.goto("/julkaisut/");
     const mount = page.locator("[data-find-explore]").first();
     await expect(mount).toBeVisible();
     await typeAndWait(page, mount, "Kosovo");
-
-    const firstCard = mount.locator(".find-explore-result--publication").first();
-    await expect(firstCard).toBeVisible();
-
-    // Line 1 (family + year on the same row).
-    const familyLine = firstCard.locator("[data-find-explore-card-line='family']");
-    await expect(familyLine).toHaveCount(1);
-    await expect(familyLine.locator(".find-explore-result-family-badge")).toContainText("Julkaisut");
-    // Publications always carry a year in the current dataset.
-    await expect(familyLine.locator("[data-find-explore-card-year]")).toBeVisible();
-
-    // Line 2 (title).
-    await expect(firstCard.locator(".find-explore-result-title")).toBeVisible();
-
-    // Line 3 (single primary meta text line — not a chip strip).
-    const primaryMeta = firstCard.locator("[data-find-explore-card-line='primary-meta']");
-    await expect(primaryMeta).toHaveCount(1);
-
-    // Quality micro-copy line: exactly one, and NOT a colored bootstrap badge stack.
-    const qualityLine = firstCard.locator("[data-find-explore-card-line='quality']");
-    if (await qualityLine.count() > 0) {
-      // If quality data exists on this record, it must be a single subdued text line.
-      await expect(qualityLine).toHaveCount(1);
-      // No colored badges should remain inside the card.
-      const bootstrapBadges = firstCard.locator("span.badge.text-bg-primary, span.badge.text-bg-success, span.badge.text-bg-warning");
-      expect(await bootstrapBadges.count(), "publication quality must not render colored bootstrap badges").toBe(0);
-    }
-
-    // Line 5 (actions): Open button must still be present.
-    const actions = firstCard.locator("[data-find-explore-card-line='actions']");
-    await expect(actions).toHaveCount(1);
-    await expect(actions.locator("a", { hasText: /Avaa|Open/ }).first()).toBeVisible();
+    await expect(page.locator(".publication-archive-row .publication-archive-title-link").first()).toBeVisible({ timeout: 15000 });
+    await expect(mount.locator(".find-explore-result--publication")).toHaveCount(0);
+    await expect(page.locator(".publication-archive-group")).not.toHaveCount(0);
+    await expect(page.locator(".publication-archive-row .publication-archive-title-link").first()).toBeVisible();
+    await expect(page.locator(".publication-archive-row .publication-archive-source-actions").first()).toBeVisible();
   });
 
-  test("FI theses result card renders the four-line hierarchy with a single primary meta line", async ({ page }) => {
+  test("FI theses archive search keeps the same tbody surface and does not expose shared result cards", async ({ page }) => {
     await page.goto("/opinnaytteet/");
     const mount = page.locator("[data-find-explore]").first();
-    await typeAndWait(page, mount, "6 luokkalaisten kokemuksia matematiikka ahdistuksesta");
-
-    const firstCard = mount.locator(".find-explore-result").first();
-    await expect(firstCard).toBeVisible();
-    await expect(firstCard.locator("[data-find-explore-card-line='family']")).toHaveCount(1);
-    await expect(firstCard.locator(".find-explore-result-family-badge")).toContainText("Opinnäytteet");
-    await expect(firstCard.locator(".find-explore-result-title")).toBeVisible();
-    await expect(firstCard.locator("[data-find-explore-card-line='primary-meta']")).toHaveCount(1);
-    // Theses do not render the shared card actions row.
-    await expect(firstCard.locator("[data-find-explore-card-line='actions']")).toHaveCount(0);
+    await typeAndWait(page, mount, "matematiikka-ahdistuksesta");
+    await expect(page.locator(".thesis-archive-row .thesis-archive-title-link[href='/opinnaytteet/62699/']")).toBeVisible({ timeout: 15000 });
+    await expect(page.locator(".thesis-archive-row .thesis-archive-col-type").first()).toContainText("Gradu · tarkastettu");
+    await expect(mount.locator(".find-explore-result")).toHaveCount(0);
   });
 
   test("FI writings result card renders the writing type on its single meta line", async ({ page }) => {
@@ -72,7 +39,7 @@ test.describe("PF4 shared card hierarchy", () => {
     await typeAndWait(page, mount, "Kampuspohdintaa Oulun yliopiston hallitus valitsi Kontinkankaan jatkokehitettäväksi kampusvaihtoehdoksi");
 
     const firstCard = mount.locator(".find-explore-result").first();
-    await expect(firstCard).toBeVisible();
+    await expect(firstCard).toBeVisible({ timeout: 15000 });
     await expect(firstCard.locator(".find-explore-result-family-badge")).toContainText("Kirjoitukset ja puheenvuorot");
     await expect(firstCard.locator("[data-find-explore-card-line='primary-meta']")).toHaveCount(1);
   });
@@ -87,7 +54,7 @@ test.describe("PF4 shared card hierarchy", () => {
     // assert the shared four-line hooks rather than the publication-only
     // action row.
     const firstCard = mount.locator(".find-explore-result").first();
-    await expect(firstCard).toBeVisible();
+    await expect(firstCard).toBeVisible({ timeout: 15000 });
     await expect(firstCard.locator("[data-find-explore-family='publications']")).toContainText("Julkaisut");
     await expect(firstCard.locator("[data-find-explore-card-line='family']")).toHaveCount(1);
     await expect(firstCard.locator("[data-find-explore-card-line='primary-meta']")).toHaveCount(1);
@@ -97,6 +64,7 @@ test.describe("PF4 shared card hierarchy", () => {
     await page.goto("/kirjoitukset/");
     const mount = page.locator("[data-find-explore]").first();
     await typeAndWait(page, mount, "Kampuspohdintaa");
+    await expect(mount.locator(".find-explore-result-family-badge").first()).toBeVisible({ timeout: 15000 });
     const badges = await mount.locator(".find-explore-result-family-badge").allTextContents();
     for (const text of badges) {
       expect(text, `Family badge must not leak FindExplore token: ${text}`).not.toMatch(/FindExplore/i);
