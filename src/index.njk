@@ -239,8 +239,10 @@ pageStyles:
 
 <section class="py-5 home-milestones-section" id="aikajana">
     <div class="site-shell">
+        {% set firstMilestone = milestones[0] %}
+        {% set lastMilestone = milestones[(milestones | length) - 1] %}
         <div class="home-section-head">
-            <p class="home-section-kicker mb-1">Uran kaari · 2003–2026</p>
+            <p class="home-section-kicker mb-1">Uran kaari · {{ firstMilestone.year }}–{{ lastMilestone.year }}</p>
             <h2 class="home-section-title">Merkkitapahtumia tutkimuksen, opetuksen ja politiikan varrelta</h2>
             <p class="home-section-lead mb-0">Kuratoitu aikajana kertoo, miten työ on rakentunut kolmen roolin ympärille yli 20 vuoden aikana. Klikkaa merkkitapahtumaa siirtyäksesi asianomaiselle sivulle.</p>
         </div>
