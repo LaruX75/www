@@ -19,9 +19,7 @@
     "source": source,
     "lang": _baseLang
   }) | resolveContentMeta(_baseLang) %}
-  {% setAsync "_ogRaw" %}{% ogImage "og-image.og.njk", { title: _baseTitle, section: _baseSection, siteName: site.name, domain: "jarilaru.fi", ogBgDataUrl: ogBgDataUrl } %}{% endsetAsync %}
   {% set ogImageOverrideValue = og_image or ogImage or ogImageOverride %}
-  {% set generatedOgImage = _ogRaw if _ogRaw and _ogRaw != "null" else "/img/WIN_20210329_16_06_01_Pro.jpg" %}
   {% set trustedThumbnailEligible = thumbnail and (
     _baseContentMeta.pageBlockType == "presentation"
     or mediaType
@@ -33,6 +31,12 @@
     or _baseContentMeta.contentType == "initiative"
   ) %}
   {% set trustedThumbnailValue = thumbnail if trustedThumbnailEligible else "" %}
+  {% if not ogImageOverrideValue and not trustedThumbnailValue %}
+    {% setAsync "_ogRaw" %}{% ogImage "og-image.og.njk", { title: _baseTitle, section: _baseSection, siteName: site.name, domain: "jarilaru.fi", ogBgDataUrl: ogBgDataUrl } %}{% endsetAsync %}
+  {% else %}
+    {% set _ogRaw = "" %}
+  {% endif %}
+  {% set generatedOgImage = _ogRaw if _ogRaw and _ogRaw != "null" else "/img/WIN_20210329_16_06_01_Pro.jpg" %}
   {% set resolvedOgImage = ogImageOverrideValue if ogImageOverrideValue else (trustedThumbnailValue if trustedThumbnailValue else generatedOgImage) %}
   {% set resolvedOgImageIsPageSpecific = true if ogImageOverrideValue or trustedThumbnailValue else false %}
   {% set resolvedOgImageAlt = ({

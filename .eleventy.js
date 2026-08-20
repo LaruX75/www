@@ -16,6 +16,7 @@ const shouldCheckExternalLinks = process.env.CHECK_EXTERNAL_LINKS === "true";
 const shouldGenerateOgImages = process.env.DISABLE_OG_IMAGES !== "true";
 const SITE_ORIGIN = process.env.SITE_ORIGIN || "https://www.jarilaru.fi";
 const DEFAULT_OUTPUT_DIR = "_site";
+const OG_IMAGE_REFERENCE_PATTERN = /(?:https?:\/\/[^"' )]+)?\/og-images\/([A-Za-z0-9_-]+\.(?:png|jpe?g|webp))/gi;
 const LINK_REDIRECT_ALLOWLIST = [
   /^https?:\/\/(dx\.)?doi\.org\/.+/i
 ];
@@ -138,6 +139,51 @@ function walkHtmlFiles(dir, files = []) {
   return files;
 }
 
+function collectReferencedOgImages(htmlFiles) {
+  const referencedFiles = new Set();
+  htmlFiles.forEach((filePath) => {
+    const html = fs.readFileSync(filePath, "utf8");
+    OG_IMAGE_REFERENCE_PATTERN.lastIndex = 0;
+    for (const match of html.matchAll(OG_IMAGE_REFERENCE_PATTERN)) {
+      referencedFiles.add(match[1]);
+    }
+  });
+  return referencedFiles;
+}
+
+function syncReferencedOgImagesToOutput({ ogCacheDir, ogSiteDir, referencedFiles }) {
+  fs.rmSync(ogSiteDir, { recursive: true, force: true });
+  if (!referencedFiles.size) return;
+
+  fs.mkdirSync(ogSiteDir, { recursive: true });
+  referencedFiles.forEach((fileName) => {
+    const cachePath = path.join(ogCacheDir, fileName);
+    if (!fs.existsSync(cachePath)) {
+      throw new Error(`[og-images] Referenced OG image missing from cache: ${fileName}`);
+    }
+    fs.cpSync(cachePath, path.join(ogSiteDir, fileName), { force: true });
+  });
+}
+
+function pruneUnusedOgCache({ ogCacheDir, referencedFiles }) {
+  if (!fs.existsSync(ogCacheDir)) return;
+
+  fs.readdirSync(ogCacheDir).forEach((entry) => {
+    if (entry === ".gitkeep") return;
+
+    const fullPath = path.join(ogCacheDir, entry);
+    const stats = fs.statSync(fullPath);
+    if (stats.isDirectory()) {
+      fs.rmSync(fullPath, { recursive: true, force: true });
+      return;
+    }
+
+    if (!referencedFiles.has(entry)) {
+      fs.rmSync(fullPath, { force: true });
+    }
+  });
+}
+
 function serializeExternalLink(link) {
   return {
     url: link.url,
@@ -212,7 +258,7 @@ module.exports = async function (eleventyConfig) {
   eleventyConfig.setWatchJavaScriptDependencies(false);
 
   // Ensure all generated HTML pages have external iframe consent wrappers.
-  // Also copy persisted OG image cache to the active output directory when OG generation is enabled.
+  // Sync only currently referenced OG images into the active output directory.
   eleventyConfig.on("eleventy.after", (event = {}) => {
     const outputDir = resolveOutputDir(event);
     const htmlFiles = walkHtmlFiles(outputDir);
@@ -228,16 +274,9 @@ module.exports = async function (eleventyConfig) {
       const ogCacheDir = path.join(process.cwd(), "og-cache");
       const ogSiteDir = path.join(outputDir, "og-images");
       if (fs.existsSync(ogCacheDir)) {
-        fs.mkdirSync(ogSiteDir, { recursive: true });
-        for (const file of fs.readdirSync(ogCacheDir)) {
-          if (file !== ".gitkeep") {
-            // Cache may contain both image files and preview directories.
-            fs.cpSync(path.join(ogCacheDir, file), path.join(ogSiteDir, file), {
-              force: true,
-              recursive: true,
-            });
-          }
-        }
+        const referencedOgImages = collectReferencedOgImages(htmlFiles);
+        syncReferencedOgImagesToOutput({ ogCacheDir, ogSiteDir, referencedFiles: referencedOgImages });
+        pruneUnusedOgCache({ ogCacheDir, referencedFiles: referencedOgImages });
       }
     }
   });
