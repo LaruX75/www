@@ -151,7 +151,7 @@ Canonical Content v1: unchanged
 closure report: docs/th-cite1-phase6-legacy-server-citation-closure-2026-08-18.md
 
 Thesis archive convergence
-status: READY FOR REVIEW / FEATURE BRANCH
+status: CLOSED / GREEN / BRANCH
 scope: converge the thesis archive from the Phase 3 three-section SSR archive into one flat SSR table + one shared tbody for active Pagefind search/filter state. Preserve canonical thesis semantics, preserve explicit pageUrl/sourceUrl separation, and keep PF5 GLOBAL RESULT PARITY out of scope.
 branch: feat/theses-archive-convergence
 base main SHA: c78bbfa6c82fe8aad5683aed1f4b15e25c699d24
