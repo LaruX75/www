@@ -166,7 +166,7 @@ Closure semantics:
 
 Status: CLOSED / GREEN / MAIN
 
-Baseline regression (home/search-dialog keyboard focus / focus-trap) is fixed on `main` via PR #124 (merge commit `43bf9de192814c36e5201b682f2e41d470d2bc16`). Both required CI workflows (Staging checks + Accessibility and navigation tests) passed on the merged head.
+Baseline regression (home/search-dialog keyboard focus / focus-trap) is fixed on `main` via PR #124. The final tested head `d4bbfd3cd0a1a6414fcc4c3fdbd1c4346dd6be68` passed both required PR workflows (Staging checks + Accessibility and navigation tests) and was then merged unchanged via SHA-guarded merge (`--match-head-commit d4bbfd3c…`) as `main` commit `43bf9de192814c36e5201b682f2e41d470d2bc16`. The repository does not re-run those PR workflows against the merge commit itself; the tested code equals the merged code because the head was not modified between the CI run and the merge.
 
 Final implementation model on `main`:
 
@@ -211,10 +211,12 @@ Final pre-merge branch validation (evidence recorded in the audit doc):
 - `npm run build:no-og` = PASS
 - `git diff --check` = clean
 
-Post-merge CI on `main` (`43bf9de1`):
+PR #124 final tested head `d4bbfd3c…` — required workflows:
 
 - Staging checks (build-and-verify) = PASS (1m45s)
 - Accessibility and navigation tests (playwright) = PASS (4m15s)
+
+That exact head was merged unchanged via SHA-guarded merge as `main` commit `43bf9de1…`. The repository does not re-run those PR workflows on the merge commit.
 
 N1 reopens only on new repo-evidenced regression on any of the above gates.
 
