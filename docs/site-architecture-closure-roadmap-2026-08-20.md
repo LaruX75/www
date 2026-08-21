@@ -73,7 +73,7 @@ Some closure evidence in this area is still branch-state documentation rather th
 
 ### T1 — Timeline 2.0
 
-Status: ACTIVE
+Status: CLOSED / MAINTENANCE
 
 Current evidence:
 
@@ -85,6 +85,10 @@ Current evidence:
   - [t1b2a-election-history-convergence-2026-08-20.md](./t1b2a-election-history-convergence-2026-08-20.md)
 - T1B2B home milestone convergence is closed on `main`
   - [t1b2b-home-milestone-convergence-2026-08-20.md](./t1b2b-home-milestone-convergence-2026-08-20.md)
+- T1B2C politics-theme convergence is closed on `main` (PR #119)
+  - [t1b2c-politics-theme-convergence-2026-08-20.md](./t1b2c-politics-theme-convergence-2026-08-20.md)
+- T1 post-B2C closure audit
+  - [t1-post-b2c-next-step-audit-2026-08-21.md](./t1-post-b2c-next-step-audit-2026-08-21.md)
 
 Current model:
 
@@ -101,25 +105,28 @@ Rules:
 - no runtime JSON -> timeline render path
 - Pagefind is optional enhancement, not a timeline generator
 
-Next correct timeline workstream:
+Closure semantics:
 
-- `T1B2C`
-
-Expected focus:
-
-- pick the next suitable timeline/history surface from the T1A inventory
-- prefer SSR/build-time convergence over new generic abstraction
-- deletion-first scoping: remove parallel manual ownership where safe
-- do not start `T1B3` before `T1B2C` suitability and scope are proven
+- T1B2C is closed on `main`
+- T1B3 is deferred unless a future repo-evidenced active-discovery trigger appears
+- remaining T1A surfaces intentionally stay as current domain-specific implementations:
+  - council timeline is already build-time projected via `buildCouncilMeetingTimeline()` and offers no duplicate-ownership win
+  - training feedback is a legitimate page-native dataset with no canonical source to converge onto
+  - site changes is external GitHub history and stays outside T1; any future DOM/perf work belongs to C1 / P1 / UX1
+- reopen T1 only on new repo evidence, not on roadmap inertia
 
 ### O1 — Detail orientation
 
-Status: NEXT / READY
+Status:
+
+- O1 core = CLOSED / GREEN / MAIN
+- O1 widening = ACTIVE
 
 Current evidence:
 
-- O1 implementation is green at branch level, not yet the universal site baseline
+- O1 core implementation is on `main` and covers publications, theses, and writings detail pages via the shared `src/_includes/detail-orientation.njk` include, an explicit `returnTo` discovery context, and removal of the `history.back()` dependency
   - [o1-orientation-implementation-2026-08-20.md](./o1-orientation-implementation-2026-08-20.md)
+- Presentations and media orientation widening remains deferred pending suitability audits
 
 Current model:
 
@@ -138,12 +145,12 @@ Rules:
 - no parallel browser navigation model
 - no forced one-size-fits-all orientation component
 
-Required suitability audits before widening beyond publications / theses / writings:
+Required suitability audits before widening O1 beyond publications / theses / writings:
 
 - Presentations
 - Media
 
-Do not force those domains into the same orientation primitive if their landing semantics differ.
+Do not force those domains into the same orientation primitive if their landing semantics differ. The widening audits must also ask, as part of C1 cross-cutting: what presentation- or media-specific back controls or duplicate orientation logic can be removed alongside the widening.
 
 ### N1 — Navigation + accessibility closure
 
@@ -317,8 +324,9 @@ Operational model:
 ```text
 Foundation                     CLOSED
   -> Architecture Closure      ACTIVE
-     -> T1                     ACTIVE
-     -> O1                     NEXT / READY
+     -> T1                     CLOSED / MAINTENANCE
+     -> O1 core                CLOSED / MAIN
+     -> O1 widening            ACTIVE
      -> N1                     NEXT
      -> C1                     CROSS-CUTTING
   -> R1 / PF5 audit / P1
@@ -328,10 +336,10 @@ Foundation                     CLOSED
 
 Current operating order:
 
-1. `T1` Timeline 2.0 remains the current executing Architecture Closure workstream, with `T1B2C` as the next correctly named slice in repo evidence.
-2. `O1` is next / ready at the site-wide roadmap level, with branch evidence already proving the core orientation model.
+1. `T1` Timeline 2.0 is closed on `main` at T1B2C. It stays in maintenance until repo evidence triggers a further slice; do not reopen for `T1B3` without such evidence.
+2. `O1` core detail-orientation is on `main` for publications, theses, and writings. `O1` widening to presentations and media is the next active Architecture Closure workstream and starts from suitability audits, not implementation.
 3. `N1` is the next closure lane for known accessibility/navigation baseline issues, starting from the home/search-dialog keyboard focus and focus-trap regression.
-4. `C1` applies to every real implementation lane above rather than waiting as a separate finishing pass.
+4. `C1` applies to every real implementation lane above rather than waiting as a separate finishing pass; O1 widening audits must include C1-style deletion questions for presentation and media detail templates.
 5. `R1`, `PF5`, and `P1` stay behind the active closure lanes unless repo evidence justifies earlier movement.
 6. `UX1` belongs after closure pressure has reduced architectural duplication.
 7. `AC1` is the final closure gate, not an immediate build lane.
@@ -344,14 +352,15 @@ Current operating order:
 - Presentations Find & Explore = CLOSED / GREEN / MAIN
 - Media Find & Explore = CLOSED / GREEN / MAIN
 - Architecture Closure = ACTIVE
-- T1 = ACTIVE
+- T1 = CLOSED / MAINTENANCE
 - T1A = CLOSED / GREEN / MAIN
 - T1B1 = foundation evidence complete
 - T1B2A = CLOSED / GREEN / MAIN
 - T1B2B = CLOSED / GREEN / MAIN
-- T1B2C = NOT STARTED
-- T1B3 = NOT STARTED
-- O1 = NEXT / READY
+- T1B2C = CLOSED / GREEN / MAIN (PR #119)
+- T1B3 = DEFER (no repo-evidenced trigger)
+- O1 core = CLOSED / GREEN / MAIN
+- O1 widening = ACTIVE (Presentations, Media suitability audits pending)
 - N1 = NEXT
 - C1 = CROSS-CUTTING
 - R1 = LATER
