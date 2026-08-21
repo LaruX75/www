@@ -2,7 +2,7 @@
 
 Date: 2026-08-21
 
-Status: AUDIT COMPLETE; IMPLEMENTATION GREEN / REVIEW (PR #124). Historical experiment sections (§ 11–13.11) retain their original status labels — those describe branch state at each experiment step and are preserved as evidence.
+Status: CLOSED / GREEN / MAIN. PR #124 final tested head `d4bbfd3cd0a1a6414fcc4c3fdbd1c4346dd6be68` passed both required PR workflows (Staging checks 1m45s, Accessibility and navigation tests 4m15s). That exact head was merged unchanged via SHA-guarded merge (`--match-head-commit d4bbfd3c…`) as `main` commit `43bf9de192814c36e5201b682f2e41d470d2bc16`. The repository does not re-run those PR workflows on the merge commit itself; the tested code equals the merged code because the head was not modified between the CI run and the merge. Historical experiment sections (§ 11–13.11) retain their original status labels — those describe branch state at each experiment step and are preserved as evidence.
 
 Audit worktree: `/private/tmp/www-n1-audit`
 Audit branch: `audit/n1-navigation-accessibility`

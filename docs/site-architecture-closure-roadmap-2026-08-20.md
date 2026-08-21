@@ -164,18 +164,18 @@ Closure semantics:
 
 ### N1 — Navigation + accessibility closure
 
-Status: IMPLEMENTATION GREEN / REVIEW (branch)
+Status: CLOSED / GREEN / MAIN
 
-Baseline regression (home/search-dialog keyboard focus / focus-trap) is fixed on the N1 implementation branch pending review + merge. Roadmap status becomes `CLOSED / GREEN / MAIN` only after merge.
+Baseline regression (home/search-dialog keyboard focus / focus-trap) is fixed on `main` via PR #124. The final tested head `d4bbfd3cd0a1a6414fcc4c3fdbd1c4346dd6be68` passed both required PR workflows (Staging checks + Accessibility and navigation tests) and was then merged unchanged via SHA-guarded merge (`--match-head-commit d4bbfd3c…`) as `main` commit `43bf9de192814c36e5201b682f2e41d470d2bc16`. The repository does not re-run those PR workflows against the merge commit itself; the tested code equals the merged code because the head was not modified between the CI run and the merge.
 
-Current implementation model:
+Final implementation model on `main`:
 
 - native `<dialog>` owns modality, top layer, background inertness, and native Escape/cancel
 - `site-ui.js` owns only Chromium's cyclic Tab boundary wrap, initial Pagefind input focus, and exact focus return to the trigger
 - Pagefind keeps ownership of its own UI content and internal focusable controls
 - FI and EN nav templates share the same `<dialog id="searchOverlay">` markup and JS
 
-Deletions accomplished vs prior custom-overlay implementation:
+C1 deletions landed on `main`:
 
 - custom close-animation timer + reduced-motion branch
 - body overflow lock
@@ -192,7 +192,7 @@ Evidence:
 - [n1-navigation-accessibility-audit-2026-08-21.md](./n1-navigation-accessibility-audit-2026-08-21.md) — full audit including experiments A–I (rejected timing/perturbation experiments and the accepted native `<dialog>` + boundary-wrap solution)
 - `tests/navigation.spec.js` — updated for native `<dialog>` semantics; new explicit EN parity lifecycle test
 
-Goal — all met on branch:
+Goals met on `main`:
 
 - relevant accessibility/navigation tests green without a baseline exception ✓
 - FI / EN parity ✓
@@ -201,7 +201,7 @@ Goal — all met on branch:
 - focus return ✓
 - search-dialog recovery behavior ✓
 
-Branch-level validation:
+Final pre-merge branch validation (evidence recorded in the audit doc):
 
 - isolated `Search dialog traps focus` × 30 = 30/30 PASS
 - full `tests/navigation.spec.js` × 20 (100 test invocations incl. new EN parity) = 100/100 PASS
@@ -211,7 +211,14 @@ Branch-level validation:
 - `npm run build:no-og` = PASS
 - `git diff --check` = clean
 
-This is an architecture-closure priority, not a cosmetic polish item.
+PR #124 final tested head `d4bbfd3c…` — required workflows:
+
+- Staging checks (build-and-verify) = PASS (1m45s)
+- Accessibility and navigation tests (playwright) = PASS (4m15s)
+
+That exact head was merged unchanged via SHA-guarded merge as `main` commit `43bf9de1…`. The repository does not re-run those PR workflows on the merge commit.
+
+N1 reopens only on new repo-evidenced regression on any of the above gates.
 
 ### C1 — Runtime / convergence cleanup
 
@@ -398,7 +405,7 @@ Current operating order:
 - O1 core = CLOSED / GREEN / MAIN
 - O1 widening = CLOSED / GREEN / MAIN (PR #122)
 - O1 = CLOSED / MAINTENANCE
-- N1 = IMPLEMENTATION GREEN / REVIEW (branch; CLOSED / GREEN / MAIN only after merge)
+- N1 = CLOSED / GREEN / MAIN (PR #124)
 - C1 = CROSS-CUTTING
 - R1 = LATER
 - PF5 = GATED / AUDIT FIRST
