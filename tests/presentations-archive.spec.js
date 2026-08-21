@@ -50,8 +50,9 @@ for (const pageCase of PAGES) {
       await topicInput.blur();
       await expect(archive.locator('article.presentation-archive-card')).toHaveCount(1);
 
-      await archive.locator(`a[href="${FIXTURES.localLanding}"]`).first().click();
-      await expect(page).toHaveURL(new RegExp(`${FIXTURES.localLanding}$`));
+      // O1 widening decorates local presentation card links with ?returnTo=..., so match by href prefix.
+      await archive.locator(`a[href^="${FIXTURES.localLanding}"]`).first().click();
+      await expect(page).toHaveURL(new RegExp(FIXTURES.localLanding.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
 
       await page.goto(pageCase.url);
       const archiveAgain = page.locator('[data-presentation-find-explore]');
@@ -81,7 +82,8 @@ for (const pageCase of PAGES) {
       const topiclessCard = archiveAgain.locator('article.presentation-archive-card');
       await expect(topiclessCard).toHaveCount(1);
       await expect(topiclessCard).toContainText(FIXTURES.topiclessTitle);
-      await expect(topiclessCard.locator(`a[href="${FIXTURES.topiclessLanding}"]`).first()).toBeVisible();
+      // O1 widening decorates local presentation card links with ?returnTo=..., so match by href prefix.
+      await expect(topiclessCard.locator(`a[href^="${FIXTURES.topiclessLanding}"]`).first()).toBeVisible();
     });
   });
 }

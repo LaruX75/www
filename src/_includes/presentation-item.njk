@@ -45,7 +45,11 @@ layout: base.njk
           {% if publicSourceHref %}
             <a href="{{ publicSourceHref }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">{% if isVideoPreview %}Katso tallenne{% else %}Avaa materiaali{% endif %}</a>
           {% endif %}
-          <a href="/esitykset/" class="btn btn-outline-secondary rounded-pill px-4">Kaikki esitykset</a>
+          {% set orientationLang = currentLang %}
+          {% set orientationHubHref = "/esitykset/" %}
+          {% set orientationHubLabel = "Kaikki esitykset" %}
+          {% set orientationReturnPrefixes = ["/esitykset/", "/en/presentations/"] %}
+          {% include "detail-orientation.njk" %}
         </div>
       </div>
     </div>
