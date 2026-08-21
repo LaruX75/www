@@ -2,7 +2,7 @@
 
 Date: 2026-08-21
 
-Status: AUDIT COMPLETE; IMPLEMENTATION GREEN / REVIEW (PR #124). Historical experiment sections (§ 11–13.11) retain their original status labels — those describe branch state at each experiment step and are preserved as evidence.
+Status: CLOSED / GREEN / MAIN. PR #124 merged as commit `43bf9de192814c36e5201b682f2e41d470d2bc16`; both required CI workflows green on the merged head (Staging checks 1m45s, Accessibility and navigation tests 4m15s). Historical experiment sections (§ 11–13.11) retain their original status labels — those describe branch state at each experiment step and are preserved as evidence.
 
 Audit worktree: `/private/tmp/www-n1-audit`
 Audit branch: `audit/n1-navigation-accessibility`
