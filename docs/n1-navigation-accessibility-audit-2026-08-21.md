@@ -2,7 +2,7 @@
 
 Date: 2026-08-21
 
-Status: AUDIT ONLY. No production code changed.
+Status: AUDIT COMPLETE; IMPLEMENTATION GREEN / REVIEW (PR #124). Historical experiment sections (§ 11–13.11) retain their original status labels — those describe branch state at each experiment step and are preserved as evidence.
 
 Audit worktree: `/private/tmp/www-n1-audit`
 Audit branch: `audit/n1-navigation-accessibility`

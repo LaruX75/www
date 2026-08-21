@@ -666,15 +666,15 @@
         initPagefindUi().then(() => waitForPagefindInput(prefillQuery));
       }
 
-      function closeSearch({ restoreFocus = true } = {}) {
+      function closeSearch() {
         if (!searchOverlay) return;
         if (searchOverlay.open) {
           searchOverlay.close();
         }
-        if (restoreFocus) {
-          const returnTarget = getSearchReturnTarget();
-          if (returnTarget) returnTarget.focus();
-        }
+        // Focus return is centralized in the native `close` event listener
+        // below — the browser fires it for every close path (JS close(),
+        // Escape/cancel, form-method=dialog). Do not duplicate focus
+        // handling here.
       }
 
       // N1 Experiment I: cyclic-boundary wrap only. Chromium's native modal
@@ -755,13 +755,14 @@
       });
 
       if (searchOverlay) {
-        // Native cancel fires on Escape and on close()-by-form-method-dialog.
-        // Hook it to restore focus to the trigger; native dialog does not do
-        // this by default when the modal wasn't opened by the browser's own
-        // interactive activation.
-        searchOverlay.addEventListener('cancel', () => {
+        // Native `close` fires for every close path (JS close(), Escape,
+        // form-method=dialog). Centralize the exact-trigger focus return
+        // here; no cancel listener, no zero-delay deferral. Native dialog
+        // has already finished its own focus movement by the time close
+        // is dispatched, so a plain synchronous focus() call sticks.
+        searchOverlay.addEventListener('close', () => {
           const returnTarget = getSearchReturnTarget();
-          if (returnTarget) window.setTimeout(() => returnTarget.focus(), 0);
+          if (returnTarget) returnTarget.focus();
         });
         // Boundary-only Tab wrap (see trapSearchFocus).
         searchOverlay.addEventListener('keydown', trapSearchFocus);
