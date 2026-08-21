@@ -523,12 +523,16 @@
       });
 
       // Hakutoiminnon logiikka
+      // N1: search overlay uses the native <dialog> element. showModal()
+      // owns modality + top layer + outside-page inertness + native Escape.
+      // JS owns only what Chromium does not provide reliably: cyclic Tab
+      // boundary wrap (Shift+Tab from first → last, Tab from last → first).
+      // Interior Tab traversal is handled by native browser tab-order.
       const searchToggles = Array.from(document.querySelectorAll('[data-search-toggle], #searchToggleBtn'));
       const searchForms = Array.from(document.querySelectorAll('[data-search-form]'));
       const searchClose = document.getElementById('searchCloseBtn');
       const searchOverlay = document.getElementById('searchOverlay');
       let lastSearchTrigger = null;
-      let searchCloseTimer = null;
       let pagefindUi = null;
       let pagefindUiReady = null;
       const focusableSelector = 'a[href], area[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
@@ -653,36 +657,19 @@
 
       function openSearch(prefillQuery = '', triggerSource = null) {
         if (!searchOverlay) return;
-        if (searchCloseTimer) {
-          window.clearTimeout(searchCloseTimer);
-          searchCloseTimer = null;
-        }
         lastSearchTrigger = triggerSource instanceof HTMLElement
           ? triggerSource
           : (document.activeElement instanceof HTMLElement ? document.activeElement : null);
-        searchOverlay.hidden = false;
-        searchOverlay.style.display = 'flex';
-        searchOverlay.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-        requestAnimationFrame(() => searchOverlay.classList.add('is-open'));
-
+        if (!searchOverlay.open) {
+          searchOverlay.showModal();
+        }
         initPagefindUi().then(() => waitForPagefindInput(prefillQuery));
       }
 
       function closeSearch({ restoreFocus = true } = {}) {
         if (!searchOverlay) return;
-        searchOverlay.setAttribute('aria-hidden', 'true');
-        searchOverlay.classList.remove('is-open');
-        document.body.style.overflow = '';
-        const finishClose = () => {
-          searchOverlay.style.display = 'none';
-          searchOverlay.hidden = true;
-          searchCloseTimer = null;
-        };
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.classList.contains('a11y-reduced-motion')) {
-          finishClose();
-        } else {
-          searchCloseTimer = window.setTimeout(finishClose, 240);
+        if (searchOverlay.open) {
+          searchOverlay.close();
         }
         if (restoreFocus) {
           const returnTarget = getSearchReturnTarget();
@@ -690,13 +677,16 @@
         }
       }
 
+      // N1 Experiment I: cyclic-boundary wrap only. Chromium's native modal
+      // <dialog> keeps focus inside the top layer for interior traversal,
+      // but does not wrap Tab from the last focusable to the first (or
+      // Shift+Tab from the first to the last) — instead focus lands on
+      // <body>. Intercept exactly those two boundary transitions and leave
+      // all interior Tab movement to native browser handling.
       function trapSearchFocus(e) {
-        if (!searchOverlay || searchOverlay.hidden || e.key !== 'Tab') return;
+        if (!searchOverlay || !searchOverlay.open || e.key !== 'Tab') return;
         const focusable = getFocusableElements(searchOverlay);
-        if (!focusable.length) {
-          e.preventDefault();
-          return;
-        }
+        if (!focusable.length) return;
         const first = focusable[0];
         const last = focusable[focusable.length - 1];
         if (e.shiftKey && document.activeElement === first) {
@@ -755,12 +745,8 @@
 
       document.addEventListener('keydown', (e) => {
         if (e.key !== 'Escape') return;
-
-        if (searchOverlay && !searchOverlay.hidden) {
-          closeSearch();
-          return;
-        }
-
+        // Native <dialog> handles its own Escape via the cancel event —
+        // no manual closeSearch() branch here. We only own mega-menu Escape.
         const openDropdown = megaDropdowns.find((dropdown) => dropdown.classList.contains('show'));
         if (openDropdown) {
           closeAllMegaMenus();
@@ -769,7 +755,18 @@
       });
 
       if (searchOverlay) {
+        // Native cancel fires on Escape and on close()-by-form-method-dialog.
+        // Hook it to restore focus to the trigger; native dialog does not do
+        // this by default when the modal wasn't opened by the browser's own
+        // interactive activation.
+        searchOverlay.addEventListener('cancel', () => {
+          const returnTarget = getSearchReturnTarget();
+          if (returnTarget) window.setTimeout(() => returnTarget.focus(), 0);
+        });
+        // Boundary-only Tab wrap (see trapSearchFocus).
         searchOverlay.addEventListener('keydown', trapSearchFocus);
+        // Backdrop click: with native <dialog>, click events on the ::backdrop
+        // arrive with target === the dialog element itself.
         searchOverlay.addEventListener('click', (e) => {
           if (e.target === searchOverlay) closeSearch();
         });
