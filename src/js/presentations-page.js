@@ -204,8 +204,15 @@
 
   function archiveCardHtml(item, locale) {
     const labels = labelsFor(locale);
-    const url = landingUrl(item);
+    let url = landingUrl(item);
     const external = Boolean(item && item.externalFirst) || isExternalUrl(url);
+    if (!external && url && url.startsWith("/presentations/") && typeof window !== "undefined" && window.location) {
+      const returnTo = window.location.pathname + window.location.search;
+      if (returnTo) {
+        const sep = url.includes("?") ? "&" : "?";
+        url = `${url}${sep}returnTo=${encodeURIComponent(returnTo)}`;
+      }
+    }
     const meta = [];
     const displayDate = formatDate(item && (item.date || item.year), locale);
     if (displayDate) meta.push(`<span class="presentation-archive-card-detail"><i class="bi bi-calendar3"></i>${escHtml(displayDate)}</span>`);

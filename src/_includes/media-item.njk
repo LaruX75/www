@@ -46,7 +46,11 @@ layout: base.njk
           {% if sourceHref %}
             <a href="{{ sourceHref }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">Avaa alkuperäinen lähde</a>
           {% endif %}
-          <a href="/mediassa/" class="btn btn-outline-secondary rounded-pill px-4">Kaikki mediaosumat</a>
+          {% set orientationLang = currentLang %}
+          {% set orientationHubHref = "/mediassa/" %}
+          {% set orientationHubLabel = "Kaikki mediaosumat" %}
+          {% set orientationReturnPrefixes = ["/mediassa/", "/en/media/"] %}
+          {% include "detail-orientation.njk" %}
         </div>
       </div>
 
