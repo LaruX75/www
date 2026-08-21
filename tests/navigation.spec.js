@@ -81,9 +81,13 @@ test.describe('Navigation and Focus Audits', () => {
         await trigger.click();
 
         await expect(dialog).toBeVisible();
-        await expect(dialog).toHaveAttribute('role', 'dialog');
-        await expect(dialog).toHaveAttribute('aria-modal', 'true');
-        await expect(dialog).toHaveAttribute('aria-hidden', 'false');
+        // N1: search overlay uses the native <dialog> element. Modal role
+        // and modal-ness are implicit (getByRole('dialog') matches, and
+        // showModal() puts it in the top layer). `open` attribute reflects
+        // dialog state; `aria-modal`/`aria-hidden` are no longer set
+        // explicitly because they duplicated native semantics.
+        await expect(dialog).toHaveAttribute('open', '');
+        await expect(page.getByRole('dialog')).toBeVisible();
         await expect(input).toBeVisible();
         await expect(input).toBeFocused();
 
@@ -149,6 +153,56 @@ test.describe('Navigation and Focus Audits', () => {
 
         await expect(page.locator('#searchOverlay .pagefind-ui__result').first()).toBeVisible({ timeout: 15000 });
         await expect(page.locator('#searchOverlay .pagefind-ui__message')).toContainText(/tulos/);
+    });
+
+    test('EN search dialog: same open/traversal/close/return lifecycle as FI', async ({ page }) => {
+        // Parity gate: EN nav renders the same #searchOverlay / #searchToggleBtn /
+        // #searchCloseBtn IDs and shares the same site-ui.js JS. This test
+        // exercises the full lifecycle on an EN page to prove the shared JS
+        // works identically without per-language focus behavior.
+        await page.setViewportSize({ width: 800, height: 800 });
+        await gotoAndAssertSite(page, '/en/');
+
+        const trigger = page.locator('#searchToggleBtn');
+        const dialog = page.locator('#searchOverlay');
+        const closeButton = page.locator('#searchCloseBtn');
+        const input = page.locator('#searchOverlay .pagefind-ui__search-input');
+
+        await expect(trigger).toBeVisible();
+        await trigger.click();
+        await expect(dialog).toBeVisible();
+        await expect(dialog).toHaveAttribute('open', '');
+        await expect(input).toBeVisible();
+        await expect(input).toBeFocused();
+
+        // Reverse-tab from input reaches close button
+        await page.keyboard.down('Shift');
+        await page.keyboard.press('Tab');
+        await page.keyboard.up('Shift');
+        await expect(closeButton).toBeFocused();
+
+        // Reverse-tab from close (first) wraps to the last focusable — focus stays in overlay
+        await page.keyboard.down('Shift');
+        await page.keyboard.press('Tab');
+        await page.keyboard.up('Shift');
+        const focusInside = await page.evaluate(() => {
+            const overlay = document.getElementById('searchOverlay');
+            return Boolean(overlay && overlay.contains(document.activeElement));
+        });
+        expect(focusInside).toBe(true);
+
+        // Escape closes + focus returns to trigger
+        await page.keyboard.press('Escape');
+        await expect(dialog).toBeHidden();
+        await expect(trigger).toBeFocused();
+
+        // Reopen works
+        await trigger.click();
+        await expect(dialog).toBeVisible();
+        await expect(input).toBeFocused();
+        await page.keyboard.press('Escape');
+        await expect(dialog).toBeHidden();
+        await expect(trigger).toBeFocused();
     });
 
     test('Theme selection persists across page navigation', async ({ page }) => {

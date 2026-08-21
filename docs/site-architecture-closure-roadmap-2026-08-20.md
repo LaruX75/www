@@ -164,25 +164,52 @@ Closure semantics:
 
 ### N1 — Navigation + accessibility closure
 
-Status: NEXT
+Status: IMPLEMENTATION GREEN / REVIEW (branch)
 
-Current baseline issue visible in repo evidence:
+Baseline regression (home/search-dialog keyboard focus / focus-trap) is fixed on the N1 implementation branch pending review + merge. Roadmap status becomes `CLOSED / GREEN / MAIN` only after merge.
 
-- home/search-dialog keyboard focus / focus-trap regression
+Current implementation model:
+
+- native `<dialog>` owns modality, top layer, background inertness, and native Escape/cancel
+- `site-ui.js` owns only Chromium's cyclic Tab boundary wrap, initial Pagefind input focus, and exact focus return to the trigger
+- Pagefind keeps ownership of its own UI content and internal focusable controls
+- FI and EN nav templates share the same `<dialog id="searchOverlay">` markup and JS
+
+Deletions accomplished vs prior custom-overlay implementation:
+
+- custom close-animation timer + reduced-motion branch
+- body overflow lock
+- manual `hidden` / `display` / `aria-hidden` modal state
+- `.is-open` overlay state + related CSS transitions
+- manual `z-index` modal ownership
+- document-level Escape branch for the search overlay
+- redundant `role="dialog"` / `aria-modal` / `aria-hidden` on markup
+- interior per-Tab deterministic focus traversal (interior traversal is now native)
 
 Evidence:
 
 - [o1-orientation-implementation-2026-08-20.md](./o1-orientation-implementation-2026-08-20.md)
-- `tests/navigation.spec.js`
+- [n1-navigation-accessibility-audit-2026-08-21.md](./n1-navigation-accessibility-audit-2026-08-21.md) — full audit including experiments A–I (rejected timing/perturbation experiments and the accepted native `<dialog>` + boundary-wrap solution)
+- `tests/navigation.spec.js` — updated for native `<dialog>` semantics; new explicit EN parity lifecycle test
 
-Goal:
+Goal — all met on branch:
 
-- relevant accessibility/navigation tests green without a baseline exception
-- FI / EN parity
-- keyboard focus order
-- focus trap
-- focus return
-- search-dialog recovery behavior
+- relevant accessibility/navigation tests green without a baseline exception ✓
+- FI / EN parity ✓
+- keyboard focus order ✓
+- focus trap ✓
+- focus return ✓
+- search-dialog recovery behavior ✓
+
+Branch-level validation:
+
+- isolated `Search dialog traps focus` × 30 = 30/30 PASS
+- full `tests/navigation.spec.js` × 20 (100 test invocations incl. new EN parity) = 100/100 PASS
+- zero focus escape, zero lost Tab presses, zero order corruption
+- `tests/accessibility.spec.js` + `tests/accessibility-tools.spec.js` + `tests/contrast.spec.js` = 34/34 PASS
+- `npm run test:unit` = 602/602 PASS
+- `npm run build:no-og` = PASS
+- `git diff --check` = clean
 
 This is an architecture-closure priority, not a cosmetic polish item.
 
@@ -371,7 +398,7 @@ Current operating order:
 - O1 core = CLOSED / GREEN / MAIN
 - O1 widening = CLOSED / GREEN / MAIN (PR #122)
 - O1 = CLOSED / MAINTENANCE
-- N1 = NEXT
+- N1 = IMPLEMENTATION GREEN / REVIEW (branch; CLOSED / GREEN / MAIN only after merge)
 - C1 = CROSS-CUTTING
 - R1 = LATER
 - PF5 = GATED / AUDIT FIRST

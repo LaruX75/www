@@ -312,33 +312,25 @@ html:not([data-bs-theme="dark"]) .home-hero-kpi-label {
   pointer-events: none;
 }
 
-/* Search overlay */
+/* Search overlay — native <dialog>. showModal() places it in the browser
+   top layer, so no z-index is needed. The dialog element itself acts as the
+   full-viewport container; its ::backdrop is the darkened veil. */
 .search-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  padding: 5vh 1rem 1rem;
+  margin: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: 9999;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding-top: 5vh;
-  backdrop-filter: blur(4px);
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
-  transition:
-    opacity var(--motion-duration-base, 220ms) var(--motion-ease-standard, ease),
-    visibility 0s linear var(--motion-duration-base, 220ms);
+  max-width: none;
+  max-height: none;
+  overflow-y: auto;
 }
 
-.search-overlay.is-open {
-  opacity: 1;
-  pointer-events: auto;
-  visibility: visible;
-  transition-delay: 0s;
+.search-overlay::backdrop {
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
 }
 
 .search-overlay-inner {
@@ -349,23 +341,7 @@ html:not([data-bs-theme="dark"]) .home-hero-kpi-label {
   max-height: 80vh;
   overflow-y: auto;
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.3);
-  opacity: 0;
-  transform: translateY(-8px) scale(0.98);
-  transition:
-    opacity var(--motion-duration-base, 220ms) var(--motion-ease-standard, ease),
-    transform var(--motion-duration-base, 220ms) var(--motion-ease-emphasized, ease);
-}
-
-.search-overlay.is-open .search-overlay-inner {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .search-overlay,
-  .search-overlay-inner {
-    transition: none !important;
-  }
+  margin: 0 auto;
 }
 
 /* External media consent gate */
