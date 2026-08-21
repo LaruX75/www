@@ -120,23 +120,35 @@ Closure semantics:
 Status:
 
 - O1 core = CLOSED / GREEN / MAIN
-- O1 widening = ACTIVE
+- O1 widening = CLOSED / GREEN / MAIN
+- O1 = CLOSED / MAINTENANCE
 
 Current evidence:
 
 - O1 core implementation is on `main` and covers publications, theses, and writings detail pages via the shared `src/_includes/detail-orientation.njk` include, an explicit `returnTo` discovery context, and removal of the `history.back()` dependency
   - [o1-orientation-implementation-2026-08-20.md](./o1-orientation-implementation-2026-08-20.md)
-- Presentations and media orientation widening remains deferred pending suitability audits
+- Presentations suitability audit = GO
+- Media suitability audit = GO
+  - [o1-widening-presentations-media-suitability-audit-2026-08-21.md](./o1-widening-presentations-media-suitability-audit-2026-08-21.md)
+- Widening implementation merged via PR #122
+  - [o1-widening-presentations-media-implementation-2026-08-21.md](./o1-widening-presentations-media-implementation-2026-08-21.md)
+- Shared `detail-orientation.njk` now covers Publications, Theses, Writings, Presentations, and Media detail surfaces where canonical/local detail semantics permit it
+- Explicit `returnTo` discovery context implemented for Presentations and Media without new state ownership (no browser storage, no history-API navigation, no serialized result-set state)
+- External-first Presentations semantics preserved — external-first canonicals continue to bypass the local detail template
+- Media external source CTA (`Avaa alkuperäinen lähde`) semantics preserved — remains the visually primary action above the orientation nav
+- C1 deletion completed for the two hardcoded domain-specific hub controls (`presentation-item.njk` `/esitykset/` link and `media-item.njk` `/mediassa/` link)
+- Closure record: [o1-detail-orientation-closure-2026-08-21.md](./o1-detail-orientation-closure-2026-08-21.md)
 
-Current model:
+Final model:
 
 ```text
 canonical hub return
-  -> always works without JavaScript
+  -> SSR / no-JS
 
 active discovery context
-  -> may add explicit return context
-  -> progressive enhancement only
+  -> explicit same-origin returnTo
+  -> prefix allowlist
+  -> progressive enhancement
 ```
 
 Rules:
@@ -145,12 +157,10 @@ Rules:
 - no parallel browser navigation model
 - no forced one-size-fits-all orientation component
 
-Required suitability audits before widening O1 beyond publications / theses / writings:
+Closure semantics:
 
-- Presentations
-- Media
-
-Do not force those domains into the same orientation primitive if their landing semantics differ. The widening audits must also ask, as part of C1 cross-cutting: what presentation- or media-specific back controls or duplicate orientation logic can be removed alongside the widening.
+- O1 reopens only on new repo-evidenced orientation regressions or a new domain requiring explicit suitability review
+- Domain landing/source semantics remain authoritative; the shared contract does not flatten preferred-landing rules or force EN detail routes into existence where they do not exist today
 
 ### N1 — Navigation + accessibility closure
 
@@ -325,8 +335,7 @@ Operational model:
 Foundation                     CLOSED
   -> Architecture Closure      ACTIVE
      -> T1                     CLOSED / MAINTENANCE
-     -> O1 core                CLOSED / MAIN
-     -> O1 widening            ACTIVE
+     -> O1                     CLOSED / MAINTENANCE
      -> N1                     NEXT
      -> C1                     CROSS-CUTTING
   -> R1 / PF5 audit / P1
@@ -337,9 +346,9 @@ Foundation                     CLOSED
 Current operating order:
 
 1. `T1` Timeline 2.0 is closed on `main` at T1B2C. It stays in maintenance until repo evidence triggers a further slice; do not reopen for `T1B3` without such evidence.
-2. `O1` core detail-orientation is on `main` for publications, theses, and writings. `O1` widening to presentations and media is the next active Architecture Closure workstream and starts from suitability audits, not implementation.
-3. `N1` is the next closure lane for known accessibility/navigation baseline issues, starting from the home/search-dialog keyboard focus and focus-trap regression.
-4. `C1` applies to every real implementation lane above rather than waiting as a separate finishing pass; O1 widening audits must include C1-style deletion questions for presentation and media detail templates.
+2. `O1` detail-orientation is closed on `main` at the Presentations + Media widening (PR #122). Core covers Publications, Theses, and Writings; widening extends the same primitive to Presentations and Media local detail pages while preserving external-first identity and external-source primacy respectively. O1 reopens only on new repo-evidenced orientation regressions or a new domain requiring explicit suitability review.
+3. `N1` is now the active Architecture Closure workstream for known accessibility/navigation baseline issues, starting from the home/search-dialog keyboard focus and focus-trap regression.
+4. `C1` applies to every real implementation lane above rather than waiting as a separate finishing pass. O1 closure already landed the two hardcoded domain-specific hub-control deletions alongside the widening.
 5. `R1`, `PF5`, and `P1` stay behind the active closure lanes unless repo evidence justifies earlier movement.
 6. `UX1` belongs after closure pressure has reduced architectural duplication.
 7. `AC1` is the final closure gate, not an immediate build lane.
@@ -360,7 +369,8 @@ Current operating order:
 - T1B2C = CLOSED / GREEN / MAIN (PR #119)
 - T1B3 = DEFER (no repo-evidenced trigger)
 - O1 core = CLOSED / GREEN / MAIN
-- O1 widening = ACTIVE (Presentations, Media suitability audits pending)
+- O1 widening = CLOSED / GREEN / MAIN (PR #122)
+- O1 = CLOSED / MAINTENANCE
 - N1 = NEXT
 - C1 = CROSS-CUTTING
 - R1 = LATER
