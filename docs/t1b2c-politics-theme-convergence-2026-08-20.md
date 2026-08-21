@@ -2,9 +2,11 @@
 
 Date: 2026-08-20
 
-Status: GREEN / IMPLEMENTED / UNCOMMITTED
+Status: GREEN / IMPLEMENTED / BRANCH
 
 Branch: `feat/t1b2c-politics-theme-convergence`
+
+PR: #119
 
 ## 1. Selected Surface
 
