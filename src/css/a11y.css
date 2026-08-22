@@ -416,9 +416,12 @@ html.a11y-reading-guide #a11yReadingGuideLine {
     background: var(--bs-body-bg);
     color: var(--bs-body-color);
     box-shadow: 0 1.1rem 3rem rgba(0, 0, 0, 0.28);
+    margin: 0;
+    padding: 0;
+    inset: auto 1rem 5rem auto;
 }
 
-.a11y-panel[hidden] {
+.a11y-panel:not(:popover-open) {
     display: none;
 }
 
