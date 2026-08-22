@@ -18,10 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
         a11ySettings = { ...defaultSettings };
     }
 
-    const toolbar = document.getElementById('a11yToolbar');
-    const trigger = document.getElementById('a11yTrigger');
-    const panel = document.getElementById('a11yPanel');
-    const closeBtn = document.getElementById('a11yClose');
     const fontDecBtn = document.getElementById('a11yFontDec');
     const fontResetBtn = document.getElementById('a11yFontReset');
     const fontIncBtn = document.getElementById('a11yFontInc');
@@ -42,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const lang = document.documentElement.lang || 'fi';
     const tts = window.speechSynthesis;
     const textSizes = ['normal', 'large', 'xlarge'];
-    let previouslyFocused = null;
     let ttsActive = false;
 
     const announce = (message) => {
@@ -90,51 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         applyUiState();
         announce(message);
-    };
-
-    const getFocusable = (container) => {
-        if (!container) return [];
-        return Array.from(container.querySelectorAll(
-            'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
-        )).filter((el) => !el.hidden && el.offsetParent !== null);
-    };
-
-    const trapPanelFocus = (event) => {
-        if (!panel || panel.hidden || event.key !== 'Tab') return;
-        const focusable = getFocusable(panel);
-        if (!focusable.length) return;
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-
-        if (event.shiftKey && document.activeElement === first) {
-            event.preventDefault();
-            last.focus();
-        } else if (!event.shiftKey && document.activeElement === last) {
-            event.preventDefault();
-            first.focus();
-        }
-    };
-
-    const openPanel = () => {
-        if (!panel || !trigger) return;
-        previouslyFocused = document.activeElement instanceof HTMLElement ? document.activeElement : trigger;
-        panel.hidden = false;
-        trigger.setAttribute('aria-expanded', 'true');
-        panel.addEventListener('keydown', trapPanelFocus);
-        const firstFocusable = getFocusable(panel)[0];
-        if (firstFocusable) firstFocusable.focus();
-    };
-
-    const closePanel = () => {
-        if (!panel || !trigger) return;
-        panel.hidden = true;
-        panel.removeEventListener('keydown', trapPanelFocus);
-        trigger.setAttribute('aria-expanded', 'false');
-        if (previouslyFocused && typeof previouslyFocused.focus === 'function') {
-            previouslyFocused.focus();
-        } else {
-            trigger.focus();
-        }
     };
 
     const setTtsState = (active) => {
@@ -190,25 +140,6 @@ document.addEventListener('DOMContentLoaded', () => {
         a11ySettings.textSize = textSizes[nextIndex];
         saveAndApply(isEn ? 'Text size updated.' : 'Tekstin koko päivitetty.');
     };
-
-    if (trigger) {
-        trigger.addEventListener('click', () => {
-            if (!panel) return;
-            if (panel.hidden) openPanel();
-            else closePanel();
-        });
-    }
-
-    if (closeBtn) closeBtn.addEventListener('click', closePanel);
-
-    document.addEventListener('click', (event) => {
-        if (!toolbar || !panel || panel.hidden) return;
-        if (!toolbar.contains(event.target)) closePanel();
-    });
-
-    document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && panel && !panel.hidden) closePanel();
-    });
 
     if (fontDecBtn) fontDecBtn.addEventListener('click', () => setTextSizeByStep(-1));
     if (fontResetBtn) {
