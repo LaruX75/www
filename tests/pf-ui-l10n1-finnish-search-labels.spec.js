@@ -42,16 +42,26 @@ test.describe("PF-UI-L10N1 Finnish search UI labels", () => {
     expect(siteUiSource, "site-ui.js must still ship the English 'Filters' fallback for /en/ pages").toContain("Filters");
   });
 
-  test("Finnish /haku/ still ships the /haku/-specific Finnish PagefindUI translations", async ({ page }) => {
+  test("Finnish /haku/ ships its Finnish global-search config inline", async ({ page }) => {
+    // PF5-G1 EN rollout: translations moved from site-search-page.js
+    // (deleted) into a per-locale inline JSON config emitted by
+    // src/_includes/_search-page-config.njk. Assert the Finnish
+    // strings render on /haku/'s config, and that the shared
+    // controller script is loaded (not the removed Default UI mount).
     await page.goto("/haku/");
-    const siteSearchSource = await page.evaluate(async () => {
-      const res = await fetch("/js/site-search-page.js");
-      return await res.text();
+    const config = await page.evaluate(() => {
+      const node = document.getElementById("siteSearchPageConfig");
+      return node ? JSON.parse(node.textContent) : null;
     });
-    expect(siteSearchSource, "site-search-page.js must ship 'Hae sivustolta'").toContain("Hae sivustolta");
-    expect(siteSearchSource, "site-search-page.js must ship 'Suodattimet'").toContain("Suodattimet");
-    expect(siteSearchSource, "site-search-page.js must ship 'Kokeile jotain seuraavista' suggestion header").toContain("Kokeile jotain seuraavista");
-    expect(siteSearchSource, "site-search-page.js must still ship the English variant for /en/search/").toContain("Search the site");
+    expect(config, "/haku/ must include the inline search config").not.toBeNull();
+    expect(config.translations.search_label).toBe("Hae sivustolta");
+    expect(config.translations.filters_label).toBe("Suodattimet");
+    expect(config.translations.search_suggestion).toContain("Kokeile jotain seuraavista");
+    expect(config.languageFilter).toBe("Suomi");
+    const controllerLoaded = await page.evaluate(() => {
+      return Array.from(document.scripts).some((s) => s.src.endsWith("/js/global-search-modular-ui.js"));
+    });
+    expect(controllerLoaded, "/haku/ must load the shared global-search Modular UI controller").toBe(true);
   });
 
   test("Finnish Find & Explore controls render Finnish labels on /tutkimus/", async ({ page }) => {
@@ -69,13 +79,18 @@ test.describe("PF-UI-L10N1 Finnish search UI labels", () => {
     await expect(mount.locator("[data-find-explore-reset]")).toContainText("Tyhjennä");
   });
 
-  test("English /en/search/ keeps English PagefindUI defaults", async ({ page }) => {
+  test("English /en/search/ ships its English global-search config inline", async ({ page }) => {
+    // PF5-G1 EN rollout: /en/search/ now uses the same shared
+    // controller as /haku/, with an English inline JSON config.
     await page.goto("/en/search/");
-    const siteSearchSource = await page.evaluate(async () => {
-      const res = await fetch("/js/site-search-page.js");
-      return await res.text();
+    const config = await page.evaluate(() => {
+      const node = document.getElementById("siteSearchPageConfig");
+      return node ? JSON.parse(node.textContent) : null;
     });
-    expect(siteSearchSource, "site-search-page.js must ship 'Search the site' English variant").toContain("Search the site");
+    expect(config, "/en/search/ must include the inline search config").not.toBeNull();
+    expect(config.translations.search_label).toBe("Search the site");
+    expect(config.translations.filters_label).toBe("Filters");
+    expect(config.languageFilter).toBe("English");
     // /en/search/ is a valid built page.
     await expect(page.locator("h1")).toContainText(/Search|Haku|Site search/i);
   });
