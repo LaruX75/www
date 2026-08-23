@@ -9,7 +9,7 @@ lang: fi
 robots: noindex, follow
 pageScripts:
   - /js/search-result-presenter.js
-  - /js/haku-modular-ui.js
+  - /js/global-search-modular-ui.js
 ---
 
 <section class="content-detail-hero content-detail-hero--search py-5 border-bottom">
@@ -44,11 +44,10 @@ pageScripts:
         <p class="form-text mb-0 mt-2">Haku toimii parhaiten, kun sivuston hakemisto on ladattu. Voit hakea esimerkiksi kirjoituksia, esityksiä, mediaosumia tai julkaisuja.</p>
       </div>
     </form>
+    {% include "_search-page-config.njk" %}
     <div
       id="siteSearchPageUi"
       class="site-search-page-ui"
-      data-pagefind-lang="Suomi"
-      data-pagefind-placeholder="Kirjoita hakusana..."
     ></div>
     <noscript>
       <p class="alert alert-warning mt-3">Haku vaatii JavaScriptin. Aktivoi selaimen JavaScript käyttääksesi hakua.</p>

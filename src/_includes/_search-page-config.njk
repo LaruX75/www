@@ -1,0 +1,46 @@
+{# _search-page-config.njk
+   Locale-specific configuration for the shared global-search Modular
+   UI controller (src/js/global-search-modular-ui.js). Emits a single
+   inline JSON blob the controller reads at startup. Keeping the
+   locale strings in one Nunjucks partial means both /haku/ and
+   /en/search/ mount the same controller with no duplicated JS.
+
+   Facet keys ("Sisältö", "Publications group", ...) match Pagefind's
+   indexed data-pagefind-filter names verbatim; labels are localised
+   accessible names (site-owned), not new taxonomy. Same 12 groups
+   per PF5-G1 pilot FILTER PARITY: REDUCED / APPROVED. #}
+{%- set currentLang = lang or (page.url | langFromUrl) -%}
+{%- set isEn = currentLang == "en" -%}
+{%- set searchPageConfig = {
+  "languageFilter": "English" if isEn else "Suomi",
+  "placeholder": "Type a search term..." if isEn else "Kirjoita hakusana...",
+  "regionLabel": "Narrow the search" if isEn else "Rajaa hakua",
+  "fallbackMessage": "The search index is not available in this build yet. The search field above is still shown, and full results are available after the Pagefind index has been generated." if isEn else "Hakemisto ei ole käytettävissä tässä buildissä. Hakukenttä näkyy silti yllä, ja varsinaiset tulokset toimivat, kun Pagefind-indeksi on generoitu.",
+  "translations": {
+    "clear_search": "Clear" if isEn else "Tyhjennä",
+    "load_more": "Load more results" if isEn else "Lataa lisää tuloksia",
+    "search_label": "Search the site" if isEn else "Hae sivustolta",
+    "filters_label": "Filters" if isEn else "Suodattimet",
+    "zero_results": "No results for [SEARCH_TERM]" if isEn else "Ei tuloksia haulla [SEARCH_TERM]",
+    "many_results": "[COUNT] results for [SEARCH_TERM]" if isEn else "[COUNT] tulosta haulla [SEARCH_TERM]",
+    "one_result": "[COUNT] result for [SEARCH_TERM]" if isEn else "[COUNT] tulos haulla [SEARCH_TERM]",
+    "alt_search": "No results for [SEARCH_TERM]. Showing results for [DIFFERENT_TERM] instead." if isEn else "Ei tuloksia haulla [SEARCH_TERM]. Näytetään tulokset haulla [DIFFERENT_TERM].",
+    "search_suggestion": "No results for [SEARCH_TERM]. Try one of the following searches:" if isEn else "Ei tuloksia haulla [SEARCH_TERM]. Kokeile jotain seuraavista:",
+    "searching": "Searching for [SEARCH_TERM]..." if isEn else "Haetaan hakusanalla [SEARCH_TERM]..."
+  },
+  "facetGroups": [
+    { "filter": "Sisältö",              "label": "Content type"                       if isEn else "Sisältötyyppi" },
+    { "filter": "Publications group",   "label": "Publication type (OKM)"             if isEn else "Julkaisutyyppi (OKM)" },
+    { "filter": "Publications quality", "label": "Publication quality"                if isEn else "Julkaisun laatu" },
+    { "filter": "Writings content type","label": "Writing type"                       if isEn else "Kirjoituksen tyyppi" },
+    { "filter": "Writings topic",       "label": "Writing topic"                      if isEn else "Kirjoituksen aihe" },
+    { "filter": "Theses type",          "label": "Thesis type"                        if isEn else "Opinnäytteen tyyppi" },
+    { "filter": "Theses role",          "label": "Role in thesis"                     if isEn else "Rooli opinnäytteessä" },
+    { "filter": "Mediatyyppi",          "label": "Media type"                         if isEn else "Mediatyyppi" },
+    { "filter": "Rooli",                "label": "Role in media"                      if isEn else "Rooli mediassa" },
+    { "filter": "Vuosi",                "label": "Media: year"                        if isEn else "Media: vuosi" },
+    { "filter": "PresentationYear",     "label": "Presentation year"                  if isEn else "Esityksen vuosi" },
+    { "filter": "PresentationTopic",    "label": "Presentation topic"                 if isEn else "Esityksen aihe" }
+  ]
+} -%}
+<script type="application/json" id="siteSearchPageConfig">{{ searchPageConfig | dump | safe }}</script>

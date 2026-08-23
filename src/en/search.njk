@@ -8,7 +8,8 @@ translationKey: search
 lang: en
 robots: noindex, follow
 pageScripts:
-  - /js/site-search-page.js
+  - /js/search-result-presenter.js
+  - /js/global-search-modular-ui.js
 ---
 
 <section class="content-detail-hero content-detail-hero--search py-5 border-bottom">
@@ -43,12 +44,10 @@ pageScripts:
         <p class="form-text mb-0 mt-2">Search works best when the site index has loaded. You can search for writings, presentations, media appearances, or publications.</p>
       </div>
     </form>
+    {% include "_search-page-config.njk" %}
     <div
       id="siteSearchPageUi"
       class="site-search-page-ui"
-      data-pagefind-ui
-      data-pagefind-lang="English"
-      data-pagefind-placeholder="Type a search term..."
     ></div>
     <noscript>
       <p class="alert alert-warning mt-3">Search requires JavaScript. Please enable JavaScript to use search.</p>
