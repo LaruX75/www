@@ -43,4 +43,4 @@
     { "filter": "PresentationTopic",    "label": "Presentation topic"                 if isEn else "Esityksen aihe" }
   ]
 } -%}
-<script type="application/json" id="siteSearchPageConfig">{{ searchPageConfig | dump | safe }}</script>
+<script type="application/json" id="siteSearchPageConfig">{{ searchPageConfig | jsonSafe | safe }}</script>
