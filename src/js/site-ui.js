@@ -605,9 +605,11 @@
             // this fix the nav-bar overlay used a partial bundle,
             // which meant PagefindUI's left-side filters panel fell
             // back to English defaults ("Filters", alt-search
-            // messages, suggestion header) on Finnish pages. Matches
-            // the /haku/ init in src/js/site-search-page.js verbatim
-            // for the strings PagefindUI ships.
+            // messages, suggestion header) on Finnish pages.
+            // (Pre-PF5-G1 the /haku/ init lived in a sibling module;
+            // /haku/ + /en/search/ now use Modular UI via
+            // /js/global-search-modular-ui.js — navbar keeps the
+            // Default UI here until its own rollout.)
             pagefindUi = new window.PagefindUI({
               element: mount,
               bundlePath: '/pagefind/',

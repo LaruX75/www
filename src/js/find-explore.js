@@ -5,6 +5,28 @@
   const mounts = Array.from(document.querySelectorAll("[data-find-explore]"));
   if (!mounts.length) return;
 
+  // PF5-G1 shared-presenter convergence (2026-08-23): the identical
+  // helper copies previously duplicated in this file
+  // (escapeHtml, resultTitle, SISALTO_LABELS, contentFamilyLabelFromData,
+  //  renderFamilyHeader, renderPrimaryMetaLine)
+  // are now owned by src/js/search-result-presenter.js exposed as
+  // `window.SearchResultPresenter`. Every page that loads
+  // find-explore.js MUST also load search-result-presenter.js first
+  // (see F&E pageScripts on /kirjoitukset/, /opinnaytteet/,
+  // /julkaisut/, /en/writings/, /en/publications/, /en/theses/,
+  // /fi/tutkimus.md).
+  const presenter = window.SearchResultPresenter;
+  if (!presenter || typeof presenter.escapeHtml !== "function") {
+    console.warn("[find-explore] SearchResultPresenter missing — load /js/search-result-presenter.js before /js/find-explore.js.");
+    return;
+  }
+  const escapeHtml = presenter.escapeHtml;
+  const resultTitle = presenter.resultTitle;
+  const SISALTO_LABELS = presenter.SISALTO_LABELS;
+  const contentFamilyLabelFromData = presenter.contentFamilyLabelFromData;
+  const renderFamilyHeader = presenter.renderFamilyHeader;
+  const renderPrimaryMetaLine = presenter.renderPrimaryMetaLine;
+
   const text = {
     fi: {
       idle: "Kirjoita hakusana tai rajaa tuloksia. Avausosiot toimivat myös ilman hakua.",
@@ -46,15 +68,6 @@
     }
   };
 
-  function escapeHtml(value) {
-    return String(value || "")
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#39;");
-  }
-
   function debounce(fn, delay = 220) {
     let timer = null;
     return (...args) => {
@@ -70,49 +83,6 @@
     } catch {
       return String(url);
     }
-  }
-
-  function resultTitle(data) {
-    return data?.meta?.title || data?.title || data?.url || "";
-  }
-
-  // PF3 — user-facing content-family labels aligned with the PF2 Pagefind
-  // `Sisältö:*` vocabulary. Deliberately Finnish across FI and EN mounts
-  // so the visible label matches the actual Pagefind filter value.
-  const SISALTO_LABELS = {
-    publications: "Julkaisut",
-    theses: "Opinnäytteet",
-    writings: "Kirjoitukset ja puheenvuorot",
-    presentations: "Esitykset",
-    media: "Mediassa"
-  };
-
-  function contentFamilyLabelFromData(kind, data) {
-    const fromFilter = Array.isArray(data?.filters?.["Sisältö"])
-      ? data.filters["Sisältö"].find(Boolean)
-      : "";
-    if (fromFilter) return fromFilter;
-    return SISALTO_LABELS[kind] || "";
-  }
-
-  function renderFamilyHeader(entry) {
-    const label = entry?.contentFamilyLabel;
-    if (!label) return "";
-    const year = entry?.year || "";
-    const yearMarkup = year
-      ? `<span class="find-explore-result-year" data-find-explore-card-year>${escapeHtml(String(year))}</span>`
-      : "";
-    return `<div class="find-explore-result-family" data-find-explore-card-line="family"><span class="find-explore-result-family-badge" data-find-explore-family="${escapeHtml(entry.kind || "")}">${escapeHtml(label)}</span>${yearMarkup}</div>`;
-  }
-
-  // PF4 — render the single primary metadata sentence line under the
-  // title. Each family's `resultMeta` now returns an already-composed
-  // list of strings; PF4 joins them with a middot separator and emits
-  // them as a text line rather than the old chip strip.
-  function renderPrimaryMetaLine(entry) {
-    const parts = Array.isArray(entry?.meta) ? entry.meta.filter(Boolean) : [];
-    if (parts.length === 0) return "";
-    return `<p class="find-explore-result-primary-meta" data-find-explore-card-line="primary-meta">${parts.map((p) => escapeHtml(String(p))).join(" · ")}</p>`;
   }
 
   function normalizeSearchLanguage(language) {
