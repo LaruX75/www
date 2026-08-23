@@ -2,15 +2,39 @@
 
 ## Status
 
-ROLLOUT SLICE — post-`/en/search/`, pre-navbar. Ownership + deletion only; no behavior changes on any surface.
+**CLOSED / GREEN / MAIN.** Merged 2026-08-23 as PR [#134](https://github.com/LaruX75/www/pull/134); merge commit `cf9c1e12ad9f81e4ab80aae3f21d43f1bb00a57a` is the current `origin/main`. Post-merge Actions run [32653651592](https://github.com/LaruX75/www/actions/runs/32653651592) — build / deploy / smoke all success.
 
-## Branch / base / HEAD
+Scope was: **ownership + deletion only.** Six shared presentation helpers moved to one authoritative owner (`search-result-presenter.js`); zero behavior change on any surface. Navbar Modular UI rollout, G2, G3, G4 remain deferred and untouched.
 
-- **Branch:** `pf5/g1-presenter-convergence`
-- **Worktree:** `/private/tmp/www-pf5-g1-presenter`
+## Closure / merged state (2026-08-23)
+
+| | |
+|---|---|
+| PR | [#134](https://github.com/LaruX75/www/pull/134) — MERGED |
+| mergedAt | 2026-08-23T17:04:15Z |
+| mergedBy | LaruX75 (via `gh pr merge --match-head-commit`) |
+| Merged head SHA | `6d4e6eb51940bdec84052fc306c184b24cc8c7f2` |
+| Merge commit SHA | `cf9c1e12ad9f81e4ab80aae3f21d43f1bb00a57a` |
+| Resulting `origin/main` | `cf9c1e12ad9f81e4ab80aae3f21d43f1bb00a57a` |
+| Previous `origin/main` | `46e2d258dc2bacbaf2c444cc70cefa662b321e6b` |
+| Post-merge Actions run | [32653651592](https://github.com/LaruX75/www/actions/runs/32653651592) — build ✓ / deploy ✓ / smoke ✓ |
+| Pre-merge Playwright accessibility+navigation (pull_request event) | [32653315508](https://github.com/LaruX75/www/actions/runs/32653315508) — success (4m17s) |
+| Merged-tree helper inventory | 6 shared helpers defined in `src/js/search-result-presenter.js`; 0 duplicate declarations in `src/js/find-explore.js`; 1 alias reference (`const escapeHtml = presenter.escapeHtml`) (PROVEN) |
+| Merged-tree consumer load-order | all 7 F&E surfaces load `search-result-presenter.js` on the line immediately before `find-explore.js` (PROVEN) |
+| Hotfix inheritance intact on merged tree | `_search-page-config.njk` uses `jsonSafe \| safe`; `_meta.njk` still loads Default UI navbar assets (PROVEN) |
+| Security guard on merged tree | `! grep -rn "\| dump \| safe" src/ --include="*.njk"` PASS, zero matches (PROVEN) |
+| Presenter worktree `/private/tmp/www-pf5-g1-presenter` | removed at closure |
+| Local branch `pf5/g1-presenter-convergence` | deleted (`git branch -d`, was `6d4e6eb5`) |
+| Remote branch `origin/pf5/g1-presenter-convergence` | deleted (`git push origin --delete`) |
+| Main-sync backup files (`pf5-g1-presenter-*.patch`, `pf5-g1-presenter-*.txt`) | removed |
+
+## Pre-merge implementation state (historical)
+
+- **Branch (during implementation):** `pf5/g1-presenter-convergence` (deleted at closure)
+- **Worktree (during implementation):** `/private/tmp/www-pf5-g1-presenter` (removed at closure)
 - **Original base (pre production-hotfix interruption):** `3f56c52e4aa9fae22f940ebb223e229b7babfbba` (post `/en/search/` rollout merge, PR #131)
-- **Current base after main sync:** `46e2d258dc2bacbaf2c444cc70cefa662b321e6b` (post PF5 search production hotfix + closure docs, PRs #132 + #133)
-- **HEAD at report time:** `46e2d258dc2bacbaf2c444cc70cefa662b321e6b` (no presenter-convergence commit yet — pending review)
+- **Base after main sync (at review checkpoint):** `46e2d258dc2bacbaf2c444cc70cefa662b321e6b` (post PF5 search production hotfix + closure docs, PRs #132 + #133)
+- **Presenter-convergence commit created after review approval:** `6d4e6eb51940bdec84052fc306c184b24cc8c7f2` — fast-forward-merged into `main` as part of merge commit `cf9c1e12` (PR #134).
 
 ### Main-sync audit (2026-08-23, after hotfix closure)
 
@@ -260,4 +284,4 @@ The main-sync brought in the production hotfix runtime changes. These are **inhe
 
 ---
 
-**End of convergence evidence.** Presenter-convergence still not committed. Awaiting review before staging + commit + PR. Navbar Modular UI rollout, G2, G3, G4 all remain deferred.
+**End of convergence evidence.** Presenter-convergence CLOSED / GREEN / MAIN as PR #134 → merge commit `cf9c1e12`. Navbar Modular UI rollout, G2, G3, G4 all remain deferred.
