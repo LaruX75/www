@@ -414,6 +414,53 @@ for (const locale of LOCALES) {
             await expect(loadMore).toBeHidden();
         });
 
+        test('loads /pagefind/pagefind-modular-ui.css and clips Modular UI sr-only helper text (regression: production launch 2026-08-23)', async ({ page }) => {
+            // ROOT CAUSE (2026-08-23): the Modular UI Pagefind stylesheet
+            // /pagefind/pagefind-modular-ui.css was not being requested by
+            // /haku/ or /en/search/. Without it, elements carrying the
+            // Pagefind attribute [data-pfmod-sr-hidden] (which contains
+            // FilterPills accessible helper labels such as
+            // "Filter results by …") had no `position: absolute; clip: …`
+            // rule applied and therefore rendered as visible page text.
+            // This test locks both the asset link AND the semantic effect
+            // (sr-hidden nodes clipped to a 1×1 box) so the regression
+            // cannot silently recur.
+
+            await gotoAndAssertSite(page, locale.path);
+
+            const modularCssLink = page.locator('link[rel="stylesheet"][href="/pagefind/pagefind-modular-ui.css"]');
+            await expect(modularCssLink).toHaveCount(1);
+
+            const input = await waitForModularReady(page);
+            await input.fill(locale.probeQuery);
+            await expect
+                .poll(() => page.locator('[data-search-modular-results] li[data-search-result-kind]').count(), { timeout: RESULT_TIMEOUT_MS })
+                .toBeGreaterThan(0);
+            await expect
+                .poll(() => page.locator('#siteSearchPageUi [data-pfmod-sr-hidden]').count(), { timeout: RESULT_TIMEOUT_MS })
+                .toBeGreaterThan(0);
+
+            const clippedBoxes = await page.locator('#siteSearchPageUi [data-pfmod-sr-hidden]').evaluateAll((nodes) =>
+                nodes.map((node) => {
+                    const rect = node.getBoundingClientRect();
+                    const style = window.getComputedStyle(node);
+                    return {
+                        width: rect.width,
+                        height: rect.height,
+                        position: style.position,
+                        textLength: (node.textContent || '').trim().length
+                    };
+                })
+            );
+            expect(clippedBoxes.length).toBeGreaterThan(0);
+            for (const box of clippedBoxes) {
+                expect(box.textLength, 'sr-only helper carries an accessible name').toBeGreaterThan(0);
+                expect(box.width, 'sr-only helper visually clipped to <=1px width').toBeLessThanOrEqual(1);
+                expect(box.height, 'sr-only helper visually clipped to <=1px height').toBeLessThanOrEqual(1);
+                expect(box.position, 'sr-only helper removed from flow via absolute positioning').toBe('absolute');
+            }
+        });
+
         test('Modular UI init failure falls back to the SSR form (no dead skeleton)', async ({ page }) => {
             await page.route('**/pagefind/pagefind-modular-ui.js', (route) => route.fulfill({
                 status: 404,
