@@ -2,18 +2,39 @@
 
 ## Status
 
-Two-root-cause production hotfix on `origin/main` (post PF5-G1 `/en/search/` rollout merge).
+**CLOSED / GREEN / MAIN.** Merged 2026-08-23 as PR [#132](https://github.com/LaruX75/www/pull/132); merge commit `69cf113cc793e0b57828fef34109a6fb166464f1` is the current `origin/main`. Post-merge Actions run [32651329956](https://github.com/LaruX75/www/actions/runs/32651329956) — build / deploy / smoke all success.
 
-Scope: **only** deployment restoration + Modular UI stylesheet loading. Presenter convergence, navbar migration, G2/G3/G4 remain deferred and untouched.
+Scope was: **only** deployment restoration + Modular UI stylesheet loading. Presenter convergence, navbar migration, G2/G3/G4 remain deferred and untouched.
 
-## Branch / base / HEAD
+## Closure / merged state (2026-08-23)
 
-- **Branch:** `pf5/search-production-hotfix`
-- **Worktree:** `/private/tmp/www-pf5-search-hotfix`
-- **Base / HEAD:** `3f56c52e4aa9fae22f940ebb223e229b7babfbba`
-- **origin/main:** `3f56c52e4aa9fae22f940ebb223e229b7babfbba` (same — hotfix has no commit yet)
+| | |
+|---|---|
+| PR | [#132](https://github.com/LaruX75/www/pull/132) — MERGED |
+| mergedAt | 2026-08-23T16:19:56Z |
+| mergedBy | LaruX75 (via `gh pr merge --match-head-commit`) |
+| Merged head SHA | `c2c1190b19f97ba1c7f352208ac23a96ef79cb80` |
+| Merge commit SHA | `69cf113cc793e0b57828fef34109a6fb166464f1` |
+| Resulting `origin/main` | `69cf113cc793e0b57828fef34109a6fb166464f1` |
+| Previous `origin/main` | `3f56c52e4aa9fae22f940ebb223e229b7babfbba` |
+| Post-merge Actions run | [32651329956](https://github.com/LaruX75/www/actions/runs/32651329956) — build ✓ / deploy ✓ / smoke ✓ |
+| Production `/haku/` | HTTP/2 200, SSR HTML contains `pagefind-modular-ui.css` `<link>` (PROVEN) |
+| Production `/en/search/` | HTTP/2 200, SSR HTML contains `pagefind-modular-ui.css` `<link>` (PROVEN) |
+| Production `/pagefind/pagefind-modular-ui.css` | HTTP/2 200 (PROVEN) |
+| Navbar Default UI CSS in production HTML | 3 occurrences on `/haku/` (preload + non-blocking + noscript) — retained as intended (PROVEN) |
+| Hotfix worktree `/private/tmp/www-pf5-search-hotfix` | removed at closure |
+| Local branch `pf5/search-production-hotfix` | deleted (`git branch -d`, was `c2c1190b`) |
+| Remote branch `origin/pf5/search-production-hotfix` | deleted (`git push origin --delete`) |
+| Presenter-convergence worktree `/private/tmp/www-pf5-g1-presenter` | **preserved untouched** — HEAD `3f56c52e`, uncommitted state byte-identical to pre-hotfix inventory |
 
-Verified separately: `/private/tmp/www-pf5-g1-presenter` (branch `pf5/g1-presenter-convergence`) also at `3f56c52e`, holds an independent uncommitted presenter-convergence slice — **not touched** by this hotfix.
+## Pre-merge implementation state (historical)
+
+- **Branch (during implementation):** `pf5/search-production-hotfix` (deleted at closure)
+- **Worktree (during implementation):** `/private/tmp/www-pf5-search-hotfix` (removed at closure)
+- **Base / HEAD at review checkpoint:** `3f56c52e4aa9fae22f940ebb223e229b7babfbba`
+- **`origin/main` at review checkpoint:** `3f56c52e4aa9fae22f940ebb223e229b7babfbba`
+- **Hotfix commit created after review approval:** `c2c1190b19f97ba1c7f352208ac23a96ef79cb80` — later fast-forward-merged into `main` as part of merge commit `69cf113c` (PR #132).
+- Verified separately during implementation: `/private/tmp/www-pf5-g1-presenter` (branch `pf5/g1-presenter-convergence`) also at `3f56c52e`, holds an independent uncommitted presenter-convergence slice — **not touched** by this hotfix, still preserved at closure.
 
 ## GitHub Actions failure that triggered this hotfix
 
@@ -221,9 +242,28 @@ Total production diff: **+5 / −1** across 3 template files.
 
 ## Evidence classification
 
-- **PROVEN:** both root causes reproduce on `3f56c52e` (unchanged offending line + missing `<link>`); both fixes proven by direct source + built HTML + Playwright execution on both locales; security guard passes zero-match verbatim; navbar unaffected.
-- **INFERENCE:** deployment on GitHub Actions will succeed after merge because the same security guard shell (`! grep -rn "| dump | safe" src/ --include="*.njk"`) now passes locally with the identical file tree the workflow checks out. Actual Actions run needs a subsequent push to confirm.
-- **NEEDS FOLLOW-UP:** none for this hotfix.
+**PROVEN (implementation, pre-merge):**
+- both root causes reproduce on `3f56c52e` (unchanged offending line + missing `<link>`)
+- both fixes proven by direct source + built HTML + Playwright execution on both locales
+- security guard passes zero-match verbatim
+- navbar unaffected
+- pre-merge Playwright regression test asserted `[data-pfmod-sr-hidden]` nodes clipped to `<=1px × <=1px`, `position: absolute`, with `textContent.length > 0` — semantic sr-only clipping observed in a real browser on both FI and EN
+
+**PROVEN (closure, post-merge):**
+- merged head `c2c1190b` landed on `main` via merge commit `69cf113c`
+- Actions run 32651329956 on `69cf113c`: `build`, `deploy`, `smoke` all success
+- the CI security step `Security – ei | dump | safe -kuvioita templeteissä` (`.github/workflows/build.yml:50`) — which had failed on the previous main `3f56c52e` — passes on the merged tree
+- production HTTP evidence: `/haku/` = HTTP/2 200, `/en/search/` = HTTP/2 200, `/pagefind/pagefind-modular-ui.css` = HTTP/2 200
+- production SSR HTML: `pagefind-modular-ui.css` `<link>` present on both `/haku/` and `/en/search/` (1 occurrence each); Default UI `pagefind-ui.css` still referenced 3× on `/haku/` (preload + non-blocking + noscript) → navbar assets retained as intended
+- new regression test locked into main and runs on every future push (asserts both the `<link>` presence AND the sr-only semantic clip)
+
+**Deliberately NOT promoted from curl to browser evidence:**
+- production HTTP evidence proves the stylesheet is *served* and *linked*, not that the browser applied the `[data-pfmod-sr-hidden]` clip rule in a live production render. That semantic is asserted only by (a) the pre-merge Playwright regression run + (b) the same regression test now embedded in CI. It has not been re-observed in a live production browser session post-deploy.
+
+**INFERENCE now PROVEN:**
+- the pre-merge inference "deployment on GitHub Actions will succeed after merge" is now PROVEN by the post-merge Actions run.
+
+**NEEDS FOLLOW-UP:** none for this hotfix.
 
 ## Remaining blockers
 
@@ -233,6 +273,6 @@ Baseline pre-existing failures documented in the presenter-convergence slice (`t
 
 ## Decision
 
-**READY FOR COMMIT REVIEW.**
+**CLOSED / GREEN / MAIN.**
 
-Awaiting review before staging + commit + PR. No git write operations performed.
+Merged, deployed, production-verified, and hotfix branches/worktree cleaned up. Presenter-convergence work in `/private/tmp/www-pf5-g1-presenter` remains preserved and untouched — it resumes as its own review after this hotfix's closure documentation lands.
