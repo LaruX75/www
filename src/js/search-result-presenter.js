@@ -12,10 +12,27 @@
  * cards render identically to the Find & Explore surfaces without a
  * parallel design system.
  *
- * Extracted from src/js/find-explore.js as part of the PF5-G1 /haku/
- * Modular UI pilot. find-explore.js itself is intentionally not
- * refactored in this pilot; a later rollout may replace its private
- * copies of these helpers with imports from window.SearchResultPresenter.
+ * AUTHORITATIVE OWNER — as of the PF5-G1 shared-presenter convergence
+ * (2026-08-23), the following helpers live only here:
+ *   - escapeHtml
+ *   - resultTitle
+ *   - SISALTO_LABELS
+ *   - contentFamilyLabelFromData
+ *   - renderFamilyHeader
+ *   - renderPrimaryMetaLine
+ *
+ * find-explore.js consumes them from `window.SearchResultPresenter`.
+ * Any page that loads find-explore.js MUST load this presenter first.
+ *
+ * Additional helpers scoped to the global-search Modular UI surface
+ * (detectKind, primaryMetaFor, yearFor, projectEntry, renderExcerpt,
+ * renderSharedCard) also live here. F&E deliberately does NOT use
+ * `renderExcerpt` from this module because F&E's current excerpt
+ * rendering escapes the string (killing Pagefind's `<mark>` highlight
+ * markup) — that behaviour is intentionally preserved by F&E owning
+ * its own excerpt fragment inline; this presenter's `renderExcerpt`
+ * preserves the raw markup because global search wants highlighted
+ * excerpts.
  */
 (function () {
   "use strict";

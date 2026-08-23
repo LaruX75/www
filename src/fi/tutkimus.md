@@ -11,6 +11,7 @@ pageStyles:
   - /css/find-explore.css
   - /css/starter-chips.css
 pageScripts:
+  - /js/search-result-presenter.js
   - /js/find-explore.js
   - /js/starter-chips.js
 schemaType: CollectionPage
