@@ -2,7 +2,11 @@
 
 - Implementation date context: Monday, August 24, 2026.
 - Requested document filename: `docs/presentations-ssr-p1-implementation-2026-08-25.md`.
+- Status: `CLOSED / GREEN / MAIN`
 - Baseline SHA: `2ef8f2871669d7078afa77f96505bb13590724a2`
+- Implementation HEAD merged from PR branch: `6bfeec8ddeaaf8bdf7616b82ba2a09e876c8fd13`
+- Merge commit on `main`: `3003ec103708270043fb01c2f91084d366787420`
+- PR: `#148`
 - Audit reference: `audit/presentations-ssr-closure` @ `2f63f1a068786b742ba8d49936d65d57f0dc3068`
 
 ## Scope
@@ -238,6 +242,12 @@ Verified on Monday, August 24, 2026:
   - result: `3` passing
 - `PLAYWRIGHT_USE_STATIC_SERVER=true npx playwright test tests/presentations-archive.spec.js --grep "FI archive"`
   - result: `1` passing
+- `PLAYWRIGHT_USE_STATIC_SERVER=true npx playwright test tests/presentations-archive.spec.js --grep "EN archive"`
+  - result: `1` passing
+- `PLAYWRIGHT_USE_STATIC_SERVER=true npx playwright test tests/contrast.spec.js --grep "Presentations buttons meet contrast requirements"`
+  - result: `1` passing
+- `PLAYWRIGHT_USE_STATIC_SERVER=true npx playwright test tests/contrast.spec.js --grep "Presentations \(EN\) buttons meet contrast requirements"`
+  - result: `1` passing
 - Targeted build:
   - `CACHE_ONLY=true DISABLE_OG_IMAGES=true npx @11ty/eleventy --input=src/esitykset.njk`
   - passed
@@ -247,9 +257,70 @@ Verified on Monday, August 24, 2026:
 
 Full build note:
 
-- `npm run build:no-og` was started on Monday, August 24, 2026.
-- The build repeatedly progressed through data loading and cache-backed content prep, but did not return a terminal success line before manual interruption.
-- Because of that, the full build cannot be reported as cleanly completed in this implementation note.
+- `npm run build:no-og` completed successfully on Monday, August 24, 2026 after the SSR visibility fix.
+- Successful completion line:
+  - `[11ty] Copied 273 Wrote 1471 files in 240.86 seconds (163.7ms each, v3.1.6)`
+- Post-build verification succeeded:
+  - Pagefind projection check returned `ok: true`
+  - `htmlDocumentsIndexed: 1458`
+  - `presentationCanonicalTotal: 218`
+  - `presentationLocalLandingTotal: 138`
+  - `presentationExternalLandingTotal: 80`
+  - `check:seo-dashboard` passed
+  - `check:researchfi-integrity` passed
+
+## Deterministic CI Fix
+
+After the initial PR push, GitHub Playwright failed deterministically on Monday, August 24, 2026 because the SSR-rendered source links were present in the DOM but hidden inside a closed source-archive disclosure.
+
+Fix applied before merge:
+
+- `src/_includes/presentations/background-and-sources.njk`
+  - the "Alkuperäiset lähteet" disclosure now renders with `open`
+- `tests/presentations-source-ssr.spec.js`
+  - updated to assert default-open behavior in JS and no-JS modes
+
+This preserved the intended no-JS visibility requirement and cleared the contrast audit blocker without widening scope.
+
+## CI Gate And Merge
+
+PR `#148` reached green on Monday, August 24, 2026 with:
+
+- `Staging checks / build-and-verify` = `SUCCESS`
+- `Accessibility and navigation tests / playwright` = `SUCCESS`
+
+Merge details:
+
+- verified PR head before merge: `6bfeec8ddeaaf8bdf7616b82ba2a09e876c8fd13`
+- merged at: `2026-08-24T22:18:32Z`
+- merge commit: `3003ec103708270043fb01c2f91084d366787420`
+- `origin/main` after merge: `3003ec103708270043fb01c2f91084d366787420`
+
+## Post-Merge Verification
+
+Main branch deployment workflow for merge commit `3003ec103708270043fb01c2f91084d366787420` completed successfully on Monday, August 24, 2026:
+
+- `build` = `success`
+- `deploy` = `success`
+- `smoke` = `success`
+
+Production smoke verified on:
+
+- `https://www.jarilaru.fi/esitykset/`
+- `https://www.jarilaru.fi/en/presentations/`
+
+Verified outcomes:
+
+- FI source archive is open by default and source sections are visible immediately
+- FI archive search, year filter, topic filter, clear action, and pagination all work in the live browser
+- FI pagination advanced from page `1` to page `2` with status changing from `Näytetään 1-12 / 354 esitystä.` to `Näytetään 13-24 / 354 esitystä.`
+- FI browser console contained no warnings or errors during smoke
+- EN source sections are visible in initial render as direct SSR sections
+- EN Canva section preserved the existing English-only membership behavior
+- EN live Canva sample rows remained English-oriented and did not pick up Finnish-only Canva entries such as `Sivistysverkosto 4.5.`
+- EN browser console contained no warnings or errors during smoke
+- live HTML for both FI and EN contained SSR year/topic controls and direct source links before JS
+- no duplicate source titles were observed in the FI live source-section inspection
 
 ## Deferred Work
 
