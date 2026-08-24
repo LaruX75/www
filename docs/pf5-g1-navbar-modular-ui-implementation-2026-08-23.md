@@ -2,14 +2,38 @@
 
 ## Status
 
-IMPLEMENTATION SLICE — post-audit, following the GO WITH CONSTRAINTS decision recorded in `docs/pf5-g1-navbar-modular-ui-suitability-audit-2026-08-23.md` (on the audit branch). Migrates the FI + EN navbar search overlay from PagefindUI Default → Pagefind Modular UI via the shared factory, retires Default UI globally, and preserves the N1 dialog contract.
+**CLOSED / GREEN / MAIN.** Merged 2026-08-24 as PR [#136](https://github.com/LaruX75/www/pull/136); merge commit `786024be9bbca628ef903dd993a16120f0bbd11e` is the current `origin/main`. Post-merge Actions run [32690302247](https://github.com/LaruX75/www/actions/runs/32690302247) — build / deploy / smoke all success. Production HTTP verified.
 
-## Branch / base / HEAD
+Post-audit implementation slice following the GO WITH CONSTRAINTS decision recorded in the navbar audit doc (audit branch). Migrated the FI + EN navbar search overlay from PagefindUI Default → Pagefind Modular UI via the shared factory, retired Default UI globally, and preserved the N1 dialog contract.
 
-- **Branch:** `pf5/g1-navbar-modular-ui`
-- **Worktree:** `/private/tmp/www-pf5-navbar-rollout`
-- **Base:** `origin/main` = `be4404a62c54b61ae2719a4dc95d182a10c1f9f0`
-- **HEAD at report time:** `be4404a62c54b61ae2719a4dc95d182a10c1f9f0` (no commit yet — pending review)
+## Closure / merged state (2026-08-24)
+
+| | |
+|---|---|
+| PR | [#136](https://github.com/LaruX75/www/pull/136) — MERGED |
+| mergedAt | 2026-08-24T04:30:55Z |
+| mergedBy | LaruX75 (via `gh pr merge --match-head-commit`) |
+| Merged head SHA | `e70b9b951c2444eb3f7fcc2b92f3112da1250e09` |
+| Merge commit SHA | `786024be9bbca628ef903dd993a16120f0bbd11e` |
+| Resulting `origin/main` | `786024be9bbca628ef903dd993a16120f0bbd11e` |
+| Previous `origin/main` | `be4404a62c54b61ae2719a4dc95d182a10c1f9f0` |
+| Post-merge Actions run | [32690302247](https://github.com/LaruX75/www/actions/runs/32690302247) — build ✓ / deploy ✓ / smoke ✓ |
+| Production `/haku/` | HTTP/2 200 (PROVEN via curl) |
+| Production `/en/search/` | HTTP/2 200 (PROVEN via curl) |
+| Production FI home Modular UI CSS | 3× occurrences (preload + non-blocking + noscript) — PROVEN |
+| Production FI home Default UI references | **0×** — PROVEN |
+| Production FI home nav config script | 1× `siteSearchNavConfig` — PROVEN |
+| Repo-wide `PagefindUI\|pagefind-ui\.js\|pagefind-ui\.css\|data-pagefind-ui` in `src/` + `tests/` | **0 matches** on merged tree |
+| Rollout worktree `/private/tmp/www-pf5-navbar-rollout` | to be removed at cleanup |
+| Local branch `pf5/g1-navbar-modular-ui` | to be deleted at cleanup |
+| Remote branch `origin/pf5/g1-navbar-modular-ui` | to be deleted at cleanup |
+
+## Pre-merge implementation state (historical)
+
+- **Branch (during implementation):** `pf5/g1-navbar-modular-ui`
+- **Worktree (during implementation):** `/private/tmp/www-pf5-navbar-rollout`
+- **Base at implementation time:** `be4404a62c54b61ae2719a4dc95d182a10c1f9f0` (post presenter-convergence closure PR #135)
+- **Implementation commit created after review approval:** `e70b9b951c2444eb3f7fcc2b92f3112da1250e09` — fast-forward-merged into `main` as part of merge commit `786024be` (PR #136).
 
 ## Ownership before / after
 
