@@ -1,0 +1,196 @@
+{% set sourceSection = presentationSourceSection %}
+{% set sourceLocale = presentationSourceLocale == "en" and "en" or "fi" %}
+{% set sourceFeatured = sourceSection.featuredItem %}
+{% if sourceLocale == "en" %}
+  {% set sourceFeaturedBadgeLabel = "Latest" %}
+  {% set sourceNoLinkLabel = "No link" %}
+  {% set sourceNotAvailableLabel = "Not available" %}
+{% else %}
+  {% set sourceFeaturedBadgeLabel = "Uusin" %}
+  {% set sourceNoLinkLabel = "Ei linkkiä" %}
+  {% set sourceNotAvailableLabel = "Ei saatavilla" %}
+{% endif %}
+
+{% if sourceFeatured %}
+  {% set sourceFeaturedHref = sourceFeatured.sourceUrl or sourceFeatured.externalUrl or sourceFeatured.url or sourceFeatured.landingUrl or sourceFeatured.pageUrl or sourceFeatured.localPageUrl or "" %}
+  <div class="card border-0 shadow-sm mb-4 overflow-hidden">
+    <div class="d-flex align-items-stretch">
+      <div class="flex-shrink-0 overflow-hidden">
+        {% if sourceFeatured.thumbnail %}
+          <img src="{{ sourceFeatured.thumbnail }}" alt="{{ sourceFeatured.title }}" class="featured-thumb" style="object-fit:cover;" loading="lazy" decoding="async">
+        {% else %}
+          <div class="featured-thumb" style="background:var(--bs-secondary-bg);display:flex;align-items:center;justify-content:center;color:var(--bs-secondary-color);font-size:1.5rem;"><i class="bi {{ sourceSection.icon }}"></i></div>
+        {% endif %}
+      </div>
+      <div class="card-body py-2 px-3 d-flex flex-column justify-content-center">
+        <p class="text-muted small mb-1">
+          {% if sourceFeatured.date %}
+            <i class="bi bi-calendar3 me-1"></i>{{ sourceFeatured.date | dateFormat }}&ensp;
+          {% endif %}
+          <span class="badge text-bg-warning text-dark fw-semibold" style="font-size:.65rem;">{{ sourceFeaturedBadgeLabel }}</span>
+        </p>
+        <h3 class="h6 fw-bold mb-1 lh-sm">{{ sourceFeatured.title }}</h3>
+        {% if sourceFeatured.description %}
+          <p class="text-muted small mb-2">{{ sourceFeatured.description | truncate(140) }}</p>
+        {% endif %}
+        {% if sourceFeaturedHref %}
+          <a href="{{ sourceFeaturedHref }}"{% if sourceFeaturedHref.startsWith("http") %} target="_blank" rel="noopener noreferrer"{% endif %} class="btn btn-primary btn-sm rounded-pill px-3 align-self-start">{{ sourceSection.ctaLabel }} <i class="bi bi-arrow-up-right"></i></a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% if sourceSection.rows.length %}
+  <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0 pub-table">
+      <thead>
+        {% if sourceSection.key == "canva" or sourceSection.key == "slideshare" %}
+          <tr>
+            <th class="text-center" style="width:140px">{% if sourceLocale == "en" %}Date{% else %}Päivämäärä{% endif %}</th>
+            <th style="min-width:170px">{% if sourceLocale == "en" %}Preview{% else %}Esikatselu{% endif %}</th>
+            <th style="min-width:200px;max-width:260px;">{% if sourceLocale == "en" %}Title{% else %}Otsikko{% endif %}</th>
+            <th style="min-width:220px">{% if sourceLocale == "en" %}Summary{% else %}Tiivistelmä{% endif %}</th>
+            <th style="min-width:190px">{% if sourceLocale == "en" %}Keywords{% else %}Avainsanat{% endif %}</th>
+            <th style="width:120px" class="text-center">{% if sourceLocale == "en" %}Open{% else %}Avaa{% endif %}</th>
+          </tr>
+        {% elif sourceSection.key == "youtubeVideos" %}
+          <tr>
+            <th style="min-width:140px">{% if sourceLocale == "en" %}Preview{% else %}Esikatselu{% endif %}</th>
+            <th style="min-width:200px">{% if sourceLocale == "en" %}Title{% else %}Otsikko{% endif %}</th>
+            <th style="min-width:220px">{% if sourceLocale == "en" %}Description{% else %}Kuvaus{% endif %}</th>
+            <th class="text-nowrap">{% if sourceLocale == "en" %}Date{% else %}Päiväys{% endif %}</th>
+            <th class="text-nowrap">{% if sourceLocale == "en" %}Open{% else %}Avaa{% endif %}</th>
+          </tr>
+        {% else %}
+          <tr>
+            <th>{% if sourceLocale == "en" %}Title{% else %}Otsikko{% endif %}</th>
+            <th>{% if sourceLocale == "en" %}Description{% else %}Kuvaus{% endif %}</th>
+            <th class="text-nowrap">{% if sourceLocale == "en" %}Date / year{% else %}Päiväys / vuosi{% endif %}</th>
+            <th class="text-nowrap">{% if sourceLocale == "en" %}Open{% else %}Avaa{% endif %}</th>
+          </tr>
+        {% endif %}
+      </thead>
+      <tbody>
+        {% for item in sourceSection.rows %}
+          {% set sourceHref = item.sourceUrl or item.externalUrl or item.url or item.landingUrl or item.pageUrl or item.localPageUrl or "" %}
+          {% set pageHref = item.localPageUrl or item.pageUrl or "" %}
+          {% set pageHrefVisible = pageHref and pageHref != sourceHref %}
+          {% if sourceSection.key == "youtubeVideos" %}
+            <tr>
+              <td>
+                {% if item.thumbnail %}
+                  <img src="{{ item.thumbnail }}" alt="" loading="lazy" decoding="async" style="width:120px;height:68px;object-fit:cover;border-radius:.75rem;">
+                {% else %}
+                  <span class="text-muted small">{{ sourceNotAvailableLabel }}</span>
+                {% endif %}
+              </td>
+              <td>
+                {% if sourceHref %}
+                  <a href="{{ sourceHref }}"{% if sourceHref.startsWith("http") %} target="_blank" rel="noopener noreferrer"{% endif %} class="text-decoration-none fw-semibold">{{ item.title }}</a>
+                {% else %}
+                  <span class="fw-semibold">{{ item.title }}</span>
+                {% endif %}
+              </td>
+              <td class="small text-muted">{{ (item.description or "") | truncate(160) }}</td>
+              <td class="small text-muted text-nowrap">{{ (item.date and (item.date | dateFormat)) or "-" }}</td>
+              <td class="text-nowrap">
+                {% if sourceHref %}
+                  <a href="{{ sourceHref }}"{% if sourceHref.startsWith("http") %} target="_blank" rel="noopener noreferrer"{% endif %} class="btn btn-outline-primary btn-sm rounded-pill px-3">{{ sourceSection.ctaLabel }}</a>
+                {% else %}
+                  <span class="text-muted small">{{ sourceNoLinkLabel }}</span>
+                {% endif %}
+                {% if pageHrefVisible %}
+                  <a href="{{ pageHref }}" class="btn btn-outline-secondary btn-sm rounded-pill px-2" title="{{ sourceSection.detailCtaLabel }}" aria-label="{{ sourceSection.detailCtaLabel }}"><i class="bi bi-file-earmark-text"></i></a>
+                {% endif %}
+              </td>
+            </tr>
+          {% elif sourceSection.key == "canva" or sourceSection.key == "slideshare" %}
+            {% set rowKeywords = [] %}
+            {% for value in (item.categories or []) %}
+              {% set normalized = (value or "") | trim %}
+              {% if normalized and (normalized not in rowKeywords) %}
+                {% set _ = rowKeywords.push(normalized) %}
+              {% endif %}
+            {% endfor %}
+            {% for value in (item.keywords or []) %}
+              {% set normalized = (value or "") | trim %}
+              {% if normalized and (normalized not in rowKeywords) %}
+                {% set _ = rowKeywords.push(normalized) %}
+              {% endif %}
+            {% endfor %}
+            <tr>
+              <td class="small text-muted text-nowrap text-center">{{ (item.date and (item.date | dateFormat)) or "-" }}</td>
+              <td>
+                {% if item.thumbnail %}
+                  <img src="{{ item.thumbnail }}" alt="" loading="lazy" decoding="async" style="width:120px;height:68px;object-fit:cover;border-radius:.75rem;">
+                {% else %}
+                  <span class="badge text-bg-light text-dark border">{{ sourceSection.label }}</span>
+                {% endif %}
+              </td>
+              <td>
+                {% if sourceHref %}
+                  <a href="{{ sourceHref }}"{% if sourceHref.startsWith("http") %} target="_blank" rel="noopener noreferrer"{% endif %} class="text-decoration-none fw-semibold">{{ item.title }}</a>
+                {% else %}
+                  <span class="fw-semibold">{{ item.title }}</span>
+                {% endif %}
+              </td>
+              <td class="small text-muted">{{ (item.description or "") | truncate(180) }}</td>
+              <td>
+                {% if rowKeywords.length %}
+                  {% for keyword in rowKeywords %}
+                    {% if loop.index <= 4 %}
+                      <span class="badge text-bg-light text-dark border me-1 mb-1">{{ keyword }}</span>
+                    {% endif %}
+                  {% endfor %}
+                {% else %}
+                  <span class="text-muted small">{% if sourceLocale == "en" %}No keywords{% else %}Ei avainsanoja{% endif %}</span>
+                {% endif %}
+              </td>
+              <td class="text-center text-nowrap">
+                {% if sourceHref %}
+                  <a href="{{ sourceHref }}"{% if sourceHref.startsWith("http") %} target="_blank" rel="noopener noreferrer"{% endif %} class="btn btn-outline-primary btn-sm rounded-pill px-2" title="{{ sourceSection.ctaLabel }}" aria-label="{{ sourceSection.ctaLabel }}"><i class="bi bi-arrow-up-right"></i></a>
+                {% else %}
+                  <span class="text-muted small">{{ sourceNoLinkLabel }}</span>
+                {% endif %}
+                {% if pageHrefVisible %}
+                  <a href="{{ pageHref }}" class="btn btn-outline-secondary btn-sm rounded-pill px-2" title="{{ sourceSection.detailCtaLabel }}" aria-label="{{ sourceSection.detailCtaLabel }}"><i class="bi bi-file-earmark-text"></i></a>
+                {% endif %}
+              </td>
+            </tr>
+          {% else %}
+            <tr>
+              <td>
+                {% if sourceHref %}
+                  <a href="{{ sourceHref }}"{% if sourceHref.startsWith("http") %} target="_blank" rel="noopener noreferrer"{% endif %} class="text-decoration-none fw-semibold">{{ item.title }}</a>
+                {% else %}
+                  <span class="fw-semibold">{{ item.title }}</span>
+                {% endif %}
+              </td>
+              <td class="small text-muted">{{ (item.description or sourceSection.label) | truncate(180) }}</td>
+              <td class="small text-muted text-nowrap">
+                {% if item.date %}
+                  {{ item.date | dateFormat }}
+                {% elif item.year %}
+                  {{ item.year }}
+                {% else %}
+                  -
+                {% endif %}
+              </td>
+              <td class="text-nowrap">
+                {% if sourceHref %}
+                  <a href="{{ sourceHref }}"{% if sourceHref.startsWith("http") %} target="_blank" rel="noopener noreferrer"{% endif %} class="btn btn-outline-primary btn-sm rounded-pill px-3">{{ sourceSection.ctaLabel }}</a>
+                {% else %}
+                  <span class="text-muted small">{{ sourceNoLinkLabel }}</span>
+                {% endif %}
+                {% if pageHrefVisible %}
+                  <a href="{{ pageHref }}" class="btn btn-outline-secondary btn-sm rounded-pill px-2" title="{{ sourceSection.detailCtaLabel }}" aria-label="{{ sourceSection.detailCtaLabel }}"><i class="bi bi-file-earmark-text"></i></a>
+                {% endif %}
+              </td>
+            </tr>
+          {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endif %}

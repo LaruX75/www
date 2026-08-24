@@ -1,5 +1,7 @@
 {% set archiveItems = presentationArchiveItems or ((presentationsPage and presentationsPage.items) or []) %}
 {% set archiveLocale = presentationArchiveLocale or (lang or "fi") %}
+{% set archiveFilterYears = presentationArchiveFilterYears or ((presentationsPage and presentationsPage.filterYears) or []) %}
+{% set archiveFilterTopics = presentationArchiveFilterTopics or ((presentationsPage and presentationsPage.filterTopics) or []) %}
 
 {% if archiveLocale == "en" %}
   {% set presentationArchiveSectionSummary = "Browse presentations" %}
@@ -79,13 +81,20 @@
                 <label class="presentation-archive-filter-label" for="presentation-archive-year">{{ presentationArchiveYearLabel }}</label>
                 <select id="presentation-archive-year" class="presentation-archive-select" data-presentation-control="year">
                   <option value="">{{ presentationArchiveAllYearsLabel }}</option>
+                  {% for year in archiveFilterYears %}
+                    <option value="{{ year }}">{{ year }}</option>
+                  {% endfor %}
                 </select>
               </div>
 
               <div class="presentation-archive-control">
                 <label class="presentation-archive-filter-label" for="presentation-archive-topic">{{ presentationArchiveTopicLabel }}</label>
                 <input id="presentation-archive-topic" class="presentation-archive-input" type="search" list="presentation-archive-topic-list" placeholder="{{ presentationArchiveTopicPlaceholder }}" data-presentation-control="topic">
-                <datalist id="presentation-archive-topic-list"></datalist>
+                <datalist id="presentation-archive-topic-list">
+                  {% for topic in archiveFilterTopics %}
+                    <option value="{{ topic }}"></option>
+                  {% endfor %}
+                </datalist>
               </div>
 
               <div class="presentation-archive-control presentation-archive-control--action">

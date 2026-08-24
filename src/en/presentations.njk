@@ -25,26 +25,16 @@ schemaType: CollectionPage
 
 {% set pageModel = presentationsPage %}
 {% set canonicalItems = (pageModel and pageModel.items) or [] %}
-{% set aoeItems = [] %}
-{% set enCanvaItems = [] %}
-{% set slideshareItems = [] %}
-{% set youtubeVideoItems = [] %}
-{% set youtubePlaylistItems = [] %}
+{% set sourceSections = pageModel.sourceSections.en %}
+{% set aoeSection = sourceSections[0] %}
+{% set canvaSection = sourceSections[1] %}
+{% set slideshareSection = sourceSections[2] %}
+{% set youtubeVideoSection = sourceSections[3] %}
+{% set youtubePlaylistSection = sourceSections[4] %}
 {% set localPresentationPageItems = [] %}
 {% for item in canonicalItems %}
   {% if item.pageUrl %}
     {% set _ = (localPresentationPageItems.push(item), null) %}
-  {% endif %}
-  {% if item.sourceKey == "aoe" %}
-    {% set _ = (aoeItems.push(item), null) %}
-  {% elif item.sourceKey == "canva" and item.lang == "en" %}
-    {% set _ = (enCanvaItems.push(item), null) %}
-  {% elif item.sourceKey == "slideshare" %}
-    {% set _ = (slideshareItems.push(item), null) %}
-  {% elif item.sourceKey == "youtubeVideos" %}
-    {% set _ = (youtubeVideoItems.push(item), null) %}
-  {% elif item.sourceKey == "youtube" %}
-    {% set _ = (youtubePlaylistItems.push(item), null) %}
   {% endif %}
 {% endfor %}
 
@@ -76,24 +66,10 @@ schemaType: CollectionPage
     <h2 id="aoe-heading" class="section-title mb-4">
       <i class="bi bi-book-fill text-success me-2" style="font-size: 1rem;"></i>AOE Learning Materials
     </h2>
-    {% if aoeItems.length %}
-      <div id="featured-aoe"></div>
-      <div class="table-responsive">
-        <table class="table table-hover align-middle mb-0 pub-table">
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Description</th>
-              <th class="text-nowrap">Date / year</th>
-              <th class="text-nowrap">Open</th>
-            </tr>
-          </thead>
-          <tbody id="table-body-aoe"></tbody>
-        </table>
-      </div>
-      <nav class="mt-3" aria-label="AOE pagination">
-        <ul class="pagination pagination-sm mb-0" id="pagination-aoe"></ul>
-      </nav>
+    {% if aoeSection.count %}
+      {% set presentationSourceSection = aoeSection %}
+      {% set presentationSourceLocale = "en" %}
+      {% include "presentations/source-group-content.njk" %}
       <div class="mt-3 text-muted small">
         Source: <a href="https://www.finna.fi/" target="_blank" rel="noopener noreferrer">Finna</a> / <a href="https://aoe.fi/" target="_blank" rel="noopener noreferrer">Open Educational Resources Library (AOE)</a>.
       </div>
@@ -129,26 +105,10 @@ schemaType: CollectionPage
       </div>
     </div>
 
-    {% if enCanvaItems.length %}
-      <div id="featured-canva"></div>
-      <div class="table-responsive">
-        <table class="table table-hover align-middle mb-0 pub-table">
-          <thead>
-            <tr>
-              <th class="text-center" style="width:140px">Date</th>
-              <th style="min-width:170px">Preview</th>
-              <th style="min-width:200px;max-width:260px;">Title</th>
-              <th style="min-width:220px">Summary</th>
-              <th style="min-width:190px">Keywords</th>
-              <th style="width:90px" class="text-center">Open</th>
-            </tr>
-          </thead>
-          <tbody id="table-body-canva"></tbody>
-        </table>
-      </div>
-      <nav class="mt-3" aria-label="Canva pagination">
-        <ul class="pagination pagination-sm mb-0" id="pagination-canva"></ul>
-      </nav>
+    {% if canvaSection.count %}
+      {% set presentationSourceSection = canvaSection %}
+      {% set presentationSourceLocale = "en" %}
+      {% include "presentations/source-group-content.njk" %}
       <div class="mt-3 text-muted small">
         Source: Canva (JSON).
       </div>
@@ -185,33 +145,17 @@ schemaType: CollectionPage
       </div>
     </div>
 
-    {% if slideshareItems.length %}
-      <div id="featured-slideshare"></div>
-      <div class="table-responsive">
-        <table class="table table-hover align-middle mb-0 pub-table">
-          <thead>
-            <tr>
-              <th class="text-center" style="width:140px">Date</th>
-              <th style="min-width:170px">Preview</th>
-              <th style="min-width:200px;max-width:260px;">Title</th>
-              <th style="min-width:220px">Summary</th>
-              <th style="min-width:190px">Keywords</th>
-              <th style="width:90px" class="text-center">Open</th>
-            </tr>
-          </thead>
-          <tbody id="table-body-slideshare"></tbody>
-        </table>
-      </div>
-      <nav class="mt-3" aria-label="SlideShare pagination">
-        <ul class="pagination pagination-sm mb-0" id="pagination-slideshare"></ul>
-      </nav>
+    {% if slideshareSection.count %}
+      {% set presentationSourceSection = slideshareSection %}
+      {% set presentationSourceLocale = "en" %}
+      {% include "presentations/source-group-content.njk" %}
     {% else %}
       <p class="text-muted">No SlideShare presentations available.</p>
     {% endif %}
 
     <div class="mt-4 text-center">
       <a href="https://www.slideshare.net/larux" target="_blank" rel="noopener noreferrer" class="btn btn-primary px-4 py-2">
-        View all on SlideShare ({{ slideshareItems.length }}) <i class="bi bi-arrow-up-right"></i>
+        View all on SlideShare ({{ slideshareSection.count }}) <i class="bi bi-arrow-up-right"></i>
       </a>
     </div>
   </section>
@@ -222,51 +166,23 @@ schemaType: CollectionPage
       <i class="bi bi-youtube text-danger me-2" style="font-size: 1rem;"></i>YouTube Videos
     </h2>
 
-    {% if youtubeVideoItems.length %}
-      <div id="featured-youtubeVideos"></div>
-      <div class="table-responsive">
-        <table class="table table-hover align-middle mb-0 pub-table">
-          <thead>
-            <tr>
-              <th style="min-width:140px">Preview</th>
-              <th style="min-width:200px">Title</th>
-              <th style="min-width:220px">Description</th>
-              <th class="text-nowrap">Date</th>
-              <th class="text-nowrap">Open</th>
-            </tr>
-          </thead>
-          <tbody id="table-body-youtubeVideos"></tbody>
-        </table>
-      </div>
-      <nav class="mt-3" aria-label="YouTube video pagination">
-        <ul class="pagination pagination-sm mb-0" id="pagination-youtubeVideos"></ul>
-      </nav>
+    {% if youtubeVideoSection.count %}
+      {% set presentationSourceSection = youtubeVideoSection %}
+      {% set presentationSourceLocale = "en" %}
+      {% include "presentations/source-group-content.njk" %}
       <div class="mt-3 text-muted small">
         Source: YouTube Data API v3.
       </div>
     {% endif %}
 
-    {% if youtubePlaylistItems.length %}
+    {% if youtubePlaylistSection.count %}
       <h3 class="h6 text-uppercase text-muted fw-semibold mt-5 mb-2" style="letter-spacing:.04em;">Playlists</h3>
-      <div class="table-responsive">
-        <table class="table table-hover align-middle mb-0 pub-table">
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Description</th>
-              <th class="text-nowrap">Date / year</th>
-              <th class="text-nowrap">Open</th>
-            </tr>
-          </thead>
-          <tbody id="table-body-youtube"></tbody>
-        </table>
-      </div>
-      <nav class="mt-3" aria-label="YouTube pagination">
-        <ul class="pagination pagination-sm mb-0" id="pagination-youtube"></ul>
-      </nav>
+      {% set presentationSourceSection = youtubePlaylistSection %}
+      {% set presentationSourceLocale = "en" %}
+      {% include "presentations/source-group-content.njk" %}
     {% endif %}
 
-    {% if not (youtubeVideoItems.length or youtubePlaylistItems.length) %}
+    {% if not (youtubeVideoSection.count or youtubePlaylistSection.count) %}
       <div class="card border-0 bg-light-subtle">
         <div class="card-body">
           <p class="mb-2 fw-semibold">Could not fetch YouTube content.</p>
@@ -281,7 +197,7 @@ schemaType: CollectionPage
   {# Archive list: static link list for all presentation pages (SEO navigation) #}
   <section class="mb-5">
     <div class="site-shell">
-      {% set archiveTotal = localPresentationPageItems.length + aoeItems.length + youtubePlaylistItems.length %}
+      {% set archiveTotal = localPresentationPageItems.length + aoeSection.count + youtubePlaylistSection.count %}
       <details>
         <summary class="text-muted small py-2" style="cursor:pointer;">All presentations and materials as archive ({{ archiveTotal }})</summary>
 
@@ -302,11 +218,11 @@ schemaType: CollectionPage
           </ul>
         </div>
 
-        {% if aoeItems.length %}
+        {% if aoeSection.count %}
           <div class="mt-4">
             <h3 class="h6 fw-bold">AOE learning materials</h3>
             <ul class="list-unstyled row row-cols-1 row-cols-md-2 g-3 mt-1">
-              {% for row in aoeItems %}
+              {% for row in aoeSection.items %}
                 <li class="col">
                   <a class="small fw-semibold text-decoration-none" href="{{ row.url }}" target="_blank" rel="noopener noreferrer">{{ row.title }}</a>
                   <div class="small text-muted mt-1">AOE / Finna{% if row.year or row.date %} · {{ row.year or row.date }}{% endif %}</div>
@@ -320,11 +236,11 @@ schemaType: CollectionPage
         {% endif %}
 
 
-        {% if youtubePlaylistItems.length %}
+        {% if youtubePlaylistSection.count %}
           <div class="mt-4">
             <h3 class="h6 fw-bold">YouTube playlists</h3>
             <ul class="list-unstyled row row-cols-1 row-cols-md-2 g-3 mt-1">
-              {% for row in youtubePlaylistItems %}
+              {% for row in youtubePlaylistSection.items %}
                 <li class="col">
                   <a class="small fw-semibold text-decoration-none" href="{{ row.url }}" target="_blank" rel="noopener noreferrer">{{ row.title }}</a>
                   <div class="small text-muted mt-1">YouTube{% if row.date or row.year %} · {{ row.date or row.year }}{% endif %}</div>
