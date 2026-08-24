@@ -82,6 +82,23 @@
     const fallbackMessage = config.fallbackMessage || "";
     const translations = config.translations || {};
     const FACET_GROUPS = enableFilters && Array.isArray(config.facetGroups) ? config.facetGroups : [];
+    // PF5-H1B — flat list of {filter, label, contentType} pairs
+    // derived from config.secondaryFacetsByContentType. Each entry is
+    // one FilterPills slot whose DOM visibility is toggled by the
+    // current Sisältö selection. contentType is the Pagefind Sisältö
+    // filter VALUE (e.g. "Julkaisut") this facet belongs to.
+    const SECONDARY_FACETS = (() => {
+      if (!enableFilters) return [];
+      const map = config.secondaryFacetsByContentType || {};
+      const out = [];
+      for (const [contentType, groups] of Object.entries(map)) {
+        if (!Array.isArray(groups)) continue;
+        for (const g of groups) {
+          if (g && g.filter) out.push({ filter: g.filter, label: g.label || g.filter, contentType });
+        }
+      }
+      return out;
+    })();
     const fallbackInput = fallbackFormEl?.querySelector("[data-search-page-fallback-input]");
 
     if (fallbackInput && initialQuery) {
@@ -118,15 +135,25 @@
       // has no input in SSR), the factory falls back to the pre-H1A
       // behaviour and injects the whole shell — including its own
       // input inside the mount.
-      const filtersMarkup = FACET_GROUPS.length
-        ? `<div class="site-search-page-filters mb-3" data-search-modular-filters role="region" aria-label="${escapeHtml(regionLabel)}">
-            ${FACET_GROUPS.map((group) => `
-              <div
-                data-search-modular-filter-slot
-                data-search-modular-filter-name="${escapeHtml(group.filter)}"
-                data-search-modular-filter-label="${escapeHtml(group.label)}"
-              ></div>`).join("")}
-          </div>`
+      const primarySlots = FACET_GROUPS.map((group) => `
+        <div
+          data-search-modular-filter-slot
+          data-search-modular-filter-name="${escapeHtml(group.filter)}"
+          data-search-modular-filter-label="${escapeHtml(group.label)}"
+        ></div>`).join("");
+      // PF5-H1B: secondary slots stay in the DOM (so FilterPills can
+      // mount + Pagefind can maintain hit counts) but are hidden until
+      // the matching Sisältö value is selected.
+      const secondarySlots = SECONDARY_FACETS.map((group) => `
+        <div
+          data-search-modular-filter-slot
+          data-search-modular-secondary-for="${escapeHtml(group.contentType)}"
+          data-search-modular-filter-name="${escapeHtml(group.filter)}"
+          data-search-modular-filter-label="${escapeHtml(group.label)}"
+          hidden
+        ></div>`).join("");
+      const filtersMarkup = (FACET_GROUPS.length || SECONDARY_FACETS.length)
+        ? `<div class="site-search-page-filters mb-3" data-search-modular-filters role="region" aria-label="${escapeHtml(regionLabel)}">${primarySlots}${secondarySlots}</div>`
         : "";
       const existingInput = document.getElementById(inputId);
       if (existingInput && existingInput.matches("input[type='search']")) {
@@ -234,7 +261,7 @@
       // reference. querySelector inside the component wires it up.
       instance.add(new PagefindModularUI.Input({ inputElement: "#" + inputId }));
 
-      if (enableFilters && FACET_GROUPS.length) {
+      if (enableFilters && (FACET_GROUPS.length || SECONDARY_FACETS.length)) {
         // Facet parity with PF5-G1 pilot: one Modular UI FilterPills per
         // user-meaningful group defined in FACET_GROUPS. Empty groups
         // auto-hide (alwaysShow: false). Pagefind owns filter values,
@@ -290,6 +317,56 @@
             subtree: true
           });
           for (const slot of slots) localiseFacet(slot);
+        }
+
+        // PF5-H1B — Progressive facet disclosure.
+        //
+        // Pagefind remains the sole owner of filter state; this layer
+        // only toggles DOM VISIBILITY of secondary facet slots based
+        // on which values are currently selected in the Sisältö
+        // FilterPills. The signal is Pagefind's own `aria-pressed`
+        // attribute on each pill (Modular UI 1.5.2), read via a
+        // MutationObserver — no parallel selection state, no Pagefind
+        // API misuse.
+        //
+        // Multi-select: FilterPills is mounted with selectMultiple:true,
+        // so the user can select more than one Sisältö value. When
+        // that happens we show the UNION of the selected domains'
+        // secondary facets. Selecting "All" (or clearing everything)
+        // hides all secondary slots.
+        const secondarySlots = slots.filter((s) => s.hasAttribute("data-search-modular-secondary-for"));
+        if (secondarySlots.length) {
+          const sisaltoSlot = slots.find((s) => s.dataset.searchModularFilterName === "Sisältö");
+          const applyVisibility = () => {
+            const selected = sisaltoSlot
+              ? Array.from(sisaltoSlot.querySelectorAll(".pagefind-modular-filter-pill[aria-pressed='true']"))
+                  .map((btn) => (btn.querySelector("span[aria-label]")?.getAttribute("aria-label") || "").trim())
+                  // Pagefind Modular UI includes an "All" reset pill that
+                  // corresponds to "no filter selected"; treat it as no
+                  // domain selection.
+                  .filter((v) => v && v !== "All" && v !== "Kaikki")
+              : [];
+            const activeDomains = new Set(selected);
+            for (const slot of secondarySlots) {
+              const contentType = slot.dataset.searchModularSecondaryFor;
+              const shouldShow = activeDomains.has(contentType);
+              if (shouldShow) {
+                slot.hidden = false;
+              } else {
+                slot.hidden = true;
+              }
+            }
+          };
+          applyVisibility();
+          if (sisaltoSlot) {
+            const sisaltoObserver = new MutationObserver(applyVisibility);
+            sisaltoObserver.observe(sisaltoSlot, {
+              attributes: true,
+              attributeFilter: ["aria-pressed"],
+              subtree: true,
+              childList: true
+            });
+          }
         }
       }
 

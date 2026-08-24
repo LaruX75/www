@@ -272,6 +272,17 @@ for (const locale of LOCALES) {
             await expect(page.locator('[data-search-modular-results] li[data-search-result-kind]').first())
                 .toBeVisible({ timeout: RESULT_TIMEOUT_MS });
 
+            // PF5-H1B: Publications group secondary facet is hidden by
+            // default. Select Sisältö=Julkaisut first to reveal it.
+            await page.evaluate(() => {
+                const slot = Array.from(document.querySelectorAll('[data-search-modular-filter-slot]'))
+                    .find((s) => s.dataset.searchModularFilterName === 'Sisältö');
+                const btn = Array.from(slot.querySelectorAll('button.pagefind-modular-filter-pill'))
+                    .find((b) => (b.querySelector('span[aria-label]')?.getAttribute('aria-label') || '').trim() === 'Julkaisut');
+                btn && btn.click();
+            });
+            await page.waitForTimeout(500);
+
             const groupSlot = page.locator('[data-search-modular-filter-slot][data-search-modular-filter-name="Publications group"]');
             await expect
                 .poll(() => groupSlot.locator('.pagefind-modular-filter-pill').count(), { timeout: RESULT_TIMEOUT_MS })
