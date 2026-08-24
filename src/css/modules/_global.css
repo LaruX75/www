@@ -1538,6 +1538,14 @@ html[data-bs-theme="dark"]:not([data-a11y-bg]) .writing-role-badge--expert {
   background: var(--bs-body-bg) !important;
 }
 
+/* PF5-H1A: on the dedicated search pages the page's own search shell
+   is authoritative. Hide the desktop navbar inline search form there
+   to avoid two competing search inputs on the same viewport. The
+   mobile search-dialog trigger (#searchToggleBtn) is unaffected. */
+body[data-translation-key="search"] .site-nav-search {
+  display: none !important;
+}
+
 /* Filled primary CTA in hero/content-detail contexts.
    Overrides the site-wide black outline treatment specifically for
    primary action buttons in hero areas, so the main call-to-action

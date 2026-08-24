@@ -7,45 +7,43 @@ permalink: /en/search/
 translationKey: search
 lang: en
 robots: noindex, follow
+suppressSubpageHero: true
 ---
-
-<section class="content-detail-hero content-detail-hero--search py-5 border-bottom">
-  <div class="site-shell">
-    <div>
-      <p class="content-detail-eyebrow mb-2">Site search</p>
-      <h1 class="content-detail-title mb-3">Search the site</h1>
-      <p class="content-detail-lead mb-0">Search for writings, speeches, media appearances, presentations, and scientific publications. Over 2,500 pages of content indexed.</p>
-    </div>
-  </div>
-</section>
 
 <section class="py-4">
   <div class="site-shell">
-    <form class="card border-0 shadow-sm mb-4 site-search-page-fallback" action="/en/search/" method="get" role="search" data-search-page-fallback>
-      <div class="card-body p-3 p-md-4">
-        <label class="form-label fw-semibold" for="siteSearchFallbackInputEn">Search term</label>
-        <div class="input-group input-group-lg">
-          <input
-            id="siteSearchFallbackInputEn"
-            class="form-control"
-            type="search"
-            name="q"
-            placeholder="Type a search term..."
-            autocomplete="off"
-            data-search-page-fallback-input
-          >
-          <button class="btn btn-primary px-4" type="submit">
-            <i class="bi bi-search me-1" aria-hidden="true"></i>Search
-          </button>
-        </div>
-        <p class="form-text mb-0 mt-2">Search works best when the site index has loaded. You can search for writings, presentations, media appearances, or publications.</p>
-      </div>
-    </form>
+    <h1 class="h2 mb-2">Search the site</h1>
+    <p class="text-body-secondary mb-4">Search for writings, presentations, media appearances, theses, and scientific publications.</p>
+
     {% include "_search-page-config.njk" %}
+
+    <form class="input-group input-group-lg mb-3 site-search-page-shell"
+          role="search"
+          action="/en/search/"
+          method="get"
+          data-search-page-fallback>
+      <label for="siteSearchPageInput" class="visually-hidden">Search term</label>
+      <input
+        id="siteSearchPageInput"
+        class="form-control"
+        type="search"
+        name="q"
+        placeholder="Type a search term..."
+        aria-label="Search the site"
+        autocomplete="off"
+        data-search-page-fallback-input
+        data-search-modular-input
+      >
+      <button class="btn btn-primary px-4" type="submit">
+        <i class="bi bi-search me-1" aria-hidden="true"></i>Search
+      </button>
+    </form>
+
     <div
       id="siteSearchPageUi"
       class="site-search-page-ui"
     ></div>
+
     <noscript>
       <p class="alert alert-warning mt-3">Search requires JavaScript. Please enable JavaScript to use search.</p>
     </noscript>

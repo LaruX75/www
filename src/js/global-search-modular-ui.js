@@ -105,6 +105,19 @@
     function renderShell() {
       // Idempotent shell. Kept DOM-stable so tests can assert the
       // absence of `.pagefind-ui__*` classes on this surface.
+      //
+      // PF5-H1A: if the caller has already SSR-rendered an input with
+      // the target ID (page search surfaces do — /haku/ + /en/search/
+      // ship <form data-search-page-fallback> containing the input
+      // with data-search-modular-input), we DO NOT inject a duplicate
+      // input. Modular UI's Input component wires up against the
+      // existing element by selector, so we only need to inject
+      // filters + summary + results into the mount.
+      //
+      // If no existing input is found (navbar case: <div id="siteSearchUi">
+      // has no input in SSR), the factory falls back to the pre-H1A
+      // behaviour and injects the whole shell — including its own
+      // input inside the mount.
       const filtersMarkup = FACET_GROUPS.length
         ? `<div class="site-search-page-filters mb-3" data-search-modular-filters role="region" aria-label="${escapeHtml(regionLabel)}">
             ${FACET_GROUPS.map((group) => `
@@ -115,6 +128,20 @@
               ></div>`).join("")}
           </div>`
         : "";
+      const existingInput = document.getElementById(inputId);
+      if (existingInput && existingInput.matches("input[type='search']")) {
+        // Enhance in place. Input stays where SSR placed it (inside
+        // the SSR fallback form on the search page); factory injects
+        // only the filters/summary/results below.
+        mount.innerHTML = `
+          <div class="site-search-page-modular" data-search-modular-ui>
+            ${filtersMarkup}
+            <div class="site-search-page-summary text-body-secondary small mb-3" data-search-modular-summary aria-live="polite" aria-atomic="true"></div>
+            <div class="site-search-page-results" data-search-modular-results></div>
+          </div>
+        `;
+        return;
+      }
       mount.innerHTML = `
         <div class="site-search-page-modular" data-search-modular-ui>
           <label for="${escapeHtml(inputId)}" class="form-label fw-semibold visually-hidden">${escapeHtml(translations.search_label || "")}</label>
@@ -196,7 +223,10 @@
         translations
       });
 
-      inputElement = mount.querySelector("[data-search-modular-input]");
+      // Input lookup: prefer the exact ID (the enhancement target), then
+      // fall back to the mount's own injected input (navbar case).
+      inputElement = document.getElementById(inputId)
+        || mount.querySelector("[data-search-modular-input]");
       const summaryEl = mount.querySelector("[data-search-modular-summary]");
       const resultsEl = mount.querySelector("[data-search-modular-results]");
 
@@ -391,7 +421,13 @@
         });
       }
 
-      if (fallbackFormEl) {
+      // PF5-H1A: the SSR fallback form is now the enhancement target
+      // itself (it contains the primary input Modular UI wires up).
+      // Hide it ONLY when its input is NOT the enhancement target —
+      // i.e. when a separate injected input inside the mount is used
+      // (pre-H1A layout). Under the H1A layout the fallback form IS
+      // the single visible search shell and must remain visible.
+      if (fallbackFormEl && inputElement && !fallbackFormEl.contains(inputElement)) {
         fallbackFormEl.hidden = true;
       }
 

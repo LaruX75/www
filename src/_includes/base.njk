@@ -51,7 +51,7 @@
   <link rel="stylesheet" href="{{ stylesheet }}">
   {% endfor %}
 </head>
-<body>
+<body{% if translationKey %} data-translation-key="{{ translationKey }}"{% endif %}>
   {% set currentLang = lang or (page.url | langFromUrl) %}
   <span hidden data-pagefind-filter="Kieli:{{ 'English' if currentLang == 'en' else 'Suomi' }}"></span>
   {% if pagefindDocument and pagefindDocument.filters %}
