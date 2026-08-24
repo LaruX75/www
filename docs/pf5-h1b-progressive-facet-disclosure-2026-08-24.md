@@ -2,14 +2,118 @@
 
 ## Status
 
-IMPLEMENTATION SLICE — implements the second slice recommended by the PF5-H1 audit's GO decision. On `/haku/` and `/en/search/` only the truly-global `Sisältö` facet is shown by default. Domain-specific secondary facets stay mounted in the DOM (Pagefind still computes their hit counts and owns their state) but are `hidden` until the matching `Sisältö` value is selected. Zero Pagefind state change, zero new controller, zero taxonomy change, zero result-presenter change.
+**CLOSED / GREEN / MAIN.** Merged 2026-08-24 as PR [#142](https://github.com/LaruX75/www/pull/142); merge commit `a9f8d4a4cd557891042042b4e03439ceb0c25b37` is the current `origin/main`. Post-merge Actions run [32735130086](https://github.com/LaruX75/www/actions/runs/32735130086) — build / deploy / smoke all success. Production HTTP smoke verified: `/haku/`, `/en/search/` HTTP/2 200; inline config carries `secondaryFacetsByContentType`; merged-main headless-Chrome behavior verified (default 1 wrapper / 6 pills / 11 hidden secondary; Julkaisut reveals publication facets only; union works; All resets).
 
-## Branch / base / HEAD
+Implementation slice for the second slice recommended by the PF5-H1 audit's GO decision. On `/haku/` and `/en/search/` only the truly-global `Sisältö` facet is shown by default. Domain-specific secondary facets stay mounted in the DOM (Pagefind still computes their hit counts and owns their state) but are `hidden` until the matching `Sisältö` value is selected. Zero Pagefind state change, zero new controller, zero taxonomy change, zero result-presenter change.
 
-- **Branch:** `pf5/h1b-progressive-facets`
-- **Worktree:** `/private/tmp/www-pf5-h1b-impl`
-- **Base:** `origin/main` = `0b9e4722dc532eb655a3c297352bacf3b7b5ebaa` (post PF5-H1A closure PR #141)
-- **HEAD at report time:** `0b9e4722dc532eb655a3c297352bacf3b7b5ebaa` (no commit yet — pending review)
+## Closure / merged state (2026-08-24)
+
+| | |
+|---|---|
+| PR | [#142](https://github.com/LaruX75/www/pull/142) — MERGED |
+| mergedAt | 2026-08-24T13:51:09Z |
+| mergedBy | LaruX75 (via `gh pr merge --match-head-commit`) |
+| Implementation head SHA | `577fbd1b9a49c46192139745db557d64055ef85c` |
+| Merge commit SHA | `a9f8d4a4cd557891042042b4e03439ceb0c25b37` |
+| Resulting `origin/main` | `a9f8d4a4cd557891042042b4e03439ceb0c25b37` |
+| Previous `origin/main` (H1A closure baseline) | `0b9e4722dc532eb655a3c297352bacf3b7b5ebaa` |
+| Pre-merge PR CI | build-and-verify PASS (3m32s), playwright PASS (7m43s), mergeStateStatus CLEAN |
+| Post-merge Actions run | [32735130086](https://github.com/LaruX75/www/actions/runs/32735130086) — build ✓ / deploy ✓ / smoke ✓ |
+| Production `/haku/` | HTTP/2 200 |
+| Production `/en/search/` | HTTP/2 200 |
+| Production inline config | ships `"secondaryFacetsByContentType":{"Julkaisut":[…]}` (PROVEN via curl) |
+
+## Merged-main behavior verification (headless Chrome on `/haku/?q=tekoäly`, PROVEN 2026-08-24)
+
+**FI /haku/:**
+
+| Action | Visible filter slots | Notes |
+|---|---|---|
+| Default (post-query) | `["Sisältö"]` — 1 wrapper, 6 pills, 11 hidden secondary | ✓ |
+| Click `Sisältö = Julkaisut` | `["Sisältö", "Publications group", "Publications quality"]` — results narrow to `kinds=["publications"]` | ✓ Pagefind ranking preserved |
+| Add `Sisältö = Esitykset` (union) | `["Sisältö", "Publications group", "Publications quality", "PresentationYear", "PresentationTopic"]` — 5 wrappers | ✓ union PROVEN |
+| Click `All` (reset) | `["Sisältö"]` — back to default | ✓ |
+
+**EN /en/search/ (parity):**
+
+| Action | Visible filter slots | Notes |
+|---|---|---|
+| Default (post-query `learning`) | `["Sisältö"]` | ✓ same shell as FI |
+| Click `Sisältö = Esitykset` | `["Sisältö", "PresentationYear", "PresentationTopic"]` | ✓ same disclosure semantics |
+
+**Structural measurements on merged main:**
+
+| Metric | H1A baseline | H1B (merged main) | Delta |
+|---|---|---|---|
+| Visible FilterPills wrappers on load | 12 | **1** | −11 |
+| Visible pill buttons on load | 441 | **6** | **−98.6%** |
+| First result top offset desktop 1280×900 | 1 237 px | **467 px** | **−770 px (−62%)** |
+| First result top offset mobile 375×667 | 1 234 px | **465 px** | **−769 px** |
+| Screenfuls before first result mobile | 1.85 | **0.70** | **−1.15 screenfuls** |
+| Filter slot count in DOM (Pagefind still sees) | 12 | 12 | 0 |
+| Hidden secondary slots on load | 0 | **11** | +11 |
+
+Identical to pre-merge implementation baseline — zero drift.
+
+## State ownership + observer model
+
+**Pagefind remains the sole owner of filter state.** The H1B visibility layer:
+- Reads Pagefind's own `aria-pressed` attribute on each `Sisältö` pill via `MutationObserver` (`attributeFilter: ["aria-pressed"], subtree: true, childList: true`).
+- On any mutation: reads all `[aria-pressed="true"]` pill buttons in the `Sisältö` slot; extracts their `<span aria-label>` value; filters out the "All"/"Kaikki" reset marker; toggles `slot.hidden` on each secondary slot whose `data-search-modular-secondary-for` matches the current selection set.
+- No parallel `selectedDomain` state, no Pagefind API misuse, no query re-dispatch.
+
+**Removability:** the observer is a compatibility shim over Pagefind's DOM-based selection signal. It is **safe to remove later** if Pagefind 1.6+ (or a successor) exposes a supported filter-state event/API (e.g. `instance.on("filterChanged", …)` or `instance.getSelectedFilters()`). At that point the observer would be replaced by an event handler with identical semantics, and the `MutationObserver` can be deleted.
+
+## Multi-selection UX decision (documented + PROVEN)
+
+FilterPills is `selectMultiple: true` (unchanged from PF5-G1). H1B chose **UNION** semantics: multi-selecting `Sisältö` values reveals the union of the selected domains' secondary facets. Matches Pagefind's own OR semantics across content types. Verified on merged main: Julkaisut + Esitykset → 5 wrappers (Sisältö + Publications group + Publications quality + PresentationYear + PresentationTopic); no writings/theses/media leak.
+
+## Failure path (unchanged from H1A)
+
+- **JS disabled** → SSR search form remains authoritative; native GET submit works.
+- **Pagefind / Modular UI init failure** → factory `.catch()` renders fallback message inside the mount; SSR form remains visible + usable. H1B visibility logic never runs.
+- **Sisältö pill missing** in current Pagefind partition (e.g. no publications indexed for EN `learning`) → the FilterPills simply doesn't render that value; user can't select it; test skips gracefully.
+- **Slow load** → SSR form usable immediately; secondary facets stay hidden regardless.
+
+## Accessibility
+
+- Hidden facet groups use native `hidden` attribute on the outer slot `<div>`. Screen readers skip hidden regions; focus never lands in hidden facet controls.
+- Region label unchanged (`Rajaa hakua` / `Narrow the search`).
+- No new ARIA introduced.
+- No new live-region announcements added (Pagefind's own summary live region unchanged).
+- Native `<button>` keyboard interactions on Sisältö pills unchanged.
+- Pre-merge combined a11y regression suite (`accessibility.spec.js` + `accessibility-tools.spec.js` + `contrast.spec.js` + `navigation.spec.js`) — all pass.
+
+## FI / EN parity
+
+- Same `_search-page-config.njk` partial emits both locale configs.
+- `Sisältö` VALUES stay Finnish per PF3 decision — configuration keys are Finnish tokens (`"Julkaisut"`, `"Esitykset"`, …) on both partitions.
+- On EN partition, `Julkaisut`/`Kirjoitukset ja puheenvuorot`/`Opinnäytteet` may not surface for a given probe query (publications/writings/theses are FI-canonical only). Documented from PF5-G1 as "publications-only-facet EN skips".
+- `Esitykset` and `Mediassa` surface on both partitions.
+- Merged-main verification: EN `learning` query default = `["Sisältö"]`; picking `Esitykset` reveals `PresentationYear`, `PresentationTopic` — identical semantics to FI.
+
+## Deletion
+
+Zero code deletion. Display-visibility layer added over existing filter infrastructure. What went down for the user:
+- Default filter visibility: 12 wrappers → 1 wrapper
+- Default pill button count: 441 → 6 (−98.6%)
+- Desktop first-result offset: 1 237 → 467 px (−62%)
+- Mobile screenfuls before first result: 1.85 → 0.70 (−1.15)
+
+No Pagefind filter, no metadata, no taxonomy, no canonical semantics changed. Secondary facets remain fully functional — just hidden until relevant.
+
+## Pre-merge implementation state (historical)
+
+- **Branch (during implementation):** `pf5/h1b-progressive-facets`
+- **Worktree (during implementation):** `/private/tmp/www-pf5-h1b-impl`
+- **Base at implementation time:** `0b9e4722dc532eb655a3c297352bacf3b7b5ebaa`
+- **Implementation commit created after review:** `577fbd1b9a49c46192139745db557d64055ef85c` — fast-forward-merged into `main` as part of merge commit `a9f8d4a4` (PR #142).
+
+## Next-workstream stop rules
+
+- **PF5-H1C — Result-content hierarchy refinement:** **DOES NOT AUTO-START.** Per H1 audit §19, H1C is only opened if H1A + H1B reveal a specific per-domain problem, or if a G3 Media slice re-opens the media card shape. Neither trigger has fired.
+- **G3 (Media Pagefind projection) / G4 (Writings meta widening):** DO NOT AUTO-START. Next workstream is chosen separately based on latest `main`, roadmap, and closure evidence.
+- **BBS / Gopher / theme work:** DO NOT AUTO-START.
 
 ## Audit reference
 
