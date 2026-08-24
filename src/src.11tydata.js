@@ -28,11 +28,16 @@ const {
   FI_COMPATIBILITY_CONTENT_TYPES
 } = require("./_data/writingsPage");
 const { buildPublicationsPageModel } = require("./_data/publicationsPage");
+const {
+  buildPresentationsPageSourceData,
+  buildCanonicalPresentationItems
+} = require("./_data/presentationsPage");
 const { buildThesisFindExploreDocument } = require("./_utils/thesesFindExplore");
 const { buildPublicationFindExploreDocument } = require("./_utils/publicationsFindExplore");
 
 const writingsLookupCache = new WeakMap();
 const publicationsLookupCache = new WeakMap();
+const presentationsLookupCache = new WeakMap();
 
 function normalizeFilterValues(values, limit = 8) {
   const array = Array.isArray(values) ? values : values ? [values] : [];
@@ -124,12 +129,92 @@ function resolvePagefindPublications(data) {
   return buildPublicationFindExploreDocument(item);
 }
 
+function getPresentationsLookup(data) {
+  if (!data || !data.collections) return null;
+  if (presentationsLookupCache.has(data.collections)) {
+    return presentationsLookupCache.get(data.collections);
+  }
+
+  const lookup = new Map();
+  try {
+    const sourceData = buildPresentationsPageSourceData(data);
+    // buildCanonicalPresentationItems returns records enriched by
+    // withPresentationSemantics: presentationType, event, role,
+    // landingUrl, landingType, hasLocalDetail, externalFirst, topics,
+    // year, contexts. External-first records without local detail
+    // are still in the array but their pageUrl/localPageUrl are
+    // empty strings; the guard below filters them out so the lookup
+    // only maps records that actually correspond to indexed local
+    // detail pages.
+    buildCanonicalPresentationItems(sourceData).forEach((item) => {
+      if (item?.pageUrl) lookup.set(item.pageUrl, item);
+      if (item?.localPageUrl && item.localPageUrl !== item.pageUrl) {
+        lookup.set(item.localPageUrl, item);
+      }
+    });
+  } catch (error) {
+    // Some Eleventy phases do not have the full presentation graph yet.
+  }
+  presentationsLookupCache.set(data.collections, lookup);
+  return lookup;
+}
+
+// Pure projection from an enriched canonical presentation item to the
+// Pagefind {filters, meta} shape. Extracted so unit tests can exercise
+// the projection without going through the filesystem-backed
+// buildPresentationsPageSourceData.
+function projectPresentationRecord(item) {
+  if (!item) return null;
+  const filters = [
+    { name: "Sisältö", value: "Esitykset" },
+    { name: "FindExplore", value: "presentations" }
+  ];
+
+  if (item.year) {
+    filters.push({ name: "PresentationYear", value: String(item.year) });
+  }
+  if (item.presentationType) {
+    filters.push({ name: "PresentationType", value: String(item.presentationType) });
+  }
+  normalizeFilterValues(item.topics, 6)
+    .forEach((topic) => filters.push({ name: "PresentationTopic", value: topic }));
+  normalizeFilterValues(item.contexts, 8)
+    .forEach((context) => {
+      if (context === "research") {
+        filters.push({ name: "Research context", value: "research" });
+      }
+    });
+
+  const meta = {};
+  if (item.year) meta.PresentationYear = String(item.year);
+  if (item.presentationType) meta.PresentationType = String(item.presentationType);
+  if (item.event) meta.PresentationEvent = String(item.event);
+
+  return { filters, meta };
+}
+
+function resolvePagefindPresentations(data) {
+  const url = data?.page?.url || "";
+  const lookup = getPresentationsLookup(data);
+  const item = lookup?.get(url);
+  // Only presentations that have a local detail page match. External-
+  // first Canva/YouTube/AOE records without local HTML are not
+  // indexed by Pagefind (they have no page to index) and therefore
+  // never reach this projector.
+  if (!item) return null;
+  return projectPresentationRecord(item);
+}
+
 function resolvePagefindDocument(data) {
   if (data?.thesisDetail) {
     return buildThesisFindExploreDocument(data.thesisDetail);
   }
 
-  return resolvePagefindPublications(data) || resolvePagefindWritings(data);
+  return (
+    resolvePagefindPublications(data)
+    || resolvePagefindPresentations(data)
+    || resolvePagefindWritings(data)
+  );
 }
 
 // URL -> breadcrumbKey (tarkat vertailut)
@@ -281,3 +366,9 @@ module.exports = {
     pagefindDocument: (data) => resolvePagefindDocument(data)
   }
 };
+
+// Named exports for unit tests only. The Eleventy runtime consumes
+// `eleventyComputed` above; nothing at runtime imports these.
+module.exports.projectPresentationRecord = projectPresentationRecord;
+module.exports.resolvePagefindPresentations = resolvePagefindPresentations;
+module.exports.resolvePagefindDocument = resolvePagefindDocument;

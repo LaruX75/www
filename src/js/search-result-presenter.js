@@ -79,7 +79,7 @@
     if (meta.publicationYear || meta.publicationType || meta.publicationCsl) return "publications";
     if (meta.thesesYear || meta.thesesType || meta.thesesAuthorLine) return "theses";
     if (meta.mediaType || meta.mediaRole || meta.mediaOutlet) return "media";
-    if (meta.PresentationYear || meta.PresentationType || meta.PresentationEvent || meta.PresentationId) return "presentations";
+    if (meta.PresentationYear || meta.PresentationType || meta.PresentationEvent) return "presentations";
     if (meta.writingsYear || meta.writingsContentType) return "writings";
     return "unknown";
   }
