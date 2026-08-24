@@ -1,10 +1,15 @@
 const { test, expect } = require("@playwright/test");
 
-// PF-UI-L10N1 — verify the nav-bar Pagefind UI overlay renders Finnish
-// filter labels on Finnish pages, English on English pages, and that
-// the /haku/ and /en/search/ full-page UIs stay in the correct language.
-// Also re-verify that PF-PERF2 warmup + Enter-scroll hotfix + Research
+// PF-UI-L10N1 — verify the nav-bar Modular UI overlay ships correct
+// Finnish (and English) label strings via its inline JSON config, that
+// the /haku/ and /en/search/ full-page Modular UIs stay in the correct
+// language, and that PF-PERF2 warmup + Enter-scroll hotfix + Research
 // boundary + no data-pagefind-body invariants still hold.
+//
+// Post PF5-G1 navbar migration: Finnish/English translation bundles no
+// longer live inside site-ui.js (Default UI removed). Navbar strings
+// come from src/_includes/_search-nav-config.njk, emitted as a per-
+// locale inline <script id="siteSearchNavConfig"> JSON blob.
 
 async function openNavSearchOverlay(page) {
   // The nav search UI is inside a `searchOverlay` container. On the
@@ -24,22 +29,41 @@ async function openNavSearchOverlay(page) {
 }
 
 test.describe("PF-UI-L10N1 Finnish search UI labels", () => {
-  test("Finnish nav-bar search overlay ships a full Finnish translations bundle", async ({ page }) => {
+  test("Finnish nav-bar Modular UI ships its Finnish translations via inline config", async ({ page }) => {
+    // Post PF5-G1 navbar migration: navbar's Finnish labels come from
+    // the site-owned inline JSON <script id="siteSearchNavConfig">
+    // emitted by src/_includes/_search-nav-config.njk. Assert the FI
+    // strings render on a Finnish page and match the previous PF-UI-
+    // L10N1 semantics (search_label, filters_label, load_more, clear).
     await page.goto("/");
-    // Assert the shipped JS carries the Finnish strings (this is what
-    // the runtime hands to PagefindUI). Fetch via the same origin the
-    // runtime uses so any URL rewriting stays consistent.
-    const siteUiSource = await page.evaluate(async () => {
-      const res = await fetch("/js/site-ui.js", { cache: "no-store" });
-      return await res.text();
+    const config = await page.evaluate(() => {
+      const node = document.getElementById("siteSearchNavConfig");
+      return node ? JSON.parse(node.textContent) : null;
     });
-    // Match on tolerant patterns so any whitespace / non-breaking
-    // space escape variants still count.
-    expect(siteUiSource, "site-ui.js must ship 'Suodattimet'").toMatch(/Suodattimet/);
-    expect(siteUiSource, "site-ui.js must ship 'Hae sivustolta'").toMatch(/Hae\s+sivustolta/);
-    expect(siteUiSource, "site-ui.js must ship 'Tyhjennä' (clear)").toMatch(/Tyhjennä/);
-    expect(siteUiSource, "site-ui.js must ship 'Näytä lisää tuloksia'").toMatch(/Näytä\s+lisää\s+tuloksia/);
-    expect(siteUiSource, "site-ui.js must still ship the English 'Filters' fallback for /en/ pages").toContain("Filters");
+    expect(config, "FI navbar must include the inline nav config").not.toBeNull();
+    expect(config.languageFilter).toBe("Suomi");
+    expect(config.translations.search_label).toBe("Hae sivustolta");
+    expect(config.translations.filters_label).toBe("Suodattimet");
+    expect(config.translations.clear_search).toBe("Tyhjennä");
+    expect(config.translations.load_more).toContain("Lataa lisää tuloksia");
+    expect(config.translations.zero_results).toContain("Ei tuloksia");
+  });
+
+  test("English nav-bar Modular UI ships its English translations via inline config", async ({ page }) => {
+    // Parity test on an EN page: same #siteSearchNavConfig contract,
+    // English strings.
+    await page.goto("/en/");
+    const config = await page.evaluate(() => {
+      const node = document.getElementById("siteSearchNavConfig");
+      return node ? JSON.parse(node.textContent) : null;
+    });
+    expect(config, "EN navbar must include the inline nav config").not.toBeNull();
+    expect(config.languageFilter).toBe("English");
+    expect(config.translations.search_label).toBe("Search the site");
+    expect(config.translations.filters_label).toBe("Filters");
+    expect(config.translations.clear_search).toBe("Clear");
+    expect(config.translations.load_more).toContain("Load more results");
+    expect(config.translations.zero_results).toContain("No results");
   });
 
   test("Finnish /haku/ ships its Finnish global-search config inline", async ({ page }) => {

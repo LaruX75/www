@@ -553,107 +553,40 @@
         instance.hide();
       }
 
-      const getPagefindInput = () =>
-        searchOverlay?.querySelector('.pagefind-ui__search-input, .pf-input') || null;
-
-      const focusPagefindInput = (prefillQuery = '', { triggerQuery = true } = {}) => {
-        const input = getPagefindInput();
-        if (!input) return false;
-        input.focus({ preventScroll: true });
-        if (prefillQuery && triggerQuery && pagefindUi?.triggerSearch) {
-          pagefindUi.triggerSearch(prefillQuery);
-        } else if (prefillQuery && triggerQuery) {
-          input.value = prefillQuery;
-          input.dispatchEvent(new Event('input', { bubbles: true }));
-        }
-        return document.activeElement === input;
-      };
-
-      const waitForPagefindInput = (prefillQuery = '', attempt = 0) => {
-        if (focusPagefindInput(prefillQuery, { triggerQuery: attempt === 0 })) return;
-        if (attempt < 20) {
-          window.setTimeout(() => waitForPagefindInput(prefillQuery, attempt + 1), 50);
-        }
-      };
-
+      // Navbar Modular UI adapter — thin wrapper around the shared
+      // factory (window.createModularSearchUI, defined in
+      // /js/global-search-modular-ui.js and loaded globally via
+      // _meta.njk). Lazy-initialised on first dialog open; the shared
+      // factory owns Pagefind Instance, input mount, presenter-based
+      // result rendering, and atomic Kieli-pinned query dispatch.
+      // site-ui.js owns only the native <dialog> lifecycle around it.
       function initPagefindUi() {
         if (pagefindUiReady) return pagefindUiReady;
-
         pagefindUiReady = new Promise((resolve) => {
-          const mount = searchOverlay?.querySelector('[data-pagefind-ui]');
-          if (!mount) {
+          if (typeof window.createModularSearchUI !== 'function') {
+            console.warn('[navbar search] createModularSearchUI missing — load /js/global-search-modular-ui.js before /js/site-ui.js.');
             resolve(null);
             return;
           }
-
-          const waitForUi = (attempt = 0) => {
-            if (!window.PagefindUI) {
-              if (attempt < 40) {
-                window.setTimeout(() => waitForUi(attempt + 1), 50);
-              } else {
-                console.warn('Pagefind UI ei latautunut hakudialogiin.');
-                resolve(null);
-              }
-              return;
-            }
-
-            const isEn = (document.documentElement.lang || '').toLowerCase().startsWith('en');
-            const languageFilter = mount.dataset.pagefindLang || (isEn ? 'English' : 'Suomi');
-            const placeholder = mount.dataset.pagefindPlaceholder || (isEn ? 'Write a search term...' : 'Kirjoita hakusana...');
-
-            // PF-UI-L10N1 — full PagefindUI translation bundle. Before
-            // this fix the nav-bar overlay used a partial bundle,
-            // which meant PagefindUI's left-side filters panel fell
-            // back to English defaults ("Filters", alt-search
-            // messages, suggestion header) on Finnish pages.
-            // (Pre-PF5-G1 the /haku/ init lived in a sibling module;
-            // /haku/ + /en/search/ now use Modular UI via
-            // /js/global-search-modular-ui.js — navbar keeps the
-            // Default UI here until its own rollout.)
-            pagefindUi = new window.PagefindUI({
-              element: mount,
-              bundlePath: '/pagefind/',
-              pageSize: 6,
-              resetStyles: false,
-              showImages: false,
-              showSubResults: true,
-              excerptLength: 24,
-              autofocus: true,
-              translations: isEn
-                ? {
-                    placeholder,
-                    clear_search: 'Clear search',
-                    load_more: 'Show more results',
-                    search_label: 'Search this site',
-                    filters_label: 'Filters',
-                    zero_results: 'No results for [SEARCH_TERM]',
-                    many_results: '[COUNT] results for [SEARCH_TERM]',
-                    one_result: '[COUNT] result for [SEARCH_TERM]',
-                    alt_search: 'No results for [SEARCH_TERM]. Showing results for [DIFFERENT_TERM] instead.',
-                    search_suggestion: 'No results for [SEARCH_TERM]. Try one of the following searches:',
-                    searching: 'Searching [SEARCH_TERM]...'
-                  }
-                : {
-                    placeholder,
-                    clear_search: 'Tyhjennä haku',
-                    load_more: 'Näytä lisää tuloksia',
-                    search_label: 'Hae sivustolta',
-                    filters_label: 'Suodattimet',
-                    zero_results: 'Ei tuloksia haulle [SEARCH_TERM]',
-                    many_results: '[COUNT] tulosta haulle [SEARCH_TERM]',
-                    one_result: '[COUNT] tulos haulle [SEARCH_TERM]',
-                    alt_search: 'Ei tuloksia haulle [SEARCH_TERM]. Näytetään tulokset haulla [DIFFERENT_TERM].',
-                    search_suggestion: 'Ei tuloksia haulle [SEARCH_TERM]. Kokeile jotain seuraavista:',
-                    searching: 'Haetaan [SEARCH_TERM]...'
-                  }
-            });
-            pagefindUi.triggerFilters({ Kieli: languageFilter });
-            resolve(pagefindUi);
-          };
-
-          waitForUi();
+          const mount = document.getElementById('siteSearchUi');
+          const configEl = document.getElementById('siteSearchNavConfig');
+          if (!mount || !configEl) {
+            resolve(null);
+            return;
+          }
+          const api = window.createModularSearchUI({
+            mountEl: mount,
+            configEl,
+            inputId: 'siteSearchNavInput',
+            pageSize: 6,
+            enableFilters: false,
+            enableUrlSync: false,
+            fallbackFormEl: null,
+            getInitialQuery: () => ''
+          });
+          pagefindUi = api;
+          api.ready.then(() => resolve(api)).catch(() => resolve(null));
         });
-
         return pagefindUiReady;
       }
 
@@ -665,7 +598,11 @@
         if (!searchOverlay.open) {
           searchOverlay.showModal();
         }
-        initPagefindUi().then(() => waitForPagefindInput(prefillQuery));
+        initPagefindUi().then((api) => {
+          if (api && typeof api.focusInput === 'function') {
+            api.focusInput(prefillQuery);
+          }
+        });
       }
 
       function closeSearch() {
