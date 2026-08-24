@@ -307,16 +307,56 @@
           wrapper.removeAttribute("aria-labelledby");
           wrapper.dataset.searchModularI18n = "done";
         };
+        // Hotfix (post-H1B): the top-level Sisältö pills carry
+        // Pagefind-generated numeric counts. Those counts are
+        // computed within the currently-filtered result set, so
+        // clicking one domain collapses every other domain to
+        // "(0)" even though the underlying corpus still contains
+        // many results in those categories. Sum-of-domain-pills
+        // also does not equal the "All" pill because some hits
+        // have no `Sisältö` facet value at all (e.g. taxonomy /
+        // index pages). The numbers therefore mislead users into
+        // reading them as "how many results would this category
+        // have" — they are not disjunctive facet counts and
+        // Pagefind Modular UI 1.5.2 does not expose a supported
+        // way to compute those without duplicating the whole
+        // search state. Rather than fake numbers or build a
+        // parallel counting engine, strip the "(N)" suffix from
+        // the visible pill text on the Sisältö slot only. The
+        // authoritative overall result count remains in the
+        // summary line. Also localise Pagefind's hard-coded
+        // English "All" reset pill to the config-supplied token
+        // (Kaikki / All). Both changes are DOM-only post-render
+        // decoration — no parallel state, no Pagefind API misuse.
+        const allLabel = translations.all_label || "";
+        const stripSisaltoCountsAndLocaliseAll = (slot) => {
+          const wrapper = slot.querySelector(".pagefind-modular-filter-pills-wrapper");
+          if (!wrapper) return;
+          const spans = wrapper.querySelectorAll(".pagefind-modular-filter-pill > span[aria-label]");
+          for (const span of spans) {
+            const rawLabel = (span.getAttribute("aria-label") || "").trim();
+            const visibleLabel = (rawLabel === "All" && allLabel) ? allLabel : rawLabel;
+            if (span.textContent !== visibleLabel) {
+              span.textContent = visibleLabel;
+            }
+            if (rawLabel === "All" && allLabel) {
+              span.setAttribute("aria-label", allLabel);
+            }
+          }
+        };
         const filtersRegion = mount.querySelector("[data-search-modular-filters]");
+        const sisaltoDecorationSlot = slots.find((s) => s.dataset.searchModularFilterName === "Sisältö");
         if (filtersRegion) {
           const facetObserver = new MutationObserver(() => {
             for (const slot of slots) localiseFacet(slot);
+            if (sisaltoDecorationSlot) stripSisaltoCountsAndLocaliseAll(sisaltoDecorationSlot);
           });
           facetObserver.observe(filtersRegion, {
             childList: true,
             subtree: true
           });
           for (const slot of slots) localiseFacet(slot);
+          if (sisaltoDecorationSlot) stripSisaltoCountsAndLocaliseAll(sisaltoDecorationSlot);
         }
 
         // PF5-H1B — Progressive facet disclosure.
@@ -426,10 +466,36 @@
         if (btn) btn.hidden = true;
       };
 
+      // Hotfix (post-H1B): keep the navbar dialog's "full search
+      // page" link (`[data-search-page-link]`) in sync with the
+      // current query so clicking it lands on `/haku/?q=<query>`
+      // (or `/en/search/?q=<query>`) with the query already
+      // hydrated. No parallel state store, no localStorage — the
+      // link href IS the transfer channel. Only runs on surfaces
+      // that ship such a link (navbar). Both FI and EN dialogs
+      // ship the same [data-search-page-link] hook.
+      const fullSearchPageUrl = String(config.fullSearchPageUrl || "").trim();
+      const searchPageLinks = fullSearchPageUrl
+        ? Array.from(document.querySelectorAll(`a[data-search-page-link][href^="${fullSearchPageUrl}"]`))
+        : [];
+      const syncFullSearchLinks = (term) => {
+        if (!searchPageLinks.length) return;
+        const q = String(term || "").trim();
+        const href = q
+          ? `${fullSearchPageUrl}?q=${encodeURIComponent(q)}`
+          : fullSearchPageUrl;
+        for (const link of searchPageLinks) {
+          if (link.getAttribute("href") !== href) {
+            link.setAttribute("href", href);
+          }
+        }
+      };
+
       instance.on("search", (term) => {
         renderVersion += 1;
         currentTerm = String(term || "").trim();
         clearResults();
+        syncFullSearchLinks(currentTerm);
         if (!currentTerm) {
           summaryEl.textContent = "";
           return;

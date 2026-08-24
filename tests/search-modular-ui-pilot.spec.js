@@ -216,7 +216,9 @@ for (const locale of LOCALES) {
             );
             expect(kindsAfter.length).toBeLessThanOrEqual(2);
 
-            await sisaltoSlot.locator('.pagefind-modular-filter-pill', { hasText: /^All/ }).click();
+            // Hotfix (post-H1B): the reset pill is localised to
+            // "Kaikki" on FI and stays "All" on EN. Match either.
+            await sisaltoSlot.locator('.pagefind-modular-filter-pill', { hasText: /^(All|Kaikki)$/ }).click();
             await page.waitForTimeout(500);
             const afterClearUrls = await page.locator('[data-search-modular-results] li[data-search-result-kind] a').evaluateAll(
                 (nodes) => nodes.map((n) => n.getAttribute('href'))
@@ -332,19 +334,32 @@ for (const locale of LOCALES) {
                 .toBeLessThanOrEqual(sisaltoOnly);
         });
 
-        test('facet pills expose numeric hit counts', async ({ page }) => {
+        test('Pagefind facet hit counts remain tracked internally (visible text is label-only per post-H1B hotfix)', async ({ page }) => {
+            // Hotfix (post-H1B): the top-level Sisältö pills no longer
+            // render "(N)" in their VISIBLE text because Pagefind's
+            // filtered-set counts collapse other domains to "(0)" and
+            // do not sum to the "All"/"Kaikki" count (some hits have
+            // no Sisältö facet). Pagefind still tracks the raw counts
+            // internally via `data-pfmod-pill-count` — this test
+            // asserts (a) no numeric parentheses in visible text and
+            // (b) Pagefind's own count data attribute remains
+            // populated so hit-count semantics are unchanged upstream.
             await gotoAndAssertSite(page, locale.path);
             const input = await waitForModularReady(page);
             await input.fill(locale.probeQuery);
             await expect(page.locator('[data-search-modular-results] li[data-search-result-kind]').first())
                 .toBeVisible({ timeout: RESULT_TIMEOUT_MS });
+            await page.waitForTimeout(600);
 
             const sisaltoSlot = page.locator('[data-search-modular-filter-slot][data-search-modular-filter-name="Sisältö"]');
             const pillTexts = await sisaltoSlot.locator('.pagefind-modular-filter-pill').evaluateAll(
                 (nodes) => nodes.map((n) => (n.textContent || '').trim())
             );
-            const withCounts = pillTexts.filter((t) => /\(\d+\)$/.test(t));
-            expect(withCounts.length).toBeGreaterThanOrEqual(2);
+            for (const t of pillTexts) {
+                expect(t, `pill "${t}" must not contain a visible "(N)" count after hotfix`).not.toMatch(/\(\d+\)/);
+            }
+            const countedInternally = await sisaltoSlot.locator('.pagefind-modular-filter-pill span[data-pfmod-pill-count]').count();
+            expect(countedInternally, 'Pagefind must still track hit counts via data-pfmod-pill-count').toBeGreaterThan(1);
         });
 
         test('filters region + every rendered facet expose a locale-appropriate accessible name', async ({ page }) => {

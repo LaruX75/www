@@ -68,16 +68,20 @@ async function primeQuery(page, query) {
 }
 
 async function clickSisaltoValue(page, value) {
-    const clicked = await page.evaluate((v) => {
+    // Hotfix (post-H1B): the "All" reset pill is now localised to
+    // "Kaikki" on FI and stays "All" on EN. Accept either aria-label
+    // for that reset value so this test helper works across locales.
+    const acceptValues = value === 'All' ? new Set(['All', 'Kaikki']) : new Set([value]);
+    const clicked = await page.evaluate((accept) => {
         const slot = Array.from(document.querySelectorAll('[data-search-modular-filter-slot]'))
             .find((s) => s.dataset.searchModularFilterName === 'Sisältö');
         if (!slot) return false;
         const btn = Array.from(slot.querySelectorAll('button.pagefind-modular-filter-pill'))
-            .find((b) => (b.querySelector('span[aria-label]')?.getAttribute('aria-label') || '').trim() === v);
+            .find((b) => accept.includes((b.querySelector('span[aria-label]')?.getAttribute('aria-label') || '').trim()));
         if (!btn) return false;
         btn.click();
         return true;
-    }, value);
+    }, Array.from(acceptValues));
     if (clicked) await page.waitForTimeout(500);
     return clicked;
 }
