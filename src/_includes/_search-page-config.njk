@@ -7,8 +7,15 @@
 
    Facet keys ("Sisältö", "Publications group", ...) match Pagefind's
    indexed data-pagefind-filter names verbatim; labels are localised
-   accessible names (site-owned), not new taxonomy. Same 12 groups
-   per PF5-G1 pilot FILTER PARITY: REDUCED / APPROVED. #}
+   accessible names (site-owned), not new taxonomy.
+
+   PF5-H1B — progressive facet disclosure. `facetGroups` now carries
+   the single truly-global facet (`Sisältö`). Domain-specific facets
+   live under `secondaryFacetsByContentType`, keyed by the exact
+   Pagefind `Sisältö` filter VALUE they belong to. The controller
+   mounts every one of them so Pagefind still sees them (unchanged
+   ranking + hit counts), but toggles their DOM visibility based on
+   the current `Sisältö` pill selection. Zero taxonomy change. #}
 {%- set currentLang = lang or (page.url | langFromUrl) -%}
 {%- set isEn = currentLang == "en" -%}
 {%- set searchPageConfig = {
@@ -29,18 +36,30 @@
     "searching": "Searching for [SEARCH_TERM]..." if isEn else "Haetaan hakusanalla [SEARCH_TERM]..."
   },
   "facetGroups": [
-    { "filter": "Sisältö",              "label": "Content type"                       if isEn else "Sisältötyyppi" },
-    { "filter": "Publications group",   "label": "Publication type (OKM)"             if isEn else "Julkaisutyyppi (OKM)" },
-    { "filter": "Publications quality", "label": "Publication quality"                if isEn else "Julkaisun laatu" },
-    { "filter": "Writings content type","label": "Writing type"                       if isEn else "Kirjoituksen tyyppi" },
-    { "filter": "Writings topic",       "label": "Writing topic"                      if isEn else "Kirjoituksen aihe" },
-    { "filter": "Theses type",          "label": "Thesis type"                        if isEn else "Opinnäytteen tyyppi" },
-    { "filter": "Theses role",          "label": "Role in thesis"                     if isEn else "Rooli opinnäytteessä" },
-    { "filter": "Mediatyyppi",          "label": "Media type"                         if isEn else "Mediatyyppi" },
-    { "filter": "Rooli",                "label": "Role in media"                      if isEn else "Rooli mediassa" },
-    { "filter": "Vuosi",                "label": "Media: year"                        if isEn else "Media: vuosi" },
-    { "filter": "PresentationYear",     "label": "Presentation year"                  if isEn else "Esityksen vuosi" },
-    { "filter": "PresentationTopic",    "label": "Presentation topic"                 if isEn else "Esityksen aihe" }
-  ]
+    { "filter": "Sisältö", "label": "Content type" if isEn else "Sisältötyyppi" }
+  ],
+  "secondaryFacetsByContentType": {
+    "Julkaisut": [
+      { "filter": "Publications group",   "label": "Publication type (OKM)" if isEn else "Julkaisutyyppi (OKM)" },
+      { "filter": "Publications quality", "label": "Publication quality"    if isEn else "Julkaisun laatu" }
+    ],
+    "Kirjoitukset ja puheenvuorot": [
+      { "filter": "Writings content type", "label": "Writing type"  if isEn else "Kirjoituksen tyyppi" },
+      { "filter": "Writings topic",        "label": "Writing topic" if isEn else "Kirjoituksen aihe" }
+    ],
+    "Opinnäytteet": [
+      { "filter": "Theses type", "label": "Thesis type"     if isEn else "Opinnäytteen tyyppi" },
+      { "filter": "Theses role", "label": "Role in thesis"  if isEn else "Rooli opinnäytteessä" }
+    ],
+    "Mediassa": [
+      { "filter": "Mediatyyppi", "label": "Media type"    if isEn else "Mediatyyppi" },
+      { "filter": "Rooli",       "label": "Role in media" if isEn else "Rooli mediassa" },
+      { "filter": "Vuosi",       "label": "Media: year"   if isEn else "Media: vuosi" }
+    ],
+    "Esitykset": [
+      { "filter": "PresentationYear",  "label": "Presentation year"  if isEn else "Esityksen vuosi" },
+      { "filter": "PresentationTopic", "label": "Presentation topic" if isEn else "Esityksen aihe" }
+    ]
+  }
 } -%}
 <script type="application/json" id="siteSearchPageConfig">{{ searchPageConfig | jsonSafe | safe }}</script>
