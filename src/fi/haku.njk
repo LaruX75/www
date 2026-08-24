@@ -7,45 +7,43 @@ permalink: /haku/
 translationKey: search
 lang: fi
 robots: noindex, follow
+suppressSubpageHero: true
 ---
-
-<section class="content-detail-hero content-detail-hero--search py-5 border-bottom">
-  <div class="site-shell">
-    <div>
-      <p class="content-detail-eyebrow mb-2">Sivuston haku</p>
-      <h1 class="content-detail-title mb-3">Hae sivustolta</h1>
-      <p class="content-detail-lead mb-0">Etsi kirjoituksia, puheita, mediaosumia, esityksiä ja tieteellisiä julkaisuja. Sivustolla on yli 2500 sivua sisältöä.</p>
-    </div>
-  </div>
-</section>
 
 <section class="py-4">
   <div class="site-shell">
-    <form class="card border-0 shadow-sm mb-4 site-search-page-fallback" action="/haku/" method="get" role="search" data-search-page-fallback>
-      <div class="card-body p-3 p-md-4">
-        <label class="form-label fw-semibold" for="siteSearchFallbackInputFi">Hakusana</label>
-        <div class="input-group input-group-lg">
-          <input
-            id="siteSearchFallbackInputFi"
-            class="form-control"
-            type="search"
-            name="q"
-            placeholder="Kirjoita hakusana..."
-            autocomplete="off"
-            data-search-page-fallback-input
-          >
-          <button class="btn btn-primary px-4" type="submit">
-            <i class="bi bi-search me-1" aria-hidden="true"></i>Hae
-          </button>
-        </div>
-        <p class="form-text mb-0 mt-2">Haku toimii parhaiten, kun sivuston hakemisto on ladattu. Voit hakea esimerkiksi kirjoituksia, esityksiä, mediaosumia tai julkaisuja.</p>
-      </div>
-    </form>
+    <h1 class="h2 mb-2">Hae sivustolta</h1>
+    <p class="text-body-secondary mb-4">Etsi kirjoituksia, esityksiä, mediaosumia, opinnäytteitä ja tieteellisiä julkaisuja.</p>
+
     {% include "_search-page-config.njk" %}
+
+    <form class="input-group input-group-lg mb-3 site-search-page-shell"
+          role="search"
+          action="/haku/"
+          method="get"
+          data-search-page-fallback>
+      <label for="siteSearchPageInput" class="visually-hidden">Hakusana</label>
+      <input
+        id="siteSearchPageInput"
+        class="form-control"
+        type="search"
+        name="q"
+        placeholder="Kirjoita hakusana..."
+        aria-label="Hae sivustolta"
+        autocomplete="off"
+        data-search-page-fallback-input
+        data-search-modular-input
+      >
+      <button class="btn btn-primary px-4" type="submit">
+        <i class="bi bi-search me-1" aria-hidden="true"></i>Hae
+      </button>
+    </form>
+
     <div
       id="siteSearchPageUi"
       class="site-search-page-ui"
     ></div>
+
     <noscript>
       <p class="alert alert-warning mt-3">Haku vaatii JavaScriptin. Aktivoi selaimen JavaScript käyttääksesi hakua.</p>
     </noscript>

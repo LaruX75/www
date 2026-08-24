@@ -462,6 +462,11 @@ for (const locale of LOCALES) {
         });
 
         test('Modular UI init failure falls back to the SSR form (no dead skeleton)', async ({ page }) => {
+            // PF5-H1A: the SSR shell form is the authoritative input on
+            // /haku/ + /en/search/ — it exists regardless of whether
+            // Modular UI initialises. When init fails, the form remains
+            // usable (native GET submit works), and the mount surface
+            // shows the fallback message instead of an empty skeleton.
             await page.route('**/pagefind/pagefind-modular-ui.js', (route) => route.fulfill({
                 status: 404,
                 contentType: 'text/plain',
@@ -470,8 +475,6 @@ for (const locale of LOCALES) {
 
             await gotoAndAssertSite(page, locale.path);
 
-            await expect(page.locator('#siteSearchPageInput')).toHaveCount(0);
-
             const mount = page.locator('#siteSearchPageUi');
             await expect(mount).toContainText(locale.fallbackMessageRegex);
 
@@ -479,6 +482,8 @@ for (const locale of LOCALES) {
             await expect(fallbackForm).toBeVisible();
 
             const fallbackInput = page.locator('[data-search-page-fallback-input]');
+            await expect(fallbackInput).toHaveCount(1);
+            await expect(fallbackInput).toBeVisible();
             await fallbackInput.fill(locale.probeQuery);
             await expect(fallbackInput).toHaveValue(locale.probeQuery);
         });
