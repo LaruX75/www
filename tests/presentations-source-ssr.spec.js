@@ -5,7 +5,7 @@ test.describe("presentation source sections SSR", () => {
     await page.goto("/esitykset/");
 
     const sourceArchive = page.locator("details.presentation-service-archive").nth(2);
-    await sourceArchive.locator("summary").first().click();
+    await expect(sourceArchive).toHaveAttribute("open", "");
 
     const canvaSection = sourceArchive.locator('section[aria-labelledby="canva-heading"]');
     const slideshareSection = sourceArchive.locator('section[aria-labelledby="slideshare-heading"]');
@@ -50,6 +50,7 @@ test.describe("presentation source sections without JS", () => {
       .first();
     const sourceArchiveSummary = sourceArchive.locator(":scope > summary");
     await expect(sourceArchiveSummary).toHaveCount(1);
+    await expect(sourceArchive).toHaveAttribute("open", "");
     await expect(sourceArchive.locator('section[aria-labelledby="canva-heading"]')).toHaveCount(1);
     await expect(sourceArchive.locator('section[aria-labelledby="aoe-heading"]')).toHaveCount(1);
     await expect(sourceArchive.locator('a[href*="canva.com/design/DAHI6X6dR_g"]')).toHaveCount(1);
