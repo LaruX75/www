@@ -768,3 +768,60 @@ html:not([data-bs-theme="dark"]) .breadcrumb-item.active {
     transform: translateY(-1px);
   }
 }
+
+/* ==========================================================================
+   PF5 HOTFIX (post-H1B) — Search UI regressions
+   1. Global search result list — remove the browser-default `list-item`
+      disc marker that surfaced because renderSharedCard emits <li> inside
+      a plain <div> container. Grid gap gives consistent spacing between
+      shared result cards on /haku/, /en/search/, navbar dialog, and F&E.
+   2. Pagefind Modular UI FilterPills — fix pill text contrast on the
+      dark theme. Pagefind's own `--pagefind-ui-fade: #707070` is a
+      fixed grey that becomes unreadable against near-black surfaces;
+      map pill colours onto Bootstrap theme tokens instead so both
+      themes read cleanly.
+   ========================================================================== */
+
+[data-search-modular-results] {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+[data-search-modular-results] > li,
+[data-search-modular-results] > li.find-explore-result {
+  list-style: none;
+  margin-left: 0;
+}
+
+.pagefind-modular-filter-pill {
+  color: var(--bs-body-color) !important;
+  background-color: var(--bs-tertiary-bg) !important;
+  border-color: var(--bs-border-color) !important;
+}
+
+.pagefind-modular-filter-pill:hover,
+.pagefind-modular-filter-pill:focus-visible {
+  color: var(--bs-body-color) !important;
+  background-color: var(--bs-secondary-bg) !important;
+  border-color: rgba(var(--bs-primary-rgb), 0.45) !important;
+}
+
+.pagefind-modular-filter-pill[aria-pressed="true"] {
+  color: var(--bs-body-bg) !important;
+  background-color: var(--bs-body-color) !important;
+  border-color: var(--bs-body-color) !important;
+}
+
+.pagefind-modular-filter-pill[aria-pressed="true"]:hover,
+.pagefind-modular-filter-pill[aria-pressed="true"]:focus-visible {
+  color: var(--bs-body-bg) !important;
+  background-color: var(--bs-emphasis-color, var(--bs-body-color)) !important;
+}
+
+.pagefind-modular-filter-pill > span,
+.pagefind-modular-filter-pill[aria-pressed="true"] > span {
+  color: inherit;
+}
