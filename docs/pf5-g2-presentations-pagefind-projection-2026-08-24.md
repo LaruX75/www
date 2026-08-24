@@ -2,14 +2,67 @@
 
 ## Status
 
-IMPLEMENTATION SLICE — implements the REDUCE (GO with constraints) decision from the PF5-G2 suitability audit. Adds the missing `resolvePagefindPresentations(data)` projector to `src/src.11tydata.js` so the shared `SearchResultPresenter`'s dormant presentations kind branches (which existed since PF5-G1) now activate on real Pagefind results. Zero renderer/CSS change.
+**CLOSED / GREEN / MAIN.** Merged 2026-08-24 as PR [#138](https://github.com/LaruX75/www/pull/138); merge commit `373cb8f55d6fe38a904e5baef2c966b08c4e25a4` is the current `origin/main`. Post-merge Actions run [32699660981](https://github.com/LaruX75/www/actions/runs/32699660981) — build / deploy / smoke all success. Production HTTP smoke verified: `/haku/`, `/esitykset/`, and sample detail pages all serve the new `Presentation*` metadata.
 
-## Branch / base / HEAD
+Implementation slice for the REDUCE (GO with constraints) decision from the PF5-G2 suitability audit. Adds the missing `resolvePagefindPresentations(data)` projector to `src/src.11tydata.js` so the shared `SearchResultPresenter`'s dormant presentations kind branches (which existed since PF5-G1) now activate on real Pagefind results. Zero renderer/CSS change.
 
-- **Branch:** `pf5/g2-presentations-metadata`
-- **Worktree:** `/private/tmp/www-pf5-g2-impl`
-- **Base:** `origin/main` = `8798e7d2a431d0fddc9468df08910aa364cfec0d` (post PF5-G1 navbar closure)
-- **HEAD at report time:** `8798e7d2a431d0fddc9468df08910aa364cfec0d` (no commit yet — pending review)
+## Closure / merged state (2026-08-24)
+
+| | |
+|---|---|
+| PR | [#138](https://github.com/LaruX75/www/pull/138) — MERGED |
+| mergedAt | 2026-08-24T07:00:46Z |
+| mergedBy | LaruX75 (via `gh pr merge --match-head-commit`) |
+| Implementation head SHA | `1daf6b38a76368cfd8c471286f496496021dd1c9` |
+| Merge commit SHA | `373cb8f55d6fe38a904e5baef2c966b08c4e25a4` |
+| Resulting `origin/main` | `373cb8f55d6fe38a904e5baef2c966b08c4e25a4` |
+| Previous `origin/main` | `8798e7d2a431d0fddc9468df08910aa364cfec0d` (post PF5-G1 navbar closure) |
+| Post-merge Actions run | [32699660981](https://github.com/LaruX75/www/actions/runs/32699660981) — build ✓ / deploy ✓ / smoke ✓ |
+| Pre-merge PR CI | build-and-verify PASS (5m46s), playwright PASS (8m4s) |
+| Production `/haku/` | HTTP/2 200 |
+| Production `/esitykset/` | HTTP/2 200 |
+| Production sample detail | HTTP/2 200, ships 12 filters + 3 Presentation* meta (PROVEN via curl) |
+| Merged-tree Pagefind counts | `Sisältö:Esitykset` = 135; `PresentationYear` = 135; `PresentationType` = 135; `PresentationEvent` = 11; `Research context:research` = 33 (matches audit's canonical-research count); distinct `PresentationType` values = 8 |
+| Merged-tree `/esitykset/` archive Pagefind attrs | ONLY `Kieli:Suomi` — SSR archive unchanged (PROVEN) |
+| EN detail pages emitting meta | 0 — pre-existing site structure, not a G2 regression (see FI/EN note below) |
+| Deletion | `search-result-presenter.js:82` dead `PresentationId` term removed |
+| Renderer/CSS/SSR archive/canonical/contexts semantics changes | 0 |
+
+## Architectural outcome
+
+**Local-first presentations** (135 detail pages) now flow through the shared discovery pipeline:
+
+```
+canonical content
+→ Eleventy projection (src.11tydata.js resolvePagefindPresentations)
+→ Pagefind Presentation* metadata + Sisältö:Esitykset filter
+→ shared window.SearchResultPresenter (renderSharedCard)
+→ canonical local landing (/presentations/{slug}/)
+```
+
+**External-first presentations** (Canva / YouTube / AOE without local detail) remain archive-only:
+
+```
+canonical content
+→ SSR presentations archive (/esitykset/, /en/presentations/)
+→ canonical external landing (sourceUrl / externalUrl)
+```
+
+No client-side landing resolution. No parallel presentation renderer. Every discovery affordance passes through one shared presenter owner.
+
+## FI / EN state (post-merge)
+
+- FI partition: 135 detail pages emit new metadata; SSR archive unchanged.
+- EN partition: 0 detail pages emit new metadata — the site currently has only `/en/presentations/index.html` (the EN archive index) and no per-presentation EN detail pages. **This is pre-existing site structure, NOT a PF5-G2 regression.**
+- If EN presentation detail pages are added in a future workstream, the projector handles them automatically via the same URL-lookup path.
+- **Not opened in this workstream:** the broader FI/EN presentations architecture question — deferred.
+
+## Pre-merge implementation state (historical)
+
+- **Branch (during implementation):** `pf5/g2-presentations-metadata`
+- **Worktree (during implementation):** `/private/tmp/www-pf5-g2-impl`
+- **Base at implementation time:** `8798e7d2a431d0fddc9468df08910aa364cfec0d`
+- **Implementation commit created after review:** `1daf6b38a76368cfd8c471286f496496021dd1c9` — fast-forward-merged into `main` as part of merge commit `373cb8f5` (PR #138).
 
 ## Audit reference
 
