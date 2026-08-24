@@ -1,3 +1,11 @@
+/* Find & Explore surface-only rules.
+   Shared result-presenter rules (.find-explore-result, -family,
+   -family-badge, -year, -title, -primary-meta, -excerpt, focus/hover)
+   live in src/css/modules/_components.css because they are globally
+   consumed by the navbar Modular UI. Rules here are F&E-only:
+   container, card wrapper, status line, list/grid layout, publication
+   grouping semantics, publication quality micro-copy. */
+
 .find-explore {
   margin: 1.5rem 0 2rem;
 }
@@ -17,18 +25,6 @@
 .find-explore-results {
   display: grid;
   gap: 0.75rem;
-}
-
-.find-explore-result {
-  border: 1px solid var(--bs-border-color);
-  border-radius: 1rem;
-  background: var(--bs-body-bg);
-  padding: 1rem;
-}
-
-.find-explore-result:focus-within {
-  outline: 3px solid rgba(var(--bs-primary-rgb), 0.22);
-  outline-offset: 2px;
 }
 
 /* Publications FULL closure — semantic A–G groups. Each group is a
@@ -69,52 +65,10 @@
   max-width: 100%;
 }
 
-.find-explore-result-family {
-  align-items: baseline;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin: 0 0 0.35rem;
-}
-
-.find-explore-result-family-badge {
-  background-color: var(--bs-tertiary-bg);
-  border: 1px solid var(--bs-border-color);
-  border-radius: 999px;
-  color: var(--bs-secondary-color);
-  display: inline-block;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  padding: 0.1rem 0.55rem;
-  text-transform: uppercase;
-}
-
-/* PF4 — year suffix that sits beside the family badge on line 1. */
-.find-explore-result-year {
-  color: var(--bs-secondary-color);
-  font-size: 0.78rem;
-  font-weight: 500;
-}
-
-.find-explore-result-title {
-  font-weight: 700;
-  text-decoration-thickness: 0.08em;
-  text-underline-offset: 0.18em;
-}
-
-/* PF4 — single primary metadata sentence under the title. Replaces the
-   previous chip strip so every family renders the same visual rhythm. */
-.find-explore-result-primary-meta {
-  color: var(--bs-secondary-color);
-  font-size: 0.9rem;
-  line-height: 1.35;
-  margin: 0.2rem 0 0.35rem;
-}
-
 /* PF4 — subdued micro-copy line for publication quality signals
-   (peer-reviewed / open access / JUFO / citations). Same data as the
-   pre-PF4 colored badges, lower visual weight. */
+   (peer-reviewed / open access / JUFO / citations). F&E-only:
+   emitted by find-explore.js kindConfig, not by the shared
+   presenter's renderSharedCard. */
 .find-explore-result-publication-quality {
   color: var(--bs-secondary-color);
   font-size: 0.72rem;
@@ -122,21 +76,4 @@
   letter-spacing: 0.05em;
   margin: 0.2rem 0 0.35rem;
   text-transform: uppercase;
-}
-
-.find-explore-result-excerpt {
-  color: var(--bs-secondary-color);
-  font-size: 0.95rem;
-  margin: 0;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .find-explore-result {
-    transition: border-color 160ms ease, transform 160ms ease;
-  }
-
-  .find-explore-result:hover {
-    border-color: rgba(var(--bs-primary-rgb), 0.45);
-    transform: translateY(-1px);
-  }
 }

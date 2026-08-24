@@ -1,0 +1,39 @@
+{# _search-nav-config.njk
+   Navbar-scoped Modular UI configuration for the shared search
+   factory (src/js/global-search-modular-ui.js -> window.createModularSearchUI).
+   Emits one inline JSON blob the navbar adapter in site-ui.js reads on
+   first dialog open.
+
+   Navbar v1:
+     - no visible FilterPills (only Kieli pinned invisibly)
+     - full shared result cards via SearchResultPresenter.renderSharedCard
+     - pageSize 6
+     - no URL sync
+     - full-search-page link stays as inline SSR fallback in the dialog
+
+   All strings are site-owned. No taxonomy, no content-model embedding. #}
+{%- set currentLang = lang or (page.url | langFromUrl) -%}
+{%- set isEn = currentLang == "en" -%}
+{%- set searchNavConfig = {
+  "languageFilter": "English" if isEn else "Suomi",
+  "placeholder": "Type a search term..." if isEn else "Kirjoita hakusana...",
+  "regionLabel": "Search the site" if isEn else "Hae sivustolta",
+  "fallbackMessage": "The search index is not available in this build yet. Try the full search page." if isEn else "Hakemisto ei ole käytettävissä tässä buildissä. Kokeile koko sivun hakua.",
+  "translations": {
+    "clear_search": "Clear" if isEn else "Tyhjennä",
+    "load_more": "Load more results" if isEn else "Lataa lisää tuloksia",
+    "search_label": "Search the site" if isEn else "Hae sivustolta",
+    "filters_label": "Filters" if isEn else "Suodattimet",
+    "zero_results": "No results for [SEARCH_TERM]" if isEn else "Ei tuloksia haulla [SEARCH_TERM]",
+    "many_results": "[COUNT] results for [SEARCH_TERM]" if isEn else "[COUNT] tulosta haulla [SEARCH_TERM]",
+    "one_result": "[COUNT] result for [SEARCH_TERM]" if isEn else "[COUNT] tulos haulla [SEARCH_TERM]",
+    "alt_search": "No results for [SEARCH_TERM]. Showing results for [DIFFERENT_TERM] instead." if isEn else "Ei tuloksia haulla [SEARCH_TERM]. Näytetään tulokset haulla [DIFFERENT_TERM].",
+    "search_suggestion": "No results for [SEARCH_TERM]. Try one of the following searches:" if isEn else "Ei tuloksia haulla [SEARCH_TERM]. Kokeile jotain seuraavista:",
+    "searching": "Searching for [SEARCH_TERM]..." if isEn else "Haetaan hakusanalla [SEARCH_TERM]..."
+  },
+  "pageSize": 6,
+  "enableFilters": false,
+  "enableUrlSync": false,
+  "fullSearchPageUrl": "/en/search/" if isEn else "/haku/"
+} -%}
+<script type="application/json" id="siteSearchNavConfig">{{ searchNavConfig | jsonSafe | safe }}</script>

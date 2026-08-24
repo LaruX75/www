@@ -75,7 +75,7 @@ test.describe('Navigation and Focus Audits', () => {
         const trigger = page.locator('#searchToggleBtn');
         const dialog = page.locator('#searchOverlay');
         const closeButton = page.locator('#searchCloseBtn');
-        const input = page.locator('#searchOverlay .pagefind-ui__search-input');
+        const input = page.locator('#siteSearchNavInput');
 
         await expect(trigger).toBeVisible();
         await trigger.click();
@@ -146,13 +146,13 @@ test.describe('Navigation and Focus Audits', () => {
         await gotoAndAssertSite(page, '/');
 
         await page.locator('#searchToggleBtn').click();
-        const input = page.locator('#searchOverlay .pagefind-ui__search-input');
+        const input = page.locator('#siteSearchNavInput');
 
         await expect(input).toBeVisible();
         await input.fill('tekoäly');
 
-        await expect(page.locator('#searchOverlay .pagefind-ui__result').first()).toBeVisible({ timeout: 15000 });
-        await expect(page.locator('#searchOverlay .pagefind-ui__message')).toContainText(/tulos/);
+        await expect(page.locator('#searchOverlay [data-search-modular-results] li[data-search-result-kind]').first()).toBeVisible({ timeout: 15000 });
+        await expect(page.locator('#searchOverlay [data-search-modular-summary]')).toContainText(/tulos/);
     });
 
     test('EN search dialog: same open/traversal/close/return lifecycle as FI', async ({ page }) => {
@@ -166,7 +166,7 @@ test.describe('Navigation and Focus Audits', () => {
         const trigger = page.locator('#searchToggleBtn');
         const dialog = page.locator('#searchOverlay');
         const closeButton = page.locator('#searchCloseBtn');
-        const input = page.locator('#searchOverlay .pagefind-ui__search-input');
+        const input = page.locator('#siteSearchNavInput');
 
         await expect(trigger).toBeVisible();
         await trigger.click();
