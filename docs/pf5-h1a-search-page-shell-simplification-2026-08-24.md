@@ -2,14 +2,132 @@
 
 ## Status
 
-IMPLEMENTATION SLICE — implements the first slice recommended by the PF5-H1 audit's GO decision. Collapses `/haku/` and `/en/search/` from a two-input dual-form shell (content-detail-hero + SSR fallback card + Modular-UI-injected input) to a single SSR-authoritative search form that Modular UI enhances in place. No renderer/CSS card change, no result-card change, no facet change (H1B territory).
+**CLOSED / GREEN / MAIN.** Merged 2026-08-24 as PR [#140](https://github.com/LaruX75/www/pull/140); merge commit `444e818c0048387e5691cb5af3c0c37bc36390e6` is the current `origin/main`. Post-merge Actions run [32726937885](https://github.com/LaruX75/www/actions/runs/32726937885) — build / deploy / smoke all success. Production HTTP smoke verified: `/haku/`, `/en/search/` HTTP/2 200; body carries `data-translation-key="search"`; exactly 1 `#siteSearchPageInput`; zero `content-detail-eyebrow` occurrences.
 
-## Branch / base / HEAD
+Implementation slice for the first slice recommended by the PF5-H1 audit's GO decision. Collapses `/haku/` and `/en/search/` from a two-input dual-form shell (content-detail-hero + SSR fallback card + Modular-UI-injected input) to a single SSR-authoritative search form that Modular UI enhances in place. No renderer/CSS card change, no result-card change, no facet change (H1B territory).
 
-- **Branch:** `pf5/h1a-search-shell`
-- **Worktree:** `/private/tmp/www-pf5-h1a-impl`
-- **Base:** `origin/main` = `0c307f34761e594aa12fd553cbcb0bda8c7a0390` (post PF5-G2 closure PR #139)
-- **HEAD at report time:** `0c307f34761e594aa12fd553cbcb0bda8c7a0390` (no commit yet — pending review)
+## Closure / merged state (2026-08-24)
+
+| | |
+|---|---|
+| PR | [#140](https://github.com/LaruX75/www/pull/140) — MERGED |
+| mergedAt | 2026-08-24T12:24:29Z |
+| mergedBy | LaruX75 (via `gh pr merge --match-head-commit`) |
+| Implementation head SHA | `6f75a88dbac3d6a2561d230871829497cce15dee` |
+| Merge commit SHA | `444e818c0048387e5691cb5af3c0c37bc36390e6` |
+| Resulting `origin/main` | `444e818c0048387e5691cb5af3c0c37bc36390e6` |
+| Previous `origin/main` (audit baseline) | `0c307f34761e594aa12fd553cbcb0bda8c7a0390` (post PF5-G2 closure) |
+| Pre-merge PR CI | build-and-verify PASS (5m41s), playwright PASS (8m1s), mergeStateStatus CLEAN |
+| Post-merge Actions run | [32726937885](https://github.com/LaruX75/www/actions/runs/32726937885) — build ✓ / deploy ✓ / smoke ✓ |
+| Production `/haku/` | HTTP/2 200 |
+| Production `/en/search/` | HTTP/2 200 |
+| Production body attribute | `data-translation-key="search"` (PROVEN) |
+| Production duplicate input | 0 `content-detail-eyebrow`; 1 `#siteSearchPageInput` (PROVEN via curl) |
+
+## Merged-main baseline measurements (headless Chrome on `/haku/?q=tekoäly`, PROVEN 2026-08-24)
+
+| Metric | Pre-H1A (baseline `0c307f34`) | Post-H1A (merged `444e818c`) | Delta |
+|---|---|---|---|
+| Visible page search inputs desktop 1280×900 | 2 | **1** | −1 |
+| Injected duplicate input inside `#siteSearchPageUi` | 1 | **0** | −1 |
+| First result top offset desktop | 1 694 px | **1 237 px** | **−457 px (−27%)** |
+| First result top offset mobile 375×667 | 1 599 px | **1 234 px** | **−365 px** |
+| Screenfuls before first result mobile | 2.40 | **1.85** | **−0.55 screenfuls** |
+| DOM nodes on `/haku/?q=tekoäly` | 2 244 | 2 232 | −12 |
+| Rendered filter groups (H1B baseline) | 12 | 12 | 0 (unchanged — H1B territory) |
+| Rendered filter-pill buttons (H1B baseline) | 441 | 441 | 0 (unchanged — H1B territory) |
+| Body `data-translation-key` attribute | absent | `search` (on FI + EN search page) | added |
+| Desktop navbar `.site-nav-search` visible on `/haku/` | true | **false** (CSS-hidden by body attribute) | hidden |
+| Desktop navbar `.site-nav-search` visible on `/` home (control) | true | **true** | unchanged |
+
+## Failure path verification (merged main, PROVEN via headless Chrome)
+
+- **A. JS enabled normal path:** 1 visible page search input; Modular UI mounts (`data-search-modular-ready="true"`); results render (10 for `tekoäly` FI, 10 for `learning` EN).
+- **B. JS disabled:** SSR `<form action="/haku/" method="get">` submits `?q=` via native browser. Form + input + submit all remain in SSR HTML (PROVEN via `curl` grep).
+- **C. Modular UI init failure (script 404 via Playwright route):** SSR form remains visible + usable (`formVisible=true`, `inputVisible=true`, `submitVisible=true`); `fallbackMessage` renders inside the mount (`fallbackMessageShown=true`). User is never left without a search control.
+- **?q= URL hydration:** on `/en/search/?q=learning` the SSR input value is populated to `"learning"` on load; 10 results render.
+
+## Navbar search-page context decision (PROVEN)
+
+- Body carries `data-translation-key="search"` on `/haku/` and `/en/search/` only.
+- CSS rule `body[data-translation-key="search"] .site-nav-search { display: none !important; }` in `src/css/modules/_global.css`.
+- Element remains in DOM (`present=true`) but not visible (`visible=false`) on `/haku/`.
+- Element visible (`visible=true`) on `/` home page as control.
+- Mobile search-dialog trigger `#searchToggleBtn` unaffected — it's a different navbar element and remains visible on all pages.
+
+## FI / EN parity
+
+Both `src/fi/haku.njk` and `src/en/search.njk` restructured identically:
+- Same `<section class="py-4">` shell
+- Same `h1.h2` + short intro sentence
+- Same `<form class="input-group site-search-page-shell" data-search-page-fallback>` shape
+- Same input attributes (`data-search-page-fallback-input`, `data-search-modular-input`, `aria-label`)
+- Same `<div id="siteSearchPageUi">` mount sibling
+- Same `<noscript>` warning
+- Locale strings differ per source; behaviour identical
+- Same `translationKey: search` → same CSS rule hides navbar inline search on both
+
+## Accessibility
+
+- One visible search control per page under normal JS-path — no landmark duplication in the search region.
+- SSR input carries associated `<label>` element (`for="siteSearchPageInput"`) + belt-and-suspenders `aria-label` (matches pre-H1A pilot assertion).
+- `role="search"` on the SSR form; native `<button type="submit">` for the Hae/Search action.
+- Focus order preserved: h1 → intro → input → submit → filters → results.
+- Live result summary (`aria-live="polite" aria-atomic="true"`) unchanged.
+- Navbar accessibility on non-search pages unaffected (CSS-hide only under `body[data-translation-key="search"]`).
+- Combined regression suite (`accessibility.spec.js` + `accessibility-tools.spec.js` + `contrast.spec.js` + `navigation.spec.js`) — all pass in pre-merge CI and re-verified on merged main.
+
+## Deletion inventory (verified on production/merged main)
+
+| Removed | Notes |
+|---|---|
+| `.content-detail-eyebrow` occurrences on `/haku/` | **0** (was 1) — production `curl` grep verified |
+| Long lead paragraph (189 chars, content-type list) | replaced by 1 short intro sentence |
+| `<p class="form-text">` duplicate content-type list | removed |
+| `<form class="…site-search-page-fallback card…">` visually-distinct card wrapping | removed (shell form now uses `.input-group site-search-page-shell`) |
+| Injected `<input>` inside `#siteSearchPageUi` | 0 (was 1) — verified via `document.querySelectorAll('#siteSearchPageUi input[type="search"]').length === 0` |
+| `[data-search-modular-input-container]` inside `#siteSearchPageUi` | 0 |
+| `#siteSearchFallbackInputFi` / `#siteSearchFallbackInputEn` IDs | 0 (unified as `#siteSearchPageInput` on both surfaces) |
+| Desktop `.site-nav-search` inline form **visible** on `/haku/` + `/en/search/` | 0 visible (hidden via CSS `body[data-translation-key="search"]`) — **element remains in DOM**, visibility toggled via CSS only |
+
+**Explicitly NOT deleted (element visibility only):**
+- Desktop `.site-nav-search` remains in DOM on the search page; only visibility hidden via CSS. This is a CSS toggle, not a template removal.
+
+**Explicitly NOT changed:**
+- SSR fallback form itself — it IS the shell now (one form serves both roles).
+- `SearchResultPresenter` code.
+- Pagefind emitters.
+- Facet config `_search-page-config.njk` (12 facets still mounted; H1B territory).
+- Any taxonomy or canonical semantics.
+- Mobile search-dialog trigger `#searchToggleBtn`.
+- Mobile offcanvas inline search form in navbar drawer.
+
+## H1B authoritative starting baseline (recorded here for handoff)
+
+Current merged-main `/haku/?q=tekoäly` measurements are the **authoritative H1B starting point**:
+- 12 facet groups rendered simultaneously (`Sisältötyyppi`, `Julkaisutyyppi (OKM)`, `Julkaisun laatu`, `Kirjoituksen tyyppi`, `Kirjoituksen aihe`, `Opinnäytteen tyyppi`, `Rooli opinnäytteessä`, `Mediatyyppi`, `Rooli mediassa`, `Media: vuosi`, `Esityksen vuosi`, `Esityksen aihe`).
+- 441 filter-pill buttons visible post-query.
+- 1 visible search input (H1A win preserved).
+- 1 237 px desktop / 1 234 px mobile first-result offset (H1A win preserved).
+
+**PF5-H1B — progressive facet disclosure**
+**status: NEXT CANDIDATE, NOT STARTED.**
+
+H1B target (per H1 audit §19): show `Sisältö` row only by default; reveal domain secondary facets after Sisältö selection; DOM `hidden`-attribute layer; zero Pagefind state change; zero new controller; parameterised FI + EN.
+
+## Follow-ups still deferred (unchanged from H1 audit)
+
+- Media Pagefind projection gap → would be a G3 slice.
+- `renderExcerpt` non-convergence (F&E escapes vs presenter preserves `<mark>`) — untouched.
+- FilterPills MutationObserver aria-label workaround — CONTINGENT DELETION when Pagefind exposes translation API.
+- Generated unused `pagefind-ui.{js,css}` — build-ownership question.
+
+## Pre-merge implementation state (historical)
+
+- **Branch (during implementation):** `pf5/h1a-search-shell`
+- **Worktree (during implementation):** `/private/tmp/www-pf5-h1a-impl`
+- **Base at implementation time:** `0c307f34761e594aa12fd553cbcb0bda8c7a0390`
+- **Implementation commit created after review:** `6f75a88dbac3d6a2561d230871829497cce15dee` — fast-forward-merged into `main` as part of merge commit `444e818c` (PR #140).
 
 ## Audit reference
 
