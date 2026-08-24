@@ -647,20 +647,33 @@
         if (!(form instanceof HTMLFormElement)) return;
         const formData = new FormData(form);
         const query = String(formData.get('q') || '').trim();
-        const action = form.getAttribute('action');
 
+        // Hotfix: navbar [data-search-form] submissions must open the
+        // dialog overlay with the query prefilled — matching the
+        // PF5-G1 intended navbar behaviour — instead of navigating to
+        // the form's `action` (which was the pre-G1 fallback). The
+        // form's `action="/haku/"` / `action="/en/search/"` remains
+        // as a PROGRESSIVE FALLBACK: if JS is disabled this handler
+        // never runs, and the browser submits the form natively to
+        // the full search page. When JS is running we ALWAYS open
+        // the dialog.
+        if (searchOverlay) {
+          if (sourceEvent) sourceEvent.preventDefault();
+          const fallbackTrigger = searchToggles.find((toggle) => isVisibleElement(toggle)) || null;
+          closeContainingOffcanvas(form);
+          openSearch(query, fallbackTrigger);
+          return;
+        }
+
+        // Ultimate fallback: no dialog available at all — navigate to
+        // form action so the user still gets somewhere.
+        const action = form.getAttribute('action');
         if (action) {
           if (sourceEvent) sourceEvent.preventDefault();
           const url = new URL(action, window.location.origin);
           if (query) url.searchParams.set('q', query);
           window.location.href = url.toString();
-          return;
         }
-
-        if (sourceEvent) sourceEvent.preventDefault();
-        const fallbackTrigger = searchToggles.find((toggle) => isVisibleElement(toggle)) || null;
-        closeContainingOffcanvas(form);
-        openSearch(query, fallbackTrigger);
       };
 
       searchForms.forEach((form) => {
