@@ -35,6 +35,41 @@ const PRESENTATION_SOURCE_LABELS = {
   slideshare: "SlideShare"
 };
 
+const SOURCE_SECTION_KEYS = Object.freeze(["aoe", "canva", "slideshare", "youtubeVideos", "youtube"]);
+
+const SOURCE_SECTION_META = Object.freeze({
+  aoe: {
+    icon: "bi-book",
+    label: { fi: "AOE / oppimateriaali", en: "AOE / learning material" },
+    cta: { fi: "Avaa Finnassa", en: "Open in Finna" },
+    detailCta: { fi: "Avaa sivu", en: "Open page" }
+  },
+  canva: {
+    icon: "bi-file-earmark-slides",
+    label: { fi: "Canva", en: "Canva" },
+    cta: { fi: "Avaa Canva", en: "Open Canva" },
+    detailCta: { fi: "Avaa sivu", en: "Open page" }
+  },
+  slideshare: {
+    icon: "bi-collection-play",
+    label: { fi: "SlideShare", en: "SlideShare" },
+    cta: { fi: "Avaa SlideSharessa", en: "Open on SlideShare" },
+    detailCta: { fi: "Avaa sivu", en: "Open page" }
+  },
+  youtubeVideos: {
+    icon: "bi-youtube",
+    label: { fi: "YouTube-video", en: "YouTube video" },
+    cta: { fi: "Katso", en: "Watch" },
+    detailCta: { fi: "Avaa sivu", en: "Open page" }
+  },
+  youtube: {
+    icon: "bi-youtube",
+    label: { fi: "YouTube-soittolista", en: "YouTube playlist" },
+    cta: { fi: "Avaa YouTubessa", en: "Open on YouTube" },
+    detailCta: { fi: "Avaa sivu", en: "Open page" }
+  }
+});
+
 const PUBLIC_PRESENTATION_FIELDS = Object.freeze([
   "id",
   "sourceKey",
@@ -286,6 +321,82 @@ function sortCanonicalItems(items = []) {
 
     return String(a?.title || "").localeCompare(String(b?.title || ""));
   });
+}
+
+function toSortableDate(value) {
+  if (!value) return "";
+  const raw = String(value).trim();
+  if (!raw) return "";
+  if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) return raw;
+  if (/^\d{4}$/.test(raw)) return `${raw}-12-31`;
+  const parsed = new Date(raw);
+  if (Number.isNaN(parsed.getTime())) return "";
+  const year = parsed.getUTCFullYear();
+  const month = String(parsed.getUTCMonth() + 1).padStart(2, "0");
+  const day = String(parsed.getUTCDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+function sortSourceSectionItems(items = []) {
+  return [...toArray(items)].sort((a, b) => {
+    const dateDiff = toSortableDate(b?.date).localeCompare(toSortableDate(a?.date));
+    if (dateDiff !== 0) return dateDiff;
+    return String(a?.title || "").localeCompare(String(b?.title || ""));
+  });
+}
+
+function buildPresentationSourceSections(items = [], locale = "fi") {
+  const normalizedLocale = locale === "en" ? "en" : "fi";
+
+  return SOURCE_SECTION_KEYS.map((key) => {
+    const meta = SOURCE_SECTION_META[key];
+    const sourceItems = sortSourceSectionItems(
+      toArray(items).filter((item) => {
+        if (!item || item.sourceKey !== key) return false;
+        if (normalizedLocale === "en" && key === "canva" && item.lang !== "en") return false;
+        return true;
+      })
+    );
+
+    return {
+      key,
+      icon: meta.icon,
+      label: meta.label[normalizedLocale],
+      ctaLabel: meta.cta[normalizedLocale],
+      detailCtaLabel: meta.detailCta[normalizedLocale],
+      count: sourceItems.length,
+      featuredItem: sourceItems[0] || null,
+      rows: sourceItems.slice(1),
+      items: sourceItems
+    };
+  });
+}
+
+function buildPresentationFilterYears(items = []) {
+  return [...new Set(
+    toArray(items)
+      .map((item) => String(item?.year || "").trim())
+      .filter((value) => /^\d{4}$/.test(value))
+  )].sort((a, b) => Number(b) - Number(a));
+}
+
+function buildPresentationFilterTopics(items = []) {
+  const counts = new Map();
+
+  toArray(items).forEach((item) => {
+    toArray(item?.topics).forEach((topic) => {
+      const label = String(topic || "").trim();
+      if (!label) return;
+      counts.set(label, (counts.get(label) || 0) + 1);
+    });
+  });
+
+  return [...counts.entries()]
+    .sort((a, b) => {
+      if (b[1] !== a[1]) return b[1] - a[1];
+      return a[0].localeCompare(b[0], "fi");
+    })
+    .map(([label]) => label);
 }
 
 function normalizeSlideshareUrl(url = "") {
@@ -1369,6 +1480,12 @@ function buildPresentationsPageModel(data = {}) {
     presentationContextItems: sourceData.contextItems,
     presentationContextFeedbackTotal: countFeedbackRefs(sourceData.contextItems),
     highlightedContextItems: sourceData.contextItems.slice(0, 4),
+    filterYears: buildPresentationFilterYears(items),
+    filterTopics: buildPresentationFilterTopics(items),
+    sourceSections: {
+      fi: buildPresentationSourceSections(items, "fi"),
+      en: buildPresentationSourceSections(items, "en")
+    },
     items
   };
 }
@@ -1383,6 +1500,9 @@ module.exports = {
   buildCanonicalPresentationItems,
   buildCanonicalPresentationPageRecords,
   buildCanonicalPresentationPageLookup,
+  buildPresentationSourceSections,
+  buildPresentationFilterYears,
+  buildPresentationFilterTopics,
   buildPublicPresentationLegacyBuckets,
   buildPresentationsPageModel
 };
