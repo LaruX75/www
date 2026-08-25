@@ -1,7 +1,7 @@
 # Pagefind Search Quality Baseline — 2026-08-25
 
-Branch: `audit/search-quality-regression-benchmark`  
-Baseline SHA: `1d4a42def281eb5a5b7a61b4801151f51b858c18`  
+Branch: `audit/search-quality-regression-benchmark`
+Baseline SHA: `1d4a42def281eb5a5b7a61b4801151f51b858c18`
 Baseline run date: `2026-08-25`
 
 ## Corpus

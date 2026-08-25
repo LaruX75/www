@@ -27,6 +27,18 @@ const NON_RESEARCH_WRITING = {
   href: "/2024/10/21/sivista-blogi-tekoaly-on-tyokaverini/"
 };
 
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function hrefWithOptionalQuery(pathname) {
+  return new RegExp(`^${escapeRegExp(pathname)}(\\?|$)`);
+}
+
+function hrefPrefixSelector(pathname) {
+  return `[data-find-explore-results] a[href^="${pathname}"]`;
+}
+
 test("homepage routes to Research contextual Find & Explore without embedding runtime", async ({ page }) => {
   await page.goto("/");
 
@@ -48,12 +60,19 @@ test("Research contextual Find & Explore searches publications, theses, writings
   // O1 detail-orientation decorates result links with ?returnTo=... when
   // discovery is active. Allow the suffix but assert the canonical detail
   // pathname prefix.
-  await expect(mount.locator("[data-find-explore-results] a").first()).toHaveAttribute("href", /^\/julkaisut\/rf-a1-10-1016-j-caeo-2026-100396\/(\?|$)/);
+  await expect(mount.locator("[data-find-explore-results] a").first()).toHaveAttribute(
+    "href",
+    hrefWithOptionalQuery("/julkaisut/rf-a1-10-1016-j-caeo-2026-100396/")
+  );
 
   await mount.locator("[data-find-explore-reset]").click();
   await mount.locator("[data-find-explore-type]").selectOption("theses");
   await mount.locator("[data-find-explore-query]").fill("Riikonen");
-  await expect(mount.locator("[data-find-explore-results] a").first()).toHaveAttribute("href", /^\/opinnaytteet\/62699\/(\?|$)/, { timeout: 15000 });
+  await expect(mount.locator("[data-find-explore-results] a").first()).toHaveAttribute(
+    "href",
+    hrefWithOptionalQuery("/opinnaytteet/62699/"),
+    { timeout: 15000 }
+  );
 
   await mount.locator("[data-find-explore-reset]").click();
   await mount.locator("[data-find-explore-type]").selectOption("writings");
@@ -71,21 +90,21 @@ test("Research contextual search preserves writings eligibility and adds only au
   await mount.locator("[data-find-explore-query]").fill("Punaisenladonkankaan kompostialue vs. tutkimus jonka mukaan mädätys on kompostointia ympäristöystävällisempää");
   await expect(mount.locator("[data-find-explore-results] a").first()).toHaveAttribute(
     "href",
-    /^\/2008\/10\/08\/punaisenladonkankaan-kompostialue-vs-tutkimus-jonka-mukaan-madatys-on-kompostointia-ymparistoystavallisempaa\/(\?|$)/,
+    hrefWithOptionalQuery("/2008/10/08/punaisenladonkankaan-kompostialue-vs-tutkimus-jonka-mukaan-madatys-on-kompostointia-ymparistoystavallisempaa/"),
     { timeout: 15000 }
   );
 
   await mount.locator("[data-find-explore-reset]").click();
   await mount.locator("[data-find-explore-type]").selectOption("writings");
   await mount.locator("[data-find-explore-query]").fill(NON_RESEARCH_WRITING.query);
-  await expect(mount.locator(`[data-find-explore-results] a[href="${NON_RESEARCH_WRITING.href}"]`)).toHaveCount(0);
+  await expect(mount.locator(hrefPrefixSelector(NON_RESEARCH_WRITING.href))).toHaveCount(0);
 
   await mount.locator("[data-find-explore-reset]").click();
   await mount.locator("[data-find-explore-type]").selectOption("publications");
   await mount.locator("[data-find-explore-query]").fill("Co-constructing adaptive lesson plans with GenAI");
   await expect(mount.locator("[data-find-explore-results] a").first()).toHaveAttribute(
     "href",
-    /^\/julkaisut\/02254916YJ\/(\?|$)/,
+    hrefWithOptionalQuery("/julkaisut/02254916YJ/"),
     { timeout: 15000 }
   );
 
@@ -94,35 +113,35 @@ test("Research contextual search preserves writings eligibility and adds only au
   await mount.locator("[data-find-explore-query]").fill(ELIGIBLE_MAPPED_PRESENTATION.title);
   await expect(mount.locator("[data-find-explore-results] a").first()).toHaveAttribute(
     "href",
-    ELIGIBLE_MAPPED_PRESENTATION.href,
+    hrefWithOptionalQuery(ELIGIBLE_MAPPED_PRESENTATION.href),
     { timeout: 15000 }
   );
-  await expect(mount.locator(`[data-find-explore-results] a[href="${ELIGIBLE_MAPPED_PRESENTATION.href}"]`)).toHaveCount(1);
+  await expect(mount.locator(hrefPrefixSelector(ELIGIBLE_MAPPED_PRESENTATION.href))).toHaveCount(1);
 
   await mount.locator("[data-find-explore-reset]").click();
   await mount.locator("[data-find-explore-type]").selectOption("presentations");
   await mount.locator("[data-find-explore-topic]").selectOption("koulutusteknologia");
   await mount.locator("[data-find-explore-query]").fill(ELIGIBLE_MAPPED_PRESENTATION.title);
-  await expect(mount.locator(`[data-find-explore-results] a[href="${ELIGIBLE_MAPPED_PRESENTATION.href}"]`).first()).toBeVisible({ timeout: 15000 });
-  await expect(mount.locator(`[data-find-explore-results] a[href="${SAFE_MAPPED_NON_RESEARCH_PRESENTATION.href}"]`)).toHaveCount(0);
-  await expect(mount.locator(`[data-find-explore-results] a[href="${ELIGIBLE_UNMAPPED_PRESENTATION.href}"]`)).toHaveCount(0);
+  await expect(mount.locator(hrefPrefixSelector(ELIGIBLE_MAPPED_PRESENTATION.href)).first()).toBeVisible({ timeout: 15000 });
+  await expect(mount.locator(hrefPrefixSelector(SAFE_MAPPED_NON_RESEARCH_PRESENTATION.href))).toHaveCount(0);
+  await expect(mount.locator(hrefPrefixSelector(ELIGIBLE_UNMAPPED_PRESENTATION.href))).toHaveCount(0);
 
   await mount.locator("[data-find-explore-reset]").click();
   await mount.locator("[data-find-explore-type]").selectOption("presentations");
   await mount.locator("[data-find-explore-query]").fill(ELIGIBLE_EN_PRESENTATION.query);
   await expect(mount.locator("[data-find-explore-status]")).toContainText(/tulos|tulosta/, { timeout: 15000 });
-  await expect(mount.locator(`[data-find-explore-results] a[href="${ELIGIBLE_EN_PRESENTATION.href}"]`)).toHaveCount(1);
+  await expect(mount.locator(hrefPrefixSelector(ELIGIBLE_EN_PRESENTATION.href))).toHaveCount(1);
 
   await mount.locator("[data-find-explore-reset]").click();
   await mount.locator("[data-find-explore-query]").fill(ELIGIBLE_UNMAPPED_PRESENTATION.query);
   await expect(mount.locator("[data-find-explore-results] a").first()).toHaveAttribute(
     "href",
-    ELIGIBLE_UNMAPPED_PRESENTATION.href,
+    hrefWithOptionalQuery(ELIGIBLE_UNMAPPED_PRESENTATION.href),
     { timeout: 15000 }
   );
 
   await mount.locator("[data-find-explore-reset]").click();
   await mount.locator("[data-find-explore-type]").selectOption("presentations");
   await mount.locator("[data-find-explore-query]").fill(SAFE_MAPPED_NON_RESEARCH_PRESENTATION.query);
-  await expect(mount.locator(`[data-find-explore-results] a[href="${SAFE_MAPPED_NON_RESEARCH_PRESENTATION.href}"]`)).toHaveCount(0);
+  await expect(mount.locator(hrefPrefixSelector(SAFE_MAPPED_NON_RESEARCH_PRESENTATION.href))).toHaveCount(0);
 });
