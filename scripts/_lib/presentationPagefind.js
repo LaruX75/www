@@ -476,37 +476,16 @@ function escapeAttribute(value = "") {
 function buildPresentationPagefindInjection(record = {}) {
   const filterMarkup = Object.entries(buildPresentationPagefindFilters(record))
     .flatMap(([key, values]) =>
-      values.map((value) => `<span hidden data-pagefind-filter="${escapeAttribute(`${key}:${value}`)}"></span>`)
+      values.map((value) => `<span data-pagefind-filter="${escapeAttribute(`${key}:${value}`)}"></span>`)
     )
     .join("");
 
   const metaMarkup = Object.entries(buildPresentationPagefindMeta(record))
     .filter(([, value]) => hasValue(value))
-    .map(([key, value]) => `<span hidden data-pagefind-meta="${escapeAttribute(key)}">${escapeHtml(value)}</span>`)
+    .map(([key, value]) => `<span data-pagefind-meta="${escapeAttribute(`${key}:${value}`)}"></span>`)
     .join("");
 
-  const weightedTitleMarkup = [
-    record.canonicalTitle,
-    buildPlainIndexText(record.canonicalTitle)
-  ]
-    .filter(Boolean)
-    .map((value) => `<span data-pagefind-weight="10">${escapeHtml(value)}</span>`)
-    .join("");
-
-  const scopeText = [
-    PRESENTATION_FIND_EXPLORE_SEED,
-    record.canonicalTitle,
-    buildPlainIndexText(record.canonicalTitle),
-    record.presentationDescription,
-    record.presentationEvent,
-    record.presentationYear,
-    ...toArray(record.presentationContexts),
-    ...toArray(record.presentationResearchPresetLabels),
-    ...toArray(record.presentationResearchPresets),
-    ...toArray(record.presentationTopics)
-  ].filter(Boolean).join(" ");
-
-  return `<div hidden data-presentation-pagefind-scope="presentations">${filterMarkup}${metaMarkup}${weightedTitleMarkup}<span>${escapeHtml(scopeText)}</span></div>`;
+  return `<div hidden data-pagefind-ignore="all" data-presentation-pagefind-scope="presentations">${filterMarkup}${metaMarkup}</div>`;
 }
 
 function injectPresentationPagefindMetadata(html = "", record = {}) {

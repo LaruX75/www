@@ -28,20 +28,20 @@ layout: base.njk
   <div class="site-shell">
     <div class="content-detail-hero-grid content-detail-hero-grid--single">
       <div class="content-detail-copy">
-        <p class="content-detail-eyebrow mb-2">Esitys tai opetusmateriaali</p>
+        <p class="content-detail-eyebrow mb-2" data-pagefind-ignore>Esitys tai opetusmateriaali</p>
         <h1 class="content-detail-title mb-3" data-pagefind-weight="10">{{ title }}</h1>
         {% if subtitle %}
           <p class="content-detail-lead mb-3" data-pagefind-weight="6">{{ subtitle }}</p>
         {% elif description %}
           <p class="content-detail-lead mb-3" data-pagefind-weight="6">{{ description }}</p>
         {% endif %}
-        <div class="content-detail-meta" aria-label="Esityksen perustiedot">
+        <div class="content-detail-meta" aria-label="Esityksen perustiedot" data-pagefind-ignore>
           <span>{{ sourceText }}</span>
           {% if date %}<span>{{ date | dateFormat }}</span>{% endif %}
           {% if sourceLanguage %}<span>{{ "English" if sourceLanguage == "en" else ("Suomi" if sourceLanguage == "fi" else sourceLanguage) }}</span>{% endif %}
           {% if slideCount %}<span>{{ slideCount }} diaa</span>{% endif %}
         </div>
-        <div class="content-detail-actions">
+        <div class="content-detail-actions" data-pagefind-ignore>
           {% if publicSourceHref %}
             <a href="{{ publicSourceHref }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">{% if isVideoPreview %}Katso tallenne{% else %}Avaa materiaali{% endif %}</a>
           {% endif %}
@@ -60,7 +60,7 @@ layout: base.njk
   <div class="site-shell">
     <article class="content-detail-main content-detail-main--presentation">
       <div class="content-detail-card content-detail-card--presentation">
-        <p class="content-detail-card-kicker">Esitys</p>
+        <p class="content-detail-card-kicker" data-pagefind-ignore>Esitys</p>
         {% if thumbnail %}
           <div class="content-detail-inline-visual" aria-label="Esityksen esikatselu">
             <a href="{{ publicSourceHref or page.url }}" {% if publicSourceHref %}target="_blank" rel="noopener noreferrer"{% endif %} class="content-detail-thumb{% if isVideoPreview %} video-preview{% endif %}">
