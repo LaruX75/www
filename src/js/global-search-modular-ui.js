@@ -164,7 +164,7 @@
           <div class="site-search-page-modular" data-search-modular-ui>
             ${filtersMarkup}
             <div class="site-search-page-summary text-body-secondary small mb-3" data-search-modular-summary aria-live="polite" aria-atomic="true"></div>
-            <div class="site-search-page-results" data-search-modular-results></div>
+            <ul class="site-search-page-results" data-search-modular-results></ul>
           </div>
         `;
         return;
@@ -185,7 +185,7 @@
           </div>
           ${filtersMarkup}
           <div class="site-search-page-summary text-body-secondary small mb-3" data-search-modular-summary aria-live="polite" aria-atomic="true"></div>
-          <div class="site-search-page-results" data-search-modular-results></div>
+          <ul class="site-search-page-results" data-search-modular-results></ul>
         </div>
       `;
     }
