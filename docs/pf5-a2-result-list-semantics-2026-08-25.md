@@ -145,6 +145,23 @@ Classification:
 
 - `LOCAL BUILD ENVIRONMENT BLOCKER — NOT PF5-A2 CAUSED`
 
+## PR / CI State
+
+PR:
+
+- `#151` — `fix(a11y): use semantic lists for global search results`
+
+Head commit pushed for CI:
+
+- `978c7ac7d739cce53c5721d55c79c858d27d683e`
+
+Observed on GitHub Actions on Tuesday, August 25, 2026:
+
+- `Staging checks` — `in_progress`
+- `Accessibility and navigation tests` — `in_progress`
+
+Authoritative verification has therefore moved to CI, but CI was not yet green at the time of this note.
+
 Because of that blocker, I could not truthfully claim completion of the remaining requested full-build-driven suites from the same final build state:
 
 - PF5-H1A
