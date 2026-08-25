@@ -45,12 +45,15 @@ test("Research contextual Find & Explore searches publications, theses, writings
 
   await mount.locator("[data-find-explore-query]").fill("Assessing Digital Competence of K1-12 Teachers in Kosovo");
   await expect(mount.locator("[data-find-explore-status]")).toContainText(/tulos|tulosta/, { timeout: 15000 });
-  await expect(mount.locator("[data-find-explore-results] a").first()).toHaveAttribute("href", "/julkaisut/rf-a1-10-1016-j-caeo-2026-100396/");
+  // O1 detail-orientation decorates result links with ?returnTo=... when
+  // discovery is active. Allow the suffix but assert the canonical detail
+  // pathname prefix.
+  await expect(mount.locator("[data-find-explore-results] a").first()).toHaveAttribute("href", /^\/julkaisut\/rf-a1-10-1016-j-caeo-2026-100396\/(\?|$)/);
 
   await mount.locator("[data-find-explore-reset]").click();
   await mount.locator("[data-find-explore-type]").selectOption("theses");
   await mount.locator("[data-find-explore-query]").fill("Riikonen");
-  await expect(mount.locator("[data-find-explore-results] a").first()).toHaveAttribute("href", "/opinnaytteet/62699/", { timeout: 15000 });
+  await expect(mount.locator("[data-find-explore-results] a").first()).toHaveAttribute("href", /^\/opinnaytteet\/62699\/(\?|$)/, { timeout: 15000 });
 
   await mount.locator("[data-find-explore-reset]").click();
   await mount.locator("[data-find-explore-type]").selectOption("writings");
@@ -68,7 +71,7 @@ test("Research contextual search preserves writings eligibility and adds only au
   await mount.locator("[data-find-explore-query]").fill("Punaisenladonkankaan kompostialue vs. tutkimus jonka mukaan mädätys on kompostointia ympäristöystävällisempää");
   await expect(mount.locator("[data-find-explore-results] a").first()).toHaveAttribute(
     "href",
-    "/2008/10/08/punaisenladonkankaan-kompostialue-vs-tutkimus-jonka-mukaan-madatys-on-kompostointia-ymparistoystavallisempaa/",
+    /^\/2008\/10\/08\/punaisenladonkankaan-kompostialue-vs-tutkimus-jonka-mukaan-madatys-on-kompostointia-ymparistoystavallisempaa\/(\?|$)/,
     { timeout: 15000 }
   );
 
@@ -82,7 +85,7 @@ test("Research contextual search preserves writings eligibility and adds only au
   await mount.locator("[data-find-explore-query]").fill("Co-constructing adaptive lesson plans with GenAI");
   await expect(mount.locator("[data-find-explore-results] a").first()).toHaveAttribute(
     "href",
-    "/julkaisut/02254916YJ/",
+    /^\/julkaisut\/02254916YJ\/(\?|$)/,
     { timeout: 15000 }
   );
 

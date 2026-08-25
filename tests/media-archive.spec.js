@@ -46,12 +46,16 @@ test.describe('FI /mediassa/', () => {
   test('media detail page carries M2 Pagefind metadata and links external source', async ({ page }) => {
     await page.goto(FIXTURES.fiDetailLanding);
 
-    // Reverse gate: media detail pages must NOT carry data-pagefind-body.
-    // Pagefind treats data-pagefind-body as a site-wide gate — the moment
-    // any page uses it, pages missing the marker are dropped from the
-    // index. Media uses hidden filter/meta spans instead.
-    const body = page.locator('[data-pagefind-body]');
-    await expect(body).toHaveCount(0);
+    // Reverse gate: media detail pages must NOT add their own
+    // data-pagefind-body element beyond the site-wide universal one on
+    // <main> (added by the Pagefind index-hygiene hotfix 2026-08-25 so
+    // every page participates consistently and chrome is excluded).
+    // Media uses hidden filter/meta spans, not a media-specific body-
+    // scope, which historically triggered the Pagefind site-wide gate.
+    const universalMainBody = page.locator('main[data-pagefind-body]');
+    await expect(universalMainBody).toHaveCount(1);
+    const mediaSpecificBody = page.locator('[data-pagefind-body]:not(main)');
+    await expect(mediaSpecificBody).toHaveCount(0);
 
     const sisalto = page.locator('span[data-pagefind-filter="Sisältö:Mediassa"]');
     await expect(sisalto).toHaveCount(1);
