@@ -64,7 +64,7 @@
       {% endif %}
     {% endfor %}
     {% if pagefindDocument.seedText %}
-  <span hidden>{{ pagefindDocument.seedText }}</span>
+  <span hidden data-pagefind-body>{{ pagefindDocument.seedText }}</span>
     {% endif %}
   {% endif %}
   <a class="visually-hidden-focusable skip-link btn btn-primary m-2 position-absolute" style="z-index: 9999; top: 0; left: 0;" href="#main-content">{{ "Skip to main content" if currentLang == "en" else "Hyppää pääsisältöön" }}</a>
@@ -79,7 +79,7 @@
 
   {% include "breadcrumb.njk" %}
 
-  <main id="main-content" class="site-main{% if pageMainClass %} {{ pageMainClass }}{% endif %}">
+  <main id="main-content" class="site-main{% if pageMainClass %} {{ pageMainClass }}{% endif %}" data-pagefind-body>
     <div class="bss-scope{% if pageScopeClass %} {{ pageScopeClass }}{% endif %}">
       {% if pageShell %}
         <div class="{{ pageShellClass or 'site-shell' }}">
