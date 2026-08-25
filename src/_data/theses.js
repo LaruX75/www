@@ -27,6 +27,7 @@ const CITATION_APA_LANG = 'fi';
 
 const CACHE_KEY = 'theses-oulurepo-v2';
 const CACHE_TTL_HOURS = 6;
+let memoizedThesesPromise = null;
 
 const BASE = 'https://oulurepo.oulu.fi/open-search/';
 const NAME = 'Laru';  // ← vaihda ohjaajan sukunimi
@@ -302,7 +303,7 @@ function mergeManualIntoCache(data, keywordsCache) {
     };
 }
 
-module.exports = async function () {
+async function loadThesesData() {
     console.log('[theses] Haetaan opinnäytetöitä OuluREPO:sta...');
     const keywordsCache = loadKeywordsCache();
 
@@ -413,4 +414,15 @@ module.exports = async function () {
         // Palauta tyhjä rakenne ettei build kaadu
         return buildEmptyResult(e.message);
     }
+}
+
+module.exports = function loadTheses() {
+    if (!memoizedThesesPromise) {
+        memoizedThesesPromise = loadThesesData().catch((error) => {
+            memoizedThesesPromise = null;
+            throw error;
+        });
+    }
+
+    return memoizedThesesPromise;
 };
