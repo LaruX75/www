@@ -1,8 +1,120 @@
 # Pagefind index hygiene — presentation excerpts + universal body scope
 
+**STATUS: CLOSED / GREEN / MAIN** (2026-08-25)
+
 Hotfix haara: `hotfix/pagefind-index-hygiene`  
 Aloitus-baseline: `origin/main = 2ef8f2871669d7078afa77f96505bb13590724a2`  
+PR base: `8db7425e83f687deb14a9bc06331835960d419c1` (post-SSR-P1)  
 Päivämäärä: 2026-08-25
+
+## 0. Closure
+
+| Kenttä | Arvo |
+| --- | --- |
+| PR | [#149](https://github.com/LaruX75/www/pull/149) |
+| Toteutus-HEAD | `4b3ba2f7f511fcb4392152b50849d4d21770a7a0` |
+| Merge commit | `965c735b13c048794d479fb7d96759f3302d62d1` |
+| Resulting `origin/main` | `965c735b13c048794d479fb7d96759f3302d62d1` |
+| PR CI | `build-and-verify` pass, `playwright` pass |
+| Main deploy | `Build and Deploy` success |
+| Merged | 2026-08-25T09:34:54Z |
+| Konfliktit SSR-P1:n kanssa | ei — mikään SSR-P1:n koskettama tiedosto ei limity tämän hotfixin muutoksiin |
+
+### Tuotannon jälkiverifiointi (jarilaru.fi post-deploy)
+
+- **Global Sisältö facet** (kaikki sivutyypit indeksissä):
+  `Esitykset: 326, Julkaisut: 57, Kirjoitukset ja puheenvuorot: 234, Mediassa: 72, Opinnäytteet: 139`.
+  Käytetään corpus-sanity-mittarina — ei summata query-tuloksiin.
+- **Kysely `mobiili` (Kieli=Suomi)**: 164 tulosta. Sisältö facet: Esitykset 36, Julkaisut 36,
+  Kirjoitukset ja puheenvuorot 18, Mediassa 0, Opinnäytteet 32. Top 20 excerpttien seula
+  kielletyille tokeneille (`slideshare|`, `localDetail`, `externalUrl`, `landingUrl`, `pageUrl`,
+  `sourceUrl`, `education|research`): **0 osumaa**.
+- **Kysely `tekoäly` (Kieli=Suomi)**: 373 tulosta. Sisältö facet: 5/5 domainia. Top 20 kiellettyjä
+  tokeneita: 0.
+- **Kysely `learning` (EN /en/search/)**: 130 tulosta, Sisältö-facet Esitykset 20, Mediassa 1,
+  Opinnäytteet 30. Top 5 kiellettyjä tokeneita: 0.
+- **Affected result `/presentations/ss-mobiilioppimisesta-about-mobile-learning/`**:
+  meta.title = "Mobiilioppimisesta - About Mobile learning", meta.PresentationYear = "2011",
+  meta.PresentationType = "presentation", Sisältö = ["Esitykset"].
+  Excerpt: `<mark>Mobiilioppimisesta</mark> - <mark>About</mark> <mark>Mobile</mark> <mark>learning.</mark> This document provides a summary of a presentation on <mark>mobile</mark> <mark>learning.</mark> It discusses the history and future of <mark>mobile</mark> <mark>learning,</mark>…` — täysin ihmisluettava, ei pipe-vuotoa.
+
+### Body-boundary + injektio tuotannossa
+
+- `<main data-pagefind-body>` renderöityy universaalisti (etusivu, esitykset, esitysdetaili,
+  julkaisut, opinnäytteet, /en/*).
+- `pagefindDocument.seedText`-span omalla `data-pagefind-body`-attribuutilla → F&E seed-kyselyt
+  toimivat (`__find_explore_publications__` 57 doc, `__find_explore_theses__` 139 doc,
+  `__find_explore_presentations__` 195 sisältäen custom-recordit).
+- Esitysdetaili-sivujen HTML:ssä **ei** ole `data-presentation-pagefind-scope`-injektiota (Pagefind
+  lisää sen vain indeksointihetkellä `run-pagefind.js`:n kautta). H1:llä `data-pagefind-weight="10"`.
+
+### G2 metadatakontrakti — säilyy tuotannossa
+
+- Kaikki filter-avaimet indeksissä: `Sisältö`, `FindExplore`, `Kieli`, `PresentationYear`,
+  `PresentationType`, `PresentationTopic`, `PresentationContext`, `Research context`,
+  `PresentationLandingType`, `PresentationMediaType`, `PresentationSourceType`,
+  `PresentationResearchPreset`, `PresentationEvent`.
+- Meta säilyy: `title`, `PresentationYear`, `PresentationType`, `PresentationEvent`. Otsikot
+  joissa kaksoispiste (`Mobiililaitteet ja koulu: hypeä ja arkirealismia`) parsiutuvat oikein.
+
+### SSR-P1 regressiotesti
+
+`/esitykset/` renderöi SSR-P1-osiot rakennushetkellä: hero-sektio, "Millaista materiaalia etsit?"
+selauspaneeli, "Nostot"-featured-section, "Neljä esimerkkiä tilaisuuksista" (ITK 2026 -avauspuheenvuoro,
+Palveluverkkokeskustelun tausta-aineisto, Opetus ja oppiminen tekoälyajassa, Jari Larun verkkolive).
+`/en/presentations/` renderöi 6 SSR-sektiota. Ei duplikaatti-rendausta, ei console-erroreita
+(X-Frame-Options meta-warning on baseline, ei liity tähän hotfixiin).
+
+### Muiden domainien pistetesti
+
+Publications ("tekoäly"), Writings ("lausunto"), Theses ("mobiili"), Media ("tekoäly"): kaikkien top-2
+tuloksen excerpt ei-tyhjä, ihmisluettava, otsikko ja meta säilyvät. Ei blank-excerpttejä eikä
+menetettyjä main-sisältöjä.
+
+### Result-count semantics — tarkennus
+
+Pagefind-summan luku (`search.results.length`) = *matching dokumenttien / sivujen* lukumäärä, **ei**
+sanaesiintymien lukumäärä. Yksi sivu jossa "mobiili" esiintyy monta kertaa on yksi tulos.
+Aiempi ~228 mobiili FI-luku oli **paisunut** koska (a) tekninen metadataroska tuotti legitiimejä
+Pagefind-document-matcheja, ja (b) ilman `data-pagefind-body` rajauskerrosta koko `<body>` (navbar,
+footer, filter-panels) matchaili kyselyihin. Uusi ~164 (tuotannossa) heijastaa vain oikeaa sisältö-
+osumista. Sama kausaliteetti pätee `tekoäly`-kyselyn 373 tulokseen.
+
+### Poistot / yksinkertaistukset säilyvät
+
+`buildPresentationPagefindInjection` yksinkertaistuksessa poistetut palat:
+
+- Meta-arvojen body-teksti-spanit (siirretty attribuuttimuotoon)
+- Painotettu duplikaattiotsikko-markup (H1 omaa `data-pagefind-weight="10"`)
+- `scopeText`-bareback `<span>` (find-explore seed säilyy custom-recordien contentissa)
+
+Ei uutta client-side excerpt-sanitointia lisätty.
+
+### Testit ja CI
+
+- Unit: `npm run test:unit` → 612 pass, 0 fail
+- PF5 & find-explore Playwright: 95 pass (yksi baseline-flake `f3b-publications-find-explore.spec.js`
+  passasi eristettynä uudelleenajolla; dokumentoitu tunnetuksi)
+- PR CI: `build-and-verify` pass, `playwright` pass
+- Main deploy: success (SHA 965c735b)
+
+### Deferred (ei tässä hotfixissä)
+
+- Result ranking tuning
+- Query relevance tuning
+- Media G3
+- Writings G4
+- Presentations FULL Pagefind decision
+- Archive runtime JSON removal
+- FilterPills MutationObserver cleanup
+- BBS/Gopher/themes
+
+### Cleanup
+
+Worktree `/private/tmp/www-index-hygiene` ja lokaali haara `hotfix/pagefind-index-hygiene` poistettu
+mergen jälkeen. Remote-haara poistettu. `git worktree prune` ajettu.
+
+---
 
 ## 1. Tiivistelmä
 
