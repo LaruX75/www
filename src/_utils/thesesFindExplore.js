@@ -138,8 +138,7 @@ function buildThesisFindExploreDocument(thesisDetail) {
 
   return {
     filters,
-    meta,
-    seedText: "__find_explore_theses__"
+    meta
   };
 }
 

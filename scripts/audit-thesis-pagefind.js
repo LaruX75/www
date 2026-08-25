@@ -253,7 +253,7 @@ async function main() {
         audit: await runQueryAudit(
           instances,
           ["fi", "en"],
-          "__find_explore_theses__",
+          null,
           thesis.expectedDetailUrl,
           {
             FindExplore: "theses",

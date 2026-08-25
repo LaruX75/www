@@ -162,7 +162,6 @@ schemaMentions:
 {% set findExploreScope = "" %}
 {% set findExploreLang = "fi" %}
 {% set findExploreSearchLanguage = "fi,en" %}
-{% set findExploreSeedQuery = "__find_explore_publications__ __find_explore_theses__ __find_explore_presentations__" %}
 {% set findExploreEyebrow = "Find & Explore" %}
 {% set findExploreTitle = "Tutki näyttöä aiheen mukaan" %}
 {% set findExploreDescription = "Kontekstihaku kokoaa samaan näkymään tutkimukseen liittyviä julkaisuja, opinnäytteitä, kirjoituksia ja tutkimuskontekstin esityksiä. Media jää edelleen pois tästä näkymästä." %}

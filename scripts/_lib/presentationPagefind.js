@@ -7,7 +7,6 @@ const {
   getPresentationResearchPresets
 } = require("../../src/_data/presentationResearchTopics");
 
-const PRESENTATION_FIND_EXPLORE_SEED = "__find_explore_presentations__";
 const SITE_ROOT = path.join(process.cwd(), "_site");
 const PRESENTATIONS_PAGE_JSON = path.join(SITE_ROOT, "data", "presentations-page.json");
 const PRESENTATIONS_JSON = path.join(SITE_ROOT, "data", "presentations.json");
@@ -513,7 +512,6 @@ function extractTextFromHtml(html = "") {
 
 function buildPresentationCustomRecord(record = {}, content = "") {
   const pieces = [
-    PRESENTATION_FIND_EXPLORE_SEED,
     record.canonicalTitle,
     buildPlainIndexText(record.canonicalTitle),
     record.canonicalTitle,

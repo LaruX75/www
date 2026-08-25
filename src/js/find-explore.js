@@ -604,7 +604,6 @@
       || (mount.dataset.findExploreResultsId ? document.getElementById(mount.dataset.findExploreResultsId) : null);
     const moreButton = mount.querySelector("[data-find-explore-more]");
     const controlsForm = mount.querySelector("[data-find-explore-form]");
-    const seedQuery = mount.dataset.findExploreSeedQuery || "";
     const recordsByUrl = readRecords(mount);
     const roleSelect = mount.querySelector("[data-find-explore-role]");
     const yearOrderSelect = mount.querySelector("[data-find-explore-year-order]")
@@ -1017,10 +1016,20 @@
       // PF5-IMPL-APA: publications archive keeps the full canonical
       // list visible only through SSR. Pagefind activates once the
       // user enters a query, applies a filter, or changes sorting.
-      const effectiveQuery = hasQuery
-        ? state.q
-        : ((hasFilters || hasThesisSortInteraction || hasPublicationSortInteraction) && seedQuery ? seedQuery : "");
-      const activeDiscoveryState = Boolean(effectiveQuery);
+      //
+      // Filter/sort-only discovery: Pagefind supports null-query +
+      // filters (equivalent to "match all records in filter set"). Every
+      // F&E mount already sets FindExplore:{kind} in filtersFor(), so a
+      // filter-only search returns exactly the domain we want. This
+      // replaces the previous synthetic seedQuery text (e.g.
+      // "__find_explore_presentations__") that used to be injected into
+      // page/custom-record content to make the seed queryable — that
+      // token leaked into user-visible Pagefind excerpts (P1). The seed
+      // identity now lives only in the FindExplore filter, which is
+      // exact-match and not part of excerpts.
+      const activeDiscoveryState =
+        hasQuery || hasFilters || hasThesisSortInteraction || hasPublicationSortInteraction;
+      const effectiveQuery = hasQuery ? state.q : (activeDiscoveryState ? null : "");
 
       updateUrl(state, kind);
       visibleCount = PAGE_SIZE;
@@ -1033,14 +1042,14 @@
       // archive state. This coordination applies only to `theses`
       // mounts; other kinds keep their existing behaviour.
       if ((kind === "theses" || kind === "publications") && document.body) {
-        if (effectiveQuery) {
+        if (activeDiscoveryState) {
           document.body.classList.add("find-explore-active");
         } else {
           document.body.classList.remove("find-explore-active");
         }
       }
 
-      if (!effectiveQuery && config.requiresQueryForSearch) {
+      if (!activeDiscoveryState && config.requiresQueryForSearch) {
         latestResults = [];
         if ((kind === "theses" || kind === "publications") && resultsList) resultsList.innerHTML = initialResultsHtml;
         else resultsList.innerHTML = "";
@@ -1050,7 +1059,7 @@
         return;
       }
 
-      if (!effectiveQuery) {
+      if (!activeDiscoveryState) {
         latestResults = [];
         if ((kind === "theses" || kind === "publications") && resultsList) resultsList.innerHTML = initialResultsHtml;
         else resultsList.innerHTML = "";

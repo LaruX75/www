@@ -62,25 +62,6 @@ function includesContext(item = {}, context) {
   return toArray(item.contexts).includes(context);
 }
 
-function publicationSearchText(item = {}) {
-  return [
-    "__find_explore_publications__",
-    item.title,
-    item.description,
-    item.authors,
-    item.journal,
-    item.publisher,
-    item.type,
-    item.typeCode,
-    item.publicationGroup,
-    item.doi,
-    ...toArray(item.categories),
-    ...toArray(item.keywords),
-    ...toArray(item.researchThemes),
-    ...toArray(item.researchAudience)
-  ].map((value) => pickString(value)).filter(Boolean).join(" ");
-}
-
 function buildPublicationFindExploreRecord(item = {}) {
   const pageUrl = pickString(item.pageUrl);
   if (!pageUrl || !pickString(item.title)) return null;
@@ -210,8 +191,7 @@ function buildPublicationFindExploreDocument(item = {}) {
       publicationPeerReviewed: item.peerReviewed ? "true" : "",
       publicationOpenAccess: item.openAccess ? "true" : "",
       publicationCsl: item.csl ? JSON.stringify(item.csl) : ""
-    },
-    seedText: publicationSearchText(item)
+    }
   };
 }
 
