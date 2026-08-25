@@ -784,16 +784,10 @@ html:not([data-bs-theme="dark"]) .breadcrumb-item.active {
 
 [data-search-modular-results] {
   list-style: none;
-  padding-left: 0;
+  padding: 0;
   margin: 0;
   display: grid;
   gap: 1rem;
-}
-
-[data-search-modular-results] > li,
-[data-search-modular-results] > li.find-explore-result {
-  list-style: none;
-  margin-left: 0;
 }
 
 .pagefind-modular-filter-pill {
