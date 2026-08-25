@@ -12,6 +12,7 @@ const JUFO_BASE = "https://jufo-rest.csc.fi/v1.1";
 const JUFO_HEADERS = { "User-Agent": "jarilaru.fi/2.0 (mailto:jari.laru@oulu.fi; academic personal site)" };
 
 const CACHE_KEY = "researchfi-publications";
+let memoizedResearchfiPromise = null;
 
 const typeMap = {
     "A1": "Alkuperäisartikkeli tieteellisessä aikakauslehdessä",
@@ -491,7 +492,7 @@ function normalizePublication(pub) {
     };
 }
 
-module.exports = async function () {
+async function loadResearchfiData() {
     const hidden = loadHiddenIds('researchfi');
     const manualPublications = Array.isArray(curatedManualResearchfi?.manual)
         ? curatedManualResearchfi.manual.map(normalizePublication)
@@ -593,4 +594,15 @@ module.exports = async function () {
         }
         return [];
     }
+}
+
+module.exports = function loadResearchfi() {
+    if (!memoizedResearchfiPromise) {
+        memoizedResearchfiPromise = loadResearchfiData().catch((error) => {
+            memoizedResearchfiPromise = null;
+            throw error;
+        });
+    }
+
+    return memoizedResearchfiPromise;
 };
