@@ -50,6 +50,13 @@
     return data?.meta?.title || data?.title || data?.url || "";
   }
 
+  function searchSurfaceLanguage() {
+    const lang = typeof document !== "undefined"
+      ? document?.documentElement?.lang || ""
+      : "";
+    return String(lang || "").toLowerCase().startsWith("en") ? "en" : "fi";
+  }
+
   // PF3: user-facing content-family labels deliberately Finnish across
   // FI and EN mounts so the visible label matches the Pagefind
   // `Sisältö:*` filter value. Do not localise here.
@@ -68,6 +75,46 @@
       : "";
     if (fromFilter) return fromFilter;
     return SISALTO_LABELS[kind] || "";
+  }
+
+  function humanizeMediaEnum(value) {
+    const raw = String(value || "").trim();
+    if (!raw) return "";
+    return raw
+      .replace(/([a-z])([A-Z])/g, "$1 $2")
+      .replace(/[-_]+/g, " ")
+      .replace(/\s+/g, " ")
+      .replace(/^./, (char) => char.toUpperCase());
+  }
+
+  function mediaLabelValue(meta, keyBase, language) {
+    const localizedKey = `${keyBase}Label${language === "en" ? "En" : "Fi"}`;
+    const localized = String(meta?.[localizedKey] || "").trim();
+    if (localized && localized.toLowerCase() !== "media") return localized;
+
+    const rawValue = String(meta?.[keyBase] || "").trim();
+    if (rawValue) return humanizeMediaEnum(rawValue);
+
+    return localized;
+  }
+
+  function mediaThumbnailUrl(meta) {
+    const raw = String(meta?.thumbnail || "").trim();
+    if (!raw) return "";
+    try {
+      const absolute = new URL(raw);
+      if (absolute.protocol === "http:" || absolute.protocol === "https:") return absolute.href;
+    } catch {
+      // Relative thumbnails still need a valid browser origin below.
+    }
+    if (typeof window === "undefined" || !window.location?.origin || window.location.origin === "null") return "";
+    try {
+      const normalized = new URL(raw, window.location.origin);
+      if (normalized.protocol !== "http:" && normalized.protocol !== "https:") return "";
+      return normalized.href;
+    } catch {
+      return "";
+    }
   }
 
   // Detect the canonical content kind from Pagefind result metadata.
@@ -126,9 +173,15 @@
       // resultMeta shape: type + event.
       return [meta.PresentationType || "", meta.PresentationEvent || ""].filter(Boolean);
     }
-    // `media` and `unknown`: no primary meta line. Family badge only
-    // (from SISALTO_LABELS.media == "Mediassa", which pre-existed
-    // find-explore.js).
+    if (kind === "media") {
+      const language = searchSurfaceLanguage();
+      return [
+        mediaLabelValue(meta, "mediaType", language),
+        mediaLabelValue(meta, "mediaRole", language),
+        meta.mediaOutlet || ""
+      ].filter(Boolean);
+    }
+    // `unknown`: no primary meta line. Family badge only.
     return [];
   }
 
@@ -144,6 +197,7 @@
 
   function projectEntry(data) {
     const kind = detectKind(data);
+    const meta = data?.meta || {};
     return {
       kind,
       url: data?.url || "",
@@ -151,7 +205,8 @@
       year: yearFor(kind, data),
       excerpt: data?.excerpt || "",
       meta: primaryMetaFor(kind, data),
-      contentFamilyLabel: contentFamilyLabelFromData(kind, data)
+      contentFamilyLabel: contentFamilyLabelFromData(kind, data),
+      thumbnailUrl: kind === "media" ? mediaThumbnailUrl(meta) : ""
     };
   }
 
@@ -176,6 +231,18 @@
     return `<p class="find-explore-result-excerpt" data-find-explore-card-line="excerpt">${entry.excerpt}</p>`;
   }
 
+  function renderMediaThumbnail(entry) {
+    if (!entry?.thumbnailUrl) return "";
+    return `<div class="find-explore-result-media-thumb" data-find-explore-card-line="thumbnail" aria-hidden="true"><img class="find-explore-result-media-thumb-image" src="${escapeHtml(entry.thumbnailUrl)}" alt="" loading="lazy" decoding="async"></div>`;
+  }
+
+  function renderSharedBody(entry, titleMarkup) {
+    return `${renderFamilyHeader(entry)}
+      ${titleMarkup}
+      ${renderPrimaryMetaLine(entry)}
+      ${renderExcerpt(entry)}`;
+  }
+
   // Pagefind's excerpt already contains safe <mark> tags for highlights;
   // do NOT escapeHtml() it, or the highlight markup collapses into text.
   // Title and meta are always escapeHtml()'d.
@@ -183,11 +250,19 @@
     const entry = projectEntry(data);
     const url = escapeHtml(entry.url);
     const title = escapeHtml(entry.title);
+    const titleMarkup = `<a class="find-explore-result-title" href="${url}">${title}</a>`;
+    if (entry.kind === "media" && entry.thumbnailUrl) {
+      return `<li class="find-explore-result find-explore-result--${escapeHtml(entry.kind)} find-explore-result--with-thumbnail" data-search-result-kind="${escapeHtml(entry.kind)}">
+      <div class="find-explore-result-media-layout">
+        <div class="find-explore-result-media-body">
+          ${renderSharedBody(entry, titleMarkup)}
+        </div>
+        ${renderMediaThumbnail(entry)}
+      </div>
+    </li>`;
+    }
     return `<li class="find-explore-result find-explore-result--${escapeHtml(entry.kind)}" data-search-result-kind="${escapeHtml(entry.kind)}">
-      ${renderFamilyHeader(entry)}
-      <a class="find-explore-result-title" href="${url}">${title}</a>
-      ${renderPrimaryMetaLine(entry)}
-      ${renderExcerpt(entry)}
+      ${renderSharedBody(entry, titleMarkup)}
     </li>`;
   }
 

@@ -758,6 +758,45 @@ html:not([data-bs-theme="dark"]) .breadcrumb-item.active {
   margin: 0;
 }
 
+.find-explore-result-media-layout {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.find-explore-result-media-body {
+  min-width: 0;
+}
+
+.find-explore-result-media-thumb {
+  align-self: start;
+  aspect-ratio: 16 / 9;
+  border-radius: 0.9rem;
+  overflow: hidden;
+  width: min(11rem, 100%);
+  justify-self: start;
+  background:
+    linear-gradient(135deg, rgba(13, 110, 253, 0.08), rgba(13, 110, 253, 0.16)),
+    var(--bs-tertiary-bg);
+}
+
+.find-explore-result-media-thumb-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (min-width: 640px) {
+  .find-explore-result--with-thumbnail .find-explore-result-media-layout {
+    align-items: start;
+    grid-template-columns: minmax(0, 1fr) 11rem;
+  }
+
+  .find-explore-result--with-thumbnail .find-explore-result-media-thumb {
+    justify-self: end;
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .find-explore-result {
     transition: border-color 160ms ease, transform 160ms ease;

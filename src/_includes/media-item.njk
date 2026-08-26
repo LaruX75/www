@@ -14,13 +14,20 @@ layout: base.njk
 {% if mediaType %}
 <span hidden data-pagefind-filter="Mediatyyppi:{{ mediaTypeLabelValue }}"></span>
 <span hidden data-pagefind-meta="mediaType:{{ mediaType }}"></span>
+<span hidden data-pagefind-meta="mediaTypeLabelFi:{{ media.mediaTypeLabel(mediaType, 'fi') | trim }}"></span>
+<span hidden data-pagefind-meta="mediaTypeLabelEn:{{ media.mediaTypeLabel(mediaType, 'en') | trim }}"></span>
 {% endif %}
 {% if mediaRole %}
 <span hidden data-pagefind-filter="Rooli:{{ mediaRoleLabelValue }}"></span>
 <span hidden data-pagefind-meta="mediaRole:{{ mediaRole }}"></span>
+<span hidden data-pagefind-meta="mediaRoleLabelFi:{{ media.mediaRoleLabel(mediaRole, 'fi') | trim }}"></span>
+<span hidden data-pagefind-meta="mediaRoleLabelEn:{{ media.mediaRoleLabel(mediaRole, 'en') | trim }}"></span>
 {% endif %}
 {% if mediaOutlet %}
 <span hidden data-pagefind-meta="mediaOutlet:{{ mediaOutlet }}"></span>
+{% endif %}
+{% if thumbnail %}
+<span hidden data-pagefind-meta="thumbnail:{{ thumbnail }}"></span>
 {% endif %}
 {% if mediaYear %}
 <span hidden data-pagefind-filter="Vuosi:{{ mediaYear }}"></span>
