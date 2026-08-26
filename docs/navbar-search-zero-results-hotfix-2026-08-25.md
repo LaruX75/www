@@ -1,11 +1,14 @@
 # Navbar search zero-result hotfix
 
-**STATUS: READY FOR MERGE** (2026-08-26)
+**STATUS: CLOSED / GREEN / MAIN** (2026-08-26)
 
-Suggested PR: `fix(search): restore navbar Pagefind results`
+PR: `#154 — fix(search): restore navbar Pagefind results`
 Branch: `hotfix/navbar-search-zero-results`
 Base before hotfix: `c1642b807aaf834bcdcfaa7485b97bbf2774a2ef`
-Implementation HEAD: `c1642b807aaf834bcdcfaa7485b97bbf2774a2ef` plus local hotfix changes
+Implementation HEAD: `dad3dd00aa09b4b40241c50a94ff164504f87e24`
+Merge commit: `01df458630bcb7c2c58ea8dfaeb4c0f7ce78f36b`
+Merged at: `2026-08-26T03:50:24Z`
+Resulting main after merge: `01df458630bcb7c2c58ea8dfaeb4c0f7ce78f36b`
 
 ## Production symptom
 
@@ -152,6 +155,39 @@ Full-page parity remained correct:
 - `/haku/` returned the same FI counts with visible full-page result cards
 - `/en/search/` returned the same EN count with visible full-page result cards
 
+## Production verification on main
+
+Verified live on Wednesday, August 26, 2026 after merge commit
+`01df458630bcb7c2c58ea8dfaeb4c0f7ce78f36b` reached production.
+
+FI on `https://www.jarilaru.fi/`:
+
+- inline navbar submit with `tekoäly` opens the overlay and preserves the query in the overlay input
+- summary is non-zero and direct rendered result cards appear immediately
+- result owner is `UL`
+- direct result cards are `LI.find-explore-result`
+- full-results link preserves the same query at `/haku/?q=teko%C3%A4ly`
+- second query without closing works (`mobiili`)
+- `Escape` closes the dialog
+- reopen + second search after reopen works (`oppiminen`)
+- full-results transfer from the overlay preserves `oppiminen` at `/haku/?q=oppiminen`
+- full search continues to render non-zero results with the existing one-input shell
+
+EN on `https://www.jarilaru.fi/en/`:
+
+- inline navbar submit with `learning` opens the overlay and preserves the query in the overlay input
+- summary is non-zero and direct rendered result cards appear immediately
+- result owner is `UL`
+- direct result cards are `LI.find-explore-result`
+- full-results link preserves the same query at `/en/search/?q=learning`
+- full search continues to render non-zero results
+
+Lightweight production raw Pagefind parity check:
+
+- FI `Kieli=Suomi` raw search for `tekoäly` returned `> 0`
+- EN `Kieli=English` raw search for `learning` returned `> 0`
+- navbar results were also `> 0` on both locales
+
 ## First-open / reopen lifecycle
 
 Verified behaviors after the fix:
@@ -213,12 +249,40 @@ Focused browser verification:
 - `tests/pf5-h1a-search-shell.spec.js`: PASS (`14 passed`)
 - `tests/pf5-hotfix-search-state-facet-counts.spec.js`: PASS (`9 passed`)
 - `tests/pf5-a2-result-list-semantics.spec.js`: PASS (`3 passed`)
+- lightweight live production smoke on Wednesday, August 26, 2026: PASS (`3 passed`)
+  - FI navbar lifecycle
+  - EN navbar lifecycle
+  - raw Pagefind production parity smoke
 
 Unit tests:
 
 - `npm run test:unit` currently reports 2 unrelated pre-existing failures outside this hotfix:
   - `tests/unit/buildDataLoaderMemoization.test.js`
   - `tests/unit/searchQualityRegressionBenchmark.test.js`
+
+GitHub PR CI for `#154`:
+
+- `build-and-verify` PASS (`5m38s`)
+- `playwright` PASS (`9m40s`)
+
+Merged-main Build and Deploy workflow for `01df458630bcb7c2c58ea8dfaeb4c0f7ce78f36b`:
+
+- build PASS (`7m48s`)
+- deploy PASS (`29s`)
+- smoke PASS (`7s`)
+
+Preserved architecture and neighboring fixes:
+
+- PF5-A2 semantic `UL`/`LI` result structure preserved
+- `SearchResultPresenter` unchanged
+- seed-token leak hotfix `#153` unchanged
+- no visible `__find_explore_*` leak was reintroduced during production checks
+- H1A one-input model preserved
+- H1B progressive facets preserved
+
+Deferred note:
+
+- `PF5-A3 — Facet count semantics audit` remains deferred only
 
 ## Changed files
 
