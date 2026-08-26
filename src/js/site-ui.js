@@ -535,6 +535,7 @@
       let lastSearchTrigger = null;
       let pagefindUi = null;
       let pagefindUiReady = null;
+      let pendingNavbarInitialQuery = '';
       const focusableSelector = 'a[href], area[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
       const isVisibleElement = (el) => el instanceof HTMLElement && el.isConnected && el.offsetParent !== null;
@@ -560,8 +561,9 @@
       // factory owns Pagefind Instance, input mount, presenter-based
       // result rendering, and atomic Kieli-pinned query dispatch.
       // site-ui.js owns only the native <dialog> lifecycle around it.
-      function initPagefindUi() {
+      function initPagefindUi(initialQuery = '') {
         if (pagefindUiReady) return pagefindUiReady;
+        pendingNavbarInitialQuery = String(initialQuery || '').trim();
         pagefindUiReady = new Promise((resolve) => {
           if (typeof window.createModularSearchUI !== 'function') {
             console.warn('[navbar search] createModularSearchUI missing — load /js/global-search-modular-ui.js before /js/site-ui.js.');
@@ -582,7 +584,7 @@
             enableFilters: false,
             enableUrlSync: false,
             fallbackFormEl: null,
-            getInitialQuery: () => ''
+            getInitialQuery: () => pendingNavbarInitialQuery
           });
           pagefindUi = api;
           api.ready.then(() => resolve(api)).catch(() => resolve(null));
@@ -592,15 +594,23 @@
 
       function openSearch(prefillQuery = '', triggerSource = null) {
         if (!searchOverlay) return;
+        const query = String(prefillQuery || '').trim();
+        const coldStart = !pagefindUiReady;
         lastSearchTrigger = triggerSource instanceof HTMLElement
           ? triggerSource
           : (document.activeElement instanceof HTMLElement ? document.activeElement : null);
         if (!searchOverlay.open) {
           searchOverlay.showModal();
         }
-        initPagefindUi().then((api) => {
+        initPagefindUi(query).then((api) => {
           if (api && typeof api.focusInput === 'function') {
-            api.focusInput(prefillQuery);
+            // Cold-start prefills must be handed to the shared factory as
+            // its initial query. Dispatching the first navbar-prefill search
+            // only after the factory resolves can yield a zero-result state
+            // even though the same query succeeds on the full search page.
+            // After the first mount the adapter can keep using focusInput(query)
+            // for warm re-searches on the existing Instance.
+            api.focusInput(coldStart ? '' : query);
           }
         });
       }
