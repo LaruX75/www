@@ -288,7 +288,7 @@
           instance.add(new PagefindModularUI.FilterPills({
             containerElement: "#" + slot.id,
             filter: filterName,
-            selectMultiple: true,
+            selectMultiple: filterName !== "Sisältö",
             alwaysShow: false
           }));
         }
@@ -359,37 +359,57 @@
           if (sisaltoDecorationSlot) stripSisaltoCountsAndLocaliseAll(sisaltoDecorationSlot);
         }
 
-        // PF5-H1B — Progressive facet disclosure.
+        // PF5-A3A — Progressive facet disclosure.
         //
         // Pagefind remains the sole owner of filter state; this layer
         // only toggles DOM VISIBILITY of secondary facet slots based
-        // on which values are currently selected in the Sisältö
+        // on which value is currently selected in the Sisältö
         // FilterPills. The signal is Pagefind's own `aria-pressed`
         // attribute on each pill (Modular UI 1.5.2), read via a
         // MutationObserver — no parallel selection state, no Pagefind
         // API misuse.
         //
-        // Multi-select: FilterPills is mounted with selectMultiple:true,
-        // so the user can select more than one Sisältö value. When
-        // that happens we show the UNION of the selected domains'
-        // secondary facets. Selecting "All" (or clearing everything)
-        // hides all secondary slots.
+        // Top-level Sisältö is single-select in A3A: selecting a new
+        // content type replaces the prior one, and selecting "All"
+        // (or clearing everything) hides all secondary slots. If a
+        // domain switch would otherwise leave a hidden domain-specific
+        // secondary filter active, clear that state by toggling
+        // Pagefind's own active pills off before the slot is hidden.
         const secondarySlots = slots.filter((s) => s.hasAttribute("data-search-modular-secondary-for"));
         if (secondarySlots.length) {
           const sisaltoSlot = slots.find((s) => s.dataset.searchModularFilterName === "Sisältö");
+          const isResetLabel = (value) => value === "All" || (allLabel && value === allLabel);
+          const getPillLabel = (btn) => (
+            btn.querySelector("span[aria-label]")?.getAttribute("aria-label") || ""
+          ).trim();
+          const clearActiveConcretePills = (slot) => {
+            const activeButtons = Array.from(
+              slot.querySelectorAll(".pagefind-modular-filter-pill[aria-pressed='true']")
+            ).filter((btn) => {
+              const label = getPillLabel(btn);
+              return label && !isResetLabel(label);
+            });
+            for (const btn of activeButtons) {
+              btn.click();
+            }
+          };
+          let visibilityRaf = 0;
           const applyVisibility = () => {
             const selected = sisaltoSlot
               ? Array.from(sisaltoSlot.querySelectorAll(".pagefind-modular-filter-pill[aria-pressed='true']"))
-                  .map((btn) => (btn.querySelector("span[aria-label]")?.getAttribute("aria-label") || "").trim())
+                  .map((btn) => getPillLabel(btn))
                   // Pagefind Modular UI includes an "All" reset pill that
                   // corresponds to "no filter selected"; treat it as no
                   // domain selection.
-                  .filter((v) => v && v !== "All" && v !== "Kaikki")
+                  .filter((v) => v && !isResetLabel(v))
               : [];
-            const activeDomains = new Set(selected);
+            const activeDomain = selected[0] || null;
             for (const slot of secondarySlots) {
               const contentType = slot.dataset.searchModularSecondaryFor;
-              const shouldShow = activeDomains.has(contentType);
+              const shouldShow = Boolean(activeDomain && contentType === activeDomain);
+              if (!shouldShow) {
+                clearActiveConcretePills(slot);
+              }
               if (shouldShow) {
                 slot.hidden = false;
               } else {
@@ -397,9 +417,16 @@
               }
             }
           };
-          applyVisibility();
+          const scheduleVisibility = () => {
+            if (visibilityRaf) return;
+            visibilityRaf = window.requestAnimationFrame(() => {
+              visibilityRaf = 0;
+              applyVisibility();
+            });
+          };
+          scheduleVisibility();
           if (sisaltoSlot) {
-            const sisaltoObserver = new MutationObserver(applyVisibility);
+            const sisaltoObserver = new MutationObserver(scheduleVisibility);
             sisaltoObserver.observe(sisaltoSlot, {
               attributes: true,
               attributeFilter: ["aria-pressed"],
