@@ -18,6 +18,14 @@ import { gotoAndAssertSite } from './helpers/a11y.js';
 
 const RESULT_TIMEOUT_MS = 20000;
 
+async function expectNavbarPrefilledResults(page, zeroRegex) {
+    await expect
+        .poll(() => page.locator('#searchOverlay [data-search-modular-results] li[data-search-result-kind]').count(),
+            { timeout: RESULT_TIMEOUT_MS })
+        .toBeGreaterThan(0);
+    await expect(page.locator('#searchOverlay [data-search-modular-summary]')).not.toContainText(zeroRegex);
+}
+
 test.describe('PF5 hotfix — result list bullet + spacing', () => {
 
     test('/haku/ result container has no bullet marker and non-zero gap between cards', async ({ page }) => {
@@ -140,6 +148,9 @@ test.describe('PF5 hotfix — navbar form submit opens dialog', () => {
         await expect(page.locator('#searchOverlay')).toHaveAttribute('open', '');
         await expect(page.locator('#siteSearchNavInput')).toBeVisible();
         await expect(page.locator('#siteSearchNavInput')).toHaveValue('tekoäly');
+        await expectNavbarPrefilledResults(page, /Ei tuloksia/i);
+        const href = await page.locator('#searchOverlay a[data-search-page-link]').first().getAttribute('href');
+        expect(href).toBe('/haku/?q=' + encodeURIComponent('tekoäly'));
     });
 
     test('after closing the dialog with Escape, navbar inline form remains visible on home', async ({ page }) => {
@@ -172,5 +183,8 @@ test.describe('PF5 hotfix — navbar form submit opens dialog', () => {
         expect(page.url()).toBe(startUrl);
         await expect(page.locator('#searchOverlay')).toHaveAttribute('open', '');
         await expect(page.locator('#siteSearchNavInput')).toHaveValue('learning');
+        await expectNavbarPrefilledResults(page, /No results/i);
+        const href = await page.locator('#searchOverlay a[data-search-page-link]').first().getAttribute('href');
+        expect(href).toBe('/en/search/?q=learning');
     });
 });
