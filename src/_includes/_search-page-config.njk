@@ -9,13 +9,13 @@
    indexed data-pagefind-filter names verbatim; labels are localised
    accessible names (site-owned), not new taxonomy.
 
-   PF5-H1B — progressive facet disclosure. `facetGroups` now carries
-   the single truly-global facet (`Sisältö`). Domain-specific facets
-   live under `secondaryFacetsByContentType`, keyed by the exact
-   Pagefind `Sisältö` filter VALUE they belong to. The controller
-   mounts every one of them so Pagefind still sees them (unchanged
-   ranking + hit counts), but toggles their DOM visibility based on
-   the current `Sisältö` pill selection. Zero taxonomy change. #}
+   PF5-H1B / A3A — progressive facet disclosure. `facetGroups` now
+   carries the single truly-global facet (`Sisältö`). Domain-specific
+   facets live under `secondaryFacetsByContentType`, keyed by the
+   exact Pagefind `Sisältö` filter VALUE they belong to. The
+   controller mounts every one of them so Pagefind still sees them
+   (unchanged ranking + hit counts), but toggles their DOM visibility
+   based on the current `Sisältö` selection. Zero taxonomy change. #}
 {%- set currentLang = lang or (page.url | langFromUrl) -%}
 {%- set isEn = currentLang == "en" -%}
 {%- set searchPageConfig = {
