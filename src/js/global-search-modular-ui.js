@@ -109,6 +109,7 @@
     let inputElement = null;
     let urlSyncDebounce = null;
     const pinnedFilters = { Kieli: [languageFilter] };
+    let pagefindSearchApiPromise = null;
 
     function escapeHtml(value) {
       return String(value || "")
@@ -141,19 +142,31 @@
           data-search-modular-filter-name="${escapeHtml(group.filter)}"
           data-search-modular-filter-label="${escapeHtml(group.label)}"
         ></div>`).join("");
-      // PF5-H1B: secondary slots stay in the DOM (so FilterPills can
-      // mount + Pagefind can maintain hit counts) but are hidden until
-      // the matching Sisältö value is selected.
-      const secondarySlots = SECONDARY_FACETS.map((group) => `
+      // PF5-A3B: secondary groups now render through a site-owned
+      // presenter while hidden Pagefind FilterPills continue to own
+      // the actual filter application/state under the hood.
+      const secondarySlots = SECONDARY_FACETS.map((group, index) => `
         <div
           data-search-modular-filter-slot
+          data-search-modular-secondary-for="${escapeHtml(group.contentType)}"
+          data-search-modular-filter-name="${escapeHtml(group.filter)}"
+          data-search-modular-filter-label="${escapeHtml(group.label)}"
+          data-search-modular-filter-source-id="search-modular-filter-source-${index}"
+          hidden
+        >
+          <div class="site-search-page-secondary-facet" data-search-modular-facet-presenter></div>
+        </div>`).join("");
+      const secondarySources = SECONDARY_FACETS.map((group, index) => `
+        <div
+          id="search-modular-filter-source-${index}"
+          data-search-modular-filter-source
           data-search-modular-secondary-for="${escapeHtml(group.contentType)}"
           data-search-modular-filter-name="${escapeHtml(group.filter)}"
           data-search-modular-filter-label="${escapeHtml(group.label)}"
           hidden
         ></div>`).join("");
       const filtersMarkup = (FACET_GROUPS.length || SECONDARY_FACETS.length)
-        ? `<div class="site-search-page-filters mb-3" data-search-modular-filters role="region" aria-label="${escapeHtml(regionLabel)}">${primarySlots}${secondarySlots}</div>`
+        ? `<div class="site-search-page-filters mb-3" data-search-modular-filters role="region" aria-label="${escapeHtml(regionLabel)}">${primarySlots}${secondarySlots}${secondarySources}</div>`
         : "";
       const existingInput = document.getElementById(inputId);
       if (existingInput && existingInput.matches("input[type='search']")) {
@@ -219,9 +232,30 @@
     // Falls back to accepting every configured facet if the probe
     // fails, in which case FilterPills' own alwaysShow:false hides
     // wrappers that never receive data.
+    async function loadPagefindSearchApi() {
+      if (!pagefindSearchApiPromise) {
+        // Keep the presenter Search API isolated from the live
+        // Modular UI runtime so explicit availability probes do not
+        // inherit the page's currently active FilterPills state.
+        const isolatedModulePath = `/pagefind/pagefind.js?site-search-api=${encodeURIComponent(inputId)}`;
+        pagefindSearchApiPromise = import(isolatedModulePath)
+          .then(async (pagefindModule) => {
+            if (typeof pagefindModule.options === "function") {
+              await pagefindModule.options({ baseUrl: "/" });
+            }
+            return pagefindModule;
+          })
+          .catch((error) => {
+            pagefindSearchApiPromise = null;
+            throw error;
+          });
+      }
+      return pagefindSearchApiPromise;
+    }
+
     async function discoverAvailableFilterNames() {
       try {
-        const pagefindModule = await import("/pagefind/pagefind.js");
+        const pagefindModule = await loadPagefindSearchApi();
         const filters = await pagefindModule.filters();
         return new Set(Object.keys(filters || {}));
       } catch (_) {
@@ -234,6 +268,15 @@
         return window.SearchResultPresenter;
       }
       throw new Error("SearchResultPresenter is not available. Load /js/search-result-presenter.js before this script.");
+    }
+
+    function ensureFacetAvailability() {
+      if (window.SearchFacetAvailability
+        && typeof window.SearchFacetAvailability.buildPresenterOptions === "function"
+        && typeof window.SearchFacetAvailability.buildSearchFilters === "function") {
+        return window.SearchFacetAvailability;
+      }
+      throw new Error("SearchFacetAvailability is not available. Load /js/search-facet-availability.js before this script.");
     }
 
     async function initModular(PagefindModularUI) {
@@ -256,12 +299,19 @@
         || mount.querySelector("[data-search-modular-input]");
       const summaryEl = mount.querySelector("[data-search-modular-summary]");
       const resultsEl = mount.querySelector("[data-search-modular-results]");
+      let currentResults = [];
+      let currentTerm = "";
+      let renderedCount = 0;
+      let renderVersion = 0;
+      let scheduleFacetRefresh = null;
 
       // Modular UI's Input takes a SELECTOR STRING, not an element
       // reference. querySelector inside the component wires it up.
       instance.add(new PagefindModularUI.Input({ inputElement: "#" + inputId }));
 
       if (enableFilters && (FACET_GROUPS.length || SECONDARY_FACETS.length)) {
+        const facetAvailability = ensureFacetAvailability();
+
         // Facet parity with PF5-G1 pilot: one Modular UI FilterPills per
         // user-meaningful group defined in FACET_GROUPS. Empty groups
         // auto-hide (alwaysShow: false). Pagefind owns filter values,
@@ -278,17 +328,33 @@
         // to mounting every configured slot; FilterPills' alwaysShow:false
         // hides wrappers that never receive data.
         const slots = Array.from(mount.querySelectorAll("[data-search-modular-filter-slot]"));
-        for (const slot of slots) {
-          const filterName = slot.dataset.searchModularFilterName;
+        const primaryFilterSlots = slots.filter((slot) => !slot.hasAttribute("data-search-modular-secondary-for"));
+        const secondaryFilterSlots = slots
+          .filter((slot) => slot.hasAttribute("data-search-modular-secondary-for"))
+          .map((slot) => ({
+            slot,
+            source: document.getElementById(slot.dataset.searchModularFilterSourceId || ""),
+            filterName: slot.dataset.searchModularFilterName || "",
+            label: slot.dataset.searchModularFilterLabel || "",
+            contentType: slot.dataset.searchModularSecondaryFor || "",
+            knownValues: []
+          }))
+          .filter((group) => group.source && group.filterName);
+        const filterContainers = [
+          ...primaryFilterSlots,
+          ...secondaryFilterSlots.map((group) => group.source)
+        ];
+        for (const container of filterContainers) {
+          const filterName = container.dataset.searchModularFilterName;
           if (!filterName) continue;
           if (availableFilterNames && !availableFilterNames.has(filterName)) {
             continue;
           }
-          slot.setAttribute("id", "search-modular-filter-" + slots.indexOf(slot));
+          container.setAttribute("id", "search-modular-filter-" + filterContainers.indexOf(container));
           instance.add(new PagefindModularUI.FilterPills({
-            containerElement: "#" + slot.id,
+            containerElement: "#" + container.id,
             filter: filterName,
-            selectMultiple: filterName !== "Sisältö",
+            selectMultiple: false,
             alwaysShow: false
           }));
         }
@@ -298,10 +364,10 @@
         // FilterPills translation/accessibility-label API. Idempotent
         // via data-search-modular-i18n. Remove when a supported
         // Pagefind FilterPills translation surface becomes available.
-        const localiseFacet = (slot) => {
-          const wrapper = slot.querySelector(".pagefind-modular-filter-pills-wrapper");
+        const localiseFacet = (container) => {
+          const wrapper = container.querySelector(".pagefind-modular-filter-pills-wrapper");
           if (!wrapper || wrapper.dataset.searchModularI18n === "done") return;
-          const label = slot.dataset.searchModularFilterLabel;
+          const label = container.dataset.searchModularFilterLabel;
           if (!label) return;
           wrapper.setAttribute("aria-label", label);
           wrapper.removeAttribute("aria-labelledby");
@@ -329,8 +395,12 @@
         // (Kaikki / All). Both changes are DOM-only post-render
         // decoration — no parallel state, no Pagefind API misuse.
         const allLabel = translations.all_label || "";
-        const stripSisaltoCountsAndLocaliseAll = (slot) => {
-          const wrapper = slot.querySelector(".pagefind-modular-filter-pills-wrapper");
+        const isResetLabel = (value) => value === "All" || (allLabel && value === allLabel);
+        const getPillLabel = (btn) => (
+          btn.querySelector("span[aria-label]")?.getAttribute("aria-label") || ""
+        ).trim();
+        const stripSisaltoCountsAndLocaliseAll = (container) => {
+          const wrapper = container.querySelector(".pagefind-modular-filter-pills-wrapper");
           if (!wrapper) return;
           const spans = wrapper.querySelectorAll(".pagefind-modular-filter-pill > span[aria-label]");
           for (const span of spans) {
@@ -345,88 +415,256 @@
           }
         };
         const filtersRegion = mount.querySelector("[data-search-modular-filters]");
-        const sisaltoDecorationSlot = slots.find((s) => s.dataset.searchModularFilterName === "Sisältö");
+        const sisaltoSlot = primaryFilterSlots.find((slot) => slot.dataset.searchModularFilterName === "Sisältö");
+        const secondaryState = Object.create(null);
+        const domainDataCache = new Map();
+        let facetRefreshVersion = 0;
+        let facetRefreshRaf = 0;
+        let pendingFacetFocus = null;
+
+        const findConcretePill = (container, value) => {
+          const target = String(value || "").trim();
+          if (!container || !target) return null;
+          return Array.from(container.querySelectorAll(".pagefind-modular-filter-pill"))
+            .find((btn) => getPillLabel(btn) === target);
+        };
+        const findResetPill = (container) => {
+          if (!container) return null;
+          return Array.from(container.querySelectorAll(".pagefind-modular-filter-pill"))
+            .find((btn) => isResetLabel(getPillLabel(btn)));
+        };
+        const syncConcretePillState = (container, activeValue = "") => {
+          const active = String(activeValue || "").trim();
+          for (const button of Array.from(container?.querySelectorAll(".pagefind-modular-filter-pill") || [])) {
+            const value = getPillLabel(button);
+            if (!value || isResetLabel(value)) continue;
+            button.setAttribute("aria-pressed", value === active ? "true" : "false");
+          }
+        };
+        const concreteValuesInOrder = (container) => (
+          Array.from(container?.querySelectorAll(".pagefind-modular-filter-pill") || [])
+            .map((btn) => getPillLabel(btn))
+            .filter((value) => value && !isResetLabel(value))
+        );
+        const rememberKnownValues = (group) => {
+          for (const value of concreteValuesInOrder(group.source)) {
+            if (!group.knownValues.includes(value)) {
+              group.knownValues.push(value);
+            }
+          }
+        };
+        const getActiveDomain = () => {
+          if (!sisaltoSlot) return null;
+          const selected = Array.from(sisaltoSlot.querySelectorAll(".pagefind-modular-filter-pill[aria-pressed='true']"))
+            .map((btn) => getPillLabel(btn))
+            .filter((value) => value && !isResetLabel(value));
+          return selected[0] || null;
+        };
+        const clearSecondaryGroup = (group) => {
+          const activeValue = secondaryState[group.filterName];
+          if (!activeValue) return;
+          const reset = findResetPill(group.source);
+          if (reset) {
+            reset.click();
+          } else {
+            const active = findConcretePill(group.source, activeValue);
+            if (active) active.click();
+          }
+          syncConcretePillState(group.source, "");
+          secondaryState[group.filterName] = "";
+        };
+        const activeValuesForDomain = (activeDomain) => {
+          const values = {};
+          for (const group of secondaryFilterSlots) {
+            if (group.contentType !== activeDomain) continue;
+            const activeValue = String(secondaryState[group.filterName] || "").trim();
+            if (activeValue) values[group.filterName] = activeValue;
+          }
+          return values;
+        };
+        const hideAllSecondaryPresenters = () => {
+          for (const group of secondaryFilterSlots) {
+            group.slot.hidden = true;
+            const presenterEl = group.slot.querySelector("[data-search-modular-facet-presenter]");
+            if (presenterEl) presenterEl.innerHTML = "";
+            if (group.source) group.source.hidden = true;
+          }
+        };
+        const renderFacetPresenter = (group, options, activeValue) => {
+          const presenterEl = group.slot.querySelector("[data-search-modular-facet-presenter]");
+          if (!presenterEl) return;
+          const clearMarkup = activeValue
+            ? `<button type="button" class="pagefind-modular-filter-pill" data-search-modular-facet-clear="true"><span aria-label="${escapeHtml(allLabel)}">${escapeHtml(allLabel)}</span></button>`
+            : "";
+          const optionMarkup = options.map((option) => `
+            <button
+              type="button"
+              class="pagefind-modular-filter-pill"
+              aria-pressed="${option.active ? "true" : "false"}"
+              data-search-modular-facet-value="${escapeHtml(option.value)}"
+            ><span aria-label="${escapeHtml(option.value)}">${escapeHtml(option.value)} (${escapeHtml(String(option.count))})</span></button>
+          `).join("");
+          presenterEl.innerHTML = `
+            <div class="mb-2 small fw-semibold text-body-secondary">${escapeHtml(group.label)}</div>
+            <div class="pagefind-modular-filter-pills-wrapper" role="group" aria-label="${escapeHtml(group.label)}">
+              ${clearMarkup}${optionMarkup}
+            </div>
+          `;
+          presenterEl.onclick = (event) => {
+            const button = event.target.closest("button");
+            if (!button) return;
+            if (button.hasAttribute("data-search-modular-facet-clear")) {
+              pendingFacetFocus = { filterName: group.filterName, clear: true };
+              clearSecondaryGroup(group);
+              return;
+            }
+            const nextValue = String(button.dataset.searchModularFacetValue || "").trim();
+            if (!nextValue) return;
+            const currentValue = String(secondaryState[group.filterName] || "").trim();
+            pendingFacetFocus = { filterName: group.filterName, value: nextValue };
+            if (currentValue && currentValue === nextValue) {
+              clearSecondaryGroup(group);
+              return;
+            }
+            const hiddenButton = findConcretePill(group.source, nextValue);
+            if (hiddenButton) {
+              hiddenButton.click();
+              syncConcretePillState(group.source, nextValue);
+              secondaryState[group.filterName] = nextValue;
+            }
+          };
+          if (pendingFacetFocus && pendingFacetFocus.filterName === group.filterName) {
+            const selector = pendingFacetFocus.clear
+              ? "button[data-search-modular-facet-clear]"
+              : `button[data-search-modular-facet-value="${CSS.escape(pendingFacetFocus.value || "")}"]`;
+            presenterEl.querySelector(selector)?.focus({ preventScroll: true });
+            pendingFacetFocus = null;
+          }
+        };
+        const syncSecondaryVisibility = () => {
+          const activeDomain = getActiveDomain();
+          if (!activeDomain) {
+            for (const group of secondaryFilterSlots) {
+              clearSecondaryGroup(group);
+            }
+            hideAllSecondaryPresenters();
+            return null;
+          }
+          for (const group of secondaryFilterSlots) {
+            const shouldShow = group.contentType === activeDomain;
+            if (!shouldShow) {
+              clearSecondaryGroup(group);
+              const presenterEl = group.slot.querySelector("[data-search-modular-facet-presenter]");
+              if (presenterEl) presenterEl.innerHTML = "";
+            }
+            group.slot.hidden = !shouldShow;
+            if (group.source) group.source.hidden = true;
+          }
+          return activeDomain;
+        };
+        scheduleFacetRefresh = () => {
+          if (facetRefreshRaf) return;
+          facetRefreshRaf = window.requestAnimationFrame(() => {
+            facetRefreshRaf = 0;
+            void refreshSecondaryPresenters();
+          });
+        };
+        const refreshSecondaryPresenters = async () => {
+          const activeDomain = syncSecondaryVisibility();
+          if (!activeDomain || !currentTerm) return;
+          const activeValues = activeValuesForDomain(activeDomain);
+          const refreshVersion = ++facetRefreshVersion;
+          try {
+            const domainDataKey = JSON.stringify({
+              term: currentTerm,
+              language: languageFilter,
+              activeDomain
+            });
+            if (!domainDataCache.has(domainDataKey)) {
+              domainDataCache.set(domainDataKey, (async () => {
+                const domainFilters = facetAvailability.buildSearchFilters({
+                  pinnedFilters,
+                  activeDomain,
+                  activeValues: {}
+                });
+                const pagefindModule = await loadPagefindSearchApi();
+                const domainSearch = await pagefindModule.search(currentTerm, { filters: domainFilters });
+                const records = await Promise.all((domainSearch.results || []).map(async (raw) => {
+                  try {
+                    return await raw.data();
+                  } catch (_) {
+                    return null;
+                  }
+                }));
+                return records.filter(Boolean);
+              })());
+            }
+            const domainRecords = await domainDataCache.get(domainDataKey);
+            if (refreshVersion !== facetRefreshVersion) return;
+            for (const group of secondaryFilterSlots) {
+              if (group.contentType !== activeDomain) continue;
+              rememberKnownValues(group);
+              const activeValue = String(activeValues[group.filterName] || "").trim();
+              const currentCounts = facetAvailability.collectFilterCounts({
+                records: domainRecords,
+                targetFilter: group.filterName,
+                activeValues
+              });
+              const replacementCounts = activeValue
+                ? facetAvailability.collectFilterCounts({
+                  records: domainRecords,
+                  targetFilter: group.filterName,
+                  activeValues,
+                  omitFilter: group.filterName
+                })
+                : currentCounts;
+              const orderedValues = facetAvailability.buildOrderedValues({
+                knownValues: group.knownValues,
+                activeValue,
+                currentCounts,
+                replacementCounts
+              });
+              const options = facetAvailability.buildPresenterOptions({
+                values: orderedValues,
+                activeValue,
+                currentCounts,
+                replacementCounts
+              });
+              if (!options.length && !activeValue) {
+                group.slot.hidden = true;
+                const presenterEl = group.slot.querySelector("[data-search-modular-facet-presenter]");
+                if (presenterEl) presenterEl.innerHTML = "";
+                continue;
+              }
+              group.slot.hidden = false;
+              renderFacetPresenter(group, options, activeValue);
+            }
+          } catch (_) {
+            for (const group of secondaryFilterSlots) {
+              if (group.contentType !== activeDomain) continue;
+              const presenterEl = group.slot.querySelector("[data-search-modular-facet-presenter]");
+              if (presenterEl) presenterEl.innerHTML = "";
+              if (group.source) group.source.hidden = false;
+            }
+          }
+        };
         if (filtersRegion) {
           const facetObserver = new MutationObserver(() => {
-            for (const slot of slots) localiseFacet(slot);
-            if (sisaltoDecorationSlot) stripSisaltoCountsAndLocaliseAll(sisaltoDecorationSlot);
+            for (const container of filterContainers) localiseFacet(container);
+            if (sisaltoSlot) stripSisaltoCountsAndLocaliseAll(sisaltoSlot);
           });
           facetObserver.observe(filtersRegion, {
             childList: true,
             subtree: true
           });
-          for (const slot of slots) localiseFacet(slot);
-          if (sisaltoDecorationSlot) stripSisaltoCountsAndLocaliseAll(sisaltoDecorationSlot);
+          for (const container of filterContainers) localiseFacet(container);
+          if (sisaltoSlot) stripSisaltoCountsAndLocaliseAll(sisaltoSlot);
         }
 
-        // PF5-A3A — Progressive facet disclosure.
-        //
-        // Pagefind remains the sole owner of filter state; this layer
-        // only toggles DOM VISIBILITY of secondary facet slots based
-        // on which value is currently selected in the Sisältö
-        // FilterPills. The signal is Pagefind's own `aria-pressed`
-        // attribute on each pill (Modular UI 1.5.2), read via a
-        // MutationObserver — no parallel selection state, no Pagefind
-        // API misuse.
-        //
-        // Top-level Sisältö is single-select in A3A: selecting a new
-        // content type replaces the prior one, and selecting "All"
-        // (or clearing everything) hides all secondary slots. If a
-        // domain switch would otherwise leave a hidden domain-specific
-        // secondary filter active, clear that state by toggling
-        // Pagefind's own active pills off before the slot is hidden.
-        const secondarySlots = slots.filter((s) => s.hasAttribute("data-search-modular-secondary-for"));
-        if (secondarySlots.length) {
-          const sisaltoSlot = slots.find((s) => s.dataset.searchModularFilterName === "Sisältö");
-          const isResetLabel = (value) => value === "All" || (allLabel && value === allLabel);
-          const getPillLabel = (btn) => (
-            btn.querySelector("span[aria-label]")?.getAttribute("aria-label") || ""
-          ).trim();
-          const clearActiveConcretePills = (slot) => {
-            const activeButtons = Array.from(
-              slot.querySelectorAll(".pagefind-modular-filter-pill[aria-pressed='true']")
-            ).filter((btn) => {
-              const label = getPillLabel(btn);
-              return label && !isResetLabel(label);
-            });
-            for (const btn of activeButtons) {
-              btn.click();
-            }
-          };
-          let visibilityRaf = 0;
-          const applyVisibility = () => {
-            const selected = sisaltoSlot
-              ? Array.from(sisaltoSlot.querySelectorAll(".pagefind-modular-filter-pill[aria-pressed='true']"))
-                  .map((btn) => getPillLabel(btn))
-                  // Pagefind Modular UI includes an "All" reset pill that
-                  // corresponds to "no filter selected"; treat it as no
-                  // domain selection.
-                  .filter((v) => v && !isResetLabel(v))
-              : [];
-            const activeDomain = selected[0] || null;
-            for (const slot of secondarySlots) {
-              const contentType = slot.dataset.searchModularSecondaryFor;
-              const shouldShow = Boolean(activeDomain && contentType === activeDomain);
-              if (!shouldShow) {
-                clearActiveConcretePills(slot);
-              }
-              if (shouldShow) {
-                slot.hidden = false;
-              } else {
-                slot.hidden = true;
-              }
-            }
-          };
-          const scheduleVisibility = () => {
-            if (visibilityRaf) return;
-            visibilityRaf = window.requestAnimationFrame(() => {
-              visibilityRaf = 0;
-              applyVisibility();
-            });
-          };
-          scheduleVisibility();
+        if (secondaryFilterSlots.length) {
+          syncSecondaryVisibility();
           if (sisaltoSlot) {
-            const sisaltoObserver = new MutationObserver(scheduleVisibility);
+            const sisaltoObserver = new MutationObserver(scheduleFacetRefresh);
             sisaltoObserver.observe(sisaltoSlot, {
               attributes: true,
               attributeFilter: ["aria-pressed"],
@@ -440,11 +678,6 @@
       // Result rendering — we do NOT use Modular UI's ResultList; see
       // module header comment. Pagefind's Instance keeps state and
       // ranking; we render results eagerly in paginated batches.
-      let currentResults = [];
-      let currentTerm = "";
-      let renderedCount = 0;
-      let renderVersion = 0;
-
       const renderBatch = async (upTo) => {
         const target = Math.min(upTo, currentResults.length);
         if (target <= renderedCount) return;
@@ -529,6 +762,9 @@
         }
         const t = translations.searching || "";
         summaryEl.textContent = t.replace("[SEARCH_TERM]", currentTerm);
+        if (typeof scheduleFacetRefresh === "function") {
+          scheduleFacetRefresh();
+        }
       });
 
       instance.on("results", (payload) => {
@@ -549,6 +785,9 @@
           renderBatch(pageSize);
         } else {
           updateLoadMore();
+        }
+        if (typeof scheduleFacetRefresh === "function") {
+          scheduleFacetRefresh();
         }
       });
 
