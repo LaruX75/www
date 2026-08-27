@@ -81,6 +81,7 @@
     const regionLabel = config.regionLabel || "";
     const fallbackMessage = config.fallbackMessage || "";
     const translations = config.translations || {};
+    const facetValueLabels = config.facetValueLabels || {};
     const FACET_GROUPS = enableFilters && Array.isArray(config.facetGroups) ? config.facetGroups : [];
     // PF5-H1B — flat list of {filter, label, contentType} pairs
     // derived from config.secondaryFacetsByContentType. Each entry is
@@ -396,21 +397,35 @@
         // decoration — no parallel state, no Pagefind API misuse.
         const allLabel = translations.all_label || "";
         const isResetLabel = (value) => value === "All" || (allLabel && value === allLabel);
+        const visibleFacetValueLabel = (filterName, rawValue) => {
+          const filter = String(filterName || "").trim();
+          const raw = String(rawValue || "").trim();
+          if (!filter || !raw) return raw;
+          const mapped = facetValueLabels?.[filter]?.[raw];
+          return String(mapped || raw).trim() || raw;
+        };
         const getPillLabel = (btn) => (
-          btn.querySelector("span[aria-label]")?.getAttribute("aria-label") || ""
+          btn.querySelector("span[aria-label]")?.dataset.searchModularRawLabel
+          || btn.querySelector("span[aria-label]")?.getAttribute("aria-label")
+          || ""
         ).trim();
-        const stripSisaltoCountsAndLocaliseAll = (container) => {
+        const localisePrimaryFacetValues = (container) => {
           const wrapper = container.querySelector(".pagefind-modular-filter-pills-wrapper");
           if (!wrapper) return;
+          const filterName = container.dataset.searchModularFilterName || "";
           const spans = wrapper.querySelectorAll(".pagefind-modular-filter-pill > span[aria-label]");
           for (const span of spans) {
-            const rawLabel = (span.getAttribute("aria-label") || "").trim();
-            const visibleLabel = (rawLabel === "All" && allLabel) ? allLabel : rawLabel;
+            const rawLabel = (span.dataset.searchModularRawLabel || span.getAttribute("aria-label") || "").trim();
+            if (!rawLabel) continue;
+            span.dataset.searchModularRawLabel = rawLabel;
+            const visibleLabel = isResetLabel(rawLabel)
+              ? (rawLabel === "All" && allLabel ? allLabel : rawLabel)
+              : visibleFacetValueLabel(filterName, rawLabel);
             if (span.textContent !== visibleLabel) {
               span.textContent = visibleLabel;
             }
-            if (rawLabel === "All" && allLabel) {
-              span.setAttribute("aria-label", allLabel);
+            if (span.getAttribute("aria-label") !== visibleLabel) {
+              span.setAttribute("aria-label", visibleLabel);
             }
           }
         };
@@ -494,18 +509,21 @@
           const presenterEl = group.slot.querySelector("[data-search-modular-facet-presenter]");
           if (!presenterEl) return;
           const clearMarkup = activeValue
-            ? `<button type="button" class="pagefind-modular-filter-pill" data-search-modular-facet-clear="true"><span aria-label="${escapeHtml(allLabel)}">${escapeHtml(allLabel)}</span></button>`
+            ? `<button type="button" class="pagefind-modular-filter-pill" data-search-modular-facet-clear="true"><span data-search-modular-raw-label="${escapeHtml(allLabel)}" aria-label="${escapeHtml(allLabel)}">${escapeHtml(allLabel)}</span></button>`
             : "";
           const optionMarkup = options.map((option) => `
-            <button
+            ${(() => {
+              const visibleLabel = visibleFacetValueLabel(group.filterName, option.value);
+              return `<button
               type="button"
               class="pagefind-modular-filter-pill"
               aria-pressed="${option.active ? "true" : "false"}"
               data-search-modular-facet-value="${escapeHtml(option.value)}"
-            ><span aria-label="${escapeHtml(option.value)}">${escapeHtml(option.value)} (${escapeHtml(String(option.count))})</span></button>
+            ><span data-search-modular-raw-label="${escapeHtml(option.value)}" aria-label="${escapeHtml(visibleLabel)}">${escapeHtml(visibleLabel)} (${escapeHtml(String(option.count))})</span></button>`;
+            })()}
           `).join("");
           presenterEl.innerHTML = `
-            <div class="mb-2 small fw-semibold text-body-secondary">${escapeHtml(group.label)}</div>
+            <div class="site-search-page-filter-label small fw-semibold text-body-secondary">${escapeHtml(group.label)}</div>
             <div class="pagefind-modular-filter-pills-wrapper" role="group" aria-label="${escapeHtml(group.label)}">
               ${clearMarkup}${optionMarkup}
             </div>
@@ -651,14 +669,14 @@
         if (filtersRegion) {
           const facetObserver = new MutationObserver(() => {
             for (const container of filterContainers) localiseFacet(container);
-            if (sisaltoSlot) stripSisaltoCountsAndLocaliseAll(sisaltoSlot);
+            if (sisaltoSlot) localisePrimaryFacetValues(sisaltoSlot);
           });
           facetObserver.observe(filtersRegion, {
             childList: true,
             subtree: true
           });
           for (const container of filterContainers) localiseFacet(container);
-          if (sisaltoSlot) stripSisaltoCountsAndLocaliseAll(sisaltoSlot);
+          if (sisaltoSlot) localisePrimaryFacetValues(sisaltoSlot);
         }
 
         if (secondaryFilterSlots.length) {
@@ -790,6 +808,33 @@
           scheduleFacetRefresh();
         }
       });
+
+      // Navbar / other filterless surfaces still need the pinned
+      // language filter to travel with every typed query. Pagefind's
+      // stock Input wiring can dispatch the query without reapplying
+      // that pin on this surface, so we replay the final input state
+      // through the supported atomic search+filters API. Full search
+      // pages keep the stock Input path because they already preserve
+      // the shared state correctly there.
+      if (!enableFilters && inputElement) {
+        inputElement.addEventListener("input", () => {
+          const q = String(inputElement.value || "").trim();
+          if (!q) {
+            renderVersion += 1;
+            currentTerm = "";
+            currentResults = [];
+            clearResults();
+            summaryEl.textContent = "";
+            syncFullSearchLinks("");
+            return;
+          }
+          if (typeof instance.triggerSearchWithFilters === "function") {
+            instance.triggerSearchWithFilters(q, pinnedFilters);
+          } else if (typeof instance.triggerSearch === "function") {
+            instance.triggerSearch(q);
+          }
+        });
+      }
 
       // Pin the language filter so this surface returns only its own
       // language's results. When there is an initial query, combine
