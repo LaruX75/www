@@ -829,6 +829,33 @@ html:not([data-bs-theme="dark"]) .breadcrumb-item.active {
   gap: 1rem;
 }
 
+[data-search-modular-filters] {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+[data-search-modular-filter-slot] {
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: column;
+  align-self: flex-start;
+  gap: 0.5rem;
+  max-width: 100%;
+}
+
+[data-search-modular-filter-slot] .pagefind-modular-filter-pills-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  max-width: 100%;
+}
+
+.site-search-page-filter-label {
+  margin-bottom: 0;
+}
+
 .pagefind-modular-filter-pill {
   color: var(--bs-body-color) !important;
   background-color: var(--bs-tertiary-bg) !important;

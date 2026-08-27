@@ -34,11 +34,15 @@ async function fillSearchQuery(page, query) {
 
 async function clickFacetValue(page, filterName, value) {
     const clicked = await page.evaluate(({ filterName: name, value: target }) => {
+        const rawLabel = (button) => {
+            const span = button.querySelector('span[aria-label]');
+            return (span?.dataset.searchModularRawLabel || span?.getAttribute('aria-label') || '').trim();
+        };
         const slot = Array.from(document.querySelectorAll('[data-search-modular-filter-slot]'))
             .find((s) => !s.hidden && s.dataset.searchModularFilterName === name);
         if (!slot) return false;
         const btn = Array.from(slot.querySelectorAll('button.pagefind-modular-filter-pill'))
-            .find((candidate) => (candidate.querySelector('span[aria-label]')?.getAttribute('aria-label') || '').trim() === target);
+            .find((candidate) => rawLabel(candidate) === target);
         if (!btn) return false;
         btn.click();
         return true;
@@ -61,7 +65,7 @@ async function visibleFacetValues(page, filterName) {
             .find((s) => !s.hidden && s.dataset.searchModularFilterName === name);
         if (!slot) return [];
         return Array.from(slot.querySelectorAll('button.pagefind-modular-filter-pill > span[aria-label]'))
-            .map((span) => (span.getAttribute('aria-label') || '').trim())
+            .map((span) => (span.dataset.searchModularRawLabel || span.getAttribute('aria-label') || '').trim())
             .filter(Boolean);
     }, filterName);
 }
@@ -72,7 +76,7 @@ async function activeFacetValues(page, filterName) {
             .find((s) => !s.hidden && s.dataset.searchModularFilterName === name);
         if (!slot) return [];
         return Array.from(slot.querySelectorAll('button.pagefind-modular-filter-pill[aria-pressed="true"] > span[aria-label]'))
-            .map((span) => (span.getAttribute('aria-label') || '').trim())
+            .map((span) => (span.dataset.searchModularRawLabel || span.getAttribute('aria-label') || '').trim())
             .filter(Boolean);
     }, filterName);
 }

@@ -62,11 +62,15 @@ async function clickFilterValue(page, filterName, value) {
         ? ['All', 'Kaikki']
         : [value];
     const clicked = await page.evaluate(({ filterName: name, values }) => {
+        const rawLabel = (button) => {
+            const span = button.querySelector('span[aria-label]');
+            return (span?.dataset.searchModularRawLabel || span?.getAttribute('aria-label') || '').trim();
+        };
         const slot = Array.from(document.querySelectorAll('[data-search-modular-filter-slot]'))
             .find((s) => s.dataset.searchModularFilterName === name);
         if (!slot) return false;
         const btn = Array.from(slot.querySelectorAll('button.pagefind-modular-filter-pill'))
-            .find((b) => values.includes((b.querySelector('span[aria-label]')?.getAttribute('aria-label') || '').trim()));
+            .find((b) => values.includes(rawLabel(b)));
         if (!btn) return false;
         btn.click();
         return true;
@@ -78,11 +82,15 @@ async function clickFilterValue(page, filterName, value) {
 async function activateFilterValueWithKeyboard(page, filterName, value, key = 'Enter') {
     const focused = await page.evaluate(({ filterName: name, value: target }) => {
         const acceptValues = target === 'All' ? ['All', 'Kaikki'] : [target];
+        const rawLabel = (button) => {
+            const span = button.querySelector('span[aria-label]');
+            return (span?.dataset.searchModularRawLabel || span?.getAttribute('aria-label') || '').trim();
+        };
         const slot = Array.from(document.querySelectorAll('[data-search-modular-filter-slot]'))
             .find((s) => s.dataset.searchModularFilterName === name);
         if (!slot) return false;
         const btn = Array.from(slot.querySelectorAll('button.pagefind-modular-filter-pill'))
-            .find((b) => acceptValues.includes((b.querySelector('span[aria-label]')?.getAttribute('aria-label') || '').trim()));
+            .find((b) => acceptValues.includes(rawLabel(b)));
         if (!btn) return false;
         btn.focus();
         return document.activeElement === btn;
@@ -106,7 +114,10 @@ async function activeFilterLabels(page, filterName) {
             .find((s) => s.dataset.searchModularFilterName === name);
         if (!slot) return [];
         return Array.from(slot.querySelectorAll('.pagefind-modular-filter-pill[aria-pressed="true"]'))
-            .map((btn) => (btn.querySelector('span[aria-label]')?.getAttribute('aria-label') || '').trim())
+            .map((btn) => {
+                const span = btn.querySelector('span[aria-label]');
+                return (span?.dataset.searchModularRawLabel || span?.getAttribute('aria-label') || '').trim();
+            })
             .filter(Boolean);
     }, filterName);
 }
@@ -121,7 +132,8 @@ async function activeConcretePillCount(page, filterNames) {
                 count
                 + Array.from(slot.querySelectorAll('.pagefind-modular-filter-pill[aria-pressed="true"]'))
                     .filter((btn) => {
-                        const label = (btn.querySelector('span[aria-label]')?.getAttribute('aria-label') || '').trim();
+                        const span = btn.querySelector('span[aria-label]');
+                        const label = (span?.dataset.searchModularRawLabel || span?.getAttribute('aria-label') || '').trim();
                         return label && !isReset(label);
                     })
                     .length
@@ -138,7 +150,8 @@ async function clickFirstConcretePill(page, filterNames) {
             if (!slot) continue;
             const btn = Array.from(slot.querySelectorAll('button.pagefind-modular-filter-pill'))
                 .find((candidate) => {
-                    const label = (candidate.querySelector('span[aria-label]')?.getAttribute('aria-label') || '').trim();
+                    const span = candidate.querySelector('span[aria-label]');
+                    const label = (span?.dataset.searchModularRawLabel || span?.getAttribute('aria-label') || '').trim();
                     return label && !isReset(label);
                 });
             if (!btn) continue;
@@ -331,14 +344,16 @@ for (const locale of LOCALES) {
 
             expect(await activeFilterLabels(page, 'Sisältö')).toEqual(['Mediassa']);
             const focusState = await page.evaluate(() => {
-                const active = document.activeElement;
-                return {
-                    tag: active?.tagName || null,
-                    label: (active?.querySelector?.('span[aria-label]')?.getAttribute('aria-label')
+            const active = document.activeElement;
+            const span = active?.querySelector?.('span[aria-label]');
+            return {
+                tag: active?.tagName || null,
+                label: (span?.dataset.searchModularRawLabel
+                        || span?.getAttribute('aria-label')
                         || active?.getAttribute?.('aria-label')
                         || '').trim()
-                };
-            });
+            };
+        });
             expect(focusState.tag).toBe('BUTTON');
             expect(focusState.label).toBe('Mediassa');
             expect(await activeConcretePillCount(page, DOMAIN_SECONDARY_FACETS['Esitykset'])).toBe(0);
