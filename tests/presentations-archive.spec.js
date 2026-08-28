@@ -85,5 +85,49 @@ for (const pageCase of PAGES) {
       // O1 widening decorates local presentation card links with ?returnTo=..., so match by href prefix.
       await expect(topiclessCard.locator(`a[href^="${FIXTURES.topiclessLanding}"]`).first()).toBeVisible();
     });
+
+    test('filtered external-first card preserves target=_blank and rel', async ({ page }) => {
+      await page.goto(pageCase.url);
+      const archive = page.locator('[data-presentation-find-explore]');
+      await expect(archive).toBeVisible();
+
+      await archive.locator('[data-presentation-control="search"]').fill(FIXTURES.externalTitle);
+      const card = archive.locator('article.presentation-archive-card');
+      await expect(card).toHaveCount(1);
+
+      const externalAnchor = card.locator(`a[href="${FIXTURES.externalLanding}"]`).first();
+      await expect(externalAnchor).toBeVisible();
+      await expect(externalAnchor).toHaveAttribute('target', '_blank');
+      await expect(externalAnchor).toHaveAttribute('rel', /noopener/);
+    });
+
+    test('SSR opening cards carry the same returnTo decoration as filtered cards', async ({ page }) => {
+      await page.goto(pageCase.url);
+      const results = page.locator('[data-presentation-results]');
+      const localAnchors = results.locator('article.presentation-archive-card a[href^="/presentations/"]');
+      const count = await localAnchors.count();
+      // Every SSR opening card that points at a local /presentations/... URL
+      // must carry ?returnTo=<hub> so that O1 orientation works from initial
+      // paint, not only after client-side filter re-render.
+      for (let i = 0; i < count; i += 1) {
+        const href = await localAnchors.nth(i).getAttribute('href');
+        expect(href).toMatch(/\?returnTo=/);
+      }
+    });
+
+    test('description text on the shared card is truncated to the archive limit', async ({ page }) => {
+      await page.goto(pageCase.url);
+      const archive = page.locator('[data-presentation-find-explore]');
+      await expect(archive).toBeVisible();
+      const descriptions = archive.locator('article.presentation-archive-card .presentation-archive-card-desc');
+      const count = await descriptions.count();
+      expect(count).toBeGreaterThan(0);
+      // Nunjucks truncate(180, true, "...") caps rendered text at 180 chars
+      // including the ellipsis. Allow small slack for whitespace collapse.
+      for (let i = 0; i < count; i += 1) {
+        const text = ((await descriptions.nth(i).textContent()) || '').trim();
+        expect(text.length).toBeLessThanOrEqual(190);
+      }
+    });
   });
 }

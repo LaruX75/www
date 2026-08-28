@@ -3,14 +3,6 @@
 
   const ARCHIVE_PAGE_SIZE = 12;
 
-  const SOURCE_ICONS = {
-    aoe: "bi-book",
-    canva: "bi-file-earmark-slides",
-    slideshare: "bi-collection-play",
-    youtubeVideos: "bi-youtube",
-    youtube: "bi-youtube"
-  };
-
   const UI = {
     fi: {
       archiveItemSingular: "esitys",
@@ -18,9 +10,6 @@
       resultsPrefix: "Näytetään",
       ofLabel: "/",
       empty: "Hakuehdoilla ei löytynyt esityksiä.",
-      externalLabel: "Ulkoinen kohde",
-      localLabel: "Paikallinen sivu",
-      openLabel: "Avaa",
       paginationLabel: "Sivu"
     },
     en: {
@@ -29,18 +18,11 @@
       resultsPrefix: "Showing",
       ofLabel: "of",
       empty: "No presentations matched the current filters.",
-      externalLabel: "External destination",
-      localLabel: "Local page",
-      openLabel: "Open",
       paginationLabel: "Page"
     }
   };
 
   function ensureDeps() {
-    if (!global.PE || typeof global.PE.escHtml !== "function") {
-      console.error("presentations-page: /js/pe-list-render.js puuttuu");
-      return false;
-    }
     if (!global.ContentEngine || typeof global.ContentEngine.prefetch !== "function") {
       console.error("presentations-page: /js/content-engine.js puuttuu");
       return false;
@@ -52,10 +34,6 @@
     return true;
   }
 
-  function escHtml(value) {
-    return global.PE.escHtml(value);
-  }
-
   function localeFor(value) {
     return value === "en" ? "en" : "fi";
   }
@@ -64,58 +42,12 @@
     return UI[localeFor(locale)];
   }
 
-  function isExternalUrl(url) {
-    return /^https?:\/\//i.test(String(url || ""));
-  }
-
-  function linkAttrs(url) {
-    return isExternalUrl(url) ? ' target="_blank" rel="noopener noreferrer"' : "";
-  }
-
-  function truncate(value, max) {
-    const text = String(value || "").trim();
-    if (!text) return "";
-    return text.length > max ? `${text.slice(0, max).trim()}...` : text;
-  }
-
   function normalizeForMatch(value) {
     return String(value || "")
       .trim()
       .toLowerCase()
       .normalize("NFD")
       .replace(/[̀-ͯ]/g, "");
-  }
-
-  function toIsoDate(value) {
-    if (!value) return "";
-    const raw = String(value).trim();
-    if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) return raw;
-    if (/^\d{4}$/.test(raw)) return `${raw}-12-31`;
-    const parsed = new Date(raw);
-    if (Number.isNaN(parsed.getTime())) return "";
-    const year = parsed.getUTCFullYear();
-    const month = String(parsed.getUTCMonth() + 1).padStart(2, "0");
-    const day = String(parsed.getUTCDate()).padStart(2, "0");
-    return `${year}-${month}-${day}`;
-  }
-
-  function formatDate(value, locale) {
-    if (!value) return "";
-    const raw = String(value).trim();
-    if (/^\d{4}$/.test(raw)) return raw;
-    const iso = toIsoDate(raw);
-    if (!iso) return raw;
-    const parsed = new Date(iso);
-    if (Number.isNaN(parsed.getTime())) return raw;
-    return global.PE.createDateFormatter(locale).format(parsed);
-  }
-
-  function landingUrl(item) {
-    return item && (item.landingUrl || item.localPageUrl || item.pageUrl || item.url || item.externalUrl || item.sourceUrl) || "";
-  }
-
-  function iconFor(item) {
-    return SOURCE_ICONS[item && item.sourceKey] || "bi-easel2";
   }
 
   function exactTopicMap(items) {
@@ -130,61 +62,34 @@
     return map;
   }
 
-  function archiveCardHtml(item, locale) {
-    const labels = labelsFor(locale);
-    let url = landingUrl(item);
-    const external = Boolean(item && item.externalFirst) || isExternalUrl(url);
-    if (!external && url && url.startsWith("/presentations/") && typeof window !== "undefined" && window.location) {
-      const returnTo = window.location.pathname + window.location.search;
-      if (returnTo) {
-        const sep = url.includes("?") ? "&" : "?";
-        url = `${url}${sep}returnTo=${encodeURIComponent(returnTo)}`;
-      }
-    }
+  // Identity: URL fallback + "" + title. Templates emit URL and title as
+  // separate data-* attributes to avoid Nunjucks concatenation edge cases;
+  // client reads both attributes and joins with a control character that is
+  // guaranteed not to appear in any real URL or title.
+  const KEY_SEP = "";
 
-    const meta = [];
-    const displayDate = formatDate(item && (item.date || item.year), locale);
-    if (displayDate) meta.push(`<span class="presentation-archive-card-detail"><i class="bi bi-calendar3"></i>${escHtml(displayDate)}</span>`);
-    if (item && item.presentationType) meta.push(`<span class="presentation-archive-card-detail"><i class="bi bi-tag"></i>${escHtml(item.presentationType)}</span>`);
-    if (item && item.event) meta.push(`<span class="presentation-archive-card-detail"><i class="bi bi-geo-alt"></i>${escHtml(truncate(item.event, 48))}</span>`);
+  function cardKeyFor(item) {
+    if (!item) return "";
+    const url = item.landingUrl
+      || item.localPageUrl
+      || item.pageUrl
+      || item.url
+      || item.externalUrl
+      || item.sourceUrl
+      || "";
+    return url + KEY_SEP + (item.title || "");
+  }
 
-    const topics = Array.isArray(item && item.topics) ? item.topics.slice(0, 3) : [];
-    const thumb = item && item.thumbnail
-      ? `<span class="presentation-archive-card-thumb-placeholder"><i class="bi ${escHtml(iconFor(item))}"></i></span><img src="${escHtml(item.thumbnail)}" alt="" class="presentation-archive-card-thumb-image" loading="lazy" decoding="async">`
-      : `<span class="presentation-archive-card-thumb-placeholder"><i class="bi ${escHtml(iconFor(item))}"></i></span>`;
-
-    return `
-      <article class="presentation-archive-card">
-        <div class="presentation-archive-card-thumb">${thumb}</div>
-        <div class="presentation-archive-card-body">
-          <div class="presentation-archive-card-header">
-            <div class="presentation-archive-card-meta presentation-archive-card-meta--primary">
-              ${item && item.sourceLabel ? `<span>${escHtml(item.sourceLabel)}</span>` : ""}
-              <span>${external ? escHtml(labels.externalLabel) : escHtml(labels.localLabel)}</span>
-            </div>
-            <h3 class="presentation-archive-card-title">
-              <a href="${escHtml(url)}"${linkAttrs(url)}>${escHtml(item && item.title || "")}</a>
-            </h3>
-            ${item && item.description ? `<p class="presentation-archive-card-desc">${escHtml(truncate(item.description, 180))}</p>` : ""}
-          </div>
-
-          ${meta.length ? `<div class="presentation-archive-card-meta presentation-archive-card-meta--details">${meta.join("")}</div>` : ""}
-
-          ${topics.length ? `
-            <div class="presentation-archive-card-meta presentation-archive-card-meta--secondary">
-              ${topics.map((topic) => `<span>${escHtml(topic)}</span>`).join("")}
-            </div>
-          ` : ""}
-
-          <div class="presentation-archive-card-actions">
-            <a href="${escHtml(url)}"${linkAttrs(url)} class="btn btn-primary btn-sm rounded-pill px-3">
-              ${escHtml(labels.openLabel)}
-              <i class="bi ${external ? "bi-arrow-up-right" : "bi-arrow-right"} ms-1"></i>
-            </a>
-          </div>
-        </div>
-      </article>
-    `;
+  function buildTemplateMap(root) {
+    const map = new Map();
+    const templates = root.querySelectorAll("[data-presentation-card-templates] template[data-presentation-card-url]");
+    templates.forEach((template) => {
+      const url = template.getAttribute("data-presentation-card-url") || "";
+      const title = template.getAttribute("data-presentation-card-title") || "";
+      const key = url + KEY_SEP + title;
+      if (!map.has(key)) map.set(key, template);
+    });
+    return map;
   }
 
   function renderPagination(listEl, totalPages, currentPage, onPageChange, locale) {
@@ -239,7 +144,27 @@
     const paginationNav = root.querySelector("[data-presentation-pagination-nav]");
     const paginationEl = root.querySelector("[data-presentation-pagination]");
     const topicMap = exactTopicMap(items);
+    const templateMap = buildTemplateMap(root);
     const state = { search: "", year: "", topic: "", page: 1 };
+
+    function renderCards(pageItems) {
+      resultsEl.innerHTML = "";
+      if (pageItems.length === 0) {
+        const empty = document.createElement("div");
+        empty.className = "text-muted text-center py-4";
+        empty.textContent = labelsFor(locale).empty;
+        resultsEl.appendChild(empty);
+        return;
+      }
+      const fragment = document.createDocumentFragment();
+      pageItems.forEach((item) => {
+        const template = templateMap.get(cardKeyFor(item));
+        if (template) {
+          fragment.appendChild(template.content.cloneNode(true));
+        }
+      });
+      resultsEl.appendChild(fragment);
+    }
 
     function render() {
       const filteredItems = archiveItemsForState(items, state);
@@ -249,11 +174,7 @@
       const start = (state.page - 1) * ARCHIVE_PAGE_SIZE;
       const pageItems = filteredItems.slice(start, start + ARCHIVE_PAGE_SIZE);
 
-      if (total === 0) {
-        resultsEl.innerHTML = `<div class="text-muted text-center py-4">${escHtml(labelsFor(locale).empty)}</div>`;
-      } else {
-        resultsEl.innerHTML = pageItems.map((item) => archiveCardHtml(item, locale)).join("");
-      }
+      renderCards(pageItems);
 
       updateArchiveStatus(statusEl, total, total === 0 ? 0 : start + 1, Math.min(start + ARCHIVE_PAGE_SIZE, total), locale);
       paginationNav.hidden = totalPages <= 1;

@@ -1,5 +1,10 @@
-{% set cardUrl = item.landingUrl or item.localPageUrl or item.pageUrl or item.url or item.externalUrl or item.sourceUrl or "" %}
-{% set cardIsExternal = item.externalFirst or (cardUrl and cardUrl.startsWith("http")) %}
+{% set cardBaseUrl = item.landingUrl or item.localPageUrl or item.pageUrl or item.url or item.externalUrl or item.sourceUrl or "" %}
+{% set cardIsExternal = item.externalFirst or (cardBaseUrl and cardBaseUrl.startsWith("http")) %}
+{% if cardReturnTo and not cardIsExternal and cardBaseUrl.startsWith("/presentations/") %}
+  {% set cardUrl = cardBaseUrl + ("&" if "?" in cardBaseUrl else "?") + "returnTo=" + (cardReturnTo | urlencode) %}
+{% else %}
+  {% set cardUrl = cardBaseUrl %}
+{% endif %}
 {% set cardTopics = item.topics or [] %}
 {% set cardDate = item.date or "" %}
 {% set cardYear = item.year or "" %}
@@ -36,7 +41,7 @@
         <a href="{{ cardUrl }}"{% if cardIsExternal %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ item.title }}</a>
       </h3>
       {% if item.description %}
-      <p class="presentation-archive-card-desc">{{ item.description }}</p>
+      <p class="presentation-archive-card-desc">{{ item.description | truncate(180, true, "...") }}</p>
       {% endif %}
     </div>
 
