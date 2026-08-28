@@ -1,8 +1,0 @@
-{%- set cardReturnTo = "/en/presentations/" -%}
-{%- set presentationArchiveExternalBadgeLabel = "External" -%}
-{%- set presentationArchiveLocalBadgeLabel = "Local page" -%}
-{%- set presentationArchiveOpenLabel = "Open" -%}
-{%- set presentationArchiveMetaAriaLabel = "Presentation metadata" -%}
-{%- for item in presentationsPage.items -%}
-<template data-presentation-card-url="{{ item.landingUrl or item.localPageUrl or item.pageUrl or item.url or item.externalUrl or item.sourceUrl or '' }}" data-presentation-card-title="{{ item.title or '' }}">{%- include "presentations/result-card.njk" -%}</template>
-{%- endfor -%}

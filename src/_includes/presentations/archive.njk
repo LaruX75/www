@@ -110,9 +110,7 @@
 
           <div class="presentation-archive-grid" data-presentation-results>
             {% for item in archiveItems | sort(attribute="date", reverse=true) %}
-              {% if loop.index <= 12 %}
-                {% include "presentations/result-card.njk" %}
-              {% endif %}
+              {% include "presentations/result-card.njk" %}
             {% endfor %}
           </div>
 
