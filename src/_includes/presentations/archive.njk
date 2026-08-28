@@ -119,12 +119,6 @@
           <nav class="mt-4" aria-label="{{ presentationArchivePaginationLabel }}" data-presentation-pagination-nav hidden>
             <ul class="pagination pagination-sm mb-0 justify-content-center" data-presentation-pagination></ul>
           </nav>
-
-          <div hidden data-presentation-card-templates aria-hidden="true">
-{%- for item in archiveItems -%}
-<template data-presentation-card-url="{{ item.landingUrl or item.localPageUrl or item.pageUrl or item.url or item.externalUrl or item.sourceUrl or '' }}" data-presentation-card-title="{{ item.title or '' }}">{%- include "presentations/result-card.njk" -%}</template>
-{%- endfor -%}
-          </div>
         </div>
       </div>
     </details>

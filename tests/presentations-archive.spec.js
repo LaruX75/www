@@ -103,14 +103,16 @@ for (const pageCase of PAGES) {
 
     test('SSR opening cards carry the same returnTo decoration as filtered cards', async ({ page }) => {
       await page.goto(pageCase.url);
-      const results = page.locator('[data-presentation-results]');
-      const localAnchors = results.locator('article.presentation-archive-card a[href^="/presentations/"]');
-      const count = await localAnchors.count();
       // Every SSR opening card that points at a local /presentations/... URL
       // must carry ?returnTo=<hub> so that O1 orientation works from initial
-      // paint, not only after client-side filter re-render.
-      for (let i = 0; i < count; i += 1) {
-        const href = await localAnchors.nth(i).getAttribute('href');
+      // paint, not only after client-side filter re-render. Snapshot the
+      // href set in one evaluate call to avoid per-element retry races.
+      const hrefs = await page.$$eval(
+        '[data-presentation-results] article.presentation-archive-card a[href^="/presentations/"]',
+        (anchors) => anchors.map((a) => a.getAttribute('href'))
+      );
+      expect(hrefs.length).toBeGreaterThan(0);
+      for (const href of hrefs) {
         expect(href).toMatch(/\?returnTo=/);
       }
     });

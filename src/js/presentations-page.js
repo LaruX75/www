@@ -22,6 +22,23 @@
     }
   };
 
+  // Card HTML is pre-rendered per canonical item at build time into
+  // language-specific files so the archive page itself stays lean.
+  // Client fetches the appropriate file, parses <template> nodes, and
+  // clones matching content into the archive results grid on filter
+  // interaction. EN cards live under `/en/data/` so the dateFormat filter
+  // (which detects locale from `this.page.url`) renders EN dates.
+  const CARD_ENDPOINTS = {
+    fi: "/data/presentation-cards-fi.html",
+    en: "/en/data/presentation-cards-en.html"
+  };
+
+  // KEY_SEP is a control character guaranteed not to appear in any real
+  // URL or title. Used to join (url, title) into a single template lookup
+  // key on both the build side (template data-* attributes are read raw
+  // and joined by JS) and the item side.
+  const KEY_SEP = "";
+
   function ensureDeps() {
     if (!global.ContentEngine || typeof global.ContentEngine.prefetch !== "function") {
       console.error("presentations-page: /js/content-engine.js puuttuu");
@@ -62,12 +79,6 @@
     return map;
   }
 
-  // Identity: URL fallback + "" + title. Templates emit URL and title as
-  // separate data-* attributes to avoid Nunjucks concatenation edge cases;
-  // client reads both attributes and joins with a control character that is
-  // guaranteed not to appear in any real URL or title.
-  const KEY_SEP = "";
-
   function cardKeyFor(item) {
     if (!item) return "";
     const url = item.landingUrl
@@ -80,16 +91,25 @@
     return url + KEY_SEP + (item.title || "");
   }
 
-  function buildTemplateMap(root) {
-    const map = new Map();
-    const templates = root.querySelectorAll("[data-presentation-card-templates] template[data-presentation-card-url]");
-    templates.forEach((template) => {
-      const url = template.getAttribute("data-presentation-card-url") || "";
-      const title = template.getAttribute("data-presentation-card-title") || "";
-      const key = url + KEY_SEP + title;
-      if (!map.has(key)) map.set(key, template);
-    });
-    return map;
+  async function loadTemplateMap(locale) {
+    const endpoint = CARD_ENDPOINTS[locale] || CARD_ENDPOINTS.fi;
+    try {
+      const response = await fetch(endpoint, { credentials: "same-origin" });
+      if (!response.ok) return new Map();
+      const text = await response.text();
+      const doc = new DOMParser().parseFromString(text, "text/html");
+      const map = new Map();
+      doc.querySelectorAll("template[data-presentation-card-url]").forEach((template) => {
+        const url = template.getAttribute("data-presentation-card-url") || "";
+        const title = template.getAttribute("data-presentation-card-title") || "";
+        const key = url + KEY_SEP + title;
+        if (!map.has(key)) map.set(key, template);
+      });
+      return map;
+    } catch (error) {
+      console.error("presentations-page: failed to load card templates", error);
+      return new Map();
+    }
   }
 
   function renderPagination(listEl, totalPages, currentPage, onPageChange, locale) {
@@ -133,7 +153,7 @@
     }).items;
   }
 
-  function wireArchive(root, items) {
+  async function wireArchive(root, items) {
     const locale = localeFor(root.dataset.locale);
     const searchInput = root.querySelector('[data-presentation-control="search"]');
     const yearSelect = root.querySelector('[data-presentation-control="year"]');
@@ -144,7 +164,7 @@
     const paginationNav = root.querySelector("[data-presentation-pagination-nav]");
     const paginationEl = root.querySelector("[data-presentation-pagination]");
     const topicMap = exactTopicMap(items);
-    const templateMap = buildTemplateMap(root);
+    const templateMap = await loadTemplateMap(locale);
     const state = { search: "", year: "", topic: "", page: 1 };
 
     function renderCards(pageItems) {
@@ -166,6 +186,12 @@
       resultsEl.appendChild(fragment);
     }
 
+    // First render just wires status + pagination against the SSR opening
+    // 12 cards; subsequent renders (on filter/search/pagination change)
+    // rebuild the grid from templates. This preserves the initial DOM,
+    // avoiding layout shift and focus loss when JS hydrates.
+    let hasRendered = false;
+
     function render() {
       const filteredItems = archiveItemsForState(items, state);
       const total = filteredItems.length;
@@ -174,7 +200,10 @@
       const start = (state.page - 1) * ARCHIVE_PAGE_SIZE;
       const pageItems = filteredItems.slice(start, start + ARCHIVE_PAGE_SIZE);
 
-      renderCards(pageItems);
+      if (hasRendered) {
+        renderCards(pageItems);
+      }
+      hasRendered = true;
 
       updateArchiveStatus(statusEl, total, total === 0 ? 0 : start + 1, Math.min(start + ARCHIVE_PAGE_SIZE, total), locale);
       paginationNav.hidden = totalPages <= 1;
@@ -237,7 +266,7 @@
     const items = await global.ContentEngine.prefetch("presentationsPage");
     if (!Array.isArray(items) || !items.length) return;
 
-    archiveRoots.forEach((root) => wireArchive(root, items));
+    await Promise.all(archiveRoots.map((root) => wireArchive(root, items)));
   }
 
   if (document.readyState === "loading") {

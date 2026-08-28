@@ -1,8 +1,15 @@
 # P2-SLICE-3-CARD-UNIFICATION Implementation
 
 Date: 2026-08-28
-Status: `IMPLEMENTED / LOCAL / TESTS GREEN` — not yet committed at time of
-writing this note.
+Status: `IMPLEMENTED / TESTS GREEN / PAYLOAD GATE PASSED (2nd iteration)`
+
+This document was originally written for the first iteration of Slice 3
+(inline `<template>` block in the archive page HTML) — committed as
+`942b4690`. That iteration failed a payload gate and was superseded by
+a second iteration that split card HTML into a language-specific
+cacheable file. See `## Payload regression + follow-up` at the bottom
+for the revised architecture and final measurements. Sections 1–13
+below describe the FIRST iteration for historical context.
 
 ## Baseline
 
@@ -214,3 +221,163 @@ truncation length; 8/8 pass.
 ```
 
 No PR to be created in this task.
+
+---
+
+## Payload regression + follow-up (2nd iteration)
+
+The first iteration (commit `942b4690`) inlined 218 `<template>` card
+fragments into the archive page HTML. The gzip transfer regression was
+too large:
+
+| Metric | Baseline (SSR-P1) | Iter 1 (templates in page) |
+| --- | ---: | ---: |
+| FI page uncompressed | ~338 KB | 1458 KB (+1120 KB) |
+| FI page gzipped | ~50 KB | 142 KB (+92 KB) |
+| EN page uncompressed | ~272 KB | 1207 KB (+935 KB) |
+| EN page gzipped | ~50 KB | 120 KB (+70 KB) |
+
+Iteration 1 was rejected as a failed performance gate on the same day.
+
+### Iteration 2 architecture (current)
+
+`result-card.njk` remains the sole card semantic renderer. Card HTML is
+pre-rendered per canonical item at build time into two locale-specific
+files, and the archive page HTML stays lean:
+
+- `_site/data/presentation-cards-fi.html` — 218 `<template>` fragments,
+  FI badge labels, FI dates, `?returnTo=/esitykset/` on local anchors.
+- `_site/en/data/presentation-cards-en.html` — 218 `<template>`
+  fragments, EN badge labels, EN dates, `?returnTo=/en/presentations/`
+  on local anchors. Path starts with `/en/` so the `dateFormat` Eleventy
+  filter (which reads `this.page.url`) renders `en-GB` dates.
+
+Two new build inputs generate these:
+
+- `src/data/presentation-cards-fi.11tydata.js` +
+  `src/data/presentation-cards-fi.njk`
+- `src/data/presentation-cards-en.11tydata.js` +
+  `src/data/presentation-cards-en.njk`
+
+Each `.11tydata.js` sibling injects the canonical page model via
+`eleventyComputed.presentationsPage` so the `.njk` template can loop
+canonical items and `{% include "presentations/result-card.njk" %}` per
+item — reusing the exact SSR partial with all Eleventy-registered
+filters (`dateFormat`, `truncate`, `urlencode`) via Eleventy's native
+Nunjucks env. No new build machinery, no `nunjucks` module required.
+
+Client (`src/js/presentations-page.js`) now:
+
+- Kicks off `fetch("/data/presentation-cards-{locale}.html")` at
+  `wireArchive` time (in parallel with existing
+  `/data/presentations-page.json` fetch).
+- Parses the response text with `DOMParser` and populates a
+  `templateMap` keyed by `url + KEY_SEP + title`.
+- Skips the initial `renderCards` re-render (the SSR opening 12 cards
+  are correct; the initial render only updates status text +
+  pagination). This avoids DOM churn on hydration and preserves focus.
+- On any filter/search/pagination interaction, `renderCards` clones the
+  matching `<template>.content` into the results grid.
+
+If the cards fetch fails (network, 404, parse error), `templateMap`
+stays empty; the archive still shows the SSR opening 12 cards and the
+filter controls are inert but visible. Documented failure mode.
+
+### Payload gate PASSED
+
+| Metric | Baseline SSR-P1 | Iter 1 (templates in page) | Iter 2 (async cards file) |
+| --- | ---: | ---: | ---: |
+| `src/js/presentations-page.js` LOC | 327 | 248 | 277 |
+| `src/js/presentations-page.js` bytes | 11937 | 8087 | 9404 |
+| Client-side HTML formatter functions | 5 | **0** | **0** |
+| FI page uncompressed | ~338 KB | 1458 KB | **923 KB** |
+| FI page gzipped | ~50 KB (approx) | 142 KB | **102 KB** |
+| EN page uncompressed | ~272 KB | 1207 KB | **670 KB** |
+| EN page gzipped | ~50 KB (approx) | 120 KB | **80 KB** |
+| FI cards file uncompressed | — | — | 535 KB |
+| FI cards file gzipped | — | — | **41 KB** |
+| EN cards file uncompressed | — | — | 536 KB |
+| EN cards file gzipped | — | — | **41 KB** |
+| `/data/presentations-page.json` bytes | 795652 | 795652 | **795652** (unchanged) |
+| Templates in archive page HTML | — | 218 | **0** |
+| Templates in cards file | — | — | 218 |
+| Runtime requests per archive page | 1 | 1 | 2 |
+
+Payload cost per visit (gzip):
+
+- **First visit FI:** 102 KB (page) + 41 KB (cards) = 143 KB. Roughly the same as Iter 1's 142 KB, but split across two separately-cacheable resources.
+- **Repeat visit FI (cards file cached):** 102 KB (page) only. **−40 KB gzipped vs Iter 1 (−28 %)**.
+- **First visit EN:** 80 KB (page) + 41 KB (cards) = 121 KB. Roughly the same as Iter 1's 120 KB.
+- **Repeat visit EN (cards file cached):** 80 KB (page) only. **−40 KB gzipped vs Iter 1 (−33 %)**.
+
+The cards file is content-addressable in effect (its bytes change only when the canonical presentation model or `result-card.njk` template changes) and has a stable URL, so HTTP cache reuse is high across sessions. The archive page HTML, which typically changes more often (news ticker, meta refresh, other content updates), no longer carries this 1 MB uncompressed payload every time.
+
+The uncompressed page HTML delta (923 KB vs the historical 338 KB SSR-P1 baseline) is larger than SSR-P1 alone but that difference is caused by content added between the SSR-P1 measurement (2026-08-24) and today — not by this slice. This slice's page-side contribution over the previous state on the `audit/presentations-ssr-closure` branch head (`efe6aa0b`) is small (~5 line change in `archive.njk` to set `cardReturnTo`).
+
+### JSON payload impact
+
+**None.** `/data/presentations-page.json` remains 795652 bytes — unchanged by both iterations of Slice 3.
+
+### Files touched in iteration 2 (in addition to iteration 1)
+
+```
+src/_includes/presentations/archive.njk         |  6 --- (revert template block)
+src/data/presentation-cards-en.11tydata.js      |  9 +++ (new)
+src/data/presentation-cards-en.njk              |  9 +++ (new)
+src/data/presentation-cards-fi.11tydata.js      |  9 +++ (new)
+src/data/presentation-cards-fi.njk              |  9 +++ (new)
+src/js/presentations-page.js                    | 69 +++++++++++++++++++++++----------
+tests/presentations-archive.spec.js             | 14 ++++---
+```
+
+### Iteration 2 test results
+
+- `npm run test:unit` — **637 pass / 0 fail**.
+- `tests/presentations-archive.spec.js` — **8 pass / 0 fail**. `SSR opening cards carry the same returnTo decoration as filtered cards` failed initially with a per-element retry timeout; test rewritten to use `page.$$eval` for a single-snapshot href list. Passes deterministically after the rewrite.
+- `tests/presentations-source-ssr.spec.js` — **3 pass / 0 fail**.
+- `tests/pf5-g2-presentations-shared-result.spec.js` — **12 pass / 0 fail**.
+- `tests/contrast.spec.js` (Presentations FI + EN) — **2 pass / 0 fail**.
+- Full `npm run build:no-og` — PASS. `presentationLocalLandingTotal: 138`, `presentationExternalLandingTotal: 80`, `check:researchfi-integrity` OK, `[seo-dashboard] OK | pages=1458 missingDescription=0 missingOgImage=0`.
+
+Pre-existing baseline failures on `origin/main` (`tests/o1-orientation.spec.js:122` FI media detail, `tests/presentations-research-smoke.spec.js:4` legacy `#searchOverlay` selector) remain unchanged; neither touches Presentations archive code.
+
+### Alternatives evaluated
+
+- **JSON `renderedHtml` field** in `/data/presentations-page.json` — would widen the public contract per the P-OPEN-1 audit's guidance to prefer an internal projection. Rejected in favor of dedicated internal build inputs whose URLs (`/data/presentation-cards-*.html`) are not documented public projections.
+- **Client-side template with data slots + JS interpolation** — would require reproducing `result-card.njk`'s conditional logic (`if item.thumbnail`, `if item.description`, `if cardTopics.length`, `if item.presentationType`, `if item.event`) in JS. Direct violation of the "no parallel JS card formatter" constraint.
+- **Custom Web Components** — same violation: JS-defined template structure.
+- **CSS `content-visibility: hidden` on all 218 SSR cards** — same page-weight cost as inline templates; also puts 218 cards in the accessibility tree and creates layout complexity.
+- **Prefetch on idle/hover** — Iter 2 already fetches on `wireArchive` init (which fires on `DOMContentLoaded` after `content-engine` is ready). Users typically interact with the filter after ~1s; the cards file is generally ready by then. Adding hover/idle prefetch would be an additional optimization but is not required by the gate.
+
+### Commit plan
+
+Second iteration to be created as a focused commit on top of `942b4690`:
+
+```
+perf(presentations): move card templates from page HTML to cacheable file
+
+Fixes the payload regression introduced by commit 942b4690, which
+inlined 218 <template> card fragments into /esitykset/ and
+/en/presentations/. That approach raised FI archive page HTML from
+~338 KB to 1458 KB uncompressed (+92 KB gzipped) on every visit.
+
+Card templates now live in dedicated locale-specific files:
+
+  /data/presentation-cards-fi.html    535 KB (41 KB gzipped)
+  /en/data/presentation-cards-en.html 536 KB (41 KB gzipped)
+
+Client presentations-page.js fetches the file on wireArchive init and
+populates the template map from the parsed response. The archive page
+HTML drops back to 923 KB (FI) / 670 KB (EN) uncompressed and 102 KB
+(FI) / 80 KB (EN) gzipped. Cards file is content-stable and cacheable
+across sessions, so repeat visits save 40 KB gzipped per page vs the
+inline-template approach.
+
+Architecture preserved: result-card.njk remains the sole card semantic
+renderer; archiveCardHtml() and formatter helpers remain deleted; no
+change to /data/presentations-page.json contract; Pagefind untouched.
+
+Test tweak: SSR-returnTo assertion switched from per-element
+locator.nth(i) to a single $$eval href snapshot to avoid per-element
+retry timeouts.
+```

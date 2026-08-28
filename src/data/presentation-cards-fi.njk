@@ -1,0 +1,8 @@
+{%- set cardReturnTo = "/esitykset/" -%}
+{%- set presentationArchiveExternalBadgeLabel = "Ulkoinen" -%}
+{%- set presentationArchiveLocalBadgeLabel = "Paikallinen sivu" -%}
+{%- set presentationArchiveOpenLabel = "Avaa" -%}
+{%- set presentationArchiveMetaAriaLabel = "Esityksen metatiedot" -%}
+{%- for item in presentationsPage.items -%}
+<template data-presentation-card-url="{{ item.landingUrl or item.localPageUrl or item.pageUrl or item.url or item.externalUrl or item.sourceUrl or '' }}" data-presentation-card-title="{{ item.title or '' }}">{%- include "presentations/result-card.njk" -%}</template>
+{%- endfor -%}
