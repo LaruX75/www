@@ -302,28 +302,71 @@ Rationale:
 - The one "duplication" opportunity (`related-presentations.njk` orphan) is convergence, not new implementation.
 - No site-wide R1 rollout is justified. Adding related-content to homepage / archive / topic pages would duplicate existing aggregators.
 
-## First bounded R1 implementation candidate
+### R1 hard-boundary observation — constrains the next slice
 
-**Slice R1-B1: Add `content-context-sidebar` to thesis detail pages.**
+The current production `relatedContent` path adds an embedding-derived contribution from `src/_data/semanticRelated.json` at `SEM_WEIGHT = 5` (see §"Existing related-content infrastructure on `main`" and §"Canonical relationship inventory"). The current R1 roadmap boundary explicitly states:
 
-Specification (not implementation):
+> `no embedding / LLM recommender`
+
+The production semantic layer predates the current R1 boundary and is not a retroactive violation, but any **new** related-content surface added under R1 today would extend an embedding-derived recommender to that surface. Thesis detail is exactly such a new surface.
+
+Therefore the immediate next implementation cannot be a thesis-side extension. R1 must first converge onto its own canonical-only contract before expanding coverage. See §"First bounded R1 next step" below.
+
+## First bounded R1 next step
+
+The immediate next step is **not** an implementation slice. The R1 hard boundary (`no embedding / LLM recommender`) currently conflicts with the production `relatedContent` semantic contribution (see §"R1 hard-boundary observation" above). Extending R1 to a new surface today would extend that contribution to that surface. R1 must first converge onto its own contract via one bounded audit.
+
+### R1-B0 — Semantic related-content reconciliation audit (audit-only)
+
+**Purpose:** determine whether the legacy embedding-derived `src/_data/semanticRelated.json` contribution can be removed from `computeRelatedContent` without materially degrading related-content quality, so R1 can converge onto its canonical-only architecture contract before expanding to Theses.
+
+**Scope of R1-B0:**
+
+- Compare two ranking configurations across the five domains that currently consume `content-context-sidebar` (Publications, Presentations, Media, Blog, Writings):
+  - **Current ranking** — categories ×5, keywords ×3, contexts ×4, tags ×2, type ×2, semantic similarity ×5 (`SEM_WEIGHT = 5`, `SEM_MIN = 0.6`), plus any explicit relationship logic currently present in `computeRelatedContent`.
+  - **Canonical-only ranking** — the exact same weights except `SEM_WEIGHT = 0`. Do not change any other weight during the comparison.
+- Use representative samples from each currently consuming domain. Sample size and selection method to be defined by the audit; must be reproducible.
+- For each sample item record:
+  - top-4 candidate overlap between the two rankings
+  - ordering changes (position swaps, drop-outs, new entries)
+  - each candidate classified as clearly relevant / plausible / weak / misleading
+  - cases where semantic similarity uniquely rescues a useful candidate (present in current, absent in canonical-only)
+  - cases where semantic similarity introduces a weaker candidate (present in current, weak/misleading vs. canonical-only)
+  - coverage change (did any item drop from ≥1 candidate to 0?)
+- Do NOT modify `computeRelatedContent`, `relatedContent`, `content-context-sidebar.njk`, or `src/_data/semanticRelated.json` during the audit. Use a read-only harness (temporary script under `/tmp/` or similar) that instantiates the same `computeRelatedContent` logic twice with the two weight configurations against built collection data.
+- Do NOT reinterpret semantic similarity as a canonical relationship. The comparison is a quality/coverage measurement, not a taxonomy claim.
+
+**R1-B0 decision output — exactly one:**
+
+- **A — Semantic layer removable.** Canonical-only ranking maintains acceptable quality. Next implementation: remove `semanticRelated.json` from the `computeRelatedContent` path (and the associated build helper `scripts/build-semantic-related.js` and the committed JSON) where consumer proof permits, then proceed to R1-B1 (Thesis).
+- **B — Semantic layer materially useful but conflicts with current R1 contract.** Do not expand R1 to new surfaces. Escalate for an explicit architecture decision (either amend the R1 boundary to permit the existing semantic layer, or accept the coverage/quality cost of removing it) before further R1 rollout.
+- **C — Inconclusive.** More evidence required.
+
+Estimated scope of R1-B0: **SMALL–MEDIUM audit** (harness + representative samples + comparison table + closure decision).
+
+### R1-B1 — deferred, BLOCKED on R1-B0
+
+**Slice R1-B1: Add `content-context-sidebar` to `src/opinnaytteet/thesis-details.njk`** (details below) remains the natural surface-coverage next step but is **BLOCKED** on the outcome of R1-B0:
+
+- If R1-B0 concludes **A**, R1-B1 becomes safe to schedule as a small template edit that inherits only the canonical-only ranking.
+- If R1-B0 concludes **B**, R1-B1 waits for the escalated architecture decision — no new surface should inherit the embedding boost while the boundary conflict is open.
+- If R1-B0 concludes **C**, R1-B1 waits for the additional evidence.
+
+Specification of R1-B1 for future reference (not implementation):
 
 - **Domain**: Theses.
 - **Exact surface**: `src/opinnaytteet/thesis-details.njk` (renders `/opinnaytteet/{id}/`).
-- **Canonical inputs**: the pagination alias `thesisDetail` already exposes `categories`, `keywords`, `contexts` via `eleventyComputed` (lines already present). No new canonical fields required. No thesis-only rank tweak.
-- **Matching / ranking rule**: exact same `relatedContent` filter and default weights used on the other five domains. No new scoring rule.
+- **Canonical inputs**: `thesisDetail` already exposes `categories`, `keywords`, `contexts` via `eleventyComputed`. No new canonical fields required.
+- **Matching / ranking rule**: whatever `relatedContent` state R1-B0 leaves on `main`. No new scoring rule.
 - **Maximum results**: default 4 (matches every other deployed surface).
-- **Deterministic tie-break**: score desc, then date desc (as-is in filter).
-- **Canonical destination semantics**: `content-context-sidebar` uses candidate `.url`. Thesis picks resolve to the item's canonical `url` (either the OuluREPO external for another thesis, or the local publication/blog/media/presentation detail for cross-domain candidates). Preserves landing/source semantics.
-- **SSR rendering path**: single-line `{% include "content-context-sidebar.njk" %}` inside `thesis-details.njk` — the same shape as `publication-item-body.njk:122`. No `data-*` attributes, no runtime JSON, no Pagefind involvement.
-- **FI / EN handling**: existing sidebar copy switches on locale via the `txt` block inside `content-context-sidebar.njk`. `thesis-details.njk` sets `lang` from `thesisDetail.lang`; the same variable feeds the include.
-- **Tests required**:
-  - Extend an existing thesis regression spec (or add a small Playwright case in `tests/`): assert `content-context-related` (or `noRelated`) is present on a sample built thesis detail page.
-  - Unit test to `computeRelatedContent` is unnecessary — filter behavior is already covered by existing usage on 5 other surfaces.
-- **What old code / list could potentially be removed**: `src/_includes/related-presentations.njk` and its `.related-presentations` CSS selector in `src/css/larux-page.css`, **only after** a separate parity check proves no build-artifact references it. This deletion is **NOT bundled** with the thesis slice.
-- **Explicit non-goals**: no new canonical fields; no thesis-specific weighting; no research-membership inference; no changes to `relatedContent` filter internals; no touch to `semanticRelated.json`; no shared-presenter changes; no Pagefind changes; no removal of `related-presentations.njk` in the same commit.
+- **Deterministic tie-break**: score desc, then date desc.
+- **Canonical destination semantics**: `content-context-sidebar` uses candidate `.url`; preserves landing/source semantics.
+- **SSR rendering path**: single-line `{% include "content-context-sidebar.njk" %}` inside `thesis-details.njk` — same shape as `publication-item-body.njk:122`. No `data-*` attributes, no runtime JSON, no Pagefind involvement.
+- **FI / EN handling**: existing sidebar copy switches on locale.
+- **Tests required**: extend an existing thesis regression spec to assert `content-context-related` (or `noRelated`) is present on a sample built thesis detail page.
+- **Non-goals**: no new canonical fields, no thesis-specific weighting, no research-membership inference, no changes to `relatedContent` filter internals, no `related-presentations.njk` deletion in the same commit.
 
-Estimated scope: **SMALL** (one template edit + one test extension + one closure doc).
+Estimated scope of R1-B1 (once unblocked): **SMALL** (one template edit + one test extension + one closure doc).
 
 ## Deferred domains
 
@@ -337,18 +380,21 @@ Estimated scope: **SMALL** (one template edit + one test extension + one closure
 Per the R1-A hard boundaries and the AC1 architecture rules:
 
 - No new canonical fields on any content type.
-- No modifications to `computeRelatedContent` weights, semantics, or the `semanticRelated.json` layer.
+- No modifications to `computeRelatedContent` weights, semantics, or the `semanticRelated.json` layer **inside R1-A**. R1-B0 (audit-only) analyzes them read-only; any change is a separate follow-up commit gated by R1-B0's decision.
 - No new Pagefind involvement in related-content.
-- No embedding / LLM / vector similarity work.
+- No **new** embedding / LLM / vector similarity work. The existing pre-closure semantic layer is analyzed by R1-B0, not extended by R1-A.
 - No taxonomy inventions.
 - No Research membership derivation from topics / authors / similarity.
 - No parallel client-side content model.
 - No SPA architecture.
-- No public JSON deletion (e.g., `/data/presentations-page.json`).
+- No public JSON deletion (e.g., `/data/presentations-page.json`, `/data/media.json`).
 - No delete of `related-presentations.njk` in this branch — flagged as separate convergence.
 - No touch to shared presenter, Presentations Slice 3 SSR path, or any other closed lane.
-- No implementation of the slice above.
+- No implementation of R1-B0 or R1-B1 in this branch or PR.
+- No thesis-detail template edit before R1-B0 concludes (R1-B1 is BLOCKED).
 
 ## Architecture status
 
-**Architecture Closure 1.0 remains `CLOSED / GREEN / MAIN`. R1-A does not reopen AC1.** The current post-closure related-content system is already the R1 target architecture; the recommended slice extends coverage on one detail surface without touching architecture boundaries.
+**Architecture Closure 1.0 remains `CLOSED / GREEN / MAIN`. R1-A identifies a post-closure semantic reconciliation requirement but does not reopen AC1.**
+
+The reconciliation is post-closure convergence / deletion work: the production semantic layer predates the current R1 hard boundary and is not a retroactive AC1 violation. R1-B0 (audit-only) exists to determine whether removing the semantic contribution costs quality, and R1-B1 (Thesis coverage) waits for R1-B0's answer. Neither step reopens the AC1 architecture; both are post-closure planning that respects the current R1 contract.
