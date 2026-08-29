@@ -8,7 +8,14 @@ import {
 } from './helpers/contrast.js';
 
 test.describe('Button Contrast Audits', () => {
-    test.setTimeout(120000);
+    // Presentations archive (Slice 3 C1, commit 826bea4b) renders all 218
+    // canonical presentation cards in SSR. JS init hides cards past the
+    // first page-size but the visibility snapshot + per-button hover +
+    // measureButtonState iteration still spans several hundred buttons
+    // on /esitykset/ and /en/presentations/. The 120s per-test budget
+    // is tight on CI runners; extend to 300s for this describe block
+    // only. Other pages complete well under the old budget.
+    test.setTimeout(300000);
     for (const auditPage of BUTTON_AUDIT_PAGES) {
         test(`${auditPage.name} buttons meet contrast requirements`, async ({ page }) => {
             await gotoAndAssertSite(page, auditPage.path);
