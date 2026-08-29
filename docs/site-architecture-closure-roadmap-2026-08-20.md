@@ -246,9 +246,9 @@ Deletion is part of completion, not a separate cleanup phase.
 
 ### R1 — Canonical related-content projection
 
-Status: `ACTIVE / BOUNDED POST-CLOSURE`
+Status: `CLOSED / MAINTENANCE`
 
-Historical framing (superseded): the 2026-08-20 roadmap listed R1 as `LATER`. The R1-A audit ([r1a-canonical-related-content-suitability-audit-2026-08-29.md](./r1a-canonical-related-content-suitability-audit-2026-08-29.md)) then established that R1 is not green-field — the `relatedContent` Eleventy filter + `content-context-sidebar.njk` are already deployed on five detail templates (Publications, Presentations, Media, Blog, Writings), producing deterministic SSR related-content projections. R1-B0 ([r1b0-semantic-related-content-reconciliation-audit-2026-08-29.md](./r1b0-semantic-related-content-reconciliation-audit-2026-08-29.md)) measured the pre-closure embedding-derived semantic contribution and escalated the boundary conflict. R1-ADR1 ([r1-adr1-semantic-related-content-architecture-decision-2026-08-29.md](./r1-adr1-semantic-related-content-architecture-decision-2026-08-29.md)) resolves the conflict.
+Historical framing (superseded): the 2026-08-20 roadmap listed R1 as `LATER`. The R1-A audit ([r1a-canonical-related-content-suitability-audit-2026-08-29.md](./r1a-canonical-related-content-suitability-audit-2026-08-29.md)) then established that R1 was not green-field — the `relatedContent` Eleventy filter + `content-context-sidebar.njk` were already deployed on five detail templates (Publications, Presentations, Media, Blog, Writings), producing deterministic SSR related-content projections. R1-B0 ([r1b0-semantic-related-content-reconciliation-audit-2026-08-29.md](./r1b0-semantic-related-content-reconciliation-audit-2026-08-29.md)) measured the pre-closure embedding-derived semantic contribution and escalated the boundary conflict. R1-ADR1 ([r1-adr1-semantic-related-content-architecture-decision-2026-08-29.md](./r1-adr1-semantic-related-content-architecture-decision-2026-08-29.md)) retained the semantic layer as bounded auxiliary ranking infrastructure. R1-B1 ([r1b1-thesis-related-content-surface-convergence-2026-08-29.md](./r1b1-thesis-related-content-surface-convergence-2026-08-29.md), merged as PR #166 → `707be915`) extended the shared sidebar to Thesis detail pages. R1 closure record: [r1-related-content-closure-2026-08-29.md](./r1-related-content-closure-2026-08-29.md).
 
 Target:
 
@@ -281,7 +281,7 @@ Hard boundaries (revised by ADR1):
 - no parallel knowledge-graph content model
 - no runtime / client-side inference or vector search; related content stays build-time / SSR
 
-R1-B1 (add `content-context-sidebar.njk` to `src/opinnaytteet/thesis-details.njk`) is **unblocked** after ADR1 merges. R1-B1 is a surface-convergence slice only; it must not modify semantic scoring, generate new embeddings, change `SEM_WEIGHT`, or redesign related-content ranking. See ADR1 §"R1-B1 consequence".
+R1-B1 (added `content-context-sidebar.njk` to `src/_includes/thesis-detail-body.njk`) is **complete** — merged as PR #166 (`707be915`). Shared include reused; no scoring, semantic-infrastructure, or client-side changes. Thesis detail now joins Publications, Presentations, Media, Blog, and Writings as an SSR consumer of the shared related-content sidebar. See [r1-related-content-closure-2026-08-29.md](./r1-related-content-closure-2026-08-29.md) for the closure record. Reopen conditions listed there apply.
 
 ## 5. PF5 Global Result Parity
 
@@ -417,7 +417,7 @@ The Architecture Closure execution sequence is complete. This roadmap is now his
 - O1 = CLOSED / MAINTENANCE
 - N1 = CLOSED / GREEN / MAIN (PR #124, PR #125)
 - C1 = CROSS-CUTTING (effectively closed via lane-attached deletions)
-- R1 = ACTIVE / BOUNDED POST-CLOSURE (per [r1-adr1-semantic-related-content-architecture-decision-2026-08-29.md](./r1-adr1-semantic-related-content-architecture-decision-2026-08-29.md); R1-B1 unblocked)
+- R1 = CLOSED / MAINTENANCE (per [r1-related-content-closure-2026-08-29.md](./r1-related-content-closure-2026-08-29.md); R1-B1 merged as PR #166)
 - PF5 = CLOSED / MAINTENANCE (10 slices PR #131 through PR #158)
 - P1 = LATER / BASELINE FIRST
 - UX1 = POST-CLOSURE
