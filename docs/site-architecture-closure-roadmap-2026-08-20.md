@@ -280,35 +280,31 @@ Hard boundaries:
 
 ### PF5 — GLOBAL RESULT PARITY
 
-Status: `GATED / AUDIT FIRST`
+Status: `CLOSED / MAINTENANCE`
 
-Do not start PF5 implementation automatically.
+Historical framing (superseded): the original 2026-08-20 plan gated PF5 behind an audit that would return `GO`, `REDUCE`, or `NO-GO`. The lane instead resolved as **REDUCE, incremental** — 10 PF5-scoped PRs landed between 2026-08-22 and 2026-08-27 covering every material aspect the audit would have decided. See [architecture-closure-1-0-closure-2026-08-29.md](./architecture-closure-1-0-closure-2026-08-29.md) §2 for the closure evidence and [architecture-closure-current-state-reconciliation-2026-08-29.md](./architecture-closure-current-state-reconciliation-2026-08-29.md) §"PF5 — Global result parity" for the reconciliation.
 
-Audit first across:
+Closed under the PF5 umbrella:
 
-- navbar Pagefind
-- `/haku/`
-- `/en/search/`
-- domain-specific Pagefind result presenters
-
-The audit must answer:
-
-- which differences are real user problems?
-- which differences are intentional domain differences?
-- what can be unified at shared projection / presenter level?
-- what would add abstraction with no real user benefit?
-
-Allowed outcomes:
-
-- `GO`
-- `REDUCE`
-- `NO-GO`
+- PF5-G1 shared presenter convergence + EN search rollout (PR #131, PR #134)
+- PF5-G2 Presentations Pagefind projection (PR #138)
+- PF5-G3A Media result enrichment (PR #155)
+- PF5-H1A search page shell simplification (PR #140)
+- PF5-H1B progressive facet disclosure (PR #142)
+- PF5-A2 semantic UL/LI result list (PR #151)
+- PF5-A3A content-type single-select (PR #156)
+- PF5-A3B facet availability presenter (PR #157)
+- PF5-A3B1 presenter layout + `searchFacetLabels.js` (PR #158)
+- Pagefind index-hygiene (PR #149), seed-token leak (PR #153), navbar zero-results (PR #154)
 
 Reference evidence:
 
 - [pf1-user-facing-discovery-model-audit-2026-08-16.md](./pf1-user-facing-discovery-model-audit-2026-08-16.md)
-- [pf-perf1-pagefind-startup-performance-audit-2026-08-16.md](./pf-perf1-pagefind-startup-performance-audit-2026-08-16.md)
+- [pf-perf1-pagefind-startup-performance-audit-2026-08-16.md](./pf-perf1-pagefind-startup-performance-audit-2026-08-16.md) — remains queued for P1 (post-closure)
 - [pf4-result-card-hierarchy-closure-2026-08-16.md](./pf4-result-card-hierarchy-closure-2026-08-16.md)
+- [pagefind-search-quality-baseline-2026-08-25.md](./pagefind-search-quality-baseline-2026-08-25.md) — regression baseline
+
+Reopen conditions: new repo-evidenced discovery-parity regression, or a new domain joining the shared presenter. Otherwise `MAINTENANCE`.
 
 ## 6. UX / Content Experience
 
@@ -348,44 +344,50 @@ Do not use performance language to protect duplicate architecture from deletion.
 
 ### AC1 — Architecture Closure 1.0
 
-Status: FINAL GATE
+Status: `CLOSED / GREEN / MAIN`
 
-This final gate is not a feature lane of its own. It is the closure decision after the active architecture workstreams have been proven, simplified, and documented.
+AC1 was the closure decision after the active architecture workstreams were proven, simplified, and documented. Every closure expectation is met on current `main`. See [architecture-closure-1-0-closure-2026-08-29.md](./architecture-closure-1-0-closure-2026-08-29.md).
 
-Closure expectations:
+Closure expectations (all met):
 
-- active T1 slices completed to a justified stopping point
-- O1 widened, deferred, or bounded with explicit repo evidence
-- N1 baseline accessibility/navigation issues closed
-- C1 deletions landed alongside the work they replace
-- PF5 audit resolved to `GO`, `REDUCE`, or `NO-GO`
-- later lanes such as R1, P1, and UX1 either intentionally deferred or advanced with evidence
+- active T1 slices completed to a justified stopping point → T1 = `CLOSED / MAINTENANCE`
+- O1 widened, deferred, or bounded with explicit repo evidence → O1 = `CLOSED / MAINTENANCE`
+- N1 baseline accessibility/navigation issues closed → N1 = `CLOSED / GREEN / MAIN`
+- C1 deletions landed alongside the work they replace → C1 = `EFFECTIVELY CLOSED` (cross-cutting, lane-attached)
+- PF5 audit resolved to `GO`, `REDUCE`, or `NO-GO` → resolved as `REDUCE, incremental` across 10 slices; PF5 = `CLOSED / MAINTENANCE`
+- later lanes such as R1, P1, and UX1 either intentionally deferred or advanced with evidence → all three remain `LATER / POST-CLOSURE` with reasoning
 
-## 8. Current Sequencing
+Reopen conditions: new duplicate content ownership; canonical semantics moved into browser JS; Pagefind becoming canonical storage; new runtime JSON → HTML architecture duplicating SSR; loss of FI/EN parity in shared architecture; removal of a public contract without consumer proof; regression in source/landing/context semantics.
 
-Operational model:
+## 8. Sequencing (historical)
+
+Operational model at closure:
 
 ```text
 Foundation                     CLOSED
-  -> Architecture Closure      ACTIVE
+  -> Architecture Closure      CLOSED / GREEN / MAIN
      -> T1                     CLOSED / MAINTENANCE
      -> O1                     CLOSED / MAINTENANCE
-     -> N1                     NEXT
-     -> C1                     CROSS-CUTTING
-  -> R1 / PF5 audit / P1
-  -> UX1
-  -> AC1 final gate
+     -> N1                     CLOSED / GREEN / MAIN
+     -> C1                     CROSS-CUTTING (effectively closed)
+     -> PF5                    CLOSED / MAINTENANCE
+     -> Presentations Slice 3  CLOSED / GREEN / MAIN
+  -> R1 / P1 / UX1             POST-CLOSURE / LATER
+  -> AC1                       CLOSED / GREEN / MAIN
 ```
 
-Current operating order:
+Historical execution order (all now closed):
 
-1. `T1` Timeline 2.0 is closed on `main` at T1B2C. It stays in maintenance until repo evidence triggers a further slice; do not reopen for `T1B3` without such evidence.
-2. `O1` detail-orientation is closed on `main` at the Presentations + Media widening (PR #122). Core covers Publications, Theses, and Writings; widening extends the same primitive to Presentations and Media local detail pages while preserving external-first identity and external-source primacy respectively. O1 reopens only on new repo-evidenced orientation regressions or a new domain requiring explicit suitability review.
-3. `N1` is now the active Architecture Closure workstream for known accessibility/navigation baseline issues, starting from the home/search-dialog keyboard focus and focus-trap regression.
-4. `C1` applies to every real implementation lane above rather than waiting as a separate finishing pass. O1 closure already landed the two hardcoded domain-specific hub-control deletions alongside the widening.
-5. `R1`, `PF5`, and `P1` stay behind the active closure lanes unless repo evidence justifies earlier movement.
-6. `UX1` belongs after closure pressure has reduced architectural duplication.
-7. `AC1` is the final closure gate, not an immediate build lane.
+1. `T1` Timeline 2.0 closed on `main` at T1B2C. Maintenance only.
+2. `O1` detail-orientation closed on `main` at Presentations + Media widening (PR #122).
+3. `N1` closed on `main` via native `<dialog>` focus containment (PR #124, PR #125).
+4. `C1` resolved cross-cutting: deletions landed alongside every host workstream (O1 widening removed two hardcoded hub links; PR #127 replaced the custom a11y toolbar with the native Popover API; PR #159 Presentations Slice 3 deleted `archiveCardHtml()` + 10 helpers + the runtime cards asset; PR #152 memoized heavy build loaders; PR #149 removed leaking Pagefind metadata injection).
+5. `PF5` resolved implementation-first as `REDUCE, incremental` — 10 slices from PF5-G1 through PF5-A3B1 (PR #131 through PR #158).
+6. Presentations Slice 3 closed via PR #159; single Nunjucks card renderer.
+7. `R1`, `P1`, `UX1` remain intentionally post-closure / later.
+8. `AC1` closed via this reconciliation + closure doc chain ([architecture-closure-current-state-reconciliation-2026-08-29.md](./architecture-closure-current-state-reconciliation-2026-08-29.md), [architecture-closure-1-0-closure-2026-08-29.md](./architecture-closure-1-0-closure-2026-08-29.md)).
+
+The Architecture Closure execution sequence is complete. This roadmap is now historical / maintenance guidance rather than an active migration queue.
 
 ## 9. Status Snapshot
 
@@ -393,8 +395,9 @@ Current operating order:
 - primary Find & Explore domain migrations = CLOSED / GREEN
 - Research contextual discovery = CLOSED / GREEN / MAIN
 - Presentations Find & Explore = CLOSED / GREEN / MAIN
+- Presentations Slice 3 (SSR-all-cards) = CLOSED / GREEN / MAIN (PR #159)
 - Media Find & Explore = CLOSED / GREEN / MAIN
-- Architecture Closure = ACTIVE
+- Architecture Closure = CLOSED / GREEN / MAIN
 - T1 = CLOSED / MAINTENANCE
 - T1A = CLOSED / GREEN / MAIN
 - T1B1 = foundation evidence complete
@@ -405,12 +408,12 @@ Current operating order:
 - O1 core = CLOSED / GREEN / MAIN
 - O1 widening = CLOSED / GREEN / MAIN (PR #122)
 - O1 = CLOSED / MAINTENANCE
-- N1 = CLOSED / GREEN / MAIN (PR #124)
-- C1 = CROSS-CUTTING
-- R1 = LATER
-- PF5 = GATED / AUDIT FIRST
+- N1 = CLOSED / GREEN / MAIN (PR #124, PR #125)
+- C1 = CROSS-CUTTING (effectively closed via lane-attached deletions)
+- R1 = LATER / POST-CLOSURE
+- PF5 = CLOSED / MAINTENANCE (10 slices PR #131 through PR #158)
 - P1 = LATER / BASELINE FIRST
 - UX1 = POST-CLOSURE
-- AC1 = FINAL GATE
+- AC1 = CLOSED / GREEN / MAIN
 
-This is the active roadmap until repo evidence shows a new primary phase.
+This roadmap is now historical / maintenance guidance. Active planning has ended for Architecture Closure 1.0; see [architecture-closure-1-0-closure-2026-08-29.md](./architecture-closure-1-0-closure-2026-08-29.md) for the closure record and [architecture-closure-current-state-reconciliation-2026-08-29.md](./architecture-closure-current-state-reconciliation-2026-08-29.md) for the underlying current-state audit. Reopen conditions are listed in the AC1 section above.
