@@ -2,6 +2,7 @@
 {% set archiveLocale = presentationArchiveLocale or (lang or "fi") %}
 {% set archiveFilterYears = presentationArchiveFilterYears or ((presentationsPage and presentationsPage.filterYears) or []) %}
 {% set archiveFilterTopics = presentationArchiveFilterTopics or ((presentationsPage and presentationsPage.filterTopics) or []) %}
+{% set cardReturnTo = "/en/presentations/" if archiveLocale == "en" else "/esitykset/" %}
 
 {% if archiveLocale == "en" %}
   {% set presentationArchiveSectionSummary = "Browse presentations" %}
@@ -109,9 +110,7 @@
 
           <div class="presentation-archive-grid" data-presentation-results>
             {% for item in archiveItems | sort(attribute="date", reverse=true) %}
-              {% if loop.index <= 12 %}
-                {% include "presentations/result-card.njk" %}
-              {% endif %}
+              {% include "presentations/result-card.njk" %}
             {% endfor %}
           </div>
 
