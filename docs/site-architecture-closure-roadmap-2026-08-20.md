@@ -246,12 +246,14 @@ Deletion is part of completion, not a separate cleanup phase.
 
 ### R1 — Canonical related-content projection
 
-Status: LATER
+Status: `ACTIVE / BOUNDED POST-CLOSURE`
+
+Historical framing (superseded): the 2026-08-20 roadmap listed R1 as `LATER`. The R1-A audit ([r1a-canonical-related-content-suitability-audit-2026-08-29.md](./r1a-canonical-related-content-suitability-audit-2026-08-29.md)) then established that R1 is not green-field — the `relatedContent` Eleventy filter + `content-context-sidebar.njk` are already deployed on five detail templates (Publications, Presentations, Media, Blog, Writings), producing deterministic SSR related-content projections. R1-B0 ([r1b0-semantic-related-content-reconciliation-audit-2026-08-29.md](./r1b0-semantic-related-content-reconciliation-audit-2026-08-29.md)) measured the pre-closure embedding-derived semantic contribution and escalated the boundary conflict. R1-ADR1 ([r1-adr1-semantic-related-content-architecture-decision-2026-08-29.md](./r1-adr1-semantic-related-content-architecture-decision-2026-08-29.md)) resolves the conflict.
 
 Target:
 
 - make content relationships more visible
-- use only existing canonical semantics
+- **canonical relationships remain authoritative**
 - prefer SSR projections
 
 Possible UI forms:
@@ -268,13 +270,18 @@ Allowed inputs:
 - categories
 - keywords
 - explicit canonical relationships
+- retained pre-closure semantic-similarity contribution as **auxiliary ranking only** (see hard boundaries and ADR1)
 
-Hard boundaries:
+Hard boundaries (revised by ADR1):
 
 - no new taxonomy
 - no Research inference from topic mapping
-- no embedding / LLM recommender
+- **No embedding- or LLM-derived signal may define canonical identity, taxonomy, `contexts`, Research membership, source/landing semantics, content ownership, or candidate eligibility. Existing pre-closure semantic similarity may remain as bounded auxiliary ranking infrastructure where measured user value exists, provided canonical candidates and destinations remain authoritative.**
+- **New embedding/LLM infrastructure is not authorized. Any change adding or extending embedding/LLM infrastructure requires a separate architecture decision backed by new measurement evidence.**
 - no parallel knowledge-graph content model
+- no runtime / client-side inference or vector search; related content stays build-time / SSR
+
+R1-B1 (add `content-context-sidebar.njk` to `src/opinnaytteet/thesis-details.njk`) is **unblocked** after ADR1 merges. R1-B1 is a surface-convergence slice only; it must not modify semantic scoring, generate new embeddings, change `SEM_WEIGHT`, or redesign related-content ranking. See ADR1 §"R1-B1 consequence".
 
 ## 5. PF5 Global Result Parity
 
@@ -410,7 +417,7 @@ The Architecture Closure execution sequence is complete. This roadmap is now his
 - O1 = CLOSED / MAINTENANCE
 - N1 = CLOSED / GREEN / MAIN (PR #124, PR #125)
 - C1 = CROSS-CUTTING (effectively closed via lane-attached deletions)
-- R1 = LATER / POST-CLOSURE
+- R1 = ACTIVE / BOUNDED POST-CLOSURE (per [r1-adr1-semantic-related-content-architecture-decision-2026-08-29.md](./r1-adr1-semantic-related-content-architecture-decision-2026-08-29.md); R1-B1 unblocked)
 - PF5 = CLOSED / MAINTENANCE (10 slices PR #131 through PR #158)
 - P1 = LATER / BASELINE FIRST
 - UX1 = POST-CLOSURE
