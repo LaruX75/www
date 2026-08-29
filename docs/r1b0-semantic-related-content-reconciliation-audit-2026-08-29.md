@@ -120,16 +120,64 @@ Note: Theses is a candidate pool (169 items) but **not** a consuming surface —
 
 ## Quantitative comparison
 
-Per-domain and total across 50 samples:
+### Metric definitions (matter — see correction note below)
 
-| Domain | Samples | Exact top-4 | Mean overlap | Any change | 2+ changes |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| Publications | 10 | **10 (100%)** | 4.00 | 0 | 0 |
-| Presentations | 10 | 8 (80%) | 3.20 | 0 | 0 |
-| Media | 10 | 4 (40%) | 3.20 | 6 | 2 |
-| Blog | 10 | 7 (70%) | 3.50 | 3 | 2 |
-| Writings | 10 | 5 (50%) | 3.40 | 5 | 1 |
-| **Total** | **50** | **34 (68%)** | **3.46** | **14 (28%)** | **5 (10%)** |
+Two related metrics track how similar CURRENT and CANONICAL-ONLY are per source item:
+
+- **No-change** — CURRENT and CANONICAL-ONLY return the **exact same URL list** in the same or shorter length. Equivalently: `currentOnly.length == 0 AND canonicalOnlyNew.length == 0`. This is the primary decision-relevant metric: it counts items where the semantic layer has zero visible effect on the produced result set, regardless of whether that set is full-4 or short.
+- **Exact top-4 (overlap = 4)** — both variants return four candidates AND all four URLs match. This is a *stricter* metric that additionally requires full-length results in both variants. An item where both variants return an identical shorter set (e.g. 0 or 2 candidates) is classified as **no-change but not exact top-4** — the semantic layer did not affect its result, but the canonical metadata alone could not produce four candidates.
+- **Any change** — items where the two variants return different URL lists (the two are logically inverse to no-change).
+
+The earlier draft of this audit conflated the two by reporting "exact top-4" as though it implied any change. Per-source verification (see re-verified Presentations table below) reconciles the metrics.
+
+### Per-domain results (corrected)
+
+| Domain | Samples | No-change (identical top-K) | Any change | 2+ changes | Exact top-4 (overlap = 4) | Mean overlap |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Publications | 10 | **10 (100%)** | 0 | 0 | 10 | 4.00 |
+| Presentations | 10 | **10 (100%)** | 0 | 0 | 8 *(the other 2 are identical empty sets)* | 3.20 |
+| Media | 10 | 4 (40%) | 6 | 2 | 4 | 3.20 |
+| Blog | 10 | 7 (70%) | 3 | 2 | 7 | 3.50 |
+| Writings | 10 | 5 (50%) | 5 | 1 | 5 | 3.40 |
+| **Total** | **50** | **36 (72%)** | **14 (28%)** | **5 (10%)** | **34 (68%)** | **3.46** |
+
+Explanation of the 8/10 vs 10/10 delta on Presentations: 8 samples return four candidates in both variants with all four identical (`overlap = 4`), 2 samples return zero candidates in both variants (`overlap = 0 of 0`). All 10 samples are unchanged between variants; only 8 of them additionally produce a full four-item result. The 2 zero-result samples have empty `categories`, `keywords`, and `contexts` (Canva external-first items whose canonical projection carries no textual metadata). Coverage limitation, not a semantic effect.
+
+Re-verified Presentations detail (all 10 samples):
+
+| # | Source | `cats/kws/ctxs` | CURRENT top-K | CANONICAL-ONLY top-K | Overlap | No change? |
+| --- | --- | ---: | ---: | ---: | ---: | :-: |
+| 1 | AI Friend or Foe? (Canva) | 16 / 0 / 0 | 4 | 4 | 4 | yes |
+| 2 | Kuinka Generatiivinen tekoäly toimii? (YouTube) | 0 / 0 / 0 | 0 | 0 | 0 | yes |
+| 3 | Selitettävä tekoäly opetuksessa – ITK-webinaari (Canva) | 8 / 0 / 0 | 4 | 4 | 4 | yes |
+| 4 | Opopassi-koulutus – Tekoäly ohjauksessa (Canva) | 8 / 0 / 0 | 4 | 4 | 4 | yes |
+| 5 | ITK2022 (AOE / Finna) | 0 / 0 / 0 | 0 | 0 | 0 | yes |
+| 6 | Miten opettajien uusi sukupolvi mullistaa opetuksen? (SlideShare) | 1 / 1 / 1 | 4 | 4 | 4 | yes |
+| 7 | Luentosali II: 2000-luvun taidot & luento (SlideShare) | 1 / 1 / 3 | 4 | 4 | 4 | yes |
+| 8 | Teknologiatuettu oppiminen - luksia (SlideShare) | 1 / 1 / 2 | 4 | 4 | 4 | yes |
+| 9 | Luento 3: Opetuksen uudet ympäristöt ja teknologiat (SlideShare) | 1 / 1 / 1 | 4 | 4 | 4 | yes |
+| 10 | Blogs&education (SlideShare) | 1 / 2 / 2 | 4 | 4 | 4 | yes |
+
+Presentations subtotals confirmed: no-change 10/10, any-change 0/10, 2+-change 0/10, exact top-4 8/10, mean overlap 3.20, semantic-only entries 0, canonical-only entries 0, rescues 0, harms 0. Coverage identical (≥1: 8/10 in both; full-4: 8/10 in both). Independent re-run against the same harness methodology reproduces byte-identical results.
+
+Coverage (identical between CURRENT and CANONICAL-ONLY across the entire sample):
+
+| Domain | Variant | ≥1 | ≥3 | 4 results |
+| --- | --- | ---: | ---: | ---: |
+| Publications | CURRENT | 10 | 10 | 10 |
+| Publications | CANONICAL-ONLY | 10 | 10 | 10 |
+| Presentations | CURRENT | 8 | 8 | 8 |
+| Presentations | CANONICAL-ONLY | 8 | 8 | 8 |
+| Media | CURRENT | 10 | 10 | 10 |
+| Media | CANONICAL-ONLY | 10 | 10 | 10 |
+| Blog | CURRENT | 10 | 10 | 10 |
+| Blog | CANONICAL-ONLY | 10 | 10 | 10 |
+| Writings | CURRENT | 10 | 10 | 10 |
+| Writings | CANONICAL-ONLY | 10 | 10 | 10 |
+| **Total** | **CURRENT** | **48** | **48** | **48** |
+| **Total** | **CANONICAL-ONLY** | **48** | **48** | **48** |
+
+**Coverage is bit-identical between variants across the entire 50-item sample.** The semantic layer never rescues an item from having no results and never displaces an item into an incomplete result set. The two Presentation samples that returned zero results returned zero in both variants — a canonical-metadata sparsity gap on Canva/AOE external-first items with empty projection metadata, not a semantic-layer effect.
 
 Coverage (identical between CURRENT and CANONICAL-ONLY across the entire sample):
 
@@ -152,11 +200,11 @@ Coverage (identical between CURRENT and CANONICAL-ONLY across the entire sample)
 
 ## Domain-by-domain results
 
-- **Publications** — 10/10 exact match. Zero changed cases. Semantic contribution has **no visible effect** on the Publications sample. Publications carry rich canonical metadata (100% categories, 98% contexts, 96% keywords per R1-A) so the metadata score dominates.
-- **Presentations** — 8/10 exact match; the other 2 returned identical short result sets under both variants (canonical-metadata sparsity, not semantic). **No changed cases.** Semantic contribution has **no visible effect** on the Presentations sample.
-- **Media** — 6/10 changed. **Highest-divergence domain**. Semantic contribution actively reorders 6 out of 10 result sets, with two showing 2+ candidate changes.
-- **Blog** — 3/10 changed; 2 with 2+ candidate changes. Moderate divergence.
-- **Writings** — 5/10 changed; 1 with 2+ candidate changes. Moderate divergence.
+- **Publications** — 10/10 no-change (10/10 exact top-4). Zero changed cases. Semantic contribution has **no visible effect** on the Publications sample. Publications carry rich canonical metadata (100% categories, 98% contexts, 96% keywords per R1-A) so the metadata score dominates.
+- **Presentations** — 10/10 no-change; 8/10 exact top-4 with 2/10 returning identical empty result sets under both variants (Canva external-first items with empty `categories`/`keywords`/`contexts` projection metadata). **No changed cases.** Semantic contribution has **no visible effect** on the Presentations sample.
+- **Media** — 4/10 no-change (6/10 changed, 2/10 with 2+ candidate changes). **Highest-divergence domain**. Semantic contribution actively reorders 6 out of 10 result sets.
+- **Blog** — 7/10 no-change (3/10 changed, 2/10 with 2+ changes). Moderate divergence.
+- **Writings** — 5/10 no-change (5/10 changed, 1/10 with 2+ changes). Moderate divergence.
 
 ## Manual quality review
 
@@ -257,10 +305,10 @@ The maintenance question is architectural cleanliness, not byte size or runtime 
 
 **B — Semantic layer materially useful but conflicts with current R1 contract.**
 
-Rationale:
+Rationale (corrected against re-verified numbers; decision unchanged):
 
 - Coverage is bit-identical between CURRENT and CANONICAL-ONLY (48/48 items ≥ 1 result, 48/48 items with 4 results). The semantic layer does not rescue coverage.
-- Publications (10/10 exact match) and Presentations (10/10 unchanged in overlap-relevant sense) are completely unaffected by the semantic layer.
+- Publications (10/10 no-change) and Presentations (10/10 no-change; semantic-only entries and canonical-only entries both zero on the sample) are completely unaffected by the semantic layer.
 - Media, Blog, and Writings show measurable divergence: 14/50 = 28% of samples have at least one top-4 change; 5/50 = 10% have two or more changes.
 - **7 of 14 changed cases are clear rescues** where the semantic-promoted candidate is qualitatively better than the displaced canonical-only pick, in ways canonical metadata does not represent (temporal clustering, sub-topic sub-family). Rescue rate 14% overall, up to 30% on Media and Writings.
 - Only **1 of 14 changed cases is a clear harm** (Media political-personality event displaced a concrete-council pick).
