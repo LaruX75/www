@@ -10,6 +10,8 @@ layout: page.njk
 templateEngineOverride: md
 topics:
   - tekoalylukutaito
+contexts:
+  - business
 ---
 
 Tämä on automaattisesti tuotu Canva-esitys. Julkinen Canva-jakolinkki lisätään tälle sivulle, kun oikea katselulinkki on tallennettu aineistoon.
