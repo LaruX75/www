@@ -1,11 +1,21 @@
 /**
- * RP-CONVERGE-01 (resumed after PRES-CONTEXT1) — company Presentations strip
- * on /kouluttaja/ must project ONLY canonical Presentation MDs whose RAW
+ * RP-CONVERGE-01 → RP-CONVERGE-01B — company Presentations strip on
+ * /kouluttaja/ must project ONLY canonical Presentation MDs whose RAW
  * frontmatter explicitly declares contexts: - business. Inference-only
  * business items (from inferContexts()) must not be eligible.
  *
+ * Post RP-CONVERGE-01B: the selection reads `declaredContexts` on each
+ * item of `collections.presentations` (populated by the existing
+ * canonical Presentation pipeline through presentationSources.js →
+ * presentationsPage.js → presentations.11tydata.js). No parallel
+ * Presentation reader/parser/URL resolver is involved. This test
+ * remains a semantic-outcome guard against the built HTML and is
+ * independent of which projection layer supplies the items — it
+ * therefore also guards against reintroducing a parallel projection
+ * whose semantics silently diverge from the canonical pipeline.
+ *
  * Ref: docs/rp-converge-01-company-presentations-convergence-2026-08-30.md
- *      §"Final resumed implementation (2026-08-30)"
+ *      §"RP-CONVERGE-01B correction (2026-08-30)"
  */
 const { test, expect } = require("@playwright/test");
 

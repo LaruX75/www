@@ -632,6 +632,7 @@ function inputPathForPresentationDetail(detail = {}) {
 function enrichLocalPresentationDetailContexts(details = []) {
   return toArray(details).map((detail) => ({
     ...detail,
+    declaredContexts: Array.isArray(detail.contexts) ? [...detail.contexts] : [],
     contexts: normalizeContexts(resolveContexts(detail, inputPathForPresentationDetail(detail)))
   }));
 }
@@ -1182,6 +1183,8 @@ function buildCanonicalPresentationPageRecords(sourceData = {}) {
       const localCourseContexts = Array.isArray(item?.courseContexts) ? item.courseContexts : [];
       const canonicalContexts = Array.isArray(canonicalItem?.contexts) ? canonicalItem.contexts : [];
       const localContexts = Array.isArray(item?.contexts) ? item.contexts : [];
+      const localDeclaredContexts = Array.isArray(item?.declaredContexts) ? item.declaredContexts : [];
+      const canonicalDeclaredContexts = Array.isArray(canonicalItem?.declaredContexts) ? canonicalItem.declaredContexts : [];
 
       return {
         pageUrl: item?.pageUrl || "",
@@ -1210,7 +1213,8 @@ function buildCanonicalPresentationPageRecords(sourceData = {}) {
           ? item.viewCount
           : undefined,
         courseContexts: localCourseContexts.length ? localCourseContexts : canonicalCourseContexts,
-        contexts: localContexts.length ? localContexts : canonicalContexts
+        contexts: localContexts.length ? localContexts : canonicalContexts,
+        declaredContexts: localDeclaredContexts.length ? localDeclaredContexts : canonicalDeclaredContexts
       };
     })
     .filter((item) => item.pageUrl);

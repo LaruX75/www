@@ -1,7 +1,7 @@
-# RP-CONVERGE-01 → RP-CONVERGE-01A → PRES-CONTEXT1 → RP-CONVERGE-01 (resumed)
+# RP-CONVERGE-01 → RP-CONVERGE-01A → PRES-CONTEXT1 → RP-CONVERGE-01 (resumed) → RP-CONVERGE-01B
 
 Date: 2026-08-30
-Status: `COMPLETED AFTER PRES-CONTEXT1`
+Status: `COMPLETED AFTER RP-CONVERGE-01B`
 
 **Chronology of this workstream (single log; earlier sections retained
 as historical audit evidence):**
@@ -16,14 +16,26 @@ as historical audit evidence):**
    canonical `contexts` metadata: 12 canonical Presentation MDs now
    explicitly declare `contexts: - business`. Canonical Content v1
    unchanged.
-4. **RP-CONVERGE-01 resumed (this PR)** — the company strip now selects
-   from EXPLICIT canonical business membership (raw frontmatter, not
-   resolved contexts). Legacy include and CSS deleted. Convergence
-   complete.
+4. RP-CONVERGE-01 resumed (PR #171) — the company strip selected
+   explicit business membership, but did so via a new file
+   `src/_data/presentationBusiness.js` that re-read canonical MDs,
+   re-parsed YAML, and re-derived URLs. Accidental duplicate
+   projection layer.
+5. **RP-CONVERGE-01B (this PR)** — deletes `presentationBusiness.js`
+   and routes explicit-business selection through the existing
+   canonical Presentation pipeline: a minimal generic
+   `declaredContexts` field is preserved by
+   `src/_data/presentationsPage.js` alongside the existing resolved
+   `contexts`, exposed on `collections.presentations` items via
+   `presentations.11tydata.js`, and filtered in the yritys.md
+   template. No parallel Presentation reader / parser / normalizer /
+   URL resolver remains.
 
 The rest of this document preserves the RP-CONVERGE-01A Decision-C
 history for archaeological clarity; the "Final resumed implementation
-(2026-08-30)" section at the bottom records the completed convergence.
+(2026-08-30)" section below records the RP-CONVERGE-01 resume; the
+"RP-CONVERGE-01B correction (2026-08-30)" section at the very bottom
+records the duplicate-projection removal.
 
 RP-CONVERGE-01 originally shipped a production replacement of the FI
 `/kouluttaja/` "Viimeisimpiä koulutusesityksiä" strip using
@@ -290,3 +302,81 @@ RP-CONVERGE-01 resume is complete when all twelve are true:
 10. ✅ Unit tests / build / targeted Playwright green.
 11. ✅ Docs updated (this document + no stale blocked-status wording elsewhere).
 12. ✅ No broader Canva cleanup bundled (`sivuyhteys` ingest untouched).
+
+---
+
+## RP-CONVERGE-01B correction (2026-08-30)
+
+RP-CONVERGE-01 resume (§"Final resumed implementation (2026-08-30)" above) introduced `src/_data/presentationBusiness.js` as the projection driving the `/kouluttaja/` strip. That file was a parallel Presentation reader — it re-parsed YAML frontmatter, reconstructed presentation fields, and re-derived URLs — duplicating logic already owned by the canonical Presentation pipeline (`src/_data/presentationSources.js` → `presentationsPage.js` → `presentations.11tydata.js`). Adding a second reader is exactly the parallel-content-ownership pattern that AC1 and Canonical Content v1 are meant to prevent.
+
+**RP-CONVERGE-01B removes the parallel projection rather than replacing it.**
+
+### Removed
+
+- `src/_data/presentationBusiness.js` — **deleted** (69 LOC: file-walking + YAML parsing + URL derivation + date-sort duplicated the canonical pipeline).
+- All template references to `presentationBusiness` in `src/fi/yritys.md`.
+- All doc references retained only as historical description of the removed layer.
+
+### Existing pipeline used
+
+The `/kouluttaja/` strip now reads from the existing canonical Presentation collection (`collections.presentations`). The eleventyComputed layer on presentations (`src/presentations/presentations.11tydata.js`) exposes a new generic field:
+
+```
+declaredContexts = raw frontmatter contexts on the canonical Presentation record
+```
+
+This field is sourced from the existing canonical Presentation pipeline:
+
+1. `src/_data/presentationSources.js` — `readLocalPresentationSources()` parses each `src/presentations/*.md` frontmatter once (canonical MD read; nothing added).
+2. `src/_data/presentationsPage.js` — `enrichLocalPresentationDetailContexts()` was modified to preserve `declaredContexts` as a copy of the raw frontmatter `contexts` **before** the same function replaces `contexts` with the resolved (union) value. One-line addition.
+3. `src/_data/presentationsPage.js` — `buildCanonicalPresentationPageRecords()` was modified to propagate `declaredContexts` through the record. Two-line addition mirroring the pattern already used for `contexts`.
+4. `src/presentations/presentations.11tydata.js` — one new eleventyComputed line: `declaredContexts: (data) => getPresentationRecord(data)?.declaredContexts || []`. Uses the existing `getPresentationRecord()` accessor.
+5. `src/fi/yritys.md` — filters `collections.presentations` where `item.data.declaredContexts` includes `"business"`, reverses (default collection order is date-asc), takes 3.
+
+**No new file. No second YAML parse. No second URL resolver. No business-specific projection layer.**
+
+### `declaredContexts` field semantics
+
+`declaredContexts` is a **generic** projection field: it is the raw frontmatter `contexts` array as authored, without inference and without normalization applied by `resolveContexts()`. It is not business-specific and can be used by any downstream consumer that needs editorial-authority (declared) canonical context membership. It complements the existing `contexts` field (which continues to expose the resolved union).
+
+**This is projection completeness within the canonical Presentation pipeline; not a new canonical field, not a Canonical Content v1 change.** The vocabulary and semantics of `contexts` are unchanged; `declaredContexts` merely preserves the pre-`resolveContexts` value so consumers that need explicit editorial authority (as `/kouluttaja/` does) do not fall back to inference.
+
+### URL / landing semantics
+
+The template uses `_p.url` — the canonical Eleventy page URL produced by the Presentation pipeline (permalink + input path resolution). No local-fallback reconstruction, no `"/presentations/" + basename` string building. The `?returnTo=%2Fkouluttaja%2F` O1 orientation decoration is appended as before.
+
+### Deletion status (post-01B)
+
+- ✅ `src/_data/presentationBusiness.js` — deleted.
+- ✅ `src/_includes/related-presentations.njk` — remains deleted (from resume PR #171).
+- ✅ `.larux-section--presentations .related-presentations` CSS selector — remains deleted.
+- ✅ No replacement reader / parser / URL resolver / business-specific projection introduced.
+- ✅ `sivuyhteys` ingest and `presentationContextGroups.js` untouched.
+- ✅ `inferContexts()` untouched.
+- ✅ Canonical Content v1 vocabulary and semantics unchanged.
+
+### Tests
+
+- Unit: `npm run test:unit` — pass. The PRES-CONTEXT1 metadata test remains valid (asserts on the same MDs, independent of the projection layer).
+- Full build: `CACHE_ONLY=true DISABLE_OG_IMAGES=true npm run build:no-og` — PASS. `[researchfi-integrity] OK`. `[seo-dashboard] OK`.
+- Targeted Playwright (`tests/rp-converge-01-resume-company-presentations.spec.js`): pass. The **INFERENCE GUARD** test still holds — the rendered basenames are a strict subset of the known-explicit-business set. The test is independent of which projection layer supplies the items; it asserts the semantic outcome against the built HTML.
+
+### Architecture (final)
+
+```
+canonical Presentation Markdown
+  → src/_data/presentationSources.js (existing)
+    → src/_data/presentationsPage.js (existing pipeline, +declaredContexts pass-through)
+      → src/presentations/presentations.11tydata.js (existing, +declaredContexts eleventyComputed)
+        → collections.presentations
+          → src/fi/yritys.md (filter by declaredContexts includes "business", reverse, take 3)
+            → SSR company presentation strip
+              → canonical local /presentations/{slug}/ landing + O1 returnTo
+```
+
+**No parallel Presentation reader or business-specific data projection remains.**
+
+- **The duplicate `presentationBusiness` projection has been removed rather than replaced.**
+- **Canonical Content v1 remains unchanged.**
+- **R1 remains `CLOSED / MAINTENANCE`.**
+- **Architecture Closure 1.0 remains `CLOSED / GREEN / MAIN`.**

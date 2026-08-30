@@ -54,6 +54,7 @@ function parsePresentationFile(filePath) {
     description: frontMatter.description || body,
     categories: frontMatter.categories || [],
     keywords: frontMatter.keywords || [],
+    contexts: Array.isArray(frontMatter.contexts) ? frontMatter.contexts : [],
     courseContexts: Array.isArray(frontMatter.courseContexts) ? frontMatter.courseContexts : [],
     source,
     pageUrl: `/presentations/${fileSlug}/`
