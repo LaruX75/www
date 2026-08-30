@@ -211,7 +211,7 @@ Later deletion would become appropriate only if new measurement evidence shows a
 
 Any such deletion requires a fresh R1-B0-style re-measurement before the deletion PR is scheduled. ADR1 does not pre-authorize deletion.
 
-Unrelated orphan `src/_includes/related-presentations.njk` remains outside ADR1's scope. Its convergence/deletion candidacy was flagged separately by R1-A §"Duplication / deletion opportunities" and stays on the post-closure convergence backlog independent of this ADR.
+Unrelated legacy `src/_includes/related-presentations.njk` remains outside ADR1's scope. **Correction (2026-08-30):** ADR1 (like R1-A) originally referred to this partial as an "orphan"; a later post-closure audit found it was in fact a live FI-only consumer on `src/fi/yritys.md`. RP-CONVERGE-01 (2026-08-30) converged that legacy path onto the canonical `presentationContextGroups` projection and deleted the partial. See `docs/rp-converge-01-company-presentations-convergence-2026-08-30.md`. ADR1's substantive conclusions on the semantic layer are unchanged.
 
 ## AC1 status
 

@@ -81,7 +81,7 @@ Location: `src/_includes/content-context-sidebar.njk`.
 Location: `src/_includes/related-presentations.njk`.
 
 - Uses the canonical `sivuyhteys` field (explicit page-connection tag on presentations) to render "Aiheeseen liittyviä esityksiä" per page-connection key (`kouluttaja-sivu`, `tutkimus`, `mediassa`, `tyoni-yliopistonlehtorina`).
-- **Currently orphaned**: `grep -RnE 'related-presentations' src/` returns no live consumers (only a CSS class remains in `src/css/larux-page.css`). This is a repo-evidenced convergence/deletion candidate.
+- **Original claim**: `Currently orphaned`. **Correction (RP-CONVERGE-01, 2026-08-30):** a later post-closure audit found this claim was factually stale — `src/fi/yritys.md` still included this partial for the "Viimeisimpiä koulutusesityksiä" strip on `/kouluttaja/`. RP-CONVERGE-01 subsequently converged that legacy path onto the canonical `presentationContextGroups` projection (`veso-taydennyskoulutus` group) and removed both the include and its CSS selector. See `docs/rp-converge-01-company-presentations-convergence-2026-08-30.md`.
 
 ### `semanticRelated.json`
 
@@ -240,7 +240,7 @@ Sample of one is not statistical proof of quality across the corpus, but confirm
 | Path | Consumer | Source of truth | SSR / runtime | Overlaps with R1? | Notes |
 | --- | --- | --- | --- | --- | --- |
 | `content-context-sidebar.njk` + `relatedContent` filter | 5 detail templates (Publications, Presentations, Media, Blog, Writings) | Canonical metadata (categories/keywords/tags/contexts/type) + optional `semanticRelated.json` boost | **SSR** (Nunjucks include at build) | This IS R1 in production | Deployed; no rework needed |
-| `related-presentations.njk` | **No active consumer on `main`** — orphan template (CSS class remains in `larux-page.css`) | Canonical `sivuyhteys` (explicit page-connection) on Presentations | SSR | Convergence candidate | Repo-evidenced deletion opportunity |
+| `related-presentations.njk` | **Original claim: "No active consumer on `main`". Corrected 2026-08-30 (RP-CONVERGE-01):** `src/fi/yritys.md` was a live FI-only consumer of this partial for `/kouluttaja/`'s "Viimeisimpiä koulutusesityksiä" strip. RP-CONVERGE-01 converged this to the canonical `presentationContextGroups` projection and then deleted the partial. See `docs/rp-converge-01-company-presentations-convergence-2026-08-30.md`. | Canonical `sivuyhteys` (explicit page-connection) on Presentations | SSR | Convergence candidate → CLOSED via RP-CONVERGE-01 | Repo-evidenced deletion completed 2026-08-30 |
 | `topic-profile-links.njk` | `esitykset.njk` and possibly others via `seoTopics` filter | Curated `seoTopics` list | SSR | Adjacent (topic aggregator, not related-item) | Not R1; leave in place |
 | `contentTermCloud` filter | Detail pages (via templates) | Canonical categories + keywords | SSR | Adjacent term-cloud, not related-item list | Not R1; leave |
 | `sameCouncilMeetingGroup` filter | Council-meeting pages | Explicit council-meeting relationship | SSR | Domain-specific relationship projection | Not R1 scope |
@@ -251,7 +251,7 @@ Sample of one is not statistical proof of quality across the corpus, but confirm
 
 Two repo-evidenced opportunities. Neither is opened for deletion by this audit.
 
-1. **`src/_includes/related-presentations.njk` is orphaned.** `grep -RnE 'related-presentations' src/` returns no live include; only a leftover CSS selector in `src/css/larux-page.css`. Would resolve into `content-context-sidebar` (which already handles related presentations via the shared filter) plus a possible dedicated `sivuyhteys`-based projection under R1 later. Classification: **worthwhile cleanup but non-blocking; needs a small parity check to prove the sidebar covers the same use case before deleting.**
+1. **`src/_includes/related-presentations.njk` — original claim was "orphaned"; superseded 2026-08-30 by RP-CONVERGE-01.** The original R1-A grep missed the FI-only consumer in `src/fi/yritys.md` (the `/kouluttaja/` page's "Viimeisimpiä koulutusesityksiä" strip that read `canva.tableRows` filtered by `sivuyhteys="kouluttaja-sivu"`). RP-CONVERGE-01 converged this legacy path onto the canonical `presentationContextGroups.groups[id="veso-taydennyskoulutus"]` projection, then deleted `src/_includes/related-presentations.njk` and its unique CSS selector in `src/css/larux-page.css`. See `docs/rp-converge-01-company-presentations-convergence-2026-08-30.md`.
 
 2. **`semanticRelated.json` embedding boost** in `computeRelatedContent`. The v4.4 semantic-related layer predates the 2026-08-20 roadmap R1 boundary "no embedding / LLM recommender". Not a violation retroactively — the roadmap boundary was written to prevent NEW embedding recommenders, not to remove an existing one. Classification: **needs consumer/convergence audit** if a future workstream wants to align the codebase with the R1 boundary strictly. **This R1-A audit does not recommend touching it.** Removing it would be a separate architecture-level decision with the same rigor as any AC1-boundary reopen.
 

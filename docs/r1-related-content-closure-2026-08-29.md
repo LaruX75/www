@@ -179,7 +179,7 @@ Related content remains build-time / SSR-first. There is no browser JS that fetc
 
 ### Independent cleanup candidate (not bundled into R1 closure)
 
-- `src/_includes/related-presentations.njk` remains orphaned on `main`. Verified via `grep -RnE 'related-presentations' src/`: only a CSS selector reference in `src/css/larux-page.css` (line 23) remains; no template consumer exists. Flagged for a separate consumer/convergence audit per R1-A §"Duplication / deletion opportunities". **Not part of R1 closure** — a stand-alone cleanup candidate for a future maintenance PR.
+- `src/_includes/related-presentations.njk` — **original R1 closure claim: "remains orphaned on `main`"; corrected 2026-08-30 by RP-CONVERGE-01.** Both this line and R1-A missed a live FI-only consumer in `src/fi/yritys.md` (the `/kouluttaja/` "Viimeisimpiä koulutusesityksiä" strip). The next post-closure workstream selection audit (`docs/post-closure-next-workstream-selection-audit-2026-08-29.md`) re-verified the consumer and selected RP-CONVERGE-01 as the next slice; RP-CONVERGE-01 converged the legacy `canva.tableRows` + `sivuyhteys` path onto the canonical `presentationContextGroups` projection (group id `veso-taydennyskoulutus`), then deleted the partial and its unique CSS selector. See `docs/rp-converge-01-company-presentations-convergence-2026-08-30.md`. R1's substantive closure conclusions are unchanged; this correction is factual only.
 
 ## Maintenance / reopen conditions
 
@@ -199,7 +199,7 @@ R1 should NOT reopen for:
 - optional ranking experimentation
 - generic taxonomy expansion
 - embeddings experimentation (would be a new architecture decision, not an R1 slice)
-- unrelated orphan-template cleanup (see the `related-presentations.njk` candidate above)
+- unrelated cleanup work (e.g., the `related-presentations.njk` FI-only legacy path that RP-CONVERGE-01 subsequently converged and deleted on 2026-08-30)
 
 ## Architecture Closure status
 
