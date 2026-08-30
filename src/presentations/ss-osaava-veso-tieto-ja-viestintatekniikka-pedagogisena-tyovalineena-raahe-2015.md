@@ -32,6 +32,8 @@ courseContexts:
       - turn23search218
       - turn7search87
       - turn7search105
+contexts:
+  - business
 ---
 
 Tämä esitys on saatavilla SlideSharessa. [Avaa esitys SlideSharessa](https://www.slideshare.net/slideshow/tieto-ja-viestinttekniikka-pedagogisena-tyvlineen-raahe-2015/53761850).

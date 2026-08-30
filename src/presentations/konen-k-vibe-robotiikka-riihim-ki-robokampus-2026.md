@@ -8,6 +8,8 @@ categories: ["Robotiikka","Koneäkö","Ohjelmointi","Koulutus"]
 type: "esitys"
 layout: page.njk
 templateEngineOverride: md
+contexts:
+  - business
 ---
 
 Tämä on automaattisesti tuotu Canva-esitys. Julkinen Canva-jakolinkki lisätään tälle sivulle, kun oikea katselulinkki on tallennettu aineistoon.

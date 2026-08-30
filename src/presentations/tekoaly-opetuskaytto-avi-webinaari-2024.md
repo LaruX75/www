@@ -11,6 +11,8 @@ templateEngineOverride: md
 topics:
   - opettajankoulutus
   - tekoalylukutaito
+contexts:
+  - business
 ---
 
 Aluehallintovirastojen järjestämän webinaarisarjan *Opetus ja oppiminen tekoälyajassa* toinen osa käsitteli tekoälyn käytännön sovelluksia oppilaitoksissa, kouluissa ja varhaiskasvatuksessa. Pääesityksessä (klo 14–14:50) esiteltiin neljä näkökulmaa tekoälyn opetuskäyttöön — yleisistä lähestymistavoista konkreettisiin Generation AI -hankkeen kehittämiin työkaluihin. Rinnakkaissessio (klo 15:05–16:00) oli suunnattu erityisesti perusopetuksen henkilöstölle.
