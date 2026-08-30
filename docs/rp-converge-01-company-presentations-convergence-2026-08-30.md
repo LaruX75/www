@@ -1,184 +1,154 @@
-# RP-CONVERGE-01 — Company Presentations Convergence
+# RP-CONVERGE-01 → RP-CONVERGE-01A — Company Presentations Convergence Audit
 
 Date: 2026-08-30
-Status: `IMPLEMENTED / TESTS GREEN`
+Status: `AUDIT COMPLETE / DECISION C — CONVERGENCE BLOCKED / DOCS ONLY`
 
-Converges the FI `/kouluttaja/` (yritys.md) legacy "Viimeisimpiä
-koulutusesityksiä" strip from the parallel `canva.tableRows` +
-`sivuyhteys` content-ownership path to the canonical Presentations
-projection exposed by `src/_data/presentationContextGroups.js`.
-Removes the legacy shared partial and its unique CSS. Corrects three
-prior R1 closure docs whose "orphan" claim about the legacy include
-was factually stale on `main`.
+RP-CONVERGE-01 originally shipped a production replacement of the FI
+`/kouluttaja/` "Viimeisimpiä koulutusesityksiä" strip using
+`presentationContextGroups.groups["veso-taydennyskoulutus"]`. The
+follow-up semantic-source audit (RP-CONVERGE-01A) found that both the
+original and the intended canonical alternative rely on **text-regex
+inference** rather than any repo-documented canonical relationship
+authority. The production change is reverted in the same PR (#169);
+the audit is preserved as documentation. The legacy consumer, the
+partial, and the CSS remain on `main`.
 
 ## Repository state
 
 - Branch: `cleanup/rp-converge-01-company-presentations`
+- PR: [#169](https://github.com/LaruX75/www/pull/169)
 - Base: `origin/main` at `6b44c950918be5b719bf37da75251212f0ccf1ba` (post PR #168 selection-audit merge).
 - Reference documents:
-  - `docs/post-closure-next-workstream-selection-audit-2026-08-29.md` — selection audit that scoped this slice.
-  - `docs/r1a-canonical-related-content-suitability-audit-2026-08-29.md`, `docs/r1-related-content-closure-2026-08-29.md`, `docs/r1-adr1-semantic-related-content-architecture-decision-2026-08-29.md` — amended for the corrected "orphan" claim.
+  - `docs/post-closure-next-workstream-selection-audit-2026-08-29.md` — selection audit that scoped RP-CONVERGE-01.
+  - `docs/r1a-canonical-related-content-suitability-audit-2026-08-29.md`, `docs/r1-related-content-closure-2026-08-29.md`, `docs/r1-adr1-semantic-related-content-architecture-decision-2026-08-29.md` — amended to reflect that the "orphan" claim was stale and that RP-CONVERGE-01A left the include in place under Decision C.
 
-## Problem
+## Correction summary
 
-Three concrete post-closure defects on `main` before this slice:
+The first RP-CONVERGE-01 implementation attempt (commit `45db10db`) replaced the legacy `canva.tableRows + sivuyhteys="kouluttaja-sivu"` selection with `presentationContextGroups.groups["veso-taydennyskoulutus"].featured | take(3)`. That commit was **reverted inside the same PR** after the RP-CONVERGE-01A audit found the replacement's authority basis was insufficient. This document records the audit; the production files return to their pre-PR state.
 
-1. **Parallel content-ownership path**: `src/fi/yritys.md:290` included `src/_includes/related-presentations.njk`, which sourced items from `canva.tableRows` (raw legacy Canva import) and filtered by the non-canonical `sivuyhteys="kouluttaja-sivu"` editorial marker on 57 of ~138 imports. This ran alongside the canonical Presentations collection + `presentationContextGroups` projection.
-2. **Stale documentation**: R1-A, R1 closure, and R1-ADR1 all described `related-presentations.njk` as "orphan"; on `main` it had a live consumer.
-3. **FI/EN asymmetry**: `/kouluttaja/` (FI) had the dynamic strip; `/en/company/` had no equivalent. The EN page has a manually curated "Examples of talks" section only (mirroring the FI `#esimerkit`, not the FI `#viimeisimmat-esitykset`).
+## Semantic-source audit — legacy set
 
-## Legacy flow
+Legacy selection: `canva.tableRows` filtered by `sivuyhteys` containing `"kouluttaja-sivu"`.
 
-```text
-canva.tableRows                                    (legacy raw Canva import)
-  ↓
-filter by item.sivuyhteys contains "kouluttaja-sivu" (editorial marker, non-canonical)
-  ↓
-sort by item.paakortti desc, then item.date desc    (legacy "featured" marker + date)
-  ↓
-related-presentations.njk                           (partial with its own inline card markup + inline CSS block)
-  ↓
-href from item.url OR item.pageUrl OR "/esitykset/" (bespoke URL fallback chain)
-  ↓
-rendered strip on /kouluttaja/
-```
+- **Total legacy items** on `main`: 57 (of 138 canva imports).
+- Nature of `sivuyhteys`: editorial page-connection marker in `src/_data/canva-presentations.json`. Not documented as canonical relationship authority in any closure doc; not part of the `contexts` vocabulary; not shipped to templates as a canonical field.
 
-Rendered typical output pre-slice: three top items by date under the `kouluttaja-sivu` selection.
+## Semantic-source audit — canonical fields inspected
 
-## Canonical flow
+| Candidate field | Coverage on `main` | Meaning | Canonical authority? | Suitable for company strip? |
+| --- | ---: | --- | --- | --- |
+| `contexts` (via `resolveContexts` in `src/_data/contentContext.js`) | 7 / 139 presentation MDs resolve to `contexts.includes("business")` | Vocabulary member; `CONTEXT_META.business.href === "/kouluttaja/"` explicitly maps `business` to the company page. | **Vocabulary IS canonical** (used by R1 sidebar, AC1 content context sidebar, hub navigation). **Membership is text-inferred** via `inferContexts()` lines 189–199 matching titles/descriptions/categories/keywords against `veso|täydennyskoulutus|kouluttaja|keynote|webinaari|workshop`. Zero MDs declare `contexts:` in frontmatter for business-family. | **Weak parity** — 7/57 (~12 %) coverage. Same inference category as the group approach. |
+| `type` | 139/139 = `"esitys"` (three outliers only) | Presentation kind marker. | Field is canonical but degenerate — no discriminator. | Not suitable. |
+| `source` | 115/139 = `"slideshare"`, 2 youtube, 1 ouka | Import origin. | Canonical origin marker but degenerate for the company-page semantic. | Not suitable. |
+| `categories` (declared frontmatter) | Sparse and inconsistent — no single "training-audience" category; nearest are `"VESO"` (few), `"Koulutus"` (6), `"Opettajankoulutus"` (~21) | Declared taxonomy on individual MDs. | Canonical, declared, but not curated for the company-page selection. | Weak parity; even the union of the closest labels covers only a partial subset and drifts by editorial inconsistency. |
+| `contexts.includes("teaching")` | 139/139 (added unconditionally for `/presentations/` inputPath in `inferContexts` line 137–139) | Broad presentation classifier. | Field is canonical, membership is derived from inputPath alone. | Not a discriminator — matches all presentations. |
+| `presentationContextGroups.groups["veso-taydennyskoulutus"]` | 10 items | Build-time UI grouping over presentation title + basename via regex + Finnish city-name prefixes + training-context keywords. | **Not documented as canonical authority.** Currently consumed only by `src/_includes/presentations/background-and-sources.njk` (the `/esitykset/` archive's grouping section). | Uses the same text-regex authority-substitution the audit spec warns against. |
+| `paakortti` (`item.paakortti` in `canva-presentations.json`) | Marker on a subset of legacy imports | Legacy "flagship version" marker used by the deleted-style renderer. | Legacy-only; not preserved on canonical presentation MDs. | Not canonical. |
 
-```text
-canonical presentation MDs                          (139 files under src/presentations/)
-  ↓
-src/presentations/presentations.11tydata.js         (tags: "presentations", eleventyComputed applied)
-  ↓
-src/_data/presentationContextGroups.js              (build-time canonical projection; regex-classified
-                                                     into 7 canonical groups over canonical title +
-                                                     basename; date-desc sort; each group exposes
-                                                     .featured (top-N) + .rest)
-  ↓
-group id "veso-taydennyskoulutus" — "VESO ja kuntien opettajakoulutus / Täydennyskoulutus"
-  ↓
-.featured (top-4 by date)                           (present at build time; ready for template use)
-  ↓
-Nunjucks inline projection on yritys.md             (take(3) of .featured; direct render, no separate partial)
-  ↓
-href = item.url (already the canonical local /presentations/{slug}/ landing per the group projection)
-                + "?returnTo=%2Fkouluttaja%2F" O1 orientation decoration
-  ↓
-SSR strip on /kouluttaja/
-```
+## Comparison — legacy set vs canonical alternatives
 
-Rendered post-slice on `300bec5f`-plus-this-slice: three latest VESO / continuing-education items.
+- Legacy `sivuyhteys="kouluttaja-sivu"`: 57 items — curated editorial selection.
+- Canonical `contexts.includes("business")`: 7 items — text-regex overlap only.
+- `presentationContextGroups.veso-taydennyskoulutus`: 10 items — different text-regex overlap; broader than `business` (matches VESO / DigiErko / city+training keywords) but narrower than the editorial set.
 
-- 2026-01-22 → `/presentations/riihim-ki-veso-2026/` — "Riihimäki VESO 2026"
-- 2026-01-21 → `/presentations/kempele-veso-2026/` — "Kempele VESO 2026"
-- 2026-01-20 → `/presentations/konen-k-vibe-robotiikka-riihim-ki-robokampus-2026/` — "Koneäkö + vibe + robotiikka – Riihimäki Robokampus 2026"
+Neither canonical alternative recovers the majority of the legacy selection. The two "canonical-looking" alternatives (`contexts=business`, `presentationContextGroups`) are both **text-inference** — they differ only in which regex owns membership, and only one (`contexts`) is a documented vocabulary. The `contexts` vocabulary IS canonical for R1 / AC1 discovery, but its `business`-membership resolution on presentations is not editorially curated today.
 
-## Authoritative source
+## Role of `presentationContextGroups`
 
-- `src/_data/presentationContextGroups.js` — canonical build-time projection over `src/presentations/*.md`. Already deployed and consumed by `src/_includes/presentations/background-and-sources.njk` (the `/esitykset/` archive's "Esitykset käyttötavan mukaan" section). No new data source introduced; no new field added.
-- Group `veso-taydennyskoulutus`: "VESO ja kuntien opettajakoulutus" — kicker "Täydennyskoulutus". Classifier regex matches `veso`, `digierko`, `täydennyskoulut`, `osaava.*(digi|veso|hanke)`, plus Finnish city-name prefixes with training-context keywords. On `300bec5f`, `totalCount = 10` items.
+**`presentationContextGroups` is a derived UI grouping layer, not canonical membership authority.** It builds group buckets deterministically at build time by matching regexes against presentation titles and basenames (plus city-name prefixes), and it is currently consumed only by the `/esitykset/` archive's "Esitykset käyttötavan mukaan" browsing section (`src/_includes/presentations/background-and-sources.njk:52`). Its groups are useful for archive navigation. They are not documented as canonical presentation-to-hub membership. This audit does not delete or modify `presentationContextGroups`; it only classifies it correctly.
 
-## Selection semantics
+## Decision
 
-- **Group**: `veso-taydennyskoulutus` — direct canonical map for "coach / continuing-education presentations" surface intent.
-- **Order**: date-descending (already applied inside `presentationContextGroups`).
-- **Cardinality**: top-3 via the existing `take` filter (Eleventy `eleventy.filters.js:1143`).
-- **No new taxonomy**: uses the existing canonical group id and canonical `.featured` output. Does not recreate `sivuyhteys` under a new name. Does not add a new canonical field to presentation MDs.
-- **No `paakortti` inheritance**: `paakortti` was legacy-only; canonical MDs never received it, so the new selection uses recency alone. Documented shift.
+**`DECISION = C — CANONICAL SIGNAL EXISTS BUT PARITY IS WEAK / AMBIGUOUS.`**
 
-## Landing / source semantics
+Rationale:
 
-- Every card renders `href = item.url + "?returnTo=%2Fkouluttaja%2F"`.
-- `item.url` is set inside `presentationContextGroups` as `data.pageUrl || "/presentations/{baseName}/"` — the canonical local detail landing per the Presentations Slice 3 closure.
-- All 139 canonical presentation MDs have a local `/presentations/{slug}/` detail page (verified by build: `presentationLocalLandingTotal: 138` + 1 additional in the same collection).
-- `?returnTo=%2Fkouluttaja%2F` is the site-wide O1 orientation decoration — the detail page's "Back to hub" resolves back to `/kouluttaja/`. Same pattern as `find-explore.js:633` uses for archive-search results.
-- External / source URLs (Canva, YouTube, OuluREPO) are NOT surfaced on the strip. They remain accessible via the canonical detail landing's CTAs — no external-first shortcut on this hub marketing surface.
+1. `contexts.includes("business")` is a defensible canonical vocabulary map (`CONTEXT_META.business.href === "/kouluttaja/"`), but its membership is text-inferred via `inferContexts` line 189–199, and it recovers only 7 of 57 legacy items (~12 % coverage).
+2. Zero presentation MDs declare `contexts:` explicitly for business-family; the entire canonical-business set is derived from title/description keywords matching `veso|täydennyskoulutus|kouluttaja|keynote|webinaari|workshop`.
+3. The correction spec explicitly warns against `translate sivuyhteys into another hidden heuristic` and against inferring membership from title regex. Switching authorities from `sivuyhteys` to `presentationContextGroups.veso-taydennyskoulutus` OR to `inferContexts`-derived `contexts=business` both fall under that warning.
+4. No explicit canonical relationship field on presentation MDs identifies the `/kouluttaja/` audience today.
 
-## FI / EN parity
+**`The legacy path cannot yet be safely deleted without defining or identifying an authoritative canonical relationship.`**
 
-Deliberate asymmetry, documented:
+## Actions taken in this PR
 
-- **FI `/kouluttaja/`**: dynamic canonical strip renders (3 VESO/täydennyskoulutus items).
-- **EN `/en/company/`**: no equivalent dynamic strip. Reason: the canonical presentation MDs are Finnish-only (no `/en/presentations/…` routes on the site — `find src/en/presentations -name '*.md'` returns 0). A dynamic EN strip would either (a) link to Finnish `/presentations/{slug}/` landings, degrading EN UX, or (b) require fabricating EN presentation detail routes, which is out of scope and prohibited by the audit's non-goals.
-- **EN retains its manual "Examples of talks"** curated section (mirroring the FI `#esimerkit` section, not the FI `#viimeisimmat-esitykset`). No change to that section in this slice.
+Production files: **reverted to pre-PR state.**
 
-## Renderer reuse
+- `src/_includes/related-presentations.njk` — **restored** (delete undone).
+- `src/css/larux-page.css` — `.larux-section--presentations .related-presentations { ... }` selector **restored**.
+- `src/fi/yritys.md` — `#viimeisimmat-esitykset` section **restored** to `{% include "related-presentations.njk" %}` with the original `relatedSivuyhteys="kouluttaja-sivu"` selection.
+- `tests/rp-converge-01-company-presentations.spec.js` — **removed** (its assertions targeted the reverted production behavior).
 
-- **Visual language**: reuses the site's existing `larux-example-card` component — the same visual pattern already used by the FI `#esimerkit` (Esimerkkipuheenvuoroja) section immediately above `#viimeisimmat-esitykset`. Reduces to a familiar site-wide card pattern; no bespoke card markup created.
-- **No new template partial introduced**. The strip is inline in `src/fi/yritys.md` as a small Nunjucks loop — it does not warrant a shared include (single consumer, single canonical projection input, small markup).
-- **Nunjucks group lookup**: uses an explicit `{% for %}{% if _g.id == "veso-taydennyskoulutus" %}...{% endif %}{% endfor %}` with the standard mutable-array `push` pattern (same pattern the deleted `related-presentations.njk` used). Chosen because `selectattr("id", "equalto", ...) | first` returned unexpected results in this Nunjucks version on the specific group set — the explicit loop is deterministic and self-contained.
+Documentation: **kept as the audit outcome.**
 
-## Deleted implementation
+- This implementation record (rewritten as an audit-only record).
+- Three R1 doc amendments — updated to reflect Decision C and the fact that the legacy path remains on `main` under a documented canonical-relationship gap.
 
-- **File**: `src/_includes/related-presentations.njk` — deleted (was 185 LOC including inline `<style>` block, 6 template parameters, 2 duplicated card renderers for featured / others, category-label map, external-vs-internal href heuristic).
-- **CSS rule**: `.larux-section--presentations .related-presentations { margin-top: 0 !important; padding-top: 0 !important; border-top: 0 !important; }` in `src/css/larux-page.css:23` — deleted (was the only selector referencing the removed `.related-presentations` class).
-- **Retained**: `.larux-section--presentations` background rule in `src/css/larux-page.css:16-21` and the dark-mode variant at line ~375 — still consumed by the FI `#viimeisimmat-esitykset` section wrapper class. Not dead.
-- **Retained**: `sivuyhteys` field processing paths in `src/_data/canva.js`, `src/_data/canva-presentations.json`, and `src/_data/presentationsPage.js`. These are legacy import-side pipelines with a broader footprint than the `kouluttaja-sivu` marker; a follow-up audit can evaluate whether to reduce them. Out of scope for RP-CONVERGE-01 (spec §16 non-goals prohibit broader `canva.tableRows` refactors).
+## Prevented regression
 
-## CSS deletion
+Shipping the original RP-CONVERGE-01 change would have made `presentationContextGroups.veso-taydennyskoulutus` — a regex-derived UI grouping — the authoritative membership rule for the `/kouluttaja/` presentation strip. That would have promoted a text-regex classification into a canonical-relationship position without any documented contract. RP-CONVERGE-01A prevents that regression.
 
-- Only the single `.larux-section--presentations .related-presentations` selector was removed (proven safe by `grep`: no other consumer of the `.related-presentations` class anywhere in the repo).
-- The inline `<style>` block that lived inside `related-presentations.njk` (~55 lines of `.related-presentations-*` selectors) was deleted with the file — those selectors have zero consumers repo-wide (verified by grep).
-- `.larux-section--presentations` (parent) and its dark-mode variant are retained — still consumed by yritys.md.
+## Non-goals reaffirmed
 
-## Correction of stale documentation
+Neither RP-CONVERGE-01 nor RP-CONVERGE-01A changed any of the following:
 
-Three docs contained the "orphan" claim; amended:
+- Canonical Content v1 (no field added / removed / redefined).
+- The `contexts` vocabulary (`CONTEXT_ORDER`, `CONTEXT_META`, aliases, or `resolveContexts` logic).
+- `inferContexts` behavior (specifically the `veso|täydennyskoulutus|kouluttaja|keynote|webinaari|workshop → business` rule).
+- `presentationContextGroups.js` (kept as a UI-grouping layer for `/esitykset/`).
+- The R1 shared `content-context-sidebar.njk` / `computeRelatedContent` filter.
+- `semanticRelated.json`, `SEM_WEIGHT`, `SEM_MIN`, or the semantic layer boundary.
+- Pagefind projections or the discovery pipeline.
+- Public JSON contracts.
+- Presentation URL/landing semantics (canonical `/presentations/{slug}/` for local, external URL for external-first — untouched).
+- Any browser JS; the strip remains SSR / no-JS.
 
-- `docs/r1a-canonical-related-content-suitability-audit-2026-08-29.md` — §"related-presentations.njk", table §"Existing related-content-like paths", §"Duplication / deletion opportunities".
-- `docs/r1-related-content-closure-2026-08-29.md` — §"Deletion assessment / Independent cleanup candidate" and §"Maintenance / reopen conditions" bullet.
-- `docs/r1-adr1-semantic-related-content-architecture-decision-2026-08-29.md` — §"Deletion clause" paragraph.
+## Follow-up options (not part of this PR)
 
-Substantive R1 closure and ADR1 conclusions are unchanged. Only the factual "orphan" claim was corrected. R1 remains `CLOSED / MAINTENANCE`.
+Options for a future, deliberately scoped decision:
+
+1. **Editorial curation**: add explicit `contexts: ["business"]` declarations to the intended presentation MDs. This would move the `contexts=business` set from text-inference to editorial curation without any code change. RP-CONVERGE-01 could then re-use `contexts.includes("business")` as authority with strong coverage.
+2. **Amend `inferContexts`**: broaden or narrow the business-context regex in `src/_data/contentContext.js` lines 189–199 based on documented editorial intent. Requires an architecture note because it changes canonical inference for other consumers (not just this strip).
+3. **Retain the legacy strip indefinitely**: accept that `sivuyhteys="kouluttaja-sivu"` on the raw Canva import remains the operative selection. Document `sivuyhteys` as a scoped legacy editorial marker (not canonical membership) and leave the FI-only strip as-is.
+4. **Remove the strip**: decide the marketing surface no longer needs a dynamic "latest coach presentations" section (the sibling `#esimerkit` curated section already shows examples). Deletion becomes justified because the section is dropped, not because the include was replaced.
+
+None of these is a bounded slice on its own until an editorial owner picks an option.
 
 ## Tests
 
-- Unit tests: `npm run test:unit` — **637 pass / 0 fail** (same baseline as prior slices).
-- Full build: `CACHE_ONLY=true DISABLE_OG_IMAGES=true npm run build:no-og` — PASS. Postbuild: `htmlDocumentsIndexed=1458`, `presentationScopeLocalDocuments=139`, `presentationCanonicalTotal=218`, `presentationLocalLandingTotal=138`, `presentationExternalLandingTotal=80` (unchanged from prior baseline). `[researchfi-integrity] OK`. `[seo-dashboard] OK | pages=1458 missingDescription=0 missingOgImage=0`.
-- Regression coverage: `tests/rp-converge-01-company-presentations.spec.js` — 4 cases:
-  1. FI `/kouluttaja/` renders canonical strip: `#viimeisimmat-esitykset` section, `Viimeisimpiä koulutusesityksiä` eyebrow, exactly 3 `article.larux-example-card`, all hrefs start with `/presentations/` and contain `returnTo=%2Fkouluttaja%2F`, "Kaikki esitykset ja materiaalit" link present.
-  2. `javaScriptEnabled: false` — same strip with 3 cards renders without JS (SSR proof).
-  3. EN `/en/company/` has zero `#viimeisimmat-esitykset` sections (intentional asymmetry assertion).
-  4. Built page contains no `related-presentations-list` or `related-presentations-item` class remnants (deletion proof).
+- Unit: `npm run test:unit` — **637 pass / 0 fail** (unchanged baseline; no production code changed relative to `origin/main`).
+- Full build: still passes with unchanged baseline metrics (production restored to pre-PR state matches `origin/main` behavior).
+- Targeted regression test removed (its assertions targeted the reverted production behavior).
 
 ## Architecture assessment
 
-- **Removed** one parallel content-ownership path (`canva.tableRows + sivuyhteys` → bespoke card markup). Reinforces AC1 + Canonical Content v1 by making canonical Presentation data the single source of truth for the strip.
-- **Reused** an existing canonical projection (`presentationContextGroups`) already deployed for the `/esitykset/` archive's "Esitykset käyttötavan mukaan" section. No new data model; no new field; no new taxonomy.
-- **No canonical semantics changed**: no field added to presentation MDs, no `contexts` inference, no Research membership inference, no scoring change, no semantic layer change, no Pagefind projection change.
-- **No client-side content ownership introduced**: strip is fully SSR; no browser JS, no runtime JSON fetch.
-- **No public JSON contract changed**: `/data/presentations-page.json` untouched; no consumer contract change.
-- **No new URL routes created**: uses existing canonical `/presentations/{slug}/` local landings.
-- **FI/EN parity gap** explicitly evaluated and documented as justified asymmetry (EN presentations aren't localized site content).
+- **`presentationContextGroups` remains a derived UI grouping layer and is not used as canonical membership authority for the company presentation strip.**
+- No parallel content-ownership path was removed; the legacy `canva.tableRows` + `sivuyhteys` path remains on `main` for now, documented as a live legacy consumer with a canonical-relationship gap (not orphan).
+- No new content model, no new taxonomy, no new inferred-membership authority introduced.
+- No AC1 reopen condition was triggered by either the original attempt (reverted before merge) or by this correction.
 
 ## AC1 assessment
 
-Explicit reopen-condition scan:
+**Architecture Closure 1.0 remains `CLOSED / GREEN / MAIN`.** No reopen condition triggered:
 
-| Reopen condition | Triggered? | Reason |
-| --- | --- | --- |
-| Duplicate content ownership introduced | **No** — this slice removes a duplicate ownership path. |
-| Canonical semantics moved to browser JS | **No** — no browser JS added or modified. |
-| Pagefind becoming canonical storage | **No** — Pagefind not touched. |
-| Runtime JSON → HTML duplicating SSR | **No** — no runtime JSON introduced; canonical projection is build-time SSR. |
-| Source / landing / context / public-contract regression | **No** — landing uses canonical `pageUrl`; context semantics unchanged; no public JSON contract changed. |
-| Loss of FI/EN shared-architecture parity | **No** — FI/EN parity is explicitly evaluated and the FI-only asymmetry is documented and justified (canonical presentations are FI-only). |
+- Duplicate content ownership: no new duplicate introduced (production reverted).
+- Canonical semantics in browser JS: none added.
+- Pagefind canonical storage regression: no change.
+- Runtime JSON → HTML duplicating SSR: none added.
+- Source / landing / context / public-contract regression: none.
+- FI/EN parity: unchanged from `origin/main`.
 
-**Architecture Closure 1.0 remains `CLOSED / GREEN / MAIN`.**
-
-**R1 remains `CLOSED / MAINTENANCE`.** R1's substantive conclusions and boundaries are unchanged; only three stale factual claims about the `related-presentations.njk` include being "orphan" were corrected.
+**R1 remains `CLOSED / MAINTENANCE`.** R1's substantive conclusions are unchanged; only three factually stale "orphan" claims in R1-A / R1 closure / R1-ADR1 were corrected to reflect the discovered FI consumer and the Decision-C outcome.
 
 ## Stopping point
 
-RP-CONVERGE-01 is complete when all six are true:
+RP-CONVERGE-01A audit is complete when all six are true:
 
-1. ✅ `src/_includes/related-presentations.njk` is deleted.
-2. ✅ `src/fi/yritys.md` `#viimeisimmat-esitykset` still renders a "Latest coach presentations" strip driven by canonical `presentationContextGroups`.
-3. ✅ FI/EN parity decision is explicit (documented justified asymmetry — no EN strip).
-4. ✅ R1-A / R1 closure / R1-ADR1 stale orphan claims are amended.
-5. ✅ Unit tests pass; full build passes; regression test added.
-6. ✅ Deletion of the CSS selector and inline styles proven safe by grep.
+1. ✅ Legacy consumer identity on `main` verified (`src/fi/yritys.md:290`, `sivuyhteys="kouluttaja-sivu"`, 57 items).
+2. ✅ Canonical alternative fields inspected (`contexts`, `type`, `source`, `categories`, `presentationContextGroups`) and coverage recorded.
+3. ✅ Decision made and justified (Decision C, weak parity).
+4. ✅ Production changes reverted; no unsafe replacement shipped.
+5. ✅ R1-A / R1 closure / R1-ADR1 amendments updated to reflect Decision C (not the earlier "deletion completed" wording).
+6. ✅ `presentationContextGroups` correctly classified as UI grouping, not canonical authority.
 
-No further RP-CONVERGE follow-up is scheduled. The remaining `sivuyhteys` field processing in `canva.js` / `canva-presentations.json` / `presentationsPage.js` is a separate, larger scope (touches multiple canva-ingest paths) and is deferred to a future audit rather than bundled here.
+**No further RP-CONVERGE follow-up is scheduled in this workstream.** Any resumption depends on an explicit editorial or architecture decision per the "Follow-up options" section above.

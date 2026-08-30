@@ -282,25 +282,12 @@ services:
 
 <section class="larux-section larux-section--presentations" id="viimeisimmat-esitykset">
   <div class="larux-shell">
-    {# RP-CONVERGE-01: canonical Presentations projection via presentationContextGroups
-       (id="veso-taydennyskoulutus" = VESO / kuntien opettajakoulutus).
-       Replaces the legacy canva.tableRows + sivuyhteys="kouluttaja-sivu" path. #}
-    {% set _tkMatches = [] %}
-    {% for _g in presentationContextGroups.groups %}{% if _g.id == "veso-taydennyskoulutus" %}{% set _ = (_tkMatches.push(_g), null) %}{% endif %}{% endfor %}
-    {% set _tkGroup = _tkMatches[0] %}
-    {% if _tkGroup and _tkGroup.featured.length %}
-    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end gap-3 mb-4">
-      <div>
-        <p class="larux-eyebrow larux-eyebrow--dark mb-1"><i class="bi bi-easel2 me-1"></i>Viimeisimpiä koulutusesityksiä</p>
-        <h2 class="h3 mb-2">Uusimmat VESO- ja täydennyskoulutusesitykset</h2>
-        <p class="larux-section-lead mb-0">Kanoninen projektio uusimmista VESO- ja kuntien täydennyskoulutuksissa käytetyistä esityksistä. Klikkaa esitystä nähdäksesi tarkemmat tiedot ja alkuperäisen lähteen.</p>
-      </div>
-      <a class="btn btn-outline-primary rounded-pill px-4" href="/esitykset/">Kaikki esitykset ja materiaalit →</a>
-    </div>
-    <div class="row g-4">{%- for item in _tkGroup.featured | take(3) -%}
-      <div class="col-lg-4"><article class="larux-example-card h-100"><p class="larux-proof-kicker">{{ item.date | dateFormat }}</p><h3 class="h5 mb-2">{{ item.title }}</h3><a class="larux-inline-link mt-auto" href="{{ item.url }}?returnTo=%2Fkouluttaja%2F">Avaa esitys <i class="bi bi-arrow-right ms-1" aria-hidden="true"></i></a></article></div>
-    {%- endfor %}</div>
-    {% endif %}
+    {% set relatedSivuyhteys = "kouluttaja-sivu" %}
+    {% set relatedTitle = "Viimeisimpiä koulutusesityksiä" %}
+    {% set relatedLimit = 3 %}
+    {% set relatedLinkHref = "/esitykset/" %}
+    {% set relatedLinkLabel = "Kaikki esitykset ja materiaalit →" %}
+    {% include "related-presentations.njk" %}
   </div>
 </section>
 

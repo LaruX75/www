@@ -179,7 +179,7 @@ Related content remains build-time / SSR-first. There is no browser JS that fetc
 
 ### Independent cleanup candidate (not bundled into R1 closure)
 
-- `src/_includes/related-presentations.njk` — **original R1 closure claim: "remains orphaned on `main`"; corrected 2026-08-30 by RP-CONVERGE-01.** Both this line and R1-A missed a live FI-only consumer in `src/fi/yritys.md` (the `/kouluttaja/` "Viimeisimpiä koulutusesityksiä" strip). The next post-closure workstream selection audit (`docs/post-closure-next-workstream-selection-audit-2026-08-29.md`) re-verified the consumer and selected RP-CONVERGE-01 as the next slice; RP-CONVERGE-01 converged the legacy `canva.tableRows` + `sivuyhteys` path onto the canonical `presentationContextGroups` projection (group id `veso-taydennyskoulutus`), then deleted the partial and its unique CSS selector. See `docs/rp-converge-01-company-presentations-convergence-2026-08-30.md`. R1's substantive closure conclusions are unchanged; this correction is factual only.
+- `src/_includes/related-presentations.njk` — **original R1 closure claim: "remains orphaned on `main`"; corrected 2026-08-30 by the RP-CONVERGE-01A semantic-source audit.** Both this line and R1-A missed a live FI-only consumer in `src/fi/yritys.md` (the `/kouluttaja/` "Viimeisimpiä koulutusesityksiä" strip). The next post-closure workstream selection audit (`docs/post-closure-next-workstream-selection-audit-2026-08-29.md`) re-verified the consumer and selected RP-CONVERGE-01 as the next slice. RP-CONVERGE-01A then audited the canonical-relationship basis for the intended replacement and reached **Decision C** — the canonical `contexts.includes("business")` map recovers only ~12 % of the legacy set and its membership is text-inferred, so no strong canonical replacement is available today. The partial and its consumer remain on `main` pending an editorial/architecture decision. See `docs/rp-converge-01-company-presentations-convergence-2026-08-30.md`. R1's substantive closure conclusions are unchanged; this correction is factual only.
 
 ## Maintenance / reopen conditions
 
@@ -199,7 +199,7 @@ R1 should NOT reopen for:
 - optional ranking experimentation
 - generic taxonomy expansion
 - embeddings experimentation (would be a new architecture decision, not an R1 slice)
-- unrelated cleanup work (e.g., the `related-presentations.njk` FI-only legacy path that RP-CONVERGE-01 subsequently converged and deleted on 2026-08-30)
+- unrelated cleanup work (e.g., the `related-presentations.njk` FI-only legacy path that RP-CONVERGE-01A audited on 2026-08-30 and left in place under Decision C pending a canonical-relationship decision)
 
 ## Architecture Closure status
 
