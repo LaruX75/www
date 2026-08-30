@@ -130,7 +130,18 @@ test("active thesis search replaces the same tbody and reset restores SSR rows a
 
   await page.locator("[data-find-explore-query]").fill("Riikonen");
   await expect(page.locator("[data-find-explore-status]")).toContainText(/tulos|tulosta/, { timeout: 15000 });
-  await expect(resultsLocator(page).locator(".thesis-archive-title-link").first()).toHaveAttribute("href", "/opinnaytteet/62699/");
+  // Assert the O1 contract semantically: canonical destination + returnTo orientation state,
+  // not byte-for-byte href equality (find-explore.js decorates result URLs with the current
+  // discovery state via returnTo).
+  const searchHref = await resultsLocator(page).locator(".thesis-archive-title-link").first().getAttribute("href");
+  expect(searchHref).not.toBeNull();
+  const searchUrl = new URL(searchHref, "http://localhost");
+  expect(searchUrl.pathname).toBe("/opinnaytteet/62699/");
+  const returnTo = searchUrl.searchParams.get("returnTo");
+  expect(returnTo, "search-active result link must carry returnTo orientation state").not.toBeNull();
+  const returnToUrl = new URL(returnTo, "http://localhost");
+  expect(returnToUrl.pathname).toBe("/opinnaytteet/");
+  expect(returnToUrl.searchParams.get("q")).toBe("Riikonen");
   await expect(page.locator("body")).toHaveClass(/find-explore-active/);
   await expect(pagerLocator(page, "top")).not.toBeVisible();
   await expect(pagerLocator(page, "bottom")).not.toBeVisible();
