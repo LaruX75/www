@@ -69,7 +69,8 @@ describe("buildCanonicalPresentationPageRecords", () => {
       slideCount: 12,
       viewCount: 321,
       courseContexts: [{ courseId: "LOCAL-1" }],
-      contexts: ["education", "research", "teaching"]
+      contexts: ["education", "research", "teaching"],
+      declaredContexts: []
     });
   });
 
@@ -115,7 +116,8 @@ describe("buildCanonicalPresentationPageRecords", () => {
       slideCount: 15,
       viewCount: 10,
       courseContexts: [{ courseId: "BAR-1" }],
-      contexts: []
+      contexts: [],
+      declaredContexts: []
     });
   });
 });

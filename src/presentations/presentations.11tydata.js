@@ -96,6 +96,7 @@ module.exports = {
         slideCount: (data) => getPresentationRecord(data)?.slideCount,
         viewCount: (data) => getPresentationRecord(data)?.viewCount,
         contexts: (data) => resolveContexts(data),
+        declaredContexts: (data) => getPresentationRecord(data)?.declaredContexts || [],
         primaryCourseContext: (data) => getPrimaryCourseContext(getPresentationCourseContexts(data)) || undefined,
         presentationContextSummary: (data) =>
           formatCourseContextSummary(getPrimaryCourseContext(getPresentationCourseContexts(data))),

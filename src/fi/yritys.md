@@ -282,12 +282,31 @@ services:
 
 <section class="larux-section larux-section--presentations" id="viimeisimmat-esitykset">
   <div class="larux-shell">
-    {% set relatedSivuyhteys = "kouluttaja-sivu" %}
-    {% set relatedTitle = "Viimeisimpiä koulutusesityksiä" %}
-    {% set relatedLimit = 3 %}
-    {% set relatedLinkHref = "/esitykset/" %}
-    {% set relatedLinkLabel = "Kaikki esitykset ja materiaalit →" %}
-    {% include "related-presentations.njk" %}
+    {# RP-CONVERGE-01 (resumed after PRES-CONTEXT1) + RP-CONVERGE-01B:
+       select from the canonical Presentation collection where the item's
+       DECLARED (raw frontmatter) contexts explicitly include "business".
+       declaredContexts is exposed by src/presentations/presentations.11tydata.js
+       via getPresentationRecord(data)?.declaredContexts (built inside
+       src/_data/presentationsPage.js). Using declared (not resolved) contexts
+       guarantees inference-only business items from inferContexts() are NOT
+       eligible for this strip. #}
+    {% set _biz = [] %}
+    {% for _p in collections.presentations %}{% if _p.data.declaredContexts and "business" in _p.data.declaredContexts %}{% set _ = (_biz.push(_p), null) %}{% endif %}{% endfor %}
+    {# Nunjucks sort(reverse, caseSensitive, attribute) — sort by data.date descending. #}
+    {% set _bizSorted = _biz | sort(true, false, "data.date") %}
+    {% if _bizSorted.length %}
+    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end gap-3 mb-4">
+      <div>
+        <p class="larux-eyebrow larux-eyebrow--dark mb-1"><i class="bi bi-easel2 me-1"></i>Viimeisimpiä koulutusesityksiä</p>
+        <h2 class="h3 mb-2">Uusimmat koulutusesitykset</h2>
+        <p class="larux-section-lead mb-0">Kanoninen projektio uusimmista koulutusesityksistä, joissa Jari Laru on ollut ulkoisena kouluttajana, keynote-puhujana, työpajavetäjänä tai asiantuntijana.</p>
+      </div>
+      <a class="btn btn-outline-primary rounded-pill px-4" href="/esitykset/">Kaikki esitykset ja materiaalit →</a>
+    </div>
+    <div class="row g-4">{%- for _p in _bizSorted | take(3) -%}
+      <div class="col-lg-4"><article class="larux-example-card h-100"><p class="larux-proof-kicker">{{ _p.data.date | dateFormat }}</p><h3 class="h5 mb-2">{{ _p.data.title }}</h3><a class="larux-inline-link mt-auto" href="{{ _p.url }}?returnTo=%2Fkouluttaja%2F">Avaa esitys <i class="bi bi-arrow-right ms-1" aria-hidden="true"></i></a></article></div>
+    {%- endfor %}</div>
+    {% endif %}
   </div>
 </section>
 
