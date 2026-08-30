@@ -282,12 +282,23 @@ services:
 
 <section class="larux-section larux-section--presentations" id="viimeisimmat-esitykset">
   <div class="larux-shell">
-    {% set relatedSivuyhteys = "kouluttaja-sivu" %}
-    {% set relatedTitle = "Viimeisimpiä koulutusesityksiä" %}
-    {% set relatedLimit = 3 %}
-    {% set relatedLinkHref = "/esitykset/" %}
-    {% set relatedLinkLabel = "Kaikki esitykset ja materiaalit →" %}
-    {% include "related-presentations.njk" %}
+    {# RP-CONVERGE-01 (resumed after PRES-CONTEXT1): canonical projection of
+       Presentations whose FRONTMATTER explicitly declares contexts: - business.
+       Reads raw frontmatter via src/_data/presentationBusiness.js so that
+       inference-only business items (from inferContexts()) are NOT eligible. #}
+    {% if presentationBusiness.items.length %}
+    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end gap-3 mb-4">
+      <div>
+        <p class="larux-eyebrow larux-eyebrow--dark mb-1"><i class="bi bi-easel2 me-1"></i>Viimeisimpiä koulutusesityksiä</p>
+        <h2 class="h3 mb-2">Uusimmat koulutusesitykset</h2>
+        <p class="larux-section-lead mb-0">Kanoninen projektio uusimmista koulutusesityksistä, joissa Jari Laru on ollut ulkoisena kouluttajana, keynote-puhujana, työpajavetäjänä tai asiantuntijana.</p>
+      </div>
+      <a class="btn btn-outline-primary rounded-pill px-4" href="/esitykset/">Kaikki esitykset ja materiaalit →</a>
+    </div>
+    <div class="row g-4">{%- for item in presentationBusiness.items | take(3) -%}
+      <div class="col-lg-4"><article class="larux-example-card h-100"><p class="larux-proof-kicker">{{ item.date | dateFormat }}</p><h3 class="h5 mb-2">{{ item.title }}</h3><a class="larux-inline-link mt-auto" href="{{ item.pageUrl }}?returnTo=%2Fkouluttaja%2F">Avaa esitys <i class="bi bi-arrow-right ms-1" aria-hidden="true"></i></a></article></div>
+    {%- endfor %}</div>
+    {% endif %}
   </div>
 </section>
 

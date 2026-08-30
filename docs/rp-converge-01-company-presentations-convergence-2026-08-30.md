@@ -1,7 +1,29 @@
-# RP-CONVERGE-01 → RP-CONVERGE-01A — Company Presentations Convergence Audit
+# RP-CONVERGE-01 → RP-CONVERGE-01A → PRES-CONTEXT1 → RP-CONVERGE-01 (resumed)
 
 Date: 2026-08-30
-Status: `AUDIT COMPLETE / DECISION C — CONVERGENCE BLOCKED / DOCS ONLY`
+Status: `COMPLETED AFTER PRES-CONTEXT1`
+
+**Chronology of this workstream (single log; earlier sections retained
+as historical audit evidence):**
+
+1. Original RP-CONVERGE-01 attempt (commit `45db10db`, PR #169) —
+   replaced the `/kouluttaja/` legacy strip with
+   `presentationContextGroups.veso-taydennyskoulutus`.
+2. RP-CONVERGE-01A semantic-source audit — found the replacement
+   promoted a regex-derived UI grouping into canonical-authority
+   position. **Decision C.** Production reverted inside PR #169.
+3. PRES-CONTEXT1 (PR #170, merged `62327af0` on 2026-08-30) — completed
+   canonical `contexts` metadata: 12 canonical Presentation MDs now
+   explicitly declare `contexts: - business`. Canonical Content v1
+   unchanged.
+4. **RP-CONVERGE-01 resumed (this PR)** — the company strip now selects
+   from EXPLICIT canonical business membership (raw frontmatter, not
+   resolved contexts). Legacy include and CSS deleted. Convergence
+   complete.
+
+The rest of this document preserves the RP-CONVERGE-01A Decision-C
+history for archaeological clarity; the "Final resumed implementation
+(2026-08-30)" section at the bottom records the completed convergence.
 
 RP-CONVERGE-01 originally shipped a production replacement of the FI
 `/kouluttaja/` "Viimeisimpiä koulutusesityksiä" strip using
@@ -152,3 +174,119 @@ RP-CONVERGE-01A audit is complete when all six are true:
 6. ✅ `presentationContextGroups` correctly classified as UI grouping, not canonical authority.
 
 **No further RP-CONVERGE follow-up is scheduled in this workstream.** Any resumption depends on an explicit editorial or architecture decision per the "Follow-up options" section above.
+
+---
+
+## Final resumed implementation (2026-08-30)
+
+PRES-CONTEXT1 (PR #170, merge `62327af0f2ac09c9e15c09b8cf5dd66995b50eb7`) supplied the previously missing editorial authority: 12 canonical Presentation MDs now explicitly declare `contexts: - business` in frontmatter. That closed the Decision-C blocker.
+
+This section records the completed RP-CONVERGE-01 resume.
+
+### Explicit membership authority
+
+**The `/kouluttaja/` company Presentation strip selects only from Presentation MDs whose RAW frontmatter explicitly contains `contexts: - business`.** Inference-only business items (i.e., items that match `inferContexts()` line 189–199 text patterns but do not declare `business` in frontmatter) are **not eligible**.
+
+The distinction between explicit and resolved contexts is preserved by reading raw frontmatter directly, not by consuming the eleventyComputed `data.contexts` (which is the union of explicit + inferred).
+
+### Authoritative source
+
+- New global data file `src/_data/presentationBusiness.js` reads every `src/presentations/*.md` frontmatter block via `js-yaml`, filters where `Array.isArray(fm.contexts) && fm.contexts.includes("business")`, sorts date-desc, and exposes `{ items, total }`.
+- Each item exposes `{ file, baseName, title, date, pageUrl, externalUrl, sourceUrl }`. `pageUrl` defaults to `/presentations/{baseName}/` when frontmatter does not set it.
+- No inference. No regex over titles. No `sivuyhteys` dependency. No consumption of `presentationContextGroups`.
+
+### Selection semantics
+
+```text
+canonical Presentation Markdown
+  → raw frontmatter contexts array
+    → filter: explicit "business" member
+      → sort: date descending
+        → take: 3
+          → inline SSR strip on /kouluttaja/
+```
+
+### Dataflow
+
+**Before this resume**: `canva.tableRows | filter sivuyhteys.includes("kouluttaja-sivu") | sort by paakortti+date | related-presentations.njk (bespoke card + inline CSS)`.
+
+**After this resume**: `presentationBusiness.items | take(3) | inline larux-example-card SSR loop`.
+
+### Rendering
+
+- Inline Nunjucks loop in `src/fi/yritys.md` §`#viimeisimmat-esitykset`. No new template partial introduced.
+- Reuses the existing site-wide `larux-example-card` visual pattern (the same component already used by the sibling `#esimerkit` section on the same page).
+- Card renders only: date (via `dateFormat`), title, canonical local landing link with `?returnTo=%2Fkouluttaja%2F` decoration.
+- No category inference, no external/local URL resolution logic, no fallback chain, no presentation normalisation — all upstream in `presentationBusiness.js`.
+
+### Landing / source semantics
+
+- Every rendered `href` uses `item.pageUrl` — the canonical local `/presentations/{slug}/` detail landing per the Presentations Slice 3 closure.
+- All 12 explicit-business MDs have a local canonical detail page (verified in build).
+- External / source URLs (Canva, YouTube) are NOT surfaced on the strip. They remain accessible via each detail page's CTAs (source-first / local-first semantics preserved per Presentation closure).
+- `?returnTo=%2Fkouluttaja%2F` is the site-wide O1 orientation contract used by `find-explore.js:633` and other returnTo-decorated flows. Not new.
+
+### Deleted implementation
+
+- `src/_includes/related-presentations.njk` — **deleted** (185 LOC including inline `<style>` block, 6 template parameters, `canva.tableRows` traversal, category-label map, external/local href fallback chain).
+- `.larux-section--presentations .related-presentations` — **deleted** from `src/css/larux-page.css` (proven safe: no other consumer of `.related-presentations` class anywhere in the repo).
+- Retained: `.larux-section--presentations` background rule + dark-mode variant — still consumed by the FI `#viimeisimmat-esitykset` section wrapper class.
+
+Verified via repo-wide grep on `related-presentations`, `relatedSivuyhteys`, `relatedTitle`, `relatedLimit`, `relatedLinkHref`, `relatedLinkLabel`: no live production consumers remain (the `taxonomyProfiles.js` / `kategoriat.njk` `relatedTitle` references belong to a different domain — the taxonomy profile pages — and are not related to the deleted include).
+
+### FI / EN parity
+
+Deliberate FI-only asymmetry, documented:
+
+- **FI `/kouluttaja/`**: canonical explicit-business strip renders 3 items.
+- **EN `/en/company/`**: no equivalent dynamic strip; retains its manually curated "Examples of talks" section (mirroring the FI `#esimerkit`, not `#viimeisimmat-esitykset`).
+- **Reason**: canonical presentation MDs are Finnish-only (0 files under `src/en/presentations/`). A dynamic EN strip would either link to Finnish landings or require fabricating EN presentation routes — both prohibited by the RP-CONVERGE spec non-goals. The FI/EN gap is a content-language-availability constraint, not accidental architecture drift.
+
+### Retained legacy
+
+- **`sivuyhteys` field processing** in `src/_data/canva.js`, `src/_data/canva-presentations.json`, `src/_data/presentationsPage.js`, and `src/_data/canvaMerged.js` — **retained**. This resume proves only that `/kouluttaja/` no longer depends on `sivuyhteys` for Presentation membership. Broader `sivuyhteys` consumer/public-contract audit is a separate future scope; not bundled here per §10 non-goals.
+- **`presentationContextGroups.js`** — **retained and unmodified**. Continues to serve as derived SSR UI grouping for `/esitykset/` archive browsing (via `src/_includes/presentations/background-and-sources.njk`). Not consumed by `/kouluttaja/`.
+- **`inferContexts()` in `src/_data/contentContext.js`** — **retained and unmodified**. Continues to add fallback context inference across the site (business, teaching, media, etc.). The 2 inference-only business items (`ss-designing-…`, `ss-lito2018-workshop-…`) documented in PRES-CONTEXT1 as REVIEW still resolve to `business` via inference for R1's `content-context-sidebar.njk` — but they are NOT eligible for the `/kouluttaja/` strip because the strip reads raw explicit frontmatter only.
+
+### Tests
+
+- **Unit** (`npm run test:unit`): all pass. Metadata regression from PRES-CONTEXT1 still valid.
+- **Full build** (`CACHE_ONLY=true DISABLE_OG_IMAGES=true npm run build:no-og`): PASS. `[researchfi-integrity] OK`. `[seo-dashboard] OK`. Pagefind postbuild OK. Metric baseline unchanged (`presentationCanonicalTotal`, `presentationLocalLandingTotal`, `presentationExternalLandingTotal`).
+- **Targeted Playwright** (`tests/rp-converge-01-resume-company-presentations.spec.js`, 5 assertions):
+  1. FI `/kouluttaja/` renders exactly 3 `article.larux-example-card` items inside `#viimeisimmat-esitykset`.
+  2. Every rendered href starts with `/presentations/` and contains `returnTo=%2Fkouluttaja%2F`.
+  3. `javaScriptEnabled: false` — the strip and its 3 cards render without JS (SSR proof).
+  4. The rendered file base-names are a subset of the known-explicit-business set (structural inference guard — proves inference-only items are excluded from the strip).
+  5. No deleted-class remnants (`related-presentations-list` / `related-presentations-item`) appear in the built HTML.
+
+### Documentation
+
+- This document — updated to `COMPLETED AFTER PRES-CONTEXT1`.
+- `docs/pres-context1-presentation-business-context-reconciliation-2026-08-30.md` — unchanged, preserved as the metadata-completion evidence.
+- No stale "convergence blocked" wording remains on `main`.
+
+### Architecture
+
+- **Explicit canonical membership is now the sole authority for `/kouluttaja/` Presentation selection.**
+- No inference, no regex, no legacy marker, no group projection determines membership.
+- Duplicate content-ownership path removed (`canva.tableRows + sivuyhteys → bespoke card` → gone).
+- Canonical Content v1 unchanged (metadata completion in PRES-CONTEXT1 only).
+- R1 remains `CLOSED / MAINTENANCE`.
+- **Architecture Closure 1.0 remains `CLOSED / GREEN / MAIN`.**
+
+### Stopping condition
+
+RP-CONVERGE-01 resume is complete when all twelve are true:
+
+1. ✅ Company strip membership uses explicit canonical `business` (raw frontmatter).
+2. ✅ No title/filename regex determines membership.
+3. ✅ No `sivuyhteys` determines membership.
+4. ✅ No inference-only `business` item is eligible for the strip.
+5. ✅ Section renders SSR/no-JS.
+6. ✅ Landing semantics preserved (canonical local `/presentations/{slug}/` with O1 returnTo decoration).
+7. ✅ FI/EN decision explicit (justified asymmetry).
+8. ✅ `src/_includes/related-presentations.njk` deleted.
+9. ✅ Legacy CSS selector safely deleted (proven no other consumer).
+10. ✅ Unit tests / build / targeted Playwright green.
+11. ✅ Docs updated (this document + no stale blocked-status wording elsewhere).
+12. ✅ No broader Canva cleanup bundled (`sivuyhteys` ingest untouched).
