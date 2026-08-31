@@ -1,7 +1,6 @@
 const fs = require("fs");
 const path = require("path");
 
-const CACHE_DIR = path.join(process.cwd(), ".cache", "api-fallback");
 const OFFLINE_FETCH_ENV_KEYS = [
   "CACHE_ONLY",
   "PLAYWRIGHT_A11Y_OFFLINE",
@@ -10,8 +9,16 @@ const OFFLINE_FETCH_ENV_KEYS = [
   "NO_NETWORK"
 ];
 
+function resolveCacheDir() {
+  const configured = String(process.env.API_FALLBACK_CACHE_DIR || "").trim();
+  if (configured) {
+    return path.resolve(configured);
+  }
+  return path.join(process.cwd(), ".cache", "api-fallback");
+}
+
 function cachePath(key) {
-  return path.join(CACHE_DIR, `${key}.json`);
+  return path.join(resolveCacheDir(), `${key}.json`);
 }
 
 function readCache(key) {
@@ -41,7 +48,7 @@ function readCacheIfFresh(key, maxAgeHours = 6) {
 
 function writeCache(key, data) {
   try {
-    fs.mkdirSync(CACHE_DIR, { recursive: true });
+    fs.mkdirSync(resolveCacheDir(), { recursive: true });
     const payload = {
       savedAt: new Date().toISOString(),
       data
@@ -77,8 +84,10 @@ async function fetchWithTimeout(url, options = {}, timeoutMs = 15000) {
 }
 
 module.exports = {
+  cachePath,
   readCache,
   readCacheIfFresh,
+  resolveCacheDir,
   writeCache,
   fetchWithTimeout,
   isOfflineFetchMode
