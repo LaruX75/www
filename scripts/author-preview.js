@@ -75,11 +75,16 @@ function parseArgs(argv) {
       continue;
     }
 
+    if (token === "--write") {
+      options.write = true;
+      continue;
+    }
+
     throw new Error(`Tuntematon argumentti: ${token}`);
   }
 
   if (!url) {
-    throw new Error('Usage: npm run author:preview -- "<youtube-url|doi>" [--type esitys] [--contexts teaching,business] [--type-code A1]');
+    throw new Error('Usage: npm run author:preview -- "<youtube-url|doi>" [--type esitys] [--contexts teaching,business] [--type-code A1] [--write]');
   }
 
   return { url, options };
@@ -214,6 +219,37 @@ async function runYouTubeFlow(inputValue, options) {
   lines.push(`HTML bytes: ${preview.htmlBytes}`);
   lines.push("");
   lines.push(`Preview: ${preview.previewPath}`);
+
+  if (options.write) {
+    lines.push("");
+    lines.push("Canonical write:");
+    if (canonicalMatch) {
+      lines.push("BLOCKED");
+      lines.push(`Reason: destination already exists (${path.relative(process.cwd(), canonicalMatch.filePath)}).`);
+      lines.push("AP-03 does not overwrite existing canonical content.");
+      printLines(lines);
+      process.exitCode = 1;
+      return;
+    }
+    try {
+      const { writePresentationCanonical } = require("./_lib/authoring/canonicalWriter");
+      const result = writePresentationCanonical({ draft });
+      lines.push("PASS");
+      lines.push(`Written: ${path.relative(process.cwd(), result.destination)}`);
+      lines.push(`Bytes: ${result.bytesWritten}`);
+      lines.push(`Round-trip validation: PASS (${result.roundTrip.warnings.length} warnings)`);
+    } catch (err) {
+      lines.push("BLOCKED");
+      lines.push(`Reason: ${err.message}`);
+      printLines(lines);
+      process.exitCode = 1;
+      return;
+    }
+  } else {
+    lines.push("");
+    lines.push("Canonical write: DRY RUN (no --write given). No canonical file modified.");
+  }
+
   printLines(lines);
 }
 
@@ -304,6 +340,17 @@ async function runDoiFlow(inputValue, options) {
   lines.push(`HTML bytes: ${preview.htmlBytes}`);
   lines.push("");
   lines.push(`Preview: ${preview.previewPath}`);
+
+  if (options.write) {
+    lines.push("");
+    lines.push("Canonical write: NOT SUPPORTED");
+    lines.push("Reason: scientific Publication authority is Research.fi + researchfiContent.");
+    lines.push("AP-03 does not create a parallel Publication Markdown store.");
+    printLines(lines);
+    process.exitCode = 1;
+    return;
+  }
+
   printLines(lines);
 }
 
