@@ -1,6 +1,7 @@
 const path = require("path");
 const contentSchema = require("../_data/contentSchema");
 const { resolveContexts } = require("../_data/contentContext");
+const { OKM_TO_CSL_TYPE } = require("./publicationCsl");
 
 function toArray(value) {
   if (Array.isArray(value)) return value.filter(Boolean);
@@ -29,6 +30,11 @@ function isValidIsoDate(value) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(raw)) return false;
   const parsed = new Date(`${raw}T00:00:00Z`);
   return !Number.isNaN(parsed.getTime()) && parsed.toISOString().slice(0, 10) === raw;
+}
+
+function isValidDoi(value) {
+  const raw = String(value || "").trim().toLowerCase();
+  return /^10\.\S+\/\S+$/.test(raw);
 }
 
 function getCollectionRule(collectionName) {
@@ -118,6 +124,83 @@ function validateStrictPresentationSemantics(data, relativeFile) {
   return errors;
 }
 
+function validateStrictPublicationSemantics(data, relativeFile) {
+  const errors = [];
+  const sourceUrl = String(data.sourceUrl || data.url || data.externalUrl || data.doiUrl || "").trim();
+  const pageUrl = String(data.pageUrl || data.permalink || "").trim();
+  const year = data.year === null || typeof data.year === "undefined" ? null : Number(data.year);
+  const typeCode = String(data.typeCode || data.publicationType || "").trim().toUpperCase();
+  const doi = String(data.doi || "").trim().toLowerCase();
+  const allowedTypeCodes = new Set(Object.keys(OKM_TO_CSL_TYPE));
+  const identifier = String(data.id || data.publicationId || data.anchorId || "").trim();
+
+  if (data.date && !isValidIsoDate(data.date)) {
+    errors.push({
+      file: relativeFile,
+      field: "date",
+      message: "päivämäärän on oltava muodossa YYYY-MM-DD"
+    });
+  }
+
+  if (sourceUrl && !isValidHttpUrl(sourceUrl)) {
+    errors.push({
+      file: relativeFile,
+      field: "sourceUrl",
+      message: "sourceUrlin on oltava absoluuttinen http(s)-URL"
+    });
+  }
+
+  if (pageUrl && (!pageUrl.startsWith("/julkaisut/") || !pageUrl.endsWith("/"))) {
+    errors.push({
+      file: relativeFile,
+      field: "pageUrl",
+      message: "julkaisun pageUrlin on oltava muotoa /julkaisut/<id>/"
+    });
+  }
+
+  if (!identifier) {
+    errors.push({
+      file: relativeFile,
+      field: "id",
+      message: "julkaisulla on oltava id, publicationId tai anchorId"
+    });
+  }
+
+  if (doi && !isValidDoi(doi)) {
+    errors.push({
+      file: relativeFile,
+      field: "doi",
+      message: "DOI:n on oltava kelvollinen normalisoitu DOI"
+    });
+  }
+
+  if (typeCode && !allowedTypeCodes.has(typeCode)) {
+    errors.push({
+      file: relativeFile,
+      field: "typeCode",
+      message: `tuntematon publication type code "${typeCode}"`
+    });
+  }
+
+  if (year !== null && !Number.isInteger(year)) {
+    errors.push({
+      file: relativeFile,
+      field: "year",
+      message: "yearin on oltava kokonaisluku"
+    });
+  }
+
+  if (year !== null && data.date && isValidIsoDate(data.date) && Number(data.date.slice(0, 4)) !== year) {
+    errors.push({
+      file: relativeFile,
+      field: "year",
+      message: "yearin on vastattava päivämäärän vuotta"
+    });
+  }
+
+  return errors;
+}
+
 function validateCollectionItem({
   collectionName,
   data,
@@ -199,6 +282,10 @@ function validateCollectionItem({
     errors.push(...validateStrictPresentationSemantics(data, relativeFile));
   }
 
+  if (strictSemanticChecks && collectionName === "publications") {
+    errors.push(...validateStrictPublicationSemantics(data, relativeFile));
+  }
+
   return { errors, warnings };
 }
 
@@ -206,6 +293,7 @@ module.exports = {
   contentSchema,
   getCollectionRule,
   isMissing,
+  isValidDoi,
   isValidHttpUrl,
   isValidIsoDate,
   toArray,

@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const path = require("path");
+const { performance } = require("node:perf_hooks");
 const {
   validateCollectionItem
 } = require("../src/_utils/canonicalContentValidation");
@@ -8,11 +9,22 @@ const {
   fetchYouTubeMetadata
 } = require("./_lib/authoring/youtubeMetadata");
 const {
+  fetchDoiMetadata,
+  normalizeDoiInput
+} = require("./_lib/authoring/doiMetadata");
+const {
   buildPresentationDraft,
   compareProposalToCanonical,
   findExistingPresentationBySourceUrl
 } = require("./_lib/authoring/presentationDraft");
 const {
+  buildPublicationDraft,
+  compareProposalToPublication,
+  findExistingPublicationByDoi,
+  loadCanonicalPublicationContext
+} = require("./_lib/authoring/publicationDraft");
+const {
+  renderPublicationPreview,
   renderPresentationPreview
 } = require("./_lib/authoring/eleventyPreview");
 
@@ -48,6 +60,11 @@ function parseArgs(argv) {
       continue;
     }
 
+    if (token === "--type-code") {
+      options.typeCode = args.shift() || "";
+      continue;
+    }
+
     if (token === "--keep-temp") {
       options.keepTemp = true;
       continue;
@@ -62,7 +79,7 @@ function parseArgs(argv) {
   }
 
   if (!url) {
-    throw new Error('Usage: npm run author:preview -- "<youtube-url>" [--type esitys] [--contexts teaching,business]');
+    throw new Error('Usage: npm run author:preview -- "<youtube-url|doi>" [--type esitys] [--contexts teaching,business] [--type-code A1]');
   }
 
   return { url, options };
@@ -91,9 +108,43 @@ function formatComparison(comparison) {
   return lines;
 }
 
-async function main() {
-  const { url, options } = parseArgs(process.argv.slice(2));
-  const proposal = await fetchYouTubeMetadata(url);
+function isYouTubeInput(value) {
+  return /(youtube\.com|youtu\.be)/i.test(String(value || ""));
+}
+
+function isLikelyDoiInput(value) {
+  const raw = String(value || "").trim();
+  if (!raw) return false;
+
+  if (/^https?:\/\//i.test(raw)) {
+    return /(?:dx\.)?doi\.org\//i.test(raw);
+  }
+
+  return true;
+}
+
+function formatDuplicateComparison(comparison) {
+  if (!comparison) {
+    return ["Metadata differences: no canonical duplicate"];
+  }
+
+  const lines = [
+    `Existing canonical page: ${comparison.pageUrl || "(no canonical detail URL)"}`,
+    "Metadata differences:"
+  ];
+
+  comparison.fields.forEach((item) => {
+    lines.push(
+      `${item.field}: ${item.matches ? "MATCH" : "DIFF"} ` +
+      `(proposed="${item.proposed}" canonical="${item.canonical}")`
+    );
+  });
+
+  return lines;
+}
+
+async function runYouTubeFlow(inputValue, options) {
+  const proposal = await fetchYouTubeMetadata(inputValue);
   const canonicalMatch = findExistingPresentationBySourceUrl(proposal.sourceUrl);
   const draft = buildPresentationDraft({
     proposal,
@@ -111,10 +162,12 @@ async function main() {
   });
 
   const lines = [
-    "AUTHORING-PIPELINE-01",
+    "AUTHORING-PIPELINE-02",
     "",
     "Source:",
     "YouTube",
+    "Domain:",
+    "Presentation",
     `URL: ${proposal.sourceUrl}`,
     `Video ID: ${proposal.videoId}`,
     "",
@@ -164,8 +217,113 @@ async function main() {
   printLines(lines);
 }
 
+async function runDoiFlow(inputValue, options) {
+  const fetchStart = performance.now();
+  const proposal = await fetchDoiMetadata(inputValue);
+  const metadataFetchMs = performance.now() - fetchStart;
+  const canonicalContext = await loadCanonicalPublicationContext();
+  const existing = findExistingPublicationByDoi(proposal.doi, canonicalContext);
+  const comparison = compareProposalToPublication(proposal, existing);
+
+  const lines = [
+    "AUTHORING-PIPELINE-02",
+    "",
+    "Source:",
+    "DOI",
+    "Domain:",
+    "Publication",
+    `DOI: ${proposal.doi}`,
+    `DOI URL: ${proposal.doiUrl}`,
+    "",
+    "Proposed metadata:",
+    `Title: ${proposal.title || "(missing)"}`,
+    `Authors: ${proposal.authors || "(missing)"}`,
+    `Date: ${proposal.date || "(missing)"}`,
+    `Journal: ${proposal.journal || "(missing)"}`,
+    `Publisher: ${proposal.publisher || "(missing)"}`,
+    `Type code proposal: ${proposal.proposedTypeCode || "(missing)"}`,
+    `Source URL: ${proposal.sourceUrl || "(missing)"}`,
+    "",
+    `Metadata fetch: ${metadataFetchMs.toFixed(1)} ms`,
+    ""
+  ];
+
+  if (existing) {
+    lines.push("Canonical duplicate:");
+    lines.push("YES");
+    lines.push("");
+    lines.push(...formatDuplicateComparison(comparison));
+    printLines(lines);
+    return;
+  }
+
+  const draft = buildPublicationDraft({
+    proposal,
+    manual: options
+  });
+  const validation = validateCollectionItem({
+    collectionName: "publications",
+    data: draft.validationData,
+    filePath: path.join(process.cwd(), "src", "publications", `${draft.slug}.md`),
+    useResolvedContexts: false,
+    strictSemanticChecks: true
+  });
+
+  lines.push("Canonical duplicate:");
+  lines.push("NO");
+  lines.push("");
+
+  if (validation.errors.length) {
+    lines.push("Canonical validation:");
+    lines.push("FAIL");
+    lines.push("");
+    lines.push("Missing / invalid:");
+    validation.errors.forEach((item) => {
+      lines.push(`${item.field}: ${item.message}`);
+    });
+    printLines(lines);
+    process.exitCode = 1;
+    return;
+  }
+
+  const preview = await renderPublicationPreview({
+    draft,
+    keepTemp: options.keepTemp
+  });
+
+  lines.push("Canonical validation:");
+  lines.push("PASS");
+  lines.push("");
+  lines.push("Eleventy preview:");
+  lines.push("PASS");
+  lines.push(`Pages processed: ${preview.pagesProcessed}`);
+  lines.push(`Import: ${preview.timings.importMs.toFixed(1)} ms`);
+  lines.push(`Init: ${preview.timings.initMs.toFixed(1)} ms`);
+  lines.push(`Render: ${preview.timings.renderMs.toFixed(1)} ms`);
+  lines.push(`Cold start total: ${preview.timings.totalMs.toFixed(1)} ms`);
+  lines.push(`HTML bytes: ${preview.htmlBytes}`);
+  lines.push("");
+  lines.push(`Preview: ${preview.previewPath}`);
+  printLines(lines);
+}
+
+async function main() {
+  const { url, options } = parseArgs(process.argv.slice(2));
+  if (isYouTubeInput(url)) {
+    await runYouTubeFlow(url, options);
+    return;
+  }
+
+  if (isLikelyDoiInput(url)) {
+    await runDoiFlow(url, options);
+    return;
+  }
+
+  throw new Error("Syöte ei ole tuettu YouTube- tai DOI-lähde");
+}
+
 main().catch((error) => {
-  process.stderr.write(`AUTHORING-PIPELINE-01\n\nError: ${error.message}\n`);
+  process.stderr.write(`AUTHORING-PIPELINE-02\n\nError: ${error.message}\n`);
   if (process.argv.includes("--debug")) {
     process.stderr.write(`${error.stack}\n`);
   }

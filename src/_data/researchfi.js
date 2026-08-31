@@ -606,3 +606,5 @@ module.exports = function loadResearchfi() {
 
     return memoizedResearchfiPromise;
 };
+
+module.exports.buildAnchorId = buildAnchorId;
