@@ -11,6 +11,7 @@ _site_debug/
 .cache/*
 !.cache/api-fallback/
 !.cache/api-fallback/**
+.tmp/authoring-preview/
 matkapaketti.tar.gz
 *.tar.gz
 *.zip

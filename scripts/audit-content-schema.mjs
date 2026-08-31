@@ -5,7 +5,7 @@ import yaml from "js-yaml";
 
 const require = createRequire(import.meta.url);
 const schema = require("../src/_data/contentSchema.js");
-const { resolveContexts } = require("../src/_data/contentContext.js");
+const { validateCollectionItem } = require("../src/_utils/canonicalContentValidation.js");
 
 const rootDir = process.cwd();
 
@@ -38,12 +38,6 @@ function parseFrontMatter(raw, filePath) {
   }
 }
 
-function toArray(value) {
-  if (Array.isArray(value)) return value.filter(Boolean);
-  if (typeof value === "string" && value.trim()) return [value.trim()];
-  return [];
-}
-
 function getCollectionName(filePath) {
   const normalized = filePath.split(path.sep).join("/");
 
@@ -57,104 +51,15 @@ function getCollectionName(filePath) {
   return "";
 }
 
-function isMissing(value) {
-  if (value === null || typeof value === "undefined") return true;
-  if (typeof value === "string") return value.trim() === "";
-  if (Array.isArray(value)) return value.length === 0;
-  return false;
-}
-
-function validateControlledValue({ field, value, vocabularyName, file }) {
-  const allowed = schema.vocabularies[vocabularyName] || [];
-  const values = Array.isArray(value) ? value : [value];
-  const errors = [];
-
-  values.filter((item) => !isMissing(item)).forEach((item) => {
-    if (!allowed.includes(item)) {
-      errors.push({
-        file,
-        field,
-        message: `tuntematon arvo "${item}", sallitut: ${allowed.join(", ")}`
-      });
-    }
-  });
-
-  return errors;
-}
-
-function getResolvedFieldValue(data, field, file) {
-  if (field === "contexts") {
-    return resolveContexts(data, file);
-  }
-
-  return data[field];
-}
-
 function validateItem(file, data, rule) {
-  const errors = [];
-  const warnings = [];
-  const relativeFile = path.relative(rootDir, file);
-
-  rule.required.forEach((field) => {
-    if (isMissing(data[field])) {
-      errors.push({ file: relativeFile, field, message: "pakollinen kentta puuttuu" });
-    }
+  return validateCollectionItem({
+    collectionName: Object.entries(schema.collectionRules).find(([, candidate]) => candidate === rule)?.[0] || "",
+    data,
+    filePath: file,
+    rootDir,
+    useResolvedContexts: true,
+    strictSemanticChecks: false
   });
-
-  (rule.recommended || []).forEach((field) => {
-    if (isMissing(getResolvedFieldValue(data, field, relativeFile))) {
-      warnings.push({ file: relativeFile, field, message: "suositeltu kentta puuttuu" });
-    }
-  });
-
-  (rule.arrayFields || []).forEach((field) => {
-    if (!isMissing(data[field]) && !Array.isArray(data[field])) {
-      warnings.push({ file: relativeFile, field, message: "kentta kannattaa kirjoittaa listana" });
-    }
-  });
-
-  Object.entries(rule.controlled || {}).forEach(([field, vocabularyName]) => {
-    const value = getResolvedFieldValue(data, field, relativeFile);
-    if (isMissing(value)) return;
-    errors.push(...validateControlledValue({
-      field,
-      value,
-      vocabularyName,
-      file: relativeFile
-    }));
-  });
-
-  const typeRecommendations = rule.typeRecommendations?.[data.type] || [];
-  typeRecommendations.forEach((field) => {
-    if (isMissing(data[field])) {
-      warnings.push({
-        file: relativeFile,
-        field,
-        message: `suositeltu kentta tyypille "${data.type}" puuttuu`
-      });
-    }
-  });
-
-  if (data.type === "mielipide") {
-    const roles = new Set([...toArray(data.opinionRoles), ...toArray(data.writingRoles)]);
-    if (!roles.has("political") && !roles.has("expert") && !roles.has("personal")) {
-      warnings.push({
-        file: relativeFile,
-        field: "opinionRoles",
-        message: "mielipiteelta puuttuu rooliluokitus"
-      });
-    }
-  }
-
-  if (data.mediaType === "video" && isMissing(data.youtubeId) && isMissing(data.sourceUrl)) {
-    warnings.push({
-      file: relativeFile,
-      field: "youtubeId",
-      message: "videolle kannattaa lisata youtubeId tai sourceUrl"
-    });
-  }
-
-  return { errors, warnings };
 }
 
 function printList(title, items, limit = 80) {
