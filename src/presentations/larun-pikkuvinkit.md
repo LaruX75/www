@@ -1,6 +1,7 @@
 ---
 title: "Larun pikkuvinkit"
 description: "Koronakevään 2020 lyhytvideosarja, jossa Jari Laru jakoi käytännön pikkuvinkkejä etäopetuksen, digityökalujen ja opetusteknologian arkeen."
+date: 2020-03-23
 url: "https://www.youtube.com/watch?v=hCZ9lgODkes&list=PLDG0jxUrk8z3VEOjIFb_q0vdJW6-2oOgY"
 sourceUrl: "https://www.youtube.com/watch?v=hCZ9lgODkes&list=PLDG0jxUrk8z3VEOjIFb_q0vdJW6-2oOgY"
 thumbnail: "https://i.ytimg.com/vi/hCZ9lgODkes/hqdefault.jpg"
