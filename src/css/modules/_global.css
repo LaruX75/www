@@ -2008,3 +2008,23 @@ body[data-translation-key="search"] .site-nav-search {
     position: static;
   }
 }
+
+/*
+ * UX-VT-01 — Cross-document View Transitions (progressive enhancement).
+ * Chromium 126+ and Safari 18.2+ opt into the browser's default cross-document
+ * transition for same-origin navigation; Firefox and older engines continue
+ * to render ordinary navigation unchanged. No JavaScript, no client-side
+ * routing, no interception.
+ * Ref: docs/ux-vt-01-cross-document-view-transitions-2026-08-31.md
+ */
+@view-transition {
+  navigation: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
+}
