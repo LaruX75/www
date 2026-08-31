@@ -191,5 +191,6 @@ module.exports = {
   getAuthoringInputPaths,
   renderPublicationPreview,
   renderEleventyPages,
-  renderPresentationPreview
+  renderPresentationPreview,
+  toFrontMatterMarkdown
 };
