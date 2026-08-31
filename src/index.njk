@@ -110,8 +110,12 @@ pageStyles:
 {% set heroInitiativeCount = (collections.politics or []) | length %}
 {% set trainingMeta = (trainingFeedback and trainingFeedback.meta) or {} %}
 
-{% set roleLatestResearch = (researchfi or [])[0] %}
-{% set roleLatestPresentation = ((canva.fiRows or canva.tableRows or [])[0]) %}
+{# HOME-LANDING-01: latest-content role cards route through the existing
+   canonical Publications and Presentations pipelines and land on
+   canonical local detail pages (/julkaisut/{id}/ and /presentations/{slug}/),
+   not raw source URLs. See docs/home-landing-01-canonical-latest-2026-08-30.md. #}
+{% set roleLatestResearch = (publicationDetailPages.items or []) | sort(true, false, "date") | first %}
+{% set roleLatestPresentation = (collections.presentations or []) | sort(true, false, "date") | first %}
 {% set roleLatestCouncilSpeech = false %}
 {% for item in (collections.pub_puhe or []) | sort(true, false, "date") %}
     {% if not roleLatestCouncilSpeech %}
@@ -124,7 +128,6 @@ pageStyles:
     {% endif %}
 {% endfor %}
 {% set roleLatestInitiative = ((collections.politics or []) | sort(true, false, "date"))[0] %}
-{% set roleLatestPresentationTitle = roleLatestPresentation.title or "" %}
 
 {% set homeRoleTopicSlugs = {
     university: "opettajankoulutus",
@@ -162,11 +165,11 @@ pageStyles:
                     <p class="home-role-focus-kicker">Ajankohtainen fokus</p>
                     <p class="home-role-focus-text">Generation AI -ohjelma, tekoälylukutaito ja opettajankoulutuksen kehittäminen.</p>
                 </div>
-                {% if roleLatestResearch %}
+                {% if roleLatestResearch and roleLatestResearch.pageUrl %}
                 <div class="home-role-latest">
                     <p class="home-role-latest-kicker">Uusin julkaisu</p>
-                    <a href="{{ roleLatestResearch.url or '/julkaisut/' }}"{% if roleLatestResearch.url %} target="_blank" rel="noopener noreferrer"{% endif %} class="home-role-latest-link">{{ roleLatestResearch.title | truncate(90) }}</a>
-                    {% if roleLatestResearch.year %}<p class="home-role-latest-meta">{{ roleLatestResearch.year }}{% if roleLatestResearch.venue %} · {{ roleLatestResearch.venue | truncate(50) }}{% endif %}</p>{% endif %}
+                    <a href="{{ roleLatestResearch.pageUrl }}" class="home-role-latest-link">{{ roleLatestResearch.title | truncate(90) }}</a>
+                    {% if roleLatestResearch.year %}<p class="home-role-latest-meta">{{ roleLatestResearch.year }}{% if roleLatestResearch.journal %} · {{ roleLatestResearch.journal | truncate(50) }}{% endif %}</p>{% endif %}
                 </div>
                 {% endif %}
                 <a class="home-role-cta" href="/tyoni-yliopistonlehtorina/">Avaa yliopistotyö <i class="bi bi-arrow-right ms-1"></i></a>
@@ -224,11 +227,11 @@ pageStyles:
                     <p class="home-role-focus-kicker">Ajankohtainen fokus</p>
                     <p class="home-role-focus-text">Tekoäly opetuksessa: käytännön työkalut, kokeilut ja opettajayhteisöjen sparraus.</p>
                 </div>
-                {% if roleLatestPresentation and roleLatestPresentationTitle %}
+                {% if roleLatestPresentation and roleLatestPresentation.url %}
                 <div class="home-role-latest">
                     <p class="home-role-latest-kicker">Uusin esitys</p>
-                    <a href="{{ roleLatestPresentation.url }}" target="_blank" rel="noopener noreferrer" class="home-role-latest-link">{{ roleLatestPresentationTitle | truncate(90) }}</a>
-                    {% if roleLatestPresentation.date %}<p class="home-role-latest-meta">{{ roleLatestPresentation.date | dateFormat }}</p>{% endif %}
+                    <a href="{{ roleLatestPresentation.url }}" class="home-role-latest-link">{{ roleLatestPresentation.data.title | truncate(90) }}</a>
+                    {% if roleLatestPresentation.data.date %}<p class="home-role-latest-meta">{{ roleLatestPresentation.data.date | dateFormat }}</p>{% endif %}
                 </div>
                 {% endif %}
                 <a class="home-role-cta" href="/kouluttaja/">Avaa kouluttajapalvelut <i class="bi bi-arrow-right ms-1"></i></a>
