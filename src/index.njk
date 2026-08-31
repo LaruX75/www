@@ -115,11 +115,7 @@ pageStyles:
    canonical local detail pages (/julkaisut/{id}/ and /presentations/{slug}/),
    not raw source URLs. See docs/home-landing-01-canonical-latest-2026-08-30.md. #}
 {% set roleLatestResearch = (publicationDetailPages.items or []) | sort(true, false, "date") | first %}
-{# Eligibility: exclude presentation items without an explicit frontmatter date so
-   the "latest" pick isn't driven by file mtime fallbacks from date-less MDs. #}
-{% set _presWithDate = [] %}
-{% for _p in (collections.presentations or []) %}{% if _p.data.date %}{% set _ = (_presWithDate.push(_p), null) %}{% endif %}{% endfor %}
-{% set roleLatestPresentation = _presWithDate | sort(true, false, "date") | first %}
+{% set roleLatestPresentation = (collections.presentations or []) | sort(true, false, "date") | first %}
 {% set roleLatestCouncilSpeech = false %}
 {% for item in (collections.pub_puhe or []) | sort(true, false, "date") %}
     {% if not roleLatestCouncilSpeech %}

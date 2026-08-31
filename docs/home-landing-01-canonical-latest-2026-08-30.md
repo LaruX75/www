@@ -9,6 +9,21 @@ URLs (DOI / Canva). Consumes existing canonical projections; no new
 `_data` reader, no new URL resolver, no Markdown/YAML parser
 introduced.
 
+**Update 2026-08-31 (post PRES-YT-DATE-01 rebase):** the initial
+implementation contained a template-level `_presWithDate` push-loop
+that filtered out `collections.presentations` items without an
+explicit `data.date`. That filter was a **workaround** for a
+now-fixed canonical metadata defect (`larun-pikkuvinkit.md` had no
+frontmatter date; Eleventy fell back to file mtime, surfacing a 2020
+videosarja as if it were 2026 content). PRES-YT-DATE-01
+(`docs/pres-yt-date-01-youtube-date-reconciliation-2026-08-31.md`)
+repaired the canonical Presentation date. This branch was rebased
+onto PRES-YT-DATE-01 and the eligibility filter was **removed**. The
+homepage now consumes `collections.presentations` directly via
+`sort(true, false, "date") | first` — no malformed-data eligibility
+rule, no template-level chronology guard. Chronology ownership stays
+in canonical Presentation frontmatter.
+
 ## Repository state
 
 - Branch: `ux/home-landing-01-canonical-latest`
@@ -57,7 +72,7 @@ Uusin esitys
 
 Data source:
 - `roleLatestResearch = (publicationDetailPages.items or []) | sort(true, false, "date") | first` — existing canonical Publications projection; each item exposes `pageUrl` = `/julkaisut/{id}/`.
-- `roleLatestPresentation = filter(collections.presentations by data.date presence) | sort(true, false, "date") | first` — existing canonical Presentations collection; item URL comes from Eleventy's canonical permalink.
+- `roleLatestPresentation = (collections.presentations or []) | sort(true, false, "date") | first` — existing canonical Presentations collection; item URL comes from Eleventy's canonical permalink. Direct sort, no eligibility filter (PRES-YT-DATE-01 repaired the underlying `larun-pikkuvinkit.md` date defect that previously required the workaround).
 
 Both hrefs verified against the built site by resolving the URL via `page.request.get(href)`.
 
@@ -70,8 +85,8 @@ Both hrefs verified against the built site by resolving the URL via `page.reques
 
 - **Sorting**: date descending in both cases.
   - Publications: `sort(true, false, "date")` on the projection's `.date` field (ISO-like `YYYY-01-01` from `publication.year`).
-  - Presentations: `sort(true, false, "date")` on the Eleventy item's canonical `date`, but only among items whose `data.date` is set in frontmatter. Excluding date-less MDs is required because Eleventy falls back to file mtime for the collection `date` when frontmatter has no `date:` field, which surfaces recently-touched date-less files (e.g., `larun-pikkuvinkit.md`) at the top of the sort.
-- **Eligibility**: publication items must have `pageUrl` (canonical local landing). Presentation items must have `_p.data.date` (declared frontmatter date). Both conditions are satisfied by the current corpus for the top items.
+  - Presentations: `sort(true, false, "date")` on the Eleventy item's canonical `date`. Every Presentation MD carries an explicit frontmatter `date:` after PRES-YT-DATE-01 (the last date-less file, `larun-pikkuvinkit.md`, was repaired with its authoritative source date `2020-03-23`). No template-side eligibility filter is required.
+- **Eligibility**: publication items must have `pageUrl` (canonical local landing). No presentation-side eligibility filter — every canonical Presentation MD declares a frontmatter date.
 - **Cardinality**: `first` — a single item per role card.
 - **Determinism**: at build time, from canonical fields. No inference, no title/filename regex, no city-name heuristic, no source-oriented ordering.
 
@@ -100,15 +115,16 @@ Modified files:
   2. University role card (lines 165–171): `href` from external `roleLatestResearch.url` → canonical `roleLatestResearch.pageUrl`; `target="_blank" rel="noopener noreferrer"` removed (internal navigation); meta uses `roleLatestResearch.year` + `.journal`.
   3. Training role card (lines 227–233): `href` from external `roleLatestPresentation.url` → canonical `roleLatestPresentation.url` (Eleventy permalink); `target="_blank" rel="noopener noreferrer"` removed; title/meta reads `roleLatestPresentation.data.title` / `.data.date`.
 
-No new template partial. No new helper filter. Nunjucks-native `sort(true, false, "date") | first` + a small inline push-loop for the date-presence filter.
+No new template partial. No new helper filter. Nunjucks-native `sort(true, false, "date") | first` on both bindings. After PRES-YT-DATE-01 the initial `_presWithDate` push-loop workaround was removed — no template-level chronology guard remains.
 
 ## Deletion
 
 - **Removed**: `{% set roleLatestPresentationTitle = roleLatestPresentation.title or "" %}` (was only used in the training role card's title text; no other consumers).
 - **Removed**: `target="_blank" rel="noopener noreferrer"` attributes on the two role-card title anchors (no longer external).
+- **Removed (post PRES-YT-DATE-01 update)**: the `_presWithDate` push-loop filter and its `{% for %}{% if _p.data.date %}{% endfor %}` block — no longer needed after the canonical Presentation date defect was repaired at the source of truth.
 - **Retained**: `researchfi` and `canva.fiRows` / `canva.tableRows` global data — still consumed by other homepage sections (topic cards, hero counters, etc.) and by broader site surfaces. Not touched. Broader consumer audit of these two globals is out of scope for HOME-LANDING-01.
 
-Net template diff: +6 / -4 lines in the data preamble + the two role-card `<a>` elements. No production JS, CSS, canonical data, or Pagefind change.
+Net template diff (post PRES-YT-DATE-01 update): only replaces the two role-card data bindings and two `<a>` elements. Direct one-line canonical-collection selectors — no eligibility filter. No production JS, CSS, canonical data, or Pagefind change.
 
 ## Tests
 
@@ -133,7 +149,7 @@ canonical Publications                          canonical Presentations
 publicationDetailPages.items                    collections.presentations
 (existing global data)                          (existing Eleventy collection)
   ↓                                               ↓
-sort by date desc, take first                   filter by data.date, sort desc, take first
+sort by date desc, take first                   sort by date desc, take first
   ↓                                               ↓
 FI homepage SSR (src/index.njk)                 FI homepage SSR (src/index.njk)
   ↓                                               ↓
