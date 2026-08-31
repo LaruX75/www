@@ -254,6 +254,7 @@ module.exports = {
   buildCanonicalPublicationDetailsModel,
   buildCanonicalPublicationDetails,
   buildCanonicalPublicationDetailLookup,
+  buildResearchfiDetail,
   canonicalPublicationDetailUrl,
   getCanonicalPublicationDetail
 };

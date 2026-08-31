@@ -7,6 +7,16 @@ const loadResearchfiContent = require("./researchfiContent");
 const loadSemanticscholar = require("./semanticscholar");
 const { buildCanonicalPublicationDetailsModel } = require("./publicationDetails");
 
+function readAuthoringPreviewOverride() {
+  const overridePath = process.env.AUTHORING_PUBLICATION_DETAIL_PAGES_PATH;
+  if (!overridePath) return null;
+
+  const resolvedPath = path.resolve(overridePath);
+  delete require.cache[resolvedPath];
+  const override = require(resolvedPath);
+  return override && typeof override === "object" ? override : null;
+}
+
 function readManualPublicationItems() {
   const dir = path.join(process.cwd(), "src", "publications");
   return fs.readdirSync(dir)
@@ -27,6 +37,11 @@ function readManualPublicationItems() {
 }
 
 module.exports = async function publicationDetailPages() {
+  const authoringOverride = readAuthoringPreviewOverride();
+  if (authoringOverride) {
+    return authoringOverride;
+  }
+
   const [researchfi, researchfiContent, semanticscholar] = await Promise.all([
     loadResearchfi(),
     loadResearchfiContent(),
@@ -42,3 +57,5 @@ module.exports = async function publicationDetailPages() {
     }
   });
 };
+
+module.exports.readManualPublicationItems = readManualPublicationItems;

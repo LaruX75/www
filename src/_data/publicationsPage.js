@@ -600,6 +600,7 @@ function buildPublicationsPageModel(data = {}) {
 module.exports = {
   PUBLICATION_GROUP_ORDER,
   PUBLIC_PUBLICATIONS_PAGE_FIELDS,
+  PUBLICATION_TYPE_LABELS,
   MANUAL_PUBLICATION_RULES,
   canonicalPublicationDetailUrl,
   normalizeDoi,
