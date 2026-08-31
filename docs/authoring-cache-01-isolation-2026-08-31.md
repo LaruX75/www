@@ -70,21 +70,25 @@ Focused authoring regressions:
 Additional verification:
 
 - `git diff --check`: PASS
-- `npm run build:local:full`: attempted; local run progressed through Eleventy output generation but did not terminate within the observed window, so it is not used as the primary proof for this slice
-- `npm run test:unit`: first run fails before build artifacts exist because `tests/unit/searchQualityRegressionBenchmark.test.js` expects `_site/pagefind/pagefind-entry.json`
+- `npm run test:unit`: first run reported `591` pass / `6` fail; all six failures were the known benchmark tests in `tests/unit/searchQualityRegressionBenchmark.test.js` because `_site/pagefind/pagefind-entry.json` did not yet exist in that worktree
+- `npm run build:local:full`: attempted; local run progressed through Eleventy output generation (`1745` rendered files observed under `_site`) but did not terminate within the observed window, so it is not used as the primary proof for this slice
 
 ## Real smoke
 
 Authoring-style preview proof was run with:
 
-- preview worktree: isolated temporary `www` worktree
-- override root: external temp directory outside the Git worktree
-- path exercised: real programmatic Eleventy preview
+- proof commit: `2ff83c8d96d009acdc59b20a78d8726668e5e8d7`
+- preview clone: `/private/tmp/www-authoring-cache-01-smoke-2ff83c8d`
+- override root: `/var/folders/kd/2r7zkgr12_l4h1h4y7s10_ch0000gq/T/authoring-cache-smoke-6qwi5t/api-fallback`
+- path exercised: real programmatic presentation Eleventy preview
+- preview result: `pagesProcessed=2`, `htmlBytes=92740`, `elapsedMs=1784`
+- external cache evidence: `16` JSON files present, including `crossref-enrichments-v1.json` and `jufo-enrichments-v1.json`
+- worktree cache status after preview: `git status --short -- .cache/api-fallback` returned empty output
 
 Required outcome:
 
-- cache files resolve under the external override root
-- preview no longer needs to write into `<worktree>/.cache/api-fallback`
+- cache files resolved under the external override root
+- preview did not dirty `<worktree>/.cache/api-fallback`
 
 ## Deletion / duplication audit
 
