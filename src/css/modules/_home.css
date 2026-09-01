@@ -114,6 +114,16 @@ html:not([data-bs-theme="dark"]) .home-hero-role-item {
   color: #ffffff;
 }
 
+.home-hero-kpi-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.home-hero-kpi-link:hover,
+.home-hero-kpi-link:focus-visible {
+  text-decoration: underline;
+}
+
 html:not([data-bs-theme="dark"]) .home-hero-role-item:hover,
 html:not([data-bs-theme="dark"]) .home-hero-role-item:focus-visible {
   color: #0e3153;
@@ -121,6 +131,90 @@ html:not([data-bs-theme="dark"]) .home-hero-role-item:focus-visible {
 
 html:not([data-bs-theme="dark"]) .home-hero-role-item + .home-hero-role-item::before {
   background: rgba(19, 45, 74, 0.35);
+}
+
+@media (max-width: 767.98px) {
+  .home-hero-roles {
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .home-hero-role-item {
+    padding: 0.42rem 0.72rem;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(248, 251, 255, 0.94);
+    font-size: 0.82rem;
+    text-decoration: none;
+    backdrop-filter: blur(8px);
+  }
+
+  .home-hero-role-item + .home-hero-role-item::before {
+    display: none;
+  }
+
+  html:not([data-bs-theme="dark"]) .home-hero-role-item {
+    border-color: rgba(16, 40, 69, 0.16);
+    background: rgba(255, 255, 255, 0.68);
+    color: #102845;
+  }
+
+  .home-hero-proof-column {
+    margin-top: 0.4rem;
+  }
+
+  .home-hero-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.55rem;
+    margin: 0;
+    padding: 0.85rem;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 1rem;
+    background: rgba(12, 27, 48, 0.5);
+    backdrop-filter: blur(8px);
+  }
+
+  html:not([data-bs-theme="dark"]) .home-hero-kpi-grid {
+    border-color: rgba(16, 40, 69, 0.1);
+    background: rgba(255, 255, 255, 0.72);
+  }
+
+  .home-hero-kpi {
+    min-width: 0;
+    padding: 0.68rem 0.6rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.85rem;
+    background: rgba(255, 255, 255, 0.07);
+  }
+
+  html:not([data-bs-theme="dark"]) .home-hero-kpi {
+    border-color: rgba(16, 40, 69, 0.08);
+    background: rgba(255, 255, 255, 0.78);
+  }
+
+  .home-hero-kpi-value,
+  .home-hero-kpi-label {
+    margin: 0;
+  }
+
+  .home-hero-kpi-value {
+    font-size: 1.35rem;
+    line-height: 1;
+    font-weight: 800;
+  }
+
+  .home-hero-kpi-label {
+    font-size: 0.64rem;
+    line-height: 1.25;
+    color: rgba(248, 251, 255, 0.82);
+    text-wrap: balance;
+  }
+
+  html:not([data-bs-theme="dark"]) .home-hero-kpi-label {
+    color: rgba(16, 40, 69, 0.72);
+  }
 }
 
 /* ===== HOME: FOCUS GRID & OVERVIEW ===== */
