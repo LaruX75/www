@@ -257,28 +257,20 @@ module.exports = async function (eleventyConfig) {
   // This disables JS dependency graph watching, but normal file watching remains.
   eleventyConfig.setWatchJavaScriptDependencies(false);
 
-  // Ensure all generated HTML pages have external iframe consent wrappers.
   // Sync only currently referenced OG images into the active output directory.
+  // Iframe consent wrapping and Canva URL rewriting are owned by the
+  // `externalMediaConsent` transform below, so this hook no longer needs to
+  // walk generated HTML for that purpose.
   eleventyConfig.on("eleventy.after", (event = {}) => {
+    if (!shouldGenerateOgImages) return;
     const outputDir = resolveOutputDir(event);
+    const ogCacheDir = path.join(process.cwd(), "og-cache");
+    if (!fs.existsSync(ogCacheDir)) return;
     const htmlFiles = walkHtmlFiles(outputDir);
-    htmlFiles.forEach((filePath) => {
-      const original = fs.readFileSync(filePath, "utf8");
-      const updated = rewriteCanvaLinksInHtml(wrapExternalIframes(original));
-      if (updated !== original) {
-        fs.writeFileSync(filePath, updated, "utf8");
-      }
-    });
-
-    if (shouldGenerateOgImages) {
-      const ogCacheDir = path.join(process.cwd(), "og-cache");
-      const ogSiteDir = path.join(outputDir, "og-images");
-      if (fs.existsSync(ogCacheDir)) {
-        const referencedOgImages = collectReferencedOgImages(htmlFiles);
-        syncReferencedOgImagesToOutput({ ogCacheDir, ogSiteDir, referencedFiles: referencedOgImages });
-        pruneUnusedOgCache({ ogCacheDir, referencedFiles: referencedOgImages });
-      }
-    }
+    const ogSiteDir = path.join(outputDir, "og-images");
+    const referencedOgImages = collectReferencedOgImages(htmlFiles);
+    syncReferencedOgImagesToOutput({ ogCacheDir, ogSiteDir, referencedFiles: referencedOgImages });
+    pruneUnusedOgCache({ ogCacheDir, referencedFiles: referencedOgImages });
   });
 
   eleventyConfig.addGlobalData("supportedLangs", SUPPORTED_LANGS);
@@ -413,7 +405,7 @@ module.exports = async function (eleventyConfig) {
 
   eleventyConfig.addTransform("externalMediaConsent", (content, outputPath) => {
     if (!outputPath || !outputPath.endsWith(".html")) return content;
-    return wrapExternalIframes(content);
+    return rewriteCanvaLinksInHtml(wrapExternalIframes(content));
   });
 
   return {
