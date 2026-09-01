@@ -30,3 +30,17 @@
   </button>
 </div>
 {% endmacro %}
+
+{#
+  Mobile-only "jump to top-level page" link rendered as the first child of
+  each `.mega-wrap`. Hidden on desktop via .mega-mobile-jump { display: none }
+  and revealed inside `@media (max-width: 767.98px)`. All inputs are
+  deterministic at build time: the URL and title come from the same header
+  navigation data that feeds `megaNavTrigger`; the jumpPrefix is the
+  language-specific label set in header.njk. No runtime derivation needed.
+#}
+{% macro mobileJumpLink(url, title, jumpPrefix) %}
+{% if url and url != '#' -%}
+<a class="mega-mobile-jump" href="{{ url }}" aria-label="{{ jumpPrefix }} {{ title }}"><i class="bi bi-arrow-up-right-circle me-2"></i>{{ jumpPrefix }} {{ title }}</a>
+{%- endif %}
+{% endmacro %}

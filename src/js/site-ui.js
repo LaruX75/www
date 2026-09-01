@@ -353,7 +353,6 @@
       const megaFocusableSelector = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
       const getMegaToggle = (dropdown) => dropdown.querySelector('.mega-nav-toggle[data-bs-toggle="dropdown"]');
-      const getMegaParentLink = (dropdown) => dropdown.querySelector('.mega-nav-link[href]');
       const getMegaItems = (menu) =>
         Array.from(menu.querySelectorAll(megaFocusableSelector)).filter((el) =>
           !el.disabled && !el.closest('[hidden]') && el.offsetParent !== null
@@ -384,27 +383,8 @@
 
       megaDropdowns.forEach((dropdown) => {
         const toggle = getMegaToggle(dropdown);
-        const parentLink = getMegaParentLink(dropdown);
         const menu = dropdown.querySelector('.mega-menu-panel');
         if (!toggle || !menu) return;
-        const href = parentLink?.getAttribute('href');
-        const navLabel = (parentLink?.textContent || toggle.getAttribute('aria-label') || '').trim();
-        const jumpPrefix = (document.documentElement.lang || '').toLowerCase().startsWith('en')
-          ? 'Go to page:'
-          : 'Siirry sivulle:';
-
-        // Mobile-only "go to top-level page" link inside each mega menu.
-        if (href && href !== '#') {
-          const wrap = menu.querySelector('.mega-wrap');
-          if (wrap && !wrap.querySelector('.mega-mobile-jump')) {
-            const mobileJump = document.createElement('a');
-            mobileJump.className = 'mega-mobile-jump';
-            mobileJump.href = href;
-            mobileJump.setAttribute('aria-label', `${jumpPrefix} ${navLabel}`);
-            mobileJump.innerHTML = `<i class="bi bi-arrow-up-right-circle me-2"></i>${jumpPrefix} ${navLabel}`;
-            wrap.insertBefore(mobileJump, wrap.firstChild);
-          }
-        }
 
         const interactiveItems = getMegaItems(menu);
         interactiveItems.forEach((el, idx) => {
