@@ -107,6 +107,27 @@ pageStyles:
     </div>
 </section>
 
+<section class="py-5 home-paths-section home-paths-section--orientation" id="aloita" aria-labelledby="home-paths-heading">
+    <div class="site-shell">
+        <div class="home-section-head">
+            <p class="home-section-kicker mb-1">{{ pageContent.etusivu.paths.sectionLabel }}</p>
+            <h2 class="home-section-title" id="home-paths-heading">{{ homeCopy.pathsTitle }}</h2>
+            <p class="home-section-lead mb-0">{{ homeCopy.pathsLead }}</p>
+        </div>
+
+        <div class="home-paths-grid" data-home-orientation-paths>
+            {% for card in pageContent.etusivu.paths.cards %}
+            <a href="{{ card.href }}" class="home-path-card">
+                <span class="home-path-icon" aria-hidden="true"><i class="bi {{ card.icon }}" aria-hidden="true"></i></span>
+                <span class="home-path-title">{{ card.title }}</span>
+                <span class="home-path-desc">{{ card.desc }}</span>
+                <span class="home-path-cta">{{ card.cta }}</span>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
 {% set heroInitiativeCount = (collections.politics or []) | length %}
 {% set trainingMeta = (trainingFeedback and trainingFeedback.meta) or {} %}
 
