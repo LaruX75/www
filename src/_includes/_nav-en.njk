@@ -18,6 +18,7 @@
           {{ nav.megaNavTrigger(navMe.url or '/en/about/', navMe.title or 'Me', navMe.icon or 'bi bi-person-fill', page.url and ('/en/about/' in page.url or '/en/cv/' in page.url or '/en/portfolio/' in page.url or '/en/company/' in page.url or '/en/road-trips/' in page.url), 'megaMenuMeEn', 'megaToggleMeEn', openSubmenuLabel) }}
           <div id="megaMenuMeEn" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleMeEn">
             <div class="mega-wrap grid-8-4">
+              {{ nav.mobileJumpLink(navMe.url or '/en/about/', navMe.title or 'Me', jumpPagePrefix) }}
               <div class="mega-left three-cols">
                 {% for section in meMegaMenu.sections %}
                   <section>
@@ -62,6 +63,7 @@
             {% if workMegaMenu and workMegaMenu.sections %}
             {% if workMegaMenu.layout == "four-columns" %}
             <div class="mega-wrap">
+              {{ nav.mobileJumpLink(navWork.url or '/en/work/', navWork.title or 'Work', jumpPagePrefix) }}
               <div class="mega-left four-cols">
                 {% for section in workMegaMenu.sections %}
                   <section>
@@ -104,6 +106,7 @@
             </div>
             {% else %}
             <div class="mega-wrap grid-8-4">
+              {{ nav.mobileJumpLink(navWork.url or '/en/work/', navWork.title or 'Work', jumpPagePrefix) }}
               <div class="mega-left three-cols">
                 {% for section in workMegaMenu.sections %}
                   <section>
@@ -126,6 +129,7 @@
             {% endif %}
             {% else %}
             <div class="mega-wrap grid-8-4">
+              {{ nav.mobileJumpLink(navWork.url or '/en/work/', navWork.title or 'Work', jumpPagePrefix) }}
               <div class="mega-left three-cols">
                 <section>
                   <h5>Research & Scholarship</h5>
@@ -160,6 +164,7 @@
           {{ nav.megaNavTrigger(navPolitics.url or '/en/politics/', navPolitics.title or 'Politics', navPolitics.icon or 'bi bi-bank2', page.url and ('/en/politics/' in page.url or '/en/affiliations/' in page.url or '/en/election-history/' in page.url or '/en/municipal-and-wellbeing-elections-2025/' in page.url), 'megaMenuPoliticsEn', 'megaTogglePoliticsEn', openSubmenuLabel) }}
           <div id="megaMenuPoliticsEn" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaTogglePoliticsEn">
             <div class="mega-wrap{{ ' grid-8-4' if politicsMegaMenu.spotlight }}">
+              {{ nav.mobileJumpLink(navPolitics.url or '/en/politics/', navPolitics.title or 'Politics', jumpPagePrefix) }}
               <div class="mega-left three-cols">
                 {% for section in politicsMegaMenu.sections %}
                   <section>
@@ -204,6 +209,7 @@
           {{ nav.megaNavTrigger(navWritings.url or '/en/writings/', navWritings.title or 'Writings', navWritings.icon or 'bi bi-pencil-fill', page.url and '/en/writings/' in page.url, 'megaMenuWritingsEn', 'megaToggleWritingsEn', openSubmenuLabel) }}
           <div id="megaMenuWritingsEn" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleWritingsEn">
             <div class="mega-wrap writings-mega-layout">
+              {{ nav.mobileJumpLink(navWritings.url or '/en/writings/', navWritings.title or 'Writings', jumpPagePrefix) }}
               {% if writingsMegaMenu.contentColumns %}
                 <section class="writings-group-head">
                   <h5>{{ writingsMegaMenu.groupHeading or writingsMegaMenu.heading }}</h5>
@@ -319,6 +325,7 @@
           {{ nav.megaNavTrigger(navMedia.url or '/en/media/', navMedia.title or 'Media', navMedia.icon or 'bi bi-camera-reels-fill', page.url and '/en/media/' in page.url, 'megaMenuMediaEn', 'megaToggleMediaEn', openSubmenuLabel) }}
           <div id="megaMenuMediaEn" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleMediaEn">
             <div class="mega-wrap">
+              {{ nav.mobileJumpLink(navMedia.url or '/en/media/', navMedia.title or 'Media', jumpPagePrefix) }}
               <section class="w-100 mb-3">
                 <h5>{{ mediaMegaMenu.heading }}</h5>
                 <p class="menu-desc">{{ mediaMegaMenu.description }}</p>
@@ -344,6 +351,7 @@
           {{ nav.megaNavTrigger(navContact.url or '/en/contact/', navContact.title or 'Contact', navContact.icon or 'bi bi-envelope', page.url and '/en/contact/' in page.url, 'megaMenuContactEn', 'megaToggleContactEn', openSubmenuLabel) }}
           <div id="megaMenuContactEn" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleContactEn">
             <div class="mega-wrap">
+              {{ nav.mobileJumpLink(navContact.url or '/en/contact/', navContact.title or 'Contact', jumpPagePrefix) }}
               <section class="w-100 mb-3">
                 <h5>{{ contactMegaMenu.heading }}</h5>
                 <p class="menu-desc">{{ contactMegaMenu.description }}</p>
