@@ -44,6 +44,29 @@ function normalizeFilterValues(values, limit = 8) {
   return [...new Set(array.map((value) => String(value || "").trim()).filter(Boolean))].slice(0, limit);
 }
 
+function yearFromData(data) {
+  const raw = data?.page?.date || data?.date || "";
+  const parsed = new Date(raw);
+  if (Number.isNaN(parsed.getTime())) return "";
+  return String(parsed.getUTCFullYear());
+}
+
+function resolveFallbackWritingsPagefindRecord(data) {
+  const inputPath = String(data?.page?.inputPath || "");
+  const tagSet = new Set(Array.isArray(data?.tags) ? data.tags : []);
+  const isBlog = inputPath.includes("src/blog/") || tagSet.has("blog");
+  if (!isBlog) return null;
+
+  return {
+    contentType: "blogPost",
+    year: yearFromData(data),
+    writingRoles: Array.isArray(data?.writingRoles) ? data.writingRoles : [],
+    opinionRoles: Array.isArray(data?.opinionRoles) ? data.opinionRoles : [],
+    categories: Array.isArray(data?.categories) ? data.categories : [],
+    contexts: Array.isArray(data?.contexts) ? data.contexts : []
+  };
+}
+
 function getWritingsLookup(data) {
   if (!data || !data.collections) return null;
   if (writingsLookupCache.has(data.collections)) {
@@ -85,7 +108,7 @@ function getPublicationsLookup(data) {
 function resolvePagefindWritings(data) {
   const url = data?.page?.url || "";
   const lookup = getWritingsLookup(data);
-  const item = lookup?.get(url);
+  const item = lookup?.get(url) || resolveFallbackWritingsPagefindRecord(data);
   if (!item) return null;
 
   const filters = [
