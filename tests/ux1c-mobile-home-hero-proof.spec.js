@@ -26,9 +26,10 @@ for (const width of MOBILE_WIDTHS) {
     await expect(hero.locator(".home-hero-actions .btn")).toHaveCount(2);
     await expect(panel).toBeVisible();
     await expect(panel.locator(".home-hero-panel-text")).toBeHidden();
-    await expect(panel.locator(".home-hero-kpi")).toHaveCount(4);
+    await expect(panel.locator(".home-hero-kpi")).toHaveCount(5);
     await expect(hero.locator('.home-hero-kpi-link[href="/esitykset/"]')).toBeVisible();
     await expect(hero.locator('.home-hero-kpi-link[href="/opinnaytteet/"]')).toBeVisible();
+    await expect(hero.locator('.home-hero-kpi-link[href="/mediassa/"]')).toBeVisible();
     await expect(page.locator("#aloita")).toBeVisible();
     await expectNoHorizontalOverflow(page);
   });
@@ -57,7 +58,8 @@ for (const width of DESKTOP_WIDTHS) {
 
     await page.goto(HOME);
     await expect(page.locator("#heroSection .home-hero-panel")).toBeVisible();
-    await expect(page.locator("#heroSection .home-hero-kpi")).toHaveCount(4);
+    await expect(page.locator("#heroSection .home-hero-kpi")).toHaveCount(5);
+    await expect(page.locator('#heroSection .home-hero-kpi-link[href="/mediassa/"]')).toBeVisible();
 
     await page.goto(EN_HOME);
     await expect(page.locator("#heroSection .home-hero-roles")).toBeVisible();
