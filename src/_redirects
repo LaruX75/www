@@ -58,5 +58,18 @@
 /aiheet/ /teemat/ 301
 /etsi /haku/ 301
 /etsi/ /haku/ 301
+
+# 2009 Etäopettajapäivien materiaalit joita Jari Laru vain jakoi omalla larux-tilillään;
+# alkuperäinen tekijä Johanna Bluemink. Poistettu 2026-09-02 canonical archivelta,
+# vanhat URL:t ohjataan esitysarkistoon jotta ulkoiset linkit eivät hajoa.
+/presentations/ss-oppiminen-ja-vuorovaikutus /esitykset/ 301
+/presentations/ss-oppiminen-ja-vuorovaikutus/ /esitykset/ 301
+/presentations/ss-luova-ja-kriittinen-ajattelu /esitykset/ 301
+/presentations/ss-luova-ja-kriittinen-ajattelu/ /esitykset/ 301
+/presentations/ss-osallistuminen-sitoutumisen-sytyttajana /esitykset/ 301
+/presentations/ss-osallistuminen-sitoutumisen-sytyttajana/ /esitykset/ 301
+/presentations/ss-sosiaalinen-media-opetuskaytossa /esitykset/ 301
+/presentations/ss-sosiaalinen-media-opetuskaytossa/ /esitykset/ 301
+
 /en/* /en/404.html 404
 /* /404.html 404
