@@ -158,6 +158,18 @@ pageStyles:
 } %}
 
 {% set homeTopicSlugs = ["tekoalylukutaito", "opettajankoulutus", "oulun-palveluverkko-ja-kaupunkikehitys", "koulutusteknologia-ja-oppimisymparistot", "julkinen-asiantuntijuus-mediassa", "lapinakyva-paatoksenteko-ja-tiedolla-johtaminen"] %}
+{% set homeRecognitionItems = [
+    {
+        year: "2020",
+        title: "Kansallinen avoimen tieteen palkinto",
+        description: "Tunnustus avoimen tieteen, avoimen opetuksen ja opettajien tukemisen pitkäjänteisestä työstä."
+    },
+    {
+        year: "2014",
+        title: "Vuoden tieto- ja viestintätekniikkaopettaja",
+        description: "Tunnustus opetusteknologian tutkimuksen, opetuksen ja asiantuntijuuden yhdistämisestä."
+    }
+] %}
 
 
 <section class="py-5 home-roles-section" id="roolit">
@@ -258,6 +270,31 @@ pageStyles:
                 {% endif %}
                 <a class="home-role-cta" href="/kouluttaja/">Avaa kouluttajapalvelut <i class="bi bi-arrow-right ms-1"></i></a>
             </article>
+        </div>
+    </div>
+</section>
+
+<section class="py-4 home-recognition-section" id="tunnustettu-tyo" aria-labelledby="home-recognition-heading">
+    <div class="site-shell">
+        <div class="home-recognition-shell">
+            <div class="home-recognition-head">
+                <h2 class="home-recognition-title mb-2" id="home-recognition-heading">Tunnustettua työtä</h2>
+                <p class="home-recognition-lead mb-0">Kaksi vahvaa henkilökohtaista tunnustusta, joiden taustat löytyvät palkintosivulta.</p>
+            </div>
+
+            <ul class="home-recognition-grid" aria-label="Keskeiset tunnustukset">
+                {% for item in homeRecognitionItems %}
+                <li class="home-recognition-card">
+                    <p class="home-recognition-year">{{ item.year }}</p>
+                    <h3 class="home-recognition-card-title">{{ item.title }}</h3>
+                    <p class="home-recognition-card-text">{{ item.description }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+
+            <div class="home-recognition-footer">
+                <a class="btn btn-outline-primary rounded-pill px-4" href="/palkinnot/">Katso palkinnot ja tunnustukset</a>
+            </div>
         </div>
     </div>
 </section>
