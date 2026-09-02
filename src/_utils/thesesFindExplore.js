@@ -89,13 +89,37 @@ function buildThesesFindExplorePageModel(thesisDetailsModel = {}) {
     langCounts: Object.fromEntries(countValues(items, (item) => [item.lang])),
     roleCounts: Object.fromEntries(countValues(items, (item) => [item.thesisRole])),
     typeCounts: Object.fromEntries(countValues(items, (item) => [item.thesisType]))
-    // TH-CITE1 Phase 3: `opening` (sliced 5-item curated
-    // sub-collections) was consumed only by the previous
-    // /opinnaytteet/ and /en/theses/ curated sections. Those
-    // sections have been replaced by the full canonical SSR archive
-    // built from `thesesArchivePages{Fi,En}` + `thesis-archive-*.njk`
-    // includes. No consumer of `.opening` remains, so the field is
-    // no longer produced.
+  };
+}
+
+// THESIS-HUB-02: scoped Find & Explore model.
+//
+// Each subarchive (/opinnaytteet/gradut/, /kandit/, /tarkastetut/ + EN
+// counterparts) hosts its own Find & Explore instance that must only
+// search within that group. This factory builds the per-scope model from
+// the canonical `thesisDetails` items already filtered down to the group.
+//
+// `scope` is the ONLY narrowing filter — type/role are enforced separately
+// via the pinned filters on the FE mount data attributes so the browser
+// search cannot leak across groups even if state.type/state.role are ever
+// re-introduced. The returned `pinnedType` / `pinnedRole` are what the
+// template writes into `data-find-explore-pinned-{type,role}`.
+function buildScopedFindExploreModel(items = [], scopeConfig = {}) {
+  const scopedItems = toArray(items);
+  const years = [...new Set(scopedItems.map((item) => item.year).filter(Boolean))]
+    .sort((a, b) => Number(b) - Number(a));
+  const topicOptions = sortTopics(countValues(scopedItems, (item) => item.categories || []))
+    .map(([value, count]) => ({ value, label: value, count }));
+
+  return {
+    count: scopedItems.length,
+    items: scopedItems,
+    years,
+    topicOptions,
+    topicHighlights: topicOptions.slice(0, 8),
+    pinnedType: scopeConfig.pinnedType || "",
+    pinnedRole: scopeConfig.pinnedRole || "",
+    scopeKey: scopeConfig.scopeKey || ""
   };
 }
 
@@ -146,5 +170,6 @@ module.exports = {
   thesisRoleLabel,
   thesisTypeRoleFilterOptions,
   buildThesesFindExplorePageModel,
+  buildScopedFindExploreModel,
   buildThesisFindExploreDocument
 };

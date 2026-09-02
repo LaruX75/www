@@ -215,11 +215,19 @@ function parseKK(xmlStr) {
 
         const issued = getMeta('date', 'issued');
         const year = (issued.match(/\d{4}/) || [])[0] || '';
+        // Preserve the exact OuluREPO `dc.date.issued` string so downstream
+        // sorting can order same-year items by real publication chronology
+        // instead of falling back to alphabetical-by-title. Values may be
+        // full ISO date, year-month, or year-only depending on the source
+        // record; consumers must handle mixed precision. Do not fabricate
+        // January 1 dates for year-only values.
+        const issuedDate = String(issued || '').trim() || null;
 
         const licenseUri = getMeta('rights', 'uri') || getMeta('rights', 'url');
         items.push({
             title,
             year,
+            issuedDate,
             authors: getMetaAll('contributor', 'author'),
             advisors: getMetaAll('contributor', 'thesisadvisor'),
             reviewers: getMetaAll('contributor', 'reviewer'),

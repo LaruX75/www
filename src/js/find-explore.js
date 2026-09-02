@@ -411,8 +411,19 @@
     const languageFilter = mount.dataset.findExploreLanguageFilter;
     if (languageFilter) filters.Kieli = languageFilter;
 
-    if (state.type) filters[config.typeFilterKey || `${prefix} type`] = state.type;
-    if (state.role) filters[config.roleFilterKey || `${prefix} role`] = state.role;
+    // THESIS-HUB-02: pinned filters. Subarchive pages (e.g.
+    // /opinnaytteet/gradut/) mount FE with data-find-explore-pinned-type
+    // and/or data-find-explore-pinned-role. Those act as hard scope
+    // guarantees so the search cannot leak results from a sibling group
+    // even when the corresponding user-facing dropdown is hidden. A
+    // matching state.<field> selection always wins over the pinned
+    // default (used when the caller keeps the dropdown visible).
+    const pinnedType = mount.dataset.findExplorePinnedType;
+    const pinnedRole = mount.dataset.findExplorePinnedRole;
+    const typeValue = state.type || pinnedType;
+    const roleValue = state.role || pinnedRole;
+    if (typeValue) filters[config.typeFilterKey || `${prefix} type`] = typeValue;
+    if (roleValue) filters[config.roleFilterKey || `${prefix} role`] = roleValue;
     if (state.year) filters[config.yearFilterKey || `${prefix} year`] = state.year;
     if (state.topic) {
       const topicPreset = config.researchTopicPresetMap?.[state.topic];
@@ -443,8 +454,17 @@
       filters["Research context"] = "research";
     }
 
-    if (state.role && kind === "theses") {
-      filters[config.roleFilterKey || `${prefix} role`] = state.role;
+    // THESIS-HUB-02: mirror pinned role/type from the mount into the
+    // per-kind filter set used by cross-kind searches.
+    const pinnedRoleKind = mount.dataset.findExplorePinnedRole;
+    const pinnedTypeKind = mount.dataset.findExplorePinnedType;
+    const roleValueKind = state.role || pinnedRoleKind;
+    const typeValueKind = state.type || pinnedTypeKind;
+    if (roleValueKind && kind === "theses") {
+      filters[config.roleFilterKey || `${prefix} role`] = roleValueKind;
+    }
+    if (typeValueKind && kind === "theses") {
+      filters[config.typeFilterKey || `${prefix} type`] = typeValueKind;
     }
     if (state.year) filters[config.yearFilterKey || `${prefix} year`] = state.year;
     if (state.topic) filters[config.topicFilterKey || `${prefix} topic`] = state.topic;

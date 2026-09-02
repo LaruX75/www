@@ -23,7 +23,11 @@ test("FI publications discovery state keeps canonical hub return and explicit re
 });
 
 test("EN thesis detail preserves English hub return and explicit results return", async ({ page }) => {
-  await page.goto("/en/theses/");
+  // THESIS-HUB-02: FE moved from /en/theses/ (hub, no FE) to the
+  // /en/theses/masters/ subarchive. Detail hub link still targets the
+  // hub, while the detail-return-link targets the subarchive with the
+  // preserved query string.
+  await page.goto("/en/theses/masters/");
   const initialHref = await page.locator("[data-find-explore-results] .thesis-archive-title-link").first().getAttribute("href");
   expect(initialHref).not.toContain("returnTo=");
   await page.locator("[data-find-explore-query]").fill("Gill");
@@ -37,7 +41,7 @@ test("EN thesis detail preserves English hub return and explicit results return"
   await expect(page.locator("nav[aria-label='Breadcrumb']")).toBeVisible();
   await expect(page.locator("[data-detail-hub-link]")).toHaveAttribute("href", "/en/theses/");
   await expect(page.locator("[data-detail-return-link]")).toBeVisible();
-  await expect(page.locator("[data-detail-return-link]")).toHaveAttribute("href", /\/en\/theses\/\?q=Gill/);
+  await expect(page.locator("[data-detail-return-link]")).toHaveAttribute("href", /\/en\/theses\/masters\/\?q=Gill/);
 });
 
 test("FI thesis detail keeps canonical no-JS hub navigation and hides duplicate results return on default archive state", async ({ browser, page }) => {
@@ -53,8 +57,12 @@ test("FI thesis detail keeps canonical no-JS hub navigation and hides duplicate 
 
   await jsOffContext.close();
 
+  // THESIS-HUB-02: hub has no Find & Explore mount. Click a hub-section
+  // title link (bare `/opinnaytteet/<id>/`, no returnTo) and confirm the
+  // discovery-return link stays hidden because there is no discovery
+  // context to return to.
   await page.goto("/opinnaytteet/");
-  await page.locator("[data-find-explore-results] .thesis-archive-title-link").first().click();
+  await page.locator("[data-thesis-hub-section] .thesis-archive-title-link").first().click();
   await expect(page.locator("[data-detail-return-link]")).toBeHidden();
 
   await page.goto("/opinnaytteet/62699/?returnTo=https://example.com/");

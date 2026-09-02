@@ -47,25 +47,28 @@ test.describe("PF-PERF2 Pagefind warmup", () => {
   });
 
   test("First explicit query renders results and marks the results list aria-busy while loading", async ({ page }) => {
-    await page.goto("/opinnaytteet/");
+    // THESIS-HUB-02: thesis FE moved from /opinnaytteet/ (hub, no FE) to
+    // the scoped subarchives. The known matematiikka-ahdistuksesta
+    // thesis is reviewerOnly, so it lives under
+    // /opinnaytteet/tarkastetut/. Results render into that subarchive's
+    // external tbody (data-find-explore-results-id) — assert on the
+    // referenced tbody directly, not on the mount.
+    await page.goto("/opinnaytteet/tarkastetut/");
 
     const mount = page.locator("[data-find-explore]").first();
     const queryInput = mount.locator("[data-find-explore-query]");
     await queryInput.focus();
     await queryInput.fill("6 luokkalaisten kokemuksia matematiikka ahdistuksesta");
 
-    // Loading state is set synchronously — grab it before the search resolves
-    // by asserting via the eventual results status.
     await expect(mount.locator("[data-find-explore-status]"))
       .toContainText(/tulos|tulosta/, { timeout: 15000 });
 
-    // Once results are in, aria-busy is cleared.
-    await expect(mount.locator("[data-find-explore-results]"))
-      .not.toHaveAttribute("aria-busy", "true");
+    const results = page.locator("#thesesArchiveTbodyTarkastetutFi");
+    await expect(results).not.toHaveAttribute("aria-busy", "true");
 
-    // At least one result card rendered.
-    const cards = await mount.locator("[data-find-explore-results] li.find-explore-result").count();
-    expect(cards).toBeGreaterThan(0);
+    // At least one archive row rendered into the shared tbody.
+    const rows = await results.locator(".thesis-archive-title-link").count();
+    expect(rows).toBeGreaterThan(0);
   });
 
   test("Starter chip on /tutkimus/ still relies on the existing runtime and does not itself call Pagefind", async ({ page }) => {

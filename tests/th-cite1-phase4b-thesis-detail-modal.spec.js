@@ -138,10 +138,13 @@ test("Phase 3 archive regression: /en/theses/ has no citation trigger and no the
   expect(html).not.toMatch(/\/js\/thesis-hub-actions\.js/);
 });
 
-test("Phase 3 archive regression: landing keeps the converged 20-row table without citation cells", async ({ page }) => {
+test("THESIS-HUB-02: hub landing renders 3 sections x 5 = 15 rows, no citation cells", async ({ page }) => {
   const response = await page.request.get("/opinnaytteet/");
   const html = await response.text();
   expect(html).not.toMatch(/thesis-archive-citation/);
   const matches = html.match(/class="thesis-archive-title-link/g) || [];
-  expect(matches.length).toBe(20);
+  // Post THESIS-HUB-02 the hub is 3 sections (Gradut / Kandit /
+  // Tarkastetut) x 5 latest items = 15. Pagination and the 20-row
+  // monolithic table live only on the subarchives.
+  expect(matches.length).toBe(15);
 });

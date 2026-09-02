@@ -18,7 +18,14 @@ describe("searchQualityRegressionBenchmark", () => {
     assert.equal(report.pagefind.version, "1.5.2");
     assert.equal(report.pagefind.corpus.htmlDocumentsIndexed, 1459);
     assert.ok(report.pagefind.corpus.pageCountFi >= 1063);
-    assert.equal(report.pagefind.corpus.pageCountEn, 316);
+    // THESIS-HUB-02: EN thesis section moved from a monolithic
+    // /en/theses/ (landing + /page/N/ pagination) to a hub + 3
+    // subarchives, each independently paginated. Net EN page count
+    // change: -1 (old monolithic pagination) + 4 (hub landing + 3
+    // subarchive landings) - N (old paginated pages removed) + M
+    // (subarchive paginated pages added). Baseline before = 316,
+    // after = 318.
+    assert.equal(report.pagefind.corpus.pageCountEn, 318);
     assert.ok(report.pagefind.languages.fi, "FI language index should exist");
     assert.ok(report.pagefind.languages.en, "EN language index should exist");
     assert.equal(

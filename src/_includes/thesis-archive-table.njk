@@ -47,6 +47,11 @@
             <thead>
               <tr>
                 <th scope="col" class="thesis-archive-col-year">
+                  {# THESIS-HUB-02: year-order dropdown drives Find & Explore.
+                     Subarchive templates that do not include Find & Explore
+                     pass `thesisArchiveWithFindExplore=false` and get a
+                     plain header label. #}
+                  {% if thesisArchiveWithFindExplore %}
                   <div class="thesis-archive-header-control">
                     <span class="thesis-archive-header-label">{{ (thesisArchiveIsEn and 'Year') or 'Vuosi' }}</span>
                     <label class="visually-hidden" for="{{ thesisArchiveYearOrderId }}">{{ (thesisArchiveIsEn and 'Archive year ordering') or 'Arkiston vuosijärjestys' }}</label>
@@ -55,8 +60,12 @@
                       <option value="year-asc">{{ (thesisArchiveIsEn and 'Oldest first') or 'Vanhin ensin' }}</option>
                     </select>
                   </div>
+                  {% else %}
+                  <span class="thesis-archive-header-label">{{ (thesisArchiveIsEn and 'Year') or 'Vuosi' }}</span>
+                  {% endif %}
                 </th>
                 <th scope="col" class="thesis-archive-col-author">
+                  {% if thesisArchiveWithFindExplore %}
                   <div class="thesis-archive-header-control">
                     <span class="thesis-archive-header-label">{{ (thesisArchiveIsEn and 'Author') or 'Tekijä' }}</span>
                     <label class="visually-hidden" for="{{ thesisArchiveAuthorSortId }}">{{ (thesisArchiveIsEn and 'Archive author ordering') or 'Arkiston tekijäjärjestys' }}</label>
@@ -66,9 +75,18 @@
                       <option value="author-desc">{{ (thesisArchiveIsEn and 'Author Z-A') or 'Tekijä Ö-A' }}</option>
                     </select>
                   </div>
+                  {% else %}
+                  <span class="thesis-archive-header-label">{{ (thesisArchiveIsEn and 'Author') or 'Tekijä' }}</span>
+                  {% endif %}
                 </th>
                 <th scope="col" class="thesis-archive-col-title">{{ (thesisArchiveIsEn and 'Title') or 'Otsikko' }}</th>
                 <th scope="col" class="thesis-archive-col-type">
+                  {# THESIS-HUB-02: type/role dropdown drives Find & Explore
+                     replacement of tbody rows. Only render when the caller
+                     actually ships those options (hub/subarchive pages that
+                     are single-scope pass an empty list and the plain
+                     header label is used instead). #}
+                  {% if thesisArchiveWithFindExplore and thesisArchiveTypeRoleOptions and thesisArchiveTypeRoleOptions.length %}
                   <div class="thesis-archive-header-control">
                     <span class="thesis-archive-header-label">{{ (thesisArchiveIsEn and 'Type / role') or 'Tyyppi / rooli' }}</span>
                     <label class="visually-hidden" for="{{ thesisArchiveTypeRoleId }}">{{ (thesisArchiveIsEn and 'Archive type and role filter') or 'Arkiston tyyppi- ja roolisuodatin' }}</label>
@@ -79,6 +97,9 @@
                       {% endfor %}
                     </select>
                   </div>
+                  {% else %}
+                  <span class="thesis-archive-header-label">{{ (thesisArchiveIsEn and 'Type / role') or 'Tyyppi / rooli' }}</span>
+                  {% endif %}
                 </th>
                 <th scope="col" class="thesis-archive-col-source text-end">{{ (thesisArchiveIsEn and 'Source') or 'Lähde' }}</th>
               </tr>
