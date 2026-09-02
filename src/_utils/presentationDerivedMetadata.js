@@ -45,8 +45,30 @@ function isGenericSlideshareDescription(text = "") {
   );
 }
 
+// Narrow HTML-entity decoder for scraped SlideShare transcripts. Source
+// snapshots in `slideshare-content.json` contain `&quot;` where the
+// original text had a plain double-quote; left encoded they later leak
+// into meta descriptions (double-encoded), OG/Twitter tags, and JSON-LD
+// (single-encoded, flagged by check:jsonld as html-entity-leak).
+// `&amp;` must run LAST so a hypothetical `&amp;quot;` in source data
+// does not get double-decoded. Kept in-file to mirror the identical
+// helper in src/_data/presentationsPage.js; the two module-local copies
+// avoid a shared-utility dependency that neither module otherwise needs.
+function decodeHtmlEntities(text = "") {
+  return String(text || "")
+    .replace(/&#(\d+);/g, (_, dec) => String.fromCharCode(parseInt(dec, 10)))
+    .replace(/&#x([0-9a-f]+);/gi, (_, hex) => String.fromCharCode(parseInt(hex, 16)))
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;/g, "'")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&");
+}
+
 function transcriptExcerpt(text = "", maxLength = 420) {
-  const normalized = String(text || "")
+  const decoded = decodeHtmlEntities(String(text || ""));
+  const normalized = decoded
     .replace(/\s*---\s*/g, " ")
     .replace(/\s+/g, " ")
     .trim();
